@@ -63,7 +63,7 @@ open class PhaseWakeWear : Application() {
 
     val alarms by lazy { AlarmRepository(phaseWakeStore) }
     val nights by lazy { NightRepository(File(filesDir, "nights.v1")) }
-    val sync by lazy { WearSync(this) }
+    val sync by lazy { WearSync(this, com.phasewake.app.shared.DataLayer.CAPABILITY_PHONE) }
 
     /** «Nacht aufzeichnen»: Aufzeichnungen (privat, nicht gesichert) und ihr Austausch mit dem Handy. */
     val recordings by lazy { RecordingRepository(File(filesDir, "recordings")) }

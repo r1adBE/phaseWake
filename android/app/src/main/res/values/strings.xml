@@ -92,7 +92,7 @@
     <string name="settings_data">Your data</string>
     <string name="settings_data_text">Everything stays on your phone and watch. No account, no server, no tracking.</string>
     <string name="settings_export">Export nights without name</string>
-    <string name="settings_export_hint">Help improve detection: CSV without names, dates or device IDs.</string>
+    <string name="settings_export_hint">Help improve detection: CSV without names, dates or device IDs; contains motion and heart rate per 30 s, how you felt and your notes.</string>
     <string name="settings_about">About</string>
     <string name="settings_open_source">Open source on GitHub</string>
     <string name="settings_licenses">Licenses</string>
@@ -246,7 +246,7 @@
     <string name="check_watch_battery_problem">Below %1$d %% – charge your watch so it lasts the night and can wake you.</string>
     <string name="check_watch_pulse">Background pulse (watch)</string>
     <string name="check_watch_pulse_problem">The watch may not measure your pulse at night – on the watch set Phase Wake’s sensor permission to “Allow all the time”.</string>
-    <string name="export_contents_hint">The file contains motion and heart rate series for each night – without names, dates or device IDs.</string>
+    <string name="export_contents_hint">The file contains motion and heart rate per 30 s, how you felt and your notes for each night – without names, dates or device IDs.</string>
     <string name="editor_more">More</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Up to %1$d alarms – delete one to add a new one.</string>
@@ -305,7 +305,7 @@
     <string name="sounds_hint">Plays at media volume and stops at the latest when your wake window begins.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Record sounds</string>
-    <string name="sound_rec_hint">Only short clips. They stay on your phone and are deleted after 7 days.</string>
+    <string name="sound_rec_hint">Only short clips of snoring, talking and other sounds. They stay on your phone and are deleted after 7 days.</string>
     <string name="sound_rec_permission">To record, Phase Wake needs the microphone. It only listens while recording is on.</string>
     <string name="sound_rec_running">Recording sounds</string>
     <string name="sound_rec_stop">Stop</string>
@@ -472,7 +472,7 @@
     <string name="widget_description">Your next alarm and the night check.</string>
     <string name="widget_no_alarm">No alarm</string>
     <string name="settings_backup">Back up</string>
-    <string name="settings_backup_hint">Encrypted file with alarms, history, notes and settings. Without sound clips and health data.</string>
+    <string name="settings_backup_hint">File encrypted with your password: alarms, nights incl. motion and heart rate, notes and settings. No sound clips.</string>
     <string name="settings_restore">Restore</string>
     <string name="backup_password">Password</string>
     <string name="backup_password_repeat">Repeat password</string>

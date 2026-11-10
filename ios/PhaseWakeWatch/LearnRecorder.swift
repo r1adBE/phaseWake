@@ -15,10 +15,12 @@ import WatchKit
 /// Benutzerdaten ans iPhone, das die Nächte zählt und lernt; die Uhr behält sie nicht.
 ///
 /// Auslöser (watchOS bietet keinen festen Zeitpunkt am Abend): jedes Neuplanen (`WatchModel.reschedule`: App geöffnet,
-/// Wecker oder Lernphase vom iPhone, Ende einer Nacht) und eine Hintergrund-Aktualisierung, die die Uhr auf den
-/// frühesten Start bzw. das Ende der Nacht stellt (`PhaseWakeWatchApp`). Gestartet wird, sobald der Rekorder bis zum
-/// Ende der Nacht reicht (``AppleLearnRecord``); ausgewertet wird wie auf der Galaxy Watch ab 60 Min vor der Bettzeit.
-/// Während einer Nacht misst, klingelt oder schlummert, rechnet sie nicht (der Wecker hat Vorrang).
+/// etwa über die Erinnerung am Abend (`EveningReminder`), Wecker oder Lernphase vom iPhone, Ende einer Nacht) und eine
+/// Hintergrund-Aktualisierung, die die Uhr auf den frühesten Start bzw. das Ende der Nacht stellt (`PhaseWakeWatchApp`).
+/// Gestartet wird frühestens 60 Min vor der Bettzeit (``AppleLearnRecord``, wie die Galaxy Watch; Entscheid r1AD
+/// 10.11.2026), und nur, wenn die App dann läuft; sonst zeichnet die Uhr diese Nacht nicht auf. Je Nacht ein Aufruf des
+/// Rekorders (``AppleNightRecorder``). Während eine Nacht misst, klingelt oder schlummert, rechnet sie nicht (der Wecker
+/// hat Vorrang).
 ///
 /// «Nacht aufzeichnen» (von Hand, auf der Uhr oder vom iPhone) nutzt denselben Weg (`LearnRecorder+Manual`): Rekorder
 /// bis 12 Std., Ende von Hand, nach 12 Std. oder bei tiefem Akku; ausgewertet und ans iPhone geschickt wie eine Nacht der
@@ -82,6 +84,8 @@ final class LearnRecorder {
     private var scheduled: Date?
     /// Erlaubnis für Bewegungsdaten in diesem Lauf schon erfragt.
     private var askedMotion = false
+    /// Bedarf, für den «Rekorder reicht nicht» schon im Protokoll steht (`ensureRecorder`, einmal je Bedarf).
+    var loggedShortNeed: Date?
 
     private init() {
         snapshot = SettingsFile.watchSession.data(forKey: Self.snapshotKey)
@@ -210,16 +214,18 @@ final class LearnRecorder {
             }
             // Eine frühere Nacht ist noch nicht fertig ausgewertet: mit dem bisher Ausgewerteten ans iPhone.
             if let pending = mark { await finish(pending) }
-            ensureRecorder(until: Date().addingTimeInterval(min(duration, NightRecording.maxDuration)))
+            ensureRecorder(until: Date().addingTimeInterval(duration))
             save(Mark(alarmId: plan.alarmId, target: plan.target, from: from, until: until, wokeAt: nil, motions: []))
             DiagStore.shared.log(.measureStart, "learn record start bat=\(battery.map { "\($0)" } ?? "-") mode=recorder")
         }
     }
 
     /// Fragt einmal je Lauf nach der Erlaubnis für Bewegungsdaten, solange sie offen ist und die App vorne ist: Sonst
-    /// könnte der Rekorder am Abend im Hintergrund nicht starten. Eine Aufzeichnung von 1 s löst die Frage aus.
+    /// könnte der Rekorder am Abend im Hintergrund nicht starten. Eine Aufzeichnung von 1 s löst die Frage aus – nur
+    /// tagsüber (vor dem Beginn der Nacht, `nightStart`): In der Nacht fragt der eine Aufruf des Rekorders selbst.
     private func askMotionIfNeeded() {
         // Nie neben einer laufenden Aufzeichnung: Ein zweiter Aufruf könnte ihre Dauer verkürzen.
+        if let start = Self.nightStart(), Date() >= start { return }
         guard !askedMotion, mark == nil, !recorderRunning, WKApplication.shared().applicationState == .active,
               CMSensorRecorder.isAccelerometerRecordingAvailable(), CMSensorRecorder.authorizationStatus() == .notDetermined else { return }
         askedMotion = true

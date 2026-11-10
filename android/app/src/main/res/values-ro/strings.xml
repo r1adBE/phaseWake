@@ -89,7 +89,7 @@
     <string name="settings_data">Datele tale</string>
     <string name="settings_data_text">Totul rămâne pe telefon și pe ceas. Fără cont, fără server, fără urmărire.</string>
     <string name="settings_export">Exportă nopțile fără nume</string>
-    <string name="settings_export_hint">Ajută la îmbunătățirea detectării: CSV fără nume, date sau ID-uri de dispozitiv.</string>
+    <string name="settings_export_hint">Ajută la îmbunătățirea detectării: CSV fără nume, date sau ID-uri de dispozitiv; conține mișcarea și pulsul la fiecare 30 s, cum te-ai simțit și notițele tale.</string>
     <string name="settings_about">Despre</string>
     <string name="settings_open_source">Open source pe GitHub</string>
     <string name="settings_licenses">Licențe</string>
@@ -247,7 +247,7 @@
     <string name="check_watch_battery_problem">Sub %1$d %% – încarcă ceasul ca să reziste toată noaptea și să te poată trezi.</string>
     <string name="check_watch_pulse">Puls în fundal (ceas)</string>
     <string name="check_watch_pulse_problem">Ceasul nu are voie să-ți măsoare pulsul noaptea – pe ceas, setează permisiunea pentru senzori a Phase Wake la „Permite oricând”.</string>
-    <string name="export_contents_hint">Fișierul conține seriile de mișcare și puls din fiecare noapte – fără nume, date sau ID-uri de dispozitiv.</string>
+    <string name="export_contents_hint">Fișierul conține pentru fiecare noapte mișcarea și pulsul la fiecare 30 s, cum te-ai simțit și notițele tale – fără nume, date sau ID-uri de dispozitiv.</string>
     <string name="editor_more">Mai multe</string>
     <string name="home_max_alarms">Maximum %1$d alarme – șterge una ca să adaugi una nouă.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -310,7 +310,7 @@
     <string name="sounds_hint">Se aude la volumul media și se oprește cel târziu când începe fereastra ta de trezire.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Înregistrează sunete</string>
-    <string name="sound_rec_hint">Doar fragmente scurte. Rămân pe telefon și se șterg după 7 zile.</string>
+    <string name="sound_rec_hint">Doar fragmente scurte de sforăit, vorbit și alte sunete. Rămân pe telefon și se șterg după 7 zile.</string>
     <string name="sound_rec_permission">Pentru înregistrare, Phase Wake are nevoie de microfon. Ascultă doar cât timp înregistrarea e pornită.</string>
     <string name="sound_rec_running">Se înregistrează sunete</string>
     <string name="sound_rec_stop">Oprește</string>
@@ -455,7 +455,7 @@
     <string name="widget_description">Următoarea ta alarmă și verificarea de noapte.</string>
     <string name="widget_no_alarm">Nicio alarmă</string>
     <string name="settings_backup">Copie de rezervă</string>
-    <string name="settings_backup_hint">Fișier criptat cu alarme, istoric, notițe și setări. Fără sunete și date de sănătate.</string>
+    <string name="settings_backup_hint">Fișier criptat cu parola ta: alarme, nopți cu mișcare și puls, notițe și setări. Fără fragmente audio.</string>
     <string name="settings_restore">Restaurează</string>
     <string name="backup_password">Parolă</string>
     <string name="backup_password_repeat">Repetă parola</string>

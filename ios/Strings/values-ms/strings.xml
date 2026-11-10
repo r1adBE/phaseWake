@@ -15,6 +15,8 @@
     <string name="watch_not_armed">Buka Phase Wake sebelum awak tidur supaya jam tangan boleh mengaktifkan penggera.</string>
     <string name="check_watch_arm">Penggera diaktifkan pada jam tangan</string>
     <string name="check_watch_arm_problem">Buka Phase Wake pada Apple Watch sebelum awak tidur. watchOS hanya mengaktifkan penggera semasa apl dibuka.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: penggera tidak aktif – pemberitahuan sahaja, tiada fasa tidur. Buka aplikasi jam.</string>
+    <string name="watch_evening_reminder">Ketik untuk mengaktifkan penggera malam ini.</string>
     <string name="night_unmeasured_apple">%1$d min pertama tidak diukur – Apple Watch hanya mengukur %2$d min terakhir sebelum sasaran.</string>
     <string name="settings_licenses_text_apple">Phase Wake: Lesen MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nPengesanan bunyi: SoundAnalysis daripada Apple, terbina dalam iOS.\nBunyi: rakaman bebas (CC0) daripada opengameart.org</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">Benarkan pemberitahuan sensitif masa untuk Phase Wake pada Apple Watch awak. Jika tidak, jam tidak dapat membangunkan awak melalui pemberitahuan apabila tiada pengukuran berjalan.</string>
     <string name="check_watch_state_old">Status jam tangan sudah lapuk – buka Phase Wake sebentar pada jam tangan.</string>
     <string name="editor_sleep_hint_apple">Dikira sejak awak tertidur – ketik “Selamat malam” pada jam apabila awak masuk tidur. Pada Apple Watch, Phase Wake menganggarkan bila awak tertidur berdasarkan masa untuk tertidur yang telah dipelajarinya. Tanpa ketikan, masa yang ditetapkan digunakan.</string>
-    <string name="auto_onset_hint_apple">Dari 1 jam sebelum waktu tidur, Apple Watch merakam pergerakan awak; pada permulaan tetingkap bangun, Phase Wake mengira bila awak tertidur.</string>
+    <string name="auto_onset_hint_apple">Buka Phase Wake pada Apple Watch awak dari 1 jam sebelum waktu tidur (jam akan mengingatkan awak), lalu sejak itu ia merakam pergerakan awak; pada permulaan tetingkap bangun, Phase Wake mengira bila awak tertidur.</string>
 </resources>

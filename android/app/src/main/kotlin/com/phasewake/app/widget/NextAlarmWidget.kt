@@ -4,6 +4,7 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
+import android.appwidget.AppWidgetProviderInfo
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -135,21 +136,33 @@ class NextAlarmWidget : AppWidgetProvider() {
             val app = context.phoneApp
             val zone = ZoneId.systemDefault()
             val now = Instant.now()
-            val views = RemoteViews(context.packageName, R.layout.widget_next_alarm)
+            val manager = AppWidgetManager.getInstance(context)
             val night = app.nights.load().maxByOrNull { it.wokeAt }?.takeIf { isMorningOf(it, now, zone) }
-            if (night != null) {
-                showNight(context, views, night, asleepMinutes(context, SleepNotes.nightDate(night, zone)))
-                scheduleNoon(context, night, zone)
-            } else {
-                showNextAlarm(context, views, now, zone)
-            }
+            if (night != null) scheduleNoon(context, night, zone)
             val open = PendingIntent.getActivity(
                 context, 0, Intent(context, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
             )
-            views.setOnClickPendingIntent(R.id.widget_root, open)
-            AppWidgetManager.getInstance(context).updateAppWidget(ids, views)
+            // Auf dem Sperrbildschirm (Widget-Kategorie «keyguard», Tablets) keine «Letzte Nacht»: Weckzeit, Grund,
+            // Schlafdauer und Befinden sind Gesundheitsdaten (Audit D1, wie `privacySensitive` auf dem iPhone).
+            val (lockScreen, home) = ids.partition { onKeyguard(manager, it) }
+            for ((group, withNight) in listOf(lockScreen to false, home to (night != null))) {
+                if (group.isEmpty()) continue
+                val views = RemoteViews(context.packageName, R.layout.widget_next_alarm)
+                if (withNight && night != null) {
+                    showNight(context, views, night, asleepMinutes(context, SleepNotes.nightDate(night, zone)))
+                } else {
+                    showNextAlarm(context, views, now, zone)
+                }
+                views.setOnClickPendingIntent(R.id.widget_root, open)
+                manager.updateAppWidget(group.toIntArray(), views)
+            }
         }
+
+        /** Ob das Widget [id] auf dem Sperrbildschirm liegt (Host-Kategorie «keyguard»). */
+        private fun onKeyguard(manager: AppWidgetManager, id: Int): Boolean =
+            manager.getAppWidgetOptions(id).getInt(AppWidgetManager.OPTION_APPWIDGET_HOST_CATEGORY, -1) ==
+                AppWidgetProviderInfo.WIDGET_CATEGORY_KEYGUARD
 
         /** Nächster Wecker: Fenster, Tag und Name, Nacht-Check. */
         private suspend fun showNextAlarm(context: Context, views: RemoteViews, now: Instant, zone: ZoneId) {

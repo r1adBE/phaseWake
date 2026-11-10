@@ -15,6 +15,8 @@
     <string name="watch_not_armed">Otwórz Phase Wake przed snem, aby zegarek mógł aktywować budzik.</string>
     <string name="check_watch_arm">Budzik aktywny na zegarku</string>
     <string name="check_watch_arm_problem">Otwórz Phase Wake na Apple Watch przed snem. watchOS aktywuje budzik tylko wtedy, gdy aplikacja jest otwarta.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: budzik nieuzbrojony – tylko powiadomienie, bez faz snu. Otwórz aplikację na zegarku.</string>
+    <string name="watch_evening_reminder">Dotknij, aby uzbroić budzik na tę noc.</string>
     <string name="night_unmeasured_apple">Pierwsze %1$d min bez pomiaru – Apple Watch mierzy tylko ostatnie %2$d min przed czasem docelowym.</string>
     <string name="settings_licenses_text_apple">Phase Wake: licencja MIT, © r1adBE.\nCzcionka Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznawanie dźwięków: SoundAnalysis firmy Apple, wbudowany w iOS.\nDźwięki: wolne nagrania (CC0) z opengameart.org</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">Zezwól na powiadomienia wrażliwe na czas od Phase Wake na swoim Apple Watch. W przeciwnym razie zegarek nie obudzi cię powiadomieniem, gdy nie trwa pomiar.</string>
     <string name="check_watch_state_old">Stan zegarka jest nieaktualny – otwórz na chwilę Phase Wake na zegarku.</string>
     <string name="editor_sleep_hint_apple">Liczy się od zaśnięcia – kładąc się spać, stuknij na zegarku „Dobranoc”. Na Apple Watch Phase Wake szacuje, kiedy zasypiasz, na podstawie nauczonego czasu zasypiania. Bez stuknięcia obowiązuje ustawiona godzina.</string>
-    <string name="auto_onset_hint_apple">Od 1 godziny przed snem Apple Watch nagrywa twój ruch; na początku okna budzenia Phase Wake oblicza, kiedy zasnąłeś.</string>
+    <string name="auto_onset_hint_apple">Otwórz Phase Wake na Apple Watch od 1 godziny przed snem (zegarek ci przypomni), a od tej chwili nagrywa twój ruch; na początku okna budzenia Phase Wake oblicza, kiedy zasnąłeś.</string>
 </resources>

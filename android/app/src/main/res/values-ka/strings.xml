@@ -81,7 +81,7 @@
     <string name="settings_data">შენი მონაცემები</string>
     <string name="settings_data_text">ყველაფერი რჩება შენს ტელეფონსა და საათზე. არც ანგარიში, არც სერვერი, არც თვალთვალი.</string>
     <string name="settings_export">ღამეების ექსპორტი სახელის გარეშე</string>
-    <string name="settings_export_hint">დაგვეხმარე ამოცნობის გაუმჯობესებაში: CSV სახელების, თარიღებისა და მოწყობილობის ID-ების გარეშე.</string>
+    <string name="settings_export_hint">დაგვეხმარე ამოცნობის გაუმჯობესებაში: CSV სახელების, თარიღების და მოწყობილობის ID-ების გარეშე; შეიცავს მოძრაობასა და პულსს ყოველ 30 წმ-ში, შენს თვითგრძნობასა და ჩანაწერებს.</string>
     <string name="settings_about">აპის შესახებ</string>
     <string name="settings_open_source">ღია კოდი GitHub-ზე</string>
     <string name="settings_licenses">ლიცენზიები</string>
@@ -234,7 +234,7 @@
     <string name="check_watch_battery_problem">%1$d %%-ზე ნაკლები – დატენე საათი, რომ ღამეს გაუძლოს და გაგაღვიძოს.</string>
     <string name="check_watch_pulse">პულსი ფონურ რეჟიმში (საათი)</string>
     <string name="check_watch_pulse_problem">საათს ღამით შენი პულსის გაზომვის უფლება არ აქვს – საათზე Phase Wake-ის სენსორების ნებართვა დააყენე „ყოველთვის დაშვებაზე“.</string>
-    <string name="export_contents_hint">ფაილი შეიცავს თითოეული ღამის მოძრაობისა და პულსის მწკრივებს – სახელების, თარიღებისა და მოწყობილობის ID-ების გარეშე.</string>
+    <string name="export_contents_hint">ფაილი ყოველი ღამისთვის შეიცავს მოძრაობასა და პულსს ყოველ 30 წმ-ში, შენს თვითგრძნობასა და ჩანაწერებს – სახელების, თარიღების და მოწყობილობის ID-ების გარეშე.</string>
     <string name="editor_more">მეტი</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">მაქსიმუმ %1$d მაღვიძარა – ახლის დასამატებლად ერთი წაშალე.</string>
     <string name="notes_title">შენიშვნები ამაღამ</string>
@@ -290,7 +290,7 @@
     <string name="sounds_remaining">დარჩა: %1$s</string>
     <string name="sounds_hint">უკრავს მედიის ხმით და ჩერდება არაუგვიანეს გაღვიძების ფანჯრის დაწყებისას.</string>
     <string name="sound_rec_title">ხმების ჩაწერა</string>
-    <string name="sound_rec_hint">მხოლოდ მოკლე ფრაგმენტები. ისინი რჩება ტელეფონზე და 7 დღის შემდეგ იშლება.</string>
+    <string name="sound_rec_hint">მხოლოდ ხვრინვის, ლაპარაკისა და სხვა ხმების მოკლე ფრაგმენტები. ისინი შენს ტელეფონზე რჩება და 7 დღის შემდეგ იშლება.</string>
     <string name="sound_rec_permission">ჩასაწერად Phase Wake-ს მიკროფონი სჭირდება. ის მხოლოდ მაშინ უსმენს, როცა ჩაწერა ჩართულია.</string>
     <string name="sound_rec_running">ხმები იწერება</string>
     <string name="sound_rec_stop">გაჩერება</string>
@@ -430,7 +430,7 @@
     <string name="widget_description">შენი შემდეგი მაღვიძარა და ღამის შემოწმება.</string>
     <string name="widget_no_alarm">მაღვიძარა არ არის</string>
     <string name="settings_backup">სარეზერვო ასლი</string>
-    <string name="settings_backup_hint">დაშიფრული ფაილი მაღვიძარებით, ისტორიით, შენიშვნებითა და პარამეტრებით. ხმის ფრაგმენტებისა და ჯანმრთელობის მონაცემების გარეშე.</string>
+    <string name="settings_backup_hint">შენი პაროლით დაშიფრული ფაილი: მაღვიძარები, ღამეები მოძრაობითა და პულსით, ჩანაწერები და პარამეტრები. ხმოვანი ფრაგმენტების გარეშე.</string>
     <string name="settings_restore">აღდგენა</string>
     <string name="backup_password">პაროლი</string>
     <string name="backup_password_repeat">გაიმეორე პაროლი</string>

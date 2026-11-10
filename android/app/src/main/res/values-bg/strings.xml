@@ -89,7 +89,7 @@
     <string name="settings_data">Твоите данни</string>
     <string name="settings_data_text">Всичко остава на телефона и часовника. Без акаунт, без сървър, без проследяване.</string>
     <string name="settings_export">Експорт на нощите без име</string>
-    <string name="settings_export_hint">Помогни да подобрим разпознаването: CSV без имена, дати и ID на устройства.</string>
+    <string name="settings_export_hint">Помогни да подобрим разпознаването: CSV без имена, дати и ID на устройства; съдържа движение и пулс на всеки 30 s, как си се чувствал и бележките ти.</string>
     <string name="settings_about">Информация</string>
     <string name="settings_open_source">Отворен код в GitHub</string>
     <string name="settings_licenses">Лицензи</string>
@@ -243,7 +243,7 @@
     <string name="check_watch_battery_problem">Под %1$d %% – зареди часовника, за да издържи през нощта и да те събуди.</string>
     <string name="check_watch_pulse">Пулс във фонов режим (часовник)</string>
     <string name="check_watch_pulse_problem">Часовникът няма право да измерва пулса ти през нощта – на часовника задай разрешението за сензори на Phase Wake на „Разрешаване през цялото време“.</string>
-    <string name="export_contents_hint">Файлът съдържа данни за движение и пулс за всяка нощ – без имена, дати и ID на устройства.</string>
+    <string name="export_contents_hint">Файлът съдържа за всяка нощ движение и пулс на всеки 30 s, как си се чувствал и бележките ти – без имена, дати и ID на устройства.</string>
     <string name="editor_more">Още</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">До %1$d будилника – изтрий един, за да добавиш нов.</string>
@@ -302,7 +302,7 @@
     <string name="sounds_hint">Звучи със силата на мултимедията и спира най-късно, когато започне прозорецът за събуждане.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Записвай звуци</string>
-    <string name="sound_rec_hint">Само кратки записи. Остават на телефона и се изтриват след 7 дни.</string>
+    <string name="sound_rec_hint">Само кратки записи на хъркане, говор и други звуци. Остават на телефона и се изтриват след 7 дни.</string>
     <string name="sound_rec_permission">За записа Phase Wake има нужда от микрофона. Слуша само докато записът е включен.</string>
     <string name="sound_rec_running">Записват се звуци</string>
     <string name="sound_rec_stop">Спри</string>
@@ -444,7 +444,7 @@
     <string name="widget_description">Следващият ти будилник и нощната проверка.</string>
     <string name="widget_no_alarm">Няма будилник</string>
     <string name="settings_backup">Резервно копие</string>
-    <string name="settings_backup_hint">Шифрован файл с будилници, история, бележки и настройки. Без звукови записи и здравни данни.</string>
+    <string name="settings_backup_hint">Файл, шифрован с твоята парола: будилници, нощи с движение и пулс, бележки и настройки. Без звукови записи.</string>
     <string name="settings_restore">Възстанови</string>
     <string name="backup_password">Парола</string>
     <string name="backup_password_repeat">Повтори паролата</string>

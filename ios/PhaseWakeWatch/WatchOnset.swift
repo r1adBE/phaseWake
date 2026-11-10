@@ -5,24 +5,38 @@ import PhaseWakeCore
 /// Einschlafzeit der Nacht auf der Apple Watch, nachgerechnet beim Beginn der Smart-Alarm-Sitzung aus dem
 /// Bewegungs-Rekorder (``RecorderOnset``: dieselbe Regel wie die Einschlaf-Messung der Galaxy Watch, mit Grundrauschen
 /// und 15 Min Ruhe). Gemessen ab «Gute Nacht» (Zeit des Tippens) bzw. ab 60 Min vor der Bettzeit (``ShortNight``), frühestens
-/// ab dem Start des Rekorders. Der Rekorder läuft dafür jede Nacht, solange «Einschlafen automatisch erkennen» ein ist
-/// (`LearnRecorder+AutoOnset`), sonst nur nach «Gute Nacht», in der Lernphase und bei «Nacht aufzeichnen». Ohne Rekorder
-/// bleibt die Einschlafzeit unbekannt, und die Untergrenze kurzer Nächte gilt nicht. Ist der Schalter aus, rechnet die
-/// Uhr wie Android nur nach «Gute Nacht».
+/// ab dem Start des Rekorders. Der Rekorder läuft dafür jede Nacht, in der die App ab 60 Min vor der Bettzeit lief
+/// (geöffnet, etwa über die Erinnerung am Abend, oder Hintergrund-Aktualisierung), solange «Einschlafen automatisch
+/// erkennen» ein ist (`LearnRecorder+AutoOnset`), sonst nur nach «Gute Nacht», in der Lernphase und bei «Nacht
+/// aufzeichnen». Ist der Schalter aus, rechnet die Uhr wie Android nur nach «Gute Nacht».
 ///
-/// Neue Werte liefert der Rekorder erst nach bis zu 3 Min; die letzten Minuten vor der Sitzung fehlen darum. Kommt die
-/// Rechnung nicht zu einem Ende (das Weckfenster hat begonnen), ist die Einschlafzeit unbekannt – wie auf der Galaxy
-/// Watch, deren Messung mit dem Weckfenster endet. Die Einschlafzeit geht in die laufende Aufzeichnung
-/// (`LearnRecorder.noteOnset`) und ins Diagnose-Protokoll, nach «Gute Nacht» samt Vergleich mit der Schätzung.
+/// Ergebnis (``Result``): Ohne Rekorder in dieser Nacht (nicht gestartet, keine Erlaubnis) ist die Einschlafzeit
+/// unbekannt, und die Untergrenze kurzer Nächte gilt nicht (`notMeasured`, wie Android ohne Messung). Lief er, aber die
+/// Rechnung bringt keine Einschlafzeit (aufgegeben, Weckfenster begonnen, zu wenige Werte, zu spät gestartet), gilt die
+/// Untergrenze bis 10 Min vor der Zielzeit (`failed`, fail-closed, Entscheid r1AD 10.11.2026, wie die Galaxy Watch nach
+/// einer begonnenen Messung ohne Ergebnis). Neue Werte liefert der Rekorder erst nach bis zu 3 Min; die letzten Minuten
+/// vor der Sitzung fehlen darum. Die Einschlafzeit geht in die laufende Aufzeichnung (`LearnRecorder.noteOnset`) und
+/// ins Diagnose-Protokoll, nach «Gute Nacht» samt Vergleich mit der Schätzung.
 enum WatchOnset {
     /// Rechenzeit für das Lesen des Rekorders (bis 4 Std. Werte, rund 720 000).
     static let budget: TimeInterval = 25
+    /// Spätestens so lange nach dem Beginn der Rechnung gilt sie als gescheitert (`SmartAlarm`, fail-closed).
+    static let timeout: TimeInterval = budget + 15
 
-    /// Rechnet die Einschlafzeit für die Nacht `plan` (Wecker `spec`, Schwellen `config`) nach. - Returns: die
-    /// Einschlafzeit, sonst `nil` (unbekannt).
+    /// Ergebnis der Rechnung.
+    enum Result: Equatable {
+        /// Eingeschlafen um `at`.
+        case asleep(Date)
+        /// Kein Rekorder in dieser Nacht (oder Schalter aus, Powernap, Probewecker): unbekannt, keine Untergrenze.
+        case notMeasured
+        /// Rekorder lief, aber keine Einschlafzeit: Untergrenze bis 10 Min vor der Zielzeit.
+        case failed
+    }
+
+    /// Rechnet die Einschlafzeit für die Nacht `plan` (Wecker `spec`, Schwellen `config`) nach.
     @MainActor
-    static func compute(plan: WakePlan, spec: AlarmSpec?, config: DetectorConfig, goodNight: GoodNightState?, sleepGoal: Int) async -> Date? {
-        guard let spec, Transient.kindOf(plan.alarmId) == nil else { return nil }
+    static func compute(plan: WakePlan, spec: AlarmSpec?, config: DetectorConfig, goodNight: GoodNightState?, sleepGoal: Int) async -> Result {
+        guard let spec, Transient.kindOf(plan.alarmId) == nil else { return .notMeasured }
         let manual = goodNight.flatMap { $0.alarmId == plan.alarmId && $0.target == plan.target ? $0 : nil }
         let label = manual != nil ? "onset" : "auto onset"
         let latest = manual?.latest ?? plan.target
@@ -33,22 +47,22 @@ enum WatchOnset {
         // Ohne «Gute Nacht» nur mit «Einschlafen automatisch erkennen» (wie Android).
         guard manual != nil || LearnRecorder.shared.autoOnset else {
             DiagStore.shared.log(.measureStart, "\(label) not computed: off")
-            return nil
+            return .notMeasured
         }
         guard CMSensorRecorder.authorizationStatus() == .authorized else {
             DiagStore.shared.log(.measureStart, "\(label) not computed: motion not allowed")
-            return nil
+            return .notMeasured
         }
         guard let span = LearnRecorder.shared.recorderSpan, span.until > begin, span.from < now else {
             DiagStore.shared.log(.measureStart, "\(label) not computed: no recorder")
-            return nil
+            return .notMeasured
         }
         let since = max(begin, span.from)
         let stop = [now.addingTimeInterval(-LearnRecorder.dataDelay), span.until,
                     since.addingTimeInterval(RecorderOnset.maxExtended), latest.addingTimeInterval(-RecorderOnset.giveUpLead)].min() ?? now
         guard stop > since else {
             DiagStore.shared.log(.measureStart, "\(label) not computed: too late")
-            return nil
+            return .failed
         }
         let deadline = now.addingTimeInterval(budget)
         let motions = await Task.detached(priority: .userInitiated) {
@@ -69,12 +83,12 @@ enum WatchOnset {
             }
             let bedAt = RecorderOnset.bedAt(since: begin, automatic: manual == nil, latest: latest, sleepMinutes: sleepMinutes)
             LearnRecorder.shared.noteOnset(bedAt: bedAt, asleepAt: at)
-            return at
+            return .asleep(at)
         case .gaveUp(_, let reason):
             DiagStore.shared.log(.measureEnd, "\(stat), \(reason)")
         case .open:
             DiagStore.shared.log(.measureEnd, "\(stat), window began")
         }
-        return nil
+        return .failed
     }
 }

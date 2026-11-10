@@ -87,7 +87,7 @@
     <string name="settings_data">내 데이터</string>
     <string name="settings_data_text">모든 데이터는 휴대폰과 워치에만 저장돼요. 계정도, 서버도, 추적도 없어요.</string>
     <string name="settings_export">수면 기록 이름 없이 내보내기</string>
-    <string name="settings_export_hint">감지 정확도 개선에 도움을 주세요. 이름, 날짜, 기기 ID가 없는 CSV예요.</string>
+    <string name="settings_export_hint">감지 개선에 도움 주기: 이름, 날짜, 기기 ID가 없는 CSV이며, 30초마다의 움직임과 심박수, 컨디션, 메모가 포함됩니다.</string>
     <string name="settings_about">정보</string>
     <string name="settings_open_source">GitHub의 오픈 소스</string>
     <string name="settings_licenses">라이선스</string>
@@ -237,7 +237,7 @@
     <string name="check_watch_battery_problem">%1$d %% 미만 – 밤새 버티고 깨워 줄 수 있도록 워치를 충전해 주세요.</string>
     <string name="check_watch_pulse">백그라운드 심박(워치)</string>
     <string name="check_watch_pulse_problem">워치가 밤에 심박을 측정할 수 없어요 – 워치에서 Phase Wake의 센서 권한을 ‘항상 허용’으로 설정하세요.</string>
-    <string name="export_contents_hint">파일에는 이름, 날짜, 기기 ID 없이 밤마다의 움직임 및 심박수 데이터가 들어 있습니다.</string>
+    <string name="export_contents_hint">파일에는 밤마다 30초 단위의 움직임과 심박수, 컨디션, 메모가 들어 있습니다. 이름, 날짜, 기기 ID는 없습니다.</string>
     <string name="editor_more">더보기</string>
     <string name="home_max_alarms">알람은 최대 %1$d개입니다 – 새로 추가하려면 하나를 삭제하세요.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -296,7 +296,7 @@
     <string name="sounds_hint">미디어 볼륨으로 재생되며 늦어도 기상 시간대가 시작되면 멈춰요.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">소리 녹음</string>
-    <string name="sound_rec_hint">짧은 조각만 저장해요. 휴대폰에만 남고 7일 뒤 삭제돼요.</string>
+    <string name="sound_rec_hint">코골이, 말소리, 기타 소리의 짧은 클립만 저장합니다. 휴대폰에만 남고 7일 후 삭제됩니다.</string>
     <string name="sound_rec_permission">녹음하려면 마이크가 필요해요. 녹음 중에만 들어요.</string>
     <string name="sound_rec_running">소리 녹음 중</string>
     <string name="sound_rec_stop">중지</string>
@@ -429,7 +429,7 @@
     <string name="widget_description">다음 알람과 밤 점검.</string>
     <string name="widget_no_alarm">알람 없음</string>
     <string name="settings_backup">백업</string>
-    <string name="settings_backup_hint">알람, 기록, 메모, 설정이 담긴 암호화 파일. 소리와 건강 데이터는 제외.</string>
+    <string name="settings_backup_hint">비밀번호로 암호화된 파일: 알람, 움직임과 심박수가 포함된 밤 기록, 메모, 설정. 소리 클립은 제외됩니다.</string>
     <string name="settings_restore">복원</string>
     <string name="backup_password">비밀번호</string>
     <string name="backup_password_repeat">비밀번호 다시 입력</string>

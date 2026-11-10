@@ -88,7 +88,7 @@
     <string name="settings_data">Dine data</string>
     <string name="settings_data_text">Alt blir på telefonen og klokka. Ingen konto, ingen server, ingen sporing.</string>
     <string name="settings_export">Eksporter netter uten navn</string>
-    <string name="settings_export_hint">Hjelp til med å forbedre gjenkjenningen: CSV uten navn, datoer eller enhets-ID.</string>
+    <string name="settings_export_hint">Hjelp til å forbedre gjenkjenningen: CSV uten navn, datoer eller enhets-ID-er; inneholder bevegelse og puls per 30 s, hvordan du hadde det og notatene dine.</string>
     <string name="settings_about">Om</string>
     <string name="settings_open_source">Åpen kildekode på GitHub</string>
     <string name="settings_licenses">Lisenser</string>
@@ -242,7 +242,7 @@
     <string name="check_watch_battery_problem">Under %1$d %% – lad klokken slik at den varer natten og kan vekke deg.</string>
     <string name="check_watch_pulse">Puls i bakgrunnen (klokke)</string>
     <string name="check_watch_pulse_problem">Klokken får ikke måle pulsen din om natten – still inn sensortillatelsen for Phase Wake på klokken til «Tillat hele tiden».</string>
-    <string name="export_contents_hint">Filen inneholder bevegelses- og pulsserier for hver natt – uten navn, datoer eller enhets-ID-er.</string>
+    <string name="export_contents_hint">Filen inneholder for hver natt bevegelse og puls per 30 s, hvordan du hadde det og notatene dine – uten navn, datoer eller enhets-ID-er.</string>
     <string name="editor_more">Mer</string>
     <string name="home_max_alarms">Maks %1$d alarmer – slett en for å legge til en ny.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -303,7 +303,7 @@
     <string name="sounds_hint">Spilles med medievolumet og stopper senest når vekkevinduet ditt begynner.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Ta opp lyder</string>
-    <string name="sound_rec_hint">Bare korte klipp. De blir på telefonen og slettes etter 7 dager.</string>
+    <string name="sound_rec_hint">Bare korte klipp av snorking, prating og andre lyder. De blir på telefonen og slettes etter 7 dager.</string>
     <string name="sound_rec_permission">For å ta opp trenger Phase Wake mikrofonen. Den lytter bare mens opptaket pågår.</string>
     <string name="sound_rec_running">Lyder tas opp</string>
     <string name="sound_rec_stop">Stopp</string>
@@ -442,7 +442,7 @@
     <string name="widget_description">Den neste alarmen din og nattsjekken.</string>
     <string name="widget_no_alarm">Ingen alarm</string>
     <string name="settings_backup">Sikkerhetskopier</string>
-    <string name="settings_backup_hint">Kryptert fil med alarmer, historikk, notater og innstillinger. Uten lyder og helsedata.</string>
+    <string name="settings_backup_hint">Fil kryptert med passordet ditt: alarmer, netter med bevegelse og puls, notater og innstillinger. Uten lydklipp.</string>
     <string name="settings_restore">Gjenopprett</string>
     <string name="backup_password">Passord</string>
     <string name="backup_password_repeat">Gjenta passordet</string>

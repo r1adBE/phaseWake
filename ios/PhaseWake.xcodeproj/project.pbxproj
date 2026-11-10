@@ -664,7 +664,7 @@
 				INFOPLIST_FILE = PhaseWakeWatch/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Phase Wake";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Phase Wake measures your movement and heart rate during your wake window to wake you at a good moment. If you start the optional learning phase, it also measures them through the night to adapt the alarm to you.";
-				INFOPLIST_KEY_NSMotionUsageDescription = "Phase Wake measures your movement and heart rate during your wake window to wake you at a good moment. If you start the optional learning phase, it also measures them through the night to adapt the alarm to you. It also records your movement at night to detect when you fall asleep, after \"Good night\" and with \"Record night\".";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Phase Wake measures your movement and heart rate during your wake window to wake you at a good moment. If you start the optional learning phase, it also measures them through the night to adapt the alarm to you. It also records your movement at night to detect when you fall asleep, after \"Good night\" and with \"Record night\". With \"Detect falling asleep automatically\" on, also from 1 hour before bedtime once you have opened the watch app.";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.phasewake.app;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.phasewake.app.watchkitapp;
@@ -694,7 +694,7 @@
 				INFOPLIST_FILE = PhaseWakeWatch/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Phase Wake";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Phase Wake measures your movement and heart rate during your wake window to wake you at a good moment. If you start the optional learning phase, it also measures them through the night to adapt the alarm to you.";
-				INFOPLIST_KEY_NSMotionUsageDescription = "Phase Wake measures your movement and heart rate during your wake window to wake you at a good moment. If you start the optional learning phase, it also measures them through the night to adapt the alarm to you. It also records your movement at night to detect when you fall asleep, after \"Good night\" and with \"Record night\".";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Phase Wake measures your movement and heart rate during your wake window to wake you at a good moment. If you start the optional learning phase, it also measures them through the night to adapt the alarm to you. It also records your movement at night to detect when you fall asleep, after \"Good night\" and with \"Record night\". With \"Detect falling asleep automatically\" on, also from 1 hour before bedtime once you have opened the watch app.";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.phasewake.app;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.phasewake.app.watchkitapp;

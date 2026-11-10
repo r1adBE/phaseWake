@@ -90,7 +90,7 @@
     <string name="settings_data">तुमचा डेटा</string>
     <string name="settings_data_text">सगळं तुमच्या फोनवर आणि घड्याळावरच राहतं. खातं नाही, सर्व्हर नाही, ट्रॅकिंग नाही.</string>
     <string name="settings_export">रात्री नावाशिवाय एक्सपोर्ट करा</string>
-    <string name="settings_export_hint">ओळख सुधारायला मदत करा: नावे, तारखा किंवा डिव्हाइस आयडी नसलेली CSV.</string>
+    <string name="settings_export_hint">ओळख सुधारण्यास मदत करा: नाव, तारीख किंवा डिव्हाइस ID नसलेली CSV; त्यात दर 30 सेकंदांची हालचाल आणि हृदयाचे ठोके, तुम्हाला कसे वाटले आणि तुमच्या नोंदी आहेत.</string>
     <string name="settings_about">माहिती</string>
     <string name="settings_open_source">GitHub वर ओपन सोर्स</string>
     <string name="settings_licenses">परवाने</string>
@@ -244,7 +244,7 @@
     <string name="check_watch_battery_problem">%1$d %% पेक्षा कमी – रात्रभर टिकेल आणि तुम्हाला उठवू शकेल म्हणून घड्याळ चार्ज करा.</string>
     <string name="check_watch_pulse">बॅकग्राउंडमधील पल्स (घड्याळ)</string>
     <string name="check_watch_pulse_problem">घड्याळाला रात्री तुझी पल्स मोजण्याची परवानगी नाही – घड्याळावर Phase Wake ची सेन्सर परवानगी “नेहमी अनुमती द्या” वर सेट कर.</string>
-    <string name="export_contents_hint">फाइलमध्ये प्रत्येक रात्रीच्या हालचाल आणि हृदयगतीच्या मालिका आहेत – नावे, तारखा किंवा डिव्हाइस आयडीशिवाय.</string>
+    <string name="export_contents_hint">फाइलमध्ये प्रत्येक रात्रीची दर 30 सेकंदांची हालचाल आणि हृदयाचे ठोके, तुम्हाला कसे वाटले आणि तुमच्या नोंदी आहेत – नाव, तारीख किंवा डिव्हाइस ID शिवाय.</string>
     <string name="editor_more">अधिक</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">जास्तीत जास्त %1$d अलार्म – नवीन जोडण्यासाठी एक हटवा.</string>
@@ -303,7 +303,7 @@
     <string name="sounds_hint">मीडिया आवाजावर वाजते आणि उठवण्याचा कालावधी सुरू होताच थांबते.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">आवाज रेकॉर्ड करा</string>
-    <string name="sound_rec_hint">फक्त छोट्या क्लिप. त्या तुमच्या फोनवरच राहतात आणि ७ दिवसांनी हटवल्या जातात.</string>
+    <string name="sound_rec_hint">फक्त घोरणे, बोलणे आणि इतर आवाजांच्या छोट्या क्लिप. त्या तुमच्या फोनवरच राहतात आणि ७ दिवसांनी हटवल्या जातात.</string>
     <string name="sound_rec_permission">रेकॉर्ड करण्यासाठी Phase Wake ला मायक्रोफोन हवा. रेकॉर्डिंग चालू असतानाच ते ऐकते.</string>
     <string name="sound_rec_running">आवाज रेकॉर्ड होत आहेत</string>
     <string name="sound_rec_stop">थांबवा</string>
@@ -445,7 +445,7 @@
     <string name="widget_description">तुमचा पुढचा अलार्म आणि रात्रीची तपासणी.</string>
     <string name="widget_no_alarm">अलार्म नाही</string>
     <string name="settings_backup">बॅकअप घ्या</string>
-    <string name="settings_backup_hint">अलार्म, इतिहास, नोंदी आणि सेटिंग्ज असलेली एन्क्रिप्टेड फाइल. आवाजाच्या क्लिप आणि हेल्थ डेटाशिवाय.</string>
+    <string name="settings_backup_hint">तुमच्या पासवर्डने एन्क्रिप्ट केलेली फाइल: अलार्म, हालचाल आणि हृदयाचे ठोके असलेल्या रात्री, नोंदी आणि सेटिंग्ज. आवाजाच्या क्लिपशिवाय.</string>
     <string name="settings_restore">पुनर्संचयित करा</string>
     <string name="backup_password">पासवर्ड</string>
     <string name="backup_password_repeat">पासवर्ड पुन्हा टाका</string>

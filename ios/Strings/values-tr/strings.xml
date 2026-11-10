@@ -15,6 +15,8 @@
     <string name="watch_not_armed">Uyumadan önce Phase Wake’i aç; böylece saatin alarmı etkinleştirebilir.</string>
     <string name="check_watch_arm">Alarm saatte etkin</string>
     <string name="check_watch_arm_problem">Uyumadan önce Apple Watch’ta Phase Wake’i aç. watchOS alarmı yalnızca uygulama açıkken etkinleştirir.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: alarm kurulu değil – yalnızca bildirim, uyku evresi yok. Saat uygulamasını aç.</string>
+    <string name="watch_evening_reminder">Bu gecenin alarmını kurmak için dokun.</string>
     <string name="night_unmeasured_apple">İlk %1$d dk ölçülmedi – Apple Watch yalnızca hedef saatten önceki son %2$d dk’yı ölçer.</string>
     <string name="settings_licenses_text_apple">Phase Wake: MIT Lisansı, © r1adBE.\nManrope yazı tipi: SIL Open Font License 1.1, © The Manrope Project Authors.\nSes algılama: Apple SoundAnalysis, iOS içinde yerleşik.\nSesler: opengameart.org’dan özgür kayıtlar (CC0)</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">Apple Watch’unda Phase Wake için zamana duyarlı bildirimlere izin ver. Aksi halde ölçüm yapılmıyorken saat seni bildirimle uyandıramaz.</string>
     <string name="check_watch_state_old">Saatin durumu güncel değil – Phase Wake’i saatte kısaca aç.</string>
     <string name="editor_sleep_hint_apple">Uykuya daldığın andan itibaren sayılır – yatarken saatte «İyi geceler»e dokun. Apple Watch’ta Phase Wake ne zaman uykuya daldığını öğrendiği uykuya dalma süresinden tahmin eder. Dokunmazsan ayarlanan saat geçerli olur.</string>
-    <string name="auto_onset_hint_apple">Yatma saatinden 1 saat önceden itibaren Apple Watch hareketini kaydeder; uyandırma aralığının başında Phase Wake ne zaman uykuya daldığını hesaplar.</string>
+    <string name="auto_onset_hint_apple">Yatma saatinden 1 saat önceden itibaren Apple Watch’ta Phase Wake’i aç (saat sana hatırlatır), o andan itibaren hareketini kaydeder; uyandırma aralığının başında Phase Wake ne zaman uykuya daldığını hesaplar.</string>
 </resources>

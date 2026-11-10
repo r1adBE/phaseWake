@@ -15,6 +15,8 @@
     <string name="watch_not_armed">დაძინებამდე გახსენი Phase Wake, რომ საათმა მაღვიძარა გაააქტიუროს.</string>
     <string name="check_watch_arm">მაღვიძარა საათზე აქტიურია</string>
     <string name="check_watch_arm_problem">დაძინებამდე გახსენი Phase Wake Apple Watch-ზე. watchOS მაღვიძარას მხოლოდ მაშინ ააქტიურებს, როცა აპი ღიაა.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: მაღვიძარა ჩართული არ არის – მხოლოდ შეტყობინება, ძილის ფაზების გარეშე. გახსენი საათის აპი.</string>
+    <string name="watch_evening_reminder">შეეხე, რომ ამაღამ მაღვიძარა ჩაირთოს.</string>
     <string name="night_unmeasured_apple">პირველი %1$d წთ არ გაიზომა – Apple Watch ზომავს მხოლოდ ბოლო %2$d წთ-ს სამიზნემდე.</string>
     <string name="settings_licenses_text_apple">Phase Wake: MIT ლიცენზია, © r1adBE.\nManrope შრიფტი: SIL Open Font License 1.1, © The Manrope Project Authors.\nხმების ამოცნობა: Apple-ის SoundAnalysis, ჩაშენებული iOS-ში.\nხმები: თავისუფალი ჩანაწერები (CC0) opengameart.org-დან</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">დაუშვი Phase Wake-ის დროზე მგრძნობიარე შეტყობინებები შენს Apple Watch-ზე. თორემ, როცა გაზომვა არ მიმდინარეობს, საათი შეტყობინებით ვერ გაგაღვიძებს.</string>
     <string name="check_watch_state_old">საათის მდგომარეობა მოძველებულია – მოკლედ გახსენი Phase Wake საათზე.</string>
     <string name="editor_sleep_hint_apple">ითვლება ჩაძინებიდან – დაწოლისას საათზე შეეხე «ძილი ნებისა»-ს. Apple Watch-ზე Phase Wake ჩაძინების დროს ნასწავლი ჩაძინების ხანგრძლივობით აფასებს. შეხების გარეშე მოქმედებს დაყენებული დრო.</string>
-    <string name="auto_onset_hint_apple">დაძინებამდე 1 საათით ადრე Apple Watch იწერს შენს მოძრაობას; გაღვიძების ფანჯრის დასაწყისში Phase Wake ითვლის, როდის ჩაგეძინა.</string>
+    <string name="auto_onset_hint_apple">გახსენი Phase Wake Apple Watch-ზე დაძინებამდე 1 საათით ადრე ან მოგვიანებით (საათი შეგახსენებს) და იმ მომენტიდან ის შენს მოძრაობას ჩაწერს; გაღვიძების ფანჯრის დასაწყისში Phase Wake გამოითვლის, როდის ჩაგეძინა.</string>
 </resources>

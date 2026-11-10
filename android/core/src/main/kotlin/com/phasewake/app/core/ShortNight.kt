@@ -23,12 +23,14 @@ object ShortNight {
 
     /**
      * Ob frühes Wecken gesperrt ist: Einschlafzeit [onset] bekannt und seit dann weniger als Schlafziel minus
-     * [MARGIN_MINUTES] vergangen (bei 7½ h also unter 6½ h Schlaf). Ohne bekannte Einschlafzeit nie gesperrt; ebenso
-     * nicht mehr in den letzten [LATE_MINUTES] vor der Zielzeit [target] (ohne [target]: bis zum Schluss gesperrt).
+     * [MARGIN_MINUTES] vergangen (bei 7½ h also unter 6½ h Schlaf). Ohne bekannte Einschlafzeit gesperrt, wenn sie
+     * gemessen wurde, die Messung aber kein Ergebnis brachte ([measured]: begonnen, dann aufgegeben, vom System
+     * beendet, gescheitert oder ohne Werte – fail-closed, Entscheid r1AD 10.11.2026); ohne Messung nie. In den letzten
+     * [LATE_MINUTES] vor der Zielzeit [target] nie mehr (ohne [target]: bis zum Schluss gesperrt).
      */
-    fun blocksEarly(onset: Instant?, now: Instant, sleepGoalMinutes: Int, target: Instant? = null): Boolean {
-        if (onset == null) return false
+    fun blocksEarly(onset: Instant?, now: Instant, sleepGoalMinutes: Int, target: Instant? = null, measured: Boolean = false): Boolean {
         if (target != null && !now.isBefore(target.minus(Duration.ofMinutes(LATE_MINUTES.toLong())))) return false
+        if (onset == null) return measured
         return Duration.between(onset, now) < Duration.ofMinutes((sleepGoalMinutes - MARGIN_MINUTES).toLong())
     }
 

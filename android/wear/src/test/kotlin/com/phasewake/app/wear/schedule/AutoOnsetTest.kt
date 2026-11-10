@@ -86,6 +86,23 @@ class AutoOnsetTest {
     }
 
     @Test
+    fun measuredWithoutOnsetIsKeptForThisNightOnly() = runTest {
+        // Fail-closed (Entscheid r1AD 10.11.2026): gemessen, aber ohne Einschlafzeit.
+        val store = OnsetStore(MemoryStore())
+        assertFalse(store.measuredFor(plan))
+        store.set("a", target, null, measured = true)
+        assertTrue(store.measuredFor(plan))
+        assertNull(store.onsetFor(plan))
+        assertFalse(store.measuredFor(plan.copy(alarmId = "b")))
+        assertFalse(store.measuredFor(plan.copy(target = target.plus(Duration.ofDays(1)))))
+        // Abgebrochen oder nicht begonnen: ohne Untergrenze; mit Einschlafzeit gilt diese.
+        store.set("a", target, null)
+        assertFalse(store.measuredFor(plan))
+        store.set("a", target, Instant.parse("2026-11-02T23:10:00Z"), measured = true)
+        assertFalse(store.measuredFor(plan))
+    }
+
+    @Test
     fun onsetTooLongBeforeTargetIsIgnored() = runTest {
         val store = OnsetStore(MemoryStore())
         store.set("a", target, target.minus(Duration.ofHours(17)))

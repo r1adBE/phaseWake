@@ -15,6 +15,8 @@
     <string name="watch_not_armed">Öffne Phase Wake vor dem Schlafen, damit die Uhr den Wecker scharf schaltet.</string>
     <string name="check_watch_arm">Wecker auf der Uhr scharf</string>
     <string name="check_watch_arm_problem">Öffne Phase Wake vor dem Schlafen auf der Apple Watch. watchOS schaltet den Wecker nur bei offener App scharf.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: Wecker nicht scharf – nur Mitteilung, keine Phasen. Öffne die Uhr-App.</string>
+    <string name="watch_evening_reminder">Tippe, um den Wecker für heute Nacht scharf zu stellen.</string>
     <string name="night_unmeasured_apple">Erste %1$d Min nicht gemessen – die Apple Watch misst nur die letzten %2$d Min vor der Zielzeit.</string>
     <string name="settings_licenses_text_apple">Phase Wake: MIT-Lizenz, © r1adBE.\nSchrift Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeräuscherkennung: SoundAnalysis von Apple, in iOS eingebaut.\nKlänge: freie Aufnahmen (CC0) von opengameart.org</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">Erlaube zeitkritische Mitteilungen von Phase Wake auf deiner Apple Watch. Sonst kann sie dich ohne laufende Messung nicht per Mitteilung wecken.</string>
     <string name="check_watch_state_old">Stand der Uhr veraltet – öffne Phase Wake kurz auf der Uhr.</string>
     <string name="editor_sleep_hint_apple">Zählt ab dem Einschlafen – tippe beim Zubettgehen auf der Uhr auf «Gute Nacht». Auf der Apple Watch schätzt Phase Wake die Einschlafzeit aus deiner gelernten Einschlafdauer. Ohne Tippen gilt die eingestellte Uhrzeit.</string>
-    <string name="auto_onset_hint_apple">Deine Apple Watch zeichnet ab 1 Std. vor der Bettzeit die Bewegung auf; zu Beginn des Weckfensters rechnet Phase Wake aus, wann du eingeschlafen bist.</string>
+    <string name="auto_onset_hint_apple">Öffnest du Phase Wake ab 1 Std. vor der Bettzeit auf der Apple Watch (sie erinnert dich), zeichnet sie ab dann die Bewegung auf; zu Beginn des Weckfensters rechnet Phase Wake aus, wann du eingeschlafen bist.</string>
 </resources>

@@ -91,7 +91,7 @@
     <string name="settings_data">Tavi dati</string>
     <string name="settings_data_text">Viss paliek tavā tālrunī un pulkstenī. Bez konta, bez servera, bez izsekošanas.</string>
     <string name="settings_export">Eksportēt naktis bez vārda</string>
-    <string name="settings_export_hint">Palīdzi uzlabot noteikšanu: CSV bez vārdiem, datumiem un ierīču ID.</string>
+    <string name="settings_export_hint">Palīdzi uzlabot noteikšanu: CSV bez vārdiem, datumiem un ierīču ID; satur kustības un pulsu ik pēc 30 s, tavu pašsajūtu un piezīmes.</string>
     <string name="settings_about">Par lietotni</string>
     <string name="settings_open_source">Atvērtais kods vietnē GitHub</string>
     <string name="settings_licenses">Licences</string>
@@ -249,7 +249,7 @@
     <string name="check_watch_battery_problem">Zem %1$d %% – uzlādē pulksteni, lai tas izturētu visu nakti un varētu tevi pamodināt.</string>
     <string name="check_watch_pulse">Pulss fonā (pulkstenis)</string>
     <string name="check_watch_pulse_problem">Pulkstenim nav atļauts naktī mērīt tavu pulsu – pulkstenī iestati Phase Wake sensoru atļauju uz “Atļaut vienmēr”.</string>
-    <string name="export_contents_hint">Failā ir katras nakts kustību un pulsa sērijas – bez vārdiem, datumiem un ierīču ID.</string>
+    <string name="export_contents_hint">Failā ir katras nakts kustības un pulss ik pēc 30 s, tava pašsajūta un piezīmes – bez vārdiem, datumiem un ierīču ID.</string>
     <string name="editor_more">Vairāk</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Līdz %1$d modinātājiem – izdzēs vienu, lai pievienotu jaunu.</string>
@@ -310,7 +310,7 @@
     <string name="sounds_hint">Skan multivides skaļumā un apstājas vēlākais tad, kad sākas modināšanas logs.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Ierakstīt skaņas</string>
-    <string name="sound_rec_hint">Tikai īsi fragmenti. Tie paliek tavā tālrunī un tiek dzēsti pēc 7 dienām.</string>
+    <string name="sound_rec_hint">Tikai īsi krākšanas, runāšanas un citu skaņu fragmenti. Tie paliek tavā tālrunī un tiek dzēsti pēc 7 dienām.</string>
     <string name="sound_rec_permission">Lai ierakstītu, Phase Wake vajag mikrofonu. Tas klausās tikai tad, kad ierakstīšana ir ieslēgta.</string>
     <string name="sound_rec_running">Notiek skaņu ierakstīšana</string>
     <string name="sound_rec_stop">Apturēt</string>
@@ -458,7 +458,7 @@
     <string name="widget_description">Tavs nākamais modinātājs un nakts pārbaude.</string>
     <string name="widget_no_alarm">Nav modinātāja</string>
     <string name="settings_backup">Dublēt</string>
-    <string name="settings_backup_hint">Šifrēts fails ar modinātājiem, vēsturi, piezīmēm un iestatījumiem. Bez skaņu fragmentiem un veselības datiem.</string>
+    <string name="settings_backup_hint">Ar tavu paroli šifrēts fails: modinātāji, naktis ar kustībām un pulsu, piezīmes un iestatījumi. Bez skaņu fragmentiem.</string>
     <string name="settings_restore">Atjaunot</string>
     <string name="backup_password">Parole</string>
     <string name="backup_password_repeat">Atkārto paroli</string>

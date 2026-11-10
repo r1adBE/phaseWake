@@ -41,4 +41,14 @@ class NightCheckPulseTest {
         assertTrue(Check.WATCH_SETUP in setup)
         assertFalse(Check.WATCH_PULSE in setup)
     }
+
+    @Test
+    fun missingAlarmRightsAreBlocking() {
+        // Audit D4: keine exakten Alarme (Android 12/12L) bzw. kein Vollbild (ab Android 14) macht die Karte rot.
+        assertFalse(Check.EXACT_ALARMS.advisory)
+        assertFalse(Check.FULL_SCREEN.advisory)
+        assertFalse(NightCheckState(listOf(Check.EXACT_ALARMS)).ready)
+        assertFalse(NightCheckState(listOf(Check.FULL_SCREEN)).ready)
+        assertTrue(NightCheckState(listOf(Check.COMPANION)).ready, "nur ein Hinweis")
+    }
 }

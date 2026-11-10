@@ -90,7 +90,7 @@
     <string name="settings_data">ਤੁਹਾਡਾ ਡਾਟਾ</string>
     <string name="settings_data_text">ਸਭ ਕੁਝ ਤੁਹਾਡੇ ਫ਼ੋਨ ਅਤੇ ਘੜੀ ’ਤੇ ਹੀ ਰਹਿੰਦਾ ਹੈ। ਕੋਈ ਖਾਤਾ ਨਹੀਂ, ਕੋਈ ਸਰਵਰ ਨਹੀਂ, ਕੋਈ ਟਰੈਕਿੰਗ ਨਹੀਂ।</string>
     <string name="settings_export">ਰਾਤਾਂ ਨਾਮ ਤੋਂ ਬਿਨਾਂ ਐਕਸਪੋਰਟ ਕਰੋ</string>
-    <string name="settings_export_hint">ਪਛਾਣ ਸੁਧਾਰਨ ਵਿੱਚ ਮਦਦ ਕਰੋ: ਨਾਮਾਂ, ਤਾਰੀਖਾਂ ਜਾਂ ਡੀਵਾਈਸ ID ਤੋਂ ਬਿਨਾਂ CSV।</string>
+    <string name="settings_export_hint">ਪਛਾਣ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰੋ: ਨਾਂ, ਤਾਰੀਖ਼ ਜਾਂ ਡਿਵਾਈਸ ID ਤੋਂ ਬਿਨਾਂ CSV; ਇਸ ਵਿੱਚ ਹਰ 30 ਸਕਿੰਟ ਦੀ ਹਿਲਜੁਲ ਅਤੇ ਦਿਲ ਦੀ ਧੜਕਣ, ਤੁਹਾਨੂੰ ਕਿਵੇਂ ਲੱਗਾ ਅਤੇ ਤੁਹਾਡੇ ਨੋਟ ਹਨ।</string>
     <string name="settings_about">ਬਾਰੇ</string>
     <string name="settings_open_source">GitHub ’ਤੇ ਓਪਨ ਸੋਰਸ</string>
     <string name="settings_licenses">ਲਾਇਸੰਸ</string>
@@ -244,7 +244,7 @@
     <string name="check_watch_battery_problem">%1$d %% ਤੋਂ ਘੱਟ – ਘੜੀ ਚਾਰਜ ਕਰੋ ਤਾਂ ਜੋ ਉਹ ਸਾਰੀ ਰਾਤ ਚੱਲੇ ਅਤੇ ਤੁਹਾਨੂੰ ਜਗਾ ਸਕੇ।</string>
     <string name="check_watch_pulse">ਬੈਕਗ੍ਰਾਊਂਡ ਵਿੱਚ ਨਬਜ਼ (ਘੜੀ)</string>
     <string name="check_watch_pulse_problem">ਘੜੀ ਨੂੰ ਰਾਤ ਨੂੰ ਤੇਰੀ ਨਬਜ਼ ਮਾਪਣ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ – ਘੜੀ ’ਤੇ Phase Wake ਦੀ ਸੈਂਸਰ ਇਜਾਜ਼ਤ “ਹਮੇਸ਼ਾਂ ਇਜਾਜ਼ਤ ਦਿਓ” ’ਤੇ ਸੈੱਟ ਕਰ।</string>
-    <string name="export_contents_hint">ਫ਼ਾਈਲ ਵਿੱਚ ਹਰ ਰਾਤ ਦੀ ਹਿਲਜੁਲ ਅਤੇ ਦਿਲ ਦੀ ਧੜਕਣ ਦੀਆਂ ਲੜੀਆਂ ਹਨ – ਨਾਮਾਂ, ਤਾਰੀਖਾਂ ਜਾਂ ਡੀਵਾਈਸ ID ਤੋਂ ਬਿਨਾਂ।</string>
+    <string name="export_contents_hint">ਫ਼ਾਈਲ ਵਿੱਚ ਹਰ ਰਾਤ ਲਈ ਹਰ 30 ਸਕਿੰਟ ਦੀ ਹਿਲਜੁਲ ਅਤੇ ਦਿਲ ਦੀ ਧੜਕਣ, ਤੁਹਾਨੂੰ ਕਿਵੇਂ ਲੱਗਾ ਅਤੇ ਤੁਹਾਡੇ ਨੋਟ ਹਨ – ਨਾਂ, ਤਾਰੀਖ਼ ਜਾਂ ਡਿਵਾਈਸ ID ਤੋਂ ਬਿਨਾਂ।</string>
     <string name="editor_more">ਹੋਰ</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">ਵੱਧ ਤੋਂ ਵੱਧ %1$d ਅਲਾਰਮ – ਨਵਾਂ ਜੋੜਨ ਲਈ ਇੱਕ ਮਿਟਾਓ।</string>
@@ -303,7 +303,7 @@
     <string name="sounds_hint">ਮੀਡੀਆ ਆਵਾਜ਼ ’ਤੇ ਚੱਲਦਾ ਹੈ ਅਤੇ ਜਗਾਉਣ ਦੀ ਮਿਆਦ ਸ਼ੁਰੂ ਹੁੰਦਿਆਂ ਹੀ ਬੰਦ ਹੋ ਜਾਂਦਾ ਹੈ।</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">ਆਵਾਜ਼ਾਂ ਰਿਕਾਰਡ ਕਰੋ</string>
-    <string name="sound_rec_hint">ਸਿਰਫ਼ ਛੋਟੀਆਂ ਕਲਿੱਪਾਂ। ਇਹ ਤੁਹਾਡੇ ਫ਼ੋਨ ’ਤੇ ਹੀ ਰਹਿੰਦੀਆਂ ਹਨ ਅਤੇ 7 ਦਿਨਾਂ ਬਾਅਦ ਮਿਟ ਜਾਂਦੀਆਂ ਹਨ।</string>
+    <string name="sound_rec_hint">ਸਿਰਫ਼ ਘੁਰਾੜਿਆਂ, ਬੋਲਣ ਅਤੇ ਹੋਰ ਆਵਾਜ਼ਾਂ ਦੀਆਂ ਛੋਟੀਆਂ ਕਲਿੱਪਾਂ। ਇਹ ਤੁਹਾਡੇ ਫ਼ੋਨ ’ਤੇ ਹੀ ਰਹਿੰਦੀਆਂ ਹਨ ਅਤੇ 7 ਦਿਨਾਂ ਬਾਅਦ ਮਿਟ ਜਾਂਦੀਆਂ ਹਨ।</string>
     <string name="sound_rec_permission">ਰਿਕਾਰਡ ਕਰਨ ਲਈ Phase Wake ਨੂੰ ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਚਾਹੀਦਾ ਹੈ। ਇਹ ਸਿਰਫ਼ ਰਿਕਾਰਡਿੰਗ ਚਾਲੂ ਹੋਣ ’ਤੇ ਹੀ ਸੁਣਦਾ ਹੈ।</string>
     <string name="sound_rec_running">ਆਵਾਜ਼ਾਂ ਰਿਕਾਰਡ ਹੋ ਰਹੀਆਂ ਹਨ</string>
     <string name="sound_rec_stop">ਬੰਦ ਕਰੋ</string>
@@ -445,7 +445,7 @@
     <string name="widget_description">ਤੁਹਾਡਾ ਅਗਲਾ ਅਲਾਰਮ ਅਤੇ ਰਾਤ ਦੀ ਜਾਂਚ।</string>
     <string name="widget_no_alarm">ਕੋਈ ਅਲਾਰਮ ਨਹੀਂ</string>
     <string name="settings_backup">ਬੈਕਅੱਪ ਲਓ</string>
-    <string name="settings_backup_hint">ਅਲਾਰਮਾਂ, ਇਤਿਹਾਸ, ਨੋਟਾਂ ਅਤੇ ਸੈਟਿੰਗਾਂ ਵਾਲੀ ਇਨਕ੍ਰਿਪਟ ਕੀਤੀ ਫ਼ਾਈਲ। ਆਵਾਜ਼ ਦੀਆਂ ਕਲਿੱਪਾਂ ਅਤੇ ਸਿਹਤ ਡਾਟੇ ਤੋਂ ਬਿਨਾਂ।</string>
+    <string name="settings_backup_hint">ਤੁਹਾਡੇ ਪਾਸਵਰਡ ਨਾਲ ਇਨਕ੍ਰਿਪਟ ਕੀਤੀ ਫ਼ਾਈਲ: ਅਲਾਰਮ, ਹਿਲਜੁਲ ਅਤੇ ਦਿਲ ਦੀ ਧੜਕਣ ਸਮੇਤ ਰਾਤਾਂ, ਨੋਟ ਅਤੇ ਸੈਟਿੰਗਾਂ। ਆਵਾਜ਼ ਦੀਆਂ ਕਲਿੱਪਾਂ ਤੋਂ ਬਿਨਾਂ।</string>
     <string name="settings_restore">ਮੁੜ-ਬਹਾਲ ਕਰੋ</string>
     <string name="backup_password">ਪਾਸਵਰਡ</string>
     <string name="backup_password_repeat">ਪਾਸਵਰਡ ਦੁਬਾਰਾ ਲਿਖੋ</string>

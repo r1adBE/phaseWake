@@ -46,6 +46,22 @@ final class ShortNightTests: XCTestCase {
         XCTAssertFalse(ShortNight.blocksEarly(onset: nil, now: nov(7, 32), sleepGoalMinutes: 450, target: target))
     }
 
+    func testMeasuredButUnknownOnsetBlocksUntilTheLastTenMinutes() {
+        // Fail-closed (Entscheid r1AD 10.11.2026): gemessen, aber ohne Einschlafzeit (aufgegeben, gescheitert, ohne Werte).
+        let nov: (Int, Int, Int) -> Date = { d, h, mi in
+            self.zurich.date(from: DateComponents(year: 2026, month: 11, day: d, hour: h, minute: mi))!
+        }
+        let target = nov(10, 7, 0)
+        XCTAssertTrue(ShortNight.blocksEarly(onset: nil, now: nov(10, 6, 35), sleepGoalMinutes: 450, target: target, measured: true))
+        XCTAssertTrue(ShortNight.blocksEarly(onset: nil, now: nov(10, 6, 49), sleepGoalMinutes: 450, target: target, measured: true))
+        XCTAssertFalse(ShortNight.blocksEarly(onset: nil, now: nov(10, 6, 50), sleepGoalMinutes: 450, target: target, measured: true))
+        // Ohne Zielzeit bis zum Schluss gesperrt; ohne Messung nie.
+        XCTAssertTrue(ShortNight.blocksEarly(onset: nil, now: nov(10, 6, 55), sleepGoalMinutes: 450, measured: true))
+        XCTAssertFalse(ShortNight.blocksEarly(onset: nil, now: nov(10, 6, 35), sleepGoalMinutes: 450, target: target, measured: false))
+        // Eine bekannte Einschlafzeit geht vor: lange Nacht, nicht gesperrt.
+        XCTAssertFalse(ShortNight.blocksEarly(onset: nov(9, 22, 30), now: nov(10, 6, 35), sleepGoalMinutes: 450, target: target, measured: true))
+    }
+
     func testAutoOnsetStartsOneHourBeforeBedtime() {
         let target = at(29, 7, 0)
         // Bettzeit 23:30 (Ziel 7½ h), Messung ab 22:30.

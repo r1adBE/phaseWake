@@ -15,6 +15,8 @@
     <string name="watch_not_armed">Відкрий Phase Wake перед сном, щоб годинник міг активувати будильник.</string>
     <string name="check_watch_arm">Будильник активовано на годиннику</string>
     <string name="check_watch_arm_problem">Відкрий Phase Wake на Apple Watch перед сном. watchOS активує будильник, лише поки застосунок відкритий.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: будильник не ввімкнено – лише сповіщення, без фаз сну. Відкрий застосунок на годиннику.</string>
+    <string name="watch_evening_reminder">Торкнися, щоб увімкнути будильник на цю ніч.</string>
     <string name="night_unmeasured_apple">Перші %1$d хв не виміряно – Apple Watch вимірює лише останні %2$d хв до цілі.</string>
     <string name="settings_licenses_text_apple">Phase Wake: ліцензія MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nРозпізнавання звуків: SoundAnalysis від Apple, вбудовано в iOS.\nЗвуки: вільні записи (CC0) з opengameart.org</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">Дозволь термінові сповіщення Phase Wake на своєму Apple Watch. Інакше годинник не зможе розбудити тебе сповіщенням, коли вимірювання не триває.</string>
     <string name="check_watch_state_old">Стан годинника застарів – ненадовго відкрий Phase Wake на годиннику.</string>
     <string name="editor_sleep_hint_apple">Відлічується від засинання – лягаючи спати, натисни на годиннику «На добраніч». На Apple Watch Phase Wake оцінює, коли ти засинаєш, за вивченим часом засинання. Без натискання діє встановлений час.</string>
-    <string name="auto_onset_hint_apple">За 1 годину до сну Apple Watch починає записувати твої рухи; на початку вікна пробудження Phase Wake обчислює, коли ти заснув.</string>
+    <string name="auto_onset_hint_apple">Відкрий Phase Wake на Apple Watch за 1 годину до сну або пізніше (годинник нагадає), і відтоді він записує твої рухи; на початку вікна пробудження Phase Wake обчислює, коли ти заснув.</string>
 </resources>

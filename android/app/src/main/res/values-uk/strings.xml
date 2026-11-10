@@ -90,7 +90,7 @@
     <string name="settings_data">Твої дані</string>
     <string name="settings_data_text">Усе залишається на телефоні та годиннику. Без облікового запису, сервера й стеження.</string>
     <string name="settings_export">Експорт ночей без імені</string>
-    <string name="settings_export_hint">Допоможи покращити розпізнавання: CSV без імен, дат та ідентифікаторів пристроїв.</string>
+    <string name="settings_export_hint">Допоможи покращити розпізнавання: CSV без імен, дат та ID пристроїв; містить рух і пульс кожні 30 с, твоє самопочуття й нотатки.</string>
     <string name="settings_about">Про застосунок</string>
     <string name="settings_open_source">Відкритий код на GitHub</string>
     <string name="settings_licenses">Ліцензії</string>
@@ -252,7 +252,7 @@
     <string name="check_watch_battery_problem">Нижче %1$d %% – постав годинник на зарядку, щоб його вистачило на всю ніч і він зміг тебе розбудити.</string>
     <string name="check_watch_pulse">Пульс у фоні (годинник)</string>
     <string name="check_watch_pulse_problem">Годиннику не дозволено вимірювати твій пульс уночі – на годиннику встанови для Phase Wake дозвіл датчиків «Дозволяти завжди».</string>
-    <string name="export_contents_hint">Файл містить ряди руху та пульсу за кожну ніч – без імен, дат та ідентифікаторів пристроїв.</string>
+    <string name="export_contents_hint">Файл містить для кожної ночі рух і пульс кожні 30 с, твоє самопочуття й нотатки – без імен, дат та ID пристроїв.</string>
     <string name="editor_more">Більше</string>
     <string name="home_max_alarms">Не більше %1$d будильників – видали один, щоб додати новий.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -317,7 +317,7 @@
     <string name="sounds_hint">Грає з гучністю медіа і вимикається не пізніше початку твого вікна пробудження.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Записувати звуки</string>
-    <string name="sound_rec_hint">Лише короткі фрагменти. Вони залишаються на телефоні й видаляються через 7 днів.</string>
+    <string name="sound_rec_hint">Лише короткі фрагменти хропіння, розмов та інших звуків. Вони залишаються на телефоні й видаляються через 7 днів.</string>
     <string name="sound_rec_permission">Для запису Phase Wake потрібен мікрофон. Він слухає лише під час запису.</string>
     <string name="sound_rec_running">Триває запис звуків</string>
     <string name="sound_rec_stop">Зупинити</string>
@@ -468,7 +468,7 @@
     <string name="widget_description">Твій наступний будильник і нічна перевірка.</string>
     <string name="widget_no_alarm">Немає будильника</string>
     <string name="settings_backup">Резервна копія</string>
-    <string name="settings_backup_hint">Зашифрований файл із будильниками, історією, нотатками й налаштуваннями. Без звуків і даних про здоров’я.</string>
+    <string name="settings_backup_hint">Файл, зашифрований твоїм паролем: будильники, ночі з рухом і пульсом, нотатки та налаштування. Без звукових фрагментів.</string>
     <string name="settings_restore">Відновити</string>
     <string name="backup_password">Пароль</string>
     <string name="backup_password_repeat">Повтори пароль</string>

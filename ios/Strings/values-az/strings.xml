@@ -15,6 +15,8 @@
     <string name="watch_not_armed">Saatın siqnalı aktivləşdirə bilsin deyə yatmazdan əvvəl Phase Wake-i aç.</string>
     <string name="check_watch_arm">Siqnal saatda aktivdir</string>
     <string name="check_watch_arm_problem">Yatmazdan əvvəl Apple Watch-da Phase Wake-i aç. watchOS siqnalı yalnız tətbiq açıq olanda aktivləşdirir.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: siqnal aktiv deyil – yalnız bildiriş, yuxu fazaları yoxdur. Saat tətbiqini aç.</string>
+    <string name="watch_evening_reminder">Bu gecə üçün siqnalı aktivləşdirmək üçün toxun.</string>
     <string name="night_unmeasured_apple">İlk %1$d dəq ölçülməyib – Apple Watch yalnız hədəfdən əvvəlki son %2$d dəqiqəni ölçür.</string>
     <string name="settings_licenses_text_apple">Phase Wake: MIT lisenziyası, © r1adBE.\nManrope şrifti: SIL Open Font License 1.1, © The Manrope Project Authors.\nSəs tanıma: Apple-ın SoundAnalysis aləti, iOS-a daxildir.\nSəslər: opengameart.org saytından sərbəst yazılar (CC0)</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">Apple Watch-da Phase Wake üçün vaxta həssas bildirişlərə icazə ver. Əks halda ölçmə getmədikdə saat səni bildirişlə oyada bilməz.</string>
     <string name="check_watch_state_old">Saatın vəziyyəti köhnəlib – Phase Wake-i saatda qısa müddətə aç.</string>
     <string name="editor_sleep_hint_apple">Yuxuya getdiyin andan sayılır – yatanda saatda «Gecən xeyrə» toxun. Apple Watch-da Phase Wake yuxuya getmə vaxtını öyrəndiyi yuxuya getmə müddətinə görə təxmin edir. Toxunmasan, qurulmuş vaxt keçərlidir.</string>
-    <string name="auto_onset_hint_apple">Yatma vaxtından 1 saat əvvəldən Apple Watch hərəkətini qeyd edir; oyanma aralığının əvvəlində Phase Wake nə vaxt yuxuya getdiyini hesablayır.</string>
+    <string name="auto_onset_hint_apple">Yatma vaxtından 1 saat əvvəldən Phase Wake-i Apple Watch-da açsan (saat sənə xatırladır), o andan hərəkətini qeyd edir; oyanma aralığının əvvəlində Phase Wake nə vaxt yuxuya getdiyini hesablayır.</string>
 </resources>

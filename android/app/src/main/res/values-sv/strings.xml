@@ -88,7 +88,7 @@
     <string name="settings_data">Din data</string>
     <string name="settings_data_text">Allt stannar på mobilen och klockan. Inget konto, ingen server, ingen spårning.</string>
     <string name="settings_export">Exportera nätter utan namn</string>
-    <string name="settings_export_hint">Hjälp till att förbättra igenkänningen: CSV utan namn, datum eller enhets-ID.</string>
+    <string name="settings_export_hint">Hjälp till att förbättra igenkänningen: CSV utan namn, datum eller enhets-id; innehåller rörelse och puls per 30 s, hur du mådde och dina anteckningar.</string>
     <string name="settings_about">Om</string>
     <string name="settings_open_source">Öppen källkod på GitHub</string>
     <string name="settings_licenses">Licenser</string>
@@ -242,7 +242,7 @@
     <string name="check_watch_battery_problem">Under %1$d %% – ladda klockan så att den räcker hela natten och kan väcka dig.</string>
     <string name="check_watch_pulse">Puls i bakgrunden (klocka)</string>
     <string name="check_watch_pulse_problem">Klockan får inte mäta din puls på natten – ställ in Phase Wakes sensorbehörighet på klockan till ”Tillåt alltid”.</string>
-    <string name="export_contents_hint">Filen innehåller rörelse- och pulsserier för varje natt – utan namn, datum eller enhets-id.</string>
+    <string name="export_contents_hint">Filen innehåller för varje natt rörelse och puls per 30 s, hur du mådde och dina anteckningar – utan namn, datum eller enhets-id.</string>
     <string name="editor_more">Mer</string>
     <string name="home_max_alarms">Högst %1$d larm – ta bort ett för att lägga till ett nytt.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -303,7 +303,7 @@
     <string name="sounds_hint">Spelas på medievolym och slutar senast när ditt väckningsfönster börjar.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Spela in ljud</string>
-    <string name="sound_rec_hint">Bara korta klipp. De stannar på telefonen och raderas efter 7 dagar.</string>
+    <string name="sound_rec_hint">Bara korta klipp av snarkning, prat och andra ljud. De stannar på telefonen och raderas efter 7 dagar.</string>
     <string name="sound_rec_permission">För att spela in behöver Phase Wake mikrofonen. Den lyssnar bara medan inspelningen pågår.</string>
     <string name="sound_rec_running">Ljud spelas in</string>
     <string name="sound_rec_stop">Stoppa</string>
@@ -442,7 +442,7 @@
     <string name="widget_description">Ditt nästa alarm och nattkontrollen.</string>
     <string name="widget_no_alarm">Inget alarm</string>
     <string name="settings_backup">Säkerhetskopiera</string>
-    <string name="settings_backup_hint">Krypterad fil med alarm, historik, anteckningar och inställningar. Utan ljud och hälsodata.</string>
+    <string name="settings_backup_hint">Fil krypterad med ditt lösenord: alarm, nätter med rörelse och puls, anteckningar och inställningar. Utan ljudklipp.</string>
     <string name="settings_restore">Återställ</string>
     <string name="backup_password">Lösenord</string>
     <string name="backup_password_repeat">Upprepa lösenordet</string>

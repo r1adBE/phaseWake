@@ -88,7 +88,7 @@
     <string name="settings_data">Adataid</string>
     <string name="settings_data_text">Minden a telefonodon és az órádon marad. Nincs fiók, nincs szerver, nincs követés.</string>
     <string name="settings_export">Éjszakák exportja név nélkül</string>
-    <string name="settings_export_hint">Segíts a felismerés javításában: CSV nevek, dátumok és eszközazonosítók nélkül.</string>
+    <string name="settings_export_hint">Segíts javítani a felismerést: CSV nevek, dátumok és eszközazonosítók nélkül; 30 másodpercenkénti mozgást és pulzust, a közérzetedet és a jegyzeteidet tartalmazza.</string>
     <string name="settings_about">Névjegy</string>
     <string name="settings_open_source">Nyílt forráskód a GitHubon</string>
     <string name="settings_licenses">Licencek</string>
@@ -242,7 +242,7 @@
     <string name="check_watch_battery_problem">%1$d %% alatt – töltsd fel az órát, hogy kibírja az éjszakát és fel tudjon ébreszteni.</string>
     <string name="check_watch_pulse">Pulzus a háttérben (óra)</string>
     <string name="check_watch_pulse_problem">Az óra éjjel nem mérheti a pulzusodat – az órán állítsd a Phase Wake érzékelőengedélyét „Mindig engedélyezett” értékre.</string>
-    <string name="export_contents_hint">A fájl minden éjszaka mozgás- és pulzussorait tartalmazza – nevek, dátumok és eszközazonosítók nélkül.</string>
+    <string name="export_contents_hint">A fájl minden éjszakára tartalmazza a 30 másodpercenkénti mozgást és pulzust, a közérzetedet és a jegyzeteidet – nevek, dátumok és eszközazonosítók nélkül.</string>
     <string name="editor_more">Továbbiak</string>
     <string name="home_max_alarms">Legfeljebb %1$d ébresztő – törölj egyet, hogy újat adhass hozzá.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -303,7 +303,7 @@
     <string name="sounds_hint">Médiahangerőn szól, és legkésőbb akkor elhallgat, amikor az ébresztési ablakod kezdődik.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Hangok rögzítése</string>
-    <string name="sound_rec_hint">Csak rövid részletek. A telefonon maradnak, és 7 nap után törlődnek.</string>
+    <string name="sound_rec_hint">Csak rövid részletek horkolásról, beszédről és más hangokról. A telefonodon maradnak, és 7 nap után törlődnek.</string>
     <string name="sound_rec_permission">A rögzítéshez a Phase Wake-nek kell a mikrofon. Csak a rögzítés alatt figyel.</string>
     <string name="sound_rec_running">Hangok rögzítése folyamatban</string>
     <string name="sound_rec_stop">Leállítás</string>
@@ -442,7 +442,7 @@
     <string name="widget_description">A következő ébresztőd és az éjszakai ellenőrzés.</string>
     <string name="widget_no_alarm">Nincs ébresztő</string>
     <string name="settings_backup">Biztonsági mentés</string>
-    <string name="settings_backup_hint">Titkosított fájl ébresztőkkel, előzményekkel, jegyzetekkel és beállításokkal. Hangok és egészségügyi adatok nélkül.</string>
+    <string name="settings_backup_hint">A jelszavaddal titkosított fájl: ébresztők, éjszakák mozgással és pulzussal, jegyzetek és beállítások. Hangrészletek nélkül.</string>
     <string name="settings_restore">Visszaállítás</string>
     <string name="backup_password">Jelszó</string>
     <string name="backup_password_repeat">Jelszó újra</string>

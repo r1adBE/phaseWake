@@ -15,6 +15,8 @@
     <string name="watch_not_armed">Öppna Phase Wake innan du somnar så att klockan kan aktivera alarmet.</string>
     <string name="check_watch_arm">Alarmet är aktiverat på klockan</string>
     <string name="check_watch_arm_problem">Öppna Phase Wake på Apple Watch innan du somnar. watchOS aktiverar bara alarmet medan appen är öppen.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: alarmet är inte aktiverat – bara notis, inga sömnfaser. Öppna appen på klockan.</string>
+    <string name="watch_evening_reminder">Tryck för att aktivera alarmet i natt.</string>
     <string name="night_unmeasured_apple">Första %1$d min inte uppmätta – Apple Watch mäter bara de sista %2$d min före önskad tid.</string>
     <string name="settings_licenses_text_apple">Phase Wake: MIT-licens, © r1adBE.\nTypsnittet Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLjudigenkänning: SoundAnalysis från Apple, inbyggt i iOS.\nLjud: fria inspelningar (CC0) från opengameart.org</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">Tillåt tidskänsliga notiser från Phase Wake på din Apple Watch. Annars kan klockan inte väcka dig med en notis när ingen mätning pågår.</string>
     <string name="check_watch_state_old">Klockans status är inaktuell – öppna Phase Wake en kort stund på klockan.</string>
     <string name="editor_sleep_hint_apple">Räknas från när du somnar – tryck på ”Godnatt” på klockan när du lägger dig. På Apple Watch uppskattar Phase Wake när du somnar utifrån din inlärda insomningstid. Utan tryck gäller den inställda tiden.</string>
-    <string name="auto_onset_hint_apple">Från 1 timme före sänggåendet spelar din Apple Watch in din rörelse; i början av väckningsfönstret räknar Phase Wake ut när du somnade.</string>
+    <string name="auto_onset_hint_apple">Öppna Phase Wake på din Apple Watch från 1 timme före sänggåendet (klockan påminner dig), så spelar den in din rörelse från då; i början av väckningsfönstret räknar Phase Wake ut när du somnade.</string>
 </resources>

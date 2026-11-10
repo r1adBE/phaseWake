@@ -97,20 +97,47 @@ final class AppleOnsetTests: XCTestCase {
         XCTAssertEqual(GoodNightEstimate.doneUntil(target: latest, nominal: minutes(8 * 60 + 24 * 60)), latest)
     }
 
-    func testAutoOnsetStartsTheRecorderEveryNight() {
+    func testAutoOnsetStartsTheRecorderOneHourBeforeBedtime() {
         let target = minutes(8 * 60) // 07:00
         let window = minutes(8 * 60 - 30)
-        // Mehr als 12 Std. vor dem Fensterbeginn: warten.
-        XCTAssertEqual(AppleAutoOnset.decide(now: minutes(-6 * 60), target: target, windowStart: window, battery: 80),
-                       .wait(until: minutes(-270)))
-        XCTAssertEqual(AppleAutoOnset.decide(now: since, target: target, windowStart: window, battery: 80), .start(until: window))
-        XCTAssertEqual(AppleAutoOnset.decide(now: since, target: target, windowStart: window, battery: nil), .start(until: window))
-        XCTAssertEqual(AppleAutoOnset.decide(now: since, target: target, windowStart: window, battery: 29), .skip(reason: "battery 29%"))
-        XCTAssertEqual(AppleAutoOnset.decide(now: since, target: target, windowStart: window, battery: 30), .start(until: window))
-        XCTAssertEqual(AppleAutoOnset.decide(now: window, target: target, windowStart: window, battery: 80), .skip(reason: "window begun"))
+        let onset = minutes(-30) // 22:30 (Bettzeit 23:30 minus 60 Min)
+        // Vor dem Beginn der Einschlaf-Messung: warten (kein Start mehr bis 12 Std. im Voraus, Entscheid r1AD 10.11.2026).
+        XCTAssertEqual(AppleAutoOnset.decide(now: minutes(-6 * 60), target: target, windowStart: window, onsetStart: onset, battery: 80),
+                       .wait(until: onset))
+        XCTAssertEqual(AppleAutoOnset.decide(now: minutes(-31), target: target, windowStart: window, onsetStart: onset, battery: 80),
+                       .wait(until: onset))
+        XCTAssertEqual(AppleAutoOnset.decide(now: onset, target: target, windowStart: window, onsetStart: onset, battery: 80), .start(until: window))
+        XCTAssertEqual(AppleAutoOnset.decide(now: since, target: target, windowStart: window, onsetStart: onset, battery: 80), .start(until: window))
+        XCTAssertEqual(AppleAutoOnset.decide(now: since, target: target, windowStart: window, onsetStart: onset, battery: nil), .start(until: window))
+        XCTAssertEqual(AppleAutoOnset.decide(now: since, target: target, windowStart: window, onsetStart: onset, battery: 29), .skip(reason: "battery 29%"))
+        XCTAssertEqual(AppleAutoOnset.decide(now: since, target: target, windowStart: window, onsetStart: onset, battery: 30), .start(until: window))
+        XCTAssertEqual(AppleAutoOnset.decide(now: window, target: target, windowStart: window, onsetStart: onset, battery: 80), .skip(reason: "window begun"))
         // Fenster 10 Min: ab 15 Min vor der Zielzeit nicht mehr.
-        XCTAssertEqual(AppleAutoOnset.decide(now: minutes(8 * 60 - 15), target: target, windowStart: minutes(8 * 60 - 10), battery: 80),
+        XCTAssertEqual(AppleAutoOnset.decide(now: minutes(8 * 60 - 15), target: target, windowStart: minutes(8 * 60 - 10), onsetStart: onset, battery: 80),
                        .skip(reason: "window begun"))
+    }
+
+    func testOneRecorderCallPerNight() {
+        let now = minutes(-30) // 22:30
+        let window = minutes(8 * 60 - 30) // 06:30
+        let afterTarget = minutes(8 * 60).addingTimeInterval(AppleLearnRecord.afterTarget) // 07:30
+        // Erster Start: das späteste Bedürfnis der Nacht (Lernphase bis nach der Zielzeit), nicht nur die Einschlaf-Messung.
+        XCTAssertEqual(AppleNightRecorder.decide(now: now, need: window, others: [afterTarget], runningUntil: nil), .start(until: afterTarget))
+        XCTAssertEqual(AppleNightRecorder.decide(now: now, need: window, runningUntil: nil), .start(until: window))
+        // Höchstens 12 Std. ab jetzt («Nacht aufzeichnen»).
+        let twelve = now.addingTimeInterval(NightRecording.maxDuration)
+        XCTAssertEqual(AppleNightRecorder.decide(now: now, need: twelve.addingTimeInterval(3600), runningUntil: nil), .start(until: twelve))
+        // Ein abgelaufener Rekorder zählt nicht.
+        XCTAssertEqual(AppleNightRecorder.decide(now: now, need: window, runningUntil: now.addingTimeInterval(-1)), .start(until: window))
+        // Läuft er schon und reicht: kein zweiter Aufruf.
+        XCTAssertEqual(AppleNightRecorder.decide(now: since, need: window, runningUntil: afterTarget), .running)
+        // Läuft er, reicht aber nicht (z. B. «Gute Nacht» nach der Einschlaf-Messung): hinnehmen, nie verlängern.
+        XCTAssertEqual(AppleNightRecorder.decide(now: since, need: afterTarget, runningUntil: window),
+                       .short(until: window, need: afterTarget))
+        // Ein Bedarf über 12 Std. hinaus gilt als gedeckt, wenn der Rekorder 12 Std. ab jetzt reicht.
+        XCTAssertEqual(AppleNightRecorder.decide(now: now, need: twelve.addingTimeInterval(60), runningUntil: twelve), .running)
+        // Kein Bedarf mehr.
+        XCTAssertEqual(AppleNightRecorder.decide(now: now, need: now, runningUntil: nil), .nothing)
     }
 
     func testLearnedLatencyGoesToTheWatch() {

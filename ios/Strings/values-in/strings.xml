@@ -15,6 +15,8 @@
     <string name="watch_not_armed">Buka Phase Wake sebelum tidur agar jam tanganmu bisa mengaktifkan alarm.</string>
     <string name="check_watch_arm">Alarm aktif di jam tangan</string>
     <string name="check_watch_arm_problem">Buka Phase Wake di Apple Watch-mu sebelum tidur. watchOS hanya mengaktifkan alarm selama aplikasi terbuka.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: alarm belum aktif – hanya notifikasi, tanpa fase tidur. Buka aplikasi jam.</string>
+    <string name="watch_evening_reminder">Ketuk untuk mengaktifkan alarm malam ini.</string>
     <string name="night_unmeasured_apple">%1$d mnt pertama tidak diukur – Apple Watch hanya mengukur %2$d mnt terakhir sebelum target.</string>
     <string name="settings_licenses_text_apple">Phase Wake: Lisensi MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDeteksi suara: SoundAnalysis dari Apple, bawaan iOS.\nSuara: rekaman bebas (CC0) dari opengameart.org</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">Izinkan notifikasi peka waktu untuk Phase Wake di Apple Watch-mu. Jika tidak, jam tidak bisa membangunkanmu lewat notifikasi saat tidak ada pengukuran yang berjalan.</string>
     <string name="check_watch_state_old">Status jam tangan sudah usang – buka Phase Wake sebentar di jam tangan.</string>
     <string name="editor_sleep_hint_apple">Dihitung sejak kamu tertidur – ketuk “Selamat tidur” di jam saat kamu tidur. Di Apple Watch, Phase Wake memperkirakan kapan kamu tertidur dari waktu untuk tertidur yang sudah dipelajarinya. Tanpa ketukan, waktu yang diatur yang berlaku.</string>
-    <string name="auto_onset_hint_apple">Mulai 1 jam sebelum waktu tidur, Apple Watch merekam gerakanmu; di awal rentang bangun, Phase Wake menghitung kapan kamu tertidur.</string>
+    <string name="auto_onset_hint_apple">Buka Phase Wake di Apple Watch-mu mulai 1 jam sebelum waktu tidur (jam akan mengingatkanmu), lalu sejak itu jam merekam gerakanmu; di awal jendela bangun, Phase Wake menghitung kapan kamu tertidur.</string>
 </resources>

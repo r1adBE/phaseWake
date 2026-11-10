@@ -89,7 +89,7 @@
     <string name="settings_data">Tes données</string>
     <string name="settings_data_text">Tout reste sur ton téléphone et ta montre. Pas de compte, pas de serveur, pas de suivi.</string>
     <string name="settings_export">Exporter les nuits sans nom</string>
-    <string name="settings_export_hint">Aide à améliorer la détection : CSV sans noms, dates ni identifiants d\'appareil.</string>
+    <string name="settings_export_hint">Aide à améliorer la détection : CSV sans nom, date ni identifiant d’appareil ; contient les mouvements et la fréquence cardiaque toutes les 30 s, ton ressenti et tes notes.</string>
     <string name="settings_about">À propos</string>
     <string name="settings_open_source">Open source sur GitHub</string>
     <string name="settings_licenses">Licences</string>
@@ -247,7 +247,7 @@
     <string name="check_watch_battery_problem">Moins de %1$d %% – recharge ta montre pour qu’elle tienne toute la nuit et puisse te réveiller.</string>
     <string name="check_watch_pulse">Pouls en arrière-plan (montre)</string>
     <string name="check_watch_pulse_problem">La montre n’a pas le droit de mesurer ton pouls la nuit – sur la montre, règle l’autorisation des capteurs de Phase Wake sur « Toujours autoriser ».</string>
-    <string name="export_contents_hint">Le fichier contient les séries de mouvement et de fréquence cardiaque de chaque nuit – sans noms, dates ni identifiants d’appareil.</string>
+    <string name="export_contents_hint">Le fichier contient pour chaque nuit les mouvements et la fréquence cardiaque toutes les 30 s, ton ressenti et tes notes – sans nom, date ni identifiant d’appareil.</string>
     <string name="editor_more">Plus</string>
     <string name="home_max_alarms">%1$d réveils au maximum – supprime-en un pour en ajouter un nouveau.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -310,7 +310,7 @@
     <string name="sounds_hint">Joue au volume multimédia et s’arrête au plus tard au début de ta fenêtre de réveil.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Enregistrer les bruits</string>
-    <string name="sound_rec_hint">Seulement de courts extraits. Ils restent sur ton téléphone et sont supprimés après 7 jours.</string>
+    <string name="sound_rec_hint">Seulement de courts extraits de ronflements, de paroles et d’autres bruits. Ils restent sur ton téléphone et sont supprimés après 7 jours.</string>
     <string name="sound_rec_permission">Pour enregistrer, Phase Wake a besoin du micro. Il n’écoute que pendant l’enregistrement.</string>
     <string name="sound_rec_running">Enregistrement des bruits</string>
     <string name="sound_rec_stop">Arrêter</string>
@@ -455,7 +455,7 @@
     <string name="widget_description">Ton prochain réveil et le contrôle de nuit.</string>
     <string name="widget_no_alarm">Aucun réveil</string>
     <string name="settings_backup">Sauvegarder</string>
-    <string name="settings_backup_hint">Fichier chiffré avec réveils, historique, notes et réglages. Sans extraits sonores ni données de santé.</string>
+    <string name="settings_backup_hint">Fichier chiffré avec ton mot de passe : alarmes, nuits avec mouvements et fréquence cardiaque, notes et réglages. Sans extraits sonores.</string>
     <string name="settings_restore">Restaurer</string>
     <string name="backup_password">Mot de passe</string>
     <string name="backup_password_repeat">Répéter le mot de passe</string>

@@ -93,7 +93,7 @@
     <string name="settings_data">Do chuid sonraí</string>
     <string name="settings_data_text">Fanann gach rud ar do fhón agus ar d’uaireadóir. Gan chuntas, gan fhreastalaí, gan rianú.</string>
     <string name="settings_export">Easpórtáil oícheanta gan ainm</string>
-    <string name="settings_export_hint">Cabhraigh leis an mbrath a fheabhsú: CSV gan ainmneacha, dátaí ná aitheantais gléis.</string>
+    <string name="settings_export_hint">Cuidigh leis an mbrath a fheabhsú: CSV gan ainmneacha, dátaí ná aitheantais gléis; tá gluaiseacht agus ráta croí in aghaidh 30 s, conas a mhothaigh tú agus do nótaí ann.</string>
     <string name="settings_about">Maidir leis</string>
     <string name="settings_open_source">Foinse oscailte ar GitHub</string>
     <string name="settings_licenses">Ceadúnais</string>
@@ -259,7 +259,7 @@
     <string name="check_watch_battery_problem">Faoi %1$d %% – luchtaigh d’uaireadóir ionas go maireann sé an oíche agus gur féidir leis thú a dhúiseacht.</string>
     <string name="check_watch_pulse">Cuisle sa chúlra (uaireadóir)</string>
     <string name="check_watch_pulse_problem">Níl cead ag an uaireadóir do chuisle a thomhas san oíche – ar an uaireadóir, socraigh cead braiteora Phase Wake go “Ceadaigh i gcónaí”.</string>
-    <string name="export_contents_hint">Tá sraitheanna gluaiseachta agus ráta croí do gach oíche sa chomhad – gan ainmneacha, dátaí ná aitheantais gléis.</string>
+    <string name="export_contents_hint">Tá gluaiseacht agus ráta croí in aghaidh 30 s, conas a mhothaigh tú agus do nótaí do gach oíche sa chomhad – gan ainmneacha, dátaí ná aitheantais gléis.</string>
     <string name="editor_more">Tuilleadh</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Suas le %1$d aláram – scrios ceann chun ceann nua a chur leis.</string>
@@ -324,7 +324,7 @@
     <string name="sounds_hint">Seinntear é ag airde na meán agus stopann sé ar a dhéanaí nuair a thosaíonn d’fhuinneog dhúisithe.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Taifead fuaimeanna</string>
-    <string name="sound_rec_hint">Gearrthóga gearra amháin. Fanann siad ar do fhón agus scriostar iad tar éis 7 lá.</string>
+    <string name="sound_rec_hint">Gearrthóga gearra amháin de shrannadh, de chaint agus d’fhuaimeanna eile. Fanann siad ar do fhón agus scriostar iad tar éis 7 lá.</string>
     <string name="sound_rec_permission">Chun taifeadadh, teastaíonn an micreafón ó Phase Wake. Ní éisteann sé ach fad atá an taifeadadh ar siúl.</string>
     <string name="sound_rec_running">Ag taifeadadh fuaimeanna</string>
     <string name="sound_rec_stop">Stop</string>
@@ -484,7 +484,7 @@
     <string name="widget_description">D’aláram eile agus seiceáil na hoíche.</string>
     <string name="widget_no_alarm">Gan aláram</string>
     <string name="settings_backup">Cúltaca</string>
-    <string name="settings_backup_hint">Comhad criptithe le haláraim, stair, nótaí agus socruithe. Gan gearrthóga fuaime ná sonraí sláinte.</string>
+    <string name="settings_backup_hint">Comhad criptithe le do phasfhocal: aláraim, oícheanta le gluaiseacht agus ráta croí, nótaí agus socruithe. Gan gearrthóga fuaime.</string>
     <string name="settings_restore">Athchóirigh</string>
     <string name="backup_password">Pasfhocal</string>
     <string name="backup_password_repeat">Athdhéan an pasfhocal</string>

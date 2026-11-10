@@ -92,7 +92,7 @@
     <string name="settings_data">بياناتك</string>
     <string name="settings_data_text">كل شيء يبقى على هاتفك وساعتك. بلا حساب ولا خادم ولا تتبّع.</string>
     <string name="settings_export">تصدير الليالي بدون اسم</string>
-    <string name="settings_export_hint">ساهموا في تحسين الرصد: ملف CSV بلا أسماء أو تواريخ أو معرّفات أجهزة.</string>
+    <string name="settings_export_hint">ساعد في تحسين الاكتشاف: ملف CSV دون أسماء أو تواريخ أو معرّفات أجهزة؛ يحتوي على الحركة ونبض القلب لكل 30 ثانية وشعورك وملاحظاتك.</string>
     <string name="settings_about">حول</string>
     <string name="settings_open_source">مفتوح المصدر على GitHub</string>
     <string name="settings_licenses">التراخيص</string>
@@ -262,7 +262,7 @@
     <string name="check_watch_battery_problem">أقل من %1$d %% – اشحن ساعتك لتصمد طوال الليل وتوقظك.</string>
     <string name="check_watch_pulse">النبض في الخلفية (الساعة)</string>
     <string name="check_watch_pulse_problem">لا يُسمح للساعة بقياس نبضك ليلًا – على الساعة اضبط إذن المستشعرات لـ Phase Wake على «السماح طوال الوقت».</string>
-    <string name="export_contents_hint">يحتوي الملف على سلاسل الحركة ونبض القلب لكل ليلة – دون أسماء أو تواريخ أو معرّفات أجهزة.</string>
+    <string name="export_contents_hint">يحتوي الملف لكل ليلة على الحركة ونبض القلب لكل 30 ثانية وشعورك وملاحظاتك – دون أسماء أو تواريخ أو معرّفات أجهزة.</string>
     <string name="editor_more">المزيد</string>
     <string name="home_max_alarms">%1$d منبّهات كحد أقصى – احذف منبّهًا لإضافة منبّه جديد.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -331,7 +331,7 @@
     <string name="sounds_hint">يعمل بمستوى صوت الوسائط ويتوقف على الأكثر عند بدء نافذة الاستيقاظ.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">تسجيل الأصوات</string>
-    <string name="sound_rec_hint">مقاطع قصيرة فقط. تبقى على هاتفك وتُحذف بعد 7 أيام.</string>
+    <string name="sound_rec_hint">مقاطع قصيرة فقط للشخير والكلام وأصوات أخرى. تبقى على هاتفك وتُحذف بعد 7 أيام.</string>
     <string name="sound_rec_permission">للتسجيل يحتاج Phase Wake إلى الميكروفون. لا يستمع إلا أثناء التسجيل.</string>
     <string name="sound_rec_running">جارٍ تسجيل الأصوات</string>
     <string name="sound_rec_stop">إيقاف</string>
@@ -494,7 +494,7 @@
     <string name="widget_description">منبّهك التالي وفحص الليل.</string>
     <string name="widget_no_alarm">لا منبّه</string>
     <string name="settings_backup">نسخ احتياطي</string>
-    <string name="settings_backup_hint">ملف مشفّر بالمنبّهات والسجل والملاحظات والإعدادات. دون الأصوات وبيانات الصحة.</string>
+    <string name="settings_backup_hint">ملف مشفّر بكلمة مرورك: المنبّهات، والليالي مع الحركة ونبض القلب، والملاحظات والإعدادات. دون الأصوات.</string>
     <string name="settings_restore">استعادة</string>
     <string name="backup_password">كلمة المرور</string>
     <string name="backup_password_repeat">أعد كلمة المرور</string>

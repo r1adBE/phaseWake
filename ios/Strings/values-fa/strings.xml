@@ -15,6 +15,8 @@
     <string name="watch_not_armed">پیش از خواب Phase Wake را باز کن تا ساعتت بتواند زنگ را فعال کند.</string>
     <string name="check_watch_arm">زنگ روی ساعت فعال است</string>
     <string name="check_watch_arm_problem">پیش از خواب Phase Wake را روی Apple Watch خود باز کن. watchOS فقط تا وقتی برنامه باز است زنگ را فعال می‌کند.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: هشدار فعال نیست – فقط اعلان، بدون مراحل خواب. برنامهٔ ساعت را باز کن.</string>
+    <string name="watch_evening_reminder">بزن تا هشدار امشب فعال شود.</string>
     <string name="night_unmeasured_apple">%1$d دق اول اندازه‌گیری نشد – Apple Watch فقط %2$d دق آخر پیش از زمان هدف را اندازه می‌گیرد.</string>
     <string name="settings_licenses_text_apple">Phase Wake: مجوز MIT، © r1adBE.\nفونت Manrope: مجوز SIL Open Font License 1.1، © The Manrope Project Authors.\nتشخیص صدا: SoundAnalysis از Apple، بخشی از iOS.\nصداها: ضبط‌های آزاد (CC0) از opengameart.org</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">اعلان‌های حساس به زمان را برای Phase Wake روی Apple Watch خود مجاز کن. وگرنه وقتی اندازه‌گیری‌ای در جریان نیست، نمی‌تواند با اعلان بیدارت کند.</string>
     <string name="check_watch_state_old">وضعیت ساعت قدیمی است – Phase Wake را کوتاه روی ساعت باز کن.</string>
     <string name="editor_sleep_hint_apple">از زمان به خواب رفتن حساب می‌شود – هنگام رفتن به رختخواب روی ساعت «شب بخیر» را بزن. روی Apple Watch، Phase Wake زمان به خواب رفتنت را از مدت به خواب رفتنی که آموخته تخمین می‌زند. اگر نزنی، زمان تنظیم‌شده اعمال می‌شود.</string>
-    <string name="auto_onset_hint_apple">از ۱ ساعت پیش از زمان خواب، Apple Watch حرکتت را ثبت می‌کند؛ در آغاز بازهٔ بیداری، Phase Wake حساب می‌کند کی به خواب رفتی.</string>
+    <string name="auto_onset_hint_apple">اگر Phase Wake را از ۱ ساعت پیش از زمان خواب روی Apple Watch باز کنی (یادآوری می‌کند)، از آن موقع حرکتت را ثبت می‌کند؛ در آغاز بازهٔ بیدارسازی، Phase Wake حساب می‌کند کی خوابت برده است.</string>
 </resources>

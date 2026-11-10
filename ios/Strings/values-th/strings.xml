@@ -15,6 +15,8 @@
     <string name="watch_not_armed">เปิด Phase Wake ก่อนเข้านอน เพื่อให้นาฬิกาเปิดใช้งานนาฬิกาปลุกได้</string>
     <string name="check_watch_arm">เปิดใช้งานนาฬิกาปลุกบนนาฬิกาแล้ว</string>
     <string name="check_watch_arm_problem">เปิด Phase Wake บน Apple Watch ก่อนเข้านอน watchOS จะเปิดใช้งานนาฬิกาปลุกเฉพาะตอนที่แอปเปิดอยู่</string>
+    <string name="check_watch_arm_tonight">Apple Watch: ยังไม่ได้เปิดนาฬิกาปลุก – มีแค่การแจ้งเตือน ไม่มีระยะการนอน เปิดแอปบนนาฬิกา</string>
+    <string name="watch_evening_reminder">แตะเพื่อเปิดนาฬิกาปลุกสำหรับคืนนี้</string>
     <string name="night_unmeasured_apple">%1$d นาทีแรกไม่ได้วัด – Apple Watch วัดเฉพาะ %2$d นาทีสุดท้ายก่อนเวลาเป้าหมาย</string>
     <string name="settings_licenses_text_apple">Phase Wake: สัญญาอนุญาต MIT © r1adBE\nฟอนต์ Manrope: SIL Open Font License 1.1 © The Manrope Project Authors\nการตรวจจับเสียง: SoundAnalysis ของ Apple ซึ่งมีอยู่ใน iOS\nเสียง: การบันทึกเสียงเสรี (CC0) จาก opengameart.org</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">อนุญาตการแจ้งเตือนที่มีผลต่อเวลาสำหรับ Phase Wake บน Apple Watch ของคุณ มิฉะนั้นนาฬิกาจะปลุกคุณด้วยการแจ้งเตือนไม่ได้เมื่อไม่มีการวัดอยู่</string>
     <string name="check_watch_state_old">สถานะของนาฬิกาไม่เป็นปัจจุบัน – เปิด Phase Wake บนนาฬิกาสักครู่</string>
     <string name="editor_sleep_hint_apple">นับตั้งแต่ตอนที่คุณหลับ – แตะ «ราตรีสวัสดิ์» บนนาฬิกาเมื่อเข้านอน บน Apple Watch, Phase Wake ประมาณเวลาที่คุณหลับจากเวลาจนหลับที่เรียนรู้ไว้ หากไม่แตะ จะใช้เวลาที่ตั้งไว้</string>
-    <string name="auto_onset_hint_apple">ตั้งแต่ 1 ชั่วโมงก่อนเวลานอน Apple Watch จะบันทึกการเคลื่อนไหวของคุณ และเมื่อเริ่มช่วงเวลาปลุก Phase Wake จะคำนวณว่าคุณหลับเมื่อไร</string>
+    <string name="auto_onset_hint_apple">เปิด Phase Wake บน Apple Watch ตั้งแต่ 1 ชั่วโมงก่อนเวลานอน (นาฬิกาจะเตือนคุณ) แล้วนาฬิกาจะบันทึกการเคลื่อนไหวของคุณตั้งแต่ตอนนั้น และเมื่อเริ่มช่วงเวลาปลุก Phase Wake จะคำนวณว่าคุณหลับไปเมื่อใด</string>
 </resources>

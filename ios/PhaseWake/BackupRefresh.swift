@@ -2,7 +2,8 @@ import BackgroundTasks
 import Foundation
 
 /// Hintergrund-Aktualisierung des Zweitweckers: iOS weckt die App ab und zu kurz (`BGAppRefreshTask`), dann reicht die
-/// Sicherung wieder `BackupAlarm.horizon` weit – auch wenn die App wochenlang nicht geöffnet wird. Wann und ob iOS das
+/// Sicherung wieder `BackupAlarm.horizon` weit – auch wenn die App wochenlang nicht geöffnet wird. Dabei verfallen auch
+/// Geräusch-Ausschnitte nach 7 Tagen (`SoundRecorder.expire`). Wann und ob iOS das
 /// tut, entscheidet das System; der Nacht-Check warnt, wenn die Sicherung trotzdem knapp wird.
 @MainActor
 enum BackupRefresh {
@@ -23,11 +24,13 @@ enum BackupRefresh {
         }
     }
 
-    /// Läuft im Hintergrund: nächste Aktualisierung anmelden, dann die Sicherung neu planen.
+    /// Läuft im Hintergrund: nächste Aktualisierung anmelden, die Sicherung neu planen und abgelaufene Geräusch-Ausschnitte
+    /// löschen (7 Tage, auch ohne Öffnen der App; Audit D2).
     static func run() async {
         submit()
         DiagStore.shared.log(.scheduled, "background refresh")
         let model = PhoneModel.shared
         await model.backup.reschedule(model.alarms)
+        model.recorder.expire()
     }
 }

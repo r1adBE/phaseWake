@@ -89,7 +89,7 @@
     <string name="settings_data">Seus dados</string>
     <string name="settings_data_text">Tudo fica no seu celular e no relógio. Sem conta, sem servidor, sem rastreamento.</string>
     <string name="settings_export">Exportar noites sem nome</string>
-    <string name="settings_export_hint">Ajude a melhorar a detecção: CSV sem nomes, datas ou ID do dispositivo.</string>
+    <string name="settings_export_hint">Ajude a melhorar a detecção: CSV sem nomes, datas ou IDs de dispositivo; contém movimento e frequência cardíaca a cada 30 s, como você se sentiu e suas notas.</string>
     <string name="settings_about">Sobre</string>
     <string name="settings_open_source">Código aberto no GitHub</string>
     <string name="settings_licenses">Licenças</string>
@@ -247,7 +247,7 @@
     <string name="check_watch_battery_problem">Abaixo de %1$d %% – carregue seu relógio para que ele dure a noite toda e possa te acordar.</string>
     <string name="check_watch_pulse">Pulso em segundo plano (relógio)</string>
     <string name="check_watch_pulse_problem">O relógio não pode medir seu pulso à noite – no relógio, defina a permissão de sensores do Phase Wake como “Permitir o tempo todo”.</string>
-    <string name="export_contents_hint">O arquivo contém séries de movimento e frequência cardíaca de cada noite – sem nomes, datas ou IDs de dispositivos.</string>
+    <string name="export_contents_hint">O arquivo contém, de cada noite, movimento e frequência cardíaca a cada 30 s, como você se sentiu e suas notas – sem nomes, datas ou IDs de dispositivo.</string>
     <string name="editor_more">Mais</string>
     <string name="home_max_alarms">No máximo %1$d alarmes – exclua um para adicionar outro.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -310,7 +310,7 @@
     <string name="sounds_hint">Toca no volume de mídia e para, no máximo, quando começa sua janela de despertar.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Gravar sons</string>
-    <string name="sound_rec_hint">Só trechos curtos. Ficam no seu celular e são apagados depois de 7 dias.</string>
+    <string name="sound_rec_hint">Só trechos curtos de ronco, fala e outros sons. Ficam no seu celular e são apagados depois de 7 dias.</string>
     <string name="sound_rec_permission">Para gravar, o Phase Wake precisa do microfone. Ele só escuta enquanto a gravação está ativa.</string>
     <string name="sound_rec_running">Gravando sons</string>
     <string name="sound_rec_stop">Parar</string>
@@ -455,7 +455,7 @@
     <string name="widget_description">Seu próximo alarme e a verificação noturna.</string>
     <string name="widget_no_alarm">Sem alarme</string>
     <string name="settings_backup">Fazer backup</string>
-    <string name="settings_backup_hint">Arquivo criptografado com alarmes, histórico, notas e configurações. Sem sons e dados de saúde.</string>
+    <string name="settings_backup_hint">Arquivo criptografado com sua senha: alarmes, noites com movimento e frequência cardíaca, notas e configurações. Sem trechos de som.</string>
     <string name="settings_restore">Restaurar</string>
     <string name="backup_password">Senha</string>
     <string name="backup_password_repeat">Repetir a senha</string>

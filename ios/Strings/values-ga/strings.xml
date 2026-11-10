@@ -17,6 +17,8 @@
     <string name="watch_not_armed">Oscail Phase Wake sula dtéann tú a chodladh ionas gur féidir le d’uaireadóir an t-aláram a ghníomhachtú.</string>
     <string name="check_watch_arm">Aláram gníomhachtaithe ar an uaireadóir</string>
     <string name="check_watch_arm_problem">Oscail Phase Wake ar d’Apple Watch sula dtéann tú a chodladh. Ní ghníomhachtaíonn watchOS an t-aláram ach fad atá an aip oscailte.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: níl an t-aláram gníomhach – fógra amháin, gan céimeanna codlata. Oscail aip na huaireadóra.</string>
+    <string name="watch_evening_reminder">Tapáil chun d’aláram a ghníomhachtú don oíche anocht.</string>
     <string name="night_unmeasured_apple">Na chéad %1$d nóim gan tomhas – ní thomhaiseann an Apple Watch ach na %2$d nóim deireanacha roimh an sprioc.</string>
     <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
     <string name="settings_licenses_text_apple">Phase Wake: Ceadúnas MIT, © r1adBE.\nCló Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nBrath fuaimeanna: SoundAnalysis ó Apple, ionsuite in iOS.\nFuaimeanna: taifeadtaí saora (CC0) ó opengameart.org</string>
@@ -30,5 +32,5 @@
     <string name="check_watch_notifications_problem">Ceadaigh fógraí atá íogair ó thaobh ama de do Phase Wake ar do Apple Watch. Murach sin, ní féidir leis tú a dhúiseacht le fógra nuair nach bhfuil tomhas ar siúl.</string>
     <string name="check_watch_state_old">Tá stádas an uaireadóra as dáta – oscail Phase Wake ar feadh tamaillín ar an uaireadóir.</string>
     <string name="editor_sleep_hint_apple">Áirítear ón am a dtiteann tú i do chodladh – tapáil “Oíche mhaith” ar d’uaireadóir nuair a théann tú a luí. Ar an Apple Watch, measann Phase Wake cathain a thiteann tú i do chodladh ón am titim i do chodladh atá foghlamtha aige. Gan an tapáil, beidh an t-am socraithe i bhfeidhm.</string>
-    <string name="auto_onset_hint_apple">Ó uair an chloig roimh am codlata, taifeadann d’Apple Watch do ghluaiseacht; ag tús d’fhuinneog dúisithe, oibríonn Phase Wake amach cathain a thit tú i do chodladh.</string>
+    <string name="auto_onset_hint_apple">Oscail Phase Wake ar d’Apple Watch ó uair an chloig roimh am codlata (cuireann sé i gcuimhne duit é) agus taifeadann sé do ghluaiseacht ón uair sin; ag tús d’fhuinneog dúisithe, oibríonn Phase Wake amach cathain a thit tú i do chodladh.</string>
 </resources>

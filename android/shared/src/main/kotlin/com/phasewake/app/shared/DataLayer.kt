@@ -1,15 +1,61 @@
 package com.phasewake.app.shared
 
-/** Pfade und Schlüssel der Verbindung Handy ↔ Uhr (Wearable Data Layer). Beide Apps nutzen genau diese. */
+/**
+ * Pfade und Schlüssel der Verbindung Handy ↔ Uhr (Wearable Data Layer). Beide Apps nutzen genau diese.
+ *
+ * Seit [PROTOCOL] 2 (Audit C2, Entscheid r1AD 10.11.2026) gehen alle Inhalte mit persönlichen Daten als Nachricht über
+ * die Warteschlange [Outbox] (Pfade `PATH_MSG_…`, Bestätigung [PATH_ACK]), nicht mehr als Datenpaket, das Google in der
+ * Cloud sichert. Als Datenpaket bleiben nur der Gerätestatus der Uhr ([PATH_WATCH_STATUS]), «Verlauf löschen»
+ * ([PATH_CLEAR_HISTORY], nur ein Zeitpunkt) und der Abbruch eines Probeweckers oder Powernaps ([PATH_TRANSIENT_CANCELLED],
+ * nur eine Kennung). Die früheren Datenpakete (Wecker, Nächte, Aufzeichnungen, Lernphase, …) liest das Handy weiterhin von
+ * älteren Uhren und löscht sie danach; selbst schreibt es sie nur noch für eine Uhr mit älterem Stand ([WearSync.legacyWatch]).
+ */
 object DataLayer {
-    /** Datenpaket mit allen Weckern; Schlüssel [KEY_TEXT], [KEY_UPDATED_AT]. Schreiben beide Seiten. */
+    /** Früheres Datenpaket mit allen Weckern; Schlüssel [KEY_TEXT], [KEY_UPDATED_AT]. Nur noch für ältere Uhren. */
     const val PATH_ALARMS = "/phasewake/alarms"
 
     /**
-     * Präfix der Nacht-Pakete der Uhr, gefolgt von «fensterbeginnMs-kennung» (Kennung URL-kodiert).
-     * Ältere Uhren schicken nur den Fensterbeginn; gelesen wird deshalb nach Präfix.
+     * Präfix der früheren Nacht-Pakete der Uhr, gefolgt von «fensterbeginnMs-kennung» (Kennung URL-kodiert). Nur noch von
+     * älteren Uhren gelesen.
      */
     const val PATH_NIGHT_PREFIX = "/phasewake/night/"
+
+    /** Nachricht in beide Richtungen (Warteschlange): alle Wecker, Inhalt «updatedAt», Zeilenumbruch, `Codec.encodeAlarms`. */
+    const val PATH_MSG_ALARMS = "/phasewake/m/alarms"
+
+    /** Nachricht Uhr → Handy (Warteschlange): eine Nacht, Inhalt `Codec.encodeNight`. */
+    const val PATH_MSG_NIGHT = "/phasewake/m/night"
+
+    /** Nachricht Uhr → Handy (Warteschlange, gross über einen Kanal): abgeschlossene Aufzeichnung, `NightRecording.encode`. */
+    const val PATH_MSG_RECORDING = "/phasewake/m/recording"
+
+    /** Nachricht Uhr → Handy (Warteschlange): Stand von «Nacht aufzeichnen», Inhalt Beginn in ms (0 = keine läuft). */
+    const val PATH_MSG_RECORD_STATUS = "/phasewake/m/record-status"
+
+    /** Nachricht Uhr → Handy (Warteschlange): frühere Zielzeit, Inhalt `OnsetShift.encode`. */
+    const val PATH_MSG_ONSET_SHIFT = "/phasewake/m/onset-shift"
+
+    /** Nachricht Handy → Uhr (Warteschlange): Lernphase, Inhalt `LearningSnapshot.encode`. */
+    const val PATH_MSG_LEARNING = "/phasewake/m/learning"
+
+    /** Nachricht Handy → Uhr (Warteschlange): Schlafziel, Inhalt «minuten|updatedAt». */
+    const val PATH_MSG_SLEEP_GOAL = "/phasewake/m/sleep-goal"
+
+    /** Nachricht Handy → Uhr (Warteschlange): Schalter der Einschlaf-Messung, Inhalt «1|updatedAt» bzw. «0|updatedAt». */
+    const val PATH_MSG_AUTO_ONSET = "/phasewake/m/auto-onset"
+
+    /** Nachricht Handy → Uhr (Warteschlange): Feiertage, Inhalt «updatedAt», Zeilenumbruch, `Holidays.encode`. */
+    const val PATH_MSG_HOLIDAYS = "/phasewake/m/holidays"
+
+    /** Nachricht in beide Richtungen: Empfang eines Eintrags der Warteschlange bestätigt; Inhalt = seine Kennung. */
+    const val PATH_ACK = "/phasewake/ack"
+
+    /**
+     * Nachricht in beide Richtungen (ohne Inhalt): Die Gegenseite soll ihren aktuellen Stand einreihen (Wecker; vom Handy
+     * auch Lernphase, Schlafziel, Schalter, Feiertage; von der Uhr auch den Stand der Aufzeichnung). Ersetzt das frühere
+     * Abholen aus dem Data Layer, etwa für eine frisch installierte Seite.
+     */
+    const val PATH_SYNC_REQUEST = "/phasewake/sync-request"
 
     /** Nachricht Uhr → Handy: Weckvorgang hat begonnen; Inhalt = [RingMessage]. */
     const val PATH_RING = "/phasewake/ring"
@@ -72,7 +118,10 @@ object DataLayer {
      * Handy schickt, nicht mehr wie eingestellt umsetzt (z. B. die Weckart «Genau»). Die Uhr meldet ihren Stand im
      * Status-Paket ([KEY_PROTOCOL]); ist er kleiner als der des Handys, warnt der Nacht-Check (`WearSync.watchOutdated`).
      */
-    const val PROTOCOL = 1
+    const val PROTOCOL = 2
+
+    /** Erster [PROTOCOL] mit der Warteschlange [Outbox] statt der Datenpakete mit persönlichen Daten. */
+    const val PROTOCOL_MESSAGES = 2
 
     /** [PROTOCOL] der Uhr im selben Paket wie [KEY_READY]; fehlt bei Uhren vor dieser Angabe (gilt dann als 0). */
     const val KEY_PROTOCOL = "protocol"

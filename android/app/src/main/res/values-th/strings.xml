@@ -87,7 +87,7 @@
     <string name="settings_data">ข้อมูลของคุณ</string>
     <string name="settings_data_text">ทุกอย่างอยู่บนโทรศัพท์และนาฬิกาของคุณเท่านั้น ไม่มีบัญชี ไม่มีเซิร์ฟเวอร์ ไม่มีการติดตาม</string>
     <string name="settings_export">ส่งออกบันทึกการนอนโดยไม่มีชื่อ</string>
-    <string name="settings_export_hint">ช่วยพัฒนาการตรวจจับ: ไฟล์ CSV ที่ไม่มีชื่อ วันที่ หรือรหัสอุปกรณ์</string>
+    <string name="settings_export_hint">ช่วยปรับปรุงการตรวจจับ: CSV ไม่มีชื่อ วันที่ หรือ ID อุปกรณ์ มีการเคลื่อนไหวและอัตราการเต้นของหัวใจทุก 30 วินาที ความรู้สึกของคุณ และบันทึกของคุณ</string>
     <string name="settings_about">เกี่ยวกับ</string>
     <string name="settings_open_source">โอเพนซอร์สบน GitHub</string>
     <string name="settings_licenses">สัญญาอนุญาต</string>
@@ -237,7 +237,7 @@
     <string name="check_watch_battery_problem">ต่ำกว่า %1$d %% – ชาร์จนาฬิกาเพื่อให้ใช้งานได้ตลอดคืนและปลุกคุณได้</string>
     <string name="check_watch_pulse">ชีพจรในเบื้องหลัง (นาฬิกา)</string>
     <string name="check_watch_pulse_problem">นาฬิกาไม่ได้รับอนุญาตให้วัดชีพจรของคุณตอนกลางคืน – บนนาฬิกา ให้ตั้งค่าสิทธิ์เซ็นเซอร์ของ Phase Wake เป็น “อนุญาตตลอดเวลา”</string>
-    <string name="export_contents_hint">ไฟล์มีข้อมูลการเคลื่อนไหวและอัตราการเต้นของหัวใจของแต่ละคืน โดยไม่มีชื่อ วันที่ หรือรหัสอุปกรณ์</string>
+    <string name="export_contents_hint">ไฟล์มีการเคลื่อนไหวและอัตราการเต้นของหัวใจทุก 30 วินาที ความรู้สึกของคุณ และบันทึกของคุณสำหรับแต่ละคืน – ไม่มีชื่อ วันที่ หรือ ID อุปกรณ์</string>
     <string name="editor_more">เพิ่มเติม</string>
     <string name="home_max_alarms">ตั้งได้สูงสุด %1$d รายการ – ลบหนึ่งรายการเพื่อเพิ่มใหม่</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -296,7 +296,7 @@
     <string name="sounds_hint">เล่นด้วยระดับเสียงสื่อ และหยุดอย่างช้าที่สุดเมื่อช่วงเวลาปลุกของคุณเริ่ม</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">บันทึกเสียง</string>
-    <string name="sound_rec_hint">เก็บแค่ช่วงสั้น ๆ อยู่ในโทรศัพท์และลบหลัง 7 วัน</string>
+    <string name="sound_rec_hint">เก็บแค่ช่วงสั้น ๆ ของเสียงกรน เสียงพูด และเสียงอื่น ๆ อยู่ในโทรศัพท์และลบหลัง 7 วัน</string>
     <string name="sound_rec_permission">การบันทึกต้องใช้ไมโครโฟน จะฟังเฉพาะตอนที่เปิดบันทึกอยู่</string>
     <string name="sound_rec_running">กำลังบันทึกเสียง</string>
     <string name="sound_rec_stop">หยุด</string>
@@ -429,7 +429,7 @@
     <string name="widget_description">การปลุกถัดไปและการตรวจก่อนนอน</string>
     <string name="widget_no_alarm">ไม่มีการปลุก</string>
     <string name="settings_backup">สำรองข้อมูล</string>
-    <string name="settings_backup_hint">ไฟล์เข้ารหัสที่มีการปลุก ประวัติ บันทึก และการตั้งค่า ไม่รวมเสียงและข้อมูลสุขภาพ</string>
+    <string name="settings_backup_hint">ไฟล์ที่เข้ารหัสด้วยรหัสผ่านของคุณ: นาฬิกาปลุก คืนต่าง ๆ พร้อมการเคลื่อนไหวและอัตราการเต้นของหัวใจ บันทึก และการตั้งค่า ไม่มีคลิปเสียง</string>
     <string name="settings_restore">กู้คืน</string>
     <string name="backup_password">รหัสผ่าน</string>
     <string name="backup_password_repeat">ใส่รหัสผ่านอีกครั้ง</string>

@@ -90,7 +90,7 @@
     <string name="settings_data">તમારો ડેટા</string>
     <string name="settings_data_text">બધું તમારા ફોન અને ઘડિયાળ પર જ રહે છે. કોઈ એકાઉન્ટ નહીં, કોઈ સર્વર નહીં, કોઈ ટ્રેકિંગ નહીં.</string>
     <string name="settings_export">રાતો નામ વગર એક્સપોર્ટ કરો</string>
-    <string name="settings_export_hint">ઓળખ સુધારવામાં મદદ કરો: નામ, તારીખ કે ડિવાઇસ ID વગરની CSV.</string>
+    <string name="settings_export_hint">ઓળખ સુધારવામાં મદદ કરો: નામ, તારીખ કે ઉપકરણ ID વિનાની CSV; તેમાં દર 30 સેકન્ડનું હલનચલન અને હૃદયના ધબકારા, તમને કેવું લાગ્યું અને તમારી નોંધો છે.</string>
     <string name="settings_about">વિશે</string>
     <string name="settings_open_source">GitHub પર ઓપન સોર્સ</string>
     <string name="settings_licenses">લાઇસન્સ</string>
@@ -244,7 +244,7 @@
     <string name="check_watch_battery_problem">%1$d %%થી ઓછી – ઘડિયાળ આખી રાત ચાલે અને તમને જગાડી શકે તે માટે તેને ચાર્જ કરો.</string>
     <string name="check_watch_pulse">બૅકગ્રાઉન્ડમાં પલ્સ (ઘડિયાળ)</string>
     <string name="check_watch_pulse_problem">ઘડિયાળ રાત્રે તારી પલ્સ માપી શકતી નથી – ઘડિયાળ પર Phase Wake ની સેન્સર પરવાનગી “હંમેશાં મંજૂરી આપો” પર સેટ કર.</string>
-    <string name="export_contents_hint">ફાઇલમાં દરેક રાતની હલનચલન અને હૃદયના ધબકારાની શ્રેણીઓ છે – નામ, તારીખ કે ડિવાઇસ ID વગર.</string>
+    <string name="export_contents_hint">ફાઇલમાં દરેક રાત માટે દર 30 સેકન્ડનું હલનચલન અને હૃદયના ધબકારા, તમને કેવું લાગ્યું અને તમારી નોંધો છે – નામ, તારીખ કે ઉપકરણ ID વિના.</string>
     <string name="editor_more">વધુ</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">વધુમાં વધુ %1$d એલાર્મ – નવો ઉમેરવા માટે એક કાઢી નાખો.</string>
@@ -303,7 +303,7 @@
     <string name="sounds_hint">મીડિયા વૉલ્યૂમ પર વાગે છે અને જગાડવાનો સમયગાળો શરૂ થતાં જ બંધ થાય છે.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">અવાજો રેકોર્ડ કરો</string>
-    <string name="sound_rec_hint">ફક્ત ટૂંકી ક્લિપ. તે તમારા ફોન પર જ રહે છે અને 7 દિવસ પછી કાઢી નખાય છે.</string>
+    <string name="sound_rec_hint">માત્ર નસકોરાં, બોલવા અને અન્ય અવાજોની ટૂંકી ક્લિપ્સ. તે તમારા ફોન પર જ રહે છે અને 7 દિવસ પછી કાઢી નખાય છે.</string>
     <string name="sound_rec_permission">રેકોર્ડ કરવા માટે Phase Wakeને માઇક્રોફોનની જરૂર છે. રેકોર્ડિંગ ચાલુ હોય ત્યારે જ તે સાંભળે છે.</string>
     <string name="sound_rec_running">અવાજો રેકોર્ડ થઈ રહ્યા છે</string>
     <string name="sound_rec_stop">બંધ કરો</string>
@@ -445,7 +445,7 @@
     <string name="widget_description">તમારો આગલો એલાર્મ અને રાતની તપાસ.</string>
     <string name="widget_no_alarm">કોઈ એલાર્મ નથી</string>
     <string name="settings_backup">બેકઅપ લો</string>
-    <string name="settings_backup_hint">એલાર્મ, ઇતિહાસ, નોંધો અને સેટિંગ સાથેની એન્ક્રિપ્ટ કરેલી ફાઇલ. અવાજની ક્લિપ અને હેલ્થ ડેટા વગર.</string>
+    <string name="settings_backup_hint">તમારા પાસવર્ડથી એન્ક્રિપ્ટ કરેલી ફાઇલ: એલાર્મ, હલનચલન અને હૃદયના ધબકારા સાથેની રાતો, નોંધો અને સેટિંગ્સ. અવાજની ક્લિપ વિના.</string>
     <string name="settings_restore">રિસ્ટોર કરો</string>
     <string name="backup_password">પાસવર્ડ</string>
     <string name="backup_password_repeat">પાસવર્ડ ફરી લખો</string>

@@ -277,6 +277,8 @@ final class WatchModel {
         case .scheduled, .measuring, .ringing, .snoozed: armed = true
         }
         WatchDiagStatus.shared.update(plan: plan, armed: armed)
+        // Erinnerung am Abend: App öffnen, damit die Uhr scharf stellt und aufzeichnet (`EveningReminder`).
+        EveningReminder.update(model: self)
         // Komplikation auf dem Zifferblatt sofort aktualisieren.
         WidgetCenter.shared.reloadAllTimelines()
         // Lernphase: Rekorder für die nächste Nacht starten bzw. die letzte auswerten.

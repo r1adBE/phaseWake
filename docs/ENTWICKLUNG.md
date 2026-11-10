@@ -110,6 +110,18 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 - Nichts Langsames auf dem Hauptthread (Datei, Datenbank, Audio-Dekodierung, Modell laden).
 - Kotlin: Coroutines mit klarem Scope; Swift: `@MainActor` für UI-Zustand, `Sendable` korrekt, keine erzwungenen
   Entpackungen (`!`) ausser bei Konstanten, die der Compiler nicht prüfen kann (mit Kommentar).
+- **Datenweg Handy ↔ Uhr (Android, Audit C2, 10.11.2026):** Inhalte mit persönlichen Daten nie als Datenpaket
+  (`DataClient.putDataItem` – Google sichert Datenpakete zusätzlich in der Cloud), sondern über die Warteschlange
+  `android/shared/…/Outbox.kt`: `enqueue(schlüssel, pfad, fähigkeit, text)` legt den Eintrag im privaten Ordner
+  `outbox` ab (gleicher Schlüssel ersetzt) und sendet ihn als Nachricht (`DataLayer.PATH_MSG_…`, über 90 KB über
+  `ChannelClient`), Inhalt «Kennung, Zeilenumbruch, Text». Der Empfänger verarbeitet idempotent und bestätigt erst danach
+  (`WearSync.receive`, `DataLayer.PATH_ACK`); bis dahin sendet `flush` den Eintrag bei jedem Anlass erneut (Einreihen,
+  App-Start, `onCapabilityChanged`, jede empfangene Nachricht). Den Stand der Gegenseite holt `requestSync`
+  (`PATH_SYNC_REQUEST`) statt `getDataItems`. Datenpakete nur noch für Uhr-Status, «Verlauf löschen» und Abbruch von
+  Probewecker/Powernap. Ältere Versionen: Das Handy liest ihre Pakete weiter und löscht sie; für eine Uhr mit
+  `DataLayer.PROTOCOL` < 2 legt es Wecker und Einstellungen zusätzlich als Paket ab (`WearSync.legacyWatch`). Einmalige
+  Umstellung (`WearSync.migrateTransport`): eigene alte Pakete löschen, Nächte und Aufzeichnungen der Uhr vorher
+  einreihen. Tests: `OutboxTest` (Robolectric, Senden, Bestätigen, Wiederholen, Ersetzen, Umstellung).
 
 ## 8. Ablauf
 

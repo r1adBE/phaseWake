@@ -48,14 +48,17 @@ internal fun WakeService.adopt(plan: WakePlan): Boolean {
 
 private fun WakeService.begin(plan: WakePlan) {
     if (night?.plan == plan) return
-    // Das Fenster beginnt: «Gute Nacht» ist vorbei, auch ein nach einem Prozessende nur gespeicherter Stand.
+    // Das Fenster beginnt: «Gute Nacht» ist vorbei, auch ein nach einem Prozessende nur gespeicherter Stand. Lief die
+    // Einschlaf-Messung dieser Nacht noch ohne Ergebnis, gilt die Nacht als gemessen ohne Einschlafzeit (fail-closed,
+    // [endOnsetAtWindow] in [loadNight], vor dem Lesen der Einschlafzeit).
     goodNightPending = false
     handler.removeCallbacks(onsetTimeout)
     onset?.stop()
     onset = null
+    val lostOnset = onsetNight
     onsetNight = null
     goodNightActive = false
-    forgetGoodNight()
+    AlarmScheduler.cancelGoodNightCheck(this)
     night?.let { old ->
         // Eine Messung für einen anderen Plan still verwerfen (kein «stop» ans Handy, nichts erledigt):
         // Ihr Wecker wird danach neu geplant. Ein hängender alter Weckvorgang wird beendet.
@@ -84,17 +87,19 @@ private fun WakeService.begin(plan: WakePlan) {
     // Hartes Zeitlimit: Klingeln und Schlummern sind lange vorher zu Ende.
     handler.postDelayed(hardLimit, Duration.between(Instant.now(), plan.target.plus(NIGHT_HARD_LIMIT)).toMillis().coerceAtLeast(0))
     if (locked) return
-    loadNight(current, canMeasure, healthRefusal)
+    loadNight(current, canMeasure, healthRefusal, lostOnset)
 }
 
 /**
  * Lädt Wecker, kalibrierte Schwellen (mit den gelernten Werten) und den Stand vor einem Neustart des Dienstes in [current] und
  * setzt je nach Phase fort (Sensoren starten oder das Klingeln wieder aufnehmen). [refusal]: Grund, warum ohne
- * Sensoren gemessen wird ([WakeService.healthRefusal]), fürs Diagnose-Protokoll.
+ * Sensoren gemessen wird ([WakeService.healthRefusal]), fürs Diagnose-Protokoll. [lostOnset]: Einschlaf-Messung, die bei
+ * Fensterbeginn noch ohne Ergebnis lief ([endOnsetAtWindow]).
  */
-private fun WakeService.loadNight(current: Night, canMeasure: Boolean, refusal: String?) {
+private fun WakeService.loadNight(current: Night, canMeasure: Boolean, refusal: String?, lostOnset: Pair<String, Instant>?) {
     val plan = current.plan
     lifecycleScope.launch {
+        endOnsetAtWindow(plan, lostOnset)
         // Wecker und kalibrierte Schwellen laden. Auch wenn schon geweckt wird (Neustart zur
         // Zielzeit), braucht der Weckvorgang den Wecker: Name, Uhr-Ton, einmalig.
         val spec = app.specFor(plan.alarmId)
@@ -102,12 +107,15 @@ private fun WakeService.loadNight(current: Night, canMeasure: Boolean, refusal: 
         val config = app.learning.current().applyTo(Calibration.calibrate(NightHistory.motionsForCalibration(app.nights.load())))
         // Stand vor einem Neustart des Dienstes: erstes Klingeln, Grund und Schlummer-Runden.
         val saved = app.nightProgress.load(plan)
-        // Untergrenze kurzer Nächte: Einschlafzeit (automatische Messung oder «Gute Nacht») und Ziel.
+        // Untergrenze kurzer Nächte: Einschlafzeit (automatische Messung oder «Gute Nacht») und Ziel; ohne Einschlafzeit
+        // nach einer Messung ohne Ergebnis fail-closed.
         val asleepAt = app.onsets.onsetFor(plan)
+        val onsetMeasured = asleepAt == null && app.onsets.measuredFor(plan)
         val goal = spec?.sleepDurationMinutes ?: app.sleepGoal.minutes.first()
         if (night !== current) return@launch
         current.spec = spec
         current.asleepAt = asleepAt
+        current.onsetMeasured = onsetMeasured
         current.goalMinutes = goal
         if (saved != null) {
             saved.firstRing?.let { first -> if (current.firstRing?.isAfter(first) != false) current.firstRing = first }
@@ -116,7 +124,12 @@ private fun WakeService.loadNight(current: Night, canMeasure: Boolean, refusal: 
         }
         when (current.phase) {
             Phase.MEASURING -> {
-                val mode = if (current.exact) ", exact" else asleepAt?.let { ", asleep $it" }.orEmpty()
+                val mode = when {
+                    current.exact -> ", exact"
+                    asleepAt != null -> ", asleep $asleepAt"
+                    onsetMeasured -> ", onset unknown"
+                    else -> ""
+                }
                 current.detector = WakeDetector(config)
                 // Sensoren vor der Zeile starten: Sie nennt die Quelle des Pulses («hrsrc=sensor|measure|none»).
                 if (canMeasure) startSensors(current)
@@ -196,9 +209,10 @@ internal fun WakeService.onEpochs(n: Night, epochs: List<Epoch>) {
         if (decision is Decision.Wake) {
             // Kurze Nacht: Moment übergehen (nicht nachholen), weiter erkennen; in den letzten
             // [ShortNight.LATE_MINUTES] vor der Zielzeit weckt ein neuer Moment (Entscheid r1AD 10.11.2026).
-            if (ShortNight.blocksEarly(n.asleepAt, Instant.now(), n.goalMinutes, n.plan.target)) {
+            if (ShortNight.blocksEarly(n.asleepAt, Instant.now(), n.goalMinutes, n.plan.target, n.onsetMeasured)) {
                 n.detector.rearm()
-                if (!n.earlyBlocked) app.diag.log(DiagKind.PHASE, "${decision.reason.name} ignored, short night")
+                val why = if (n.asleepAt == null) "short night unknown" else "short night"
+                if (!n.earlyBlocked) app.diag.log(DiagKind.PHASE, "${decision.reason.name} ignored, $why")
                 n.earlyBlocked = true
                 continue
             }

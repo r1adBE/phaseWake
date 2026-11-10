@@ -50,6 +50,17 @@ data class LearningSnapshot(
             dataMap.putLong(DataLayer.KEY_UPDATED_AT, snapshot.updatedAt)
         }.asPutDataRequest().setUrgent()
 
+        /** Inhalt der Nachricht [DataLayer.PATH_MSG_LEARNING]: «aktiv|grundrauschen|ruhepuls|updatedAt» (leer = kein Wert). */
+        fun encode(snapshot: LearningSnapshot): String =
+            listOf(if (snapshot.active) "1" else "0", snapshot.floor?.toString().orEmpty(), snapshot.restingHeartRate?.toString().orEmpty(), snapshot.updatedAt.toString()).joinToString("|")
+
+        /** Liest [encode]; `null`, wenn unlesbar. */
+        fun decode(body: String): LearningSnapshot? {
+            val f = body.split("|").takeIf { it.size == 4 } ?: return null
+            val updatedAt = f[3].toLongOrNull() ?: return null
+            return LearningSnapshot(f[0] == "1", f[1].toDoubleOrNull(), f[2].toDoubleOrNull(), updatedAt)
+        }
+
         /** Liest ein Paket; ohne Angaben (ältere Handys): keine Lernphase, keine Werte. */
         fun read(map: DataMap): LearningSnapshot = LearningSnapshot(
             active = map.getBoolean(DataLayer.KEY_LEARN_ACTIVE, false),
@@ -61,24 +72,28 @@ data class LearningSnapshot(
 }
 
 /**
- * Lernphase über den Data Layer ([DataLayer.PATH_LEARNING]): Das Handy legt den Stand als Paket ab (erreicht auch eine
- * gerade getrennte Uhr), die Uhr holt ihn nach. Fehler (keine Uhr, keine Wear-Dienste) werden geloggt, nicht weitergereicht.
+ * Lernphase vom Handy an die Uhr: über die Warteschlange [Outbox] (erreicht auch eine gerade getrennte Uhr, sobald sie
+ * wieder da ist; Ruhepuls und Grundrauschen nicht mehr als Datenpaket in der Cloud, Audit C2). Eine ältere Uhr bekommt
+ * den Stand zusätzlich als Paket; die Uhr liest ein Paket eines älteren Handys weiter ([fetch]). Fehler (keine Uhr, keine
+ * Wear-Dienste) werden geloggt, nicht weitergereicht.
  */
 class LearningSync(context: Context) {
     private val app = context.applicationContext
     private val dataClient by lazy { Wearable.getDataClient(app) }
+    private val outbox by lazy { Outbox.forContext(app) }
 
     /** Handy: Stand an die Uhren. */
     suspend fun publish(snapshot: LearningSnapshot) {
         try {
-            dataClient.putDataItem(LearningSnapshot.request(snapshot)).await()
+            outbox.enqueue(QueueMessages.KEY_LEARNING, DataLayer.PATH_MSG_LEARNING, DataLayer.CAPABILITY_WATCH, LearningSnapshot.encode(snapshot))
+            if (WearSync(app, DataLayer.CAPABILITY_WATCH).legacyWatch()) dataClient.putDataItem(LearningSnapshot.request(snapshot)).await()
         } catch (e: Exception) {
             if (e is kotlinx.coroutines.CancellationException) throw e
             Log.i(TAG, "Lernphase senden nicht möglich", e)
         }
     }
 
-    /** Uhr: zuletzt abgelegter Stand; `null`, wenn nichts da ist oder die Wear-Dienste fehlen. */
+    /** Uhr: Stand eines älteren Handys aus dem Data Layer; `null`, wenn nichts da ist oder die Wear-Dienste fehlen. */
     suspend fun fetch(): LearningSnapshot? = try {
         val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_LEARNING).build()).await()
         try {

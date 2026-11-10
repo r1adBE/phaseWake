@@ -47,6 +47,20 @@ class ShortNightTest {
     }
 
     @Test
+    fun measuredButUnknownOnsetBlocksUntilTheLastTenMinutes() {
+        // Fail-closed (Entscheid r1AD 10.11.2026): gemessen, aber ohne Einschlafzeit (aufgegeben, gescheitert, ohne Werte).
+        val target = at("2026-11-10T07:00")
+        assertTrue(ShortNight.blocksEarly(null, at("2026-11-10T06:35"), 450, target, measured = true))
+        assertTrue(ShortNight.blocksEarly(null, at("2026-11-10T06:49"), 450, target, measured = true))
+        assertFalse(ShortNight.blocksEarly(null, at("2026-11-10T06:50"), 450, target, measured = true))
+        // Ohne Zielzeit bis zum Schluss gesperrt; ohne Messung nie.
+        assertTrue(ShortNight.blocksEarly(null, at("2026-11-10T06:55"), 450, measured = true))
+        assertFalse(ShortNight.blocksEarly(null, at("2026-11-10T06:35"), 450, target, measured = false))
+        // Eine bekannte Einschlafzeit geht vor: lange Nacht, nicht gesperrt.
+        assertFalse(ShortNight.blocksEarly(at("2026-11-09T22:30"), at("2026-11-10T06:35"), 450, target, measured = true))
+    }
+
+    @Test
     fun autoOnsetStartsOneHourBeforeBedtime() {
         val target = at("2026-10-29T07:00")
         // Bettzeit 23:30 (Ziel 7½ h), Messung ab 22:30.

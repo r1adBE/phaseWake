@@ -15,6 +15,8 @@
     <string name="watch_not_armed">Сағатың оятқышты іске қосуы үшін ұйықтар алдында Phase Wake-ті аш.</string>
     <string name="check_watch_arm">Сағатта оятқыш іске қосылған</string>
     <string name="check_watch_arm_problem">Ұйықтар алдында Apple Watch-та Phase Wake-ті аш. watchOS оятқышты тек қолданба ашық кезде іске қосады.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: оятқыш қосылмаған – тек хабарландыру, ұйқы фазалары жоқ. Сағат қолданбасын аш.</string>
+    <string name="watch_evening_reminder">Бүгінгі түнгі оятқышты қосу үшін түрт.</string>
     <string name="night_unmeasured_apple">Алғашқы %1$d мин өлшенбеді – Apple Watch мақсатты уақытқа дейінгі соңғы %2$d минутты ғана өлшейді.</string>
     <string name="settings_licenses_text_apple">Phase Wake: MIT лицензиясы, © r1adBE.\nManrope қарпі: SIL Open Font License 1.1, © The Manrope Project Authors.\nДыбыстарды тану: Apple-дің SoundAnalysis құралы, iOS-қа кірістірілген.\nДыбыстар: opengameart.org сайтындағы еркін жазбалар (CC0)</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">Apple Watch-та Phase Wake үшін уақытқа сезімтал хабарландыруларға рұқсат бер. Әйтпесе өлшеу жүрмей тұрғанда сағат сені хабарландырумен оята алмайды.</string>
     <string name="check_watch_state_old">Сағаттың күйі ескірген – сағатта Phase Wake-ті қысқа уақытқа аш.</string>
     <string name="editor_sleep_hint_apple">Ұйықтап кеткен сәттен бастап есептеледі – төсекке жатқанда сағаттан «Қайырлы түн» түймесін түрт. Apple Watch-та Phase Wake қашан ұйықтап кететініңді үйренген ұйықтап кету уақытыңнан бағалайды. Түртпесең, орнатылған уақыт қолданылады.</string>
-    <string name="auto_onset_hint_apple">Ұйқы уақытынан 1 сағат бұрын Apple Watch қозғалысыңды жаза бастайды; ояту аралығының басында Phase Wake қашан ұйықтап кеткеніңді есептейді.</string>
+    <string name="auto_onset_hint_apple">Ұйықтау уақытынан 1 сағат бұрыннан бастап Apple Watch-та Phase Wake-ті аш (сағат еске салады), сонда ол сол сәттен қозғалысыңды жазады; ояту аралығының басында Phase Wake қашан ұйықтап қалғаныңды есептейді.</string>
 </resources>

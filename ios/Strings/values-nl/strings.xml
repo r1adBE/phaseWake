@@ -15,6 +15,8 @@
     <string name="watch_not_armed">Open Phase Wake voordat je gaat slapen, zodat je horloge de wekker kan activeren.</string>
     <string name="check_watch_arm">Wekker geactiveerd op het horloge</string>
     <string name="check_watch_arm_problem">Open Phase Wake op je Apple Watch voordat je gaat slapen. watchOS activeert de wekker alleen zolang de app geopend is.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: wekker niet actief – alleen een melding, geen slaapfasen. Open de app op het horloge.</string>
+    <string name="watch_evening_reminder">Tik om je wekker voor vannacht te activeren.</string>
     <string name="night_unmeasured_apple">Eerste %1$d min niet gemeten – de Apple Watch meet alleen de laatste %2$d min voor de doeltijd.</string>
     <string name="settings_licenses_text_apple">Phase Wake: MIT-licentie, © r1adBE.\nLettertype Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeluidsherkenning: SoundAnalysis van Apple, ingebouwd in iOS.\nGeluiden: vrije opnamen (CC0) van opengameart.org</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">Sta tijdgevoelige meldingen van Phase Wake toe op je Apple Watch. Anders kan hij je niet met een melding wekken als er geen meting loopt.</string>
     <string name="check_watch_state_old">Status van het horloge is verouderd – open Phase Wake even op het horloge.</string>
     <string name="editor_sleep_hint_apple">Telt vanaf het inslapen – tik bij het naar bed gaan op ‘Welterusten’ op je horloge. Op de Apple Watch schat Phase Wake wanneer je in slaap valt op basis van je geleerde inslaaptijd. Zonder tik geldt de ingestelde tijd.</string>
-    <string name="auto_onset_hint_apple">Vanaf 1 uur voor bedtijd neemt je Apple Watch je beweging op; aan het begin van je wekvenster berekent Phase Wake wanneer je in slaap viel.</string>
+    <string name="auto_onset_hint_apple">Open Phase Wake op je Apple Watch vanaf 1 uur voor bedtijd (hij herinnert je eraan), dan neemt hij vanaf dat moment je beweging op; aan het begin van je wekvenster berekent Phase Wake wanneer je in slaap viel.</string>
 </resources>

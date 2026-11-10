@@ -62,13 +62,14 @@ struct PhoneAlarmView: View {
             Text(night.reason).font(.system(size: 13)).foregroundStyle(PhoneWidgetPalette.secondary(scheme)).lineLimit(2)
             let details = [night.asleepMinutes.map { Format.duration(minutes: $0) }, night.feeling].compactMap { $0 }
             if !details.isEmpty {
-                // Schlafdauer und Befinden sind Gesundheitsdaten: auf dem gesperrten Gerät verdeckt.
                 Text(details.joined(separator: " · ")).font(.system(size: 12, weight: .medium)).foregroundStyle(PhoneWidgetPalette.secondary(scheme)).lineLimit(1)
-                    .privacySensitive()
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         .accessibilityElement(children: .combine)
+        // Weckzeit, Grund, Schlafdauer und Befinden sind Gesundheitsdaten: auf dem gesperrten Gerät ganz verdeckt
+        // (Audit D1; Android zeigt im Widget keine «Letzte Nacht»).
+        .privacySensitive()
     }
 
     /// Rund auf dem Sperrbildschirm: Symbol und Zielzeit (bei «Genau» ein Wecker-Symbol statt des Monds).

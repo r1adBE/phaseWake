@@ -89,7 +89,7 @@
     <string name="settings_data">הנתונים שלכם</string>
     <string name="settings_data_text">הכול נשאר בטלפון ובשעון. בלי חשבון, בלי שרת, בלי מעקב.</string>
     <string name="settings_export">ייצוא לילות ללא שם</string>
-    <string name="settings_export_hint">עזרו לשפר את הזיהוי: קובץ CSV בלי שמות, תאריכים או מזהי מכשיר.</string>
+    <string name="settings_export_hint">עזרו לשפר את הזיהוי: CSV ללא שמות, תאריכים או מזהי מכשירים; מכיל תנועה ודופק לכל 30 שניות, איך הרגשתם וההערות שלכם.</string>
     <string name="settings_about">אודות</string>
     <string name="settings_open_source">קוד פתוח ב-GitHub</string>
     <string name="settings_licenses">רישיונות</string>
@@ -247,7 +247,7 @@
     <string name="check_watch_battery_problem">מתחת ל-%1$d %% – טענו את השעון כדי שיחזיק כל הלילה ויוכל להעיר אתכם.</string>
     <string name="check_watch_pulse">דופק ברקע (שעון)</string>
     <string name="check_watch_pulse_problem">לשעון אסור למדוד את הדופק שלך בלילה – בשעון, הגדר את הרשאת החיישנים של Phase Wake ל„אישור כל הזמן”.</string>
-    <string name="export_contents_hint">הקובץ מכיל סדרות של תנועה ודופק לכל לילה – ללא שמות, תאריכים או מזהי מכשירים.</string>
+    <string name="export_contents_hint">הקובץ מכיל לכל לילה תנועה ודופק לכל 30 שניות, איך הרגשתם וההערות שלכם – ללא שמות, תאריכים או מזהי מכשירים.</string>
     <string name="editor_more">עוד</string>
     <string name="home_max_alarms">עד %1$d מעוררים – מחקו אחד כדי להוסיף חדש.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -310,7 +310,7 @@
     <string name="sounds_hint">מתנגן בעוצמת המדיה ונעצר לכל המאוחר כשחלון ההשכמה שלך מתחיל.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">הקלטת קולות</string>
-    <string name="sound_rec_hint">רק קטעים קצרים. הם נשארים בטלפון ונמחקים אחרי 7 ימים.</string>
+    <string name="sound_rec_hint">רק קטעים קצרים של נחירות, דיבור וצלילים אחרים. הם נשארים בטלפון ונמחקים אחרי 7 ימים.</string>
     <string name="sound_rec_permission">כדי להקליט, Phase Wake צריך את המיקרופון. הוא מקשיב רק כשההקלטה פועלת.</string>
     <string name="sound_rec_running">מקליט קולות</string>
     <string name="sound_rec_stop">עצירה</string>
@@ -455,7 +455,7 @@
     <string name="widget_description">ההשכמה הבאה שלכם ובדיקת הלילה.</string>
     <string name="widget_no_alarm">אין השכמה</string>
     <string name="settings_backup">גיבוי</string>
-    <string name="settings_backup_hint">קובץ מוצפן עם השכמות, היסטוריה, הערות והגדרות. בלי צלילים ונתוני בריאות.</string>
+    <string name="settings_backup_hint">קובץ מוצפן בסיסמה שלכם: השכמות, לילות כולל תנועה ודופק, הערות והגדרות. בלי צלילים.</string>
     <string name="settings_restore">שחזור</string>
     <string name="backup_password">סיסמה</string>
     <string name="backup_password_repeat">חזרה על הסיסמה</string>

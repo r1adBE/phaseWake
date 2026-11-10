@@ -90,7 +90,7 @@
     <string name="settings_data">Ang data mo</string>
     <string name="settings_data_text">Nananatili ang lahat sa telepono at relo mo. Walang account, walang server, walang tracking.</string>
     <string name="settings_export">I-export ang mga gabi nang walang pangalan</string>
-    <string name="settings_export_hint">Tumulong na pahusayin ang pag-detect: CSV na walang pangalan, petsa, o ID ng device.</string>
+    <string name="settings_export_hint">Tumulong na pahusayin ang pagtukoy: CSV na walang pangalan, petsa o ID ng device; may galaw at heart rate bawat 30 s, ang pakiramdam mo at ang mga tala mo.</string>
     <string name="settings_about">Tungkol dito</string>
     <string name="settings_open_source">Open source sa GitHub</string>
     <string name="settings_licenses">Mga lisensya</string>
@@ -244,7 +244,7 @@
     <string name="check_watch_battery_problem">Mababa sa %1$d %% – i-charge ang relo mo para tumagal ito buong gabi at magising ka nito.</string>
     <string name="check_watch_pulse">Pulso sa background (relo)</string>
     <string name="check_watch_pulse_problem">Hindi puwedeng sukatin ng relo ang pulso mo sa gabi – sa relo, itakda ang pahintulot sa sensor ng Phase Wake sa “Payagan sa lahat ng oras”.</string>
-    <string name="export_contents_hint">Laman ng file ang serye ng galaw at heart rate para sa bawat gabi – walang pangalan, petsa, o ID ng device.</string>
+    <string name="export_contents_hint">Laman ng file para sa bawat gabi ang galaw at heart rate bawat 30 s, ang pakiramdam mo at ang mga tala mo – walang pangalan, petsa o ID ng device.</string>
     <string name="editor_more">Higit pa</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Hanggang %1$d alarm – mag-delete ng isa para magdagdag ng bago.</string>
@@ -303,7 +303,7 @@
     <string name="sounds_hint">Tumutugtog sa volume ng media at humihinto nang pinakahuli kapag nagsimula ang window ng paggising mo.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Mag-record ng mga tunog</string>
-    <string name="sound_rec_hint">Maiikling clip lang. Nananatili ang mga ito sa telepono mo at dine-delete pagkalipas ng 7 araw.</string>
+    <string name="sound_rec_hint">Maiikling clip lang ng hilik, pagsasalita at iba pang tunog. Nananatili ang mga ito sa telepono mo at dine-delete pagkalipas ng 7 araw.</string>
     <string name="sound_rec_permission">Para makapag-record, kailangan ng Phase Wake ang mikropono. Nakikinig lang ito habang naka-on ang pagre-record.</string>
     <string name="sound_rec_running">Nagre-record ng mga tunog</string>
     <string name="sound_rec_stop">Ihinto</string>
@@ -445,7 +445,7 @@
     <string name="widget_description">Ang susunod mong alarm at ang pagsusuri bago matulog.</string>
     <string name="widget_no_alarm">Walang alarm</string>
     <string name="settings_backup">Mag-back up</string>
-    <string name="settings_backup_hint">Naka-encrypt na file na may mga alarm, kasaysayan, tala, at setting. Walang sound clip at health data.</string>
+    <string name="settings_backup_hint">File na naka-encrypt gamit ang password mo: mga alarm, mga gabi kasama ang galaw at heart rate, tala at setting. Walang sound clip.</string>
     <string name="settings_restore">I-restore</string>
     <string name="backup_password">Password</string>
     <string name="backup_password_repeat">Ulitin ang password</string>

@@ -4,12 +4,22 @@ import PhaseWakeCore
 /// «Einschlafen automatisch erkennen» auf der Apple Watch (wie `AutoOnset` der Galaxy Watch; Standard ein, Schalter am
 /// iPhone, freigegeben von r1AD 10.11.2026): Für jede Nacht eines gespeicherten Weckers startet die Uhr den
 /// Bewegungs-Rekorder bis zum Beginn des Weckfensters (``AppleAutoOnset``), damit sie zu Beginn der Weck-Sitzung die
-/// Einschlafzeit nachrechnen kann (`WatchOnset`) und die Untergrenze kurzer Nächte jede Nacht gilt. Unter 30 % Akku
-/// startet sie für diese Nacht nicht (wie Android, auch nicht später). watchOS weckt die App am Abend nicht verlässlich;
-/// darum startet der Rekorder schon beim ersten Durchgang ab 12 Std. vor dem Fensterbeginn (Neuplanen, App geöffnet,
-/// Hintergrund-Aktualisierung).
+/// Einschlafzeit nachrechnen kann (`WatchOnset`) und die Untergrenze kurzer Nächte gilt. Unter 30 % Akku startet sie
+/// für diese Nacht nicht (wie Android, auch nicht später). Gestartet wird frühestens 60 Min vor der Bettzeit (wie
+/// Android, Entscheid r1AD 10.11.2026) beim ersten Durchgang ab dann (App geöffnet, etwa über die Erinnerung am Abend,
+/// oder Hintergrund-Aktualisierung). Läuft die App bis zum Fensterbeginn nicht, zeichnet die Uhr diese Nacht nicht auf;
+/// die Einschlafzeit bleibt dann unbekannt.
 extension LearnRecorder {
     private static let autoOnsetKey = "autoOnset"
+
+    /// Beginn der kommenden Nacht für den Rekorder: 60 Min vor der Bettzeit des nächsten echten Weckers
+    /// (``ShortNight/autoOnsetStart(target:sleepGoalMinutes:sleepDurationMinutes:)``); `nil` ohne Wecker.
+    static func nightStart() -> Date? {
+        let model = WatchModel.shared
+        guard let plan = model.realPlan, Transient.kindOf(plan.alarmId) == nil,
+              let spec = model.alarms.first(where: { $0.id == plan.alarmId }) else { return nil }
+        return ShortNight.autoOnsetStart(target: plan.target, sleepGoalMinutes: model.sleepGoal, sleepDurationMinutes: spec.sleepDurationMinutes)
+    }
 
     /// Schalter vom iPhone; ohne Stand ein (wie Android).
     var autoOnset: Bool { SettingsFile.watchSession.object(forKey: Self.autoOnsetKey) as? Bool ?? true }
@@ -39,7 +49,10 @@ extension LearnRecorder {
         // Für diese Nacht schon ausgelassen (Akku): wie Android nicht später doch noch.
         if autoSkipped { return }
         let battery = Self.battery()
-        switch AppleAutoOnset.decide(now: Date(), target: plan.target, windowStart: plan.windowStart, battery: battery) {
+        let spec = model.alarms.first { $0.id == plan.alarmId }
+        let onsetStart = ShortNight.autoOnsetStart(target: plan.target, sleepGoalMinutes: model.sleepGoal,
+                                                   sleepDurationMinutes: spec?.sleepDurationMinutes)
+        switch AppleAutoOnset.decide(now: Date(), target: plan.target, windowStart: plan.windowStart, onsetStart: onsetStart, battery: battery) {
         case .wait(let until):
             autoNextTry = until
         case .skip(let reason):

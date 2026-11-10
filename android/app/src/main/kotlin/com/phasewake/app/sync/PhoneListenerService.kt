@@ -10,18 +10,30 @@ import com.phasewake.app.ring.cancelSnoozeOf
 import com.phasewake.app.ring.onsetShiftReceived
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.OnsetShift
+import com.phasewake.app.shared.QueueMessages
 import com.phasewake.app.shared.RecordSync
 import com.phasewake.app.shared.RingMessage
 import com.phasewake.app.shared.WearSync
+import com.google.android.gms.wearable.CapabilityInfo
+import com.google.android.gms.wearable.ChannelClient
 import com.google.android.gms.wearable.DataEvent
 import com.google.android.gms.wearable.DataEventBuffer
 import com.google.android.gms.wearable.DataMapItem
 import com.google.android.gms.wearable.MessageEvent
 import com.google.android.gms.wearable.WearableListenerService
+import com.phasewake.app.core.Codec
+import com.phasewake.app.core.NightRecord
+import com.phasewake.app.shared.NightRecording
 import java.time.Instant
 import kotlinx.coroutines.runBlocking
 
-/** Empfängt von der Uhr: geänderte Wecker, aufgezeichnete Nächte und Aufzeichnungen, Status, Weck- und Stopp-Meldungen. */
+/**
+ * Empfängt von der Uhr: geänderte Wecker, aufgezeichnete Nächte und Aufzeichnungen, Status, Weck- und Stopp-Meldungen.
+ *
+ * Neue Uhren schicken Inhalte mit persönlichen Daten über die Warteschlange ([com.phasewake.app.shared.Outbox]): als
+ * Nachricht (grosse Aufzeichnungen über einen Kanal), bestätigt nach dem Speichern ([WearSync.receive]). Pakete älterer
+ * Uhren ([onDataChanged]) werden wie bisher übernommen und danach gelöscht.
+ */
 class PhoneListenerService : WearableListenerService() {
 
     override fun onDataChanged(dataEvents: DataEventBuffer) {
@@ -39,23 +51,15 @@ class PhoneListenerService : WearableListenerService() {
             if (applied || status) app.backup.reschedule()
             changed.filter { it.uri.path.orEmpty().startsWith(DataLayer.PATH_NIGHT_PREFIX) }.forEach { item ->
                 val night = WearSync.readNight(DataMapItem.fromDataItem(item).dataMap) ?: return@forEach
-                app.nights.add(night)
-                // Die Uhr hat geweckt und die Nacht beendet: Sicherungen und Wiederaufnahme dieser Nacht nicht mehr nötig
-                // (falls «ring» oder das letzte «stop» verloren ging).
-                app.backup.cancelSnoozeSafety(night.alarmId)
-                app.backup.cancelSnoozeOf(night.alarmId, night.target.toEpochMilli())
-                app.backup.watchHandled(night.alarmId, night.target)
+                storeNight(night)
                 // Datensparsamkeit: lokal gespeichert, im Data Layer nicht mehr nötig.
                 app.sync.delete(item.uri)
             }
             // «Nacht aufzeichnen»: abgeschlossene Aufzeichnungen speichern (dann das Paket löschen) und den Stand merken.
             changed.filter { it.uri.path.orEmpty().startsWith(DataLayer.PATH_RECORDING_PREFIX) }.forEach { item ->
                 val recording = RecordSync.readRecording(DataMapItem.fromDataItem(item).dataMap) ?: return@forEach
-                app.recordings.put(recording)
-                app.diag.log(DiagKind.SYNC, "recording received epochs=${recording.epochs.size} end=${recording.endReason?.code}")
+                storeRecording(recording)
                 app.sync.delete(item.uri)
-                // Lernphase: zählen, nach 7 Nächten anpassen.
-                app.updateLearning(recording)
             }
             changed.lastOrNull { it.uri.path == DataLayer.PATH_RECORD_STATUS }
                 ?.let { app.recordStatus.value = RecordSync.readStatus(DataMapItem.fromDataItem(it).dataMap) }
@@ -71,8 +75,76 @@ class PhoneListenerService : WearableListenerService() {
         }
     }
 
+    /**
+     * Nacht der Uhr speichern. Die Uhr hat geweckt und die Nacht beendet: Sicherungen und Wiederaufnahme dieser Nacht
+     * nicht mehr nötig (falls «ring» oder das letzte «stop» verloren ging). Dieselbe Nacht zweimal ändert nichts.
+     */
+    private suspend fun storeNight(night: NightRecord) {
+        val app = phoneApp
+        app.nights.add(night)
+        app.backup.cancelSnoozeSafety(night.alarmId)
+        app.backup.cancelSnoozeOf(night.alarmId, night.target.toEpochMilli())
+        app.backup.watchHandled(night.alarmId, night.target)
+    }
+
+    /** Abgeschlossene Aufzeichnung speichern; Lernphase: zählen, nach 7 Nächten anpassen. */
+    private suspend fun storeRecording(recording: NightRecording) {
+        val app = phoneApp
+        app.recordings.put(recording)
+        app.diag.log(DiagKind.SYNC, "recording received epochs=${recording.epochs.size} end=${recording.endReason?.code}")
+        app.updateLearning(recording)
+    }
+
+    /**
+     * Eintrag der Warteschlange der Uhr ([path], Text [body]); unlesbare Inhalte werden übergangen (und bestätigt, sonst
+     * käme derselbe Fehler immer wieder).
+     */
+    private suspend fun handleQueued(path: String, body: String) {
+        val app = phoneApp
+        when (path) {
+            DataLayer.PATH_MSG_ALARMS -> QueueMessages.decodeAlarms(body)?.let { snapshot ->
+                if (app.alarms.applyRemote(snapshot)) {
+                    app.diag.log(DiagKind.ALARMS_RECEIVED, "from watch")
+                    app.backup.reschedule()
+                }
+            }
+            DataLayer.PATH_MSG_NIGHT -> runCatching { Codec.decodeNight(body) }.getOrNull()?.let { storeNight(it) }
+            DataLayer.PATH_MSG_RECORDING -> NightRecording.decode(body)?.takeIf { it.finished }?.let { storeRecording(it) }
+            DataLayer.PATH_MSG_RECORD_STATUS -> RecordSync.decodeStatus(body)?.let { app.recordStatus.value = it }
+            // Einschlaf-Modus der Galaxy Watch: frühere Zielzeit auch für den Zweitwecker dieser Nacht (Review K-07).
+            DataLayer.PATH_MSG_ONSET_SHIFT -> OnsetShift.decode(body)?.let { app.backup.onsetShiftReceived(it) }
+        }
+    }
+
+    /** Kanal der Uhr (grosse Aufzeichnung): ganz lesen, schliessen, wie eine Nachricht verarbeiten und bestätigen. */
+    override fun onChannelOpened(channel: ChannelClient.Channel) {
+        val sync = phoneApp.sync
+        runBlocking { sync.readChannel(channel)?.let { data -> sync.receive(channel.nodeId, data) { handleQueued(channel.path, it) } } }
+    }
+
+    /** Die Uhr ist (wieder) erreichbar: wartende Einträge senden. */
+    override fun onCapabilityChanged(info: CapabilityInfo) {
+        if (info.nodes.isNotEmpty()) runBlocking { phoneApp.sync.flush() }
+    }
+
     override fun onMessageReceived(event: MessageEvent) {
         val app = phoneApp
+        val path = event.path
+        when {
+            path == DataLayer.PATH_ACK -> {
+                runBlocking { app.sync.acked(event.data) }
+                return
+            }
+            // Die Uhr will den Stand des Handys (frisch installiert, neu gestartet): einreihen und senden.
+            path == DataLayer.PATH_SYNC_REQUEST -> {
+                runBlocking { app.publishToWatch() }
+                return
+            }
+            path.startsWith(QUEUE_PREFIX) -> {
+                runBlocking { app.sync.receive(event.sourceNodeId, event.data) { handleQueued(path, it) } }
+                return
+            }
+        }
         when (event.path) {
             // Nicht direkt den Weckdienst starten: aus dem Hintergrund ab Android 12 nicht erlaubt.
             DataLayer.PATH_RING -> {
@@ -106,5 +178,10 @@ class PhoneListenerService : WearableListenerService() {
                 runBlocking { app.backup.watchStopped(message, left) }
             }
         }
+    }
+
+    private companion object {
+        /** Gemeinsamer Anfang der Pfade der Warteschlange (`DataLayer.PATH_MSG_…`). */
+        const val QUEUE_PREFIX = "/phasewake/m/"
     }
 }

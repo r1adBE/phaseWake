@@ -17,6 +17,8 @@
     <string name="watch_not_armed">ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ Phase Wake ਖੋਲ੍ਹੋ ਤਾਂ ਜੋ ਤੁਹਾਡੀ ਘੜੀ ਅਲਾਰਮ ਸਰਗਰਮ ਕਰ ਸਕੇ।</string>
     <string name="check_watch_arm">ਘੜੀ ’ਤੇ ਅਲਾਰਮ ਸਰਗਰਮ</string>
     <string name="check_watch_arm_problem">ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਆਪਣੀ Apple Watch ’ਤੇ Phase Wake ਖੋਲ੍ਹੋ। watchOS ਸਿਰਫ਼ ਐਪ ਖੁੱਲ੍ਹੀ ਹੋਣ ’ਤੇ ਹੀ ਅਲਾਰਮ ਸਰਗਰਮ ਕਰਦਾ ਹੈ।</string>
+    <string name="check_watch_arm_tonight">Apple Watch: ਅਲਾਰਮ ਚਾਲੂ ਨਹੀਂ – ਸਿਰਫ਼ ਸੂਚਨਾ, ਨੀਂਦ ਦੇ ਪੜਾਅ ਨਹੀਂ। ਘੜੀ ਦੀ ਐਪ ਖੋਲ੍ਹੋ।</string>
+    <string name="watch_evening_reminder">ਅੱਜ ਰਾਤ ਦਾ ਅਲਾਰਮ ਚਾਲੂ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ।</string>
     <string name="night_unmeasured_apple">ਪਹਿਲੇ %1$d ਮਿੰ. ਨਹੀਂ ਮਾਪੇ – Apple Watch ਟੀਚੇ ਤੋਂ ਪਹਿਲਾਂ ਸਿਰਫ਼ ਆਖਰੀ %2$d ਮਿੰ. ਮਾਪਦੀ ਹੈ।</string>
     <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
     <string name="settings_licenses_text_apple">Phase Wake: MIT License, © r1adBE.\nManrope ਫ਼ੌਂਟ: SIL Open Font License 1.1, © The Manrope Project Authors.\nਆਵਾਜ਼ ਪਛਾਣ: Apple ਦਾ SoundAnalysis, iOS ਵਿੱਚ ਸ਼ਾਮਲ।\nਆਵਾਜ਼ਾਂ: opengameart.org ਤੋਂ ਮੁਫ਼ਤ ਰਿਕਾਰਡਿੰਗਾਂ (CC0)</string>
@@ -30,5 +32,5 @@
     <string name="check_watch_notifications_problem">ਆਪਣੀ Apple Watch ’ਤੇ Phase Wake ਲਈ ਸਮਾਂ-ਸੰਵੇਦਨਸ਼ੀਲ ਸੂਚਨਾਵਾਂ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ। ਨਹੀਂ ਤਾਂ ਮਾਪ ਨਾ ਚੱਲਦੇ ਸਮੇਂ ਇਹ ਤੁਹਾਨੂੰ ਸੂਚਨਾ ਰਾਹੀਂ ਨਹੀਂ ਜਗਾ ਸਕਦੀ।</string>
     <string name="check_watch_state_old">ਘੜੀ ਦੀ ਸਥਿਤੀ ਪੁਰਾਣੀ ਹੈ – ਘੜੀ ’ਤੇ Phase Wake ਥੋੜ੍ਹੀ ਦੇਰ ਲਈ ਖੋਲ੍ਹੋ।</string>
     <string name="editor_sleep_hint_apple">ਸੌਂ ਜਾਣ ਤੋਂ ਗਿਣਿਆ ਜਾਂਦਾ ਹੈ – ਸੌਣ ਜਾਂਦੇ ਸਮੇਂ ਘੜੀ ’ਤੇ «ਸ਼ੁਭ ਰਾਤ» ਟੈਪ ਕਰੋ। Apple Watch ’ਤੇ Phase Wake ਸਿੱਖੇ ਹੋਏ ਨੀਂਦ ਆਉਣ ਦੇ ਸਮੇਂ ਤੋਂ ਅੰਦਾਜ਼ਾ ਲਗਾਉਂਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕਦੋਂ ਸੌਂਦੇ ਹੋ। ਟੈਪ ਨਾ ਕਰਨ ’ਤੇ ਸੈੱਟ ਕੀਤਾ ਸਮਾਂ ਲਾਗੂ ਹੁੰਦਾ ਹੈ।</string>
-    <string name="auto_onset_hint_apple">ਸੌਣ ਦੇ ਸਮੇਂ ਤੋਂ 1 ਘੰਟਾ ਪਹਿਲਾਂ ਤੋਂ ਤੁਹਾਡੀ Apple Watch ਹਿਲਜੁਲ ਰਿਕਾਰਡ ਕਰਦੀ ਹੈ; ਜਗਾਉਣ ਦੀ ਮਿਆਦ ਦੀ ਸ਼ੁਰੂਆਤ ਵਿੱਚ Phase Wake ਹਿਸਾਬ ਲਗਾਉਂਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕਦੋਂ ਸੌਂ ਗਏ।</string>
+    <string name="auto_onset_hint_apple">ਸੌਣ ਦੇ ਸਮੇਂ ਤੋਂ 1 ਘੰਟਾ ਪਹਿਲਾਂ ਤੋਂ ਆਪਣੀ Apple Watch ’ਤੇ Phase Wake ਖੋਲ੍ਹੋ (ਘੜੀ ਯਾਦ ਕਰਾਉਂਦੀ ਹੈ), ਤਾਂ ਉਦੋਂ ਤੋਂ ਇਹ ਤੁਹਾਡੀ ਹਿਲਜੁਲ ਰਿਕਾਰਡ ਕਰਦੀ ਹੈ; ਜਗਾਉਣ ਦੀ ਮਿਆਦ ਦੀ ਸ਼ੁਰੂਆਤ ਵਿੱਚ Phase Wake ਹਿਸਾਬ ਲਾਉਂਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕਦੋਂ ਸੌਂ ਗਏ।</string>
 </resources>

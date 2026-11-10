@@ -5,8 +5,9 @@ import Foundation
 /// Abschnitt 8. Identisch zu `ShortNight` (Kotlin).
 ///
 /// Auf der Apple Watch rechnet die Uhr die Einschlafzeit zu Beginn der Smart-Alarm-Sitzung aus dem Bewegungs-Rekorder
-/// nach (``RecorderOnset``), wenn er in dieser Nacht lief; sonst ist sie unbekannt, und die Untergrenze gilt nicht
-/// (`blocksEarly` mit `onset: nil`).
+/// nach (``RecorderOnset``), wenn er in dieser Nacht lief. Lief er nicht, ist sie unbekannt, und die Untergrenze gilt
+/// nicht (`blocksEarly` mit `onset: nil`); lief er, aber die Rechnung bringt kein Ergebnis, gilt sie bis 10 Min vor der
+/// Zielzeit (`measured`).
 public enum ShortNight {
     /// So viele Minuten unter dem Schlafziel gilt eine Nacht noch nicht als kurz.
     public static let marginMinutes = 60
@@ -19,11 +20,13 @@ public enum ShortNight {
     public static let autoLeadMinutes = 60
 
     /// Ob frühes Wecken gesperrt ist: Einschlafzeit `onset` bekannt und seit dann weniger als Schlafziel minus
-    /// `marginMinutes` vergangen (bei 7½ h also unter 6½ h Schlaf). Ohne bekannte Einschlafzeit nie gesperrt; ebenso
-    /// nicht mehr in den letzten `lateMinutes` vor der Zielzeit `target` (ohne `target`: bis zum Schluss gesperrt).
-    public static func blocksEarly(onset: Date?, now: Date, sleepGoalMinutes: Int, target: Date? = nil) -> Bool {
-        guard let onset else { return false }
+    /// `marginMinutes` vergangen (bei 7½ h also unter 6½ h Schlaf). Ohne bekannte Einschlafzeit gesperrt, wenn sie
+    /// gemessen wurde, die Messung aber kein Ergebnis brachte (`measured`: begonnen, dann aufgegeben, vom System
+    /// beendet, gescheitert oder ohne Werte – fail-closed, Entscheid r1AD 10.11.2026); ohne Messung nie. In den letzten
+    /// `lateMinutes` vor der Zielzeit `target` nie mehr (ohne `target`: bis zum Schluss gesperrt).
+    public static func blocksEarly(onset: Date?, now: Date, sleepGoalMinutes: Int, target: Date? = nil, measured: Bool = false) -> Bool {
         if let target, now >= target.addingTimeInterval(-TimeInterval(lateMinutes * 60)) { return false }
+        guard let onset else { return measured }
         return now.timeIntervalSince(onset) < TimeInterval((sleepGoalMinutes - marginMinutes) * 60)
     }
 

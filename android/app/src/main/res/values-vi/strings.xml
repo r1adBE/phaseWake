@@ -87,7 +87,7 @@
     <string name="settings_data">Dữ liệu của bạn</string>
     <string name="settings_data_text">Mọi thứ chỉ nằm trên điện thoại và đồng hồ của bạn. Không tài khoản, không máy chủ, không theo dõi.</string>
     <string name="settings_export">Xuất các đêm ngủ không kèm tên</string>
-    <string name="settings_export_hint">Giúp cải thiện khả năng nhận diện: tệp CSV không chứa tên, ngày hay mã thiết bị.</string>
+    <string name="settings_export_hint">Giúp cải thiện khả năng nhận biết: CSV không có tên, ngày hay ID thiết bị; chứa chuyển động và nhịp tim mỗi 30 giây, cảm giác của bạn và ghi chú của bạn.</string>
     <string name="settings_about">Giới thiệu</string>
     <string name="settings_open_source">Mã nguồn mở trên GitHub</string>
     <string name="settings_licenses">Giấy phép</string>
@@ -237,7 +237,7 @@
     <string name="check_watch_battery_problem">Dưới %1$d %% – hãy sạc đồng hồ để đồng hồ chạy suốt đêm và có thể đánh thức bạn.</string>
     <string name="check_watch_pulse">Nhịp tim trong nền (đồng hồ)</string>
     <string name="check_watch_pulse_problem">Đồng hồ không được phép đo nhịp tim của bạn vào ban đêm – trên đồng hồ, hãy đặt quyền cảm biến của Phase Wake thành “Luôn cho phép”.</string>
-    <string name="export_contents_hint">Tệp chứa chuỗi dữ liệu chuyển động và nhịp tim của từng đêm – không có tên, ngày hay ID thiết bị.</string>
+    <string name="export_contents_hint">Tệp chứa chuyển động và nhịp tim mỗi 30 giây, cảm giác của bạn và ghi chú của bạn cho từng đêm – không có tên, ngày hay ID thiết bị.</string>
     <string name="editor_more">Thêm</string>
     <string name="home_max_alarms">Tối đa %1$d báo thức – hãy xóa một báo thức để thêm báo thức mới.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -296,7 +296,7 @@
     <string name="sounds_hint">Phát theo âm lượng phương tiện và dừng muộn nhất khi khung giờ đánh thức của bạn bắt đầu.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Ghi âm âm thanh</string>
-    <string name="sound_rec_hint">Chỉ những đoạn ngắn. Chúng ở lại trên điện thoại và bị xóa sau 7 ngày.</string>
+    <string name="sound_rec_hint">Chỉ những đoạn ngắn tiếng ngáy, tiếng nói và các âm thanh khác. Chúng ở lại trên điện thoại và bị xóa sau 7 ngày.</string>
     <string name="sound_rec_permission">Để ghi âm, Phase Wake cần micrô. Nó chỉ nghe khi đang ghi âm.</string>
     <string name="sound_rec_running">Đang ghi âm âm thanh</string>
     <string name="sound_rec_stop">Dừng</string>
@@ -429,7 +429,7 @@
     <string name="widget_description">Báo thức tiếp theo và kiểm tra ban đêm.</string>
     <string name="widget_no_alarm">Không có báo thức</string>
     <string name="settings_backup">Sao lưu</string>
-    <string name="settings_backup_hint">Tệp mã hóa gồm báo thức, lịch sử, ghi chú và cài đặt. Không có âm thanh và dữ liệu sức khỏe.</string>
+    <string name="settings_backup_hint">Tệp được mã hóa bằng mật khẩu của bạn: báo thức, các đêm kèm chuyển động và nhịp tim, ghi chú và cài đặt. Không có đoạn âm thanh.</string>
     <string name="settings_restore">Khôi phục</string>
     <string name="backup_password">Mật khẩu</string>
     <string name="backup_password_repeat">Nhập lại mật khẩu</string>

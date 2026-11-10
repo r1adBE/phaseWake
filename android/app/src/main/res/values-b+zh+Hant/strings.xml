@@ -87,7 +87,7 @@
     <string name="settings_data">你的資料</string>
     <string name="settings_data_text">所有資料都只儲存在手機和手錶上。不需帳號、沒有伺服器、不做追蹤。</string>
     <string name="settings_export">不含姓名匯出睡眠紀錄</string>
-    <string name="settings_export_hint">協助改善偵測：CSV 檔不含姓名、日期或裝置 ID。</string>
+    <string name="settings_export_hint">協助改善偵測：CSV 不含姓名、日期或裝置 ID；包含每 30 秒的體動和心率、你的感受和你的筆記。</string>
     <string name="settings_about">關於</string>
     <string name="settings_open_source">GitHub 上的開放原始碼專案</string>
     <string name="settings_licenses">授權</string>
@@ -237,7 +237,7 @@
     <string name="check_watch_battery_problem">低於 %1$d %% – 請為手錶充電，讓它撐過整晚並按時喚醒你。</string>
     <string name="check_watch_pulse">背景心率（手錶）</string>
     <string name="check_watch_pulse_problem">手錶無法在夜間測量你的心率 – 請在手錶上將 Phase Wake 的感應器權限設為「一律允許」。</string>
-    <string name="export_contents_hint">檔案包含每晚的體動和心率序列，不含姓名、日期或裝置 ID。</string>
+    <string name="export_contents_hint">檔案包含每晚每 30 秒的體動和心率、你的感受和你的筆記，不含姓名、日期或裝置 ID。</string>
     <string name="editor_more">更多</string>
     <string name="home_max_alarms">最多 %1$d 個鬧鐘 – 刪除一個後才能新增。</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -296,7 +296,7 @@
     <string name="sounds_hint">以媒體音量播放，最遲在你的喚醒時段開始時停止。</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">錄製聲音</string>
-    <string name="sound_rec_hint">只保存短片段。片段留在手機上，7 天後刪除。</string>
+    <string name="sound_rec_hint">只保存打鼾、說話和其他聲音的短片段。片段留在手機上，7 天後刪除。</string>
     <string name="sound_rec_permission">錄音需要麥克風。只在錄音開啟時收聽。</string>
     <string name="sound_rec_running">正在錄製聲音</string>
     <string name="sound_rec_stop">停止</string>
@@ -429,7 +429,7 @@
     <string name="widget_description">你的下一個鬧鐘和夜間檢查。</string>
     <string name="widget_no_alarm">沒有鬧鐘</string>
     <string name="settings_backup">備份</string>
-    <string name="settings_backup_hint">加密檔案，包含鬧鐘、紀錄、筆記和設定。不含聲音片段和健康資料。</string>
+    <string name="settings_backup_hint">以你的密碼加密的檔案：鬧鐘、含體動和心率的夜晚紀錄、筆記和設定。不含聲音片段。</string>
     <string name="settings_restore">還原</string>
     <string name="backup_password">密碼</string>
     <string name="backup_password_repeat">再次輸入密碼</string>

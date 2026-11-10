@@ -90,7 +90,7 @@
     <string name="settings_data">Чиний өгөгдөл</string>
     <string name="settings_data_text">Бүх зүйл утас, цаган дээр чинь үлдэнэ. Бүртгэлгүй, сервергүй, хянахгүй.</string>
     <string name="settings_export">Шөнүүдийг нэргүйгээр экспортлох</string>
-    <string name="settings_export_hint">Илрүүлэлтийг сайжруулахад туслаарай: нэр, огноо, төхөөрөмжийн ID-гүй CSV.</string>
+    <string name="settings_export_hint">Таних чадварыг сайжруулахад туслаарай: нэр, огноо, төхөөрөмжийн ID-гүй CSV; 30 с тутмын хөдөлгөөн ба зүрхний цохилт, сэтгэгдэл, тэмдэглэл чинь багтана.</string>
     <string name="settings_about">Тухай</string>
     <string name="settings_open_source">GitHub дээр нээлттэй эх</string>
     <string name="settings_licenses">Лиценз</string>
@@ -244,7 +244,7 @@
     <string name="check_watch_battery_problem">%1$d %%-иас бага – шөнөжин хүрч, чамайг сэрээж чадахын тулд цагаа цэнэглэ.</string>
     <string name="check_watch_pulse">Арын горимын судасны цохилт (цаг)</string>
     <string name="check_watch_pulse_problem">Цаг шөнө судасны цохилтыг чинь хэмжих эрхгүй – цаган дээр Phase Wake-ийн мэдрэгчийн зөвшөөрлийг «Үргэлж зөвшөөрөх» болго.</string>
-    <string name="export_contents_hint">Файлд шөнө бүрийн хөдөлгөөн, зүрхний цохилтын цуваа бий – нэр, огноо, төхөөрөмжийн ID-гүй.</string>
+    <string name="export_contents_hint">Файлд шөнө бүрийн 30 с тутмын хөдөлгөөн ба зүрхний цохилт, сэтгэгдэл, тэмдэглэл чинь бий – нэр, огноо, төхөөрөмжийн ID-гүй.</string>
     <string name="editor_more">Бусад</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Дээд тал нь %1$d сэрүүлэг – шинийг нэмэхийн тулд нэгийг устга.</string>
@@ -303,7 +303,7 @@
     <string name="sounds_hint">Медиа дууны түвшинд тоглож, хамгийн оройдоо сэрээх хугацаа эхлэхэд зогсоно.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Дуу бичих</string>
-    <string name="sound_rec_hint">Зөвхөн богино хэсгүүд. Утсан дээр чинь үлдэж, 7 хоногийн дараа устна.</string>
+    <string name="sound_rec_hint">Зөвхөн хурхирах, ярих болон бусад дууны богино хэсгүүд. Утсан дээр чинь үлдэж, 7 хоногийн дараа устна.</string>
     <string name="sound_rec_permission">Бичихийн тулд Phase Wake-д микрофон хэрэгтэй. Бичлэг асаалттай үед л сонсоно.</string>
     <string name="sound_rec_running">Дуу бичиж байна</string>
     <string name="sound_rec_stop">Зогсоох</string>
@@ -445,7 +445,7 @@
     <string name="widget_description">Дараагийн сэрүүлэг чинь болон шөнийн шалгалт.</string>
     <string name="widget_no_alarm">Сэрүүлэггүй</string>
     <string name="settings_backup">Нөөцлөх</string>
-    <string name="settings_backup_hint">Сэрүүлэг, түүх, тэмдэглэл, тохиргоотой шифрлэгдсэн файл. Дууны хэсэг болон эрүүл мэндийн өгөгдөлгүй.</string>
+    <string name="settings_backup_hint">Таны нууц үгээр шифрлэсэн файл: сэрүүлэг, хөдөлгөөн ба зүрхний цохилттой шөнүүд, тэмдэглэл ба тохиргоо. Дууны хэсэггүй.</string>
     <string name="settings_restore">Сэргээх</string>
     <string name="backup_password">Нууц үг</string>
     <string name="backup_password_repeat">Нууц үгээ давт</string>

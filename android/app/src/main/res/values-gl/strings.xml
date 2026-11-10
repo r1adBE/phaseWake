@@ -90,7 +90,7 @@
     <string name="settings_data">Os teus datos</string>
     <string name="settings_data_text">Todo queda no teléfono e no reloxo. Sen conta, sen servidor, sen seguimento.</string>
     <string name="settings_export">Exportar noites sen nome</string>
-    <string name="settings_export_hint">Axuda a mellorar a detección: CSV sen nomes, datas nin ID de dispositivos.</string>
+    <string name="settings_export_hint">Axuda a mellorar a detección: CSV sen nomes, datas nin identificadores do dispositivo; contén movemento e pulso cada 30 s, como te sentiches e as túas notas.</string>
     <string name="settings_about">Acerca de</string>
     <string name="settings_open_source">Código aberto en GitHub</string>
     <string name="settings_licenses">Licenzas</string>
@@ -244,7 +244,7 @@
     <string name="check_watch_battery_problem">Menos do %1$d %% – carga o reloxo para que aguante a noite e poida espertarte.</string>
     <string name="check_watch_pulse">Pulso en segundo plano (reloxo)</string>
     <string name="check_watch_pulse_problem">O reloxo non pode medir o teu pulso pola noite – no reloxo, pon o permiso de sensores de Phase Wake en “Permitir sempre”.</string>
-    <string name="export_contents_hint">O ficheiro contén series de movemento e pulso de cada noite – sen nomes, datas nin ID de dispositivos.</string>
+    <string name="export_contents_hint">O ficheiro contén, de cada noite, movemento e pulso cada 30 s, como te sentiches e as túas notas – sen nomes, datas nin identificadores do dispositivo.</string>
     <string name="editor_more">Máis</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Ata %1$d alarmas – elimina unha para engadir outra nova.</string>
@@ -303,7 +303,7 @@
     <string name="sounds_hint">Soa co volume multimedia e para como moi tarde cando comeza a túa xanela de espertar.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Gravar sons</string>
-    <string name="sound_rec_hint">Só fragmentos curtos. Quedan no teléfono e elimínanse despois de 7 días.</string>
+    <string name="sound_rec_hint">Só fragmentos curtos de roncos, fala e outros sons. Quedan no teu teléfono e elimínanse aos 7 días.</string>
     <string name="sound_rec_permission">Para gravar, Phase Wake necesita o micrófono. Só escoita mentres a gravación está activada.</string>
     <string name="sound_rec_running">Gravando sons</string>
     <string name="sound_rec_stop">Parar</string>
@@ -445,7 +445,7 @@
     <string name="widget_description">A túa próxima alarma e a comprobación nocturna.</string>
     <string name="widget_no_alarm">Sen alarma</string>
     <string name="settings_backup">Facer copia</string>
-    <string name="settings_backup_hint">Ficheiro cifrado con alarmas, historial, notas e axustes. Sen fragmentos de son nin datos de saúde.</string>
+    <string name="settings_backup_hint">Ficheiro cifrado co teu contrasinal: alarmas, noites con movemento e pulso, notas e axustes. Sen fragmentos de son.</string>
     <string name="settings_restore">Restaurar</string>
     <string name="backup_password">Contrasinal</string>
     <string name="backup_password_repeat">Repite o contrasinal</string>

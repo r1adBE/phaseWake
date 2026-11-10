@@ -15,6 +15,8 @@
     <string name="watch_not_armed">Abra o Phase Wake antes de dormir para que seu relógio possa ativar o alarme.</string>
     <string name="check_watch_arm">Alarme ativado no relógio</string>
     <string name="check_watch_arm_problem">Abra o Phase Wake no seu Apple Watch antes de dormir. O watchOS só ativa o alarme enquanto o app está aberto.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: alarme não ativado – só notificação, sem fases do sono. Abra o app do relógio.</string>
+    <string name="watch_evening_reminder">Toque para ativar seu alarme desta noite.</string>
     <string name="night_unmeasured_apple">Primeiros %1$d min sem medição – o Apple Watch só mede os últimos %2$d min antes do horário-alvo.</string>
     <string name="settings_licenses_text_apple">Phase Wake: licença MIT, © r1adBE.\nFonte Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetecção de sons: SoundAnalysis da Apple, integrado ao iOS.\nSons: gravações livres (CC0) do opengameart.org</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">Permita as notificações sensíveis ao tempo do Phase Wake no seu Apple Watch. Senão, ele não consegue acordar você com uma notificação quando nenhuma medição está em andamento.</string>
     <string name="check_watch_state_old">O status do relógio está desatualizado – abra o Phase Wake rapidamente no relógio.</string>
     <string name="editor_sleep_hint_apple">Conta a partir de quando você adormece – toque em “Boa noite” no relógio ao ir para a cama. No Apple Watch, o Phase Wake estima quando você adormece a partir do tempo para adormecer que aprendeu. Sem o toque, vale o horário definido.</string>
-    <string name="auto_onset_hint_apple">A partir de 1 hora antes de dormir, o Apple Watch grava seu movimento; no início da janela de despertar, o Phase Wake calcula quando você adormeceu.</string>
+    <string name="auto_onset_hint_apple">Abra o Phase Wake no Apple Watch a partir de 1 hora antes de dormir (ele te lembra) e, a partir daí, ele grava seu movimento; no início da janela de despertar, o Phase Wake calcula quando você adormeceu.</string>
 </resources>

@@ -92,7 +92,7 @@
     <string name="settings_data">Tavo duomenys</string>
     <string name="settings_data_text">Viskas lieka tavo telefone ir laikrodyje. Jokios paskyros, jokio serverio, jokio sekimo.</string>
     <string name="settings_export">Eksportuoti naktis be vardo</string>
-    <string name="settings_export_hint">Padėk tobulinti aptikimą: CSV be vardų, datų ir įrenginių ID.</string>
+    <string name="settings_export_hint">Padėk tobulinti atpažinimą: CSV be vardų, datų ir įrenginių ID; jame yra judėjimas ir pulsas kas 30 s, tavo savijauta ir užrašai.</string>
     <string name="settings_about">Apie</string>
     <string name="settings_open_source">Atvirasis kodas GitHub</string>
     <string name="settings_licenses">Licencijos</string>
@@ -254,7 +254,7 @@
     <string name="check_watch_battery_problem">Mažiau nei %1$d %% – įkrauk laikrodį, kad jo užtektų visai nakčiai ir jis galėtų tave pažadinti.</string>
     <string name="check_watch_pulse">Pulsas fone (laikrodis)</string>
     <string name="check_watch_pulse_problem">Laikrodžiui neleidžiama naktį matuoti tavo pulso – laikrodyje nustatyk Phase Wake jutiklių leidimą į „Leisti visada“.</string>
-    <string name="export_contents_hint">Faile yra kiekvienos nakties judesių ir pulso sekos – be vardų, datų ir įrenginių ID.</string>
+    <string name="export_contents_hint">Faile yra kiekvienos nakties judėjimas ir pulsas kas 30 s, tavo savijauta ir užrašai – be vardų, datų ir įrenginių ID.</string>
     <string name="editor_more">Daugiau</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Iki %1$d žadintuvų – ištrink vieną, kad pridėtum naują.</string>
@@ -317,7 +317,7 @@
     <string name="sounds_hint">Groja medijos garsumu ir sustoja vėliausiai prasidėjus žadinimo langui.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Įrašyti garsus</string>
-    <string name="sound_rec_hint">Tik trumpi įrašai. Jie lieka tavo telefone ir ištrinami po 7 dienų.</string>
+    <string name="sound_rec_hint">Tik trumpi knarkimo, kalbėjimo ir kitų garsų įrašai. Jie lieka tavo telefone ir ištrinami po 7 dienų.</string>
     <string name="sound_rec_permission">Kad galėtų įrašyti, Phase Wake reikia mikrofono. Jis klausosi tik tada, kai įrašymas įjungtas.</string>
     <string name="sound_rec_running">Įrašomi garsai</string>
     <string name="sound_rec_stop">Sustabdyti</string>
@@ -471,7 +471,7 @@
     <string name="widget_description">Tavo kitas žadintuvas ir nakties patikra.</string>
     <string name="widget_no_alarm">Žadintuvo nėra</string>
     <string name="settings_backup">Sukurti atsarginę kopiją</string>
-    <string name="settings_backup_hint">Užšifruotas failas su žadintuvais, istorija, pastabomis ir nustatymais. Be garso įrašų ir sveikatos duomenų.</string>
+    <string name="settings_backup_hint">Tavo slaptažodžiu užšifruotas failas: žadintuvai, naktys su judėjimu ir pulsu, užrašai ir nustatymai. Be garso įrašų.</string>
     <string name="settings_restore">Atkurti</string>
     <string name="backup_password">Slaptažodis</string>
     <string name="backup_password_repeat">Pakartok slaptažodį</string>

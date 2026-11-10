@@ -17,6 +17,8 @@
     <string name="watch_not_armed">Opnaðu Phase Wake áður en þú ferð að sofa svo úrið geti virkjað vekjarann.</string>
     <string name="check_watch_arm">Vekjari virkur á úrinu</string>
     <string name="check_watch_arm_problem">Opnaðu Phase Wake á Apple Watch áður en þú ferð að sofa. watchOS virkjar vekjarann aðeins á meðan forritið er opið.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: vekjari ekki virkur – aðeins tilkynning, engin svefnstig. Opnaðu appið á úrinu.</string>
+    <string name="watch_evening_reminder">Ýttu til að virkja vekjarann fyrir nóttina.</string>
     <string name="night_unmeasured_apple">Fyrstu %1$d mín ekki mældar – Apple Watch mælir aðeins síðustu %2$d mín fyrir markmiðið.</string>
     <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
     <string name="settings_licenses_text_apple">Phase Wake: MIT-leyfi, © r1adBE.\nLetrið Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nHljóðgreining: SoundAnalysis frá Apple, innbyggt í iOS.\nHljóð: frjálsar upptökur (CC0) frá opengameart.org</string>
@@ -30,5 +32,5 @@
     <string name="check_watch_notifications_problem">Leyfðu tímanæmar tilkynningar frá Phase Wake á Apple Watch-úrinu þínu. Annars getur það ekki vakið þig með tilkynningu þegar engin mæling er í gangi.</string>
     <string name="check_watch_state_old">Staða úrsins er úrelt – opnaðu Phase Wake stuttlega á úrinu.</string>
     <string name="editor_sleep_hint_apple">Telst frá því að þú sofnar – ýttu á „Góða nótt“ á úrinu þegar þú ferð að sofa. Á Apple Watch áætlar Phase Wake hvenær þú sofnar út frá lærðum tíma sem það tekur þig að sofna. Án þess gildir stilltur tími.</string>
-    <string name="auto_onset_hint_apple">Frá 1 klst. fyrir háttatíma skráir Apple Watch hreyfingu þína; í upphafi vakningargluggans reiknar Phase Wake út hvenær þú sofnaðir.</string>
+    <string name="auto_onset_hint_apple">Opnaðu Phase Wake á Apple Watch frá 1 klst. fyrir háttatíma (úrið minnir þig á) og þá skráir það hreyfinguna þína frá þeim tíma; í upphafi vökugluggans reiknar Phase Wake út hvenær þú sofnaðir.</string>
 </resources>

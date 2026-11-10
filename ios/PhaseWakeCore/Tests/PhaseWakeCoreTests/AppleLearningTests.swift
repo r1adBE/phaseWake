@@ -99,17 +99,19 @@ final class AppleLearningTests: XCTestCase {
         XCTAssertEqual(RecordEnd.of("phone"), .phone)
     }
 
-    func testRecorderStartsWithinTwelveHoursOfTheEnd() {
+    func testRecorderStartsOneHourBeforeBedtimeAtTheEarliest() {
         let target = start.addingTimeInterval(8 * 3600) // 07:00
         let onset = start.addingTimeInterval(-30 * 60) // 22:30
         let end = target.addingTimeInterval(AppleLearnRecord.afterTarget)
-        // 18:00: Rekorder reichte nicht bis zum Ende – warten bis 19:30.
+        // 18:00 und 22:29: vor der Einschlaf-Messung nicht starten (Entscheid r1AD 10.11.2026, kein Start 12 Std. im Voraus).
         XCTAssertEqual(AppleLearnRecord.decide(now: start.addingTimeInterval(-5 * 3600), target: target, onsetStart: onset, battery: 90),
-                       .wait(until: end.addingTimeInterval(-12 * 3600)))
-        // 20:00: starten, ausgewertet ab der Einschlaf-Messung.
-        let evening = start.addingTimeInterval(-3 * 3600)
-        XCTAssertEqual(AppleLearnRecord.decide(now: evening, target: target, onsetStart: onset, battery: 90),
-                       .start(from: onset, until: end, duration: end.timeIntervalSince(evening)))
+                       .wait(until: onset))
+        XCTAssertEqual(AppleLearnRecord.decide(now: onset.addingTimeInterval(-60), target: target, onsetStart: onset, battery: 90),
+                       .wait(until: onset))
+        // 22:30: starten, ausgewertet ab jetzt.
+        XCTAssertEqual(AppleLearnRecord.decide(now: onset, target: target, onsetStart: onset, battery: 90),
+                       .start(from: onset, until: end, duration: end.timeIntervalSince(onset)))
+        let evening = onset.addingTimeInterval(10 * 60)
         // 01:00: ausgewertet ab jetzt (6 Std. bleiben).
         let late = start.addingTimeInterval(2 * 3600)
         XCTAssertEqual(AppleLearnRecord.decide(now: late, target: target, onsetStart: onset, battery: nil),

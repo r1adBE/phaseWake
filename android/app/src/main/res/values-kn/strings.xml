@@ -89,7 +89,7 @@
     <string name="settings_data">ನಿಮ್ಮ ಡೇಟಾ</string>
     <string name="settings_data_text">ಎಲ್ಲವೂ ನಿಮ್ಮ ಫೋನ್ ಮತ್ತು ವಾಚ್‌ನಲ್ಲೇ ಇರುತ್ತದೆ. ಖಾತೆ ಇಲ್ಲ, ಸರ್ವರ್ ಇಲ್ಲ, ಟ್ರ್ಯಾಕಿಂಗ್ ಇಲ್ಲ.</string>
     <string name="settings_export">ರಾತ್ರಿಗಳನ್ನು ಹೆಸರಿಲ್ಲದೆ ರಫ್ತು ಮಾಡಿ</string>
-    <string name="settings_export_hint">ಪತ್ತೆಹಚ್ಚುವಿಕೆಯನ್ನು ಸುಧಾರಿಸಲು ಸಹಾಯ ಮಾಡಿ: ಹೆಸರು, ದಿನಾಂಕ ಅಥವಾ ಸಾಧನ ID ಇಲ್ಲದ CSV.</string>
+    <string name="settings_export_hint">ಗುರುತಿಸುವಿಕೆ ಸುಧಾರಿಸಲು ಸಹಾಯ ಮಾಡಿ: ಹೆಸರು, ದಿನಾಂಕ ಅಥವಾ ಸಾಧನ ID ಇಲ್ಲದ CSV; ಪ್ರತಿ 30 ಸೆ. ಚಲನೆ ಮತ್ತು ಹೃದಯ ಬಡಿತ, ನಿಮಗೆ ಹೇಗನಿಸಿತು ಮತ್ತು ನಿಮ್ಮ ಟಿಪ್ಪಣಿಗಳನ್ನು ಒಳಗೊಂಡಿದೆ.</string>
     <string name="settings_about">ಕುರಿತು</string>
     <string name="settings_open_source">GitHub ನಲ್ಲಿ ಓಪನ್ ಸೋರ್ಸ್</string>
     <string name="settings_licenses">ಪರವಾನಗಿಗಳು</string>
@@ -243,7 +243,7 @@
     <string name="check_watch_battery_problem">%1$d %% ಕ್ಕಿಂತ ಕಡಿಮೆ – ರಾತ್ರಿಯಿಡೀ ಉಳಿದು ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸಲು ವಾಚ್ ಚಾರ್ಜ್ ಮಾಡಿ.</string>
     <string name="check_watch_pulse">ಹಿನ್ನೆಲೆಯಲ್ಲಿ ನಾಡಿ (ವಾಚ್)</string>
     <string name="check_watch_pulse_problem">ವಾಚ್ ರಾತ್ರಿ ನಿನ್ನ ನಾಡಿಯನ್ನು ಅಳೆಯಲು ಅನುಮತಿ ಇಲ್ಲ – ವಾಚ್‌ನಲ್ಲಿ Phase Wake ನ ಸೆನ್ಸರ್ ಅನುಮತಿಯನ್ನು “ಎಲ್ಲಾ ಸಮಯದಲ್ಲೂ ಅನುಮತಿಸಿ” ಗೆ ಹೊಂದಿಸು.</string>
-    <string name="export_contents_hint">ಫೈಲ್‌ನಲ್ಲಿ ಪ್ರತಿ ರಾತ್ರಿಯ ಚಲನೆ ಮತ್ತು ಹೃದಯ ಬಡಿತದ ಸರಣಿಗಳಿವೆ – ಹೆಸರು, ದಿನಾಂಕ ಅಥವಾ ಸಾಧನ ID ಇಲ್ಲದೆ.</string>
+    <string name="export_contents_hint">ಫೈಲ್‌ನಲ್ಲಿ ಪ್ರತಿ ರಾತ್ರಿಗೆ ಪ್ರತಿ 30 ಸೆ. ಚಲನೆ ಮತ್ತು ಹೃದಯ ಬಡಿತ, ನಿಮಗೆ ಹೇಗನಿಸಿತು ಮತ್ತು ನಿಮ್ಮ ಟಿಪ್ಪಣಿಗಳಿವೆ – ಹೆಸರು, ದಿನಾಂಕ ಅಥವಾ ಸಾಧನ ID ಇಲ್ಲದೆ.</string>
     <string name="editor_more">ಇನ್ನಷ್ಟು</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">ಗರಿಷ್ಠ %1$d ಅಲಾರಾಂಗಳು – ಹೊಸದನ್ನು ಸೇರಿಸಲು ಒಂದನ್ನು ಅಳಿಸಿ.</string>
@@ -302,7 +302,7 @@
     <string name="sounds_hint">ಮೀಡಿಯಾ ವಾಲ್ಯೂಮ್‌ನಲ್ಲಿ ಪ್ಲೇ ಆಗುತ್ತದೆ, ತಡವೆಂದರೆ ಎಚ್ಚರಿಸುವ ಅವಧಿ ಶುರುವಾದಾಗ ನಿಲ್ಲುತ್ತದೆ.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">ಶಬ್ದಗಳನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡಿ</string>
-    <string name="sound_rec_hint">ಚಿಕ್ಕ ಕ್ಲಿಪ್‌ಗಳು ಮಾತ್ರ. ಅವು ನಿಮ್ಮ ಫೋನ್‌ನಲ್ಲೇ ಇರುತ್ತವೆ ಮತ್ತು 7 ದಿನಗಳ ನಂತರ ಅಳಿಸಲಾಗುತ್ತವೆ.</string>
+    <string name="sound_rec_hint">ಗೊರಕೆ, ಮಾತು ಮತ್ತು ಇತರ ಶಬ್ದಗಳ ಸಣ್ಣ ಕ್ಲಿಪ್‌ಗಳು ಮಾತ್ರ. ಅವು ನಿಮ್ಮ ಫೋನ್‌ನಲ್ಲೇ ಇರುತ್ತವೆ ಮತ್ತು 7 ದಿನಗಳ ನಂತರ ಅಳಿಸಲ್ಪಡುತ್ತವೆ.</string>
     <string name="sound_rec_permission">ರೆಕಾರ್ಡ್ ಮಾಡಲು Phase Wake ಗೆ ಮೈಕ್ರೋಫೋನ್ ಬೇಕು. ರೆಕಾರ್ಡಿಂಗ್ ಆನ್ ಇರುವಾಗ ಮಾತ್ರ ಕೇಳುತ್ತದೆ.</string>
     <string name="sound_rec_running">ಶಬ್ದಗಳನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
     <string name="sound_rec_stop">ನಿಲ್ಲಿಸಿ</string>
@@ -444,7 +444,7 @@
     <string name="widget_description">ನಿಮ್ಮ ಮುಂದಿನ ಅಲಾರಾಂ ಮತ್ತು ರಾತ್ರಿ ಪರಿಶೀಲನೆ.</string>
     <string name="widget_no_alarm">ಅಲಾರಾಂ ಇಲ್ಲ</string>
     <string name="settings_backup">ಬ್ಯಾಕಪ್</string>
-    <string name="settings_backup_hint">ಅಲಾರಾಂಗಳು, ಇತಿಹಾಸ, ಟಿಪ್ಪಣಿಗಳು ಮತ್ತು ಸೆಟ್ಟಿಂಗ್‌ಗಳಿರುವ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ಫೈಲ್. ಶಬ್ದ ಕ್ಲಿಪ್‌ಗಳು ಮತ್ತು ಆರೋಗ್ಯ ಡೇಟಾ ಇಲ್ಲದೆ.</string>
+    <string name="settings_backup_hint">ನಿಮ್ಮ ಪಾಸ್‌ವರ್ಡ್‌ನಿಂದ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ಫೈಲ್: ಅಲಾರಂಗಳು, ಚಲನೆ ಮತ್ತು ಹೃದಯ ಬಡಿತ ಸಹಿತ ರಾತ್ರಿಗಳು, ಟಿಪ್ಪಣಿಗಳು ಮತ್ತು ಸೆಟ್ಟಿಂಗ್‌ಗಳು. ಧ್ವನಿ ಕ್ಲಿಪ್‌ಗಳಿಲ್ಲದೆ.</string>
     <string name="settings_restore">ಮರುಸ್ಥಾಪಿಸಿ</string>
     <string name="backup_password">ಪಾಸ್‌ವರ್ಡ್</string>
     <string name="backup_password_repeat">ಪಾಸ್‌ವರ್ಡ್ ಮತ್ತೆ ನಮೂದಿಸಿ</string>

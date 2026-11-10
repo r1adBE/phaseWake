@@ -136,6 +136,15 @@
                 <action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED" />
                 <data android:host="*" android:pathPrefix="/phasewake/" android:scheme="wear" />
             </intent-filter>
+            <!-- Warteschlange: grosse Einträge kommen über einen Kanal; ist das Uhr wieder erreichbar, Wartendes senden. -->
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.CHANNEL_EVENT" />
+                <data android:host="*" android:pathPrefix="/phasewake/" android:scheme="wear" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.CAPABILITY_CHANGED" />
+                <data android:host="*" android:path="/phasewake_watch" android:scheme="wear" />
+            </intent-filter>
         </service>
 
         <!-- Widget «Nächster Wecker»: Updates kommen vom System (AppWidgetService), nicht von anderen Apps. -->

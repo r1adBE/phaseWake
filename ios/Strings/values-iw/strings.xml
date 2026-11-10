@@ -15,6 +15,8 @@
     <string name="watch_not_armed">פתחו את Phase Wake לפני השינה כדי שהשעון יוכל להפעיל את המעורר.</string>
     <string name="check_watch_arm">המעורר פעיל בשעון</string>
     <string name="check_watch_arm_problem">פתחו את Phase Wake ב-Apple Watch שלכם לפני השינה. watchOS מפעיל את המעורר רק כשהאפליקציה פתוחה.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: ההשכמה לא מופעלת – התראה בלבד, בלי שלבי שינה. פתחו את האפליקציה בשעון.</string>
+    <string name="watch_evening_reminder">הקישו כדי להפעיל את ההשכמה של הלילה.</string>
     <string name="night_unmeasured_apple">%1$d הדק׳ הראשונות לא נמדדו – Apple Watch מודד רק את %2$d הדק׳ האחרונות לפני היעד.</string>
     <string name="settings_licenses_text_apple">Phase Wake: רישיון MIT, © r1adBE.\nגופן Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nזיהוי צלילים: SoundAnalysis של Apple, מובנה ב-iOS.\nצלילים: הקלטות חופשיות (CC0) מ-opengameart.org</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">אפשרו התראות רגישות לזמן עבור Phase Wake ב-Apple Watch שלכם. אחרת הוא לא יוכל להעיר אתכם בהתראה כשאין מדידה פעילה.</string>
     <string name="check_watch_state_old">מצב השעון לא עדכני – פתח לרגע את Phase Wake בשעון.</string>
     <string name="editor_sleep_hint_apple">נספר מרגע ההירדמות – הקישו על ״לילה טוב״ בשעון כשאתם הולכים לישון. ב-Apple Watch, Phase Wake מעריך מתי נרדמתם לפי זמן ההירדמות שנלמד. בלי הקשה חלה השעה שהוגדרה.</string>
-    <string name="auto_onset_hint_apple">משעה לפני שעת השינה ה-Apple Watch מקליט את התנועה שלכם; בתחילת חלון ההשכמה Phase Wake מחשב מתי נרדמתם.</string>
+    <string name="auto_onset_hint_apple">פתחו את Phase Wake ב-Apple Watch משעה לפני שעת השינה (השעון יזכיר לכם), ומאז הוא מקליט את התנועה שלכם; בתחילת חלון ההשכמה Phase Wake מחשב מתי נרדמתם.</string>
 </resources>

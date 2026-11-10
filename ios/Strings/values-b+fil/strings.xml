@@ -17,6 +17,8 @@
     <string name="watch_not_armed">Buksan ang Phase Wake bago ka matulog para maihanda ng relo mo ang alarm.</string>
     <string name="check_watch_arm">Nakahanda ang alarm sa relo</string>
     <string name="check_watch_arm_problem">Buksan ang Phase Wake sa Apple Watch mo bago ka matulog. Inihahanda lang ng watchOS ang alarm habang bukas ang app.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: hindi nakahanda ang alarm – notification lang, walang sleep phase. Buksan ang app sa relo.</string>
+    <string name="watch_evening_reminder">I-tap para ihanda ang alarm mo para ngayong gabi.</string>
     <string name="night_unmeasured_apple">Hindi nasukat ang unang %1$d min – sinusukat lang ng Apple Watch ang huling %2$d min bago ang target.</string>
     <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
     <string name="settings_licenses_text_apple">Phase Wake: MIT License, © r1adBE.\nFont na Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nPag-detect ng tunog: SoundAnalysis ng Apple, built-in sa iOS.\nMga tunog: libreng recording (CC0) mula sa opengameart.org</string>
@@ -30,5 +32,5 @@
     <string name="check_watch_notifications_problem">Payagan ang mga time-sensitive na notification para sa Phase Wake sa iyong Apple Watch. Kung hindi, hindi ka nito magigising gamit ang notification kapag walang tumatakbong pagsukat.</string>
     <string name="check_watch_state_old">Luma na ang status ng relo – buksan sandali ang Phase Wake sa relo.</string>
     <string name="editor_sleep_hint_apple">Binibilang mula nang makatulog ka – i-tap ang “Matutulog na” sa iyong relo kapag matutulog ka na. Sa Apple Watch, tinatantya ng Phase Wake kung kailan ka makakatulog batay sa natutunang tagal ng iyong pagkakatulog. Kung walang tap, ang nakatakdang oras ang masusunod.</string>
-    <string name="auto_onset_hint_apple">Mula 1 oras bago ang oras ng pagtulog, nire-record ng iyong Apple Watch ang paggalaw mo; sa simula ng iyong wake window, kinakalkula ng Phase Wake kung kailan ka nakatulog.</string>
+    <string name="auto_onset_hint_apple">Buksan ang Phase Wake sa Apple Watch mo mula 1 oras bago ang oras ng pagtulog (ipapaalala nito sa iyo) at mula noon ay nire-record nito ang paggalaw mo; sa simula ng iyong wake window, kinakalkula ng Phase Wake kung kailan ka nakatulog.</string>
 </resources>

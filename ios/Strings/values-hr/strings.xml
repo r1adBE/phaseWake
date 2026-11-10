@@ -17,6 +17,8 @@
     <string name="watch_not_armed">Otvori Phase Wake prije spavanja kako bi sat mogao aktivirati alarm.</string>
     <string name="check_watch_arm">Alarm aktiviran na satu</string>
     <string name="check_watch_arm_problem">Otvori Phase Wake na Apple Watchu prije spavanja. watchOS aktivira alarm samo dok je aplikacija otvorena.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: alarm nije aktiviran – samo obavijest, bez faza sna. Otvori aplikaciju na satu.</string>
+    <string name="watch_evening_reminder">Dodirni da aktiviraš alarm za noćas.</string>
     <string name="night_unmeasured_apple">Prvih %1$d min nije izmjereno – Apple Watch mjeri samo zadnjih %2$d min prije ciljnog vremena.</string>
     <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
     <string name="settings_licenses_text_apple">Phase Wake: MIT licenca, © r1adBE.\nFont Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nPrepoznavanje zvukova: SoundAnalysis tvrtke Apple, ugrađen u iOS.\nZvukovi: slobodne snimke (CC0) s opengameart.org</string>
@@ -30,5 +32,5 @@
     <string name="check_watch_notifications_problem">Dopusti vremenski osjetljive obavijesti za Phase Wake na svom Apple Watchu. Inače te ne može probuditi obaviješću kad mjerenje ne teče.</string>
     <string name="check_watch_state_old">Stanje sata je zastarjelo – nakratko otvori Phase Wake na satu.</string>
     <string name="editor_sleep_hint_apple">Računa se od uspavljivanja – dodirni „Laku noć” na satu kad ideš u krevet. Na Apple Watchu Phase Wake procjenjuje kada zaspiš prema tvom naučenom vremenu uspavljivanja. Bez dodira vrijedi postavljeno vrijeme.</string>
-    <string name="auto_onset_hint_apple">Od 1 sat prije spavanja tvoj Apple Watch bilježi tvoje pokrete; na početku intervala buđenja Phase Wake izračuna kada si zaspao.</string>
+    <string name="auto_onset_hint_apple">Otvori Phase Wake na Apple Watchu od 1 sat prije spavanja (sat te podsjeti) i od tada bilježi tvoje pokrete; na početku intervala buđenja Phase Wake izračuna kada si zaspao.</string>
 </resources>

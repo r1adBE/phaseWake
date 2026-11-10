@@ -13,8 +13,10 @@ import WatchKit
 /// 30-Minuten-Fenster bleiben die ersten 5 Minuten ungemessen (leere Epochen).
 /// Gemessen wird wie auf Android (Regel in docs/PHASENERKENNUNG.md). Bei «Genau» misst die Uhr gleich lang
 /// (`AlarmSpec.measureMinutes`), weckt aber nie vor der Zielzeit (Grund `exact`). Die Untergrenze «Kurze Nacht» gilt
-/// wie auf Android, sobald die Einschlafzeit bekannt ist: Ausserhalb der Sitzung misst die Apple Watch nicht selbst,
-/// rechnet sie aber zu Beginn der Sitzung aus dem Bewegungs-Rekorder nach (`WatchOnset`), wenn er in dieser Nacht lief.
+/// wie auf Android: Ausserhalb der Sitzung misst die Apple Watch nicht selbst, rechnet die Einschlafzeit aber zu Beginn
+/// der Sitzung aus dem Bewegungs-Rekorder nach (`WatchOnset`), wenn er in dieser Nacht lief. Bis die Rechnung fertig
+/// ist, wartet ein früher Moment; bringt sie kein Ergebnis, obwohl der Rekorder lief, gilt die Untergrenze bis 10 Min
+/// vor der Zielzeit (fail-closed).
 ///
 /// Grenzen von watchOS, die hier abgefangen werden:
 /// - Planen geht nur bei aktiver App und höchstens 36 Stunden im Voraus. Sonst wartet der Plan
@@ -84,8 +86,17 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     @ObservationIgnored var snoozes = 0
     /// Epochen ab Fensterbeginn, die vor dem Start der Sitzung lagen (leer, nicht für die Erkennung).
     @ObservationIgnored var unmeasured = 0
-    /// Einschlafzeit der Nacht aus dem Rekorder (`WatchOnset`); `nil` = unbekannt (dann keine Untergrenze kurzer Nächte).
+    /// Einschlafzeit der Nacht aus dem Rekorder (`WatchOnset`); `nil` = unbekannt (Untergrenze kurzer Nächte dann nur,
+    /// wenn `onsetMeasured`).
     @ObservationIgnored var asleepAt: Date?
+    /// Der Rekorder lief in dieser Nacht, die Rechnung brachte aber keine Einschlafzeit (fail-closed, `ShortNight`).
+    @ObservationIgnored var onsetMeasured = false
+    /// Die Einschlafzeit wird noch gerechnet: Frühe Momente warten so lange (`heldWake`).
+    @ObservationIgnored var onsetPending = false
+    /// Früher Moment, der kam, während die Einschlafzeit noch gerechnet wurde; entschieden, sobald sie da ist.
+    @ObservationIgnored var heldWake: WakeReason?
+    /// Zählt die Rechnungen der Einschlafzeit; ein überholtes oder zu spätes Ergebnis gilt nicht.
+    @ObservationIgnored var onsetRun = 0
     /// Schlafziel der Nacht in Minuten (Schlafdauer des Weckers, sonst das Schlafziel vom iPhone).
     @ObservationIgnored var goalMinutes = SleepGoal.defaultMinutes
     /// Ein früher Moment wurde übergangen (kurze Nacht): Zur Zielzeit weckt die Uhr mit `shortNight`.

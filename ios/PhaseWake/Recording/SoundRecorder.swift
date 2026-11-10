@@ -197,12 +197,31 @@ final class SoundRecorder {
         save([])
     }
 
-    /// Ausschnitte älter als 7 Tage weg (beim Start der App und jeder Aufnahme, sonst täglich beim Öffnen).
+    /// Ausschnitte älter als 7 Tage weg, dazu Dateien ohne Eintrag in der Liste (z. B. nach einem Absturz; erst nach
+    /// ``orphanAge``, damit ein gerade entstehender Ausschnitt bleibt) – wie Android (`SoundStore.cleanup`). Beim Start der
+    /// App, bei jeder Aufnahme, beim Öffnen und in der Hintergrund-Aktualisierung (`BackupRefresh`, Audit D2), damit die
+    /// 7 Tage auch gelten, wenn die App lange nicht geöffnet wird.
     func expire(now: Date = Date()) {
         let result = SoundEvents.expire(clips, now: now)
-        guard !result.expired.isEmpty else { return }
-        delete(result.expired.map(\.file))
-        save(result.kept)
+        if !result.expired.isEmpty {
+            delete(result.expired.map(\.file))
+            save(result.kept)
+        }
+        removeOrphans(now: now)
+    }
+
+    /// Dateien ohne Eintrag erst nach dieser Zeit löschen (wie Android).
+    private static let orphanAge: TimeInterval = 3600
+
+    private func removeOrphans(now: Date) {
+        let known = Set(clips.map(\.file) + [Self.indexURL.lastPathComponent])
+        let keys: [URLResourceKey] = [.contentModificationDateKey, .isRegularFileKey]
+        guard let files = try? FileManager.default.contentsOfDirectory(at: Self.directory, includingPropertiesForKeys: keys) else { return }
+        for url in files where !known.contains(url.lastPathComponent) {
+            guard let values = try? url.resourceValues(forKeys: Set(keys)), values.isRegularFile == true,
+                  let modified = values.contentModificationDate, now.timeIntervalSince(modified) > Self.orphanAge else { continue }
+            try? FileManager.default.removeItem(at: url)
+        }
     }
 
     private func delete(_ files: [String]) {

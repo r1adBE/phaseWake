@@ -89,7 +89,7 @@
     <string name="settings_data">உங்கள் தரவு</string>
     <string name="settings_data_text">எல்லாம் உங்கள் ஃபோனிலும் வாட்ச்சிலும் மட்டுமே இருக்கும். கணக்கு இல்லை, சர்வர் இல்லை, கண்காணிப்பு இல்லை.</string>
     <string name="settings_export">இரவுகளைப் பெயர் இல்லாமல் ஏற்றுமதி செய்</string>
-    <string name="settings_export_hint">கண்டறிதலை மேம்படுத்த உதவுங்கள்: பெயர், தேதி, சாதன ID இல்லாத CSV.</string>
+    <string name="settings_export_hint">கண்டறிதலை மேம்படுத்த உதவுங்கள்: பெயர், தேதி அல்லது சாதன ID இல்லாத CSV; ஒவ்வொரு 30 வினாடிக்கான அசைவு மற்றும் இதயத் துடிப்பு, நீங்கள் எப்படி உணர்ந்தீர்கள், உங்கள் குறிப்புகள் இதில் உள்ளன.</string>
     <string name="settings_about">அறிமுகம்</string>
     <string name="settings_open_source">GitHub இல் திறந்த மூலம்</string>
     <string name="settings_licenses">உரிமங்கள்</string>
@@ -243,7 +243,7 @@
     <string name="check_watch_battery_problem">%1$d %% க்குக் கீழ் – இரவு முழுவதும் நீடித்து உங்களை எழுப்ப வாட்ச்சைச் சார்ஜ் செய்யுங்கள்.</string>
     <string name="check_watch_pulse">பின்னணியில் நாடித்துடிப்பு (வாட்ச்)</string>
     <string name="check_watch_pulse_problem">இரவில் உன் நாடித்துடிப்பை அளக்க வாட்சுக்கு அனுமதி இல்லை – வாட்சில் Phase Wake-இன் சென்சார் அனுமதியை “எப்போதும் அனுமதி” என அமை.</string>
-    <string name="export_contents_hint">கோப்பில் ஒவ்வொரு இரவுக்குமான அசைவு, இதயத் துடிப்புத் தொடர்கள் இருக்கும் – பெயர், தேதி, சாதன ID இல்லாமல்.</string>
+    <string name="export_contents_hint">கோப்பில் ஒவ்வொரு இரவுக்கும் ஒவ்வொரு 30 வினாடிக்கான அசைவு மற்றும் இதயத் துடிப்பு, நீங்கள் எப்படி உணர்ந்தீர்கள், உங்கள் குறிப்புகள் உள்ளன – பெயர், தேதி அல்லது சாதன ID இல்லாமல்.</string>
     <string name="editor_more">மேலும்</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">அதிகபட்சம் %1$d அலாரங்கள் – புதியதைச் சேர்க்க ஒன்றை நீக்குங்கள்.</string>
@@ -302,7 +302,7 @@
     <string name="sounds_hint">மீடியா ஒலியளவில் ஒலிக்கும்; எழுப்பும் வரம்பு தொடங்குவதற்குள் நின்றுவிடும்.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">ஒலிகளைப் பதிவுசெய்</string>
-    <string name="sound_rec_hint">சிறு கிளிப்புகள் மட்டும். அவை உங்கள் ஃபோனிலேயே இருக்கும், 7 நாட்களுக்குப் பிறகு நீக்கப்படும்.</string>
+    <string name="sound_rec_hint">குறட்டை, பேச்சு மற்றும் பிற ஒலிகளின் சிறு கிளிப்புகள் மட்டும். அவை உங்கள் ஃபோனிலேயே இருக்கும், 7 நாட்களுக்குப் பிறகு நீக்கப்படும்.</string>
     <string name="sound_rec_permission">பதிவுசெய்ய Phase Wake க்கு மைக்ரோஃபோன் தேவை. பதிவு ஆனில் இருக்கும்போது மட்டுமே கேட்கும்.</string>
     <string name="sound_rec_running">ஒலிகள் பதிவாகின்றன</string>
     <string name="sound_rec_stop">நிறுத்து</string>
@@ -444,7 +444,7 @@
     <string name="widget_description">உங்கள் அடுத்த அலாரமும் இரவுச் சரிபார்ப்பும்.</string>
     <string name="widget_no_alarm">அலாரம் இல்லை</string>
     <string name="settings_backup">காப்புப்பிரதி எடு</string>
-    <string name="settings_backup_hint">அலாரங்கள், வரலாறு, குறிப்புகள், அமைப்புகள் அடங்கிய மறைகுறியாக்கப்பட்ட கோப்பு. ஒலி கிளிப்புகளும் ஆரோக்கியத் தரவும் இல்லாமல்.</string>
+    <string name="settings_backup_hint">உங்கள் கடவுச்சொல்லால் மறையாக்கப்பட்ட கோப்பு: அலாரங்கள், அசைவு மற்றும் இதயத் துடிப்புடன் கூடிய இரவுகள், குறிப்புகள், அமைப்புகள். ஒலித் துணுக்குகள் இல்லாமல்.</string>
     <string name="settings_restore">மீட்டமை</string>
     <string name="backup_password">கடவுச்சொல்</string>
     <string name="backup_password_repeat">கடவுச்சொல்லை மீண்டும் உள்ளிடு</string>

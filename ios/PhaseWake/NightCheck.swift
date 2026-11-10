@@ -10,6 +10,9 @@ import AlarmKit
 /// Nacht-Check: Was muss stimmen, damit morgen sicher geweckt wird? Gleiche Idee wie Android.
 enum PhoneCheck: CaseIterable, Hashable {
     case watch, watchApp, watchArm, watchBattery, watchUpdate, alarms, notifications, battery
+    /// Uhr nicht scharf, obwohl die Erinnerung am Abend schon kam (60 Min vor der Bettzeit, `EveningReminder` auf der
+    /// Uhr): Heute Nacht weckt sie dann nur per Mitteilung, ohne Schlafphasen.
+    case watchArmTonight
     /// Uhr-App älter als die iPhone-App (`WatchProtocol`); nur, wenn `watchUpdate` nicht schon greift.
     case watchOutdated
     /// Zweitwecker bald aufgebraucht: iOS hat die App zu lange nicht geweckt (`BackupAlarm.horizonShort`).
@@ -25,7 +28,7 @@ enum PhoneCheck: CaseIterable, Hashable {
         switch self {
         case .watch: L("check_watch")
         case .watchApp: L("check_watch_app")
-        case .watchArm: L("check_watch_arm")
+        case .watchArm, .watchArmTonight: L("check_watch_arm")
         case .watchBattery: L("check_watch_battery")
         case .watchUpdate: L("check_watch_update")
         case .watchOutdated: L("check_watch_outdated_title")
@@ -43,6 +46,7 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .watch: L("check_watch_problem_apple")
         case .watchApp: L("check_watch_app_problem")
         case .watchArm: L("check_watch_arm_problem")
+        case .watchArmTonight: L("check_watch_arm_tonight")
         case .watchBattery: L("check_watch_battery_problem", NightCheck.lowBatteryPercent)
         case .watchUpdate: L("check_watch_update_problem")
         case .watchOutdated: L("check_watch_outdated_text")
@@ -82,8 +86,9 @@ enum NightCheck {
             // watchOS plant den Smart Alarm nur bei offener Uhr-App und höchstens 36 h im Voraus.
             // Hat die Uhr noch nie gemeldet (App dort nie geöffnet), ist sie auch nicht scharf.
             // Weiter voraus lässt es sich noch nicht scharf schalten, also auch nicht warnen.
+            // Ab der Erinnerung am Abend (60 Min vor der Bettzeit, wie auf der Uhr) deutlicher: heute Nacht ohne Phasen.
             if let plan, plan.windowStart.timeIntervalSinceNow < armLeadTime, model.watchArmedTarget != plan.target {
-                failed.append(.watchArm)
+                failed.append(Date() >= reminderTime(plan, model: model) ? .watchArmTonight : .watchArm)
             }
             if let percent = model.watchBattery(), percent < lowBatteryPercent {
                 failed.append(.watchBattery)
@@ -114,6 +119,12 @@ enum NightCheck {
         return failed
     }
 
+    /// Erinnerung am Abend der Uhr für `plan`: 60 Min vor der Bettzeit (Zielzeit minus Schlafdauer bzw. Schlafziel).
+    private static func reminderTime(_ plan: WakePlan, model: PhoneModel) -> Date {
+        let spec = model.alarms.first { $0.id == plan.alarmId }
+        return ShortNight.autoOnsetStart(target: plan.target, sleepGoalMinutes: model.sleepGoal, sleepDurationMinutes: spec?.sleepDurationMinutes)
+    }
+
     /// Ob der Zweitwecker über AlarmKit klingelt (ab iOS 26) und nicht als Mitteilung.
     private static var hasAlarmKit: Bool {
         #if canImport(AlarmKit)
@@ -134,8 +145,10 @@ enum NightCheck {
         #if canImport(AlarmKit)
         if #available(iOS 26.0, *) { return true }
         #endif
-        let status = await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
-        return status == .authorized || status == .provisional
+        // Zeitkritisch aus: Der Zweitwecker (Mitteilung) käme durch einen Fokus nicht durch – so ernst wie keine Erlaubnis.
+        let settings = await UNUserNotificationCenter.current().notificationSettings()
+        let status = settings.authorizationStatus
+        return (status == .authorized || status == .provisional) && settings.timeSensitiveSetting != .disabled
     }
 
     /// Fragt die Erlaubnis an; wurde sie schon abgelehnt, öffnet es die Einstellungen.
@@ -162,7 +175,7 @@ enum NightCheck {
             } else {
                 openSettings()
             }
-        case .watch, .watchApp, .watchArm, .watchBattery, .watchUpdate, .watchOutdated, .battery, .backupHorizon, .silentSwitch,
+        case .watch, .watchApp, .watchArm, .watchArmTonight, .watchBattery, .watchUpdate, .watchOutdated, .battery, .backupHorizon, .silentSwitch,
              .watchNotifications, .watchStateOld:
             break
         }

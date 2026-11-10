@@ -15,6 +15,8 @@
     <string name="watch_not_armed">Avaa Phase Wake ennen nukkumaanmenoa, jotta kellosi voi aktivoida herätyksen.</string>
     <string name="check_watch_arm">Herätys aktivoitu kellossa</string>
     <string name="check_watch_arm_problem">Avaa Phase Wake Apple Watchissa ennen nukkumaanmenoa. watchOS aktivoi herätyksen vain, kun sovellus on auki.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: herätys ei ole käytössä – vain ilmoitus, ei unen vaiheita. Avaa kellon sovellus.</string>
+    <string name="watch_evening_reminder">Napauta ottaaksesi tämän yön herätyksen käyttöön.</string>
     <string name="night_unmeasured_apple">Ensimmäiset %1$d min mittaamatta – Apple Watch mittaa vain viimeiset %2$d min ennen tavoiteaikaa.</string>
     <string name="settings_licenses_text_apple">Phase Wake: MIT-lisenssi, © r1adBE.\nManrope-fontti: SIL Open Font License 1.1, © The Manrope Project Authors.\nÄänten tunnistus: Applen SoundAnalysis, osa iOS:ää.\nÄänet: vapaat äänitteet (CC0) sivustolta opengameart.org</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">Salli Phase Waken aikasidonnaiset ilmoitukset Apple Watchissasi. Muuten kello ei voi herättää sinua ilmoituksella, kun mittaus ei ole käynnissä.</string>
     <string name="check_watch_state_old">Kellon tila on vanhentunut – avaa Phase Wake hetkeksi kellossa.</string>
     <string name="editor_sleep_hint_apple">Lasketaan nukahtamisesta – napauta kellosta ”Hyvää yötä”, kun menet nukkumaan. Apple Watchissa Phase Wake arvioi nukahtamisesi ajankohdan oppimasi nukahtamisajan perusteella. Ilman napautusta käytetään asetettua aikaa.</string>
-    <string name="auto_onset_hint_apple">Tuntia ennen nukkumaanmenoa alkaen Apple Watch tallentaa liikkeesi; herätysikkunan alussa Phase Wake laskee, milloin nukahdit.</string>
+    <string name="auto_onset_hint_apple">Avaa Phase Wake Apple Watchissa tuntia ennen nukkumaanmenoa tai myöhemmin (kello muistuttaa), niin se tallentaa liikkeesi siitä lähtien; heräämisikkunan alussa Phase Wake laskee, milloin nukahdit.</string>
 </resources>

@@ -91,7 +91,7 @@
     <string name="settings_data">Твоји подаци</string>
     <string name="settings_data_text">Све остаје на твом телефону и сату. Без налога, без сервера, без праћења.</string>
     <string name="settings_export">Извези ноћи без имена</string>
-    <string name="settings_export_hint">Помози да се препознавање побољша: CSV без имена, датума и ID-јева уређаја.</string>
+    <string name="settings_export_hint">Помози да побољшамо препознавање: CSV без имена, датума и ID-јева уређаја; садржи покрет и пулс на сваких 30 s, како си се осећао и твоје белешке.</string>
     <string name="settings_about">О апликацији</string>
     <string name="settings_open_source">Отворени код на GitHub-у</string>
     <string name="settings_licenses">Лиценце</string>
@@ -249,7 +249,7 @@
     <string name="check_watch_battery_problem">Испод %1$d %% – напуни сат да би издржао ноћ и пробудио те.</string>
     <string name="check_watch_pulse">Пулс у позадини (сат)</string>
     <string name="check_watch_pulse_problem">Сат не сме ноћу да мери твој пулс – на сату подеси дозволу за сензоре за Phase Wake на „Дозволи увек“.</string>
-    <string name="export_contents_hint">Датотека садржи низове покрета и пулса за сваку ноћ – без имена, датума и ID-јева уређаја.</string>
+    <string name="export_contents_hint">Датотека за сваку ноћ садржи покрет и пулс на сваких 30 s, како си се осећао и твоје белешке – без имена, датума и ID-јева уређаја.</string>
     <string name="editor_more">Више</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Највише %1$d аларма – избриши један да додаш нови.</string>
@@ -310,7 +310,7 @@
     <string name="sounds_hint">Пушта се јачином звука медија и престаје најкасније када почне интервал буђења.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Снимај звукове</string>
-    <string name="sound_rec_hint">Само кратки исечци. Остају на твом телефону и бришу се после 7 дана.</string>
+    <string name="sound_rec_hint">Само кратки исечци хркања, говора и других звукова. Остају на твом телефону и бришу се после 7 дана.</string>
     <string name="sound_rec_permission">За снимање Phase Wake-у треба микрофон. Слуша само док је снимање укључено.</string>
     <string name="sound_rec_running">Снимање звукова</string>
     <string name="sound_rec_stop">Заустави</string>
@@ -458,7 +458,7 @@
     <string name="widget_description">Твој следећи аларм и ноћна провера.</string>
     <string name="widget_no_alarm">Нема аларма</string>
     <string name="settings_backup">Резервна копија</string>
-    <string name="settings_backup_hint">Шифрована датотека са алармима, историјом, белешкама и подешавањима. Без звучних исечака и здравствених података.</string>
+    <string name="settings_backup_hint">Датотека шифрована твојом лозинком: аларми, ноћи са покретом и пулсом, белешке и подешавања. Без звучних исечака.</string>
     <string name="settings_restore">Врати</string>
     <string name="backup_password">Лозинка</string>
     <string name="backup_password_repeat">Понови лозинку</string>

@@ -88,7 +88,7 @@
     <string name="settings_data">ទិន្នន័យរបស់អ្នក</string>
     <string name="settings_data_text">អ្វីៗទាំងអស់នៅលើទូរសព្ទ និងនាឡិការបស់អ្នក។ គ្មានគណនី គ្មានម៉ាស៊ីនមេ គ្មានការតាមដាន។</string>
     <string name="settings_export">នាំចេញយប់ដោយគ្មានឈ្មោះ</string>
-    <string name="settings_export_hint">ជួយកែលម្អការរកឃើញ៖ CSV គ្មានឈ្មោះ កាលបរិច្ឆេទ ឬ ID ឧបករណ៍។</string>
+    <string name="settings_export_hint">ជួយកែលម្អការរកឃើញ៖ CSV គ្មានឈ្មោះ កាលបរិច្ឆេទ ឬ ID ឧបករណ៍ទេ។ វាមានចលនា និងចង្វាក់បេះដូងរៀងរាល់ 30 វិនាទី អារម្មណ៍របស់អ្នក និងកំណត់ចំណាំរបស់អ្នក។</string>
     <string name="settings_about">អំពី</string>
     <string name="settings_open_source">កូដចំហលើ GitHub</string>
     <string name="settings_licenses">អាជ្ញាប័ណ្ណ</string>
@@ -238,7 +238,7 @@
     <string name="check_watch_battery_problem">ក្រោម %1$d %% – សាកនាឡិកា ដើម្បីឲ្យវានៅបានពេញមួយយប់ និងអាចដាស់អ្នក។</string>
     <string name="check_watch_pulse">ជីពចរនៅផ្ទៃខាងក្រោយ (នាឡិកា)</string>
     <string name="check_watch_pulse_problem">នាឡិកាមិនអាចវាស់ជីពចររបស់អ្នកនៅពេលយប់បានទេ – នៅលើនាឡិកា សូមកំណត់ការអនុញ្ញាតសេនស័ររបស់ Phase Wake ទៅ “អនុញ្ញាតគ្រប់ពេល”។</string>
-    <string name="export_contents_hint">ឯកសារមានស៊េរីចលនា និងចង្វាក់បេះដូងនៃយប់នីមួយៗ – គ្មានឈ្មោះ កាលបរិច្ឆេទ ឬ ID ឧបករណ៍។</string>
+    <string name="export_contents_hint">ឯកសារមានចលនា និងចង្វាក់បេះដូងរៀងរាល់ 30 វិនាទី អារម្មណ៍របស់អ្នក និងកំណត់ចំណាំរបស់អ្នកសម្រាប់យប់នីមួយៗ – គ្មានឈ្មោះ កាលបរិច្ឆេទ ឬ ID ឧបករណ៍ទេ។</string>
     <string name="editor_more">ច្រើនទៀត</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">ច្រើនបំផុត %1$d ម៉ោងរោទ៍ – លុបមួយដើម្បីបន្ថែមថ្មី។</string>
@@ -295,7 +295,7 @@
     <string name="sounds_hint">ចាក់តាមកម្រិតសំឡេងមេឌៀ ហើយឈប់យឺតបំផុតនៅពេលចន្លោះពេលដាស់ចាប់ផ្ដើម។</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">ថតសំឡេង</string>
-    <string name="sound_rec_hint">តែឃ្លីបខ្លីៗ។ វានៅលើទូរសព្ទរបស់អ្នក ហើយត្រូវលុបក្រោយ 7 ថ្ងៃ។</string>
+    <string name="sound_rec_hint">មានតែឃ្លីបខ្លីៗនៃការស្រមុក ការនិយាយ និងសំឡេងផ្សេងទៀតប៉ុណ្ណោះ។ វានៅលើទូរសព្ទរបស់អ្នក ហើយត្រូវលុបចោលបន្ទាប់ពី 7 ថ្ងៃ។</string>
     <string name="sound_rec_permission">ដើម្បីថត Phase Wake ត្រូវការមីក្រូហ្វូន។ វាស្ដាប់តែពេលការថតបើកប៉ុណ្ណោះ។</string>
     <string name="sound_rec_running">កំពុងថតសំឡេង</string>
     <string name="sound_rec_stop">បញ្ឈប់</string>
@@ -431,7 +431,7 @@
     <string name="widget_description">ម៉ោងរោទ៍បន្ទាប់ និងការពិនិត្យពេលយប់។</string>
     <string name="widget_no_alarm">គ្មានម៉ោងរោទ៍</string>
     <string name="settings_backup">បម្រុងទុក</string>
-    <string name="settings_backup_hint">ឯកសារដែលបានអ៊ិនគ្រីប មានម៉ោងរោទ៍ ប្រវត្តិ កំណត់ចំណាំ និងការកំណត់។ គ្មានឃ្លីបសំឡេង និងទិន្នន័យសុខភាព។</string>
+    <string name="settings_backup_hint">ឯកសារដែលបានអ៊ិនគ្រីបដោយពាក្យសម្ងាត់របស់អ្នក៖ នាឡិការោទ៍ យប់ៗរួមទាំងចលនា និងចង្វាក់បេះដូង កំណត់ចំណាំ និងការកំណត់។ គ្មានឃ្លីបសំឡេងទេ។</string>
     <string name="settings_restore">ស្ដារ</string>
     <string name="backup_password">ពាក្យសម្ងាត់</string>
     <string name="backup_password_repeat">បញ្ចូលពាក្យសម្ងាត់ម្ដងទៀត</string>

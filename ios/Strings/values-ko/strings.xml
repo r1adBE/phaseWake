@@ -15,6 +15,8 @@
     <string name="watch_not_armed">잠들기 전에 Phase Wake를 열어 주세요. 그래야 워치가 알람을 활성화할 수 있어요.</string>
     <string name="check_watch_arm">워치에서 알람 활성화됨</string>
     <string name="check_watch_arm_problem">잠들기 전에 Apple Watch에서 Phase Wake를 열어 주세요. watchOS는 앱이 열려 있는 동안에만 알람을 활성화해요.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: 알람이 활성화되지 않음 – 알림만 있고 수면 단계는 없습니다. 워치 앱을 여세요.</string>
+    <string name="watch_evening_reminder">탭하여 오늘 밤 알람을 활성화하세요.</string>
     <string name="night_unmeasured_apple">처음 %1$d분은 측정되지 않음 – Apple Watch는 목표 전 마지막 %2$d분만 측정합니다.</string>
     <string name="settings_licenses_text_apple">Phase Wake: MIT 라이선스, © r1adBE.\nManrope 글꼴: SIL Open Font License 1.1, © The Manrope Project Authors.\n소리 감지: iOS에 내장된 Apple의 SoundAnalysis.\n사운드: opengameart.org의 자유 녹음(CC0)</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">Apple Watch에서 Phase Wake의 시간 민감 알림을 허용해 주세요. 그렇지 않으면 측정이 진행되지 않을 때 알림으로 깨울 수 없어요.</string>
     <string name="check_watch_state_old">워치 상태가 오래되었습니다 – 워치에서 Phase Wake를 잠깐 여세요.</string>
     <string name="editor_sleep_hint_apple">잠든 시점부터 계산해요. 잠자리에 들 때 워치에서 ‘잘 자요’를 탭하세요. Apple Watch에서는 Phase Wake가 학습한 잠드는 데 걸리는 시간으로 잠든 시각을 추정해요. 탭하지 않으면 설정한 시간이 적용돼요.</string>
-    <string name="auto_onset_hint_apple">취침 시간 1시간 전부터 Apple Watch가 움직임을 기록하고, 기상 범위가 시작될 때 Phase Wake가 잠든 시각을 계산해요.</string>
+    <string name="auto_onset_hint_apple">취침 시간 1시간 전부터 Apple Watch에서 Phase Wake를 열면(워치가 알려 줍니다) 그때부터 움직임을 기록합니다. 기상 시간대가 시작될 때 Phase Wake가 언제 잠들었는지 계산합니다.</string>
 </resources>

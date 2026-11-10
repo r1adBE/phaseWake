@@ -90,7 +90,7 @@
     <string name="settings_data">Sinu andmed</string>
     <string name="settings_data_text">Kõik jääb sinu telefoni ja kella. Pole kontot, serverit ega jälgimist.</string>
     <string name="settings_export">Ekspordi ööd ilma nimeta</string>
-    <string name="settings_export_hint">Aita tuvastust parandada: CSV ilma nimede, kuupäevade ja seadme ID-deta.</string>
+    <string name="settings_export_hint">Aita tuvastamist parandada: CSV ilma nimede, kuupäevade ja seadme-ID-deta; sisaldab liikumist ja pulssi iga 30 s kohta, sinu enesetunnet ja märkmeid.</string>
     <string name="settings_about">Teave</string>
     <string name="settings_open_source">Avatud lähtekood GitHubis</string>
     <string name="settings_licenses">Litsentsid</string>
@@ -244,7 +244,7 @@
     <string name="check_watch_battery_problem">Alla %1$d %% – lae kella, et see peaks öö vastu ja saaks sind äratada.</string>
     <string name="check_watch_pulse">Pulss taustal (kell)</string>
     <string name="check_watch_pulse_problem">Kell ei tohi öösel su pulssi mõõta – määra kellas Phase Wake’i andurite luba valikule „Luba alati“.</string>
-    <string name="export_contents_hint">Fail sisaldab iga öö liikumise ja pulsi andmeridu – ilma nimede, kuupäevade ja seadme ID-deta.</string>
+    <string name="export_contents_hint">Fail sisaldab iga öö kohta liikumist ja pulssi iga 30 s kohta, sinu enesetunnet ja märkmeid – ilma nimede, kuupäevade ja seadme-ID-deta.</string>
     <string name="editor_more">Rohkem</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Kuni %1$d äratust – uue lisamiseks kustuta üks.</string>
@@ -303,7 +303,7 @@
     <string name="sounds_hint">Mängib meedia helitugevusel ja lõpetab hiljemalt äratusakna alguses.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Salvesta helisid</string>
-    <string name="sound_rec_hint">Ainult lühikesed klipid. Need jäävad sinu telefoni ja kustutatakse 7 päeva pärast.</string>
+    <string name="sound_rec_hint">Ainult lühikesed lõigud norskamisest, rääkimisest ja muudest helidest. Need jäävad su telefoni ja kustutatakse 7 päeva pärast.</string>
     <string name="sound_rec_permission">Salvestamiseks vajab Phase Wake mikrofoni. See kuulab ainult siis, kui salvestamine on sees.</string>
     <string name="sound_rec_running">Helide salvestamine</string>
     <string name="sound_rec_stop">Peata</string>
@@ -445,7 +445,7 @@
     <string name="widget_description">Sinu järgmine äratus ja öine kontroll.</string>
     <string name="widget_no_alarm">Äratust pole</string>
     <string name="settings_backup">Varunda</string>
-    <string name="settings_backup_hint">Krüpteeritud fail äratuste, ajaloo, märkmete ja seadetega. Ilma heliklippide ja terviseandmeteta.</string>
+    <string name="settings_backup_hint">Sinu parooliga krüpteeritud fail: äratused, ööd koos liikumise ja pulsiga, märkmed ja seaded. Ilma helilõikudeta.</string>
     <string name="settings_restore">Taasta</string>
     <string name="backup_password">Parool</string>
     <string name="backup_password_repeat">Korda parooli</string>

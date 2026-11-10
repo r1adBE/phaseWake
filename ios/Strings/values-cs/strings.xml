@@ -15,6 +15,8 @@
     <string name="watch_not_armed">Před spaním otevři Phase Wake, aby mohly hodinky budík aktivovat.</string>
     <string name="check_watch_arm">Budík je v hodinkách aktivní</string>
     <string name="check_watch_arm_problem">Před spaním otevři Phase Wake na Apple Watch. watchOS aktivuje budík, jen když je aplikace otevřená.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: budík není aktivní – jen oznámení, bez fází spánku. Otevři aplikaci na hodinkách.</string>
+    <string name="watch_evening_reminder">Klepnutím aktivuješ budík na dnešní noc.</string>
     <string name="night_unmeasured_apple">Prvních %1$d min neměřeno – Apple Watch měří jen posledních %2$d min před cílovým časem.</string>
     <string name="settings_licenses_text_apple">Phase Wake: licence MIT, © r1adBE.\nPísmo Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznávání zvuků: SoundAnalysis od společnosti Apple, součást iOS.\nZvuky: volné nahrávky (CC0) z opengameart.org</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">Povol pro Phase Wake na Apple Watch časově citlivá oznámení. Jinak tě hodinky nemohou probudit oznámením, když neběží měření.</string>
     <string name="check_watch_state_old">Stav hodinek je zastaralý – krátce otevři Phase Wake na hodinkách.</string>
     <string name="editor_sleep_hint_apple">Počítá se od usnutí – když jdeš spát, klepni na hodinkách na „Dobrou noc“. Na Apple Watch odhaduje Phase Wake, kdy usneš, podle tvé naučené doby usínání. Bez klepnutí platí nastavený čas.</string>
-    <string name="auto_onset_hint_apple">Od 1 hodiny před spaním zaznamenávají Apple Watch tvůj pohyb; na začátku okna buzení Phase Wake spočítá, kdy jsi usnul.</string>
+    <string name="auto_onset_hint_apple">Otevři Phase Wake na Apple Watch od 1 hodiny před spaním (hodinky ti to připomenou) a od té chvíle zaznamenávají tvůj pohyb; na začátku okna buzení Phase Wake spočítá, kdy jsi usnul.</string>
 </resources>

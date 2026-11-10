@@ -87,7 +87,7 @@
     <string name="settings_data">Data awak</string>
     <string name="settings_data_text">Semuanya kekal pada telefon dan jam tangan. Tiada akaun, tiada pelayan, tiada penjejakan.</string>
     <string name="settings_export">Eksport malam tanpa nama</string>
-    <string name="settings_export_hint">Bantu tingkatkan pengesanan: CSV tanpa nama, tarikh atau ID peranti.</string>
+    <string name="settings_export_hint">Bantu tingkatkan pengesanan: CSV tanpa nama, tarikh atau ID peranti; mengandungi pergerakan dan kadar denyutan jantung setiap 30 s, perasaan awak dan nota awak.</string>
     <string name="settings_about">Perihal</string>
     <string name="settings_open_source">Sumber terbuka di GitHub</string>
     <string name="settings_licenses">Lesen</string>
@@ -237,7 +237,7 @@
     <string name="check_watch_battery_problem">Kurang daripada %1$d %% – cas jam tangan awak supaya tahan sepanjang malam dan boleh mengejutkan awak.</string>
     <string name="check_watch_pulse">Nadi di latar belakang (jam)</string>
     <string name="check_watch_pulse_problem">Jam tangan tidak dibenarkan mengukur nadi awak pada waktu malam – pada jam tangan, tetapkan kebenaran penderia Phase Wake kepada “Benarkan sepanjang masa”.</string>
-    <string name="export_contents_hint">Fail ini mengandungi siri pergerakan dan kadar denyutan jantung bagi setiap malam – tanpa nama, tarikh atau ID peranti.</string>
+    <string name="export_contents_hint">Fail ini mengandungi pergerakan dan kadar denyutan jantung setiap 30 s, perasaan awak dan nota awak bagi setiap malam – tanpa nama, tarikh atau ID peranti.</string>
     <string name="editor_more">Lagi</string>
     <string name="home_max_alarms">Maksimum %1$d penggera – padam satu untuk menambah yang baharu.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -296,7 +296,7 @@
     <string name="sounds_hint">Dimainkan pada kelantangan media dan berhenti paling lewat apabila tetingkap bangun anda bermula.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Rakam bunyi</string>
-    <string name="sound_rec_hint">Hanya keratan pendek. Kekal di telefon anda dan dipadam selepas 7 hari.</string>
+    <string name="sound_rec_hint">Hanya keratan pendek dengkuran, percakapan dan bunyi lain. Kekal di telefon awak dan dipadam selepas 7 hari.</string>
     <string name="sound_rec_permission">Untuk merakam, Phase Wake memerlukan mikrofon. Ia hanya mendengar semasa rakaman aktif.</string>
     <string name="sound_rec_running">Merakam bunyi</string>
     <string name="sound_rec_stop">Henti</string>
@@ -429,7 +429,7 @@
     <string name="widget_description">Penggera seterusnya dan semakan malam.</string>
     <string name="widget_no_alarm">Tiada penggera</string>
     <string name="settings_backup">Sandarkan</string>
-    <string name="settings_backup_hint">Fail tersulit dengan penggera, sejarah, nota dan tetapan. Tanpa bunyi dan data kesihatan.</string>
+    <string name="settings_backup_hint">Fail yang disulitkan dengan kata laluan awak: penggera, malam berserta pergerakan dan kadar denyutan jantung, nota dan tetapan. Tanpa keratan bunyi.</string>
     <string name="settings_restore">Pulihkan</string>
     <string name="backup_password">Kata laluan</string>
     <string name="backup_password_repeat">Ulang kata laluan</string>

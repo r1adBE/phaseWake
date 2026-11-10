@@ -17,10 +17,12 @@ struct HomeView: View {
                 NextWindow(plan: model.plan, alarm: model.alarms.first { $0.id == model.plan?.alarmId }, sleepGoal: model.sleepGoal)
                     .listRowBackground(Color.clear)
                 if case .waiting = SmartAlarm.shared.phase {
-                    // Nicht scharf: watchOS plant nur bei offener App und höchstens 36 h im Voraus.
-                    Text(L("watch_not_armed"))
+                    // Nicht scharf: watchOS plant nur bei offener App und höchstens 36 h im Voraus. Ab der Erinnerung am
+                    // Abend deutlich (wie der Nacht-Check am iPhone): dann weckt nur die Mitteilung.
+                    let tonight = EveningReminder.due(now: model.now)
+                    Text(L(tonight ? "check_watch_arm_tonight" : "watch_not_armed"))
                         .font(Fonts.manrope(12, relativeTo: .footnote))
-                        .foregroundStyle(Brand.muted)
+                        .foregroundStyle(tonight ? Color.red : Brand.muted)
                         .listRowBackground(Color.clear)
                 }
                 GoodNightRow()

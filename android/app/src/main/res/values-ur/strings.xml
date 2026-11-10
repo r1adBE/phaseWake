@@ -89,7 +89,7 @@
     <string name="settings_data">تمہارا ڈیٹا</string>
     <string name="settings_data_text">سب کچھ تمہارے فون اور گھڑی پر رہتا ہے۔ نہ اکاؤنٹ، نہ سرور، نہ ٹریکنگ۔</string>
     <string name="settings_export">راتیں نام کے بغیر ایکسپورٹ کرو</string>
-    <string name="settings_export_hint">پہچان بہتر بنانے میں مدد کرو: نام، تاریخ یا ڈیوائس آئی ڈی کے بغیر CSV۔</string>
+    <string name="settings_export_hint">شناخت بہتر بنانے میں مدد کرو: نام، تاریخ یا ڈیوائس ID کے بغیر CSV؛ اس میں ہر 30 سیکنڈ کی حرکت اور دل کی دھڑکن، تمہیں کیسا لگا اور تمہارے نوٹس ہیں۔</string>
     <string name="settings_about">تعارف</string>
     <string name="settings_open_source">GitHub پر اوپن سورس</string>
     <string name="settings_licenses">لائسنس</string>
@@ -243,7 +243,7 @@
     <string name="check_watch_battery_problem">%1$d %% سے کم – گھڑی چارج کرو تاکہ وہ پوری رات چلے اور تمہیں جگا سکے۔</string>
     <string name="check_watch_pulse">پس منظر میں نبض (گھڑی)</string>
     <string name="check_watch_pulse_problem">گھڑی کو رات میں تمہاری نبض ناپنے کی اجازت نہیں – گھڑی پر Phase Wake کی سینسر اجازت ”ہمیشہ اجازت دیں“ پر سیٹ کرو۔</string>
-    <string name="export_contents_hint">فائل میں ہر رات کی حرکت اور دل کی دھڑکن کے سلسلے ہوتے ہیں – نام، تاریخ یا ڈیوائس آئی ڈی کے بغیر۔</string>
+    <string name="export_contents_hint">فائل میں ہر رات کے لیے ہر 30 سیکنڈ کی حرکت اور دل کی دھڑکن، تمہیں کیسا لگا اور تمہارے نوٹس ہیں – نام، تاریخ یا ڈیوائس ID کے بغیر۔</string>
     <string name="editor_more">مزید</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">زیادہ سے زیادہ %1$d الارم – نیا بنانے کے لیے ایک حذف کرو۔</string>
@@ -302,7 +302,7 @@
     <string name="sounds_hint">میڈیا والیوم پر چلتی ہیں اور زیادہ سے زیادہ جاگنے کی ونڈو شروع ہوتے ہی رک جاتی ہیں۔</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">آوازیں ریکارڈ کرو</string>
-    <string name="sound_rec_hint">صرف چھوٹے کلپس۔ یہ تمہارے فون پر رہتے ہیں اور 7 دن بعد حذف ہو جاتے ہیں۔</string>
+    <string name="sound_rec_hint">صرف خراٹوں، بات چیت اور دوسری آوازوں کے چھوٹے کلپس۔ یہ تمہارے فون پر رہتے ہیں اور 7 دن بعد حذف ہو جاتے ہیں۔</string>
     <string name="sound_rec_permission">ریکارڈ کرنے کے لیے Phase Wake کو مائیکروفون چاہیے۔ یہ صرف ریکارڈنگ آن ہونے پر ہی سنتا ہے۔</string>
     <string name="sound_rec_running">آوازیں ریکارڈ ہو رہی ہیں</string>
     <string name="sound_rec_stop">روکو</string>
@@ -444,7 +444,7 @@
     <string name="widget_description">تمہارا اگلا الارم اور رات کا چیک۔</string>
     <string name="widget_no_alarm">کوئی الارم نہیں</string>
     <string name="settings_backup">بیک اپ لو</string>
-    <string name="settings_backup_hint">الارم، تاریخچہ، نوٹس اور ترتیبات والی خفیہ کردہ فائل۔ آواز کے کلپس اور صحت کے ڈیٹا کے بغیر۔</string>
+    <string name="settings_backup_hint">تمہارے پاس ورڈ سے انکرپٹ کی گئی فائل: الارم، حرکت اور دل کی دھڑکن سمیت راتیں، نوٹس اور ترتیبات۔ آواز کے کلپس کے بغیر۔</string>
     <string name="settings_restore">بحال کرو</string>
     <string name="backup_password">پاس ورڈ</string>
     <string name="backup_password_repeat">پاس ورڈ دوبارہ لکھو</string>

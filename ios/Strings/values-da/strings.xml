@@ -15,6 +15,8 @@
     <string name="watch_not_armed">Åbn Phase Wake, før du går i seng, så dit ur kan aktivere alarmen.</string>
     <string name="check_watch_arm">Alarm aktiveret på uret</string>
     <string name="check_watch_arm_problem">Åbn Phase Wake på dit Apple Watch, før du går i seng. watchOS aktiverer kun alarmen, mens appen er åben.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: alarm ikke aktiveret – kun notifikation, ingen søvnfaser. Åbn appen på uret.</string>
+    <string name="watch_evening_reminder">Tryk for at aktivere din alarm i nat.</string>
     <string name="night_unmeasured_apple">Første %1$d min ikke målt – Apple Watch måler kun de sidste %2$d min før ønsket tid.</string>
     <string name="settings_licenses_text_apple">Phase Wake: MIT-licens, © r1adBE.\nSkrifttypen Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLydgenkendelse: SoundAnalysis fra Apple, indbygget i iOS.\nLyde: frie optagelser (CC0) fra opengameart.org</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">Tillad tidsfølsomme notifikationer fra Phase Wake på dit Apple Watch. Ellers kan uret ikke vække dig med en notifikation, når der ikke kører en måling.</string>
     <string name="check_watch_state_old">Urets status er forældet – åbn Phase Wake kort på uret.</string>
     <string name="editor_sleep_hint_apple">Tæller fra, når du falder i søvn – tryk på “Godnat” på uret, når du går i seng. På Apple Watch anslår Phase Wake, hvornår du falder i søvn, ud fra din lærte indsovningstid. Uden tryk gælder det indstillede tidspunkt.</string>
-    <string name="auto_onset_hint_apple">Fra 1 time før sengetid optager dit Apple Watch din bevægelse; ved starten af dit vækkevindue beregner Phase Wake, hvornår du faldt i søvn.</string>
+    <string name="auto_onset_hint_apple">Åbn Phase Wake på dit Apple Watch fra 1 time før sengetid (uret minder dig om det), så registrerer det din bevægelse fra da af; ved starten af dit vækningsvindue beregner Phase Wake, hvornår du faldt i søvn.</string>
 </resources>

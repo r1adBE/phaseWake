@@ -58,7 +58,7 @@ open class PhaseWakeApp : Application() {
     val alarms by lazy { AlarmRepository(phaseWakeStore) }
     val nights by lazy { NightRepository(File(filesDir, "nights.v1")) }
     val settings by lazy { SettingsRepository(phaseWakeStore) }
-    val sync by lazy { WearSync(this) }
+    val sync by lazy { WearSync(this, com.phasewake.app.shared.DataLayer.CAPABILITY_WATCH) }
 
     /** «Nacht aufzeichnen» der Galaxy Watch: empfangene Aufzeichnungen (privat, nicht gesichert) und der Austausch. */
     val recordings by lazy { RecordingRepository(File(filesDir, "recordings")) }
@@ -135,8 +135,8 @@ open class PhaseWakeApp : Application() {
                 if (e is kotlinx.coroutines.CancellationException) throw e
                 Log.w("PhaseWakeApp", "Unterbrochenes Wiederherstellen nicht geprüft", e)
             }
-            // Was die Uhr schon hat, abholen: Wecker und Nächte (z. B. Uhr-App vor der Handy-App
-            // installiert). Die Nacht-Pakete werden danach gelöscht, wie beim normalen Empfang.
+            // Pakete einer älteren Uhr abholen: Wecker und Nächte. Die Nacht-Pakete werden danach gelöscht, wie beim
+            // normalen Empfang. Eine neue Uhr schickt alles über die Warteschlange ([WearSync.requestSync] unten).
             sync.fetchAlarms()?.let { alarms.applyRemote(it) }
             for ((night, uri) in sync.fetchNights()) {
                 nights.add(night)
@@ -151,6 +151,11 @@ open class PhaseWakeApp : Application() {
             recordSync.fetchStatus()?.let { recordStatus.value = it }
             // Frühere Zielzeit des Einschlaf-Modus, falls ihre Meldung verpasst wurde (z. B. nach «Beenden erzwingen»).
             sync.fetchOnsetShift()?.let { backup.onsetShiftReceived(it) }
+            // Warteschlange: einmalig eigene Pakete der früheren Wege löschen, Wartendes senden, Stand der Uhr anfragen
+            // (Wecker und Aufzeichnungs-Stand; Nächte und Aufzeichnungen kommen aus ihrer Warteschlange).
+            sync.migrateTransport()
+            sync.flush()
+            sync.requestSync()
             backup.reschedule()
             // Feiertage nachführen (Fenster der nächsten 400 Tage); bei einer Änderung neu planen.
             if (holidays.refresh()) backup.reschedule()
@@ -192,6 +197,19 @@ open class PhaseWakeApp : Application() {
         // Systemmeldung: kommt auch bei einem nicht exportierten Empfänger an.
         ContextCompat.registerReceiver(this, receiver, IntentFilter(Intent.ACTION_USER_UNLOCKED), ContextCompat.RECEIVER_NOT_EXPORTED)
         initUnlocked()
+    }
+
+    /**
+     * Aktuellen Stand an die Uhr einreihen (Wunsch der Uhr, [com.phasewake.app.shared.DataLayer.PATH_SYNC_REQUEST]):
+     * Wecker, Schlafziel, Schalter der Einschlaf-Messung, Feiertage und Lernphase. Gleiche Schlüssel ersetzen ältere
+     * Einträge; die Uhr übernimmt nur Neueres.
+     */
+    suspend fun publishToWatch() {
+        sync.publishAlarms(alarms.current())
+        publishSleepGoal()
+        publishAutoOnset()
+        holidays.republish()
+        publishLearning()
     }
 
     /** Schickt das Schlafziel an die Uhr (nach einer Änderung, beim Start, nach dem Wiederherstellen). */

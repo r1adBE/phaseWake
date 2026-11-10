@@ -17,6 +17,8 @@
     <string name="watch_not_armed">ඔරලෝසුවට එලාමය සක්‍රිය කිරීමට, නින්දට යාමට පෙර Phase Wake විවෘත කරන්න.</string>
     <string name="check_watch_arm">ඔරලෝසුවේ එලාමය සක්‍රියයි</string>
     <string name="check_watch_arm_problem">නින්දට යාමට පෙර ඔබේ Apple Watch හි Phase Wake විවෘත කරන්න. watchOS එලාමය සක්‍රිය කරන්නේ යෙදුම විවෘතව ඇති විට පමණි.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: එලාමය සක්‍රිය නැත – දැනුම්දීම පමණි, නින්දේ අදියර නැත. ඔරලෝසු යෙදුම විවෘත කරන්න.</string>
+    <string name="watch_evening_reminder">අද රාත්‍රියේ එලාමය සක්‍රිය කිරීමට තට්ටු කරන්න.</string>
     <string name="night_unmeasured_apple">පළමු මිනි. %1$d මැනුණේ නැත – Apple Watch මනින්නේ ඉලක්ක වේලාවට පෙර අවසන් මිනිත්තු %2$d පමණි.</string>
     <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
     <string name="settings_licenses_text_apple">Phase Wake: MIT License, © r1adBE.\nManrope අකුරු: SIL Open Font License 1.1, © The Manrope Project Authors.\nශබ්ද හඳුනාගැනීම: Apple හි SoundAnalysis, iOS තුළ ගොඩනගා ඇත.\nශබ්ද: opengameart.org වෙතින් නොමිලේ පටිගත කිරීම් (CC0)</string>
@@ -30,5 +32,5 @@
     <string name="check_watch_notifications_problem">ඔබේ Apple Watch හි Phase Wake සඳහා කාල-සංවේදී දැනුම්දීම්වලට ඉඩ දෙන්න. එසේ නොමැති නම් මැනීමක් සිදු නොවන විට එයට ඔබව දැනුම්දීමකින් අවදි කළ නොහැක.</string>
     <string name="check_watch_state_old">ඔරලෝසුවේ තත්ත්වය යල් පැන ගොස් ඇත – ඔරලෝසුවේ Phase Wake මොහොතකට විවෘත කරන්න.</string>
     <string name="editor_sleep_hint_apple">නින්දට ගිය වේලාවේ සිට ගණන් කෙරේ – නිදාගන්නා විට ඔරලෝසුවේ «සුබ රාත්‍රියක්» තට්ටු කරන්න. Apple Watch හි Phase Wake ඉගෙන ගත් නින්දට යාමට ගතවන කාලයෙන් ඔබ නින්දට යන වේලාව ඇස්තමේන්තු කරයි. තට්ටු නොකළහොත් සැකසූ වේලාව අදාළ වේ.</string>
-    <string name="auto_onset_hint_apple">නින්දට යාමට පැය 1කට පෙර සිට ඔබේ Apple Watch චලනය පටිගත කරයි; අවදි කිරීමේ කාලයේ ආරම්භයේදී ඔබ නින්දට ගියේ කවදාදැයි Phase Wake ගණනය කරයි.</string>
+    <string name="auto_onset_hint_apple">නින්දට යාමට පැය 1කට පෙර සිට ඔබේ Apple Watch හි Phase Wake විවෘත කරන්න (ඔරලෝසුව මතක් කරයි), එවිට එතැන් සිට එය ඔබේ චලනය පටිගත කරයි; අවදි කිරීමේ කාලයේ ආරම්භයේදී ඔබ නින්දට ගිය වේලාව Phase Wake ගණනය කරයි.</string>
 </resources>

@@ -88,7 +88,7 @@
     <string name="settings_data">Je gegevens</string>
     <string name="settings_data_text">Alles blijft op je telefoon en horloge. Geen account, geen server, geen tracking.</string>
     <string name="settings_export">Nachten exporteren zonder naam</string>
-    <string name="settings_export_hint">Help de herkenning te verbeteren: CSV zonder namen, datums of apparaat-ID\'s.</string>
+    <string name="settings_export_hint">Help de herkenning te verbeteren: CSV zonder namen, datums of apparaat-ID’s; bevat beweging en hartslag per 30 s, hoe je je voelde en je notities.</string>
     <string name="settings_about">Over</string>
     <string name="settings_open_source">Open source op GitHub</string>
     <string name="settings_licenses">Licenties</string>
@@ -242,7 +242,7 @@
     <string name="check_watch_battery_problem">Onder %1$d %% – laad je horloge op zodat het de nacht doorkomt en je kan wekken.</string>
     <string name="check_watch_pulse">Hartslag op de achtergrond (horloge)</string>
     <string name="check_watch_pulse_problem">Het horloge mag je hartslag ’s nachts niet meten – zet op het horloge de sensortoestemming van Phase Wake op ‘Altijd toestaan’.</string>
-    <string name="export_contents_hint">Het bestand bevat bewegings- en hartslagreeksen van elke nacht – zonder namen, datums of apparaat-ID’s.</string>
+    <string name="export_contents_hint">Het bestand bevat per nacht beweging en hartslag per 30 s, hoe je je voelde en je notities – zonder namen, datums of apparaat-ID’s.</string>
     <string name="editor_more">Meer</string>
     <string name="home_max_alarms">Maximaal %1$d wekkers – verwijder er een om een nieuwe toe te voegen.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -303,7 +303,7 @@
     <string name="sounds_hint">Speelt op mediavolume en stopt uiterlijk wanneer je wekvenster begint.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Geluiden opnemen</string>
-    <string name="sound_rec_hint">Alleen korte fragmenten. Ze blijven op je telefoon en worden na 7 dagen gewist.</string>
+    <string name="sound_rec_hint">Alleen korte fragmenten van snurken, praten en andere geluiden. Ze blijven op je telefoon en worden na 7 dagen gewist.</string>
     <string name="sound_rec_permission">Om op te nemen heeft Phase Wake de microfoon nodig. Die luistert alleen zolang de opname loopt.</string>
     <string name="sound_rec_running">Geluiden worden opgenomen</string>
     <string name="sound_rec_stop">Stoppen</string>
@@ -442,7 +442,7 @@
     <string name="widget_description">Je volgende wekker en de nachtcheck.</string>
     <string name="widget_no_alarm">Geen wekker</string>
     <string name="settings_backup">Back-up maken</string>
-    <string name="settings_backup_hint">Versleuteld bestand met wekkers, geschiedenis, notities en instellingen. Zonder geluiden en gezondheidsgegevens.</string>
+    <string name="settings_backup_hint">Met je wachtwoord versleuteld bestand: wekkers, nachten inclusief beweging en hartslag, notities en instellingen. Zonder geluidsfragmenten.</string>
     <string name="settings_restore">Herstellen</string>
     <string name="backup_password">Wachtwoord</string>
     <string name="backup_password_repeat">Wachtwoord herhalen</string>

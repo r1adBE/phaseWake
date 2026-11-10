@@ -89,7 +89,7 @@
     <string name="settings_data">I tuoi dati</string>
     <string name="settings_data_text">Tutto resta sul telefono e sullo smartwatch. Nessun account, nessun server, nessun tracciamento.</string>
     <string name="settings_export">Esporta le notti senza nome</string>
-    <string name="settings_export_hint">Aiuta a migliorare il rilevamento: CSV senza nomi, date o ID del dispositivo.</string>
+    <string name="settings_export_hint">Aiuta a migliorare il rilevamento: CSV senza nomi, date o ID dei dispositivi; contiene movimento e battito ogni 30 s, come ti sentivi e le tue note.</string>
     <string name="settings_about">Info</string>
     <string name="settings_open_source">Open source su GitHub</string>
     <string name="settings_licenses">Licenze</string>
@@ -247,7 +247,7 @@
     <string name="check_watch_battery_problem">Sotto il %1$d %% – ricarica l’orologio perché duri tutta la notte e possa svegliarti.</string>
     <string name="check_watch_pulse">Battito in background (orologio)</string>
     <string name="check_watch_pulse_problem">L’orologio non può misurare il tuo battito di notte – sull’orologio imposta l’autorizzazione sensori di Phase Wake su “Consenti sempre”.</string>
-    <string name="export_contents_hint">Il file contiene le serie di movimento e frequenza cardiaca di ogni notte, senza nomi, date o ID dei dispositivi.</string>
+    <string name="export_contents_hint">Il file contiene per ogni notte movimento e battito ogni 30 s, come ti sentivi e le tue note – senza nomi, date o ID dei dispositivi.</string>
     <string name="editor_more">Altro</string>
     <string name="home_max_alarms">Massimo %1$d sveglie: eliminane una per aggiungerne una nuova.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -310,7 +310,7 @@
     <string name="sounds_hint">Suona al volume multimediale e si ferma al più tardi quando inizia la tua finestra di sveglia.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Registra i rumori</string>
-    <string name="sound_rec_hint">Solo brevi estratti. Restano sul telefono e vengono eliminati dopo 7 giorni.</string>
+    <string name="sound_rec_hint">Solo brevi clip di russare, parlare e altri suoni. Restano sul tuo telefono e vengono eliminate dopo 7 giorni.</string>
     <string name="sound_rec_permission">Per registrare, Phase Wake ha bisogno del microfono. Ascolta solo mentre la registrazione è attiva.</string>
     <string name="sound_rec_running">Registrazione dei rumori</string>
     <string name="sound_rec_stop">Ferma</string>
@@ -455,7 +455,7 @@
     <string name="widget_description">La tua prossima sveglia e il controllo notturno.</string>
     <string name="widget_no_alarm">Nessuna sveglia</string>
     <string name="settings_backup">Backup</string>
-    <string name="settings_backup_hint">File cifrato con sveglie, cronologia, note e impostazioni. Senza audio e dati sanitari.</string>
+    <string name="settings_backup_hint">File cifrato con la tua password: sveglie, notti con movimento e battito, note e impostazioni. Senza clip audio.</string>
     <string name="settings_restore">Ripristina</string>
     <string name="backup_password">Password</string>
     <string name="backup_password_repeat">Ripeti la password</string>

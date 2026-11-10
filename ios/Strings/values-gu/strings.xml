@@ -17,6 +17,8 @@
     <string name="watch_not_armed">સૂતાં પહેલાં Phase Wake ખોલો, જેથી તમારી ઘડિયાળ એલાર્મ સક્રિય કરી શકે.</string>
     <string name="check_watch_arm">ઘડિયાળ પર એલાર્મ સક્રિય</string>
     <string name="check_watch_arm_problem">સૂતાં પહેલાં તમારી Apple Watch પર Phase Wake ખોલો. ઍપ ખુલ્લી હોય ત્યારે જ watchOS એલાર્મ સક્રિય કરે છે.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: એલાર્મ સક્રિય નથી – માત્ર સૂચના, ઊંઘના તબક્કા નહીં. ઘડિયાળની ઍપ ખોલો.</string>
+    <string name="watch_evening_reminder">આજ રાતનો એલાર્મ સક્રિય કરવા ટૅપ કરો.</string>
     <string name="night_unmeasured_apple">પહેલી %1$d મિ. માપી નથી – Apple Watch લક્ષ્ય પહેલાંની ફક્ત છેલ્લી %2$d મિ. માપે છે.</string>
     <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
     <string name="settings_licenses_text_apple">Phase Wake: MIT License, © r1adBE.\nManrope ફૉન્ટ: SIL Open Font License 1.1, © The Manrope Project Authors.\nઅવાજની ઓળખ: Appleનું SoundAnalysis, iOSમાં બિલ્ટ-ઇન.\nઅવાજો: opengameart.org પરથી મફત રેકોર્ડિંગ (CC0)</string>
@@ -30,5 +32,5 @@
     <string name="check_watch_notifications_problem">તમારી Apple Watch પર Phase Wake માટે સમય-સંવેદનશીલ સૂચનાઓની મંજૂરી આપો. નહીંતર માપન ચાલુ ન હોય ત્યારે તે તમને સૂચના દ્વારા જગાડી શકશે નહીં.</string>
     <string name="check_watch_state_old">ઘડિયાળની સ્થિતિ જૂની છે – ઘડિયાળ પર થોડા સમય માટે Phase Wake ખોલો.</string>
     <string name="editor_sleep_hint_apple">ઊંઘી જાઓ ત્યારથી ગણાય છે – સૂવા જાઓ ત્યારે ઘડિયાળ પર «શુભ રાત્રિ» ટૅપ કરો. Apple Watch પર Phase Wake શીખેલા ઊંઘ આવવાના સમય પરથી તમે ક્યારે ઊંઘી જાઓ છો તેનો અંદાજ લગાવે છે. ટૅપ ન કરો તો સેટ કરેલો સમય લાગુ થાય છે.</string>
-    <string name="auto_onset_hint_apple">સૂવાના સમયના 1 કલાક પહેલાંથી તમારી Apple Watch હલનચલન રેકોર્ડ કરે છે; જગાડવાના સમયગાળાની શરૂઆતમાં Phase Wake ગણે છે કે તમે ક્યારે ઊંઘી ગયા.</string>
+    <string name="auto_onset_hint_apple">સૂવાના સમયના 1 કલાક પહેલાંથી તમારી Apple Watch પર Phase Wake ખોલો (ઘડિયાળ યાદ અપાવે છે), તો ત્યારથી તે તમારું હલનચલન નોંધે છે; જગાડવાના સમયગાળાની શરૂઆતમાં Phase Wake ગણે છે કે તમે ક્યારે ઊંઘી ગયા.</string>
 </resources>

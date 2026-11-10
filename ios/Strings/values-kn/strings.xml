@@ -17,6 +17,8 @@
     <string name="watch_not_armed">ವಾಚ್ ಅಲಾರಾಂ ಸಕ್ರಿಯಗೊಳಿಸಲು, ಮಲಗುವ ಮೊದಲು Phase Wake ತೆರೆಯಿರಿ.</string>
     <string name="check_watch_arm">ವಾಚ್‌ನಲ್ಲಿ ಅಲಾರಾಂ ಸಕ್ರಿಯವಾಗಿದೆ</string>
     <string name="check_watch_arm_problem">ಮಲಗುವ ಮೊದಲು ನಿಮ್ಮ Apple Watch ನಲ್ಲಿ Phase Wake ತೆರೆಯಿರಿ. ಆ್ಯಪ್ ತೆರೆದಿರುವಾಗ ಮಾತ್ರ watchOS ಅಲಾರಾಂ ಸಕ್ರಿಯಗೊಳಿಸುತ್ತದೆ.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: ಅಲಾರಂ ಸಕ್ರಿಯವಾಗಿಲ್ಲ – ಅಧಿಸೂಚನೆ ಮಾತ್ರ, ನಿದ್ರೆಯ ಹಂತಗಳಿಲ್ಲ. ವಾಚ್ ಆ್ಯಪ್ ತೆರೆಯಿರಿ.</string>
+    <string name="watch_evening_reminder">ಇಂದು ರಾತ್ರಿಯ ಅಲಾರಂ ಸಕ್ರಿಯಗೊಳಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
     <string name="night_unmeasured_apple">ಮೊದಲ %1$d ನಿಮಿ. ಅಳೆಯಲಾಗಿಲ್ಲ – Apple Watch ಗುರಿಗೆ ಮುಂಚಿನ ಕೊನೆಯ %2$d ನಿಮಿ. ಮಾತ್ರ ಅಳೆಯುತ್ತದೆ.</string>
     <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
     <string name="settings_licenses_text_apple">Phase Wake: MIT ಪರವಾನಗಿ, © r1adBE.\nManrope ಫಾಂಟ್: SIL Open Font License 1.1, © The Manrope Project Authors.\nಶಬ್ದ ಪತ್ತೆ: Apple ನ SoundAnalysis, iOS ನಲ್ಲಿ ಅಂತರ್ಗತ.\nಶಬ್ದಗಳು: opengameart.org ನಿಂದ ಉಚಿತ ರೆಕಾರ್ಡಿಂಗ್‌ಗಳು (CC0)</string>
@@ -30,5 +32,5 @@
     <string name="check_watch_notifications_problem">ನಿಮ್ಮ Apple Watch ನಲ್ಲಿ Phase Wake ಗಾಗಿ ಸಮಯ-ಸೂಕ್ಷ್ಮ ಅಧಿಸೂಚನೆಗಳನ್ನು ಅನುಮತಿಸಿ. ಇಲ್ಲದಿದ್ದರೆ ಅಳತೆ ನಡೆಯದಿದ್ದಾಗ ಅದು ನಿಮ್ಮನ್ನು ಅಧಿಸೂಚನೆಯ ಮೂಲಕ ಎಬ್ಬಿಸಲಾರದು.</string>
     <string name="check_watch_state_old">ವಾಚ್‌ನ ಸ್ಥಿತಿ ಹಳೆಯದಾಗಿದೆ – ವಾಚ್‌ನಲ್ಲಿ Phase Wake ಅನ್ನು ಸ್ವಲ್ಪ ಸಮಯ ತೆರೆಯಿರಿ.</string>
     <string name="editor_sleep_hint_apple">ನಿದ್ರೆಗೆ ಜಾರಿದಾಗಿನಿಂದ ಎಣಿಸಲಾಗುತ್ತದೆ – ಮಲಗುವಾಗ ವಾಚ್‌ನಲ್ಲಿ «ಶುಭ ರಾತ್ರಿ» ಟ್ಯಾಪ್ ಮಾಡಿ. Apple Watch ನಲ್ಲಿ Phase Wake ಕಲಿತ ನಿದ್ರೆ ಬರಲು ಬೇಕಾದ ಸಮಯದಿಂದ ನೀವು ಯಾವಾಗ ನಿದ್ರಿಸುತ್ತೀರಿ ಎಂದು ಅಂದಾಜಿಸುತ್ತದೆ. ಟ್ಯಾಪ್ ಮಾಡದಿದ್ದರೆ ಹೊಂದಿಸಿದ ಸಮಯ ಅನ್ವಯಿಸುತ್ತದೆ.</string>
-    <string name="auto_onset_hint_apple">ಮಲಗುವ ಸಮಯಕ್ಕಿಂತ 1 ಗಂಟೆ ಮೊದಲಿನಿಂದ ನಿಮ್ಮ Apple Watch ಚಲನೆಯನ್ನು ದಾಖಲಿಸುತ್ತದೆ; ಎಚ್ಚರಿಸುವ ಅವಧಿಯ ಆರಂಭದಲ್ಲಿ ನೀವು ಯಾವಾಗ ನಿದ್ರಿಸಿದಿರಿ ಎಂದು Phase Wake ಲೆಕ್ಕಹಾಕುತ್ತದೆ.</string>
+    <string name="auto_onset_hint_apple">ಮಲಗುವ ಸಮಯಕ್ಕೆ 1 ಗಂಟೆ ಮೊದಲಿನಿಂದ ನಿಮ್ಮ Apple Watch‌ನಲ್ಲಿ Phase Wake ತೆರೆಯಿರಿ (ವಾಚ್ ನೆನಪಿಸುತ್ತದೆ), ಆಗಿನಿಂದ ಅದು ನಿಮ್ಮ ಚಲನೆಯನ್ನು ದಾಖಲಿಸುತ್ತದೆ; ಎಚ್ಚರಿಸುವ ಅವಧಿಯ ಆರಂಭದಲ್ಲಿ ನೀವು ಯಾವಾಗ ನಿದ್ರೆಗೆ ಜಾರಿದಿರಿ ಎಂದು Phase Wake ಲೆಕ್ಕ ಹಾಕುತ್ತದೆ.</string>
 </resources>

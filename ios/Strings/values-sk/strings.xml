@@ -15,6 +15,8 @@
     <string name="watch_not_armed">Pred spaním otvor Phase Wake, aby hodinky mohli budík aktivovať.</string>
     <string name="check_watch_arm">Budík v hodinkách aktivovaný</string>
     <string name="check_watch_arm_problem">Pred spaním otvor Phase Wake v Apple Watch. watchOS aktivuje budík, len kým je aplikácia otvorená.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: budík nie je aktívny – iba upozornenie, bez fáz spánku. Otvor aplikáciu na hodinkách.</string>
+    <string name="watch_evening_reminder">Ťuknutím aktivuješ budík na dnešnú noc.</string>
     <string name="night_unmeasured_apple">Prvých %1$d min nemerané – Apple Watch meria iba posledných %2$d min pred cieľovým časom.</string>
     <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
     <string name="settings_licenses_text_apple">Phase Wake: licencia MIT, © r1adBE.\nPísmo Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznávanie zvukov: SoundAnalysis od Apple, zabudované v iOS.\nZvuky: voľné nahrávky (CC0) z opengameart.org</string>
@@ -28,5 +30,5 @@
     <string name="check_watch_notifications_problem">Povoľ pre Phase Wake na Apple Watch časovo citlivé upozornenia. Inak ťa hodinky nemôžu zobudiť upozornením, keď neprebieha meranie.</string>
     <string name="check_watch_state_old">Stav hodiniek je zastaraný – krátko otvor Phase Wake na hodinkách.</string>
     <string name="editor_sleep_hint_apple">Počíta sa od zaspania – keď ideš spať, ťukni na hodinkách na „Dobrú noc“. Na Apple Watch odhaduje Phase Wake, kedy zaspíš, podľa naučenej doby zaspávania. Bez ťuknutia platí nastavený čas.</string>
-    <string name="auto_onset_hint_apple">Od 1 hodiny pred spaním zaznamenávajú Apple Watch tvoj pohyb; na začiatku okna budenia Phase Wake vypočíta, kedy si zaspal.</string>
+    <string name="auto_onset_hint_apple">Otvor Phase Wake na Apple Watch od 1 hodiny pred spaním (hodinky ti to pripomenú) a odvtedy zaznamenávajú tvoj pohyb; na začiatku okna budenia Phase Wake vypočíta, kedy si zaspal.</string>
 </resources>

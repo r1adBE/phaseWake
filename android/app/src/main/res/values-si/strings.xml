@@ -90,7 +90,7 @@
     <string name="settings_data">ඔබේ දත්ත</string>
     <string name="settings_data_text">සියල්ල ඔබේ දුරකථනයේ සහ ඔරලෝසුවේම පවතී. ගිණුමක් නැත, සේවාදායකයක් නැත, ලුහුබැඳීමක් නැත.</string>
     <string name="settings_export">රාත්‍රි නමක් නොමැතිව අපනයනය කරන්න</string>
-    <string name="settings_export_hint">හඳුනාගැනීම වැඩිදියුණු කිරීමට උදව් කරන්න: නම්, දින හෝ උපාංග ID නැති CSV.</string>
+    <string name="settings_export_hint">හඳුනාගැනීම වැඩිදියුණු කිරීමට උදව් කරන්න: නම, දිනය හෝ උපාංග ID නොමැති CSV; තත්පර 30 කට වරක් චලනය හා හෘද ස්පන්දනය, ඔබට දැනුණු ආකාරය සහ ඔබේ සටහන් එහි ඇත.</string>
     <string name="settings_about">පිළිබඳ</string>
     <string name="settings_open_source">GitHub හි විවෘත මූලාශ්‍ර</string>
     <string name="settings_licenses">බලපත්‍ර</string>
@@ -244,7 +244,7 @@
     <string name="check_watch_battery_problem">%1$d %% ට අඩුයි – රාත්‍රිය පුරා පවතින්නට සහ ඔබව අවදි කිරීමට ඔරලෝසුව ආරෝපණය කරන්න.</string>
     <string name="check_watch_pulse">පසුබිමේ නාඩිය (ඔරලෝසුව)</string>
     <string name="check_watch_pulse_problem">ඔරලෝසුවට රාත්‍රියේ ඔබේ නාඩිය මැනීමට අවසර නැත – ඔරලෝසුවේ Phase Wake හි සංවේදක අවසරය “සෑම විටම ඉඩ දෙන්න” ලෙස සකසන්න.</string>
-    <string name="export_contents_hint">ගොනුවේ එක් එක් රාත්‍රියේ චලන සහ හෘද ස්පන්දන ශ්‍රේණි ඇත – නම්, දින හෝ උපාංග ID නොමැතිව.</string>
+    <string name="export_contents_hint">ගොනුවේ සෑම රාත්‍රියකටම තත්පර 30 කට වරක් චලනය හා හෘද ස්පන්දනය, ඔබට දැනුණු ආකාරය සහ ඔබේ සටහන් ඇත – නම, දිනය හෝ උපාංග ID නොමැතිව.</string>
     <string name="editor_more">තව</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">එලාම %1$d ක් දක්වා – අලුත් එකක් එක් කිරීමට එකක් මකන්න.</string>
@@ -303,7 +303,7 @@
     <string name="sounds_hint">මාධ්‍ය ශබ්ද මට්ටමින් වාදනය වී, අවදි පරාසය ආරම්භ වන විට අවසන් වශයෙන් නවතී.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">ශබ්ද පටිගත කරන්න</string>
-    <string name="sound_rec_hint">කෙටි කොටස් පමණි. ඒවා ඔබේ දුරකථනයේම පවතින අතර දින 7 කට පසු මැකේ.</string>
+    <string name="sound_rec_hint">ගොරවීම, කතා කිරීම සහ වෙනත් ශබ්දවල කෙටි කොටස් පමණි. ඒවා ඔබේ දුරකථනයේම පවතින අතර දින 7 කට පසු මැකේ.</string>
     <string name="sound_rec_permission">පටිගත කිරීමට Phase Wake හට මයික්‍රෆෝනය අවශ්‍යයි. එය සවන් දෙන්නේ පටිගත කිරීම සක්‍රිය විට පමණි.</string>
     <string name="sound_rec_running">ශබ්ද පටිගත වෙමින්</string>
     <string name="sound_rec_stop">නවත්වන්න</string>
@@ -445,7 +445,7 @@
     <string name="widget_description">ඔබේ ඊළඟ එලාමය සහ රාත්‍රී පරීක්ෂාව.</string>
     <string name="widget_no_alarm">එලාමයක් නැත</string>
     <string name="settings_backup">උපස්ථ කරන්න</string>
-    <string name="settings_backup_hint">එලාම, ඉතිහාසය, සටහන් සහ සැකසීම් සහිත සංකේතිත ගොනුවක්. ශබ්ද කොටස් සහ සෞඛ්‍ය දත්ත නොමැතිව.</string>
+    <string name="settings_backup_hint">ඔබේ මුරපදයෙන් සංකේතනය කළ ගොනුව: එලාම්, චලනය හා හෘද ස්පන්දනය සහිත රාත්‍රි, සටහන් සහ සැකසුම්. ශබ්ද කොටස් නොමැතිව.</string>
     <string name="settings_restore">ප්‍රතිසාධනය</string>
     <string name="backup_password">මුරපදය</string>
     <string name="backup_password_repeat">මුරපදය නැවත දෙන්න</string>

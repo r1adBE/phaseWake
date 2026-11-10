@@ -89,7 +89,7 @@
     <string name="settings_data">Data yako</string>
     <string name="settings_data_text">Kila kitu kinabaki kwenye simu na saa yako. Hakuna akaunti, hakuna seva, hakuna ufuatiliaji.</string>
     <string name="settings_export">Hamisha usiku bila jina</string>
-    <string name="settings_export_hint">Saidia kuboresha utambuzi: CSV bila majina, tarehe wala vitambulisho vya kifaa.</string>
+    <string name="settings_export_hint">Saidia kuboresha utambuzi: CSV bila majina, tarehe wala vitambulisho vya kifaa; ina mwendo na mapigo ya moyo kila sekunde 30, ulivyojisikia na madokezo yako.</string>
     <string name="settings_about">Kuhusu</string>
     <string name="settings_open_source">Programu huria kwenye GitHub</string>
     <string name="settings_licenses">Leseni</string>
@@ -243,7 +243,7 @@
     <string name="check_watch_battery_problem">Chini ya %1$d %% – chaji saa yako ili idumu usiku mzima na iweze kukuamsha.</string>
     <string name="check_watch_pulse">Mapigo ya moyo chinichini (saa)</string>
     <string name="check_watch_pulse_problem">Saa hairuhusiwi kupima mapigo yako ya moyo usiku – kwenye saa, weka ruhusa ya vitambuzi ya Phase Wake kuwa “Ruhusu wakati wote”.</string>
-    <string name="export_contents_hint">Faili ina mfululizo wa mwendo na mapigo ya moyo kwa kila usiku – bila majina, tarehe wala vitambulisho vya kifaa.</string>
+    <string name="export_contents_hint">Faili lina, kwa kila usiku, mwendo na mapigo ya moyo kila sekunde 30, ulivyojisikia na madokezo yako – bila majina, tarehe wala vitambulisho vya kifaa.</string>
     <string name="editor_more">Zaidi</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Hadi kengele %1$d – futa moja ili kuongeza mpya.</string>
@@ -302,7 +302,7 @@
     <string name="sounds_hint">Inacheza kwa sauti ya midia na husimama, mwisho kabisa, pale kipindi chako cha kuamka kinapoanza.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Rekodi sauti</string>
-    <string name="sound_rec_hint">Vipande vifupi tu. Vinabaki kwenye simu yako na hufutwa baada ya siku 7.</string>
+    <string name="sound_rec_hint">Vipande vifupi tu vya kukoroma, kuongea na sauti nyingine. Vinabaki kwenye simu yako na hufutwa baada ya siku 7.</string>
     <string name="sound_rec_permission">Ili kurekodi, Phase Wake inahitaji maikrofoni. Inasikiliza tu wakati kurekodi kumewashwa.</string>
     <string name="sound_rec_running">Inarekodi sauti</string>
     <string name="sound_rec_stop">Simamisha</string>
@@ -444,7 +444,7 @@
     <string name="widget_description">Kengele yako inayofuata na ukaguzi wa usiku.</string>
     <string name="widget_no_alarm">Hakuna kengele</string>
     <string name="settings_backup">Hifadhi nakala</string>
-    <string name="settings_backup_hint">Faili iliyosimbwa yenye kengele, historia, madokezo na mipangilio. Bila vipande vya sauti wala data ya afya.</string>
+    <string name="settings_backup_hint">Faili iliyosimbwa kwa nenosiri lako: kengele, usiku pamoja na mwendo na mapigo ya moyo, madokezo na mipangilio. Bila vipande vya sauti.</string>
     <string name="settings_restore">Rejesha</string>
     <string name="backup_password">Nenosiri</string>
     <string name="backup_password_repeat">Rudia nenosiri</string>

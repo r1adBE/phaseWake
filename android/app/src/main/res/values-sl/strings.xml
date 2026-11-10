@@ -91,7 +91,7 @@
     <string name="settings_data">Tvoji podatki</string>
     <string name="settings_data_text">Vse ostane na telefonu in uri. Brez računa, brez strežnika, brez sledenja.</string>
     <string name="settings_export">Izvozi noči brez imena</string>
-    <string name="settings_export_hint">Pomagaj izboljšati zaznavanje: CSV brez imen, datumov ali ID-jev naprav.</string>
+    <string name="settings_export_hint">Pomagaj izboljšati prepoznavanje: CSV brez imen, datumov in ID-jev naprav; vsebuje gibanje in utrip na 30 s, tvoje počutje in zapiske.</string>
     <string name="settings_about">O aplikaciji</string>
     <string name="settings_open_source">Odprta koda na GitHubu</string>
     <string name="settings_licenses">Licence</string>
@@ -253,7 +253,7 @@
     <string name="check_watch_battery_problem">Pod %1$d %% – napolni uro, da zdrži vso noč in te lahko zbudi.</string>
     <string name="check_watch_pulse">Utrip v ozadju (ura)</string>
     <string name="check_watch_pulse_problem">Ura ponoči ne sme meriti tvojega utripa – na uri nastavi dovoljenje za senzorje za Phase Wake na »Vedno dovoli«.</string>
-    <string name="export_contents_hint">Datoteka vsebuje podatke o gibanju in srčnem utripu za vsako noč – brez imen, datumov ali ID-jev naprav.</string>
+    <string name="export_contents_hint">Datoteka za vsako noč vsebuje gibanje in utrip na 30 s, tvoje počutje in zapiske – brez imen, datumov in ID-jev naprav.</string>
     <string name="editor_more">Več</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Največ %1$d budilk – izbriši eno, da dodaš novo.</string>
@@ -316,7 +316,7 @@
     <string name="sounds_hint">Predvaja se z glasnostjo predstavnosti in se ustavi najpozneje, ko se začne okno bujenja.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Snemaj zvoke</string>
-    <string name="sound_rec_hint">Samo kratki posnetki. Ostanejo na telefonu in se po 7 dneh izbrišejo.</string>
+    <string name="sound_rec_hint">Samo kratki posnetki smrčanja, govorjenja in drugih zvokov. Ostanejo na telefonu in se po 7 dneh izbrišejo.</string>
     <string name="sound_rec_permission">Za snemanje Phase Wake potrebuje mikrofon. Posluša samo, ko je snemanje vklopljeno.</string>
     <string name="sound_rec_running">Snemanje zvokov</string>
     <string name="sound_rec_stop">Ustavi</string>
@@ -470,7 +470,7 @@
     <string name="widget_description">Tvoja naslednja budilka in nočni pregled.</string>
     <string name="widget_no_alarm">Ni budilke</string>
     <string name="settings_backup">Varnostna kopija</string>
-    <string name="settings_backup_hint">Šifrirana datoteka z budilkami, zgodovino, opombami in nastavitvami. Brez zvočnih posnetkov in zdravstvenih podatkov.</string>
+    <string name="settings_backup_hint">Datoteka, šifrirana s tvojim geslom: alarmi, noči z gibanjem in utripom, zapiski in nastavitve. Brez zvočnih posnetkov.</string>
     <string name="settings_restore">Obnovi</string>
     <string name="backup_password">Geslo</string>
     <string name="backup_password_repeat">Ponovi geslo</string>

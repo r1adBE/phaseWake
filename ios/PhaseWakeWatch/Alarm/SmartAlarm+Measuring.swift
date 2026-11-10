@@ -44,19 +44,29 @@ extension SmartAlarm {
         firstRing = nil
         snoozes = 0
         asleepAt = nil
+        onsetMeasured = false
+        heldWake = nil
         earlyBlocked = false
         goalMinutes = spec?.sleepDurationMinutes ?? model.sleepGoal
         phase = .measuring(plan)
         publishArmed()
-        // Einschlafzeit aus dem Rekorder (Untergrenze kurzer Nächte), abseits der Messung; bis sie da ist, gilt sie als
-        // unbekannt (die Erkennung wärmt ohnehin erst auf).
+        // Einschlafzeit aus dem Rekorder (Untergrenze kurzer Nächte), abseits der Messung. Bis sie da ist, wartet ein
+        // früher Moment (`heldWake`); kommt nach `WatchOnset.timeout` kein Ergebnis, gilt die Rechnung als gescheitert.
         let config = detector.config
         let nightSpec = spec
+        onsetPending = true
+        onsetRun += 1
+        let run = onsetRun
         Task { @MainActor in
-            let onset = await WatchOnset.compute(plan: plan, spec: nightSpec, config: config, goodNight: model.goodNight,
-                                                 sleepGoal: model.sleepGoal)
-            guard self.phase == .measuring(plan) else { return }
-            self.asleepAt = onset
+            let result = await WatchOnset.compute(plan: plan, spec: nightSpec, config: config, goodNight: model.goodNight,
+                                                  sleepGoal: model.sleepGoal)
+            self.onsetDone(result, run: run, plan: plan)
+        }
+        Task { @MainActor in
+            try? await Task.sleep(for: .seconds(WatchOnset.timeout))
+            guard self.onsetPending, self.onsetRun == run, self.phase == .measuring(plan) else { return }
+            DiagStore.shared.log(.error, "onset computation timed out")
+            self.onsetDone(.failed, run: run, plan: plan)
         }
         // Ab Fensterbeginn gilt die geplante Zeit (`AlarmSchedule.begunNight`): Rückfall jetzt zum festen Zeitpunkt.
         // Als Kalenderzeit ohne Zone läge er nach einer Reise nach Osten schon zurück (iOS stellte ihn womöglich sofort zu,
@@ -148,13 +158,20 @@ extension SmartAlarm {
             // «Genau»: nur für den Verlauf messen, nie vor der Zielzeit wecken – die Erkennung entscheidet nicht.
             if exactNight { continue }
             if case .wake(let reason) = detector.onEpoch(epoch) {
+                // Einschlafzeit noch in Rechnung: Moment merken und entscheiden, sobald sie da ist (`onsetDone`).
+                if onsetPending {
+                    detector.rearm()
+                    if heldWake == nil {
+                        heldWake = reason
+                        DiagStore.shared.log(.phase, "\(reason.rawValue) held, onset pending")
+                    }
+                    continue
+                }
                 // Kurze Nacht (wie Android): Moment übergehen (nicht nachholen), weiter erkennen; in den letzten
                 // `ShortNight.lateMinutes` vor der Zielzeit weckt ein neuer Moment.
-                if let target = nightPlan?.target,
-                   ShortNight.blocksEarly(onset: asleepAt, now: Date(), sleepGoalMinutes: goalMinutes, target: target) {
+                if blocksEarly() {
                     detector.rearm()
-                    if !earlyBlocked { DiagStore.shared.log(.phase, "\(reason.rawValue) ignored, short night") }
-                    earlyBlocked = true
+                    noteBlocked(reason)
                     continue
                 }
                 DiagStore.shared.log(.phase, reason.rawValue)
@@ -162,6 +179,43 @@ extension SmartAlarm {
                 return
             }
         }
+    }
+
+    /// Ob ein früher Moment jetzt übergangen wird (kurze Nacht, `ShortNight.blocksEarly`; ohne Einschlafzeit nach einer
+    /// Messung ohne Ergebnis fail-closed).
+    func blocksEarly() -> Bool {
+        guard let target = nightPlan?.target else { return false }
+        return ShortNight.blocksEarly(onset: asleepAt, now: Date(), sleepGoalMinutes: goalMinutes, target: target, measured: onsetMeasured)
+    }
+
+    /// Früher Moment `reason` übergangen: einmal je Nacht ins Protokoll; zur Zielzeit weckt es mit `shortNight`.
+    func noteBlocked(_ reason: WakeReason) {
+        if !earlyBlocked {
+            let why = asleepAt == nil ? "short night unknown" : "short night"
+            DiagStore.shared.log(.phase, "\(reason.rawValue) ignored, \(why)")
+        }
+        earlyBlocked = true
+    }
+
+    /// Rechnung der Einschlafzeit fertig (oder abgelaufen, `WatchOnset.timeout`): Stand übernehmen und einen
+    /// gemerkten frühen Moment jetzt entscheiden. Ein überholtes Ergebnis (`run`) oder eine andere Nacht gilt nicht.
+    func onsetDone(_ result: WatchOnset.Result, run: Int, plan: WakePlan) {
+        guard onsetPending, onsetRun == run, phase == .measuring(plan) else { return }
+        onsetPending = false
+        switch result {
+        case .asleep(let at): asleepAt = at
+        case .notMeasured: break
+        case .failed: onsetMeasured = true
+        }
+        guard let held = heldWake else { return }
+        heldWake = nil
+        if exactNight { return }
+        if blocksEarly() {
+            noteBlocked(held)
+            return
+        }
+        DiagStore.shared.log(.phase, held.rawValue)
+        ring(held)
     }
 
     /// Zusammenfassung am Ende einer Messung, einmal je Nacht: Epochen gesamt und davon mit Puls («hr epochs N/M») sowie

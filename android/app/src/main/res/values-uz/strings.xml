@@ -90,7 +90,7 @@
     <string name="settings_data">Maʼlumotlaring</string>
     <string name="settings_data_text">Hammasi telefoning va soatingda qoladi. Hisob yoʻq, server yoʻq, kuzatuv yoʻq.</string>
     <string name="settings_export">Tunlarni ismsiz eksport qilish</string>
-    <string name="settings_export_hint">Aniqlashni yaxshilashga yordam ber: nomlar, sanalar va qurilma IDlarisiz CSV.</string>
+    <string name="settings_export_hint">Aniqlashni yaxshilashga yordam ber: nomlar, sanalar va qurilma IDlarisiz CSV; har 30 soniyalik harakat va yurak urishi, oʻzingni qanday his qilganing va qaydlaring bor.</string>
     <string name="settings_about">Ilova haqida</string>
     <string name="settings_open_source">GitHubʼda ochiq kodli</string>
     <string name="settings_licenses">Litsenziyalar</string>
@@ -244,7 +244,7 @@
     <string name="check_watch_battery_problem">%1$d %% dan kam – tun boʻyi yetishi va seni uygʻota olishi uchun soatingni quvvatla.</string>
     <string name="check_watch_pulse">Fonda puls (soat)</string>
     <string name="check_watch_pulse_problem">Soatga tunda pulsingni oʻlchashga ruxsat yoʻq – soatda Phase Wake sensor ruxsatini “Doim ruxsat berish” qilib qoʻy.</string>
-    <string name="export_contents_hint">Faylda har bir tun uchun harakat va yurak urishi qatorlari bor – nomlar, sanalar va qurilma IDlarisiz.</string>
+    <string name="export_contents_hint">Faylda har bir tun uchun har 30 soniyalik harakat va yurak urishi, oʻzingni qanday his qilganing va qaydlaring bor – nomlar, sanalar va qurilma IDlarisiz.</string>
     <string name="editor_more">Yana</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Eng koʻpi %1$d ta budilnik – yangisini qoʻshish uchun bittasini oʻchir.</string>
@@ -303,7 +303,7 @@
     <string name="sounds_hint">Media ovozida ijro etiladi va eng kechi uygʻotish oraligʻing boshlanganda toʻxtaydi.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Tovushlarni yozish</string>
-    <string name="sound_rec_hint">Faqat qisqa parchalar. Ular telefoningda qoladi va 7 kundan keyin oʻchiriladi.</string>
+    <string name="sound_rec_hint">Faqat xurrak, gapirish va boshqa tovushlarning qisqa parchalari. Ular telefoningda qoladi va 7 kundan keyin oʻchiriladi.</string>
     <string name="sound_rec_permission">Yozish uchun Phase Wakeʼga mikrofon kerak. U faqat yozish yoqilganda tinglaydi.</string>
     <string name="sound_rec_running">Tovushlar yozilmoqda</string>
     <string name="sound_rec_stop">Toʻxtatish</string>
@@ -445,7 +445,7 @@
     <string name="widget_description">Keyingi budilniging va tungi tekshiruv.</string>
     <string name="widget_no_alarm">Budilnik yoʻq</string>
     <string name="settings_backup">Zaxira nusxa</string>
-    <string name="settings_backup_hint">Budilniklar, tarix, qaydlar va sozlamalar bilan shifrlangan fayl. Tovush parchalari va sogʻliq maʼlumotlarisiz.</string>
+    <string name="settings_backup_hint">Parolingiz bilan shifrlangan fayl: budilniklar, harakat va yurak urishi bilan tunlar, qaydlar va sozlamalar. Tovush parchalarisiz.</string>
     <string name="settings_restore">Tiklash</string>
     <string name="backup_password">Parol</string>
     <string name="backup_password_repeat">Parolni takrorla</string>

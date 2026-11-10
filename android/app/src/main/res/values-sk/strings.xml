@@ -91,7 +91,7 @@
     <string name="settings_data">Tvoje údaje</string>
     <string name="settings_data_text">Všetko zostáva v telefóne a hodinkách. Žiadny účet, žiadny server, žiadne sledovanie.</string>
     <string name="settings_export">Exportovať noci bez mena</string>
-    <string name="settings_export_hint">Pomôž zlepšiť rozpoznávanie: CSV bez mien, dátumov či ID zariadení.</string>
+    <string name="settings_export_hint">Pomôž zlepšiť rozpoznávanie: CSV bez mien, dátumov a ID zariadení; obsahuje pohyb a pulz každých 30 s, ako si sa cítil, a tvoje poznámky.</string>
     <string name="settings_about">O aplikácii</string>
     <string name="settings_open_source">Otvorený zdrojový kód na GitHube</string>
     <string name="settings_licenses">Licencie</string>
@@ -253,7 +253,7 @@
     <string name="check_watch_battery_problem">Pod %1$d %% – nabi hodinky, aby vydržali celú noc a mohli ťa zobudiť.</string>
     <string name="check_watch_pulse">Tep na pozadí (hodinky)</string>
     <string name="check_watch_pulse_problem">Hodinky nesmú v noci merať tvoj tep – na hodinkách nastav povolenie senzorov pre Phase Wake na „Povoliť vždy“.</string>
-    <string name="export_contents_hint">Súbor obsahuje údaje o pohybe a tepe za každú noc – bez mien, dátumov či ID zariadení.</string>
+    <string name="export_contents_hint">Súbor obsahuje za každú noc pohyb a pulz každých 30 s, ako si sa cítil, a tvoje poznámky – bez mien, dátumov a ID zariadení.</string>
     <string name="editor_more">Viac</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Najviac %1$d budíkov – na pridanie nového jeden odstráň.</string>
@@ -316,7 +316,7 @@
     <string name="sounds_hint">Hrá s hlasitosťou médií a skončí najneskôr na začiatku okna budenia.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Nahrávať zvuky</string>
-    <string name="sound_rec_hint">Iba krátke záznamy. Zostávajú v telefóne a po 7 dňoch sa vymažú.</string>
+    <string name="sound_rec_hint">Iba krátke záznamy chrápania, rozprávania a iných zvukov. Zostávajú v telefóne a po 7 dňoch sa vymažú.</string>
     <string name="sound_rec_permission">Na nahrávanie potrebuje Phase Wake mikrofón. Počúva iba počas nahrávania.</string>
     <string name="sound_rec_running">Nahrávajú sa zvuky</string>
     <string name="sound_rec_stop">Zastaviť</string>
@@ -470,7 +470,7 @@
     <string name="widget_description">Tvoj ďalší budík a nočná kontrola.</string>
     <string name="widget_no_alarm">Žiadny budík</string>
     <string name="settings_backup">Zálohovať</string>
-    <string name="settings_backup_hint">Šifrovaný súbor s budíkmi, históriou, poznámkami a nastaveniami. Bez zvukových záznamov a zdravotných údajov.</string>
+    <string name="settings_backup_hint">Súbor zašifrovaný tvojím heslom: budíky, noci vrátane pohybu a pulzu, poznámky a nastavenia. Bez zvukových záznamov.</string>
     <string name="settings_restore">Obnoviť</string>
     <string name="backup_password">Heslo</string>
     <string name="backup_password_repeat">Zopakuj heslo</string>

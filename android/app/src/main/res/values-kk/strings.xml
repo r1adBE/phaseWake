@@ -81,7 +81,7 @@
     <string name="settings_data">Деректерің</string>
     <string name="settings_data_text">Бәрі телефоныңда және сағатыңда қалады. Аккаунт жоқ, сервер жоқ, бақылау жоқ.</string>
     <string name="settings_export">Түндерді есімсіз экспорттау</string>
-    <string name="settings_export_hint">Анықтауды жақсартуға көмектес: атаусыз, күнсіз және құрылғы ID-сіз CSV.</string>
+    <string name="settings_export_hint">Анықтауды жақсартуға көмектес: аты, күні немесе құрылғы ID-і жоқ CSV; әр 30 с сайынғы қозғалыс пен пульс, көңіл күйің және жазбаларың бар.</string>
     <string name="settings_about">Қолданба туралы</string>
     <string name="settings_open_source">GitHub-тағы ашық бастапқы код</string>
     <string name="settings_licenses">Лицензиялар</string>
@@ -234,7 +234,7 @@
     <string name="check_watch_battery_problem">%1$d %%-дан төмен – түнге жетіп, сені оятуы үшін сағатты зарядта.</string>
     <string name="check_watch_pulse">Фондағы пульс (сағат)</string>
     <string name="check_watch_pulse_problem">Сағатқа түнде пульсіңді өлшеуге рұқсат жоқ – сағатта Phase Wake сенсор рұқсатын «Әрқашан рұқсат ету» күйіне қой.</string>
-    <string name="export_contents_hint">Файлда әр түннің қозғалыс және жүрек соғысы қатарлары бар – атаусыз, күнсіз және құрылғы ID-сіз.</string>
+    <string name="export_contents_hint">Файлда әр түн үшін әр 30 с сайынғы қозғалыс пен пульс, көңіл күйің және жазбаларың бар – аты, күні немесе құрылғы ID-і жоқ.</string>
     <string name="editor_more">Тағы</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Ең көбі %1$d оятқыш – жаңасын қосу үшін біреуін жой.</string>
     <string name="notes_title">Бүгінгі түнге жазбалар</string>
@@ -290,7 +290,7 @@
     <string name="sounds_remaining">Қалды: %1$s</string>
     <string name="sounds_hint">Медиа дыбысымен ойнайды және ең кешінде ояту терезесі басталғанда тоқтайды.</string>
     <string name="sound_rec_title">Дыбыстарды жазу</string>
-    <string name="sound_rec_hint">Тек қысқа үзінділер. Олар телефоныңда қалады және 7 күннен кейін жойылады.</string>
+    <string name="sound_rec_hint">Тек қорылдау, сөйлеу және басқа дыбыстардың қысқа үзінділері. Олар телефоныңда қалады және 7 күннен кейін жойылады.</string>
     <string name="sound_rec_permission">Жазу үшін Phase Wake-ке микрофон керек. Ол тек жазу қосулы кезде тыңдайды.</string>
     <string name="sound_rec_running">Дыбыстар жазылып жатыр</string>
     <string name="sound_rec_stop">Тоқтату</string>
@@ -430,7 +430,7 @@
     <string name="widget_description">Келесі оятқышың және түнгі тексеріс.</string>
     <string name="widget_no_alarm">Оятқыш жоқ</string>
     <string name="settings_backup">Сақтық көшірме</string>
-    <string name="settings_backup_hint">Оятқыштар, тарих, жазбалар мен параметрлер бар шифрланған файл. Дыбыс үзінділері мен денсаулық деректерінсіз.</string>
+    <string name="settings_backup_hint">Құпиясөзіңмен шифрланған файл: оятқыштар, қозғалыс пен пульсі бар түндер, жазбалар және параметрлер. Дыбыс үзінділерінсіз.</string>
     <string name="settings_restore">Қалпына келтіру</string>
     <string name="backup_password">Құпиясөз</string>
     <string name="backup_password_repeat">Құпиясөзді қайтала</string>

@@ -11,7 +11,8 @@ import WatchKit
 /// Lernphase).
 ///
 /// Grenzen von watchOS: Den Rekorder kann die App nicht anhalten (er läuft bis zu seinem geplanten Ende weiter, seine
-/// Werte danach werden nicht gelesen), und den Akku prüft sie nur, wenn sie läuft (bei jedem Durchgang, die
+/// Werte danach werden nicht gelesen) und je Nacht nur einmal starten (``AppleNightRecorder``): Läuft er schon für die
+/// Einschlaf-Messung, zeichnet «Nacht aufzeichnen» nur bis zu dessen Ende auf. Den Akku prüft sie nur, wenn sie läuft (bei jedem Durchgang, die
 /// Hintergrund-Aktualisierung ist auf höchstens 30 Min gestellt; watchOS kann sie verzögern).
 extension LearnRecorder {
     /// Warum «Nacht aufzeichnen» nicht startet.
@@ -49,19 +50,36 @@ extension LearnRecorder {
         }
     }
 
-    /// Startet den Rekorder bis `until` (höchstens 12 Std. ab jetzt). Läuft er schon mindestens so lange, kein zweiter
-    /// Aufruf: Apple dokumentiert nicht, was ein zweiter Aufruf während einer Aufzeichnung tut (er könnte sie verkürzen).
-    /// Reicht er weniger weit, wird er verlängert; der Beginn bleibt dann der der laufenden Aufzeichnung.
-    func ensureRecorder(until: Date) {
+    /// Bedürfnisse der kommenden Nacht an den Rekorder, soweit schon bekannt: Lernphase und «Gute Nacht» bis
+    /// ``AppleLearnRecord/afterTarget`` nach der Zielzeit, Einschlaf-Messung bis zum Fensterbeginn.
+    func nightNeeds() -> [Date] {
+        let model = WatchModel.shared
+        guard let plan = model.realPlan, Transient.kindOf(plan.alarmId) == nil else { return [] }
+        var needs: [Date] = []
+        if snapshot.active || model.goodNightActive { needs.append(plan.target.addingTimeInterval(AppleLearnRecord.afterTarget)) }
+        if autoOnset { needs.append(plan.windowStart) }
+        return needs
+    }
+
+    /// Stellt sicher, dass der Rekorder bis `need` aufzeichnet – mit genau einem Aufruf je Nacht (``AppleNightRecorder``,
+    /// Entscheid r1AD 10.11.2026): Beim ersten Start gilt das späteste schon bekannte Bedürfnis der Nacht
+    /// (`nightNeeds`), höchstens 12 Std. Läuft er schon, kein zweiter Aufruf (Apple dokumentiert nicht, was einer während
+    /// einer Aufzeichnung tut; er könnte sie verkürzen). Reicht er nicht bis `need`, bleibt es dabei (einmal ins Protokoll).
+    func ensureRecorder(until need: Date) {
         let now = Date()
-        let end = min(until, now.addingTimeInterval(NightRecording.maxDuration))
-        let span = recorderSpan
-        if let span, span.until > now, span.until >= end { return }
-        guard end > now else { return }
-        CMSensorRecorder().recordAccelerometer(forDuration: end.timeIntervalSince(now))
-        let from = span.flatMap { $0.until > now ? $0.from : nil } ?? now
-        SettingsFile.watchSession.set(from.timeIntervalSince1970, forKey: Self.recorderFromKey)
-        SettingsFile.watchSession.set(end.timeIntervalSince1970, forKey: Self.recorderUntilKey)
+        switch AppleNightRecorder.decide(now: now, need: need, others: nightNeeds(), runningUntil: recorderSpan?.until) {
+        case .running, .nothing:
+            return
+        case .short(let until, let needed):
+            guard loggedShortNeed != needed else { return }
+            loggedShortNeed = needed
+            DiagStore.shared.log(.measureStart, "recorder until \(Format.time(until)), needed \(Format.time(needed)): kept, no second call")
+        case .start(let end):
+            CMSensorRecorder().recordAccelerometer(forDuration: end.timeIntervalSince(now))
+            SettingsFile.watchSession.set(now.timeIntervalSince1970, forKey: Self.recorderFromKey)
+            SettingsFile.watchSession.set(end.timeIntervalSince1970, forKey: Self.recorderUntilKey)
+            DiagStore.shared.log(.measureStart, "recorder start until \(Format.time(end))")
+        }
     }
 
     // MARK: Starten und stoppen

@@ -81,7 +81,7 @@
     <string name="settings_data">Məlumatların</string>
     <string name="settings_data_text">Hər şey telefonunda və saatında qalır. Hesab yox, server yox, izləmə yox.</string>
     <string name="settings_export">Gecələri adsız ixrac et</string>
-    <string name="settings_export_hint">Aşkarlamanı yaxşılaşdırmağa kömək et: adsız, tarixsiz və cihaz ID-siz CSV.</string>
+    <string name="settings_export_hint">Aşkarlamanı yaxşılaşdırmağa kömək et: adsız, tarixsiz və cihaz ID-siz CSV; hər 30 s üçün hərəkət və nəbz, özünü necə hiss etdiyin və qeydlərin daxildir.</string>
     <string name="settings_about">Haqqında</string>
     <string name="settings_open_source">GitHub-da açıq mənbə</string>
     <string name="settings_licenses">Lisenziyalar</string>
@@ -234,7 +234,7 @@
     <string name="check_watch_battery_problem">%1$d %%-dən aşağı – gecəyə çatsın və səni oyada bilsin deyə saatını doldur.</string>
     <string name="check_watch_pulse">Arxa planda nəbz (saat)</string>
     <string name="check_watch_pulse_problem">Saata gecə nəbzini ölçməyə icazə verilmir – saatda Phase Wake üçün sensor icazəsini “Həmişə icazə verin” et.</string>
-    <string name="export_contents_hint">Faylda hər gecə üçün hərəkət və nəbz sıraları var – adsız, tarixsiz və cihaz ID-siz.</string>
+    <string name="export_contents_hint">Faylda hər gecə üçün hər 30 s-lik hərəkət və nəbz, özünü necə hiss etdiyin və qeydlərin var – adsız, tarixsiz və cihaz ID-siz.</string>
     <string name="editor_more">Daha çox</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Ən çox %1$d siqnal – yenisini əlavə etmək üçün birini sil.</string>
     <string name="notes_title">Bu gecə üçün qeydlər</string>
@@ -290,7 +290,7 @@
     <string name="sounds_remaining">Qalıb: %1$s</string>
     <string name="sounds_hint">Media səsi ilə oxuyur və ən gec oyanma pəncərən başlayanda dayanır.</string>
     <string name="sound_rec_title">Səsləri yaz</string>
-    <string name="sound_rec_hint">Yalnız qısa kliplər. Onlar telefonunda qalır və 7 gündən sonra silinir.</string>
+    <string name="sound_rec_hint">Yalnız xoruldama, danışıq və digər səslərin qısa klipləri. Onlar telefonunda qalır və 7 gündən sonra silinir.</string>
     <string name="sound_rec_permission">Yazmaq üçün Phase Wake-ə mikrofon lazımdır. O, yalnız yazma açıq olanda dinləyir.</string>
     <string name="sound_rec_running">Səslər yazılır</string>
     <string name="sound_rec_stop">Dayandır</string>
@@ -430,7 +430,7 @@
     <string name="widget_description">Növbəti siqnalın və gecə yoxlaması.</string>
     <string name="widget_no_alarm">Siqnal yoxdur</string>
     <string name="settings_backup">Ehtiyat nüsxə</string>
-    <string name="settings_backup_hint">Siqnallar, tarixçə, qeydlər və ayarlarla şifrələnmiş fayl. Səs klipləri və sağlamlıq məlumatları olmadan.</string>
+    <string name="settings_backup_hint">Parolunla şifrələnmiş fayl: siqnallar, hərəkət və nəbzlə birlikdə gecələr, qeydlər və ayarlar. Səs klipləri olmadan.</string>
     <string name="settings_restore">Bərpa et</string>
     <string name="backup_password">Parol</string>
     <string name="backup_password_repeat">Parolu təkrarla</string>

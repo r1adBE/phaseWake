@@ -90,7 +90,7 @@
     <string name="settings_data">Idatha yakho</string>
     <string name="settings_data_text">Konke kuhlala efonini nasewashini lakho. Ayikho i-akhawunti, ayikho iseva, akukho ukulandelwa.</string>
     <string name="settings_export">Thumela ubusuku ngaphandle kwegama</string>
-    <string name="settings_export_hint">Siza ukuthuthukisa ukutholwa: i-CSV ngaphandle kwamagama, izinsuku noma ama-ID edivayisi.</string>
+    <string name="settings_export_hint">Siza ukuthuthukisa ukubona: i-CSV engenawo amagama, izinsuku noma ama-ID edivayisi; iqukethe ukunyakaza nokushaya kwenhliziyo njalo ngemizuzwana engu-30, indlela obuzizwa ngayo kanye namanothi akho.</string>
     <string name="settings_about">Mayelana</string>
     <string name="settings_open_source">Umthombo ovulekile ku-GitHub</string>
     <string name="settings_licenses">Amalayisense</string>
@@ -244,7 +244,7 @@
     <string name="check_watch_battery_problem">Ngaphansi kuka-%1$d %% – shaja iwashi lakho ukuze lihlale ubusuku bonke futhi likuvuse.</string>
     <string name="check_watch_pulse">Ukushaya kwenhliziyo ngemuva (iwashi)</string>
     <string name="check_watch_pulse_problem">Iwashi alivunyelwe ukukala ukushaya kwenhliziyo yakho ebusuku – ewashini, setha imvume yenzwa ye-Phase Wake ibe “Vumela ngaso sonke isikhathi”.</string>
-    <string name="export_contents_hint">Ifayela linochungechunge lokunyakaza nokushaya kwenhliziyo lobusuku ngabunye – ngaphandle kwamagama, izinsuku noma ama-ID edivayisi.</string>
+    <string name="export_contents_hint">Ifayela liqukethe, ngobusuku ngabunye, ukunyakaza nokushaya kwenhliziyo njalo ngemizuzwana engu-30, indlela obuzizwa ngayo kanye namanothi akho – ngaphandle kwamagama, izinsuku noma ama-ID edivayisi.</string>
     <string name="editor_more">Okwengeziwe</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Kufika kuma-alamu angu-%1$d – susa eyodwa ukuze ungeze entsha.</string>
@@ -303,7 +303,7 @@
     <string name="sounds_hint">Idlala ngevolumu yemidiya futhi iyama kamuva kakhulu lapho isikhala sakho sokuvuka siqala.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Qopha imisindo</string>
-    <string name="sound_rec_hint">Iziqeshana ezimfushane kuphela. Zihlala efonini yakho futhi zisuswa ngemva kwezinsuku ezi-7.</string>
+    <string name="sound_rec_hint">Iziqeshana ezimfushane kuphela zokuhona, ukukhuluma neminye imisindo. Zihlala efonini yakho futhi zisuswa ngemva kwezinsuku ezi-7.</string>
     <string name="sound_rec_permission">Ukuze iqophe, i-Phase Wake idinga imakrofoni. Ilalela kuphela lapho ukuqopha kuvuliwe.</string>
     <string name="sound_rec_running">Kuqoshwa imisindo</string>
     <string name="sound_rec_stop">Misa</string>
@@ -445,7 +445,7 @@
     <string name="widget_description">I-alamu yakho elandelayo nokuhlola kobusuku.</string>
     <string name="widget_no_alarm">Ayikho i-alamu</string>
     <string name="settings_backup">Yenza ikhophi yasenqolobaneni</string>
-    <string name="settings_backup_hint">Ifayela elibethelwe elinama-alamu, umlando, amanothi nezilungiselelo. Ngaphandle kweziqeshana zomsindo nedatha yezempilo.</string>
+    <string name="settings_backup_hint">Ifayela elibethelwe ngephasiwedi yakho: ama-alamu, ubusuku kanye nokunyakaza nokushaya kwenhliziyo, amanothi kanye nezilungiselelo. Ngaphandle kweziqeshana zomsindo.</string>
     <string name="settings_restore">Buyisela</string>
     <string name="backup_password">Iphasiwedi</string>
     <string name="backup_password_repeat">Phinda iphasiwedi</string>

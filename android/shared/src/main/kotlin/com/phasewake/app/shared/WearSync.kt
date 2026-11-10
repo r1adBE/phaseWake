@@ -6,38 +6,110 @@ import com.phasewake.app.core.Codec
 import com.phasewake.app.core.HolidayList
 import com.phasewake.app.core.Holidays
 import com.phasewake.app.core.NightRecord
-import com.phasewake.app.core.SleepGoal
 import com.google.android.gms.common.api.ApiException
 import android.net.Uri
 import com.google.android.gms.wearable.CapabilityClient
+import com.google.android.gms.wearable.ChannelClient
 import com.google.android.gms.wearable.DataClient
 import com.google.android.gms.wearable.DataMapItem
 import com.google.android.gms.wearable.DataMap
-import com.google.android.gms.wearable.PutDataMapRequest
-import com.google.android.gms.wearable.PutDataRequest
 import com.google.android.gms.wearable.Wearable
 import kotlinx.coroutines.tasks.await
 
 /**
- * Schickt Wecker, Nächte und Weck-Ereignisse an die Gegenseite.
+ * Schickt Wecker, Nächte und Weck-Ereignisse an die Gegenseite ([peer]: auf der Uhr das Handy, sonst die Uhr).
+ *
+ * Inhalte mit persönlichen Daten gehen über die Warteschlange [Outbox] als Nachricht direkt an das verbundene Gerät
+ * (bestätigt, bis dahin wiederholt), nicht als Datenpaket, das Google in der Cloud sichert (Audit C2). Für eine Uhr mit
+ * älterem Stand ([legacyWatch]) legt das Handy Wecker und Einstellungen zusätzlich wie früher als Paket ab, und es liest
+ * die früheren Pakete älterer Geräte weiter ([fetchAlarms], [fetchNights] …) und löscht sie danach.
  *
  * Fehler (keine Uhr gekoppelt, Wear-Dienste fehlen) werden geloggt und nicht weitergereicht:
  * Beide Geräte funktionieren auch allein.
  */
-class WearSync(context: Context) {
+class WearSync(context: Context, private val peer: String = Outbox.peer(context)) {
     private val app = context.applicationContext
     private val dataClient by lazy { Wearable.getDataClient(app) }
     private val messageClient by lazy { Wearable.getMessageClient(app) }
     private val capabilityClient by lazy { Wearable.getCapabilityClient(app) }
+    private val outbox by lazy { Outbox.forContext(app) }
 
+    /** Wecker an die Gegenseite (Warteschlange); für eine ältere Uhr zusätzlich als Paket. */
     suspend fun publishAlarms(snapshot: AlarmSnapshot) = guarded("Wecker senden") {
-        dataClient.putDataItem(alarmsRequest(snapshot)).await()
+        outbox.enqueue(QueueMessages.KEY_ALARMS, DataLayer.PATH_MSG_ALARMS, peer, QueueMessages.encodeAlarms(snapshot))
+        if (legacyWatch()) dataClient.putDataItem(alarmsRequest(snapshot)).await()
     }
 
     /**
-     * Holt den neuesten Weckerstand, der im Data Layer liegt (beide Geräte). Nötig, weil Änderungen nur
-     * bei einer Änderung gemeldet werden: Eine frisch installierte Uhr bekäme bestehende Wecker sonst nie.
-     * `null`, wenn nichts da ist oder die Wear-Dienste fehlen.
+     * Ob die Uhr einen Stand vor der Warteschlange meldet ([DataLayer.PROTOCOL_MESSAGES]): Dann braucht sie Wecker und
+     * Einstellungen noch als Paket. Nur auf dem Handy; ohne bekannte Uhr nein.
+     */
+    suspend fun legacyWatch(): Boolean = peer == DataLayer.CAPABILITY_WATCH && (watchProtocol()?.let { it < DataLayer.PROTOCOL_MESSAGES } ?: false)
+
+    /** Sendet die wartenden Einträge der Warteschlange erneut (Gegenseite erreichbar, App-Start). */
+    suspend fun flush() = guarded("Warteschlange senden") { outbox.flush() }
+
+    /** Bittet die Gegenseite, ihren aktuellen Stand einzureihen ([DataLayer.PATH_SYNC_REQUEST]). */
+    suspend fun requestSync() = message(peer, DataLayer.PATH_SYNC_REQUEST)
+
+    /**
+     * Empfangene Nachricht der Warteschlange von [node]: [handle] verarbeitet den Text; gelingt das (kein Fehler),
+     * bestätigt es den Empfang ([DataLayer.PATH_ACK]). Danach eigene wartende Einträge senden: Die Gegenseite ist ja da.
+     * Ohne Kennung (unlesbar) nichts.
+     */
+    suspend fun receive(node: String, data: ByteArray?, handle: suspend (String) -> Unit) {
+        val (id, body) = Outbox.open(data) ?: return
+        try {
+            handle(body)
+        } catch (e: Exception) {
+            if (e is kotlinx.coroutines.CancellationException) throw e
+            Log.w(TAG, "Empfangener Eintrag nicht verarbeitet", e)
+            return
+        }
+        guarded("Empfang bestätigen") { messageClient.sendMessage(node, DataLayer.PATH_ACK, id.encodeToByteArray()).await() }
+        flush()
+    }
+
+    /** Kanal der Gegenseite (grosser Eintrag der Warteschlange) ganz lesen und schliessen; `null`, wenn das scheitert. */
+    suspend fun readChannel(channel: ChannelClient.Channel): ByteArray? {
+        val client = Wearable.getChannelClient(app)
+        return try {
+            client.getInputStream(channel).await().use { it.readBytes() }
+        } catch (e: Exception) {
+            if (e is kotlinx.coroutines.CancellationException) throw e
+            Log.i(TAG, "Kanal nicht lesbar", e)
+            null
+        } finally {
+            client.close(channel)
+        }
+    }
+
+    /** Bestätigung der Gegenseite ([DataLayer.PATH_ACK]): Eintrag aus der Warteschlange entfernen. */
+    suspend fun acked(data: ByteArray?) {
+        val id = DataLayer.text(data).takeIf { it.isNotEmpty() } ?: return
+        outbox.acked(id)
+    }
+
+    /** Uhr: Einträge der Warteschlange vor «Verlauf löschen» ([before], ms) verwerfen (Nächte, Aufzeichnungen). */
+    suspend fun dropHistory(before: Long) {
+        outbox.drop(QueueMessages.KEY_NIGHT, before)
+        outbox.drop(QueueMessages.KEY_RECORDING, before)
+    }
+
+    /**
+     * Einmalige Umstellung auf die Warteschlange: eigene Pakete der früheren Wege aus dem Data Layer löschen; Nächte,
+     * Aufzeichnungen, frühere Zielzeit und Aufzeichnungs-Stand der Uhr vorher einreihen, damit nichts verloren geht. Auf
+     * dem Handy erst, wenn die Uhr die Warteschlange kennt ([legacyWatch]).
+     */
+    suspend fun migrateTransport() = guarded("Umstellung auf Nachrichten") {
+        if (legacyWatch()) return@guarded
+        val local = Wearable.getNodeClient(app).localNode.await().id
+        if (outbox.migrateOnce({ QueueMessages.legacyItems(dataClient, local, peer) }, { dataClient.deleteDataItems(it).await() })) Log.i(TAG, "Umstellung auf Nachrichten erledigt")
+    }
+
+    /**
+     * Holt den neuesten Weckerstand, der als früheres Paket im Data Layer liegt (ältere Gegenseite). Den Stand einer
+     * neuen Gegenseite holt [requestSync]. `null`, wenn nichts da ist oder die Wear-Dienste fehlen.
      */
     suspend fun fetchAlarms(): AlarmSnapshot? = try {
         val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_ALARMS).build()).await()
@@ -51,12 +123,9 @@ class WearSync(context: Context) {
         null
     }
 
-    /**
-     * Pfad mit Fensterbeginn und Kennung: Zwei Wecker mit gleichem Fensterbeginn überschreiben sich
-     * nicht. Das Handy liest nach Präfix, auch ältere Pfade nur mit Fensterbeginn.
-     */
+    /** Uhr: eine Nacht ans Handy (Warteschlange, Schlüssel mit Fensterbeginn und Kennung). */
     suspend fun publishNight(night: NightRecord) = guarded("Nacht senden") {
-        dataClient.putDataItem(nightRequest(night)).await()
+        outbox.enqueue(QueueMessages.nightKey(night), DataLayer.PATH_MSG_NIGHT, peer, Codec.encodeNight(night))
     }
 
     /**
@@ -72,12 +141,12 @@ class WearSync(context: Context) {
         return stored
     }
 
-    /** Uhr: frühere Zielzeit aus dem Einschlaf-Modus ans Handy, als Paket ([OnsetShift], Review K-07). */
+    /** Uhr: frühere Zielzeit aus dem Einschlaf-Modus ans Handy ([OnsetShift], Review K-07), über die Warteschlange. */
     suspend fun publishOnsetShift(shift: OnsetShift) = guarded("Einschlaf-Zielzeit senden") {
-        dataClient.putDataItem(OnsetShift.request(shift)).await()
+        outbox.enqueue(QueueMessages.KEY_ONSET_SHIFT, DataLayer.PATH_MSG_ONSET_SHIFT, peer, shift.encode())
     }
 
-    /** Handy: neueste abgelegte frühere Zielzeit der Uhr (Review N-1, auch nach einem Prozessende); `null`, wenn keine da ist. */
+    /** Handy: frühere Zielzeit einer älteren Uhr aus dem Data Layer (Review N-1); `null`, wenn keine da ist. */
     suspend fun fetchOnsetShift(): OnsetShift? = try {
         val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_ONSET_SHIFT).build()).await()
         try {
@@ -138,12 +207,13 @@ class WearSync(context: Context) {
         null
     }
 
-    /** Handy: Feiertage an die Uhren (als Paket, damit auch eine gerade getrennte Uhr sie bekommt). */
+    /** Handy: Feiertage an die Uhren (Warteschlange; für eine ältere Uhr zusätzlich als Paket). */
     suspend fun publishHolidays(list: HolidayList, updatedAt: Long) = guarded("Feiertage senden") {
-        dataClient.putDataItem(holidaysRequest(list, updatedAt)).await()
+        outbox.enqueue(QueueMessages.KEY_HOLIDAYS, DataLayer.PATH_MSG_HOLIDAYS, peer, "$updatedAt\n${Holidays.encode(list)}")
+        if (legacyWatch()) dataClient.putDataItem(holidaysRequest(list, updatedAt)).await()
     }
 
-    /** Uhr: zuletzt abgelegte Feiertage mit Zeitpunkt; `null`, wenn nichts da ist oder die Wear-Dienste fehlen. */
+    /** Uhr: Feiertage eines älteren Handys aus dem Data Layer mit Zeitpunkt; `null`, wenn nichts da ist. */
     suspend fun fetchHolidays(): Pair<HolidayList, Long>? = try {
         val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_HOLIDAYS).build()).await()
         try {
@@ -156,12 +226,13 @@ class WearSync(context: Context) {
         null
     }
 
-    /** Handy: Schlafziel ([minutes]) mit Zeitpunkt der Änderung an die Uhren, als Paket wie die Feiertage. */
+    /** Handy: Schlafziel ([minutes]) mit Zeitpunkt der Änderung an die Uhren, wie die Feiertage. */
     suspend fun publishSleepGoal(minutes: Int, updatedAt: Long) = guarded("Schlafziel senden") {
-        dataClient.putDataItem(sleepGoalRequest(minutes, updatedAt)).await()
+        outbox.enqueue(QueueMessages.KEY_SLEEP_GOAL, DataLayer.PATH_MSG_SLEEP_GOAL, peer, "$minutes|$updatedAt")
+        if (legacyWatch()) dataClient.putDataItem(sleepGoalRequest(minutes, updatedAt)).await()
     }
 
-    /** Uhr: zuletzt abgelegtes Schlafziel mit Zeitpunkt; `null`, wenn nichts da ist oder die Wear-Dienste fehlen. */
+    /** Uhr: Schlafziel eines älteren Handys aus dem Data Layer mit Zeitpunkt; `null`, wenn nichts da ist. */
     suspend fun fetchSleepGoal(): Pair<Int, Long>? = try {
         val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_SLEEP_GOAL).build()).await()
         try {
@@ -174,12 +245,13 @@ class WearSync(context: Context) {
         null
     }
 
-    /** Handy: Schalter der Einschlaf-Messung am Abend mit Zeitpunkt der Änderung an die Uhren, als Paket wie das Schlafziel. */
+    /** Handy: Schalter der Einschlaf-Messung am Abend mit Zeitpunkt der Änderung an die Uhren, wie das Schlafziel. */
     suspend fun publishAutoOnset(enabled: Boolean, updatedAt: Long) = guarded("Einschlaf-Messung senden") {
-        dataClient.putDataItem(autoOnsetRequest(enabled, updatedAt)).await()
+        outbox.enqueue(QueueMessages.KEY_AUTO_ONSET, DataLayer.PATH_MSG_AUTO_ONSET, peer, "${if (enabled) 1 else 0}|$updatedAt")
+        if (legacyWatch()) dataClient.putDataItem(autoOnsetRequest(enabled, updatedAt)).await()
     }
 
-    /** Uhr: zuletzt abgelegter Schalter der Einschlaf-Messung mit Zeitpunkt; `null`, wenn nichts da ist oder die Wear-Dienste fehlen. */
+    /** Uhr: Schalter eines älteren Handys aus dem Data Layer mit Zeitpunkt; `null`, wenn nichts da ist. */
     suspend fun fetchAutoOnset(): Pair<Boolean, Long>? = try {
         val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_AUTO_ONSET).build()).await()
         try {
@@ -219,9 +291,8 @@ class WearSync(context: Context) {
     suspend fun delete(uri: Uri) = guarded("Paket entfernen") { dataClient.deleteDataItems(uri).await() }
 
     /**
-     * Handy: Nächte, die die Uhr schon abgelegt hat, mit ihrer Adresse zum Löschen nach dem Speichern.
-     * Nötig, wenn die Handy-App erst nach der Uhr-App installiert wurde: Bestehende Pakete werden
-     * sonst nicht gemeldet. Leer, wenn nichts da ist oder die Wear-Dienste fehlen.
+     * Handy: Nächte, die eine ältere Uhr als Paket abgelegt hat, mit ihrer Adresse zum Löschen nach dem Speichern.
+     * Leer, wenn nichts da ist oder die Wear-Dienste fehlen.
      */
     suspend fun fetchNights(): List<Pair<NightRecord, Uri>> = try {
         val items = dataClient.getDataItems(
@@ -290,110 +361,8 @@ class WearSync(context: Context) {
         }
     }
 
-    companion object {
+    /** Formate der Datenpakete (früherer Weg und Uhr-Status), siehe [WearPackets]. */
+    companion object : WearPackets() {
         private const val TAG = "WearSync"
-
-        /** Liest ein empfangenes Wecker-Paket. @return `null`, wenn es unlesbar ist. */
-        fun readAlarms(map: DataMap): AlarmSnapshot? = runCatching {
-            AlarmSnapshot(Codec.decodeAlarms(map.getString(DataLayer.KEY_TEXT).orEmpty()), map.getLong(DataLayer.KEY_UPDATED_AT))
-        }.onFailure { Log.w(TAG, "Wecker-Paket unlesbar", it) }.getOrNull()
-
-        /** Paket mit allen Weckern (dringend: die Uhr soll gleich neu planen). */
-        fun alarmsRequest(snapshot: AlarmSnapshot): PutDataRequest = PutDataMapRequest.create(DataLayer.PATH_ALARMS).apply {
-            dataMap.putString(DataLayer.KEY_TEXT, Codec.encodeAlarms(snapshot.alarms))
-            dataMap.putLong(DataLayer.KEY_UPDATED_AT, snapshot.updatedAt)
-        }.asPutDataRequest().setUrgent()
-
-        /** Paket einer Nacht unter «Präfix + Fensterbeginn-Kennung» (siehe [publishNight]). */
-        fun nightRequest(night: NightRecord): PutDataRequest =
-            PutDataMapRequest.create(DataLayer.PATH_NIGHT_PREFIX + night.windowStart.toEpochMilli() + "-" + Uri.encode(night.alarmId)).apply {
-                dataMap.putString(DataLayer.KEY_TEXT, Codec.encodeNight(night))
-            }.asPutDataRequest()
-
-        /**
-         * Status-Paket der Uhr mit den Feldern je Weckerzeile und dem Verbindungs-Stand ([DataLayer.PROTOCOL]) dieser
-         * Version; [battery] und [pulse] fehlen, wenn unbekannt.
-         */
-        fun statusRequest(ready: Boolean, battery: Int?, nowMs: Long, pulse: WatchPulse? = null): PutDataRequest = PutDataMapRequest.create(DataLayer.PATH_WATCH_STATUS).apply {
-            dataMap.putBoolean(DataLayer.KEY_READY, ready)
-            if (battery != null) dataMap.putInt(DataLayer.KEY_BATTERY, battery)
-            pulse?.let { WatchPulse.put(dataMap, it) }
-            dataMap.putInt(DataLayer.KEY_PROTOCOL, DataLayer.PROTOCOL)
-            dataMap.putInt(DataLayer.KEY_ALARM_FIELDS, Codec.ALARM_FIELDS)
-            dataMap.putLong(DataLayer.KEY_UPDATED_AT, nowMs)
-        }.asPutDataRequest().setUrgent()
-
-        /** Paket «Probewecker oder Powernap abgebrochen», siehe [DataLayer.PATH_TRANSIENT_CANCELLED]. */
-        fun transientCancelRequest(alarmId: String, nowMs: Long): PutDataRequest =
-            PutDataMapRequest.create(DataLayer.PATH_TRANSIENT_CANCELLED).apply {
-                dataMap.putString(DataLayer.KEY_TEXT, alarmId)
-                dataMap.putLong(DataLayer.KEY_UPDATED_AT, nowMs)
-            }.asPutDataRequest().setUrgent()
-
-        /** Kennung aus dem Abbruch-Paket; `null`, wenn sie fehlt oder leer ist. */
-        fun readTransientCancel(map: DataMap): String? = map.getString(DataLayer.KEY_TEXT)?.takeIf { it.isNotEmpty() }
-
-        /** Feiertags-Paket für die Uhren. */
-        fun holidaysRequest(list: HolidayList, updatedAt: Long): PutDataRequest = PutDataMapRequest.create(DataLayer.PATH_HOLIDAYS).apply {
-            dataMap.putString(DataLayer.KEY_TEXT, Holidays.encode(list))
-            dataMap.putLong(DataLayer.KEY_UPDATED_AT, updatedAt)
-        }.asPutDataRequest().setUrgent()
-
-        /** Schlafziel-Paket für die Uhren (dringend wie die Feiertage: ändert sich selten, soll aber gleich ankommen). */
-        fun sleepGoalRequest(minutes: Int, updatedAt: Long): PutDataRequest = PutDataMapRequest.create(DataLayer.PATH_SLEEP_GOAL).apply {
-            dataMap.putInt(DataLayer.KEY_SLEEP_GOAL, minutes)
-            dataMap.putLong(DataLayer.KEY_UPDATED_AT, updatedAt)
-        }.asPutDataRequest().setUrgent()
-
-        /** Liest ein Schlafziel-Paket: Minuten (mit [SleepGoal.clamp]; ohne Angabe der Standard) und Zeitpunkt. */
-        fun readSleepGoal(map: DataMap): Pair<Int, Long> =
-            SleepGoal.clamp(map.getInt(DataLayer.KEY_SLEEP_GOAL, SleepGoal.DEFAULT_MINUTES)) to map.getLong(DataLayer.KEY_UPDATED_AT)
-
-        /** Paket des Schalters der Einschlaf-Messung für die Uhren (dringend wie das Schlafziel). */
-        fun autoOnsetRequest(enabled: Boolean, updatedAt: Long): PutDataRequest = PutDataMapRequest.create(DataLayer.PATH_AUTO_ONSET).apply {
-            dataMap.putBoolean(DataLayer.KEY_AUTO_ONSET, enabled)
-            dataMap.putLong(DataLayer.KEY_UPDATED_AT, updatedAt)
-        }.asPutDataRequest().setUrgent()
-
-        /** Liest ein Paket des Schalters: an oder aus (ohne Angabe «an») und Zeitpunkt. */
-        fun readAutoOnset(map: DataMap): Pair<Boolean, Long> =
-            map.getBoolean(DataLayer.KEY_AUTO_ONSET, true) to map.getLong(DataLayer.KEY_UPDATED_AT)
-
-        /** Paket «Verlauf löschen» mit Zeitpunkt. */
-        fun clearRequest(nowMs: Long): PutDataRequest = PutDataMapRequest.create(DataLayer.PATH_CLEAR_HISTORY).apply {
-            dataMap.putLong(DataLayer.KEY_UPDATED_AT, nowMs)
-        }.asPutDataRequest().setUrgent()
-
-        /** Bereit-Meldung aus dem Status-Paket. */
-        fun readReady(map: DataMap): Boolean = map.getBoolean(DataLayer.KEY_READY)
-
-        /** Akkustand aus dem Status-Paket; `null` ohne Angabe oder älter als [maxAgeMs]. */
-        fun readBattery(map: DataMap, nowMs: Long, maxAgeMs: Long): Int? =
-            map.takeIf { it.containsKey(DataLayer.KEY_BATTERY) && nowMs - it.getLong(DataLayer.KEY_UPDATED_AT) <= maxAgeMs }
-                ?.getInt(DataLayer.KEY_BATTERY)
-
-        /** Felder je Weckerzeile aus dem Status-Paket; ohne Angabe (ältere Uhr) 0. */
-        fun readAlarmFields(map: DataMap): Int = if (map.containsKey(DataLayer.KEY_ALARM_FIELDS)) map.getInt(DataLayer.KEY_ALARM_FIELDS) else 0
-
-        /** Verbindungs-Stand der Uhr aus dem Status-Paket; ohne Angabe (Uhr vor dieser Angabe) 0. */
-        fun readProtocol(map: DataMap): Int = if (map.containsKey(DataLayer.KEY_PROTOCOL)) map.getInt(DataLayer.KEY_PROTOCOL) else 0
-
-        /**
-         * Ob die Uhr-App älter ist als die Handy-App (Review O-04): ihr Verbindungs-Stand [watchProtocol] ist kleiner als
-         * [own]. `null` (keine Uhr bekannt) warnt nicht; ein Status ohne Angabe stammt von einer älteren Uhr.
-         */
-        fun watchOutdated(watchProtocol: Int?, own: Int = DataLayer.PROTOCOL): Boolean = watchProtocol != null && watchProtocol < own
-
-        /** Zeitpunkt des Status-Pakets (ms); `null` ohne Angabe. */
-        fun readSeenAt(map: DataMap): Long? = map.getLong(DataLayer.KEY_UPDATED_AT).takeIf { it > 0 }
-
-        /** Liest ein Feiertags-Paket: Liste (tolerant, siehe [Holidays.decode]) und Zeitpunkt. */
-        fun readHolidays(map: DataMap): Pair<HolidayList, Long> =
-            Holidays.decode(map.getString(DataLayer.KEY_TEXT)) to map.getLong(DataLayer.KEY_UPDATED_AT)
-
-        /** Liest ein empfangenes Nacht-Paket. @return `null`, wenn es unlesbar ist. */
-        fun readNight(map: DataMap): NightRecord? = runCatching {
-            Codec.decodeNight(map.getString(DataLayer.KEY_TEXT).orEmpty())
-        }.onFailure { Log.w(TAG, "Nacht-Paket unlesbar", it) }.getOrNull()
     }
 }

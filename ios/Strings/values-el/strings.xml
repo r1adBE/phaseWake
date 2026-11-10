@@ -15,6 +15,8 @@
     <string name="watch_not_armed">Άνοιξε το Phase Wake πριν κοιμηθείς, ώστε το ρολόι σου να ενεργοποιήσει το ξυπνητήρι.</string>
     <string name="check_watch_arm">Το ξυπνητήρι ενεργοποιήθηκε στο ρολόι</string>
     <string name="check_watch_arm_problem">Άνοιξε το Phase Wake στο Apple Watch σου πριν κοιμηθείς. Το watchOS ενεργοποιεί το ξυπνητήρι μόνο όσο η εφαρμογή είναι ανοιχτή.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: το ξυπνητήρι δεν είναι ενεργό – μόνο ειδοποίηση, χωρίς φάσεις ύπνου. Άνοιξε την εφαρμογή του ρολογιού.</string>
+    <string name="watch_evening_reminder">Πάτησε για να ενεργοποιήσεις το ξυπνητήρι για απόψε.</string>
     <string name="night_unmeasured_apple">Τα πρώτα %1$d λ. δεν μετρήθηκαν – το Apple Watch μετρά μόνο τα τελευταία %2$d λ. πριν τον στόχο.</string>
     <string name="settings_licenses_text_apple">Phase Wake: άδεια MIT, © r1adBE.\nΓραμματοσειρά Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nΑναγνώριση ήχων: SoundAnalysis της Apple, ενσωματωμένο στο iOS.\nΉχοι: ελεύθερες ηχογραφήσεις (CC0) από το opengameart.org</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">Επίτρεψε τις χρονικά ευαίσθητες ειδοποιήσεις του Phase Wake στο Apple Watch σου. Αλλιώς δεν μπορεί να σε ξυπνήσει με ειδοποίηση όταν δεν γίνεται μέτρηση.</string>
     <string name="check_watch_state_old">Η κατάσταση του ρολογιού δεν είναι ενημερωμένη – άνοιξε για λίγο το Phase Wake στο ρολόι.</string>
     <string name="editor_sleep_hint_apple">Μετρά από τη στιγμή που αποκοιμιέσαι – πάτησε «Καληνύχτα» στο ρολόι όταν πας για ύπνο. Στο Apple Watch, το Phase Wake εκτιμά πότε αποκοιμιέσαι από τον χρόνο αποκοίμισης που έχει μάθει. Χωρίς πάτημα ισχύει η ώρα που έχεις ορίσει.</string>
-    <string name="auto_onset_hint_apple">Από 1 ώρα πριν την ώρα ύπνου το Apple Watch καταγράφει την κίνησή σου· στην αρχή του παραθύρου αφύπνισης το Phase Wake υπολογίζει πότε αποκοιμήθηκες.</string>
+    <string name="auto_onset_hint_apple">Άνοιξε το Phase Wake στο Apple Watch από 1 ώρα πριν από την ώρα ύπνου (σου το θυμίζει) και από τότε καταγράφει την κίνησή σου· στην αρχή του παραθύρου αφύπνισης, το Phase Wake υπολογίζει πότε αποκοιμήθηκες.</string>
 </resources>

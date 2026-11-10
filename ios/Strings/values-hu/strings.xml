@@ -15,6 +15,8 @@
     <string name="watch_not_armed">Lefekvés előtt nyisd meg a Phase Wake-et, hogy az órád élesíthesse az ébresztőt.</string>
     <string name="check_watch_arm">Ébresztő élesítve az órán</string>
     <string name="check_watch_arm_problem">Lefekvés előtt nyisd meg a Phase Wake-et az Apple Watchodon. A watchOS csak akkor élesíti az ébresztőt, amíg az alkalmazás nyitva van.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: az ébresztő nincs élesítve – csak értesítés, alvási fázisok nélkül. Nyisd meg az óra alkalmazást.</string>
+    <string name="watch_evening_reminder">Koppints a mai éjszakai ébresztő élesítéséhez.</string>
     <string name="night_unmeasured_apple">Az első %1$d p nincs mérve – az Apple Watch csak a célidő előtti utolsó %2$d percet méri.</string>
     <string name="settings_licenses_text_apple">Phase Wake: MIT licenc, © r1adBE.\nManrope betűtípus: SIL Open Font License 1.1, © The Manrope Project Authors.\nHangfelismerés: az Apple SoundAnalysis keretrendszere, az iOS része.\nHangok: szabad felvételek (CC0) az opengameart.org oldalról</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">Engedélyezd a Phase Wake időérzékeny értesítéseit az Apple Watchodon. Különben nem tud értesítéssel ébreszteni, ha nem fut mérés.</string>
     <string name="check_watch_state_old">Az óra állapota elavult – nyisd meg röviden a Phase Wake-et az órán.</string>
     <string name="editor_sleep_hint_apple">Az elalvástól számít – lefekvéskor koppints az órán a „Jó éjszakát” gombra. Az Apple Watchon a Phase Wake a megtanult elalvási idődből becsüli meg, mikor alszol el. Koppintás nélkül a beállított idő érvényes.</string>
-    <string name="auto_onset_hint_apple">Lefekvés előtt 1 órától az Apple Watch rögzíti a mozgásodat; az ébresztési ablak elején a Phase Wake kiszámítja, mikor aludtál el.</string>
+    <string name="auto_onset_hint_apple">Nyisd meg a Phase Wake-et az Apple Watchon lefekvés előtt 1 órával vagy később (az óra emlékeztet), és onnantól rögzíti a mozgásodat; az ébresztési ablak elején a Phase Wake kiszámítja, mikor aludtál el.</string>
 </resources>

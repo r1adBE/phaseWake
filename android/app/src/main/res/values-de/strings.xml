@@ -88,7 +88,7 @@
     <string name="settings_data">Deine Daten</string>
     <string name="settings_data_text">Alles bleibt auf Handy und Uhr. Kein Konto, kein Server, keine Auswertung.</string>
     <string name="settings_export">Nächte ohne Namen exportieren</string>
-    <string name="settings_export_hint">Hilf mit, die Erkennung zu verbessern: CSV ohne Namen, Datum oder Gerätekennung.</string>
+    <string name="settings_export_hint">Hilf mit, die Erkennung zu verbessern: CSV ohne Namen, Datum oder Gerätekennung; enthält Bewegung und Puls je 30 s, Befinden und deine Notizen.</string>
     <string name="settings_about">Über</string>
     <string name="settings_open_source">Open Source auf GitHub</string>
     <string name="settings_licenses">Lizenzen</string>
@@ -242,7 +242,7 @@
     <string name="check_watch_battery_problem">Unter %1$d %% – lade die Uhr, damit sie die Nacht durchhält und dich weckt.</string>
     <string name="check_watch_pulse">Puls im Hintergrund (Uhr)</string>
     <string name="check_watch_pulse_problem">Uhr darf den Puls nachts nicht messen – auf der Uhr bei Phase Wake «Sensoren/Fitness» auf «Immer zulassen» stellen.</string>
-    <string name="export_contents_hint">Die Datei enthält Bewegungs- und Pulsreihen jeder Nacht – ohne Namen, Datum oder Geräte-IDs.</string>
+    <string name="export_contents_hint">Die Datei enthält je Nacht Bewegung und Puls je 30 s, Befinden und deine Notizen – ohne Namen, Datum oder Gerätekennung.</string>
     <string name="editor_more">Mehr</string>
     <string name="home_max_alarms">Höchstens %1$d Wecker – lösche einen, um einen neuen anzulegen.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -303,7 +303,7 @@
     <string name="sounds_hint">Spielt mit der Medienlautstärke und hört spätestens auf, wenn dein Weckfenster beginnt.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Geräusche aufnehmen</string>
-    <string name="sound_rec_hint">Nur kurze Ausschnitte, bleiben auf dem Handy, nach 7 Tagen gelöscht.</string>
+    <string name="sound_rec_hint">Nur kurze Ausschnitte von Schnarchen, Sprechen und anderen Geräuschen, bleiben auf dem Handy, nach 7 Tagen gelöscht.</string>
     <string name="sound_rec_permission">Für die Aufnahme braucht Phase Wake das Mikrofon. Es hört nur zu, solange die Aufnahme läuft.</string>
     <string name="sound_rec_running">Geräusche werden aufgenommen</string>
     <string name="sound_rec_stop">Stoppen</string>
@@ -442,7 +442,7 @@
     <string name="widget_description">Dein nächster Wecker und der Nacht-Check.</string>
     <string name="widget_no_alarm">Kein Wecker</string>
     <string name="settings_backup">Sichern</string>
-    <string name="settings_backup_hint">Verschlüsselte Datei mit Weckern, Verlauf, Notizen und Einstellungen. Ohne Geräusche und Gesundheitsdaten.</string>
+    <string name="settings_backup_hint">Mit deinem Passwort verschlüsselte Datei: Wecker, Nächte samt Bewegung und Puls, Notizen und Einstellungen. Ohne Geräusche.</string>
     <string name="settings_restore">Wiederherstellen</string>
     <string name="backup_password">Passwort</string>
     <string name="backup_password_repeat">Passwort wiederholen</string>

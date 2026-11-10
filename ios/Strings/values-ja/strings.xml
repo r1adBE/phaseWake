@@ -15,6 +15,8 @@
     <string name="watch_not_armed">眠る前にPhase Wakeを開いてください。ウォッチがアラームを有効にできるようになります。</string>
     <string name="check_watch_arm">ウォッチでアラーム有効</string>
     <string name="check_watch_arm_problem">眠る前にApple WatchでPhase Wakeを開いてください。watchOSはアプリが開いている間だけアラームを有効にします。</string>
+    <string name="check_watch_arm_tonight">Apple Watch：アラームが有効になっていません – 通知のみで、睡眠段階はありません。ウォッチのアプリを開いてください。</string>
+    <string name="watch_evening_reminder">タップして今夜のアラームを有効にします。</string>
     <string name="night_unmeasured_apple">最初の%1$d分は未計測 – Apple Watchが計測するのは目標時刻前の最後の%2$d分だけです。</string>
     <string name="settings_licenses_text_apple">Phase Wake: MITライセンス、© r1adBE。\nManropeフォント: SIL Open Font License 1.1、© The Manrope Project Authors。\n音の検出: Apple の SoundAnalysis（iOS に内蔵）。\nサウンド：opengameart.org のフリー録音（CC0）</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">Apple WatchでPhase Wakeの即時通知を許可してください。許可しないと、計測が行われていないときに通知で起こせません。</string>
     <string name="check_watch_state_old">ウォッチの状態が古くなっています – ウォッチでPhase Wakeを少し開いてください。</string>
     <string name="editor_sleep_hint_apple">眠りについた時点から数えます。寝るときにウォッチで「おやすみ」をタップしてください。Apple Watchでは、Phase Wakeが学習した入眠までの時間から寝付いた時刻を推定します。タップしない場合は設定した時刻になります。</string>
-    <string name="auto_onset_hint_apple">就寝時刻の1時間前から、Apple Watchが体の動きを記録します。起床時間幅の始めに、Phase Wakeが寝付いた時刻を割り出します。</string>
+    <string name="auto_onset_hint_apple">就寝時刻の 1 時間前以降に Apple Watch で Phase Wake を開くと（ウォッチが知らせます）、そのときから体動を記録します。起床時間帯の始めに、Phase Wake が入眠時刻を計算します。</string>
 </resources>

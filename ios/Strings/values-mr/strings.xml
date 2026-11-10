@@ -17,6 +17,8 @@
     <string name="watch_not_armed">झोपण्यापूर्वी Phase Wake उघडा, म्हणजे तुमचे घड्याळ अलार्म सक्रिय करू शकेल.</string>
     <string name="check_watch_arm">घड्याळावर अलार्म सक्रिय</string>
     <string name="check_watch_arm_problem">झोपण्यापूर्वी तुमच्या Apple Watch वर Phase Wake उघडा. ॲप उघडे असतानाच watchOS अलार्म सक्रिय करते.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: अलार्म सक्रिय नाही – फक्त सूचना, झोपेचे टप्पे नाहीत. घड्याळावरील ॲप उघडा.</string>
+    <string name="watch_evening_reminder">आजच्या रात्रीचा अलार्म सक्रिय करण्यासाठी टॅप करा.</string>
     <string name="night_unmeasured_apple">पहिली %1$d मि. मोजली नाहीत – Apple Watch लक्ष्यापूर्वीची फक्त शेवटची %2$d मि. मोजते.</string>
     <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
     <string name="settings_licenses_text_apple">Phase Wake: MIT License, © r1adBE.\nManrope फॉन्ट: SIL Open Font License 1.1, © The Manrope Project Authors.\nआवाज ओळख: Apple चे SoundAnalysis, iOS मध्ये अंगभूत.\nआवाज: opengameart.org वरील मुक्त रेकॉर्डिंग (CC0)</string>
@@ -30,5 +32,5 @@
     <string name="check_watch_notifications_problem">तुमच्या Apple Watch वर Phase Wake साठी वेळ-संवेदनशील सूचनांना परवानगी द्या. नाहीतर मोजमाप चालू नसताना ते तुम्हाला सूचनेद्वारे उठवू शकणार नाही.</string>
     <string name="check_watch_state_old">घड्याळाची स्थिती जुनी आहे – घड्याळावर Phase Wake थोडा वेळ उघडा.</string>
     <string name="editor_sleep_hint_apple">झोप लागल्यापासून मोजले जाते – झोपायला जाताना घड्याळावर «शुभ रात्री» टॅप करा. Apple Watch वर Phase Wake शिकलेल्या झोप लागण्याच्या वेळेवरून तुम्ही कधी झोपता याचा अंदाज लावते. टॅप न केल्यास सेट केलेली वेळ लागू होते.</string>
-    <string name="auto_onset_hint_apple">झोपण्याच्या वेळेच्या 1 तास आधीपासून तुमचे Apple Watch हालचाल नोंदवते; उठवण्याच्या कालावधीच्या सुरुवातीला Phase Wake तुम्ही कधी झोपलात ते मोजते.</string>
+    <string name="auto_onset_hint_apple">झोपण्याच्या वेळेच्या 1 तास आधीपासून तुमच्या Apple Watch वर Phase Wake उघडा (घड्याळ आठवण करून देते), तेव्हापासून ते तुमची हालचाल नोंदवते; उठवण्याच्या कालावधीच्या सुरुवातीला तुम्ही कधी झोपलात हे Phase Wake मोजते.</string>
 </resources>

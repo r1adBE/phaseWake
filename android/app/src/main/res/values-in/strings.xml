@@ -87,7 +87,7 @@
     <string name="settings_data">Datamu</string>
     <string name="settings_data_text">Semua tetap di ponsel dan jam tanganmu. Tanpa akun, tanpa server, tanpa pelacakan.</string>
     <string name="settings_export">Ekspor malam tanpa nama</string>
-    <string name="settings_export_hint">Bantu tingkatkan deteksi: CSV tanpa nama, tanggal, atau ID perangkat.</string>
+    <string name="settings_export_hint">Bantu tingkatkan deteksi: CSV tanpa nama, tanggal, atau ID perangkat; berisi gerakan dan detak jantung per 30 detik, perasaanmu, dan catatanmu.</string>
     <string name="settings_about">Tentang</string>
     <string name="settings_open_source">Open source di GitHub</string>
     <string name="settings_licenses">Lisensi</string>
@@ -237,7 +237,7 @@
     <string name="check_watch_battery_problem">Di bawah %1$d %% – isi daya jam tanganmu agar bertahan semalaman dan bisa membangunkanmu.</string>
     <string name="check_watch_pulse">Denyut di latar belakang (jam)</string>
     <string name="check_watch_pulse_problem">Jam tangan tidak boleh mengukur denyut nadimu di malam hari – di jam tangan, setel izin sensor Phase Wake ke “Izinkan sepanjang waktu”.</string>
-    <string name="export_contents_hint">File berisi rangkaian data gerakan dan detak jantung setiap malam – tanpa nama, tanggal, atau ID perangkat.</string>
+    <string name="export_contents_hint">File berisi gerakan dan detak jantung per 30 detik, perasaanmu, dan catatanmu untuk setiap malam – tanpa nama, tanggal, atau ID perangkat.</string>
     <string name="editor_more">Lainnya</string>
     <string name="home_max_alarms">Maksimal %1$d alarm – hapus satu untuk menambahkan yang baru.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -296,7 +296,7 @@
     <string name="sounds_hint">Diputar dengan volume media dan berhenti paling lambat saat jendela bangunmu dimulai.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Rekam suara</string>
-    <string name="sound_rec_hint">Hanya potongan pendek. Tetap di ponselmu dan dihapus setelah 7 hari.</string>
+    <string name="sound_rec_hint">Hanya klip pendek dengkuran, bicara, dan suara lain. Klip tetap di ponselmu dan dihapus setelah 7 hari.</string>
     <string name="sound_rec_permission">Untuk merekam, Phase Wake butuh mikrofon. Mikrofon hanya mendengar selama perekaman aktif.</string>
     <string name="sound_rec_running">Merekam suara</string>
     <string name="sound_rec_stop">Hentikan</string>
@@ -429,7 +429,7 @@
     <string name="widget_description">Alarm berikutnya dan pemeriksaan malam.</string>
     <string name="widget_no_alarm">Tidak ada alarm</string>
     <string name="settings_backup">Cadangkan</string>
-    <string name="settings_backup_hint">File terenkripsi berisi alarm, riwayat, catatan, dan setelan. Tanpa suara dan data kesehatan.</string>
+    <string name="settings_backup_hint">File terenkripsi dengan kata sandimu: alarm, malam beserta gerakan dan detak jantung, catatan, dan setelan. Tanpa klip suara.</string>
     <string name="settings_restore">Pulihkan</string>
     <string name="backup_password">Kata sandi</string>
     <string name="backup_password_repeat">Ulangi kata sandi</string>

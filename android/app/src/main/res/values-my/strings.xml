@@ -88,7 +88,7 @@
     <string name="settings_data">သင့်ဒေတာ</string>
     <string name="settings_data_text">အားလုံး သင့်ဖုန်းနှင့် နာရီပေါ်တွင်သာ ရှိသည်။ အကောင့်မလို၊ ဆာဗာမရှိ၊ ခြေရာခံခြင်းမရှိ။</string>
     <string name="settings_export">ညများကို အမည်မပါဘဲ ထုတ်ယူရန်</string>
-    <string name="settings_export_hint">ရှာဖွေမှု ပိုကောင်းအောင် ကူညီပါ- အမည်၊ ရက်စွဲ သို့မဟုတ် စက် ID မပါသော CSV။</string>
+    <string name="settings_export_hint">သိရှိမှုကို ပိုကောင်းအောင် ကူညီပါ- အမည်၊ ရက်စွဲ သို့မဟုတ် စက် ID မပါသော CSV၊ စက္ကန့် 30 တိုင်း လှုပ်ရှားမှုနှင့် နှလုံးခုန်နှုန်း၊ သင့်ခံစားချက်နှင့် သင့်မှတ်စုများ ပါဝင်သည်။</string>
     <string name="settings_about">အကြောင်း</string>
     <string name="settings_open_source">GitHub ပေါ်ရှိ open source</string>
     <string name="settings_licenses">လိုင်စင်များ</string>
@@ -238,7 +238,7 @@
     <string name="check_watch_battery_problem">%1$d %% အောက် – ညလုံးပေါက် ခံပြီး နှိုးနိုင်ရန် နာရီကို အားသွင်းပါ။</string>
     <string name="check_watch_pulse">နောက်ခံ သွေးခုန်နှုန်း (နာရီ)</string>
     <string name="check_watch_pulse_problem">နာရီသည် ညအချိန် သင့်သွေးခုန်နှုန်းကို တိုင်းခွင့်မရှိပါ – နာရီတွင် Phase Wake ၏ အာရုံခံကိရိယာ ခွင့်ပြုချက်ကို “အချိန်တိုင်း ခွင့်ပြုရန်” သို့ သတ်မှတ်ပါ။</string>
-    <string name="export_contents_hint">ဖိုင်တွင် ညတစ်ညစီ၏ လှုပ်ရှားမှုနှင့် နှလုံးခုန်နှုန်း အစဉ်များ ပါသည် – အမည်၊ ရက်စွဲ သို့မဟုတ် စက် ID မပါ။</string>
+    <string name="export_contents_hint">ဖိုင်တွင် ညတိုင်းအတွက် စက္ကန့် 30 တိုင်း လှုပ်ရှားမှုနှင့် နှလုံးခုန်နှုန်း၊ သင့်ခံစားချက်နှင့် သင့်မှတ်စုများ ပါဝင်သည် – အမည်၊ ရက်စွဲ သို့မဟုတ် စက် ID မပါပါ။</string>
     <string name="editor_more">နောက်ထပ်</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">အများဆုံး နှိုးစက် %1$d ခု – အသစ်ထည့်ရန် တစ်ခု ဖျက်ပါ။</string>
@@ -295,7 +295,7 @@
     <string name="sounds_hint">မီဒီယာအသံဖြင့် ဖွင့်ပြီး နှိုးချိန်အပိုင်း စချိန်တွင် နောက်ဆုံးထား ရပ်သည်။</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">အသံများ မှတ်တမ်းတင်ရန်</string>
-    <string name="sound_rec_hint">အတိုလေးများသာ။ သင့်ဖုန်းပေါ်တွင်သာ ရှိပြီး 7 ရက်အကြာတွင် ဖျက်သည်။</string>
+    <string name="sound_rec_hint">ဟောက်သံ၊ စကားပြောသံနှင့် အခြားအသံများ၏ အတိုလေးများသာ။ သင့်ဖုန်းပေါ်တွင်သာ ရှိပြီး 7 ရက်အကြာတွင် ဖျက်သည်။</string>
     <string name="sound_rec_permission">အသံသွင်းရန် Phase Wake သည် မိုက်ခရိုဖုန်း လိုအပ်သည်။ အသံသွင်းခြင်း ဖွင့်ထားချိန်တွင်သာ နားထောင်သည်။</string>
     <string name="sound_rec_running">အသံများ မှတ်တမ်းတင်နေသည်</string>
     <string name="sound_rec_stop">ရပ်ရန်</string>
@@ -431,7 +431,7 @@
     <string name="widget_description">နောက် နှိုးစက်နှင့် ညဘက် စစ်ဆေးချက်။</string>
     <string name="widget_no_alarm">နှိုးစက် မရှိ</string>
     <string name="settings_backup">အရန်သိမ်းရန်</string>
-    <string name="settings_backup_hint">နှိုးစက်၊ မှတ်တမ်း၊ မှတ်စုနှင့် ဆက်တင်များပါသော ကုဒ်ပြောင်းထားသည့် ဖိုင်။ အသံဖိုင်နှင့် ကျန်းမာရေးဒေတာ မပါ။</string>
+    <string name="settings_backup_hint">သင့်စကားဝှက်ဖြင့် ကုဒ်ဝှက်ထားသော ဖိုင်- နှိုးစက်များ၊ လှုပ်ရှားမှုနှင့် နှလုံးခုန်နှုန်းပါသော ညများ၊ မှတ်စုများနှင့် ဆက်တင်များ။ အသံအပိုင်းအစများ မပါပါ။</string>
     <string name="settings_restore">ပြန်ယူရန်</string>
     <string name="backup_password">စကားဝှက်</string>
     <string name="backup_password_repeat">စကားဝှက် ထပ်ရိုက်ပါ</string>

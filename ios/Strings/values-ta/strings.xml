@@ -15,6 +15,8 @@
     <string name="watch_not_armed">உங்கள் வாட்ச் அலாரத்தைத் தயார்செய்ய, தூங்கச் செல்லும் முன் Phase Wake ஐத் திறவுங்கள்.</string>
     <string name="check_watch_arm">வாட்ச்சில் அலாரம் தயார்</string>
     <string name="check_watch_arm_problem">தூங்கச் செல்லும் முன் உங்கள் Apple Watch இல் Phase Wake ஐத் திறவுங்கள். ஆப்ஸ் திறந்திருக்கும்போது மட்டுமே watchOS அலாரத்தைத் தயார்செய்யும்.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: அலாரம் செயல்படுத்தப்படவில்லை – அறிவிப்பு மட்டும், தூக்க நிலைகள் இல்லை. கடிகாரத்தின் ஆப்ஸைத் திறக்கவும்.</string>
+    <string name="watch_evening_reminder">இன்றிரவு அலாரத்தைச் செயல்படுத்தத் தட்டவும்.</string>
     <string name="night_unmeasured_apple">முதல் %1$d நிமி. அளவிடப்படவில்லை – Apple Watch இலக்குக்கு முந்தைய கடைசி %2$d நிமி. மட்டுமே அளவிடும்.</string>
     <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
     <string name="settings_licenses_text_apple">Phase Wake: MIT உரிமம், © r1adBE.\nManrope எழுத்துரு: SIL Open Font License 1.1, © The Manrope Project Authors.\nஒலி கண்டறிதல்: Apple இன் SoundAnalysis, iOS இல் உள்ளமைந்தது.\nஒலிகள்: opengameart.org இலிருந்து இலவசப் பதிவுகள் (CC0)</string>
@@ -28,5 +30,5 @@
     <string name="check_watch_notifications_problem">உங்கள் Apple Watch இல் Phase Wake க்கு நேர முக்கிய அறிவிப்புகளை அனுமதியுங்கள். இல்லையெனில் அளவீடு நடக்காதபோது அது உங்களை அறிவிப்பின் மூலம் எழுப்ப முடியாது.</string>
     <string name="check_watch_state_old">வாட்ச்சின் நிலை பழையதாக உள்ளது – வாட்ச்சில் Phase Wake-ஐ சிறிது நேரம் திறக்கவும்.</string>
     <string name="editor_sleep_hint_apple">தூங்கியதிலிருந்து எண்ணப்படும் – படுக்கும்போது கடிகாரத்தில் «இனிய இரவு» தட்டவும். Apple Watch இல் Phase Wake கற்றுக்கொண்ட தூங்க ஆகும் நேரத்திலிருந்து நீங்கள் எப்போது தூங்குகிறீர்கள் என மதிப்பிடுகிறது. தட்டாவிட்டால் அமைத்த நேரம் பொருந்தும்.</string>
-    <string name="auto_onset_hint_apple">தூங்கும் நேரத்துக்கு 1 மணிநேரம் முன்பிருந்து உங்கள் Apple Watch அசைவைப் பதிவுசெய்கிறது; எழுப்பும் வரம்பின் தொடக்கத்தில் நீங்கள் எப்போது தூங்கினீர்கள் என Phase Wake கணக்கிடுகிறது.</string>
+    <string name="auto_onset_hint_apple">தூங்கும் நேரத்துக்கு 1 மணிநேரம் முன்பிருந்து உங்கள் Apple Watch-ல் Phase Wake-ஐத் திறந்தால் (கடிகாரம் நினைவூட்டும்), அப்போதிருந்து அது உங்கள் அசைவைப் பதிவு செய்யும்; எழுப்பும் நேர இடைவெளியின் தொடக்கத்தில் நீங்கள் எப்போது தூங்கினீர்கள் என Phase Wake கணக்கிடும்.</string>
 </resources>

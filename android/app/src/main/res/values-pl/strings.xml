@@ -90,7 +90,7 @@
     <string name="settings_data">Twoje dane</string>
     <string name="settings_data_text">Wszystko zostaje na telefonie i zegarku. Bez konta, serwera i śledzenia.</string>
     <string name="settings_export">Eksportuj noce bez imienia</string>
-    <string name="settings_export_hint">Pomóż ulepszyć wykrywanie: CSV bez imion, dat i identyfikatorów urządzeń.</string>
+    <string name="settings_export_hint">Pomóż ulepszyć rozpoznawanie: CSV bez imion, dat i identyfikatorów urządzeń; zawiera ruch i tętno co 30 s, twoje samopoczucie i notatki.</string>
     <string name="settings_about">O aplikacji</string>
     <string name="settings_open_source">Open source na GitHub</string>
     <string name="settings_licenses">Licencje</string>
@@ -252,7 +252,7 @@
     <string name="check_watch_battery_problem">Poniżej %1$d %% – naładuj zegarek, aby wytrzymał całą noc i mógł cię obudzić.</string>
     <string name="check_watch_pulse">Tętno w tle (zegarek)</string>
     <string name="check_watch_pulse_problem">Zegarek nie może mierzyć twojego tętna w nocy – na zegarku ustaw uprawnienie czujników dla Phase Wake na „Zezwalaj zawsze”.</string>
-    <string name="export_contents_hint">Plik zawiera serie ruchu i tętna z każdej nocy – bez imion, dat i identyfikatorów urządzeń.</string>
+    <string name="export_contents_hint">Plik zawiera dla każdej nocy ruch i tętno co 30 s, twoje samopoczucie i notatki – bez imion, dat i identyfikatorów urządzeń.</string>
     <string name="editor_more">Więcej</string>
     <string name="home_max_alarms">Maksymalnie %1$d budzików – usuń jeden, aby dodać nowy.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -317,7 +317,7 @@
     <string name="sounds_hint">Gra z głośnością multimediów i milknie najpóźniej, gdy zaczyna się twoje okno budzenia.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Nagrywaj dźwięki</string>
-    <string name="sound_rec_hint">Tylko krótkie fragmenty. Zostają na telefonie i są usuwane po 7 dniach.</string>
+    <string name="sound_rec_hint">Tylko krótkie fragmenty chrapania, mówienia i innych dźwięków. Zostają na telefonie i są usuwane po 7 dniach.</string>
     <string name="sound_rec_permission">Do nagrywania Phase Wake potrzebuje mikrofonu. Słucha tylko, gdy nagrywanie jest włączone.</string>
     <string name="sound_rec_running">Nagrywanie dźwięków</string>
     <string name="sound_rec_stop">Zatrzymaj</string>
@@ -468,7 +468,7 @@
     <string name="widget_description">Twój następny budzik i kontrola nocy.</string>
     <string name="widget_no_alarm">Brak budzika</string>
     <string name="settings_backup">Kopia zapasowa</string>
-    <string name="settings_backup_hint">Zaszyfrowany plik z budzikami, historią, notatkami i ustawieniami. Bez nagrań i danych zdrowotnych.</string>
+    <string name="settings_backup_hint">Plik zaszyfrowany twoim hasłem: budziki, noce wraz z ruchem i tętnem, notatki i ustawienia. Bez nagrań dźwięków.</string>
     <string name="settings_restore">Przywróć</string>
     <string name="backup_password">Hasło</string>
     <string name="backup_password_repeat">Powtórz hasło</string>

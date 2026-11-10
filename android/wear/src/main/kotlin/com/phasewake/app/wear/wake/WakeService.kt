@@ -66,8 +66,13 @@ class WakeService : LifecycleService() {
         var taskOnPhone: Boolean = false,
         /** Bis hierhin (elapsedRealtime) schaltet eine erste Bestätigung auf «Aufgabe am Handy». */
         var taskAcceptUntil: Long = 0L,
-        /** Einschlafzeit dieser Nacht ([com.phasewake.app.wear.schedule.OnsetStore]); `null` = unbekannt, keine Untergrenze. */
+        /**
+         * Einschlafzeit dieser Nacht ([com.phasewake.app.wear.schedule.OnsetStore]); `null` = unbekannt, dann Untergrenze nur
+         * mit [onsetMeasured].
+         */
         var asleepAt: Instant? = null,
+        /** Gemessen, aber ohne Einschlafzeit: Untergrenze bis 10 Min vor der Zielzeit (fail-closed, `ShortNight`). */
+        var onsetMeasured: Boolean = false,
         /** Schlafziel für die Untergrenze: Schlafdauer im Einschlaf-Modus, sonst das Schlafziel. */
         var goalMinutes: Int = SleepGoal.DEFAULT_MINUTES,
         /**

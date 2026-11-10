@@ -90,7 +90,7 @@
     <string name="settings_data">Les teves dades</string>
     <string name="settings_data_text">Tot es queda al telèfon i al rellotge. Sense compte, sense servidor, sense seguiment.</string>
     <string name="settings_export">Exporta les nits sense nom</string>
-    <string name="settings_export_hint">Ajuda a millorar la detecció: CSV sense noms, dates ni identificadors de dispositiu.</string>
+    <string name="settings_export_hint">Ajuda a millorar la detecció: CSV sense noms, dates ni identificadors de dispositiu; conté moviment i freqüència cardíaca cada 30 s, com et vas sentir i les teves notes.</string>
     <string name="settings_about">Quant a</string>
     <string name="settings_open_source">Codi obert a GitHub</string>
     <string name="settings_licenses">Llicències</string>
@@ -248,7 +248,7 @@
     <string name="check_watch_battery_problem">Menys del %1$d %% – carrega el rellotge perquè aguanti tota la nit i et pugui despertar.</string>
     <string name="check_watch_pulse">Pols en segon pla (rellotge)</string>
     <string name="check_watch_pulse_problem">El rellotge no pot mesurar-te el pols a la nit – al rellotge, posa el permís de sensors de Phase Wake a «Permet sempre».</string>
-    <string name="export_contents_hint">El fitxer conté sèries de moviment i freqüència cardíaca de cada nit – sense noms, dates ni identificadors de dispositiu.</string>
+    <string name="export_contents_hint">El fitxer conté, per a cada nit, moviment i freqüència cardíaca cada 30 s, com et vas sentir i les teves notes – sense noms, dates ni identificadors de dispositiu.</string>
     <string name="editor_more">Més</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Com a màxim %1$d alarmes – suprimeix-ne una per afegir-ne una de nova.</string>
@@ -309,7 +309,7 @@
     <string name="sounds_hint">Sona amb el volum multimèdia i s’atura com a tard quan comença la finestra de despertar.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Enregistra sons</string>
-    <string name="sound_rec_hint">Només fragments curts. Es queden al telèfon i se suprimeixen al cap de 7 dies.</string>
+    <string name="sound_rec_hint">Només fragments curts de roncs, parla i altres sons. Es queden al telèfon i se suprimeixen al cap de 7 dies.</string>
     <string name="sound_rec_permission">Per enregistrar, Phase Wake necessita el micròfon. Només escolta mentre l’enregistrament està activat.</string>
     <string name="sound_rec_running">S’estan enregistrant sons</string>
     <string name="sound_rec_stop">Atura</string>
@@ -457,7 +457,7 @@
     <string name="widget_description">La teva propera alarma i el control nocturn.</string>
     <string name="widget_no_alarm">Cap alarma</string>
     <string name="settings_backup">Còpia de seguretat</string>
-    <string name="settings_backup_hint">Fitxer xifrat amb alarmes, historial, notes i configuració. Sense fragments de so ni dades de salut.</string>
+    <string name="settings_backup_hint">Fitxer xifrat amb la teva contrasenya: alarmes, nits amb moviment i freqüència cardíaca, notes i configuració. Sense fragments de so.</string>
     <string name="settings_restore">Restaura</string>
     <string name="backup_password">Contrasenya</string>
     <string name="backup_password_repeat">Repeteix la contrasenya</string>

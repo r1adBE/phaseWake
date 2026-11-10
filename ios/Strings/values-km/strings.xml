@@ -17,6 +17,8 @@
     <string name="watch_not_armed">បើក Phase Wake មុនពេលចូលដេក ដើម្បីឲ្យនាឡិកាអាចកំណត់ម៉ោងរោទ៍។</string>
     <string name="check_watch_arm">ម៉ោងរោទ៍បានកំណត់លើនាឡិកា</string>
     <string name="check_watch_arm_problem">បើក Phase Wake លើ Apple Watch មុនពេលចូលដេក។ watchOS កំណត់ម៉ោងរោទ៍បានតែពេលកម្មវិធីបើកប៉ុណ្ណោះ។</string>
+    <string name="check_watch_arm_tonight">Apple Watch៖ នាឡិការោទ៍មិនទាន់បើកទេ – មានតែការជូនដំណឹង គ្មានដំណាក់កាលគេងទេ។ បើកកម្មវិធីនាឡិកា។</string>
+    <string name="watch_evening_reminder">ចុចដើម្បីបើកនាឡិការោទ៍សម្រាប់យប់នេះ។</string>
     <string name="night_unmeasured_apple">%1$d នាទីដំបូងមិនបានវាស់ – Apple Watch វាស់តែ %2$d នាទីចុងក្រោយមុនម៉ោងគោលដៅ។</string>
     <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
     <string name="settings_licenses_text_apple">Phase Wake៖ អាជ្ញាប័ណ្ណ MIT, © r1adBE។\nពុម្ពអក្សរ Manrope៖ SIL Open Font License 1.1, © The Manrope Project Authors។\nការរកឃើញសំឡេង៖ SoundAnalysis របស់ Apple ដែលមានស្រាប់ក្នុង iOS។\nសំឡេង៖ ការថតឥតគិតថ្លៃ (CC0) ពី opengameart.org</string>
@@ -30,5 +32,5 @@
     <string name="check_watch_notifications_problem">អនុញ្ញាតការជូនដំណឹងដែលពាក់ព័ន្ធនឹងពេលវេលាសម្រាប់ Phase Wake នៅលើ Apple Watch របស់អ្នក។ បើមិនដូច្នោះទេ វាមិនអាចដាស់អ្នកដោយការជូនដំណឹងបានទេ នៅពេលគ្មានការវាស់កំពុងដំណើរការ។</string>
     <string name="check_watch_state_old">ស្ថានភាពនាឡិកាហួសសម័យ – បើក Phase Wake នៅលើនាឡិកាមួយភ្លែត។</string>
     <string name="editor_sleep_hint_apple">រាប់ពីពេលអ្នកដេកលក់ – ចុច «រាត្រីសួស្តី» នៅលើនាឡិកា ពេលអ្នកចូលគេង។ នៅលើ Apple Watch, Phase Wake ប៉ាន់ស្មានពេលដែលអ្នកលង់លក់ ពីរយៈពេលលង់លក់ដែលវាបានរៀន។ បើមិនចុច ពេលវេលាដែលបានកំណត់នឹងត្រូវប្រើ។</string>
-    <string name="auto_onset_hint_apple">ចាប់ពី 1 ម៉ោងមុនពេលគេង Apple Watch ថតចលនារបស់អ្នក; នៅដើមចន្លោះពេលដាស់ Phase Wake គណនាថាអ្នកដេកលក់ពេលណា។</string>
+    <string name="auto_onset_hint_apple">បើក Phase Wake នៅលើ Apple Watch របស់អ្នកចាប់ពី 1 ម៉ោងមុនពេលចូលគេង (នាឡិកានឹងរំលឹកអ្នក) ហើយវានឹងកត់ត្រាចលនារបស់អ្នកចាប់ពីពេលនោះ។ នៅដើមចន្លោះពេលដាស់ Phase Wake គណនាថាអ្នកដេកលក់នៅពេលណា។</string>
 </resources>

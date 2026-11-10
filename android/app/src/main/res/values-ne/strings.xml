@@ -90,7 +90,7 @@
     <string name="settings_data">तिम्रो डेटा</string>
     <string name="settings_data_text">सबै कुरा तिम्रो फोन र घडीमै रहन्छ। न खाता, न सर्भर, न ट्र्याकिङ।</string>
     <string name="settings_export">रातहरू नाम बिना निर्यात गर</string>
-    <string name="settings_export_hint">पहिचान सुधार्न मद्दत गर: नाम, मिति वा डिभाइस ID बिनाको CSV।</string>
+    <string name="settings_export_hint">पहिचान सुधार्न मद्दत गर: नाम, मिति वा उपकरण ID बिनाको CSV; यसमा हरेक 30 सेकेन्डको चालचलन र मुटुको धड्कन, तिमीलाई कस्तो लाग्यो र तिम्रा नोटहरू छन्।</string>
     <string name="settings_about">बारेमा</string>
     <string name="settings_open_source">GitHub मा खुला स्रोत</string>
     <string name="settings_licenses">लाइसेन्स</string>
@@ -244,7 +244,7 @@
     <string name="check_watch_battery_problem">%1$d %% भन्दा कम – रातभर चलोस् र तिमीलाई ब्युँझाउन सकोस् भनेर घडी चार्ज गर।</string>
     <string name="check_watch_pulse">पृष्ठभूमिमा पल्स (घडी)</string>
     <string name="check_watch_pulse_problem">घडीलाई रातमा तिम्रो पल्स नाप्ने अनुमति छैन – घडीमा Phase Wake को सेन्सर अनुमति “सधैँ अनुमति दिनुहोस्” मा सेट गर।</string>
-    <string name="export_contents_hint">फाइलमा हरेक रातको चाल र मुटुको धड्कनको शृङ्खला हुन्छ – नाम, मिति वा डिभाइस ID बिना।</string>
+    <string name="export_contents_hint">फाइलमा हरेक रातको हरेक 30 सेकेन्डको चालचलन र मुटुको धड्कन, तिमीलाई कस्तो लाग्यो र तिम्रा नोटहरू छन् – नाम, मिति वा उपकरण ID बिना।</string>
     <string name="editor_more">थप</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">बढीमा %1$d अलार्म – नयाँ थप्न एउटा मेटाऊ।</string>
@@ -303,7 +303,7 @@
     <string name="sounds_hint">मिडिया भोल्युममा बज्छ र बढीमा ब्युँझाउने अवधि सुरु हुँदा रोकिन्छ।</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">आवाज रेकर्ड गर</string>
-    <string name="sound_rec_hint">छोटा क्लिप मात्र। यी तिम्रो फोनमै रहन्छन् र ७ दिनपछि मेटिन्छन्।</string>
+    <string name="sound_rec_hint">घुर्ने, बोल्ने र अन्य आवाजका छोटा क्लिप मात्र। यी तिम्रो फोनमै रहन्छन् र ७ दिनपछि मेटिन्छन्।</string>
     <string name="sound_rec_permission">रेकर्ड गर्न Phase Wake लाई माइक्रोफोन चाहिन्छ। रेकर्डिङ अन हुँदा मात्र सुन्छ।</string>
     <string name="sound_rec_running">आवाज रेकर्ड हुँदैछ</string>
     <string name="sound_rec_stop">रोक</string>
@@ -445,7 +445,7 @@
     <string name="widget_description">तिम्रो अर्को अलार्म र रातको जाँच।</string>
     <string name="widget_no_alarm">अलार्म छैन</string>
     <string name="settings_backup">ब्याकअप</string>
-    <string name="settings_backup_hint">अलार्म, इतिहास, नोट र सेटिङसहितको इन्क्रिप्टेड फाइल। आवाजका क्लिप र स्वास्थ्य डेटा बिना।</string>
+    <string name="settings_backup_hint">तिम्रो पासवर्डले इन्क्रिप्ट गरिएको फाइल: अलार्म, चालचलन र मुटुको धड्कनसहितका रातहरू, नोट र सेटिङ। आवाजका क्लिपबिना।</string>
     <string name="settings_restore">पुनर्स्थापना</string>
     <string name="backup_password">पासवर्ड</string>
     <string name="backup_password_repeat">पासवर्ड फेरि लेख</string>

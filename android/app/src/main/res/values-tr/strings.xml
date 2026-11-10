@@ -88,7 +88,7 @@
     <string name="settings_data">Verilerin</string>
     <string name="settings_data_text">Her şey telefonunda ve saatinde kalır. Hesap yok, sunucu yok, takip yok.</string>
     <string name="settings_export">Geceleri isimsiz dışa aktar</string>
-    <string name="settings_export_hint">Algılamayı geliştirmeye yardım et: isim, tarih veya cihaz kimliği içermeyen CSV.</string>
+    <string name="settings_export_hint">Algılamayı geliştirmeye yardım et: adsız, tarihsiz ve cihaz kimliği olmayan CSV; her 30 sn’lik hareket ve nabzı, nasıl hissettiğini ve notlarını içerir.</string>
     <string name="settings_about">Hakkında</string>
     <string name="settings_open_source">GitHub\'da açık kaynak</string>
     <string name="settings_licenses">Lisanslar</string>
@@ -242,7 +242,7 @@
     <string name="check_watch_battery_problem">Pil %1$d %% altında – gece boyunca dayanması ve seni uyandırabilmesi için saatini şarj et.</string>
     <string name="check_watch_pulse">Arka planda nabız (saat)</string>
     <string name="check_watch_pulse_problem">Saatin gece nabzını ölçmesine izin yok – saatte Phase Wake’in sensör iznini “Her zaman izin ver” olarak ayarla.</string>
-    <string name="export_contents_hint">Dosya her gecenin hareket ve nabız serilerini içerir – ad, tarih veya cihaz kimliği olmadan.</string>
+    <string name="export_contents_hint">Dosya her gece için 30 sn’lik hareket ve nabzı, nasıl hissettiğini ve notlarını içerir – adsız, tarihsiz ve cihaz kimliği olmadan.</string>
     <string name="editor_more">Daha fazla</string>
     <string name="home_max_alarms">En fazla %1$d alarm – yenisini eklemek için birini sil.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -303,7 +303,7 @@
     <string name="sounds_hint">Medya ses seviyesinde çalar ve en geç uyandırma pencereni başladığında durur.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Sesleri kaydet</string>
-    <string name="sound_rec_hint">Yalnızca kısa parçalar. Telefonunda kalır ve 7 gün sonra silinir.</string>
+    <string name="sound_rec_hint">Yalnızca horlama, konuşma ve diğer seslerin kısa parçaları. Telefonunda kalır ve 7 gün sonra silinir.</string>
     <string name="sound_rec_permission">Kayıt için Phase Wake mikrofona ihtiyaç duyar. Yalnızca kayıt açıkken dinler.</string>
     <string name="sound_rec_running">Sesler kaydediliyor</string>
     <string name="sound_rec_stop">Durdur</string>
@@ -442,7 +442,7 @@
     <string name="widget_description">Sonraki alarmın ve gece kontrolü.</string>
     <string name="widget_no_alarm">Alarm yok</string>
     <string name="settings_backup">Yedekle</string>
-    <string name="settings_backup_hint">Alarmlar, geçmiş, notlar ve ayarlarla şifreli dosya. Ses kayıtları ve sağlık verileri olmadan.</string>
+    <string name="settings_backup_hint">Parolanla şifrelenmiş dosya: alarmlar, hareket ve nabız dahil geceler, notlar ve ayarlar. Ses kayıtları olmadan.</string>
     <string name="settings_restore">Geri yükle</string>
     <string name="backup_password">Şifre</string>
     <string name="backup_password_repeat">Şifreyi tekrarla</string>

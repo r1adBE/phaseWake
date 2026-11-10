@@ -17,6 +17,8 @@
     <string name="watch_not_armed">Отвори го Phase Wake пред спиење за часовникот да може да го активира алармот.</string>
     <string name="check_watch_arm">Алармот е активиран на часовникот</string>
     <string name="check_watch_arm_problem">Отвори го Phase Wake на Apple Watch пред спиење. watchOS го активира алармот само додека апликацијата е отворена.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: алармот не е активиран – само известување, без фази на сон. Отвори ја апликацијата на часовникот.</string>
+    <string name="watch_evening_reminder">Допри за да го активираш алармот за вечерва.</string>
     <string name="night_unmeasured_apple">Првите %1$d мин не се измерени – Apple Watch ги мери само последните %2$d мин пред целта.</string>
     <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
     <string name="settings_licenses_text_apple">Phase Wake: лиценца MIT, © r1adBE.\nФонт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nПрепознавање звуци: SoundAnalysis од Apple, вграден во iOS.\nЗвуци: слободни снимки (CC0) од opengameart.org</string>
@@ -30,5 +32,5 @@
     <string name="check_watch_notifications_problem">Дозволи временски чувствителни известувања за Phase Wake на својот Apple Watch. Инаку не може да те разбуди со известување кога не тече мерење.</string>
     <string name="check_watch_state_old">Состојбата на часовникот е застарена – накратко отвори го Phase Wake на часовникот.</string>
     <string name="editor_sleep_hint_apple">Се брои од заспивањето – допри „Добра ноќ“ на часовникот кога легнуваш. На Apple Watch, Phase Wake проценува кога заспиваш според наученото време за заспивање. Без допир важи поставеното време.</string>
-    <string name="auto_onset_hint_apple">Од 1 час пред спиење твојот Apple Watch го снима движењето; на почетокот на прозорецот за будење Phase Wake пресметува кога си заспал.</string>
+    <string name="auto_onset_hint_apple">Отвори го Phase Wake на Apple Watch од 1 час пред спиење (часовникот те потсетува) и оттогаш го снима твоето движење; на почетокот на прозорецот за будење Phase Wake пресметува кога си заспал.</string>
 </resources>

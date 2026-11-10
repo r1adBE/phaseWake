@@ -17,10 +17,12 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withTimeoutOrNull
 
 /**
- * Holt nach, was das Handy schon abgelegt hat, falls die Uhr eine Änderung verpasst hat (Prozess neu,
- * Neustart, Update): den neuesten Weckerstand, die Feiertage, das Schlafziel, den Schalter der Einschlaf-Messung, die
- * Lernphase und ein «Verlauf löschen». Nur nach dem ersten Entsperren aufrufen. Fehler (keine Wear-Dienste, kein Handy) werden geloggt,
- * die Uhr arbeitet dann allein weiter.
+ * Holt nach, was die Uhr verpasst haben könnte (Prozess neu, Neustart, Update). Ein neues Handy schickt Wecker und
+ * Einstellungen über die Warteschlange: Die Uhr stellt einmalig um ([WearSync.migrateTransport]), sendet ihre wartenden
+ * Nächte und Aufzeichnungen und bittet das Handy um seinen Stand ([WearSync.requestSync]). Von einem älteren Handy liest
+ * sie wie bisher die abgelegten Pakete: den neuesten Weckerstand, die Feiertage, das Schlafziel, den Schalter der
+ * Einschlaf-Messung und die Lernphase; dazu immer ein «Verlauf löschen». Nur nach dem ersten Entsperren aufrufen. Fehler
+ * (keine Wear-Dienste, kein Handy) werden geloggt, die Uhr arbeitet dann allein weiter.
  */
 object PhoneCatchUp {
     private const val TAG = "PhoneCatchUp"
@@ -35,6 +37,9 @@ object PhoneCatchUp {
 
     private suspend fun catchUp(app: PhaseWakeWear): Boolean {
         var changed = false
+        app.sync.migrateTransport()
+        app.sync.flush()
+        app.sync.requestSync()
         try {
             app.sync.fetchAlarms()?.let { changed = app.alarms.applyRemote(it) }
         } catch (e: Exception) {
@@ -99,6 +104,8 @@ object PhoneCatchUp {
         }
         // Aufzeichnungen ebenso: bis dahin beendete löschen, eine laufende bleibt.
         app.recordings.clear(before = cut)
+        // Noch nicht ans Handy Gesendetes von davor ebenso.
+        app.sync.dropHistory(clearedAt)
         store.edit { it[CLEAR_APPLIED_AT] = clearedAt }
     }
 

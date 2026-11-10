@@ -104,6 +104,9 @@ internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit, onNap: (
         // auch den Status (Rechte) ans Handy, für dessen Nacht-Check.
         app.appScope.launch {
             app.sync.fetchAlarms()?.let { app.alarms.applyRemote(it) }
+            // Neues Handy: Stand anfragen (kommt über die Warteschlange); Wartendes senden.
+            app.sync.requestSync()
+            app.sync.flush()
             app.scheduler.reschedule()
         }
         onPauseOrDispose { }

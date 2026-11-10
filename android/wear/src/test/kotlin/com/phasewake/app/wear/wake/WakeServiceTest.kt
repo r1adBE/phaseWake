@@ -316,6 +316,33 @@ class WakeServiceTest {
     }
 
     @Test
+    fun measuredWithoutOnsetBlocksEarly() {
+        // Einschlaf-Messung lief, aber ohne Ergebnis: fail-closed bis 10 Min vor der Zielzeit (Entscheid r1AD 10.11.2026).
+        runBlocking { context.wearApp.onsets.set("a", plan.target, null, measured = true) }
+        val service = startNight()
+        val n = assertNotNull(service.night)
+        assertNull(n.asleepAt)
+        assertTrue(n.onsetMeasured)
+        service.onEpochs(n, awake)
+        assertEquals(WakeService.Phase.MEASURING, n.phase)
+        assertTrue(n.earlyBlocked)
+        send(service, WakeService.ACTION_DEADLINE, 2, withPlan = true)
+        assertEquals(WakeReason.SHORT_NIGHT, n.reason)
+    }
+
+    @Test
+    fun cancelledMeasurementDoesNotBlock() {
+        // Von Hand abgebrochen (ohne Messergebnis, nicht «gemessen»): wie ohne Messung, früher Moment weckt.
+        runBlocking { context.wearApp.onsets.set("a", plan.target, null) }
+        val service = startNight()
+        val n = assertNotNull(service.night)
+        assertFalse(n.onsetMeasured)
+        service.onEpochs(n, awake)
+        assertEquals(WakeService.Phase.RINGING, n.phase)
+        assertEquals(WakeReason.AWAKE, n.reason)
+    }
+
+    @Test
     fun shortNightWakesForANewMomentInTheLastTenMinutes() {
         // Zielzeit in 5 Min (innerhalb von ShortNight.LATE_MINUTES), vor einer Stunde eingeschlafen (Entscheid 10.11.2026).
         val late = WakePlan("a", now.minus(Duration.ofMinutes(25)), now.plus(Duration.ofMinutes(5)))

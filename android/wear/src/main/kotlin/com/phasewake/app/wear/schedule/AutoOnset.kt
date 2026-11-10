@@ -7,6 +7,7 @@ import android.content.Intent
 import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
@@ -96,17 +97,23 @@ object AutoOnset {
 /**
  * Einschlafzeit der kommenden Nacht, je Wecker und eingestellter Weckzeit ([latest]); nur die jüngste Nacht. Grundlage
  * der Untergrenze für kurze Nächte ([com.phasewake.app.core.ShortNight.blocksEarly]). Ein Eintrag ohne Einschlafzeit
- * heisst: Messung vorbei (aufgegeben oder abgebrochen), für diese Nacht nicht noch einmal starten.
+ * heisst: Messung vorbei, für diese Nacht nicht noch einmal starten – mit [measuredFor] `true`, wenn sie begonnen hatte
+ * und ohne Ergebnis endete (aufgegeben, vom Weckfenster oder einem Prozessende beendet; fail-closed, Entscheid r1AD
+ * 10.11.2026), sonst (abgebrochen, nicht begonnen) ohne Untergrenze.
  */
 class OnsetStore(private val store: DataStore<Preferences>) {
 
-    /** Messung für [alarmId] mit Weckzeit [latest] vorbei, mit Einschlafzeit [onset] oder ohne (`null`). */
-    suspend fun set(alarmId: String, latest: Instant, onset: Instant?) {
+    /**
+     * Messung für [alarmId] mit Weckzeit [latest] vorbei, mit Einschlafzeit [onset] oder ohne (`null`); [measured]: ohne
+     * Einschlafzeit, obwohl sie gemessen hat.
+     */
+    suspend fun set(alarmId: String, latest: Instant, onset: Instant?, measured: Boolean = false) {
         store.edit {
             it.remove(ONSET)
             if (onset != null) it[ONSET] = onset.toEpochMilli()
             it[ALARM] = alarmId
             it[LATEST] = latest.toEpochMilli()
+            it[MEASURED] = onset == null && measured
         }
     }
 
@@ -122,16 +129,29 @@ class OnsetStore(private val store: DataStore<Preferences>) {
      */
     suspend fun onsetFor(plan: WakePlan): Instant? {
         val prefs = store.data.first()
-        if (prefs[ALARM] != plan.alarmId) return null
-        val latest = prefs[LATEST]?.let(Instant::ofEpochMilli) ?: return null
+        if (!sameNight(prefs, plan)) return null
         val onset = prefs[ONSET]?.let(Instant::ofEpochMilli) ?: return null
-        if (latest.isBefore(plan.target) || !onset.isBefore(plan.target)) return null
+        if (!onset.isBefore(plan.target)) return null
         return onset.takeIf { Duration.between(it, plan.target) <= WakeService.GOOD_NIGHT_MAX_AHEAD }
+    }
+
+    /** Ob für die Nacht [plan] gemessen wurde, aber ohne Einschlafzeit (siehe [set]). */
+    suspend fun measuredFor(plan: WakePlan): Boolean {
+        val prefs = store.data.first()
+        return sameNight(prefs, plan) && prefs[ONSET] == null && prefs[MEASURED] == true
+    }
+
+    /** Gleicher Wecker und eingestellte Weckzeit nicht vor der Zielzeit von [plan]. */
+    private fun sameNight(prefs: Preferences, plan: WakePlan): Boolean {
+        if (prefs[ALARM] != plan.alarmId) return false
+        val latest = prefs[LATEST]?.let(Instant::ofEpochMilli) ?: return false
+        return !latest.isBefore(plan.target)
     }
 
     private companion object {
         val ALARM = stringPreferencesKey("onset_night_alarm")
         val LATEST = longPreferencesKey("onset_night_latest")
         val ONSET = longPreferencesKey("onset_night_at")
+        val MEASURED = booleanPreferencesKey("onset_night_measured")
     }
 }

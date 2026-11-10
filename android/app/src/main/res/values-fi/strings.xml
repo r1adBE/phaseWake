@@ -88,7 +88,7 @@
     <string name="settings_data">Tietosi</string>
     <string name="settings_data_text">Kaikki pysyy puhelimessa ja kellossa. Ei tiliä, ei palvelinta, ei seurantaa.</string>
     <string name="settings_export">Vie yöt ilman nimeä</string>
-    <string name="settings_export_hint">Auta parantamaan tunnistusta: CSV ilman nimiä, päivämääriä tai laitetunnisteita.</string>
+    <string name="settings_export_hint">Auta parantamaan tunnistusta: CSV ilman nimiä, päivämääriä tai laitetunnuksia; sisältää liikkeen ja sykkeen 30 s välein, vointisi ja muistiinpanosi.</string>
     <string name="settings_about">Tietoja</string>
     <string name="settings_open_source">Avoin lähdekoodi GitHubissa</string>
     <string name="settings_licenses">Lisenssit</string>
@@ -242,7 +242,7 @@
     <string name="check_watch_battery_problem">Alle %1$d %% – lataa kello, jotta se kestää yön yli ja voi herättää sinut.</string>
     <string name="check_watch_pulse">Syke taustalla (kello)</string>
     <string name="check_watch_pulse_problem">Kello ei saa mitata sykettäsi yöllä – aseta kellossa Phase Waken anturilupa tilaan ”Salli aina”.</string>
-    <string name="export_contents_hint">Tiedosto sisältää jokaisen yön liike- ja sykesarjat – ilman nimiä, päivämääriä tai laitetunnuksia.</string>
+    <string name="export_contents_hint">Tiedosto sisältää joka yöltä liikkeen ja sykkeen 30 s välein, vointisi ja muistiinpanosi – ilman nimiä, päivämääriä tai laitetunnuksia.</string>
     <string name="editor_more">Lisää</string>
     <string name="home_max_alarms">Enintään %1$d herätystä – poista yksi lisätäksesi uuden.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -303,7 +303,7 @@
     <string name="sounds_hint">Soi median äänenvoimakkuudella ja loppuu viimeistään, kun herätysikkunasi alkaa.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Tallenna äänet</string>
-    <string name="sound_rec_hint">Vain lyhyitä pätkiä. Ne pysyvät puhelimessa ja poistetaan 7 päivän kuluttua.</string>
+    <string name="sound_rec_hint">Vain lyhyitä pätkiä kuorsauksesta, puheesta ja muista äänistä. Ne pysyvät puhelimessasi ja poistetaan 7 päivän kuluttua.</string>
     <string name="sound_rec_permission">Tallentamiseen Phase Wake tarvitsee mikrofonin. Se kuuntelee vain tallennuksen aikana.</string>
     <string name="sound_rec_running">Ääniä tallennetaan</string>
     <string name="sound_rec_stop">Lopeta</string>
@@ -442,7 +442,7 @@
     <string name="widget_description">Seuraava herätyksesi ja yötarkistus.</string>
     <string name="widget_no_alarm">Ei herätystä</string>
     <string name="settings_backup">Varmuuskopioi</string>
-    <string name="settings_backup_hint">Salattu tiedosto, jossa herätykset, historia, muistiinpanot ja asetukset. Ilman ääniä ja terveystietoja.</string>
+    <string name="settings_backup_hint">Salasanallasi salattu tiedosto: herätykset, yöt liikkeineen ja sykkeineen, muistiinpanot ja asetukset. Ilman ääniä.</string>
     <string name="settings_restore">Palauta</string>
     <string name="backup_password">Salasana</string>
     <string name="backup_password_repeat">Toista salasana</string>

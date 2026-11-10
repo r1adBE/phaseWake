@@ -90,7 +90,7 @@
     <string name="settings_data">የእርስዎ ውሂብ</string>
     <string name="settings_data_text">ሁሉም ነገር በስልክዎና በሰዓትዎ ላይ ይቆያል። መለያ የለም፣ አገልጋይ የለም፣ ክትትል የለም።</string>
     <string name="settings_export">ሌሊቶችን ያለ ስም ወደ ውጭ ላክ</string>
-    <string name="settings_export_hint">ማወቂያውን ለማሻሻል ያግዙ፦ ስም፣ ቀን ወይም የመሣሪያ መታወቂያ የሌለው CSV።</string>
+    <string name="settings_export_hint">መለየትን ለማሻሻል እርዳ፦ ያለ ስም፣ ቀን ወይም የመሣሪያ መታወቂያ CSV፤ በየ30 ሰከንዱ እንቅስቃሴና የልብ ምት፣ ስሜትህንና ማስታወሻዎችህን ይዟል።</string>
     <string name="settings_about">ስለ</string>
     <string name="settings_open_source">በGitHub ላይ ክፍት ምንጭ</string>
     <string name="settings_licenses">ፈቃዶች</string>
@@ -244,7 +244,7 @@
     <string name="check_watch_battery_problem">ከ%1$d %% በታች – ሌሊቱን እንዲቆይና እንዲቀሰቅስዎ ሰዓትዎን ኃይል ይሙሉ።</string>
     <string name="check_watch_pulse">የዳራ ምት (ሰዓት)</string>
     <string name="check_watch_pulse_problem">ሰዓቱ ማታ ምትህን መለካት አይፈቀድለትም – በሰዓቱ ላይ የPhase Wake የዳሳሽ ፈቃድን ወደ “ሁልጊዜ ፍቀድ” አቀናብር።</string>
-    <string name="export_contents_hint">ፋይሉ ለእያንዳንዱ ሌሊት የእንቅስቃሴና የልብ ምት ተከታታዮችን ይዟል – ያለ ስም፣ ቀን ወይም የመሣሪያ መታወቂያ።</string>
+    <string name="export_contents_hint">ፋይሉ ለእያንዳንዱ ሌሊት በየ30 ሰከንዱ እንቅስቃሴና የልብ ምት፣ ስሜትህንና ማስታወሻዎችህን ይዟል – ያለ ስም፣ ቀን ወይም የመሣሪያ መታወቂያ።</string>
     <string name="editor_more">ተጨማሪ</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">እስከ %1$d ማንቂያዎች – አዲስ ለማከል አንዱን ይሰርዙ።</string>
@@ -303,7 +303,7 @@
     <string name="sounds_hint">በሚዲያ ድምፅ መጠን ይጫወታል፣ ቢዘገይም የመቀስቀሻ ክልልዎ ሲጀምር ይቆማል።</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">ድምፆችን ቅዳ</string>
-    <string name="sound_rec_hint">አጫጭር ቅንጥቦች ብቻ። በስልክዎ ላይ ይቆያሉ እና ከ7 ቀናት በኋላ ይሰረዛሉ።</string>
+    <string name="sound_rec_hint">የማንኮራፋት፣ የመናገርና የሌሎች ድምፆች አጫጭር ቅንጥቦች ብቻ። በስልክህ ላይ ይቆያሉ እና ከ7 ቀናት በኋላ ይሰረዛሉ።</string>
     <string name="sound_rec_permission">ለመቅዳት Phase Wake ማይክሮፎኑን ይፈልጋል። የሚያዳምጠው መቅዳት ሲበራ ብቻ ነው።</string>
     <string name="sound_rec_running">ድምፆች እየተቀዱ ነው</string>
     <string name="sound_rec_stop">አቁም</string>
@@ -445,7 +445,7 @@
     <string name="widget_description">ቀጣዩ ማንቂያዎ እና የሌሊት ፍተሻ።</string>
     <string name="widget_no_alarm">ማንቂያ የለም</string>
     <string name="settings_backup">ምትኬ አስቀምጥ</string>
-    <string name="settings_backup_hint">ማንቂያዎች፣ ታሪክ፣ ማስታወሻዎች እና ቅንብሮች ያሉት የተመሰጠረ ፋይል። ያለ የድምፅ ቅንጥቦችና የጤና ውሂብ።</string>
+    <string name="settings_backup_hint">በይለፍ ቃልህ የተመሰጠረ ፋይል፦ ማንቂያዎች፣ እንቅስቃሴና የልብ ምት ያላቸው ሌሊቶች፣ ማስታወሻዎች እና ቅንብሮች። ያለ የድምፅ ቅንጥቦች።</string>
     <string name="settings_restore">ወደነበረበት መልስ</string>
     <string name="backup_password">የይለፍ ቃል</string>
     <string name="backup_password_repeat">የይለፍ ቃል ይድገሙ</string>

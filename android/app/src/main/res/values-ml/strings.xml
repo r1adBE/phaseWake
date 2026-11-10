@@ -89,7 +89,7 @@
     <string name="settings_data">നിങ്ങളുടെ ഡാറ്റ</string>
     <string name="settings_data_text">എല്ലാം നിങ്ങളുടെ ഫോണിലും വാച്ചിലും തന്നെ. അക്കൗണ്ടില്ല, സെർവറില്ല, ട്രാക്കിങ്ങില്ല.</string>
     <string name="settings_export">രാത്രികൾ പേരില്ലാതെ എക്‌സ്‌പോർട്ട് ചെയ്യുക</string>
-    <string name="settings_export_hint">കണ്ടെത്തൽ മെച്ചപ്പെടുത്താൻ സഹായിക്കൂ: പേരോ തീയതിയോ ഉപകരണ ID-യോ ഇല്ലാത്ത CSV.</string>
+    <string name="settings_export_hint">തിരിച്ചറിയൽ മെച്ചപ്പെടുത്താൻ സഹായിക്കൂ: പേര്, തീയതി, ഉപകരണ ID എന്നിവയില്ലാത്ത CSV; ഓരോ 30 സെക്കൻഡിലെയും ചലനവും ഹൃദയമിടിപ്പും, നിങ്ങളുടെ അനുഭവവും കുറിപ്പുകളും ഉണ്ട്.</string>
     <string name="settings_about">വിവരം</string>
     <string name="settings_open_source">GitHub-ൽ ഓപ്പൺ സോഴ്‌സ്</string>
     <string name="settings_licenses">ലൈസൻസുകൾ</string>
@@ -243,7 +243,7 @@
     <string name="check_watch_battery_problem">%1$d %%-ൽ താഴെ – രാത്രി മുഴുവൻ നിലനിന്ന് ഉണർത്താൻ വാച്ച് ചാർജ് ചെയ്യുക.</string>
     <string name="check_watch_pulse">പശ്ചാത്തലത്തിലെ പൾസ് (വാച്ച്)</string>
     <string name="check_watch_pulse_problem">വാച്ചിന് രാത്രിയിൽ നിന്റെ പൾസ് അളക്കാൻ അനുമതിയില്ല – വാച്ചിൽ Phase Wake-ന്റെ സെൻസർ അനുമതി “എല്ലായ്‌പ്പോഴും അനുവദിക്കുക” ആക്കുക.</string>
-    <string name="export_contents_hint">ഓരോ രാത്രിയുടെയും ചലനവും ഹൃദയമിടിപ്പും ഫയലിലുണ്ട് – പേരോ തീയതിയോ ഉപകരണ ID-യോ ഇല്ലാതെ.</string>
+    <string name="export_contents_hint">ഫയലിൽ ഓരോ രാത്രിക്കും ഓരോ 30 സെക്കൻഡിലെയും ചലനവും ഹൃദയമിടിപ്പും, നിങ്ങളുടെ അനുഭവവും കുറിപ്പുകളും ഉണ്ട് – പേര്, തീയതി, ഉപകരണ ID എന്നിവയില്ലാതെ.</string>
     <string name="editor_more">കൂടുതൽ</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">പരമാവധി %1$d അലാറങ്ങൾ – പുതിയത് ചേർക്കാൻ ഒന്ന് ഇല്ലാതാക്കുക.</string>
@@ -302,7 +302,7 @@
     <string name="sounds_hint">മീഡിയ ശബ്ദനിലയിൽ പ്ലേ ചെയ്യും, പരമാവധി ഉണർത്തൽ സമയപരിധി തുടങ്ങുമ്പോൾ നിൽക്കും.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">ശബ്ദങ്ങൾ റെക്കോർഡ് ചെയ്യുക</string>
-    <string name="sound_rec_hint">ചെറിയ ക്ലിപ്പുകൾ മാത്രം. അവ ഫോണിൽ തന്നെ ഇരിക്കും, 7 ദിവസത്തിനു ശേഷം ഇല്ലാതാകും.</string>
+    <string name="sound_rec_hint">കൂർക്കംവലി, സംസാരം, മറ്റ് ശബ്ദങ്ങൾ എന്നിവയുടെ ചെറിയ ക്ലിപ്പുകൾ മാത്രം. അവ ഫോണിൽ തന്നെ ഇരിക്കും, 7 ദിവസത്തിനു ശേഷം ഇല്ലാതാക്കും.</string>
     <string name="sound_rec_permission">റെക്കോർഡ് ചെയ്യാൻ Phase Wake-ന് മൈക്രോഫോൺ വേണം. റെക്കോർഡിങ് ഓണായിരിക്കുമ്പോൾ മാത്രമേ കേൾക്കൂ.</string>
     <string name="sound_rec_running">ശബ്ദങ്ങൾ റെക്കോർഡ് ചെയ്യുന്നു</string>
     <string name="sound_rec_stop">നിർത്തുക</string>
@@ -444,7 +444,7 @@
     <string name="widget_description">അടുത്ത അലാറവും രാത്രി പരിശോധനയും.</string>
     <string name="widget_no_alarm">അലാറമില്ല</string>
     <string name="settings_backup">ബാക്കപ്പ്</string>
-    <string name="settings_backup_hint">അലാറങ്ങൾ, ചരിത്രം, കുറിപ്പുകൾ, ക്രമീകരണം എന്നിവയുള്ള എൻക്രിപ്റ്റ് ചെയ്‌ത ഫയൽ. ശബ്ദ ക്ലിപ്പുകളും ആരോഗ്യ ഡാറ്റയും ഇല്ലാതെ.</string>
+    <string name="settings_backup_hint">നിങ്ങളുടെ പാസ്‌വേഡ് കൊണ്ട് എൻക്രിപ്റ്റ് ചെയ്ത ഫയൽ: അലാറങ്ങൾ, ചലനവും ഹൃദയമിടിപ്പും ഉൾപ്പെടെയുള്ള രാത്രികൾ, കുറിപ്പുകൾ, ക്രമീകരണങ്ങൾ. ശബ്ദ ക്ലിപ്പുകൾ ഇല്ലാതെ.</string>
     <string name="settings_restore">പുനഃസ്ഥാപിക്കുക</string>
     <string name="backup_password">പാസ്‌വേഡ്</string>
     <string name="backup_password_repeat">പാസ്‌വേഡ് വീണ്ടും നൽകുക</string>

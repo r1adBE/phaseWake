@@ -87,7 +87,7 @@
     <string name="settings_data">あなたのデータ</string>
     <string name="settings_data_text">すべてスマートフォンとウォッチ内に保存されます。アカウントもサーバーもトラッキングもありません。</string>
     <string name="settings_export">睡眠記録を名前なしでエクスポート</string>
-    <string name="settings_export_hint">検出精度の向上にご協力ください。名前・日付・端末IDを含まないCSVです。</string>
+    <string name="settings_export_hint">検出の改善に協力：名前・日付・デバイス ID を含まない CSV。30 秒ごとの体動と心拍、気分、メモを含みます。</string>
     <string name="settings_about">アプリについて</string>
     <string name="settings_open_source">GitHubでオープンソース公開中</string>
     <string name="settings_licenses">ライセンス</string>
@@ -237,7 +237,7 @@
     <string name="check_watch_battery_problem">%1$d %%未満です – 一晩もって確実に起こせるよう、ウォッチを充電してください。</string>
     <string name="check_watch_pulse">バックグラウンドの脈拍（ウォッチ）</string>
     <string name="check_watch_pulse_problem">ウォッチは夜間に脈拍を測定できません – ウォッチで Phase Wake のセンサーの権限を「常に許可」に設定してください。</string>
-    <string name="export_contents_hint">ファイルには各夜の体動と心拍数の記録が含まれます（名前、日付、デバイスIDは含まれません）。</string>
+    <string name="export_contents_hint">ファイルには各夜の 30 秒ごとの体動と心拍、気分、メモが含まれます。名前・日付・デバイス ID は含みません。</string>
     <string name="editor_more">その他</string>
     <string name="home_max_alarms">アラームは最大%1$d件です – 新しく追加するには1件削除してください。</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -296,7 +296,7 @@
     <string name="sounds_hint">メディアの音量で再生し、遅くとも起床ウィンドウが始まると止まります。</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">音を録音</string>
-    <string name="sound_rec_hint">短い断片だけ。スマホに残り、7日後に削除されます。</string>
+    <string name="sound_rec_hint">いびき、話し声、その他の音の短いクリップのみ。スマートフォンに保存され、7 日後に削除されます。</string>
     <string name="sound_rec_permission">録音にはマイクが必要です。録音中だけ聞き取ります。</string>
     <string name="sound_rec_running">音を録音中</string>
     <string name="sound_rec_stop">停止</string>
@@ -429,7 +429,7 @@
     <string name="widget_description">次のアラームとナイトチェック。</string>
     <string name="widget_no_alarm">アラームなし</string>
     <string name="settings_backup">バックアップ</string>
-    <string name="settings_backup_hint">アラーム、履歴、メモ、設定を含む暗号化ファイル。音声と健康データは含みません。</string>
+    <string name="settings_backup_hint">パスワードで暗号化されたファイル：アラーム、体動と心拍を含む夜の記録、メモ、設定。音声クリップは含みません。</string>
     <string name="settings_restore">復元</string>
     <string name="backup_password">パスワード</string>
     <string name="backup_password_repeat">パスワード（確認）</string>

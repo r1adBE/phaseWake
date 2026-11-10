@@ -17,6 +17,8 @@
     <string name="watch_not_armed">ເປີດ Phase Wake ກ່ອນເຂົ້ານອນ ເພື່ອໃຫ້ໂມງຕັ້ງໂມງປຸກໄດ້</string>
     <string name="check_watch_arm">ຕັ້ງໂມງປຸກໃນໂມງແລ້ວ</string>
     <string name="check_watch_arm_problem">ເປີດ Phase Wake ຢູ່ Apple Watch ກ່ອນເຂົ້ານອນ watchOS ຕັ້ງໂມງປຸກໄດ້ສະເພາະຕອນແອັບເປີດຢູ່</string>
+    <string name="check_watch_arm_tonight">Apple Watch: ໂມງປຸກບໍ່ໄດ້ເປີດໃຊ້ – ມີແຕ່ການແຈ້ງເຕືອນ, ບໍ່ມີໄລຍະການນອນ. ເປີດແອັບໃນໂມງ.</string>
+    <string name="watch_evening_reminder">ແຕະເພື່ອເປີດໃຊ້ໂມງປຸກສຳລັບຄືນນີ້.</string>
     <string name="night_unmeasured_apple">%1$d ນາທີທຳອິດບໍ່ໄດ້ວັດແທກ – Apple Watch ວັດແທກສະເພາະ %2$d ນາທີສຸດທ້າຍກ່ອນເວລາເປົ້າໝາຍ</string>
     <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
     <string name="settings_licenses_text_apple">Phase Wake: ໃບອະນຸຍາດ MIT, © r1adBE\nຟອນ Manrope: SIL Open Font License 1.1, © The Manrope Project Authors\nການກວດຈັບສຽງ: SoundAnalysis ຂອງ Apple ທີ່ມີໃນ iOS\nສຽງ: ການບັນທຶກຟຣີ (CC0) ຈາກ opengameart.org</string>
@@ -30,5 +32,5 @@
     <string name="check_watch_notifications_problem">ອະນຸຍາດການແຈ້ງເຕືອນທີ່ສຳຄັນຕໍ່ເວລາສຳລັບ Phase Wake ໃນ Apple Watch ຂອງເຈົ້າ. ບໍ່ດັ່ງນັ້ນ ມັນຈະປຸກເຈົ້າດ້ວຍການແຈ້ງເຕືອນບໍ່ໄດ້ ເມື່ອບໍ່ມີການວັດແທກ.</string>
     <string name="check_watch_state_old">ສະຖານະຂອງໂມງລ້າສະໄໝແລ້ວ – ເປີດ Phase Wake ໃນໂມງໄລຍະສັ້ນໆ.</string>
     <string name="editor_sleep_hint_apple">ນັບຈາກເວລາທີ່ເຈົ້າຫຼັບ – ແຕະ «ລາຕີສະຫວັດ» ໃນໂມງເມື່ອເຂົ້ານອນ. ໃນ Apple Watch, Phase Wake ຄາດຄະເນເວລາທີ່ເຈົ້າຫຼັບ ຈາກເວລາກວ່າຈະຫຼັບທີ່ມັນໄດ້ຮຽນຮູ້. ຖ້າບໍ່ແຕະ ຈະໃຊ້ເວລາທີ່ຕັ້ງໄວ້.</string>
-    <string name="auto_onset_hint_apple">ຕັ້ງແຕ່ 1 ຊົ່ວໂມງກ່ອນເວລານອນ Apple Watch ບັນທຶກການເຄື່ອນໄຫວຂອງເຈົ້າ; ໃນຕອນເລີ່ມຊ່ວງປຸກ Phase Wake ຄິດໄລ່ວ່າເຈົ້າຫຼັບເມື່ອໃດ.</string>
+    <string name="auto_onset_hint_apple">ເປີດ Phase Wake ໃນ Apple Watch ຂອງເຈົ້າຕັ້ງແຕ່ 1 ຊົ່ວໂມງກ່ອນເວລານອນ (ໂມງຈະເຕືອນເຈົ້າ) ແລະ ມັນຈະບັນທຶກການເຄື່ອນໄຫວຂອງເຈົ້າຕັ້ງແຕ່ຕອນນັ້ນ; ໃນຕອນເລີ່ມຂອງຊ່ວງເວລາປຸກ Phase Wake ຈະຄິດໄລ່ວ່າເຈົ້ານອນຫຼັບເມື່ອໃດ.</string>
 </resources>

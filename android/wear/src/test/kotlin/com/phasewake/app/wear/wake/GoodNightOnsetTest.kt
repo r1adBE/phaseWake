@@ -199,6 +199,40 @@ class GoodNightOnsetTest {
     }
 
     @Test
+    fun windowBeginningDuringTheMeasurementCountsAsMeasured() {
+        // Fail-closed (Entscheid r1AD 10.11.2026): Fenster beginnt, die Messung lief noch ohne Einschlafzeit.
+        battery(80)
+        val service = service()
+        service.startGoodNight(id, auto = true)
+        awaitLog("auto onset sensor wake=")
+        val latest = assertNotNull(AlarmSchedule.nextTarget(spec, now, zone))
+        val plan = AlarmSchedule.planAt(spec, latest)
+        assertTrue(service.adopt(plan))
+        awaitLog("auto onset no result, short night unknown")
+        awaitDone(latest)
+        assertTrue(runBlocking { app.onsets.measuredFor(plan) })
+        // «Gute Nacht» ist danach vorbei (Stand gelöscht, gleich nach dem Merken).
+        val until = System.nanoTime() + Duration.ofSeconds(10).toNanos()
+        while (runBlocking { app.goodNight.load() } != null) {
+            check(System.nanoTime() < until) { "Stand von «Gute Nacht» nicht gelöscht" }
+            shadowOf(Looper.getMainLooper()).idle()
+            Thread.sleep(5)
+        }
+    }
+
+    @Test
+    fun manualCancelIsNotMeasured() {
+        battery(80)
+        val service = service()
+        service.startGoodNight(id, auto = true)
+        awaitLog("auto onset sensor wake=")
+        service.stopGoodNight()
+        val latest = assertNotNull(AlarmSchedule.nextTarget(spec, now, zone))
+        awaitDone(latest)
+        assertTrue(!runBlocking { app.onsets.measuredFor(AlarmSchedule.planAt(spec, latest)) })
+    }
+
+    @Test
     fun bedtimeForTheLatency() {
         val latest = now.plus(Duration.ofHours(9))
         // «Gute Nacht»: ab dem Drücken (im Bett).

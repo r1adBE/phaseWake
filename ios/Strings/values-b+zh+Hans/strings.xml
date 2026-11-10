@@ -15,6 +15,8 @@
     <string name="watch_not_armed">睡觉前请打开 Phase Wake，这样你的手表才能启用闹钟。</string>
     <string name="check_watch_arm">手表上的闹钟已启用</string>
     <string name="check_watch_arm_problem">睡觉前请在你的 Apple Watch 上打开 Phase Wake。watchOS 只有在应用打开时才会启用闹钟。</string>
+    <string name="check_watch_arm_tonight">Apple Watch：闹钟未启用——只有通知，没有睡眠阶段。请打开手表应用。</string>
+    <string name="watch_evening_reminder">轻点以启用今晚的闹钟。</string>
     <string name="night_unmeasured_apple">前 %1$d 分钟未测量——Apple Watch 只测量目标时间前的最后 %2$d 分钟。</string>
     <string name="settings_licenses_text_apple">Phase Wake：MIT 许可证，© r1adBE。\nManrope 字体：SIL Open Font License 1.1，© The Manrope Project Authors。\n声音识别：Apple 的 SoundAnalysis，内置于 iOS。\n声音：来自 opengameart.org 的自由录音（CC0）</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">请在 Apple Watch 上允许 Phase Wake 发送时间敏感通知。否则，在没有进行测量时，手表无法通过通知叫醒你。</string>
     <string name="check_watch_state_old">手表状态已过时 – 请在手表上短暂打开 Phase Wake。</string>
     <string name="editor_sleep_hint_apple">从入睡时开始计算——上床时在手表上轻点“晚安”。在 Apple Watch 上，Phase Wake 会根据学到的入睡时长估算你的入睡时间。如果不轻点，则按设定的时间。</string>
-    <string name="auto_onset_hint_apple">从就寝时间前 1 小时起，Apple Watch 会记录你的动作；在唤醒时间窗开始时，Phase Wake 会算出你何时入睡。</string>
+    <string name="auto_onset_hint_apple">在就寝时间前 1 小时起于 Apple Watch 上打开 Phase Wake（手表会提醒你），它就会从那时起记录你的动作；在唤醒时间窗开始时，Phase Wake 会算出你何时入睡。</string>
 </resources>

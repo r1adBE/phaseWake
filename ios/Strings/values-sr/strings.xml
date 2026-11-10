@@ -17,6 +17,8 @@
     <string name="watch_not_armed">Отвори Phase Wake пре спавања да би сат могао да активира аларм.</string>
     <string name="check_watch_arm">Аларм активиран на сату</string>
     <string name="check_watch_arm_problem">Отвори Phase Wake на Apple Watch-у пре спавања. watchOS активира аларм само док је апликација отворена.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: аларм није активиран – само обавештење, без фаза сна. Отвори апликацију на сату.</string>
+    <string name="watch_evening_reminder">Додирни да активираш аларм за ноћас.</string>
     <string name="night_unmeasured_apple">Првих %1$d мин није измерено – Apple Watch мери само последњих %2$d мин пре циљног времена.</string>
     <!-- iPhone: Geräuscherkennung mit dem eingebauten SoundAnalysis statt MediaPipe/YAMNet. -->
     <string name="settings_licenses_text_apple">Phase Wake: MIT лиценца, © r1adBE.\nФонт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nПрепознавање звукова: SoundAnalysis компаније Apple, уграђен у iOS.\nЗвуци: слободни снимци (CC0) са opengameart.org</string>
@@ -30,5 +32,5 @@
     <string name="check_watch_notifications_problem">Дозволи временски осетљива обавештења за Phase Wake на свом Apple Watch-у. Иначе те не може пробудити обавештењем када мерење не тече.</string>
     <string name="check_watch_state_old">Стање сата је застарело – накратко отвори Phase Wake на сату.</string>
     <string name="editor_sleep_hint_apple">Рачуна се од успављивања – додирни „Лаку ноћ“ на сату када идеш у кревет. На Apple Watch-у Phase Wake процењује када заспиш на основу наученог времена успављивања. Без додира важи подешено време.</string>
-    <string name="auto_onset_hint_apple">Од 1 сат пре спавања твој Apple Watch бележи покрете; на почетку интервала буђења Phase Wake израчуна када си заспао.</string>
+    <string name="auto_onset_hint_apple">Отвори Phase Wake на Apple Watch-у од 1 сат пре спавања (сат те подсети) и од тада бележи твоје покрете; на почетку интервала буђења Phase Wake израчуна када си заспао.</string>
 </resources>

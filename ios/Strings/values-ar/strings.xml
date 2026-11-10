@@ -15,6 +15,8 @@
     <string name="watch_not_armed">افتح Phase Wake قبل أن تنام لتتمكن ساعتك من تفعيل المنبه.</string>
     <string name="check_watch_arm">المنبه مفعّل على الساعة</string>
     <string name="check_watch_arm_problem">افتح Phase Wake على Apple Watch قبل أن تنام. لا يفعّل watchOS المنبه إلا أثناء فتح التطبيق.</string>
+    <string name="check_watch_arm_tonight">Apple Watch: المنبّه غير مفعّل – إشعار فقط، دون مراحل النوم. افتح تطبيق الساعة.</string>
+    <string name="watch_evening_reminder">اضغط لتفعيل منبّهك لهذه الليلة.</string>
     <string name="night_unmeasured_apple">أول %1$d د لم تُقس – لا تقيس Apple Watch إلا آخر %2$d د قبل الموعد.</string>
     <string name="settings_licenses_text_apple">Phase Wake: ترخيص MIT، © r1adBE.\nخط Manrope: SIL Open Font License 1.1، © The Manrope Project Authors.\nالتعرّف على الأصوات: SoundAnalysis من Apple، مدمج في iOS.\nالأصوات: تسجيلات حرة (CC0) من opengameart.org</string>
     <!-- Verlauf mit Nächten aus Apple Health (statt Samsung Health/Health Connect). -->
@@ -27,5 +29,5 @@
     <string name="check_watch_notifications_problem">اسمح بالإشعارات الحساسة للوقت لتطبيق Phase Wake على Apple Watch. وإلا فلن تتمكن من إيقاظك بإشعار عندما لا يكون هناك قياس جارٍ.</string>
     <string name="check_watch_state_old">حالة الساعة قديمة – افتح Phase Wake على الساعة لفترة قصيرة.</string>
     <string name="editor_sleep_hint_apple">يُحسب من وقت نومك – اضغط «ليلة سعيدة» على الساعة عندما تذهب إلى السرير. على Apple Watch يقدّر Phase Wake وقت نومك من مدة الخلود إلى النوم التي تعلّمها. دون الضغط يسري الوقت المضبوط.</string>
-    <string name="auto_onset_hint_apple">من ساعة قبل موعد النوم تسجّل Apple Watch حركتك؛ وفي بداية نافذة الاستيقاظ يحسب Phase Wake متى غفوت.</string>
+    <string name="auto_onset_hint_apple">افتح Phase Wake على Apple Watch بدءًا من ساعة قبل موعد النوم (تذكّرك الساعة)، فتسجّل حركتك من ذلك الحين؛ وفي بداية نافذة الاستيقاظ يحسب Phase Wake متى غفوت.</string>
 </resources>

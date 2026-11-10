@@ -90,7 +90,7 @@
     <string name="settings_data">Jou data</string>
     <string name="settings_data_text">Alles bly op jou foon en horlosie. Geen rekening, geen bediener, geen nasporing nie.</string>
     <string name="settings_export">Voer nagte sonder naam uit</string>
-    <string name="settings_export_hint">Help om die bespeuring te verbeter: CSV sonder name, datums of toestel-ID’s.</string>
+    <string name="settings_export_hint">Help om die bespeuring te verbeter: CSV sonder name, datums of toestel-ID’s; bevat beweging en hartklop per 30 s, hoe jy gevoel het en jou notas.</string>
     <string name="settings_about">Meer oor</string>
     <string name="settings_open_source">Oopbron op GitHub</string>
     <string name="settings_licenses">Lisensies</string>
@@ -244,7 +244,7 @@
     <string name="check_watch_battery_problem">Onder %1$d %% – laai jou horlosie sodat dit die nag hou en jou wakker kan maak.</string>
     <string name="check_watch_pulse">Polsslag in die agtergrond (horlosie)</string>
     <string name="check_watch_pulse_problem">Die horlosie mag nie jou polsslag snags meet nie – stel op die horlosie Phase Wake se sensortoestemming op “Laat heeltyd toe”.</string>
-    <string name="export_contents_hint">Die lêer bevat bewegings- en hartklopreekse vir elke nag – sonder name, datums of toestel-ID’s.</string>
+    <string name="export_contents_hint">Die lêer bevat vir elke nag beweging en hartklop per 30 s, hoe jy gevoel het en jou notas – sonder name, datums of toestel-ID’s.</string>
     <string name="editor_more">Meer</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Tot %1$d wekkers – vee een uit om ’n nuwe by te voeg.</string>
@@ -303,7 +303,7 @@
     <string name="sounds_hint">Speel teen mediavolume en stop uiterlik wanneer jou wekvenster begin.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">Neem klanke op</string>
-    <string name="sound_rec_hint">Net kort snitte. Hulle bly op jou foon en word ná 7 dae uitgevee.</string>
+    <string name="sound_rec_hint">Net kort snitte van snork, praat en ander klanke. Hulle bly op jou foon en word ná 7 dae uitgevee.</string>
     <string name="sound_rec_permission">Om op te neem, het Phase Wake die mikrofoon nodig. Dit luister net terwyl opname aan is.</string>
     <string name="sound_rec_running">Neem klanke op</string>
     <string name="sound_rec_stop">Stop</string>
@@ -445,7 +445,7 @@
     <string name="widget_description">Jou volgende wekker en die nagtoets.</string>
     <string name="widget_no_alarm">Geen wekker</string>
     <string name="settings_backup">Rugsteun</string>
-    <string name="settings_backup_hint">Geënkripteerde lêer met wekkers, geskiedenis, notas en instellings. Sonder klanksnitte en gesondheidsdata.</string>
+    <string name="settings_backup_hint">Lêer wat met jou wagwoord geënkripteer is: wekkers, nagte met beweging en hartklop, notas en instellings. Sonder klanksnitte.</string>
     <string name="settings_restore">Herstel</string>
     <string name="backup_password">Wagwoord</string>
     <string name="backup_password_repeat">Herhaal wagwoord</string>
