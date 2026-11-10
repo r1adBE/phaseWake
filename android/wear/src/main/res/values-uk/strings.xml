@@ -22,6 +22,12 @@
         <item quantity="other">%1$d хв · залишилось: %2$d</item>
     </plurals>
     <string name="ring_snooze_button">Відкласти на %1$d хв</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">залишилось: %1$d</item>
+        <item quantity="few">залишилось: %1$d</item>
+        <item quantity="many">залишилось: %1$d</item>
+        <item quantity="other">залишилось: %1$d</item>
+    </plurals>
     <string name="ring_snoozed_until">Відкладено до %1$s</string>
 
     <string name="home_no_alarm">Будильник не задано</string>

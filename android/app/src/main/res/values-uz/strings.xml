@@ -540,7 +540,7 @@
     <string name="record_start">Tunni yozib olish</string>
     <string name="record_stop">Yozishni to‘xtatish</string>
     <string name="record_since">%1$s dan beri yozilmoqda</string>
-    <string name="record_hint">Soating tun bo‘yi harakat va pulsni yozib boradi. Phase Wake bu tunlardan o‘rganish bosqichida o‘z qiymatlaringni o‘rganadi va budilnikni senga moslaydi. Bu biroz batareya sarflaydi – uxlashdan oldin soatni quvvatla.</string>
+    <string name="record_hint">Soating tun bo‘yi harakat va pulsni o‘lchaydi. Phase Wake bu tunlardan o‘rganish bosqichida o‘z qiymatlaringni o‘rganadi va budilnikni senga moslaydi. Bu biroz batareya sarflaydi – uxlashdan oldin soatni quvvatla.</string>
     <string name="record_end_manual">To‘xtatildi</string>
     <string name="record_end_cap">12 soatdan keyin tugadi</string>
     <string name="record_end_battery">Soat batareyasi kam</string>

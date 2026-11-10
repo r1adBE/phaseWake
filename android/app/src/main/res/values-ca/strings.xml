@@ -553,7 +553,7 @@
     <string name="record_start">Enregistra la nit</string>
     <string name="record_stop">Atura l’enregistrament</string>
     <string name="record_since">S’enregistra des de les %1$s</string>
-    <string name="record_hint">El rellotge enregistra moviment i pols tota la nit. A partir d’aquestes nits, Phase Wake aprèn els teus valors propis en la fase d’aprenentatge i adapta l’alarma a tu. Això gasta una mica de bateria – carrega el rellotge abans de dormir.</string>
+    <string name="record_hint">El rellotge mesura moviment i pols al llarg de tota la nit. A partir d’aquestes nits, Phase Wake aprèn els teus valors propis en la fase d’aprenentatge i adapta l’alarma a tu. Això gasta una mica de bateria – carrega el rellotge abans de dormir.</string>
     <string name="record_end_manual">Aturat</string>
     <string name="record_end_cap">Acabat després de 12 h</string>
     <string name="record_end_battery">Bateria del rellotge baixa</string>

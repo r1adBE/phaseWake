@@ -540,7 +540,7 @@
     <string name="record_start">ሌሊቱን ቅረጽ</string>
     <string name="record_stop">ቀረጻውን አቁም</string>
     <string name="record_since">ከ%1$s ጀምሮ እየተቀረጸ ነው</string>
-    <string name="record_hint">ሰዓትህ ሌሊቱን ሙሉ እንቅስቃሴና የልብ ምት ይቀዳል። ከእነዚህ ሌሊቶች Phase Wake በመማሪያ ጊዜው የራስህን እሴቶች ይማራል፤ ማንቂያውንም ለአንተ ያስማማል። ይህ ትንሽ ባትሪ ይጠቀማል – ከመተኛትህ በፊት ሰዓቱን ቻርጅ አድርግ።</string>
+    <string name="record_hint">ሰዓትህ ሌሊቱን ሙሉ እንቅስቃሴና የልብ ምት ይለካል። ከእነዚህ ሌሊቶች Phase Wake በመማሪያ ጊዜው የራስህን እሴቶች ይማራል፤ ማንቂያውንም ለአንተ ያስማማል። ይህ ትንሽ ባትሪ ይጠቀማል – ከመተኛትህ በፊት ሰዓቱን ቻርጅ አድርግ።</string>
     <string name="record_end_manual">ቆሟል</string>
     <string name="record_end_cap">ከ12 ሰዓት በኋላ አልቋል</string>
     <string name="record_end_battery">የሰዓቱ ባትሪ ዝቅተኛ ነው</string>

@@ -539,7 +539,7 @@
     <string name="record_start">Запиши нощта</string>
     <string name="record_stop">Спри записа</string>
     <string name="record_since">Записва се от %1$s</string>
-    <string name="record_hint">Часовникът ти записва движение и пулс през цялата нощ. От тези нощи Phase Wake научава твоите собствени стойности във фазата на учене и нагласява будилника за теб. Това изразходва малко батерия – зареди часовника преди сън.</string>
+    <string name="record_hint">Часовникът ти измерва движение и пулс през цялата нощ. От тези нощи Phase Wake научава твоите собствени стойности във фазата на учене и нагласява будилника за теб. Това изразходва малко батерия – зареди часовника преди сън.</string>
     <string name="record_end_manual">Спрян</string>
     <string name="record_end_cap">Приключи след 12 ч</string>
     <string name="record_end_battery">Батерията на часовника е слаба</string>

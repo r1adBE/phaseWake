@@ -21,6 +21,10 @@
         <item quantity="other">%1$d min · jäänud %2$d</item>
     </plurals>
     <string name="ring_snooze_button">Lükka edasi %1$d min</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">jäänud %1$d</item>
+        <item quantity="other">jäänud %1$d</item>
+    </plurals>
     <string name="ring_snoozed_until">Edasi lükatud kuni %1$s</string>
 
     <string name="home_no_alarm">Äratust pole määratud</string>

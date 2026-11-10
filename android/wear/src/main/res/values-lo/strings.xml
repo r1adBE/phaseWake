@@ -19,6 +19,9 @@
         <item quantity="other">%1$d ນາທີ · ເຫຼືອ %2$d ເທື່ອ</item>
     </plurals>
     <string name="ring_snooze_button">ເລື່ອນປຸກ %1$d ນາທີ</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="other">ເຫຼືອ %1$d ເທື່ອ</item>
+    </plurals>
     <string name="ring_snoozed_until">ເລື່ອນປຸກຈົນເຖິງ %1$s</string>
 
     <string name="home_no_alarm">ບໍ່ໄດ້ຕັ້ງໂມງປຸກ</string>

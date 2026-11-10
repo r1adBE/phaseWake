@@ -21,6 +21,10 @@
         <item quantity="other">%1$d mín · %2$d eftir</item>
     </plurals>
     <string name="ring_snooze_button">Blunda %1$d mín</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">%1$d eftir</item>
+        <item quantity="other">%1$d eftir</item>
+    </plurals>
     <string name="ring_snoozed_until">Blundað til %1$s</string>
 
     <string name="home_no_alarm">Enginn vekjari stilltur</string>

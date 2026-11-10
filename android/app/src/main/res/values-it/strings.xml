@@ -551,7 +551,7 @@
     <string name="record_start">Registra la notte</string>
     <string name="record_stop">Interrompi registrazione</string>
     <string name="record_since">Registrazione dalle %1$s</string>
-    <string name="record_hint">Il tuo orologio registra movimento e polso per tutta la notte. Da queste notti Phase Wake impara i tuoi valori nella fase di apprendimento e adatta la sveglia a te. Consuma un po’ di batteria – ricarica l’orologio prima di dormire.</string>
+    <string name="record_hint">Il tuo orologio misura movimento e battito durante tutta la notte. Da queste notti Phase Wake impara i tuoi valori nella fase di apprendimento e adatta la sveglia a te. Consuma un po’ di batteria – ricarica l’orologio prima di dormire.</string>
     <string name="record_end_manual">Fermata</string>
     <string name="record_end_cap">Terminata dopo 12 h</string>
     <string name="record_end_battery">Batteria dell’orologio scarica</string>

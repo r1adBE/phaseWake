@@ -525,7 +525,7 @@
     <string name="record_start">ღამის ჩაწერა</string>
     <string name="record_stop">ჩაწერის შეწყვეტა</string>
     <string name="record_since">იწერება %1$s-დან</string>
-    <string name="record_hint">შენი საათი მთელი ღამე იწერს მოძრაობას და პულსს. ამ ღამეებიდან Phase Wake სწავლის ფაზაში სწავლობს შენს საკუთარ მნიშვნელობებს და მაღვიძარას შენზე არგებს. ეს ცოტა ბატარეას ხარჯავს – დაძინებამდე დატენე საათი.</string>
+    <string name="record_hint">შენი საათი მთელი ღამის განმავლობაში ზომავს მოძრაობას და პულსს. ამ ღამეებიდან Phase Wake სწავლის ფაზაში სწავლობს შენს საკუთარ მნიშვნელობებს და მაღვიძარას შენზე არგებს. ეს ცოტა ბატარეას ხარჯავს – დაძინებამდე დატენე საათი.</string>
     <string name="record_end_manual">შეწყდა</string>
     <string name="record_end_cap">დასრულდა 12 სთ-ის შემდეგ</string>
     <string name="record_end_battery">საათის ბატარეა დაბალია</string>

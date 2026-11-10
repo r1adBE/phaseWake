@@ -21,6 +21,10 @@
         <item quantity="other">%1$d ਮਿੰ. · ਬਾਕੀ %2$d</item>
     </plurals>
     <string name="ring_snooze_button">ਸਨੂਜ਼ %1$d ਮਿੰ.</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">ਬਾਕੀ %1$d</item>
+        <item quantity="other">ਬਾਕੀ %1$d</item>
+    </plurals>
     <string name="ring_snoozed_until">%1$s ਤੱਕ ਸਨੂਜ਼</string>
 
     <string name="home_no_alarm">ਕੋਈ ਅਲਾਰਮ ਸੈੱਟ ਨਹੀਂ</string>

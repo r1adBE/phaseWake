@@ -540,7 +540,7 @@
     <string name="record_start">Шөнийг бичих</string>
     <string name="record_stop">Бичлэгийг зогсоох</string>
     <string name="record_since">%1$s-с хойш бичиж байна</string>
-    <string name="record_hint">Таны цаг шөнөжин хөдөлгөөн болон судасны цохилтыг бичдэг. Эдгээр шөнөөс Phase Wake суралцах үе шатанд таны өөрийн утгуудыг сурч, сэрүүлгийг танд тохируулна. Энэ нь бага зэрэг батерей зарцуулна – унтахын өмнө цагаа цэнэглээрэй.</string>
+    <string name="record_hint">Таны цаг шөнөжингөө хөдөлгөөн болон судасны цохилтыг хэмждэг. Эдгээр шөнөөс Phase Wake суралцах үе шатанд таны өөрийн утгуудыг сурч, сэрүүлгийг танд тохируулна. Энэ нь бага зэрэг батерей зарцуулна – унтахын өмнө цагаа цэнэглээрэй.</string>
     <string name="record_end_manual">Зогсоосон</string>
     <string name="record_end_cap">12 цагийн дараа дууссан</string>
     <string name="record_end_battery">Цагийн батерей сул байна</string>

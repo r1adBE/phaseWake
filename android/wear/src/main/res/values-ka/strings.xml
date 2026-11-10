@@ -19,6 +19,10 @@
         <item quantity="other">%1$d წთ · დარჩა: %2$d</item>
     </plurals>
     <string name="ring_snooze_button">გადადება %1$d წთ</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">დარჩა: %1$d</item>
+        <item quantity="other">დარჩა: %1$d</item>
+    </plurals>
     <string name="ring_snoozed_until">გადაიდო %1$s-მდე</string>
     <string name="home_no_alarm">მაღვიძარა არ არის</string>
     <string name="home_no_alarm_hint">დაამატე მაღვიძარა – აქ ან ტელეფონის Phase Wake-ში.</string>

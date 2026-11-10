@@ -19,6 +19,9 @@
         <item quantity="other">%1$d 分鐘 · 剩 %2$d 次</item>
     </plurals>
     <string name="ring_snooze_button">貪睡 %1$d 分鐘</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="other">剩 %1$d 次</item>
+    </plurals>
     <string name="ring_snoozed_until">貪睡至 %1$s</string>
 
     <string name="home_no_alarm">未設定鬧鐘</string>

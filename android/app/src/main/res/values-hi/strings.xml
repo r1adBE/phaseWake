@@ -537,7 +537,7 @@
     <string name="record_start">रात रिकॉर्ड करें</string>
     <string name="record_stop">रिकॉर्डिंग रोकें</string>
     <string name="record_since">%1$s से रिकॉर्डिंग चल रही है</string>
-    <string name="record_hint">तुम्हारी घड़ी पूरी रात हलचल और नब्ज़ रिकॉर्ड करती है। इन रातों से Phase Wake सीखने के चरण में तुम्हारे अपने मान सीखता है और अलार्म को तुम्हारे हिसाब से ढालता है। इसमें थोड़ी बैटरी लगती है – सोने से पहले घड़ी चार्ज करो।</string>
+    <string name="record_hint">तुम्हारी घड़ी पूरी रात हलचल और पल्स मापती है। इन रातों से Phase Wake सीखने के चरण में तुम्हारे अपने मान सीखता है और अलार्म को तुम्हारे हिसाब से ढालता है। इसमें थोड़ी बैटरी लगती है – सोने से पहले घड़ी चार्ज करो।</string>
     <string name="record_end_manual">रोकी गई</string>
     <string name="record_end_cap">12 घंटे बाद समाप्त</string>
     <string name="record_end_battery">वॉच की बैटरी कम है</string>

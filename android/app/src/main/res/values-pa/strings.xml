@@ -540,7 +540,7 @@
     <string name="record_start">ਰਾਤ ਰਿਕਾਰਡ ਕਰੋ</string>
     <string name="record_stop">ਰਿਕਾਰਡਿੰਗ ਰੋਕੋ</string>
     <string name="record_since">%1$s ਤੋਂ ਰਿਕਾਰਡ ਹੋ ਰਿਹਾ ਹੈ</string>
-    <string name="record_hint">ਤੇਰੀ ਘੜੀ ਸਾਰੀ ਰਾਤ ਹਿਲਜੁਲ ਅਤੇ ਨਬਜ਼ ਰਿਕਾਰਡ ਕਰਦੀ ਹੈ। ਇਨ੍ਹਾਂ ਰਾਤਾਂ ਤੋਂ Phase Wake ਸਿੱਖਣ ਦੇ ਪੜਾਅ ਵਿੱਚ ਤੇਰੇ ਆਪਣੇ ਮੁੱਲ ਸਿੱਖਦਾ ਹੈ ਅਤੇ ਅਲਾਰਮ ਨੂੰ ਤੇਰੇ ਮੁਤਾਬਕ ਢਾਲਦਾ ਹੈ। ਇਸ ਵਿੱਚ ਕੁਝ ਬੈਟਰੀ ਲੱਗਦੀ ਹੈ – ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਘੜੀ ਚਾਰਜ ਕਰ ਲੈ।</string>
+    <string name="record_hint">ਤੇਰੀ ਘੜੀ ਸਾਰੀ ਰਾਤ ਹਿਲਜੁਲ ਅਤੇ ਨਬਜ਼ ਮਾਪਦੀ ਹੈ। ਇਨ੍ਹਾਂ ਰਾਤਾਂ ਤੋਂ Phase Wake ਸਿੱਖਣ ਦੇ ਪੜਾਅ ਵਿੱਚ ਤੇਰੇ ਆਪਣੇ ਮੁੱਲ ਸਿੱਖਦਾ ਹੈ ਅਤੇ ਅਲਾਰਮ ਨੂੰ ਤੇਰੇ ਮੁਤਾਬਕ ਢਾਲਦਾ ਹੈ। ਇਸ ਵਿੱਚ ਕੁਝ ਬੈਟਰੀ ਲੱਗਦੀ ਹੈ – ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਘੜੀ ਚਾਰਜ ਕਰ ਲੈ।</string>
     <string name="record_end_manual">ਰੋਕਿਆ ਗਿਆ</string>
     <string name="record_end_cap">12 ਘੰਟਿਆਂ ਬਾਅਦ ਖਤਮ</string>
     <string name="record_end_battery">ਘੜੀ ਦੀ ਬੈਟਰੀ ਘੱਟ ਹੈ</string>

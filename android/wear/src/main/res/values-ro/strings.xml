@@ -21,6 +21,11 @@
         <item quantity="other">Amânare %1$d min · %2$d rămase</item>
     </plurals>
     <string name="ring_snooze_button">Amânare %1$d min</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">%1$d rămasă</item>
+        <item quantity="few">%1$d rămase</item>
+        <item quantity="other">%1$d rămase</item>
+    </plurals>
     <string name="ring_snoozed_until">Amânat până la %1$s</string>
 
     <string name="home_no_alarm">Nicio alarmă setată</string>

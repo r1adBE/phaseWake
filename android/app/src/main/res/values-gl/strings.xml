@@ -540,7 +540,7 @@
     <string name="record_start">Gravar a noite</string>
     <string name="record_stop">Deter a gravación</string>
     <string name="record_since">Gravando desde as %1$s</string>
-    <string name="record_hint">O teu reloxo grava movemento e pulso toda a noite. A partir desas noites, Phase Wake aprende os teus propios valores na fase de aprendizaxe e adapta a alarma a ti. Isto gasta algo de batería: carga o reloxo antes de durmir.</string>
+    <string name="record_hint">O teu reloxo mide movemento e pulso ao longo de toda a noite. A partir desas noites, Phase Wake aprende os teus propios valores na fase de aprendizaxe e adapta a alarma a ti. Isto gasta algo de batería: carga o reloxo antes de durmir.</string>
     <string name="record_end_manual">Detida</string>
     <string name="record_end_cap">Rematou tras 12 h</string>
     <string name="record_end_battery">Batería do reloxo baixa</string>

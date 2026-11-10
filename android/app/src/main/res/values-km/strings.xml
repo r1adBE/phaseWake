@@ -525,7 +525,7 @@
     <string name="record_start">ថតពេលយប់</string>
     <string name="record_stop">បញ្ឈប់ការថត</string>
     <string name="record_since">កំពុងថតតាំងពី %1$s</string>
-    <string name="record_hint">នាឡិការបស់អ្នកថតចលនា និងជីពចរពេញមួយយប់។ ពីយប់ទាំងនេះ Phase Wake រៀនតម្លៃផ្ទាល់ខ្លួនរបស់អ្នកក្នុងដំណាក់កាលរៀន ហើយកែសម្រួលម៉ោងរោទ៍ឱ្យសមនឹងអ្នក។ វាប្រើថ្មខ្លះ – សាកថ្មនាឡិកាមុនពេលគេង។</string>
+    <string name="record_hint">នាឡិការបស់អ្នកវាស់ចលនា និងជីពចរពេញមួយយប់។ ពីយប់ទាំងនេះ Phase Wake រៀនតម្លៃផ្ទាល់ខ្លួនរបស់អ្នកក្នុងដំណាក់កាលរៀន ហើយកែសម្រួលម៉ោងរោទ៍ឱ្យសមនឹងអ្នក។ វាប្រើថ្មខ្លះ – សាកថ្មនាឡិកាមុនពេលគេង។</string>
     <string name="record_end_manual">បានបញ្ឈប់</string>
     <string name="record_end_cap">បានបញ្ចប់ក្រោយ 12 ម៉ោង</string>
     <string name="record_end_battery">ថ្មនាឡិកាខ្សោយ</string>

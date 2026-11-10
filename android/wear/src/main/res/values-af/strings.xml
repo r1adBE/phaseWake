@@ -21,6 +21,10 @@
         <item quantity="other">%1$d min · %2$d oor</item>
     </plurals>
     <string name="ring_snooze_button">Sluimer %1$d min</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">%1$d oor</item>
+        <item quantity="other">%1$d oor</item>
+    </plurals>
     <string name="ring_snoozed_until">Sluimer tot %1$s</string>
 
     <string name="home_no_alarm">Geen wekker gestel nie</string>

@@ -525,7 +525,7 @@
     <string name="record_start">ບັນທຶກກາງຄືນ</string>
     <string name="record_stop">ຢຸດການບັນທຶກ</string>
     <string name="record_since">ກຳລັງບັນທຶກຕັ້ງແຕ່ %1$s</string>
-    <string name="record_hint">ໂມງຂອງເຈົ້າບັນທຶກການເຄື່ອນໄຫວ ແລະ ຊີບພະຈອນຕະຫຼອດຄືນ. ຈາກຄືນເຫຼົ່ານີ້ Phase Wake ຮຽນຮູ້ຄ່າຂອງເຈົ້າເອງໃນໄລຍະຮຽນຮູ້ ແລະ ປັບໂມງປຸກໃຫ້ເໝາະກັບເຈົ້າ. ມັນໃຊ້ແບັດເຕີຣີບາງສ່ວນ – ສາກໂມງກ່ອນນອນ.</string>
+    <string name="record_hint">ໂມງຂອງເຈົ້າວັດການເຄື່ອນໄຫວ ແລະ ຊີບພະຈອນຕະຫຼອດຄືນ. ຈາກຄືນເຫຼົ່ານີ້ Phase Wake ຮຽນຮູ້ຄ່າຂອງເຈົ້າເອງໃນໄລຍະຮຽນຮູ້ ແລະ ປັບໂມງປຸກໃຫ້ເໝາະກັບເຈົ້າ. ມັນໃຊ້ແບັດເຕີຣີບາງສ່ວນ – ສາກໂມງກ່ອນນອນ.</string>
     <string name="record_end_manual">ຢຸດແລ້ວ</string>
     <string name="record_end_cap">ສິ້ນສຸດຫຼັງ 12 ຊມ</string>
     <string name="record_end_battery">ແບັດເຕີຣີໂມງຕ່ຳ</string>

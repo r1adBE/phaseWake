@@ -20,6 +20,10 @@
         <item quantity="other">%1$d நிமி. · மீதம் %2$d</item>
     </plurals>
     <string name="ring_snooze_button">ஸ்னூஸ் %1$d நிமி.</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">மீதம் %1$d</item>
+        <item quantity="other">மீதம் %1$d</item>
+    </plurals>
     <string name="ring_snoozed_until">%1$s வரை ஸ்னூஸ்</string>
 
     <string name="home_no_alarm">அலாரம் இல்லை</string>

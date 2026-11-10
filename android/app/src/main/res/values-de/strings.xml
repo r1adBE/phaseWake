@@ -537,7 +537,7 @@
     <string name="record_start">Nacht aufzeichnen</string>
     <string name="record_stop">Aufzeichnung stoppen</string>
     <string name="record_since">Aufzeichnung läuft seit %1$s</string>
-    <string name="record_hint">Deine Uhr zeichnet die ganze Nacht Bewegung und Puls auf. Daraus lernt Phase Wake in der Lernphase deine eigenen Werte und passt den Wecker an dich an. Das kostet etwas Akku – lade die Uhr vor dem Schlafen.</string>
+    <string name="record_hint">Deine Uhr misst über die ganze Nacht Bewegung und Puls. Daraus lernt Phase Wake in der Lernphase deine eigenen Werte und passt den Wecker an dich an. Das kostet etwas Akku – lade die Uhr vor dem Schlafen.</string>
     <string name="record_end_manual">Gestoppt</string>
     <string name="record_end_cap">Nach 12 Std. beendet</string>
     <string name="record_end_battery">Akku der Uhr schwach</string>

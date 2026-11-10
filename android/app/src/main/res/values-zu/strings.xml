@@ -540,7 +540,7 @@
     <string name="record_start">Qopha ubusuku</string>
     <string name="record_stop">Misa ukuqopha</string>
     <string name="record_since">Kuqoshwa kusukela ngo-%1$s</string>
-    <string name="record_hint">Iwashi lakho liqopha ukunyakaza nokushaya kwenhliziyo ubusuku bonke. Kulobu busuku, i-Phase Wake ifunda amanani akho esigabeni sokufunda futhi ilungisa i-alamu ikufanele. Lokhu kusebenzisa ibhethri elincane – shaja iwashi ngaphambi kokulala.</string>
+    <string name="record_hint">Iwashi lakho lilinganisa ukunyakaza nokushaya kwenhliziyo ubusuku bonke. Kulobu busuku, i-Phase Wake ifunda amanani akho esigabeni sokufunda futhi ilungisa i-alamu ikufanele. Lokhu kusebenzisa ibhethri elincane – shaja iwashi ngaphambi kokulala.</string>
     <string name="record_end_manual">Kumisiwe</string>
     <string name="record_end_cap">Kuphele ngemva kwamahora angu-12</string>
     <string name="record_end_battery">Ibhethri lewashi liphansi</string>

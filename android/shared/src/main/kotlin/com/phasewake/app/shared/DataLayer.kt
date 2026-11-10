@@ -136,7 +136,7 @@ object DataLayer {
     /**
      * Messung vor dem Schlafen dieser Nacht nicht gestartet: nur der Grund (`RecorderSkip.Reason.code`, Audit F-06, ohne
      * Uhrzeit – technische Angabe wie der Akku) im selben Paket wie [KEY_READY]; leer ohne Meldung oder wenn die Nacht
-     * vorbei ist, fehlt bei älteren Uhren. Der Nacht-Check am Handy ist dann rot.
+     * vorbei ist, fehlt bei älteren Uhren. Der Nacht-Check am Handy zeigt dann einen Hinweis.
      */
     const val KEY_RECORDER_SKIP = "recorderSkip"
 

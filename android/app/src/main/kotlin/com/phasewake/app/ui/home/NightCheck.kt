@@ -93,10 +93,11 @@ enum class Check(
 
     /**
      * Die Uhr hat die Messung vor dem Schlafen für diese Nacht nicht gestartet, weil ihr Akku zu schwach war
-     * ([RecorderSkip], Audit F-06, wie auf dem iPhone): Einschlafzeit und Lernphase fehlen dann. Die Uhr meldet es bis
-     * zur Zielzeit; nicht in der Bereit-Liste (meist gibt es nichts zu melden).
+     * ([RecorderSkip], Audit F-06): Einschlafzeit und Lernphase fehlen dann. Nur ein Hinweis, weil der Wecker trotzdem
+     * klingelt (r1AD 10.11.2026; auf dem iPhone bleibt es rot). Die Uhr meldet es bis zur Zielzeit; nicht in der
+     * Bereit-Liste (meist gibt es nichts zu melden).
      */
-    WATCH_RECORDER(R.string.check_watch_recorder, R.string.check_watch_recorder_battery, null, inReadyList = false),
+    WATCH_RECORDER(R.string.check_watch_recorder, R.string.check_watch_recorder_battery, null, inReadyList = false, advisory = true),
     NOTIFICATIONS(R.string.check_notifications, R.string.check_notifications_problem, R.string.check_allow),
     FULL_SCREEN(R.string.check_full_screen, R.string.check_full_screen_problem, R.string.check_allow),
 

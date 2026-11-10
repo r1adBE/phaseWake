@@ -523,7 +523,7 @@
     <string name="record_start">记录夜间</string>
     <string name="record_stop">停止记录</string>
     <string name="record_since">自 %1$s 起正在记录</string>
-    <string name="record_hint">你的手表整晚记录活动和脉搏。Phase Wake 会在学习阶段从这些夜晚中学习你自己的数值，并让闹钟适合你。这会消耗一些电量——睡前请给手表充电。</string>
+    <string name="record_hint">你的手表在整个夜间测量动作和脉搏。Phase Wake 会在学习阶段从这些夜晚中学习你自己的数值，并让闹钟适合你。这会消耗一些电量——睡前请给手表充电。</string>
     <string name="record_end_manual">已停止</string>
     <string name="record_end_cap">12 小时后结束</string>
     <string name="record_end_battery">手表电量低</string>

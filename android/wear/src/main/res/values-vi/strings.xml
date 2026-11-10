@@ -19,6 +19,9 @@
         <item quantity="other">%1$d phút · còn %2$d lần</item>
     </plurals>
     <string name="ring_snooze_button">Báo lại %1$d phút</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="other">còn %1$d lần</item>
+    </plurals>
     <string name="ring_snoozed_until">Báo lại lúc %1$s</string>
 
     <string name="home_no_alarm">Chưa đặt báo thức</string>

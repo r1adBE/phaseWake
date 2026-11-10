@@ -20,6 +20,10 @@
         <item quantity="other">%1$d মি. · বাকি %2$d</item>
     </plurals>
     <string name="ring_snooze_button">স্নুজ %1$d মি.</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">বাকি %1$d</item>
+        <item quantity="other">বাকি %1$d</item>
+    </plurals>
     <string name="ring_snoozed_until">%1$s পর্যন্ত স্নুজ</string>
 
     <string name="home_no_alarm">কোনো অ্যালার্ম নেই</string>

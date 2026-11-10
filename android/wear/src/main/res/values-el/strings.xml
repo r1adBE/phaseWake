@@ -20,6 +20,10 @@
         <item quantity="other">%1$d λ. · απομένουν: %2$d</item>
     </plurals>
     <string name="ring_snooze_button">Αναβολή %1$d λ.</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">απομένουν: %1$d</item>
+        <item quantity="other">απομένουν: %1$d</item>
+    </plurals>
     <string name="ring_snoozed_until">Αναβολή έως %1$s</string>
 
     <string name="home_no_alarm">Κανένα ξυπνητήρι</string>

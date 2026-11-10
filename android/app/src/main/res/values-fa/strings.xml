@@ -537,7 +537,7 @@
     <string name="record_start">ضبط شب</string>
     <string name="record_stop">توقف ضبط</string>
     <string name="record_since">در حال ضبط از %1$s</string>
-    <string name="record_hint">ساعتت تمام شب حرکت و نبض را ضبط می‌کند. Phase Wake از این شب‌ها در مرحلهٔ یادگیری مقادیر خودت را یاد می‌گیرد و هشدار را با تو هماهنگ می‌کند. این کار کمی باتری مصرف می‌کند – قبل از خواب ساعت را شارژ کن.</string>
+    <string name="record_hint">ساعتت در طول تمام شب حرکت و نبض را اندازه می‌گیرد. Phase Wake از این شب‌ها در مرحلهٔ یادگیری مقادیر خودت را یاد می‌گیرد و هشدار را با تو هماهنگ می‌کند. این کار کمی باتری مصرف می‌کند – قبل از خواب ساعت را شارژ کن.</string>
     <string name="record_end_manual">متوقف شد</string>
     <string name="record_end_cap">پس از ۱۲ ساعت پایان یافت</string>
     <string name="record_end_battery">باتری ساعت کم است</string>

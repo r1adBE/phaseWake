@@ -41,6 +41,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.onClick
@@ -293,12 +294,21 @@ private fun Ringing(ui: RingUi.Ringing, onSnooze: () -> Unit, compact: Boolean =
     )
     if (ui.snoozesLeft > 0) {
         Spacer(Modifier.height(if (compact) 4.dp else 8.dp))
-        // «Schlummern 5 Min» (Audit F-10); auch auf kleinen Uhren mindestens 48 dp hoch (Ziel für den Finger).
+        // «Schlummern 5 Min» (Audit F-10), darunter klein «noch N» (r1AD 10.11.2026); auch auf kleinen Uhren mindestens
+        // 48 dp hoch (Ziel für den Finger), mit grosser Schrift höher statt abgeschnitten.
+        val res = LocalResources.current
         Button(
             onClick = onSnooze,
-            modifier = if (compact) Modifier.height(SNOOZE_MIN_HEIGHT) else Modifier.heightIn(min = SNOOZE_MIN_HEIGHT),
+            modifier = Modifier.heightIn(min = SNOOZE_MIN_HEIGHT),
             colors = ButtonDefaults.buttonColors(containerColor = Brand.Deep, contentColor = Brand.Moon),
             contentPadding = if (compact) PaddingValues(horizontal = 12.dp, vertical = 2.dp) else ButtonDefaults.ContentPadding,
+            secondaryLabel = {
+                Text(
+                    res.getQuantityString(R.plurals.ring_snoozes_left, ui.snoozesLeft, ui.snoozesLeft),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            },
             label = {
                 Text(
                     stringResource(R.string.ring_snooze_button, Snooze.MINUTES),

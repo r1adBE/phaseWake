@@ -19,6 +19,9 @@
         <item quantity="other">%1$d မိနစ် · %2$d ကြိမ် ကျန်</item>
     </plurals>
     <string name="ring_snooze_button">ခဏဆိုင်း %1$d မိနစ်</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="other">%1$d ကြိမ် ကျန်</item>
+    </plurals>
     <string name="ring_snoozed_until">%1$s အထိ ခဏဆိုင်း</string>
 
     <string name="home_no_alarm">နှိုးစက် မသတ်မှတ်ရသေး</string>

@@ -523,7 +523,7 @@
     <string name="record_start">밤 기록하기</string>
     <string name="record_stop">기록 중지</string>
     <string name="record_since">%1$s부터 기록 중</string>
-    <string name="record_hint">시계가 밤새 움직임과 맥박을 기록해요. Phase Wake는 학습 기간에 이 밤들로 나만의 값을 배우고 알람을 나에게 맞춰요. 배터리를 조금 써요 – 자기 전에 시계를 충전하세요.</string>
+    <string name="record_hint">시계가 밤새 움직임과 맥박을 측정해요. Phase Wake는 학습 기간에 이 밤들로 나만의 값을 배우고 알람을 나에게 맞춰요. 배터리를 조금 써요 – 자기 전에 시계를 충전하세요.</string>
     <string name="record_end_manual">중지됨</string>
     <string name="record_end_cap">12시간 후 종료됨</string>
     <string name="record_end_battery">워치 배터리 부족</string>

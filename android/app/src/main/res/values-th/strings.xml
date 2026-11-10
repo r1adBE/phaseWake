@@ -523,7 +523,7 @@
     <string name="record_start">บันทึกกลางคืน</string>
     <string name="record_stop">หยุดบันทึก</string>
     <string name="record_since">กำลังบันทึกตั้งแต่ %1$s</string>
-    <string name="record_hint">นาฬิกาของคุณบันทึกการเคลื่อนไหวและชีพจรตลอดคืน จากคืนเหล่านี้ Phase Wake จะเรียนรู้ค่าของคุณเองในช่วงเรียนรู้และปรับนาฬิกาปลุกให้เหมาะกับคุณ การบันทึกนี้ใช้แบตเตอรี่อยู่บ้าง – ชาร์จนาฬิกาก่อนนอน</string>
+    <string name="record_hint">นาฬิกาของคุณวัดการเคลื่อนไหวและชีพจรตลอดทั้งคืน จากคืนเหล่านี้ Phase Wake จะเรียนรู้ค่าของคุณเองในช่วงเรียนรู้และปรับนาฬิกาปลุกให้เหมาะกับคุณ การบันทึกนี้ใช้แบตเตอรี่อยู่บ้าง – ชาร์จนาฬิกาก่อนนอน</string>
     <string name="record_end_manual">หยุดแล้ว</string>
     <string name="record_end_cap">สิ้นสุดหลัง 12 ชม.</string>
     <string name="record_end_battery">แบตเตอรี่นาฬิกาเหลือน้อย</string>

@@ -41,9 +41,19 @@ struct RingView: View {
             Text(L(ringReasonKey(reason))).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.muted)
             Text(L("ring_hold_to_stop")).font(Fonts.manrope(11, relativeTo: .caption2)).foregroundStyle(Brand.muted)
             if snoozesLeft > 0 {
-                // «Schlummern 5 Min» wie auf Wear OS (Audit F-10); die Höhe des Knopfs (watchOS-Standard) reicht als Tippziel.
-                Button(L("ring_snooze_button", Int64(Snooze.minutes))) { alarm.snooze() }
-                    .tint(Brand.deep)
+                // «Schlummern 5 Min» wie auf Wear OS (Audit F-10), darunter klein «noch N» (r1AD 10.11.2026); mindestens
+                // 48 pt hoch als Tippziel, mit grosser Schrift höher.
+                Button { alarm.snooze() } label: {
+                    VStack(spacing: 0) {
+                        Text(L("ring_snooze_button", Int64(Snooze.minutes))).lineLimit(1)
+                        Text(LP("ring_snoozes_left", snoozesLeft, Int64(snoozesLeft)))
+                            .font(Fonts.manrope(11, relativeTo: .caption2))
+                            .foregroundStyle(Brand.muted)
+                            .lineLimit(1)
+                    }
+                    .frame(maxWidth: .infinity, minHeight: 48)
+                }
+                .tint(Brand.deep)
             }
         case .snoozed(let until, _):
             Text(L("ring_snoozed_until", Format.time(until)))

@@ -540,7 +540,7 @@
     <string name="record_start">Neem nag op</string>
     <string name="record_stop">Stop opname</string>
     <string name="record_since">Neem op sedert %1$s</string>
-    <string name="record_hint">Jou horlosie teken die hele nag beweging en polsslag op. Daaruit leer Phase Wake in die leerfase jou eie waardes en pas die wekker by jou aan. Dit gebruik ’n bietjie battery – laai die horlosie voor jy gaan slaap.</string>
+    <string name="record_hint">Jou horlosie meet deur die hele nag beweging en polsslag. Daaruit leer Phase Wake in die leerfase jou eie waardes en pas die wekker by jou aan. Dit gebruik ’n bietjie battery – laai die horlosie voor jy gaan slaap.</string>
     <string name="record_end_manual">Gestop</string>
     <string name="record_end_cap">Ná 12 h beëindig</string>
     <string name="record_end_battery">Horlosie se battery laag</string>

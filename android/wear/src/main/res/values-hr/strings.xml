@@ -22,6 +22,11 @@
         <item quantity="other">%1$d min · još %2$d</item>
     </plurals>
     <string name="ring_snooze_button">Odgodi %1$d min</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">još %1$d</item>
+        <item quantity="few">još %1$d</item>
+        <item quantity="other">još %1$d</item>
+    </plurals>
     <string name="ring_snoozed_until">Odgođeno do %1$s</string>
 
     <string name="home_no_alarm">Nema postavljenog alarma</string>

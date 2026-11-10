@@ -21,6 +21,10 @@
         <item quantity="other">%1$d daq · %2$d ta qoldi</item>
     </plurals>
     <string name="ring_snooze_button">%1$d daq kechiktirish</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">%1$d ta qoldi</item>
+        <item quantity="other">%1$d ta qoldi</item>
+    </plurals>
     <string name="ring_snoozed_until">%1$s gacha kechiktirildi</string>
 
     <string name="home_no_alarm">Budilnik yoʻq</string>

@@ -565,7 +565,7 @@
     <string name="record_start">Записати ніч</string>
     <string name="record_stop">Зупинити запис</string>
     <string name="record_since">Запис триває з %1$s</string>
-    <string name="record_hint">Твій годинник усю ніч записує рух і пульс. З цих ночей Phase Wake на етапі навчання вивчає твої власні значення й підлаштовує будильник під тебе. Це витрачає трохи заряду – заряди годинник перед сном.</string>
+    <string name="record_hint">Твій годинник вимірює рух і пульс протягом усієї ночі. З цих ночей Phase Wake на етапі навчання вивчає твої власні значення й підлаштовує будильник під тебе. Це витрачає трохи заряду – заряди годинник перед сном.</string>
     <string name="record_end_manual">Зупинено</string>
     <string name="record_end_cap">Завершено через 12 год</string>
     <string name="record_end_battery">Низький заряд годинника</string>

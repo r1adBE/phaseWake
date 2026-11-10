@@ -565,7 +565,7 @@
     <string name="record_start">Zaznamenat noc</string>
     <string name="record_stop">Zastavit záznam</string>
     <string name="record_since">Záznam běží od %1$s</string>
-    <string name="record_hint">Tvoje hodinky celou noc zaznamenávají pohyb a tep. Z těchto nocí se Phase Wake ve fázi učení naučí tvoje vlastní hodnoty a přizpůsobí ti budík. Spotřebuje to trochu baterie – nabij hodinky před spaním.</string>
+    <string name="record_hint">Tvoje hodinky měří přes celou noc pohyb a tep. Z těchto nocí se Phase Wake ve fázi učení naučí tvoje vlastní hodnoty a přizpůsobí ti budík. Spotřebuje to trochu baterie – nabij hodinky před spaním.</string>
     <string name="record_end_manual">Zastaveno</string>
     <string name="record_end_cap">Ukončeno po 12 h</string>
     <string name="record_end_battery">Slabá baterie hodinek</string>

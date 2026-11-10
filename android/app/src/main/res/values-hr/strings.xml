@@ -554,7 +554,7 @@
     <string name="record_start">Snimi noć</string>
     <string name="record_stop">Zaustavi snimanje</string>
     <string name="record_since">Snima se od %1$s</string>
-    <string name="record_hint">Tvoj sat cijelu noć snima pokret i puls. Iz tih noći Phase Wake u fazi učenja uči tvoje vlastite vrijednosti i prilagođava alarm tebi. To troši nešto baterije – napuni sat prije spavanja.</string>
+    <string name="record_hint">Tvoj sat mjeri pokrete i puls tijekom cijele noći. Iz tih noći Phase Wake u fazi učenja uči tvoje vlastite vrijednosti i prilagođava alarm tebi. To troši nešto baterije – napuni sat prije spavanja.</string>
     <string name="record_end_manual">Zaustavljeno</string>
     <string name="record_end_cap">Završeno nakon 12 h</string>
     <string name="record_end_battery">Baterija sata je slaba</string>

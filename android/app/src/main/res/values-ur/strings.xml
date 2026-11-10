@@ -539,7 +539,7 @@
     <string name="record_start">رات ریکارڈ کرو</string>
     <string name="record_stop">ریکارڈنگ روکو</string>
     <string name="record_since">%1$s سے ریکارڈنگ جاری ہے</string>
-    <string name="record_hint">تمہاری گھڑی پوری رات حرکت اور نبض ریکارڈ کرتی ہے۔ ان راتوں سے Phase Wake سیکھنے کے مرحلے میں تمہاری اپنی قدریں سیکھتا ہے اور الارم کو تمہارے مطابق ڈھالتا ہے۔ اس میں کچھ بیٹری لگتی ہے – سونے سے پہلے گھڑی چارج کر لو۔</string>
+    <string name="record_hint">تمہاری گھڑی پوری رات حرکت اور نبض ناپتی ہے۔ ان راتوں سے Phase Wake سیکھنے کے مرحلے میں تمہاری اپنی قدریں سیکھتا ہے اور الارم کو تمہارے مطابق ڈھالتا ہے۔ اس میں کچھ بیٹری لگتی ہے – سونے سے پہلے گھڑی چارج کر لو۔</string>
     <string name="record_end_manual">روک دی گئی</string>
     <string name="record_end_cap">12 گھنٹے بعد ختم</string>
     <string name="record_end_battery">گھڑی کی بیٹری کم ہے</string>

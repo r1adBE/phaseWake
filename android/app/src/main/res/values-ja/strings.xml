@@ -523,7 +523,7 @@
     <string name="record_start">夜を記録</string>
     <string name="record_stop">記録を停止</string>
     <string name="record_since">%1$sから記録中</string>
-    <string name="record_hint">ウォッチが一晩中、動きと脈拍を記録します。Phase Wake は学習期間にこの夜からあなた自身の値を学び、アラームをあなたに合わせます。バッテリーを少し使います – 寝る前に時計を充電してください。</string>
+    <string name="record_hint">時計が夜を通して、体の動きと脈拍を計測します。Phase Wake は学習期間にこの夜からあなた自身の値を学び、アラームをあなたに合わせます。バッテリーを少し使います – 寝る前に時計を充電してください。</string>
     <string name="record_end_manual">停止しました</string>
     <string name="record_end_cap">12時間で終了</string>
     <string name="record_end_battery">ウォッチのバッテリー残量が少ない</string>

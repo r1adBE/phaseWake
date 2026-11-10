@@ -523,7 +523,7 @@
     <string name="record_start">Rakam malam</string>
     <string name="record_stop">Hentikan rakaman</string>
     <string name="record_since">Merakam sejak %1$s</string>
-    <string name="record_hint">Jam tangan anda merakam pergerakan dan nadi sepanjang malam. Daripada malam-malam ini, Phase Wake mempelajari nilai anda sendiri dalam fasa pembelajaran dan menyesuaikan penggera untuk anda. Ini menggunakan sedikit bateri – cas jam sebelum tidur.</string>
+    <string name="record_hint">Jam tangan anda mengukur pergerakan dan nadi sepanjang malam. Daripada malam-malam ini, Phase Wake mempelajari nilai anda sendiri dalam fasa pembelajaran dan menyesuaikan penggera untuk anda. Ini menggunakan sedikit bateri – cas jam sebelum tidur.</string>
     <string name="record_end_manual">Dihentikan</string>
     <string name="record_end_cap">Tamat selepas 12 jam</string>
     <string name="record_end_battery">Bateri jam lemah</string>

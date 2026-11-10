@@ -525,7 +525,7 @@
     <string name="record_start">Түнді жазу</string>
     <string name="record_stop">Жазуды тоқтату</string>
     <string name="record_since">%1$s бастап жазылып жатыр</string>
-    <string name="record_hint">Сағатың түні бойы қозғалыс пен пульсті жазады. Осы түндерден Phase Wake үйрену кезеңінде өз мәндеріңді үйреніп, оятқышты саған бейімдейді. Бұл біраз батарея жұмсайды – ұйықтар алдында сағатты зарядта.</string>
+    <string name="record_hint">Сағатың түні бойы қозғалыс пен пульсті өлшейді. Осы түндерден Phase Wake үйрену кезеңінде өз мәндеріңді үйреніп, оятқышты саған бейімдейді. Бұл біраз батарея жұмсайды – ұйықтар алдында сағатты зарядта.</string>
     <string name="record_end_manual">Тоқтатылды</string>
     <string name="record_end_cap">12 сағаттан кейін аяқталды</string>
     <string name="record_end_battery">Сағат батареясы әлсіз</string>

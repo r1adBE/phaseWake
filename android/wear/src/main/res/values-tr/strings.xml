@@ -20,6 +20,10 @@
         <item quantity="other">%1$d dk · kalan: %2$d</item>
     </plurals>
     <string name="ring_snooze_button">Ertele %1$d dk</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">kalan: %1$d</item>
+        <item quantity="other">kalan: %1$d</item>
+    </plurals>
     <string name="ring_snoozed_until">Erteleme sonu: %1$s</string>
 
     <string name="home_no_alarm">Alarm yok</string>

@@ -21,6 +21,10 @@
         <item quantity="other">මිනි. %1$d · %2$d ඉතිරියි</item>
     </plurals>
     <string name="ring_snooze_button">මිනි. %1$d ස්නූස්</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">%1$d ඉතිරියි</item>
+        <item quantity="other">%1$d ඉතිරියි</item>
+    </plurals>
     <string name="ring_snoozed_until">%1$s දක්වා ස්නූස්</string>
 
     <string name="home_no_alarm">එලාමයක් සකසා නැත</string>

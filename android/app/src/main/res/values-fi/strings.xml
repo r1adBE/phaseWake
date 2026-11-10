@@ -537,7 +537,7 @@
     <string name="record_start">Tallenna yö</string>
     <string name="record_stop">Lopeta tallennus</string>
     <string name="record_since">Tallennus käynnissä klo %1$s alkaen</string>
-    <string name="record_hint">Kellosi tallentaa liikettä ja sykettä koko yön. Näistä öistä Phase Wake oppii oppimisvaiheessa omat arvosi ja sovittaa herätyksen sinulle. Se kuluttaa hieman akkua – lataa kello ennen nukkumaanmenoa.</string>
+    <string name="record_hint">Kellosi mittaa liikettä ja sykettä koko yön mittaan. Näistä öistä Phase Wake oppii oppimisvaiheessa omat arvosi ja sovittaa herätyksen sinulle. Se kuluttaa hieman akkua – lataa kello ennen nukkumaanmenoa.</string>
     <string name="record_end_manual">Pysäytetty</string>
     <string name="record_end_cap">Päättyi 12 tunnin jälkeen</string>
     <string name="record_end_battery">Kellon akku vähissä</string>

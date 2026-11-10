@@ -19,6 +19,10 @@
         <item quantity="other">%1$d мин · қалды: %2$d</item>
     </plurals>
     <string name="ring_snooze_button">Кейінге қалдыру %1$d мин</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">қалды: %1$d</item>
+        <item quantity="other">қалды: %1$d</item>
+    </plurals>
     <string name="ring_snoozed_until">%1$s дейін кейінге қалдырылды</string>
     <string name="home_no_alarm">Оятқыш орнатылмаған</string>
     <string name="home_no_alarm_hint">Оятқыш қос – осында немесе телефондағы Phase Wake-те.</string>

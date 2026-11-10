@@ -540,7 +540,7 @@
     <string name="record_start">रात्र रेकॉर्ड करा</string>
     <string name="record_stop">रेकॉर्डिंग थांबवा</string>
     <string name="record_since">%1$s पासून रेकॉर्डिंग सुरू आहे</string>
-    <string name="record_hint">तुझे घड्याळ रात्रभर हालचाल आणि नाडी रेकॉर्ड करते. या रात्रींमधून Phase Wake शिकण्याच्या टप्प्यात तुझी स्वतःची मूल्ये शिकतो आणि अलार्म तुझ्यानुसार जुळवतो. यासाठी थोडी बॅटरी लागते – झोपण्यापूर्वी घड्याळ चार्ज कर.</string>
+    <string name="record_hint">तुझे घड्याळ रात्रभर हालचाल आणि नाडी मोजते. या रात्रींमधून Phase Wake शिकण्याच्या टप्प्यात तुझी स्वतःची मूल्ये शिकतो आणि अलार्म तुझ्यानुसार जुळवतो. यासाठी थोडी बॅटरी लागते – झोपण्यापूर्वी घड्याळ चार्ज कर.</string>
     <string name="record_end_manual">थांबवले</string>
     <string name="record_end_cap">12 तासांनंतर संपले</string>
     <string name="record_end_battery">घड्याळाची बॅटरी कमी आहे</string>

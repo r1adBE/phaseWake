@@ -537,7 +537,7 @@
     <string name="record_start">Nacht opnemen</string>
     <string name="record_stop">Opname stoppen</string>
     <string name="record_since">Neemt op sinds %1$s</string>
-    <string name="record_hint">Je horloge registreert de hele nacht beweging en hartslag. Uit deze nachten leert Phase Wake in de leerfase je eigen waarden en past de wekker aan jou aan. Dat kost wat batterij – laad het horloge op voordat je gaat slapen.</string>
+    <string name="record_hint">Je horloge meet de hele nacht door beweging en hartslag. Uit deze nachten leert Phase Wake in de leerfase je eigen waarden en past de wekker aan jou aan. Dat kost wat batterij – laad het horloge op voordat je gaat slapen.</string>
     <string name="record_end_manual">Gestopt</string>
     <string name="record_end_cap">Na 12 u beëindigd</string>
     <string name="record_end_battery">Batterij horloge bijna leeg</string>

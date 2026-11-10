@@ -22,6 +22,12 @@
         <item quantity="other">%1$d min · še %2$d</item>
     </plurals>
     <string name="ring_snooze_button">Dremež %1$d min</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">še %1$d</item>
+        <item quantity="two">še %1$d</item>
+        <item quantity="few">še %1$d</item>
+        <item quantity="other">še %1$d</item>
+    </plurals>
     <string name="ring_snoozed_until">Dremež do %1$s</string>
 
     <string name="home_no_alarm">Ni nastavljene budilke</string>

@@ -565,7 +565,7 @@
     <string name="record_start">Nagraj noc</string>
     <string name="record_stop">Zatrzymaj nagrywanie</string>
     <string name="record_since">Nagrywanie od %1$s</string>
-    <string name="record_hint">Twój zegarek przez całą noc rejestruje ruch i tętno. Z tych nocy Phase Wake w fazie nauki poznaje twoje własne wartości i dopasowuje budzik do ciebie. Zużywa to trochę baterii – naładuj zegarek przed snem.</string>
+    <string name="record_hint">Twój zegarek mierzy ruch i tętno przez całą noc. Z tych nocy Phase Wake w fazie nauki poznaje twoje własne wartości i dopasowuje budzik do ciebie. Zużywa to trochę baterii – naładuj zegarek przed snem.</string>
     <string name="record_end_manual">Zatrzymano</string>
     <string name="record_end_cap">Zakończono po 12 h</string>
     <string name="record_end_battery">Słaba bateria zegarka</string>

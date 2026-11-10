@@ -21,6 +21,11 @@
         <item quantity="other">%1$d min · restam %2$d</item>
     </plurals>
     <string name="ring_snooze_button">Soneca %1$d min</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">resta %1$d</item>
+        <item quantity="many">restam %1$d</item>
+        <item quantity="other">restam %1$d</item>
+    </plurals>
     <string name="ring_snoozed_until">Soneca até às %1$s</string>
 
     <string name="home_no_alarm">Sem alarme</string>

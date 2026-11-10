@@ -537,7 +537,7 @@
     <string name="record_start">Spela in natten</string>
     <string name="record_stop">Stoppa inspelning</string>
     <string name="record_since">Spelar in sedan %1$s</string>
-    <string name="record_hint">Klockan registrerar rörelse och puls hela natten. Utifrån de här nätterna lär sig Phase Wake dina egna värden i inlärningsfasen och anpassar alarmet efter dig. Det drar lite batteri – ladda klockan innan du sover.</string>
+    <string name="record_hint">Din klocka mäter rörelse och puls under hela natten. Utifrån de här nätterna lär sig Phase Wake dina egna värden i inlärningsfasen och anpassar alarmet efter dig. Det drar lite batteri – ladda klockan innan du sover.</string>
     <string name="record_end_manual">Stoppad</string>
     <string name="record_end_cap">Avslutad efter 12 h</string>
     <string name="record_end_battery">Klockans batteri är lågt</string>

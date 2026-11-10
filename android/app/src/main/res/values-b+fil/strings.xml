@@ -540,7 +540,7 @@
     <string name="record_start">I-record ang gabi</string>
     <string name="record_stop">Ihinto ang pag-record</string>
     <string name="record_since">Nagre-record mula %1$s</string>
-    <string name="record_hint">Nire-record ng relo mo ang galaw at pulso buong gabi. Mula sa mga gabing ito, natututunan ng Phase Wake ang sarili mong mga value sa learning phase at iniaangkop ang alarm sa iyo. Gumagamit ito ng kaunting baterya – i-charge ang relo bago matulog.</string>
+    <string name="record_hint">Sinusukat ng relo mo ang galaw at pulso sa buong gabi. Mula sa mga gabing ito, natututunan ng Phase Wake ang sarili mong mga value sa learning phase at iniaangkop ang alarm sa iyo. Gumagamit ito ng kaunting baterya – i-charge ang relo bago matulog.</string>
     <string name="record_end_manual">Itinigil</string>
     <string name="record_end_cap">Natapos pagkalipas ng 12 oras</string>
     <string name="record_end_battery">Mahina ang baterya ng relo</string>

@@ -568,7 +568,7 @@
     <string name="record_start">Įrašyti naktį</string>
     <string name="record_stop">Stabdyti įrašymą</string>
     <string name="record_since">Įrašoma nuo %1$s</string>
-    <string name="record_hint">Tavo laikrodis visą naktį įrašo judesius ir pulsą. Iš šių naktų Phase Wake mokymosi etape išmoksta tavo vertes ir pritaiko žadintuvą tau. Tai sunaudoja šiek tiek baterijos – įkrauk laikrodį prieš miegą.</string>
+    <string name="record_hint">Tavo laikrodis visą naktį matuoja judesį ir pulsą. Iš šių naktų Phase Wake mokymosi etape išmoksta tavo vertes ir pritaiko žadintuvą tau. Tai sunaudoja šiek tiek baterijos – įkrauk laikrodį prieš miegą.</string>
     <string name="record_end_manual">Sustabdyta</string>
     <string name="record_end_cap">Baigta po 12 val.</string>
     <string name="record_end_battery">Laikrodžio baterija senka</string>

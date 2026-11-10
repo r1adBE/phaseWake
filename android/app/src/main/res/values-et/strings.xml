@@ -540,7 +540,7 @@
     <string name="record_start">Salvesta öö</string>
     <string name="record_stop">Peata salvestus</string>
     <string name="record_since">Salvestab alates %1$s</string>
-    <string name="record_hint">Sinu kell salvestab kogu öö liikumist ja pulssi. Nendest öödest õpib Phase Wake õppimisfaasis sinu enda väärtused ja kohandab äratuse sulle. See kulutab veidi akut – lae kell enne magamaminekut.</string>
+    <string name="record_hint">Sinu kell mõõdab kogu öö jooksul liikumist ja pulssi. Nendest öödest õpib Phase Wake õppimisfaasis sinu enda väärtused ja kohandab äratuse sulle. See kulutab veidi akut – lae kell enne magamaminekut.</string>
     <string name="record_end_manual">Peatatud</string>
     <string name="record_end_cap">Lõppes 12 h pärast</string>
     <string name="record_end_battery">Kella aku on tühjenemas</string>

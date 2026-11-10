@@ -19,6 +19,10 @@
         <item quantity="other">%1$d dəq · qalıb: %2$d</item>
     </plurals>
     <string name="ring_snooze_button">Təxirə sal %1$d dəq</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">qalıb: %1$d</item>
+        <item quantity="other">qalıb: %1$d</item>
+    </plurals>
     <string name="ring_snoozed_until">%1$s-dək təxirə salındı</string>
     <string name="home_no_alarm">Siqnal qurulmayıb</string>
     <string name="home_no_alarm_hint">Siqnal əlavə et – burada və ya telefonundakı Phase Wake-də.</string>

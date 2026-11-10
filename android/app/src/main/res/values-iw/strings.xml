@@ -551,7 +551,7 @@
     <string name="record_start">הקלטת הלילה</string>
     <string name="record_stop">עצירת ההקלטה</string>
     <string name="record_since">מקליט מאז %1$s</string>
-    <string name="record_hint">השעון שלך מקליט תנועה ודופק כל הלילה. מהלילות האלה Phase Wake לומד בשלב הלמידה את הערכים שלך ומתאים לך את ההשכמה. זה צורך מעט סוללה – כדאי לטעון את השעון לפני השינה.</string>
+    <string name="record_hint">השעון שלך מודד תנועה ודופק לאורך כל הלילה. מהלילות האלה Phase Wake לומד בשלב הלמידה את הערכים שלך ומתאים לך את ההשכמה. זה צורך מעט סוללה – כדאי לטעון את השעון לפני השינה.</string>
     <string name="record_end_manual">נעצרה</string>
     <string name="record_end_cap">הסתיימה אחרי 12 שעות</string>
     <string name="record_end_battery">הסוללה של השעון חלשה</string>

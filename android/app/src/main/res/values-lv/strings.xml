@@ -554,7 +554,7 @@
     <string name="record_start">Ierakstīt nakti</string>
     <string name="record_stop">Apturēt ierakstu</string>
     <string name="record_since">Ieraksta kopš %1$s</string>
-    <string name="record_hint">Tavs pulkstenis visu nakti ieraksta kustības un pulsu. No šīm naktīm Phase Wake mācīšanās posmā apgūst tavas vērtības un pielāgo modinātāju tev. Tas patērē nedaudz akumulatora – uzlādē pulksteni pirms gulētiešanas.</string>
+    <string name="record_hint">Tavs pulkstenis visas nakts garumā mēra kustību un pulsu. No šīm naktīm Phase Wake mācīšanās posmā apgūst tavas vērtības un pielāgo modinātāju tev. Tas patērē nedaudz akumulatora – uzlādē pulksteni pirms gulētiešanas.</string>
     <string name="record_end_manual">Apturēts</string>
     <string name="record_end_cap">Beidzās pēc 12 h</string>
     <string name="record_end_battery">Pulksteņa akumulators izlādējas</string>

@@ -539,7 +539,7 @@
     <string name="record_start">রাত রেকর্ড করো</string>
     <string name="record_stop">রেকর্ডিং থামাও</string>
     <string name="record_since">%1$s থেকে রেকর্ড হচ্ছে</string>
-    <string name="record_hint">তোমার ঘড়ি সারা রাত নড়াচড়া আর নাড়ি রেকর্ড করে। এই রাতগুলো থেকে Phase Wake শেখার পর্যায়ে তোমার নিজের মান শেখে এবং অ্যালার্ম তোমার মতো করে নেয়। এতে কিছুটা ব্যাটারি লাগে – ঘুমানোর আগে ঘড়ি চার্জ করো।</string>
+    <string name="record_hint">তোমার ঘড়ি সারা রাত জুড়ে নড়াচড়া ও পালস মাপে। এই রাতগুলো থেকে Phase Wake শেখার পর্যায়ে তোমার নিজের মান শেখে এবং অ্যালার্ম তোমার মতো করে নেয়। এতে কিছুটা ব্যাটারি লাগে – ঘুমানোর আগে ঘড়ি চার্জ করো।</string>
     <string name="record_end_manual">থামানো হয়েছে</string>
     <string name="record_end_cap">১২ ঘণ্টা পরে শেষ হয়েছে</string>
     <string name="record_end_battery">ঘড়ির ব্যাটারি কম</string>

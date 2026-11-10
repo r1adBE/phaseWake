@@ -21,6 +21,10 @@
         <item quantity="other">%1$d мин · уште %2$d</item>
     </plurals>
     <string name="ring_snooze_button">Одложи %1$d мин</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">уште %1$d</item>
+        <item quantity="other">уште %1$d</item>
+    </plurals>
     <string name="ring_snoozed_until">Одложено до %1$s</string>
 
     <string name="home_no_alarm">Нема поставен аларм</string>

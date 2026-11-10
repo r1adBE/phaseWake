@@ -24,6 +24,14 @@
         <item quantity="other">%1$d د · المتبقي %2$d</item>
     </plurals>
     <string name="ring_snooze_button">غفوة %1$d د</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="zero">المتبقي %1$d</item>
+        <item quantity="one">المتبقي %1$d</item>
+        <item quantity="two">المتبقي %1$d</item>
+        <item quantity="few">المتبقي %1$d</item>
+        <item quantity="many">المتبقي %1$d</item>
+        <item quantity="other">المتبقي %1$d</item>
+    </plurals>
     <string name="ring_snoozed_until">غفوة حتى %1$s</string>
 
     <string name="home_no_alarm">لا منبّه مضبوط</string>

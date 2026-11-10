@@ -21,6 +21,11 @@
         <item quantity="other">%1$d min · quedan %2$d</item>
     </plurals>
     <string name="ring_snooze_button">Posponer %1$d min</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">queda %1$d</item>
+        <item quantity="many">quedan %1$d</item>
+        <item quantity="other">quedan %1$d</item>
+    </plurals>
     <string name="ring_snoozed_until">Pospuesta hasta las %1$s</string>
 
     <string name="home_no_alarm">Sin alarma</string>

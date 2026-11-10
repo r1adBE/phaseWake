@@ -542,7 +542,7 @@
     <string name="record_start">Record night</string>
     <string name="record_stop">Stop recording</string>
     <string name="record_since">Recording since %1$s</string>
-    <string name="record_hint">Your watch records motion and pulse all night. From these nights, Phase Wake learns your own values in the learning phase and adapts the alarm to you. This uses some battery – charge the watch before you go to sleep.</string>
+    <string name="record_hint">Your watch measures motion and pulse throughout the night. From these nights, Phase Wake learns your own values in the learning phase and adapts the alarm to you. This uses some battery – charge the watch before you go to sleep.</string>
     <string name="record_end_manual">Stopped</string>
     <string name="record_end_cap">Ended after 12 h</string>
     <string name="record_end_battery">Watch battery low</string>

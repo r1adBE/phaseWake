@@ -20,6 +20,10 @@
         <item quantity="other">%1$d منٹ · %2$d باقی</item>
     </plurals>
     <string name="ring_snooze_button">اسنوز %1$d منٹ</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">%1$d باقی</item>
+        <item quantity="other">%1$d باقی</item>
+    </plurals>
     <string name="ring_snoozed_until">%1$s تک اسنوز</string>
 
     <string name="home_no_alarm">کوئی الارم نہیں</string>

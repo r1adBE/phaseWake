@@ -539,7 +539,7 @@
     <string name="record_start">ರಾತ್ರಿ ರೆಕಾರ್ಡ್ ಮಾಡಿ</string>
     <string name="record_stop">ರೆಕಾರ್ಡಿಂಗ್ ನಿಲ್ಲಿಸಿ</string>
     <string name="record_since">%1$s ರಿಂದ ರೆಕಾರ್ಡ್ ಆಗುತ್ತಿದೆ</string>
-    <string name="record_hint">ನಿನ್ನ ವಾಚ್ ರಾತ್ರಿಯಿಡೀ ಚಲನೆ ಮತ್ತು ನಾಡಿಯನ್ನು ದಾಖಲಿಸುತ್ತದೆ. ಈ ರಾತ್ರಿಗಳಿಂದ Phase Wake ಕಲಿಕೆಯ ಹಂತದಲ್ಲಿ ನಿನ್ನದೇ ಮೌಲ್ಯಗಳನ್ನು ಕಲಿತು ಅಲಾರಾಂ ಅನ್ನು ನಿನಗೆ ಹೊಂದಿಸುತ್ತದೆ. ಇದಕ್ಕೆ ಸ್ವಲ್ಪ ಬ್ಯಾಟರಿ ಬೇಕು – ಮಲಗುವ ಮೊದಲು ವಾಚ್ ಚಾರ್ಜ್ ಮಾಡು.</string>
+    <string name="record_hint">ನಿನ್ನ ವಾಚ್ ರಾತ್ರಿಯಿಡೀ ಚಲನೆ ಮತ್ತು ನಾಡಿಯನ್ನು ಅಳೆಯುತ್ತದೆ. ಈ ರಾತ್ರಿಗಳಿಂದ Phase Wake ಕಲಿಕೆಯ ಹಂತದಲ್ಲಿ ನಿನ್ನದೇ ಮೌಲ್ಯಗಳನ್ನು ಕಲಿತು ಅಲಾರಾಂ ಅನ್ನು ನಿನಗೆ ಹೊಂದಿಸುತ್ತದೆ. ಇದಕ್ಕೆ ಸ್ವಲ್ಪ ಬ್ಯಾಟರಿ ಬೇಕು – ಮಲಗುವ ಮೊದಲು ವಾಚ್ ಚಾರ್ಜ್ ಮಾಡು.</string>
     <string name="record_end_manual">ನಿಲ್ಲಿಸಲಾಗಿದೆ</string>
     <string name="record_end_cap">12 ಗಂಟೆಗಳ ನಂತರ ಮುಗಿಯಿತು</string>
     <string name="record_end_battery">ವಾಚ್ ಬ್ಯಾಟರಿ ಕಡಿಮೆ</string>

@@ -539,7 +539,7 @@
     <string name="record_start">Rekodi usiku</string>
     <string name="record_stop">Simamisha kurekodi</string>
     <string name="record_since">Inarekodi tangu %1$s</string>
-    <string name="record_hint">Saa yako hurekodi mwendo na mapigo usiku kucha. Kutokana na usiku huu, Phase Wake hujifunza thamani zako mwenyewe katika awamu ya kujifunza na kurekebisha kengele ikufae. Hii hutumia betri kidogo – chaji saa kabla ya kulala.</string>
+    <string name="record_hint">Saa yako hupima mwendo na mapigo ya moyo usiku kucha. Kutokana na usiku huu, Phase Wake hujifunza thamani zako mwenyewe katika awamu ya kujifunza na kurekebisha kengele ikufae. Hii hutumia betri kidogo – chaji saa kabla ya kulala.</string>
     <string name="record_end_manual">Imesimamishwa</string>
     <string name="record_end_cap">Iliisha baada ya saa 12</string>
     <string name="record_end_battery">Betri ya saa iko chini</string>

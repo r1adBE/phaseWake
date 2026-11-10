@@ -567,7 +567,7 @@
     <string name="record_start">Posnemi noč</string>
     <string name="record_stop">Ustavi snemanje</string>
     <string name="record_since">Snemanje od %1$s</string>
-    <string name="record_hint">Tvoja ura vso noč snema gibanje in utrip. Iz teh noči se Phase Wake v fazi učenja nauči tvojih lastnih vrednosti in budilko prilagodi tebi. To porabi nekaj baterije – napolni uro pred spanjem.</string>
+    <string name="record_hint">Tvoja ura čez vso noč meri gibanje in utrip. Iz teh noči se Phase Wake v fazi učenja nauči tvojih lastnih vrednosti in budilko prilagodi tebi. To porabi nekaj baterije – napolni uro pred spanjem.</string>
     <string name="record_end_manual">Ustavljeno</string>
     <string name="record_end_cap">Končano po 12 h</string>
     <string name="record_end_battery">Baterija ure je šibka</string>

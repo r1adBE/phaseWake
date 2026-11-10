@@ -5,7 +5,8 @@ import java.time.Instant
 /**
  * Nacht-Check (Audit F-06): Die Uhr hat die Messung vor dem Schlafen für die Nacht mit Zielzeit [target] nicht
  * gestartet, obwohl sie gewünscht war (Einschlaf-Messung oder Lernphase), aus [reason]. Die Uhr meldet es ans Handy;
- * dort ist der Nacht-Check rot, bis die Zielzeit vorbei ist ([appliesAt]). Gleich in Swift (`RecorderSkip`).
+ * dort zeigt der Nacht-Check es, bis die Zielzeit vorbei ist ([appliesAt]; iPhone rot, Android-Handy als Hinweis).
+ * Gleich in Swift (`RecorderSkip`).
  */
 data class RecorderSkip(val target: Instant, val reason: Reason) {
     /** Grund, mit seinem Kürzel im gemeldeten Text ([encode]). */

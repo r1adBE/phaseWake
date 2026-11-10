@@ -20,6 +20,10 @@
         <item quantity="other">%1$d min · %2$d kvar</item>
     </plurals>
     <string name="ring_snooze_button">Snooze %1$d min</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">%1$d kvar</item>
+        <item quantity="other">%1$d kvar</item>
+    </plurals>
     <string name="ring_snoozed_until">Snooze till %1$s</string>
 
     <string name="home_no_alarm">Inget larm inställt</string>

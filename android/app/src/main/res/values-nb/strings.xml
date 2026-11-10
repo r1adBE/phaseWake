@@ -537,7 +537,7 @@
     <string name="record_start">Ta opp natten</string>
     <string name="record_stop">Stopp opptak</string>
     <string name="record_since">Tar opp siden %1$s</string>
-    <string name="record_hint">Klokken din tar opp bevegelse og puls hele natten. Ut fra disse nettene lærer Phase Wake dine egne verdier i læringsfasen og tilpasser alarmen til deg. Det bruker litt batteri – lad klokken før du legger deg.</string>
+    <string name="record_hint">Klokken din måler bevegelse og puls gjennom hele natten. Ut fra disse nettene lærer Phase Wake dine egne verdier i læringsfasen og tilpasser alarmen til deg. Det bruker litt batteri – lad klokken før du legger deg.</string>
     <string name="record_end_manual">Stoppet</string>
     <string name="record_end_cap">Avsluttet etter 12 t</string>
     <string name="record_end_battery">Lavt batteri på klokken</string>

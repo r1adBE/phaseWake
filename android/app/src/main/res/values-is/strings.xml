@@ -540,7 +540,7 @@
     <string name="record_start">Taka upp nóttina</string>
     <string name="record_stop">Stöðva upptöku</string>
     <string name="record_since">Tekur upp síðan %1$s</string>
-    <string name="record_hint">Úrið þitt skráir hreyfingu og púls alla nóttina. Út frá þessum nóttum lærir Phase Wake þín eigin gildi í lærdómsfasanum og lagar vekjarann að þér. Það notar dálítið af rafhlöðunni – hladdu úrið áður en þú ferð að sofa.</string>
+    <string name="record_hint">Úrið þitt mælir hreyfingu og púls yfir alla nóttina. Út frá þessum nóttum lærir Phase Wake þín eigin gildi í lærdómsfasanum og lagar vekjarann að þér. Það notar dálítið af rafhlöðunni – hladdu úrið áður en þú ferð að sofa.</string>
     <string name="record_end_manual">Stöðvað</string>
     <string name="record_end_cap">Lauk eftir 12 klst.</string>
     <string name="record_end_battery">Rafhlaða úrsins lág</string>

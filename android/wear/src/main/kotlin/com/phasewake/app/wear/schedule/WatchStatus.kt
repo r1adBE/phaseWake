@@ -81,7 +81,8 @@ internal class WatchStatus(
 
     /**
      * Messung vor dem Schlafen für die Nacht von [skip] nicht gestartet (Audit F-06): merken und gleich melden; der
-     * Nacht-Check am Handy ist rot, bis die Uhr nach ihrer Zielzeit wieder meldet (beim Neuplanen nach dem Wecken).
+     * Nacht-Check am Handy zeigt einen Hinweis, bis die Uhr nach ihrer Zielzeit wieder meldet (beim Neuplanen nach dem
+     * Wecken).
      */
     suspend fun noteSkip(skip: RecorderSkip) {
         store.edit { it[SKIP] = skip.encode() }

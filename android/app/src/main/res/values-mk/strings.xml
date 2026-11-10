@@ -540,7 +540,7 @@
     <string name="record_start">Сними ја ноќта</string>
     <string name="record_stop">Запри снимање</string>
     <string name="record_since">Се снима од %1$s</string>
-    <string name="record_hint">Твојот часовник цела ноќ снима движење и пулс. Од тие ноќи Phase Wake во фазата на учење ги учи твоите сопствени вредности и го прилагодува алармот на тебе. Тоа троши малку батерија – наполни го часовникот пред спиење.</string>
+    <string name="record_hint">Твојот часовник мери движење и пулс низ целата ноќ. Од тие ноќи Phase Wake во фазата на учење ги учи твоите сопствени вредности и го прилагодува алармот на тебе. Тоа троши малку батерија – наполни го часовникот пред спиење.</string>
     <string name="record_end_manual">Запрено</string>
     <string name="record_end_cap">Завршено по 12 ч</string>
     <string name="record_end_battery">Батеријата на часовникот е слаба</string>

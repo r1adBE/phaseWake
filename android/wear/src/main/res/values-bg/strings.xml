@@ -20,6 +20,10 @@
         <item quantity="other">%1$d мин · остават %2$d</item>
     </plurals>
     <string name="ring_snooze_button">Отложи %1$d мин</string>
+    <plurals name="ring_snoozes_left">
+        <item quantity="one">остават %1$d</item>
+        <item quantity="other">остават %1$d</item>
+    </plurals>
     <string name="ring_snoozed_until">Отложено до %1$s</string>
 
     <string name="home_no_alarm">Няма будилник</string>
