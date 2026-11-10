@@ -26,4 +26,5 @@
     <string name="check_watch_notifications">Mitteilungen auf der Uhr</string>
     <string name="check_watch_notifications_problem">Erlaube zeitkritische Mitteilungen von Phase Wake auf deiner Apple Watch. Sonst kann sie dich ohne laufende Messung nicht per Mitteilung wecken.</string>
     <string name="check_watch_state_old">Stand der Uhr veraltet – öffne Phase Wake kurz auf der Uhr.</string>
+    <string name="editor_sleep_apple">Auf der Apple Watch schätzt Phase Wake die Einschlafzeit aus deiner gelernten Einschlafdauer.</string>
 </resources>

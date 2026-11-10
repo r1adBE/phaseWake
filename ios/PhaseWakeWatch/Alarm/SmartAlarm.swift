@@ -12,8 +12,9 @@ import WatchKit
 /// sicher in der Sitzung liegt, beginnt sie höchstens 25 Minuten davor (`sessionStart`); bei einem
 /// 30-Minuten-Fenster bleiben die ersten 5 Minuten ungemessen (leere Epochen).
 /// Gemessen wird wie auf Android (Regel in docs/PHASENERKENNUNG.md). Bei «Genau» misst die Uhr gleich lang
-/// (`AlarmSpec.measureMinutes`), weckt aber nie vor der Zielzeit (Grund `exact`). Die Untergrenze «Kurze Nacht»
-/// gilt hier nicht: Ausserhalb der Sitzung kann die Apple Watch das Einschlafen nicht messen.
+/// (`AlarmSpec.measureMinutes`), weckt aber nie vor der Zielzeit (Grund `exact`). Die Untergrenze «Kurze Nacht» gilt
+/// wie auf Android, sobald die Einschlafzeit bekannt ist: Ausserhalb der Sitzung misst die Apple Watch nicht selbst,
+/// rechnet sie aber zu Beginn der Sitzung aus dem Bewegungs-Rekorder nach (`WatchOnset`), wenn er in dieser Nacht lief.
 ///
 /// Grenzen von watchOS, die hier abgefangen werden:
 /// - Planen geht nur bei aktiver App und höchstens 36 Stunden im Voraus. Sonst wartet der Plan
@@ -83,6 +84,12 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     @ObservationIgnored var snoozes = 0
     /// Epochen ab Fensterbeginn, die vor dem Start der Sitzung lagen (leer, nicht für die Erkennung).
     @ObservationIgnored var unmeasured = 0
+    /// Einschlafzeit der Nacht aus dem Rekorder (`WatchOnset`); `nil` = unbekannt (dann keine Untergrenze kurzer Nächte).
+    @ObservationIgnored var asleepAt: Date?
+    /// Schlafziel der Nacht in Minuten (Schlafdauer des Weckers, sonst das Schlafziel vom iPhone).
+    @ObservationIgnored var goalMinutes = SleepGoal.defaultMinutes
+    /// Ein früher Moment wurde übergangen (kurze Nacht): Zur Zielzeit weckt die Uhr mit `shortNight`.
+    @ObservationIgnored var earlyBlocked = false
     @ObservationIgnored var ticker: Timer?
     @ObservationIgnored var deadline: Timer?
     /// Beginn des Klingelns, für die Steigerung der Vibration.

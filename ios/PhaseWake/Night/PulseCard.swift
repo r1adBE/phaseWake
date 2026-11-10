@@ -1,20 +1,24 @@
 import PhaseWakeCore
 import SwiftUI
 
-/// Pulsverlauf im Weckfenster (``SleepOverviews/pulse(_:start:)``): Linie je 5 Min (Lücken unterbrochen), Fläche
-/// darunter leise ausblendend, Mittel gestrichelt, Beginn und Ende als Uhrzeit. Am iPhone nur das Weckfenster der Uhr
-/// (die Aufzeichnung der ganzen Nacht fehlt dort noch). Wie `PulseCard` (Android).
+/// Pulsverlauf (``SleepOverviews/pulse(_:start:)``): Linie je 5 Min (Lücken unterbrochen), Fläche darunter leise
+/// ausblendend, Mittel gestrichelt, Beginn und Ende als Uhrzeit. Aus einer Aufzeichnung der Uhr über die ganze Nacht
+/// (`fullNight`), sonst im Weckfenster (Untertitel). Wie `PulseCard` (Android).
 struct PulseCard: View {
     let curve: PulseCurve
+    var fullNight = false
     @Environment(\.colorScheme) private var scheme
 
     var body: some View {
         let average = L("pulse_average", Int64(curve.average))
         let from = Format.time(curve.start)
         let to = Format.time(curve.end)
+        let window: String? = fullNight ? nil : L("chart_window")
         VStack(alignment: .leading, spacing: 4) {
             Text(L("pulse_title")).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
-            Text(L("chart_window")).font(Fonts.manrope(13, relativeTo: .footnote)).foregroundStyle(Brand.secondaryText(scheme))
+            if let window {
+                Text(window).font(Fonts.manrope(13, relativeTo: .footnote)).foregroundStyle(Brand.secondaryText(scheme))
+            }
             PulseLine(curve: curve, line: StageColors.color(.awake, scheme), mean: Brand.accent(scheme))
                 .frame(height: 104)
                 .padding(.top, 4)
@@ -30,7 +34,62 @@ struct PulseCard: View {
         }
         .card()
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel([L("pulse_title"), L("chart_window"), average, from + " – " + to].joined(separator: ". "))
+        .accessibilityLabel([L("pulse_title"), window, average, from + " – " + to].compactMap { $0 }.joined(separator: ". "))
+    }
+}
+
+/// Bewegung über die ganze Nacht aus einer Aufzeichnung der Uhr: je 5 Min (``PulseCurve/bucketEpochs``) die grösste
+/// Bewegung als Säule, ohne Werte eine flache Spur; Beginn und Ende als Uhrzeit. Wie `MotionCard` (Android).
+struct MotionCard: View {
+    let series: NightSeries
+    @Environment(\.colorScheme) private var scheme
+
+    var body: some View {
+        let from = Format.time(series.start)
+        let to = Format.time(series.start.addingTimeInterval(TimeInterval(series.epochs.count * DetectorConfig.epochSeconds)))
+        let buckets: [Double?] = stride(from: 0, to: series.epochs.count, by: PulseCurve.bucketEpochs).map { i in
+            series.epochs[i..<min(i + PulseCurve.bucketEpochs, series.epochs.count)].compactMap(\.motion).max()
+        }
+        VStack(alignment: .leading, spacing: 4) {
+            Text(L("motion_title")).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+            MotionBars(buckets: buckets, active: Brand.accent(scheme), track: StageColors.track(scheme))
+                .frame(height: 64)
+                .padding(.top, 4)
+                .chartFadeIn()
+            HStack {
+                Text(from)
+                Spacer()
+                Text(to)
+            }
+            .font(Fonts.manrope(11, .semibold, relativeTo: .caption2))
+            .foregroundStyle(Brand.secondaryText(scheme))
+        }
+        .card()
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(L("motion_title") + ". " + from + " – " + to)
+    }
+}
+
+/// Die Säulen der Bewegung: Höhe relativ zur grössten Bewegung, mindestens 2 pt; ohne Werte in der Farbe der Spur.
+private struct MotionBars: View {
+    let buckets: [Double?]
+    let active: Color
+    let track: Color
+
+    var body: some View {
+        Canvas { context, size in
+            let n = max(1, buckets.count)
+            let gap: CGFloat = n > 60 ? 1 : 2
+            let width = max(1, (size.width - gap * CGFloat(n - 1)) / CGFloat(n))
+            let top = max(buckets.compactMap { $0 }.max() ?? 0.01, 0.01)
+            let minimum: CGFloat = 2
+            for (i, motion) in buckets.enumerated() {
+                let share = CGFloat(min(max((motion ?? 0) / top, 0), 1))
+                let height = motion == nil ? minimum : minimum + (size.height - minimum) * share
+                let rect = CGRect(x: CGFloat(i) * (width + gap), y: size.height - height, width: width, height: height)
+                context.fill(Path(roundedRect: rect, cornerRadius: width / 2), with: .color(motion == nil ? track : active))
+            }
+        }
     }
 }
 

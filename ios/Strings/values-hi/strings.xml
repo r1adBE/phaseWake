@@ -26,4 +26,5 @@
     <string name="check_watch_notifications">वॉच पर सूचनाएँ</string>
     <string name="check_watch_notifications_problem">अपनी Apple Watch पर Phase Wake के लिए समय-संवेदी सूचनाओं की अनुमति दें। वरना माप न चलने पर वॉच आपको सूचना से नहीं जगा सकती।</string>
     <string name="check_watch_state_old">वॉच की स्थिति पुरानी है – वॉच पर कुछ देर के लिए Phase Wake खोलें।</string>
+    <string name="editor_sleep_apple">Apple Watch पर Phase Wake सीखे गए नींद आने के समय से अनुमान लगाता है कि आप कब सो जाते हैं।</string>
 </resources>

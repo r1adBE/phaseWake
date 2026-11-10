@@ -14,10 +14,14 @@ extension SyncKeys {
 enum WatchProtocol {
     /// Stand dieser Version. Erhöhen, wenn die Uhr-App für das iPhone aktualisiert werden muss.
     /// 2 (10.11.2026): Lernphase – die Uhr zeichnet mit dem Bewegungs-Rekorder auf (`learnRecording`).
-    static let current = 2
+    /// 3 (10.11.2026): «Nacht aufzeichnen» (`recordStart`, `recordStop`, `recordSince`) und «Gute Nacht» (`onsetShift`).
+    static let current = 3
 
     /// Ab diesem Stand kennt die Uhr-App die Lernphase; vorher zeigt das iPhone sie nicht an.
     static let learning = 2
+
+    /// Ab diesem Stand kennt die Uhr-App «Nacht aufzeichnen»; vorher zeigt das iPhone die Karte nicht.
+    static let recording = 3
 
     /// Ob eine Uhr mit dem gemeldeten Stand `watch` älter ist als diese iPhone-App. Tolerant: `nil` (nie gemeldet,
     /// ältere Uhr ohne die Angabe, noch kein Kontext) warnt nicht; eine Uhr ohne Überspringen und Feiertage meldet

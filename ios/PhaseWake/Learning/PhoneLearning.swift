@@ -4,7 +4,8 @@ import PhaseWakeCore
 
 /// Lernphase am iPhone (`docs/PHASENERKENNUNG.md`, Abschnitt 10; wie `LearningRepository` und `updateLearning` auf
 /// Android): Stand und Zustimmung (``LearningState``), die Aufzeichnungen der Apple Watch (``NightRecording``, die
-/// letzten 14), Zählen der Nächte und Lernen der Werte nach 7 gezählten Nächten. Der Puls kommt auf der Apple Watch aus
+/// letzten 14, aus der Lernphase und von «Nacht aufzeichnen»; Verlauf, Export und Schlafwert lesen sie hier), Zählen
+/// der Nächte und Lernen der Werte nach 7 gezählten Nächten. Der Puls kommt auf der Apple Watch aus
 /// Apple Health, darum gilt dort ``Learning/minHeartRateEpochsApple``; die Einschlafdauer trägt das iPhone aus Apple Health
 /// nach («Im Bett» bis zum ersten Schlaf, nur Daten von Apple; ``HealthSleep/onsetSamples(from:to:)``), sobald sie dort
 /// liegt.
@@ -58,6 +59,7 @@ final class PhoneLearning {
             DiagStore.shared.log(.error, "learn recording unreadable")
             return
         }
+        DiagStore.shared.log(.sync, "recording received epochs=\(recording.epochs.count) end=\(recording.endReason?.rawValue ?? "-")")
         var list = recordings.filter { $0.start != recording.start }
         list.append(recording)
         setRecordings(list)
@@ -72,18 +74,21 @@ final class PhoneLearning {
         update(received: nil)
     }
 
-    /// Trägt bei Aufzeichnungen ab dem Beginn der Lernphase ohne Einschlafdauer Beginn und Einschlafzeit aus Apple Health
-    /// nach, sobald dort beides liegt.
+    /// Trägt bei Aufzeichnungen ab dem Beginn der Lernphase Beginn und Einschlafzeit aus Apple Health nach, sobald dort
+    /// beides liegt. Apple Health geht vor; die Einschlafzeit, die die Uhr aus dem Rekorder nachgerechnet hat
+    /// (`WatchOnset`), gilt nur ohne Daten in Apple Health.
     private func fillOnsets() async {
         guard !filling, let since = state.since, state.active else { return }
         filling = true
         defer { filling = false }
         var changed = false
         var list = recordings
-        for (index, recording) in list.enumerated() where recording.start >= since && recording.bedAt == nil {
-            let end = recording.end ?? recording.start.addingTimeInterval(TimeInterval(recording.epochs.count * DetectorConfig.epochSeconds))
-            let samples = await PhoneModel.shared.health.onsetSamples(from: recording.start, to: end)
-            guard let onset = Learning.healthOnset(start: recording.start, inBed: samples.inBed, asleep: samples.asleep) else { continue }
+        for (index, recording) in list.enumerated() where recording.start >= since {
+            let samples = await PhoneModel.shared.health.onsetSamples(from: recording.start, to: recording.until)
+            // In Millisekunden verglichen wie im Dateiformat: sonst gälte jede gelesene Aufzeichnung als geändert.
+            guard let onset = Learning.healthOnset(start: recording.start, inBed: samples.inBed, asleep: samples.asleep),
+                  Self.ms(onset.bedAt) != recording.bedAt.map(Self.ms) || Self.ms(onset.asleepAt) != recording.asleepAt.map(Self.ms)
+            else { continue }
             list[index] = recording.with(bedAt: onset.bedAt, asleepAt: onset.asleepAt)
             changed = true
         }
@@ -109,6 +114,8 @@ final class PhoneLearning {
         setState(next)
         DiagStore.shared.log(.sync, "learn done \(state.snapshot.diagLine) lat=\(values.latencyMinutes.map { "\($0)" } ?? "-")")
     }
+
+    private static func ms(_ date: Date) -> Int64 { Int64((date.timeIntervalSince1970 * 1000).rounded()) }
 
     // MARK: Zustimmung, «Neu lernen», «Verlauf löschen»
 

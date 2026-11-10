@@ -29,4 +29,5 @@
     <string name="check_watch_notifications">వాచ్‌లో నోటిఫికేషన్‌లు</string>
     <string name="check_watch_notifications_problem">మీ Apple Watchలో Phase Wake కోసం సమయ-సున్నితమైన నోటిఫికేషన్‌లను అనుమతించండి. లేకపోతే కొలత జరగనప్పుడు అది మిమ్మల్ని నోటిఫికేషన్‌తో లేపలేదు.</string>
     <string name="check_watch_state_old">వాచ్ స్థితి పాతది – వాచ్‌లో Phase Wakeను కొద్దిసేపు తెరవండి.</string>
+    <string name="editor_sleep_apple">Apple Watchలో Phase Wake నేర్చుకున్న నిద్రపట్టడానికి పట్టే సమయం నుండి మీరు ఎప్పుడు నిద్రపోతారో అంచనా వేస్తుంది.</string>
 </resources>

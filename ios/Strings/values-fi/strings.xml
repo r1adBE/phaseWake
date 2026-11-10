@@ -26,4 +26,5 @@
     <string name="check_watch_notifications">Ilmoitukset kellossa</string>
     <string name="check_watch_notifications_problem">Salli Phase Waken aikasidonnaiset ilmoitukset Apple Watchissasi. Muuten kello ei voi herättää sinua ilmoituksella, kun mittaus ei ole käynnissä.</string>
     <string name="check_watch_state_old">Kellon tila on vanhentunut – avaa Phase Wake hetkeksi kellossa.</string>
+    <string name="editor_sleep_apple">Apple Watchissa Phase Wake arvioi nukahtamisesi ajankohdan oppimasi nukahtamisajan perusteella.</string>
 </resources>

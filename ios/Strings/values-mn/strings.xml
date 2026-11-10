@@ -29,4 +29,5 @@
     <string name="check_watch_notifications">Цаган дээрх мэдэгдэл</string>
     <string name="check_watch_notifications_problem">Apple Watch дээрээ Phase Wake-ийн цаг хугацааны чухал мэдэгдлийг зөвшөөр. Эс бөгөөс хэмжилт явагдахгүй үед цаг чамайг мэдэгдлээр сэрээж чадахгүй.</string>
     <string name="check_watch_state_old">Цагны төлөв хуучирсан – цаган дээр Phase Wake-ийг түр нээгээрэй.</string>
+    <string name="editor_sleep_apple">Apple Watch дээр Phase Wake сурсан унтах хүртэлх хугацаагаар чамайг хэзээ унтсаныг тооцоолдог.</string>
 </resources>

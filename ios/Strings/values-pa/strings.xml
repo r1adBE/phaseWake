@@ -29,4 +29,5 @@
     <string name="check_watch_notifications">ਘੜੀ ’ਤੇ ਸੂਚਨਾਵਾਂ</string>
     <string name="check_watch_notifications_problem">ਆਪਣੀ Apple Watch ’ਤੇ Phase Wake ਲਈ ਸਮਾਂ-ਸੰਵੇਦਨਸ਼ੀਲ ਸੂਚਨਾਵਾਂ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ। ਨਹੀਂ ਤਾਂ ਮਾਪ ਨਾ ਚੱਲਦੇ ਸਮੇਂ ਇਹ ਤੁਹਾਨੂੰ ਸੂਚਨਾ ਰਾਹੀਂ ਨਹੀਂ ਜਗਾ ਸਕਦੀ।</string>
     <string name="check_watch_state_old">ਘੜੀ ਦੀ ਸਥਿਤੀ ਪੁਰਾਣੀ ਹੈ – ਘੜੀ ’ਤੇ Phase Wake ਥੋੜ੍ਹੀ ਦੇਰ ਲਈ ਖੋਲ੍ਹੋ।</string>
+    <string name="editor_sleep_apple">Apple Watch ’ਤੇ Phase Wake ਸਿੱਖੇ ਹੋਏ ਨੀਂਦ ਆਉਣ ਦੇ ਸਮੇਂ ਤੋਂ ਅੰਦਾਜ਼ਾ ਲਗਾਉਂਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕਦੋਂ ਸੌਂਦੇ ਹੋ।</string>
 </resources>

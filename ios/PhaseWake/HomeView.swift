@@ -57,6 +57,7 @@ struct HomeView: View {
                                 }
                                 SoundsButton { sounds = true }
                                 LearningHomeCard()
+                                RecordCard()
                                 if !morningFirst { lastNight(now: context.date, morningFirst: false) }
                                 // Morgenbericht ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): nur die Geräusche.
                                 // Nicht während der Aufnahme und nicht für die Nacht, die gerade läuft.

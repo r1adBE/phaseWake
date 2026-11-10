@@ -27,4 +27,5 @@
     <string name="check_watch_notifications">Известия на часовника</string>
     <string name="check_watch_notifications_problem">Разреши известията с времева чувствителност за Phase Wake на своя Apple Watch. Иначе той не може да те събуди с известие, когато не тече измерване.</string>
     <string name="check_watch_state_old">Състоянието на часовника е остаряло – отвори за малко Phase Wake на часовника.</string>
+    <string name="editor_sleep_apple">На Apple Watch Phase Wake преценява кога заспиваш по наученото ти време за заспиване.</string>
 </resources>

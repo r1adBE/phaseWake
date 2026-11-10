@@ -27,7 +27,7 @@ Open Source · ohne Konto · ohne Server · ohne Abo<br>
 Du stellst eine Zielzeit und ein Weckfenster (10–30 Minuten). Im Fenster misst die Uhr Bewegung und Puls in 30-Sekunden-Abschnitten. Sobald du unruhig wirst, weckt sie dich – sanft per Vibration, auf Wunsch mit Ton. Die Galaxy Watch weckt spätestens zur Zielzeit; die Apple Watch ohne laufende Messung spätestens etwa 1 Minute danach per Mitteilung. Vor iOS 26 ist der Zweitwecker am iPhone eine Mitteilung (der Stummschalter macht sie lautlos).
 
 - **Weckfenster** vor der Zielzeit, frei einstellbar
-- **Einschlaf-Modus** (Galaxy Watch): «7½ Stunden schlafen» ab dem Einschlafen, nie später als die gewählte Zeit
+- **Einschlaf-Modus**: «7½ Stunden schlafen» ab dem Einschlafen, nie später als die gewählte Zeit. Galaxy Watch: misst das Einschlafen; Apple Watch: «Gute Nacht» schätzt es aus deiner gelernten Einschlafdauer
 - **Weckart** pro Wecker: Uhr mit Vibration oder Ton, Handy als Zweitwecker (aus, Vibration, Vibration + Ton); auf Apple weckt die Uhr per Haptik und das iPhone mit Ton – ab iOS 26 als Wecker, der auch bei «Nicht stören» und im Schlaf-Fokus klingelt, davor als Mitteilung
 - **Wecktöne**, die leise beginnen: Morgenvögel, Glockenspiel, Sanfter Gong, Harfe oder ein Klingelton des Systems
 - **Sonnenaufgang** (Option) auf dem Handy und/oder der Galaxy Watch: Der Bildschirm wird von schwachem Orange zu hellem, warmem Licht – ab Weckfenster oder beim Wecken; auf Apple nur auf dem iPhone, im Nachttisch-Modus
@@ -43,7 +43,7 @@ Du stellst eine Zielzeit und ein Weckfenster (10–30 Minuten). Im Fenster misst
 - **Gleicht ab**: Nach drei aufgezeichneten Nächten werden die Schwellen an deine Bewegungswerte angepasst, also ab der vierten Nacht.
 - **Lernphase** (Option): Nur wenn du sie startest, zeichnet die Uhr 7 Nächte lang über die ganze Nacht Bewegung und Puls auf und passt danach den Wecker an dich an; jederzeit in den Einstellungen abschaltbar. Galaxy Watch: in Stichproben (60 Sekunden alle 5 Minuten, etwa 3 % Akku pro Stunde, Start ab 50 % Akku). Apple Watch: Bewegung über den Bewegungs-Rekorder von watchOS (Start am Abend ab 50 % Akku, Auswertung nach dem Wecken), Puls und «Im Bett» aus Apple Health
 - **Genau** (Option pro Wecker): ohne Weckfenster, klingelt genau zur Zielzeit; die Uhr misst trotzdem für den Verlauf
-- **Kurze Nacht** (Galaxy Watch): Hast du deutlich weniger als dein Schlafziel geschlafen, weckt die Uhr frühestens 10 Minuten vor der Zielzeit; dein Einschlafen erkennt sie dafür automatisch: Ab 1 Stunde vor der Bettzeit misst sie kurz die Bewegung, bis du eingeschlafen bist (standardmässig ein, abschaltbar in den Einstellungen)
+- **Kurze Nacht**: Hast du deutlich weniger als dein Schlafziel geschlafen, weckt die Uhr frühestens 10 Minuten vor der Zielzeit. Galaxy Watch: dein Einschlafen erkennt sie dafür automatisch (ab 1 Stunde vor der Bettzeit misst sie kurz die Bewegung, bis du eingeschlafen bist; standardmässig ein, abschaltbar in den Einstellungen). Apple Watch: aus dem Bewegungs-Rekorder von watchOS, wenn er in dieser Nacht läuft (Lernphase, «Nacht aufzeichnen», «Gute Nacht»)
 - **Kachel und Komplikation** auf der Uhr
 - **Hell, Dunkel, System** – und barrierefrei mit Bildschirmleser
 - **74 Sprachen**

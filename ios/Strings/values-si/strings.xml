@@ -29,4 +29,5 @@
     <string name="check_watch_notifications">ඔරලෝසුවේ දැනුම්දීම්</string>
     <string name="check_watch_notifications_problem">ඔබේ Apple Watch හි Phase Wake සඳහා කාල-සංවේදී දැනුම්දීම්වලට ඉඩ දෙන්න. එසේ නොමැති නම් මැනීමක් සිදු නොවන විට එයට ඔබව දැනුම්දීමකින් අවදි කළ නොහැක.</string>
     <string name="check_watch_state_old">ඔරලෝසුවේ තත්ත්වය යල් පැන ගොස් ඇත – ඔරලෝසුවේ Phase Wake මොහොතකට විවෘත කරන්න.</string>
+    <string name="editor_sleep_apple">Apple Watch හි Phase Wake ඉගෙන ගත් නින්දට යාමට ගතවන කාලයෙන් ඔබ නින්දට යන වේලාව ඇස්තමේන්තු කරයි.</string>
 </resources>

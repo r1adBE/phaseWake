@@ -29,4 +29,5 @@
     <string name="check_watch_notifications">ઘડિયાળ પર સૂચનાઓ</string>
     <string name="check_watch_notifications_problem">તમારી Apple Watch પર Phase Wake માટે સમય-સંવેદનશીલ સૂચનાઓની મંજૂરી આપો. નહીંતર માપન ચાલુ ન હોય ત્યારે તે તમને સૂચના દ્વારા જગાડી શકશે નહીં.</string>
     <string name="check_watch_state_old">ઘડિયાળની સ્થિતિ જૂની છે – ઘડિયાળ પર થોડા સમય માટે Phase Wake ખોલો.</string>
+    <string name="editor_sleep_apple">Apple Watch પર Phase Wake શીખેલા ઊંઘ આવવાના સમય પરથી તમે ક્યારે ઊંઘી જાઓ છો તેનો અંદાજ લગાવે છે.</string>
 </resources>

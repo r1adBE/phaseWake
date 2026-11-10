@@ -1,7 +1,8 @@
 import PhaseWakeCore
 import SwiftUI
 
-/// Startbildschirm der Uhr: nächstes Weckfenster als Ring, Wecker ein/aus.
+/// Startbildschirm der Uhr: nächstes Weckfenster als Ring, «Gute Nacht» (Wecker mit Schlafdauer), Powernap,
+/// «Nacht aufzeichnen», Wecker ein/aus.
 struct HomeView: View {
     @Environment(WatchModel.self) private var model
     @Environment(\.scenePhase) private var scenePhase
@@ -22,7 +23,9 @@ struct HomeView: View {
                         .foregroundStyle(Brand.muted)
                         .listRowBackground(Color.clear)
                 }
+                GoodNightRow()
                 WatchNapRow(choosing: $choosingNap)
+                RecordRow()
                 if let night = model.storage.nights().last {
                     // Letzte Nacht: wann und warum geweckt wurde.
                     VStack(spacing: 1) {

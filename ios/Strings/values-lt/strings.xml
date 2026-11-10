@@ -29,4 +29,5 @@
     <string name="check_watch_notifications">Pranešimai laikrodyje</string>
     <string name="check_watch_notifications_problem">Leisk Phase Wake rodyti laikui jautrius pranešimus tavo Apple Watch. Kitaip laikrodis negalės tavęs pažadinti pranešimu, kai nevyksta matavimas.</string>
     <string name="check_watch_state_old">Laikrodžio būsena pasenusi – trumpam atidaryk Phase Wake laikrodyje.</string>
+    <string name="editor_sleep_apple">Apple Watch laikrodyje Phase Wake įvertina, kada užmiegi, pagal išmoktą tavo užmigimo trukmę.</string>
 </resources>

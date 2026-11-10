@@ -43,8 +43,21 @@ extension SmartAlarm {
         unmeasured = max(0, Int(Date().timeIntervalSince(plan.windowStart)) / DetectorConfig.epochSeconds)
         firstRing = nil
         snoozes = 0
+        asleepAt = nil
+        earlyBlocked = false
+        goalMinutes = spec?.sleepDurationMinutes ?? model.sleepGoal
         phase = .measuring(plan)
         publishArmed()
+        // Einschlafzeit aus dem Rekorder (Untergrenze kurzer Nächte), abseits der Messung; bis sie da ist, gilt sie als
+        // unbekannt (die Erkennung wärmt ohnehin erst auf).
+        let config = detector.config
+        let nightSpec = spec
+        Task { @MainActor in
+            let onset = await WatchOnset.compute(plan: plan, spec: nightSpec, config: config, goodNight: model.goodNight,
+                                                 sleepGoal: model.sleepGoal)
+            guard self.phase == .measuring(plan) else { return }
+            self.asleepAt = onset
+        }
         // Ab Fensterbeginn gilt die geplante Zeit (`AlarmSchedule.begunNight`): Rückfall jetzt zum festen Zeitpunkt.
         // Als Kalenderzeit ohne Zone läge er nach einer Reise nach Osten schon zurück (iOS stellte ihn womöglich sofort zu,
         // dann weckte die Sitzung zur geplanten Zeit ein zweites Mal) oder rutschte auf morgen.
@@ -135,6 +148,15 @@ extension SmartAlarm {
             // «Genau»: nur für den Verlauf messen, nie vor der Zielzeit wecken – die Erkennung entscheidet nicht.
             if exactNight { continue }
             if case .wake(let reason) = detector.onEpoch(epoch) {
+                // Kurze Nacht (wie Android): Moment übergehen (nicht nachholen), weiter erkennen; in den letzten
+                // `ShortNight.lateMinutes` vor der Zielzeit weckt ein neuer Moment.
+                if let target = nightPlan?.target,
+                   ShortNight.blocksEarly(onset: asleepAt, now: Date(), sleepGoalMinutes: goalMinutes, target: target) {
+                    detector.rearm()
+                    if !earlyBlocked { DiagStore.shared.log(.phase, "\(reason.rawValue) ignored, short night") }
+                    earlyBlocked = true
+                    continue
+                }
                 DiagStore.shared.log(.phase, reason.rawValue)
                 ring(reason)
                 return
@@ -156,9 +178,12 @@ extension SmartAlarm {
     /// Wecker «Genau» (`WakePlan.exact` bzw. `AlarmSpec.isExact`): misst, weckt aber erst zur Zielzeit.
     var exactNight: Bool { nightPlan?.exact == true || spec?.isExact == true }
 
-    /// Grund beim Wecken zur Zielzeit (Zeitgeber oder Ende der Sitzung): «Genau» oder, was die Erkennung meldet.
+    /// Grund beim Wecken zur Zielzeit (Zeitgeber oder Ende der Sitzung): «Genau», kurze Nacht (ein früher Moment wurde
+    /// übergangen) oder, was die Erkennung meldet (wie `WakeRules.deadlineReason`, Kotlin).
     func targetReason() -> WakeReason {
-        exactNight ? .exact : detector.finish()
+        if exactNight { return .exact }
+        if earlyBlocked { return .shortNight }
+        return detector.finish()
     }
 
     func stopSensors() {

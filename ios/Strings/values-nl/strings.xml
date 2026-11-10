@@ -26,4 +26,5 @@
     <string name="check_watch_notifications">Meldingen op het horloge</string>
     <string name="check_watch_notifications_problem">Sta tijdgevoelige meldingen van Phase Wake toe op je Apple Watch. Anders kan hij je niet met een melding wekken als er geen meting loopt.</string>
     <string name="check_watch_state_old">Status van het horloge is verouderd – open Phase Wake even op het horloge.</string>
+    <string name="editor_sleep_apple">Op de Apple Watch schat Phase Wake wanneer je in slaap valt op basis van je geleerde inslaaptijd.</string>
 </resources>

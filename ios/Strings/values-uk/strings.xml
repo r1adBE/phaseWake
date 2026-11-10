@@ -26,4 +26,5 @@
     <string name="check_watch_notifications">Сповіщення на годиннику</string>
     <string name="check_watch_notifications_problem">Дозволь термінові сповіщення Phase Wake на своєму Apple Watch. Інакше годинник не зможе розбудити тебе сповіщенням, коли вимірювання не триває.</string>
     <string name="check_watch_state_old">Стан годинника застарів – ненадовго відкрий Phase Wake на годиннику.</string>
+    <string name="editor_sleep_apple">На Apple Watch Phase Wake оцінює, коли ти засинаєш, за вивченим часом засинання.</string>
 </resources>

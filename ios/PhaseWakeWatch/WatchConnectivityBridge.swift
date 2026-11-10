@@ -35,6 +35,26 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         sendContext()
     }
 
+    /// Laufende Aufzeichnung («Nacht aufzeichnen» oder Lernphase) seit `since`; `nil` = keine (iPhone: «Aufzeichnung läuft
+    /// seit …»).
+    func publish(recordSince since: Date?) {
+        context[SyncKeys.recordSince] = Int64((since?.timeIntervalSince1970 ?? 0) * 1000)
+        if context[SyncKeys.alarms] == nil {
+            let snapshot = PhaseWakeStorage.watch.snapshot()
+            context[SyncKeys.alarms] = Codec.encodeAlarms(snapshot.alarms)
+            context[SyncKeys.updatedAt] = snapshot.updatedAt
+        }
+        sendContext()
+    }
+
+    /// Frühere Zielzeit aus «Gute Nacht» (bzw. ihr Aufheben) ans iPhone, das den Zweitwecker dieser Nacht verschiebt;
+    /// sofort oder nachgereicht.
+    @MainActor
+    func send(onsetShift shift: OnsetShift) {
+        deliver([SyncKeys.command: SyncKeys.onsetShift, SyncKeys.payload: shift.encode(),
+                 SyncKeys.sentAt: Int64(Date().timeIntervalSince1970 * 1000)])
+    }
+
     /// Vor der Aktivierung (z. B. beim Hintergrundstart für eine Sitzung) bleibt der Stand gemerkt und
     /// geht nach `activationDidComplete` nach. Jedes Senden nimmt den aktuellen Akkustand der Uhr mit
     /// (Nacht-Check auf dem iPhone).
@@ -204,6 +224,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         receive(session.receivedApplicationContext)
         // `context` und `pending` werden auf dem Main-Thread geschrieben.
         Task { @MainActor in
+            self.context[SyncKeys.recordSince] = Int64((LearnRecorder.shared.since?.timeIntervalSince1970 ?? 0) * 1000)
             self.sendContext()
             let queued = self.pending
             self.pending = []
@@ -233,6 +254,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
         guard let command = message[SyncKeys.command] as? String else { return }
         if receiveTransient(command, message) { return }
+        if receiveRecord(command, message) { return }
         // Verspätet zugestelltes Stopp oder Schlummern vom iPhone träfe sonst eine spätere Nacht.
         if command != SyncKeys.clearHistory, let sentAt = message[SyncKeys.sentAt] as? Int64,
            Int64(Date().timeIntervalSince1970 * 1000) - sentAt > SyncKeys.maxRingAgeMs { return }
@@ -254,6 +276,28 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
             default: break
             }
         }
+    }
+
+    /// «Nacht aufzeichnen» vom iPhone. Ein Start gilt nur frisch (höchstens 2 Min alt, sonst begänne die Aufzeichnung
+    /// Stunden später); ein Stopp auch verspätet, aber nur für eine Aufzeichnung, die vor ihm begann. - Returns: ob behandelt.
+    private func receiveRecord(_ command: String, _ message: [String: Any]) -> Bool {
+        guard command == SyncKeys.recordStart || command == SyncKeys.recordStop else { return false }
+        let sentAt = (message[SyncKeys.sentAt] as? Int64).map { Date(timeIntervalSince1970: Double($0) / 1000) } ?? Date()
+        Task { @MainActor in
+            let recorder = LearnRecorder.shared
+            if command == SyncKeys.recordStart {
+                guard Date().timeIntervalSince(sentAt) * 1000 <= Double(SyncKeys.maxRingAgeMs) else {
+                    DiagStore.shared.log(.suppressed, "late record start from phone")
+                    return
+                }
+                await recorder.startManual(by: "phone")
+            } else if let since = recorder.since, since <= sentAt {
+                recorder.stop(.phone)
+            }
+            // Stand gleich zurückmelden (auch, wenn nichts startete), damit das iPhone nicht auf eine Antwort wartet.
+            recorder.publishSince()
+        }
+        return true
     }
 
     /// Probewecker, Powernap und Abbruch vom iPhone. Nicht nach Alter verworfen: Kommt ein Plan spät an

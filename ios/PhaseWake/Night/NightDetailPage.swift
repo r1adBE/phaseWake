@@ -2,7 +2,8 @@ import PhaseWakeCore
 import SwiftUI
 
 /// Inhalt der Detailseite einer Nacht: Kopf (Datum, Schlafdauer gross, «Im Bett», Weckmoment und Grund bzw. Vermerk
-/// «Ohne Phase-Wake-Wecker» mit Quelle), Schlafwert mit Faktoren, grosses Schlafprofil, Puls im Weckfenster,
+/// «Ohne Phase-Wake-Wecker» mit Quelle), Schlafwert mit Faktoren, grosses Schlafprofil, Puls (mit Aufzeichnung der Uhr
+/// über die ganze Nacht samt Bewegung, sonst im Weckfenster),
 /// Phasen-Summen mit üblichem Bereich und Einordnung, Kennzahlen, dann Befinden, Notizen und Geräusche wie bisher.
 /// Wie `NightDetailPage` (Android).
 struct NightDetailPage: View {
@@ -15,13 +16,18 @@ struct NightDetailPage: View {
     var scoreSource: String?
 
     var body: some View {
-        let score = nightScore(stages: data.stages, session: data.item.session, goalMinutes: model.sleepGoal)
-        let pulse = data.item.night.flatMap { SleepOverviews.pulse($0.epochs, start: $0.windowStart) }
+        // Aufzeichnungen der Uhr: Puls und Bewegung über die ganze Nacht, Schlafwert ohne Phasen (wie Android).
+        let recordings = PhoneLearning.shared.recordings
+        let score = nightScore(stages: data.stages, session: data.item.session, goalMinutes: model.sleepGoal, night: data.item.night,
+                               recordings: recordings)
+        let series = nightSeries(data.item, recordings: recordings)
+        let pulse = series.flatMap { SleepOverviews.pulse($0.epochs, start: $0.start) }
         ScrollView {
             VStack(spacing: 12) {
                 header.card()
                 if let score {
-                    ScoreCard(score: score, source: data.item.night != nil ? scoreSource : nil, goalMinutes: model.sleepGoal)
+                    let source = score.source == .recording ? L("score_source_recording") : scoreSource
+                    ScoreCard(score: score, source: data.item.night != nil ? source : nil, goalMinutes: model.sleepGoal)
                 }
                 VStack(alignment: .leading, spacing: 8) {
                     Text(L("chart_stages_title")).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
@@ -39,7 +45,9 @@ struct NightDetailPage: View {
                     }
                 }
                 .card()
-                if let pulse { PulseCard(curve: pulse) }
+                if let pulse, let series { PulseCard(curve: pulse, fullNight: series.fullNight) }
+                // Bewegung über die ganze Nacht nur mit Aufzeichnung; das Weckfenster zeigt schon das Feld beim Profil.
+                if let series, series.fullNight, !series.epochs.isEmpty { MotionCard(series: series) }
                 if let stages = data.stages {
                     StageTotalsView(stages: stages).card()
                     // Die Einschlafdauer steht schon als Faktor beim Schlafwert.

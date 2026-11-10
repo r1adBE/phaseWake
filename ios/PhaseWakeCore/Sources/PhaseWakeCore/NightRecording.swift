@@ -23,10 +23,10 @@ public enum RecordEnd: String, Sendable {
 }
 
 /// Eine aufgezeichnete Nacht: ab `start` je 30-s-Epoche Bewegung und Puls. Epoche `i` deckt `start + i · 30 s` ab;
-/// Lücken sind leere Epochen. Auf der Apple Watch nur in der Lernphase (``Learning``): Die Uhr rechnet die Epochen aus
-/// den Werten des Bewegungs-Rekorders und dem Puls aus Apple Health (``RecorderEpochs``) und schickt die fertige
-/// Aufzeichnung ans iPhone. Ist der Beginn der Einschlafdauer bekannt, stehen `bedAt` und `asleepAt` dabei. Gleiches
-/// Textformat wie `NightRecording` (Kotlin), «phasewake-recording 1».
+/// Lücken sind leere Epochen. Auf der Apple Watch aus der Lernphase (``Learning``) und von «Nacht aufzeichnen»: Die Uhr
+/// rechnet die Epochen aus den Werten des Bewegungs-Rekorders und dem Puls aus Apple Health (``RecorderEpochs``) und
+/// schickt die fertige Aufzeichnung ans iPhone. Ist der Beginn der Einschlafdauer bekannt, stehen `bedAt` und `asleepAt`
+/// dabei. Gleiches Textformat wie `NightRecording` (Kotlin), «phasewake-recording 1».
 public struct NightRecording: Equatable, Sendable {
     /// Beginn (Epoche 0).
     public let start: Date
@@ -47,6 +47,9 @@ public struct NightRecording: Equatable, Sendable {
     public static let maxEpochs = Int(maxDuration) / DetectorConfig.epochSeconds
     /// So viele abgeschlossene Aufzeichnungen bleiben je Gerät; ältere werden gelöscht.
     public static let maxKept = 14
+    /// Unter diesem Akkustand der Uhr (Prozent) startet «Nacht aufzeichnen» nicht, und eine laufende endet
+    /// (``RecordEnd/battery``); wie `NightRecording.MIN_BATTERY` (Kotlin).
+    public static let minBattery = 15
     /// Erste Zeile von ``encode(_:)``.
     public static let header = "phasewake-recording 1"
 
@@ -62,6 +65,42 @@ public struct NightRecording: Equatable, Sendable {
         self.endReason = endReason
         self.bedAt = bedAt
         self.asleepAt = asleepAt
+    }
+
+    /// Abgeschlossen (Ende bekannt).
+    public var finished: Bool { end != nil }
+
+    /// Dauer: bis zum Ende, laufend bis zur letzten Epoche.
+    public var duration: TimeInterval {
+        (end ?? start.addingTimeInterval(TimeInterval(epochs.count * DetectorConfig.epochSeconds))).timeIntervalSince(start)
+    }
+
+    /// Ende, laufend die letzte Epoche (für den Vergleich mit einer Nacht im Verlauf).
+    public var until: Date { start.addingTimeInterval(duration) }
+
+    /// Grund für ein Ende jetzt (`now`, Akku `battery` in Prozent, `nil` = unbekannt), sonst `nil`: ``RecordEnd/cap`` ab
+    /// ``maxDuration`` nach `start`, ``RecordEnd/battery`` unter ``minBattery`` (wie `NightRecording.endNow`, Kotlin).
+    public static func endNow(start: Date, now: Date, battery: Int?) -> RecordEnd? {
+        if now >= start.addingTimeInterval(maxDuration) { return .cap }
+        if let battery, battery < minBattery { return .battery }
+        return nil
+    }
+
+    /// CSV-Export der abgeschlossenen Aufzeichnungen wie ``NightHistory/exportCsv(_:notes:calendar:)``: ohne Datums- oder
+    /// Uhrzeitangaben, nummeriert ab 1 (älteste zuerst), je Epoche Bewegung und Puls; dieselben Spalten wie
+    /// `NightRecording.exportCsv` (Kotlin), Datei «phasewake-recordings.csv».
+    public static func exportCsv(_ recordings: [NightRecording]) -> String {
+        var out = "recording,end_reason,epoch,motion,hr\n"
+        let posix = Locale(identifier: "en_US_POSIX")
+        for (index, recording) in recordings.filter(\.finished).sorted(by: { $0.start < $1.start }).enumerated() {
+            let reason = (recording.endReason ?? .service).rawValue
+            for (epochIndex, epoch) in recording.epochs.enumerated() {
+                let motion = epoch.motion.map { String(format: "%.6f", locale: posix, $0) } ?? ""
+                let hr = epoch.heartRate.map { String(format: "%.1f", locale: posix, $0) } ?? ""
+                out += "\(index + 1),\(reason),\(epochIndex),\(motion),\(hr)\n"
+            }
+        }
+        return out
     }
 
     /// Für die Lernphase (``Learning``).

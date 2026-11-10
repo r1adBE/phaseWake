@@ -75,6 +75,8 @@ struct NightstandView: View {
     @State private var plan: WakePlan?
     @State private var sunrise: Sunrise = .off
     @State private var savedBrightness: CGFloat = 0.5
+    /// Licht läuft (für «phone sunrise start/end» im Diagnose-Protokoll, wie Android).
+    @State private var lit = false
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
@@ -98,7 +100,13 @@ struct NightstandView: View {
                         .padding(.bottom, 32)
                 }
             }
-            .onChange(of: progress) { _, value in setBrightness(value.map(Sunrise.brightness) ?? 0) }
+            .onChange(of: progress) { _, value in
+                setBrightness(value.map(Sunrise.brightness) ?? 0)
+                if value != nil, !lit {
+                    lit = true
+                    DiagStore.shared.log(.ring, "phone sunrise start")
+                }
+            }
         }
         .statusBarHidden()
         .persistentSystemOverlays(.hidden)
@@ -108,7 +116,11 @@ struct NightstandView: View {
             UIApplication.shared.isIdleTimerDisabled = true
             setBrightness(0)
         }
-        .onDisappear(perform: restoreScreen)
+        .onDisappear {
+            restoreScreen()
+            if lit { DiagStore.shared.log(.stop, "phone sunrise end") }
+            lit = false
+        }
         .onChange(of: scenePhase) { _, phase in
             // App verlassen oder gesperrt: Helligkeit und Ruhezustand sofort zurück, nicht erst beim Schliessen.
             if phase == .active {
@@ -131,7 +143,10 @@ struct NightstandView: View {
 
     private func updatePlan() {
         let next = model.alarms.filter { $0.sunrise != .off }
-        plan = AlarmSchedule.earliestPlan(next, now: Date(), calendar: .gregorianLocal, holidays: model.holidays.dates)
+        let found = AlarmSchedule.earliestPlan(next, now: Date(), calendar: .gregorianLocal, holidays: model.holidays.dates)
+        // Ins Diagnose-Protokoll nur ein neuer oder geänderter Plan (ohne Wecker-Kennung), wie Android.
+        if let found, found != plan { DiagStore.shared.log(.scheduled, "phone sunrise \(Format.time(found.windowStart)) – \(Format.time(found.target))") }
+        plan = found
         sunrise = next.first { $0.id == plan?.alarmId }?.sunrise ?? .off
     }
 

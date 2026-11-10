@@ -29,4 +29,5 @@
     <string name="check_watch_notifications">വാച്ചിലെ അറിയിപ്പുകൾ</string>
     <string name="check_watch_notifications_problem">Apple Watch-ൽ Phase Wake-ന് സമയബന്ധിത അറിയിപ്പുകൾ അനുവദിക്കുക. അല്ലെങ്കിൽ അളക്കൽ നടക്കാത്തപ്പോൾ അതിന് നിങ്ങളെ അറിയിപ്പിലൂടെ ഉണർത്താനാവില്ല.</string>
     <string name="check_watch_state_old">വാച്ചിന്റെ നില പഴയതാണ് – വാച്ചിൽ Phase Wake അൽപനേരം തുറക്കുക.</string>
+    <string name="editor_sleep_apple">Apple Watch-ൽ, പഠിച്ചെടുത്ത ഉറങ്ങാനെടുക്കുന്ന സമയത്തിൽ നിന്ന് നിങ്ങൾ എപ്പോൾ ഉറങ്ങുന്നുവെന്ന് Phase Wake കണക്കാക്കുന്നു.</string>
 </resources>

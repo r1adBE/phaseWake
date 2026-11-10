@@ -27,4 +27,5 @@
     <string name="check_watch_notifications">በሰዓቱ ላይ ማሳወቂያዎች</string>
     <string name="check_watch_notifications_problem">በApple Watchህ ላይ ለPhase Wake ጊዜ-ተኮር ማሳወቂያዎችን ፍቀድ። አለበለዚያ ልኬት በማይካሄድበት ጊዜ በማሳወቂያ ሊያነቃህ አይችልም።</string>
     <string name="check_watch_state_old">የሰዓቱ ሁኔታ ጊዜው ያለፈበት ነው – Phase Wakeን በሰዓቱ ላይ ለአጭር ጊዜ ክፈት።</string>
+    <string name="editor_sleep_apple">በApple Watch ላይ Phase Wake መቼ እንደምትተኛ ከተማረው ለመተኛት የሚወስድብህ ጊዜ ይገምታል።</string>
 </resources>

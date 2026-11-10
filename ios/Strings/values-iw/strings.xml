@@ -26,4 +26,5 @@
     <string name="check_watch_notifications">התראות בשעון</string>
     <string name="check_watch_notifications_problem">אפשרו התראות רגישות לזמן עבור Phase Wake ב-Apple Watch שלכם. אחרת הוא לא יוכל להעיר אתכם בהתראה כשאין מדידה פעילה.</string>
     <string name="check_watch_state_old">מצב השעון לא עדכני – פתח לרגע את Phase Wake בשעון.</string>
+    <string name="editor_sleep_apple">ב-Apple Watch, Phase Wake מעריך מתי נרדמתם לפי זמן ההירדמות שנלמד.</string>
 </resources>

@@ -27,4 +27,5 @@
     <string name="check_watch_notifications">ঘড়িতে নোটিফিকেশন</string>
     <string name="check_watch_notifications_problem">তোমার Apple Watch-এ Phase Wake-এর জন্য সময়-সংবেদনশীল নোটিফিকেশন চালু করো। নইলে কোনো পরিমাপ না চললে ঘড়ি তোমাকে নোটিফিকেশন দিয়ে জাগাতে পারবে না।</string>
     <string name="check_watch_state_old">ঘড়ির অবস্থা পুরোনো – ঘড়িতে কিছুক্ষণের জন্য Phase Wake খোলো।</string>
+    <string name="editor_sleep_apple">Apple Watch-এ Phase Wake তোমার শেখা ঘুমিয়ে পড়ার সময় থেকে অনুমান করে তুমি কখন ঘুমিয়ে পড়ো।</string>
 </resources>

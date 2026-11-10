@@ -48,7 +48,8 @@ public struct LearningState: Equatable, Sendable, Codable {
 
     /// Paket für die Uhr.
     public var snapshot: LearningSnapshot {
-        LearningSnapshot(active: active, floor: values?.floor, restingHeartRate: values?.restingHeartRate, updatedAtMs: updatedAtMs)
+        LearningSnapshot(active: active, floor: values?.floor, restingHeartRate: values?.restingHeartRate, updatedAtMs: updatedAtMs,
+                         latencyMinutes: values?.latencyMinutes)
     }
 
     /// Zustimmung ab `now` (`on`: «Lernphase starten» bzw. Schalter an; sonst «Später» bzw. Schalter aus). An: Hat sie
@@ -121,16 +122,20 @@ public struct LearningSnapshot: Equatable, Sendable, Codable {
     public let restingHeartRate: Double?
     /// Zeitpunkt am iPhone (ms seit 1970).
     public let updatedAtMs: Int64
+    /// Gelernte Einschlafdauer in Minuten, für die Schätzung bei «Gute Nacht» (``GoodNightEstimate``); nur Apple.
+    /// Fehlt bei einem Stand älterer Versionen.
+    public let latencyMinutes: Int?
 
     /// Kein Stand (älteres iPhone): keine Lernphase, keine Werte.
     public static let empty = LearningSnapshot(active: false, floor: nil, restingHeartRate: nil, updatedAtMs: 0)
 
     /// Stand wie angegeben.
-    public init(active: Bool, floor: Double?, restingHeartRate: Double?, updatedAtMs: Int64) {
+    public init(active: Bool, floor: Double?, restingHeartRate: Double?, updatedAtMs: Int64, latencyMinutes: Int? = nil) {
         self.active = active
         self.floor = floor
         self.restingHeartRate = restingHeartRate
         self.updatedAtMs = updatedAtMs
+        self.latencyMinutes = latencyMinutes
     }
 
     /// Aus dem Anwendungskontext; `nil`, wenn er keinen Stand trägt (älteres iPhone).
@@ -140,7 +145,8 @@ public struct LearningSnapshot: Equatable, Sendable, Codable {
             active: (context[SyncKeys.learnActive] as? Bool) ?? false,
             floor: context[SyncKeys.learnFloor] as? Double,
             restingHeartRate: context[SyncKeys.learnRestingHr] as? Double,
-            updatedAtMs: updatedAt
+            updatedAtMs: updatedAt,
+            latencyMinutes: (context[SyncKeys.learnLatency] as? Int64).map { Int($0) }
         )
     }
 
@@ -149,6 +155,7 @@ public struct LearningSnapshot: Equatable, Sendable, Codable {
         context[SyncKeys.learnActive] = active
         context[SyncKeys.learnFloor] = floor.map { $0 as Any }
         context[SyncKeys.learnRestingHr] = restingHeartRate.map { $0 as Any }
+        context[SyncKeys.learnLatency] = latencyMinutes.map { Int64($0) as Any }
         context[SyncKeys.learnUpdatedAt] = updatedAtMs
     }
 

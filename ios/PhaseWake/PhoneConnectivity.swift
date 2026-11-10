@@ -162,6 +162,9 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
                 if let payload, let plan = try? Transient.decode(payload) { await model.transient.napFromWatch(plan) }
             case SyncKeys.transientCancel:
                 await model.transient.cancelledOnWatch(id)
+            case SyncKeys.onsetShift:
+                // Nicht nach Alter verworfen: Die Meldung gilt für ihre Nacht, solange die läuft (`OnsetShift.expired`).
+                if let shift = OnsetShift.decode(payload) { await WatchNight.shared.received(shift) }
             default: break
             }
         }
@@ -196,6 +199,11 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
             // Ohne Angabe: ältere Uhr, die Überspringen und Feiertage nicht kennt.
             let fields = Int((context[SyncKeys.alarmFields] as? Int64) ?? 0)
             Task { @MainActor in PhoneModel.shared.watchArmed(date, alarmFields: fields) }
+        }
+        // «Nacht aufzeichnen» auf der Uhr (fehlt bei älteren Uhr-Versionen).
+        if let since = context[SyncKeys.recordSince] as? Int64 {
+            let date = since > 0 ? Date(timeIntervalSince1970: Double(since) / 1000) : nil
+            Task { @MainActor in WatchNight.shared.noteRecording(since: date) }
         }
         // Ohne Akkustand (Uhr lädt oder kennt ihn nicht) gilt er als unbekannt.
         var battery: (percent: Int, at: Date)?

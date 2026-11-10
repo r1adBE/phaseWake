@@ -26,4 +26,5 @@
     <string name="check_watch_notifications">Saatteki bildirimler</string>
     <string name="check_watch_notifications_problem">Apple Watch’unda Phase Wake için zamana duyarlı bildirimlere izin ver. Aksi halde ölçüm yapılmıyorken saat seni bildirimle uyandıramaz.</string>
     <string name="check_watch_state_old">Saatin durumu güncel değil – Phase Wake’i saatte kısaca aç.</string>
+    <string name="editor_sleep_apple">Apple Watch’ta Phase Wake ne zaman uykuya daldığını öğrendiği uykuya dalma süresinden tahmin eder.</string>
 </resources>

@@ -27,4 +27,5 @@
     <string name="check_watch_notifications">گھڑی پر اطلاعات</string>
     <string name="check_watch_notifications_problem">اپنی Apple Watch پر Phase Wake کے لیے وقت کی حساس اطلاعات کی اجازت دو۔ ورنہ پیمائش نہ چل رہی ہو تو گھڑی تمہیں اطلاع سے نہیں جگا سکتی۔</string>
     <string name="check_watch_state_old">گھڑی کی حالت پرانی ہے – گھڑی پر Phase Wake تھوڑی دیر کے لیے کھولیں۔</string>
+    <string name="editor_sleep_apple">Apple Watch پر Phase Wake سیکھے گئے نیند آنے کے وقت سے اندازہ لگاتا ہے کہ تم کب سوتے ہو۔</string>
 </resources>

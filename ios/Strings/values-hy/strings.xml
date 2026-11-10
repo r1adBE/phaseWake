@@ -26,4 +26,5 @@
     <string name="check_watch_notifications">Ծանուցումներ ժամացույցում</string>
     <string name="check_watch_notifications_problem">Թույլատրիր Phase Wake-ի ժամանակազգայուն ծանուցումները քո Apple Watch-ում։ Այլապես այն չի կարող քեզ ծանուցմամբ արթնացնել, երբ չափում չի ընթանում։</string>
     <string name="check_watch_state_old">Ժամացույցի վիճակը հնացած է – կարճ ժամանակով բացիր Phase Wake-ը ժամացույցում։</string>
+    <string name="editor_sleep_apple">Apple Watch-ում Phase Wake-ը գնահատում է, թե երբ ես քնում, քո սովորած քնելու ժամանակից։</string>
 </resources>

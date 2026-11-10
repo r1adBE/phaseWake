@@ -67,8 +67,20 @@ public enum SyncKeys {
     public static let learnRestingHr = "learnRestingHr"
     /// Anwendungskontext iPhone → Uhr: Zeitpunkt des Stands der Lernphase (ms seit 1970).
     public static let learnUpdatedAt = "learnUpdatedAt"
-    /// Benutzerdaten Uhr → iPhone: eine Aufzeichnung der Lernphase im Format «phasewake-recording 1» (`NightRecording`).
+    /// Anwendungskontext iPhone → Uhr: gelernte Einschlafdauer in Minuten (Schätzung bei «Gute Nacht»); fehlt ohne Wert.
+    public static let learnLatency = "learnLatency"
+    /// Benutzerdaten Uhr → iPhone: eine Aufzeichnung der Lernphase oder von «Nacht aufzeichnen» im Format
+    /// «phasewake-recording 1» (`NightRecording`).
     public static let learnRecording = "learnRecording"
+    /// Befehl iPhone → Uhr: «Nacht aufzeichnen» starten.
+    public static let recordStart = "recordStart"
+    /// Befehl iPhone → Uhr: «Nacht aufzeichnen» stoppen.
+    public static let recordStop = "recordStop"
+    /// Uhr → iPhone im Anwendungskontext: Beginn der laufenden Aufzeichnung (ms seit 1970), 0 = keine. Fehlt bei älteren
+    /// Uhr-Versionen.
+    public static let recordSince = "recordSince"
+    /// Befehl Uhr → iPhone: frühere Zielzeit aus «Gute Nacht» (`OnsetShift.encode()` in ``payload``).
+    public static let onsetShift = "onsetShift"
     /// Uhr → iPhone im Anwendungskontext: Felder je Weckerzeile, die die Uhr kennt (`Codec.alarmFields`). Fehlt der
     /// Schlüssel bei einem Kontext, der sonst von der Uhr stammt, ist es eine ältere Uhr (zählt als 0).
     public static let alarmFields = "alarmFields"

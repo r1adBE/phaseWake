@@ -58,7 +58,7 @@ struct HistoryView: View {
                             switch entry {
                             case .night(let night):
                                 NightCard(night: night, stages: allStages.filter { $0.end > night.windowStart.addingTimeInterval(-14 * 3600) && $0.start < night.wokeAt.addingTimeInterval(2 * 3600) },
-                                          goalMinutes: model.sleepGoal) {
+                                          goalMinutes: model.sleepGoal, recordings: PhoneLearning.shared.recordings) {
                                     path.append(HistoryItem(kind: .phaseWake, date: SleepNotes.nightDate(of: night, calendar: .gregorianLocal), night: night).key)
                                 }
                             case .health(let session, let date):
@@ -67,9 +67,11 @@ struct HistoryView: View {
                                                 score: nightScore(stages: StageStats.forSession(session), session: session, goalMinutes: model.sleepGoal)?.result)
                             case .sounds(let night, let last):
                                 SoundsOnlyCard(night: night, last: last)
+                            case .recording(let recording):
+                                RecordingCard(recording: recording)
                             }
                         }
-                        if !model.nights.isEmpty { export }
+                        if !model.nights.isEmpty || !PhoneLearning.shared.recordings.isEmpty { export }
                     }
                 }
                 .padding(.vertical)
@@ -116,10 +118,8 @@ struct HistoryView: View {
 
     private var export: some View {
         VStack(spacing: 0) {
-            ShareLink(item: NightsExport(nights: model.nights, notes: model.notes), preview: SharePreview(L("history_export_subject"))) {
-                Label(L("history_export"), systemImage: "square.and.arrow.up")
-            }
-            .padding(.top)
+            HistoryExportLink { Label(L("history_export"), systemImage: "square.and.arrow.up") }
+                .padding(.top)
             Text(L("export_contents_hint"))
                 .font(Fonts.manrope(12, relativeTo: .caption))
                 .foregroundStyle(.secondary)
@@ -162,7 +162,23 @@ struct HistoryView: View {
             }
         }
         out += pending.map { HistoryEntry.sounds(night: $0.night, last: $0.last) }
-        return out
+        return Self.withRecordings(out, PhoneLearning.shared.recordings)
+    }
+
+    /// Reiht die Aufzeichnungen der Uhr (``RecordingCard``) nach ihrem Ende in `entries` (neueste zuerst) ein, wie
+    /// `withRecordings` (Android).
+    private static func withRecordings(_ entries: [HistoryEntry], _ recordings: [NightRecording]) -> [HistoryEntry] {
+        guard !recordings.isEmpty else { return entries }
+        var pending = recordings.sorted { $0.until > $1.until }[...]
+        var out: [HistoryEntry] = []
+        for entry in entries {
+            while let first = pending.first, first.until > entry.at {
+                out.append(.recording(first))
+                pending = pending.dropFirst()
+            }
+            out.append(entry)
+        }
+        return out + pending.map { HistoryEntry.recording($0) }
     }
 
     /// Geschlafene Minuten je Nachtdatum (Mitte der Nacht, wie Diagramme und Android); bei zwei Einträgen der längere.
@@ -208,12 +224,25 @@ private enum HistoryEntry: Identifiable {
     case health(HealthSession, date: String)
     /// `last` = Beginn des jüngsten Ausschnitts.
     case sounds(night: String, last: Date)
+    /// Aufzeichnung der Uhr («Nacht aufzeichnen», Lernphase).
+    case recording(NightRecording)
 
     var id: String {
         switch self {
         case .night(let night): night.listId
         case .health(_, let date): "health|\(date)"
         case .sounds(let night, _): "sounds|\(night)"
+        case .recording(let recording): "recording@\(OnsetShift.millis(recording.start))"
+        }
+    }
+
+    /// Zeitpunkt für die Reihenfolge (neueste zuerst): Wecken, Ende der Sitzung, jüngster Ausschnitt, Ende der Aufzeichnung.
+    var at: Date {
+        switch self {
+        case .night(let night): night.wokeAt
+        case .health(let session, _): session.end
+        case .sounds(_, let last): last
+        case .recording(let recording): recording.until
         }
     }
 
@@ -252,6 +281,8 @@ private struct NightCard: View {
     let stages: [StageSpan]
     /// Schlafziel in Minuten für den Schlafwert.
     let goalMinutes: Int
+    /// Aufzeichnungen der Uhr: Schlafwert ohne Phasen (vorläufig), wenn eine die Nacht überdeckt.
+    let recordings: [NightRecording]
     /// Öffnet die Detailseite dieser Nacht.
     let onOpen: () -> Void
 
@@ -273,8 +304,8 @@ private struct NightCard: View {
         let hypnogram = ChartData.hypnogram(stages, night: night)
         let nightStages = StageStats.forNight(stages, night: night)
         let totals = nightStages.map(stageTotalsLine)
-        // Ohne Phasen hat eine eigene Nacht am iPhone keinen Schlafwert (keine Aufzeichnung der ganzen Nacht).
-        let score = nightScore(stages: nightStages, session: nil, goalMinutes: goalMinutes)?.result
+        // Ohne Phasen aus einer Aufzeichnung der Uhr mit Einschlafzeit (vorläufig), sonst kein Schlafwert.
+        let score = nightScore(stages: nightStages, session: nil, goalMinutes: goalMinutes, night: night, recordings: recordings)?.result
         return VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text(night.wokeAt.formatted(date: .abbreviated, time: .omitted)).font(Fonts.manrope(15, .semibold, relativeTo: .headline))

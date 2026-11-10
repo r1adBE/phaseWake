@@ -188,8 +188,13 @@ extension SmartAlarm {
                 epochs: epochs
             )
             model.storage.add(night)
-            // Diese Nacht ist erledigt: nicht noch einmal planen, auch wenn die Zielzeit noch vorn liegt.
-            model.storage.markDone(alarmId: nightPlan.alarmId, until: nightPlan.target)
+            // Diese Nacht ist erledigt: nicht noch einmal planen, auch wenn die Zielzeit noch vorn liegt – nach «Gute Nacht»
+            // bis zur eingestellten Weckzeit derselben Nacht (wie `WakeRules.doneUntil`, Kotlin).
+            let nominal = model.alarms.first { $0.id == nightPlan.alarmId }.flatMap {
+                AlarmSchedule.nextTarget($0, now: nightPlan.target.addingTimeInterval(-0.001), calendar: .gregorianLocal,
+                                         holidays: model.storage.holidays.dates)
+            }
+            model.storage.markDone(alarmId: nightPlan.alarmId, until: GoodNightEstimate.doneUntil(target: nightPlan.target, nominal: nominal))
             // Wecker, die während dieser Nacht fällig wurden, gleich nachholen (wie Wear OS).
             model.noteNightEnded(windowStart: nightPlan.windowStart)
             WatchConnectivityBridge.shared.send(night: night)

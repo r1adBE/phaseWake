@@ -29,4 +29,5 @@
     <string name="check_watch_notifications">ການແຈ້ງເຕືອນໃນໂມງ</string>
     <string name="check_watch_notifications_problem">ອະນຸຍາດການແຈ້ງເຕືອນທີ່ສຳຄັນຕໍ່ເວລາສຳລັບ Phase Wake ໃນ Apple Watch ຂອງເຈົ້າ. ບໍ່ດັ່ງນັ້ນ ມັນຈະປຸກເຈົ້າດ້ວຍການແຈ້ງເຕືອນບໍ່ໄດ້ ເມື່ອບໍ່ມີການວັດແທກ.</string>
     <string name="check_watch_state_old">ສະຖານະຂອງໂມງລ້າສະໄໝແລ້ວ – ເປີດ Phase Wake ໃນໂມງໄລຍະສັ້ນໆ.</string>
+    <string name="editor_sleep_apple">ໃນ Apple Watch, Phase Wake ຄາດຄະເນເວລາທີ່ເຈົ້າຫຼັບ ຈາກເວລາກວ່າຈະຫຼັບທີ່ມັນໄດ້ຮຽນຮູ້.</string>
 </resources>

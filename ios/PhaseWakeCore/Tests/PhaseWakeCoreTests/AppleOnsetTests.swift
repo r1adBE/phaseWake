@@ -1,0 +1,153 @@
+import XCTest
+import PhaseWakeCore
+
+/// Apple Watch im Gleichstand mit der Galaxy Watch: Einschlafzeit aus dem Rekorder (``RecorderOnset``, Regeln wie
+/// `OnsetMonitor`/`OnsetRules` in Kotlin), Schätzung bei «Gute Nacht» (``GoodNightEstimate``), frühere Zielzeit fürs
+/// iPhone (``OnsetShift``, wie Kotlin) und «Nacht aufzeichnen» (``NightRecording``: Ende, CSV wie Kotlin).
+final class AppleOnsetTests: XCTestCase {
+    private let since = Date(timeIntervalSince1970: 1_793_570_400) // 2026-11-01 23:00 Zürich
+    private let quiet = 0.0005
+    private let busy = 0.5
+
+    private func minutes(_ m: Double) -> Date { since.addingTimeInterval(m * 60) }
+
+    private func find(_ motions: [Double?], latestHours: Double = 10, cap: Date? = nil, personal: Double? = nil) -> RecorderOnset.Result {
+        RecorderOnset.find(motions: motions, since: since, threshold: DetectorConfig.defaultLightThreshold, personalFloor: personal,
+                           latest: since.addingTimeInterval(latestHours * 3600), extendCap: cap)
+    }
+
+    func testQuietFromTheStartIsAsleepAtTheStart() {
+        XCTAssertEqual(find(Array(repeating: quiet, count: 40)), .asleep(at: since, index: 0))
+        // 29 ruhige Epochen reichen nicht: noch offen.
+        XCTAssertEqual(find(Array(repeating: quiet, count: 29)), .open)
+    }
+
+    func testRestlessStartThenQuiet() {
+        let motions: [Double?] = Array(repeating: busy, count: 20) + Array(repeating: quiet, count: 30)
+        XCTAssertEqual(find(motions), .asleep(at: minutes(10), index: 20))
+    }
+
+    func testEmptyEpochsBreakTheRun() {
+        var motions: [Double?] = Array(repeating: quiet, count: 20) + [nil] + Array(repeating: quiet, count: 29)
+        XCTAssertEqual(find(motions), .open)
+        motions.append(quiet)
+        XCTAssertEqual(find(motions), .asleep(at: since.addingTimeInterval(21 * 30), index: 21))
+    }
+
+    func testNoiseFloorRaisesTheThreshold() {
+        // Gleichmässig 0.03 m/s² (Rauschen wie die Galaxy Watch 07.11.): über 0.002, aber unter 2.5 × Grundrauschen.
+        XCTAssertEqual(find(Array(repeating: 0.03, count: 30)), .asleep(at: since, index: 0))
+        // Mit eigenem Grundrauschen gilt es schon vor der vierten Epoche (gleiches Ergebnis).
+        XCTAssertEqual(find(Array(repeating: 0.03, count: 30), personal: 0.03), .asleep(at: since, index: 0))
+    }
+
+    func testGivesUpAfterTwoHoursWithoutExtension() {
+        let motions: [Double?] = Array(repeating: nil, count: 300)
+        XCTAssertEqual(find(motions), .gaveUp(at: minutes(120), reason: "give up (max duration)"))
+        // Unruhig, aber ohne Grenze für Verlängerungen: ebenso nach 2 Std.
+        XCTAssertEqual(find(Array(repeating: busy, count: 300)), .gaveUp(at: minutes(120), reason: "give up (max duration)"))
+    }
+
+    func testGivesUpFifteenMinutesBeforeTheAlarm() {
+        XCTAssertEqual(find(Array(repeating: nil, count: 200), latestHours: 1), .gaveUp(at: minutes(45), reason: "give up"))
+    }
+
+    func testRestlessExtendsUpToTheCap() {
+        let cap = RecorderOnset.extendCap(since: since, windowStart: since.addingTimeInterval(9 * 3600))
+        XCTAssertEqual(cap, minutes(240))
+        // Durchgehend unruhig: verlängert in Schritten von 15 Min bis 4 Std.
+        XCTAssertEqual(find(Array(repeating: busy, count: 600), cap: cap), .gaveUp(at: minutes(240), reason: "give up (max duration)"))
+        // Unruhig bis 2:10, dann ruhig: Die Verlängerung findet das späte Einschlafen.
+        let late: [Double?] = Array(repeating: busy, count: 260) + Array(repeating: quiet, count: 40)
+        XCTAssertEqual(find(late, cap: cap), .asleep(at: minutes(130), index: 260))
+        // Ohne Unruhe in den letzten 15 Min keine Verlängerung.
+        let calm: [Double?] = Array(repeating: busy, count: 200) + Array(repeating: nil, count: 100)
+        XCTAssertEqual(find(calm, cap: cap), .gaveUp(at: minutes(120), reason: "give up (max duration)"))
+        // Der Beginn des Weckfensters begrenzt die Verlängerung.
+        XCTAssertEqual(RecorderOnset.extendCap(since: since, windowStart: minutes(150)), minutes(150))
+    }
+
+    func testRulesMatchKotlin() {
+        XCTAssertTrue(RecorderOnset.restless([nil, 0.2], threshold: 0.1))
+        XCTAssertFalse(RecorderOnset.restless([0.2] + Array(repeating: nil, count: 30), threshold: 0.1))
+        XCTAssertNil(RecorderOnset.extendUntil(at: minutes(100), maxEnd: minutes(120), latestGiveUp: minutes(400), cap: minutes(240), restless: true))
+        XCTAssertNil(RecorderOnset.extendUntil(at: minutes(120), maxEnd: minutes(120), latestGiveUp: minutes(400), cap: minutes(240), restless: false))
+        XCTAssertEqual(RecorderOnset.extendUntil(at: minutes(120), maxEnd: minutes(120), latestGiveUp: minutes(125), cap: minutes(240), restless: true),
+                       minutes(125))
+        XCTAssertNil(RecorderOnset.giveUpReason(at: minutes(60), latestGiveUp: minutes(400), maxEnd: minutes(120)))
+        XCTAssertEqual(RecorderOnset.bedAt(since: minutes(0), automatic: true, latest: minutes(540), sleepMinutes: 450), minutes(90))
+        XCTAssertEqual(RecorderOnset.bedAt(since: minutes(120), automatic: true, latest: minutes(540), sleepMinutes: 450), minutes(120))
+        XCTAssertEqual(RecorderOnset.bedAt(since: minutes(5), automatic: false, latest: minutes(540), sleepMinutes: 450), minutes(5))
+    }
+
+    // MARK: «Gute Nacht»
+
+    func testGoodNightEstimate() {
+        let latest = minutes(8 * 60) // 07:00
+        // 15 Min Standard + 7½ Std.: 06:45.
+        XCTAssertEqual(GoodNightEstimate.target(tap: since, latencyMinutes: nil, sleepDurationMinutes: 450, latest: latest), minutes(465))
+        // Gelernt 20 Min: 06:50; nie nach der eingestellten Weckzeit.
+        XCTAssertEqual(GoodNightEstimate.target(tap: since, latencyMinutes: 20, sleepDurationMinutes: 450, latest: latest), minutes(470))
+        XCTAssertEqual(GoodNightEstimate.target(tap: since, latencyMinutes: 45, sleepDurationMinutes: 450, latest: latest), latest)
+        XCTAssertFalse(GoodNightEstimate.tooFar(now: since, latest: latest))
+        XCTAssertTrue(GoodNightEstimate.tooFar(now: since, latest: minutes(17 * 60)))
+        XCTAssertTrue(GoodNightEstimate.tooFar(now: since, latest: nil))
+        XCTAssertEqual(GoodNightEstimate.doneUntil(target: minutes(465), nominal: latest), latest)
+        XCTAssertEqual(GoodNightEstimate.doneUntil(target: minutes(465), nominal: nil), minutes(465))
+        XCTAssertEqual(GoodNightEstimate.doneUntil(target: latest, nominal: minutes(8 * 60 + 24 * 60)), latest)
+    }
+
+    func testLearnedLatencyGoesToTheWatch() {
+        let snapshot = LearningSnapshot(active: false, floor: 0.02, restingHeartRate: 50, updatedAtMs: 7, latencyMinutes: 18)
+        var context: [String: Any] = [:]
+        snapshot.apply(to: &context)
+        XCTAssertEqual(LearningSnapshot(context: context), snapshot)
+        // Ältere Stände ohne Einschlafdauer bleiben lesbar.
+        let old = try? JSONDecoder().decode(LearningSnapshot.self, from: Data(#"{"active":true,"updatedAtMs":3}"#.utf8))
+        XCTAssertEqual(old, LearningSnapshot(active: true, floor: nil, restingHeartRate: nil, updatedAtMs: 3))
+    }
+
+    func testOnsetShiftMovesOnlyThatNight() throws {
+        let plan = WakePlan(alarmId: "a|1", windowStart: minutes(450), target: minutes(480))
+        let shift = OnsetShift(alarmId: "a|1", original: OnsetShift.millis(minutes(480)), target: OnsetShift.millis(minutes(465)),
+                               at: OnsetShift.millis(since))
+        XCTAssertEqual(OnsetShift.decode(shift.encode()), shift)
+        XCTAssertNil(OnsetShift.decode("x|1|2"))
+        let moved = shift.applyTo(plan, now: since, grace: 120)
+        XCTAssertEqual(moved.target, minutes(465))
+        XCTAssertEqual(moved.windowStart, minutes(450))
+        // Anderer Wecker, andere Nacht oder vorbei: unverändert.
+        XCTAssertEqual(shift.applyTo(WakePlan(alarmId: "b", windowStart: minutes(450), target: minutes(480)), now: since, grace: 120).target, minutes(480))
+        XCTAssertEqual(shift.applyTo(WakePlan(alarmId: "a|1", windowStart: minutes(1890), target: minutes(1920)), now: since, grace: 120).target,
+                       minutes(1920))
+        XCTAssertEqual(shift.applyTo(plan, now: minutes(470), grace: 120).target, minutes(480))
+        // Aufgehoben: nicht früher, gilt also die eingestellte Zeit.
+        XCTAssertEqual(OnsetShift.cancel(plan, at: 1).applyTo(plan, now: since, grace: 120), plan)
+        XCTAssertFalse(shift.expired(now: minutes(481), grace: 120))
+        XCTAssertTrue(shift.expired(now: minutes(482), grace: 120))
+    }
+
+    // MARK: «Nacht aufzeichnen»
+
+    func testRecordingEndsAtCapAndLowBattery() {
+        XCTAssertNil(NightRecording.endNow(start: since, now: minutes(60), battery: nil))
+        XCTAssertNil(NightRecording.endNow(start: since, now: minutes(60), battery: 15))
+        XCTAssertEqual(NightRecording.endNow(start: since, now: minutes(60), battery: 14), .battery)
+        XCTAssertEqual(NightRecording.endNow(start: since, now: minutes(720), battery: 80), .cap)
+    }
+
+    func testRecordingCsvLikeKotlin() {
+        let first = NightRecording(start: since, epochs: [Epoch(motion: 0.0123456789, heartRate: 52.34), Epoch(motion: nil, heartRate: nil)],
+                                   end: minutes(1), endReason: .watch)
+        let running = NightRecording(start: minutes(-60), epochs: [Epoch(motion: 0.5, heartRate: nil)])
+        let older = NightRecording(start: minutes(-1440), epochs: [Epoch(motion: nil, heartRate: 60)], end: minutes(-1400), endReason: .wake)
+        XCTAssertEqual(NightRecording.exportCsv([first, running, older]),
+                       "recording,end_reason,epoch,motion,hr\n1,wake,0,,60.0\n2,watch,0,0.012346,52.3\n2,watch,1,,\n")
+        XCTAssertEqual(first.duration, 60)
+        XCTAssertTrue(first.finished)
+        XCTAssertEqual(running.duration, 30)
+        XCTAssertEqual(running.until, minutes(-59.5))
+        XCTAssertEqual(first.until, minutes(1))
+        XCTAssertFalse(running.finished)
+    }
+}

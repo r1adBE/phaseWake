@@ -153,20 +153,41 @@ struct TrendsCard: View {
     private func decimal(_ value: Double) -> String { value.formatted(.number.precision(.fractionLength(1))) }
 }
 
-/// Verlauf als echte .csv-Datei zum Teilen (nicht als Text), für `ShareLink(item:)`. Die Datei mit Bewegungs- und
-/// Pulsreihen entsteht erst, wenn wirklich geteilt wird – im Hintergrund, nicht bei jedem Neuzeichnen der Ansicht –, in
-/// einem eigenen Ordner der temporären Dateien. Der wird beim nächsten Teilen und beim nächsten Start der App geleert
-/// (`cleanUp`), damit die Daten nicht liegen bleiben.
+/// Verlauf als echte .csv-Dateien zum Teilen (nicht als Text), für `ShareLink(items:)`: die Nächte
+/// («phasewake-nights.csv», ``NightHistory/exportCsv(_:notes:calendar:)``) und, falls es Aufzeichnungen der Uhr gibt
+/// («Nacht aufzeichnen», Lernphase), diese als zweite Datei («phasewake-recordings.csv», ``NightRecording/exportCsv(_:)``),
+/// wie Android. Die Dateien mit Bewegungs- und Pulsreihen entstehen erst, wenn wirklich geteilt wird – im Hintergrund,
+/// nicht bei jedem Neuzeichnen der Ansicht –, je in einem eigenen Ordner der temporären Dateien. Ältere Exporte werden
+/// beim nächsten Teilen und beim nächsten Start der App entfernt (`cleanUp`), damit die Daten nicht liegen bleiben.
 struct NightsExport: Transferable, Sendable {
-    let nights: [NightRecord]
-    let notes: [String: [String]]
+    /// Inhalt einer Datei.
+    enum Content: Sendable {
+        case nights([NightRecord], notes: [String: [String]])
+        case recordings([NightRecording])
+    }
 
-    /// Name der geteilten Datei.
+    let content: Content
+
+    /// Name der Datei mit den Nächten.
     private static let fileName = "phasewake-nights.csv"
+    /// Name der Datei mit den Aufzeichnungen.
+    private static let recordingsName = "phasewake-recordings.csv"
+    /// Exporte, die jünger sind, bleiben beim Teilen stehen (die andere Datei desselben Teilens).
+    private static let keepRecent: TimeInterval = 60
 
     /// Ordner der Exporte in den temporären Dateien.
     private static var directory: URL {
         FileManager.default.temporaryDirectory.appendingPathComponent("export", isDirectory: true)
+    }
+
+    /// Dateien zum Teilen: die Nächte (auch ohne Nacht, wenn es keine Aufzeichnung gibt) und die abgeschlossenen
+    /// Aufzeichnungen, falls es welche gibt (wie `Export.kt`, Android).
+    static func files(nights: [NightRecord], notes: [String: [String]], recordings: [NightRecording]) -> [NightsExport] {
+        let finished = recordings.filter(\.finished)
+        var out: [NightsExport] = []
+        if !nights.isEmpty || finished.isEmpty { out.append(NightsExport(content: .nights(nights, notes: notes))) }
+        if !finished.isEmpty { out.append(NightsExport(content: .recordings(finished))) }
+        return out
     }
 
     static var transferRepresentation: some TransferRepresentation {
@@ -175,20 +196,53 @@ struct NightsExport: Transferable, Sendable {
         }
     }
 
-    /// Schreibt die Datei (alte Exporte vorher weg) und gibt sie zurück.
+    /// Schreibt die Datei (ältere Exporte vorher weg) und gibt sie zurück.
     private func write() throws -> URL {
-        Self.cleanUp()
+        Self.cleanUp(olderThan: Self.keepRecent)
         let folder = Self.directory.appendingPathComponent(UUID().uuidString, isDirectory: true)
         try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
-        let url = folder.appendingPathComponent(Self.fileName)
-        try NightHistory.exportCsv(nights, notes: notes).write(to: url, atomically: true, encoding: .utf8)
+        let name: String
+        let text: String
+        switch content {
+        case .nights(let nights, let notes):
+            name = Self.fileName
+            text = NightHistory.exportCsv(nights, notes: notes)
+        case .recordings(let recordings):
+            name = Self.recordingsName
+            text = NightRecording.exportCsv(recordings)
+        }
+        let url = folder.appendingPathComponent(name)
+        try text.write(to: url, atomically: true, encoding: .utf8)
         return url
     }
 
-    /// Entfernt alle Exporte, auch die Datei früherer Versionen direkt in den temporären Dateien.
-    static func cleanUp() {
+    /// Entfernt die Exporte, auch die Datei früherer Versionen direkt in den temporären Dateien; mit `olderThan` nur
+    /// Ordner, die älter sind.
+    static func cleanUp(olderThan age: TimeInterval = 0) {
         let manager = FileManager.default
-        try? manager.removeItem(at: directory)
         try? manager.removeItem(at: manager.temporaryDirectory.appendingPathComponent(fileName))
+        guard age > 0 else {
+            try? manager.removeItem(at: directory)
+            return
+        }
+        let limit = Date().addingTimeInterval(-age)
+        let folders = (try? manager.contentsOfDirectory(at: directory, includingPropertiesForKeys: [.creationDateKey])) ?? []
+        for folder in folders {
+            let created = (try? folder.resourceValues(forKeys: [.creationDateKey]))?.creationDate ?? .distantPast
+            if created < limit { try? manager.removeItem(at: folder) }
+        }
+    }
+}
+
+/// Knopf «Verlauf exportieren» (Verlauf und Einstellungen): teilt die Nächte und die Aufzeichnungen der Uhr
+/// (``NightsExport``); ohne beides gesperrt.
+struct HistoryExportLink<Content: View>: View {
+    @Environment(PhoneModel.self) private var model
+    @ViewBuilder let label: () -> Content
+
+    var body: some View {
+        let files = NightsExport.files(nights: model.nights, notes: model.notes, recordings: PhoneLearning.shared.recordings)
+        ShareLink(items: files, preview: { _ in SharePreview(L("history_export_subject")) }, label: label)
+            .disabled(model.nights.isEmpty && !PhoneLearning.shared.recordings.contains(where: \.finished))
     }
 }

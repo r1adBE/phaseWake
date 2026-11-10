@@ -29,4 +29,5 @@
     <string name="check_watch_notifications">Notifications on the watch</string>
     <string name="check_watch_notifications_problem">Allow time-sensitive notifications for Phase Wake on your Apple Watch. Otherwise it can’t wake you by notification when no measurement is running.</string>
     <string name="check_watch_state_old">Watch status is out of date – briefly open Phase Wake on the watch.</string>
+    <string name="editor_sleep_apple">On Apple Watch, Phase Wake estimates when you fall asleep from your learned time to fall asleep.</string>
 </resources>

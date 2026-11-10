@@ -1,46 +1,74 @@
 import PhaseWakeCore
 import SwiftUI
 
-// Schlafwert einer Nacht (Bogen mit Faktoren) und Kurzzeile in der Liste. Wie `NightScore.kt` (Android).
+// Schlafwert einer Nacht (Bogen mit Faktoren), Kurzzeile in der Liste und Messreihe der Detailseite. Wie `NightScore.kt`
+// (Android).
+
+/// Woher die Werte des Schlafwerts stammen: Phasen aus Apple Health bzw. Sitzung, oder Aufzeichnung der Uhr.
+enum ScoreSource { case health, recording }
 
 /// Schlafwert einer Nacht samt den Messwerten, aus denen er gerechnet ist.
 struct NightScore {
     let result: SleepScoreResult
     let input: ScoreInput
+    var source: ScoreSource = .health
 }
 
-/// Schlafwert einer Nacht (``SleepScore``): mit Phasen aus diesen, bei einer Sitzung ohne Phasen aus ihrer Dauer.
-/// Eine eigene Nacht ohne Phasen hat am iPhone keinen Wert (die Aufzeichnung der ganzen Nacht fehlt dort noch).
-func nightScore(stages: NightStages?, session: HealthSession?, goalMinutes: Int) -> NightScore? {
+/// Messreihe einer Nacht (Bewegung und Puls je 30-s-Epoche ab `start`); `fullNight`: ganze Aufzeichnung statt Weckfenster.
+struct NightSeries {
+    let epochs: [Epoch]
+    let start: Date
+    let fullNight: Bool
+}
+
+/// Abgeschlossene Aufzeichnung, die sich mit `from`–`to` am längsten überschneidet; keine: `nil` (wie `recordingFor`, Android).
+func recordingFor(from: Date, to: Date, recordings: [NightRecording]) -> NightRecording? {
+    recordings.filter { $0.finished && $0.start < to && $0.until > from }
+        .max { overlap($0, from, to) < overlap($1, from, to) }
+}
+
+private func overlap(_ recording: NightRecording, _ from: Date, _ to: Date) -> TimeInterval {
+    min(recording.until, to).timeIntervalSince(max(recording.start, from))
+}
+
+/// Zeitraum eines Eintrags: eigene Nacht Fensterbeginn bis Wecken, Sitzung Beginn bis Ende.
+private func itemRange(_ item: HistoryItem) -> (from: Date, to: Date)? {
+    if let night = item.night { return (from: night.windowStart, to: night.wokeAt) }
+    if let session = item.session { return (from: session.start, to: session.end) }
+    return nil
+}
+
+/// Schlafwert einer Nacht (``SleepScore``): mit Phasen aus diesen, bei einer Sitzung ohne Phasen aus ihrer Dauer, bei
+/// einer eigenen Nacht ohne Phasen aus einer Aufzeichnung der Uhr mit Einschlafzeit (bis zum Wecken; vorläufig). Keine
+/// Werte: `nil`. Wie `nightScore` (Android).
+func nightScore(stages: NightStages?, session: HealthSession?, goalMinutes: Int, night: NightRecord? = nil,
+                recordings: [NightRecording] = []) -> NightScore? {
     let input: ScoreInput
+    var source = ScoreSource.health
     if let stages {
         input = SleepScore.inputOf(stages, goalMinutes: goalMinutes)
     } else if let session {
         input = ScoreInput(asleepMinutes: session.asleepMinutes, goalMinutes: goalMinutes)
+    } else if let night,
+              let recording = recordingFor(from: night.windowStart, to: night.wokeAt, recordings: recordings),
+              let asleep = recording.asleepAt,
+              let fromRecording = SleepScore.inputOf(bedAt: recording.bedAt, asleepAt: asleep, end: min(recording.until, night.wokeAt),
+                                                     goalMinutes: goalMinutes) {
+        input = fromRecording
+        source = .recording
     } else {
         return nil
     }
-    return SleepScore.of(input).map { NightScore(result: $0, input: input) }
+    return SleepScore.of(input).map { NightScore(result: $0, input: input, source: source) }
 }
 
-/// «Ausgezeichnet», «Gut», «Mittel», «Schwach».
-func bandName(_ band: ScoreBand) -> String {
-    switch band {
-    case .excellent: L("score_excellent")
-    case .good: L("score_good")
-    case .fair: L("score_fair")
-    case .poor: L("score_poor")
+/// Messreihe für Puls und Bewegung: überschneidende Aufzeichnung (ganze Nacht), sonst bei eigener Nacht das Weckfenster.
+func nightSeries(_ item: HistoryItem, recordings: [NightRecording]) -> NightSeries? {
+    if let span = itemRange(item), let recording = recordingFor(from: span.from, to: span.to, recordings: recordings) {
+        return NightSeries(epochs: recording.epochs, start: recording.start, fullNight: true)
     }
+    return item.night.map { NightSeries(epochs: $0.epochs, start: $0.windowStart, fullNight: false) }
 }
-
-/// «Schlafwert 82 von 100: Gut» (VoiceOver), vorläufig mit «Ohne Schlafphasen – vorläufiger Wert».
-func scoreDescription(_ result: SleepScoreResult) -> String {
-    let value = L("score_value", Int64(result.score), bandName(result.band))
-    return result.provisional ? value + ". " + L("score_provisional") : value
-}
-
-/// Morgenrot am Ende des Bogens (wie der Sonnenaufgang des Weckers), je Modus mit genug Kontrast zur Karte.
-private func dawn(_ scheme: ColorScheme) -> Color { Color(hex: scheme == .dark ? 0xFFB27A : 0xE07A4F) }
 
 /// Bogen von 240°, unten offen (wie der Weg des Mondes über den Nachthimmel); Beginn unten links.
 private let arcStart = 150.0

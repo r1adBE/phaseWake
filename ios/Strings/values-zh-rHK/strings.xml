@@ -27,4 +27,5 @@
     <string name="check_watch_notifications">手錶上的通知</string>
     <string name="check_watch_notifications_problem">請在 Apple Watch 上允許 Phase Wake 傳送時效性通知。否則，在沒有進行測量時，手錶無法透過通知叫醒你。</string>
     <string name="check_watch_state_old">手錶狀態已過時 – 請在手錶上短暫開啟 Phase Wake。</string>
+    <string name="editor_sleep_apple">在 Apple Watch 上，Phase Wake 會根據學到的入睡時間估算你何時入睡。</string>
 </resources>

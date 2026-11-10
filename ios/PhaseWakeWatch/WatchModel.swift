@@ -20,12 +20,19 @@ final class WatchModel {
     /// Zeitraum der zuletzt beendeten Nacht(en) für das Nachholen (`AlarmSchedule.missedPlan`), wie auf Wear OS.
     private(set) var catchUp: CatchUpWindow?
     private static let catchUpKey = "catchUpWindow"
+    /// «Gute Nacht» (Einschlaf-Modus) für die kommende Nacht; `nil` = keine. Nur über `setGoodNight` ändern.
+    private(set) var goodNight: GoodNightState?
+    static let goodNightKey = "goodNight"
+    /// Beginn der laufenden Aufzeichnung (Lernphase oder «Nacht aufzeichnen»), für die Startseite; `nil` = keine.
+    private(set) var recordSince: Date?
 
     private init() {
         alarms = storage.snapshot().alarms
         sleepGoal = storage.sleepGoal
         transient = SettingsFile.watchSession.string(forKey: Self.transientKey).flatMap { try? Transient.decode($0) }
         catchUp = SettingsFile.watchSession.data(forKey: Self.catchUpKey).flatMap { try? JSONDecoder().decode(CatchUpWindow.self, from: $0) }
+        goodNight = SettingsFile.watchSession.data(forKey: Self.goodNightKey).flatMap { try? JSONDecoder().decode(GoodNightState.self, from: $0) }
+        recordSince = LearnRecorder.shared.since
         // Zeitzone oder Uhrzeit geändert (Reise): Sitzung und Rückfall hängen an festen Zeitpunkten, also neu planen.
         for name in [Notification.Name.NSSystemTimeZoneDidChange, .NSSystemClockDidChange] {
             _ = NotificationCenter.default.addObserver(forName: name, object: nil, queue: .main) { _ in
@@ -41,12 +48,15 @@ final class WatchModel {
     /// Nächster echter Wecker. Eine heute schon erledigte Nacht zählt nicht mehr (früh geweckt, Zielzeit liegt noch vorn).
     /// Wurde ein Wecker fällig, während eine andere Nacht klingelte oder schlummerte, kommt er zuerst (`missedPlan`);
     /// danach eine Nacht, deren Zielzeit da ist, die aber noch nicht geweckt hat (`pendingNight`).
+    /// «Gute Nacht» verlegt die Zielzeit dieser Nacht vor (`GoodNightState.apply`).
     var realPlan: WakePlan? {
         let done = storage.doneUntil
         let holidays = storage.holidays.dates
-        return AlarmSchedule.missedPlan(alarms, catchUp: catchUp, now: now, doneUntil: done, calendar: .gregorianLocal, holidays: holidays)
+        let plan = AlarmSchedule.missedPlan(alarms, catchUp: catchUp, now: now, doneUntil: done, calendar: .gregorianLocal, holidays: holidays)
             ?? pendingNight
             ?? AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: done, calendar: .gregorianLocal, holidays: holidays)
+        return goodNight?.apply(to: plan, spec: alarms.first { $0.id == plan?.alarmId }, now: now, doneUntil: done,
+                                ringLimit: SmartAlarm.ringLimit) ?? plan
     }
 
     /// Die Nacht, auf die die Uhr wartet (Sitzung geplant oder nicht planbar), wenn ihre Zielzeit schon da ist und sie
@@ -59,6 +69,10 @@ final class WatchModel {
         let holidays = storage.holidays.dates
         switch SmartAlarm.shared.phase {
         case .waiting(let plan), .scheduled(let plan):
+            // Von «Gute Nacht» vorverlegt: kein Termin des Weckers selbst, darum eigens.
+            if let night = goodNight?.pending(plan, now: now, doneUntil: done[plan.alarmId], ringLimit: SmartAlarm.ringLimit) {
+                return night
+            }
             return WatchRules.pendingNight(plan, specs: alarms, now: now, doneUntil: done, ringLimit: SmartAlarm.ringLimit,
                                            calendar: .gregorianLocal, holidays: holidays)
         case .idle:
@@ -112,6 +126,21 @@ final class WatchModel {
         alarms = storage.snapshot().alarms
         // Abgelaufen (2 h nach der Zielzeit): verwerfen.
         if let transient, !Transient.isActive(transient, now: now) { setTransient(nil) }
+        // «Gute Nacht» einer vorbeigegangenen oder erledigten Nacht verwerfen.
+        if let goodNight, goodNight.expired(now: now, doneUntil: storage.doneUntil[goodNight.alarmId], ringLimit: SmartAlarm.ringLimit) {
+            setGoodNight(nil)
+        }
+    }
+
+    /// «Gute Nacht» merken bzw. verwerfen (`nil`); ausserhalb der Sicherung (`SettingsFile.watchSession`).
+    func setGoodNight(_ state: GoodNightState?) {
+        goodNight = state
+        SettingsFile.watchSession.set(state.flatMap { try? JSONEncoder().encode($0) }, forKey: Self.goodNightKey)
+    }
+
+    /// Laufende Aufzeichnung für die Startseite (`LearnRecorder.publishSince`).
+    func noteRecording(since: Date?) {
+        recordSince = since
     }
 
     /// Probewecker oder Powernap übernehmen (vom iPhone oder hier gestartet) und gleich planen.

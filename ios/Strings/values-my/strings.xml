@@ -29,4 +29,5 @@
     <string name="check_watch_notifications">နာရီပေါ်ရှိ အသိပေးချက်များ</string>
     <string name="check_watch_notifications_problem">Apple Watch ပေါ်တွင် Phase Wake အတွက် အချိန်အရေးကြီး အသိပေးချက်များကို ခွင့်ပြုပါ။ မဟုတ်ပါက တိုင်းတာမှု မလုပ်ဆောင်နေချိန်တွင် အသိပေးချက်ဖြင့် နှိုး၍ မရပါ။</string>
     <string name="check_watch_state_old">နာရီ၏ အခြေအနေ ခေတ်မမီတော့ပါ – နာရီပေါ်တွင် Phase Wake ကို ခဏဖွင့်ပါ။</string>
+    <string name="editor_sleep_apple">Apple Watch တွင် Phase Wake သည် သင်ယူထားသော အိပ်ပျော်ရန် ကြာချိန်မှ သင်အိပ်ပျော်သည့်အချိန်ကို ခန့်မှန်းပါသည်။</string>
 </resources>

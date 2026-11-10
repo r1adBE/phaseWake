@@ -113,9 +113,9 @@ final class PhoneModel {
         historyClearedAt = (defaults.object(forKey: Self.historyClearedKey) as? NSNumber).map { Date(timeIntervalSince1970: $0.doubleValue / 1000) }
     }
 
-    /// Nächster Plan über alle Wecker: früh geweckte Nächte und Feiertage übersprungen.
+    /// Nächster Plan über alle Wecker: früh geweckte Nächte und Feiertage übersprungen; «Gute Nacht» der Uhr verlegt die Zielzeit vor (`WatchNight`).
     func nextPlan(now: Date = Date()) -> WakePlan? {
-        AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: doneUntil, calendar: .gregorianLocal, holidays: holidays.dates)
+        WatchNight.shared.apply(AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: doneUntil, calendar: .gregorianLocal, holidays: holidays.dates), now: now)
     }
 
     func upsert(_ spec: AlarmSpec) {

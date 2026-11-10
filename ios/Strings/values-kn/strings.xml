@@ -29,4 +29,5 @@
     <string name="check_watch_notifications">ವಾಚ್‌ನಲ್ಲಿ ಅಧಿಸೂಚನೆಗಳು</string>
     <string name="check_watch_notifications_problem">ನಿಮ್ಮ Apple Watch ನಲ್ಲಿ Phase Wake ಗಾಗಿ ಸಮಯ-ಸೂಕ್ಷ್ಮ ಅಧಿಸೂಚನೆಗಳನ್ನು ಅನುಮತಿಸಿ. ಇಲ್ಲದಿದ್ದರೆ ಅಳತೆ ನಡೆಯದಿದ್ದಾಗ ಅದು ನಿಮ್ಮನ್ನು ಅಧಿಸೂಚನೆಯ ಮೂಲಕ ಎಬ್ಬಿಸಲಾರದು.</string>
     <string name="check_watch_state_old">ವಾಚ್‌ನ ಸ್ಥಿತಿ ಹಳೆಯದಾಗಿದೆ – ವಾಚ್‌ನಲ್ಲಿ Phase Wake ಅನ್ನು ಸ್ವಲ್ಪ ಸಮಯ ತೆರೆಯಿರಿ.</string>
+    <string name="editor_sleep_apple">Apple Watch ನಲ್ಲಿ Phase Wake ಕಲಿತ ನಿದ್ರೆ ಬರಲು ಬೇಕಾದ ಸಮಯದಿಂದ ನೀವು ಯಾವಾಗ ನಿದ್ರಿಸುತ್ತೀರಿ ಎಂದು ಅಂದಾಜಿಸುತ್ತದೆ.</string>
 </resources>

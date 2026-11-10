@@ -29,4 +29,5 @@
     <string name="check_watch_notifications">घडीमा सूचनाहरू</string>
     <string name="check_watch_notifications_problem">आफ्नो Apple Watch मा Phase Wake का लागि समय-संवेदनशील सूचनाहरूलाई अनुमति देऊ। नत्र मापन नचलिरहेको बेला घडीले तिमीलाई सूचनाबाट उठाउन सक्दैन।</string>
     <string name="check_watch_state_old">घडीको स्थिति पुरानो भयो – घडीमा Phase Wake केही बेर खोल।</string>
+    <string name="editor_sleep_apple">Apple Watch मा Phase Wake ले सिकेको निदाउन लाग्ने समयबाट तिमी कहिले निदायौ भनी अनुमान गर्छ।</string>
 </resources>

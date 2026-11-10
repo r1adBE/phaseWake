@@ -29,4 +29,5 @@
     <string name="check_watch_notifications">Mga notification sa relo</string>
     <string name="check_watch_notifications_problem">Payagan ang mga time-sensitive na notification para sa Phase Wake sa iyong Apple Watch. Kung hindi, hindi ka nito magigising gamit ang notification kapag walang tumatakbong pagsukat.</string>
     <string name="check_watch_state_old">Luma na ang status ng relo – buksan sandali ang Phase Wake sa relo.</string>
+    <string name="editor_sleep_apple">Sa Apple Watch, tinatantya ng Phase Wake kung kailan ka makakatulog batay sa natutunang tagal ng iyong pagkakatulog.</string>
 </resources>

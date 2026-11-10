@@ -4,8 +4,9 @@ import Foundation
 /// sondern zur Zielzeit («Pünktlich ist das Produkt, früher ist Bonus»). Regel siehe `docs/PHASENERKENNUNG.md`,
 /// Abschnitt 8. Identisch zu `ShortNight` (Kotlin).
 ///
-/// Auf der Apple Watch ist die Einschlafzeit unbekannt (gemessen wird nur in der 30-Minuten-Sitzung); dort gilt die
-/// Untergrenze darum nicht (`blocksEarly` mit `onset: nil`).
+/// Auf der Apple Watch rechnet die Uhr die Einschlafzeit zu Beginn der Smart-Alarm-Sitzung aus dem Bewegungs-Rekorder
+/// nach (``RecorderOnset``), wenn er in dieser Nacht lief; sonst ist sie unbekannt, und die Untergrenze gilt nicht
+/// (`blocksEarly` mit `onset: nil`).
 public enum ShortNight {
     /// So viele Minuten unter dem Schlafziel gilt eine Nacht noch nicht als kurz.
     public static let marginMinutes = 60

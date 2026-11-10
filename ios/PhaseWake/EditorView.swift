@@ -23,25 +23,41 @@ struct EditorView: View {
     @State private var newId = UUID().uuidString
     @State private var showMore = false
     @State private var skipHolidays = false
+    /// Einschlaf-Modus («nach 7½ Std.»): Schlafdauer statt fester Zielzeit; die Uhrzeit ist dann die späteste Weckzeit.
+    @State private var sleepMode = false
+    @State private var sleepMinutes = Double(EditorView.defaultSleepMinutes)
+
+    /// Vorgabe und Bereich der Schlafdauer wie Android (`EditorState`, `SLEEP_MIN`/`SLEEP_MAX`), in Schritten von 15 Min.
+    private static let defaultSleepMinutes = 450
+    private static let sleepRange = 180.0...720.0
 
     var body: some View {
         NavigationStack {
             Form {
-                // Einschlaf-Modus gibt es auf Apple nicht: Die Smart-Alarm-Sitzung der Apple Watch
-                // läuft höchstens 30 Minuten und kann die Nacht nicht ab «Gute Nacht» begleiten. Die Uhrzeit
-                // ist darum immer die Zielzeit des normalen Fensters.
-                Section(L("editor_target")) {
+                // «Uhrzeit · Schlafdauer» wie Android. Einschlaf-Modus auf der Apple Watch: «Gute Nacht» legt die Zielzeit
+                // aus der gelernten Einschlafdauer fest (Näherung, `GoodNightState`); ohne Tippen gilt die Uhrzeit.
+                Section {
+                    Picker(L("editor_mode_sleep"), selection: $sleepMode) {
+                        Text(L("editor_mode_clock")).tag(false)
+                        Text(L("editor_mode_sleep")).tag(true)
+                    }
+                    .pickerStyle(.segmented)
+                    .controlSize(.large)
+                }
+
+                Section(L(sleepMode ? "editor_latest" : "editor_target")) {
                     DatePicker("", selection: $time, displayedComponents: .hourAndMinute)
                         .datePickerStyle(.wheel)
                         .labelsHidden()
                         .frame(maxWidth: .infinity)
                 }
 
-                // Auf Android gesetzt (Sicherung, Galaxy Watch): nur anzeigen, beim Speichern unverändert behalten.
-                if let minutes = existing?.sleepDurationMinutes {
+                if sleepMode {
                     Section {
-                        Text(L("editor_sleep_duration", Format.duration(minutes: minutes)))
-                        Text(L("editor_sleep_wear_only")).font(.footnote).foregroundStyle(.secondary)
+                        Text(L("editor_sleep_duration", Format.duration(minutes: Int(sleepMinutes)))).font(.headline)
+                        Slider(value: $sleepMinutes, in: Self.sleepRange, step: 15)
+                            .accessibilityValue(Format.duration(minutes: Int(sleepMinutes)))
+                        Text(L("editor_sleep_hint") + " " + L("editor_sleep_apple")).font(.footnote).foregroundStyle(.secondary)
                     }
                 }
 
@@ -241,6 +257,8 @@ struct EditorView: View {
         sound = existing.sound
         sunrise = existing.sunrise
         skipHolidays = existing.skipHolidays
+        sleepMode = existing.sleepDurationMinutes != nil
+        sleepMinutes = Double(existing.sleepDurationMinutes ?? Self.defaultSleepMinutes)
         // Schon gesetzte Optionen nicht verstecken.
         showMore = !existing.label.isEmpty || WakeTone(rawValue: existing.sound) != nil
     }
@@ -256,8 +274,7 @@ struct EditorView: View {
             enabled: true,
             phone: phone,
             watchSound: watchSound,
-            // Einschlaf-Modus wirkt nur mit einer Galaxy Watch: vorhandenen Wert behalten, neu = aus.
-            sleepDurationMinutes: existing?.sleepDurationMinutes,
+            sleepDurationMinutes: sleepMode ? Int(sleepMinutes) : nil,
             sound: sound,
             label: String(label.trimmingCharacters(in: .whitespaces).prefix(40)),
             sunrise: sunrise,

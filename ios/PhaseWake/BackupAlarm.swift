@@ -112,9 +112,10 @@ final class BackupAlarm {
         }
         // Je Wecker gesucht (`BackupPlan.nights`): Zwei Wecker mit derselben Zielzeit bekommen beide eine Sicherung. Eine
         // behaltene Nacht nie doppelt, auch falls die Suche dieselbe Zielzeit nochmals liefert.
+        // «Gute Nacht» auf der Uhr: diese Nacht zur früheren Zielzeit (`WatchNight`, wie `OnsetShift` auf Android).
         let nightPlans = BackupPlan.nights(eligible, now: now, until: now.addingTimeInterval(Self.horizon), maxNights: Self.maxSlots,
                                            suppressed: suppressed, firstTargets: firstTargets, skip: skip,
-                                           calendar: .gregorianLocal, holidays: holidays)
+                                           calendar: .gregorianLocal, holidays: holidays).compactMap { WatchNight.shared.apply($0, now: now) }
         var nights = 0
         for plan in nightPlans {
             let sound = alarms.first { $0.id == plan.alarmId }?.sound ?? ""
@@ -186,7 +187,9 @@ final class BackupAlarm {
         let alarms = PhoneModel.shared.alarms
         let spec = alarms.first { $0.id == alarmId }
         let window = TimeInterval(AlarmSpec.maxWindowMinutes * 60)
-        let nightTarget = target
+        // Nach «Gute Nacht» meldet die Uhr die frühere Zielzeit: ausgesetzt bis zur eingestellten derselben Nacht.
+        let nightTarget = WatchNight.shared.original(alarmId: alarmId, target: target)
+            ?? target
             ?? spec.flatMap { AlarmSchedule.nextTarget($0, now: now.addingTimeInterval(-window), calendar: .gregorianLocal,
                                                     holidays: PhoneModel.shared.holidays.dates) }
             ?? now.addingTimeInterval(window)

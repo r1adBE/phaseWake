@@ -27,4 +27,5 @@
     <string name="check_watch_notifications">Obvestila na uri</string>
     <string name="check_watch_notifications_problem">Dovoli časovno občutljiva obvestila za Phase Wake na svoji uri Apple Watch. Sicer te ne more zbuditi z obvestilom, ko meritev ne teče.</string>
     <string name="check_watch_state_old">Stanje ure je zastarelo – na kratko odpri Phase Wake na uri.</string>
+    <string name="editor_sleep_apple">Na uri Apple Watch Phase Wake oceni, kdaj zaspiš, iz naučenega časa uspavanja.</string>
 </resources>

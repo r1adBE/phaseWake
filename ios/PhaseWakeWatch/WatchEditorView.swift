@@ -51,7 +51,8 @@ struct WatchEditorView: View {
             List {
                 // Einschlaf-Modus wirkt auf der Apple Watch nicht (nur Galaxy Watch): Die Uhrzeit ist immer die Zielzeit
                 // des normalen Fensters. Die Krone dreht das gewählte Rad.
-                Section(L("editor_target")) {
+                // Einschlaf-Modus (am iPhone eingestellt): Die Uhrzeit ist die späteste Weckzeit (wie Wear OS).
+                Section(L(start.sleepDurationMinutes != nil ? "editor_latest" : "editor_target")) {
                     HStack(spacing: 2) {
                         Picker(L("editor_target"), selection: $hour) {
                             ForEach(0..<24, id: \.self) { Text(String(format: "%02d", $0)).tag($0) }

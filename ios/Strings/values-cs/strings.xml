@@ -26,4 +26,5 @@
     <string name="check_watch_notifications">Oznámení na hodinkách</string>
     <string name="check_watch_notifications_problem">Povol pro Phase Wake na Apple Watch časově citlivá oznámení. Jinak tě hodinky nemohou probudit oznámením, když neběží měření.</string>
     <string name="check_watch_state_old">Stav hodinek je zastaralý – krátce otevři Phase Wake na hodinkách.</string>
+    <string name="editor_sleep_apple">Na Apple Watch odhaduje Phase Wake, kdy usneš, podle tvé naučené doby usínání.</string>
 </resources>

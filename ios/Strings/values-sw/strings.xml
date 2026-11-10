@@ -27,4 +27,5 @@
     <string name="check_watch_notifications">Arifa kwenye saa</string>
     <string name="check_watch_notifications_problem">Ruhusu arifa zinazozingatia muda kwa Phase Wake kwenye Apple Watch yako. La sivyo, haiwezi kukuamsha kwa arifa wakati hakuna kipimo kinachoendelea.</string>
     <string name="check_watch_state_old">Hali ya saa imepitwa na wakati – fungua Phase Wake kwa muda mfupi kwenye saa.</string>
+    <string name="editor_sleep_apple">Kwenye Apple Watch, Phase Wake inakadiria wakati unapolala kutokana na muda wa kupata usingizi ilioujifunza.</string>
 </resources>

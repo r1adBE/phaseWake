@@ -51,10 +51,7 @@ struct SettingsView: View {
                 }
                 Section(L("settings_data")) {
                     Text(L("settings_data_text")).font(.footnote)
-                    ShareLink(item: NightsExport(nights: model.nights, notes: model.notes), preview: SharePreview(L("history_export_subject"))) {
-                        Text(L("settings_export"))
-                    }
-                    .disabled(model.nights.isEmpty)
+                    HistoryExportLink { Text(L("settings_export")) }
                     Text(L("export_contents_hint")).font(.footnote).foregroundStyle(.secondary)
                     Button(L("settings_clear_history"), role: .destructive) { confirmClear = true }
                 }

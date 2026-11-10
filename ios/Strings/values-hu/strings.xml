@@ -26,4 +26,5 @@
     <string name="check_watch_notifications">Értesítések az órán</string>
     <string name="check_watch_notifications_problem">Engedélyezd a Phase Wake időérzékeny értesítéseit az Apple Watchodon. Különben nem tud értesítéssel ébreszteni, ha nem fut mérés.</string>
     <string name="check_watch_state_old">Az óra állapota elavult – nyisd meg röviden a Phase Wake-et az órán.</string>
+    <string name="editor_sleep_apple">Az Apple Watchon a Phase Wake a megtanult elalvási idődből becsüli meg, mikor alszol el.</string>
 </resources>

@@ -26,4 +26,5 @@
     <string name="check_watch_notifications">การแจ้งเตือนบนนาฬิกา</string>
     <string name="check_watch_notifications_problem">อนุญาตการแจ้งเตือนที่มีผลต่อเวลาสำหรับ Phase Wake บน Apple Watch ของคุณ มิฉะนั้นนาฬิกาจะปลุกคุณด้วยการแจ้งเตือนไม่ได้เมื่อไม่มีการวัดอยู่</string>
     <string name="check_watch_state_old">สถานะของนาฬิกาไม่เป็นปัจจุบัน – เปิด Phase Wake บนนาฬิกาสักครู่</string>
+    <string name="editor_sleep_apple">บน Apple Watch, Phase Wake ประมาณเวลาที่คุณหลับจากเวลาจนหลับที่เรียนรู้ไว้</string>
 </resources>

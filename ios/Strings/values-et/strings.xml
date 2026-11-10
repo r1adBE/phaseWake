@@ -29,4 +29,5 @@
     <string name="check_watch_notifications">Märguanded kellas</string>
     <string name="check_watch_notifications_problem">Luba Phase Wake’ile oma Apple Watchis ajatundlikud märguanded. Muidu ei saa kell sind märguandega äratada, kui mõõtmine ei käi.</string>
     <string name="check_watch_state_old">Kella olek on aegunud – ava Phase Wake korraks kellas.</string>
+    <string name="editor_sleep_apple">Apple Watchil hindab Phase Wake sinu uinumise aega õpitud uinumisaja põhjal.</string>
 </resources>
