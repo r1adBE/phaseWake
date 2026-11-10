@@ -40,6 +40,7 @@ struct SettingsView: View {
                     Toggle(L("weekly_title"), isOn: Binding(get: { model.weeklyReview }, set: { model.setWeeklyReview($0) }))
                     Text(L("weekly_toggle")).font(.footnote).foregroundStyle(.secondary)
                 }
+                LearningSettingsSection()
                 Section(L("test_title")) { TestAlarmButton() }
                 HolidaySettingsSection()
                 CustomNotesSection()
@@ -75,7 +76,8 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle(L("settings_title"))
-            .confirmationDialog(L("settings_clear_history_text"), isPresented: $confirmClear, titleVisibility: .visible) {
+            .confirmationDialog(L("settings_clear_history_text") + " " + L("settings_clear_history_learn"), isPresented: $confirmClear,
+                                titleVisibility: .visible) {
                 // Mit Gerätesperre zusätzlich Face ID, Touch ID oder Code; ohne Sperre genügt diese Rückfrage.
                 Button(L("settings_clear_history_confirm"), role: .destructive) {
                     Task { if await DeviceAuth.confirm(reason: L("auth_clear_history")) { model.clearHistory() } }

@@ -3,6 +3,7 @@ A Phase Wake az ébresztési ablakon belül ébreszt, amint nyugtalan leszel –
 Így működik
 • Válaszd ki az ébresztési időt és az időablakot (legfeljebb 30 perc), vedd fel az órát, aludj.
 • Az óra csak az időablakban mér: kíméli az akkumulátort.
+• Választható: tanulási szakasz – az órád 7 éjszakán át rövid mintákban méri éjjel a mozgást és a pulzust (óránként kb. 3 % akku), és hozzád igazítja az ébresztést.
 • Rezgés a csuklódon – ha kéred, az iPhone is megszólal, tartalék ébresztőként pedig akkor, ha valami félremenne.
 • Leállítás nyomva tartással, szundi legfeljebb 3-szor.
 

@@ -55,6 +55,16 @@ final class HealthSleep: @unchecked Sendable {
         return HealthNights(sessions: bySource.flatMap { Self.sessions($0.value, source: $0.key) }, names: names)
     }
 
+    /// Lernphase: Anfänge der Proben «Im Bett» und der Schlafproben (jeder Phase, nicht «Wach»), die sich mit `from` bis
+    /// `to` überschneiden, nur von Apple (Apple Watch, iPhone; ``appleSource``), damit «Im Bett» und Schlaf aus derselben
+    /// Quelle stammen. Leer ohne Daten oder Zugriff.
+    func onsetSamples(from: Date, to: Date) async -> (inBed: [Date], asleep: [Date]) {
+        let samples = await query(from: from, to: to).filter { $0.sourceRevision.source.bundleIdentifier.hasPrefix("com.apple.") }
+        let inBed = samples.filter { $0.value == HKCategoryValueSleepAnalysis.inBed.rawValue }.map(\.startDate)
+        let asleep = samples.filter { sample in Self.stage(sample.value).map { $0 != .awake } ?? false }.map(\.startDate)
+        return (inBed: inBed, asleep: asleep)
+    }
+
     /// Alle Proben im Zeitraum in einer Abfrage.
     private func query(from: Date, to: Date) async -> [HKCategorySample] {
         guard isAvailable else { return [] }

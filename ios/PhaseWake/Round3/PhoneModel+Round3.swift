@@ -18,9 +18,10 @@ extension PhoneModel {
         Task { await replanBedtime() }
     }
 
-    /// Wecker, Feiertage und Schlafziel an die Uhr; der Anwendungskontext ersetzt jeweils den ganzen Stand.
+    /// Wecker, Feiertage, Schlafziel und Lernphase an die Uhr; der Anwendungskontext ersetzt jeweils den ganzen Stand.
     func publishToWatch(_ snapshot: AlarmSnapshot? = nil) {
-        PhoneConnectivity.shared.publish(snapshot ?? storage.snapshot(), holidays: holidays.list, sleepGoal: sleepGoal)
+        PhoneConnectivity.shared.publish(snapshot ?? storage.snapshot(), holidays: holidays.list, sleepGoal: sleepGoal,
+                                         learning: PhoneLearning.shared.state.snapshot)
     }
 
     /// «Nächstes Mal überspringen» bzw. rückgängig; geht an die Uhr wie jede Änderung. Nach früh geweckter Nacht
@@ -46,6 +47,8 @@ extension PhoneModel {
         }
         await replanWeekly()
         await transient.restore()
+        // Lernphase: Einschlafdauer nachtragen, zählen (fertig: Stand an die Uhr).
+        await PhoneLearning.shared.refresh()
     }
 
     /// Beim Öffnen: neuer Tag → Feiertage neu auflösen (plant dabei alles neu); sonst die Sicherung nachziehen, damit
@@ -59,5 +62,6 @@ extension PhoneModel {
             Task { await backup.reschedule(alarms) }
         }
         BackupRefresh.submit()
+        Task { await PhoneLearning.shared.refresh() }
     }
 }

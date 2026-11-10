@@ -17,6 +17,9 @@ struct PhaseWakeWatchApp: App {
                 // Lavendel wie auf dem Handy und der Galaxy Watch.
                 .tint(Brand.wave)
         }
+        // Lernphase: Rekorder am Abend starten, Nacht nach dem Wecken auswerten (`LearnRecorder`). Die Uhr stellt nur
+        // diese eine Hintergrund-Aktualisierung.
+        .backgroundTask(.appRefresh) { _ in await LearnRecorder.shared.refreshTask() }
     }
 }
 

@@ -146,6 +146,12 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         deliver([SyncKeys.night: Codec.encodeNight(night)], userInfoOnly: true)
     }
 
+    /// Aufzeichnung der Lernphase (`NightRecording.encode`, rund 40 KB) als Benutzerdaten wie eine Nacht.
+    @MainActor
+    func send(learnRecording text: String) {
+        deliver([SyncKeys.learnRecording: text], userInfoOnly: true)
+    }
+
     /// Sofort, wenn das iPhone erreichbar ist; sonst zugestellt, sobald es das wieder ist.
     /// Mit Zielzeit der Nacht und Sendezeit: Das iPhone verwirft ein verspätetes «klingeln» und setzt
     /// die Sicherung genau für diese Nacht aus. `snoozeUntil` nur bei «stop» nach dem Schlummern: Das iPhone stellt
@@ -242,7 +248,9 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
             switch command {
             case SyncKeys.stop: alarm.dismiss(notifyPhone: false)
             case SyncKeys.snooze: alarm.snoozeFromPhone()
-            case SyncKeys.clearHistory: WatchModel.shared.storage.clearNights()
+            case SyncKeys.clearHistory:
+                WatchModel.shared.storage.clearNights()
+                LearnRecorder.shared.clearHistory()
             default: break
             }
         }
@@ -285,6 +293,10 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         // Schlafziel nur für den Einschlafpunkt; fehlt es (älteres iPhone), bleibt der gespeicherte Stand.
         if let goal = context[SyncKeys.sleepGoal] as? Int64 {
             Task { @MainActor in WatchModel.shared.applySleepGoal(Int(goal)) }
+        }
+        // Lernphase (fehlt bei älteren iPhone-Versionen; dann bleibt der Stand).
+        if let learning = LearningSnapshot(context: context) {
+            Task { @MainActor in LearnRecorder.shared.apply(learning) }
         }
         guard let text = context[SyncKeys.alarms] as? String,
               let updatedAt = context[SyncKeys.updatedAt] as? Int64,

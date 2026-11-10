@@ -4,7 +4,7 @@
 |---|---|
 | `PhaseWakeCore/` | Swift-Paket mit der Phasenerkennung, identisch zu `android/core` |
 | `PhaseWake/` | iPhone-App: Wecker, Verlauf, Einstellungen, Zweitwecker (AlarmKit ab iOS 26) |
-| `PhaseWakeWatch/` | Apple-Watch-App: Messung im Weckfenster über die Smart-Alarm-Sitzung |
+| `PhaseWakeWatch/` | Apple-Watch-App: Messung im Weckfenster über die Smart-Alarm-Sitzung, Lernphase über den Bewegungs-Rekorder (`LearnRecorder`) |
 | `Shared/` | Farben, Schrift, Logo, Texte – für beide Apps |
 | `Resources/` | Schrift Manrope |
 

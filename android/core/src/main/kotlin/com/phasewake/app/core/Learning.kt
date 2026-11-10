@@ -8,7 +8,8 @@ import java.time.ZoneId
  * Lernphase (Entscheid r1AD 09.11.2026): Die Galaxy Watch zeichnet [NIGHTS] Nächte auf, danach passt Phase Wake den Wecker
  * an: eigenes Grundrauschen ([NoiseFloor], [DetectorConfig.personalFloor]), eigener Ruhepuls
  * ([DetectorConfig.restingHeartRate]) und die Einschlafdauer für die Empfehlung der Schlafenszeit ([bedtimeRange]).
- * Regel siehe `docs/PHASENERKENNUNG.md`, Abschnitt 10. Reine Logik; nur Android (Apple folgt).
+ * Regel siehe `docs/PHASENERKENNUNG.md`, Abschnitt 10. Reine Logik; identisch zu `Learning` im Swift-Kern (dort zusätzlich die
+ * Apple-Fälle: Puls aus Apple Health, Einschlafdauer aus «Im Bett»).
  */
 object Learning {
     /** So viele gezählte Nächte braucht die Lernphase (keine Kalendertage). */

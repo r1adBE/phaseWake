@@ -3,6 +3,7 @@ Phase Wake te budi unutar intervala buđenja čim ti san postane nemiran – tad
 Kako radi
 • Odaberi vrijeme buđenja i interval (do 30 min), stavi sat, spavaj.
 • Sat mjeri samo tijekom intervala buđenja: štedi bateriju.
+• Po želji: faza učenja – tvoj sat 7 noći mjeri pokrete i puls u kratkim uzorcima tijekom noći (oko 3 % baterije na sat) i prilagođava alarm tebi.
 • Vibracija na zapešću – po želji zvoni i iPhone, a i kao rezervni alarm ako nešto pođe po zlu.
 • Drži za zaustavljanje, odgodi do 3 puta.
 

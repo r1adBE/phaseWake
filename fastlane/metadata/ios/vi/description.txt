@@ -3,6 +3,7 @@ Phase Wake đánh thức bạn trong khoảng đánh thức ngay khi bạn bắt
 Cách hoạt động
 • Chọn giờ thức dậy và khoảng đánh thức (tối đa 30 phút), đeo đồng hồ, đi ngủ.
 • Đồng hồ chỉ đo trong khoảng đánh thức: tiết kiệm pin.
+• Tùy chọn: giai đoạn học – trong 7 đêm, đồng hồ của bạn đo chuyển động và nhịp tim theo các mẫu ngắn suốt đêm (khoảng 3 % pin mỗi giờ) và điều chỉnh báo thức theo bạn.
 • Rung trên cổ tay – nếu muốn, iPhone cũng đổ chuông theo, và làm báo thức dự phòng phòng khi có sự cố.
 • Giữ để tắt, báo lại tối đa 3 lần.
 

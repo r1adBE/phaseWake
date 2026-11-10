@@ -58,6 +58,17 @@ public enum SyncKeys {
     public static let payload = "payload"
     /// Kennung eines vorübergehenden Plans.
     public static let id = "id"
+    /// Anwendungskontext iPhone → Uhr: Lernphase läuft (Uhr zeichnet nachts auf), siehe `LearningSnapshot`. Fehlen die
+    /// Schlüssel der Lernphase (älteres iPhone), bleibt der Stand der Uhr.
+    public static let learnActive = "learnActive"
+    /// Anwendungskontext iPhone → Uhr: gelerntes Grundrauschen (m/s²); fehlt ohne Wert.
+    public static let learnFloor = "learnFloor"
+    /// Anwendungskontext iPhone → Uhr: gelernter Ruhepuls; fehlt ohne Wert.
+    public static let learnRestingHr = "learnRestingHr"
+    /// Anwendungskontext iPhone → Uhr: Zeitpunkt des Stands der Lernphase (ms seit 1970).
+    public static let learnUpdatedAt = "learnUpdatedAt"
+    /// Benutzerdaten Uhr → iPhone: eine Aufzeichnung der Lernphase im Format «phasewake-recording 1» (`NightRecording`).
+    public static let learnRecording = "learnRecording"
     /// Uhr → iPhone im Anwendungskontext: Felder je Weckerzeile, die die Uhr kennt (`Codec.alarmFields`). Fehlt der
     /// Schlüssel bei einem Kontext, der sonst von der Uhr stammt, ist es eine ältere Uhr (zählt als 0).
     public static let alarmFields = "alarmFields"

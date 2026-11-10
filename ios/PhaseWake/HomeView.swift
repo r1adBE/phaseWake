@@ -47,6 +47,7 @@ struct HomeView: View {
                                 let evening = SleepNotes.entryVisible(now: context.date, nextWindowStart: next?.windowStart, calendar: .gregorianLocal)
                                 let tonight = SleepNotes.nightDate(context.date, calendar: .gregorianLocal)
                                 if evening {
+                                    BedtimeAdviceCard(now: context.date)
                                     TonightNotesCard(nightDate: tonight)
                                     RoutineCard(night: tonight)
                                 }
@@ -55,6 +56,7 @@ struct HomeView: View {
                                     SoundRecordingCard(night: tonight)
                                 }
                                 SoundsButton { sounds = true }
+                                LearningHomeCard()
                                 if !morningFirst { lastNight(now: context.date, morningFirst: false) }
                                 // Morgenbericht ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): nur die Geräusche.
                                 // Nicht während der Aufnahme und nicht für die Nacht, die gerade läuft.

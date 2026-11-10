@@ -1,9 +1,10 @@
 # Offene Punkte
 
-Stand 04.11.2026, Phase Wake 16.2.2. Erledigtes wandert nach [ENTSCHEIDE.md](ENTSCHEIDE.md).
+Stand 10.11.2026, Phase Wake 16.2.2. Erledigtes wandert nach [ENTSCHEIDE.md](ENTSCHEIDE.md).
 
 ## Erledigt am 10.11.2026 (Details in ENTSCHEIDE.md)
 
+- Lernphase auf iPhone und Apple Watch (früher 11l; Android und iOS laufen ab jetzt immer parallel, r1AD 10.11.): gleicher Ablauf, gleiche Texte und Regeln wie Android (Einrichtungsschritt, einmal die Karte «Lernphase starten» / «Später», Schalter und «Neu lernen» in den Einstellungen, «Lernphase: Nacht N von 7», «Angepasst an dich», Empfehlung der Schlafenszeit, «Verlauf löschen» beginnt von vorn). Die Apple Watch startet am Abend den Bewegungs-Rekorder von watchOS und wertet die Nacht nach dem Wecken aus (gleiche Bewegung je Epoche), Puls aus Apple Health, Einschlafdauer aus «Im Bett» in Apple Health; das iPhone zählt und lernt (Swift-Kern `Learning`, Tests wie Kotlin). Regel PHASENERKENNUNG.md 10 (Apple). Gerätetest (r1AD) offen, siehe 11p.
 - Lernphase nur mit Zustimmung (Audit F-02): Einrichtungsschritt bzw. einmal eine Karte «Lernphase starten» / «Später», Schalter «Lernphase» in den Einstellungen, Uhr zeichnet nur mit Zustimmung auf; Store-Texte, README, DATENSCHUTZ.md. Lernphase misst in Stichproben (60 s alle 5 Min), Start weiter ab 50 % Akku; eine Nacht zählt ab 72 Epochen mit Bewegung über 3 Std.
 - Wakelock bei «Nacht aufzeichnen» nur noch ohne aufweckenden Sensor mit grossem Puffer (Audit F-01), Diagnose `wl=hold|batch`.
 - Store-Build nur für einen Stand mit grüner CI, Unit-Tests vor dem Signieren (Audit F-05).
@@ -78,7 +79,8 @@ Geprüft und so belassen: Apple-Sitzung misst die ersten 5 Min. eines 30-Min.-Fe
 
 11a. «Nacht aufzeichnen» an der Galaxy Watch prüfen: Akku über eine ganze Nacht: gemessen 10.11.2026 ca. 6 % je Stunde (71 % → 24 % in 7¾ Std., mit Wakelock und Puls über den Sensor, `hr=928/928`; ersetzt die Schätzung 2–5 %), Puls gleichzeitig mit dem Weckfenster (zwei Messungen derselben App), Start und Stopp vom Handy bei dunkler Uhr, Wiederaufnahme nach «Beenden erzwingen» bzw. Neustart.
 11g. Leichte Bewegung am Auf und Ab erkennen statt nur an der Höhe, oder Grundrauschen gleitend (z. B. letzte 30 Min) statt über die ganze Nacht: Eine neue Armlage hebt den Grundwert dauerhaft (Aufzeichnung 10.11.: 07:44–07:57 konstant 0,069–0,077 über der Leicht-Schwelle 0,048; 08.11.: Stufen 0,025–0,038). Mit Puls in jeder Epoche (hrsrc=sensor) an 2–3 weiteren Nächten prüfen, dann Vorschlag zur Freigabe. Bisheriger Gedanke «leichter Schlaf auch ohne Pulsanstieg» geht darin auf. Gewünscht von r1AD am 08./10.11.
-11l. Lernphase auf iPhone und Apple Watch: Apple folgt (Swift-Kern kennt die gelernten Werte schon, PHASENERKENNUNG.md 10; Aufzeichnung der ganzen Nacht auf der Apple Watch, Zählen und Anzeige fehlen dort). Die Auswertung (früher 11k) gibt es auf dem iPhone seit 10.11.; erst mit der Aufzeichnung der Apple Watch kommen dort Schlafwert ohne Apple Health sowie Puls und Bewegung über die ganze Nacht dazu.
+11l. Auswertung auf dem iPhone mit den Aufzeichnungen der Apple Watch (Rest des früheren 11l): Die Lernphase auf Apple ist seit 10.11. gebaut (siehe oben und 11p); Schlafwert ohne Apple Health sowie Puls- und Bewegungsverlauf über die ganze Nacht aus den Aufzeichnungen der Lernphase sind auf dem iPhone noch nicht angeschlossen.
+11p. Lernphase auf der Apple Watch am Gerät prüfen (r1AD): Erlaubnis «Bewegung & Fitness» beim ersten Öffnen der Uhr-App nach der Zustimmung; Start des Rekorders am Abend auch bei geschlossener App (Diagnose der Uhr `learn record start … mode=recorder`, sonst `learn record skipped: …`; die Hintergrund-Aktualisierung von watchOS kommt nur unregelmässig, sicher ist das Öffnen der Uhr-App am Abend); nach dem Wecken `record end wake epochs=… motion=… hr=…` mit Bewegung über die ganze Nacht – ein Bericht im Apple-Forum (DTS, 2026) nennt Lücken des Rekorders während des von watchOS erkannten Schlafs: Ist `motion=` klein, zählt keine Nacht und die Aufzeichnung muss anders gelöst werden; Anteil der Epochen mit Puls aus Apple Health (Ruhepuls ab 36); am iPhone `learn night counted N/7`, nach Apple-Health-Schlaf die Einschlafdauer; Akku der Uhr über eine Lernnacht und Dauer des Auswertens am Morgen; nach 7 Nächten die Werte am iPhone und `learning active=0 floor=…` auf der Uhr.
 11m. Akku an echter Uhr messen (Audit F-01): «Nacht aufzeichnen» auf einer Uhr mit aufweckendem Beschleunigungssensor (Diagnose `wl=batch`) über eine ganze Nacht – Akku, Anteil der Epochen mit Bewegung und Puls, keine Lücken. Die Galaxy Watch 8 Classic von r1AD hat `fifo=-1` und zeichnet weiter mit Wakelock auf (`wl=hold`).
 11o. Akku der Lernphase in Stichproben messen: Schätzung etwa 3 % pro Stunde (Text der Einrichtung), an einer echten Nacht prüfen (Diagnose `mode=sample`, stündliche Zeile `record stat … bat=`); dazu prüfen, ob die Stichproben genug Puls liefern (Ruhepuls ab 60 Epochen mit Puls).
 11n. Testversion mit privatem Test-Schlüssel und nicht debuggable (Audit R-01): vorerst nicht (r1AD 10.11.2026).
@@ -86,7 +88,7 @@ Geprüft und so belassen: Apple-Sitzung misst die ersten 5 Min. eines 30-Min.-Fe
 
 ## Bekannte Grenzen
 
-12. Apple Watch misst nur die letzten 25 Min. vor der Zielzeit; Einschlafzeit und Untergrenze kurzer Nächte gibt es dort nicht (steht im iOS-Store-Text).
+12. Apple Watch misst für das Wecken nur die letzten 25 Min. vor der Zielzeit (die Lernphase zeichnet über den Bewegungs-Rekorder von watchOS auf und wertet erst nach dem Wecken aus); Einschlafzeit und Untergrenze kurzer Nächte gibt es dort nicht (steht im iOS-Store-Text).
 13. Ältere Uhr-Apps kennen «Genau» (Fenster 0) nicht und verwerfen solche Wecker; Handy und Uhr gemeinsam aktualisieren (der Zweitwecker am Handy klingelt trotzdem). Der Nacht-Check am Handy warnt jetzt («Uhr-App veraltet», Review O-04).
 14. Apple Watch: Startet die Sitzung einer Nacht nicht (vom System abgelehnt, App nie offen), läuft auf der Uhr kein Prozess; ihr Rückfall bleibt dann Kalenderzeit ohne Zone und folgt einer Reise im Fenster der Ortszeit (watchOS lässt ihn ohne laufende App nicht umstellen).
 

@@ -8,7 +8,7 @@ public struct DetectorConfigError: Error, Equatable, Sendable {
 ///
 /// Die Standardwerte sind die Startwerte aus `docs/PHASENERKENNUNG.md`.
 /// Nach drei aufgezeichneten Nächten liefert ``Calibration`` angepasste Schwellen; nach der Lernphase (Abschnitt 10,
-/// bisher nur Android) kommen eigenes Grundrauschen (``personalFloor``) und eigener Ruhepuls (``restingHeartRate``) dazu.
+/// ``Learning``) kommen eigenes Grundrauschen (``personalFloor``) und eigener Ruhepuls (``restingHeartRate``) dazu.
 public struct DetectorConfig: Equatable, Sendable {
     /// Länge einer Epoche in Sekunden.
     public static let epochSeconds = 30
@@ -106,6 +106,15 @@ public struct DetectorConfig: Equatable, Sendable {
 
     /// Grösstes Fenster beider Regeln; so viele Epochen merkt sich der ``WakeDetector``.
     var maxWindow: Int { max(awakeWindow, lightWindow) }
+
+    /// Kopie mit den gelernten Werten der Lernphase (``Learning/withLearned(_:_:)``); `nil` = keiner. Ein negatives
+    /// Grundrauschen bzw. ein Puls ≤ 0 (nie aus ``Learning``) gilt als keiner.
+    func withLearned(floor: Double?, restingHeartRate: Double?) -> DetectorConfig {
+        DetectorConfig(
+            unchecked: lightThreshold, wakeThreshold, heartRateRise, warmupEpochs, awakeWindow, awakeHits, lightWindow, lightHits,
+            floor.flatMap { $0 >= 0 ? $0 : nil }, restingHeartRate.flatMap { $0 > 0 ? $0 : nil }
+        )
+    }
 
     /// Kopie mit neuen Schwellen. Nur für ``Calibration``, die gültige Werte garantiert (wake = light × 50).
     func withThresholds(light: Double, wake: Double) -> DetectorConfig {

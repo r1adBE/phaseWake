@@ -12,16 +12,19 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         WCSession.default.activate()
     }
 
-    /// Wecker, Feiertage und Schlafziel (Minuten) als Anwendungskontext (ersetzt jeweils den ganzen Stand, darum immer alles).
-    func publish(_ snapshot: AlarmSnapshot, holidays: HolidayList, sleepGoal: Int) {
+    /// Wecker, Feiertage, Schlafziel (Minuten) und Stand der Lernphase als Anwendungskontext (ersetzt jeweils den ganzen
+    /// Stand, darum immer alles).
+    func publish(_ snapshot: AlarmSnapshot, holidays: HolidayList, sleepGoal: Int, learning: LearningSnapshot) {
         guard WCSession.default.activationState == .activated, WCSession.default.isPaired, WCSession.default.isWatchAppInstalled else { return }
+        var context: [String: Any] = [
+            SyncKeys.alarms: Codec.encodeAlarms(snapshot.alarms),
+            SyncKeys.updatedAt: snapshot.updatedAt,
+            SyncKeys.holidays: Holidays.encode(holidays),
+            SyncKeys.sleepGoal: Int64(sleepGoal),
+        ]
+        learning.apply(to: &context)
         do {
-            try WCSession.default.updateApplicationContext([
-                SyncKeys.alarms: Codec.encodeAlarms(snapshot.alarms),
-                SyncKeys.updatedAt: snapshot.updatedAt,
-                SyncKeys.holidays: Holidays.encode(holidays),
-                SyncKeys.sleepGoal: Int64(sleepGoal),
-            ])
+            try WCSession.default.updateApplicationContext(context)
             DiagStore.shared.log(.sync, "sent \(snapshot.alarms.count) alarms, \(holidays.dates.count) holidays")
         } catch {
             DiagStore.shared.log(.error, "context not sent: \(error.localizedDescription)")
@@ -97,6 +100,11 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
             return
         }
         seenWatch()
+        // Aufzeichnung der Lernphase (Uhr-App ab `WatchProtocol.learning`).
+        if let text = userInfo[SyncKeys.learnRecording] as? String {
+            Task { @MainActor in await PhoneLearning.shared.receive(text) }
+            return
+        }
         guard let text = userInfo[SyncKeys.night] as? String, let night = try? Codec.decodeNight(text) else { return }
         Task { @MainActor in
             PhoneModel.shared.add(night: night)

@@ -1,12 +1,12 @@
 import PhaseWakeCore
 import SwiftUI
 
-/// Ersteinrichtung: Willkommen → Uhr verbinden → Rechte → Erster Wecker → Probewecker → Fertig. Jeder
+/// Ersteinrichtung: Willkommen → Uhr verbinden → Rechte → Erster Wecker → Lernphase → Probewecker → Fertig. Jeder
 /// Schritt lässt sich überspringen; «Einrichtung wiederholen» in den Einstellungen zeigt sie wieder.
 struct OnboardingView: View {
     /// Merker «Einrichtung erledigt» (bestehende Installationen mit Weckern gelten als eingerichtet).
     static let doneKey = "onboardingDone"
-    private static let steps = 5
+    private static let steps = 6
 
     @Environment(PhoneModel.self) private var model
     @Environment(\.colorScheme) private var scheme
@@ -59,6 +59,9 @@ struct OnboardingView: View {
             title("onb_alarm_title")
             firstAlarm
         case 4:
+            title("learn_consent_title")
+            LearningOnboardingStep()
+        case 5:
             title("test_title")
             TestAlarmButton()
             TransientStatusCard()

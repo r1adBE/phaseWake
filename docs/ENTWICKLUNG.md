@@ -13,6 +13,8 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 3. **Gleiches Verhalten auf Android und Apple.** Regeln (Erkennung, Planung, Formate, Auswertungen) liegen im
    Kern: `android/core` (Kotlin) und `ios/PhaseWakeCore` (Swift), mit gleichen Namen, gleicher Bedeutung und
    gleichen Testfällen. Plattform-Code zeigt an und ruft auf, entscheidet aber nichts, was der Kern entscheiden kann.
+   Neues kommt auf beiden Plattformen im selben Zug, nie «erst Android, Apple folgt» (r1AD 10.11.2026); was eine
+   Plattform nicht kann, steht als Grenze in den Dokumenten.
 4. **Einfach vor schlau.** Lieber eine klare Funktion mehr als eine Abstraktion, die nur einmal gebraucht wird.
 
 ## 2. Struktur und Grösse

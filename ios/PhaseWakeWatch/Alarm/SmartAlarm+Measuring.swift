@@ -36,7 +36,9 @@ extension SmartAlarm {
         self.plan = plan
         nightPlan = plan
         spec = model.spec(for: plan.alarmId)
-        detector = WakeDetector(config: Calibration.calibrate(nights: NightHistory.motionsForCalibration(model.storage.nights())))
+        // Gelernte Werte der Lernphase (Grundrauschen, Ruhepuls) wie auf der Galaxy Watch.
+        let calibrated = Calibration.calibrate(nights: NightHistory.motionsForCalibration(model.storage.nights()))
+        detector = WakeDetector(config: LearnRecorder.shared.snapshot.applied(to: calibrated))
         epochs = []
         unmeasured = max(0, Int(Date().timeIntervalSince(plan.windowStart)) / DetectorConfig.epochSeconds)
         firstRing = nil

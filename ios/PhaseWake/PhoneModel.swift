@@ -216,6 +216,7 @@ final class PhoneModel {
         routineTicks = [:]
         privateNotes.setRoutineTicks([:])
         recorder.deleteEverything()
+        PhoneLearning.shared.restart()
         // Nächte aus Apple Health lassen sich nicht löschen, nur ausblenden (`HealthHistory.visible`).
         let now = Date()
         historyClearedAt = now

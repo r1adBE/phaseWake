@@ -250,5 +250,7 @@ final class WatchModel {
         WatchDiagStatus.shared.update(plan: plan, armed: armed)
         // Komplikation auf dem Zifferblatt sofort aktualisieren.
         WidgetCenter.shared.reloadAllTimelines()
+        // Lernphase: Rekorder für die nächste Nacht starten bzw. die letzte auswerten.
+        LearnRecorder.shared.plan()
     }
 }
