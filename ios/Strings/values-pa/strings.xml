@@ -9,6 +9,8 @@
     <string name="check_alarmkit_problem">Phase Wake ਨੂੰ ਅਲਾਰਮ ਸੈੱਟ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ ਤਾਂ ਜੋ ਤੁਹਾਡਾ iPhone ਬੈਕਅੱਪ ਅਲਾਰਮ ਵਜੋਂ ਵੱਜ ਸਕੇ।</string>
     <string name="nightstand_start">ਨਾਈਟਸਟੈਂਡ ਮੋਡ ਸ਼ੁਰੂ ਕਰੋ</string>
     <string name="nightstand_hint">ਸੂਰਜ ਚੜ੍ਹਨ ਦੀ ਰੌਸ਼ਨੀ ਲਈ Phase Wake ਨੂੰ ਸਾਰੀ ਰਾਤ ਚਾਰਜਰ ’ਤੇ ਖੁੱਲ੍ਹਾ ਛੱਡੋ। ਰੌਸ਼ਨੀ ਸ਼ੁਰੂ ਹੋਣ ਤੱਕ ਸਕ੍ਰੀਨ ਹਨੇਰੀ ਰਹਿੰਦੀ ਹੈ।</string>
+    <string name="nightstand_screen_on_hint">ਸਾਰੀ ਰਾਤ ਚਾਲੂ ਰਹਿੰਦਾ ਹੈ – iPhone ਨੂੰ ਚਾਰਜਰ ’ਤੇ ਲਾਓ।</string>
+    <string name="settings_data_text_apple">ਸਭ ਕੁਝ ਤੁਹਾਡੇ ਫ਼ੋਨ ਅਤੇ ਘੜੀ ’ਤੇ ਹੀ ਰਹਿੰਦਾ ਹੈ। ਕੋਈ ਖਾਤਾ ਨਹੀਂ, ਕੋਈ ਸਰਵਰ ਨਹੀਂ, ਕੋਈ ਟਰੈਕਿੰਗ ਨਹੀਂ।</string>
     <string name="nightstand_end">ਖ਼ਤਮ ਕਰੋ</string>
     <string name="nightstand_waiting">%1$s ਵਜੇ ਸੂਰਜ ਚੜ੍ਹਨਾ</string>
     <string name="nightstand_no_alarm">ਸੂਰਜ ਚੜ੍ਹਨ ਵਾਲਾ ਕੋਈ ਅਲਾਰਮ ਨਹੀਂ</string>

@@ -89,7 +89,7 @@
     <string name="settings_theme_light">Svetlo</string>
     <string name="settings_theme_dark">Temno</string>
     <string name="settings_data">Tvoji podatki</string>
-    <string name="settings_data_text">Vse ostane na telefonu in uri. Brez računa, brez strežnika, brez sledenja.</string>
+    <string name="settings_data_text">Vse ostane na telefonu in uri. Brez računa, brez strežnika, brez sledenja. Prek Googlove povezave z uro gredo le tehnični podatki o uri, brez zdravstvenih podatkov.</string>
     <string name="settings_export">Izvozi noči brez imena</string>
     <string name="settings_export_hint">Pomagaj izboljšati prepoznavanje: CSV brez imen, datumov in ID-jev naprav; vsebuje gibanje in utrip na 30 s, tvoje počutje in zapiske.</string>
     <string name="settings_about">O aplikaciji</string>

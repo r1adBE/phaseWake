@@ -88,7 +88,7 @@
     <string name="settings_theme_light">Цайвар</string>
     <string name="settings_theme_dark">Бараан</string>
     <string name="settings_data">Чиний өгөгдөл</string>
-    <string name="settings_data_text">Бүх зүйл утас, цаган дээр чинь үлдэнэ. Бүртгэлгүй, сервергүй, хянахгүй.</string>
+    <string name="settings_data_text">Бүх зүйл утас, цаган дээр чинь үлдэнэ. Бүртгэлгүй, сервергүй, хянахгүй. Google-ийн цагны холболтоор зөвхөн цагны техникийн мэдээлэл дамжина, эрүүл мэндийн өгөгдөлгүй.</string>
     <string name="settings_export">Шөнүүдийг нэргүйгээр экспортлох</string>
     <string name="settings_export_hint">Таних чадварыг сайжруулахад туслаарай: нэр, огноо, төхөөрөмжийн ID-гүй CSV; 30 с тутмын хөдөлгөөн ба зүрхний цохилт, сэтгэгдэл, тэмдэглэл чинь багтана.</string>
     <string name="settings_about">Тухай</string>

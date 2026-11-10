@@ -9,6 +9,8 @@
     <string name="check_alarmkit_problem">Leisk Phase Wake nustatyti žadintuvus, kad iPhone galėtų skambėti kaip atsarginis žadintuvas.</string>
     <string name="nightstand_start">Pradėti naktinio staliuko režimą</string>
     <string name="nightstand_hint">Kad būtų saulėtekis, palik Phase Wake atidarytą ant įkroviklio per naktį. Ekranas lieka tamsus, kol prasideda šviesa.</string>
+    <string name="nightstand_screen_on_hint">Lieka įjungtas visą naktį – prijunk iPhone prie įkroviklio.</string>
+    <string name="settings_data_text_apple">Viskas lieka tavo telefone ir laikrodyje. Jokios paskyros, jokio serverio, jokio sekimo.</string>
     <string name="nightstand_end">Baigti</string>
     <string name="nightstand_waiting">Saulėtekis %1$s</string>
     <string name="nightstand_no_alarm">Nėra žadintuvo su saulėtekiu</string>

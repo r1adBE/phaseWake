@@ -88,7 +88,7 @@
     <string name="settings_theme_light">Jasny</string>
     <string name="settings_theme_dark">Ciemny</string>
     <string name="settings_data">Twoje dane</string>
-    <string name="settings_data_text">Wszystko zostaje na telefonie i zegarku. Bez konta, serwera i śledzenia.</string>
+    <string name="settings_data_text">Wszystko zostaje na telefonie i zegarku. Bez konta, serwera i śledzenia. Przez połączenie zegarka Google przechodzą tylko dane techniczne zegarka, bez danych o zdrowiu.</string>
     <string name="settings_export">Eksportuj noce bez imienia</string>
     <string name="settings_export_hint">Pomóż ulepszyć rozpoznawanie: CSV bez imion, dat i identyfikatorów urządzeń; zawiera ruch i tętno co 30 s, twoje samopoczucie i notatki.</string>
     <string name="settings_about">O aplikacji</string>

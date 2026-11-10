@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">Engedélyezd a Phase Wake-nek az ébresztők beállítását, hogy az iPhone-od tartalék ébresztőként megszólalhasson.</string>
     <string name="nightstand_start">Éjjeliszekrény-mód indítása</string>
     <string name="nightstand_hint">A napfelkeltéhez hagyd nyitva a Phase Wake-et a töltőn egész éjjel. A kijelző sötét marad, amíg a fény el nem kezdődik.</string>
+    <string name="nightstand_screen_on_hint">Egész éjjel bekapcsolva marad – tedd töltőre az iPhone-t.</string>
+    <string name="settings_data_text_apple">Minden a telefonodon és az órádon marad. Nincs fiók, nincs szerver, nincs követés.</string>
     <string name="nightstand_end">Befejezés</string>
     <string name="nightstand_waiting">Napfelkelte: %1$s</string>
     <string name="nightstand_no_alarm">Nincs ébresztő napfelkeltével</string>

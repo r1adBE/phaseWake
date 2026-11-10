@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">Laat Phase Wake toe om wekkers te stel sodat jou iPhone as rugsteunwekker kan lui.</string>
     <string name="nightstand_start">Begin bedkassiemodus</string>
     <string name="nightstand_hint">Vir die sonsopkoms, laat Phase Wake oornag oop op die laaier. Die skerm bly donker totdat die lig begin.</string>
+    <string name="nightstand_screen_on_hint">Bly die hele nag aan – sit jou iPhone op die laaier.</string>
+    <string name="settings_data_text_apple">Alles bly op jou foon en horlosie. Geen rekening, geen bediener, geen nasporing nie.</string>
     <string name="nightstand_end">Beëindig</string>
     <string name="nightstand_waiting">Sonsopkoms om %1$s</string>
     <string name="nightstand_no_alarm">Geen wekker met sonsopkoms nie</string>

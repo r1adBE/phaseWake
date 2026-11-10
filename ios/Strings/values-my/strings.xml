@@ -9,6 +9,8 @@
     <string name="check_alarmkit_problem">iPhone အရန်နှိုးစက်အဖြစ် မြည်နိုင်ရန် Phase Wake ကို နှိုးစက်သတ်မှတ်ခွင့် ပေးပါ။</string>
     <string name="nightstand_start">ခေါင်းရင်းစားပွဲ မုဒ် စရန်</string>
     <string name="nightstand_hint">နေထွက်အတွက် Phase Wake ကို ညလုံးပေါက် အားသွင်းကြိုးပေါ်တွင် ဖွင့်ထားပါ။ အလင်း မစမီအထိ မျက်နှာပြင် မှောင်နေမည်။</string>
+    <string name="nightstand_screen_on_hint">တစ်ညလုံး ဖွင့်ထားမည် – iPhone ကို အားသွင်းကြိုးတပ်ထားပါ။</string>
+    <string name="settings_data_text_apple">အားလုံး သင့်ဖုန်းနှင့် နာရီပေါ်တွင်သာ ရှိသည်။ အကောင့်မလို၊ ဆာဗာမရှိ၊ ခြေရာခံခြင်းမရှိ။</string>
     <string name="nightstand_end">ရပ်ရန်</string>
     <string name="nightstand_waiting">%1$s တွင် နေထွက်</string>
     <string name="nightstand_no_alarm">နေထွက်ပါသော နှိုးစက် မရှိ</string>

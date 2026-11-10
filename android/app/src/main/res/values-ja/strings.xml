@@ -85,7 +85,7 @@
     <string name="settings_theme_light">ライト</string>
     <string name="settings_theme_dark">ダーク</string>
     <string name="settings_data">あなたのデータ</string>
-    <string name="settings_data_text">すべてスマートフォンとウォッチ内に保存されます。アカウントもサーバーもトラッキングもありません。</string>
+    <string name="settings_data_text">すべてスマートフォンとウォッチ内に保存されます。アカウントもサーバーもトラッキングもありません。Google のウォッチ接続を通るのはウォッチの技術情報のみで、健康データは含みません。</string>
     <string name="settings_export">睡眠記録を名前なしでエクスポート</string>
     <string name="settings_export_hint">検出の改善に協力：名前・日付・デバイス ID を含まない CSV。30 秒ごとの体動と心拍、気分、メモを含みます。</string>
     <string name="settings_about">アプリについて</string>

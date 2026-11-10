@@ -87,7 +87,7 @@
     <string name="settings_theme_light">Mwangaza</string>
     <string name="settings_theme_dark">Giza</string>
     <string name="settings_data">Data yako</string>
-    <string name="settings_data_text">Kila kitu kinabaki kwenye simu na saa yako. Hakuna akaunti, hakuna seva, hakuna ufuatiliaji.</string>
+    <string name="settings_data_text">Kila kitu kinabaki kwenye simu na saa yako. Hakuna akaunti, hakuna seva, hakuna ufuatiliaji. Ni taarifa za kiufundi za saa pekee zinazopita kupitia muunganisho wa saa wa Google, bila data ya afya.</string>
     <string name="settings_export">Hamisha usiku bila jina</string>
     <string name="settings_export_hint">Saidia kuboresha utambuzi: CSV bila majina, tarehe wala vitambulisho vya kifaa; ina mwendo na mapigo ya moyo kila sekunde 30, ulivyojisikia na madokezo yako.</string>
     <string name="settings_about">Kuhusu</string>

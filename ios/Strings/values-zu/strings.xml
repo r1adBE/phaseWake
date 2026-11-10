@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">Vumela i-Phase Wake ukuthi isethe ama-alamu ukuze i-iPhone yakho ikwazi ukukhala njenge-alamu yokwesekwa.</string>
     <string name="nightstand_start">Qala imodi yetafula lasembhedeni</string>
     <string name="nightstand_hint">Ukuze uthole ukuphuma kwelanga, shiya i-Phase Wake ivuliwe kushaja ubusuku bonke. Isikrini sihlala simnyama kuze kuqale ukukhanya.</string>
+    <string name="nightstand_screen_on_hint">Kuhlala kuvuliwe ubusuku bonke – faka i-iPhone yakho kushaja.</string>
+    <string name="settings_data_text_apple">Konke kuhlala efonini nasewashini lakho. Ayikho i-akhawunti, ayikho iseva, akukho ukulandelwa.</string>
     <string name="nightstand_end">Qeda</string>
     <string name="nightstand_waiting">Ukuphuma kwelanga ngo-%1$s</string>
     <string name="nightstand_no_alarm">Ayikho i-alamu enokuphuma kwelanga</string>

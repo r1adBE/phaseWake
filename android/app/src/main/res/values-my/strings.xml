@@ -86,7 +86,7 @@
     <string name="settings_theme_light">အလင်း</string>
     <string name="settings_theme_dark">အမှောင်</string>
     <string name="settings_data">သင့်ဒေတာ</string>
-    <string name="settings_data_text">အားလုံး သင့်ဖုန်းနှင့် နာရီပေါ်တွင်သာ ရှိသည်။ အကောင့်မလို၊ ဆာဗာမရှိ၊ ခြေရာခံခြင်းမရှိ။</string>
+    <string name="settings_data_text">အားလုံး သင့်ဖုန်းနှင့် နာရီပေါ်တွင်သာ ရှိသည်။ အကောင့်မလို၊ ဆာဗာမရှိ၊ ခြေရာခံခြင်းမရှိ။ Google ၏ နာရီချိတ်ဆက်မှုမှတစ်ဆင့် နာရီ၏ နည်းပညာဆိုင်ရာ အချက်အလက်များသာ သွားပြီး ကျန်းမာရေးဒေတာ မပါပါ။</string>
     <string name="settings_export">ညများကို အမည်မပါဘဲ ထုတ်ယူရန်</string>
     <string name="settings_export_hint">သိရှိမှုကို ပိုကောင်းအောင် ကူညီပါ- အမည်၊ ရက်စွဲ သို့မဟုတ် စက် ID မပါသော CSV၊ စက္ကန့် 30 တိုင်း လှုပ်ရှားမှုနှင့် နှလုံးခုန်နှုန်း၊ သင့်ခံစားချက်နှင့် သင့်မှတ်စုများ ပါဝင်သည်။</string>
     <string name="settings_about">အကြောင်း</string>

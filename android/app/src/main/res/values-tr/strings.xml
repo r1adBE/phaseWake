@@ -86,7 +86,7 @@
     <string name="settings_theme_light">Açık</string>
     <string name="settings_theme_dark">Koyu</string>
     <string name="settings_data">Verilerin</string>
-    <string name="settings_data_text">Her şey telefonunda ve saatinde kalır. Hesap yok, sunucu yok, takip yok.</string>
+    <string name="settings_data_text">Her şey telefonunda ve saatinde kalır. Hesap yok, sunucu yok, takip yok. Google’ın saat bağlantısından yalnızca saatle ilgili teknik bilgiler geçer, sağlık verileri olmadan.</string>
     <string name="settings_export">Geceleri isimsiz dışa aktar</string>
     <string name="settings_export_hint">Algılamayı geliştirmeye yardım et: adsız, tarihsiz ve cihaz kimliği olmayan CSV; her 30 sn’lik hareket ve nabzı, nasıl hissettiğini ve notlarını içerir.</string>
     <string name="settings_about">Hakkında</string>

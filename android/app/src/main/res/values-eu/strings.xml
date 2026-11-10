@@ -88,7 +88,7 @@
     <string name="settings_theme_light">Argia</string>
     <string name="settings_theme_dark">Iluna</string>
     <string name="settings_data">Zure datuak</string>
-    <string name="settings_data_text">Dena telefonoan eta erlojuan geratzen da. Konturik, zerbitzaririk eta jarraipenik gabe.</string>
+    <string name="settings_data_text">Dena telefonoan eta erlojuan geratzen da. Konturik, zerbitzaririk eta jarraipenik gabe. Google-ren erloju-konexiotik erlojuaren informazio teknikoa bakarrik igarotzen da, osasun-daturik gabe.</string>
     <string name="settings_export">Esportatu gauak izenik gabe</string>
     <string name="settings_export_hint">Lagundu detekzioa hobetzen: CSVa izenik, datarik eta gailu-IDrik gabe; 30 s-ko mugimendua eta bihotz-maiztasuna, nola sentitu zinen eta zure oharrak ditu.</string>
     <string name="settings_about">Honi buruz</string>

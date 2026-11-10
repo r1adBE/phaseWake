@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">اسمح لـ Phase Wake بضبط المنبهات ليتمكن الـ iPhone من الرنين كمنبه احتياطي.</string>
     <string name="nightstand_start">بدء وضع المنضدة</string>
     <string name="nightstand_hint">لشروق الشمس، اترك Phase Wake مفتوحًا على الشاحن طوال الليل. تبقى الشاشة معتمة حتى يبدأ الضوء.</string>
+    <string name="nightstand_screen_on_hint">يبقى مضاءً طوال الليل – ضع iPhone على الشاحن.</string>
+    <string name="settings_data_text_apple">كل شيء يبقى على هاتفك وساعتك. بلا حساب ولا خادم ولا تتبّع.</string>
     <string name="nightstand_end">إنهاء</string>
     <string name="nightstand_waiting">شروق الشمس في %1$s</string>
     <string name="nightstand_no_alarm">لا منبه مع شروق الشمس</string>

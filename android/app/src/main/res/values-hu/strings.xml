@@ -86,7 +86,7 @@
     <string name="settings_theme_light">Világos</string>
     <string name="settings_theme_dark">Sötét</string>
     <string name="settings_data">Adataid</string>
-    <string name="settings_data_text">Minden a telefonodon és az órádon marad. Nincs fiók, nincs szerver, nincs követés.</string>
+    <string name="settings_data_text">Minden a telefonodon és az órádon marad. Nincs fiók, nincs szerver, nincs követés. A Google óra-kapcsolatán csak az óra műszaki adatai mennek át, egészségügyi adatok nélkül.</string>
     <string name="settings_export">Éjszakák exportja név nélkül</string>
     <string name="settings_export_hint">Segíts javítani a felismerést: CSV nevek, dátumok és eszközazonosítók nélkül; 30 másodpercenkénti mozgást és pulzust, a közérzetedet és a jegyzeteidet tartalmazza.</string>
     <string name="settings_about">Névjegy</string>

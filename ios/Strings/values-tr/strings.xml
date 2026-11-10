@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">iPhone’un yedek alarm olarak çalabilmesi için Phase Wake’in alarm kurmasına izin ver.</string>
     <string name="nightstand_start">Komodin modunu başlat</string>
     <string name="nightstand_hint">Gün doğumu için Phase Wake’i gece boyunca şarjda açık bırak. Işık başlayana kadar ekran karanlık kalır.</string>
+    <string name="nightstand_screen_on_hint">Bütün gece açık kalır – iPhone’u şarja tak.</string>
+    <string name="settings_data_text_apple">Her şey telefonunda ve saatinde kalır. Hesap yok, sunucu yok, takip yok.</string>
     <string name="nightstand_end">Bitir</string>
     <string name="nightstand_waiting">Gün doğumu: %1$s</string>
     <string name="nightstand_no_alarm">Gün doğumlu alarm yok</string>

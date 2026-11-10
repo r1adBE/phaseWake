@@ -87,7 +87,7 @@
     <string name="settings_theme_light">হালকা</string>
     <string name="settings_theme_dark">গাঢ়</string>
     <string name="settings_data">তোমার ডেটা</string>
-    <string name="settings_data_text">সবকিছু তোমার ফোন আর ঘড়িতেই থাকে। কোনো অ্যাকাউন্ট নেই, সার্ভার নেই, ট্র্যাকিং নেই।</string>
+    <string name="settings_data_text">সবকিছু তোমার ফোন আর ঘড়িতেই থাকে। কোনো অ্যাকাউন্ট নেই, সার্ভার নেই, ট্র্যাকিং নেই। Google-এর ঘড়ি সংযোগ দিয়ে শুধু ঘড়ির প্রযুক্তিগত তথ্য যায়, স্বাস্থ্য ডেটা ছাড়া।</string>
     <string name="settings_export">রাতগুলো নাম ছাড়া এক্সপোর্ট করো</string>
     <string name="settings_export_hint">শনাক্তকরণ উন্নত করতে সাহায্য করো: নাম, তারিখ বা ডিভাইস আইডি ছাড়া CSV; এতে প্রতি 30 সেকেন্ডের নড়াচড়া ও হৃদস্পন্দন, তোমার অনুভূতি আর তোমার নোট থাকে।</string>
     <string name="settings_about">সম্পর্কে</string>

@@ -87,7 +87,7 @@
     <string name="settings_theme_light">Luminos</string>
     <string name="settings_theme_dark">Întunecat</string>
     <string name="settings_data">Datele tale</string>
-    <string name="settings_data_text">Totul rămâne pe telefon și pe ceas. Fără cont, fără server, fără urmărire.</string>
+    <string name="settings_data_text">Totul rămâne pe telefon și pe ceas. Fără cont, fără server, fără urmărire. Prin conexiunea ceasului de la Google trec doar date tehnice despre ceas, fără date de sănătate.</string>
     <string name="settings_export">Exportă nopțile fără nume</string>
     <string name="settings_export_hint">Ajută la îmbunătățirea detectării: CSV fără nume, date sau ID-uri de dispozitiv; conține mișcarea și pulsul la fiecare 30 s, cum te-ai simțit și notițele tale.</string>
     <string name="settings_about">Despre</string>

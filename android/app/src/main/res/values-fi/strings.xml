@@ -86,7 +86,7 @@
     <string name="settings_theme_light">Vaalea</string>
     <string name="settings_theme_dark">Tumma</string>
     <string name="settings_data">Tietosi</string>
-    <string name="settings_data_text">Kaikki pysyy puhelimessa ja kellossa. Ei tiliä, ei palvelinta, ei seurantaa.</string>
+    <string name="settings_data_text">Kaikki pysyy puhelimessa ja kellossa. Ei tiliä, ei palvelinta, ei seurantaa. Googlen kelloyhteyden kautta kulkee vain kellon teknisiä tietoja, ei terveystietoja.</string>
     <string name="settings_export">Vie yöt ilman nimeä</string>
     <string name="settings_export_hint">Auta parantamaan tunnistusta: CSV ilman nimiä, päivämääriä tai laitetunnuksia; sisältää liikkeen ja sykkeen 30 s välein, vointisi ja muistiinpanosi.</string>
     <string name="settings_about">Tietoja</string>

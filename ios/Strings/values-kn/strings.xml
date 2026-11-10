@@ -9,6 +9,8 @@
     <string name="check_alarmkit_problem">iPhone ಬ್ಯಾಕಪ್ ಅಲಾರಾಂ ಆಗಿ ರಿಂಗ್ ಆಗಲು, Phase Wake ಗೆ ಅಲಾರಾಂ ಹೊಂದಿಸಲು ಅನುಮತಿಸಿ.</string>
     <string name="nightstand_start">ನೈಟ್‌ಸ್ಟ್ಯಾಂಡ್ ಮೋಡ್ ಶುರು ಮಾಡಿ</string>
     <string name="nightstand_hint">ಸೂರ್ಯೋದಯಕ್ಕಾಗಿ ರಾತ್ರಿಯಿಡೀ ಚಾರ್ಜರ್‌ನಲ್ಲಿ Phase Wake ತೆರೆದಿಡಿ. ಬೆಳಕು ಶುರುವಾಗುವವರೆಗೆ ಪರದೆ ಕತ್ತಲಾಗಿರುತ್ತದೆ.</string>
+    <string name="nightstand_screen_on_hint">ರಾತ್ರಿಯಿಡೀ ಆನ್ ಆಗಿರುತ್ತದೆ – iPhone ಅನ್ನು ಚಾರ್ಜರ್‌ಗೆ ಹಾಕಿ.</string>
+    <string name="settings_data_text_apple">ಎಲ್ಲವೂ ನಿಮ್ಮ ಫೋನ್ ಮತ್ತು ವಾಚ್‌ನಲ್ಲೇ ಇರುತ್ತದೆ. ಖಾತೆ ಇಲ್ಲ, ಸರ್ವರ್ ಇಲ್ಲ, ಟ್ರ್ಯಾಕಿಂಗ್ ಇಲ್ಲ.</string>
     <string name="nightstand_end">ಮುಗಿಸಿ</string>
     <string name="nightstand_waiting">%1$s ಕ್ಕೆ ಸೂರ್ಯೋದಯ</string>
     <string name="nightstand_no_alarm">ಸೂರ್ಯೋದಯವಿರುವ ಅಲಾರಾಂ ಇಲ್ಲ</string>

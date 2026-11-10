@@ -88,7 +88,7 @@
     <string name="settings_theme_light">Clar</string>
     <string name="settings_theme_dark">Fosc</string>
     <string name="settings_data">Les teves dades</string>
-    <string name="settings_data_text">Tot es queda al telèfon i al rellotge. Sense compte, sense servidor, sense seguiment.</string>
+    <string name="settings_data_text">Tot es queda al telèfon i al rellotge. Sense compte, sense servidor, sense seguiment. Per la connexió del rellotge de Google només passa informació tècnica del rellotge, sense dades de salut.</string>
     <string name="settings_export">Exporta les nits sense nom</string>
     <string name="settings_export_hint">Ajuda a millorar la detecció: CSV sense noms, dates ni identificadors de dispositiu; conté moviment i freqüència cardíaca cada 30 s, com et vas sentir i les teves notes.</string>
     <string name="settings_about">Quant a</string>

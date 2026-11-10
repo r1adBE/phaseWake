@@ -9,6 +9,8 @@
     <string name="check_alarmkit_problem">អនុញ្ញាតឲ្យ Phase Wake កំណត់ម៉ោងរោទ៍ ដើម្បីឲ្យ iPhone អាចរោទ៍ជាម៉ោងរោទ៍បម្រុង។</string>
     <string name="nightstand_start">ចាប់ផ្ដើមមុខងារតុក្បាលគ្រែ</string>
     <string name="nightstand_hint">សម្រាប់ថ្ងៃរះ ទុក Phase Wake ឲ្យបើកលើឆ្នាំងសាកពេញមួយយប់។ អេក្រង់នៅងងឹត រហូតដល់ពន្លឺចាប់ផ្ដើម។</string>
+    <string name="nightstand_screen_on_hint">បើកពេញមួយយប់ – ដាក់ iPhone សាកថ្ម។</string>
+    <string name="settings_data_text_apple">អ្វីៗទាំងអស់នៅលើទូរសព្ទ និងនាឡិការបស់អ្នក។ គ្មានគណនី គ្មានម៉ាស៊ីនមេ គ្មានការតាមដាន។</string>
     <string name="nightstand_end">បញ្ចប់</string>
     <string name="nightstand_waiting">ថ្ងៃរះនៅ %1$s</string>
     <string name="nightstand_no_alarm">គ្មានម៉ោងរោទ៍ដែលមានថ្ងៃរះ</string>

@@ -88,7 +88,7 @@
     <string name="settings_theme_light">లేత</string>
     <string name="settings_theme_dark">ముదురు</string>
     <string name="settings_data">మీ డేటా</string>
-    <string name="settings_data_text">అంతా మీ ఫోన్‌లో, వాచ్‌లోనే ఉంటుంది. ఖాతా లేదు, సర్వర్ లేదు, ట్రాకింగ్ లేదు.</string>
+    <string name="settings_data_text">అంతా మీ ఫోన్‌లో, వాచ్‌లోనే ఉంటుంది. ఖాతా లేదు, సర్వర్ లేదు, ట్రాకింగ్ లేదు. Google వాచ్ కనెక్షన్ ద్వారా వాచ్ సాంకేతిక సమాచారం మాత్రమే వెళ్తుంది, ఆరోగ్య డేటా లేకుండా.</string>
     <string name="settings_export">రాత్రులను పేరు లేకుండా ఎగుమతి చేయండి</string>
     <string name="settings_export_hint">గుర్తింపును మెరుగుపరచడంలో సహాయం చేయండి: పేరు, తేదీ లేదా పరికర ID లేని CSV; ప్రతి 30 సెకన్ల కదలిక మరియు గుండె వేగం, మీకు ఎలా అనిపించింది, మీ నోట్స్ ఇందులో ఉంటాయి.</string>
     <string name="settings_about">గురించి</string>

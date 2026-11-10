@@ -87,7 +87,7 @@
     <string name="settings_theme_light">Chiaro</string>
     <string name="settings_theme_dark">Scuro</string>
     <string name="settings_data">I tuoi dati</string>
-    <string name="settings_data_text">Tutto resta sul telefono e sullo smartwatch. Nessun account, nessun server, nessun tracciamento.</string>
+    <string name="settings_data_text">Tutto resta sul telefono e sullo smartwatch. Nessun account, nessun server, nessun tracciamento. Tramite la connessione dell’orologio di Google passano solo dati tecnici dell’orologio, senza dati sanitari.</string>
     <string name="settings_export">Esporta le notti senza nome</string>
     <string name="settings_export_hint">Aiuta a migliorare il rilevamento: CSV senza nomi, date o ID dei dispositivi; contiene movimento e battito ogni 30 s, come ti sentivi e le tue note.</string>
     <string name="settings_about">Info</string>

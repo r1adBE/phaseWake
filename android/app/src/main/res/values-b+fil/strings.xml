@@ -88,7 +88,7 @@
     <string name="settings_theme_light">Light</string>
     <string name="settings_theme_dark">Dark</string>
     <string name="settings_data">Ang data mo</string>
-    <string name="settings_data_text">Nananatili ang lahat sa telepono at relo mo. Walang account, walang server, walang tracking.</string>
+    <string name="settings_data_text">Nananatili ang lahat sa telepono at relo mo. Walang account, walang server, walang tracking. Teknikal na impormasyon lang tungkol sa relo ang dumadaan sa koneksyon ng relo ng Google, walang health data.</string>
     <string name="settings_export">I-export ang mga gabi nang walang pangalan</string>
     <string name="settings_export_hint">Tumulong na pahusayin ang pagtukoy: CSV na walang pangalan, petsa o ID ng device; may galaw at heart rate bawat 30 s, ang pakiramdam mo at ang mga tala mo.</string>
     <string name="settings_about">Tungkol dito</string>

@@ -85,7 +85,7 @@
     <string name="settings_theme_light">라이트</string>
     <string name="settings_theme_dark">다크</string>
     <string name="settings_data">내 데이터</string>
-    <string name="settings_data_text">모든 데이터는 휴대폰과 워치에만 저장돼요. 계정도, 서버도, 추적도 없어요.</string>
+    <string name="settings_data_text">모든 데이터는 휴대폰과 워치에만 저장돼요. 계정도, 서버도, 추적도 없어요. Google 워치 연결로는 워치의 기술 정보만 오가며 건강 데이터는 포함되지 않습니다.</string>
     <string name="settings_export">수면 기록 이름 없이 내보내기</string>
     <string name="settings_export_hint">감지 개선에 도움 주기: 이름, 날짜, 기기 ID가 없는 CSV이며, 30초마다의 움직임과 심박수, 컨디션, 메모가 포함됩니다.</string>
     <string name="settings_about">정보</string>

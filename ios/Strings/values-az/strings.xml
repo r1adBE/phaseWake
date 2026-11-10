@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">iPhone-un ehtiyat siqnal kimi çala bilsin deyə Phase Wake-ə siqnal qurmağa icazə ver.</string>
     <string name="nightstand_start">Gecə masası rejimini başlat</string>
     <string name="nightstand_hint">Gündoğumu üçün Phase Wake-i gecə boyu şarjda açıq qoy. İşıq başlayana qədər ekran qaranlıq qalır.</string>
+    <string name="nightstand_screen_on_hint">Bütün gecə açıq qalır – iPhone-u şarj cihazına qoş.</string>
+    <string name="settings_data_text_apple">Hər şey telefonunda və saatında qalır. Hesab yox, server yox, izləmə yox.</string>
     <string name="nightstand_end">Bitir</string>
     <string name="nightstand_waiting">Gündoğumu: %1$s</string>
     <string name="nightstand_no_alarm">Gündoğumlu siqnal yoxdur</string>

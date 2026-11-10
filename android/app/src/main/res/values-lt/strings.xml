@@ -90,7 +90,7 @@
     <string name="settings_theme_light">Šviesi</string>
     <string name="settings_theme_dark">Tamsi</string>
     <string name="settings_data">Tavo duomenys</string>
-    <string name="settings_data_text">Viskas lieka tavo telefone ir laikrodyje. Jokios paskyros, jokio serverio, jokio sekimo.</string>
+    <string name="settings_data_text">Viskas lieka tavo telefone ir laikrodyje. Jokios paskyros, jokio serverio, jokio sekimo. Per Google laikrodžio ryšį perduodama tik techninė laikrodžio informacija, be sveikatos duomenų.</string>
     <string name="settings_export">Eksportuoti naktis be vardo</string>
     <string name="settings_export_hint">Padėk tobulinti atpažinimą: CSV be vardų, datų ir įrenginių ID; jame yra judėjimas ir pulsas kas 30 s, tavo savijauta ir užrašai.</string>
     <string name="settings_about">Apie</string>

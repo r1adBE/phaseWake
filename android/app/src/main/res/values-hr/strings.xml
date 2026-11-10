@@ -89,7 +89,7 @@
     <string name="settings_theme_light">Svijetlo</string>
     <string name="settings_theme_dark">Tamno</string>
     <string name="settings_data">Tvoji podaci</string>
-    <string name="settings_data_text">Sve ostaje na tvom telefonu i satu. Bez računa, bez poslužitelja, bez praćenja.</string>
+    <string name="settings_data_text">Sve ostaje na tvom telefonu i satu. Bez računa, bez poslužitelja, bez praćenja. Preko Googleove veze sa satom idu samo tehnički podaci o satu, bez zdravstvenih podataka.</string>
     <string name="settings_export">Izvezi noći bez imena</string>
     <string name="settings_export_hint">Pomozi poboljšati prepoznavanje: CSV bez imena, datuma i ID-ova uređaja; sadrži pokret i puls svakih 30 s, kako si se osjećao i tvoje bilješke.</string>
     <string name="settings_about">O aplikaciji</string>

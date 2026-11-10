@@ -88,7 +88,7 @@
     <string name="settings_theme_light">Yorugʻ</string>
     <string name="settings_theme_dark">Qorongʻi</string>
     <string name="settings_data">Maʼlumotlaring</string>
-    <string name="settings_data_text">Hammasi telefoning va soatingda qoladi. Hisob yoʻq, server yoʻq, kuzatuv yoʻq.</string>
+    <string name="settings_data_text">Hammasi telefoning va soatingda qoladi. Hisob yoʻq, server yoʻq, kuzatuv yoʻq. Google soat ulanishi orqali faqat soatning texnik maʼlumotlari oʻtadi, sogʻliq maʼlumotlarisiz.</string>
     <string name="settings_export">Tunlarni ismsiz eksport qilish</string>
     <string name="settings_export_hint">Aniqlashni yaxshilashga yordam ber: nomlar, sanalar va qurilma IDlarisiz CSV; har 30 soniyalik harakat va yurak urishi, oʻzingni qanday his qilganing va qaydlaring bor.</string>
     <string name="settings_about">Ilova haqida</string>

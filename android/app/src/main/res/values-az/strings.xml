@@ -79,7 +79,7 @@
     <string name="settings_theme_light">Açıq</string>
     <string name="settings_theme_dark">Tünd</string>
     <string name="settings_data">Məlumatların</string>
-    <string name="settings_data_text">Hər şey telefonunda və saatında qalır. Hesab yox, server yox, izləmə yox.</string>
+    <string name="settings_data_text">Hər şey telefonunda və saatında qalır. Hesab yox, server yox, izləmə yox. Google-un saat bağlantısı ilə yalnız saat haqqında texniki məlumatlar keçir, sağlamlıq məlumatları olmadan.</string>
     <string name="settings_export">Gecələri adsız ixrac et</string>
     <string name="settings_export_hint">Aşkarlamanı yaxşılaşdırmağa kömək et: adsız, tarixsiz və cihaz ID-siz CSV; hər 30 s üçün hərəkət və nəbz, özünü necə hiss etdiyin və qeydlərin daxildir.</string>
     <string name="settings_about">Haqqında</string>

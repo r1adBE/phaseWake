@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">დაუშვი, რომ Phase Wake-მა მაღვიძარები დააყენოს, რათა iPhone-მა სარეზერვო მაღვიძარად დარეკოს.</string>
     <string name="nightstand_start">ღამის მაგიდის რეჟიმის დაწყება</string>
     <string name="nightstand_hint">მზის ამოსვლისთვის Phase Wake ღამით დამტენზე ღია დატოვე. ეკრანი ბნელი რჩება, სანამ სინათლე არ დაიწყება.</string>
+    <string name="nightstand_screen_on_hint">მთელი ღამე ჩართული რჩება – iPhone დამტენზე შეაერთე.</string>
+    <string name="settings_data_text_apple">ყველაფერი რჩება შენს ტელეფონსა და საათზე. არც ანგარიში, არც სერვერი, არც თვალთვალი.</string>
     <string name="nightstand_end">დასრულება</string>
     <string name="nightstand_waiting">მზის ამოსვლა: %1$s</string>
     <string name="nightstand_no_alarm">მზის ამოსვლით მაღვიძარა არ არის</string>

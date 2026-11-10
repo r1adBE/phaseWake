@@ -86,7 +86,7 @@
     <string name="settings_theme_light">Ljust</string>
     <string name="settings_theme_dark">Mörkt</string>
     <string name="settings_data">Din data</string>
-    <string name="settings_data_text">Allt stannar på mobilen och klockan. Inget konto, ingen server, ingen spårning.</string>
+    <string name="settings_data_text">Allt stannar på mobilen och klockan. Inget konto, ingen server, ingen spårning. Bara teknisk information om klockan går via Googles klockanslutning, utan hälsodata.</string>
     <string name="settings_export">Exportera nätter utan namn</string>
     <string name="settings_export_hint">Hjälp till att förbättra igenkänningen: CSV utan namn, datum eller enhets-id; innehåller rörelse och puls per 30 s, hur du mådde och dina anteckningar.</string>
     <string name="settings_about">Om</string>

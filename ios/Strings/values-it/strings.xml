@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">Consenti a Phase Wake di impostare sveglie, così il tuo iPhone può suonare come sveglia di riserva.</string>
     <string name="nightstand_start">Avvia modalità comodino</string>
     <string name="nightstand_hint">Per l’alba, lascia Phase Wake aperta tutta la notte sul caricabatterie. Lo schermo resta buio finché non inizia la luce.</string>
+    <string name="nightstand_screen_on_hint">Resta acceso tutta la notte – metti l’iPhone in carica.</string>
+    <string name="settings_data_text_apple">Tutto resta sul telefono e sullo smartwatch. Nessun account, nessun server, nessun tracciamento.</string>
     <string name="nightstand_end">Termina</string>
     <string name="nightstand_waiting">Alba alle %1$s</string>
     <string name="nightstand_no_alarm">Nessuna sveglia con alba</string>

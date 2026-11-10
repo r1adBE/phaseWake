@@ -86,7 +86,7 @@
     <string name="settings_theme_light">लाइट</string>
     <string name="settings_theme_dark">डार्क</string>
     <string name="settings_data">तुम्हारा डेटा</string>
-    <string name="settings_data_text">सब कुछ तुम्हारे फ़ोन और घड़ी में रहता है। न खाता, न सर्वर, न ट्रैकिंग।</string>
+    <string name="settings_data_text">सब कुछ तुम्हारे फ़ोन और घड़ी में रहता है। न खाता, न सर्वर, न ट्रैकिंग। Google के घड़ी कनेक्शन से केवल घड़ी की तकनीकी जानकारी जाती है, स्वास्थ्य डेटा के बिना।</string>
     <string name="settings_export">रातें बिना नाम के एक्सपोर्ट करो</string>
     <string name="settings_export_hint">पहचान बेहतर बनाने में मदद करो: नाम, तारीख या डिवाइस ID के बिना CSV; इसमें हर 30 सेकंड की गतिविधि और हृदय गति, तुम्हें कैसा लगा और तुम्हारे नोट्स हैं।</string>
     <string name="settings_about">जानकारी</string>

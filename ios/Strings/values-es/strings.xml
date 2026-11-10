@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">Permite que Phase Wake programe alarmas para que tu iPhone pueda sonar como alarma de respaldo.</string>
     <string name="nightstand_start">Iniciar modo mesita de noche</string>
     <string name="nightstand_hint">Para el amanecer, deja Phase Wake abierta toda la noche en el cargador. La pantalla permanece oscura hasta que empieza la luz.</string>
+    <string name="nightstand_screen_on_hint">Se queda encendido toda la noche: pon el iPhone a cargar.</string>
+    <string name="settings_data_text_apple">Todo se queda en tu móvil y tu reloj. Sin cuenta, sin servidor, sin seguimiento.</string>
     <string name="nightstand_end">Finalizar</string>
     <string name="nightstand_waiting">Amanecer a las %1$s</string>
     <string name="nightstand_no_alarm">Ninguna alarma con amanecer</string>

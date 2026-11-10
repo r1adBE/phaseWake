@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">請允許 Phase Wake 設定鬧鐘，這樣你的 iPhone 可以作為備用鬧鐘響鈴。</string>
     <string name="nightstand_start">開始床頭模式</string>
     <string name="nightstand_hint">為了日出喚醒，請讓 Phase Wake 整晚在充電器上保持開啟。螢幕會保持黑暗，直到光線開始亮起。</string>
+    <string name="nightstand_screen_on_hint">整晚保持開啟——請將 iPhone 接上充電器。</string>
+    <string name="settings_data_text_apple">所有資料都只儲存在手機和手錶上。不需帳號、沒有伺服器、不做追蹤。</string>
     <string name="nightstand_end">結束</string>
     <string name="nightstand_waiting">日出時間 %1$s</string>
     <string name="nightstand_no_alarm">沒有日出鬧鐘</string>

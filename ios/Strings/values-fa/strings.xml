@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">به Phase Wake اجازه بده زنگ تنظیم کند تا iPhone بتواند به‌عنوان زنگ پشتیبان زنگ بزند.</string>
     <string name="nightstand_start">شروع حالت پاتختی</string>
     <string name="nightstand_hint">برای طلوع، Phase Wake را تمام شب روی شارژر باز بگذار. صفحه تا شروع نور تاریک می‌ماند.</string>
+    <string name="nightstand_screen_on_hint">تمام شب روشن می‌ماند – iPhone را به شارژر وصل کن.</string>
+    <string name="settings_data_text_apple">همه‌چیز روی گوشی و ساعتت می‌ماند. بدون حساب، بدون سرور، بدون ردیابی.</string>
     <string name="nightstand_end">پایان</string>
     <string name="nightstand_waiting">طلوع در %1$s</string>
     <string name="nightstand_no_alarm">بدون زنگ با طلوع</string>

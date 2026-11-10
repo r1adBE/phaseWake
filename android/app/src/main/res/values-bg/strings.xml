@@ -87,7 +87,7 @@
     <string name="settings_theme_light">Светъл</string>
     <string name="settings_theme_dark">Тъмен</string>
     <string name="settings_data">Твоите данни</string>
-    <string name="settings_data_text">Всичко остава на телефона и часовника. Без акаунт, без сървър, без проследяване.</string>
+    <string name="settings_data_text">Всичко остава на телефона и часовника. Без акаунт, без сървър, без проследяване. През връзката с часовника на Google минават само технически данни за часовника, без здравни данни.</string>
     <string name="settings_export">Експорт на нощите без име</string>
     <string name="settings_export_hint">Помогни да подобрим разпознаването: CSV без имена, дати и ID на устройства; съдържа движение и пулс на всеки 30 s, как си се чувствал и бележките ти.</string>
     <string name="settings_about">Информация</string>

@@ -88,7 +88,7 @@
     <string name="settings_theme_light">Hele</string>
     <string name="settings_theme_dark">Tume</string>
     <string name="settings_data">Sinu andmed</string>
-    <string name="settings_data_text">Kõik jääb sinu telefoni ja kella. Pole kontot, serverit ega jälgimist.</string>
+    <string name="settings_data_text">Kõik jääb sinu telefoni ja kella. Pole kontot, serverit ega jälgimist. Google’i kellaühenduse kaudu liigub ainult kella tehniline teave, ilma terviseandmeteta.</string>
     <string name="settings_export">Ekspordi ööd ilma nimeta</string>
     <string name="settings_export_hint">Aita tuvastamist parandada: CSV ilma nimede, kuupäevade ja seadme-ID-deta; sisaldab liikumist ja pulssi iga 30 s kohta, sinu enesetunnet ja märkmeid.</string>
     <string name="settings_about">Teave</string>

@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">உங்கள் iPhone மாற்று அலாரமாக ஒலிக்க, அலாரங்களை அமைக்க Phase Wake ஐ அனுமதியுங்கள்.</string>
     <string name="nightstand_start">படுக்கையோர மேசைப் பயன்முறையைத் தொடங்கு</string>
     <string name="nightstand_hint">சூரிய உதயத்துக்கு, இரவு முழுவதும் சார்ஜரில் Phase Wake ஐத் திறந்தே வையுங்கள். ஒளி தொடங்கும் வரை திரை இருட்டாக இருக்கும்.</string>
+    <string name="nightstand_screen_on_hint">இரவு முழுவதும் இயக்கத்தில் இருக்கும் – iPhone-ஐ சார்ஜரில் வைக்கவும்.</string>
+    <string name="settings_data_text_apple">எல்லாம் உங்கள் ஃபோனிலும் வாட்ச்சிலும் மட்டுமே இருக்கும். கணக்கு இல்லை, சர்வர் இல்லை, கண்காணிப்பு இல்லை.</string>
     <string name="nightstand_end">முடி</string>
     <string name="nightstand_waiting">%1$s க்குச் சூரிய உதயம்</string>
     <string name="nightstand_no_alarm">சூரிய உதயத்துடன் அலாரம் இல்லை</string>

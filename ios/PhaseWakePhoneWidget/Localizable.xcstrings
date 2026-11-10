@@ -145087,6 +145087,454 @@
         }
       }
     },
+    "nightstand_screen_on_hint": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bly die hele nag aan – sit jou iPhone op die laaier."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ሌሊቱን ሙሉ በርቶ ይቆያል – iPhoneህን ቻርጀር ላይ አድርግ።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يبقى مضاءً طوال الليل – ضع iPhone على الشاحن."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bütün gecə açıq qalır – iPhone-u şarj cihazına qoş."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Остава включен цяла нощ – сложи iPhone на зарядното."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "সারা রাত চালু থাকে – iPhone চার্জারে লাগিয়ে রাখো।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ostaje uključen cijelu noć – stavi iPhone na punjač."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Es queda encès tota la nit – posa l’iPhone al carregador."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zůstává zapnutý celou noc – dej iPhone na nabíječku."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forbliver tændt hele natten – sæt din iPhone til opladeren."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bleibt die ganze Nacht an – leg das iPhone ans Ladegerät."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Μένει αναμμένο όλη τη νύχτα – βάλε το iPhone στον φορτιστή."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stays on all night – put your iPhone on the charger."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se queda encendido toda la noche: pon el iPhone a cargar."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jääb terveks ööks sisse – pane iPhone laadima."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gau osoan piztuta geratzen da – jarri iPhonea kargagailuan."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تمام شب روشن می‌ماند – iPhone را به شارژر وصل کن."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pysyy päällä koko yön – laita iPhone laturiin."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bukas buong gabi – ilagay ang iPhone mo sa charger."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reste allumé toute la nuit – branche ton iPhone sur le chargeur."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fanann sé ar siúl ar feadh na hoíche – cuir an iPhone ar an luchtaire."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Queda aceso toda a noite: pon o iPhone a cargar."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "આખી રાત ચાલુ રહે છે – iPhone ને ચાર્જર પર મૂકો."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "נשאר דולק כל הלילה – חברו את ה-iPhone למטען."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पूरी रात चालू रहता है – iPhone को चार्जर पर लगा दो।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ostaje uključen cijelu noć – stavi iPhone na punjač."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Egész éjjel bekapcsolva marad – tedd töltőre az iPhone-t."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ամբողջ գիշեր միացված է մնում – iPhone-ը միացրու լիցքավորիչին։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tetap menyala sepanjang malam – pasang iPhone-mu ke pengisi daya."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Er kveikt alla nóttina – settu iPhone í hleðslu."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resta acceso tutta la notte – metti l’iPhone in carica."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一晩中点灯したままです。iPhone を充電器につないでください。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მთელი ღამე ჩართული რჩება – iPhone დამტენზე შეაერთე."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Түні бойы қосулы тұрады – iPhone-ды зарядтағышқа қос."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បើកពេញមួយយប់ – ដាក់ iPhone សាកថ្ម។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ರಾತ್ರಿಯಿಡೀ ಆನ್ ಆಗಿರುತ್ತದೆ – iPhone ಅನ್ನು ಚಾರ್ಜರ್‌ಗೆ ಹಾಕಿ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "밤새 켜져 있습니다. iPhone을 충전기에 연결하세요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ເປີດຢູ່ຕະຫຼອດຄືນ – ສຽບ iPhone ກັບເຄື່ອງສາກ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lieka įjungtas visą naktį – prijunk iPhone prie įkroviklio."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paliek ieslēgts visu nakti – pievieno iPhone lādētājam."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Останува вклучен цела ноќ – стави го iPhone на полнач."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "രാത്രി മുഴുവൻ ഓണായിരിക്കും – iPhone ചാർജറിൽ വയ്ക്കുക."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Шөнөжин асаалттай байна – iPhone-оо цэнэглэгчид залга."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रात्रभर चालू राहते – iPhone चार्जरला लावा."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kekal menyala sepanjang malam – cas iPhone awak."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "တစ်ညလုံး ဖွင့်ထားမည် – iPhone ကို အားသွင်းကြိုးတပ်ထားပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Står på hele natten – sett iPhonen til lading."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रातभर खुला रहन्छ – iPhone चार्जरमा लगाऊ।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blijft de hele nacht aan – leg je iPhone aan de lader."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਾਰੀ ਰਾਤ ਚਾਲੂ ਰਹਿੰਦਾ ਹੈ – iPhone ਨੂੰ ਚਾਰਜਰ ’ਤੇ ਲਾਓ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pozostaje włączony całą noc – podłącz iPhone’a do ładowarki."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fica ligado a noite toda – coloque o iPhone no carregador."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fica ligado a noite toda – põe o iPhone a carregar."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rămâne aprins toată noaptea – pune iPhone-ul la încărcat."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Остаётся включённым всю ночь – поставь iPhone на зарядку."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "මුළු රාත්‍රියම ක්‍රියාත්මකව පවතී – iPhone ආරෝපකයට සම්බන්ධ කරන්න."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zostáva zapnutý celú noc – daj iPhone na nabíjačku."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ostane prižgan vso noč – priključi iPhone na polnilnik."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mbetet i ndezur gjithë natën – vendose iPhone-in në karikues."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Остаје укључен целу ноћ – стави iPhone на пуњач."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Är på hela natten – sätt iPhonen på laddning."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inabaki imewashwa usiku kucha – weka iPhone kwenye chaja."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "இரவு முழுவதும் இயக்கத்தில் இருக்கும் – iPhone-ஐ சார்ஜரில் வைக்கவும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "రాత్రంతా ఆన్‌లోనే ఉంటుంది – iPhone‌ను ఛార్జర్‌కు పెట్టండి."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปิดไว้ทั้งคืน – เสียบชาร์จ iPhone ไว้"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bütün gece açık kalır – iPhone’u şarja tak."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Залишається ввімкненим усю ніч – постав iPhone на зарядку."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ساری رات آن رہتا ہے – iPhone کو چارجر پر لگا دو۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tun boʻyi yoniq qoladi – iPhone’ni quvvatlagichga ula."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bật suốt đêm – hãy cắm sạc iPhone."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "整晚保持開啟——請將 iPhone 接上充電器。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "整晚保持亮屏——请给 iPhone 接上充电器。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "整晚保持開啟——請將 iPhone 接上充電器。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kuhlala kuvuliwe ubusuku bonke – faka i-iPhone yakho kushaja."
+          }
+        }
+      }
+    },
     "nightstand_start": {
       "localizations": {
         "af": {
@@ -196892,6 +197340,454 @@
       }
     },
     "settings_data_text": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles bly op jou foon en horlosie. Geen rekening, geen bediener, geen nasporing nie. Net tegniese horlosie-inligting gaan deur Google se horlosieverbinding, sonder gesondheidsdata."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ሁሉም ነገር በስልክዎና በሰዓትዎ ላይ ይቆያል። መለያ የለም፣ አገልጋይ የለም፣ ክትትል የለም። በGoogle የሰዓት ግንኙነት በኩል የሚያልፉት ስለ ሰዓቱ ቴክኒካዊ መረጃዎች ብቻ ናቸው፣ ያለ የጤና ውሂብ።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "كل شيء يبقى على هاتفك وساعتك. بلا حساب ولا خادم ولا تتبّع. تمرّ عبر اتصال الساعة من Google معلومات تقنية عن الساعة فقط، دون بيانات صحية."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hər şey telefonunda və saatında qalır. Hesab yox, server yox, izləmə yox. Google-un saat bağlantısı ilə yalnız saat haqqında texniki məlumatlar keçir, sağlamlıq məlumatları olmadan."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Всичко остава на телефона и часовника. Без акаунт, без сървър, без проследяване. През връзката с часовника на Google минават само технически данни за часовника, без здравни данни."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "সবকিছু তোমার ফোন আর ঘড়িতেই থাকে। কোনো অ্যাকাউন্ট নেই, সার্ভার নেই, ট্র্যাকিং নেই। Google-এর ঘড়ি সংযোগ দিয়ে শুধু ঘড়ির প্রযুক্তিগত তথ্য যায়, স্বাস্থ্য ডেটা ছাড়া।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sve ostaje na tvom telefonu i satu. Bez računa, bez servera, bez praćenja. Preko Googleove veze sa satom idu samo tehnički podaci o satu, bez zdravstvenih podataka."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tot es queda al telèfon i al rellotge. Sense compte, sense servidor, sense seguiment. Per la connexió del rellotge de Google només passa informació tècnica del rellotge, sense dades de salut."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vše zůstává v telefonu a hodinkách. Bez účtu, bez serveru, bez sledování. Přes připojení hodinek od Googlu jdou jen technické údaje o hodinkách, bez zdravotních dat."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alt bliver på din telefon og dit ur. Ingen konto, ingen server, ingen sporing. Kun tekniske oplysninger om uret går via Googles urforbindelse, uden sundhedsdata."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles bleibt auf Handy und Uhr. Kein Konto, kein Server, keine Auswertung. Nur technische Angaben zur Uhr laufen über Googles Uhr-Verbindung, ohne Gesundheitsdaten."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Όλα μένουν στο κινητό και στο ρολόι. Χωρίς λογαριασμό, χωρίς διακομιστή, χωρίς παρακολούθηση. Μέσω της σύνδεσης ρολογιού της Google περνούν μόνο τεχνικά στοιχεία για το ρολόι, χωρίς δεδομένα υγείας."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Everything stays on your phone and watch. No account, no server, no tracking. Only technical watch information goes through Google’s watch connection, without health data."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todo se queda en tu móvil y tu reloj. Sin cuenta, sin servidor, sin seguimiento. Por la conexión del reloj de Google solo pasan datos técnicos del reloj, sin datos de salud."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kõik jääb sinu telefoni ja kella. Pole kontot, serverit ega jälgimist. Google’i kellaühenduse kaudu liigub ainult kella tehniline teave, ilma terviseandmeteta."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dena telefonoan eta erlojuan geratzen da. Konturik, zerbitzaririk eta jarraipenik gabe. Google-ren erloju-konexiotik erlojuaren informazio teknikoa bakarrik igarotzen da, osasun-daturik gabe."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "همه‌چیز روی گوشی و ساعتت می‌ماند. بدون حساب، بدون سرور، بدون ردیابی. از اتصال ساعت Google فقط اطلاعات فنی ساعت می‌گذرد، بدون داده‌های سلامت."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaikki pysyy puhelimessa ja kellossa. Ei tiliä, ei palvelinta, ei seurantaa. Googlen kelloyhteyden kautta kulkee vain kellon teknisiä tietoja, ei terveystietoja."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nananatili ang lahat sa telepono at relo mo. Walang account, walang server, walang tracking. Teknikal na impormasyon lang tungkol sa relo ang dumadaan sa koneksyon ng relo ng Google, walang health data."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tout reste sur ton téléphone et ta montre. Pas de compte, pas de serveur, pas de suivi. Seules des informations techniques sur la montre passent par la connexion de montre de Google, sans données de santé."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fanann gach rud ar do fhón agus ar d’uaireadóir. Gan chuntas, gan fhreastalaí, gan rianú. Ní théann ach faisnéis theicniúil faoin uaireadóir trí cheangal uaireadóra Google, gan sonraí sláinte."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todo queda no teléfono e no reloxo. Sen conta, sen servidor, sen seguimento. Pola conexión do reloxo de Google só pasan datos técnicos do reloxo, sen datos de saúde."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "બધું તમારા ફોન અને ઘડિયાળ પર જ રહે છે. કોઈ એકાઉન્ટ નહીં, કોઈ સર્વર નહીં, કોઈ ટ્રેકિંગ નહીં. Google ના ઘડિયાળ જોડાણ દ્વારા માત્ર ઘડિયાળની તકનીકી માહિતી જાય છે, આરોગ્ય ડેટા વિના."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הכול נשאר בטלפון ובשעון. בלי חשבון, בלי שרת, בלי מעקב. דרך חיבור השעון של Google עובר רק מידע טכני על השעון, בלי נתוני בריאות."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सब कुछ तुम्हारे फ़ोन और घड़ी में रहता है। न खाता, न सर्वर, न ट्रैकिंग। Google के घड़ी कनेक्शन से केवल घड़ी की तकनीकी जानकारी जाती है, स्वास्थ्य डेटा के बिना।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sve ostaje na tvom telefonu i satu. Bez računa, bez poslužitelja, bez praćenja. Preko Googleove veze sa satom idu samo tehnički podaci o satu, bez zdravstvenih podataka."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minden a telefonodon és az órádon marad. Nincs fiók, nincs szerver, nincs követés. A Google óra-kapcsolatán csak az óra műszaki adatai mennek át, egészségügyi adatok nélkül."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ամեն ինչ մնում է հեռախոսիդ ու ժամացույցիդ վրա։ Ո՛չ հաշիվ, ո՛չ սերվեր, ո՛չ հետևում։ Google-ի ժամացույցի կապով անցնում են միայն ժամացույցի տեխնիկական տվյալներ՝ առանց առողջության տվյալների։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semua tetap di ponsel dan jam tanganmu. Tanpa akun, tanpa server, tanpa pelacakan. Hanya info teknis jam yang lewat koneksi jam Google, tanpa data kesehatan."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allt verður eftir í símanum og úrinu. Enginn aðgangur, enginn þjónn, engin rakning. Aðeins tæknilegar upplýsingar um úrið fara um úratengingu Google, engin heilsufarsgögn."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutto resta sul telefono e sullo smartwatch. Nessun account, nessun server, nessun tracciamento. Tramite la connessione dell’orologio di Google passano solo dati tecnici dell’orologio, senza dati sanitari."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "すべてスマートフォンとウォッチ内に保存されます。アカウントもサーバーもトラッキングもありません。Google のウォッチ接続を通るのはウォッチの技術情報のみで、健康データは含みません。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ყველაფერი რჩება შენს ტელეფონსა და საათზე. არც ანგარიში, არც სერვერი, არც თვალთვალი. Google-ის საათის კავშირით მხოლოდ საათის ტექნიკური მონაცემები გადის, ჯანმრთელობის მონაცემების გარეშე."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бәрі телефоныңда және сағатыңда қалады. Аккаунт жоқ, сервер жоқ, бақылау жоқ. Google-дың сағат байланысы арқылы тек сағаттың техникалық мәліметтері өтеді, денсаулық деректерінсіз."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "អ្វីៗទាំងអស់នៅលើទូរសព្ទ និងនាឡិការបស់អ្នក។ គ្មានគណនី គ្មានម៉ាស៊ីនមេ គ្មានការតាមដាន។ មានតែព័ត៌មានបច្ចេកទេសអំពីនាឡិកាប៉ុណ្ណោះ ដែលឆ្លងកាត់ការតភ្ជាប់នាឡិការបស់ Google ដោយគ្មានទិន្នន័យសុខភាព។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಎಲ್ಲವೂ ನಿಮ್ಮ ಫೋನ್ ಮತ್ತು ವಾಚ್‌ನಲ್ಲೇ ಇರುತ್ತದೆ. ಖಾತೆ ಇಲ್ಲ, ಸರ್ವರ್ ಇಲ್ಲ, ಟ್ರ್ಯಾಕಿಂಗ್ ಇಲ್ಲ. Google ನ ವಾಚ್ ಸಂಪರ್ಕದ ಮೂಲಕ ವಾಚ್‌ನ ತಾಂತ್ರಿಕ ಮಾಹಿತಿ ಮಾತ್ರ ಹೋಗುತ್ತದೆ, ಆರೋಗ್ಯ ಡೇಟಾ ಇಲ್ಲದೆ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "모든 데이터는 휴대폰과 워치에만 저장돼요. 계정도, 서버도, 추적도 없어요. Google 워치 연결로는 워치의 기술 정보만 오가며 건강 데이터는 포함되지 않습니다."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ທຸກຢ່າງຢູ່ໃນໂທລະສັບ ແລະ ໂມງຂອງເຈົ້າ ບໍ່ມີບັນຊີ ບໍ່ມີເຊີບເວີ ບໍ່ມີການຕິດຕາມ ມີແຕ່ຂໍ້ມູນທາງເຕັກນິກຂອງໂມງເທົ່ານັ້ນທີ່ຜ່ານການເຊື່ອມຕໍ່ໂມງຂອງ Google, ບໍ່ມີຂໍ້ມູນສຸຂະພາບ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viskas lieka tavo telefone ir laikrodyje. Jokios paskyros, jokio serverio, jokio sekimo. Per Google laikrodžio ryšį perduodama tik techninė laikrodžio informacija, be sveikatos duomenų."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viss paliek tavā tālrunī un pulkstenī. Bez konta, bez servera, bez izsekošanas. Caur Google pulksteņa savienojumu iet tikai tehniska informācija par pulksteni, bez veselības datiem."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сè останува на телефонот и часовникот. Без сметка, без сервер, без следење. Преку врската со часовникот на Google минуваат само технички податоци за часовникот, без здравствени податоци."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "എല്ലാം നിങ്ങളുടെ ഫോണിലും വാച്ചിലും തന്നെ. അക്കൗണ്ടില്ല, സെർവറില്ല, ട്രാക്കിങ്ങില്ല. Google-ന്റെ വാച്ച് കണക്ഷനിലൂടെ വാച്ചിന്റെ സാങ്കേതിക വിവരങ്ങൾ മാത്രമേ പോകൂ, ആരോഗ്യ ഡാറ്റ ഇല്ലാതെ."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бүх зүйл утас, цаган дээр чинь үлдэнэ. Бүртгэлгүй, сервергүй, хянахгүй. Google-ийн цагны холболтоор зөвхөн цагны техникийн мэдээлэл дамжина, эрүүл мэндийн өгөгдөлгүй."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सगळं तुमच्या फोनवर आणि घड्याळावरच राहतं. खातं नाही, सर्व्हर नाही, ट्रॅकिंग नाही. Google च्या घड्याळ जोडणीतून फक्त घड्याळाची तांत्रिक माहिती जाते, आरोग्य डेटाशिवाय."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semuanya kekal pada telefon dan jam tangan. Tiada akaun, tiada pelayan, tiada penjejakan. Hanya maklumat teknikal jam yang melalui sambungan jam Google, tanpa data kesihatan."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "အားလုံး သင့်ဖုန်းနှင့် နာရီပေါ်တွင်သာ ရှိသည်။ အကောင့်မလို၊ ဆာဗာမရှိ၊ ခြေရာခံခြင်းမရှိ။ Google ၏ နာရီချိတ်ဆက်မှုမှတစ်ဆင့် နာရီ၏ နည်းပညာဆိုင်ရာ အချက်အလက်များသာ သွားပြီး ကျန်းမာရေးဒေတာ မပါပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alt blir på telefonen og klokka. Ingen konto, ingen server, ingen sporing. Bare teknisk informasjon om klokken går via Googles klokketilkobling, uten helsedata."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सबै कुरा तिम्रो फोन र घडीमै रहन्छ। न खाता, न सर्भर, न ट्र्याकिङ। Google को घडी जडानबाट घडीको प्राविधिक जानकारी मात्र जान्छ, स्वास्थ्य डेटाबिना।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles blijft op je telefoon en horloge. Geen account, geen server, geen tracking. Alleen technische gegevens over het horloge gaan via de horlogeverbinding van Google, zonder gezondheidsgegevens."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਭ ਕੁਝ ਤੁਹਾਡੇ ਫ਼ੋਨ ਅਤੇ ਘੜੀ ’ਤੇ ਹੀ ਰਹਿੰਦਾ ਹੈ। ਕੋਈ ਖਾਤਾ ਨਹੀਂ, ਕੋਈ ਸਰਵਰ ਨਹੀਂ, ਕੋਈ ਟਰੈਕਿੰਗ ਨਹੀਂ। Google ਦੇ ਘੜੀ ਕਨੈਕਸ਼ਨ ਰਾਹੀਂ ਸਿਰਫ਼ ਘੜੀ ਦੀ ਤਕਨੀਕੀ ਜਾਣਕਾਰੀ ਜਾਂਦੀ ਹੈ, ਸਿਹਤ ਡਾਟੇ ਤੋਂ ਬਿਨਾਂ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wszystko zostaje na telefonie i zegarku. Bez konta, serwera i śledzenia. Przez połączenie zegarka Google przechodzą tylko dane techniczne zegarka, bez danych o zdrowiu."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tudo fica no seu celular e no relógio. Sem conta, sem servidor, sem rastreamento. Pela conexão do relógio do Google passam só informações técnicas do relógio, sem dados de saúde."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tudo fica no telemóvel e no relógio. Sem conta, sem servidor, sem rastreio. Pela ligação do relógio da Google passam só informações técnicas do relógio, sem dados de saúde."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Totul rămâne pe telefon și pe ceas. Fără cont, fără server, fără urmărire. Prin conexiunea ceasului de la Google trec doar date tehnice despre ceas, fără date de sănătate."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Всё остаётся на телефоне и часах. Без аккаунта, сервера и слежки. Через подключение часов Google проходят только технические данные часов, без данных о здоровье."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සියල්ල ඔබේ දුරකථනයේ සහ ඔරලෝසුවේම පවතී. ගිණුමක් නැත, සේවාදායකයක් නැත, ලුහුබැඳීමක් නැත. Google ඔරලෝසු සම්බන්ධතාවය හරහා යන්නේ ඔරලෝසුවේ තාක්ෂණික තොරතුරු පමණි, සෞඛ්‍ය දත්ත නොමැතිව."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Všetko zostáva v telefóne a hodinkách. Žiadny účet, žiadny server, žiadne sledovanie. Cez pripojenie hodiniek od Googlu idú iba technické údaje o hodinkách, bez zdravotných údajov."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vse ostane na telefonu in uri. Brez računa, brez strežnika, brez sledenja. Prek Googlove povezave z uro gredo le tehnični podatki o uri, brez zdravstvenih podatkov."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gjithçka mbetet në telefon dhe në orë. Pa llogari, pa server, pa gjurmim. Përmes lidhjes së orës së Google kalojnë vetëm të dhëna teknike për orën, pa të dhëna shëndetësore."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Све остаје на твом телефону и сату. Без налога, без сервера, без праћења. Преко Google-ове везе са сатом иду само технички подаци о сату, без здравствених података."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allt stannar på mobilen och klockan. Inget konto, ingen server, ingen spårning. Bara teknisk information om klockan går via Googles klockanslutning, utan hälsodata."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kila kitu kinabaki kwenye simu na saa yako. Hakuna akaunti, hakuna seva, hakuna ufuatiliaji. Ni taarifa za kiufundi za saa pekee zinazopita kupitia muunganisho wa saa wa Google, bila data ya afya."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "எல்லாம் உங்கள் ஃபோனிலும் வாட்ச்சிலும் மட்டுமே இருக்கும். கணக்கு இல்லை, சர்வர் இல்லை, கண்காணிப்பு இல்லை. Google கடிகார இணைப்பின் வழியே கடிகாரத்தின் தொழில்நுட்பத் தகவல்கள் மட்டுமே செல்லும், சுகாதாரத் தரவு இல்லாமல்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "అంతా మీ ఫోన్‌లో, వాచ్‌లోనే ఉంటుంది. ఖాతా లేదు, సర్వర్ లేదు, ట్రాకింగ్ లేదు. Google వాచ్ కనెక్షన్ ద్వారా వాచ్ సాంకేతిక సమాచారం మాత్రమే వెళ్తుంది, ఆరోగ్య డేటా లేకుండా."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ทุกอย่างอยู่บนโทรศัพท์และนาฬิกาของคุณเท่านั้น ไม่มีบัญชี ไม่มีเซิร์ฟเวอร์ ไม่มีการติดตาม ผ่านการเชื่อมต่อนาฬิกาของ Google มีเพียงข้อมูลทางเทคนิคของนาฬิกา ไม่มีข้อมูลสุขภาพ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Her şey telefonunda ve saatinde kalır. Hesap yok, sunucu yok, takip yok. Google’ın saat bağlantısından yalnızca saatle ilgili teknik bilgiler geçer, sağlık verileri olmadan."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Усе залишається на телефоні та годиннику. Без облікового запису, сервера й стеження. Через підключення годинника Google проходять лише технічні дані годинника, без даних про здоров’я."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سب کچھ تمہارے فون اور گھڑی پر رہتا ہے۔ نہ اکاؤنٹ، نہ سرور، نہ ٹریکنگ۔ Google کے گھڑی کنکشن سے صرف گھڑی کی تکنیکی معلومات جاتی ہیں، صحت کے ڈیٹا کے بغیر۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hammasi telefoning va soatingda qoladi. Hisob yoʻq, server yoʻq, kuzatuv yoʻq. Google soat ulanishi orqali faqat soatning texnik maʼlumotlari oʻtadi, sogʻliq maʼlumotlarisiz."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mọi thứ chỉ nằm trên điện thoại và đồng hồ của bạn. Không tài khoản, không máy chủ, không theo dõi. Chỉ thông tin kỹ thuật về đồng hồ đi qua kết nối đồng hồ của Google, không có dữ liệu sức khỏe."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所有資料只會留在你的手機和手錶上。無帳戶、無伺服器、無追蹤。只有手錶的技術資料會經過 Google 的手錶連線，不含健康數據。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所有数据都只保存在手机和手表上。无需账号，没有服务器，不做跟踪。只有手表的技术信息会经过 Google 的手表连接，不含健康数据。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所有資料都只儲存在手機和手錶上。不需帳號、沒有伺服器、不做追蹤。只有手錶的技術資訊會經過 Google 的手錶連線，不含健康資料。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konke kuhlala efonini nasewashini lakho. Ayikho i-akhawunti, ayikho iseva, akukho ukulandelwa. Kudlula kuphela ulwazi lobuchwepheshe ngewashi oxhumanweni lwewashi lwe-Google, ngaphandle kwedatha yezempilo."
+          }
+        }
+      }
+    },
+    "settings_data_text_apple": {
       "localizations": {
         "af": {
           "stringUnit": {

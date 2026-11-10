@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">iPhone қосалқы оятқыш ретінде шырылдай алуы үшін Phase Wake-ке оятқыш орнатуға рұқсат бер.</string>
     <string name="nightstand_start">Түнгі үстел режимін бастау</string>
     <string name="nightstand_hint">Күннің шығуы үшін Phase Wake-ті түні бойы зарядта ашық қалдыр. Жарық басталғанша экран қараңғы болады.</string>
+    <string name="nightstand_screen_on_hint">Түні бойы қосулы тұрады – iPhone-ды зарядтағышқа қос.</string>
+    <string name="settings_data_text_apple">Бәрі телефоныңда және сағатыңда қалады. Аккаунт жоқ, сервер жоқ, бақылау жоқ.</string>
     <string name="nightstand_end">Аяқтау</string>
     <string name="nightstand_waiting">Күннің шығуы: %1$s</string>
     <string name="nightstand_no_alarm">Күннің шығуы бар оятқыш жоқ</string>

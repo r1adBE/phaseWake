@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">Разреши на Phase Wake да задава будилници, за да може iPhone да звъни като резервен будилник.</string>
     <string name="nightstand_start">Режим нощно шкафче</string>
     <string name="nightstand_hint">За изгрева остави Phase Wake отворено на зарядното през нощта. Екранът остава тъмен, докато започне светлината.</string>
+    <string name="nightstand_screen_on_hint">Остава включен цяла нощ – сложи iPhone на зарядното.</string>
+    <string name="settings_data_text_apple">Всичко остава на телефона и часовника. Без акаунт, без сървър, без проследяване.</string>
     <string name="nightstand_end">Край</string>
     <string name="nightstand_waiting">Изгрев в %1$s</string>
     <string name="nightstand_no_alarm">Няма будилник с изгрев</string>

@@ -87,7 +87,7 @@
     <string name="settings_theme_light">ലൈറ്റ്</string>
     <string name="settings_theme_dark">ഡാർക്ക്</string>
     <string name="settings_data">നിങ്ങളുടെ ഡാറ്റ</string>
-    <string name="settings_data_text">എല്ലാം നിങ്ങളുടെ ഫോണിലും വാച്ചിലും തന്നെ. അക്കൗണ്ടില്ല, സെർവറില്ല, ട്രാക്കിങ്ങില്ല.</string>
+    <string name="settings_data_text">എല്ലാം നിങ്ങളുടെ ഫോണിലും വാച്ചിലും തന്നെ. അക്കൗണ്ടില്ല, സെർവറില്ല, ട്രാക്കിങ്ങില്ല. Google-ന്റെ വാച്ച് കണക്ഷനിലൂടെ വാച്ചിന്റെ സാങ്കേതിക വിവരങ്ങൾ മാത്രമേ പോകൂ, ആരോഗ്യ ഡാറ്റ ഇല്ലാതെ.</string>
     <string name="settings_export">രാത്രികൾ പേരില്ലാതെ എക്‌സ്‌പോർട്ട് ചെയ്യുക</string>
     <string name="settings_export_hint">തിരിച്ചറിയൽ മെച്ചപ്പെടുത്താൻ സഹായിക്കൂ: പേര്, തീയതി, ഉപകരണ ID എന്നിവയില്ലാത്ത CSV; ഓരോ 30 സെക്കൻഡിലെയും ചലനവും ഹൃദയമിടിപ്പും, നിങ്ങളുടെ അനുഭവവും കുറിപ്പുകളും ഉണ്ട്.</string>
     <string name="settings_about">വിവരം</string>

@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">Izinkan Phase Wake mengatur alarm agar iPhone-mu bisa berbunyi sebagai alarm cadangan.</string>
     <string name="nightstand_start">Mulai mode samping tempat tidur</string>
     <string name="nightstand_hint">Untuk matahari terbit, biarkan Phase Wake terbuka di pengisi daya semalaman. Layar tetap gelap sampai cahaya mulai menyala.</string>
+    <string name="nightstand_screen_on_hint">Tetap menyala sepanjang malam – pasang iPhone-mu ke pengisi daya.</string>
+    <string name="settings_data_text_apple">Semua tetap di ponsel dan jam tanganmu. Tanpa akun, tanpa server, tanpa pelacakan.</string>
     <string name="nightstand_end">Selesai</string>
     <string name="nightstand_waiting">Matahari terbit pukul %1$s</string>
     <string name="nightstand_no_alarm">Tidak ada alarm dengan matahari terbit</string>

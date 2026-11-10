@@ -88,7 +88,7 @@
     <string name="settings_theme_light">Светлая</string>
     <string name="settings_theme_dark">Тёмная</string>
     <string name="settings_data">Твои данные</string>
-    <string name="settings_data_text">Всё остаётся на телефоне и часах. Без аккаунта, сервера и слежки.</string>
+    <string name="settings_data_text">Всё остаётся на телефоне и часах. Без аккаунта, сервера и слежки. Через подключение часов Google проходят только технические данные часов, без данных о здоровье.</string>
     <string name="settings_export">Экспорт ночей без имени</string>
     <string name="settings_export_hint">Помоги улучшить распознавание: CSV без имён, дат и ID устройств; содержит движение и пульс каждые 30 с, твоё самочувствие и заметки.</string>
     <string name="settings_about">О приложении</string>

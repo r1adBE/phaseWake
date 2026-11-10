@@ -85,7 +85,7 @@
     <string name="settings_theme_light">Sáng</string>
     <string name="settings_theme_dark">Tối</string>
     <string name="settings_data">Dữ liệu của bạn</string>
-    <string name="settings_data_text">Mọi thứ chỉ nằm trên điện thoại và đồng hồ của bạn. Không tài khoản, không máy chủ, không theo dõi.</string>
+    <string name="settings_data_text">Mọi thứ chỉ nằm trên điện thoại và đồng hồ của bạn. Không tài khoản, không máy chủ, không theo dõi. Chỉ thông tin kỹ thuật về đồng hồ đi qua kết nối đồng hồ của Google, không có dữ liệu sức khỏe.</string>
     <string name="settings_export">Xuất các đêm ngủ không kèm tên</string>
     <string name="settings_export_hint">Giúp cải thiện khả năng nhận biết: CSV không có tên, ngày hay ID thiết bị; chứa chuyển động và nhịp tim mỗi 30 giây, cảm giác của bạn và ghi chú của bạn.</string>
     <string name="settings_about">Giới thiệu</string>

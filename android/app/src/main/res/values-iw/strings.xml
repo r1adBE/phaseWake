@@ -87,7 +87,7 @@
     <string name="settings_theme_light">בהיר</string>
     <string name="settings_theme_dark">כהה</string>
     <string name="settings_data">הנתונים שלכם</string>
-    <string name="settings_data_text">הכול נשאר בטלפון ובשעון. בלי חשבון, בלי שרת, בלי מעקב.</string>
+    <string name="settings_data_text">הכול נשאר בטלפון ובשעון. בלי חשבון, בלי שרת, בלי מעקב. דרך חיבור השעון של Google עובר רק מידע טכני על השעון, בלי נתוני בריאות.</string>
     <string name="settings_export">ייצוא לילות ללא שם</string>
     <string name="settings_export_hint">עזרו לשפר את הזיהוי: CSV ללא שמות, תאריכים או מזהי מכשירים; מכיל תנועה ודופק לכל 30 שניות, איך הרגשתם וההערות שלכם.</string>
     <string name="settings_about">אודות</string>

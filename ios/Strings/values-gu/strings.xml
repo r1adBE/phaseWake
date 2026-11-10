@@ -9,6 +9,8 @@
     <string name="check_alarmkit_problem">તમારો iPhone બેકઅપ એલાર્મ તરીકે વાગી શકે તે માટે Phase Wakeને એલાર્મ સેટ કરવાની મંજૂરી આપો.</string>
     <string name="nightstand_start">નાઇટસ્ટૅન્ડ મોડ શરૂ કરો</string>
     <string name="nightstand_hint">સૂર્યોદય માટે Phase Wakeને આખી રાત ચાર્જર પર ખુલ્લું રાખો. પ્રકાશ શરૂ થાય ત્યાં સુધી સ્ક્રીન અંધારી રહે છે.</string>
+    <string name="nightstand_screen_on_hint">આખી રાત ચાલુ રહે છે – iPhone ને ચાર્જર પર મૂકો.</string>
+    <string name="settings_data_text_apple">બધું તમારા ફોન અને ઘડિયાળ પર જ રહે છે. કોઈ એકાઉન્ટ નહીં, કોઈ સર્વર નહીં, કોઈ ટ્રેકિંગ નહીં.</string>
     <string name="nightstand_end">પૂરું કરો</string>
     <string name="nightstand_waiting">%1$s વાગ્યે સૂર્યોદય</string>
     <string name="nightstand_no_alarm">સૂર્યોદયવાળો કોઈ એલાર્મ નથી</string>

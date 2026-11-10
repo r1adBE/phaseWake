@@ -9,6 +9,8 @@
     <string name="check_alarmkit_problem">Leyfðu Phase Wake að stilla vekjara svo iPhone geti hringt sem varavekjari.</string>
     <string name="nightstand_start">Byrja náttborðsstillingu</string>
     <string name="nightstand_hint">Fyrir sólarupprásina skaltu hafa Phase Wake opið í hleðslutækinu yfir nóttina. Skjárinn helst dimmur þar til ljósið byrjar.</string>
+    <string name="nightstand_screen_on_hint">Er kveikt alla nóttina – settu iPhone í hleðslu.</string>
+    <string name="settings_data_text_apple">Allt verður eftir í símanum og úrinu. Enginn aðgangur, enginn þjónn, engin rakning.</string>
     <string name="nightstand_end">Ljúka</string>
     <string name="nightstand_waiting">Sólarupprás kl. %1$s</string>
     <string name="nightstand_no_alarm">Enginn vekjari með sólarupprás</string>

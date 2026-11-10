@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">Разреши Phase Wake ставить будильники, чтобы iPhone мог зазвонить как резервный будильник.</string>
     <string name="nightstand_start">Включить режим прикроватных часов</string>
     <string name="nightstand_hint">Для рассвета оставь Phase Wake открытым на зарядке на всю ночь. Экран остаётся тёмным, пока не начнётся свет.</string>
+    <string name="nightstand_screen_on_hint">Остаётся включённым всю ночь – поставь iPhone на зарядку.</string>
+    <string name="settings_data_text_apple">Всё остаётся на телефоне и часах. Без аккаунта, сервера и слежки.</string>
     <string name="nightstand_end">Завершить</string>
     <string name="nightstand_waiting">Рассвет в %1$s</string>
     <string name="nightstand_no_alarm">Нет будильника с рассветом</string>

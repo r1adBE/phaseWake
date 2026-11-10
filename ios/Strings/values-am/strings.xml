@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">iPhoneዎ እንደ ተጠባባቂ ማንቂያ መደወል እንዲችል Phase Wake ማንቂያዎችን እንዲያዘጋጅ ይፍቀዱ።</string>
     <string name="nightstand_start">የአልጋ ዳር ሁነታ ጀምር</string>
     <string name="nightstand_hint">ለፀሐይ መውጫው Phase Wakeን ሌሊቱን ሙሉ ኃይል መሙያ ላይ ክፍት አድርገው ይተዉት። ብርሃኑ እስኪጀምር ድረስ ማያ ገጹ ጨለማ ይቆያል።</string>
+    <string name="nightstand_screen_on_hint">ሌሊቱን ሙሉ በርቶ ይቆያል – iPhoneህን ቻርጀር ላይ አድርግ።</string>
+    <string name="settings_data_text_apple">ሁሉም ነገር በስልክዎና በሰዓትዎ ላይ ይቆያል። መለያ የለም፣ አገልጋይ የለም፣ ክትትል የለም።</string>
     <string name="nightstand_end">ጨርስ</string>
     <string name="nightstand_waiting">የፀሐይ መውጫ %1$s ላይ</string>
     <string name="nightstand_no_alarm">የፀሐይ መውጫ ያለው ማንቂያ የለም</string>

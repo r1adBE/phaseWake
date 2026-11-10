@@ -86,7 +86,7 @@
     <string name="settings_theme_light">ភ្លឺ</string>
     <string name="settings_theme_dark">ងងឹត</string>
     <string name="settings_data">ទិន្នន័យរបស់អ្នក</string>
-    <string name="settings_data_text">អ្វីៗទាំងអស់នៅលើទូរសព្ទ និងនាឡិការបស់អ្នក។ គ្មានគណនី គ្មានម៉ាស៊ីនមេ គ្មានការតាមដាន។</string>
+    <string name="settings_data_text">អ្វីៗទាំងអស់នៅលើទូរសព្ទ និងនាឡិការបស់អ្នក។ គ្មានគណនី គ្មានម៉ាស៊ីនមេ គ្មានការតាមដាន។ មានតែព័ត៌មានបច្ចេកទេសអំពីនាឡិកាប៉ុណ្ណោះ ដែលឆ្លងកាត់ការតភ្ជាប់នាឡិការបស់ Google ដោយគ្មានទិន្នន័យសុខភាព។</string>
     <string name="settings_export">នាំចេញយប់ដោយគ្មានឈ្មោះ</string>
     <string name="settings_export_hint">ជួយកែលម្អការរកឃើញ៖ CSV គ្មានឈ្មោះ កាលបរិច្ឆេទ ឬ ID ឧបករណ៍ទេ។ វាមានចលនា និងចង្វាក់បេះដូងរៀងរាល់ 30 វិនាទី អារម្មណ៍របស់អ្នក និងកំណត់ចំណាំរបស់អ្នក។</string>
     <string name="settings_about">អំពី</string>

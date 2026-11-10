@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">Permet que Phase Wake configuri alarmes perquè l’iPhone pugui sonar com a alarma de reserva.</string>
     <string name="nightstand_start">Activa el mode tauleta de nit</string>
     <string name="nightstand_hint">Per a la sortida del sol, deixa Phase Wake obert al carregador tota la nit. La pantalla es queda fosca fins que comença la llum.</string>
+    <string name="nightstand_screen_on_hint">Es queda encès tota la nit – posa l’iPhone al carregador.</string>
+    <string name="settings_data_text_apple">Tot es queda al telèfon i al rellotge. Sense compte, sense servidor, sense seguiment.</string>
     <string name="nightstand_end">Acaba</string>
     <string name="nightstand_waiting">Sortida del sol a les %1$s</string>
     <string name="nightstand_no_alarm">Cap alarma amb sortida del sol</string>

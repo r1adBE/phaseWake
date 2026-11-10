@@ -88,7 +88,7 @@
     <string name="settings_theme_light">ਹਲਕਾ</string>
     <string name="settings_theme_dark">ਗੂੜ੍ਹਾ</string>
     <string name="settings_data">ਤੁਹਾਡਾ ਡਾਟਾ</string>
-    <string name="settings_data_text">ਸਭ ਕੁਝ ਤੁਹਾਡੇ ਫ਼ੋਨ ਅਤੇ ਘੜੀ ’ਤੇ ਹੀ ਰਹਿੰਦਾ ਹੈ। ਕੋਈ ਖਾਤਾ ਨਹੀਂ, ਕੋਈ ਸਰਵਰ ਨਹੀਂ, ਕੋਈ ਟਰੈਕਿੰਗ ਨਹੀਂ।</string>
+    <string name="settings_data_text">ਸਭ ਕੁਝ ਤੁਹਾਡੇ ਫ਼ੋਨ ਅਤੇ ਘੜੀ ’ਤੇ ਹੀ ਰਹਿੰਦਾ ਹੈ। ਕੋਈ ਖਾਤਾ ਨਹੀਂ, ਕੋਈ ਸਰਵਰ ਨਹੀਂ, ਕੋਈ ਟਰੈਕਿੰਗ ਨਹੀਂ। Google ਦੇ ਘੜੀ ਕਨੈਕਸ਼ਨ ਰਾਹੀਂ ਸਿਰਫ਼ ਘੜੀ ਦੀ ਤਕਨੀਕੀ ਜਾਣਕਾਰੀ ਜਾਂਦੀ ਹੈ, ਸਿਹਤ ਡਾਟੇ ਤੋਂ ਬਿਨਾਂ।</string>
     <string name="settings_export">ਰਾਤਾਂ ਨਾਮ ਤੋਂ ਬਿਨਾਂ ਐਕਸਪੋਰਟ ਕਰੋ</string>
     <string name="settings_export_hint">ਪਛਾਣ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰੋ: ਨਾਂ, ਤਾਰੀਖ਼ ਜਾਂ ਡਿਵਾਈਸ ID ਤੋਂ ਬਿਨਾਂ CSV; ਇਸ ਵਿੱਚ ਹਰ 30 ਸਕਿੰਟ ਦੀ ਹਿਲਜੁਲ ਅਤੇ ਦਿਲ ਦੀ ਧੜਕਣ, ਤੁਹਾਨੂੰ ਕਿਵੇਂ ਲੱਗਾ ਅਤੇ ਤੁਹਾਡੇ ਨੋਟ ਹਨ।</string>
     <string name="settings_about">ਬਾਰੇ</string>

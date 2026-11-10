@@ -87,7 +87,7 @@
     <string name="settings_theme_light">Claro</string>
     <string name="settings_theme_dark">Escuro</string>
     <string name="settings_data">Os teus dados</string>
-    <string name="settings_data_text">Tudo fica no telemóvel e no relógio. Sem conta, sem servidor, sem rastreio.</string>
+    <string name="settings_data_text">Tudo fica no telemóvel e no relógio. Sem conta, sem servidor, sem rastreio. Pela ligação do relógio da Google passam só informações técnicas do relógio, sem dados de saúde.</string>
     <string name="settings_export">Exportar noites sem nome</string>
     <string name="settings_export_hint">Ajuda a melhorar a deteção: CSV sem nomes, datas ou IDs de dispositivo; contém movimento e frequência cardíaca a cada 30 s, como te sentiste e as tuas notas.</string>
     <string name="settings_about">Acerca de</string>

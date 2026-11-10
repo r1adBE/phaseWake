@@ -9,6 +9,8 @@
     <string name="check_alarmkit_problem">iPhone ബാക്കപ്പ് അലാറമായി റിങ് ചെയ്യാൻ, അലാറങ്ങൾ സജ്ജമാക്കാൻ Phase Wake-നെ അനുവദിക്കുക.</string>
     <string name="nightstand_start">നൈറ്റ്‌സ്റ്റാൻഡ് മോഡ് തുടങ്ങുക</string>
     <string name="nightstand_hint">സൂര്യോദയത്തിനായി രാത്രി മുഴുവൻ ചാർജറിൽ Phase Wake തുറന്നുവയ്ക്കുക. വെളിച്ചം തുടങ്ങും വരെ സ്‌ക്രീൻ ഇരുണ്ടിരിക്കും.</string>
+    <string name="nightstand_screen_on_hint">രാത്രി മുഴുവൻ ഓണായിരിക്കും – iPhone ചാർജറിൽ വയ്ക്കുക.</string>
+    <string name="settings_data_text_apple">എല്ലാം നിങ്ങളുടെ ഫോണിലും വാച്ചിലും തന്നെ. അക്കൗണ്ടില്ല, സെർവറില്ല, ട്രാക്കിങ്ങില്ല.</string>
     <string name="nightstand_end">അവസാനിപ്പിക്കുക</string>
     <string name="nightstand_waiting">%1$s-ന് സൂര്യോദയം</string>
     <string name="nightstand_no_alarm">സൂര്യോദയമുള്ള അലാറമില്ല</string>

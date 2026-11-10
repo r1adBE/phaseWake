@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">Zezwól Phase Wake na ustawianie budzików, aby iPhone mógł zadzwonić jako zapasowy budzik.</string>
     <string name="nightstand_start">Włącz tryb nocnego stolika</string>
     <string name="nightstand_hint">Aby korzystać ze wschodu słońca, zostaw Phase Wake otwarty na ładowarce na całą noc. Ekran pozostaje ciemny, aż zacznie się światło.</string>
+    <string name="nightstand_screen_on_hint">Pozostaje włączony całą noc – podłącz iPhone’a do ładowarki.</string>
+    <string name="settings_data_text_apple">Wszystko zostaje na telefonie i zegarku. Bez konta, serwera i śledzenia.</string>
     <string name="nightstand_end">Zakończ</string>
     <string name="nightstand_waiting">Wschód słońca o %1$s</string>
     <string name="nightstand_no_alarm">Brak budzika ze wschodem słońca</string>

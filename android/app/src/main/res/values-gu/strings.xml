@@ -88,7 +88,7 @@
     <string name="settings_theme_light">આછો</string>
     <string name="settings_theme_dark">ઘેરો</string>
     <string name="settings_data">તમારો ડેટા</string>
-    <string name="settings_data_text">બધું તમારા ફોન અને ઘડિયાળ પર જ રહે છે. કોઈ એકાઉન્ટ નહીં, કોઈ સર્વર નહીં, કોઈ ટ્રેકિંગ નહીં.</string>
+    <string name="settings_data_text">બધું તમારા ફોન અને ઘડિયાળ પર જ રહે છે. કોઈ એકાઉન્ટ નહીં, કોઈ સર્વર નહીં, કોઈ ટ્રેકિંગ નહીં. Google ના ઘડિયાળ જોડાણ દ્વારા માત્ર ઘડિયાળની તકનીકી માહિતી જાય છે, આરોગ્ય ડેટા વિના.</string>
     <string name="settings_export">રાતો નામ વગર એક્સપોર્ટ કરો</string>
     <string name="settings_export_hint">ઓળખ સુધારવામાં મદદ કરો: નામ, તારીખ કે ઉપકરણ ID વિનાની CSV; તેમાં દર 30 સેકન્ડનું હલનચલન અને હૃદયના ધબકારા, તમને કેવું લાગ્યું અને તમારી નોંધો છે.</string>
     <string name="settings_about">વિશે</string>

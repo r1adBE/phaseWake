@@ -9,6 +9,8 @@
     <string name="check_alarmkit_problem">ອະນຸຍາດໃຫ້ Phase Wake ຕັ້ງໂມງປຸກ ເພື່ອໃຫ້ iPhone ດັງເປັນໂມງປຸກສຳຮອງໄດ້</string>
     <string name="nightstand_start">ເລີ່ມໂໝດຂ້າງຕຽງ</string>
     <string name="nightstand_hint">ສຳລັບຕາເວັນຂຶ້ນ ເປີດ Phase Wake ໄວ້ໃນຂະນະສາກໄຟຕະຫຼອດຄືນ ໜ້າຈໍຈະມືດຈົນກວ່າແສງຈະເລີ່ມ</string>
+    <string name="nightstand_screen_on_hint">ເປີດຢູ່ຕະຫຼອດຄືນ – ສຽບ iPhone ກັບເຄື່ອງສາກ.</string>
+    <string name="settings_data_text_apple">ທຸກຢ່າງຢູ່ໃນໂທລະສັບ ແລະ ໂມງຂອງເຈົ້າ ບໍ່ມີບັນຊີ ບໍ່ມີເຊີບເວີ ບໍ່ມີການຕິດຕາມ</string>
     <string name="nightstand_end">ສິ້ນສຸດ</string>
     <string name="nightstand_waiting">ຕາເວັນຂຶ້ນຕອນ %1$s</string>
     <string name="nightstand_no_alarm">ບໍ່ມີໂມງປຸກທີ່ມີຕາເວັນຂຶ້ນ</string>

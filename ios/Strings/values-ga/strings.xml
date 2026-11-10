@@ -9,6 +9,8 @@
     <string name="check_alarmkit_problem">Ceadaigh do Phase Wake aláraim a shocrú ionas gur féidir le d’iPhone bualadh mar aláram cúltaca.</string>
     <string name="nightstand_start">Tosaigh mód taobh leapa</string>
     <string name="nightstand_hint">Don éirí gréine, fág Phase Wake oscailte ar an luchtaire thar oíche. Fanann an scáileán dorcha go dtí go dtosaíonn an solas.</string>
+    <string name="nightstand_screen_on_hint">Fanann sé ar siúl ar feadh na hoíche – cuir an iPhone ar an luchtaire.</string>
+    <string name="settings_data_text_apple">Fanann gach rud ar do fhón agus ar d’uaireadóir. Gan chuntas, gan fhreastalaí, gan rianú.</string>
     <string name="nightstand_end">Críochnaigh</string>
     <string name="nightstand_waiting">Éirí gréine ag %1$s</string>
     <string name="nightstand_no_alarm">Gan aláram le héirí gréine</string>

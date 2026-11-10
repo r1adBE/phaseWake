@@ -90,7 +90,7 @@
     <string name="settings_theme_light">فاتح</string>
     <string name="settings_theme_dark">داكن</string>
     <string name="settings_data">بياناتك</string>
-    <string name="settings_data_text">كل شيء يبقى على هاتفك وساعتك. بلا حساب ولا خادم ولا تتبّع.</string>
+    <string name="settings_data_text">كل شيء يبقى على هاتفك وساعتك. بلا حساب ولا خادم ولا تتبّع. تمرّ عبر اتصال الساعة من Google معلومات تقنية عن الساعة فقط، دون بيانات صحية.</string>
     <string name="settings_export">تصدير الليالي بدون اسم</string>
     <string name="settings_export_hint">ساعد في تحسين الاكتشاف: ملف CSV دون أسماء أو تواريخ أو معرّفات أجهزة؛ يحتوي على الحركة ونبض القلب لكل 30 ثانية وشعورك وملاحظاتك.</string>
     <string name="settings_about">حول</string>

@@ -9,6 +9,8 @@
     <string name="check_alarmkit_problem">Дозволи му на Phase Wake да поставува аларми за iPhone да може да ѕвони како резервен аларм.</string>
     <string name="nightstand_start">Почни ноќен режим</string>
     <string name="nightstand_hint">За изгрејсонцето, остави го Phase Wake отворен на полначот преку ноќта. Екранот останува темен додека не почне светлото.</string>
+    <string name="nightstand_screen_on_hint">Останува вклучен цела ноќ – стави го iPhone на полнач.</string>
+    <string name="settings_data_text_apple">Сè останува на телефонот и часовникот. Без сметка, без сервер, без следење.</string>
     <string name="nightstand_end">Заврши</string>
     <string name="nightstand_waiting">Изгрејсонце во %1$s</string>
     <string name="nightstand_no_alarm">Нема аларм со изгрејсонце</string>

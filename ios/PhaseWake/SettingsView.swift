@@ -57,7 +57,7 @@ struct SettingsView: View {
                     Text(L("sound_rec_default_hint")).font(.footnote).foregroundStyle(.secondary)
                 }
                 Section(L("settings_data")) {
-                    Text(L("settings_data_text")).font(.footnote)
+                    Text(L("settings_data_text_apple")).font(.footnote)
                     HistoryExportLink { Text(L("settings_export")) }
                     Text(L("export_contents_hint")).font(.footnote).foregroundStyle(.secondary)
                     Button(L("settings_clear_history"), role: .destructive) { confirmClear = true }

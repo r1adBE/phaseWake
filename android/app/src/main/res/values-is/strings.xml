@@ -88,7 +88,7 @@
     <string name="settings_theme_light">Ljóst</string>
     <string name="settings_theme_dark">Dökkt</string>
     <string name="settings_data">Gögnin þín</string>
-    <string name="settings_data_text">Allt verður eftir í símanum og úrinu. Enginn aðgangur, enginn þjónn, engin rakning.</string>
+    <string name="settings_data_text">Allt verður eftir í símanum og úrinu. Enginn aðgangur, enginn þjónn, engin rakning. Aðeins tæknilegar upplýsingar um úrið fara um úratengingu Google, engin heilsufarsgögn.</string>
     <string name="settings_export">Flytja nætur út án nafns</string>
     <string name="settings_export_hint">Hjálpaðu til við að bæta greininguna: CSV án nafna, dagsetninga eða auðkenna tækja; inniheldur hreyfingu og púls á 30 s fresti, líðan þína og glósurnar þínar.</string>
     <string name="settings_about">Um forritið</string>

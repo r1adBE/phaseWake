@@ -88,7 +88,7 @@
     <string name="settings_theme_light">Lig</string>
     <string name="settings_theme_dark">Donker</string>
     <string name="settings_data">Jou data</string>
-    <string name="settings_data_text">Alles bly op jou foon en horlosie. Geen rekening, geen bediener, geen nasporing nie.</string>
+    <string name="settings_data_text">Alles bly op jou foon en horlosie. Geen rekening, geen bediener, geen nasporing nie. Net tegniese horlosie-inligting gaan deur Google se horlosieverbinding, sonder gesondheidsdata.</string>
     <string name="settings_export">Voer nagte sonder naam uit</string>
     <string name="settings_export_hint">Help om die bespeuring te verbeter: CSV sonder name, datums of toestel-ID’s; bevat beweging en hartklop per 30 s, hoe jy gevoel het en jou notas.</string>
     <string name="settings_about">Meer oor</string>

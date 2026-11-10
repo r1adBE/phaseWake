@@ -87,7 +87,7 @@
     <string name="settings_theme_light">வெளிர்</string>
     <string name="settings_theme_dark">இருள்</string>
     <string name="settings_data">உங்கள் தரவு</string>
-    <string name="settings_data_text">எல்லாம் உங்கள் ஃபோனிலும் வாட்ச்சிலும் மட்டுமே இருக்கும். கணக்கு இல்லை, சர்வர் இல்லை, கண்காணிப்பு இல்லை.</string>
+    <string name="settings_data_text">எல்லாம் உங்கள் ஃபோனிலும் வாட்ச்சிலும் மட்டுமே இருக்கும். கணக்கு இல்லை, சர்வர் இல்லை, கண்காணிப்பு இல்லை. Google கடிகார இணைப்பின் வழியே கடிகாரத்தின் தொழில்நுட்பத் தகவல்கள் மட்டுமே செல்லும், சுகாதாரத் தரவு இல்லாமல்.</string>
     <string name="settings_export">இரவுகளைப் பெயர் இல்லாமல் ஏற்றுமதி செய்</string>
     <string name="settings_export_hint">கண்டறிதலை மேம்படுத்த உதவுங்கள்: பெயர், தேதி அல்லது சாதன ID இல்லாத CSV; ஒவ்வொரு 30 வினாடிக்கான அசைவு மற்றும் இதயத் துடிப்பு, நீங்கள் எப்படி உணர்ந்தீர்கள், உங்கள் குறிப்புகள் இதில் உள்ளன.</string>
     <string name="settings_about">அறிமுகம்</string>

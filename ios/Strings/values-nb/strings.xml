@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">Tillat Phase Wake å stille alarmer slik at iPhone kan ringe som reservealarm.</string>
     <string name="nightstand_start">Start nattbordmodus</string>
     <string name="nightstand_hint">For soloppgangen lar du Phase Wake stå åpen på laderen over natten. Skjermen forblir mørk til lyset begynner.</string>
+    <string name="nightstand_screen_on_hint">Står på hele natten – sett iPhonen til lading.</string>
+    <string name="settings_data_text_apple">Alt blir på telefonen og klokka. Ingen konto, ingen server, ingen sporing.</string>
     <string name="nightstand_end">Avslutt</string>
     <string name="nightstand_waiting">Soloppgang kl. %1$s</string>
     <string name="nightstand_no_alarm">Ingen alarm med soloppgang</string>

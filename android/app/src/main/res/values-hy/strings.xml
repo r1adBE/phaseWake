@@ -79,7 +79,7 @@
     <string name="settings_theme_light">Բաց</string>
     <string name="settings_theme_dark">Մուգ</string>
     <string name="settings_data">Քո տվյալները</string>
-    <string name="settings_data_text">Ամեն ինչ մնում է հեռախոսիդ ու ժամացույցիդ վրա։ Ո՛չ հաշիվ, ո՛չ սերվեր, ո՛չ հետևում։</string>
+    <string name="settings_data_text">Ամեն ինչ մնում է հեռախոսիդ ու ժամացույցիդ վրա։ Ո՛չ հաշիվ, ո՛չ սերվեր, ո՛չ հետևում։ Google-ի ժամացույցի կապով անցնում են միայն ժամացույցի տեխնիկական տվյալներ՝ առանց առողջության տվյալների։</string>
     <string name="settings_export">Արտահանել գիշերները առանց անվան</string>
     <string name="settings_export_hint">Օգնիր բարելավել ճանաչումը՝ CSV առանց անունների, ամսաթվերի կամ սարքի ID-ների․ պարունակում է շարժումն ու զարկերը յուրաքանչյուր 30 վրկ-ում, ինքնազգացողությունդ և նշումներդ։</string>
     <string name="settings_about">Հավելվածի մասին</string>

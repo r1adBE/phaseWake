@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">Phase Wake-কে অ্যালার্ম সেট করার অনুমতি দাও, যাতে তোমার iPhone ব্যাকআপ অ্যালার্ম হিসেবে বাজতে পারে।</string>
     <string name="nightstand_start">নাইটস্ট্যান্ড মোড শুরু করো</string>
     <string name="nightstand_hint">সূর্যোদয়ের জন্য সারা রাত চার্জারে Phase Wake খোলা রাখো। আলো শুরু না হওয়া পর্যন্ত স্ক্রিন অন্ধকার থাকে।</string>
+    <string name="nightstand_screen_on_hint">সারা রাত চালু থাকে – iPhone চার্জারে লাগিয়ে রাখো।</string>
+    <string name="settings_data_text_apple">সবকিছু তোমার ফোন আর ঘড়িতেই থাকে। কোনো অ্যাকাউন্ট নেই, সার্ভার নেই, ট্র্যাকিং নেই।</string>
     <string name="nightstand_end">শেষ করো</string>
     <string name="nightstand_waiting">সূর্যোদয় %1$s-এ</string>
     <string name="nightstand_no_alarm">সূর্যোদয় সহ কোনো অ্যালার্ম নেই</string>

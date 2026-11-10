@@ -86,7 +86,7 @@
     <string name="settings_theme_light">Lys</string>
     <string name="settings_theme_dark">Mørk</string>
     <string name="settings_data">Dine data</string>
-    <string name="settings_data_text">Alt bliver på din telefon og dit ur. Ingen konto, ingen server, ingen sporing.</string>
+    <string name="settings_data_text">Alt bliver på din telefon og dit ur. Ingen konto, ingen server, ingen sporing. Kun tekniske oplysninger om uret går via Googles urforbindelse, uden sundhedsdata.</string>
     <string name="settings_export">Eksportér nætter uden navn</string>
     <string name="settings_export_hint">Hjælp med at forbedre registreringen: CSV uden navne, datoer eller enheds-id’er; indeholder bevægelse og puls pr. 30 s, hvordan du havde det, og dine noter.</string>
     <string name="settings_about">Om</string>

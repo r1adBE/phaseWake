@@ -86,7 +86,7 @@
     <string name="settings_theme_light">Hell</string>
     <string name="settings_theme_dark">Dunkel</string>
     <string name="settings_data">Deine Daten</string>
-    <string name="settings_data_text">Alles bleibt auf Handy und Uhr. Kein Konto, kein Server, keine Auswertung.</string>
+    <string name="settings_data_text">Alles bleibt auf Handy und Uhr. Kein Konto, kein Server, keine Auswertung. Nur technische Angaben zur Uhr laufen über Googles Uhr-Verbindung, ohne Gesundheitsdaten.</string>
     <string name="settings_export">Nächte ohne Namen exportieren</string>
     <string name="settings_export_hint">Hilf mit, die Erkennung zu verbessern: CSV ohne Namen, Datum oder Gerätekennung; enthält Bewegung und Puls je 30 s, Befinden und deine Notizen.</string>
     <string name="settings_about">Über</string>

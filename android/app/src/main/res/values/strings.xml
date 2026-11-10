@@ -90,7 +90,7 @@
     <string name="settings_theme_light">Light</string>
     <string name="settings_theme_dark">Dark</string>
     <string name="settings_data">Your data</string>
-    <string name="settings_data_text">Everything stays on your phone and watch. No account, no server, no tracking.</string>
+    <string name="settings_data_text">Everything stays on your phone and watch. No account, no server, no tracking. Only technical watch information goes through Google’s watch connection, without health data.</string>
     <string name="settings_export">Export nights without name</string>
     <string name="settings_export_hint">Help improve detection: CSV without names, dates or device IDs; contains motion and heart rate per 30 s, how you felt and your notes.</string>
     <string name="settings_about">About</string>

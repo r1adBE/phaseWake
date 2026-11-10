@@ -86,7 +86,7 @@
     <string name="settings_theme_light">ແຈ້ງ</string>
     <string name="settings_theme_dark">ມືດ</string>
     <string name="settings_data">ຂໍ້ມູນຂອງເຈົ້າ</string>
-    <string name="settings_data_text">ທຸກຢ່າງຢູ່ໃນໂທລະສັບ ແລະ ໂມງຂອງເຈົ້າ ບໍ່ມີບັນຊີ ບໍ່ມີເຊີບເວີ ບໍ່ມີການຕິດຕາມ</string>
+    <string name="settings_data_text">ທຸກຢ່າງຢູ່ໃນໂທລະສັບ ແລະ ໂມງຂອງເຈົ້າ ບໍ່ມີບັນຊີ ບໍ່ມີເຊີບເວີ ບໍ່ມີການຕິດຕາມ ມີແຕ່ຂໍ້ມູນທາງເຕັກນິກຂອງໂມງເທົ່ານັ້ນທີ່ຜ່ານການເຊື່ອມຕໍ່ໂມງຂອງ Google, ບໍ່ມີຂໍ້ມູນສຸຂະພາບ.</string>
     <string name="settings_export">ສົ່ງອອກຄືນໂດຍບໍ່ມີຊື່</string>
     <string name="settings_export_hint">ຊ່ວຍປັບປຸງການກວດຈັບ: CSV ທີ່ບໍ່ມີຊື່, ວັນທີ ຫຼື ID ອຸປະກອນ; ມີການເຄື່ອນໄຫວ ແລະ ອັດຕາການເຕັ້ນຂອງຫົວໃຈທຸກ 30 ວິນາທີ, ຄວາມຮູ້ສຶກຂອງເຈົ້າ ແລະ ບັນທຶກຂອງເຈົ້າ.</string>
     <string name="settings_about">ກ່ຽວກັບ</string>

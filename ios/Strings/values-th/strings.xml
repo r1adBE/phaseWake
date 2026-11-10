@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">อนุญาตให้ Phase Wake ตั้งการปลุก เพื่อให้ iPhone ของคุณส่งเสียงเป็นนาฬิกาปลุกสำรองได้</string>
     <string name="nightstand_start">เริ่มโหมดข้างเตียง</string>
     <string name="nightstand_hint">สำหรับแสงอาทิตย์ขึ้น ให้เปิด Phase Wake ทิ้งไว้บนที่ชาร์จตลอดคืน หน้าจอจะมืดจนกว่าแสงจะเริ่ม</string>
+    <string name="nightstand_screen_on_hint">เปิดไว้ทั้งคืน – เสียบชาร์จ iPhone ไว้</string>
+    <string name="settings_data_text_apple">ทุกอย่างอยู่บนโทรศัพท์และนาฬิกาของคุณเท่านั้น ไม่มีบัญชี ไม่มีเซิร์ฟเวอร์ ไม่มีการติดตาม</string>
     <string name="nightstand_end">สิ้นสุด</string>
     <string name="nightstand_waiting">แสงอาทิตย์ขึ้นเวลา %1$s</string>
     <string name="nightstand_no_alarm">ไม่มีการปลุกพร้อมแสงอาทิตย์ขึ้น</string>

@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">iPhoneがバックアップのアラームを鳴らせるよう、Phase Wakeにアラームの設定を許可してください。</string>
     <string name="nightstand_start">ナイトスタンドモードを開始</string>
     <string name="nightstand_hint">サンライズを使うには、Phase Wakeを開いたまま一晩充電器につないでおいてください。ライトが始まるまで画面は暗いままです。</string>
+    <string name="nightstand_screen_on_hint">一晩中点灯したままです。iPhone を充電器につないでください。</string>
+    <string name="settings_data_text_apple">すべてスマートフォンとウォッチ内に保存されます。アカウントもサーバーもトラッキングもありません。</string>
     <string name="nightstand_end">終了</string>
     <string name="nightstand_waiting">%1$sにサンライズ</string>
     <string name="nightstand_no_alarm">サンライズ付きのアラームなし</string>

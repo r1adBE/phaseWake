@@ -86,7 +86,7 @@
     <string name="settings_theme_light">Φωτεινή</string>
     <string name="settings_theme_dark">Σκούρα</string>
     <string name="settings_data">Τα δεδομένα σου</string>
-    <string name="settings_data_text">Όλα μένουν στο κινητό και στο ρολόι. Χωρίς λογαριασμό, χωρίς διακομιστή, χωρίς παρακολούθηση.</string>
+    <string name="settings_data_text">Όλα μένουν στο κινητό και στο ρολόι. Χωρίς λογαριασμό, χωρίς διακομιστή, χωρίς παρακολούθηση. Μέσω της σύνδεσης ρολογιού της Google περνούν μόνο τεχνικά στοιχεία για το ρολόι, χωρίς δεδομένα υγείας.</string>
     <string name="settings_export">Εξαγωγή νυχτών χωρίς όνομα</string>
     <string name="settings_export_hint">Βοήθησε να βελτιωθεί η ανίχνευση: CSV χωρίς ονόματα, ημερομηνίες ή αναγνωριστικά συσκευής· περιέχει κίνηση και παλμούς ανά 30 s, πώς ένιωθες και τις σημειώσεις σου.</string>
     <string name="settings_about">Σχετικά</string>

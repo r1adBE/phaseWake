@@ -79,7 +79,7 @@
     <string name="settings_theme_light">ღია</string>
     <string name="settings_theme_dark">მუქი</string>
     <string name="settings_data">შენი მონაცემები</string>
-    <string name="settings_data_text">ყველაფერი რჩება შენს ტელეფონსა და საათზე. არც ანგარიში, არც სერვერი, არც თვალთვალი.</string>
+    <string name="settings_data_text">ყველაფერი რჩება შენს ტელეფონსა და საათზე. არც ანგარიში, არც სერვერი, არც თვალთვალი. Google-ის საათის კავშირით მხოლოდ საათის ტექნიკური მონაცემები გადის, ჯანმრთელობის მონაცემების გარეშე.</string>
     <string name="settings_export">ღამეების ექსპორტი სახელის გარეშე</string>
     <string name="settings_export_hint">დაგვეხმარე ამოცნობის გაუმჯობესებაში: CSV სახელების, თარიღების და მოწყობილობის ID-ების გარეშე; შეიცავს მოძრაობასა და პულსს ყოველ 30 წმ-ში, შენს თვითგრძნობასა და ჩანაწერებს.</string>
     <string name="settings_about">აპის შესახებ</string>

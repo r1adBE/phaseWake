@@ -9,6 +9,8 @@
     <string name="check_alarmkit_problem">तुमचा iPhone बॅकअप अलार्म म्हणून वाजू शकेल म्हणून Phase Wake ला अलार्म सेट करण्याची परवानगी द्या.</string>
     <string name="nightstand_start">नाइटस्टँड मोड सुरू करा</string>
     <string name="nightstand_hint">सूर्योदयासाठी Phase Wake रात्रभर चार्जरवर उघडे ठेवा. प्रकाश सुरू होईपर्यंत स्क्रीन गडद राहते.</string>
+    <string name="nightstand_screen_on_hint">रात्रभर चालू राहते – iPhone चार्जरला लावा.</string>
+    <string name="settings_data_text_apple">सगळं तुमच्या फोनवर आणि घड्याळावरच राहतं. खातं नाही, सर्व्हर नाही, ट्रॅकिंग नाही.</string>
     <string name="nightstand_end">संपवा</string>
     <string name="nightstand_waiting">%1$s ला सूर्योदय</string>
     <string name="nightstand_no_alarm">सूर्योदय असलेला अलार्म नाही</string>

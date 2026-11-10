@@ -88,7 +88,7 @@
     <string name="settings_theme_light">Světlý</string>
     <string name="settings_theme_dark">Tmavý</string>
     <string name="settings_data">Tvoje data</string>
-    <string name="settings_data_text">Vše zůstává v telefonu a hodinkách. Bez účtu, bez serveru, bez sledování.</string>
+    <string name="settings_data_text">Vše zůstává v telefonu a hodinkách. Bez účtu, bez serveru, bez sledování. Přes připojení hodinek od Googlu jdou jen technické údaje o hodinkách, bez zdravotních dat.</string>
     <string name="settings_export">Exportovat noci bez jména</string>
     <string name="settings_export_hint">Pomoz zlepšit rozpoznávání: CSV bez jmen, dat a ID zařízení; obsahuje pohyb a tep po 30 s, jak ses cítil a tvoje poznámky.</string>
     <string name="settings_about">O aplikaci</string>

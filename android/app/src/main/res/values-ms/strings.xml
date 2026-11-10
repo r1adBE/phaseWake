@@ -85,7 +85,7 @@
     <string name="settings_theme_light">Cerah</string>
     <string name="settings_theme_dark">Gelap</string>
     <string name="settings_data">Data awak</string>
-    <string name="settings_data_text">Semuanya kekal pada telefon dan jam tangan. Tiada akaun, tiada pelayan, tiada penjejakan.</string>
+    <string name="settings_data_text">Semuanya kekal pada telefon dan jam tangan. Tiada akaun, tiada pelayan, tiada penjejakan. Hanya maklumat teknikal jam yang melalui sambungan jam Google, tanpa data kesihatan.</string>
     <string name="settings_export">Eksport malam tanpa nama</string>
     <string name="settings_export_hint">Bantu tingkatkan pengesanan: CSV tanpa nama, tarikh atau ID peranti; mengandungi pergerakan dan kadar denyutan jantung setiap 30 s, perasaan awak dan nota awak.</string>
     <string name="settings_about">Perihal</string>

@@ -85,7 +85,7 @@
     <string name="settings_theme_light">Terang</string>
     <string name="settings_theme_dark">Gelap</string>
     <string name="settings_data">Datamu</string>
-    <string name="settings_data_text">Semua tetap di ponsel dan jam tanganmu. Tanpa akun, tanpa server, tanpa pelacakan.</string>
+    <string name="settings_data_text">Semua tetap di ponsel dan jam tanganmu. Tanpa akun, tanpa server, tanpa pelacakan. Hanya info teknis jam yang lewat koneksi jam Google, tanpa data kesehatan.</string>
     <string name="settings_export">Ekspor malam tanpa nama</string>
     <string name="settings_export_hint">Bantu tingkatkan deteksi: CSV tanpa nama, tanggal, atau ID perangkat; berisi gerakan dan detak jantung per 30 detik, perasaanmu, dan catatanmu.</string>
     <string name="settings_about">Tentang</string>

@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">Hãy cho phép Phase Wake đặt báo thức để iPhone của bạn có thể reo làm báo thức dự phòng.</string>
     <string name="nightstand_start">Bắt đầu chế độ đầu giường</string>
     <string name="nightstand_hint">Để dùng bình minh, hãy để Phase Wake mở trên đế sạc suốt đêm. Màn hình vẫn tối cho đến khi ánh sáng bắt đầu.</string>
+    <string name="nightstand_screen_on_hint">Bật suốt đêm – hãy cắm sạc iPhone.</string>
+    <string name="settings_data_text_apple">Mọi thứ chỉ nằm trên điện thoại và đồng hồ của bạn. Không tài khoản, không máy chủ, không theo dõi.</string>
     <string name="nightstand_end">Kết thúc</string>
     <string name="nightstand_waiting">Bình minh lúc %1$s</string>
     <string name="nightstand_no_alarm">Không có báo thức kèm bình minh</string>

@@ -87,7 +87,7 @@
     <string name="settings_theme_light">روشن</string>
     <string name="settings_theme_dark">گہرا</string>
     <string name="settings_data">تمہارا ڈیٹا</string>
-    <string name="settings_data_text">سب کچھ تمہارے فون اور گھڑی پر رہتا ہے۔ نہ اکاؤنٹ، نہ سرور، نہ ٹریکنگ۔</string>
+    <string name="settings_data_text">سب کچھ تمہارے فون اور گھڑی پر رہتا ہے۔ نہ اکاؤنٹ، نہ سرور، نہ ٹریکنگ۔ Google کے گھڑی کنکشن سے صرف گھڑی کی تکنیکی معلومات جاتی ہیں، صحت کے ڈیٹا کے بغیر۔</string>
     <string name="settings_export">راتیں نام کے بغیر ایکسپورٹ کرو</string>
     <string name="settings_export_hint">شناخت بہتر بنانے میں مدد کرو: نام، تاریخ یا ڈیوائس ID کے بغیر CSV؛ اس میں ہر 30 سیکنڈ کی حرکت اور دل کی دھڑکن، تمہیں کیسا لگا اور تمہارے نوٹس ہیں۔</string>
     <string name="settings_about">تعارف</string>

@@ -91,7 +91,7 @@
     <string name="settings_theme_light">Geal</string>
     <string name="settings_theme_dark">Dorcha</string>
     <string name="settings_data">Do chuid sonraí</string>
-    <string name="settings_data_text">Fanann gach rud ar do fhón agus ar d’uaireadóir. Gan chuntas, gan fhreastalaí, gan rianú.</string>
+    <string name="settings_data_text">Fanann gach rud ar do fhón agus ar d’uaireadóir. Gan chuntas, gan fhreastalaí, gan rianú. Ní théann ach faisnéis theicniúil faoin uaireadóir trí cheangal uaireadóra Google, gan sonraí sláinte.</string>
     <string name="settings_export">Easpórtáil oícheanta gan ainm</string>
     <string name="settings_export_hint">Cuidigh leis an mbrath a fheabhsú: CSV gan ainmneacha, dátaí ná aitheantais gléis; tá gluaiseacht agus ráta croí in aghaidh 30 s, conas a mhothaigh tú agus do nótaí ann.</string>
     <string name="settings_about">Maidir leis</string>

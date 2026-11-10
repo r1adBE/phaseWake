@@ -79,7 +79,7 @@
     <string name="settings_theme_light">Ашық</string>
     <string name="settings_theme_dark">Қараңғы</string>
     <string name="settings_data">Деректерің</string>
-    <string name="settings_data_text">Бәрі телефоныңда және сағатыңда қалады. Аккаунт жоқ, сервер жоқ, бақылау жоқ.</string>
+    <string name="settings_data_text">Бәрі телефоныңда және сағатыңда қалады. Аккаунт жоқ, сервер жоқ, бақылау жоқ. Google-дың сағат байланысы арқылы тек сағаттың техникалық мәліметтері өтеді, денсаулық деректерінсіз.</string>
     <string name="settings_export">Түндерді есімсіз экспорттау</string>
     <string name="settings_export_hint">Анықтауды жақсартуға көмектес: аты, күні немесе құрылғы ID-і жоқ CSV; әр 30 с сайынғы қозғалыс пен пульс, көңіл күйің және жазбаларың бар.</string>
     <string name="settings_about">Қолданба туралы</string>

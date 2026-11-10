@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">אשרו ל-Phase Wake להגדיר שעונים מעוררים, כדי שה-iPhone שלכם יוכל לצלצל כשעון גיבוי.</string>
     <string name="nightstand_start">הפעלת מצב שידת לילה</string>
     <string name="nightstand_hint">לזריחה, השאירו את Phase Wake פתוחה על המטען לאורך הלילה. המסך נשאר חשוך עד שהאור מתחיל.</string>
+    <string name="nightstand_screen_on_hint">נשאר דולק כל הלילה – חברו את ה-iPhone למטען.</string>
+    <string name="settings_data_text_apple">הכול נשאר בטלפון ובשעון. בלי חשבון, בלי שרת, בלי מעקב.</string>
     <string name="nightstand_end">סיום</string>
     <string name="nightstand_waiting">זריחה ב-%1$s</string>
     <string name="nightstand_no_alarm">אין שעון מעורר עם זריחה</string>

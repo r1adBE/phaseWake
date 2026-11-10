@@ -85,7 +85,7 @@
     <string name="settings_theme_light">สว่าง</string>
     <string name="settings_theme_dark">มืด</string>
     <string name="settings_data">ข้อมูลของคุณ</string>
-    <string name="settings_data_text">ทุกอย่างอยู่บนโทรศัพท์และนาฬิกาของคุณเท่านั้น ไม่มีบัญชี ไม่มีเซิร์ฟเวอร์ ไม่มีการติดตาม</string>
+    <string name="settings_data_text">ทุกอย่างอยู่บนโทรศัพท์และนาฬิกาของคุณเท่านั้น ไม่มีบัญชี ไม่มีเซิร์ฟเวอร์ ไม่มีการติดตาม ผ่านการเชื่อมต่อนาฬิกาของ Google มีเพียงข้อมูลทางเทคนิคของนาฬิกา ไม่มีข้อมูลสุขภาพ</string>
     <string name="settings_export">ส่งออกบันทึกการนอนโดยไม่มีชื่อ</string>
     <string name="settings_export_hint">ช่วยปรับปรุงการตรวจจับ: CSV ไม่มีชื่อ วันที่ หรือ ID อุปกรณ์ มีการเคลื่อนไหวและอัตราการเต้นของหัวใจทุก 30 วินาที ความรู้สึกของคุณ และบันทึกของคุณ</string>
     <string name="settings_about">เกี่ยวกับ</string>

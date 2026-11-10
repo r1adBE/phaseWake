@@ -9,6 +9,8 @@
     <string name="check_alarmkit_problem">ඔබේ iPhone හට උපස්ථ එලාමයක් ලෙස නාද වීමට, Phase Wake හට එලාම සැකසීමට ඉඩ දෙන්න.</string>
     <string name="nightstand_start">ඇඳ අසල ප්‍රකාරය අරඹන්න</string>
     <string name="nightstand_hint">හිරු උදාව සඳහා, Phase Wake රාත්‍රිය පුරා ආරෝපකයේ විවෘතව තබන්න. ආලෝකය ආරම්භ වන තුරු තිරය අඳුරුව පවතී.</string>
+    <string name="nightstand_screen_on_hint">මුළු රාත්‍රියම ක්‍රියාත්මකව පවතී – iPhone ආරෝපකයට සම්බන්ධ කරන්න.</string>
+    <string name="settings_data_text_apple">සියල්ල ඔබේ දුරකථනයේ සහ ඔරලෝසුවේම පවතී. ගිණුමක් නැත, සේවාදායකයක් නැත, ලුහුබැඳීමක් නැත.</string>
     <string name="nightstand_end">අවසන් කරන්න</string>
     <string name="nightstand_waiting">හිරු උදාව %1$s ට</string>
     <string name="nightstand_no_alarm">හිරු උදාව සහිත එලාමයක් නැත</string>

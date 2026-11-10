@@ -88,7 +88,7 @@
     <string name="settings_theme_light">Світла</string>
     <string name="settings_theme_dark">Темна</string>
     <string name="settings_data">Твої дані</string>
-    <string name="settings_data_text">Усе залишається на телефоні та годиннику. Без облікового запису, сервера й стеження.</string>
+    <string name="settings_data_text">Усе залишається на телефоні та годиннику. Без облікового запису, сервера й стеження. Через підключення годинника Google проходять лише технічні дані годинника, без даних про здоров’я.</string>
     <string name="settings_export">Експорт ночей без імені</string>
     <string name="settings_export_hint">Допоможи покращити розпізнавання: CSV без імен, дат та ID пристроїв; містить рух і пульс кожні 30 с, твоє самопочуття й нотатки.</string>
     <string name="settings_about">Про застосунок</string>

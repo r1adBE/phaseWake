@@ -9,6 +9,8 @@
     <string name="check_alarmkit_problem">Payagan ang Phase Wake na magtakda ng mga alarm para makatunog ang iPhone mo bilang backup na alarm.</string>
     <string name="nightstand_start">Simulan ang nightstand mode</string>
     <string name="nightstand_hint">Para sa pagsikat ng araw, iwanang bukas ang Phase Wake sa charger magdamag. Mananatiling madilim ang screen hanggang magsimula ang liwanag.</string>
+    <string name="nightstand_screen_on_hint">Bukas buong gabi – ilagay ang iPhone mo sa charger.</string>
+    <string name="settings_data_text_apple">Nananatili ang lahat sa telepono at relo mo. Walang account, walang server, walang tracking.</string>
     <string name="nightstand_end">Tapusin</string>
     <string name="nightstand_waiting">Pagsikat ng araw sa %1$s</string>
     <string name="nightstand_no_alarm">Walang alarm na may pagsikat ng araw</string>

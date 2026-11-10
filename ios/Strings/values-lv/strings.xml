@@ -9,6 +9,8 @@
     <string name="check_alarmkit_problem">Atļauj Phase Wake iestatīt modinātājus, lai iPhone varētu zvanīt kā rezerves modinātājs.</string>
     <string name="nightstand_start">Sākt naktsgaldiņa režīmu</string>
     <string name="nightstand_hint">Lai būtu saullēkts, atstāj Phase Wake atvērtu uz lādētāja visu nakti. Ekrāns paliek tumšs, līdz sākas gaisma.</string>
+    <string name="nightstand_screen_on_hint">Paliek ieslēgts visu nakti – pievieno iPhone lādētājam.</string>
+    <string name="settings_data_text_apple">Viss paliek tavā tālrunī un pulkstenī. Bez konta, bez servera, bez izsekošanas.</string>
     <string name="nightstand_end">Beigt</string>
     <string name="nightstand_waiting">Saullēkts %1$s</string>
     <string name="nightstand_no_alarm">Nav modinātāja ar saullēktu</string>

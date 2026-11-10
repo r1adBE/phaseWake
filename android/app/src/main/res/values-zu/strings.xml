@@ -88,7 +88,7 @@
     <string name="settings_theme_light">Okukhanyayo</string>
     <string name="settings_theme_dark">Okumnyama</string>
     <string name="settings_data">Idatha yakho</string>
-    <string name="settings_data_text">Konke kuhlala efonini nasewashini lakho. Ayikho i-akhawunti, ayikho iseva, akukho ukulandelwa.</string>
+    <string name="settings_data_text">Konke kuhlala efonini nasewashini lakho. Ayikho i-akhawunti, ayikho iseva, akukho ukulandelwa. Kudlula kuphela ulwazi lobuchwepheshe ngewashi oxhumanweni lwewashi lwe-Google, ngaphandle kwedatha yezempilo.</string>
     <string name="settings_export">Thumela ubusuku ngaphandle kwegama</string>
     <string name="settings_export_hint">Siza ukuthuthukisa ukubona: i-CSV engenawo amagama, izinsuku noma ama-ID edivayisi; iqukethe ukunyakaza nokushaya kwenhliziyo njalo ngemizuzwana engu-30, indlela obuzizwa ngayo kanye namanothi akho.</string>
     <string name="settings_about">Mayelana</string>

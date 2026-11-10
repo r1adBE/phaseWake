@@ -89,7 +89,7 @@
     <string name="settings_theme_light">Gaišs</string>
     <string name="settings_theme_dark">Tumšs</string>
     <string name="settings_data">Tavi dati</string>
-    <string name="settings_data_text">Viss paliek tavā tālrunī un pulkstenī. Bez konta, bez servera, bez izsekošanas.</string>
+    <string name="settings_data_text">Viss paliek tavā tālrunī un pulkstenī. Bez konta, bez servera, bez izsekošanas. Caur Google pulksteņa savienojumu iet tikai tehniska informācija par pulksteni, bez veselības datiem.</string>
     <string name="settings_export">Eksportēt naktis bez vārda</string>
     <string name="settings_export_hint">Palīdzi uzlabot noteikšanu: CSV bez vārdiem, datumiem un ierīču ID; satur kustības un pulsu ik pēc 30 s, tavu pašsajūtu un piezīmes.</string>
     <string name="settings_about">Par lietotni</string>

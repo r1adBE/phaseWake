@@ -9,6 +9,8 @@
     <string name="check_alarmkit_problem">మీ iPhone బ్యాకప్ అలారంగా మోగగలిగేలా Phase Wakeకి అలారాలు సెట్ చేసే అనుమతి ఇవ్వండి.</string>
     <string name="nightstand_start">నైట్‌స్టాండ్ మోడ్ మొదలుపెట్టండి</string>
     <string name="nightstand_hint">సూర్యోదయం కోసం Phase Wakeను రాత్రంతా ఛార్జర్‌పై తెరిచి ఉంచండి. వెలుగు మొదలయ్యే వరకు స్క్రీన్ చీకటిగా ఉంటుంది.</string>
+    <string name="nightstand_screen_on_hint">రాత్రంతా ఆన్‌లోనే ఉంటుంది – iPhone‌ను ఛార్జర్‌కు పెట్టండి.</string>
+    <string name="settings_data_text_apple">అంతా మీ ఫోన్‌లో, వాచ్‌లోనే ఉంటుంది. ఖాతా లేదు, సర్వర్ లేదు, ట్రాకింగ్ లేదు.</string>
     <string name="nightstand_end">ముగించండి</string>
     <string name="nightstand_waiting">%1$sకి సూర్యోదయం</string>
     <string name="nightstand_no_alarm">సూర్యోదయంతో అలారం లేదు</string>

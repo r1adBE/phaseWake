@@ -9,6 +9,8 @@
     <string name="check_alarmkit_problem">Permite que Phase Wake configure alarmas para que o iPhone poida soar como alarma de reserva.</string>
     <string name="nightstand_start">Iniciar modo mesa de noite</string>
     <string name="nightstand_hint">Para o amencer, deixa Phase Wake aberto no cargador durante a noite. A pantalla queda escura ata que comeza a luz.</string>
+    <string name="nightstand_screen_on_hint">Queda aceso toda a noite: pon o iPhone a cargar.</string>
+    <string name="settings_data_text_apple">Todo queda no teléfono e no reloxo. Sen conta, sen servidor, sen seguimento.</string>
     <string name="nightstand_end">Rematar</string>
     <string name="nightstand_waiting">Amencer ás %1$s</string>
     <string name="nightstand_no_alarm">Ningunha alarma con amencer</string>

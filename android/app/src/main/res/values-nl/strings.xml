@@ -86,7 +86,7 @@
     <string name="settings_theme_light">Licht</string>
     <string name="settings_theme_dark">Donker</string>
     <string name="settings_data">Je gegevens</string>
-    <string name="settings_data_text">Alles blijft op je telefoon en horloge. Geen account, geen server, geen tracking.</string>
+    <string name="settings_data_text">Alles blijft op je telefoon en horloge. Geen account, geen server, geen tracking. Alleen technische gegevens over het horloge gaan via de horlogeverbinding van Google, zonder gezondheidsgegevens.</string>
     <string name="settings_export">Nachten exporteren zonder naam</string>
     <string name="settings_export_hint">Help de herkenning te verbeteren: CSV zonder namen, datums of apparaat-ID’s; bevat beweging en hartslag per 30 s, hoe je je voelde en je notities.</string>
     <string name="settings_about">Over</string>

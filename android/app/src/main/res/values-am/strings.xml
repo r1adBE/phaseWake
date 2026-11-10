@@ -88,7 +88,7 @@
     <string name="settings_theme_light">ብሩህ</string>
     <string name="settings_theme_dark">ጨለማ</string>
     <string name="settings_data">የእርስዎ ውሂብ</string>
-    <string name="settings_data_text">ሁሉም ነገር በስልክዎና በሰዓትዎ ላይ ይቆያል። መለያ የለም፣ አገልጋይ የለም፣ ክትትል የለም።</string>
+    <string name="settings_data_text">ሁሉም ነገር በስልክዎና በሰዓትዎ ላይ ይቆያል። መለያ የለም፣ አገልጋይ የለም፣ ክትትል የለም። በGoogle የሰዓት ግንኙነት በኩል የሚያልፉት ስለ ሰዓቱ ቴክኒካዊ መረጃዎች ብቻ ናቸው፣ ያለ የጤና ውሂብ።</string>
     <string name="settings_export">ሌሊቶችን ያለ ስም ወደ ውጭ ላክ</string>
     <string name="settings_export_hint">መለየትን ለማሻሻል እርዳ፦ ያለ ስም፣ ቀን ወይም የመሣሪያ መታወቂያ CSV፤ በየ30 ሰከንዱ እንቅስቃሴና የልብ ምት፣ ስሜትህንና ማስታወሻዎችህን ይዟል።</string>
     <string name="settings_about">ስለ</string>

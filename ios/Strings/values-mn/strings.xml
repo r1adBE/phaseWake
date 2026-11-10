@@ -9,6 +9,8 @@
     <string name="check_alarmkit_problem">iPhone чинь нөөц сэрүүлэг болж дуугарахын тулд Phase Wake-д сэрүүлэг тохируулахыг зөвшөөр.</string>
     <string name="nightstand_start">Орны дэргэдэх горим эхлүүлэх</string>
     <string name="nightstand_hint">Нар мандахын тулд Phase Wake-ийг шөнөжин цэнэглэгч дээр нээлттэй үлдээ. Гэрэл эхлэх хүртэл дэлгэц харанхуй байна.</string>
+    <string name="nightstand_screen_on_hint">Шөнөжин асаалттай байна – iPhone-оо цэнэглэгчид залга.</string>
+    <string name="settings_data_text_apple">Бүх зүйл утас, цаган дээр чинь үлдэнэ. Бүртгэлгүй, сервергүй, хянахгүй.</string>
     <string name="nightstand_end">Дуусгах</string>
     <string name="nightstand_waiting">Нар мандах %1$s-д</string>
     <string name="nightstand_no_alarm">Нар мандахтай сэрүүлэг алга</string>

@@ -85,7 +85,7 @@
     <string name="settings_theme_light">浅色</string>
     <string name="settings_theme_dark">深色</string>
     <string name="settings_data">你的数据</string>
-    <string name="settings_data_text">所有数据都只保存在手机和手表上。无需账号，没有服务器，不做跟踪。</string>
+    <string name="settings_data_text">所有数据都只保存在手机和手表上。无需账号，没有服务器，不做跟踪。只有手表的技术信息会经过 Google 的手表连接，不含健康数据。</string>
     <string name="settings_export">不含姓名导出睡眠记录</string>
     <string name="settings_export_hint">帮助改进检测：CSV 不含姓名、日期或设备 ID；包含每 30 秒的体动和心率、你的感受和你的笔记。</string>
     <string name="settings_about">关于</string>

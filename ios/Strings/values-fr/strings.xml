@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">Autorise Phase Wake à programmer des alarmes pour que ton iPhone puisse sonner comme alarme de secours.</string>
     <string name="nightstand_start">Démarrer le mode table de chevet</string>
     <string name="nightstand_hint">Pour le lever de soleil, laisse Phase Wake ouverte toute la nuit sur le chargeur. L’écran reste noir jusqu’au début de la lumière.</string>
+    <string name="nightstand_screen_on_hint">Reste allumé toute la nuit – branche ton iPhone sur le chargeur.</string>
+    <string name="settings_data_text_apple">Tout reste sur ton téléphone et ta montre. Pas de compte, pas de serveur, pas de suivi.</string>
     <string name="nightstand_end">Terminer</string>
     <string name="nightstand_waiting">Lever de soleil à %1$s</string>
     <string name="nightstand_no_alarm">Aucune alarme avec lever de soleil</string>

@@ -86,7 +86,7 @@
     <string name="settings_theme_light">روشن</string>
     <string name="settings_theme_dark">تیره</string>
     <string name="settings_data">داده‌های تو</string>
-    <string name="settings_data_text">همه‌چیز روی گوشی و ساعتت می‌ماند. بدون حساب، بدون سرور، بدون ردیابی.</string>
+    <string name="settings_data_text">همه‌چیز روی گوشی و ساعتت می‌ماند. بدون حساب، بدون سرور، بدون ردیابی. از اتصال ساعت Google فقط اطلاعات فنی ساعت می‌گذرد، بدون داده‌های سلامت.</string>
     <string name="settings_export">خروجی شب‌ها بدون نام</string>
     <string name="settings_export_hint">به بهتر شدن تشخیص کمک کن: CSV بدون نام، تاریخ یا شناسهٔ دستگاه؛ شامل حرکت و ضربان قلب هر ۳۰ ثانیه، حالت تو و یادداشت‌هایت.</string>
     <string name="settings_about">دربارهٔ برنامه</string>

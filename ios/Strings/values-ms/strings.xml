@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">Benarkan Phase Wake menetapkan penggera supaya iPhone awak boleh berdering sebagai penggera sandaran.</string>
     <string name="nightstand_start">Mulakan mod meja sisi katil</string>
     <string name="nightstand_hint">Untuk matahari terbit, biarkan Phase Wake terbuka pada pengecas sepanjang malam. Skrin kekal gelap sehingga cahaya bermula.</string>
+    <string name="nightstand_screen_on_hint">Kekal menyala sepanjang malam – cas iPhone awak.</string>
+    <string name="settings_data_text_apple">Semuanya kekal pada telefon dan jam tangan. Tiada akaun, tiada pelayan, tiada penjejakan.</string>
     <string name="nightstand_end">Tamat</string>
     <string name="nightstand_waiting">Matahari terbit pada %1$s</string>
     <string name="nightstand_no_alarm">Tiada penggera dengan matahari terbit</string>

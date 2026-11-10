@@ -88,7 +88,7 @@
     <string name="settings_theme_light">ආලෝකමත්</string>
     <string name="settings_theme_dark">අඳුරු</string>
     <string name="settings_data">ඔබේ දත්ත</string>
-    <string name="settings_data_text">සියල්ල ඔබේ දුරකථනයේ සහ ඔරලෝසුවේම පවතී. ගිණුමක් නැත, සේවාදායකයක් නැත, ලුහුබැඳීමක් නැත.</string>
+    <string name="settings_data_text">සියල්ල ඔබේ දුරකථනයේ සහ ඔරලෝසුවේම පවතී. ගිණුමක් නැත, සේවාදායකයක් නැත, ලුහුබැඳීමක් නැත. Google ඔරලෝසු සම්බන්ධතාවය හරහා යන්නේ ඔරලෝසුවේ තාක්ෂණික තොරතුරු පමණි, සෞඛ්‍ය දත්ත නොමැතිව.</string>
     <string name="settings_export">රාත්‍රි නමක් නොමැතිව අපනයනය කරන්න</string>
     <string name="settings_export_hint">හඳුනාගැනීම වැඩිදියුණු කිරීමට උදව් කරන්න: නම, දිනය හෝ උපාංග ID නොමැති CSV; තත්පර 30 කට වරක් චලනය හා හෘද ස්පන්දනය, ඔබට දැනුණු ආකාරය සහ ඔබේ සටහන් එහි ඇත.</string>
     <string name="settings_about">පිළිබඳ</string>

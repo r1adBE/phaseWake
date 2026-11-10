@@ -86,7 +86,7 @@
     <string name="settings_theme_light">Lys</string>
     <string name="settings_theme_dark">Mørk</string>
     <string name="settings_data">Dine data</string>
-    <string name="settings_data_text">Alt blir på telefonen og klokka. Ingen konto, ingen server, ingen sporing.</string>
+    <string name="settings_data_text">Alt blir på telefonen og klokka. Ingen konto, ingen server, ingen sporing. Bare teknisk informasjon om klokken går via Googles klokketilkobling, uten helsedata.</string>
     <string name="settings_export">Eksporter netter uten navn</string>
     <string name="settings_export_hint">Hjelp til å forbedre gjenkjenningen: CSV uten navn, datoer eller enhets-ID-er; inneholder bevegelse og puls per 30 s, hvordan du hadde det og notatene dine.</string>
     <string name="settings_about">Om</string>

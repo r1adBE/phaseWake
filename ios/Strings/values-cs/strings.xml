@@ -7,6 +7,8 @@
     <string name="check_alarmkit_problem">Povol Phase Wake nastavovat budíky, aby tvůj iPhone mohl zazvonit jako záložní budík.</string>
     <string name="nightstand_start">Spustit noční režim</string>
     <string name="nightstand_hint">Pro východ slunce nech Phase Wake přes noc otevřenou na nabíječce. Displej zůstane tmavý, dokud nezačne světlo.</string>
+    <string name="nightstand_screen_on_hint">Zůstává zapnutý celou noc – dej iPhone na nabíječku.</string>
+    <string name="settings_data_text_apple">Vše zůstává v telefonu a hodinkách. Bez účtu, bez serveru, bez sledování.</string>
     <string name="nightstand_end">Ukončit</string>
     <string name="nightstand_waiting">Východ slunce v %1$s</string>
     <string name="nightstand_no_alarm">Žádný budík s východem slunce</string>
