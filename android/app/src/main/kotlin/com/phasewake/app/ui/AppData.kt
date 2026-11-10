@@ -20,7 +20,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.phasewake.app.PhaseWakeApp
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
-import com.phasewake.app.core.Codec
 import com.phasewake.app.core.CustomNote
 import com.phasewake.app.core.HealthFeeling
 import com.phasewake.app.core.HealthFeelings
@@ -336,10 +335,9 @@ internal fun rememberSoundRec(app: PhaseWakeApp, data: AppData, checkRun: Int): 
 }
 
 /**
- * Nacht-Check und die Uhren ohne Phase Wake (für den Knopf «Auf der Uhr installieren»). [watchKnowsSkip]: Die Uhr
- * kennt «Überspringen» und «Feiertage» (oder es ist keine bekannt); sonst blendet das Handy beides aus.
+ * Nacht-Check und die Uhren ohne Phase Wake (für den Knopf «Auf der Uhr installieren»).
  */
-internal class NightCheckData(val check: NightCheckState?, val missingOn: List<String>, val watchKnowsSkip: Boolean = true)
+internal class NightCheckData(val check: NightCheckState?, val missingOn: List<String>)
 
 /**
  * Nacht-Check: bei jedem Öffnen ([checkRun]) und danach jede halbe Minute (die Uhr kann kommen und
@@ -351,12 +349,10 @@ internal fun rememberNightCheck(app: PhaseWakeApp, checkRun: Int): NightCheckDat
     val lifecycle = LocalLifecycleOwner.current.lifecycle
     var check by remember { mutableStateOf<NightCheckState?>(null) }
     var missingOn by remember { mutableStateOf(emptyList<String>()) }
-    var knowsSkip by remember { mutableStateOf(true) }
     LaunchedEffect(checkRun) {
         lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
             while (true) {
                 missingOn = app.sync.nodesWithout(DataLayer.CAPABILITY_WATCH)
-                knowsSkip = Codec.watchKnowsSkip(app.sync.watchAlarmFields())
                 val outdated = WearSync.watchOutdated(app.sync.watchProtocol())
                 check = NightCheckState.collect(
                     context,
@@ -364,7 +360,6 @@ internal fun rememberNightCheck(app: PhaseWakeApp, checkRun: Int): NightCheckDat
                     app.sync.watchReady(),
                     app.sync.watchBattery(),
                     watchAppMissing = missingOn.isNotEmpty(),
-                    watchKnowsSkip = knowsSkip,
                     watchOutdated = outdated,
                     watchPulse = app.sync.watchPulse(),
                     recorderSkip = app.sync.watchRecorderSkip(),
@@ -374,7 +369,7 @@ internal fun rememberNightCheck(app: PhaseWakeApp, checkRun: Int): NightCheckDat
             }
         }
     }
-    return NightCheckData(check, missingOn, knowsSkip)
+    return NightCheckData(check, missingOn)
 }
 
 /** Abstand der Nacht-Checks, solange die App sichtbar ist. */

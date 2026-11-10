@@ -505,8 +505,6 @@
     <string name="alarm_skip_undo_for">ਛੱਡਣਾ ਵਾਪਸ ਲਓ: %1$s</string>
     <string name="transient_alarm_running">ਤੁਹਾਡਾ ਅਲਾਰਮ ਇਸ ਵੇਲੇ ਚੱਲ ਰਿਹਾ ਹੈ।</string>
     <string name="transient_alarm_soon">ਤੁਹਾਡੀ ਜਗਾਉਣ ਦੀ ਮਿਆਦ ਉਸ ਤੋਂ ਪਹਿਲਾਂ ਸ਼ੁਰੂ ਹੁੰਦੀ ਹੈ।</string>
-    <string name="check_watch_update">ਆਪਣੀ ਘੜੀ ’ਤੇ Phase Wake ਅੱਪਡੇਟ ਕਰੋ</string>
-    <string name="check_watch_update_problem">ਉਦੋਂ ਤੱਕ ਤੁਹਾਡੀ ਘੜੀ ਅਲਾਰਮ ਨਹੀਂ ਛੱਡੇਗੀ ਅਤੇ ਛੁੱਟੀਆਂ ’ਤੇ ਵੀ ਤੁਹਾਨੂੰ ਜਗਾਏਗੀ।</string>
     <string name="check_watch_outdated_title">ਘੜੀ ਵਾਲੀ ਐਪ ਪੁਰਾਣੀ ਹੈ</string>
     <string name="check_watch_outdated_text">ਹਰ ਅਲਾਰਮ ਸੈੱਟ ਕੀਤੇ ਮੁਤਾਬਕ ਵੱਜੇ, ਇਸ ਲਈ ਆਪਣੀ ਘੜੀ ’ਤੇ Phase Wake ਅੱਪਡੇਟ ਕਰੋ।</string>
     <string name="watch_store_opened">ਤੁਹਾਡੀ ਘੜੀ ’ਤੇ Play Store ਖੋਲ੍ਹਿਆ ਗਿਆ – ਇੱਕ ਵਾਰ ਦੇਖੋ।</string>

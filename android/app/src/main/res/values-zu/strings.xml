@@ -505,8 +505,6 @@
     <string name="alarm_skip_undo_for">Hlehlisa ukweqa: %1$s</string>
     <string name="transient_alarm_running">I-alamu yakho iyakhala manje.</string>
     <string name="transient_alarm_soon">Isikhala sakho sokuvuka siqala ngaphambi kwalokho.</string>
-    <string name="check_watch_update">Buyekeza i-Phase Wake ewashini lakho</string>
-    <string name="check_watch_update_problem">Kuze kube yilapho, iwashi lakho ngeke leqe ama-alamu futhi lizokuvusa nangamaholide.</string>
     <string name="check_watch_outdated_title">I-app yewashi indala</string>
     <string name="check_watch_outdated_text">Buyekeza i-Phase Wake ewashini lakho ukuze i-alamu ngayinye ikhale njengoba uyisethile.</string>
     <string name="watch_store_opened">I-Play Store ivuliwe ewashini lakho – yibheke.</string>

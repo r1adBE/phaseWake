@@ -532,8 +532,6 @@
     <string name="alarm_skip_undo_for">Undo skip: %1$s</string>
     <string name="transient_alarm_running">Your alarm is running right now.</string>
     <string name="transient_alarm_soon">Your alarm window starts before that.</string>
-    <string name="check_watch_update">Update Phase Wake on your watch</string>
-    <string name="check_watch_update_problem">Until then, your watch won’t skip alarms and will also wake you on holidays.</string>
     <string name="check_watch_outdated_title">Watch app out of date</string>
     <string name="check_watch_outdated_text">Update Phase Wake on your watch so every alarm rings as set.</string>
     <string name="watch_store_opened">Play Store opened on your watch – have a look at it.</string>

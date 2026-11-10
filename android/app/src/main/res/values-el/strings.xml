@@ -502,8 +502,6 @@
     <string name="alarm_skip_undo_for">Αναίρεση παράλειψης: %1$s</string>
     <string name="transient_alarm_running">Η αφύπνισή σου είναι σε εξέλιξη αυτή τη στιγμή.</string>
     <string name="transient_alarm_soon">Το παράθυρο αφύπνισής σου ξεκινά νωρίτερα.</string>
-    <string name="check_watch_update">Ενημέρωσε το Phase Wake στο ρολόι</string>
-    <string name="check_watch_update_problem">Μέχρι τότε το ρολόι δεν παραλείπει καμία αφύπνιση και σε ξυπνά και τις αργίες.</string>
     <string name="check_watch_outdated_title">Η εφαρμογή του ρολογιού είναι παλιά</string>
     <string name="check_watch_outdated_text">Ενημέρωσε το Phase Wake στο ρολόι, ώστε κάθε αφύπνιση να χτυπά όπως τη ρύθμισες.</string>
     <string name="watch_store_opened">Το Play Store άνοιξε στο ρολόι – ρίξε μια ματιά.</string>

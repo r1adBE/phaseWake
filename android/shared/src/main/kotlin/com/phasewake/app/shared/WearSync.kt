@@ -140,12 +140,6 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
     suspend fun watchSeenAt(): Long? = readStatus { readSeenAt(it) }
 
     /**
-     * Handy: Felder je Weckerzeile, die die Uhr kennt ([readAlarmFields]); `null`, wenn sie noch nie einen Status
-     * gemeldet hat oder die Wear-Dienste fehlen.
-     */
-    suspend fun watchAlarmFields(): Int? = readStatus { readAlarmFields(it) }
-
-    /**
      * Handy: Verbindungs-Stand der Uhr-App ([readProtocol]); `null`, wenn sie noch nie einen Status gemeldet hat oder die
      * Wear-Dienste fehlen.
      */

@@ -109,12 +109,6 @@ object DataLayer {
     const val KEY_BATTERY = "battery"
 
     /**
-     * Felder je Weckerzeile, die die Uhr kennt (`Codec.ALARM_FIELDS`), im selben Paket wie [KEY_READY]. Fehlt bei
-     * Uhren vor «Überspringen» und «Feiertage»; das Handy blendet beides dann aus (`Codec.watchKnowsSkip`).
-     */
-    const val KEY_ALARM_FIELDS = "alarmFields"
-
-    /**
      * Stand der Verbindung Handy ↔ Uhr (Review O-04), wie eine Formatversion: steigt, wenn eine ältere Uhr etwas, das das
      * Handy schickt, nicht mehr wie eingestellt umsetzt (z. B. die Weckart «Genau»). Die Uhr meldet ihren Stand im
      * Status-Paket ([KEY_PROTOCOL]); ist er kleiner als der des Handys, warnt der Nacht-Check (`WearSync.watchOutdated`).

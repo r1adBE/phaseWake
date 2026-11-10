@@ -490,8 +490,6 @@
     <string name="alarm_skip_undo_for">មិនរំលងវិញ៖ %1$s</string>
     <string name="transient_alarm_running">ម៉ោងរោទ៍របស់អ្នកកំពុងដំណើរការឥឡូវនេះ។</string>
     <string name="transient_alarm_soon">ចន្លោះពេលដាស់របស់អ្នកចាប់ផ្ដើមមុននោះ។</string>
-    <string name="check_watch_update">ធ្វើបច្ចុប្បន្នភាព Phase Wake លើនាឡិការបស់អ្នក</string>
-    <string name="check_watch_update_problem">រហូតដល់ពេលនោះ នាឡិកានឹងមិនរំលងម៉ោងរោទ៍ ហើយក៏នឹងដាស់អ្នកនៅថ្ងៃឈប់សម្រាកដែរ។</string>
     <string name="check_watch_outdated_title">កម្មវិធីលើនាឡិកាហួសសម័យ</string>
     <string name="check_watch_outdated_text">ធ្វើបច្ចុប្បន្នភាព Phase Wake លើនាឡិការបស់អ្នក ដើម្បីឱ្យម៉ោងរោទ៍នីមួយៗរោទ៍តាមការកំណត់។</string>
     <string name="watch_store_opened">បានបើក Play Store លើនាឡិការបស់អ្នក – សូមមើលវា។</string>

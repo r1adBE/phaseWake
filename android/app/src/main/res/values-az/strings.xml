@@ -490,8 +490,6 @@
     <string name="alarm_skip_undo_for">Ötürməni geri al: %1$s</string>
     <string name="transient_alarm_running">Siqnalın elə indi işləyir.</string>
     <string name="transient_alarm_soon">Siqnal pəncərən ondan əvvəl başlayır.</string>
-    <string name="check_watch_update">Saatında Phase Wake-i yenilə</string>
-    <string name="check_watch_update_problem">O vaxta qədər saatın siqnalları ötürməyəcək və bayramlarda da səni oyadacaq.</string>
     <string name="check_watch_outdated_title">Saat tətbiqi köhnədir</string>
     <string name="check_watch_outdated_text">Hər siqnal qurduğun kimi çalsın deyə saatında Phase Wake-i yenilə.</string>
     <string name="watch_store_opened">Play Store saatında açıldı – ona bir bax.</string>

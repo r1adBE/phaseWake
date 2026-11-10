@@ -488,8 +488,6 @@
     <string name="alarm_skip_undo_for">건너뛰기 취소: %1$s</string>
     <string name="transient_alarm_running">지금 알람이 진행 중이에요.</string>
     <string name="transient_alarm_soon">알람 범위가 그보다 먼저 시작돼요.</string>
-    <string name="check_watch_update">워치의 Phase Wake를 업데이트해 주세요</string>
-    <string name="check_watch_update_problem">그때까지 워치는 알람을 건너뛰지 않고 공휴일에도 깨워요.</string>
     <string name="check_watch_outdated_title">워치 앱이 오래된 버전이에요</string>
     <string name="check_watch_outdated_text">모든 알람이 설정한 대로 울리도록 워치의 Phase Wake를 업데이트해 주세요.</string>
     <string name="watch_store_opened">워치에서 Play Store를 열었어요 – 워치를 확인해 주세요.</string>

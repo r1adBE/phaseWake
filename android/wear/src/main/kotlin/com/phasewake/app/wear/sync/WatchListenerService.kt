@@ -45,16 +45,9 @@ class WatchListenerService : WearableListenerService() {
         // Der Dienst läuft auf einem eigenen Hintergrundthread; kurzes Blockieren ist hier vorgesehen.
         runBlocking {
             cancelled.forEach { TransientInbox.cancelled(app, it) }
-            // Zeitpunkt merken, damit [PhoneCatchUp] dasselbe Löschen später nicht noch einmal anwendet.
-            // Ältere Handys ohne Zeitpunkt: wie bisher alles löschen.
-            when {
-                clearedAt == null -> Unit
-                clearedAt > 0 -> PhoneCatchUp.applyClear(app, clearedAt)
-                else -> {
-                    app.nights.clear()
-                    app.recordings.clear()
-                }
-            }
+            // Zeitpunkt merken, damit [PhoneCatchUp] dasselbe Löschen später nicht noch einmal anwendet. Ohne
+            // Zeitpunkt (veraltete Handy-App): nichts löschen, kein Rückfall.
+            if (clearedAt != null && clearedAt > 0) PhoneCatchUp.applyClear(app, clearedAt)
         }
     }
 
@@ -129,9 +122,11 @@ class WatchListenerService : WearableListenerService() {
             RecordControl.fromPhone(this, it, RecordSync.continuousOf(event.data))
             return
         }
-        // Inhalt nachsichtig lesen: «snooze» und ältere Handy-Versionen schicken keine Kennung, dann gilt der Befehl der laufenden Nacht.
+        // «snooze» trägt keinen Inhalt (gilt der laufenden Nacht); «stop» und die Meldungen zur Weckaufgabe tragen die
+        // Sendezeit. Ohne sie stammen sie von einer veralteten Handy-App: verwerfen, kein Rückfall.
         val message = RingMessage.decode(event.data)
         val alarmId = message.alarmId
+        if (event.path in NEEDS_SEND_TIME && !message.isCurrent()) return
         when (event.path) {
             DataLayer.PATH_STOP -> {
                 val active = WakeService.activePlan
@@ -165,5 +160,8 @@ class WatchListenerService : WearableListenerService() {
     private companion object {
         /** Gemeinsamer Anfang der Pfade der Warteschlange (`DataLayer.PATH_MSG_…`). */
         const val QUEUE_PREFIX = "/phasewake/m/"
+
+        /** Meldungen des Handys, die eine Sendezeit tragen müssen ([RingMessage.isCurrent]). */
+        val NEEDS_SEND_TIME = setOf(DataLayer.PATH_STOP, DataLayer.PATH_TASK_SHOWN, DataLayer.PATH_TASK_GONE)
     }
 }

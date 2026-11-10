@@ -57,11 +57,9 @@ final class PhoneModel {
     private(set) var lastRing: Date?
     /// Zielzeit, für die die Apple Watch scharf ist (laut Uhr); `nil` = nicht scharf oder unbekannt.
     private(set) var watchArmedTarget: Date?
-    /// Felder je Weckerzeile, die die Uhr kennt (`Codec.alarmFields`); `nil` = noch kein Stand der Uhr, 0 = ältere Uhr.
-    private(set) var watchAlarmFields: Int?
     /// Akkustand der Apple Watch in Prozent, wie zuletzt gemeldet, und Zeitpunkt der Messung.
     private var watchBatteryLevel: (percent: Int, at: Date)?
-    /// Stand der Verbindung, den die Uhr-App meldet (`WatchProtocol`); `nil` = unbekannt (ältere Uhr, noch kein Kontext).
+    /// Stand der Verbindung, den die Uhr-App meldet (`WatchProtocol`); `nil` = noch kein Kontext der Uhr.
     private(set) var watchProtocol: Int?
     /// Erlaubnis für Mitteilungen auf der Uhr (Rückfall), wie zuletzt gemeldet, und wann die Uhr sie geprüft hat (`nil`: ältere Uhr); `nil` = unbekannt.
     private(set) var watchNotifications: (state: WatchNotifications, checkedAt: Date?)?
@@ -188,13 +186,9 @@ final class PhoneModel {
         return done.merging(backup.suppressedUntil().filter { $0.value > now }) { max($0, $1) }
     }
 
-    func watchArmed(_ target: Date?, alarmFields: Int) {
+    func watchArmed(_ target: Date?) {
         watchArmedTarget = target
-        watchAlarmFields = alarmFields
     }
-
-    /// Ob die Uhr Überspringen und Feiertage beachtet; sonst blendet das iPhone beides aus (Nacht-Check meldet es).
-    var watchKnowsSkip: Bool { Codec.watchKnowsSkip(watchAlarmFields) }
 
     func setWatchStatus(battery: (percent: Int, at: Date)?, version: Int?, notifications: (state: WatchNotifications, checkedAt: Date?)?) { (watchBatteryLevel, watchProtocol, watchNotifications) = (battery, version, notifications) }
 

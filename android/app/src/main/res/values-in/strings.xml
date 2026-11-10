@@ -488,8 +488,6 @@
     <string name="alarm_skip_undo_for">Urungkan lewati: %1$s</string>
     <string name="transient_alarm_running">Alarmmu sedang berjalan sekarang.</string>
     <string name="transient_alarm_soon">Rentang alarmmu sudah dimulai sebelum itu.</string>
-    <string name="check_watch_update">Perbarui Phase Wake di jam tangan</string>
-    <string name="check_watch_update_problem">Sampai saat itu, jam tanganmu tidak akan melewati alarm dan tetap membangunkanmu saat hari libur.</string>
     <string name="check_watch_outdated_title">Aplikasi jam tangan sudah usang</string>
     <string name="check_watch_outdated_text">Perbarui Phase Wake di jam tangan agar setiap alarm berbunyi sesuai pengaturan.</string>
     <string name="watch_store_opened">Play Store dibuka di jam tanganmu – coba lihat.</string>

@@ -79,8 +79,6 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     /// (Nacht-Check auf dem iPhone).
     private func sendContext() {
         guard WCSession.default.activationState == .activated, !context.isEmpty else { return }
-        // Formatfähigkeit: Das iPhone erkennt so eine ältere Uhr ohne Überspringen und Feiertage.
-        context[SyncKeys.alarmFields] = Int64(Codec.alarmFields)
         // Stand der Verbindung: Das iPhone erkennt so eine ältere Uhr-App (Nacht-Check «Uhr-App veraltet»).
         context[SyncKeys.watchProtocol] = Int64(WatchProtocol.current)
         // Zuletzt geprüfte Erlaubnis für Mitteilungen samt Zeitpunkt, gespeichert: auch nach einem Neustart vor einer
@@ -276,10 +274,13 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         guard let command = message[SyncKeys.command] as? String else { return }
         if receiveTransient(command, message) { return }
         if receiveRecord(command, message) { return }
-        // Verspätet zugestelltes Stopp oder Schlummern vom iPhone träfe sonst eine spätere Nacht.
-        if command != SyncKeys.clearHistory, let sentAt = message[SyncKeys.sentAt] as? Int64,
-           Int64(Date().timeIntervalSince1970 * 1000) - sentAt > SyncKeys.maxRingAgeMs { return }
-        // Nacht des iPhone-Alarms (fehlt bei älteren iPhone-Versionen): Stopp oder Schlummern nur für dieselbe Nacht.
+        if command == SyncKeys.stop || command == SyncKeys.snooze {
+            // Ohne Sendezeit: veraltete iPhone-App, verwerfen (kein Rückfall). Verspätet zugestellt träfe es sonst eine
+            // spätere Nacht.
+            guard let sentAt = message[SyncKeys.sentAt] as? Int64,
+                  Int64(Date().timeIntervalSince1970 * 1000) - sentAt <= SyncKeys.maxRingAgeMs else { return }
+        }
+        // Nacht des iPhone-Alarms (fehlt, wenn das iPhone keine kennt): Stopp oder Schlummern nur für dieselbe Nacht.
         let alarmId = (message[SyncKeys.alarms] as? String).flatMap { $0.isEmpty ? nil : $0 }
         let target = (message[SyncKeys.target] as? Int64).map { Date(timeIntervalSince1970: Double($0) / 1000) }
         Task { @MainActor in

@@ -502,8 +502,6 @@
     <string name="alarm_skip_undo_for">Ångra överhoppning: %1$s</string>
     <string name="transient_alarm_running">Ditt alarm pågår just nu.</string>
     <string name="transient_alarm_soon">Ditt väckningsfönster börjar redan innan.</string>
-    <string name="check_watch_update">Uppdatera Phase Wake på klockan</string>
-    <string name="check_watch_update_problem">Tills dess hoppar klockan inte över några alarm och väcker dig även på helgdagar.</string>
     <string name="check_watch_outdated_title">Klockappen är inaktuell</string>
     <string name="check_watch_outdated_text">Uppdatera Phase Wake på klockan så att varje alarm ringer som inställt.</string>
     <string name="watch_store_opened">Play Store har öppnats på klockan – ta en titt.</string>

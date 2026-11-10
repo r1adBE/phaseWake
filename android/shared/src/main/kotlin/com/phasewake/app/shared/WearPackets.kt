@@ -17,8 +17,8 @@ abstract class WearPackets {
     private val tag = "WearSync"
 
     /**
-     * Status-Paket der Uhr mit den Feldern je Weckerzeile und dem Verbindungs-Stand ([DataLayer.PROTOCOL]) dieser
-     * Version; [battery] und [pulse] fehlen, wenn unbekannt; [recorderSkip] ist leer ohne Meldung.
+     * Status-Paket der Uhr mit dem Verbindungs-Stand ([DataLayer.PROTOCOL]) dieser Version; [battery] und [pulse]
+     * fehlen, wenn unbekannt; [recorderSkip] ist leer ohne Meldung.
      */
     fun statusRequest(ready: Boolean, battery: Int?, nowMs: Long, pulse: WatchPulse? = null, recorderSkip: RecorderSkip.Reason? = null): PutDataRequest =
         PutDataMapRequest.create(DataLayer.PATH_WATCH_STATUS).apply {
@@ -27,7 +27,6 @@ abstract class WearPackets {
             dataMap.putString(DataLayer.KEY_RECORDER_SKIP, recorderSkip?.code.orEmpty())
             pulse?.let { WatchPulse.put(dataMap, it) }
             dataMap.putInt(DataLayer.KEY_PROTOCOL, DataLayer.PROTOCOL)
-            dataMap.putInt(DataLayer.KEY_ALARM_FIELDS, Codec.ALARM_FIELDS)
             dataMap.putLong(DataLayer.KEY_UPDATED_AT, nowMs)
         }.asPutDataRequest().setUrgent()
 
@@ -61,9 +60,6 @@ abstract class WearPackets {
     fun readRecorderSkip(map: DataMap, nowMs: Long, maxAgeMs: Long): RecorderSkip.Reason? =
         map.getString(DataLayer.KEY_RECORDER_SKIP)?.takeIf { nowMs - map.getLong(DataLayer.KEY_UPDATED_AT) <= maxAgeMs }
             ?.let { code -> RecorderSkip.Reason.entries.firstOrNull { it.code == code } }
-
-    /** Felder je Weckerzeile aus dem Status-Paket; ohne Angabe (ältere Uhr) 0. */
-    fun readAlarmFields(map: DataMap): Int = if (map.containsKey(DataLayer.KEY_ALARM_FIELDS)) map.getInt(DataLayer.KEY_ALARM_FIELDS) else 0
 
     /** Verbindungs-Stand der Uhr aus dem Status-Paket; ohne Angabe (Uhr vor dieser Angabe) 0. */
     fun readProtocol(map: DataMap): Int = if (map.containsKey(DataLayer.KEY_PROTOCOL)) map.getInt(DataLayer.KEY_PROTOCOL) else 0

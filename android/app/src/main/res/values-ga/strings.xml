@@ -547,8 +547,6 @@
     <string name="alarm_skip_undo_for">Cealaigh an scipeáil: %1$s</string>
     <string name="transient_alarm_running">Tá d’aláram ar siúl faoi láthair.</string>
     <string name="transient_alarm_soon">Tosaíonn fuinneog d’aláraim roimhe sin.</string>
-    <string name="check_watch_update">Nuashonraigh Phase Wake ar d’uaireadóir</string>
-    <string name="check_watch_update_problem">Go dtí sin, ní scipeálfaidh d’uaireadóir aláraim agus dúiseoidh sé thú ar laethanta saoire freisin.</string>
     <string name="check_watch_outdated_title">Tá aip an uaireadóra as dáta</string>
     <string name="check_watch_outdated_text">Nuashonraigh Phase Wake ar d’uaireadóir ionas go mbuailfidh gach aláram mar a shocraigh tú é.</string>
     <string name="watch_store_opened">Osclaíodh an Play Store ar d’uaireadóir – féach air.</string>

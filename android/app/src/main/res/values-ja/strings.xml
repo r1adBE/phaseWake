@@ -488,8 +488,6 @@
     <string name="alarm_skip_undo_for">スキップを元に戻す: %1$s</string>
     <string name="transient_alarm_running">いまアラームが作動中です。</string>
     <string name="transient_alarm_soon">アラームの時間幅はそれより前に始まります。</string>
-    <string name="check_watch_update">ウォッチのPhase Wakeを更新してください</string>
-    <string name="check_watch_update_problem">それまでウォッチはアラームをスキップせず、祝日にも起こします。</string>
     <string name="check_watch_outdated_title">ウォッチのアプリが古くなっています</string>
     <string name="check_watch_outdated_text">すべてのアラームが設定どおりに鳴るよう、ウォッチのPhase Wakeを更新してください。</string>
     <string name="watch_store_opened">ウォッチでPlay Storeを開きました – ウォッチを確認してください。</string>

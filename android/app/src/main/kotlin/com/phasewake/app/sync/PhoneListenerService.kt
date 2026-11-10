@@ -124,6 +124,11 @@ class PhoneListenerService : WearableListenerService() {
             // Nicht direkt den Weckdienst starten: aus dem Hintergrund ab Android 12 nicht erlaubt.
             DataLayer.PATH_RING -> {
                 val message = RingMessage.decode(event.data)
+                // Ohne Sendezeit, Kennung oder Schlummer-Runden: veraltete Uhr-App, kein Rückfall (Nacht-Check meldet sie).
+                if (!message.isCompleteRing()) {
+                    runBlocking { app.diag.log(DiagKind.RING, "watch rang (incomplete, ignored)") }
+                    return
+                }
                 // Blockierend, damit der Weiterleitungs-Alarm steht, bevor der Dienst endet.
                 runBlocking { app.backup.watchRang(message) }
             }
@@ -137,6 +142,11 @@ class PhoneListenerService : WearableListenerService() {
             DataLayer.PATH_DIAG_LOG -> WatchReport.received(event.data)
             DataLayer.PATH_STOP -> {
                 val message = RingMessage.decode(event.data)
+                // Ohne Sendezeit: veraltete Uhr-App, kein Rückfall.
+                if (!message.isCurrent()) {
+                    runBlocking { app.diag.log(DiagKind.STOP, "from watch (incomplete, ignored)") }
+                    return
+                }
                 val nowMs = System.currentTimeMillis()
                 // Verspätet zugestellt (älter als 2 Minuten, wie auf dem iPhone): ändert nichts mehr.
                 if (message.isStale(nowMs)) {

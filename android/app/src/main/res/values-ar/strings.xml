@@ -558,8 +558,6 @@
     <string name="alarm_skip_undo_for">تراجع عن التخطي: %1$s</string>
     <string name="transient_alarm_running">منبّهك يعمل الآن.</string>
     <string name="transient_alarm_soon">نافذة منبّهك تبدأ قبل ذلك.</string>
-    <string name="check_watch_update">حدّث Phase Wake على الساعة</string>
-    <string name="check_watch_update_problem">حتى ذلك الحين لن تتخطى الساعة أي منبّه وستوقظك أيضًا في العطل.</string>
     <string name="check_watch_outdated_title">تطبيق الساعة قديم</string>
     <string name="check_watch_outdated_text">حدّث Phase Wake على الساعة حتى يرنّ كل منبّه كما ضبطته.</string>
     <string name="watch_store_opened">تم فتح Play Store على الساعة – ألقِ نظرة عليها.</string>

@@ -179,6 +179,16 @@ class PhoneListenerServiceTest {
     }
 
     @Test
+    fun outdatedWatchMessagesAreIgnored() {
+        // Veraltete Uhr-App: nur die Kennung, ohne Sendezeit bzw. ohne Schlummer-Runden – kein Rückfall.
+        service.onMessageReceived(Event(DataLayer.PATH_STOP, "a".encodeToByteArray()))
+        awaitDiag { it == "from watch (incomplete, ignored)" }
+        val now = System.currentTimeMillis()
+        service.onMessageReceived(Event(DataLayer.PATH_RING, RingMessage("a", now, now).encode()))
+        awaitDiag { it == "watch rang (incomplete, ignored)" }
+    }
+
+    @Test
     fun testAlarmReceivedByTheWatchIsLogged() {
         service.onMessageReceived(Event(DataLayer.PATH_TEST_ACK, "test-1".encodeToByteArray()))
         awaitDiag { it == "watch received" }

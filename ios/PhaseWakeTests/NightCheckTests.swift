@@ -24,17 +24,16 @@ final class NightCheckTests: XCTestCase {
         battery: Int? = 80,
         skip: RecorderSkip? = nil,
         notifications: (state: WatchNotifications, checkedAt: Date?)? = nil,
-        knowsSkip: Bool = true,
         watchProtocol: Int? = WatchProtocol.current
     ) -> NightCheck.WatchState {
         NightCheck.WatchState(paired: paired, appInstalled: appInstalled, plan: plan, armedTarget: armed, reminder: reminder,
-                              battery: battery, recorderSkip: skip, notifications: notifications, knowsSkip: knowsSkip,
+                              battery: battery, recorderSkip: skip, notifications: notifications,
                               watchProtocol: watchProtocol)
     }
 
     @MainActor
     func testWithoutWatchOrAppOnlyThatIsReported() {
-        XCTAssertEqual(NightCheck.watchChecks(state(paired: false, battery: 5, knowsSkip: false), now: now), [.watch])
+        XCTAssertEqual(NightCheck.watchChecks(state(paired: false, battery: 5, watchProtocol: 0), now: now), [.watch])
         XCTAssertEqual(NightCheck.watchChecks(state(appInstalled: false, battery: 5), now: now), [.watchApp])
         XCTAssertEqual(NightCheck.watchChecks(state(), now: now), [])
     }
@@ -81,10 +80,10 @@ final class NightCheckTests: XCTestCase {
 
     @MainActor
     func testOlderWatchApp() {
-        // Ohne Überspringen und Feiertage die genauere Meldung, nicht zusätzlich die allgemeine.
-        XCTAssertEqual(NightCheck.watchChecks(state(knowsSkip: false, watchProtocol: 1), now: now), [.watchUpdate])
         XCTAssertEqual(NightCheck.watchChecks(state(watchProtocol: WatchProtocol.current - 1), now: now), [.watchOutdated])
-        // Unbekannter Stand: keine Warnung.
+        // Kontext der Uhr ohne Stand (sehr alte Uhr-App) zählt als 0 (`PhoneConnectivity`): ebenfalls veraltet.
+        XCTAssertEqual(NightCheck.watchChecks(state(watchProtocol: 0), now: now), [.watchOutdated])
+        // Noch kein Kontext der Uhr: keine Warnung.
         XCTAssertEqual(NightCheck.watchChecks(state(watchProtocol: nil), now: now), [])
     }
 
@@ -93,10 +92,10 @@ final class NightCheckTests: XCTestCase {
         let night = plan(inHours: 8)
         let checks = NightCheck.watchChecks(
             state(plan: night, reminder: now.addingTimeInterval(60), battery: 10, skip: RecorderSkip(target: night.target, reason: .battery),
-                  notifications: (state: .blocked, checkedAt: nil), knowsSkip: false),
+                  notifications: (state: .blocked, checkedAt: nil), watchProtocol: 0),
             now: now
         )
-        XCTAssertEqual(checks, [.watchArm, .watchBattery, .watchRecorderBattery, .watchNotifications, .watchUpdate])
+        XCTAssertEqual(checks, [.watchArm, .watchBattery, .watchRecorderBattery, .watchNotifications, .watchOutdated])
     }
 
     @MainActor

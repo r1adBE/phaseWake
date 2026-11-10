@@ -52,7 +52,6 @@ class WearSyncOfflineTest {
         tolerant { sync.watchReady() }
         tolerant { sync.watchBattery() }
         tolerant { sync.watchSeenAt() }
-        tolerant { sync.watchAlarmFields() }
         tolerant { sync.watchProtocol() }
         tolerant { sync.nodesWithout(DataLayer.CAPABILITY_WATCH) }
         tolerant { sync.isReachable(DataLayer.CAPABILITY_WATCH) }

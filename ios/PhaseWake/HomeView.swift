@@ -357,7 +357,7 @@ private struct AlarmRow: View {
             Button(L("editor_edit"), systemImage: "pencil", action: onTap)
             if skipped != nil {
                 Button(L("alarm_skip_undo"), systemImage: "arrow.uturn.backward") { model.setSkipped(alarm, false) }
-            } else if !alarm.isOneShot && alarm.enabled && model.watchKnowsSkip {
+            } else if !alarm.isOneShot && alarm.enabled {
                 Button(skipTitle, systemImage: "forward.end") { model.setSkipped(alarm, true) }
             }
         }
@@ -365,7 +365,7 @@ private struct AlarmRow: View {
         .accessibilityActions {
             if let skipped {
                 Button(undoLabel(skipped)) { model.setSkipped(alarm, false) }
-            } else if !alarm.isOneShot && alarm.enabled && model.watchKnowsSkip {
+            } else if !alarm.isOneShot && alarm.enabled {
                 Button(skipTitle) { model.setSkipped(alarm, true) }
             }
         }

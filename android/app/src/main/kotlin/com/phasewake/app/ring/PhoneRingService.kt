@@ -65,9 +65,8 @@ class PhoneRingService : Service() {
     }
 
     /**
-     * Schlummer-Runden: Bei der Uhr zählt deren Angabe [watchSnoozesLeft] (ältere Uhren schicken keine:
-     * dann der Zähler im Prozess), beim Handy allein [snoozesDone] aus dem Schlummer-Alarm. So stimmt
-     * die Zahl auch, wenn der Dienst zwischendurch beendet wurde.
+     * Schlummer-Runden: Bei der Uhr zählt deren Angabe [watchSnoozesLeft], beim Handy allein [snoozesDone] aus dem
+     * Schlummer-Alarm. So stimmt die Zahl auch, wenn der Dienst zwischendurch beendet wurde.
      *
      * Klingelt schon eine andere Nacht (zwei Wecker kurz nacheinander), löst diese sie ab ([RingRules.Incoming.TAKE_OVER]):
      * Kennung, Zielzeit, Ton und Aufgabe wechseln, die erste Nacht gilt als geweckt (sie hat schon geklingelt). So
@@ -103,7 +102,7 @@ class PhoneRingService : Service() {
         val afterSnooze = state.value is State.Snoozed
         if (afterSnooze) state.value = State.Idle
         // Probewecker: ohne Schlummern (er prüft genau einen Weckvorgang).
-        val left = RingRules.snoozesLeft(alarmId, fromWatch, watchSnoozesLeft, legacyWatchSnoozes(), snoozesDone)
+        val left = RingRules.snoozesLeft(alarmId, fromWatch, watchSnoozesLeft, snoozesDone)
         state.value = State.Ringing(fromWatch = fromWatch, snoozesLeft = left)
         alert.show(if (fromWatch) "with watch" else "backup")
         handler.postDelayed(timeout, RingRules.TIMEOUT_MS)
@@ -146,8 +145,6 @@ class PhoneRingService : Service() {
         release()
         if (ringing.fromWatch) {
             // Die Uhr führt die Nacht: sie schlummert und meldet sich in 5 Minuten wieder.
-            legacySnoozes = done
-            legacySnoozedAt = clock()
             val alarmId = lastAlarmId
             val safetyAt = Snooze.nextRing(now()).plusMillis(RingMessage.SNOOZE_SAFETY_MS)
             // Statt der Wiederaufnahme gilt nun die Sicherung nach dem Schlummer-Ende.
@@ -211,7 +208,6 @@ class PhoneRingService : Service() {
     private fun stop(notifyWatch: Boolean) {
         val before = state.value
         val wasFromWatch = (before as? State.Ringing)?.fromWatch == true
-        legacySnoozes = 0
         release()
         phoneApp.backup.cancelSnooze()
         // Am Handy beendet: auch keine Sicherung nach dem Schlummern mehr (nicht beim stillen Stopp
@@ -317,19 +313,12 @@ class PhoneRingService : Service() {
          * Schlummer-Runden einer älteren Uhr (schickt keine Zahl mit): über Neustarts des Dienstes
          * hinweg im Prozess gezählt; nach einer halben Stunde ohne Schlummern gilt ein neuer Weckvorgang.
          */
-        private var legacySnoozes = 0
-        private var legacySnoozedAt = 0L
 
         /** Uhrzeit für Schlummern und Wiederaufnahme (ms); in Tests fest (Review M-2). */
         @Volatile
         internal var clock: () -> Long = System::currentTimeMillis
 
         private fun now(): java.time.Instant = java.time.Instant.ofEpochMilli(clock())
-
-        private fun legacyWatchSnoozes(): Int =
-            if (clock() - legacySnoozedAt > LEGACY_SNOOZE_RESET_MS) 0 else legacySnoozes
-
-        private const val LEGACY_SNOOZE_RESET_MS = 30 * 60_000L
 
         /**
          * Klingeln für Wecker [alarmId] ([RingResult]): neu, als Ablösung oder Fortsetzung eines laufenden Klingelns,

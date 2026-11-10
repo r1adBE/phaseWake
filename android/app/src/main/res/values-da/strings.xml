@@ -502,8 +502,6 @@
     <string name="alarm_skip_undo_for">Fortryd overspring: %1$s</string>
     <string name="transient_alarm_running">Din alarm er i gang lige nu.</string>
     <string name="transient_alarm_soon">Dit vækkevindue starter allerede før.</string>
-    <string name="check_watch_update">Opdater Phase Wake på uret</string>
-    <string name="check_watch_update_problem">Indtil da springer uret ingen alarmer over og vækker dig også på helligdage.</string>
     <string name="check_watch_outdated_title">Ur-appen er forældet</string>
     <string name="check_watch_outdated_text">Opdater Phase Wake på uret, så hver alarm ringer som indstillet.</string>
     <string name="watch_store_opened">Play Store er åbnet på uret – tag et kig på det.</string>

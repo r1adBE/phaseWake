@@ -22,6 +22,15 @@ final class BackupPasswordTests: XCTestCase {
         XCTAssertEqual(BackupPassword.problem(String(repeating: "a\u{0308}", count: 10)), .trivial)
     }
 
+    func testRepeatedBlocks() {
+        for p in ["1212121212", "abcabcabca", "ABCabcabcABC", "abcdabcdab", "12345123451", "xY!xY!xY!x"] {
+            XCTAssertEqual(BackupPassword.problem(p), .trivial, p)
+        }
+        // Block aus 6 Zeichen: nicht mehr trivial.
+        XCTAssertNil(BackupPassword.problem("abcdeXabcdeX"))
+        XCTAssertNil(BackupPassword.problem("1212121213"))
+    }
+
     func testSequences() {
         for p in ["1234567890", "0123456789", "7890123456", "9876543210", "0987654321", "abcdefghij", "ABCDEFGHIJK", "jihgfedcba", "klmnopqrstuvwxyz"] {
             XCTAssertEqual(BackupPassword.problem(p), .trivial, p)

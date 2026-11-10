@@ -118,14 +118,22 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         seenWatch()
         guard let command = message[SyncKeys.command] as? String else { return }
         let alarmId = (message[SyncKeys.alarms] as? String).flatMap { $0.isEmpty ? nil : $0 }
-        // Zielzeit der Nacht und Sendezeit; ältere Uhr-Versionen schicken sie nicht.
+        // Zielzeit der Nacht (fehlt, wenn die Uhr keine Nacht kennt) und Sendezeit.
         let target = (message[SyncKeys.target] as? Int64).map { Date(timeIntervalSince1970: Double($0) / 1000) }
         let sentAt = message[SyncKeys.sentAt] as? Int64
+        // «klingeln» und «stop» ohne Sendezeit (bzw. «klingeln» ohne Kennung oder Schlummer-Runden) stammen von einer
+        // veralteten Uhr-App: verwerfen, kein Rückfall (der Nacht-Check meldet sie als veraltet). Wie Android.
+        let snoozesLeftValue = (message[SyncKeys.snoozesLeft] as? Int64).map { Int($0) }
+        if command == SyncKeys.ring || command == SyncKeys.stop,
+           sentAt == nil || (command == SyncKeys.ring && (alarmId == nil || snoozesLeftValue == nil)) {
+            DiagStore.shared.log(.suppressed, "\(command) from outdated watch")
+            return
+        }
         // Älter als 2 Minuten (nachgereicht, z. B. per `transferUserInfo`): klingelt bzw. stoppt nicht mehr.
         let stale = sentAt.map { Int64(Date().timeIntervalSince1970 * 1000) - $0 > SyncKeys.maxRingAgeMs } ?? false
-        // Nur bei «stop» nach dem Schlummern auf der Uhr; ältere Uhren schicken es nie.
+        // Nur bei «stop» nach dem Schlummern auf der Uhr.
         let snoozeUntil = (message[SyncKeys.snoozeUntil] as? Int64).map { Date(timeIntervalSince1970: Double($0) / 1000) }
-        let snoozesLeft = (message[SyncKeys.snoozesLeft] as? Int64).map { Int($0) } ?? 0
+        let snoozesLeft = snoozesLeftValue ?? 0
         let id = message[SyncKeys.id] as? String
         let payload = message[SyncKeys.payload] as? String
         Task { @MainActor in
@@ -197,9 +205,7 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         if !context.isEmpty { seenWatch() }
         if let armed = context[SyncKeys.armedTarget] as? Int64 {
             let date = armed > 0 ? Date(timeIntervalSince1970: Double(armed) / 1000) : nil
-            // Ohne Angabe: ältere Uhr, die Überspringen und Feiertage nicht kennt.
-            let fields = Int((context[SyncKeys.alarmFields] as? Int64) ?? 0)
-            Task { @MainActor in PhoneModel.shared.watchArmed(date, alarmFields: fields) }
+            Task { @MainActor in PhoneModel.shared.watchArmed(date) }
         }
         // «Nacht aufzeichnen» auf der Uhr (fehlt bei älteren Uhr-Versionen).
         if let since = context[SyncKeys.recordSince] as? Int64 {
@@ -217,8 +223,9 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
             battery = (percent: Int(percent), at: Date(timeIntervalSince1970: Double(at) / 1000))
         }
         let level = battery
-        // Stand der Verbindung; fehlt er (ältere Uhr), gilt er als unbekannt und der Nacht-Check warnt nicht.
-        let version = (context[SyncKeys.watchProtocol] as? Int64).map { Int($0) }
+        // Stand der Verbindung; fehlt er in einem Kontext der Uhr (sehr alte Uhr-App), zählt er als 0: Der Nacht-Check
+        // meldet «Uhr-App veraltet» (wie Android, Status ohne Angabe).
+        let version = Int((context[SyncKeys.watchProtocol] as? Int64) ?? 0)
         // Erlaubnis der Mitteilungen auf der Uhr; fehlt sie (ältere Uhr, noch nicht gefragt), warnt der Nacht-Check nicht.
         // Mit dem Zeitpunkt der Prüfung auf der Uhr; ohne ihn (ältere Uhr) kein Hinweis «veraltet».
         let checkedAt = (context[SyncKeys.watchNotificationsAt] as? Int64).map { Date(timeIntervalSince1970: Double($0) / 1000) }

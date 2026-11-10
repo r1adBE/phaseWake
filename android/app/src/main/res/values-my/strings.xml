@@ -490,8 +490,6 @@
     <string name="alarm_skip_undo_for">ကျော်ခြင်း ပြန်ဖျက်ရန်- %1$s</string>
     <string name="transient_alarm_running">သင့်နှိုးစက် ယခု လည်ပတ်နေသည်။</string>
     <string name="transient_alarm_soon">သင့်နှိုးချိန်အပိုင်းသည် ထိုမတိုင်မီ စတင်သည်။</string>
-    <string name="check_watch_update">နာရီပေါ်ရှိ Phase Wake ကို အပ်ဒိတ်လုပ်ပါ</string>
-    <string name="check_watch_update_problem">ထိုအချိန်အထိ နာရီက နှိုးစက်များကို မကျော်ဘဲ ရုံးပိတ်ရက်များတွင်လည်း နှိုးမည်။</string>
     <string name="check_watch_outdated_title">နာရီအက်ပ် ဗားရှင်းဟောင်းနေသည်</string>
     <string name="check_watch_outdated_text">နှိုးစက်တိုင်း သတ်မှတ်ထားသည့်အတိုင်း မြည်စေရန် နာရီပေါ်ရှိ Phase Wake ကို အပ်ဒိတ်လုပ်ပါ။</string>
     <string name="watch_store_opened">နာရီပေါ်တွင် Play Store ကို ဖွင့်ထားပါပြီ – ကြည့်လိုက်ပါ။</string>

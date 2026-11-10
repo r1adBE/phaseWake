@@ -9,11 +9,11 @@ import AlarmKit
 
 /// Nacht-Check: Was muss stimmen, damit morgen sicher geweckt wird? Gleiche Idee wie Android.
 enum PhoneCheck: CaseIterable, Hashable {
-    case watch, watchApp, watchArm, watchBattery, watchUpdate, alarms, notifications, battery
+    case watch, watchApp, watchArm, watchBattery, alarms, notifications, battery
     /// Uhr nicht scharf, obwohl die Erinnerung am Abend schon kam (60 Min vor der Bettzeit, `EveningReminder` auf der
     /// Uhr): Heute Nacht weckt sie dann nur per Mitteilung, ohne Schlafphasen.
     case watchArmTonight
-    /// Uhr-App älter als die iPhone-App (`WatchProtocol`); nur, wenn `watchUpdate` nicht schon greift.
+    /// Uhr-App älter als die iPhone-App (`WatchProtocol`).
     case watchOutdated
     /// Zweitwecker bald aufgebraucht: iOS hat die App zu lange nicht geweckt (`BackupAlarm.horizonShort`).
     case backupHorizon
@@ -33,7 +33,6 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .watchApp: L("check_watch_app")
         case .watchArm, .watchArmTonight: L("check_watch_arm")
         case .watchBattery: L("check_watch_battery")
-        case .watchUpdate: L("check_watch_update")
         case .watchOutdated: L("check_watch_outdated_title")
         case .alarms: L("check_alarmkit")
         case .notifications: L("check_notifications")
@@ -52,7 +51,6 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .watchArm: L("check_watch_arm_problem")
         case .watchArmTonight: L("check_watch_arm_tonight")
         case .watchBattery: L("check_watch_battery_problem", NightCheck.lowBatteryPercent)
-        case .watchUpdate: L("check_watch_update_problem")
         case .watchOutdated: L("check_watch_outdated_text")
         case .alarms: L("check_alarmkit_problem")
         case .notifications: L("check_notifications_problem")
@@ -94,7 +92,6 @@ enum NightCheck {
             battery: model.watchBattery(),
             recorderSkip: watchRecorderSkip,
             notifications: model.watchNotifications,
-            knowsSkip: model.watchKnowsSkip,
             watchProtocol: model.watchProtocol
         )
         var failed = watchChecks(watch, now: Date())
@@ -127,8 +124,6 @@ enum NightCheck {
         var recorderSkip: RecorderSkip?
         /// Erlaubnis für Mitteilungen auf der Uhr und Zeitpunkt ihrer Prüfung; `nil`, wenn unbekannt.
         var notifications: (state: WatchNotifications, checkedAt: Date?)?
-        /// Uhr kennt Überspringen und Feiertage (`PhoneModel.watchKnowsSkip`).
-        var knowsSkip: Bool
         /// Stand der Verbindung der Uhr-App (``WatchProtocol``); `nil`, wenn unbekannt.
         var watchProtocol: Int?
     }
@@ -158,13 +153,8 @@ enum NightCheck {
         if WatchNotifications.isOutdated(checkedAt: watch.notifications?.checkedAt, now: now) {
             failed.append(.watchStateOld)
         }
-        // Ältere Uhr-App: Eine ohne Überspringen und Feiertage meldet die genauere Folge; sonst die allgemeine
-        // Warnung, wenn die Uhr einen älteren Stand der Verbindung meldet (unbekannt: keine Warnung).
-        if !watch.knowsSkip {
-            failed.append(.watchUpdate)
-        } else if WatchProtocol.isOutdated(watch: watch.watchProtocol) {
-            failed.append(.watchOutdated)
-        }
+        // Ältere Uhr-App: Sie meldet einen älteren Stand der Verbindung (ohne Angabe 0); noch kein Kontext: keine Warnung.
+        if WatchProtocol.isOutdated(watch: watch.watchProtocol) { failed.append(.watchOutdated) }
         return failed
     }
 
@@ -230,7 +220,7 @@ enum NightCheck {
             } else {
                 openSettings()
             }
-        case .watch, .watchApp, .watchArm, .watchArmTonight, .watchBattery, .watchUpdate, .watchOutdated, .battery, .backupHorizon, .silentSwitch,
+        case .watch, .watchApp, .watchArm, .watchArmTonight, .watchBattery, .watchOutdated, .battery, .backupHorizon, .silentSwitch,
              .watchNotifications, .watchStateOld, .watchRecorderBattery, .watchRecorderMotion:
             break
         }

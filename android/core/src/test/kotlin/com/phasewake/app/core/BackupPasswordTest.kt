@@ -30,6 +30,16 @@ class BackupPasswordTest {
     }
 
     @Test
+    fun repeatedBlocks() {
+        for (p in listOf("1212121212", "abcabcabca", "ABCabcabcABC", "abcdabcdab", "12345123451", "xY!xY!xY!x")) {
+            assertEquals(Problem.TRIVIAL, BackupPassword.problem(p), p)
+        }
+        // Block aus 6 Zeichen: nicht mehr trivial.
+        assertNull(BackupPassword.problem("abcdeXabcdeX"))
+        assertNull(BackupPassword.problem("1212121213"))
+    }
+
+    @Test
     fun sequences() {
         for (p in listOf("1234567890", "0123456789", "7890123456", "9876543210", "0987654321", "abcdefghij", "ABCDEFGHIJK", "jihgfedcba", "klmnopqrstuvwxyz")) {
             assertEquals(Problem.TRIVIAL, BackupPassword.problem(p), p)

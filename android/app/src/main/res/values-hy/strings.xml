@@ -490,8 +490,6 @@
     <string name="alarm_skip_undo_for">Հետարկել բացթողումը՝ %1$s</string>
     <string name="transient_alarm_running">Զարթուցիչդ հենց հիմա աշխատում է։</string>
     <string name="transient_alarm_soon">Զարթուցիչիդ պատուհանը սկսվում է դրանից առաջ։</string>
-    <string name="check_watch_update">Թարմացրու Phase Wake-ը ժամացույցում</string>
-    <string name="check_watch_update_problem">Մինչ այդ ժամացույցդ զարթուցիչներ բաց չի թողնի և քեզ կարթնացնի նաև տոներին։</string>
     <string name="check_watch_outdated_title">Ժամացույցի հավելվածը հնացած է</string>
     <string name="check_watch_outdated_text">Թարմացրու Phase Wake-ը ժամացույցում, որպեսզի ամեն զարթուցիչ զնգա այնպես, ինչպես կարգավորել ես։</string>
     <string name="watch_store_opened">Play Store-ը բացվեց ժամացույցում – նայիր դրան։</string>

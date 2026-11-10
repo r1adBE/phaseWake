@@ -34,7 +34,7 @@ class PhoneRingFlowTest {
         var done = 0
         val rounds = mutableListOf<RingRules.Timeout>()
         while (true) {
-            val left = RingRules.snoozesLeft("a", fromWatch = false, watchSnoozesLeft = null, legacyWatchSnoozes = 0, snoozesDone = done)
+            val left = RingRules.snoozesLeft("a", fromWatch = false, watchSnoozesLeft = null, snoozesDone = done)
             val timeout = RingRules.timeout(ringing = true, fromWatch = false, snoozesLeft = left)
             rounds += timeout
             if (timeout != RingRules.Timeout.SNOOZE) break
@@ -47,14 +47,14 @@ class PhoneRingFlowTest {
     @Test
     fun snoozeRoundsComeFromTheLeader() {
         // Handy führt: allein die Zahl aus dem Schlummer- bzw. Wiederaufnahme-Alarm (übersteht ein Prozessende).
-        assertEquals(Snooze.MAX_COUNT - 2, RingRules.snoozesLeft("a", false, watchSnoozesLeft = 3, legacyWatchSnoozes = 0, snoozesDone = 2))
-        // Uhr führt: ihre Angabe; ältere Uhr ohne Angabe: der Zähler im Prozess.
-        assertEquals(1, RingRules.snoozesLeft("a", true, watchSnoozesLeft = 1, legacyWatchSnoozes = 0, snoozesDone = 0))
-        assertEquals(Snooze.MAX_COUNT - 2, RingRules.snoozesLeft("a", true, watchSnoozesLeft = null, legacyWatchSnoozes = 2, snoozesDone = 0))
+        assertEquals(Snooze.MAX_COUNT - 2, RingRules.snoozesLeft("a", false, watchSnoozesLeft = 3, snoozesDone = 2))
+        // Uhr führt: ihre Angabe (jedes «klingeln» trägt sie); ohne Angabe wie beim Handy.
+        assertEquals(1, RingRules.snoozesLeft("a", true, watchSnoozesLeft = 1, snoozesDone = 0))
+        assertEquals(Snooze.MAX_COUNT - 2, RingRules.snoozesLeft("a", true, watchSnoozesLeft = null, snoozesDone = 2))
         // Begrenzt auf 0 … MAX_COUNT; der Probewecker schlummert nie.
-        assertEquals(Snooze.MAX_COUNT, RingRules.snoozesLeft("a", true, watchSnoozesLeft = 9, legacyWatchSnoozes = 0, snoozesDone = 0))
-        assertEquals(0, RingRules.snoozesLeft("a", false, watchSnoozesLeft = null, legacyWatchSnoozes = 0, snoozesDone = 7))
-        assertEquals(0, RingRules.snoozesLeft(Transient.TEST_PREFIX + "1", false, watchSnoozesLeft = null, legacyWatchSnoozes = 0, snoozesDone = 0))
+        assertEquals(Snooze.MAX_COUNT, RingRules.snoozesLeft("a", true, watchSnoozesLeft = 9, snoozesDone = 0))
+        assertEquals(0, RingRules.snoozesLeft("a", false, watchSnoozesLeft = null, snoozesDone = 7))
+        assertEquals(0, RingRules.snoozesLeft(Transient.TEST_PREFIX + "1", false, watchSnoozesLeft = null, snoozesDone = 0))
     }
 
     @Test
@@ -72,7 +72,7 @@ class PhoneRingFlowTest {
     fun secondAlarmTakesOverAndStartsFresh() {
         // Wecker «a» klingelt (eine Runde geschlummert), «b» kommt: Ablösen, «b» beginnt mit allen Runden.
         assertEquals(RingRules.Incoming.TAKE_OVER, RingRules.incoming(true, "b", now + 300_000, "a", now))
-        assertEquals(Snooze.MAX_COUNT, RingRules.snoozesLeft("b", false, watchSnoozesLeft = null, legacyWatchSnoozes = 0, snoozesDone = 0))
+        assertEquals(Snooze.MAX_COUNT, RingRules.snoozesLeft("b", false, watchSnoozesLeft = null, snoozesDone = 0))
         // Schlummer-Ende derselben Nacht (ohne Zielzeit) ist kein Ablösen.
         assertEquals(RingRules.Incoming.SAME_NIGHT, RingRules.incoming(true, "a", null, "a", now))
         assertEquals(RingRules.Incoming.NEW_ROUND, RingRules.incoming(false, "a", null, "a", now))

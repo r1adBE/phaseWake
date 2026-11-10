@@ -519,8 +519,6 @@
     <string name="alarm_skip_undo_for">Poništi preskakanje: %1$s</string>
     <string name="transient_alarm_running">Tvoj alarm je upravo aktivan.</string>
     <string name="transient_alarm_soon">Tvoj interval buđenja počinje prije toga.</string>
-    <string name="check_watch_update">Ažuriraj Phase Wake na satu</string>
-    <string name="check_watch_update_problem">Do tada sat neće preskakati alarme i budit će te i na praznike.</string>
     <string name="check_watch_outdated_title">Aplikacija na satu je zastarjela</string>
     <string name="check_watch_outdated_text">Ažuriraj Phase Wake na satu kako bi svaki alarm zvonio kako je podešen.</string>
     <string name="watch_store_opened">Play Store je otvoren na satu – pogledaj ga.</string>

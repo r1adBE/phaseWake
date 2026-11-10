@@ -134,13 +134,8 @@ final class SkipTests: XCTestCase {
         XCTAssertFalse(a.with(skipHolidays: false).skipHolidays)
     }
 
-    func testWatchFormatCapability() {
-        // Eine Weckerzeile hat so viele Felder, wie die Uhr im Status meldet.
+    func testAlarmLineHasAllFields() {
         let line = Codec.encodeAlarms([alarm()]).components(separatedBy: "\n")[1]
         XCTAssertEqual(line.components(separatedBy: "|").count, Codec.alarmFields)
-        XCTAssertTrue(Codec.watchKnowsSkip(nil))
-        XCTAssertTrue(Codec.watchKnowsSkip(Codec.alarmFields))
-        XCTAssertFalse(Codec.watchKnowsSkip(0))
-        XCTAssertFalse(Codec.watchKnowsSkip(14))
     }
 }

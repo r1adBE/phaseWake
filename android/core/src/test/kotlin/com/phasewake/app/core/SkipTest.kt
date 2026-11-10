@@ -136,13 +136,8 @@ class SkipTest {
     }
 
     @Test
-    fun watchFormatCapability() {
-        // Eine Weckerzeile hat so viele Felder, wie die Uhr im Status meldet.
+    fun alarmLineHasAllFields() {
         val line = Codec.encodeAlarms(listOf(alarm())).lines()[1]
         assertEquals(Codec.ALARM_FIELDS, line.split("|").size)
-        assertTrue(Codec.watchKnowsSkip(null))
-        assertTrue(Codec.watchKnowsSkip(Codec.ALARM_FIELDS))
-        assertFalse(Codec.watchKnowsSkip(0))
-        assertFalse(Codec.watchKnowsSkip(14))
     }
 }

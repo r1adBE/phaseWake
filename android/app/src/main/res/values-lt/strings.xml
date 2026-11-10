@@ -533,8 +533,6 @@
     <string name="alarm_skip_undo_for">Anuliuoti praleidimą: %1$s</string>
     <string name="transient_alarm_running">Tavo žadintuvas šiuo metu veikia.</string>
     <string name="transient_alarm_soon">Tavo žadinimo langas prasideda anksčiau.</string>
-    <string name="check_watch_update">Atnaujink Phase Wake laikrodyje</string>
-    <string name="check_watch_update_problem">Iki tol laikrodis nepraleis žadintuvų ir žadins tave net per šventes.</string>
     <string name="check_watch_outdated_title">Laikrodžio programėlė pasenusi</string>
     <string name="check_watch_outdated_text">Atnaujink Phase Wake laikrodyje, kad kiekvienas žadintuvas skambėtų taip, kaip nustatytas.</string>
     <string name="watch_store_opened">Play Store atidaryta laikrodyje – pažiūrėk į jį.</string>

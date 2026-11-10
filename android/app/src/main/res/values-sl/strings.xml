@@ -532,8 +532,6 @@
     <string name="alarm_skip_undo_for">Razveljavi preskok: %1$s</string>
     <string name="transient_alarm_running">Tvoja budilka je ravno aktivna.</string>
     <string name="transient_alarm_soon">Tvoje okno bujenja se začne že prej.</string>
-    <string name="check_watch_update">Posodobi Phase Wake na uri</string>
-    <string name="check_watch_update_problem">Do takrat ura ne bo preskakovala budilk in te bo budila tudi ob praznikih.</string>
     <string name="check_watch_outdated_title">Aplikacija na uri je zastarela</string>
     <string name="check_watch_outdated_text">Posodobi Phase Wake na uri, da bo vsaka budilka zvonila tako, kot je nastavljena.</string>
     <string name="watch_store_opened">Play Store je odprt na uri – poglej nanjo.</string>

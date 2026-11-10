@@ -502,8 +502,6 @@
     <string name="alarm_skip_undo_for">Overslaan ongedaan maken: %1$s</string>
     <string name="transient_alarm_running">Je wekker loopt op dit moment.</string>
     <string name="transient_alarm_soon">Je wekvenster begint al eerder.</string>
-    <string name="check_watch_update">Werk Phase Wake op het horloge bij</string>
-    <string name="check_watch_update_problem">Tot die tijd slaat het horloge geen wekker over en wekt het je ook op feestdagen.</string>
     <string name="check_watch_outdated_title">Horloge-app verouderd</string>
     <string name="check_watch_outdated_text">Werk Phase Wake op het horloge bij, zodat elke wekker afgaat zoals ingesteld.</string>
     <string name="watch_store_opened">Play Store geopend op je horloge – kijk er even naar.</string>

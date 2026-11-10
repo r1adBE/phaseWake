@@ -18,7 +18,10 @@ object BackupPassword {
         /** Kürzer als [MIN_LENGTH]. */
         TOO_SHORT,
 
-        /** Leicht zu erraten: ein Zeichen wiederholt, eine einfache Folge, eine Tastaturreihe oder ein häufiges Passwort. */
+        /**
+         * Leicht zu erraten: ein wiederholter Block (1–5 Zeichen), eine einfache Folge, eine Tastaturreihe oder ein
+         * häufiges Passwort.
+         */
         TRIVIAL,
     }
 
@@ -56,11 +59,21 @@ object BackupPassword {
 
     private fun isTrivial(lower: String): Boolean {
         val points = lower.codePoints().toArray()
-        if (points.all { it == points[0] }) return true
+        if (isRepeatedBlock(points)) return true
         if (isSequence(points, 1) || isSequence(points, -1)) return true
         if (KEYBOARD.any { row -> lower in row || lower in row.reversed() }) return true
         return lower in COMMON
     }
+
+    /**
+     * Ob das Passwort ein Block aus 1 bis [MAX_BLOCK] Zeichen ist, wiederholt bis zum Ende (der letzte darf angeschnitten
+     * sein): «aaaaaaaaaa», «1212121212», «abcabcabca».
+     */
+    private fun isRepeatedBlock(points: IntArray): Boolean =
+        (1..MAX_BLOCK).any { block -> block < points.size && (block until points.size).all { points[it] == points[it - block] } }
+
+    /** Längster Block, dessen Wiederholung als trivial gilt. */
+    private const val MAX_BLOCK = 5
 
     /** Ob jeder Codepunkt um [step] auf den vorigen folgt (1234…, abcd…, dcba…); Ziffern laufen im Kreis (…8, 9, 0, 1…). */
     private fun isSequence(points: IntArray, step: Int): Boolean =

@@ -12,7 +12,8 @@ public enum BackupPassword {
     public enum Problem: Sendable, Equatable {
         /// Kürzer als `minLength`.
         case tooShort
-        /// Leicht zu erraten: ein Zeichen wiederholt, eine einfache Folge, eine Tastaturreihe oder ein häufiges Passwort.
+        /// Leicht zu erraten: ein wiederholter Block (1–5 Zeichen), eine einfache Folge, eine Tastaturreihe oder ein
+        /// häufiges Passwort.
         case trivial
     }
 
@@ -48,7 +49,7 @@ public enum BackupPassword {
 
     private static func isTrivial(_ lower: String) -> Bool {
         let points = lower.unicodeScalars.map { Int($0.value) }
-        if points.allSatisfy({ $0 == points[0] }) { return true }
+        if isRepeatedBlock(points) { return true }
         if isSequence(points, step: 1) || isSequence(points, step: -1) { return true }
         // Vergleich der Unicode-Skalare (wie Kotlin), nicht der Graphem-Gruppen.
         let scalars = Array(lower.unicodeScalars)
@@ -61,6 +62,17 @@ public enum BackupPassword {
         let hay = Array(row.unicodeScalars)
         guard needle.count <= hay.count else { return false }
         return (0...(hay.count - needle.count)).contains { start in Array(hay[start..<(start + needle.count)]) == needle }
+    }
+
+    /// Längster Block, dessen Wiederholung als trivial gilt.
+    private static let maxBlock = 5
+
+    /// Ob das Passwort ein Block aus 1 bis `maxBlock` Zeichen ist, wiederholt bis zum Ende (der letzte darf angeschnitten
+    /// sein): «aaaaaaaaaa», «1212121212», «abcabcabca».
+    private static func isRepeatedBlock(_ points: [Int]) -> Bool {
+        (1...maxBlock).contains { block in
+            block < points.count && (block..<points.count).allSatisfy { points[$0] == points[$0 - block] }
+        }
     }
 
     /// Ob jeder Codepunkt um `step` auf den vorigen folgt (1234…, abcd…, dcba…); Ziffern laufen im Kreis (…8, 9, 0, 1…).

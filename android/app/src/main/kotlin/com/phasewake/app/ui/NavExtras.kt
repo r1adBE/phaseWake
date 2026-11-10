@@ -69,14 +69,12 @@ private fun launchTransient(app: PhaseWakeApp, start: suspend () -> TransientCon
 }
 
 /**
- * Probewecker, Powernap, Überspringen und Feiertage für die Startseite. [skipAllowed]: Die Uhr kennt «Überspringen»
- * (`Codec.watchKnowsSkip`); sonst kein Menü, denn die Uhr weckte trotzdem. [record]: Stand von «Nacht aufzeichnen» der
+ * Probewecker, Powernap, Überspringen und Feiertage für die Startseite. [record]: Stand von «Nacht aufzeichnen» der
  * Uhr; `null` (Uhr kennt es nicht): keine Karte.
  */
 internal fun homeExtras(
     app: PhaseWakeApp,
     data: AppData,
-    skipAllowed: Boolean = true,
     now: Instant = Instant.now(),
     record: RecordSync.RecordStatus? = null,
 ): HomeExtras {
@@ -94,7 +92,7 @@ internal fun homeExtras(
                 val done = app.backup.doneUntil()[alarm.id]
                 app.alarms.update(alarm.id) { AlarmSchedule.skipNext(it, Instant.now(), ZoneId.systemDefault(), data.holidays, done) }
             }
-        }.takeIf { skipAllowed },
+        },
         onUndoSkip = { alarm -> app.afterAlarmsChanged { app.alarms.update(alarm.id, AlarmSchedule::undoSkip) } },
         onTest = { startTest(app) },
         testAt = data.testRun?.takeIf { transient?.kind == TransientKind.TEST && !TestRuns.isFinished(it, now) }?.target,

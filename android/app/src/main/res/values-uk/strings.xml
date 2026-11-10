@@ -530,8 +530,6 @@
     <string name="alarm_skip_undo_for">Скасувати пропуск: %1$s</string>
     <string name="transient_alarm_running">Зараз працює твій будильник.</string>
     <string name="transient_alarm_soon">Вікно твого будильника починається раніше.</string>
-    <string name="check_watch_update">Онови Phase Wake на годиннику</string>
-    <string name="check_watch_update_problem">До того часу годинник не пропускає будильники й будить тебе навіть у свята.</string>
     <string name="check_watch_outdated_title">Застосунок на годиннику застарів</string>
     <string name="check_watch_outdated_text">Онови Phase Wake на годиннику, щоб кожен будильник дзвонив так, як налаштовано.</string>
     <string name="watch_store_opened">Play Store відкрито на годиннику – поглянь на нього.</string>

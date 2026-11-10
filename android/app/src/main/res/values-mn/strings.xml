@@ -505,8 +505,6 @@
     <string name="alarm_skip_undo_for">Алгасахыг буцаах: %1$s</string>
     <string name="transient_alarm_running">Сэрүүлэг чинь яг одоо ажиллаж байна.</string>
     <string name="transient_alarm_soon">Сэрээх хугацаа чинь түүнээс өмнө эхэлнэ.</string>
-    <string name="check_watch_update">Цаган дээрх Phase Wake-ийг шинэчил</string>
-    <string name="check_watch_update_problem">Тэр болтол цаг чинь сэрүүлгийг алгасахгүй бөгөөд баярын өдөр ч сэрээнэ.</string>
     <string name="check_watch_outdated_title">Цагны апп хуучирсан</string>
     <string name="check_watch_outdated_text">Сэрүүлэг бүр тохируулсан ёсоороо дуугарахын тулд цаган дээрх Phase Wake-ийг шинэчил.</string>
     <string name="watch_store_opened">Play Store цаган дээр нээгдлээ – түүн рүү хар.</string>

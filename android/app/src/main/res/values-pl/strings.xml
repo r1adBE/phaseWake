@@ -530,8 +530,6 @@
     <string name="alarm_skip_undo_for">Cofnij pominięcie: %1$s</string>
     <string name="transient_alarm_running">Twój budzik właśnie działa.</string>
     <string name="transient_alarm_soon">Okno twojego budzika zaczyna się wcześniej.</string>
-    <string name="check_watch_update">Zaktualizuj Phase Wake na zegarku</string>
-    <string name="check_watch_update_problem">Do tego czasu zegarek nie pominie żadnego budzika i obudzi cię także w święta.</string>
     <string name="check_watch_outdated_title">Aplikacja na zegarku jest nieaktualna</string>
     <string name="check_watch_outdated_text">Zaktualizuj Phase Wake na zegarku, aby każdy budzik dzwonił tak, jak go ustawiono.</string>
     <string name="watch_store_opened">Otwarto Play Store na zegarku – zerknij na niego.</string>

@@ -505,8 +505,6 @@
     <string name="alarm_skip_undo_for">Oʻtkazishni qaytarish: %1$s</string>
     <string name="transient_alarm_running">Budilniging hozir ishlayapti.</string>
     <string name="transient_alarm_soon">Uygʻotish oraligʻing undan oldin boshlanadi.</string>
-    <string name="check_watch_update">Soatingdagi Phase Wakeʼni yangila</string>
-    <string name="check_watch_update_problem">Shungacha soating budilniklarni oʻtkazib yubormaydi va bayramlarda ham uygʻotadi.</string>
     <string name="check_watch_outdated_title">Soatdagi ilova eskirgan</string>
     <string name="check_watch_outdated_text">Har bir budilnik sozlanganidek jiringlashi uchun soatingdagi Phase Wakeʼni yangila.</string>
     <string name="watch_store_opened">Play Store soatingda ochildi – unga qarab chiq.</string>

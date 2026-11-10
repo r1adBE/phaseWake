@@ -490,8 +490,6 @@
     <string name="alarm_skip_undo_for">გამოტოვების გაუქმება: %1$s</string>
     <string name="transient_alarm_running">შენი მაღვიძარა ახლა მუშაობს.</string>
     <string name="transient_alarm_soon">შენი მაღვიძარის ფანჯარა მანამდე იწყება.</string>
-    <string name="check_watch_update">განაახლე Phase Wake საათზე</string>
-    <string name="check_watch_update_problem">მანამდე საათი მაღვიძარებს არ გამოტოვებს და დღესასწაულებზეც გაგაღვიძებს.</string>
     <string name="check_watch_outdated_title">საათის აპი მოძველებულია</string>
     <string name="check_watch_outdated_text">განაახლე Phase Wake საათზე, რომ ყველა მაღვიძარამ ისე დარეკოს, როგორც დააყენე.</string>
     <string name="watch_store_opened">Play Store გაიხსნა საათზე – შეხედე მას.</string>

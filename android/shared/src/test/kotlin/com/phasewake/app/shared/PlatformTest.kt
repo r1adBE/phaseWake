@@ -102,10 +102,8 @@ class PlatformTest {
         assertEquals(55, WearSync.readBattery(status, 10_500L, 1_000L))
         assertNull(WearSync.readBattery(status, 20_000L, 1_000L))
         assertEquals(10_000L, WearSync.readSeenAt(status))
-        assertEquals(Codec.ALARM_FIELDS, WearSync.readAlarmFields(status))
-        // Status einer älteren Uhr ohne Angabe: 0, also ohne Überspringen und Feiertage.
-        assertEquals(0, WearSync.readAlarmFields(DataMap().apply { putBoolean(DataLayer.KEY_READY, true) }))
-        assertFalse(Codec.watchKnowsSkip(WearSync.readAlarmFields(DataMap())))
+        // Keine Felder je Weckerzeile mehr (kein Rückfall für ältere Uhren, 10.11.2026).
+        assertFalse(status.containsKey("alarmFields"))
         val noBattery = DataMap.fromByteArray(WearSync.statusRequest(false, null, 10_000L).data!!)
         assertFalse(WearSync.readReady(noBattery))
         assertNull(WearSync.readBattery(noBattery, 10_000L, 1_000L))

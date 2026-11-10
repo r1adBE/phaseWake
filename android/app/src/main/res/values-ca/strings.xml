@@ -518,8 +518,6 @@
     <string name="alarm_skip_undo_for">Desfés l’omissió: %1$s</string>
     <string name="transient_alarm_running">La teva alarma està en marxa ara mateix.</string>
     <string name="transient_alarm_soon">La teva finestra de despertar comença abans.</string>
-    <string name="check_watch_update">Actualitza Phase Wake al rellotge</string>
-    <string name="check_watch_update_problem">Fins aleshores, el rellotge no ometrà alarmes i també et despertarà els festius.</string>
     <string name="check_watch_outdated_title">L’app del rellotge no està al dia</string>
     <string name="check_watch_outdated_text">Actualitza Phase Wake al rellotge perquè cada alarma soni tal com l’has configurat.</string>
     <string name="watch_store_opened">S’ha obert la Play Store al rellotge – fes-hi un cop d’ull.</string>

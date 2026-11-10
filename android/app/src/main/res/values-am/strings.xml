@@ -505,8 +505,6 @@
     <string name="alarm_skip_undo_for">መዝለልን ቀልብስ: %1$s</string>
     <string name="transient_alarm_running">ማንቂያዎ አሁን እየሄደ ነው።</string>
     <string name="transient_alarm_soon">የመቀስቀሻ ክልልዎ ከዚያ በፊት ይጀምራል።</string>
-    <string name="check_watch_update">በሰዓትዎ ላይ Phase Wakeን ያዘምኑ</string>
-    <string name="check_watch_update_problem">እስከዚያ ድረስ ሰዓትዎ ማንቂያዎችን አይዘልም፣ በበዓላትም ይቀሰቅስዎታል።</string>
     <string name="check_watch_outdated_title">የሰዓት መተግበሪያው ጊዜው ያለፈበት ነው</string>
     <string name="check_watch_outdated_text">እያንዳንዱ ማንቂያ እንደተቀናበረው እንዲደውል በሰዓትዎ ላይ Phase Wakeን ያዘምኑ።</string>
     <string name="watch_store_opened">Play Store በሰዓትዎ ላይ ተከፍቷል – እባክዎ ይመልከቱት።</string>

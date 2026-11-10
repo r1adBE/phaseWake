@@ -502,8 +502,6 @@
     <string name="alarm_skip_undo_for">Angre overhopp: %1$s</string>
     <string name="transient_alarm_running">Alarmen din er i gang akkurat nå.</string>
     <string name="transient_alarm_soon">Vekkevinduet ditt starter allerede før.</string>
-    <string name="check_watch_update">Oppdater Phase Wake på klokken</string>
-    <string name="check_watch_update_problem">Frem til da hopper ikke klokken over noen alarmer og vekker deg også på helligdager.</string>
     <string name="check_watch_outdated_title">Klokke-appen er utdatert</string>
     <string name="check_watch_outdated_text">Oppdater Phase Wake på klokken, så hver alarm ringer som innstilt.</string>
     <string name="watch_store_opened">Play Store er åpnet på klokken – ta en titt.</string>

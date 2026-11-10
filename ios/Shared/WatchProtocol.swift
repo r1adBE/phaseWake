@@ -3,7 +3,7 @@ import PhaseWakeCore
 
 extension SyncKeys {
     /// Uhr → iPhone im Anwendungskontext: Stand der Verbindung, den die Uhr-App kennt (`WatchProtocol.current`).
-    /// Ältere Uhr-Versionen schicken ihn nicht; dann gilt der Stand als unbekannt.
+    /// Fehlt er in einem Kontext der Uhr (sehr alte Uhr-App), zählt er als 0 (`PhoneConnectivity`).
     static let watchProtocol = "watchProtocol"
 }
 
@@ -23,9 +23,8 @@ enum WatchProtocol {
     /// Ab diesem Stand kennt die Uhr-App «Nacht aufzeichnen»; vorher zeigt das iPhone die Karte nicht.
     static let recording = 3
 
-    /// Ob eine Uhr mit dem gemeldeten Stand `watch` älter ist als diese iPhone-App. Tolerant: `nil` (nie gemeldet,
-    /// ältere Uhr ohne die Angabe, noch kein Kontext) warnt nicht; eine Uhr ohne Überspringen und Feiertage meldet
-    /// der Nacht-Check ohnehin (`watchKnowsSkip`).
+    /// Ob eine Uhr mit dem gemeldeten Stand `watch` älter ist als diese iPhone-App. `nil` (noch kein Kontext der Uhr)
+    /// warnt nicht.
     static func isOutdated(watch: Int?, phone: Int = current) -> Bool {
         guard let watch else { return false }
         return watch < phone

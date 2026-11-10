@@ -505,8 +505,6 @@
     <string name="alarm_skip_undo_for">Tühista vahelejätmine: %1$s</string>
     <string name="transient_alarm_running">Sinu äratus käib praegu.</string>
     <string name="transient_alarm_soon">Sinu äratusaken algab enne seda.</string>
-    <string name="check_watch_update">Uuenda Phase Wake’i kellas</string>
-    <string name="check_watch_update_problem">Seni ei jäta kell äratusi vahele ja äratab sind ka pühadel.</string>
     <string name="check_watch_outdated_title">Kella rakendus on aegunud</string>
     <string name="check_watch_outdated_text">Uuenda Phase Wake’i kellas, et iga äratus heliseks nii, nagu seadistatud.</string>
     <string name="watch_store_opened">Play Store avati kellas – vaata kella.</string>

@@ -505,8 +505,6 @@
     <string name="alarm_skip_undo_for">I-undo ang paglaktaw: %1$s</string>
     <string name="transient_alarm_running">Tumatakbo na ngayon ang alarm mo.</string>
     <string name="transient_alarm_soon">Nagsisimula bago noon ang window ng paggising mo.</string>
-    <string name="check_watch_update">I-update ang Phase Wake sa relo mo</string>
-    <string name="check_watch_update_problem">Hanggang doon, hindi lalaktawan ng relo mo ang mga alarm at gigisingin ka rin nito tuwing holiday.</string>
     <string name="check_watch_outdated_title">Luma na ang app sa relo</string>
     <string name="check_watch_outdated_text">I-update ang Phase Wake sa relo mo para tumunog ang bawat alarm gaya ng itinakda.</string>
     <string name="watch_store_opened">Nabuksan ang Play Store sa relo mo – tingnan mo ito.</string>

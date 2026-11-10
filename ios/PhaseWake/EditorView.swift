@@ -123,8 +123,7 @@ struct EditorView: View {
                 }
 
                 // Nur für wiederholte Wecker; Land und Region stehen in den Einstellungen.
-                // Eine ältere Uhr kennt die Feiertagsregel nicht: dann nicht anbieten (Nacht-Check meldet es).
-                if !days.isEmpty && model.watchKnowsSkip { HolidaySkipSection(skipHolidays: $skipHolidays) }
+                if !days.isEmpty { HolidaySkipSection(skipHolidays: $skipHolidays) }
 
                 Section {
                     Text(L("editor_alert_hint")).font(.footnote).foregroundStyle(.secondary)

@@ -505,8 +505,6 @@
     <string name="alarm_skip_undo_for">Zhbëj kapërcimin: %1$s</string>
     <string name="transient_alarm_running">Alarmi yt është aktiv tani.</string>
     <string name="transient_alarm_soon">Intervali i zgjimit nis më herët.</string>
-    <string name="check_watch_update">Përditëso Phase Wake në orë</string>
-    <string name="check_watch_update_problem">Deri atëherë, ora nuk i kapërcen alarmet dhe të zgjon edhe në festa.</string>
     <string name="check_watch_outdated_title">Aplikacioni në orë është i vjetër</string>
     <string name="check_watch_outdated_text">Përditëso Phase Wake në orë, që çdo alarm të bjerë ashtu siç e ke caktuar.</string>
     <string name="watch_store_opened">Play Store u hap në orë – hidhi një sy.</string>

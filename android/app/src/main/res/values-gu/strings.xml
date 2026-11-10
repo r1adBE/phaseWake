@@ -505,8 +505,6 @@
     <string name="alarm_skip_undo_for">છોડવાનું રદ કરો: %1$s</string>
     <string name="transient_alarm_running">તમારો એલાર્મ અત્યારે ચાલુ છે.</string>
     <string name="transient_alarm_soon">તમારો જગાડવાનો સમયગાળો તે પહેલાં શરૂ થાય છે.</string>
-    <string name="check_watch_update">તમારી ઘડિયાળ પર Phase Wake અપડેટ કરો</string>
-    <string name="check_watch_update_problem">ત્યાં સુધી તમારી ઘડિયાળ એલાર્મ છોડશે નહીં અને રજાના દિવસે પણ તમને જગાડશે.</string>
     <string name="check_watch_outdated_title">ઘડિયાળની ઍપ જૂની છે</string>
     <string name="check_watch_outdated_text">દરેક એલાર્મ સેટ કર્યા મુજબ વાગે તે માટે તમારી ઘડિયાળ પર Phase Wake અપડેટ કરો.</string>
     <string name="watch_store_opened">તમારી ઘડિયાળ પર Play Store ખોલ્યો – એક નજર કરો.</string>

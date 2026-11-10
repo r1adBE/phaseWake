@@ -79,15 +79,9 @@ enum class Check(
     WATCH_PULSE(R.string.check_watch_pulse, R.string.check_watch_pulse_problem, null, inReadyList = false),
 
     /**
-     * Phase Wake auf der Uhr ist älter und kennt «Überspringen» und «Feiertage» nicht (`Codec.watchKnowsSkip`): Die Uhr
-     * weckt dann trotzdem. Nicht in der Bereit-Liste; das Handy blendet beides aus, bis die Uhr aktualisiert ist.
-     */
-    WATCH_UPDATE(R.string.check_watch_update, R.string.check_watch_update_problem, null, inReadyList = false),
-
-    /**
      * Phase Wake auf der Uhr hat einen älteren Verbindungs-Stand als das Handy (Review O-04, `WearSync.watchOutdated`):
-     * Eine ältere Uhr kann neue Weckarten (z. B. «Genau») verwerfen. Nur ohne [WATCH_UPDATE] (das sagt schon mehr);
-     * nicht in der Bereit-Liste: ohne bekannte Uhr gibt es nichts zu prüfen.
+     * Eine ältere Uhr bekommt keine Wecker mehr (kein Datenweg für ältere Uhr-Apps); nicht in der Bereit-Liste: ohne
+     * bekannte Uhr gibt es nichts zu prüfen.
      */
     WATCH_OUTDATED(R.string.check_watch_outdated_title, R.string.check_watch_outdated_text, null, inReadyList = false),
 
@@ -133,7 +127,7 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
 
         /**
          * Prüft alles, was ohne Uhr geht; die Uhr kommt aus [watchReachable], [watchReady],
-         * [watchBattery] (Prozent, `null` = unbekannt oder zu alt), [watchKnowsSkip] und [watchOutdated] (Version der Uhr)
+         * [watchBattery] (Prozent, `null` = unbekannt oder zu alt) und [watchOutdated] (Version der Uhr)
          * sowie [watchPulse] (Pulsrechte; `null` = ältere Uhr, keine Warnung) und [recorderSkip] (Grund, warum die Messung
          * vor dem Schlafen dieser Nacht nicht startete; `null` = keiner). Fehlen der Uhr schon allgemein Rechte
          * ([Check.WATCH_SETUP]), steht der Puls nicht noch einmal da.
@@ -144,7 +138,6 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
             watchReady: Boolean?,
             watchBattery: Int? = null,
             watchAppMissing: Boolean = false,
-            watchKnowsSkip: Boolean = true,
             watchOutdated: Boolean = false,
             watchPulse: WatchPulse? = null,
             recorderSkip: RecorderSkip.Reason? = null,
@@ -158,7 +151,7 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
                 if (watchReachable && watchReady != false && WatchPulse.warns(watchPulse)) add(Check.WATCH_PULSE)
                 if (watchReachable && watchBattery != null && watchBattery < LOW_BATTERY_PERCENT) add(Check.WATCH_BATTERY)
                 if (recorderSkip == RecorderSkip.Reason.BATTERY) add(Check.WATCH_RECORDER)
-                if (!watchKnowsSkip) add(Check.WATCH_UPDATE) else if (watchOutdated) add(Check.WATCH_OUTDATED)
+                if (watchOutdated) add(Check.WATCH_OUTDATED)
                 if (!hasNotificationPermission(context)) add(Check.NOTIFICATIONS)
                 if (!BackupAlarm.canScheduleExact(context)) add(Check.EXACT_ALARMS)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE &&

@@ -87,9 +87,6 @@ public enum SyncKeys {
     public static let autoOnset = "autoOnset"
     /// Befehl Uhr → iPhone: frühere Zielzeit aus «Gute Nacht» (`OnsetShift.encode()` in ``payload``).
     public static let onsetShift = "onsetShift"
-    /// Uhr → iPhone im Anwendungskontext: Felder je Weckerzeile, die die Uhr kennt (`Codec.alarmFields`). Fehlt der
-    /// Schlüssel bei einem Kontext, der sonst von der Uhr stammt, ist es eine ältere Uhr (zählt als 0).
-    public static let alarmFields = "alarmFields"
     /// Uhr → iPhone im Anwendungskontext: Erlaubnis für Mitteilungen auf der Uhr (`WatchNotifications.rawValue`), für
     /// den Rückfall-Wecker. Fehlt bei älteren Uhr-Versionen und solange die Uhr noch nicht gefragt hat (dann keine Warnung).
     public static let watchNotifications = "watchNotifications"

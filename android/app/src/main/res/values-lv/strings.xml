@@ -519,8 +519,6 @@
     <string name="alarm_skip_undo_for">Atsaukt izlaišanu: %1$s</string>
     <string name="transient_alarm_running">Tavs modinātājs šobrīd darbojas.</string>
     <string name="transient_alarm_soon">Tavs modināšanas logs sākas pirms tam.</string>
-    <string name="check_watch_update">Atjaunini Phase Wake pulkstenī</string>
-    <string name="check_watch_update_problem">Līdz tam pulkstenis neizlaidīs modinātājus un modinās tevi arī svētku dienās.</string>
     <string name="check_watch_outdated_title">Pulksteņa lietotne ir novecojusi</string>
     <string name="check_watch_outdated_text">Atjaunini Phase Wake pulkstenī, lai katrs modinātājs zvanītu, kā iestatīts.</string>
     <string name="watch_store_opened">Play Store atvērts pulkstenī – ieskaties tajā.</string>

@@ -502,8 +502,6 @@
     <string name="alarm_skip_undo_for">Atlamayı geri al: %1$s</string>
     <string name="transient_alarm_running">Alarmın şu anda devrede.</string>
     <string name="transient_alarm_soon">Alarm aralığın bundan önce başlıyor.</string>
-    <string name="check_watch_update">Saatteki Phase Wake\'i güncelle</string>
-    <string name="check_watch_update_problem">O zamana kadar saat hiçbir alarmı atlamaz ve tatillerde de seni uyandırır.</string>
     <string name="check_watch_outdated_title">Saat uygulaması eski</string>
     <string name="check_watch_outdated_text">Her alarm ayarladığın gibi çalsın diye saatteki Phase Wake’i güncelle.</string>
     <string name="watch_store_opened">Play Store saatte açıldı – bir göz at.</string>

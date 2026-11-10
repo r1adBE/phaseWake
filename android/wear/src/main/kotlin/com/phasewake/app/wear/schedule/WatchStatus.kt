@@ -14,7 +14,6 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.phasewake.app.core.Codec
 import com.phasewake.app.core.RecorderSkip
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.WearSync
@@ -41,9 +40,8 @@ internal class WatchStatus(
 
     /**
      * Sendet den Status, aber nur bei Bedarf: Bereitschaft, Pulsrechte oder Meldung [noteSkip] geändert, Akkustand um
-     * mindestens [BATTERY_STEP] Punkte geändert, letzte Meldung älter als [MAX_AGE] oder noch ohne die Felder je
-     * Weckerzeile bzw. den Verbindungs-Stand dieser Version (nach einem Update gleich melden, sonst bliebe am Handy bis zu
-     * einer Stunde «aktualisieren»).
+     * mindestens [BATTERY_STEP] Punkte geändert, letzte Meldung älter als [MAX_AGE] oder noch ohne den Verbindungs-Stand
+     * dieser Version (nach einem Update gleich melden, sonst bliebe am Handy bis zu einer Stunde «veraltet»).
      * Jede Meldung ist ein dringendes Datenpaket und lässt das Handy neu planen.
      */
     suspend fun publish(): Unit = lock.withLock {
@@ -59,7 +57,7 @@ internal class WatchStatus(
         val lastAt = prefs[SENT_AT]
         val lastBattery = prefs[SENT_BATTERY]
         val due = prefs[SENT_READY] != ready || prefs[SENT_PULSE] != pulse.heartRate || prefs[SENT_PULSE_BACKGROUND] != pulse.background ||
-            prefs[SENT_FIELDS] != Codec.ALARM_FIELDS || prefs[SENT_PROTOCOL] != DataLayer.PROTOCOL || prefs[SENT_SKIP] != skipCode ||
+            prefs[SENT_PROTOCOL] != DataLayer.PROTOCOL || prefs[SENT_SKIP] != skipCode ||
             (battery != null && (lastBattery == null || abs(battery - lastBattery) >= BATTERY_STEP)) ||
             lastAt == null || now - lastAt >= MAX_AGE.toMillis() || now < lastAt
         if (!due) return@withLock
@@ -72,7 +70,6 @@ internal class WatchStatus(
             it[SENT_PULSE] = pulse.heartRate
             it[SENT_PULSE_BACKGROUND] = pulse.background
             it[SENT_AT] = now
-            it[SENT_FIELDS] = Codec.ALARM_FIELDS
             it[SENT_PROTOCOL] = DataLayer.PROTOCOL
             it[SENT_SKIP] = skipCode
             if (battery != null) it[SENT_BATTERY] = battery else it.remove(SENT_BATTERY)
@@ -121,7 +118,6 @@ internal class WatchStatus(
         private val SENT_PULSE = booleanPreferencesKey("status_sent_pulse")
         private val SENT_PULSE_BACKGROUND = booleanPreferencesKey("status_sent_pulse_background")
         private val SENT_AT = longPreferencesKey("status_sent_at")
-        private val SENT_FIELDS = intPreferencesKey("status_sent_alarm_fields")
         private val SENT_PROTOCOL = intPreferencesKey("status_sent_protocol")
         private val SENT_SKIP = stringPreferencesKey("status_sent_recorder_skip")
 

@@ -2,8 +2,9 @@ package com.phasewake.app.shared
 
 /**
  * Inhalt der Nachrichten [DataLayer.PATH_RING], [DataLayer.PATH_STOP], [DataLayer.PATH_TASK_SHOWN] und [DataLayer.PATH_TASK_GONE]:
- * «kennung|zielzeitMs|sendezeitMs|schlummerÜbrig|schlummerBisMs».
- * Ältere Versionen schicken nur die Kennung (oder nichts); fehlende Felder sind dann `null`.
+ * «kennung|zielzeitMs|sendezeitMs|schlummerÜbrig|schlummerBisMs». Jede Meldung trägt die Sendezeit; eine ohne
+ * ([isCurrent]) stammt von einer veralteten App und wird verworfen (kein Rückfall für ältere Versionen, 10.11.2026). Die
+ * übrigen Felder fehlen, wo sie nicht passen (`null`), z. B. die Zielzeit nach dem Schlummern am Handy.
  *
  * @property target Zielzeit der laufenden Nacht (für das Aussetzen des Zweitweckers, nicht «jetzt»).
  * @property sentAt Sendezeit; ein verspätet zugestelltes «klingeln» wird verworfen.
@@ -23,7 +24,13 @@ data class RingMessage(
         snoozesLeft?.toString().orEmpty(), snoozeUntil?.toString().orEmpty(),
     ).joinToString("|").encodeToByteArray()
 
-    /** Ob die Nachricht zu spät ankam (älter als [MAX_AGE_MS]); ohne Sendezeit (ältere Version) nie. */
+    /** Ob die Meldung von einer aktuellen App stammt: mit Sendezeit. Sonst verwirft sie der Empfänger. */
+    fun isCurrent(): Boolean = sentAt != null
+
+    /** Ob ein «klingeln» der Uhr vollständig ist: aktuell ([isCurrent]) und mit Kennung und Schlummer-Runden. */
+    fun isCompleteRing(): Boolean = isCurrent() && alarmId != null && snoozesLeft != null
+
+    /** Ob die Nachricht zu spät ankam (älter als [MAX_AGE_MS]); ohne Sendezeit nie (solche verwirft [isCurrent]). */
     fun isStale(nowMs: Long): Boolean = sentAt != null && nowMs - sentAt > MAX_AGE_MS
 
     /**
@@ -34,8 +41,8 @@ data class RingMessage(
     fun snoozeSafetyAt(nowMs: Long): Long? = snoozeUntil?.plus(SNOOZE_SAFETY_MS)?.takeIf { it > nowMs }
 
     /**
-     * Ob die Meldung zur Nacht mit [otherAlarmId] und [otherTarget] gehört. Fehlende Angaben
-     * (ältere Versionen, Sicherung ohne Zielzeit) widersprechen nicht.
+     * Ob die Meldung zur Nacht mit [otherAlarmId] und [otherTarget] gehört. Fehlende Angaben (Sicherung ohne Zielzeit,
+     * Zielzeit nach dem Schlummern am Handy) widersprechen nicht.
      */
     fun sameNight(otherAlarmId: String?, otherTarget: Long?): Boolean =
         (alarmId == null || otherAlarmId == null || alarmId == otherAlarmId) &&

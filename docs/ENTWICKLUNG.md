@@ -128,6 +128,12 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
   Nächte und Aufzeichnungen der Uhr vorher einreihen; die Lese-Funktionen der alten Formate (`WearSync.readNight`,
   `RecordSync.readRecording`, `OnsetShift.read`) dienen nur ihr. Tests: `OutboxTest` (Robolectric, Senden, Bestätigen,
   Wiederholen, Ersetzen, Umstellung).
+- **Keine Rückfälle für ältere App-Versionen zwischen Handy und Uhr (10.11.2026, Android und Apple):** «klingeln» und
+  «stop» (sowie die Meldungen zur Weckaufgabe) ohne Sendezeit verwirft der Empfänger, ein «klingeln» der Uhr auch ohne
+  Kennung oder Schlummer-Runden (`RingMessage.isCurrent`/`isCompleteRing`, iPhone `PhoneConnectivity`); «snooze» vom
+  Handy bleibt ohne Inhalt. Kein Feld «Felder je Weckerzeile» mehr im Uhr-Status: Überspringen und Feiertage sind immer
+  zu sehen. «Verlauf löschen» ohne Zeitpunkt löscht nichts. Eine veraltete Uhr-App meldet allein der Nacht-Check «Uhr-App
+  veraltet» (Status bzw. Kontext ohne Verbindungs-Stand zählt als 0).
 
 ## 8. Ablauf
 

@@ -83,13 +83,13 @@ internal object RingRules {
 
     /**
      * Schlummer-Runden einer neuen Klingel-Runde: Probewecker keine; führt die Uhr, zählt ihre Angabe [watchSnoozesLeft]
-     * (ältere Uhren schicken keine: [legacyWatchSnoozes] aus dem Prozess); führt das Handy, allein [snoozesDone] aus dem
-     * Schlummer- bzw. Wiederaufnahme-Alarm (übersteht ein Prozessende).
+     * (jedes «klingeln» trägt sie, eines ohne wird vorher verworfen); sonst allein [snoozesDone] aus dem Schlummer- bzw.
+     * Wiederaufnahme-Alarm (übersteht ein Prozessende).
      */
-    fun snoozesLeft(alarmId: String?, fromWatch: Boolean, watchSnoozesLeft: Int?, legacyWatchSnoozes: Int, snoozesDone: Int): Int {
+    fun snoozesLeft(alarmId: String?, fromWatch: Boolean, watchSnoozesLeft: Int?, snoozesDone: Int): Int {
         val left = when {
             !Transient.allowsSnooze(alarmId) -> 0
-            fromWatch -> watchSnoozesLeft ?: (Snooze.MAX_COUNT - legacyWatchSnoozes)
+            fromWatch && watchSnoozesLeft != null -> watchSnoozesLeft
             else -> Snooze.MAX_COUNT - snoozesDone
         }
         return left.coerceIn(0, Snooze.MAX_COUNT)

@@ -47,10 +47,17 @@ class RingMessageTest {
     }
 
     @Test
-    fun olderVersionsSendOnlyTheIdOrNothing() {
-        assertEquals(RingMessage(alarmId = "a1"), RingMessage.decode("a1".encodeToByteArray()))
-        assertEquals(RingMessage(alarmId = null), RingMessage.decode(ByteArray(0)))
-        assertEquals(RingMessage(alarmId = null), RingMessage.decode(null))
+    fun withoutSendTimeFromOutdatedApp() {
+        // Veraltete Apps schickten nur die Kennung (oder nichts): ohne Sendezeit, der Empfänger verwirft sie.
+        assertFalse(RingMessage.decode("a1".encodeToByteArray()).isCurrent())
+        assertFalse(RingMessage.decode(ByteArray(0)).isCurrent())
+        assertFalse(RingMessage.decode(null).isCurrent())
+        assertTrue(RingMessage(alarmId = "a1", sentAt = 5L).isCurrent())
+        // «klingeln» braucht dazu Kennung und Schlummer-Runden.
+        assertTrue(RingMessage("a1", 1_800_000L, 5L, snoozesLeft = 2).isCompleteRing())
+        assertFalse(RingMessage("a1", 1_800_000L, 5L).isCompleteRing())
+        assertFalse(RingMessage(null, 1_800_000L, 5L, snoozesLeft = 2).isCompleteRing())
+        assertFalse(RingMessage("a1", 1_800_000L, null, snoozesLeft = 2).isCompleteRing())
     }
 
     @Test

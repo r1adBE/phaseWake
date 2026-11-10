@@ -516,8 +516,6 @@
     <string name="alarm_skip_undo_for">Deshacer salto: %1$s</string>
     <string name="transient_alarm_running">Tu alarma está en curso ahora mismo.</string>
     <string name="transient_alarm_soon">La ventana de tu alarma empieza antes.</string>
-    <string name="check_watch_update">Actualiza Phase Wake en el reloj</string>
-    <string name="check_watch_update_problem">Hasta entonces, el reloj no saltará ninguna alarma y también te despertará en festivos.</string>
     <string name="check_watch_outdated_title">App del reloj desactualizada</string>
     <string name="check_watch_outdated_text">Actualiza Phase Wake en el reloj para que cada alarma suene como la configuraste.</string>
     <string name="watch_store_opened">Play Store abierta en el reloj – échale un vistazo.</string>

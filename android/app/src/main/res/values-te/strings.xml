@@ -505,8 +505,6 @@
     <string name="alarm_skip_undo_for">దాటవేతను రద్దు చేయండి: %1$s</string>
     <string name="transient_alarm_running">మీ అలారం ప్రస్తుతం నడుస్తోంది.</string>
     <string name="transient_alarm_soon">మీ నిద్రలేపే వ్యవధి దానికంటే ముందే మొదలవుతుంది.</string>
-    <string name="check_watch_update">మీ వాచ్‌లో Phase Wake అప్‌డేట్ చేయండి</string>
-    <string name="check_watch_update_problem">అప్పటి వరకు మీ వాచ్ అలారాలను దాటవేయదు, సెలవు రోజుల్లోనూ మిమ్మల్ని లేపుతుంది.</string>
     <string name="check_watch_outdated_title">వాచ్ యాప్ పాతబడింది</string>
     <string name="check_watch_outdated_text">ప్రతి అలారం సెట్ చేసినట్టే మోగేలా మీ వాచ్‌లో Phase Wake అప్‌డేట్ చేయండి.</string>
     <string name="watch_store_opened">మీ వాచ్‌లో Play Store తెరవబడింది – ఒకసారి చూడండి.</string>

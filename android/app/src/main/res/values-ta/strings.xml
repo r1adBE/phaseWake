@@ -504,8 +504,6 @@
     <string name="alarm_skip_undo_for">தவிர்த்ததைச் செயல்தவிர்: %1$s</string>
     <string name="transient_alarm_running">உங்கள் அலாரம் இப்போது ஒலிக்கிறது.</string>
     <string name="transient_alarm_soon">உங்கள் எழுப்பும் வரம்பு அதற்கு முன்பே தொடங்குகிறது.</string>
-    <string name="check_watch_update">உங்கள் வாட்ச்சில் Phase Wake ஐப் புதுப்பியுங்கள்</string>
-    <string name="check_watch_update_problem">அதுவரை உங்கள் வாட்ச் அலாரங்களைத் தவிர்க்காது, விடுமுறை நாட்களிலும் எழுப்பும்.</string>
     <string name="check_watch_outdated_title">வாட்ச் ஆப் பழையது</string>
     <string name="check_watch_outdated_text">ஒவ்வொரு அலாரமும் அமைத்தபடியே ஒலிக்க, உங்கள் வாட்ச்சில் Phase Wake ஐப் புதுப்பியுங்கள்.</string>
     <string name="watch_store_opened">உங்கள் வாட்ச்சில் Play Store திறக்கப்பட்டது – ஒருமுறை பாருங்கள்.</string>

@@ -502,8 +502,6 @@
     <string name="alarm_skip_undo_for">Überspringen rückgängig: %1$s</string>
     <string name="transient_alarm_running">Gerade läuft dein Wecker.</string>
     <string name="transient_alarm_soon">Dein Weckfenster beginnt schon vorher.</string>
-    <string name="check_watch_update">Phase Wake auf der Uhr aktualisieren</string>
-    <string name="check_watch_update_problem">Bis dahin überspringt die Uhr keine Termine und weckt auch an Feiertagen.</string>
     <string name="check_watch_outdated_title">Uhr-App veraltet</string>
     <string name="check_watch_outdated_text">Aktualisiere Phase Wake auf der Uhr, damit alle Wecker wie eingestellt klingeln.</string>
     <string name="watch_store_opened">Play Store auf der Uhr geöffnet – schau auf deine Uhr.</string>
