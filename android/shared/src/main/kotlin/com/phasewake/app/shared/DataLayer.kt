@@ -7,16 +7,17 @@ package com.phasewake.app.shared
  * die Warteschlange [Outbox] (Pfade `PATH_MSG_…`, Bestätigung [PATH_ACK]), nicht mehr als Datenpaket, das Google in der
  * Cloud sichert. Als Datenpaket bleiben nur der Gerätestatus der Uhr ([PATH_WATCH_STATUS]), «Verlauf löschen»
  * ([PATH_CLEAR_HISTORY], nur ein Zeitpunkt) und der Abbruch eines Probeweckers oder Powernaps ([PATH_TRANSIENT_CANCELLED],
- * nur eine Kennung). Die früheren Datenpakete (Wecker, Nächte, Aufzeichnungen, Lernphase, …) liest das Handy weiterhin von
- * älteren Uhren und löscht sie danach; selbst schreibt es sie nur noch für eine Uhr mit älterem Stand ([WearSync.legacyWatch]).
+ * nur eine Kennung). Den früheren Weg für ältere Uhr-Apps gibt es nicht mehr (Entscheid r1AD 10.11.2026): Die Pfade der
+ * früheren Datenpakete (Wecker, Nächte, Aufzeichnungen, Lernphase, …) dienen nur noch der einmaligen Umstellung, die die
+ * eigenen alten Pakete löscht ([QueueMessages.legacyItems]).
  */
 object DataLayer {
-    /** Früheres Datenpaket mit allen Weckern; Schlüssel [KEY_TEXT], [KEY_UPDATED_AT]. Nur noch für ältere Uhren. */
+    /** Früheres Datenpaket mit allen Weckern; nur noch für die Umstellung (löschen). */
     const val PATH_ALARMS = "/phasewake/alarms"
 
     /**
-     * Präfix der früheren Nacht-Pakete der Uhr, gefolgt von «fensterbeginnMs-kennung» (Kennung URL-kodiert). Nur noch von
-     * älteren Uhren gelesen.
+     * Präfix der früheren Nacht-Pakete der Uhr, gefolgt von «fensterbeginnMs-kennung» (Kennung URL-kodiert), Schlüssel
+     * [KEY_TEXT]. Nur noch für die Umstellung: Die Uhr reiht ihre eigenen in die Warteschlange ein und löscht sie.
      */
     const val PATH_NIGHT_PREFIX = "/phasewake/night/"
 
@@ -120,9 +121,6 @@ object DataLayer {
      */
     const val PROTOCOL = 2
 
-    /** Erster [PROTOCOL] mit der Warteschlange [Outbox] statt der Datenpakete mit persönlichen Daten. */
-    const val PROTOCOL_MESSAGES = 2
-
     /** [PROTOCOL] der Uhr im selben Paket wie [KEY_READY]; fehlt bei Uhren vor dieser Angabe (gilt dann als 0). */
     const val KEY_PROTOCOL = "protocol"
 
@@ -162,30 +160,18 @@ object DataLayer {
      */
     const val PATH_TRANSIENT_CANCELLED = "/phasewake/transient-cancelled"
 
-    /**
-     * Datenpaket Handy → Uhr: Feiertage der nächsten 400 Tage für «An Feiertagen nicht wecken»;
-     * Schlüssel [KEY_TEXT] (`Holidays.encode`, z. B. «CH-BE|2026-12-25,2026-12-26») und [KEY_UPDATED_AT].
-     */
+    /** Früheres Datenpaket Handy → Uhr mit den Feiertagen; nur noch für die Umstellung (löschen). */
     const val PATH_HOLIDAYS = "/phasewake/holidays"
 
-    /**
-     * Datenpaket Handy → Uhr: Schlafziel für den Einschlafpunkt auf dem Ring der Uhr; Schlüssel [KEY_SLEEP_GOAL]
-     * (Minuten) und [KEY_UPDATED_AT] (Zeitpunkt der Änderung am Handy). Ohne Paket gilt auf der Uhr der Standard.
-     */
+    /** Früheres Datenpaket Handy → Uhr mit dem Schlafziel; nur noch für die Umstellung (löschen). */
     const val PATH_SLEEP_GOAL = "/phasewake/sleep-goal"
-    const val KEY_SLEEP_GOAL = "sleepGoalMinutes"
 
-    /**
-     * Datenpaket Handy → Uhr: Schalter «Einschlafen automatisch erkennen» ([KEY_AUTO_ONSET]) mit [KEY_UPDATED_AT]
-     * (Zeitpunkt der Änderung am Handy). Ohne Paket oder Schlüssel gilt auf der Uhr «an».
-     */
+    /** Früheres Datenpaket Handy → Uhr mit dem Schalter der Einschlaf-Messung; nur noch für die Umstellung (löschen). */
     const val PATH_AUTO_ONSET = "/phasewake/auto-onset"
-    const val KEY_AUTO_ONSET = "autoOnset"
 
     /**
-     * Datenpaket Uhr → Handy: frühere Zielzeit einer Nacht aus dem Einschlaf-Modus (`OnsetShift`, Review K-07);
-     * Schlüssel [KEY_TEXT] (Kennung), [KEY_ORIGINAL_TARGET], [KEY_TARGET] (ms) und [KEY_UPDATED_AT]. Ein Paket, damit es
-     * auch ein gerade nicht erreichbares Handy erreicht; der Zweitwecker dieser Nacht klingelt dann ebenfalls früher.
+     * Früheres Datenpaket Uhr → Handy mit der früheren Zielzeit (`OnsetShift`, Review K-07); Schlüssel [KEY_TEXT]
+     * (Kennung), [KEY_ORIGINAL_TARGET], [KEY_TARGET] (ms) und [KEY_UPDATED_AT]. Nur noch für die Umstellung der Uhr.
      */
     const val PATH_ONSET_SHIFT = "/phasewake/onset-shift"
     const val KEY_ORIGINAL_TARGET = "originalTarget"
@@ -204,27 +190,20 @@ object DataLayer {
     const val PATH_RECORD_STOP = "/phasewake/record-stop"
 
     /**
-     * Datenpaket Uhr → Handy: Stand von «Nacht aufzeichnen»; Schlüssel [KEY_RECORD_SINCE] (Beginn in ms, 0 = keine läuft).
-     * Fehlt es, kennt die Uhr die Aufzeichnung nicht (ältere Version, Apple Watch): Das Handy zeigt dann keinen Knopf.
+     * Früheres Datenpaket Uhr → Handy mit dem Stand von «Nacht aufzeichnen»; Schlüssel [KEY_RECORD_SINCE] (Beginn in ms,
+     * 0 = keine läuft). Nur noch für die Umstellung der Uhr.
      */
     const val PATH_RECORD_STATUS = "/phasewake/record-status"
     const val KEY_RECORD_SINCE = "since"
 
     /**
-     * Präfix der Pakete Uhr → Handy mit einer abgeschlossenen Aufzeichnung, gefolgt vom Beginn (ms); Schlüssel [KEY_TEXT]
-     * (`NightRecording.encode`, höchstens 12 Std., rund 20 KB). Das Handy speichert sie und löscht das Paket.
+     * Präfix der früheren Pakete Uhr → Handy mit einer abgeschlossenen Aufzeichnung, gefolgt vom Beginn (ms); Schlüssel
+     * [KEY_TEXT] (`NightRecording.encode`). Nur noch für die Umstellung der Uhr.
      */
     const val PATH_RECORDING_PREFIX = "/phasewake/recording/"
 
-    /**
-     * Datenpaket Handy → Uhr: Lernphase ([LearningSnapshot]): läuft sie ([KEY_LEARN_ACTIVE], dann zeichnet die Uhr nachts
-     * automatisch auf) und die gelernten Werte für den Detektor ([KEY_LEARN_FLOOR], [KEY_LEARN_RESTING_HR], fehlen ohne
-     * Wert), mit [KEY_UPDATED_AT]. Ohne Paket gilt auf der Uhr: keine Lernphase, keine gelernten Werte.
-     */
+    /** Früheres Datenpaket Handy → Uhr mit der Lernphase; nur noch für die Umstellung (löschen). */
     const val PATH_LEARNING = "/phasewake/learning"
-    const val KEY_LEARN_ACTIVE = "learnActive"
-    const val KEY_LEARN_FLOOR = "learnFloor"
-    const val KEY_LEARN_RESTING_HR = "learnRestingHr"
 
     const val KEY_TEXT = "text"
     const val KEY_UPDATED_AT = "updatedAt"

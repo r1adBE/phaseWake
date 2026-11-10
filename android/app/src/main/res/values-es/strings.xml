@@ -461,7 +461,8 @@
     <string name="settings_restore">Restaurar</string>
     <string name="backup_password">Contraseña</string>
     <string name="backup_password_repeat">Repetir la contraseña</string>
-    <string name="backup_password_short">Al menos 8 caracteres.</string>
+    <string name="backup_password_short">Al menos 10 caracteres.</string>
+    <string name="backup_password_trivial">Demasiado fácil de adivinar: evita repeticiones, secuencias como 1234 o abcd, filas del teclado y contraseñas comunes.</string>
     <string name="backup_password_mismatch">Las contraseñas no coinciden.</string>
     <string name="backup_password_hint">Sin esta contraseña nadie puede abrir la copia, ni siquiera tú.</string>
     <string name="backup_health_hint">Las noches de otras apps (p. ej. Samsung Health) no se incluyen en la copia de seguridad: se quedan allí y vuelven a aparecer en cuanto concedas el acceso.</string>

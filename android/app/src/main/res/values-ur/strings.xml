@@ -450,7 +450,8 @@
     <string name="settings_restore">بحال کرو</string>
     <string name="backup_password">پاس ورڈ</string>
     <string name="backup_password_repeat">پاس ورڈ دوبارہ لکھو</string>
-    <string name="backup_password_short">کم از کم 8 حروف۔</string>
+    <string name="backup_password_short">کم از کم 10 حروف۔</string>
+    <string name="backup_password_trivial">اندازہ لگانا بہت آسان ہے – دہراؤ، 1234 یا abcd جیسی ترتیب، کی بورڈ کی قطاروں اور عام پاس ورڈز سے بچو۔</string>
     <string name="backup_password_mismatch">پاس ورڈ آپس میں نہیں ملتے۔</string>
     <string name="backup_password_hint">اس پاس ورڈ کے بغیر کوئی بیک اپ نہیں کھول سکتا – تم بھی نہیں۔</string>
     <string name="backup_health_hint">دوسری ایپس کی راتیں (مثلاً Samsung Health) بیک اپ نہیں ہوتیں – وہ وہیں رہتی ہیں اور اجازت ملتے ہی دوبارہ دکھتی ہیں۔</string>

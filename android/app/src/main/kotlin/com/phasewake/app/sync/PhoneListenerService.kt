@@ -30,9 +30,9 @@ import kotlinx.coroutines.runBlocking
 /**
  * Empfängt von der Uhr: geänderte Wecker, aufgezeichnete Nächte und Aufzeichnungen, Status, Weck- und Stopp-Meldungen.
  *
- * Neue Uhren schicken Inhalte mit persönlichen Daten über die Warteschlange ([com.phasewake.app.shared.Outbox]): als
- * Nachricht (grosse Aufzeichnungen über einen Kanal), bestätigt nach dem Speichern ([WearSync.receive]). Pakete älterer
- * Uhren ([onDataChanged]) werden wie bisher übernommen und danach gelöscht.
+ * Inhalte mit persönlichen Daten kommen über die Warteschlange ([com.phasewake.app.shared.Outbox]): als Nachricht (grosse
+ * Aufzeichnungen über einen Kanal), bestätigt nach dem Speichern ([WearSync.receive]). Als Datenpaket ([onDataChanged])
+ * nur der Status der Uhr und der Abbruch eines Probeweckers oder Powernaps.
  */
 class PhoneListenerService : WearableListenerService() {
 
@@ -41,33 +41,8 @@ class PhoneListenerService : WearableListenerService() {
         val changed = dataEvents.filter { it.type == DataEvent.TYPE_CHANGED }.map { it.dataItem }
         // Der Dienst läuft auf einem eigenen Hintergrundthread; kurzes Blockieren ist hier vorgesehen.
         runBlocking {
-            val applied = changed.filter { it.uri.path == DataLayer.PATH_ALARMS }
-                .mapNotNull { WearSync.readAlarms(DataMapItem.fromDataItem(it).dataMap) }
-                .maxByOrNull { it.updatedAt }
-                ?.let { app.alarms.applyRemote(it) } == true
             // Eine (neu gekoppelte) Uhr meldet sich: Der Zweitwecker wartet jetzt die Nachfrist ab.
-            if (applied) app.diag.log(DiagKind.ALARMS_RECEIVED, "from watch")
-            val status = changed.any { it.uri.path == DataLayer.PATH_WATCH_STATUS }
-            if (applied || status) app.backup.reschedule()
-            changed.filter { it.uri.path.orEmpty().startsWith(DataLayer.PATH_NIGHT_PREFIX) }.forEach { item ->
-                val night = WearSync.readNight(DataMapItem.fromDataItem(item).dataMap) ?: return@forEach
-                storeNight(night)
-                // Datensparsamkeit: lokal gespeichert, im Data Layer nicht mehr nötig.
-                app.sync.delete(item.uri)
-            }
-            // «Nacht aufzeichnen»: abgeschlossene Aufzeichnungen speichern (dann das Paket löschen) und den Stand merken.
-            changed.filter { it.uri.path.orEmpty().startsWith(DataLayer.PATH_RECORDING_PREFIX) }.forEach { item ->
-                val recording = RecordSync.readRecording(DataMapItem.fromDataItem(item).dataMap) ?: return@forEach
-                storeRecording(recording)
-                app.sync.delete(item.uri)
-            }
-            changed.lastOrNull { it.uri.path == DataLayer.PATH_RECORD_STATUS }
-                ?.let { app.recordStatus.value = RecordSync.readStatus(DataMapItem.fromDataItem(it).dataMap) }
-            // Einschlaf-Modus der Galaxy Watch: frühere Zielzeit auch für den Zweitwecker dieser Nacht (Review K-07).
-            changed.filter { it.uri.path == DataLayer.PATH_ONSET_SHIFT }
-                .mapNotNull { OnsetShift.read(DataMapItem.fromDataItem(it).dataMap) }
-                .maxByOrNull { it.at }
-                ?.let { app.backup.onsetShiftReceived(it) }
+            if (changed.any { it.uri.path == DataLayer.PATH_WATCH_STATUS }) app.backup.reschedule()
             // Abbruch auf der Uhr, während das Handy nicht erreichbar war: nachgeliefert als Paket.
             changed.filter { it.uri.path == DataLayer.PATH_TRANSIENT_CANCELLED }
                 .mapNotNull { WearSync.readTransientCancel(DataMapItem.fromDataItem(it).dataMap) }

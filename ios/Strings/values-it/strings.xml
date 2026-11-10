@@ -32,5 +32,5 @@
     <string name="check_watch_recorder_motion">L’orologio non ha avviato la misurazione prima di dormire – Phase Wake non può leggere i dati di movimento sull’orologio. Consentilo nelle impostazioni dell’orologio, in Privacy. La sveglia ti sveglierà comunque.</string>
     <string name="check_watch_state_old">Lo stato dell’orologio non è aggiornato – apri brevemente Phase Wake sull’orologio.</string>
     <string name="editor_sleep_hint_apple">Conta da quando ti addormenti – tocca «Buonanotte» sull’orologio quando vai a letto. Su Apple Watch, Phase Wake stima quando ti addormenti in base al tempo per addormentarti che ha imparato. Senza il tocco vale l’orario impostato.</string>
-    <string name="auto_onset_hint_apple">Apri Phase Wake sull’Apple Watch da 1 ora prima di andare a dormire (te lo ricorda) e da quel momento registra il tuo movimento; all’inizio della finestra di sveglia, Phase Wake calcola quando ti sei addormentato.</string>
+    <string name="auto_onset_hint_apple">Apri Phase Wake sull’Apple Watch da 1 ora prima di andare a dormire (te lo ricorda) e da quel momento fino alla finestra di sveglia registra il tuo movimento; poi Phase Wake calcola quando ti sei addormentato.</string>
 </resources>

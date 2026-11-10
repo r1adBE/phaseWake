@@ -448,7 +448,8 @@
     <string name="settings_restore">Visszaállítás</string>
     <string name="backup_password">Jelszó</string>
     <string name="backup_password_repeat">Jelszó újra</string>
-    <string name="backup_password_short">Legalább 8 karakter.</string>
+    <string name="backup_password_short">Legalább 10 karakter.</string>
+    <string name="backup_password_trivial">Túl könnyen kitalálható – kerüld az ismétléseket, az olyan sorozatokat, mint az 1234 vagy az abcd, a billentyűzetsorokat és a gyakori jelszavakat.</string>
     <string name="backup_password_mismatch">A jelszavak nem egyeznek.</string>
     <string name="backup_password_hint">E jelszó nélkül senki sem nyithatja meg a mentést – te sem.</string>
     <string name="backup_health_hint">Más alkalmazások éjszakái (pl. Samsung Health) nem kerülnek a biztonsági mentésbe – ott maradnak, és a hozzáférés megadása után újra megjelennek.</string>

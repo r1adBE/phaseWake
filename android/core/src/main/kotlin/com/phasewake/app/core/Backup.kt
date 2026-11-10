@@ -68,9 +68,6 @@ object BackupFile {
     /** Schlüssellänge in Bit (AES-256). */
     const val KEY_BITS: Int = 256
 
-    /** Kürzestes erlaubtes Passwort in Zeichen (Unicode-Codepunkte nach NFC, siehe [passwordOk]). */
-    const val MIN_PASSWORD: Int = 8
-
     /**
      * Grösste Datei, die das Wiederherstellen liest: 20 MiB. 90 Nächte mit Verlauf ergeben weit unter 1 MB; eine
      * versehentlich gewählte grosse Datei (Video) wird so abgelehnt statt ganz in den Speicher gelesen.
@@ -100,20 +97,21 @@ object BackupFile {
         return out.toByteArray()
     }
 
-    /** Ob [password] lang genug ist: mindestens [MIN_PASSWORD] Unicode-Codepunkte nach NFC. Gleiche Zählung in Swift. */
-    fun passwordOk(password: String): Boolean {
-        val nfc = normalize(password)
-        return nfc.codePointCount(0, nfc.length) >= MIN_PASSWORD
-    }
+    /**
+     * Ob [password] für eine neue Sicherung genügt: lang genug und nicht trivial ([BackupPassword]). Nur fürs Anlegen;
+     * [decrypt] nimmt jedes Passwort (ältere Sicherungen mit kürzerem bleiben lesbar).
+     */
+    fun passwordOk(password: String): Boolean = BackupPassword.ok(password)
 
     /**
      * Verschlüsselt [plain] mit [password] im Format [MAGIC] ([ITERATIONS] Runden); [salt] und [nonce] kommen vom
      * Aufrufer (zufällig, im Test fest).
-     * Ein zu kurzes Passwort ([passwordOk]) wirft [IllegalArgumentException]: Nie eine Sicherung mit leerem Passwort.
+     * Ein zu kurzes oder triviales Passwort ([passwordOk]) wirft [IllegalArgumentException]: Nie eine Sicherung mit
+     * leerem oder leicht zu erratendem Passwort.
      */
     fun encrypt(plain: ByteArray, password: String, salt: ByteArray, nonce: ByteArray): ByteArray {
         require(salt.size == SALT_BYTES && nonce.size == NONCE_BYTES) { "Salz oder Nonce mit falscher Länge" }
-        require(passwordOk(password)) { "Passwort zu kurz" }
+        require(passwordOk(password)) { "Passwort zu kurz oder trivial" }
         val cipher = Cipher.getInstance(TRANSFORMATION)
         cipher.init(Cipher.ENCRYPT_MODE, key(password, salt, ITERATIONS), GCMParameterSpec(TAG_BYTES * 8, nonce))
         return MAGIC + salt + nonce + cipher.doFinal(plain)

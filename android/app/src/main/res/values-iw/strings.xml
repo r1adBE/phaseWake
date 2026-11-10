@@ -461,7 +461,8 @@
     <string name="settings_restore">שחזור</string>
     <string name="backup_password">סיסמה</string>
     <string name="backup_password_repeat">חזרה על הסיסמה</string>
-    <string name="backup_password_short">לפחות 8 תווים.</string>
+    <string name="backup_password_short">לפחות 10 תווים.</string>
+    <string name="backup_password_trivial">קל מדי לניחוש – הימנעו מחזרות, מרצפים כמו 1234 או abcd, משורות במקלדת ומסיסמאות נפוצות.</string>
     <string name="backup_password_mismatch">הסיסמאות אינן תואמות.</string>
     <string name="backup_password_hint">בלי הסיסמה הזו איש לא יוכל לפתוח את הגיבוי – גם לא אתם.</string>
     <string name="backup_health_hint">לילות מאפליקציות אחרות (למשל Samsung Health) לא נכללים בגיבוי – הם נשארים שם ומופיעים שוב ברגע שניתנת הרשאה.</string>

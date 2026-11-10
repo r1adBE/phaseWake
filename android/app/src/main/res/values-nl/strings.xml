@@ -448,7 +448,8 @@
     <string name="settings_restore">Herstellen</string>
     <string name="backup_password">Wachtwoord</string>
     <string name="backup_password_repeat">Wachtwoord herhalen</string>
-    <string name="backup_password_short">Minstens 8 tekens.</string>
+    <string name="backup_password_short">Minstens 10 tekens.</string>
+    <string name="backup_password_trivial">Te makkelijk te raden – vermijd herhalingen, reeksen zoals 1234 of abcd, toetsenbordrijen en veelgebruikte wachtwoorden.</string>
     <string name="backup_password_mismatch">De wachtwoorden komen niet overeen.</string>
     <string name="backup_password_hint">Zonder dit wachtwoord kan niemand de back-up openen – ook jij niet.</string>
     <string name="backup_health_hint">Nachten uit andere apps (bijv. Samsung Health) worden niet geback-upt – ze blijven daar en verschijnen weer zodra er toegang is gegeven.</string>

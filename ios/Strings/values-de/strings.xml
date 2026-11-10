@@ -32,5 +32,5 @@
     <string name="check_watch_recorder_motion">Die Uhr hat die Messung vor dem Schlafen nicht gestartet – Phase Wake darf dort keine Bewegungsdaten lesen. Erlaube es in den Einstellungen der Uhr unter Datenschutz. Geweckt wirst du trotzdem.</string>
     <string name="check_watch_state_old">Stand der Uhr veraltet – öffne Phase Wake kurz auf der Uhr.</string>
     <string name="editor_sleep_hint_apple">Zählt ab dem Einschlafen – tippe beim Zubettgehen auf der Uhr auf «Gute Nacht». Auf der Apple Watch schätzt Phase Wake die Einschlafzeit aus deiner gelernten Einschlafdauer. Ohne Tippen gilt die eingestellte Uhrzeit.</string>
-    <string name="auto_onset_hint_apple">Öffnest du Phase Wake ab 1 Std. vor der Bettzeit auf der Apple Watch (sie erinnert dich), zeichnet sie ab dann die Bewegung auf; zu Beginn des Weckfensters rechnet Phase Wake aus, wann du eingeschlafen bist.</string>
+    <string name="auto_onset_hint_apple">Öffnest du Phase Wake ab 1 Std. vor der Bettzeit auf der Apple Watch (sie erinnert dich), zeichnet sie von da an bis zum Weckfenster die Bewegung auf; dann rechnet Phase Wake aus, wann du eingeschlafen bist.</string>
 </resources>

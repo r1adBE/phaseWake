@@ -451,7 +451,8 @@
     <string name="settings_restore">ප්‍රතිසාධනය</string>
     <string name="backup_password">මුරපදය</string>
     <string name="backup_password_repeat">මුරපදය නැවත දෙන්න</string>
-    <string name="backup_password_short">අවම වශයෙන් අක්ෂර 8 ක්.</string>
+    <string name="backup_password_short">අවම වශයෙන් අක්ෂර 10 ක්.</string>
+    <string name="backup_password_trivial">අනුමාන කිරීමට ඉතා පහසුයි – පුනරාවර්තන, 1234 හෝ abcd වැනි අනුපිළිවෙළ, යතුරුපුවරු පේළි සහ සුලබ මුරපද වළක්වන්න.</string>
     <string name="backup_password_mismatch">මුරපද නොගැළපේ.</string>
     <string name="backup_password_hint">මෙම මුරපදය නොමැතිව කිසිවෙකුට උපස්ථය විවෘත කළ නොහැක – ඔබටවත්.</string>
     <string name="backup_health_hint">වෙනත් යෙදුම්වල රාත්‍රී (උදා. Samsung Health) උපස්ථ නොවේ – ඒවා එහිම පවතින අතර අවසරය ලබා දුන් විගස නැවත පෙන්වයි.</string>

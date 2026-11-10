@@ -448,7 +448,8 @@
     <string name="settings_restore">वापस लाएं</string>
     <string name="backup_password">पासवर्ड</string>
     <string name="backup_password_repeat">पासवर्ड दोबारा</string>
-    <string name="backup_password_short">कम से कम 8 अक्षर।</string>
+    <string name="backup_password_short">कम से कम 10 अक्षर।</string>
+    <string name="backup_password_trivial">अनुमान लगाना बहुत आसान है – दोहराव, 1234 या abcd जैसे क्रम, कीबोर्ड की पंक्तियाँ और आम पासवर्ड से बचो।</string>
     <string name="backup_password_mismatch">पासवर्ड मेल नहीं खाते।</string>
     <string name="backup_password_hint">इस पासवर्ड के बिना कोई भी बैकअप नहीं खोल सकता – आप भी नहीं।</string>
     <string name="backup_health_hint">दूसरे ऐप की रातें (जैसे Samsung Health) बैकअप में नहीं जातीं – वे वहीं रहती हैं और अनुमति मिलते ही फिर दिखती हैं।</string>

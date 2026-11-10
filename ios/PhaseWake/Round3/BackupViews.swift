@@ -88,7 +88,7 @@ private struct RestoreFile: Identifiable {
     var id: Int { data.hashValue }
 }
 
-/// Passwort zweimal (mindestens 8 Zeichen), dann wird verschlüsselt.
+/// Passwort zweimal (mindestens 10 Zeichen, nicht trivial: ``BackupPassword``), dann wird verschlüsselt.
 private struct BackupPasswordSheet: View {
     @Environment(PhoneModel.self) private var model
     @Environment(\.dismiss) private var dismiss
@@ -99,7 +99,11 @@ private struct BackupPasswordSheet: View {
     @State private var failed = false
 
     private var problem: String? {
-        if !BackupFile.passwordOk(password) { return L("backup_password_short") }
+        switch BackupPassword.problem(password) {
+        case .tooShort: return L("backup_password_short")
+        case .trivial: return L("backup_password_trivial")
+        case nil: break
+        }
         if password != repeated { return L("backup_password_mismatch") }
         return nil
     }

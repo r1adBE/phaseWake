@@ -451,7 +451,8 @@
     <string name="settings_restore">Buyisela</string>
     <string name="backup_password">Iphasiwedi</string>
     <string name="backup_password_repeat">Phinda iphasiwedi</string>
-    <string name="backup_password_short">Okungenani izinhlamvu ezi-8.</string>
+    <string name="backup_password_short">Okungenani izinhlamvu eziyi-10.</string>
+    <string name="backup_password_trivial">Kulula kakhulu ukuqagela – gwema ukuphindaphinda, ukulandelana okufana no-1234 noma i-abcd, imigqa yekhibhodi namaphasiwedi ajwayelekile.</string>
     <string name="backup_password_mismatch">Amaphasiwedi awafani.</string>
     <string name="backup_password_hint">Ngaphandle kwale phasiwedi, akekho ongavula ikhophi yasenqolobaneni – ngisho nawe.</string>
     <string name="backup_health_hint">Ubusuku obuvela kwamanye ama-app (isb. i-Samsung Health) abulondolozwa – buhlala lapho futhi buvele futhi uma sekunikezwe imvume.</string>

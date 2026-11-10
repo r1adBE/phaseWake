@@ -451,7 +451,8 @@
     <string name="settings_restore">Endurheimta</string>
     <string name="backup_password">Lykilorð</string>
     <string name="backup_password_repeat">Endurtaktu lykilorðið</string>
-    <string name="backup_password_short">Að minnsta kosti 8 stafir.</string>
+    <string name="backup_password_short">Að minnsta kosti 10 stafir.</string>
+    <string name="backup_password_trivial">Of auðvelt að giska á – forðastu endurtekningar, runur eins og 1234 eða abcd, lyklaborðsraðir og algeng lykilorð.</string>
     <string name="backup_password_mismatch">Lykilorðin passa ekki saman.</string>
     <string name="backup_password_hint">Án þessa lykilorðs getur enginn opnað afritið – ekki einu sinni þú.</string>
     <string name="backup_health_hint">Nætur úr öðrum forritum (t.d. Samsung Health) eru ekki afritaðar – þær haldast þar og birtast aftur um leið og aðgangur er veittur.</string>

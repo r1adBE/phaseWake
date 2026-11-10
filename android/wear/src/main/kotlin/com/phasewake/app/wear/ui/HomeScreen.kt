@@ -100,11 +100,9 @@ internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit, onNap: (
         dndBlocks = DoNotDisturb.blocksAlarms(context)
         missingPermissions = missing()
         backgroundMissing = missingBackground()
-        // Wecker vom Handy abholen (falls eine Änderung verpasst wurde), dann neu planen; das meldet
-        // auch den Status (Rechte) ans Handy, für dessen Nacht-Check.
+        // Stand des Handys anfragen (kommt über die Warteschlange, falls eine Änderung verpasst wurde), Wartendes
+        // senden, dann neu planen; das meldet auch den Status (Rechte) ans Handy, für dessen Nacht-Check.
         app.appScope.launch {
-            app.sync.fetchAlarms()?.let { app.alarms.applyRemote(it) }
-            // Neues Handy: Stand anfragen (kommt über die Warteschlange); Wartendes senden.
             app.sync.requestSync()
             app.sync.flush()
             app.scheduler.reschedule()

@@ -451,7 +451,8 @@
     <string name="settings_restore">Leheneratu</string>
     <string name="backup_password">Pasahitza</string>
     <string name="backup_password_repeat">Errepikatu pasahitza</string>
-    <string name="backup_password_short">Gutxienez 8 karaktere.</string>
+    <string name="backup_password_short">Gutxienez 10 karaktere.</string>
+    <string name="backup_password_trivial">Errazegia asmatzeko: saihestu errepikapenak, 1234 edo abcd bezalako segidak, teklatuko errenkadak eta pasahitz ohikoak.</string>
     <string name="backup_password_mismatch">Pasahitzak ez datoz bat.</string>
     <string name="backup_password_hint">Pasahitz hau gabe, inork ezin du babeskopia ireki – ezta zuk ere.</string>
     <string name="backup_health_hint">Beste aplikazio batzuetako gauak (adib. Samsung Health) ez dira babeskopian gordetzen: han geratzen dira eta berriro agertzen dira baimena ematen denean.</string>

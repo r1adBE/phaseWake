@@ -451,7 +451,8 @@
     <string name="settings_restore">રિસ્ટોર કરો</string>
     <string name="backup_password">પાસવર્ડ</string>
     <string name="backup_password_repeat">પાસવર્ડ ફરી લખો</string>
-    <string name="backup_password_short">ઓછામાં ઓછા 8 અક્ષર.</string>
+    <string name="backup_password_short">ઓછામાં ઓછા 10 અક્ષર.</string>
+    <string name="backup_password_trivial">અનુમાન લગાવવું ખૂબ સરળ છે – પુનરાવર્તન, 1234 કે abcd જેવી શ્રેણીઓ, કીબોર્ડની હરોળો અને સામાન્ય પાસવર્ડ ટાળો.</string>
     <string name="backup_password_mismatch">પાસવર્ડ મેળ ખાતા નથી.</string>
     <string name="backup_password_hint">આ પાસવર્ડ વગર કોઈ બેકઅપ ખોલી શકતું નથી – તમે પણ નહીં.</string>
     <string name="backup_health_hint">અન્ય ઍપની રાતો (દા.ત. Samsung Health) નો બૅકઅપ લેવાતો નથી – તે ત્યાં જ રહે છે અને પરવાનગી મળતાં ફરી દેખાય છે.</string>

@@ -448,7 +448,8 @@
     <string name="settings_restore">Gendan</string>
     <string name="backup_password">Adgangskode</string>
     <string name="backup_password_repeat">Gentag adgangskoden</string>
-    <string name="backup_password_short">Mindst 8 tegn.</string>
+    <string name="backup_password_short">Mindst 10 tegn.</string>
+    <string name="backup_password_trivial">For let at gætte – undgå gentagelser, rækkefølger som 1234 eller abcd, tastaturrækker og almindelige adgangskoder.</string>
     <string name="backup_password_mismatch">Adgangskoderne er ikke ens.</string>
     <string name="backup_password_hint">Uden denne adgangskode kan ingen åbne kopien – heller ikke dig.</string>
     <string name="backup_health_hint">Nætter fra andre apps (f.eks. Samsung Health) sikkerhedskopieres ikke – de bliver dér og vises igen, så snart adgang er givet.</string>

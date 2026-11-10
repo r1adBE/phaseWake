@@ -451,7 +451,8 @@
     <string name="settings_restore">Taasta</string>
     <string name="backup_password">Parool</string>
     <string name="backup_password_repeat">Korda parooli</string>
-    <string name="backup_password_short">Vähemalt 8 märki.</string>
+    <string name="backup_password_short">Vähemalt 10 märki.</string>
+    <string name="backup_password_trivial">Liiga kergesti äraarvatav – väldi kordusi, jadasid nagu 1234 või abcd, klaviatuuriridu ja levinud paroole.</string>
     <string name="backup_password_mismatch">Paroolid ei ühti.</string>
     <string name="backup_password_hint">Ilma selle paroolita ei saa keegi varukoopiat avada – isegi mitte sina.</string>
     <string name="backup_health_hint">Teiste rakenduste (nt Samsung Health) öid ei varundata – need jäävad sinna ja ilmuvad uuesti, kui juurdepääs on antud.</string>

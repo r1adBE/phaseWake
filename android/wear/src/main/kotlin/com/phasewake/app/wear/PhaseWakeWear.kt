@@ -13,7 +13,6 @@ import com.phasewake.app.shared.AlarmRepository
 import com.phasewake.app.shared.DiagnosticsLog
 import com.phasewake.app.shared.HolidayStore
 import com.phasewake.app.shared.LearningStore
-import com.phasewake.app.shared.LearningSync
 import com.phasewake.app.shared.AutoOnsetStore
 import com.phasewake.app.shared.SleepGoalStore
 import com.phasewake.app.shared.TransientStore
@@ -90,9 +89,6 @@ open class PhaseWakeWear : Application() {
 
     /** Lernphase vom Handy: automatische Aufzeichnung und gelernte Werte; ohne Handy keine. */
     val learning by lazy { LearningStore(phaseWakeStore) }
-
-    /** Lernphase vom Handy nachholen ([com.phasewake.app.wear.sync.PhoneCatchUp]). */
-    val learningSync by lazy { LearningSync(this) }
 
     /** Welche Aufzeichnung die Lernphase begann und bis wann sie läuft. */
     val learnMark by lazy { LearnMarkStore(phaseWakeStore) }

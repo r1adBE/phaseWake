@@ -474,7 +474,8 @@
     <string name="settings_restore">Obnovit</string>
     <string name="backup_password">Heslo</string>
     <string name="backup_password_repeat">Zopakovat heslo</string>
-    <string name="backup_password_short">Alespoň 8 znaků.</string>
+    <string name="backup_password_short">Alespoň 10 znaků.</string>
+    <string name="backup_password_trivial">Příliš snadné uhodnout – vyhni se opakování, posloupnostem jako 1234 nebo abcd, řadám kláves a běžným heslům.</string>
     <string name="backup_password_mismatch">Hesla se neshodují.</string>
     <string name="backup_password_hint">Bez tohoto hesla zálohu nikdo neotevře – ani ty.</string>
     <string name="backup_health_hint">Noci z jiných aplikací (např. Samsung Health) se nezálohují – zůstávají tam a znovu se objeví, jakmile udělíš přístup.</string>

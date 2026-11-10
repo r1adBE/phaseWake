@@ -32,5 +32,5 @@
     <string name="check_watch_recorder_motion">ウォッチは就寝前の計測を開始しませんでした – Phase Wake にはウォッチの動きのデータを読み取る許可がありません。ウォッチの設定の「プライバシー」で許可してください。アラームはそれでも鳴ります。</string>
     <string name="check_watch_state_old">ウォッチの状態が古くなっています – ウォッチでPhase Wakeを少し開いてください。</string>
     <string name="editor_sleep_hint_apple">眠りについた時点から数えます。寝るときにウォッチで「おやすみ」をタップしてください。Apple Watchでは、Phase Wakeが学習した入眠までの時間から寝付いた時刻を推定します。タップしない場合は設定した時刻になります。</string>
-    <string name="auto_onset_hint_apple">就寝時刻の 1 時間前以降に Apple Watch で Phase Wake を開くと（ウォッチが知らせます）、そのときから体動を記録します。起床時間帯の始めに、Phase Wake が入眠時刻を計算します。</string>
+    <string name="auto_onset_hint_apple">就寝時刻の 1 時間前以降に Apple Watch で Phase Wake を開くと（ウォッチが知らせます）、そのときから起床時間帯まで体動を記録します。その後、Phase Wake が入眠時刻を計算します。</string>
 </resources>

@@ -450,7 +450,8 @@
     <string name="settings_restore">மீட்டமை</string>
     <string name="backup_password">கடவுச்சொல்</string>
     <string name="backup_password_repeat">கடவுச்சொல்லை மீண்டும் உள்ளிடு</string>
-    <string name="backup_password_short">குறைந்தது 8 எழுத்துகள்.</string>
+    <string name="backup_password_short">குறைந்தது 10 எழுத்துகள்.</string>
+    <string name="backup_password_trivial">ஊகிக்க மிகவும் எளிது – திரும்பத் திரும்ப வரும் எழுத்துகள், 1234 அல்லது abcd போன்ற வரிசைகள், விசைப்பலகை வரிசைகள் மற்றும் பொதுவான கடவுச்சொற்களைத் தவிர்க்கவும்.</string>
     <string name="backup_password_mismatch">கடவுச்சொற்கள் பொருந்தவில்லை.</string>
     <string name="backup_password_hint">இந்தக் கடவுச்சொல் இல்லாமல் யாராலும் காப்புப்பிரதியைத் திறக்க முடியாது – உங்களாலும் கூட.</string>
     <string name="backup_health_hint">பிற ஆப்களின் இரவுகள் (எ.கா. Samsung Health) காப்புப் பிரதி எடுக்கப்படாது – அவை அங்கேயே இருக்கும், அனுமதி அளித்ததும் மீண்டும் தோன்றும்.</string>

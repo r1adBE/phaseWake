@@ -450,7 +450,8 @@
     <string name="settings_restore">ಮರುಸ್ಥಾಪಿಸಿ</string>
     <string name="backup_password">ಪಾಸ್‌ವರ್ಡ್</string>
     <string name="backup_password_repeat">ಪಾಸ್‌ವರ್ಡ್ ಮತ್ತೆ ನಮೂದಿಸಿ</string>
-    <string name="backup_password_short">ಕನಿಷ್ಠ 8 ಅಕ್ಷರಗಳು.</string>
+    <string name="backup_password_short">ಕನಿಷ್ಠ 10 ಅಕ್ಷರಗಳು.</string>
+    <string name="backup_password_trivial">ಊಹಿಸಲು ತುಂಬಾ ಸುಲಭ – ಪುನರಾವರ್ತನೆ, 1234 ಅಥವಾ abcd ನಂತಹ ಸರಣಿಗಳು, ಕೀಬೋರ್ಡ್ ಸಾಲುಗಳು ಮತ್ತು ಸಾಮಾನ್ಯ ಪಾಸ್‌ವರ್ಡ್‌ಗಳನ್ನು ತಪ್ಪಿಸಿ.</string>
     <string name="backup_password_mismatch">ಪಾಸ್‌ವರ್ಡ್‌ಗಳು ಹೊಂದುತ್ತಿಲ್ಲ.</string>
     <string name="backup_password_hint">ಈ ಪಾಸ್‌ವರ್ಡ್ ಇಲ್ಲದೆ ಯಾರೂ ಬ್ಯಾಕಪ್ ತೆರೆಯಲಾರರು – ನೀವೂ ಸಹ.</string>
     <string name="backup_health_hint">ಇತರ ಆ್ಯಪ್‌ಗಳ ರಾತ್ರಿಗಳನ್ನು (ಉದಾ. Samsung Health) ಬ್ಯಾಕಪ್ ಮಾಡಲಾಗುವುದಿಲ್ಲ – ಅವು ಅಲ್ಲಿಯೇ ಇರುತ್ತವೆ ಮತ್ತು ಅನುಮತಿ ನೀಡಿದ ತಕ್ಷಣ ಮತ್ತೆ ಕಾಣಿಸುತ್ತವೆ.</string>

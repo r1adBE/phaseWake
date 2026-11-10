@@ -6,23 +6,20 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
 import com.google.android.gms.wearable.DataMapItem
 import com.google.android.gms.wearable.Wearable
-import com.phasewake.app.core.DiagKind
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.phaseWakeStore
 import com.phasewake.app.wear.PhaseWakeWear
-import com.phasewake.app.wear.record.RecordControl
 import java.time.Instant
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withTimeoutOrNull
 
 /**
- * Holt nach, was die Uhr verpasst haben könnte (Prozess neu, Neustart, Update). Ein neues Handy schickt Wecker und
- * Einstellungen über die Warteschlange: Die Uhr stellt einmalig um ([WearSync.migrateTransport]), sendet ihre wartenden
- * Nächte und Aufzeichnungen und bittet das Handy um seinen Stand ([WearSync.requestSync]). Von einem älteren Handy liest
- * sie wie bisher die abgelegten Pakete: den neuesten Weckerstand, die Feiertage, das Schlafziel, den Schalter der
- * Einschlaf-Messung und die Lernphase; dazu immer ein «Verlauf löschen». Nur nach dem ersten Entsperren aufrufen. Fehler
- * (keine Wear-Dienste, kein Handy) werden geloggt, die Uhr arbeitet dann allein weiter.
+ * Holt nach, was die Uhr verpasst haben könnte (Prozess neu, Neustart, Update): einmalig auf die Warteschlange umstellen
+ * ([WearSync.migrateTransport]), wartende Nächte und Aufzeichnungen senden, das Handy um seinen Stand bitten (Wecker und
+ * Einstellungen kommen über die Warteschlange, [WearSync.requestSync]) und ein verpasstes «Verlauf löschen» anwenden.
+ * Nur nach dem ersten Entsperren aufrufen. Fehler (keine Wear-Dienste, kein Handy) werden geloggt, die Uhr arbeitet dann
+ * allein weiter.
  */
 object PhoneCatchUp {
     private const val TAG = "PhoneCatchUp"
@@ -30,62 +27,23 @@ object PhoneCatchUp {
     /** Zeitpunkt (ms) des zuletzt angewendeten «Verlauf löschen» vom Handy. */
     private val CLEAR_APPLIED_AT = longPreferencesKey("clear_history_applied_at")
 
-    /** @return ob sich Wecker, Feiertage oder Schlafziel geändert haben (dann neu planen). Höchstens [TIMEOUT_MS], damit Empfänger nicht hängen. */
-    suspend fun run(app: PhaseWakeWear): Boolean = withTimeoutOrNull(TIMEOUT_MS) { catchUp(app) } ?: false
+    /** Höchstens [TIMEOUT_MS], damit Empfänger nicht hängen. */
+    suspend fun run(app: PhaseWakeWear) {
+        withTimeoutOrNull(TIMEOUT_MS) { catchUp(app) }
+    }
 
     private const val TIMEOUT_MS = 5_000L
 
-    private suspend fun catchUp(app: PhaseWakeWear): Boolean {
-        var changed = false
+    private suspend fun catchUp(app: PhaseWakeWear) {
         app.sync.migrateTransport()
         app.sync.flush()
         app.sync.requestSync()
-        try {
-            app.sync.fetchAlarms()?.let { changed = app.alarms.applyRemote(it) }
-        } catch (e: Exception) {
-            if (e is kotlinx.coroutines.CancellationException) throw e
-            Log.w(TAG, "Wecker nachholen fehlgeschlagen", e)
-        }
-        try {
-            // Feiertage: nur ein neuerer Stand; ändern sie sich, muss neu geplant werden.
-            app.sync.fetchHolidays()?.let { (list, at) -> if (app.holidays.set(list, at, onlyIfNewer = true)) changed = true }
-        } catch (e: Exception) {
-            if (e is kotlinx.coroutines.CancellationException) throw e
-            Log.w(TAG, "Feiertage nachholen fehlgeschlagen", e)
-        }
-        try {
-            // Schlafziel: bestimmt den Beginn der automatischen Einschlaf-Messung, darum neu planen.
-            app.sync.fetchSleepGoal()?.let { (minutes, at) -> if (app.sleepGoal.setIfNewer(minutes, at)) changed = true }
-        } catch (e: Exception) {
-            if (e is kotlinx.coroutines.CancellationException) throw e
-            Log.w(TAG, "Schlafziel nachholen fehlgeschlagen", e)
-        }
-        try {
-            // Schalter der Einschlaf-Messung: stellt den Alarm der Messung oder hebt ihn auf, darum neu planen.
-            app.sync.fetchAutoOnset()?.let { (enabled, at) -> if (app.autoOnset.setIfNewer(enabled, at)) changed = true }
-        } catch (e: Exception) {
-            if (e is kotlinx.coroutines.CancellationException) throw e
-            Log.w(TAG, "Einschlaf-Messung nachholen fehlgeschlagen", e)
-        }
-        try {
-            // Lernphase: ändert keinen Plan, gilt ab der nächsten Messung.
-            app.learningSync.fetch()?.let { learning ->
-                if (app.learning.setIfNewer(learning)) {
-                    app.diag.log(DiagKind.SYNC, "learning ${learning.diagLine()}")
-                    RecordControl.onLearningChanged(app, learning)
-                }
-            }
-        } catch (e: Exception) {
-            if (e is kotlinx.coroutines.CancellationException) throw e
-            Log.w(TAG, "Lernphase nachholen fehlgeschlagen", e)
-        }
         try {
             latestClear(app)?.let { applyClear(app, it) }
         } catch (e: Exception) {
             if (e is kotlinx.coroutines.CancellationException) throw e
             Log.w(TAG, "«Verlauf löschen» nachholen fehlgeschlagen", e)
         }
-        return changed
     }
 
     /**

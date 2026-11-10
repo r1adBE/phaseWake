@@ -451,7 +451,8 @@
     <string name="settings_restore">Сэргээх</string>
     <string name="backup_password">Нууц үг</string>
     <string name="backup_password_repeat">Нууц үгээ давт</string>
-    <string name="backup_password_short">Дор хаяж 8 тэмдэгт.</string>
+    <string name="backup_password_short">Дор хаяж 10 тэмдэгт.</string>
+    <string name="backup_password_trivial">Таахад хэт амархан – давталт, 1234 эсвэл abcd гэх мэт дараалал, гарын мөр болон түгээмэл нууц үгээс зайлсхий.</string>
     <string name="backup_password_mismatch">Нууц үг таарахгүй байна.</string>
     <string name="backup_password_hint">Энэ нууц үггүйгээр нөөцийг хэн ч нээж чадахгүй – чи ч гэсэн.</string>
     <string name="backup_health_hint">Бусад аппын шөнүүд (жишээ нь Samsung Health) нөөцлөгдөхгүй – тэнд хэвээр үлдэж, зөвшөөрөл өгмөгц дахин харагдана.</string>

@@ -448,7 +448,8 @@
     <string name="settings_restore">بازیابی</string>
     <string name="backup_password">گذرواژه</string>
     <string name="backup_password_repeat">تکرار گذرواژه</string>
-    <string name="backup_password_short">دست‌کم ۸ نویسه.</string>
+    <string name="backup_password_short">دست‌کم ۱۰ نویسه.</string>
+    <string name="backup_password_trivial">حدس‌زدنش خیلی آسان است – از تکرار، دنباله‌هایی مثل 1234 یا abcd، ردیف‌های صفحه‌کلید و گذرواژه‌های رایج پرهیز کن.</string>
     <string name="backup_password_mismatch">گذرواژه‌ها یکی نیستند.</string>
     <string name="backup_password_hint">بدون این گذرواژه هیچ‌کس نمی‌تواند پشتیبان را باز کند – حتی خودت.</string>
     <string name="backup_health_hint">شب‌های برنامه‌های دیگر (مثلاً Samsung Health) پشتیبان‌گیری نمی‌شوند – همان‌جا می‌مانند و به‌محض دادن اجازه دوباره نمایش داده می‌شوند.</string>

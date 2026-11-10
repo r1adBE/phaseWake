@@ -8966,445 +8966,445 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Maak Phase Wake van 1 uur voor slaaptyd op jou Apple Watch oop (dit herinner jou), dan teken dit van daar af jou beweging aan; aan die begin van jou wekvenster bepaal Phase Wake wanneer jy aan die slaap geraak het."
+            "value": "Maak Phase Wake van 1 uur voor slaaptyd op jou Apple Watch oop (dit herinner jou), dan teken dit van daar af tot jou wekvenster jou beweging aan; dan bepaal Phase Wake wanneer jy aan die slaap geraak het."
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "ከመኝታ ሰዓት 1 ሰዓት በፊት ጀምሮ Phase Wakeን በApple Watchህ ላይ ስትከፍት (ያስታውስሃል)፣ ከዚያ ጀምሮ እንቅስቃሴህን ይመዘግባል፤ በመቀስቀሻ ጊዜህ መጀመሪያ ላይ Phase Wake መቼ እንደተኛህ ያሰላል።"
+            "value": "ከመኝታ ሰዓት 1 ሰዓት በፊት ጀምሮ Phase Wakeን በApple Watchህ ላይ ስትከፍት (ያስታውስሃል)፣ ከዚያ ጀምሮ እስከ መቀስቀሻ ጊዜህ ድረስ እንቅስቃሴህን ይመዘግባል፤ ከዚያ Phase Wake መቼ እንደተኛህ ያሰላል።"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "افتح Phase Wake على Apple Watch بدءًا من ساعة قبل موعد النوم (تذكّرك الساعة)، فتسجّل حركتك من ذلك الحين؛ وفي بداية نافذة الاستيقاظ يحسب Phase Wake متى غفوت."
+            "value": "افتح Phase Wake على Apple Watch بدءًا من ساعة قبل موعد النوم (تذكّرك الساعة)، فتسجّل حركتك من ذلك الحين حتى نافذة الاستيقاظ؛ ثم يحسب Phase Wake متى غفوت."
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yatma vaxtından 1 saat əvvəldən Phase Wake-i Apple Watch-da açsan (saat sənə xatırladır), o andan hərəkətini qeyd edir; oyanma aralığının əvvəlində Phase Wake nə vaxt yuxuya getdiyini hesablayır."
+            "value": "Yatma vaxtından 1 saat əvvəldən Phase Wake-i Apple Watch-da açsan (saat sənə xatırladır), o andan oyanma aralığına qədər hərəkətini qeyd edir; sonra Phase Wake nə vaxt yuxuya getdiyini hesablayır."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Отвори Phase Wake на Apple Watch от 1 час преди лягане (часовникът ти напомня) и той записва движението ти оттогава; в началото на прозореца за събуждане Phase Wake изчислява кога си заспал."
+            "value": "Отвори Phase Wake на Apple Watch от 1 час преди лягане (часовникът ти напомня) и той записва движението ти оттогава до прозореца за събуждане; тогава Phase Wake изчислява кога си заспал."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ঘুমানোর সময়ের 1 ঘণ্টা আগে থেকে তোমার Apple Watch-এ Phase Wake খুললে (ঘড়ি মনে করিয়ে দেয়) তখন থেকে এটি তোমার নড়াচড়া রেকর্ড করে; জাগানোর সময়সীমার শুরুতে Phase Wake হিসাব করে তুমি কখন ঘুমিয়েছিলে।"
+            "value": "ঘুমানোর সময়ের 1 ঘণ্টা আগে থেকে তোমার Apple Watch-এ Phase Wake খুললে (ঘড়ি মনে করিয়ে দেয়) তখন থেকে জাগানোর সময়সীমা পর্যন্ত এটি তোমার নড়াচড়া রেকর্ড করে; তারপর Phase Wake হিসাব করে তুমি কখন ঘুমিয়েছিলে।"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Otvori Phase Wake na Apple Watchu od 1 sat prije spavanja (sat te podsjeti) i od tada bilježi tvoje pokrete; na početku intervala buđenja Phase Wake izračuna kada si zaspao."
+            "value": "Otvori Phase Wake na Apple Watchu od 1 sat prije spavanja (sat te podsjeti) i od tada do intervala buđenja bilježi tvoje pokrete; tada Phase Wake izračuna kada si zaspao."
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "Obre Phase Wake a l’Apple Watch des d’1 hora abans d’anar a dormir (te’l recorda) i a partir d’aleshores enregistra el teu moviment; a l’inici de la finestra de despertar, Phase Wake calcula quan et vas adormir."
+            "value": "Obre Phase Wake a l’Apple Watch des d’1 hora abans d’anar a dormir (te’l recorda) i des d’aleshores fins a la finestra de despertar enregistra el teu moviment; llavors Phase Wake calcula quan et vas adormir."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Otevři Phase Wake na Apple Watch od 1 hodiny před spaním (hodinky ti to připomenou) a od té chvíle zaznamenávají tvůj pohyb; na začátku okna buzení Phase Wake spočítá, kdy jsi usnul."
+            "value": "Otevři Phase Wake na Apple Watch od 1 hodiny před spaním (hodinky ti to připomenou) a od té chvíle až do okna buzení zaznamenávají tvůj pohyb; pak Phase Wake spočítá, kdy jsi usnul."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Åbn Phase Wake på dit Apple Watch fra 1 time før sengetid (uret minder dig om det), så registrerer det din bevægelse fra da af; ved starten af dit vækningsvindue beregner Phase Wake, hvornår du faldt i søvn."
+            "value": "Åbn Phase Wake på dit Apple Watch fra 1 time før sengetid (uret minder dig om det), så registrerer det din bevægelse fra da af til dit vækningsvindue; så beregner Phase Wake, hvornår du faldt i søvn."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Öffnest du Phase Wake ab 1 Std. vor der Bettzeit auf der Apple Watch (sie erinnert dich), zeichnet sie ab dann die Bewegung auf; zu Beginn des Weckfensters rechnet Phase Wake aus, wann du eingeschlafen bist."
+            "value": "Öffnest du Phase Wake ab 1 Std. vor der Bettzeit auf der Apple Watch (sie erinnert dich), zeichnet sie von da an bis zum Weckfenster die Bewegung auf; dann rechnet Phase Wake aus, wann du eingeschlafen bist."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Άνοιξε το Phase Wake στο Apple Watch από 1 ώρα πριν από την ώρα ύπνου (σου το θυμίζει) και από τότε καταγράφει την κίνησή σου· στην αρχή του παραθύρου αφύπνισης, το Phase Wake υπολογίζει πότε αποκοιμήθηκες."
+            "value": "Άνοιξε το Phase Wake στο Apple Watch από 1 ώρα πριν από την ώρα ύπνου (σου το θυμίζει) και από τότε έως το παράθυρο αφύπνισης καταγράφει την κίνησή σου· τότε το Phase Wake υπολογίζει πότε αποκοιμήθηκες."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Open Phase Wake on your Apple Watch from 1 hour before bedtime (it reminds you) and it records your movement from then on; at the start of your wake window, Phase Wake works out when you fell asleep."
+            "value": "Open Phase Wake on your Apple Watch from 1 hour before bedtime (it reminds you) and it records your movement from then until your wake window; then Phase Wake works out when you fell asleep."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abre Phase Wake en tu Apple Watch desde 1 hora antes de acostarte (te lo recuerda) y desde entonces registra tu movimiento; al comienzo de tu ventana de despertar, Phase Wake calcula cuándo te dormiste."
+            "value": "Abre Phase Wake en tu Apple Watch desde 1 hora antes de acostarte (te lo recuerda) y desde entonces hasta tu ventana de despertar registra tu movimiento; entonces Phase Wake calcula cuándo te dormiste."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ava Phase Wake Apple Watchil alates 1 tund enne magamaminekut (kell tuletab meelde) ja sellest hetkest salvestab see su liikumise; äratusakna alguses arvutab Phase Wake, millal sa magama jäid."
+            "value": "Ava Phase Wake Apple Watchil alates 1 tund enne magamaminekut (kell tuletab meelde) ja sellest hetkest kuni äratusaknani salvestab see su liikumise; siis arvutab Phase Wake, millal sa magama jäid."
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ireki Phase Wake Apple Watchean oheratu baino ordubete lehenagotik (gogorarazi egiten dizu), eta orduz geroztik zure mugimendua erregistratzen du; esnatze-leihoaren hasieran, Phase Wake-k kalkulatzen du noiz geratu zinen lo."
+            "value": "Ireki Phase Wake Apple Watchean oheratu baino ordubete lehenagotik (gogorarazi egiten dizu), eta orduz geroztik esnatze-leihora arte zure mugimendua erregistratzen du; orduan, Phase Wake-k kalkulatzen du noiz geratu zinen lo."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "اگر Phase Wake را از ۱ ساعت پیش از زمان خواب روی Apple Watch باز کنی (یادآوری می‌کند)، از آن موقع حرکتت را ثبت می‌کند؛ در آغاز بازهٔ بیدارسازی، Phase Wake حساب می‌کند کی خوابت برده است."
+            "value": "اگر Phase Wake را از ۱ ساعت پیش از زمان خواب روی Apple Watch باز کنی (یادآوری می‌کند)، از آن موقع تا بازهٔ بیدارسازی حرکتت را ثبت می‌کند؛ سپس Phase Wake حساب می‌کند کی خوابت برده است."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avaa Phase Wake Apple Watchissa tuntia ennen nukkumaanmenoa tai myöhemmin (kello muistuttaa), niin se tallentaa liikkeesi siitä lähtien; heräämisikkunan alussa Phase Wake laskee, milloin nukahdit."
+            "value": "Avaa Phase Wake Apple Watchissa tuntia ennen nukkumaanmenoa tai myöhemmin (kello muistuttaa), niin se tallentaa liikkeesi siitä lähtien heräämisikkunaan asti; silloin Phase Wake laskee, milloin nukahdit."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Buksan ang Phase Wake sa Apple Watch mo mula 1 oras bago ang oras ng pagtulog (ipapaalala nito sa iyo) at mula noon ay nire-record nito ang paggalaw mo; sa simula ng iyong wake window, kinakalkula ng Phase Wake kung kailan ka nakatulog."
+            "value": "Buksan ang Phase Wake sa Apple Watch mo mula 1 oras bago ang oras ng pagtulog (ipapaalala nito sa iyo) at mula noon hanggang sa iyong wake window ay nire-record nito ang paggalaw mo; pagkatapos, kinakalkula ng Phase Wake kung kailan ka nakatulog."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ouvre Phase Wake sur ton Apple Watch à partir d’1 heure avant le coucher (elle te le rappelle) et elle enregistre tes mouvements dès ce moment ; au début de ta fenêtre de réveil, Phase Wake calcule quand tu t’es endormi."
+            "value": "Ouvre Phase Wake sur ton Apple Watch à partir d’1 heure avant le coucher (elle te le rappelle) et elle enregistre tes mouvements dès ce moment jusqu’à ta fenêtre de réveil ; Phase Wake calcule alors quand tu t’es endormi."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Oscail Phase Wake ar d’Apple Watch ó uair an chloig roimh am codlata (cuireann sé i gcuimhne duit é) agus taifeadann sé do ghluaiseacht ón uair sin; ag tús d’fhuinneog dúisithe, oibríonn Phase Wake amach cathain a thit tú i do chodladh."
+            "value": "Oscail Phase Wake ar d’Apple Watch ó uair an chloig roimh am codlata (cuireann sé i gcuimhne duit é) agus taifeadann sé do ghluaiseacht ón uair sin go dtí d’fhuinneog dúisithe; ansin oibríonn Phase Wake amach cathain a thit tú i do chodladh."
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abre Phase Wake no teu Apple Watch desde 1 hora antes de deitarte (lémbrachelo) e desde entón rexistra o teu movemento; ao comezo da túa xanela de espertar, Phase Wake calcula cando adormeciches."
+            "value": "Abre Phase Wake no teu Apple Watch desde 1 hora antes de deitarte (lémbrachelo) e desde entón ata a túa xanela de espertar rexistra o teu movemento; entón Phase Wake calcula cando adormeciches."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "સૂવાના સમયના 1 કલાક પહેલાંથી તમારી Apple Watch પર Phase Wake ખોલો (ઘડિયાળ યાદ અપાવે છે), તો ત્યારથી તે તમારું હલનચલન નોંધે છે; જગાડવાના સમયગાળાની શરૂઆતમાં Phase Wake ગણે છે કે તમે ક્યારે ઊંઘી ગયા."
+            "value": "સૂવાના સમયના 1 કલાક પહેલાંથી તમારી Apple Watch પર Phase Wake ખોલો (ઘડિયાળ યાદ અપાવે છે), તો ત્યારથી જગાડવાના સમયગાળા સુધી તે તમારું હલનચલન નોંધે છે; પછી Phase Wake ગણે છે કે તમે ક્યારે ઊંઘી ગયા."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "פתחו את Phase Wake ב-Apple Watch משעה לפני שעת השינה (השעון יזכיר לכם), ומאז הוא מקליט את התנועה שלכם; בתחילת חלון ההשכמה Phase Wake מחשב מתי נרדמתם."
+            "value": "פתחו את Phase Wake ב-Apple Watch משעה לפני שעת השינה (השעון יזכיר לכם), ומאז ועד חלון ההשכמה הוא מקליט את התנועה שלכם; אז Phase Wake מחשב מתי נרדמתם."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "सोने के समय से 1 घंटा पहले से अपनी Apple Watch पर Phase Wake खोलो (घड़ी याद दिलाती है), तो तब से वह तुम्हारी गतिविधि रिकॉर्ड करती है; जागने की अवधि की शुरुआत में Phase Wake गणना करता है कि तुम कब सोए।"
+            "value": "सोने के समय से 1 घंटा पहले से अपनी Apple Watch पर Phase Wake खोलो (घड़ी याद दिलाती है), तो तब से जागने की अवधि तक वह तुम्हारी गतिविधि रिकॉर्ड करती है; फिर Phase Wake गणना करता है कि तुम कब सोए।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Otvori Phase Wake na Apple Watchu od 1 sat prije spavanja (sat te podsjeti) i od tada bilježi tvoje pokrete; na početku intervala buđenja Phase Wake izračuna kada si zaspao."
+            "value": "Otvori Phase Wake na Apple Watchu od 1 sat prije spavanja (sat te podsjeti) i od tada do intervala buđenja bilježi tvoje pokrete; tada Phase Wake izračuna kada si zaspao."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nyisd meg a Phase Wake-et az Apple Watchon lefekvés előtt 1 órával vagy később (az óra emlékeztet), és onnantól rögzíti a mozgásodat; az ébresztési ablak elején a Phase Wake kiszámítja, mikor aludtál el."
+            "value": "Nyisd meg a Phase Wake-et az Apple Watchon lefekvés előtt 1 órával vagy később (az óra emlékeztet), és onnantól az ébresztési ablakig rögzíti a mozgásodat; ekkor a Phase Wake kiszámítja, mikor aludtál el."
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Բացիր Phase Wake-ը Apple Watch-ում քնելուց 1 ժամ առաջվանից (ժամացույցը կհիշեցնի), և այդ պահից այն կգրանցի շարժումներդ․ արթնացման պատուհանի սկզբում Phase Wake-ը կհաշվի, թե երբ ես քնել։"
+            "value": "Բացիր Phase Wake-ը Apple Watch-ում քնելուց 1 ժամ առաջվանից (ժամացույցը կհիշեցնի), և այդ պահից մինչև արթնացման պատուհանը այն կգրանցի շարժումներդ․ այնուհետև Phase Wake-ը կհաշվի, թե երբ ես քնել։"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Buka Phase Wake di Apple Watch-mu mulai 1 jam sebelum waktu tidur (jam akan mengingatkanmu), lalu sejak itu jam merekam gerakanmu; di awal jendela bangun, Phase Wake menghitung kapan kamu tertidur."
+            "value": "Buka Phase Wake di Apple Watch-mu mulai 1 jam sebelum waktu tidur (jam akan mengingatkanmu), lalu sejak itu hingga jendela bangun jam merekam gerakanmu; kemudian Phase Wake menghitung kapan kamu tertidur."
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Opnaðu Phase Wake á Apple Watch frá 1 klst. fyrir háttatíma (úrið minnir þig á) og þá skráir það hreyfinguna þína frá þeim tíma; í upphafi vökugluggans reiknar Phase Wake út hvenær þú sofnaðir."
+            "value": "Opnaðu Phase Wake á Apple Watch frá 1 klst. fyrir háttatíma (úrið minnir þig á) og þá skráir það hreyfinguna þína frá þeim tíma fram að vökuglugganum; þá reiknar Phase Wake út hvenær þú sofnaðir."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apri Phase Wake sull’Apple Watch da 1 ora prima di andare a dormire (te lo ricorda) e da quel momento registra il tuo movimento; all’inizio della finestra di sveglia, Phase Wake calcola quando ti sei addormentato."
+            "value": "Apri Phase Wake sull’Apple Watch da 1 ora prima di andare a dormire (te lo ricorda) e da quel momento fino alla finestra di sveglia registra il tuo movimento; poi Phase Wake calcola quando ti sei addormentato."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "就寝時刻の 1 時間前以降に Apple Watch で Phase Wake を開くと（ウォッチが知らせます）、そのときから体動を記録します。起床時間帯の始めに、Phase Wake が入眠時刻を計算します。"
+            "value": "就寝時刻の 1 時間前以降に Apple Watch で Phase Wake を開くと（ウォッチが知らせます）、そのときから起床時間帯まで体動を記録します。その後、Phase Wake が入眠時刻を計算します。"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "გახსენი Phase Wake Apple Watch-ზე დაძინებამდე 1 საათით ადრე ან მოგვიანებით (საათი შეგახსენებს) და იმ მომენტიდან ის შენს მოძრაობას ჩაწერს; გაღვიძების ფანჯრის დასაწყისში Phase Wake გამოითვლის, როდის ჩაგეძინა."
+            "value": "გახსენი Phase Wake Apple Watch-ზე დაძინებამდე 1 საათით ადრე ან მოგვიანებით (საათი შეგახსენებს) და იმ მომენტიდან გაღვიძების ფანჯრამდე ის შენს მოძრაობას ჩაწერს; შემდეგ Phase Wake გამოითვლის, როდის ჩაგეძინა."
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ұйықтау уақытынан 1 сағат бұрыннан бастап Apple Watch-та Phase Wake-ті аш (сағат еске салады), сонда ол сол сәттен қозғалысыңды жазады; ояту аралығының басында Phase Wake қашан ұйықтап қалғаныңды есептейді."
+            "value": "Ұйықтау уақытынан 1 сағат бұрыннан бастап Apple Watch-та Phase Wake-ті аш (сағат еске салады), сонда ол сол сәттен ояту аралығына дейін қозғалысыңды жазады; содан кейін Phase Wake қашан ұйықтап қалғаныңды есептейді."
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "បើក Phase Wake នៅលើ Apple Watch របស់អ្នកចាប់ពី 1 ម៉ោងមុនពេលចូលគេង (នាឡិកានឹងរំលឹកអ្នក) ហើយវានឹងកត់ត្រាចលនារបស់អ្នកចាប់ពីពេលនោះ។ នៅដើមចន្លោះពេលដាស់ Phase Wake គណនាថាអ្នកដេកលក់នៅពេលណា។"
+            "value": "បើក Phase Wake នៅលើ Apple Watch របស់អ្នកចាប់ពី 1 ម៉ោងមុនពេលចូលគេង (នាឡិកានឹងរំលឹកអ្នក) ហើយវានឹងកត់ត្រាចលនារបស់អ្នកចាប់ពីពេលនោះរហូតដល់ចន្លោះពេលដាស់។ បន្ទាប់មក Phase Wake គណនាថាអ្នកដេកលក់នៅពេលណា។"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ಮಲಗುವ ಸಮಯಕ್ಕೆ 1 ಗಂಟೆ ಮೊದಲಿನಿಂದ ನಿಮ್ಮ Apple Watch‌ನಲ್ಲಿ Phase Wake ತೆರೆಯಿರಿ (ವಾಚ್ ನೆನಪಿಸುತ್ತದೆ), ಆಗಿನಿಂದ ಅದು ನಿಮ್ಮ ಚಲನೆಯನ್ನು ದಾಖಲಿಸುತ್ತದೆ; ಎಚ್ಚರಿಸುವ ಅವಧಿಯ ಆರಂಭದಲ್ಲಿ ನೀವು ಯಾವಾಗ ನಿದ್ರೆಗೆ ಜಾರಿದಿರಿ ಎಂದು Phase Wake ಲೆಕ್ಕ ಹಾಕುತ್ತದೆ."
+            "value": "ಮಲಗುವ ಸಮಯಕ್ಕೆ 1 ಗಂಟೆ ಮೊದಲಿನಿಂದ ನಿಮ್ಮ Apple Watch‌ನಲ್ಲಿ Phase Wake ತೆರೆಯಿರಿ (ವಾಚ್ ನೆನಪಿಸುತ್ತದೆ), ಆಗಿನಿಂದ ಎಚ್ಚರಿಸುವ ಅವಧಿಯವರೆಗೆ ಅದು ನಿಮ್ಮ ಚಲನೆಯನ್ನು ದಾಖಲಿಸುತ್ತದೆ; ನಂತರ ನೀವು ಯಾವಾಗ ನಿದ್ರೆಗೆ ಜಾರಿದಿರಿ ಎಂದು Phase Wake ಲೆಕ್ಕ ಹಾಕುತ್ತದೆ."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "취침 시간 1시간 전부터 Apple Watch에서 Phase Wake를 열면(워치가 알려 줍니다) 그때부터 움직임을 기록합니다. 기상 시간대가 시작될 때 Phase Wake가 언제 잠들었는지 계산합니다."
+            "value": "취침 시간 1시간 전부터 Apple Watch에서 Phase Wake를 열면(워치가 알려 줍니다) 그때부터 기상 시간대까지 움직임을 기록합니다. 그다음 Phase Wake가 언제 잠들었는지 계산합니다."
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "ເປີດ Phase Wake ໃນ Apple Watch ຂອງເຈົ້າຕັ້ງແຕ່ 1 ຊົ່ວໂມງກ່ອນເວລານອນ (ໂມງຈະເຕືອນເຈົ້າ) ແລະ ມັນຈະບັນທຶກການເຄື່ອນໄຫວຂອງເຈົ້າຕັ້ງແຕ່ຕອນນັ້ນ; ໃນຕອນເລີ່ມຂອງຊ່ວງເວລາປຸກ Phase Wake ຈະຄິດໄລ່ວ່າເຈົ້ານອນຫຼັບເມື່ອໃດ."
+            "value": "ເປີດ Phase Wake ໃນ Apple Watch ຂອງເຈົ້າຕັ້ງແຕ່ 1 ຊົ່ວໂມງກ່ອນເວລານອນ (ໂມງຈະເຕືອນເຈົ້າ) ແລະ ມັນຈະບັນທຶກການເຄື່ອນໄຫວຂອງເຈົ້າຕັ້ງແຕ່ຕອນນັ້ນຈົນຮອດຊ່ວງເວລາປຸກ; ຈາກນັ້ນ Phase Wake ຈະຄິດໄລ່ວ່າເຈົ້ານອນຫຼັບເມື່ອໃດ."
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Atidaryk Phase Wake savo Apple Watch nuo 1 valandos prieš miegą (laikrodis primins), ir nuo tada jis įrašys tavo judėjimą; žadinimo lango pradžioje Phase Wake apskaičiuoja, kada užmigai."
+            "value": "Atidaryk Phase Wake savo Apple Watch nuo 1 valandos prieš miegą (laikrodis primins), ir nuo tada iki žadinimo lango jis įrašys tavo judėjimą; tada Phase Wake apskaičiuoja, kada užmigai."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Atver Phase Wake savā Apple Watch no 1 stundas pirms gulētiešanas (pulkstenis atgādina), un no tā brīža tas ieraksta tavas kustības; modināšanas loga sākumā Phase Wake aprēķina, kad tu aizmigi."
+            "value": "Atver Phase Wake savā Apple Watch no 1 stundas pirms gulētiešanas (pulkstenis atgādina), un no tā brīža līdz modināšanas logam tas ieraksta tavas kustības; tad Phase Wake aprēķina, kad tu aizmigi."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Отвори го Phase Wake на Apple Watch од 1 час пред спиење (часовникот те потсетува) и оттогаш го снима твоето движење; на почетокот на прозорецот за будење Phase Wake пресметува кога си заспал."
+            "value": "Отвори го Phase Wake на Apple Watch од 1 час пред спиење (часовникот те потсетува) и оттогаш до прозорецот за будење го снима твоето движење; тогаш Phase Wake пресметува кога си заспал."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "ഉറങ്ങുന്ന സമയത്തിന് 1 മണിക്കൂർ മുമ്പ് മുതൽ നിങ്ങളുടെ Apple Watch-ൽ Phase Wake തുറന്നാൽ (വാച്ച് ഓർമ്മിപ്പിക്കും) അപ്പോൾ മുതൽ അത് ചലനം രേഖപ്പെടുത്തും; ഉണർത്തൽ സമയപരിധിയുടെ തുടക്കത്തിൽ നിങ്ങൾ എപ്പോൾ ഉറങ്ങി എന്ന് Phase Wake കണക്കാക്കും."
+            "value": "ഉറങ്ങുന്ന സമയത്തിന് 1 മണിക്കൂർ മുമ്പ് മുതൽ നിങ്ങളുടെ Apple Watch-ൽ Phase Wake തുറന്നാൽ (വാച്ച് ഓർമ്മിപ്പിക്കും) അപ്പോൾ മുതൽ ഉണർത്തൽ സമയപരിധി വരെ അത് ചലനം രേഖപ്പെടുത്തും; തുടർന്ന് നിങ്ങൾ എപ്പോൾ ഉറങ്ങി എന്ന് Phase Wake കണക്കാക്കും."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Унтах цагаас 1 цагийн өмнөөс Apple Watch дээр Phase Wake-ийг нээвэл (цаг сануулна) тэр үеэс хөдөлгөөнийг чинь бичнэ; сэрээх хугацааны эхэнд Phase Wake хэзээ унтсаныг чинь тооцоолно."
+            "value": "Унтах цагаас 1 цагийн өмнөөс Apple Watch дээр Phase Wake-ийг нээвэл (цаг сануулна) тэр үеэс сэрээх хугацаа хүртэл хөдөлгөөнийг чинь бичнэ; дараа нь Phase Wake хэзээ унтсаныг чинь тооцоолно."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "झोपण्याच्या वेळेच्या 1 तास आधीपासून तुमच्या Apple Watch वर Phase Wake उघडा (घड्याळ आठवण करून देते), तेव्हापासून ते तुमची हालचाल नोंदवते; उठवण्याच्या कालावधीच्या सुरुवातीला तुम्ही कधी झोपलात हे Phase Wake मोजते."
+            "value": "झोपण्याच्या वेळेच्या 1 तास आधीपासून तुमच्या Apple Watch वर Phase Wake उघडा (घड्याळ आठवण करून देते), तेव्हापासून उठवण्याच्या कालावधीपर्यंत ते तुमची हालचाल नोंदवते; नंतर तुम्ही कधी झोपलात हे Phase Wake मोजते."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Buka Phase Wake pada Apple Watch awak dari 1 jam sebelum waktu tidur (jam akan mengingatkan awak), lalu sejak itu ia merakam pergerakan awak; pada permulaan tetingkap bangun, Phase Wake mengira bila awak tertidur."
+            "value": "Buka Phase Wake pada Apple Watch awak dari 1 jam sebelum waktu tidur (jam akan mengingatkan awak), lalu sejak itu hingga tetingkap bangun ia merakam pergerakan awak; kemudian Phase Wake mengira bila awak tertidur."
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "အိပ်ချိန်မတိုင်မီ 1 နာရီမှစ၍ သင့် Apple Watch ပေါ်တွင် Phase Wake ကိုဖွင့်ပါ (နာရီက သတိပေးပါမည်)၊ ထိုအချိန်မှစ၍ လှုပ်ရှားမှုကို မှတ်တမ်းတင်ပါသည်၊ နှိုးချိန်အပိုင်းအခြား အစတွင် Phase Wake က သင်ဘယ်အချိန် အိပ်ပျော်သွားသည်ကို တွက်ချက်ပါသည်။"
+            "value": "အိပ်ချိန်မတိုင်မီ 1 နာရီမှစ၍ သင့် Apple Watch ပေါ်တွင် Phase Wake ကိုဖွင့်ပါ (နာရီက သတိပေးပါမည်)၊ ထိုအချိန်မှ နှိုးချိန်အပိုင်းအခြားအထိ လှုပ်ရှားမှုကို မှတ်တမ်းတင်ပါသည်၊ ထို့နောက် Phase Wake က သင်ဘယ်အချိန် အိပ်ပျော်သွားသည်ကို တွက်ချက်ပါသည်။"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Åpne Phase Wake på Apple Watch fra 1 time før leggetid (klokken minner deg på det), så tar den opp bevegelsen din fra da av; ved starten av vekkevinduet regner Phase Wake ut når du sovnet."
+            "value": "Åpne Phase Wake på Apple Watch fra 1 time før leggetid (klokken minner deg på det), så tar den opp bevegelsen din fra da av til vekkevinduet; da regner Phase Wake ut når du sovnet."
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "सुत्ने समयभन्दा 1 घण्टा अघिदेखि आफ्नो Apple Watch मा Phase Wake खोल (घडीले सम्झाउँछ), त्यसबेलादेखि यसले तिम्रो चालचलन रेकर्ड गर्छ; उठाउने समयावधिको सुरुमा Phase Wake ले तिमी कहिले निदायौ भनेर हिसाब गर्छ।"
+            "value": "सुत्ने समयभन्दा 1 घण्टा अघिदेखि आफ्नो Apple Watch मा Phase Wake खोल (घडीले सम्झाउँछ), त्यसबेलादेखि उठाउने समयावधिसम्म यसले तिम्रो चालचलन रेकर्ड गर्छ; त्यसपछि Phase Wake ले तिमी कहिले निदायौ भनेर हिसाब गर्छ।"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Open Phase Wake op je Apple Watch vanaf 1 uur voor bedtijd (hij herinnert je eraan), dan neemt hij vanaf dat moment je beweging op; aan het begin van je wekvenster berekent Phase Wake wanneer je in slaap viel."
+            "value": "Open Phase Wake op je Apple Watch vanaf 1 uur voor bedtijd (hij herinnert je eraan), dan neemt hij vanaf dat moment tot je wekvenster je beweging op; dan berekent Phase Wake wanneer je in slaap viel."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਸੌਣ ਦੇ ਸਮੇਂ ਤੋਂ 1 ਘੰਟਾ ਪਹਿਲਾਂ ਤੋਂ ਆਪਣੀ Apple Watch ’ਤੇ Phase Wake ਖੋਲ੍ਹੋ (ਘੜੀ ਯਾਦ ਕਰਾਉਂਦੀ ਹੈ), ਤਾਂ ਉਦੋਂ ਤੋਂ ਇਹ ਤੁਹਾਡੀ ਹਿਲਜੁਲ ਰਿਕਾਰਡ ਕਰਦੀ ਹੈ; ਜਗਾਉਣ ਦੀ ਮਿਆਦ ਦੀ ਸ਼ੁਰੂਆਤ ਵਿੱਚ Phase Wake ਹਿਸਾਬ ਲਾਉਂਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕਦੋਂ ਸੌਂ ਗਏ।"
+            "value": "ਸੌਣ ਦੇ ਸਮੇਂ ਤੋਂ 1 ਘੰਟਾ ਪਹਿਲਾਂ ਤੋਂ ਆਪਣੀ Apple Watch ’ਤੇ Phase Wake ਖੋਲ੍ਹੋ (ਘੜੀ ਯਾਦ ਕਰਾਉਂਦੀ ਹੈ), ਤਾਂ ਉਦੋਂ ਤੋਂ ਜਗਾਉਣ ਦੀ ਮਿਆਦ ਤੱਕ ਇਹ ਤੁਹਾਡੀ ਹਿਲਜੁਲ ਰਿਕਾਰਡ ਕਰਦੀ ਹੈ; ਫਿਰ Phase Wake ਹਿਸਾਬ ਲਾਉਂਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕਦੋਂ ਸੌਂ ਗਏ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Otwórz Phase Wake na Apple Watch od 1 godziny przed snem (zegarek ci przypomni), a od tej chwili nagrywa twój ruch; na początku okna budzenia Phase Wake oblicza, kiedy zasnąłeś."
+            "value": "Otwórz Phase Wake na Apple Watch od 1 godziny przed snem (zegarek ci przypomni), a od tej chwili aż do okna budzenia nagrywa twój ruch; wtedy Phase Wake oblicza, kiedy zasnąłeś."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abra o Phase Wake no Apple Watch a partir de 1 hora antes de dormir (ele te lembra) e, a partir daí, ele grava seu movimento; no início da janela de despertar, o Phase Wake calcula quando você adormeceu."
+            "value": "Abra o Phase Wake no Apple Watch a partir de 1 hora antes de dormir (ele te lembra) e, a partir daí até a janela de despertar, ele grava seu movimento; então o Phase Wake calcula quando você adormeceu."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abre o Phase Wake no Apple Watch a partir de 1 hora antes de dormir (ele lembra-te) e, a partir daí, grava o teu movimento; no início da janela de despertar, o Phase Wake calcula quando adormeceste."
+            "value": "Abre o Phase Wake no Apple Watch a partir de 1 hora antes de dormir (ele lembra-te) e, a partir daí até à janela de despertar, grava o teu movimento; então o Phase Wake calcula quando adormeceste."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deschide Phase Wake pe Apple Watch de la 1 oră înainte de culcare (ceasul îți amintește) și de atunci îți înregistrează mișcarea; la începutul intervalului de trezire, Phase Wake calculează când ai adormit."
+            "value": "Deschide Phase Wake pe Apple Watch de la 1 oră înainte de culcare (ceasul îți amintește) și de atunci până la intervalul de trezire îți înregistrează mișcarea; apoi Phase Wake calculează când ai adormit."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Открой Phase Wake на Apple Watch за 1 час до сна или позже (часы напомнят), и с этого момента они записывают твои движения; в начале окна пробуждения Phase Wake вычисляет, когда ты уснул."
+            "value": "Открой Phase Wake на Apple Watch за 1 час до сна или позже (часы напомнят), и с этого момента до окна пробуждения они записывают твои движения; тогда Phase Wake вычисляет, когда ты уснул."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "නින්දට යාමට පැය 1කට පෙර සිට ඔබේ Apple Watch හි Phase Wake විවෘත කරන්න (ඔරලෝසුව මතක් කරයි), එවිට එතැන් සිට එය ඔබේ චලනය පටිගත කරයි; අවදි කිරීමේ කාලයේ ආරම්භයේදී ඔබ නින්දට ගිය වේලාව Phase Wake ගණනය කරයි."
+            "value": "නින්දට යාමට පැය 1කට පෙර සිට ඔබේ Apple Watch හි Phase Wake විවෘත කරන්න (ඔරලෝසුව මතක් කරයි), එවිට එතැන් සිට අවදි කිරීමේ කාලය දක්වා එය ඔබේ චලනය පටිගත කරයි; ඉන්පසු ඔබ නින්දට ගිය වේලාව Phase Wake ගණනය කරයි."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Otvor Phase Wake na Apple Watch od 1 hodiny pred spaním (hodinky ti to pripomenú) a odvtedy zaznamenávajú tvoj pohyb; na začiatku okna budenia Phase Wake vypočíta, kedy si zaspal."
+            "value": "Otvor Phase Wake na Apple Watch od 1 hodiny pred spaním (hodinky ti to pripomenú) a odvtedy až do okna budenia zaznamenávajú tvoj pohyb; potom Phase Wake vypočíta, kedy si zaspal."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Odpri Phase Wake na uri Apple Watch od 1 ure pred spanjem (ura te opomni) in od takrat snema tvoje gibanje; na začetku okna bujenja Phase Wake izračuna, kdaj si zaspal."
+            "value": "Odpri Phase Wake na uri Apple Watch od 1 ure pred spanjem (ura te opomni) in od takrat do okna bujenja snema tvoje gibanje; nato Phase Wake izračuna, kdaj si zaspal."
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hape Phase Wake në Apple Watch nga 1 orë para gjumit (ora ta kujton) dhe që atëherë regjistron lëvizjen tënde; në fillim të intervalit të zgjimit, Phase Wake llogarit kur ke rënë në gjumë."
+            "value": "Hape Phase Wake në Apple Watch nga 1 orë para gjumit (ora ta kujton) dhe që atëherë deri te intervali i zgjimit regjistron lëvizjen tënde; atëherë Phase Wake llogarit kur ke rënë në gjumë."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Отвори Phase Wake на Apple Watch-у од 1 сат пре спавања (сат те подсети) и од тада бележи твоје покрете; на почетку интервала буђења Phase Wake израчуна када си заспао."
+            "value": "Отвори Phase Wake на Apple Watch-у од 1 сат пре спавања (сат те подсети) и од тада до интервала буђења бележи твоје покрете; тада Phase Wake израчуна када си заспао."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Öppna Phase Wake på din Apple Watch från 1 timme före sänggåendet (klockan påminner dig), så spelar den in din rörelse från då; i början av väckningsfönstret räknar Phase Wake ut när du somnade."
+            "value": "Öppna Phase Wake på din Apple Watch från 1 timme före sänggåendet (klockan påminner dig), så spelar den in din rörelse från då till väckningsfönstret; då räknar Phase Wake ut när du somnade."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fungua Phase Wake kwenye Apple Watch yako kuanzia saa 1 kabla ya kulala (saa itakukumbusha), nayo itarekodi mwendo wako tangu hapo; mwanzoni mwa dirisha la kuamka, Phase Wake hukokotoa ulisinzia lini."
+            "value": "Fungua Phase Wake kwenye Apple Watch yako kuanzia saa 1 kabla ya kulala (saa itakukumbusha), nayo itarekodi mwendo wako tangu hapo hadi dirisha la kuamka; kisha Phase Wake hukokotoa ulisinzia lini."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "தூங்கும் நேரத்துக்கு 1 மணிநேரம் முன்பிருந்து உங்கள் Apple Watch-ல் Phase Wake-ஐத் திறந்தால் (கடிகாரம் நினைவூட்டும்), அப்போதிருந்து அது உங்கள் அசைவைப் பதிவு செய்யும்; எழுப்பும் நேர இடைவெளியின் தொடக்கத்தில் நீங்கள் எப்போது தூங்கினீர்கள் என Phase Wake கணக்கிடும்."
+            "value": "தூங்கும் நேரத்துக்கு 1 மணிநேரம் முன்பிருந்து உங்கள் Apple Watch-ல் Phase Wake-ஐத் திறந்தால் (கடிகாரம் நினைவூட்டும்), அப்போதிருந்து எழுப்பும் நேர இடைவெளி வரை அது உங்கள் அசைவைப் பதிவு செய்யும்; பின்னர் நீங்கள் எப்போது தூங்கினீர்கள் என Phase Wake கணக்கிடும்."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "నిద్రపోయే సమయానికి 1 గంట ముందు నుండి మీ Apple Watch‌లో Phase Wake తెరవండి (వాచ్ గుర్తు చేస్తుంది), అప్పటి నుండి అది మీ కదలికను రికార్డ్ చేస్తుంది; మేల్కొలుపు వ్యవధి ప్రారంభంలో మీరు ఎప్పుడు నిద్రపోయారో Phase Wake లెక్కిస్తుంది."
+            "value": "నిద్రపోయే సమయానికి 1 గంట ముందు నుండి మీ Apple Watch‌లో Phase Wake తెరవండి (వాచ్ గుర్తు చేస్తుంది), అప్పటి నుండి మేల్కొలుపు వ్యవధి వరకు అది మీ కదలికను రికార్డ్ చేస్తుంది; తర్వాత మీరు ఎప్పుడు నిద్రపోయారో Phase Wake లెక్కిస్తుంది."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "เปิด Phase Wake บน Apple Watch ตั้งแต่ 1 ชั่วโมงก่อนเวลานอน (นาฬิกาจะเตือนคุณ) แล้วนาฬิกาจะบันทึกการเคลื่อนไหวของคุณตั้งแต่ตอนนั้น และเมื่อเริ่มช่วงเวลาปลุก Phase Wake จะคำนวณว่าคุณหลับไปเมื่อใด"
+            "value": "เปิด Phase Wake บน Apple Watch ตั้งแต่ 1 ชั่วโมงก่อนเวลานอน (นาฬิกาจะเตือนคุณ) แล้วนาฬิกาจะบันทึกการเคลื่อนไหวของคุณตั้งแต่ตอนนั้นจนถึงช่วงเวลาปลุก จากนั้น Phase Wake จะคำนวณว่าคุณหลับไปเมื่อใด"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yatma saatinden 1 saat önceden itibaren Apple Watch’ta Phase Wake’i aç (saat sana hatırlatır), o andan itibaren hareketini kaydeder; uyandırma aralığının başında Phase Wake ne zaman uykuya daldığını hesaplar."
+            "value": "Yatma saatinden 1 saat önceden itibaren Apple Watch’ta Phase Wake’i aç (saat sana hatırlatır), o andan uyandırma aralığına kadar hareketini kaydeder; ardından Phase Wake ne zaman uykuya daldığını hesaplar."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Відкрий Phase Wake на Apple Watch за 1 годину до сну або пізніше (годинник нагадає), і відтоді він записує твої рухи; на початку вікна пробудження Phase Wake обчислює, коли ти заснув."
+            "value": "Відкрий Phase Wake на Apple Watch за 1 годину до сну або пізніше (годинник нагадає), і відтоді до вікна пробудження він записує твої рухи; тоді Phase Wake обчислює, коли ти заснув."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "سونے کے وقت سے 1 گھنٹہ پہلے سے اپنی Apple Watch پر Phase Wake کھولو (گھڑی یاد دلاتی ہے)، تو تب سے وہ تمہاری حرکت ریکارڈ کرتی ہے؛ جاگنے کی ونڈو کے شروع میں Phase Wake حساب لگاتا ہے کہ تم کب سوئے۔"
+            "value": "سونے کے وقت سے 1 گھنٹہ پہلے سے اپنی Apple Watch پر Phase Wake کھولو (گھڑی یاد دلاتی ہے)، تو تب سے جاگنے کی ونڈو تک وہ تمہاری حرکت ریکارڈ کرتی ہے؛ پھر Phase Wake حساب لگاتا ہے کہ تم کب سوئے۔"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uyqu vaqtidan 1 soat oldindan Apple Watch’da Phase Wake’ni och (soat eslatadi), shunda u oʻsha paytdan harakatingni yozib boradi; uygʻotish oraligʻi boshida Phase Wake qachon uxlab qolganingni hisoblaydi."
+            "value": "Uyqu vaqtidan 1 soat oldindan Apple Watch’da Phase Wake’ni och (soat eslatadi), shunda u oʻsha paytdan uygʻotish oraligʻigacha harakatingni yozib boradi; soʻng Phase Wake qachon uxlab qolganingni hisoblaydi."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mở Phase Wake trên Apple Watch từ 1 giờ trước giờ đi ngủ (đồng hồ sẽ nhắc bạn), từ lúc đó đồng hồ ghi lại chuyển động của bạn; vào đầu khoảng đánh thức, Phase Wake tính xem bạn đã ngủ thiếp đi lúc nào."
+            "value": "Mở Phase Wake trên Apple Watch từ 1 giờ trước giờ đi ngủ (đồng hồ sẽ nhắc bạn), từ lúc đó đến khoảng đánh thức đồng hồ ghi lại chuyển động của bạn; sau đó Phase Wake tính xem bạn đã ngủ thiếp đi lúc nào."
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "由就寢時間前 1 小時起喺 Apple Watch 開啟 Phase Wake（手錶會提你），佢就由嗰陣開始記錄你的動作；喺喚醒時段開始時，Phase Wake 會計算你幾時入睡。"
+            "value": "由就寢時間前 1 小時起喺 Apple Watch 開啟 Phase Wake（手錶會提你），佢就由嗰陣開始記錄你的動作，直至喚醒時段；之後 Phase Wake 會計算你幾時入睡。"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "在就寝时间前 1 小时起于 Apple Watch 上打开 Phase Wake（手表会提醒你），它就会从那时起记录你的动作；在唤醒时间窗开始时，Phase Wake 会算出你何时入睡。"
+            "value": "在就寝时间前 1 小时起于 Apple Watch 上打开 Phase Wake（手表会提醒你），它就会从那时起记录你的动作，直到唤醒时间窗；随后 Phase Wake 会算出你何时入睡。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "在就寢時間前 1 小時起於 Apple Watch 上開啟 Phase Wake（手錶會提醒你），它就會從那時起記錄你的動作；在喚醒時段開始時，Phase Wake 會算出你何時入睡。"
+            "value": "在就寢時間前 1 小時起於 Apple Watch 上開啟 Phase Wake（手錶會提醒你），它就會從那時起記錄你的動作，直到喚醒時段；隨後 Phase Wake 會算出你何時入睡。"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vula i-Phase Wake ku-Apple Watch yakho kusukela ehoreni elingu-1 ngaphambi kokulala (iwashi liyakukhumbuza), bese liqopha ukunyakaza kwakho kusukela lapho; ekuqaleni kwewindi lokuvuka, i-Phase Wake ibala ukuthi uzumeke nini."
+            "value": "Vula i-Phase Wake ku-Apple Watch yakho kusukela ehoreni elingu-1 ngaphambi kokulala (iwashi liyakukhumbuza), bese liqopha ukunyakaza kwakho kusukela lapho kuze kube sewindini lokuvuka; bese i-Phase Wake ibala ukuthi uzumeke nini."
           }
         }
       }
@@ -14790,445 +14790,893 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minstens 8 karakters."
+            "value": "Minstens 10 karakters."
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "ቢያንስ 8 ቁምፊዎች።"
+            "value": "ቢያንስ 10 ቁምፊዎች።"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "8 أحرف على الأقل."
+            "value": "10 أحرف على الأقل."
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ən azı 8 simvol."
+            "value": "Ən azı 10 simvol."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Поне 8 знака."
+            "value": "Поне 10 знака."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "কমপক্ষে ৮টি অক্ষর।"
+            "value": "কমপক্ষে ১০টি অক্ষর।"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Najmanje 8 znakova."
+            "value": "Najmanje 10 znakova."
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "Com a mínim 8 caràcters."
+            "value": "Com a mínim 10 caràcters."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Alespoň 8 znaků."
+            "value": "Alespoň 10 znaků."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mindst 8 tegn."
+            "value": "Mindst 10 tegn."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mindestens 8 Zeichen."
+            "value": "Mindestens 10 Zeichen."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Τουλάχιστον 8 χαρακτήρες."
+            "value": "Τουλάχιστον 10 χαρακτήρες."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "At least 8 characters."
+            "value": "At least 10 characters."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Al menos 8 caracteres."
+            "value": "Al menos 10 caracteres."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vähemalt 8 märki."
+            "value": "Vähemalt 10 märki."
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gutxienez 8 karaktere."
+            "value": "Gutxienez 10 karaktere."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "دست‌کم ۸ نویسه."
+            "value": "دست‌کم ۱۰ نویسه."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vähintään 8 merkkiä."
+            "value": "Vähintään 10 merkkiä."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hindi bababa sa 8 character."
+            "value": "Hindi bababa sa 10 character."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Au moins 8 caractères."
+            "value": "Au moins 10 caractères."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "8 gcarachtar ar a laghad."
+            "value": "10 gcarachtar ar a laghad."
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Polo menos 8 caracteres."
+            "value": "Polo menos 10 caracteres."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "ઓછામાં ઓછા 8 અક્ષર."
+            "value": "ઓછામાં ઓછા 10 અક્ષર."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "לפחות 8 תווים."
+            "value": "לפחות 10 תווים."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "कम से कम 8 अक्षर।"
+            "value": "कम से कम 10 अक्षर।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Najmanje 8 znakova."
+            "value": "Najmanje 10 znakova."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Legalább 8 karakter."
+            "value": "Legalább 10 karakter."
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Առնվազն 8 նիշ։"
+            "value": "Առնվազն 10 նիշ։"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minimal 8 karakter."
+            "value": "Minimal 10 karakter."
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Að minnsta kosti 8 stafir."
+            "value": "Að minnsta kosti 10 stafir."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Almeno 8 caratteri."
+            "value": "Almeno 10 caratteri."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "8文字以上。"
+            "value": "10文字以上。"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "მინიმუმ 8 სიმბოლო."
+            "value": "მინიმუმ 10 სიმბოლო."
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Кемінде 8 таңба."
+            "value": "Кемінде 10 таңба."
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "យ៉ាងតិច 8 តួអក្សរ។"
+            "value": "យ៉ាងតិច 10 តួអក្សរ។"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ಕನಿಷ್ಠ 8 ಅಕ್ಷರಗಳು."
+            "value": "ಕನಿಷ್ಠ 10 ಅಕ್ಷರಗಳು."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "8자 이상."
+            "value": "10자 이상."
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "ຢ່າງໜ້ອຍ 8 ຕົວອັກສອນ"
+            "value": "ຢ່າງໜ້ອຍ 10 ຕົວອັກສອນ"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bent 8 simboliai."
+            "value": "Bent 10 simbolių."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vismaz 8 rakstzīmes."
+            "value": "Vismaz 10 rakstzīmes."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Најмалку 8 знаци."
+            "value": "Најмалку 10 знаци."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "കുറഞ്ഞത് 8 അക്ഷരങ്ങൾ."
+            "value": "കുറഞ്ഞത് 10 അക്ഷരങ്ങൾ."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Дор хаяж 8 тэмдэгт."
+            "value": "Дор хаяж 10 тэмдэгт."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "किमान ८ अक्षरे."
+            "value": "किमान १० अक्षरे."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sekurang-kurangnya 8 aksara."
+            "value": "Sekurang-kurangnya 10 aksara."
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "အနည်းဆုံး စာလုံး 8 လုံး။"
+            "value": "အနည်းဆုံး စာလုံး 10 လုံး။"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minst 8 tegn."
+            "value": "Minst 10 tegn."
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "कम्तीमा ८ अक्षर।"
+            "value": "कम्तीमा १० अक्षर।"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minstens 8 tekens."
+            "value": "Minstens 10 tekens."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਘੱਟੋ-ਘੱਟ 8 ਅੱਖਰ।"
+            "value": "ਘੱਟੋ-ਘੱਟ 10 ਅੱਖਰ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Co najmniej 8 znaków."
+            "value": "Co najmniej 10 znaków."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pelo menos 8 caracteres."
+            "value": "Pelo menos 10 caracteres."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pelo menos 8 caracteres."
+            "value": "Pelo menos 10 caracteres."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cel puțin 8 caractere."
+            "value": "Cel puțin 10 caractere."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Не меньше 8 символов."
+            "value": "Не меньше 10 символов."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "අවම වශයෙන් අක්ෂර 8 ක්."
+            "value": "අවම වශයෙන් අක්ෂර 10 ක්."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aspoň 8 znakov."
+            "value": "Aspoň 10 znakov."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vsaj 8 znakov."
+            "value": "Vsaj 10 znakov."
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Të paktën 8 karaktere."
+            "value": "Të paktën 10 karaktere."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Најмање 8 знакова."
+            "value": "Најмање 10 знакова."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minst 8 tecken."
+            "value": "Minst 10 tecken."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Angalau herufi 8."
+            "value": "Angalau herufi 10."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "குறைந்தது 8 எழுத்துகள்."
+            "value": "குறைந்தது 10 எழுத்துகள்."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "కనీసం 8 అక్షరాలు."
+            "value": "కనీసం 10 అక్షరాలు."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "อย่างน้อย 8 ตัวอักษร"
+            "value": "อย่างน้อย 10 ตัวอักษร"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "En az 8 karakter."
+            "value": "En az 10 karakter."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Щонайменше 8 символів."
+            "value": "Щонайменше 10 символів."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "کم از کم 8 حروف۔"
+            "value": "کم از کم 10 حروف۔"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kamida 8 ta belgi."
+            "value": "Kamida 10 ta belgi."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ít nhất 8 ký tự."
+            "value": "Ít nhất 10 ký tự."
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "最少 8 個字元。"
+            "value": "最少 10 個字元。"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "至少 8 个字符。"
+            "value": "至少 10 个字符。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "至少 8 個字元。"
+            "value": "至少 10 個字元。"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Okungenani izinhlamvu ezi-8."
+            "value": "Okungenani izinhlamvu eziyi-10."
+          }
+        }
+      }
+    },
+    "backup_password_trivial": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Te maklik om te raai – vermy herhalings, reekse soos 1234 of abcd, sleutelbordrye en algemene wagwoorde."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ለመገመት በጣም ቀላል ነው – ድግግሞሾችን፣ እንደ 1234 ወይም abcd ያሉ ተከታታዮችን፣ የቁልፍ ሰሌዳ ረድፎችን እና የተለመዱ የይለፍ ቃሎችን አስወግድ።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سهلة التخمين جدًا – تجنّب التكرار والتسلسلات مثل 1234 أو abcd وصفوف لوحة المفاتيح وكلمات المرور الشائعة."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Təxmin etmək çox asandır – təkrarlardan, 1234 və ya abcd kimi ardıcıllıqlardan, klaviatura sıralarından və geniş yayılmış parollardan qaç."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Твърде лесна за отгатване – избягвай повторения, поредици като 1234 или abcd, редове от клавиатурата и често срещани пароли."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "অনুমান করা খুব সহজ – পুনরাবৃত্তি, 1234 বা abcd-এর মতো ক্রম, কিবোর্ডের সারি এবং প্রচলিত পাসওয়ার্ড এড়িয়ে চলো।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Previše lako za pogoditi – izbjegavaj ponavljanja, nizove poput 1234 ili abcd, redove tastature i česte lozinke."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Massa fàcil d’endevinar: evita repeticions, seqüències com 1234 o abcd, files del teclat i contrasenyes habituals."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Příliš snadné uhodnout – vyhni se opakování, posloupnostem jako 1234 nebo abcd, řadám kláves a běžným heslům."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For let at gætte – undgå gentagelser, rækkefølger som 1234 eller abcd, tastaturrækker og almindelige adgangskoder."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zu leicht zu erraten – vermeide Wiederholungen, Folgen wie 1234 oder abcd, Tastaturreihen und häufige Passwörter."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Πολύ εύκολο να μαντευτεί – απόφυγε επαναλήψεις, ακολουθίες όπως 1234 ή abcd, σειρές πληκτρολογίου και συνηθισμένους κωδικούς."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Too easy to guess – avoid repeated characters, sequences like 1234 or abcd, keyboard rows and common passwords."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demasiado fácil de adivinar: evita repeticiones, secuencias como 1234 o abcd, filas del teclado y contraseñas comunes."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liiga kergesti äraarvatav – väldi kordusi, jadasid nagu 1234 või abcd, klaviatuuriridu ja levinud paroole."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Errazegia asmatzeko: saihestu errepikapenak, 1234 edo abcd bezalako segidak, teklatuko errenkadak eta pasahitz ohikoak."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حدس‌زدنش خیلی آسان است – از تکرار، دنباله‌هایی مثل 1234 یا abcd، ردیف‌های صفحه‌کلید و گذرواژه‌های رایج پرهیز کن."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liian helppo arvata – vältä toistoja, jonoja kuten 1234 tai abcd, näppäimistön rivejä ja yleisiä salasanoja."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Masyadong madaling hulaan – iwasan ang pag-uulit, mga pagkakasunod tulad ng 1234 o abcd, mga hilera ng keyboard at mga karaniwang password."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trop facile à deviner : évite les répétitions, les suites comme 1234 ou abcd, les rangées du clavier et les mots de passe courants."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ró-éasca le buille faoi thuairim a thabhairt – seachain athrá, seichimh mar 1234 nó abcd, sraitheanna méarchláir agus pasfhocail choitianta."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demasiado doado de adiviñar: evita repeticións, secuencias como 1234 ou abcd, filas do teclado e contrasinais habituais."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "અનુમાન લગાવવું ખૂબ સરળ છે – પુનરાવર્તન, 1234 કે abcd જેવી શ્રેણીઓ, કીબોર્ડની હરોળો અને સામાન્ય પાસવર્ડ ટાળો."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קל מדי לניחוש – הימנעו מחזרות, מרצפים כמו 1234 או abcd, משורות במקלדת ומסיסמאות נפוצות."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अनुमान लगाना बहुत आसान है – दोहराव, 1234 या abcd जैसे क्रम, कीबोर्ड की पंक्तियाँ और आम पासवर्ड से बचो।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prelako za pogoditi – izbjegavaj ponavljanja, nizove poput 1234 ili abcd, redove tipkovnice i česte lozinke."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Túl könnyen kitalálható – kerüld az ismétléseket, az olyan sorozatokat, mint az 1234 vagy az abcd, a billentyűzetsorokat és a gyakori jelszavakat."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Չափազանց հեշտ է գուշակել – խուսափիր կրկնություններից, 1234 կամ abcd տիպի հաջորդականություններից, ստեղնաշարի շարքերից և տարածված գաղտնաբառերից։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terlalu mudah ditebak – hindari pengulangan, urutan seperti 1234 atau abcd, baris keyboard, dan kata sandi umum."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Of auðvelt að giska á – forðastu endurtekningar, runur eins og 1234 eða abcd, lyklaborðsraðir og algeng lykilorð."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Troppo facile da indovinare: evita ripetizioni, sequenze come 1234 o abcd, file della tastiera e password comuni."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "推測されやすすぎます。同じ文字の繰り返し、1234 や abcd のような連続、キーボードの並び、よく使われるパスワードは避けてください。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ძალიან ადვილი გამოსაცნობია – მოერიდე გამეორებებს, 1234-ის ან abcd-ის მსგავს მიმდევრობებს, კლავიატურის რიგებს და გავრცელებულ პაროლებს."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Табу тым оңай – қайталаулардан, 1234 не abcd сияқты тізбектерден, пернетақта қатарларынан және кең тараған құпиясөздерден аулақ бол."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ងាយទាយពេក – ចៀសវាងការដដែលៗ លំដាប់ដូចជា 1234 ឬ abcd ជួរក្ដារចុច និងពាក្យសម្ងាត់ទូទៅ។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಊಹಿಸಲು ತುಂಬಾ ಸುಲಭ – ಪುನರಾವರ್ತನೆ, 1234 ಅಥವಾ abcd ನಂತಹ ಸರಣಿಗಳು, ಕೀಬೋರ್ಡ್ ಸಾಲುಗಳು ಮತ್ತು ಸಾಮಾನ್ಯ ಪಾಸ್‌ವರ್ಡ್‌ಗಳನ್ನು ತಪ್ಪಿಸಿ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "너무 쉽게 추측할 수 있습니다. 반복, 1234나 abcd 같은 연속, 키보드 줄, 흔한 비밀번호는 피하세요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ເດົາງ່າຍເກີນໄປ – ຫຼີກລ່ຽງການຊ້ຳກັນ, ລຳດັບເຊັ່ນ 1234 ຫຼື abcd, ແຖວແປ້ນພິມ ແລະ ລະຫັດຜ່ານທີ່ໃຊ້ທົ່ວໄປ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per lengva atspėti – venk pasikartojimų, sekų kaip 1234 ar abcd, klaviatūros eilių ir dažnų slaptažodžių."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pārāk viegli uzminēt – izvairies no atkārtojumiem, virknēm kā 1234 vai abcd, tastatūras rindām un izplatītām parolēm."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Премногу лесно за погодување – избегнувај повторувања, низи како 1234 или abcd, редови од тастатурата и чести лозинки."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഊഹിക്കാൻ വളരെ എളുപ്പമാണ് – ആവർത്തനങ്ങൾ, 1234 അല്ലെങ്കിൽ abcd പോലുള്ള ക്രമങ്ങൾ, കീബോർഡ് വരികൾ, സാധാരണ പാസ്‌വേഡുകൾ എന്നിവ ഒഴിവാക്കുക."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Таахад хэт амархан – давталт, 1234 эсвэл abcd гэх мэт дараалал, гарын мөр болон түгээмэл нууц үгээс зайлсхий."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अंदाज लावणे खूप सोपे आहे – पुनरावृत्ती, 1234 किंवा abcd सारखे क्रम, कीबोर्डच्या ओळी आणि सामान्य पासवर्ड टाळा."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terlalu mudah diteka – elakkan ulangan, jujukan seperti 1234 atau abcd, baris papan kekunci dan kata laluan biasa."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ခန့်မှန်းရန် လွယ်လွန်းသည် – ထပ်ခါထပ်ခါ စာလုံးများ၊ 1234 သို့မဟုတ် abcd ကဲ့သို့ အစဉ်များ၊ ကီးဘုတ်တန်းများနှင့် အသုံးများသော စကားဝှက်များကို ရှောင်ပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For lett å gjette – unngå gjentakelser, rekkefølger som 1234 eller abcd, tastaturrader og vanlige passord."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अनुमान गर्न धेरै सजिलो – दोहोरिने अक्षर, 1234 वा abcd जस्ता क्रम, किबोर्डका पङ्क्ति र सामान्य पासवर्ड नराख।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Te makkelijk te raden – vermijd herhalingen, reeksen zoals 1234 of abcd, toetsenbordrijen en veelgebruikte wachtwoorden."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਅੰਦਾਜ਼ਾ ਲਾਉਣਾ ਬਹੁਤ ਆਸਾਨ ਹੈ – ਦੁਹਰਾਅ, 1234 ਜਾਂ abcd ਵਰਗੇ ਕ੍ਰਮ, ਕੀਬੋਰਡ ਦੀਆਂ ਕਤਾਰਾਂ ਅਤੇ ਆਮ ਪਾਸਵਰਡਾਂ ਤੋਂ ਬਚੋ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zbyt łatwe do odgadnięcia – unikaj powtórzeń, ciągów jak 1234 czy abcd, rzędów klawiatury i popularnych haseł."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fácil demais de adivinhar – evite repetições, sequências como 1234 ou abcd, fileiras do teclado e senhas comuns."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demasiado fácil de adivinhar – evita repetições, sequências como 1234 ou abcd, filas do teclado e palavras-passe comuns."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prea ușor de ghicit – evită repetările, secvențele ca 1234 sau abcd, rândurile de taste și parolele uzuale."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Слишком легко угадать – избегай повторов, последовательностей вроде 1234 или abcd, рядов клавиатуры и распространённых паролей."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "අනුමාන කිරීමට ඉතා පහසුයි – පුනරාවර්තන, 1234 හෝ abcd වැනි අනුපිළිවෙළ, යතුරුපුවරු පේළි සහ සුලබ මුරපද වළක්වන්න."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Príliš ľahko uhádnuteľné – vyhni sa opakovaniu, postupnostiam ako 1234 alebo abcd, radom klávesnice a bežným heslám."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preveč lahko uganiti – izogibaj se ponavljanju, zaporedjem, kot sta 1234 ali abcd, vrsticam tipkovnice in pogostim geslom."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shumë e lehtë për t’u gjetur – shmang përsëritjet, vargjet si 1234 ose abcd, rreshtat e tastierës dhe fjalëkalimet e zakonshme."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Превише лако за погађање – избегавај понављања, низове попут 1234 или abcd, редове тастатуре и честе лозинке."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "För lätt att gissa – undvik upprepningar, följder som 1234 eller abcd, tangentbordsrader och vanliga lösenord."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ni rahisi mno kukisia – epuka marudio, mfuatano kama 1234 au abcd, safu za kibodi na manenosiri ya kawaida."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ஊகிக்க மிகவும் எளிது – திரும்பத் திரும்ப வரும் எழுத்துகள், 1234 அல்லது abcd போன்ற வரிசைகள், விசைப்பலகை வரிசைகள் மற்றும் பொதுவான கடவுச்சொற்களைத் தவிர்க்கவும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఊహించడం చాలా సులభం – పునరావృతాలు, 1234 లేదా abcd వంటి వరుసలు, కీబోర్డ్ వరుసలు మరియు సాధారణ పాస్‌వర్డ్‌లను నివారించండి."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เดาง่ายเกินไป – หลีกเลี่ยงการซ้ำ ลำดับอย่าง 1234 หรือ abcd แถวแป้นพิมพ์ และรหัสผ่านที่ใช้กันทั่วไป"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tahmin etmesi çok kolay – tekrarlardan, 1234 veya abcd gibi dizilerden, klavye sıralarından ve yaygın parolalardan kaçın."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Надто легко вгадати – уникай повторів, послідовностей на кшталт 1234 чи abcd, рядів клавіатури й поширених паролів."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اندازہ لگانا بہت آسان ہے – دہراؤ، 1234 یا abcd جیسی ترتیب، کی بورڈ کی قطاروں اور عام پاس ورڈز سے بچو۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taxmin qilish juda oson – takrorlar, 1234 yoki abcd kabi ketma-ketliklar, klaviatura qatorlari va keng tarqalgan parollardan qoch."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quá dễ đoán – tránh lặp lại, chuỗi như 1234 hay abcd, hàng phím và mật khẩu phổ biến."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "太容易俾人估到——避免重複字元、1234 或 abcd 呢類序列、鍵盤上連續嘅按鍵同常見密碼。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "太容易被猜到——请避免重复字符、1234 或 abcd 之类的序列、键盘上的连续按键和常见密码。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "太容易被猜到——請避免重複字元、1234 或 abcd 之類的序列、鍵盤上的連續按鍵和常見密碼。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kulula kakhulu ukuqagela – gwema ukuphindaphinda, ukulandelana okufana no-1234 noma i-abcd, imigqa yekhibhodi namaphasiwedi ajwayelekile."
           }
         }
       }

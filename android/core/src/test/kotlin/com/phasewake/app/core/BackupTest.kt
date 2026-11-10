@@ -78,15 +78,15 @@ class BackupTest {
     }
 
     @Test
-    fun shortPasswordIsRefused() {
+    fun shortOrTrivialPasswordIsRefused() {
+        // Regel im Einzelnen: [BackupPasswordTest]; hier nur, dass Sichern sie anwendet.
         assertFalse(BackupFile.passwordOk(""))
-        assertFalse(BackupFile.passwordOk("1234567"))
-        assertTrue(BackupFile.passwordOk("12345678"))
-        // «ä» als NFD (zwei Codepunkte) zählt als ein Zeichen: «abcdefä» hat 7.
-        assertFalse(BackupFile.passwordOk("abcdefa\u0308"))
-        assertTrue(BackupFile.passwordOk("abcdefga\u0308"))
+        assertFalse(BackupFile.passwordOk("Mondlicht"))
+        assertFalse(BackupFile.passwordOk("1234567890"))
+        assertTrue(BackupFile.passwordOk("Mondlicht-2026"))
         assertFailsWith<IllegalArgumentException> { BackupFile.encrypt(ByteArray(1), "", salt, nonce) }
-        assertFailsWith<IllegalArgumentException> { BackupFile.encrypt(ByteArray(1), "1234567", salt, nonce) }
+        assertFailsWith<IllegalArgumentException> { BackupFile.encrypt(ByteArray(1), "12345678", salt, nonce) }
+        assertFailsWith<IllegalArgumentException> { BackupFile.encrypt(ByteArray(1), "qwertyuiop", salt, nonce) }
         assertTrue(BackupFile.MAX_FILE_BYTES >= 1_000_000L)
     }
 
@@ -101,9 +101,9 @@ class BackupTest {
 
     @Test
     fun roundTrip() {
-        val sealed = BackupFile.encrypt(payload.toJson().encodeToByteArray(), "geheim123", salt, nonce)
+        val sealed = BackupFile.encrypt(payload.toJson().encodeToByteArray(), "geheim-123", salt, nonce)
         assertContentEquals(BackupFile.MAGIC, sealed.copyOfRange(0, 5))
-        assertEquals(payload, BackupPayload.fromJson(BackupFile.decrypt(sealed, "geheim123").decodeToString()))
+        assertEquals(payload, BackupPayload.fromJson(BackupFile.decrypt(sealed, "geheim-123").decodeToString()))
     }
 
     @Test
@@ -145,10 +145,19 @@ class BackupTest {
 
     @Test
     fun wrongPasswordOrChangedFile() {
-        val sealed = BackupFile.encrypt("{}".encodeToByteArray(), "richtig1", salt, nonce)
+        val sealed = BackupFile.encrypt("{}".encodeToByteArray(), "richtig-12", salt, nonce)
         assertEquals(BackupException.Reason.WRONG_PASSWORD, assertFailsWith<BackupException> { BackupFile.decrypt(sealed, "falsch12") }.reason)
         val changed = sealed.copyOf().also { it[it.size - 1] = (it[it.size - 1] + 1).toByte() }
-        assertEquals(BackupException.Reason.WRONG_PASSWORD, assertFailsWith<BackupException> { BackupFile.decrypt(changed, "richtig1") }.reason)
+        assertEquals(BackupException.Reason.WRONG_PASSWORD, assertFailsWith<BackupException> { BackupFile.decrypt(changed, "richtig-12") }.reason)
+    }
+
+    @Test
+    fun shortPasswordStillOpensOldBackup() {
+        // Vor der Regel (10.11.2026) reichten 8 Zeichen: Eine solche Sicherung («{}», Passwort «1234abcd», Salz und
+        // Nonce wie oben, mit Python erzeugt) öffnet das Wiederherstellen weiter. Swift: gleicher Test.
+        val old = Base64.getDecoder().decode("UFdCSzIAAQIDBAUGBwgJCgsMDQ4PZGVmZ2hpamtsbW5vt4PzqnJ6aYzD2IdWUvOlrPj0")
+        assertFalse(BackupFile.passwordOk("1234abcd"))
+        assertEquals("{}", BackupFile.decrypt(old, "1234abcd").decodeToString())
     }
 
     @Test

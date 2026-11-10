@@ -451,7 +451,8 @@
     <string name="settings_restore">ወደነበረበት መልስ</string>
     <string name="backup_password">የይለፍ ቃል</string>
     <string name="backup_password_repeat">የይለፍ ቃል ይድገሙ</string>
-    <string name="backup_password_short">ቢያንስ 8 ቁምፊዎች።</string>
+    <string name="backup_password_short">ቢያንስ 10 ቁምፊዎች።</string>
+    <string name="backup_password_trivial">ለመገመት በጣም ቀላል ነው – ድግግሞሾችን፣ እንደ 1234 ወይም abcd ያሉ ተከታታዮችን፣ የቁልፍ ሰሌዳ ረድፎችን እና የተለመዱ የይለፍ ቃሎችን አስወግድ።</string>
     <string name="backup_password_mismatch">የይለፍ ቃሎቹ አይዛመዱም።</string>
     <string name="backup_password_hint">ያለዚህ የይለፍ ቃል ማንም ምትኬውን መክፈት አይችልም – እርስዎም ቢሆኑ።</string>
     <string name="backup_health_hint">ከሌሎች መተግበሪያዎች (ለምሳሌ Samsung Health) የመጡ ሌሊቶች አይቀመጡም – እዚያው ይቆያሉ፣ ፈቃድ እንደተሰጠም እንደገና ይታያሉ።</string>

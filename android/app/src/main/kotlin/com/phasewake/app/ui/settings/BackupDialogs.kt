@@ -34,6 +34,7 @@ import com.phasewake.app.backup.BackupManager
 import com.phasewake.app.backup.BackupPreview
 import com.phasewake.app.core.BackupException
 import com.phasewake.app.core.BackupFile
+import com.phasewake.app.core.BackupPassword
 import com.phasewake.app.phoneApp
 import com.phasewake.app.security.DeviceAuth
 import java.time.LocalDate
@@ -189,13 +190,13 @@ private fun DataRow(title: Int, hint: Int?, onClick: () -> Unit) {
     }
 }
 
-/** Passwort zweimal; mindestens [BackupFile.MIN_PASSWORD] Zeichen ([BackupFile.passwordOk]). */
+/** Passwort zweimal; mindestens [BackupPassword.MIN_LENGTH] Zeichen und nicht trivial ([BackupPassword.problem]). */
 @Composable
 internal fun NewPasswordDialog(onSave: (String) -> Unit, onDismiss: () -> Unit, initial: String = "", initialRepeat: String = "") {
     // [initial] und [initialRepeat]: nur für Bildschirmfotos; in der App beginnt der Dialog leer.
     var first by remember { mutableStateOf(initial) }
     var second by remember { mutableStateOf(initialRepeat) }
-    val tooShort = !BackupFile.passwordOk(first)
+    val problem = BackupPassword.problem(first)
     val mismatch = second.isNotEmpty() && second != first
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -205,7 +206,8 @@ internal fun NewPasswordDialog(onSave: (String) -> Unit, onDismiss: () -> Unit, 
                 PasswordField(first, R.string.backup_password) { first = it }
                 PasswordField(second, R.string.backup_password_repeat) { second = it }
                 val message = when {
-                    first.isNotEmpty() && tooShort -> R.string.backup_password_short
+                    first.isNotEmpty() && problem == BackupPassword.Problem.TOO_SHORT -> R.string.backup_password_short
+                    first.isNotEmpty() && problem == BackupPassword.Problem.TRIVIAL -> R.string.backup_password_trivial
                     mismatch -> R.string.backup_password_mismatch
                     else -> R.string.backup_password_hint
                 }
@@ -219,7 +221,7 @@ internal fun NewPasswordDialog(onSave: (String) -> Unit, onDismiss: () -> Unit, 
             }
         },
         confirmButton = {
-            TextButton(enabled = !tooShort && second == first, onClick = { onSave(first) }) { Text(stringResource(R.string.backup_create)) }
+            TextButton(enabled = problem == null && second == first, onClick = { onSave(first) }) { Text(stringResource(R.string.backup_create)) }
         },
         dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) } },
     )

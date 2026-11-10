@@ -490,7 +490,8 @@
     <string name="settings_restore">Athchóirigh</string>
     <string name="backup_password">Pasfhocal</string>
     <string name="backup_password_repeat">Athdhéan an pasfhocal</string>
-    <string name="backup_password_short">8 gcarachtar ar a laghad.</string>
+    <string name="backup_password_short">10 gcarachtar ar a laghad.</string>
+    <string name="backup_password_trivial">Ró-éasca le buille faoi thuairim a thabhairt – seachain athrá, seichimh mar 1234 nó abcd, sraitheanna méarchláir agus pasfhocail choitianta.</string>
     <string name="backup_password_mismatch">Ní hionann na pasfhocail.</string>
     <string name="backup_password_hint">Gan an pasfhocal seo, ní féidir le duine ar bith an cúltaca a oscailt – fiú tusa.</string>
     <string name="backup_health_hint">Ní dhéantar cúltaca d’oícheanta ó aipeanna eile (m.sh. Samsung Health) – fanann siad ansin agus feicfear arís iad nuair a thugtar rochtain.</string>

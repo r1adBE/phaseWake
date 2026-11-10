@@ -463,7 +463,8 @@
     <string name="settings_restore">Restaura</string>
     <string name="backup_password">Contrasenya</string>
     <string name="backup_password_repeat">Repeteix la contrasenya</string>
-    <string name="backup_password_short">Com a mínim 8 caràcters.</string>
+    <string name="backup_password_short">Com a mínim 10 caràcters.</string>
+    <string name="backup_password_trivial">Massa fàcil d’endevinar: evita repeticions, seqüències com 1234 o abcd, files del teclat i contrasenyes habituals.</string>
     <string name="backup_password_mismatch">Les contrasenyes no coincideixen.</string>
     <string name="backup_password_hint">Sense aquesta contrasenya, ningú no pot obrir la còpia – ni tan sols tu.</string>
     <string name="backup_health_hint">Les nits d’altres apps (p. ex. Samsung Health) no es desen a la còpia de seguretat: es queden allà i tornen a aparèixer quan s’hi dona accés.</string>

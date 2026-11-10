@@ -32,5 +32,5 @@
     <string name="check_watch_recorder_motion">O teu relógio não iniciou a medição antes de dormir – o Phase Wake não tem permissão para ler dados de movimento nele. Permite-o nas definições do relógio, em Privacidade. O alarme vai acordar-te na mesma.</string>
     <string name="check_watch_state_old">O estado do relógio está desatualizado – abre o Phase Wake por instantes no relógio.</string>
     <string name="editor_sleep_hint_apple">Conta a partir de quando adormeces – toca em «Boa noite» no relógio ao deitares-te. No Apple Watch, o Phase Wake estima quando adormeces a partir do tempo até adormecer que aprendeu. Sem o toque, vale a hora definida.</string>
-    <string name="auto_onset_hint_apple">Abre o Phase Wake no Apple Watch a partir de 1 hora antes de dormir (ele lembra-te) e, a partir daí, grava o teu movimento; no início da janela de despertar, o Phase Wake calcula quando adormeceste.</string>
+    <string name="auto_onset_hint_apple">Abre o Phase Wake no Apple Watch a partir de 1 hora antes de dormir (ele lembra-te) e, a partir daí até à janela de despertar, grava o teu movimento; então o Phase Wake calcula quando adormeceste.</string>
 </resources>

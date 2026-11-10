@@ -451,7 +451,8 @@
     <string name="settings_restore">Restaurar</string>
     <string name="backup_password">Contrasinal</string>
     <string name="backup_password_repeat">Repite o contrasinal</string>
-    <string name="backup_password_short">Polo menos 8 caracteres.</string>
+    <string name="backup_password_short">Polo menos 10 caracteres.</string>
+    <string name="backup_password_trivial">Demasiado doado de adiviñar: evita repeticións, secuencias como 1234 ou abcd, filas do teclado e contrasinais habituais.</string>
     <string name="backup_password_mismatch">Os contrasinais non coinciden.</string>
     <string name="backup_password_hint">Sen este contrasinal ninguén pode abrir a copia – nin sequera ti.</string>
     <string name="backup_health_hint">As noites doutras apps (p. ex. Samsung Health) non se gardan na copia de seguranza: quedan alí e volven aparecer en canto concedas o acceso.</string>

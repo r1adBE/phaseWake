@@ -52,25 +52,22 @@ public enum BackupFile {
     public static let iterationsV1 = 210_000
     /// Schlüssellänge in Bit (AES-256).
     public static let keyBits = 256
-    /// Kürzestes erlaubtes Passwort in Zeichen (Unicode-Codepunkte nach NFC, siehe `passwordOk`).
-    public static let minPassword = 8
     /// Grösste Datei in Byte, die das Wiederherstellen liest: 20 MiB. 90 Nächte mit Verlauf ergeben weit unter 1 MB;
     /// eine versehentlich gewählte grosse Datei (Video) wird so abgelehnt statt ganz in den Speicher gelesen.
     public static let maxFileBytes: Int64 = 20 * 1024 * 1024
 
-    /// Ob `password` lang genug ist: mindestens `minPassword` Unicode-Codepunkte nach NFC (gleiche Zählung wie Kotlin,
-    /// nicht Graphem-Gruppen).
-    public static func passwordOk(_ password: String) -> Bool {
-        normalize(password).unicodeScalars.count >= minPassword
-    }
+    /// Ob `password` für eine neue Sicherung genügt: lang genug und nicht trivial (``BackupPassword``). Nur fürs
+    /// Anlegen; `decrypt` nimmt jedes Passwort (ältere Sicherungen mit kürzerem bleiben lesbar).
+    public static func passwordOk(_ password: String) -> Bool { BackupPassword.ok(password) }
 
     /// Verschlüsselt `plain` mit `password` im Format `magic` (`iterations` Runden); `salt` (16 Byte) und `nonce`
-    /// (12 Byte) kommen vom Aufrufer (zufällig, im Test fest). Nie eine Sicherung mit zu kurzem oder leerem Passwort.
-    /// - Throws: ``BackupError`` (`unreadable`) bei zu kurzem Passwort (`passwordOk`), falscher Länge von Salz oder
-    ///   Nonce oder einem Fehler der Verschlüsselung.
+    /// (12 Byte) kommen vom Aufrufer (zufällig, im Test fest). Nie eine Sicherung mit zu kurzem, leerem oder trivialem
+    /// Passwort.
+    /// - Throws: ``BackupError`` (`unreadable`) bei zu kurzem oder trivialem Passwort (`passwordOk`), falscher Länge
+    ///   von Salz oder Nonce oder einem Fehler der Verschlüsselung.
     public static func encrypt(_ plain: Data, password: String, salt: Data, nonce: Data) throws -> Data {
         guard salt.count == saltBytes, nonce.count == nonceBytes else { throw BackupError(.unreadable, "Salz oder Nonce mit falscher Länge") }
-        guard passwordOk(password) else { throw BackupError(.unreadable, "Passwort zu kurz") }
+        guard passwordOk(password) else { throw BackupError(.unreadable, "Passwort zu kurz oder trivial") }
         do {
             let key = try deriveKey(password, salt: salt, iterations: iterations)
             let sealed = try AES.GCM.seal(plain, using: key, nonce: AES.GCM.Nonce(data: nonce))

@@ -450,7 +450,8 @@
     <string name="settings_restore">পুনরুদ্ধার করো</string>
     <string name="backup_password">পাসওয়ার্ড</string>
     <string name="backup_password_repeat">পাসওয়ার্ড আবার দাও</string>
-    <string name="backup_password_short">কমপক্ষে ৮টি অক্ষর।</string>
+    <string name="backup_password_short">কমপক্ষে ১০টি অক্ষর।</string>
+    <string name="backup_password_trivial">অনুমান করা খুব সহজ – পুনরাবৃত্তি, 1234 বা abcd-এর মতো ক্রম, কিবোর্ডের সারি এবং প্রচলিত পাসওয়ার্ড এড়িয়ে চলো।</string>
     <string name="backup_password_mismatch">পাসওয়ার্ড দুটো মিলছে না।</string>
     <string name="backup_password_hint">এই পাসওয়ার্ড ছাড়া কেউ ব্যাকআপ খুলতে পারবে না – তুমিও না।</string>
     <string name="backup_health_hint">অন্য অ্যাপের রাত (যেমন Samsung Health) ব্যাকআপ হয় না – সেগুলো সেখানেই থাকে এবং অনুমতি দিলে আবার দেখা যায়।</string>

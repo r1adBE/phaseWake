@@ -435,7 +435,8 @@
     <string name="settings_restore">Pulihkan</string>
     <string name="backup_password">Kata laluan</string>
     <string name="backup_password_repeat">Ulang kata laluan</string>
-    <string name="backup_password_short">Sekurang-kurangnya 8 aksara.</string>
+    <string name="backup_password_short">Sekurang-kurangnya 10 aksara.</string>
+    <string name="backup_password_trivial">Terlalu mudah diteka – elakkan ulangan, jujukan seperti 1234 atau abcd, baris papan kekunci dan kata laluan biasa.</string>
     <string name="backup_password_mismatch">Kata laluan tidak sepadan.</string>
     <string name="backup_password_hint">Tanpa kata laluan ini, tiada sesiapa boleh membuka sandaran – termasuk awak.</string>
     <string name="backup_health_hint">Malam daripada apl lain (cth. Samsung Health) tidak disandarkan – ia kekal di sana dan muncul semula sebaik sahaja akses diberikan.</string>

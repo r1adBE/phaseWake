@@ -33,5 +33,5 @@
     <string name="check_watch_recorder_motion">El rellotge no ha començat la mesura abans de dormir – Phase Wake no hi pot llegir dades de moviment. Permet-ho a la configuració del rellotge, a Privadesa. L’alarma et despertarà igualment.</string>
     <string name="check_watch_state_old">L’estat del rellotge no està actualitzat – obre un moment Phase Wake al rellotge.</string>
     <string name="editor_sleep_hint_apple">Compta des que t’adorms – toca «Bona nit» al rellotge quan te’n vagis al llit. A l’Apple Watch, Phase Wake estima quan t’adorms a partir del temps per adormir-te que ha après. Sense tocar-lo, val l’hora definida.</string>
-    <string name="auto_onset_hint_apple">Obre Phase Wake a l’Apple Watch des d’1 hora abans d’anar a dormir (te’l recorda) i a partir d’aleshores enregistra el teu moviment; a l’inici de la finestra de despertar, Phase Wake calcula quan et vas adormir.</string>
+    <string name="auto_onset_hint_apple">Obre Phase Wake a l’Apple Watch des d’1 hora abans d’anar a dormir (te’l recorda) i des d’aleshores fins a la finestra de despertar enregistra el teu moviment; llavors Phase Wake calcula quan et vas adormir.</string>
 </resources>

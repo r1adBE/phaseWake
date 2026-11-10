@@ -436,7 +436,8 @@
     <string name="settings_restore">Վերականգնել</string>
     <string name="backup_password">Գաղտնաբառ</string>
     <string name="backup_password_repeat">Կրկնիր գաղտնաբառը</string>
-    <string name="backup_password_short">Առնվազն 8 նիշ։</string>
+    <string name="backup_password_short">Առնվազն 10 նիշ։</string>
+    <string name="backup_password_trivial">Չափազանց հեշտ է գուշակել – խուսափիր կրկնություններից, 1234 կամ abcd տիպի հաջորդականություններից, ստեղնաշարի շարքերից և տարածված գաղտնաբառերից։</string>
     <string name="backup_password_mismatch">Գաղտնաբառերը չեն համընկնում։</string>
     <string name="backup_password_hint">Առանց այս գաղտնաբառի ոչ ոք չի կարող բացել պահուստային պատճենը – նույնիսկ դու։</string>
     <string name="backup_health_hint">Այլ հավելվածների գիշերները (օր.՝ Samsung Health) չեն պահուստավորվում – դրանք մնում են այնտեղ և նորից երևում են, երբ թույլտվությունը տրվի։</string>

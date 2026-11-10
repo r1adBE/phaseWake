@@ -32,5 +32,5 @@
     <string name="check_watch_recorder_motion">Saatin uyku öncesi ölçümü başlatmadı – Phase Wake’in saatte hareket verilerini okuma izni yok. Saatin ayarlarında Gizlilik altında izin ver. Alarm seni yine de uyandıracak.</string>
     <string name="check_watch_state_old">Saatin durumu güncel değil – Phase Wake’i saatte kısaca aç.</string>
     <string name="editor_sleep_hint_apple">Uykuya daldığın andan itibaren sayılır – yatarken saatte «İyi geceler»e dokun. Apple Watch’ta Phase Wake ne zaman uykuya daldığını öğrendiği uykuya dalma süresinden tahmin eder. Dokunmazsan ayarlanan saat geçerli olur.</string>
-    <string name="auto_onset_hint_apple">Yatma saatinden 1 saat önceden itibaren Apple Watch’ta Phase Wake’i aç (saat sana hatırlatır), o andan itibaren hareketini kaydeder; uyandırma aralığının başında Phase Wake ne zaman uykuya daldığını hesaplar.</string>
+    <string name="auto_onset_hint_apple">Yatma saatinden 1 saat önceden itibaren Apple Watch’ta Phase Wake’i aç (saat sana hatırlatır), o andan uyandırma aralığına kadar hareketini kaydeder; ardından Phase Wake ne zaman uykuya daldığını hesaplar.</string>
 </resources>

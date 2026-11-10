@@ -74,16 +74,9 @@ class RecordingRepositoryTest {
 
     @Test
     fun dataLayerStatusRecordingAndCommands() {
-        val status = RecordSync.statusRequest(start)
-        assertEquals(DataLayer.PATH_RECORD_STATUS, status.uri.path)
-        assertTrue(status.isUrgent)
-        assertEquals(RecordSync.RecordStatus(start), RecordSync.readStatus(DataMap.fromByteArray(status.data!!)))
-        assertEquals(RecordSync.RecordStatus(null), RecordSync.readStatus(DataMap.fromByteArray(RecordSync.statusRequest(null).data!!)))
-
+        // Früheres Aufzeichnungs-Paket: liest nur noch die einmalige Umstellung der Uhr.
         val recording = finished(start, RecordEnd.BATTERY)
-        val request = RecordSync.recordingRequest(recording)
-        assertEquals(DataLayer.PATH_RECORDING_PREFIX + start.toEpochMilli(), request.uri.path)
-        assertEquals(recording, RecordSync.readRecording(DataMap.fromByteArray(request.data!!)))
+        assertEquals(recording, RecordSync.readRecording(DataMap().apply { putString(DataLayer.KEY_TEXT, NightRecording.encode(recording)) }))
         assertNull(RecordSync.readRecording(DataMap()), "ohne Inhalt")
         val running = DataMap().apply { putString(DataLayer.KEY_TEXT, NightRecording.encode(recording.copy(end = null, endReason = null))) }
         assertNull(RecordSync.readRecording(running), "nur abgeschlossene")
@@ -107,9 +100,6 @@ class RecordingRepositoryTest {
         fun tolerant(block: suspend () -> Unit) = runBlocking { withTimeoutOrNull(2_000L) { block() } }
         tolerant { sync.publishStatus(start) }
         tolerant { sync.publishRecording(finished(start)) }
-        tolerant { sync.fetchStatus() }
-        tolerant { sync.fetchRecordings() }
-        tolerant { sync.deleteRecordings() }
         tolerant { assertEquals(false, sync.command(start = true)) }
     }
 

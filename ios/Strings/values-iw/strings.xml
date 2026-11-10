@@ -32,5 +32,5 @@
     <string name="check_watch_recorder_motion">השעון לא התחיל את המדידה לפני השינה – ל-Phase Wake אין הרשאה לקרוא בו נתוני תנועה. אפשר זאת בהגדרות השעון, תחת פרטיות. ההשכמה תעיר אותך בכל זאת.</string>
     <string name="check_watch_state_old">מצב השעון לא עדכני – פתח לרגע את Phase Wake בשעון.</string>
     <string name="editor_sleep_hint_apple">נספר מרגע ההירדמות – הקישו על ״לילה טוב״ בשעון כשאתם הולכים לישון. ב-Apple Watch, Phase Wake מעריך מתי נרדמתם לפי זמן ההירדמות שנלמד. בלי הקשה חלה השעה שהוגדרה.</string>
-    <string name="auto_onset_hint_apple">פתחו את Phase Wake ב-Apple Watch משעה לפני שעת השינה (השעון יזכיר לכם), ומאז הוא מקליט את התנועה שלכם; בתחילת חלון ההשכמה Phase Wake מחשב מתי נרדמתם.</string>
+    <string name="auto_onset_hint_apple">פתחו את Phase Wake ב-Apple Watch משעה לפני שעת השינה (השעון יזכיר לכם), ומאז ועד חלון ההשכמה הוא מקליט את התנועה שלכם; אז Phase Wake מחשב מתי נרדמתם.</string>
 </resources>

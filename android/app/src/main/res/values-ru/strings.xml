@@ -474,7 +474,8 @@
     <string name="settings_restore">Восстановить</string>
     <string name="backup_password">Пароль</string>
     <string name="backup_password_repeat">Повтори пароль</string>
-    <string name="backup_password_short">Не меньше 8 символов.</string>
+    <string name="backup_password_short">Не меньше 10 символов.</string>
+    <string name="backup_password_trivial">Слишком легко угадать – избегай повторов, последовательностей вроде 1234 или abcd, рядов клавиатуры и распространённых паролей.</string>
     <string name="backup_password_mismatch">Пароли не совпадают.</string>
     <string name="backup_password_hint">Без этого пароля никто не откроет копию – даже ты.</string>
     <string name="backup_health_hint">Ночи из других приложений (например, Samsung Health) не попадают в резервную копию – они остаются там и снова появятся, как только будет дан доступ.</string>

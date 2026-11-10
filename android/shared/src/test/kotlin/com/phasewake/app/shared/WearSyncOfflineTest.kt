@@ -1,7 +1,6 @@
 package com.phasewake.app.shared
 
 import android.app.Application
-import android.net.Uri
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.HolidayList
 import com.phasewake.app.core.NightRecord
@@ -40,28 +39,21 @@ class WearSyncOfflineTest {
         tolerant { sync.publishAutoOnset(false, 1L) }
         tolerant { LearningSync(app).publish(LearningSnapshot(true, null, null, 1L)) }
         tolerant { sync.clearHistoryEverywhere() }
-        tolerant { sync.deleteNights() }
-        tolerant { sync.delete(Uri.parse("wear://*/night")) }
         tolerant { sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_STOP) }
         tolerant { sync.publishTransientCancel(DataLayer.CAPABILITY_WATCH, "nap-1") }
         tolerant { sync.publishOnsetShift(OnsetShift("a", 2_000L, 1_000L, 1L)) }
-        tolerant { sync.deleteOnsetShift() }
+        tolerant { sync.migrateTransport() }
+        tolerant { sync.flush() }
+        tolerant { sync.requestSync() }
     }
 
     @Test
     fun readingWithoutWatchDoesNotThrow() {
-        tolerant { sync.fetchAlarms() }
         tolerant { sync.watchReady() }
         tolerant { sync.watchBattery() }
         tolerant { sync.watchSeenAt() }
         tolerant { sync.watchAlarmFields() }
         tolerant { sync.watchProtocol() }
-        tolerant { sync.fetchHolidays() }
-        tolerant { sync.fetchSleepGoal() }
-        tolerant { sync.fetchAutoOnset() }
-        tolerant { LearningSync(app).fetch() }
-        tolerant { sync.fetchNights() }
-        tolerant { sync.fetchOnsetShift() }
         tolerant { sync.nodesWithout(DataLayer.CAPABILITY_WATCH) }
         tolerant { sync.isReachable(DataLayer.CAPABILITY_WATCH) }
         tolerant { sync.connectedNames() }

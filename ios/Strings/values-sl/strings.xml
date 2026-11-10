@@ -33,5 +33,5 @@
     <string name="check_watch_recorder_motion">Ura ni začela meritve pred spanjem – Phase Wake na njej ne sme brati podatkov o gibanju. Dovoli to v nastavitvah ure pod Zasebnost. Budilka te bo vseeno zbudila.</string>
     <string name="check_watch_state_old">Stanje ure je zastarelo – na kratko odpri Phase Wake na uri.</string>
     <string name="editor_sleep_hint_apple">Šteje od uspavanja – ko greš spat, na uri tapni »Lahko noč«. Na uri Apple Watch Phase Wake oceni, kdaj zaspiš, iz naučenega časa uspavanja. Brez tapa velja nastavljeni čas.</string>
-    <string name="auto_onset_hint_apple">Odpri Phase Wake na uri Apple Watch od 1 ure pred spanjem (ura te opomni) in od takrat snema tvoje gibanje; na začetku okna bujenja Phase Wake izračuna, kdaj si zaspal.</string>
+    <string name="auto_onset_hint_apple">Odpri Phase Wake na uri Apple Watch od 1 ure pred spanjem (ura te opomni) in od takrat do okna bujenja snema tvoje gibanje; nato Phase Wake izračuna, kdaj si zaspal.</string>
 </resources>

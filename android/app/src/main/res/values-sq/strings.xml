@@ -451,7 +451,8 @@
     <string name="settings_restore">Rikthe</string>
     <string name="backup_password">Fjalëkalimi</string>
     <string name="backup_password_repeat">Përsërit fjalëkalimin</string>
-    <string name="backup_password_short">Të paktën 8 karaktere.</string>
+    <string name="backup_password_short">Të paktën 10 karaktere.</string>
+    <string name="backup_password_trivial">Shumë e lehtë për t’u gjetur – shmang përsëritjet, vargjet si 1234 ose abcd, rreshtat e tastierës dhe fjalëkalimet e zakonshme.</string>
     <string name="backup_password_mismatch">Fjalëkalimet nuk përputhen.</string>
     <string name="backup_password_hint">Pa këtë fjalëkalim, askush nuk mund ta hapë kopjen rezervë – as ti vetë.</string>
     <string name="backup_health_hint">Netët nga aplikacione të tjera (p.sh. Samsung Health) nuk ruhen në kopjen rezervë – mbeten atje dhe shfaqen përsëri sapo të jepet qasja.</string>

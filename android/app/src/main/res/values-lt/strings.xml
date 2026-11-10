@@ -477,7 +477,8 @@
     <string name="settings_restore">Atkurti</string>
     <string name="backup_password">Slaptažodis</string>
     <string name="backup_password_repeat">Pakartok slaptažodį</string>
-    <string name="backup_password_short">Bent 8 simboliai.</string>
+    <string name="backup_password_short">Bent 10 simbolių.</string>
+    <string name="backup_password_trivial">Per lengva atspėti – venk pasikartojimų, sekų kaip 1234 ar abcd, klaviatūros eilių ir dažnų slaptažodžių.</string>
     <string name="backup_password_mismatch">Slaptažodžiai nesutampa.</string>
     <string name="backup_password_hint">Be šio slaptažodžio niekas negalės atidaryti atsarginės kopijos – net ir tu.</string>
     <string name="backup_health_hint">Naktys iš kitų programų (pvz., Samsung Health) nėra kopijuojamos – jos lieka ten ir vėl atsiranda, kai suteikiama prieiga.</string>

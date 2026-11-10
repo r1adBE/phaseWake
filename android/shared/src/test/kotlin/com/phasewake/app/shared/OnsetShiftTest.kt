@@ -29,10 +29,14 @@ class OnsetShiftTest {
 
     @Test
     fun dataItemAndStoreRoundTrip() {
-        val request = OnsetShift.request(shift)
-        assertEquals(DataLayer.PATH_ONSET_SHIFT, request.uri.path)
-        assertTrue(request.isUrgent)
-        assertEquals(shift, OnsetShift.read(DataMap.fromByteArray(request.data!!)))
+        // Früheres Paket der Uhr: liest nur noch die einmalige Umstellung.
+        val item = DataMap().apply {
+            putString(DataLayer.KEY_TEXT, shift.alarmId)
+            putLong(DataLayer.KEY_ORIGINAL_TARGET, shift.original)
+            putLong(DataLayer.KEY_TARGET, shift.target)
+            putLong(DataLayer.KEY_UPDATED_AT, shift.at)
+        }
+        assertEquals(shift, OnsetShift.read(item))
         assertNull(OnsetShift.read(DataMap()), "ohne Angaben")
         assertNull(OnsetShift.read(DataMap().apply { putString(DataLayer.KEY_TEXT, "a") }), "ohne Zielzeiten")
         assertEquals(shift, OnsetShift.decode(shift.encode()))

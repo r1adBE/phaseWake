@@ -464,7 +464,8 @@
     <string name="settings_restore">Врати</string>
     <string name="backup_password">Лозинка</string>
     <string name="backup_password_repeat">Понови лозинку</string>
-    <string name="backup_password_short">Најмање 8 знакова.</string>
+    <string name="backup_password_short">Најмање 10 знакова.</string>
+    <string name="backup_password_trivial">Превише лако за погађање – избегавај понављања, низове попут 1234 или abcd, редове тастатуре и честе лозинке.</string>
     <string name="backup_password_mismatch">Лозинке се не подударају.</string>
     <string name="backup_password_hint">Без ове лозинке нико не може да отвори резервну копију – чак ни ти.</string>
     <string name="backup_health_hint">Ноћи из других апликација (нпр. Samsung Health) не чувају се у резервној копији – остају тамо и поново се појаве чим се одобри приступ.</string>

@@ -450,7 +450,8 @@
     <string name="settings_restore">Rejesha</string>
     <string name="backup_password">Nenosiri</string>
     <string name="backup_password_repeat">Rudia nenosiri</string>
-    <string name="backup_password_short">Angalau herufi 8.</string>
+    <string name="backup_password_short">Angalau herufi 10.</string>
+    <string name="backup_password_trivial">Ni rahisi mno kukisia – epuka marudio, mfuatano kama 1234 au abcd, safu za kibodi na manenosiri ya kawaida.</string>
     <string name="backup_password_mismatch">Manenosiri hayalingani.</string>
     <string name="backup_password_hint">Bila nenosiri hili, hakuna anayeweza kufungua nakala – hata wewe.</string>
     <string name="backup_health_hint">Usiku kutoka programu nyingine (k.m. Samsung Health) hauhifadhiwi nakala – unabaki huko na kuonekana tena mara ruhusa inapotolewa.</string>

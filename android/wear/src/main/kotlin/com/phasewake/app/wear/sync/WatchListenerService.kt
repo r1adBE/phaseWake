@@ -26,36 +26,17 @@ import kotlinx.coroutines.runBlocking
  * Empfängt Wecker, Feiertage, Schlafziel und Lernphase vom Handy, den Stopp-Befehl, wenn am Handy abgestellt wurde, die Meldungen zur
  * Weckaufgabe und Start und Stopp von «Nacht aufzeichnen».
  *
- * Ein neues Handy schickt Wecker und Einstellungen über die Warteschlange ([com.phasewake.app.shared.Outbox]), bestätigt
- * nach dem Übernehmen ([WearSync.receive]); Pakete eines älteren Handys ([onDataChanged]) gelten wie bisher.
+ * Wecker und Einstellungen kommen über die Warteschlange ([com.phasewake.app.shared.Outbox]), bestätigt nach dem
+ * Übernehmen ([WearSync.receive]). Als Datenpaket ([onDataChanged]) nur «Verlauf löschen» und der Abbruch eines
+ * Probeweckers oder Powernaps.
  */
 class WatchListenerService : WearableListenerService() {
 
     override fun onDataChanged(dataEvents: DataEventBuffer) {
         val changed = dataEvents.filter { it.type == DataEvent.TYPE_CHANGED }.map { it.dataItem }
-        val remote = changed
-            .filter { it.uri.path == DataLayer.PATH_ALARMS }
-            .mapNotNull { WearSync.readAlarms(DataMapItem.fromDataItem(it).dataMap) }
-            .maxByOrNull { it.updatedAt }
         val clearedAt = changed
             .filter { it.uri.path == DataLayer.PATH_CLEAR_HISTORY }
             .maxOfOrNull { DataMapItem.fromDataItem(it).dataMap.getLong(DataLayer.KEY_UPDATED_AT) }
-        val holidays = changed
-            .filter { it.uri.path == DataLayer.PATH_HOLIDAYS }
-            .map { WearSync.readHolidays(DataMapItem.fromDataItem(it).dataMap) }
-            .maxByOrNull { it.second }
-        val sleepGoal = changed
-            .filter { it.uri.path == DataLayer.PATH_SLEEP_GOAL }
-            .map { WearSync.readSleepGoal(DataMapItem.fromDataItem(it).dataMap) }
-            .maxByOrNull { it.second }
-        val autoOnset = changed
-            .filter { it.uri.path == DataLayer.PATH_AUTO_ONSET }
-            .map { WearSync.readAutoOnset(DataMapItem.fromDataItem(it).dataMap) }
-            .maxByOrNull { it.second }
-        val learning = changed
-            .filter { it.uri.path == DataLayer.PATH_LEARNING }
-            .map { LearningSnapshot.read(DataMapItem.fromDataItem(it).dataMap) }
-            .maxByOrNull { it.updatedAt }
         // Abbruch am Handy, während die Uhr nicht erreichbar war: nachgeliefert als Paket.
         val cancelled = changed
             .filter { it.uri.path == DataLayer.PATH_TRANSIENT_CANCELLED }
@@ -64,19 +45,6 @@ class WatchListenerService : WearableListenerService() {
         // Der Dienst läuft auf einem eigenen Hintergrundthread; kurzes Blockieren ist hier vorgesehen.
         runBlocking {
             cancelled.forEach { TransientInbox.cancelled(app, it) }
-            val newHolidays = holidays?.let { (list, at) -> app.holidays.set(list, at, onlyIfNewer = true) } == true
-            if (newHolidays) app.diag.log(DiagKind.SYNC, "holidays ${holidays.first.region} ${holidays.first.dates.size}")
-            // Einschlafpunkt und Beginn der automatischen Einschlaf-Messung: neu planen.
-            val newGoal = sleepGoal != null && app.sleepGoal.setIfNewer(sleepGoal.first, sleepGoal.second)
-            if (newGoal) app.diag.log(DiagKind.SYNC, "sleep goal ${sleepGoal.first}")
-            // Schalter der Einschlaf-Messung: Alarm der Messung stellen oder aufheben.
-            val newOnset = autoOnset != null && app.autoOnset.setIfNewer(autoOnset.first, autoOnset.second)
-            if (newOnset) app.diag.log(DiagKind.SYNC, "auto onset ${autoOnset.first}")
-            // Lernphase: gilt ab der nächsten Einschlaf-Messung bzw. dem nächsten Weckfenster, kein Neuplanen nötig.
-            if (learning != null && app.learning.setIfNewer(learning)) {
-                app.diag.log(DiagKind.SYNC, "learning ${learning.diagLine()}")
-                RecordControl.onLearningChanged(this@WatchListenerService, learning)
-            }
             // Zeitpunkt merken, damit [PhoneCatchUp] dasselbe Löschen später nicht noch einmal anwendet.
             // Ältere Handys ohne Zeitpunkt: wie bisher alles löschen.
             when {
@@ -87,15 +55,12 @@ class WatchListenerService : WearableListenerService() {
                     app.recordings.clear()
                 }
             }
-            val newAlarms = remote != null && app.alarms.applyRemote(remote)
-            if (newAlarms) app.diag.log(DiagKind.ALARMS_RECEIVED, "from phone ${remote.alarms.size}")
-            if (newAlarms || newHolidays || newGoal || newOnset) app.scheduler.reschedule()
         }
     }
 
     /**
-     * Eintrag der Warteschlange des Handys ([path], Text [body]): wie das entsprechende frühere Paket übernehmen (nur
-     * Neueres), bei einer Änderung neu planen. Unlesbares wird übergangen (und bestätigt).
+     * Eintrag der Warteschlange des Handys ([path], Text [body]): übernehmen (nur Neueres), bei einer Änderung neu
+     * planen. Unlesbares wird übergangen (und bestätigt).
      */
     private suspend fun handleQueued(path: String, body: String) {
         val app = wearApp

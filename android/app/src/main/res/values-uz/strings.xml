@@ -451,7 +451,8 @@
     <string name="settings_restore">Tiklash</string>
     <string name="backup_password">Parol</string>
     <string name="backup_password_repeat">Parolni takrorla</string>
-    <string name="backup_password_short">Kamida 8 ta belgi.</string>
+    <string name="backup_password_short">Kamida 10 ta belgi.</string>
+    <string name="backup_password_trivial">Taxmin qilish juda oson – takrorlar, 1234 yoki abcd kabi ketma-ketliklar, klaviatura qatorlari va keng tarqalgan parollardan qoch.</string>
     <string name="backup_password_mismatch">Parollar mos kelmadi.</string>
     <string name="backup_password_hint">Bu parolsiz zaxira nusxani hech kim ocha olmaydi – hatto sen ham.</string>
     <string name="backup_health_hint">Boshqa ilovalardagi tunlar (masalan, Samsung Health) zaxiralanmaydi – ular oʻsha yerda qoladi va ruxsat berilishi bilan yana chiqadi.</string>

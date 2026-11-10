@@ -35,5 +35,5 @@
     <string name="check_watch_recorder_motion">Úrið hóf ekki mælinguna fyrir svefn – Phase Wake má ekki lesa hreyfigögn á því. Leyfðu það í stillingum úrsins undir Persónuvernd. Vekjarinn vekur þig samt.</string>
     <string name="check_watch_state_old">Staða úrsins er úrelt – opnaðu Phase Wake stuttlega á úrinu.</string>
     <string name="editor_sleep_hint_apple">Telst frá því að þú sofnar – ýttu á „Góða nótt“ á úrinu þegar þú ferð að sofa. Á Apple Watch áætlar Phase Wake hvenær þú sofnar út frá lærðum tíma sem það tekur þig að sofna. Án þess gildir stilltur tími.</string>
-    <string name="auto_onset_hint_apple">Opnaðu Phase Wake á Apple Watch frá 1 klst. fyrir háttatíma (úrið minnir þig á) og þá skráir það hreyfinguna þína frá þeim tíma; í upphafi vökugluggans reiknar Phase Wake út hvenær þú sofnaðir.</string>
+    <string name="auto_onset_hint_apple">Opnaðu Phase Wake á Apple Watch frá 1 klst. fyrir háttatíma (úrið minnir þig á) og þá skráir það hreyfinguna þína frá þeim tíma fram að vökuglugganum; þá reiknar Phase Wake út hvenær þú sofnaðir.</string>
 </resources>

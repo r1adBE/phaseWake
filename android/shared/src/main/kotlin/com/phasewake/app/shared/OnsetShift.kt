@@ -2,8 +2,6 @@ package com.phasewake.app.shared
 
 import android.net.Uri
 import com.google.android.gms.wearable.DataMap
-import com.google.android.gms.wearable.PutDataMapRequest
-import com.google.android.gms.wearable.PutDataRequest
 import com.phasewake.app.core.WakePlan
 import java.time.Duration
 import java.time.Instant
@@ -12,8 +10,8 @@ import java.time.Instant
  * Frühere Zielzeit einer Nacht aus dem Einschlaf-Modus der Galaxy Watch (Review K-07): Wecker [alarmId], eingestellte
  * Zielzeit [original], neue Zielzeit [target] (Einschlafzeit + Schlafdauer), festgelegt um [at] (alles in ms).
  *
- * Die Uhr legt sie als Datenpaket ab ([DataLayer.PATH_ONSET_SHIFT]), nicht nur als Nachricht: So kommt sie auch an,
- * wenn das Handy gerade nicht erreichbar ist. Das Handy merkt sie sich und stellt den Zweitwecker dieser Nacht auf die
+ * Die Uhr schickt sie über die Warteschlange ([DataLayer.PATH_MSG_ONSET_SHIFT]): So kommt sie auch an, wenn das Handy
+ * gerade nicht erreichbar ist. Das Handy merkt sie sich und stellt den Zweitwecker dieser Nacht auf die
  * frühere Zielzeit ([applyTo]); nach der Nacht fällt sie weg ([expired]). Eine neuere Meldung ohne frühere Zielzeit
  * (Zielzeit nicht vor der eingestellten, z. B. [cancel]) hebt sie auf.
  */
@@ -53,15 +51,7 @@ data class OnsetShift(val alarmId: String, val original: Long, val target: Long,
             return OnsetShift(Uri.decode(f[0]), original, target, at)
         }
 
-        /** Datenpaket der Uhr (dringend: das Handy soll den Zweitwecker gleich verschieben). */
-        fun request(shift: OnsetShift): PutDataRequest = PutDataMapRequest.create(DataLayer.PATH_ONSET_SHIFT).apply {
-            dataMap.putString(DataLayer.KEY_TEXT, shift.alarmId)
-            dataMap.putLong(DataLayer.KEY_ORIGINAL_TARGET, shift.original)
-            dataMap.putLong(DataLayer.KEY_TARGET, shift.target)
-            dataMap.putLong(DataLayer.KEY_UPDATED_AT, shift.at)
-        }.asPutDataRequest().setUrgent()
-
-        /** Liest ein empfangenes Paket; `null`, wenn eine Angabe fehlt. */
+        /** Liest ein früheres Paket der Uhr (nur für die Umstellung); `null`, wenn eine Angabe fehlt. */
         fun read(map: DataMap): OnsetShift? {
             val id = map.getString(DataLayer.KEY_TEXT)?.takeIf { it.isNotEmpty() } ?: return null
             if (!map.containsKey(DataLayer.KEY_ORIGINAL_TARGET) || !map.containsKey(DataLayer.KEY_TARGET)) return null

@@ -476,7 +476,8 @@
     <string name="settings_restore">Obnovi</string>
     <string name="backup_password">Geslo</string>
     <string name="backup_password_repeat">Ponovi geslo</string>
-    <string name="backup_password_short">Vsaj 8 znakov.</string>
+    <string name="backup_password_short">Vsaj 10 znakov.</string>
+    <string name="backup_password_trivial">Preveč lahko uganiti – izogibaj se ponavljanju, zaporedjem, kot sta 1234 ali abcd, vrsticam tipkovnice in pogostim geslom.</string>
     <string name="backup_password_mismatch">Gesli se ne ujemata.</string>
     <string name="backup_password_hint">Brez tega gesla varnostne kopije ne more odpreti nihče – niti ti.</string>
     <string name="backup_health_hint">Noči iz drugih aplikacij (npr. Samsung Health) se ne varnostno kopirajo – ostanejo tam in se znova prikažejo, takoj ko dovoliš dostop.</string>

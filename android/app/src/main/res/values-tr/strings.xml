@@ -448,7 +448,8 @@
     <string name="settings_restore">Geri yükle</string>
     <string name="backup_password">Şifre</string>
     <string name="backup_password_repeat">Şifreyi tekrarla</string>
-    <string name="backup_password_short">En az 8 karakter.</string>
+    <string name="backup_password_short">En az 10 karakter.</string>
+    <string name="backup_password_trivial">Tahmin etmesi çok kolay – tekrarlardan, 1234 veya abcd gibi dizilerden, klavye sıralarından ve yaygın parolalardan kaçın.</string>
     <string name="backup_password_mismatch">Şifreler eşleşmiyor.</string>
     <string name="backup_password_hint">Bu şifre olmadan yedeği kimse açamaz – sen de.</string>
     <string name="backup_health_hint">Diğer uygulamalardaki geceler (ör. Samsung Health) yedeklenmez – orada kalır ve erişim izni verilir verilmez yeniden görünür.</string>

@@ -32,5 +32,5 @@
     <string name="check_watch_recorder_motion">Kello ei aloittanut mittausta ennen nukkumista – Phase Wake ei saa lukea liiketietoja kellosta. Salli se kellon asetuksissa kohdassa Tietosuoja. Herätys herättää sinut silti.</string>
     <string name="check_watch_state_old">Kellon tila on vanhentunut – avaa Phase Wake hetkeksi kellossa.</string>
     <string name="editor_sleep_hint_apple">Lasketaan nukahtamisesta – napauta kellosta ”Hyvää yötä”, kun menet nukkumaan. Apple Watchissa Phase Wake arvioi nukahtamisesi ajankohdan oppimasi nukahtamisajan perusteella. Ilman napautusta käytetään asetettua aikaa.</string>
-    <string name="auto_onset_hint_apple">Avaa Phase Wake Apple Watchissa tuntia ennen nukkumaanmenoa tai myöhemmin (kello muistuttaa), niin se tallentaa liikkeesi siitä lähtien; heräämisikkunan alussa Phase Wake laskee, milloin nukahdit.</string>
+    <string name="auto_onset_hint_apple">Avaa Phase Wake Apple Watchissa tuntia ennen nukkumaanmenoa tai myöhemmin (kello muistuttaa), niin se tallentaa liikkeesi siitä lähtien heräämisikkunaan asti; silloin Phase Wake laskee, milloin nukahdit.</string>
 </resources>

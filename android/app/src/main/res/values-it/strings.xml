@@ -461,7 +461,8 @@
     <string name="settings_restore">Ripristina</string>
     <string name="backup_password">Password</string>
     <string name="backup_password_repeat">Ripeti la password</string>
-    <string name="backup_password_short">Almeno 8 caratteri.</string>
+    <string name="backup_password_short">Almeno 10 caratteri.</string>
+    <string name="backup_password_trivial">Troppo facile da indovinare: evita ripetizioni, sequenze come 1234 o abcd, file della tastiera e password comuni.</string>
     <string name="backup_password_mismatch">Le password non coincidono.</string>
     <string name="backup_password_hint">Senza questa password nessuno può aprire il backup – nemmeno tu.</string>
     <string name="backup_health_hint">Le notti di altre app (ad es. Samsung Health) non vengono incluse nel backup: restano lì e ricompaiono non appena concedi l’accesso.</string>

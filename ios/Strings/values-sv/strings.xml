@@ -32,5 +32,5 @@
     <string name="check_watch_recorder_motion">Klockan startade inte mätningen före sömnen – Phase Wake får inte läsa rörelsedata på den. Tillåt det i klockans inställningar under Integritet. Du blir väckt ändå.</string>
     <string name="check_watch_state_old">Klockans status är inaktuell – öppna Phase Wake en kort stund på klockan.</string>
     <string name="editor_sleep_hint_apple">Räknas från när du somnar – tryck på ”Godnatt” på klockan när du lägger dig. På Apple Watch uppskattar Phase Wake när du somnar utifrån din inlärda insomningstid. Utan tryck gäller den inställda tiden.</string>
-    <string name="auto_onset_hint_apple">Öppna Phase Wake på din Apple Watch från 1 timme före sänggåendet (klockan påminner dig), så spelar den in din rörelse från då; i början av väckningsfönstret räknar Phase Wake ut när du somnade.</string>
+    <string name="auto_onset_hint_apple">Öppna Phase Wake på din Apple Watch från 1 timme före sänggåendet (klockan påminner dig), så spelar den in din rörelse från då till väckningsfönstret; då räknar Phase Wake ut när du somnade.</string>
 </resources>

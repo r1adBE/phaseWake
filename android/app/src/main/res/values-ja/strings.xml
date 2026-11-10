@@ -435,7 +435,8 @@
     <string name="settings_restore">復元</string>
     <string name="backup_password">パスワード</string>
     <string name="backup_password_repeat">パスワード（確認）</string>
-    <string name="backup_password_short">8文字以上。</string>
+    <string name="backup_password_short">10文字以上。</string>
+    <string name="backup_password_trivial">推測されやすすぎます。同じ文字の繰り返し、1234 や abcd のような連続、キーボードの並び、よく使われるパスワードは避けてください。</string>
     <string name="backup_password_mismatch">パスワードが一致しません。</string>
     <string name="backup_password_hint">このパスワードがないと、誰もバックアップを開けません（あなたも）。</string>
     <string name="backup_health_hint">ほかのアプリ（Samsung Health など）の夜はバックアップされません。元のアプリに残り、アクセスを許可すると再び表示されます。</string>

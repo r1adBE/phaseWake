@@ -175,8 +175,6 @@ class OutboxTest {
         assertFalse(called, "unlesbar: nicht verarbeiten")
         // Fehler beim Verarbeiten: kein Absturz (und keine Bestätigung).
         withTimeoutOrNull(2_000L) { sync.receive("node", Outbox.wrap("id-2", "x")) { error("Speicher voll") } }
-        // Auf der Uhr ist die Gegenseite das Handy: nie «ältere Uhr».
-        assertFalse(withTimeoutOrNull(2_000L) { sync.legacyWatch() } ?: false)
         withTimeoutOrNull(2_000L) { sync.acked("unbekannt".encodeToByteArray()) }
         withTimeoutOrNull(2_000L) { sync.dropHistory(0L) }
         Unit

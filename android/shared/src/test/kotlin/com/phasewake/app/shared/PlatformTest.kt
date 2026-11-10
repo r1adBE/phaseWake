@@ -3,21 +3,16 @@ package com.phasewake.app.shared
 import android.app.Application
 import android.app.NotificationManager
 import com.google.android.gms.wearable.DataMap
-import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.Codec
 import com.phasewake.app.core.DiagDevice
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.DiagLog
-import com.phasewake.app.core.HolidayList
-import com.phasewake.app.core.Holidays
-import com.phasewake.app.core.SleepGoal
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.RecorderSkip
 import com.phasewake.app.core.WakeReason
 import java.io.File
 import java.nio.file.Files
 import java.time.Instant
-import java.time.LocalDate
 import java.util.concurrent.Executor
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -93,45 +88,15 @@ class PlatformTest {
     }
 
     @Test
-    fun readsReceivedDataItems() {
-        val alarms = DataMap().apply {
-            putString(DataLayer.KEY_TEXT, Codec.encodeAlarms(listOf(AlarmSpec(id = "a", hour = 7, minute = 0))))
-            putLong(DataLayer.KEY_UPDATED_AT, 42L)
-        }
-        assertEquals(42L, WearSync.readAlarms(alarms)?.updatedAt)
-        assertNull(WearSync.readAlarms(DataMap().apply { putString(DataLayer.KEY_TEXT, "kaputt") }))
+    fun readsLegacyNightForMigration() {
+        // Früheres Nacht-Paket: liest nur noch die einmalige Umstellung der Uhr.
+        val night = NightRecord("a b", Instant.ofEpochMilli(1_000), Instant.ofEpochMilli(2_000), Instant.ofEpochMilli(1_500), WakeReason.DEADLINE, 0, emptyList())
+        assertEquals(night, WearSync.readNight(DataMap().apply { putString(DataLayer.KEY_TEXT, Codec.encodeNight(night)) }))
         assertNull(WearSync.readNight(DataMap().apply { putString(DataLayer.KEY_TEXT, "kaputt") }))
-        val list = HolidayList("CH-BE", setOf(LocalDate.of(2026, 12, 26)))
-        val holidays = DataMap().apply {
-            putString(DataLayer.KEY_TEXT, Holidays.encode(list))
-            putLong(DataLayer.KEY_UPDATED_AT, 7L)
-        }
-        assertEquals(list to 7L, WearSync.readHolidays(holidays))
-        assertEquals(HolidayList("", emptySet()) to 0L, WearSync.readHolidays(DataMap()))
-        // Schlafziel: ohne Angabe der Standard, sonst auf Bereich und Raster gebracht.
-        assertEquals(SleepGoal.DEFAULT_MINUTES to 0L, WearSync.readSleepGoal(DataMap()))
-        val tooShort = DataMap().apply {
-            putInt(DataLayer.KEY_SLEEP_GOAL, 60)
-            putLong(DataLayer.KEY_UPDATED_AT, 3L)
-        }
-        assertEquals(SleepGoal.MIN_MINUTES to 3L, WearSync.readSleepGoal(tooShort))
-        // Einschlaf-Messung: ohne Angabe (ältere Handys) an.
-        assertEquals(true to 0L, WearSync.readAutoOnset(DataMap()))
     }
 
     @Test
     fun buildsDataItemRequests() {
-        val spec = AlarmSpec(id = "a", hour = 7, minute = 0)
-        val alarms = WearSync.alarmsRequest(AlarmSnapshot(listOf(spec), 5L))
-        assertEquals(DataLayer.PATH_ALARMS, alarms.uri.path)
-        assertTrue(alarms.isUrgent)
-        assertEquals(AlarmSnapshot(listOf(spec), 5L), WearSync.readAlarms(DataMap.fromByteArray(alarms.data!!)))
-
-        val night = NightRecord("a b", Instant.ofEpochMilli(1_000), Instant.ofEpochMilli(2_000), Instant.ofEpochMilli(1_500), WakeReason.DEADLINE, 0, emptyList())
-        val nightItem = WearSync.nightRequest(night)
-        assertEquals(DataLayer.PATH_NIGHT_PREFIX + "1000-a%20b", nightItem.uri.path)
-        assertEquals(night, WearSync.readNight(DataMap.fromByteArray(nightItem.data!!)))
-
         val status = DataMap.fromByteArray(WearSync.statusRequest(true, 55, 10_000L).data!!)
         assertTrue(WearSync.readReady(status))
         assertEquals(55, WearSync.readBattery(status, 10_500L, 1_000L))
@@ -165,26 +130,6 @@ class PlatformTest {
         assertEquals(RecorderSkip.Reason.BATTERY, WearSync.readRecorderSkip(skipped, 10_500L, 1_000L))
         assertNull(WearSync.readRecorderSkip(skipped, 20_000L, 1_000L), "zu alt")
 
-        val list = HolidayList("DE", setOf(LocalDate.of(2026, 10, 3)))
-        assertEquals(list to 9L, WearSync.readHolidays(DataMap.fromByteArray(WearSync.holidaysRequest(list, 9L).data!!)))
-        val goal = WearSync.sleepGoalRequest(495, 8L)
-        assertEquals(DataLayer.PATH_SLEEP_GOAL, goal.uri.path)
-        assertTrue(goal.isUrgent)
-        assertEquals(495 to 8L, WearSync.readSleepGoal(DataMap.fromByteArray(goal.data!!)))
-        val onset = WearSync.autoOnsetRequest(false, 6L)
-        assertEquals(DataLayer.PATH_AUTO_ONSET, onset.uri.path)
-        assertTrue(onset.isUrgent)
-        assertEquals(false to 6L, WearSync.readAutoOnset(DataMap.fromByteArray(onset.data!!)))
-        // Lernphase: ohne Werte fehlen sie im Paket; ohne Angaben (ältere Handys) keine Lernphase.
-        val learning = LearningSnapshot.request(LearningSnapshot(true, null, null, 4L))
-        assertEquals(DataLayer.PATH_LEARNING, learning.uri.path)
-        assertTrue(learning.isUrgent)
-        val learningMap = DataMap.fromByteArray(learning.data!!)
-        assertFalse(learningMap.containsKey(DataLayer.KEY_LEARN_FLOOR))
-        assertEquals(LearningSnapshot(true, null, null, 4L), LearningSnapshot.read(learningMap))
-        val learned = LearningSnapshot(false, 0.0213, 51.5, 9L)
-        assertEquals(learned, LearningSnapshot.read(DataMap.fromByteArray(LearningSnapshot.request(learned).data!!)))
-        assertEquals(LearningSnapshot(false, null, null, 0L), LearningSnapshot.read(DataMap()))
         val cancel = WearSync.transientCancelRequest("nap-1", 5L)
         assertEquals(DataLayer.PATH_TRANSIENT_CANCELLED, cancel.uri.path)
         assertTrue(cancel.isUrgent)

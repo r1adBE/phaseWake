@@ -32,5 +32,5 @@
     <string name="check_watch_recorder_motion">Ceasul nu a pornit măsurarea dinainte de somn – Phase Wake nu are voie să citească date de mișcare pe el. Permite acest lucru în setările ceasului, la Confidențialitate. Alarma te va trezi oricum.</string>
     <string name="check_watch_state_old">Starea ceasului nu este actualizată – deschide scurt Phase Wake pe ceas.</string>
     <string name="editor_sleep_hint_apple">Se numără de la adormire – atinge „Noapte bună” pe ceas când te culci. Pe Apple Watch, Phase Wake estimează când adormi pe baza duratei de adormire învățate. Fără atingere se aplică ora setată.</string>
-    <string name="auto_onset_hint_apple">Deschide Phase Wake pe Apple Watch de la 1 oră înainte de culcare (ceasul îți amintește) și de atunci îți înregistrează mișcarea; la începutul intervalului de trezire, Phase Wake calculează când ai adormit.</string>
+    <string name="auto_onset_hint_apple">Deschide Phase Wake pe Apple Watch de la 1 oră înainte de culcare (ceasul îți amintește) și de atunci până la intervalul de trezire îți înregistrează mișcarea; apoi Phase Wake calculează când ai adormit.</string>
 </resources>

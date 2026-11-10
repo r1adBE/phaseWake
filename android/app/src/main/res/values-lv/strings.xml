@@ -464,7 +464,8 @@
     <string name="settings_restore">Atjaunot</string>
     <string name="backup_password">Parole</string>
     <string name="backup_password_repeat">Atkārto paroli</string>
-    <string name="backup_password_short">Vismaz 8 rakstzīmes.</string>
+    <string name="backup_password_short">Vismaz 10 rakstzīmes.</string>
+    <string name="backup_password_trivial">Pārāk viegli uzminēt – izvairies no atkārtojumiem, virknēm kā 1234 vai abcd, tastatūras rindām un izplatītām parolēm.</string>
     <string name="backup_password_mismatch">Paroles nesakrīt.</string>
     <string name="backup_password_hint">Bez šīs paroles neviens nevar atvērt dublējumu – pat tu ne.</string>
     <string name="backup_health_hint">Naktis no citām lietotnēm (piem., Samsung Health) netiek dublētas – tās paliek tur un atkal parādās, tiklīdz piekļuve ir piešķirta.</string>

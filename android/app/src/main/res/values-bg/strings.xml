@@ -450,7 +450,8 @@
     <string name="settings_restore">Възстанови</string>
     <string name="backup_password">Парола</string>
     <string name="backup_password_repeat">Повтори паролата</string>
-    <string name="backup_password_short">Поне 8 знака.</string>
+    <string name="backup_password_short">Поне 10 знака.</string>
+    <string name="backup_password_trivial">Твърде лесна за отгатване – избягвай повторения, поредици като 1234 или abcd, редове от клавиатурата и често срещани пароли.</string>
     <string name="backup_password_mismatch">Паролите не съвпадат.</string>
     <string name="backup_password_hint">Без тази парола никой не може да отвори копието – дори ти.</string>
     <string name="backup_health_hint">Нощите от други приложения (напр. Samsung Health) не се архивират – остават там и се появяват отново, щом бъде дадено разрешение.</string>

@@ -33,5 +33,5 @@
     <string name="check_watch_recorder_motion">ሰዓትህ ከእንቅልፍ በፊት ያለውን ልኬት አልጀመረም – Phase Wake በሰዓቱ ላይ የእንቅስቃሴ ውሂብ እንዲያነብ አልተፈቀደለትም። በሰዓቱ ቅንብሮች ውስጥ በግላዊነት ስር ፍቀድለት። ቢሆንም ማንቂያው ይቀሰቅስሃል።</string>
     <string name="check_watch_state_old">የሰዓቱ ሁኔታ ጊዜው ያለፈበት ነው – Phase Wakeን በሰዓቱ ላይ ለአጭር ጊዜ ክፈት።</string>
     <string name="editor_sleep_hint_apple">ከተኛህበት ጊዜ ይቆጠራል – ስትተኛ በሰዓትህ ላይ «ደህና እደሩ»ን ንካ። በApple Watch ላይ Phase Wake መቼ እንደምትተኛ ከተማረው ለመተኛት የሚወስድብህ ጊዜ ይገምታል። ሳትነካ ከቀረህ የተቀመጠው ሰዓት ይሠራል።</string>
-    <string name="auto_onset_hint_apple">ከመኝታ ሰዓት 1 ሰዓት በፊት ጀምሮ Phase Wakeን በApple Watchህ ላይ ስትከፍት (ያስታውስሃል)፣ ከዚያ ጀምሮ እንቅስቃሴህን ይመዘግባል፤ በመቀስቀሻ ጊዜህ መጀመሪያ ላይ Phase Wake መቼ እንደተኛህ ያሰላል።</string>
+    <string name="auto_onset_hint_apple">ከመኝታ ሰዓት 1 ሰዓት በፊት ጀምሮ Phase Wakeን በApple Watchህ ላይ ስትከፍት (ያስታውስሃል)፣ ከዚያ ጀምሮ እስከ መቀስቀሻ ጊዜህ ድረስ እንቅስቃሴህን ይመዘግባል፤ ከዚያ Phase Wake መቼ እንደተኛህ ያሰላል።</string>
 </resources>

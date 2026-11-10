@@ -474,7 +474,8 @@
     <string name="settings_restore">Przywróć</string>
     <string name="backup_password">Hasło</string>
     <string name="backup_password_repeat">Powtórz hasło</string>
-    <string name="backup_password_short">Co najmniej 8 znaków.</string>
+    <string name="backup_password_short">Co najmniej 10 znaków.</string>
+    <string name="backup_password_trivial">Zbyt łatwe do odgadnięcia – unikaj powtórzeń, ciągów jak 1234 czy abcd, rzędów klawiatury i popularnych haseł.</string>
     <string name="backup_password_mismatch">Hasła się nie zgadzają.</string>
     <string name="backup_password_hint">Bez tego hasła nikt nie otworzy kopii – nawet Ty.</string>
     <string name="backup_health_hint">Noce z innych aplikacji (np. Samsung Health) nie trafiają do kopii zapasowej – zostają tam i pojawiają się znowu, gdy tylko udzielisz dostępu.</string>

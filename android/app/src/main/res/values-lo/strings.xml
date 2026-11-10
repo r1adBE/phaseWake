@@ -437,7 +437,8 @@
     <string name="settings_restore">ກູ້ຄືນ</string>
     <string name="backup_password">ລະຫັດຜ່ານ</string>
     <string name="backup_password_repeat">ໃສ່ລະຫັດຜ່ານອີກຄັ້ງ</string>
-    <string name="backup_password_short">ຢ່າງໜ້ອຍ 8 ຕົວອັກສອນ</string>
+    <string name="backup_password_short">ຢ່າງໜ້ອຍ 10 ຕົວອັກສອນ</string>
+    <string name="backup_password_trivial">ເດົາງ່າຍເກີນໄປ – ຫຼີກລ່ຽງການຊ້ຳກັນ, ລຳດັບເຊັ່ນ 1234 ຫຼື abcd, ແຖວແປ້ນພິມ ແລະ ລະຫັດຜ່ານທີ່ໃຊ້ທົ່ວໄປ</string>
     <string name="backup_password_mismatch">ລະຫັດຜ່ານບໍ່ກົງກັນ</string>
     <string name="backup_password_hint">ຖ້າບໍ່ມີລະຫັດຜ່ານນີ້ ບໍ່ມີໃຜເປີດໄຟລ໌ສຳຮອງໄດ້ – ແມ່ນແຕ່ເຈົ້າ</string>
     <string name="backup_health_hint">ຄືນຈາກແອັບອື່ນ (ເຊັ່ນ Samsung Health) ບໍ່ຖືກສຳຮອງ – ມັນຍັງຢູ່ບ່ອນນັ້ນ ແລະ ຈະສະແດງອີກເມື່ອໃຫ້ສິດແລ້ວ.</string>

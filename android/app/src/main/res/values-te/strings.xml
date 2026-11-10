@@ -451,7 +451,8 @@
     <string name="settings_restore">పునరుద్ధరించండి</string>
     <string name="backup_password">పాస్‌వర్డ్</string>
     <string name="backup_password_repeat">పాస్‌వర్డ్ మళ్లీ ఇవ్వండి</string>
-    <string name="backup_password_short">కనీసం 8 అక్షరాలు.</string>
+    <string name="backup_password_short">కనీసం 10 అక్షరాలు.</string>
+    <string name="backup_password_trivial">ఊహించడం చాలా సులభం – పునరావృతాలు, 1234 లేదా abcd వంటి వరుసలు, కీబోర్డ్ వరుసలు మరియు సాధారణ పాస్‌వర్డ్‌లను నివారించండి.</string>
     <string name="backup_password_mismatch">పాస్‌వర్డ్‌లు సరిపోలలేదు.</string>
     <string name="backup_password_hint">ఈ పాస్‌వర్డ్ లేకుండా బ్యాకప్‌ను ఎవరూ తెరవలేరు – మీరు కూడా.</string>
     <string name="backup_health_hint">ఇతర యాప్‌ల రాత్రులు (ఉదా. Samsung Health) బ్యాకప్ కావు – అవి అక్కడే ఉంటాయి, అనుమతి ఇచ్చిన వెంటనే మళ్లీ కనిపిస్తాయి.</string>

@@ -436,7 +436,8 @@
     <string name="settings_restore">Қалпына келтіру</string>
     <string name="backup_password">Құпиясөз</string>
     <string name="backup_password_repeat">Құпиясөзді қайтала</string>
-    <string name="backup_password_short">Кемінде 8 таңба.</string>
+    <string name="backup_password_short">Кемінде 10 таңба.</string>
+    <string name="backup_password_trivial">Табу тым оңай – қайталаулардан, 1234 не abcd сияқты тізбектерден, пернетақта қатарларынан және кең тараған құпиясөздерден аулақ бол.</string>
     <string name="backup_password_mismatch">Құпиясөздер сәйкес емес.</string>
     <string name="backup_password_hint">Бұл құпиясөзсіз сақтық көшірмені ешкім аша алмайды – тіпті сен де.</string>
     <string name="backup_health_hint">Басқа қолданбалардың түндері (мысалы, Samsung Health) сақтық көшірмеге кірмейді – олар сонда қалады және рұқсат берілгенде қайта көрінеді.</string>

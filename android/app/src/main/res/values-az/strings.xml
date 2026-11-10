@@ -436,7 +436,8 @@
     <string name="settings_restore">Bərpa et</string>
     <string name="backup_password">Parol</string>
     <string name="backup_password_repeat">Parolu təkrarla</string>
-    <string name="backup_password_short">Ən azı 8 simvol.</string>
+    <string name="backup_password_short">Ən azı 10 simvol.</string>
+    <string name="backup_password_trivial">Təxmin etmək çox asandır – təkrarlardan, 1234 və ya abcd kimi ardıcıllıqlardan, klaviatura sıralarından və geniş yayılmış parollardan qaç.</string>
     <string name="backup_password_mismatch">Parollar uyğun gəlmir.</string>
     <string name="backup_password_hint">Bu parol olmadan ehtiyat nüsxəni heç kim aça bilməz – hətta sən də.</string>
     <string name="backup_health_hint">Digər tətbiqlərdən gecələr (məs. Samsung Health) ehtiyat nüsxəyə düşmür – onlar orada qalır və icazə veriləndə yenidən görünür.</string>

@@ -448,7 +448,8 @@
     <string name="settings_restore">Palauta</string>
     <string name="backup_password">Salasana</string>
     <string name="backup_password_repeat">Toista salasana</string>
-    <string name="backup_password_short">Vähintään 8 merkkiä.</string>
+    <string name="backup_password_short">Vähintään 10 merkkiä.</string>
+    <string name="backup_password_trivial">Liian helppo arvata – vältä toistoja, jonoja kuten 1234 tai abcd, näppäimistön rivejä ja yleisiä salasanoja.</string>
     <string name="backup_password_mismatch">Salasanat eivät täsmää.</string>
     <string name="backup_password_hint">Ilman tätä salasanaa kukaan ei voi avata varmuuskopiota – et sinäkään.</string>
     <string name="backup_health_hint">Muiden sovellusten (esim. Samsung Health) öitä ei varmuuskopioida – ne pysyvät siellä ja näkyvät taas, kun käyttöoikeus on annettu.</string>

@@ -32,5 +32,5 @@
     <string name="check_watch_recorder_motion">Đồng hồ không bắt đầu đo trước khi ngủ – Phase Wake không được phép đọc dữ liệu chuyển động trên đồng hồ. Hãy cho phép trong cài đặt của đồng hồ, mục Quyền riêng tư. Báo thức vẫn sẽ đánh thức bạn.</string>
     <string name="check_watch_state_old">Trạng thái của đồng hồ đã cũ – hãy mở nhanh Phase Wake trên đồng hồ.</string>
     <string name="editor_sleep_hint_apple">Tính từ lúc bạn ngủ thiếp đi – chạm “Ngủ ngon” trên đồng hồ khi đi ngủ. Trên Apple Watch, Phase Wake ước tính thời điểm bạn ngủ dựa trên thời gian vào giấc đã học được. Nếu không chạm, thời gian đã đặt sẽ được áp dụng.</string>
-    <string name="auto_onset_hint_apple">Mở Phase Wake trên Apple Watch từ 1 giờ trước giờ đi ngủ (đồng hồ sẽ nhắc bạn), từ lúc đó đồng hồ ghi lại chuyển động của bạn; vào đầu khoảng đánh thức, Phase Wake tính xem bạn đã ngủ thiếp đi lúc nào.</string>
+    <string name="auto_onset_hint_apple">Mở Phase Wake trên Apple Watch từ 1 giờ trước giờ đi ngủ (đồng hồ sẽ nhắc bạn), từ lúc đó đến khoảng đánh thức đồng hồ ghi lại chuyển động của bạn; sau đó Phase Wake tính xem bạn đã ngủ thiếp đi lúc nào.</string>
 </resources>

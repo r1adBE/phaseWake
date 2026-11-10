@@ -448,7 +448,8 @@
     <string name="settings_restore">Επαναφορά</string>
     <string name="backup_password">Κωδικός</string>
     <string name="backup_password_repeat">Επανάληψη κωδικού</string>
-    <string name="backup_password_short">Τουλάχιστον 8 χαρακτήρες.</string>
+    <string name="backup_password_short">Τουλάχιστον 10 χαρακτήρες.</string>
+    <string name="backup_password_trivial">Πολύ εύκολο να μαντευτεί – απόφυγε επαναλήψεις, ακολουθίες όπως 1234 ή abcd, σειρές πληκτρολογίου και συνηθισμένους κωδικούς.</string>
     <string name="backup_password_mismatch">Οι κωδικοί δεν ταιριάζουν.</string>
     <string name="backup_password_hint">Χωρίς αυτόν τον κωδικό κανείς δεν ανοίγει το αντίγραφο – ούτε εσύ.</string>
     <string name="backup_health_hint">Οι νύχτες από άλλες εφαρμογές (π.χ. Samsung Health) δεν περιλαμβάνονται στο αντίγραφο ασφαλείας – μένουν εκεί και εμφανίζονται ξανά μόλις δοθεί πρόσβαση.</string>

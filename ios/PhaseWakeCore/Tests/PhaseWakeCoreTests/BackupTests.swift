@@ -69,22 +69,22 @@ final class BackupTests: XCTestCase {
         XCTAssertEqual(String(decoding: try BackupFile.decrypt(v2, password: nfd), as: UTF8.self), expected)
     }
 
-    func testShortPasswordIsRefused() {
+    func testShortOrTrivialPasswordIsRefused() {
+        // Regel im Einzelnen: `BackupPasswordTests`; hier nur, dass Sichern sie anwendet.
         XCTAssertFalse(BackupFile.passwordOk(""))
-        XCTAssertFalse(BackupFile.passwordOk("1234567"))
-        XCTAssertTrue(BackupFile.passwordOk("12345678"))
-        // «ä» als NFD (zwei Codepunkte) zählt als ein Zeichen: «abcdefä» hat 7.
-        XCTAssertFalse(BackupFile.passwordOk("abcdefa\u{0308}"))
-        XCTAssertTrue(BackupFile.passwordOk("abcdefga\u{0308}"))
+        XCTAssertFalse(BackupFile.passwordOk("Mondlicht"))
+        XCTAssertFalse(BackupFile.passwordOk("1234567890"))
+        XCTAssertTrue(BackupFile.passwordOk("Mondlicht-2026"))
         XCTAssertThrowsError(try BackupFile.encrypt(Data([1]), password: "", salt: salt, nonce: nonce))
-        XCTAssertThrowsError(try BackupFile.encrypt(Data([1]), password: "1234567", salt: salt, nonce: nonce))
+        XCTAssertThrowsError(try BackupFile.encrypt(Data([1]), password: "12345678", salt: salt, nonce: nonce))
+        XCTAssertThrowsError(try BackupFile.encrypt(Data([1]), password: "qwertyuiop", salt: salt, nonce: nonce))
         XCTAssertGreaterThanOrEqual(BackupFile.maxFileBytes, 1_000_000)
     }
 
     func testRoundTrip() throws {
-        let sealed = try BackupFile.encrypt(Data(payload.toJson().utf8), password: "geheim123", salt: salt, nonce: nonce)
+        let sealed = try BackupFile.encrypt(Data(payload.toJson().utf8), password: "geheim-123", salt: salt, nonce: nonce)
         XCTAssertEqual(sealed.prefix(5), BackupFile.magic)
-        let back = try BackupFile.decrypt(sealed, password: "geheim123")
+        let back = try BackupFile.decrypt(sealed, password: "geheim-123")
         XCTAssertEqual(try BackupPayload.fromJson(String(decoding: back, as: UTF8.self)), payload)
     }
 
@@ -125,11 +125,19 @@ final class BackupTests: XCTestCase {
     }
 
     func testWrongPasswordOrChangedFile() throws {
-        let sealed = try BackupFile.encrypt(Data("{}".utf8), password: "richtig1", salt: salt, nonce: nonce)
+        let sealed = try BackupFile.encrypt(Data("{}".utf8), password: "richtig-12", salt: salt, nonce: nonce)
         XCTAssertThrowsError(try BackupFile.decrypt(sealed, password: "falsch12")) { XCTAssertEqual(($0 as? BackupError)?.reason, .wrongPassword) }
         var changed = sealed
         changed[changed.count - 1] = changed[changed.count - 1] &+ 1
-        XCTAssertThrowsError(try BackupFile.decrypt(changed, password: "richtig1")) { XCTAssertEqual(($0 as? BackupError)?.reason, .wrongPassword) }
+        XCTAssertThrowsError(try BackupFile.decrypt(changed, password: "richtig-12")) { XCTAssertEqual(($0 as? BackupError)?.reason, .wrongPassword) }
+    }
+
+    func testShortPasswordStillOpensOldBackup() throws {
+        // Vor der Regel (10.11.2026) reichten 8 Zeichen: Eine solche Sicherung («{}», Passwort «1234abcd», Salz und
+        // Nonce wie oben, mit Python erzeugt) öffnet das Wiederherstellen weiter. Kotlin: gleicher Test.
+        let old = try XCTUnwrap(Data(base64Encoded: "UFdCSzIAAQIDBAUGBwgJCgsMDQ4PZGVmZ2hpamtsbW5vt4PzqnJ6aYzD2IdWUvOlrPj0"))
+        XCTAssertFalse(BackupFile.passwordOk("1234abcd"))
+        XCTAssertEqual(String(decoding: try BackupFile.decrypt(old, password: "1234abcd"), as: UTF8.self), "{}")
     }
 
     func testForeignFileIsRejected() {

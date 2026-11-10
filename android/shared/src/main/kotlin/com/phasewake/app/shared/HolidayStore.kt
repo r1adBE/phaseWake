@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.map
 
 /**
  * Die aufgelösten Feiertage ([HolidayList]) auf Handy und Uhr. Das Handy rechnet sie aus der Datendatei und
- * schickt sie der Uhr ([DataLayer.PATH_HOLIDAYS]); die Uhr übernimmt nur einen neueren Stand.
+ * schickt sie der Uhr ([DataLayer.PATH_MSG_HOLIDAYS]); die Uhr übernimmt nur einen neueren Stand.
  */
 class HolidayStore(private val store: DataStore<Preferences>) {
 

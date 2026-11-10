@@ -448,7 +448,8 @@
     <string name="settings_restore">Återställ</string>
     <string name="backup_password">Lösenord</string>
     <string name="backup_password_repeat">Upprepa lösenordet</string>
-    <string name="backup_password_short">Minst 8 tecken.</string>
+    <string name="backup_password_short">Minst 10 tecken.</string>
+    <string name="backup_password_trivial">För lätt att gissa – undvik upprepningar, följder som 1234 eller abcd, tangentbordsrader och vanliga lösenord.</string>
     <string name="backup_password_mismatch">Lösenorden stämmer inte överens.</string>
     <string name="backup_password_hint">Utan det här lösenordet kan ingen öppna kopian – inte ens du.</string>
     <string name="backup_health_hint">Nätter från andra appar (t.ex. Samsung Health) säkerhetskopieras inte – de ligger kvar där och visas igen så snart åtkomst har getts.</string>

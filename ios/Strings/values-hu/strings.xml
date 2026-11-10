@@ -32,5 +32,5 @@
     <string name="check_watch_recorder_motion">Az órád nem indította el az alvás előtti mérést – a Phase Wake nem olvashat rajta mozgásadatokat. Engedélyezd az óra beállításaiban az Adatvédelem alatt. Az ébresztő így is felébreszt.</string>
     <string name="check_watch_state_old">Az óra állapota elavult – nyisd meg röviden a Phase Wake-et az órán.</string>
     <string name="editor_sleep_hint_apple">Az elalvástól számít – lefekvéskor koppints az órán a „Jó éjszakát” gombra. Az Apple Watchon a Phase Wake a megtanult elalvási idődből becsüli meg, mikor alszol el. Koppintás nélkül a beállított idő érvényes.</string>
-    <string name="auto_onset_hint_apple">Nyisd meg a Phase Wake-et az Apple Watchon lefekvés előtt 1 órával vagy később (az óra emlékeztet), és onnantól rögzíti a mozgásodat; az ébresztési ablak elején a Phase Wake kiszámítja, mikor aludtál el.</string>
+    <string name="auto_onset_hint_apple">Nyisd meg a Phase Wake-et az Apple Watchon lefekvés előtt 1 órával vagy később (az óra emlékeztet), és onnantól az ébresztési ablakig rögzíti a mozgásodat; ekkor a Phase Wake kiszámítja, mikor aludtál el.</string>
 </resources>

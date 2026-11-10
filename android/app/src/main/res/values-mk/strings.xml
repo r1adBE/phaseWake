@@ -451,7 +451,8 @@
     <string name="settings_restore">Врати</string>
     <string name="backup_password">Лозинка</string>
     <string name="backup_password_repeat">Повтори ја лозинката</string>
-    <string name="backup_password_short">Најмалку 8 знаци.</string>
+    <string name="backup_password_short">Најмалку 10 знаци.</string>
+    <string name="backup_password_trivial">Премногу лесно за погодување – избегнувај повторувања, низи како 1234 или abcd, редови од тастатурата и чести лозинки.</string>
     <string name="backup_password_mismatch">Лозинките не се совпаѓаат.</string>
     <string name="backup_password_hint">Без оваа лозинка никој не може да ја отвори копијата – ни ти.</string>
     <string name="backup_health_hint">Ноќите од други апликации (на пр. Samsung Health) не се зачувуваат во резервната копија – остануваат таму и повторно се појавуваат штом ќе се даде пристап.</string>

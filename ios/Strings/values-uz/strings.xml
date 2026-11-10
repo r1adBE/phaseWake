@@ -35,5 +35,5 @@
     <string name="check_watch_recorder_motion">Soating uyqudan oldingi o‘lchovni boshlamadi – Phase Wake’ga unda harakat ma’lumotlarini o‘qishga ruxsat yo‘q. Soat sozlamalarida Maxfiylik bo‘limida ruxsat ber. Budilnik baribir seni uyg‘otadi.</string>
     <string name="check_watch_state_old">Soat holati eskirgan – soatda Phase Wake’ni qisqa muddatga och.</string>
     <string name="editor_sleep_hint_apple">Uxlab qolgan paytdan hisoblanadi – yotayotganda soatda «Xayrli tun»ga bos. Apple Watchʼda Phase Wake qachon uxlab qolishingni oʻrgangan uxlab qolish vaqtingdan taxmin qiladi. Bosmasang, o‘rnatilgan vaqt amal qiladi.</string>
-    <string name="auto_onset_hint_apple">Uyqu vaqtidan 1 soat oldindan Apple Watch’da Phase Wake’ni och (soat eslatadi), shunda u oʻsha paytdan harakatingni yozib boradi; uygʻotish oraligʻi boshida Phase Wake qachon uxlab qolganingni hisoblaydi.</string>
+    <string name="auto_onset_hint_apple">Uyqu vaqtidan 1 soat oldindan Apple Watch’da Phase Wake’ni och (soat eslatadi), shunda u oʻsha paytdan uygʻotish oraligʻigacha harakatingni yozib boradi; soʻng Phase Wake qachon uxlab qolganingni hisoblaydi.</string>
 </resources>

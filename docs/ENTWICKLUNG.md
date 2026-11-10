@@ -122,10 +122,12 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
   (`WearSync.receive`, `DataLayer.PATH_ACK`); bis dahin sendet `flush` den Eintrag bei jedem Anlass erneut (Einreihen,
   App-Start, `onCapabilityChanged`, jede empfangene Nachricht). Den Stand der Gegenseite holt `requestSync`
   (`PATH_SYNC_REQUEST`) statt `getDataItems`. Datenpakete nur noch für Uhr-Status, «Verlauf löschen» und Abbruch von
-  Probewecker/Powernap. Ältere Versionen: Das Handy liest ihre Pakete weiter und löscht sie; für eine Uhr mit
-  `DataLayer.PROTOCOL` < 2 legt es Wecker und Einstellungen zusätzlich als Paket ab (`WearSync.legacyWatch`). Einmalige
-  Umstellung (`WearSync.migrateTransport`): eigene alte Pakete löschen, Nächte und Aufzeichnungen der Uhr vorher
-  einreihen. Tests: `OutboxTest` (Robolectric, Senden, Bestätigen, Wiederholen, Ersetzen, Umstellung).
+  Probewecker/Powernap. Keinen früheren Weg für ältere Versionen (seit 10.11.2026): weder Pakete schreiben noch die
+  einer älteren Gegenseite lesen; eine Uhr mit `DataLayer.PROTOCOL` < 2 meldet nur der Nacht-Check («Uhr-App veraltet»).
+  Einmalige Umstellung beim ersten Start (`WearSync.migrateTransport`, auf Handy und Uhr): eigene alte Pakete löschen,
+  Nächte und Aufzeichnungen der Uhr vorher einreihen; die Lese-Funktionen der alten Formate (`WearSync.readNight`,
+  `RecordSync.readRecording`, `OnsetShift.read`) dienen nur ihr. Tests: `OutboxTest` (Robolectric, Senden, Bestätigen,
+  Wiederholen, Ersetzen, Umstellung).
 
 ## 8. Ablauf
 

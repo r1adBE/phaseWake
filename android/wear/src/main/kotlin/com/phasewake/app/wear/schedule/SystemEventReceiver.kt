@@ -46,7 +46,7 @@ class SystemEventReceiver : BroadcastReceiver() {
                         Log.e(TAG, "Nachtrag nach dem Entsperren fehlgeschlagen", e)
                     }
                 }
-                // Was das Handy in der Zwischenzeit abgelegt hat (Wecker, «Verlauf löschen»), vor dem Neuplanen.
+                // Stand des Handys anfragen und ein verpasstes «Verlauf löschen» anwenden, vor dem Neuplanen.
                 app.diag.log(DiagKind.BOOT, "watch ${intent.action?.substringAfterLast('.')}")
                 PhoneCatchUp.run(app)
                 app.scheduler.reschedule()

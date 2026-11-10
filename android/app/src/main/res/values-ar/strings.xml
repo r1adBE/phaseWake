@@ -500,7 +500,8 @@
     <string name="settings_restore">استعادة</string>
     <string name="backup_password">كلمة المرور</string>
     <string name="backup_password_repeat">أعد كلمة المرور</string>
-    <string name="backup_password_short">8 أحرف على الأقل.</string>
+    <string name="backup_password_short">10 أحرف على الأقل.</string>
+    <string name="backup_password_trivial">سهلة التخمين جدًا – تجنّب التكرار والتسلسلات مثل 1234 أو abcd وصفوف لوحة المفاتيح وكلمات المرور الشائعة.</string>
     <string name="backup_password_mismatch">كلمتا المرور غير متطابقتين.</string>
     <string name="backup_password_hint">دون كلمة المرور هذه لا يستطيع أحد فتح النسخة – ولا أنت.</string>
     <string name="backup_health_hint">لا يتم نسخ الليالي من التطبيقات الأخرى (مثل Samsung Health) احتياطيًا – فهي تبقى هناك وتظهر مجددًا بمجرد منح الإذن.</string>

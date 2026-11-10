@@ -436,7 +436,8 @@
     <string name="settings_restore">აღდგენა</string>
     <string name="backup_password">პაროლი</string>
     <string name="backup_password_repeat">გაიმეორე პაროლი</string>
-    <string name="backup_password_short">მინიმუმ 8 სიმბოლო.</string>
+    <string name="backup_password_short">მინიმუმ 10 სიმბოლო.</string>
+    <string name="backup_password_trivial">ძალიან ადვილი გამოსაცნობია – მოერიდე გამეორებებს, 1234-ის ან abcd-ის მსგავს მიმდევრობებს, კლავიატურის რიგებს და გავრცელებულ პაროლებს.</string>
     <string name="backup_password_mismatch">პაროლები არ ემთხვევა.</string>
     <string name="backup_password_hint">ამ პაროლის გარეშე სარეზერვო ასლს ვერავინ გახსნის – შენც კი.</string>
     <string name="backup_health_hint">სხვა აპების ღამეები (მაგ. Samsung Health) სარეზერვო ასლში არ ინახება – ისინი იქ რჩება და წვდომის მიცემისთანავე ისევ გამოჩნდება.</string>

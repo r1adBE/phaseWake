@@ -451,7 +451,8 @@
     <string name="settings_restore">I-restore</string>
     <string name="backup_password">Password</string>
     <string name="backup_password_repeat">Ulitin ang password</string>
-    <string name="backup_password_short">Hindi bababa sa 8 character.</string>
+    <string name="backup_password_short">Hindi bababa sa 10 character.</string>
+    <string name="backup_password_trivial">Masyadong madaling hulaan – iwasan ang pag-uulit, mga pagkakasunod tulad ng 1234 o abcd, mga hilera ng keyboard at mga karaniwang password.</string>
     <string name="backup_password_mismatch">Hindi magkatugma ang mga password.</string>
     <string name="backup_password_hint">Kung wala ang password na ito, walang makakapagbukas ng backup – kahit ikaw.</string>
     <string name="backup_health_hint">Hindi naba-back up ang mga gabi mula sa ibang app (hal. Samsung Health) – nananatili sila roon at lalabas ulit kapag naibigay na ang access.</string>

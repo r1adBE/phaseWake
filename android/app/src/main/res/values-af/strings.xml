@@ -451,7 +451,8 @@
     <string name="settings_restore">Herstel</string>
     <string name="backup_password">Wagwoord</string>
     <string name="backup_password_repeat">Herhaal wagwoord</string>
-    <string name="backup_password_short">Minstens 8 karakters.</string>
+    <string name="backup_password_short">Minstens 10 karakters.</string>
+    <string name="backup_password_trivial">Te maklik om te raai – vermy herhalings, reekse soos 1234 of abcd, sleutelbordrye en algemene wagwoorde.</string>
     <string name="backup_password_mismatch">Die wagwoorde stem nie ooreen nie.</string>
     <string name="backup_password_hint">Sonder hierdie wagwoord kan niemand die rugsteun oopmaak nie – selfs nie jy nie.</string>
     <string name="backup_health_hint">Nagte uit ander apps (bv. Samsung Health) word nie gerugsteun nie – hulle bly daar en verskyn weer sodra toegang gegee is.</string>

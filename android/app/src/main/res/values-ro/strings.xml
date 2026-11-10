@@ -461,7 +461,8 @@
     <string name="settings_restore">Restaurează</string>
     <string name="backup_password">Parolă</string>
     <string name="backup_password_repeat">Repetă parola</string>
-    <string name="backup_password_short">Cel puțin 8 caractere.</string>
+    <string name="backup_password_short">Cel puțin 10 caractere.</string>
+    <string name="backup_password_trivial">Prea ușor de ghicit – evită repetările, secvențele ca 1234 sau abcd, rândurile de taste și parolele uzuale.</string>
     <string name="backup_password_mismatch">Parolele nu se potrivesc.</string>
     <string name="backup_password_hint">Fără această parolă nimeni nu poate deschide copia – nici tu.</string>
     <string name="backup_health_hint">Nopțile din alte aplicații (de ex. Samsung Health) nu sunt incluse în backup – rămân acolo și reapar imediat ce acorzi accesul.</string>

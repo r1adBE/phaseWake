@@ -450,7 +450,8 @@
     <string name="settings_restore">പുനഃസ്ഥാപിക്കുക</string>
     <string name="backup_password">പാസ്‌വേഡ്</string>
     <string name="backup_password_repeat">പാസ്‌വേഡ് വീണ്ടും നൽകുക</string>
-    <string name="backup_password_short">കുറഞ്ഞത് 8 അക്ഷരങ്ങൾ.</string>
+    <string name="backup_password_short">കുറഞ്ഞത് 10 അക്ഷരങ്ങൾ.</string>
+    <string name="backup_password_trivial">ഊഹിക്കാൻ വളരെ എളുപ്പമാണ് – ആവർത്തനങ്ങൾ, 1234 അല്ലെങ്കിൽ abcd പോലുള്ള ക്രമങ്ങൾ, കീബോർഡ് വരികൾ, സാധാരണ പാസ്‌വേഡുകൾ എന്നിവ ഒഴിവാക്കുക.</string>
     <string name="backup_password_mismatch">പാസ്‌വേഡുകൾ പൊരുത്തപ്പെടുന്നില്ല.</string>
     <string name="backup_password_hint">ഈ പാസ്‌വേഡ് ഇല്ലാതെ ആർക്കും ബാക്കപ്പ് തുറക്കാനാകില്ല – നിങ്ങൾക്കു പോലും.</string>
     <string name="backup_health_hint">മറ്റ് ആപ്പുകളിലെ രാത്രികൾ (ഉദാ. Samsung Health) ബാക്കപ്പ് ചെയ്യില്ല – അവ അവിടെത്തന്നെ തുടരും, അനുമതി നൽകിയാൽ വീണ്ടും കാണാം.</string>

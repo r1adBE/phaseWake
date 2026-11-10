@@ -35,5 +35,5 @@
     <string name="check_watch_recorder_motion">Your watch didn’t start the measurement before sleep – Phase Wake isn’t allowed to read motion data on it. Allow it in the watch’s settings under Privacy. You’ll still be woken.</string>
     <string name="check_watch_state_old">Watch status is out of date – briefly open Phase Wake on the watch.</string>
     <string name="editor_sleep_hint_apple">Counts from when you fall asleep – tap “Good night” on your watch when you go to bed. On Apple Watch, Phase Wake estimates when you fall asleep from your learned time to fall asleep. Without the tap, the set time applies.</string>
-    <string name="auto_onset_hint_apple">Open Phase Wake on your Apple Watch from 1 hour before bedtime (it reminds you) and it records your movement from then on; at the start of your wake window, Phase Wake works out when you fell asleep.</string>
+    <string name="auto_onset_hint_apple">Open Phase Wake on your Apple Watch from 1 hour before bedtime (it reminds you) and it records your movement from then until your wake window; then Phase Wake works out when you fell asleep.</string>
 </resources>

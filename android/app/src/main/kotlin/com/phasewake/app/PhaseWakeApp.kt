@@ -118,8 +118,8 @@ open class PhaseWakeApp : Application() {
     private val unlockedDone = AtomicBoolean(false)
 
     /**
-     * Start-Arbeiten, die den entsperrten Speicher brauchen: unterbrochenes Wiederherstellen abschliessen, von der Uhr
-     * abholen, neu planen, Widget, Geräusch-Ausschnitte aufräumen (täglich). Einmal pro Prozess, sobald entsperrt: beim
+     * Start-Arbeiten, die den entsperrten Speicher brauchen: unterbrochenes Wiederherstellen abschliessen, Stand der Uhr
+     * anfragen, neu planen, Widget, Geräusch-Ausschnitte aufräumen (täglich). Einmal pro Prozess, sobald entsperrt: beim
      * Start, nach dem Entsperren ([awaitUnlock]) und bei BOOT_COMPLETED ([com.phasewake.app.ring.onBackupSystemEvent]).
      * Vor dem Entsperren und bei jedem weiteren Aufruf: nichts.
      */
@@ -136,22 +136,6 @@ open class PhaseWakeApp : Application() {
                 if (e is kotlinx.coroutines.CancellationException) throw e
                 Log.w("PhaseWakeApp", "Unterbrochenes Wiederherstellen nicht geprüft", e)
             }
-            // Pakete einer älteren Uhr abholen: Wecker und Nächte. Die Nacht-Pakete werden danach gelöscht, wie beim
-            // normalen Empfang. Eine neue Uhr schickt alles über die Warteschlange ([WearSync.requestSync] unten).
-            sync.fetchAlarms()?.let { alarms.applyRemote(it) }
-            for ((night, uri) in sync.fetchNights()) {
-                nights.add(night)
-                sync.delete(uri)
-            }
-            // Aufzeichnungen der Uhr ebenso abholen, und ihren Stand für den Knopf auf der Startseite.
-            for ((recording, uri) in recordSync.fetchRecordings()) {
-                recordings.put(recording)
-                sync.delete(uri)
-                updateLearning(recording)
-            }
-            recordSync.fetchStatus()?.let { recordStatus.value = it }
-            // Frühere Zielzeit des Einschlaf-Modus, falls ihre Meldung verpasst wurde (z. B. nach «Beenden erzwingen»).
-            sync.fetchOnsetShift()?.let { backup.onsetShiftReceived(it) }
             // Warteschlange: einmalig eigene Pakete der früheren Wege löschen, Wartendes senden, Stand der Uhr anfragen
             // (Wecker und Aufzeichnungs-Stand; Nächte und Aufzeichnungen kommen aus ihrer Warteschlange).
             sync.migrateTransport()

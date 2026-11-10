@@ -435,7 +435,8 @@
     <string name="settings_restore">กู้คืน</string>
     <string name="backup_password">รหัสผ่าน</string>
     <string name="backup_password_repeat">ใส่รหัสผ่านอีกครั้ง</string>
-    <string name="backup_password_short">อย่างน้อย 8 ตัวอักษร</string>
+    <string name="backup_password_short">อย่างน้อย 10 ตัวอักษร</string>
+    <string name="backup_password_trivial">เดาง่ายเกินไป – หลีกเลี่ยงการซ้ำ ลำดับอย่าง 1234 หรือ abcd แถวแป้นพิมพ์ และรหัสผ่านที่ใช้กันทั่วไป</string>
     <string name="backup_password_mismatch">รหัสผ่านไม่ตรงกัน</string>
     <string name="backup_password_hint">ถ้าไม่มีรหัสผ่านนี้ ไม่มีใครเปิดข้อมูลสำรองได้ แม้แต่คุณ</string>
     <string name="backup_health_hint">คืนจากแอปอื่น (เช่น Samsung Health) จะไม่ถูกสำรองข้อมูล โดยยังอยู่ที่นั่นและจะแสดงอีกครั้งเมื่ออนุญาตการเข้าถึง</string>

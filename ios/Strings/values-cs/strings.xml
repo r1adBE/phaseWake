@@ -32,5 +32,5 @@
     <string name="check_watch_recorder_motion">Hodinky nezačaly měřit před spaním – Phase Wake v nich nesmí číst data o pohybu. Povol to v nastavení hodinek v části Soukromí. Budík tě přesto vzbudí.</string>
     <string name="check_watch_state_old">Stav hodinek je zastaralý – krátce otevři Phase Wake na hodinkách.</string>
     <string name="editor_sleep_hint_apple">Počítá se od usnutí – když jdeš spát, klepni na hodinkách na „Dobrou noc“. Na Apple Watch odhaduje Phase Wake, kdy usneš, podle tvé naučené doby usínání. Bez klepnutí platí nastavený čas.</string>
-    <string name="auto_onset_hint_apple">Otevři Phase Wake na Apple Watch od 1 hodiny před spaním (hodinky ti to připomenou) a od té chvíle zaznamenávají tvůj pohyb; na začátku okna buzení Phase Wake spočítá, kdy jsi usnul.</string>
+    <string name="auto_onset_hint_apple">Otevři Phase Wake na Apple Watch od 1 hodiny před spaním (hodinky ti to připomenou) a od té chvíle až do okna buzení zaznamenávají tvůj pohyb; pak Phase Wake spočítá, kdy jsi usnul.</string>
 </resources>
