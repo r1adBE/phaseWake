@@ -1,9 +1,9 @@
-Phase Wake et desperta dins de la finestra de despertar tan bon punt el son es torna inquiet – aleshores probablement dorms lleuger. Com a molt tard, just a l’hora objectiu. Per fer-ho, el teu rellotge intel·ligent mesura el moviment i el pols durant els últims minuts abans de l’alarma; a la fase d’aprenentatge opcional, també en mostres breus durant la nit.
+Phase Wake et desperta dins de la finestra de despertar tan bon punt el son es torna inquiet – aleshores probablement dorms lleuger. Com a molt tard, just a l’hora objectiu. Per fer-ho, el teu rellotge intel·ligent mesura el moviment i el pols durant els últims minuts abans de l’alarma; a la fase d’aprenentatge opcional, també durant la nit.
 
 Com funciona
 • Tria l’hora i la finestra de despertar (fins a 30 min), posa’t el rellotge i dorm.
 • El rellotge mesura durant la finestra de despertar i, al vespre, una estona fins que t’adorms – així estalvia bateria.
-• Opcional: fase d’aprenentatge – durant 7 nits el rellotge mesura moviment i pols en mostres breus al llarg de la nit (uns 3 % de bateria per hora) i adapta l’alarma a tu.
+• Opcional: fase d’aprenentatge – durant 7 nits el rellotge mesura moviment i pols al llarg de la nit (gasta una mica de bateria) i adapta l’alarma a tu.
 • Vibració al canell, amb so si vols – el telèfon sona com a alarma de reserva per si alguna cosa falla.
 • Mantén premut per aturar, posposa fins a 3 vegades.
 

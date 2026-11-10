@@ -1,9 +1,9 @@
-Phase Wake vækker dig inden for dit vækkevindue, så snart du bliver urolig – så sover du sandsynligvis let. Senest præcis på dit ønskede tidspunkt. Til det måler dit smartwatch bevægelse og puls i de sidste minutter før alarmen; i den valgfri læringsfase også i korte stikprøver gennem natten.
+Phase Wake vækker dig inden for dit vækkevindue, så snart du bliver urolig – så sover du sandsynligvis let. Senest præcis på dit ønskede tidspunkt. Til det måler dit smartwatch bevægelse og puls i de sidste minutter før alarmen; i den valgfri læringsfase også gennem natten.
 
 Sådan virker det
 • Vælg vækketid og vindue (op til 30 min), tag uret på, og sov.
 • Uret måler i vækkevinduet og kort om aftenen, indtil du falder i søvn – det skåner batteriet.
-• Valgfrit: læringsfase – i 7 nætter måler dit ur bevægelse og puls i korte stikprøver gennem natten (ca. 3 % batteri i timen) og tilpasser alarmen til dig.
+• Valgfrit: læringsfase – i 7 nætter måler dit ur bevægelse og puls gennem natten (bruger lidt batteri) og tilpasser alarmen til dig.
 • Vibration på håndleddet, med lyd hvis du vil – telefonen ringer med som reservealarm, hvis noget går galt.
 • Hold for at stoppe, slumre op til 3 gange.
 

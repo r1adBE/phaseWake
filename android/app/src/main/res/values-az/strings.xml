@@ -571,8 +571,8 @@
     <string name="settings_clear_history_learn">Öyrənmə mərhələsi yenidən başlayır.</string>
     <string name="learn_auto_hint">Gecələrin sayılması üçün axşam saatında “Gecən xeyrə” düyməsinə toxun və ya “Yuxuya getməyi avtomatik aşkar et” funksiyasını aç.</string>
     <string name="learn_consent_title">Öyrənmə mərhələsi</string>
-    <string name="learn_consent_text">Phase Wake zəngli saatı sənə uyğunlaşdırsın deyə, saatın %1$d gecə boyunca bütün gecə qısa nümunələrlə hərəkəti və nəbzi ölçür. Bu, saatda təxminən 3 %% saat batareyası sərf edir – yatmazdan əvvəl saatı doldur. Məlumatlar cihazlarında qalır. Öyrənmə mərhələsini istənilən vaxt ayarlarda söndürə bilərsən.</string>
+    <string name="learn_consent_text">Phase Wake zəngli saatı sənə uyğunlaşdırsın deyə, saatın %1$d gecə boyunca gecə ərzində hərəkəti və nəbzi ölçür. Bu, bir az batareya sərf edir – yatmazdan əvvəl saatı doldur. Məlumatlar cihazlarında qalır. Öyrənmə mərhələsini istənilən vaxt ayarlarda söndürə bilərsən.</string>
     <string name="learn_consent_start">Öyrənmə mərhələsini başlat</string>
     <string name="learn_consent_later">Sonra</string>
-    <string name="learn_switch_hint">Saatın zəngli saatı uyğunlaşdırmaq üçün gecə ərzində qısa nümunələrlə ölçür. Sönülü: avtomatik qeyd yoxdur, öyrənilmiş dəyərlər qalır.</string>
+    <string name="learn_switch_hint">Saatın zəngli saatı uyğunlaşdırmaq üçün gecələr hərəkəti və nəbzi ölçür. Sönülü: avtomatik qeyd yoxdur, öyrənilmiş dəyərlər qalır.</string>
 </resources>

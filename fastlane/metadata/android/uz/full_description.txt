@@ -1,9 +1,9 @@
-Phase Wake bezovtalana boshlashing bilan seni uygʻotish oraligʻi ichida uygʻotadi – oʻshanda, ehtimol, yengil uxlayotgan boʻlasan. Eng kechi aynan belgilangan vaqtda. Buning uchun aqlli soating budilnikdan oldingi oxirgi daqiqalarda harakat va yurak urishini oʻlchaydi; ixtiyoriy o‘rganish bosqichida esa tun bo‘yi qisqa namunalarda ham.
+Phase Wake bezovtalana boshlashing bilan seni uygʻotish oraligʻi ichida uygʻotadi – oʻshanda, ehtimol, yengil uxlayotgan boʻlasan. Eng kechi aynan belgilangan vaqtda. Buning uchun aqlli soating budilnikdan oldingi oxirgi daqiqalarda harakat va yurak urishini oʻlchaydi; ixtiyoriy o‘rganish bosqichida esa tun bo‘yi ham.
 
 Qanday ishlaydi
 • Uygʻonish vaqti va oraliqni (30 daqiqagacha) tanla, soatingni tak, uxla.
 • Soat uygʻotish oraligʻida va kechqurun uxlab qolguningcha qisqa vaqt oʻlchaydi – bu batareyani tejaydi.
-• Ixtiyoriy: o‘rganish bosqichi – soating 7 tun davomida tun bo‘yi qisqa namunalarda harakat va pulsni o‘lchaydi (soatiga taxminan 3 % batareya) va budilnikni senga moslaydi.
+• Ixtiyoriy: o‘rganish bosqichi – soating 7 tun davomida tun bo‘yi harakat va pulsni o‘lchaydi (biroz batareya sarflaydi) va budilnikni senga moslaydi.
 • Bilagingda tebranish, xohlasang tovush bilan – biror narsa notoʻgʻri ketsa, telefoning zaxira budilnik sifatida jiringlaydi.
 • Toʻxtatish uchun bosib tur, 3 martagacha kechiktir.
 

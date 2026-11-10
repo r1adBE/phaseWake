@@ -597,8 +597,8 @@
     <string name="settings_clear_history_learn">A fase de aprendizado começa de novo.</string>
     <string name="learn_auto_hint">À noite, toque em “Boa noite” no relógio ou ative “Detectar automaticamente quando você adormece” para que as noites contem.</string>
     <string name="learn_consent_title">Fase de aprendizado</string>
-    <string name="learn_consent_text">Para o Phase Wake adaptar o alarme a você, seu relógio mede movimento e pulso em amostras curtas ao longo de toda a noite durante %1$d noites. Isso gasta cerca de 3 %% da bateria do relógio por hora – carregue o relógio antes de dormir. Os dados ficam nos seus dispositivos. Você pode desativar a fase de aprendizado nas configurações a qualquer momento.</string>
+    <string name="learn_consent_text">Para o Phase Wake adaptar o alarme a você, seu relógio mede movimento e pulso ao longo da noite durante %1$d noites. Isso gasta um pouco de bateria – carregue o relógio antes de dormir. Os dados ficam nos seus dispositivos. Você pode desativar a fase de aprendizado nas configurações a qualquer momento.</string>
     <string name="learn_consent_start">Iniciar fase de aprendizado</string>
     <string name="learn_consent_later">Mais tarde</string>
-    <string name="learn_switch_hint">Seu relógio mede em amostras curtas ao longo da noite para adaptar o alarme. Desativado: sem registro automático, os valores aprendidos ficam.</string>
+    <string name="learn_switch_hint">Seu relógio mede movimento e pulso à noite para adaptar o alarme. Desativado: sem registro automático, os valores aprendidos ficam.</string>
 </resources>

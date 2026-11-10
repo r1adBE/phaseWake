@@ -1,9 +1,9 @@
-Phase Wake te despierta dentro de tu ventana de despertar en cuanto te inquietas – entonces probablemente duermes ligero. Como muy tarde, justo a la hora objetivo. Para ello, tu smartwatch mide el movimiento y el pulso en los últimos minutos antes de la alarma; en la fase de aprendizaje opcional, también en muestras breves durante la noche.
+Phase Wake te despierta dentro de tu ventana de despertar en cuanto te inquietas – entonces probablemente duermes ligero. Como muy tarde, justo a la hora objetivo. Para ello, tu smartwatch mide el movimiento y el pulso en los últimos minutos antes de la alarma; en la fase de aprendizaje opcional, también durante la noche.
 
 Cómo funciona
 • Elige la hora y la ventana (hasta 30 min), ponte el reloj y duerme.
 • El reloj mide durante la ventana de despertar y, por la noche, un rato hasta que te duermes – así cuida la batería.
-• Opcional: fase de aprendizaje – durante 7 noches tu reloj mide movimiento y pulso en muestras breves a lo largo de la noche (alrededor del 3 % de batería por hora) y adapta la alarma a ti.
+• Opcional: fase de aprendizaje – durante 7 noches tu reloj mide movimiento y pulso a lo largo de la noche (gasta algo de batería) y adapta la alarma a ti.
 • Vibración en la muñeca, con sonido si quieres – el móvil suena también como alarma de respaldo por si algo falla.
 • Mantén pulsado para detener, pospón hasta 3 veces.
 

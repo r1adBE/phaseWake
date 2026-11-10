@@ -613,8 +613,8 @@
     <string name="settings_clear_history_learn">Fáza učenia sa začína odznova.</string>
     <string name="learn_auto_hint">Večer ťukni na hodinkách na „Dobrú noc“ alebo zapni „Automaticky rozpoznať zaspávanie“, aby sa noci rátali.</string>
     <string name="learn_consent_title">Fáza učenia</string>
-    <string name="learn_consent_text">Aby Phase Wake mohol prispôsobiť budík tebe, hodinky %1$d nocí merajú pohyb a pulz v krátkych vzorkách počas celej noci. Spotrebuje to asi 3 %% batérie hodiniek za hodinu – nabi hodinky pred spaním. Údaje zostávajú v tvojich zariadeniach. Fázu učenia môžeš kedykoľvek vypnúť v nastaveniach.</string>
+    <string name="learn_consent_text">Aby Phase Wake mohol prispôsobiť budík tebe, hodinky %1$d nocí merajú cez noc pohyb a pulz. Spotrebuje to trochu batérie – nabi hodinky pred spaním. Údaje zostávajú v tvojich zariadeniach. Fázu učenia môžeš kedykoľvek vypnúť v nastaveniach.</string>
     <string name="learn_consent_start">Spustiť fázu učenia</string>
     <string name="learn_consent_later">Neskôr</string>
-    <string name="learn_switch_hint">Hodinky merajú v krátkych vzorkách cez noc, aby prispôsobili budík. Vypnuté: žiadny automatický záznam, naučené hodnoty zostávajú.</string>
+    <string name="learn_switch_hint">Hodinky v noci merajú pohyb a pulz, aby prispôsobili budík. Vypnuté: žiadny automatický záznam, naučené hodnoty zostávajú.</string>
 </resources>

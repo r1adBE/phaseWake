@@ -583,8 +583,8 @@
     <string name="settings_clear_history_learn">Die Lernphase beginnt von vorn.</string>
     <string name="learn_auto_hint">Tippe abends auf der Uhr auf «Gute Nacht» oder schalte «Einschlafen automatisch erkennen» ein, damit die Nächte zählen.</string>
     <string name="learn_consent_title">Lernphase</string>
-    <string name="learn_consent_text">Damit Phase Wake den Wecker an dich anpasst, misst deine Uhr %1$d Nächte lang in kurzen Stichproben über die ganze Nacht Bewegung und Puls. Das braucht etwa 3 %% Akku pro Stunde – lade die Uhr vor dem Schlafen. Die Daten bleiben auf deinen Geräten. Du kannst die Lernphase jederzeit in den Einstellungen ausschalten.</string>
+    <string name="learn_consent_text">Damit Phase Wake den Wecker an dich anpasst, misst deine Uhr %1$d Nächte lang Bewegung und Puls über die Nacht. Das kostet etwas Akku – lade die Uhr vor dem Schlafen. Die Daten bleiben auf deinen Geräten. Du kannst die Lernphase jederzeit in den Einstellungen ausschalten.</string>
     <string name="learn_consent_start">Lernphase starten</string>
     <string name="learn_consent_later">Später</string>
-    <string name="learn_switch_hint">Deine Uhr misst in kurzen Stichproben über die Nacht, um den Wecker anzupassen. Aus: keine automatische Aufzeichnung, gelernte Werte bleiben.</string>
+    <string name="learn_switch_hint">Deine Uhr misst nachts Bewegung und Puls, um den Wecker anzupassen. Aus: keine automatische Aufzeichnung, gelernte Werte bleiben.</string>
 </resources>

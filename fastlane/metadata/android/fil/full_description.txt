@@ -1,9 +1,9 @@
-Ginigising ka ng Phase Wake sa loob ng window ng paggising mo sa sandaling hindi ka na mapakali – malamang mababaw ang tulog mo noon. Pinakahuli, eksakto sa target na oras. Para rito, sinusukat ng smartwatch mo ang galaw at heart rate sa huling mga minuto bago ang alarm mo; sa opsyonal na yugto ng pagkatuto, pati sa maiikling sample sa buong gabi.
+Ginigising ka ng Phase Wake sa loob ng window ng paggising mo sa sandaling hindi ka na mapakali – malamang mababaw ang tulog mo noon. Pinakahuli, eksakto sa target na oras. Para rito, sinusukat ng smartwatch mo ang galaw at heart rate sa huling mga minuto bago ang alarm mo; sa opsyonal na yugto ng pagkatuto, pati sa buong gabi.
 
 Paano ito gumagana
 • Piliin ang oras ng paggising at ang window (hanggang 30 min), isuot ang relo, matulog.
 • Sumusukat ang relo sa loob ng window ng paggising at sandali sa gabi hanggang makatulog ka – tipid sa baterya.
-• Opsyonal: yugto ng pagkatuto – sa loob ng 7 gabi, sinusukat ng relo mo ang galaw at pulso sa maiikling sample sa buong gabi (mga 3 % baterya kada oras) at iniaangkop ang alarm sa iyo.
+• Opsyonal: yugto ng pagkatuto – sa loob ng 7 gabi, sinusukat ng relo mo ang galaw at pulso sa buong gabi (gumagamit ng kaunting baterya) at iniaangkop ang alarm sa iyo.
 • Vibration sa pulso, may tunog kung gusto mo – tutunog ang telepono mo bilang backup na alarm kung sakaling may magkaproblema.
 • Pindutin nang matagal para ihinto, mag-snooze hanggang 3 beses.
 

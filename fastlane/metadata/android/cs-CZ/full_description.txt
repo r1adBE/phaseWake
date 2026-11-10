@@ -1,9 +1,9 @@
-Phase Wake tě probudí v okně buzení, jakmile začne být tvůj spánek neklidný – tehdy nejspíš spíš lehce. Nejpozději přesně v cílový čas. K tomu tvoje chytré hodinky v posledních minutách před budíkem měří pohyb a tep; ve volitelné fázi učení i v krátkých vzorcích přes noc.
+Phase Wake tě probudí v okně buzení, jakmile začne být tvůj spánek neklidný – tehdy nejspíš spíš lehce. Nejpozději přesně v cílový čas. K tomu tvoje chytré hodinky v posledních minutách před budíkem měří pohyb a tep; ve volitelné fázi učení i přes noc.
 
 Jak to funguje
 • Zvol čas buzení a okno (až 30 min), nasaď hodinky, spi.
 • Hodinky měří v okně buzení a večer krátce, dokud neusneš – to šetří baterii.
-• Volitelně: fáze učení – hodinky 7 nocí měří pohyb a tep v krátkých vzorcích přes noc (asi 3 % baterie za hodinu) a přizpůsobí budík tobě.
+• Volitelně: fáze učení – hodinky 7 nocí měří přes noc pohyb a tep (spotřebuje to trochu baterie) a přizpůsobí budík tobě.
 • Vibrace na zápěstí, na přání se zvukem – telefon zvoní jako záložní budík, kdyby se něco pokazilo.
 • Podržením zastavíš, odložit můžeš až 3×.
 

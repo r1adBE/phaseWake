@@ -2,8 +2,8 @@ Phase Wake vækker dig inden for dit vækkevindue, så snart du bliver urolig �
 
 Sådan virker det
 • Vælg vækketid og vindue (op til 30 min), tag uret på, og sov.
-• Uret måler kun i vækkevinduet: skåner batteriet.
-• Valgfrit: læringsfase – i 7 nætter måler dit ur bevægelse og puls i korte stikprøver gennem natten (ca. 3 % batteri i timen) og tilpasser alarmen til dig.
+• Uret måler i vækkevinduet – skåner batteriet; i den valgfri læringsfase også gennem natten.
+• Valgfrit: læringsfase – i 7 nætter måler dit ur bevægelse og puls gennem natten (bruger lidt batteri) og tilpasser alarmen til dig.
 • Vibration på håndleddet – din iPhone ringer med, hvis du vil, og som reservealarm, hvis noget går galt.
 • Hold for at stoppe, slumre op til 3 gange.
 

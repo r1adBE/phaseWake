@@ -1,9 +1,9 @@
-Phase Wake-k esnatze-leihoaren barruan esnatzen zaitu, ezinegona hasten zaizun unean – orduan seguruenik lo arinean zaude. Beranduenez, helburuko orduan bertan. Horretarako, zure erloju adimendunak mugimendua eta pultsua neurtzen ditu alarmaren aurreko azken minutuetan; aukerako ikasketa-fasean, gauean zehar lagin laburretan ere bai.
+Phase Wake-k esnatze-leihoaren barruan esnatzen zaitu, ezinegona hasten zaizun unean – orduan seguruenik lo arinean zaude. Beranduenez, helburuko orduan bertan. Horretarako, zure erloju adimendunak mugimendua eta pultsua neurtzen ditu alarmaren aurreko azken minutuetan; aukerako ikasketa-fasean, gauean zehar ere bai.
 
 Nola funtzionatzen du
 • Aukeratu esnatzeko ordua eta leihoa (30 min arte), jarri erlojua eta egin lo.
 • Erlojuak esnatze-leihoan neurtzen du, eta gauean une labur batez lokartu arte – horrek bateria aurrezten du.
-• Aukerakoa: ikasketa-fasea – 7 gauez, erlojuak mugimendua eta pultsua neurtzen ditu lagin laburretan gauean zehar (bateriaren % 3 inguru orduko) eta alarma zuri egokitzen dio.
+• Aukerakoa: ikasketa-fasea – 7 gauez, erlojuak mugimendua eta pultsua neurtzen ditu gauean zehar (bateria pixka bat gastatzen du) eta alarma zuri egokitzen dio.
 • Bibrazioa eskumuturrean, nahi baduzu soinuarekin – telefonoak ordezko alarma gisa joko du zerbait gaizki ateratzen bada.
 • Eutsi sakatuta gelditzeko, atzeratu 3 aldiz arte.
 

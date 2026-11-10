@@ -586,8 +586,8 @@
     <string name="settings_clear_history_learn">Magsisimula ulit ang learning phase.</string>
     <string name="learn_auto_hint">Sa gabi, i-tap ang “Matutulog na” sa relo mo o i-on ang “Awtomatikong tukuyin ang pagkakatulog” para mabilang ang mga gabi.</string>
     <string name="learn_consent_title">Yugto ng pagkatuto</string>
-    <string name="learn_consent_text">Para maiangkop ng Phase Wake ang alarm sa iyo, sinusukat ng relo mo ang galaw at pulso sa maiikling sample sa buong gabi sa loob ng %1$d gabi. Gumagamit ito ng mga 3 %% ng baterya ng relo kada oras – i-charge ang relo bago matulog. Nananatili ang data sa mga device mo. Puwede mong i-off ang yugto ng pagkatuto sa settings anumang oras.</string>
+    <string name="learn_consent_text">Para maiangkop ng Phase Wake ang alarm sa iyo, sinusukat ng relo mo ang galaw at pulso sa buong gabi sa loob ng %1$d gabi. Gumagamit ito ng kaunting baterya – i-charge ang relo bago matulog. Nananatili ang data sa mga device mo. Puwede mong i-off ang yugto ng pagkatuto sa settings anumang oras.</string>
     <string name="learn_consent_start">Simulan ang pagkatuto</string>
     <string name="learn_consent_later">Mamaya</string>
-    <string name="learn_switch_hint">Sumusukat ang relo mo sa maiikling sample sa buong gabi para iangkop ang alarm. Naka-off: walang awtomatikong pagtatala, nananatili ang natutunang value.</string>
+    <string name="learn_switch_hint">Sinusukat ng relo mo ang galaw at pulso sa gabi para iangkop ang alarm. Naka-off: walang awtomatikong pagtatala, nananatili ang natutunang value.</string>
 </resources>

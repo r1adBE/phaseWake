@@ -569,8 +569,8 @@
     <string name="settings_clear_history_learn">学習期間を最初からやり直します。</string>
     <string name="learn_auto_hint">夜をカウントするには、夜にウォッチで「おやすみ」をタップするか、「入眠を自動で検出」をオンにしてください。</string>
     <string name="learn_consent_title">学習期間</string>
-    <string name="learn_consent_text">Phase Wake がアラームをあなたに合わせられるように、時計が %1$d 夜のあいだ、一晩を通して短いサンプルで体の動きと脈拍を計測します。1 時間あたり時計のバッテリーを約 3 %% 使います – 寝る前に時計を充電してください。データはあなたのデバイスに残ります。学習期間は設定でいつでもオフにできます。</string>
+    <string name="learn_consent_text">Phase Wake がアラームをあなたに合わせられるように、時計が %1$d 夜のあいだ、夜を通して体の動きと脈拍を計測します。バッテリーを少し使います – 寝る前に時計を充電してください。 データはあなたのデバイスに残ります。学習期間は設定でいつでもオフにできます。</string>
     <string name="learn_consent_start">学習期間を開始</string>
     <string name="learn_consent_later">あとで</string>
-    <string name="learn_switch_hint">アラームを合わせるため、時計が夜を通して短いサンプルで計測します。オフ：自動記録なし、学習した値は残ります。</string>
+    <string name="learn_switch_hint">アラームを合わせるため、時計が夜間に体の動きと脈拍を計測します。 オフ：自動記録なし、学習した値は残ります。</string>
 </resources>

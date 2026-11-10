@@ -2,8 +2,8 @@ Phase Wake weckt dich in deinem Weckfenster, sobald du unruhig wirst – dann sc
 
 So funktioniert's
 • Weckzeit und Weckfenster (bis 30 Min) wählen, Uhr anziehen, schlafen.
-• Die Uhr misst nur im Weckfenster: schont den Akku.
-• Freiwillig: Lernphase – deine Uhr misst 7 Nächte lang in kurzen Stichproben über die Nacht Bewegung und Puls (etwa 3 % Akku pro Stunde) und passt den Wecker an dich an.
+• Die Uhr misst im Weckfenster – das schont den Akku; in der freiwilligen Lernphase auch über die Nacht.
+• Freiwillig: Lernphase – deine Uhr misst 7 Nächte lang Bewegung und Puls über die Nacht (kostet etwas Akku) und passt den Wecker an dich an.
 • Vibration am Handgelenk – auf Wunsch klingelt das iPhone mit, und als Zweitwecker, falls etwas schiefgeht.
 • Zum Stoppen halten, schlummern bis 3×.
 

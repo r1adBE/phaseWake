@@ -588,8 +588,8 @@
     <string name="settings_clear_history_learn">The learning phase starts over.</string>
     <string name="learn_auto_hint">Tap “Good night” on your watch in the evening or turn on “Detect falling asleep automatically” so the nights count.</string>
     <string name="learn_consent_title">Learning phase</string>
-    <string name="learn_consent_text" tools:ignore="PluralsCandidate">So Phase Wake can adapt the alarm to you, your watch measures motion and pulse in short samples through the whole night for %1$d nights. This uses about 3 %% watch battery per hour – charge the watch before you go to sleep. The data stays on your devices. You can turn the learning phase off in the settings at any time.</string>
+    <string name="learn_consent_text" tools:ignore="PluralsCandidate">So Phase Wake can adapt the alarm to you, your watch measures motion and pulse through the night for %1$d nights. This uses some battery – charge the watch before you go to sleep. The data stays on your devices. You can turn the learning phase off in the settings at any time.</string>
     <string name="learn_consent_start">Start learning phase</string>
     <string name="learn_consent_later">Later</string>
-    <string name="learn_switch_hint">Your watch measures in short samples through the night to adapt the alarm. Off: no automatic recording, learned values stay.</string>
+    <string name="learn_switch_hint">Your watch measures motion and pulse at night to adapt the alarm. Off: no automatic recording, learned values stay.</string>
 </resources>

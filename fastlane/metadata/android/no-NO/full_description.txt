@@ -1,9 +1,9 @@
-Phase Wake vekker deg innenfor vekkevinduet så snart du blir urolig – da sover du sannsynligvis lett. Senest nøyaktig på ønsket tid. Til det måler smartklokka di bevegelse og puls de siste minuttene før alarmen; i den valgfrie læringsfasen også i korte stikkprøver gjennom natten.
+Phase Wake vekker deg innenfor vekkevinduet så snart du blir urolig – da sover du sannsynligvis lett. Senest nøyaktig på ønsket tid. Til det måler smartklokka di bevegelse og puls de siste minuttene før alarmen; i den valgfrie læringsfasen også gjennom natten.
 
 Slik fungerer det
 • Velg vekketid og vindu (opptil 30 min), ta på klokka, sov.
 • Klokka måler i vekkevinduet og kort om kvelden til du sovner – det skåner batteriet.
-• Valgfritt: læringsfase – i 7 netter måler klokken din bevegelse og puls i korte stikkprøver gjennom natten (omtrent 3 % batteri i timen) og tilpasser alarmen til deg.
+• Valgfritt: læringsfase – i 7 netter måler klokken din bevegelse og puls gjennom natten (bruker litt batteri) og tilpasser alarmen til deg.
 • Vibrasjon på håndleddet, med lyd om du vil – telefonen ringer i tillegg som reservealarm hvis noe går galt.
 • Hold for å stoppe, slumre opptil 3 ganger.
 

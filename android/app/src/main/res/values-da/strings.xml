@@ -583,8 +583,8 @@
     <string name="settings_clear_history_learn">Læringsfasen starter forfra.</string>
     <string name="learn_auto_hint">Tryk om aftenen på »Godnat« på uret, eller slå »Registrér automatisk, når du falder i søvn« til, så nætterne tæller.</string>
     <string name="learn_consent_title">Læringsfase</string>
-    <string name="learn_consent_text">For at Phase Wake kan tilpasse alarmen til dig, måler dit ur bevægelse og puls i korte stikprøver gennem hele natten i %1$d nætter. Det bruger etwa 3 %% af urets batteri i timen – oplad uret, før du sover. Dataene bliver på dine enheder. Du kan altid slå læringsfasen fra i indstillingerne.</string>
+    <string name="learn_consent_text">For at Phase Wake kan tilpasse alarmen til dig, måler dit ur bevægelse og puls gennem natten i %1$d nætter. Det bruger lidt batteri – oplad uret, før du sover. Dataene bliver på dine enheder. Du kan altid slå læringsfasen fra i indstillingerne.</string>
     <string name="learn_consent_start">Start læringsfase</string>
     <string name="learn_consent_later">Senere</string>
-    <string name="learn_switch_hint">Dit ur måler i korte stikprøver gennem natten for at tilpasse alarmen. Fra: ingen automatisk registrering, lærte værdier bevares.</string>
+    <string name="learn_switch_hint">Dit ur måler bevægelse og puls om natten for at tilpasse alarmen. Fra: ingen automatisk registrering, lærte værdier bevares.</string>
 </resources>

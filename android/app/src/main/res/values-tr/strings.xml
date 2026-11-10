@@ -583,8 +583,8 @@
     <string name="settings_clear_history_learn">Öğrenme aşaması baştan başlar.</string>
     <string name="learn_auto_hint">Gecelerin sayılması için akşam saatinde “İyi geceler” öğesine dokun veya “Uykuya dalmayı otomatik algıla” seçeneğini aç.</string>
     <string name="learn_consent_title">Öğrenme aşaması</string>
-    <string name="learn_consent_text">Phase Wake alarmı sana göre ayarlayabilsin diye saatin %1$d gece boyunca bütün gece kısa örneklerle hareketi ve nabzı ölçer. Bu, saatte saat pilinin yaklaşık %%3’ünü harcar – uyumadan önce saati şarj et. Veriler cihazlarında kalır. Öğrenme aşamasını istediğin zaman ayarlardan kapatabilirsin.</string>
+    <string name="learn_consent_text">Phase Wake alarmı sana göre ayarlayabilsin diye saatin %1$d gece boyunca gece içinde hareketi ve nabzı ölçer. Bu biraz pil harcar – uyumadan önce saati şarj et. Veriler cihazlarında kalır. Öğrenme aşamasını istediğin zaman ayarlardan kapatabilirsin.</string>
     <string name="learn_consent_start">Öğrenme aşamasını başlat</string>
     <string name="learn_consent_later">Sonra</string>
-    <string name="learn_switch_hint">Saatin alarmı ayarlamak için gece içinde kısa örneklerle ölçer. Kapalı: otomatik kayıt yok, öğrenilen değerler kalır.</string>
+    <string name="learn_switch_hint">Saatin alarmı ayarlamak için gece hareketi ve nabzı ölçer. Kapalı: otomatik kayıt yok, öğrenilen değerler kalır.</string>
 </resources>

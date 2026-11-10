@@ -1,9 +1,9 @@
-Phase Wake te budi unutar intervala buđenja čim ti san postane nemiran – tada vjerovatno lagano spavaš. Najkasnije tačno u ciljno vrijeme. Za to pametni sat u posljednjim minutama prije alarma mjeri pokrete i puls; u fazi učenja, ako je želiš, i u kratkim uzorcima tokom noći.
+Phase Wake te budi unutar intervala buđenja čim ti san postane nemiran – tada vjerovatno lagano spavaš. Najkasnije tačno u ciljno vrijeme. Za to pametni sat u posljednjim minutama prije alarma mjeri pokrete i puls; u fazi učenja, ako je želiš, i tokom noći.
 
 Kako radi
 • Odaberi vrijeme buđenja i interval (do 30 min), stavi sat, spavaj.
 • Sat mjeri tokom intervala buđenja i navečer kratko dok ne zaspiš – to štedi bateriju.
-• Po želji: faza učenja – tvoj sat 7 noći mjeri pokrete i puls u kratkim uzorcima tokom noći (oko 3 % baterije na sat) i prilagođava alarm tebi.
+• Po želji: faza učenja – tvoj sat 7 noći mjeri pokrete i puls tokom noći (troši nešto baterije) i prilagođava alarm tebi.
 • Vibracija na zglobu, po želji i sa zvukom – telefon zvoni kao rezervni alarm ako nešto krene po zlu.
 • Drži za zaustavljanje, odgodi do 3 puta.
 

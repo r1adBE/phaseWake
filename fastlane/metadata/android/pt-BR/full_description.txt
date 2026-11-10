@@ -1,9 +1,9 @@
-O Phase Wake acorda você dentro da sua janela de despertar assim que seu sono fica agitado – nessa hora você provavelmente está dormindo leve. No máximo, exatamente no horário-alvo. Para isso, seu smartwatch mede movimento e frequência cardíaca nos últimos minutos antes do alarme; na fase de aprendizado opcional, também em amostras curtas ao longo da noite.
+O Phase Wake acorda você dentro da sua janela de despertar assim que seu sono fica agitado – nessa hora você provavelmente está dormindo leve. No máximo, exatamente no horário-alvo. Para isso, seu smartwatch mede movimento e frequência cardíaca nos últimos minutos antes do alarme; na fase de aprendizado opcional, também ao longo da noite.
 
 Como funciona
 • Escolha o horário e a janela de despertar (até 30 min), coloque o relógio e durma.
 • O relógio mede durante a janela de despertar e, à noite, por pouco tempo até você adormecer – isso poupa a bateria.
-• Opcional: fase de aprendizado – durante 7 noites seu relógio mede movimento e pulso em amostras curtas ao longo da noite (cerca de 3 % de bateria por hora) e adapta o alarme a você.
+• Opcional: fase de aprendizado – durante 7 noites seu relógio mede movimento e pulso ao longo da noite (gasta um pouco de bateria) e adapta o alarme a você.
 • Vibração no pulso, com som se quiser – o celular toca como alarme reserva caso algo dê errado.
 • Segure para parar; soneca até 3 vezes.
 

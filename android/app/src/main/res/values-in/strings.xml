@@ -569,8 +569,8 @@
     <string name="settings_clear_history_learn">Fase belajar dimulai dari awal.</string>
     <string name="learn_auto_hint">Pada malam hari, ketuk “Selamat tidur” di jam tangan atau aktifkan “Deteksi saat tertidur secara otomatis” agar malamnya dihitung.</string>
     <string name="learn_consent_title">Fase belajar</string>
-    <string name="learn_consent_text">Agar Phase Wake bisa menyesuaikan alarm denganmu, jam tanganmu mengukur gerakan dan denyut nadi dalam sampel singkat sepanjang malam selama %1$d malam. Ini memakai sekitar 3 %% baterai jam per jam – isi daya jam sebelum tidur. Datanya tetap di perangkatmu. Kamu bisa mematikan fase belajar di pengaturan kapan saja.</string>
+    <string name="learn_consent_text">Agar Phase Wake bisa menyesuaikan alarm denganmu, jam tanganmu mengukur gerakan dan denyut nadi sepanjang malam selama %1$d malam. Ini memakai sedikit baterai – isi daya jam sebelum tidur. Datanya tetap di perangkatmu. Kamu bisa mematikan fase belajar di pengaturan kapan saja.</string>
     <string name="learn_consent_start">Mulai fase belajar</string>
     <string name="learn_consent_later">Nanti</string>
-    <string name="learn_switch_hint">Jam tanganmu mengukur dalam sampel singkat sepanjang malam untuk menyesuaikan alarm. Mati: tidak ada perekaman otomatis, nilai yang dipelajari tetap ada.</string>
+    <string name="learn_switch_hint">Jam tanganmu mengukur gerakan dan denyut nadi di malam hari untuk menyesuaikan alarm. Mati: tidak ada perekaman otomatis, nilai yang dipelajari tetap ada.</string>
 </resources>

@@ -1,9 +1,9 @@
-Phase Wake te trezește în intervalul de trezire imediat ce somnul tău devine agitat – atunci probabil dormi ușor. Cel târziu exact la ora țintă. Pentru asta, smartwatch-ul tău măsoară mișcarea și pulsul în ultimele minute dinaintea alarmei; în faza de învățare opțională, și în eșantioane scurte de-a lungul nopții.
+Phase Wake te trezește în intervalul de trezire imediat ce somnul tău devine agitat – atunci probabil dormi ușor. Cel târziu exact la ora țintă. Pentru asta, smartwatch-ul tău măsoară mișcarea și pulsul în ultimele minute dinaintea alarmei; în faza de învățare opțională, și de-a lungul nopții.
 
 Cum funcționează
 • Alege ora de trezire și intervalul (până la 30 min), pune-ți ceasul, dormi.
 • Ceasul măsoară în intervalul de trezire și, seara, puțin timp până adormi – asta cruță bateria.
-• Opțional: faza de învățare – 7 nopți, ceasul tău măsoară mișcarea și pulsul în eșantioane scurte de-a lungul nopții (cam 3 % baterie pe oră) și adaptează alarma la tine.
+• Opțional: faza de învățare – 7 nopți, ceasul tău măsoară mișcarea și pulsul de-a lungul nopții (consumă puțină baterie) și adaptează alarma la tine.
 • Vibrație la încheietură, cu sunet dacă vrei – telefonul sună ca alarmă de rezervă, în caz că ceva nu merge.
 • Ține apăsat pentru oprire, amânare de până la 3 ori.
 

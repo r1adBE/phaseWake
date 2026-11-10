@@ -569,8 +569,8 @@
     <string name="settings_clear_history_learn">Fasa pembelajaran bermula semula.</string>
     <string name="learn_auto_hint">Pada waktu petang, ketik “Selamat malam” pada jam tangan atau hidupkan “Kesan bila awak tertidur secara automatik” supaya malam dikira.</string>
     <string name="learn_consent_title">Fasa pembelajaran</string>
-    <string name="learn_consent_text">Supaya Phase Wake dapat menyesuaikan penggera dengan anda, jam tangan anda mengukur pergerakan dan nadi dalam sampel pendek sepanjang malam selama %1$d malam. Ini menggunakan kira-kira 3 %% bateri jam sejam – cas jam sebelum tidur. Data kekal pada peranti anda. Anda boleh mematikan fasa pembelajaran dalam tetapan pada bila-bila masa.</string>
+    <string name="learn_consent_text">Supaya Phase Wake dapat menyesuaikan penggera dengan anda, jam tangan anda mengukur pergerakan dan nadi sepanjang malam selama %1$d malam. Ini menggunakan sedikit bateri – cas jam sebelum tidur. Data kekal pada peranti anda. Anda boleh mematikan fasa pembelajaran dalam tetapan pada bila-bila masa.</string>
     <string name="learn_consent_start">Mulakan fasa pembelajaran</string>
     <string name="learn_consent_later">Nanti</string>
-    <string name="learn_switch_hint">Jam tangan anda mengukur dalam sampel pendek sepanjang malam untuk menyesuaikan penggera. Mati: tiada rakaman automatik, nilai yang dipelajari kekal.</string>
+    <string name="learn_switch_hint">Jam tangan anda mengukur pergerakan dan nadi pada waktu malam untuk menyesuaikan penggera. Mati: tiada rakaman automatik, nilai yang dipelajari kekal.</string>
 </resources>

@@ -1,9 +1,9 @@
-Phase Wake wakes you within your wake window as soon as you get restless – that's when you're likely sleeping lightly. At the latest, right on time. To do this, your smartwatch measures movement and heart rate in the last minutes before your alarm; during the optional learning phase also in short samples through the night.
+Phase Wake wakes you within your wake window as soon as you get restless – that's when you're likely sleeping lightly. At the latest, right on time. To do this, your smartwatch measures movement and heart rate in the last minutes before your alarm; during the optional learning phase also through the night.
 
 How it works
 • Pick your wake-up time and window (up to 30 min), wear your watch, sleep.
 • The watch measures during the wake window and briefly in the evening until you fall asleep – easy on the battery.
-• Optional: learning phase – for 7 nights your watch measures motion and pulse in short samples through the night (about 3 % battery per hour) and adapts the alarm to you.
+• Optional: learning phase – for 7 nights your watch measures motion and pulse through the night (uses some battery) and adapts the alarm to you.
 • Vibration on your wrist, with sound if you like – your phone rings as a backup alarm in case anything goes wrong.
 • Hold to stop, snooze up to 3 times.
 
