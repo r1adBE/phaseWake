@@ -181,6 +181,24 @@ class GoodNightOnsetTest {
     }
 
     @Test
+    fun learningSwitchedOffOnThePhoneNoRecording() {
+        battery(80)
+        val at = System.currentTimeMillis()
+        runBlocking {
+            app.learning.setIfNewer(LearningSnapshot(true, null, null, at))
+            // Schalter «Lernphase» am Handy aus (Audit F-02): neuerer Stand ohne Lernphase.
+            assertTrue(app.learning.setIfNewer(LearningSnapshot(false, null, null, at + 1)))
+        }
+        val service = service()
+        service.startGoodNight(id, auto = true)
+        awaitLog("auto onset start, alarm at")
+        awaitLog("auto onset sensor wake=")
+        assertTrue(entries().none { it.detail.startsWith("learn record") })
+        assertTrue(alarmIntents().none { it.action == RecordControl.ACTION_LEARN_START })
+        service.stopGoodNight()
+    }
+
+    @Test
     fun bedtimeForTheLatency() {
         val latest = now.plus(Duration.ofHours(9))
         // «Gute Nacht»: ab dem Drücken (im Bett).

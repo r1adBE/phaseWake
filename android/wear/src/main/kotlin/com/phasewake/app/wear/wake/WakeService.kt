@@ -70,7 +70,10 @@ class WakeService : LifecycleService() {
         var asleepAt: Instant? = null,
         /** Schlafziel für die Untergrenze: Schlafdauer im Einschlaf-Modus, sonst das Schlafziel. */
         var goalMinutes: Int = SleepGoal.DEFAULT_MINUTES,
-        /** Kurze Nacht: ein früher Moment wurde übergangen, geweckt wird zur Zielzeit ([WakeReason.SHORT_NIGHT]). */
+        /**
+         * Kurze Nacht: ein früher Moment wurde übergangen; geweckt wird zur Zielzeit ([WakeReason.SHORT_NIGHT]), ausser ein
+         * neuer Moment kommt in den letzten [com.phasewake.app.core.ShortNight.LATE_MINUTES] davor.
+         */
         var earlyBlocked: Boolean = false,
     ) {
         /** «Genau»: nur messen, zur Zielzeit wecken; aus dem Plan oder (ältere Alarme ohne Angabe) dem Wecker. */

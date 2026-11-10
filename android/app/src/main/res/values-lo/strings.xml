@@ -570,4 +570,9 @@
     <string name="overview_no_stages">ບໍ່ມີໄລຍະ</string>
     <string name="settings_clear_history_learn">ໄລຍະຮຽນຮູ້ເລີ່ມຕົ້ນໃໝ່.</string>
     <string name="learn_auto_hint">ຕອນແລງ ແຕະ “ລາຕີສະຫວັດ” ຢູ່ໂມງ ຫຼື ເປີດ “ກວດຫາການນອນຫຼັບໂດຍອັດຕະໂນມັດ” ເພື່ອໃຫ້ນັບຄືນ.</string>
+    <string name="learn_consent_title">ໄລຍະຮຽນຮູ້</string>
+    <string name="learn_consent_text">ເພື່ອໃຫ້ Phase Wake ປັບໂມງປຸກໃຫ້ເໝາະກັບເຈົ້າ, ໂມງຂອງເຈົ້າຈະບັນທຶກການເຄື່ອນໄຫວ ແລະ ຊີບພະຈອນຕະຫຼອດຄືນ ເປັນເວລາ %1$d ຄືນ. ມັນໃຊ້ແບັດເຕີຣີໂມງປະມານ 3 %% ຕໍ່ຊົ່ວໂມງ – ສາກໂມງກ່ອນນອນ. ຂໍ້ມູນຢູ່ໃນອຸປະກອນຂອງເຈົ້າ. ເຈົ້າສາມາດປິດໄລຍະຮຽນຮູ້ໃນການຕັ້ງຄ່າໄດ້ທຸກເວລາ.</string>
+    <string name="learn_consent_start">ເລີ່ມໄລຍະຮຽນຮູ້</string>
+    <string name="learn_consent_later">ພາຍຫຼັງ</string>
+    <string name="learn_switch_hint">ໂມງຂອງເຈົ້າບັນທຶກຕະຫຼອດຄືນເພື່ອປັບໂມງປຸກ. ປິດ: ບໍ່ບັນທຶກອັດຕະໂນມັດ, ຄ່າທີ່ຮຽນຮູ້ແລ້ວຍັງຢູ່.</string>
 </resources>

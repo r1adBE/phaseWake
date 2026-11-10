@@ -27,13 +27,20 @@ import com.phasewake.app.core.EpochAssembler
  * Puls ([heartRateSource]): zuerst der Pulssensor der Uhr über den [SensorManager] (etwa jede Sekunde, gebündelt wie
  * die Bewegung), sonst die Health Services ([MeasureClient][androidx.health.services.client.MeasureClient]). Diese
  * liefern bei dunklem Bildschirm nur etwa alle 10 Minuten (Galaxy Watch, Befund 08./09.11.2026): Sie sind für die
- * Messung in der sichtbaren App gedacht. Den Sensor hält der Vordergrunddienst («health») mit seinem Wakelock wach.
+ * Messung in der sichtbaren App gedacht. Den Sensor hält der Vordergrunddienst («health») mit seinem Wakelock wach,
+ * im Modus [batch] mit aufweckendem Sensor die Bündelung selbst (Audit F-01).
  *
  * @param startNanos Fensterbeginn auf der Uhr `SystemClock.elapsedRealtimeNanos()`.
  * @param lowPower Für die Einschlaf-Messung ([OnsetMonitor]): nur Bewegung. Mit aufweckendem Sensor, dessen Puffer
  *   mindestens [MIN_WAKE_UP_FIFO] Werte fasst ([continuous]), bündelt er bis 5 Minuten und weckt die Uhr nur bei
  *   vollem Puffer. Sonst misst [OnsetMonitor] in Stichproben ([pause], [resume]) und hält dafür selbst einen kurzen
  *   Wakelock: Die Sitzung hält nie einen Wakelock (früher bis 16 Std., Akku-Befund 03.11.2026).
+ * @param batch Für «Nacht aufzeichnen» ([com.phasewake.app.wear.record.RecordService]): Bewegung und Puls wie sonst,
+ *   aber mit aufweckendem Sensor mit grossem Puffer ([continuous]) bis 5 Minuten gebündelt (Puls ebenso); dann braucht
+ *   der Dienst keinen langen Wakelock. Ohne solchen Sensor wie ohne [batch] (10 s).
+ * @param sampled Für die Lernphase ([com.phasewake.app.wear.record.LearnSampler], Entscheid r1AD 10.11.2026): Bewegung
+ *   und Puls nur in Stichproben – beide Sensoren erst mit [resume] an und mit [pause] wieder ab, ohne Bündelung (sonst
+ *   kämen Werte erst nach dem Ende der Stichprobe). Die Stichproben steuert der Aufrufer samt kurzem Wakelock.
  * @param onEpochs Erhält abgeschlossene Epochen in zeitlicher Reihenfolge.
  */
 class SensorSession(
@@ -41,6 +48,8 @@ class SensorSession(
     startNanos: Long,
     private val nowNanos: () -> Long,
     private val lowPower: Boolean = false,
+    private val batch: Boolean = false,
+    private val sampled: Boolean = false,
     private val onEpochs: (List<Epoch>) -> Unit,
 ) {
     private val handler = Handler(Looper.getMainLooper())
@@ -66,17 +75,18 @@ class SensorSession(
     private var running = false
     private var listening = false
 
-    /** Aufweckender Beschleunigungssensor (nur [lowPower]), oder `null`. */
-    private val wakeUpSensor = if (lowPower) sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER, true) else null
+    /** Aufweckender Beschleunigungssensor (nur [lowPower] und [batch]), oder `null`. */
+    private val wakeUpSensor = if (lowPower || batch) sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER, true) else null
 
     /** Gewählter Beschleunigungssensor, oder `null`, wenn die Uhr keinen hat. */
     private val accelerometer: Sensor? = wakeUpSensor?.takeIf { it.fifoMaxEventCount >= MIN_WAKE_UP_FIFO }
         ?: sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
 
     /**
-     * Ob die Sitzung ohne Wakelock durchgehend messen kann: aufweckender Sensor mit grossem Puffer (nur [lowPower]).
-     * Ohne ihn liefe der Puffer des gewöhnlichen Sensors im Tiefschlaf über; ein kleiner Puffer weckte die Uhr fast
-     * dauernd. Dann misst [OnsetMonitor] in Stichproben.
+     * Ob die Sitzung ohne Wakelock durchgehend messen kann: aufweckender Sensor mit grossem Puffer (nur [lowPower] und
+     * [batch]). Ohne ihn liefe der Puffer des gewöhnlichen Sensors im Tiefschlaf über; ein kleiner Puffer weckte die Uhr
+     * fast dauernd. Dann misst [OnsetMonitor] in Stichproben bzw. hält [com.phasewake.app.wear.record.RecordService]
+     * seinen Wakelock wie bisher.
      */
     val continuous: Boolean get() = accelerometer != null && accelerometer === wakeUpSensor
 
@@ -169,19 +179,27 @@ class SensorSession(
         graceNanos = (latencyUs().toLong() + GRACE_EXTRA_US) * 1_000L
         if (accelerometer == null) Log.w(TAG, "Kein Beschleunigungssensor")
         if (listen) resume()
-        if (!lowPower) registerHeartRate()
+        if (sampled) {
+            // Puls erst in der Stichprobe; vorgesehene Quelle fürs Diagnose-Protokoll.
+            heartRateSource = if (heartRateSensor != null) SOURCE_SENSOR else SOURCE_MEASURE
+        } else if (!lowPower) {
+            registerHeartRate()
+        }
         handler.postDelayed(ticker, TICK_MILLIS)
     }
 
-    /** Meldet den Bewegungssensor (wieder) an; für die Stichproben des [OnsetMonitor]. */
+    /** Meldet den Bewegungssensor (wieder) an, bei [sampled] auch den Puls; für Stichproben. */
     fun resume() {
+        if (!running) return
+        if (sampled) registerHeartRate()
         val sensor = accelerometer ?: return
-        if (!running || listening) return
+        if (listening) return
         listening = sensorManager.registerListener(motionListener, sensor, SAMPLING_US, latencyUs(), handler)
     }
 
-    /** Meldet den Bewegungssensor ab, ohne die Epochen zu verlieren; [resume] misst weiter. */
+    /** Meldet den Bewegungssensor ab (bei [sampled] auch den Puls), ohne die Epochen zu verlieren; [resume] misst weiter. */
     fun pause() {
+        if (sampled) unregisterHeartRate()
         if (!listening) return
         listening = false
         sensorManager.unregisterListener(motionListener)
@@ -195,15 +213,16 @@ class SensorSession(
     /** Bündelung: lang durchgehend, gar nicht in Stichproben (sonst kämen Werte erst nach deren Ende), sonst 10 s. */
     private fun latencyUs(): Int = when {
         continuous -> LOW_POWER_LATENCY_US
-        lowPower -> 0
+        lowPower || sampled -> 0
         else -> MAX_LATENCY_US
     }
 
     /** Puls über den Sensor der Uhr; fehlt er oder lässt er sich nicht anmelden, über die Health Services. */
     private fun registerHeartRate() {
+        if (heartRateSensorRegistered || heartRateRegistered) return
         heartRateSensor?.let { sensor ->
             heartRateSensorRegistered = try {
-                sensorManager.registerListener(heartRateListener, sensor, HEART_RATE_SAMPLING_US, MAX_LATENCY_US, handler)
+                sensorManager.registerListener(heartRateListener, sensor, HEART_RATE_SAMPLING_US, latencyUs(), handler)
             } catch (e: SecurityException) {
                 Log.i(TAG, "Pulssensor nicht erlaubt, versuche Health Services", e)
                 false
@@ -230,6 +249,11 @@ class SensorSession(
         handler.removeCallbacks(ticker)
         listening = false
         sensorManager.unregisterListener(motionListener)
+        unregisterHeartRate()
+        pendingHeartRate.clear()
+    }
+
+    private fun unregisterHeartRate() {
         if (heartRateSensorRegistered) {
             sensorManager.unregisterListener(heartRateListener)
             heartRateSensorRegistered = false
@@ -238,7 +262,6 @@ class SensorSession(
             measureClient.unregisterMeasureCallbackAsync(DataType.HEART_RATE_BPM, heartRateCallback)
             heartRateRegistered = false
         }
-        pendingHeartRate.clear()
     }
 
     /** Puls einreihen (nach Zeit geordnet); schon vorhandene Bewegung bis dahin gibt ihn sofort frei. */

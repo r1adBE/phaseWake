@@ -3,6 +3,7 @@ Phase Wake te zbudi v oknu bujenja, takoj ko postane tvoj spanec nemiren – tak
 Kako deluje
 • Izberi čas bujenja in okno (do 30 min), nadeni si uro, spi.
 • Ura meri v oknu bujenja in zvečer na kratko, dokler ne zaspiš – to varčuje z baterijo.
+• Po želji: faza učenja – ura 7 noči vso noč beleži gibanje in utrip (približno 3 % baterije na uro) in prilagodi alarm tebi.
 • Vibriranje na zapestju, po želji z zvokom – telefon zvoni kot rezervna budilka, če gre kaj narobe.
 • Pridrži za ustavitev, dremež do 3-krat.
 

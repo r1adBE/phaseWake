@@ -612,4 +612,9 @@
     <string name="overview_no_stages">Brez faz</string>
     <string name="settings_clear_history_learn">Faza učenja se začne znova.</string>
     <string name="learn_auto_hint">Zvečer na uri tapni »Lahko noč« ali vklopi »Samodejno zaznaj uspavanje«, da se noči štejejo.</string>
+    <string name="learn_consent_title">Faza učenja</string>
+    <string name="learn_consent_text">Da lahko Phase Wake alarm prilagodi tebi, ura %1$d noči vso noč beleži gibanje in utrip. To porabi približno 3 %% baterije ure na uro – napolni uro pred spanjem. Podatki ostanejo v tvojih napravah. Fazo učenja lahko kadar koli izklopiš v nastavitvah.</string>
+    <string name="learn_consent_start">Začni fazo učenja</string>
+    <string name="learn_consent_later">Pozneje</string>
+    <string name="learn_switch_hint">Ura beleži cele noči, da prilagodi alarm. Izklopljeno: brez samodejnega beleženja, naučene vrednosti ostanejo.</string>
 </resources>

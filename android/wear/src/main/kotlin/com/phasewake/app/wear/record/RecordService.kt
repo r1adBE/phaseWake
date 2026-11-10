@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.pm.ServiceInfo
 import android.os.Handler
 import android.os.Looper
-import android.os.PowerManager
 import android.os.SystemClock
 import android.util.Log
 import androidx.core.app.ServiceCompat
@@ -32,8 +31,13 @@ import kotlinx.coroutines.launch
  * 25 Hz, Puls über den Pulssensor der Uhr, Rückfall Health Services) und speichert sie fortlaufend ([com.phasewake.app.shared.RecordingRepository]).
  *
  * Eigener Vordergrunddienst («health»), unabhängig vom [com.phasewake.app.wear.wake.WakeService]: Wecker, Einschlaf- und
- * Fenstermessung laufen unverändert weiter, beide dürfen zugleich die Sensoren lesen. Hält einen eigenen Wakelock,
- * solange er aufzeichnet (der gewöhnliche Sensor bündelt nur 10 s; ohne Wakelock liefe sein Puffer im Tiefschlaf über).
+ * Fenstermessung laufen unverändert weiter, beide dürfen zugleich die Sensoren lesen. Wakelock (Audit F-01): Hat die Uhr
+ * einen aufweckenden Beschleunigungssensor mit grossem Puffer ([SensorSession.continuous]), bündelt er bis 5 Minuten und
+ * weckt die Uhr selbst; dann hält der Dienst nur je Bündel kurz einen Wakelock ([RecordWakeLocks.BATCH_MS]) und prüft dabei die
+ * Grenzen ([onTick]). Sonst hält er wie bisher einen eigenen Wakelock, solange er aufzeichnet (der gewöhnliche Sensor
+ * bündelt nur 10 s; ohne Wakelock liefe sein Puffer im Tiefschlaf über). Eine Aufzeichnung der Lernphase misst nur in
+ * Stichproben ([LearnSampler], 60 s alle 5 Min, Entscheid r1AD 10.11.2026) mit kurzem Wakelock je Stichprobe; von Hand
+ * begonnene messen durchgehend. Diagnose: «wl=hold|batch|sample mode=continuous|sample».
  *
  * Endet nur von Hand (Uhr, Mitteilung, Handy), nach [NightRecording.MAX_DURATION] oder unter
  * [NightRecording.MIN_BATTERY] Akku; der Grund steht im Diagnose-Protokoll und in der Aufzeichnung. Eine Aufzeichnung der
@@ -47,6 +51,7 @@ class RecordService : LifecycleService() {
     internal class Active(val start: Instant, val epochs: MutableList<Epoch>, var flushed: Int, val learnUntil: Instant? = null) {
         var lastFlushMs = SystemClock.elapsedRealtime()
         var lastStatMs = SystemClock.elapsedRealtime()
+        var lastTickMs = SystemClock.elapsedRealtime()
 
         /** Epochen seit der letzten Zeile im Diagnose-Protokoll. */
         var statFrom = epochs.size
@@ -56,7 +61,11 @@ class RecordService : LifecycleService() {
     private val handler = Handler(Looper.getMainLooper())
     internal var active: Active? = null
     private var sensors: SensorSession? = null
-    private var wakeLock: PowerManager.WakeLock? = null
+    private var sampler: LearnSampler? = null
+    internal val wakeLocks by lazy { RecordWakeLocks(this) }
+
+    /** Aufweckender Sensor bündelt, kein langer Wakelock ([measure]); nicht in Stichproben. */
+    internal val batched: Boolean get() = sampler == null && sensors?.continuous == true
 
     /** Ein Start läuft (Datei wird angelegt): kein zweiter. */
     private var starting = false
@@ -81,8 +90,8 @@ class RecordService : LifecycleService() {
             ACTION_START_LEARN -> begin("learn", intent.getLongExtra(EXTRA_UNTIL, 0L).takeIf { it > 0 }?.let(Instant::ofEpochMilli))
             ACTION_RESUME -> resume()
             ACTION_STOP -> finish(RecordEnd.of(intent.getStringExtra(EXTRA_REASON)))
-            // Geweckt: nur eine Aufzeichnung der Lernphase endet, eine von Hand begonnene läuft weiter.
-            ACTION_END_LEARN -> if (active?.learnUntil != null) finish(RecordEnd.WAKE)
+            // Geweckt bzw. Lernphase am Handy aus: nur eine Aufzeichnung der Lernphase endet, eine von Hand begonnene läuft weiter.
+            ACTION_END_LEARN -> if (active?.learnUntil != null) finish(intent.getStringExtra(EXTRA_REASON)?.let(RecordEnd::of) ?: RecordEnd.WAKE)
             // Vom System neu gestartet (START_STICKY), ohne Auftrag: Aus dem Hintergrund darf der Dienst nicht in den
             // Vordergrund; der Prüf-Alarm darf es und nimmt die Aufzeichnung gleich wieder auf.
             null -> {
@@ -97,8 +106,9 @@ class RecordService : LifecycleService() {
         // Vom System beendet, solange noch aufgezeichnet wird: Gespeichertes bleibt, Ende «service ended».
         if (active != null) finish(RecordEnd.SERVICE)
         handler.removeCallbacksAndMessages(null)
+        sampler?.stop()
         sensors?.stop()
-        releaseWakeLock()
+        wakeLocks.release()
         running = false
         super.onDestroy()
     }
@@ -179,21 +189,31 @@ class RecordService : LifecycleService() {
     }
 
     /**
-     * Sensoren an, Wakelock, Prüf-Alarm, Zeitgeber; Stand ans Handy. [startLine] kommt ins Diagnose-Protokoll, ergänzt
-     * um die Quelle des Pulses («hrsrc=sensor|measure|none», [SensorSession.heartRateSource]).
+     * Sensoren an, Wakelock (nur ohne aufweckenden Sensor, siehe Klasse), Prüf-Alarm, Zeitgeber; Stand ans Handy.
+     * [startLine] kommt ins Diagnose-Protokoll, ergänzt um die Quelle des Pulses («hrsrc=sensor|measure|none»,
+     * [SensorSession.heartRateSource]) und den Wakelock («wl=hold|batch»).
      */
     private fun measure(recording: Active, startLine: String) {
         active = recording
         sinceState.value = recording.start
         goForeground(recording.start)
-        val remaining = Duration.between(clock(), recording.start.plus(NightRecording.MAX_DURATION)).toMillis().coerceAtLeast(0L)
-        wakeLock = getSystemService(PowerManager::class.java)
-            .newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "phasewake:record")
-            // Zeitlimit als Sicherung: nie länger als die Aufzeichnung selbst dauern darf.
-            .apply { acquire(remaining + WAKE_LOCK_MARGIN_MS) }
-        sensors = SensorSession(this, SystemClock.elapsedRealtimeNanos(), SystemClock::elapsedRealtimeNanos) { onEpochs(it) }
-            .also { it.start() }
-        app.diag.log(DiagKind.MEASURE_START, "$startLine hrsrc=${sensors?.heartRateSource ?: SensorSession.SOURCE_NONE}")
+        val sampled = recording.learnUntil != null
+        val startNanos = SystemClock.elapsedRealtimeNanos()
+        val session = SensorSession(this, startNanos, SystemClock::elapsedRealtimeNanos, batch = !sampled, sampled = sampled) { epochs ->
+            val s = sampler
+            onEpochs(if (s != null) s.filter((sensors?.closedEpochs ?: 0L) - epochs.size, epochs) else epochs)
+        }
+        sensors = session
+        val wakeUp = session.continuous
+        // Ohne aufweckenden Sensor und ohne Stichproben: Wakelock höchstens so lange, wie die Aufzeichnung dauern darf.
+        if (!wakeUp && !sampled) {
+            val remaining = Duration.between(clock(), recording.start.plus(NightRecording.MAX_DURATION)).toMillis().coerceAtLeast(0L)
+            wakeLocks.hold(remaining + WAKE_LOCK_MARGIN_MS)
+        }
+        session.start(listen = !sampled)
+        if (sampled) sampler = LearnSampler(this, session, startNanos, wakeLocks) { onTick() }.also { it.start() }
+        val mode = if (sampled) "wl=sample mode=sample" else "wl=${if (wakeUp) "batch" else "hold"} mode=continuous"
+        app.diag.log(DiagKind.MEASURE_START, "$startLine hrsrc=${session.heartRateSource} $mode")
         RecordControl.armCheck(this)
         handler.postDelayed(tick, TICK_MS)
         write { app.recordSync.publishStatus(recording.start) }
@@ -203,15 +223,25 @@ class RecordService : LifecycleService() {
         }
     }
 
-    /** Neue Epochen; über [NightRecording.MAX_EPOCHS] hinaus nichts mehr. Intern für Tests (ohne Sensoren). */
+    /**
+     * Neue Epochen; über [NightRecording.MAX_EPOCHS] hinaus nichts mehr. Modus «batch» ([batched]): kurzer Wakelock und,
+     * wenn fällig, der Zeitgeber (sein Handler steht im Tiefschlaf still). Intern für Tests (ohne Sensoren).
+     */
     internal fun onEpochs(epochs: List<Epoch>) {
         val a = active ?: return
         for (epoch in epochs) if (a.epochs.size < NightRecording.MAX_EPOCHS) a.epochs += epoch
+        if (!batched) return
+        wakeLocks.batch()
+        if (SystemClock.elapsedRealtime() - a.lastTickMs >= TICK_MS) onTick()
     }
 
-    /** Jede Minute (Wakelock hält die Uhr wach): Grenzen prüfen, anhängen, Protokollzeile. Intern für Tests. */
+    /**
+     * Jede Minute (Wakelock hält die Uhr wach; im Modus «batch» je Bündel aus [onEpochs]): Grenzen prüfen, anhängen,
+     * Protokollzeile. Intern für Tests.
+     */
     internal fun onTick() {
         val a = active ?: return
+        a.lastTickMs = SystemClock.elapsedRealtime()
         val battery = RecordControl.battery(this)
         NightRecording.endNow(a.start, clock(), battery)?.let {
             finish(it, battery)
@@ -261,9 +291,11 @@ class RecordService : LifecycleService() {
         active = null
         sinceState.value = null
         handler.removeCallbacks(tick)
+        sampler?.stop()
+        sampler = null
         sensors?.stop()
         sensors = null
-        releaseWakeLock()
+        wakeLocks.release()
         RecordControl.cancelCheck(this)
         val end = minOf(clock(), a.start.plus(NightRecording.MAX_DURATION))
         logStat(a, battery)
@@ -312,11 +344,6 @@ class RecordService : LifecycleService() {
         }
     }
 
-    private fun releaseWakeLock() {
-        wakeLock?.takeIf { it.isHeld }?.release()
-        wakeLock = null
-    }
-
     companion object {
         internal const val TAG = "RecordService"
         internal const val ACTION_START = "com.phasewake.app.record.START"
@@ -325,7 +352,7 @@ class RecordService : LifecycleService() {
         internal const val ACTION_RESUME = "com.phasewake.app.record.RESUME"
         internal const val ACTION_STOP = "com.phasewake.app.record.STOP"
 
-        /** Geweckt: Aufzeichnung der Lernphase beenden ([RecordControl.endLearning]). */
+        /** Geweckt bzw. Lernphase aus: Aufzeichnung der Lernphase beenden ([RecordControl.endLearning], Grund in [EXTRA_REASON]). */
         internal const val ACTION_END_LEARN = "com.phasewake.app.record.END_LEARN"
         internal const val EXTRA_REASON = "reason"
 

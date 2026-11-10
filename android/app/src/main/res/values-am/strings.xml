@@ -585,4 +585,9 @@
     <string name="overview_no_stages">ያለ ደረጃዎች</string>
     <string name="settings_clear_history_learn">የመማሪያ ጊዜው ከመጀመሪያው ይጀምራል።</string>
     <string name="learn_auto_hint">ሌሊቶቹ እንዲቆጠሩ ማታ በሰዓትህ ላይ «ደህና እደሩ»ን ንካ ወይም «እንቅልፍ መውሰድን በራስ-ሰር ለይ»ን አብራ።</string>
+    <string name="learn_consent_title">የመማሪያ ጊዜ</string>
+    <string name="learn_consent_text">Phase Wake ማንቂያውን ለአንተ እንዲያስተካክል ሰዓትህ ለ%1$d ሌሊቶች ሌሊቱን ሙሉ እንቅስቃሴና የልብ ምት ይመዘግባል። ይህ በሰዓት ወደ 3 %% የሰዓቱን ባትሪ ይጠቀማል – ከመተኛትህ በፊት ሰዓቱን ቻርጅ አድርግ። ውሂቡ በመሣሪያዎችህ ላይ ይቆያል። የመማሪያ ጊዜውን በማንኛውም ጊዜ በቅንብሮች ውስጥ ማጥፋት ትችላለህ።</string>
+    <string name="learn_consent_start">የመማሪያ ጊዜ ጀምር</string>
+    <string name="learn_consent_later">በኋላ</string>
+    <string name="learn_switch_hint">ማንቂያውን ለማስተካከል ሰዓትህ ሙሉ ሌሊቶችን ይመዘግባል። ጠፍቷል፦ ራስ-ሰር ቀረጻ የለም፣ የተማሩ እሴቶች ይቆያሉ።</string>
 </resources>

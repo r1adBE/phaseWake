@@ -132401,6 +132401,1798 @@
         }
       }
     },
+    "learn_consent_later": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Later"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "በኋላ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لاحقًا"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonra"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "По-късно"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "পরে"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kasnije"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Més tard"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Později"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senere"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Später"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αργότερα"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Later"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más tarde"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hiljem"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geroago"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بعداً"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Myöhemmin"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mamaya"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus tard"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ar ball"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Máis tarde"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "પછી"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אחר כך"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बाद में"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kasnije"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Később"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ավելի ուշ"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nanti"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seinna"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Più tardi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "あとで"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მოგვიანებით"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кейін"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ពេលក្រោយ"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಂತರ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "나중에"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ພາຍຫຼັງ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vėliau"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vēlāk"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подоцна"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "പിന്നീട്"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дараа"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नंतर"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nanti"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "နောက်မှ"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senere"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पछि"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Later"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਬਾਅਦ ਵਿੱਚ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Później"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais tarde"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais tarde"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mai târziu"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Позже"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "පසුව"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neskôr"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pozneje"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Më vonë"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Касније"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senare"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baadaye"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "பிறகு"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "తర్వాత"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ไว้ทีหลัง"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonra"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пізніше"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بعد میں"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keyinroq"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Để sau"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "遲啲先"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以后再说"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "稍後再說"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kamuva"
+          }
+        }
+      }
+    },
+    "learn_consent_start": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Begin leerfase"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "የመማሪያ ጊዜ ጀምር"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ابدأ مرحلة التعلّم"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öyrənmə mərhələsini başlat"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Започни фазата на учене"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "শেখার পর্ব শুরু করো"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pokreni fazu učenja"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicia la fase d’aprenentatge"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spustit fázi učení"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start læringsfase"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lernphase starten"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Έναρξη φάσης εκμάθησης"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start learning phase"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar fase de aprendizaje"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alusta õppefaasi"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hasi ikasketa-fasea"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شروع مرحلهٔ یادگیری"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aloita oppimisvaihe"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simulan ang pagkatuto"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lancer la phase d’apprentissage"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tosaigh an chéim foghlama"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar fase de aprendizaxe"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "શીખવાનો તબક્કો શરૂ કરો"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "להתחיל את שלב הלמידה"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सीखने का चरण शुरू करो"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pokreni fazu učenja"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tanulási szakasz indítása"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Սկսել ուսուցման փուլը"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mulai fase belajar"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hefja námsfasa"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avvia fase di apprendimento"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "学習期間を開始"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "სწავლის ფაზის დაწყება"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Үйрену кезеңін бастау"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ចាប់ផ្តើមដំណាក់កាលរៀន"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಕಲಿಕೆಯ ಹಂತ ಆರಂಭಿಸಿ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "학습 단계 시작"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ເລີ່ມໄລຍະຮຽນຮູ້"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pradėti mokymosi etapą"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sākt mācīšanās posmu"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Започни ја фазата на учење"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "പഠന ഘട്ടം ആരംഭിക്കുക"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Суралцах үеийг эхлүүлэх"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शिकण्याचा टप्पा सुरू करा"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mulakan fasa pembelajaran"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "သင်ယူမှုအဆင့် စတင်ရန်"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start læringsfase"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सिक्ने चरण सुरु गर"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leerfase starten"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਿੱਖਣ ਦਾ ਪੜਾਅ ਸ਼ੁਰੂ ਕਰੋ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rozpocznij fazę nauki"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar fase de aprendizado"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar fase de aprendizagem"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pornește faza de învățare"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Начать этап обучения"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඉගෙනීමේ අදියර අරඹන්න"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spustiť fázu učenia"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Začni fazo učenja"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nis fazën e të mësuarit"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Покрени фазу учења"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starta inlärningsfas"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anza hatua ya kujifunza"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "கற்றல் நிலையைத் தொடங்கு"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నేర్చుకునే దశను ప్రారంభించు"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เริ่มช่วงเรียนรู้"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öğrenme aşamasını başlat"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Почати етап навчання"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سیکھنے کا مرحلہ شروع کریں"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O‘rganish bosqichini boshlash"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bắt đầu giai đoạn học"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開始學習階段"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开始学习阶段"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開始學習階段"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qala isigaba sokufunda"
+          }
+        }
+      }
+    },
+    "learn_consent_text": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sodat Phase Wake die wekker by jou kan aanpas, teken jou horlosie %1$lld nagte lank die hele nag beweging en polsslag op. Dit gebruik sowat 3 %% horlosiebattery per uur – laai die horlosie voor jy gaan slaap. Die data bly op jou toestelle. Jy kan die leerfase enige tyd in die instellings afskakel."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ማንቂያውን ለአንተ እንዲያስተካክል ሰዓትህ ለ%1$lld ሌሊቶች ሌሊቱን ሙሉ እንቅስቃሴና የልብ ምት ይመዘግባል። ይህ በሰዓት ወደ 3 %% የሰዓቱን ባትሪ ይጠቀማል – ከመተኛትህ በፊት ሰዓቱን ቻርጅ አድርግ። ውሂቡ በመሣሪያዎችህ ላይ ይቆያል። የመማሪያ ጊዜውን በማንኛውም ጊዜ በቅንብሮች ውስጥ ማጥፋት ትችላለህ።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لكي يضبط Phase Wake المنبّه حسبك، تسجّل ساعتك الحركة والنبض طوال الليل لمدة %1$lld ليالٍ. يستهلك ذلك نحو 3 %% من بطارية الساعة في الساعة – اشحن الساعة قبل النوم. تبقى البيانات على أجهزتك. يمكنك إيقاف مرحلة التعلّم في الإعدادات في أي وقت."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake zəngli saatı sənə uyğunlaşdırsın deyə, saatın %1$lld gecə boyunca bütün gecəni hərəkət və nəbzi qeyd edir. Bu, saatda təxminən 3 %% saat batareyası sərf edir – yatmazdan əvvəl saatı doldur. Məlumatlar cihazlarında qalır. Öyrənmə mərhələsini istənilən vaxt ayarlarda söndürə bilərsən."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "За да нагласи Phase Wake алармата според теб, часовникът ти записва движение и пулс цялата нощ в продължение на %1$lld нощи. Това използва около 3 %% от батерията на часовника на час – зареди часовника преди сън. Данните остават на твоите устройства. Можеш да изключиш фазата на учене по всяко време в настройките."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake যাতে অ্যালার্ম তোমার মতো করে নিতে পারে, তোমার ঘড়ি %1$lld রাত ধরে সারা রাত নড়াচড়া ও পালস রেকর্ড করে। এতে ঘণ্টায় প্রায় 3 %% ঘড়ির ব্যাটারি লাগে – ঘুমানোর আগে ঘড়ি চার্জ করো। ডেটা তোমার ডিভাইসেই থাকে। সেটিংসে যেকোনো সময় শেখার পর্ব বন্ধ করতে পারো।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Da bi Phase Wake prilagodio alarm tebi, tvoj sat %1$lld noći bilježi pokrete i puls cijelu noć. To troši oko 3 %% baterije sata na sat – napuni sat prije spavanja. Podaci ostaju na tvojim uređajima. Fazu učenja možeš bilo kada isključiti u postavkama."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perquè Phase Wake adapti l’alarma a tu, el rellotge enregistra moviment i pols tota la nit durant %1$lld nits. Això gasta uns 3 %% de bateria del rellotge per hora – carrega el rellotge abans de dormir. Les dades es queden als teus dispositius. Pots desactivar la fase d’aprenentatge a la configuració en qualsevol moment."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aby Phase Wake mohl přizpůsobit budík tobě, hodinky po %1$lld nocí zaznamenávají celou noc pohyb a tep. Spotřebuje to asi 3 %% baterie hodinek za hodinu – nabij hodinky před spaním. Data zůstávají ve tvých zařízeních. Fázi učení můžeš kdykoli vypnout v nastavení."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For at Phase Wake kan tilpasse alarmen til dig, registrerer dit ur bevægelse og puls hele natten i %1$lld nætter. Det bruger etwa 3 %% af urets batteri i timen – oplad uret, før du sover. Dataene bliver på dine enheder. Du kan altid slå læringsfasen fra i indstillingerne."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Damit Phase Wake den Wecker an dich anpasst, zeichnet deine Uhr %1$lld Nächte lang die ganze Nacht Bewegung und Puls auf. Das braucht etwa 3 %% Akku pro Stunde – lade die Uhr vor dem Schlafen. Die Daten bleiben auf deinen Geräten. Du kannst die Lernphase jederzeit in den Einstellungen ausschalten."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Για να προσαρμόσει το Phase Wake το ξυπνητήρι σε σένα, το ρολόι σου καταγράφει κίνηση και παλμούς όλη τη νύχτα για %1$lld νύχτες. Αυτό καταναλώνει περίπου 3 %% της μπαταρίας του ρολογιού την ώρα – φόρτισε το ρολόι πριν κοιμηθείς. Τα δεδομένα μένουν στις συσκευές σου. Μπορείς να απενεργοποιήσεις τη φάση εκμάθησης στις ρυθμίσεις οποιαδήποτε στιγμή."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "So Phase Wake can adapt the alarm to you, your watch records motion and pulse all night for %1$lld nights. This uses about 3 %% watch battery per hour – charge the watch before you go to sleep. The data stays on your devices. You can turn the learning phase off in the settings at any time."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para que Phase Wake adapte la alarma a ti, tu reloj registra movimiento y pulso toda la noche durante %1$lld noches. Esto gasta alrededor del 3 %% de la batería del reloj por hora: carga el reloj antes de dormir. Los datos se quedan en tus dispositivos. Puedes desactivar la fase de aprendizaje en los ajustes cuando quieras."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Et Phase Wake saaks äratuse sinu järgi kohandada, salvestab su kell %1$lld ööd järjest kogu öö liikumist ja pulssi. See kulutab umbes 3 %% kella akut tunnis – lae kell enne magamaminekut. Andmed jäävad sinu seadmetesse. Õppefaasi saad seadetes igal ajal välja lülitada."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake-k alarma zuri egokitzeko, erlojuak gau osoan mugimendua eta pultsua grabatzen ditu %1$lld gauez. Horrek erlojuaren bateriaren %% 3 inguru gastatzen du orduko – kargatu erlojua lo egin aurretik. Datuak zure gailuetan geratzen dira. Ikasketa-fasea ezarpenetan desaktiba dezakezu edozein unetan."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "برای اینکه Phase Wake زنگ را با تو هماهنگ کند، ساعتت %1$lld شب تمام شب حرکت و نبض را ثبت می‌کند. این کار حدود 3 %% از باتری ساعت را در هر ساعت مصرف می‌کند – قبل از خواب ساعت را شارژ کن. داده‌ها روی دستگاه‌هایت می‌مانند. هر وقت بخواهی می‌توانی مرحلهٔ یادگیری را در تنظیمات خاموش کنی."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jotta Phase Wake voi mukauttaa herätyksen sinulle, kellosi tallentaa liikettä ja sykettä koko yön %1$lld yön ajan. Se kuluttaa noin 3 %% kellon akusta tunnissa – lataa kello ennen nukkumaanmenoa. Tiedot pysyvät laitteillasi. Voit poistaa oppimisvaiheen käytöstä asetuksissa milloin tahansa."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para maiangkop ng Phase Wake ang alarm sa iyo, itinatala ng relo mo ang galaw at pulso buong gabi sa loob ng %1$lld gabi. Gumagamit ito ng mga 3 %% ng baterya ng relo kada oras – i-charge ang relo bago matulog. Nananatili ang data sa mga device mo. Puwede mong i-off ang yugto ng pagkatuto sa settings anumang oras."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pour que Phase Wake adapte le réveil à toi, ta montre enregistre mouvements et pouls toute la nuit pendant %1$lld nuits. Cela consomme environ 3 %% de batterie de la montre par heure – recharge la montre avant de dormir. Les données restent sur tes appareils. Tu peux désactiver la phase d’apprentissage à tout moment dans les réglages."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ionas gur féidir le Phase Wake an t-aláram a oiriúnú duit, taifeadann d’uaireadóir gluaiseacht agus cuisle ar feadh na hoíche ar feadh %1$lld oíche. Úsáideann sé seo thart ar 3 %% de cheallra an uaireadóra in aghaidh na huaire – luchtaigh an t-uaireadóir sula dtéann tú a chodladh. Fanann na sonraí ar do ghléasanna. Is féidir leat an chéim foghlama a mhúchadh sna socruithe am ar bith."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para que Phase Wake adapte a alarma a ti, o teu reloxo rexistra movemento e pulso toda a noite durante %1$lld noites. Isto gasta arredor do 3 %% da batería do reloxo por hora: carga o reloxo antes de durmir. Os datos quedan nos teus dispositivos. Podes desactivar a fase de aprendizaxe na configuración cando queiras."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake એલાર્મને તમારા મુજબ ગોઠવી શકે તે માટે, તમારી ઘડિયાળ %1$lld રાત સુધી આખી રાત હલનચલન અને પલ્સ નોંધે છે. આમાં કલાક દીઠ ઘડિયાળની આશરે 3 %% બેટરી વપરાય છે – સૂતા પહેલાં ઘડિયાળ ચાર્જ કરો. ડેટા તમારા ઉપકરણો પર જ રહે છે. તમે સેટિંગ્સમાં ગમે ત્યારે શીખવાનો તબક્કો બંધ કરી શકો છો."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "כדי ש-Phase Wake יוכל להתאים את השעון המעורר אליך, השעון שלך מתעד תנועה ודופק לאורך כל הלילה במשך %1$lld לילות. זה צורך כ-3 %% מסוללת השעון בשעה – כדאי לטעון את השעון לפני השינה. הנתונים נשארים במכשירים שלך. אפשר לכבות את שלב הלמידה בהגדרות בכל עת."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ताकि Phase Wake अलार्म को तुम्हारे हिसाब से ढाल सके, तुम्हारी घड़ी %1$lld रातों तक पूरी रात हलचल और पल्स रिकॉर्ड करती है। इसमें हर घंटे घड़ी की लगभग 3 %% बैटरी लगती है – सोने से पहले घड़ी चार्ज करो। डेटा तुम्हारे डिवाइस पर ही रहता है। सीखने का चरण तुम सेटिंग्स में कभी भी बंद कर सकते हो।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kako bi Phase Wake prilagodio alarm tebi, tvoj sat %1$lld noći bilježi pokrete i puls cijelu noć. To troši oko 3 %% baterije sata na sat – napuni sat prije spavanja. Podaci ostaju na tvojim uređajima. Fazu učenja možeš bilo kada isključiti u postavkama."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hogy a Phase Wake hozzád igazíthassa az ébresztést, az órád %1$lld éjszakán át egész éjjel rögzíti a mozgást és a pulzust. Ez óránként az óra akkumulátorának kb. 3 %%-át használja – alvás előtt töltsd fel az órát. Az adatok a készülékeiden maradnak. A tanulási szakaszt bármikor kikapcsolhatod a beállításokban."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Որպեսզի Phase Wake-ը զարթուցիչը հարմարեցնի քեզ, ժամացույցդ %1$lld գիշեր ամբողջ գիշեր գրանցում է շարժումն ու զարկերակը։ Սա ժամում ծախսում է ժամացույցի մարտկոցի մոտ 3 %%-ը – քնելուց առաջ լիցքավորիր ժամացույցը։ Տվյալները մնում են քո սարքերում։ Ուսուցման փուլը կարող ես ցանկացած ժամանակ անջատել կարգավորումներում։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agar Phase Wake bisa menyesuaikan alarm denganmu, jam tanganmu merekam gerakan dan denyut nadi sepanjang malam selama %1$lld malam. Ini memakai sekitar 3 %% baterai jam per jam – isi daya jam sebelum tidur. Datanya tetap di perangkatmu. Kamu bisa mematikan fase belajar di pengaturan kapan saja."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Til að Phase Wake geti lagað vekjarann að þér skráir úrið hreyfingu og púls alla nóttina í %1$lld nætur. Það notar um 3 %% af rafhlöðu úrsins á klukkustund – hladdu úrið áður en þú ferð að sofa. Gögnin haldast á tækjunum þínum. Þú getur slökkt á námsfasanum í stillingum hvenær sem er."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perché Phase Wake possa adattare la sveglia a te, il tuo orologio registra movimento e battito tutta la notte per %1$lld notti. Consuma circa il 3 %% di batteria dell’orologio all’ora – ricarica l’orologio prima di dormire. I dati restano sui tuoi dispositivi. Puoi disattivare la fase di apprendimento nelle impostazioni in qualsiasi momento."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake がアラームをあなたに合わせられるように、時計が %1$lld 夜のあいだ一晩中、体の動きと脈拍を記録します。1 時間あたり時計のバッテリーを約 3 %% 使います – 寝る前に時計を充電してください。データはあなたのデバイスに残ります。学習期間は設定でいつでもオフにできます。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "იმისთვის, რომ Phase Wake-მა მაღვიძარა შენზე მოარგოს, შენი საათი %1$lld ღამის განმავლობაში მთელი ღამე იწერს მოძრაობას და პულსს. ეს საათში საათის ბატარეის დაახლოებით 3 %%-ს ხარჯავს – დაძინებამდე დატენე საათი. მონაცემები შენს მოწყობილობებზე რჩება. სწავლის ფაზის გამორთვა პარამეტრებში ნებისმიერ დროს შეგიძლია."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake оятқышты саған бейімдеуі үшін сағатың %1$lld түн бойы түні бойы қозғалыс пен пульсті жазады. Бұл сағатына сағат батареясының шамамен 3 %%-ын жұмсайды – ұйықтар алдында сағатты зарядта. Деректер құрылғыларыңда қалады. Үйрену кезеңін баптауларда кез келген уақытта өшіре аласың."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ដើម្បីឱ្យ Phase Wake អាចសម្រួលម៉ោងរោទ៍ឱ្យសមនឹងអ្នក នាឡិការបស់អ្នកកត់ត្រាចលនា និងជីពចរពេញមួយយប់ រយៈពេល %1$lld យប់។ វាប្រើថ្មនាឡិកាប្រហែល 3 %% ក្នុងមួយម៉ោង – សាកថ្មនាឡិកាមុនពេលគេង។ ទិន្នន័យនៅលើឧបករណ៍របស់អ្នក។ អ្នកអាចបិទដំណាក់កាលរៀននៅក្នុងការកំណត់បានគ្រប់ពេល។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ಅಲಾರಾಂ ಅನ್ನು ನಿಮಗೆ ಹೊಂದಿಸಲು, ನಿಮ್ಮ ವಾಚ್ %1$lld ರಾತ್ರಿಗಳ ಕಾಲ ಇಡೀ ರಾತ್ರಿ ಚಲನೆ ಮತ್ತು ನಾಡಿಯನ್ನು ದಾಖಲಿಸುತ್ತದೆ. ಇದಕ್ಕೆ ಗಂಟೆಗೆ ಸುಮಾರು 3 %% ವಾಚ್ ಬ್ಯಾಟರಿ ಬೇಕು – ಮಲಗುವ ಮೊದಲು ವಾಚ್ ಚಾರ್ಜ್ ಮಾಡಿ. ಡೇಟಾ ನಿಮ್ಮ ಸಾಧನಗಳಲ್ಲೇ ಇರುತ್ತದೆ. ಕಲಿಕೆಯ ಹಂತವನ್ನು ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಯಾವಾಗ ಬೇಕಾದರೂ ಆಫ್ ಮಾಡಬಹುದು."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake가 알람을 당신에게 맞출 수 있도록 시계가 %1$lld일 밤 동안 밤새 움직임과 맥박을 기록합니다. 시간당 시계 배터리를 약 3 %% 사용합니다 – 자기 전에 시계를 충전하세요. 데이터는 당신의 기기에 남습니다. 학습 단계는 설정에서 언제든지 끌 수 있습니다."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ເພື່ອໃຫ້ Phase Wake ປັບໂມງປຸກໃຫ້ເໝາະກັບເຈົ້າ, ໂມງຂອງເຈົ້າຈະບັນທຶກການເຄື່ອນໄຫວ ແລະ ຊີບພະຈອນຕະຫຼອດຄືນ ເປັນເວລາ %1$lld ຄືນ. ມັນໃຊ້ແບັດເຕີຣີໂມງປະມານ 3 %% ຕໍ່ຊົ່ວໂມງ – ສາກໂມງກ່ອນນອນ. ຂໍ້ມູນຢູ່ໃນອຸປະກອນຂອງເຈົ້າ. ເຈົ້າສາມາດປິດໄລຍະຮຽນຮູ້ໃນການຕັ້ງຄ່າໄດ້ທຸກເວລາ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kad Phase Wake galėtų pritaikyti žadintuvą tau, tavo laikrodis %1$lld naktis visą naktį įrašo judesį ir pulsą. Tai sunaudoja apie 3 %% laikrodžio baterijos per valandą – įkrauk laikrodį prieš miegą. Duomenys lieka tavo įrenginiuose. Mokymosi etapą gali bet kada išjungti nustatymuose."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lai Phase Wake varētu pielāgot modinātāju tev, tavs pulkstenis %1$lld naktis visu nakti ieraksta kustību un pulsu. Tas patērē aptuveni 3 %% pulksteņa akumulatora stundā – uzlādē pulksteni pirms gulētiešanas. Dati paliek tavās ierīcēs. Mācīšanās posmu vari jebkurā laikā izslēgt iestatījumos."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "За Phase Wake да го прилагоди алармот кон тебе, твојот часовник %1$lld ноќи цела ноќ снима движење и пулс. Тоа троши околу 3 %% од батеријата на часовникот на час – наполни го часовникот пред спиење. Податоците остануваат на твоите уреди. Фазата на учење можеш да ја исклучиш во поставките во секое време."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake അലാറം നിങ്ങൾക്ക് അനുസരിച്ച് ക്രമീകരിക്കാൻ, നിങ്ങളുടെ വാച്ച് %1$lld രാത്രികൾ രാത്രി മുഴുവൻ ചലനവും പൾസും രേഖപ്പെടുത്തുന്നു. ഇതിന് മണിക്കൂറിൽ ഏകദേശം 3 %% വാച്ച് ബാറ്ററി വേണം – ഉറങ്ങുന്നതിന് മുമ്പ് വാച്ച് ചാർജ് ചെയ്യുക. ഡാറ്റ നിങ്ങളുടെ ഉപകരണങ്ങളിൽ തന്നെ നിൽക്കും. പഠന ഘട്ടം ക്രമീകരണങ്ങളിൽ എപ്പോൾ വേണമെങ്കിലും ഓഫാക്കാം."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake сэрүүлгийг чамд тохируулахын тулд цаг чинь %1$lld шөнийн турш шөнөжингөө хөдөлгөөн ба судасны цохилтыг бичнэ. Энэ нь цагт цагны батерейн ойролцоогоор 3 %%-ийг зарцуулна – унтахын өмнө цагаа цэнэглээрэй. Өгөгдөл чиний төхөөрөмж дээр үлдэнэ. Суралцах үеийг тохиргооноос хүссэн үедээ унтрааж болно."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ला अलार्म तुमच्यानुसार जुळवता यावा म्हणून, तुमचे घड्याळ %1$lld रात्री पूर्ण रात्र हालचाल आणि नाडी नोंदवते. यासाठी तासाला घड्याळाची सुमारे 3 %% बॅटरी लागते – झोपण्यापूर्वी घड्याळ चार्ज करा. डेटा तुमच्या डिव्हाइसवरच राहतो. शिकण्याचा टप्पा सेटिंग्जमध्ये कधीही बंद करू शकता."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supaya Phase Wake dapat menyesuaikan penggera dengan anda, jam tangan anda merakam pergerakan dan nadi sepanjang malam selama %1$lld malam. Ini menggunakan kira-kira 3 %% bateri jam sejam – cas jam sebelum tidur. Data kekal pada peranti anda. Anda boleh mematikan fasa pembelajaran dalam tetapan pada bila-bila masa."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake က နှိုးစက်ကို သင့်နှင့်ကိုက်ညီအောင် ချိန်ညှိနိုင်ရန် သင့်နာရီသည် ည %1$lld ညကြာ တစ်ညလုံး လှုပ်ရှားမှုနှင့် သွေးခုန်နှုန်းကို မှတ်တမ်းတင်သည်။ ၎င်းသည် တစ်နာရီလျှင် နာရီဘက်ထရီ 3 %% ခန့် သုံးသည် – မအိပ်မီ နာရီကို အားသွင်းပါ။ ဒေတာများသည် သင့်စက်များပေါ်တွင်သာ ရှိသည်။ သင်ယူမှုအဆင့်ကို ဆက်တင်များတွင် အချိန်မရွေး ပိတ်နိုင်သည်။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For at Phase Wake skal kunne tilpasse alarmen til deg, registrerer klokken din bevegelse og puls hele natten i %1$lld netter. Det bruker omtrent 3 %% av klokkebatteriet i timen – lad klokken før du legger deg. Dataene blir på enhetene dine. Du kan slå av læringsfasen i innstillingene når som helst."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake ले अलार्मलाई तिमी अनुसार मिलाउन सकोस् भनेर तिम्रो घडीले %1$lld रातसम्म रातभर चाल र नाडी रेकर्ड गर्छ। यसले प्रति घण्टा घडीको करिब 3 %% ब्याट्री खपत गर्छ – सुत्नुअघि घडी चार्ज गर। डेटा तिम्रो उपकरणमै रहन्छ। सिक्ने चरण सेटिङमा जुनसुकै बेला बन्द गर्न सक्छौ।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zodat Phase Wake de wekker op jou kan afstemmen, registreert je horloge %1$lld nachten lang de hele nacht beweging en hartslag. Dat kost ongeveer 3 %% horlogebatterij per uur – laad het horloge op voordat je gaat slapen. De gegevens blijven op je apparaten. Je kunt de leerfase op elk moment uitzetten in de instellingen."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤਾਂ ਜੋ Phase Wake ਅਲਾਰਮ ਨੂੰ ਤੁਹਾਡੇ ਮੁਤਾਬਕ ਢਾਲ ਸਕੇ, ਤੁਹਾਡੀ ਘੜੀ %1$lld ਰਾਤਾਂ ਤੱਕ ਸਾਰੀ ਰਾਤ ਹਿਲਜੁਲ ਅਤੇ ਨਬਜ਼ ਰਿਕਾਰਡ ਕਰਦੀ ਹੈ। ਇਸ ਵਿੱਚ ਪ੍ਰਤੀ ਘੰਟਾ ਘੜੀ ਦੀ ਲਗਭਗ 3 %% ਬੈਟਰੀ ਲੱਗਦੀ ਹੈ – ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਘੜੀ ਚਾਰਜ ਕਰੋ। ਡਾਟਾ ਤੁਹਾਡੇ ਡਿਵਾਈਸਾਂ ’ਤੇ ਹੀ ਰਹਿੰਦਾ ਹੈ। ਸਿੱਖਣ ਦਾ ਪੜਾਅ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਕਦੇ ਵੀ ਬੰਦ ਕਰ ਸਕਦੇ ਹੋ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aby Phase Wake mógł dopasować budzik do ciebie, zegarek przez %1$lld nocy rejestruje ruch i tętno przez całą noc. Zużywa to około 3 %% baterii zegarka na godzinę – naładuj zegarek przed snem. Dane zostają na twoich urządzeniach. Fazę nauki możesz w każdej chwili wyłączyć w ustawieniach."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para o Phase Wake adaptar o alarme a você, seu relógio registra movimento e pulso a noite toda durante %1$lld noites. Isso gasta cerca de 3 %% da bateria do relógio por hora – carregue o relógio antes de dormir. Os dados ficam nos seus dispositivos. Você pode desativar a fase de aprendizado nas configurações a qualquer momento."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para o Phase Wake adaptar o alarme a ti, o teu relógio regista movimento e pulso durante toda a noite ao longo de %1$lld noites. Isto gasta cerca de 3 %% da bateria do relógio por hora – carrega o relógio antes de dormir. Os dados ficam nos teus dispositivos. Podes desativar a fase de aprendizagem nas definições a qualquer momento."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ca Phase Wake să poată adapta alarma la tine, ceasul tău înregistrează mișcarea și pulsul toată noaptea timp de %1$lld nopți. Asta consumă cam 3 %% din bateria ceasului pe oră – încarcă ceasul înainte de culcare. Datele rămân pe dispozitivele tale. Poți dezactiva oricând faza de învățare din setări."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Чтобы Phase Wake мог подстроить будильник под тебя, часы %1$lld ночей записывают движение и пульс всю ночь. Это расходует около 3 %% заряда часов в час – заряди часы перед сном. Данные остаются на твоих устройствах. Этап обучения можно в любой момент отключить в настройках."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake හට එලාමය ඔබට ගැලපෙන ලෙස සකස් කිරීමට, ඔබේ ඔරලෝසුව රාත්‍රී %1$lld ක් පුරා මුළු රාත්‍රියම චලනය සහ නාඩිය වාර්තා කරයි. මෙයට පැයකට ඔරලෝසු බැටරියෙන් 3 %% ක් පමණ වැය වේ – නින්දට පෙර ඔරලෝසුව ආරෝපණය කරන්න. දත්ත ඔබේ උපාංගවලම පවතී. ඕනෑම වේලාවක සැකසීම් තුළ ඉගෙනීමේ අදියර අක්‍රිය කළ හැක."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aby Phase Wake mohol prispôsobiť budík tebe, hodinky %1$lld nocí zaznamenávajú celú noc pohyb a pulz. Spotrebuje to asi 3 %% batérie hodiniek za hodinu – nabi hodinky pred spaním. Údaje zostávajú v tvojich zariadeniach. Fázu učenia môžeš kedykoľvek vypnúť v nastaveniach."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Da lahko Phase Wake alarm prilagodi tebi, ura %1$lld noči vso noč beleži gibanje in utrip. To porabi približno 3 %% baterije ure na uro – napolni uro pred spanjem. Podatki ostanejo v tvojih napravah. Fazo učenja lahko kadar koli izklopiš v nastavitvah."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Që Phase Wake ta përshtatë alarmin për ty, ora jote regjistron lëvizjen dhe pulsin gjithë natën për %1$lld netë. Kjo harxhon rreth 3 %% të baterisë së orës në orë – karikoje orën para se të flesh. Të dhënat mbeten në pajisjet e tua. Mund ta çaktivizosh fazën e të mësuarit në cilësime në çdo kohë."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Да би Phase Wake прилагодио аларм теби, твој сат %1$lld ноћи бележи покрете и пулс целу ноћ. То троши око 3 %% батерије сата на сат – напуни сат пре спавања. Подаци остају на твојим уређајима. Фазу учења можеш било када да искључиш у подешавањима."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "För att Phase Wake ska kunna anpassa larmet efter dig registrerar din klocka rörelse och puls hela natten i %1$lld nätter. Det drar ungefär 3 %% av klockans batteri per timme – ladda klockan innan du sover. Datan stannar på dina enheter. Du kan stänga av inlärningsfasen i inställningarna när som helst."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ili Phase Wake iweze kurekebisha kengele kwa ajili yako, saa yako inarekodi mwendo na mapigo ya moyo usiku mzima kwa usiku %1$lld. Hii hutumia takriban 3 %% ya betri ya saa kwa saa – chaji saa kabla ya kulala. Data hubaki kwenye vifaa vyako. Unaweza kuzima hatua ya kujifunza kwenye mipangilio wakati wowote."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake அலாரத்தை உங்களுக்கு ஏற்ப மாற்ற, உங்கள் கடிகாரம் %1$lld இரவுகள் இரவு முழுவதும் அசைவையும் நாடியையும் பதிவுசெய்கிறது. இதற்கு மணிக்கு சுமார் 3 %% கடிகார பேட்டரி செலவாகும் – தூங்கும் முன் கடிகாரத்தை சார்ஜ் செய்யுங்கள். தரவு உங்கள் சாதனங்களிலேயே இருக்கும். கற்றல் நிலையை அமைப்புகளில் எப்போது வேண்டுமானாலும் முடக்கலாம்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake అలారాన్ని మీకు తగ్గట్టు మార్చడానికి, మీ వాచ్ %1$lld రాత్రులు రాత్రంతా కదలిక మరియు నాడిని రికార్డ్ చేస్తుంది. దీనికి గంటకు సుమారు 3 %% వాచ్ బ్యాటరీ ఖర్చవుతుంది – నిద్రపోయే ముందు వాచ్‌ను ఛార్జ్ చేయండి. డేటా మీ పరికరాల్లోనే ఉంటుంది. నేర్చుకునే దశను సెట్టింగ్‌లలో ఎప్పుడైనా ఆఫ్ చేయవచ్చు."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เพื่อให้ Phase Wake ปรับนาฬิกาปลุกให้เข้ากับคุณ นาฬิกาของคุณจะบันทึกการเคลื่อนไหวและชีพจรตลอดทั้งคืนเป็นเวลา %1$lld คืน ซึ่งใช้แบตเตอรี่นาฬิกาประมาณ 3 %% ต่อชั่วโมง – ชาร์จนาฬิกาก่อนนอน ข้อมูลอยู่บนอุปกรณ์ของคุณ คุณปิดช่วงเรียนรู้ได้ทุกเมื่อในการตั้งค่า"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake alarmı sana göre ayarlayabilsin diye saatin %1$lld gece boyunca bütün gece hareket ve nabız kaydeder. Bu, saatte saat pilinin yaklaşık %%3’ünü harcar – uyumadan önce saati şarj et. Veriler cihazlarında kalır. Öğrenme aşamasını istediğin zaman ayarlardan kapatabilirsin."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Щоб Phase Wake міг підлаштувати будильник під тебе, годинник %1$lld ночей записує рух і пульс усю ніч. Це витрачає близько 3 %% заряду годинника на годину – заряди годинник перед сном. Дані залишаються на твоїх пристроях. Етап навчання можна будь-коли вимкнути в налаштуваннях."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تاکہ Phase Wake الارم کو آپ کے مطابق ڈھال سکے، آپ کی گھڑی %1$lld راتوں تک پوری رات حرکت اور نبض ریکارڈ کرتی ہے۔ اس میں فی گھنٹہ گھڑی کی تقریباً 3 %% بیٹری لگتی ہے – سونے سے پہلے گھڑی چارج کریں۔ ڈیٹا آپ کے آلات پر ہی رہتا ہے۔ سیکھنے کا مرحلہ ترتیبات میں کسی بھی وقت بند کیا جا سکتا ہے۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake budilnikni senga moslashi uchun soating %1$lld tun davomida tun bo‘yi harakat va pulsni yozib boradi. Bu soatiga soat batareyasining taxminan 3 %%ini sarflaydi – uxlashdan oldin soatni quvvatla. Ma’lumotlar qurilmalaringda qoladi. O‘rganish bosqichini istalgan vaqtda sozlamalardan o‘chirishing mumkin."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Để Phase Wake điều chỉnh báo thức theo bạn, đồng hồ của bạn ghi lại chuyển động và nhịp tim suốt đêm trong %1$lld đêm. Việc này tốn khoảng 3 %% pin đồng hồ mỗi giờ – hãy sạc đồng hồ trước khi ngủ. Dữ liệu ở lại trên thiết bị của bạn. Bạn có thể tắt giai đoạn học trong phần cài đặt bất cứ lúc nào."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "為咗等 Phase Wake 按你調整鬧鐘，你嘅手錶會連續 %1$lld 晚成晚記錄動作同脈搏。咁樣每個鐘大約用手錶 3 %% 電量——瞓覺前記得幫手錶充電。資料留喺你嘅裝置上。你隨時可以喺設定度關閉學習階段。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "为了让 Phase Wake 根据你调整闹钟，你的手表会连续 %1$lld 晚整夜记录动作和脉搏。这每小时大约消耗手表 3 %% 的电量——睡前请给手表充电。数据保留在你的设备上。你可以随时在设置中关闭学习阶段。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "為了讓 Phase Wake 依你調整鬧鐘，你的手錶會連續 %1$lld 晚整夜記錄動作和脈搏。這每小時大約消耗手錶 3 %% 的電量——睡前請替手錶充電。資料保留在你的裝置上。你可以隨時在設定中關閉學習階段。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukuze i-Phase Wake ikwazi ukulungisa i-alamu ikufanele, iwashi lakho liqopha ukunyakaza nokushaya kwenhliziyo ubusuku bonke izinsuku zobusuku ezingu-%1$lld. Lokhu kusebenzisa cishe u-3 %% webhethri lewashi ngehora – shaja iwashi ngaphambi kokulala. Idatha ihlala kumadivayisi akho. Ungavala isigaba sokufunda kuzilungiselelo noma nini."
+          }
+        }
+      }
+    },
+    "learn_consent_title": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leerfase"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "የመማሪያ ጊዜ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مرحلة التعلّم"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öyrənmə mərhələsi"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Фаза на учене"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "শেখার পর্ব"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faza učenja"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fase d’aprenentatge"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fáze učení"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Læringsfase"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lernphase"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Φάση εκμάθησης"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learning phase"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fase de aprendizaje"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Õppefaas"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ikasketa-fasea"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مرحلهٔ یادگیری"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oppimisvaihe"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yugto ng pagkatuto"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase d’apprentissage"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Céim foghlama"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fase de aprendizaxe"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "શીખવાનો તબક્કો"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שלב למידה"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सीखने का चरण"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faza učenja"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tanulási szakasz"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ուսուցման փուլ"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fase belajar"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Námsfasi"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fase di apprendimento"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "学習期間"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "სწავლის ფაზა"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Үйрену кезеңі"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ដំណាក់កាលរៀន"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಕಲಿಕೆಯ ಹಂತ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "학습 단계"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ໄລຍະຮຽນຮູ້"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mokymosi etapas"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mācīšanās posms"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Фаза на учење"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "പഠന ഘട്ടം"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Суралцах үе"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शिकण्याचा टप्पा"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fasa pembelajaran"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "သင်ယူမှုအဆင့်"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Læringsfase"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सिक्ने चरण"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leerfase"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਿੱਖਣ ਦਾ ਪੜਾਅ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faza nauki"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fase de aprendizado"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fase de aprendizagem"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faza de învățare"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Этап обучения"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඉගෙනීමේ අදියර"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fáza učenia"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faza učenja"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faza e të mësuarit"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Фаза учења"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inlärningsfas"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hatua ya kujifunza"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "கற்றல் நிலை"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నేర్చుకునే దశ"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ช่วงเรียนรู้"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öğrenme aşaması"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Етап навчання"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سیکھنے کا مرحلہ"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O‘rganish bosqichi"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giai đoạn học"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "學習階段"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "学习阶段"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "學習階段"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isigaba sokufunda"
+          }
+        }
+      }
+    },
     "learn_progress": {
       "localizations": {
         "af": {
@@ -133741,6 +135533,454 @@
           "stringUnit": {
             "state": "translated",
             "value": "I-Phase Wake iphinda ikale ubusuku obungu-%1$lld. Kuze kube yileso sikhathi, amanani alungisiwe kuze kube manje ayaqhubeka esetshenziswa."
+          }
+        }
+      }
+    },
+    "learn_switch_hint": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jou horlosie teken hele nagte op om die wekker aan te pas. Af: geen outomatiese opname nie, geleerde waardes bly."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ማንቂያውን ለማስተካከል ሰዓትህ ሙሉ ሌሊቶችን ይመዘግባል። ጠፍቷል፦ ራስ-ሰር ቀረጻ የለም፣ የተማሩ እሴቶች ይቆያሉ።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تسجّل ساعتك ليالي كاملة لضبط المنبّه. متوقفة: لا تسجيل تلقائي، وتبقى القيم المتعلَّمة."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saatın zəngli saatı uyğunlaşdırmaq üçün bütöv gecələri qeyd edir. Sönülü: avtomatik qeyd yoxdur, öyrənilmiş dəyərlər qalır."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Часовникът ти записва цели нощи, за да нагласи алармата. Изкл.: без автоматичен запис, научените стойности остават."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "অ্যালার্ম মানিয়ে নিতে তোমার ঘড়ি পুরো রাত রেকর্ড করে। বন্ধ: স্বয়ংক্রিয় রেকর্ডিং নেই, শেখা মানগুলো থাকে।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tvoj sat bilježi cijele noći da prilagodi alarm. Isključeno: nema automatskog snimanja, naučene vrijednosti ostaju."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El rellotge enregistra nits senceres per adaptar l’alarma. Desactivat: cap enregistrament automàtic, els valors apresos es mantenen."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hodinky zaznamenávají celé noci, aby přizpůsobily budík. Vypnuto: žádný automatický záznam, naučené hodnoty zůstávají."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dit ur registrerer hele nætter for at tilpasse alarmen. Fra: ingen automatisk registrering, lærte værdier bevares."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Uhr zeichnet ganze Nächte auf, um den Wecker anzupassen. Aus: keine automatische Aufzeichnung, gelernte Werte bleiben."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το ρολόι σου καταγράφει ολόκληρες νύχτες για να προσαρμόσει το ξυπνητήρι. Ανενεργό: καμία αυτόματη καταγραφή, οι τιμές που έμαθε μένουν."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your watch records whole nights to adapt the alarm. Off: no automatic recording, learned values stay."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu reloj registra noches enteras para adaptar la alarma. Desactivado: sin registro automático, los valores aprendidos se mantienen."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Su kell salvestab terveid öid, et äratust kohandada. Väljas: automaatset salvestamist pole, õpitud väärtused jäävad."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlojuak gau osoak grabatzen ditu alarma egokitzeko. Desaktibatuta: ez dago grabaketa automatikorik, ikasitako balioak geratzen dira."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ساعتت برای هماهنگ کردن زنگ، شب‌های کامل را ثبت می‌کند. خاموش: بدون ثبت خودکار، مقادیر یادگرفته‌شده می‌مانند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kellosi tallentaa kokonaisia öitä herätyksen mukauttamiseksi. Pois: ei automaattista tallennusta, opitut arvot säilyvät."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Itinatala ng relo mo ang buong gabi para iangkop ang alarm. Naka-off: walang awtomatikong pagtatala, nananatili ang natutunang value."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ta montre enregistre des nuits entières pour adapter le réveil. Désactivé : aucun enregistrement automatique, les valeurs apprises restent."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taifeadann d’uaireadóir oícheanta iomlána chun an t-aláram a oiriúnú. As: gan taifeadadh uathoibríoch, fanann na luachanna foghlamtha."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O teu reloxo rexistra noites enteiras para adaptar a alarma. Desactivado: sen rexistro automático, os valores aprendidos mantéñense."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "એલાર્મ ગોઠવવા તમારી ઘડિયાળ આખી રાતો નોંધે છે. બંધ: આપોઆપ નોંધ નહીં, શીખેલાં મૂલ્યો રહે છે."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "השעון שלך מתעד לילות שלמים כדי להתאים את ההשכמה. כבוי: אין תיעוד אוטומטי, הערכים שנלמדו נשמרים."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अलार्म ढालने के लिए तुम्हारी घड़ी पूरी रातें रिकॉर्ड करती है। बंद: कोई अपने-आप रिकॉर्डिंग नहीं, सीखे गए मान बने रहते हैं।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tvoj sat bilježi cijele noći kako bi prilagodio alarm. Isključeno: nema automatskog snimanja, naučene vrijednosti ostaju."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Az órád egész éjszakákat rögzít az ébresztés igazításához. Ki: nincs automatikus rögzítés, a tanult értékek megmaradnak."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ժամացույցդ գրանցում է ամբողջ գիշերներ՝ զարթուցիչը հարմարեցնելու համար։ Անջատված է՝ ավտոմատ գրանցում չկա, սովորած արժեքները մնում են։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jam tanganmu merekam malam penuh untuk menyesuaikan alarm. Mati: tidak ada perekaman otomatis, nilai yang dipelajari tetap ada."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Úrið skráir heilar nætur til að laga vekjarann. Slökkt: engin sjálfvirk skráning, lærð gildi haldast."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo orologio registra notti intere per adattare la sveglia. Disattivato: nessuna registrazione automatica, i valori appresi restano."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アラームを合わせるため、時計が一晩中記録します。オフ：自動記録なし、学習した値は残ります。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "შენი საათი მთელ ღამეებს იწერს მაღვიძარის მოსარგებად. გამორთული: ავტომატური ჩაწერა არ არის, ნასწავლი მნიშვნელობები რჩება."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сағатың оятқышты бейімдеу үшін түнді толық жазады. Өшірулі: автоматты жазу жоқ, үйренген мәндер сақталады."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "នាឡិការបស់អ្នកកត់ត្រាពេញមួយយប់ ដើម្បីសម្រួលម៉ោងរោទ៍។ បិទ៖ គ្មានការកត់ត្រាស្វ័យប្រវត្តិ តម្លៃដែលបានរៀននៅដដែល។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಅಲಾರಾಂ ಹೊಂದಿಸಲು ನಿಮ್ಮ ವಾಚ್ ಪೂರ್ತಿ ರಾತ್ರಿಗಳನ್ನು ದಾಖಲಿಸುತ್ತದೆ. ಆಫ್: ಸ್ವಯಂ ದಾಖಲೆ ಇಲ್ಲ, ಕಲಿತ ಮೌಲ್ಯಗಳು ಉಳಿಯುತ್ತವೆ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "알람을 맞추기 위해 시계가 밤새 기록합니다. 끄기: 자동 기록 없음, 학습한 값은 유지됩니다."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ໂມງຂອງເຈົ້າບັນທຶກຕະຫຼອດຄືນເພື່ອປັບໂມງປຸກ. ປິດ: ບໍ່ບັນທຶກອັດຕະໂນມັດ, ຄ່າທີ່ຮຽນຮູ້ແລ້ວຍັງຢູ່."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tavo laikrodis įrašo visas naktis, kad pritaikytų žadintuvą. Išjungta: jokio automatinio įrašymo, išmoktos vertės lieka."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tavs pulkstenis ieraksta veselas naktis, lai pielāgotu modinātāju. Izslēgts: nav automātiskas ierakstīšanas, apgūtās vērtības paliek."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Твојот часовник снима цели ноќи за да го прилагоди алармот. Исклучено: нема автоматско снимање, научените вредности остануваат."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "അലാറം ക്രമീകരിക്കാൻ നിങ്ങളുടെ വാച്ച് മുഴുവൻ രാത്രികളും രേഖപ്പെടുത്തുന്നു. ഓഫ്: സ്വയമേവ രേഖപ്പെടുത്തലില്ല, പഠിച്ച മൂല്യങ്ങൾ നിലനിൽക്കും."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цаг чинь сэрүүлгийг тохируулахын тулд бүтэн шөнийг бичнэ. Унтраасан: автомат бичлэг байхгүй, сурсан утгууд хадгалагдана."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अलार्म जुळवण्यासाठी तुमचे घड्याळ पूर्ण रात्री नोंदवते. बंद: आपोआप नोंद नाही, शिकलेली मूल्ये राहतात."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jam tangan anda merakam sepanjang malam untuk menyesuaikan penggera. Mati: tiada rakaman automatik, nilai yang dipelajari kekal."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "နှိုးစက်ကို ချိန်ညှိရန် သင့်နာရီသည် ညတစ်ညလုံး မှတ်တမ်းတင်သည်။ ပိတ်: အလိုအလျောက် မှတ်တမ်းမတင်၊ သင်ယူထားသော တန်ဖိုးများ ကျန်ရှိသည်။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klokken din registrerer hele netter for å tilpasse alarmen. Av: ingen automatisk registrering, lærte verdier beholdes."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अलार्म मिलाउन तिम्रो घडीले पूरै रात रेकर्ड गर्छ। बन्द: स्वचालित रेकर्डिङ छैन, सिकेका मानहरू रहन्छन्।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je horloge registreert hele nachten om de wekker af te stemmen. Uit: geen automatische registratie, geleerde waarden blijven."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਅਲਾਰਮ ਢਾਲਣ ਲਈ ਤੁਹਾਡੀ ਘੜੀ ਪੂਰੀਆਂ ਰਾਤਾਂ ਰਿਕਾਰਡ ਕਰਦੀ ਹੈ। ਬੰਦ: ਕੋਈ ਆਪਣੇ-ਆਪ ਰਿਕਾਰਡਿੰਗ ਨਹੀਂ, ਸਿੱਖੇ ਮੁੱਲ ਰਹਿੰਦੇ ਹਨ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zegarek rejestruje całe noce, aby dopasować budzik. Wył.: brak automatycznego zapisu, wyuczone wartości zostają."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seu relógio registra noites inteiras para adaptar o alarme. Desativado: sem registro automático, os valores aprendidos ficam."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O teu relógio regista noites inteiras para adaptar o alarme. Desativado: sem registo automático, os valores aprendidos mantêm-se."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ceasul tău înregistrează nopți întregi pentru a adapta alarma. Dezactivat: fără înregistrare automată, valorile învățate rămân."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Часы записывают целые ночи, чтобы подстроить будильник. Выкл.: без автоматической записи, изученные значения сохраняются."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "එලාමය සකස් කිරීමට ඔබේ ඔරලෝසුව මුළු රාත්‍රීම වාර්තා කරයි. අක්‍රියයි: ස්වයංක්‍රීය වාර්තා කිරීමක් නැත, ඉගෙනගත් අගයන් පවතී."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hodinky zaznamenávajú celé noci, aby prispôsobili budík. Vypnuté: žiadny automatický záznam, naučené hodnoty zostávajú."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ura beleži cele noči, da prilagodi alarm. Izklopljeno: brez samodejnega beleženja, naučene vrednosti ostanejo."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ora jote regjistron net të tëra për të përshtatur alarmin. Joaktive: pa regjistrim automatik, vlerat e mësuara mbeten."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Твој сат бележи целе ноћи да прилагоди аларм. Искључено: нема аутоматског снимања, научене вредности остају."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din klocka registrerar hela nätter för att anpassa larmet. Av: ingen automatisk registrering, inlärda värden finns kvar."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saa yako inarekodi usiku mzima ili kurekebisha kengele. Imezimwa: hakuna kurekodi kiotomatiki, thamani zilizojifunzwa zinabaki."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "அலாரத்தை மாற்ற உங்கள் கடிகாரம் முழு இரவுகளைப் பதிவுசெய்கிறது. முடக்கம்: தானியங்கு பதிவு இல்லை, கற்ற மதிப்புகள் இருக்கும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "అలారాన్ని మార్చడానికి మీ వాచ్ పూర్తి రాత్రులను రికార్డ్ చేస్తుంది. ఆఫ్: ఆటోమేటిక్ రికార్డింగ్ లేదు, నేర్చుకున్న విలువలు ఉంటాయి."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "นาฬิกาของคุณบันทึกทั้งคืนเพื่อปรับนาฬิกาปลุก ปิด: ไม่บันทึกอัตโนมัติ ค่าที่เรียนรู้แล้วยังอยู่"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saatin alarmı ayarlamak için bütün geceleri kaydeder. Kapalı: otomatik kayıt yok, öğrenilen değerler kalır."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Годинник записує цілі ночі, щоб підлаштувати будильник. Вимк.: без автоматичного запису, вивчені значення зберігаються."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الارم ڈھالنے کے لیے آپ کی گھڑی پوری راتیں ریکارڈ کرتی ہے۔ بند: کوئی خودکار ریکارڈنگ نہیں، سیکھی گئی قدریں برقرار رہتی ہیں۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soating budilnikni moslash uchun butun tunlarni yozadi. O‘chiq: avtomatik yozuv yo‘q, o‘rganilgan qiymatlar qoladi."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đồng hồ của bạn ghi lại cả đêm để điều chỉnh báo thức. Tắt: không tự động ghi, các giá trị đã học vẫn giữ."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你嘅手錶會記錄成晚資料嚟調整鬧鐘。關閉：唔再自動記錄，已學到嘅數值會保留。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的手表会记录整晚数据来调整闹钟。关闭：不再自动记录，已学到的数值保留。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的手錶會記錄整晚資料來調整鬧鐘。關閉：不再自動記錄，已學到的數值保留。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iwashi lakho liqopha ubusuku obuphelele ukuze lilungise i-alamu. Kuvaliwe: akukho ukuqopha okuzenzakalelayo, amanani afundiwe ayahlala."
           }
         }
       }

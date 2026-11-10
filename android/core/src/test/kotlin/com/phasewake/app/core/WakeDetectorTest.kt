@@ -85,6 +85,21 @@ class WakeDetectorTest {
     }
 
     @Test
+    fun rearmDropsTheMomentAndWaitsForANewOne() {
+        val detector = WakeDetector()
+        detector.feed(still, still, Epoch(0.5, 52.0), Epoch(0.5, 52.0))
+        assertEquals(Decision.Wake(WakeReason.AWAKE), detector.onEpoch(still))
+        detector.rearm()
+        assertNull(detector.result)
+        // Solange die Unruhe im Fenster der Regel liegt, meldet sie sich wieder (die Uhr übergeht sie erneut); danach
+        // weckt erst neue Bewegung.
+        detector.feed(still, still, still)
+        detector.rearm()
+        assertEquals(listOf<Decision>(Decision.Wait, Decision.Wait), detector.feed(still, Epoch(0.5, 52.0)))
+        assertEquals(Decision.Wake(WakeReason.AWAKE), detector.onEpoch(Epoch(0.5, 52.0)))
+    }
+
+    @Test
     fun finishWithoutWakeIsDeadline() {
         val detector = WakeDetector()
         detector.feed(still, still, still)

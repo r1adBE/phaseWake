@@ -585,4 +585,9 @@
     <string name="overview_no_stages">Bosqichlarsiz</string>
     <string name="settings_clear_history_learn">O‘rganish bosqichi boshidan boshlanadi.</string>
     <string name="learn_auto_hint">Tunlar hisoblanishi uchun kechqurun soatda «Xayrli tun» tugmasini bos yoki «Uxlab qolishni avtomatik aniqlash» funksiyasini yoq.</string>
+    <string name="learn_consent_title">O‘rganish bosqichi</string>
+    <string name="learn_consent_text">Phase Wake budilnikni senga moslashi uchun soating %1$d tun davomida tun bo‘yi harakat va pulsni yozib boradi. Bu soatiga soat batareyasining taxminan 3 %%ini sarflaydi – uxlashdan oldin soatni quvvatla. Ma’lumotlar qurilmalaringda qoladi. O‘rganish bosqichini istalgan vaqtda sozlamalardan o‘chirishing mumkin.</string>
+    <string name="learn_consent_start">O‘rganish bosqichini boshlash</string>
+    <string name="learn_consent_later">Keyinroq</string>
+    <string name="learn_switch_hint">Soating budilnikni moslash uchun butun tunlarni yozadi. O‘chiq: avtomatik yozuv yo‘q, o‘rganilgan qiymatlar qoladi.</string>
 </resources>

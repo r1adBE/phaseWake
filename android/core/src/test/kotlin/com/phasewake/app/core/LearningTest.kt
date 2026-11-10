@@ -21,12 +21,34 @@ class LearningTest {
 
     @Test
     fun nightCountsFromThreeHoursOfMotion() {
-        assertTrue(Learning.counts(night(0, Learning.MIN_MEASURED_EPOCHS)))
-        assertFalse(Learning.counts(night(0, Learning.MIN_MEASURED_EPOCHS - 1)))
+        assertTrue(Learning.counts(night(0, Learning.MIN_SPAN_EPOCHS)))
+        assertFalse(Learning.counts(night(0, Learning.MIN_SPAN_EPOCHS - 1)), "durchgehend, aber unter 3 Std.")
+        assertFalse(Learning.counts(night(0, 0)))
         // Epochen ohne Bewegung (Uhr abgelegt, Lücken) zählen nicht.
         val gaps = Learning.Night(evening(0), List(400) { Epoch(if (it < 100) null else 0.02, 55.0) })
         assertFalse(Learning.counts(gaps))
         assertEquals(300, Learning.measuredEpochs(gaps))
+    }
+
+    /** Stichproben wie in der Lernphase: je 5 Min (10 Epochen) 2 gemessene Epochen, die übrigen leer. */
+    private fun sampled(samples: Int, hr: Double? = 55.0) =
+        Learning.Night(evening(0), List(samples * 10 - 8) { if (it % 10 < 2) Epoch(0.02, hr) else Epoch(null, null) })
+
+    @Test
+    fun sampledNightCountsFromThirtySixSamplesOverThreeHours() {
+        // 36 Stichproben = 72 Epochen über 35 · 10 + 2 = 352 Epochen: noch keine 3 Std.
+        assertEquals(72, Learning.measuredEpochs(sampled(36)))
+        assertFalse(Learning.counts(sampled(36)))
+        // 37 Stichproben: 74 Epochen über 362 Epochen.
+        assertTrue(Learning.counts(sampled(37)))
+        // Über 3 Std. verteilt, aber zu wenige Werte (eine Stichprobe je 15 Min).
+        val sparse = Learning.Night(evening(0), List(400) { if (it % 30 < 2) Epoch(0.02, 55.0) else Epoch(null, null) })
+        assertFalse(Learning.counts(sparse))
+        // Ruhepuls aus Stichproben: ab 30 Stichproben (60 Epochen mit Puls).
+        assertNull(Learning.nightRestingHeartRate(sampled(29)))
+        assertEquals(55.0, Learning.nightRestingHeartRate(sampled(30)))
+        // Grundrauschen aus den gemessenen Epochen, die leeren zählen nicht.
+        assertEquals(0.02, Learning.nightFloor(sampled(37)))
     }
 
     @Test

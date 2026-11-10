@@ -19,7 +19,8 @@ import kotlinx.coroutines.flow.map
  * Stand der Lernphase am Handy: seit wann sie läuft ([since], `null` = nie begonnen), die gelernten Werte ([values],
  * `null` = noch nicht fertig) und ob die Karte «Angepasst an dich» schon bestätigt ist ([seen]). [relearning]: «Neu
  * lernen» läuft – die bisherigen [values] gelten weiter, bis die neuen Nächte gezählt sind. [updatedAt]: Zeitpunkt der
- * letzten Änderung (ms), für den Abgleich mit der Uhr.
+ * letzten Änderung (ms), für den Abgleich mit der Uhr. [consent]: Zustimmung (Audit F-02, Schalter «Lernphase»):
+ * `true` = an, `false` = aus bzw. «Später», `null` = noch nicht gefragt.
  */
 data class LearningState(
     val since: Instant?,
@@ -27,9 +28,16 @@ data class LearningState(
     val seen: Boolean,
     val updatedAt: Long,
     val relearning: Boolean = false,
+    val consent: Boolean? = null,
 ) {
-    /** Läuft die Lernphase (begonnen und noch keine Werte, oder «Neu lernen» läuft)? */
-    val active: Boolean get() = since != null && (values == null || relearning)
+    /**
+     * Läuft die Lernphase (zugestimmt, begonnen und noch keine Werte, oder «Neu lernen» läuft)? Nur dann zeichnet die
+     * Uhr nachts automatisch auf.
+     */
+    val active: Boolean get() = consent == true && since != null && (values == null || relearning)
+
+    /** Noch nicht gefragt: Einrichtungsschritt bzw. Karte auf der Startseite «Lernphase starten» / «Später». */
+    val askConsent: Boolean get() = consent == null
 
     /** Paket für die Uhr. */
     fun snapshot(): LearningSnapshot = LearningSnapshot.of(active, values, updatedAt)
@@ -37,9 +45,9 @@ data class LearningState(
 
 /**
  * Lernphase am Handy, privat im DataStore der App: Keine Sicherung (weder System noch `.pwbak`) enthält sie, denn sie
- * beruht auf den Aufzeichnungen, die ebenfalls nicht gesichert werden. «Verlauf löschen» beginnt sie von vorn und
- * verwirft die Werte ([restart]); «Neu lernen» beginnt sie von vorn und behält die Werte, bis die neuen fertig sind
- * ([relearn]).
+ * beruht auf den Aufzeichnungen, die ebenfalls nicht gesichert werden. Sie beginnt nie von selbst, nur mit Zustimmung
+ * ([setConsent]). «Verlauf löschen» beginnt sie von vorn und verwirft die Werte ([restart]); «Neu lernen» beginnt sie von
+ * vorn und behält die Werte, bis die neuen fertig sind ([relearn]). Beides lässt die Zustimmung, wie sie ist.
  */
 class LearningRepository(private val store: DataStore<Preferences>) {
 
@@ -48,16 +56,20 @@ class LearningRepository(private val store: DataStore<Preferences>) {
     suspend fun current(): LearningState = read(store.data.first())
 
     /**
-     * Beginnt die Lernphase, falls sie nie begonnen hat (nach der Installation und beim ersten Start dieser Version).
-     * @return ob sie jetzt begonnen hat.
+     * Zustimmung ab [now] ([on]: «Lernphase starten» bzw. Schalter an; sonst «Später» bzw. Schalter aus). An: Hat sie nie
+     * begonnen, beginnt sie jetzt; sonst läuft sie mit den bisher gezählten Nächten weiter. Aus: Die Uhr zeichnet nicht
+     * mehr automatisch auf; gelernte Werte bleiben.
+     * @return ob die Lernphase jetzt begonnen hat.
      */
-    suspend fun ensureStarted(now: Instant): Boolean {
+    suspend fun setConsent(on: Boolean, now: Instant): Boolean {
         var started = false
         store.edit { prefs ->
-            if (prefs[SINCE] != null) return@edit
-            prefs[SINCE] = now.toEpochMilli()
+            prefs[CONSENT] = on
+            if (on && prefs[SINCE] == null) {
+                prefs[SINCE] = now.toEpochMilli()
+                started = true
+            }
             prefs[UPDATED_AT] = now.toEpochMilli()
-            started = true
         }
         return started
     }
@@ -126,6 +138,7 @@ class LearningRepository(private val store: DataStore<Preferences>) {
             prefs[SEEN] ?: false,
             prefs[UPDATED_AT] ?: 0L,
             relearning = values != null && prefs[RELEARN] == true,
+            consent = prefs[CONSENT],
         )
     }
 
@@ -138,5 +151,6 @@ class LearningRepository(private val store: DataStore<Preferences>) {
         val SEEN = booleanPreferencesKey("learning_seen")
         val UPDATED_AT = longPreferencesKey("learning_updated_at")
         val RELEARN = booleanPreferencesKey("learning_relearn")
+        val CONSENT = booleanPreferencesKey("learning_consent")
     }
 }

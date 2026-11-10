@@ -570,4 +570,9 @@
     <string name="overview_no_stages">Առանց փուլերի</string>
     <string name="settings_clear_history_learn">Ուսուցման փուլը սկսվում է նորից։</string>
     <string name="learn_auto_hint">Երեկոյան ժամացույցի վրա հպիր «Բարի գիշեր»-ին կամ միացրու «Ինքնաշխատ հայտնաբերել քնելը»-ը, որպեսզի գիշերները հաշվվեն։</string>
+    <string name="learn_consent_title">Ուսուցման փուլ</string>
+    <string name="learn_consent_text">Որպեսզի Phase Wake-ը զարթուցիչը հարմարեցնի քեզ, ժամացույցդ %1$d գիշեր ամբողջ գիշեր գրանցում է շարժումն ու զարկերակը։ Սա ժամում ծախսում է ժամացույցի մարտկոցի մոտ 3 %%-ը – քնելուց առաջ լիցքավորիր ժամացույցը։ Տվյալները մնում են քո սարքերում։ Ուսուցման փուլը կարող ես ցանկացած ժամանակ անջատել կարգավորումներում։</string>
+    <string name="learn_consent_start">Սկսել ուսուցման փուլը</string>
+    <string name="learn_consent_later">Ավելի ուշ</string>
+    <string name="learn_switch_hint">Ժամացույցդ գրանցում է ամբողջ գիշերներ՝ զարթուցիչը հարմարեցնելու համար։ Անջատված է՝ ավտոմատ գրանցում չկա, սովորած արժեքները մնում են։</string>
 </resources>

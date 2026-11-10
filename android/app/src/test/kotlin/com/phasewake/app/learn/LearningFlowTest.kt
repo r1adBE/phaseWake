@@ -27,7 +27,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Lernphase am Handy: Beginn nach der Installation, Zählen der Aufzeichnungen der Uhr, nach 7 Nächten die gelernten
+ * Lernphase am Handy: Beginn nur mit Zustimmung (Audit F-02), Zählen der Aufzeichnungen der Uhr, nach 7 Nächten die gelernten
  * Werte an die Uhr, «Verlauf löschen» von vorn, «Neu lernen» mit den bisherigen Werten bis zum Ende ([LearningRepository], [com.phasewake.app.PhaseWakeApp.updateLearning]).
  */
 @RunWith(RobolectricTestRunner::class)
@@ -40,8 +40,11 @@ class LearningFlowTest {
     @Before
     fun setUp() {
         File(context.filesDir, "recordings").deleteRecursively()
-        // Der DataStore lebt über einen Test hinaus: Lernphase ab jetzt.
-        runBlocking { app.learning.restart(since) }
+        // Der DataStore lebt über einen Test hinaus: Lernphase ab jetzt, zugestimmt.
+        runBlocking {
+            app.learning.restart(since)
+            app.learning.setConsent(true, since)
+        }
         app.learningSent.clear()
     }
 
@@ -78,7 +81,7 @@ class LearningFlowTest {
 
     @Test
     fun sevenCountedNightsFinishAndTellTheWatch() {
-        receive(recording(0, Learning.MIN_MEASURED_EPOCHS - 1))
+        receive(recording(0, Learning.MIN_SPAN_EPOCHS - 1))
         awaitDiag { it == "learn night not counted epochs=359 0/7" }
         for (day in 1L..6L) receive(recording(day, 400))
         assertNull(runBlocking { app.learning.current() }.values)
@@ -158,24 +161,25 @@ class LearningFlowTest {
     @Test
     fun repositoryRelearnWithoutValuesStartsOver() = runBlocking {
         val repo = LearningRepository(MemoryStore())
-        repo.ensureStarted(since)
+        repo.setConsent(true, since)
         repo.relearn(since.plusSeconds(60))
-        assertEquals(LearningState(since.plusSeconds(60), null, false, since.plusSeconds(60).toEpochMilli()), repo.current())
+        assertEquals(LearningState(since.plusSeconds(60), null, false, since.plusSeconds(60).toEpochMilli(), consent = true), repo.current())
         // «Verlauf löschen» nach «Neu lernen»: Werte und Neu-lernen-Stand weg.
         repo.finish(Learning.Values(0.02, null, 12, 7), since.plusSeconds(120))
         repo.relearn(since.plusSeconds(180))
         assertTrue(repo.current().relearning)
         repo.restart(since.plusSeconds(240))
-        assertEquals(LearningState(since.plusSeconds(240), null, false, since.plusSeconds(240).toEpochMilli()), repo.current())
+        assertEquals(LearningState(since.plusSeconds(240), null, false, since.plusSeconds(240).toEpochMilli(), consent = true), repo.current())
     }
 
     @Test
-    fun repositoryStartsOnceAndFinishesOnce() = runBlocking {
+    fun repositoryStartsOnlyWithConsentAndFinishesOnce() = runBlocking {
         val repo = LearningRepository(MemoryStore())
         assertEquals(LearningState(null, null, false, 0L), repo.current())
         assertFalse(repo.current().active)
-        assertTrue(repo.ensureStarted(since))
-        assertFalse(repo.ensureStarted(since.plusSeconds(60)), "nur nach der Installation bzw. dem ersten Start")
+        assertTrue(repo.current().askConsent)
+        assertTrue(repo.setConsent(true, since))
+        assertFalse(repo.setConsent(true, since.plusSeconds(60)), "beginnt nur einmal")
         assertEquals(since, repo.current().since)
         assertTrue(repo.current().active)
         val values = Learning.Values(0.02, null, 12, 7)
@@ -186,6 +190,50 @@ class LearningFlowTest {
         repo.setSeen()
         assertTrue(repo.current().seen)
         repo.restart(since.plusSeconds(240))
-        assertEquals(LearningState(since.plusSeconds(240), null, false, since.plusSeconds(240).toEpochMilli()), repo.current())
+        assertEquals(LearningState(since.plusSeconds(240), null, false, since.plusSeconds(240).toEpochMilli(), consent = true), repo.current())
+    }
+
+    @Test
+    fun noAutomaticStartWithoutConsent() = runBlocking {
+        val repo = LearningRepository(MemoryStore())
+        // «Später»: gefragt, aber keine Lernphase, die Uhr zeichnet nicht auf.
+        assertFalse(repo.setConsent(false, since))
+        val later = repo.current()
+        assertNull(later.since)
+        assertFalse(later.active)
+        assertFalse(later.askConsent, "nur einmal fragen")
+        assertFalse(later.snapshot().active)
+        // Bestehende Installation (Lernphase vor dieser Version begonnen, nie gefragt): läuft nicht, bis zugestimmt.
+        val old = LearningRepository(MemoryStore())
+        old.restart(since)
+        assertFalse(old.current().active)
+        assertTrue(old.current().askConsent)
+        assertFalse(old.current().snapshot().active)
+        assertFalse(old.setConsent(true, since.plusSeconds(60)), "läuft mit den bisher gezählten Nächten weiter")
+        assertEquals(since, old.current().since)
+        assertTrue(old.current().active)
+    }
+
+    @Test
+    fun consentStartsAndSwitchOffStopsTheWatchKeepingValues() {
+        runBlocking { app.setLearningConsent(false) }
+        assertFalse(app.learningSent.last().active, "aus: die Uhr zeichnet nicht automatisch auf")
+        // Aus: Aufzeichnungen zählen nicht, nichts wird gelernt.
+        for (day in 1L..7L) receive(recording(day, 400))
+        assertNull(runBlocking { app.learning.current() }.values)
+        awaitDiag { it == "learn consent off" }
+        // Wieder an: läuft weiter, die Nächte seit Beginn zählen, fertig nach sieben.
+        runBlocking { app.setLearningConsent(true) }
+        val done = runBlocking { app.learning.current() }
+        val values = assertNotNull(done.values)
+        assertTrue(done.consent == true)
+        awaitDiag { it == "learn consent on" }
+        // Aus nach dem Lernen: gelernte Werte bleiben, auch auf der Uhr.
+        app.learningSent.clear()
+        runBlocking { app.setLearningConsent(false) }
+        assertEquals(values, runBlocking { app.learning.current() }.values)
+        val sent = app.learningSent.last()
+        assertFalse(sent.active)
+        assertEquals(values.floor, sent.floor)
     }
 }

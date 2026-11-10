@@ -4,6 +4,10 @@ Stand 04.11.2026, Phase Wake 16.2.2. Erledigtes wandert nach [ENTSCHEIDE.md](ENT
 
 ## Erledigt am 10.11.2026 (Details in ENTSCHEIDE.md)
 
+- Lernphase nur mit Zustimmung (Audit F-02): Einrichtungsschritt bzw. einmal eine Karte «Lernphase starten» / «Später», Schalter «Lernphase» in den Einstellungen, Uhr zeichnet nur mit Zustimmung auf; Store-Texte, README, DATENSCHUTZ.md. Lernphase misst in Stichproben (60 s alle 5 Min), Start weiter ab 50 % Akku; eine Nacht zählt ab 72 Epochen mit Bewegung über 3 Std.
+- Wakelock bei «Nacht aufzeichnen» nur noch ohne aufweckenden Sensor mit grossem Puffer (Audit F-01), Diagnose `wl=hold|batch`.
+- Store-Build nur für einen Stand mit grüner CI, Unit-Tests vor dem Signieren (Audit F-05).
+- Kurze Nacht: ein neuer Moment in den letzten 10 Min vor der Zielzeit weckt (Kotlin und Swift).
 - Schlafwert ohne Schlafphasen vorläufig (höchstens 84, Hinweis und gestrichelter Ring), neutrale Säulen «Ohne Phasen» in «Dein Schlaf» (Android und iPhone).
 - Auswertung auf dem iPhone (Teil von 11l): Schlafwert und Übersicht im Swift-Kern (`SleepScore`, `SleepOverviews`, gleiche Tests wie Kotlin), Detailseite mit Schlafwert und Puls im Weckfenster, Ring in der Liste, «Dein Schlaf» mit «Tage / Wochen / Monate». Gerätetest (r1AD): iPhone mit einer Nacht aus Apple Health mit Phasen, einer Sitzung ohne Phasen (vorläufiger Wert) und einer eigenen Nacht ohne Phasen (kein Schlafwert); Android eine nur aufgezeichnete Nacht (vorläufig, höchstens 84).
 
@@ -72,9 +76,12 @@ Geprüft und so belassen: Apple-Sitzung misst die ersten 5 Min. eines 30-Min.-Fe
 10. Sperrbildschirm: leise Abend-Meldung sichtbar? Widget auf dem Sperrbildschirm auswählbar (hängt von Android-/One-UI-Version ab)? Widget «Details von heute» (Android und iPhone): nach dem Wecken «Letzte Nacht», Befinden erscheint nach dem Antippen, um 12 Uhr zurück zum nächsten Wecker?
 11. Messwerte aus echten Nächten für die nächste Bewertung: verpasste Wecker (Ziel 0), Frühwecken in den ersten 5 Min., Befinden, Apple-Sitzung ohne abends geöffnete App.
 
-11a. «Nacht aufzeichnen» an der Galaxy Watch prüfen: Akku über eine ganze Nacht (grobe Schätzung, nicht gemessen: 2–5 % je Stunde, also rund 15–40 % für 8 Std.; vor allem Puls und Wakelock; die Diagnose schreibt den Akku stündlich), Puls gleichzeitig mit dem Weckfenster (zwei Messungen derselben App), Start und Stopp vom Handy bei dunkler Uhr, Wiederaufnahme nach «Beenden erzwingen» bzw. Neustart.
-11g. «Leichter Schlaf» auch bei längerer Bewegung ohne Pulsanstieg (z. B. ≥ 2 Min über der Leicht-Schwelle) – erst nach Prüfung an mehreren aufgezeichneten Nächten. Gewünscht von r1AD am 08.11.
+11a. «Nacht aufzeichnen» an der Galaxy Watch prüfen: Akku über eine ganze Nacht: gemessen 10.11.2026 ca. 6 % je Stunde (71 % → 24 % in 7¾ Std., mit Wakelock und Puls über den Sensor, `hr=928/928`; ersetzt die Schätzung 2–5 %), Puls gleichzeitig mit dem Weckfenster (zwei Messungen derselben App), Start und Stopp vom Handy bei dunkler Uhr, Wiederaufnahme nach «Beenden erzwingen» bzw. Neustart.
+11g. Leichte Bewegung am Auf und Ab erkennen statt nur an der Höhe, oder Grundrauschen gleitend (z. B. letzte 30 Min) statt über die ganze Nacht: Eine neue Armlage hebt den Grundwert dauerhaft (Aufzeichnung 10.11.: 07:44–07:57 konstant 0,069–0,077 über der Leicht-Schwelle 0,048; 08.11.: Stufen 0,025–0,038). Mit Puls in jeder Epoche (hrsrc=sensor) an 2–3 weiteren Nächten prüfen, dann Vorschlag zur Freigabe. Bisheriger Gedanke «leichter Schlaf auch ohne Pulsanstieg» geht darin auf. Gewünscht von r1AD am 08./10.11.
 11l. Lernphase auf iPhone und Apple Watch: Apple folgt (Swift-Kern kennt die gelernten Werte schon, PHASENERKENNUNG.md 10; Aufzeichnung der ganzen Nacht auf der Apple Watch, Zählen und Anzeige fehlen dort). Die Auswertung (früher 11k) gibt es auf dem iPhone seit 10.11.; erst mit der Aufzeichnung der Apple Watch kommen dort Schlafwert ohne Apple Health sowie Puls und Bewegung über die ganze Nacht dazu.
+11m. Akku an echter Uhr messen (Audit F-01): «Nacht aufzeichnen» auf einer Uhr mit aufweckendem Beschleunigungssensor (Diagnose `wl=batch`) über eine ganze Nacht – Akku, Anteil der Epochen mit Bewegung und Puls, keine Lücken. Die Galaxy Watch 8 Classic von r1AD hat `fifo=-1` und zeichnet weiter mit Wakelock auf (`wl=hold`).
+11o. Akku der Lernphase in Stichproben messen: Schätzung etwa 3 % pro Stunde (Text der Einrichtung), an einer echten Nacht prüfen (Diagnose `mode=sample`, stündliche Zeile `record stat … bat=`); dazu prüfen, ob die Stichproben genug Puls liefern (Ruhepuls ab 60 Epochen mit Puls).
+11n. Testversion mit privatem Test-Schlüssel und nicht debuggable (Audit R-01): vorerst nicht (r1AD 10.11.2026).
 11i. Fenster «Genau»: Hinweis von r1AD am 08.11. – damit gibt es kein Fenster für die Phasen. Geprüft und so belassen: «Genau» bleibt (r1AD 09.11.).
 
 ## Bekannte Grenzen

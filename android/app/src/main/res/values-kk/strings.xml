@@ -570,4 +570,9 @@
     <string name="overview_no_stages">Фазаларсыз</string>
     <string name="settings_clear_history_learn">Үйрену кезеңі басынан басталады.</string>
     <string name="learn_auto_hint">Түндер есептелуі үшін кешке сағатта «Қайырлы түн» түймесін түрт немесе «Ұйықтап кетуді автоматты түрде анықтау» функциясын қос.</string>
+    <string name="learn_consent_title">Үйрену кезеңі</string>
+    <string name="learn_consent_text">Phase Wake оятқышты саған бейімдеуі үшін сағатың %1$d түн бойы түні бойы қозғалыс пен пульсті жазады. Бұл сағатына сағат батареясының шамамен 3 %%-ын жұмсайды – ұйықтар алдында сағатты зарядта. Деректер құрылғыларыңда қалады. Үйрену кезеңін баптауларда кез келген уақытта өшіре аласың.</string>
+    <string name="learn_consent_start">Үйрену кезеңін бастау</string>
+    <string name="learn_consent_later">Кейін</string>
+    <string name="learn_switch_hint">Сағатың оятқышты бейімдеу үшін түнді толық жазады. Өшірулі: автоматты жазу жоқ, үйренген мәндер сақталады.</string>
 </resources>

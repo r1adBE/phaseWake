@@ -41,8 +41,9 @@ Du stellst eine Zielzeit und ein Weckfenster (10–30 Minuten). Im Fenster misst
 - **Weckaufgabe** (Option pro Wecker, Android): Zum Beenden 3 Rechenaufgaben am Handy lösen statt halten; Schlummern geht ohne Aufgabe
 - **Verlauf** der letzten 90 Nächte mit Bewegungskurve; optional die Schlafphasen aus Health Connect bzw. Apple Health zum Vergleich
 - **Gleicht ab**: Nach drei aufgezeichneten Nächten werden die Schwellen an deine Bewegungswerte angepasst, also ab der vierten Nacht.
+- **Lernphase** (Option, Galaxy Watch mit Android-Handy): Nur wenn du sie startest, zeichnet die Uhr 7 Nächte lang über die ganze Nacht Bewegung und Puls in Stichproben auf (60 Sekunden alle 5 Minuten, etwa 3 % Akku pro Stunde, Start ab 50 % Akku) und passt danach den Wecker an dich an; jederzeit in den Einstellungen abschaltbar
 - **Genau** (Option pro Wecker): ohne Weckfenster, klingelt genau zur Zielzeit; die Uhr misst trotzdem für den Verlauf
-- **Kurze Nacht** (Galaxy Watch): Hast du deutlich weniger als dein Schlafziel geschlafen, weckt die Uhr erst zur Zielzeit; dein Einschlafen erkennt sie dafür automatisch: Ab 1 Stunde vor der Bettzeit misst sie kurz die Bewegung, bis du eingeschlafen bist (standardmässig ein, abschaltbar in den Einstellungen)
+- **Kurze Nacht** (Galaxy Watch): Hast du deutlich weniger als dein Schlafziel geschlafen, weckt die Uhr frühestens 10 Minuten vor der Zielzeit; dein Einschlafen erkennt sie dafür automatisch: Ab 1 Stunde vor der Bettzeit misst sie kurz die Bewegung, bis du eingeschlafen bist (standardmässig ein, abschaltbar in den Einstellungen)
 - **Kachel und Komplikation** auf der Uhr
 - **Hell, Dunkel, System** – und barrierefrei mit Bildschirmleser
 - **74 Sprachen**

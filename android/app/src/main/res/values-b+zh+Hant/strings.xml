@@ -568,4 +568,9 @@
     <string name="overview_no_stages">無階段</string>
     <string name="settings_clear_history_learn">學習階段重新開始。</string>
     <string name="learn_auto_hint">晚上請在手錶上輕觸「晚安」，或開啟「自動偵測入睡」，這樣夜晚才會被計入。</string>
+    <string name="learn_consent_title">學習階段</string>
+    <string name="learn_consent_text">為了讓 Phase Wake 依你調整鬧鐘，你的手錶會連續 %1$d 晚整夜記錄動作和脈搏。這每小時大約消耗手錶 3 %% 的電量——睡前請替手錶充電。資料保留在你的裝置上。你可以隨時在設定中關閉學習階段。</string>
+    <string name="learn_consent_start">開始學習階段</string>
+    <string name="learn_consent_later">稍後再說</string>
+    <string name="learn_switch_hint">你的手錶會記錄整晚資料來調整鬧鐘。關閉：不再自動記錄，已學到的數值保留。</string>
 </resources>

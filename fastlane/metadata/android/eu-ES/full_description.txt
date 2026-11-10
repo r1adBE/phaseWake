@@ -3,6 +3,7 @@ Phase Wake-k esnatze-leihoaren barruan esnatzen zaitu, ezinegona hasten zaizun u
 Nola funtzionatzen du
 • Aukeratu esnatzeko ordua eta leihoa (30 min arte), jarri erlojua eta egin lo.
 • Erlojuak esnatze-leihoan neurtzen du, eta gauean une labur batez lokartu arte – horrek bateria aurrezten du.
+• Aukerakoa: ikasketa-fasea – erlojuak gau osoan mugimendua eta pultsua grabatzen ditu 7 gauez (bateriaren % 3 inguru orduko) eta alarma zuri egokitzen dio.
 • Bibrazioa eskumuturrean, nahi baduzu soinuarekin – telefonoak ordezko alarma gisa joko du zerbait gaizki ateratzen bada.
 • Eutsi sakatuta gelditzeko, atzeratu 3 aldiz arte.
 

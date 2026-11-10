@@ -307,8 +307,24 @@ class WakeServiceTest {
         service.onEpochs(n, awake)
         assertEquals(WakeService.Phase.MEASURING, n.phase)
         assertTrue(n.earlyBlocked)
+        // Weiter unruhig: übergangen, nicht nachgeholt; die Erkennung läuft weiter.
+        service.onEpochs(n, awake)
+        assertEquals(WakeService.Phase.MEASURING, n.phase)
         send(service, WakeService.ACTION_DEADLINE, 2, withPlan = true)
         assertEquals(WakeService.Phase.RINGING, n.phase)
         assertEquals(WakeReason.SHORT_NIGHT, n.reason)
+    }
+
+    @Test
+    fun shortNightWakesForANewMomentInTheLastTenMinutes() {
+        // Zielzeit in 5 Min (innerhalb von ShortNight.LATE_MINUTES), vor einer Stunde eingeschlafen (Entscheid 10.11.2026).
+        val late = WakePlan("a", now.minus(Duration.ofMinutes(25)), now.plus(Duration.ofMinutes(5)))
+        runBlocking { context.wearApp.onsets.set("a", late.target, now.minus(Duration.ofHours(1))) }
+        val service = startNight(late)
+        val n = assertNotNull(service.night)
+        service.onEpochs(n, awake)
+        assertEquals(WakeService.Phase.RINGING, n.phase)
+        assertEquals(WakeReason.AWAKE, n.reason)
+        assertFalse(n.earlyBlocked)
     }
 }

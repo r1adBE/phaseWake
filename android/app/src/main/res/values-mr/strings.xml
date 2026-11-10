@@ -585,4 +585,9 @@
     <string name="overview_no_stages">टप्प्यांशिवाय</string>
     <string name="settings_clear_history_learn">शिकण्याचा टप्पा पुन्हा सुरुवातीपासून सुरू होतो.</string>
     <string name="learn_auto_hint">रात्री मोजल्या जाव्यात म्हणून संध्याकाळी घड्याळावर “शुभ रात्री” टॅप कर किंवा “झोप लागणे आपोआप ओळखा” चालू कर.</string>
+    <string name="learn_consent_title">शिकण्याचा टप्पा</string>
+    <string name="learn_consent_text">Phase Wake ला अलार्म तुमच्यानुसार जुळवता यावा म्हणून, तुमचे घड्याळ %1$d रात्री पूर्ण रात्र हालचाल आणि नाडी नोंदवते. यासाठी तासाला घड्याळाची सुमारे 3 %% बॅटरी लागते – झोपण्यापूर्वी घड्याळ चार्ज करा. डेटा तुमच्या डिव्हाइसवरच राहतो. शिकण्याचा टप्पा सेटिंग्जमध्ये कधीही बंद करू शकता.</string>
+    <string name="learn_consent_start">शिकण्याचा टप्पा सुरू करा</string>
+    <string name="learn_consent_later">नंतर</string>
+    <string name="learn_switch_hint">अलार्म जुळवण्यासाठी तुमचे घड्याळ पूर्ण रात्री नोंदवते. बंद: आपोआप नोंद नाही, शिकलेली मूल्ये राहतात.</string>
 </resources>

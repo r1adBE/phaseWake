@@ -584,4 +584,9 @@
     <string name="overview_no_stages">مراحل کے بغیر</string>
     <string name="settings_clear_history_learn">سیکھنے کا مرحلہ دوبارہ شروع سے شروع ہوتا ہے۔</string>
     <string name="learn_auto_hint">راتیں گنی جائیں، اس لیے شام کو گھڑی پر “شب بخیر” ٹیپ کرو یا “سو جانے کا خودکار طور پر پتا لگائیں” آن کرو۔</string>
+    <string name="learn_consent_title">سیکھنے کا مرحلہ</string>
+    <string name="learn_consent_text">تاکہ Phase Wake الارم کو آپ کے مطابق ڈھال سکے، آپ کی گھڑی %1$d راتوں تک پوری رات حرکت اور نبض ریکارڈ کرتی ہے۔ اس میں فی گھنٹہ گھڑی کی تقریباً 3 %% بیٹری لگتی ہے – سونے سے پہلے گھڑی چارج کریں۔ ڈیٹا آپ کے آلات پر ہی رہتا ہے۔ سیکھنے کا مرحلہ ترتیبات میں کسی بھی وقت بند کیا جا سکتا ہے۔</string>
+    <string name="learn_consent_start">سیکھنے کا مرحلہ شروع کریں</string>
+    <string name="learn_consent_later">بعد میں</string>
+    <string name="learn_switch_hint">الارم ڈھالنے کے لیے آپ کی گھڑی پوری راتیں ریکارڈ کرتی ہے۔ بند: کوئی خودکار ریکارڈنگ نہیں، سیکھی گئی قدریں برقرار رہتی ہیں۔</string>
 </resources>

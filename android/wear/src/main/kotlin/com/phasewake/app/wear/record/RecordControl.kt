@@ -16,6 +16,7 @@ import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Epoch
 import com.phasewake.app.core.Learning
 import com.phasewake.app.core.NoiseFloor
+import com.phasewake.app.shared.LearningSnapshot
 import com.phasewake.app.shared.NightRecording
 import com.phasewake.app.shared.RecordEnd
 import com.phasewake.app.shared.RecordSync
@@ -93,7 +94,7 @@ object RecordControl {
         }
         val intent = Intent(context, RecordReceiver::class.java).setAction(ACTION_LEARN_START).putExtra(RecordService.EXTRA_UNTIL, until.toEpochMilli())
         arm(context, Instant.now().plusSeconds(1), PendingIntent.getBroadcast(context, REQUEST_LEARN_START, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT))
-        app.diag.log(DiagKind.MEASURE_START, "learn record start bat=${battery ?: "-"}")
+        app.diag.log(DiagKind.MEASURE_START, "learn record start bat=${battery ?: "-"} mode=sample")
         return true
     }
 
@@ -112,23 +113,34 @@ object RecordControl {
 
     /**
      * Geweckt (Klingeln beendet, aus dem Weckdienst): Eine Aufzeichnung der Lernphase endet jetzt ([RecordEnd.WAKE]); eine
-     * von Hand begonnene läuft weiter. Läuft der Dienst nicht (Prozessende), wird die gespeicherte abgeschlossen.
+     * von Hand begonnene läuft weiter. Läuft der Dienst nicht (Prozessende), wird die gespeicherte abgeschlossen. Ebenso,
+     * wenn die Lernphase am Handy ausgeschaltet wurde ([onLearningChanged], dann [reason] = [RecordEnd.PHONE]).
      */
-    fun endLearning(context: Context) {
+    fun endLearning(context: Context, reason: RecordEnd = RecordEnd.WAKE) {
         if (RecordService.running) {
-            context.startService(Intent(context, RecordService::class.java).setAction(RecordService.ACTION_END_LEARN))
+            context.startService(
+                Intent(context, RecordService::class.java).setAction(RecordService.ACTION_END_LEARN).putExtra(RecordService.EXTRA_REASON, reason.code),
+            )
             return
         }
         val app = context.wearApp
         app.appScope.launch {
             val mark = app.learnMark.get() ?: return@launch
-            if (app.recordings.active()?.start == mark.start && finishOrphan(app, RecordEnd.WAKE)) {
+            if (app.recordings.active()?.start == mark.start && finishOrphan(app, reason)) {
                 cancelCheck(app)
-                app.diag.log(DiagKind.MEASURE_END, "record end ${RecordService.reasonText(RecordEnd.WAKE, null)} (not running)")
+                app.diag.log(DiagKind.MEASURE_END, "record end ${RecordService.reasonText(reason, null)} (not running)")
                 app.recordSync.publishStatus(null)
             }
             app.learnMark.clear()
         }
+    }
+
+    /**
+     * Neuer Stand der Lernphase vom Handy ([learning]): Läuft sie nicht mehr (ausgeschaltet, Audit F-02, oder fertig),
+     * endet eine laufende Aufzeichnung der Lernphase jetzt; eine von Hand begonnene läuft weiter.
+     */
+    fun onLearningChanged(context: Context, learning: LearningSnapshot) {
+        if (!learning.active) endLearning(context, RecordEnd.PHONE)
     }
 
     /**

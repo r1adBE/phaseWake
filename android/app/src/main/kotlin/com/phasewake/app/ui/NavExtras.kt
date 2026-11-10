@@ -107,17 +107,21 @@ internal fun homeExtras(
 }
 
 /**
- * Karte der Lernphase: solange sie läuft und die Uhr aufzeichnen kann ([watchRecords]) «Nacht N von 7» aus den gezählten
- * Aufzeichnungen; danach «Angepasst an dich», bis bestätigt. Sonst `null`.
+ * Karte der Lernphase, nur mit Zustimmung (Audit F-02): solange sie läuft und die Uhr aufzeichnen kann ([watchRecords])
+ * «Nacht N von 7» aus den gezählten Aufzeichnungen; danach «Angepasst an dich», bis bestätigt. Noch nicht gefragt und
+ * die Uhr kann aufzeichnen: einmal die Frage «Lernphase starten» / «Später». Sonst `null`.
  */
 private fun homeLearning(app: PhaseWakeApp, data: AppData, watchRecords: Boolean): HomeLearning? {
     val state = data.learning ?: return null
     val values = state.values
     val since = state.since
     return when {
+        state.askConsent && watchRecords ->
+            HomeLearning(null, null, onConsent = { on -> app.appScope.launch { app.setLearningConsent(on) } })
         state.active && since != null && watchRecords ->
             HomeLearning(Learning.progress(countedNights(data, since)), null, autoHint = !data.autoOnset)
-        values != null && !state.active -> HomeLearning(null, values, onSeen = { app.appScope.launch { app.learning.setSeen() } }).takeIf { !state.seen }
+        values != null && !state.active && state.consent == true ->
+            HomeLearning(null, values, onSeen = { app.appScope.launch { app.learning.setSeen() } }).takeIf { !state.seen }
         else -> null
     }
 }
@@ -164,16 +168,18 @@ internal fun settingsExtras(app: PhaseWakeApp, data: AppData, actions: NavAction
             }
         },
     )
-    // Lernphase: nur mit einer Uhr, die aufzeichnen kann, oder wenn schon gelernt.
+    // Lernphase: nur mit einer Uhr, die aufzeichnen kann, oder wenn schon gelernt. Schalter = Zustimmung (Audit F-02).
     val record by app.recordStatus.collectAsStateWithLifecycle()
     val learningState = data.learning
     val since = learningState?.since
     val learning = when {
-        learningState == null || since == null -> null
+        learningState == null -> null
         learningState.values != null || record != null -> LearningSettings(
-            night = Learning.progress(countedNights(data, since)).takeIf { learningState.active },
+            night = since?.let { Learning.progress(countedNights(data, it)) }?.takeIf { learningState.active },
             values = learningState.values,
-            onRestart = { app.appScope.launch { app.relearn() } },
+            onRestart = if (since != null) ({ app.appScope.launch { app.relearn() } }) else null,
+            consent = learningState.consent == true,
+            onConsent = { on -> app.appScope.launch { app.setLearningConsent(on) } },
         )
         else -> null
     }

@@ -12,15 +12,23 @@ object ShortNight {
     /** So viele Minuten unter dem Schlafziel gilt eine Nacht noch nicht als kurz. */
     const val MARGIN_MINUTES: Int = 60
 
+    /**
+     * In den letzten so vielen Minuten vor der Zielzeit gilt die Untergrenze nicht mehr (Entscheid r1AD 10.11.2026): Ein
+     * neuer früher Moment weckt dann; ein vorher übergangener wird nicht nachgeholt.
+     */
+    const val LATE_MINUTES: Int = 10
+
     /** Die automatische Einschlaf-Messung beginnt so viele Minuten vor der Bettzeit ([autoOnsetStart]). */
     const val AUTO_LEAD_MINUTES: Int = 60
 
     /**
      * Ob frühes Wecken gesperrt ist: Einschlafzeit [onset] bekannt und seit dann weniger als Schlafziel minus
-     * [MARGIN_MINUTES] vergangen (bei 7½ h also unter 6½ h Schlaf). Ohne bekannte Einschlafzeit nie gesperrt.
+     * [MARGIN_MINUTES] vergangen (bei 7½ h also unter 6½ h Schlaf). Ohne bekannte Einschlafzeit nie gesperrt; ebenso
+     * nicht mehr in den letzten [LATE_MINUTES] vor der Zielzeit [target] (ohne [target]: bis zum Schluss gesperrt).
      */
-    fun blocksEarly(onset: Instant?, now: Instant, sleepGoalMinutes: Int): Boolean {
+    fun blocksEarly(onset: Instant?, now: Instant, sleepGoalMinutes: Int, target: Instant? = null): Boolean {
         if (onset == null) return false
+        if (target != null && !now.isBefore(target.minus(Duration.ofMinutes(LATE_MINUTES.toLong())))) return false
         return Duration.between(onset, now) < Duration.ofMinutes((sleepGoalMinutes - MARGIN_MINUTES).toLong())
     }
 

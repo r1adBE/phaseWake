@@ -582,4 +582,9 @@
     <string name="overview_no_stages">चरणों के बिना</string>
     <string name="settings_clear_history_learn">सीखने का चरण फिर से शुरू होता है।</string>
     <string name="learn_auto_hint">रातें गिनी जाएँ, इसके लिए शाम को घड़ी पर “शुभ रात्रि” टैप करो या “सो जाने का अपने आप पता लगाओ” चालू करो।</string>
+    <string name="learn_consent_title">सीखने का चरण</string>
+    <string name="learn_consent_text">ताकि Phase Wake अलार्म को तुम्हारे हिसाब से ढाल सके, तुम्हारी घड़ी %1$d रातों तक पूरी रात हलचल और पल्स रिकॉर्ड करती है। इसमें हर घंटे घड़ी की लगभग 3 %% बैटरी लगती है – सोने से पहले घड़ी चार्ज करो। डेटा तुम्हारे डिवाइस पर ही रहता है। सीखने का चरण तुम सेटिंग्स में कभी भी बंद कर सकते हो।</string>
+    <string name="learn_consent_start">सीखने का चरण शुरू करो</string>
+    <string name="learn_consent_later">बाद में</string>
+    <string name="learn_switch_hint">अलार्म ढालने के लिए तुम्हारी घड़ी पूरी रातें रिकॉर्ड करती है। बंद: कोई अपने-आप रिकॉर्डिंग नहीं, सीखे गए मान बने रहते हैं।</string>
 </resources>

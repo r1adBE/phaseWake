@@ -10,6 +10,7 @@ import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,13 +29,15 @@ import kotlin.math.roundToInt
 /**
  * Lernphase auf der Startseite: solange sie läuft «Lernphase: Nacht N von 7» ([night]) mit kurzer Erklärung, danach
  * einmal «Angepasst an dich» mit den gelernten Werten ([values]) und «OK» ([onSeen]). [autoHint]: «Einschlafen automatisch
- * erkennen» ist aus – dann der Hinweis, wie die Nächte trotzdem zählen.
+ * erkennen» ist aus – dann der Hinweis, wie die Nächte trotzdem zählen. [onConsent] gesetzt: noch nicht gefragt, die Karte
+ * fragt einmal «Lernphase starten» / «Später» (Audit F-02).
  */
 class HomeLearning(
     val night: Int?,
     val values: Learning.Values?,
     val autoHint: Boolean = false,
     val onSeen: () -> Unit = {},
+    val onConsent: ((Boolean) -> Unit)? = null,
 )
 
 /** Karte der Lernphase, siehe [HomeLearning]. */
@@ -47,15 +50,22 @@ internal fun LearningCard(learning: HomeLearning) {
     ) {
         Column(Modifier.fillMaxWidth().padding(horizontal = 18.dp, vertical = 14.dp)) {
             val values = learning.values
+            val onConsent = learning.onConsent
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(painterResource(R.drawable.ic_watch), contentDescription = null, tint = MaterialTheme.colorScheme.primary)
                 Text(
-                    if (values != null) stringResource(R.string.learned_title) else stringResource(R.string.learn_progress, learning.night ?: 1, Learning.NIGHTS),
+                    when {
+                        onConsent != null -> stringResource(R.string.learn_consent_title)
+                        values != null -> stringResource(R.string.learned_title)
+                        else -> stringResource(R.string.learn_progress, learning.night ?: 1, Learning.NIGHTS)
+                    },
                     style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(start = 14.dp),
                 )
             }
-            if (values != null) {
+            if (onConsent != null) {
+                LearningConsent(onConsent, MaterialTheme.colorScheme.onSurfaceVariant, Modifier.padding(top = 6.dp))
+            } else if (values != null) {
                 LearnedLines(values, MaterialTheme.colorScheme.onSurfaceVariant, Modifier.padding(top = 6.dp))
                 FilledTonalButton(onClick = learning.onSeen, modifier = Modifier.align(Alignment.End).padding(top = 8.dp)) {
                     Text(stringResource(R.string.wake_task_check))
@@ -75,6 +85,23 @@ internal fun LearningCard(learning: HomeLearning) {
                         modifier = Modifier.padding(top = 6.dp),
                     )
                 }
+            }
+        }
+    }
+}
+
+/**
+ * Frage zur Lernphase (Einrichtung und Startseite): was die Uhr aufzeichnet, Akku, Daten, abschaltbar; dann «Lernphase
+ * starten» ([onConsent] `true`) und «Später» (`false`).
+ */
+@Composable
+internal fun LearningConsent(onConsent: (Boolean) -> Unit, color: Color, modifier: Modifier = Modifier) {
+    Column(modifier) {
+        Text(stringResource(R.string.learn_consent_text, Learning.NIGHTS), style = MaterialTheme.typography.bodyMedium, color = color)
+        Row(Modifier.align(Alignment.End).padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+            TextButton(onClick = { onConsent(false) }) { Text(stringResource(R.string.learn_consent_later)) }
+            FilledTonalButton(onClick = { onConsent(true) }, modifier = Modifier.padding(start = 8.dp)) {
+                Text(stringResource(R.string.learn_consent_start))
             }
         }
     }

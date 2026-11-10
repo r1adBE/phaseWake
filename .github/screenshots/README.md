@@ -48,7 +48,7 @@ Trends der letzten 7 Tage (Schlafdauer, Regelmässigkeit, Befinden) und jede Nac
 
 ### Einrichtung
 
-Beim ersten Start in fünf Schritten, jederzeit überspringbar: Willkommen, Uhr verbinden, Rechte, erster Wecker, Probewecker – dann «Fertig».
+Beim ersten Start in sechs Schritten, jederzeit überspringbar: Willkommen, Uhr verbinden, Rechte, erster Wecker, Lernphase, Probewecker – dann «Fertig».
 
 <p>
 <img src="app/OnboardingWelcomeLight.png" width="200" alt="Einrichtung: Willkommen, hell">
@@ -61,6 +61,7 @@ Beim ersten Start in fünf Schritten, jederzeit überspringbar: Willkommen, Uhr 
 <img src="app/OnboardingAlarm.png" width="200" alt="Einrichtung: erster Wecker">
 </p>
 <p>
+<img src="app/OnboardingLearning.png" width="200" alt="Einrichtung: Lernphase">
 <img src="app/OnboardingTest.png" width="200" alt="Einrichtung: Probewecker">
 <img src="app/OnboardingDone.png" width="200" alt="Einrichtung: fertig">
 </p>

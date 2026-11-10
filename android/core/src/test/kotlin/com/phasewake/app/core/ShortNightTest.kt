@@ -32,6 +32,21 @@ class ShortNightTest {
     }
 
     @Test
+    fun lastTenMinutesBeforeTheTargetAreNotBlocked() {
+        // Fall r1AD 10.11.2026: eingeschlafen 01:51, Zielzeit 07:57, Ziel 7½ h (Grenze 08:21).
+        val onset = at("2026-11-10T01:51")
+        val target = at("2026-11-10T07:57")
+        assertEquals(10, ShortNight.LATE_MINUTES)
+        assertTrue(ShortNight.blocksEarly(onset, at("2026-11-10T07:32"), 450, target), "Moment um 07:32 übergangen")
+        assertTrue(ShortNight.blocksEarly(onset, at("2026-11-10T07:46"), 450, target))
+        assertFalse(ShortNight.blocksEarly(onset, at("2026-11-10T07:47"), 450, target), "ab 07:47 weckt ein neuer Moment")
+        assertFalse(ShortNight.blocksEarly(onset, at("2026-11-10T07:55"), 450, target))
+        // Ohne Zielzeit wie bisher bis zum Schluss gesperrt.
+        assertTrue(ShortNight.blocksEarly(onset, at("2026-11-10T07:50"), 450))
+        assertFalse(ShortNight.blocksEarly(null, at("2026-11-10T07:32"), 450, target))
+    }
+
+    @Test
     fun autoOnsetStartsOneHourBeforeBedtime() {
         val target = at("2026-10-29T07:00")
         // Bettzeit 23:30 (Ziel 7½ h), Messung ab 22:30.

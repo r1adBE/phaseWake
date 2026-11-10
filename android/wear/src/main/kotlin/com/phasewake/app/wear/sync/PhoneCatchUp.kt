@@ -10,6 +10,7 @@ import com.phasewake.app.core.DiagKind
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.phaseWakeStore
 import com.phasewake.app.wear.PhaseWakeWear
+import com.phasewake.app.wear.record.RecordControl
 import java.time.Instant
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.tasks.await
@@ -64,7 +65,10 @@ object PhoneCatchUp {
         try {
             // Lernphase: ändert keinen Plan, gilt ab der nächsten Messung.
             app.learningSync.fetch()?.let { learning ->
-                if (app.learning.setIfNewer(learning)) app.diag.log(DiagKind.SYNC, "learning ${learning.diagLine()}")
+                if (app.learning.setIfNewer(learning)) {
+                    app.diag.log(DiagKind.SYNC, "learning ${learning.diagLine()}")
+                    RecordControl.onLearningChanged(app, learning)
+                }
             }
         } catch (e: Exception) {
             if (e is kotlinx.coroutines.CancellationException) throw e

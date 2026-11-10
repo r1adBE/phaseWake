@@ -14,14 +14,23 @@ object Learning {
     /** So viele gezählte Nächte braucht die Lernphase (keine Kalendertage). */
     const val NIGHTS: Int = 7
 
-    /** Eine Nacht zählt ab so vielen Epochen mit Bewegung (3 Std.). */
-    const val MIN_MEASURED_EPOCHS: Int = 360
+    /**
+     * Eine Nacht zählt ab so vielen Epochen mit Bewegung (36 Min). Die Uhr misst in der Lernphase in Stichproben (60 s alle
+     * 5 Min, Entscheid r1AD 10.11.2026): 3 Std. ergeben 36 Stichproben = 72 Epochen.
+     */
+    const val MIN_MEASURED_EPOCHS: Int = 72
+
+    /** … und die Epochen mit Bewegung müssen mindestens so viele Epochen der Nacht überspannen (3 Std., erste bis letzte). */
+    const val MIN_SPAN_EPOCHS: Int = 360
 
     /** Die Uhr zeichnet in der Lernphase nur ab diesem Akkustand (Prozent) automatisch auf; der Wecker hat Vorrang. */
     const val MIN_BATTERY: Int = 50
 
-    /** Ein Ruhepuls je Nacht erst ab so vielen Epochen mit Puls (1 Std.); sonst wäre das 10. Perzentil zu zufällig. */
-    const val MIN_HEART_RATE_EPOCHS: Int = 120
+    /**
+     * Ein Ruhepuls je Nacht erst ab so vielen Epochen mit Puls (30 Min, in Stichproben rund 2½ Std. der Nacht); sonst
+     * wäre das 10. Perzentil zu zufällig.
+     */
+    const val MIN_HEART_RATE_EPOCHS: Int = 60
 
     /** Ruhepuls und Einschlafdauer erst aus so vielen Nächten mit Werten; sonst bleiben sie ungelernt. */
     const val MIN_VALUE_NIGHTS: Int = 3
@@ -60,8 +69,16 @@ object Learning {
     /** Epochen mit Bewegung. */
     fun measuredEpochs(night: Night): Int = night.epochs.count { it.motion != null }
 
-    /** Ob [night] zählt: mindestens [MIN_MEASURED_EPOCHS] Epochen mit Bewegung. */
-    fun counts(night: Night): Boolean = measuredEpochs(night) >= MIN_MEASURED_EPOCHS
+    /**
+     * Ob [night] zählt: mindestens [MIN_MEASURED_EPOCHS] Epochen mit Bewegung, und von der ersten bis zur letzten von ihnen
+     * mindestens [MIN_SPAN_EPOCHS] Epochen (gilt für Stichproben wie für durchgehende Aufzeichnungen).
+     */
+    fun counts(night: Night): Boolean {
+        val first = night.epochs.indexOfFirst { it.motion != null }
+        if (first < 0) return false
+        val last = night.epochs.indexOfLast { it.motion != null }
+        return measuredEpochs(night) >= MIN_MEASURED_EPOCHS && last - first + 1 >= MIN_SPAN_EPOCHS
+    }
 
     /**
      * Gezählte Nächte der Lernphase ab [since]: Beginn nicht vor [since], [counts], je Nachtdatum ([SleepNotes.nightDate]

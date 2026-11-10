@@ -585,4 +585,9 @@
     <string name="overview_no_stages">Pa faza</string>
     <string name="settings_clear_history_learn">Faza e mësimit fillon nga e para.</string>
     <string name="learn_auto_hint">Në mbrëmje prek „Natën e mirë“ në orë ose aktivizo „Dallo automatikisht kur fle“, që netët të numërohen.</string>
+    <string name="learn_consent_title">Faza e të mësuarit</string>
+    <string name="learn_consent_text">Që Phase Wake ta përshtatë alarmin për ty, ora jote regjistron lëvizjen dhe pulsin gjithë natën për %1$d netë. Kjo harxhon rreth 3 %% të baterisë së orës në orë – karikoje orën para se të flesh. Të dhënat mbeten në pajisjet e tua. Mund ta çaktivizosh fazën e të mësuarit në cilësime në çdo kohë.</string>
+    <string name="learn_consent_start">Nis fazën e të mësuarit</string>
+    <string name="learn_consent_later">Më vonë</string>
+    <string name="learn_switch_hint">Ora jote regjistron net të tëra për të përshtatur alarmin. Joaktive: pa regjistrim automatik, vlerat e mësuara mbeten.</string>
 </resources>

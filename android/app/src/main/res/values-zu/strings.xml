@@ -585,4 +585,9 @@
     <string name="overview_no_stages">Ngaphandle kwezigaba</string>
     <string name="settings_clear_history_learn">Isigaba sokufunda siqala kabusha.</string>
     <string name="learn_auto_hint">Kusihlwa thepha “Ulale kahle” ewashini noma uvule “Bona ngokuzenzakalela lapho ulala” ukuze ubusuku bubalwe.</string>
+    <string name="learn_consent_title">Isigaba sokufunda</string>
+    <string name="learn_consent_text">Ukuze i-Phase Wake ikwazi ukulungisa i-alamu ikufanele, iwashi lakho liqopha ukunyakaza nokushaya kwenhliziyo ubusuku bonke izinsuku zobusuku ezingu-%1$d. Lokhu kusebenzisa cishe u-3 %% webhethri lewashi ngehora – shaja iwashi ngaphambi kokulala. Idatha ihlala kumadivayisi akho. Ungavala isigaba sokufunda kuzilungiselelo noma nini.</string>
+    <string name="learn_consent_start">Qala isigaba sokufunda</string>
+    <string name="learn_consent_later">Kamuva</string>
+    <string name="learn_switch_hint">Iwashi lakho liqopha ubusuku obuphelele ukuze lilungise i-alamu. Kuvaliwe: akukho ukuqopha okuzenzakalelayo, amanani afundiwe ayahlala.</string>
 </resources>

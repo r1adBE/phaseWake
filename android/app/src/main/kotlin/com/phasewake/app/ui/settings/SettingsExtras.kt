@@ -61,40 +61,55 @@ class SettingsExtras(
     val learning: LearningSettings? = null,
 )
 
-/** Lernphase in den Einstellungen: «Nacht N von 7» ([night]) bzw. die gelernten Werte ([values]) und «Neu lernen». */
+/**
+ * Lernphase in den Einstellungen: Schalter «Lernphase» ([consent], [onConsent]), «Nacht N von 7» ([night], nur während
+ * sie läuft) bzw. die gelernten Werte ([values]) und «Neu lernen» ([onRestart], nur wenn sie schon begonnen hat).
+ */
 class LearningSettings(
     val night: Int?,
     val values: Learning.Values?,
-    val onRestart: () -> Unit,
+    val onRestart: (() -> Unit)?,
+    val consent: Boolean = false,
+    val onConsent: (Boolean) -> Unit = {},
 )
 
-/** Gruppe der Lernphase: Stand, gelernte Werte und «Neu lernen» mit Rückfrage. */
+/** Gruppe der Lernphase: Schalter, Stand, gelernte Werte und «Neu lernen» mit Rückfrage. */
 @Composable
 internal fun LearningGroup(ui: LearningSettings) {
     val values = ui.values
-    Group(if (values != null) stringResource(R.string.learned_title) else stringResource(R.string.learn_progress, ui.night ?: 1, Learning.NIGHTS)) {
+    val night = ui.night
+    val title = when {
+        values != null -> stringResource(R.string.learned_title)
+        night != null -> stringResource(R.string.learn_progress, night, Learning.NIGHTS)
+        else -> stringResource(R.string.learn_consent_title)
+    }
+    Group(title) {
+        SwitchRow(stringResource(R.string.learn_consent_title), stringResource(R.string.learn_switch_hint), ui.consent, ui.onConsent)
         if (values != null) {
             LearnedLines(values, MaterialTheme.colorScheme.onSurfaceVariant)
-        } else {
+        } else if (night != null) {
             Text(stringResource(R.string.learn_text, Learning.NIGHTS, Learning.MIN_BATTERY), style = MaterialTheme.typography.bodyMedium)
         }
-        var confirm by remember { mutableStateOf(false) }
-        Text(
-            stringResource(R.string.learn_restart),
-            style = MaterialTheme.typography.titleSmall,
-            color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.fillMaxWidth().clickable { confirm = true }.padding(vertical = 10.dp),
-        )
-        if (confirm) {
-            AlertDialog(
-                onDismissRequest = { confirm = false },
-                title = { Text(stringResource(R.string.learn_restart)) },
-                text = { Text(stringResource(R.string.learn_restart_text, Learning.NIGHTS)) },
-                confirmButton = {
-                    TextButton(onClick = { confirm = false; ui.onRestart() }) { Text(stringResource(R.string.learn_restart)) }
-                },
-                dismissButton = { TextButton(onClick = { confirm = false }) { Text(stringResource(R.string.action_cancel)) } },
+        val onRestart = ui.onRestart
+        if (onRestart != null) {
+            var confirm by remember { mutableStateOf(false) }
+            Text(
+                stringResource(R.string.learn_restart),
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.fillMaxWidth().clickable { confirm = true }.padding(vertical = 10.dp),
             )
+            if (confirm) {
+                AlertDialog(
+                    onDismissRequest = { confirm = false },
+                    title = { Text(stringResource(R.string.learn_restart)) },
+                    text = { Text(stringResource(R.string.learn_restart_text, Learning.NIGHTS)) },
+                    confirmButton = {
+                        TextButton(onClick = { confirm = false; onRestart() }) { Text(stringResource(R.string.learn_restart)) }
+                    },
+                    dismissButton = { TextButton(onClick = { confirm = false }) { Text(stringResource(R.string.action_cancel)) } },
+                )
+            }
         }
     }
 }

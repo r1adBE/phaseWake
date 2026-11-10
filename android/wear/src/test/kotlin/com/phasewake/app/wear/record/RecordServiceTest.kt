@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.BatteryManager
 import android.os.Looper
 import com.phasewake.app.core.Epoch
+import com.phasewake.app.shared.LearningSnapshot
 import com.phasewake.app.shared.NightRecording
 import com.phasewake.app.shared.RecordEnd
 import com.phasewake.app.shared.RecordSync
@@ -311,6 +312,24 @@ class RecordServiceTest {
         assertFalse(RecordControl.endsAtTarget(until, until, nightRunning = true), "klingelt noch: endet mit dem Wecken")
         assertFalse(RecordControl.endsAtTarget(until.minusMillis(1), until, nightRunning = false))
         assertEquals("wake", RecordService.reasonText(RecordEnd.WAKE, null))
+    }
+
+    @Test
+    fun learningSwitchedOffOnThePhoneEndsOnlyTheLearningRecording() {
+        val until = Instant.ofEpochMilli(System.currentTimeMillis()).plus(Duration.ofHours(8))
+        val service = learning(until)
+        // Noch an: nichts geschieht.
+        RecordControl.onLearningChanged(context, LearningSnapshot(true, null, null, 1L))
+        shadowOf(Looper.getMainLooper()).idle()
+        assertNotNull(service.active)
+        // Aus (Audit F-02): Der Befehl an den laufenden Dienst beendet sie als «am Handy gestoppt».
+        val shadowApp = shadowOf(RuntimeEnvironment.getApplication())
+        shadowApp.clearStartedServices()
+        RecordControl.onLearningChanged(context, LearningSnapshot(false, null, null, 2L))
+        val command = assertNotNull(shadowApp.nextStartedService)
+        assertEquals(RecordService.ACTION_END_LEARN, command.action)
+        service.onStartCommand(command, 0, 2)
+        awaitFinished(RecordEnd.PHONE)
     }
 
     @Test

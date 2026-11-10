@@ -568,4 +568,9 @@
     <string name="overview_no_stages">Không có giai đoạn</string>
     <string name="settings_clear_history_learn">Giai đoạn học bắt đầu lại từ đầu.</string>
     <string name="learn_auto_hint">Buổi tối, hãy nhấn “Ngủ ngon” trên đồng hồ hoặc bật “Tự động nhận biết khi bạn ngủ thiếp đi” để các đêm được tính.</string>
+    <string name="learn_consent_title">Giai đoạn học</string>
+    <string name="learn_consent_text">Để Phase Wake điều chỉnh báo thức theo bạn, đồng hồ của bạn ghi lại chuyển động và nhịp tim suốt đêm trong %1$d đêm. Việc này tốn khoảng 3 %% pin đồng hồ mỗi giờ – hãy sạc đồng hồ trước khi ngủ. Dữ liệu ở lại trên thiết bị của bạn. Bạn có thể tắt giai đoạn học trong phần cài đặt bất cứ lúc nào.</string>
+    <string name="learn_consent_start">Bắt đầu giai đoạn học</string>
+    <string name="learn_consent_later">Để sau</string>
+    <string name="learn_switch_hint">Đồng hồ của bạn ghi lại cả đêm để điều chỉnh báo thức. Tắt: không tự động ghi, các giá trị đã học vẫn giữ.</string>
 </resources>

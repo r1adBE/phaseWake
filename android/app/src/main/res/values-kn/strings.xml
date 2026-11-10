@@ -584,4 +584,9 @@
     <string name="overview_no_stages">ಹಂತಗಳಿಲ್ಲದೆ</string>
     <string name="settings_clear_history_learn">ಕಲಿಕೆಯ ಹಂತ ಮತ್ತೆ ಮೊದಲಿನಿಂದ ಆರಂಭವಾಗುತ್ತದೆ.</string>
     <string name="learn_auto_hint">ರಾತ್ರಿಗಳು ಎಣಿಕೆಯಾಗಲು ಸಂಜೆ ವಾಚ್‌ನಲ್ಲಿ “ಶುಭ ರಾತ್ರಿ” ಟ್ಯಾಪ್ ಮಾಡು ಅಥವಾ “ನಿದ್ರೆಗೆ ಜಾರುವುದನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪತ್ತೆಹಚ್ಚು” ಆನ್ ಮಾಡು.</string>
+    <string name="learn_consent_title">ಕಲಿಕೆಯ ಹಂತ</string>
+    <string name="learn_consent_text">Phase Wake ಅಲಾರಾಂ ಅನ್ನು ನಿಮಗೆ ಹೊಂದಿಸಲು, ನಿಮ್ಮ ವಾಚ್ %1$d ರಾತ್ರಿಗಳ ಕಾಲ ಇಡೀ ರಾತ್ರಿ ಚಲನೆ ಮತ್ತು ನಾಡಿಯನ್ನು ದಾಖಲಿಸುತ್ತದೆ. ಇದಕ್ಕೆ ಗಂಟೆಗೆ ಸುಮಾರು 3 %% ವಾಚ್ ಬ್ಯಾಟರಿ ಬೇಕು – ಮಲಗುವ ಮೊದಲು ವಾಚ್ ಚಾರ್ಜ್ ಮಾಡಿ. ಡೇಟಾ ನಿಮ್ಮ ಸಾಧನಗಳಲ್ಲೇ ಇರುತ್ತದೆ. ಕಲಿಕೆಯ ಹಂತವನ್ನು ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಯಾವಾಗ ಬೇಕಾದರೂ ಆಫ್ ಮಾಡಬಹುದು.</string>
+    <string name="learn_consent_start">ಕಲಿಕೆಯ ಹಂತ ಆರಂಭಿಸಿ</string>
+    <string name="learn_consent_later">ನಂತರ</string>
+    <string name="learn_switch_hint">ಅಲಾರಾಂ ಹೊಂದಿಸಲು ನಿಮ್ಮ ವಾಚ್ ಪೂರ್ತಿ ರಾತ್ರಿಗಳನ್ನು ದಾಖಲಿಸುತ್ತದೆ. ಆಫ್: ಸ್ವಯಂ ದಾಖಲೆ ಇಲ್ಲ, ಕಲಿತ ಮೌಲ್ಯಗಳು ಉಳಿಯುತ್ತವೆ.</string>
 </resources>

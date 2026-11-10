@@ -7,6 +7,8 @@ on:
 
 permissions:
   contents: read
+  # Prüfung, ob die CI für genau diesen Stand grün ist (Audit F-05).
+  actions: read
 
 concurrency:
   group: store
@@ -23,11 +25,37 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: main
+      - name: CI für diesen Stand grün?
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          # Gebaut wird main; das muss genau der Stand sein, für den der Lauf gestartet wurde (sonst nicht geprüft).
+          head=$(git rev-parse HEAD)
+          if [ "$head" != "$SHA" ]; then
+            echo "::error title=Store-Build::Ausgecheckt ist $head, gestartet für $SHA. Store-Build von main starten (und erst, wenn main sich nicht mehr ändert)."
+            exit 1
+          fi
+          # Ein erfolgreich abgeschlossener Lauf des Workflows «CI» (ci.yml) für genau diesen Commit.
+          ok=$(gh api "repos/${{ github.repository }}/actions/workflows/ci.yml/runs?head_sha=$SHA&status=success&per_page=1" --jq '.total_count')
+          if [ "${ok:-0}" -lt 1 ]; then
+            echo "::error title=Store-Build::Kein erfolgreicher CI-Lauf für $SHA. Erst die CI für diesen Stand grün laufen lassen (Commits mit [skip ci] haben keinen)."
+            exit 1
+          fi
+          echo "::notice title=Store-Build::CI für $SHA grün"
       - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
         with:
           distribution: temurin
           java-version: 21
       - uses: gradle/actions/setup-gradle@8da46b539cd8fe6ab27ca75128919a18d757604c # v6.4.1
+      - name: Tests
+        shell: bash
+        run: |
+          set -o pipefail
+          # Vor dem Signieren noch einmal die Unit-Tests dieses Stands (wie in der CI).
+          ./gradlew --stacktrace --continue :core:test :shared:testDebugUnitTest :app:testDebugUnitTest :wear:testDebugUnitTest 2>&1 | tee build.log
       - name: Upload-Schlüssel bereitstellen
         shell: bash
         env:
@@ -65,7 +93,7 @@ jobs:
         run: |
           set -o pipefail
           # Wie die CI: Release-Manifeste für release_check.py, dazu die Bundles.
-          ./gradlew --stacktrace :app:assembleRelease :wear:assembleRelease :app:bundleRelease :wear:bundleRelease 2>&1 | tee build.log
+          ./gradlew --stacktrace :app:assembleRelease :wear:assembleRelease :app:bundleRelease :wear:bundleRelease 2>&1 | tee -a build.log
       - name: Store-Build prüfen
         run: python3 ../.github/scripts/release_check.py
       - name: Signatur der Bundles prüfen

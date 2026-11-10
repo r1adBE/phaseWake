@@ -582,4 +582,9 @@
     <string name="overview_no_stages">Uten faser</string>
     <string name="settings_clear_history_learn">Læringsfasen starter på nytt.</string>
     <string name="learn_auto_hint">Trykk på «God natt» på klokken om kvelden, eller slå på «Registrer automatisk når du sovner», så nettene teller.</string>
+    <string name="learn_consent_title">Læringsfase</string>
+    <string name="learn_consent_text">For at Phase Wake skal kunne tilpasse alarmen til deg, registrerer klokken din bevegelse og puls hele natten i %1$d netter. Det bruker omtrent 3 %% av klokkebatteriet i timen – lad klokken før du legger deg. Dataene blir på enhetene dine. Du kan slå av læringsfasen i innstillingene når som helst.</string>
+    <string name="learn_consent_start">Start læringsfase</string>
+    <string name="learn_consent_later">Senere</string>
+    <string name="learn_switch_hint">Klokken din registrerer hele netter for å tilpasse alarmen. Av: ingen automatisk registrering, lærte verdier beholdes.</string>
 </resources>

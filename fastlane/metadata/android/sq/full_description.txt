@@ -3,6 +3,7 @@ Phase Wake të zgjon brenda intervalit të zgjimit sapo gjumi yt bëhet i shqet�
 Si funksionon
 • Zgjidh orën e zgjimit dhe intervalin (deri në 30 min), vendos orën në dorë, fli.
 • Ora mat gjatë intervalit të zgjimit dhe shkurtimisht në mbrëmje derisa të të zërë gjumi – kjo kursen baterinë.
+• Sipas dëshirës: faza e të mësuarit – ora jote regjistron lëvizjen dhe pulsin gjithë natën për 7 netë (rreth 3 % bateri në orë) dhe e përshtat alarmin për ty.
 • Dridhje në kyç, me tingull nëse dëshiron – telefoni bie si alarm rezervë, në rast se diçka shkon keq.
 • Mbaje shtypur për ta ndalur, shtyje deri në 3 herë.
 

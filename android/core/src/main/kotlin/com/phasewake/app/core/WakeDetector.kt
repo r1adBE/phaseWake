@@ -96,6 +96,14 @@ class WakeDetector(
         return sum / count >= baseline * (1.0 + config.heartRateRise)
     }
 
+    /**
+     * Übergangener Moment (kurze Nacht, [ShortNight.blocksEarly]): Die Entscheidung wird verworfen, die Erkennung läuft
+     * mit allen bisherigen Werten weiter und kann einen neuen Moment melden. Die Regel selbst bleibt unverändert.
+     */
+    fun rearm() {
+        result = null
+    }
+
     private fun wake(reason: WakeReason): Decision.Wake = Decision.Wake(reason).also { result = it }
 
     private companion object {

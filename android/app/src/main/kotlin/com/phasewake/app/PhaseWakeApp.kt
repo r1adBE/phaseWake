@@ -158,9 +158,8 @@ open class PhaseWakeApp : Application() {
             publishSleepGoal()
             // Schalter der Einschlaf-Messung am Abend (ebenso unverändert, wenn nichts geändert wurde).
             publishAutoOnset()
-            // Lernphase: beginnt nach der Installation bzw. beim ersten Start dieser Version; zählen, Stand an die Uhr
+            // Lernphase: beginnt nie von selbst, nur mit Zustimmung ([setLearningConsent]); zählen, Stand an die Uhr
             // (unverändert: gleiches Paket, die Uhr merkt nichts). Zuletzt: Ein Fehler hier hält das Planen nicht auf.
-            if (learning.ensureStarted(Instant.now())) diag.log(DiagKind.SYNC, "learn started")
             updateLearning()
             publishLearning()
         }
@@ -245,6 +244,18 @@ open class PhaseWakeApp : Application() {
      */
     internal open suspend fun publishLearning() {
         learningSync.publish(learning.current().snapshot())
+    }
+
+    /**
+     * Zustimmung zur Lernphase (Einrichtung, Karte auf der Startseite, Schalter in den Einstellungen): an beginnt sie
+     * bzw. läuft weiter, aus zeichnet die Uhr nicht mehr automatisch auf (eine laufende Aufzeichnung der Lernphase endet).
+     * Stand an die Uhr.
+     */
+    suspend fun setLearningConsent(on: Boolean) {
+        val started = learning.setConsent(on, Instant.now())
+        diag.log(DiagKind.SYNC, "learn consent ${if (on) "on" else "off"}${if (started) " started" else ""}")
+        updateLearning()
+        publishLearning()
     }
 
     /** «Verlauf löschen»: Lernphase ab jetzt von vorn, gelernte Werte verworfen (auch auf der Uhr). */

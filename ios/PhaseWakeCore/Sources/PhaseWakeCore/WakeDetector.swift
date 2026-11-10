@@ -102,6 +102,13 @@ public final class WakeDetector {
         return sum / Double(count) >= baseline * (1.0 + config.heartRateRise)
     }
 
+    /// Übergangener Moment (kurze Nacht, ``ShortNight/blocksEarly(onset:now:sleepGoalMinutes:target:)``): Die
+    /// Entscheidung wird verworfen, die Erkennung läuft mit allen bisherigen Werten weiter und kann einen neuen Moment
+    /// melden. Die Regel selbst bleibt unverändert. Identisch zu `WakeDetector.rearm` (Kotlin).
+    public func rearm() {
+        result = nil
+    }
+
     private func wake(_ reason: WakeReason) -> Decision {
         result = reason
         return .wake(reason)

@@ -582,4 +582,9 @@
     <string name="overview_no_stages">Fázisok nélkül</string>
     <string name="settings_clear_history_learn">A tanulási szakasz elölről kezdődik.</string>
     <string name="learn_auto_hint">Este koppints az órán a(z) „Jó éjszakát” gombra, vagy kapcsold be: „Elalvás automatikus felismerése”, hogy az éjszakák számítsanak.</string>
+    <string name="learn_consent_title">Tanulási szakasz</string>
+    <string name="learn_consent_text">Hogy a Phase Wake hozzád igazíthassa az ébresztést, az órád %1$d éjszakán át egész éjjel rögzíti a mozgást és a pulzust. Ez óránként az óra akkumulátorának kb. 3 %%-át használja – alvás előtt töltsd fel az órát. Az adatok a készülékeiden maradnak. A tanulási szakaszt bármikor kikapcsolhatod a beállításokban.</string>
+    <string name="learn_consent_start">Tanulási szakasz indítása</string>
+    <string name="learn_consent_later">Később</string>
+    <string name="learn_switch_hint">Az órád egész éjszakákat rögzít az ébresztés igazításához. Ki: nincs automatikus rögzítés, a tanult értékek megmaradnak.</string>
 </resources>

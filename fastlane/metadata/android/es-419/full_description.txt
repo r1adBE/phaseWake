@@ -3,6 +3,7 @@ Phase Wake te despierta dentro de tu ventana de despertar en cuanto te inquietas
 Cómo funciona
 • Elige la hora y la ventana (hasta 30 min), ponte el reloj y a dormir.
 • El reloj mide durante la ventana de despertar y, por la noche, un rato hasta que te duermes – así cuida la batería.
+• Opcional: fase de aprendizaje – tu reloj registra movimiento y pulso toda la noche durante 7 noches (alrededor del 3 % de batería por hora) y adapta la alarma a ti.
 • Vibración en la muñeca, con sonido si quieres – el celular suena también como alarma de respaldo por si algo falla.
 • Mantén presionado para detener, pospón hasta 3 veces.
 

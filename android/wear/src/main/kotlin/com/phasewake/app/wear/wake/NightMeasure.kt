@@ -190,13 +190,16 @@ internal fun WakeService.onEpochs(n: Night, epochs: List<Epoch>) {
     if (night !== n || n.phase != Phase.MEASURING) return
     for (epoch in epochs) {
         n.epochs += epoch
-        // «Genau» oder schon übergangene kurze Nacht: nur noch für den Verlauf messen, geweckt wird zur Zielzeit.
-        if (n.exact || n.earlyBlocked) continue
+        // «Genau»: nur für den Verlauf messen, geweckt wird zur Zielzeit.
+        if (n.exact) continue
         val decision = n.detector.onEpoch(epoch)
         if (decision is Decision.Wake) {
-            if (ShortNight.blocksEarly(n.asleepAt, Instant.now(), n.goalMinutes)) {
+            // Kurze Nacht: Moment übergehen (nicht nachholen), weiter erkennen; in den letzten
+            // [ShortNight.LATE_MINUTES] vor der Zielzeit weckt ein neuer Moment (Entscheid r1AD 10.11.2026).
+            if (ShortNight.blocksEarly(n.asleepAt, Instant.now(), n.goalMinutes, n.plan.target)) {
+                n.detector.rearm()
+                if (!n.earlyBlocked) app.diag.log(DiagKind.PHASE, "${decision.reason.name} ignored, short night")
                 n.earlyBlocked = true
-                app.diag.log(DiagKind.PHASE, "${decision.reason.name} ignored, short night")
                 continue
             }
             n.reason = decision.reason

@@ -585,4 +585,9 @@
     <string name="overview_no_stages">Без фази</string>
     <string name="settings_clear_history_learn">Фазата на учење почнува одново.</string>
     <string name="learn_auto_hint">Навечер допри „Добра ноќ“ на часовникот или вклучи „Автоматски препознај заспивање“ за ноќите да се бројат.</string>
+    <string name="learn_consent_title">Фаза на учење</string>
+    <string name="learn_consent_text">За Phase Wake да го прилагоди алармот кон тебе, твојот часовник %1$d ноќи цела ноќ снима движење и пулс. Тоа троши околу 3 %% од батеријата на часовникот на час – наполни го часовникот пред спиење. Податоците остануваат на твоите уреди. Фазата на учење можеш да ја исклучиш во поставките во секое време.</string>
+    <string name="learn_consent_start">Започни ја фазата на учење</string>
+    <string name="learn_consent_later">Подоцна</string>
+    <string name="learn_switch_hint">Твојот часовник снима цели ноќи за да го прилагоди алармот. Исклучено: нема автоматско снимање, научените вредности остануваат.</string>
 </resources>

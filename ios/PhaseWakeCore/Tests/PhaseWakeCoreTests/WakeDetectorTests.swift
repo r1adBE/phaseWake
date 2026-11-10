@@ -73,6 +73,20 @@ final class WakeDetectorTests: XCTestCase {
         XCTAssertEqual(detector.finish(), .awake)
     }
 
+    func testRearmDropsTheMomentAndWaitsForANewOne() {
+        let detector = WakeDetector()
+        _ = feed(detector, still, still, Epoch(motion: 0.5, heartRate: 52.0), Epoch(motion: 0.5, heartRate: 52.0))
+        XCTAssertEqual(detector.onEpoch(still), .wake(.awake))
+        detector.rearm()
+        XCTAssertNil(detector.result)
+        // Solange die Unruhe im Fenster der Regel liegt, meldet sie sich wieder (die Uhr übergeht sie erneut); danach
+        // weckt erst neue Bewegung.
+        _ = feed(detector, still, still, still)
+        detector.rearm()
+        XCTAssertEqual(feed(detector, still, Epoch(motion: 0.5, heartRate: 52.0)), [.wait, .wait])
+        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.5, heartRate: 52.0)), .wake(.awake))
+    }
+
     func testFinishWithoutWakeIsDeadline() {
         let detector = WakeDetector()
         _ = feed(detector, still, still, still)

@@ -596,4 +596,9 @@
     <string name="overview_no_stages">ללא שלבים</string>
     <string name="settings_clear_history_learn">שלב הלמידה מתחיל מחדש.</string>
     <string name="learn_auto_hint">בערב הקש על “לילה טוב” בשעון או הפעל את “זיהוי הירדמות אוטומטי” כדי שהלילות ייספרו.</string>
+    <string name="learn_consent_title">שלב למידה</string>
+    <string name="learn_consent_text">כדי ש-Phase Wake יוכל להתאים את השעון המעורר אליך, השעון שלך מתעד תנועה ודופק לאורך כל הלילה במשך %1$d לילות. זה צורך כ-3 %% מסוללת השעון בשעה – כדאי לטעון את השעון לפני השינה. הנתונים נשארים במכשירים שלך. אפשר לכבות את שלב הלמידה בהגדרות בכל עת.</string>
+    <string name="learn_consent_start">להתחיל את שלב הלמידה</string>
+    <string name="learn_consent_later">אחר כך</string>
+    <string name="learn_switch_hint">השעון שלך מתעד לילות שלמים כדי להתאים את ההשכמה. כבוי: אין תיעוד אוטומטי, הערכים שנלמדו נשמרים.</string>
 </resources>

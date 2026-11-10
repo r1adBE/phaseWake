@@ -582,4 +582,9 @@
     <string name="overview_no_stages">Zonder fases</string>
     <string name="settings_clear_history_learn">De leerfase begint opnieuw.</string>
     <string name="learn_auto_hint">Tik ’s avonds op je horloge op “Welterusten” of zet “Inslapen automatisch herkennen” aan, zodat de nachten meetellen.</string>
+    <string name="learn_consent_title">Leerfase</string>
+    <string name="learn_consent_text">Zodat Phase Wake de wekker op jou kan afstemmen, registreert je horloge %1$d nachten lang de hele nacht beweging en hartslag. Dat kost ongeveer 3 %% horlogebatterij per uur – laad het horloge op voordat je gaat slapen. De gegevens blijven op je apparaten. Je kunt de leerfase op elk moment uitzetten in de instellingen.</string>
+    <string name="learn_consent_start">Leerfase starten</string>
+    <string name="learn_consent_later">Later</string>
+    <string name="learn_switch_hint">Je horloge registreert hele nachten om de wekker af te stemmen. Uit: geen automatische registratie, geleerde waarden blijven.</string>
 </resources>

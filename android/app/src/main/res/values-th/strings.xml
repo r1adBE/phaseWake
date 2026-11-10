@@ -568,4 +568,9 @@
     <string name="overview_no_stages">ไม่มีระยะ</string>
     <string name="settings_clear_history_learn">ช่วงเรียนรู้จะเริ่มใหม่ตั้งแต่ต้น</string>
     <string name="learn_auto_hint">ตอนเย็นให้แตะ “ราตรีสวัสดิ์” บนนาฬิกา หรือเปิด “ตรวจจับการหลับโดยอัตโนมัติ” เพื่อให้นับคืน</string>
+    <string name="learn_consent_title">ช่วงเรียนรู้</string>
+    <string name="learn_consent_text">เพื่อให้ Phase Wake ปรับนาฬิกาปลุกให้เข้ากับคุณ นาฬิกาของคุณจะบันทึกการเคลื่อนไหวและชีพจรตลอดทั้งคืนเป็นเวลา %1$d คืน ซึ่งใช้แบตเตอรี่นาฬิกาประมาณ 3 %% ต่อชั่วโมง – ชาร์จนาฬิกาก่อนนอน ข้อมูลอยู่บนอุปกรณ์ของคุณ คุณปิดช่วงเรียนรู้ได้ทุกเมื่อในการตั้งค่า</string>
+    <string name="learn_consent_start">เริ่มช่วงเรียนรู้</string>
+    <string name="learn_consent_later">ไว้ทีหลัง</string>
+    <string name="learn_switch_hint">นาฬิกาของคุณบันทึกทั้งคืนเพื่อปรับนาฬิกาปลุก ปิด: ไม่บันทึกอัตโนมัติ ค่าที่เรียนรู้แล้วยังอยู่</string>
 </resources>

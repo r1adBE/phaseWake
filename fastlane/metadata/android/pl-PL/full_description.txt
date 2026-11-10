@@ -3,6 +3,7 @@ Phase Wake budzi cię w oknie budzenia, gdy tylko twój sen staje się niespokoj
 Jak to działa
 • Wybierz godzinę budzenia i okno (do 30 min), załóż zegarek, śpij.
 • Zegarek mierzy w oknie budzenia i krótko wieczorem, aż zaśniesz – to oszczędza baterię.
+• Opcjonalnie: faza nauki – zegarek przez 7 nocy rejestruje ruch i tętno przez całą noc (około 3 % baterii na godzinę) i dopasowuje budzik do ciebie.
 • Wibracje na nadgarstku, na życzenie z dźwiękiem – telefon dzwoni jako budzik zapasowy, gdyby coś poszło nie tak.
 • Przytrzymaj, aby wyłączyć; drzemka do 3 razy.
 

@@ -3,6 +3,7 @@ Phase Wake ťa zobudí v okne budenia, len čo sa tvoj spánok stane nepokojným
 Ako to funguje
 • Vyber čas budenia a okno budenia (až 30 min), nasaď si hodinky, spi.
 • Hodinky merajú počas okna budenia a večer krátko, kým nezaspíš – to šetrí batériu.
+• Voliteľne: fáza učenia – hodinky 7 nocí zaznamenávajú celú noc pohyb a pulz (asi 3 % batérie za hodinu) a prispôsobia budík tebe.
 • Vibrácie na zápästí, ak chceš, aj so zvukom – telefón zazvoní ako záložný budík, keby sa niečo pokazilo.
 • Podrž na zastavenie, odlož až 3-krát.
 

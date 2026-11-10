@@ -9,7 +9,7 @@ public enum WakeReason: String, CaseIterable, Sendable {
     case deadline = "DEADLINE"
     /// Wecker «Genau» (``AlarmSpec/isExact``): zur Zielzeit geweckt, nie früher; die Uhr hat nur für den Verlauf gemessen.
     case exact = "EXACT"
-    /// Kurze Nacht (``ShortNight/blocksEarly(onset:now:sleepGoalMinutes:)``): frühe Momente übergangen, zur Zielzeit geweckt.
+    /// Kurze Nacht (``ShortNight/blocksEarly(onset:now:sleepGoalMinutes:target:)``): frühe Momente übergangen, zur Zielzeit geweckt.
     case shortNight = "SHORT_NIGHT"
 
     /// Ob zur Zielzeit geweckt wurde, weil kein früher Moment zählte (`deadline`, `exact`, `shortNight`).

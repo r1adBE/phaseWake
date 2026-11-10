@@ -613,4 +613,9 @@
     <string name="overview_no_stages">Be fazių</string>
     <string name="settings_clear_history_learn">Mokymosi etapas prasideda iš naujo.</string>
     <string name="learn_auto_hint">Vakare bakstelėk laikrodyje „Labanakt“ arba įjunk „Automatiškai atpažinti užmigimą“, kad naktys būtų skaičiuojamos.</string>
+    <string name="learn_consent_title">Mokymosi etapas</string>
+    <string name="learn_consent_text">Kad Phase Wake galėtų pritaikyti žadintuvą tau, tavo laikrodis %1$d naktis visą naktį įrašo judesį ir pulsą. Tai sunaudoja apie 3 %% laikrodžio baterijos per valandą – įkrauk laikrodį prieš miegą. Duomenys lieka tavo įrenginiuose. Mokymosi etapą gali bet kada išjungti nustatymuose.</string>
+    <string name="learn_consent_start">Pradėti mokymosi etapą</string>
+    <string name="learn_consent_later">Vėliau</string>
+    <string name="learn_switch_hint">Tavo laikrodis įrašo visas naktis, kad pritaikytų žadintuvą. Išjungta: jokio automatinio įrašymo, išmoktos vertės lieka.</string>
 </resources>

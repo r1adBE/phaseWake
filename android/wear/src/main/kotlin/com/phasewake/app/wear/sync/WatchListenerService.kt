@@ -67,7 +67,10 @@ class WatchListenerService : WearableListenerService() {
             val newOnset = autoOnset != null && app.autoOnset.setIfNewer(autoOnset.first, autoOnset.second)
             if (newOnset) app.diag.log(DiagKind.SYNC, "auto onset ${autoOnset.first}")
             // Lernphase: gilt ab der nächsten Einschlaf-Messung bzw. dem nächsten Weckfenster, kein Neuplanen nötig.
-            if (learning != null && app.learning.setIfNewer(learning)) app.diag.log(DiagKind.SYNC, "learning ${learning.diagLine()}")
+            if (learning != null && app.learning.setIfNewer(learning)) {
+                app.diag.log(DiagKind.SYNC, "learning ${learning.diagLine()}")
+                RecordControl.onLearningChanged(this@WatchListenerService, learning)
+            }
             // Zeitpunkt merken, damit [PhoneCatchUp] dasselbe Löschen später nicht noch einmal anwendet.
             // Ältere Handys ohne Zeitpunkt: wie bisher alles löschen.
             when {

@@ -160,9 +160,11 @@ Upload-Schlüssel. Google signiert die Apps danach mit dem eigenen App-Signaturs
    | `PLAY_UPLOAD_KEY_ALIAS` | `phasewake-upload` |
    | `PLAY_UPLOAD_KEY_PASSWORD` | Passwort des Schlüssels (bei PKCS12 dasselbe wie oben) |
 
-4. **Bauen:** Actions → «Store-Build» → Run workflow. Fehlt ein Secret, bricht der Lauf mit einer Meldung ab. Der Lauf
-   prüft den Release-Build (`release_check.py`) und dass beide Bundles mit dem Upload-Schlüssel signiert sind; der
-   Keystore wird am Ende gelöscht.
+4. **Bauen:** Actions → «Store-Build» → Run workflow (von `main`). Fehlt ein Secret, bricht der Lauf mit einer Meldung ab.
+   Vor dem Signieren prüft der Lauf, dass der Workflow «CI» für genau diesen Commit erfolgreich abgeschlossen ist (sonst
+   Abbruch mit Meldung; ein Commit mit `[skip ci]` hat keinen CI-Lauf, dann erst einen geprüften Stand auf `main` bringen),
+   und führt die Unit-Tests noch einmal aus (Audit F-05). Danach prüft er den Release-Build (`release_check.py`) und dass
+   beide Bundles mit dem Upload-Schlüssel signiert sind; der Keystore wird am Ende gelöscht.
 5. **Herunterladen:** im Lauf unter Artifacts `phasewake-store-<Nummer>` (7 Tage aufbewahrt), darin
    `PhaseWake-Handy-<Nummer>.aab` und `PhaseWake-Uhr-<Nummer>.aab`.
 6. **Hochladen in der Play Console:** App anlegen, Play App Signing eingeschaltet lassen (Standard) und beim ersten

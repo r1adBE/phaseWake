@@ -46,6 +46,7 @@ import com.phasewake.app.PhaseWakeApp
 import com.phasewake.app.R
 import com.phasewake.app.companion.CompanionLink
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.Learning
 import com.phasewake.app.core.Transient
 import com.phasewake.app.ring.WakeTones
 import com.phasewake.app.ui.Format
@@ -58,19 +59,21 @@ import com.phasewake.app.ui.editor.WEEKDAYS
 import com.phasewake.app.ui.editor.WINDOW_OPTIONS
 import com.phasewake.app.ui.editor.scaled
 import com.phasewake.app.ui.home.Check
+import com.phasewake.app.ui.home.LearningConsent
 import com.phasewake.app.ui.home.MAX_ALARMS
 import com.phasewake.app.ui.home.NightCheckState
 import com.phasewake.app.ui.settings.HealthState
 import com.phasewake.app.ui.startTest
 import java.time.Instant
 import java.util.UUID
+import kotlinx.coroutines.launch
 
 /** Schritte der Ersteinrichtung; danach «Fertig». */
-private const val STEPS = 5
+private const val STEPS = 6
 
 /**
- * Ersteinrichtung in fünf Schritten (jederzeit überspringbar): Willkommen, Uhr verbinden, Rechte, erster Wecker,
- * Probewecker – dann «Fertig». Zustand der Uhr und Rechte kommen aus dem Nacht-Check ([NavState.nightCheck]).
+ * Ersteinrichtung in sechs Schritten (jederzeit überspringbar): Willkommen, Uhr verbinden, Rechte, erster Wecker,
+ * Lernphase (Zustimmung, Audit F-02), Probewecker – dann «Fertig». Zustand der Uhr und Rechte kommen aus dem Nacht-Check ([NavState.nightCheck]).
  */
 @Composable
 internal fun OnboardingScreen(app: PhaseWakeApp, state: NavState, actions: NavActions, onDone: () -> Unit) {
@@ -89,6 +92,8 @@ internal fun OnboardingScreen(app: PhaseWakeApp, state: NavState, actions: NavAc
         onStartTest = { startTest(app) },
         // Neu gelesen mit jedem Nacht-Check (nach dem Verbinden prüft er sofort neu).
         companionLinked = remember(state.nightCheck.check) { CompanionLink.isAssociated(app) },
+        learningConsent = state.data.learning?.consent,
+        onLearningConsent = { on -> app.appScope.launch { app.setLearningConsent(on) } },
     )
     OnboardingContent(page, onPage = { page = it }, model, onDone)
 }
@@ -108,6 +113,9 @@ internal class OnboardingModel(
     val onStartTest: () -> Unit,
     /** Ob Phase Wake schon Begleit-App der Uhr ist ([Check.COMPANION]). */
     val companionLinked: Boolean = false,
+    /** Zustimmung zur Lernphase: `true` an, `false` «Später»/aus, `null` noch nicht gefragt. */
+    val learningConsent: Boolean? = null,
+    val onLearningConsent: (Boolean) -> Unit = {},
 )
 
 /** Einrichtung ohne eigenen Seitenzustand: Seite [page] (0–[STEPS]; [STEPS] = «Fertig»), Wechsel über [onPage]. */
@@ -132,7 +140,8 @@ internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: Onboardi
                 1 -> WatchStep(model)
                 2 -> RightsStep(model)
                 3 -> AlarmStep(model)
-                4 -> TestPage(model)
+                4 -> LearningStep(model)
+                5 -> TestPage(model)
                 else -> Page(R.string.onb_done_title) { Body(R.string.onb_done_text) }
             }
         }
@@ -241,6 +250,19 @@ private fun AlarmStep(model: OnboardingModel) {
                 model.onCreateAlarm(spec)
                 created = Format.window(context, spec)
             }) { Text(stringResource(R.string.onb_alarm_create)) }
+        }
+    }
+}
+
+/** Lernphase: Frage mit «Lernphase starten» / «Später»; nach dem Start «✓ Erlaubt». */
+@Composable
+private fun LearningStep(model: OnboardingModel) {
+    Page(R.string.learn_consent_title) {
+        if (model.learningConsent == true) {
+            Text(stringResource(R.string.learn_consent_text, Learning.NIGHTS), style = MaterialTheme.typography.bodyLarge)
+            Text("✓ " + stringResource(R.string.onb_granted), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+        } else {
+            LearningConsent(model.onLearningConsent, MaterialTheme.colorScheme.onSurface)
         }
     }
 }
