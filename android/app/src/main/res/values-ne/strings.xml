@@ -53,7 +53,6 @@
     <string name="editor_latest">बढीमा</string>
     <string name="editor_sleep_duration">%1$s सुत</string>
     <string name="editor_sleep_hint">तिमी निदाएदेखि गनिन्छ। घडीले यो आफैँ पत्ता लगाउँछ; तुरुन्तै सुरु गर्न घडीमा “शुभ रात्रि” थिच।</string>
-    <string name="editor_sleep_wear_only">निद्राको अवधि मोड Galaxy Watch सँग मात्र चल्छ। Apple Watch सँग यो अलार्मले तिमीलाई आफ्नो सामान्य अवधिभित्र लक्षित समयसम्म ब्युँझाउँछ।</string>
     <string name="editor_window">अवधि: %1$d मि.</string>
     <string name="editor_window_hint">%1$s र %2$s बीच ब्युँझाउँछ</string>
     <string name="editor_window_exact">ठ्याक्कै</string>

@@ -53,7 +53,6 @@
     <string name="editor_latest">Pinakahuli</string>
     <string name="editor_sleep_duration">Matulog nang %1$s</string>
     <string name="editor_sleep_hint">Bibilang mula nang makatulog ka. Awtomatiko itong natutukoy ng relo mo; i-tap ang “Matutulog na” sa relo para magsimula agad.</string>
-    <string name="editor_sleep_wear_only">Gumagana lang ang mode na haba ng tulog sa Galaxy Watch. Sa Apple Watch, gigisingin ka ng alarm na ito sa karaniwang window nito hanggang sa target na oras.</string>
     <string name="editor_window">Window: %1$d min</string>
     <string name="editor_window_hint">Gigisingin ka mula %1$s hanggang %2$s</string>
     <string name="editor_window_exact">Eksakto</string>

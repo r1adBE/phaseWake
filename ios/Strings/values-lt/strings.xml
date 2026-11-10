@@ -29,5 +29,6 @@
     <string name="check_watch_notifications">Pranešimai laikrodyje</string>
     <string name="check_watch_notifications_problem">Leisk Phase Wake rodyti laikui jautrius pranešimus tavo Apple Watch. Kitaip laikrodis negalės tavęs pažadinti pranešimu, kai nevyksta matavimas.</string>
     <string name="check_watch_state_old">Laikrodžio būsena pasenusi – trumpam atidaryk Phase Wake laikrodyje.</string>
-    <string name="editor_sleep_apple">Apple Watch laikrodyje Phase Wake įvertina, kada užmiegi, pagal išmoktą tavo užmigimo trukmę.</string>
+    <string name="editor_sleep_hint_apple">Skaičiuojama nuo užmigimo – eidamas miegoti laikrodyje paliesk „Labanakt“. Apple Watch laikrodyje Phase Wake įvertina, kada užmiegi, pagal išmoktą tavo užmigimo trukmę. Nepalietus galioja nustatytas laikas.</string>
+    <string name="auto_onset_hint_apple">Nuo 1 valandos prieš miegą tavo Apple Watch įrašo judėjimą; žadinimo lango pradžioje Phase Wake apskaičiuoja, kada užmigai.</string>
 </resources>

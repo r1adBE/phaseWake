@@ -1,4 +1,4 @@
-Phase Wake membangunkan awak dalam tetingkap bangun sebaik sahaja awak mula gelisah – ketika itu tidur awak mungkin ringan. Selewat-lewatnya pada masa sasaran; jika Apple Watch tidak sedang mengukur, kira-kira 1 minit kemudian melalui pemberitahuan. Untuk itu, Apple Watch memantau pergerakan dan kadar denyutan jantung. Pada Apple Watch, Phase Wake mengukur 25 minit terakhir sebelum masa sasaran. Ia tidak dapat mengetahui sama ada malam awak terlalu singkat.
+Phase Wake membangunkan awak dalam tetingkap bangun sebaik sahaja awak mula gelisah – ketika itu tidur awak mungkin ringan. Selewat-lewatnya pada masa sasaran; jika Apple Watch tidak sedang mengukur, kira-kira 1 minit kemudian melalui pemberitahuan. Untuk itu, Apple Watch memantau pergerakan dan kadar denyutan jantung. Pada Apple Watch, Phase Wake mengukur 25 minit terakhir sebelum masa sasaran. Daripada pergerakan yang dirakamnya pada waktu malam, ia juga tahu sama ada malam awak terlalu singkat.
 
 Cara ia berfungsi
 • Pilih masa bangun dan tetingkap (hingga 30 min), pakai jam tangan, tidur.

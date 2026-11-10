@@ -52,7 +52,6 @@
     <string name="editor_latest">Como tarde</string>
     <string name="editor_sleep_duration">Dormir %1$s</string>
     <string name="editor_sleep_hint">Cuenta desde que te duermes. Tu reloj lo detecta automáticamente; toca «Buenas noches» en el reloj para empezar ya.</string>
-    <string name="editor_sleep_wear_only">El modo de duración del sueño solo funciona con un Galaxy Watch. Con un Apple Watch, esta alarma te despierta en su ventana normal hasta la hora objetivo.</string>
     <string name="editor_window">Ventana: %1$d min</string>
     <string name="editor_window_hint">Te despierta entre las %1$s y las %2$s</string>
     <string name="editor_window_exact">Exacto</string>

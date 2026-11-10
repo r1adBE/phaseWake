@@ -49,6 +49,25 @@ final class WatchNight {
         }
     }
 
+    // MARK: Einschlafen automatisch erkennen
+
+    /// Schalter «Einschlafen automatisch erkennen» (Standard ein, wie Android; in der Sicherung wie bisher): Die Apple
+    /// Watch startet dann jede Nacht den Bewegungs-Rekorder für die Einschlafzeit (`AppleAutoOnset`). Von jedem Thread.
+    nonisolated static var autoOnset: Bool {
+        SettingsFile.phone.object(forKey: BackupIO.autoOnsetKey) as? Bool ?? true
+    }
+
+    /// Ändert den Schalter (Einstellungen) und schickt ihn an die Uhr.
+    func setAutoOnset(_ on: Bool) {
+        SettingsFile.phone.set(on, forKey: BackupIO.autoOnsetKey)
+        autoOnsetRevision += 1
+        DiagStore.shared.log(.sync, "auto onset \(on ? "on" : "off")")
+        PhoneModel.shared.publishToWatch()
+    }
+
+    /// Zähler, damit die Einstellungen nach `setAutoOnset` neu zeichnen.
+    private(set) var autoOnsetRevision = 0
+
     // MARK: «Gute Nacht»
 
     /// Gemerkte frühere Zielzeit, solange ihre Nacht läuft (danach gelöscht); sonst `nil`.

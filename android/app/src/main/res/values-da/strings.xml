@@ -51,7 +51,6 @@
     <string name="editor_latest">Senest</string>
     <string name="editor_sleep_duration">Sov i %1$s</string>
     <string name="editor_sleep_hint">Tæller fra du falder i søvn. Uret registrerer det automatisk; tryk på »Godnat« på uret for at starte med det samme.</string>
-    <string name="editor_sleep_wear_only">Søvnlængde-tilstanden virker kun med et Galaxy Watch. Med et Apple Watch vækker denne alarm dig i sit normale vindue frem til ønsket tid.</string>
     <string name="editor_window">Vindue: %1$d min</string>
     <string name="editor_window_hint">Vækker dig mellem %1$s og %2$s</string>
     <string name="editor_window_exact">Præcis</string>

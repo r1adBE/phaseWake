@@ -29,5 +29,6 @@
     <string name="check_watch_notifications">घड्याळावर सूचना</string>
     <string name="check_watch_notifications_problem">तुमच्या Apple Watch वर Phase Wake साठी वेळ-संवेदनशील सूचनांना परवानगी द्या. नाहीतर मोजमाप चालू नसताना ते तुम्हाला सूचनेद्वारे उठवू शकणार नाही.</string>
     <string name="check_watch_state_old">घड्याळाची स्थिती जुनी आहे – घड्याळावर Phase Wake थोडा वेळ उघडा.</string>
-    <string name="editor_sleep_apple">Apple Watch वर Phase Wake शिकलेल्या झोप लागण्याच्या वेळेवरून तुम्ही कधी झोपता याचा अंदाज लावते.</string>
+    <string name="editor_sleep_hint_apple">झोप लागल्यापासून मोजले जाते – झोपायला जाताना घड्याळावर «शुभ रात्री» टॅप करा. Apple Watch वर Phase Wake शिकलेल्या झोप लागण्याच्या वेळेवरून तुम्ही कधी झोपता याचा अंदाज लावते. टॅप न केल्यास सेट केलेली वेळ लागू होते.</string>
+    <string name="auto_onset_hint_apple">झोपण्याच्या वेळेच्या 1 तास आधीपासून तुमचे Apple Watch हालचाल नोंदवते; उठवण्याच्या कालावधीच्या सुरुवातीला Phase Wake तुम्ही कधी झोपलात ते मोजते.</string>
 </resources>

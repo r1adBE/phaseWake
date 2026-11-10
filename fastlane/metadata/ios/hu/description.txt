@@ -1,4 +1,4 @@
-A Phase Wake az ébresztési ablakon belül ébreszt, amint nyugtalan leszel – ilyenkor valószínűleg éppen könnyen alszol. Legkésőbb a célidőben; ha az Apple Watchon nem fut mérés, körülbelül 1 perccel később értesítéssel. Ehhez az Apple Watch figyeli a mozgást és a pulzust. Apple Watchon a Phase Wake a célidő előtti utolsó 25 percet méri. Azt nem ismeri fel, hogy túl rövid volt-e az éjszakád.
+A Phase Wake az ébresztési ablakon belül ébreszt, amint nyugtalan leszel – ilyenkor valószínűleg éppen könnyen alszol. Legkésőbb a célidőben; ha az Apple Watchon nem fut mérés, körülbelül 1 perccel később értesítéssel. Ehhez az Apple Watch figyeli a mozgást és a pulzust. Apple Watchon a Phase Wake a célidő előtti utolsó 25 percet méri. Az éjjel rögzített mozgásból azt is felismeri, hogy túl rövid volt-e az éjszakád.
 
 Így működik
 • Válaszd ki az ébresztési időt és az időablakot (legfeljebb 30 perc), vedd fel az órát, aludj.

@@ -1,4 +1,4 @@
-Phase Wake tě probudí v okně buzení, jakmile začne být tvůj spánek neklidný – tehdy nejspíš spíš lehce. Nejpozději v cílový čas; když na Apple Watch neběží měření, asi o 1 minutu později oznámením. K tomu tvoje Apple Watch sledují pohyb a tep. Na Apple Watch měří Phase Wake posledních 25 minut před cílovým časem. Nepozná, jestli byla tvoje noc příliš krátká.
+Phase Wake tě probudí v okně buzení, jakmile začne být tvůj spánek neklidný – tehdy nejspíš spíš lehce. Nejpozději v cílový čas; když na Apple Watch neběží měření, asi o 1 minutu později oznámením. K tomu tvoje Apple Watch sledují pohyb a tep. Na Apple Watch měří Phase Wake posledních 25 minut před cílovým časem. Z pohybu, který v noci zaznamenává, pozná i to, jestli byla tvoje noc příliš krátká.
 
 Jak to funguje
 • Zvol čas buzení a okno (až 30 min), nasaď hodinky, spi.

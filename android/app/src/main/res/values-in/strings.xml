@@ -50,7 +50,6 @@
     <string name="editor_latest">Paling lambat</string>
     <string name="editor_sleep_duration">Tidur %1$s</string>
     <string name="editor_sleep_hint">Dihitung sejak kamu tertidur. Jam tanganmu mendeteksinya otomatis; ketuk “Selamat tidur” di jam untuk langsung mulai.</string>
-    <string name="editor_sleep_wear_only">Mode lama tidur hanya berfungsi dengan Galaxy Watch. Dengan Apple Watch, alarm ini membangunkanmu di jendela biasanya hingga waktu target.</string>
     <string name="editor_window">Rentang: %1$d mnt</string>
     <string name="editor_window_hint">Membangunkanmu antara %1$s dan %2$s</string>
     <string name="editor_window_exact">Tepat</string>

@@ -52,7 +52,6 @@
     <string name="editor_latest">പരമാവധി</string>
     <string name="editor_sleep_duration">%1$s ഉറക്കം</string>
     <string name="editor_sleep_hint">ഉറങ്ങിത്തുടങ്ങുമ്പോൾ മുതൽ എണ്ണുന്നു. വാച്ച് അത് സ്വയം തിരിച്ചറിയും; ഉടൻ തുടങ്ങാൻ വാച്ചിൽ “ശുഭരാത്രി” ടാപ്പ് ചെയ്യുക.</string>
-    <string name="editor_sleep_wear_only">ഉറക്ക ദൈർഘ്യ മോഡ് Galaxy Watch-ൽ മാത്രമേ പ്രവർത്തിക്കൂ. Apple Watch-ൽ ഈ അലാറം അതിന്റെ സാധാരണ സമയപരിധിയിൽ ലക്ഷ്യ സമയം വരെ നിങ്ങളെ ഉണർത്തും.</string>
     <string name="editor_window">സമയപരിധി: %1$d മി.</string>
     <string name="editor_window_hint">%1$s മുതൽ %2$s വരെയുള്ള സമയത്ത് ഉണർത്തും</string>
     <string name="editor_window_exact">കൃത്യം</string>

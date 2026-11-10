@@ -29,5 +29,6 @@
     <string name="check_watch_notifications">Fógraí ar an uaireadóir</string>
     <string name="check_watch_notifications_problem">Ceadaigh fógraí atá íogair ó thaobh ama de do Phase Wake ar do Apple Watch. Murach sin, ní féidir leis tú a dhúiseacht le fógra nuair nach bhfuil tomhas ar siúl.</string>
     <string name="check_watch_state_old">Tá stádas an uaireadóra as dáta – oscail Phase Wake ar feadh tamaillín ar an uaireadóir.</string>
-    <string name="editor_sleep_apple">Ar an Apple Watch, measann Phase Wake cathain a thiteann tú i do chodladh ón am titim i do chodladh atá foghlamtha aige.</string>
+    <string name="editor_sleep_hint_apple">Áirítear ón am a dtiteann tú i do chodladh – tapáil “Oíche mhaith” ar d’uaireadóir nuair a théann tú a luí. Ar an Apple Watch, measann Phase Wake cathain a thiteann tú i do chodladh ón am titim i do chodladh atá foghlamtha aige. Gan an tapáil, beidh an t-am socraithe i bhfeidhm.</string>
+    <string name="auto_onset_hint_apple">Ó uair an chloig roimh am codlata, taifeadann d’Apple Watch do ghluaiseacht; ag tús d’fhuinneog dúisithe, oibríonn Phase Wake amach cathain a thit tú i do chodladh.</string>
 </resources>

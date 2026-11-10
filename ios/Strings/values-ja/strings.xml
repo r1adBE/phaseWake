@@ -26,5 +26,6 @@
     <string name="check_watch_notifications">ウォッチの通知</string>
     <string name="check_watch_notifications_problem">Apple WatchでPhase Wakeの即時通知を許可してください。許可しないと、計測が行われていないときに通知で起こせません。</string>
     <string name="check_watch_state_old">ウォッチの状態が古くなっています – ウォッチでPhase Wakeを少し開いてください。</string>
-    <string name="editor_sleep_apple">Apple Watchでは、Phase Wakeが学習した入眠までの時間から寝付いた時刻を推定します。</string>
+    <string name="editor_sleep_hint_apple">眠りについた時点から数えます。寝るときにウォッチで「おやすみ」をタップしてください。Apple Watchでは、Phase Wakeが学習した入眠までの時間から寝付いた時刻を推定します。タップしない場合は設定した時刻になります。</string>
+    <string name="auto_onset_hint_apple">就寝時刻の1時間前から、Apple Watchが体の動きを記録します。起床時間幅の始めに、Phase Wakeが寝付いた時刻を割り出します。</string>
 </resources>

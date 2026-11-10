@@ -70,6 +70,25 @@ func nightSeries(_ item: HistoryItem, recordings: [NightRecording]) -> NightSeri
     return item.night.map { NightSeries(epochs: $0.epochs, start: $0.windowStart, fullNight: false) }
 }
 
+/// «Ausgezeichnet», «Gut», «Mittel», «Schwach».
+func bandName(_ band: ScoreBand) -> String {
+    switch band {
+    case .excellent: L("score_excellent")
+    case .good: L("score_good")
+    case .fair: L("score_fair")
+    case .poor: L("score_poor")
+    }
+}
+
+/// «Schlafwert 82 von 100: Gut» (VoiceOver), vorläufig mit «Ohne Schlafphasen – vorläufiger Wert».
+func scoreDescription(_ result: SleepScoreResult) -> String {
+    let value = L("score_value", Int64(result.score), bandName(result.band))
+    return result.provisional ? value + ". " + L("score_provisional") : value
+}
+
+/// Morgenrot am Ende des Bogens (wie der Sonnenaufgang des Weckers), je Modus mit genug Kontrast zur Karte.
+private func dawn(_ scheme: ColorScheme) -> Color { Color(hex: scheme == .dark ? 0xFFB27A : 0xE07A4F) }
+
 /// Bogen von 240°, unten offen (wie der Weg des Mondes über den Nachthimmel); Beginn unten links.
 private let arcStart = 150.0
 private let arcSweep = 240.0

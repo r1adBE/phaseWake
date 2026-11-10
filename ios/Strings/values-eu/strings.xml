@@ -29,5 +29,6 @@
     <string name="check_watch_notifications">Jakinarazpenak erlojuan</string>
     <string name="check_watch_notifications_problem">Baimendu Phase Wake-ren jakinarazpen premiazkoak zure Apple Watchean. Bestela, ezin zaitu jakinarazpen batekin esnatu neurketarik ez dagoenean.</string>
     <string name="check_watch_state_old">Erlojuaren egoera zaharkituta dago – ireki Phase Wake une batez erlojuan.</string>
-    <string name="editor_sleep_apple">Apple Watch-en, Phase Wake-k noiz lokartzen zaren kalkulatzen du ikasitako lokartzeko denboratik.</string>
+    <string name="editor_sleep_hint_apple">Lokartzen zarenetik zenbatzen da – sakatu «Gabon» erlojuan ohera zoazenean. Apple Watch-en, Phase Wake-k noiz lokartzen zaren kalkulatzen du ikasitako lokartzeko denboratik. Sakatu gabe, ezarritako ordua aplikatzen da.</string>
+    <string name="auto_onset_hint_apple">Oheratzeko ordua baino ordubete lehenagotik, Apple Watch-ek zure mugimendua grabatzen du; esnatzeko leihoaren hasieran, Phase Wake-k kalkulatzen du noiz lokartu zinen.</string>
 </resources>

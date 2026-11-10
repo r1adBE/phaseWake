@@ -98,6 +98,11 @@ final class LearnRecorder {
 
     /// Zuletzt an Startseite und iPhone gemeldeter Beginn (`publishSince`).
     var publishedSince: Date?
+    /// Automatische Einschlaf-Messung (`LearnRecorder+AutoOnset`): frühester Start für die nächste Nacht.
+    var autoNextTry: Date?
+    /// Zielzeit, für die die automatische Messung entschieden ist (gestartet oder ausgelassen), und ob ausgelassen.
+    var autoDecided: Date?
+    var autoSkipped = false
 
     /// Stand vom iPhone übernehmen, wenn er neuer ist (wie `LearningStore.setIfNewer`). Ausgeschaltet, während eine
     /// Aufzeichnung läuft: Sie endet ohne Auswertung (Grund `phone`). Danach neu planen.
@@ -160,8 +165,10 @@ final class LearnRecorder {
             // Im Hintergrund kann `now` des Modells alt sein: frisch lesen.
             WatchModel.shared.refresh()
             await startIfDue()
-            askMotionIfNeeded()
         }
+        // Einschlafzeit jede Nacht (`LearnRecorder+AutoOnset`), auch ohne Lernphase.
+        startAutoOnsetIfDue()
+        if snapshot.active || autoOnset { askMotionIfNeeded() }
         // Beginn oder Ende ohne Speichern (Auswertung der Lernphase beginnt, 12 Std. vorbei): Anzeige nachführen.
         if since != publishedSince { publishSince() }
         scheduleRefresh()
@@ -367,6 +374,8 @@ final class LearnRecorder {
         } else if snapshot.active, let nextTry {
             date = nextTry
         }
+        // Automatische Einschlaf-Messung: frühester Start der nächsten Nacht.
+        if let auto = autoNextTry, auto > now { date = date.map { min($0, auto) } ?? auto }
         guard let date, date != scheduled else { return }
         scheduled = date
         WKApplication.shared().scheduleBackgroundRefresh(withPreferredDate: date, userInfo: nil) { error in

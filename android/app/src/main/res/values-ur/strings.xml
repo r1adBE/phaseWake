@@ -52,7 +52,6 @@
     <string name="editor_latest">زیادہ سے زیادہ</string>
     <string name="editor_sleep_duration">%1$s نیند</string>
     <string name="editor_sleep_hint">تمہارے سونے کے وقت سے گنتی ہوتی ہے۔ گھڑی اسے خود پہچان لیتی ہے؛ فوراً شروع کرنے کے لیے گھڑی پر “شب بخیر” پر ٹیپ کرو۔</string>
-    <string name="editor_sleep_wear_only">نیند کے دورانیے والا موڈ صرف Galaxy Watch کے ساتھ کام کرتا ہے۔ Apple Watch کے ساتھ یہ الارم تمہیں اپنی عام ونڈو میں ہدف کے وقت تک جگاتا ہے۔</string>
     <string name="editor_window">ونڈو: %1$d منٹ</string>
     <string name="editor_window_hint">%1$s اور %2$s کے درمیان جگاتا ہے</string>
     <string name="editor_window_exact">عین وقت</string>

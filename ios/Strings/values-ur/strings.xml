@@ -27,5 +27,6 @@
     <string name="check_watch_notifications">گھڑی پر اطلاعات</string>
     <string name="check_watch_notifications_problem">اپنی Apple Watch پر Phase Wake کے لیے وقت کی حساس اطلاعات کی اجازت دو۔ ورنہ پیمائش نہ چل رہی ہو تو گھڑی تمہیں اطلاع سے نہیں جگا سکتی۔</string>
     <string name="check_watch_state_old">گھڑی کی حالت پرانی ہے – گھڑی پر Phase Wake تھوڑی دیر کے لیے کھولیں۔</string>
-    <string name="editor_sleep_apple">Apple Watch پر Phase Wake سیکھے گئے نیند آنے کے وقت سے اندازہ لگاتا ہے کہ تم کب سوتے ہو۔</string>
+    <string name="editor_sleep_hint_apple">سونے کے وقت سے گنا جاتا ہے – سونے جاتے وقت گھڑی پر «شب بخیر» ٹیپ کرو۔ Apple Watch پر Phase Wake سیکھے گئے نیند آنے کے وقت سے اندازہ لگاتا ہے کہ تم کب سوتے ہو۔ ٹیپ نہ کرو تو سیٹ کیا گیا وقت لاگو ہوتا ہے۔</string>
+    <string name="auto_onset_hint_apple">سونے کے وقت سے 1 گھنٹہ پہلے سے تمہاری Apple Watch حرکت ریکارڈ کرتی ہے؛ جاگنے کی ونڈو کے شروع میں Phase Wake حساب لگاتا ہے کہ تم کب سوئے۔</string>
 </resources>

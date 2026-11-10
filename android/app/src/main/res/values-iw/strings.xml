@@ -52,7 +52,6 @@
     <string name="editor_latest">לכל המאוחר</string>
     <string name="editor_sleep_duration">לישון %1$s</string>
     <string name="editor_sleep_hint">הספירה מתחילה מההירדמות. השעון מזהה זאת אוטומטית; הקישו על “לילה טוב” בשעון כדי להתחיל מיד.</string>
-    <string name="editor_sleep_wear_only">מצב משך שינה פועל רק עם Galaxy Watch. עם Apple Watch המעורר הזה מעיר בחלון הרגיל שלו עד שעת היעד.</string>
     <string name="editor_window">חלון: %1$d דק׳</string>
     <string name="editor_window_hint">יעיר אתכם בין %1$s ל-%2$s</string>
     <string name="editor_window_exact">בדיוק</string>

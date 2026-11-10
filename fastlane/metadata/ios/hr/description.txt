@@ -1,4 +1,4 @@
-Phase Wake te budi unutar intervala buđenja čim ti san postane nemiran – tada vjerojatno lagano spavaš. Najkasnije u ciljno vrijeme; ako na Apple Watchu ne teče mjerenje, oko 1 minutu kasnije putem obavijesti. Za to Apple Watch prati pokrete i puls. Na Apple Watchu Phase Wake mjeri posljednjih 25 minuta prije ciljnog vremena. Ne može prepoznati je li tvoja noć bila prekratka.
+Phase Wake te budi unutar intervala buđenja čim ti san postane nemiran – tada vjerojatno lagano spavaš. Najkasnije u ciljno vrijeme; ako na Apple Watchu ne teče mjerenje, oko 1 minutu kasnije putem obavijesti. Za to Apple Watch prati pokrete i puls. Na Apple Watchu Phase Wake mjeri posljednjih 25 minuta prije ciljnog vremena. Iz pokreta koje noću snima prepoznaje i je li tvoja noć bila prekratka.
 
 Kako radi
 • Odaberi vrijeme buđenja i interval (do 30 min), stavi sat, spavaj.

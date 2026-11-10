@@ -5,8 +5,10 @@ import PhaseWakeCore
 /// Einschlafzeit der Nacht auf der Apple Watch, nachgerechnet beim Beginn der Smart-Alarm-Sitzung aus dem
 /// Bewegungs-Rekorder (``RecorderOnset``: dieselbe Regel wie die Einschlaf-Messung der Galaxy Watch, mit Grundrauschen
 /// und 15 Min Ruhe). Gemessen ab «Gute Nacht» (Zeit des Tippens) bzw. ab 60 Min vor der Bettzeit (``ShortNight``), frühestens
-/// ab dem Start des Rekorders. Das geht nur, wenn der Rekorder in dieser Nacht läuft (Lernphase, «Nacht aufzeichnen»,
-/// «Gute Nacht»); sonst bleibt die Einschlafzeit unbekannt, und die Untergrenze kurzer Nächte gilt nicht.
+/// ab dem Start des Rekorders. Der Rekorder läuft dafür jede Nacht, solange «Einschlafen automatisch erkennen» ein ist
+/// (`LearnRecorder+AutoOnset`), sonst nur nach «Gute Nacht», in der Lernphase und bei «Nacht aufzeichnen». Ohne Rekorder
+/// bleibt die Einschlafzeit unbekannt, und die Untergrenze kurzer Nächte gilt nicht. Ist der Schalter aus, rechnet die
+/// Uhr wie Android nur nach «Gute Nacht».
 ///
 /// Neue Werte liefert der Rekorder erst nach bis zu 3 Min; die letzten Minuten vor der Sitzung fehlen darum. Kommt die
 /// Rechnung nicht zu einem Ende (das Weckfenster hat begonnen), ist die Einschlafzeit unbekannt – wie auf der Galaxy
@@ -28,6 +30,11 @@ enum WatchOnset {
         let begin = manual?.since ?? ShortNight.autoOnsetStart(target: latest, sleepGoalMinutes: sleepGoal,
                                                                 sleepDurationMinutes: spec.sleepDurationMinutes)
         let now = Date()
+        // Ohne «Gute Nacht» nur mit «Einschlafen automatisch erkennen» (wie Android).
+        guard manual != nil || LearnRecorder.shared.autoOnset else {
+            DiagStore.shared.log(.measureStart, "\(label) not computed: off")
+            return nil
+        }
         guard CMSensorRecorder.authorizationStatus() == .authorized else {
             DiagStore.shared.log(.measureStart, "\(label) not computed: motion not allowed")
             return nil

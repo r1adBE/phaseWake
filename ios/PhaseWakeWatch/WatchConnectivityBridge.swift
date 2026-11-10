@@ -338,7 +338,11 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         if let goal = context[SyncKeys.sleepGoal] as? Int64 {
             Task { @MainActor in WatchModel.shared.applySleepGoal(Int(goal)) }
         }
-        // Lernphase (fehlt bei älteren iPhone-Versionen; dann bleibt der Stand).
+        // «Einschlafen automatisch erkennen» (fehlt bei älteren iPhone-Versionen; dann bleibt der Stand, Standard ein).
+        if let on = context[SyncKeys.autoOnset] as? Bool {
+            Task { @MainActor in LearnRecorder.shared.applyAutoOnset(on) }
+        }
+                // Lernphase (fehlt bei älteren iPhone-Versionen; dann bleibt der Stand).
         if let learning = LearningSnapshot(context: context) {
             Task { @MainActor in LearnRecorder.shared.apply(learning) }
         }

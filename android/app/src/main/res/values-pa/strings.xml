@@ -53,7 +53,6 @@
     <string name="editor_latest">ਵੱਧ ਤੋਂ ਵੱਧ</string>
     <string name="editor_sleep_duration">%1$s ਨੀਂਦ</string>
     <string name="editor_sleep_hint">ਤੁਹਾਡੇ ਸੌਂ ਜਾਣ ਤੋਂ ਗਿਣਦਾ ਹੈ। ਘੜੀ ਇਸਨੂੰ ਆਪਣੇ-ਆਪ ਪਛਾਣਦੀ ਹੈ; ਤੁਰੰਤ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਘੜੀ ’ਤੇ “ਸ਼ੁਭ ਰਾਤ” ’ਤੇ ਟੈਪ ਕਰੋ।</string>
-    <string name="editor_sleep_wear_only">ਨੀਂਦ ਦੀ ਮਿਆਦ ਵਾਲਾ ਮੋਡ ਸਿਰਫ਼ Galaxy Watch ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ। Apple Watch ਨਾਲ ਇਹ ਅਲਾਰਮ ਤੁਹਾਨੂੰ ਆਪਣੀ ਆਮ ਮਿਆਦ ਵਿੱਚ ਟੀਚੇ ਦੇ ਸਮੇਂ ਤੱਕ ਜਗਾਉਂਦਾ ਹੈ।</string>
     <string name="editor_window">ਮਿਆਦ: %1$d ਮਿੰ.</string>
     <string name="editor_window_hint">%1$s ਅਤੇ %2$s ਵਿਚਕਾਰ ਜਗਾਏਗਾ</string>
     <string name="editor_window_exact">ਸਹੀ ਸਮਾਂ</string>

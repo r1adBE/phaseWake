@@ -51,7 +51,6 @@
     <string name="editor_latest">Legkésőbb</string>
     <string name="editor_sleep_duration">Alvás: %1$s</string>
     <string name="editor_sleep_hint">Az elalvástól számít. Az óra automatikusan felismeri; koppints az órán a „Jó éjszakát” gombra, és azonnal indul.</string>
-    <string name="editor_sleep_wear_only">Az alvásidő mód csak Galaxy Watch-csal működik. Apple Watch-csal ez az ébresztő a szokásos ablakában, legkésőbb a célidőben ébreszt.</string>
     <string name="editor_window">Időablak: %1$d p</string>
     <string name="editor_window_hint">%1$s és %2$s között ébreszt</string>
     <string name="editor_window_exact">Pontos</string>

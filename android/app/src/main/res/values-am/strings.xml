@@ -53,7 +53,6 @@
     <string name="editor_latest">ቢዘገይ</string>
     <string name="editor_sleep_duration">ለ%1$s ይተኙ</string>
     <string name="editor_sleep_hint">ከተኙበት ጊዜ ጀምሮ ይቆጥራል። ሰዓትዎ በራስ-ሰር ይለየዋል፤ ወዲያውኑ ለመጀመር በሰዓቱ ላይ «ደህና እደሩ»ን ይንኩ።</string>
-    <string name="editor_sleep_wear_only">የእንቅልፍ ቆይታ ሁነታ የሚሰራው በGalaxy Watch ብቻ ነው። በApple Watch ይህ ማንቂያ በተለመደው ክልሉ እስከ ታለመው ሰዓት ድረስ ይቀሰቅስዎታል።</string>
     <string name="editor_window">ክልል: %1$d ደቂቃ</string>
     <string name="editor_window_hint">በ%1$s እና በ%2$s መካከል ይቀሰቅስዎታል</string>
     <string name="editor_window_exact">በትክክል</string>

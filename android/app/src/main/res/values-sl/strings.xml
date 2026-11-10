@@ -54,7 +54,6 @@
     <string name="editor_latest">Najpozneje</string>
     <string name="editor_sleep_duration">Spanec: %1$s</string>
     <string name="editor_sleep_hint">Šteje od trenutka, ko zaspiš. Ura to zazna samodejno; tapni »Lahko noč« na uri, da začne takoj.</string>
-    <string name="editor_sleep_wear_only">Način trajanja spanca deluje samo z uro Galaxy Watch. Z uro Apple Watch te ta budilka zbudi v svojem običajnem oknu do ciljnega časa.</string>
     <string name="editor_window">Okno: %1$d min</string>
     <string name="editor_window_hint">Zbudi te med %1$s in %2$s</string>
     <string name="editor_window_exact">Natanko</string>

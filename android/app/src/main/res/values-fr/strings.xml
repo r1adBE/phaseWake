@@ -52,7 +52,6 @@
     <string name="editor_latest">Au plus tard</string>
     <string name="editor_sleep_duration">Dormir %1$s</string>
     <string name="editor_sleep_hint">Compte à partir de l’endormissement. Ta montre le détecte automatiquement ; appuie sur « Bonne nuit » sur la montre pour démarrer tout de suite.</string>
-    <string name="editor_sleep_wear_only">Le mode durée de sommeil ne fonctionne qu’avec une Galaxy Watch. Avec une Apple Watch, cette alarme te réveille dans sa fenêtre habituelle jusqu’à l’heure cible.</string>
     <string name="editor_window">Plage : %1$d min</string>
     <string name="editor_window_hint">Te réveille entre %1$s et %2$s</string>
     <string name="editor_window_exact">Exact</string>

@@ -41,6 +41,13 @@ struct SettingsView: View {
                     Text(L("weekly_toggle")).font(.footnote).foregroundStyle(.secondary)
                 }
                 LearningSettingsSection()
+                // Wie Android; auf Apple über den Bewegungs-Rekorder der Uhr (eigener Hinweis).
+                Section {
+                    let night = WatchNight.shared
+                    let _ = night.autoOnsetRevision
+                    Toggle(L("auto_onset_title"), isOn: Binding(get: { WatchNight.autoOnset }, set: { night.setAutoOnset($0) }))
+                    Text(L("auto_onset_hint_apple")).font(.footnote).foregroundStyle(.secondary)
+                }
                 Section(L("test_title")) { TestAlarmButton() }
                 HolidaySettingsSection()
                 CustomNotesSection()

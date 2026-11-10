@@ -26,5 +26,6 @@
     <string name="check_watch_notifications">Ειδοποιήσεις στο ρολόι</string>
     <string name="check_watch_notifications_problem">Επίτρεψε τις χρονικά ευαίσθητες ειδοποιήσεις του Phase Wake στο Apple Watch σου. Αλλιώς δεν μπορεί να σε ξυπνήσει με ειδοποίηση όταν δεν γίνεται μέτρηση.</string>
     <string name="check_watch_state_old">Η κατάσταση του ρολογιού δεν είναι ενημερωμένη – άνοιξε για λίγο το Phase Wake στο ρολόι.</string>
-    <string name="editor_sleep_apple">Στο Apple Watch, το Phase Wake εκτιμά πότε αποκοιμιέσαι από τον χρόνο αποκοίμισης που έχει μάθει.</string>
+    <string name="editor_sleep_hint_apple">Μετρά από τη στιγμή που αποκοιμιέσαι – πάτησε «Καληνύχτα» στο ρολόι όταν πας για ύπνο. Στο Apple Watch, το Phase Wake εκτιμά πότε αποκοιμιέσαι από τον χρόνο αποκοίμισης που έχει μάθει. Χωρίς πάτημα ισχύει η ώρα που έχεις ορίσει.</string>
+    <string name="auto_onset_hint_apple">Από 1 ώρα πριν την ώρα ύπνου το Apple Watch καταγράφει την κίνησή σου· στην αρχή του παραθύρου αφύπνισης το Phase Wake υπολογίζει πότε αποκοιμήθηκες.</string>
 </resources>

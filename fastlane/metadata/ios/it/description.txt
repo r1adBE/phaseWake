@@ -1,4 +1,4 @@
-Phase Wake ti sveglia nella tua finestra di risveglio non appena il tuo sonno si fa agitato – allora probabilmente stai dormendo leggero. Al più tardi all’orario obiettivo; se sull’Apple Watch non è in corso una misurazione, circa 1 minuto dopo con una notifica. Per questo il tuo Apple Watch segue movimento e battito cardiaco. Su Apple Watch, Phase Wake misura gli ultimi 25 minuti prima dell’orario obiettivo. Non può capire se la tua notte è stata troppo corta.
+Phase Wake ti sveglia nella tua finestra di risveglio non appena il tuo sonno si fa agitato – allora probabilmente stai dormendo leggero. Al più tardi all’orario obiettivo; se sull’Apple Watch non è in corso una misurazione, circa 1 minuto dopo con una notifica. Per questo il tuo Apple Watch segue movimento e battito cardiaco. Su Apple Watch, Phase Wake misura gli ultimi 25 minuti prima dell’orario obiettivo. Dal movimento che registra di notte capisce anche se la tua notte è stata troppo corta.
 
 Come funziona
 • Scegli l’orario della sveglia e la finestra (fino a 30 min), indossa l’orologio, dormi.

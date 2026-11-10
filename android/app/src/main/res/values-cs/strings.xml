@@ -53,7 +53,6 @@
     <string name="editor_latest">Nejpozději</string>
     <string name="editor_sleep_duration">Spánek: %1$s</string>
     <string name="editor_sleep_hint">Počítá se od usnutí. Hodinky ho poznají automaticky; klepnutím na „Dobrou noc“ na hodinkách začneš hned.</string>
-    <string name="editor_sleep_wear_only">Režim délky spánku funguje jen s hodinkami Galaxy Watch. S Apple Watch tě tento budík vzbudí v běžném okně do cílového času.</string>
     <string name="editor_window">Okno: %1$d min</string>
     <string name="editor_window_hint">Probudí tě mezi %1$s a %2$s</string>
     <string name="editor_window_exact">Přesně</string>

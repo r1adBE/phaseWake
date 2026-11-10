@@ -52,7 +52,6 @@
     <string name="editor_latest">সর্বশেষ</string>
     <string name="editor_sleep_duration">%1$s ঘুম</string>
     <string name="editor_sleep_hint">ঘুমিয়ে পড়ার সময় থেকে গোনা হয়। ঘড়ি নিজেই তা শনাক্ত করে; এখনই শুরু করতে ঘড়িতে “শুভরাত্রি” ট্যাপ করো।</string>
-    <string name="editor_sleep_wear_only">ঘুমের সময়কাল মোড শুধু Galaxy Watch-এ কাজ করে। Apple Watch-এ এই অ্যালার্ম তোমাকে স্বাভাবিক সময়সীমায় লক্ষ্য সময় পর্যন্ত জাগাবে।</string>
     <string name="editor_window">সময়সীমা: %1$d মি.</string>
     <string name="editor_window_hint">%1$s থেকে %2$s-এর মধ্যে জাগাবে</string>
     <string name="editor_window_exact">ঠিক সময়ে</string>

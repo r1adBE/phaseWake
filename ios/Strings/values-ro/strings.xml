@@ -26,5 +26,6 @@
     <string name="check_watch_notifications">Notificări pe ceas</string>
     <string name="check_watch_notifications_problem">Permite notificările urgente de la Phase Wake pe Apple Watch-ul tău. Altfel, ceasul nu te poate trezi printr-o notificare când nu rulează nicio măsurare.</string>
     <string name="check_watch_state_old">Starea ceasului nu este actualizată – deschide scurt Phase Wake pe ceas.</string>
-    <string name="editor_sleep_apple">Pe Apple Watch, Phase Wake estimează când adormi pe baza duratei de adormire învățate.</string>
+    <string name="editor_sleep_hint_apple">Se numără de la adormire – atinge „Noapte bună” pe ceas când te culci. Pe Apple Watch, Phase Wake estimează când adormi pe baza duratei de adormire învățate. Fără atingere se aplică ora setată.</string>
+    <string name="auto_onset_hint_apple">De la 1 oră înainte de culcare, Apple Watch-ul îți înregistrează mișcarea; la începutul intervalului de trezire, Phase Wake calculează când ai adormit.</string>
 </resources>

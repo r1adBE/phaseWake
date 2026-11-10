@@ -50,7 +50,6 @@
     <string name="editor_latest">Selewat-lewatnya</string>
     <string name="editor_sleep_duration">Tidur %1$s</string>
     <string name="editor_sleep_hint">Dikira dari saat awak tertidur. Jam tangan mengesannya secara automatik; ketik “Selamat malam” pada jam untuk mula serta-merta.</string>
-    <string name="editor_sleep_wear_only">Mod tempoh tidur hanya berfungsi dengan Galaxy Watch. Dengan Apple Watch, penggera ini membangunkan awak dalam tetingkap biasanya hingga waktu sasaran.</string>
     <string name="editor_window">Tetingkap: %1$d min</string>
     <string name="editor_window_hint">Bangunkan awak antara %1$s dan %2$s</string>
     <string name="editor_window_exact">Tepat</string>

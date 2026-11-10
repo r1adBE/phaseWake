@@ -53,7 +53,6 @@
     <string name="editor_latest">Beranduenez</string>
     <string name="editor_sleep_duration">Lo egin: %1$s</string>
     <string name="editor_sleep_hint">Lokartzen zarenetik kontatzen du. Erlojuak automatikoki hautematen du; sakatu «Gabon» erlojuan berehala hasteko.</string>
-    <string name="editor_sleep_wear_only">Lo-iraupenaren modua Galaxy Watch batekin bakarrik dabil. Apple Watch batekin, alarma honek ohiko leihoan esnatzen zaitu, helburuko ordura arte.</string>
     <string name="editor_window">Leihoa: %1$d min</string>
     <string name="editor_window_hint">%1$s eta %2$s artean esnatuko zaitu</string>
     <string name="editor_window_exact">Zehatz</string>

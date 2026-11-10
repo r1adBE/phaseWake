@@ -26,5 +26,6 @@
     <string name="check_watch_notifications">Уведомления на часах</string>
     <string name="check_watch_notifications_problem">Разреши срочные уведомления Phase Wake на своих Apple Watch. Иначе часы не смогут разбудить тебя уведомлением, когда измерение не идёт.</string>
     <string name="check_watch_state_old">Состояние часов устарело – ненадолго открой Phase Wake на часах.</string>
-    <string name="editor_sleep_apple">На Apple Watch Phase Wake оценивает, когда ты засыпаешь, по изученному времени засыпания.</string>
+    <string name="editor_sleep_hint_apple">Отсчитывается от засыпания – ложась спать, нажми на часах «Спокойной ночи». На Apple Watch Phase Wake оценивает, когда ты засыпаешь, по изученному времени засыпания. Без нажатия действует установленное время.</string>
+    <string name="auto_onset_hint_apple">За 1 час до сна Apple Watch начинают записывать твои движения; в начале окна пробуждения Phase Wake вычисляет, когда ты уснул.</string>
 </resources>

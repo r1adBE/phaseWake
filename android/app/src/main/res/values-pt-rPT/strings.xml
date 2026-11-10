@@ -52,7 +52,6 @@
     <string name="editor_latest">No máximo</string>
     <string name="editor_sleep_duration">Dormir %1$s</string>
     <string name="editor_sleep_hint">Conta a partir de quando adormeces. O relógio deteta-o automaticamente; toca em “Boa noite” no relógio para começar já.</string>
-    <string name="editor_sleep_wear_only">O modo duração do sono só funciona com um Galaxy Watch. Com um Apple Watch, este alarme acorda-te na janela normal até à hora-alvo.</string>
     <string name="editor_window">Janela: %1$d min</string>
     <string name="editor_window_hint">Acorda-te entre as %1$s e as %2$s</string>
     <string name="editor_window_exact">Exato</string>

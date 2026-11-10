@@ -26,5 +26,6 @@
     <string name="check_watch_notifications">اعلان‌ها روی ساعت</string>
     <string name="check_watch_notifications_problem">اعلان‌های حساس به زمان را برای Phase Wake روی Apple Watch خود مجاز کن. وگرنه وقتی اندازه‌گیری‌ای در جریان نیست، نمی‌تواند با اعلان بیدارت کند.</string>
     <string name="check_watch_state_old">وضعیت ساعت قدیمی است – Phase Wake را کوتاه روی ساعت باز کن.</string>
-    <string name="editor_sleep_apple">روی Apple Watch، Phase Wake زمان به خواب رفتنت را از مدت به خواب رفتنی که آموخته تخمین می‌زند.</string>
+    <string name="editor_sleep_hint_apple">از زمان به خواب رفتن حساب می‌شود – هنگام رفتن به رختخواب روی ساعت «شب بخیر» را بزن. روی Apple Watch، Phase Wake زمان به خواب رفتنت را از مدت به خواب رفتنی که آموخته تخمین می‌زند. اگر نزنی، زمان تنظیم‌شده اعمال می‌شود.</string>
+    <string name="auto_onset_hint_apple">از ۱ ساعت پیش از زمان خواب، Apple Watch حرکتت را ثبت می‌کند؛ در آغاز بازهٔ بیداری، Phase Wake حساب می‌کند کی به خواب رفتی.</string>
 </resources>

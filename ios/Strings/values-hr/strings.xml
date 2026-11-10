@@ -29,5 +29,6 @@
     <string name="check_watch_notifications">Obavijesti na satu</string>
     <string name="check_watch_notifications_problem">Dopusti vremenski osjetljive obavijesti za Phase Wake na svom Apple Watchu. Inače te ne može probuditi obaviješću kad mjerenje ne teče.</string>
     <string name="check_watch_state_old">Stanje sata je zastarjelo – nakratko otvori Phase Wake na satu.</string>
-    <string name="editor_sleep_apple">Na Apple Watchu Phase Wake procjenjuje kada zaspiš prema tvom naučenom vremenu uspavljivanja.</string>
+    <string name="editor_sleep_hint_apple">Računa se od uspavljivanja – dodirni „Laku noć” na satu kad ideš u krevet. Na Apple Watchu Phase Wake procjenjuje kada zaspiš prema tvom naučenom vremenu uspavljivanja. Bez dodira vrijedi postavljeno vrijeme.</string>
+    <string name="auto_onset_hint_apple">Od 1 sat prije spavanja tvoj Apple Watch bilježi tvoje pokrete; na početku intervala buđenja Phase Wake izračuna kada si zaspao.</string>
 </resources>

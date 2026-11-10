@@ -26,5 +26,6 @@
     <string name="check_watch_notifications">შეტყობინებები საათზე</string>
     <string name="check_watch_notifications_problem">დაუშვი Phase Wake-ის დროზე მგრძნობიარე შეტყობინებები შენს Apple Watch-ზე. თორემ, როცა გაზომვა არ მიმდინარეობს, საათი შეტყობინებით ვერ გაგაღვიძებს.</string>
     <string name="check_watch_state_old">საათის მდგომარეობა მოძველებულია – მოკლედ გახსენი Phase Wake საათზე.</string>
-    <string name="editor_sleep_apple">Apple Watch-ზე Phase Wake ჩაძინების დროს ნასწავლი ჩაძინების ხანგრძლივობით აფასებს.</string>
+    <string name="editor_sleep_hint_apple">ითვლება ჩაძინებიდან – დაწოლისას საათზე შეეხე «ძილი ნებისა»-ს. Apple Watch-ზე Phase Wake ჩაძინების დროს ნასწავლი ჩაძინების ხანგრძლივობით აფასებს. შეხების გარეშე მოქმედებს დაყენებული დრო.</string>
+    <string name="auto_onset_hint_apple">დაძინებამდე 1 საათით ადრე Apple Watch იწერს შენს მოძრაობას; გაღვიძების ფანჯრის დასაწყისში Phase Wake ითვლის, როდის ჩაგეძინა.</string>
 </resources>

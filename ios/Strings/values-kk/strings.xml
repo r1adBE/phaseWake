@@ -26,5 +26,6 @@
     <string name="check_watch_notifications">Сағаттағы хабарландырулар</string>
     <string name="check_watch_notifications_problem">Apple Watch-та Phase Wake үшін уақытқа сезімтал хабарландыруларға рұқсат бер. Әйтпесе өлшеу жүрмей тұрғанда сағат сені хабарландырумен оята алмайды.</string>
     <string name="check_watch_state_old">Сағаттың күйі ескірген – сағатта Phase Wake-ті қысқа уақытқа аш.</string>
-    <string name="editor_sleep_apple">Apple Watch-та Phase Wake қашан ұйықтап кететініңді үйренген ұйықтап кету уақытыңнан бағалайды.</string>
+    <string name="editor_sleep_hint_apple">Ұйықтап кеткен сәттен бастап есептеледі – төсекке жатқанда сағаттан «Қайырлы түн» түймесін түрт. Apple Watch-та Phase Wake қашан ұйықтап кететініңді үйренген ұйықтап кету уақытыңнан бағалайды. Түртпесең, орнатылған уақыт қолданылады.</string>
+    <string name="auto_onset_hint_apple">Ұйқы уақытынан 1 сағат бұрын Apple Watch қозғалысыңды жаза бастайды; ояту аралығының басында Phase Wake қашан ұйықтап кеткеніңді есептейді.</string>
 </resources>

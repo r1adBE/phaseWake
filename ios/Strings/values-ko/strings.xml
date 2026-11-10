@@ -26,5 +26,6 @@
     <string name="check_watch_notifications">워치 알림</string>
     <string name="check_watch_notifications_problem">Apple Watch에서 Phase Wake의 시간 민감 알림을 허용해 주세요. 그렇지 않으면 측정이 진행되지 않을 때 알림으로 깨울 수 없어요.</string>
     <string name="check_watch_state_old">워치 상태가 오래되었습니다 – 워치에서 Phase Wake를 잠깐 여세요.</string>
-    <string name="editor_sleep_apple">Apple Watch에서는 Phase Wake가 학습한 잠드는 데 걸리는 시간으로 잠든 시각을 추정해요.</string>
+    <string name="editor_sleep_hint_apple">잠든 시점부터 계산해요. 잠자리에 들 때 워치에서 ‘잘 자요’를 탭하세요. Apple Watch에서는 Phase Wake가 학습한 잠드는 데 걸리는 시간으로 잠든 시각을 추정해요. 탭하지 않으면 설정한 시간이 적용돼요.</string>
+    <string name="auto_onset_hint_apple">취침 시간 1시간 전부터 Apple Watch가 움직임을 기록하고, 기상 범위가 시작될 때 Phase Wake가 잠든 시각을 계산해요.</string>
 </resources>

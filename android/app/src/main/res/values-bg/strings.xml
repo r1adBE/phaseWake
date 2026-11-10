@@ -52,7 +52,6 @@
     <string name="editor_latest">Най-късно</string>
     <string name="editor_sleep_duration">Сън: %1$s</string>
     <string name="editor_sleep_hint">Отброява се от заспиването. Часовникът го разпознава автоматично; докосни „Лека нощ“ на часовника, за да започне веднага.</string>
-    <string name="editor_sleep_wear_only">Режимът по продължителност на съня работи само с Galaxy Watch. С Apple Watch този будилник те буди в обичайния си прозорец до целевия час.</string>
     <string name="editor_window">Прозорец: %1$d мин</string>
     <string name="editor_window_hint">Събужда те между %1$s и %2$s</string>
     <string name="editor_window_exact">Точно</string>

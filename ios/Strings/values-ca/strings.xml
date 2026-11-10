@@ -27,5 +27,6 @@
     <string name="check_watch_notifications">Notificacions al rellotge</string>
     <string name="check_watch_notifications_problem">Permet les notificacions urgents de Phase Wake a l’Apple Watch. Si no, no et pot despertar amb una notificació quan no hi ha cap mesura en curs.</string>
     <string name="check_watch_state_old">L’estat del rellotge no està actualitzat – obre un moment Phase Wake al rellotge.</string>
-    <string name="editor_sleep_apple">A l’Apple Watch, Phase Wake estima quan t’adorms a partir del temps per adormir-te que ha après.</string>
+    <string name="editor_sleep_hint_apple">Compta des que t’adorms – toca «Bona nit» al rellotge quan te’n vagis al llit. A l’Apple Watch, Phase Wake estima quan t’adorms a partir del temps per adormir-te que ha après. Sense tocar-lo, val l’hora definida.</string>
+    <string name="auto_onset_hint_apple">Des d’1 hora abans d’anar a dormir, l’Apple Watch enregistra el teu moviment; a l’inici de la finestra de despertar, Phase Wake calcula quan et vas adormir.</string>
 </resources>

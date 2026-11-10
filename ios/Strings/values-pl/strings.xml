@@ -26,5 +26,6 @@
     <string name="check_watch_notifications">Powiadomienia na zegarku</string>
     <string name="check_watch_notifications_problem">Zezwól na powiadomienia wrażliwe na czas od Phase Wake na swoim Apple Watch. W przeciwnym razie zegarek nie obudzi cię powiadomieniem, gdy nie trwa pomiar.</string>
     <string name="check_watch_state_old">Stan zegarka jest nieaktualny – otwórz na chwilę Phase Wake na zegarku.</string>
-    <string name="editor_sleep_apple">Na Apple Watch Phase Wake szacuje, kiedy zasypiasz, na podstawie nauczonego czasu zasypiania.</string>
+    <string name="editor_sleep_hint_apple">Liczy się od zaśnięcia – kładąc się spać, stuknij na zegarku „Dobranoc”. Na Apple Watch Phase Wake szacuje, kiedy zasypiasz, na podstawie nauczonego czasu zasypiania. Bez stuknięcia obowiązuje ustawiona godzina.</string>
+    <string name="auto_onset_hint_apple">Od 1 godziny przed snem Apple Watch nagrywa twój ruch; na początku okna budzenia Phase Wake oblicza, kiedy zasnąłeś.</string>
 </resources>

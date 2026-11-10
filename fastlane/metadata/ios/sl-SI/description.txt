@@ -1,4 +1,4 @@
-Phase Wake te zbudi v oknu bujenja, takoj ko postane tvoj spanec nemiren – takrat najverjetneje spiš lahno. Najpozneje ob ciljnem času; če na uri Apple Watch meritev ne teče, približno 1 minuto pozneje z obvestilom. Za to Apple Watch spremlja gibanje in srčni utrip. Na uri Apple Watch Phase Wake meri zadnjih 25 minut pred ciljnim časom. Ne more prepoznati, ali je bila tvoja noč prekratka.
+Phase Wake te zbudi v oknu bujenja, takoj ko postane tvoj spanec nemiren – takrat najverjetneje spiš lahno. Najpozneje ob ciljnem času; če na uri Apple Watch meritev ne teče, približno 1 minuto pozneje z obvestilom. Za to Apple Watch spremlja gibanje in srčni utrip. Na uri Apple Watch Phase Wake meri zadnjih 25 minut pred ciljnim časom. Iz gibanja, ki ga ponoči posname, prepozna tudi, ali je bila tvoja noč prekratka.
 
 Kako deluje
 • Izberi čas bujenja in okno (do 30 min), nadeni si uro, spi.

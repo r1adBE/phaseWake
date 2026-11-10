@@ -54,7 +54,6 @@
     <string name="editor_latest">Vēlākais</string>
     <string name="editor_sleep_duration">Gulēt %1$s</string>
     <string name="editor_sleep_hint">Skaita no aizmigšanas brīža. Pulkstenis to nosaka automātiski; pieskaries pulkstenī „Ar labu nakti“, lai sāktu uzreiz.</string>
-    <string name="editor_sleep_wear_only">Miega ilguma režīms darbojas tikai ar Galaxy Watch. Ar Apple Watch šis modinātājs tevi modina savā parastajā logā līdz mērķa laikam.</string>
     <string name="editor_window">Logs: %1$d min</string>
     <string name="editor_window_hint">Modina no %1$s līdz %2$s</string>
     <string name="editor_window_exact">Precīzi</string>

@@ -55,7 +55,6 @@
     <string name="editor_latest">Vėliausiai</string>
     <string name="editor_sleep_duration">Miegoti %1$s</string>
     <string name="editor_sleep_hint">Skaičiuojama nuo užmigimo. Laikrodis tai atpažįsta automatiškai; bakstelėk laikrodyje „Labanakt“, kad pradėtum iškart.</string>
-    <string name="editor_sleep_wear_only">Miego trukmės režimas veikia tik su Galaxy Watch. Su Apple Watch šis žadintuvas pažadins tave įprastame lange iki tikslinio laiko.</string>
     <string name="editor_window">Langas: %1$d min</string>
     <string name="editor_window_hint">Pažadins nuo %1$s iki %2$s</string>
     <string name="editor_window_exact">Tiksliai</string>

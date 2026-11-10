@@ -23,6 +23,7 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
             SyncKeys.sleepGoal: Int64(sleepGoal),
         ]
         learning.apply(to: &context)
+        context[SyncKeys.autoOnset] = WatchNight.autoOnset
         do {
             try WCSession.default.updateApplicationContext(context)
             DiagStore.shared.log(.sync, "sent \(snapshot.alarms.count) alarms, \(holidays.dates.count) holidays")

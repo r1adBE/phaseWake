@@ -53,7 +53,6 @@
     <string name="editor_latest">जास्तीत जास्त</string>
     <string name="editor_sleep_duration">%1$s झोप</string>
     <string name="editor_sleep_hint">तुम्हाला झोप लागल्यापासून मोजते. घड्याळ ते आपोआप ओळखते; लगेच सुरू करण्यासाठी घड्याळावर “शुभ रात्री” वर टॅप करा.</string>
-    <string name="editor_sleep_wear_only">झोपेच्या कालावधीचा मोड फक्त Galaxy Watch सोबत चालतो. Apple Watch सोबत हा अलार्म तुम्हाला त्याच्या नेहमीच्या कालावधीत लक्ष्य वेळेपर्यंत उठवतो.</string>
     <string name="editor_window">कालावधी: %1$d मि.</string>
     <string name="editor_window_hint">%1$s ते %2$s दरम्यान उठवेल</string>
     <string name="editor_window_exact">अचूक</string>

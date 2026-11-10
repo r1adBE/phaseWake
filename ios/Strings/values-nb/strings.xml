@@ -26,5 +26,6 @@
     <string name="check_watch_notifications">Varsler på klokken</string>
     <string name="check_watch_notifications_problem">Tillat tidssensitive varsler fra Phase Wake på Apple Watch. Ellers kan klokken ikke vekke deg med et varsel når ingen måling pågår.</string>
     <string name="check_watch_state_old">Klokkens status er utdatert – åpne Phase Wake kort på klokken.</string>
-    <string name="editor_sleep_apple">På Apple Watch anslår Phase Wake når du sovner, ut fra den lærte innsovningstiden din.</string>
+    <string name="editor_sleep_hint_apple">Telles fra du sovner – trykk på «God natt» på klokken når du legger deg. På Apple Watch anslår Phase Wake når du sovner, ut fra den lærte innsovningstiden din. Uten trykk gjelder den innstilte tiden.</string>
+    <string name="auto_onset_hint_apple">Fra 1 time før leggetid tar Apple Watch opp bevegelsen din; ved starten av vekkevinduet regner Phase Wake ut når du sovnet.</string>
 </resources>

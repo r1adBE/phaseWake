@@ -27,5 +27,6 @@
     <string name="check_watch_notifications">Izaziso ewashini</string>
     <string name="check_watch_notifications_problem">Vumela izaziso ezibucayi ngesikhathi ze-Phase Wake ku-Apple Watch yakho. Uma kungenjalo, ayikwazi ukukuvusa ngesaziso uma kungekho kukala okuqhubekayo.</string>
     <string name="check_watch_state_old">Isimo sewashi asisesikhathini – vula i-Phase Wake kafushane ewashini.</string>
-    <string name="editor_sleep_apple">Ku-Apple Watch, i-Phase Wake ilinganisela ukuthi uzumeka nini ngesikhathi sokuzumeka esiyifundile.</string>
+    <string name="editor_sleep_hint_apple">Kubalwa kusukela lapho uzumeka – thepha u-“Ulale kahle” ewashini lakho lapho uyolala. Ku-Apple Watch, i-Phase Wake ilinganisela ukuthi uzumeka nini ngesikhathi sokuzumeka esiyifundile. Ngaphandle kokuthepha, kusebenza isikhathi esisethiwe.</string>
+    <string name="auto_onset_hint_apple">Kusukela ehoreni elingu-1 ngaphambi kokulala, i-Apple Watch yakho iqopha ukunyakaza kwakho; ekuqaleni kwewindi lokuvuka, i-Phase Wake ibala ukuthi uzumeke nini.</string>
 </resources>

@@ -50,7 +50,6 @@
     <string name="editor_latest">Muộn nhất</string>
     <string name="editor_sleep_duration">Ngủ %1$s</string>
     <string name="editor_sleep_hint">Tính từ lúc bạn ngủ. Đồng hồ tự động nhận biết; chạm vào “Ngủ ngon” trên đồng hồ để bắt đầu ngay.</string>
-    <string name="editor_sleep_wear_only">Chế độ thời lượng ngủ chỉ hoạt động với Galaxy Watch. Với Apple Watch, báo thức này đánh thức bạn trong khung giờ thường lệ, muộn nhất vào giờ mục tiêu.</string>
     <string name="editor_window">Khoảng thời gian: %1$d phút</string>
     <string name="editor_window_hint">Đánh thức bạn trong khoảng %1$s đến %2$s</string>
     <string name="editor_window_exact">Đúng giờ</string>

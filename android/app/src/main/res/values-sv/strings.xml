@@ -51,7 +51,6 @@
     <string name="editor_latest">Senast</string>
     <string name="editor_sleep_duration">Sov i %1$s</string>
     <string name="editor_sleep_hint">Räknas från att du somnar. Klockan känner av det automatiskt; tryck på ”Godnatt” på klockan för att starta direkt.</string>
-    <string name="editor_sleep_wear_only">Sömnlängdsläget fungerar bara med en Galaxy Watch. Med en Apple Watch väcker det här larmet dig i sitt vanliga fönster fram till önskad tid.</string>
     <string name="editor_window">Fönster: %1$d min</string>
     <string name="editor_window_hint">Väcker dig mellan %1$s och %2$s</string>
     <string name="editor_window_exact">Exakt</string>

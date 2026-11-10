@@ -53,7 +53,6 @@
     <string name="editor_latest">Не позже</string>
     <string name="editor_sleep_duration">Сон: %1$s</string>
     <string name="editor_sleep_hint">Отсчёт идёт с момента засыпания. Часы определяют его автоматически; нажми «Спокойной ночи» на часах, чтобы начать сразу.</string>
-    <string name="editor_sleep_wear_only">Режим по длине сна работает только с Galaxy Watch. С Apple Watch этот будильник будит тебя в обычном окне до целевого времени.</string>
     <string name="editor_window">Окно: %1$d мин</string>
     <string name="editor_window_hint">Разбудит между %1$s и %2$s</string>
     <string name="editor_window_exact">Точно</string>

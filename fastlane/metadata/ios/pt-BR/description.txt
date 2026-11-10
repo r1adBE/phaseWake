@@ -1,4 +1,4 @@
-O Phase Wake acorda você dentro da sua janela de despertar assim que seu sono fica agitado – nessa hora você provavelmente está dormindo leve. No máximo no horário-alvo; se o Apple Watch não estiver medindo, cerca de 1 minuto depois por notificação. Para isso, seu Apple Watch acompanha movimento e frequência cardíaca. No Apple Watch, o Phase Wake mede os últimos 25 minutos antes do horário-alvo. Ele não consegue saber se sua noite foi curta demais.
+O Phase Wake acorda você dentro da sua janela de despertar assim que seu sono fica agitado – nessa hora você provavelmente está dormindo leve. No máximo no horário-alvo; se o Apple Watch não estiver medindo, cerca de 1 minuto depois por notificação. Para isso, seu Apple Watch acompanha movimento e frequência cardíaca. No Apple Watch, o Phase Wake mede os últimos 25 minutos antes do horário-alvo. Pelo movimento que grava à noite, ele também sabe se sua noite foi curta demais.
 
 Como funciona
 • Escolha o horário e a janela de despertar (até 30 min), coloque o relógio e durma.

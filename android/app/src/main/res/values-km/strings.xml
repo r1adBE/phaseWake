@@ -51,7 +51,6 @@
     <string name="editor_latest">យឺតបំផុត</string>
     <string name="editor_sleep_duration">ដេក %1$s</string>
     <string name="editor_sleep_hint">រាប់ចាប់ពីពេលអ្នកលង់លក់។ នាឡិការកឃើញដោយស្វ័យប្រវត្តិ ចុច «រាត្រីសួស្តី» លើនាឡិកាដើម្បីចាប់ផ្ដើមភ្លាម។</string>
-    <string name="editor_sleep_wear_only">របៀបរយៈពេលដេកដំណើរការតែជាមួយ Galaxy Watch ប៉ុណ្ណោះ។ ជាមួយ Apple Watch ម៉ោងរោទ៍នេះដាស់អ្នកក្នុងចន្លោះពេលធម្មតារបស់វា រហូតដល់ម៉ោងគោលដៅ។</string>
     <string name="editor_window">ចន្លោះពេល៖ %1$d នាទី</string>
     <string name="editor_window_hint">ដាស់ចន្លោះ %1$s ដល់ %2$s</string>
     <string name="editor_window_exact">ពិតប្រាកដ</string>

@@ -50,7 +50,6 @@
     <string name="editor_latest">ช้าที่สุด</string>
     <string name="editor_sleep_duration">นอน %1$s</string>
     <string name="editor_sleep_hint">นับตั้งแต่คุณหลับ นาฬิกาตรวจจับได้เอง แตะ “ราตรีสวัสดิ์” บนนาฬิกาเพื่อเริ่มทันที</string>
-    <string name="editor_sleep_wear_only">โหมดระยะเวลานอนใช้ได้กับ Galaxy Watch เท่านั้น เมื่อใช้ Apple Watch นาฬิกาปลุกนี้จะปลุกคุณในช่วงเวลาปกติจนถึงเวลาเป้าหมาย</string>
     <string name="editor_window">ช่วงเวลา: %1$d นาที</string>
     <string name="editor_window_hint">ปลุกคุณระหว่าง %1$s ถึง %2$s</string>
     <string name="editor_window_exact">ตรงเวลา</string>

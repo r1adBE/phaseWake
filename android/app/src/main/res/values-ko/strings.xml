@@ -50,7 +50,6 @@
     <string name="editor_latest">늦어도</string>
     <string name="editor_sleep_duration">%1$s 자기</string>
     <string name="editor_sleep_hint">잠든 순간부터 계산해요. 워치가 자동으로 감지하며, 바로 시작하려면 워치에서 “잘 자요”를 탭하세요.</string>
-    <string name="editor_sleep_wear_only">수면 시간 모드는 Galaxy Watch에서만 작동해요. Apple Watch에서는 이 알람이 평소 구간 안에서 목표 시각까지 깨워요.</string>
     <string name="editor_window">범위: %1$d분</string>
     <string name="editor_window_hint">%1$s~%2$s 사이에 깨워요</string>
     <string name="editor_window_exact">정확히</string>

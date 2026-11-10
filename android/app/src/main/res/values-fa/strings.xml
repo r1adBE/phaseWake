@@ -51,7 +51,6 @@
     <string name="editor_latest">حداکثر</string>
     <string name="editor_sleep_duration">%1$s خواب</string>
     <string name="editor_sleep_hint">از لحظهٔ به خواب رفتنت شمرده می‌شود. ساعتت آن را خودکار تشخیص می‌دهد؛ برای شروع فوری، روی ساعت «شب بخیر» را بزن.</string>
-    <string name="editor_sleep_wear_only">حالت مدت خواب فقط با Galaxy Watch کار می‌کند. با Apple Watch این زنگ تو را در بازهٔ معمولش تا زمان هدف بیدار می‌کند.</string>
     <string name="editor_window">بازه: %1$d دق</string>
     <string name="editor_window_hint">بین %1$s و %2$s بیدارت می‌کند</string>
     <string name="editor_window_exact">دقیق</string>

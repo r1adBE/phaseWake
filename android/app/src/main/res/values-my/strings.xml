@@ -51,7 +51,6 @@
     <string name="editor_latest">အနောက်ကျဆုံး</string>
     <string name="editor_sleep_duration">%1$s အိပ်မည်</string>
     <string name="editor_sleep_hint">အိပ်ပျော်ချိန်မှစ၍ ရေတွက်သည်။ နာရီက အလိုအလျောက် သိရှိသည်၊ ချက်ချင်းစရန် နာရီပေါ်တွင် “ကောင်းသောညပါ” ကို တို့ပါ။</string>
-    <string name="editor_sleep_wear_only">အိပ်ချိန်ကြာမြင့်မှု မုဒ်သည် Galaxy Watch ဖြင့်သာ အလုပ်လုပ်သည်။ Apple Watch ဖြင့်ဆိုလျှင် ဤနှိုးစက်သည် ပုံမှန်အချိန်အပိုင်းအတွင်း ပစ်မှတ်အချိန်အထိ နှိုးမည်။</string>
     <string name="editor_window">အချိန်အပိုင်း- %1$d မိနစ်</string>
     <string name="editor_window_hint">%1$s နှင့် %2$s ကြားတွင် နှိုးမည်</string>
     <string name="editor_window_exact">တိတိ</string>

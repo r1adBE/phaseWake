@@ -53,7 +53,6 @@
     <string name="editor_latest">વધુમાં વધુ</string>
     <string name="editor_sleep_duration">%1$s ઊંઘ</string>
     <string name="editor_sleep_hint">તમે ઊંઘી જાઓ ત્યારથી ગણે છે. ઘડિયાળ તે આપમેળે ઓળખે છે; તરત શરૂ કરવા ઘડિયાળ પર “શુભ રાત્રિ” ટૅપ કરો.</string>
-    <string name="editor_sleep_wear_only">ઊંઘના સમયનો મોડ ફક્ત Galaxy Watch સાથે કામ કરે છે. Apple Watch સાથે આ એલાર્મ તમને તેના સામાન્ય સમયગાળામાં લક્ષ્ય સમય સુધીમાં જગાડે છે.</string>
     <string name="editor_window">સમયગાળો: %1$d મિ.</string>
     <string name="editor_window_hint">%1$s અને %2$s વચ્ચે જગાડશે</string>
     <string name="editor_window_exact">ચોક્કસ</string>

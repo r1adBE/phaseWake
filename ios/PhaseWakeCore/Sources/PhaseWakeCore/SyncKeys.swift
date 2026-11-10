@@ -79,6 +79,9 @@ public enum SyncKeys {
     /// Uhr → iPhone im Anwendungskontext: Beginn der laufenden Aufzeichnung (ms seit 1970), 0 = keine. Fehlt bei älteren
     /// Uhr-Versionen.
     public static let recordSince = "recordSince"
+    /// Anwendungskontext iPhone → Uhr: Schalter «Einschlafen automatisch erkennen» (Bool). Fehlt er (älteres iPhone),
+    /// gilt er als ein (Standard wie Android).
+    public static let autoOnset = "autoOnset"
     /// Befehl Uhr → iPhone: frühere Zielzeit aus «Gute Nacht» (`OnsetShift.encode()` in ``payload``).
     public static let onsetShift = "onsetShift"
     /// Uhr → iPhone im Anwendungskontext: Felder je Weckerzeile, die die Uhr kennt (`Codec.alarmFields`). Fehlt der

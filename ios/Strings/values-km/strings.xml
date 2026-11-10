@@ -29,5 +29,6 @@
     <string name="check_watch_notifications">ការជូនដំណឹងនៅលើនាឡិកា</string>
     <string name="check_watch_notifications_problem">អនុញ្ញាតការជូនដំណឹងដែលពាក់ព័ន្ធនឹងពេលវេលាសម្រាប់ Phase Wake នៅលើ Apple Watch របស់អ្នក។ បើមិនដូច្នោះទេ វាមិនអាចដាស់អ្នកដោយការជូនដំណឹងបានទេ នៅពេលគ្មានការវាស់កំពុងដំណើរការ។</string>
     <string name="check_watch_state_old">ស្ថានភាពនាឡិកាហួសសម័យ – បើក Phase Wake នៅលើនាឡិកាមួយភ្លែត។</string>
-    <string name="editor_sleep_apple">នៅលើ Apple Watch, Phase Wake ប៉ាន់ស្មានពេលដែលអ្នកលង់លក់ ពីរយៈពេលលង់លក់ដែលវាបានរៀន។</string>
+    <string name="editor_sleep_hint_apple">រាប់ពីពេលអ្នកដេកលក់ – ចុច «រាត្រីសួស្តី» នៅលើនាឡិកា ពេលអ្នកចូលគេង។ នៅលើ Apple Watch, Phase Wake ប៉ាន់ស្មានពេលដែលអ្នកលង់លក់ ពីរយៈពេលលង់លក់ដែលវាបានរៀន។ បើមិនចុច ពេលវេលាដែលបានកំណត់នឹងត្រូវប្រើ។</string>
+    <string name="auto_onset_hint_apple">ចាប់ពី 1 ម៉ោងមុនពេលគេង Apple Watch ថតចលនារបស់អ្នក; នៅដើមចន្លោះពេលដាស់ Phase Wake គណនាថាអ្នកដេកលក់ពេលណា។</string>
 </resources>

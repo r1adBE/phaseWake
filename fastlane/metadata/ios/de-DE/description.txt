@@ -1,4 +1,4 @@
-Phase Wake weckt dich in deinem Weckfenster, sobald du unruhig wirst – dann schläfst du wohl leicht. Spätestens zur Zielzeit; läuft auf der Apple Watch keine Messung, etwa 1 Minute danach per Mitteilung. Dafür achtet deine Apple Watch auf Bewegung und Puls. Auf der Apple Watch misst Phase Wake die letzten 25 Minuten vor der Zielzeit. Ob du in der Nacht zu kurz geschlafen hast, erkennt sie nicht.
+Phase Wake weckt dich in deinem Weckfenster, sobald du unruhig wirst – dann schläfst du wohl leicht. Spätestens zur Zielzeit; läuft auf der Apple Watch keine Messung, etwa 1 Minute danach per Mitteilung. Dafür achtet deine Apple Watch auf Bewegung und Puls. Auf der Apple Watch misst Phase Wake die letzten 25 Minuten vor der Zielzeit. Ob du in der Nacht zu kurz geschlafen hast, erkennt sie an der Bewegung, die sie nachts aufzeichnet.
 
 So funktioniert's
 • Weckzeit und Weckfenster (bis 30 Min) wählen, Uhr anziehen, schlafen.

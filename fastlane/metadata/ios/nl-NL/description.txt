@@ -1,4 +1,4 @@
-Phase Wake wekt je binnen je wekvenster zodra je onrustig wordt – dan slaap je waarschijnlijk licht. Uiterlijk op je doeltijd; loopt er op de Apple Watch geen meting, dan ongeveer 1 minuut later met een melding. Daarvoor let je Apple Watch op beweging en hartslag. Op de Apple Watch meet Phase Wake de laatste 25 minuten voor je doeltijd. Hij kan niet zien of je nacht te kort was.
+Phase Wake wekt je binnen je wekvenster zodra je onrustig wordt – dan slaap je waarschijnlijk licht. Uiterlijk op je doeltijd; loopt er op de Apple Watch geen meting, dan ongeveer 1 minuut later met een melding. Daarvoor let je Apple Watch op beweging en hartslag. Op de Apple Watch meet Phase Wake de laatste 25 minuten voor je doeltijd. Aan de beweging die hij 's nachts opneemt, ziet hij ook of je nacht te kort was.
 
 Zo werkt het
 • Kies je wektijd en venster (tot 30 min), doe je horloge om, slaap.

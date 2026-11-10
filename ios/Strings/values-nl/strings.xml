@@ -26,5 +26,6 @@
     <string name="check_watch_notifications">Meldingen op het horloge</string>
     <string name="check_watch_notifications_problem">Sta tijdgevoelige meldingen van Phase Wake toe op je Apple Watch. Anders kan hij je niet met een melding wekken als er geen meting loopt.</string>
     <string name="check_watch_state_old">Status van het horloge is verouderd – open Phase Wake even op het horloge.</string>
-    <string name="editor_sleep_apple">Op de Apple Watch schat Phase Wake wanneer je in slaap valt op basis van je geleerde inslaaptijd.</string>
+    <string name="editor_sleep_hint_apple">Telt vanaf het inslapen – tik bij het naar bed gaan op ‘Welterusten’ op je horloge. Op de Apple Watch schat Phase Wake wanneer je in slaap valt op basis van je geleerde inslaaptijd. Zonder tik geldt de ingestelde tijd.</string>
+    <string name="auto_onset_hint_apple">Vanaf 1 uur voor bedtijd neemt je Apple Watch je beweging op; aan het begin van je wekvenster berekent Phase Wake wanneer je in slaap viel.</string>
 </resources>

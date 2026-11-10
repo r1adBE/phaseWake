@@ -29,5 +29,6 @@
     <string name="check_watch_notifications">Paziņojumi pulkstenī</string>
     <string name="check_watch_notifications_problem">Atļauj Phase Wake laikjutīgos paziņojumus savā Apple Watch. Citādi tas nevarēs tevi pamodināt ar paziņojumu, kad mērījums nenotiek.</string>
     <string name="check_watch_state_old">Pulksteņa stāvoklis ir novecojis – uz brīdi atver Phase Wake pulkstenī.</string>
-    <string name="editor_sleep_apple">Apple Watch pulkstenī Phase Wake novērtē, kad tu iemiegi, pēc apgūtā iemigšanas ilguma.</string>
+    <string name="editor_sleep_hint_apple">Skaita no aizmigšanas – ejot gulēt, pulkstenī pieskaries “Ar labu nakti”. Apple Watch pulkstenī Phase Wake novērtē, kad tu iemiegi, pēc apgūtā iemigšanas ilguma. Bez pieskāriena ir spēkā iestatītais laiks.</string>
+    <string name="auto_onset_hint_apple">No 1 stundas pirms gulētiešanas Apple Watch ieraksta tavas kustības; modināšanas loga sākumā Phase Wake aprēķina, kad tu aizmigi.</string>
 </resources>

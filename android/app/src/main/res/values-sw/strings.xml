@@ -52,7 +52,6 @@
     <string name="editor_latest">Muda wa mwisho</string>
     <string name="editor_sleep_duration">Lala kwa %1$s</string>
     <string name="editor_sleep_hint">Huhesabu tangu unapolala. Saa yako hulitambua kiotomatiki; gusa “Usiku mwema” kwenye saa ili kuanza mara moja.</string>
-    <string name="editor_sleep_wear_only">Hali ya muda wa kulala hufanya kazi tu na Galaxy Watch. Ukiwa na Apple Watch, kengele hii inakuamsha ndani ya kipindi chake cha kawaida hadi muda lengwa.</string>
     <string name="editor_window">Kipindi: dak %1$d</string>
     <string name="editor_window_hint">Inakuamsha kati ya %1$s na %2$s</string>
     <string name="editor_window_exact">Hasa</string>

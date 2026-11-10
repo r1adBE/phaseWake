@@ -52,7 +52,6 @@
     <string name="editor_latest">最遲</string>
     <string name="editor_sleep_duration">睡 %1$s</string>
     <string name="editor_sleep_hint">由你入睡時開始計時。手錶會自動偵測；在手錶上點按「晚安」即可立即開始。</string>
-    <string name="editor_sleep_wear_only">睡眠時長模式只適用於 Galaxy Watch。配合 Apple Watch 時，此鬧鐘會喺正常時段內、最遲喺目標時間叫醒你。</string>
     <string name="editor_window">時段：%1$d 分鐘</string>
     <string name="editor_window_hint">在 %1$s 至 %2$s 之間叫醒你</string>
     <string name="editor_window_exact">準時</string>

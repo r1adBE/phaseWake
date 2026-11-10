@@ -51,7 +51,6 @@
     <string name="editor_latest">En geç</string>
     <string name="editor_sleep_duration">Uyku: %1$s</string>
     <string name="editor_sleep_hint">Uykuya daldığın andan itibaren sayar. Saatin bunu otomatik algılar; hemen başlatmak için saatte “İyi geceler”e dokun.</string>
-    <string name="editor_sleep_wear_only">Uyku süresi modu yalnızca Galaxy Watch ile çalışır. Apple Watch ile bu alarm seni normal aralığında hedef saate kadar uyandırır.</string>
     <string name="editor_window">Aralık: %1$d dk</string>
     <string name="editor_window_hint">%1$s ile %2$s arasında uyandırır</string>
     <string name="editor_window_exact">Tam</string>

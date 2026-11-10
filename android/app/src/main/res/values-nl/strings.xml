@@ -51,7 +51,6 @@
     <string name="editor_latest">Uiterlijk</string>
     <string name="editor_sleep_duration">%1$s slapen</string>
     <string name="editor_sleep_hint">Telt vanaf het moment dat je in slaap valt. Je horloge herkent het automatisch; tik op het horloge op “Welterusten” om meteen te starten.</string>
-    <string name="editor_sleep_wear_only">De slaapduurmodus werkt alleen met een Galaxy Watch. Met een Apple Watch wekt deze wekker je in zijn gewone venster tot de doeltijd.</string>
     <string name="editor_window">Venster: %1$d min</string>
     <string name="editor_window_hint">Wekt je tussen %1$s en %2$s</string>
     <string name="editor_window_exact">Precies</string>

@@ -29,5 +29,6 @@
     <string name="check_watch_notifications">घडीमा सूचनाहरू</string>
     <string name="check_watch_notifications_problem">आफ्नो Apple Watch मा Phase Wake का लागि समय-संवेदनशील सूचनाहरूलाई अनुमति देऊ। नत्र मापन नचलिरहेको बेला घडीले तिमीलाई सूचनाबाट उठाउन सक्दैन।</string>
     <string name="check_watch_state_old">घडीको स्थिति पुरानो भयो – घडीमा Phase Wake केही बेर खोल।</string>
-    <string name="editor_sleep_apple">Apple Watch मा Phase Wake ले सिकेको निदाउन लाग्ने समयबाट तिमी कहिले निदायौ भनी अनुमान गर्छ।</string>
+    <string name="editor_sleep_hint_apple">निदाएदेखि गनिन्छ – सुत्न जाँदा घडीमा «शुभ रात्रि» थिच। Apple Watch मा Phase Wake ले सिकेको निदाउन लाग्ने समयबाट तिमी कहिले निदायौ भनी अनुमान गर्छ। नथिचे सेट गरिएको समय लागू हुन्छ।</string>
+    <string name="auto_onset_hint_apple">सुत्ने समयभन्दा 1 घण्टा अघिदेखि तिम्रो Apple Watch ले चालचलन रेकर्ड गर्छ; उठाउने समयावधिको सुरुमा Phase Wake ले तिमी कहिले निदायौ भनी हिसाब गर्छ।</string>
 </resources>

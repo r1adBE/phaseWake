@@ -26,5 +26,6 @@
     <string name="check_watch_notifications">Notiser på klockan</string>
     <string name="check_watch_notifications_problem">Tillåt tidskänsliga notiser från Phase Wake på din Apple Watch. Annars kan klockan inte väcka dig med en notis när ingen mätning pågår.</string>
     <string name="check_watch_state_old">Klockans status är inaktuell – öppna Phase Wake en kort stund på klockan.</string>
-    <string name="editor_sleep_apple">På Apple Watch uppskattar Phase Wake när du somnar utifrån din inlärda insomningstid.</string>
+    <string name="editor_sleep_hint_apple">Räknas från när du somnar – tryck på ”Godnatt” på klockan när du lägger dig. På Apple Watch uppskattar Phase Wake när du somnar utifrån din inlärda insomningstid. Utan tryck gäller den inställda tiden.</string>
+    <string name="auto_onset_hint_apple">Från 1 timme före sänggåendet spelar din Apple Watch in din rörelse; i början av väckningsfönstret räknar Phase Wake ut när du somnade.</string>
 </resources>

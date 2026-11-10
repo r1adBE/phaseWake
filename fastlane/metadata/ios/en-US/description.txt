@@ -1,4 +1,4 @@
-Phase Wake wakes you within your wake window as soon as you get restless – that's when you're likely sleeping lightly. At the latest at your target time; if no measurement is running on the Apple Watch, about 1 minute later by notification. To do this, your Apple Watch tracks movement and heart rate. On Apple Watch, Phase Wake measures the last 25 minutes before your target time. It can't tell whether your night was too short.
+Phase Wake wakes you within your wake window as soon as you get restless – that's when you're likely sleeping lightly. At the latest at your target time; if no measurement is running on the Apple Watch, about 1 minute later by notification. To do this, your Apple Watch tracks movement and heart rate. On Apple Watch, Phase Wake measures the last 25 minutes before your target time. From the motion it records at night, it also tells whether your night was too short.
 
 How it works
 • Pick your wake-up time and window (up to 30 min), wear your watch, sleep.

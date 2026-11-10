@@ -53,7 +53,6 @@
     <string name="editor_latest">Najpóźniej</string>
     <string name="editor_sleep_duration">Sen: %1$s</string>
     <string name="editor_sleep_hint">Liczy od zaśnięcia. Zegarek wykrywa to automatycznie; dotknij „Dobranoc” na zegarku, aby zacząć od razu.</string>
-    <string name="editor_sleep_wear_only">Tryb czasu snu działa tylko z zegarkiem Galaxy Watch. Z Apple Watch ten budzik budzi cię w swoim zwykłym oknie do czasu docelowego.</string>
     <string name="editor_window">Okno: %1$d min</string>
     <string name="editor_window_hint">Obudzi cię między %1$s a %2$s</string>
     <string name="editor_window_exact">Dokładnie</string>

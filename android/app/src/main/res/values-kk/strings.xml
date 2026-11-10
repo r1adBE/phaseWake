@@ -46,7 +46,6 @@
     <string name="editor_latest">Ең кеші</string>
     <string name="editor_sleep_duration">Ұйқы: %1$s</string>
     <string name="editor_sleep_hint">Ұйықтап кеткен сәттен бастап санайды. Сағат оны автоматты түрде анықтайды; бірден бастау үшін сағаттағы «Қайырлы түн» түймесін түрт.</string>
-    <string name="editor_sleep_wear_only">Ұйқы ұзақтығы режимі тек Galaxy Watch-пен жұмыс істейді. Apple Watch-пен бұл оятқыш сені әдеттегі терезесінде мақсатты уақытқа дейін оятады.</string>
     <string name="editor_window">Терезе: %1$d мин</string>
     <string name="editor_window_hint">%1$s мен %2$s аралығында оятады</string>
     <string name="editor_window_exact">Дәл</string>

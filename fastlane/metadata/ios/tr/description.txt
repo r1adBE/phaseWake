@@ -1,4 +1,4 @@
-Phase Wake, huzursuzlanmaya başladığın anda seni uyandırma aralığı içinde uyandırır – o sırada büyük ihtimalle hafif uyuyorsundur. En geç hedef saatte; Apple Watch'ta ölçüm çalışmıyorsa yaklaşık 1 dakika sonra bildirimle. Bunun için Apple Watch'un hareketi ve nabzı takip eder. Apple Watch'ta Phase Wake hedef saatten önceki son 25 dakikayı ölçer. Gecenin fazla kısa olup olmadığını anlayamaz.
+Phase Wake, huzursuzlanmaya başladığın anda seni uyandırma aralığı içinde uyandırır – o sırada büyük ihtimalle hafif uyuyorsundur. En geç hedef saatte; Apple Watch'ta ölçüm çalışmıyorsa yaklaşık 1 dakika sonra bildirimle. Bunun için Apple Watch'un hareketi ve nabzı takip eder. Apple Watch'ta Phase Wake hedef saatten önceki son 25 dakikayı ölçer. Gece kaydettiği hareketlerden gecenin fazla kısa olup olmadığını da anlar.
 
 Nasıl çalışır
 • Uyanma saatini ve aralığı seç (30 dk'ya kadar), saatini tak, uyu.

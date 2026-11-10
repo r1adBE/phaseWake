@@ -8961,6 +8961,454 @@
         }
       }
     },
+    "auto_onset_hint_apple": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Van 1 uur voor slaaptyd teken jou Apple Watch jou beweging aan; aan die begin van jou wekvenster bepaal Phase Wake wanneer jy aan die slaap geraak het."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ከመኝታ ሰዓት 1 ሰዓት በፊት ጀምሮ Apple Watchህ እንቅስቃሴህን ይመዘግባል፤ በመቀስቀሻ ጊዜህ መጀመሪያ ላይ Phase Wake መቼ እንደተኛህ ያሰላል።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "من ساعة قبل موعد النوم تسجّل Apple Watch حركتك؛ وفي بداية نافذة الاستيقاظ يحسب Phase Wake متى غفوت."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yatma vaxtından 1 saat əvvəldən Apple Watch hərəkətini qeyd edir; oyanma aralığının əvvəlində Phase Wake nə vaxt yuxuya getdiyini hesablayır."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "От 1 час преди лягане твоят Apple Watch записва движението ти; в началото на прозореца за събуждане Phase Wake изчислява кога си заспал."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ঘুমানোর সময়ের 1 ঘণ্টা আগে থেকে তোমার Apple Watch নড়াচড়া রেকর্ড করে; জাগানোর সময়সীমার শুরুতে Phase Wake হিসাব করে তুমি কখন ঘুমিয়েছিলে।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Od 1 sat prije spavanja tvoj Apple Watch bilježi tvoje pokrete; na početku intervala buđenja Phase Wake izračuna kada si zaspao."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Des d’1 hora abans d’anar a dormir, l’Apple Watch enregistra el teu moviment; a l’inici de la finestra de despertar, Phase Wake calcula quan et vas adormir."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Od 1 hodiny před spaním zaznamenávají Apple Watch tvůj pohyb; na začátku okna buzení Phase Wake spočítá, kdy jsi usnul."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fra 1 time før sengetid optager dit Apple Watch din bevægelse; ved starten af dit vækkevindue beregner Phase Wake, hvornår du faldt i søvn."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Apple Watch zeichnet ab 1 Std. vor der Bettzeit die Bewegung auf; zu Beginn des Weckfensters rechnet Phase Wake aus, wann du eingeschlafen bist."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Από 1 ώρα πριν την ώρα ύπνου το Apple Watch καταγράφει την κίνησή σου· στην αρχή του παραθύρου αφύπνισης το Phase Wake υπολογίζει πότε αποκοιμήθηκες."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "From 1 hour before bedtime, your Apple Watch records your movement; at the start of your wake window, Phase Wake works out when you fell asleep."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desde 1 hora antes de acostarte, tu Apple Watch graba tu movimiento; al inicio de tu ventana de despertar, Phase Wake calcula cuándo te dormiste."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alates 1 tund enne magamaminekut salvestab sinu Apple Watch liikumist; äratusakna alguses arvutab Phase Wake, millal sa uinusid."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oheratzeko ordua baino ordubete lehenagotik, Apple Watch-ek zure mugimendua grabatzen du; esnatzeko leihoaren hasieran, Phase Wake-k kalkulatzen du noiz lokartu zinen."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "از ۱ ساعت پیش از زمان خواب، Apple Watch حرکتت را ثبت می‌کند؛ در آغاز بازهٔ بیداری، Phase Wake حساب می‌کند کی به خواب رفتی."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tuntia ennen nukkumaanmenoa alkaen Apple Watch tallentaa liikkeesi; herätysikkunan alussa Phase Wake laskee, milloin nukahdit."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mula 1 oras bago ang oras ng pagtulog, nire-record ng iyong Apple Watch ang paggalaw mo; sa simula ng iyong wake window, kinakalkula ng Phase Wake kung kailan ka nakatulog."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À partir d’1 h avant le coucher, ton Apple Watch enregistre tes mouvements ; au début de ta plage de réveil, Phase Wake calcule quand tu t’es endormi."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ó uair an chloig roimh am codlata, taifeadann d’Apple Watch do ghluaiseacht; ag tús d’fhuinneog dúisithe, oibríonn Phase Wake amach cathain a thit tú i do chodladh."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desde 1 hora antes de deitarte, o teu Apple Watch grava o teu movemento; ao comezo da xanela de espertar, Phase Wake calcula cando adormeciches."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "સૂવાના સમયના 1 કલાક પહેલાંથી તમારી Apple Watch હલનચલન રેકોર્ડ કરે છે; જગાડવાના સમયગાળાની શરૂઆતમાં Phase Wake ગણે છે કે તમે ક્યારે ઊંઘી ગયા."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "משעה לפני שעת השינה ה-Apple Watch מקליט את התנועה שלכם; בתחילת חלון ההשכמה Phase Wake מחשב מתי נרדמתם."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सोने के समय से 1 घंटा पहले से आपकी Apple Watch हलचल रिकॉर्ड करती है; जागने की विंडो की शुरुआत में Phase Wake हिसाब लगाता है कि आप कब सो गए।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Od 1 sat prije spavanja tvoj Apple Watch bilježi tvoje pokrete; na početku intervala buđenja Phase Wake izračuna kada si zaspao."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lefekvés előtt 1 órától az Apple Watch rögzíti a mozgásodat; az ébresztési ablak elején a Phase Wake kiszámítja, mikor aludtál el."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Քնելու ժամից 1 ժամ առաջ սկսած Apple Watch-ը գրառում է քո շարժումը. արթնացման միջակայքի սկզբում Phase Wake-ը հաշվում է, թե երբ ես քնել։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mulai 1 jam sebelum waktu tidur, Apple Watch merekam gerakanmu; di awal rentang bangun, Phase Wake menghitung kapan kamu tertidur."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frá 1 klst. fyrir háttatíma skráir Apple Watch hreyfingu þína; í upphafi vakningargluggans reiknar Phase Wake út hvenær þú sofnaðir."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Da 1 ora prima di andare a letto il tuo Apple Watch registra il movimento; all’inizio della finestra di risveglio, Phase Wake calcola quando ti sei addormentato."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "就寝時刻の1時間前から、Apple Watchが体の動きを記録します。起床時間幅の始めに、Phase Wakeが寝付いた時刻を割り出します。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "დაძინებამდე 1 საათით ადრე Apple Watch იწერს შენს მოძრაობას; გაღვიძების ფანჯრის დასაწყისში Phase Wake ითვლის, როდის ჩაგეძინა."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұйқы уақытынан 1 сағат бұрын Apple Watch қозғалысыңды жаза бастайды; ояту аралығының басында Phase Wake қашан ұйықтап кеткеніңді есептейді."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ចាប់ពី 1 ម៉ោងមុនពេលគេង Apple Watch ថតចលនារបស់អ្នក; នៅដើមចន្លោះពេលដាស់ Phase Wake គណនាថាអ្នកដេកលក់ពេលណា។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಮಲಗುವ ಸಮಯಕ್ಕಿಂತ 1 ಗಂಟೆ ಮೊದಲಿನಿಂದ ನಿಮ್ಮ Apple Watch ಚಲನೆಯನ್ನು ದಾಖಲಿಸುತ್ತದೆ; ಎಚ್ಚರಿಸುವ ಅವಧಿಯ ಆರಂಭದಲ್ಲಿ ನೀವು ಯಾವಾಗ ನಿದ್ರಿಸಿದಿರಿ ಎಂದು Phase Wake ಲೆಕ್ಕಹಾಕುತ್ತದೆ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "취침 시간 1시간 전부터 Apple Watch가 움직임을 기록하고, 기상 범위가 시작될 때 Phase Wake가 잠든 시각을 계산해요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ຕັ້ງແຕ່ 1 ຊົ່ວໂມງກ່ອນເວລານອນ Apple Watch ບັນທຶກການເຄື່ອນໄຫວຂອງເຈົ້າ; ໃນຕອນເລີ່ມຊ່ວງປຸກ Phase Wake ຄິດໄລ່ວ່າເຈົ້າຫຼັບເມື່ອໃດ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuo 1 valandos prieš miegą tavo Apple Watch įrašo judėjimą; žadinimo lango pradžioje Phase Wake apskaičiuoja, kada užmigai."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No 1 stundas pirms gulētiešanas Apple Watch ieraksta tavas kustības; modināšanas loga sākumā Phase Wake aprēķina, kad tu aizmigi."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Од 1 час пред спиење твојот Apple Watch го снима движењето; на почетокот на прозорецот за будење Phase Wake пресметува кога си заспал."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഉറങ്ങുന്ന സമയത്തിന് 1 മണിക്കൂർ മുമ്പ് മുതൽ നിങ്ങളുടെ Apple Watch ചലനം രേഖപ്പെടുത്തുന്നു; ഉണർത്തൽ സമയപരിധിയുടെ തുടക്കത്തിൽ നിങ്ങൾ എപ്പോൾ ഉറങ്ങിയെന്ന് Phase Wake കണക്കാക്കുന്നു."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Унтах цагаас 1 цагийн өмнөөс Apple Watch хөдөлгөөнийг чинь бичдэг; сэрээх хугацааны эхэнд Phase Wake хэзээ унтсаныг чинь тооцоолдог."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "झोपण्याच्या वेळेच्या 1 तास आधीपासून तुमचे Apple Watch हालचाल नोंदवते; उठवण्याच्या कालावधीच्या सुरुवातीला Phase Wake तुम्ही कधी झोपलात ते मोजते."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dari 1 jam sebelum waktu tidur, Apple Watch merakam pergerakan awak; pada permulaan tetingkap bangun, Phase Wake mengira bila awak tertidur."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "အိပ်ချိန်မတိုင်မီ 1 နာရီမှစ၍ Apple Watch သည် လှုပ်ရှားမှုကို မှတ်တမ်းတင်ပြီး နှိုးချိန်ကာလ စတင်ချိန်တွင် Phase Wake က သင်အိပ်ပျော်ခဲ့ချိန်ကို တွက်ချက်ပါသည်။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fra 1 time før leggetid tar Apple Watch opp bevegelsen din; ved starten av vekkevinduet regner Phase Wake ut når du sovnet."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सुत्ने समयभन्दा 1 घण्टा अघिदेखि तिम्रो Apple Watch ले चालचलन रेकर्ड गर्छ; उठाउने समयावधिको सुरुमा Phase Wake ले तिमी कहिले निदायौ भनी हिसाब गर्छ।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vanaf 1 uur voor bedtijd neemt je Apple Watch je beweging op; aan het begin van je wekvenster berekent Phase Wake wanneer je in slaap viel."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੌਣ ਦੇ ਸਮੇਂ ਤੋਂ 1 ਘੰਟਾ ਪਹਿਲਾਂ ਤੋਂ ਤੁਹਾਡੀ Apple Watch ਹਿਲਜੁਲ ਰਿਕਾਰਡ ਕਰਦੀ ਹੈ; ਜਗਾਉਣ ਦੀ ਮਿਆਦ ਦੀ ਸ਼ੁਰੂਆਤ ਵਿੱਚ Phase Wake ਹਿਸਾਬ ਲਗਾਉਂਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕਦੋਂ ਸੌਂ ਗਏ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Od 1 godziny przed snem Apple Watch nagrywa twój ruch; na początku okna budzenia Phase Wake oblicza, kiedy zasnąłeś."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A partir de 1 hora antes de dormir, o Apple Watch grava seu movimento; no início da janela de despertar, o Phase Wake calcula quando você adormeceu."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A partir de 1 hora antes de dormir, o Apple Watch grava o teu movimento; no início da janela de despertar, o Phase Wake calcula quando adormeceste."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De la 1 oră înainte de culcare, Apple Watch-ul îți înregistrează mișcarea; la începutul intervalului de trezire, Phase Wake calculează când ai adormit."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "За 1 час до сна Apple Watch начинают записывать твои движения; в начале окна пробуждения Phase Wake вычисляет, когда ты уснул."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "නින්දට යාමට පැය 1කට පෙර සිට ඔබේ Apple Watch චලනය පටිගත කරයි; අවදි කිරීමේ කාලයේ ආරම්භයේදී ඔබ නින්දට ගියේ කවදාදැයි Phase Wake ගණනය කරයි."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Od 1 hodiny pred spaním zaznamenávajú Apple Watch tvoj pohyb; na začiatku okna budenia Phase Wake vypočíta, kedy si zaspal."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Od 1 ure pred spanjem Apple Watch snema tvoje gibanje; na začetku okna bujenja Phase Wake izračuna, kdaj si zaspal."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nga 1 orë para gjumit Apple Watch regjistron lëvizjen tënde; në fillim të intervalit të zgjimit, Phase Wake llogarit kur ke rënë në gjumë."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Од 1 сат пре спавања твој Apple Watch бележи покрете; на почетку интервала буђења Phase Wake израчуна када си заспао."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Från 1 timme före sänggåendet spelar din Apple Watch in din rörelse; i början av väckningsfönstret räknar Phase Wake ut när du somnade."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kuanzia saa 1 kabla ya kulala, Apple Watch yako hurekodi mwendo wako; mwanzoni mwa dirisha la kuamka, Phase Wake hukokotoa ulisinzia lini."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "தூங்கும் நேரத்துக்கு 1 மணிநேரம் முன்பிருந்து உங்கள் Apple Watch அசைவைப் பதிவுசெய்கிறது; எழுப்பும் வரம்பின் தொடக்கத்தில் நீங்கள் எப்போது தூங்கினீர்கள் என Phase Wake கணக்கிடுகிறது."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నిద్రపోయే సమయానికి 1 గంట ముందు నుండి మీ Apple Watch కదలికను రికార్డ్ చేస్తుంది; నిద్రలేపే వ్యవధి ప్రారంభంలో మీరు ఎప్పుడు నిద్రపోయారో Phase Wake లెక్కిస్తుంది."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ตั้งแต่ 1 ชั่วโมงก่อนเวลานอน Apple Watch จะบันทึกการเคลื่อนไหวของคุณ และเมื่อเริ่มช่วงเวลาปลุก Phase Wake จะคำนวณว่าคุณหลับเมื่อไร"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yatma saatinden 1 saat önceden itibaren Apple Watch hareketini kaydeder; uyandırma aralığının başında Phase Wake ne zaman uykuya daldığını hesaplar."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "За 1 годину до сну Apple Watch починає записувати твої рухи; на початку вікна пробудження Phase Wake обчислює, коли ти заснув."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سونے کے وقت سے 1 گھنٹہ پہلے سے تمہاری Apple Watch حرکت ریکارڈ کرتی ہے؛ جاگنے کی ونڈو کے شروع میں Phase Wake حساب لگاتا ہے کہ تم کب سوئے۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uyqu vaqtidan 1 soat oldin Apple Watch harakatingni yozib boradi; uyg‘otish oralig‘i boshida Phase Wake qachon uxlab qolganingni hisoblaydi."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Từ 1 giờ trước giờ đi ngủ, Apple Watch ghi lại chuyển động của bạn; vào đầu khoảng đánh thức, Phase Wake tính xem bạn đã ngủ thiếp đi lúc nào."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "由就寢時間前 1 小時起，Apple Watch 會記錄你的動作；在喚醒時段開始時，Phase Wake 會計算你何時入睡。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "从就寝时间前 1 小时起，Apple Watch 会记录你的动作；在唤醒时间窗开始时，Phase Wake 会算出你何时入睡。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "從就寢時間前 1 小時起，Apple Watch 會記錄你的動作；在喚醒時段開始時，Phase Wake 會算出你何時入睡。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kusukela ehoreni elingu-1 ngaphambi kokulala, i-Apple Watch yakho iqopha ukunyakaza kwakho; ekuqaleni kwewindi lokuvuka, i-Phase Wake ibala ukuthi uzumeke nini."
+          }
+        }
+      }
+    },
     "auto_onset_title": {
       "localizations": {
         "af": {
@@ -78685,454 +79133,6 @@
         }
       }
     },
-    "editor_sleep_apple": {
-      "localizations": {
-        "af": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Op die Apple Watch skat Phase Wake wanneer jy aan die slaap raak uit jou aangeleerde insluimertyd."
-          }
-        },
-        "am": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "በApple Watch ላይ Phase Wake መቼ እንደምትተኛ ከተማረው ለመተኛት የሚወስድብህ ጊዜ ይገምታል።"
-          }
-        },
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "على Apple Watch يقدّر Phase Wake وقت نومك من مدة الخلود إلى النوم التي تعلّمها."
-          }
-        },
-        "az": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch-da Phase Wake yuxuya getmə vaxtını öyrəndiyi yuxuya getmə müddətinə görə təxmin edir."
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "На Apple Watch Phase Wake преценява кога заспиваш по наученото ти време за заспиване."
-          }
-        },
-        "bn": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch-এ Phase Wake তোমার শেখা ঘুমিয়ে পড়ার সময় থেকে অনুমান করে তুমি কখন ঘুমিয়ে পড়ো।"
-          }
-        },
-        "bs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Na Apple Watchu Phase Wake procjenjuje kada zaspiš na osnovu tvog naučenog vremena uspavljivanja."
-          }
-        },
-        "ca": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A l’Apple Watch, Phase Wake estima quan t’adorms a partir del temps per adormir-te que ha après."
-          }
-        },
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Na Apple Watch odhaduje Phase Wake, kdy usneš, podle tvé naučené doby usínání."
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "På Apple Watch anslår Phase Wake, hvornår du falder i søvn, ud fra din lærte indsovningstid."
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Auf der Apple Watch schätzt Phase Wake die Einschlafzeit aus deiner gelernten Einschlafdauer."
-          }
-        },
-        "el": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Στο Apple Watch, το Phase Wake εκτιμά πότε αποκοιμιέσαι από τον χρόνο αποκοίμισης που έχει μάθει."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "On Apple Watch, Phase Wake estimates when you fall asleep from your learned time to fall asleep."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "En el Apple Watch, Phase Wake estima cuándo te duermes a partir del tiempo en dormirte que ha aprendido."
-          }
-        },
-        "et": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watchil hindab Phase Wake sinu uinumise aega õpitud uinumisaja põhjal."
-          }
-        },
-        "eu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch-en, Phase Wake-k noiz lokartzen zaren kalkulatzen du ikasitako lokartzeko denboratik."
-          }
-        },
-        "fa": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "روی Apple Watch، Phase Wake زمان به خواب رفتنت را از مدت به خواب رفتنی که آموخته تخمین می‌زند."
-          }
-        },
-        "fi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watchissa Phase Wake arvioi nukahtamisesi ajankohdan oppimasi nukahtamisajan perusteella."
-          }
-        },
-        "fil": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sa Apple Watch, tinatantya ng Phase Wake kung kailan ka makakatulog batay sa natutunang tagal ng iyong pagkakatulog."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sur l’Apple Watch, Phase Wake estime l’heure à laquelle tu t’endors à partir de ta durée d’endormissement apprise."
-          }
-        },
-        "ga": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ar an Apple Watch, measann Phase Wake cathain a thiteann tú i do chodladh ón am titim i do chodladh atá foghlamtha aige."
-          }
-        },
-        "gl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No Apple Watch, Phase Wake estima cando adormeces a partir do tempo para durmir que aprendeu."
-          }
-        },
-        "gu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch પર Phase Wake શીખેલા ઊંઘ આવવાના સમય પરથી તમે ક્યારે ઊંઘી જાઓ છો તેનો અંદાજ લગાવે છે."
-          }
-        },
-        "he": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ב-Apple Watch, Phase Wake מעריך מתי נרדמתם לפי זמן ההירדמות שנלמד."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch पर Phase Wake सीखे गए नींद आने के समय से अनुमान लगाता है कि आप कब सो जाते हैं।"
-          }
-        },
-        "hr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Na Apple Watchu Phase Wake procjenjuje kada zaspiš prema tvom naučenom vremenu uspavljivanja."
-          }
-        },
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Az Apple Watchon a Phase Wake a megtanult elalvási idődből becsüli meg, mikor alszol el."
-          }
-        },
-        "hy": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch-ում Phase Wake-ը գնահատում է, թե երբ ես քնում, քո սովորած քնելու ժամանակից։"
-          }
-        },
-        "id": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Di Apple Watch, Phase Wake memperkirakan kapan kamu tertidur dari waktu untuk tertidur yang sudah dipelajarinya."
-          }
-        },
-        "is": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Á Apple Watch áætlar Phase Wake hvenær þú sofnar út frá lærðum tíma sem það tekur þig að sofna."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Su Apple Watch, Phase Wake stima quando ti addormenti in base al tempo per addormentarti che ha imparato."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watchでは、Phase Wakeが学習した入眠までの時間から寝付いた時刻を推定します。"
-          }
-        },
-        "ka": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch-ზე Phase Wake ჩაძინების დროს ნასწავლი ჩაძინების ხანგრძლივობით აფასებს."
-          }
-        },
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch-та Phase Wake қашан ұйықтап кететініңді үйренген ұйықтап кету уақытыңнан бағалайды."
-          }
-        },
-        "km": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "នៅលើ Apple Watch, Phase Wake ប៉ាន់ស្មានពេលដែលអ្នកលង់លក់ ពីរយៈពេលលង់លក់ដែលវាបានរៀន។"
-          }
-        },
-        "kn": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch ನಲ್ಲಿ Phase Wake ಕಲಿತ ನಿದ್ರೆ ಬರಲು ಬೇಕಾದ ಸಮಯದಿಂದ ನೀವು ಯಾವಾಗ ನಿದ್ರಿಸುತ್ತೀರಿ ಎಂದು ಅಂದಾಜಿಸುತ್ತದೆ."
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch에서는 Phase Wake가 학습한 잠드는 데 걸리는 시간으로 잠든 시각을 추정해요."
-          }
-        },
-        "lo": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ໃນ Apple Watch, Phase Wake ຄາດຄະເນເວລາທີ່ເຈົ້າຫຼັບ ຈາກເວລາກວ່າຈະຫຼັບທີ່ມັນໄດ້ຮຽນຮູ້."
-          }
-        },
-        "lt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch laikrodyje Phase Wake įvertina, kada užmiegi, pagal išmoktą tavo užmigimo trukmę."
-          }
-        },
-        "lv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch pulkstenī Phase Wake novērtē, kad tu iemiegi, pēc apgūtā iemigšanas ilguma."
-          }
-        },
-        "mk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "На Apple Watch, Phase Wake проценува кога заспиваш според наученото време за заспивање."
-          }
-        },
-        "ml": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch-ൽ, പഠിച്ചെടുത്ത ഉറങ്ങാനെടുക്കുന്ന സമയത്തിൽ നിന്ന് നിങ്ങൾ എപ്പോൾ ഉറങ്ങുന്നുവെന്ന് Phase Wake കണക്കാക്കുന്നു."
-          }
-        },
-        "mn": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch дээр Phase Wake сурсан унтах хүртэлх хугацаагаар чамайг хэзээ унтсаныг тооцоолдог."
-          }
-        },
-        "mr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch वर Phase Wake शिकलेल्या झोप लागण्याच्या वेळेवरून तुम्ही कधी झोपता याचा अंदाज लावते."
-          }
-        },
-        "ms": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pada Apple Watch, Phase Wake menganggarkan bila awak tertidur berdasarkan masa untuk tertidur yang telah dipelajarinya."
-          }
-        },
-        "my": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch တွင် Phase Wake သည် သင်ယူထားသော အိပ်ပျော်ရန် ကြာချိန်မှ သင်အိပ်ပျော်သည့်အချိန်ကို ခန့်မှန်းပါသည်။"
-          }
-        },
-        "nb": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "På Apple Watch anslår Phase Wake når du sovner, ut fra den lærte innsovningstiden din."
-          }
-        },
-        "ne": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch मा Phase Wake ले सिकेको निदाउन लाग्ने समयबाट तिमी कहिले निदायौ भनी अनुमान गर्छ।"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Op de Apple Watch schat Phase Wake wanneer je in slaap valt op basis van je geleerde inslaaptijd."
-          }
-        },
-        "pa": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch ’ਤੇ Phase Wake ਸਿੱਖੇ ਹੋਏ ਨੀਂਦ ਆਉਣ ਦੇ ਸਮੇਂ ਤੋਂ ਅੰਦਾਜ਼ਾ ਲਗਾਉਂਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕਦੋਂ ਸੌਂਦੇ ਹੋ।"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Na Apple Watch Phase Wake szacuje, kiedy zasypiasz, na podstawie nauczonego czasu zasypiania."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No Apple Watch, o Phase Wake estima quando você adormece a partir do tempo para adormecer que aprendeu."
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No Apple Watch, o Phase Wake estima quando adormeces a partir do tempo até adormecer que aprendeu."
-          }
-        },
-        "ro": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pe Apple Watch, Phase Wake estimează când adormi pe baza duratei de adormire învățate."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "На Apple Watch Phase Wake оценивает, когда ты засыпаешь, по изученному времени засыпания."
-          }
-        },
-        "si": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch හි Phase Wake ඉගෙන ගත් නින්දට යාමට ගතවන කාලයෙන් ඔබ නින්දට යන වේලාව ඇස්තමේන්තු කරයි."
-          }
-        },
-        "sk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Na Apple Watch odhaduje Phase Wake, kedy zaspíš, podľa naučenej doby zaspávania."
-          }
-        },
-        "sl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Na uri Apple Watch Phase Wake oceni, kdaj zaspiš, iz naučenega časa uspavanja."
-          }
-        },
-        "sq": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Në Apple Watch, Phase Wake vlerëson kur bie në gjumë nga koha e mësuar që të duhet për të fjetur."
-          }
-        },
-        "sr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "На Apple Watch-у Phase Wake процењује када заспиш на основу наученог времена успављивања."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "På Apple Watch uppskattar Phase Wake när du somnar utifrån din inlärda insomningstid."
-          }
-        },
-        "sw": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kwenye Apple Watch, Phase Wake inakadiria wakati unapolala kutokana na muda wa kupata usingizi ilioujifunza."
-          }
-        },
-        "ta": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch இல் Phase Wake கற்றுக்கொண்ட தூங்க ஆகும் நேரத்திலிருந்து நீங்கள் எப்போது தூங்குகிறீர்கள் என மதிப்பிடுகிறது."
-          }
-        },
-        "te": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watchలో Phase Wake నేర్చుకున్న నిద్రపట్టడానికి పట్టే సమయం నుండి మీరు ఎప్పుడు నిద్రపోతారో అంచనా వేస్తుంది."
-          }
-        },
-        "th": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "บน Apple Watch, Phase Wake ประมาณเวลาที่คุณหลับจากเวลาจนหลับที่เรียนรู้ไว้"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch’ta Phase Wake ne zaman uykuya daldığını öğrendiği uykuya dalma süresinden tahmin eder."
-          }
-        },
-        "uk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "На Apple Watch Phase Wake оцінює, коли ти засинаєш, за вивченим часом засинання."
-          }
-        },
-        "ur": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watch پر Phase Wake سیکھے گئے نیند آنے کے وقت سے اندازہ لگاتا ہے کہ تم کب سوتے ہو۔"
-          }
-        },
-        "uz": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apple Watchʼda Phase Wake qachon uxlab qolishingni oʻrgangan uxlab qolish vaqtingdan taxmin qiladi."
-          }
-        },
-        "vi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Trên Apple Watch, Phase Wake ước tính thời điểm bạn ngủ dựa trên thời gian vào giấc đã học được."
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "在 Apple Watch 上，Phase Wake 會根據學到的入睡時間估算你何時入睡。"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "在 Apple Watch 上，Phase Wake 会根据学到的入睡时长估算你的入睡时间。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "在 Apple Watch 上，Phase Wake 會根據學到的入睡時間估算你何時入睡。"
-          }
-        },
-        "zu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ku-Apple Watch, i-Phase Wake ilinganisela ukuthi uzumeka nini ngesikhathi sokuzumeka esiyifundile."
-          }
-        }
-      }
-    },
     "editor_sleep_duration": {
       "localizations": {
         "af": {
@@ -80029,450 +80029,450 @@
         }
       }
     },
-    "editor_sleep_wear_only": {
+    "editor_sleep_hint_apple": {
       "localizations": {
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die slaapduur-modus werk net met ’n Galaxy Watch. Met ’n Apple Watch maak hierdie wekker jou in sy gewone venster tot by die teikentyd wakker."
+            "value": "Tel vanaf wanneer jy aan die slaap raak – tik “Goeienag” op jou horlosie wanneer jy gaan slaap. Op die Apple Watch skat Phase Wake wanneer jy aan die slaap raak uit jou aangeleerde insluimertyd. Sonder die tik geld die ingestelde tyd."
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "የእንቅልፍ ቆይታ ሁነታ የሚሰራው በGalaxy Watch ብቻ ነው። በApple Watch ይህ ማንቂያ በተለመደው ክልሉ እስከ ታለመው ሰዓት ድረስ ይቀሰቅስዎታል።"
+            "value": "ከተኛህበት ጊዜ ይቆጠራል – ስትተኛ በሰዓትህ ላይ «ደህና እደሩ»ን ንካ። በApple Watch ላይ Phase Wake መቼ እንደምትተኛ ከተማረው ለመተኛት የሚወስድብህ ጊዜ ይገምታል። ሳትነካ ከቀረህ የተቀመጠው ሰዓት ይሠራል።"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "وضع مدة النوم يعمل فقط مع Galaxy Watch. مع Apple Watch يوقظك هذا المنبّه في نافذته العادية حتى الوقت المستهدف."
+            "value": "يُحسب من وقت نومك – اضغط «ليلة سعيدة» على الساعة عندما تذهب إلى السرير. على Apple Watch يقدّر Phase Wake وقت نومك من مدة الخلود إلى النوم التي تعلّمها. دون الضغط يسري الوقت المضبوط."
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yuxu müddəti rejimi yalnız Galaxy Watch ilə işləyir. Apple Watch ilə bu siqnal səni adi pəncərəsində hədəf vaxtına qədər oyadır."
+            "value": "Yuxuya getdiyin andan sayılır – yatanda saatda «Gecən xeyrə» toxun. Apple Watch-da Phase Wake yuxuya getmə vaxtını öyrəndiyi yuxuya getmə müddətinə görə təxmin edir. Toxunmasan, qurulmuş vaxt keçərlidir."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Режимът по продължителност на съня работи само с Galaxy Watch. С Apple Watch този будилник те буди в обичайния си прозорец до целевия час."
+            "value": "Отброява се от заспиването – докосни „Лека нощ“ на часовника, когато си лягаш. На Apple Watch Phase Wake преценява кога заспиваш по наученото ти време за заспиване. Без докосване важи зададеното време."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ঘুমের সময়কাল মোড শুধু Galaxy Watch-এ কাজ করে। Apple Watch-এ এই অ্যালার্ম তোমাকে স্বাভাবিক সময়সীমায় লক্ষ্য সময় পর্যন্ত জাগাবে।"
+            "value": "ঘুমিয়ে পড়ার সময় থেকে গোনা হয় – শুতে যাওয়ার সময় ঘড়িতে «শুভরাত্রি» চাপো। Apple Watch-এ Phase Wake তোমার শেখা ঘুমিয়ে পড়ার সময় থেকে অনুমান করে তুমি কখন ঘুমিয়ে পড়ো। না চাপলে সেট করা সময়ই প্রযোজ্য।"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Način trajanja sna radi samo s Galaxy Watchom. S Apple Watchom te ovaj alarm budi u svom uobičajenom intervalu do ciljnog vremena."
+            "value": "Računa se od uspavljivanja – dodirni „Laku noć“ na satu kada ideš u krevet. Na Apple Watchu Phase Wake procjenjuje kada zaspiš na osnovu tvog naučenog vremena uspavljivanja. Bez dodira vrijedi postavljeno vrijeme."
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "El mode de durada del son només funciona amb un Galaxy Watch. Amb un Apple Watch, aquesta alarma et desperta dins la seva finestra normal fins a l’hora objectiu."
+            "value": "Compta des que t’adorms – toca «Bona nit» al rellotge quan te’n vagis al llit. A l’Apple Watch, Phase Wake estima quan t’adorms a partir del temps per adormir-te que ha après. Sense tocar-lo, val l’hora definida."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Režim délky spánku funguje jen s hodinkami Galaxy Watch. S Apple Watch tě tento budík vzbudí v běžném okně do cílového času."
+            "value": "Počítá se od usnutí – když jdeš spát, klepni na hodinkách na „Dobrou noc“. Na Apple Watch odhaduje Phase Wake, kdy usneš, podle tvé naučené doby usínání. Bez klepnutí platí nastavený čas."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Søvnlængde-tilstanden virker kun med et Galaxy Watch. Med et Apple Watch vækker denne alarm dig i sit normale vindue frem til ønsket tid."
+            "value": "Tæller fra, når du falder i søvn – tryk på “Godnat” på uret, når du går i seng. På Apple Watch anslår Phase Wake, hvornår du falder i søvn, ud fra din lærte indsovningstid. Uden tryk gælder det indstillede tidspunkt."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Der Einschlaf-Modus wirkt nur mit einer Galaxy Watch. Mit der Apple Watch weckt dieser Wecker im normalen Fenster bis zur Zielzeit."
+            "value": "Zählt ab dem Einschlafen – tippe beim Zubettgehen auf der Uhr auf «Gute Nacht». Auf der Apple Watch schätzt Phase Wake die Einschlafzeit aus deiner gelernten Einschlafdauer. Ohne Tippen gilt die eingestellte Uhrzeit."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Η λειτουργία διάρκειας ύπνου δουλεύει μόνο με Galaxy Watch. Με Apple Watch αυτό το ξυπνητήρι σε ξυπνά στο κανονικό του παράθυρο έως την ώρα στόχο."
+            "value": "Μετρά από τη στιγμή που αποκοιμιέσαι – πάτησε «Καληνύχτα» στο ρολόι όταν πας για ύπνο. Στο Apple Watch, το Phase Wake εκτιμά πότε αποκοιμιέσαι από τον χρόνο αποκοίμισης που έχει μάθει. Χωρίς πάτημα ισχύει η ώρα που έχεις ορίσει."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sleep mode only works with a Galaxy Watch. With an Apple Watch, this alarm wakes you in its normal window up to the target time."
+            "value": "Counts from when you fall asleep – tap “Good night” on your watch when you go to bed. On Apple Watch, Phase Wake estimates when you fall asleep from your learned time to fall asleep. Without the tap, the set time applies."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "El modo de duración del sueño solo funciona con un Galaxy Watch. Con un Apple Watch, esta alarma te despierta en su ventana normal hasta la hora objetivo."
+            "value": "Cuenta desde que te duermes: toca «Buenas noches» en el reloj al acostarte. En el Apple Watch, Phase Wake estima cuándo te duermes a partir del tiempo en dormirte que ha aprendido. Si no lo tocas, se aplica la hora configurada."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Une kestuse režiim töötab ainult Galaxy Watchiga. Apple Watchiga äratab see äratus sind tavalises aknas kuni sihtajani."
+            "value": "Loetakse uinumisest – puuduta magama minnes kellal „Head ööd“. Apple Watchil hindab Phase Wake sinu uinumise aega õpitud uinumisaja põhjal. Puudutuseta kehtib määratud aeg."
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lo-iraupenaren modua Galaxy Watch batekin bakarrik dabil. Apple Watch batekin, alarma honek ohiko leihoan esnatzen zaitu, helburuko ordura arte."
+            "value": "Lokartzen zarenetik zenbatzen da – sakatu «Gabon» erlojuan ohera zoazenean. Apple Watch-en, Phase Wake-k noiz lokartzen zaren kalkulatzen du ikasitako lokartzeko denboratik. Sakatu gabe, ezarritako ordua aplikatzen da."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "حالت مدت خواب فقط با Galaxy Watch کار می‌کند. با Apple Watch این زنگ تو را در بازهٔ معمولش تا زمان هدف بیدار می‌کند."
+            "value": "از زمان به خواب رفتن حساب می‌شود – هنگام رفتن به رختخواب روی ساعت «شب بخیر» را بزن. روی Apple Watch، Phase Wake زمان به خواب رفتنت را از مدت به خواب رفتنی که آموخته تخمین می‌زند. اگر نزنی، زمان تنظیم‌شده اعمال می‌شود."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unen pituus -tila toimii vain Galaxy Watchin kanssa. Apple Watchin kanssa tämä herätys herättää sinut tavallisessa ikkunassaan tavoiteaikaan mennessä."
+            "value": "Lasketaan nukahtamisesta – napauta kellosta ”Hyvää yötä”, kun menet nukkumaan. Apple Watchissa Phase Wake arvioi nukahtamisesi ajankohdan oppimasi nukahtamisajan perusteella. Ilman napautusta käytetään asetettua aikaa."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gumagana lang ang mode na haba ng tulog sa Galaxy Watch. Sa Apple Watch, gigisingin ka ng alarm na ito sa karaniwang window nito hanggang sa target na oras."
+            "value": "Binibilang mula nang makatulog ka – i-tap ang “Matutulog na” sa iyong relo kapag matutulog ka na. Sa Apple Watch, tinatantya ng Phase Wake kung kailan ka makakatulog batay sa natutunang tagal ng iyong pagkakatulog. Kung walang tap, ang nakatakdang oras ang masusunod."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Le mode durée de sommeil ne fonctionne qu’avec une Galaxy Watch. Avec une Apple Watch, cette alarme te réveille dans sa fenêtre habituelle jusqu’à l’heure cible."
+            "value": "Compte à partir de l’endormissement – appuie sur « Bonne nuit » sur ta montre en te couchant. Sur l’Apple Watch, Phase Wake estime l’heure à laquelle tu t’endors à partir de ta durée d’endormissement apprise. Sans appui, l’heure réglée s’applique."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ní oibríonn an mód fad codlata ach le Galaxy Watch. Le Apple Watch, dúiseoidh an t-aláram seo thú ina ghnáthfhuinneog go dtí an sprioc-am."
+            "value": "Áirítear ón am a dtiteann tú i do chodladh – tapáil “Oíche mhaith” ar d’uaireadóir nuair a théann tú a luí. Ar an Apple Watch, measann Phase Wake cathain a thiteann tú i do chodladh ón am titim i do chodladh atá foghlamtha aige. Gan an tapáil, beidh an t-am socraithe i bhfeidhm."
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "O modo de duración do sono só funciona cun Galaxy Watch. Cun Apple Watch, esta alarma espértate na súa xanela normal ata a hora obxectivo."
+            "value": "Conta desde que adormeces: toca «Boas noites» no reloxo ao deitarte. No Apple Watch, Phase Wake estima cando adormeces a partir do tempo para durmir que aprendeu. Se non o tocas, aplícase a hora configurada."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "ઊંઘના સમયનો મોડ ફક્ત Galaxy Watch સાથે કામ કરે છે. Apple Watch સાથે આ એલાર્મ તમને તેના સામાન્ય સમયગાળામાં લક્ષ્ય સમય સુધીમાં જગાડે છે."
+            "value": "ઊંઘી જાઓ ત્યારથી ગણાય છે – સૂવા જાઓ ત્યારે ઘડિયાળ પર «શુભ રાત્રિ» ટૅપ કરો. Apple Watch પર Phase Wake શીખેલા ઊંઘ આવવાના સમય પરથી તમે ક્યારે ઊંઘી જાઓ છો તેનો અંદાજ લગાવે છે. ટૅપ ન કરો તો સેટ કરેલો સમય લાગુ થાય છે."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "מצב משך שינה פועל רק עם Galaxy Watch. עם Apple Watch המעורר הזה מעיר בחלון הרגיל שלו עד שעת היעד."
+            "value": "נספר מרגע ההירדמות – הקישו על ״לילה טוב״ בשעון כשאתם הולכים לישון. ב-Apple Watch, Phase Wake מעריך מתי נרדמתם לפי זמן ההירדמות שנלמד. בלי הקשה חלה השעה שהוגדרה."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "नींद की अवधि वाला मोड सिर्फ़ Galaxy Watch के साथ काम करता है। Apple Watch के साथ यह अलार्म तुम्हें अपनी सामान्य विंडो में लक्ष्य समय तक जगाता है।"
+            "value": "नींद आने के समय से गिना जाता है – सोने जाते समय घड़ी पर «शुभ रात्रि» टैप करें। Apple Watch पर Phase Wake सीखे गए नींद आने के समय से अनुमान लगाता है कि आप कब सो जाते हैं। टैप न करने पर सेट किया गया समय लागू होता है।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Način trajanja sna radi samo s Galaxy Watchom. S Apple Watchom te ovaj alarm budi u svom uobičajenom intervalu do ciljnog vremena."
+            "value": "Računa se od uspavljivanja – dodirni „Laku noć” na satu kad ideš u krevet. Na Apple Watchu Phase Wake procjenjuje kada zaspiš prema tvom naučenom vremenu uspavljivanja. Bez dodira vrijedi postavljeno vrijeme."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Az alvásidő mód csak Galaxy Watch-csal működik. Apple Watch-csal ez az ébresztő a szokásos ablakában, legkésőbb a célidőben ébreszt."
+            "value": "Az elalvástól számít – lefekvéskor koppints az órán a „Jó éjszakát” gombra. Az Apple Watchon a Phase Wake a megtanult elalvási idődből becsüli meg, mikor alszol el. Koppintás nélkül a beállított idő érvényes."
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Քնի տևողության ռեժիմն աշխատում է միայն Galaxy Watch-ով։ Apple Watch-ով այս զարթուցիչը քեզ արթնացնում է իր սովորական պատուհանում՝ մինչև նպատակային ժամը։"
+            "value": "Հաշվվում է քնելու պահից – պառկելիս ժամացույցի վրա հպիր «Բարի գիշեր»։ Apple Watch-ում Phase Wake-ը գնահատում է, թե երբ ես քնում, քո սովորած քնելու ժամանակից։ Առանց հպման գործում է սահմանված ժամը։"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mode lama tidur hanya berfungsi dengan Galaxy Watch. Dengan Apple Watch, alarm ini membangunkanmu di jendela biasanya hingga waktu target."
+            "value": "Dihitung sejak kamu tertidur – ketuk “Selamat tidur” di jam saat kamu tidur. Di Apple Watch, Phase Wake memperkirakan kapan kamu tertidur dari waktu untuk tertidur yang sudah dipelajarinya. Tanpa ketukan, waktu yang diatur yang berlaku."
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Svefnlengdarstilling virkar aðeins með Galaxy Watch. Með Apple Watch vekur þessi vekjari þig í venjulegum glugga sínum fram að markmiðstíma."
+            "value": "Telst frá því að þú sofnar – ýttu á „Góða nótt“ á úrinu þegar þú ferð að sofa. Á Apple Watch áætlar Phase Wake hvenær þú sofnar út frá lærðum tíma sem það tekur þig að sofna. Án þess gildir stilltur tími."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "La modalità durata del sonno funziona solo con un Galaxy Watch. Con un Apple Watch questa sveglia ti sveglia nella sua finestra normale fino all’orario obiettivo."
+            "value": "Conta da quando ti addormenti – tocca «Buonanotte» sull’orologio quando vai a letto. Su Apple Watch, Phase Wake stima quando ti addormenti in base al tempo per addormentarti che ha imparato. Senza il tocco vale l’orario impostato."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "睡眠時間モードは Galaxy Watch でのみ使えます。Apple Watch では、このアラームは通常のウィンドウ内で目標時刻までに起こします。"
+            "value": "眠りについた時点から数えます。寝るときにウォッチで「おやすみ」をタップしてください。Apple Watchでは、Phase Wakeが学習した入眠までの時間から寝付いた時刻を推定します。タップしない場合は設定した時刻になります。"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "ძილის ხანგრძლივობის რეჟიმი მუშაობს მხოლოდ Galaxy Watch-თან. Apple Watch-თან ეს მაღვიძარა გაღვიძებს ჩვეულ ფანჯარაში სამიზნე დრომდე."
+            "value": "ითვლება ჩაძინებიდან – დაწოლისას საათზე შეეხე «ძილი ნებისა»-ს. Apple Watch-ზე Phase Wake ჩაძინების დროს ნასწავლი ჩაძინების ხანგრძლივობით აფასებს. შეხების გარეშე მოქმედებს დაყენებული დრო."
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ұйқы ұзақтығы режимі тек Galaxy Watch-пен жұмыс істейді. Apple Watch-пен бұл оятқыш сені әдеттегі терезесінде мақсатты уақытқа дейін оятады."
+            "value": "Ұйықтап кеткен сәттен бастап есептеледі – төсекке жатқанда сағаттан «Қайырлы түн» түймесін түрт. Apple Watch-та Phase Wake қашан ұйықтап кететініңді үйренген ұйықтап кету уақытыңнан бағалайды. Түртпесең, орнатылған уақыт қолданылады."
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "របៀបរយៈពេលដេកដំណើរការតែជាមួយ Galaxy Watch ប៉ុណ្ណោះ។ ជាមួយ Apple Watch ម៉ោងរោទ៍នេះដាស់អ្នកក្នុងចន្លោះពេលធម្មតារបស់វា រហូតដល់ម៉ោងគោលដៅ។"
+            "value": "រាប់ពីពេលអ្នកដេកលក់ – ចុច «រាត្រីសួស្តី» នៅលើនាឡិកា ពេលអ្នកចូលគេង។ នៅលើ Apple Watch, Phase Wake ប៉ាន់ស្មានពេលដែលអ្នកលង់លក់ ពីរយៈពេលលង់លក់ដែលវាបានរៀន។ បើមិនចុច ពេលវេលាដែលបានកំណត់នឹងត្រូវប្រើ។"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ನಿದ್ರೆಯ ಅವಧಿ ಮೋಡ್ Galaxy Watch ಜೊತೆ ಮಾತ್ರ ಕೆಲಸ ಮಾಡುತ್ತದೆ. Apple Watch ಜೊತೆ ಈ ಅಲಾರಾಂ ತನ್ನ ಸಾಮಾನ್ಯ ಅವಧಿಯಲ್ಲಿ ಗುರಿ ಸಮಯದೊಳಗೆ ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸುತ್ತದೆ."
+            "value": "ನಿದ್ರೆಗೆ ಜಾರಿದಾಗಿನಿಂದ ಎಣಿಸಲಾಗುತ್ತದೆ – ಮಲಗುವಾಗ ವಾಚ್‌ನಲ್ಲಿ «ಶುಭ ರಾತ್ರಿ» ಟ್ಯಾಪ್ ಮಾಡಿ. Apple Watch ನಲ್ಲಿ Phase Wake ಕಲಿತ ನಿದ್ರೆ ಬರಲು ಬೇಕಾದ ಸಮಯದಿಂದ ನೀವು ಯಾವಾಗ ನಿದ್ರಿಸುತ್ತೀರಿ ಎಂದು ಅಂದಾಜಿಸುತ್ತದೆ. ಟ್ಯಾಪ್ ಮಾಡದಿದ್ದರೆ ಹೊಂದಿಸಿದ ಸಮಯ ಅನ್ವಯಿಸುತ್ತದೆ."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "수면 시간 모드는 Galaxy Watch에서만 작동해요. Apple Watch에서는 이 알람이 평소 구간 안에서 목표 시각까지 깨워요."
+            "value": "잠든 시점부터 계산해요. 잠자리에 들 때 워치에서 ‘잘 자요’를 탭하세요. Apple Watch에서는 Phase Wake가 학습한 잠드는 데 걸리는 시간으로 잠든 시각을 추정해요. 탭하지 않으면 설정한 시간이 적용돼요."
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "ໂໝດໄລຍະນອນໃຊ້ໄດ້ກັບ Galaxy Watch ເທົ່ານັ້ນ. ກັບ Apple Watch ໂມງປຸກນີ້ຈະປຸກເຈົ້າໃນຊ່ວງເວລາປົກກະຕິຂອງມັນຈົນຮອດເວລາເປົ້າໝາຍ."
+            "value": "ນັບຈາກເວລາທີ່ເຈົ້າຫຼັບ – ແຕະ «ລາຕີສະຫວັດ» ໃນໂມງເມື່ອເຂົ້ານອນ. ໃນ Apple Watch, Phase Wake ຄາດຄະເນເວລາທີ່ເຈົ້າຫຼັບ ຈາກເວລາກວ່າຈະຫຼັບທີ່ມັນໄດ້ຮຽນຮູ້. ຖ້າບໍ່ແຕະ ຈະໃຊ້ເວລາທີ່ຕັ້ງໄວ້."
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Miego trukmės režimas veikia tik su Galaxy Watch. Su Apple Watch šis žadintuvas pažadins tave įprastame lange iki tikslinio laiko."
+            "value": "Skaičiuojama nuo užmigimo – eidamas miegoti laikrodyje paliesk „Labanakt“. Apple Watch laikrodyje Phase Wake įvertina, kada užmiegi, pagal išmoktą tavo užmigimo trukmę. Nepalietus galioja nustatytas laikas."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Miega ilguma režīms darbojas tikai ar Galaxy Watch. Ar Apple Watch šis modinātājs tevi modina savā parastajā logā līdz mērķa laikam."
+            "value": "Skaita no aizmigšanas – ejot gulēt, pulkstenī pieskaries “Ar labu nakti”. Apple Watch pulkstenī Phase Wake novērtē, kad tu iemiegi, pēc apgūtā iemigšanas ilguma. Bez pieskāriena ir spēkā iestatītais laiks."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Режимот по траење на сонот работи само со Galaxy Watch. Со Apple Watch овој аларм те буди во својот вообичаен прозорец до целното време."
+            "value": "Се брои од заспивањето – допри „Добра ноќ“ на часовникот кога легнуваш. На Apple Watch, Phase Wake проценува кога заспиваш според наученото време за заспивање. Без допир важи поставеното време."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "ഉറക്ക ദൈർഘ്യ മോഡ് Galaxy Watch-ൽ മാത്രമേ പ്രവർത്തിക്കൂ. Apple Watch-ൽ ഈ അലാറം അതിന്റെ സാധാരണ സമയപരിധിയിൽ ലക്ഷ്യ സമയം വരെ നിങ്ങളെ ഉണർത്തും."
+            "value": "ഉറങ്ങിയ സമയം മുതൽ എണ്ണുന്നു – കിടക്കുമ്പോൾ വാച്ചിൽ «ശുഭരാത്രി» ടാപ്പ് ചെയ്യുക. Apple Watch-ൽ, പഠിച്ചെടുത്ത ഉറങ്ങാനെടുക്കുന്ന സമയത്തിൽ നിന്ന് നിങ്ങൾ എപ്പോൾ ഉറങ്ങുന്നുവെന്ന് Phase Wake കണക്കാക്കുന്നു. ടാപ്പ് ചെയ്തില്ലെങ്കിൽ സജ്ജീകരിച്ച സമയം ബാധകമാകും."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Нойрны үргэлжлэх хугацааны горим зөвхөн Galaxy Watch-тай ажилладаг. Apple Watch-тай бол энэ сэрүүлэг ердийн хугацаандаа зорилтот цаг хүртэл сэрээнэ."
+            "value": "Унтсан цагаас тоолно – орондоо ороходоо цаган дээр «Сайхан амраарай»-г дар. Apple Watch дээр Phase Wake сурсан унтах хүртэлх хугацаагаар чамайг хэзээ унтсаныг тооцоолдог. Дарахгүй бол тохируулсан цаг хүчинтэй."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "झोपेच्या कालावधीचा मोड फक्त Galaxy Watch सोबत चालतो. Apple Watch सोबत हा अलार्म तुम्हाला त्याच्या नेहमीच्या कालावधीत लक्ष्य वेळेपर्यंत उठवतो."
+            "value": "झोप लागल्यापासून मोजले जाते – झोपायला जाताना घड्याळावर «शुभ रात्री» टॅप करा. Apple Watch वर Phase Wake शिकलेल्या झोप लागण्याच्या वेळेवरून तुम्ही कधी झोपता याचा अंदाज लावते. टॅप न केल्यास सेट केलेली वेळ लागू होते."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mod tempoh tidur hanya berfungsi dengan Galaxy Watch. Dengan Apple Watch, penggera ini membangunkan awak dalam tetingkap biasanya hingga waktu sasaran."
+            "value": "Dikira sejak awak tertidur – ketik “Selamat malam” pada jam apabila awak masuk tidur. Pada Apple Watch, Phase Wake menganggarkan bila awak tertidur berdasarkan masa untuk tertidur yang telah dipelajarinya. Tanpa ketikan, masa yang ditetapkan digunakan."
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "အိပ်ချိန်ကြာမြင့်မှု မုဒ်သည် Galaxy Watch ဖြင့်သာ အလုပ်လုပ်သည်။ Apple Watch ဖြင့်ဆိုလျှင် ဤနှိုးစက်သည် ပုံမှန်အချိန်အပိုင်းအတွင်း ပစ်မှတ်အချိန်အထိ နှိုးမည်။"
+            "value": "အိပ်ပျော်ချိန်မှ စတင်ရေတွက်သည် – အိပ်ယာဝင်ချိန်တွင် နာရီပေါ်ရှိ «ကောင်းသောညပါ» ကို နှိပ်ပါ။ Apple Watch တွင် Phase Wake သည် သင်ယူထားသော အိပ်ပျော်ရန် ကြာချိန်မှ သင်အိပ်ပျော်သည့်အချိန်ကို ခန့်မှန်းပါသည်။ မနှိပ်ပါက သတ်မှတ်ထားသော အချိန်ကို အသုံးပြုမည်။"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Søvnlengde-modusen virker bare med en Galaxy Watch. Med en Apple Watch vekker denne alarmen deg i sitt vanlige vindu frem til ønsket tid."
+            "value": "Telles fra du sovner – trykk på «God natt» på klokken når du legger deg. På Apple Watch anslår Phase Wake når du sovner, ut fra den lærte innsovningstiden din. Uten trykk gjelder den innstilte tiden."
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "निद्राको अवधि मोड Galaxy Watch सँग मात्र चल्छ। Apple Watch सँग यो अलार्मले तिमीलाई आफ्नो सामान्य अवधिभित्र लक्षित समयसम्म ब्युँझाउँछ।"
+            "value": "निदाएदेखि गनिन्छ – सुत्न जाँदा घडीमा «शुभ रात्रि» थिच। Apple Watch मा Phase Wake ले सिकेको निदाउन लाग्ने समयबाट तिमी कहिले निदायौ भनी अनुमान गर्छ। नथिचे सेट गरिएको समय लागू हुन्छ।"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "De slaapduurmodus werkt alleen met een Galaxy Watch. Met een Apple Watch wekt deze wekker je in zijn gewone venster tot de doeltijd."
+            "value": "Telt vanaf het inslapen – tik bij het naar bed gaan op ‘Welterusten’ op je horloge. Op de Apple Watch schat Phase Wake wanneer je in slaap valt op basis van je geleerde inslaaptijd. Zonder tik geldt de ingestelde tijd."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਨੀਂਦ ਦੀ ਮਿਆਦ ਵਾਲਾ ਮੋਡ ਸਿਰਫ਼ Galaxy Watch ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ। Apple Watch ਨਾਲ ਇਹ ਅਲਾਰਮ ਤੁਹਾਨੂੰ ਆਪਣੀ ਆਮ ਮਿਆਦ ਵਿੱਚ ਟੀਚੇ ਦੇ ਸਮੇਂ ਤੱਕ ਜਗਾਉਂਦਾ ਹੈ।"
+            "value": "ਸੌਂ ਜਾਣ ਤੋਂ ਗਿਣਿਆ ਜਾਂਦਾ ਹੈ – ਸੌਣ ਜਾਂਦੇ ਸਮੇਂ ਘੜੀ ’ਤੇ «ਸ਼ੁਭ ਰਾਤ» ਟੈਪ ਕਰੋ। Apple Watch ’ਤੇ Phase Wake ਸਿੱਖੇ ਹੋਏ ਨੀਂਦ ਆਉਣ ਦੇ ਸਮੇਂ ਤੋਂ ਅੰਦਾਜ਼ਾ ਲਗਾਉਂਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕਦੋਂ ਸੌਂਦੇ ਹੋ। ਟੈਪ ਨਾ ਕਰਨ ’ਤੇ ਸੈੱਟ ਕੀਤਾ ਸਮਾਂ ਲਾਗੂ ਹੁੰਦਾ ਹੈ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tryb czasu snu działa tylko z zegarkiem Galaxy Watch. Z Apple Watch ten budzik budzi cię w swoim zwykłym oknie do czasu docelowego."
+            "value": "Liczy się od zaśnięcia – kładąc się spać, stuknij na zegarku „Dobranoc”. Na Apple Watch Phase Wake szacuje, kiedy zasypiasz, na podstawie nauczonego czasu zasypiania. Bez stuknięcia obowiązuje ustawiona godzina."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O modo duração do sono só funciona com um Galaxy Watch. Com um Apple Watch, este alarme acorda você na janela normal até o horário-alvo."
+            "value": "Conta a partir de quando você adormece – toque em “Boa noite” no relógio ao ir para a cama. No Apple Watch, o Phase Wake estima quando você adormece a partir do tempo para adormecer que aprendeu. Sem o toque, vale o horário definido."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "O modo duração do sono só funciona com um Galaxy Watch. Com um Apple Watch, este alarme acorda-te na janela normal até à hora-alvo."
+            "value": "Conta a partir de quando adormeces – toca em «Boa noite» no relógio ao deitares-te. No Apple Watch, o Phase Wake estima quando adormeces a partir do tempo até adormecer que aprendeu. Sem o toque, vale a hora definida."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Modul durata somnului funcționează doar cu un Galaxy Watch. Cu un Apple Watch, această alarmă te trezește în fereastra obișnuită până la ora țintă."
+            "value": "Se numără de la adormire – atinge „Noapte bună” pe ceas când te culci. Pe Apple Watch, Phase Wake estimează când adormi pe baza duratei de adormire învățate. Fără atingere se aplică ora setată."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Режим по длине сна работает только с Galaxy Watch. С Apple Watch этот будильник будит тебя в обычном окне до целевого времени."
+            "value": "Отсчитывается от засыпания – ложась спать, нажми на часах «Спокойной ночи». На Apple Watch Phase Wake оценивает, когда ты засыпаешь, по изученному времени засыпания. Без нажатия действует установленное время."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "නින්දේ කාල ප්‍රකාරය ක්‍රියා කරන්නේ Galaxy Watch සමඟ පමණි. Apple Watch සමඟ මෙම එලාමය එහි සාමාන්‍ය පරාසය තුළ ඉලක්ක වේලාව දක්වා ඔබව අවදි කරයි."
+            "value": "නින්දට ගිය වේලාවේ සිට ගණන් කෙරේ – නිදාගන්නා විට ඔරලෝසුවේ «සුබ රාත්‍රියක්» තට්ටු කරන්න. Apple Watch හි Phase Wake ඉගෙන ගත් නින්දට යාමට ගතවන කාලයෙන් ඔබ නින්දට යන වේලාව ඇස්තමේන්තු කරයි. තට්ටු නොකළහොත් සැකසූ වේලාව අදාළ වේ."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Režim dĺžky spánku funguje len s hodinkami Galaxy Watch. S Apple Watch ťa tento budík zobudí vo svojom bežnom okne do cieľového času."
+            "value": "Počíta sa od zaspania – keď ideš spať, ťukni na hodinkách na „Dobrú noc“. Na Apple Watch odhaduje Phase Wake, kedy zaspíš, podľa naučenej doby zaspávania. Bez ťuknutia platí nastavený čas."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Način trajanja spanca deluje samo z uro Galaxy Watch. Z uro Apple Watch te ta budilka zbudi v svojem običajnem oknu do ciljnega časa."
+            "value": "Šteje od uspavanja – ko greš spat, na uri tapni »Lahko noč«. Na uri Apple Watch Phase Wake oceni, kdaj zaspiš, iz naučenega časa uspavanja. Brez tapa velja nastavljeni čas."
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Modaliteti i kohëzgjatjes së gjumit funksionon vetëm me Galaxy Watch. Me Apple Watch, ky alarm të zgjon në intervalin e zakonshëm deri në orën e synuar."
+            "value": "Llogaritet nga koha kur bie në gjumë – prek «Natën e mirë» në orë kur shkon të flesh. Në Apple Watch, Phase Wake vlerëson kur bie në gjumë nga koha e mësuar që të duhet për të fjetur. Pa prekje vlen ora e caktuar."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Режим трајања сна ради само са Galaxy Watch-ом. Са Apple Watch-ом те овај аларм буди у свом уобичајеном интервалу до циљног времена."
+            "value": "Рачуна се од успављивања – додирни „Лаку ноћ“ на сату када идеш у кревет. На Apple Watch-у Phase Wake процењује када заспиш на основу наученог времена успављивања. Без додира важи подешено време."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sömnlängdsläget fungerar bara med en Galaxy Watch. Med en Apple Watch väcker det här larmet dig i sitt vanliga fönster fram till önskad tid."
+            "value": "Räknas från när du somnar – tryck på ”Godnatt” på klockan när du lägger dig. På Apple Watch uppskattar Phase Wake när du somnar utifrån din inlärda insomningstid. Utan tryck gäller den inställda tiden."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hali ya muda wa kulala hufanya kazi tu na Galaxy Watch. Ukiwa na Apple Watch, kengele hii inakuamsha ndani ya kipindi chake cha kawaida hadi muda lengwa."
+            "value": "Huhesabiwa kuanzia unaposinzia – gusa “Usiku mwema” kwenye saa unapoenda kulala. Kwenye Apple Watch, Phase Wake inakadiria wakati unapolala kutokana na muda wa kupata usingizi ilioujifunza. Usipogusa, muda uliowekwa ndio hutumika."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "தூக்க நேர பயன்முறை Galaxy Watch உடன் மட்டுமே வேலை செய்யும். Apple Watch உடன் இந்த அலாரம் அதன் வழக்கமான வரம்பில் இலக்கு நேரம் வரை உங்களை எழுப்பும்."
+            "value": "தூங்கியதிலிருந்து எண்ணப்படும் – படுக்கும்போது கடிகாரத்தில் «இனிய இரவு» தட்டவும். Apple Watch இல் Phase Wake கற்றுக்கொண்ட தூங்க ஆகும் நேரத்திலிருந்து நீங்கள் எப்போது தூங்குகிறீர்கள் என மதிப்பிடுகிறது. தட்டாவிட்டால் அமைத்த நேரம் பொருந்தும்."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "నిద్ర వ్యవధి మోడ్ Galaxy Watch తో మాత్రమే పనిచేస్తుంది. Apple Watch తో ఈ అలారం దాని సాధారణ వ్యవధిలో లక్ష్య సమయం వరకు మిమ్మల్ని లేపుతుంది."
+            "value": "నిద్రపోయినప్పటి నుండి లెక్కిస్తుంది – పడుకునేటప్పుడు వాచ్‌లో «శుభ రాత్రి» నొక్కండి. Apple Watchలో Phase Wake నేర్చుకున్న నిద్రపట్టడానికి పట్టే సమయం నుండి మీరు ఎప్పుడు నిద్రపోతారో అంచనా వేస్తుంది. నొక్కకపోతే సెట్ చేసిన సమయం వర్తిస్తుంది."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "โหมดระยะเวลานอนใช้ได้กับ Galaxy Watch เท่านั้น เมื่อใช้ Apple Watch นาฬิกาปลุกนี้จะปลุกคุณในช่วงเวลาปกติจนถึงเวลาเป้าหมาย"
+            "value": "นับตั้งแต่ตอนที่คุณหลับ – แตะ «ราตรีสวัสดิ์» บนนาฬิกาเมื่อเข้านอน บน Apple Watch, Phase Wake ประมาณเวลาที่คุณหลับจากเวลาจนหลับที่เรียนรู้ไว้ หากไม่แตะ จะใช้เวลาที่ตั้งไว้"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uyku süresi modu yalnızca Galaxy Watch ile çalışır. Apple Watch ile bu alarm seni normal aralığında hedef saate kadar uyandırır."
+            "value": "Uykuya daldığın andan itibaren sayılır – yatarken saatte «İyi geceler»e dokun. Apple Watch’ta Phase Wake ne zaman uykuya daldığını öğrendiği uykuya dalma süresinden tahmin eder. Dokunmazsan ayarlanan saat geçerli olur."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Режим за тривалістю сну працює лише з Galaxy Watch. З Apple Watch цей будильник будить тебе у звичайному вікні до цільового часу."
+            "value": "Відлічується від засинання – лягаючи спати, натисни на годиннику «На добраніч». На Apple Watch Phase Wake оцінює, коли ти засинаєш, за вивченим часом засинання. Без натискання діє встановлений час."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "نیند کے دورانیے والا موڈ صرف Galaxy Watch کے ساتھ کام کرتا ہے۔ Apple Watch کے ساتھ یہ الارم تمہیں اپنی عام ونڈو میں ہدف کے وقت تک جگاتا ہے۔"
+            "value": "سونے کے وقت سے گنا جاتا ہے – سونے جاتے وقت گھڑی پر «شب بخیر» ٹیپ کرو۔ Apple Watch پر Phase Wake سیکھے گئے نیند آنے کے وقت سے اندازہ لگاتا ہے کہ تم کب سوتے ہو۔ ٹیپ نہ کرو تو سیٹ کیا گیا وقت لاگو ہوتا ہے۔"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uyqu davomiyligi rejimi faqat Galaxy Watch bilan ishlaydi. Apple Watch bilan bu budilnik seni odatiy oraligʻida belgilangan vaqtgacha uygʻotadi."
+            "value": "Uxlab qolgan paytdan hisoblanadi – yotayotganda soatda «Xayrli tun»ga bos. Apple Watchʼda Phase Wake qachon uxlab qolishingni oʻrgangan uxlab qolish vaqtingdan taxmin qiladi. Bosmasang, o‘rnatilgan vaqt amal qiladi."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chế độ thời lượng ngủ chỉ hoạt động với Galaxy Watch. Với Apple Watch, báo thức này đánh thức bạn trong khung giờ thường lệ, muộn nhất vào giờ mục tiêu."
+            "value": "Tính từ lúc bạn ngủ thiếp đi – chạm “Ngủ ngon” trên đồng hồ khi đi ngủ. Trên Apple Watch, Phase Wake ước tính thời điểm bạn ngủ dựa trên thời gian vào giấc đã học được. Nếu không chạm, thời gian đã đặt sẽ được áp dụng."
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "睡眠時長模式只適用於 Galaxy Watch。配合 Apple Watch 時，此鬧鐘會喺正常時段內、最遲喺目標時間叫醒你。"
+            "value": "由入睡時開始計算——上床時在手錶上點一下「晚安」。在 Apple Watch 上，Phase Wake 會根據學到的入睡時間估算你何時入睡。如果不點，則按設定的時間。"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "睡眠时长模式只适用于 Galaxy Watch。搭配 Apple Watch 时，此闹钟会在正常窗口内、最晚在目标时间叫醒你。"
+            "value": "从入睡时开始计算——上床时在手表上轻点“晚安”。在 Apple Watch 上，Phase Wake 会根据学到的入睡时长估算你的入睡时间。如果不轻点，则按设定的时间。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "睡眠時數模式只適用於 Galaxy Watch。搭配 Apple Watch 時，此鬧鐘會在正常時段內、最晚在目標時間叫醒你。"
+            "value": "從入睡時開始計算——上床時在手錶上點一下「晚安」。在 Apple Watch 上，Phase Wake 會根據學到的入睡時間估算你何時入睡。如果不點，則按設定的時間。"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Imodi yobude bokulala isebenza kuphela ne-Galaxy Watch. Ne-Apple Watch, le alamu ikuvusa esikhaleni sayo esivamile kuze kube isikhathi okuhloswe ngaso."
+            "value": "Kubalwa kusukela lapho uzumeka – thepha u-“Ulale kahle” ewashini lakho lapho uyolala. Ku-Apple Watch, i-Phase Wake ilinganisela ukuthi uzumeka nini ngesikhathi sokuzumeka esiyifundile. Ngaphandle kokuthepha, kusebenza isikhathi esisethiwe."
           }
         }
       }

@@ -1,4 +1,4 @@
-Phase Wake te réveille dans ta plage de réveil dès que ton sommeil devient agité – c’est alors sans doute un sommeil léger. Au plus tard à l’heure cible ; si aucune mesure n’est en cours sur l’Apple Watch, environ 1 minute après par une notification. Pour cela, ta Apple Watch suit les mouvements et le pouls. Sur l’Apple Watch, Phase Wake mesure les 25 dernières minutes avant l’heure cible. Elle ne peut pas savoir si ta nuit a été trop courte.
+Phase Wake te réveille dans ta plage de réveil dès que ton sommeil devient agité – c’est alors sans doute un sommeil léger. Au plus tard à l’heure cible ; si aucune mesure n’est en cours sur l’Apple Watch, environ 1 minute après par une notification. Pour cela, ta Apple Watch suit les mouvements et le pouls. Sur l’Apple Watch, Phase Wake mesure les 25 dernières minutes avant l’heure cible. Grâce aux mouvements qu’elle enregistre la nuit, elle sait aussi si ta nuit a été trop courte.
 
 Comment ça marche
 • Choisis ton heure de réveil et ta plage (jusqu’à 30 min), mets ta montre, dors.

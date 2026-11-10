@@ -26,5 +26,6 @@
     <string name="check_watch_notifications">Thông báo trên đồng hồ</string>
     <string name="check_watch_notifications_problem">Hãy cho phép thông báo nhạy cảm về thời gian của Phase Wake trên Apple Watch của bạn. Nếu không, đồng hồ không thể đánh thức bạn bằng thông báo khi không có phép đo nào đang chạy.</string>
     <string name="check_watch_state_old">Trạng thái của đồng hồ đã cũ – hãy mở nhanh Phase Wake trên đồng hồ.</string>
-    <string name="editor_sleep_apple">Trên Apple Watch, Phase Wake ước tính thời điểm bạn ngủ dựa trên thời gian vào giấc đã học được.</string>
+    <string name="editor_sleep_hint_apple">Tính từ lúc bạn ngủ thiếp đi – chạm “Ngủ ngon” trên đồng hồ khi đi ngủ. Trên Apple Watch, Phase Wake ước tính thời điểm bạn ngủ dựa trên thời gian vào giấc đã học được. Nếu không chạm, thời gian đã đặt sẽ được áp dụng.</string>
+    <string name="auto_onset_hint_apple">Từ 1 giờ trước giờ đi ngủ, Apple Watch ghi lại chuyển động của bạn; vào đầu khoảng đánh thức, Phase Wake tính xem bạn đã ngủ thiếp đi lúc nào.</string>
 </resources>

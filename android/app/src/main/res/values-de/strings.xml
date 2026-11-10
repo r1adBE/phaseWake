@@ -51,7 +51,6 @@
     <string name="editor_latest">Spätestens</string>
     <string name="editor_sleep_duration">%1$s schlafen</string>
     <string name="editor_sleep_hint">Zählt ab dem Einschlafen. Die Uhr erkennt es automatisch; mit «Gute Nacht» auf der Uhr startet sie sofort.</string>
-    <string name="editor_sleep_wear_only">Der Einschlaf-Modus wirkt nur mit einer Galaxy Watch. Mit der Apple Watch weckt dieser Wecker im normalen Fenster bis zur Zielzeit.</string>
     <string name="editor_window">Fenster: %1$d Min</string>
     <string name="editor_window_hint">Weckt dich zwischen %1$s und %2$s</string>
     <string name="editor_window_exact">Genau</string>

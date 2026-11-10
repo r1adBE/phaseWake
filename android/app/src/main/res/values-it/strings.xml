@@ -52,7 +52,6 @@
     <string name="editor_latest">Al più tardi</string>
     <string name="editor_sleep_duration">Dormi %1$s</string>
     <string name="editor_sleep_hint">Conta da quando ti addormenti. Lo smartwatch lo rileva in automatico; tocca «Buonanotte» sullo smartwatch per iniziare subito.</string>
-    <string name="editor_sleep_wear_only">La modalità durata del sonno funziona solo con un Galaxy Watch. Con un Apple Watch questa sveglia ti sveglia nella sua finestra normale fino all’orario obiettivo.</string>
     <string name="editor_window">Finestra: %1$d min</string>
     <string name="editor_window_hint">Ti sveglia tra le %1$s e le %2$s</string>
     <string name="editor_window_exact">Esatto</string>

@@ -50,7 +50,6 @@
     <string name="editor_latest">最も遅い時刻</string>
     <string name="editor_sleep_duration">%1$s眠る</string>
     <string name="editor_sleep_hint">眠りについた時点から数えます。ウォッチが自動で検出します。すぐに始めるにはウォッチで「おやすみ」をタップしてください。</string>
-    <string name="editor_sleep_wear_only">睡眠時間モードは Galaxy Watch でのみ使えます。Apple Watch では、このアラームは通常のウィンドウ内で目標時刻までに起こします。</string>
     <string name="editor_window">時間幅: %1$d分</string>
     <string name="editor_window_hint">%1$sから%2$sの間に起こします</string>
     <string name="editor_window_exact">ちょうど</string>

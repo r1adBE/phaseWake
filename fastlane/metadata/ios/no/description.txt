@@ -1,4 +1,4 @@
-Phase Wake vekker deg innenfor vekkevinduet så snart du blir urolig – da sover du sannsynligvis lett. Senest på ønsket tid; pågår det ingen måling på Apple Watch, omtrent 1 minutt senere med et varsel. Til det følger Apple Watch med på bevegelse og puls. På Apple Watch måler Phase Wake de siste 25 minuttene før ønsket tid. Den kan ikke se om natten din var for kort.
+Phase Wake vekker deg innenfor vekkevinduet så snart du blir urolig – da sover du sannsynligvis lett. Senest på ønsket tid; pågår det ingen måling på Apple Watch, omtrent 1 minutt senere med et varsel. Til det følger Apple Watch med på bevegelse og puls. På Apple Watch måler Phase Wake de siste 25 minuttene før ønsket tid. Ut fra bevegelsen den tar opp om natten, ser den også om natten din var for kort.
 
 Slik fungerer det
 • Velg vekketid og vindu (opptil 30 min), ta på klokka, sov.

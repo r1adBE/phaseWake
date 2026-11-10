@@ -46,7 +46,6 @@
     <string name="editor_latest">Ամենաուշը</string>
     <string name="editor_sleep_duration">Քուն՝ %1$s</string>
     <string name="editor_sleep_hint">Հաշվում է քնելու պահից։ Ժամացույցն այն ինքնաշխատ է ճանաչում. անմիջապես սկսելու համար ժամացույցում հպիր «Բարի գիշեր»։</string>
-    <string name="editor_sleep_wear_only">Քնի տևողության ռեժիմն աշխատում է միայն Galaxy Watch-ով։ Apple Watch-ով այս զարթուցիչը քեզ արթնացնում է իր սովորական պատուհանում՝ մինչև նպատակային ժամը։</string>
     <string name="editor_window">Պատուհան՝ %1$d ր</string>
     <string name="editor_window_hint">Արթնացնում է %1$s-ից մինչև %2$s</string>
     <string name="editor_window_exact">Ճշգրիտ</string>

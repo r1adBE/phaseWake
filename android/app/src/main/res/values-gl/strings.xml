@@ -53,7 +53,6 @@
     <string name="editor_latest">Como moi tarde</string>
     <string name="editor_sleep_duration">Durmir %1$s</string>
     <string name="editor_sleep_hint">Conta desde que adormeces. O reloxo detéctao automaticamente; toca «Boas noites» no reloxo para comezar xa.</string>
-    <string name="editor_sleep_wear_only">O modo de duración do sono só funciona cun Galaxy Watch. Cun Apple Watch, esta alarma espértate na súa xanela normal ata a hora obxectivo.</string>
     <string name="editor_window">Xanela: %1$d min</string>
     <string name="editor_window_hint">Espértate entre as %1$s e as %2$s</string>
     <string name="editor_window_exact">Exacto</string>

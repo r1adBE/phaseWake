@@ -97,6 +97,22 @@ final class AppleOnsetTests: XCTestCase {
         XCTAssertEqual(GoodNightEstimate.doneUntil(target: latest, nominal: minutes(8 * 60 + 24 * 60)), latest)
     }
 
+    func testAutoOnsetStartsTheRecorderEveryNight() {
+        let target = minutes(8 * 60) // 07:00
+        let window = minutes(8 * 60 - 30)
+        // Mehr als 12 Std. vor dem Fensterbeginn: warten.
+        XCTAssertEqual(AppleAutoOnset.decide(now: minutes(-6 * 60), target: target, windowStart: window, battery: 80),
+                       .wait(until: minutes(-270)))
+        XCTAssertEqual(AppleAutoOnset.decide(now: since, target: target, windowStart: window, battery: 80), .start(until: window))
+        XCTAssertEqual(AppleAutoOnset.decide(now: since, target: target, windowStart: window, battery: nil), .start(until: window))
+        XCTAssertEqual(AppleAutoOnset.decide(now: since, target: target, windowStart: window, battery: 29), .skip(reason: "battery 29%"))
+        XCTAssertEqual(AppleAutoOnset.decide(now: since, target: target, windowStart: window, battery: 30), .start(until: window))
+        XCTAssertEqual(AppleAutoOnset.decide(now: window, target: target, windowStart: window, battery: 80), .skip(reason: "window begun"))
+        // Fenster 10 Min: ab 15 Min vor der Zielzeit nicht mehr.
+        XCTAssertEqual(AppleAutoOnset.decide(now: minutes(8 * 60 - 15), target: target, windowStart: minutes(8 * 60 - 10), battery: 80),
+                       .skip(reason: "window begun"))
+    }
+
     func testLearnedLatencyGoesToTheWatch() {
         let snapshot = LearningSnapshot(active: false, floor: 0.02, restingHeartRate: 50, updatedAtMs: 7, latencyMinutes: 18)
         var context: [String: Any] = [:]

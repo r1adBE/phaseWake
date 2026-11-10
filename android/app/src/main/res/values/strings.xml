@@ -54,7 +54,6 @@
     <string name="editor_latest">At the latest</string>
     <string name="editor_sleep_duration">Sleep for %1$s</string>
     <string name="editor_sleep_hint">Counts from when you fall asleep. Your watch detects it automatically; tap “Good night” on the watch to start right away.</string>
-    <string name="editor_sleep_wear_only" tools:ignore="UnusedResources">Sleep mode only works with a Galaxy Watch. With an Apple Watch, this alarm wakes you in its normal window up to the target time.</string>
     <string name="editor_window">Window: %1$d min</string>
     <string name="editor_window_hint">Wakes you between %1$s and %2$s</string>
     <string name="editor_window_exact">Exact</string>

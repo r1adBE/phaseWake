@@ -43,3 +43,35 @@ public enum AppleLearnRecord {
         wokeAt.map { min($0, until) } ?? target
     }
 }
+
+/// Apple Watch, automatische Einschlaf-Messung (Schalter «Einschlafen automatisch erkennen», Standard ein, wie Android;
+/// freigegeben von r1AD 10.11.2026): Damit die Uhr zu Beginn der Weck-Sitzung die Einschlafzeit nachrechnen kann
+/// (``RecorderOnset``), startet sie für jede Nacht eines gespeicherten Weckers den Bewegungs-Rekorder bis zum Beginn des
+/// Weckfensters. Gestartet wird, sobald der Rekorder so weit reicht (Fensterbeginn − 12 Std.), weil watchOS die App am
+/// Abend nicht verlässlich weckt; nicht unter ``minBattery`` Akku (wie `AutoOnset.MIN_BATTERY_PERCENT`), nicht mehr ab
+/// dem Fensterbeginn und nicht, wenn ab dann keine Einschlaf-Messung mehr möglich ist (15 Min vor der Zielzeit).
+public enum AppleAutoOnset {
+    /// Unter diesem Akkustand (Prozent) startet die automatische Messung nicht (wie `AutoOnset.MIN_BATTERY_PERCENT`).
+    public static let minBattery = 30
+
+    /// Was die Uhr jetzt tut.
+    public enum Decision: Equatable, Sendable {
+        /// Rekorder jetzt bis `until` (Beginn des Weckfensters) starten bzw. sicherstellen.
+        case start(until: Date)
+        /// Noch zu früh: ab `until` nochmals versuchen.
+        case wait(until: Date)
+        /// Diese Nacht nicht: `reason` fürs Diagnose-Protokoll («battery 24%», «window begun»).
+        case skip(reason: String)
+    }
+
+    /// Entscheidet für die Nacht mit Zielzeit `target` und Fensterbeginn `windowStart` zum Zeitpunkt `now` bei Akku
+    /// `battery` (Prozent, `nil` = unbekannt, hindert nicht).
+    public static func decide(now: Date, target: Date, windowStart: Date, battery: Int?) -> Decision {
+        let until = min(windowStart, target.addingTimeInterval(-RecorderOnset.giveUpLead))
+        if now >= until { return .skip(reason: "window begun") }
+        let earliest = windowStart.addingTimeInterval(-NightRecording.maxDuration)
+        if now < earliest { return .wait(until: earliest) }
+        if let battery, battery < minBattery { return .skip(reason: "battery \(battery)%") }
+        return .start(until: windowStart)
+    }
+}

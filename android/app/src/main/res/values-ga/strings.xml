@@ -56,7 +56,6 @@
     <string name="editor_latest">Ar a dhéanaí</string>
     <string name="editor_sleep_duration">Codladh %1$s</string>
     <string name="editor_sleep_hint">Áirítear ón am a thiteann tú i do chodladh. Aithníonn an t-uaireadóir é go huathoibríoch; tapáil “Oíche mhaith” ar an uaireadóir chun tosú láithreach.</string>
-    <string name="editor_sleep_wear_only">Ní oibríonn an mód fad codlata ach le Galaxy Watch. Le Apple Watch, dúiseoidh an t-aláram seo thú ina ghnáthfhuinneog go dtí an sprioc-am.</string>
     <string name="editor_window">Fuinneog: %1$d nóim</string>
     <string name="editor_window_hint">Dúiseoidh sé thú idir %1$s agus %2$s</string>
     <string name="editor_window_exact">Beacht</string>

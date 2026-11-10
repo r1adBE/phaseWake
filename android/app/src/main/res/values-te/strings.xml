@@ -53,7 +53,6 @@
     <string name="editor_latest">గరిష్ఠంగా</string>
     <string name="editor_sleep_duration">%1$s నిద్ర</string>
     <string name="editor_sleep_hint">మీరు నిద్రపోయినప్పటి నుంచి లెక్కిస్తుంది. వాచ్ దాన్ని ఆటోమేటిక్‌గా గుర్తిస్తుంది; వెంటనే మొదలుపెట్టడానికి వాచ్‌లో “శుభ రాత్రి” నొక్కండి.</string>
-    <string name="editor_sleep_wear_only">నిద్ర వ్యవధి మోడ్ Galaxy Watch తో మాత్రమే పనిచేస్తుంది. Apple Watch తో ఈ అలారం దాని సాధారణ వ్యవధిలో లక్ష్య సమయం వరకు మిమ్మల్ని లేపుతుంది.</string>
     <string name="editor_window">వ్యవధి: %1$d ని.</string>
     <string name="editor_window_hint">%1$s, %2$s మధ్య లేపుతుంది</string>
     <string name="editor_window_exact">కచ్చితంగా</string>

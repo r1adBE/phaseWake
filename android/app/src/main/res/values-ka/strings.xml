@@ -46,7 +46,6 @@
     <string name="editor_latest">არაუგვიანეს</string>
     <string name="editor_sleep_duration">ძილი: %1$s</string>
     <string name="editor_sleep_hint">ითვლის ჩაძინების მომენტიდან. საათი ამას ავტომატურად ცნობს; დაუყოვნებლივ დასაწყებად შეეხე საათზე „ძილი ნებისა“.</string>
-    <string name="editor_sleep_wear_only">ძილის ხანგრძლივობის რეჟიმი მუშაობს მხოლოდ Galaxy Watch-თან. Apple Watch-თან ეს მაღვიძარა გაღვიძებს ჩვეულ ფანჯარაში სამიზნე დრომდე.</string>
     <string name="editor_window">ფანჯარა: %1$d წთ</string>
     <string name="editor_window_hint">გაგაღვიძებს %1$s – %2$s შუალედში</string>
     <string name="editor_window_exact">ზუსტად</string>

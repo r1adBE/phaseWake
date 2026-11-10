@@ -53,7 +53,6 @@
     <string name="editor_latest">Најдоцна</string>
     <string name="editor_sleep_duration">Спиј %1$s</string>
     <string name="editor_sleep_hint">Брои од моментот кога ќе заспиеш. Часовникот го препознава автоматски; допри „Добра ноќ“ на часовникот за да почне веднаш.</string>
-    <string name="editor_sleep_wear_only">Режимот по траење на сонот работи само со Galaxy Watch. Со Apple Watch овој аларм те буди во својот вообичаен прозорец до целното време.</string>
     <string name="editor_window">Прозорец: %1$d мин</string>
     <string name="editor_window_hint">Те буди меѓу %1$s и %2$s</string>
     <string name="editor_window_exact">Точно</string>

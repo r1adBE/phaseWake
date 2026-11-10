@@ -54,7 +54,6 @@
     <string name="editor_latest">Најкасније</string>
     <string name="editor_sleep_duration">Спавај %1$s</string>
     <string name="editor_sleep_hint">Броји од тренутка када заспиш. Сат то препознаје аутоматски; додирни „Лаку ноћ“ на сату да одмах почне.</string>
-    <string name="editor_sleep_wear_only">Режим трајања сна ради само са Galaxy Watch-ом. Са Apple Watch-ом те овај аларм буди у свом уобичајеном интервалу до циљног времена.</string>
     <string name="editor_window">Интервал: %1$d мин</string>
     <string name="editor_window_hint">Буди те између %1$s и %2$s</string>
     <string name="editor_window_exact">Тачно</string>

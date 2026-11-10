@@ -26,5 +26,6 @@
     <string name="check_watch_notifications">Notifications sur la montre</string>
     <string name="check_watch_notifications_problem">Autorise les notifications urgentes de Phase Wake sur ton Apple Watch. Sinon, elle ne peut pas te réveiller par une notification quand aucune mesure n’est en cours.</string>
     <string name="check_watch_state_old">L’état de la montre n’est plus à jour – ouvre brièvement Phase Wake sur la montre.</string>
-    <string name="editor_sleep_apple">Sur l’Apple Watch, Phase Wake estime l’heure à laquelle tu t’endors à partir de ta durée d’endormissement apprise.</string>
+    <string name="editor_sleep_hint_apple">Compte à partir de l’endormissement – appuie sur « Bonne nuit » sur ta montre en te couchant. Sur l’Apple Watch, Phase Wake estime l’heure à laquelle tu t’endors à partir de ta durée d’endormissement apprise. Sans appui, l’heure réglée s’applique.</string>
+    <string name="auto_onset_hint_apple">À partir d’1 h avant le coucher, ton Apple Watch enregistre tes mouvements ; au début de ta plage de réveil, Phase Wake calcule quand tu t’es endormi.</string>
 </resources>

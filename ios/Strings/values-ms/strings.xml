@@ -26,5 +26,6 @@
     <string name="check_watch_notifications">Pemberitahuan pada jam tangan</string>
     <string name="check_watch_notifications_problem">Benarkan pemberitahuan sensitif masa untuk Phase Wake pada Apple Watch awak. Jika tidak, jam tidak dapat membangunkan awak melalui pemberitahuan apabila tiada pengukuran berjalan.</string>
     <string name="check_watch_state_old">Status jam tangan sudah lapuk – buka Phase Wake sebentar pada jam tangan.</string>
-    <string name="editor_sleep_apple">Pada Apple Watch, Phase Wake menganggarkan bila awak tertidur berdasarkan masa untuk tertidur yang telah dipelajarinya.</string>
+    <string name="editor_sleep_hint_apple">Dikira sejak awak tertidur – ketik “Selamat malam” pada jam apabila awak masuk tidur. Pada Apple Watch, Phase Wake menganggarkan bila awak tertidur berdasarkan masa untuk tertidur yang telah dipelajarinya. Tanpa ketikan, masa yang ditetapkan digunakan.</string>
+    <string name="auto_onset_hint_apple">Dari 1 jam sebelum waktu tidur, Apple Watch merakam pergerakan awak; pada permulaan tetingkap bangun, Phase Wake mengira bila awak tertidur.</string>
 </resources>

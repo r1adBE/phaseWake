@@ -46,7 +46,6 @@
     <string name="editor_latest">Ən gec</string>
     <string name="editor_sleep_duration">Yuxu: %1$s</string>
     <string name="editor_sleep_hint">Yuxuya getdiyin andan sayır. Saatın bunu avtomatik aşkarlayır; dərhal başlamaq üçün saatda “Gecən xeyrə” düyməsinə toxun.</string>
-    <string name="editor_sleep_wear_only">Yuxu müddəti rejimi yalnız Galaxy Watch ilə işləyir. Apple Watch ilə bu siqnal səni adi pəncərəsində hədəf vaxtına qədər oyadır.</string>
     <string name="editor_window">Pəncərə: %1$d dəq</string>
     <string name="editor_window_hint">%1$s ilə %2$s arasında oyadır</string>
     <string name="editor_window_exact">Dəqiq</string>

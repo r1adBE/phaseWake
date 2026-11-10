@@ -29,5 +29,6 @@
     <string name="check_watch_notifications">Soatdagi bildirishnomalar</string>
     <string name="check_watch_notifications_problem">Apple Watchʼingda Phase Wake uchun vaqtga sezgir bildirishnomalarga ruxsat ber. Aks holda oʻlchov ketmayotganda soat seni bildirishnoma bilan uygʻota olmaydi.</string>
     <string name="check_watch_state_old">Soat holati eskirgan – soatda Phase Wake’ni qisqa muddatga och.</string>
-    <string name="editor_sleep_apple">Apple Watchʼda Phase Wake qachon uxlab qolishingni oʻrgangan uxlab qolish vaqtingdan taxmin qiladi.</string>
+    <string name="editor_sleep_hint_apple">Uxlab qolgan paytdan hisoblanadi – yotayotganda soatda «Xayrli tun»ga bos. Apple Watchʼda Phase Wake qachon uxlab qolishingni oʻrgangan uxlab qolish vaqtingdan taxmin qiladi. Bosmasang, o‘rnatilgan vaqt amal qiladi.</string>
+    <string name="auto_onset_hint_apple">Uyqu vaqtidan 1 soat oldin Apple Watch harakatingni yozib boradi; uyg‘otish oralig‘i boshida Phase Wake qachon uxlab qolganingni hisoblaydi.</string>
 </resources>

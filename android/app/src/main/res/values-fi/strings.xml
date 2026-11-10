@@ -51,7 +51,6 @@
     <string name="editor_latest">Viimeistään</string>
     <string name="editor_sleep_duration">Nuku %1$s</string>
     <string name="editor_sleep_hint">Laskee nukahtamisesta alkaen. Kello tunnistaa sen automaattisesti; napauta kellossa ”Hyvää yötä”, niin se alkaa heti.</string>
-    <string name="editor_sleep_wear_only">Unen pituus -tila toimii vain Galaxy Watchin kanssa. Apple Watchin kanssa tämä herätys herättää sinut tavallisessa ikkunassaan tavoiteaikaan mennessä.</string>
     <string name="editor_window">Aikaikkuna: %1$d min</string>
     <string name="editor_window_hint">Herättää aikavälillä %1$s – %2$s</string>
     <string name="editor_window_exact">Tarkka</string>

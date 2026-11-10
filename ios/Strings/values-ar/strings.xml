@@ -26,5 +26,6 @@
     <string name="check_watch_notifications">الإشعارات على الساعة</string>
     <string name="check_watch_notifications_problem">اسمح بالإشعارات الحساسة للوقت لتطبيق Phase Wake على Apple Watch. وإلا فلن تتمكن من إيقاظك بإشعار عندما لا يكون هناك قياس جارٍ.</string>
     <string name="check_watch_state_old">حالة الساعة قديمة – افتح Phase Wake على الساعة لفترة قصيرة.</string>
-    <string name="editor_sleep_apple">على Apple Watch يقدّر Phase Wake وقت نومك من مدة الخلود إلى النوم التي تعلّمها.</string>
+    <string name="editor_sleep_hint_apple">يُحسب من وقت نومك – اضغط «ليلة سعيدة» على الساعة عندما تذهب إلى السرير. على Apple Watch يقدّر Phase Wake وقت نومك من مدة الخلود إلى النوم التي تعلّمها. دون الضغط يسري الوقت المضبوط.</string>
+    <string name="auto_onset_hint_apple">من ساعة قبل موعد النوم تسجّل Apple Watch حركتك؛ وفي بداية نافذة الاستيقاظ يحسب Phase Wake متى غفوت.</string>
 </resources>

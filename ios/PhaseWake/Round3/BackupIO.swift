@@ -8,10 +8,11 @@ import UniformTypeIdentifiers
 @MainActor
 enum BackupIO {
     private static let themeKey = "themeMode"
-    /// Schalter, die es nur auf Android gibt («Wecker auf dem Sperrbildschirm», «Einschlafen automatisch erkennen»):
-    /// Das iPhone behält den Wert aus einer Android-Sicherung für die nächste Sicherung; ohne gespeicherten Wert `true`.
+    /// Schalter, den es nur auf Android gibt («Wecker auf dem Sperrbildschirm»): Das iPhone behält den Wert aus einer
+    /// Android-Sicherung für die nächste Sicherung; ohne gespeicherten Wert `true`.
     private static let nextAlarmNoticeKey = "backupNextAlarmNotice"
-    private static let autoOnsetKey = "backupAutoOnset"
+    /// «Einschlafen automatisch erkennen» (seit 10.11.2026 auch auf Apple, `WatchNight.autoOnset`); ohne Wert `true`.
+    nonisolated static let autoOnsetKey = "backupAutoOnset"
     /// Verlaufsdatei von `PhaseWakeStorage` im Ordner `PrivateFiles`.
     private static let nightsFile = "nights.v1"
     /// `createdAt` der Sicherung, deren Wecker und Einstellungen in `SettingsFile.phone` stehen (in derselben Datei,

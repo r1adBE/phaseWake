@@ -52,7 +52,6 @@
     <string name="editor_latest">Cel târziu</string>
     <string name="editor_sleep_duration">Dormi %1$s</string>
     <string name="editor_sleep_hint">Numără de când adormi. Ceasul detectează automat; atinge „Noapte bună” pe ceas ca să înceapă imediat.</string>
-    <string name="editor_sleep_wear_only">Modul durata somnului funcționează doar cu un Galaxy Watch. Cu un Apple Watch, această alarmă te trezește în fereastra obișnuită până la ora țintă.</string>
     <string name="editor_window">Interval: %1$d min</string>
     <string name="editor_window_hint">Te trezește între %1$s și %2$s</string>
     <string name="editor_window_exact">Exact</string>

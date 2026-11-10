@@ -54,7 +54,6 @@
     <string name="editor_latest">Najkasnije</string>
     <string name="editor_sleep_duration">Spavaj %1$s</string>
     <string name="editor_sleep_hint">Broji od trenutka kad zaspiš. Sat to prepoznaje automatski; dodirni „Laku noć“ na satu da odmah počne.</string>
-    <string name="editor_sleep_wear_only">Način trajanja sna radi samo s Galaxy Watchom. S Apple Watchom te ovaj alarm budi u svom uobičajenom intervalu do ciljnog vremena.</string>
     <string name="editor_window">Interval: %1$d min</string>
     <string name="editor_window_hint">Budi te između %1$s i %2$s</string>
     <string name="editor_window_exact">Tačno</string>

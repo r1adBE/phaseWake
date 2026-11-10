@@ -55,7 +55,6 @@
     <string name="editor_latest">بحدّ أقصى</string>
     <string name="editor_sleep_duration">النوم لمدة %1$s</string>
     <string name="editor_sleep_hint">يبدأ العدّ من لحظة نومكم. تكتشف ساعتكم ذلك تلقائيًا؛ اضغطوا على “ليلة سعيدة” في الساعة للبدء فورًا.</string>
-    <string name="editor_sleep_wear_only">وضع مدة النوم يعمل فقط مع Galaxy Watch. مع Apple Watch يوقظك هذا المنبّه في نافذته العادية حتى الوقت المستهدف.</string>
     <string name="editor_window">النافذة: %1$d د</string>
     <string name="editor_window_hint">يوقظك بين %1$s و%2$s</string>
     <string name="editor_window_exact">بالضبط</string>

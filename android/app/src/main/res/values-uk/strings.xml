@@ -53,7 +53,6 @@
     <string name="editor_latest">Не пізніше</string>
     <string name="editor_sleep_duration">Сон: %1$s</string>
     <string name="editor_sleep_hint">Відлік іде від моменту засинання. Годинник визначає його автоматично; натисни «На добраніч» на годиннику, щоб почати одразу.</string>
-    <string name="editor_sleep_wear_only">Режим за тривалістю сну працює лише з Galaxy Watch. З Apple Watch цей будильник будить тебе у звичайному вікні до цільового часу.</string>
     <string name="editor_window">Вікно: %1$d хв</string>
     <string name="editor_window_hint">Розбудить між %1$s і %2$s</string>
     <string name="editor_window_exact">Точно</string>

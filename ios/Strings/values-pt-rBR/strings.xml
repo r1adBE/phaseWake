@@ -26,5 +26,6 @@
     <string name="check_watch_notifications">Notificações no relógio</string>
     <string name="check_watch_notifications_problem">Permita as notificações sensíveis ao tempo do Phase Wake no seu Apple Watch. Senão, ele não consegue acordar você com uma notificação quando nenhuma medição está em andamento.</string>
     <string name="check_watch_state_old">O status do relógio está desatualizado – abra o Phase Wake rapidamente no relógio.</string>
-    <string name="editor_sleep_apple">No Apple Watch, o Phase Wake estima quando você adormece a partir do tempo para adormecer que aprendeu.</string>
+    <string name="editor_sleep_hint_apple">Conta a partir de quando você adormece – toque em “Boa noite” no relógio ao ir para a cama. No Apple Watch, o Phase Wake estima quando você adormece a partir do tempo para adormecer que aprendeu. Sem o toque, vale o horário definido.</string>
+    <string name="auto_onset_hint_apple">A partir de 1 hora antes de dormir, o Apple Watch grava seu movimento; no início da janela de despertar, o Phase Wake calcula quando você adormeceu.</string>
 </resources>

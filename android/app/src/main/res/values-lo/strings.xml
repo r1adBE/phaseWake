@@ -51,7 +51,6 @@
     <string name="editor_latest">ຊ້າສຸດ</string>
     <string name="editor_sleep_duration">ນອນ %1$s</string>
     <string name="editor_sleep_hint">ນັບຕັ້ງແຕ່ເຈົ້າຫຼັບ ໂມງກວດພົບໄດ້ເອງ; ແຕະ “ລາຕີສະຫວັດ” ຢູ່ໂມງເພື່ອເລີ່ມທັນທີ</string>
-    <string name="editor_sleep_wear_only">ໂໝດໄລຍະນອນໃຊ້ໄດ້ກັບ Galaxy Watch ເທົ່ານັ້ນ. ກັບ Apple Watch ໂມງປຸກນີ້ຈະປຸກເຈົ້າໃນຊ່ວງເວລາປົກກະຕິຂອງມັນຈົນຮອດເວລາເປົ້າໝາຍ.</string>
     <string name="editor_window">ຊ່ວງເວລາ: %1$d ນາທີ</string>
     <string name="editor_window_hint">ປຸກເຈົ້າລະຫວ່າງ %1$s ຫາ %2$s</string>
     <string name="editor_window_exact">ພໍດີ</string>

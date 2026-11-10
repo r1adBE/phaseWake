@@ -52,7 +52,6 @@
     <string name="editor_latest">ತಡವೆಂದರೆ</string>
     <string name="editor_sleep_duration">%1$s ನಿದ್ರೆ</string>
     <string name="editor_sleep_hint">ನೀವು ನಿದ್ರೆಗೆ ಜಾರಿದಾಗಿನಿಂದ ಎಣಿಸುತ್ತದೆ. ವಾಚ್ ಅದನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಗುರುತಿಸುತ್ತದೆ; ಕೂಡಲೇ ಶುರು ಮಾಡಲು ವಾಚ್‌ನಲ್ಲಿ “ಶುಭ ರಾತ್ರಿ” ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
-    <string name="editor_sleep_wear_only">ನಿದ್ರೆಯ ಅವಧಿ ಮೋಡ್ Galaxy Watch ಜೊತೆ ಮಾತ್ರ ಕೆಲಸ ಮಾಡುತ್ತದೆ. Apple Watch ಜೊತೆ ಈ ಅಲಾರಾಂ ತನ್ನ ಸಾಮಾನ್ಯ ಅವಧಿಯಲ್ಲಿ ಗುರಿ ಸಮಯದೊಳಗೆ ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸುತ್ತದೆ.</string>
     <string name="editor_window">ಅವಧಿ: %1$d ನಿಮಿ.</string>
     <string name="editor_window_hint">%1$s ಮತ್ತು %2$s ನಡುವೆ ಎಬ್ಬಿಸುತ್ತದೆ</string>
     <string name="editor_window_exact">ನಿಖರ</string>

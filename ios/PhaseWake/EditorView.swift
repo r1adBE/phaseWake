@@ -57,7 +57,7 @@ struct EditorView: View {
                         Text(L("editor_sleep_duration", Format.duration(minutes: Int(sleepMinutes)))).font(.headline)
                         Slider(value: $sleepMinutes, in: Self.sleepRange, step: 15)
                             .accessibilityValue(Format.duration(minutes: Int(sleepMinutes)))
-                        Text(L("editor_sleep_hint") + " " + L("editor_sleep_apple")).font(.footnote).foregroundStyle(.secondary)
+                        Text(L("editor_sleep_hint_apple")).font(.footnote).foregroundStyle(.secondary)
                     }
                 }
 
