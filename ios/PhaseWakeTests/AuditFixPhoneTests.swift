@@ -11,14 +11,22 @@ final class AuditFixPhoneTests: XCTestCase {
     // MARK: N-3, Design 5
 
     func testInkKeepsContrastOnEveryTextAreaWithPlaque() {
-        let areas = stride(from: 0.0, through: 0.95, by: 0.05).flatMap { top in
-            [0.3, 0.6, 0.9].map { width in
-                SunriseSky.Area(left: (1 - width) / 2, top: top, right: (1 + width) / 2, bottom: min(1, top + 0.08))
+        // Ausdrücklich typisiert und in Schritten gebaut: sonst braucht der Swift-Compiler zu lange für die Typen.
+        var areas: [SunriseSky.Area] = []
+        let widths: [Double] = [0.3, 0.6, 0.9]
+        for row in 0...19 {
+            let top: Double = Double(row) * 0.05
+            let bottom: Double = min(1.0, top + 0.08)
+            for width in widths {
+                let left: Double = (1.0 - width) / 2.0
+                let right: Double = (1.0 + width) / 2.0
+                areas.append(SunriseSky.Area(left: left, top: top, right: right, bottom: bottom))
             }
         }
         for step in 0...50 {
             let p = Double(step) / 50
-            for aspect in [1.8, SunriseSky.portrait, 2.2] {
+            let aspects: [Double] = [1.8, SunriseSky.portrait, 2.2]
+            for aspect in aspects {
                 for area in areas {
                     let ink = SunriseSky.ink(p, area: area, aspect: aspect)
                     for background in SunriseSky.samples(p, area: area, aspect: aspect) {
