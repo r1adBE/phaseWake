@@ -101,8 +101,11 @@ final class AuditFixPhoneTests: XCTestCase {
     // MARK: Design 2
 
     func testOnboardingGlyphMovesWithTheSteps() {
-        let positions = (1...6).map { OnboardingGlyph.position(step: $0, steps: 6) }
+        // Schritte ab 0 (wie die Ansicht); Grenzen mit kleiner Toleranz (0.1 + 0.8 rechnet als 0.9000000000000001).
+        let positions = (0...6).map { OnboardingGlyph.position(step: $0, steps: 6) }
         XCTAssertEqual(positions, positions.sorted())
-        XCTAssertTrue(positions.allSatisfy { $0 >= 0.1 && $0 <= 0.9 })
+        XCTAssertTrue(positions.allSatisfy { $0 >= 0.1 - 1e-9 && $0 <= 0.9 + 1e-9 }, "\(positions)")
+        XCTAssertEqual(positions.first ?? 0, 0.1, accuracy: 1e-9)
+        XCTAssertEqual(positions.last ?? 0, 0.9, accuracy: 1e-9)
     }
 }
