@@ -99,7 +99,9 @@ Ohne Modell (z. B. ohne Netz) baut und läuft die Testversion (Debug) ebenfalls;
 
 ## Unterstützung
 
-Siehe [SUPPORT.md](SUPPORT.md).
+Phase Wake ist und bleibt gratis – ohne Werbung, ohne Abo, nichts freizuschalten. Wer die Entwicklung freiwillig
+unterstützen möchte, findet die USDT-Adressen in **[SUPPORT.md](SUPPORT.md)** (auch hinter dem Knopf «Sponsor» oben).
+Die Apps selbst haben keine Spendenfunktion.
 
 ## Lizenz
 

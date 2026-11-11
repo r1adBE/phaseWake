@@ -47,9 +47,11 @@ final class StorageTests: XCTestCase {
     /// Gegenseite einer früheren Version (ohne Zeitpunkte je Wecker): neuere Liste gewinnt wie bisher.
     func testLegacyRemoteOnlyWhenNewer() throws {
         let s = storage()
-        let local = s.mutate({ _ in [try! AlarmSpec(id: "a", hour: 6, minute: 0)] }, now: Date(timeIntervalSince1970: 1000))
-        XCTAssertFalse(s.applyRemote(AlarmSnapshot(alarms: [], updatedAt: local.updatedAt, perAlarm: false)))
-        XCTAssertTrue(s.applyRemote(AlarmSnapshot(alarms: [], updatedAt: local.updatedAt + 5, perAlarm: false)))
+        let now = Date(timeIntervalSince1970: 1000)
+        let local = s.mutate({ _ in [try! AlarmSpec(id: "a", hour: 6, minute: 0)] }, now: now)
+        // `now` wie beim Ändern: sonst fielen die Grabsteine von 1970 beim Aufräumen (90 Tage) gleich wieder weg.
+        XCTAssertFalse(s.applyRemote(AlarmSnapshot(alarms: [], updatedAt: local.updatedAt, perAlarm: false), now: now))
+        XCTAssertTrue(s.applyRemote(AlarmSnapshot(alarms: [], updatedAt: local.updatedAt + 5, perAlarm: false), now: now))
         XCTAssertEqual(s.snapshot().alarms, [])
         XCTAssertEqual(s.snapshot().deleted, ["a": local.updatedAt + 5], "der ersetzte Wecker gilt als gelöscht")
     }

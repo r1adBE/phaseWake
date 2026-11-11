@@ -132,7 +132,7 @@ Alles in v1, nichts auf später verschoben:
 
 ## Entscheide (28.10.2026)
 
-- Aus der Marktanalyse (28.10.2026): Nacht-Check, Morgenbericht mit Befinden, Trends. Spenden-Hinweis nur in SUPPORT.md auf GitHub, nicht in der App (11.11.2026). Kein Abo, keine Werbung, kein «KI-Coach». Mikrofon nur optional für «Geräusche aufnehmen» (28.10.2026): standardmässig aus, alles bleibt auf dem Handy.
+- Aus der Marktanalyse (28.10.2026): Nacht-Check, Morgenbericht mit Befinden, Trends. Spenden (USDT-Adressen) nur in SUPPORT.md auf GitHub, nicht in App und Store-Texten (11.11.2026). Kein Abo, keine Werbung, kein «KI-Coach». Mikrofon nur optional für «Geräusche aufnehmen» (28.10.2026): standardmässig aus, alles bleibt auf dem Handy.
 
 - Sonnenaufgang (28.10.2026): Option pro Wecker, standardmässig aus; wählbar «beim Wecken» oder «ab Weckfenster».
 
