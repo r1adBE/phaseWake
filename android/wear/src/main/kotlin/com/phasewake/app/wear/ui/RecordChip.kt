@@ -10,8 +10,6 @@ import androidx.wear.compose.material3.Text
 import com.phasewake.app.wear.R
 import java.time.Instant
 import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 
 /** Chip «Nacht aufzeichnen»; läuft eine Aufzeichnung, «Aufzeichnung stoppen» mit «Seit 23:10». */
 @Composable
@@ -22,7 +20,7 @@ internal fun RecordChip(since: Instant?, zone: ZoneId, onClick: () -> Unit) {
         colors = ButtonDefaults.filledTonalButtonColors(),
         label = { Text(stringResource(if (since != null) R.string.record_stop else R.string.record_start)) },
         secondaryLabel = since?.let {
-            { Text(stringResource(R.string.record_since, localizedDigits(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)).format(it.atZone(zone)))) }
+            { Text(stringResource(R.string.record_since, timeFormatter().format(it.atZone(zone)))) }
         },
     )
 }

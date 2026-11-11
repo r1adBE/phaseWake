@@ -1,0 +1,43 @@
+# Fix KN-6: Der Sensor liefert in Epoche 0-3 keine Bewegung. Solange die Messung weniger als 4 Werte hat, gilt das
+# Grundrauschen der Einschlaf-Messung (0.01, Leicht-Schwelle 0.025) vor dem gelernten (0.02, Schwelle 0.05):
+# Bewegung 0.03 mit Puls 57 in Epoche 4/5 -> Epoche 5 LIGHT_SLEEP (mit dem gelernten zuerst: kein Wecken).
+@floor 0.02
+@onset-floor 0.01
+@expect 5 LIGHT_SLEEP
+motion,hr
+,52
+,52
+,52
+,52
+0.03,57
+0.03,57
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52

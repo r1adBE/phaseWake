@@ -64,7 +64,7 @@ struct HealthNightCard: View {
             if let feeling {
                 Text(L("feeling_value", feelingName(feeling))).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
             }
-            NightNotesButton(nightDate: nightDate, title: title)
+            NightActionsRow(nightDate: nightDate, title: title, onOpen: onOpen)
             NightSoundsButton(night: nightDate, title: title)
         }
         .card()
@@ -95,7 +95,6 @@ struct HealthNightCard: View {
                     .frame(height: miniHypnogramHeight)
                 Text(sessionStageTotals(session)).font(Fonts.manrope(12, .semibold, relativeTo: .caption)).foregroundStyle(.secondary)
             }
-            DetailsRow()
         }
         .contentShape(Rectangle())
     }
@@ -119,6 +118,24 @@ struct DetailsRow: View {
         .foregroundStyle(.tint)
         .frame(minHeight: 44)
         .accessibilityHidden(hiddenForVoiceOver)
+    }
+}
+
+/// Notizen links und «Details ›» rechts in einer Zeile unten auf einer Nachtkarte (Vollaudit Design 4, wie Android).
+/// «Details» öffnet wie die Karte die Detailseite; für VoiceOver trägt die Karte selbst diesen Hinweis.
+struct NightActionsRow: View {
+    let nightDate: String
+    /// Titel der Auswahl der Notizen, etwa das Datum der Nacht.
+    let title: String
+    let onOpen: () -> Void
+
+    var body: some View {
+        HStack(alignment: .center, spacing: 8) {
+            NightNotesButton(nightDate: nightDate, title: title)
+            Button(action: onOpen) { DetailsRow() }
+                .buttonStyle(.plain)
+                .accessibilityHidden(true)
+        }
     }
 }
 

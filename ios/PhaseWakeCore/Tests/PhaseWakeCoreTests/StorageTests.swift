@@ -11,17 +11,17 @@ final class StorageTests: XCTestCase {
     func testMutateSortsAndStampsStrictlyIncreasing() throws {
         let s = storage()
         let now = Date(timeIntervalSince1970: 1000)
-        let a = s.mutate({ _ in [try! AlarmSpec(id: "b", hour: 8, minute: 0), try! AlarmSpec(id: "a", hour: 6, minute: 0)] }, now: now)
+        let a = try XCTUnwrap(s.mutate({ _ in [try! AlarmSpec(id: "b", hour: 8, minute: 0), try! AlarmSpec(id: "a", hour: 6, minute: 0)] }, now: now))
         XCTAssertEqual(a.alarms.map(\.id), ["a", "b"])
-        let b = s.mutate({ $0 }, now: now)
+        let b = try XCTUnwrap(s.mutate({ $0 }, now: now))
         XCTAssertEqual(b.updatedAt, a.updatedAt + 1)
         XCTAssertEqual(s.snapshot(), b)
     }
 
     /// Heutige Zeitstempel in Millisekunden liegen über Int32.max (32-Bit-Uhren).
-    func testTimestampBeyondInt32() {
+    func testTimestampBeyondInt32() throws {
         let s = storage()
-        let snap = s.mutate({ _ in [] }, now: Date(timeIntervalSince1970: 1_793_173_963.589))
+        let snap = try XCTUnwrap(s.mutate({ _ in [] }, now: Date(timeIntervalSince1970: 1_793_173_963.589)))
         XCTAssertGreaterThan(snap.updatedAt, Int64(Int32.max))
         XCTAssertEqual(s.snapshot().updatedAt, snap.updatedAt)
     }
@@ -48,7 +48,7 @@ final class StorageTests: XCTestCase {
     func testLegacyRemoteOnlyWhenNewer() throws {
         let s = storage()
         let now = Date(timeIntervalSince1970: 1000)
-        let local = s.mutate({ _ in [try! AlarmSpec(id: "a", hour: 6, minute: 0)] }, now: now)
+        let local = try XCTUnwrap(s.mutate({ _ in [try! AlarmSpec(id: "a", hour: 6, minute: 0)] }, now: now))
         // `now` wie beim Ändern: sonst fielen die Grabsteine von 1970 beim Aufräumen (90 Tage) gleich wieder weg.
         XCTAssertFalse(s.applyRemote(AlarmSnapshot(alarms: [], updatedAt: local.updatedAt, perAlarm: false), now: now))
         XCTAssertTrue(s.applyRemote(AlarmSnapshot(alarms: [], updatedAt: local.updatedAt + 5, perAlarm: false), now: now))

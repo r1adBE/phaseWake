@@ -1,0 +1,34 @@
+# Fix KN-6: Leicht-Regel 2 Treffer in 4 Epochen. Leichte Bewegung in Epoche 10 und 14 (Abstand 4), Puls 57: kein
+# Wecken (in 5 Epochen schon). Epoche 20/21: LIGHT_SLEEP.
+@expect 21 LIGHT_SLEEP
+motion,hr
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0.01,57
+0,57
+0,57
+0,57
+0.01,57
+0,52
+0,52
+0,52
+0,52
+0,52
+0.01,57
+0.01,57
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52

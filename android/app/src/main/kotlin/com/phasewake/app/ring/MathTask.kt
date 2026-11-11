@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -80,6 +82,7 @@ internal fun MathTaskPanel(
             textAlign = TextAlign.Center,
             modifier = stepPlace,
         )
+        if (light != null) Spacer(Modifier.height(PLAQUE_GAP))
         val (sumInk, sumPlace) = rememberSkyInk(light, NIGHT_INK)
         Text(
             "${problem.a} + ${problem.b} = " + input.ifEmpty { "?" },
@@ -87,7 +90,8 @@ internal fun MathTaskPanel(
             color = sumInk.content,
             modifier = Modifier.padding(vertical = 8.dp).then(sumPlace).semantics { liveRegion = LiveRegionMode.Polite },
         )
-        val (wrongInk, wrongPlace) = rememberSkyInk(light, NIGHT_INK)
+        // Ohne Meldung kein (leeres) Schild.
+        val (wrongInk, wrongPlace) = rememberSkyInk(light, NIGHT_INK, plaque = wrong)
         Text(
             if (wrong) stringResource(R.string.wake_task_wrong) else "",
             style = MaterialTheme.typography.bodyMedium,
@@ -104,7 +108,7 @@ internal fun MathTaskPanel(
             }
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
                 val delete = stringResource(R.string.wake_task_delete)
-                val (ink, place) = rememberSkyInk(light, NIGHT_INK)
+                val (ink, place) = rememberSkyInk(light, NIGHT_INK, padding = 0.dp)
                 OutlinedButton(
                     onClick = {
                         onTyping()
@@ -123,7 +127,8 @@ internal fun MathTaskPanel(
 
 @Composable
 private fun Key(label: String, light: Float?, height: Dp, modifier: Modifier, enabled: Boolean = true, onClick: () -> Unit) {
-    val (ink, place) = rememberSkyInk(light, NIGHT_INK)
+    // Schild in der Form der Taste (ohne Überstand).
+    val (ink, place) = rememberSkyInk(light, NIGHT_INK, padding = 0.dp)
     OutlinedButton(
         onClick = onClick,
         enabled = enabled,

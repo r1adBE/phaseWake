@@ -33,7 +33,8 @@ enum RestoreJournal {
     private static var swappingFile: URL { work.appendingPathComponent("swapping.json") }
     /// Merker «Tausch gescheitert»: beim nächsten Start den alten Stand zurückholen.
     private static var rollingBackFile: URL { work.appendingPathComponent("rolling-back.json") }
-    /// Inhalt der Sicherung (für Wecker und Einstellungen nach dem Tausch).
+    /// Wecker und Einstellungen aus der Sicherung (für ``BackupIO/applySettings(_:to:)`` nach dem Tausch), ohne Nächte und
+    /// Notizen (``settingsOnly(_:)``, Vollaudit DA-5): Die liegen schon in `staging`.
     private static var payloadFile: URL { work.appendingPathComponent("payload.json") }
 
     /// Legt den Arbeitsordner frisch an; Reste eines Abbruchs vor dem Merker (bisheriger Stand unberührt) gehen weg.
@@ -66,11 +67,18 @@ enum RestoreJournal {
         return Marker(names: names, existed: existed)
     }
 
-    /// Merkt den Beginn: zuerst der Inhalt der Sicherung, dann der Merker, beides atomar geschrieben.
-    /// - Throws: wenn eines nicht geschrieben werden konnte; dann ist noch nichts getauscht.
+    /// Merkt den Beginn: zuerst Wecker und Einstellungen der Sicherung (``settingsOnly(_:)``), dann der Merker, beides
+    /// atomar geschrieben. - Throws: wenn eines nicht geschrieben werden konnte; dann ist noch nichts getauscht.
     static func begin(_ marker: Marker, payload: BackupPayload) throws {
-        try Data(payload.toJson().utf8).write(to: payloadFile, options: .atomic)
+        try Data(settingsOnly(payload).toJson().utf8).write(to: payloadFile, options: .atomic)
         try JSONEncoder().encode(marker).write(to: swappingFile, options: .atomic)
+    }
+
+    /// Nur, was ``BackupIO/applySettings(_:to:)`` braucht: Wecker, Abendroutine und Einstellungen samt Zeitpunkt der
+    /// Sicherung. Nächte, Notizen und Befinden bleiben leer, damit sie nicht ein zweites Mal im Arbeitsordner liegen.
+    static func settingsOnly(_ payload: BackupPayload) -> BackupPayload {
+        BackupPayload(createdAt: payload.createdAt, alarms: payload.alarms, nights: [], notes: "", customNotes: "",
+                      routineItems: payload.routineItems, routineTicks: payload.routineTicks, settings: payload.settings)
     }
 
     /// Setzt jede Datei aus `staging` an ihren Platz, die noch dort liegt; die übrigen sind schon getauscht.
@@ -92,6 +100,8 @@ enum RestoreJournal {
     @discardableResult
     static func rollBack(_ marker: Marker, model: PhoneModel) -> Bool {
         let manager = FileManager.default
+        // Wecker und Einstellungen der Sicherung braucht das Zurückholen nicht (Vollaudit DA-5).
+        try? manager.removeItem(at: payloadFile)
         if manager.fileExists(atPath: swappingFile.path) {
             // Nur Umbenennen (braucht keinen Platz): Ein Abbruch ab hier holt beim nächsten Start zurück.
             try? manager.moveItem(at: swappingFile, to: rollingBackFile)
@@ -123,6 +133,8 @@ enum RestoreJournal {
         let manager = FileManager.default
         try? manager.removeItem(at: swappingFile)
         try? manager.removeItem(at: rollingBackFile)
+        // Erst nach den Merkern: Mit Merker, aber ohne Inhalt holte der nächste Start eine gelungene Wiederherstellung zurück.
+        try? manager.removeItem(at: payloadFile)
         try? manager.removeItem(at: work)
     }
 

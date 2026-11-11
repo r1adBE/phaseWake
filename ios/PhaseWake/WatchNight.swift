@@ -22,6 +22,8 @@ final class WatchNight {
     private(set) var recordUnanswered = false
     /// Zählt die Befehle; die Wartezeit eines überholten gilt nicht.
     private var recordRequest = 0
+    /// Zeit des letzten Tippens auf «Aufzeichnung starten», bis die Uhr antwortet (für ``retryRecordStart(now:)``).
+    private var recordTapAt: Date?
 
     private static let shiftKey = "watchOnsetShift"
     /// So lange wartet der Knopf höchstens auf die Antwort der Uhr.
@@ -40,6 +42,7 @@ final class WatchNight {
     /// Stand der Uhr (`SyncKeys.recordSince`); 0 bzw. `nil` = keine Aufzeichnung.
     func noteRecording(since: Date?) {
         recordSince = since
+        if since != nil { recordTapAt = nil }
         if recordPending { recordUnanswered = false }
         recordPending = false
     }
@@ -47,12 +50,27 @@ final class WatchNight {
     /// Knopf auf der Startseite: Start bzw. Stopp an die Uhr (sofort oder nachgereicht; ein Start gilt dort nur frisch).
     /// Ohne Antwort innerhalb von `pendingLimit` wird der Knopf wieder frei, mit dem Hinweis, die App auf der Uhr zu öffnen.
     func setRecording(_ on: Bool) {
+        recordTapAt = on ? Date() : nil
+        sendRecord(on, extra: [:])
+    }
+
+    /// Uhr wieder erreichbar (`PhoneConnectivity`): Ist der Start unbeantwortet und höchstens ``RecordRetry/window`` alt,
+    /// geht er nochmals hin, mit der Zeit des Tippens (Vollaudit AP2-10).
+    func retryRecordStart(now: Date = Date()) {
+        guard recordSince == nil, let tapAt = recordTapAt,
+              RecordRetry.resend(unanswered: recordUnanswered, tapAt: tapAt, now: now) else { return }
+        DiagStore.shared.log(.sync, "record start resent")
+        sendRecord(true, extra: [SyncKeys.retryTapAt: String(TimeBounds.millis(tapAt))])
+    }
+
+    /// Start bzw. Stopp senden und auf die Antwort warten.
+    private func sendRecord(_ on: Bool, extra: [String: String]) {
         recordPending = true
         recordUnanswered = false
         recordRequest += 1
         let request = recordRequest
         DiagStore.shared.log(.sync, "record \(on ? "start" : "stop") sent")
-        PhoneConnectivity.shared.send(command: on ? SyncKeys.recordStart : SyncKeys.recordStop)
+        PhoneConnectivity.shared.send(command: on ? SyncKeys.recordStart : SyncKeys.recordStop, extra: extra)
         Task {
             try? await Task.sleep(for: Self.pendingLimit)
             guard Self.unanswered(pending: self.recordPending, request: request, current: self.recordRequest) else { return }

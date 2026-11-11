@@ -1,5 +1,8 @@
 package com.phasewake.app.ui.settings
 
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.heightIn
@@ -104,13 +107,13 @@ fun SettingsScreen(
                 ThemeMode.LIGHT to R.string.settings_theme_light,
                 ThemeMode.DARK to R.string.settings_theme_dark,
             )
-            SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
+            SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().height(IntrinsicSize.Max)) {
                 modes.forEachIndexed { index, (mode, label) ->
                     SegmentedButton(
                         selected = themeMode == mode,
                         onClick = { onThemeMode(mode) },
                         shape = SegmentedButtonDefaults.itemShape(index, modes.size),
-                        modifier = Modifier.heightIn(min = 48.dp),
+                        modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight(),
                     ) { Text(stringResource(label)) }
                 }
             }
@@ -134,7 +137,7 @@ fun SettingsScreen(
             )
             Text(stringResource(R.string.goal_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             Row(
-                Modifier.fillMaxWidth().toggleable(value = bedtimeReminder, role = Role.Switch, onValueChange = onBedtimeReminder).padding(top = 8.dp),
+                Modifier.fillMaxWidth().heightIn(min = MIN_TOUCH).toggleable(value = bedtimeReminder, role = Role.Switch, onValueChange = onBedtimeReminder).padding(top = 8.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Column(Modifier.weight(1f).padding(end = 12.dp)) {

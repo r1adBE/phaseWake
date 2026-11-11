@@ -28,8 +28,8 @@ object NoiseFloor {
     const val MAX_FLOOR: Double = 0.04
 
     /**
-     * Im Weckfenster höchstens dieses Vielfache des bekannten Grundrauschens (Einschlaf-Messung dieser Nacht bzw. gelernt,
-     * [windowFloor]): Beginnt das Fenster unruhig, hebt die Unruhe die Schwellen nicht bis [MAX_FLOOR] an.
+     * Im Weckfenster höchstens dieses Vielfache des bekannten Grundrauschens ([priorFloor], [windowFloor]): Beginnt das
+     * Fenster unruhig, hebt die Unruhe die Schwellen nicht bis [MAX_FLOOR] an.
      */
     const val PRIOR_FACTOR: Double = 1.5
 
@@ -49,15 +49,30 @@ object NoiseFloor {
     }
 
     /**
-     * Grundrauschen im Weckfenster ([WakeDetector]): wie [floor], mit dem bekannten Grundrauschen als Vorwissen – dem der
-     * Einschlaf-Messung dieser Nacht ([DetectorConfig.onsetFloor]), sonst dem gelernten ([DetectorConfig.personalFloor]).
-     * Gibt es eines, liegt das Ergebnis höchstens bei [PRIOR_FACTOR] × diesem (und nie über [MAX_FLOOR]); ohne bleibt
-     * es bei [floor].
+     * Plausibilität des Vorwissens (Fix KN-2, vorsichtig, r1AD): Die Obergrenze [PRIOR_FACTOR] × Vorwissen gilt nur, wenn
+     * das Vorwissen ([priorFloor]) mindestens dieser Anteil des Grundrauschens des Fensters ohne Obergrenze ist. Ein
+     * unplausibel tiefes Vorwissen (z. B. 0.002 bei einer Uhr, die ruhig 0.02 misst) senkte die Schwellen sonst fast auf
+     * die Startwerte, und das Rauschen der Uhr zählte wieder als Bewegung.
+     */
+    const val PRIOR_MIN_SHARE: Double = 0.25
+
+    /**
+     * Vorwissen für die Obergrenze im Weckfenster: das grössere von Grundrauschen der Einschlaf-Messung dieser Nacht
+     * ([DetectorConfig.onsetFloor]) und gelerntem ([DetectorConfig.personalFloor]); `null` ohne beide (Fix KN-2).
+     */
+    fun priorFloor(config: DetectorConfig): Double? = listOfNotNull(config.onsetFloor, config.personalFloor).maxOrNull()
+
+    /**
+     * Grundrauschen im Weckfenster ([WakeDetector]): wie [floor]; solange die Messung zu wenige Werte hat, gilt das der
+     * Einschlaf-Messung dieser Nacht ([DetectorConfig.onsetFloor]), sonst das gelernte ([DetectorConfig.personalFloor]).
+     * Gibt es Vorwissen ([priorFloor]) und ist es mindestens [PRIOR_MIN_SHARE] × dieses Grundrauschen, liegt das Ergebnis
+     * höchstens bei [PRIOR_FACTOR] × Vorwissen (und nie über [MAX_FLOOR]); sonst bleibt es bei [floor].
      */
     fun windowFloor(motions: List<Double?>, config: DetectorConfig): Double? {
-        val prior = config.onsetFloor ?: config.personalFloor
-        val floor = floor(motions, prior) ?: return null
-        return if (prior == null) floor else minOf(floor, PRIOR_FACTOR * prior)
+        val floor = floor(motions, config.onsetFloor ?: config.personalFloor) ?: return null
+        val prior = priorFloor(config) ?: return floor
+        if (prior < PRIOR_MIN_SHARE * floor) return floor
+        return minOf(floor, PRIOR_FACTOR * prior)
     }
 
     /** Wirksame Leicht-Schwelle: [threshold] (Startwert oder kalibriert), mindestens [LIGHT_FACTOR] × [floor]. */

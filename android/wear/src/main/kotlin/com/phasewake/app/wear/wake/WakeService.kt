@@ -140,7 +140,7 @@ class WakeService : LifecycleService() {
             ACTION_SNOOZE_END -> if (plan == null) ring() else if (adopt(plan)) ring()
             ACTION_SNOOZE -> snooze(notifyPhone = true)
             ACTION_PHONE_SNOOZE -> if (isForThisNight(intent)) snooze(notifyPhone = true, fromPhone = true)
-            ACTION_DISMISS -> if (isForThisNight(intent)) dismiss(notifyPhone = true)
+            ACTION_DISMISS -> if (isForThisNight(intent)) dismiss(notifyPhone = true, fromPhone = intent.hasExtra(EXTRA_REMOTE_ALARM_ID))
             ACTION_CANCEL -> cancelMeasuring()
             ACTION_GOOD_NIGHT -> intent.getStringExtra(EXTRA_ALARM_ID)?.let { startGoodNight(it) }
             ACTION_AUTO_ONSET -> intent.getStringExtra(EXTRA_ALARM_ID)?.let { startGoodNight(it, auto = true) }

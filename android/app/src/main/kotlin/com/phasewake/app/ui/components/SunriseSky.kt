@@ -2,13 +2,17 @@ package com.phasewake.app.ui.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
@@ -96,15 +100,60 @@ object SunriseSky {
     }
 
     /**
-     * Schrift für einen Text auf [area]: hell oder dunkel, je nachdem, welche über die Fläche (Ecken, Kanten, Mitte)
+     * Schrift für einen Text auf [area]: hell oder dunkel, je nachdem, welche über die Fläche ([GRID] × [GRID] Punkte)
      * den grösseren kleinsten Kontrast hat. Der leisere Ton nur, wenn auch er überall ≥ [MIN_CONTRAST] erreicht.
      */
-    fun ink(progress: Float, area: Area = Area.CENTER, aspect: Float = PORTRAIT): Ink {
+    fun ink(progress: Float, area: Area = Area.CENTER, aspect: Float = PORTRAIT): Ink = pick(samples(progress, area, aspect))
+
+    /** Schild hinter einem Text (Gestaltung 5): [color] ist der Gegenpol der Schrift, [alpha] ihre Deckkraft. */
+    data class Plaque(val color: Color, val alpha: Float)
+
+    /**
+     * Kleinste Deckkraft des Schilds (gleich wie am iPhone): Es ist immer sichtbar, auch wo die Schrift allein schon
+     * reicht; wo nicht, wird es deckender.
+     */
+    const val MIN_PLAQUE = 0.3f
+
+    /** Das Schild rechnet mit etwas Reserve über [MIN_CONTRAST], damit es auch zwischen den Messpunkten reicht. */
+    private const val PLAQUE_MARGIN = 0.3f
+
+    /** Schritt, in dem die Deckkraft des Schilds wächst. */
+    private const val PLAQUE_STEP = 0.02f
+
+    /** Messpunkte je Richtung über die Fläche eines Texts. */
+    const val GRID = 5
+
+    /**
+     * Schild für [ink] auf [area]: so deckend wie nötig, dass Haupt- und leiser Ton über der ganzen Fläche ≥
+     * [MIN_CONTRAST] erreichen (mindestens [MIN_PLAQUE]). Mit voller Deckkraft sind es immer über 14:1.
+     */
+    fun plaque(progress: Float, ink: Ink, area: Area, aspect: Float = PORTRAIT): Plaque {
+        val back = if (luminance(ink.content) > 0.5) Color.Black else Color.White
+        val backgrounds = samples(progress, area, aspect)
+        val target = MIN_CONTRAST + PLAQUE_MARGIN
+        var alpha = MIN_PLAQUE
+        while (alpha < 1f && backgrounds.any { bg ->
+                val under = mix(bg, back, alpha)
+                contrast(ink.content, under) < target || contrast(ink.muted, under) < target
+            }
+        ) alpha += PLAQUE_STEP
+        return Plaque(back, alpha.coerceAtMost(1f))
+    }
+
+    /** Farbe unter dem Text: Himmel an der Stelle ([x], [y]) mit dem Schild [plaque] darüber. */
+    fun underPlaque(progress: Float, plaque: Plaque, x: Float, y: Float, aspect: Float = PORTRAIT): Color =
+        mix(backgroundAt(progress, x, y, aspect), plaque.color, plaque.alpha)
+
+    /** Himmel an [GRID] × [GRID] Punkten der Fläche (Ecken, Kanten, Mitte und dazwischen). */
+    private fun samples(progress: Float, area: Area, aspect: Float): List<Color> {
         val c = colors(progress)
         val p = progress.coerceIn(0f, 1f)
-        val xs = listOf(area.left, (area.left + area.right) / 2, area.right)
-        val ys = listOf(area.top, (area.top + area.bottom) / 2, area.bottom)
-        return pick(xs.flatMap { x -> ys.map { y -> background(p, c.top, c.bottom, c.sun, x, y, aspect) } })
+        val steps = (0 until GRID).map { it / (GRID - 1f) }
+        return steps.flatMap { fx ->
+            steps.map { fy ->
+                background(p, c.top, c.bottom, c.sun, area.left + (area.right - area.left) * fx, area.top + (area.bottom - area.top) * fy, aspect)
+            }
+        }
     }
 
     private fun pick(backgrounds: List<Color>): Ink {
@@ -136,21 +185,52 @@ object SunriseSky {
 /**
  * Schrift für einen Text auf dem Sonnenaufgang [progress] (`null` = Nachthimmel, dann [night]): Der Text misst
  * seine Lage mit dem zurückgegebenen Modifier, die Farbe passt dann zur Stelle des Himmels (Audit UI-6).
+ *
+ * Bis die Lage bekannt ist (erstes Bild), bleibt der Text unsichtbar statt kurz in der Schrift für die Mitte zu
+ * erscheinen (Audit N-4). Mit [plaque] liegt ein halbdurchsichtiges Schild in Pillenform hinter dem Text
+ * ([SunriseSky.plaque], Gestaltung 5), [padding] ragt es über den Text hinaus (Knöpfe: 0, sie haben die Form schon).
  */
 @Composable
-fun rememberSkyInk(progress: Float?, night: SunriseSky.Ink): Pair<SunriseSky.Ink, Modifier> {
-    var place by remember { mutableStateOf(SunriseSky.Area.CENTER to SunriseSky.PORTRAIT) }
+fun rememberSkyInk(
+    progress: Float?,
+    night: SunriseSky.Ink,
+    plaque: Boolean = true,
+    padding: Dp = PLAQUE_PADDING,
+): Pair<SunriseSky.Ink, Modifier> {
+    val place = remember { mutableStateOf<Pair<SunriseSky.Area, Float>?>(null) }
     if (progress == null) return night to Modifier
-    val ink = SunriseSky.ink(progress, place.first, place.second)
-    return ink to Modifier.onGloballyPositioned { coords ->
+    // In Vorschau und Bildschirmfotos gleich sichtbar (dort gibt es nicht immer ein zweites Bild).
+    val inspection = LocalInspectionMode.current
+    val composed = place.value
+    val ink = SunriseSky.ink(progress, composed?.first ?: SunriseSky.Area.CENTER, composed?.second ?: SunriseSky.PORTRAIT)
+    val measure = Modifier.onGloballyPositioned { coords ->
         val root = coords.findRootCoordinates().size
         if (root.width <= 0 || root.height <= 0) return@onGloballyPositioned
         val b = coords.boundsInRoot()
         val next = SunriseSky.Area(b.left / root.width, b.top / root.height, b.right / root.width, b.bottom / root.height) to
             root.height.toFloat() / root.width
-        if (next != place) place = next
+        if (next != place.value) place.value = next
     }
+    val shown = Modifier.graphicsLayer { alpha = if (composed != null || inspection) 1f else 0f }
+    if (!plaque) return ink to measure.then(shown)
+    val shield = Modifier.drawBehind {
+        // Gelesen beim Zeichnen: Das Schild passt schon im ersten Bild zur tatsächlichen Lage.
+        val (area, aspect) = place.value ?: return@drawBehind
+        val p = SunriseSky.plaque(progress, ink, area, aspect)
+        val pad = padding.toPx()
+        drawRoundRect(
+            color = p.color.copy(alpha = p.alpha),
+            topLeft = Offset(-pad, -pad / PLAQUE_RATIO),
+            size = Size(size.width + 2 * pad, size.height + 2 * pad / PLAQUE_RATIO),
+            cornerRadius = CornerRadius(size.height / 2 + pad / PLAQUE_RATIO),
+        )
+    }
+    return ink to measure.then(shown).then(shield)
 }
+
+/** Wie weit das Schild seitlich über einen Text hinausragt (wie am iPhone 14 dp, oben und unten 4 dp). */
+val PLAQUE_PADDING = 14.dp
+private const val PLAQUE_RATIO = 3.5f
 
 /** Zeichnet den Sonnenaufgang zum Fortschritt [progress]; die Sonne steigt dabei von unten auf. */
 fun Modifier.sunriseSky(progress: Float): Modifier = drawBehind {

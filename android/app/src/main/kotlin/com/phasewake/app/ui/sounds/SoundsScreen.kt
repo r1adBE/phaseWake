@@ -1,5 +1,7 @@
 package com.phasewake.app.ui.sounds
 
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.Column
@@ -94,13 +96,13 @@ fun SoundsScreen(
             }
 
             Text(stringResource(R.string.sounds_timer), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 8.dp))
-            SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
+            SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().height(IntrinsicSize.Max)) {
                 SleepSounds.TIMER_CHOICES.forEachIndexed { index, minutes ->
                     SegmentedButton(
                         selected = minutes == timer,
                         onClick = { onTimer(minutes) },
                         shape = SegmentedButtonDefaults.itemShape(index, SleepSounds.TIMER_CHOICES.size),
-                        modifier = Modifier.heightIn(min = 48.dp),
+                        modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight(),
                     ) {
                         Text(
                             if (minutes == null) stringResource(R.string.sounds_timer_off) else stringResource(R.string.duration_minutes, minutes),

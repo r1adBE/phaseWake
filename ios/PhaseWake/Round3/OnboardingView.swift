@@ -23,17 +23,20 @@ struct OnboardingView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 14) {
-                    if step < Self.steps {
-                        Text(L("onb_step", Int64(step + 1), Int64(Self.steps)))
-                            .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
-                            .foregroundStyle(Brand.secondaryText(scheme))
+            // Inhalt senkrecht in der Mitte, wenn er Platz hat (wie Android); länger wird gescrollt.
+            GeometryReader { geo in
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 14) {
+                        if step < Self.steps {
+                            Text(L("onb_step", Int64(step + 1), Int64(Self.steps)))
+                                .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
+                                .foregroundStyle(Brand.secondaryText(scheme))
+                        }
+                        content
                     }
-                    content
+                    .padding(20)
+                    .frame(maxWidth: .infinity, minHeight: geo.size.height, alignment: .leading)
                 }
-                .padding(20)
-                .frame(maxWidth: .infinity, alignment: .leading)
             }
             .safeAreaInset(edge: .bottom) { navigation }
             .toolbar {
@@ -49,7 +52,11 @@ struct OnboardingView: View {
     @ViewBuilder private var content: some View {
         switch step {
         case 0:
-            LogoMark().frame(width: 72, height: 72)
+            // Hell: dunkle Scheibe hinter dem Logo, sonst verschwindet der helle Mond auf Weiss (Vollaudit N-8).
+            LogoMark()
+                .padding(scheme == .dark ? 0 : 6)
+                .frame(width: 72, height: 72)
+                .background(Circle().fill(scheme == .dark ? Color.clear : Brand.nightTop))
             title("onb_welcome_title")
             Text(L("onb_welcome_text"))
             Label(L("onb_privacy"), systemImage: "lock").foregroundStyle(Brand.secondaryText(scheme))
@@ -75,7 +82,9 @@ struct OnboardingView: View {
         }
     }
 
-    private func title(_ key: String) -> some View {
+    /// Titel eines Schritts; ab Schritt 2 mit dem Bild des Schritts darüber (Welle mit Mond, ``OnboardingGlyph``).
+    @ViewBuilder private func title(_ key: String) -> some View {
+        if step > 0 { OnboardingGlyph(step: step, steps: Self.steps) }
         Text(L(key)).font(Fonts.manrope(26, .bold, relativeTo: .title)).accessibilityAddTraits(.isHeader)
     }
 
@@ -114,10 +123,12 @@ struct OnboardingView: View {
     /// Zielzeit und Fenster; legt einen Wecker für die Werktage an (wie der Editor).
     @ViewBuilder private var firstAlarm: some View {
         Text(L("onb_alarm_text"))
+        // Nach «Wecker anlegen» gesperrt (Vollaudit N-11): Eine spätere Wahl änderte den angelegten Wecker nicht.
         DatePicker("", selection: $time, displayedComponents: .hourAndMinute)
             .datePickerStyle(.wheel)
             .labelsHidden()
             .frame(maxWidth: .infinity)
+            .disabled(created != nil)
         // Wie im Editor: «Genau · 10 · 20 · 30».
         let exact = Int(window) == AlarmSpec.exactWindow
         Text(exact ? L("editor_window_exact") : L("editor_window", Int(window)))
@@ -130,6 +141,7 @@ struct OnboardingView: View {
         .pickerStyle(.segmented)
         // Grosse Segmente: Tippziel nahe 44 pt.
         .controlSize(.large)
+        .disabled(created != nil)
         if exact {
             Text(L("editor_window_exact_hint")).font(.footnote).foregroundStyle(.secondary)
         }
@@ -174,14 +186,17 @@ struct OnboardingView: View {
     /// «Weiter»: Auf dem Schritt «Erster Wecker» legt es den gezeigten Wecker an, falls noch keiner angelegt ist (wie
     /// «Wecker anlegen», Audit UI-5) – wer nur «Weiter» tippt, hätte sonst keinen Wecker.
     private func next() {
-        if Self.createsOnNext(step: step, created: created != nil, canAdd: model.canAddAlarm) { createAlarm() }
+        if Self.createsOnNext(step: step, created: created != nil, hasAlarms: !model.alarms.isEmpty, canAdd: model.canAddAlarm) {
+            createAlarm()
+        }
         step += 1
     }
 
-    /// Ob «Weiter» auf `step` den gezeigten Wecker anlegt: nur auf dem Schritt «Erster Wecker», wenn noch keiner
-    /// angelegt ist und noch einer Platz hat.
-    static func createsOnNext(step: Int, created: Bool, canAdd: Bool) -> Bool {
-        step == alarmStep && !created && canAdd
+    /// Ob «Weiter» auf `step` den gezeigten Wecker anlegt: nur auf dem Schritt «Erster Wecker», wenn hier noch keiner
+    /// angelegt ist, es überhaupt noch keinen gibt (`hasAlarms`, «Einrichtung wiederholen», Vollaudit N-1) und noch einer
+    /// Platz hat.
+    static func createsOnNext(step: Int, created: Bool, hasAlarms: Bool, canAdd: Bool) -> Bool {
+        step == alarmStep && !created && !hasAlarms && canAdd
     }
 
     private func createAlarm() {

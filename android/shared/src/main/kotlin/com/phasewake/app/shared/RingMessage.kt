@@ -1,5 +1,7 @@
 package com.phasewake.app.shared
 
+import com.phasewake.app.core.TimeBounds
+
 /**
  * Inhalt der Nachrichten [DataLayer.PATH_RING], [DataLayer.PATH_STOP], [DataLayer.PATH_TASK_SHOWN] und [DataLayer.PATH_TASK_GONE]:
  * «kennung|zielzeitMs|sendezeitMs|schlummerÜbrig|schlummerBisMs». Jede Meldung trägt die Sendezeit; eine ohne
@@ -55,14 +57,18 @@ data class RingMessage(
         /** So lange nach dem Schlummer-Ende wartet das Handy auf ein neues «klingeln» der Uhr (wie auf dem iPhone). */
         const val SNOOZE_SAFETY_MS = 90_000L
 
+        /**
+         * Liest [encode]. Zeitpunkte ausserhalb von [TimeBounds] (Audit AN-5, z. B. `Long.MAX_VALUE`) gelten als fehlend:
+         * Ohne Sendezeit wird die Meldung verworfen ([isCurrent]), und keine Rechnung mit ihnen läuft über.
+         */
         fun decode(data: ByteArray?): RingMessage {
             val parts = data?.decodeToString()?.split('|').orEmpty()
             return RingMessage(
                 alarmId = parts.getOrNull(0)?.takeIf { it.isNotEmpty() },
-                target = parts.getOrNull(1)?.toLongOrNull(),
-                sentAt = parts.getOrNull(2)?.toLongOrNull(),
+                target = TimeBounds.checked(parts.getOrNull(1)?.toLongOrNull()),
+                sentAt = TimeBounds.checked(parts.getOrNull(2)?.toLongOrNull()),
                 snoozesLeft = parts.getOrNull(3)?.toIntOrNull(),
-                snoozeUntil = parts.getOrNull(4)?.toLongOrNull(),
+                snoozeUntil = TimeBounds.checked(parts.getOrNull(4)?.toLongOrNull()),
             )
         }
     }

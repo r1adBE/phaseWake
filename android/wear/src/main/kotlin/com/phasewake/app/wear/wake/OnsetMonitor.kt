@@ -75,8 +75,9 @@ class OnsetMonitor(
     private var ended = false
 
     /**
-     * Grundrauschen der bisher gemessenen Epochen ([NoiseFloor.floor]); `null`, solange es zu wenige sind. Nach dem Ende
-     * gilt es als Vorwissen im Weckfenster derselben Nacht ([OnsetFloorStore], Vollaudit K-1).
+     * Grundrauschen der bisher gemessenen Epochen ([NoiseFloor.floor]; solange es zu wenige sind, [personalFloor]), nach
+     * dem Einschlafen bis zur erkennenden Epoche ([OnsetRules.scan], Fix KN-3). Nach dem Einschlafen oder Aufgeben gilt es
+     * als Vorwissen im Weckfenster derselben Nacht ([OnsetFloorStore], Vollaudit K-1); lief die Messung ins Fenster, nicht.
      */
     var floor: Double? = null
         private set
@@ -145,6 +146,7 @@ class OnsetMonitor(
             if (reported) return
         }
         val first = s.closedEpochs - epochs.size
+        val from = motions.size
         epochs.forEachIndexed { i, epoch ->
             val index = first + i
             val inSample = s.continuous || index in sampleFrom until sampleUntil
@@ -152,9 +154,9 @@ class OnsetMonitor(
             measured += inSample
             if (inSample) period.add(epoch.motion)
         }
-        floor = NoiseFloor.floor(motions.filterIndexed { i, _ -> measured[i] }, personalFloor)
-        val quiet = NoiseFloor.light(threshold, floor)
-        val index = if (s.continuous) SleepOnset.find(motions, quiet) else OnsetRules.find(motions, measured, quiet)
+        // Epoche für Epoche: Grundrauschen und Regel nur bis zur Epoche, in der das Einschlafen erkannt ist (Fix KN-3).
+        val (index, noise) = OnsetRules.scan(motions, measured, from, threshold, personalFloor, s.continuous, floor)
+        floor = noise
         if (index == null) return
         reported = true
         onOnset(started.plus(Duration.ofSeconds(index.toLong() * DetectorConfig.EPOCH_SECONDS)))

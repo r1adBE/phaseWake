@@ -2,6 +2,7 @@ package com.phasewake.app.shared
 
 import android.net.Uri
 import com.google.android.gms.wearable.DataMap
+import com.phasewake.app.core.TimeBounds
 import com.phasewake.app.core.WakePlan
 import java.time.Duration
 import java.time.Instant
@@ -42,12 +43,12 @@ data class OnsetShift(val alarmId: String, val original: Long, val target: Long,
          */
         fun cancel(plan: WakePlan, at: Long): OnsetShift = plan.target.toEpochMilli().let { OnsetShift(plan.alarmId, it, it, at) }
 
-        /** Liest [encode]; `null`, wenn leer oder unlesbar. */
+        /** Liest [encode]; `null`, wenn leer, unlesbar oder ein Zeitpunkt unplausibel ist ([TimeBounds], Audit AN-5). */
         fun decode(text: String?): OnsetShift? {
             val f = text?.split("|")?.takeIf { it.size >= 4 } ?: return null
-            val original = f[1].toLongOrNull() ?: return null
-            val target = f[2].toLongOrNull() ?: return null
-            val at = f[3].toLongOrNull() ?: return null
+            val original = TimeBounds.checked(f[1].toLongOrNull()) ?: return null
+            val target = TimeBounds.checked(f[2].toLongOrNull()) ?: return null
+            val at = TimeBounds.checked(f[3].toLongOrNull()) ?: return null
             return OnsetShift(Uri.decode(f[0]), original, target, at)
         }
 

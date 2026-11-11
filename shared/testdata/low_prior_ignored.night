@@ -1,0 +1,36 @@
+# Fix KN-2: Uhr mit Rauschen rund 0.02 (Grundrauschen 0.0199), gelernt 0.0045 < 0.25 × 0.0199: unplausibel, keine
+# Obergrenze -> Leicht-Schwelle 2.5 × 0.0199 ≈ 0.05. Epoche 12/13 Bewegung 0.03 mit Puls 57: Rauschen, kein Wecken
+# (mit Obergrenze 1.5 × 0.0045 = 0.00675 -> Schwelle 0.017: LIGHT_SLEEP). Epoche 20/21 echte Bewegung: weckt.
+@floor 0.0045
+@expect 21 LIGHT_SLEEP
+motion,hr
+0.0194,52
+0.0217,52
+0.0203,52
+0.0233,52
+0.0199,52
+0.0287,52
+0.0202,52
+0.0211,52
+0.028,52
+0.0196,52
+0.0224,52
+0.0205,52
+0.03,57
+0.03,57
+0.0194,52
+0.0217,52
+0.0203,52
+0.0233,52
+0.0199,52
+0.0287,52
+0.071,57
+0.062,57
+0.0194,52
+0.0217,52
+0.0203,52
+0.0233,52
+0.0199,52
+0.0287,52
+0.0202,52
+0.0211,52

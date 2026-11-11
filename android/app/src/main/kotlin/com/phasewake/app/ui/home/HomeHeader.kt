@@ -40,6 +40,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
+import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.text.BasicText
+import androidx.compose.foundation.text.TextAutoSize
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import com.phasewake.app.R
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.WakePlan
@@ -102,16 +109,7 @@ internal fun Header(
                     Text(stringResource(greeting(now, zone)), style = MaterialTheme.typography.titleMedium, color = Night.Muted)
                     if (plan != null && alarm != null) {
                         val dayText = dayLabel(plan.target, now, zone)
-                        Text(
-                            if (plan.exact) {
-                                stringResource(R.string.window_exact_line, Format.time(plan.target, zone))
-                            } else {
-                                Format.time(plan.windowStart, zone) + " – " + Format.time(plan.target, zone)
-                            },
-                            style = if (plan.exact) MaterialTheme.typography.displaySmall else MaterialTheme.typography.displayMedium,
-                            color = Night.Text,
-                            modifier = Modifier.padding(top = 2.dp),
-                        )
+                        HeroTime(plan, zone)
                         // Zwei Zeilen statt eines Umbruchs mitten im Satz: wann und welcher – dann wie lange noch.
                         Text(
                             listOf(dayText, alarm.label).filter { it.isNotBlank() }.joinToString(" · "),
@@ -159,6 +157,53 @@ internal fun Header(
                 }
             }
         }
+    }
+}
+
+/**
+ * Das Weckfenster gross in einer Zeile (Gestaltung 1, Audit N-2): AM/PM klein hinter der Zeit, und reicht die Breite
+ * nicht (lange Sprachen, Arabisch, grosse Schrift), wird die Schrift schrittweise kleiner statt umzubrechen.
+ */
+@Composable
+private fun HeroTime(plan: WakePlan, zone: ZoneId) {
+    val target = Format.timeWithPeriod(plan.target, zone)
+    val text = if (plan.exact) {
+        // Die Zeit steckt im Satz «Genau um …»: ihren Zusatz dort suchen.
+        val line = stringResource(R.string.window_exact_line, target.first)
+        heroText(line, listOf(target), line.indexOf(target.first))
+    } else {
+        val start = Format.timeWithPeriod(plan.windowStart, zone)
+        heroText(start.first + " – " + target.first, listOf(start, target), 0)
+    }
+    val style = if (plan.exact) MaterialTheme.typography.displaySmall else MaterialTheme.typography.displayMedium
+    BasicText(
+        text,
+        style = style.copy(color = Night.Text),
+        maxLines = 1,
+        softWrap = false,
+        autoSize = TextAutoSize.StepBased(minFontSize = HERO_MIN_SIZE, maxFontSize = style.fontSize, stepSize = 1.sp),
+        modifier = Modifier.fillMaxWidth().padding(top = 2.dp),
+    )
+}
+
+/** Kleinste Schrift des Weckfensters, bevor es abgeschnitten würde. */
+private val HERO_MIN_SIZE = 20.sp
+
+/** Anteil der Schriftgrösse für AM/PM im Weckfenster. */
+private const val PERIOD_SCALE = 0.42f
+
+/**
+ * [line] mit kleinem Tageszeit-Zusatz: [times] sind die Zeiten in der Reihenfolge, in der sie in [line] stehen,
+ * die erste ab [from]. Nicht gefundene Zeiten bleiben unverändert.
+ */
+internal fun heroText(line: String, times: List<Pair<String, IntRange?>>, from: Int): AnnotatedString = buildAnnotatedString {
+    append(line)
+    var cursor = from.coerceAtLeast(0)
+    for ((time, period) in times) {
+        val at = line.indexOf(time, cursor)
+        if (at < 0) continue
+        if (period != null) addStyle(SpanStyle(fontSize = PERIOD_SCALE.em), at + period.first, at + period.last + 1)
+        cursor = at + time.length
     }
 }
 

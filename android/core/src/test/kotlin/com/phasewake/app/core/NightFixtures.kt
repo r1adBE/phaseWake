@@ -8,7 +8,10 @@ internal data class NightFixture(
     val expectedIndex: Int?,
     val expectedReason: WakeReason?,
     val epochs: List<Epoch>,
-    /** Startwerte, mit den gelernten Werten aus `@floor` und `@resting` (Lernphase), falls angegeben. */
+    /**
+     * Startwerte, mit den gelernten Werten aus `@floor` und `@resting` (Lernphase) und dem Grundrauschen der
+     * Einschlaf-Messung dieser Nacht aus `@onset-floor` ([DetectorConfig.withOnsetFloor]), falls angegeben.
+     */
     val config: DetectorConfig = DetectorConfig(),
     /** `@rearm-until`: Jeder Moment vor dieser Epoche wird übergangen ([WakeDetector.rearm], kurze Nacht); `null` = keiner. */
     val rearmUntil: Int? = null,
@@ -57,6 +60,7 @@ internal object NightFixtures {
         var headerSeen = false
         var personalFloor: Double? = null
         var restingHeartRate: Double? = null
+        var onsetFloor: Double? = null
         var rearmUntil: Int? = null
         val epochs = mutableListOf<Epoch>()
 
@@ -73,6 +77,7 @@ internal object NightFixtures {
                     expectSeen = true
                 }
                 line.startsWith("@floor") -> personalFloor = line.split(Regex("\\s+"))[1].toDouble()
+                line.startsWith("@onset-floor") -> onsetFloor = line.split(Regex("\\s+"))[1].toDouble()
                 line.startsWith("@resting") -> restingHeartRate = line.split(Regex("\\s+"))[1].toDouble()
                 line.startsWith("@rearm-until") -> rearmUntil = line.split(Regex("\\s+"))[1].toInt()
                 !headerSeen -> {
@@ -90,7 +95,7 @@ internal object NightFixtures {
             }
         }
         check(expectSeen) { "${file.name}: @expect fehlt" }
-        val config = DetectorConfig(personalFloor = personalFloor, restingHeartRate = restingHeartRate)
+        val config = DetectorConfig(personalFloor = personalFloor, restingHeartRate = restingHeartRate).withOnsetFloor(onsetFloor)
         return NightFixture(file.nameWithoutExtension, expectedIndex, expectedReason, epochs, config, rearmUntil)
     }
 }

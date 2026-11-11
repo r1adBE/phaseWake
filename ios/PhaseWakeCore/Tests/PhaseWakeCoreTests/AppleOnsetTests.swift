@@ -67,6 +67,30 @@ final class AppleOnsetTests: XCTestCase {
         XCTAssertEqual(RecorderOnset.extendCap(since: since, windowStart: minutes(150)), minutes(150))
     }
 
+    /// Fix KN-3: Grundrauschen der Einschlaf-Messung nur aus den Epochen bis zum erkannten Einschlafen bzw. bis zum
+    /// Aufgeben (wie `OnsetMonitor`); lief die Messung ins Weckfenster, keines.
+    func testOnsetFloorUpToDetectionOnly() throws {
+        func measure(_ motions: [Double?]) -> (result: RecorderOnset.Result, floor: Double?) {
+            RecorderOnset.measure(motions: motions, since: since, threshold: DetectorConfig.defaultLightThreshold, personalFloor: nil,
+                                  latest: since.addingTimeInterval(10 * 3600), extendCap: nil)
+        }
+        // Erkannt in Epoche 29 (30 × 0.01); die sehr ruhigen Epochen danach zählen nicht (über alle: 0.001).
+        let asleep = measure(Array(repeating: 0.01, count: 30) + Array(repeating: 0.001, count: 30))
+        XCTAssertEqual(asleep.result, .asleep(at: since, index: 0))
+        XCTAssertEqual(try XCTUnwrap(asleep.floor), 0.01, accuracy: 1e-12)
+        // Aufgegeben nach 2 Std. (240 unruhige Epochen): 0.04 (Obergrenze); die ruhigen danach zählen nicht.
+        let gaveUp = measure(Array(repeating: busy, count: 300) + Array(repeating: quiet, count: 60))
+        XCTAssertEqual(gaveUp.result, .gaveUp(at: minutes(120), reason: "give up (max duration)"))
+        XCTAssertEqual(try XCTUnwrap(gaveUp.floor), NoiseFloor.maxFloor, accuracy: 1e-12)
+        // Bis ins Weckfenster ohne Ergebnis: keines (früher das aller Epochen).
+        let open = measure(Array(repeating: quiet, count: 29))
+        XCTAssertEqual(open.result, .open)
+        XCTAssertNil(open.floor)
+        XCTAssertEqual(RecorderOnset.find(motions: Array(repeating: quiet, count: 29), since: since,
+                                          threshold: DetectorConfig.defaultLightThreshold, personalFloor: nil,
+                                          latest: since.addingTimeInterval(10 * 3600), extendCap: nil), .open)
+    }
+
     func testRulesMatchKotlin() {
         XCTAssertTrue(RecorderOnset.restless([nil, 0.2], threshold: 0.1))
         XCTAssertFalse(RecorderOnset.restless([0.2] + Array(repeating: nil, count: 30), threshold: 0.1))

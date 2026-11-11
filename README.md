@@ -93,7 +93,7 @@ open ../PhaseWake.xcodeproj
 
 Die Texte der Apple-Apps entstehen aus den Android-Texten: `python3 .github/scripts/gen-xcstrings.py`.
 
-Modell für «Geräusche in der Nacht» (Android): YAMNet von MediaPipe, nicht im Repository. Gradle lädt es beim ersten Bauen nach `android/app/src/main/assets/yamnet.tflite` (Quelle: `https://storage.googleapis.com/mediapipe-models/audio_classifier/yamnet/float32/1/yamnet.tflite`). Der Build prüft die Datei mit SHA-256 (Wert in `android/app/build.gradle.kts`) und bricht bei einer anderen Datei ab.
+Modell für «Geräusche in der Nacht» (Android): YAMNet von MediaPipe, nicht im Repository. Gradle lädt es beim ersten Bauen nach `android/app/src/main/assets/yamnet.tflite` (Quelle: `https://storage.googleapis.com/mediapipe-models/audio_classifier/yamnet/float32/1/yamnet.tflite`). Eine frisch geladene Datei prüft jeder Build mit SHA-256 (Wert in `android/app/build.gradle.kts`) und bricht bei einer anderen ab; eine schon vorhandene Datei prüft nur der Release-Build (`checkYamnet`), der auch ohne Modell abbricht. Ein Debug-Build ohne Netz baut ohne Modell (Geräusche gelten dann als «Anderes Geräusch»).
 
 Ohne Modell (z. B. ohne Netz) baut und läuft die Testversion (Debug) ebenfalls; aufgenommene Geräusche gelten dann alle als «anderes Geräusch». Ein Release-Build bricht ohne Modell ab.
 

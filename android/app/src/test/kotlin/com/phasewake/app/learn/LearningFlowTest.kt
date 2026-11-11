@@ -236,4 +236,29 @@ class LearningFlowTest {
         assertFalse(sent.active)
         assertEquals(values.floor, sent.floor)
     }
+
+    /**
+     * Fix KN-7: Der Zeitpunkt der Lernphase steigt streng, auch bei zwei Änderungen in derselben Millisekunde oder nach
+     * einer zurückgestellten Uhrzeit (die Uhr übernimmt nur einen neueren Stand); ein kaputter alter zählt nicht.
+     */
+    @Test
+    fun learningStampRisesStrictly() = runBlocking {
+        val repo = LearningRepository(MemoryStore())
+        val at = Instant.ofEpochMilli(5_000)
+        repo.setConsent(true, at)
+        assertEquals(5_000L, repo.current().updatedAt)
+        repo.relearn(at)
+        assertEquals(5_001L, repo.current().updatedAt)
+        repo.restart(at.minusSeconds(60))
+        assertEquals(5_002L, repo.current().updatedAt)
+        val broken = LearningRepository(
+            MemoryStore(
+                androidx.datastore.preferences.core.emptyPreferences().toMutablePreferences().apply {
+                    this[androidx.datastore.preferences.core.longPreferencesKey("learning_updated_at")] = Long.MAX_VALUE
+                },
+            ),
+        )
+        broken.setConsent(false, at)
+        assertEquals(5_000L, broken.current().updatedAt)
+    }
 }

@@ -2,7 +2,7 @@
 
 Entwürfe für die Formulare der Play Console (App-Inhalte, Berechtigungen, Gesundheits-Apps), abgeleitet aus
 `android/app/src/main/AndroidManifest.xml` (Handy) und `android/wear/src/main/AndroidManifest.xml` (Galaxy Watch).
-Stand 11.11.2026 (zuerst Review W-07). Vor dem Einreichen gegen die aktuellen Manifeste und die Formularfelder prüfen; die
+Stand 12.11.2026 (zuerst Review W-07). Vor dem Einreichen gegen die aktuellen Manifeste und die Formularfelder prüfen; die
 Play Console verlangt meist englischen Text, die deutsche Fassung dient zur Kontrolle.
 
 Ohne Erklärung: `VIBRATE`, `WAKE_LOCK`, `RECEIVE_BOOT_COMPLETED`, `FOREGROUND_SERVICE`, `USE_BIOMETRIC`. Kein
@@ -41,6 +41,9 @@ Ruhemodus des Geräts. Die Alarme erscheinen im System als Wecker (Uhrzeit in de
 (Handy: Zweitwecker oder Weiterleitung der Uhr; Uhr: bei jedem Klingeln und Schlummern, dazu im Weckfenster, wenn nicht
 gemessen werden kann – vor dem ersten Entsperren nach einem Neustart oder ohne Sensorrechte). Er hält Ton, Vibration und
 Weckbildschirm am Leben, bis du beendest oder schlummerst. Als Wecker-App mit `USE_EXACT_ALARM` ist dieser Typ vorgesehen.
+Rückfall auf der Uhr: Verweigert das System einer Aufzeichnung («Nacht aufzeichnen», Lernphase; `RecordService`) den
+Typ «health» (z. B. Sensorrechte entzogen), geht der Dienst nur kurz mit «systemExempted» in den Vordergrund, weil
+Android das nach dem Start verlangt, protokolliert den Grund und beendet sich sofort, ohne zu messen.
 
 **Vordergrund-Dienst «health» (Uhr).** Läuft im Weckfenster (10–30 Minuten vor der Zielzeit) und am Abend bis zum
 Einschlafen: automatisch ab 1 Std. vor der Bettzeit (Einschlaf-Messung, ab Werk an, in den Einstellungen abschaltbar)
@@ -101,7 +104,10 @@ appears even when the phone is locked or the watch screen is off. No other full-
 backup alarm or forwarded watch alarm; watch: on every ring and snooze, plus during the wake window when measuring is not
 possible – before the first unlock after a restart or without sensor permissions). It keeps sound,
 vibration and the alarm screen alive until the user stops or snoozes. This type is intended for alarm clock apps
-holding `USE_EXACT_ALARM`.
+holding `USE_EXACT_ALARM`. Fallback on the watch: if the system refuses the “health” type for a recording (“Record
+night”, learning phase; `RecordService`), e.g. because sensor permissions were revoked, the service enters the
+foreground with “systemExempted” only briefly, because Android requires this after the start, logs the reason and stops
+at once without measuring.
 
 **Foreground service type “health” (watch).** Runs during the wake window (10–30 minutes before the target time) and in
 the evening until the user falls asleep: automatically from 1 hour before bedtime (falling-asleep measurement, on by
@@ -147,6 +153,53 @@ associates with the user’s Galaxy Watch as its companion app, so the alarm scr
 phone is in use. `BLUETOOTH_CONNECT` reads the paired devices only to offer the watch directly for confirmation; nothing
 is stored or sent.
 
+## Datensicherheit (Formular «Data safety»)
+
+Entwurf (Audit 071597f DA-7) für Play Console → App-Inhalte → Datensicherheit, Handy- und Uhr-App gemeinsam. Grundlage:
+Google zählt als «erhoben» nur Daten, die von deinem Gerät weg übertragen werden; Verarbeitung nur auf dem Gerät gehört
+nicht dazu. Vor dem Einreichen gegen die aktuellen Manifeste, DATENSCHUTZ.md und die Formularfragen prüfen.
+
+**Deutsch (zur Kontrolle)**
+
+- **Erhebt oder teilt die App Nutzerdaten der verlangten Typen?** Nein. Phase Wake hat keine Internet-Berechtigung, kein
+  Konto, keine Werbung, kein Analyse- oder Absturz-SDK; nichts verlässt die Geräte in Richtung Entwickler oder Dritte.
+- **Gesundheit und Fitness** (Bewegung, Puls, Schlaf aus Health Connect): nur auf Handy und Uhr verarbeitet, um zu wecken
+  und den Verlauf zu zeigen; zwischen Handy und Uhr direkt über die Verbindung des Systems (Wear OS MessageClient bzw.
+  ChannelClient), nicht über einen Server. Darum nicht «erhoben».
+- **Audio** (Geräusche in der Nacht, Option): Ausschnitte bleiben auf dem Handy, nach 7 Tagen gelöscht. Nicht «erhoben».
+- **Sicherung:** nur auf deinen Wunsch; die Datei (`.pwbak`) ist mit deinem Passwort verschlüsselt und liegt dort, wo du
+  sie speicherst. Der Entwickler bekommt sie nie. CSV-Export ebenso nur auf deinen Wunsch über das Teilen-Menü.
+- **Datenpakete des Data Layers von Wear OS:** nur technische Angaben zur Uhr (Rechte, Akku, Version, Zeitpunkt von
+  «Verlauf löschen», Kennung eines abgebrochenen Probeweckers), keine Gesundheitsdaten; Google kann sie im Rahmen der
+  Uhr-Verbindung sichern. Nach unserem Verständnis keine Erhebung durch die App – vor dem Einreichen von r1AD prüfen.
+- **MediaPipe:** Laut seinem Datenschutzhinweis (in `licenses/NOTICE-mediapipe-native.txt`) sendet MediaPipe Tasks
+  Nutzungs- und Leistungskennzahlen an Google (über Google Data Transport). Ohne `INTERNET`-Recht (im Manifest entfernt)
+  kann die App nichts senden; die Kennzahlen bleiben höchstens lokal liegen. Vor dem Einreichen von r1AD prüfen.
+- **Verschlüsselung bei der Übertragung:** Frage entfällt, wenn «Nein» bei der Erhebung; sonst: Verbindung des Systems.
+- **Löschen:** Alles liegt auf den Geräten; «Verlauf löschen» in der App bzw. Deinstallieren löscht es. Kein Konto,
+  darum kein Löschantrag nötig.
+
+**English (for the form)**
+
+- **Does your app collect or share any of the required user data types?** No. Phase Wake has no internet permission, no
+  account, no ads and no analytics or crash SDK; no data leaves the devices towards the developer or third parties.
+- **Health and fitness** (motion, heart rate, sleep from Health Connect): processed only on the phone and watch to wake
+  the user and show the history; exchanged between phone and watch directly via the system connection (Wear OS
+  MessageClient or ChannelClient), not via a server. Therefore not “collected”.
+- **Audio** (optional night sounds): clips stay on the phone and are deleted after 7 days. Not “collected”.
+- **Backups:** only when the user starts them; the file (`.pwbak`) is encrypted with the user’s password and stored where
+  the user saves it. The developer never receives it. CSV export likewise only on request via the share sheet.
+- **Wear OS Data Layer items:** technical watch information only (permissions, battery, version, time of “Clear
+  history”, ID of a cancelled test alarm), no health data; Google may back them up as part of the watch connection. In
+  our understanding not collected by the app – to be checked by r1AD before submitting.
+- **MediaPipe:** according to its privacy notice (in `licenses/NOTICE-mediapipe-native.txt`), MediaPipe Tasks sends
+  usage and performance metrics to Google (via Google Data Transport). Without the `INTERNET` permission (removed in the
+  manifest) the app cannot send anything; such metrics at most stay on the device. To be checked by r1AD before
+  submitting.
+- **Encrypted in transit:** not asked when collection is “No”; otherwise: system connection.
+- **Deletion:** everything stays on the devices; “Clear history” in the app or uninstalling deletes it. No account, so
+  no deletion request is needed.
+
 ## Store-Build: Upload-Schlüssel und Upload
 
 Die Testversionen sind Debug-Builds mit dem öffentlichen Testschlüssel. Für Google Play baut der Workflow «Store-Build»
@@ -181,10 +234,11 @@ Upload-Schlüssel. Google signiert die Apps danach mit dem eigenen App-Signaturs
 4. **Bauen:** Actions → «Store-Build» → Run workflow (von `main`). Fehlt ein Secret, bricht der Lauf mit einer Meldung ab.
    Vor dem Signieren prüft der Lauf, dass der Workflow «CI» für genau diesen Commit erfolgreich abgeschlossen ist (sonst
    Abbruch mit Meldung; ein Commit mit `[skip ci]` hat keinen CI-Lauf, dann erst einen geprüften Stand auf `main` bringen),
-   und führt die Unit-Tests noch einmal aus (Audit F-05). Gradle baut die Bundles ohne Passwörter, `release_check.py`
-   prüft den Release-Build; erst danach signiert ein eigener Schritt sie mit `jarsigner` (nur dieser Schritt sieht die
-   Passwörter, Audit 5314d25 D-06), und der Lauf prüft, dass beide Bundles mit dem Upload-Schlüssel signiert sind. Der
-   Keystore wird am Ende gelöscht.
+   und führt die Unit-Tests noch einmal aus (Audit F-05). Gradle baut die Bundles ohne Schlüssel und Passwörter,
+   `release_check.py` prüft den Release-Build; erst danach beendet ein eigener Schritt den Gradle-Daemon, legt den
+   Keystore ab und signiert die Bundles mit `jarsigner` (nur dieser Schritt sieht Schlüssel und Passwörter, Audit 5314d25
+   D-06, 071597f DA-2), und der Lauf prüft, dass beide Bundles mit dem Upload-Schlüssel signiert sind. Der Keystore wird
+   am Ende gelöscht.
 5. **Herunterladen:** im Lauf unter Artifacts `phasewake-store-<Nummer>` (7 Tage aufbewahrt), darin
    `PhaseWake-Handy-<Nummer>.aab` und `PhaseWake-Uhr-<Nummer>.aab`.
 6. **Hochladen in der Play Console:** App anlegen, Play App Signing eingeschaltet lassen (Standard) und beim ersten

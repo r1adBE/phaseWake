@@ -1,5 +1,8 @@
 package com.phasewake.app.ui.editor
 
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.IntrinsicSize
 import android.content.Intent
 import android.media.RingtoneManager
 import androidx.activity.compose.ManagedActivityResultLauncher
@@ -149,13 +152,13 @@ internal fun WindowSection(state: EditorState, time: TimePickerState) {
         val exactLabel = stringResource(R.string.editor_window_exact)
         Text(if (exact) exactLabel else stringResource(R.string.editor_window, minutes), style = MaterialTheme.typography.titleMedium)
         val options = (WINDOW_OPTIONS + minutes).distinct().sorted()
-        SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(top = 8.dp)) {
+        SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(top = 8.dp).height(IntrinsicSize.Max)) {
             options.forEachIndexed { index, value ->
                 SegmentedButton(
                     selected = value == minutes,
                     onClick = { state.window = value.toFloat() },
                     shape = SegmentedButtonDefaults.itemShape(index, options.size),
-                    modifier = Modifier.heightIn(min = 48.dp),
+                    modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight(),
                     icon = { if (options.size <= CHECK_ICON_MAX_SEGMENTS) SegmentedButtonDefaults.Icon(value == minutes) },
                 ) { ChoiceLabel(if (value == AlarmSpec.EXACT_WINDOW) exactLabel else Format.number(value)) }
             }
@@ -205,7 +208,7 @@ internal fun DaysSection(state: EditorState) {
 internal fun HolidaySection(state: EditorState) {
     Section {
         Row(
-            Modifier.fillMaxWidth().toggleable(value = state.skipHolidays, role = Role.Switch, onValueChange = { state.skipHolidays = it }),
+            Modifier.fillMaxWidth().heightIn(min = 48.dp).toggleable(value = state.skipHolidays, role = Role.Switch, onValueChange = { state.skipHolidays = it }),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Column(Modifier.weight(1f).padding(end = 12.dp)) {
@@ -322,6 +325,7 @@ internal fun ColumnScope.MoreSection(
     Row(
         Modifier
             .fillMaxWidth()
+            .heightIn(min = 48.dp)
             .clip(MaterialTheme.shapes.small)
             .clickable(role = Role.Button) { state.more = !state.more }
             .padding(horizontal = 4.dp, vertical = 10.dp),

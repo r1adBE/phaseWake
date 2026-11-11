@@ -64,7 +64,7 @@ public struct LearningState: Equatable, Sendable, Codable {
             since = now
             started = true
         }
-        updatedAtMs = Self.millis(now)
+        updatedAtMs = Self.stamp(now, after: updatedAtMs)
         return started
     }
 
@@ -73,7 +73,7 @@ public struct LearningState: Equatable, Sendable, Codable {
         clearValues()
         since = now
         seen = false
-        updatedAtMs = Self.millis(now)
+        updatedAtMs = Self.stamp(now, after: updatedAtMs)
     }
 
     /// «Neu lernen» ab `now`: Es zählen nur Nächte ab jetzt; die bisherigen Werte gelten weiter, bis ``finish(_:now:)``
@@ -81,7 +81,7 @@ public struct LearningState: Equatable, Sendable, Codable {
     public mutating func relearn(now: Date) {
         since = now
         if values != nil { relearnPending = true } else { clearValues() }
-        updatedAtMs = Self.millis(now)
+        updatedAtMs = Self.stamp(now, after: updatedAtMs)
     }
 
     /// Fertig mit den gelernten Werten `learned`; nur, solange sie noch läuft (auch bei «Neu lernen»: dann ersetzen sie
@@ -93,7 +93,7 @@ public struct LearningState: Equatable, Sendable, Codable {
         clearValues()
         values = learned
         seen = false
-        updatedAtMs = Self.millis(now)
+        updatedAtMs = Self.stamp(now, after: updatedAtMs)
         return true
     }
 
@@ -107,7 +107,12 @@ public struct LearningState: Equatable, Sendable, Codable {
         relearnPending = false
     }
 
-    private static func millis(_ date: Date) -> Int64 { Int64((date.timeIntervalSince1970 * 1000).rounded()) }
+    /// Zeitpunkt einer Änderung: `now` in ms, mindestens `previous` + 1 (Fix KN-7): Die Uhr übernimmt nur einen neueren
+    /// Stand (``LearningSnapshot/replaces(_:)``); zwei Änderungen in derselben Millisekunde oder nach einer zurückgestellten
+    /// Uhrzeit gingen sonst verloren. Wie `LearningRepository` (Kotlin).
+    private static func stamp(_ now: Date, after previous: Int64) -> Int64 {
+        TimeBounds.next(now: TimeBounds.millis(now), previous: previous)
+    }
 }
 
 /// Stand der Lernphase vom iPhone für die Uhr (wie `LearningSnapshot` auf Android): läuft sie (`active`: die Uhr

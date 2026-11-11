@@ -24,7 +24,7 @@ enum BackupIO {
         let defaults = SettingsFile.phone
         let theme = ThemeMode(rawValue: defaults.string(forKey: themeKey) ?? "") ?? .system
         return BackupPayload(
-            createdAt: Int64(now.timeIntervalSince1970 * 1000),
+            createdAt: TimeBounds.millis(now),
             alarms: Codec.encodeAlarms(model.alarms),
             nights: model.nights.map(Codec.encodeNight),
             notes: SleepNotes.encode(model.notes),
@@ -36,7 +36,7 @@ enum BackupIO {
                 sleepGoal: model.sleepGoal, bedtimeReminder: model.bedtimeReminder, weeklyReview: model.weeklyReview,
                 soundRecDefault: model.soundRecDefault, theme: theme.rawValue.uppercased(),
                 holidayCountry: model.holidays.country, holidayRegion: model.holidays.region,
-                historyClearedAt: model.historyClearedAt.map { Int64($0.timeIntervalSince1970 * 1000) },
+                historyClearedAt: model.historyClearedAt.map(TimeBounds.millis),
                 nextAlarmNotice: defaults.object(forKey: nextAlarmNoticeKey) as? Bool ?? true,
                 autoOnset: defaults.object(forKey: autoOnsetKey) as? Bool ?? true
             ),
@@ -132,7 +132,8 @@ enum BackupIO {
         defaults.set((ThemeMode(rawValue: s.theme.lowercased()) ?? .system).rawValue, forKey: themeKey)
         defaults.set(s.nextAlarmNotice, forKey: nextAlarmNoticeKey)
         defaults.set(s.autoOnset, forKey: autoOnsetKey)
-        if let cleared = s.historyClearedAt {
+        // Unplausibel → keiner, in der Zukunft → jetzt (Vollaudit DA-1).
+        if let cleared = HistoryClear.clamped(ms: s.historyClearedAt, now: Date()) {
             defaults.set(NSNumber(value: cleared), forKey: PhoneModel.historyClearedKey)
         } else {
             defaults.removeObject(forKey: PhoneModel.historyClearedKey)

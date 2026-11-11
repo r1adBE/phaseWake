@@ -192,13 +192,15 @@ class BackupAlarm(
     /**
      * Die Uhr hat diese Nacht übernommen (klingelt, gestoppt oder Nacht gemeldet): Zweitwecker dieses
      * Weckers bis kurz nach der Zielzeit dieser Nacht aussetzen – nicht länger, sonst fiele ein
-     * zweiter Wecker am selben Morgen weg. Ohne Kennung (ältere Uhr): jeder Wecker, dessen Nacht läuft.
+     * zweiter Wecker am selben Morgen weg. Ohne Kennung (ältere Uhr): jeder Wecker, dessen Nacht läuft. Eine
+     * unplausible [target] gilt wie keine (Audit AN-5: sonst liefe das Speichern in Millisekunden über, Absturz).
      */
     suspend fun watchHandled(alarmId: String?, target: Instant? = null) {
         val current = now()
         val specs = alarms.current().alarms
+        val night = target?.takeIf { runCatching { com.phasewake.app.core.TimeBounds.contains(it.toEpochMilli()) }.getOrDefault(false) }
         val until: Map<String, Instant> = if (alarmId != null) {
-            mapOf(alarmId to nightTarget(specs.firstOrNull { it.id == alarmId }, target, current).plus(GRACE))
+            mapOf(alarmId to nightTarget(specs.firstOrNull { it.id == alarmId }, night, current).plus(GRACE))
         } else {
             val window = Duration.ofMinutes(AlarmSpec.MAX_WINDOW_MINUTES.toLong())
             specs.mapNotNull { spec ->

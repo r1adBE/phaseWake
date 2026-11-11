@@ -33,12 +33,13 @@ struct NextAlarmProvider: TimelineProvider {
     }
 
     /// Plan der Uhr-App (`EffectivePlan`), solange er gilt: mit «Gute Nacht», Probewecker und Powernap wie die Sitzung
-    /// (Audit AP-9). Sonst aus den Weckern gerechnet wie bisher.
+    /// (Audit AP-9). Sonst, auch nach einem Wechsel der Zeitzone seit dem Speichern (Vollaudit AP2-7), aus den Weckern
+    /// gerechnet wie bisher.
     private func entry(at date: Date) -> NextAlarmEntry {
         let storage = PhaseWakeStorage.watchShared
         let computed = AlarmSchedule.earliestPlan(storage.snapshot().alarms, now: date, doneUntil: storage.doneUntil, calendar: .gregorianLocal,
                                                   holidays: storage.holidays.dates)
-        let stored = Self.settings.flatMap { EffectivePlan.decode($0.object(forKey: EffectivePlan.key)) }
+        let stored = Self.settings.flatMap { EffectivePlan.decode($0.object(forKey: EffectivePlan.key), zone: .current) }
         return NextAlarmEntry(date: date, plan: EffectivePlan.choose(stored: stored, computed: computed, now: date))
     }
 

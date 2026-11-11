@@ -30,7 +30,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
 
     /// Für welche Zielzeit die Uhr scharf ist (Sitzung geplant oder laufend); 0 = nicht scharf.
     func publish(armedTarget: Date?) {
-        context[SyncKeys.armedTarget] = Int64((armedTarget?.timeIntervalSince1970 ?? 0) * 1000)
+        context[SyncKeys.armedTarget] = armedTarget.map(TimeBounds.millis) ?? 0
         ensureAlarms()
         sendContext()
     }
@@ -187,9 +187,9 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     func send(command: String, alarmId: String = "", target: Date? = nil, snoozesLeft: Int? = nil, snoozeUntil: Date? = nil) {
         var payload: [String: Any] = [SyncKeys.command: command, SyncKeys.alarms: alarmId,
                                       SyncKeys.sentAt: Int64(Date().timeIntervalSince1970 * 1000)]
-        if let target { payload[SyncKeys.target] = Int64(target.timeIntervalSince1970 * 1000) }
+        if let target { payload[SyncKeys.target] = TimeBounds.millis(target) }
         if let snoozesLeft { payload[SyncKeys.snoozesLeft] = Int64(snoozesLeft) }
-        if let snoozeUntil { payload[SyncKeys.snoozeUntil] = Int64(snoozeUntil.timeIntervalSince1970 * 1000) }
+        if let snoozeUntil { payload[SyncKeys.snoozeUntil] = TimeBounds.millis(snoozeUntil) }
         deliver(payload)
     }
 
@@ -285,13 +285,13 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         if command == SyncKeys.stop || command == SyncKeys.snooze {
             // Ohne Sendezeit: veraltete iPhone-App, verwerfen (kein Rückfall). Verspätet zugestellt träfe es sonst eine
             // spätere Nacht.
-            guard let sentAt = message[SyncKeys.sentAt] as? Int64,
-                  Int64(Date().timeIntervalSince1970 * 1000) - sentAt <= SyncKeys.maxRingAgeMs else { return }
+            // Unplausible Sendezeit (Vollaudit AP2-8): ebenso verwerfen, ohne über `Int64` hinaus zu rechnen.
+            guard !SyncTime.stale(message[SyncKeys.sentAt] as? Int64, now: Date()) else { return }
         }
         // Nacht des iPhone-Alarms (fehlt, wenn das iPhone keine kennt): Stopp oder Schlummern nur für dieselbe Nacht.
         let alarmId = (message[SyncKeys.alarms] as? String).flatMap { $0.isEmpty ? nil : $0 }
-        let target = (message[SyncKeys.target] as? Int64).map { Date(timeIntervalSince1970: Double($0) / 1000) }
-        let sentAt = (message[SyncKeys.sentAt] as? Int64).map { Date(timeIntervalSince1970: Double($0) / 1000) }
+        let target = SyncTime.date(message[SyncKeys.target])
+        let sentAt = SyncTime.date(message[SyncKeys.sentAt])
         Task { @MainActor in
             let alarm = SmartAlarm.shared
             if command == SyncKeys.stop || command == SyncKeys.snooze, !alarm.isThisNight(alarmId: alarmId, target: target) {
@@ -299,7 +299,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
                 return
             }
             switch command {
-            case SyncKeys.stop: alarm.dismiss(notifyPhone: false)
+            case SyncKeys.stop: alarm.stopFromPhone(alarmId: alarmId, target: target)
             case SyncKeys.snooze: alarm.snoozeFromPhone()
             case SyncKeys.clearHistory:
                 WatchModel.shared.clearHistory(sentAt: sentAt)
@@ -309,19 +309,21 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     }
 
     /// «Nacht aufzeichnen» vom iPhone. Ein Start gilt nur frisch (höchstens 2 Min alt, sonst begänne die Aufzeichnung
-    /// Stunden später); ein Stopp auch verspätet, aber nur für eine Aufzeichnung, die vor ihm begann. - Returns: ob behandelt.
+    /// Stunden später), nachgereicht bis 10 Min nach dem Tippen (``RecordRetry``); ein Stopp auch verspätet, aber nur
+    /// für eine Aufzeichnung, die vor ihm begann. - Returns: ob behandelt.
     private func receiveRecord(_ command: String, _ message: [String: Any]) -> Bool {
         guard command == SyncKeys.recordStart || command == SyncKeys.recordStop else { return false }
         // Ohne Sendezeit (unvollständige Nachricht) nichts tun – wie bei Stopp und Schlummern; sonst gälte sie immer als frisch.
-        guard let sentMs = message[SyncKeys.sentAt] as? Int64 else {
+        let sentMs = message[SyncKeys.sentAt] as? Int64
+        guard let sentAt = SyncTime.date(sentMs) else {
             Task { @MainActor in DiagStore.shared.log(.suppressed, "record \(command) without sentAt") }
             return true
         }
-        let sentAt = Date(timeIntervalSince1970: Double(sentMs) / 1000)
+        let retryTap = (message[SyncKeys.retryTapAt] as? String).flatMap { Int64($0) }
         Task { @MainActor in
             let recorder = LearnRecorder.shared
             if command == SyncKeys.recordStart {
-                guard Date().timeIntervalSince(sentAt) * 1000 <= Double(SyncKeys.maxRingAgeMs) else {
+                guard RecordRetry.accepts(sentAtMs: sentMs, retryTapMs: retryTap, now: Date()) else {
                     DiagStore.shared.log(.suppressed, "late record start from phone")
                     return
                 }

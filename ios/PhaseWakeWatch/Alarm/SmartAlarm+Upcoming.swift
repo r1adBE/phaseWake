@@ -42,6 +42,8 @@ enum UpcomingFallbacks {
     /// gesucht (`BackupPlan.nights`): eingeschaltet, nicht übersprungen, keine Feiertage, nicht erledigt (`doneUntil`).
     /// Ein einmaliger Wecker nur mit seinem ersten Vorkommen. Hat «Gute Nacht» die Zielzeit von `first` vorverlegt
     /// (`nominalFirst` = eingestellte Weckzeit derselben Nacht), kommt diese Nacht nicht nochmals zur eingestellten Zeit.
+    /// Gesucht ab dem späteren von `first.target` und `now` (Vollaudit AP2-2): Liegt `first` schon zurück (ausstehende
+    /// Nacht, nachgeholter Wecker), bekäme sonst jede Nacht dazwischen einen Rückfall in der Vergangenheit, der sofort weckt.
     static func nights(after first: WakePlan?, specs: [AlarmSpec], now: Date, doneUntil: [String: Date], nominalFirst: Date?,
                        calendar: Calendar, holidays: Set<String>) -> [WakePlan] {
         guard let first, Transient.kindOf(first.alarmId) == nil else { return [] }
@@ -53,17 +55,19 @@ enum UpcomingFallbacks {
             firstTargets[spec.id] = AlarmSchedule.nextTarget(spec, now: now, calendar: calendar, holidays: holidays)
         }
         let candidates = specs.filter { !$0.isOneShot || firstTargets[$0.id] != nil }
-        return BackupPlan.nights(candidates, now: first.target, until: now.addingTimeInterval(horizon), maxNights: maxNights,
+        return BackupPlan.nights(candidates, now: max(first.target, now), until: now.addingTimeInterval(horizon), maxNights: maxNights,
                                  suppressed: suppressed, firstTargets: firstTargets, calendar: calendar, holidays: holidays)
     }
 
     /// Mitteilungen je Nacht `nights` (nach Zielzeit sortiert), Rückfall `delay` nach der Zielzeit. `otherPending` =
     /// wartende Mitteilungen der Uhr ohne diese (`otherPending(_:)`). Innerhalb von 48 h die ganze Kette, sonst eine;
-    /// ohne Platz weniger, die Liste endet bei der ersten Nacht ohne Platz.
+    /// ohne Platz weniger, die Liste endet bei der ersten Nacht ohne Platz. Eine Nacht, deren Rückfall nicht nach `now`
+    /// liegt, fällt weg (Vollaudit AP2-2).
     static func plan(_ nights: [WakePlan], now: Date, otherPending: Int, delay: TimeInterval) -> [Entry] {
         var left = max(0, NotificationBudget.limit - NotificationBudget.margin - otherPending)
         var result: [Entry] = []
-        for (index, night) in nights.prefix(maxNights).enumerated() {
+        let due = nights.filter { $0.target.addingTimeInterval(delay) > now }
+        for (index, night) in due.prefix(maxNights).enumerated() {
             let first = night.target.addingTimeInterval(delay)
             let count = min(NotificationBudget.wanted(first, now: now), left)
             guard count > 0 else { break }

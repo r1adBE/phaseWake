@@ -10,6 +10,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.Codec
 import com.phasewake.app.core.CodecException
+import com.phasewake.app.core.TimeBounds
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.first
@@ -86,20 +87,35 @@ class AlarmRepository(
      * Wecker, Notizen und Einstellungen in einem Schritt (alles oder nichts). @return neuer Stand.
      */
     fun replaceAllIn(prefs: MutablePreferences, alarms: List<AlarmSpec>): AlarmSnapshot {
-        val sorted = alarms.distinctBy { it.id }.sortedWith(ORDER)
-        val stamp = maxOf(clock(), (prefs[UPDATED_AT] ?: 0L) + 1)
+        // Höchstens [AlarmSpec.MAX_ALARMS], die ersten der Sicherung (Audit DA-8, wie `BackupIO` am iPhone).
+        val sorted = alarms.distinctBy { it.id }.take(AlarmSpec.MAX_ALARMS).sortedWith(ORDER)
+        val stamp = TimeBounds.next(clock(), prefs[UPDATED_AT])
         // Alle Wecker der Sicherung gelten als jetzt geändert; die bisherigen, die fehlen, als jetzt gelöscht.
         val before = decode(prefs[ALARMS]).orEmpty()
         return write(prefs, sorted, stamp, before, changed = sorted.map { it.id }.toSet())
     }
 
     /**
+     * Ergebnis von [receive]: [changed], ob sich die Wecker hier geändert haben; [reply], der eigene Stand nach dem
+     * Zusammenführen, falls er von dem empfangenen abweicht (sonst `null`).
+     */
+    data class Received(val changed: Boolean, val reply: AlarmSnapshot?)
+
+    /** Wie [receive], nur ob sich die Wecker hier geändert haben. */
+    suspend fun applyRemote(remote: AlarmSnapshot): Boolean = receive(remote).changed
+
+    /**
      * Übernimmt den Stand der Gegenseite je Wecker ([AlarmStamps.merge], Audit A-4). Ein Stand einer früheren Version
      * ohne Zeitpunkte je Wecker ([AlarmSnapshot.perAlarm] `false`) gilt wie bisher nur, wenn er neuer ist, und ersetzt
-     * dann die Liste. @return ob sich die Wecker geändert haben.
+     * dann die Liste.
+     *
+     * Weicht der zusammengeführte Stand vom empfangenen ab ([differs]), kennt die Gegenseite eine Änderung von hier nicht
+     * (z. B. ihre Nachricht ging verloren): [Received.reply] ist dann der eigene Stand, den der Aufrufer zurückschickt
+     * (Audit AN-1). So kommen beide Geräte zum selben Stand; stimmt er überein, antwortet keine Seite mehr.
      */
-    suspend fun applyRemote(remote: AlarmSnapshot): Boolean {
+    suspend fun receive(remote: AlarmSnapshot): Received {
         var applied = false
+        var reply: AlarmSnapshot? = null
         store.edit { prefs ->
             val localStamp = prefs[UPDATED_AT] ?: 0L
             val localList = decode(prefs[ALARMS])
@@ -115,14 +131,16 @@ class AlarmRepository(
                 }
                 return@edit
             }
+            val now = clock()
             val local = AlarmSnapshot(localList, localStamp, fullStamps(prefs, localList, localStamp), AlarmStamps.decodeMap(prefs[DELETED]))
-            val merged = AlarmStamps.merge(local, remote, clock())
+            val merged = AlarmStamps.merge(local, remote, now)
             val sorted = merged.alarms.sortedWith(ORDER)
-            if (sorted == localList && merged.stamps == local.stamps && merged.deleted == local.deleted && merged.updatedAt == localStamp) return@edit
-            save(prefs, sorted, merged.updatedAt, merged.stamps, merged.deleted)
-            applied = sorted != localList
+            val same = sorted == localList && merged.stamps == local.stamps && merged.deleted == local.deleted && merged.updatedAt == localStamp
+            val result = if (same) merged.copy(alarms = sorted) else save(prefs, sorted, merged.updatedAt, merged.stamps, merged.deleted)
+            applied = !same && sorted != localList
+            reply = result.takeIf { differs(it, remote, now) }
         }
-        return applied
+        return Received(applied, reply)
     }
 
     private suspend fun mutate(change: (List<AlarmSpec>) -> List<AlarmSpec>): AlarmSnapshot {
@@ -132,7 +150,7 @@ class AlarmRepository(
             val current = decode(prefs[ALARMS]) ?: throw CodecException("Gespeicherte Wecker nicht lesbar, Änderung verworfen")
             val updated = change(current).sortedWith(ORDER)
             // Streng steigend, damit zwei Änderungen in derselben Millisekunde unterscheidbar bleiben.
-            val stamp = maxOf(clock(), (prefs[UPDATED_AT] ?: 0L) + 1)
+            val stamp = TimeBounds.next(clock(), prefs[UPDATED_AT])
             val old = current.associateBy { it.id }
             result = write(prefs, updated, stamp, current, changed = updated.filter { old[it.id] != it }.map { it.id }.toSet())
         }
@@ -181,16 +199,29 @@ class AlarmRepository(
         }
     }
 
-    private companion object {
-        const val TAG = "AlarmRepository"
-        val ALARMS = stringPreferencesKey("alarms")
-        val UPDATED_AT = longPreferencesKey("alarms_updated_at")
+    companion object {
+        private const val TAG = "AlarmRepository"
+        private val ALARMS = stringPreferencesKey("alarms")
+        private val UPDATED_AT = longPreferencesKey("alarms_updated_at")
 
         /** Zeitpunkt je Wecker und gelöschte Wecker ([AlarmStamps.encodeMap]), Audit A-4. */
-        val STAMPS = stringPreferencesKey("alarms_stamps")
-        val DELETED = stringPreferencesKey("alarms_deleted")
+        private val STAMPS = stringPreferencesKey("alarms_stamps")
+        private val DELETED = stringPreferencesKey("alarms_deleted")
 
         /** Anzeige- und Speicherreihenfolge: nach Uhrzeit, dann Kennung. */
-        val ORDER = compareBy<AlarmSpec>({ it.hour }, { it.minute }, { it.id })
+        private val ORDER = compareBy<AlarmSpec>({ it.hour }, { it.minute }, { it.id })
+
+        /**
+         * Ob der eigene Stand [own] nach dem Zusammenführen vom empfangenen [remote] abweicht (Audit AN-1): andere Wecker,
+         * ein anderer Zeitpunkt je Wecker oder andere gelöschte Wecker (beide wie beim Speichern um [now] gekürzt). Der
+         * Listen-Zeitpunkt zählt nicht: Er allein ändert beim Zusammenführen nichts.
+         */
+        fun differs(own: AlarmSnapshot, remote: AlarmSnapshot, now: Long): Boolean {
+            val theirs = remote.alarms.associateBy { it.id }
+            if (own.alarms.sortedWith(ORDER) != theirs.values.sortedWith(ORDER)) return true
+            if (own.alarms.any { own.stampOf(it.id) != remote.stampOf(it.id) }) return true
+            val ids = own.alarms.map { it.id }.toSet()
+            return AlarmStamps.prune(own.deleted.filterKeys { it !in ids }, now) != AlarmStamps.prune(remote.deleted.filterKeys { it !in ids }, now)
+        }
     }
 }

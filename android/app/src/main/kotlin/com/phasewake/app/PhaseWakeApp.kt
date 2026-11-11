@@ -139,6 +139,9 @@ open class PhaseWakeApp : Application() {
             // Warteschlange: einmalig eigene Pakete der früheren Wege löschen, Wartendes senden, Stand der Uhr anfragen
             // (Wecker und Aufzeichnungs-Stand; Nächte und Aufzeichnungen kommen aus ihrer Warteschlange).
             sync.migrateTransport()
+            // Eigener Stand der Wecker einmal je Prozess (Audit AN-1): Ging eine frühere Nachricht verloren, gleicht die
+            // Uhr so ab (unverändert: Die Uhr merkt nichts und antwortet nicht). Eigene Arbeit: hält das Planen nie auf.
+            appScope.launch { sync.publishAlarms(alarms.current()) }
             sync.flush()
             sync.requestSync()
             backup.reschedule()
@@ -195,6 +198,8 @@ open class PhaseWakeApp : Application() {
         publishAutoOnset()
         holidays.republish()
         publishLearning()
+        // Auch alles andere Wartende (Audit AN-3): Die Uhr ist ja gerade erreichbar.
+        sync.flush()
     }
 
     /** Schickt das Schlafziel an die Uhr (nach einer Änderung, beim Start, nach dem Wiederherstellen). */
@@ -278,16 +283,38 @@ open class PhaseWakeApp : Application() {
         publishLearning()
     }
 
-    /** Speichert eine Änderung an den Weckern, schickt sie an die Uhr und plant den Zweitwecker neu. */
+    /**
+     * Speichert eine Änderung an den Weckern, reiht sie für die Uhr ein und plant den Zweitwecker neu. Einreihen zuerst
+     * (Audit AN-1): Es speichert nur lokal und ist schnell, gesendet wird im Hintergrund. Endete der Prozess während des
+     * Neuplanens, ginge die Änderung sonst nie an die Uhr.
+     */
     fun afterAlarmsChanged(change: suspend () -> com.phasewake.app.shared.AlarmSnapshot) {
         appScope.launch {
             val snapshot = change()
-            // Zuerst der Zweitwecker am Handy: Das Senden an die Uhr kann warten, wenn sie nicht erreichbar ist.
+            sync.publishAlarms(snapshot)
+            diag.log(DiagKind.SYNC, "alarms sent ${snapshot.alarms.size}")
             backup.reschedule()
             com.phasewake.app.widget.NextAlarmWidget.update(this@PhaseWakeApp)
-            diag.log(DiagKind.SYNC, "alarms sent ${snapshot.alarms.size}")
-            sync.publishAlarms(snapshot)
         }
+    }
+
+    /**
+     * «Verlauf löschen»: Nächte, Notizen, Häkchen, Geräusche, Aufzeichnungen und geteilte Exporte (Audit DA-5) weg,
+     * Nächte aus Health Connect bis jetzt ausgeblendet, auf der Uhr ebenso; die Lernphase beginnt von vorn.
+     */
+    suspend fun clearHistory() {
+        nights.clear()
+        // Nächte aus Health Connect lassen sich nicht löschen: bis jetzt ausblenden.
+        settings.setHistoryClearedAt(Instant.now())
+        // Ein früher geteilter Export (CSV) bliebe sonst bis zum Aufräumen nach einer Stunde im Cache.
+        com.phasewake.app.ui.history.Export.cleanup(this, java.time.Duration.ZERO)
+        notes.clearNotes()
+        routine.clearTicks()
+        sounds.clear()
+        recordings.clear()
+        sync.clearHistoryEverywhere()
+        // Die Lernphase beruht auf den Aufzeichnungen: von vorn.
+        restartLearning()
     }
 }
 

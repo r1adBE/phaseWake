@@ -6,6 +6,32 @@ extension SyncKeys {
     /// `RingMessage` auf Android). Das iPhone stellt dann eine eigene Sicherung 90 s danach, falls die Uhr nicht wieder
     /// klingelt. Fehlt bei einem endgültigen Stopp und bei älteren Uhr-Versionen: Dann ist die Nacht beendet.
     static let snoozeUntil = "snoozeUntil"
+    /// iPhone → Uhr bei einem nachgereichten «Nacht aufzeichnen» (``RecordRetry``): Zeit des Tippens in ms seit 1970.
+    static let retryTapAt = "retryTapAt"
+}
+
+/// Zeiten in Nachrichten zwischen iPhone und Uhr (ms seit 1970) ohne Abbruch lesen (Vollaudit AP2-8): Ein Wert
+/// ausserhalb von ``TimeBounds`` (kaputt oder fremd, z. B. `Int64.max`) gilt als fehlend, und das Alter einer Nachricht
+/// rechnet nie über `Int64` hinaus.
+enum SyncTime {
+    /// Zeitpunkt aus `value` (`Int64`, ms), wenn plausibel; sonst `nil`.
+    static func date(_ value: Any?) -> Date? {
+        TimeBounds.checked(value as? Int64).map { Date(timeIntervalSince1970: Double($0) / 1000) }
+    }
+
+    /// Alter einer Nachricht mit Sendezeit `sentAt` (ms) um `now` in ms; `nil`, wenn die Sendezeit fehlt oder nicht
+    /// plausibel ist.
+    static func ageMs(_ sentAt: Int64?, now: Date) -> Int64? {
+        guard let sent = TimeBounds.checked(sentAt) else { return nil }
+        return TimeBounds.millis(now) - sent
+    }
+
+    /// Ob eine Nachricht mit Sendezeit `sentAt` um `now` zu alt ist (über ``SyncKeys/maxRingAgeMs``). Fehlt die Zeit
+    /// oder ist sie nicht plausibel, gilt sie als zu alt.
+    static func stale(_ sentAt: Int64?, now: Date) -> Bool {
+        guard let age = ageMs(sentAt, now: now) else { return true }
+        return age > SyncKeys.maxRingAgeMs
+    }
 }
 
 /// Zu welcher Nacht eine Meldung oder ein Alarm gehört: Kennung des Weckers und Zielzeit der Nacht.
@@ -19,7 +45,7 @@ struct RingNight: Codable, Equatable, Sendable {
     /// Erzeugt die Angabe aus Kennung und Zielzeit (auf ganze ms gerundet wie in den Nachrichten).
     init(alarmId: String?, target: Date?) {
         self.alarmId = alarmId.flatMap { $0.isEmpty ? nil : $0 }
-        targetMs = target.map { Int64(($0.timeIntervalSince1970 * 1000).rounded()) }
+        targetMs = target.map(TimeBounds.millis)
     }
 
     /// Ob beide Angaben zur selben Nacht gehören; eine fehlende Kennung oder Zielzeit widerspricht nie.

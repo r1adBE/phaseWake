@@ -1,0 +1,6 @@
+# Paket «numpy» für den Workflow «Einschlafklänge», fest gewählte Version samt Prüfsummen (Audit 071597f DA-3).
+# Aktualisieren: Version und sha256 von pypi.org (Wheel für CPython 3.12 Linux x86_64 und Quellpaket) hier nachführen,
+# dann den Workflow starten.
+numpy==2.5.4 \
+    --hash=sha256:fbde6962867ee75b48b0ee29b2b9372ec5d617799dbaf38e82dc0596f2f7738a \
+    --hash=sha256:9a94cf751c9ad8ebaa835bcd3d40dacf8534ad086b88c38029b65123c7999d2a

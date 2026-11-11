@@ -79,4 +79,16 @@ class OnsetShiftTest {
         assertFalse(shift.expired(configured.plus(Duration.ofMinutes(1)), grace))
         assertTrue(shift.expired(configured.plus(grace), grace))
     }
+
+    @Test
+    fun implausibleTimesAreUnreadable() {
+        // Audit AN-5: ein Zeitpunkt ausserhalb von TimeBounds (z. B. Long.MAX_VALUE) macht die Meldung unlesbar.
+        assertNull(OnsetShift.decode("a|${Long.MAX_VALUE}|1|1"))
+        assertNull(OnsetShift.decode("a|1|-1|1"))
+        assertNull(OnsetShift.decode("a|1|1|${Long.MAX_VALUE}"))
+        assertEquals(OnsetShift("a", 1L, 1L, 1L), OnsetShift.decode("a|1|1|1"))
+        // Zeitpunkte von Feiertagen, Schlafziel und Schalter ebenso.
+        assertNull(QueueMessages.decodeStamped("450|${Long.MAX_VALUE}"))
+        assertNull(QueueMessages.decodeHolidays("${Long.MAX_VALUE}\nCH"))
+    }
 }

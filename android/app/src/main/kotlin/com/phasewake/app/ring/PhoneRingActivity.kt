@@ -258,7 +258,7 @@ private fun RingHeader(now: Instant, light: Float?, math: Boolean, size: RingSiz
         RingSize.TINY -> null
     }
     if (dot != null) {
-        val (ink, place) = rememberSkyInk(light, NIGHT_INK)
+        val (ink, place) = rememberSkyInk(light, NIGHT_INK, plaque = false)
         PulsingDot(Modifier.size(dot).then(place), color = if (light != null) ink.content.copy(alpha = 0.6f) else NightColors.Wave, dot = ink.content)
         Spacer(Modifier.height(if (math || size != RingSize.TALL) 8.dp else 24.dp))
     }
@@ -273,6 +273,8 @@ private fun RingHeader(now: Instant, light: Float?, math: Boolean, size: RingSiz
         color = timeInk.content,
         modifier = timePlace,
     )
+    // Auf dem Sonnenaufgang etwas Abstand, damit sich die Schilder der beiden Zeilen nicht berühren.
+    if (light != null) Spacer(Modifier.height(PLAQUE_GAP))
     val (greetInk, greetPlace) = rememberSkyInk(light, NIGHT_INK)
     Text(
         stringResource(R.string.ring_greeting),
@@ -314,7 +316,8 @@ private fun RingActions(
             stop()
             if (state.snoozesLeft > 0) {
                 Spacer(Modifier.height(12.dp))
-                val (ink, place) = rememberSkyInk(light, NIGHT_INK)
+                // Schild in der Form des Knopfs (ohne Überstand).
+                val (ink, place) = rememberSkyInk(light, NIGHT_INK, padding = 0.dp)
                 OutlinedButton(
                     onClick = onSnooze,
                     border = BorderStroke(1.dp, ink.content.copy(alpha = 0.6f)),
@@ -344,6 +347,9 @@ private fun RingActions(
         PhoneRingService.State.Idle -> Unit
     }
 }
+
+/** Abstand zwischen Zeilen mit Schild (Sonnenaufgang): zweimal der Überstand oben/unten und etwas Luft. */
+internal val PLAQUE_GAP = 10.dp
 
 /** Schrift auf dem Nachthimmel. */
 internal val NIGHT_INK = SunriseSky.Ink(NightColors.Moon, NightColors.Muted)

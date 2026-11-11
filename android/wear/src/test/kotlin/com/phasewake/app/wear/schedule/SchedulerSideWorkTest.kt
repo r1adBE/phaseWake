@@ -88,6 +88,17 @@ class SchedulerSideWorkTest {
     }
 
     @Test
+    fun alarmsAreSetBeforeSideWorkStarts() {
+        // Audit AN-8: Reihenfolge festhalten – beim Start der ersten Nebenarbeit mit den Wear-Diensten stehen die Alarme.
+        val plan = alarm()
+        var atSideWork: List<Long>? = null
+        runBlocking { withTimeout(30_000L) { scheduler { atSideWork = alarms.scheduledAlarms.map { it.triggerAtMs } }.reschedule() } }
+        val seen = assertNotNull(atSideWork, "Nebenarbeit lief")
+        assertTrue(plan.target.toEpochMilli() in seen, "Zielzeit vor der Nebenarbeit gestellt: $seen")
+        assertTrue(plan.windowStart.toEpochMilli() in seen, "Fensterbeginn vor der Nebenarbeit gestellt: $seen")
+    }
+
+    @Test
     fun failingStatusDoesNotBlockTheAlarms() {
         val plan = alarm()
         val result = runBlocking { withTimeout(30_000L) { scheduler { error("Wear-Dienste fehlen") }.reschedule() } }

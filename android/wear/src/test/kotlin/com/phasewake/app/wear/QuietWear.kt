@@ -1,10 +1,12 @@
 package com.phasewake.app.wear
 
+import android.app.AlarmManager
 import androidx.datastore.preferences.core.edit
 import com.phasewake.app.shared.OnsetShift
 import com.phasewake.app.shared.phaseWakeStore
 import java.util.Collections
 import kotlinx.coroutines.runBlocking
+import org.robolectric.Shadows.shadowOf
 
 /**
  * [PhaseWakeWear] ohne Start-Arbeiten ([PhaseWakeWear.catchUpAndReschedule]: Nachholen vom Handy, Neuplanen im
@@ -26,7 +28,11 @@ class QuietWear : PhaseWakeWear() {
     /** Gesendete [OnsetShift] in der Reihenfolge des Sendens (aus dem Hintergrund geschrieben). */
     val onsetShifts: MutableList<OnsetShift> = Collections.synchronizedList(mutableListOf())
 
+    /** Je gesendete [OnsetShift]: die Zeitpunkte der in diesem Moment gestellten System-Alarme (Reihenfolge, Audit AN-6). */
+    val alarmsAtShift: MutableList<List<Long>> = Collections.synchronizedList(mutableListOf())
+
     override suspend fun publishOnsetShift(shift: OnsetShift) {
+        alarmsAtShift += shadowOf(getSystemService(AlarmManager::class.java)).scheduledAlarms.map { it.triggerAtMs }
         onsetShifts += shift
     }
 }

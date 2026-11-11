@@ -1,0 +1,47 @@
+# Fix KN-6: Basispuls = Median der Pulse der ersten 6 Epochen (50, 52, 54, 62, 64, 90) = 58, nötig 60.9.
+# Mittel wäre 62, mit 7, 8 oder 12 Epochen (danach Puls 66) 62, 63 bzw. 66. Leichte Bewegung in Epoche 20/21 mit Puls
+# 60: zu wenig. Epoche 30/31 mit Puls 61: weckt; mit jeder anderen Regel nie.
+@expect 31 LIGHT_SLEEP
+motion,hr
+0,50
+0,52
+0,54
+0,62
+0,64
+0,90
+0,66
+0,66
+0,66
+0,66
+0,66
+0,66
+0,66
+0,66
+0,66
+0,66
+0,66
+0,66
+0,66
+0,66
+0.01,60
+0.01,60
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0.01,61
+0.01,61
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52

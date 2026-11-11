@@ -7,6 +7,10 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.size
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material3.AlertDialog
@@ -21,9 +25,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -99,11 +103,51 @@ internal fun CustomNotesGroup(
     }
 }
 
+/**
+ * Zeile einer Liste (Gestaltung 3, Audit N-7): Titel, optional Erklärung, Pfeil am Ende; mindestens [LIST_ROW_HEIGHT]
+ * hoch, die ganze Zeile ist das Tippziel. [color]: Farbe des Titels (Vorgabe: Akzent; «Verlauf löschen»: Fehlerfarbe).
+ */
+@Composable
+internal fun ListRow(
+    title: String,
+    hint: String? = null,
+    color: Color = MaterialTheme.colorScheme.primary,
+    enabled: Boolean = true,
+    onClick: () -> Unit,
+) {
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .heightIn(min = LIST_ROW_HEIGHT)
+            .clip(MaterialTheme.shapes.small)
+            .clickable(enabled = enabled, role = Role.Button, onClick = onClick)
+            .padding(vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Column(Modifier.weight(1f).padding(end = 12.dp)) {
+            Text(title, style = MaterialTheme.typography.titleSmall, color = if (enabled) color else MaterialTheme.colorScheme.onSurfaceVariant)
+            hint?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
+        }
+        Icon(
+            painterResource(R.drawable.ic_chevron_end),
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.size(20.dp),
+        )
+    }
+}
+
+/** Mindesthöhe einer Listenzeile (Material: einzeilige Liste 56 dp). */
+internal val LIST_ROW_HEIGHT = 56.dp
+
+/** Mindesthöhe jeder antippbaren Zeile (Tippziel). */
+internal val MIN_TOUCH = 48.dp
+
 /** Zeile mit Titel, Erklärung und Schalter; die ganze Zeile schaltet. */
 @Composable
 internal fun SwitchRow(title: String, text: String, checked: Boolean, onChange: (Boolean) -> Unit) {
     Row(
-        Modifier.fillMaxWidth().toggleable(value = checked, role = Role.Switch, onValueChange = onChange).padding(top = 8.dp),
+        Modifier.fillMaxWidth().heightIn(min = MIN_TOUCH).toggleable(value = checked, role = Role.Switch, onValueChange = onChange).padding(top = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Column(Modifier.weight(1f).padding(end = 12.dp)) {
@@ -181,22 +225,10 @@ internal fun Group(title: String, content: @Composable ColumnScope.() -> Unit) {
 internal fun DataGroup(onExport: () -> Unit, canExport: Boolean, onClearHistory: () -> Unit, extras: SettingsExtras) {
     Group(stringResource(R.string.settings_data)) {
         Text(stringResource(R.string.settings_data_text), style = MaterialTheme.typography.bodyMedium)
-        Column(Modifier.fillMaxWidth().clickable(enabled = canExport, onClick = onExport).padding(vertical = 10.dp)) {
-            Text(
-                stringResource(R.string.settings_export),
-                style = MaterialTheme.typography.titleSmall,
-                color = if (canExport) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-            Text(stringResource(R.string.settings_export_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-        }
+        ListRow(stringResource(R.string.settings_export), stringResource(R.string.settings_export_hint), enabled = canExport, onClick = onExport)
         extras.backup(this)
         var confirm by remember { mutableStateOf(false) }
-        Text(
-            stringResource(R.string.settings_clear_history),
-            style = MaterialTheme.typography.titleSmall,
-            color = MaterialTheme.colorScheme.error,
-            modifier = Modifier.fillMaxWidth().clickable { confirm = true }.padding(vertical = 10.dp),
-        )
+        ListRow(stringResource(R.string.settings_clear_history), color = MaterialTheme.colorScheme.error) { confirm = true }
         if (confirm) {
             AlertDialog(
                 onDismissRequest = { confirm = false },
@@ -219,47 +251,22 @@ internal fun DataGroup(onExport: () -> Unit, canExport: Boolean, onClearHistory:
 internal fun AboutGroup(version: String, extras: SettingsExtras) {
     val uri = LocalUriHandler.current
     Group(stringResource(R.string.settings_about)) {
-        Text(
-            stringResource(R.string.settings_open_source),
-            style = MaterialTheme.typography.titleSmall,
-            color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.fillMaxWidth().clickable { uri.openUri(REPO_URL) }.padding(vertical = 8.dp),
-        )
-        Text(
-            stringResource(R.string.settings_privacy),
-            style = MaterialTheme.typography.titleSmall,
-            color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.fillMaxWidth().clickable { uri.openUri(PRIVACY_URL) }.padding(vertical = 8.dp),
-        )
+        ListRow(stringResource(R.string.settings_open_source)) { uri.openUri(REPO_URL) }
+        ListRow(stringResource(R.string.settings_privacy)) { uri.openUri(PRIVACY_URL) }
+        // Mit Lizenz-Seite: Zeile mit Pfeil, die Kurzfassung darunter; sonst nur die Kurzfassung.
+        val licenses = listOf(
+            stringResource(R.string.settings_licenses_text),
+            stringResource(R.string.settings_license_holidays),
+        ).joinToString("\n")
         val onLicenses = extras.onLicenses
         if (onLicenses != null) {
-            Text(
-                stringResource(R.string.settings_licenses),
-                style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.fillMaxWidth().clickable(onClick = onLicenses).padding(top = 4.dp, bottom = 4.dp),
-            )
+            ListRow(stringResource(R.string.settings_licenses), licenses, onClick = onLicenses)
         } else {
             Text(stringResource(R.string.settings_licenses), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 4.dp))
+            Text(licenses, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
-        Text(stringResource(R.string.settings_licenses_text), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-        Text(stringResource(R.string.settings_license_holidays), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-        extras.onOnboarding?.let { onOnboarding ->
-            Text(
-                stringResource(R.string.settings_onboarding),
-                style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.fillMaxWidth().clickable(onClick = onOnboarding).padding(top = 12.dp, bottom = 4.dp),
-            )
-        }
-        if (extras.diagnostics) {
-            Text(
-                stringResource(R.string.diag_title),
-                style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.fillMaxWidth().clickable(onClick = extras.onDiagnostics).padding(vertical = 4.dp),
-            )
-        }
+        extras.onOnboarding?.let { ListRow(stringResource(R.string.settings_onboarding), onClick = it) }
+        if (extras.diagnostics) ListRow(stringResource(R.string.diag_title), onClick = extras.onDiagnostics)
         VersionLine(version, extras)
     }
 }

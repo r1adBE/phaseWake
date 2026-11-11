@@ -215,4 +215,20 @@ final class AppleLearningTests: XCTestCase {
         XCTAssertNil(read?.end)
         if let read { XCTAssertTrue(NightRecording.encode(read).hasPrefix("phasewake-recording 1\nstart=1793570400000\n")) }
     }
+
+    /// Fix KN-7: Der Zeitpunkt der Lernphase steigt streng, auch bei zwei Änderungen in derselben Millisekunde oder nach
+    /// einer zurückgestellten Uhrzeit (die Uhr übernimmt nur einen neueren Stand); ein kaputter alter zählt nicht.
+    func testLearningStampRisesStrictly() {
+        let at = Date(timeIntervalSince1970: 5)
+        var state = LearningState()
+        state.setConsent(true, now: at)
+        XCTAssertEqual(state.updatedAtMs, 5_000)
+        state.relearn(now: at)
+        XCTAssertEqual(state.updatedAtMs, 5_001)
+        state.restart(now: at.addingTimeInterval(-60))
+        XCTAssertEqual(state.updatedAtMs, 5_002)
+        var broken = LearningState(since: nil, values: nil, seen: false, updatedAtMs: Int64.max)
+        broken.setConsent(false, now: at)
+        XCTAssertEqual(broken.updatedAtMs, 5_000)
+    }
 }

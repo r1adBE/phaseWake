@@ -1,0 +1,25 @@
+# Fix KN-6: nur Einschlaf-Messung dieser Nacht 0.018 (nichts gelernt), unruhiger Beginn: Obergrenze 1.5 × 0.018 =
+# 0.027 -> Wach-Schwelle 0.135, Epoche 11 weckt (ohne die Angabe Schwelle 0.2: nie).
+@onset-floor 0.018
+@expect 11 AWAKE
+motion,hr
+0.07,60
+0.09,60
+0.08,60
+0.075,60
+0.085,60
+0.07,60
+0.09,60
+0.08,60
+0.075,60
+0.085,60
+0.14,60
+0.14,60
+0.08,60
+0.08,60
+0.08,60
+0.08,60
+0.08,60
+0.08,60
+0.08,60
+0.08,60

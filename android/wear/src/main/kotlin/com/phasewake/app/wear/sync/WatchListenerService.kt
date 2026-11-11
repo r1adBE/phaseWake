@@ -64,7 +64,11 @@ class WatchListenerService : WearableListenerService() {
         var replan = false
         when (path) {
             DataLayer.PATH_MSG_ALARMS -> QueueMessages.decodeAlarms(body)?.let { remote ->
-                if (app.alarms.applyRemote(remote)) {
+                val result = app.alarms.receive(remote)
+                // Der Stand hier weicht ab (eine Änderung auf der Uhr, deren Nachricht verloren ging): zurück ans Handy,
+                // damit beide gleich werden (Audit AN-1). Einreihen ist lokal, gesendet wird im Hintergrund.
+                result.reply?.let { app.sync.publishAlarms(it) }
+                if (result.changed) {
                     app.diag.log(DiagKind.ALARMS_RECEIVED, "from phone ${remote.alarms.size}")
                     replan = true
                 }
@@ -122,29 +126,42 @@ class WatchListenerService : WearableListenerService() {
      */
     override fun onChannelOpened(channel: ChannelClient.Channel) {
         val app = wearApp
-        runBlocking {
-            val data = app.sync.readChannel(channel) ?: return@runBlocking
-            if (!DirectBoot.isUnlocked(this@WatchListenerService)) return@runBlocking
-            if (!channel.path.startsWith(QUEUE_PREFIX)) return@runBlocking
-            if (app.sync.receive(channel.nodeId, data) { handleQueued(channel.path, it) }) flushLater()
+        val unlocked = DirectBoot.isUnlocked(this)
+        // Im App-Bereich, nicht im Thread des Empfangs (Audit AN-4).
+        app.appScope.launch {
+            val data = app.sync.readChannel(channel) ?: return@launch
+            if (!unlocked || !channel.path.startsWith(QUEUE_PREFIX)) return@launch
+            if (app.sync.receive(channel.nodeId, data) { handleQueued(channel.path, it) }) app.sync.flush()
         }
     }
 
     override fun onMessageReceived(event: MessageEvent) {
         val path = event.path
         when {
+            // Im App-Bereich (Audit AN-4): Die Warteschlange kann gerade beschäftigt sein, der Empfang wartet nicht darauf.
             path == DataLayer.PATH_ACK -> {
-                runBlocking { wearApp.sync.acked(event.data) }
+                val app = wearApp
+                app.appScope.launch { app.sync.acked(event.data) }
                 return
             }
-            // Das Handy will den Stand der Uhr (frisch installiert, neu gestartet): Wecker und Aufzeichnungs-Stand einreihen.
+            // Das Handy will den Stand der Uhr (frisch installiert, neu gestartet): Wecker und Aufzeichnungs-Stand einreihen,
+            // danach auch alles andere Wartende senden (Audit AN-3). Im App-Bereich (Audit A-8).
             path == DataLayer.PATH_SYNC_REQUEST -> {
-                // Im App-Bereich (Audit A-8): Einreihen sendet gleich, das darf den Empfang nicht aufhalten.
-                if (DirectBoot.isUnlocked(this)) wearApp.appScope.launch { publishToPhone() }
+                val app = wearApp
+                if (DirectBoot.isUnlocked(this)) app.appScope.launch {
+                    publishToPhone()
+                    app.sync.flush()
+                }
                 return
             }
+            // Verarbeiten (Speichern, Neuplanen) im App-Bereich (Audit AN-4). Endet der Prozess vorher, fehlt nur die
+            // Bestätigung: Das Handy sendet den Eintrag später erneut.
             path.startsWith(QUEUE_PREFIX) -> {
-                if (DirectBoot.isUnlocked(this) && runBlocking { wearApp.sync.receive(event.sourceNodeId, event.data) { handleQueued(path, it) } }) flushLater()
+                if (!DirectBoot.isUnlocked(this)) return
+                val app = wearApp
+                val data = event.data
+                val node = event.sourceNodeId
+                app.appScope.launch { if (app.sync.receive(node, data) { handleQueued(path, it) }) app.sync.flush() }
                 return
             }
         }
@@ -165,7 +182,9 @@ class WatchListenerService : WearableListenerService() {
                     // Am Handy beendet, aber nicht die Nacht, die die Uhr gerade führt (z. B. der Zweitwecker
                     // eines zweiten Weckers, während die Uhr den ersten schlummert): nur diese Nacht als
                     // erledigt merken, damit die Uhr sie danach nicht nachholt. Die laufende bleibt.
-                    runBlocking { wearApp.scheduler.markDoneFromPhone(alarmId, message.target?.let(Instant::ofEpochMilli)) }
+                    // Im App-Bereich (Audit AN-4): Speichern und Neuplanen halten den Empfang nicht auf.
+                    val app = wearApp
+                    app.appScope.launch { app.scheduler.markDoneFromPhone(alarmId, message.target?.let(Instant::ofEpochMilli)) }
                 } else if (ignoresStopWhileMeasuring(WakeService.measuringPlan, alarmId, message.target)) {
                     // Misst die Uhr noch (Audit A-7): Ein «stop» beendet die Nacht nur, wenn es genau sie meint (Wecker
                     // und Zielzeit); sonst (andere Zielzeit, ältere Handy-App ohne Kennung) läuft die Messung weiter.

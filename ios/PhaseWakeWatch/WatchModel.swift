@@ -212,7 +212,8 @@ final class WatchModel {
 
     /// Ein/Aus auf der Uhr; Änderung geht ans iPhone und plant neu.
     func setEnabled(_ alarm: AlarmSpec, _ enabled: Bool) {
-        let snapshot = storage.mutate { list in list.map { $0.id == alarm.id ? $0.with(enabled: enabled) : $0 } }
+        // Unlesbare gespeicherte Wecker: keine Änderung (Fix KN-5).
+        guard let snapshot = storage.mutate({ list in list.map { $0.id == alarm.id ? $0.with(enabled: enabled) : $0 } }) else { return }
         alarms = snapshot.alarms
         WatchConnectivityBridge.shared.publish(snapshot)
         reschedule()
@@ -231,7 +232,8 @@ final class WatchModel {
         let now = Date()
         let done = storage.doneUntil[draft.id]
         let holidays = storage.holidays.dates
-        let snapshot = storage.mutate { list in
+        // Unlesbare gespeicherte Wecker: keine Änderung (Fix KN-5).
+        guard let snapshot = storage.mutate({ list in
             var list = list
             let old = list.first { $0.id == draft.id }
             var merged = old.map { $0.editedOnWatch(from: draft) } ?? draft
@@ -245,7 +247,7 @@ final class WatchModel {
                 list.append(merged)
             }
             return list
-        }
+        }) else { return }
         alarms = snapshot.alarms
         WatchConnectivityBridge.shared.publish(snapshot)
         reschedule()
@@ -253,7 +255,8 @@ final class WatchModel {
 
     /// Wecker auf der Uhr löschen; geht ans iPhone und plant neu.
     func remove(_ id: String) {
-        let snapshot = storage.mutate { list in list.filter { $0.id != id } }
+        // Unlesbare gespeicherte Wecker: keine Änderung (Fix KN-5).
+        guard let snapshot = storage.mutate({ list in list.filter { $0.id != id } }) else { return }
         alarms = snapshot.alarms
         WatchConnectivityBridge.shared.publish(snapshot)
         reschedule()
@@ -263,7 +266,8 @@ final class WatchModel {
     /// und Powernap wie die Sitzung. Nur bei einer Änderung geschrieben.
     private func publishEffectivePlan() {
         let current = plan
-        guard EffectivePlan.decode(SettingsFile.watchAlarms.object(forKey: EffectivePlan.key)) != current else { return }
+        // Mit der Zone: Nach einer Reise wird er mit dem neuen Versatz neu geschrieben (Vollaudit AP2-7).
+        guard EffectivePlan.decode(SettingsFile.watchAlarms.object(forKey: EffectivePlan.key), zone: .current) != current else { return }
         SettingsFile.watchAlarms.set(EffectivePlan.encode(current), forKey: EffectivePlan.key)
     }
 

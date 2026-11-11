@@ -92,7 +92,7 @@
     <string name="settings_data">بياناتك</string>
     <string name="settings_data_text">كل شيء يبقى على هاتفك وساعتك. بلا حساب ولا خادم ولا تتبّع. تمرّ عبر اتصال الساعة من Google معلومات تقنية عن الساعة فقط، دون بيانات صحية.</string>
     <string name="settings_export">تصدير الليالي بدون اسم</string>
-    <string name="settings_export_hint">ساعد في تحسين الاكتشاف: ملف CSV دون أسماء أو تواريخ أو معرّفات أجهزة؛ يحتوي على الحركة ونبض القلب لكل 30 ثانية وشعورك وملاحظاتك.</string>
+    <string name="settings_export_hint">ساعد في تحسين الاكتشاف: ملف CSV دون أسماء أو تواريخ أو معرّفات أجهزة؛ يحتوي على الحركة ونبض القلب لكل ٣٠ ثانية وشعورك وملاحظاتك.</string>
     <string name="settings_about">حول</string>
     <string name="settings_open_source">مفتوح المصدر على GitHub</string>
     <string name="settings_licenses">التراخيص</string>
@@ -205,9 +205,9 @@
     <string name="feeling_4">جيد</string>
     <string name="feeling_5">انتعاش</string>
     <string name="feeling_value">الشعور: %1$s</string>
-    <string name="feeling_rate">الشعور %1$d من 5: %2$s</string>
+    <string name="feeling_rate">الشعور %1$d من ٥: %2$s</string>
     <string name="feeling_hint">مع الوقت سترى ما إذا كان الإيقاظ الأبكر يفيدك.</string>
-    <string name="trends_title">آخر 7 أيام</string>
+    <string name="trends_title">آخر ٧ أيام</string>
     <string name="trends_not_enough">تظهر الاتجاهات بعد بضع ليالٍ.</string>
     <string name="trends_asleep">متوسط النوم Ø %1$s</string>
     <string name="trends_asleep_change_more">أكثر بـ %1$s من الأسبوع السابق</string>
@@ -215,7 +215,7 @@
     <string name="trends_asleep_change_same">مماثل تقريبًا للأسبوع السابق</string>
     <string name="trends_bedtime">تنام ضمن ± %1$s من موعدك المعتاد</string>
     <string name="trends_bedtime_hint">انتظام مواعيد النوم يجعل الاستيقاظ أسهل.</string>
-    <string name="trends_feeling">متوسط الشعور Ø %1$s من 5</string>
+    <string name="trends_feeling">متوسط الشعور Ø %1$s من ٥</string>
     <string name="trends_feeling_change">الأسبوع السابق %1$s</string>
     <string name="trends_health_hint">مدة النوم وانتظامه يأتيان من Health Connect.</string>
     <plurals name="hint_title">
@@ -246,7 +246,7 @@
     <string name="home_window_running">النافذة قيد التشغيل – جارٍ القياس الآن</string>
     <string name="home_auto_onset">تكتشف ساعتك تلقائيًا وقت نومك بدءًا من %1$s.</string>
     <string name="check_volume">مستوى صوت المنبّه</string>
-    <string name="check_volume_problem">مستوى صوت المنبّه 0 – سيرنّ الهاتف بصمت.</string>
+    <string name="check_volume_problem">مستوى صوت المنبّه ٠ – سيرنّ الهاتف بصمت.</string>
     <string name="health_update">تحديث Health Connect</string>
     <plurals name="woke_late">
         <item quantity="zero">بعد الموعد بـ %1$d د · %2$s</item>
@@ -262,7 +262,7 @@
     <string name="check_watch_recorder_battery">لم تبدأ ساعتك القياس قبل النوم – كانت بطاريتها منخفضة جدًا. سيوقظك المنبّه مع ذلك.</string>
     <string name="check_watch_pulse">النبض في الخلفية (الساعة)</string>
     <string name="check_watch_pulse_problem">لا يُسمح للساعة بقياس نبضك ليلًا – على الساعة اضبط إذن المستشعرات لـ Phase Wake على «السماح طوال الوقت».</string>
-    <string name="export_contents_hint">يحتوي الملف لكل ليلة على الحركة ونبض القلب لكل 30 ثانية وشعورك وملاحظاتك – دون أسماء أو تواريخ أو معرّفات أجهزة.</string>
+    <string name="export_contents_hint">يحتوي الملف لكل ليلة على الحركة ونبض القلب لكل ٣٠ ثانية وشعورك وملاحظاتك – دون أسماء أو تواريخ أو معرّفات أجهزة.</string>
     <string name="editor_more">المزيد</string>
     <string name="home_max_alarms">%1$d منبّهات كحد أقصى – احذف منبّهًا لإضافة منبّه جديد.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -331,13 +331,13 @@
     <string name="sounds_hint">يعمل بمستوى صوت الوسائط ويتوقف على الأكثر عند بدء نافذة الاستيقاظ.</string>
     <!-- Geräusche in der Nacht, Gewohnheiten, Weckaufgabe -->
     <string name="sound_rec_title">تسجيل الأصوات</string>
-    <string name="sound_rec_hint">مقاطع قصيرة فقط للشخير والكلام وأصوات أخرى. تبقى على هاتفك وتُحذف بعد 7 أيام.</string>
+    <string name="sound_rec_hint">مقاطع قصيرة فقط للشخير والكلام وأصوات أخرى. تبقى على هاتفك وتُحذف بعد ٧ أيام.</string>
     <string name="sound_rec_permission">للتسجيل يحتاج Phase Wake إلى الميكروفون. لا يستمع إلا أثناء التسجيل.</string>
     <string name="sound_rec_running">جارٍ تسجيل الأصوات</string>
     <string name="sound_rec_stop">إيقاف</string>
     <string name="sound_rec_plug_in">التسجيل يعمل. الأفضل أن تشحن هاتفك طوال الليل.</string>
     <string name="sound_rec_default">تشغيل للليالي الجديدة</string>
-    <string name="sound_rec_default_hint">يبدأ عندما تفتح Phase Wake بدءًا من موعد نومك (بدون منبّه من الساعة 9 مساءً). مقاطع قصيرة فقط؛ تبقى على هاتفك وتُحذف بعد 7 أيام.</string>
+    <string name="sound_rec_default_hint">يبدأ عندما تفتح Phase Wake بدءًا من موعد نومك (بدون منبّه من الساعة ٩ مساءً). مقاطع قصيرة فقط؛ تبقى على هاتفك وتُحذف بعد ٧ أيام.</string>
     <string name="sound_type_snore">شخير محتمل</string>
     <string name="sound_type_talk">كلام محتمل</string>
     <string name="sound_type_other">صوت آخر</string>
@@ -377,21 +377,21 @@
         <item quantity="other">%1$d ليلة متتالية مع هدف النوم</item>
     </plurals>
     <plurals name="habit_streak_best">
-        <item quantity="zero">أطول سلسلة خلال 90 يومًا: %1$d ليلة</item>
-        <item quantity="one">أطول سلسلة خلال 90 يومًا: %1$d ليلة</item>
-        <item quantity="two">أطول سلسلة خلال 90 يومًا: %1$d ليلتان</item>
-        <item quantity="few">أطول سلسلة خلال 90 يومًا: %1$d ليالٍ</item>
-        <item quantity="many">أطول سلسلة خلال 90 يومًا: %1$d ليلة</item>
-        <item quantity="other">أطول سلسلة خلال 90 يومًا: %1$d ليلة</item>
+        <item quantity="zero">أطول سلسلة خلال ٩٠ يومًا: %1$d ليلة</item>
+        <item quantity="one">أطول سلسلة خلال ٩٠ يومًا: %1$d ليلة</item>
+        <item quantity="two">أطول سلسلة خلال ٩٠ يومًا: %1$d ليلتان</item>
+        <item quantity="few">أطول سلسلة خلال ٩٠ يومًا: %1$d ليالٍ</item>
+        <item quantity="many">أطول سلسلة خلال ٩٠ يومًا: %1$d ليلة</item>
+        <item quantity="other">أطول سلسلة خلال ٩٠ يومًا: %1$d ليلة</item>
     </plurals>
     <string name="weekly_title">ملخص الأسبوع</string>
-    <string name="weekly_toggle">يوم الأحد الساعة 18:00 إشعار عن أسبوعك.</string>
+    <string name="weekly_toggle">يوم الأحد الساعة ١٨:٠٠ إشعار عن أسبوعك.</string>
     <string name="next_alarm_notif_title">المنبّه على شاشة القفل</string>
     <string name="next_alarm_notif_hint">إشعار صامت من المساء مع نافذة الاستيقاظ وفحص الليل.</string>
     <string name="auto_onset_title">اكتشاف النوم تلقائيًا</string>
     <string name="auto_onset_hint">من ساعة قبل موعد النوم تقيس ساعتك الحركة لفترة قصيرة حتى تغفو. Galaxy Watch فقط.</string>
     <string name="weekly_notification_title">أسبوعك</string>
-    <string name="weekly_notification_text">متوسط Ø %1$s نوم · هدف النوم %2$d/7 · منتظم %3$d/7 · الشعور %4$s</string>
+    <string name="weekly_notification_text">متوسط Ø %1$s نوم · هدف النوم %2$d/٧ · منتظم %3$d/٧ · الشعور %4$s</string>
     <string name="weekly_notification_feeling">متوسط Ø الشعور هذا الأسبوع: %1$s</string>
     <string name="routine_title">روتين المساء</string>
     <string name="routine_add">إضافة بند</string>
@@ -402,7 +402,7 @@
     <string name="wake_task_title">للإيقاف</string>
     <string name="wake_task_hold">ضغط مطوّل</string>
     <string name="wake_task_math">عملية حسابية</string>
-    <string name="wake_task_hint">حلّ 3 عمليات قبل أن يصمت المنبه. الغفوة تعمل بدون عملية.</string>
+    <string name="wake_task_hint">حلّ ٣ عمليات قبل أن يصمت المنبه. الغفوة تعمل بدون عملية.</string>
     <string name="wake_task_solve">العملية %1$d من %2$d</string>
     <string name="wake_task_wrong">ليس تمامًا – إليك عملية جديدة.</string>
     <string name="wake_task_delete">حذف الرقم</string>
@@ -413,8 +413,8 @@
     <string name="chart_wake_title">لحظة الإيقاظ في النافذة</string>
     <string name="chart_stages_title">مراحل نوم الليلة</string>
     <string name="chart_feeling_title">الشعور</string>
-    <string name="chart_nights_7">7 ليالٍ</string>
-    <string name="chart_nights_14">14 ليلة</string>
+    <string name="chart_nights_7">٧ ليالٍ</string>
+    <string name="chart_nights_14">١٤ ليلة</string>
     <string name="chart_bedtime">وقت النوم %1$s</string>
     <string name="chart_goal">الهدف %1$s</string>
     <string name="chart_wake_target">في الموعد</string>
@@ -498,7 +498,7 @@
     <string name="settings_restore">استعادة</string>
     <string name="backup_password">كلمة المرور</string>
     <string name="backup_password_repeat">أعد كلمة المرور</string>
-    <string name="backup_password_short">10 أحرف على الأقل.</string>
+    <string name="backup_password_short">١٠ أحرف على الأقل.</string>
     <string name="backup_password_trivial">سهلة التخمين جدًا – تجنّب التكرار والتسلسلات مثل 1234 أو abcd وصفوف لوحة المفاتيح وكلمات المرور الشائعة.</string>
     <string name="backup_password_mismatch">كلمتا المرور غير متطابقتين.</string>
     <string name="backup_password_hint">دون كلمة المرور هذه لا يستطيع أحد فتح النسخة – ولا أنت.</string>
@@ -531,7 +531,7 @@
     </plurals>
     <string name="diag_unlocked">أصبح التشخيص في الإعدادات.</string>
     <string name="diag_show">إظهار التشخيص</string>
-    <string name="diag_hint">سجل تقني لآخر 7 أيام، على أجهزتك فقط. يحتوي على أوقات وقيم قياس (مثل الحركة ووقت النوم) – شاركه فقط إذا أردت.</string>
+    <string name="diag_hint">سجل تقني لآخر ٧ أيام، على أجهزتك فقط. يحتوي على أوقات وقيم قياس (مثل الحركة ووقت النوم) – شاركه فقط إذا أردت.</string>
     <string name="diag_events">الأحداث</string>
     <string name="diag_empty">لا أحداث بعد.</string>
     <string name="diag_status">الحالة</string>
@@ -583,7 +583,7 @@
     <string name="hypno_block">%1$s من %2$s إلى %3$s</string>
     <string name="chart_week_average">المتوسط الأسبوعي</string>
     <string name="chart_touch_hint">المس الرسم أو اسحب عليه لرؤية القيم.</string>
-    <string name="chart_nights_30">30 ليلة</string>
+    <string name="chart_nights_30">٣٠ ليلة</string>
     <string name="stages_share">%1$d %%</string>
     <!-- Nacht aufzeichnen (Galaxy Watch) -->
     <string name="record_title">تسجيل الليلة</string>
@@ -592,7 +592,7 @@
     <string name="record_since">التسجيل جارٍ منذ %1$s</string>
     <string name="record_hint">تقيس ساعتك الحركة والنبض طوال الليل. ومن هذه الليالي يتعلّم Phase Wake قيمك الخاصة في مرحلة التعلّم ويكيّف المنبّه لك. يستهلك ذلك بعض البطارية – اشحن الساعة قبل النوم.</string>
     <string name="record_end_manual">أُوقف</string>
-    <string name="record_end_cap">انتهى بعد 12 ساعة</string>
+    <string name="record_end_cap">انتهى بعد ١٢ ساعة</string>
     <string name="record_end_battery">بطارية الساعة منخفضة</string>
     <string name="record_end_interrupted">انقطع</string>
     <!-- Lernphase (7 Nächte) -->
@@ -616,9 +616,9 @@
     <string name="score_good">جيد</string>
     <string name="score_fair">متوسط</string>
     <string name="score_poor">ضعيف</string>
-    <string name="score_value">درجة النوم %1$d من 100: %2$s</string>
+    <string name="score_value">درجة النوم %1$d من ١٠٠: %2$s</string>
     <string name="score_duration">مدة النوم</string>
-    <string name="score_weights">الترجيح: مدة النوم 35, عميق 20, حركة العين السريعة 20, يقظة 15, مدة الخلود إلى النوم 10. القيم الناقصة لا تُحتسب.</string>
+    <string name="score_weights">الترجيح: مدة النوم ٣٥, عميق ٢٠, حركة العين السريعة ٢٠, يقظة ١٥, مدة الخلود إلى النوم ١٠. القيم الناقصة لا تُحتسب.</string>
     <string name="score_source">من %1$s.</string>
     <string name="score_source_health">من بياناتك الصحية.</string>
     <string name="score_source_recording">من تسجيل الليلة في ساعتك.</string>

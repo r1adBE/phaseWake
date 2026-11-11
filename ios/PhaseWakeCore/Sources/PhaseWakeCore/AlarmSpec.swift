@@ -86,6 +86,9 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
     public static let minSleepMinutes = 60
     /// Längste Schlafdauer im Einschlaf-Modus in Minuten (12 Stunden).
     public static let maxSleepMinutes = 12 * 60
+    /// Höchstens so viele Wecker (Entscheid r1AD): Editor und Liste lassen nicht mehr zu, Wiederherstellen übernimmt
+    /// höchstens so viele (`BackupIO`, Fix DA-8). Identisch zu `AlarmSpec.MAX_ALARMS` (Kotlin).
+    public static let maxAlarms = 8
 
     /// Eindeutige Kennung; nie leer, verknüpft Wecker, Nächte und Abgleich mit der Uhr.
     public let id: String

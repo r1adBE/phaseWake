@@ -37,8 +37,6 @@ import com.phasewake.app.wear.ui.components.SunriseSky
 import com.phasewake.app.wear.ui.theme.Brand
 import com.phasewake.app.wear.wake.RingUi
 import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 
 // Teile des Weckbildschirms der Uhr (RingScreen): Anordnung, Halten, Name und Grund, Schlummern.
 
@@ -181,7 +179,7 @@ internal fun SnoozeButton(snoozesLeft: Int, onSnooze: () -> Unit, compact: Boole
 
 @Composable
 internal fun Snoozed(ui: RingUi.Snoozed, light: Float?) {
-    val until = localizedDigits(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)).format(ui.until.atZone(ZoneId.systemDefault()))
+    val until = timeFormatter().format(ui.until.atZone(ZoneId.systemDefault()))
     val (ink, place) = rememberSkyInk(light, NIGHT_INK)
     Text(
         stringResource(R.string.ring_snoozed_until, until),

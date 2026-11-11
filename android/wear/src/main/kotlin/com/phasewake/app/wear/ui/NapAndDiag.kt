@@ -33,8 +33,6 @@ import com.phasewake.app.wear.R
 import com.phasewake.app.wear.ui.theme.Brand
 import java.time.Instant
 import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 
 // Powernap und Diagnose auf der Uhr.
 
@@ -136,4 +134,4 @@ internal fun DiagScreen(next: String?, version: String, entries: List<DiagEntry>
     }
 }
 
-private fun shortTime(t: java.time.ZonedDateTime): String = localizedDigits(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)).format(t)
+private fun shortTime(t: java.time.ZonedDateTime): String = timeFormatter().format(t)

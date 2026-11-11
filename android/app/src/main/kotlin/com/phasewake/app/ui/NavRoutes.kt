@@ -234,18 +234,7 @@ private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavAction
         onClearHistory = {
             // Nach der Rückfrage noch die Gerätesperre (falls eingerichtet); Abbruch löscht nichts.
             DeviceAuth.confirm(context, res.getString(R.string.auth_clear_history)) {
-                app.appScope.launch {
-                    app.nights.clear()
-                    // Nächte aus Health Connect lassen sich nicht löschen: bis jetzt ausblenden.
-                    app.settings.setHistoryClearedAt(Instant.now())
-                    app.notes.clearNotes()
-                    app.routine.clearTicks()
-                    app.sounds.clear()
-                    app.recordings.clear()
-                    app.sync.clearHistoryEverywhere()
-                    // Die Lernphase beruht auf den Aufzeichnungen: von vorn.
-                    app.restartLearning()
-                }
+                app.appScope.launch { app.clearHistory() }
             }
         },
         health = state.insights.health,

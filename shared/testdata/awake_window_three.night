@@ -1,0 +1,34 @@
+# Fix KN-6: Wach-Regel 2 Treffer in 3 Epochen. 0.5 in Epoche 10 und 13 (Abstand 3): kein Wecken (in 4 Epochen schon).
+# Epoche 20/21: wach.
+@expect 21 AWAKE
+motion,hr
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0.5,52
+0,52
+0,52
+0.5,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0.5,52
+0.5,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52

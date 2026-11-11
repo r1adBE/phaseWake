@@ -53,17 +53,8 @@ struct WatchEditorView: View {
                 // des normalen Fensters. Die Krone dreht das gewählte Rad.
                 // Einschlaf-Modus (am iPhone eingestellt): Die Uhrzeit ist die späteste Weckzeit (wie Wear OS).
                 Section(L(start.sleepDurationMinutes != nil ? "editor_latest" : "editor_target")) {
-                    HStack(spacing: 2) {
-                        Picker(L("editor_target"), selection: $hour) {
-                            ForEach(0..<24, id: \.self) { Text(Format.twoDigits($0)).tag($0) }
-                        }
-                        .accessibilityValue(Format.time(hour: hour, minute: minute))
-                        Text(":").font(Fonts.manrope(20, .bold, relativeTo: .title3)).accessibilityHidden(true)
-                        Picker(L("editor_target"), selection: $minute) {
-                            ForEach(0..<60, id: \.self) { Text(Format.twoDigits($0)).tag($0) }
-                        }
-                        .accessibilityValue(Format.time(hour: hour, minute: minute))
-                    }
+                    // Räder nach 12/24 Std., je mit eigenem Namen für VoiceOver (Vollaudit N-10).
+                    WatchTimeWheels(hour: $hour, minute: $minute)
                     .pickerStyle(.wheel)
                     .labelsHidden()
                     .frame(height: 76)

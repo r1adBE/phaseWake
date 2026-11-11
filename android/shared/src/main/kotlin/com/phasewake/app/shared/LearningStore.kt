@@ -11,6 +11,7 @@ import androidx.datastore.preferences.core.longPreferencesKey
 import com.phasewake.app.core.DetectorConfig
 import com.phasewake.app.core.Learning
 import com.phasewake.app.core.NoiseFloor
+import com.phasewake.app.core.TimeBounds
 import kotlinx.coroutines.flow.first
 
 /**
@@ -48,7 +49,8 @@ data class LearningSnapshot(
          */
         fun decode(body: String): LearningSnapshot? {
             val f = body.split("|").takeIf { it.size == 4 } ?: return null
-            val updatedAt = f[3].toLongOrNull() ?: return null
+            // Unplausibler Zeitpunkt (Audit AN-5/KN-4): unlesbar, sonst gewänne er gegen jeden späteren Stand.
+            val updatedAt = TimeBounds.checked(f[3].toLongOrNull()) ?: return null
             return LearningSnapshot(
                 f[0] == "1",
                 Learning.validFloor(f[1].toDoubleOrNull()),

@@ -1,5 +1,7 @@
 package com.phasewake.app.ui.editor
 
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.IntrinsicSize
 import android.app.Activity
 import android.media.RingtoneManager
 import android.net.Uri
@@ -117,12 +119,12 @@ fun EditorScreen(
             Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp),
         ) {
-            SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
+            SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().height(IntrinsicSize.Max)) {
                 SegmentedButton(
                     selected = !state.sleepMode,
                     onClick = { state.sleepMode = false },
                     shape = SegmentedButtonDefaults.itemShape(0, 2),
-                    modifier = Modifier.heightIn(min = 48.dp),
+                    modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight(),
                 ) {
                     Text(stringResource(R.string.editor_mode_clock))
                 }
@@ -130,7 +132,7 @@ fun EditorScreen(
                     selected = state.sleepMode,
                     onClick = { state.sleepMode = true },
                     shape = SegmentedButtonDefaults.itemShape(1, 2),
-                    modifier = Modifier.heightIn(min = 48.dp),
+                    modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight(),
                 ) {
                     Text(stringResource(R.string.editor_mode_sleep))
                 }

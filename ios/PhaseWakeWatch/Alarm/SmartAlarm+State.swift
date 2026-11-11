@@ -47,30 +47,28 @@ extension SmartAlarm {
         guard let state = Self.readState(),
               let text = state["night"] as? String,
               let night = try? Codec.decodeNight(text) else { return }
-        // Älter als zwei Stunden nach der Zielzeit: nicht mehr wecken, nur verwerfen.
-        guard night.target.timeIntervalSinceNow > -2 * 3600 else {
-            clearSaved()
-            return
-        }
         nightPlan = WakePlan(alarmId: night.alarmId, windowStart: night.windowStart, target: night.target)
         firstRing = night.wokeAt
         reason = night.reason
         snoozes = night.snoozes
         epochs = night.epochs
-        let interrupted: Bool
-        if let until = state["snoozedUntil"] as? Double {
-            let date = Date(timeIntervalSince1970: until)
+        // Unlesbare Schlummer-Zeit gilt als fehlend (dann wie beim Klingeln).
+        let snoozed = (state["snoozedUntil"] as? Double).flatMap { $0.isFinite ? Date(timeIntervalSince1970: $0) : nil }
+        if let date = snoozed {
             plan = WakePlan(alarmId: night.alarmId, windowStart: date, target: date)
             phase = .snoozed(until: date, snoozesLeft: snoozesLeft)
-            // Die Schlummer-Sitzung hätte längst starten müssen.
-            interrupted = date.addingTimeInterval(Self.startTolerance) < Date()
         } else {
             plan = nightPlan
             phase = .ringing(reason, snoozesLeft: snoozesLeft)
-            // Nach einem Neustart der App gibt es keine Sitzung mehr, also auch keine Vibration.
-            interrupted = true
         }
-        // Erst nach dem Aufbau von `shared` abschliessen (plant über WatchModel neu).
-        if interrupted { Task { @MainActor in self.finishInterrupted() } }
+        // Nach einem Neustart der App gibt es keine Sitzung mehr, also auch keine Vibration: abschliessen, ausser die
+        // Schlummer-Sitzung startet noch. Älter als `ringStateMaxAge`: ohne Wecken (Vollaudit AP2-9; früher verworfen, mit
+        // Nacht und Epochen). Erst nach dem Aufbau von `shared` (plant über WatchModel neu).
+        switch NightRules.restored(target: night.target, snoozedUntil: snoozed, now: Date(), staleAfter: Self.ringStateMaxAge,
+                                   tolerance: Self.startTolerance) {
+        case .resume: break
+        case .finishWaking: Task { @MainActor in self.finishInterrupted() }
+        case .finishSilently: Task { @MainActor in self.finishSilently() }
+        }
     }
 }

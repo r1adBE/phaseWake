@@ -183,6 +183,8 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         let active = WKApplication.shared().applicationState == .active
         if !active, keepsRealSession(for: plan) { return }
         if case .scheduled(let current) = phase, current == plan, session != nil { return }
+        // Nach einem Neustart der App: die noch geplante Sitzung behalten, nie eine zweite (Vollaudit AP2-1).
+        if keepsRestoredSession(for: plan) { return }
 
         let start = Self.sessionStart(plan)
         let tooEarly = start.timeIntervalSinceNow > Self.maxLeadTime
@@ -212,6 +214,7 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         self.plan = plan
         phase = .scheduled(plan)
         notePlanZone(plan)
+        if start > now { noteScheduled(plan, start: start) }
         DiagStore.shared.log(.scheduled, "session \(Format.logTime(start)) target \(Format.logTime(plan.target))")
         publishArmed()
     }
@@ -316,6 +319,7 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     /// Beendet die Sitzung dieser Nacht. Darf die App sie gerade nicht beenden (`SessionRules.retire`), bleibt sie
     /// gemerkt (`staleSessions`) und endet beim nächsten Aktivwerden oder gleich bei ihrem Start (Audit AP-3).
     func invalidateSession() {
+        forgetScheduled()
         guard let old = session else { return }
         session = nil
         retire(old)

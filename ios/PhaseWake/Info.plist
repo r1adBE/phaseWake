@@ -12,5 +12,7 @@
 	<array>
 		<string>com.phasewake.app.backupRefresh</string>
 	</array>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>

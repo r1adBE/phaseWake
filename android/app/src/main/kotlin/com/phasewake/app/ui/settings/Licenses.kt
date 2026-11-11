@@ -33,6 +33,14 @@ internal object Licenses {
         LicenseEntry("NOTICE: Kotlin", "NOTICE-kotlin.txt", listOf("Kotlin, kotlinx.coroutines")),
         LicenseEntry("NOTICE: MediaPipe, YAMNet", "NOTICE-mediapipe.txt", listOf("MediaPipe Tasks Audio, YAMNet model")),
         LicenseEntry(
+            "NOTICE: MediaPipe native libraries",
+            "NOTICE-mediapipe-native.txt",
+            listOf(
+                "Native parts of MediaPipe Tasks (libmediapipe_tasks_jni, libmediapipe_tasks_audio_jni): TensorFlow Lite, " +
+                    "XNNPACK, Eigen, Abseil, ruy, pthreadpool, cpuinfo, FlatBuffers, Protocol Buffers and others",
+            ),
+        ),
+        LicenseEntry(
             "Google Play services",
             "NOTICE-play-services.txt",
             listOf("Google Play services (Base, Basement, Tasks, Wearable) and their third-party components"),

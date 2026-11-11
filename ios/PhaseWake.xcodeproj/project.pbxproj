@@ -140,6 +140,7 @@
 				MIT-checker-framework.txt,
 				NOTICE-kotlin.txt,
 				NOTICE-mediapipe.txt,
+				NOTICE-mediapipe-native.txt,
 				NOTICE-play-services.txt,
 			);
 			target = 778130C49534A4D32801D13D /* PhaseWake */;

@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
@@ -72,7 +73,7 @@ fun LicensesScreen(onBack: () -> Unit) {
 /** Kopf einer Lizenz: Name, Datei und Bestandteile; der Pfeil zeigt, ob der Volltext offen ist. */
 @Composable
 private fun LicenseHeader(entry: LicenseEntry, expanded: Boolean, onToggle: () -> Unit) {
-    Column(Modifier.fillMaxWidth().clickable(role = Role.Button, onClick = onToggle).padding(vertical = 10.dp)) {
+    Column(Modifier.fillMaxWidth().heightIn(min = MIN_TOUCH).clickable(role = Role.Button, onClick = onToggle).padding(vertical = 10.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(entry.title, style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary, modifier = Modifier.weight(1f))
             Icon(painterResource(R.drawable.ic_expand), contentDescription = null, modifier = Modifier.rotate(if (expanded) 180f else 0f))

@@ -1,5 +1,8 @@
 package com.phasewake.app.ui.history
 
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.IntrinsicSize
 import android.content.Context
 import android.provider.Settings
 import androidx.compose.animation.core.Animatable
@@ -99,13 +102,13 @@ private fun overviewDescription(context: Context, o: SleepOverview): String = bu
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun OverviewSwitch(unit: OverviewUnit, onSelect: (OverviewUnit) -> Unit, modifier: Modifier = Modifier) {
-    SingleChoiceSegmentedButtonRow(modifier.fillMaxWidth()) {
+    SingleChoiceSegmentedButtonRow(modifier.fillMaxWidth().height(IntrinsicSize.Max)) {
         OverviewUnit.entries.forEachIndexed { i, value ->
             SegmentedButton(
                 selected = unit == value,
                 onClick = { onSelect(value) },
                 shape = SegmentedButtonDefaults.itemShape(i, OverviewUnit.entries.size),
-                modifier = Modifier.heightIn(min = 48.dp),
+                modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight(),
                 icon = {},
             ) { Text(stringResource(unitLabels.getValue(value)), style = MaterialTheme.typography.labelMedium) }
         }

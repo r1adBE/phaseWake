@@ -12,7 +12,9 @@ import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.util.Locale
+import android.provider.Settings
 import org.junit.After
+import org.junit.Before
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
@@ -35,6 +37,12 @@ class OutsideTimeDigitsTest {
     private val de = Locale.forLanguageTag("de-CH")
     private val start = LocalDateTime.of(2026, 11, 12, 6, 30).atZone(zone).toInstant()
     private val target = LocalDateTime.of(2026, 11, 12, 7, 0).atZone(zone).toInstant()
+
+    /** Die App liest seit N-10 beim Start die 12/24-Std.-Einstellung; hier fest 24 Std. (Erwartung «06:30»). */
+    @Before
+    fun use24Hour() {
+        Settings.System.putString(RuntimeEnvironment.getApplication().contentResolver, Settings.System.TIME_12_24, "24")
+    }
 
     @After
     fun restoreLocale() = Locale.setDefault(before)

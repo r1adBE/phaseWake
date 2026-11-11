@@ -1,0 +1,41 @@
+# Fix KN-6: Gegenstück zu min_floor_epochs_before. Epoche 4 (3 Werte, Startschwelle): Puls (52 + 57) / 2 = 54.5 unter
+# 54.6. Epoche 5 hat 4 Werte: Grundrauschen 0.03, Leicht-Schwelle 0.075, Puls 57 weckt nicht. Erst ab 5 Werten
+# hiesse es in Epoche 5 noch Startschwelle (LIGHT_SLEEP).
+@expect none
+motion,hr
+,52
+,52
+0.03,52
+0.03,52
+0.03,57
+0.03,57
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52

@@ -22,6 +22,14 @@ public enum TimeBounds {
         return ms
     }
 
+    /// Streng steigender Zeitstempel (Wecker, Lernphase): `now`, mindestens `previous` + 1. Ein unplausibles `previous`
+    /// (``contains(_:)``, z. B. `Int64.max` aus einer kaputten Nachricht) zählt nicht: sonst bräche `+ 1` die App ab bzw.
+    /// jeder spätere Stempel bliebe kaputt (Fix KN-4/KN-7). Identisch zu `TimeBounds.next` (Kotlin).
+    public static func next(now: Int64, previous: Int64?) -> Int64 {
+        guard let last = checked(previous) else { return now }
+        return max(now, last + 1)
+    }
+
     /// Millisekunden seit 1970, gerundet (`.rounded()`) wie im Textformat, ohne Abbruch: Ein Zeitpunkt jenseits von
     /// ±9·10¹⁸ ms (nur aus kaputten Daten) wird dort begrenzt, NaN ergibt 0. Kotlin braucht das nicht (`Instant` aus
     /// `Long` läuft nie über).

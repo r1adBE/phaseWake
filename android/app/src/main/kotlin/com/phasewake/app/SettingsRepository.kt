@@ -12,6 +12,7 @@ import com.phasewake.app.core.BackupSettings
 import com.phasewake.app.core.SleepGoal
 import com.phasewake.app.core.SleepSound
 import com.phasewake.app.core.SleepSounds
+import com.phasewake.app.core.TimeBounds
 import com.phasewake.app.core.Transient
 import com.phasewake.app.ui.theme.ThemeMode
 import java.time.Instant
@@ -20,8 +21,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
-/** Einstellungen, die nur das Handy betreffen. */
-class SettingsRepository(private val store: DataStore<Preferences>) {
+/** Einstellungen, die nur das Handy betreffen. [now]: Uhr (ms), im Test fest. */
+class SettingsRepository(private val store: DataStore<Preferences>, private val now: () -> Long = System::currentTimeMillis) {
 
     val themeMode: Flow<ThemeMode> = store.data.map { prefs ->
         prefs[THEME]?.let { name -> ThemeMode.entries.firstOrNull { it.name == name } } ?: ThemeMode.SYSTEM
@@ -205,9 +206,10 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
 
     /**
      * Zeitpunkt von «Verlauf löschen»; Nächte aus Health Connect, die bis dahin enden, bleiben ausgeblendet
-     * (sie lassen sich dort nicht löschen). `null` = nie gelöscht.
+     * (sie lassen sich dort nicht löschen). `null` = nie gelöscht. Ein Zeitpunkt in der Zukunft gilt als jetzt, ein
+     * unplausibler als nie gelöscht ([clearedAt], Audit DA-1).
      */
-    val historyClearedAt: Flow<Instant?> = store.data.map { prefs -> prefs[HISTORY_CLEARED_AT]?.let(Instant::ofEpochMilli) }
+    val historyClearedAt: Flow<Instant?> = store.data.map { prefs -> clearedAt(prefs[HISTORY_CLEARED_AT], now())?.let(Instant::ofEpochMilli) }
 
     suspend fun setHistoryClearedAt(at: Instant) {
         store.edit { it[HISTORY_CLEARED_AT] = at.toEpochMilli() }
@@ -224,7 +226,7 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
             theme = themeMode.first().name,
             holidayCountry = prefs[HOLIDAY_COUNTRY].orEmpty(),
             holidayRegion = prefs[HOLIDAY_REGION].orEmpty(),
-            historyClearedAt = prefs[HISTORY_CLEARED_AT],
+            historyClearedAt = clearedAt(prefs[HISTORY_CLEARED_AT], now()),
             nextAlarmNotice = prefs[NEXT_ALARM_NOTICE] ?: true,
             autoOnset = prefs[AUTO_ONSET] ?: true,
         )
@@ -243,35 +245,43 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         prefs[THEME] = (ThemeMode.entries.firstOrNull { mode -> mode.name == settings.theme } ?: ThemeMode.SYSTEM).name
         prefs[HOLIDAY_COUNTRY] = settings.holidayCountry
         prefs[HOLIDAY_REGION] = settings.holidayRegion
-        val cleared = settings.historyClearedAt
+        // Aus einer fremden oder manipulierten Sicherung: nie später als jetzt (Audit DA-1), sonst blieben auch alle
+        // künftigen Nächte aus Health Connect ausgeblendet.
+        val cleared = clearedAt(settings.historyClearedAt, now())
         if (cleared == null) prefs.remove(HISTORY_CLEARED_AT) else prefs[HISTORY_CLEARED_AT] = cleared
         prefs[NEXT_ALARM_NOTICE] = settings.nextAlarmNotice
         prefs[AUTO_ONSET] = settings.autoOnset
         prefs[AUTO_ONSET_AT] = Instant.now().toEpochMilli()
     }
 
-    private companion object {
-        val ONBOARDING_DONE = booleanPreferencesKey("onboarding_done")
-        val HOLIDAY_COUNTRY = stringPreferencesKey("holiday_country")
-        val HOLIDAY_REGION = stringPreferencesKey("holiday_region")
-        val DIAGNOSTICS = booleanPreferencesKey("diagnostics")
-        val NAP_MINUTES = intPreferencesKey("nap_minutes")
-        val SOUND_REC_DEFAULT = booleanPreferencesKey("sound_rec_default")
-        val SOUND_REC_NIGHT = stringPreferencesKey("sound_rec_night")
-        val WEEKLY_REVIEW = booleanPreferencesKey("weekly_review")
-        val WEEKLY_SHOWN_AT = longPreferencesKey("weekly_shown_at")
-        val WEEKLY_PREPARED = stringPreferencesKey("weekly_prepared")
-        val THEME = stringPreferencesKey("theme_mode")
-        val SLEEP_GOAL = intPreferencesKey("sleep_goal_minutes")
-        val SLEEP_GOAL_AT = longPreferencesKey("sleep_goal_updated_at")
-        val BEDTIME_REMINDER = booleanPreferencesKey("bedtime_reminder")
-        val BEDTIME_SHOWN_AT = longPreferencesKey("bedtime_shown_at")
-        val NEXT_ALARM_NOTICE = booleanPreferencesKey("next_alarm_notice")
-        val AUTO_ONSET = booleanPreferencesKey("auto_onset")
-        val AUTO_ONSET_AT = longPreferencesKey("auto_onset_updated_at")
-        val SOUND_TIMER = intPreferencesKey("sound_timer_minutes")
-        val SOUND = stringPreferencesKey("sleep_sound")
-        val HISTORY_CLEARED_AT = longPreferencesKey("history_cleared_at")
-        const val NO_TIMER = 0
+    companion object {
+        /**
+         * Zeitpunkt von «Verlauf löschen» zur Verwendung (Audit DA-1): höchstens [nowMs] (eine verstellte Uhr oder eine
+         * Sicherung «aus der Zukunft» blendete sonst auch alle künftigen Nächte aus), ausserhalb von [TimeBounds] `null`.
+         */
+        fun clearedAt(raw: Long?, nowMs: Long): Long? = TimeBounds.checked(raw)?.let { minOf(it, nowMs) }
+
+        private val ONBOARDING_DONE = booleanPreferencesKey("onboarding_done")
+        private val HOLIDAY_COUNTRY = stringPreferencesKey("holiday_country")
+        private val HOLIDAY_REGION = stringPreferencesKey("holiday_region")
+        private val DIAGNOSTICS = booleanPreferencesKey("diagnostics")
+        private val NAP_MINUTES = intPreferencesKey("nap_minutes")
+        private val SOUND_REC_DEFAULT = booleanPreferencesKey("sound_rec_default")
+        private val SOUND_REC_NIGHT = stringPreferencesKey("sound_rec_night")
+        private val WEEKLY_REVIEW = booleanPreferencesKey("weekly_review")
+        private val WEEKLY_SHOWN_AT = longPreferencesKey("weekly_shown_at")
+        private val WEEKLY_PREPARED = stringPreferencesKey("weekly_prepared")
+        private val THEME = stringPreferencesKey("theme_mode")
+        private val SLEEP_GOAL = intPreferencesKey("sleep_goal_minutes")
+        private val SLEEP_GOAL_AT = longPreferencesKey("sleep_goal_updated_at")
+        private val BEDTIME_REMINDER = booleanPreferencesKey("bedtime_reminder")
+        private val BEDTIME_SHOWN_AT = longPreferencesKey("bedtime_shown_at")
+        private val NEXT_ALARM_NOTICE = booleanPreferencesKey("next_alarm_notice")
+        private val AUTO_ONSET = booleanPreferencesKey("auto_onset")
+        private val AUTO_ONSET_AT = longPreferencesKey("auto_onset_updated_at")
+        private val SOUND_TIMER = intPreferencesKey("sound_timer_minutes")
+        private val SOUND = stringPreferencesKey("sleep_sound")
+        private val HISTORY_CLEARED_AT = longPreferencesKey("history_cleared_at")
+        private const val NO_TIMER = 0
     }
 }

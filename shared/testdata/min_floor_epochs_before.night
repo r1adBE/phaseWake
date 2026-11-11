@@ -1,0 +1,39 @@
+# Fix KN-6: Grundrauschen erst ab 4 gemessenen Werten. Epoche 0/1 ohne Bewegung; Epoche 4 hat erst 3 Werte (0.03):
+# Startschwelle 0.002, das Rauschen zählt, Puls 56 -> LIGHT_SLEEP. Mit schon 3 Werten hiesse es Rauschen (kein Wecken).
+@expect 4 LIGHT_SLEEP
+motion,hr
+,52
+,52
+0.03,52
+0.03,56
+0.03,56
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52
+0.03,52

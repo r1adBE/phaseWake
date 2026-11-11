@@ -287,9 +287,8 @@ private fun NightCard(
                 modifier = Modifier.padding(top = 8.dp),
             )
             Text(nightDetails(context, night), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-            NightNotes(notes, customNotes, onToggleNote, Modifier.padding(top = 4.dp))
             soundSummary(context, clips)?.let { CompactLine(it) }
-            DetailsLink()
+            NightNotes(notes, customNotes, onToggleNote, Modifier.padding(top = 4.dp)) { DetailsLink() }
         }
     }
 }

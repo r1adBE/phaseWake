@@ -1,6 +1,7 @@
 package com.phasewake.app.shared
 
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.TimeBounds
 import java.net.URLDecoder
 import java.net.URLEncoder
 
@@ -53,11 +54,28 @@ object AlarmStamps {
         else -> if (a.first.toString() >= b.first.toString()) a else b
     }
 
-    /** Gelöschte Wecker ohne zu alte ([TOMBSTONE_MAX_AGE_MS] vor [now]), höchstens [MAX_TOMBSTONES], die neuesten. */
+    /**
+     * Gelöschte Wecker ohne zu alte ([TOMBSTONE_MAX_AGE_MS] vor [now]) und ohne unplausible Zeitpunkte ([TimeBounds],
+     * sonst liefe `now − Zeitpunkt` über, Fix KN-4), höchstens [MAX_TOMBSTONES], die neuesten.
+     */
     fun prune(deleted: Map<String, Long>, now: Long): Map<String, Long> =
-        deleted.filterValues { now - it <= TOMBSTONE_MAX_AGE_MS }
+        deleted.filterValues { TimeBounds.contains(it) && now - it <= TOMBSTONE_MAX_AGE_MS }
             .entries.sortedByDescending { it.value }.take(MAX_TOMBSTONES)
             .associate { it.key to it.value }
+
+    /**
+     * Stand der Gegenseite nach [TimeBounds] geprüft (Fix KN-4, wie `AlarmStamps.snapshot(context:)` in Swift):
+     * unplausibler Listen-Zeitpunkt → `null` (Nachricht verwerfen); unplausible Zeitpunkte je Wecker oder gelöschter
+     * Wecker fallen weg (der Wecker gilt dann mit dem Listen-Zeitpunkt, das Löschen ist vergessen). Für jeden Leser
+     * empfangener Stände (`QueueMessages.decodeAlarms`).
+     */
+    fun checked(snapshot: AlarmSnapshot): AlarmSnapshot? {
+        if (!TimeBounds.contains(snapshot.updatedAt)) return null
+        return snapshot.copy(
+            stamps = snapshot.stamps.filterValues(TimeBounds::contains),
+            deleted = snapshot.deleted.filterValues(TimeBounds::contains),
+        )
+    }
 
     /** Kennung für Text mit «=» und Zeilen (URL-kodiert). */
     fun escape(id: String): String = URLEncoder.encode(id, "UTF-8")
@@ -68,11 +86,11 @@ object AlarmStamps {
     /** Speicherformat: je Zeile «kennung=ms» (Kennung URL-kodiert). */
     fun encodeMap(map: Map<String, Long>): String = map.entries.joinToString("\n") { "${escape(it.key)}=${it.value}" }
 
-    /** Liest [encodeMap]; unlesbare Zeilen fallen weg. */
+    /** Liest [encodeMap]; unlesbare Zeilen und unplausible Zeitpunkte ([TimeBounds], Fix KN-4) fallen weg. */
     fun decodeMap(text: String?): Map<String, Long> = text.orEmpty().lines().mapNotNull { line ->
         val eq = line.lastIndexOf('=')
         if (eq <= 0) return@mapNotNull null
-        val at = line.substring(eq + 1).toLongOrNull() ?: return@mapNotNull null
+        val at = TimeBounds.checked(line.substring(eq + 1).toLongOrNull()) ?: return@mapNotNull null
         (unescape(line.substring(0, eq)) ?: return@mapNotNull null) to at
     }.toMap()
 }

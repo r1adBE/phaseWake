@@ -1,0 +1,41 @@
+# Fix KN-6: Basispuls erst ab 2 Pulsen. Epoche 0 und 2 ohne Puls; leichte Bewegung in Epoche 2/3.
+# Epoche 3: erst ein Puls (52) -> kein Basispuls (mit einem schon: 56 >= 54.6, weckte). Epoche 4: Basispuls
+# Median(52, 56) = 54, nötig 56.7, aktuell (56 + 58) / 2 = 57 -> weckt (mit 3 nötigen Pulsen noch keiner).
+@expect 4 LIGHT_SLEEP
+motion,hr
+0,
+0,52
+0.01,
+0.01,56
+0,58
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52

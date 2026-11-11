@@ -209,28 +209,48 @@ final class WakeDetectorTests: XCTestCase {
         XCTAssertEqual(plain.onEpoch(Epoch(motion: 0.14, heartRate: 60.0)), .wait)
     }
 
-    func testOnsetFloorOfTheNightComesBeforeTheLearnedOne() throws {
-        // Einschlaf-Messung dieser Nacht 0.012, gelernt 0.03: Obergrenze 1.5 × 0.012 = 0.018 → Wach 0.1 (Startwert).
+    func testPriorIsTheLargerOfOnsetAndLearnedFloor() throws {
+        // Fix KN-2: Vorwissen = das grössere von Einschlaf-Messung (0.012) und gelernt (0.03): 1.5 × 0.03 = 0.045 → 0.04.
         let restless = Array(repeating: Epoch(motion: 0.08, heartRate: 60.0), count: 8)
         let config = try DetectorConfig(personalFloor: 0.03).withOnsetFloor(0.012)
-        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(restless.map(\.motion), config: config)), 0.018, accuracy: 1e-12)
-        let detector = WakeDetector(config: config)
-        _ = run(detector, restless + [Epoch(motion: 0.12, heartRate: 60.0)])
-        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.12, heartRate: 60.0)), .wake(.awake))
-        // Nur gelernt 0.03: Obergrenze 0.04 (maxFloor).
-        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(restless.map(\.motion), config: try DetectorConfig(personalFloor: 0.03))),
-                       0.04, accuracy: 1e-12)
-        // Zu wenige Werte: das der Einschlaf-Messung gilt; ruhiger als das bekannte: das eigene des Fensters.
+        XCTAssertEqual(NoiseFloor.priorFloor(config), 0.03)
+        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(restless.map(\.motion), config: config)), 0.04, accuracy: 1e-12)
+        // Einschlaf-Messung 0.018 über gelernt 0.012: Obergrenze 1.5 × 0.018 = 0.027 → Wach 0.135, zweimal 0.14 weckt.
+        let higher = try DetectorConfig(personalFloor: 0.012).withOnsetFloor(0.018)
+        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(restless.map(\.motion), config: higher)), 0.027, accuracy: 1e-12)
+        let detector = WakeDetector(config: higher)
+        _ = run(detector, restless + [Epoch(motion: 0.14, heartRate: 60.0)])
+        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.14, heartRate: 60.0)), .wake(.awake))
+        // Zu wenige Werte: das der Einschlaf-Messung gilt vor dem gelernten, auch wenn es tiefer ist; ruhiger als das
+        // bekannte: das eigene des Fensters.
         XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor([nil, 0.5], config: config)), 0.012, accuracy: 1e-12)
         XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(Array(repeating: 0.01, count: 8), config: config)), 0.01, accuracy: 1e-12)
         XCTAssertNil(DetectorConfig.standard.withOnsetFloor(.nan).onsetFloor)
+        XCTAssertNil(NoiseFloor.priorFloor(DetectorConfig.standard))
+    }
+
+    func testImplausiblyLowPriorDoesNotCap() throws {
+        // Fix KN-2: Uhr mit Rauschen 0.02, Vorwissen 0.004 < 0.25 × 0.02 = 0.005: keine Obergrenze, es bleibt 0.02.
+        let noisy: [Double?] = Array(repeating: 0.02, count: 8)
+        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(noisy, config: try DetectorConfig(personalFloor: 0.004))), 0.02, accuracy: 1e-12)
+        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(noisy, config: DetectorConfig.standard.withOnsetFloor(0.002))), 0.02, accuracy: 1e-12)
+        // Genau an der Grenze (0.005 = 0.25 × 0.02) gilt sie: 1.5 × 0.005 = 0.0075.
+        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(noisy, config: try DetectorConfig(personalFloor: 0.005))), 0.0075, accuracy: 1e-12)
+        // Das tiefe der Einschlaf-Messung verdrängt ein plausibles gelerntes nicht (das grössere zählt).
+        let both = try DetectorConfig(personalFloor: 0.018).withOnsetFloor(0.002)
+        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(noisy, config: both)), 0.02, accuracy: 1e-12)
+        let detector = WakeDetector(config: try DetectorConfig(personalFloor: 0.004))
+        _ = run(detector, Array(repeating: Epoch(motion: 0.02, heartRate: 52.0), count: 8))
+        // Rauschen 0.03 mit Pulsanstieg: unter 2.5 × 0.02 = 0.05, also keine leichte Bewegung.
+        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.03, heartRate: 60.0)), .wait)
+        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.03, heartRate: 60.0)), .wait)
     }
 
     func testOnsetFloorKnownAfterTheWindowBegan() throws {
         // Apple Watch: Das Grundrauschen der Einschlaf-Messung kommt erst nach Fensterbeginn (`WatchOnset`); ab dann gilt
         // es (Vollaudit K-1). Wie Kotlin.
         let restless = Array(repeating: Epoch(motion: 0.08, heartRate: 60.0), count: 8)
-        let detector = WakeDetector(config: try DetectorConfig(personalFloor: 0.03))
+        let detector = WakeDetector()
         _ = run(detector, restless + [Epoch(motion: 0.12, heartRate: 60.0)])
         XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.12, heartRate: 60.0)), .wait)
         detector.useOnsetFloor(0.012)

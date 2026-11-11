@@ -3,7 +3,11 @@ package com.phasewake.app.shared
 import android.net.Uri
 import java.io.File
 import java.nio.file.Files
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.TestScope
+import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withTimeoutOrNull
 import org.junit.runner.RunWith
@@ -23,6 +27,7 @@ import kotlin.test.assertTrue
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35])
+@OptIn(ExperimentalCoroutinesApi::class)
 class OutboxTest {
     /** Gegenseite im Test: erreichbar oder nicht, Fehler beim Senden, alles Gesendete. */
     private class FakeTransport : Outbox.Transport {
@@ -44,7 +49,18 @@ class OutboxTest {
     private val dir: File = Files.createTempDirectory("outbox").toFile()
     private val transport = FakeTransport()
     private var clock = 1_000L
-    private fun outbox() = Outbox(dir, transport) { clock++ }
+
+    /**
+     * Warteschlange im Takt des Tests: Dateizugriffe und Senden im Hintergrund auf dessen Zeitgeber, die Uhr ist [clock]
+     * (jeder Aufruf eine Millisekunde später) plus die Zeit des Zeitgebers (verzögertes Nachsenden, Audit AN-3).
+     */
+    private fun TestScope.outbox() =
+        Outbox(dir, transport, { clock++ + testScheduler.currentTime }, backgroundScope, StandardTestDispatcher(testScheduler))
+
+    /** Einreihen und das Senden im Hintergrund gleich ablaufen lassen (ohne verzögertes Nachsenden). */
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private suspend fun TestScope.put(box: Outbox, key: String, path: String, capability: String, body: String): String =
+        box.enqueue(key, path, capability, body).also { runCurrent() }
 
     /** Lässt die Wartezeit bis zum erneuten Senden verstreichen ([Outbox.RESEND_AFTER_MS]). */
     private fun later() {
@@ -54,7 +70,7 @@ class OutboxTest {
     @Test
     fun sendsAndKeepsUntilAcknowledged() = runTest {
         val box = outbox()
-        box.enqueue("night/1-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "nacht")
+        put(box, "night/1-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "nacht")
         assertEquals(1, transport.sent.size)
         val (node, path, data) = transport.sent.single()
         assertEquals("node-${DataLayer.CAPABILITY_PHONE}", node)
@@ -77,7 +93,7 @@ class OutboxTest {
     fun retriesAfterNoConnectionOrFailure() = runTest {
         transport.reachable = false
         val box = outbox()
-        box.enqueue("night/1-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "eins")
+        put(box, "night/1-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "eins")
         assertTrue(transport.sent.isEmpty())
         transport.reachable = true
         transport.failing = true
@@ -90,7 +106,7 @@ class OutboxTest {
     @Test
     fun survivesARestartOfTheProcess() = runTest {
         transport.reachable = false
-        outbox().enqueue("recording/5", DataLayer.PATH_MSG_RECORDING, DataLayer.CAPABILITY_PHONE, "aufzeichnung")
+        put(outbox(), "recording/5", DataLayer.PATH_MSG_RECORDING, DataLayer.CAPABILITY_PHONE, "aufzeichnung")
         // Neue Instanz auf demselben Ordner (Prozess neu): Eintrag ist noch da.
         val again = outbox()
         assertEquals(listOf("recording/5"), again.pending().map { it.key })
@@ -103,16 +119,16 @@ class OutboxTest {
     @Test
     fun sameKeyReplacesAndAnOldAckKeepsTheNewer() = runTest {
         val box = outbox()
-        box.enqueue("alarms", DataLayer.PATH_MSG_ALARMS, DataLayer.CAPABILITY_WATCH, "alt")
+        put(box, "alarms", DataLayer.PATH_MSG_ALARMS, DataLayer.CAPABILITY_WATCH, "alt")
         val oldId = transport.lastId()
-        box.enqueue("alarms", DataLayer.PATH_MSG_ALARMS, DataLayer.CAPABILITY_WATCH, "neu")
+        put(box, "alarms", DataLayer.PATH_MSG_ALARMS, DataLayer.CAPABILITY_WATCH, "neu")
         assertEquals(listOf("neu"), box.pending().map { it.body })
         // Bestätigung des alten Standes entfernt den neuen nicht.
         assertFalse(box.acked(oldId))
         assertEquals(1, box.pending().size)
         // Verschiedene Nächte bleiben getrennt, älteste zuerst.
-        box.enqueue("night/1-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n1")
-        box.enqueue("night/2-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n2")
+        put(box, "night/1-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n1")
+        put(box, "night/2-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n2")
         assertEquals(listOf("alarms", "night/1-a", "night/2-a"), box.pending().map { it.key })
     }
 
@@ -120,10 +136,10 @@ class OutboxTest {
     fun dropRemovesOnlyOlderEntriesWithThePrefix() = runTest {
         transport.reachable = false
         val box = outbox()
-        box.enqueue("night/1-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "vorher")
+        put(box, "night/1-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "vorher")
         val cut = clock
-        box.enqueue("night/2-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "nachher")
-        box.enqueue("alarms", DataLayer.PATH_MSG_ALARMS, DataLayer.CAPABILITY_PHONE, "wecker")
+        put(box, "night/2-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "nachher")
+        put(box, "alarms", DataLayer.PATH_MSG_ALARMS, DataLayer.CAPABILITY_PHONE, "wecker")
         box.drop(QueueMessages.KEY_NIGHT, before = cut)
         assertEquals(listOf("night/2-a", "alarms"), box.pending().map { it.key })
     }
@@ -160,9 +176,9 @@ class OutboxTest {
     fun enqueueSendsOnlyTheNewEntryAndFlushWaitsPerEntry() = runTest {
         // Audit A-1 (Doppelte am Gerät): Jeder Anlass schickte alles Unbestätigte erneut.
         val box = outbox()
-        box.enqueue("night/1-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n1")
-        box.enqueue("night/2-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n2")
-        box.enqueue("recording/3", DataLayer.PATH_MSG_RECORDING, DataLayer.CAPABILITY_PHONE, "r3")
+        put(box, "night/1-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n1")
+        put(box, "night/2-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n2")
+        put(box, "recording/3", DataLayer.PATH_MSG_RECORDING, DataLayer.CAPABILITY_PHONE, "r3")
         assertEquals(listOf("n1", "n2", "r3"), transport.sent.map { Outbox.open(it.third)?.second }, "je Eintrag einmal")
         // Viele Anlässe kurz hintereinander (Nachrichten der Gegenseite): nichts doppelt.
         repeat(5) { box.flush() }
@@ -172,7 +188,7 @@ class OutboxTest {
         assertEquals(6, transport.sent.size, "nach der Wartezeit jeder unbestätigte einmal")
         // Ohne Verbindung gilt ein Eintrag nicht als gesendet: beim nächsten Anlass gleich wieder.
         transport.reachable = false
-        box.enqueue("night/4-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n4")
+        put(box, "night/4-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n4")
         transport.reachable = true
         box.flush()
         assertEquals(listOf("n4"), transport.sent.drop(6).map { Outbox.open(it.third)?.second })
@@ -191,13 +207,13 @@ class OutboxTest {
         // Audit A-8: Ohne Gegenseite wuchs die Warteschlange ohne Grenze.
         transport.reachable = false
         val box = outbox()
-        box.enqueue("night/old", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "alt")
-        box.enqueue("alarms", DataLayer.PATH_MSG_ALARMS, DataLayer.CAPABILITY_PHONE, "wecker")
+        put(box, "night/old", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "alt")
+        put(box, "alarms", DataLayer.PATH_MSG_ALARMS, DataLayer.CAPABILITY_PHONE, "wecker")
         clock += Outbox.MAX_AGE_MS + 1
-        box.enqueue("night/new", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "neu")
-        assertEquals(listOf("night/new"), box.pending().map { it.key }, "älter als 14 Tage: weg")
-        repeat(Outbox.MAX_PER_KIND + 5) { box.enqueue("night/$it", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n$it") }
-        box.enqueue("recording/1", DataLayer.PATH_MSG_RECORDING, DataLayer.CAPABILITY_PHONE, "r")
+        put(box, "night/new", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "neu")
+        assertEquals(listOf("alarms", "night/new"), box.pending().map { it.key }, "Nacht älter als 14 Tage: weg, Zustand bleibt (AN-2)")
+        repeat(Outbox.MAX_PER_KIND + 5) { put(box, "night/$it", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n$it") }
+        put(box, "recording/1", DataLayer.PATH_MSG_RECORDING, DataLayer.CAPABILITY_PHONE, "r")
         val pending = box.pending()
         assertEquals(Outbox.MAX_PER_KIND, pending.count { it.key.startsWith(QueueMessages.KEY_NIGHT) })
         assertEquals("night/${Outbox.MAX_PER_KIND + 4}", pending.last { it.key.startsWith(QueueMessages.KEY_NIGHT) }.key, "die neuesten bleiben")
@@ -211,8 +227,8 @@ class OutboxTest {
     fun dropIfMatchesTheContent() = runTest {
         transport.reachable = false
         val box = outbox()
-        box.enqueue("night/1-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "weg")
-        box.enqueue("night/2-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "bleibt")
+        put(box, "night/1-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "weg")
+        put(box, "night/2-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "bleibt")
         box.dropIf(QueueMessages.KEY_NIGHT) { it.body == "weg" }
         assertEquals(listOf("bleibt"), box.pending().map { it.body })
     }
@@ -239,9 +255,9 @@ class OutboxTest {
         transport.reachable = false
         clock = cut.toEpochMilli() + 1_000
         val box = outbox()
-        box.enqueue("night/1-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, before)
-        box.enqueue("night/2-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, after)
-        box.enqueue("alarms", DataLayer.PATH_MSG_ALARMS, DataLayer.CAPABILITY_PHONE, "wecker")
+        put(box, "night/1-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, before)
+        put(box, "night/2-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, after)
+        put(box, "alarms", DataLayer.PATH_MSG_ALARMS, DataLayer.CAPABILITY_PHONE, "wecker")
         box.dropIf(QueueMessages.KEY_NIGHT) { QueueMessages.droppedByClear(it, cut.toEpochMilli()) }
         assertEquals(listOf("night/2-a", "alarms"), box.pending().map { it.key })
         assertFalse(QueueMessages.droppedByClear(box.pending().last(), Long.MAX_VALUE), "andere Einträge nie")

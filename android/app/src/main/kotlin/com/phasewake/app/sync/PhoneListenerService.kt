@@ -97,7 +97,11 @@ class PhoneListenerService : WearableListenerService() {
         val app = phoneApp
         when (path) {
             DataLayer.PATH_MSG_ALARMS -> QueueMessages.decodeAlarms(body)?.let { snapshot ->
-                if (app.alarms.applyRemote(snapshot)) {
+                val result = app.alarms.receive(snapshot)
+                // Der Stand hier weicht ab (z. B. eine Änderung, deren Nachricht verloren ging): zurück an die Uhr, damit
+                // beide gleich werden (Audit AN-1). Einreihen ist lokal und schnell, gesendet wird im Hintergrund.
+                result.reply?.let { app.sync.publishAlarms(it) }
+                if (result.changed) {
                     app.diag.log(DiagKind.ALARMS_RECEIVED, "from watch")
                     app.backup.reschedule()
                 }
@@ -115,8 +119,9 @@ class PhoneListenerService : WearableListenerService() {
      * schliessen und verarbeiten ([handleChannel]).
      */
     override fun onChannelOpened(channel: ChannelClient.Channel) {
-        val sync = phoneApp.sync
-        runBlocking { sync.readChannel(channel)?.let { data -> handleChannel(channel.nodeId, channel.path, data) } }
+        val app = phoneApp
+        // Im App-Bereich, nicht im Thread des Empfangs (Audit AN-4): Lesen und Verarbeiten halten keine Nachricht auf.
+        app.appScope.launch { app.sync.readChannel(channel)?.let { data -> handleChannel(channel.nodeId, channel.path, data) } }
     }
 
     /**
@@ -150,18 +155,23 @@ class PhoneListenerService : WearableListenerService() {
         val app = phoneApp
         val path = event.path
         when {
+            // Im App-Bereich (Audit AN-4): Die Warteschlange kann gerade beschäftigt sein, der Empfang wartet nicht darauf.
             path == DataLayer.PATH_ACK -> {
-                runBlocking { app.sync.acked(event.data) }
+                app.appScope.launch { app.sync.acked(event.data) }
                 return
             }
             // Die Uhr will den Stand des Handys (frisch installiert, neu gestartet): einreihen und senden.
             path == DataLayer.PATH_SYNC_REQUEST -> {
-                // Im App-Bereich (Audit A-8): Einreihen sendet gleich, das darf den Empfang nicht aufhalten.
+                // Im App-Bereich (Audit A-8); danach auch alles andere Wartende ([PhaseWakeApp.publishToWatch], Audit AN-3).
                 app.appScope.launch { app.publishToWatch() }
                 return
             }
+            // Verarbeiten (Speichern, Neuplanen) im App-Bereich (Audit AN-4). Endet der Prozess vorher, fehlt nur die
+            // Bestätigung: Die Uhr sendet den Eintrag dann später erneut.
             path.startsWith(QUEUE_PREFIX) -> {
-                if (runBlocking { app.sync.receive(event.sourceNodeId, event.data) { handleQueued(path, it) } }) flushLater()
+                val data = event.data
+                val node = event.sourceNodeId
+                app.appScope.launch { if (app.sync.receive(node, data) { handleQueued(path, it) }) app.sync.flush() }
                 return
             }
         }

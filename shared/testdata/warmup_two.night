@@ -1,0 +1,38 @@
+# Fix KN-6: Aufwärmphase 2 Epochen. Bewegung 0.5 in Epoche 1-3: Epoche 1 zählt nicht, Epoche 3 weckt (2 von 3).
+# Mit 1 Epoche Aufwärmphase weckte Epoche 2, mit 3 keine.
+@expect 3 AWAKE
+motion,hr
+0,52
+0.5,52
+0.5,52
+0.5,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52

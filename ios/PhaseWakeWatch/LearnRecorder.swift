@@ -298,28 +298,6 @@ final class LearnRecorder {
         recordedMotions(start: mark.from, done: mark.motions, until: stop, deadline: deadline)
     }
 
-    /// Bewegung je Epoche ab `start` aus dem Rekorder: nach den schon fertigen Epochen `done` bis `until`
-    /// (Epochengrenze), Abschnitt für Abschnitt, bis `deadline`. Läuft abseits des Main-Threads (auch `WatchOnset`).
-    nonisolated static func recordedMotions(start: Date, done: [Double?], until stop: Date, deadline: Date) -> [Double?] {
-        let epochs = RecorderEpochs(start: start, motions: done)
-        let recorder = CMSensorRecorder()
-        var chunkStart = epochs.closedUntil
-        while chunkStart < stop, Date() < deadline {
-            let chunkEnd = min(chunkStart.addingTimeInterval(chunk), stop)
-            if let list = recorder.accelerometerData(from: chunkStart, to: chunkEnd) {
-                var iterator = NSFastEnumerationIterator(list)
-                while let item = iterator.next() {
-                    guard let data = item as? CMRecordedAccelerometerData else { continue }
-                    epochs.add(at: data.startDate, x: data.acceleration.x, y: data.acceleration.y, z: data.acceleration.z)
-                }
-            }
-            epochs.close(until: chunkEnd)
-            guard epochs.closedUntil > chunkStart else { break }
-            chunkStart = epochs.closedUntil
-        }
-        return epochs.motions
-    }
-
     /// Puls aus Apple Health dazu, Aufzeichnung ans iPhone (mit der Einschlafzeit, falls bekannt), Stand löschen.
     func finish(_ done: Mark) async {
         let end = Self.end(of: done)

@@ -11,6 +11,8 @@ import com.phasewake.app.core.Snooze
 import com.phasewake.app.core.WakePlan
 import com.phasewake.app.core.WakeReason
 import com.phasewake.app.shared.OnsetShift
+import com.phasewake.app.shared.Outbox
+import com.phasewake.app.shared.QueueMessages
 import com.phasewake.app.wear.QuietWear
 import com.phasewake.app.wear.schedule.AlarmReceiver
 import com.phasewake.app.wear.wearApp
@@ -166,6 +168,10 @@ class WakeServiceTest {
         assertNull(WakeService.activePlan)
         assertFalse(plan.target.toEpochMilli() in triggers(), "Zielzeit-Alarm aufgehoben")
         assertEquals(emptyList(), between(snoozeFrom, snoozeTo), "Schlummer-Ende aufgehoben")
+        // Audit AN-6: Sobald der Abschluss fertig ist (der Dienst darf enden), liegt die Nacht schon fürs Handy bereit.
+        awaitUntil("Abschluss nicht fertig") { service.finishing == 0 }
+        val key = QueueMessages.KEY_NIGHT + plan.windowStart.toEpochMilli() + "-a"
+        assertTrue(runBlocking { Outbox.forContext(context).pending() }.any { it.key == key }, "Nacht eingereiht")
     }
 
     @Test
@@ -249,6 +255,8 @@ class WakeServiceTest {
         assertEquals(asleep, runBlocking { app.onsets.onsetFor(expected) })
         val shift = app.onsetShifts.single()
         assertEquals(OnsetShift("a", latest.toEpochMilli(), expected.target.toEpochMilli(), shift.at), shift)
+        // Audit AN-6: Die eigenen Alarme stehen schon auf der früheren Zielzeit, bevor die Meldung ans Handy geht.
+        assertTrue(expected.target.toEpochMilli() in app.alarmsAtShift.single(), "erst neu geplant, dann gesendet")
         // Sicherung zur früheren Zielzeit, nicht zur eingestellten Weckzeit; die Startseite zeigt denselben Plan.
         assertFalse(latest.toEpochMilli() in triggers(), "eingestellte Weckzeit")
         assertEquals(expected, runBlocking { app.scheduler.nextPlan() })

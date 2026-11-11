@@ -1,5 +1,8 @@
 package com.phasewake.app.ui.editor
 
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.ui.unit.isSpecified
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.style.TextAlign
@@ -60,14 +63,14 @@ internal fun AlertLabel(icon: Int, label: Int) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun <T> Choice(options: List<Pair<T, Int>>, selected: T, onSelect: (T) -> Unit) {
-    SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
+    SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().height(IntrinsicSize.Max)) {
         options.forEachIndexed { index, (value, label) ->
             SegmentedButton(
                 selected = value == selected,
                 onClick = { onSelect(value) },
                 shape = SegmentedButtonDefaults.itemShape(index, options.size),
                 // Mindestens 48 dp hoch: gut zu treffen, auch mit Bildschirmleser.
-                modifier = Modifier.heightIn(min = 48.dp),
+                modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight(),
                 // Ab drei Feldern ohne Haken: Der Platz gehört dem Text (Audit UI-7); gewählt zeigt die Füllung.
                 icon = { if (options.size <= CHECK_ICON_MAX_SEGMENTS) SegmentedButtonDefaults.Icon(value == selected) },
             ) { ChoiceLabel(stringResource(label)) }

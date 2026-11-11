@@ -24,3 +24,7 @@ YAMNet audio classification model (yamnet.tflite, from tensorflow/models researc
 published by MediaPipe)
 Copyright 2019 The TensorFlow Authors. Copyright 2022 Google LLC.
 License: Apache License 2.0 (see Apache-2.0.txt)
+
+---------------------------------------------------------------------------
+Native Bibliotheken von MediaPipe (TensorFlow Lite, XNNPACK, Eigen, Abseil und weitere): vollständige Hinweise in
+NOTICE-mediapipe-native.txt.

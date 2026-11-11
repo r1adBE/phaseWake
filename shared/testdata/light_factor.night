@@ -1,0 +1,34 @@
+# Fix KN-6: Rauschen 0.02 -> Leicht-Schwelle 2.5 × 0.02 = 0.05. Epoche 12/13 Bewegung 0.045 mit Puls 57: unter der
+# Schwelle (bei Faktor 2 schon LIGHT_SLEEP). Epoche 20/21 0.055 mit Puls 57: weckt (bei Faktor 3 nie).
+@expect 21 LIGHT_SLEEP
+motion,hr
+0.02,52
+0.02,52
+0.02,52
+0.02,52
+0.02,52
+0.02,52
+0.02,52
+0.02,52
+0.02,52
+0.02,52
+0.02,52
+0.02,52
+0.045,57
+0.045,57
+0.02,52
+0.02,52
+0.02,52
+0.02,52
+0.02,52
+0.02,52
+0.055,57
+0.055,57
+0.02,52
+0.02,52
+0.02,52
+0.02,52
+0.02,52
+0.02,52
+0.02,52
+0.02,52

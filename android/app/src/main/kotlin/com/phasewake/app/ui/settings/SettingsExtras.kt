@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -20,10 +21,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
@@ -94,12 +95,7 @@ internal fun LearningGroup(ui: LearningSettings) {
         val onRestart = ui.onRestart
         if (onRestart != null) {
             var confirm by remember { mutableStateOf(false) }
-            Text(
-                stringResource(R.string.learn_restart),
-                style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.fillMaxWidth().clickable { confirm = true }.padding(vertical = 10.dp),
-            )
+            ListRow(stringResource(R.string.learn_restart)) { confirm = true }
             if (confirm) {
                 AlertDialog(
                     onDismissRequest = { confirm = false },
@@ -232,7 +228,7 @@ internal fun VersionLine(version: String, extras: SettingsExtras) {
         stringResource(R.string.settings_version, version),
         style = MaterialTheme.typography.bodySmall,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
-        modifier = Modifier.fillMaxWidth().clickable {
+        modifier = Modifier.fillMaxWidth().heightIn(min = MIN_TOUCH).clickable {
             if (extras.diagnostics) {
                 extras.onDiagnostics()
                 return@clickable
@@ -243,6 +239,6 @@ internal fun VersionLine(version: String, extras: SettingsExtras) {
                 Toast.makeText(context, res.getString(R.string.diag_unlocked), Toast.LENGTH_SHORT).show()
                 extras.onUnlockDiagnostics()
             }
-        }.padding(top = 12.dp, bottom = 4.dp),
+        }.padding(top = 12.dp, bottom = 4.dp).wrapContentHeight(Alignment.CenterVertically),
     )
 }

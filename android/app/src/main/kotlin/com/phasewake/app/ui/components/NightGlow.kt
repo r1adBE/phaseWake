@@ -96,21 +96,24 @@ fun AnimatedNight(modifier: Modifier = Modifier, content: @Composable () -> Unit
     Box(modifier.drawBehind { drawNight(drift) }) { content() }
 }
 
-/** Das Logo als Zeichnung: Mondsichel, Welle der Schlafzyklen, Weckpunkt. Ohne Hintergrund. */
+/**
+ * Das Logo als Zeichnung: Mondsichel, Welle der Schlafzyklen, Weckpunkt. Ohne Hintergrund. [moon]: Farbe von Mond und
+ * Weckpunkt; auf hellem Grund dunkel, sonst verschwände der Mond (Audit N-8).
+ */
 @Composable
-fun LogoMark(size: Dp, modifier: Modifier = Modifier) {
+fun LogoMark(size: Dp, modifier: Modifier = Modifier, moon: Color = Night.Moon) {
     Canvas(modifier.size(size).clearAndSetSemantics { }) {
         val s = this.size.minDimension / 200f
         scale(s, pivot = Offset.Zero) {
             run {
-                val moon = Path().apply {
+                val moonPath = Path().apply {
                     // Mondsichel = Kreis (74|72, r 40) ohne Kreis (91|59, r 38), wie im Logo.
                     moveTo(108.1f, 92.9f)
                     arcTo(Rect(34f, 32f, 114f, 112f), 31.5f, 222.1f, false)
                     arcTo(Rect(53f, 21f, 129f, 97f), 221.9f, -158.7f, false)
                     close()
                 }
-                drawPath(moon, Night.Moon)
+                drawPath(moonPath, moon)
                 val wave = Path().apply {
                     moveTo(16f, 158f)
                     cubicTo(30f, 158f, 30f, 122f, 44f, 122f)
@@ -120,7 +123,7 @@ fun LogoMark(size: Dp, modifier: Modifier = Modifier) {
                     cubicTo(140f, 152f, 146f, 134f, 158f, 122f)
                 }
                 drawPath(wave, Night.Wave, style = Stroke(9f, cap = StrokeCap.Round))
-                drawCircle(Night.Moon, radius = 8f, center = Offset(164f, 116f))
+                drawCircle(moon, radius = 8f, center = Offset(164f, 116f))
             }
         }
     }

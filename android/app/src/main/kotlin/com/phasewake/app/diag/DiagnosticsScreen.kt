@@ -1,5 +1,6 @@
 package com.phasewake.app.diag
 
+import androidx.compose.foundation.layout.heightIn
 import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.layout.Arrangement
@@ -102,7 +103,7 @@ internal fun DiagnosticsContent(status: List<StatusLine>, entries: List<DiagEntr
             item { Text(stringResource(R.string.diag_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
             item {
                 Row(
-                    Modifier.fillMaxWidth().toggleable(value = true, role = Role.Switch, onValueChange = { actions.onHide() }).padding(vertical = 8.dp),
+                    Modifier.fillMaxWidth().heightIn(min = 48.dp).toggleable(value = true, role = Role.Switch, onValueChange = { actions.onHide() }).padding(vertical = 8.dp),
                 ) {
                     Text(stringResource(R.string.diag_show), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
                     Switch(checked = true, onCheckedChange = null)

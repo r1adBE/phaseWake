@@ -32,8 +32,6 @@ import com.phasewake.app.wear.wearApp
 import java.time.Duration
 import java.time.Instant
 import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 import kotlinx.coroutines.delay
 
 /**
@@ -44,6 +42,8 @@ import kotlinx.coroutines.delay
 class SunriseActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Zeiten nach der 12/24-h-Einstellung der Uhr (Audit N-10).
+        WearClock.update(this)
         setShowWhenLocked(true)
         setTurnScreenOn(true)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
@@ -98,7 +98,7 @@ internal fun SunriseScreen(progress: Float, now: Instant, onOff: () -> Unit) {
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            localizedDigits(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)).format(now.atZone(ZoneId.systemDefault())),
+            timeFormatter().format(now.atZone(ZoneId.systemDefault())),
             style = MaterialTheme.typography.displayMedium,
             color = ink.content,
             modifier = place,

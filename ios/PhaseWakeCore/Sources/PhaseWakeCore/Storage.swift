@@ -77,10 +77,16 @@ public final class PhaseWakeStorage: @unchecked Sendable {
 
     /// Ändert die Wecker und setzt einen streng steigenden Zeitstempel; geänderte Wecker bekommen ihn als eigenen
     /// Zeitpunkt, fehlende gelten ab dann als gelöscht. Lesen und Schreiben unter einer Sperre: Zwei gleichzeitige
-    /// Änderungen gehen nicht verloren. - Returns: neuer Stand.
+    /// Änderungen gehen nicht verloren. Sind die gespeicherten Wecker unlesbar (z. B. Format einer neueren Version),
+    /// wird nichts geschrieben: Die leere Liste darf sie nicht überschreiben (Fix KN-5, wie `AlarmRepository` auf
+    /// Android). - Returns: neuer Stand, `nil` = verweigert.
     @discardableResult
-    public func mutate(_ change: ([AlarmSpec]) -> [AlarmSpec], now: Date = Date()) -> AlarmSnapshot {
+    public func mutate(_ change: ([AlarmSpec]) -> [AlarmSpec], now: Date = Date()) -> AlarmSnapshot? {
         lock.lock(); defer { lock.unlock() }
+        guard alarmsReadableLocked() else {
+            Self.log("Gespeicherte Wecker nicht lesbar, Änderung verworfen")
+            return nil
+        }
         let current = snapshotLocked()
         let updated = Self.sorted(change(current.alarms))
         let old = AlarmStamps.byId(current.alarms)
@@ -103,7 +109,7 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     @discardableResult
     public func applyRemote(_ remote: AlarmSnapshot, now: Date = Date()) -> Bool {
         lock.lock(); defer { lock.unlock() }
-        let nowMs = Int64(now.timeIntervalSince1970 * 1000)
+        let nowMs = TimeBounds.millis(now)
         let current = snapshotLocked()
         let full = Dictionary(current.alarms.map { ($0.id, current.stampOf($0.id)) }, uniquingKeysWith: max)
         guard remote.perAlarm, alarmsReadableLocked() else {
@@ -149,8 +155,9 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     private func snapshotLocked() -> AlarmSnapshot {
         let text = defaults.string(forKey: Self.alarmsKey) ?? ""
         let alarms = (try? Codec.decodeAlarms(text)) ?? []
-        // Als NSNumber lesen: Millisekunden passen nicht in Int auf 32-Bit-Uhren (arm64_32).
-        let updatedAt = (defaults.object(forKey: Self.updatedKey) as? NSNumber)?.int64Value ?? 0
+        // Als NSNumber lesen: Millisekunden passen nicht in Int auf 32-Bit-Uhren (arm64_32). Unplausibel (``TimeBounds``,
+        // z. B. aus einer kaputten Nachricht früherer Versionen) gilt als nie geändert (Fix KN-4).
+        let updatedAt = TimeBounds.checked((defaults.object(forKey: Self.updatedKey) as? NSNumber)?.int64Value) ?? 0
         let ids = Set(alarms.map(\.id))
         let stamps = (AlarmStamps.int64Map(defaults.object(forKey: Self.stampsKey)) ?? [:]).filter { ids.contains($0.key) }
         return AlarmSnapshot(alarms: alarms, updatedAt: updatedAt, stamps: stamps,
@@ -166,8 +173,9 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     /// Schreibt `alarms` mit einem streng steigenden Listen-Zeitpunkt: Wecker in `changed` bekommen ihn als eigenen,
     /// die übrigen behalten ihren; Wecker aus `before`, die fehlen, gelten ab dann als gelöscht.
     private func writeLocked(_ alarms: [AlarmSpec], before: AlarmSnapshot, changed: Set<String>, now: Date) -> AlarmSnapshot {
-        let nowMs = Int64(now.timeIntervalSince1970 * 1000)
-        let stamp = max(nowMs, before.updatedAt + 1)
+        let nowMs = TimeBounds.millis(now)
+        // Streng steigend, ohne Überlauf (``TimeBounds/next(now:previous:)``, Fix KN-4).
+        let stamp = TimeBounds.next(now: nowMs, previous: before.updatedAt)
         let stamps = Dictionary(alarms.map { ($0.id, changed.contains($0.id) ? stamp : before.stampOf($0.id)) }, uniquingKeysWith: max)
         let ids = Set(alarms.map(\.id))
         let gone = Dictionary(before.alarms.filter { !ids.contains($0.id) }.map { ($0.id, stamp) }, uniquingKeysWith: max)

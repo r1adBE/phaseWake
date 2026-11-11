@@ -1,0 +1,37 @@
+# Fix KN-6: gelernter Ruhepuls 50, die ersten 6 Epochen ohne Puls: Ersatz-Basispuls 50 × 1.10 = 55, nötig 57.75.
+# Epoche 10/11 leichte Bewegung mit Puls 57: zu wenig (bei × 1.08 schon). Epoche 20/21 mit 58: weckt (bei × 1.12 nie).
+@resting 50
+@expect 21 LIGHT_SLEEP
+motion,hr
+0,
+0,
+0,
+0,
+0,
+0,
+0,52
+0,52
+0,52
+0,52
+0.01,57
+0.01,57
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0.01,58
+0.01,58
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52
+0,52

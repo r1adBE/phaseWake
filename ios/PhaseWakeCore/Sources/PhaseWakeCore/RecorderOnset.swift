@@ -46,6 +46,18 @@ public enum RecorderOnset {
     /// eingestellte Weckzeit der Nacht; `extendCap`: späteste Verlängerung (`nil` = keine).
     public static func find(motions: [Double?], since: Date, threshold: Double, personalFloor: Double?, latest: Date,
                             extendCap: Date?) -> Result {
+        measure(motions: motions, since: since, threshold: threshold, personalFloor: personalFloor, latest: latest,
+                extendCap: extendCap).result
+    }
+
+    /// Wie ``find(motions:since:threshold:personalFloor:latest:extendCap:)``, dazu das Grundrauschen der Messung für das
+    /// Weckfenster derselben Nacht (``WakeDetector/useOnsetFloor(_:)``, Fix KN-3, gleiche Regel wie `OnsetMonitor.floor`
+    /// auf der Galaxy Watch): ``NoiseFloor/floor(_:personal:)`` der Epochen vom Beginn bis zu der, in der das Einschlafen
+    /// erkannt ist (``Result/asleep(at:index:)``), bzw. bis vor der Zeitgrenze (``Result/gaveUp(at:reason:)``); solange
+    /// es weniger als ``NoiseFloor/minFloorEpochs`` Werte sind, `personalFloor`, vor der ersten Epoche keines. Reichen die
+    /// Werte bis ins Weckfenster (``Result/open``), keines (`nil`).
+    public static func measure(motions: [Double?], since: Date, threshold: Double, personalFloor: Double?, latest: Date,
+                               extendCap: Date?) -> (result: Result, floor: Double?) {
         let latestGiveUp = latest.addingTimeInterval(-giveUpLead)
         var maxEnd = since.addingTimeInterval(maxDuration)
         var floor: Double?
@@ -58,17 +70,17 @@ public enum RecorderOnset {
                 let busy = restless(seen, threshold: NoiseFloor.light(threshold: threshold, floor: floor))
                 guard let cap = extendCap,
                       let until = extendUntil(at: now, maxEnd: maxEnd, latestGiveUp: latestGiveUp, cap: cap, restless: busy) else {
-                    return .gaveUp(at: now, reason: giveUpReason(at: now, latestGiveUp: latestGiveUp, maxEnd: maxEnd) ?? "give up")
+                    return (.gaveUp(at: now, reason: giveUpReason(at: now, latestGiveUp: latestGiveUp, maxEnd: maxEnd) ?? "give up"), floor)
                 }
                 maxEnd = until
             }
             seen.append(motion)
             floor = NoiseFloor.floor(seen, personal: personalFloor)
             if let start = SleepOnset.find(seen, threshold: NoiseFloor.light(threshold: threshold, floor: floor)) {
-                return .asleep(at: since.addingTimeInterval(TimeInterval(start * DetectorConfig.epochSeconds)), index: start)
+                return (.asleep(at: since.addingTimeInterval(TimeInterval(start * DetectorConfig.epochSeconds)), index: start), floor)
             }
         }
-        return .open
+        return (.open, nil)
     }
 
     /// Unruhig: In den letzten `recent` Epochen hat mindestens eine Bewegung an oder über `threshold`; leere zählen

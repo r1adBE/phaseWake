@@ -42,8 +42,6 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 import java.time.format.TextStyle
 import java.time.temporal.WeekFields
 import java.util.Locale
@@ -136,7 +134,7 @@ internal fun EditorContent(
                 Button(
                     onClick = onPickTime,
                     modifier = Modifier.fillMaxWidth(),
-                    label = { Text(localizedDigits(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)).format(time), style = MaterialTheme.typography.titleLarge) },
+                    label = { Text(timeFormatter().format(time), style = MaterialTheme.typography.titleLarge) },
                     secondaryLabel = {
                         Text(stringResource(if (draft.sleepDurationMinutes != null) R.string.editor_latest else R.string.editor_target))
                     },

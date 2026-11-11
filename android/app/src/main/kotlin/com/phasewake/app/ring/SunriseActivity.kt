@@ -91,7 +91,7 @@ internal fun SunriseScreen(progress: Float, now: Instant, onOff: () -> Unit) {
     // Jeder Text mit der Schrift, die an seiner Stelle des Himmels lesbar ist (Audit UI-6).
     val (timeInk, timePlace) = rememberSkyInk(progress, SunriseSky.ink(progress))
     val (titleInk, titlePlace) = rememberSkyInk(progress, SunriseSky.ink(progress))
-    val (offInk, offPlace) = rememberSkyInk(progress, SunriseSky.ink(progress))
+    val (offInk, offPlace) = rememberSkyInk(progress, SunriseSky.ink(progress), padding = 0.dp)
     SunriseBackground(progress, Modifier.fillMaxSize()) {
         Column(
             Modifier.fillMaxSize().safeDrawingPadding().padding(24.dp),
@@ -99,6 +99,7 @@ internal fun SunriseScreen(progress: Float, now: Instant, onOff: () -> Unit) {
             verticalArrangement = Arrangement.Center,
         ) {
             Text(Format.time(now), style = MaterialTheme.typography.displayLarge, color = timeInk.content, modifier = timePlace)
+            Spacer(Modifier.height(PLAQUE_GAP))
             Text(stringResource(R.string.sunrise_title), style = MaterialTheme.typography.titleLarge, color = titleInk.muted, modifier = titlePlace)
             Spacer(Modifier.height(48.dp))
             TextButton(onClick = onOff, modifier = offPlace) {

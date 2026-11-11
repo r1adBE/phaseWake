@@ -49,6 +49,18 @@ object Format {
 
     fun time(instant: Instant, zone: ZoneId = ZoneId.systemDefault()): String = time.format(instant.atZone(zone))
 
+    /**
+     * Uhrzeit wie [time] und die Lage des Tageszeit-Zusatzes darin (AM/PM, auf Arabisch «ص»/«م»), damit ihn die
+     * Startseite klein setzen kann (Audit N-2); `null`, wenn die Zeit keinen hat (24 h).
+     */
+    fun timeWithPeriod(instant: Instant, zone: ZoneId = ZoneId.systemDefault()): Pair<String, IntRange?> {
+        val at = instant.atZone(zone)
+        val text = time.format(at)
+        val period = DateTimeFormatter.ofPattern("a", Locale.getDefault()).format(at)
+        val index = if (period.isBlank()) -1 else text.indexOf(period)
+        return text to if (index < 0) null else index until index + period.length
+    }
+
     /** Kurzes Datum mit Wochentag nach Sprache und Region, z. B. «Do., 30.10.». */
     fun shortDay(date: LocalDate, locale: Locale): String =
         digits(DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, "EEEdM"), locale), locale).format(date)

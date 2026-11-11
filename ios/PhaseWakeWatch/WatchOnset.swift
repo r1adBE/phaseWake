@@ -33,8 +33,9 @@ enum WatchOnset {
         case failed
     }
 
-    /// Ergebnis und Grundrauschen der nachgerechneten Messung (``NoiseFloor/floor(_:personal:)`` über ihre Epochen, `nil`
-    /// ohne Rechnung). Das Grundrauschen gilt im Weckfenster derselben Nacht als Vorwissen
+    /// Ergebnis und Grundrauschen der nachgerechneten Messung (``RecorderOnset/measure(motions:since:threshold:personalFloor:latest:extendCap:)``:
+    /// Epochen bis zum erkannten Einschlafen bzw. Aufgeben; `nil` ohne Rechnung oder wenn sie ins Weckfenster lief).
+    /// Das Grundrauschen gilt im Weckfenster derselben Nacht als Vorwissen
     /// (``WakeDetector/useOnsetFloor(_:)``, Vollaudit K-1), wie auf der Galaxy Watch (`OnsetFloorStore`).
     typealias Outcome = (result: Result, floor: Double?)
 
@@ -70,13 +71,16 @@ enum WatchOnset {
             return (.failed, nil)
         }
         let deadline = now.addingTimeInterval(budget)
-        let motions = await Task.detached(priority: .userInitiated) {
-            LearnRecorder.recordedMotions(start: since, done: [], until: stop, deadline: deadline)
+        // Niedrige Priorität mit Pausen zwischen den Abschnitten (AP2-3): begrenzte Rechenlast, 40-s-Grenze bleibt.
+        let motions = await Task.detached(priority: .utility) {
+            LearnRecorder.recordedMotions(start: since, done: [], until: stop, deadline: deadline, pause: LearnRecorder.onsetPause)
         }.value
         let windowStart = AlarmSchedule.plan(spec, target: latest).windowStart
-        let result = RecorderOnset.find(motions: motions, since: since, threshold: config.lightThreshold, personalFloor: config.personalFloor,
-                                        latest: latest, extendCap: RecorderOnset.extendCap(since: since, windowStart: windowStart))
-        let floor = NoiseFloor.floor(motions, personal: config.personalFloor)
+        // Grundrauschen nur bis zur Epoche, in der das Einschlafen erkannt ist bzw. bis zum Aufgeben; lief die Messung ins
+        // Weckfenster, keines (Fix KN-3, wie `OnsetMonitor` auf der Galaxy Watch).
+        let (result, floor) = RecorderOnset.measure(motions: motions, since: since, threshold: config.lightThreshold,
+                                                    personalFloor: config.personalFloor, latest: latest,
+                                                    extendCap: RecorderOnset.extendCap(since: since, windowStart: windowStart))
         let stat = "\(label) recorder from \(Format.time(since)) epochs=\(motions.count) empty=\(motions.filter { $0 == nil }.count) "
             + "floor=\(NoiseFloor.format(floor)) thr=\(NoiseFloor.format(NoiseFloor.light(threshold: config.lightThreshold, floor: floor)))"
         switch result {

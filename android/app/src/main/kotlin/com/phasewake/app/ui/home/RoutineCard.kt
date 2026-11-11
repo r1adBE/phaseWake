@@ -1,5 +1,6 @@
 package com.phasewake.app.ui.home
 
+import androidx.compose.foundation.layout.heightIn
 import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -47,7 +48,7 @@ fun RoutineCard(items: List<RoutineItem>, done: List<String>, containerColor: Co
                 val checked = item.id in done
                 // Die ganze Zeile hakt ab; das Kästchen zeigt nur den Zustand.
                 Row(
-                    Modifier.fillMaxWidth().toggleable(value = checked, role = Role.Checkbox, onValueChange = { onToggle(item.id) }).padding(horizontal = 4.dp),
+                    Modifier.fillMaxWidth().heightIn(min = 48.dp).toggleable(value = checked, role = Role.Checkbox, onValueChange = { onToggle(item.id) }).padding(horizontal = 4.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Checkbox(checked = checked, onCheckedChange = null, modifier = Modifier.padding(12.dp))

@@ -19,4 +19,14 @@ object TimeBounds {
 
     /** [ms], falls plausibel ([contains]); sonst `null`. */
     fun checked(ms: Long?): Long? = ms?.takeIf(::contains)
+
+    /**
+     * Streng steigender Zeitstempel (Wecker, Lernphase): [now], mindestens [previous] + 1. Ein unplausibles [previous]
+     * ([contains], z. B. 9223372036854775807 aus einer kaputten Nachricht) zählt nicht: sonst liefe + 1 über bzw. jeder
+     * spätere Stempel bliebe kaputt (Fix KN-4/KN-7). Identisch zu `TimeBounds.next` (Swift).
+     */
+    fun next(now: Long, previous: Long?): Long {
+        val last = checked(previous) ?: return now
+        return maxOf(now, last + 1)
+    }
 }

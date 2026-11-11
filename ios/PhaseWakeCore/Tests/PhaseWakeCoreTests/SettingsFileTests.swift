@@ -142,7 +142,7 @@ final class SettingsFileTests: XCTestCase {
     func testStorageOnSettingsFile() throws {
         let storage = PhaseWakeStorage(defaults: SettingsFile(url: url), directory: dir)
         let now = Date(timeIntervalSince1970: 1_793_173_963.589)
-        let snap = storage.mutate({ _ in [try! AlarmSpec(id: "a", hour: 6, minute: 30)] }, now: now)
+        let snap = try XCTUnwrap(storage.mutate({ _ in [try! AlarmSpec(id: "a", hour: 6, minute: 30)] }, now: now))
         storage.markDone(alarmId: "a", until: now, now: now)
         storage.sleepGoal = 480
         storage.holidays = HolidayList(region: "CH-BE", dates: ["2026-12-25"])
@@ -203,7 +203,7 @@ final class SettingsFileTests: XCTestCase {
         let complication = PhaseWakeStorage(defaults: SettingsFile(url: url, readOnly: true), directory: dir)
         XCTAssertEqual(complication.snapshot().alarms, [])
         let now = Date(timeIntervalSince1970: 1_793_173_963.589)
-        let snap = app.mutate({ _ in [try! AlarmSpec(id: "a", hour: 6, minute: 30)] }, now: now)
+        let snap = try XCTUnwrap(app.mutate({ _ in [try! AlarmSpec(id: "a", hour: 6, minute: 30)] }, now: now))
         app.markDone(alarmId: "a", until: now, now: now)
         app.holidays = HolidayList(region: "CH-BE", dates: ["2026-12-25"])
         XCTAssertEqual(complication.snapshot(), snap)

@@ -193,11 +193,15 @@ internal fun WakeService.snooze(notifyPhone: Boolean, fromPhone: Boolean = false
     if (notifyPhone) lifecycleScope.launch { app.sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_STOP, stopMessage(n.plan, snoozeUntil = until)) }
 }
 
-/** Beendet die Nacht; der Dienst endet, sobald [finishNight] gespeichert und neu geplant hat. */
-internal fun WakeService.dismiss(notifyPhone: Boolean) {
-    if (night == null) return
+/**
+ * Beendet die Nacht; der Dienst endet, sobald [finishNight] gespeichert und neu geplant hat. [fromPhone]: am Handy
+ * beendet (Kennung genannt). Misst die Uhr dann noch, gilt die Nacht trotzdem als erledigt (Audit AN-7): Sonst plante
+ * das Neuplanen dieselbe Nacht gleich wieder, und die Messung begänne von vorn.
+ */
+internal fun WakeService.dismiss(notifyPhone: Boolean, fromPhone: Boolean = false) {
+    val n = night ?: return
     stopRinging()
-    finishNight(notifyPhone)
+    finishNight(notifyPhone, done = fromPhone && n.phase == WakeService.Phase.MEASURING)
 }
 
 /** Niemand reagiert: schlummern, solange es geht, sonst beenden (das Handy klingelt weiter). */

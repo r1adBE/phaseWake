@@ -1,0 +1,35 @@
+# Fix KN-6: Das ganze Fenster unruhig (0.045), ohne Vorwissen: Grundrauschen höchstens 0.04 -> Wach 5 × 0.04 = 0.2.
+# Epoche 12/13 zweimal 0.17: still (bei Obergrenze 0.03 oder Faktor 4 schon wach). Epoche 20/21 zweimal 0.21: wach
+# (bei Obergrenze 0.05 oder Faktor 6 nie). Puls gleich, also kein LIGHT_SLEEP.
+@expect 21 AWAKE
+motion,hr
+0.045,56
+0.045,56
+0.045,56
+0.045,56
+0.045,56
+0.045,56
+0.045,56
+0.045,56
+0.045,56
+0.045,56
+0.045,56
+0.045,56
+0.17,56
+0.17,56
+0.045,56
+0.045,56
+0.045,56
+0.045,56
+0.045,56
+0.045,56
+0.21,56
+0.21,56
+0.045,56
+0.045,56
+0.045,56
+0.045,56
+0.045,56
+0.045,56
+0.045,56
+0.045,56

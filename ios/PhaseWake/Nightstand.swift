@@ -2,91 +2,6 @@ import PhaseWakeCore
 import SwiftUI
 import UIKit
 
-/// Farben eines Sonnenaufgangs, Verlauf identisch zu `SunriseSky` (Android).
-///
-/// Schrift (Audit UI-6): Für jeden Fortschritt die Schriftfarbe mit dem höheren Kontrast zur unteren Himmelsfarbe (dort
-/// steigt die Sonne auf; der hellste Teil des Verlaufs), weiss oder fast schwarz – so liegt sie über den ganzen Verlauf
-/// bei mindestens 4.5:1 (am Umschaltpunkt knapp 4.6:1; mit `Brand.nightBottom` wären es nur 4.45:1 gewesen). Die
-/// gedämpfte Zeile nimmt ihren Farbton nur, solange er 4.5:1 erreicht, sonst die Schriftfarbe selbst.
-enum SunriseSky {
-    private struct Key { let at: Double; let top: UInt32; let bottom: UInt32; let sun: UInt32 }
-
-    private static let keys = [
-        Key(at: 0.00, top: 0x050208, bottom: 0x1E0604, sun: 0x4A1006),
-        Key(at: 0.25, top: 0x14071A, bottom: 0x5A1508, sun: 0xA8320C),
-        Key(at: 0.50, top: 0x3B1530, bottom: 0xC2410C, sun: 0xFF7A1A),
-        Key(at: 0.75, top: 0xD9774A, bottom: 0xFFA25C, sun: 0xFFD08A),
-        Key(at: 1.00, top: 0xFFE6C2, bottom: 0xFFF6E8, sun: 0xFFFFFF),
-    ]
-
-    /// Mindestkontrast der Schrift (WCAG AA).
-    static let minContrast = 4.5
-
-    /// Farbe als sRGB-Anteile 0–1.
-    struct RGB: Equatable {
-        let r: Double
-        let g: Double
-        let b: Double
-
-        init(r: Double, g: Double, b: Double) {
-            self.r = r
-            self.g = g
-            self.b = b
-        }
-
-        init(hex: UInt32) {
-            self.init(r: Double((hex >> 16) & 0xFF) / 255, g: Double((hex >> 8) & 0xFF) / 255, b: Double(hex & 0xFF) / 255)
-        }
-
-        var color: Color { Color(red: r, green: g, blue: b) }
-    }
-
-    /// Weisse Schrift; dunkle Schrift (fast schwarz, Nachthimmel); gedämpfte Töne dazu.
-    static let light = RGB(hex: 0xFFFFFF)
-    static let dark = RGB(hex: 0x050208)
-    private static let lightMuted = RGB(hex: 0xFFD9C2)
-    private static let darkMuted = RGB(hex: 0x3A1E08)
-
-    /// Alle Farben zu einem Fortschritt, als sRGB (testbar).
-    struct Palette: Equatable { let top: RGB; let bottom: RGB; let sun: RGB; let content: RGB; let muted: RGB }
-
-    struct Colors { let top: Color; let bottom: Color; let sun: Color; let content: Color; let muted: Color }
-
-    static func palette(_ progress: Double) -> Palette {
-        let p = min(1, max(0, progress))
-        let i = min(keys.lastIndex { $0.at <= p } ?? 0, keys.count - 2)
-        let a = keys[i], b = keys[i + 1]
-        let t = min(1, max(0, (p - a.at) / (b.at - a.at)))
-        let bottom = mix(a.bottom, b.bottom, t)
-        let content = contrast(light, bottom) >= contrast(dark, bottom) ? light : dark
-        let tinted = content == light ? lightMuted : darkMuted
-        return Palette(top: mix(a.top, b.top, t), bottom: bottom, sun: mix(a.sun, b.sun, t), content: content,
-                       muted: contrast(tinted, bottom) >= minContrast ? tinted : content)
-    }
-
-    static func colors(_ progress: Double) -> Colors {
-        let c = palette(progress)
-        return Colors(top: c.top.color, bottom: c.bottom.color, sun: c.sun.color, content: c.content.color, muted: c.muted.color)
-    }
-
-    /// Kontrastverhältnis nach WCAG 2 (1–21).
-    static func contrast(_ x: RGB, _ y: RGB) -> Double {
-        let lx = luminance(x), ly = luminance(y)
-        return (max(lx, ly) + 0.05) / (min(lx, ly) + 0.05)
-    }
-
-    /// Relative Leuchtdichte nach WCAG 2.
-    static func luminance(_ c: RGB) -> Double {
-        func linear(_ v: Double) -> Double { v <= 0.03928 ? v / 12.92 : pow((v + 0.055) / 1.055, 2.4) }
-        return 0.2126 * linear(c.r) + 0.7152 * linear(c.g) + 0.0722 * linear(c.b)
-    }
-
-    private static func mix(_ a: UInt32, _ b: UInt32, _ t: Double) -> RGB {
-        let x = RGB(hex: a), y = RGB(hex: b)
-        return RGB(r: x.r + (y.r - x.r) * t, g: x.g + (y.g - x.g) * t, b: x.b + (y.b - x.b) * t)
-    }
-}
-
 /// Himmel zum Fortschritt 0–1; die Sonne steigt von unten auf.
 struct SunriseBackground: View {
     let progress: Double
@@ -122,6 +37,9 @@ struct NightstandView: View {
     @State private var savedBrightness: CGFloat = 0.5
     /// Licht läuft (für «phone sunrise start/end» im Diagnose-Protokoll, wie Android).
     @State private var lit = false
+    /// Fläche des Himmels und der Texte (global), für die Schrift je Stelle (``SunriseSky/ink(_:area:aspect:)``).
+    @State private var sky: CGRect = .zero
+    @State private var areas: [SkyText: CGRect] = [:]
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
@@ -129,19 +47,20 @@ struct NightstandView: View {
             let progress = progress(at: context.date)
             ZStack {
                 if let progress { SunriseBackground(progress: progress) } else { Color.black.ignoresSafeArea() }
-                let colors = SunriseSky.colors(progress ?? 0)
+                Color.clear.ignoresSafeArea()
+                    .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { sky = $0 }
                 VStack(spacing: 8) {
                     Spacer()
                     Text(Format.time(context.date))
                         .font(Fonts.manrope(64, .bold, relativeTo: .largeTitle))
-                        .foregroundStyle(progress == nil ? Color.white.opacity(0.25) : colors.content)
+                        .onSky(.time, ink: ink(.time, progress), night: Color.white.opacity(0.25), areas: $areas)
                     Text(subtitle(progress))
                         .font(Fonts.manrope(16, .semibold, relativeTo: .headline))
-                        .foregroundStyle(progress == nil ? Color.white.opacity(0.2) : colors.muted)
+                        .onSky(.subtitle, ink: ink(.subtitle, progress), muted: true, night: Color.white.opacity(0.2), areas: $areas)
                     Spacer()
                     Button(L("nightstand_end")) { dismiss() }
                         .font(Fonts.manrope(16, .semibold, relativeTo: .headline))
-                        .foregroundStyle(progress == nil ? Color.white.opacity(0.35) : colors.content)
+                        .onSky(.end, ink: ink(.end, progress), night: Color.white.opacity(0.35), areas: $areas)
                         .padding(.bottom, 32)
                 }
             }
@@ -186,9 +105,21 @@ struct NightstandView: View {
         }
     }
 
+    /// Schrift für den Text `text` auf dem Sonnenaufgang `progress` (`nil` = Nachthimmel, dann keine).
+    private func ink(_ text: SkyText, _ progress: Double?) -> SunriseSky.Ink? {
+        guard let progress else { return nil }
+        let aspect = sky.width > 0 ? sky.height / sky.width : SunriseSky.portrait
+        let area = areas[text].map { SunriseSky.Area.of($0, in: sky) } ?? .center
+        return SunriseSky.ink(progress, area: area, aspect: aspect)
+    }
+
+    /// Nächste Nacht mit Sonnenaufgang wie der Plan der App (Vollaudit AP2-6): früh geweckte bzw. von der Uhr übernommene
+    /// Nächte übersprungen (`doneUntil`), «Gute Nacht» der Uhr verlegt die Zielzeit vor (`WatchNight.apply`).
     private func updatePlan() {
         let next = model.alarms.filter { $0.sunrise != .off }
-        let found = AlarmSchedule.earliestPlan(next, now: Date(), calendar: .gregorianLocal, holidays: model.holidays.dates)
+        let now = Date()
+        let found = WatchNight.shared.apply(AlarmSchedule.earliestPlan(next, now: now, doneUntil: model.doneUntil, calendar: .gregorianLocal,
+                                                                       holidays: model.holidays.dates), now: now)
         // Ins Diagnose-Protokoll nur ein neuer oder geänderter Plan (ohne Wecker-Kennung), wie Android.
         if let found, found != plan { DiagStore.shared.log(.scheduled, "phone sunrise \(Format.logTime(found.windowStart)) – \(Format.logTime(found.target))") }
         plan = found
@@ -233,6 +164,23 @@ struct NightstandView: View {
         case .off:
             return nil
         }
+    }
+}
+
+/// Texte auf dem Himmel des Nachttisch-Modus, je mit eigener Schrift nach ihrer Lage.
+enum SkyText: Hashable { case time, subtitle, end }
+
+extension View {
+    /// Schrift `ink` (Haupt- oder mit `muted` der leisere Ton) samt halbdurchsichtiger Fläche dahinter
+    /// (``SunriseSky/plaque(for:)``); ohne Sonnenaufgang (`ink` = `nil`) nur die gedämpfte Farbe `night`. Misst dabei
+    /// die Lage des Texts in `areas`.
+    func onSky(_ text: SkyText, ink: SunriseSky.Ink?, muted: Bool = false, night: Color,
+               areas: Binding<[SkyText: CGRect]>) -> some View {
+        foregroundStyle(ink.map { (muted ? $0.muted : $0.content).color } ?? night)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 4)
+            .background(Capsule().fill(ink.map { SunriseSky.plaque(for: $0.content) } ?? Color.clear))
+            .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { areas.wrappedValue[text] = $0 }
     }
 }
 

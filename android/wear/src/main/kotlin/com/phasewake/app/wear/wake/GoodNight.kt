@@ -223,13 +223,14 @@ internal fun WakeService.onAsleep(spec: AlarmSpec, latest: Instant, asleep: Inst
     app.appScope.launch {
         app.onsets.set(spec.id, latest, asleep)
         if (plan != null) app.onsetOverride.set(plan)
-        // Auch der Zweitwecker am Handy klingelt diese Nacht früher (Review K-07): als Paket, kommt also auch an,
-        // wenn das Handy gerade nicht erreichbar ist. Nach jedem Einschlafen mit Schlafdauer, auch ohne frühere Zielzeit
-        // (Review H-1): Ein zweites «Gute Nacht» ersetzt so eine frühere Meldung, statt dass das Handy bei ihr bleibt.
+        // Zuerst die eigenen Alarme auf die neue Zielzeit (Audit AN-6): Das Senden ans Handy darf sie nicht aufhalten.
+        app.scheduler.reschedule()
+        // Auch der Zweitwecker am Handy klingelt diese Nacht früher (Review K-07): über die Warteschlange, kommt also auch
+        // an, wenn das Handy gerade nicht erreichbar ist. Nach jedem Einschlafen mit Schlafdauer, auch ohne frühere
+        // Zielzeit (Review H-1): Ein zweites «Gute Nacht» ersetzt so eine frühere Meldung, statt dass das Handy bei ihr bleibt.
         if (plan != null) {
             app.publishOnsetShift(OnsetShift(spec.id, latest.toEpochMilli(), plan.target.toEpochMilli(), System.currentTimeMillis()))
         }
-        app.scheduler.reschedule()
     }
     stopIfIdle()
 }

@@ -26,7 +26,11 @@ import kotlinx.coroutines.withContext
 
 // Abschluss einer Nacht: aufräumen, speichern, Einmal-Wecker aus, neu planen, ans Handy senden.
 
-internal fun WakeService.finishNight(notifyPhone: Boolean = true) {
+/**
+ * Schliesst die Nacht ab. [done]: Die Nacht gilt auch ohne Klingeln als erledigt (am Handy während der Messung beendet,
+ * Audit AN-7), damit sie nicht gleich wieder geplant wird.
+ */
+internal fun WakeService.finishNight(notifyPhone: Boolean = true, done: Boolean = false) {
     val n = night ?: return
     WatchSunrise.stop(this)
     night = null
@@ -56,7 +60,7 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true) {
     }
     // Als Erstes und sofort: Die Nacht gilt als erledigt, auch für ein gleichzeitiges Neuplanen
     // (z. B. die Startseite, die nach dem Weckbildschirm wieder erscheint).
-    if (record != null) app.scheduler.markDone(n.plan.alarmId, doneUntil(n.plan, n.spec))
+    if (record != null || done) app.scheduler.markDone(n.plan.alarmId, doneUntil(n.plan, n.spec))
     // Geweckt: Die Aufzeichnung dieser Nacht endet (Lernphase wie von Hand begonnen, Audit F-01).
     if (record != null) RecordControl.endLearning(this)
     if (notifyPhone) app.appScope.launch { app.sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_STOP, stopMessage(n.plan)) }
@@ -71,12 +75,12 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true) {
         try {
             // Aus dem Speicher statt aus der Nacht: Nach einem Neustart des Dienstes fehlt n.spec.
             val spec = runStep("Wecker laden") { app.alarms.current().alarms.firstOrNull { it.id == n.plan.alarmId } }
-            if (record != null) {
+            if (record != null || done) {
                 if (n.spec == null) app.scheduler.markDone(n.plan.alarmId, doneUntil(n.plan, spec))
                 runStep("Erledigt speichern") { app.scheduler.saveDone() }
-                // Zielzeiten anderer Wecker, die während dieser Nacht fällig wurden, nachholen.
-                runStep("Nacht-Zeitraum merken") { app.scheduler.noteNightEnded(n.plan.windowStart, endedAt) }
             }
+            // Zielzeiten anderer Wecker, die während dieser Nacht fällig wurden, nachholen.
+            if (record != null) runStep("Nacht-Zeitraum merken") { app.scheduler.noteNightEnded(n.plan.windowStart, endedAt) }
             if (transient) runStep("Vorübergehenden Plan löschen") { app.transient.clear(n.plan.alarmId) }
             runStep("Einschlaf-Ausnahme löschen") {
                 cleared = app.onsetOverride.get()
@@ -86,17 +90,18 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true) {
             if (record != null) runStep("Nacht speichern") { app.nights.add(record) }
             if (!transient && spec?.isOneShot == true && spec.enabled) disabled = runStep("Einmal-Wecker ausschalten") { app.alarms.setEnabled(spec.id, false) }
             runStep("Neu planen") { app.scheduler.reschedule() }
+            // Einreihen fürs Handy, solange der Dienst noch läuft (Audit AN-6): Es speichert nur lokal (schnell), gesendet
+            // wird im Hintergrund. Endete der Prozess mit dem Dienst, ginge die Nacht sonst nie ans Handy.
+            if (record != null) runStep("Nacht einreihen") { app.sync.publishNight(record) }
+            disabled?.let { runStep("Einmal-Wecker einreihen") { app.sync.publishAlarms(it) } }
+            // Ausnahme weg: Auch das Handy plant wieder ohne frühere Zielzeit (Review H-1; Meldung ohne frühere Zielzeit).
+            cleared?.let { runStep("Einschlaf-Ausnahme einreihen") { app.publishOnsetShift(OnsetShift.cancel(it, System.currentTimeMillis())) } }
         } finally {
             withContext(Dispatchers.Main) {
                 finishing--
                 stopIfIdle()
             }
         }
-        // Senden darf das Ende des Dienstes überdauern; die Daten liegen schon lokal.
-        if (record != null) app.sync.publishNight(record)
-        disabled?.let { app.sync.publishAlarms(it) }
-        // Ausnahme weg: Auch das Handy plant wieder ohne frühere Zielzeit (Review H-1; Meldung ohne frühere Zielzeit).
-        cleared?.let { app.publishOnsetShift(OnsetShift.cancel(it, System.currentTimeMillis())) }
     }
 }
 

@@ -2,42 +2,65 @@ name: Einschlafklänge
 
 # Lädt freie Aufnahmen (CC0) für Regen und Meer, macht daraus nahtlose Schleifen und legt sie in den
 # Zweig «klaenge». Nur von Hand gestartet; die Dateien kommen danach per Merge ins Repo.
+# Zwei Jobs (Audit 071597f DA-3): «bauen» lädt und rechnet nur mit Leserechten, «ablegen» schreibt den Zweig
+# und führt keinen fremden Code aus.
 on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  klaenge:
+  bauen:
+    name: Schleifen und Wecktöne bauen
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
       - name: Werkzeuge
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg unzip
-      - name: Aufnahmen laden
         run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg unzip
+          # Fest gewählte Version mit Prüfsummen (wie «Feiertage»): kein ungeprüftes Paket im Lauf.
+          pip install --quiet --require-hashes --only-binary :all: -r .github/scripts/klaenge-requirements.txt
+      - name: Aufnahmen laden
+        shell: bash
+        run: |
+          set -euo pipefail
           mkdir -p raw && cd raw
+          # Jede Datei mit fester Prüfsumme (Stand 11.11.2026): ändert sich eine Aufnahme auf opengameart.org,
+          # bricht der Lauf ab, statt Ungeprüftes in die Apps zu legen. Neue Aufnahme: anhören, Lizenz prüfen,
+          # sha256 hier nachführen.
+          get() {
+            curl -fsSL -A "Mozilla/5.0" -o "$1" "https://opengameart.org/sites/default/files/$2"
+            echo "$3  $1" | sha256sum --check --strict -
+          }
           # Regen: «Rain (loopable)» von Ylmir, CC0 – https://opengameart.org/content/rain-loopable
-          curl -fsSL -A "Mozilla/5.0" -o rain.zip "https://opengameart.org/sites/default/files/Rain%20OGG.zip"
+          get rain.zip "Rain%20OGG.zip" e68f3e1c77493cf43bec84cebff5043bff6be9ce16d59b24caa988cd460aa75b
           unzip -o -q rain.zip -d rain
           # Meer: «Sea and river wave sounds» (Vistula) von RandomMind, CC0 – https://opengameart.org/content/sea-and-river-wave-sounds
-          curl -fsSL -A "Mozilla/5.0" -o ocean.mp3 "https://opengameart.org/sites/default/files/VistulaShort_0.mp3"
+          get ocean.mp3 VistulaShort_0.mp3 8c24607e41edd6f018ec3582a07e5a8dbc57347276339cb68440951a0fb4cfb1
           # Wald bei Nacht: «Crickets ambient noise (loopable)» von Wolfgang_, CC0 – https://opengameart.org/content/crickets-ambient-noise-loopable
-          curl -fsSL -A "Mozilla/5.0" -o crickets.mp3 "https://opengameart.org/sites/default/files/crickets_1.mp3"
+          get crickets.mp3 crickets_1.mp3 5b5bd1f744087888c5623543c3ff80be9c2ce106093993e7c8a8492b0280b2c0
           # Kaminfeuer: «Fireplace sound loop» von PagDev, CC0 – https://opengameart.org/content/fireplace-sound-loop
-          curl -fsSL -A "Mozilla/5.0" -o fire.wav "https://opengameart.org/sites/default/files/fire.wav"
+          get fire.wav fire.wav 85ca0cc60d0c037fff8b185e31ad1fcdbda6ce45eee17c3ee1318d1b8f59e330
           # Bach: «30 CC0 SFX loops» von rubberduck, CC0 – https://opengameart.org/content/30-cc0-sfx-loops
-          curl -fsSL -A "Mozilla/5.0" -o loops.zip "https://opengameart.org/sites/default/files/sfx_loops.zip"
+          get loops.zip sfx_loops.zip 9c013474c7e56192a0d1b2840535a1e1d8b93166948d4a9f7136bb6c3d5421cd
           unzip -o -q loops.zip -d loops
           # Weckton «Morgenvögel»: «Ambient bird sounds» von isaiah658, CC0 – https://opengameart.org/content/ambient-bird-sounds
-          curl -fsSL -A "Mozilla/5.0" -o birds.ogg "https://opengameart.org/sites/default/files/birds-isaiah658_0.ogg"
+          get birds.ogg birds-isaiah658_0.ogg 359e4e3f9da9d75aac64cede511c7e3ef8b461f9d9f8c230f8f80e44c4b3e35f
           echo "::notice title=Loops::$(find loops -type f | tr '\n' ' ')"
           ls -laR
       - name: Schleifen bauen
+        shell: bash
         run: |
+          set -euo pipefail
           exec > >(tee build.log) 2>&1
-          pip install --quiet numpy
           rain=$(ls -S raw/rain/*.ogg | head -1)  # längste Aufnahme
           ffmpeg -loglevel error -y -i "$rain" -ac 2 -ar 44100 raw/rain.wav
           ffmpeg -loglevel error -y -i raw/ocean.mp3 -ac 2 -ar 44100 raw/ocean.wav
@@ -52,7 +75,7 @@ jobs:
           fd=$(ffprobe -v error -show_entries format=duration -of csv=p=0 raw/fire44.wav)
           flen=$(python3 -c "print(min(90, float('$fd') - 6))")
           python3 .github/scripts/make-sound-loops.py raw/fire44.wav raw/fire-loop.wav 1 "$flen"
-          brook=$(find raw/loops -type f \( -iname '*flow*' -o -iname '*stream*' -o -iname '*river*' \) | head -1)
+          brook=$(find raw/loops -type f \( -iname '*flow*' -o -iname '*stream*' -o -iname '*river*' \) -print -quit)
           echo "::notice title=Bach::$brook"
           ffmpeg -loglevel error -y -stream_loop 9 -i "$brook" -ac 2 -ar 44100 raw/brook.wav
           bd=$(ffprobe -v error -show_entries format=duration -of csv=p=0 raw/brook.wav)
@@ -76,23 +99,51 @@ jobs:
             ffmpeg -loglevel error -y -i "$f" -ac 1 -c:a adpcm_ima_qt out/tones/$n.caf
           done
           ls -la out
-      - name: In den Zweig «klaenge» legen
-        run: |
-          git config user.name "r1AD"
-          git config user.email "r1adBE@users.noreply.github.com"
-          git fetch origin
-          git checkout -B klaenge origin/main
-          mkdir -p android/app/src/main/res/raw android/wear/src/main/res/raw ios/PhaseWake/Sounds
-          cp out/*.m4a android/app/src/main/res/raw/
-          # Die Uhr braucht nur «Vögel» als letzte Rückfallebene des Wecktons.
-          cp out/wake_birds.m4a android/wear/src/main/res/raw/
-          cp out/sound_*.m4a ios/PhaseWake/Sounds/
-          cp out/tones/*.caf ios/PhaseWake/Sounds/
-          git add android/app/src/main/res/raw android/wear/src/main/res/raw ios/PhaseWake/Sounds
-          git commit -m "Einschlafklänge (Regen, Meer, Wald bei Nacht, Kaminfeuer, Bach; CC0) und Wecktöne (Glockenspiel, Gong, Harfe, Morgenvögel)"
-          git push -f origin klaenge
+      - name: Ergebnis ablegen
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: klaenge
+          path: out/
+          retention-days: 1
+          if-no-files-found: error
       - name: Fehler anzeigen
         if: failure()
+        shell: bash
         run: |
           echo "::error title=Dateien::$(ls -laR raw out 2>&1 | head -30 | tr '\n' ' ')"
           [ -f build.log ] && echo "::error title=Log::$(tail -20 build.log | tr '\n' ' ')" || true
+
+  ablegen:
+    name: In den Zweig «klaenge» legen
+    needs: bauen
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          fetch-depth: 1
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: klaenge
+          path: ${{ runner.temp }}/out
+      - name: Zweig schreiben
+        shell: bash
+        env:
+          OUT: ${{ runner.temp }}/out
+        run: |
+          set -euo pipefail
+          # Nur Dateien kopieren, kein Code aus dem Bau-Job.
+          git config user.name "r1AD"
+          git config user.email "r1adBE@users.noreply.github.com"
+          git checkout -B klaenge
+          mkdir -p android/app/src/main/res/raw android/wear/src/main/res/raw ios/PhaseWake/Sounds
+          cp "$OUT"/*.m4a android/app/src/main/res/raw/
+          # Die Uhr braucht nur «Vögel» als letzte Rückfallebene des Wecktons.
+          cp "$OUT"/wake_birds.m4a android/wear/src/main/res/raw/
+          cp "$OUT"/sound_*.m4a ios/PhaseWake/Sounds/
+          cp "$OUT"/tones/*.caf ios/PhaseWake/Sounds/
+          git add android/app/src/main/res/raw android/wear/src/main/res/raw ios/PhaseWake/Sounds
+          git commit -m "Einschlafklänge (Regen, Meer, Wald bei Nacht, Kaminfeuer, Bach; CC0) und Wecktöne (Glockenspiel, Gong, Harfe, Morgenvögel)"
+          git push -f origin klaenge

@@ -98,9 +98,17 @@ class PhoneListenerServiceTest {
         queued(DataLayer.PATH_MSG_ALARMS, QueueMessages.encodeAlarms(AlarmSnapshot(alarms, System.currentTimeMillis() + 60_000)))
         assertEquals(alarms, app.alarms.current().alarms)
         awaitDiag { it == "from watch" }
-        // Ein älterer Stand der Uhr (vor der letzten Änderung am Handy) ändert nichts.
+        // Ein älterer Stand der Uhr (vor der letzten Änderung am Handy) ändert nichts; die Uhr kennt w aber nicht: Das Handy
+        // reiht seinen Stand für sie ein (Audit AN-1), damit beide gleich werden.
+        outbox.drop("")
         queued(DataLayer.PATH_MSG_ALARMS, QueueMessages.encodeAlarms(AlarmSnapshot(emptyList(), 1L)))
         assertEquals(alarms, app.alarms.current().alarms)
+        val reply = outbox.pending().single { it.key == QueueMessages.KEY_ALARMS }
+        assertEquals(alarms, QueueMessages.decodeAlarms(reply.body)?.alarms)
+        // Gleicher Stand: keine Antwort.
+        outbox.drop("")
+        queued(DataLayer.PATH_MSG_ALARMS, QueueMessages.encodeAlarms(app.alarms.current()))
+        assertTrue(outbox.pending().none { it.key == QueueMessages.KEY_ALARMS })
     }
 
     @Test
@@ -195,8 +203,27 @@ class PhoneListenerServiceTest {
         service.onMessageReceived(Event(DataLayer.PATH_ACK, "veraltet".encodeToByteArray()))
         service.onMessageReceived(Event(DataLayer.PATH_ACK))
         assertEquals(listOf(sent.id), outbox.pending().map { it.id })
+        // Im App-Bereich (Audit AN-4), nicht im Thread des Empfangs: kurz warten.
         service.onMessageReceived(Event(DataLayer.PATH_ACK, sent.id.encodeToByteArray()))
-        assertTrue(outbox.pending().isEmpty())
+        val until = System.nanoTime() + Duration.ofSeconds(10).toNanos()
+        while (outbox.pending().isNotEmpty()) {
+            check(System.nanoTime() < until) { "Bestätigung nicht verarbeitet" }
+            Thread.sleep(5)
+        }
+    }
+
+    @Test
+    fun implausibleTimesInStopAndRingDoNotCrash() {
+        // Audit AN-5: Long.MAX_VALUE als Zeit lief beim Aussetzen des Zweitweckers über (Absturz des Dienstes).
+        val max = Long.MAX_VALUE
+        service.onMessageReceived(Event(DataLayer.PATH_STOP, "a|$max|$max".encodeToByteArray()))
+        awaitDiag { it == "from watch (incomplete, ignored)" }
+        val now = System.currentTimeMillis()
+        service.onMessageReceived(Event(DataLayer.PATH_STOP, "a|$max|$now".encodeToByteArray()))
+        awaitDiag { it == "from watch" }
+        service.onMessageReceived(Event(DataLayer.PATH_RING, "a|$max|$max|2".encodeToByteArray()))
+        awaitDiag { it == "watch rang (incomplete, ignored)" }
+        runBlocking { app.backup.watchHandled("a", Instant.ofEpochMilli(max)) }
     }
 
     @Test

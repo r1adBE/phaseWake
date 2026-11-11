@@ -60,9 +60,9 @@
     <string name="duration_hours_minutes">%1$d س %2$d د</string>
     <string name="home_last_night">الليلة الماضية</string>
     <string name="notification_open">فتح</string>
-    <string name="home_good_night_too_far">متاح قبل المنبّه بـ 16 ساعة</string>
+    <string name="home_good_night_too_far">متاح قبل المنبّه بـ ١٦ ساعة</string>
     <!-- Weckaufgabe am Handy -->
-    <string name="wake_task_on_phone">حلّ العملية على الهاتف أو اضغط 5 ث</string>
+    <string name="wake_task_on_phone">حلّ العملية على الهاتف أو اضغط ٥ ث</string>
     <!-- Wecker-Editor auf der Uhr: Schlüssel und Texte wie am Handy, dazu «editor_enabled» -->
     <string name="home_add_alarm">منبّه جديد</string>
     <string name="editor_new">منبّه جديد</string>

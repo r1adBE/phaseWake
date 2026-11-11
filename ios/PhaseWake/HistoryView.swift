@@ -275,7 +275,7 @@ private extension NightRecord {
 
 /// Nachtkarte einer Phase-Wake-Nacht: Datum und Weckzeit, kleines Schlafprofil (ohne Phasen die Bewegungskurve),
 /// Summen, Weckgrund, Datenqualität und der Abgleich mit der Phase beim Wecken; ein Tipp öffnet die Detailseite.
-/// Notizen und Geräusche bleiben eigene Knöpfe.
+/// Notizen (in einer Zeile mit «Details ›», ``NightActionsRow``) und Geräusche bleiben eigene Knöpfe.
 private struct NightCard: View {
     let night: NightRecord
     let stages: [StageSpan]
@@ -291,8 +291,8 @@ private struct NightCard: View {
             Button(action: onOpen) { summary }
                 .buttonStyle(.plain)
                 .accessibilityHint(L("night_open"))
-            NightNotesButton(nightDate: SleepNotes.nightDate(of: night, calendar: .gregorianLocal),
-                             title: night.wokeAt.formatted(date: .abbreviated, time: .omitted))
+            NightActionsRow(nightDate: SleepNotes.nightDate(of: night, calendar: .gregorianLocal),
+                            title: night.wokeAt.formatted(date: .abbreviated, time: .omitted), onOpen: onOpen)
             NightSoundsButton(night: SleepNotes.nightDate(of: night, calendar: .gregorianLocal),
                               title: night.wokeAt.formatted(date: .abbreviated, time: .omitted))
         }
@@ -327,7 +327,6 @@ private struct NightCard: View {
             if let unmeasured = unmeasuredText(night) {
                 Text(unmeasured).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
             }
-            DetailsRow()
         }
         .contentShape(Rectangle())
     }

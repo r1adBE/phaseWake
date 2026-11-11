@@ -46,7 +46,6 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 
 // Startbildschirm der Uhr ohne eigenen Zustand: nächstes Fenster, letzte Nacht, Wecker.
 
@@ -323,7 +322,8 @@ private fun dialFraction(instant: Instant, zone: ZoneId): Float {
     return ((t.hour % 12) * 60 + t.minute) / 720f
 }
 
-private val shortTime: DateTimeFormatter get() = localizedDigits(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
+/** Kurze Uhrzeit nach 12/24-h-Einstellung der Uhr (Audit N-10). */
+private val shortTime: DateTimeFormatter get() = timeFormatter()
 
 private fun formatTime(instant: Instant, zone: ZoneId): String = shortTime.format(instant.atZone(zone))
 

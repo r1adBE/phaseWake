@@ -17,10 +17,14 @@ public enum NoiseFloor {
     /// Obergrenze des Grundrauschens (m/s²): Beginnt eine Messung unruhig, darf mässige Bewegung nicht als ruhig gelten.
     /// Rund das Doppelte des stillen Mittels der Galaxy Watch (07.11.2026); so bleibt Leicht ≤ 0.1 und Wach ≤ 0.2.
     public static let maxFloor = 0.04
-    /// Im Weckfenster höchstens dieses Vielfache des bekannten Grundrauschens (Einschlaf-Messung dieser Nacht bzw.
-    /// gelernt, ``windowFloor(_:config:)``): Beginnt das Fenster unruhig, hebt die Unruhe die Schwellen nicht bis
-    /// ``maxFloor`` an.
+    /// Im Weckfenster höchstens dieses Vielfache des bekannten Grundrauschens (``priorFloor(_:)``,
+    /// ``windowFloor(_:config:)``): Beginnt das Fenster unruhig, hebt die Unruhe die Schwellen nicht bis ``maxFloor`` an.
     public static let priorFactor = 1.5
+    /// Plausibilität des Vorwissens (Fix KN-2, vorsichtig, r1AD): Die Obergrenze ``priorFactor`` × Vorwissen gilt nur,
+    /// wenn das Vorwissen (``priorFloor(_:)``) mindestens dieser Anteil des Grundrauschens des Fensters ohne Obergrenze
+    /// ist. Ein unplausibel tiefes Vorwissen (z. B. 0.002 bei einer Uhr, die ruhig 0.02 misst) senkte die Schwellen sonst
+    /// fast auf die Startwerte, und das Rauschen der Uhr zählte wieder als Bewegung.
+    public static let priorMinShare = 0.25
 
     /// Grundrauschen: 20. Perzentil der vorhandenen Bewegungen (Rangmethode, aufsteigend sortiert, Position ⌈0.2 · n⌉,
     /// gezählt ab 1), höchstens ``maxFloor``. Leere Bewegungen zählen nicht.
@@ -35,14 +39,20 @@ public enum NoiseFloor {
         return min(values[rank - 1], maxFloor)
     }
 
-    /// Grundrauschen im Weckfenster (``WakeDetector``): wie ``floor(_:personal:)``, mit dem bekannten Grundrauschen als
-    /// Vorwissen – dem der Einschlaf-Messung dieser Nacht (``DetectorConfig/onsetFloor``), sonst dem gelernten
-    /// (``DetectorConfig/personalFloor``). Gibt es eines, liegt das Ergebnis höchstens bei ``priorFactor`` × diesem (und
-    /// nie über ``maxFloor``); ohne bleibt es bei ``floor(_:personal:)``.
+    /// Vorwissen für die Obergrenze im Weckfenster: das grössere von Grundrauschen der Einschlaf-Messung dieser Nacht
+    /// (``DetectorConfig/onsetFloor``) und gelerntem (``DetectorConfig/personalFloor``); `nil` ohne beide (Fix KN-2).
+    public static func priorFloor(_ config: DetectorConfig) -> Double? {
+        [config.onsetFloor, config.personalFloor].compactMap { $0 }.max()
+    }
+
+    /// Grundrauschen im Weckfenster (``WakeDetector``): wie ``floor(_:personal:)``; solange die Messung zu wenige Werte
+    /// hat, gilt das der Einschlaf-Messung dieser Nacht (``DetectorConfig/onsetFloor``), sonst das gelernte
+    /// (``DetectorConfig/personalFloor``). Gibt es Vorwissen (``priorFloor(_:)``) und ist es mindestens
+    /// ``priorMinShare`` × dieses Grundrauschen, liegt das Ergebnis höchstens bei ``priorFactor`` × Vorwissen (und nie
+    /// über ``maxFloor``); sonst bleibt es bei ``floor(_:personal:)``.
     public static func windowFloor(_ motions: [Double?], config: DetectorConfig) -> Double? {
-        let prior = config.onsetFloor ?? config.personalFloor
-        guard let floor = Self.floor(motions, personal: prior) else { return nil }
-        guard let prior else { return floor }
+        guard let floor = Self.floor(motions, personal: config.onsetFloor ?? config.personalFloor) else { return nil }
+        guard let prior = priorFloor(config), prior >= priorMinShare * floor else { return floor }
         return min(floor, priorFactor * prior)
     }
 

@@ -58,7 +58,7 @@ jobs:
           set -o pipefail
           # Vor dem Signieren noch einmal die Unit-Tests dieses Stands (wie in der CI).
           ./gradlew --stacktrace --continue :core:test :shared:testDebugUnitTest :app:testDebugUnitTest :wear:testDebugUnitTest 2>&1 | tee build.log
-      - name: Upload-Schlüssel bereitstellen
+      - name: Secrets vorhanden?
         shell: bash
         env:
           KEYSTORE_BASE64: ${{ secrets.PLAY_UPLOAD_KEYSTORE_BASE64 }}
@@ -67,6 +67,8 @@ jobs:
           KEY_PASSWORD: ${{ secrets.PLAY_UPLOAD_KEY_PASSWORD }}
         run: |
           set -euo pipefail
+          # Nur prüfen, ob alles da ist (früh scheitern statt nach dem Build). Der Schlüssel wird erst beim
+          # Signieren als Datei abgelegt (Audit 071597f DA-2).
           missing=""
           [ -n "$KEYSTORE_BASE64" ] || missing="$missing PLAY_UPLOAD_KEYSTORE_BASE64"
           [ -n "$STORE_PASSWORD" ] || missing="$missing PLAY_UPLOAD_STORE_PASSWORD"
@@ -76,8 +78,6 @@ jobs:
             echo "::error title=Store-Build::Secrets fehlen:$missing (Settings → Secrets and variables → Actions, docs/PLAY.md)"
             exit 1
           fi
-          printf '%s' "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/upload.jks"
-          [ -s "$RUNNER_TEMP/upload.jks" ] || { echo "::error title=Store-Build::PLAY_UPLOAD_KEYSTORE_BASE64 ergibt keine Datei"; exit 1; }
       - name: Regeln (Dateigrösse, Build-Nummern, Version)
         run: |
           python3 ../.github/scripts/line_limit.py --ci
@@ -90,20 +90,28 @@ jobs:
           PHASEWAKE_BUILD: ${{ github.run_number }}
         run: |
           set -o pipefail
-          # Wie die CI: Release-Manifeste für release_check.py, dazu die Bundles. Ohne Passwörter: Gradle und alle
-          # Bibliotheken des Builds sehen die Secrets nicht (Audit 5314d25 D-06); signiert wird im nächsten Schritt.
+          # Wie die CI: Release-Manifeste für release_check.py, dazu die Bundles. Ohne Schlüssel und Passwörter:
+          # Gradle und alle Bibliotheken des Builds sehen weder die Secrets noch die Schlüsseldatei (Audit 5314d25
+          # D-06, 071597f DA-2); signiert wird erst nach dem Beenden des Gradle-Daemons.
           ./gradlew --stacktrace :app:assembleRelease :wear:assembleRelease :app:bundleRelease :wear:bundleRelease 2>&1 | tee -a build.log
       - name: Store-Build prüfen
         run: python3 ../.github/scripts/release_check.py
       - name: Bundles signieren
         shell: bash
         env:
+          KEYSTORE_BASE64: ${{ secrets.PLAY_UPLOAD_KEYSTORE_BASE64 }}
           STORE_PASSWORD: ${{ secrets.PLAY_UPLOAD_STORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.PLAY_UPLOAD_KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.PLAY_UPLOAD_KEY_PASSWORD }}
         run: |
           set -euo pipefail
-          # Nur hier die Passwörter: jarsigner (JDK) signiert die Bundles wie Android Gradle (JAR-Signatur, SHA-256).
+          # Erst den Gradle-Daemon (samt Plugins und Bibliotheken des Builds) beenden: er läuft sonst weiter und
+          # könnte die Schlüsseldatei lesen, die erst jetzt entsteht (Audit 071597f DA-2).
+          ./gradlew --stop
+          printf '%s' "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/upload.jks"
+          [ -s "$RUNNER_TEMP/upload.jks" ] || { echo "::error title=Store-Build::PLAY_UPLOAD_KEYSTORE_BASE64 ergibt keine Datei"; exit 1; }
+          # Nur hier Schlüssel und Passwörter: jarsigner (JDK) signiert die Bundles wie Android Gradle (JAR-Signatur,
+          # SHA-256).
           info=$(keytool -list -v -keystore "$RUNNER_TEMP/upload.jks" -storepass:env STORE_PASSWORD -alias "$KEY_ALIAS")
           case "$info" in
             *"RSA key"*) sigalg=SHA256withRSA ;;

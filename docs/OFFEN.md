@@ -1,6 +1,10 @@
 # Offene Punkte
 
-Stand 11.11.2026, Phase Wake 16.2.2. Erledigtes wandert nach [ENTSCHEIDE.md](ENTSCHEIDE.md).
+Stand 12.11.2026, Phase Wake 16.2.2. Erledigtes wandert nach [ENTSCHEIDE.md](ENTSCHEIDE.md).
+
+## Erledigt am 12.11.2026 (Details in ENTSCHEIDE.md)
+
+- Audit 071597f (Vollaudit, r1AD «Alle machen», Android und Apple gleich): Kern KN-1 bis KN-7 (Grenze des Grundrauschens nur mit plausiblem Vorwert, Grundrauschen der Einschlaf-Messung gleich gerechnet, Zeiten der Gegenseite geprüft, unlesbare Wecker nicht überschreiben, Testvektoren für alle Grenzwerte, Stand der Lernphase steigt immer); Android AN-1 bis AN-8 (Abgleich kommt zusammen, Warteschlange ohne Verfall der Stände, Nachholen und Senden ausserhalb der Sperre, sichere Reihenfolge am Ende der Nacht); Apple AP2-1 bis AP2-10; Daten DA-1 bis DA-9 (Store-Build signiert erst nach dem Gradle-Daemon, «Einschlafklänge» mit Prüfsummen und getrennten Rechten, geräteverschlüsselter Speicher in DATENSCHUTZ, Entwurf «Datensicherheit» in PLAY.md, Hinweise der nativen MediaPipe-Bibliotheken); Oberfläche N-1 bis N-11 und Vorschläge 1–5. Erledigt am 12.11.2026. Offen dazu: verlangte Prüfung gitleaks (Punkt 15a), Gerätetest Apple Watch (11u).
 
 ## Erledigt am 11.11.2026 (Details in ENTSCHEIDE.md)
 
@@ -101,7 +105,8 @@ Geprüft und so belassen: Apple-Sitzung misst die ersten 5 Min. eines 30-Min.-Fe
 11r. Erinnerung am Abend auf der Apple Watch prüfen (Audit c448756): Mitteilung 60 Min vor der Bettzeit; Antippen öffnet die Uhr-App, Diagnose der Uhr `session … target …` (scharf) und `recorder start until …` bzw. `auto onset recorder …`; ohne Öffnen: iPhone-Nacht-Check rot «Wecker nicht scharf – nur Mitteilung, keine Phasen», am Morgen `auto onset not computed: no recorder` und kein `… ignored, short night`. Mit Rekorder, aber ohne Einschlafen (z. B. wach gelegen): `… ignored, short night unknown` bis 10 Min vor der Zielzeit. Nur ein `recorder start` je Nacht.
 11s. Datenweg als Nachricht prüfen (Audit c448756, Galaxy Watch): Handy und Uhr mit dieser Version; Nacht bei getrenntem Handy (Bluetooth aus) – am Morgen nach dem Verbinden erscheint sie im Verlauf (Uhr sendet erneut, bis das Handy bestätigt); «Nacht aufzeichnen» über 12 Std. (grosse Aufzeichnung über einen Kanal) kommt an; Wecker am Handy ändern bei getrennter Uhr – nach dem Verbinden übernimmt die Uhr; nach dem Update keine alten Pakete mehr im Data Layer. Mit einer älteren Uhr-Version: Nacht-Check «Uhr-App veraltet» (Wecker kommen dort nicht mehr an, Entscheid 10.11.2026).
 11t. Audit d4cbf03 am Gerät prüfen (r1AD): «Nacht aufzeichnen» ohne Diagnose (Galaxy Watch: Startzeile `… wl=sample mode=sample`, stündlich `record stat …` mit Lücken zwischen den Stichproben, Akku über die Nacht) und mit Diagnose (Uhr bzw. Handy, `mode=continuous`); Ende beim Wecken (`record end wake`, auch auf der Apple Watch `record stop wake`); Nacht-Check rot «Messung heute Nacht» bei Uhr-Akku unter 30 % zur Bettzeit − 1 Std. (Galaxy) bzw. ohne Erlaubnis «Bewegung & Fitness» (Apple), weg nach dem Wecken; Schlummer-Knopf auf kleinen Uhren nicht abgeschnitten; Testversion auf Handy und Uhr installierbar.
-11u. Audit 5314d25 am Gerät prüfen (r1AD, Apple Watch): «Stopp» im Weckhinweis des Systems beendet den Wecker ganz – iPhone klingelt nicht weiter, keine Rückfall-Mitteilung danach, Diagnose der Uhr mit Grund des Sitzungsendes (AP-1); eine verwaiste Sitzung (z. B. Wecker geändert, während die Uhr-App im Hintergrund war) endet beim nächsten Öffnen ohne weitere Haptik (AP-3).
+11u. Audit 5314d25 am Gerät prüfen (r1AD, Apple Watch): «Stopp» im Weckhinweis des Systems beendet den Wecker ganz – iPhone klingelt nicht weiter, keine Rückfall-Mitteilung danach, Diagnose der Uhr mit Grund des Sitzungsendes (AP-1); eine verwaiste Sitzung (z. B. Wecker geändert, während die Uhr-App im Hintergrund war) endet beim nächsten Öffnen ohne weitere Haptik (AP-3). Dazu (Audit 071597f AP2-4): prüfen, ob eine solche verwaiste oder nicht passende Sitzung beim Beenden eine kurze Haptik als Warnung braucht – heute endet sie still, nur mit Zeile im Diagnose-Protokoll.
+11v. Bestätigen (r1AD, Audit 071597f KN-2): Hat das Weckfenster weniger als 4 Bewegungswerte, gilt weiterhin das Grundrauschen der Einschlaf-Messung vor dem gelernten (PHASENERKENNUNG 3a). So belassen oder ändern?
 
 ## Bekannte Grenzen
 
@@ -113,4 +118,5 @@ Geprüft und so belassen: Apple-Sitzung misst die ersten 5 Min. eines 30-Min.-Fe
 ## Aufräumen
 
 15. **GitHub-Einstellungen (r1AD, im Browser):** Erledigt (geprüft 11.11.2026): Wiki und Projects aus, Topics gesetzt, Regel für `main` aktiv (Löschen und Force-Push verboten, grüne Prüfungen «Android (Kern, Handy, Uhr)», «Apple-Kern (Swift)», «Apple-Apps (iPhone, Watch)» verlangt). Aus der Sitzung sind Einstellungen nicht erlaubt.
+15a. **Verlangte Prüfung gitleaks (r1AD, im Browser, Audit 071597f DA-4):** Settings → Rules → Regel für `main` → «Require status checks to pass» → «Add checks» → «Geheimnisse (gitleaks)» hinzufügen und speichern. Bisher verlangt die Regel nur die drei Build-Prüfungen; ein Fund von gitleaks hält einen Merge so noch nicht auf.
 16. **Prüfsummen der Gradle-Abhängigkeiten (Audit 5314d25 D-06):** Dependabot trägt bei Gradle-Updates keine neuen Prüfsummen in `android/gradle/verification-metadata.xml` ein; solche Pull Requests scheitern in der CI, bis die Datei neu erzeugt ist (ENTWICKLUNG.md 3).

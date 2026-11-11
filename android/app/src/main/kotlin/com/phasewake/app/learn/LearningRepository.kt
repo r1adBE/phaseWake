@@ -9,6 +9,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import com.phasewake.app.core.Learning
+import com.phasewake.app.core.TimeBounds
 import com.phasewake.app.shared.LearningSnapshot
 import java.time.Instant
 import kotlinx.coroutines.flow.Flow
@@ -69,7 +70,7 @@ class LearningRepository(private val store: DataStore<Preferences>) {
                 prefs[SINCE] = now.toEpochMilli()
                 started = true
             }
-            prefs[UPDATED_AT] = now.toEpochMilli()
+            stamp(prefs, now)
         }
         return started
     }
@@ -80,7 +81,7 @@ class LearningRepository(private val store: DataStore<Preferences>) {
             clearValues(prefs)
             prefs[SINCE] = now.toEpochMilli()
             prefs[SEEN] = false
-            prefs[UPDATED_AT] = now.toEpochMilli()
+            stamp(prefs, now)
         }
     }
 
@@ -92,7 +93,7 @@ class LearningRepository(private val store: DataStore<Preferences>) {
         store.edit { prefs ->
             prefs[SINCE] = now.toEpochMilli()
             if (prefs[NIGHTS] != null) prefs[RELEARN] = true else clearValues(prefs)
-            prefs[UPDATED_AT] = now.toEpochMilli()
+            stamp(prefs, now)
         }
     }
 
@@ -110,7 +111,7 @@ class LearningRepository(private val store: DataStore<Preferences>) {
             values.latencyMinutes?.let { prefs[LATENCY] = it }
             prefs[NIGHTS] = values.nights
             prefs[SEEN] = false
-            prefs[UPDATED_AT] = now.toEpochMilli()
+            stamp(prefs, now)
             done = true
         }
         return done
@@ -119,6 +120,15 @@ class LearningRepository(private val store: DataStore<Preferences>) {
     /** Karte «Angepasst an dich» bestätigt. */
     suspend fun setSeen() {
         store.edit { it[SEEN] = true }
+    }
+
+    /**
+     * Zeitpunkt der Änderung: [now], mindestens der bisherige + 1 ([TimeBounds.next], Fix KN-7): Die Uhr übernimmt nur
+     * einen neueren Stand; zwei Änderungen in derselben Millisekunde oder nach einer zurückgestellten Uhrzeit gingen sonst
+     * verloren. Wie `LearningState` (Swift).
+     */
+    private fun stamp(prefs: MutablePreferences, now: Instant) {
+        prefs[UPDATED_AT] = TimeBounds.next(now.toEpochMilli(), prefs[UPDATED_AT])
     }
 
     private fun clearValues(prefs: MutablePreferences) {

@@ -6,7 +6,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.ui.Alignment
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -108,22 +110,32 @@ fun TonightNotesCard(selected: List<String>, custom: List<CustomNote>, container
 
 /**
  * Notizen einer vergangenen Nacht (Morgenbericht, Verlauf): eine Zeile mit den gesetzten Notizen,
- * antippen klappt die Chips zum Ändern auf.
+ * antippen klappt die Chips zum Ändern auf. [trailing]: rechts in derselben Zeile (Verlauf: «Details ›»,
+ * Gestaltung 4); die Chips klappen darunter über die ganze Breite auf.
  */
 @Composable
-fun NightNotes(selected: List<String>, custom: List<CustomNote>, onToggle: (String) -> Unit, modifier: Modifier = Modifier) {
+fun NightNotes(
+    selected: List<String>,
+    custom: List<CustomNote>,
+    onToggle: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    trailing: (@Composable () -> Unit)? = null,
+) {
     val context = LocalContext.current
     var open by rememberSaveable { mutableStateOf(false) }
     val names = selected.mapNotNull { noteName(context, it, custom) }
     Column(modifier.fillMaxWidth()) {
-        Text(
-            if (names.isEmpty()) stringResource(R.string.notes_label) else stringResource(R.string.notes_value, names.joinToString(", ")),
-            style = MaterialTheme.typography.labelLarge,
-            color = MaterialTheme.colorScheme.primary,
-            // Mindestens 48 dp hoch (Tippziel, Audit UI-8).
-            modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).clickable(role = Role.Button) { open = !open }.padding(vertical = 8.dp)
-                .wrapContentHeight(Alignment.CenterVertically),
-        )
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(
+                if (names.isEmpty()) stringResource(R.string.notes_label) else stringResource(R.string.notes_value, names.joinToString(", ")),
+                style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.primary,
+                // Mindestens 48 dp hoch (Tippziel, Audit UI-8).
+                modifier = Modifier.weight(1f).heightIn(min = 48.dp).clickable(role = Role.Button) { open = !open }.padding(vertical = 8.dp)
+                    .wrapContentHeight(Alignment.CenterVertically),
+            )
+            trailing?.let { Box(Modifier.padding(start = 12.dp)) { it() } }
+        }
         AnimatedVisibility(open) { NoteChips(selected, custom, onToggle) }
     }
 }

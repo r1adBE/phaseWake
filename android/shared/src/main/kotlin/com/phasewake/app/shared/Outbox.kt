@@ -8,7 +8,16 @@ import com.google.android.gms.wearable.CapabilityClient
 import com.google.android.gms.wearable.Wearable
 import java.io.File
 import java.util.UUID
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.job
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.tasks.await
@@ -26,19 +35,34 @@ import kotlinx.coroutines.withTimeoutOrNull
  * Eintrag lokal im Ordner [dir], bis sie den Empfang bestätigt ([DataLayer.PATH_ACK], [acked]); bis dahin sendet [flush]
  * ihn bei einem späteren Anlass erneut (Start der App, Gegenseite erreichbar, Nachricht von ihr), aber frühestens
  * [RESEND_AFTER_MS] nach dem letzten erfolgreichen Senden (Audit A-1: sonst kam derselbe Eintrag mehrfach an, weil jede
- * Nachricht der Gegenseite alles Unbestätigte erneut schickte). [enqueue] sendet nur den neuen Eintrag. Ein Eintrag mit
- * gleichem Schlüssel ([Entry.key], z. B. «alarms») ersetzt den älteren: Für Zustände zählt nur der neueste. Nächte und
- * Aufzeichnungen haben je einen eigenen Schlüssel. Die Bestätigung nennt die Kennung des gesendeten Standes
- * ([Entry.id]): Ein inzwischen ersetzter Eintrag bleibt. Der Empfänger verarbeitet idempotent (dieselbe Nacht zweimal
- * ändert nichts), merkt sich die zuletzt verarbeiteten Kennungen ([ReceivedIds]) und bestätigt erst danach
- * ([WearSync.receive]).
+ * Nachricht der Gegenseite alles Unbestätigte erneut schickte). Übergeht [flush] deshalb einen Eintrag, sendet es ihn
+ * von selbst, sobald die Wartezeit um ist (Audit AN-3, ein einziger Zeitgeber für alle). [enqueue] speichert nur lokal
+ * (schnell) und sendet den neuen Eintrag danach im Hintergrund ([scope]). Ein Eintrag mit gleichem Schlüssel
+ * ([Entry.key], z. B. «alarms») ersetzt den älteren: Für Zustände zählt nur der neueste. Nächte und Aufzeichnungen
+ * haben je einen eigenen Schlüssel. Die Bestätigung nennt die Kennung des gesendeten Standes ([Entry.id]): Ein
+ * inzwischen ersetzter Eintrag bleibt. Der Empfänger verarbeitet idempotent (dieselbe Nacht zweimal ändert nichts),
+ * merkt sich die zuletzt verarbeiteten Kennungen ([ReceivedIds]) und bestätigt erst danach ([WearSync.receive]).
  *
- * Begrenzt (Audit A-8): Einträge älter als [MAX_AGE_MS] fallen weg, und je Art ([kindOf], z. B. alle Nächte) bleiben
- * höchstens [MAX_PER_KIND], die neuesten.
+ * Die Sperre gilt nur für den Ordner und die gemerkten Zeiten, nie während des Sendens (Audit AN-4): Ein hängender
+ * Schritt zur Gegenseite hält weder [enqueue] noch [acked] auf.
+ *
+ * Begrenzt (Audit A-8, AN-2): Nur Nächte und Aufzeichnungen ([expires]) fallen nach [MAX_AGE_MS] weg, und je Art
+ * ([kindOf]) bleiben höchstens [MAX_PER_KIND], die neuesten. Zustände (Wecker, Einstellungen, Lernphase …) haben je
+ * einen Schlüssel, also höchstens einen Eintrag, und verfallen nie: Sonst ginge eine Änderung nach zwei Wochen ohne
+ * Gegenseite verloren.
  *
  * Eine Instanz je Prozess und Ordner ([forContext]), damit alle Zugriffe über dieselbe Sperre laufen.
+ *
+ * @param scope Bereich für das Senden nach [enqueue] und das verzögerte Nachsenden; lebt so lange wie der Prozess.
+ * @param io Dateizugriffe; im Test der Takt des Tests.
  */
-class Outbox(private val dir: File, private val transport: Transport, private val now: () -> Long = System::currentTimeMillis) {
+class Outbox(
+    private val dir: File,
+    private val transport: Transport,
+    private val now: () -> Long = System::currentTimeMillis,
+    private val scope: CoroutineScope = processScope(),
+    private val io: CoroutineDispatcher = Dispatchers.IO,
+) {
 
     /** Ein wartender Eintrag: an Geräte mit [capability] unter [path], Inhalt [body] (Text). */
     data class Entry(val id: String, val key: String, val path: String, val capability: String, val body: String, val createdAt: Long)
@@ -57,20 +81,30 @@ class Outbox(private val dir: File, private val transport: Transport, private va
 
     private val lock = Mutex()
 
-    /** Je Kennung ([Entry.id]): Zeitpunkt (ms) des letzten erfolgreichen Sendens in diesem Prozess. */
+    /** Je Kennung ([Entry.id]): Zeitpunkt (ms) des letzten erfolgreichen Sendens in diesem Prozess. Nur unter [lock]. */
     private val sentAt = mutableMapOf<String, Long>()
 
+    /** Kennungen, die gerade gesendet werden (ausserhalb der Sperre); kein zweites [flush] sendet sie gleichzeitig. */
+    private val sending = mutableSetOf<String>()
+
+    /** Verzögertes Nachsenden ([scheduleRetry]): höchstens eines, zum frühesten fälligen Zeitpunkt [retryAt]. */
+    private val retryLock = Any()
+    private var retry: Job? = null
+    private var retryAt = Long.MAX_VALUE
+
     /**
-     * Reiht [body] unter [key] ein (ersetzt einen älteren Eintrag mit gleichem Schlüssel) und sendet gleich – nur
-     * diesen, nicht alle wartenden (Audit A-1).
+     * Reiht [body] unter [key] ein (ersetzt einen älteren Eintrag mit gleichem Schlüssel) und kehrt zurück, sobald er
+     * lokal gespeichert ist (Audit AN-1: schnell, z. B. vor dem Neuplanen). Gesendet wird nur dieser Eintrag (Audit A-1)
+     * im Hintergrund ([scope]). @return seine Kennung.
      */
-    suspend fun enqueue(key: String, path: String, capability: String, body: String) {
+    suspend fun enqueue(key: String, path: String, capability: String, body: String): String {
         val entry = Entry(UUID.randomUUID().toString(), key, path, capability, body, now())
         lock.withLock {
             write(entry)
             prune()
         }
-        flush(only = entry.id)
+        scope.launch { flush(only = entry.id) }
+        return entry.id
     }
 
     /** Wartende Einträge, älteste zuerst. */
@@ -78,33 +112,73 @@ class Outbox(private val dir: File, private val transport: Transport, private va
 
     /**
      * Sendet die wartenden Einträge an die erreichbaren Geräte ihrer Fähigkeit; einen schon gesendeten erst wieder
-     * [RESEND_AFTER_MS] danach (Audit A-1). Ohne Gerät oder bei einem Fehler bleibt der Eintrag für den nächsten Anlass.
-     * [only]: nur den Eintrag mit dieser Kennung ([enqueue]).
-     * @return Zahl der weiterhin wartenden Einträge.
+     * [RESEND_AFTER_MS] danach (Audit A-1), dann von selbst ([scheduleRetry], Audit AN-3). Ohne Gerät oder bei einem
+     * Fehler bleibt der Eintrag für den nächsten Anlass. Gesendet wird ausserhalb der Sperre (Audit AN-4): Unter der
+     * Sperre nur auswählen und danach die Zeiten nachführen. [only]: nur den Eintrag mit dieser Kennung ([enqueue]).
+     * @return Zahl der wartenden Einträge beim Auswählen.
      */
-    suspend fun flush(only: String? = null): Int = lock.withLock {
-        prune()
-        val entries = readAll()
-        val nodes = mutableMapOf<String, List<String>>()
+    suspend fun flush(only: String? = null): Int {
         val current = now()
-        for (entry in entries) {
-            if (only != null && entry.id != only) continue
-            if (!resendDue(sentAt[entry.id], current)) continue
-            val targets = nodes[entry.capability] ?: (guarded { transport.nodes(entry.capability) } ?: emptyList()).also { nodes[entry.capability] = it }
-            var sent = false
-            for (node in targets) if (guarded { transport.send(node, entry.path, wrap(entry.id, entry.body)) } != null) sent = true
-            if (sent) sentAt[entry.id] = current
+        var waiting = 0
+        var nextDue: Long? = null
+        val due = lock.withLock {
+            prune()
+            val entries = readAll()
+            waiting = entries.size
+            // Gemerkte Zeiten ersetzter oder bestätigter Einträge vergessen.
+            sentAt.keys.retainAll(entries.map { it.id }.toSet())
+            val candidates = entries.filter { (only == null || it.id == only) && it.id !in sending }
+            val (ready, later) = candidates.partition { resendDue(sentAt[it.id], current) }
+            nextDue = later.mapNotNull { sentAt[it.id] }.minOrNull()?.plus(RESEND_AFTER_MS)
+            sending += ready.map { it.id }
+            ready
         }
-        // Gemerkte Zeiten ersetzter oder bestätigter Einträge vergessen.
-        sentAt.keys.retainAll(entries.map { it.id }.toSet())
-        entries.size
+        nextDue?.let(::scheduleRetry)
+        if (due.isEmpty()) return waiting
+        val sent = mutableSetOf<String>()
+        try {
+            val nodes = mutableMapOf<String, List<String>>()
+            for (entry in due) {
+                val targets = nodes.getOrPut(entry.capability) { guarded { transport.nodes(entry.capability) } ?: emptyList() }
+                for (node in targets) if (guarded { transport.send(node, entry.path, wrap(entry.id, entry.body)) } != null) sent += entry.id
+            }
+        } finally {
+            withContext(NonCancellable) {
+                lock.withLock {
+                    sending -= due.map { it.id }.toSet()
+                    sent.forEach { sentAt[it] = current }
+                }
+            }
+        }
+        return waiting
+    }
+
+    /**
+     * Ein Nachsenden um [at] (ms) planen, falls nicht schon eines früher oder gleichzeitig ansteht (zusammengefasst:
+     * höchstens ein Zeitgeber). Ein späteres ersetzt sich durch das frühere.
+     */
+    private fun scheduleRetry(at: Long) = synchronized(retryLock) {
+        if (retry?.isActive == true && retryAt <= at) return@synchronized
+        retry?.cancel()
+        retryAt = at
+        retry = scope.launch {
+            delay((at - now()).coerceAtLeast(0L))
+            // Ab hier zählt dieser Zeitgeber nicht mehr: [flush] darf ein neues Nachsenden planen, ohne ihn abzubrechen.
+            synchronized(retryLock) {
+                if (retry === coroutineContext.job) {
+                    retry = null
+                    retryAt = Long.MAX_VALUE
+                }
+            }
+            flush()
+        }
     }
 
     /** Die Gegenseite hat [id] empfangen: Eintrag entfernen (nur genau diesen Stand). */
     suspend fun acked(id: String): Boolean = lock.withLock {
         val file = files().firstOrNull { read(it)?.id == id } ?: return@withLock false
         sentAt.remove(id)
-        withContext(Dispatchers.IO) { file.delete() }
+        withContext(io) { file.delete() }
     }
 
     /** Entfernt wartende Einträge, deren Schlüssel mit [prefix] beginnt und die vor [before] (ms) eingereiht wurden. */
@@ -112,18 +186,19 @@ class Outbox(private val dir: File, private val transport: Transport, private va
 
     /** Entfernt wartende Einträge, deren Schlüssel mit [prefix] beginnt und für die [matches] gilt. */
     suspend fun dropIf(prefix: String, matches: (Entry) -> Boolean) = lock.withLock {
-        withContext(Dispatchers.IO) {
+        withContext(io) {
             files().filter { read(it)?.let { e -> e.key.startsWith(prefix) && matches(e) } == true }.forEach { it.delete() }
         }
     }
 
     /**
-     * Grenzen der Warteschlange (Audit A-8): Einträge älter als [MAX_AGE_MS] (oder aus der «Zukunft», Uhr verstellt,
-     * bleiben) entfernen, je Art ([kindOf]) nur die neuesten [MAX_PER_KIND] behalten. Nur unter [lock].
+     * Grenzen der Warteschlange (Audit A-8, AN-2), nur für Nächte und Aufzeichnungen ([expires]): Einträge älter als
+     * [MAX_AGE_MS] (oder aus der «Zukunft», Uhr verstellt, bleiben) entfernen, je Art ([kindOf]) nur die neuesten
+     * [MAX_PER_KIND] behalten. Zustände bleiben. Nur unter [lock].
      */
-    private suspend fun prune() = withContext(Dispatchers.IO) {
+    private suspend fun prune() = withContext(io) {
         val current = now()
-        val all = files().mapNotNull { file -> read(file)?.let { file to it } }
+        val all = files().mapNotNull { file -> read(file)?.let { file to it } }.filter { expires(it.second.key) }
         val drop = all.filter { (_, e) -> current - e.createdAt > MAX_AGE_MS }.toMutableList()
         all.filterNot { it in drop }.groupBy { kindOf(it.second.key) }.values.forEach { group ->
             if (group.size > MAX_PER_KIND) drop += group.sortedByDescending { it.second.createdAt }.drop(MAX_PER_KIND)
@@ -159,7 +234,7 @@ class Outbox(private val dir: File, private val transport: Transport, private va
                 return false
             }
         }
-        withContext(Dispatchers.IO) {
+        withContext(io) {
             dir.mkdirs()
             marker.writeText("2")
         }
@@ -167,7 +242,7 @@ class Outbox(private val dir: File, private val transport: Transport, private va
         return true
     }
 
-    private suspend fun write(entry: Entry) = withContext(Dispatchers.IO) {
+    private suspend fun write(entry: Entry) = withContext(io) {
         dir.mkdirs()
         val file = File(dir, name(entry.key))
         val tmp = File(dir, file.name + ".tmp")
@@ -179,7 +254,7 @@ class Outbox(private val dir: File, private val transport: Transport, private va
         }
     }
 
-    private suspend fun readAll(): List<Entry> = withContext(Dispatchers.IO) { files().mapNotNull(::read).sortedBy { it.createdAt } }
+    private suspend fun readAll(): List<Entry> = withContext(io) { files().mapNotNull(::read).sortedBy { it.createdAt } }
 
     private fun files(): List<File> = dir.listFiles().orEmpty().filter { it.isFile && it.name.startsWith(PREFIX) && !it.name.endsWith(".tmp") }
 
@@ -247,6 +322,17 @@ class Outbox(private val dir: File, private val transport: Transport, private va
 
         /** Art eines Schlüssels: bei Nächten und Aufzeichnungen der Teil bis «/» (z. B. «night/»), sonst der Schlüssel. */
         fun kindOf(key: String): String = key.indexOf('/').let { if (it < 0) key else key.substring(0, it + 1) }
+
+        /**
+         * Ob Einträge unter [key] verfallen dürfen ([MAX_AGE_MS], [MAX_PER_KIND]): nur Nächte und Aufzeichnungen
+         * (Audit AN-2). Zustände (Wecker, Einstellungen, Lernphase …) verfallen nie.
+         */
+        fun expires(key: String): Boolean = key.startsWith(QueueMessages.KEY_NIGHT) || key.startsWith(QueueMessages.KEY_RECORDING)
+
+        /** Bereich für das Senden im Hintergrund: lebt so lange wie der Prozess; ein Fehler wird geloggt, nie weitergereicht. */
+        private fun processScope() = CoroutineScope(
+            SupervisorJob() + Dispatchers.IO + CoroutineExceptionHandler { _, e -> Log.w(TAG, "Senden im Hintergrund fehlgeschlagen", e) },
+        )
 
         /**
          * Ob ein Eintrag, zuletzt um [lastSentAt] gesendet (`null`: noch nie in diesem Prozess), jetzt ([now]) wieder

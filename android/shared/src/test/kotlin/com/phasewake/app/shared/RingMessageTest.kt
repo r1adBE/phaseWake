@@ -75,4 +75,14 @@ class RingMessageTest {
         assertEquals(true, sent.isStale(1_000_001L + RingMessage.MAX_AGE_MS))
         assertEquals(false, RingMessage(alarmId = "a1").isStale(Long.MAX_VALUE))
     }
+
+    @Test
+    fun implausibleTimesCountAsMissing() {
+        // Audit AN-5: Long.MAX_VALUE als Sende- oder Zielzeit lief beim Rechnen über; jetzt wie fehlend, «stop» verworfen.
+        val max = Long.MAX_VALUE
+        val decoded = RingMessage.decode("a1|$max|$max|2|$max".encodeToByteArray())
+        assertEquals(RingMessage(alarmId = "a1", snoozesLeft = 2), decoded)
+        assertEquals(false, decoded.isCurrent())
+        assertEquals(RingMessage(alarmId = "a1", target = null, sentAt = null), RingMessage.decode("a1|-5|-1".encodeToByteArray()))
+    }
 }

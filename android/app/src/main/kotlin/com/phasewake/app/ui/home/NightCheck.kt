@@ -1,5 +1,6 @@
 package com.phasewake.app.ui.home
 
+import androidx.compose.foundation.layout.heightIn
 import android.Manifest
 import android.app.NotificationManager
 import android.content.Context
@@ -210,6 +211,7 @@ internal fun NightCheckCard(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .fillMaxWidth()
+                    .heightIn(min = 48.dp)
                     .then(if (ready) Modifier.clickable(role = Role.Button) { expanded = !expanded } else Modifier)
                     .semantics { if (ready) stateDescription = readyText },
             ) {

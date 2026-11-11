@@ -2,7 +2,6 @@ package com.phasewake.app.ui.history
 
 import android.content.Context
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -52,12 +51,19 @@ internal fun stageTotalsLine(context: Context, stats: NightStages): String = sta
 internal fun Modifier.opensDetail(shape: Shape, label: String, onOpen: () -> Unit): Modifier =
     clip(shape).clickable(onClickLabel = label, onClick = onOpen)
 
-/** Sichtbarer Hinweis unten rechts in der Karte: «Details ›». */
+/**
+ * Sichtbarer Hinweis «Details ›» rechts in der Zeile der Notizen (Gestaltung 4: eine Zeile statt zwei). Die ganze
+ * Karte öffnet die Details; für Bildschirmleser sagt das schon die Karte.
+ */
 @Composable
 internal fun DetailsLink() {
-    Row(Modifier.fillMaxWidth().padding(top = 6.dp).clearAndSetSemantics { }, horizontalArrangement = Arrangement.End) {
-        Text(stringResource(R.string.night_details) + " ›", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
-    }
+    Text(
+        stringResource(R.string.night_details) + " ›",
+        style = MaterialTheme.typography.labelLarge,
+        color = MaterialTheme.colorScheme.primary,
+        maxLines = 1,
+        modifier = Modifier.clearAndSetSemantics { },
+    )
 }
 
 /** Mini-Hypnogramm mit einer Zeile Summen; für Bildschirmleser die Summen als Beschreibung. */
@@ -143,9 +149,8 @@ internal fun HealthNightCard(
                 modifier = Modifier.padding(top = 6.dp),
             )
             feeling?.let { CompactLine(stringResource(R.string.feeling_value, feelingName(context, it))) }
-            NightNotes(notes, customNotes, onToggleNote, Modifier.padding(top = 4.dp))
             soundSummary(context, clips)?.let { CompactLine(it) }
-            DetailsLink()
+            NightNotes(notes, customNotes, onToggleNote, Modifier.padding(top = 4.dp)) { DetailsLink() }
         }
     }
 }

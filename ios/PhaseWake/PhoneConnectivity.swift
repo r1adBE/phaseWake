@@ -42,7 +42,7 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
     @MainActor
     func send(command: String, extra: [String: String] = [:], night: RingNight? = nil) {
         guard WCSession.isSupported() else { return }
-        var payload: [String: Any] = [SyncKeys.command: command, SyncKeys.sentAt: Int64(Date().timeIntervalSince1970 * 1000)]
+        var payload: [String: Any] = [SyncKeys.command: command, SyncKeys.sentAt: TimeBounds.millis(Date())]
         for (key, value) in extra { payload[key] = value }
         if let alarmId = night?.alarmId { payload[SyncKeys.alarms] = alarmId }
         if let targetMs = night?.targetMs { payload[SyncKeys.target] = targetMs }
@@ -89,6 +89,13 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         BackupAlarm.noteWatchState(session)
     }
 
+    /// Uhr wieder erreichbar (App dort offen): einen unbeantworteten Start von «Nacht aufzeichnen» nachreichen
+    /// (``WatchNight/retryRecordStart(now:)``, Vollaudit AP2-10).
+    func sessionReachabilityDidChange(_ session: WCSession) {
+        guard session.isReachable else { return }
+        Task { @MainActor in WatchNight.shared.retryRecordStart() }
+    }
+
     func session(_ session: WCSession, didReceiveApplicationContext context: [String: Any]) {
         receive(context: context)
     }
@@ -130,21 +137,22 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         seenWatch()
         guard let command = message[SyncKeys.command] as? String else { return }
         let alarmId = (message[SyncKeys.alarms] as? String).flatMap { $0.isEmpty ? nil : $0 }
-        // Zielzeit der Nacht (fehlt, wenn die Uhr keine Nacht kennt) und Sendezeit.
-        let target = (message[SyncKeys.target] as? Int64).map { Date(timeIntervalSince1970: Double($0) / 1000) }
+        // Zielzeit der Nacht (fehlt, wenn die Uhr keine Nacht kennt) und Sendezeit; unplausible Zeiten gelten als fehlend
+        // (Vollaudit AP2-8, ``SyncTime``).
+        let target = SyncTime.date(message[SyncKeys.target])
         let sentAt = message[SyncKeys.sentAt] as? Int64
         // «klingeln» und «stop» ohne Sendezeit (bzw. «klingeln» ohne Kennung oder Schlummer-Runden) stammen von einer
         // veralteten Uhr-App: verwerfen, kein Rückfall (der Nacht-Check meldet sie als veraltet). Wie Android.
-        let snoozesLeftValue = (message[SyncKeys.snoozesLeft] as? Int64).map { Int($0) }
+        let snoozesLeftValue = (message[SyncKeys.snoozesLeft] as? Int64).map { Int(clamping: $0) }
         if command == SyncKeys.ring || command == SyncKeys.stop,
            sentAt == nil || (command == SyncKeys.ring && (alarmId == nil || snoozesLeftValue == nil)) {
             DiagStore.shared.log(.suppressed, "\(command) from outdated watch")
             return
         }
         // Älter als 2 Minuten (nachgereicht, z. B. per `transferUserInfo`): klingelt bzw. stoppt nicht mehr.
-        let stale = sentAt.map { Int64(Date().timeIntervalSince1970 * 1000) - $0 > SyncKeys.maxRingAgeMs } ?? false
+        let stale = sentAt.map { SyncTime.stale($0, now: Date()) } ?? false
         // Nur bei «stop» nach dem Schlummern auf der Uhr.
-        let snoozeUntil = (message[SyncKeys.snoozeUntil] as? Int64).map { Date(timeIntervalSince1970: Double($0) / 1000) }
+        let snoozeUntil = SyncTime.date(message[SyncKeys.snoozeUntil])
         let snoozesLeft = snoozesLeftValue ?? 0
         let id = message[SyncKeys.id] as? String
         let payload = message[SyncKeys.payload] as? String
@@ -287,12 +295,12 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
     private func receive(context: [String: Any]) {
         if !context.isEmpty { seenWatch() }
         if let armed = context[SyncKeys.armedTarget] as? Int64 {
-            let date = armed > 0 ? Date(timeIntervalSince1970: Double(armed) / 1000) : nil
+            let date = armed > 0 ? SyncTime.date(armed) : nil
             Task { @MainActor in PhoneModel.shared.watchArmed(date) }
         }
         // «Nacht aufzeichnen» auf der Uhr (fehlt bei älteren Uhr-Versionen).
         if let since = context[SyncKeys.recordSince] as? Int64 {
-            let date = since > 0 ? Date(timeIntervalSince1970: Double(since) / 1000) : nil
+            let date = since > 0 ? SyncTime.date(since) : nil
             Task { @MainActor in WatchNight.shared.noteRecording(since: date) }
         }
         // Rekorder für eine Nacht nicht gestartet (Audit F-06); fehlt bei älteren Uhren (dann keine Warnung).
@@ -302,8 +310,8 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         }
         // Ohne Akkustand (Uhr lädt oder kennt ihn nicht) gilt er als unbekannt.
         var battery: (percent: Int, at: Date)?
-        if let percent = context[SyncKeys.battery] as? Int64, let at = context[SyncKeys.batteryAt] as? Int64 {
-            battery = (percent: Int(percent), at: Date(timeIntervalSince1970: Double(at) / 1000))
+        if let percent = context[SyncKeys.battery] as? Int64, let at = SyncTime.date(context[SyncKeys.batteryAt]) {
+            battery = (percent: Int(clamping: percent), at: at)
         }
         let level = battery
         // Stand der Verbindung; fehlt er in einem Kontext der Uhr (sehr alte Uhr-App), zählt er als 0: Der Nacht-Check
@@ -311,7 +319,7 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         let version = Int((context[SyncKeys.watchProtocol] as? Int64) ?? 0)
         // Erlaubnis der Mitteilungen auf der Uhr; fehlt sie (ältere Uhr, noch nicht gefragt), warnt der Nacht-Check nicht.
         // Mit dem Zeitpunkt der Prüfung auf der Uhr; ohne ihn (ältere Uhr) kein Hinweis «veraltet».
-        let checkedAt = (context[SyncKeys.watchNotificationsAt] as? Int64).map { Date(timeIntervalSince1970: Double($0) / 1000) }
+        let checkedAt = SyncTime.date(context[SyncKeys.watchNotificationsAt])
         let notifications: (state: WatchNotifications, checkedAt: Date?)? = (context[SyncKeys.watchNotifications] as? Int64)
             .flatMap(WatchNotifications.init(rawValue:)).map { (state: $0, checkedAt: checkedAt) }
         if !context.isEmpty {

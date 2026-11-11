@@ -228,29 +228,50 @@ class WakeDetectorTest {
     }
 
     @Test
-    fun onsetFloorOfTheNightComesBeforeTheLearnedOne() {
-        // Einschlaf-Messung dieser Nacht 0.012, gelernt 0.03: Obergrenze 1.5 × 0.012 = 0.018 → Wach 0.1 (Startwert).
+    fun priorIsTheLargerOfOnsetAndLearnedFloor() {
+        // Fix KN-2: Vorwissen = das grössere von Einschlaf-Messung (0.012) und gelernt (0.03): 1.5 × 0.03 = 0.045 → 0.04.
         val restless = Array(8) { Epoch(0.08, 60.0) }
         val config = DetectorConfig(personalFloor = 0.03).withOnsetFloor(0.012)
-        assertEquals(0.018, NoiseFloor.windowFloor(restless.map { it.motion }, config)!!, 1e-12)
-        val detector = WakeDetector(config)
-        detector.feed(*restless, Epoch(0.12, 60.0))
-        assertEquals(Decision.Wake(WakeReason.AWAKE), detector.onEpoch(Epoch(0.12, 60.0)))
-        // Nur gelernt 0.03: Obergrenze 0.04 (MAX_FLOOR) → Wach 0.2, 0.12 bleibt still.
-        assertEquals(0.04, NoiseFloor.windowFloor(restless.map { it.motion }, DetectorConfig(personalFloor = 0.03))!!, 1e-12)
-        // Zu wenige Werte: das der Einschlaf-Messung gilt (wie das gelernte).
+        assertEquals(0.03, NoiseFloor.priorFloor(config))
+        assertEquals(0.04, NoiseFloor.windowFloor(restless.map { it.motion }, config)!!, 1e-12)
+        // Einschlaf-Messung 0.018 über gelernt 0.012: Obergrenze 1.5 × 0.018 = 0.027 → Wach 0.135, zweimal 0.14 weckt.
+        val higher = DetectorConfig(personalFloor = 0.012).withOnsetFloor(0.018)
+        assertEquals(0.027, NoiseFloor.windowFloor(restless.map { it.motion }, higher)!!, 1e-12)
+        val detector = WakeDetector(higher)
+        detector.feed(*restless, Epoch(0.14, 60.0))
+        assertEquals(Decision.Wake(WakeReason.AWAKE), detector.onEpoch(Epoch(0.14, 60.0)))
+        // Zu wenige Werte: das der Einschlaf-Messung gilt vor dem gelernten, auch wenn es tiefer ist.
         assertEquals(0.012, NoiseFloor.windowFloor(listOf(null, 0.5), config)!!, 1e-12)
         // Ruhiger als das bekannte: das eigene des Fensters gilt.
         assertEquals(0.01, NoiseFloor.windowFloor(List(8) { 0.01 }, config)!!, 1e-12)
         // Ungültig gilt als keines.
         assertNull(DetectorConfig().withOnsetFloor(Double.NaN).onsetFloor)
+        assertNull(NoiseFloor.priorFloor(DetectorConfig()))
+    }
+
+    @Test
+    fun implausiblyLowPriorDoesNotCap() {
+        // Fix KN-2: Uhr mit Rauschen 0.02, Vorwissen 0.004 < 0.25 × 0.02 = 0.005: keine Obergrenze, es bleibt 0.02
+        // (sonst Leicht-Schwelle 2.5 × 0.006 = 0.015, und das Rauschen zählte als Bewegung).
+        val noisy = List(8) { 0.02 }
+        assertEquals(0.02, NoiseFloor.windowFloor(noisy, DetectorConfig(personalFloor = 0.004))!!, 1e-12)
+        assertEquals(0.02, NoiseFloor.windowFloor(noisy, DetectorConfig().withOnsetFloor(0.002))!!, 1e-12)
+        // Genau an der Grenze (0.005 = 0.25 × 0.02) gilt sie: 1.5 × 0.005 = 0.0075.
+        assertEquals(0.0075, NoiseFloor.windowFloor(noisy, DetectorConfig(personalFloor = 0.005))!!, 1e-12)
+        // Das tiefe der Einschlaf-Messung verdrängt ein plausibles gelerntes nicht (das grössere zählt).
+        assertEquals(0.02, NoiseFloor.windowFloor(noisy, DetectorConfig(personalFloor = 0.018).withOnsetFloor(0.002))!!, 1e-12)
+        val detector = WakeDetector(DetectorConfig(personalFloor = 0.004))
+        detector.feed(*noisy.map { Epoch(it, 52.0) }.toTypedArray())
+        // Rauschen 0.03 mit Pulsanstieg: unter 2.5 × 0.02 = 0.05, also keine leichte Bewegung.
+        assertEquals(Decision.Wait, detector.onEpoch(Epoch(0.03, 60.0)))
+        assertEquals(Decision.Wait, detector.onEpoch(Epoch(0.03, 60.0)))
     }
 
     @Test
     fun onsetFloorKnownAfterTheWindowBegan() {
         // Apple Watch: Das Grundrauschen der Einschlaf-Messung kommt erst nach Fensterbeginn; ab dann gilt es (K-1).
         val restless = Array(8) { Epoch(0.08, 60.0) }
-        val detector = WakeDetector(DetectorConfig(personalFloor = 0.03))
+        val detector = WakeDetector()
         detector.feed(*restless, Epoch(0.12, 60.0))
         assertEquals(Decision.Wait, detector.onEpoch(Epoch(0.12, 60.0)))
         detector.useOnsetFloor(0.012)

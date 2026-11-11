@@ -40,6 +40,31 @@ internal object OnsetRules {
         return null
     }
 
+    /**
+     * Wertet die neuen Epochen ab Index [from] einzeln aus, als kämen sie eine nach der anderen (Fix KN-3, wie
+     * `RecorderOnset.measure` auf der Apple Watch): je Epoche das Grundrauschen der gemessenen ([measured]) bis dahin
+     * ([NoiseFloor.floor], solange zu wenige: [personalFloor]) und die Regel mit der wirksamen Leicht-Schwelle
+     * ([SleepOnset.find] bei [continuous], sonst [find]). So zählen Epochen nach der erkennenden nicht, auch wenn sie im
+     * selben Bündel kamen.
+     * @param floor Grundrauschen vor diesen Epochen (bleibt ohne neue).
+     * @return Beginn der ruhigen Strecke (oder `null`) und das Grundrauschen bis zur erkennenden bzw. letzten Epoche.
+     */
+    fun scan(
+        motions: List<Double?>, measured: List<Boolean>, from: Int, threshold: Double, personalFloor: Double?, continuous: Boolean,
+        floor: Double?,
+    ): Pair<Int?, Double?> {
+        var current = floor
+        for (end in from + 1..motions.size) {
+            val seen = motions.subList(0, end)
+            val seenMeasured = measured.subList(0, end)
+            current = NoiseFloor.floor(seen.filterIndexed { i, _ -> seenMeasured[i] }, personalFloor)
+            val quiet = NoiseFloor.light(threshold, current)
+            val index = if (continuous) SleepOnset.find(seen, quiet) else find(seen, seenMeasured, quiet)
+            if (index != null) return index to current
+        }
+        return null to current
+    }
+
     /** Erste Epoche, die bei [nowNanos] noch ganz vor uns liegt (Beginn ≥ jetzt). */
     fun firstFullEpoch(startNanos: Long, nowNanos: Long): Long {
         val elapsed = (nowNanos - startNanos).coerceAtLeast(0L)

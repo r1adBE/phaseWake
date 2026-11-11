@@ -36,6 +36,8 @@ import kotlinx.coroutines.withContext
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Zeiten nach der 12/24-h-Einstellung der Uhr (Audit N-10).
+        WearClock.update(this)
         setContent { PhaseWakeTheme { WatchApp() } }
     }
 }
@@ -193,4 +195,4 @@ private fun shortDay(date: java.time.LocalDate): String {
 }
 
 private fun shortTime(at: Instant): String =
-    localizedDigits(java.time.format.DateTimeFormatter.ofLocalizedTime(java.time.format.FormatStyle.SHORT)).format(at.atZone(ZoneId.systemDefault()))
+    timeFormatter().format(at.atZone(ZoneId.systemDefault()))

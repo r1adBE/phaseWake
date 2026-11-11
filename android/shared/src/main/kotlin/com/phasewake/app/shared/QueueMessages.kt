@@ -9,6 +9,7 @@ import com.phasewake.app.core.Codec
 import com.phasewake.app.core.HolidayList
 import com.phasewake.app.core.Holidays
 import com.phasewake.app.core.NightRecord
+import com.phasewake.app.core.TimeBounds
 import java.util.UUID
 import kotlinx.coroutines.tasks.await
 
@@ -75,7 +76,8 @@ object QueueMessages {
                 target[AlarmStamps.unescape(text.substring(0, eq)) ?: continue] = at
             }
         }
-        AlarmSnapshot(Codec.decodeAlarms(alarmsText), updatedAt, stamps, deleted, perAlarm = marker >= 0)
+        // Zeitpunkte nach [TimeBounds] geprüft (Audit KN-4): unplausibler Listen-Zeitpunkt → Nachricht verworfen.
+        AlarmStamps.checked(AlarmSnapshot(Codec.decodeAlarms(alarmsText), updatedAt, stamps, deleted, perAlarm = marker >= 0))
     }.onFailure { Log.w(TAG, "Wecker-Nachricht unlesbar", it) }.getOrNull()
 
     /** Beginn der Zeitpunkte je Wecker in [encodeAlarms]. */
@@ -101,17 +103,20 @@ object QueueMessages {
     fun recordingEndsBy(body: String, cutMs: Long): Boolean =
         NightRecording.decode(body)?.end?.let { it.toEpochMilli() <= cutMs } ?: false
 
-    /** Liest den Inhalt von [DataLayer.PATH_MSG_HOLIDAYS]: Liste und Zeitpunkt; `null`, wenn unlesbar. */
+    /**
+     * Liest den Inhalt von [DataLayer.PATH_MSG_HOLIDAYS]: Liste und Zeitpunkt; `null`, wenn unlesbar oder der Zeitpunkt
+     * unplausibel ist ([TimeBounds], Audit AN-5: sonst gewänne ein Stand «aus der Zukunft» für immer).
+     */
     fun decodeHolidays(body: String): Pair<HolidayList, Long>? {
         val cut = body.indexOf('\n').takeIf { it > 0 } ?: return null
-        val at = body.substring(0, cut).toLongOrNull() ?: return null
+        val at = TimeBounds.checked(body.substring(0, cut).toLongOrNull()) ?: return null
         return Holidays.decode(body.substring(cut + 1)) to at
     }
 
-    /** Liest «wert|updatedAt» (Schlafziel, Schalter); `null`, wenn unlesbar. */
+    /** Liest «wert|updatedAt» (Schlafziel, Schalter); `null`, wenn unlesbar oder der Zeitpunkt unplausibel ([TimeBounds]). */
     fun decodeStamped(body: String): Pair<Int, Long>? {
         val f = body.split("|").takeIf { it.size == 2 } ?: return null
-        return (f[0].toIntOrNull() ?: return null) to (f[1].toLongOrNull() ?: return null)
+        return (f[0].toIntOrNull() ?: return null) to (TimeBounds.checked(f[1].toLongOrNull()) ?: return null)
     }
 
     /**

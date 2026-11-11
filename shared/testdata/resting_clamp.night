@@ -1,0 +1,48 @@
+# Fix KN-6: gelernter Ruhepuls 50, Basispuls des Fensters (Median der ersten 6 Epochen) 70 -> begrenzt auf
+# 50 × 1.3 = 65, nötig 65 × 1.05 = 68.25. Leichte Bewegung in Epoche 20/21 mit Puls 66: noch nicht (bei × 1.2 schon).
+# Epoche 30/31 mit Puls 69: weckt (ohne Begrenzung oder bei × 1.5 nötig 73.5: nie).
+@resting 50
+@expect 31 LIGHT_SLEEP
+motion,hr
+0,70
+0,70
+0,70
+0,70
+0,70
+0,70
+0,60
+0,60
+0,60
+0,60
+0,60
+0,60
+0,60
+0,60
+0,60
+0,60
+0,60
+0,60
+0,60
+0,60
+0.01,66
+0.01,66
+0,60
+0,60
+0,60
+0,60
+0,60
+0,60
+0,60
+0,60
+0.01,69
+0.01,69
+0,60
+0,60
+0,60
+0,60
+0,60
+0,60
+0,60
+0,60
+0,60
+0,60

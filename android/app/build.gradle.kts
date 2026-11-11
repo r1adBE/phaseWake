@@ -164,7 +164,8 @@ dependencies {
 // Geräusch-Modell YAMNet (Apache-2.0) beim ersten Bauen laden; liegt nicht im Repo.
 // Ohne Netz baut die Debug-App trotzdem (nur Warnung): Geräusche gelten dann als «Anderes Geräusch».
 // Ein Release bricht ohne Modell ab (checkYamnet), damit keine App ohne Einordnung ausgeliefert wird.
-// Prüfsumme: Eine geladene oder vorhandene Datei mit anderem SHA-256 bricht jeden Build ab (Review K-02).
+// Prüfsumme (Review K-02): Eine frisch geladene Datei mit anderem SHA-256 bricht jeden Build ab. Eine schon
+// vorhandene Datei prüft nur der Release-Build (checkYamnet); Debug-Builds nehmen sie ungeprüft (Audit 071597f DA-7).
 val yamnetModel: File = layout.projectDirectory.file("src/main/assets/yamnet.tflite").asFile
 
 // SHA-256 von yamnet.tflite (float32/1, 4 126 810 Byte), aus den bisherigen CI-Builds (assets/yamnet.tflite im APK).

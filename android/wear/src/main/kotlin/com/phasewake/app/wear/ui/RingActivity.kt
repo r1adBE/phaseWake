@@ -89,6 +89,8 @@ class RingActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Zeiten nach der 12/24-h-Einstellung der Uhr (Audit N-10).
+        WearClock.update(this)
         val ringState = wearApp.ringState
         // Über die Weck-Mitteilung ohne laufenden Dienst (Start verweigert, Audit N-05): Dienst jetzt nachholen.
         val rescue = savedInstanceState == null && StartRefused.resume(this, intent)
@@ -293,7 +295,7 @@ private fun RingContent(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit,
                 bottom = if (compact) 14.dp else 18.dp,
             ),
         ) {
-            val (dotInk, dotPlace) = rememberSkyInk(light, NIGHT_INK)
+            val (dotInk, dotPlace) = rememberSkyInk(light, NIGHT_INK, plaque = false)
             PulsingDot(
                 color = if (light != null) dotInk.content.copy(alpha = 0.6f) else Brand.Wave,
                 dot = dotInk.content,

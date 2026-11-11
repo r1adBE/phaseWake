@@ -108,7 +108,10 @@ final class PhoneModel {
         routineItems = Routine.decodeItems(privateNotes.routineItemsText())
         routineTicks = privateNotes.routineTicks()
         weeklyReview = defaults.bool(forKey: Self.weeklyKey)
-        historyClearedAt = (defaults.object(forKey: Self.historyClearedKey) as? NSNumber).map { Date(timeIntervalSince1970: $0.doubleValue / 1000) }
+        // Höchstens jetzt (Vollaudit DA-1), gleich so gespeichert, damit ein späterer Wert nicht mitwandert.
+        let stored = (defaults.object(forKey: Self.historyClearedKey) as? NSNumber)?.int64Value, cleared = HistoryClear.clamped(ms: stored, now: Date())
+        if cleared != stored { defaults.set(cleared.map { NSNumber(value: $0) }, forKey: Self.historyClearedKey) }
+        historyClearedAt = cleared.map { Date(timeIntervalSince1970: Double($0) / 1000) }
     }
 
     /// Nächster Plan über alle Wecker: früh geweckte Nächte und Feiertage übersprungen; «Gute Nacht» der Uhr verlegt die Zielzeit vor (`WatchNight`).
@@ -214,12 +217,15 @@ final class PhoneModel {
         // Nächte aus Apple Health lassen sich nicht löschen, nur ausblenden (`HealthHistory.visible`).
         let now = Date()
         historyClearedAt = now
-        SettingsFile.phone.set(NSNumber(value: Int64(now.timeIntervalSince1970 * 1000)), forKey: Self.historyClearedKey)
+        SettingsFile.phone.set(NSNumber(value: TimeBounds.millis(now)), forKey: Self.historyClearedKey)
+        // Geteilte CSV-Dateien in den temporären Dateien gleich mit (Vollaudit DA-5).
+        NightsExport.cleanUp()
         PhoneConnectivity.shared.send(command: SyncKeys.clearHistory)
     }
 
     private func change(_ edit: ([AlarmSpec]) -> [AlarmSpec]) {
-        let snapshot = storage.mutate(edit)
+        // Unlesbare gespeicherte Wecker: keine Änderung, nichts an die Uhr (Fix KN-5).
+        guard let snapshot = storage.mutate(edit) else { return }
         alarms = snapshot.alarms
         publishToWatch(snapshot)
         Task { await backup.reschedule(alarms) }

@@ -111,6 +111,8 @@ open class PhaseWakeWear : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        // 12/24-Std.-Einstellung für Kachel, Komplikation und Mitteilungen auch ohne offenen Bildschirm (Audit N-10).
+        com.phasewake.app.wear.ui.WearClock.update(this)
         Notifications.createChannels(this)
         diag.log(if (DirectBoot.isUnlocked(this)) DiagKind.BOOT else DiagKind.DIRECT_BOOT, "app start battery ${batteryPercent()}")
         // Nachholen, was das Handy schon abgelegt hat (Wecker, «Verlauf löschen»), falls eine Änderung
@@ -136,13 +138,18 @@ open class PhaseWakeWear : Application() {
         )
     }
 
-    /** Beim Start nach dem Entsperren: vom Handy nachholen, danach immer neu planen (im Hintergrund). */
+    /**
+     * Beim Start nach dem Entsperren: vom Handy nachholen, danach immer neu planen (im Hintergrund). Dazu einmal je
+     * Prozess der eigene Stand der Wecker ans Handy (Audit AN-1): Ging eine frühere Nachricht verloren, gleicht das Handy
+     * so ab; unverändert merkt es nichts und antwortet nicht.
+     */
     internal open fun catchUpAndReschedule() {
         appScope.launch {
             try {
                 PhoneCatchUp.run(this@PhaseWakeWear)
             } finally {
                 scheduler.reschedule()
+                appScope.launch { sync.publishAlarms(alarms.current()) }
                 // Aufzeichnung: Stand ans Handy, eine liegengebliebene wieder aufnehmen.
                 RecordControl.onAppStart(this@PhaseWakeWear)
             }

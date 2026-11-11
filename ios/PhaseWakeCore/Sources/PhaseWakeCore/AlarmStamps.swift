@@ -66,9 +66,10 @@ public enum AlarmStamps {
                              deleted: prune(deleted, now: now))
     }
 
-    /// Gelöschte Wecker ohne zu alte (``tombstoneMaxAgeMs`` vor `now`, ms), höchstens ``maxTombstones``, die neuesten.
+    /// Gelöschte Wecker ohne zu alte (``tombstoneMaxAgeMs`` vor `now`, ms) und ohne unplausible Zeitpunkte
+    /// (``TimeBounds``, sonst bräche `now − Zeitpunkt` die App ab, Fix KN-4), höchstens ``maxTombstones``, die neuesten.
     public static func prune(_ deleted: [String: Int64], now: Int64) -> [String: Int64] {
-        let kept = deleted.filter { now - $0.value <= tombstoneMaxAgeMs }
+        let kept = deleted.filter { TimeBounds.contains($0.value) && now - $0.value <= tombstoneMaxAgeMs }
             .sorted { ($0.value, $1.key) > ($1.value, $0.key) }
             .prefix(maxTombstones)
         return Dictionary(uniqueKeysWithValues: kept.map { ($0.key, $0.value) })
@@ -83,11 +84,13 @@ public enum AlarmStamps {
         context[SyncKeys.alarmsDeleted] = snapshot.deleted
     }
 
-    /// Liest den Stand der Gegenseite aus dem Anwendungskontext; `nil` ohne oder mit unlesbaren Weckern. Fehlen die
-    /// Zeitpunkte je Wecker (ältere Version), ist ``AlarmSnapshot/perAlarm`` `false`.
+    /// Liest den Stand der Gegenseite aus dem Anwendungskontext; `nil` ohne oder mit unlesbaren Weckern oder mit
+    /// unplausiblem Listen-Zeitpunkt (``TimeBounds``, Fix KN-4: Nachricht verworfen). Fehlen die Zeitpunkte je Wecker
+    /// (ältere Version), ist ``AlarmSnapshot/perAlarm`` `false`; unplausible Zeitpunkte je Wecker oder gelöschter Wecker
+    /// fallen weg (``int64Map(_:)``), wie `AlarmStamps.checked` (Kotlin).
     public static func snapshot(context: [String: Any]) -> AlarmSnapshot? {
         guard let text = context[SyncKeys.alarms] as? String,
-              let updatedAt = context[SyncKeys.updatedAt] as? Int64,
+              let updatedAt = TimeBounds.checked(context[SyncKeys.updatedAt] as? Int64),
               let alarms = try? Codec.decodeAlarms(text) else { return nil }
         guard let stamps = int64Map(context[SyncKeys.alarmStamps]) else {
             return AlarmSnapshot(alarms: alarms, updatedAt: updatedAt, perAlarm: false)
@@ -96,10 +99,10 @@ public enum AlarmStamps {
     }
 
     /// Wörterbuch Kennung → ms aus einer Property List (Werte `Int64` oder `NSNumber`); `nil`, wenn es keines ist.
-    /// Unlesbare Werte fallen weg.
+    /// Unlesbare Werte und unplausible Zeitpunkte (``TimeBounds``, Fix KN-4) fallen weg.
     static func int64Map(_ value: Any?) -> [String: Int64]? {
         guard let raw = value as? [String: Any] else { return nil }
-        return raw.compactMapValues { ($0 as? Int64) ?? ($0 as? NSNumber)?.int64Value }
+        return raw.compactMapValues { TimeBounds.checked(($0 as? Int64) ?? ($0 as? NSNumber)?.int64Value) }
     }
 
     /// Wecker nach Kennung; bei doppelter Kennung gilt der erste.
