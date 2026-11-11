@@ -572,5 +572,9 @@
     <string name="learn_consent_text">เพื่อให้ Phase Wake ปรับนาฬิกาปลุกให้เข้ากับคุณ นาฬิกาของคุณจะวัดการเคลื่อนไหวและชีพจรตลอดคืนเป็นเวลา %1$d คืน ซึ่งใช้แบตเตอรี่อยู่บ้าง – ชาร์จนาฬิกาก่อนนอน ข้อมูลอยู่บนอุปกรณ์ของคุณ คุณปิดช่วงเรียนรู้ได้ทุกเมื่อในการตั้งค่า</string>
     <string name="learn_consent_start">เริ่มช่วงเรียนรู้</string>
     <string name="learn_consent_later">ไว้ทีหลัง</string>
+    <string name="learn_intro">เพื่อให้ Phase Wake ปรับนาฬิกาปลุกให้เข้ากับคุณ นาฬิกาของคุณจะวัดการเคลื่อนไหวและชีพจรในตอนกลางคืน</string>
+    <string name="learn_point_nights">เป็นเวลา %1$d คืน</string>
+    <string name="learn_point_battery">ใช้แบตเตอรี่อยู่บ้าง – ชาร์จนาฬิกาก่อนนอน</string>
+    <string name="learn_point_private">ข้อมูลอยู่บนอุปกรณ์ของคุณ คุณปิดช่วงเรียนรู้ได้ทุกเมื่อในการตั้งค่า</string>
     <string name="learn_switch_hint">นาฬิกาของคุณวัดการเคลื่อนไหวและชีพจรตอนกลางคืนเพื่อปรับนาฬิกาปลุก ปิด: ไม่บันทึกอัตโนมัติ ค่าที่เรียนรู้แล้วยังอยู่</string>
 </resources>

@@ -574,5 +574,9 @@
     <string name="learn_consent_text">ដើម្បីឱ្យ Phase Wake អាចសម្រួលម៉ោងរោទ៍ឱ្យសមនឹងអ្នក នាឡិការបស់អ្នកវាស់ចលនា និងជីពចរពេញមួយយប់ រយៈពេល %1$d យប់។ វាប្រើថ្មខ្លះ – សាកថ្មនាឡិកាមុនពេលគេង។ ទិន្នន័យនៅលើឧបករណ៍របស់អ្នក។ អ្នកអាចបិទដំណាក់កាលរៀននៅក្នុងការកំណត់បានគ្រប់ពេល។</string>
     <string name="learn_consent_start">ចាប់ផ្តើមដំណាក់កាលរៀន</string>
     <string name="learn_consent_later">ពេលក្រោយ</string>
+    <string name="learn_intro">ដើម្បីឱ្យ Phase Wake អាចសម្រួលម៉ោងរោទ៍ឱ្យសមនឹងអ្នក នាឡិការបស់អ្នកវាស់ចលនា និងជីពចរនៅពេលយប់។</string>
+    <string name="learn_point_nights">រយៈពេល %1$d យប់</string>
+    <string name="learn_point_battery">វាប្រើថ្មខ្លះ – សាកថ្មនាឡិកាមុនពេលគេង។</string>
+    <string name="learn_point_private">ទិន្នន័យនៅលើឧបករណ៍របស់អ្នក។ អ្នកអាចបិទដំណាក់កាលរៀននៅក្នុងការកំណត់បានគ្រប់ពេល។</string>
     <string name="learn_switch_hint">នាឡិការបស់អ្នកវាស់ចលនា និងជីពចរពេលយប់ ដើម្បីសម្រួលម៉ោងរោទ៍។ បិទ៖ គ្មានការកត់ត្រាស្វ័យប្រវត្តិ តម្លៃដែលបានរៀននៅដដែល។</string>
 </resources>

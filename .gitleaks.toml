@@ -1,0 +1,14 @@
+# Geheimnis-Suche (gitleaks, Audit S-4): Standardregeln, dazu bekannte Testwerte als Ausnahme.
+title = "Phase Wake"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Testvektor der Sicherung (festes Testpasswort) und Testquellen mit Beispielpasswörtern"
+paths = [
+  '''^\.github/scripts/make-backup-vector\.py$''',
+  '''^android/[^/]+/src/test/''',
+  '''^ios/PhaseWake[A-Za-z]*Tests/''',
+  '''^ios/PhaseWakeCore/Tests/''',
+]

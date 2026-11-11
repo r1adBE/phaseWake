@@ -7,6 +7,8 @@ struct OnboardingView: View {
     /// Merker «Einrichtung erledigt» (bestehende Installationen mit Weckern gelten als eingerichtet).
     static let doneKey = "onboardingDone"
     private static let steps = 6
+    /// Schritt der Lernphase: statt «Weiter» die Knöpfe «Später» und «Lernphase starten».
+    private static let learningStep = 4
 
     @Environment(PhoneModel.self) private var model
     @Environment(\.colorScheme) private var scheme
@@ -58,7 +60,7 @@ struct OnboardingView: View {
         case 3:
             title("onb_alarm_title")
             firstAlarm
-        case 4:
+        case Self.learningStep:
             title("learn_consent_title")
             LearningOnboardingStep()
         case 5:
@@ -139,15 +141,28 @@ struct OnboardingView: View {
     }
 
     private var navigation: some View {
-        HStack {
-            if step > 0 {
-                Button(L("onb_back")) { step -= 1 }
+        // Lernphase noch nicht gestartet: nur «Später» und «Lernphase starten», beide gehen weiter (Audit U-2).
+        let askLearning = step == Self.learningStep && PhoneLearning.shared.state.consent != true
+        return VStack(spacing: 8) {
+            if askLearning {
+                Button { PhoneLearning.shared.setConsent(true); step += 1 } label: {
+                    Text(L("learn_consent_start")).frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.large)
             }
-            Spacer()
-            if step < Self.steps {
-                Button(L("onb_next")) { step += 1 }.buttonStyle(.borderedProminent)
-            } else {
-                Button(L("onb_finish")) { done = true }.buttonStyle(.borderedProminent)
+            HStack {
+                if step > 0 {
+                    Button(L("onb_back")) { step -= 1 }
+                }
+                Spacer()
+                if askLearning {
+                    Button(L("learn_consent_later")) { PhoneLearning.shared.setConsent(false); step += 1 }
+                } else if step < Self.steps {
+                    Button(L("onb_next")) { step += 1 }.buttonStyle(.borderedProminent)
+                } else {
+                    Button(L("onb_finish")) { done = true }.buttonStyle(.borderedProminent)
+                }
             }
         }
         .padding(16)

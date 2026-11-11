@@ -642,5 +642,9 @@
     <string name="learn_consent_text">لكي يضبط Phase Wake المنبّه حسبك، تقيس ساعتك الحركة والنبض طوال الليل لمدة %1$d ليالٍ. يستهلك ذلك بعض البطارية – اشحن الساعة قبل النوم. تبقى البيانات على أجهزتك. يمكنك إيقاف مرحلة التعلّم في الإعدادات في أي وقت.</string>
     <string name="learn_consent_start">ابدأ مرحلة التعلّم</string>
     <string name="learn_consent_later">لاحقًا</string>
+    <string name="learn_intro">لكي يضبط Phase Wake المنبّه حسبك، تقيس ساعتك الحركة والنبض ليلًا.</string>
+    <string name="learn_point_nights">لمدة %1$d ليالٍ</string>
+    <string name="learn_point_battery">يستهلك ذلك بعض البطارية – اشحن الساعة قبل النوم.</string>
+    <string name="learn_point_private">تبقى البيانات على أجهزتك. يمكنك إيقاف مرحلة التعلّم في الإعدادات في أي وقت.</string>
     <string name="learn_switch_hint">تقيس ساعتك الحركة والنبض ليلًا لضبط المنبّه. متوقفة: لا تسجيل تلقائي، وتبقى القيم المتعلَّمة.</string>
 </resources>

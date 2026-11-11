@@ -25,6 +25,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
+import com.phasewake.app.ui.components.Night
 import kotlinx.coroutines.launch
 
 /** Wie auf der Uhr: so lange halten, bis sich der Knopf gefüllt hat. */
@@ -33,9 +34,19 @@ private const val HOLD_MILLIS = 1200
 /**
  * «Halten zum Stoppen»: Ein Tipp im Halbschlaf stoppt den Wecker nicht. Der Knopf füllt sich beim
  * Halten; loslassen vor dem Ende setzt ihn zurück. Mit Bildschirmleser genügt ein Doppeltipp.
+ *
+ * Gefüllter Hauptknopf in Lavendel (Audit U-4), beim Halten läuft von links eine helle Füllung [fill] darüber.
+ * Die dunkle Schrift [content] hat auf beiden Farben Kontrast ≥ 4.5:1 (auf Lavendel etwa 10:1).
  */
 @Composable
-internal fun HoldToStopButton(label: String, container: Color, content: Color, onStop: () -> Unit, modifier: Modifier = Modifier) {
+internal fun HoldToStopButton(
+    label: String,
+    onStop: () -> Unit,
+    modifier: Modifier = Modifier,
+    container: Color = Night.Wave,
+    fill: Color = Night.Moon,
+    content: Color = Night.Bottom,
+) {
     val progress = remember { Animatable(0f) }
     val scope = rememberCoroutineScope()
     val haptics = LocalHapticFeedback.current
@@ -44,7 +55,7 @@ internal fun HoldToStopButton(label: String, container: Color, content: Color, o
         contentAlignment = Alignment.Center,
         modifier = modifier
             .clip(shape)
-            .background(container.copy(alpha = 0.35f))
+            .background(container)
             .semantics {
                 role = Role.Button
                 onClick(label = label) { onStop(); true }
@@ -65,7 +76,7 @@ internal fun HoldToStopButton(label: String, container: Color, content: Color, o
                 })
             },
     ) {
-        Box(Modifier.fillMaxHeight().fillMaxWidth(progress.value).align(Alignment.CenterStart).background(container))
-        Text(label, style = MaterialTheme.typography.titleMedium, color = if (progress.value > 0.5f) content else container)
+        Box(Modifier.fillMaxHeight().fillMaxWidth(progress.value).align(Alignment.CenterStart).background(fill))
+        Text(label, style = MaterialTheme.typography.titleMedium, color = content)
     }
 }

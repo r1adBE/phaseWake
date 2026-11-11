@@ -616,5 +616,9 @@
     <string name="learn_consent_text">Da lahko Phase Wake alarm prilagodi tebi, ura %1$d noči čez noč meri gibanje in utrip. To porabi nekaj baterije – napolni uro pred spanjem. Podatki ostanejo v tvojih napravah. Fazo učenja lahko kadar koli izklopiš v nastavitvah.</string>
     <string name="learn_consent_start">Začni fazo učenja</string>
     <string name="learn_consent_later">Pozneje</string>
+    <string name="learn_intro">Da lahko Phase Wake alarm prilagodi tebi, ura ponoči meri gibanje in utrip.</string>
+    <string name="learn_point_nights">%1$d noči</string>
+    <string name="learn_point_battery">To porabi nekaj baterije – napolni uro pred spanjem.</string>
+    <string name="learn_point_private">Podatki ostanejo v tvojih napravah. Fazo učenja lahko kadar koli izklopiš v nastavitvah.</string>
     <string name="learn_switch_hint">Ura ponoči meri gibanje in utrip, da prilagodi alarm. Izklopljeno: brez samodejnega beleženja, naučene vrednosti ostanejo.</string>
 </resources>

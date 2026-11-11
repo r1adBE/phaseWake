@@ -589,5 +589,9 @@
     <string name="learn_consent_text">ਤਾਂ ਜੋ Phase Wake ਅਲਾਰਮ ਨੂੰ ਤੁਹਾਡੇ ਮੁਤਾਬਕ ਢਾਲ ਸਕੇ, ਤੁਹਾਡੀ ਘੜੀ %1$d ਰਾਤਾਂ ਤੱਕ ਸਾਰੀ ਰਾਤ ਹਿਲਜੁਲ ਅਤੇ ਨਬਜ਼ ਮਾਪਦੀ ਹੈ। ਇਸ ਵਿੱਚ ਕੁਝ ਬੈਟਰੀ ਲੱਗਦੀ ਹੈ – ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਘੜੀ ਚਾਰਜ ਕਰੋ। ਡਾਟਾ ਤੁਹਾਡੇ ਡਿਵਾਈਸਾਂ ’ਤੇ ਹੀ ਰਹਿੰਦਾ ਹੈ। ਸਿੱਖਣ ਦਾ ਪੜਾਅ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਕਦੇ ਵੀ ਬੰਦ ਕਰ ਸਕਦੇ ਹੋ।</string>
     <string name="learn_consent_start">ਸਿੱਖਣ ਦਾ ਪੜਾਅ ਸ਼ੁਰੂ ਕਰੋ</string>
     <string name="learn_consent_later">ਬਾਅਦ ਵਿੱਚ</string>
+    <string name="learn_intro">ਤਾਂ ਜੋ Phase Wake ਅਲਾਰਮ ਨੂੰ ਤੁਹਾਡੇ ਮੁਤਾਬਕ ਢਾਲ ਸਕੇ, ਤੁਹਾਡੀ ਘੜੀ ਰਾਤ ਨੂੰ ਹਿਲਜੁਲ ਅਤੇ ਨਬਜ਼ ਮਾਪਦੀ ਹੈ।</string>
+    <string name="learn_point_nights">%1$d ਰਾਤਾਂ ਤੱਕ</string>
+    <string name="learn_point_battery">ਇਸ ਵਿੱਚ ਕੁਝ ਬੈਟਰੀ ਲੱਗਦੀ ਹੈ – ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਘੜੀ ਚਾਰਜ ਕਰੋ।</string>
+    <string name="learn_point_private">ਡਾਟਾ ਤੁਹਾਡੇ ਡਿਵਾਈਸਾਂ ’ਤੇ ਹੀ ਰਹਿੰਦਾ ਹੈ। ਸਿੱਖਣ ਦਾ ਪੜਾਅ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਕਦੇ ਵੀ ਬੰਦ ਕਰ ਸਕਦੇ ਹੋ।</string>
     <string name="learn_switch_hint">ਅਲਾਰਮ ਢਾਲਣ ਲਈ ਤੁਹਾਡੀ ਘੜੀ ਰਾਤ ਨੂੰ ਹਿਲਜੁਲ ਅਤੇ ਨਬਜ਼ ਮਾਪਦੀ ਹੈ। ਬੰਦ: ਕੋਈ ਆਪਣੇ-ਆਪ ਰਿਕਾਰਡਿੰਗ ਨਹੀਂ, ਸਿੱਖੇ ਮੁੱਲ ਰਹਿੰਦੇ ਹਨ।</string>
 </resources>

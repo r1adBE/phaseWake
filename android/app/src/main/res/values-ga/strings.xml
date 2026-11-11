@@ -631,5 +631,9 @@
     <string name="learn_consent_text">Ionas gur féidir le Phase Wake an t-aláram a oiriúnú duit, tomhaiseann d’uaireadóir gluaiseacht agus cuisle i rith na hoíche ar feadh %1$d oíche. Úsáideann sé seo beagán ceallra – luchtaigh an t-uaireadóir sula dtéann tú a chodladh. Fanann na sonraí ar do ghléasanna. Is féidir leat an chéim foghlama a mhúchadh sna socruithe am ar bith.</string>
     <string name="learn_consent_start">Tosaigh an chéim foghlama</string>
     <string name="learn_consent_later">Ar ball</string>
+    <string name="learn_intro">Ionas gur féidir le Phase Wake an t-aláram a oiriúnú duit, tomhaiseann d’uaireadóir gluaiseacht agus cuisle san oíche.</string>
+    <string name="learn_point_nights">Ar feadh %1$d oíche</string>
+    <string name="learn_point_battery">Úsáideann sé seo beagán ceallra – luchtaigh an t-uaireadóir sula dtéann tú a chodladh.</string>
+    <string name="learn_point_private">Fanann na sonraí ar do ghléasanna. Is féidir leat an chéim foghlama a mhúchadh sna socruithe am ar bith.</string>
     <string name="learn_switch_hint">Tomhaiseann d’uaireadóir gluaiseacht agus cuisle san oíche chun an t-aláram a oiriúnú. As: gan taifeadadh uathoibríoch, fanann na luachanna foghlamtha.</string>
 </resources>

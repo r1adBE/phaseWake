@@ -196,23 +196,27 @@ internal fun DaysSection(state: EditorState) {
             TextButton(onClick = { state.days = WEEKEND }) { Text(stringResource(R.string.editor_weekend)) }
             TextButton(onClick = { state.days = DayOfWeek.entries.toSet() }) { Text(stringResource(R.string.alarm_every_day)) }
         }
-        // Feiertage nur für wiederholte Wecker; ein Einmal-Wecker klingelt an seinem Tag.
-        AnimatedVisibility(state.days.isNotEmpty()) {
-            Row(
-                Modifier.fillMaxWidth().toggleable(value = state.skipHolidays, role = Role.Switch, onValueChange = { state.skipHolidays = it }).padding(top = 8.dp),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Column(Modifier.weight(1f).padding(end = 12.dp)) {
-                    Text(stringResource(R.string.editor_skip_holidays), style = MaterialTheme.typography.titleSmall)
-                    Text(stringResource(R.string.editor_skip_holidays_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                }
-                Switch(checked = state.skipHolidays, onCheckedChange = null)
+    }
+}
+
+/** «An Feiertagen nicht wecken» (unter «Mehr»); nur für wiederholte Wecker, ein Einmal-Wecker klingelt an seinem Tag. */
+@Composable
+internal fun HolidaySection(state: EditorState) {
+    Section {
+        Row(
+            Modifier.fillMaxWidth().toggleable(value = state.skipHolidays, role = Role.Switch, onValueChange = { state.skipHolidays = it }),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Column(Modifier.weight(1f).padding(end = 12.dp)) {
+                Text(stringResource(R.string.editor_skip_holidays), style = MaterialTheme.typography.titleSmall)
+                Text(stringResource(R.string.editor_skip_holidays_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
+            Switch(checked = state.skipHolidays, onCheckedChange = null)
         }
     }
 }
 
-/** Weckart: Uhr (Vibration, mit Ton), Handy als Zweitwecker und die Weckaufgabe am Handy. */
+/** Weckart: Uhr (Vibration, mit Ton) und Handy als Zweitwecker; die Weckaufgabe steht unter «Mehr». */
 @Composable
 internal fun AlertSection(state: EditorState) {
     Section {
@@ -234,21 +238,27 @@ internal fun AlertSection(state: EditorState) {
         )
         if (state.phone != PhoneAlert.OFF) {
             Text(stringResource(R.string.editor_phone_backup_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 6.dp))
-            // Weckaufgabe: nur mit Handy-Wecker (gelöst wird am Handy; ohne ihn gilt Halten).
-            Text(stringResource(R.string.wake_task_title), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 14.dp, bottom = 6.dp))
-            Choice(
-                options = listOf(WakeTask.NONE to R.string.wake_task_hold, WakeTask.MATH to R.string.wake_task_math),
-                selected = state.wakeTask,
-                onSelect = { state.wakeTask = it },
+        }
+    }
+}
+
+/** «Zum Beenden» (unter «Mehr»): Halten oder Weckaufgabe; nur mit Handy-Wecker (gelöst wird am Handy, ohne ihn gilt Halten). */
+@Composable
+internal fun WakeTaskSection(state: EditorState) {
+    Section {
+        Text(stringResource(R.string.wake_task_title), style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(bottom = 6.dp))
+        Choice(
+            options = listOf(WakeTask.NONE to R.string.wake_task_hold, WakeTask.MATH to R.string.wake_task_math),
+            selected = state.wakeTask,
+            onSelect = { state.wakeTask = it },
+        )
+        AnimatedVisibility(state.wakeTask == WakeTask.MATH) {
+            Text(
+                stringResource(R.string.wake_task_hint),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = 6.dp),
             )
-            AnimatedVisibility(state.wakeTask == WakeTask.MATH) {
-                Text(
-                    stringResource(R.string.wake_task_hint),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(top = 6.dp),
-                )
-            }
         }
     }
 }
@@ -298,7 +308,10 @@ internal fun SunriseSection(state: EditorState) {
     }
 }
 
-/** Selten gebrauchte Optionen (Weckton, Name) zugeklappt unter «Mehr»: kürzerer Editor auf kleinen Handys. */
+/**
+ * Selten gebrauchte Optionen zugeklappt unter «Mehr» (Audit U-3): Zum Beenden, Sonnenaufgang, Feiertage, Weckton und
+ * Name. Sichtbar bleiben Zeit, Fenster, Wiederholen und Weckart; kürzerer Editor auf kleinen Handys.
+ */
 @Composable
 internal fun ColumnScope.MoreSection(
     state: EditorState,
@@ -322,6 +335,9 @@ internal fun ColumnScope.MoreSection(
     }
     AnimatedVisibility(state.more) {
         Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
+            AnimatedVisibility(state.phone != PhoneAlert.OFF) { WakeTaskSection(state) }
+            SunriseSection(state)
+            AnimatedVisibility(state.days.isNotEmpty()) { HolidaySection(state) }
             AnimatedVisibility(state.phone == PhoneAlert.SOUND) { ToneSection(state, preview, soundPicker) }
             OutlinedTextField(
                 value = state.label,

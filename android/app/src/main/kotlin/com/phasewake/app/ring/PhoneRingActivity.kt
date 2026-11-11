@@ -32,8 +32,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
@@ -154,8 +152,6 @@ class PhoneRingActivity : ComponentActivity() {
     }
 }
 
-private val Night = NightColors.Bottom
-
 @Composable
 internal fun RingScreen(
     state: PhoneRingService.State,
@@ -175,8 +171,6 @@ internal fun RingScreen(
     // Mit Sonnenaufgang: Licht statt Nachthimmel, Farben passen sich der Helligkeit an.
     val sky = light?.let { SunriseSky.colors(it) }
     val content = sky?.content ?: NightColors.Moon
-    // Schrift auf dem Halte-Knopf (Knopf in der Inhaltsfarbe): dunkel auf hellem Knopf, sonst weiss.
-    val onContent = if (content.luminance() > 0.5f) Night else Color.White
     val muted = sky?.contentMuted ?: NightColors.Muted
     val background: @Composable (@Composable () -> Unit) -> Unit = { inner ->
         if (light != null) SunriseBackground(light, Modifier.fillMaxSize(), inner) else AnimatedNight(Modifier.fillMaxSize()) { inner() }
@@ -207,8 +201,6 @@ internal fun RingScreen(
                     MathTaskPanel(challenge, content, onTyping, onSolved = onStop, modifier = Modifier.fillMaxWidth())
                 } else HoldToStopButton(
                     label = stringResource(R.string.ring_hold_to_stop),
-                    container = content,
-                    content = onContent,
                     onStop = onStop,
                     modifier = Modifier.fillMaxWidth().height(60.dp),
                 )
@@ -227,8 +219,6 @@ internal fun RingScreen(
                     MathTaskPanel(challenge, content, onTyping, onSolved = onStop, modifier = Modifier.fillMaxWidth())
                 } else HoldToStopButton(
                     label = stringResource(R.string.ring_hold_to_stop),
-                    container = content,
-                    content = onContent,
                     onStop = onStop,
                     modifier = Modifier.fillMaxWidth().height(60.dp),
                 )

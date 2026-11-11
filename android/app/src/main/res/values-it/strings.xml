@@ -600,5 +600,9 @@
     <string name="learn_consent_text">Perché Phase Wake possa adattare la sveglia a te, il tuo orologio misura movimento e battito durante la notte per %1$d notti. Consuma un po’ di batteria – ricarica l’orologio prima di dormire. I dati restano sui tuoi dispositivi. Puoi disattivare la fase di apprendimento nelle impostazioni in qualsiasi momento.</string>
     <string name="learn_consent_start">Avvia fase di apprendimento</string>
     <string name="learn_consent_later">Più tardi</string>
+    <string name="learn_intro">Perché Phase Wake possa adattare la sveglia a te, il tuo orologio misura movimento e battito di notte.</string>
+    <string name="learn_point_nights">Per %1$d notti</string>
+    <string name="learn_point_battery">Consuma un po’ di batteria – ricarica l’orologio prima di dormire.</string>
+    <string name="learn_point_private">I dati restano sui tuoi dispositivi. Puoi disattivare la fase di apprendimento nelle impostazioni in qualsiasi momento.</string>
     <string name="learn_switch_hint">Il tuo orologio misura movimento e battito di notte per adattare la sveglia. Disattivato: nessuna registrazione automatica, i valori appresi restano.</string>
 </resources>

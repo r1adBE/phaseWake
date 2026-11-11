@@ -586,5 +586,9 @@
     <string name="learn_consent_text">Zodat Phase Wake de wekker op jou kan afstemmen, meet je horloge %1$d nachten lang gedurende de nacht beweging en hartslag. Dat kost wat batterij – laad het horloge op voordat je gaat slapen. De gegevens blijven op je apparaten. Je kunt de leerfase op elk moment uitzetten in de instellingen.</string>
     <string name="learn_consent_start">Leerfase starten</string>
     <string name="learn_consent_later">Later</string>
+    <string name="learn_intro">Zodat Phase Wake de wekker op jou kan afstemmen, meet je horloge \'s nachts beweging en hartslag.</string>
+    <string name="learn_point_nights">%1$d nachten lang</string>
+    <string name="learn_point_battery">Dat kost wat batterij – laad het horloge op voordat je gaat slapen.</string>
+    <string name="learn_point_private">De gegevens blijven op je apparaten. Je kunt de leerfase op elk moment uitzetten in de instellingen.</string>
     <string name="learn_switch_hint">Je horloge meet ’s nachts beweging en hartslag om de wekker af te stemmen. Uit: geen automatische registratie, geleerde waarden blijven.</string>
 </resources>

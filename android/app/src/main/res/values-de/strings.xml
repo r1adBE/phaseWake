@@ -586,5 +586,9 @@
     <string name="learn_consent_text">Damit Phase Wake den Wecker an dich anpasst, misst deine Uhr %1$d Nächte lang Bewegung und Puls über die Nacht. Das kostet etwas Akku – lade die Uhr vor dem Schlafen. Die Daten bleiben auf deinen Geräten. Du kannst die Lernphase jederzeit in den Einstellungen ausschalten.</string>
     <string name="learn_consent_start">Lernphase starten</string>
     <string name="learn_consent_later">Später</string>
+    <string name="learn_intro">Damit Phase Wake den Wecker an dich anpasst, misst deine Uhr nachts Bewegung und Puls.</string>
+    <string name="learn_point_nights">%1$d Nächte lang</string>
+    <string name="learn_point_battery">Das kostet etwas Akku – lade die Uhr vor dem Schlafen.</string>
+    <string name="learn_point_private">Die Daten bleiben auf deinen Geräten. Du kannst die Lernphase jederzeit in den Einstellungen ausschalten.</string>
     <string name="learn_switch_hint">Deine Uhr misst nachts Bewegung und Puls, um den Wecker anzupassen. Aus: keine automatische Aufzeichnung, gelernte Werte bleiben.</string>
 </resources>

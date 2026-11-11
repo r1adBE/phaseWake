@@ -39,6 +39,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
@@ -59,7 +60,6 @@ import com.phasewake.app.ui.editor.WEEKDAYS
 import com.phasewake.app.ui.editor.WINDOW_OPTIONS
 import com.phasewake.app.ui.editor.scaled
 import com.phasewake.app.ui.home.Check
-import com.phasewake.app.ui.home.LearningConsent
 import com.phasewake.app.ui.home.MAX_ALARMS
 import com.phasewake.app.ui.home.NightCheckState
 import com.phasewake.app.ui.settings.HealthState
@@ -70,6 +70,9 @@ import kotlinx.coroutines.launch
 
 /** Schritte der Ersteinrichtung; danach «Fertig». */
 private const val STEPS = 6
+
+/** Seite der Lernphase: statt «Weiter» die Knöpfe «Später» und «Lernphase starten». */
+private const val LEARNING_PAGE = 4
 
 /**
  * Ersteinrichtung in sechs Schritten (jederzeit überspringbar): Willkommen, Uhr verbinden, Rechte, erster Wecker,
@@ -140,18 +143,28 @@ internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: Onboardi
                 1 -> WatchStep(model)
                 2 -> RightsStep(model)
                 3 -> AlarmStep(model)
-                4 -> LearningStep(model)
+                LEARNING_PAGE -> LearningStep(model)
                 5 -> TestPage(model)
                 else -> Page(R.string.onb_done_title) { Body(R.string.onb_done_text) }
             }
         }
+        // Lernphase noch nicht gestartet: nur «Später» und «Lernphase starten», beide gehen weiter (Audit U-2).
+        val askLearning = page == LEARNING_PAGE && model.learningConsent != true
+        if (askLearning) {
+            Button(
+                onClick = { model.onLearningConsent(true); onPage(page + 1) },
+                modifier = Modifier.fillMaxWidth().padding(bottom = 4.dp),
+            ) { Text(stringResource(R.string.learn_consent_start)) }
+        }
         Row(Modifier.fillMaxWidth().padding(bottom = 12.dp), verticalAlignment = Alignment.CenterVertically) {
             if (page > 0) OutlinedButton(onClick = { onPage(page - 1) }) { Text(stringResource(R.string.onb_back)) }
             Spacer(Modifier.weight(1f))
-            if (page < STEPS) {
-                Button(onClick = { onPage(page + 1) }) { Text(stringResource(R.string.onb_next)) }
-            } else {
-                Button(onClick = onDone) { Text(stringResource(R.string.onb_finish)) }
+            when {
+                askLearning -> TextButton(onClick = { model.onLearningConsent(false); onPage(page + 1) }) {
+                    Text(stringResource(R.string.learn_consent_later))
+                }
+                page < STEPS -> Button(onClick = { onPage(page + 1) }) { Text(stringResource(R.string.onb_next)) }
+                else -> Button(onClick = onDone) { Text(stringResource(R.string.onb_finish)) }
             }
         }
     }
@@ -254,15 +267,26 @@ private fun AlarmStep(model: OnboardingModel) {
     }
 }
 
-/** Lernphase: Frage mit «Lernphase starten» / «Später»; nach dem Start «✓ Erlaubt». */
+/**
+ * Lernphase: kurze Einleitung und drei Punkte (Audit U-2); die Knöpfe «Später» / «Lernphase starten» stehen unten
+ * statt «Weiter». Nach dem Start «✓ Erlaubt».
+ */
 @Composable
 private fun LearningStep(model: OnboardingModel) {
     Page(R.string.learn_consent_title) {
+        Body(R.string.learn_intro)
+        listOf(
+            stringResource(R.string.learn_point_nights, Learning.NIGHTS),
+            stringResource(R.string.learn_point_battery),
+            stringResource(R.string.learn_point_private),
+        ).forEach { point ->
+            Row {
+                Text("•", style = MaterialTheme.typography.bodyLarge, modifier = Modifier.padding(end = 10.dp).clearAndSetSemantics { })
+                Text(point, style = MaterialTheme.typography.bodyLarge)
+            }
+        }
         if (model.learningConsent == true) {
-            Text(stringResource(R.string.learn_consent_text, Learning.NIGHTS), style = MaterialTheme.typography.bodyLarge)
             Text("✓ " + stringResource(R.string.onb_granted), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
-        } else {
-            LearningConsent(model.onLearningConsent, MaterialTheme.colorScheme.onSurface)
         }
     }
 }

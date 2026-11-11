@@ -182,3 +182,17 @@ davon unabhängig (Debug-Builds kommen nie in den Store).
 Lokal ohne die vier Umgebungsvariablen `PHASEWAKE_UPLOAD_KEYSTORE` (Pfad), `PHASEWAKE_UPLOAD_STORE_PASSWORD`,
 `PHASEWAKE_UPLOAD_KEY_ALIAS` und `PHASEWAKE_UPLOAD_KEY_PASSWORD` bleibt der Release-Build unsigniert wie in der CI; nur ein
 Teil davon bricht den Build ab.
+
+## Nach dem Release: Absturzberichte
+
+Phase Wake enthält kein Absturz-SDK und hat keine Internet-Berechtigung (Audit P-1). Abstürze kommen über die Stores:
+
+- **Android:** Play Console → App → «Android Vitals» → «Abstürze und ANRs». Handy und Uhr (Formfaktor Wear OS) stehen
+  getrennt; die Berichte kommen von Nutzern, die das Senden von Diagnosedaten an Google erlaubt haben. Nach jedem
+  Rollout in der ersten Woche täglich ansehen. Der Release-Build ist mit R8 verkleinert; die Bundles enthalten die
+  Zuordnung (`mapping.txt`), damit macht die Play Console die Stack-Traces selbst wieder lesbar.
+- **Apple:** App Store Connect → App → «TestFlight» bzw. Xcode → Window → Organizer → «Crashes» (auch «Energy» und
+  «Hangs»), für iPhone und Apple Watch. Nur von Nutzern, die «Mit App-Entwicklern teilen» eingeschaltet haben; lesbar
+  mit den dSYM-Dateien, die beim Hochladen des Archivs mitgehen.
+- **Diagnose-Protokoll:** Bei Meldungen, die kein Absturz sind (z. B. «hat nicht geweckt»), Nutzer bitten, das lokale
+  Protokoll freizuschalten und zu teilen (in den Einstellungen 7× auf die Versionszeile tippen, dann «Diagnose», siehe `docs/TESTEN.md`); es enthält keine Namen und keine einzelnen Messwerte.

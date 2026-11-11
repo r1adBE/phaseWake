@@ -51,6 +51,11 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
      * Ohne Kennung (unlesbar) nichts.
      */
     suspend fun receive(node: String, data: ByteArray?, handle: suspend (String) -> Unit) {
+        // Über der Grenze (Audit S-2): nicht entschlüsseln und nicht bestätigen.
+        if (!PeerLimit.fits(data)) {
+            Log.w(TAG, "Empfangener Eintrag zu gross (${data?.size} Bytes), verworfen")
+            return
+        }
         val (id, body) = Outbox.open(data) ?: return
         try {
             handle(body)
@@ -63,11 +68,15 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
         flush()
     }
 
-    /** Kanal der Gegenseite (grosser Eintrag der Warteschlange) ganz lesen und schliessen; `null`, wenn das scheitert. */
+    /**
+     * Kanal der Gegenseite (grosser Eintrag der Warteschlange) ganz lesen und schliessen; `null`, wenn das scheitert
+     * oder der Inhalt grösser als [PeerLimit.MAX_BYTES] ist (Audit S-2: nie ohne Grenze in den Speicher).
+     */
     suspend fun readChannel(channel: ChannelClient.Channel): ByteArray? {
         val client = Wearable.getChannelClient(app)
         return try {
-            client.getInputStream(channel).await().use { it.readBytes() }
+            client.getInputStream(channel).await().use { PeerLimit.read(it) }
+                .also { if (it == null) Log.w(TAG, "Kanal grösser als ${PeerLimit.MAX_BYTES} Bytes, abgebrochen") }
         } catch (e: Exception) {
             if (e is kotlinx.coroutines.CancellationException) throw e
             Log.i(TAG, "Kanal nicht lesbar", e)

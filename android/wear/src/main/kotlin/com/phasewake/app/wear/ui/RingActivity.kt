@@ -9,6 +9,11 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.clip
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -45,7 +50,9 @@ import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.onClick
-import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.role
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -188,6 +195,9 @@ private const val COMPACT_HEIGHT_DP = 210
 /** Mindesthöhe des Schlummer-Knopfs (Wear-Richtlinie: Tippziel 48 dp). */
 private val SNOOZE_MIN_HEIGHT = 48.dp
 
+/** Mindesthöhe des Stopp-Knopfs; zum Halten genügt weniger als beim Tippen, der Punkt darüber hält ebenfalls. */
+private val STOP_MIN_HEIGHT = 40.dp
+
 /** [light]: Fortschritt des Sonnenaufgangs (0–1) als Hintergrund, `null` = Nachthimmel. */
 @Composable
 internal fun RingScreen(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit, light: Float? = null) {
@@ -206,11 +216,32 @@ internal fun RingScreen(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit,
     val content = sky?.content ?: Brand.Moon
     val accent = sky?.content?.copy(alpha = 0.6f) ?: Brand.Wave
     val background = if (light != null) Modifier.sunriseSky(light) else Modifier.nightGlow()
+    // Punkt und Stopp-Knopf teilen sich dasselbe Halten und denselben Fortschritt.
+    val hold = Modifier
+        .pointerInput(holdMillis) {
+            detectTapGestures(onPress = {
+                haptics.performHapticFeedback(HapticFeedbackType.TextHandleMove)
+                val job = scope.launch {
+                    progress.animateTo(1f, tween(holdMillis, easing = LinearEasing))
+                    haptics.performHapticFeedback(HapticFeedbackType.LongPress)
+                    onDismiss()
+                }
+                // Auch wenn die Geste abbricht (Wechsel zwischen Halten und Aufgabe): kein Beenden ohne Halten.
+                try {
+                    tryAwaitRelease()
+                } finally {
+                    if (progress.value < 1f) {
+                        job.cancel()
+                        scope.launch { progress.animateTo(0f, tween(250)) }
+                    }
+                }
+            })
+        }
 
     Box(Modifier.fillMaxSize().then(background), contentAlignment = Alignment.Center) {
-        // Fortschritt des Haltens als Ring am Rand.
+        // Fortschritt des Haltens zusätzlich als Ring am Rand.
         Canvas(Modifier.fillMaxSize()) {
-            val stroke = 5.dp.toPx()
+            val stroke = 6.dp.toPx()
             val inset = stroke / 2 + 1.dp.toPx()
             drawArc(
                 if (sky != null) content else Brand.Wave, -90f, 360f * progress.value, false,
@@ -218,58 +249,81 @@ internal fun RingScreen(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit,
                 style = Stroke(stroke, cap = StrokeCap.Round),
             )
         }
+        // Inhalt etwas über der Mitte und mit Abstand zum runden Rand unten (Audit U-1): «noch N» unter
+        // «Schlummern 5 Min» bleibt auch auf kleinen runden Uhren ganz sichtbar.
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-            modifier = Modifier.padding(horizontal = if (compact) 22.dp else 18.dp),
+            modifier = Modifier.padding(
+                start = if (compact) 12.dp else 18.dp,
+                end = if (compact) 12.dp else 18.dp,
+                bottom = if (compact) 14.dp else 18.dp,
+            ),
         ) {
             PulsingDot(
                 color = accent,
                 dot = content,
-                modifier = Modifier
-                    .size(if (compact) 48.dp else 76.dp)
-                    // Auch mit Aufgabe beendet die Bedienungshilfe (Notausgang, wie langes Halten).
-                    .semantics {
-                        contentDescription = holdLabel
-                        onClick(label = holdLabel) { onDismiss(); true }
-                    }
-                    .pointerInput(holdMillis) {
-                        detectTapGestures(onPress = {
-                            haptics.performHapticFeedback(HapticFeedbackType.TextHandleMove)
-                            val hold = scope.launch {
-                                progress.animateTo(1f, tween(holdMillis, easing = LinearEasing))
-                                haptics.performHapticFeedback(HapticFeedbackType.LongPress)
-                                onDismiss()
-                            }
-                            // Auch wenn die Geste abbricht (Wechsel zwischen Halten und Aufgabe): kein Beenden ohne Halten.
-                            try {
-                                tryAwaitRelease()
-                            } finally {
-                                if (progress.value < 1f) {
-                                    hold.cancel()
-                                    scope.launch { progress.animateTo(0f, tween(250)) }
-                                }
-                            }
-                        })
-                    },
+                modifier = Modifier.size(if (compact) 34.dp else 44.dp).then(hold),
             )
-            Spacer(Modifier.height(if (compact) 2.dp else 6.dp))
+            Spacer(Modifier.height(if (compact) 0.dp else 2.dp))
             when (ui) {
-                is RingUi.Ringing -> Ringing(ui, onSnooze, compact, content = content, muted = sky?.contentMuted)
+                is RingUi.Ringing -> Ringing(ui, content = content, muted = sky?.contentMuted)
                 is RingUi.Snoozed -> Snoozed(ui)
                 RingUi.Idle -> Unit
+            }
+            if (ui != RingUi.Idle) {
+                Spacer(Modifier.height(if (compact) 3.dp else 5.dp))
+                HoldToStop(holdLabel, progress.value, compact, onDismiss, modifier = hold)
+            }
+            if (ui is RingUi.Ringing && ui.snoozesLeft > 0) {
+                Spacer(Modifier.height(if (compact) 3.dp else 5.dp))
+                SnoozeButton(ui.snoozesLeft, onSnooze, compact)
             }
         }
     }
 }
 
+/**
+ * «Halten zum Stoppen» als gefüllter Hauptknopf in Lavendel (Audit U-4), wie auf dem Handy: beim Halten läuft
+ * von links eine helle Füllung darüber. Dunkle Schrift auf Lavendel und auf der Füllung: Kontrast ≥ 4.5:1.
+ */
+@Composable
+private fun HoldToStop(label: String, progress: Float, compact: Boolean, onDismiss: () -> Unit, modifier: Modifier = Modifier) {
+    Box(
+        contentAlignment = Alignment.Center,
+        // [modifier]: das Halten (vor dem Innenabstand, damit der ganze Knopf zählt).
+        modifier = modifier
+            .heightIn(min = STOP_MIN_HEIGHT)
+            // Auch mit Aufgabe beendet die Bedienungshilfe (Notausgang, wie langes Halten).
+            .clearAndSetSemantics {
+                role = Role.Button
+                contentDescription = label
+                onClick(label = label) { onDismiss(); true }
+            }
+            .clip(RoundedCornerShape(50))
+            .background(Brand.Wave)
+            .drawBehind { drawRect(Brand.Moon, size = Size(size.width * progress, size.height)) }
+            .padding(horizontal = if (compact) 10.dp else 14.dp, vertical = 4.dp),
+    ) {
+        // Lange Übersetzungen und der Hinweis zur Aufgabe brechen um statt abgeschnitten zu werden.
+        Text(
+            label,
+            style = if (compact) MaterialTheme.typography.labelSmall else MaterialTheme.typography.labelMedium,
+            color = Brand.NightBottom,
+            textAlign = TextAlign.Center,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis,
+        )
+    }
+}
+
 /** [content]/[muted]: Schriftfarben; [muted] `null` = Farben des Nachthimmels. */
 @Composable
-private fun Ringing(ui: RingUi.Ringing, onSnooze: () -> Unit, compact: Boolean = false, content: Color = Brand.Moon, muted: Color? = null) {
+private fun Ringing(ui: RingUi.Ringing, content: Color = Brand.Moon, muted: Color? = null) {
     // Jede Zeile einzeilig: Lange Namen oder Übersetzungen dürfen den Schlummer-Knopf nicht nach unten schieben.
     Text(
         ui.label.ifBlank { stringResource(R.string.ring_greeting) },
-        style = if (compact) MaterialTheme.typography.titleMedium else MaterialTheme.typography.titleLarge,
+        style = MaterialTheme.typography.titleMedium,
         color = content,
         textAlign = TextAlign.Center,
         maxLines = 1,
@@ -283,41 +337,41 @@ private fun Ringing(ui: RingUi.Ringing, onSnooze: () -> Unit, compact: Boolean =
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
     )
-    Text(
-        stringResource(if (ui.taskOnPhone) R.string.wake_task_on_phone else R.string.ring_hold_to_stop),
-        style = MaterialTheme.typography.labelSmall,
-        color = muted ?: Brand.Muted,
-        textAlign = TextAlign.Center,
-        // Der Hinweis zur Aufgabe ist länger: zwei Zeilen.
-        maxLines = if (ui.taskOnPhone) 2 else 1,
-        overflow = TextOverflow.Ellipsis,
+}
+
+/**
+ * «Schlummern 5 Min» (Audit F-10), darunter klein «noch N» (r1AD 10.11.2026), beide Zeilen mittig; auch auf kleinen
+ * Uhren mindestens 48 dp hoch (Ziel für den Finger), mit grosser Schrift höher statt abgeschnitten.
+ */
+@Composable
+private fun SnoozeButton(snoozesLeft: Int, onSnooze: () -> Unit, compact: Boolean) {
+    val res = LocalResources.current
+    Button(
+        onClick = onSnooze,
+        modifier = Modifier.heightIn(min = SNOOZE_MIN_HEIGHT),
+        colors = ButtonDefaults.buttonColors(containerColor = Brand.Deep, contentColor = Brand.Moon, secondaryContentColor = Brand.Mist),
+        contentPadding = PaddingValues(horizontal = if (compact) 10.dp else 16.dp, vertical = 2.dp),
+        secondaryLabel = {
+            Text(
+                res.getQuantityString(R.plurals.ring_snoozes_left, snoozesLeft, snoozesLeft),
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+        },
+        label = {
+            // Auf kleinen Uhren etwas kleiner; zu lang bricht um (Knopf wird höher) statt abgeschnitten zu werden.
+            Text(
+                stringResource(R.string.ring_snooze_button, Snooze.MINUTES),
+                modifier = Modifier.fillMaxWidth(),
+                style = if (compact) MaterialTheme.typography.labelSmall else MaterialTheme.typography.labelMedium,
+                textAlign = TextAlign.Center,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+            )
+        },
     )
-    if (ui.snoozesLeft > 0) {
-        Spacer(Modifier.height(if (compact) 4.dp else 8.dp))
-        // «Schlummern 5 Min» (Audit F-10), darunter klein «noch N» (r1AD 10.11.2026); auch auf kleinen Uhren mindestens
-        // 48 dp hoch (Ziel für den Finger), mit grosser Schrift höher statt abgeschnitten.
-        val res = LocalResources.current
-        Button(
-            onClick = onSnooze,
-            modifier = Modifier.heightIn(min = SNOOZE_MIN_HEIGHT),
-            colors = ButtonDefaults.buttonColors(containerColor = Brand.Deep, contentColor = Brand.Moon),
-            contentPadding = if (compact) PaddingValues(horizontal = 12.dp, vertical = 2.dp) else ButtonDefaults.ContentPadding,
-            secondaryLabel = {
-                Text(
-                    res.getQuantityString(R.plurals.ring_snoozes_left, ui.snoozesLeft, ui.snoozesLeft),
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
-            },
-            label = {
-                Text(
-                    stringResource(R.string.ring_snooze_button, Snooze.MINUTES),
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
-            },
-        )
-    }
 }
 
 @Composable
@@ -328,11 +382,5 @@ private fun Snoozed(ui: RingUi.Snoozed) {
         style = MaterialTheme.typography.titleMedium,
         textAlign = TextAlign.Center,
     )
-    // Beenden auch hier durch Halten (Punkt oben), auch mit Weckaufgabe.
-    Text(
-        stringResource(R.string.ring_hold_to_stop),
-        style = MaterialTheme.typography.labelSmall,
-        color = Brand.Muted,
-        textAlign = TextAlign.Center,
-    )
+    // Beenden auch hier durch Halten (Punkt oder Knopf darunter), auch mit Weckaufgabe.
 }

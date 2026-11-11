@@ -27,6 +27,9 @@ public enum SyncKeys {
     public static let snoozesLeft = "snoozesLeft"
     /// Höchstalter eines «ring» (und eines «stop»/«snooze» vom iPhone) in Millisekunden; ein später zugestelltes wird verworfen.
     public static let maxRingAgeMs: Int64 = 2 * 60_000
+    /// Obergrenze für Inhalte der Uhr in Bytes (Audit S-2, wie Android `PeerLimit.MAX_BYTES`): Grösseres wird nicht
+    /// verarbeitet. Die längste Aufzeichnung (12 Std., 1440 Epochen à höchstens etwa 45 Zeichen) hat rund 65 KB.
+    public static let maxPeerBytes = 8 * 1024 * 1024
     /// Uhr → iPhone im Anwendungskontext: Zielzeit (ms), für die die Uhr scharf ist; 0 = nicht scharf.
     public static let armedTarget = "armedTarget"
     /// Uhr → iPhone im Anwendungskontext: Akkustand der Uhr in Prozent und Zeitpunkt der Messung (ms).

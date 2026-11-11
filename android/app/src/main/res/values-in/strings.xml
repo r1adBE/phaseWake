@@ -572,5 +572,9 @@
     <string name="learn_consent_text">Agar Phase Wake bisa menyesuaikan alarm denganmu, jam tanganmu mengukur gerakan dan denyut nadi sepanjang malam selama %1$d malam. Ini memakai sedikit baterai – isi daya jam sebelum tidur. Datanya tetap di perangkatmu. Kamu bisa mematikan fase belajar di pengaturan kapan saja.</string>
     <string name="learn_consent_start">Mulai fase belajar</string>
     <string name="learn_consent_later">Nanti</string>
+    <string name="learn_intro">Agar Phase Wake bisa menyesuaikan alarm denganmu, jam tanganmu mengukur gerakan dan denyut nadi di malam hari.</string>
+    <string name="learn_point_nights">Selama %1$d malam</string>
+    <string name="learn_point_battery">Ini memakai sedikit baterai – isi daya jam sebelum tidur.</string>
+    <string name="learn_point_private">Datanya tetap di perangkatmu. Kamu bisa mematikan fase belajar di pengaturan kapan saja.</string>
     <string name="learn_switch_hint">Jam tanganmu mengukur gerakan dan denyut nadi di malam hari untuk menyesuaikan alarm. Mati: tidak ada perekaman otomatis, nilai yang dipelajari tetap ada.</string>
 </resources>

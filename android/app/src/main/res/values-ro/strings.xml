@@ -600,5 +600,9 @@
     <string name="learn_consent_text">Ca Phase Wake să poată adapta alarma la tine, ceasul tău măsoară mișcarea și pulsul de-a lungul nopții timp de %1$d nopți. Asta consumă puțină baterie – încarcă ceasul înainte de culcare. Datele rămân pe dispozitivele tale. Poți dezactiva oricând faza de învățare din setări.</string>
     <string name="learn_consent_start">Pornește faza de învățare</string>
     <string name="learn_consent_later">Mai târziu</string>
+    <string name="learn_intro">Ca Phase Wake să poată adapta alarma la tine, ceasul tău măsoară noaptea mișcarea și pulsul.</string>
+    <string name="learn_point_nights">Timp de %1$d nopți</string>
+    <string name="learn_point_battery">Asta consumă puțină baterie – încarcă ceasul înainte de culcare.</string>
+    <string name="learn_point_private">Datele rămân pe dispozitivele tale. Poți dezactiva oricând faza de învățare din setări.</string>
     <string name="learn_switch_hint">Ceasul tău măsoară noaptea mișcarea și pulsul pentru a adapta alarma. Dezactivat: fără înregistrare automată, valorile învățate rămân.</string>
 </resources>

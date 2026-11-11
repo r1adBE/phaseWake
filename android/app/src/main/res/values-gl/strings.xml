@@ -589,5 +589,9 @@
     <string name="learn_consent_text">Para que Phase Wake adapte a alarma a ti, o teu reloxo mide movemento e pulso ao longo da noite durante %1$d noites. Isto gasta algo de batería: carga o reloxo antes de durmir. Os datos quedan nos teus dispositivos. Podes desactivar a fase de aprendizaxe na configuración cando queiras.</string>
     <string name="learn_consent_start">Iniciar fase de aprendizaxe</string>
     <string name="learn_consent_later">Máis tarde</string>
+    <string name="learn_intro">Para que Phase Wake adapte a alarma a ti, o teu reloxo mide movemento e pulso pola noite.</string>
+    <string name="learn_point_nights">Durante %1$d noites</string>
+    <string name="learn_point_battery">Isto gasta algo de batería: carga o reloxo antes de durmir.</string>
+    <string name="learn_point_private">Os datos quedan nos teus dispositivos. Podes desactivar a fase de aprendizaxe na configuración cando queiras.</string>
     <string name="learn_switch_hint">O teu reloxo mide movemento e pulso pola noite para adaptar a alarma. Desactivado: sen rexistro automático, os valores aprendidos mantéñense.</string>
 </resources>

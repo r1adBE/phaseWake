@@ -591,5 +591,9 @@
     <string name="learn_consent_text" tools:ignore="PluralsCandidate">So Phase Wake can adapt the alarm to you, your watch measures motion and pulse through the night for %1$d nights. This uses some battery – charge the watch before you go to sleep. The data stays on your devices. You can turn the learning phase off in the settings at any time.</string>
     <string name="learn_consent_start">Start learning phase</string>
     <string name="learn_consent_later">Later</string>
+    <string name="learn_intro">So Phase Wake can adapt the alarm to you, your watch measures motion and pulse at night.</string>
+    <string name="learn_point_nights" tools:ignore="PluralsCandidate">For %1$d nights</string>
+    <string name="learn_point_battery">This uses some battery – charge the watch before you go to sleep.</string>
+    <string name="learn_point_private">The data stays on your devices. You can turn the learning phase off in the settings at any time.</string>
     <string name="learn_switch_hint">Your watch measures motion and pulse at night to adapt the alarm. Off: no automatic recording, learned values stay.</string>
 </resources>

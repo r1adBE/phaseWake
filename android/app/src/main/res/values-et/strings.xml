@@ -589,5 +589,9 @@
     <string name="learn_consent_text">Et Phase Wake saaks äratuse sinu järgi kohandada, mõõdab su kell %1$d ööd järjest öö jooksul liikumist ja pulssi. See kulutab veidi akut – lae kell enne magamaminekut. Andmed jäävad sinu seadmetesse. Õppefaasi saad seadetes igal ajal välja lülitada.</string>
     <string name="learn_consent_start">Alusta õppefaasi</string>
     <string name="learn_consent_later">Hiljem</string>
+    <string name="learn_intro">Et Phase Wake saaks äratuse sinu järgi kohandada, mõõdab su kell öösel liikumist ja pulssi.</string>
+    <string name="learn_point_nights">%1$d ööd järjest</string>
+    <string name="learn_point_battery">See kulutab veidi akut – lae kell enne magamaminekut.</string>
+    <string name="learn_point_private">Andmed jäävad sinu seadmetesse. Õppefaasi saad seadetes igal ajal välja lülitada.</string>
     <string name="learn_switch_hint">Su kell mõõdab öösel liikumist ja pulssi, et äratust kohandada. Väljas: automaatset salvestamist pole, õpitud väärtused jäävad.</string>
 </resources>

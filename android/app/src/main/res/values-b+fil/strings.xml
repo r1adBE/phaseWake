@@ -589,5 +589,9 @@
     <string name="learn_consent_text">Para maiangkop ng Phase Wake ang alarm sa iyo, sinusukat ng relo mo ang galaw at pulso sa buong gabi sa loob ng %1$d gabi. Gumagamit ito ng kaunting baterya – i-charge ang relo bago matulog. Nananatili ang data sa mga device mo. Puwede mong i-off ang yugto ng pagkatuto sa settings anumang oras.</string>
     <string name="learn_consent_start">Simulan ang pagkatuto</string>
     <string name="learn_consent_later">Mamaya</string>
+    <string name="learn_intro">Para maiangkop ng Phase Wake ang alarm sa iyo, sinusukat ng relo mo ang galaw at pulso sa gabi.</string>
+    <string name="learn_point_nights">Sa loob ng %1$d gabi</string>
+    <string name="learn_point_battery">Gumagamit ito ng kaunting baterya – i-charge ang relo bago matulog.</string>
+    <string name="learn_point_private">Nananatili ang data sa mga device mo. Puwede mong i-off ang yugto ng pagkatuto sa settings anumang oras.</string>
     <string name="learn_switch_hint">Sinusukat ng relo mo ang galaw at pulso sa gabi para iangkop ang alarm. Naka-off: walang awtomatikong pagtatala, nananatili ang natutunang value.</string>
 </resources>

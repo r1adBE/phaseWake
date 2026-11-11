@@ -614,5 +614,9 @@
     <string name="learn_consent_text">Aby Phase Wake mohl přizpůsobit budík tobě, hodinky po %1$d nocí měří přes noc pohyb a tep. Spotřebuje to trochu baterie – nabij hodinky před spaním. Data zůstávají ve tvých zařízeních. Fázi učení můžeš kdykoli vypnout v nastavení.</string>
     <string name="learn_consent_start">Spustit fázi učení</string>
     <string name="learn_consent_later">Později</string>
+    <string name="learn_intro">Aby Phase Wake mohl přizpůsobit budík tobě, hodinky v noci měří pohyb a tep.</string>
+    <string name="learn_point_nights">Po %1$d nocí</string>
+    <string name="learn_point_battery">Spotřebuje to trochu baterie – nabij hodinky před spaním.</string>
+    <string name="learn_point_private">Data zůstávají ve tvých zařízeních. Fázi učení můžeš kdykoli vypnout v nastavení.</string>
     <string name="learn_switch_hint">Hodinky v noci měří pohyb a tep, aby přizpůsobily budík. Vypnuto: žádný automatický záznam, naučené hodnoty zůstávají.</string>
 </resources>

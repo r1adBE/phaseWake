@@ -586,5 +586,9 @@
     <string name="learn_consent_text">För att Phase Wake ska kunna anpassa larmet efter dig mäter din klocka rörelse och puls under natten i %1$d nätter. Det drar lite batteri – ladda klockan innan du sover. Datan stannar på dina enheter. Du kan stänga av inlärningsfasen i inställningarna när som helst.</string>
     <string name="learn_consent_start">Starta inlärningsfas</string>
     <string name="learn_consent_later">Senare</string>
+    <string name="learn_intro">För att Phase Wake ska kunna anpassa larmet efter dig mäter din klocka rörelse och puls på natten.</string>
+    <string name="learn_point_nights">I %1$d nätter</string>
+    <string name="learn_point_battery">Det drar lite batteri – ladda klockan innan du sover.</string>
+    <string name="learn_point_private">Datan stannar på dina enheter. Du kan stänga av inlärningsfasen i inställningarna när som helst.</string>
     <string name="learn_switch_hint">Din klocka mäter rörelse och puls på natten för att anpassa larmet. Av: ingen automatisk registrering, inlärda värden finns kvar.</string>
 </resources>

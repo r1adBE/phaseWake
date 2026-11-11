@@ -154,16 +154,22 @@ struct LearningSettingsSection: View {
     }
 }
 
-/// Einrichtungsschritt «Lernphase» (zwischen erstem Wecker und Probewecker, wie Android): Frage mit «Lernphase
-/// starten» / «Später»; nach dem Start «✓ Erlaubt».
+/// Einrichtungsschritt «Lernphase» (zwischen erstem Wecker und Probewecker, wie Android): kurze Einleitung und drei
+/// Punkte (Audit U-2); «Später» / «Lernphase starten» stehen unten in der Navigation statt «Weiter». Nach dem Start
+/// «✓ Erlaubt».
 struct LearningOnboardingStep: View {
     var body: some View {
-        let learning = PhoneLearning.shared
-        if learning.state.consent == true {
-            Text(L("learn_consent_text", Learning.nights))
+        Text(L("learn_intro"))
+        VStack(alignment: .leading, spacing: 8) {
+            ForEach([L("learn_point_nights", Learning.nights), L("learn_point_battery"), L("learn_point_private")], id: \.self) { point in
+                HStack(alignment: .firstTextBaseline, spacing: 10) {
+                    Text(verbatim: "•").accessibilityHidden(true)
+                    Text(point)
+                }
+            }
+        }
+        if PhoneLearning.shared.state.consent == true {
             Label(L("onb_granted"), systemImage: "checkmark.circle")
-        } else {
-            LearningConsentView(color: .primary) { learning.setConsent($0) }
         }
     }
 }

@@ -586,5 +586,9 @@
     <string name="learn_consent_text">Jotta Phase Wake voi mukauttaa herätyksen sinulle, kellosi mittaa liikettä ja sykettä yön mittaan %1$d yön ajan. Se kuluttaa hieman akkua – lataa kello ennen nukkumaanmenoa. Tiedot pysyvät laitteillasi. Voit poistaa oppimisvaiheen käytöstä asetuksissa milloin tahansa.</string>
     <string name="learn_consent_start">Aloita oppimisvaihe</string>
     <string name="learn_consent_later">Myöhemmin</string>
+    <string name="learn_intro">Jotta Phase Wake voi mukauttaa herätyksen sinulle, kellosi mittaa öisin liikettä ja sykettä.</string>
+    <string name="learn_point_nights">%1$d yön ajan</string>
+    <string name="learn_point_battery">Se kuluttaa hieman akkua – lataa kello ennen nukkumaanmenoa.</string>
+    <string name="learn_point_private">Tiedot pysyvät laitteillasi. Voit poistaa oppimisvaiheen käytöstä asetuksissa milloin tahansa.</string>
     <string name="learn_switch_hint">Kellosi mittaa yöllä liikettä ja sykettä herätyksen mukauttamiseksi. Pois: ei automaattista tallennusta, opitut arvot säilyvät.</string>
 </resources>

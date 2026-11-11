@@ -72,6 +72,12 @@ fun WatchRing() = Swiss {
     RingScreen(RingUi.Ringing("", WakeReason.LIGHT_SLEEP, now, snoozesLeft = 3), onDismiss = {}, onSnooze = {})
 }
 
+/** Kleine runde Uhr (um 192 dp): «noch 3» unter «Schlummern 5 Min» muss ganz sichtbar bleiben (Audit U-1). */
+@PreviewTest @Preview(locale = "de-rCH", name = "Uhr Wecken klein", device = WATCH_SMALL, showBackground = true, backgroundColor = 0xFF000000) @Composable
+fun WatchRingSmall() = Swiss {
+    RingScreen(RingUi.Ringing("", WakeReason.LIGHT_SLEEP, now, snoozesLeft = 3), onDismiss = {}, onSnooze = {})
+}
+
 @PreviewTest @Preview(locale = "de-rCH", name = "Uhr Schlummern", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
 fun WatchSnoozed() = Swiss {
     RingScreen(RingUi.Snoozed("", now.plusSeconds(300), snoozesLeft = 2), onDismiss = {}, onSnooze = {})
@@ -85,3 +91,4 @@ internal fun Swiss(content: @Composable () -> Unit) {
 }
 
 internal const val WATCH = "id:wearos_large_round"
+internal const val WATCH_SMALL = "id:wearos_small_round"

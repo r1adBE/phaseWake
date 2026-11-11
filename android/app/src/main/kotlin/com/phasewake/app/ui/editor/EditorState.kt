@@ -42,8 +42,10 @@ internal class EditorState(val base: AlarmSpec) {
     /** An Feiertagen nicht wecken (nur wiederholte Wecker). */
     var skipHolidays by mutableStateOf(base.skipHolidays)
 
-    /** «Mehr» aufgeklappt. */
-    var more by mutableStateOf(false)
+    /** «Mehr» aufgeklappt; offen, wenn dort schon etwas gesetzt ist (wie auf dem iPhone: Gesetztes nicht verstecken). */
+    var more by mutableStateOf(
+        base.label.isNotBlank() || base.sunrise != Sunrise.OFF || base.skipHolidays || base.wakeTask != WakeTask.NONE,
+    )
 
     /**
      * Der Wecker mit den Eingaben; eingeschaltet, Name ohne Leerraum am Rand. Ein übersprungener Termin bleibt nur

@@ -160,11 +160,12 @@ internal fun HomeContent(
 
 @Composable
 private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId, loading: Boolean, extras: WatchHomeExtras) {
-    // Etwas kleiner als das Display, damit darunter «Gute Nacht» schon beim Öffnen zu sehen ist.
+    // Etwas kleiner als das Display, damit darunter «Gute Nacht» schon beim Öffnen zu sehen ist; oben Platz für die
+    // Uhrzeit des Systems, damit sie den Ring nicht überdeckt (Audit U-5).
     // Tippen zählt nur für das Freischalten der Diagnose (7×), ohne Rolle für Bildschirmleser.
     val onTap = extras.onWindowTap
     Box(
-        Modifier.size(width = 164.dp, height = 164.dp).pointerInput(Unit) { detectTapGestures { onTap() } },
+        Modifier.padding(top = TIME_TEXT_SPACE).size(width = 164.dp, height = 164.dp).pointerInput(Unit) { detectTapGestures { onTap() } },
         contentAlignment = Alignment.Center,
     ) {
         if (loading) return@Box
@@ -312,6 +313,9 @@ private fun AlarmSwitch(alarm: AlarmSpec, skipped: String?, onEdit: () -> Unit, 
         },
     )
 }
+
+/** Abstand des Rings zum oberen Rand: Dort steht die Uhrzeit des Systems (TimeText des AppScaffold). */
+private val TIME_TEXT_SPACE = 14.dp
 
 /** Position einer Uhrzeit auf dem 12-Stunden-Zifferblatt (0 = 12 Uhr). */
 private fun dialFraction(instant: Instant, zone: ZoneId): Float {

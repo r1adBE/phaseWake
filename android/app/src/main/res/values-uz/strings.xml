@@ -589,5 +589,9 @@
     <string name="learn_consent_text">Phase Wake budilnikni senga moslashi uchun soating %1$d tun davomida tun bo‘yi harakat va pulsni o‘lchaydi. Bu biroz batareya sarflaydi – uxlashdan oldin soatni quvvatla. Ma’lumotlar qurilmalaringda qoladi. O‘rganish bosqichini istalgan vaqtda sozlamalardan o‘chirishing mumkin.</string>
     <string name="learn_consent_start">O‘rganish bosqichini boshlash</string>
     <string name="learn_consent_later">Keyinroq</string>
+    <string name="learn_intro">Phase Wake budilnikni senga moslashi uchun soating tunda harakat va pulsni o‘lchaydi.</string>
+    <string name="learn_point_nights">%1$d tun davomida</string>
+    <string name="learn_point_battery">Bu biroz batareya sarflaydi – uxlashdan oldin soatni quvvatla.</string>
+    <string name="learn_point_private">Ma’lumotlar qurilmalaringda qoladi. O‘rganish bosqichini istalgan vaqtda sozlamalardan o‘chirishing mumkin.</string>
     <string name="learn_switch_hint">Soating budilnikni moslash uchun tunda harakat va pulsni o‘lchaydi. O‘chiq: avtomatik yozuv yo‘q, o‘rganilgan qiymatlar qoladi.</string>
 </resources>

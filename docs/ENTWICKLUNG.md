@@ -128,6 +128,15 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
   Nächte und Aufzeichnungen der Uhr vorher einreihen; die Lese-Funktionen der alten Formate (`WearSync.readNight`,
   `RecordSync.readRecording`, `OnsetShift.read`) dienen nur ihr. Tests: `OutboxTest` (Robolectric, Senden, Bestätigen,
   Wiederholen, Ersetzen, Umstellung).
+- **Grenze für Inhalte der Gegenseite (Audit S-2, 11.11.2026):** Ein Kanal wird nie ohne Grenze gelesen
+  (`PeerLimit.read`, höchstens `PeerLimit.MAX_BYTES` = 8 MB, sonst Abbruch mit Log); grössere Nachrichten verarbeitet
+  `WearSync.receive` nicht. Die längste Aufzeichnung (12 Std., 1440 Epochen) hat rund 65 KB. Apple gleich:
+  `SyncKeys.maxPeerBytes` in `PhoneConnectivity` (Texte der Uhr). Tests: `PeerLimitTest`, `PeerLimitTests`.
+- **Absturzberichte (Audit P-1, 11.11.2026):** kein Absturz-SDK in der App (Grundsatz 2). Nach dem Release kommen
+  Abstürze und ANRs über die Systeme der Stores: Android in der Play Console unter «Android Vitals» (Abstürze und ANRs,
+  Handy und Uhr getrennt), Apple in App Store Connect bzw. im Xcode Organizer (Abstürze, Energie, Hänger; nur von
+  Nutzern, die das Teilen mit Entwicklern erlaubt haben). Dazu das lokale Diagnose-Protokoll der App, das Nutzer selbst
+  freischalten und teilen (Einstellungen bzw. Uhr). Vorgehen siehe `docs/PLAY.md`, Abschnitt «Nach dem Release».
 - **Keine Rückfälle für ältere App-Versionen zwischen Handy und Uhr (10.11.2026, Android und Apple):** «klingeln» und
   «stop» (sowie die Meldungen zur Weckaufgabe) ohne Sendezeit verwirft der Empfänger, ein «klingeln» der Uhr auch ohne
   Kennung oder Schlummer-Runden (`RingMessage.isCurrent`/`isCompleteRing`, iPhone `PhoneConnectivity`); «snooze» vom
@@ -147,5 +156,6 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
   stecken, abgeschlossene Workflow-Läufe, die älter als 30 Tage sind, und nicht grüne Läufe (rot, abgebrochen,
   übersprungen) schon nach 7 Tagen; von Hand lassen sich weitere Zweige angeben (gelöscht nur, wenn sie in `main`
   stecken oder seit über 7 Tagen ruhen).
-- **Definition of Done:** CI grün (Tests, Abdeckung, Grössen, Build-Nummern, Übersetzungen, 0 Warnungen),
+- **Definition of Done:** CI grün (Tests, Abdeckung, Grössen, Build-Nummern, Übersetzungen, 0 Warnungen, keine
+  Geheimnisse – Job «Geheimnisse (gitleaks)», Ausnahmen für Testpasswörter in `.gitleaks.toml`),
   Bildschirmfotos aktuell, Dokumente nachgeführt, Entscheide eingetragen, Testversion gebaut.

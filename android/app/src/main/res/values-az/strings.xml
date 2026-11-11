@@ -574,5 +574,9 @@
     <string name="learn_consent_text">Phase Wake zəngli saatı sənə uyğunlaşdırsın deyə, saatın %1$d gecə boyunca gecə ərzində hərəkəti və nəbzi ölçür. Bu, bir az batareya sərf edir – yatmazdan əvvəl saatı doldur. Məlumatlar cihazlarında qalır. Öyrənmə mərhələsini istənilən vaxt ayarlarda söndürə bilərsən.</string>
     <string name="learn_consent_start">Öyrənmə mərhələsini başlat</string>
     <string name="learn_consent_later">Sonra</string>
+    <string name="learn_intro">Phase Wake zəngli saatı sənə uyğunlaşdırsın deyə, saatın gecələr hərəkəti və nəbzi ölçür.</string>
+    <string name="learn_point_nights">%1$d gecə boyunca</string>
+    <string name="learn_point_battery">Bu, bir az batareya sərf edir – yatmazdan əvvəl saatı doldur.</string>
+    <string name="learn_point_private">Məlumatlar cihazlarında qalır. Öyrənmə mərhələsini istənilən vaxt ayarlarda söndürə bilərsən.</string>
     <string name="learn_switch_hint">Saatın zəngli saatı uyğunlaşdırmaq üçün gecələr hərəkəti və nəbzi ölçür. Sönülü: avtomatik qeyd yoxdur, öyrənilmiş dəyərlər qalır.</string>
 </resources>

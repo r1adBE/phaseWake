@@ -589,5 +589,9 @@
     <string name="learn_consent_text">Phase Wake ले अलार्मलाई तिमी अनुसार मिलाउन सकोस् भनेर तिम्रो घडीले %1$d रातसम्म रातभर चाल र नाडी नाप्छ। यसले केही ब्याट्री खपत गर्छ – सुत्नुअघि घडी चार्ज गर। डेटा तिम्रो उपकरणमै रहन्छ। सिक्ने चरण सेटिङमा जुनसुकै बेला बन्द गर्न सक्छौ।</string>
     <string name="learn_consent_start">सिक्ने चरण सुरु गर</string>
     <string name="learn_consent_later">पछि</string>
+    <string name="learn_intro">Phase Wake ले अलार्मलाई तिमी अनुसार मिलाउन सकोस् भनेर तिम्रो घडीले राति चाल र नाडी नाप्छ।</string>
+    <string name="learn_point_nights">%1$d रातसम्म</string>
+    <string name="learn_point_battery">यसले केही ब्याट्री खपत गर्छ – सुत्नुअघि घडी चार्ज गर।</string>
+    <string name="learn_point_private">डेटा तिम्रो उपकरणमै रहन्छ। सिक्ने चरण सेटिङमा जुनसुकै बेला बन्द गर्न सक्छौ।</string>
     <string name="learn_switch_hint">अलार्म मिलाउन तिम्रो घडीले रातमा चाल र नाडी नाप्छ। बन्द: स्वचालित रेकर्डिङ छैन, सिकेका मानहरू रहन्छन्।</string>
 </resources>

@@ -614,5 +614,9 @@
     <string name="learn_consent_text">Щоб Phase Wake міг підлаштувати будильник під тебе, годинник %1$d ночей вимірює рух і пульс протягом ночі. Це витрачає трохи заряду – заряди годинник перед сном. Дані залишаються на твоїх пристроях. Етап навчання можна будь-коли вимкнути в налаштуваннях.</string>
     <string name="learn_consent_start">Почати етап навчання</string>
     <string name="learn_consent_later">Пізніше</string>
+    <string name="learn_intro">Щоб Phase Wake міг підлаштувати будильник під тебе, годинник уночі вимірює рух і пульс.</string>
+    <string name="learn_point_nights">%1$d ночей</string>
+    <string name="learn_point_battery">Це витрачає трохи заряду – заряди годинник перед сном.</string>
+    <string name="learn_point_private">Дані залишаються на твоїх пристроях. Етап навчання можна будь-коли вимкнути в налаштуваннях.</string>
     <string name="learn_switch_hint">Годинник вимірює вночі рух і пульс, щоб підлаштувати будильник. Вимк.: без автоматичного запису, вивчені значення зберігаються.</string>
 </resources>

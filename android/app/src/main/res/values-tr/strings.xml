@@ -586,5 +586,9 @@
     <string name="learn_consent_text">Phase Wake alarmı sana göre ayarlayabilsin diye saatin %1$d gece boyunca gece içinde hareketi ve nabzı ölçer. Bu biraz pil harcar – uyumadan önce saati şarj et. Veriler cihazlarında kalır. Öğrenme aşamasını istediğin zaman ayarlardan kapatabilirsin.</string>
     <string name="learn_consent_start">Öğrenme aşamasını başlat</string>
     <string name="learn_consent_later">Sonra</string>
+    <string name="learn_intro">Phase Wake alarmı sana göre ayarlayabilsin diye saatin gece hareketi ve nabzı ölçer.</string>
+    <string name="learn_point_nights">%1$d gece boyunca</string>
+    <string name="learn_point_battery">Bu biraz pil harcar – uyumadan önce saati şarj et.</string>
+    <string name="learn_point_private">Veriler cihazlarında kalır. Öğrenme aşamasını istediğin zaman ayarlardan kapatabilirsin.</string>
     <string name="learn_switch_hint">Saatin alarmı ayarlamak için gece hareketi ve nabzı ölçer. Kapalı: otomatik kayıt yok, öğrenilen değerler kalır.</string>
 </resources>

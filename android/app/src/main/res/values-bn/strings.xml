@@ -588,5 +588,9 @@
     <string name="learn_consent_text">Phase Wake যাতে অ্যালার্ম তোমার মতো করে নিতে পারে, তোমার ঘড়ি %1$d রাত ধরে রাতজুড়ে নড়াচড়া ও পালস মাপে। এতে কিছুটা ব্যাটারি লাগে – ঘুমানোর আগে ঘড়ি চার্জ করো। ডেটা তোমার ডিভাইসেই থাকে। সেটিংসে যেকোনো সময় শেখার পর্ব বন্ধ করতে পারো।</string>
     <string name="learn_consent_start">শেখার পর্ব শুরু করো</string>
     <string name="learn_consent_later">পরে</string>
+    <string name="learn_intro">Phase Wake যাতে অ্যালার্ম তোমার মতো করে নিতে পারে, তোমার ঘড়ি রাতে নড়াচড়া ও পালস মাপে।</string>
+    <string name="learn_point_nights">%1$d রাত ধরে</string>
+    <string name="learn_point_battery">এতে কিছুটা ব্যাটারি লাগে – ঘুমানোর আগে ঘড়ি চার্জ করো।</string>
+    <string name="learn_point_private">ডেটা তোমার ডিভাইসেই থাকে। সেটিংসে যেকোনো সময় শেখার পর্ব বন্ধ করতে পারো।</string>
     <string name="learn_switch_hint">অ্যালার্ম মানিয়ে নিতে তোমার ঘড়ি রাতে নড়াচড়া ও পালস মাপে। বন্ধ: স্বয়ংক্রিয় রেকর্ডিং নেই, শেখা মানগুলো থাকে।</string>
 </resources>

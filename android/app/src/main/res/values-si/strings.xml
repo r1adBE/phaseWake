@@ -589,5 +589,9 @@
     <string name="learn_consent_text">Phase Wake හට එලාමය ඔබට ගැලපෙන ලෙස සකස් කිරීමට, ඔබේ ඔරලෝසුව රාත්‍රී %1$d ක් පුරා රාත්‍රිය තුළ චලනය සහ නාඩිය මනියි. මෙයට බැටරියෙන් ටිකක් වැය වේ – නින්දට පෙර ඔරලෝසුව ආරෝපණය කරන්න. දත්ත ඔබේ උපාංගවලම පවතී. ඕනෑම වේලාවක සැකසීම් තුළ ඉගෙනීමේ අදියර අක්‍රිය කළ හැක.</string>
     <string name="learn_consent_start">ඉගෙනීමේ අදියර අරඹන්න</string>
     <string name="learn_consent_later">පසුව</string>
+    <string name="learn_intro">Phase Wake හට එලාමය ඔබට ගැලපෙන ලෙස සකස් කිරීමට, ඔබේ ඔරලෝසුව රාත්‍රියේ චලනය සහ නාඩිය මනියි.</string>
+    <string name="learn_point_nights">රාත්‍රී %1$d ක් පුරා</string>
+    <string name="learn_point_battery">මෙයට බැටරියෙන් ටිකක් වැය වේ – නින්දට පෙර ඔරලෝසුව ආරෝපණය කරන්න.</string>
+    <string name="learn_point_private">දත්ත ඔබේ උපාංගවලම පවතී. ඕනෑම වේලාවක සැකසීම් තුළ ඉගෙනීමේ අදියර අක්‍රිය කළ හැක.</string>
     <string name="learn_switch_hint">එලාමය සකස් කිරීමට ඔබේ ඔරලෝසුව රාත්‍රියේ චලනය සහ නාඩිය මනියි. අක්‍රියයි: ස්වයංක්‍රීය වාර්තා කිරීමක් නැත, ඉගෙනගත් අගයන් පවතී.</string>
 </resources>

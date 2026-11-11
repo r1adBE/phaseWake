@@ -600,5 +600,9 @@
     <string name="learn_consent_text">Pour que Phase Wake adapte le réveil à toi, ta montre mesure mouvements et pouls au fil de la nuit pendant %1$d nuits. Cela consomme un peu de batterie – recharge la montre avant de dormir. Les données restent sur tes appareils. Tu peux désactiver la phase d’apprentissage à tout moment dans les réglages.</string>
     <string name="learn_consent_start">Lancer la phase d’apprentissage</string>
     <string name="learn_consent_later">Plus tard</string>
+    <string name="learn_intro">Pour que Phase Wake adapte le réveil à toi, ta montre mesure mouvements et pouls pendant la nuit.</string>
+    <string name="learn_point_nights">Pendant %1$d nuits</string>
+    <string name="learn_point_battery">Cela consomme un peu de batterie – recharge la montre avant de dormir.</string>
+    <string name="learn_point_private">Les données restent sur tes appareils. Tu peux désactiver la phase d’apprentissage à tout moment dans les réglages.</string>
     <string name="learn_switch_hint">Ta montre mesure mouvements et pouls la nuit pour adapter le réveil. Désactivé : aucun enregistrement automatique, les valeurs apprises restent.</string>
 </resources>

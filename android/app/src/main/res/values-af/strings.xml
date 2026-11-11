@@ -589,5 +589,9 @@
     <string name="learn_consent_text">Sodat Phase Wake die wekker by jou kan aanpas, meet jou horlosie %1$d nagte lank deur die nag beweging en polsslag. Dit gebruik ’n bietjie battery – laai die horlosie voor jy gaan slaap. Die data bly op jou toestelle. Jy kan die leerfase enige tyd in die instellings afskakel.</string>
     <string name="learn_consent_start">Begin leerfase</string>
     <string name="learn_consent_later">Later</string>
+    <string name="learn_intro">Sodat Phase Wake die wekker by jou kan aanpas, meet jou horlosie snags beweging en polsslag.</string>
+    <string name="learn_point_nights">%1$d nagte lank</string>
+    <string name="learn_point_battery">Dit gebruik ’n bietjie battery – laai die horlosie voor jy gaan slaap.</string>
+    <string name="learn_point_private">Die data bly op jou toestelle. Jy kan die leerfase enige tyd in die instellings afskakel.</string>
     <string name="learn_switch_hint">Jou horlosie meet snags beweging en polsslag om die wekker aan te pas. Af: geen outomatiese opname nie, geleerde waardes bly.</string>
 </resources>

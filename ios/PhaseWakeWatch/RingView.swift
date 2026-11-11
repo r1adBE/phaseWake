@@ -1,7 +1,7 @@
 import PhaseWakeCore
 import SwiftUI
 
-/// Weckbildschirm: Weckpunkt gedrückt halten zum Stoppen, Schlummern mit Restanzahl.
+/// Weckbildschirm: Weckpunkt oder Stopp-Knopf gedrückt halten zum Stoppen, Schlummern mit Restanzahl.
 struct RingView: View {
     @State private var progress: Double = 0
     @State private var holding = false
@@ -10,42 +10,41 @@ struct RingView: View {
     var body: some View {
         ZStack {
             NightSky()
+            // Fortschritt des Haltens zusätzlich als Ring am Rand.
             Circle()
                 .trim(from: 0, to: progress)
-                .stroke(Brand.wave, style: StrokeStyle(lineWidth: 5, lineCap: .round))
+                .stroke(Brand.wave, style: StrokeStyle(lineWidth: 6, lineCap: .round))
                 .rotationEffect(.degrees(-90))
                 .padding(3)
                 .ignoresSafeArea()
-            VStack(spacing: 4) {
+            // Kleiner Punkt und knappe Abstände (Audit U-1): «noch N» unter «Schlummern 5 Min» bleibt auch auf
+            // kleinen Uhren ganz sichtbar.
+            VStack(spacing: 3) {
                 PulsingDot()
-                    .frame(width: 70, height: 70)
+                    .frame(width: 44, height: 44)
                     .contentShape(Circle())
-                    .onLongPressGesture(minimumDuration: 1.2, pressing: { pressing in
-                        holding = pressing
-                        withAnimation(pressing ? .linear(duration: 1.2) : .easeOut(duration: 0.25)) { progress = pressing ? 1 : 0 }
-                    }, perform: { alarm.dismiss() })
-                    .accessibilityElement()
-                    .accessibilityLabel(L("ring_hold_to_stop"))
-                    .accessibilityAddTraits(.isButton)
-                    .accessibilityAction { alarm.dismiss() }
+                    .holdToStop(progress: $progress, holding: $holding) { alarm.dismiss() }
+                    .accessibilityHidden(true)
                 content
             }
-            .padding(.horizontal, 12)
+            .padding(.horizontal, 10)
         }
     }
 
     @ViewBuilder private var content: some View {
         switch alarm.phase {
         case .ringing(let reason, let snoozesLeft):
-            Text(L("ring_greeting")).font(Fonts.manrope(18, .bold, relativeTo: .title3))
-            Text(L(ringReasonKey(reason))).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.muted)
-            Text(L("ring_hold_to_stop")).font(Fonts.manrope(11, relativeTo: .caption2)).foregroundStyle(Brand.muted)
+            Text(L("ring_greeting")).font(Fonts.manrope(16, .bold, relativeTo: .headline)).lineLimit(1)
+            Text(L(ringReasonKey(reason))).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.muted).lineLimit(1)
+            stopButton
             if snoozesLeft > 0 {
                 // «Schlummern 5 Min» wie auf Wear OS (Audit F-10), darunter klein «noch N» (r1AD 10.11.2026); mindestens
-                // 48 pt hoch als Tippziel, mit grosser Schrift höher.
+                // 48 pt hoch als Tippziel, mit grosser Schrift höher. Zu lang bricht um statt abgeschnitten zu werden.
                 Button { alarm.snooze() } label: {
                     VStack(spacing: 0) {
-                        Text(L("ring_snooze_button", Int64(Snooze.minutes))).lineLimit(1)
+                        Text(L("ring_snooze_button", Int64(Snooze.minutes)))
+                            .lineLimit(2)
+                            .multilineTextAlignment(.center)
                         Text(LP("ring_snoozes_left", snoozesLeft, Int64(snoozesLeft)))
                             .font(Fonts.manrope(11, relativeTo: .caption2))
                             .foregroundStyle(Brand.muted)
@@ -59,11 +58,49 @@ struct RingView: View {
             Text(L("ring_snoozed_until", Format.time(until)))
                 .font(Fonts.manrope(15, .semibold, relativeTo: .headline))
                 .multilineTextAlignment(.center)
-            // Beenden auch hier nur durch Halten (Punkt oben): ein Tipp im Halbschlaf beendet nicht die Nacht.
-            Text(L("ring_hold_to_stop")).font(Fonts.manrope(11, relativeTo: .caption2)).foregroundStyle(Brand.muted)
+            // Beenden auch hier nur durch Halten: ein Tipp im Halbschlaf beendet nicht die Nacht.
+            stopButton
         default:
             EmptyView()
         }
+    }
+
+    /// «Halten zum Stoppen» als gefüllter Hauptknopf in Lavendel (Audit U-4), wie auf dem Handy und Wear OS: beim
+    /// Halten läuft von links eine helle Füllung darüber. Dunkle Schrift auf beiden Farben: Kontrast ≥ 4.5:1.
+    private var stopButton: some View {
+        Text(L("ring_hold_to_stop"))
+            .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
+            .foregroundStyle(Brand.nightBottom)
+            .multilineTextAlignment(.center)
+            .lineLimit(2)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 4)
+            .frame(maxWidth: .infinity, minHeight: 40)
+            .background {
+                GeometryReader { geo in
+                    ZStack(alignment: .leading) {
+                        Brand.wave
+                        Brand.moon.frame(width: geo.size.width * progress)
+                    }
+                }
+            }
+            .clipShape(Capsule())
+            .contentShape(Capsule())
+            .holdToStop(progress: $progress, holding: $holding) { alarm.dismiss() }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(L("ring_hold_to_stop"))
+            .accessibilityAddTraits(.isButton)
+            .accessibilityAction { alarm.dismiss() }
+    }
+}
+
+private extension View {
+    /// Halten (1,2 s) beendet; der Fortschritt füllt Knopf und Rand, loslassen vor dem Ende setzt zurück.
+    func holdToStop(progress: Binding<Double>, holding: Binding<Bool>, perform: @escaping () -> Void) -> some View {
+        onLongPressGesture(minimumDuration: 1.2, pressing: { pressing in
+            holding.wrappedValue = pressing
+            withAnimation(pressing ? .linear(duration: 1.2) : .easeOut(duration: 0.25)) { progress.wrappedValue = pressing ? 1 : 0 }
+        }, perform: perform)
     }
 }
 

@@ -600,5 +600,9 @@
     <string name="learn_consent_text">כדי ש-Phase Wake יוכל להתאים את השעון המעורר אליך, השעון שלך מודד תנועה ודופק לאורך הלילה במשך %1$d לילות. זה צורך מעט סוללה – כדאי לטעון את השעון לפני השינה. הנתונים נשארים במכשירים שלך. אפשר לכבות את שלב הלמידה בהגדרות בכל עת.</string>
     <string name="learn_consent_start">להתחיל את שלב הלמידה</string>
     <string name="learn_consent_later">אחר כך</string>
+    <string name="learn_intro">כדי ש-Phase Wake יוכל להתאים את השעון המעורר אליך, השעון שלך מודד תנועה ודופק בלילה.</string>
+    <string name="learn_point_nights">במשך %1$d לילות</string>
+    <string name="learn_point_battery">זה צורך מעט סוללה – כדאי לטעון את השעון לפני השינה.</string>
+    <string name="learn_point_private">הנתונים נשארים במכשירים שלך. אפשר לכבות את שלב הלמידה בהגדרות בכל עת.</string>
     <string name="learn_switch_hint">השעון שלך מודד תנועה ודופק בלילה כדי להתאים את ההשכמה. כבוי: אין תיעוד אוטומטי, הערכים שנלמדו נשמרים.</string>
 </resources>

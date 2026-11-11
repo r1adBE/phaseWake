@@ -588,5 +588,9 @@
     <string name="learn_consent_text">Ili Phase Wake iweze kurekebisha kengele kwa ajili yako, saa yako hupima mwendo na mapigo ya moyo usiku kucha kwa usiku %1$d. Hii hutumia betri kidogo – chaji saa kabla ya kulala. Data hubaki kwenye vifaa vyako. Unaweza kuzima hatua ya kujifunza kwenye mipangilio wakati wowote.</string>
     <string name="learn_consent_start">Anza hatua ya kujifunza</string>
     <string name="learn_consent_later">Baadaye</string>
+    <string name="learn_intro">Ili Phase Wake iweze kurekebisha kengele kwa ajili yako, saa yako hupima mwendo na mapigo ya moyo usiku.</string>
+    <string name="learn_point_nights">Kwa usiku %1$d</string>
+    <string name="learn_point_battery">Hii hutumia betri kidogo – chaji saa kabla ya kulala.</string>
+    <string name="learn_point_private">Data hubaki kwenye vifaa vyako. Unaweza kuzima hatua ya kujifunza kwenye mipangilio wakati wowote.</string>
     <string name="learn_switch_hint">Saa yako hupima mwendo na mapigo ya moyo usiku ili kurekebisha kengele. Imezimwa: hakuna kurekodi kiotomatiki, thamani zilizojifunzwa zinabaki.</string>
 </resources>

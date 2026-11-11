@@ -1,6 +1,10 @@
 # Offene Punkte
 
-Stand 10.11.2026, Phase Wake 16.2.2. Erledigtes wandert nach [ENTSCHEIDE.md](ENTSCHEIDE.md).
+Stand 11.11.2026, Phase Wake 16.2.2. Erledigtes wandert nach [ENTSCHEIDE.md](ENTSCHEIDE.md).
+
+## Erledigt am 11.11.2026 (Details in ENTSCHEIDE.md)
+
+- Audit 08b2588: Weckbildschirm der Uhren ohne abgeschnittenes «noch N» (U-1), gefüllter Stopp-Knopf mit sichtbarem Halten auf Handy und Uhren (U-4), Uhrzeit nicht mehr über dem Ring der Galaxy Watch (U-5), Einrichtungsschritt Lernphase mit drei Punkten und nur «Später» / «Lernphase starten» (U-2), selten Gebrauchtes im Editor unter «Mehr» (U-3), Grenze für Inhalte der Gegenseite (S-2), Speicherung in DATENSCHUTZ (S-3), gitleaks in der CI (S-4), Absturzberichte über die Stores (P-1).
 
 ## Erledigt am 10.11.2026 (Details in ENTSCHEIDE.md)
 

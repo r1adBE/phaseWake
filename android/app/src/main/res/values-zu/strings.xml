@@ -589,5 +589,9 @@
     <string name="learn_consent_text">Ukuze i-Phase Wake ikwazi ukulungisa i-alamu ikufanele, iwashi lakho lilinganisa ukunyakaza nokushaya kwenhliziyo ebusuku izinsuku zobusuku ezingu-%1$d. Lokhu kusebenzisa ibhethri elincane – shaja iwashi ngaphambi kokulala. Idatha ihlala kumadivayisi akho. Ungavala isigaba sokufunda kuzilungiselelo noma nini.</string>
     <string name="learn_consent_start">Qala isigaba sokufunda</string>
     <string name="learn_consent_later">Kamuva</string>
+    <string name="learn_intro">Ukuze i-Phase Wake ikwazi ukulungisa i-alamu ikufanele, iwashi lakho lilinganisa ukunyakaza nokushaya kwenhliziyo ebusuku.</string>
+    <string name="learn_point_nights">Izinsuku zobusuku ezingu-%1$d</string>
+    <string name="learn_point_battery">Lokhu kusebenzisa ibhethri elincane – shaja iwashi ngaphambi kokulala.</string>
+    <string name="learn_point_private">Idatha ihlala kumadivayisi akho. Ungavala isigaba sokufunda kuzilungiselelo noma nini.</string>
     <string name="learn_switch_hint">Iwashi lakho lilinganisa ukunyakaza nokushaya kwenhliziyo ebusuku ukuze lilungise i-alamu. Kuvaliwe: akukho ukuqopha okuzenzakalelayo, amanani afundiwe ayahlala.</string>
 </resources>

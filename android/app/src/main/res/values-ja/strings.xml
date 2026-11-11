@@ -572,5 +572,9 @@
     <string name="learn_consent_text">Phase Wake がアラームをあなたに合わせられるように、時計が %1$d 夜のあいだ、夜を通して体の動きと脈拍を計測します。バッテリーを少し使います – 寝る前に時計を充電してください。 データはあなたのデバイスに残ります。学習期間は設定でいつでもオフにできます。</string>
     <string name="learn_consent_start">学習期間を開始</string>
     <string name="learn_consent_later">あとで</string>
+    <string name="learn_intro">Phase Wake がアラームをあなたに合わせられるように、時計が夜のあいだ体の動きと脈拍を計測します。</string>
+    <string name="learn_point_nights">%1$d 夜のあいだ</string>
+    <string name="learn_point_battery">バッテリーを少し使います – 寝る前に時計を充電してください。</string>
+    <string name="learn_point_private">データはあなたのデバイスに残ります。学習期間は設定でいつでもオフにできます。</string>
     <string name="learn_switch_hint">アラームを合わせるため、時計が夜間に体の動きと脈拍を計測します。 オフ：自動記録なし、学習した値は残ります。</string>
 </resources>

@@ -586,5 +586,9 @@
     <string name="learn_consent_text">ताकि Phase Wake अलार्म को तुम्हारे हिसाब से ढाल सके, तुम्हारी घड़ी %1$d रातों तक रात भर हलचल और पल्स मापती है। इसमें थोड़ी बैटरी लगती है – सोने से पहले घड़ी चार्ज करो। डेटा तुम्हारे डिवाइस पर ही रहता है। सीखने का चरण तुम सेटिंग्स में कभी भी बंद कर सकते हो।</string>
     <string name="learn_consent_start">सीखने का चरण शुरू करो</string>
     <string name="learn_consent_later">बाद में</string>
+    <string name="learn_intro">ताकि Phase Wake अलार्म को तुम्हारे हिसाब से ढाल सके, तुम्हारी घड़ी रात में हलचल और पल्स मापती है।</string>
+    <string name="learn_point_nights">%1$d रातों तक</string>
+    <string name="learn_point_battery">इसमें थोड़ी बैटरी लगती है – सोने से पहले घड़ी चार्ज करो।</string>
+    <string name="learn_point_private">डेटा तुम्हारे डिवाइस पर ही रहता है। सीखने का चरण तुम सेटिंग्स में कभी भी बंद कर सकते हो।</string>
     <string name="learn_switch_hint">अलार्म ढालने के लिए तुम्हारी घड़ी रात में हलचल और पल्स मापती है। बंद: कोई अपने-आप रिकॉर्डिंग नहीं, सीखे गए मान बने रहते हैं।</string>
 </resources>

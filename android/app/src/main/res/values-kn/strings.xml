@@ -588,5 +588,9 @@
     <string name="learn_consent_text">Phase Wake ಅಲಾರಾಂ ಅನ್ನು ನಿಮಗೆ ಹೊಂದಿಸಲು, ನಿಮ್ಮ ವಾಚ್ %1$d ರಾತ್ರಿಗಳ ಕಾಲ ರಾತ್ರಿಯಿಡೀ ಚಲನೆ ಮತ್ತು ನಾಡಿಯನ್ನು ಅಳೆಯುತ್ತದೆ. ಇದಕ್ಕೆ ಸ್ವಲ್ಪ ಬ್ಯಾಟರಿ ಬೇಕು – ಮಲಗುವ ಮೊದಲು ವಾಚ್ ಚಾರ್ಜ್ ಮಾಡಿ. ಡೇಟಾ ನಿಮ್ಮ ಸಾಧನಗಳಲ್ಲೇ ಇರುತ್ತದೆ. ಕಲಿಕೆಯ ಹಂತವನ್ನು ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಯಾವಾಗ ಬೇಕಾದರೂ ಆಫ್ ಮಾಡಬಹುದು.</string>
     <string name="learn_consent_start">ಕಲಿಕೆಯ ಹಂತ ಆರಂಭಿಸಿ</string>
     <string name="learn_consent_later">ನಂತರ</string>
+    <string name="learn_intro">Phase Wake ಅಲಾರಾಂ ಅನ್ನು ನಿಮಗೆ ಹೊಂದಿಸಲು, ನಿಮ್ಮ ವಾಚ್ ರಾತ್ರಿ ಚಲನೆ ಮತ್ತು ನಾಡಿಯನ್ನು ಅಳೆಯುತ್ತದೆ.</string>
+    <string name="learn_point_nights">%1$d ರಾತ್ರಿಗಳ ಕಾಲ</string>
+    <string name="learn_point_battery">ಇದಕ್ಕೆ ಸ್ವಲ್ಪ ಬ್ಯಾಟರಿ ಬೇಕು – ಮಲಗುವ ಮೊದಲು ವಾಚ್ ಚಾರ್ಜ್ ಮಾಡಿ.</string>
+    <string name="learn_point_private">ಡೇಟಾ ನಿಮ್ಮ ಸಾಧನಗಳಲ್ಲೇ ಇರುತ್ತದೆ. ಕಲಿಕೆಯ ಹಂತವನ್ನು ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಯಾವಾಗ ಬೇಕಾದರೂ ಆಫ್ ಮಾಡಬಹುದು.</string>
     <string name="learn_switch_hint">ಅಲಾರಾಂ ಹೊಂದಿಸಲು ನಿಮ್ಮ ವಾಚ್ ರಾತ್ರಿ ಚಲನೆ ಮತ್ತು ನಾಡಿಯನ್ನು ಅಳೆಯುತ್ತದೆ. ಆಫ್: ಸ್ವಯಂ ದಾಖಲೆ ಇಲ್ಲ, ಕಲಿತ ಮೌಲ್ಯಗಳು ಉಳಿಯುತ್ತವೆ.</string>
 </resources>

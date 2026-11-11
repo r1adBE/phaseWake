@@ -589,5 +589,9 @@
     <string name="learn_consent_text">Phase Wake-k alarma zuri egokitzeko, erlojuak mugimendua eta pultsua neurtzen ditu gauean zehar, %1$d gauez. Horrek bateria pixka bat gastatzen du – kargatu erlojua lo egin aurretik. Datuak zure gailuetan geratzen dira. Ikasketa-fasea ezarpenetan desaktiba dezakezu edozein unetan.</string>
     <string name="learn_consent_start">Hasi ikasketa-fasea</string>
     <string name="learn_consent_later">Geroago</string>
+    <string name="learn_intro">Phase Wake-k alarma zuri egokitzeko, erlojuak mugimendua eta pultsua neurtzen ditu gauez.</string>
+    <string name="learn_point_nights">%1$d gauez</string>
+    <string name="learn_point_battery">Horrek bateria pixka bat gastatzen du – kargatu erlojua lo egin aurretik.</string>
+    <string name="learn_point_private">Datuak zure gailuetan geratzen dira. Ikasketa-fasea ezarpenetan desaktiba dezakezu edozein unetan.</string>
     <string name="learn_switch_hint">Erlojuak mugimendua eta pultsua neurtzen ditu gauez alarma egokitzeko. Desaktibatuta: ez dago grabaketa automatikorik, ikasitako balioak geratzen dira.</string>
 </resources>

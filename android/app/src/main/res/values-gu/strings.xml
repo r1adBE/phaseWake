@@ -589,5 +589,9 @@
     <string name="learn_consent_text">Phase Wake એલાર્મને તમારા મુજબ ગોઠવી શકે તે માટે, તમારી ઘડિયાળ %1$d રાત સુધી રાત દરમિયાન હલનચલન અને પલ્સ માપે છે. આમાં થોડી બેટરી વપરાય છે – સૂતા પહેલાં ઘડિયાળ ચાર્જ કરો. ડેટા તમારા ઉપકરણો પર જ રહે છે. તમે સેટિંગ્સમાં ગમે ત્યારે શીખવાનો તબક્કો બંધ કરી શકો છો.</string>
     <string name="learn_consent_start">શીખવાનો તબક્કો શરૂ કરો</string>
     <string name="learn_consent_later">પછી</string>
+    <string name="learn_intro">Phase Wake એલાર્મને તમારા મુજબ ગોઠવી શકે તે માટે, તમારી ઘડિયાળ રાત્રે હલનચલન અને પલ્સ માપે છે.</string>
+    <string name="learn_point_nights">%1$d રાત સુધી</string>
+    <string name="learn_point_battery">આમાં થોડી બેટરી વપરાય છે – સૂતા પહેલાં ઘડિયાળ ચાર્જ કરો.</string>
+    <string name="learn_point_private">ડેટા તમારા ઉપકરણો પર જ રહે છે. તમે સેટિંગ્સમાં ગમે ત્યારે શીખવાનો તબક્કો બંધ કરી શકો છો.</string>
     <string name="learn_switch_hint">એલાર્મ ગોઠવવા તમારી ઘડિયાળ રાત્રે હલનચલન અને પલ્સ માપે છે. બંધ: આપોઆપ નોંધ નહીં, શીખેલાં મૂલ્યો રહે છે.</string>
 </resources>

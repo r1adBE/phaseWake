@@ -589,5 +589,9 @@
     <string name="learn_consent_text">Që Phase Wake ta përshtatë alarmin për ty, ora jote mat lëvizjen dhe pulsin gjatë natës për %1$d netë. Kjo harxhon pak bateri – karikoje orën para se të flesh. Të dhënat mbeten në pajisjet e tua. Mund ta çaktivizosh fazën e të mësuarit në cilësime në çdo kohë.</string>
     <string name="learn_consent_start">Nis fazën e të mësuarit</string>
     <string name="learn_consent_later">Më vonë</string>
+    <string name="learn_intro">Që Phase Wake ta përshtatë alarmin për ty, ora jote mat lëvizjen dhe pulsin gjatë natës.</string>
+    <string name="learn_point_nights">Për %1$d netë</string>
+    <string name="learn_point_battery">Kjo harxhon pak bateri – karikoje orën para se të flesh.</string>
+    <string name="learn_point_private">Të dhënat mbeten në pajisjet e tua. Mund ta çaktivizosh fazën e të mësuarit në cilësime në çdo kohë.</string>
     <string name="learn_switch_hint">Ora jote mat lëvizjen dhe pulsin natën për të përshtatur alarmin. Joaktive: pa regjistrim automatik, vlerat e mësuara mbeten.</string>
 </resources>

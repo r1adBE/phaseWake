@@ -143,7 +143,6 @@ fun EditorScreen(
             WindowSection(state, time)
             DaysSection(state)
             AlertSection(state)
-            SunriseSection(state)
             MoreSection(state, preview, soundPicker)
             if (existing != null) {
                 TextButton(onClick = { confirmDelete = true }, modifier = Modifier.align(Alignment.CenterHorizontally)) {

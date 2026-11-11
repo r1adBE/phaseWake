@@ -122,9 +122,6 @@ struct EditorView: View {
                     .font(.footnote)
                 }
 
-                // Nur für wiederholte Wecker; Land und Region stehen in den Einstellungen.
-                if !days.isEmpty { HolidaySkipSection(skipHolidays: $skipHolidays) }
-
                 Section {
                     Text(L("editor_alert_hint")).font(.footnote).foregroundStyle(.secondary)
                     // Auf Apple nur, was wirkt: Die Apple Watch weckt per Haptik (ohne Ton), das iPhone
@@ -137,32 +134,32 @@ struct EditorView: View {
                     Text(L("editor_alert"))
                 }
 
-                // Sonnenaufgang im Haupteditor. Nur auf dem iPhone: Die Apple Watch hält ihren Bildschirm in
-                // der Smart-Alarm-Sitzung nicht zuverlässig an, darum keine Gerätewahl (gilt als «Handy»).
-                Section {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(L("sunrise_title")).font(.headline)
-                        // Auf dem iPhone leuchtet immer das iPhone: Hinweis zum Hinlegen gleich dazu.
-                        Text(L("editor_sunrise_hint") + " " + L("editor_sunrise_phone_hint")).font(.footnote).foregroundStyle(.secondary)
-                        Picker(L("sunrise_title"), selection: $sunrise) {
-                            Text(L("alert_off")).tag(Sunrise.off)
-                            Text(L("sunrise_ring")).tag(Sunrise.ring)
-                            Text(L("sunrise_window")).tag(Sunrise.window)
-                        }
-                        .pickerStyle(.segmented)
-                        .controlSize(.large)
-                        if sunrise != .off {
-                            Text(sunrise == .window ? L("editor_sunrise_window_hint") : LP("editor_sunrise_ring_hint", Sunrise.ringSeconds / 60, Sunrise.ringSeconds / 60))
-                                .font(.footnote).foregroundStyle(.secondary)
-                            // Auf dem iPhone nur mit offener App möglich.
-                            Text(L("editor_sunrise_ios_hint")).font(.footnote)
-                        }
-                    }
-                }
-
-                // Selten gebraucht: Weckton und Name zugeklappt unter «Mehr».
+                // Selten gebraucht, zugeklappt unter «Mehr» (Audit U-3, wie Android): Sonnenaufgang, Feiertage, Weckton
+                // und Name. Sichtbar bleiben Zeit, Fenster, Wiederholen und Weckart.
                 Section {
                     DisclosureGroup(isExpanded: $showMore) {
+                        // Sonnenaufgang. Nur auf dem iPhone: Die Apple Watch hält ihren Bildschirm in der
+                        // Smart-Alarm-Sitzung nicht zuverlässig an, darum keine Gerätewahl (gilt als «Handy»).
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(L("sunrise_title")).font(.headline)
+                            // Auf dem iPhone leuchtet immer das iPhone: Hinweis zum Hinlegen gleich dazu.
+                            Text(L("editor_sunrise_hint") + " " + L("editor_sunrise_phone_hint")).font(.footnote).foregroundStyle(.secondary)
+                            Picker(L("sunrise_title"), selection: $sunrise) {
+                                Text(L("alert_off")).tag(Sunrise.off)
+                                Text(L("sunrise_ring")).tag(Sunrise.ring)
+                                Text(L("sunrise_window")).tag(Sunrise.window)
+                            }
+                            .pickerStyle(.segmented)
+                            .controlSize(.large)
+                            if sunrise != .off {
+                                Text(sunrise == .window ? L("editor_sunrise_window_hint") : LP("editor_sunrise_ring_hint", Sunrise.ringSeconds / 60, Sunrise.ringSeconds / 60))
+                                    .font(.footnote).foregroundStyle(.secondary)
+                                // Auf dem iPhone nur mit offener App möglich.
+                                Text(L("editor_sunrise_ios_hint")).font(.footnote)
+                            }
+                        }
+                        // Feiertage nur für wiederholte Wecker; Land und Region stehen in den Einstellungen.
+                        if !days.isEmpty { HolidaySkipRow(skipHolidays: $skipHolidays) }
                         if phone != .off {
                             // Eigene Töne oder der Standardton des Systems; eine Auswahl spielt kurz an.
                             let choice = Binding(get: { sound }, set: { value in
@@ -259,7 +256,7 @@ struct EditorView: View {
         sleepMode = existing.sleepDurationMinutes != nil
         sleepMinutes = Double(existing.sleepDurationMinutes ?? Self.defaultSleepMinutes)
         // Schon gesetzte Optionen nicht verstecken.
-        showMore = !existing.label.isEmpty || WakeTone(rawValue: existing.sound) != nil
+        showMore = !existing.label.isEmpty || WakeTone(rawValue: existing.sound) != nil || existing.sunrise != .off || existing.skipHolidays
     }
 
     private func current() -> AlarmSpec? {
@@ -295,12 +292,12 @@ struct EditorView: View {
     }
 }
 
-/// «An Feiertagen nicht wecken» mit Hinweis auf die Einstellungen.
-private struct HolidaySkipSection: View {
+/// «An Feiertagen nicht wecken» mit Hinweis auf die Einstellungen (Zeile unter «Mehr»).
+private struct HolidaySkipRow: View {
     @Binding var skipHolidays: Bool
 
     var body: some View {
-        Section {
+        VStack(alignment: .leading, spacing: 4) {
             Toggle(L("editor_skip_holidays"), isOn: $skipHolidays)
             Text(L("editor_skip_holidays_hint")).font(.footnote).foregroundStyle(.secondary)
         }

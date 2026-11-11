@@ -589,5 +589,9 @@
     <string name="learn_consent_text">Phase Wake ला अलार्म तुमच्यानुसार जुळवता यावा म्हणून, तुमचे घड्याळ %1$d रात्री रात्रभर हालचाल आणि नाडी मोजते. यासाठी थोडी बॅटरी लागते – झोपण्यापूर्वी घड्याळ चार्ज करा. डेटा तुमच्या डिव्हाइसवरच राहतो. शिकण्याचा टप्पा सेटिंग्जमध्ये कधीही बंद करू शकता.</string>
     <string name="learn_consent_start">शिकण्याचा टप्पा सुरू करा</string>
     <string name="learn_consent_later">नंतर</string>
+    <string name="learn_intro">Phase Wake ला अलार्म तुमच्यानुसार जुळवता यावा म्हणून, तुमचे घड्याळ रात्री हालचाल आणि नाडी मोजते.</string>
+    <string name="learn_point_nights">%1$d रात्री</string>
+    <string name="learn_point_battery">यासाठी थोडी बॅटरी लागते – झोपण्यापूर्वी घड्याळ चार्ज करा.</string>
+    <string name="learn_point_private">डेटा तुमच्या डिव्हाइसवरच राहतो. शिकण्याचा टप्पा सेटिंग्जमध्ये कधीही बंद करू शकता.</string>
     <string name="learn_switch_hint">अलार्म जुळवण्यासाठी तुमचे घड्याळ रात्री हालचाल आणि नाडी मोजते. बंद: आपोआप नोंद नाही, शिकलेली मूल्ये राहतात.</string>
 </resources>

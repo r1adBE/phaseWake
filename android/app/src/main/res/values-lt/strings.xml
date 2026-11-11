@@ -617,5 +617,9 @@
     <string name="learn_consent_text">Kad Phase Wake galėtų pritaikyti žadintuvą tau, tavo laikrodis %1$d naktis per naktį matuoja judesį ir pulsą. Tai sunaudoja šiek tiek baterijos – įkrauk laikrodį prieš miegą. Duomenys lieka tavo įrenginiuose. Mokymosi etapą gali bet kada išjungti nustatymuose.</string>
     <string name="learn_consent_start">Pradėti mokymosi etapą</string>
     <string name="learn_consent_later">Vėliau</string>
+    <string name="learn_intro">Kad Phase Wake galėtų pritaikyti žadintuvą tau, tavo laikrodis naktį matuoja judesį ir pulsą.</string>
+    <string name="learn_point_nights">%1$d naktis</string>
+    <string name="learn_point_battery">Tai sunaudoja šiek tiek baterijos – įkrauk laikrodį prieš miegą.</string>
+    <string name="learn_point_private">Duomenys lieka tavo įrenginiuose. Mokymosi etapą gali bet kada išjungti nustatymuose.</string>
     <string name="learn_switch_hint">Tavo laikrodis naktį matuoja judesį ir pulsą, kad pritaikytų žadintuvą. Išjungta: jokio automatinio įrašymo, išmoktos vertės lieka.</string>
 </resources>

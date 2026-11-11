@@ -30,7 +30,7 @@ Noch kein Wecker gestellt: ein Knopf für den ersten, darunter die letzte Nacht.
 
 ### Wecker einstellen
 
-Weckzeit oder Schlafdauer, Weckfenster von 10 bis 30 Minuten, Wochentage, Weckart für Uhr und Handy und Sonnenaufgang.
+Weckzeit oder Schlafdauer, Weckfenster von 10 bis 30 Minuten, Wochentage, Weckart für Uhr und Handy; Sonnenaufgang, Feiertage, Weckton und Name unter «Mehr».
 
 <p>
 <img src="app/EditorDark.png" width="280" alt="Wecker einstellen, dunkel">
@@ -166,10 +166,11 @@ Für Wecker mit Schlafdauer: Ab «Gute Nacht» erkennt die Uhr, wann du einschl�
 
 ### Wecken und Schlummern
 
-Sanfte Vibration im leichten Schlaf, in drei Stufen stärker. Beim Schlummern zeigt die Uhr, bis wann.
+Sanfte Vibration im leichten Schlaf, in drei Stufen stärker. Gestoppt wird durch Halten, schlummern mit einem Tipp; auch auf kleinen runden Uhren bleibt alles sichtbar. Beim Schlummern zeigt die Uhr, bis wann.
 
 <p>
 <img src="wear/WatchRing.png" width="220" alt="Wecken auf der Uhr">
+<img src="wear/WatchRingSmall.png" width="186" alt="Wecken auf einer kleinen Uhr">
 <img src="wear/WatchSnoozed.png" width="220" alt="Schlummern auf der Uhr">
 </p>
 

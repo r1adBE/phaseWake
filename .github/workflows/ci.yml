@@ -100,6 +100,32 @@ jobs:
           name: android-reports
           path: android/**/build/reports/
 
+  secrets:
+    name: Geheimnisse (gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Ganzer Verlauf: auch frühere Commits werden durchsucht.
+          fetch-depth: 0
+      - name: Geheimnisse suchen
+        shell: bash
+        env:
+          # Fest gewählte Version; Prüfsumme des Go-Moduls (wie in go.sum), zusätzlich von sum.golang.org bestätigt.
+          GITLEAKS_VERSION: v8.30.1
+          GITLEAKS_SUM: "h1:PmEvCfVI7ti9dV3s5aMZUY7sS2GxRvG3yzih7E+cS3w="
+        run: |
+          set -euo pipefail
+          module="github.com/zricethezav/gitleaks/v8@$GITLEAKS_VERSION"
+          sum=$(go mod download -json "$module" | python3 -c 'import json, sys; print(json.load(sys.stdin)["Sum"])')
+          if [ "$sum" != "$GITLEAKS_SUM" ]; then
+            echo "::error title=gitleaks::Prüfsumme stimmt nicht ($sum)"
+            exit 1
+          fi
+          GOBIN="$RUNNER_TEMP/bin" go install "$module"
+          # Regeln und Ausnahmen (Testpasswörter): .gitleaks.toml
+          "$RUNNER_TEMP/bin/gitleaks" git . --redact --no-banner --exit-code 1
+
   apple-core:
     name: Apple-Kern (Swift)
     runs-on: macos-latest

@@ -603,5 +603,9 @@
     <string name="learn_consent_text">Да би Phase Wake прилагодио аларм теби, твој сат %1$d ноћи мери покрете и пулс током ноћи. То троши нешто батерије – напуни сат пре спавања. Подаци остају на твојим уређајима. Фазу учења можеш било када да искључиш у подешавањима.</string>
     <string name="learn_consent_start">Покрени фазу учења</string>
     <string name="learn_consent_later">Касније</string>
+    <string name="learn_intro">Да би Phase Wake прилагодио аларм теби, твој сат ноћу мери покрете и пулс.</string>
+    <string name="learn_point_nights">%1$d ноћи</string>
+    <string name="learn_point_battery">То троши нешто батерије – напуни сат пре спавања.</string>
+    <string name="learn_point_private">Подаци остају на твојим уређајима. Фазу учења можеш било када да искључиш у подешавањима.</string>
     <string name="learn_switch_hint">Твој сат ноћу мери покрете и пулс да прилагоди аларм. Искључено: нема аутоматског снимања, научене вредности остају.</string>
 </resources>

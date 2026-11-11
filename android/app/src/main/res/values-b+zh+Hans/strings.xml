@@ -572,5 +572,9 @@
     <string name="learn_consent_text">为了让 Phase Wake 根据你调整闹钟，你的手表会连续 %1$d 晚在夜间测量动作和脉搏。这会消耗一些电量——睡前请给手表充电。 数据保留在你的设备上。你可以随时在设置中关闭学习阶段。</string>
     <string name="learn_consent_start">开始学习阶段</string>
     <string name="learn_consent_later">以后再说</string>
+    <string name="learn_intro">为了让 Phase Wake 根据你调整闹钟，你的手表会在夜间测量动作和脉搏。</string>
+    <string name="learn_point_nights">连续 %1$d 晚</string>
+    <string name="learn_point_battery">这会消耗一些电量——睡前请给手表充电。</string>
+    <string name="learn_point_private">数据保留在你的设备上。你可以随时在设置中关闭学习阶段。</string>
     <string name="learn_switch_hint">你的手表会在夜间测量动作和脉搏来调整闹钟。 关闭：不再自动记录，已学到的数值保留。</string>
 </resources>

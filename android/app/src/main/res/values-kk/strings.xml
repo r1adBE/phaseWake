@@ -574,5 +574,9 @@
     <string name="learn_consent_text">Phase Wake оятқышты саған бейімдеуі үшін сағатың %1$d түн бойы түнде қозғалыс пен пульсті өлшейді. Бұл біраз батарея жұмсайды – ұйықтар алдында сағатты зарядта. Деректер құрылғыларыңда қалады. Үйрену кезеңін баптауларда кез келген уақытта өшіре аласың.</string>
     <string name="learn_consent_start">Үйрену кезеңін бастау</string>
     <string name="learn_consent_later">Кейін</string>
+    <string name="learn_intro">Phase Wake оятқышты саған бейімдеуі үшін сағатың түнде қозғалыс пен пульсті өлшейді.</string>
+    <string name="learn_point_nights">%1$d түн бойы</string>
+    <string name="learn_point_battery">Бұл біраз батарея жұмсайды – ұйықтар алдында сағатты зарядта.</string>
+    <string name="learn_point_private">Деректер құрылғыларыңда қалады. Үйрену кезеңін баптауларда кез келген уақытта өшіре аласың.</string>
     <string name="learn_switch_hint">Сағатың оятқышты бейімдеу үшін түнде қозғалыс пен пульсті өлшейді. Өшірулі: автоматты жазу жоқ, үйренген мәндер сақталады.</string>
 </resources>

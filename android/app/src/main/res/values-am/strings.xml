@@ -589,5 +589,9 @@
     <string name="learn_consent_text">Phase Wake ማንቂያውን ለአንተ እንዲያስተካክል ሰዓትህ ለ%1$d ሌሊቶች ሌሊቱን ሙሉ እንቅስቃሴና የልብ ምት ይለካል። ይህ ትንሽ ባትሪ ይጠቀማል – ከመተኛትህ በፊት ሰዓቱን ቻርጅ አድርግ። ውሂቡ በመሣሪያዎችህ ላይ ይቆያል። የመማሪያ ጊዜውን በማንኛውም ጊዜ በቅንብሮች ውስጥ ማጥፋት ትችላለህ።</string>
     <string name="learn_consent_start">የመማሪያ ጊዜ ጀምር</string>
     <string name="learn_consent_later">በኋላ</string>
+    <string name="learn_intro">Phase Wake ማንቂያውን ለአንተ እንዲያስተካክል ሰዓትህ ሌሊት እንቅስቃሴና የልብ ምት ይለካል።</string>
+    <string name="learn_point_nights">ለ%1$d ሌሊቶች</string>
+    <string name="learn_point_battery">ይህ ትንሽ ባትሪ ይጠቀማል – ከመተኛትህ በፊት ሰዓቱን ቻርጅ አድርግ።</string>
+    <string name="learn_point_private">ውሂቡ በመሣሪያዎችህ ላይ ይቆያል። የመማሪያ ጊዜውን በማንኛውም ጊዜ በቅንብሮች ውስጥ ማጥፋት ትችላለህ።</string>
     <string name="learn_switch_hint">ማንቂያውን ለማስተካከል ሰዓትህ በሌሊት እንቅስቃሴና የልብ ምት ይለካል። ጠፍቷል፦ ራስ-ሰር ቀረጻ የለም፣ የተማሩ እሴቶች ይቆያሉ።</string>
 </resources>

@@ -586,5 +586,9 @@
     <string name="learn_consent_text">برای اینکه Phase Wake زنگ را با تو هماهنگ کند، ساعتت %1$d شب در طول شب حرکت و نبض را اندازه می‌گیرد. این کار کمی باتری مصرف می‌کند – قبل از خواب ساعت را شارژ کن. داده‌ها روی دستگاه‌هایت می‌مانند. هر وقت بخواهی می‌توانی مرحلهٔ یادگیری را در تنظیمات خاموش کنی.</string>
     <string name="learn_consent_start">شروع مرحلهٔ یادگیری</string>
     <string name="learn_consent_later">بعداً</string>
+    <string name="learn_intro">برای اینکه Phase Wake زنگ را با تو هماهنگ کند، ساعتت شب‌ها حرکت و نبض را اندازه می‌گیرد.</string>
+    <string name="learn_point_nights">به مدت %1$d شب</string>
+    <string name="learn_point_battery">این کار کمی باتری مصرف می‌کند – قبل از خواب ساعت را شارژ کن.</string>
+    <string name="learn_point_private">داده‌ها روی دستگاه‌هایت می‌مانند. هر وقت بخواهی می‌توانی مرحلهٔ یادگیری را در تنظیمات خاموش کنی.</string>
     <string name="learn_switch_hint">ساعتت برای هماهنگ کردن زنگ، شب‌ها حرکت و نبض را اندازه می‌گیرد. خاموش: بدون ثبت خودکار، مقادیر یادگرفته‌شده می‌مانند.</string>
 </resources>
