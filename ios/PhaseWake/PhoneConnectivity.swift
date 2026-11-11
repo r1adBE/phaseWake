@@ -186,18 +186,89 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         }
     }
 
-    /// Holt den Diagnose-Bericht der Uhr; `nil`, wenn sie nicht erreichbar ist oder nicht antwortet.
+    /// Holt den Diagnose-Bericht der Uhr: klein in der Antwort, voll als Datei (`DiagTransfer`, Antwort
+    /// `SyncKeys.diagFile`). `nil`, wenn sie nicht erreichbar ist oder nicht antwortet; dann steht «watch report missing»
+    /// im Protokoll.
     @MainActor
     func requestWatchDiag() async -> DiagReport? {
+        let report = await fetchWatchDiag()
+        if report == nil { DiagStore.shared.log(.sync, "watch report missing") }
+        return report
+    }
+
+    /// ``requestWatchDiag()`` ohne Protokoll.
+    @MainActor
+    private func fetchWatchDiag() async -> DiagReport? {
         guard WCSession.isSupported(), WCSession.default.activationState == .activated, WCSession.default.isReachable else { return nil }
-        let text: String? = await withCheckedContinuation { continuation in
+        // Eine Datei einer früheren Anfrage zählt nicht.
+        diagFileReport = nil
+        let reply: DiagReply = await withCheckedContinuation { continuation in
             WCSession.default.sendMessage([SyncKeys.command: SyncKeys.diagRequest], replyHandler: { reply in
-                continuation.resume(returning: reply[SyncKeys.payload] as? String)
+                continuation.resume(returning: reply[SyncKeys.diagFile] as? Bool == true ? .file : .text(reply[SyncKeys.payload] as? String))
             }, errorHandler: { _ in
-                continuation.resume(returning: nil)
+                continuation.resume(returning: .text(nil))
             })
         }
-        return DiagReports.decode(text)
+        switch reply {
+        case .text(let text): return DiagReports.decode(text)
+        case .file: return await awaitDiagFile()
+        }
+    }
+
+    /// Antwort der Uhr auf `SyncKeys.diagRequest`: Bericht als Text oder Hinweis, dass er als Datei folgt.
+    private enum DiagReply: Sendable {
+        case text(String?)
+        case file
+    }
+
+    /// Bericht aus einer Datei der Uhr, der vor dem Warten ankam (die Datei kann die Antwort überholen). Nur Main-Thread.
+    private var diagFileReport: DiagReport?
+    /// Wartet auf die Datei des Berichts (``awaitDiagFile()``), mit Kennung gegen eine abgelaufene Frist. Nur Main-Thread.
+    private var diagWaiter: (id: UUID, continuation: CheckedContinuation<DiagReport?, Never>)?
+
+    /// Wartet höchstens `DiagTransfer.fileTimeout` auf die Datei des Berichts.
+    @MainActor
+    private func awaitDiagFile() async -> DiagReport? {
+        if let report = diagFileReport {
+            diagFileReport = nil
+            return report
+        }
+        let id = UUID()
+        return await withCheckedContinuation { continuation in
+            // Eine ältere Anfrage, die noch wartet (zweimal getippt), endet ohne Bericht.
+            if let old = diagWaiter {
+                diagWaiter = nil
+                old.continuation.resume(returning: nil)
+            }
+            diagWaiter = (id: id, continuation: continuation)
+            Task { @MainActor in
+                try? await Task.sleep(for: .seconds(DiagTransfer.fileTimeout))
+                self.finishDiagWait(id: id, report: nil)
+            }
+        }
+    }
+
+    /// Beendet das Warten `id` (bzw. jedes, wenn `id` fehlt) mit `report`; ohne Wartenden wird der Bericht gemerkt.
+    @MainActor
+    private func finishDiagWait(id: UUID?, report: DiagReport?) {
+        guard let waiter = diagWaiter, id == nil || waiter.id == id else {
+            if id == nil { diagFileReport = report }
+            return
+        }
+        diagWaiter = nil
+        waiter.continuation.resume(returning: report)
+    }
+
+    /// Datei der Uhr: nur der Diagnose-Bericht (``requestWatchDiag()``). Gleich hier lesen: WatchConnectivity löscht die
+    /// Datei nach der Rückkehr. Über `SyncKeys.maxPeerBytes` oder unlesbar: verworfen (das Warten endet mit der Frist).
+    func session(_ session: WCSession, didReceive file: WCSessionFile) {
+        guard file.metadata?[SyncKeys.command] as? String == SyncKeys.diagReport else { return }
+        seenWatch()
+        guard let report = DiagTransfer.read(fileAt: file.fileURL) else {
+            DiagStore.shared.log(.suppressed, "diag report unreadable or too large")
+            return
+        }
+        Task { @MainActor in self.finishDiagWait(id: nil, report: report) }
     }
 
     /// Zuletzt etwas von der Uhr empfangen (ms seit 1970), für die Diagnose.

@@ -6,9 +6,11 @@ import android.os.Build
 import androidx.core.app.NotificationManagerCompat
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.DiagReport
 import com.phasewake.app.core.DiagReports
 import com.phasewake.app.shared.DataLayer
+import com.phasewake.app.shared.Outbox
 import com.phasewake.app.shared.phaseWakeStore
 import com.phasewake.app.wear.PhaseWakeWear
 import kotlinx.coroutines.Dispatchers
@@ -44,8 +46,15 @@ object WatchDiag {
         return DiagReport(status, withContext(Dispatchers.IO) { app.diag.entries() })
     }
 
-    /** Antwort auf [DataLayer.PATH_DIAG_REQUEST] des Handys. */
-    suspend fun sendReport(app: PhaseWakeWear) {
-        app.sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_DIAG_LOG, DiagReports.encode(report(app)).encodeToByteArray())
+    /**
+     * Antwort auf [DataLayer.PATH_DIAG_REQUEST] des Handys über [transport]: klein als Nachricht, ein voller Bericht
+     * (500 Einträge, über der Grenze einer Nachricht) über einen Kanal ([Outbox.sendOnce]). Erreicht er kein Handy, steht
+     * das im Protokoll der Uhr.
+     */
+    suspend fun sendReport(app: PhaseWakeWear, transport: Outbox.Transport = Outbox.WearTransport(app)) {
+        val data = DiagReports.encode(report(app)).encodeToByteArray()
+        if (Outbox.sendOnce(transport, DataLayer.CAPABILITY_PHONE, DataLayer.PATH_DIAG_LOG, data) == 0) {
+            app.diag.log(DiagKind.SYNC, "diag report not sent (${data.size} bytes)")
+        }
     }
 }

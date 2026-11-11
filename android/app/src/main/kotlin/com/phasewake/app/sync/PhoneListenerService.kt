@@ -91,10 +91,26 @@ class PhoneListenerService : WearableListenerService() {
         }
     }
 
-    /** Kanal der Uhr (grosse Aufzeichnung): ganz lesen, schliessen, wie eine Nachricht verarbeiten und bestätigen. */
+    /**
+     * Kanal der Uhr (grosse Aufzeichnung, voller Diagnose-Bericht): ganz lesen (höchstens `PeerLimit.MAX_BYTES`),
+     * schliessen und verarbeiten ([handleChannel]).
+     */
     override fun onChannelOpened(channel: ChannelClient.Channel) {
         val sync = phoneApp.sync
-        runBlocking { sync.readChannel(channel)?.let { data -> sync.receive(channel.nodeId, data) { handleQueued(channel.path, it) } } }
+        runBlocking { sync.readChannel(channel)?.let { data -> handleChannel(channel.nodeId, channel.path, data) } }
+    }
+
+    /**
+     * Gelesener Inhalt eines Kanals von [node] unter [path]: der Diagnose-Bericht geht an [WatchReport] (ohne
+     * Warteschlange, keine Bestätigung), alles andere wie eine Nachricht der Warteschlange (verarbeiten, bestätigen).
+     * Intern für Tests.
+     */
+    internal suspend fun handleChannel(node: String, path: String, data: ByteArray) {
+        if (path == DataLayer.PATH_DIAG_LOG) {
+            WatchReport.received(data)
+            return
+        }
+        phoneApp.sync.receive(node, data) { handleQueued(path, it) }
     }
 
     /** Die Uhr ist (wieder) erreichbar: wartende Einträge senden. */

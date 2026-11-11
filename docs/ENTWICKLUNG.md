@@ -132,6 +132,12 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
   (`PeerLimit.read`, höchstens `PeerLimit.MAX_BYTES` = 8 MB, sonst Abbruch mit Log); grössere Nachrichten verarbeitet
   `WearSync.receive` nicht. Die längste Aufzeichnung (12 Std., 1440 Epochen) hat rund 65 KB. Apple gleich:
   `SyncKeys.maxPeerBytes` in `PhoneConnectivity` (Texte der Uhr). Tests: `PeerLimitTest`, `PeerLimitTests`.
+- **Diagnose-Bericht der Uhr (11.11.2026):** Ein voller Bericht (500 Einträge à 200 Zeichen, über 100 KB) passt in
+  keine Nachricht. Galaxy Watch: `Outbox.sendOnce` (bis 90 KB Nachricht, sonst `ChannelClient`; das Handy liest den
+  Kanal mit `WearSync.readChannel`, höchstens 8 MB, `PhoneListenerService.handleChannel`). Apple Watch: bis 48 KB in der
+  Antwort auf `diagRequest`, sonst `transferFile` (`DiagTransfer`, Antwort `SyncKeys.diagFile`). Ohne Bericht nach 15 s
+  protokolliert das Handy «watch report missing», die Uhr ein gescheitertes Senden mit «diag report not sent». Tests:
+  `WatchReportTest`, `WatchDiagTest`, `DiagTransferTests`.
 - **Absturzberichte (Audit P-1, 11.11.2026):** kein Absturz-SDK in der App (Grundsatz 2). Nach dem Release kommen
   Abstürze und ANRs über die Systeme der Stores: Android in der Play Console unter «Android Vitals» (Abstürze und ANRs,
   Handy und Uhr getrennt), Apple in App Store Connect bzw. im Xcode Organizer (Abstürze, Energie, Hänger; nur von

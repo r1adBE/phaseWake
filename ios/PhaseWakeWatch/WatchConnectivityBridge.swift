@@ -267,7 +267,27 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
             return
         }
         // Aus Quellen, die von jedem Thread lesbar sind; die Antwort geht sofort zurück.
-        replyHandler([SyncKeys.payload: DiagReports.encode(DiagReport(status: WatchDiagStatus.shared.current, entries: DiagStore.shared.entries()))])
+        let text = DiagReports.encode(DiagReport(status: WatchDiagStatus.shared.current, entries: DiagStore.shared.entries()))
+        if DiagTransfer.fitsReply(text) {
+            replyHandler([SyncKeys.payload: text])
+            return
+        }
+        // Voller Bericht: zu gross für eine Antwort (WatchConnectivity etwa 65 KB), darum als Datei (`DiagTransfer`).
+        do {
+            let url = try DiagTransfer.write(text, in: FileManager.default.temporaryDirectory)
+            session.transferFile(url, metadata: [SyncKeys.command: SyncKeys.diagReport])
+            replyHandler([SyncKeys.diagFile: true])
+        } catch {
+            DiagStore.shared.log(.sync, "diag report not sent: \(error.localizedDescription)")
+            replyHandler([:])
+        }
+    }
+
+    /// Datei des Diagnose-Berichts übertragen oder gescheitert: Datei löschen, einen Fehler protokollieren.
+    func session(_ session: WCSession, didFinish fileTransfer: WCSessionFileTransfer, error: Error?) {
+        guard fileTransfer.file.metadata?[SyncKeys.command] as? String == SyncKeys.diagReport else { return }
+        try? FileManager.default.removeItem(at: fileTransfer.file.fileURL)
+        if let error { DiagStore.shared.log(.sync, "diag report not sent: \(error.localizedDescription)") }
     }
 
     func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {

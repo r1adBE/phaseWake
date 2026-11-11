@@ -160,7 +160,7 @@ class Outbox(private val dir: File, private val transport: Transport, private va
             Wearable.getCapabilityClient(app).getCapability(capability, CapabilityClient.FILTER_REACHABLE).await().nodes.map { it.id }
 
         override suspend fun send(node: String, path: String, data: ByteArray) {
-            if (data.size <= MAX_MESSAGE_BYTES) {
+            if (fitsMessage(data)) {
                 Wearable.getMessageClient(app).sendMessage(node, path, data).await()
                 return
             }
@@ -187,6 +187,30 @@ class Outbox(private val dir: File, private val transport: Transport, private va
 
         /** Höchstdauer eines Schritts zur Gegenseite (Geräte suchen, senden). */
         private const val STEP_TIMEOUT_MS = 15_000L
+
+        /** Ob [data] als Nachricht geht ([WearTransport]); sonst über einen Kanal. */
+        fun fitsMessage(data: ByteArray): Boolean = data.size <= MAX_MESSAGE_BYTES
+
+        /**
+         * Inhalt ohne Warteschlange (einmalig, nicht bestätigt, z. B. der Diagnose-Bericht) über [transport] an alle
+         * erreichbaren Geräte mit [capability]: wie die Warteschlange bis [MAX_MESSAGE_BYTES] als Nachricht, sonst über
+         * einen Kanal (der Empfänger liest ihn mit [WearSync.readChannel], höchstens [PeerLimit.MAX_BYTES]). Je Schritt
+         * höchstens [STEP_TIMEOUT_MS]; Fehler werden geloggt.
+         * @return Zahl der Geräte, die den Inhalt erhalten haben (0: keines erreichbar oder Senden gescheitert).
+         */
+        suspend fun sendOnce(transport: Transport, capability: String, path: String, data: ByteArray): Int {
+            val nodes = step("Geräte suchen ($path)") { transport.nodes(capability) } ?: return 0
+            return nodes.count { node -> step("Senden ($path, ${data.size} Bytes)") { transport.send(node, path, data) } != null }
+        }
+
+        /** Ein Schritt von [sendOnce], höchstens [STEP_TIMEOUT_MS]; `null` bei Zeitüberschreitung oder Fehler (geloggt). */
+        private suspend fun <T> step(what: String, block: suspend () -> T): T? = try {
+            withTimeoutOrNull(STEP_TIMEOUT_MS) { block() }.also { if (it == null) Log.i(TAG, "$what: keine Antwort") }
+        } catch (e: Exception) {
+            if (e is kotlinx.coroutines.CancellationException) throw e
+            Log.i(TAG, "$what nicht möglich (keine Verbindung oder keine Wear-Dienste)", e)
+            null
+        }
 
         @Volatile
         private var shared: Outbox? = null

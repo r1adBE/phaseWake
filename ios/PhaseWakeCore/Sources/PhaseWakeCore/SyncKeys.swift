@@ -55,8 +55,13 @@ public enum SyncKeys {
     public static let nap = "nap"
     /// Befehl in beide Richtungen: vorübergehenden Plan (Probewecker, Powernap) verwerfen, mit `id`.
     public static let transientCancel = "transientCancel"
-    /// Befehl iPhone → Uhr: Diagnose-Bericht anfordern; die Antwort trägt `payload` = `DiagReports.encode`.
+    /// Befehl iPhone → Uhr: Diagnose-Bericht anfordern; die Antwort trägt `payload` = `DiagReports.encode` oder, wenn der
+    /// Bericht dafür zu gross ist (`DiagTransfer`), `diagFile` = `true`: Er folgt als Datei.
     public static let diagRequest = "diagRequest"
+    /// Antwort auf `diagRequest`: Der Bericht folgt als Datei (`transferFile`, Metadaten `command` = `diagReport`).
+    public static let diagFile = "diagFile"
+    /// Befehl in den Metadaten der Datei Uhr → iPhone: Diagnose-Bericht (Inhalt `DiagReports.encode`).
+    public static let diagReport = "diagReport"
     /// Inhalt eines Befehls (Plan oder Bericht).
     public static let payload = "payload"
     /// Kennung eines vorübergehenden Plans.

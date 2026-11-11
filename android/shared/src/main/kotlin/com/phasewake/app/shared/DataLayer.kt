@@ -174,7 +174,7 @@ object DataLayer {
     /** Nachricht Handy → Uhr: Diagnose-Bericht anfordern (ohne Inhalt); Antwort [PATH_DIAG_LOG]. */
     const val PATH_DIAG_REQUEST = "/phasewake/diag-request"
 
-    /** Nachricht Uhr → Handy: Diagnose-Bericht; Inhalt = `DiagReports.encode`. */
+    /** Uhr → Handy: Diagnose-Bericht, Inhalt = `DiagReports.encode`; bis 90 KB als Nachricht, grösser über einen Kanal ([Outbox.sendOnce]). */
     const val PATH_DIAG_LOG = "/phasewake/diag-log"
 
     /** Nachricht Handy → Uhr: «Nacht aufzeichnen» starten (ohne Inhalt). Nur Galaxy Watch. */
