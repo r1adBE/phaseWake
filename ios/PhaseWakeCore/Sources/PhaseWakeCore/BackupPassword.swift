@@ -38,10 +38,14 @@ public enum BackupPassword {
     ]
 
     /// Problem von `password` für eine neue Sicherung; `nil`, wenn es genügt.
+    /// Sprache für die Kleinschreibung: fest «en_US_POSIX», unabhängig von der Einstellung des Geräts.
+    public static let caseLocale = Locale(identifier: "en_US_POSIX")
+
     public static func problem(_ password: String) -> Problem? {
         let nfc = password.precomposedStringWithCanonicalMapping
         if nfc.unicodeScalars.count < minLength { return .tooShort }
-        return isTrivial(nfc.lowercased()) ? .trivial : nil
+        // Fest ohne Sprache des Geräts (wie Kotlin `Locale.ROOT`): mit `tr_TR` gäbe ein «I» sonst ein punktloses «ı».
+        return isTrivial(nfc.lowercased(with: Self.caseLocale)) ? .trivial : nil
     }
 
     /// Ob `password` für eine neue Sicherung genügt (`problem` ist `nil`).

@@ -312,7 +312,12 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     /// Stunden später); ein Stopp auch verspätet, aber nur für eine Aufzeichnung, die vor ihm begann. - Returns: ob behandelt.
     private func receiveRecord(_ command: String, _ message: [String: Any]) -> Bool {
         guard command == SyncKeys.recordStart || command == SyncKeys.recordStop else { return false }
-        let sentAt = (message[SyncKeys.sentAt] as? Int64).map { Date(timeIntervalSince1970: Double($0) / 1000) } ?? Date()
+        // Ohne Sendezeit (unvollständige Nachricht) nichts tun – wie bei Stopp und Schlummern; sonst gälte sie immer als frisch.
+        guard let sentMs = message[SyncKeys.sentAt] as? Int64 else {
+            Task { @MainActor in DiagStore.shared.log(.suppressed, "record \(command) without sentAt") }
+            return true
+        }
+        let sentAt = Date(timeIntervalSince1970: Double(sentMs) / 1000)
         Task { @MainActor in
             let recorder = LearnRecorder.shared
             if command == SyncKeys.recordStart {

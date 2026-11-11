@@ -61,8 +61,8 @@ final class BackupPasswordTests: XCTestCase {
     }
 
     func testSharedVectors() throws {
-        // Gemeinsame Fälle mit Kotlin (shared/testdata/backup-password.vectors). Swift `lowercased()` hängt nicht von der
-        // Sprache des Geräts ab (kein türkisches «ı»); Kotlin prüft dasselbe mit Türkisch als Gerätesprache.
+        // Gemeinsame Fälle mit Kotlin (shared/testdata/backup-password.vectors). Kleinschreibung fest ohne Sprache
+        // des Geräts (Türkisch: `testCaseFoldingIgnoresTurkish`).
         let text = try String(contentsOf: NightFixtures.directory.appendingPathComponent("backup-password.vectors"), encoding: .utf8)
         let lines = text.components(separatedBy: "\n").filter { !$0.isEmpty && !$0.hasPrefix("#") }
         XCTAssertTrue(lines.contains("TRIVIAL\tPASSWORD12"))
@@ -79,7 +79,14 @@ final class BackupPasswordTests: XCTestCase {
             }
             XCTAssertEqual(BackupPassword.problem(parts[1]), expected, parts[1])
         }
-        XCTAssertEqual("QWERTYUIOP".lowercased(), "qwertyuiop")
         XCTAssertEqual(BackupPassword.problem("PASSWORD12"), .trivial)
+    }
+
+    /// Türkisch als Sprache: mit der Gerätesprache würde «I» zu «ı» – die Regel nimmt fest «en_US_POSIX» (wie Kotlin).
+    func testCaseFoldingIgnoresTurkish() {
+        let turkish = Locale(identifier: "tr_TR")
+        XCTAssertNotEqual("QWERTYUIOP".lowercased(with: turkish), "qwertyuiop", "Voraussetzung: Türkisch schreibt «I» anders klein")
+        XCTAssertEqual("QWERTYUIOP".lowercased(with: BackupPassword.caseLocale), "qwertyuiop")
+        XCTAssertEqual(BackupPassword.problem("QWERTYUIOP"), .trivial)
     }
 }
