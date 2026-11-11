@@ -66,7 +66,7 @@ final class AuditFixWatchTests: XCTestCase {
 
     func testRecorderPauseNeverPassesTheDeadline() {
         XCTAssertEqual(LearnRecorder.pauseLength(0.2, now: now, deadline: now.addingTimeInterval(10)), 0.2)
-        XCTAssertEqual(LearnRecorder.pauseLength(0.2, now: now, deadline: now.addingTimeInterval(0.05)), 0.05, accuracy: 1e-9)
+        XCTAssertEqual(LearnRecorder.pauseLength(0.2, now: now, deadline: now.addingTimeInterval(0.05)), 0.05, accuracy: 1e-6) // Date rechnet ab 2001 in Sekunden: ~5e-8 Rundung
         XCTAssertEqual(LearnRecorder.pauseLength(0.2, now: now, deadline: now.addingTimeInterval(-1)), 0)
         XCTAssertEqual(LearnRecorder.pauseLength(0, now: now, deadline: now.addingTimeInterval(10)), 0)
     }
