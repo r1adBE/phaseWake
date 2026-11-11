@@ -35,7 +35,7 @@ struct RingView: View {
         switch alarm.phase {
         case .ringing(let reason, let snoozesLeft):
             Text(L("ring_greeting")).font(Fonts.manrope(16, .bold, relativeTo: .headline)).lineLimit(1)
-            Text(L(ringReasonKey(reason))).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.muted).lineLimit(1)
+            reasonText(L(ringReasonKey(reason)))
             stopButton
             if snoozesLeft > 0 {
                 // «Schlummern 5 Min» wie auf Wear OS (Audit F-10), darunter klein «noch N» (r1AD 10.11.2026); mindestens
@@ -63,6 +63,17 @@ struct RingView: View {
         default:
             EmptyView()
         }
+    }
+
+    /// Grund beim Wecken ganz lesbar statt mit «…» (wie auf Wear OS): zuerst einzeilig, sonst etwas kleiner einzeilig,
+    /// erst dann zweizeilig in voller Grösse.
+    private func reasonText(_ text: String) -> some View {
+        ViewThatFits(in: .horizontal) {
+            Text(text).font(Fonts.manrope(12, relativeTo: .caption)).lineLimit(1)
+            Text(text).font(Fonts.manrope(10.5, relativeTo: .caption)).lineLimit(1)
+            Text(text).font(Fonts.manrope(12, relativeTo: .caption)).lineLimit(2).multilineTextAlignment(.center)
+        }
+        .foregroundStyle(Brand.muted)
     }
 
     /// «Halten zum Stoppen» als gefüllter Hauptknopf in Lavendel (Audit U-4), wie auf dem Handy und Wear OS: beim

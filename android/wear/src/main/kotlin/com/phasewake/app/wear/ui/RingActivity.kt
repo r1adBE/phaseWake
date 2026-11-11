@@ -216,6 +216,11 @@ internal fun RingScreen(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit,
     val content = sky?.content ?: Brand.Moon
     val accent = sky?.content?.copy(alpha = 0.6f) ?: Brand.Wave
     val background = if (light != null) Modifier.sunriseSky(light) else Modifier.nightGlow()
+    val sidePadding = if (compact) 12 else 18
+    val reason = (ui as? RingUi.Ringing)?.let { stringResource(ringReasonRes(it.reason)) }.orEmpty()
+    val reasonFit = rememberReasonFit(reason, MaterialTheme.typography.bodySmall, LocalConfiguration.current.screenWidthDp - 2 * sidePadding)
+    // Zweizeiliger Grund: Punkt kleiner und kein Abstand darunter, damit der Schlummer-Knopf nicht in den Rand rutscht.
+    val twoLines = ui is RingUi.Ringing && reasonFit.lines > 1
     // Punkt und Stopp-Knopf teilen sich dasselbe Halten und denselben Fortschritt.
     val hold = Modifier
         .pointerInput(holdMillis) {
@@ -255,19 +260,19 @@ internal fun RingScreen(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit,
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.padding(
-                start = if (compact) 12.dp else 18.dp,
-                end = if (compact) 12.dp else 18.dp,
+                start = sidePadding.dp,
+                end = sidePadding.dp,
                 bottom = if (compact) 14.dp else 18.dp,
             ),
         ) {
             PulsingDot(
                 color = accent,
                 dot = content,
-                modifier = Modifier.size(if (compact) 34.dp else 44.dp).then(hold),
+                modifier = Modifier.size((if (compact) 34.dp else 44.dp) - (if (twoLines) 10.dp else 0.dp)).then(hold),
             )
-            Spacer(Modifier.height(if (compact) 0.dp else 2.dp))
+            Spacer(Modifier.height(if (compact || twoLines) 0.dp else 2.dp))
             when (ui) {
-                is RingUi.Ringing -> Ringing(ui, content = content, muted = sky?.contentMuted)
+                is RingUi.Ringing -> Ringing(ui, reason, reasonFit, content = content, muted = sky?.contentMuted)
                 is RingUi.Snoozed -> Snoozed(ui)
                 RingUi.Idle -> Unit
             }
@@ -319,8 +324,8 @@ private fun HoldToStop(label: String, progress: Float, compact: Boolean, onDismi
 
 /** [content]/[muted]: Schriftfarben; [muted] `null` = Farben des Nachthimmels. */
 @Composable
-private fun Ringing(ui: RingUi.Ringing, content: Color = Brand.Moon, muted: Color? = null) {
-    // Jede Zeile einzeilig: Lange Namen oder Übersetzungen dürfen den Schlummer-Knopf nicht nach unten schieben.
+private fun Ringing(ui: RingUi.Ringing, reason: String, fit: ReasonFit, content: Color = Brand.Moon, muted: Color? = null) {
+    // Der Name einzeilig: Lange Namen dürfen den Schlummer-Knopf nicht nach unten schieben. Der Grund nach [ReasonFit].
     Text(
         ui.label.ifBlank { stringResource(R.string.ring_greeting) },
         style = MaterialTheme.typography.titleMedium,
@@ -330,11 +335,11 @@ private fun Ringing(ui: RingUi.Ringing, content: Color = Brand.Moon, muted: Colo
         overflow = TextOverflow.Ellipsis,
     )
     Text(
-        stringResource(ringReasonRes(ui.reason)),
-        style = MaterialTheme.typography.bodySmall,
+        reason,
+        style = MaterialTheme.typography.bodySmall.copy(fontSize = fit.fontSize, lineHeight = fit.lineHeight),
         color = muted ?: Brand.Mist,
         textAlign = TextAlign.Center,
-        maxLines = 1,
+        maxLines = fit.lines,
         overflow = TextOverflow.Ellipsis,
     )
 }
