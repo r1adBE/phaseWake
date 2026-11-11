@@ -63,7 +63,7 @@ final class PhoneTransient {
         save()
         PhoneConnectivity.shared.send(command: SyncKeys.test, extra: [SyncKeys.payload: Transient.encode(plan)])
         if let id = await model.backup.scheduleTransient(plan) { addRingId(id) }
-        DiagStore.shared.log(.test, "start \(Format.time(plan.plan.target))")
+        DiagStore.shared.log(.test, "start \(Format.logTime(plan.plan.target))")
         waitForResult()
     }
 
@@ -144,7 +144,7 @@ final class PhoneTransient {
         waitingForWatch = false
         save()
         await PhoneModel.shared.backup.scheduleTransient(plan)
-        DiagStore.shared.log(.nap, "from watch \(Format.time(plan.plan.target))")
+        DiagStore.shared.log(.nap, "from watch \(Format.logTime(plan.plan.target))")
     }
 
     /// Powernap auf der Uhr beendet.

@@ -76,19 +76,19 @@ extension LearnRecorder {
         case .short(let until, let needed):
             guard loggedShortNeed != needed else { return }
             loggedShortNeed = needed
-            DiagStore.shared.log(.measureStart, "recorder until \(Format.time(until)), needed \(Format.time(needed)): kept, no second call")
+            DiagStore.shared.log(.measureStart, "recorder until \(Format.logTime(until)), needed \(Format.logTime(needed)): kept, no second call")
         case .start(let end):
             let status = CMSensorRecorder.authorizationStatus()
             CMSensorRecorder().recordAccelerometer(forDuration: end.timeIntervalSince(now))
             // Nur mit Erlaubnis merken (Audit AP-7): Fragt watchOS erst jetzt nach (oder ist sie aus), zeichnet dieser
             // Aufruf womöglich nichts auf; ungemerkt darf später in der Nacht ein weiterer Aufruf starten.
             guard Self.remembersSpan(status) else {
-                DiagStore.shared.log(.measureStart, "recorder call until \(Format.time(end)), motion not yet allowed: not remembered")
+                DiagStore.shared.log(.measureStart, "recorder call until \(Format.logTime(end)), motion not yet allowed: not remembered")
                 return
             }
             SettingsFile.watchSession.set(now.timeIntervalSince1970, forKey: Self.recorderFromKey)
             SettingsFile.watchSession.set(end.timeIntervalSince1970, forKey: Self.recorderUntilKey)
-            DiagStore.shared.log(.measureStart, "recorder start until \(Format.time(end))")
+            DiagStore.shared.log(.measureStart, "recorder start until \(Format.logTime(end))")
         }
     }
 

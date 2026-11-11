@@ -69,7 +69,7 @@ extension SmartAlarm {
         }
         guard keptZoneNight.map({ !Self.sameTime($0, night.target) }) ?? true else { return }
         keptZoneNight = night.target
-        DiagStore.shared.log(.scheduled, "zone change, keep night \(Format.time(night.target))")
+        DiagStore.shared.log(.scheduled, "zone change, keep night \(Format.logTime(night.target))")
     }
 
     /// Gleiche Zeit auf die Millisekunde (gespeicherte Zeiten sind gerundet).

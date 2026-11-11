@@ -190,7 +190,7 @@ struct NightstandView: View {
         let next = model.alarms.filter { $0.sunrise != .off }
         let found = AlarmSchedule.earliestPlan(next, now: Date(), calendar: .gregorianLocal, holidays: model.holidays.dates)
         // Ins Diagnose-Protokoll nur ein neuer oder geänderter Plan (ohne Wecker-Kennung), wie Android.
-        if let found, found != plan { DiagStore.shared.log(.scheduled, "phone sunrise \(Format.time(found.windowStart)) – \(Format.time(found.target))") }
+        if let found, found != plan { DiagStore.shared.log(.scheduled, "phone sunrise \(Format.logTime(found.windowStart)) – \(Format.logTime(found.target))") }
         plan = found
         sunrise = next.first { $0.id == plan?.alarmId }?.sunrise ?? .off
     }

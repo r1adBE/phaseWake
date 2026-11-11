@@ -193,7 +193,7 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
             if case .scheduled(let current) = phase, current != plan { invalidateSession() }
             if case .scheduled = phase, session != nil, !tooEarly { return }
             if phase != .waiting(plan) {
-                DiagStore.shared.log(.scheduled, "waiting \(Format.time(plan.target)) active \(active)\(pending ? " pending" : "")")
+                DiagStore.shared.log(.scheduled, "waiting \(Format.logTime(plan.target)) active \(active)\(pending ? " pending" : "")")
             }
             phase = .waiting(plan)
             notePlanZone(plan)
@@ -212,7 +212,7 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         self.plan = plan
         phase = .scheduled(plan)
         notePlanZone(plan)
-        DiagStore.shared.log(.scheduled, "session \(Format.time(start)) target \(Format.time(plan.target))")
+        DiagStore.shared.log(.scheduled, "session \(Format.logTime(start)) target \(Format.logTime(plan.target))")
         publishArmed()
     }
 
@@ -255,7 +255,7 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     private func keepsRealSession(for plan: WakePlan) -> Bool {
         guard Transient.kindOf(plan.alarmId) != nil, case .scheduled(let current) = phase, session != nil,
               Transient.kindOf(current.alarmId) == nil else { return false }
-        DiagStore.shared.log(.scheduled, "keep session \(Format.time(current.target)), transient by notification")
+        DiagStore.shared.log(.scheduled, "keep session \(Format.logTime(current.target)), transient by notification")
         return true
     }
 
@@ -276,7 +276,7 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         // Diagnose: einmal je Zielzeit, nicht bei jedem Neuplanen.
         guard keptFallback != real.target else { return }
         keptFallback = real.target
-        DiagStore.shared.log(.scheduled, "real fallback kept \(Format.time(real.target))")
+        DiagStore.shared.log(.scheduled, "real fallback kept \(Format.logTime(real.target))")
     }
 
     /// Bittet, die App zu öffnen, damit die Sitzung für `plan` geplant wird – nur, wenn sie schon planbar wäre (36 h).
@@ -288,7 +288,7 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         let request = UNNotificationRequest(identifier: Self.openAppId, content: content,
                                             trigger: UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false))
         UNUserNotificationCenter.current().add(request)
-        DiagStore.shared.log(.scheduled, "ask to open app for \(Format.time(plan.target))")
+        DiagStore.shared.log(.scheduled, "ask to open app for \(Format.logTime(plan.target))")
     }
 
     /// Start der Sitzung: am Fensterbeginn, aber höchstens `sessionLead` vor der Zielzeit, weil die

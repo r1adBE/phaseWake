@@ -68,4 +68,18 @@ final class WatchDecisionTests: XCTestCase {
         XCTAssertEqual(napResult.result, .notMeasured)
         XCTAssertNil(napResult.floor)
     }
+
+    /// Audit UI-9, Nachtrag: Räder im Editor der Uhr mit den Ziffern der Sprache (Arabisch ٠–٩, Deutsch 0–9).
+    func testTwoDigitsUseDigitsOfLanguage() {
+        XCTAssertEqual(Format.twoDigits(7, locale: Locale(identifier: "de_CH")), "07")
+        XCTAssertEqual(Format.twoDigits(30, locale: Locale(identifier: "de_CH")), "30")
+        XCTAssertEqual(Format.twoDigits(7, locale: Locale(identifier: "ar_EG")), "٠٧")
+    }
+
+    /// Diagnose-Protokoll: Uhrzeit immer «HH:mm» mit 0–9, auch auf Arabisch (wie Android).
+    func testLogTimeIsLatin() {
+        let zone = TimeZone(identifier: "Europe/Zurich")!
+        let date = Date(timeIntervalSince1970: 1_794_382_800) // 11.11.2026 08:40 Ortszeit
+        XCTAssertEqual(Format.logTime(date, zone: zone), "08:40")
+    }
 }

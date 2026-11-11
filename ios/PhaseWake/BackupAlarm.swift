@@ -132,7 +132,7 @@ final class BackupAlarm {
             // Diagnose einmal je Nacht, nicht bei jedem Neuplanen.
             guard keptNight != entry.slot.target else { continue }
             keptNight = entry.slot.target
-            DiagStore.shared.log(.scheduled, "zone change, keep night \(Format.time(entry.slot.target))")
+            DiagStore.shared.log(.scheduled, "zone change, keep night \(Format.logTime(entry.slot.target))")
         }
         DiagStore.shared.log(.scheduled, "phone backup \(nights) nights, \(wanted.count - nights) in grace, grace \(Int(grace)) s")
     }
@@ -279,7 +279,7 @@ final class BackupAlarm {
         let at = until.addingTimeInterval(Self.snoozeSafetyDelay)
         guard at > Date() else { return }
         await scheduleSnoozeSafety(at: at, night: night)
-        DiagStore.shared.log(.snooze, "watch, phone safety \(Format.time(at))")
+        DiagStore.shared.log(.snooze, "watch, phone safety \(Format.logTime(at))")
     }
 
     private func scheduleSnoozeSafety(at date: Date, night: RingNight?) async {
@@ -350,7 +350,7 @@ final class BackupAlarm {
         let snoozes = Transient.allowsSnooze(transient.plan.alarmId) ? Snooze.maxCount : 0
         await schedule(id: id, at: transient.plan.target.addingTimeInterval(Self.grace), snoozesLeft: snoozes,
                        tone: WakeTone(rawValue: transient.spec.sound))
-        DiagStore.shared.log(.scheduled, "phone backup \(transient.kind.rawValue) \(Format.time(transient.plan.target))")
+        DiagStore.shared.log(.scheduled, "phone backup \(transient.kind.rawValue) \(Format.logTime(transient.plan.target))")
         return id
     }
 

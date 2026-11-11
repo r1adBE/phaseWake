@@ -97,7 +97,7 @@ extension WatchModel {
         let state = GoodNightState(alarmId: spec.id, latest: plan.target, since: now,
                                    asleep: GoodNightEstimate.asleep(tap: now, latencyMinutes: latency), target: target)
         setGoodNight(state)
-        DiagStore.shared.log(.measureStart, "onset start (estimate) lat=\(latency.map { "\($0)" } ?? "-") target \(Format.time(target)), alarm at \(Format.time(plan.target))")
+        DiagStore.shared.log(.measureStart, "onset start (estimate) lat=\(latency.map { "\($0)" } ?? "-") target \(Format.logTime(target)), alarm at \(Format.logTime(plan.target))")
         WatchConnectivityBridge.shared.send(onsetShift: OnsetShift(alarmId: spec.id, original: OnsetShift.millis(plan.target),
                                                                    target: OnsetShift.millis(target), at: OnsetShift.millis(now)))
         // Rekorder für die Einschlafzeit am Morgen; ohne Erlaubnis gilt nur die Schätzung.

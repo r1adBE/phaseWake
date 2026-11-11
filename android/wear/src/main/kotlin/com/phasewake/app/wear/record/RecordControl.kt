@@ -24,13 +24,11 @@ import com.phasewake.app.wear.PhaseWakeWear
 import com.phasewake.app.wear.R
 import com.phasewake.app.wear.schedule.DirectBoot
 import com.phasewake.app.wear.ui.MainActivity
+import com.phasewake.app.wear.ui.shortTime
 import com.phasewake.app.wear.wake.Notifications
 import com.phasewake.app.wear.wearApp
 import java.time.Duration
 import java.time.Instant
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 import kotlinx.coroutines.launch
 
 /**
@@ -259,7 +257,7 @@ object RecordControl {
             Intent(context, RecordService::class.java).setAction(RecordService.ACTION_STOP).putExtra(RecordService.EXTRA_REASON, RecordEnd.WATCH.code),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
         )
-        val time = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(since.atZone(ZoneId.systemDefault()))
+        val time = shortTime(since)
         val text = context.getString(R.string.record_since, time)
         val builder = NotificationCompat.Builder(context, Notifications.CHANNEL_WINDOW)
             .setSmallIcon(R.drawable.ic_moon)

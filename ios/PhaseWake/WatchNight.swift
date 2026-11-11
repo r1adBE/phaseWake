@@ -119,7 +119,7 @@ final class WatchNight {
         }
         SettingsFile.phone.set(shift.encode(), forKey: Self.shiftKey)
         let target = Date(timeIntervalSince1970: TimeInterval(shift.target) / 1000)
-        DiagStore.shared.log(.scheduled, "watch onset target \(Format.time(target))")
+        DiagStore.shared.log(.scheduled, "watch onset target \(Format.logTime(target))")
         await PhoneModel.shared.backup.reschedule(PhoneModel.shared.alarms)
     }
 }

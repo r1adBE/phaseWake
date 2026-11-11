@@ -183,6 +183,21 @@ enum Format {
         return time(date)
     }
 
+    /// Uhrzeit für das Diagnose-Protokoll: immer «HH:mm» mit 0–9 in Ortszeit, unabhängig von Sprache und 12/24-Std.
+    /// (wie Android; das Protokoll ist eine Ausgabe zum Auswerten, nicht zum Lesen in der App).
+    static func logTime(_ date: Date, zone: TimeZone = .current) -> String {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = zone
+        let parts = calendar.dateComponents([.hour, .minute], from: date)
+        return String(format: "%02d:%02d", locale: Locale(identifier: "en_US_POSIX"), parts.hour ?? 0, parts.minute ?? 0)
+    }
+
+    /// Zweistellige Zahl («07») mit den Ziffern der Sprache wie bei den Uhrzeiten (Arabisch: ٠–٩, Audit UI-9);
+    /// `String(format: "%02d")` gäbe immer 0–9.
+    static func twoDigits(_ value: Int, locale: Locale = .current) -> String {
+        value.formatted(.number.precision(.integerLength(2)).grouping(.never).locale(locale))
+    }
+
     /// «06:30 – 07:00»; bei «Genau» (Fenster 0) «Genau um 07:00».
     static func window(_ alarm: AlarmSpec) -> String {
         let target = Calendar.current.date(from: DateComponents(hour: alarm.hour, minute: alarm.minute)) ?? Date()

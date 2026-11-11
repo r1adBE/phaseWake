@@ -81,7 +81,7 @@ extension LearnRecorder {
             ensureRecorder(until: until)
             guard autoDecided == nil else { return }
             autoDecided = plan.target
-            DiagStore.shared.log(.measureStart, "auto onset recorder bat=\(battery.map { "\($0)" } ?? "-") until \(Format.time(until))\(running ? " (running)" : "")")
+            DiagStore.shared.log(.measureStart, "auto onset recorder bat=\(battery.map { "\($0)" } ?? "-") until \(Format.logTime(until))\(running ? " (running)" : "")")
         }
     }
 }

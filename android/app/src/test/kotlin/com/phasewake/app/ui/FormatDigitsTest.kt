@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter
 import java.util.Locale
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 /**
  * Audit UI-9: Auf Arabisch erschienen Zeiten mit 0–9, Zahlen aus Texten (`getString` mit %d) mit ٠–٩.
@@ -29,6 +30,27 @@ class FormatDigitsTest {
             assertEquals(String.format(Locale.forLanguageTag("ar"), "%d", 5), Format.number(5))
         } finally {
             Locale.setDefault(before)
+        }
+    }
+
+    /**
+     * Nachtrag: Mitteilungen (Erinnerung vor dem Schlafen, nächster Wecker) und Widget nehmen [Format.time]; Arabisch
+     * mit ٠–٩, Deutsch mit 0–9.
+     */
+    @Test
+    fun timeForNotificationsAndWidget() {
+        val before = Locale.getDefault()
+        val mode = Format.use24Hour
+        try {
+            Format.use24Hour = null
+            Locale.setDefault(Locale.forLanguageTag("ar"))
+            val arabic = Format.time(LocalTime.of(6, 30))
+            assertTrue(arabic.any { it in '٠'..'٩' } && arabic.none { it in '0'..'9' }, arabic)
+            Locale.setDefault(Locale.forLanguageTag("de-CH"))
+            assertEquals("06:30", Format.time(LocalTime.of(6, 30)))
+        } finally {
+            Locale.setDefault(before)
+            Format.use24Hour = mode
         }
     }
 }

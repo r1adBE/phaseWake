@@ -22,12 +22,10 @@ import com.phasewake.app.wear.R
 import com.phasewake.app.wear.schedule.AlarmReceiver
 import com.phasewake.app.wear.schedule.AlarmScheduler
 import com.phasewake.app.wear.schedule.DirectBoot
+import com.phasewake.app.wear.ui.shortTime
 import com.phasewake.app.wear.wearApp
 import java.time.Duration
 import java.time.Instant
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 import kotlinx.coroutines.launch
 
 /**
@@ -254,8 +252,8 @@ class WakeService : LifecycleService() {
 
     internal fun reasonText(reason: WakeReason) = getString(ringReasonRes(reason))
 
-    internal fun formatTime(instant: Instant): String =
-        DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(instant.atZone(ZoneId.systemDefault()))
+    /** Zeit für Mitteilungen (Fenster, Schlummern, Sonnenaufgang) mit den Ziffern der Sprache ([shortTime]). */
+    internal fun formatTime(instant: Instant): String = shortTime(instant)
 
     companion object {
         internal const val TAG = "WakeService"

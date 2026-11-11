@@ -1,5 +1,6 @@
 package com.phasewake.app.wear.tile
 
+import android.content.Context
 import androidx.wear.protolayout.ActionBuilders
 import androidx.wear.protolayout.ColorBuilders.argb
 import androidx.wear.protolayout.DimensionBuilders.dp
@@ -12,13 +13,15 @@ import androidx.wear.protolayout.TimelineBuilders
 import androidx.wear.tiles.RequestBuilders
 import androidx.wear.tiles.TileBuilders
 import androidx.wear.tiles.TileService
+import com.phasewake.app.core.WakePlan
 import com.phasewake.app.wear.R
 import com.phasewake.app.wear.ui.MainActivity
+import com.phasewake.app.wear.ui.shortTime
 import com.phasewake.app.wear.wearApp
 import com.google.common.util.concurrent.ListenableFuture
+import java.time.Instant
 import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
+import java.util.Locale
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -31,18 +34,7 @@ class NextAlarmTileService : TileService() {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
     override fun onTileRequest(requestParams: RequestBuilders.TileRequest): ListenableFuture<TileBuilders.Tile> = scope.future {
-        val zone = ZoneId.systemDefault()
-        val plan = wearApp.scheduler.nextPlan()
-        val time = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
-        val (title, line) = if (plan == null) {
-            getString(R.string.home_no_alarm) to getString(R.string.home_no_alarm_hint)
-        } else if (plan.exact) {
-            // «Genau»: kein Fenster, kein Versprechen zum leichten Schlaf.
-            getString(R.string.window_exact_line, time.format(plan.target.atZone(zone))) to getString(R.string.tile_next)
-        } else {
-            getString(R.string.home_window, time.format(plan.windowStart.atZone(zone)), time.format(plan.target.atZone(zone))) to
-                getString(R.string.tile_light_sleep)
-        }
+        val (title, line) = tileTexts(this@NextAlarmTileService, wearApp.scheduler.nextPlan(), ZoneId.systemDefault())
         TileBuilders.Tile.Builder()
             .setResourcesVersion(RESOURCES_VERSION)
             // Neu zeichnen, sobald sich das Fenster ändern kann (spätestens nach einer Stunde).
@@ -103,10 +95,27 @@ class NextAlarmTileService : TileService() {
             )
             .build()
 
-    private companion object {
-        const val RESOURCES_VERSION = "1"
-        const val WHITE = 0xFFFBF7F0.toInt()
-        const val MIST = 0xFFC9C3E6.toInt()
-        const val MUTED = 0xFFA9A3CF.toInt()
+    internal companion object {
+        /**
+         * Titel und Zeile der Kachel; Zeiten mit den Ziffern der Sprache ([shortTime], Audit UI-9). [locale] nur für
+         * Tests, sonst die der Uhr.
+         */
+        fun tileTexts(context: Context, plan: WakePlan?, zone: ZoneId, locale: Locale = Locale.getDefault()): Pair<String, String> {
+            fun time(at: Instant) = shortTime(at, zone, locale)
+            return if (plan == null) {
+                context.getString(R.string.home_no_alarm) to context.getString(R.string.home_no_alarm_hint)
+            } else if (plan.exact) {
+                // «Genau»: kein Fenster, kein Versprechen zum leichten Schlaf.
+                context.getString(R.string.window_exact_line, time(plan.target)) to context.getString(R.string.tile_next)
+            } else {
+                context.getString(R.string.home_window, time(plan.windowStart), time(plan.target)) to
+                    context.getString(R.string.tile_light_sleep)
+            }
+        }
+
+        private const val RESOURCES_VERSION = "1"
+        private const val WHITE = 0xFFFBF7F0.toInt()
+        private const val MIST = 0xFFC9C3E6.toInt()
+        private const val MUTED = 0xFFA9A3CF.toInt()
     }
 }

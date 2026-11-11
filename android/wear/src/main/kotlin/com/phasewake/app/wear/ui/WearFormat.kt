@@ -1,7 +1,10 @@
 package com.phasewake.app.wear.ui
 
+import java.time.Instant
+import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.DecimalStyle
+import java.time.format.FormatStyle
 import java.util.Locale
 
 /**
@@ -10,3 +13,10 @@ import java.util.Locale
  */
 internal fun localizedDigits(formatter: DateTimeFormatter, locale: Locale = Locale.getDefault()): DateTimeFormatter =
     formatter.withDecimalStyle(DecimalStyle.of(locale))
+
+/**
+ * Kurze Uhrzeit nach Sprache mit deren Ziffern ([localizedDigits]) für Texte ausserhalb der Bildschirme der App:
+ * Mitteilungen, Kachel und Komplikation (Audit UI-9, Nachtrag).
+ */
+internal fun shortTime(at: Instant, zone: ZoneId = ZoneId.systemDefault(), locale: Locale = Locale.getDefault()): String =
+    localizedDigits(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).withLocale(locale), locale).format(at.atZone(zone))

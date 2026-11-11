@@ -84,10 +84,10 @@ enum WatchOnset {
             // Automatisch nie vor der Bettzeit eingeschlafen (Vollaudit K-4); nach «Gute Nacht» unverändert.
             let bedAt = RecorderOnset.bedAt(since: begin, automatic: manual == nil, latest: latest, sleepMinutes: sleepMinutes)
             let at = RecorderOnset.onsetAt(found: found, bedAt: bedAt)
-            DiagStore.shared.log(.phase, "\(stat), asleep \(Format.time(at))" + (at != found ? " (still since \(Format.time(found)))" : ""))
+            DiagStore.shared.log(.phase, "\(stat), asleep \(Format.logTime(at))" + (at != found ? " (still since \(Format.logTime(found)))" : ""))
             if let manual {
                 let diff = Int((at.timeIntervalSince(manual.asleep) / 60).rounded())
-                DiagStore.shared.log(.phase, "onset estimate \(Format.time(manual.asleep)), recorder \(Format.time(at)) (\(diff >= 0 ? "+" : "")\(diff) min)")
+                DiagStore.shared.log(.phase, "onset estimate \(Format.logTime(manual.asleep)), recorder \(Format.logTime(at)) (\(diff >= 0 ? "+" : "")\(diff) min)")
             }
             LearnRecorder.shared.noteOnset(bedAt: bedAt, asleepAt: at)
             return (.asleep(at), floor)

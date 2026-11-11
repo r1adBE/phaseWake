@@ -77,7 +77,7 @@ extension SmartAlarm {
         if let at = WatchRules.fallbackDate(plan, pending: pending, now: Date(), delay: Self.fallbackDelay) {
             scheduleFallback(at: at, id: Self.fallbackKey(for: plan.alarmId), fixed: true)
         }
-        DiagStore.shared.log(.measureStart, "\(plan.alarmId.prefix(8)) \(Format.time(plan.windowStart))–\(Format.time(plan.target)) unmeasured \(unmeasured)\(exactNight ? " exact" : "")")
+        DiagStore.shared.log(.measureStart, "\(plan.alarmId.prefix(8)) \(Format.logTime(plan.windowStart))–\(Format.logTime(plan.target)) unmeasured \(unmeasured)\(exactNight ? " exact" : "")")
 
         let uptimeNanos = Int64(ProcessInfo.processInfo.systemUptime * 1e9)
         let sinceStart = Int64(Date().timeIntervalSince(plan.windowStart) * 1e9)
@@ -126,7 +126,7 @@ extension SmartAlarm {
                                                           target: nightPlan.target, wokeAt: nightPlan.target, reason: .deadline,
                                                           snoozes: 0, epochs: epochs))
             }
-            DiagStore.shared.log(.scheduled, "measuring interrupted, fallback at target \(Format.time(plan.target))")
+            DiagStore.shared.log(.scheduled, "measuring interrupted, fallback at target \(Format.logTime(plan.target))")
             phase = .waiting(plan)
             return
         }

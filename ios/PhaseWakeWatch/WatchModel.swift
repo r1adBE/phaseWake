@@ -150,7 +150,7 @@ final class WatchModel {
             SmartAlarm.shared.removeFallback([SmartAlarm.transientFallbackId])
         }
         setTransient(plan)
-        DiagStore.shared.log(plan.kind == .test ? .test : .nap, "received \(Format.time(plan.plan.target))")
+        DiagStore.shared.log(plan.kind == .test ? .test : .nap, "received \(Format.logTime(plan.plan.target))")
         reschedule()
     }
 
