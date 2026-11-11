@@ -203,8 +203,6 @@
     <string name="trends_feeling">Ø cảm giác %1$s trên 5</string>
     <string name="trends_feeling_change">tuần trước %1$s</string>
     <string name="trends_health_hint">Thời lượng và độ đều đặn của giấc ngủ lấy từ Health Connect.</string>
-    <string name="settings_support">Ủng hộ Phase Wake</string>
-    <string name="settings_support_text">Phase Wake miễn phí, mã nguồn mở và không có quảng cáo. Nếu thích, bạn có thể ủng hộ quá trình phát triển.</string>
     <plurals name="hint_title">
         <item quantity="other">%1$d đêm không có thời điểm tốt</item>
     </plurals>

@@ -1,6 +1,6 @@
 # Testnächte
 
-Nächte im Format `.night`, die Android (`android/core`) und Apple (`ios/PhaseWakeCore`) mit den Startwerten gleich bewerten müssen: dieselbe erste Weck-Epoche, derselbe Grund. Format und Regel: [docs/PHASENERKENNUNG.md](../../docs/PHASENERKENNUNG.md).
+Nächte im Format `.night`, die Android (`android/core`) und Apple (`ios/PhaseWakeCore`) mit den Startwerten (bzw. den gelernten Werten aus `@floor` und `@resting`) gleich bewerten müssen: dieselbe erste Weck-Epoche, derselbe Grund. Format und Regel: [docs/PHASENERKENNUNG.md](../../docs/PHASENERKENNUNG.md).
 
 Die Nächte sind meist synthetisch und decken je einen Regelfall ab; `noisy_watch_*` nutzen die Werte einer Uhr mit Grundrauschen rund 0.02 m/s² (Befund 07.11.2026, Regel 3a). `plateau_arm_position` ist ein Ausschnitt einer echten, ohne Namen aufgezeichneten Nacht (10.11.2026, OFFEN 11g). Vollaudit 11.11.2026: `restless_start_learned_floor` (K-1), `resting_fallback_plateau` (K-2), `plateau_arm_position` (K-3) und `rearm_new_hits` (K-5).
 

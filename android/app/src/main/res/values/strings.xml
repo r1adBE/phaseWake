@@ -210,8 +210,6 @@
     <string name="trends_feeling">Ø feeling %1$s of 5</string>
     <string name="trends_feeling_change">week before %1$s</string>
     <string name="trends_health_hint">Sleep duration and regularity come from Health Connect.</string>
-    <string name="settings_support">Support Phase Wake</string>
-    <string name="settings_support_text">Phase Wake is free, open source and has no ads. If you like it, you can support its development.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d night without a good moment</item>
         <item quantity="other">%1$d nights without a good moment</item>

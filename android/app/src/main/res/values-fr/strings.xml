@@ -209,8 +209,6 @@
     <string name="trends_feeling">Ø ressenti : %1$s sur 5</string>
     <string name="trends_feeling_change">semaine précédente %1$s</string>
     <string name="trends_health_hint">La durée et la régularité du sommeil proviennent de Health Connect.</string>
-    <string name="settings_support">Soutenir Phase Wake</string>
-    <string name="settings_support_text">Phase Wake est gratuite, open source et sans publicité. Si elle te plaît, tu peux soutenir son développement.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d nuit sans bon moment</item>
         <item quantity="many">%1$d nuits sans bon moment</item>

@@ -210,8 +210,6 @@
     <string name="trends_feeling">Ø estat %1$s de 5</string>
     <string name="trends_feeling_change">setmana anterior %1$s</string>
     <string name="trends_health_hint">La durada i la regularitat del son provenen de Health Connect.</string>
-    <string name="settings_support">Dona suport a Phase Wake</string>
-    <string name="settings_support_text">Phase Wake és gratuït, de codi obert i sense anuncis. Si t’agrada, pots donar suport al seu desenvolupament.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d nit sense cap bon moment</item>
         <item quantity="many">%1$d nits sense cap bon moment</item>

@@ -208,8 +208,6 @@
     <string name="trends_feeling">Ø अनुभूति ५ मध्ये %1$s</string>
     <string name="trends_feeling_change">अघिल्लो हप्ता %1$s</string>
     <string name="trends_health_hint">निद्राको अवधि र नियमितता Health Connect बाट आउँछ।</string>
-    <string name="settings_support">Phase Wake लाई सहयोग गर</string>
-    <string name="settings_support_text">Phase Wake निःशुल्क, खुला स्रोत र विज्ञापनरहित छ। मन पर्छ भने, तिमी यसको विकासलाई सहयोग गर्न सक्छौ।</string>
     <plurals name="hint_title">
         <item quantity="one">राम्रो क्षणबिनाका %1$d रात</item>
         <item quantity="other">राम्रो क्षणबिनाका %1$d रात</item>

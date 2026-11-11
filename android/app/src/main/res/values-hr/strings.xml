@@ -211,8 +211,6 @@
     <string name="trends_feeling">Ø osjećaj %1$s od 5</string>
     <string name="trends_feeling_change">prethodni tjedan %1$s</string>
     <string name="trends_health_hint">Trajanje i redovitost sna dolaze iz Health Connecta.</string>
-    <string name="settings_support">Podrži Phase Wake</string>
-    <string name="settings_support_text">Phase Wake je besplatan, otvorenog koda i bez oglasa. Ako ti se sviđa, možeš podržati njegov razvoj.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d noć bez dobrog trenutka</item>
         <item quantity="few">%1$d noći bez dobrog trenutka</item>

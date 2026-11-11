@@ -209,8 +209,6 @@
     <string name="trends_feeling">Ø stare %1$s din 5</string>
     <string name="trends_feeling_change">săptămâna dinainte %1$s</string>
     <string name="trends_health_hint">Durata și regularitatea somnului provin din Health Connect.</string>
-    <string name="settings_support">Susține Phase Wake</string>
-    <string name="settings_support_text">Phase Wake este gratuit, open source și fără reclame. Dacă îți place, poți susține dezvoltarea.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d noapte fără un moment bun</item>
         <item quantity="few">%1$d nopți fără un moment bun</item>

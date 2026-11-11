@@ -198,8 +198,6 @@
     <string name="trends_feeling">Ø көңіл-күй 5-тен %1$s</string>
     <string name="trends_feeling_change">алдыңғы апта %1$s</string>
     <string name="trends_health_hint">Ұйқы ұзақтығы мен тұрақтылығы Health Connect-тен алынады.</string>
-    <string name="settings_support">Phase Wake-ті қолдау</string>
-    <string name="settings_support_text">Phase Wake тегін, ашық бастапқы кодты және жарнамасыз. Ұнаса, оның дамуын қолдай аласың.</string>
     <plurals name="hint_title">
         <item quantity="one">Қолайлы сәтсіз %1$d түн</item>
         <item quantity="other">Қолайлы сәтсіз %1$d түн</item>

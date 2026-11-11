@@ -204,8 +204,6 @@
     <string name="trends_feeling">Ø ခံစားမှု 5 တွင် %1$s</string>
     <string name="trends_feeling_change">ယခင်အပတ် %1$s</string>
     <string name="trends_health_hint">အိပ်ချိန်ကြာမြင့်မှုနှင့် ပုံမှန်ဖြစ်မှုသည် Health Connect မှ လာသည်။</string>
-    <string name="settings_support">Phase Wake ကို ထောက်ပံ့ရန်</string>
-    <string name="settings_support_text">Phase Wake သည် အခမဲ့၊ open source ဖြစ်ပြီး ကြော်ငြာမရှိပါ။ နှစ်သက်လျှင် ဖွံ့ဖြိုးမှုကို ထောက်ပံ့နိုင်သည်။</string>
     <plurals name="hint_title">
         <item quantity="other">ကောင်းသောအချိန်မရှိသော %1$d ည</item>
     </plurals>

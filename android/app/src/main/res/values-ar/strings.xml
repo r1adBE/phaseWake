@@ -218,8 +218,6 @@
     <string name="trends_feeling">متوسط الشعور Ø %1$s من 5</string>
     <string name="trends_feeling_change">الأسبوع السابق %1$s</string>
     <string name="trends_health_hint">مدة النوم وانتظامه يأتيان من Health Connect.</string>
-    <string name="settings_support">ادعم Phase Wake</string>
-    <string name="settings_support_text">Phase Wake مجاني ومفتوح المصدر وبلا إعلانات. إن أعجبك، يمكنك دعم تطويره.</string>
     <plurals name="hint_title">
         <item quantity="zero">%1$d ليلة بلا لحظة مناسبة</item>
         <item quantity="one">%1$d ليلة بلا لحظة مناسبة</item>

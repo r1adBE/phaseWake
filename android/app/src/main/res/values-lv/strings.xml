@@ -211,8 +211,6 @@
     <string name="trends_feeling">Ø pašsajūta %1$s no 5</string>
     <string name="trends_feeling_change">iepriekšējā nedēļā %1$s</string>
     <string name="trends_health_hint">Miega ilgums un regularitāte – no Health Connect.</string>
-    <string name="settings_support">Atbalsti Phase Wake</string>
-    <string name="settings_support_text">Phase Wake ir bezmaksas, ar atvērtu kodu un bez reklāmām. Ja tev patīk, vari atbalstīt tās izstrādi.</string>
     <plurals name="hint_title">
         <item quantity="zero">%1$d naktis bez laba brīža</item>
         <item quantity="one">%1$d nakts bez laba brīža</item>

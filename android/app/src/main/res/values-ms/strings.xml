@@ -203,8 +203,6 @@
     <string name="trends_feeling">Ø perasaan %1$s daripada 5</string>
     <string name="trends_feeling_change">minggu sebelumnya %1$s</string>
     <string name="trends_health_hint">Tempoh dan keteraturan tidur datang daripada Health Connect.</string>
-    <string name="settings_support">Sokong Phase Wake</string>
-    <string name="settings_support_text">Phase Wake percuma, sumber terbuka dan tiada iklan. Jika awak suka, awak boleh menyokong pembangunannya.</string>
     <plurals name="hint_title">
         <item quantity="other">%1$d malam tanpa saat yang sesuai</item>
     </plurals>

@@ -206,8 +206,6 @@
     <string name="trends_feeling">Ø olo %1$s/5</string>
     <string name="trends_feeling_change">edellinen viikko %1$s</string>
     <string name="trends_health_hint">Unen kesto ja säännöllisyys tulevat Health Connectista.</string>
-    <string name="settings_support">Tue Phase Wakea</string>
-    <string name="settings_support_text">Phase Wake on ilmainen, avoimen lähdekoodin ja mainokseton. Jos pidät siitä, voit tukea sen kehitystä.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d yö ilman hyvää hetkeä</item>
         <item quantity="other">%1$d yötä ilman hyvää hetkeä</item>

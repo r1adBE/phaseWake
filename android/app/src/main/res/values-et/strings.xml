@@ -208,8 +208,6 @@
     <string name="trends_feeling">Ø enesetunne %1$s/5</string>
     <string name="trends_feeling_change">eelmisel nädalal %1$s</string>
     <string name="trends_health_hint">Une kestus ja regulaarsus pärinevad Health Connectist.</string>
-    <string name="settings_support">Toeta Phase Wake’i</string>
-    <string name="settings_support_text">Phase Wake on tasuta, avatud lähtekoodiga ja reklaamivaba. Kui see sulle meeldib, saad selle arendust toetada.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d öö ilma hea hetketa</item>
         <item quantity="other">%1$d ööd ilma hea hetketa</item>

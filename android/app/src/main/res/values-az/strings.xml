@@ -198,8 +198,6 @@
     <string name="trends_feeling">Ø əhval 5-dən %1$s</string>
     <string name="trends_feeling_change">əvvəlki həftə %1$s</string>
     <string name="trends_health_hint">Yuxu müddəti və müntəzəmlik Health Connect-dən gəlir.</string>
-    <string name="settings_support">Phase Wake-ə dəstək ol</string>
-    <string name="settings_support_text">Phase Wake pulsuz, açıq mənbəlidir və reklamsızdır. Xoşuna gəlirsə, inkişafına dəstək ola bilərsən.</string>
     <plurals name="hint_title">
         <item quantity="one">Doğru an olmayan %1$d gecə</item>
         <item quantity="other">Doğru an olmayan %1$d gecə</item>

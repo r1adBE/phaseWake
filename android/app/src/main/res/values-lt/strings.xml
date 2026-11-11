@@ -214,8 +214,6 @@
     <string name="trends_feeling">Ø savijauta %1$s iš 5</string>
     <string name="trends_feeling_change">praėjusią savaitę %1$s</string>
     <string name="trends_health_hint">Miego trukmė ir reguliarumas – iš Health Connect.</string>
-    <string name="settings_support">Paremk Phase Wake</string>
-    <string name="settings_support_text">Phase Wake yra nemokama, atvirojo kodo ir be reklamų. Jei patinka, gali paremti jos kūrimą.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d naktis be tinkamo momento</item>
         <item quantity="few">%1$d naktys be tinkamo momento</item>

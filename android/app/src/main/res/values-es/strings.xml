@@ -209,8 +209,6 @@
     <string name="trends_feeling">Ø de sensación: %1$s de 5</string>
     <string name="trends_feeling_change">semana anterior %1$s</string>
     <string name="trends_health_hint">La duración y la regularidad del sueño provienen de Health Connect.</string>
-    <string name="settings_support">Apoya Phase Wake</string>
-    <string name="settings_support_text">Phase Wake es gratuita, de código abierto y sin anuncios. Si te gusta, puedes apoyar su desarrollo.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d noche sin un buen momento</item>
         <item quantity="many">%1$d noches sin un buen momento</item>

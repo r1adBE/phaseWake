@@ -66,7 +66,8 @@ Alles bleibt auf Handy und Uhr. Kein Konto, kein Server, keine Werbung, keine Au
 | `ios/PhaseWake` | iPhone-App (SwiftUI) |
 | `ios/PhaseWakeWatch` | Apple-Watch-App (SwiftUI, Smart-Alarm-Sitzung) |
 | `shared/testdata` | Testnächte, die beide Plattformen identisch bewerten müssen |
-| `docs` | Konzept, Entscheide, Erkennungsregel, Testanleitung, Datenschutz, Logo |
+| `docs` | Konzept, Entscheide, Erkennungsregel, Entwicklungsregeln, offene Punkte, Testanleitung, Play-Erklärungen, Datenschutz, Logo |
+| `fastlane/metadata` | Store-Texte für Google Play und App Store |
 
 ## Testen
 
@@ -94,11 +95,11 @@ Die Texte der Apple-Apps entstehen aus den Android-Texten: `python3 .github/scri
 
 Modell für «Geräusche in der Nacht» (Android): YAMNet von MediaPipe, nicht im Repository. Gradle lädt es beim ersten Bauen nach `android/app/src/main/assets/yamnet.tflite` (Quelle: `https://storage.googleapis.com/mediapipe-models/audio_classifier/yamnet/float32/1/yamnet.tflite`). Der Build prüft die Datei mit SHA-256 (Wert in `android/app/build.gradle.kts`) und bricht bei einer anderen Datei ab.
 
-Ohne Modell baut und läuft die App ebenfalls; aufgenommene Geräusche gelten dann alle als «anderes Geräusch».
+Ohne Modell (z. B. ohne Netz) baut und läuft die Testversion (Debug) ebenfalls; aufgenommene Geräusche gelten dann alle als «anderes Geräusch». Ein Release-Build bricht ohne Modell ab.
 
-## Unterstützen
+## Unterstützung
 
-Phase Wake ist gratis, ohne Werbung und ohne Abo. Wer die Entwicklung unterstützen möchte: [GitHub Sponsors](https://github.com/sponsors/r1adBE).
+Siehe [SUPPORT.md](SUPPORT.md).
 
 ## Lizenz
 

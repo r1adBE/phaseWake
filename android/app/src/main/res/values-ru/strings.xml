@@ -212,8 +212,6 @@
     <string name="trends_feeling">Ø самочувствие %1$s из 5</string>
     <string name="trends_feeling_change">неделей раньше %1$s</string>
     <string name="trends_health_hint">Длительность и регулярность сна берутся из Health Connect.</string>
-    <string name="settings_support">Поддержать Phase Wake</string>
-    <string name="settings_support_text">Phase Wake бесплатный, с открытым кодом и без рекламы. Если он тебе нравится, можешь поддержать его разработку.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d ночь без удачного момента</item>
         <item quantity="few">%1$d ночи без удачного момента</item>

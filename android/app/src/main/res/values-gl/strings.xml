@@ -208,8 +208,6 @@
     <string name="trends_feeling">Ø estado %1$s de 5</string>
     <string name="trends_feeling_change">semana anterior %1$s</string>
     <string name="trends_health_hint">A duración e a regularidade do sono veñen de Health Connect.</string>
-    <string name="settings_support">Apoiar Phase Wake</string>
-    <string name="settings_support_text">Phase Wake é gratuíto, de código aberto e sen anuncios. Se che gusta, podes apoiar o seu desenvolvemento.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d noite sen un bo momento</item>
         <item quantity="other">%1$d noites sen un bo momento</item>

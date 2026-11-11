@@ -208,8 +208,6 @@
     <string name="trends_feeling">Ø gjendja %1$s nga 5</string>
     <string name="trends_feeling_change">java e kaluar %1$s</string>
     <string name="trends_health_hint">Kohëzgjatja dhe rregullsia e gjumit vijnë nga Health Connect.</string>
-    <string name="settings_support">Mbështet Phase Wake</string>
-    <string name="settings_support_text">Phase Wake është falas, me burim të hapur dhe pa reklama. Nëse të pëlqen, mund të mbështetësh zhvillimin e tij.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d natë pa një moment të mirë</item>
         <item quantity="other">%1$d net pa një moment të mirë</item>

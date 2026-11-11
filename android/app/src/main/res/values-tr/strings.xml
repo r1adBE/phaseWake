@@ -206,8 +206,6 @@
     <string name="trends_feeling">Ø hissediş 5 üzerinden %1$s</string>
     <string name="trends_feeling_change">önceki hafta %1$s</string>
     <string name="trends_health_hint">Uyku süresi ve düzeni Health Connect’ten gelir.</string>
-    <string name="settings_support">Phase Wake’i destekle</string>
-    <string name="settings_support_text">Phase Wake ücretsiz, açık kaynaklı ve reklamsız. Beğendiysen geliştirilmesini destekleyebilirsin.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d gece uygun an yok</item>
         <item quantity="other">%1$d gece uygun an yok</item>

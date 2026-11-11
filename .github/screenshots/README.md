@@ -97,7 +97,7 @@ Eine Zeile auf der Startseite: Dauer von 10 bis 90 Minuten, geweckt im leichten 
 
 ### Einstellungen
 
-Hell, Dunkel oder System, Export, Verlauf löschen, Health Connect, Unterstützen.
+Hell, Dunkel oder System, Export, Verlauf löschen, Health Connect.
 
 <p>
 <img src="app/SettingsDark.png" width="280" alt="Einstellungen, dunkel">

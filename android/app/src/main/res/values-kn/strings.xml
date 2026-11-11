@@ -207,8 +207,6 @@
     <string name="trends_feeling">Ø ಅನಿಸಿಕೆ 5 ರಲ್ಲಿ %1$s</string>
     <string name="trends_feeling_change">ಹಿಂದಿನ ವಾರ %1$s</string>
     <string name="trends_health_hint">ನಿದ್ರೆಯ ಅವಧಿ ಮತ್ತು ನಿಯಮಿತತೆ Health Connect ನಿಂದ ಬರುತ್ತವೆ.</string>
-    <string name="settings_support">Phase Wake ಅನ್ನು ಬೆಂಬಲಿಸಿ</string>
-    <string name="settings_support_text">Phase Wake ಉಚಿತ, ಓಪನ್ ಸೋರ್ಸ್ ಮತ್ತು ಜಾಹೀರಾತುಗಳಿಲ್ಲ. ಇಷ್ಟವಾದರೆ, ಅದರ ಅಭಿವೃದ್ಧಿಯನ್ನು ಬೆಂಬಲಿಸಬಹುದು.</string>
     <plurals name="hint_title">
         <item quantity="one">ಒಳ್ಳೆಯ ಕ್ಷಣ ಇಲ್ಲದ %1$d ರಾತ್ರಿ</item>
         <item quantity="other">ಒಳ್ಳೆಯ ಕ್ಷಣ ಇಲ್ಲದ %1$d ರಾತ್ರಿಗಳು</item>

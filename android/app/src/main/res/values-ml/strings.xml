@@ -207,8 +207,6 @@
     <string name="trends_feeling">Ø അനുഭവം 5-ൽ %1$s</string>
     <string name="trends_feeling_change">മുൻ ആഴ്‌ച %1$s</string>
     <string name="trends_health_hint">ഉറക്ക ദൈർഘ്യവും സ്ഥിരതയും Health Connect-ൽ നിന്നാണ്.</string>
-    <string name="settings_support">Phase Wake-നെ പിന്തുണയ്ക്കുക</string>
-    <string name="settings_support_text">Phase Wake സൗജന്യവും ഓപ്പൺ സോഴ്‌സും പരസ്യരഹിതവുമാണ്. ഇഷ്ടപ്പെട്ടെങ്കിൽ, വികസനത്തെ പിന്തുണയ്ക്കാം.</string>
     <plurals name="hint_title">
         <item quantity="one">നല്ല നിമിഷമില്ലാത്ത %1$d രാത്രി</item>
         <item quantity="other">നല്ല നിമിഷമില്ലാത്ത %1$d രാത്രികൾ</item>

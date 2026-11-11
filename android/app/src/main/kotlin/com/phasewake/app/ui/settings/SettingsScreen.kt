@@ -199,7 +199,6 @@ fun SettingsScreen(
 enum class HealthState { UNAVAILABLE, UPDATE_REQUIRED, AVAILABLE, CONNECTED }
 
 private const val HEALTH_CONNECT_STORE = "https://play.google.com/store/apps/details?id=com.google.android.apps.healthdata"
-internal const val SPONSOR_URL = "https://github.com/sponsors/r1adBE"
 internal const val PRIVACY_URL = "https://github.com/r1adBE/phaseWake/blob/main/docs/DATENSCHUTZ.md"
 internal const val REPO_URL = "https://github.com/r1adBE/phaseWake"
 

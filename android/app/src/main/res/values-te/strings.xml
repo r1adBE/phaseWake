@@ -208,8 +208,6 @@
     <string name="trends_feeling">Ø మూడ్ 5కి %1$s</string>
     <string name="trends_feeling_change">గత వారం %1$s</string>
     <string name="trends_health_hint">నిద్ర వ్యవధి, క్రమబద్ధత Health Connect నుంచి వస్తాయి.</string>
-    <string name="settings_support">Phase Wakeకి మద్దతు ఇవ్వండి</string>
-    <string name="settings_support_text">Phase Wake ఉచితం, ఓపెన్ సోర్స్, ప్రకటనలు లేవు. మీకు నచ్చితే, దాని అభివృద్ధికి మద్దతు ఇవ్వవచ్చు.</string>
     <plurals name="hint_title">
         <item quantity="one">సరైన క్షణం లేని %1$d రాత్రి</item>
         <item quantity="other">సరైన క్షణం లేని %1$d రాత్రులు</item>

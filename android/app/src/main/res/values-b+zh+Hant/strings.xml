@@ -203,8 +203,6 @@
     <string name="trends_feeling">平均 Ø 感覺 %1$s/5</string>
     <string name="trends_feeling_change">前一週 %1$s</string>
     <string name="trends_health_hint">睡眠時間長度和規律性來自 Health Connect。</string>
-    <string name="settings_support">支持 Phase Wake</string>
-    <string name="settings_support_text">Phase Wake 免費、開源且沒有廣告。如果你喜歡它，可以支持它的開發。</string>
     <plurals name="hint_title">
         <item quantity="other">連續 %1$d 晚沒有合適的時刻</item>
     </plurals>

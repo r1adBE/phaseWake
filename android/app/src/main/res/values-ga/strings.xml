@@ -217,8 +217,6 @@
     <string name="trends_feeling">Ø mothú %1$s as 5</string>
     <string name="trends_feeling_change">an tseachtain roimhe %1$s</string>
     <string name="trends_health_hint">Tagann fad agus rialtacht an chodlata ó Health Connect.</string>
-    <string name="settings_support">Tacaigh le Phase Wake</string>
-    <string name="settings_support_text">Tá Phase Wake saor in aisce, foinse oscailte agus gan fógraí. Más maith leat é, is féidir leat tacú lena fhorbairt.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d oíche gan nóiméad maith</item>
         <item quantity="two">%1$d oíche gan nóiméad maith</item>

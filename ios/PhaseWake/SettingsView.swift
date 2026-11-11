@@ -66,10 +66,6 @@ struct SettingsView: View {
                 Section(L("settings_about")) {
                     Link(L("settings_open_source"), destination: URL(string: "https://github.com/r1adBE/phaseWake")!)
                     Link(L("settings_privacy"), destination: URL(string: "https://github.com/r1adBE/phaseWake/blob/main/docs/DATENSCHUTZ.md")!)
-                    VStack(alignment: .leading, spacing: 4) {
-                        Link(L("settings_support"), destination: URL(string: "https://github.com/sponsors/r1adBE")!)
-                        Text(L("settings_support_text")).font(.footnote).foregroundStyle(.secondary)
-                    }
                     Button(L("settings_onboarding")) { onboardingDone = false }
                     // Lizenzen mit vollem Text je Bestandteil (`LicensesView`).
                     NavigationLink(L("settings_licenses")) { LicensesView() }

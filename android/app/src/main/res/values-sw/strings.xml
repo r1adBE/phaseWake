@@ -207,8 +207,6 @@
     <string name="trends_feeling">Wastani wa hali %1$s kati ya 5</string>
     <string name="trends_feeling_change">wiki iliyopita %1$s</string>
     <string name="trends_health_hint">Muda wa usingizi na utaratibu vinatoka Health Connect.</string>
-    <string name="settings_support">Saidia Phase Wake</string>
-    <string name="settings_support_text">Phase Wake ni bure, huria na haina matangazo. Ukiipenda, unaweza kusaidia uendelezaji wake.</string>
     <plurals name="hint_title">
         <item quantity="one">Usiku %1$d bila wakati mzuri</item>
         <item quantity="other">Usiku %1$d bila wakati mzuri</item>

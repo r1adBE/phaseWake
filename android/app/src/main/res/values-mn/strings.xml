@@ -208,8 +208,6 @@
     <string name="trends_feeling">Ø мэдрэмж 5-аас %1$s</string>
     <string name="trends_feeling_change">өмнөх долоо хоногт %1$s</string>
     <string name="trends_health_hint">Нойрны үргэлжлэх хугацаа, тогтмол байдлыг Health Connect-оос авна.</string>
-    <string name="settings_support">Phase Wake-ийг дэмжих</string>
-    <string name="settings_support_text">Phase Wake үнэгүй, нээлттэй эх, зар сурталчилгаагүй. Таалагдвал хөгжүүлэлтийг нь дэмжиж болно.</string>
     <plurals name="hint_title">
         <item quantity="one">Тохиромжтой мөчгүй %1$d шөнө</item>
         <item quantity="other">Тохиромжтой мөчгүй %1$d шөнө</item>

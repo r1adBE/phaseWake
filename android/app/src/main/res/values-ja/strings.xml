@@ -203,8 +203,6 @@
     <string name="trends_feeling">Ø 気分 5段階中%1$s</string>
     <string name="trends_feeling_change">前週 %1$s</string>
     <string name="trends_health_hint">睡眠時間と規則性は Health Connect から取得されます。</string>
-    <string name="settings_support">Phase Wakeを応援</string>
-    <string name="settings_support_text">Phase Wakeは無料でオープンソース、広告もありません。気に入っていただけたら、開発を支援できます。</string>
     <plurals name="hint_title">
         <item quantity="other">%1$d 晩連続でよいタイミングなし</item>
     </plurals>

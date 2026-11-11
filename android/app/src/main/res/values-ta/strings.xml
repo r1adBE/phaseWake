@@ -207,8 +207,6 @@
     <string name="trends_feeling">சராசரி உணர்வு 5 இல் %1$s</string>
     <string name="trends_feeling_change">முந்தைய வாரம் %1$s</string>
     <string name="trends_health_hint">தூக்க நேரமும் சீர்மையும் Health Connect இலிருந்து வருகின்றன.</string>
-    <string name="settings_support">Phase Wake ஐ ஆதரியுங்கள்</string>
-    <string name="settings_support_text">Phase Wake இலவசம், திறந்த மூலம், விளம்பரங்கள் இல்லை. பிடித்திருந்தால் அதன் வளர்ச்சிக்கு ஆதரவளிக்கலாம்.</string>
     <plurals name="hint_title">
         <item quantity="one">நல்ல தருணம் இல்லாத %1$d இரவு</item>
         <item quantity="other">நல்ல தருணம் இல்லாத %1$d இரவுகள்</item>

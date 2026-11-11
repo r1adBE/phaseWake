@@ -208,8 +208,6 @@
     <string name="trends_feeling">Ø sentipena %1$s/5</string>
     <string name="trends_feeling_change">aurreko astea %1$s</string>
     <string name="trends_health_hint">Lo-iraupena eta erregulartasuna Health Connect-etik datoz.</string>
-    <string name="settings_support">Lagundu Phase Wake</string>
-    <string name="settings_support_text">Phase Wake doakoa da, kode irekikoa eta iragarkirik gabea. Gustatzen bazaizu, garapena babes dezakezu.</string>
     <plurals name="hint_title">
         <item quantity="one">Gau %1$d une onik gabe</item>
         <item quantity="other">%1$d gau une onik gabe</item>

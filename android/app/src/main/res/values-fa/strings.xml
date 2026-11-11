@@ -206,8 +206,6 @@
     <string name="trends_feeling">میانگین Ø حس %1$s از ۵</string>
     <string name="trends_feeling_change">هفته قبل %1$s</string>
     <string name="trends_health_hint">مدت و نظم خواب از Health Connect می‌آید.</string>
-    <string name="settings_support">از Phase Wake حمایت کن</string>
-    <string name="settings_support_text">Phase Wake رایگان، متن‌باز و بدون تبلیغ است. اگر دوستش داری، می‌توانی از توسعه‌اش حمایت کنی.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d شب بدون لحظهٔ مناسب</item>
         <item quantity="other">%1$d شب بدون لحظهٔ مناسب</item>

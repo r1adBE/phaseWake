@@ -208,8 +208,6 @@
     <string name="trends_feeling">Ø kayfiyat 5 dan %1$s</string>
     <string name="trends_feeling_change">oldingi hafta %1$s</string>
     <string name="trends_health_hint">Uyqu davomiyligi va muntazamligi Health Connectʼdan olinadi.</string>
-    <string name="settings_support">Phase Wakeʼni qoʻllab-quvvatlash</string>
-    <string name="settings_support_text">Phase Wake bepul, ochiq kodli va reklamasiz. Yoqsa, uning rivojini qoʻllab-quvvatlashing mumkin.</string>
     <plurals name="hint_title">
         <item quantity="one">Qulay paytsiz %1$d tun</item>
         <item quantity="other">Qulay paytsiz %1$d tun</item>

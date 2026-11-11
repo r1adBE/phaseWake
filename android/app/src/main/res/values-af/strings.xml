@@ -208,8 +208,6 @@
     <string name="trends_feeling">Ø gevoel %1$s van 5</string>
     <string name="trends_feeling_change">vorige week %1$s</string>
     <string name="trends_health_hint">Slaapduur en reëlmatigheid kom uit Health Connect.</string>
-    <string name="settings_support">Ondersteun Phase Wake</string>
-    <string name="settings_support_text">Phase Wake is gratis, oopbron en het geen advertensies nie. As jy daarvan hou, kan jy die ontwikkeling ondersteun.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d nag sonder ’n goeie oomblik</item>
         <item quantity="other">%1$d nagte sonder ’n goeie oomblik</item>

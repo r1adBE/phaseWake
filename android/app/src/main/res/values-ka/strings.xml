@@ -198,8 +198,6 @@
     <string name="trends_feeling">Ø თვითგრძნობა %1$s/5</string>
     <string name="trends_feeling_change">წინა კვირა: %1$s</string>
     <string name="trends_health_hint">ძილის ხანგრძლივობა და რეგულარულობა Health Connect-დან მოდის.</string>
-    <string name="settings_support">Phase Wake-ის მხარდაჭერა</string>
-    <string name="settings_support_text">Phase Wake უფასოა, ღია კოდით და რეკლამის გარეშე. თუ მოგწონს, შეგიძლია მისი განვითარება მხარი დაუჭირო.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d ღამე კარგი მომენტის გარეშე</item>
         <item quantity="other">%1$d ღამე კარგი მომენტის გარეშე</item>

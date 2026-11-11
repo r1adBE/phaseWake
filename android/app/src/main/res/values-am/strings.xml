@@ -208,8 +208,6 @@
     <string name="trends_feeling">Ø ስሜት %1$s ከ5</string>
     <string name="trends_feeling_change">ያለፈው ሳምንት %1$s</string>
     <string name="trends_health_hint">የእንቅልፍ ቆይታ እና መደበኛነት ከHealth Connect ይመጣሉ።</string>
-    <string name="settings_support">Phase Wakeን ይደግፉ</string>
-    <string name="settings_support_text">Phase Wake ነፃ፣ ክፍት ምንጭ እና ማስታወቂያ የሌለው ነው። ከወደዱት፣ እድገቱን መደገፍ ይችላሉ።</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d ሌሊት ያለ ጥሩ ቅጽበት</item>
         <item quantity="other">%1$d ሌሊቶች ያለ ጥሩ ቅጽበት</item>

@@ -207,8 +207,6 @@
     <string name="trends_feeling">গড় অনুভূতি ৫-এর মধ্যে %1$s</string>
     <string name="trends_feeling_change">আগের সপ্তাহে %1$s</string>
     <string name="trends_health_hint">ঘুমের সময়কাল আর নিয়মিততা Health Connect থেকে আসে।</string>
-    <string name="settings_support">Phase Wake-কে সমর্থন করো</string>
-    <string name="settings_support_text">Phase Wake বিনামূল্যে, ওপেন সোর্স আর বিজ্ঞাপনমুক্ত। ভালো লাগলে এর উন্নয়নে সমর্থন দিতে পারো।</string>
     <plurals name="hint_title">
         <item quantity="one">ভালো মুহূর্ত ছাড়া %1$dটি রাত</item>
         <item quantity="other">ভালো মুহূর্ত ছাড়া %1$dটি রাত</item>

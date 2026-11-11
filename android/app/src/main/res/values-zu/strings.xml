@@ -208,8 +208,6 @@
     <string name="trends_feeling">Ø umuzwa %1$s kwangu-5</string>
     <string name="trends_feeling_change">isonto elidlule %1$s</string>
     <string name="trends_health_hint">Ubude bokulala nokuvama kuvela ku-Health Connect.</string>
-    <string name="settings_support">Sekela i-Phase Wake</string>
-    <string name="settings_support_text">I-Phase Wake imahhala, ingumthombo ovulekile futhi ayinazo izikhangiso. Uma uyithanda, ungasekela ukuthuthukiswa kwayo.</string>
     <plurals name="hint_title">
         <item quantity="one">Ubusuku obungu-%1$d ngaphandle kwesikhathi esihle</item>
         <item quantity="other">Ubusuku obungu-%1$d ngaphandle kwesikhathi esihle</item>

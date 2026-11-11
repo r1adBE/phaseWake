@@ -213,8 +213,6 @@
     <string name="trends_feeling">Ø pocit %1$s z 5</string>
     <string name="trends_feeling_change">minulý týždeň %1$s</string>
     <string name="trends_health_hint">Dĺžka a pravidelnosť spánku pochádzajú z Health Connect.</string>
-    <string name="settings_support">Podporiť Phase Wake</string>
-    <string name="settings_support_text">Phase Wake je zadarmo, s otvoreným zdrojovým kódom a bez reklám. Ak sa ti páči, môžeš podporiť jeho vývoj.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d noc bez vhodnej chvíle</item>
         <item quantity="few">%1$d noci bez vhodnej chvíle</item>

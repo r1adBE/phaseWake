@@ -206,8 +206,6 @@
     <string name="trends_feeling">Ø Befinden %1$s von 5</string>
     <string name="trends_feeling_change">Vorwoche %1$s</string>
     <string name="trends_health_hint">Schlafdauer und Regelmässigkeit kommen aus Health Connect.</string>
-    <string name="settings_support">Phase Wake unterstützen</string>
-    <string name="settings_support_text">Phase Wake ist gratis, Open Source und ohne Werbung. Wenn es dir gefällt, kannst du die Entwicklung unterstützen.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d Nacht ohne guten Moment</item>
         <item quantity="other">%1$d Nächte ohne guten Moment</item>

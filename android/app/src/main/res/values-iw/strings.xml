@@ -209,8 +209,6 @@
     <string name="trends_feeling">Ø תחושה %1$s מתוך 5</string>
     <string name="trends_feeling_change">שבוע קודם %1$s</string>
     <string name="trends_health_hint">משך השינה והסדירות שלה מגיעים מ-Health Connect.</string>
-    <string name="settings_support">תמכו ב-Phase Wake</string>
-    <string name="settings_support_text">Phase Wake חינמית, בקוד פתוח וללא פרסומות. אם היא מוצאת חן בעיניכם, אפשר לתמוך בפיתוח שלה.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d לילה בלי רגע טוב</item>
         <item quantity="two">%1$d לילות בלי רגע טוב</item>

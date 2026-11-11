@@ -208,8 +208,6 @@
     <string name="trends_feeling">Ø मूड ५ पैकी %1$s</string>
     <string name="trends_feeling_change">मागील आठवडा %1$s</string>
     <string name="trends_health_hint">झोपेचा कालावधी आणि नियमितता Health Connect मधून येते.</string>
-    <string name="settings_support">Phase Wake ला पाठिंबा द्या</string>
-    <string name="settings_support_text">Phase Wake मोफत, ओपन सोर्स आणि जाहिरातमुक्त आहे. आवडल्यास, तुम्ही त्याच्या विकासाला पाठिंबा देऊ शकता.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d रात्र योग्य क्षणाशिवाय</item>
         <item quantity="other">%1$d रात्री योग्य क्षणाशिवाय</item>

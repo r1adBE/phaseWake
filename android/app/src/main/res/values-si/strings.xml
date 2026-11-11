@@ -208,8 +208,6 @@
     <string name="trends_feeling">Ø හැඟීම 5 න් %1$s</string>
     <string name="trends_feeling_change">පෙර සතිය %1$s</string>
     <string name="trends_health_hint">නින්දේ කාලය සහ නිතිපතා බව Health Connect වෙතින් ලැබේ.</string>
-    <string name="settings_support">Phase Wake ට සහාය වන්න</string>
-    <string name="settings_support_text">Phase Wake නොමිලේ, විවෘත මූලාශ්‍ර සහ දැන්වීම් රහිතයි. ඔබ කැමති නම්, එහි සංවර්ධනයට සහාය විය හැක.</string>
     <plurals name="hint_title">
         <item quantity="one">හොඳ මොහොතක් නැති රාත්‍රි %1$d</item>
         <item quantity="other">හොඳ මොහොතක් නැති රාත්‍රි %1$d</item>

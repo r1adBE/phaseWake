@@ -203,8 +203,6 @@
     <string name="trends_feeling">Ø 기분 5점 중 %1$s점</string>
     <string name="trends_feeling_change">전주 %1$s</string>
     <string name="trends_health_hint">수면 시간과 규칙성은 Health Connect에서 가져와요.</string>
-    <string name="settings_support">Phase Wake 후원하기</string>
-    <string name="settings_support_text">Phase Wake는 무료 오픈 소스이고 광고도 없어요. 마음에 든다면 개발을 후원할 수 있어요.</string>
     <plurals name="hint_title">
         <item quantity="other">%1$d일 연속 좋은 타이밍 없음</item>
     </plurals>

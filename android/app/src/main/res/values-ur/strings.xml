@@ -207,8 +207,6 @@
     <string name="trends_feeling">اوسط کیفیت 5 میں سے %1$s</string>
     <string name="trends_feeling_change">پچھلا ہفتہ %1$s</string>
     <string name="trends_health_hint">نیند کا دورانیہ اور باقاعدگی Health Connect سے آتے ہیں۔</string>
-    <string name="settings_support">Phase Wake کی مدد کرو</string>
-    <string name="settings_support_text">Phase Wake مفت، اوپن سورس اور اشتہارات کے بغیر ہے۔ اگر پسند آئے تو اس کی تیاری میں مدد کر سکتے ہو۔</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d رات اچھے لمحے کے بغیر</item>
         <item quantity="other">%1$d راتیں اچھے لمحے کے بغیر</item>

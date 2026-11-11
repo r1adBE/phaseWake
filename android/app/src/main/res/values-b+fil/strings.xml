@@ -208,8 +208,6 @@
     <string name="trends_feeling">Ø pakiramdam %1$s sa 5</string>
     <string name="trends_feeling_change">noong nakaraang linggo %1$s</string>
     <string name="trends_health_hint">Galing sa Health Connect ang haba at regularidad ng tulog.</string>
-    <string name="settings_support">Suportahan ang Phase Wake</string>
-    <string name="settings_support_text">Libre, open source, at walang ads ang Phase Wake. Kung gusto mo ito, puwede mong suportahan ang pag-develop nito.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d gabi na walang magandang sandali</item>
         <item quantity="other">%1$d gabi na walang magandang sandali</item>

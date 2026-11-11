@@ -203,8 +203,6 @@
     <string name="trends_feeling">Ø ความรู้สึก %1$s จาก 5</string>
     <string name="trends_feeling_change">สัปดาห์ก่อน %1$s</string>
     <string name="trends_health_hint">ระยะเวลาและความสม่ำเสมอของการนอนมาจาก Health Connect</string>
-    <string name="settings_support">สนับสนุน Phase Wake</string>
-    <string name="settings_support_text">Phase Wake ใช้ฟรี เป็นโอเพนซอร์ส และไม่มีโฆษณา หากคุณชอบ คุณสามารถสนับสนุนการพัฒนาได้</string>
     <plurals name="hint_title">
         <item quantity="other">%1$d คืนไม่มีจังหวะที่ดี</item>
     </plurals>

@@ -206,8 +206,6 @@
     <string name="trends_feeling">Ø αίσθηση %1$s από 5</string>
     <string name="trends_feeling_change">προηγούμενη εβδομάδα %1$s</string>
     <string name="trends_health_hint">Η διάρκεια και η κανονικότητα του ύπνου προέρχονται από το Health Connect.</string>
-    <string name="settings_support">Στήριξε το Phase Wake</string>
-    <string name="settings_support_text">Το Phase Wake είναι δωρεάν, ανοιχτού κώδικα και χωρίς διαφημίσεις. Αν σου αρέσει, μπορείς να στηρίξεις την ανάπτυξή του.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d νύχτα χωρίς κατάλληλη στιγμή</item>
         <item quantity="other">%1$d νύχτες χωρίς κατάλληλη στιγμή</item>

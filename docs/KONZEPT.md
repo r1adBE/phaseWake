@@ -1,6 +1,6 @@
 # phaseWake – Konzept
 
-Stand: 28.10.2026.
+Stand: 11.11.2026.
 
 ## Ziel
 
@@ -36,7 +36,7 @@ Die Phasenerkennung ist auf beiden Plattformen dieselbe Regel, je einmal in Kotl
 
 Die Uhr funktioniert ohne Handy. Fällt die Verbindung weg, weckt sie trotzdem; das Handy zeigt dann nur den Verlauf nach.
 
-Uhr-App eigenständig (29.10.2026): Auf der Uhr lassen sich Wecker anlegen («+ Neuer Wecker», höchstens 8), ändern (Zeile antippen; der Schalter schaltet weiterhin nur ein/aus) und löschen (mit Rückfrage). Der Editor der Uhr zeigt Uhrzeit, Weckfenster («Genau · 10 · 20 · 30», seit Audit PW-03), Wochentage (ohne Tag: einmal), Ein/Aus und «Nächstes Mal überspringen» (wiederholte Wecker); Krone bzw. Drehrahmen blättern und verstellen. Alles Übrige (Sonnenaufgang, Weckton, Handy-Wecker, Weckaufgabe, Schlafdauer, Name) bleibt beim Ändern unverändert; neue Wecker bekommen dieselben Vorgaben wie am Handy (Android: 7:00, Werktage, Morgenvögel; iPhone: jetzige Uhrzeit, Werktage). Gespeichert wird lokal, neu geplant und ans Handy geschickt; es gilt wie überall die zuletzt gespeicherte Liste. Die Wear-OS-App ist im Play Store als eigenständig markiert (`com.google.android.wearable.standalone`): Messen und Wecken gehen ohne Handy, das Handy bleibt optionaler Begleiter. Sonnenaufgang, Weckton, Notizen und Auswertungen gibt es nur am Handy.
+Uhr-App eigenständig (29.10.2026): Auf der Uhr lassen sich Wecker anlegen («+ Neuer Wecker», höchstens 8), ändern (Zeile antippen; der Schalter schaltet weiterhin nur ein/aus) und löschen (mit Rückfrage). Der Editor der Uhr zeigt Uhrzeit, Weckfenster («Genau · 10 · 20 · 30», seit Audit PW-03), Wochentage (ohne Tag: einmal), Ein/Aus und «Nächstes Mal überspringen» (wiederholte Wecker); Krone bzw. Drehrahmen blättern und verstellen. Alles Übrige (Sonnenaufgang, Weckton, Handy-Wecker, Weckaufgabe, Schlafdauer, Name) bleibt beim Ändern unverändert; neue Wecker bekommen dieselben Vorgaben wie am Handy (Android: 7:00, Werktage, Morgenvögel; iPhone: jetzige Uhrzeit, Werktage). Gespeichert wird lokal, neu geplant und ans Handy geschickt; abgeglichen wird je Wecker: Es gilt die jüngere Änderung, gelöschte Wecker bleiben 90 Tage gemerkt (seit 11.11.2026, Audit A-4). Die Wear-OS-App ist im Play Store als eigenständig markiert (`com.google.android.wearable.standalone`): Messen und Wecken gehen ohne Handy, das Handy bleibt optionaler Begleiter. Sonnenaufgang, Weckton, Notizen und Auswertungen gibt es nur am Handy.
 
 ## Ablauf einer Nacht
 
@@ -55,7 +55,7 @@ Im Fenster wird nur das gemessen, was für die Entscheidung nötig ist. Zwei Sig
 
 **Bewegung (Aktigraphie)** – Beschleunigungssensor mit Batching, 25 Hz. Pro Epoche (30 s) wird die Bewegungsenergie berechnet (Summe der Betragsänderungen oberhalb eines Rauschschwellwerts). Das ist die Standardmethode der Aktigraphie und erkennt Leichtschlaf zuverlässig: Im Tiefschlaf liegt der Wert nahe null, im Leichtschlaf und beim Drehen deutlich darüber.
 
-**Puls** – Pulssensor der Uhr (`SensorManager`, `Sensor.TYPE_HEART_RATE`, etwa jede Sekunde, gebündelt wie die Bewegung); ohne Sensor oder wenn er sich nicht anmelden lässt Health Services `MeasureClient` (liefert bei dunklem Display nur etwa alle 10 Min, Befund 09.11.2026). Dient als zweite Stimme: steigender Puls gegenüber dem Mittel der ersten Fensterminuten spricht für leichten Schlaf oder beginnendes Aufwachen.
+**Puls** – Pulssensor der Uhr (`SensorManager`, `Sensor.TYPE_HEART_RATE`, etwa jede Sekunde, gebündelt wie die Bewegung); ohne Sensor oder wenn er sich nicht anmelden lässt Health Services `MeasureClient` (liefert bei dunklem Display nur etwa alle 10 Min, Befund 09.11.2026). Dient als zweite Stimme: steigender Puls gegenüber dem Median der ersten Fensterminuten (bis 3 Min) spricht für leichten Schlaf oder beginnendes Aufwachen.
 
 **Entscheidung** (einfach und erklärbar, keine Blackbox):
 
@@ -82,7 +82,7 @@ Ziel: unter 5 % Akku pro Nacht bei 30-Min-Fenster.
 - Alles bleibt auf Uhr und Handy. Kein Konto, kein Server, keine Analytik, kein Internet-Recht im Manifest.
 - Gespeichert werden Weckereinstellungen und pro Nacht: Zielzeit, Fenster, tatsächliche Weckzeit, Weckgrund, Bewegungskurve des Fensters (30-s-Werte). Verlauf nach 90 Nächten automatisch gekürzt, jederzeit löschbar.
 - Apple: HealthKit-Lesezugriff Herzfrequenz, Bewegung über CoreMotion.
-- Android-Berechtigungen Uhr: `BODY_SENSORS` bzw. `health.READ_HEART_RATE` (Puls), `BODY_SENSORS_BACKGROUND` bzw. `health.READ_HEALTH_DATA_IN_BACKGROUND` (Puls bei dunklem Display), `ACTIVITY_RECOGNITION`, `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_HEALTH`, `FOREGROUND_SERVICE_SYSTEM_EXEMPTED`, `USE_EXACT_ALARM` (ab Android 13) bzw. `SCHEDULE_EXACT_ALARM` (Android 12), `USE_FULL_SCREEN_INTENT`, `RECEIVE_BOOT_COMPLETED`, `WAKE_LOCK`, `VIBRATE`, `POST_NOTIFICATIONS`. Handy: `USE_EXACT_ALARM` bzw. `SCHEDULE_EXACT_ALARM`, `USE_FULL_SCREEN_INTENT`, `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_SYSTEM_EXEMPTED`, `RECEIVE_BOOT_COMPLETED`, `WAKE_LOCK`, `POST_NOTIFICATIONS`, `VIBRATE`, `health.READ_SLEEP` (optional), `FOREGROUND_SERVICE_MEDIA_PLAYBACK` (Einschlafklänge), `RECORD_AUDIO` und `FOREGROUND_SERVICE_MICROPHONE` (nur für «Geräusche aufnehmen», erst beim Einschalten erfragt), `BLUETOOTH_CONNECT` bzw. bis Android 11 `BLUETOOTH` (nur für «Als Begleit-App verbinden», erst dann erfragt). Keine Internet-Berechtigung.
+- Android-Berechtigungen Uhr: `BODY_SENSORS` bzw. `health.READ_HEART_RATE` (Puls), `BODY_SENSORS_BACKGROUND` bzw. `health.READ_HEALTH_DATA_IN_BACKGROUND` (Puls bei dunklem Display), `ACTIVITY_RECOGNITION`, `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_HEALTH`, `FOREGROUND_SERVICE_SYSTEM_EXEMPTED`, `USE_EXACT_ALARM` (ab Android 13) bzw. `SCHEDULE_EXACT_ALARM` (Android 12), `USE_FULL_SCREEN_INTENT`, `RECEIVE_BOOT_COMPLETED`, `WAKE_LOCK`, `VIBRATE`, `POST_NOTIFICATIONS`. Handy: `USE_EXACT_ALARM` bzw. `SCHEDULE_EXACT_ALARM`, `USE_FULL_SCREEN_INTENT`, `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_SYSTEM_EXEMPTED`, `RECEIVE_BOOT_COMPLETED`, `WAKE_LOCK`, `POST_NOTIFICATIONS`, `VIBRATE`, `USE_BIOMETRIC` (Gerätesperre vor «Verlauf löschen» und «Wiederherstellen»), `health.READ_SLEEP` (optional), `FOREGROUND_SERVICE_MEDIA_PLAYBACK` (Einschlafklänge), `RECORD_AUDIO` und `FOREGROUND_SERVICE_MICROPHONE` (nur für «Geräusche aufnehmen», erst beim Einschalten erfragt), `BLUETOOTH_CONNECT` bzw. bis Android 11 `BLUETOOTH` (nur für «Als Begleit-App verbinden», erst dann erfragt). Keine Internet-Berechtigung.
 - «Nacht aufzeichnen»: je 30-s-Epoche Bewegung und Puls, die letzten 14 Aufzeichnungen auf Uhr und Handy, privat und nicht gesichert; mit «Verlauf löschen» gelöscht, im Export als eigene Datei ohne Datum. Lernphase: Stand und gelernte Werte (Grundrauschen, Ruhepuls, Einschlafdauer) privat auf Handy und Uhr, nicht gesichert; «Verlauf löschen» beginnt sie von vorn. Apple: die Aufzeichnungen (Lernphase und «Nacht aufzeichnen», die letzten 14) privat auf dem iPhone, die Apple Watch behält sie nach dem Senden nicht.
 - Geräusche in der Nacht (optional, standardmässig aus): nur kurze Ausschnitte (höchstens 10 s, höchstens 40 pro Nacht) im App-Ordner des Handys, nach 7 Tagen gelöscht; nicht in Sicherungen, nicht im Export, nie übertragen.
 - Datenschutzerklärung: Verantwortlicher Riad Work, c/o BENETI GmbH, Einschlagweg 67, 3400 Burgdorf; Kontakt riad.work@outlook.com.
@@ -95,7 +95,7 @@ Ziel: unter 5 % Akku pro Nacht bei 30-Min-Fenster.
 - Sync Handy ↔ Uhr: Android über Wearable Data Layer (einzige Google-Play-Services-Abhängigkeit, auf Galaxy Watches ohnehin vorhanden): seit 10.11.2026 (Audit C2) alles mit persönlichen Daten – Wecker, Nächte, Aufzeichnungen, Lernwerte, frühere Zielzeit, Schlafziel, Feiertage, Schalter, Stand der Aufzeichnung – als Nachricht (`MessageClient`, grosse Aufzeichnungen über `ChannelClient`) aus einer lokalen Warteschlange, bis die Gegenseite bestätigt; Datenpakete (`DataClient`, von Google zusätzlich in der Cloud gesichert) nur noch für Uhr-Status, «Verlauf löschen» und Abbruch von Probewecker/Powernap. Apple über WatchConnectivity.
 - Weitere Fremdabhängigkeit nur für «Geräusche aufnehmen» auf Android: MediaPipe Tasks Audio (`com.google.mediapipe:tasks-audio`) mit dem Modell YAMNet (`yamnet.tflite` in den Assets), beide Apache-2.0, laufen ganz auf dem Gerät. Fehlt das Modell, gelten alle Ausschnitte als «anderes Geräusch». Auf dem iPhone die eingebaute SoundAnalysis.
 - Tests: Phasenerkennung als reine Kotlin-Logik ohne Android-Abhängigkeit, mit aufgezeichneten Nächten als Testdaten. Abdeckung: Logik ≥ 90 %, Oberfläche ≥ 50 %.
-- Sprachen: 32, Du-Form (Deutsch in Schweizer Schreibung). Android-Texte sind die Quelle, die Apple-Kataloge werden daraus erzeugt.
+- Sprachen: 74, Du-Form (Deutsch in Schweizer Schreibung). Android-Texte sind die Quelle, die Apple-Kataloge werden daraus erzeugt.
 
 ## Umfang v1
 
@@ -132,7 +132,7 @@ Alles in v1, nichts auf später verschoben:
 
 ## Entscheide (28.10.2026)
 
-- Aus der Marktanalyse (28.10.2026): Nacht-Check, Morgenbericht mit Befinden, Trends und ein freiwilliger Spenden-Link (GitHub Sponsors). Kein Abo, keine Werbung, kein «KI-Coach». Mikrofon nur optional für «Geräusche aufnehmen» (28.10.2026): standardmässig aus, alles bleibt auf dem Handy.
+- Aus der Marktanalyse (28.10.2026): Nacht-Check, Morgenbericht mit Befinden, Trends. Spenden-Hinweis nur in SUPPORT.md auf GitHub, nicht in der App (11.11.2026). Kein Abo, keine Werbung, kein «KI-Coach». Mikrofon nur optional für «Geräusche aufnehmen» (28.10.2026): standardmässig aus, alles bleibt auf dem Handy.
 
 - Sonnenaufgang (28.10.2026): Option pro Wecker, standardmässig aus; wählbar «beim Wecken» oder «ab Weckfenster».
 

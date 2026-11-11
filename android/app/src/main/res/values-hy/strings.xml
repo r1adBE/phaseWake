@@ -198,8 +198,6 @@
     <string name="trends_feeling">Ø ինքնազգացում %1$s/5</string>
     <string name="trends_feeling_change">նախորդ շաբաթ՝ %1$s</string>
     <string name="trends_health_hint">Քնի տևողությունը և կանոնավորությունը վերցվում են Health Connect-ից։</string>
-    <string name="settings_support">Աջակցել Phase Wake-ին</string>
-    <string name="settings_support_text">Phase Wake-ն անվճար է, բաց կոդով և առանց գովազդի։ Եթե դուր է գալիս, կարող ես աջակցել դրա զարգացմանը։</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d գիշեր առանց հարմար պահի</item>
         <item quantity="other">%1$d գիշեր առանց հարմար պահի</item>

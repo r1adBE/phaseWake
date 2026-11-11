@@ -206,8 +206,6 @@
     <string name="trends_feeling">औसत Ø एहसास 5 में से %1$s</string>
     <string name="trends_feeling_change">पिछला सप्ताह %1$s</string>
     <string name="trends_health_hint">नींद की अवधि और नियमितता Health Connect से आती है।</string>
-    <string name="settings_support">Phase Wake का समर्थन करें</string>
-    <string name="settings_support_text">Phase Wake मुफ़्त, ओपन सोर्स और विज्ञापन-रहित है। अगर यह आपको पसंद है, तो आप इसके विकास का समर्थन कर सकते हैं।</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d रात बिना सही पल के</item>
         <item quantity="other">%1$d रातें बिना सही पल के</item>

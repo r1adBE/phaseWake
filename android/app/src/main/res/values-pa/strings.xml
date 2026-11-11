@@ -208,8 +208,6 @@
     <string name="trends_feeling">Ø ਮੂਡ 5 ਵਿੱਚੋਂ %1$s</string>
     <string name="trends_feeling_change">ਪਿਛਲਾ ਹਫ਼ਤਾ %1$s</string>
     <string name="trends_health_hint">ਨੀਂਦ ਦੀ ਮਿਆਦ ਅਤੇ ਨਿਯਮਤਤਾ Health Connect ਤੋਂ ਆਉਂਦੀ ਹੈ।</string>
-    <string name="settings_support">Phase Wake ਦਾ ਸਮਰਥਨ ਕਰੋ</string>
-    <string name="settings_support_text">Phase Wake ਮੁਫ਼ਤ, ਓਪਨ ਸੋਰਸ ਅਤੇ ਇਸ਼ਤਿਹਾਰਾਂ ਤੋਂ ਬਿਨਾਂ ਹੈ। ਜੇ ਤੁਹਾਨੂੰ ਪਸੰਦ ਹੈ, ਤਾਂ ਤੁਸੀਂ ਇਸ ਦੇ ਵਿਕਾਸ ਵਿੱਚ ਸਹਾਇਤਾ ਕਰ ਸਕਦੇ ਹੋ।</string>
     <plurals name="hint_title">
         <item quantity="one">ਸਹੀ ਪਲ ਤੋਂ ਬਿਨਾਂ %1$d ਰਾਤ</item>
         <item quantity="other">ਸਹੀ ਪਲ ਤੋਂ ਬਿਨਾਂ %1$d ਰਾਤਾਂ</item>

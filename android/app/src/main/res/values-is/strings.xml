@@ -208,8 +208,6 @@
     <string name="trends_feeling">Ø líðan %1$s af 5</string>
     <string name="trends_feeling_change">vikan á undan %1$s</string>
     <string name="trends_health_hint">Svefnlengd og regla koma frá Health Connect.</string>
-    <string name="settings_support">Styðja Phase Wake</string>
-    <string name="settings_support_text">Phase Wake er ókeypis, opinn hugbúnaður og án auglýsinga. Ef þér líkar það geturðu stutt þróunina.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d nótt án góðs augnabliks</item>
         <item quantity="other">%1$d nætur án góðs augnabliks</item>

@@ -2,7 +2,7 @@
 
 Entwürfe für die Formulare der Play Console (App-Inhalte, Berechtigungen, Gesundheits-Apps), abgeleitet aus
 `android/app/src/main/AndroidManifest.xml` (Handy) und `android/wear/src/main/AndroidManifest.xml` (Galaxy Watch).
-Stand 02.11.2026 (Review W-07). Vor dem Einreichen gegen die aktuellen Manifeste und die Formularfelder prüfen; die
+Stand 11.11.2026 (zuerst Review W-07). Vor dem Einreichen gegen die aktuellen Manifeste und die Formularfelder prüfen; die
 Play Console verlangt meist englischen Text, die deutsche Fassung dient zur Kontrolle.
 
 Ohne Erklärung: `VIBRATE`, `WAKE_LOCK`, `RECEIVE_BOOT_COMPLETED`, `FOREGROUND_SERVICE`, `USE_BIOMETRIC`. Kein

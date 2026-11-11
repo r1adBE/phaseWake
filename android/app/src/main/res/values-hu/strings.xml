@@ -206,8 +206,6 @@
     <string name="trends_feeling">Ø érzés: %1$s/5</string>
     <string name="trends_feeling_change">előző hét: %1$s</string>
     <string name="trends_health_hint">Az alvás időtartama és rendszeressége a Health Connectből származik.</string>
-    <string name="settings_support">Támogasd a Phase Wake-et</string>
-    <string name="settings_support_text">A Phase Wake ingyenes, nyílt forráskódú és reklámmentes. Ha tetszik, támogathatod a fejlesztését.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d éjszaka jó pillanat nélkül</item>
         <item quantity="other">%1$d éjszaka jó pillanat nélkül</item>

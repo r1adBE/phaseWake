@@ -208,8 +208,6 @@
     <string name="trends_feeling">Ø મૂડ 5માંથી %1$s</string>
     <string name="trends_feeling_change">પાછલું અઠવાડિયું %1$s</string>
     <string name="trends_health_hint">ઊંઘનો સમય અને નિયમિતતા Health Connect પરથી આવે છે.</string>
-    <string name="settings_support">Phase Wakeને ટેકો આપો</string>
-    <string name="settings_support_text">Phase Wake મફત, ઓપન સોર્સ અને જાહેરાત વગરનું છે. જો તમને ગમે, તો તમે તેના વિકાસમાં ટેકો આપી શકો છો.</string>
     <plurals name="hint_title">
         <item quantity="one">યોગ્ય ક્ષણ વગરની %1$d રાત</item>
         <item quantity="other">યોગ્ય ક્ષણ વગરની %1$d રાતો</item>

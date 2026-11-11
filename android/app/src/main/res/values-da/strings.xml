@@ -206,8 +206,6 @@
     <string name="trends_feeling">Ø følelse %1$s af 5</string>
     <string name="trends_feeling_change">ugen før %1$s</string>
     <string name="trends_health_hint">Søvnlængde og regelmæssighed kommer fra Health Connect.</string>
-    <string name="settings_support">Støt Phase Wake</string>
-    <string name="settings_support_text">Phase Wake er gratis, open source og uden reklamer. Hvis du kan lide den, kan du støtte udviklingen.</string>
     <plurals name="hint_title">
         <item quantity="one">%1$d nat uden et godt tidspunkt</item>
         <item quantity="other">%1$d nætter uden et godt tidspunkt</item>
