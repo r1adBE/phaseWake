@@ -37,10 +37,10 @@ public enum BackupPassword {
         "football12", "football123", "sunshine12", "princess12",
     ]
 
-    /// Problem von `password` für eine neue Sicherung; `nil`, wenn es genügt.
     /// Sprache für die Kleinschreibung: fest «en_US_POSIX», unabhängig von der Einstellung des Geräts.
     public static let caseLocale = Locale(identifier: "en_US_POSIX")
 
+    /// Problem von `password` für eine neue Sicherung; `nil`, wenn es genügt.
     public static func problem(_ password: String) -> Problem? {
         let nfc = password.precomposedStringWithCanonicalMapping
         if nfc.unicodeScalars.count < minLength { return .tooShort }
