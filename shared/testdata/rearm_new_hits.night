@@ -1,0 +1,66 @@
+# Vollaudit K-5: Kurze Nacht, Wecken bis Epoche 40 gesperrt (`@rearm-until 40`: jeder frühere Moment wird übergangen,
+# der Detektor läuft nach rearm() weiter). Unruhe in Epoche 38 und 39 -> übergangen. Früher lag sie in Epoche 40 noch im
+# Fenster der Wach-Regel und weckte genau an der Grenze (Zielzeit − 10 Min). Jetzt braucht es neue Treffer: Epoche 51.
+@rearm-until 40
+@expect 51 AWAKE
+motion,hr
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.500,52
+0.500,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.500,52
+0.500,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52
+0.000,52

@@ -508,7 +508,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnostika dabar rodoma nustatymuose.</string>
     <string name="diag_show">Rodyti diagnostiką</string>
-    <string name="diag_hint">Tik šiame įrenginyje, niekas nesiunčiama. Yra žadintuvų ir įvykių laikai, jokių sveikatos duomenų.</string>
+    <string name="diag_hint">Paskutinių 7 dienų techninis žurnalas, tik tavo įrenginiuose. Jame yra laikai ir išmatuotos vertės (pvz., judesys, užmigimo laikas) – bendrink jį tik jei nori.</string>
     <string name="diag_events">Įvykiai</string>
     <string name="diag_empty">Įvykių dar nėra.</string>
     <string name="diag_status">Būsena</string>
@@ -622,4 +622,5 @@
     <string name="learn_point_battery">Tai sunaudoja šiek tiek baterijos – įkrauk laikrodį prieš miegą.</string>
     <string name="learn_point_private">Duomenys lieka tavo įrenginiuose. Mokymosi etapą gali bet kada išjungti nustatymuose.</string>
     <string name="learn_switch_hint">Tavo laikrodis naktį matuoja judesį ir pulsą, kad pritaikytų žadintuvą. Išjungta: jokio automatinio įrašymo, išmoktos vertės lieka.</string>
+    <string name="watch_open_app_hint">Atidaryk Phase Wake laikrodyje, kad jis gautų komandą.</string>
 </resources>

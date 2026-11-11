@@ -7,8 +7,8 @@
     <string name="ring_stop">Stoppen</string>
     <string name="ring_open">Öffnen</string>
     <plurals name="ring_snooze">
-        <item quantity="one">Schlummern %1$d Min · %2$d übrig</item>
-        <item quantity="other">Schlummern %1$d Min · %2$d übrig</item>
+        <item quantity="one">Schlummern %1$d Min · noch %2$d</item>
+        <item quantity="other">Schlummern %1$d Min · noch %2$d</item>
     </plurals>
     <string name="ring_snoozed">Schlummern für %1$d Min</string>
 
@@ -477,7 +477,7 @@
     </plurals>
     <string name="diag_unlocked">Die Diagnose steht jetzt in den Einstellungen.</string>
     <string name="diag_show">Diagnose anzeigen</string>
-    <string name="diag_hint">Nur auf diesem Gerät, nichts wird gesendet. Enthält Zeiten von Weckern und Ereignissen, keine Gesundheitsdaten.</string>
+    <string name="diag_hint">Technisches Protokoll der letzten 7 Tage, nur auf deinen Geräten. Es enthält Zeiten und Messwerte (z. B. Bewegung, Einschlafzeit) – teile es nur, wenn du willst.</string>
     <string name="diag_events">Ereignisse</string>
     <string name="diag_empty">Noch keine Ereignisse.</string>
     <string name="diag_status">Status</string>
@@ -591,4 +591,5 @@
     <string name="learn_point_battery">Das kostet etwas Akku – lade die Uhr vor dem Schlafen.</string>
     <string name="learn_point_private">Die Daten bleiben auf deinen Geräten. Du kannst die Lernphase jederzeit in den Einstellungen ausschalten.</string>
     <string name="learn_switch_hint">Deine Uhr misst nachts Bewegung und Puls, um den Wecker anzupassen. Aus: keine automatische Aufzeichnung, gelernte Werte bleiben.</string>
+    <string name="watch_open_app_hint">Öffne Phase Wake auf der Uhr, damit sie den Befehl erhält.</string>
 </resources>

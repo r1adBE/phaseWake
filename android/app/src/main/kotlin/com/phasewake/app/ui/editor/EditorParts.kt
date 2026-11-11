@@ -68,14 +68,19 @@ internal fun <T> Choice(options: List<Pair<T, Int>>, selected: T, onSelect: (T) 
                 shape = SegmentedButtonDefaults.itemShape(index, options.size),
                 // Mindestens 48 dp hoch: gut zu treffen, auch mit Bildschirmleser.
                 modifier = Modifier.heightIn(min = 48.dp),
+                // Ab drei Feldern ohne Haken: Der Platz gehört dem Text (Audit UI-7); gewählt zeigt die Füllung.
+                icon = { if (options.size <= CHECK_ICON_MAX_SEGMENTS) SegmentedButtonDefaults.Icon(value == selected) },
             ) { ChoiceLabel(stringResource(label)) }
         }
     }
 }
 
+/** Bis zu so vielen Feldern zeigt das gewählte Feld einen Haken; bei mehr Feldern fehlt der Platz dafür. */
+internal const val CHECK_ICON_MAX_SEGMENTS = 2
+
 /**
- * Beschriftung eines Auswahl-Felds: eine Zeile, die bei Platzmangel (drei Felder, lange Sprachen) die Schrift
- * schrittweise bis 10 sp verkleinert, statt abzuschneiden.
+ * Beschriftung eines Auswahl-Felds: bei Platzmangel (drei Felder, lange Sprachen) zuerst zweizeilig, dann
+ * schrittweise kleiner, aber nicht unter 12 sp (Audit UI-7: 10 sp war auf 360 dp in Französisch zu klein).
  */
 @Composable
 internal fun ChoiceLabel(text: String) {
@@ -83,8 +88,8 @@ internal fun ChoiceLabel(text: String) {
     BasicText(
         text,
         style = style,
-        maxLines = 1,
-        autoSize = TextAutoSize.StepBased(minFontSize = 10.sp, maxFontSize = if (style.fontSize.isSpecified) style.fontSize else 14.sp, stepSize = 0.5.sp),
+        maxLines = 2,
+        autoSize = TextAutoSize.StepBased(minFontSize = 12.sp, maxFontSize = if (style.fontSize.isSpecified) style.fontSize else 14.sp, stepSize = 0.5.sp),
     )
 }
 

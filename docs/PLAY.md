@@ -17,7 +17,7 @@ Wie die Bundles für den Upload entstehen: Abschnitt [Store-Build](#store-build-
 | `USE_EXACT_ALARM` (ab Android 13), `SCHEDULE_EXACT_ALARM` (bis Android 12L) | ✓ | ✓ | Wecker zur eingestellten Zeit |
 | `USE_FULL_SCREEN_INTENT` | ✓ | ✓ | Weckbildschirm bei gesperrtem Gerät |
 | Vordergrund-Dienst `systemExempted` | ✓ | ✓ | Klingeln bzw. Wecken ohne Messung |
-| Vordergrund-Dienst `health` | – | ✓ | Messung im Weckfenster |
+| Vordergrund-Dienst `health` | – | ✓ | Messung im Weckfenster, Einschlaf-Messung (auch nach «Gute Nacht»), «Nacht aufzeichnen», Lernphase |
 | Vordergrund-Dienst `mediaPlayback` | ✓ | – | Einschlafklänge |
 | Vordergrund-Dienst `microphone`, `RECORD_AUDIO` | ✓ | – | Geräusche in der Nacht (Option) |
 | `BODY_SENSORS` (bis Wear OS 5), `BODY_SENSORS_BACKGROUND` (bis Wear OS 5) | – | ✓ | Puls im Weckfenster |
@@ -42,19 +42,25 @@ Ruhemodus des Geräts. Die Alarme erscheinen im System als Wecker (Uhrzeit in de
 gemessen werden kann – vor dem ersten Entsperren nach einem Neustart oder ohne Sensorrechte). Er hält Ton, Vibration und
 Weckbildschirm am Leben, bis du beendest oder schlummerst. Als Wecker-App mit `USE_EXACT_ALARM` ist dieser Typ vorgesehen.
 
-**Vordergrund-Dienst «health» (Uhr).** Läuft nur im Weckfenster (10–30 Minuten vor der Zielzeit) und kurz am Abend
-bis zum Einschlafen (Einschlaf-Messung, ab Werk an, in den Einstellungen abschaltbar); in der freiwilligen Lernphase
-(7 Nächte, nur nach Zustimmung) auch in kurzen Stichproben über die Nacht (60 Sekunden alle 5 Minuten). Er liest Bewegung (Beschleunigungssensor) und Puls, um einen leichten Schlafmoment zum
-Wecken zu finden. Die Messung zeigt eine laufende Benachrichtigung und endet mit dem Wecken.
+**Vordergrund-Dienst «health» (Uhr).** Läuft im Weckfenster (10–30 Minuten vor der Zielzeit) und am Abend bis zum
+Einschlafen: automatisch ab 1 Std. vor der Bettzeit (Einschlaf-Messung, ab Werk an, in den Einstellungen abschaltbar)
+und nach «Gute Nacht» (Wecker mit Schlafdauer, du tippst es selbst an). Dazu nur auf deinen Wunsch: «Nacht aufzeichnen»
+(auf der Uhr oder am Handy gestartet, höchstens 12 Std., in Stichproben von 60 Sekunden alle 5 Minuten, durchgehend
+nur mit freigeschalteter Diagnose; endet beim Stoppen, beim Wecken oder unter 15 % Akku) und die freiwillige Lernphase
+(7 Nächte, nur nach Zustimmung, in Stichproben über die Nacht). Er liest Bewegung (Beschleunigungssensor) und Puls, um
+einen leichten Schlafmoment zum Wecken zu finden bzw. deine Nacht aufzuzeichnen. Jede Messung zeigt eine laufende
+Benachrichtigung.
 
 **Vordergrund-Dienst «mediaPlayback» (Handy).** Einschlafklänge (Rauschen, Regen, Meer …), die du startest; mit
 Medien-Benachrichtigung und Timer. Endet beim Stoppen oder nach Ablauf des Timers.
 
 **Mikrofon (`RECORD_AUDIO`, Vordergrund-Dienst «microphone», Handy).** Nur wenn du «Geräusche aufnehmen» für eine
-Nacht einschaltest (standardmässig aus). Die App misst die Lautstärke und behält kurze Ausschnitte lauter Geräusche
+Nacht einschaltest (standardmässig aus). Mit «Für neue Nächte einschalten» startet sie von selbst, wenn du
+Phase Wake ab deiner Bettzeit öffnest (ohne Wecker in den nächsten 24 Std. ab 21 Uhr). Die App misst die Lautstärke und behält kurze Ausschnitte lauter Geräusche
 (höchstens 10 Sekunden), die ein Modell auf dem Handy als mögliches Schnarchen oder Sprechen einordnet. Alles bleibt
 auf dem Handy, nichts wird gesendet, Ausschnitte werden nach 7 Tagen gelöscht. Die Aufnahme zeigt eine Benachrichtigung
-und endet spätestens 30 Minuten nach dem Wecker.
+(damit stoppst du sie jederzeit) und endet spätestens 30 Minuten nach dem Wecker; ohne Wecker in den nächsten 24 Std.
+nach 12 Std.
 
 **Körpersensoren und Puls (`BODY_SENSORS`, `BODY_SENSORS_BACKGROUND`, `health.READ_HEART_RATE`,
 `health.READ_HEALTH_DATA_IN_BACKGROUND`, Uhr).** Der Puls im Weckfenster hilft zu erkennen, ob du wach oder leicht
@@ -97,19 +103,24 @@ possible – before the first unlock after a restart or without sensor permissio
 vibration and the alarm screen alive until the user stops or snoozes. This type is intended for alarm clock apps
 holding `USE_EXACT_ALARM`.
 
-**Foreground service type “health” (watch).** Runs only during the wake window (10–30 minutes before the target time)
-and briefly in the evening until the user falls asleep (falling-asleep measurement, on by default, can be switched off in
-the settings); during the optional learning phase (7 nights, only after the user agrees) also in short samples through
-the night (60 seconds every 5 minutes). It reads movement (accelerometer) and heart rate to
-find a light-sleep moment to wake the user. A notification is shown while measuring; it ends when the user wakes.
+**Foreground service type “health” (watch).** Runs during the wake window (10–30 minutes before the target time) and in
+the evening until the user falls asleep: automatically from 1 hour before bedtime (falling-asleep measurement, on by
+default, can be switched off in the settings) and after “Good night” (alarms with a sleep duration, tapped by the user).
+In addition only at the user’s request: “Record night” (started on the watch or the phone, at most 12 hours, in samples
+of 60 seconds every 5 minutes, continuously only with diagnostics unlocked; ends when stopped, when the user is woken or
+below 15 % battery) and the optional learning phase (7 nights, only after the user agrees, in samples through the
+night). It reads movement (accelerometer) and heart rate to find a light-sleep moment to wake the user or to record the
+night. Every measurement shows an ongoing notification.
 
 **Foreground service type “mediaPlayback” (phone).** Sleep sounds (noise, rain, sea …) started by the user, with a media
 notification and a timer. Ends when stopped or when the timer runs out.
 
 **Microphone (`RECORD_AUDIO`, foreground service type “microphone”, phone).** Only if the user turns on “Record
-sounds” for a night (off by default). The app measures loudness and keeps short clips of loud sounds (at most 10
+sounds” for a night (off by default). With “On for new nights” it starts by itself when the user opens Phase Wake
+from their bedtime on (without an alarm in the next 24 hours from 9 pm). The app measures loudness and keeps short clips of loud sounds (at most 10
 seconds), which an on-device model classifies as possible snoring or talking. Everything stays on the phone, nothing is
-sent, clips are deleted after 7 days. Recording shows a notification and ends at the latest 30 minutes after the alarm.
+sent, clips are deleted after 7 days. Recording shows a notification (to stop it at any time) and ends at the latest 30 minutes after the alarm; without an
+alarm in the next 24 hours after 12 hours.
 
 **Body sensors and heart rate (`BODY_SENSORS`, `BODY_SENSORS_BACKGROUND`, `health.READ_HEART_RATE`,
 `health.READ_HEALTH_DATA_IN_BACKGROUND`, watch).** Heart rate during the wake window helps tell whether the user is
@@ -153,7 +164,12 @@ Upload-Schlüssel. Google signiert die Apps danach mit dem eigenen App-Signaturs
    Console zurücksetzen; die App bleibt dieselbe.
 2. **Als Base64 umwandeln:** macOS `base64 -i phasewake-upload.jks -o upload.b64`, Linux `base64 -w 0 phasewake-upload.jks > upload.b64`,
    Windows (PowerShell) `[Convert]::ToBase64String([IO.File]::ReadAllBytes("phasewake-upload.jks")) | Set-Content upload.b64`.
-3. **Vier Secrets anlegen** auf GitHub unter Settings → Secrets and variables → Actions → New repository secret:
+3. **Umgebung «store» und vier Secrets anlegen** (Audit 5314d25 D-06): auf GitHub unter Settings → Environments → New
+   environment den Namen `store` eingeben. Darin unter «Deployment branches and tags» → «Selected branches and tags» nur
+   `main` zulassen; wer jeden Store-Build bestätigen will, setzt sich unter «Required reviewers» selbst ein. Dann in der
+   Umgebung unter «Environment secrets» → «Add environment secret» die vier Secrets anlegen (nicht als Repository-Secrets;
+   bestehende Repository-Secrets `PLAY_UPLOAD_*` danach unter Settings → Secrets and variables → Actions löschen). So
+   sieht sie nur der Workflow «Store-Build» auf `main`, keine andere Aktion und kein anderer Zweig:
 
    | Secret | Inhalt |
    |---|---|
@@ -165,8 +181,10 @@ Upload-Schlüssel. Google signiert die Apps danach mit dem eigenen App-Signaturs
 4. **Bauen:** Actions → «Store-Build» → Run workflow (von `main`). Fehlt ein Secret, bricht der Lauf mit einer Meldung ab.
    Vor dem Signieren prüft der Lauf, dass der Workflow «CI» für genau diesen Commit erfolgreich abgeschlossen ist (sonst
    Abbruch mit Meldung; ein Commit mit `[skip ci]` hat keinen CI-Lauf, dann erst einen geprüften Stand auf `main` bringen),
-   und führt die Unit-Tests noch einmal aus (Audit F-05). Danach prüft er den Release-Build (`release_check.py`) und dass
-   beide Bundles mit dem Upload-Schlüssel signiert sind; der Keystore wird am Ende gelöscht.
+   und führt die Unit-Tests noch einmal aus (Audit F-05). Gradle baut die Bundles ohne Passwörter, `release_check.py`
+   prüft den Release-Build; erst danach signiert ein eigener Schritt sie mit `jarsigner` (nur dieser Schritt sieht die
+   Passwörter, Audit 5314d25 D-06), und der Lauf prüft, dass beide Bundles mit dem Upload-Schlüssel signiert sind. Der
+   Keystore wird am Ende gelöscht.
 5. **Herunterladen:** im Lauf unter Artifacts `phasewake-store-<Nummer>` (7 Tage aufbewahrt), darin
    `PhaseWake-Handy-<Nummer>.aab` und `PhaseWake-Uhr-<Nummer>.aab`.
 6. **Hochladen in der Play Console:** App anlegen, Play App Signing eingeschaltet lassen (Standard) und beim ersten
@@ -195,4 +213,4 @@ Phase Wake enthält kein Absturz-SDK und hat keine Internet-Berechtigung (Audit 
   «Hangs»), für iPhone und Apple Watch. Nur von Nutzern, die «Mit App-Entwicklern teilen» eingeschaltet haben; lesbar
   mit den dSYM-Dateien, die beim Hochladen des Archivs mitgehen.
 - **Diagnose-Protokoll:** Bei Meldungen, die kein Absturz sind (z. B. «hat nicht geweckt»), Nutzer bitten, das lokale
-  Protokoll freizuschalten und zu teilen (in den Einstellungen 7× auf die Versionszeile tippen, dann «Diagnose», siehe `docs/TESTEN.md`); es enthält keine Namen und keine einzelnen Messwerte.
+  Protokoll freizuschalten und zu teilen (in den Einstellungen 7× auf die Versionszeile tippen, dann «Diagnose», siehe `docs/TESTEN.md`); es enthält Zeiten und zusammengefasste Messwerte (z. B. Bewegung, Einschlafzeit), aber keine Namen, und Nutzer teilen es nur, wenn sie wollen.

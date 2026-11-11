@@ -18,6 +18,8 @@ jobs:
   bundle:
     name: App Bundles (Handy, Uhr)
     runs-on: ubuntu-latest
+    # Secrets des Upload-Schlüssels liegen in der GitHub-Umgebung «store» (nur main, docs/PLAY.md, Audit 5314d25 D-06).
+    environment: store
     defaults:
       run:
         working-directory: android
@@ -81,21 +83,39 @@ jobs:
           python3 ../.github/scripts/line_limit.py --ci
           python3 ../.github/scripts/no_build_numbers.py --ci
           python3 ../.github/scripts/version_check.py
-      - name: App Bundles bauen
+      - name: App Bundles bauen (unsigniert)
         shell: bash
         env:
           # Build-Nummer = Laufnummer dieses Workflows: steigt mit jedem Store-Build (Uhr: 1 000 000 dazu).
           PHASEWAKE_BUILD: ${{ github.run_number }}
-          PHASEWAKE_UPLOAD_KEYSTORE: ${{ runner.temp }}/upload.jks
-          PHASEWAKE_UPLOAD_STORE_PASSWORD: ${{ secrets.PLAY_UPLOAD_STORE_PASSWORD }}
-          PHASEWAKE_UPLOAD_KEY_ALIAS: ${{ secrets.PLAY_UPLOAD_KEY_ALIAS }}
-          PHASEWAKE_UPLOAD_KEY_PASSWORD: ${{ secrets.PLAY_UPLOAD_KEY_PASSWORD }}
         run: |
           set -o pipefail
-          # Wie die CI: Release-Manifeste für release_check.py, dazu die Bundles.
+          # Wie die CI: Release-Manifeste für release_check.py, dazu die Bundles. Ohne Passwörter: Gradle und alle
+          # Bibliotheken des Builds sehen die Secrets nicht (Audit 5314d25 D-06); signiert wird im nächsten Schritt.
           ./gradlew --stacktrace :app:assembleRelease :wear:assembleRelease :app:bundleRelease :wear:bundleRelease 2>&1 | tee -a build.log
       - name: Store-Build prüfen
         run: python3 ../.github/scripts/release_check.py
+      - name: Bundles signieren
+        shell: bash
+        env:
+          STORE_PASSWORD: ${{ secrets.PLAY_UPLOAD_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.PLAY_UPLOAD_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.PLAY_UPLOAD_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          # Nur hier die Passwörter: jarsigner (JDK) signiert die Bundles wie Android Gradle (JAR-Signatur, SHA-256).
+          info=$(keytool -list -v -keystore "$RUNNER_TEMP/upload.jks" -storepass:env STORE_PASSWORD -alias "$KEY_ALIAS")
+          case "$info" in
+            *"RSA key"*) sigalg=SHA256withRSA ;;
+            *"-bit EC"*) sigalg=SHA256withECDSA ;;
+            *) echo "::error title=Signieren::Schlüsselart des Upload-Schlüssels nicht erkannt (erwartet RSA)"; exit 1 ;;
+          esac
+          for module in app wear; do
+            aab="$module/build/outputs/bundle/release/$module-release.aab"
+            [ -f "$aab" ] || { echo "::error title=Signieren::$aab fehlt"; exit 1; }
+            jarsigner -keystore "$RUNNER_TEMP/upload.jks" -storepass:env STORE_PASSWORD -keypass:env KEY_PASSWORD \
+              -digestalg SHA-256 -sigalg "$sigalg" "$aab" "$KEY_ALIAS" >/dev/null
+          done
       - name: Signatur der Bundles prüfen
         shell: bash
         env:

@@ -60,7 +60,7 @@ private val unitLabels = mapOf(
 /** Datum des Morgens zu einem Nachtdatum mit [skeleton] (Sprache des Geräts). */
 private fun morningAs(date: LocalDate, skeleton: String): String {
     val locale = Locale.getDefault()
-    return DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, skeleton), locale).format(date.plusDays(1))
+    return Format.digits(DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, skeleton), locale), locale).format(date.plusDays(1))
 }
 
 /** Beschriftung unter der Säule: Wochentag, Wochenbeginn bzw. Monat (je des Morgens). */

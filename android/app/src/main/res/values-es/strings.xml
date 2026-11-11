@@ -491,7 +491,7 @@
     </plurals>
     <string name="diag_unlocked">El diagnóstico ya aparece en los ajustes.</string>
     <string name="diag_show">Mostrar diagnóstico</string>
-    <string name="diag_hint">Solo en este dispositivo, no se envía nada. Contiene horas de alarmas y eventos, sin datos de salud.</string>
+    <string name="diag_hint">Registro técnico de los últimos 7 días, solo en tus dispositivos. Contiene horas y valores medidos (p. ej., movimiento, hora en que te dormiste): compártelo solo si quieres.</string>
     <string name="diag_events">Eventos</string>
     <string name="diag_empty">Aún no hay eventos.</string>
     <string name="diag_status">Estado</string>
@@ -605,4 +605,5 @@
     <string name="learn_point_battery">Esto gasta algo de batería: carga el reloj antes de dormir.</string>
     <string name="learn_point_private">Los datos se quedan en tus dispositivos. Puedes desactivar la fase de aprendizaje en los ajustes cuando quieras.</string>
     <string name="learn_switch_hint">Tu reloj mide movimiento y pulso por la noche para adaptar la alarma. Desactivado: sin registro automático, los valores aprendidos se mantienen.</string>
+    <string name="watch_open_app_hint">Abre Phase Wake en el reloj para que reciba la orden.</string>
 </resources>

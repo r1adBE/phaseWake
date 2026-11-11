@@ -74,8 +74,12 @@ class OnsetMonitor(
     private var reported = false
     private var ended = false
 
-    /** Grundrauschen der bisher gemessenen Epochen ([NoiseFloor.floor]); `null`, solange es zu wenige sind. */
-    private var floor: Double? = null
+    /**
+     * Grundrauschen der bisher gemessenen Epochen ([NoiseFloor.floor]); `null`, solange es zu wenige sind. Nach dem Ende
+     * gilt es als Vorwissen im Weckfenster derselben Nacht ([OnsetFloorStore], Vollaudit K-1).
+     */
+    var floor: Double? = null
+        private set
 
     /** Epochen der laufenden bzw. letzten Stichprobe: [sampleFrom] einschliesslich bis [sampleUntil] ausschliesslich. */
     private var sampleFrom = 0L

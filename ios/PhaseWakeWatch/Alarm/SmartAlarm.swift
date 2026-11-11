@@ -24,7 +24,10 @@ import WatchKit
 /// - Lehnt das System die Sitzung ab oder bricht sie ab, weckt eine lokale Mitteilung kurz nach
 ///   der Zielzeit (Rückfall). Sie bleibt beim Klingeln stehen und wird erst beim Beenden entfernt.
 /// - Endet die Sitzung während des Klingelns oder Schlummerns (Ablauf, System), weckt sofort eine
-///   Mitteilung, und die Nacht wird trotzdem abgeschlossen; ebenso spätestens 1 h nach der Zielzeit.
+///   Mitteilung, und die Nacht wird trotzdem abgeschlossen; ebenso spätestens 1 h nach der Zielzeit. Endet sie beim
+///   Klingeln regulär (Stopp im Weckhinweis des Systems), gilt das als Stopp (`SessionRules.ending`).
+/// - Bricht die Sitzung beim Messen vor der Zielzeit ab, weckt der feste Rückfall kurz nach der Zielzeit
+///   (`measuringInterrupted`); die Nächte danach haben eigene Rückfälle (`UpcomingFallbacks`).
 @MainActor
 @Observable
 final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
@@ -73,6 +76,9 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     var phase: Phase = .idle
 
     @ObservationIgnored var session: WKExtendedRuntimeSession?
+    /// Ersetzte Sitzungen, die die App bei geschlossener App nicht beenden durfte (`start(at:)`): beim nächsten
+    /// Aktivwerden beenden, beim Start gleich (`SessionRules.retire`).
+    @ObservationIgnored var staleSessions: [WKExtendedRuntimeSession] = []
     /// Plan der laufenden Sitzung (nach Schlummern: der Schlummer-Termin).
     @ObservationIgnored var plan: WakePlan?
     /// Ursprünglicher Plan der Nacht; wird im Verlauf gespeichert.
@@ -111,6 +117,10 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     @ObservationIgnored private var keptFallback: Date?
     /// Zielzeit der Nacht, die zuletzt über einen Zeitzonenwechsel behalten wurde (`holdFallback`, Diagnose einmal).
     @ObservationIgnored var keptZoneNight: Date?
+    /// Zählt die Aufrufe von `scheduleUpcomingFallbacks`; ein überholter stellt nichts.
+    @ObservationIgnored var upcomingRun = 0
+    /// Zuletzt protokollierte Rückfälle der nächsten Nächte (erste Zeit je Nacht).
+    @ObservationIgnored var loggedUpcoming: [Date] = []
 
     @ObservationIgnored let motion = CMMotionManager()
     /// Alle Zugriffe auf den `EpochAssembler` laufen über diese eine serielle Warteschlange.
@@ -297,14 +307,18 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     /// sonst beendet das System die Sitzung.
     func adopt(_ extendedSession: WKExtendedRuntimeSession) {
         extendedSession.delegate = self
-        if let session, session !== extendedSession { session.invalidate() }
+        // Eine gemerkte, nicht mehr gültige Sitzung wird beim Start beendet (`extendedRuntimeSessionDidStart`).
+        if isStale(extendedSession) { return }
+        if let session, session !== extendedSession { retire(session) }
         session = extendedSession
     }
 
+    /// Beendet die Sitzung dieser Nacht. Darf die App sie gerade nicht beenden (`SessionRules.retire`), bleibt sie
+    /// gemerkt (`staleSessions`) und endet beim nächsten Aktivwerden oder gleich bei ihrem Start (Audit AP-3).
     func invalidateSession() {
-        session?.delegate = nil
-        session?.invalidate()
+        guard let old = session else { return }
         session = nil
+        retire(old)
     }
 
     /// Meldet dem iPhone, für welche Zielzeit die Uhr scharf ist (Nacht-Check).
@@ -329,11 +343,7 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     /// ans iPhone (Nacht-Check), höchstens bei einer Änderung oder alle 6 h.
     func scheduleFallback(at date: Date, id: String = SmartAlarm.fallbackId, fixed: Bool = false) {
         Task { await WatchConnectivityBridge.shared.publishNotificationStateIfNeeded() }
-        let content = UNMutableNotificationContent()
-        content.title = L("ring_greeting")
-        content.body = L("ring_reason_deadline")
-        content.sound = .default
-        content.interruptionLevel = .timeSensitive
+        let content = Self.fallbackContent()
         let chained = id == Self.fallbackId || id == Self.interruptedId
         let ids = chained ? NotificationChain.ids(id) : [id]
         let dates = chained ? NotificationChain.dates(date) : [date]

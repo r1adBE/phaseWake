@@ -262,6 +262,24 @@ class GoodNightOnsetTest {
         assertEquals(now, OnsetRules.bedAt(now, automatic = true, latest = now.plus(Duration.ofHours(7)), sleepMinutes = 480))
     }
 
+    @Test
+    fun automaticOnsetNeverBeforeBedtime() {
+        // Vollaudit K-4: Weckzeit 07:30, Schlafziel 8 Std. → Bettzeit 23:30, Messung ab 22:30. Still ab 22:30 (Sofa):
+        // eingeschlafen frühestens 23:30, nicht 22:30 (sonst Zielzeit 06:30 und keine Untergrenze kurzer Nächte).
+        val start = Instant.parse("2026-11-10T22:30:00Z")
+        val latest = Instant.parse("2026-11-11T07:30:00Z")
+        val bed = OnsetRules.bedAt(start, automatic = true, latest = latest, sleepMinutes = 480)
+        assertEquals(Instant.parse("2026-11-10T23:30:00Z"), bed)
+        assertEquals(bed, OnsetRules.onsetAt(start, bed))
+        assertEquals(bed, OnsetRules.onsetAt(Instant.parse("2026-11-10T22:45:00Z"), bed))
+        // Nach der Bettzeit eingeschlafen: unverändert.
+        val later = Instant.parse("2026-11-10T23:50:00Z")
+        assertEquals(later, OnsetRules.onsetAt(later, bed))
+        // «Gute Nacht»: Beginn der Einschlafdauer ist das Drücken, die erkannte Zeit gilt unverändert.
+        val tap = OnsetRules.bedAt(start, automatic = false, latest = latest, sleepMinutes = 480)
+        assertEquals(Instant.parse("2026-11-10T22:40:00Z"), OnsetRules.onsetAt(Instant.parse("2026-11-10T22:40:00Z"), tap))
+    }
+
     /** Aufträge der gestellten Alarme. */
     @Suppress("DEPRECATION") // ScheduledAlarm.operation: in Robolectric 4.14 ohne Getter.
     private fun alarmIntents() = shadowOf(context.getSystemService(AlarmManager::class.java)).scheduledAlarms

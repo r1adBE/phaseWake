@@ -477,7 +477,7 @@
     </plurals>
     <string name="diag_unlocked">जांच-जानकारी अब सेटिंग में है।</string>
     <string name="diag_show">जांच-जानकारी दिखाएं</string>
-    <string name="diag_hint">सिर्फ़ इस डिवाइस पर, कुछ भी भेजा नहीं जाता। अलार्म और घटनाओं के समय होते हैं, स्वास्थ्य डेटा नहीं।</string>
+    <string name="diag_hint">पिछले 7 दिनों का तकनीकी लॉग, सिर्फ़ तुम्हारे डिवाइस पर। इसमें समय और मापे गए मान हैं (जैसे हलचल, नींद आने का समय) – चाहो तभी शेयर करो।</string>
     <string name="diag_events">घटनाएं</string>
     <string name="diag_empty">अभी कोई घटना नहीं।</string>
     <string name="diag_status">स्थिति</string>
@@ -591,4 +591,5 @@
     <string name="learn_point_battery">इसमें थोड़ी बैटरी लगती है – सोने से पहले घड़ी चार्ज करो।</string>
     <string name="learn_point_private">डेटा तुम्हारे डिवाइस पर ही रहता है। सीखने का चरण तुम सेटिंग्स में कभी भी बंद कर सकते हो।</string>
     <string name="learn_switch_hint">अलार्म ढालने के लिए तुम्हारी घड़ी रात में हलचल और पल्स मापती है। बंद: कोई अपने-आप रिकॉर्डिंग नहीं, सीखे गए मान बने रहते हैं।</string>
+    <string name="watch_open_app_hint">घड़ी पर Phase Wake खोलो, ताकि उसे निर्देश मिल सके।</string>
 </resources>

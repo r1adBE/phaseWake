@@ -1,0 +1,41 @@
+# Aufzeichnung Galaxy Watch 10.11.2026 (OFFEN 11g, Plateau 07:44-07:57), ohne Namen: Epoche 0-13 ruhig (0.016-0.021),
+# dann eine neue Armlage, Epoche 14-32 konstant 0.066-0.077 über der Leicht-Schwelle des Grundrauschens. Ausgelassen:
+# die Bewegung dazwischen, die AWAKE weckte. Der Puls steigt mit (56 -> 60-61): Basispuls
+# Median der ersten 6 Epochen 55.95 -> nötig 58.75 (Vollaudit K-3; früher Mittel der Aufwärmphase 54.7 -> Epoche 17).
+# Hält fest, wie die Regel ein Plateau heute bewertet: Epoche 18 weckt LIGHT_SLEEP. Ob ein Plateau ohne Auf und Ab
+# zählen soll, ist offen (OFFEN 11g); ändert sich die Regel, ändert sich diese Erwartung bewusst mit.
+@expect 18 LIGHT_SLEEP
+motion,hr
+0.016274,53.8
+0.018303,55.6
+0.019239,55.5
+0.021004,56.3
+0.018496,58.2
+0.018348,56.4
+0.019606,56.7
+0.019009,56.5
+0.018899,57.6
+0.018120,59.0
+0.018482,56.9
+0.018388,56.1
+0.018540,57.2
+0.019351,58.4
+0.070259,55.4
+0.074063,57.2
+0.071760,57.6
+0.076608,59.5
+0.072020,59.5
+0.075207,58.0
+0.072281,59.5
+0.071582,61.1
+0.072301,59.8
+0.075089,61.1
+0.071564,59.3
+0.071558,60.6
+0.066875,59.6
+0.065558,60.2
+0.072732,60.5
+0.072197,60.3
+0.071255,59.9
+0.072239,60.7
+0.075024,61.7

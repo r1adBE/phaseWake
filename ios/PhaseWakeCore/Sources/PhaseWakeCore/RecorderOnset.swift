@@ -93,6 +93,15 @@ public enum RecorderOnset {
         return maxEnd <= latestGiveUp ? "give up (max duration)" : "give up"
     }
 
+    /// Einschlafzeit aus der erkannten ruhigen Strecke ab `found`: nie vor dem Beginn der Einschlafdauer `bedAt`
+    /// (``bedAt(since:automatic:latest:sleepMinutes:)``, automatisch die Bettzeit). Die automatische Messung beginnt 60 Min
+    /// vor der Bettzeit; wer dann schon still liegt (Sofa, Lesen), ist nicht vor der Bettzeit eingeschlafen – sonst rückte
+    /// die Zielzeit vor und die Untergrenze kurzer Nächte fiele zu früh weg. Nach «Gute Nacht» ist `bedAt` der Beginn der
+    /// Messung; dann gilt `found` unverändert. Identisch zu `OnsetRules.onsetAt` (Kotlin).
+    public static func onsetAt(found: Date, bedAt: Date) -> Date {
+        max(found, bedAt)
+    }
+
     /// Beginn der Einschlafdauer (Lernphase, Schlafwert): nach «Gute Nacht» (`automatic` falsch) `since`, sonst die
     /// Bettzeit (`latest` minus `sleepMinutes`), frühestens `since` (wie `OnsetRules.bedAt`).
     public static func bedAt(since: Date, automatic: Bool, latest: Date, sleepMinutes: Int) -> Date {

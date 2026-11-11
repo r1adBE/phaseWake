@@ -193,4 +193,20 @@ final class AppleOnsetTests: XCTestCase {
         XCTAssertEqual(first.until, minutes(1))
         XCTAssertFalse(running.finished)
     }
+
+    func testAutomaticOnsetNeverBeforeBedtime() {
+        // Vollaudit K-4 (wie `OnsetRules.onsetAt`, Kotlin): Weckzeit 07:30, Schlaf 8 Std. → Bettzeit 23:30, Messung ab
+        // 22:30. Still ab 22:30: eingeschlafen frühestens 23:30.
+        let start = since.addingTimeInterval(-30 * 60)
+        let latest = since.addingTimeInterval(8.5 * 3600)
+        let bed = RecorderOnset.bedAt(since: start, automatic: true, latest: latest, sleepMinutes: 480)
+        XCTAssertEqual(bed, since.addingTimeInterval(30 * 60))
+        XCTAssertEqual(RecorderOnset.onsetAt(found: start, bedAt: bed), bed)
+        XCTAssertEqual(RecorderOnset.onsetAt(found: start.addingTimeInterval(15 * 60), bedAt: bed), bed)
+        let later = since.addingTimeInterval(50 * 60)
+        XCTAssertEqual(RecorderOnset.onsetAt(found: later, bedAt: bed), later)
+        // «Gute Nacht»: Beginn der Einschlafdauer ist das Drücken, die erkannte Zeit gilt unverändert.
+        let tap = RecorderOnset.bedAt(since: start, automatic: false, latest: latest, sleepMinutes: 480)
+        XCTAssertEqual(RecorderOnset.onsetAt(found: start.addingTimeInterval(10 * 60), bedAt: tap), start.addingTimeInterval(10 * 60))
+    }
 }

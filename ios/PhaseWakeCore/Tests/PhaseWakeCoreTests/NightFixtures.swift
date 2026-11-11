@@ -9,6 +9,22 @@ struct NightFixture {
     let epochs: [Epoch]
     /// Startwerte, mit den gelernten Werten aus `@floor` und `@resting` (Lernphase), falls angegeben.
     let config: DetectorConfig
+    /// `@rearm-until`: Jeder Moment vor dieser Epoche wird übergangen (``WakeDetector/rearm()``, kurze Nacht); `nil` = keiner.
+    var rearmUntil: Int? = nil
+
+    /// Erste weckende Epoche und Grund mit `config` und `rearmUntil`; `nil`, wenn keine weckt. Wie `firstWake` (Kotlin).
+    func firstWake() -> (index: Int, reason: WakeReason)? {
+        let detector = WakeDetector(config: config)
+        for (index, epoch) in epochs.enumerated() {
+            guard case .wake(let reason) = detector.onEpoch(epoch) else { continue }
+            if let rearmUntil, index < rearmUntil {
+                detector.rearm()
+                continue
+            }
+            return (index, reason)
+        }
+        return nil
+    }
 }
 
 /// Liest die gemeinsamen Testnächte (Format siehe `docs/PHASENERKENNUNG.md`, Abschnitt 5).
@@ -32,6 +48,21 @@ enum NightFixtures {
             .map(load)
     }
 
+    /// Dateien laut `MANIFEST` (eine je Zeile, `#` = Kommentar); Tests prüfen, dass genau diese da sind.
+    static func manifest() throws -> [String] {
+        try String(contentsOf: directory.appendingPathComponent("MANIFEST"), encoding: .utf8)
+            .components(separatedBy: .newlines)
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+            .filter { !$0.isEmpty && !$0.hasPrefix("#") }
+    }
+
+    /// Alle Dateien des Ordners ausser `MANIFEST`, `README.md` und versteckten, sortiert.
+    static func files() throws -> [String] {
+        try FileManager.default.contentsOfDirectory(atPath: directory.path)
+            .filter { $0 != "MANIFEST" && $0 != "README.md" && !$0.hasPrefix(".") }
+            .sorted()
+    }
+
     static func load(_ file: URL) throws -> NightFixture {
         let name = file.deletingPathExtension().lastPathComponent
         var expectedIndex: Int?
@@ -40,6 +71,7 @@ enum NightFixtures {
         var headerSeen = false
         var personalFloor: Double?
         var restingHeartRate: Double?
+        var rearmUntil: Int?
         var epochs: [Epoch] = []
 
         let lines = try String(contentsOf: file, encoding: .utf8).components(separatedBy: .newlines)
@@ -57,6 +89,14 @@ enum NightFixtures {
                     expectedReason = reason
                 }
                 expectSeen = true
+                continue
+            }
+            if line.hasPrefix("@rearm-until") {
+                let parts = line.split(whereSeparator: \.isWhitespace).map(String.init)
+                guard parts.count == 2, let value = Int(parts[1]) else {
+                    throw FormatError(description: "\(position): ungültiges @rearm-until")
+                }
+                rearmUntil = value
                 continue
             }
             if line.hasPrefix("@floor") || line.hasPrefix("@resting") {
@@ -79,7 +119,8 @@ enum NightFixtures {
         guard expectSeen else { throw FormatError(description: "\(file.lastPathComponent): @expect fehlt") }
         let config = try DetectorConfig(personalFloor: personalFloor, restingHeartRate: restingHeartRate)
         return NightFixture(
-            name: name, expectedIndex: expectedIndex, expectedReason: expectedReason, epochs: epochs, config: config
+            name: name, expectedIndex: expectedIndex, expectedReason: expectedReason, epochs: epochs, config: config,
+            rearmUntil: rearmUntil
         )
     }
 

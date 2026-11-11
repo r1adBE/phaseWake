@@ -33,10 +33,15 @@ enum WatchOnset {
         case failed
     }
 
+    /// Ergebnis und Grundrauschen der nachgerechneten Messung (``NoiseFloor/floor(_:personal:)`` über ihre Epochen, `nil`
+    /// ohne Rechnung). Das Grundrauschen gilt im Weckfenster derselben Nacht als Vorwissen
+    /// (``WakeDetector/useOnsetFloor(_:)``, Vollaudit K-1), wie auf der Galaxy Watch (`OnsetFloorStore`).
+    typealias Outcome = (result: Result, floor: Double?)
+
     /// Rechnet die Einschlafzeit für die Nacht `plan` (Wecker `spec`, Schwellen `config`) nach.
     @MainActor
-    static func compute(plan: WakePlan, spec: AlarmSpec?, config: DetectorConfig, goodNight: GoodNightState?, sleepGoal: Int) async -> Result {
-        guard let spec, Transient.kindOf(plan.alarmId) == nil else { return .notMeasured }
+    static func compute(plan: WakePlan, spec: AlarmSpec?, config: DetectorConfig, goodNight: GoodNightState?, sleepGoal: Int) async -> Outcome {
+        guard let spec, Transient.kindOf(plan.alarmId) == nil else { return (.notMeasured, nil) }
         let manual = goodNight.flatMap { $0.alarmId == plan.alarmId && $0.target == plan.target ? $0 : nil }
         let label = manual != nil ? "onset" : "auto onset"
         let latest = manual?.latest ?? plan.target
@@ -47,22 +52,22 @@ enum WatchOnset {
         // Ohne «Gute Nacht» nur mit «Einschlafen automatisch erkennen» (wie Android).
         guard manual != nil || LearnRecorder.shared.autoOnset else {
             DiagStore.shared.log(.measureStart, "\(label) not computed: off")
-            return .notMeasured
+            return (.notMeasured, nil)
         }
         guard CMSensorRecorder.authorizationStatus() == .authorized else {
             DiagStore.shared.log(.measureStart, "\(label) not computed: motion not allowed")
-            return .notMeasured
+            return (.notMeasured, nil)
         }
         guard let span = LearnRecorder.shared.recorderSpan, span.until > begin, span.from < now else {
             DiagStore.shared.log(.measureStart, "\(label) not computed: no recorder")
-            return .notMeasured
+            return (.notMeasured, nil)
         }
         let since = max(begin, span.from)
         let stop = [now.addingTimeInterval(-LearnRecorder.dataDelay), span.until,
                     since.addingTimeInterval(RecorderOnset.maxExtended), latest.addingTimeInterval(-RecorderOnset.giveUpLead)].min() ?? now
         guard stop > since else {
             DiagStore.shared.log(.measureStart, "\(label) not computed: too late")
-            return .failed
+            return (.failed, nil)
         }
         let deadline = now.addingTimeInterval(budget)
         let motions = await Task.detached(priority: .userInitiated) {
@@ -75,20 +80,22 @@ enum WatchOnset {
         let stat = "\(label) recorder from \(Format.time(since)) epochs=\(motions.count) empty=\(motions.filter { $0 == nil }.count) "
             + "floor=\(NoiseFloor.format(floor)) thr=\(NoiseFloor.format(NoiseFloor.light(threshold: config.lightThreshold, floor: floor)))"
         switch result {
-        case .asleep(let at, _):
-            DiagStore.shared.log(.phase, "\(stat), asleep \(Format.time(at))")
+        case .asleep(let found, _):
+            // Automatisch nie vor der Bettzeit eingeschlafen (Vollaudit K-4); nach «Gute Nacht» unverändert.
+            let bedAt = RecorderOnset.bedAt(since: begin, automatic: manual == nil, latest: latest, sleepMinutes: sleepMinutes)
+            let at = RecorderOnset.onsetAt(found: found, bedAt: bedAt)
+            DiagStore.shared.log(.phase, "\(stat), asleep \(Format.time(at))" + (at != found ? " (still since \(Format.time(found)))" : ""))
             if let manual {
                 let diff = Int((at.timeIntervalSince(manual.asleep) / 60).rounded())
                 DiagStore.shared.log(.phase, "onset estimate \(Format.time(manual.asleep)), recorder \(Format.time(at)) (\(diff >= 0 ? "+" : "")\(diff) min)")
             }
-            let bedAt = RecorderOnset.bedAt(since: begin, automatic: manual == nil, latest: latest, sleepMinutes: sleepMinutes)
             LearnRecorder.shared.noteOnset(bedAt: bedAt, asleepAt: at)
-            return .asleep(at)
+            return (.asleep(at), floor)
         case .gaveUp(_, let reason):
             DiagStore.shared.log(.measureEnd, "\(stat), \(reason)")
         case .open:
             DiagStore.shared.log(.measureEnd, "\(stat), window began")
         }
-        return .failed
+        return (.failed, floor)
     }
 }

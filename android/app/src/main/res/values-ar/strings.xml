@@ -7,12 +7,12 @@
     <string name="ring_stop">إيقاف</string>
     <string name="ring_open">فتح</string>
     <plurals name="ring_snooze">
-        <item quantity="zero">غفوة %1$d د · المتبقي: %2$d</item>
-        <item quantity="one">غفوة %1$d د · المتبقي: %2$d</item>
-        <item quantity="two">غفوة %1$d د · المتبقي: %2$d</item>
-        <item quantity="few">غفوة %1$d د · المتبقي: %2$d</item>
-        <item quantity="many">غفوة %1$d د · المتبقي: %2$d</item>
-        <item quantity="other">غفوة %1$d د · المتبقي: %2$d</item>
+        <item quantity="zero">غفوة %1$d د · المتبقي %2$d</item>
+        <item quantity="one">غفوة %1$d د · المتبقي %2$d</item>
+        <item quantity="two">غفوة %1$d د · المتبقي %2$d</item>
+        <item quantity="few">غفوة %1$d د · المتبقي %2$d</item>
+        <item quantity="many">غفوة %1$d د · المتبقي %2$d</item>
+        <item quantity="other">غفوة %1$d د · المتبقي %2$d</item>
     </plurals>
     <string name="ring_snoozed">غفوة لمدة %1$d د</string>
 
@@ -533,7 +533,7 @@
     </plurals>
     <string name="diag_unlocked">أصبح التشخيص في الإعدادات.</string>
     <string name="diag_show">إظهار التشخيص</string>
-    <string name="diag_hint">على هذا الجهاز فقط، لا يُرسل شيء. يحتوي على أوقات المنبّهات والأحداث، دون بيانات صحية.</string>
+    <string name="diag_hint">سجل تقني لآخر 7 أيام، على أجهزتك فقط. يحتوي على أوقات وقيم قياس (مثل الحركة ووقت النوم) – شاركه فقط إذا أردت.</string>
     <string name="diag_events">الأحداث</string>
     <string name="diag_empty">لا أحداث بعد.</string>
     <string name="diag_status">الحالة</string>
@@ -647,4 +647,5 @@
     <string name="learn_point_battery">يستهلك ذلك بعض البطارية – اشحن الساعة قبل النوم.</string>
     <string name="learn_point_private">تبقى البيانات على أجهزتك. يمكنك إيقاف مرحلة التعلّم في الإعدادات في أي وقت.</string>
     <string name="learn_switch_hint">تقيس ساعتك الحركة والنبض ليلًا لضبط المنبّه. متوقفة: لا تسجيل تلقائي، وتبقى القيم المتعلَّمة.</string>
+    <string name="watch_open_app_hint">افتح Phase Wake على ساعتك حتى تستلم الأمر.</string>
 </resources>

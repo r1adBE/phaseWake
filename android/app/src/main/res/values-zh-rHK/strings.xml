@@ -466,7 +466,7 @@
     </plurals>
     <string name="diag_unlocked">診斷現已在設定中顯示。</string>
     <string name="diag_show">顯示診斷</string>
-    <string name="diag_hint">只在這部裝置上，不會傳送任何內容。包含鬧鐘和事件的時間，不含健康數據。</string>
+    <string name="diag_hint">最近 7 日嘅技術記錄，只存喺你部裝置度。入面有時間同量度數值（例如動作、入睡時間）——你想先好分享。</string>
     <string name="diag_events">事件</string>
     <string name="diag_empty">還沒有事件。</string>
     <string name="diag_status">狀態</string>
@@ -580,4 +580,5 @@
     <string name="learn_point_battery">咁樣會用一啲電量——瞓覺前記得幫手錶充電。</string>
     <string name="learn_point_private">資料留喺你嘅裝置上。你隨時可以喺設定度關閉學習階段。</string>
     <string name="learn_switch_hint">你嘅手錶會喺夜間測量動作同脈搏嚟調整鬧鐘。 關閉：唔再自動記錄，已學到嘅數值會保留。</string>
+    <string name="watch_open_app_hint">請喺手錶開啟 Phase Wake，等佢收到指令。</string>
 </resources>

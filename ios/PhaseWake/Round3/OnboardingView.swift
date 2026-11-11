@@ -9,6 +9,8 @@ struct OnboardingView: View {
     private static let steps = 6
     /// Schritt der Lernphase: statt «Weiter» die Knöpfe «Später» und «Lernphase starten».
     private static let learningStep = 4
+    /// Schritt «Erster Wecker».
+    static let alarmStep = 3
 
     @Environment(PhoneModel.self) private var model
     @Environment(\.colorScheme) private var scheme
@@ -57,7 +59,7 @@ struct OnboardingView: View {
         case 2:
             title("onb_rights_title")
             rights
-        case 3:
+        case Self.alarmStep:
             title("onb_alarm_title")
             firstAlarm
         case Self.learningStep:
@@ -159,7 +161,7 @@ struct OnboardingView: View {
                 if askLearning {
                     Button(L("learn_consent_later")) { PhoneLearning.shared.setConsent(false); step += 1 }
                 } else if step < Self.steps {
-                    Button(L("onb_next")) { step += 1 }.buttonStyle(.borderedProminent)
+                    Button(L("onb_next")) { next() }.buttonStyle(.borderedProminent)
                 } else {
                     Button(L("onb_finish")) { done = true }.buttonStyle(.borderedProminent)
                 }
@@ -167,6 +169,19 @@ struct OnboardingView: View {
         }
         .padding(16)
         .background(.bar)
+    }
+
+    /// «Weiter»: Auf dem Schritt «Erster Wecker» legt es den gezeigten Wecker an, falls noch keiner angelegt ist (wie
+    /// «Wecker anlegen», Audit UI-5) – wer nur «Weiter» tippt, hätte sonst keinen Wecker.
+    private func next() {
+        if Self.createsOnNext(step: step, created: created != nil, canAdd: model.canAddAlarm) { createAlarm() }
+        step += 1
+    }
+
+    /// Ob «Weiter» auf `step` den gezeigten Wecker anlegt: nur auf dem Schritt «Erster Wecker», wenn noch keiner
+    /// angelegt ist und noch einer Platz hat.
+    static func createsOnNext(step: Int, created: Bool, canAdd: Bool) -> Bool {
+        step == alarmStep && !created && canAdd
     }
 
     private func createAlarm() {

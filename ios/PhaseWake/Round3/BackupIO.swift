@@ -119,7 +119,7 @@ enum BackupIO {
     @discardableResult
     static func applySettings(_ payload: BackupPayload, to model: PhoneModel) -> Bool {
         let alarms = (try? Codec.decodeAlarms(payload.alarms)) ?? []
-        model.storage.mutate { _ in Array(alarms.prefix(PhoneModel.maxAlarms)) }
+        model.storage.replaceAll(Array(alarms.prefix(PhoneModel.maxAlarms)))
         // Abendroutine als Dateien in `PrivateFiles` (nicht in der iCloud-Sicherung); ohne Punkte die Vorschläge.
         model.privateNotes.setRoutineItemsText(payload.routineItems)
         model.privateNotes.setRoutineTicks(Routine.decodeTicks(payload.routineTicks))

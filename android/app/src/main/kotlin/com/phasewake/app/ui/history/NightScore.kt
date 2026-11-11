@@ -241,7 +241,7 @@ private fun ScoreArc(result: SleepScoreResult, modifier: Modifier = Modifier) {
             drawCircle(brand.dot, dot, end)
         }
         Column(Modifier.align(Alignment.Center).padding(top = 8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(result.score.toString(), style = MaterialTheme.typography.displayMedium.copy(fontWeight = FontWeight.ExtraBold))
+            Text(Format.number(result.score), style = MaterialTheme.typography.displayMedium.copy(fontWeight = FontWeight.ExtraBold))
             Text(bandName(context, result.band), style = MaterialTheme.typography.titleMedium, color = scheme.primary)
         }
     }
@@ -351,7 +351,7 @@ internal fun ScoreLine(result: SleepScoreResult, modifier: Modifier = Modifier) 
                     drawArc(brand.chartActive, -90f, sweep, false, Offset(inset, inset), arc, style = Stroke(stroke, cap = StrokeCap.Round))
                 }
             }
-            Text(result.score.toString(), style = MaterialTheme.typography.labelLarge)
+            Text(Format.number(result.score), style = MaterialTheme.typography.labelLarge)
         }
         Column(Modifier.padding(start = 10.dp)) {
             Text(stringResource(R.string.score_title), style = MaterialTheme.typography.labelMedium, color = scheme.onSurfaceVariant)

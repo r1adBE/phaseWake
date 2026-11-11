@@ -30,6 +30,7 @@ import com.phasewake.app.core.Sunrise
 import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.components.SunriseBackground
 import com.phasewake.app.ui.components.SunriseSky
+import com.phasewake.app.ui.components.rememberSkyInk
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ui.theme.ThemeMode
 import java.time.Duration
@@ -87,18 +88,21 @@ class SunriseActivity : ComponentActivity() {
 
 @Composable
 internal fun SunriseScreen(progress: Float, now: Instant, onOff: () -> Unit) {
-    val colors = SunriseSky.colors(progress)
+    // Jeder Text mit der Schrift, die an seiner Stelle des Himmels lesbar ist (Audit UI-6).
+    val (timeInk, timePlace) = rememberSkyInk(progress, SunriseSky.ink(progress))
+    val (titleInk, titlePlace) = rememberSkyInk(progress, SunriseSky.ink(progress))
+    val (offInk, offPlace) = rememberSkyInk(progress, SunriseSky.ink(progress))
     SunriseBackground(progress, Modifier.fillMaxSize()) {
         Column(
             Modifier.fillMaxSize().safeDrawingPadding().padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
-            Text(Format.time(now), style = MaterialTheme.typography.displayLarge, color = colors.content)
-            Text(stringResource(R.string.sunrise_title), style = MaterialTheme.typography.titleLarge, color = colors.contentMuted)
+            Text(Format.time(now), style = MaterialTheme.typography.displayLarge, color = timeInk.content, modifier = timePlace)
+            Text(stringResource(R.string.sunrise_title), style = MaterialTheme.typography.titleLarge, color = titleInk.muted, modifier = titlePlace)
             Spacer(Modifier.height(48.dp))
-            TextButton(onClick = onOff) {
-                Text(stringResource(R.string.sunrise_off), style = MaterialTheme.typography.titleMedium, color = colors.content)
+            TextButton(onClick = onOff, modifier = offPlace) {
+                Text(stringResource(R.string.sunrise_off), style = MaterialTheme.typography.titleMedium, color = offInk.content)
             }
         }
     }

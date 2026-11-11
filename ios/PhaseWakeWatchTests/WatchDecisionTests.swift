@@ -59,11 +59,13 @@ final class WatchDecisionTests: XCTestCase {
         let plan = WakePlan(alarmId: "a", windowStart: target.addingTimeInterval(-1800), target: target)
         // Wecker inzwischen gelöscht: unbekannt, keine Untergrenze kurzer Nächte.
         let withoutSpec = await WatchOnset.compute(plan: plan, spec: nil, config: .standard, goodNight: nil, sleepGoal: 450)
-        XCTAssertEqual(withoutSpec, .notMeasured)
+        XCTAssertEqual(withoutSpec.result, .notMeasured)
+        XCTAssertNil(withoutSpec.floor)
         // Probewecker und Powernap: nie gemessen.
         let nap = WakePlan(alarmId: Transient.napPrefix + "1", windowStart: plan.windowStart, target: target)
         let spec = try AlarmSpec(id: nap.alarmId, hour: 7, minute: 0)
         let napResult = await WatchOnset.compute(plan: nap, spec: spec, config: .standard, goodNight: nil, sleepGoal: 450)
-        XCTAssertEqual(napResult, .notMeasured)
+        XCTAssertEqual(napResult.result, .notMeasured)
+        XCTAssertNil(napResult.floor)
     }
 }

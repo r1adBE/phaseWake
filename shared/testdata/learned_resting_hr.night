@@ -1,10 +1,15 @@
-# Lernphase (Abschnitt 10): Aufwärmphase ohne Puls, gelernter Ruhepuls 49 ist Basispuls (49 × 1.05 = 51.45).
-# Leichte Bewegung in Epoche 30 und 31 mit Puls 52 -> Epoche 31 weckt (ohne Ruhepuls: kein Wecken, siehe no_baseline_hr).
+# Lernphase (Abschnitt 10): Die ersten 6 Epochen ohne Puls (kein Basispuls des Fensters), gelernter Ruhepuls 49.
+# Ersatz-Basispuls 49 × 1.10 = 53.9, nötig 53.9 × 1.05 = 56.595 (Vollaudit K-2). Leichte Bewegung in Epoche 30 und 31 mit
+# Puls 57 -> Epoche 31 weckt (ohne Ruhepuls: kein Basispuls, kein Wecken).
 @resting 49
 @expect 31 LIGHT_SLEEP
 motion,hr
 0.000,
 0.000,
+0.000,
+0.000,
+0.000,
+0.000,
 0.000,52
 0.000,52
 0.000,52
@@ -29,12 +34,8 @@ motion,hr
 0.000,52
 0.000,52
 0.000,52
-0.000,52
-0.000,52
-0.000,52
-0.000,52
-0.003,52
-0.002,52
+0.003,57
+0.002,57
 0.000,52
 0.000,52
 0.000,52

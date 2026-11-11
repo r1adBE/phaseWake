@@ -1,6 +1,7 @@
 package com.phasewake.app.core
 
 import com.phasewake.app.core.BackupPassword.Problem
+import java.util.Locale
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -69,6 +70,27 @@ class BackupPasswordTest {
         for (p in listOf("Mondlicht-2026", "Mondlicht-ä€-2026", "correct horse", "Velo fährt 7x", "Мой пароль 42")) {
             assertNull(BackupPassword.problem(p), p)
             assertTrue(BackupPassword.ok(p), p)
+        }
+    }
+
+    @Test
+    fun sharedVectors() {
+        // Gemeinsame Fälle mit Swift (shared/testdata/backup-password.vectors), auch mit Türkisch als Gerätesprache.
+        val lines = NightFixtures.directory().resolve("backup-password.vectors").readLines(Charsets.UTF_8)
+            .filter { it.isNotEmpty() && !it.startsWith("#") }
+        assertTrue(lines.any { it.endsWith("\tPASSWORD12") })
+        val before = Locale.getDefault()
+        try {
+            for (locale in listOf(Locale.ROOT, Locale.forLanguageTag("tr-TR"))) {
+                Locale.setDefault(locale)
+                for (line in lines) {
+                    val (expected, password) = line.split("\t", limit = 2)
+                    val problem = BackupPassword.problem(password)
+                    assertEquals(if (expected == "OK") null else Problem.valueOf(expected), problem, "$locale: $password")
+                }
+            }
+        } finally {
+            Locale.setDefault(before)
         }
     }
 }

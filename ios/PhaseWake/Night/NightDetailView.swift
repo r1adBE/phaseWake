@@ -42,10 +42,10 @@ struct NightDetailView: View {
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
                 // `items` neueste zuerst: +1 = vorherige (ältere) Nacht, −1 = nächste.
-                Button { step(1) } label: { Image(systemName: "chevron.left") }
+                Button { step(1) } label: { Image(systemName: "chevron.backward") }
                     .disabled(!canStep(1))
                     .accessibilityLabel(L("night_prev"))
-                Button { step(-1) } label: { Image(systemName: "chevron.right") }
+                Button { step(-1) } label: { Image(systemName: "chevron.forward") }
                     .disabled(!canStep(-1))
                     .accessibilityLabel(L("night_next"))
             }

@@ -5,6 +5,8 @@ import java.time.Instant
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 class CodecTest {
 
@@ -138,6 +140,24 @@ class CodecTest {
         assertEquals(emptyList(), Codec.decodeAlarms("phasewake-alarms 1\nx|6"))
         assertEquals(listOf("b"), Codec.decodeAlarms("phasewake-alarms 1\nx|6\nb|9|30||30|0|OFF|0|450||\n").map { it.id })
         assertFailsWith<CodecException> { Codec.decodeNight("phasewake-alarms 1\n") }
+    }
+
+    @Test
+    fun implausibleTimesAreRejected() {
+        // Vollaudit K-7: manipulierte Sicherung mit 9223372036854775807 (Swift bräche beim Zurückrechnen ab).
+        val max = Long.MAX_VALUE.toString()
+        assertFailsWith<CodecException> { Codec.decodeNight("phasewake-night 1\na|$max|1800000|1080000|DEADLINE|0\n\n") }
+        assertFailsWith<CodecException> { Codec.decodeNight("phasewake-night 1\na|0|$max|1080000|DEADLINE|0\n\n") }
+        assertFailsWith<CodecException> { Codec.decodeNight("phasewake-night 1\na|0|1800000|-1|DEADLINE|0\n\n") }
+        assertFailsWith<CodecException> { Codec.decodeNight("phasewake-night 1\na|0|4102444800001|0|DEADLINE|0\n\n") }
+        assertEquals(4_102_444_800_000L, Codec.decodeNight("phasewake-night 1\na|0|4102444800000|0|DEADLINE|0\n\n").target.toEpochMilli())
+        // Überspringen-bis ausserhalb: nichts überspringen (wie unlesbar).
+        val line = "phasewake-alarms 1\nb|9|30|MO|30|1|OFF|0||||OFF|NONE|PHONE|%s|0\n"
+        assertEquals(0L, Codec.decodeAlarms(line.format(max)).single().skipUntil)
+        assertEquals(0L, Codec.decodeAlarms(line.format("-5")).single().skipUntil)
+        assertEquals(1_793_000_000_000L, Codec.decodeAlarms(line.format("1793000000000")).single().skipUntil)
+        assertTrue(TimeBounds.contains(0L) && TimeBounds.contains(TimeBounds.MAX_MS))
+        assertNull(TimeBounds.checked(Long.MIN_VALUE))
     }
 
     @Test

@@ -491,7 +491,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnoza apare acum în setări.</string>
     <string name="diag_show">Afișează diagnoza</string>
-    <string name="diag_hint">Doar pe acest dispozitiv, nu se trimite nimic. Conține orele alarmelor și ale evenimentelor, fără date de sănătate.</string>
+    <string name="diag_hint">Jurnal tehnic al ultimelor 7 zile, doar pe dispozitivele tale. Conține ore și valori măsurate (de ex. mișcare, ora adormirii) – partajează-l doar dacă vrei.</string>
     <string name="diag_events">Evenimente</string>
     <string name="diag_empty">Încă niciun eveniment.</string>
     <string name="diag_status">Stare</string>
@@ -605,4 +605,5 @@
     <string name="learn_point_battery">Asta consumă puțină baterie – încarcă ceasul înainte de culcare.</string>
     <string name="learn_point_private">Datele rămân pe dispozitivele tale. Poți dezactiva oricând faza de învățare din setări.</string>
     <string name="learn_switch_hint">Ceasul tău măsoară noaptea mișcarea și pulsul pentru a adapta alarma. Dezactivat: fără înregistrare automată, valorile învățate rămân.</string>
+    <string name="watch_open_app_hint">Deschide Phase Wake pe ceas ca să primească comanda.</string>
 </resources>

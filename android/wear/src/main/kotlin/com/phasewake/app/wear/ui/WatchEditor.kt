@@ -136,7 +136,7 @@ internal fun EditorContent(
                 Button(
                     onClick = onPickTime,
                     modifier = Modifier.fillMaxWidth(),
-                    label = { Text(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(time), style = MaterialTheme.typography.titleLarge) },
+                    label = { Text(localizedDigits(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)).format(time), style = MaterialTheme.typography.titleLarge) },
                     secondaryLabel = {
                         Text(stringResource(if (draft.sleepDurationMinutes != null) R.string.editor_latest else R.string.editor_target))
                     },

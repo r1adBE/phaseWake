@@ -505,7 +505,7 @@
     </plurals>
     <string name="diag_unlocked">Диагностика теперь в настройках.</string>
     <string name="diag_show">Показывать диагностику</string>
-    <string name="diag_hint">Только на этом устройстве, ничего не отправляется. Содержит время будильников и событий, без данных о здоровье.</string>
+    <string name="diag_hint">Технический журнал за последние 7 дней, только на твоих устройствах. Он содержит время и измеренные значения (например, движение, время засыпания) – делись им, только если хочешь.</string>
     <string name="diag_events">События</string>
     <string name="diag_empty">Событий пока нет.</string>
     <string name="diag_status">Состояние</string>
@@ -619,4 +619,5 @@
     <string name="learn_point_battery">Это расходует немного заряда – заряди часы перед сном.</string>
     <string name="learn_point_private">Данные остаются на твоих устройствах. Этап обучения можно в любой момент отключить в настройках.</string>
     <string name="learn_switch_hint">Часы измеряют ночью движение и пульс, чтобы подстроить будильник. Выкл.: без автоматической записи, изученные значения сохраняются.</string>
+    <string name="watch_open_app_hint">Открой Phase Wake на часах, чтобы они получили команду.</string>
 </resources>

@@ -8,6 +8,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.ui.Alignment
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
@@ -117,7 +120,9 @@ fun NightNotes(selected: List<String>, custom: List<CustomNote>, onToggle: (Stri
             if (names.isEmpty()) stringResource(R.string.notes_label) else stringResource(R.string.notes_value, names.joinToString(", ")),
             style = MaterialTheme.typography.labelLarge,
             color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.fillMaxWidth().clickable(role = Role.Button) { open = !open }.padding(vertical = 8.dp),
+            // Mindestens 48 dp hoch (Tippziel, Audit UI-8).
+            modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).clickable(role = Role.Button) { open = !open }.padding(vertical = 8.dp)
+                .wrapContentHeight(Alignment.CenterVertically),
         )
         AnimatedVisibility(open) { NoteChips(selected, custom, onToggle) }
     }

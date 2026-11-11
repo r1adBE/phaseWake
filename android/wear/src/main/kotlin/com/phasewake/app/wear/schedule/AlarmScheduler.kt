@@ -65,6 +65,8 @@ class AlarmScheduler(
     private val transient: TransientStore,
     /** Uhrzeit; die Zeitzone wird bei jedem Aufruf neu gelesen, nie beim Erzeugen festgehalten (Reisen). */
     private val clock: () -> Clock = { Clock.system(java.time.ZoneId.systemDefault()) },
+    /** Uhr-Status ans Handy nach dem Neuplanen; `null`: [WatchStatus.publish]. Im Test ersetzt (hängend, scheiternd). */
+    private val statusPublisher: (suspend () -> Unit)? = null,
 ) {
     /** Hält gleichzeitige Aufrufe von [reschedule] (Startseite, Dienst, Data Layer) auseinander. */
     private val rescheduleLock = Mutex()
@@ -157,65 +159,59 @@ class AlarmScheduler(
         reschedule()
     }
 
-    /** Plant neu nach dem aktuellen Stand der Wecker ([ScheduleRules.decide]). @return der geplante Plan oder `null`. */
+    /**
+     * Plant neu nach dem aktuellen Stand der Wecker ([ScheduleRules.decide]). @return der geplante Plan oder `null`.
+     *
+     * Reihenfolge (Audit A-3): zuerst alles lesen und berechnen, dann die System-Alarme ohne Unterbrechung stellen
+     * (ein neuer Alarm ersetzt den alten mit demselben PendingIntent; aufgehoben wird nur, wenn kein Plan mehr gilt), erst
+     * danach die Nebenarbeiten ([afterAlarms]: Kachel, Status ans Handy, Einschlaf-Messung, geplante Nacht), jede für sich
+     * abgesichert und mit Frist. So bleibt kein Wecker weg, wenn eine Nebenarbeit hängt oder scheitert.
+     */
     suspend fun reschedule(): WakePlan? = rescheduleLock.withLock {
         val now = clock().instant()
+        val zone = clock().zone
         val plan = nextPlan()
         // Nur abfragen, wenn keine Nacht läuft (sonst bleibt ohnehin alles stehen).
         val running = WakeService.activePlan?.takeIf { WakeService.measuringPlan == null }
         val pending = if (running == null) pendingRing(now) else null
         val decision = ScheduleRules.decide(plan, WakeService.measuringPlan, WakeService.activePlan, pending, now)
+        val alarmPlan = nextAlarmPlan()
 
         // Läuft eine Messung für einen Plan, der nicht mehr gilt (Wecker aus, gelöscht, verschoben): beenden.
         if (decision.cancelMeasuring) WakeService.command(context, WakeService.ACTION_CANCEL)
-
-        refreshSurfaces()
-        publishStatus()
-        val alarmPlan = nextAlarmPlan()
-        AutoOnset.update(context, alarmPlan, now)
-        planned.remember(alarmPlan, clock().zone)
 
         // Klingelt oder schlummert gerade eine Nacht: ihre Alarme (Schlummer-Ende) nicht anfassen und
         // keinen anderen Wecker starten, der sie ablösen würde. Ihr Ende plant neu und holt nach.
         if (decision.keepRunning) {
             Log.i(TAG, "Nacht ${running?.alarmId} läuft noch, plane danach")
+            afterAlarms(null, alarmPlan, now, zone)
             return@withLock null
         }
 
         // Vor einem Neustart geschlummert oder die Zielzeit während des Neustarts verpasst: Dieses
         // Wecken bleibt stehen (Schlummer-Alarm), statt dass das Neuplanen es auf morgen verschiebt.
         val pendingRing = pending?.takeIf { decision.pendingRingAt != null }
-        if (pendingRing != null && decision.pendingRingAt != null) {
-            Log.i(TAG, "Wecken ${pendingRing.plan.alarmId} von vor dem Neustart bleibt: ${pendingRing.at}")
-            setSnoozeEnd(context, pendingRing.plan, decision.pendingRingAt)
-        }
-
-        cancel(context, REQUEST_WINDOW, AlarmReceiver.ACTION_WINDOW_START)
-        cancel(context, REQUEST_DEADLINE, AlarmReceiver.ACTION_DEADLINE)
-        if (plan == null) {
-            if (pendingRing == null) DirectBoot.clear(context) else DirectBoot.saveNext(context, null, null)
-            Log.i(TAG, "Kein aktiver Wecker")
-            return@withLock null
-        }
+        // Alles Gelesene vor dem Stellen der Alarme: zwischen Aufheben und Stellen keine Unterbrechung.
         val specs = alarms.current().alarms
-        val spec = specs.firstOrNull { it.id == plan.alarmId } ?: transient.specFor(plan.alarmId)
-        logScheduled(plan)
-        if (pendingRing == null) {
-            // Dazu der Plan danach: Endet eine Nacht vor dem ersten Entsperren, gilt dieser (DirectBoot.promoteNext).
-            val after = followingPlan(plan, specs, now)
-            DirectBoot.save(context, plan, spec, after, specs.firstOrNull { it.id == after?.alarmId })
-        } else {
-            // Der abgelegte Eintrag ist das ausstehende Wecken; der neue Plan folgt danach.
-            DirectBoot.saveNext(context, plan, spec)
-        }
-        // Zielzeit aus der Entscheidung (Review M-2: dieselbe Regel, die ScheduleRulesTest prüft).
-        setDeadlineAt(context, plan, decision.deadlineAt ?: plan.target)
-        // Auch ein schon begonnenes Fenster startet über einen Alarm: Nur so darf der Messdienst
-        // aus dem Hintergrund (Empfänger, Data-Layer-Dienst) in den Vordergrund.
-        val start = decision.windowAt ?: plan.windowStart
-        setAlarmClock(context, start, AlarmReceiver.pending(context, AlarmReceiver.ACTION_WINDOW_START, plan, REQUEST_WINDOW))
-        Log.i(TAG, "Geplant: Fenster ${plan.windowStart} bis ${plan.target}")
-        plan
+        val spec = plan?.let { p -> specs.firstOrNull { it.id == p.alarmId } ?: transient.specFor(p.alarmId) }
+        val after = if (plan != null && pendingRing == null) followingPlan(plan, specs, now) else null
+
+        val result = setPlanAlarms(context, plan, decision, pendingRing, spec, after, specs)
+        afterAlarms(result, alarmPlan, now, zone)
+        result
+    }
+
+    /**
+     * Nebenarbeiten nach dem Stellen der Alarme (Audit A-3): Protokoll des geplanten [scheduled], Kachel und Komplikation, Uhr-Status ans Handy (Wear-Dienste),
+     * Einschlaf-Messung und die geplante Nacht für einen Zonenwechsel. Jede für sich mit Frist ([sideWork]) und
+     * abgefangenem Fehler: Eine hängende oder scheiternde stört weder die anderen noch die schon gestellten Alarme.
+     */
+    private suspend fun afterAlarms(scheduled: WakePlan?, alarmPlan: WakePlan?, now: Instant, zone: java.time.ZoneId) {
+        sideWork(TAG, "Protokoll") { scheduled?.let { logScheduled(it) } }
+        sideWork(TAG, "Kachel und Komplikation") { refreshSurfaces() }
+        sideWork(TAG, "Status ans Handy") { publishStatus() }
+        sideWork(TAG, "Einschlaf-Messung") { AutoOnset.update(context, alarmPlan, now) }
+        sideWork(TAG, "Geplante Nacht merken") { planned.remember(alarmPlan, zone) }
     }
 
     /**
@@ -252,7 +248,7 @@ class AlarmScheduler(
     }
 
     /** Uhr-Status ans Handy (bereit, Akkustand), nur bei Bedarf; siehe [WatchStatus.publish]. */
-    suspend fun publishStatus() = status.publish()
+    suspend fun publishStatus() = statusPublisher?.invoke() ?: status.publish()
 
     /** Messung vor dem Schlafen nicht gestartet ([skip]) bzw. doch gestartet ([target]), siehe [WatchStatus.noteSkip]. */
     suspend fun noteRecorderSkip(skip: com.phasewake.app.core.RecorderSkip) = status.noteSkip(skip)
@@ -304,12 +300,13 @@ class AlarmScheduler(
      */
     companion object {
         private const val TAG = "AlarmScheduler"
-        private const val REQUEST_WINDOW = 1
-        private const val REQUEST_DEADLINE = 2
+        internal const val REQUEST_WINDOW = 1
+        internal const val REQUEST_DEADLINE = 2
         private const val REQUEST_SNOOZE = 3
         private const val REQUEST_SHOW = 4
         private const val REQUEST_GOOD_NIGHT_CHECK = 5
         private val LEGACY_DONE_UNTIL = longPreferencesKey("night_done_until")
+
         private val DONE_UNTIL_BY_ALARM = stringPreferencesKey("night_done_until_by_alarm")
 
         /** Zeitraum der zuletzt beendeten Nacht(en) ([CatchUpWindow]), siehe Klassenbeschreibung. */
@@ -361,7 +358,7 @@ class AlarmScheduler(
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
         )
 
-        private fun cancel(context: Context, requestCode: Int, action: String) =
+        internal fun cancel(context: Context, requestCode: Int, action: String) =
             context.getSystemService(AlarmManager::class.java).cancel(AlarmReceiver.pending(context, action, null, requestCode))
 
         /**
@@ -370,7 +367,7 @@ class AlarmScheduler(
          * (entziehbar auf Android 12/12L) oder bei einer [SecurityException] ungenau statt gar nicht, wie der
          * Zweitwecker am Handy: Sonst bräche [reschedule] ab, und Fenster und Zielzeit wären beide weg.
          */
-        private fun setAlarmClock(context: Context, at: Instant, operation: PendingIntent) {
+        internal fun setAlarmClock(context: Context, at: Instant, operation: PendingIntent) {
             val manager = context.getSystemService(AlarmManager::class.java)
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S || manager.canScheduleExactAlarms()) {
                 val show = PendingIntent.getActivity(

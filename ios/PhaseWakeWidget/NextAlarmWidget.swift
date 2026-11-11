@@ -32,12 +32,20 @@ struct NextAlarmProvider: TimelineProvider {
         completion(Timeline(entries: [current], policy: .after(refresh)))
     }
 
+    /// Plan der Uhr-App (`EffectivePlan`), solange er gilt: mit «Gute Nacht», Probewecker und Powernap wie die Sitzung
+    /// (Audit AP-9). Sonst aus den Weckern gerechnet wie bisher.
     private func entry(at date: Date) -> NextAlarmEntry {
         let storage = PhaseWakeStorage.watchShared
-        let plan = AlarmSchedule.earliestPlan(storage.snapshot().alarms, now: date, doneUntil: storage.doneUntil, calendar: .gregorianLocal,
-                                              holidays: storage.holidays.dates)
-        return NextAlarmEntry(date: date, plan: plan)
+        let computed = AlarmSchedule.earliestPlan(storage.snapshot().alarms, now: date, doneUntil: storage.doneUntil, calendar: .gregorianLocal,
+                                                  holidays: storage.holidays.dates)
+        let stored = Self.settings.flatMap { EffectivePlan.decode($0.object(forKey: EffectivePlan.key)) }
+        return NextAlarmEntry(date: date, plan: EffectivePlan.choose(stored: stored, computed: computed, now: date))
     }
+
+    /// Einstellungsdatei der Uhr-App in der App-Gruppe, nur lesend (bei jedem Zugriff frisch gelesen); `nil` ohne
+    /// App-Gruppe.
+    private static let settings: SettingsFile? = PhaseWakeStorage.watchGroupDirectory(create: false)
+        .map { SettingsFile(url: $0.appendingPathComponent(PhaseWakeStorage.watchSettingsName), readOnly: true) }
 }
 
 struct NextAlarmWidget: Widget {

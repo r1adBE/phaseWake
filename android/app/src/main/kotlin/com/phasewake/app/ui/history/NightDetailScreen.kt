@@ -82,7 +82,7 @@ internal fun nightView(item: HistoryItem, stages: List<StageSpan>): NightView {
 /** Datum der Nacht als Morgen mit Wochentag, z. B. «Dienstag, 28. Oktober». */
 internal fun nightTitle(item: HistoryItem, zone: ZoneId = ZoneId.systemDefault()): String {
     val locale = Locale.getDefault()
-    return DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, "EEEEdMMMM"), locale).format(item.at.atZone(zone))
+    return Format.digits(DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, "EEEEdMMMM"), locale), locale).format(item.at.atZone(zone))
 }
 
 /** Was die Detailseite zeigt: alle Nächte des Verlaufs (neueste zuerst) und was zu ihnen gehört. */

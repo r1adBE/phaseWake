@@ -491,7 +491,7 @@
     </plurals>
     <string name="diag_unlocked">La diagnostica ora è nelle impostazioni.</string>
     <string name="diag_show">Mostra la diagnostica</string>
-    <string name="diag_hint">Solo su questo dispositivo, non viene inviato nulla. Contiene orari di sveglie ed eventi, nessun dato sanitario.</string>
+    <string name="diag_hint">Registro tecnico degli ultimi 7 giorni, solo sui tuoi dispositivi. Contiene orari e valori misurati (ad es. movimento, ora in cui ti sei addormentato) – condividilo solo se vuoi.</string>
     <string name="diag_events">Eventi</string>
     <string name="diag_empty">Ancora nessun evento.</string>
     <string name="diag_status">Stato</string>
@@ -605,4 +605,5 @@
     <string name="learn_point_battery">Consuma un po’ di batteria – ricarica l’orologio prima di dormire.</string>
     <string name="learn_point_private">I dati restano sui tuoi dispositivi. Puoi disattivare la fase di apprendimento nelle impostazioni in qualsiasi momento.</string>
     <string name="learn_switch_hint">Il tuo orologio misura movimento e battito di notte per adattare la sveglia. Disattivato: nessuna registrazione automatica, i valori appresi restano.</string>
+    <string name="watch_open_app_hint">Apri Phase Wake sull’orologio perché riceva il comando.</string>
 </resources>

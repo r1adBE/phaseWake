@@ -491,7 +491,7 @@
     </plurals>
     <string name="diag_unlocked">Le diagnostic apparaît maintenant dans les réglages.</string>
     <string name="diag_show">Afficher le diagnostic</string>
-    <string name="diag_hint">Uniquement sur cet appareil, rien n’est envoyé. Contient les heures des réveils et des événements, pas de données de santé.</string>
+    <string name="diag_hint">Journal technique des 7 derniers jours, uniquement sur tes appareils. Il contient des heures et des valeurs mesurées (p. ex. mouvement, heure d’endormissement) – ne le partage que si tu le veux.</string>
     <string name="diag_events">Événements</string>
     <string name="diag_empty">Aucun événement pour l’instant.</string>
     <string name="diag_status">État</string>
@@ -605,4 +605,5 @@
     <string name="learn_point_battery">Cela consomme un peu de batterie – recharge la montre avant de dormir.</string>
     <string name="learn_point_private">Les données restent sur tes appareils. Tu peux désactiver la phase d’apprentissage à tout moment dans les réglages.</string>
     <string name="learn_switch_hint">Ta montre mesure mouvements et pouls la nuit pour adapter le réveil. Désactivé : aucun enregistrement automatique, les valeurs apprises restent.</string>
+    <string name="watch_open_app_hint">Ouvre Phase Wake sur ta montre pour qu’elle reçoive la commande.</string>
 </resources>

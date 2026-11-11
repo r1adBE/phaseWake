@@ -480,7 +480,7 @@
     </plurals>
     <string name="diag_unlocked">ምርመራ አሁን በቅንብሮች ውስጥ ይታያል።</string>
     <string name="diag_show">ምርመራ አሳይ</string>
-    <string name="diag_hint">በዚህ መሣሪያ ላይ ብቻ፣ ምንም አይላክም። የማንቂያዎችና የክስተቶች ሰዓቶችን ይዟል፣ የጤና ውሂብ የለውም።</string>
+    <string name="diag_hint">ያለፉት 7 ቀናት ቴክኒካዊ መዝገብ፣ በመሣሪያዎችህ ላይ ብቻ። ሰዓቶችንና መለኪያዎችን ይዟል (ለምሳሌ እንቅስቃሴ፣ የእንቅልፍ ጊዜ) – ከፈለግህ ብቻ አጋራው።</string>
     <string name="diag_events">ክስተቶች</string>
     <string name="diag_empty">እስካሁን ምንም ክስተት የለም።</string>
     <string name="diag_status">ሁኔታ</string>
@@ -594,4 +594,5 @@
     <string name="learn_point_battery">ይህ ትንሽ ባትሪ ይጠቀማል – ከመተኛትህ በፊት ሰዓቱን ቻርጅ አድርግ።</string>
     <string name="learn_point_private">ውሂቡ በመሣሪያዎችህ ላይ ይቆያል። የመማሪያ ጊዜውን በማንኛውም ጊዜ በቅንብሮች ውስጥ ማጥፋት ትችላለህ።</string>
     <string name="learn_switch_hint">ማንቂያውን ለማስተካከል ሰዓትህ በሌሊት እንቅስቃሴና የልብ ምት ይለካል። ጠፍቷል፦ ራስ-ሰር ቀረጻ የለም፣ የተማሩ እሴቶች ይቆያሉ።</string>
+    <string name="watch_open_app_hint">ትዕዛዙን እንዲቀበል Phase Wakeን በሰዓትህ ላይ ክፈት።</string>
 </resources>

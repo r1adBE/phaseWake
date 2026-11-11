@@ -13,6 +13,7 @@ import com.phasewake.app.core.ShortNight
 import com.phasewake.app.core.Sunrise
 import com.phasewake.app.core.WakeDetector
 import com.phasewake.app.core.WakePlan
+import com.phasewake.app.shared.phaseWakeStore
 import com.phasewake.app.wear.schedule.AlarmScheduler
 import com.phasewake.app.wear.schedule.DirectBoot
 import com.phasewake.app.wear.wake.WakeService.Companion.NIGHT_HARD_LIMIT
@@ -104,7 +105,9 @@ private fun WakeService.loadNight(current: Night, canMeasure: Boolean, refusal: 
         // Zielzeit), braucht der Weckvorgang den Wecker: Name, Uhr-Ton, einmalig.
         val spec = app.specFor(plan.alarmId)
         // Dazu die gelernten Werte der Lernphase (eigenes Grundrauschen, Ruhepuls), falls es sie gibt.
+        // Dazu das Grundrauschen der Einschlaf-Messung dieser Nacht als Vorwissen (Vollaudit K-1), falls es eines gibt.
         val config = app.learning.current().applyTo(Calibration.calibrate(NightHistory.motionsForCalibration(app.nights.load())))
+            .withOnsetFloor(onsetFloorFor(plan))
         // Stand vor einem Neustart des Dienstes: erstes Klingeln, Grund und Schlummer-Runden.
         val saved = app.nightProgress.load(plan)
         // Untergrenze kurzer Nächte: Einschlafzeit (automatische Messung oder «Gute Nacht») und Ziel; ohne Einschlafzeit
@@ -198,6 +201,16 @@ internal fun WakeService.cancelMeasuring() {
     app.appScope.launch { app.scheduler.reschedule() }
     stopIfIdle()
 }
+
+/** Grundrauschen der Einschlaf-Messung für [plan] ([OnsetFloorStore]); unlesbar oder keines: `null` (wie bisher). */
+private suspend fun WakeService.onsetFloorFor(plan: WakePlan): Double? =
+    try {
+        OnsetFloorStore(phaseWakeStore).floorFor(plan)
+    } catch (e: Exception) {
+        if (e is kotlinx.coroutines.CancellationException) throw e
+        Log.w(TAG, "Grundrauschen der Einschlaf-Messung nicht lesbar", e)
+        null
+    }
 
 internal fun WakeService.onEpochs(n: Night, epochs: List<Epoch>) {
     if (night !== n || n.phase != Phase.MEASURING) return

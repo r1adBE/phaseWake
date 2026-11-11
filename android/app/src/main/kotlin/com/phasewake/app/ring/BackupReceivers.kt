@@ -1,5 +1,6 @@
 package com.phasewake.app.ring
 
+import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -85,9 +86,50 @@ internal fun BroadcastReceiver.onBackupSystemEvent(context: Context, intent: Int
     app.appScope.launch {
         try {
             BackupDirectBoot.takeRang(context).forEach { (id, at) -> app.backup.backupRang(id, at) }
+            // Neustart, bei dem der Speicher gleich entsperrt war (ohne Sperre oder schnell entsperrt): ein Zweitwecker,
+            // der währenddessen fällig wurde, wird hier nachgeholt (Audit A-5), wie vor dem Entsperren in restore.
+            if (intent.action in BOOT_ACTIONS) app.backup.catchUpAfterBoot()
             app.backup.reschedule()
         } finally {
             pending.finish()
         }
     }
 }
+
+/** Neustart-Ereignisse; nur nach ihnen fehlt ein verpasster Zweitwecker (Alarme sind beim Neustart weg). */
+@android.annotation.SuppressLint("InlinedApi")
+private val BOOT_ACTIONS = setOf(Intent.ACTION_LOCKED_BOOT_COMPLETED, Intent.ACTION_BOOT_COMPLETED)
+
+/**
+ * Holt nach einem Neustart mit entsperrtem Speicher den abgelegten Zweitwecker nach, der während des Neustarts fällig
+ * wurde ([BackupDirectBoot.missed], Audit A-5): gleich danach über einen eigenen Alarm (nur ein Wecker-Alarm darf den
+ * Weckdienst aus dem Hintergrund starten). Nicht, wenn die Nacht schon erledigt ist (die Uhr hat sie übernommen oder der
+ * Zweitwecker hat geklungen, [BackupAlarm.doneUntil]). Der Eintrag wird entfernt und die Nacht bis zu ihrer Zielzeit
+ * ausgesetzt, damit sie nicht zweimal klingelt.
+ * @return der nachgeholte Eintrag oder `null`.
+ */
+internal suspend fun BackupAlarm.catchUpAfterBoot(current: Instant = now()): BackupDirectBoot.Entry? {
+    val entry = BackupDirectBoot.missed(context, current) ?: return null
+    BackupDirectBoot.remove(context, entry)
+    val done = doneUntil()[entry.alarmId]
+    if (done != null && !done.isBefore(entry.target)) return null
+    BackupAlarm.setExact(context, current.plus(BackupAlarm.FORWARD_DELAY), showIntent(), catchUpPending(context, entry.alarmId, entry.target))
+    // Diese Nacht gilt ab jetzt als übernommen: Das folgende Planen holt sie nicht ein zweites Mal nach (RingRules.catchUp).
+    suppress(mapOf(entry.alarmId to entry.target))
+    context.phoneApp.diag.log(DiagKind.RING, "phone backup missed during boot, catch up")
+    return entry
+}
+
+/**
+ * Nachgeholter Zweitwecker nach einem Neustart mit entsperrtem Speicher (Audit A-5): wie der Zweitwecker ([ACTION], mit
+ * Kennung und Zielzeit), aber eigener Request-Code, damit das folgende Planen ihn nicht ersetzt.
+ */
+internal fun catchUpPending(context: Context, alarmId: String, target: Instant): PendingIntent {
+    val intent = Intent(context, BackupAlarm.Receiver::class.java).setAction(ACTION)
+        .putExtra(PhoneRingService.EXTRA_ALARM_ID, alarmId)
+        .putExtra(PhoneRingService.EXTRA_TARGET, target.toEpochMilli())
+    return PendingIntent.getBroadcast(context, REQUEST_CATCH_UP, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+}
+
+/** Request-Code von [catchUpPending] (0: Zweitwecker, 3: Schlummern am Handy, 4: Weiterleitung, 5: Sicherung). */
+private const val REQUEST_CATCH_UP = 10

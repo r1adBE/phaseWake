@@ -477,7 +477,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnostiken finns nu i inställningarna.</string>
     <string name="diag_show">Visa diagnostik</string>
-    <string name="diag_hint">Bara på den här enheten, inget skickas. Innehåller tider för alarm och händelser, inga hälsodata.</string>
+    <string name="diag_hint">Teknisk logg för de senaste 7 dagarna, bara på dina enheter. Den innehåller tider och mätvärden (t.ex. rörelse, insomningstid) – dela den bara om du vill.</string>
     <string name="diag_events">Händelser</string>
     <string name="diag_empty">Inga händelser än.</string>
     <string name="diag_status">Status</string>
@@ -591,4 +591,5 @@
     <string name="learn_point_battery">Det drar lite batteri – ladda klockan innan du sover.</string>
     <string name="learn_point_private">Datan stannar på dina enheter. Du kan stänga av inlärningsfasen i inställningarna när som helst.</string>
     <string name="learn_switch_hint">Din klocka mäter rörelse och puls på natten för att anpassa larmet. Av: ingen automatisk registrering, inlärda värden finns kvar.</string>
+    <string name="watch_open_app_hint">Öppna Phase Wake på klockan så att den tar emot kommandot.</string>
 </resources>

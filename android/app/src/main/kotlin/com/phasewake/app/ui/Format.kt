@@ -10,6 +10,7 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import java.time.format.DecimalStyle
 import java.time.format.FormatStyle
 import java.util.Locale
 
@@ -30,9 +31,19 @@ object Format {
     private val time: DateTimeFormatter
         get() {
             val locale = Locale.getDefault()
-            val is24 = use24Hour ?: return DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).withLocale(locale)
-            return DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, if (is24) "Hm" else "hm"), locale)
+            val is24 = use24Hour ?: return digits(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).withLocale(locale), locale)
+            return digits(DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, if (is24) "Hm" else "hm"), locale), locale)
         }
+
+    /**
+     * Ziffern der Sprache wie bei Zahlen in Texten (`String.format`, `getString`): Auf Arabisch erschienen Zeiten
+     * sonst mit 0–9, Dauern mit ٠–٩ (Audit UI-9).
+     */
+    fun digits(formatter: DateTimeFormatter, locale: Locale = Locale.getDefault()): DateTimeFormatter =
+        formatter.withDecimalStyle(DecimalStyle.of(locale))
+
+    /** Ganze Zahl mit den Ziffern der Sprache (wie [digits]). */
+    fun number(value: Int): String = String.format(Locale.getDefault(), "%d", value)
 
     fun time(t: LocalTime): String = time.format(t)
 
@@ -40,7 +51,7 @@ object Format {
 
     /** Kurzes Datum mit Wochentag nach Sprache und Region, z. B. «Do., 30.10.». */
     fun shortDay(date: LocalDate, locale: Locale): String =
-        DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, "EEEdM"), locale).format(date)
+        digits(DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, "EEEdM"), locale), locale).format(date)
 
     /** «06:30 – 07:00»; bei «Genau» ([AlarmSpec.isExact]) «Genau um 07:00». */
     fun window(context: Context, alarm: AlarmSpec): String {

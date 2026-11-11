@@ -23,6 +23,12 @@ struct RecordCard: View {
                     .buttonStyle(.bordered)
                     .disabled(night.recordPending)
                     .frame(maxWidth: .infinity, alignment: .trailing)
+                // Keine Antwort der Uhr (App dort wohl zu): ehrlich sagen statt still wieder freigeben (Audit AP-8).
+                if night.recordUnanswered {
+                    Label(L("watch_open_app_hint"), systemImage: "applewatch")
+                        .font(Fonts.manrope(14, relativeTo: .subheadline))
+                        .foregroundStyle(Brand.secondaryText(scheme))
+                }
             }
             .card()
         }

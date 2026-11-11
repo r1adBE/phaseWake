@@ -3,6 +3,7 @@ package com.phasewake.app.shared
 import com.phasewake.app.core.DetectorConfig
 import com.phasewake.app.core.Epoch
 import com.phasewake.app.core.Learning
+import com.phasewake.app.core.TimeBounds
 import java.time.Duration
 import java.time.Instant
 import java.util.Locale
@@ -133,7 +134,8 @@ data class NightRecording(
             val complete = if (text.endsWith('\n')) text else text.substring(0, text.lastIndexOf('\n') + 1)
             val lines = complete.lines().dropLastWhile { it.isEmpty() }
             if (lines.firstOrNull() != HEADER) return null
-            val start = lines.getOrNull(1)?.takeIf { it.startsWith(START) }?.removePrefix(START)?.toLongOrNull() ?: return null
+            // Zeitpunkte ausserhalb von TimeBounds (kaputt oder manipuliert, Audit K-7): Beginn unlesbar, sonst übergangen.
+            val start = TimeBounds.checked(lines.getOrNull(1)?.takeIf { it.startsWith(START) }?.removePrefix(START)?.toLongOrNull()) ?: return null
             val epochs = ArrayList<Epoch>()
             var end: Instant? = null
             var reason: RecordEnd? = null
@@ -143,8 +145,8 @@ data class NightRecording(
                 if (line.startsWith(ONSET)) {
                     // Die jüngste Zeile gilt (ein zweites Einschlafen in derselben Aufzeichnung ersetzt das erste).
                     val f = line.removePrefix(ONSET).split(',')
-                    val b = f[0].toLongOrNull()
-                    val a = f.getOrNull(1)?.toLongOrNull()
+                    val b = TimeBounds.checked(f[0].toLongOrNull())
+                    val a = TimeBounds.checked(f.getOrNull(1)?.toLongOrNull())
                     if (b != null && a != null) {
                         bed = Instant.ofEpochMilli(b)
                         asleep = Instant.ofEpochMilli(a)
@@ -153,7 +155,7 @@ data class NightRecording(
                 }
                 if (line.startsWith(END)) {
                     val f = line.removePrefix(END).split(',')
-                    end = f[0].toLongOrNull()?.let(Instant::ofEpochMilli) ?: continue
+                    end = TimeBounds.checked(f[0].toLongOrNull())?.let(Instant::ofEpochMilli) ?: continue
                     reason = RecordEnd.of(f.getOrNull(1))
                     break
                 }

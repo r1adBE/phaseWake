@@ -2,7 +2,12 @@ import PhaseWakeCore
 import SwiftUI
 import UIKit
 
-/// Farben eines Sonnenaufgangs, identisch zu `SunriseSky` (Android).
+/// Farben eines Sonnenaufgangs, Verlauf identisch zu `SunriseSky` (Android).
+///
+/// Schrift (Audit UI-6): Für jeden Fortschritt die Schriftfarbe mit dem höheren Kontrast zur unteren Himmelsfarbe (dort
+/// steigt die Sonne auf; der hellste Teil des Verlaufs), weiss oder fast schwarz – so liegt sie über den ganzen Verlauf
+/// bei mindestens 4.5:1 (am Umschaltpunkt knapp 4.6:1; mit `Brand.nightBottom` wären es nur 4.45:1 gewesen). Die
+/// gedämpfte Zeile nimmt ihren Farbton nur, solange er 4.5:1 erreicht, sonst die Schriftfarbe selbst.
 enum SunriseSky {
     private struct Key { let at: Double; let top: UInt32; let bottom: UInt32; let sun: UInt32 }
 
@@ -14,31 +19,71 @@ enum SunriseSky {
         Key(at: 1.00, top: 0xFFE6C2, bottom: 0xFFF6E8, sun: 0xFFFFFF),
     ]
 
-    /// Ab hier ist dunkle Schrift kontrastreicher als weisse.
-    static let darkContentFrom = 0.635
+    /// Mindestkontrast der Schrift (WCAG AA).
+    static let minContrast = 4.5
+
+    /// Farbe als sRGB-Anteile 0–1.
+    struct RGB: Equatable {
+        let r: Double
+        let g: Double
+        let b: Double
+
+        init(r: Double, g: Double, b: Double) {
+            self.r = r
+            self.g = g
+            self.b = b
+        }
+
+        init(hex: UInt32) {
+            self.init(r: Double((hex >> 16) & 0xFF) / 255, g: Double((hex >> 8) & 0xFF) / 255, b: Double(hex & 0xFF) / 255)
+        }
+
+        var color: Color { Color(red: r, green: g, blue: b) }
+    }
+
+    /// Weisse Schrift; dunkle Schrift (fast schwarz, Nachthimmel); gedämpfte Töne dazu.
+    static let light = RGB(hex: 0xFFFFFF)
+    static let dark = RGB(hex: 0x050208)
+    private static let lightMuted = RGB(hex: 0xFFD9C2)
+    private static let darkMuted = RGB(hex: 0x3A1E08)
+
+    /// Alle Farben zu einem Fortschritt, als sRGB (testbar).
+    struct Palette: Equatable { let top: RGB; let bottom: RGB; let sun: RGB; let content: RGB; let muted: RGB }
 
     struct Colors { let top: Color; let bottom: Color; let sun: Color; let content: Color; let muted: Color }
 
-    static func colors(_ progress: Double) -> Colors {
+    static func palette(_ progress: Double) -> Palette {
         let p = min(1, max(0, progress))
         let i = min(keys.lastIndex { $0.at <= p } ?? 0, keys.count - 2)
         let a = keys[i], b = keys[i + 1]
         let t = min(1, max(0, (p - a.at) / (b.at - a.at)))
-        let dark = p >= darkContentFrom
-        return Colors(
-            top: mix(a.top, b.top, t), bottom: mix(a.bottom, b.bottom, t), sun: mix(a.sun, b.sun, t),
-            content: dark ? Brand.nightBottom : .white,
-            muted: dark ? Color(hex: 0x3A1E08) : Color(hex: 0xFFD9C2)
-        )
+        let bottom = mix(a.bottom, b.bottom, t)
+        let content = contrast(light, bottom) >= contrast(dark, bottom) ? light : dark
+        let tinted = content == light ? lightMuted : darkMuted
+        return Palette(top: mix(a.top, b.top, t), bottom: bottom, sun: mix(a.sun, b.sun, t), content: content,
+                       muted: contrast(tinted, bottom) >= minContrast ? tinted : content)
     }
 
-    private static func mix(_ a: UInt32, _ b: UInt32, _ t: Double) -> Color {
-        func c(_ v: UInt32, _ shift: UInt32) -> Double { Double((v >> shift) & 0xFF) / 255 }
-        return Color(
-            red: c(a, 16) + (c(b, 16) - c(a, 16)) * t,
-            green: c(a, 8) + (c(b, 8) - c(a, 8)) * t,
-            blue: c(a, 0) + (c(b, 0) - c(a, 0)) * t
-        )
+    static func colors(_ progress: Double) -> Colors {
+        let c = palette(progress)
+        return Colors(top: c.top.color, bottom: c.bottom.color, sun: c.sun.color, content: c.content.color, muted: c.muted.color)
+    }
+
+    /// Kontrastverhältnis nach WCAG 2 (1–21).
+    static func contrast(_ x: RGB, _ y: RGB) -> Double {
+        let lx = luminance(x), ly = luminance(y)
+        return (max(lx, ly) + 0.05) / (min(lx, ly) + 0.05)
+    }
+
+    /// Relative Leuchtdichte nach WCAG 2.
+    static func luminance(_ c: RGB) -> Double {
+        func linear(_ v: Double) -> Double { v <= 0.03928 ? v / 12.92 : pow((v + 0.055) / 1.055, 2.4) }
+        return 0.2126 * linear(c.r) + 0.7152 * linear(c.g) + 0.0722 * linear(c.b)
+    }
+
+    private static func mix(_ a: UInt32, _ b: UInt32, _ t: Double) -> RGB {
+        let x = RGB(hex: a), y = RGB(hex: b)
+        return RGB(r: x.r + (y.r - x.r) * t, g: x.g + (y.g - x.g) * t, b: x.b + (y.b - x.b) * t)
     }
 }
 

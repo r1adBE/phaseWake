@@ -1,7 +1,10 @@
 name: Aufräumen
 
 # Hält das Repo sauber: löscht abgeschlossene Workflow-Läufe, die älter als 30 Tage sind, nicht grüne Läufe (rot,
-# abgebrochen, übersprungen) schon nach 7 Tagen, und Arbeitszweige, die vollständig in main stecken. Datenzweige der Workflows (feiertage, klaenge, screenshots) und main bleiben immer.
+# abgebrochen, übersprungen) schon nach 7 Tagen, und Arbeitszweige, die vollständig in main stecken. Grüne Läufe für
+# den aktuellen Stand von main und für den Stand der Testversion (Tag «test») bleiben immer: Der Store-Build verlangt
+# einen grünen CI-Lauf genau dieses Commits (Audit 5314d25 D-08).
+# Datenzweige der Workflows (feiertage, klaenge, screenshots) und main bleiben immer.
 # Von Hand zusätzlich: weitere Zweige zum Löschen angeben – nur, wenn sie in main stecken oder ihr letzter Commit älter als
 # 7 Tage ist (z. B. alte Zwischenstände); andere bleiben und werden gemeldet.
 on:
@@ -30,6 +33,13 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+      - name: Geschützte Stände (main, Tag «test»)
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Leer, wenn es den Tag nicht gibt; dann schützt der Vergleich nichts zusätzlich.
+          echo "KEEP_MAIN=$(git rev-parse --verify origin/main)" >> "$GITHUB_ENV"
+          echo "KEEP_TEST=$(git rev-parse --verify -q 'refs/tags/test^{commit}' || true)" >> "$GITHUB_ENV"
       - name: Alte Läufe löschen (älter als 30 Tage)
         shell: bash
         env:
@@ -38,8 +48,10 @@ jobs:
         run: |
           set -euo pipefail
           cutoff=$(date -u -d '30 days ago' +%Y-%m-%dT%H:%M:%SZ)
+          # Grüne Läufe von main und der Testversion bleiben (KEEP_MAIN, KEEP_TEST).
           ids=$(gh api --paginate "repos/$REPO/actions/runs?per_page=100&created=<$cutoff" \
-            -q '.workflow_runs[] | select(.status == "completed") | .id')
+            -q '.workflow_runs[] | select(.status == "completed")
+              | select((.conclusion == "success" and (.head_sha == $ENV.KEEP_MAIN or .head_sha == $ENV.KEEP_TEST)) | not) | .id')
           n=0
           for id in $ids; do
             gh api -X DELETE "repos/$REPO/actions/runs/$id" >/dev/null && n=$((n + 1))

@@ -94,6 +94,17 @@ internal object BackupDirectBoot {
     }
 
     /**
+     * Abgelegter Zweitwecker, der während eines Neustarts fällig wurde und nachzuholen ist (Audit A-5): Zeitpunkt bis
+     * [now] und noch in der Frist von [restore] ([Transient.catchesUpAfterBoot], 30 Min. bzw. 60 s). Der früheste;
+     * `null`, wenn keiner.
+     */
+    fun missed(context: Context, now: Instant): Entry? =
+        load(context).firstOrNull { !it.at.isAfter(now) && Transient.catchesUpAfterBoot(it.alarmId, it.at, now, MISSED_DURING_BOOT) }
+
+    /** Entfernt [entry] aus der Liste (nachgeholt oder erledigt), damit er nicht zweimal klingelt. */
+    fun remove(context: Context, entry: Entry) = save(context, load(context).filterNot { it == entry })
+
+    /**
      * Stellt den frühesten abgelegten Zweitwecker. Während des Neustarts verpasst: noch nachholen, aber nicht Stunden
      * später (Probewecker und Powernap: nur 60 s); zu alte Einträge fallen weg. [now]: für Tests.
      */

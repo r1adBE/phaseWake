@@ -1,14 +1,16 @@
 # Geheimnis-Suche (gitleaks, Audit S-4): Standardregeln, dazu bekannte Testwerte als Ausnahme.
+# Ausnahmen nur für genau diese Werte, nicht für ganze Ordner (Audit 5314d25 D-08): Ein echtes Geheimnis in einer
+# Testquelle oder im Skript wird weiter gemeldet. Neuer Testwert mit Meldung: hier als ganzer Wert ergänzen.
 title = "Phase Wake"
 
 [extend]
 useDefault = true
 
 [[allowlists]]
-description = "Testvektor der Sicherung (festes Testpasswort) und Testquellen mit Beispielpasswörtern"
-paths = [
-  '''^\.github/scripts/make-backup-vector\.py$''',
-  '''^android/[^/]+/src/test/''',
-  '''^ios/PhaseWake[A-Za-z]*Tests/''',
-  '''^ios/PhaseWakeCore/Tests/''',
+description = "Feste Testpasswörter der Sicherung (Testvektor make-backup-vector.py, Tests der Sicherung)"
+regexTarget = "secret"
+regexes = [
+  '''^Mondlicht-2026$''',
+  '''^Mondlicht-(\\u00e4\\u20ac|ä€)-2026$''',
+  '''^Mondsichel-7$''',
 ]

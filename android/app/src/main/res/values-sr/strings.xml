@@ -494,7 +494,7 @@
     </plurals>
     <string name="diag_unlocked">Дијагностика се сада приказује у подешавањима.</string>
     <string name="diag_show">Прикажи дијагностику</string>
-    <string name="diag_hint">Само на овом уређају, ништа се не шаље. Садржи времена аларма и догађаја, без здравствених података.</string>
+    <string name="diag_hint">Технички дневник последњих 7 дана, само на твојим уређајима. Садржи времена и измерене вредности (нпр. покрет, време успављивања) – дели га само ако желиш.</string>
     <string name="diag_events">Догађаји</string>
     <string name="diag_empty">Још нема догађаја.</string>
     <string name="diag_status">Стање</string>
@@ -608,4 +608,5 @@
     <string name="learn_point_battery">То троши нешто батерије – напуни сат пре спавања.</string>
     <string name="learn_point_private">Подаци остају на твојим уређајима. Фазу учења можеш било када да искључиш у подешавањима.</string>
     <string name="learn_switch_hint">Твој сат ноћу мери покрете и пулс да прилагоди аларм. Искључено: нема аутоматског снимања, научене вредности остају.</string>
+    <string name="watch_open_app_hint">Отвори Phase Wake на сату да прими наредбу.</string>
 </resources>

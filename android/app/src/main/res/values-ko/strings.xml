@@ -463,7 +463,7 @@
     </plurals>
     <string name="diag_unlocked">이제 진단이 설정에 표시돼요.</string>
     <string name="diag_show">진단 표시</string>
-    <string name="diag_hint">이 기기에만 있고 아무것도 보내지 않아요. 알람과 이벤트 시간이 들어 있고 건강 데이터는 없어요.</string>
+    <string name="diag_hint">최근 7일간의 기술 로그로, 내 기기에만 저장됩니다. 시간과 측정값(예: 움직임, 잠든 시각)이 들어 있으니 원할 때만 공유하세요.</string>
     <string name="diag_events">이벤트</string>
     <string name="diag_empty">아직 이벤트가 없어요.</string>
     <string name="diag_status">상태</string>
@@ -577,4 +577,5 @@
     <string name="learn_point_battery">배터리를 조금 사용합니다 – 자기 전에 시계를 충전하세요.</string>
     <string name="learn_point_private">데이터는 당신의 기기에 남습니다. 학습 단계는 설정에서 언제든지 끌 수 있습니다.</string>
     <string name="learn_switch_hint">알람을 맞추기 위해 시계가 밤에 움직임과 맥박을 측정합니다. 끄기: 자동 기록 없음, 학습한 값은 유지됩니다.</string>
+    <string name="watch_open_app_hint">명령을 받을 수 있도록 워치에서 Phase Wake를 여세요.</string>
 </resources>

@@ -93,7 +93,7 @@ internal fun Modifier.fadeIn(): Modifier {
 /** Nachtdatum als Datum des Morgens (wie die Nächte im Verlauf), z. B. «28. Okt.». */
 internal fun morning(date: LocalDate, skeleton: String = "dMMM"): String {
     val locale = Locale.getDefault()
-    return DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, skeleton), locale).format(date.plusDays(1))
+    return Format.digits(DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, skeleton), locale), locale).format(date.plusDays(1))
 }
 
 /** Minuten ab Mittag als Uhrzeit. */

@@ -108,8 +108,9 @@ object Codec {
                     wakeTask = f.getOrNull(12)?.let { v -> WakeTask.entries.firstOrNull { it.name == v } } ?: WakeTask.NONE,
                     // Feld 14 fehlt bei älteren Ständen, unbekannt aus neueren: Handy.
                     sunriseDevice = f.getOrNull(13)?.let { v -> SunriseDevice.entries.firstOrNull { it.name == v } } ?: SunriseDevice.PHONE,
-                    // Felder 15 und 16 fehlen bei älteren Ständen (bis 14 Felder): nichts überspringen.
-                    skipUntil = f.getOrNull(14)?.toLongOrNull()?.coerceAtLeast(0L) ?: 0L,
+                    // Felder 15 und 16 fehlen bei älteren Ständen (bis 14 Felder): nichts überspringen. Unlesbar oder
+                    // ausserhalb von [TimeBounds] (z. B. aus einer manipulierten Sicherung): ebenso.
+                    skipUntil = TimeBounds.checked(f.getOrNull(14)?.toLongOrNull()) ?: 0L,
                     skipHolidays = f.getOrNull(15) == "1",
                 )
             }
@@ -145,7 +146,8 @@ object Codec {
     /**
      * Liest [encodeNight]. Ältere Stände ohne Befinden (6 Felder) bleiben lesbar, weitere angehängte Felder neuerer
      * Versionen werden ignoriert. Grund: Feld 8, wenn bekannt, sonst Feld 5; ein unbekannter Grund (aus einer
-     * neueren Version) gilt als [WakeReason.DEADLINE]. Fremdes Format oder kaputte Werte: [CodecException]
+     * neueren Version) gilt als [WakeReason.DEADLINE]. Fremdes Format oder kaputte Werte (auch Zeiten ausserhalb von
+     * [TimeBounds]): [CodecException]
      * (eine Nacht ist ganz oder gar nicht lesbar).
      */
     fun decodeNight(text: String): NightRecord {
@@ -158,9 +160,9 @@ object Codec {
             val epochLine = lines.getOrElse(2) { "" }
             NightRecord(
                 alarmId = unescape(f[0]),
-                windowStart = Instant.ofEpochMilli(f[1].toLong()),
-                target = Instant.ofEpochMilli(f[2].toLong()),
-                wokeAt = Instant.ofEpochMilli(f[3].toLong()),
+                windowStart = time(f[1]),
+                target = time(f[2]),
+                wokeAt = time(f[3]),
                 reason = reasonOf(f.getOrNull(7)) ?: reasonOf(f[4]) ?: WakeReason.DEADLINE,
                 snoozes = f[5].toInt(),
                 feeling = f.getOrNull(6)?.ifEmpty { null }?.toInt(),
@@ -171,6 +173,13 @@ object Codec {
                 },
             )
         }
+    }
+
+    /** Zeitpunkt in ms; ausserhalb von [TimeBounds] unlesbar (wie Swift, dort liefe die Umrechnung über). */
+    private fun time(field: String): Instant {
+        val ms = field.toLong()
+        require(TimeBounds.contains(ms)) { "Zeit '$field' ausserhalb 1970–2100" }
+        return Instant.ofEpochMilli(ms)
     }
 
     private fun reasonOf(name: String?): WakeReason? = WakeReason.entries.firstOrNull { it.name == name }

@@ -477,7 +477,7 @@
     </plurals>
     <string name="diag_unlocked">A diagnosztika most már a beállításokban van.</string>
     <string name="diag_show">Diagnosztika megjelenítése</string>
-    <string name="diag_hint">Csak ezen az eszközön, semmit sem küld el. Ébresztők és események időpontjait tartalmazza, egészségügyi adatot nem.</string>
+    <string name="diag_hint">Az elmúlt 7 nap technikai naplója, csak a készülékeiden. Időpontokat és mért értékeket tartalmaz (pl. mozgás, elalvás ideje) – csak akkor oszd meg, ha szeretnéd.</string>
     <string name="diag_events">Események</string>
     <string name="diag_empty">Még nincs esemény.</string>
     <string name="diag_status">Állapot</string>
@@ -591,4 +591,5 @@
     <string name="learn_point_battery">Ez némi akkumulátort fogyaszt – alvás előtt töltsd fel az órát.</string>
     <string name="learn_point_private">Az adatok a készülékeiden maradnak. A tanulási szakaszt bármikor kikapcsolhatod a beállításokban.</string>
     <string name="learn_switch_hint">Az órád éjjel méri a mozgást és a pulzust az ébresztés igazításához. Ki: nincs automatikus rögzítés, a tanult értékek megmaradnak.</string>
+    <string name="watch_open_app_hint">Nyisd meg a Phase Wake-et az órán, hogy megkapja a parancsot.</string>
 </resources>

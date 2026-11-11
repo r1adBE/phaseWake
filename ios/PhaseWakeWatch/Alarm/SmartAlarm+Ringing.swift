@@ -1,4 +1,5 @@
 import PhaseWakeCore
+import UserNotifications
 import WatchKit
 
 extension SmartAlarm {
@@ -16,20 +17,15 @@ extension SmartAlarm {
         DiagStore.shared.log(.ring, "watch \(reason.rawValue)")
         save()
         hapticStart = Date()
-        // Steigerung wie auf Android: sanft, deutlich, anhaltend – je eine Minute.
-        session?.notifyUser(hapticType: .notification) { [weak self] haptic in
-            let elapsed = Date().timeIntervalSince(self?.hapticStart ?? Date())
-            switch elapsed {
-            case ..<60:
-                haptic.pointee = .notification
-                return 3
-            case ..<120:
-                haptic.pointee = .retry
-                return 2
-            default:
-                haptic.pointee = .failure
-                return 1.5
-            }
+        // Steigerung wie auf Android: sanft, deutlich, anhaltend – je eine Minute (`SessionRules.hapticStep`). Klingelt
+        // diese Sitzung nicht mehr (gestoppt, geschlummert, ersetzt), endet die Wiederholung hier – auch wenn
+        // `invalidate()` im Hintergrund nicht greift (Audit AP-3).
+        let ringing = session
+        ringing?.notifyUser(hapticType: .notification) { [weak self] haptic in
+            let current = self.map { $0.phase.isRinging && $0.session === ringing } ?? false
+            let step = SessionRules.hapticStep(elapsed: Date().timeIntervalSince(self?.hapticStart ?? Date()), ringing: current)
+            if step.interval > 0 { haptic.pointee = step.type }
+            return step.interval
         }
         // Immer melden: Das iPhone entscheidet (Zweitwecker, Sonnenaufgang, Sicherung aussetzen).
         sendRing()
@@ -41,7 +37,8 @@ extension SmartAlarm {
     /// Gehört er zu einer anderen Nacht (Probewecker neben dem echten Wecker, abgebrochene Sitzung), nur vibrieren.
     /// Jede Mitteilung der Kette (`NotificationChain`) gilt wie die erste.
     func fallbackArrived(_ notificationId: String) {
-        let id = NotificationChain.baseId(notificationId)
+        // Rückfall einer späteren Nacht (`UpcomingFallbacks`, App lief seither nicht): gilt wie der des echten Weckers.
+        let id = UpcomingFallbacks.isUpcoming(notificationId) ? Self.fallbackId : NotificationChain.baseId(notificationId)
         let now = Date()
         // Zielzeit da, aber höchstens `ringLimit` zurück (ein alter Rückfall, spät angetippt, weckt nicht mehr).
         func due(_ night: WakePlan) -> Bool {
@@ -54,10 +51,11 @@ extension SmartAlarm {
             ring(targetReason())
         case .waiting(let night) where due(night), .scheduled(let night) where due(night):
             invalidateSession()
+            // Nach einer abgebrochenen Messung derselben Nacht bleiben ihre Epochen (`measuringInterrupted`).
+            if nightPlan != night { epochs = [] }
             plan = night
             nightPlan = night
             spec = WatchModel.shared.spec(for: night.alarmId)
-            epochs = []
             firstRing = nil
             snoozes = 0
             DiagStore.shared.log(.ring, "fallback without session")
@@ -146,6 +144,10 @@ extension SmartAlarm {
         let ids = [Self.fallbackKey(for: nightPlan?.alarmId ?? plan?.alarmId), Self.interruptedId]
         removeFallback(ids)
         removeDeliveredFallback(ids)
+        // Schon zugestellte Rückfälle späterer Nächte (die wartenden stellt das Neuplanen danach neu).
+        if Transient.kindOf(nightPlan?.alarmId ?? plan?.alarmId) == nil {
+            UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: UpcomingFallbacks.allIds)
+        }
         finish(notifyPhone: notifyPhone)
     }
 

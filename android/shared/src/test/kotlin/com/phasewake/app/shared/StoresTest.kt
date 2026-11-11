@@ -19,6 +19,7 @@ import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -154,6 +155,20 @@ class StoresTest {
         assertEquals(DetectorConfig(), LearningSnapshot.of(true, null, 6L).applyTo(DetectorConfig()))
         assertEquals("active=0 floor=0.0200 hr=set", snapshot.diagLine())
         assertEquals("active=1 floor=- hr=-", LearningSnapshot.of(true, null, 6L).diagLine())
+    }
+
+    @Test
+    fun invalidLearnedValuesCountAsNone() {
+        // Audit K-6: NaN, negative oder absurde Werte aus einer Nachricht dürfen den Start des Fensters nicht abbrechen.
+        val decoded = assertNotNull(LearningSnapshot.decode("1|NaN|NaN|7"))
+        assertEquals(LearningSnapshot(true, null, null, 7L), decoded)
+        assertEquals(LearningSnapshot(false, null, null, 8L), LearningSnapshot.decode("0|-0.5|1e9|8"))
+        assertEquals(LearningSnapshot(false, null, null, 9L), LearningSnapshot.decode("0|Infinity|-Infinity|9"))
+        // Auch ein Stand mit ungültigen Werten direkt (z. B. älter gespeichert): Detektor wie ohne gelernte Werte.
+        val config = LearningSnapshot(true, Double.NaN, Double.NaN, 10L).applyTo(DetectorConfig())
+        assertNull(config.personalFloor)
+        assertNull(config.restingHeartRate)
+        assertEquals(DetectorConfig(), config)
     }
 
     @Test

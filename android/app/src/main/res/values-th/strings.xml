@@ -463,7 +463,7 @@
     </plurals>
     <string name="diag_unlocked">ตอนนี้การวินิจฉัยอยู่ในการตั้งค่าแล้ว</string>
     <string name="diag_show">แสดงการวินิจฉัย</string>
-    <string name="diag_hint">อยู่บนอุปกรณ์นี้เท่านั้น ไม่ส่งอะไรออกไป มีเวลาการปลุกและเหตุการณ์ ไม่มีข้อมูลสุขภาพ</string>
+    <string name="diag_hint">บันทึกทางเทคนิคของ 7 วันล่าสุด อยู่บนอุปกรณ์ของคุณเท่านั้น มีเวลาและค่าที่วัดได้ (เช่น การเคลื่อนไหว เวลาที่หลับ) – แชร์เฉพาะเมื่อคุณต้องการ</string>
     <string name="diag_events">เหตุการณ์</string>
     <string name="diag_empty">ยังไม่มีเหตุการณ์</string>
     <string name="diag_status">สถานะ</string>
@@ -577,4 +577,5 @@
     <string name="learn_point_battery">ใช้แบตเตอรี่อยู่บ้าง – ชาร์จนาฬิกาก่อนนอน</string>
     <string name="learn_point_private">ข้อมูลอยู่บนอุปกรณ์ของคุณ คุณปิดช่วงเรียนรู้ได้ทุกเมื่อในการตั้งค่า</string>
     <string name="learn_switch_hint">นาฬิกาของคุณวัดการเคลื่อนไหวและชีพจรตอนกลางคืนเพื่อปรับนาฬิกาปลุก ปิด: ไม่บันทึกอัตโนมัติ ค่าที่เรียนรู้แล้วยังอยู่</string>
+    <string name="watch_open_app_hint">เปิด Phase Wake บนนาฬิกาเพื่อให้ได้รับคำสั่ง</string>
 </resources>

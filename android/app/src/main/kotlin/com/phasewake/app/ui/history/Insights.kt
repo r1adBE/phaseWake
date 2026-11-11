@@ -34,6 +34,7 @@ import com.phasewake.app.ui.Format
 import java.time.Duration
 import java.util.Locale
 import kotlin.math.abs
+import com.phasewake.app.ui.theme.outlinedBorder
 
 private val feelingNames = listOf(R.string.feeling_1, R.string.feeling_2, R.string.feeling_3, R.string.feeling_4, R.string.feeling_5)
 
@@ -69,10 +70,12 @@ fun FeelingPicker(onPick: (Int) -> Unit, modifier: Modifier = Modifier) {
                 OutlinedButton(
                     onClick = { onPick(value) },
                     shape = CircleShape,
+                    border = outlinedBorder(),
                     contentPadding = PaddingValues(0.dp),
                     // Mindestens 48 dp: gut zu treffen, auch auf schmalen Bildschirmen.
                     modifier = Modifier.weight(1f).heightIn(min = 48.dp).aspectRatio(1f).semantics { contentDescription = label },
-                ) { Text(value.toString(), style = MaterialTheme.typography.titleMedium) }
+                    // Ziffern wie in den übrigen Texten der Sprache (Arabisch: ٠–٩, Audit UI-9).
+                ) { Text(Format.number(value), style = MaterialTheme.typography.titleMedium) }
             }
         }
         Row(Modifier.fillMaxWidth().padding(top = 4.dp)) {

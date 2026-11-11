@@ -19,7 +19,11 @@ struct PhaseWakeWatchApp: App {
         }
         // Lernphase: Rekorder am Abend starten, Nacht nach dem Wecken auswerten (`LearnRecorder`). Die Uhr stellt nur
         // diese eine Hintergrund-Aktualisierung.
-        .backgroundTask(.appRefresh) { _ in await LearnRecorder.shared.refreshTask() }
+        // Dabei auch neu planen (Audit AP-2): Rückfälle der nächsten Nächte nachführen, auch wenn die App nie offen ist.
+        .backgroundTask(.appRefresh) { _ in
+            await MainActor.run { WatchModel.shared.reschedule(recorder: false) }
+            await LearnRecorder.shared.refreshTask()
+        }
     }
 }
 
@@ -29,6 +33,16 @@ final class AppDelegate: NSObject, WKApplicationDelegate {
         // Vor dem Ende des Starts setzen: Sonst geht ein Tipp, der die App startet, verloren.
         UNUserNotificationCenter.current().delegate = WatchNotificationRouter.shared
         WatchConnectivityBridge.shared.activate()
+    }
+
+    /// Jedes Aktivwerden, auch ein Kaltstart über die Erinnerung am Abend, bei dem `scenePhase` der Startseite den
+    /// Wechsel nicht sicher meldet (Audit AP-5): zuerst gemerkte, nicht mehr gültige Sitzungen beenden (nur bei aktiver
+    /// App erlaubt), dann neu planen – nur bei aktiver App lässt sich die Smart-Alarm-Sitzung planen.
+    func applicationDidBecomeActive() {
+        MainActor.assumeIsolated {
+            SmartAlarm.shared.invalidateStaleSessions()
+            WatchModel.shared.reschedule()
+        }
     }
 
     /// Der Delegate muss gesetzt sein, bevor diese Methode zurückkehrt; sonst beendet das System die Sitzung.

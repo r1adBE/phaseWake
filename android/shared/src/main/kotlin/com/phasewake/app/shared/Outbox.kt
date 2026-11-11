@@ -24,11 +24,17 @@ import kotlinx.coroutines.withTimeoutOrNull
  *
  * Nachrichten werden nicht nachgeliefert. Damit nichts verloren geht, wenn die Gegenseite gerade weg ist, liegt jeder
  * Eintrag lokal im Ordner [dir], bis sie den Empfang bestätigt ([DataLayer.PATH_ACK], [acked]); bis dahin sendet [flush]
- * ihn bei jedem Anlass erneut (beim Einreihen, beim Start der App, wenn die Gegenseite erreichbar wird, bei jeder
- * Nachricht von ihr). Ein Eintrag mit gleichem Schlüssel ([Entry.key], z. B. «alarms») ersetzt den älteren: Für Zustände
- * zählt nur der neueste. Nächte und Aufzeichnungen haben je einen eigenen Schlüssel. Die Bestätigung nennt die Kennung
- * des gesendeten Standes ([Entry.id]): Ein inzwischen ersetzter Eintrag bleibt. Der Empfänger verarbeitet idempotent
- * (dieselbe Nacht zweimal ändert nichts) und bestätigt erst danach ([WearSync.receive]).
+ * ihn bei einem späteren Anlass erneut (Start der App, Gegenseite erreichbar, Nachricht von ihr), aber frühestens
+ * [RESEND_AFTER_MS] nach dem letzten erfolgreichen Senden (Audit A-1: sonst kam derselbe Eintrag mehrfach an, weil jede
+ * Nachricht der Gegenseite alles Unbestätigte erneut schickte). [enqueue] sendet nur den neuen Eintrag. Ein Eintrag mit
+ * gleichem Schlüssel ([Entry.key], z. B. «alarms») ersetzt den älteren: Für Zustände zählt nur der neueste. Nächte und
+ * Aufzeichnungen haben je einen eigenen Schlüssel. Die Bestätigung nennt die Kennung des gesendeten Standes
+ * ([Entry.id]): Ein inzwischen ersetzter Eintrag bleibt. Der Empfänger verarbeitet idempotent (dieselbe Nacht zweimal
+ * ändert nichts), merkt sich die zuletzt verarbeiteten Kennungen ([ReceivedIds]) und bestätigt erst danach
+ * ([WearSync.receive]).
+ *
+ * Begrenzt (Audit A-8): Einträge älter als [MAX_AGE_MS] fallen weg, und je Art ([kindOf], z. B. alle Nächte) bleiben
+ * höchstens [MAX_PER_KIND], die neuesten.
  *
  * Eine Instanz je Prozess und Ordner ([forContext]), damit alle Zugriffe über dieselbe Sperre laufen.
  */
@@ -51,39 +57,81 @@ class Outbox(private val dir: File, private val transport: Transport, private va
 
     private val lock = Mutex()
 
-    /** Reiht [body] unter [key] ein (ersetzt einen älteren Eintrag mit gleichem Schlüssel) und sendet gleich. */
+    /** Je Kennung ([Entry.id]): Zeitpunkt (ms) des letzten erfolgreichen Sendens in diesem Prozess. */
+    private val sentAt = mutableMapOf<String, Long>()
+
+    /**
+     * Reiht [body] unter [key] ein (ersetzt einen älteren Eintrag mit gleichem Schlüssel) und sendet gleich – nur
+     * diesen, nicht alle wartenden (Audit A-1).
+     */
     suspend fun enqueue(key: String, path: String, capability: String, body: String) {
-        lock.withLock { write(Entry(UUID.randomUUID().toString(), key, path, capability, body, now())) }
-        flush()
+        val entry = Entry(UUID.randomUUID().toString(), key, path, capability, body, now())
+        lock.withLock {
+            write(entry)
+            prune()
+        }
+        flush(only = entry.id)
     }
 
     /** Wartende Einträge, älteste zuerst. */
     suspend fun pending(): List<Entry> = lock.withLock { readAll() }
 
     /**
-     * Sendet alle wartenden Einträge an die erreichbaren Geräte ihrer Fähigkeit. Ohne Gerät oder bei einem Fehler bleibt
-     * der Eintrag für den nächsten Anlass.
+     * Sendet die wartenden Einträge an die erreichbaren Geräte ihrer Fähigkeit; einen schon gesendeten erst wieder
+     * [RESEND_AFTER_MS] danach (Audit A-1). Ohne Gerät oder bei einem Fehler bleibt der Eintrag für den nächsten Anlass.
+     * [only]: nur den Eintrag mit dieser Kennung ([enqueue]).
      * @return Zahl der weiterhin wartenden Einträge.
      */
-    suspend fun flush(): Int = lock.withLock {
+    suspend fun flush(only: String? = null): Int = lock.withLock {
+        prune()
         val entries = readAll()
         val nodes = mutableMapOf<String, List<String>>()
+        val current = now()
         for (entry in entries) {
+            if (only != null && entry.id != only) continue
+            if (!resendDue(sentAt[entry.id], current)) continue
             val targets = nodes[entry.capability] ?: (guarded { transport.nodes(entry.capability) } ?: emptyList()).also { nodes[entry.capability] = it }
-            for (node in targets) guarded { transport.send(node, entry.path, wrap(entry.id, entry.body)) }
+            var sent = false
+            for (node in targets) if (guarded { transport.send(node, entry.path, wrap(entry.id, entry.body)) } != null) sent = true
+            if (sent) sentAt[entry.id] = current
         }
+        // Gemerkte Zeiten ersetzter oder bestätigter Einträge vergessen.
+        sentAt.keys.retainAll(entries.map { it.id }.toSet())
         entries.size
     }
 
     /** Die Gegenseite hat [id] empfangen: Eintrag entfernen (nur genau diesen Stand). */
     suspend fun acked(id: String): Boolean = lock.withLock {
         val file = files().firstOrNull { read(it)?.id == id } ?: return@withLock false
+        sentAt.remove(id)
         withContext(Dispatchers.IO) { file.delete() }
     }
 
     /** Entfernt wartende Einträge, deren Schlüssel mit [prefix] beginnt und die vor [before] (ms) eingereiht wurden. */
-    suspend fun drop(prefix: String, before: Long = Long.MAX_VALUE) = lock.withLock {
-        files().filter { read(it)?.let { e -> e.key.startsWith(prefix) && e.createdAt < before } == true }.forEach { it.delete() }
+    suspend fun drop(prefix: String, before: Long = Long.MAX_VALUE) = dropIf(prefix) { it.createdAt < before }
+
+    /** Entfernt wartende Einträge, deren Schlüssel mit [prefix] beginnt und für die [matches] gilt. */
+    suspend fun dropIf(prefix: String, matches: (Entry) -> Boolean) = lock.withLock {
+        withContext(Dispatchers.IO) {
+            files().filter { read(it)?.let { e -> e.key.startsWith(prefix) && matches(e) } == true }.forEach { it.delete() }
+        }
+    }
+
+    /**
+     * Grenzen der Warteschlange (Audit A-8): Einträge älter als [MAX_AGE_MS] (oder aus der «Zukunft», Uhr verstellt,
+     * bleiben) entfernen, je Art ([kindOf]) nur die neuesten [MAX_PER_KIND] behalten. Nur unter [lock].
+     */
+    private suspend fun prune() = withContext(Dispatchers.IO) {
+        val current = now()
+        val all = files().mapNotNull { file -> read(file)?.let { file to it } }
+        val drop = all.filter { (_, e) -> current - e.createdAt > MAX_AGE_MS }.toMutableList()
+        all.filterNot { it in drop }.groupBy { kindOf(it.second.key) }.values.forEach { group ->
+            if (group.size > MAX_PER_KIND) drop += group.sortedByDescending { it.second.createdAt }.drop(MAX_PER_KIND)
+        }
+        for ((file, entry) in drop) {
+            Log.w(TAG, "Eintrag ${entry.key} verworfen (zu alt oder zu viele)")
+            file.delete()
+        }
     }
 
     /**
@@ -187,6 +235,25 @@ class Outbox(private val dir: File, private val transport: Transport, private va
 
         /** Höchstdauer eines Schritts zur Gegenseite (Geräte suchen, senden). */
         private const val STEP_TIMEOUT_MS = 15_000L
+
+        /** Ein gesendeter, noch nicht bestätigter Eintrag geht frühestens so lange danach erneut (Audit A-1). */
+        const val RESEND_AFTER_MS = 45_000L
+
+        /** Älter als 14 Tage: verworfen (Audit A-8; die Uhr behält ihren eigenen Verlauf). */
+        const val MAX_AGE_MS = 14 * 24 * 3_600_000L
+
+        /** Höchstens so viele wartende Einträge je Art ([kindOf]); ältere fallen weg. */
+        const val MAX_PER_KIND = 60
+
+        /** Art eines Schlüssels: bei Nächten und Aufzeichnungen der Teil bis «/» (z. B. «night/»), sonst der Schlüssel. */
+        fun kindOf(key: String): String = key.indexOf('/').let { if (it < 0) key else key.substring(0, it + 1) }
+
+        /**
+         * Ob ein Eintrag, zuletzt um [lastSentAt] gesendet (`null`: noch nie in diesem Prozess), jetzt ([now]) wieder
+         * gesendet wird. Eine zurückgestellte Uhr ([now] vor [lastSentAt]) sendet gleich.
+         */
+        fun resendDue(lastSentAt: Long?, now: Long): Boolean =
+            lastSentAt == null || now < lastSentAt || now - lastSentAt >= RESEND_AFTER_MS
 
         /** Ob [data] als Nachricht geht ([WearTransport]); sonst über einen Kanal. */
         fun fitsMessage(data: ByteArray): Boolean = data.size <= MAX_MESSAGE_BYTES

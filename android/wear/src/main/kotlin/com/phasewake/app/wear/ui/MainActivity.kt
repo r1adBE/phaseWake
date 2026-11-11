@@ -189,8 +189,8 @@ private fun conflictText(conflict: TransientConflict): Int = when (conflict) {
 /** Kurzes Datum mit Wochentag (z. B. «Do., 30.10.»). */
 private fun shortDay(date: java.time.LocalDate): String {
     val locale = java.util.Locale.getDefault()
-    return java.time.format.DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, "EEEdM"), locale).format(date)
+    return localizedDigits(java.time.format.DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, "EEEdM"), locale), locale).format(date)
 }
 
 private fun shortTime(at: Instant): String =
-    java.time.format.DateTimeFormatter.ofLocalizedTime(java.time.format.FormatStyle.SHORT).format(at.atZone(ZoneId.systemDefault()))
+    localizedDigits(java.time.format.DateTimeFormatter.ofLocalizedTime(java.time.format.FormatStyle.SHORT)).format(at.atZone(ZoneId.systemDefault()))

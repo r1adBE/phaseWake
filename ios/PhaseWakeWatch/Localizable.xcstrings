@@ -58246,445 +58246,445 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Net op hierdie toestel, niks word gestuur nie. Bevat tye van wekkers en gebeure, geen gesondheidsdata nie."
+            "value": "Tegniese logboek van die afgelope 7 dae, net op jou toestelle. Dit bevat tye en meetwaardes (bv. beweging, wanneer jy aan die slaap geraak het) – deel dit net as jy wil."
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "በዚህ መሣሪያ ላይ ብቻ፣ ምንም አይላክም። የማንቂያዎችና የክስተቶች ሰዓቶችን ይዟል፣ የጤና ውሂብ የለውም።"
+            "value": "ያለፉት 7 ቀናት ቴክኒካዊ መዝገብ፣ በመሣሪያዎችህ ላይ ብቻ። ሰዓቶችንና መለኪያዎችን ይዟል (ለምሳሌ እንቅስቃሴ፣ የእንቅልፍ ጊዜ) – ከፈለግህ ብቻ አጋራው።"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "على هذا الجهاز فقط، لا يُرسل شيء. يحتوي على أوقات المنبّهات والأحداث، دون بيانات صحية."
+            "value": "سجل تقني لآخر 7 أيام، على أجهزتك فقط. يحتوي على أوقات وقيم قياس (مثل الحركة ووقت النوم) – شاركه فقط إذا أردت."
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yalnız bu cihazda, heç nə göndərilmir. Siqnalların və hadisələrin vaxtlarını saxlayır, sağlamlıq məlumatı yoxdur."
+            "value": "Son 7 günün texniki jurnalı, yalnız sənin cihazlarında. Vaxtları və ölçü dəyərlərini ehtiva edir (məs. hərəkət, yuxuya getmə vaxtı) – yalnız istəsən paylaş."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Само на това устройство, нищо не се изпраща. Съдържа часове на будилници и събития, без здравни данни."
+            "value": "Технически дневник за последните 7 дни, само на твоите устройства. Съдържа часове и измерени стойности (напр. движение, време на заспиване) – споделяй го само ако искаш."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "শুধু এই ডিভাইসে, কিছুই পাঠানো হয় না। অ্যালার্ম ও ঘটনার সময় থাকে, স্বাস্থ্য ডেটা নয়।"
+            "value": "গত ৭ দিনের প্রযুক্তিগত লগ, শুধু তোমার ডিভাইসে। এতে সময় ও পরিমাপের মান আছে (যেমন নড়াচড়া, ঘুমিয়ে পড়ার সময়) – চাইলে তবেই শেয়ার করো।"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Samo na ovom uređaju, ništa se ne šalje. Sadrži vremena alarma i događaja, bez zdravstvenih podataka."
+            "value": "Tehnički dnevnik zadnjih 7 dana, samo na tvojim uređajima. Sadrži vremena i izmjerene vrijednosti (npr. pokret, vrijeme uspavljivanja) – dijeli ga samo ako želiš."
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "Només en aquest dispositiu, no s’envia res. Conté hores d’alarmes i esdeveniments, cap dada de salut."
+            "value": "Registre tècnic dels últims 7 dies, només als teus dispositius. Conté hores i valors mesurats (p. ex. moviment, hora d’adormir-te) – comparteix-lo només si vols."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jen v tomto zařízení, nic se neodesílá. Obsahuje časy budíků a událostí, žádná zdravotní data."
+            "value": "Technický záznam za posledních 7 dní, jen ve tvých zařízeních. Obsahuje časy a naměřené hodnoty (např. pohyb, čas usnutí) – sdílej ho, jen když chceš."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kun på denne enhed, intet sendes. Indeholder tidspunkter for alarmer og hændelser, ingen sundhedsdata."
+            "value": "Teknisk log for de seneste 7 dage, kun på dine enheder. Den indeholder tidspunkter og måleværdier (f.eks. bevægelse, indsovningstid) – del den kun, hvis du vil."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nur auf diesem Gerät, nichts wird gesendet. Enthält Zeiten von Weckern und Ereignissen, keine Gesundheitsdaten."
+            "value": "Technisches Protokoll der letzten 7 Tage, nur auf deinen Geräten. Es enthält Zeiten und Messwerte (z. B. Bewegung, Einschlafzeit) – teile es nur, wenn du willst."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Μόνο σε αυτή τη συσκευή, δεν αποστέλλεται τίποτα. Περιέχει ώρες αφυπνίσεων και συμβάντων, όχι δεδομένα υγείας."
+            "value": "Τεχνικό αρχείο καταγραφής των τελευταίων 7 ημερών, μόνο στις συσκευές σου. Περιέχει ώρες και μετρήσεις (π.χ. κίνηση, ώρα που αποκοιμήθηκες) – μοιράσου το μόνο αν θέλεις."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Only on this device, nothing is sent. Contains times of alarms and events, no health data."
+            "value": "Technical log of the last 7 days, only on your devices. It contains times and measurements (e.g. motion, when you fell asleep) – share it only if you want to."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Solo en este dispositivo, no se envía nada. Contiene horas de alarmas y eventos, sin datos de salud."
+            "value": "Registro técnico de los últimos 7 días, solo en tus dispositivos. Contiene horas y valores medidos (p. ej., movimiento, hora en que te dormiste): compártelo solo si quieres."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ainult selles seadmes, midagi ei saadeta. Sisaldab äratuste ja sündmuste aegu, terviseandmeid mitte."
+            "value": "Viimase 7 päeva tehniline logi, ainult sinu seadmetes. See sisaldab aegu ja mõõteväärtusi (nt liikumine, uinumise aeg) – jaga seda ainult siis, kui tahad."
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gailu honetan soilik, ez da ezer bidaltzen. Alarmen eta gertaeren orduak ditu, osasun-daturik ez."
+            "value": "Azken 7 egunetako erregistro teknikoa, zure gailuetan soilik. Orduak eta neurketak ditu (adib. mugimendua, lokartzeko ordua); partekatu nahi baduzu bakarrik."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "فقط روی همین دستگاه، چیزی فرستاده نمی‌شود. شامل زمان زنگ‌ها و رویدادهاست، بدون دادهٔ سلامت."
+            "value": "گزارش فنی ۷ روز گذشته، فقط روی دستگاه‌های تو. شامل زمان‌ها و مقادیر اندازه‌گیری‌شده است (مثلاً حرکت، زمان به خواب رفتن) – فقط اگر خواستی آن را به اشتراک بگذار."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vain tällä laitteella, mitään ei lähetetä. Sisältää herätysten ja tapahtumien ajat, ei terveystietoja."
+            "value": "Viimeisten 7 päivän tekninen loki, vain laitteillasi. Se sisältää aikoja ja mittausarvoja (esim. liike, nukahtamisaika) – jaa se vain, jos haluat."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sa device na ito lang, walang ipinapadala. May mga oras ng alarm at event, walang health data."
+            "value": "Teknikal na log ng huling 7 araw, sa mga device mo lang. May mga oras at sukat ito (hal. galaw, oras ng pagtulog) – ibahagi lang kung gusto mo."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uniquement sur cet appareil, rien n’est envoyé. Contient les heures des réveils et des événements, pas de données de santé."
+            "value": "Journal technique des 7 derniers jours, uniquement sur tes appareils. Il contient des heures et des valeurs mesurées (p. ex. mouvement, heure d’endormissement) – ne le partage que si tu le veux."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ar an ngléas seo amháin, ní sheoltar aon rud. Tá amanna aláram agus imeachtaí ann, gan sonraí sláinte."
+            "value": "Loga teicniúil na 7 lá deiridh, ar do ghléasanna amháin. Tá amanna agus luachanna tomhaiste ann (m.sh. gluaiseacht, am titim i do chodladh) – ná roinn é ach más mian leat."
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Só neste dispositivo, non se envía nada. Contén horas de alarmas e eventos, sen datos de saúde."
+            "value": "Rexistro técnico dos últimos 7 días, só nos teus dispositivos. Contén horas e valores medidos (p. ex. movemento, hora de adormecer) – compárteo só se queres."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "ફક્ત આ ડિવાઇસ પર, કંઈ મોકલાતું નથી. એલાર્મ અને ઘટનાઓના સમય છે, હેલ્થ ડેટા નથી."
+            "value": "છેલ્લા 7 દિવસનો ટેકનિકલ લૉગ, ફક્ત તમારા ડિવાઇસ પર. તેમાં સમય અને માપેલા મૂલ્યો છે (દા.ત. હલનચલન, ઊંઘ આવવાનો સમય) – તમે ઇચ્છો તો જ શેર કરો."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "רק במכשיר הזה, דבר לא נשלח. מכיל זמני השכמות ואירועים, בלי נתוני בריאות."
+            "value": "יומן טכני של 7 הימים האחרונים, רק במכשירים שלך. הוא מכיל זמנים וערכי מדידה (למשל תנועה, שעת הירדמות) – שתף אותו רק אם תרצה."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "सिर्फ़ इस डिवाइस पर, कुछ भी भेजा नहीं जाता। अलार्म और घटनाओं के समय होते हैं, स्वास्थ्य डेटा नहीं।"
+            "value": "पिछले 7 दिनों का तकनीकी लॉग, सिर्फ़ तुम्हारे डिवाइस पर। इसमें समय और मापे गए मान हैं (जैसे हलचल, नींद आने का समय) – चाहो तभी शेयर करो।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Samo na ovom uređaju, ništa se ne šalje. Sadrži vremena alarma i događaja, bez zdravstvenih podataka."
+            "value": "Tehnički zapisnik zadnjih 7 dana, samo na tvojim uređajima. Sadrži vremena i izmjerene vrijednosti (npr. pokret, vrijeme uspavljivanja) – dijeli ga samo ako želiš."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Csak ezen az eszközön, semmit sem küld el. Ébresztők és események időpontjait tartalmazza, egészségügyi adatot nem."
+            "value": "Az elmúlt 7 nap technikai naplója, csak a készülékeiden. Időpontokat és mért értékeket tartalmaz (pl. mozgás, elalvás ideje) – csak akkor oszd meg, ha szeretnéd."
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Միայն այս սարքում, ոչինչ չի ուղարկվում։ Պարունակում է զարթուցիչների և իրադարձությունների ժամերը, առողջության տվյալներ չկան։"
+            "value": "Վերջին 7 օրվա տեխնիկական մատյան՝ միայն քո սարքերում։ Պարունակում է ժամեր և չափված արժեքներ (օր.՝ շարժում, քնելու ժամ)․ կիսվիր միայն, եթե ուզում ես։"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hanya di perangkat ini, tidak ada yang dikirim. Berisi waktu alarm dan peristiwa, tanpa data kesehatan."
+            "value": "Log teknis 7 hari terakhir, hanya di perangkatmu. Berisi waktu dan nilai ukur (mis. gerakan, waktu tertidur) – bagikan hanya jika kamu mau."
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aðeins á þessu tæki, ekkert er sent. Inniheldur tíma vekjara og atburða, engin heilsugögn."
+            "value": "Tæknileg skráning síðustu 7 daga, aðeins á tækjunum þínum. Hún inniheldur tíma og mæligildi (t.d. hreyfingu, hvenær þú sofnaðir) – deildu henni aðeins ef þú vilt."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Solo su questo dispositivo, non viene inviato nulla. Contiene orari di sveglie ed eventi, nessun dato sanitario."
+            "value": "Registro tecnico degli ultimi 7 giorni, solo sui tuoi dispositivi. Contiene orari e valori misurati (ad es. movimento, ora in cui ti sei addormentato) – condividilo solo se vuoi."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "このデバイスのみ。何も送信されません。アラームとイベントの時刻を含み、健康データは含みません。"
+            "value": "過去 7 日間の技術ログで、あなたのデバイスにのみ保存されます。時刻や測定値（例：動き、入眠時刻）が含まれます。共有するのは必要なときだけにしてください。"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "მხოლოდ ამ მოწყობილობაზე, არაფერი იგზავნება. შეიცავს მაღვიძარებისა და მოვლენების დროს, ჯანმრთელობის მონაცემებს არა."
+            "value": "ბოლო 7 დღის ტექნიკური ჟურნალი, მხოლოდ შენს მოწყობილობებზე. შეიცავს დროებს და გაზომილ მნიშვნელობებს (მაგ. მოძრაობა, ჩაძინების დრო) – გააზიარე მხოლოდ თუ გინდა."
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Тек осы құрылғыда, ешнәрсе жіберілмейді. Оятқыштар мен оқиғалардың уақыттары бар, денсаулық деректері жоқ."
+            "value": "Соңғы 7 күннің техникалық журналы, тек сенің құрылғыларыңда. Онда уақыттар мен өлшем мәндері бар (мыс. қозғалыс, ұйықтап кеткен уақыт) – қаласаң ғана бөліс."
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "តែលើឧបករណ៍នេះ គ្មានអ្វីត្រូវបានផ្ញើទេ។ មានម៉ោងនៃម៉ោងរោទ៍ និងព្រឹត្តិការណ៍ គ្មានទិន្នន័យសុខភាព។"
+            "value": "កំណត់ហេតុបច្ចេកទេសនៃ 7 ថ្ងៃចុងក្រោយ មានតែនៅលើឧបករណ៍របស់អ្នកប៉ុណ្ណោះ។ វាមានពេលវេលា និងតម្លៃវាស់ (ឧ. ចលនា ពេលងងុយគេង) – ចែករំលែកវាតែពេលអ្នកចង់ប៉ុណ្ណោះ។"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ಈ ಸಾಧನದಲ್ಲಿ ಮಾತ್ರ, ಏನನ್ನೂ ಕಳುಹಿಸುವುದಿಲ್ಲ. ಅಲಾರಾಂ ಮತ್ತು ಘಟನೆಗಳ ಸಮಯಗಳಿವೆ, ಆರೋಗ್ಯ ಡೇಟಾ ಇಲ್ಲ."
+            "value": "ಕಳೆದ 7 ದಿನಗಳ ತಾಂತ್ರಿಕ ಲಾಗ್, ನಿಮ್ಮ ಸಾಧನಗಳಲ್ಲಿ ಮಾತ್ರ. ಇದರಲ್ಲಿ ಸಮಯಗಳು ಮತ್ತು ಅಳತೆ ಮೌಲ್ಯಗಳಿವೆ (ಉದಾ. ಚಲನೆ, ನಿದ್ರೆ ಬಂದ ಸಮಯ) – ನೀವು ಬಯಸಿದರೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಿ."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "이 기기에만 있고 아무것도 보내지 않아요. 알람과 이벤트 시간이 들어 있고 건강 데이터는 없어요."
+            "value": "최근 7일간의 기술 로그로, 내 기기에만 저장됩니다. 시간과 측정값(예: 움직임, 잠든 시각)이 들어 있으니 원할 때만 공유하세요."
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "ສະເພາະໃນອຸປະກອນນີ້ ບໍ່ມີຫຍັງຖືກສົ່ງ ມີເວລາຂອງໂມງປຸກ ແລະ ເຫດການ ບໍ່ມີຂໍ້ມູນສຸຂະພາບ"
+            "value": "ບັນທຶກທາງເທັກນິກຂອງ 7 ມື້ຫຼ້າສຸດ, ຢູ່ໃນອຸປະກອນຂອງເຈົ້າເທົ່ານັ້ນ. ມີເວລາ ແລະ ຄ່າທີ່ວັດໄດ້ (ເຊັ່ນ ການເຄື່ອນໄຫວ, ເວລານອນຫຼັບ) – ແບ່ງປັນສະເພາະເມື່ອເຈົ້າຕ້ອງການ."
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tik šiame įrenginyje, niekas nesiunčiama. Yra žadintuvų ir įvykių laikai, jokių sveikatos duomenų."
+            "value": "Paskutinių 7 dienų techninis žurnalas, tik tavo įrenginiuose. Jame yra laikai ir išmatuotos vertės (pvz., judesys, užmigimo laikas) – bendrink jį tik jei nori."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tikai šajā ierīcē, nekas netiek nosūtīts. Satur modinātāju un notikumu laikus, bez veselības datiem."
+            "value": "Pēdējo 7 dienu tehniskais žurnāls, tikai tavās ierīcēs. Tajā ir laiki un izmērītās vērtības (piem., kustība, iemigšanas laiks) – kopīgo to tikai tad, ja vēlies."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Само на овој уред, ништо не се испраќа. Содржи времиња на аларми и настани, без здравствени податоци."
+            "value": "Технички дневник за последните 7 дена, само на твоите уреди. Содржи времиња и измерени вредности (на пр. движење, време на заспивање) – сподели го само ако сакаш."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "ഈ ഉപകരണത്തിൽ മാത്രം, ഒന്നും അയയ്ക്കില്ല. അലാറങ്ങളുടെയും ഇവന്റുകളുടെയും സമയങ്ങൾ മാത്രം, ആരോഗ്യ ഡാറ്റയില്ല."
+            "value": "കഴിഞ്ഞ 7 ദിവസത്തെ സാങ്കേതിക ലോഗ്, നിങ്ങളുടെ ഉപകരണങ്ങളിൽ മാത്രം. ഇതിൽ സമയങ്ങളും അളന്ന മൂല്യങ്ങളും ഉണ്ട് (ഉദാ. ചലനം, ഉറങ്ങിയ സമയം) – വേണമെങ്കിൽ മാത്രം പങ്കിടുക."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Зөвхөн энэ төхөөрөмж дээр, юу ч илгээхгүй. Сэрүүлэг, үйл явдлын цагийг агуулна, эрүүл мэндийн өгөгдөлгүй."
+            "value": "Сүүлийн 7 хоногийн техникийн бүртгэл, зөвхөн чиний төхөөрөмжүүд дээр. Цаг болон хэмжсэн утгууд агуулна (жишээ нь хөдөлгөөн, унтсан цаг) – хүсвэл л хуваалц."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "फक्त या डिव्हाइसवर, काहीही पाठवले जात नाही. अलार्म आणि घटनांच्या वेळा आहेत, हेल्थ डेटा नाही."
+            "value": "मागील 7 दिवसांचा तांत्रिक लॉग, फक्त तुमच्या डिव्हाइसवर. यात वेळा आणि मोजलेली मूल्ये आहेत (उदा. हालचाल, झोप लागण्याची वेळ) – तुम्हाला हवे असेल तरच शेअर करा."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hanya pada peranti ini, tiada apa-apa dihantar. Mengandungi masa penggera dan peristiwa, tanpa data kesihatan."
+            "value": "Log teknikal 7 hari terakhir, hanya pada peranti anda. Ia mengandungi masa dan nilai ukuran (cth. pergerakan, masa tertidur) – kongsi hanya jika anda mahu."
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "ဤစက်ပေါ်တွင်သာ၊ ဘာမှ မပို့ပါ။ နှိုးစက်နှင့် ဖြစ်ရပ်များ၏ အချိန်များ ပါသည်၊ ကျန်းမာရေးဒေတာ မပါ။"
+            "value": "နောက်ဆုံး ၇ ရက်၏ နည်းပညာမှတ်တမ်း၊ သင့်စက်များပေါ်တွင်သာ။ အချိန်များနှင့် တိုင်းတာထားသောတန်ဖိုးများ (ဥပမာ လှုပ်ရှားမှု၊ အိပ်ပျော်ချိန်) ပါဝင်သည် – လိုချင်မှသာ မျှဝေပါ။"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bare på denne enheten, ingenting sendes. Inneholder tidspunkter for alarmer og hendelser, ingen helsedata."
+            "value": "Teknisk logg for de siste 7 dagene, bare på enhetene dine. Den inneholder tidspunkter og måleverdier (f.eks. bevegelse, innsovningstid) – del den bare hvis du vil."
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "यो डिभाइसमा मात्र, केही पठाइँदैन। अलार्म र घटनाका समय हुन्छन्, स्वास्थ्य डेटा हुँदैन।"
+            "value": "पछिल्ला ७ दिनको प्राविधिक लग, तिम्रा उपकरणमा मात्र। यसमा समय र मापन गरिएका मानहरू छन् (जस्तै चाल, निदाएको समय) – चाहेमा मात्र साझा गर।"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Alleen op dit apparaat, er wordt niets verzonden. Bevat tijden van wekkers en gebeurtenissen, geen gezondheidsgegevens."
+            "value": "Technisch logboek van de afgelopen 7 dagen, alleen op je apparaten. Het bevat tijden en meetwaarden (bijv. beweging, inslaaptijd) – deel het alleen als je dat wilt."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਸਿਰਫ਼ ਇਸ ਡੀਵਾਈਸ ’ਤੇ, ਕੁਝ ਵੀ ਨਹੀਂ ਭੇਜਿਆ ਜਾਂਦਾ। ਇਸ ਵਿੱਚ ਅਲਾਰਮਾਂ ਅਤੇ ਘਟਨਾਵਾਂ ਦੇ ਸਮੇਂ ਹਨ, ਸਿਹਤ ਡਾਟਾ ਨਹੀਂ।"
+            "value": "ਪਿਛਲੇ 7 ਦਿਨਾਂ ਦਾ ਤਕਨੀਕੀ ਲੌਗ, ਸਿਰਫ਼ ਤੁਹਾਡੇ ਡੀਵਾਈਸਾਂ ’ਤੇ। ਇਸ ਵਿੱਚ ਸਮੇਂ ਅਤੇ ਮਾਪੇ ਮੁੱਲ ਹਨ (ਜਿਵੇਂ ਹਿਲਜੁਲ, ਨੀਂਦ ਆਉਣ ਦਾ ਸਮਾਂ) – ਚਾਹੋ ਤਾਂ ਹੀ ਸਾਂਝਾ ਕਰੋ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tylko na tym urządzeniu, nic nie jest wysyłane. Zawiera godziny budzików i zdarzeń, bez danych zdrowotnych."
+            "value": "Dziennik techniczny z ostatnich 7 dni, tylko na twoich urządzeniach. Zawiera godziny i zmierzone wartości (np. ruch, porę zaśnięcia) – udostępniaj go tylko, jeśli chcesz."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Só neste dispositivo, nada é enviado. Contém horários de alarmes e eventos, sem dados de saúde."
+            "value": "Registro técnico dos últimos 7 dias, só nos seus dispositivos. Contém horários e valores medidos (ex.: movimento, hora em que você adormeceu) – compartilhe só se quiser."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Só neste dispositivo, nada é enviado. Contém horas de alarmes e eventos, sem dados de saúde."
+            "value": "Registo técnico dos últimos 7 dias, só nos teus dispositivos. Contém horas e valores medidos (p. ex. movimento, hora a que adormeceste) – partilha-o só se quiseres."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Doar pe acest dispozitiv, nu se trimite nimic. Conține orele alarmelor și ale evenimentelor, fără date de sănătate."
+            "value": "Jurnal tehnic al ultimelor 7 zile, doar pe dispozitivele tale. Conține ore și valori măsurate (de ex. mișcare, ora adormirii) – partajează-l doar dacă vrei."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Только на этом устройстве, ничего не отправляется. Содержит время будильников и событий, без данных о здоровье."
+            "value": "Технический журнал за последние 7 дней, только на твоих устройствах. Он содержит время и измеренные значения (например, движение, время засыпания) – делись им, только если хочешь."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "මෙම උපාංගයේ පමණි, කිසිවක් යවන්නේ නැත. එලාම සහ සිදුවීම්වල වේලාවන් ඇත, සෞඛ්‍ය දත්ත නැත."
+            "value": "පසුගිය දින 7 හි තාක්ෂණික ලොගය, ඔබේ උපාංගවල පමණි. එහි වේලාවන් සහ මනින ලද අගයන් ඇත (උදා. චලනය, නින්දට ගිය වේලාව) – ඔබට අවශ්‍ය නම් පමණක් බෙදාගන්න."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Len v tomto zariadení, nič sa neodosiela. Obsahuje časy budíkov a udalostí, žiadne zdravotné údaje."
+            "value": "Technický záznam za posledných 7 dní, len v tvojich zariadeniach. Obsahuje časy a namerané hodnoty (napr. pohyb, čas zaspania) – zdieľaj ho, len ak chceš."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Samo na tej napravi, nič se ne pošlje. Vsebuje čase budilk in dogodkov, brez zdravstvenih podatkov."
+            "value": "Tehnični dnevnik zadnjih 7 dni, samo v tvojih napravah. Vsebuje čase in izmerjene vrednosti (npr. gibanje, čas uspavanja) – deli ga le, če želiš."
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vetëm në këtë pajisje, asgjë nuk dërgohet. Përmban kohët e alarmeve dhe të ngjarjeve, pa të dhëna shëndeti."
+            "value": "Regjistër teknik i 7 ditëve të fundit, vetëm në pajisjet e tua. Përmban orare dhe vlera të matura (p.sh. lëvizje, ora e rënies në gjumë) – ndaje vetëm nëse do."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Само на овом уређају, ништа се не шаље. Садржи времена аларма и догађаја, без здравствених података."
+            "value": "Технички дневник последњих 7 дана, само на твојим уређајима. Садржи времена и измерене вредности (нпр. покрет, време успављивања) – дели га само ако желиш."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bara på den här enheten, inget skickas. Innehåller tider för alarm och händelser, inga hälsodata."
+            "value": "Teknisk logg för de senaste 7 dagarna, bara på dina enheter. Den innehåller tider och mätvärden (t.ex. rörelse, insomningstid) – dela den bara om du vill."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kwenye kifaa hiki tu, hakuna kinachotumwa. Una nyakati za kengele na matukio, si data ya afya."
+            "value": "Kumbukumbu ya kiufundi ya siku 7 zilizopita, kwenye vifaa vyako tu. Ina nyakati na thamani zilizopimwa (k.m. mwendo, muda wa kulala) – ishiriki tu ukitaka."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "இந்தச் சாதனத்தில் மட்டும், எதுவும் அனுப்பப்படாது. அலாரங்கள், நிகழ்வுகளின் நேரங்கள் உள்ளன, ஆரோக்கியத் தரவு இல்லை."
+            "value": "கடந்த 7 நாட்களின் தொழில்நுட்பப் பதிவு, உங்கள் சாதனங்களில் மட்டும். இதில் நேரங்களும் அளவிடப்பட்ட மதிப்புகளும் உள்ளன (எ.கா. அசைவு, தூங்கிய நேரம்) – விரும்பினால் மட்டும் பகிருங்கள்."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "ఈ పరికరంలో మాత్రమే, ఏమీ పంపబడదు. అలారాలు, ఈవెంట్‌ల సమయాలు ఉంటాయి, హెల్త్ డేటా ఉండదు."
+            "value": "గత 7 రోజుల సాంకేతిక లాగ్, మీ పరికరాల్లో మాత్రమే. ఇందులో సమయాలు, కొలిచిన విలువలు ఉన్నాయి (ఉదా. కదలిక, నిద్రపోయిన సమయం) – మీకు కావాలంటేనే షేర్ చేయండి."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "อยู่บนอุปกรณ์นี้เท่านั้น ไม่ส่งอะไรออกไป มีเวลาการปลุกและเหตุการณ์ ไม่มีข้อมูลสุขภาพ"
+            "value": "บันทึกทางเทคนิคของ 7 วันล่าสุด อยู่บนอุปกรณ์ของคุณเท่านั้น มีเวลาและค่าที่วัดได้ (เช่น การเคลื่อนไหว เวลาที่หลับ) – แชร์เฉพาะเมื่อคุณต้องการ"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yalnızca bu cihazda, hiçbir şey gönderilmez. Alarm ve olay saatlerini içerir, sağlık verisi içermez."
+            "value": "Son 7 günün teknik kaydı, yalnızca cihazlarında. Saatler ve ölçüm değerleri içerir (ör. hareket, uykuya dalma saati) – yalnızca istersen paylaş."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Лише на цьому пристрої, нічого не надсилається. Містить час будильників і подій, без даних про здоров’я."
+            "value": "Технічний журнал за останні 7 днів, лише на твоїх пристроях. Він містить час і виміряні значення (наприклад, рух, час засинання) – ділися ним, лише якщо хочеш."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "صرف اس ڈیوائس پر، کچھ بھیجا نہیں جاتا۔ اس میں الارم اور واقعات کے اوقات ہوتے ہیں، صحت کا ڈیٹا نہیں۔"
+            "value": "پچھلے 7 دنوں کا تکنیکی لاگ، صرف آپ کے آلات پر۔ اس میں اوقات اور ناپی گئی قدریں ہیں (مثلاً حرکت، سونے کا وقت) – صرف چاہیں تو شیئر کریں۔"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Faqat shu qurilmada, hech narsa yuborilmaydi. Budilnik va hodisalar vaqtlarini oʻz ichiga oladi, sogʻliq maʼlumotlarisiz."
+            "value": "Oxirgi 7 kunlik texnik jurnal, faqat qurilmalaringda. Unda vaqtlar va o‘lchangan qiymatlar bor (masalan, harakat, uxlab qolish vaqti) – faqat xohlasang ulash."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chỉ trên thiết bị này, không gửi gì đi. Chứa thời gian báo thức và sự kiện, không có dữ liệu sức khỏe."
+            "value": "Nhật ký kỹ thuật của 7 ngày gần nhất, chỉ trên thiết bị của bạn. Nhật ký có thời gian và giá trị đo (vd. chuyển động, giờ ngủ thiếp đi) – chỉ chia sẻ khi bạn muốn."
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "只在這部裝置上，不會傳送任何內容。包含鬧鐘和事件的時間，不含健康數據。"
+            "value": "最近 7 日嘅技術記錄，只存喺你部裝置度。入面有時間同量度數值（例如動作、入睡時間）——你想先好分享。"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "仅在此设备上，不会发送任何内容。包含闹钟和事件的时间，不含健康数据。"
+            "value": "最近 7 天的技术日志，仅保存在你的设备上。其中包含时间和测量值（例如动作、入睡时间）——只在你愿意时分享。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "僅在此裝置上，不會傳送任何內容。包含鬧鐘和事件的時間，不含健康資料。"
+            "value": "最近 7 天的技術記錄，只存在你的裝置上。其中包含時間和測量值（例如動作、入睡時間）——只在你願意時分享。"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kule divayisi kuphela, akukho okuthunyelwayo. Kuqukethe izikhathi zama-alamu nezehlakalo, ayikho idatha yezempilo."
+            "value": "Irekhodi lobuchwepheshe lezinsuku eziyi-7 ezedlule, kumadivayisi akho kuphela. Liqukethe izikhathi namanani alinganisiwe (isb. ukunyakaza, isikhathi sokulala) – yabelana ngalo kuphela uma ufuna."
           }
         }
       }
@@ -271233,6 +271233,454 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vula i-Phase Wake ewashini lakho"
+          }
+        }
+      }
+    },
+    "watch_open_app_hint": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maak Phase Wake op jou horlosie oop sodat dit die opdrag ontvang."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ትዕዛዙን እንዲቀበል Phase Wakeን በሰዓትህ ላይ ክፈት።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "افتح Phase Wake على ساعتك حتى تستلم الأمر."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Əmri alması üçün Phase Wake-i saatında aç."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отвори Phase Wake на часовника, за да получи командата."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ঘড়িতে Phase Wake খোলো, যাতে এটি নির্দেশটি পায়।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otvori Phase Wake na satu da primi naredbu."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obre Phase Wake al rellotge perquè rebi l’ordre."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otevři Phase Wake na hodinkách, aby příkaz přijaly."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åbn Phase Wake på dit ur, så det modtager kommandoen."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öffne Phase Wake auf der Uhr, damit sie den Befehl erhält."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Άνοιξε το Phase Wake στο ρολόι σου για να λάβει την εντολή."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Phase Wake on your watch so it receives the command."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre Phase Wake en el reloj para que reciba la orden."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ava kellas Phase Wake, et see käsu kätte saaks."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ireki Phase Wake erlojuan agindua jaso dezan."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase Wake را روی ساعتت باز کن تا فرمان را دریافت کند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avaa Phase Wake kellossa, jotta se saa komennon."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buksan ang Phase Wake sa relo mo para matanggap nito ang utos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvre Phase Wake sur ta montre pour qu’elle reçoive la commande."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oscail Phase Wake ar d’uaireadóir ionas go bhfaighidh sé an t-ordú."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre Phase Wake no reloxo para que reciba a orde."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઘડિયાળ પર Phase Wake ખોલો, જેથી તેને આદેશ મળે."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתח את Phase Wake בשעון כדי שיקבל את הפקודה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घड़ी पर Phase Wake खोलो, ताकि उसे निर्देश मिल सके।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otvori Phase Wake na satu kako bi primio naredbu."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nyisd meg a Phase Wake-et az órán, hogy megkapja a parancsot."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Բացիր Phase Wake-ը ժամացույցում, որպեսզի այն ստանա հրամանը։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buka Phase Wake di jam tanganmu agar perintahnya diterima."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opnaðu Phase Wake á úrinu svo það fái skipunina."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri Phase Wake sull’orologio perché riceva il comando."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "コマンドを受け取れるよう、ウォッチで Phase Wake を開いてください。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "გახსენი Phase Wake საათზე, რომ ბრძანება მიიღოს."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пәрменді алуы үшін сағатта Phase Wake қолданбасын аш."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បើក Phase Wake នៅលើនាឡិការបស់អ្នក ដើម្បីឱ្យវាទទួលបានពាក្យបញ្ជា។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಆಜ್ಞೆ ಸಿಗುವಂತೆ ವಾಚ್‌ನಲ್ಲಿ Phase Wake ತೆರೆಯಿರಿ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "명령을 받을 수 있도록 워치에서 Phase Wake를 여세요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ເປີດ Phase Wake ໃນໂມງຂອງເຈົ້າ ເພື່ອໃຫ້ມັນໄດ້ຮັບຄຳສັ່ງ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atidaryk Phase Wake laikrodyje, kad jis gautų komandą."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atver Phase Wake pulkstenī, lai tas saņemtu komandu."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отвори го Phase Wake на часовникот за да ја прими командата."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "കമാൻഡ് ലഭിക്കാൻ വാച്ചിൽ Phase Wake തുറക്കുക."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тушаалыг хүлээн авахын тулд цаг дээрээ Phase Wake-г нээ."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "घड्याळावर Phase Wake उघडा, म्हणजे त्याला आदेश मिळेल."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buka Phase Wake pada jam tangan anda supaya ia menerima arahan."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "အမိန့်ကို လက်ခံရရှိရန် နာရီပေါ်တွင် Phase Wake ကို ဖွင့်ပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åpne Phase Wake på klokken så den mottar kommandoen."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आदेश पाउन घडीमा Phase Wake खोल।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Phase Wake op je horloge zodat het de opdracht ontvangt."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਘੜੀ ’ਤੇ Phase Wake ਖੋਲ੍ਹੋ, ਤਾਂ ਜੋ ਇਸਨੂੰ ਹੁਕਮ ਮਿਲੇ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otwórz Phase Wake na zegarku, aby odebrał polecenie."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abra o Phase Wake no relógio para que ele receba o comando."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre o Phase Wake no relógio para que receba o comando."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deschide Phase Wake pe ceas ca să primească comanda."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открой Phase Wake на часах, чтобы они получили команду."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "විධානය ලැබීමට ඔරලෝසුවේ Phase Wake විවෘත කරන්න."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otvor Phase Wake na hodinkách, aby príkaz prijali."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Odpri Phase Wake na uri, da prejme ukaz."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hap Phase Wake në orë që të marrë komandën."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отвори Phase Wake на сату да прими наредбу."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öppna Phase Wake på klockan så att den tar emot kommandot."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fungua Phase Wake kwenye saa yako ili ipokee amri."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "கட்டளையைப் பெற வாட்சில் Phase Wake-ஐத் திறக்கவும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఆదేశం అందేలా వాచ్‌లో Phase Wake తెరవండి."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปิด Phase Wake บนนาฬิกาเพื่อให้ได้รับคำสั่ง"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Komutu alması için saatinde Phase Wake’i aç."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Відкрий Phase Wake на годиннику, щоб він отримав команду."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "گھڑی پر Phase Wake کھولیں تاکہ اسے حکم مل جائے۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buyruqni olishi uchun soatda Phase Wake’ni och."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mở Phase Wake trên đồng hồ để đồng hồ nhận lệnh."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請喺手錶開啟 Phase Wake，等佢收到指令。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请在手表上打开 Phase Wake，以便它接收指令。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請在手錶上開啟 Phase Wake，讓它接收指令。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vula i-Phase Wake ewashini lakho ukuze ithole umyalo."
           }
         }
       }

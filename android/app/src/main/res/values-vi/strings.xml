@@ -463,7 +463,7 @@
     </plurals>
     <string name="diag_unlocked">Chẩn đoán giờ có trong cài đặt.</string>
     <string name="diag_show">Hiện chẩn đoán</string>
-    <string name="diag_hint">Chỉ trên thiết bị này, không gửi gì đi. Chứa thời gian báo thức và sự kiện, không có dữ liệu sức khỏe.</string>
+    <string name="diag_hint">Nhật ký kỹ thuật của 7 ngày gần nhất, chỉ trên thiết bị của bạn. Nhật ký có thời gian và giá trị đo (vd. chuyển động, giờ ngủ thiếp đi) – chỉ chia sẻ khi bạn muốn.</string>
     <string name="diag_events">Sự kiện</string>
     <string name="diag_empty">Chưa có sự kiện.</string>
     <string name="diag_status">Trạng thái</string>
@@ -577,4 +577,5 @@
     <string name="learn_point_battery">Việc này tốn một ít pin – hãy sạc đồng hồ trước khi ngủ.</string>
     <string name="learn_point_private">Dữ liệu ở lại trên thiết bị của bạn. Bạn có thể tắt giai đoạn học trong phần cài đặt bất cứ lúc nào.</string>
     <string name="learn_switch_hint">Đồng hồ của bạn đo chuyển động và nhịp tim vào ban đêm để điều chỉnh báo thức. Tắt: không tự động ghi, các giá trị đã học vẫn giữ.</string>
+    <string name="watch_open_app_hint">Mở Phase Wake trên đồng hồ để đồng hồ nhận lệnh.</string>
 </resources>

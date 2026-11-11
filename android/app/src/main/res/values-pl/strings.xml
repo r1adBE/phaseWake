@@ -505,7 +505,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnostyka jest teraz w ustawieniach.</string>
     <string name="diag_show">Pokaż diagnostykę</string>
-    <string name="diag_hint">Tylko na tym urządzeniu, nic nie jest wysyłane. Zawiera godziny budzików i zdarzeń, bez danych zdrowotnych.</string>
+    <string name="diag_hint">Dziennik techniczny z ostatnich 7 dni, tylko na twoich urządzeniach. Zawiera godziny i zmierzone wartości (np. ruch, porę zaśnięcia) – udostępniaj go tylko, jeśli chcesz.</string>
     <string name="diag_events">Zdarzenia</string>
     <string name="diag_empty">Brak zdarzeń.</string>
     <string name="diag_status">Stan</string>
@@ -619,4 +619,5 @@
     <string name="learn_point_battery">Zużywa to trochę baterii – naładuj zegarek przed snem.</string>
     <string name="learn_point_private">Dane zostają na twoich urządzeniach. Fazę nauki możesz w każdej chwili wyłączyć w ustawieniach.</string>
     <string name="learn_switch_hint">Zegarek mierzy w nocy ruch i tętno, aby dopasować budzik. Wył.: brak automatycznego zapisu, wyuczone wartości zostają.</string>
+    <string name="watch_open_app_hint">Otwórz Phase Wake na zegarku, aby odebrał polecenie.</string>
 </resources>

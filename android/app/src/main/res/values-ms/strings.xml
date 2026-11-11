@@ -463,7 +463,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnostik kini ada dalam tetapan.</string>
     <string name="diag_show">Tunjukkan diagnostik</string>
-    <string name="diag_hint">Hanya pada peranti ini, tiada apa-apa dihantar. Mengandungi masa penggera dan peristiwa, tanpa data kesihatan.</string>
+    <string name="diag_hint">Log teknikal 7 hari terakhir, hanya pada peranti anda. Ia mengandungi masa dan nilai ukuran (cth. pergerakan, masa tertidur) – kongsi hanya jika anda mahu.</string>
     <string name="diag_events">Peristiwa</string>
     <string name="diag_empty">Belum ada peristiwa.</string>
     <string name="diag_status">Status</string>
@@ -577,4 +577,5 @@
     <string name="learn_point_battery">Ini menggunakan sedikit bateri – cas jam sebelum tidur.</string>
     <string name="learn_point_private">Data kekal pada peranti anda. Anda boleh mematikan fasa pembelajaran dalam tetapan pada bila-bila masa.</string>
     <string name="learn_switch_hint">Jam tangan anda mengukur pergerakan dan nadi pada waktu malam untuk menyesuaikan penggera. Mati: tiada rakaman automatik, nilai yang dipelajari kekal.</string>
+    <string name="watch_open_app_hint">Buka Phase Wake pada jam tangan anda supaya ia menerima arahan.</string>
 </resources>

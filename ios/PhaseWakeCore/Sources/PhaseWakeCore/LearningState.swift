@@ -143,8 +143,9 @@ public struct LearningSnapshot: Equatable, Sendable, Codable {
         guard let updatedAt = context[SyncKeys.learnUpdatedAt] as? Int64 else { return nil }
         self.init(
             active: (context[SyncKeys.learnActive] as? Bool) ?? false,
-            floor: context[SyncKeys.learnFloor] as? Double,
-            restingHeartRate: context[SyncKeys.learnRestingHr] as? Double,
+            // Ungültige Werte (kaputte oder fremde Nachricht) gelten als keine, wie `LearningSnapshot.decode` (Kotlin).
+            floor: Learning.validFloor(context[SyncKeys.learnFloor] as? Double),
+            restingHeartRate: Learning.validRestingHeartRate(context[SyncKeys.learnRestingHr] as? Double),
             updatedAtMs: updatedAt,
             latencyMinutes: (context[SyncKeys.learnLatency] as? Int64).map { Int($0) }
         )

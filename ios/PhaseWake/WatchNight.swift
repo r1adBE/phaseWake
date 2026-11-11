@@ -17,6 +17,11 @@ final class WatchNight {
     private(set) var recordSince: Date?
     /// Befehl an die Uhr gesendet, ihre Antwort steht aus (Knopf kurz gesperrt).
     private(set) var recordPending = false
+    /// Die Uhr hat auf den letzten Befehl nicht geantwortet (App auf der Uhr wohl zu): Hinweis «Öffne Phase Wake auf der
+    /// Uhr …» statt den Knopf still wieder freizugeben (Audit AP-8). Weg mit der nächsten Antwort oder dem nächsten Tipp.
+    private(set) var recordUnanswered = false
+    /// Zählt die Befehle; die Wartezeit eines überholten gilt nicht.
+    private var recordRequest = 0
 
     private static let shiftKey = "watchOnsetShift"
     /// So lange wartet der Knopf höchstens auf die Antwort der Uhr.
@@ -35,18 +40,32 @@ final class WatchNight {
     /// Stand der Uhr (`SyncKeys.recordSince`); 0 bzw. `nil` = keine Aufzeichnung.
     func noteRecording(since: Date?) {
         recordSince = since
+        if recordPending { recordUnanswered = false }
         recordPending = false
     }
 
     /// Knopf auf der Startseite: Start bzw. Stopp an die Uhr (sofort oder nachgereicht; ein Start gilt dort nur frisch).
+    /// Ohne Antwort innerhalb von `pendingLimit` wird der Knopf wieder frei, mit dem Hinweis, die App auf der Uhr zu öffnen.
     func setRecording(_ on: Bool) {
         recordPending = true
+        recordUnanswered = false
+        recordRequest += 1
+        let request = recordRequest
         DiagStore.shared.log(.sync, "record \(on ? "start" : "stop") sent")
         PhoneConnectivity.shared.send(command: on ? SyncKeys.recordStart : SyncKeys.recordStop)
         Task {
             try? await Task.sleep(for: Self.pendingLimit)
+            guard Self.unanswered(pending: self.recordPending, request: request, current: self.recordRequest) else { return }
             self.recordPending = false
+            self.recordUnanswered = true
+            DiagStore.shared.log(.sync, "record command unanswered")
         }
+    }
+
+    /// Ob nach Ablauf der Wartezeit des Befehls `request` noch keine Antwort kam: Er wartet noch (`pending`) und ist der
+    /// neueste (`current`).
+    nonisolated static func unanswered(pending: Bool, request: Int, current: Int) -> Bool {
+        pending && request == current
     }
 
     // MARK: Einschlafen automatisch erkennen

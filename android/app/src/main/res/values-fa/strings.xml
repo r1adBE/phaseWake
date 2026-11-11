@@ -477,7 +477,7 @@
     </plurals>
     <string name="diag_unlocked">عیب‌یابی اکنون در تنظیمات است.</string>
     <string name="diag_show">نمایش عیب‌یابی</string>
-    <string name="diag_hint">فقط روی همین دستگاه، چیزی فرستاده نمی‌شود. شامل زمان زنگ‌ها و رویدادهاست، بدون دادهٔ سلامت.</string>
+    <string name="diag_hint">گزارش فنی ۷ روز گذشته، فقط روی دستگاه‌های تو. شامل زمان‌ها و مقادیر اندازه‌گیری‌شده است (مثلاً حرکت، زمان به خواب رفتن) – فقط اگر خواستی آن را به اشتراک بگذار.</string>
     <string name="diag_events">رویدادها</string>
     <string name="diag_empty">هنوز رویدادی نیست.</string>
     <string name="diag_status">وضعیت</string>
@@ -591,4 +591,5 @@
     <string name="learn_point_battery">این کار کمی باتری مصرف می‌کند – قبل از خواب ساعت را شارژ کن.</string>
     <string name="learn_point_private">داده‌ها روی دستگاه‌هایت می‌مانند. هر وقت بخواهی می‌توانی مرحلهٔ یادگیری را در تنظیمات خاموش کنی.</string>
     <string name="learn_switch_hint">ساعتت برای هماهنگ کردن زنگ، شب‌ها حرکت و نبض را اندازه می‌گیرد. خاموش: بدون ثبت خودکار، مقادیر یادگرفته‌شده می‌مانند.</string>
+    <string name="watch_open_app_hint">Phase Wake را روی ساعتت باز کن تا فرمان را دریافت کند.</string>
 </resources>

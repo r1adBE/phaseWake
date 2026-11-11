@@ -130,13 +130,14 @@ public struct NightRecording: Equatable, Sendable {
     }
 
     /// Liest ``encode(_:)``. Nachsichtig wie Kotlin: Eine letzte Zeile ohne Zeilenende und unlesbare Epochen-Zeilen
-    /// fallen weg; die jüngste «onset»-Zeile gilt. `nil` bei fremdem Format oder ohne Beginn.
+    /// fallen weg; die jüngste «onset»-Zeile gilt. `nil` bei fremdem Format oder ohne Beginn. Zeiten ausserhalb von
+    /// ``TimeBounds`` gelten als unlesbar: Beginn → `nil`, «onset»- und «end»-Zeile fallen weg.
     public static func decode(_ text: String) -> NightRecording? {
         guard let lastBreak = text.lastIndex(of: "\n") else { return nil }
         var lines = text[..<lastBreak].components(separatedBy: "\n")
         while lines.last?.isEmpty == true { lines.removeLast() }
         guard lines.first == header, lines.count >= 2, lines[1].hasPrefix(startPrefix),
-              let start = Int64(lines[1].dropFirst(startPrefix.count)) else { return nil }
+              let start = TimeBounds.checked(Int64(lines[1].dropFirst(startPrefix.count))) else { return nil }
         var epochs: [Epoch] = []
         var end: Date?
         var reason: RecordEnd?
@@ -145,7 +146,7 @@ public struct NightRecording: Equatable, Sendable {
         for line in lines.dropFirst(2) {
             if line.hasPrefix(onsetPrefix) {
                 let fields = line.dropFirst(onsetPrefix.count).split(separator: ",", omittingEmptySubsequences: false)
-                if fields.count >= 2, let b = Int64(fields[0]), let a = Int64(fields[1]) {
+                if fields.count >= 2, let b = TimeBounds.checked(Int64(fields[0])), let a = TimeBounds.checked(Int64(fields[1])) {
                     bed = date(b)
                     asleep = date(a)
                 }
@@ -153,7 +154,7 @@ public struct NightRecording: Equatable, Sendable {
             }
             if line.hasPrefix(endPrefix) {
                 let fields = line.dropFirst(endPrefix.count).split(separator: ",", omittingEmptySubsequences: false)
-                guard let ms = fields.first.flatMap({ Int64($0) }) else { continue }
+                guard let ms = TimeBounds.checked(fields.first.flatMap({ Int64($0) })) else { continue }
                 end = date(ms)
                 reason = RecordEnd.of(fields.count > 1 ? String(fields[1]) : nil)
                 break
@@ -179,7 +180,7 @@ public struct NightRecording: Equatable, Sendable {
         return Epoch(motion: motion, heartRate: heartRate)
     }
 
-    private static func millis(_ date: Date) -> Int64 { Int64((date.timeIntervalSince1970 * 1000).rounded()) }
+    private static func millis(_ date: Date) -> Int64 { TimeBounds.millis(date) }
 
     private static func date(_ millis: Int64) -> Date { Date(timeIntervalSince1970: TimeInterval(millis) / 1000) }
 }

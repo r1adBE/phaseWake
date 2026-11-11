@@ -507,7 +507,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnostika sa teraz zobrazuje v nastaveniach.</string>
     <string name="diag_show">Zobraziť diagnostiku</string>
-    <string name="diag_hint">Len v tomto zariadení, nič sa neodosiela. Obsahuje časy budíkov a udalostí, žiadne zdravotné údaje.</string>
+    <string name="diag_hint">Technický záznam za posledných 7 dní, len v tvojich zariadeniach. Obsahuje časy a namerané hodnoty (napr. pohyb, čas zaspania) – zdieľaj ho, len ak chceš.</string>
     <string name="diag_events">Udalosti</string>
     <string name="diag_empty">Zatiaľ žiadne udalosti.</string>
     <string name="diag_status">Stav</string>
@@ -621,4 +621,5 @@
     <string name="learn_point_battery">Spotrebuje to trochu batérie – nabi hodinky pred spaním.</string>
     <string name="learn_point_private">Údaje zostávajú v tvojich zariadeniach. Fázu učenia môžeš kedykoľvek vypnúť v nastaveniach.</string>
     <string name="learn_switch_hint">Hodinky v noci merajú pohyb a pulz, aby prispôsobili budík. Vypnuté: žiadny automatický záznam, naučené hodnoty zostávajú.</string>
+    <string name="watch_open_app_hint">Otvor Phase Wake na hodinkách, aby príkaz prijali.</string>
 </resources>

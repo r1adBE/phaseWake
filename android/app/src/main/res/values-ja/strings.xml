@@ -463,7 +463,7 @@
     </plurals>
     <string name="diag_unlocked">診断が設定に表示されるようになりました。</string>
     <string name="diag_show">診断を表示</string>
-    <string name="diag_hint">このデバイスのみ。何も送信されません。アラームとイベントの時刻を含み、健康データは含みません。</string>
+    <string name="diag_hint">過去 7 日間の技術ログで、あなたのデバイスにのみ保存されます。時刻や測定値（例：動き、入眠時刻）が含まれます。共有するのは必要なときだけにしてください。</string>
     <string name="diag_events">イベント</string>
     <string name="diag_empty">まだイベントはありません。</string>
     <string name="diag_status">状態</string>
@@ -577,4 +577,5 @@
     <string name="learn_point_battery">バッテリーを少し使います – 寝る前に時計を充電してください。</string>
     <string name="learn_point_private">データはあなたのデバイスに残ります。学習期間は設定でいつでもオフにできます。</string>
     <string name="learn_switch_hint">アラームを合わせるため、時計が夜間に体の動きと脈拍を計測します。 オフ：自動記録なし、学習した値は残ります。</string>
+    <string name="watch_open_app_hint">コマンドを受け取れるよう、ウォッチで Phase Wake を開いてください。</string>
 </resources>

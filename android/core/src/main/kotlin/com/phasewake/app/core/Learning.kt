@@ -39,6 +39,15 @@ object Learning {
     /** Einschlafdauer einer Nacht höchstens so lang (Minuten): ein spätes Zubettgehen soll die Empfehlung nicht verschieben. */
     const val MAX_LATENCY_MINUTES: Int = 60
 
+    /** Grösstes gültiges Grundrauschen (m/s²) beim Übernehmen gelernter Werte ([validFloor]); darüber ist der Wert kaputt. */
+    const val MAX_VALID_FLOOR: Double = 1.0
+
+    /** Gültiger Ruhepuls beim Übernehmen gelernter Werte ([validRestingHeartRate]), Schläge pro Minute. */
+    const val MIN_VALID_RESTING_HR: Double = 25.0
+
+    /** Siehe [MIN_VALID_RESTING_HR]. */
+    const val MAX_VALID_RESTING_HR: Double = 150.0
+
     /** Breite der empfohlenen Schlafenszeit in Minuten. */
     const val BEDTIME_RANGE_MINUTES: Int = 30
 
@@ -147,9 +156,19 @@ object Learning {
         return if (sorted.size % 2 == 1) sorted[mid] else (sorted[mid - 1] + sorted[mid]) / 2.0
     }
 
-    /** [config] mit den gelernten Werten [values] (ohne gelernte Werte unverändert). */
+    /** [config] mit den gelernten Werten [values] (ohne gelernte Werte unverändert; ungültige gelten als keine). */
     fun withLearned(config: DetectorConfig, values: Values?): DetectorConfig =
-        if (values == null) config else config.copy(personalFloor = values.floor, restingHeartRate = values.restingHeartRate)
+        if (values == null) config else config.withLearned(values.floor, values.restingHeartRate)
+
+    /**
+     * Gelerntes Grundrauschen, falls gültig: endlich, 0 bis [MAX_VALID_FLOOR]; sonst `null` (z. B. aus einer kaputten oder
+     * fremden Nachricht). Identisch zu `Learning.validFloor` (Swift).
+     */
+    fun validFloor(value: Double?): Double? = value?.takeIf { it.isFinite() && it >= 0.0 && it <= MAX_VALID_FLOOR }
+
+    /** Gelernter Ruhepuls, falls gültig: endlich, [MIN_VALID_RESTING_HR] bis [MAX_VALID_RESTING_HR]; sonst `null`. */
+    fun validRestingHeartRate(value: Double?): Double? =
+        value?.takeIf { it.isFinite() && it >= MIN_VALID_RESTING_HR && it <= MAX_VALID_RESTING_HR }
 
     /** Ob das gelernte Grundrauschen [floor] die Leicht-Schwelle von [config] anhebt (für die Anzeige in Worten). */
     fun raisesThresholds(floor: Double?, config: DetectorConfig = DetectorConfig()): Boolean =

@@ -136,4 +136,4 @@ internal fun DiagScreen(next: String?, version: String, entries: List<DiagEntry>
     }
 }
 
-private fun shortTime(t: java.time.ZonedDateTime): String = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(t)
+private fun shortTime(t: java.time.ZonedDateTime): String = localizedDigits(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)).format(t)

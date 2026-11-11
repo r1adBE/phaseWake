@@ -463,7 +463,7 @@
     </plurals>
     <string name="diag_unlocked">诊断现已显示在设置中。</string>
     <string name="diag_show">显示诊断</string>
-    <string name="diag_hint">仅在此设备上，不会发送任何内容。包含闹钟和事件的时间，不含健康数据。</string>
+    <string name="diag_hint">最近 7 天的技术日志，仅保存在你的设备上。其中包含时间和测量值（例如动作、入睡时间）——只在你愿意时分享。</string>
     <string name="diag_events">事件</string>
     <string name="diag_empty">还没有事件。</string>
     <string name="diag_status">状态</string>
@@ -577,4 +577,5 @@
     <string name="learn_point_battery">这会消耗一些电量——睡前请给手表充电。</string>
     <string name="learn_point_private">数据保留在你的设备上。你可以随时在设置中关闭学习阶段。</string>
     <string name="learn_switch_hint">你的手表会在夜间测量动作和脉搏来调整闹钟。 关闭：不再自动记录，已学到的数值保留。</string>
+    <string name="watch_open_app_hint">请在手表上打开 Phase Wake，以便它接收指令。</string>
 </resources>

@@ -43,6 +43,7 @@ import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ring.BackupAlarm
 import com.phasewake.app.shared.DoNotDisturb
 import com.phasewake.app.shared.WatchPulse
+import com.phasewake.app.ui.theme.outlinedBorder
 
 /**
  * Nacht-Check: Was muss stimmen, damit morgen sicher geweckt wird? Jede Prüfung hat einen Text
@@ -270,6 +271,6 @@ private fun TestButton(onTest: (() -> Unit)?, testAt: java.time.Instant?) {
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
-        onTest != null -> androidx.compose.material3.OutlinedButton(onClick = onTest) { Text(stringResource(R.string.test_button)) }
+        onTest != null -> androidx.compose.material3.OutlinedButton(onClick = onTest, border = outlinedBorder()) { Text(stringResource(R.string.test_button)) }
     }
 }

@@ -23,8 +23,11 @@ data class LearningSnapshot(
     val restingHeartRate: Double?,
     val updatedAt: Long,
 ) {
-    /** [config] mit den gelernten Werten (ohne Werte unverändert). */
-    fun applyTo(config: DetectorConfig): DetectorConfig = config.copy(personalFloor = floor, restingHeartRate = restingHeartRate)
+    /**
+     * [config] mit den gelernten Werten (ohne Werte unverändert). Ungültige Werte (NaN, negativ, absurd; z. B. aus einem
+     * älteren gespeicherten Stand) gelten als keine ([DetectorConfig.withLearned]), statt den Start des Fensters abzubrechen.
+     */
+    fun applyTo(config: DetectorConfig): DetectorConfig = config.withLearned(floor, restingHeartRate)
 
     /** Kurz fürs Diagnose-Protokoll: «active=1 floor=0.0200 hr=set» (kein Pulswert). */
     fun diagLine(): String =
@@ -39,11 +42,19 @@ data class LearningSnapshot(
         fun encode(snapshot: LearningSnapshot): String =
             listOf(if (snapshot.active) "1" else "0", snapshot.floor?.toString().orEmpty(), snapshot.restingHeartRate?.toString().orEmpty(), snapshot.updatedAt.toString()).joinToString("|")
 
-        /** Liest [encode]; `null`, wenn unlesbar. */
+        /**
+         * Liest [encode]; `null`, wenn unlesbar. Ungültige Werte ([Learning.validFloor], [Learning.validRestingHeartRate])
+         * gelten als keine, wie `LearningSnapshot(context:)` (Swift).
+         */
         fun decode(body: String): LearningSnapshot? {
             val f = body.split("|").takeIf { it.size == 4 } ?: return null
             val updatedAt = f[3].toLongOrNull() ?: return null
-            return LearningSnapshot(f[0] == "1", f[1].toDoubleOrNull(), f[2].toDoubleOrNull(), updatedAt)
+            return LearningSnapshot(
+                f[0] == "1",
+                Learning.validFloor(f[1].toDoubleOrNull()),
+                Learning.validRestingHeartRate(f[2].toDoubleOrNull()),
+                updatedAt,
+            )
         }
     }
 }

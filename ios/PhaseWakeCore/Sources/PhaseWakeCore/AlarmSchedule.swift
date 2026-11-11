@@ -279,7 +279,7 @@ public enum AlarmSchedule {
     }
 
     /// Millisekunden seit 1970, gerundet wie im Textformat.
-    static func millis(_ date: Date) -> Int64 { Int64((date.timeIntervalSince1970 * 1000).rounded()) }
+    static func millis(_ date: Date) -> Int64 { TimeBounds.millis(date) }
 
     /// Einschlafzeit plus Schlafdauer, nie später als `latest`.
     public static func sleepTarget(onset: Date, sleepDurationMinutes: Int, latest: Date) -> Date {

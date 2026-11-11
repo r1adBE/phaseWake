@@ -1,6 +1,8 @@
 package com.phasewake.app.wear.sync
 
+import android.util.Log
 import com.google.android.gms.wearable.CapabilityInfo
+import com.google.android.gms.wearable.ChannelClient
 import com.google.android.gms.wearable.DataEvent
 import com.google.android.gms.wearable.DataEventBuffer
 import com.google.android.gms.wearable.DataMapItem
@@ -8,6 +10,7 @@ import com.google.android.gms.wearable.MessageEvent
 import com.google.android.gms.wearable.WearableListenerService
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.SleepGoal
+import com.phasewake.app.core.WakePlan
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.LearningSnapshot
 import com.phasewake.app.shared.QueueMessages
@@ -20,6 +23,7 @@ import com.phasewake.app.wear.schedule.DirectBoot
 import com.phasewake.app.wear.wake.WakeService
 import com.phasewake.app.wear.wearApp
 import java.time.Instant
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 /**
@@ -97,7 +101,33 @@ class WatchListenerService : WearableListenerService() {
 
     /** Das Handy ist (wieder) erreichbar: wartende Nächte und Aufzeichnungen senden. */
     override fun onCapabilityChanged(info: CapabilityInfo) {
-        if (info.nodes.isNotEmpty() && DirectBoot.isUnlocked(this)) runBlocking { wearApp.sync.flush() }
+        if (info.nodes.isNotEmpty() && DirectBoot.isUnlocked(this)) flushLater()
+    }
+
+    /**
+     * Eigene wartende Einträge senden, im App-Bereich statt im Thread des Empfangs (Audit A-8): Ein hängender Schritt
+     * zum Handy hält dann keine weiteren Nachrichten (z. B. «stop») auf.
+     */
+    private fun flushLater() {
+        val app = wearApp
+        app.appScope.launch { app.sync.flush() }
+    }
+
+    /**
+     * Kanal des Handys (Audit A-8): Ein Eintrag der Warteschlange über 90 KB kommt nicht als Nachricht, sondern über einen
+     * Kanal (`Outbox.WearTransport`). Heute bleiben alle Inhalte des Handys darunter (höchstens 8 Wecker, Feiertage,
+     * Einstellungen); ein langer Name oder eine spätere Version könnte die Grenze aber überschreiten. Darum wie am Handy:
+     * ganz lesen (höchstens `PeerLimit.MAX_BYTES`), schliessen und wie eine Nachricht verarbeiten. Vor dem ersten
+     * Entsperren nur schliessen (nicht bestätigt, das Handy sendet später erneut).
+     */
+    override fun onChannelOpened(channel: ChannelClient.Channel) {
+        val app = wearApp
+        runBlocking {
+            val data = app.sync.readChannel(channel) ?: return@runBlocking
+            if (!DirectBoot.isUnlocked(this@WatchListenerService)) return@runBlocking
+            if (!channel.path.startsWith(QUEUE_PREFIX)) return@runBlocking
+            if (app.sync.receive(channel.nodeId, data) { handleQueued(channel.path, it) }) flushLater()
+        }
     }
 
     override fun onMessageReceived(event: MessageEvent) {
@@ -109,11 +139,12 @@ class WatchListenerService : WearableListenerService() {
             }
             // Das Handy will den Stand der Uhr (frisch installiert, neu gestartet): Wecker und Aufzeichnungs-Stand einreihen.
             path == DataLayer.PATH_SYNC_REQUEST -> {
-                if (DirectBoot.isUnlocked(this)) runBlocking { publishToPhone() }
+                // Im App-Bereich (Audit A-8): Einreihen sendet gleich, das darf den Empfang nicht aufhalten.
+                if (DirectBoot.isUnlocked(this)) wearApp.appScope.launch { publishToPhone() }
                 return
             }
             path.startsWith(QUEUE_PREFIX) -> {
-                if (DirectBoot.isUnlocked(this)) runBlocking { wearApp.sync.receive(event.sourceNodeId, event.data) { handleQueued(path, it) } }
+                if (DirectBoot.isUnlocked(this) && runBlocking { wearApp.sync.receive(event.sourceNodeId, event.data) { handleQueued(path, it) } }) flushLater()
                 return
             }
         }
@@ -135,6 +166,14 @@ class WatchListenerService : WearableListenerService() {
                     // eines zweiten Weckers, während die Uhr den ersten schlummert): nur diese Nacht als
                     // erledigt merken, damit die Uhr sie danach nicht nachholt. Die laufende bleibt.
                     runBlocking { wearApp.scheduler.markDoneFromPhone(alarmId, message.target?.let(Instant::ofEpochMilli)) }
+                } else if (ignoresStopWhileMeasuring(WakeService.measuringPlan, alarmId, message.target)) {
+                    // Misst die Uhr noch (Audit A-7): Ein «stop» beendet die Nacht nur, wenn es genau sie meint (Wecker
+                    // und Zielzeit); sonst (andere Zielzeit, ältere Handy-App ohne Kennung) läuft die Messung weiter.
+                    Log.i(TAG, "«stop» vom Handy während der Messung verworfen")
+                    if (DirectBoot.isUnlocked(this)) {
+                        val app = wearApp
+                        app.appScope.launch { app.diag.log(DiagKind.STOP, "from phone while measuring (other night, ignored)") }
+                    }
                 } else {
                     WakeService.command(this, WakeService.ACTION_DISMISS, remoteAlarmId = alarmId)
                 }
@@ -157,9 +196,21 @@ class WatchListenerService : WearableListenerService() {
         app.recordSync.publishStatus(app.recordings.active()?.start)
     }
 
-    private companion object {
+    internal companion object {
+        private const val TAG = "WatchListenerService"
+
         /** Gemeinsamer Anfang der Pfade der Warteschlange (`DataLayer.PATH_MSG_…`). */
         const val QUEUE_PREFIX = "/phasewake/m/"
+
+        /**
+         * Ob ein «stop» des Handys für Wecker [alarmId] mit Zielzeit [target] (ms) verworfen wird, weil die Uhr gerade für
+         * [measuring] misst (Audit A-7): nur, wenn es nicht genau diese Nacht meint (gleicher Wecker und gleiche
+         * Zielzeit). Ohne laufende Messung nie (Klingeln und Schlummern prüft der Weckdienst wie bisher).
+         */
+        fun ignoresStopWhileMeasuring(measuring: WakePlan?, alarmId: String?, target: Long?): Boolean {
+            if (measuring == null) return false
+            return alarmId != measuring.alarmId || target != measuring.target.toEpochMilli()
+        }
 
         /** Meldungen des Handys, die eine Sendezeit tragen müssen ([RingMessage.isCurrent]). */
         val NEEDS_SEND_TIME = setOf(DataLayer.PATH_STOP, DataLayer.PATH_TASK_SHOWN, DataLayer.PATH_TASK_GONE)

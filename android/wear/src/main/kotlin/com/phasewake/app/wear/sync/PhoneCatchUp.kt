@@ -36,14 +36,16 @@ object PhoneCatchUp {
 
     private suspend fun catchUp(app: PhaseWakeWear) {
         app.sync.migrateTransport()
-        app.sync.flush()
-        app.sync.requestSync()
+        // Zuerst ein verpasstes «Verlauf löschen» anwenden, dann senden (Audit D-02): Sonst gingen gelöschte Nächte aus
+        // der Warteschlange noch einmal ans Handy.
         try {
             latestClear(app)?.let { applyClear(app, it) }
         } catch (e: Exception) {
             if (e is kotlinx.coroutines.CancellationException) throw e
             Log.w(TAG, "«Verlauf löschen» nachholen fehlgeschlagen", e)
         }
+        app.sync.flush()
+        app.sync.requestSync()
     }
 
     /**
@@ -62,7 +64,7 @@ object PhoneCatchUp {
         }
         // Aufzeichnungen ebenso: bis dahin beendete löschen, eine laufende bleibt.
         app.recordings.clear(before = cut)
-        // Noch nicht ans Handy Gesendetes von davor ebenso.
+        // Noch nicht ans Handy Gesendetes, das bis dahin endet, ebenso (Audit D-02).
         app.sync.dropHistory(clearedAt)
         store.edit { it[CLEAR_APPLIED_AT] = clearedAt }
     }

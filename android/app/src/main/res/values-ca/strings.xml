@@ -493,7 +493,7 @@
     </plurals>
     <string name="diag_unlocked">Ara el diagnòstic es mostra a la configuració.</string>
     <string name="diag_show">Mostra el diagnòstic</string>
-    <string name="diag_hint">Només en aquest dispositiu, no s’envia res. Conté hores d’alarmes i esdeveniments, cap dada de salut.</string>
+    <string name="diag_hint">Registre tècnic dels últims 7 dies, només als teus dispositius. Conté hores i valors mesurats (p. ex. moviment, hora d’adormir-te) – comparteix-lo només si vols.</string>
     <string name="diag_events">Esdeveniments</string>
     <string name="diag_empty">Encara no hi ha esdeveniments.</string>
     <string name="diag_status">Estat</string>
@@ -607,4 +607,5 @@
     <string name="learn_point_battery">Això gasta una mica de bateria – carrega el rellotge abans de dormir.</string>
     <string name="learn_point_private">Les dades es queden als teus dispositius. Pots desactivar la fase d’aprenentatge a la configuració en qualsevol moment.</string>
     <string name="learn_switch_hint">El rellotge mesura moviment i pols a la nit per adaptar l’alarma. Desactivat: cap enregistrament automàtic, els valors apresos es mantenen.</string>
+    <string name="watch_open_app_hint">Obre Phase Wake al rellotge perquè rebi l’ordre.</string>
 </resources>

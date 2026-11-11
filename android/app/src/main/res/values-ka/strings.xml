@@ -465,7 +465,7 @@
     </plurals>
     <string name="diag_unlocked">დიაგნოსტიკა ახლა პარამეტრებში ჩანს.</string>
     <string name="diag_show">დიაგნოსტიკის ჩვენება</string>
-    <string name="diag_hint">მხოლოდ ამ მოწყობილობაზე, არაფერი იგზავნება. შეიცავს მაღვიძარებისა და მოვლენების დროს, ჯანმრთელობის მონაცემებს არა.</string>
+    <string name="diag_hint">ბოლო 7 დღის ტექნიკური ჟურნალი, მხოლოდ შენს მოწყობილობებზე. შეიცავს დროებს და გაზომილ მნიშვნელობებს (მაგ. მოძრაობა, ჩაძინების დრო) – გააზიარე მხოლოდ თუ გინდა.</string>
     <string name="diag_events">მოვლენები</string>
     <string name="diag_empty">ჯერ მოვლენები არ არის.</string>
     <string name="diag_status">სტატუსი</string>
@@ -579,4 +579,5 @@
     <string name="learn_point_battery">ეს ცოტა ბატარეას ხარჯავს – დაძინებამდე დატენე საათი.</string>
     <string name="learn_point_private">მონაცემები შენს მოწყობილობებზე რჩება. სწავლის ფაზის გამორთვა პარამეტრებში ნებისმიერ დროს შეგიძლია.</string>
     <string name="learn_switch_hint">შენი საათი ღამით ზომავს მოძრაობას და პულსს მაღვიძარის მოსარგებად. გამორთული: ავტომატური ჩაწერა არ არის, ნასწავლი მნიშვნელობები რჩება.</string>
+    <string name="watch_open_app_hint">გახსენი Phase Wake საათზე, რომ ბრძანება მიიღოს.</string>
 </resources>

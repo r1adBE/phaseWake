@@ -465,7 +465,7 @@
     </plurals>
     <string name="diag_unlocked">Диагностика енді параметрлерде көрсетіледі.</string>
     <string name="diag_show">Диагностиканы көрсету</string>
-    <string name="diag_hint">Тек осы құрылғыда, ешнәрсе жіберілмейді. Оятқыштар мен оқиғалардың уақыттары бар, денсаулық деректері жоқ.</string>
+    <string name="diag_hint">Соңғы 7 күннің техникалық журналы, тек сенің құрылғыларыңда. Онда уақыттар мен өлшем мәндері бар (мыс. қозғалыс, ұйықтап кеткен уақыт) – қаласаң ғана бөліс.</string>
     <string name="diag_events">Оқиғалар</string>
     <string name="diag_empty">Әзірге оқиғалар жоқ.</string>
     <string name="diag_status">Күйі</string>
@@ -579,4 +579,5 @@
     <string name="learn_point_battery">Бұл біраз батарея жұмсайды – ұйықтар алдында сағатты зарядта.</string>
     <string name="learn_point_private">Деректер құрылғыларыңда қалады. Үйрену кезеңін баптауларда кез келген уақытта өшіре аласың.</string>
     <string name="learn_switch_hint">Сағатың оятқышты бейімдеу үшін түнде қозғалыс пен пульсті өлшейді. Өшірулі: автоматты жазу жоқ, үйренген мәндер сақталады.</string>
+    <string name="watch_open_app_hint">Пәрменді алуы үшін сағатта Phase Wake қолданбасын аш.</string>
 </resources>

@@ -17,11 +17,10 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
     func publish(_ snapshot: AlarmSnapshot, holidays: HolidayList, sleepGoal: Int, learning: LearningSnapshot) {
         guard WCSession.default.activationState == .activated, WCSession.default.isPaired, WCSession.default.isWatchAppInstalled else { return }
         var context: [String: Any] = [
-            SyncKeys.alarms: Codec.encodeAlarms(snapshot.alarms),
-            SyncKeys.updatedAt: snapshot.updatedAt,
             SyncKeys.holidays: Holidays.encode(holidays),
             SyncKeys.sleepGoal: Int64(sleepGoal),
         ]
+        AlarmStamps.apply(snapshot, to: &context)
         learning.apply(to: &context)
         context[SyncKeys.autoOnset] = WatchNight.autoOnset
         do {
@@ -115,7 +114,13 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         }
         guard let text = userInfo[SyncKeys.night] as? String, let night = try? Codec.decodeNight(text) else { return }
         Task { @MainActor in
-            PhoneModel.shared.add(night: night)
+            // Endete vor «Verlauf löschen» (spät zugestellt): nicht zurückholen (Audit D-02/AP-6, wie Android). Die
+            // Sicherung dieser Nacht bleibt trotzdem ausgesetzt – die Uhr hat geweckt.
+            if HistoryClear.keeps(end: night.wokeAt, clearedAt: PhoneModel.shared.historyClearedAt) {
+                PhoneModel.shared.add(night: night)
+            } else {
+                DiagStore.shared.log(.suppressed, "night before history clear dropped")
+            }
             // Die Uhr hat geweckt: Sicherung dieser Nacht aussetzen (falls «ring» verloren ging).
             await PhoneModel.shared.backup.watchHandled(alarmId: night.alarmId, target: night.target)
         }
@@ -312,9 +317,7 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         if !context.isEmpty {
             Task { @MainActor in PhoneModel.shared.setWatchStatus(battery: level, version: version, notifications: notifications) }
         }
-        guard let text = context[SyncKeys.alarms] as? String,
-              let updatedAt = context[SyncKeys.updatedAt] as? Int64,
-              let alarms = try? Codec.decodeAlarms(text) else { return }
-        Task { @MainActor in PhoneModel.shared.applyRemote(AlarmSnapshot(alarms: alarms, updatedAt: updatedAt)) }
+        guard let snapshot = AlarmStamps.snapshot(context: context) else { return }
+        Task { @MainActor in PhoneModel.shared.applyRemote(snapshot) }
     }
 }

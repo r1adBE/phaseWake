@@ -28,6 +28,12 @@ object NoiseFloor {
     const val MAX_FLOOR: Double = 0.04
 
     /**
+     * Im Weckfenster höchstens dieses Vielfache des bekannten Grundrauschens (Einschlaf-Messung dieser Nacht bzw. gelernt,
+     * [windowFloor]): Beginnt das Fenster unruhig, hebt die Unruhe die Schwellen nicht bis [MAX_FLOOR] an.
+     */
+    const val PRIOR_FACTOR: Double = 1.5
+
+    /**
      * Grundrauschen: 20. Perzentil der vorhandenen Bewegungen (Rangmethode, aufsteigend sortiert, Position ⌈0.2 · n⌉,
      * gezählt ab 1), höchstens [MAX_FLOOR]. Leere Bewegungen zählen nicht.
      * @param personal eigenes Grundrauschen aus der Lernphase ([DetectorConfig.personalFloor]): gilt (höchstens
@@ -42,6 +48,18 @@ object NoiseFloor {
         return minOf(values[rank - 1], MAX_FLOOR)
     }
 
+    /**
+     * Grundrauschen im Weckfenster ([WakeDetector]): wie [floor], mit dem bekannten Grundrauschen als Vorwissen – dem der
+     * Einschlaf-Messung dieser Nacht ([DetectorConfig.onsetFloor]), sonst dem gelernten ([DetectorConfig.personalFloor]).
+     * Gibt es eines, liegt das Ergebnis höchstens bei [PRIOR_FACTOR] × diesem (und nie über [MAX_FLOOR]); ohne bleibt
+     * es bei [floor].
+     */
+    fun windowFloor(motions: List<Double?>, config: DetectorConfig): Double? {
+        val prior = config.onsetFloor ?: config.personalFloor
+        val floor = floor(motions, prior) ?: return null
+        return if (prior == null) floor else minOf(floor, PRIOR_FACTOR * prior)
+    }
+
     /** Wirksame Leicht-Schwelle: [threshold] (Startwert oder kalibriert), mindestens [LIGHT_FACTOR] × [floor]. */
     fun light(threshold: Double, floor: Double?): Double = if (floor == null) threshold else maxOf(threshold, LIGHT_FACTOR * floor)
 
@@ -54,11 +72,10 @@ object NoiseFloor {
 
     /**
      * Kennzahlen fürs Diagnose-Protokoll am Ende einer Messung: «floor=… light=… wake=…» (4 Nachkommastellen,
-     * «-» ohne Grundrauschen), aus allen Bewegungen [motions] der Messung (mit dem eigenen aus [config], solange sie
-     * zu wenige hat).
+     * «-» ohne Grundrauschen), aus allen Bewegungen [motions] der Messung, wie im Weckfenster gerechnet ([windowFloor]).
      */
     fun summary(config: DetectorConfig, motions: List<Double?>): String {
-        val noise = floor(motions, config.personalFloor)
+        val noise = windowFloor(motions, config)
         return "floor=${format(noise)} light=${format(light(config, noise))} wake=${format(wake(config, noise))}"
     }
 

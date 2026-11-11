@@ -47,6 +47,8 @@ final class LearnRecorder {
     static let retry: TimeInterval = 15 * 60
     /// So oft prüft die Uhr während «Nacht aufzeichnen» den Akku (Hintergrund-Aktualisierung; watchOS kann sie verzögern).
     static let batteryCheck: TimeInterval = 30 * 60
+    /// Mit Wecker spätestens nach dieser Zeit eine Hintergrund-Aktualisierung (Neuplanen, Audit AP-2).
+    static let replanRefresh: TimeInterval = 12 * 3600
 
     /// Aufzeichnung einer Nacht: Wecker und Zielzeit, Beginn der Auswertung (`from`, Epoche 0), Ende des Rekorders
     /// (`until`), Ende des Klingelns (`wokeAt`) und die schon ausgewerteten Epochen (`motions`). Von Hand
@@ -122,14 +124,6 @@ final class LearnRecorder {
             save(nil)
         }
         plan()
-    }
-
-    /// «Verlauf löschen» vom iPhone: Eine laufende oder noch nicht ausgewertete Aufzeichnung verfällt (sie läge vor dem
-    /// neuen Beginn der Lernphase und zählte nicht; eine von Hand begonnene gehört ebenso zum gelöschten Verlauf).
-    func clearHistory() {
-        guard mark != nil else { return }
-        DiagStore.shared.log(.measureEnd, "record end phone (history cleared)")
-        save(nil)
     }
 
     /// Die Nacht `alarmId` mit Zielzeit `target` hat geweckt (Klingeln beendet): Die Auswertung endet jetzt, höchstens
@@ -389,6 +383,12 @@ final class LearnRecorder {
         }
         // Automatische Einschlaf-Messung: frühester Start der nächsten Nacht.
         if let auto = autoNextTry, auto > now { date = date.map { min($0, auto) } ?? auto }
+        // Mit Wecker spätestens nach `replanRefresh` wieder, auch ohne Lernphase und Einschlaf-Messung: Die
+        // Aktualisierung plant dann neu und führt die Rückfälle der nächsten Nächte nach (Audit AP-2).
+        if WatchModel.shared.realPlan != nil {
+            let replan = now.addingTimeInterval(Self.replanRefresh)
+            date = date.map { min($0, replan) } ?? replan
+        }
         guard let date, date != scheduled else { return }
         scheduled = date
         WKApplication.shared().scheduleBackgroundRefresh(withPreferredDate: date, userInfo: nil) { error in

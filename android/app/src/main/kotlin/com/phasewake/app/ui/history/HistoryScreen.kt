@@ -255,7 +255,7 @@ private fun NightCard(
     val context = LocalContext.current
     val stages by produceState(emptyList<StageSpan>(), night, loadStages) { value = loadStages?.invoke(night).orEmpty() }
     val zone = ZoneId.systemDefault()
-    val date = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(night.wokeAt.atZone(zone))
+    val date = Format.digits(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)).format(night.wokeAt.atZone(zone))
     val view = remember(night, stages) { nightView(HistoryItem(HistoryKind.PHASE_WAKE, SleepNotes.nightDate(night, zone), night = night), stages) }
     val score = remember(view, recordings, goalMinutes) { nightScore(view, recordings, goalMinutes)?.result }
     Card(
@@ -362,7 +362,7 @@ private fun SoundsOnlyCard(
     ) {
         Column(Modifier.padding(16.dp)) {
             Text(
-                DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(entry.last.atZone(ZoneId.systemDefault())),
+                Format.digits(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)).format(entry.last.atZone(ZoneId.systemDefault())),
                 style = MaterialTheme.typography.titleSmall,
             )
             SoundClipsSection(SoundEvents.forNight(soundClips, night), soundFile, onDeleteClip, { onDeleteNightClips(night) })

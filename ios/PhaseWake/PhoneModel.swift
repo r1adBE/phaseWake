@@ -132,8 +132,8 @@ final class PhoneModel {
 
     func applyRemote(_ snapshot: AlarmSnapshot) {
         guard storage.applyRemote(snapshot) else { return }
-        alarms = snapshot.alarms
-        DiagStore.shared.log(.alarmsReceived, "\(snapshot.alarms.count) alarms from watch")
+        alarms = storage.snapshot().alarms
+        DiagStore.shared.log(.alarmsReceived, "\(alarms.count) alarms from watch")
         Task { await backup.reschedule(alarms) }
         Task { await replanBedtime() }
     }

@@ -2,7 +2,17 @@
 
 Nächte im Format `.night`, die Android (`android/core`) und Apple (`ios/PhaseWakeCore`) mit den Startwerten gleich bewerten müssen: dieselbe erste Weck-Epoche, derselbe Grund. Format und Regel: [docs/PHASENERKENNUNG.md](../../docs/PHASENERKENNUNG.md).
 
-Die aktuellen Nächte sind synthetisch und decken je einen Regelfall ab; `noisy_watch_*` nutzen die Werte einer Uhr mit Grundrauschen rund 0.02 m/s² (Befund 07.11.2026, Regel 3a). Echte, ohne Namen exportierte Nächte kommen dazu, sobald es sie gibt.
+Die Nächte sind meist synthetisch und decken je einen Regelfall ab; `noisy_watch_*` nutzen die Werte einer Uhr mit Grundrauschen rund 0.02 m/s² (Befund 07.11.2026, Regel 3a). `plateau_arm_position` ist ein Ausschnitt einer echten, ohne Namen aufgezeichneten Nacht (10.11.2026, OFFEN 11g). Vollaudit 11.11.2026: `restless_start_learned_floor` (K-1), `resting_fallback_plateau` (K-2), `plateau_arm_position` (K-3) und `rearm_new_hits` (K-5).
+
+Zusätzlich zum Format: `@rearm-until <index>` (optional, vor der Kopfzeile) – jeder Moment vor dieser Epoche wird übergangen wie bei einer kurzen Nacht (`WakeDetector.rearm`), die Erkennung läuft weiter; `@expect` nennt den ersten Moment danach.
+
+## Vollständigkeit
+
+`MANIFEST` listet jede Datei dieses Ordners (ausser `README.md` und `MANIFEST`). Beide Kerne prüfen, dass genau diese Dateien da sind und so viele Nächte bewertet werden: Eine neue Datei gehört in `MANIFEST`, eine fehlende fällt auf.
+
+## Passwort-Regel
+
+`backup-password.vectors`: je Zeile erwartetes Ergebnis (`OK`, `TOO_SHORT`, `TRIVIAL`), Tabulator, Passwort (UTF-8, teils in NFD). Beide Kerne prüfen alle Zeilen (`BackupPassword`), Kotlin zusätzlich mit Türkisch als Gerätesprache.
 
 ## Sicherung
 

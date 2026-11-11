@@ -477,7 +477,7 @@
     </plurals>
     <string name="diag_unlocked">Tanılama artık ayarlarda.</string>
     <string name="diag_show">Tanılamayı göster</string>
-    <string name="diag_hint">Yalnızca bu cihazda, hiçbir şey gönderilmez. Alarm ve olay saatlerini içerir, sağlık verisi içermez.</string>
+    <string name="diag_hint">Son 7 günün teknik kaydı, yalnızca cihazlarında. Saatler ve ölçüm değerleri içerir (ör. hareket, uykuya dalma saati) – yalnızca istersen paylaş.</string>
     <string name="diag_events">Olaylar</string>
     <string name="diag_empty">Henüz olay yok.</string>
     <string name="diag_status">Durum</string>
@@ -591,4 +591,5 @@
     <string name="learn_point_battery">Bu biraz pil harcar – uyumadan önce saati şarj et.</string>
     <string name="learn_point_private">Veriler cihazlarında kalır. Öğrenme aşamasını istediğin zaman ayarlardan kapatabilirsin.</string>
     <string name="learn_switch_hint">Saatin alarmı ayarlamak için gece hareketi ve nabzı ölçer. Kapalı: otomatik kayıt yok, öğrenilen değerler kalır.</string>
+    <string name="watch_open_app_hint">Komutu alması için saatinde Phase Wake’i aç.</string>
 </resources>

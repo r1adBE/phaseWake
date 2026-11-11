@@ -477,7 +477,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnostiikka on nyt asetuksissa.</string>
     <string name="diag_show">Näytä diagnostiikka</string>
-    <string name="diag_hint">Vain tällä laitteella, mitään ei lähetetä. Sisältää herätysten ja tapahtumien ajat, ei terveystietoja.</string>
+    <string name="diag_hint">Viimeisten 7 päivän tekninen loki, vain laitteillasi. Se sisältää aikoja ja mittausarvoja (esim. liike, nukahtamisaika) – jaa se vain, jos haluat.</string>
     <string name="diag_events">Tapahtumat</string>
     <string name="diag_empty">Ei vielä tapahtumia.</string>
     <string name="diag_status">Tila</string>
@@ -591,4 +591,5 @@
     <string name="learn_point_battery">Se kuluttaa hieman akkua – lataa kello ennen nukkumaanmenoa.</string>
     <string name="learn_point_private">Tiedot pysyvät laitteillasi. Voit poistaa oppimisvaiheen käytöstä asetuksissa milloin tahansa.</string>
     <string name="learn_switch_hint">Kellosi mittaa yöllä liikettä ja sykettä herätyksen mukauttamiseksi. Pois: ei automaattista tallennusta, opitut arvot säilyvät.</string>
+    <string name="watch_open_app_hint">Avaa Phase Wake kellossa, jotta se saa komennon.</string>
 </resources>

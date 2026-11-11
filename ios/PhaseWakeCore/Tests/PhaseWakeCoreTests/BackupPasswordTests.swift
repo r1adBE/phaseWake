@@ -59,4 +59,27 @@ final class BackupPasswordTests: XCTestCase {
             XCTAssertTrue(BackupPassword.ok(p), p)
         }
     }
+
+    func testSharedVectors() throws {
+        // Gemeinsame Fälle mit Kotlin (shared/testdata/backup-password.vectors). Swift `lowercased()` hängt nicht von der
+        // Sprache des Geräts ab (kein türkisches «ı»); Kotlin prüft dasselbe mit Türkisch als Gerätesprache.
+        let text = try String(contentsOf: NightFixtures.directory.appendingPathComponent("backup-password.vectors"), encoding: .utf8)
+        let lines = text.components(separatedBy: "\n").filter { !$0.isEmpty && !$0.hasPrefix("#") }
+        XCTAssertTrue(lines.contains("TRIVIAL\tPASSWORD12"))
+        for line in lines {
+            let parts = line.split(separator: "\t", maxSplits: 1, omittingEmptySubsequences: false).map(String.init)
+            XCTAssertEqual(parts.count, 2, line)
+            guard parts.count == 2 else { continue }
+            let expected: BackupPassword.Problem?
+            switch parts[0] {
+            case "OK": expected = nil
+            case "TOO_SHORT": expected = .tooShort
+            case "TRIVIAL": expected = .trivial
+            default: XCTFail("unbekanntes Ergebnis \(parts[0])"); continue
+            }
+            XCTAssertEqual(BackupPassword.problem(parts[1]), expected, parts[1])
+        }
+        XCTAssertEqual("QWERTYUIOP".lowercased(), "qwertyuiop")
+        XCTAssertEqual(BackupPassword.problem("PASSWORD12"), .trivial)
+    }
 }

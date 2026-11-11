@@ -3,20 +3,6 @@ import Foundation
 import os
 #endif
 
-/// Wecker samt Zeitpunkt der letzten Änderung (für den Abgleich iPhone ↔ Uhr; letzte Änderung gewinnt).
-public struct AlarmSnapshot: Equatable, Sendable {
-    /// Wecker, sortiert nach Uhrzeit und Kennung.
-    public let alarms: [AlarmSpec]
-    /// Zeitpunkt der letzten Änderung in Millisekunden seit 1970; 0 = nie geändert.
-    public let updatedAt: Int64
-
-    /// Erzeugt einen Stand.
-    public init(alarms: [AlarmSpec], updatedAt: Int64) {
-        self.alarms = alarms
-        self.updatedAt = updatedAt
-    }
-}
-
 /// Lokaler Speicher für Wecker und Nächte, auf iPhone und Uhr gleich. Gleiches Textformat wie Android.
 public final class PhaseWakeStorage: @unchecked Sendable {
     private let defaults: any SettingsStore
@@ -25,6 +11,9 @@ public final class PhaseWakeStorage: @unchecked Sendable {
 
     private static let alarmsKey = "alarms"
     private static let updatedKey = "alarmsUpdatedAt"
+    /// Zeitpunkt je Wecker und gelöschte Wecker (Kennung → ms), Audit A-4.
+    private static let stampsKey = "alarmsStamps"
+    private static let deletedKey = "alarmsDeleted"
     private static let separator = "\n%%\n"
 
     /// App-Gruppe der Uhr-App und ihrer Komplikation.
@@ -86,26 +75,55 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         return snapshotLocked()
     }
 
-    /// Ändert die Wecker und setzt einen streng steigenden Zeitstempel. Lesen und Schreiben unter
-    /// einer Sperre: Zwei gleichzeitige Änderungen gehen nicht verloren. - Returns: neuer Stand.
+    /// Ändert die Wecker und setzt einen streng steigenden Zeitstempel; geänderte Wecker bekommen ihn als eigenen
+    /// Zeitpunkt, fehlende gelten ab dann als gelöscht. Lesen und Schreiben unter einer Sperre: Zwei gleichzeitige
+    /// Änderungen gehen nicht verloren. - Returns: neuer Stand.
     @discardableResult
     public func mutate(_ change: ([AlarmSpec]) -> [AlarmSpec], now: Date = Date()) -> AlarmSnapshot {
         lock.lock(); defer { lock.unlock() }
         let current = snapshotLocked()
-        let updated = change(current.alarms).sorted { ($0.hour, $0.minute, $0.id) < ($1.hour, $1.minute, $1.id) }
-        let stamp = max(Int64(now.timeIntervalSince1970 * 1000), current.updatedAt + 1)
-        let result = AlarmSnapshot(alarms: updated, updatedAt: stamp)
-        writeLocked(result)
-        return result
+        let updated = Self.sorted(change(current.alarms))
+        let old = AlarmStamps.byId(current.alarms)
+        let changed = Set(updated.filter { old[$0.id] != $0 }.map(\.id))
+        return writeLocked(updated, before: current, changed: changed, now: now)
     }
 
-    /// Übernimmt den Stand der Gegenseite, falls neuer. - Returns: ob übernommen.
+    /// Ersetzt alle Wecker (Wiederherstellen einer Sicherung; gleiche Kennung zählt einmal). Alle gelten als jetzt
+    /// geändert, die bisherigen, die fehlen, als jetzt gelöscht: Die Uhr übernimmt den Stand. - Returns: neuer Stand.
     @discardableResult
-    public func applyRemote(_ remote: AlarmSnapshot) -> Bool {
+    public func replaceAll(_ alarms: [AlarmSpec], now: Date = Date()) -> AlarmSnapshot {
         lock.lock(); defer { lock.unlock() }
-        guard remote.updatedAt > snapshotLocked().updatedAt else { return false }
-        writeLocked(remote)
-        return true
+        let unique = Self.sorted(Array(AlarmStamps.byId(alarms).values))
+        return writeLocked(unique, before: snapshotLocked(), changed: Set(unique.map(\.id)), now: now)
+    }
+
+    /// Übernimmt den Stand der Gegenseite je Wecker (``AlarmStamps/merge(local:remote:now:)``, Audit A-4). Ein Stand
+    /// einer früheren Version (``AlarmSnapshot/perAlarm`` `false`) oder ein unlesbarer eigener gilt wie bisher nur,
+    /// wenn er neuer ist, und ersetzt dann die Liste. - Returns: ob sich die Wecker geändert haben.
+    @discardableResult
+    public func applyRemote(_ remote: AlarmSnapshot, now: Date = Date()) -> Bool {
+        lock.lock(); defer { lock.unlock() }
+        let nowMs = Int64(now.timeIntervalSince1970 * 1000)
+        let current = snapshotLocked()
+        let full = Dictionary(current.alarms.map { ($0.id, current.stampOf($0.id)) }, uniquingKeysWith: max)
+        guard remote.perAlarm, alarmsReadableLocked() else {
+            guard remote.updatedAt > current.updatedAt else { return false }
+            let list = Self.sorted(Array(AlarmStamps.byId(remote.alarms).values))
+            let ids = Set(list.map(\.id))
+            let gone = Dictionary(current.alarms.filter { !ids.contains($0.id) }.map { ($0.id, remote.updatedAt) }, uniquingKeysWith: max)
+            let deleted = current.deleted.merging(remote.deleted, uniquingKeysWith: max).merging(gone, uniquingKeysWith: max)
+            saveLocked(list, updatedAt: remote.updatedAt, stamps: Dictionary(list.map { ($0.id, remote.stampOf($0.id)) }, uniquingKeysWith: max),
+                       deleted: deleted, now: nowMs)
+            return list != current.alarms
+        }
+        let local = AlarmSnapshot(alarms: current.alarms, updatedAt: current.updatedAt, stamps: full, deleted: current.deleted)
+        let merged = AlarmStamps.merge(local: local, remote: remote, now: nowMs)
+        let list = Self.sorted(merged.alarms)
+        if list == current.alarms && merged.stamps == full && merged.deleted == current.deleted && merged.updatedAt == current.updatedAt {
+            return false
+        }
+        saveLocked(list, updatedAt: merged.updatedAt, stamps: merged.stamps, deleted: merged.deleted, now: nowMs)
+        return list != current.alarms
     }
 
     /// Pro Wecker: bis zu diesem Zeitpunkt ist seine Weck-Nacht erledigt; sie wird nicht noch einmal geplant.
@@ -133,13 +151,45 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         let alarms = (try? Codec.decodeAlarms(text)) ?? []
         // Als NSNumber lesen: Millisekunden passen nicht in Int auf 32-Bit-Uhren (arm64_32).
         let updatedAt = (defaults.object(forKey: Self.updatedKey) as? NSNumber)?.int64Value ?? 0
-        return AlarmSnapshot(alarms: alarms, updatedAt: updatedAt)
+        let ids = Set(alarms.map(\.id))
+        let stamps = (AlarmStamps.int64Map(defaults.object(forKey: Self.stampsKey)) ?? [:]).filter { ids.contains($0.key) }
+        return AlarmSnapshot(alarms: alarms, updatedAt: updatedAt, stamps: stamps,
+                             deleted: AlarmStamps.int64Map(defaults.object(forKey: Self.deletedKey)) ?? [:])
     }
 
-    private func writeLocked(_ snapshot: AlarmSnapshot) {
-        defaults.set(Codec.encodeAlarms(snapshot.alarms), forKey: Self.alarmsKey)
+    /// Ob die gespeicherten Wecker lesbar sind (nichts gespeichert zählt als lesbar).
+    private func alarmsReadableLocked() -> Bool {
+        let text = defaults.string(forKey: Self.alarmsKey) ?? ""
+        return text.isEmpty || (try? Codec.decodeAlarms(text)) != nil
+    }
+
+    /// Schreibt `alarms` mit einem streng steigenden Listen-Zeitpunkt: Wecker in `changed` bekommen ihn als eigenen,
+    /// die übrigen behalten ihren; Wecker aus `before`, die fehlen, gelten ab dann als gelöscht.
+    private func writeLocked(_ alarms: [AlarmSpec], before: AlarmSnapshot, changed: Set<String>, now: Date) -> AlarmSnapshot {
+        let nowMs = Int64(now.timeIntervalSince1970 * 1000)
+        let stamp = max(nowMs, before.updatedAt + 1)
+        let stamps = Dictionary(alarms.map { ($0.id, changed.contains($0.id) ? stamp : before.stampOf($0.id)) }, uniquingKeysWith: max)
+        let ids = Set(alarms.map(\.id))
+        let gone = Dictionary(before.alarms.filter { !ids.contains($0.id) }.map { ($0.id, stamp) }, uniquingKeysWith: max)
+        return saveLocked(alarms, updatedAt: stamp, stamps: stamps, deleted: before.deleted.merging(gone) { $1 }, now: nowMs)
+    }
+
+    @discardableResult
+    private func saveLocked(_ alarms: [AlarmSpec], updatedAt: Int64, stamps: [String: Int64], deleted: [String: Int64], now: Int64) -> AlarmSnapshot {
+        let ids = Set(alarms.map(\.id))
+        let own = stamps.filter { ids.contains($0.key) }
+        let kept = AlarmStamps.prune(deleted.filter { !ids.contains($0.key) }, now: now)
+        defaults.set(Codec.encodeAlarms(alarms), forKey: Self.alarmsKey)
         // Nie über Int: auf Apple Watch Series 4–8, SE und Ultra 1 ist Int 32 Bit (Absturz).
-        defaults.set(NSNumber(value: snapshot.updatedAt), forKey: Self.updatedKey)
+        defaults.set(NSNumber(value: updatedAt), forKey: Self.updatedKey)
+        defaults.set(own.mapValues { NSNumber(value: $0) }, forKey: Self.stampsKey)
+        defaults.set(kept.mapValues { NSNumber(value: $0) }, forKey: Self.deletedKey)
+        return AlarmSnapshot(alarms: alarms, updatedAt: updatedAt, stamps: own, deleted: kept)
+    }
+
+    /// Anzeige- und Speicherreihenfolge: nach Uhrzeit, dann Kennung.
+    private static func sorted(_ alarms: [AlarmSpec]) -> [AlarmSpec] {
+        alarms.sorted { ($0.hour, $0.minute, $0.id) < ($1.hour, $1.minute, $1.id) }
     }
 
     // MARK: Nächte

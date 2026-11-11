@@ -27,6 +27,7 @@ import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TimePicker
+import androidx.compose.material3.TimePickerState
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -57,6 +58,7 @@ import com.phasewake.app.ui.components.LogoMark
 import com.phasewake.app.ui.editor.ChoiceLabel
 import com.phasewake.app.ui.editor.TIME_PICKER_SCALE
 import com.phasewake.app.ui.editor.WEEKDAYS
+import com.phasewake.app.ui.editor.CHECK_ICON_MAX_SEGMENTS
 import com.phasewake.app.ui.editor.WINDOW_OPTIONS
 import com.phasewake.app.ui.editor.scaled
 import com.phasewake.app.ui.home.Check
@@ -67,9 +69,13 @@ import com.phasewake.app.ui.startTest
 import java.time.Instant
 import java.util.UUID
 import kotlinx.coroutines.launch
+import com.phasewake.app.ui.theme.outlinedBorder
 
 /** Schritte der Ersteinrichtung; danach «Fertig». */
 private const val STEPS = 6
+
+/** Seite «Erster Wecker»: «Weiter» legt den gezeigten Wecker an, falls noch keiner angelegt wurde. */
+private const val ALARM_PAGE = 3
 
 /** Seite der Lernphase: statt «Weiter» die Knöpfe «Später» und «Lernphase starten». */
 private const val LEARNING_PAGE = 4
@@ -122,8 +128,22 @@ internal class OnboardingModel(
 )
 
 /** Einrichtung ohne eigenen Seitenzustand: Seite [page] (0–[STEPS]; [STEPS] = «Fertig»), Wechsel über [onPage]. */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: OnboardingModel, onDone: () -> Unit) {
+    // Zustand des Schritts «Erster Wecker» hier, damit «Weiter» den gezeigten Wecker anlegen kann (Audit UI-5).
+    val context = LocalContext.current
+    val alarmTime = rememberTimePickerState(7, 0, is24Hour = DateFormat.is24HourFormat(context))
+    var alarmWindow by rememberSaveable { mutableIntStateOf(AlarmSpec.DEFAULT_WINDOW_MINUTES) }
+    var alarmCreated by rememberSaveable { mutableStateOf<String?>(null) }
+    val createAlarm = {
+        val spec = AlarmSpec(
+            id = UUID.randomUUID().toString(), hour = alarmTime.hour, minute = alarmTime.minute, days = WEEKDAYS,
+            windowMinutes = alarmWindow, sound = WakeTones.DEFAULT,
+        )
+        model.onCreateAlarm(spec)
+        alarmCreated = Format.window(context, spec)
+    }
     Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing).padding(horizontal = 20.dp)) {
         Row(Modifier.fillMaxWidth().padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
             Text(
@@ -142,7 +162,7 @@ internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: Onboardi
                 0 -> Welcome()
                 1 -> WatchStep(model)
                 2 -> RightsStep(model)
-                3 -> AlarmStep(model)
+                ALARM_PAGE -> AlarmStep(model, alarmTime, alarmWindow, { alarmWindow = it }, alarmCreated, createAlarm)
                 LEARNING_PAGE -> LearningStep(model)
                 5 -> TestPage(model)
                 else -> Page(R.string.onb_done_title) { Body(R.string.onb_done_text) }
@@ -157,13 +177,17 @@ internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: Onboardi
             ) { Text(stringResource(R.string.learn_consent_start)) }
         }
         Row(Modifier.fillMaxWidth().padding(bottom = 12.dp), verticalAlignment = Alignment.CenterVertically) {
-            if (page > 0) OutlinedButton(onClick = { onPage(page - 1) }) { Text(stringResource(R.string.onb_back)) }
+            if (page > 0) OutlinedButton(onClick = { onPage(page - 1) }, border = outlinedBorder()) { Text(stringResource(R.string.onb_back)) }
             Spacer(Modifier.weight(1f))
             when {
                 askLearning -> TextButton(onClick = { model.onLearningConsent(false); onPage(page + 1) }) {
                     Text(stringResource(R.string.learn_consent_later))
                 }
-                page < STEPS -> Button(onClick = { onPage(page + 1) }) { Text(stringResource(R.string.onb_next)) }
+                page < STEPS -> Button(onClick = {
+                    // «Weiter» ohne «Wecker anlegen»: den gezeigten Wecker trotzdem anlegen, sonst fehlte er still.
+                    if (page == ALARM_PAGE && alarmCreated == null && model.canCreateAlarm) createAlarm()
+                    onPage(page + 1)
+                }) { Text(stringResource(R.string.onb_next)) }
                 else -> Button(onClick = onDone) { Text(stringResource(R.string.onb_finish)) }
             }
         }
@@ -223,14 +247,13 @@ private fun WatchStep(model: OnboardingModel) {
     }
 }
 
-/** Erster Wecker: Zielzeit und Fenster, Werktage; alles Weitere später im Editor. */
+/**
+ * Erster Wecker: Zielzeit und Fenster, Werktage; alles Weitere später im Editor. [created]: Fenster des angelegten
+ * Weckers, `null` = noch keiner; «Wecker anlegen» und «Weiter» rufen beide [onCreate].
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun AlarmStep(model: OnboardingModel) {
-    val context = LocalContext.current
-    val time = rememberTimePickerState(7, 0, is24Hour = DateFormat.is24HourFormat(context))
-    var window by rememberSaveable { mutableIntStateOf(AlarmSpec.DEFAULT_WINDOW_MINUTES) }
-    var created by rememberSaveable { mutableStateOf<String?>(null) }
+private fun AlarmStep(model: OnboardingModel, time: TimePickerState, window: Int, onWindow: (Int) -> Unit, created: String?, onCreate: () -> Unit) {
     Page(R.string.onb_alarm_title) {
         Body(R.string.onb_alarm_text)
         TimePicker(time, modifier = Modifier.align(Alignment.CenterHorizontally).scaled(TIME_PICKER_SCALE))
@@ -242,10 +265,12 @@ private fun AlarmStep(model: OnboardingModel) {
             WINDOW_OPTIONS.forEachIndexed { index, value ->
                 SegmentedButton(
                     selected = value == window,
-                    onClick = { window = value },
+                    onClick = { onWindow(value) },
                     shape = SegmentedButtonDefaults.itemShape(index, WINDOW_OPTIONS.size),
                     modifier = Modifier.heightIn(min = 48.dp),
-                ) { ChoiceLabel(if (value == AlarmSpec.EXACT_WINDOW) exactLabel else value.toString()) }
+                    // Wie im Editor: bei mehr als zwei Feldern ohne Haken (Audit UI-7).
+                    icon = { if (WINDOW_OPTIONS.size <= CHECK_ICON_MAX_SEGMENTS) SegmentedButtonDefaults.Icon(value == window) },
+                ) { ChoiceLabel(if (value == AlarmSpec.EXACT_WINDOW) exactLabel else Format.number(value)) }
             }
         }
         if (exact) {
@@ -255,14 +280,7 @@ private fun AlarmStep(model: OnboardingModel) {
         if (label != null) {
             Text(stringResource(R.string.onb_alarm_done, label), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
         } else if (model.canCreateAlarm) {
-            Button(onClick = {
-                val spec = AlarmSpec(
-                    id = UUID.randomUUID().toString(), hour = time.hour, minute = time.minute, days = WEEKDAYS,
-                    windowMinutes = window, sound = WakeTones.DEFAULT,
-                )
-                model.onCreateAlarm(spec)
-                created = Format.window(context, spec)
-            }) { Text(stringResource(R.string.onb_alarm_create)) }
+            Button(onClick = onCreate) { Text(stringResource(R.string.onb_alarm_create)) }
         }
     }
 }
@@ -314,28 +332,38 @@ private fun RightsStep(model: OnboardingModel) {
             Check.FULL_SCREEN,
             Check.EXACT_ALARMS,
         ).filter { it.inReadyList || it in failed }.forEach { check ->
-            RightRow(stringResource(check.title), granted = check !in failed) { model.onFix(check) }
+            // Erlaubt: «✓ Mitteilungen erlaubt»; fehlt es: was ohne das Recht passiert, dazu «Erlauben» (Audit UI-10).
+            val granted = check !in failed
+            RightRow(stringResource(if (granted) check.title else check.problem), granted) { model.onFix(check) }
         }
         val health = model.health
         if (health != HealthState.UNAVAILABLE) {
             RightRow(
                 stringResource(R.string.onb_optional, stringResource(R.string.health_connect)),
                 granted = health == HealthState.CONNECTED,
+                state = stringResource(R.string.health_connected),
                 onAllow = model.onConnectHealth,
             )
         }
     }
 }
 
-/** Ein Recht: Name, dann «Erlaubt» (mit Haken) oder ein Knopf «Erlauben». */
+/**
+ * Ein Recht: Die Zeile zeigt den Zustand – erlaubt mit Haken, sonst was fehlt –, der Knopf «Erlauben» erscheint nur,
+ * wenn das Recht fehlt. [state]: Zustand rechts statt Haken vorne (Gesundheitsdaten: «Verbunden»).
+ */
 @Composable
-private fun RightRow(name: String, granted: Boolean, onAllow: () -> Unit) {
-    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-        Text(name, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f).padding(end = 12.dp))
-        if (granted) {
-            Text("✓ " + stringResource(R.string.onb_granted), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
-        } else {
+private fun RightRow(text: String, granted: Boolean, state: String? = null, onAllow: () -> Unit) {
+    Row(Modifier.fillMaxWidth().heightIn(min = 48.dp), verticalAlignment = Alignment.CenterVertically) {
+        Text(
+            if (granted && state == null) "✓ $text" else text,
+            style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier.weight(1f).padding(end = 12.dp),
+        )
+        if (!granted) {
             FilledTonalButton(onClick = onAllow) { Text(stringResource(R.string.check_allow)) }
+        } else if (state != null) {
+            Text("✓ $state", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
         }
     }
 }

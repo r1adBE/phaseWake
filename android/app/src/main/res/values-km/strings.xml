@@ -465,7 +465,7 @@
     </plurals>
     <string name="diag_unlocked">ឥឡូវការវិនិច្ឆ័យបង្ហាញក្នុងការកំណត់។</string>
     <string name="diag_show">បង្ហាញការវិនិច្ឆ័យ</string>
-    <string name="diag_hint">តែលើឧបករណ៍នេះ គ្មានអ្វីត្រូវបានផ្ញើទេ។ មានម៉ោងនៃម៉ោងរោទ៍ និងព្រឹត្តិការណ៍ គ្មានទិន្នន័យសុខភាព។</string>
+    <string name="diag_hint">កំណត់ហេតុបច្ចេកទេសនៃ 7 ថ្ងៃចុងក្រោយ មានតែនៅលើឧបករណ៍របស់អ្នកប៉ុណ្ណោះ។ វាមានពេលវេលា និងតម្លៃវាស់ (ឧ. ចលនា ពេលងងុយគេង) – ចែករំលែកវាតែពេលអ្នកចង់ប៉ុណ្ណោះ។</string>
     <string name="diag_events">ព្រឹត្តិការណ៍</string>
     <string name="diag_empty">មិនទាន់មានព្រឹត្តិការណ៍។</string>
     <string name="diag_status">ស្ថានភាព</string>
@@ -579,4 +579,5 @@
     <string name="learn_point_battery">វាប្រើថ្មខ្លះ – សាកថ្មនាឡិកាមុនពេលគេង។</string>
     <string name="learn_point_private">ទិន្នន័យនៅលើឧបករណ៍របស់អ្នក។ អ្នកអាចបិទដំណាក់កាលរៀននៅក្នុងការកំណត់បានគ្រប់ពេល។</string>
     <string name="learn_switch_hint">នាឡិការបស់អ្នកវាស់ចលនា និងជីពចរពេលយប់ ដើម្បីសម្រួលម៉ោងរោទ៍។ បិទ៖ គ្មានការកត់ត្រាស្វ័យប្រវត្តិ តម្លៃដែលបានរៀននៅដដែល។</string>
+    <string name="watch_open_app_hint">បើក Phase Wake នៅលើនាឡិការបស់អ្នក ដើម្បីឱ្យវាទទួលបានពាក្យបញ្ជា។</string>
 </resources>

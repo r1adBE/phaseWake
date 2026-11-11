@@ -44,12 +44,14 @@ final class StorageTests: XCTestCase {
         XCTAssertNil(s.doneUntil["b"])
     }
 
-    func testApplyRemoteOnlyWhenNewer() throws {
+    /// Gegenseite einer früheren Version (ohne Zeitpunkte je Wecker): neuere Liste gewinnt wie bisher.
+    func testLegacyRemoteOnlyWhenNewer() throws {
         let s = storage()
         let local = s.mutate({ _ in [try! AlarmSpec(id: "a", hour: 6, minute: 0)] }, now: Date(timeIntervalSince1970: 1000))
-        XCTAssertFalse(s.applyRemote(AlarmSnapshot(alarms: [], updatedAt: local.updatedAt)))
-        XCTAssertTrue(s.applyRemote(AlarmSnapshot(alarms: [], updatedAt: local.updatedAt + 5)))
+        XCTAssertFalse(s.applyRemote(AlarmSnapshot(alarms: [], updatedAt: local.updatedAt, perAlarm: false)))
+        XCTAssertTrue(s.applyRemote(AlarmSnapshot(alarms: [], updatedAt: local.updatedAt + 5, perAlarm: false)))
         XCTAssertEqual(s.snapshot().alarms, [])
+        XCTAssertEqual(s.snapshot().deleted, ["a": local.updatedAt + 5], "der ersetzte Wecker gilt als gelöscht")
     }
 
     func testNightsRoundTripReplaceAndClear() {

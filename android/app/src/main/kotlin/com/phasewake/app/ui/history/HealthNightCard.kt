@@ -42,6 +42,7 @@ import java.time.Duration
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
+import com.phasewake.app.ui.theme.outlinedBorder
 
 /** «Wach 20 Min · REM 1 Std. 20 Min · Leicht 3 Std. · Tief 1 Std.» (nur Phasen mit Zeit), wie unter dem Hypnogramm. */
 internal fun stageTotalsLine(context: Context, stats: NightStages): String = stats.totals.filter { it.minutes > 0 }
@@ -124,7 +125,7 @@ internal fun HealthNightCard(
     ) {
         Column(Modifier.padding(16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(session.end.atZone(zone)), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
+                Text(Format.digits(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)).format(session.end.atZone(zone)), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
                 Text(Format.time(session.end, zone), style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
             Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 6.dp)) {
@@ -198,7 +199,7 @@ internal fun HistoryEmptyCard(healthConnected: Boolean, canConnect: Boolean, onC
                 healthConnected -> EmptyText(stringResource(R.string.history_empty_no_data))
                 canConnect -> {
                     EmptyText(stringResource(R.string.history_empty_connect))
-                    OutlinedButton(onClick = onConnectHealth, modifier = Modifier.padding(top = 12.dp)) {
+                    OutlinedButton(onClick = onConnectHealth, border = outlinedBorder(), modifier = Modifier.padding(top = 12.dp)) {
                         Icon(painterResource(R.drawable.ic_health), contentDescription = null, modifier = Modifier.size(18.dp))
                         Text(stringResource(R.string.health_connect), modifier = Modifier.padding(start = 8.dp))
                     }

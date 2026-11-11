@@ -33,14 +33,73 @@ object QueueMessages {
     /** Schlüssel einer Nacht: Fensterbeginn und Kennung (zwei Wecker mit gleichem Fensterbeginn bleiben getrennt). */
     fun nightKey(night: NightRecord): String = KEY_NIGHT + night.windowStart.toEpochMilli() + "-" + Uri.encode(night.alarmId)
 
-    /** Inhalt der Nachricht [DataLayer.PATH_MSG_ALARMS]: «updatedAt», Zeilenumbruch, Wecker. */
-    fun encodeAlarms(snapshot: AlarmSnapshot): String = "${snapshot.updatedAt}\n${Codec.encodeAlarms(snapshot.alarms)}"
+    /**
+     * Inhalt der Nachricht [DataLayer.PATH_MSG_ALARMS]: «updatedAt», Zeilenumbruch, Wecker, danach (Audit A-4) die
+     * Zeitpunkte je Wecker und die gelöschten Wecker: Zeile [STAMPS_HEADER], dann je eine Zeile «t=kennung=ms» bzw.
+     * «d=kennung=ms» (Kennung URL-kodiert). Ältere Versionen lesen diese Zeilen als unlesbare Wecker-Zeilen und
+     * überspringen sie (zu wenige Felder).
+     */
+    fun encodeAlarms(snapshot: AlarmSnapshot): String = buildString {
+        append(snapshot.updatedAt).append('\n').append(Codec.encodeAlarms(snapshot.alarms))
+        if (snapshot.perAlarm) {
+            append(STAMPS_HEADER).append('\n')
+            snapshot.stamps.forEach { (id, at) -> append(STAMP).append(AlarmStamps.escape(id)).append('=').append(at).append('\n') }
+            snapshot.deleted.forEach { (id, at) -> append(DELETED).append(AlarmStamps.escape(id)).append('=').append(at).append('\n') }
+        }
+    }
 
-    /** Liest [encodeAlarms]; `null`, wenn unlesbar. */
+    /**
+     * Liest [encodeAlarms]; `null`, wenn unlesbar. Ohne Zeitpunkte je Wecker (ältere Version): [AlarmSnapshot.perAlarm]
+     * `false`, dann gilt beim Übernehmen weiter «neuere Liste gewinnt».
+     */
     fun decodeAlarms(body: String): AlarmSnapshot? = runCatching {
         val cut = body.indexOf('\n')
-        AlarmSnapshot(Codec.decodeAlarms(if (cut < 0) "" else body.substring(cut + 1)), body.substring(0, if (cut < 0) body.length else cut).toLong())
+        val updatedAt = body.substring(0, if (cut < 0) body.length else cut).toLong()
+        val rest = if (cut < 0) "" else body.substring(cut + 1)
+        val marker = rest.lines().indexOf(STAMPS_HEADER)
+        val lines = rest.lines()
+        val alarmsText = if (marker < 0) rest else lines.take(marker).joinToString("\n")
+        val stamps = mutableMapOf<String, Long>()
+        val deleted = mutableMapOf<String, Long>()
+        if (marker >= 0) {
+            for (line in lines.drop(marker + 1)) {
+                val target = when {
+                    line.startsWith(STAMP) -> stamps
+                    line.startsWith(DELETED) -> deleted
+                    else -> continue
+                }
+                val text = line.substring(if (target === stamps) STAMP.length else DELETED.length)
+                val eq = text.lastIndexOf('=')
+                if (eq <= 0) continue
+                val at = text.substring(eq + 1).toLongOrNull() ?: continue
+                target[AlarmStamps.unescape(text.substring(0, eq)) ?: continue] = at
+            }
+        }
+        AlarmSnapshot(Codec.decodeAlarms(alarmsText), updatedAt, stamps, deleted, perAlarm = marker >= 0)
     }.onFailure { Log.w(TAG, "Wecker-Nachricht unlesbar", it) }.getOrNull()
+
+    /** Beginn der Zeitpunkte je Wecker in [encodeAlarms]. */
+    private const val STAMPS_HEADER = "#stamps"
+    private const val STAMP = "t="
+    private const val DELETED = "d="
+
+    /**
+     * Ob «Verlauf löschen» um [cutMs] den wartenden Eintrag [entry] verwirft (Audit D-02): eine Nacht oder Aufzeichnung,
+     * die bis dahin endet oder vorher eingereiht wurde; andere Einträge nie.
+     */
+    fun droppedByClear(entry: Outbox.Entry, cutMs: Long): Boolean = when {
+        entry.key.startsWith(KEY_NIGHT) -> entry.createdAt < cutMs || nightEndsBy(entry.body, cutMs)
+        entry.key.startsWith(KEY_RECORDING) -> entry.createdAt < cutMs || recordingEndsBy(entry.body, cutMs)
+        else -> false
+    }
+
+    /** Ob der Eintrag einer Nacht ([Codec.encodeNight]) bis [cutMs] endet (geweckt); unlesbar: nein (Audit D-02). */
+    fun nightEndsBy(body: String, cutMs: Long): Boolean =
+        runCatching { Codec.decodeNight(body) }.getOrNull()?.let { it.wokeAt.toEpochMilli() <= cutMs } ?: false
+
+    /** Ob der Eintrag einer Aufzeichnung ([NightRecording.encode]) bis [cutMs] beendet war; laufend oder unlesbar: nein. */
+    fun recordingEndsBy(body: String, cutMs: Long): Boolean =
+        NightRecording.decode(body)?.end?.let { it.toEpochMilli() <= cutMs } ?: false
 
     /** Liest den Inhalt von [DataLayer.PATH_MSG_HOLIDAYS]: Liste und Zeitpunkt; `null`, wenn unlesbar. */
     fun decodeHolidays(body: String): Pair<HolidayList, Long>? {

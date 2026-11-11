@@ -25,6 +25,8 @@ import com.phasewake.app.core.Codec
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.shared.NightRecording
 import java.time.Instant
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 /**
@@ -56,7 +58,12 @@ class PhoneListenerService : WearableListenerService() {
      */
     private suspend fun storeNight(night: NightRecord) {
         val app = phoneApp
-        app.nights.add(night)
+        // Nach «Verlauf löschen» nachgeliefert (Audit D-02): eine Nacht, die bis dahin endete, nicht wieder aufnehmen.
+        if (endedBeforeClear(night.wokeAt)) {
+            app.diag.log(DiagKind.SYNC, "night before history clear dropped")
+        } else {
+            app.nights.add(night)
+        }
         app.backup.cancelSnoozeSafety(night.alarmId)
         app.backup.cancelSnoozeOf(night.alarmId, night.target.toEpochMilli())
         app.backup.watchHandled(night.alarmId, night.target)
@@ -65,9 +72,21 @@ class PhoneListenerService : WearableListenerService() {
     /** Abgeschlossene Aufzeichnung speichern; Lernphase: zählen, nach 7 Nächten anpassen. */
     private suspend fun storeRecording(recording: NightRecording) {
         val app = phoneApp
+        // Wie bei den Nächten (Audit D-02): vor «Verlauf löschen» beendet, nicht wieder aufnehmen (und nicht lernen).
+        val end = recording.end
+        if (end != null && endedBeforeClear(end)) {
+            app.diag.log(DiagKind.SYNC, "recording before history clear dropped")
+            return
+        }
         app.recordings.put(recording)
         app.diag.log(DiagKind.SYNC, "recording received epochs=${recording.epochs.size} end=${recording.endReason?.code}")
         app.updateLearning(recording)
+    }
+
+    /** Ob [end] bis zum letzten «Verlauf löschen» liegt; dann ist der Eintrag gelöscht (bestätigt wird er trotzdem). */
+    private suspend fun endedBeforeClear(end: Instant): Boolean {
+        val cleared = phoneApp.settings.historyClearedAt.first() ?: return false
+        return !end.isAfter(cleared)
     }
 
     /**
@@ -110,12 +129,21 @@ class PhoneListenerService : WearableListenerService() {
             WatchReport.received(data)
             return
         }
-        phoneApp.sync.receive(node, data) { handleQueued(path, it) }
+        if (phoneApp.sync.receive(node, data) { handleQueued(path, it) }) flushLater()
+    }
+
+    /**
+     * Eigene wartende Einträge senden: Die Uhr ist ja da. Im App-Bereich, nicht im Thread des Empfangs (Audit A-8), damit
+     * ein hängender Schritt zur Uhr keine weiteren Nachrichten aufhält.
+     */
+    private fun flushLater() {
+        val app = phoneApp
+        app.appScope.launch { app.sync.flush() }
     }
 
     /** Die Uhr ist (wieder) erreichbar: wartende Einträge senden. */
     override fun onCapabilityChanged(info: CapabilityInfo) {
-        if (info.nodes.isNotEmpty()) runBlocking { phoneApp.sync.flush() }
+        if (info.nodes.isNotEmpty()) flushLater()
     }
 
     override fun onMessageReceived(event: MessageEvent) {
@@ -128,11 +156,12 @@ class PhoneListenerService : WearableListenerService() {
             }
             // Die Uhr will den Stand des Handys (frisch installiert, neu gestartet): einreihen und senden.
             path == DataLayer.PATH_SYNC_REQUEST -> {
-                runBlocking { app.publishToWatch() }
+                // Im App-Bereich (Audit A-8): Einreihen sendet gleich, das darf den Empfang nicht aufhalten.
+                app.appScope.launch { app.publishToWatch() }
                 return
             }
             path.startsWith(QUEUE_PREFIX) -> {
-                runBlocking { app.sync.receive(event.sourceNodeId, event.data) { handleQueued(path, it) } }
+                if (runBlocking { app.sync.receive(event.sourceNodeId, event.data) { handleQueued(path, it) } }) flushLater()
                 return
             }
         }

@@ -22,6 +22,8 @@ extension SmartAlarm {
         guard let current = matching,
               now >= Self.sessionStart(current).addingTimeInterval(-Self.startTolerance),
               missed || now < current.target.addingTimeInterval(Self.fallbackDelay) else {
+            // Verwaist: gleich beenden, ohne zu vibrieren (Audit AP-3; im Hintergrund bis zum Aktivwerden gemerkt).
+            DiagStore.shared.log(.error, "session without matching plan, ended")
             invalidateSession()
             phase = .idle
             schedule(model.plan)
@@ -58,9 +60,9 @@ extension SmartAlarm {
         onsetRun += 1
         let run = onsetRun
         Task { @MainActor in
-            let result = await WatchOnset.compute(plan: plan, spec: nightSpec, config: config, goodNight: model.goodNight,
-                                                  sleepGoal: model.sleepGoal)
-            self.onsetDone(result, run: run, plan: plan)
+            let outcome = await WatchOnset.compute(plan: plan, spec: nightSpec, config: config, goodNight: model.goodNight,
+                                                   sleepGoal: model.sleepGoal)
+            self.onsetDone(outcome.result, run: run, plan: plan, floor: outcome.floor)
         }
         Task { @MainActor in
             try? await Task.sleep(for: .seconds(WatchOnset.timeout))
@@ -110,6 +112,26 @@ extension SmartAlarm {
                 self.ring(self.targetReason())
             }
         }
+    }
+
+    /// Sitzung mitten in der Messung abgebrochen (Audit AP-4). Vor der Zielzeit nicht sofort wecken: Es weckt der feste
+    /// Rückfall kurz nach der Zielzeit (in `beginMeasuring` gestellt), die Nacht wartet auf ihn (`waiting`), und die
+    /// bisher gemessenen Epochen bleiben als Nacht auf der Uhr (Wecken zur Zielzeit, bis die Nacht regulär endet und sie
+    /// ersetzt; nicht ans iPhone, das sonst seinen Zweitwecker aussetzte). Ab der Zielzeit sofort per Mitteilung.
+    func measuringInterrupted(_ plan: WakePlan) {
+        logMeasureEnd(" interrupted")
+        guard let at = SessionRules.interruptedWake(now: Date(), target: plan.target) else {
+            if let nightPlan, !epochs.isEmpty, Transient.kindOf(nightPlan.alarmId) == nil {
+                WatchModel.shared.storage.add(NightRecord(alarmId: nightPlan.alarmId, windowStart: nightPlan.windowStart,
+                                                          target: nightPlan.target, wokeAt: nightPlan.target, reason: .deadline,
+                                                          snoozes: 0, epochs: epochs))
+            }
+            DiagStore.shared.log(.scheduled, "measuring interrupted, fallback at target \(Format.time(plan.target))")
+            phase = .waiting(plan)
+            return
+        }
+        scheduleFallback(at: at, id: Self.interruptedId)
+        phase = .idle
     }
 
     func cancelMeasuring() {
@@ -199,9 +221,14 @@ extension SmartAlarm {
 
     /// Rechnung der Einschlafzeit fertig (oder abgelaufen, `WatchOnset.timeout`): Stand übernehmen und einen
     /// gemerkten frühen Moment jetzt entscheiden. Ein überholtes Ergebnis (`run`) oder eine andere Nacht gilt nicht.
-    func onsetDone(_ result: WatchOnset.Result, run: Int, plan: WakePlan) {
+    /// `floor`: Grundrauschen der nachgerechneten Messung; gilt ab jetzt als Vorwissen im Fenster (Vollaudit K-1).
+    func onsetDone(_ result: WatchOnset.Result, run: Int, plan: WakePlan, floor: Double? = nil) {
         guard onsetPending, onsetRun == run, phase == .measuring(plan) else { return }
         onsetPending = false
+        if let floor {
+            detector.useOnsetFloor(floor)
+            DiagStore.shared.log(.phase, "onset floor \(NoiseFloor.format(detector.config.onsetFloor))")
+        }
         switch result {
         case .asleep(let at): asleepAt = at
         case .notMeasured: break

@@ -10,6 +10,7 @@ import com.phasewake.app.core.NightHistory
 import com.phasewake.app.core.RecorderSkip
 import com.phasewake.app.core.WakePlan
 import com.phasewake.app.shared.OnsetShift
+import com.phasewake.app.shared.phaseWakeStore
 import com.phasewake.app.wear.record.RecordControl
 import com.phasewake.app.wear.record.RecordService
 import com.phasewake.app.wear.schedule.AlarmScheduler
@@ -139,10 +140,18 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
         // Verlängerung bei spätem Einschlafen: höchstens 4 Std. ab dem Beginn, nie über den Beginn des Weckfensters.
         val extendCap = plan?.let { minOf(since.plus(OnsetMonitor.MAX_EXTENDED), it.windowStart) }
         val monitor = OnsetMonitor(
-            this@startGoodNight, config.lightThreshold, latestGiveUp, maxEnd, label, app.diag::log, onGiveUp = { stopGoodNight(measured = true) },
+            this@startGoodNight, config.lightThreshold, latestGiveUp, maxEnd, label, app.diag::log,
+            onGiveUp = {
+                // Auch ohne Einschlafzeit: Das Grundrauschen dieser Messung gilt im Weckfenster (Vollaudit K-1).
+                saveOnsetFloor(alarmId, latest, onset?.floor)
+                stopGoodNight(measured = true)
+            },
             extendCap = extendCap, personalFloor = config.personalFloor,
-        ) { asleep ->
-            app.diag.log(DiagKind.PHASE, "$label asleep $asleep")
+        ) { found ->
+            saveOnsetFloor(alarmId, latest, onset?.floor)
+            // Automatisch nie vor der Bettzeit eingeschlafen (Vollaudit K-4); nach «Gute Nacht» unverändert.
+            val asleep = OnsetRules.onsetAt(found, bedAt)
+            app.diag.log(DiagKind.PHASE, "$label asleep $asleep${if (asleep != found) " (still since $found)" else ""}")
             onAsleep(spec, latest, asleep, bedAt)
         }
         onset = monitor
@@ -155,6 +164,22 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
         if (learning.active && resumed == null) RecordControl.startForLearning(this@startGoodNight, latest)
         // Zusätzlich, solange die Uhr wach ist: Dann gilt die eingestellte Weckzeit.
         handler.postDelayed(onsetTimeout, Duration.between(Instant.now(), monitor.giveUpAt).toMillis().coerceAtLeast(0))
+    }
+}
+
+/**
+ * Grundrauschen [floor] der Einschlaf-Messung für die Nacht von [alarmId] mit Weckzeit [latest] merken ([OnsetFloorStore]);
+ * zu Beginn des Weckfensters hebt es die Schwellen höchstens auf das 1.5-Fache an (Vollaudit K-1). Eigene Arbeit: Ein
+ * Fehler dabei hält das Einschlafen nicht auf.
+ */
+private fun WakeService.saveOnsetFloor(alarmId: String, latest: Instant, floor: Double?) {
+    app.appScope.launch {
+        try {
+            OnsetFloorStore(phaseWakeStore).set(alarmId, latest, floor)
+        } catch (e: Exception) {
+            if (e is kotlinx.coroutines.CancellationException) throw e
+            Log.w(TAG, "Grundrauschen der Einschlaf-Messung nicht gespeichert", e)
+        }
     }
 }
 

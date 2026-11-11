@@ -6,6 +6,11 @@ public enum SyncKeys {
     public static let alarms = "alarms"
     /// Zeitpunkt der letzten Änderung der Wecker in ms.
     public static let updatedAt = "updatedAt"
+    /// Anwendungskontext in beide Richtungen: Zeitpunkt der letzten Änderung je Wecker (Kennung → ms), Audit A-4
+    /// (``AlarmStamps``). Fehlt bei älteren Versionen; dann gilt «neuere Liste gewinnt».
+    public static let alarmStamps = "alarmStamps"
+    /// Anwendungskontext in beide Richtungen: gelöschte Wecker mit Zeitpunkt des Löschens (Kennung → ms), Audit A-4.
+    public static let alarmsDeleted = "alarmsDeleted"
     /// Eine Nacht im Format «phasewake-night 1», Uhr → iPhone.
     public static let night = "night"
     /// Name des Befehls (`ring`, `stop`, `snooze`, `clearHistory`).

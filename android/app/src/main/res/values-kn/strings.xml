@@ -479,7 +479,7 @@
     </plurals>
     <string name="diag_unlocked">ಡಯಾಗ್ನಾಸ್ಟಿಕ್ಸ್ ಈಗ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಕಾಣುತ್ತದೆ.</string>
     <string name="diag_show">ಡಯಾಗ್ನಾಸ್ಟಿಕ್ಸ್ ತೋರಿಸಿ</string>
-    <string name="diag_hint">ಈ ಸಾಧನದಲ್ಲಿ ಮಾತ್ರ, ಏನನ್ನೂ ಕಳುಹಿಸುವುದಿಲ್ಲ. ಅಲಾರಾಂ ಮತ್ತು ಘಟನೆಗಳ ಸಮಯಗಳಿವೆ, ಆರೋಗ್ಯ ಡೇಟಾ ಇಲ್ಲ.</string>
+    <string name="diag_hint">ಕಳೆದ 7 ದಿನಗಳ ತಾಂತ್ರಿಕ ಲಾಗ್, ನಿಮ್ಮ ಸಾಧನಗಳಲ್ಲಿ ಮಾತ್ರ. ಇದರಲ್ಲಿ ಸಮಯಗಳು ಮತ್ತು ಅಳತೆ ಮೌಲ್ಯಗಳಿವೆ (ಉದಾ. ಚಲನೆ, ನಿದ್ರೆ ಬಂದ ಸಮಯ) – ನೀವು ಬಯಸಿದರೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಿ.</string>
     <string name="diag_events">ಘಟನೆಗಳು</string>
     <string name="diag_empty">ಇನ್ನೂ ಯಾವುದೇ ಘಟನೆ ಇಲ್ಲ.</string>
     <string name="diag_status">ಸ್ಥಿತಿ</string>
@@ -593,4 +593,5 @@
     <string name="learn_point_battery">ಇದಕ್ಕೆ ಸ್ವಲ್ಪ ಬ್ಯಾಟರಿ ಬೇಕು – ಮಲಗುವ ಮೊದಲು ವಾಚ್ ಚಾರ್ಜ್ ಮಾಡಿ.</string>
     <string name="learn_point_private">ಡೇಟಾ ನಿಮ್ಮ ಸಾಧನಗಳಲ್ಲೇ ಇರುತ್ತದೆ. ಕಲಿಕೆಯ ಹಂತವನ್ನು ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಯಾವಾಗ ಬೇಕಾದರೂ ಆಫ್ ಮಾಡಬಹುದು.</string>
     <string name="learn_switch_hint">ಅಲಾರಾಂ ಹೊಂದಿಸಲು ನಿಮ್ಮ ವಾಚ್ ರಾತ್ರಿ ಚಲನೆ ಮತ್ತು ನಾಡಿಯನ್ನು ಅಳೆಯುತ್ತದೆ. ಆಫ್: ಸ್ವಯಂ ದಾಖಲೆ ಇಲ್ಲ, ಕಲಿತ ಮೌಲ್ಯಗಳು ಉಳಿಯುತ್ತವೆ.</string>
+    <string name="watch_open_app_hint">ಆಜ್ಞೆ ಸಿಗುವಂತೆ ವಾಚ್‌ನಲ್ಲಿ Phase Wake ತೆರೆಯಿರಿ.</string>
 </resources>

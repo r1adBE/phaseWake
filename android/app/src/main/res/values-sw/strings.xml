@@ -479,7 +479,7 @@
     </plurals>
     <string name="diag_unlocked">Uchunguzi sasa unaonyeshwa kwenye mipangilio.</string>
     <string name="diag_show">Onyesha uchunguzi</string>
-    <string name="diag_hint">Kwenye kifaa hiki tu, hakuna kinachotumwa. Una nyakati za kengele na matukio, si data ya afya.</string>
+    <string name="diag_hint">Kumbukumbu ya kiufundi ya siku 7 zilizopita, kwenye vifaa vyako tu. Ina nyakati na thamani zilizopimwa (k.m. mwendo, muda wa kulala) – ishiriki tu ukitaka.</string>
     <string name="diag_events">Matukio</string>
     <string name="diag_empty">Bado hakuna matukio.</string>
     <string name="diag_status">Hali</string>
@@ -593,4 +593,5 @@
     <string name="learn_point_battery">Hii hutumia betri kidogo – chaji saa kabla ya kulala.</string>
     <string name="learn_point_private">Data hubaki kwenye vifaa vyako. Unaweza kuzima hatua ya kujifunza kwenye mipangilio wakati wowote.</string>
     <string name="learn_switch_hint">Saa yako hupima mwendo na mapigo ya moyo usiku ili kurekebisha kengele. Imezimwa: hakuna kurekodi kiotomatiki, thamani zilizojifunzwa zinabaki.</string>
+    <string name="watch_open_app_hint">Fungua Phase Wake kwenye saa yako ili ipokee amri.</string>
 </resources>

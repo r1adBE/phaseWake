@@ -78,11 +78,35 @@ extension LearnRecorder {
             loggedShortNeed = needed
             DiagStore.shared.log(.measureStart, "recorder until \(Format.time(until)), needed \(Format.time(needed)): kept, no second call")
         case .start(let end):
+            let status = CMSensorRecorder.authorizationStatus()
             CMSensorRecorder().recordAccelerometer(forDuration: end.timeIntervalSince(now))
+            // Nur mit Erlaubnis merken (Audit AP-7): Fragt watchOS erst jetzt nach (oder ist sie aus), zeichnet dieser
+            // Aufruf womöglich nichts auf; ungemerkt darf später in der Nacht ein weiterer Aufruf starten.
+            guard Self.remembersSpan(status) else {
+                DiagStore.shared.log(.measureStart, "recorder call until \(Format.time(end)), motion not yet allowed: not remembered")
+                return
+            }
             SettingsFile.watchSession.set(now.timeIntervalSince1970, forKey: Self.recorderFromKey)
             SettingsFile.watchSession.set(end.timeIntervalSince1970, forKey: Self.recorderUntilKey)
             DiagStore.shared.log(.measureStart, "recorder start until \(Format.time(end))")
         }
+    }
+
+    /// Ob ein Aufruf des Rekorders bei Erlaubnis `status` als Aufzeichnung der Nacht gilt (`recorderSpan`): nur
+    /// `authorized`. Sonst (noch nicht gefragt, verweigert, eingeschränkt) zeichnet er womöglich nichts auf.
+    nonisolated static func remembersSpan(_ status: CMAuthorizationStatus) -> Bool {
+        status == .authorized
+    }
+
+    // MARK: Verlauf löschen
+
+    /// «Verlauf löschen» vom iPhone, gesendet um `clearedAt`: Eine Aufzeichnung, die bis dahin endete und noch nicht
+    /// fertig ausgewertet ist, verfällt; eine, die danach endet (läuft noch), bleibt – wie auf Android (`HistoryClear`,
+    /// Audit AP-6). Das iPhone verwirft ebenso nur, was bis zum Löschen endete.
+    func clearHistory(until clearedAt: Date) {
+        guard let mark, !HistoryClear.keeps(end: Self.end(of: mark), clearedAt: clearedAt) else { return }
+        DiagStore.shared.log(.measureEnd, "record end phone (history cleared)")
+        save(nil)
     }
 
     // MARK: Starten und stoppen

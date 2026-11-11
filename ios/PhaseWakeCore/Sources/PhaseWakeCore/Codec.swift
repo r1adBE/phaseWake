@@ -52,8 +52,9 @@ public enum Codec {
         let wakeTask: WakeTask = f.count >= 13 ? WakeTask(rawValue: f[12]) ?? WakeTask.none : WakeTask.none
         // 14. Feld (Sonnenaufgang-Gerät): fehlt bei älteren Ständen, unbekannt bei neueren → Handy.
         let sunriseDevice: SunriseDevice = f.count >= 14 ? SunriseDevice(rawValue: f[13]) ?? .phone : .phone
-        // Felder 15 und 16 fehlen bei älteren Ständen (bis 14 Felder): nichts überspringen; unlesbar oder negativ → 0.
-        let skipUntil = f.count >= 15 ? max(0, Int64(f[14]) ?? 0) : 0
+        // Felder 15 und 16 fehlen bei älteren Ständen (bis 14 Felder): nichts überspringen; unlesbar oder ausserhalb von
+        // ``TimeBounds`` (z. B. aus einer manipulierten Sicherung) → 0, wie Kotlin.
+        let skipUntil = f.count >= 15 ? TimeBounds.checked(Int64(f[14])) ?? 0 : 0
         let skipHolidays = f.count >= 16 && f[15] == "1"
         let phone = PhoneAlert(rawValue: f[6]) ?? .sound
         let days: Set<Weekday> = try f[3].isEmpty ? [] : Set(f[3].components(separatedBy: ",").map {
@@ -96,7 +97,8 @@ public enum Codec {
 
     /// Liest `encodeNight`. Ältere Stände ohne Befinden (6 Felder) werden gelesen, weitere neuere Felder ignoriert.
     /// Grund: Feld 8, wenn bekannt, sonst Feld 5; ein unbekannter Grund (aus einer neueren Version) gilt als `deadline`.
-    /// - Throws: ``CodecError`` bei fremdem Format, fehlenden Feldern, Befinden ausserhalb 1–5 oder unlesbaren Zahlen.
+    /// - Throws: ``CodecError`` bei fremdem Format, fehlenden Feldern, Befinden ausserhalb 1–5, unlesbaren Zahlen oder
+    ///   Zeiten ausserhalb von ``TimeBounds``.
     public static func decodeNight(_ text: String) throws -> NightRecord {
         let lines = text.components(separatedBy: "\n")
         guard lines.first == nightHeader else { throw CodecError(description: "Unbekanntes Nachtformat") }
@@ -130,10 +132,12 @@ public enum Codec {
         return v
     }
 
-    private static func millis(_ d: Date) -> Int64 { Int64((d.timeIntervalSince1970 * 1000).rounded()) }
+    private static func millis(_ d: Date) -> Int64 { TimeBounds.millis(d) }
 
+    /// Zeitpunkt in ms; ausserhalb von ``TimeBounds`` unlesbar (sonst liefe ``millis(_:)`` beim Schreiben über).
     private static func date(_ s: String) throws -> Date {
         guard let ms = Int64(s) else { throw CodecError(description: "'\(s)' ist keine Zeit") }
+        guard TimeBounds.contains(ms) else { throw CodecError(description: "Zeit '\(s)' ausserhalb 1970–2100") }
         return Date(timeIntervalSince1970: TimeInterval(ms) / 1000)
     }
 

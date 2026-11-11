@@ -43,6 +43,7 @@ import java.time.ZoneId
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import com.phasewake.app.ui.theme.outlinedBorder
 
 /**
  * Versteckte Diagnose (7× auf die Versionszeile): Zustand, Ereignisse von Handy und Uhr, Teilen und Leeren.
@@ -110,8 +111,8 @@ internal fun DiagnosticsContent(status: List<StatusLine>, entries: List<DiagEntr
             item {
                 Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     FilledTonalButton(onClick = actions.onShare) { Text(stringResource(R.string.diag_share)) }
-                    OutlinedButton(onClick = actions.onFetchWatch) { Text(stringResource(R.string.diag_fetch_watch)) }
-                    OutlinedButton(onClick = actions.onClear) { Text(stringResource(R.string.diag_clear)) }
+                    OutlinedButton(onClick = actions.onFetchWatch, border = outlinedBorder()) { Text(stringResource(R.string.diag_fetch_watch)) }
+                    OutlinedButton(onClick = actions.onClear, border = outlinedBorder()) { Text(stringResource(R.string.diag_clear)) }
                 }
             }
             if (noAnswer) {

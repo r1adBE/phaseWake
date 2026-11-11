@@ -60,6 +60,11 @@ final class PhoneLearning {
             return
         }
         DiagStore.shared.log(.sync, "recording received epochs=\(recording.epochs.count) end=\(recording.endReason?.rawValue ?? "-")")
+        // Endete vor «Verlauf löschen» (spät zugestellt): nicht zurückholen (Audit D-02/AP-6, wie Android).
+        guard HistoryClear.keeps(end: recording.until, clearedAt: PhoneModel.shared.historyClearedAt) else {
+            DiagStore.shared.log(.suppressed, "recording before history clear dropped")
+            return
+        }
         var list = recordings.filter { $0.start != recording.start }
         list.append(recording)
         setRecordings(list)

@@ -113,7 +113,7 @@ struct DetailsRow: View {
         HStack(spacing: 4) {
             Spacer()
             Text(L("night_details"))
-            Image(systemName: "chevron.right")
+            Image(systemName: "chevron.forward")
         }
         .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
         .foregroundStyle(.tint)

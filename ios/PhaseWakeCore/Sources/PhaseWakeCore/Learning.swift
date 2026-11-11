@@ -33,6 +33,14 @@ public enum Learning {
     /// Einschlafdauer einer Nacht höchstens so lang (Minuten): Ein spätes Zubettgehen soll die Empfehlung nicht verschieben.
     public static let maxLatencyMinutes = 60
 
+    /// Grösstes gültiges Grundrauschen (m/s²) beim Übernehmen gelernter Werte (``validFloor(_:)``); darüber ist der Wert
+    /// kaputt.
+    public static let maxValidFloor = 1.0
+    /// Gültiger Ruhepuls beim Übernehmen gelernter Werte (``validRestingHeartRate(_:)``), Schläge pro Minute.
+    public static let minValidRestingHeartRate = 25.0
+    /// Siehe ``minValidRestingHeartRate``.
+    public static let maxValidRestingHeartRate = 150.0
+
     /// Breite der empfohlenen Schlafenszeit in Minuten.
     public static let bedtimeRangeMinutes = 30
 
@@ -165,10 +173,23 @@ public enum Learning {
         return sorted.count % 2 == 1 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2.0
     }
 
-    /// `config` mit den gelernten Werten `values` (ohne gelernte Werte unverändert).
+    /// `config` mit den gelernten Werten `values` (ohne gelernte Werte unverändert; ungültige gelten als keine).
     public static func withLearned(_ config: DetectorConfig, _ values: Values?) -> DetectorConfig {
         guard let values else { return config }
         return config.withLearned(floor: values.floor, restingHeartRate: values.restingHeartRate)
+    }
+
+    /// Gelerntes Grundrauschen, falls gültig: endlich, 0 bis ``maxValidFloor``; sonst `nil` (z. B. aus einer kaputten
+    /// oder fremden Nachricht). Identisch zu `Learning.validFloor` (Kotlin).
+    public static func validFloor(_ value: Double?) -> Double? {
+        guard let value, value.isFinite, value >= 0, value <= maxValidFloor else { return nil }
+        return value
+    }
+
+    /// Gelernter Ruhepuls, falls gültig: endlich, ``minValidRestingHeartRate`` bis ``maxValidRestingHeartRate``; sonst `nil`.
+    public static func validRestingHeartRate(_ value: Double?) -> Double? {
+        guard let value, value.isFinite, value >= minValidRestingHeartRate, value <= maxValidRestingHeartRate else { return nil }
+        return value
     }
 
     /// Ob das gelernte Grundrauschen `floor` die Leicht-Schwelle von `config` anhebt (für die Anzeige in Worten).

@@ -8,6 +8,15 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.ui.text.style.TextAlign
+import com.phasewake.app.ui.components.rememberSkyInk
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -152,6 +161,17 @@ class PhoneRingActivity : ComponentActivity() {
     }
 }
 
+/** Darunter gilt die Höhe als knapp (kleine Handys, grosse Schrift): kleinerer Punkt, knappere Abstände. */
+private val SHORT_HEIGHT = 700.dp
+
+/** Darunter sehr knapp (Querformat, Teilbildschirm): ohne Punkt, kleinste Abstände. */
+private val TINY_HEIGHT = 480.dp
+
+/** Höhe einer Taste der Weckaufgabe je nach Platz; nie unter 48 dp (Tippziel). */
+private val KEY_TALL = 60.dp
+private val KEY_SHORT = 52.dp
+private val KEY_TINY = 48.dp
+
 @Composable
 internal fun RingScreen(
     state: PhoneRingService.State,
@@ -168,10 +188,7 @@ internal fun RingScreen(
             now = clock()
         }
     }
-    // Mit Sonnenaufgang: Licht statt Nachthimmel, Farben passen sich der Helligkeit an.
-    val sky = light?.let { SunriseSky.colors(it) }
-    val content = sky?.content ?: NightColors.Moon
-    val muted = sky?.contentMuted ?: NightColors.Muted
+    // Mit Sonnenaufgang: Licht statt Nachthimmel; jeder Text nimmt die Schrift, die an seiner Stelle lesbar ist.
     val background: @Composable (@Composable () -> Unit) -> Unit = { inner ->
         if (light != null) SunriseBackground(light, Modifier.fillMaxSize(), inner) else AnimatedNight(Modifier.fillMaxSize()) { inner() }
     }
@@ -184,47 +201,149 @@ internal fun RingScreen(
     val challenge = remember { MathChallenge() }
     val math = task == WakeTask.MATH
     background {
-    Column(
-        Modifier.fillMaxSize().safeDrawingPadding().padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-    ) {
-        // Mit Aufgabe braucht die Tastatur den Platz: kleiner Punkt, knappere Abstände.
-        PulsingDot(Modifier.size(if (math) 72.dp else 180.dp), color = if (light != null) content.copy(alpha = 0.6f) else NightColors.Wave, dot = content)
-        Spacer(Modifier.height(if (math) 8.dp else 24.dp))
-        Text(Format.time(now), style = if (math) MaterialTheme.typography.displayMedium else MaterialTheme.typography.displayLarge, color = content)
-        Text(stringResource(R.string.ring_greeting), style = MaterialTheme.typography.titleLarge, color = muted)
-        Spacer(Modifier.height(if (math) 16.dp else 48.dp))
-        when (state) {
-            is PhoneRingService.State.Ringing -> {
-                if (math) {
-                    MathTaskPanel(challenge, content, onTyping, onSolved = onStop, modifier = Modifier.fillMaxWidth())
-                } else HoldToStopButton(
-                    label = stringResource(R.string.ring_hold_to_stop),
-                    onStop = onStop,
-                    modifier = Modifier.fillMaxWidth().height(60.dp),
-                )
-                if (state.snoozesLeft > 0) {
-                    Spacer(Modifier.height(12.dp))
-                    OutlinedButton(onClick = onSnooze, border = BorderStroke(1.dp, content.copy(alpha = 0.5f)), modifier = Modifier.fillMaxWidth().height(56.dp)) {
-                        Text(LocalResources.current.getQuantityString(R.plurals.ring_snooze, state.snoozesLeft, Snooze.MINUTES, state.snoozesLeft), color = content)
-                    }
+        // Höhe und Breite bestimmen die Anordnung (Audit UI-2): Querformat zweispaltig, knappe Höhe kleiner;
+        // alles scrollt, damit Stopp, Schlummern und die Tastatur immer erreichbar bleiben. Keine feste Ausrichtung.
+        BoxWithConstraints(Modifier.fillMaxSize().safeDrawingPadding()) {
+            val landscape = maxWidth > maxHeight
+            val size = when {
+                maxHeight < TINY_HEIGHT -> RingSize.TINY
+                maxHeight < SHORT_HEIGHT -> RingSize.SHORT
+                else -> RingSize.TALL
+            }
+            val header: @Composable () -> Unit = { RingHeader(now, light, math, size) }
+            val actions: @Composable () -> Unit = {
+                RingActions(state, light, math, size, challenge, onStop, onSnooze, onTyping)
+            }
+            if (landscape) {
+                Row(Modifier.fillMaxSize().padding(horizontal = 24.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Column(
+                        Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(vertical = 12.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                    ) { header() }
+                    Spacer(Modifier.width(24.dp))
+                    Column(
+                        Modifier.weight(1f).fillMaxHeight().verticalScroll(rememberScrollState()).padding(vertical = 12.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center,
+                    ) { actions() }
+                }
+            } else {
+                Column(
+                    Modifier
+                        .fillMaxWidth()
+                        .verticalScroll(rememberScrollState())
+                        .heightIn(min = maxHeight)
+                        .padding(horizontal = 24.dp, vertical = if (size == RingSize.TALL) 24.dp else 12.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
+                ) {
+                    header()
+                    Spacer(Modifier.height(if (size == RingSize.TALL) (if (math) 16.dp else 48.dp) else 12.dp))
+                    actions()
                 }
             }
-            is PhoneRingService.State.Snoozed -> {
-                Text(stringResource(R.string.ring_snoozed, Snooze.MINUTES), style = MaterialTheme.typography.titleMedium, color = content)
-                // Auch beim Schlummern lässt sich der Wecker ganz beenden: durch Halten oder mit der Aufgabe.
-                Spacer(Modifier.height(24.dp))
-                if (math) {
-                    MathTaskPanel(challenge, content, onTyping, onSolved = onStop, modifier = Modifier.fillMaxWidth())
-                } else HoldToStopButton(
-                    label = stringResource(R.string.ring_hold_to_stop),
-                    onStop = onStop,
-                    modifier = Modifier.fillMaxWidth().height(60.dp),
-                )
-            }
-            PhoneRingService.State.Idle -> Unit
         }
     }
+}
+
+/** Platz für den Weckbildschirm. */
+private enum class RingSize { TALL, SHORT, TINY }
+
+/** Punkt, Uhrzeit und Gruss; mit Aufgabe oder knapper Höhe kleiner, sehr knapp ohne Punkt. */
+@Composable
+private fun RingHeader(now: Instant, light: Float?, math: Boolean, size: RingSize) {
+    val dot = when (size) {
+        RingSize.TALL -> if (math) 72.dp else 180.dp
+        RingSize.SHORT -> if (math) 48.dp else 112.dp
+        RingSize.TINY -> null
+    }
+    if (dot != null) {
+        val (ink, place) = rememberSkyInk(light, NIGHT_INK)
+        PulsingDot(Modifier.size(dot).then(place), color = if (light != null) ink.content.copy(alpha = 0.6f) else NightColors.Wave, dot = ink.content)
+        Spacer(Modifier.height(if (math || size != RingSize.TALL) 8.dp else 24.dp))
+    }
+    val (timeInk, timePlace) = rememberSkyInk(light, NIGHT_INK)
+    Text(
+        Format.time(now),
+        style = when {
+            size == RingSize.TINY -> MaterialTheme.typography.displaySmall
+            math || size == RingSize.SHORT -> MaterialTheme.typography.displayMedium
+            else -> MaterialTheme.typography.displayLarge
+        },
+        color = timeInk.content,
+        modifier = timePlace,
+    )
+    val (greetInk, greetPlace) = rememberSkyInk(light, NIGHT_INK)
+    Text(
+        stringResource(R.string.ring_greeting),
+        style = MaterialTheme.typography.titleLarge,
+        color = greetInk.muted,
+        textAlign = TextAlign.Center,
+        modifier = greetPlace,
+    )
+}
+
+/** Stopp (Halten oder Aufgabe) und Schlummern; beim Schlummern der Hinweis und Stopp. */
+@Composable
+private fun RingActions(
+    state: PhoneRingService.State,
+    light: Float?,
+    math: Boolean,
+    size: RingSize,
+    challenge: MathChallenge,
+    onStop: () -> Unit,
+    onSnooze: () -> Unit,
+    onTyping: () -> Unit,
+) {
+    val keyHeight = when (size) {
+        RingSize.TALL -> KEY_TALL
+        RingSize.SHORT -> KEY_SHORT
+        RingSize.TINY -> KEY_TINY
+    }
+    val stop: @Composable () -> Unit = {
+        if (math) {
+            MathTaskPanel(challenge, light, onTyping, onSolved = onStop, modifier = Modifier.fillMaxWidth(), keyHeight = keyHeight)
+        } else HoldToStopButton(
+            label = stringResource(R.string.ring_hold_to_stop),
+            onStop = onStop,
+            modifier = Modifier.fillMaxWidth().heightIn(min = if (size == RingSize.TALL) 60.dp else 52.dp),
+        )
+    }
+    when (state) {
+        is PhoneRingService.State.Ringing -> {
+            stop()
+            if (state.snoozesLeft > 0) {
+                Spacer(Modifier.height(12.dp))
+                val (ink, place) = rememberSkyInk(light, NIGHT_INK)
+                OutlinedButton(
+                    onClick = onSnooze,
+                    border = BorderStroke(1.dp, ink.content.copy(alpha = 0.6f)),
+                    modifier = Modifier.fillMaxWidth().heightIn(min = if (size == RingSize.TALL) 56.dp else 48.dp).then(place),
+                ) {
+                    Text(
+                        LocalResources.current.getQuantityString(R.plurals.ring_snooze, state.snoozesLeft, Snooze.MINUTES, state.snoozesLeft),
+                        color = ink.content,
+                        textAlign = TextAlign.Center,
+                    )
+                }
+            }
+        }
+        is PhoneRingService.State.Snoozed -> {
+            val (ink, place) = rememberSkyInk(light, NIGHT_INK)
+            Text(
+                stringResource(R.string.ring_snoozed, Snooze.MINUTES),
+                style = MaterialTheme.typography.titleMedium,
+                color = ink.content,
+                textAlign = TextAlign.Center,
+                modifier = place,
+            )
+            // Auch beim Schlummern lässt sich der Wecker ganz beenden: durch Halten oder mit der Aufgabe.
+            Spacer(Modifier.height(if (size == RingSize.TALL) 24.dp else 12.dp))
+            stop()
+        }
+        PhoneRingService.State.Idle -> Unit
     }
 }
+
+/** Schrift auf dem Nachthimmel. */
+internal val NIGHT_INK = SunriseSky.Ink(NightColors.Moon, NightColors.Muted)

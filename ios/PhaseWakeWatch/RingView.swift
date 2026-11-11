@@ -18,24 +18,37 @@ struct RingView: View {
                 .padding(3)
                 .ignoresSafeArea()
             // Kleiner Punkt und knappe Abstände (Audit U-1): «noch N» unter «Schlummern 5 Min» bleibt auch auf
-            // kleinen Uhren ganz sichtbar.
-            VStack(spacing: 3) {
+            // kleinen Uhren ganz sichtbar. Mit grosser Systemschrift (Audit UI-3, wie Wear OS): Schrift auf diesem
+            // Bildschirm gedeckelt, und reicht die Höhe nicht, fallen zuerst der Punkt, dann die Zeile mit dem Grund weg –
+            // Stopp und Schlummern bleiben ganz sichtbar.
+            ViewThatFits(in: .vertical) {
+                column(dot: true, reason: true)
+                column(dot: false, reason: true)
+                column(dot: false, reason: false)
+            }
+            .dynamicTypeSize(...DynamicTypeSize.xLarge)
+            .padding(.horizontal, 10)
+        }
+    }
+
+    private func column(dot: Bool, reason: Bool) -> some View {
+        VStack(spacing: 3) {
+            if dot {
                 PulsingDot()
                     .frame(width: 44, height: 44)
                     .contentShape(Circle())
                     .holdToStop(progress: $progress, holding: $holding) { alarm.dismiss() }
                     .accessibilityHidden(true)
-                content
             }
-            .padding(.horizontal, 10)
+            content(reason: reason)
         }
     }
 
-    @ViewBuilder private var content: some View {
+    @ViewBuilder private func content(reason showReason: Bool) -> some View {
         switch alarm.phase {
         case .ringing(let reason, let snoozesLeft):
             Text(L("ring_greeting")).font(Fonts.manrope(16, .bold, relativeTo: .headline)).lineLimit(1)
-            reasonText(L(ringReasonKey(reason)))
+            if showReason { reasonText(L(ringReasonKey(reason))) }
             stopButton
             if snoozesLeft > 0 {
                 // «Schlummern 5 Min» wie auf Wear OS (Audit F-10), darunter klein «noch N» (r1AD 10.11.2026); mindestens

@@ -1,5 +1,6 @@
 package com.phasewake.app.ring
 
+import android.util.Log
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
@@ -16,6 +17,7 @@ import com.phasewake.app.shared.OnsetShift
 import java.time.Instant
 import java.time.ZoneId
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.withTimeoutOrNull
 
 // Planen des Zweitweckers: nächster Wecker mit Handy-Wecker, dazu Probewecker oder Powernap.
 
@@ -23,6 +25,10 @@ import kotlinx.coroutines.flow.first
  * Plant Zweitwecker und Sonnenaufgang neu (nur unter der Sperre von [BackupAlarm.reschedule]). Wecker mit
  * «An Feiertagen nicht wecken» überspringen die Feiertage wie auf der Uhr; ein Probewecker oder Powernap
  * mit Handy-Wecker bekommt ebenfalls eine Sicherung.
+ *
+ * Erst rechnen, dann stellen (Audit A-2): Der bisherige Zweitwecker bleibt stehen, bis der neue ihn ersetzt (gleicher
+ * PendingIntent); aufgehoben wird er nur, wenn keiner mehr gilt. «Zuletzt gesehen» der Uhr kommt mit Frist
+ * ([watchSeenAtBounded]): Hängen die Wear-Dienste, plant das Handy trotzdem.
  */
 internal suspend fun BackupAlarm.planBackup() {
     rescheduleSunrise()
@@ -30,7 +36,6 @@ internal suspend fun BackupAlarm.planBackup() {
     // Schlummer-Sicherung und Schlummern am Handy sind unabhängig vom Zweitwecker; nach einem Neustart wiederherstellen.
     SnoozeSafety.restore(context, current)
     PhoneSnooze.restore(context, current)
-    alarmManager.cancel(pending())
     val app = context.phoneApp
     val holidays = app.holidays.store.current()
     val backups = alarms.current().alarms.filter { it.phoneBackup }
@@ -39,7 +44,7 @@ internal suspend fun BackupAlarm.planBackup() {
     // Wecker erst die nächste Nacht danach. Andere Wecker bleiben unberührt.
     val suppressed = decodeSuppressed(prefs[SUPPRESSED])
     // Ohne Uhr (nie oder seit einer Woche keine gemeldet, Review N-5): das Handy ist der Wecker und klingelt pünktlich.
-    val grace = RingRules.backupGrace(watchSeenAt(), current.toEpochMilli(), GRACE)
+    val grace = RingRules.backupGrace(watchSeenAtBounded(), current.toEpochMilli(), GRACE)
     // Probewecker oder Powernap: eigener Plan, auch in der Nachfrist (er kommt nicht wieder).
     val transient = app.transient.active()?.takeIf { it.spec.phoneBackup }?.plan
     // In der Nachfrist eines schon geplanten Zweitweckers (z. B. beim Prozessstart) bleibt er bestehen.
@@ -54,6 +59,7 @@ internal suspend fun BackupAlarm.planBackup() {
         backups, transient, prefs[PLANNED_ID], plannedTarget, suppressed, current, grace, zone, holidays, planned,
     )
     if (unshifted == null) {
+        alarmManager.cancel(pending())
         if (prefs[PLANNED_ID] != null) {
             store.edit {
                 it.remove(PLANNED_ID)
@@ -128,3 +134,29 @@ private const val DIRECT_BOOT_PLANS = 6
 /** Geplante Zielzeit des Zweitweckers (für die Diagnose); `null`, wenn keiner geplant ist. */
 internal suspend fun BackupAlarm.plannedTarget(): Instant? =
     store.data.first()[PLANNED_TARGET]?.let(Instant::ofEpochMilli)
+
+/** Höchstdauer für «zuletzt gesehen» der Uhr beim Planen ([watchSeenAtBounded], Audit A-2). */
+internal const val WATCH_SEEN_TIMEOUT_MS = 3_000L
+
+/** Je Zweitwecker-Instanz das zuletzt erfolgreich gelesene «zuletzt gesehen» der Uhr (für [watchSeenAtBounded]). */
+private val lastSeenAt: MutableMap<BackupAlarm, Long?> = java.util.Collections.synchronizedMap(java.util.WeakHashMap())
+
+/**
+ * «Zuletzt gesehen» der Uhr ([BackupAlarm.watchSeenAt]) mit Frist [WATCH_SEEN_TIMEOUT_MS] (Audit A-2): Das Planen läuft
+ * unter der Sperre und darf nicht an den Wear-Diensten hängen. Ohne Antwort gilt der zuletzt gelesene Wert dieses
+ * Prozesses (sonst `null`: keine Uhr bekannt, der Zweitwecker klingelt pünktlich – lieber zu früh als gar nicht).
+ */
+internal suspend fun BackupAlarm.watchSeenAtBounded(): Long? {
+    val read = try {
+        withTimeoutOrNull(WATCH_SEEN_TIMEOUT_MS) { Result.success(watchSeenAt()) }
+    } catch (e: Exception) {
+        if (e is kotlinx.coroutines.CancellationException) throw e
+        Log.w(BackupAlarm.TAG, "Uhr-Status nicht lesbar", e)
+        null
+    }
+    if (read == null) {
+        Log.i(BackupAlarm.TAG, "Uhr-Status: keine Antwort, letzter Wert")
+        return lastSeenAt[this]
+    }
+    return read.getOrNull().also { lastSeenAt[this] = it }
+}

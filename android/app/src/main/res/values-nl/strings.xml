@@ -477,7 +477,7 @@
     </plurals>
     <string name="diag_unlocked">De diagnose staat nu in de instellingen.</string>
     <string name="diag_show">Diagnose tonen</string>
-    <string name="diag_hint">Alleen op dit apparaat, er wordt niets verzonden. Bevat tijden van wekkers en gebeurtenissen, geen gezondheidsgegevens.</string>
+    <string name="diag_hint">Technisch logboek van de afgelopen 7 dagen, alleen op je apparaten. Het bevat tijden en meetwaarden (bijv. beweging, inslaaptijd) – deel het alleen als je dat wilt.</string>
     <string name="diag_events">Gebeurtenissen</string>
     <string name="diag_empty">Nog geen gebeurtenissen.</string>
     <string name="diag_status">Status</string>
@@ -591,4 +591,5 @@
     <string name="learn_point_battery">Dat kost wat batterij – laad het horloge op voordat je gaat slapen.</string>
     <string name="learn_point_private">De gegevens blijven op je apparaten. Je kunt de leerfase op elk moment uitzetten in de instellingen.</string>
     <string name="learn_switch_hint">Je horloge meet ’s nachts beweging en hartslag om de wekker af te stemmen. Uit: geen automatische registratie, geleerde waarden blijven.</string>
+    <string name="watch_open_app_hint">Open Phase Wake op je horloge zodat het de opdracht ontvangt.</string>
 </resources>

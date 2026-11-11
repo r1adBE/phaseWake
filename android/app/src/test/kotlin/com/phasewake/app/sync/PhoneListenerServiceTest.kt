@@ -19,6 +19,9 @@ import com.phasewake.app.shared.QueueMessages
 import com.phasewake.app.shared.RecordEnd
 import com.phasewake.app.shared.RecordSync
 import com.phasewake.app.shared.RingMessage
+import com.phasewake.app.shared.phaseWakeStore
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.longPreferencesKey
 import java.io.File
 import java.time.Duration
 import java.time.Instant
@@ -119,6 +122,31 @@ class PhoneListenerServiceTest {
         queued(DataLayer.PATH_MSG_RECORDING, NightRecording.encode(finished))
         assertEquals(listOf(start), app.recordings.load().map { it.start })
         awaitDiag { it == "recording received epochs=4 end=${RecordEnd.WAKE.code}" }
+    }
+
+    @Test
+    fun nightsAndRecordingsBeforeHistoryClearAreDropped() = runBlocking {
+        // Audit D-02: Die Uhr sendete nach «Verlauf löschen» noch Wartendes; das Handy nahm es wieder auf.
+        val cleared = Instant.parse("2026-11-10T12:00:00Z")
+        app.settings.setHistoryClearedAt(cleared)
+        try {
+            val before = night("a", Instant.parse("2026-11-10T05:00:00Z"))
+            val after = night("a", Instant.parse("2026-11-11T05:00:00Z"))
+            queued(DataLayer.PATH_MSG_NIGHT, Codec.encodeNight(before))
+            queued(DataLayer.PATH_MSG_NIGHT, Codec.encodeNight(after))
+            assertEquals(listOf(after), app.nights.load())
+            val start = Instant.parse("2026-11-09T22:00:00Z")
+            val old = NightRecording(start, List(4) { Epoch(0.02, 55.0) }, start.plusSeconds(120), RecordEnd.WAKE)
+            val newer = old.copy(start = Instant.parse("2026-11-10T22:00:00Z"), end = Instant.parse("2026-11-10T22:02:00Z"))
+            queued(DataLayer.PATH_MSG_RECORDING, NightRecording.encode(old))
+            queued(DataLayer.PATH_MSG_RECORDING, NightRecording.encode(newer))
+            assertEquals(listOf(newer.start), app.recordings.load().map { it.start })
+            awaitDiag { it == "night before history clear dropped" }
+            awaitDiag { it == "recording before history clear dropped" }
+        } finally {
+            // Der Speicher lebt über den Test hinaus: wieder «nie gelöscht».
+            app.phaseWakeStore.edit { it.remove(longPreferencesKey("history_cleared_at")) }
+        }
     }
 
     @Test

@@ -28,6 +28,23 @@ class NightRecordingTest {
     }
 
     @Test
+    fun implausibleTimesAreRejected() {
+        // Audit K-7: kaputte oder manipulierte Zeitpunkte (z. B. Long.MAX_VALUE) laufen später in Rechnungen über.
+        val huge = Long.MAX_VALUE
+        val done = NightRecording(start, epochs, start.plusSeconds(120), RecordEnd.PHONE, start.plusSeconds(30), start.plusSeconds(60))
+        val text = NightRecording.encode(done)
+        assertNull(NightRecording.decode(text.replace("start=${start.toEpochMilli()}", "start=$huge")), "Beginn unplausibel: unlesbar")
+        assertNull(NightRecording.decode(text.replace("start=${start.toEpochMilli()}", "start=-1")))
+        val badEnd = assertNotNull(NightRecording.decode(text.replace("end=${start.plusSeconds(120).toEpochMilli()}", "end=$huge")))
+        assertNull(badEnd.end, "Ende unplausibel: gilt als laufend")
+        val badOnset = assertNotNull(NightRecording.decode(text.replace("onset=${start.plusSeconds(30).toEpochMilli()}", "onset=$huge")))
+        assertNull(badOnset.bedAt)
+        assertNull(badOnset.asleepAt)
+        assertEquals(done.end, badOnset.end)
+        assertEquals(done, NightRecording.decode(text), "plausibel: unverändert")
+    }
+
+    @Test
     fun appendedFileReadsLikeEncoded() {
         // Wie die Uhr schreibt: Kopf, Epochen in Stücken, Schlusszeile.
         val text = NightRecording.header(start) + NightRecording.epochLines(epochs.take(2)) + NightRecording.epochLines(epochs.drop(2)) +

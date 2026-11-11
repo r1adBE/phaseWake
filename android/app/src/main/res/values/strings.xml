@@ -507,7 +507,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnostics are now shown in the settings.</string>
     <string name="diag_show">Show diagnostics</string>
-    <string name="diag_hint">Only on this device, nothing is sent. Contains times of alarms and events, no health data.</string>
+    <string name="diag_hint">Technical log of the last 7 days, only on your devices. It contains times and measurements (e.g. motion, when you fell asleep) – share it only if you want to.</string>
     <string name="diag_events">Events</string>
     <string name="diag_empty">No events yet.</string>
     <string name="diag_status">Status</string>
@@ -596,4 +596,6 @@
     <string name="learn_point_battery">This uses some battery – charge the watch before you go to sleep.</string>
     <string name="learn_point_private">The data stays on your devices. You can turn the learning phase off in the settings at any time.</string>
     <string name="learn_switch_hint">Your watch measures motion and pulse at night to adapt the alarm. Off: no automatic recording, learned values stay.</string>
+    <!-- Nur Apple (iPhone → Uhr, wenn die Uhr-App nicht läuft). -->
+    <string name="watch_open_app_hint" tools:ignore="UnusedResources">Open Phase Wake on your watch so it receives the command.</string>
 </resources>

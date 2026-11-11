@@ -465,7 +465,7 @@
     </plurals>
     <string name="diag_unlocked">ຕອນນີ້ການວິນິດໄສສະແດງໃນການຕັ້ງຄ່າແລ້ວ</string>
     <string name="diag_show">ສະແດງການວິນິດໄສ</string>
-    <string name="diag_hint">ສະເພາະໃນອຸປະກອນນີ້ ບໍ່ມີຫຍັງຖືກສົ່ງ ມີເວລາຂອງໂມງປຸກ ແລະ ເຫດການ ບໍ່ມີຂໍ້ມູນສຸຂະພາບ</string>
+    <string name="diag_hint">ບັນທຶກທາງເທັກນິກຂອງ 7 ມື້ຫຼ້າສຸດ, ຢູ່ໃນອຸປະກອນຂອງເຈົ້າເທົ່ານັ້ນ. ມີເວລາ ແລະ ຄ່າທີ່ວັດໄດ້ (ເຊັ່ນ ການເຄື່ອນໄຫວ, ເວລານອນຫຼັບ) – ແບ່ງປັນສະເພາະເມື່ອເຈົ້າຕ້ອງການ.</string>
     <string name="diag_events">ເຫດການ</string>
     <string name="diag_empty">ຍັງບໍ່ມີເຫດການ</string>
     <string name="diag_status">ສະຖານະ</string>
@@ -579,4 +579,5 @@
     <string name="learn_point_battery">ມັນໃຊ້ແບັດເຕີຣີບາງສ່ວນ – ສາກໂມງກ່ອນນອນ.</string>
     <string name="learn_point_private">ຂໍ້ມູນຢູ່ໃນອຸປະກອນຂອງເຈົ້າ. ເຈົ້າສາມາດປິດໄລຍະຮຽນຮູ້ໃນການຕັ້ງຄ່າໄດ້ທຸກເວລາ.</string>
     <string name="learn_switch_hint">ໂມງຂອງເຈົ້າວັດການເຄື່ອນໄຫວ ແລະ ຊີບພະຈອນໃນຕອນກາງຄືນເພື່ອປັບໂມງປຸກ. ປິດ: ບໍ່ບັນທຶກອັດຕະໂນມັດ, ຄ່າທີ່ຮຽນຮູ້ແລ້ວຍັງຢູ່.</string>
+    <string name="watch_open_app_hint">ເປີດ Phase Wake ໃນໂມງຂອງເຈົ້າ ເພື່ອໃຫ້ມັນໄດ້ຮັບຄຳສັ່ງ.</string>
 </resources>

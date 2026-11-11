@@ -22,7 +22,7 @@ internal fun RecordChip(since: Instant?, zone: ZoneId, onClick: () -> Unit) {
         colors = ButtonDefaults.filledTonalButtonColors(),
         label = { Text(stringResource(if (since != null) R.string.record_stop else R.string.record_start)) },
         secondaryLabel = since?.let {
-            { Text(stringResource(R.string.record_since, DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(it.atZone(zone)))) }
+            { Text(stringResource(R.string.record_since, localizedDigits(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)).format(it.atZone(zone)))) }
         },
     )
 }

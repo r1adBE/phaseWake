@@ -323,7 +323,7 @@ private fun dialFraction(instant: Instant, zone: ZoneId): Float {
     return ((t.hour % 12) * 60 + t.minute) / 720f
 }
 
-private val shortTime: DateTimeFormatter get() = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
+private val shortTime: DateTimeFormatter get() = localizedDigits(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
 
 private fun formatTime(instant: Instant, zone: ZoneId): String = shortTime.format(instant.atZone(zone))
 

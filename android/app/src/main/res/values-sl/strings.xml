@@ -507,7 +507,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnostika je zdaj prikazana v nastavitvah.</string>
     <string name="diag_show">Prikaži diagnostiko</string>
-    <string name="diag_hint">Samo na tej napravi, nič se ne pošlje. Vsebuje čase budilk in dogodkov, brez zdravstvenih podatkov.</string>
+    <string name="diag_hint">Tehnični dnevnik zadnjih 7 dni, samo v tvojih napravah. Vsebuje čase in izmerjene vrednosti (npr. gibanje, čas uspavanja) – deli ga le, če želiš.</string>
     <string name="diag_events">Dogodki</string>
     <string name="diag_empty">Še ni dogodkov.</string>
     <string name="diag_status">Stanje</string>
@@ -621,4 +621,5 @@
     <string name="learn_point_battery">To porabi nekaj baterije – napolni uro pred spanjem.</string>
     <string name="learn_point_private">Podatki ostanejo v tvojih napravah. Fazo učenja lahko kadar koli izklopiš v nastavitvah.</string>
     <string name="learn_switch_hint">Ura ponoči meri gibanje in utrip, da prilagodi alarm. Izklopljeno: brez samodejnega beleženja, naučene vrednosti ostanejo.</string>
+    <string name="watch_open_app_hint">Odpri Phase Wake na uri, da prejme ukaz.</string>
 </resources>

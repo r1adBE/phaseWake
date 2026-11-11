@@ -222,7 +222,7 @@ final class WatchModel {
     static let maxAlarms = 8
     var canAddAlarm: Bool { alarms.count < Self.maxAlarms }
 
-    /// Wecker auf der Uhr anlegen oder ändern; geht ans iPhone und plant neu (zuletzt gespeichert gewinnt).
+    /// Wecker auf der Uhr anlegen oder ändern; geht ans iPhone und plant neu (je Wecker gewinnt die jüngere Änderung).
     /// Ein bestehender Wecker behält alles, was die Uhr nicht bearbeitet (siehe `AlarmSpec.editedOnWatch`).
     /// `skip` ist der Schalter «Nächstes Mal überspringen» (`nil` nicht angefasst, `true` ein, `false` aus); gespeichert
     /// wird `AlarmSchedule.editedSkip` – wie Android. Ein neuer Wecker wird so gespeichert, wie er ist (der Editor bietet
@@ -259,18 +259,56 @@ final class WatchModel {
         reschedule()
     }
 
-    /// Vom iPhone empfangene Wecker übernehmen, falls neuer.
+    /// Plan, nach dem die Uhr weckt, für die Komplikation (`EffectivePlan`, Audit AP-9): mit «Gute Nacht», Probewecker
+    /// und Powernap wie die Sitzung. Nur bei einer Änderung geschrieben.
+    private func publishEffectivePlan() {
+        let current = plan
+        guard EffectivePlan.decode(SettingsFile.watchAlarms.object(forKey: EffectivePlan.key)) != current else { return }
+        SettingsFile.watchAlarms.set(EffectivePlan.encode(current), forKey: EffectivePlan.key)
+    }
+
+    /// Schlüssel des zuletzt angewandten «Verlauf löschen» (Sendezeit, s) in `SettingsFile.watchSession`.
+    private static let historyClearedKey = "historyClearedAt"
+
+    /// «Verlauf löschen» vom iPhone mit Sendezeit `sentAt` (Audit AP-6, wie Android): nur Nächte und Aufzeichnungen, die
+    /// bis dahin endeten – auch die noch nicht gesendeten. Ohne Sendezeit (ältere iPhone-App) oder schon angewandt
+    /// (doppelt zugestellt) nichts.
+    func clearHistory(sentAt: Date?) {
+        let stored = SettingsFile.watchSession.double(forKey: Self.historyClearedKey)
+        let applied = stored > 0 ? Date(timeIntervalSince1970: stored) : nil
+        guard let until = HistoryClear.clearUntil(sentAt: sentAt, applied: applied) else {
+            DiagStore.shared.log(.suppressed, "clear history ignored (\(sentAt == nil ? "no time" : "old"))")
+            return
+        }
+        SettingsFile.watchSession.set(until.timeIntervalSince1970, forKey: Self.historyClearedKey)
+        let nights = storage.nights()
+        let kept = nights.filter { HistoryClear.keeps(end: $0.wokeAt, clearedAt: until) }
+        if kept.isEmpty {
+            storage.clearNights()
+        } else if kept.count != nights.count {
+            storage.replaceNights(kept)
+        }
+        WatchConnectivityBridge.shared.dropQueued(clearedAt: until)
+        LearnRecorder.shared.clearHistory(until: until)
+        DiagStore.shared.log(.sync, "history cleared \(nights.count - kept.count)/\(nights.count)")
+    }
+
+    /// Vom iPhone empfangene Wecker je Wecker übernehmen (Audit A-4, ``AlarmStamps``).
     func applyRemote(_ snapshot: AlarmSnapshot) {
         guard storage.applyRemote(snapshot) else { return }
-        alarms = snapshot.alarms
-        DiagStore.shared.log(.alarmsReceived, "\(snapshot.alarms.count) alarms")
+        alarms = storage.snapshot().alarms
+        DiagStore.shared.log(.alarmsReceived, "\(alarms.count) alarms")
         reschedule()
     }
 
-    /// Plant die Smart-Alarm-Sitzung für das nächste Fenster (geht nur, solange die App aktiv ist).
-    func reschedule() {
+    /// Plant die Smart-Alarm-Sitzung für das nächste Fenster (geht nur, solange die App aktiv ist), die Rückfälle der
+    /// Nächte danach (`SmartAlarm.scheduleUpcomingFallbacks`) und, mit `recorder`, den Rekorder der Lernphase (die
+    /// Hintergrund-Aktualisierung startet ihn selbst, `LearnRecorder.refreshTask`).
+    func reschedule(recorder: Bool = true) {
         refresh()
         SmartAlarm.shared.schedule(plan)
+        SmartAlarm.shared.scheduleUpcomingFallbacks(after: realPlan, model: self)
+        publishEffectivePlan()
         let armed: Bool
         switch SmartAlarm.shared.phase {
         case .idle, .waiting: armed = false
@@ -282,6 +320,6 @@ final class WatchModel {
         // Komplikation auf dem Zifferblatt sofort aktualisieren.
         WidgetCenter.shared.reloadAllTimelines()
         // Lernphase: Rekorder für die nächste Nacht starten bzw. die letzte auswerten.
-        LearnRecorder.shared.plan()
+        if recorder { LearnRecorder.shared.plan() }
     }
 }

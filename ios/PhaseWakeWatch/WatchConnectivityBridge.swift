@@ -19,19 +19,19 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     private var context: [String: Any] = [:]
 
     func publish(_ snapshot: AlarmSnapshot) {
-        context[SyncKeys.alarms] = Codec.encodeAlarms(snapshot.alarms)
-        context[SyncKeys.updatedAt] = snapshot.updatedAt
+        AlarmStamps.apply(snapshot, to: &context)
         sendContext()
+    }
+
+    /// Ohne Wecker im Kontext (erster Versand seit dem Start) den gespeicherten Stand dazulegen.
+    private func ensureAlarms() {
+        if context[SyncKeys.alarms] == nil { AlarmStamps.apply(PhaseWakeStorage.watch.snapshot(), to: &context) }
     }
 
     /// Für welche Zielzeit die Uhr scharf ist (Sitzung geplant oder laufend); 0 = nicht scharf.
     func publish(armedTarget: Date?) {
         context[SyncKeys.armedTarget] = Int64((armedTarget?.timeIntervalSince1970 ?? 0) * 1000)
-        if context[SyncKeys.alarms] == nil {
-            let snapshot = PhaseWakeStorage.watch.snapshot()
-            context[SyncKeys.alarms] = Codec.encodeAlarms(snapshot.alarms)
-            context[SyncKeys.updatedAt] = snapshot.updatedAt
-        }
+        ensureAlarms()
         sendContext()
     }
 
@@ -39,11 +39,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     /// seit …»).
     func publish(recordSince since: Date?) {
         context[SyncKeys.recordSince] = Int64((since?.timeIntervalSince1970 ?? 0) * 1000)
-        if context[SyncKeys.alarms] == nil {
-            let snapshot = PhaseWakeStorage.watch.snapshot()
-            context[SyncKeys.alarms] = Codec.encodeAlarms(snapshot.alarms)
-            context[SyncKeys.updatedAt] = snapshot.updatedAt
-        }
+        ensureAlarms()
         sendContext()
     }
 
@@ -53,11 +49,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         let text = skip?.encode() ?? ""
         guard text != Self.recorderSkip else { return }
         SettingsFile.watchSession.set(text, forKey: Self.recorderSkipKey)
-        if context[SyncKeys.alarms] == nil {
-            let snapshot = PhaseWakeStorage.watch.snapshot()
-            context[SyncKeys.alarms] = Codec.encodeAlarms(snapshot.alarms)
-            context[SyncKeys.updatedAt] = snapshot.updatedAt
-        }
+        ensureAlarms()
         sendContext()
     }
 
@@ -172,11 +164,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
 
     /// Beim Öffnen der App: Akkustand neu melden, auch wenn sich sonst nichts geändert hat.
     func publishBattery() {
-        if context[SyncKeys.alarms] == nil {
-            let snapshot = PhaseWakeStorage.watch.snapshot()
-            context[SyncKeys.alarms] = Codec.encodeAlarms(snapshot.alarms)
-            context[SyncKeys.updatedAt] = snapshot.updatedAt
-        }
+        ensureAlarms()
         sendContext()
     }
 
@@ -216,7 +204,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     /// Was vor der Aktivierung anfiel (z. B. App für eine Sitzung im Hintergrund gestartet und gleich geklingelt): Vorher
     /// verwirft WatchConnectivity Nachrichten und Benutzerdaten bzw. wirft einen Fehler. Geht nach `activationDidComplete`
     /// raus, wie auf dem iPhone (`PhoneConnectivity.pending`). Nur auf dem Main-Thread.
-    private var pending: [(payload: [String: Any], userInfoOnly: Bool)] = []
+    var pending: [(payload: [String: Any], userInfoOnly: Bool)] = []
 
     /// Sofort als Nachricht, wenn das iPhone erreichbar ist (bei einem Fehler als Benutzerdaten), sonst als Benutzerdaten;
     /// `userInfoOnly` immer als Benutzerdaten (Nächte). Vor der Aktivierung gemerkt (`pending`). Die Sendezeit bleibt
@@ -303,6 +291,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         // Nacht des iPhone-Alarms (fehlt, wenn das iPhone keine kennt): Stopp oder Schlummern nur für dieselbe Nacht.
         let alarmId = (message[SyncKeys.alarms] as? String).flatMap { $0.isEmpty ? nil : $0 }
         let target = (message[SyncKeys.target] as? Int64).map { Date(timeIntervalSince1970: Double($0) / 1000) }
+        let sentAt = (message[SyncKeys.sentAt] as? Int64).map { Date(timeIntervalSince1970: Double($0) / 1000) }
         Task { @MainActor in
             let alarm = SmartAlarm.shared
             if command == SyncKeys.stop || command == SyncKeys.snooze, !alarm.isThisNight(alarmId: alarmId, target: target) {
@@ -313,8 +302,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
             case SyncKeys.stop: alarm.dismiss(notifyPhone: false)
             case SyncKeys.snooze: alarm.snoozeFromPhone()
             case SyncKeys.clearHistory:
-                WatchModel.shared.storage.clearNights()
-                LearnRecorder.shared.clearHistory()
+                WatchModel.shared.clearHistory(sentAt: sentAt)
             default: break
             }
         }
@@ -388,9 +376,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         if let learning = LearningSnapshot(context: context) {
             Task { @MainActor in LearnRecorder.shared.apply(learning) }
         }
-        guard let text = context[SyncKeys.alarms] as? String,
-              let updatedAt = context[SyncKeys.updatedAt] as? Int64,
-              let alarms = try? Codec.decodeAlarms(text) else { return }
-        Task { @MainActor in WatchModel.shared.applyRemote(AlarmSnapshot(alarms: alarms, updatedAt: updatedAt)) }
+        guard let snapshot = AlarmStamps.snapshot(context: context) else { return }
+        Task { @MainActor in WatchModel.shared.applyRemote(snapshot) }
     }
 }

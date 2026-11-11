@@ -494,7 +494,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnostika tagad redzama iestatījumos.</string>
     <string name="diag_show">Rādīt diagnostiku</string>
-    <string name="diag_hint">Tikai šajā ierīcē, nekas netiek nosūtīts. Satur modinātāju un notikumu laikus, bez veselības datiem.</string>
+    <string name="diag_hint">Pēdējo 7 dienu tehniskais žurnāls, tikai tavās ierīcēs. Tajā ir laiki un izmērītās vērtības (piem., kustība, iemigšanas laiks) – kopīgo to tikai tad, ja vēlies.</string>
     <string name="diag_events">Notikumi</string>
     <string name="diag_empty">Vēl nav notikumu.</string>
     <string name="diag_status">Statuss</string>
@@ -608,4 +608,5 @@
     <string name="learn_point_battery">Tas patērē nedaudz akumulatora – uzlādē pulksteni pirms gulētiešanas.</string>
     <string name="learn_point_private">Dati paliek tavās ierīcēs. Mācīšanās posmu vari jebkurā laikā izslēgt iestatījumos.</string>
     <string name="learn_switch_hint">Tavs pulkstenis naktī mēra kustību un pulsu, lai pielāgotu modinātāju. Izslēgts: nav automātiskas ierakstīšanas, apgūtās vērtības paliek.</string>
+    <string name="watch_open_app_hint">Atver Phase Wake pulkstenī, lai tas saņemtu komandu.</string>
 </resources>

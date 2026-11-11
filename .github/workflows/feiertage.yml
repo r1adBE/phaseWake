@@ -18,7 +18,8 @@ jobs:
           python-version: "3.12"
       - name: Daten erzeugen
         run: |
-          pip install --quiet holidays
+          # Fest gewählte Version mit Prüfsummen (Audit 5314d25 D-08): gleiche Daten bei jedem Lauf, kein fremdes Paket.
+          pip install --quiet --require-hashes --only-binary :all: -r .github/scripts/holidays-requirements.txt
           python -c "import holidays; print('holidays', holidays.__version__)"
           python .github/scripts/make-holidays.py holidays.json 2> skipped.txt
           gzip -9 -k holidays.json

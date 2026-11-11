@@ -46,6 +46,11 @@ class OutboxTest {
     private var clock = 1_000L
     private fun outbox() = Outbox(dir, transport) { clock++ }
 
+    /** Lässt die Wartezeit bis zum erneuten Senden verstreichen ([Outbox.RESEND_AFTER_MS]). */
+    private fun later() {
+        clock += Outbox.RESEND_AFTER_MS
+    }
+
     @Test
     fun sendsAndKeepsUntilAcknowledged() = runTest {
         val box = outbox()
@@ -55,7 +60,11 @@ class OutboxTest {
         assertEquals("node-${DataLayer.CAPABILITY_PHONE}", node)
         assertEquals(DataLayer.PATH_MSG_NIGHT, path)
         assertEquals("nacht", Outbox.open(data)?.second)
-        // Ohne Bestätigung bleibt er und wird beim nächsten Anlass erneut gesendet.
+        // Ohne Bestätigung bleibt er; ein Anlass gleich danach sendet ihn nicht noch einmal (Audit A-1) ...
+        assertEquals(1, box.flush())
+        assertEquals(1, transport.sent.size)
+        // ... erst nach der Wartezeit.
+        later()
         assertEquals(1, box.flush())
         assertEquals(2, transport.sent.size)
         assertTrue(box.acked(transport.lastId()))
@@ -148,12 +157,112 @@ class OutboxTest {
     }
 
     @Test
+    fun enqueueSendsOnlyTheNewEntryAndFlushWaitsPerEntry() = runTest {
+        // Audit A-1 (Doppelte am Gerät): Jeder Anlass schickte alles Unbestätigte erneut.
+        val box = outbox()
+        box.enqueue("night/1-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n1")
+        box.enqueue("night/2-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n2")
+        box.enqueue("recording/3", DataLayer.PATH_MSG_RECORDING, DataLayer.CAPABILITY_PHONE, "r3")
+        assertEquals(listOf("n1", "n2", "r3"), transport.sent.map { Outbox.open(it.third)?.second }, "je Eintrag einmal")
+        // Viele Anlässe kurz hintereinander (Nachrichten der Gegenseite): nichts doppelt.
+        repeat(5) { box.flush() }
+        assertEquals(3, transport.sent.size)
+        later()
+        box.flush()
+        assertEquals(6, transport.sent.size, "nach der Wartezeit jeder unbestätigte einmal")
+        // Ohne Verbindung gilt ein Eintrag nicht als gesendet: beim nächsten Anlass gleich wieder.
+        transport.reachable = false
+        box.enqueue("night/4-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n4")
+        transport.reachable = true
+        box.flush()
+        assertEquals(listOf("n4"), transport.sent.drop(6).map { Outbox.open(it.third)?.second })
+    }
+
+    @Test
+    fun resendRule() {
+        assertTrue(Outbox.resendDue(null, 5L))
+        assertFalse(Outbox.resendDue(1_000L, 1_000L + Outbox.RESEND_AFTER_MS - 1))
+        assertTrue(Outbox.resendDue(1_000L, 1_000L + Outbox.RESEND_AFTER_MS))
+        assertTrue(Outbox.resendDue(1_000L, 999L), "Uhr zurückgestellt: gleich")
+    }
+
+    @Test
+    fun queueIsBoundedByAgeAndCountPerKind() = runTest {
+        // Audit A-8: Ohne Gegenseite wuchs die Warteschlange ohne Grenze.
+        transport.reachable = false
+        val box = outbox()
+        box.enqueue("night/old", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "alt")
+        box.enqueue("alarms", DataLayer.PATH_MSG_ALARMS, DataLayer.CAPABILITY_PHONE, "wecker")
+        clock += Outbox.MAX_AGE_MS + 1
+        box.enqueue("night/new", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "neu")
+        assertEquals(listOf("night/new"), box.pending().map { it.key }, "älter als 14 Tage: weg")
+        repeat(Outbox.MAX_PER_KIND + 5) { box.enqueue("night/$it", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n$it") }
+        box.enqueue("recording/1", DataLayer.PATH_MSG_RECORDING, DataLayer.CAPABILITY_PHONE, "r")
+        val pending = box.pending()
+        assertEquals(Outbox.MAX_PER_KIND, pending.count { it.key.startsWith(QueueMessages.KEY_NIGHT) })
+        assertEquals("night/${Outbox.MAX_PER_KIND + 4}", pending.last { it.key.startsWith(QueueMessages.KEY_NIGHT) }.key, "die neuesten bleiben")
+        assertTrue(pending.none { it.key == "night/new" || it.key == "night/0" })
+        assertEquals(1, pending.count { it.key == "recording/1" }, "andere Art unberührt")
+        assertEquals("night/", Outbox.kindOf("night/1-a"))
+        assertEquals("alarms", Outbox.kindOf("alarms"))
+    }
+
+    @Test
+    fun dropIfMatchesTheContent() = runTest {
+        transport.reachable = false
+        val box = outbox()
+        box.enqueue("night/1-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "weg")
+        box.enqueue("night/2-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "bleibt")
+        box.dropIf(QueueMessages.KEY_NIGHT) { it.body == "weg" }
+        assertEquals(listOf("bleibt"), box.pending().map { it.body })
+    }
+
+    @Test
+    fun historyClearDropsQueuedNightsAndRecordingsByTheirEnd() = runTest {
+        // Audit D-02: nach dem Inhalt (Ende bis zum Löschen), nicht nur nach dem Zeitpunkt des Einreihens.
+        val cut = java.time.Instant.parse("2026-11-10T12:00:00Z")
+        fun night(woke: String) = com.phasewake.app.core.NightRecord(
+            "a", java.time.Instant.parse(woke).minusSeconds(1_800), java.time.Instant.parse(woke), java.time.Instant.parse(woke),
+            com.phasewake.app.core.WakeReason.DEADLINE, 0, emptyList(),
+        )
+        val before = com.phasewake.app.core.Codec.encodeNight(night("2026-11-10T06:00:00Z"))
+        val after = com.phasewake.app.core.Codec.encodeNight(night("2026-11-11T06:00:00Z"))
+        assertTrue(QueueMessages.nightEndsBy(before, cut.toEpochMilli()))
+        assertFalse(QueueMessages.nightEndsBy(after, cut.toEpochMilli()))
+        assertFalse(QueueMessages.nightEndsBy("kaputt", cut.toEpochMilli()))
+        val start = java.time.Instant.parse("2026-11-09T22:00:00Z")
+        val done = NightRecording(start, emptyList(), start.plusSeconds(60), RecordEnd.WAKE)
+        assertTrue(QueueMessages.recordingEndsBy(NightRecording.encode(done), cut.toEpochMilli()))
+        assertFalse(QueueMessages.recordingEndsBy(NightRecording.encode(done.copy(end = null, endReason = null)), cut.toEpochMilli()), "läuft noch")
+        assertFalse(QueueMessages.recordingEndsBy(NightRecording.encode(done.copy(end = cut.plusSeconds(1))), cut.toEpochMilli()))
+        // In der Warteschlange: eingereiht nach dem Löschen, aber eine Nacht von davor (z. B. erneut eingereiht).
+        transport.reachable = false
+        clock = cut.toEpochMilli() + 1_000
+        val box = outbox()
+        box.enqueue("night/1-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, before)
+        box.enqueue("night/2-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, after)
+        box.enqueue("alarms", DataLayer.PATH_MSG_ALARMS, DataLayer.CAPABILITY_PHONE, "wecker")
+        box.dropIf(QueueMessages.KEY_NIGHT) { QueueMessages.droppedByClear(it, cut.toEpochMilli()) }
+        assertEquals(listOf("night/2-a", "alarms"), box.pending().map { it.key })
+        assertFalse(QueueMessages.droppedByClear(box.pending().last(), Long.MAX_VALUE), "andere Einträge nie")
+    }
+
+    @Test
     fun envelopeAndMessageFormats() {
         assertEquals("id" to "a\nb", Outbox.open(Outbox.wrap("id", "a\nb")))
         assertNull(Outbox.open("ohne-kennung".encodeToByteArray()))
         assertNull(Outbox.open(null))
         val snapshot = AlarmSnapshot(listOf(com.phasewake.app.core.AlarmSpec(id = "a", hour = 7, minute = 0), com.phasewake.app.core.AlarmSpec(id = "b", hour = 8, minute = 30)), 42L)
         assertEquals(snapshot, QueueMessages.decodeAlarms(QueueMessages.encodeAlarms(snapshot)))
+        // Mit Zeitpunkten je Wecker und gelöschten Weckern (Audit A-4), auch mit Sonderzeichen in der Kennung.
+        val stamped = snapshot.copy(stamps = mapOf("a" to 40L, "b" to 41L), deleted = mapOf("x=1\ny" to 39L))
+        assertEquals(stamped, QueueMessages.decodeAlarms(QueueMessages.encodeAlarms(stamped)))
+        // Format einer früheren Version (ohne Zeitpunkte je Wecker): «neuere Liste gewinnt».
+        val legacy = "42\n${com.phasewake.app.core.Codec.encodeAlarms(snapshot.alarms)}"
+        assertEquals(snapshot.copy(perAlarm = false), QueueMessages.decodeAlarms(legacy))
+        // Eine frühere Version liest das neue Format: die Wecker, die Zusatzzeilen fallen weg.
+        val body = QueueMessages.encodeAlarms(stamped)
+        assertEquals(snapshot.alarms, com.phasewake.app.core.Codec.decodeAlarms(body.substringAfter('\n')))
         assertNull(QueueMessages.decodeAlarms("kaputt"))
         assertEquals(450 to 7L, QueueMessages.decodeStamped("450|7"))
         assertNull(QueueMessages.decodeStamped("450"))
@@ -168,13 +277,22 @@ class OutboxTest {
         // Ohne Wear-Dienste (Testplattform): Verarbeiten zuerst, Bestätigen danach scheitert still; darum mit Frist.
         val sync = WearSync(RuntimeEnvironment.getApplication(), DataLayer.CAPABILITY_PHONE)
         var got: String? = null
-        withTimeoutOrNull(2_000L) { sync.receive("node", Outbox.wrap("id-1", "inhalt")) { got = it } }
+        val first = "id-1-" + java.util.UUID.randomUUID()
+        withTimeoutOrNull(2_000L) { sync.receive("node", Outbox.wrap(first, "inhalt")) { got = it } }
         assertEquals("inhalt", got)
+        // Derselbe Eintrag noch einmal (Audit A-1): nur bestätigen, nicht noch einmal verarbeiten.
+        var again = 0
+        withTimeoutOrNull(2_000L) { sync.receive("node", Outbox.wrap(first, "inhalt")) { again++ } }
+        assertEquals(0, again)
         var called = false
         withTimeoutOrNull(2_000L) { sync.receive("node", "ohne-kennung".encodeToByteArray()) { called = true } }
         assertFalse(called, "unlesbar: nicht verarbeiten")
-        // Fehler beim Verarbeiten: kein Absturz (und keine Bestätigung).
-        withTimeoutOrNull(2_000L) { sync.receive("node", Outbox.wrap("id-2", "x")) { error("Speicher voll") } }
+        // Fehler beim Verarbeiten: kein Absturz (und keine Bestätigung); später nochmals verarbeitet.
+        val failing = "id-2-" + java.util.UUID.randomUUID()
+        withTimeoutOrNull(2_000L) { sync.receive("node", Outbox.wrap(failing, "x")) { error("Speicher voll") } }
+        var retried = 0
+        withTimeoutOrNull(2_000L) { sync.receive("node", Outbox.wrap(failing, "x")) { retried++ } }
+        assertEquals(1, retried, "gescheitert: nicht als verarbeitet gemerkt")
         withTimeoutOrNull(2_000L) { sync.acked("unbekannt".encodeToByteArray()) }
         withTimeoutOrNull(2_000L) { sync.dropHistory(0L) }
         Unit

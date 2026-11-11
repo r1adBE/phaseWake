@@ -22,7 +22,7 @@ struct ChartSelectionBubble: View {
                     Spacer(minLength: 4)
                     if onOpen != nil {
                         Text(L("night_details")).foregroundStyle(.tint)
-                        Image(systemName: "chevron.right").foregroundStyle(.tint)
+                        Image(systemName: "chevron.forward").foregroundStyle(.tint)
                     }
                 }
                 .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))

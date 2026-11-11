@@ -23,6 +23,7 @@ import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.Text
 import com.phasewake.app.core.Sunrise
 import com.phasewake.app.wear.ui.components.SunriseSky
+import com.phasewake.app.wear.ui.components.rememberSkyInk
 import com.phasewake.app.wear.ui.components.sunriseSky
 import com.phasewake.app.wear.ui.theme.PhaseWakeTheme
 import com.phasewake.app.wear.wake.RingUi
@@ -86,7 +87,8 @@ class SunriseActivity : ComponentActivity() {
 /** Nur Himmel und Uhrzeit, ohne Text: Tippen irgendwo schliesst. */
 @Composable
 internal fun SunriseScreen(progress: Float, now: Instant, onOff: () -> Unit) {
-    val colors = SunriseSky.colors(progress)
+    // Schrift nach der Stelle der Uhrzeit auf dem Himmel (Audit UI-6).
+    val (ink, place) = rememberSkyInk(progress, SunriseSky.ink(progress))
     Box(
         Modifier
             .fillMaxSize()
@@ -96,9 +98,10 @@ internal fun SunriseScreen(progress: Float, now: Instant, onOff: () -> Unit) {
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(now.atZone(ZoneId.systemDefault())),
+            localizedDigits(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)).format(now.atZone(ZoneId.systemDefault())),
             style = MaterialTheme.typography.displayMedium,
-            color = colors.content,
+            color = ink.content,
+            modifier = place,
         )
     }
 }

@@ -156,7 +156,8 @@ internal fun WindowSection(state: EditorState, time: TimePickerState) {
                     onClick = { state.window = value.toFloat() },
                     shape = SegmentedButtonDefaults.itemShape(index, options.size),
                     modifier = Modifier.heightIn(min = 48.dp),
-                ) { ChoiceLabel(if (value == AlarmSpec.EXACT_WINDOW) exactLabel else value.toString()) }
+                    icon = { if (options.size <= CHECK_ICON_MAX_SEGMENTS) SegmentedButtonDefaults.Icon(value == minutes) },
+                ) { ChoiceLabel(if (value == AlarmSpec.EXACT_WINDOW) exactLabel else Format.number(value)) }
             }
         }
         val hint = when {

@@ -479,7 +479,7 @@
     </plurals>
     <string name="diag_unlocked">Диагностиката вече се показва в настройките.</string>
     <string name="diag_show">Покажи диагностиката</string>
-    <string name="diag_hint">Само на това устройство, нищо не се изпраща. Съдържа часове на будилници и събития, без здравни данни.</string>
+    <string name="diag_hint">Технически дневник за последните 7 дни, само на твоите устройства. Съдържа часове и измерени стойности (напр. движение, време на заспиване) – споделяй го само ако искаш.</string>
     <string name="diag_events">Събития</string>
     <string name="diag_empty">Още няма събития.</string>
     <string name="diag_status">Състояние</string>
@@ -593,4 +593,5 @@
     <string name="learn_point_battery">Това изразходва малко батерия – зареди часовника преди сън.</string>
     <string name="learn_point_private">Данните остават на твоите устройства. Можеш да изключиш фазата на учене по всяко време в настройките.</string>
     <string name="learn_switch_hint">Часовникът ти измерва движение и пулс през нощта, за да нагласи алармата. Изкл.: без автоматичен запис, научените стойности остават.</string>
+    <string name="watch_open_app_hint">Отвори Phase Wake на часовника, за да получи командата.</string>
 </resources>

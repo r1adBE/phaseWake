@@ -187,7 +187,7 @@ private fun homeExtras(now: Instant, zone: ZoneId, onNap: () -> Unit, onDiagnost
         onStopNap = { id -> app.appScope.launch { TransientInbox.cancelled(app, id, fromWatch = true) } },
         skipped = { alarm ->
             AlarmSchedule.skippedDate(alarm, now, zone)?.let {
-                java.time.format.DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, "EEEdM"), locale).format(it)
+                localizedDigits(java.time.format.DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, "EEEdM"), locale), locale).format(it)
             }
         },
         onWindowTap = {

@@ -1,6 +1,7 @@
 package com.phasewake.app.ui.theme
 
 import android.app.Activity
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
@@ -133,6 +134,11 @@ private val DarkScheme = darkColorScheme(
     onSecondary = Color(0xFF141A3D),
     secondaryContainer = Color(0xFF2A2760),
     onSecondaryContainer = Color(0xFFFBF7F0),
+    // Tertiär in Lavendel statt dem Material-Rosa (z. B. AM/PM im Zeitwähler, Audit UI-8).
+    tertiary = Lavender,
+    onTertiary = Color(0xFF141A3D),
+    tertiaryContainer = Color(0xFF3B3486),
+    onTertiaryContainer = Color(0xFFFBF7F0),
     background = Color(0xFF0C1027),
     onBackground = Color(0xFFFBF7F0),
     surface = Color(0xFF0C1027),
@@ -160,6 +166,11 @@ private val LightScheme = lightColorScheme(
     onSecondary = Color.White,
     secondaryContainer = Color(0xFFECE8F8),
     onSecondaryContainer = Color(0xFF1A1830),
+    // Tertiär in Lavendel statt dem Material-Rosa (z. B. AM/PM im Zeitwähler, Audit UI-8).
+    tertiary = Color(0xFF3B3486),
+    onTertiary = Color.White,
+    tertiaryContainer = Color(0xFFE4DFFB),
+    onTertiaryContainer = Color(0xFF1A1830),
     background = Color(0xFFFBF7F0),
     onBackground = Color(0xFF1A1830),
     surface = Color(0xFFFBF7F0),
@@ -175,6 +186,16 @@ private val LightScheme = lightColorScheme(
     outlineVariant = Color(0xFFE2DEEF),
     error = Color(0xFFBA1A1A),
     onError = Color.White,
+)
+
+/**
+ * Rand der OutlinedButtons in «outline» (≥ 3:1 zu Karte und Hintergrund, WCAG 1.4.11). Material 3 nimmt sonst das
+ * blasse «outlineVariant», das auch Trennlinien und Raster zeichnet (Audit UI-8).
+ */
+@Composable
+fun outlinedBorder(enabled: Boolean = true): BorderStroke = BorderStroke(
+    1.dp,
+    if (enabled) MaterialTheme.colorScheme.outline else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f),
 )
 
 private val BaseTypography = Typography()

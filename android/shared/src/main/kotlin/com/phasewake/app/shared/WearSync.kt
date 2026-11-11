@@ -33,6 +33,7 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
     private val messageClient by lazy { Wearable.getMessageClient(app) }
     private val capabilityClient by lazy { Wearable.getCapabilityClient(app) }
     private val outbox by lazy { Outbox.forContext(app) }
+    private val received by lazy { ReceivedIds.forContext(app) }
 
     /** Wecker an die Gegenseite (Warteschlange). */
     suspend fun publishAlarms(snapshot: AlarmSnapshot) = guarded("Wecker senden") {
@@ -47,25 +48,32 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
 
     /**
      * Empfangene Nachricht der Warteschlange von [node]: [handle] verarbeitet den Text; gelingt das (kein Fehler),
-     * bestätigt es den Empfang ([DataLayer.PATH_ACK]). Danach eigene wartende Einträge senden: Die Gegenseite ist ja da.
-     * Ohne Kennung (unlesbar) nichts.
+     * wird die Kennung gemerkt ([ReceivedIds]) und der Empfang bestätigt ([DataLayer.PATH_ACK]). Derselbe Eintrag noch
+     * einmal (Audit A-1): nur erneut bestätigen, nicht noch einmal verarbeiten. Ohne Kennung (unlesbar) nichts.
+     * Eigene wartende Einträge sendet der Aufrufer danach ausserhalb des Empfangs ([flush] im App-Bereich, Audit A-8).
+     * @return ob der Eintrag gültig war (verarbeitet oder schon verarbeitet); dann lohnt sich ein [flush].
      */
-    suspend fun receive(node: String, data: ByteArray?, handle: suspend (String) -> Unit) {
+    suspend fun receive(node: String, data: ByteArray?, handle: suspend (String) -> Unit): Boolean {
         // Über der Grenze (Audit S-2): nicht entschlüsseln und nicht bestätigen.
         if (!PeerLimit.fits(data)) {
             Log.w(TAG, "Empfangener Eintrag zu gross (${data?.size} Bytes), verworfen")
-            return
+            return false
         }
-        val (id, body) = Outbox.open(data) ?: return
-        try {
-            handle(body)
-        } catch (e: Exception) {
-            if (e is kotlinx.coroutines.CancellationException) throw e
-            Log.w(TAG, "Empfangener Eintrag nicht verarbeitet", e)
-            return
+        val (id, body) = Outbox.open(data) ?: return false
+        if (received.contains(id)) {
+            Log.i(TAG, "Eintrag schon verarbeitet, nur bestätigen")
+        } else {
+            try {
+                handle(body)
+            } catch (e: Exception) {
+                if (e is kotlinx.coroutines.CancellationException) throw e
+                Log.w(TAG, "Empfangener Eintrag nicht verarbeitet", e)
+                return false
+            }
+            received.add(id)
         }
         guarded("Empfang bestätigen") { messageClient.sendMessage(node, DataLayer.PATH_ACK, id.encodeToByteArray()).await() }
-        flush()
+        return true
     }
 
     /**
@@ -92,10 +100,14 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
         outbox.acked(id)
     }
 
-    /** Uhr: Einträge der Warteschlange vor «Verlauf löschen» ([before], ms) verwerfen (Nächte, Aufzeichnungen). */
+    /**
+     * Uhr: Einträge der Warteschlange von «Verlauf löschen» ([before], ms) verwerfen: Nächte und Aufzeichnungen, die bis
+     * dahin enden (Audit D-02, nach ihrem Inhalt, nicht nach dem Zeitpunkt des Einreihens), dazu wie bisher alles, was
+     * vorher eingereiht wurde.
+     */
     suspend fun dropHistory(before: Long) {
-        outbox.drop(QueueMessages.KEY_NIGHT, before)
-        outbox.drop(QueueMessages.KEY_RECORDING, before)
+        outbox.dropIf(QueueMessages.KEY_NIGHT) { QueueMessages.droppedByClear(it, before) }
+        outbox.dropIf(QueueMessages.KEY_RECORDING) { QueueMessages.droppedByClear(it, before) }
     }
 
     /**

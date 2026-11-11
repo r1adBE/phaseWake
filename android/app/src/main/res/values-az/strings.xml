@@ -465,7 +465,7 @@
     </plurals>
     <string name="diag_unlocked">Diaqnostika indi ayarlarda göstərilir.</string>
     <string name="diag_show">Diaqnostikanı göstər</string>
-    <string name="diag_hint">Yalnız bu cihazda, heç nə göndərilmir. Siqnalların və hadisələrin vaxtlarını saxlayır, sağlamlıq məlumatı yoxdur.</string>
+    <string name="diag_hint">Son 7 günün texniki jurnalı, yalnız sənin cihazlarında. Vaxtları və ölçü dəyərlərini ehtiva edir (məs. hərəkət, yuxuya getmə vaxtı) – yalnız istəsən paylaş.</string>
     <string name="diag_events">Hadisələr</string>
     <string name="diag_empty">Hələ hadisə yoxdur.</string>
     <string name="diag_status">Status</string>
@@ -579,4 +579,5 @@
     <string name="learn_point_battery">Bu, bir az batareya sərf edir – yatmazdan əvvəl saatı doldur.</string>
     <string name="learn_point_private">Məlumatlar cihazlarında qalır. Öyrənmə mərhələsini istənilən vaxt ayarlarda söndürə bilərsən.</string>
     <string name="learn_switch_hint">Saatın zəngli saatı uyğunlaşdırmaq üçün gecələr hərəkəti və nəbzi ölçür. Sönülü: avtomatik qeyd yoxdur, öyrənilmiş dəyərlər qalır.</string>
+    <string name="watch_open_app_hint">Əmri alması üçün Phase Wake-i saatında aç.</string>
 </resources>

@@ -477,7 +477,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnosen findes nu i indstillingerne.</string>
     <string name="diag_show">Vis diagnose</string>
-    <string name="diag_hint">Kun på denne enhed, intet sendes. Indeholder tidspunkter for alarmer og hændelser, ingen sundhedsdata.</string>
+    <string name="diag_hint">Teknisk log for de seneste 7 dage, kun på dine enheder. Den indeholder tidspunkter og måleværdier (f.eks. bevægelse, indsovningstid) – del den kun, hvis du vil.</string>
     <string name="diag_events">Hændelser</string>
     <string name="diag_empty">Ingen hændelser endnu.</string>
     <string name="diag_status">Status</string>
@@ -591,4 +591,5 @@
     <string name="learn_point_battery">Det bruger lidt batteri – oplad uret, før du sover.</string>
     <string name="learn_point_private">Dataene bliver på dine enheder. Du kan altid slå læringsfasen fra i indstillingerne.</string>
     <string name="learn_switch_hint">Dit ur måler bevægelse og puls om natten for at tilpasse alarmen. Fra: ingen automatisk registrering, lærte værdier bevares.</string>
+    <string name="watch_open_app_hint">Åbn Phase Wake på dit ur, så det modtager kommandoen.</string>
 </resources>

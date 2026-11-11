@@ -114,6 +114,15 @@ internal object OnsetRules {
     fun bedAt(since: Instant, automatic: Boolean, latest: Instant, sleepMinutes: Int): Instant =
         if (automatic) maxOf(since, latest.minus(Duration.ofMinutes(sleepMinutes.toLong()))) else since
 
+    /**
+     * Einschlafzeit aus der erkannten ruhigen Strecke ab [found]: nie vor dem Beginn der Einschlafdauer [bedAt] (Ergebnis
+     * von `bedAt(…)`, automatisch die Bettzeit). Die automatische Messung beginnt 60 Min vor der Bettzeit; wer dann schon
+     * still liegt (Sofa, Lesen), ist nicht vor der Bettzeit eingeschlafen – sonst rückte die Zielzeit vor und die
+     * Untergrenze kurzer Nächte fiele zu früh weg. Nach «Gute Nacht» ist [bedAt] der Beginn der Messung; dann gilt [found] unverändert. Identisch zu
+     * `RecorderOnset.onsetAt` (Swift).
+     */
+    fun onsetAt(found: Instant, bedAt: Instant): Instant = maxOf(found, bedAt)
+
     /** «give up (max duration)» bzw. «give up», wenn [at] die frühere der beiden Grenzen erreicht hat; sonst `null`. */
     fun giveUpReason(at: Instant, latestGiveUp: Instant, maxEnd: Instant): String? = when {
         at.isBefore(minOf(latestGiveUp, maxEnd)) -> null

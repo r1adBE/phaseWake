@@ -7,6 +7,7 @@ import android.content.Intent
 import android.util.Log
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Transient
+import com.phasewake.app.shared.AlarmSnapshot
 import com.phasewake.app.wear.sync.PhoneCatchUp
 import com.phasewake.app.wear.wearApp
 import java.time.Instant
@@ -29,29 +30,33 @@ class SystemEventReceiver : BroadcastReceiver() {
         val app = context.wearApp
         app.appScope.launch {
             try {
-                // Vor dem Entsperren geweckt: Nacht als erledigt merken und einen Einmal-Wecker ausschalten.
+                // Vor dem Entsperren geweckt: Nacht als erledigt merken und einen Einmal-Wecker ausschalten (nur lokal).
                 // Ein Fehler hier darf das Neuplanen nicht verhindern.
                 // Probewecker und Powernap zählen nie als Nacht; ihr Plan ist mit dem Wecken vorbei (sonst klingelte
                 // er nach dem Entsperren noch einmal).
-                val rang = DirectBoot.takeRang(context)
-                rang?.takeIf { Transient.kindOf(it.first) != null }?.let { (alarmId, _) -> app.transient.clear(alarmId) }
-                rang?.takeIf { Transient.kindOf(it.first) == null }?.let { (alarmId, target) ->
-                    try {
+                var changed: AlarmSnapshot? = null
+                try {
+                    val rang = DirectBoot.takeRang(context)
+                    rang?.takeIf { Transient.kindOf(it.first) != null }?.let { (alarmId, _) -> app.transient.clear(alarmId) }
+                    rang?.takeIf { Transient.kindOf(it.first) == null }?.let { (alarmId, target) ->
                         app.scheduler.markDone(alarmId, target)
                         app.scheduler.saveDone()
                         val spec = app.alarms.current().alarms.firstOrNull { it.id == alarmId }
-                        if (spec?.isOneShot == true && spec.enabled) app.sync.publishAlarms(app.alarms.setEnabled(spec.id, false))
-                    } catch (e: Exception) {
-                        if (e is CancellationException) throw e
-                        Log.e(TAG, "Nachtrag nach dem Entsperren fehlgeschlagen", e)
+                        if (spec?.isOneShot == true && spec.enabled) changed = app.alarms.setEnabled(spec.id, false)
                     }
+                } catch (e: Exception) {
+                    if (e is CancellationException) throw e
+                    Log.e(TAG, "Nachtrag nach dem Entsperren fehlgeschlagen", e)
                 }
-                // Stand des Handys anfragen und ein verpasstes «Verlauf löschen» anwenden, vor dem Neuplanen.
-                app.diag.log(DiagKind.BOOT, "watch ${intent.action?.substringAfterLast('.')}")
-                PhoneCatchUp.run(app)
+                // Zuerst die Alarme (Audit A-3): Nichts, was die Wear-Dienste braucht, steht davor.
                 app.scheduler.reschedule()
                 // Lief «Gute Nacht» vor dem Neustart, gleich wieder aufnehmen (über den Prüf-Alarm, der den Vordergrund erlaubt).
                 if (app.goodNight.load() != null) AlarmScheduler.armGoodNightCheck(context, Instant.now().plusSeconds(5))
+                // Danach die Nebenarbeiten, jede abgesichert und mit Frist: Protokoll, ausgeschalteten Einmal-Wecker ans
+                // Handy, Stand des Handys anfragen und ein verpasstes «Verlauf löschen» anwenden (PhoneCatchUp, eigene Frist).
+                sideWork(TAG, "Protokoll") { app.diag.log(DiagKind.BOOT, "watch ${intent.action?.substringAfterLast('.')}") }
+                changed?.let { snapshot -> sideWork(TAG, "Wecker ans Handy") { app.sync.publishAlarms(snapshot) } }
+                sideWork(TAG, "Abgleich mit dem Handy", CATCH_UP_TIMEOUT_MS) { PhoneCatchUp.run(app) }
             } finally {
                 pending.finish()
             }
@@ -60,6 +65,9 @@ class SystemEventReceiver : BroadcastReceiver() {
 
     private companion object {
         const val TAG = "SystemEventReceiver"
+
+        /** Höchstdauer des Abgleichs mit dem Handy; PhoneCatchUp begrenzt sich selbst auf 5 s. */
+        const val CATCH_UP_TIMEOUT_MS = 6_000L
 
         /** Systemereignisse wie im Manifest; nur Text, auf jeder Version unbedenklich. */
         @android.annotation.SuppressLint("InlinedApi")

@@ -264,7 +264,7 @@ class BackupAlarm(
     suspend fun doneUntil(): Map<String, Instant> = doneUntilFlow.first()
 
     /** Pro Wecker: ausgesetzt bis; ein späterer Zeitpunkt gewinnt, abgelaufene fallen weg. */
-    private suspend fun suppress(until: Map<String, Instant>) {
+    internal suspend fun suppress(until: Map<String, Instant>) {
         if (until.isEmpty()) return
         val keepAfter = now().minus(Duration.ofDays(1))
         store.edit { prefs ->

@@ -54,7 +54,7 @@ internal fun RecordingCard(recording: NightRecording, modifier: Modifier = Modif
         Column(Modifier.padding(16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(recording.start.atZone(zone)),
+                    Format.digits(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)).format(recording.start.atZone(zone)),
                     style = MaterialTheme.typography.titleSmall,
                     modifier = Modifier.weight(1f),
                 )

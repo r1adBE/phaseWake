@@ -53,6 +53,17 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
   ältere Testversion mit der Store-Kennung einmal deinstallieren (Daten vorher als `.pwbak` sichern). Im Code nie die
   Kennung ausschreiben, sondern `${applicationId}` bzw. `context.packageName`; `release_check.py` prüft die Kennung
   des Release-Builds. Namespace bleibt `com.phasewake.app`.
+- **Prüfsummen der Abhängigkeiten** (Audit 5314d25 D-06): `android/gradle/verification-metadata.xml` hält die sha256
+  jedes Artefakts (Bibliotheken, Plugins, Lint, AAPT2, Robolectric-Abbilder, Werkzeuge der Bildschirmfotos); Gradle
+  bricht bei einem unbekannten oder veränderten Artefakt ab. Nach jedem Update in `libs.versions.toml` (auch aus einem
+  Dependabot-PR) die Datei im Ordner `android` neu erzeugen, mit allen Aufgaben der Workflows:
+  `./gradlew --no-configuration-cache --write-verification-metadata sha256 :core:test :core:jacocoTestReport
+  :shared:testDebugUnitTest :shared:createDebugUnitTestCoverageReport :app:testDebugUnitTest
+  :app:createDebugUnitTestCoverageReport :wear:testDebugUnitTest :wear:createDebugUnitTestCoverageReport
+  :app:assembleDebug :wear:assembleDebug :app:assembleRelease :wear:assembleRelease :app:lintDebug :wear:lintDebug
+  :app:bundleRelease :wear:bundleRelease :app:updateDebugScreenshotTest :wear:updateDebugScreenshotTest`, die neuen
+  Einträge prüfen (nur die erwarteten Gruppen und Versionen) und mit dem Update einchecken. Quell- und Javadoc-Jars
+  (Android Studio) sind ausgenommen.
 - Verhalten hängt nie von der eigenen Version ab. Formate tragen ihre eigene Formatversion (z. B. `phasewake-alarms 1`)
   und lesen ältere Stände tolerant.
 

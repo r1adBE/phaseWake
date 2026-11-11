@@ -203,4 +203,16 @@ final class AppleLearningTests: XCTestCase {
         XCTAssertEqual(config.restingHeartRate, 50)
         XCTAssertEqual(LearningSnapshot.empty.applied(to: .standard), .standard)
     }
+
+    func testRecordingWithImplausibleTimes() {
+        // Vollaudit K-7: Zeiten ausserhalb 1970–2100 gelten als unlesbar (Beginn → nil, «onset»/«end» fallen weg).
+        let max = "9223372036854775807"
+        XCTAssertNil(NightRecording.decode("phasewake-recording 1\nstart=\(max)\n0.02;\n"))
+        XCTAssertNil(NightRecording.decode("phasewake-recording 1\nstart=-1\n0.02;\n"))
+        let read = NightRecording.decode("phasewake-recording 1\nstart=1793570400000\n0.02;\nonset=\(max),1793570460000\nend=\(max),phone\n")
+        XCTAssertNotNil(read)
+        XCTAssertNil(read?.bedAt)
+        XCTAssertNil(read?.end)
+        if let read { XCTAssertTrue(NightRecording.encode(read).hasPrefix("phasewake-recording 1\nstart=1793570400000\n")) }
+    }
 }

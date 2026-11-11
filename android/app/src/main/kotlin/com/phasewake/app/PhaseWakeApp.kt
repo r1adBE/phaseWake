@@ -282,10 +282,11 @@ open class PhaseWakeApp : Application() {
     fun afterAlarmsChanged(change: suspend () -> com.phasewake.app.shared.AlarmSnapshot) {
         appScope.launch {
             val snapshot = change()
-            diag.log(DiagKind.SYNC, "alarms sent ${snapshot.alarms.size}")
-            sync.publishAlarms(snapshot)
+            // Zuerst der Zweitwecker am Handy: Das Senden an die Uhr kann warten, wenn sie nicht erreichbar ist.
             backup.reschedule()
             com.phasewake.app.widget.NextAlarmWidget.update(this@PhaseWakeApp)
+            diag.log(DiagKind.SYNC, "alarms sent ${snapshot.alarms.size}")
+            sync.publishAlarms(snapshot)
         }
     }
 }

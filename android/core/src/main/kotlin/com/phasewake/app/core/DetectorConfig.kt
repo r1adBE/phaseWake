@@ -29,8 +29,17 @@ data class DetectorConfig(
      * ([NoiseFloor.floor]). `null` = keines gelernt.
      */
     val personalFloor: Double? = null,
-    /** Eigener Ruhepuls aus der Lernphase ([Learning]); Basispuls, wenn die Aufwärmphase keinen Puls hat. `null` = keiner. */
+    /**
+     * Eigener Ruhepuls aus der Lernphase ([Learning]). Ohne Basispuls des Fensters gilt [RESTING_FALLBACK_FACTOR] × Ruhepuls
+     * als Basispuls; sonst begrenzt er den Basispuls auf [restingHeartRate] bis [RESTING_CLAMP_FACTOR] × [restingHeartRate]
+     * ([WakeDetector]). `null` = keiner.
+     */
     val restingHeartRate: Double? = null,
+    /**
+     * Grundrauschen der Einschlaf-Messung dieser Nacht (m/s²); gilt wie [personalFloor] und hat Vorrang davor
+     * ([NoiseFloor.windowFloor]). `null` = keines.
+     */
+    val onsetFloor: Double? = null,
 ) {
     init {
         require(lightThreshold > 0.0) { "lightThreshold muss positiv sein" }
@@ -41,10 +50,22 @@ data class DetectorConfig(
         require(lightHits in 1..lightWindow) { "lightHits muss zwischen 1 und lightWindow liegen" }
         require(personalFloor == null || personalFloor >= 0.0) { "personalFloor darf nicht negativ sein" }
         require(restingHeartRate == null || restingHeartRate > 0.0) { "restingHeartRate muss positiv sein" }
+        require(onsetFloor == null || onsetFloor >= 0.0) { "onsetFloor darf nicht negativ sein" }
     }
 
     /** Grösstes Fenster beider Regeln; so viele Epochen merkt sich der [WakeDetector]. */
     internal val maxWindow: Int get() = maxOf(awakeWindow, lightWindow)
+
+    /**
+     * Kopie mit den gelernten Werten der Lernphase; ungültige Werte (siehe [Learning.validFloor] und
+     * [Learning.validRestingHeartRate], z. B. aus einer kaputten Nachricht) gelten als keiner, statt beim Start des
+     * Fensters an [require] zu scheitern. Identisch zu `DetectorConfig.withLearned` (Swift).
+     */
+    fun withLearned(floor: Double?, restingHeartRate: Double?): DetectorConfig =
+        copy(personalFloor = Learning.validFloor(floor), restingHeartRate = Learning.validRestingHeartRate(restingHeartRate))
+
+    /** Kopie mit dem Grundrauschen der Einschlaf-Messung dieser Nacht ([onsetFloor]); ungültig gilt als keines. */
+    fun withOnsetFloor(floor: Double?): DetectorConfig = copy(onsetFloor = Learning.validFloor(floor))
 
     companion object {
         /** Länge einer Epoche in Sekunden. */
@@ -61,5 +82,20 @@ data class DetectorConfig(
 
         /** Aufwärm-Epochen zu Fensterbeginn (2 × 30 s): Bewegung beim Einschalten der Messung zählt nicht. */
         const val DEFAULT_WARMUP_EPOCHS: Int = 2
+
+        /** Der Basispuls ist der Median der Pulse aus so vielen ersten Epochen des Fensters (mindestens der Aufwärmphase). */
+        const val BASELINE_EPOCHS: Int = 6
+
+        /** … sobald es mindestens so viele Pulse darunter gibt; vorher gilt der Ersatz aus dem Ruhepuls oder keiner. */
+        const val MIN_BASELINE_HEART_RATES: Int = 2
+
+        /**
+         * Ersatz-Basispuls ohne Puls zu Fensterbeginn: gelernter Ruhepuls (10. Perzentil der Nacht) mal diesem Faktor. Der
+         * Ruhepuls selbst liegt unter dem morgendlichen Puls; als Basispuls wäre der Anstieg fast immer erfüllt.
+         */
+        const val RESTING_FALLBACK_FACTOR: Double = 1.10
+
+        /** Mit gelerntem Ruhepuls liegt der Basispuls des Fensters zwischen Ruhepuls und Ruhepuls mal diesem Faktor. */
+        const val RESTING_CLAMP_FACTOR: Double = 1.3
     }
 }

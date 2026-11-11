@@ -39,6 +39,7 @@ import com.phasewake.app.ui.home.LearnedLines
 import com.phasewake.app.ui.Format
 import java.time.LocalDate
 import java.util.Locale
+import com.phasewake.app.ui.theme.outlinedBorder
 
 /** Neues der Einstellungen (Runde 3); Vorgaben = nichts davon (Bildschirmfotos). */
 class SettingsExtras(
@@ -133,7 +134,7 @@ internal fun countryName(code: String, locale: Locale): String =
 internal fun TestGroup(onTest: () -> Unit) {
     Group(stringResource(R.string.test_title)) {
         Text(stringResource(R.string.test_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-        OutlinedButton(onClick = onTest) { Text(stringResource(R.string.test_button)) }
+        OutlinedButton(onClick = onTest, border = outlinedBorder()) { Text(stringResource(R.string.test_button)) }
     }
 }
 
@@ -174,7 +175,8 @@ internal fun HolidaysGroup(ui: HolidaysUi) {
 @Composable
 private fun ChoiceRow(label: String, value: String, onClick: () -> Unit) {
     Row(
-        Modifier.fillMaxWidth().clickable(role = Role.Button, onClick = onClick).padding(vertical = 8.dp),
+        // Mindestens 48 dp hoch (Tippziel, Audit UI-8).
+        Modifier.fillMaxWidth().heightIn(min = 48.dp).clickable(role = Role.Button, onClick = onClick).padding(vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(label, style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))

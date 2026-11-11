@@ -480,7 +480,7 @@
     </plurals>
     <string name="diag_unlocked">డయాగ్నస్టిక్స్ ఇప్పుడు సెట్టింగ్‌లలో కనిపిస్తాయి.</string>
     <string name="diag_show">డయాగ్నస్టిక్స్ చూపండి</string>
-    <string name="diag_hint">ఈ పరికరంలో మాత్రమే, ఏమీ పంపబడదు. అలారాలు, ఈవెంట్‌ల సమయాలు ఉంటాయి, హెల్త్ డేటా ఉండదు.</string>
+    <string name="diag_hint">గత 7 రోజుల సాంకేతిక లాగ్, మీ పరికరాల్లో మాత్రమే. ఇందులో సమయాలు, కొలిచిన విలువలు ఉన్నాయి (ఉదా. కదలిక, నిద్రపోయిన సమయం) – మీకు కావాలంటేనే షేర్ చేయండి.</string>
     <string name="diag_events">ఈవెంట్‌లు</string>
     <string name="diag_empty">ఇంకా ఈవెంట్‌లు లేవు.</string>
     <string name="diag_status">స్థితి</string>
@@ -594,4 +594,5 @@
     <string name="learn_point_battery">దీనికి కొంత బ్యాటరీ ఖర్చవుతుంది – నిద్రపోయే ముందు వాచ్‌ను ఛార్జ్ చేయండి.</string>
     <string name="learn_point_private">డేటా మీ పరికరాల్లోనే ఉంటుంది. నేర్చుకునే దశను సెట్టింగ్‌లలో ఎప్పుడైనా ఆఫ్ చేయవచ్చు.</string>
     <string name="learn_switch_hint">అలారాన్ని మార్చడానికి మీ వాచ్ రాత్రి కదలిక మరియు నాడిని కొలుస్తుంది. ఆఫ్: ఆటోమేటిక్ రికార్డింగ్ లేదు, నేర్చుకున్న విలువలు ఉంటాయి.</string>
+    <string name="watch_open_app_hint">ఆదేశం అందేలా వాచ్‌లో Phase Wake తెరవండి.</string>
 </resources>

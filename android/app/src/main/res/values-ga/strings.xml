@@ -522,7 +522,7 @@
     </plurals>
     <string name="diag_unlocked">Taispeántar diagnóisic sna socruithe anois.</string>
     <string name="diag_show">Taispeáin diagnóisic</string>
-    <string name="diag_hint">Ar an ngléas seo amháin, ní sheoltar aon rud. Tá amanna aláram agus imeachtaí ann, gan sonraí sláinte.</string>
+    <string name="diag_hint">Loga teicniúil na 7 lá deiridh, ar do ghléasanna amháin. Tá amanna agus luachanna tomhaiste ann (m.sh. gluaiseacht, am titim i do chodladh) – ná roinn é ach más mian leat.</string>
     <string name="diag_events">Imeachtaí</string>
     <string name="diag_empty">Níl aon imeachtaí fós.</string>
     <string name="diag_status">Stádas</string>
@@ -636,4 +636,5 @@
     <string name="learn_point_battery">Úsáideann sé seo beagán ceallra – luchtaigh an t-uaireadóir sula dtéann tú a chodladh.</string>
     <string name="learn_point_private">Fanann na sonraí ar do ghléasanna. Is féidir leat an chéim foghlama a mhúchadh sna socruithe am ar bith.</string>
     <string name="learn_switch_hint">Tomhaiseann d’uaireadóir gluaiseacht agus cuisle san oíche chun an t-aláram a oiriúnú. As: gan taifeadadh uathoibríoch, fanann na luachanna foghlamtha.</string>
+    <string name="watch_open_app_hint">Oscail Phase Wake ar d’uaireadóir ionas go bhfaighidh sé an t-ordú.</string>
 </resources>

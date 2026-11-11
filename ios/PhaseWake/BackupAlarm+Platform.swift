@@ -61,10 +61,11 @@ extension BackupAlarm {
                 _ = try await AlarmManager.shared.requestAuthorization()
             }
             let stop = AlarmButton(text: LocalizedStringResource(stringLiteral: L("ring_stop")), textColor: .white, systemImageName: "stop.fill")
-            // Schlummern nur, solange Runden übrig sind (beim Mitklingeln die der Uhr).
+            // Schlummern nur, solange Runden übrig sind (beim Mitklingeln die der Uhr). Restanzahl wie auf der Uhr «noch N»
+            // statt «N übrig» (Audit UI-10).
+            let snoozeText = L("ring_snooze_button", Int64(Snooze.minutes)) + " · " + LP("ring_snoozes_left", snoozesLeft, Int64(snoozesLeft))
             let snooze = snoozesLeft > 0
-                ? AlarmButton(text: LocalizedStringResource(stringLiteral: LP("ring_snooze", snoozesLeft, Int64(Snooze.minutes), Int64(snoozesLeft))),
-                              textColor: .white, systemImageName: "zzz")
+                ? AlarmButton(text: LocalizedStringResource(stringLiteral: snoozeText), textColor: .white, systemImageName: "zzz")
                 : nil
             let behavior: AlarmPresentation.Alert.SecondaryButtonBehavior? = snooze == nil ? nil : .custom
             let alert = AlarmPresentation.Alert(title: LocalizedStringResource(stringLiteral: L("ring_greeting")), stopButton: stop,

@@ -7,9 +7,9 @@
     <string name="ring_stop">עצירה</string>
     <string name="ring_open">פתיחה</string>
     <plurals name="ring_snooze">
-        <item quantity="one">נודניק %1$d דק׳ · נותר: %2$d</item>
-        <item quantity="two">נודניק %1$d דק׳ · נותרו: %2$d</item>
-        <item quantity="other">נודניק %1$d דק׳ · נותרו: %2$d</item>
+        <item quantity="one">נודניק %1$d דק׳ · נותר %2$d</item>
+        <item quantity="two">נודניק %1$d דק׳ · נותרו %2$d</item>
+        <item quantity="other">נודניק %1$d דק׳ · נותרו %2$d</item>
     </plurals>
     <string name="ring_snoozed">נודניק ל-%1$d דק׳</string>
 
@@ -491,7 +491,7 @@
     </plurals>
     <string name="diag_unlocked">האבחון מופיע עכשיו בהגדרות.</string>
     <string name="diag_show">הצגת אבחון</string>
-    <string name="diag_hint">רק במכשיר הזה, דבר לא נשלח. מכיל זמני השכמות ואירועים, בלי נתוני בריאות.</string>
+    <string name="diag_hint">יומן טכני של 7 הימים האחרונים, רק במכשירים שלך. הוא מכיל זמנים וערכי מדידה (למשל תנועה, שעת הירדמות) – שתף אותו רק אם תרצה.</string>
     <string name="diag_events">אירועים</string>
     <string name="diag_empty">עדיין אין אירועים.</string>
     <string name="diag_status">מצב</string>
@@ -605,4 +605,5 @@
     <string name="learn_point_battery">זה צורך מעט סוללה – כדאי לטעון את השעון לפני השינה.</string>
     <string name="learn_point_private">הנתונים נשארים במכשירים שלך. אפשר לכבות את שלב הלמידה בהגדרות בכל עת.</string>
     <string name="learn_switch_hint">השעון שלך מודד תנועה ודופק בלילה כדי להתאים את ההשכמה. כבוי: אין תיעוד אוטומטי, הערכים שנלמדו נשמרים.</string>
+    <string name="watch_open_app_hint">פתח את Phase Wake בשעון כדי שיקבל את הפקודה.</string>
 </resources>

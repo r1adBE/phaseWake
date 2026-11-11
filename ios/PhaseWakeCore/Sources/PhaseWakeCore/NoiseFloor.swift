@@ -17,6 +17,10 @@ public enum NoiseFloor {
     /// Obergrenze des Grundrauschens (m/s²): Beginnt eine Messung unruhig, darf mässige Bewegung nicht als ruhig gelten.
     /// Rund das Doppelte des stillen Mittels der Galaxy Watch (07.11.2026); so bleibt Leicht ≤ 0.1 und Wach ≤ 0.2.
     public static let maxFloor = 0.04
+    /// Im Weckfenster höchstens dieses Vielfache des bekannten Grundrauschens (Einschlaf-Messung dieser Nacht bzw.
+    /// gelernt, ``windowFloor(_:config:)``): Beginnt das Fenster unruhig, hebt die Unruhe die Schwellen nicht bis
+    /// ``maxFloor`` an.
+    public static let priorFactor = 1.5
 
     /// Grundrauschen: 20. Perzentil der vorhandenen Bewegungen (Rangmethode, aufsteigend sortiert, Position ⌈0.2 · n⌉,
     /// gezählt ab 1), höchstens ``maxFloor``. Leere Bewegungen zählen nicht.
@@ -29,6 +33,17 @@ public enum NoiseFloor {
         // ⌈0.2 · n⌉ ganzzahlig gerechnet, damit Kotlin und Swift exakt dieselbe Position wählen.
         let rank = (values.count + 4) / 5
         return min(values[rank - 1], maxFloor)
+    }
+
+    /// Grundrauschen im Weckfenster (``WakeDetector``): wie ``floor(_:personal:)``, mit dem bekannten Grundrauschen als
+    /// Vorwissen – dem der Einschlaf-Messung dieser Nacht (``DetectorConfig/onsetFloor``), sonst dem gelernten
+    /// (``DetectorConfig/personalFloor``). Gibt es eines, liegt das Ergebnis höchstens bei ``priorFactor`` × diesem (und
+    /// nie über ``maxFloor``); ohne bleibt es bei ``floor(_:personal:)``.
+    public static func windowFloor(_ motions: [Double?], config: DetectorConfig) -> Double? {
+        let prior = config.onsetFloor ?? config.personalFloor
+        guard let floor = Self.floor(motions, personal: prior) else { return nil }
+        guard let prior else { return floor }
+        return min(floor, priorFactor * prior)
     }
 
     /// Wirksame Leicht-Schwelle: `threshold` (Startwert oder kalibriert), mindestens ``lightFactor`` × `floor`.
@@ -49,10 +64,10 @@ public enum NoiseFloor {
     }
 
     /// Kennzahlen fürs Diagnose-Protokoll am Ende einer Messung: «floor=… light=… wake=…» (4 Nachkommastellen,
-    /// «-» ohne Grundrauschen), aus allen Bewegungen `motions` der Messung (mit dem eigenen aus `config`, solange sie
-    /// zu wenige hat).
+    /// «-» ohne Grundrauschen), aus allen Bewegungen `motions` der Messung, wie im Weckfenster gerechnet
+    /// (``windowFloor(_:config:)``).
     public static func summary(config: DetectorConfig, motions: [Double?]) -> String {
-        let noise = Self.floor(motions, personal: config.personalFloor)
+        let noise = windowFloor(motions, config: config)
         return "floor=\(format(noise)) light=\(format(light(config: config, floor: noise))) "
             + "wake=\(format(wake(config: config, floor: noise)))"
     }

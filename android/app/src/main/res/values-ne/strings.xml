@@ -480,7 +480,7 @@
     </plurals>
     <string name="diag_unlocked">अब निदान सेटिङमा देखिन्छ।</string>
     <string name="diag_show">निदान देखाऊ</string>
-    <string name="diag_hint">यो डिभाइसमा मात्र, केही पठाइँदैन। अलार्म र घटनाका समय हुन्छन्, स्वास्थ्य डेटा हुँदैन।</string>
+    <string name="diag_hint">पछिल्ला ७ दिनको प्राविधिक लग, तिम्रा उपकरणमा मात्र। यसमा समय र मापन गरिएका मानहरू छन् (जस्तै चाल, निदाएको समय) – चाहेमा मात्र साझा गर।</string>
     <string name="diag_events">घटनाहरू</string>
     <string name="diag_empty">अहिलेसम्म कुनै घटना छैन।</string>
     <string name="diag_status">स्थिति</string>
@@ -594,4 +594,5 @@
     <string name="learn_point_battery">यसले केही ब्याट्री खपत गर्छ – सुत्नुअघि घडी चार्ज गर।</string>
     <string name="learn_point_private">डेटा तिम्रो उपकरणमै रहन्छ। सिक्ने चरण सेटिङमा जुनसुकै बेला बन्द गर्न सक्छौ।</string>
     <string name="learn_switch_hint">अलार्म मिलाउन तिम्रो घडीले रातमा चाल र नाडी नाप्छ। बन्द: स्वचालित रेकर्डिङ छैन, सिकेका मानहरू रहन्छन्।</string>
+    <string name="watch_open_app_hint">आदेश पाउन घडीमा Phase Wake खोल।</string>
 </resources>

@@ -21,10 +21,19 @@ public struct DetectorConfig: Equatable, Sendable {
     public static let defaultHeartRateRise = 0.05
     /// Aufwärm-Epochen zu Fensterbeginn (2 = 1 Minute); sie liefern den Basispuls.
     public static let defaultWarmupEpochs = 2
+    /// Der Basispuls ist der Median der Pulse aus so vielen ersten Epochen des Fensters (mindestens der Aufwärmphase).
+    public static let baselineEpochs = 6
+    /// … sobald es mindestens so viele Pulse darunter gibt; vorher gilt der Ersatz aus dem Ruhepuls oder keiner.
+    public static let minBaselineHeartRates = 2
+    /// Ersatz-Basispuls ohne Puls zu Fensterbeginn: gelernter Ruhepuls (10. Perzentil der Nacht) mal diesem Faktor. Der
+    /// Ruhepuls selbst liegt unter dem morgendlichen Puls; als Basispuls wäre der Anstieg fast immer erfüllt.
+    public static let restingFallbackFactor = 1.10
+    /// Mit gelerntem Ruhepuls liegt der Basispuls des Fensters zwischen Ruhepuls und Ruhepuls mal diesem Faktor.
+    public static let restingClampFactor = 1.3
 
     /// Startwerte.
     public static let standard = DetectorConfig(
-        unchecked: defaultLightThreshold, defaultWakeThreshold, defaultHeartRateRise, defaultWarmupEpochs, 3, 2, 4, 2, nil, nil
+        unchecked: defaultLightThreshold, defaultWakeThreshold, defaultHeartRateRise, defaultWarmupEpochs, 3, 2, 4, 2, nil, nil, nil
     )
 
     /// Bewegung (m/s²), ab der eine Epoche als leichte Bewegung zählt.
@@ -46,8 +55,13 @@ public struct DetectorConfig: Equatable, Sendable {
     /// Eigenes Grundrauschen aus der Lernphase (m/s²); gilt, solange die Messung selbst noch keines hat
     /// (``NoiseFloor/floor(_:personal:)``). `nil` = keines gelernt.
     public let personalFloor: Double?
-    /// Eigener Ruhepuls aus der Lernphase; Basispuls, wenn die Aufwärmphase keinen Puls hat. `nil` = keiner.
+    /// Eigener Ruhepuls aus der Lernphase. Ohne Basispuls des Fensters gilt ``restingFallbackFactor`` × Ruhepuls als
+    /// Basispuls; sonst begrenzt er den Basispuls auf Ruhepuls bis ``restingClampFactor`` × Ruhepuls (``WakeDetector``).
+    /// `nil` = keiner.
     public let restingHeartRate: Double?
+    /// Grundrauschen der Einschlaf-Messung dieser Nacht (m/s²); gilt wie ``personalFloor`` und hat Vorrang davor
+    /// (``NoiseFloor/windowFloor(_:config:)``). `nil` = keines.
+    public private(set) var onsetFloor: Double?
 
     /// Erzeugt eine geprüfte Konfiguration.
     /// - Throws: ``DetectorConfigError`` bei ungültigen Werten.
@@ -61,7 +75,8 @@ public struct DetectorConfig: Equatable, Sendable {
         lightWindow: Int = 4,
         lightHits: Int = 2,
         personalFloor: Double? = nil,
-        restingHeartRate: Double? = nil
+        restingHeartRate: Double? = nil,
+        onsetFloor: Double? = nil
     ) throws {
         guard lightThreshold > 0 else { throw DetectorConfigError(message: "lightThreshold muss positiv sein") }
         guard wakeThreshold > lightThreshold else {
@@ -75,22 +90,26 @@ public struct DetectorConfig: Equatable, Sendable {
         guard (1...max(1, lightWindow)).contains(lightHits), lightWindow >= 1 else {
             throw DetectorConfigError(message: "lightHits muss zwischen 1 und lightWindow liegen")
         }
-        if let personalFloor, personalFloor < 0 {
+        // `!(x >= 0)` statt `x < 0`: auch NaN ist ungültig (wie `require` in Kotlin).
+        if let personalFloor, !(personalFloor >= 0) {
             throw DetectorConfigError(message: "personalFloor darf nicht negativ sein")
         }
-        if let restingHeartRate, restingHeartRate <= 0 {
+        if let restingHeartRate, !(restingHeartRate > 0) {
             throw DetectorConfigError(message: "restingHeartRate muss positiv sein")
+        }
+        if let onsetFloor, !(onsetFloor >= 0) {
+            throw DetectorConfigError(message: "onsetFloor darf nicht negativ sein")
         }
         self.init(
             unchecked: lightThreshold, wakeThreshold, heartRateRise, warmupEpochs,
-            awakeWindow, awakeHits, lightWindow, lightHits, personalFloor, restingHeartRate
+            awakeWindow, awakeHits, lightWindow, lightHits, personalFloor, restingHeartRate, onsetFloor
         )
     }
 
     private init(
         unchecked lightThreshold: Double, _ wakeThreshold: Double, _ heartRateRise: Double, _ warmupEpochs: Int,
         _ awakeWindow: Int, _ awakeHits: Int, _ lightWindow: Int, _ lightHits: Int,
-        _ personalFloor: Double?, _ restingHeartRate: Double?
+        _ personalFloor: Double?, _ restingHeartRate: Double?, _ onsetFloor: Double?
     ) {
         self.lightThreshold = lightThreshold
         self.wakeThreshold = wakeThreshold
@@ -102,18 +121,27 @@ public struct DetectorConfig: Equatable, Sendable {
         self.lightHits = lightHits
         self.personalFloor = personalFloor
         self.restingHeartRate = restingHeartRate
+        self.onsetFloor = onsetFloor
     }
 
     /// Grösstes Fenster beider Regeln; so viele Epochen merkt sich der ``WakeDetector``.
     var maxWindow: Int { max(awakeWindow, lightWindow) }
 
-    /// Kopie mit den gelernten Werten der Lernphase (``Learning/withLearned(_:_:)``); `nil` = keiner. Ein negatives
-    /// Grundrauschen bzw. ein Puls ≤ 0 (nie aus ``Learning``) gilt als keiner.
+    /// Kopie mit den gelernten Werten der Lernphase (``Learning/withLearned(_:_:)``); `nil` = keiner. Ungültige Werte
+    /// (``Learning/validFloor(_:)``, ``Learning/validRestingHeartRate(_:)``, z. B. aus einer kaputten Nachricht) gelten als
+    /// keiner. Identisch zu `DetectorConfig.withLearned` (Kotlin).
     func withLearned(floor: Double?, restingHeartRate: Double?) -> DetectorConfig {
         DetectorConfig(
             unchecked: lightThreshold, wakeThreshold, heartRateRise, warmupEpochs, awakeWindow, awakeHits, lightWindow, lightHits,
-            floor.flatMap { $0 >= 0 ? $0 : nil }, restingHeartRate.flatMap { $0 > 0 ? $0 : nil }
+            Learning.validFloor(floor), Learning.validRestingHeartRate(restingHeartRate), onsetFloor
         )
+    }
+
+    /// Kopie mit dem Grundrauschen der Einschlaf-Messung dieser Nacht (``onsetFloor``); ungültig gilt als keines.
+    public func withOnsetFloor(_ floor: Double?) -> DetectorConfig {
+        var copy = self
+        copy.onsetFloor = Learning.validFloor(floor)
+        return copy
     }
 
     /// Kopie mit neuen Schwellen. Nur für ``Calibration``, die gültige Werte garantiert (wake = light × 50).

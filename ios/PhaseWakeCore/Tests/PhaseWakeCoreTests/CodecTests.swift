@@ -158,4 +158,28 @@ final class CodecTests: XCTestCase {
         XCTAssertEqual(f([.friday, .saturday, .sunday, .monday, .wednesday]), "Fr–Mo, Mi")
         XCTAssertEqual(f([.sunday, .monday, .tuesday, .wednesday], Locale(identifier: "en_US")), "Sun–Wed")
     }
+
+    func testImplausibleTimesAreRejected() throws {
+        // Vollaudit K-7: manipulierte Sicherung mit 9223372036854775807 – früher brach das Zurückrechnen in ms ab.
+        let max = "9223372036854775807"
+        XCTAssertThrowsError(try Codec.decodeNight("phasewake-night 1\na|\(max)|1800000|1080000|DEADLINE|0\n\n"))
+        XCTAssertThrowsError(try Codec.decodeNight("phasewake-night 1\na|0|\(max)|1080000|DEADLINE|0\n\n"))
+        XCTAssertThrowsError(try Codec.decodeNight("phasewake-night 1\na|0|1800000|-1|DEADLINE|0\n\n"))
+        XCTAssertThrowsError(try Codec.decodeNight("phasewake-night 1\na|0|4102444800001|0|DEADLINE|0\n\n"))
+        let edge = try Codec.decodeNight("phasewake-night 1\na|0|4102444800000|0|DEADLINE|0\n\n")
+        XCTAssertEqual(edge.target, Date(timeIntervalSince1970: 4_102_444_800))
+        // Überspringen-bis ausserhalb: nichts überspringen (wie unlesbar).
+        func skip(_ value: String) throws -> Int64 {
+            try XCTUnwrap(Codec.decodeAlarms("phasewake-alarms 1\nb|9|30|MO|30|1|OFF|0||||OFF|NONE|PHONE|\(value)|0\n").first).skipUntil
+        }
+        XCTAssertEqual(try skip(max), 0)
+        XCTAssertEqual(try skip("-5"), 0)
+        XCTAssertEqual(try skip("1793000000000"), 1_793_000_000_000)
+        XCTAssertTrue(TimeBounds.contains(0) && TimeBounds.contains(TimeBounds.maxMs))
+        XCTAssertNil(TimeBounds.checked(Int64.min))
+        // Zurückrechnen bricht auch mit einer kaputten Zeit nie ab.
+        XCTAssertEqual(TimeBounds.millis(Date(timeIntervalSince1970: 9_223_372_036_854_775.807)), 9_000_000_000_000_000_000)
+        XCTAssertEqual(TimeBounds.millis(Date(timeIntervalSince1970: -1e300)), -9_000_000_000_000_000_000)
+        XCTAssertEqual(TimeBounds.millis(Date(timeIntervalSince1970: .nan)), 0)
+    }
 }
