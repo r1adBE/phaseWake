@@ -231,4 +231,22 @@ final class AppleLearningTests: XCTestCase {
         broken.setConsent(false, now: at)
         XCTAssertEqual(broken.updatedAtMs, 5_000)
     }
+
+    func testRecordingFollowsAMovedAlarmOfTheSameNight() {
+        // Echte Nacht vom 12.11.2026 (wie `LearnFollowPlanTest`, Android): Weckzeit 08:57, um 01:17 auf 09:57 verschoben.
+        let now = Date(timeIntervalSince1970: 1_794_442_620) // 2026-11-12 01:17 Zürich
+        let old = now.addingTimeInterval(7 * 3600 + 40 * 60)
+        let moved = old.addingTimeInterval(3600)
+        XCTAssertEqual(AppleLearnRecord.followedTarget(current: old, planTarget: moved, now: now), moved)
+        XCTAssertEqual(AppleLearnRecord.followedTarget(current: old, planTarget: old.addingTimeInterval(-3600), now: now),
+                       old.addingTimeInterval(-3600))
+        // Wecker aus oder gelöscht, übersprungen (nächster erst morgen), schon vorbei: alte Weckzeit.
+        XCTAssertEqual(AppleLearnRecord.followedTarget(current: old, planTarget: nil, now: now), old)
+        XCTAssertEqual(AppleLearnRecord.followedTarget(current: old, planTarget: moved.addingTimeInterval(86_400), now: now), old)
+        XCTAssertEqual(AppleLearnRecord.followedTarget(current: old, planTarget: now, now: now), old)
+        // Genau 12 Std.: noch dieselbe Nacht; eine Sekunde mehr nicht.
+        XCTAssertEqual(AppleLearnRecord.followedTarget(current: old, planTarget: now.addingTimeInterval(12 * 3600), now: now),
+                       now.addingTimeInterval(12 * 3600))
+        XCTAssertEqual(AppleLearnRecord.followedTarget(current: old, planTarget: now.addingTimeInterval(12 * 3600 + 1), now: now), old)
+    }
 }

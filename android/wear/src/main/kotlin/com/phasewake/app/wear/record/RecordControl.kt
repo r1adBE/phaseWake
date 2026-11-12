@@ -12,10 +12,12 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.wear.ongoing.OngoingActivity
 import androidx.wear.ongoing.Status
+import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Epoch
 import com.phasewake.app.core.Learning
 import com.phasewake.app.core.NoiseFloor
+import com.phasewake.app.core.WakePlan
 import com.phasewake.app.shared.LearningSnapshot
 import com.phasewake.app.shared.NightRecording
 import com.phasewake.app.shared.RecordEnd
@@ -114,6 +116,41 @@ object RecordControl {
      * ([nightRunning]: messen, klingeln, schlummern; deren Ende beendet sie selbst, siehe [endLearning]).
      */
     internal fun endsAtTarget(now: Instant, until: Instant, nightRunning: Boolean): Boolean = !now.isBefore(until) && !nightRunning
+
+    /** Längste Schlafdauer: So weit nach jetzt darf die Zielzeit eines neuen Plans liegen, um zur selben Nacht zu gehören. */
+    private val MAX_SLEEP: Duration = Duration.ofMinutes(AlarmSpec.MAX_SLEEP_MINUTES.toLong())
+
+    /**
+     * Lernphase: Weckzeit der laufenden Aufzeichnung nach einem neuen Plan [plan] (Wecker verschoben, Entscheid r1AD
+     * 13.11.2026): dessen Zielzeit, wenn sie nach [now] liegt und höchstens die längste Schlafdauer
+     * ([AlarmSpec.MAX_SLEEP_MINUTES]) entfernt ist, also zur selben Nacht gehört. Sonst (Wecker aus, gelöscht,
+     * übersprungen, der nächste erst in einer späteren Nacht) bleibt die bisherige [current].
+     */
+    internal fun learnUntilFor(current: Instant, plan: WakePlan?, now: Instant): Instant {
+        val target = plan?.target ?: return current
+        return if (target.isAfter(now) && Duration.between(now, target) <= MAX_SLEEP) target else current
+    }
+
+    /**
+     * Neuer Plan ([com.phasewake.app.wear.schedule.AlarmScheduler.reschedule], [plan] = nächster echter Wecker): Die
+     * Weckzeit einer Aufzeichnung der Lernphase folgt ihm ([learnUntilFor]) – gespeichert in der [LearnMark] (gilt
+     * auch nach einem Prozessende) und an den laufenden Dienst. @return die nun geltende Weckzeit; `null` ohne Marke.
+     */
+    suspend fun followPlan(context: Context, plan: WakePlan?, now: Instant): Instant? {
+        val app = context.wearApp
+        val mark = app.learnMark.get() ?: return null
+        val until = learnUntilFor(mark.until, plan, now)
+        if (until == mark.until) return until
+        app.learnMark.set(mark.copy(until = until))
+        app.diag.log(DiagKind.SCHEDULED, "learn record until $until (was ${mark.until})")
+        if (RecordService.running) {
+            context.startService(
+                Intent(context, RecordService::class.java).setAction(RecordService.ACTION_FOLLOW_PLAN)
+                    .putExtra(RecordService.EXTRA_START, mark.start.toEpochMilli()).putExtra(RecordService.EXTRA_UNTIL, until.toEpochMilli()),
+            )
+        }
+        return until
+    }
 
     /**
      * Geweckt (Klingeln beendet, aus dem Weckdienst): Die laufende Aufzeichnung endet jetzt ([RecordEnd.WAKE]), auch eine

@@ -217,7 +217,11 @@ final class HealthHistoryTests: XCTestCase {
         let first = HealthSession(start: t("2026-10-01T20:00:00Z"), end: t("2026-10-02T00:00:00Z"))
         let second = HealthSession(start: t("2026-10-02T00:00:00Z"), end: t("2026-10-02T05:00:00Z"))
         XCTAssertEqual(HealthHistory.distinct([second, first]), [first, second])
-        // Gleiches Nachtdatum: im Verlauf nur die längere.
-        XCTAssertEqual(merge([], [first, second]).map(\.session), [second])
+        // Die zweite schliesst ohne Lücke an (`HealthHistory.continuationGap`): eine Nacht von 20:00 bis 05:00 UTC.
+        let joined = merge([], [first, second])
+        XCTAssertEqual(joined.count, 1)
+        XCTAssertEqual(joined.first?.session?.start, first.start)
+        XCTAssertEqual(joined.first?.session?.end, second.end)
+        XCTAssertEqual(joined.first?.session?.asleepMinutes, 540)
     }
 }

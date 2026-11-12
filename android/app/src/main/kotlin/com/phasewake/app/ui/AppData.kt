@@ -254,9 +254,12 @@ private fun habitLines(sleeps: List<SleepSummary>, data: AppData): HabitLines {
     )
 }
 
-/** Schlafphasen einer Nacht: so weit vor dem Fensterbeginn und nach dem Wecken (ganze Nacht samt Aufwachen). */
+/**
+ * Schlafphasen einer Nacht: so weit vor dem Fensterbeginn und nach dem Wecken (ganze Nacht samt Aufwachen und
+ * Weiterschlafen: Beginn bis [HealthHistory.CONTINUATION_GAP] nach dem Wecken, kürzer als [HealthHistory.MIN_NIGHT_MINUTES]).
+ */
 internal val STAGES_BEFORE: Duration = Duration.ofHours(14)
-internal val STAGES_AFTER: Duration = Duration.ofHours(2)
+internal val STAGES_AFTER: Duration = HealthHistory.CONTINUATION_GAP.plusMinutes(HealthHistory.MIN_NIGHT_MINUTES)
 
 /** «Geräusche aufnehmen»: Zustand für die Startseite, Schalter für diese Nacht und für die Vorgabe. */
 internal class SoundRecControl(

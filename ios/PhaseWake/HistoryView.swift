@@ -18,6 +18,10 @@ struct HistoryView: View {
     /// Geöffnete Detailseite: Schlüssel der Nacht (``HistoryItem/key``).
     @State private var path: [String] = []
 
+    /// Phasen für die Karte einer eigenen Nacht: so lange nach dem Wecken (Sekunden), samt Weiterschlafen – Beginn bis
+    /// `HealthHistory.continuationGap` nach dem Wecken, kürzer als `HealthHistory.minNightMinutes`. Wie `STAGES_AFTER` (Android).
+    private static let stagesAfter: TimeInterval = HealthHistory.continuationGap + TimeInterval(HealthHistory.minNightMinutes * 60)
+
     var body: some View {
         let items = self.items
         let entries = self.entries(items)
@@ -57,7 +61,7 @@ struct HistoryView: View {
                         ForEach(entries) { entry in
                             switch entry {
                             case .night(let night):
-                                NightCard(night: night, stages: allStages.filter { $0.end > night.windowStart.addingTimeInterval(-14 * 3600) && $0.start < night.wokeAt.addingTimeInterval(2 * 3600) },
+                                NightCard(night: night, stages: allStages.filter { $0.end > night.windowStart.addingTimeInterval(-14 * 3600) && $0.start < night.wokeAt.addingTimeInterval(Self.stagesAfter) },
                                           goalMinutes: model.sleepGoal, recordings: PhoneLearning.shared.recordings) {
                                     path.append(HistoryItem(kind: .phaseWake, date: SleepNotes.nightDate(of: night, calendar: .gregorianLocal), night: night).key)
                                 }

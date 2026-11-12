@@ -47,6 +47,7 @@ public struct HealthSession: Equatable, Sendable {
     /// Ob die Sitzung ein Nickerchen statt einer Nacht ist: kürzer als ``HealthHistory/minNightMinutes`` und ganz am
     /// Tag – Beginn frühestens ``HealthHistory/napEarliestHour`` Uhr, Ende spätestens ``HealthHistory/napLatestHour`` Uhr,
     /// beides Ortszeit in `calendar` am selben Tag. Kurzer Schlaf in der Nacht (z. B. 01:00–03:00) bleibt eine Nacht.
+    /// Setzt die Sitzung eine Nacht fort (Weiterschlafen, ``HealthHistory/continuationGap``), zählt sie trotzdem zu dieser Nacht.
     public func isNap(calendar: Calendar) -> Bool {
         guard durationMinutes < HealthHistory.minNightMinutes, calendar.isDate(start, inSameDayAs: end),
               let earliest = calendar.date(bySettingHour: HealthHistory.napEarliestHour, minute: 0, second: 0, of: start),
@@ -121,6 +122,7 @@ public struct HistoryItem: Equatable, Sendable {
 }
 
 /// Verlauf aus eigenen Nächten und Sitzungen der Gesundheits-App. Identisch zu `HealthHistory` (Kotlin).
+/// Weiterschlafen nach dem Wecken (``continuationGap``) gehört zur Nacht davor.
 public enum HealthHistory {
     /// Sitzungen unter 180 Minuten (3 h) können Nickerchen sein (keine Nacht), wenn sie ganz am Tag liegen
     /// (``HealthSession/isNap(calendar:)``) – dieselbe Regel gilt für Diagramme und Trends (``summaries(_:clearedAt:calendar:)``).
@@ -129,6 +131,11 @@ public enum HealthHistory {
     public static let napEarliestHour = 9
     /// Spätestes Ende eines Nickerchens (Stunde Ortszeit, 19:00 einschliesslich): Wer nach 19:00 aufwacht, hatte eine Nacht.
     public static let napLatestHour = 19
+    /// Beginnt eine Sitzung höchstens so lange (Sekunden) nach dem Ende einer Nacht (einschliesslich, auch in Kette), setzt
+    /// sie diese Nacht fort – z. B. Weiterschlafen nach dem Wecken, das Samsung Health als zweite Sitzung schreibt. Sie ist
+    /// dann nie ein Nickerchen und zählt überall mit der Nacht zusammen (``merge(nights:sessions:clearedAt:calendar:)``,
+    /// ``summaries(_:clearedAt:calendar:)``, ``stages(_:clearedAt:calendar:)``).
+    public static let continuationGap: TimeInterval = 60 * 60
     /// Lesefenster der Gesundheitsdaten in Tagen, so lang wie der eigene Verlauf (`NightHistory.maxNights`).
     public static let days = 90
 
@@ -140,8 +147,9 @@ public enum HealthHistory {
     }
 
     /// Verlauf, neueste zuerst: alle eigenen Nächte (vom Löschzeitpunkt unberührt) und je Nachtdatum höchstens
-    /// eine Fremd-Sitzung. Es zählen nur Sitzungen, die als Nacht gelten (sichtbar, kein Nickerchen in `calendar`, `end` nach `start`,
-    /// ohne Doppel – siehe ``distinct(_:)``) und mit keiner eigenen Nacht dasselbe Nachtdatum haben oder sich mit ihr
+    /// eine Fremd-Sitzung. Es zählen nur Sitzungen, die als Nacht gelten (sichtbar, kein Nickerchen in `calendar` oder Fortsetzung
+    /// einer Nacht – ``continuationGap``, `end` nach `start`, ohne Doppel – siehe ``distinct(_:)``; Teile einer Nacht stehen als eine
+    /// Sitzung vom Beginn des ersten bis zum Ende des letzten Teils im Verlauf, Phasen aller Teile, Quelle des ersten) und mit keiner eigenen Nacht dasselbe Nachtdatum haben oder sich mit ihr
     /// überschneiden (Sitzungsbeginn vor dem Weckmoment und Sitzungsende nach dem Fensterbeginn). Mehrere am selben
     /// Nachtdatum: nach derselben Vorliebe wie ``distinct(_:)``. Sortierung nach ``HistoryItem/at`` absteigend; gleich:
     /// eigene Nacht vor Sitzung, zwei eigene Nächte nach Fensterbeginn absteigend, dann Wecker-Kennung aufsteigend.
@@ -179,25 +187,63 @@ public enum HealthHistory {
         return kept.sorted { $0.start < $1.start }
     }
 
-    /// Phasen der Sitzungen, die als Nacht zählen (ohne Doppel), nach Beginn – für das Schlafprofil eigener Nächte.
+    /// Phasen der Sitzungen, die als Nacht zählen (ohne Doppel, mit Weiterschlafen – ``continuationGap``), nach Beginn –
+    /// für das Schlafprofil eigener Nächte.
     public static func stages(_ sessions: [HealthSession], clearedAt: Date?, calendar: Calendar) -> [StageSpan] {
-        countedNights(sessions, clearedAt: clearedAt, calendar: calendar).flatMap(\.stages).sorted { $0.start < $1.start }
+        chains(sessions, clearedAt: clearedAt, calendar: calendar).flatMap { $0 }.flatMap(\.stages).sorted { $0.start < $1.start }
     }
 
     /// Nächte für Diagramme, Trends, Wochenbilanz, Serien und Regelmässigkeit: `SleepSummary.group` über die
-    /// Phasen der Sitzungen, die als Nacht zählen (sichtbar, kein Nickerchen, ohne Doppel – nichts zählt zweimal);
+    /// Phasen der Sitzungen, die als Nacht zählen (sichtbar, kein Nickerchen, ohne Doppel – nichts zählt zweimal;
+    /// Weiterschlafen nach ``continuationGap`` zählt zur Nacht, die Lücke nicht als Schlaf);
     /// eine Sitzung ohne Phasen zählt als eine «unbekannt»-Phase über die ganze Dauer.
     public static func summaries(_ sessions: [HealthSession], clearedAt: Date?, calendar: Calendar) -> [SleepSummary] {
-        SleepSummary.group(countedNights(sessions, clearedAt: clearedAt, calendar: calendar).flatMap { session in
-            // Auf die Sitzung zugeschnitten wie in der Detailseite (`HealthSession.asleepMinutes`).
-            session.stages.isEmpty ? [StageSpan(start: session.start, end: session.end, stage: .unknown)]
-                : StageCheck.clip(session.stages, from: session.start, to: session.end)
-        })
+        // Je Teil zugeschnitten wie in der Detailseite (`HealthSession.asleepMinutes`); Lücken bis `continuationGap` liegen
+        // unter `SleepSummary.newNightGap`, die Teile bleiben also eine Nacht.
+        SleepSummary.group(chains(sessions, clearedAt: clearedAt, calendar: calendar).flatMap { $0 }.flatMap { spans($0) })
     }
 
-    /// Sitzungen, die als Nacht zählen: sichtbar, Ende nach Beginn, kein Nickerchen in `calendar`, ohne Doppel (``distinct(_:)``).
+    /// Sitzungen, die als Nacht zählen (``chains(_:clearedAt:calendar:)``), je Nacht zu einer Sitzung zusammengefasst.
     private static func countedNights(_ sessions: [HealthSession], clearedAt: Date?, calendar: Calendar) -> [HealthSession] {
-        distinct(visible(sessions, clearedAt: clearedAt).filter { $0.end > $0.start && !$0.isNap(calendar: calendar) })
+        chains(sessions, clearedAt: clearedAt, calendar: calendar).map { join($0) }
+    }
+
+    /// Nächte als Ketten von Sitzungen, nach Beginn: sichtbar, Ende nach Beginn, ohne Doppel (``distinct(_:)``). Jede Kette
+    /// beginnt mit einer Sitzung, die kein Nickerchen in `calendar` ist; jede weitere beginnt nicht vor dem Ende der vorigen
+    /// und höchstens ``continuationGap`` danach. Nickerchen ohne Anschluss fallen weg, ebenso solche, die sich mit einer
+    /// Nacht überschneiden (andere App, dieselbe Zeit).
+    private static func chains(_ sessions: [HealthSession], clearedAt: Date?, calendar: Calendar) -> [[HealthSession]] {
+        let valid = visible(sessions, clearedAt: clearedAt).filter { $0.end > $0.start }
+        let nights = distinct(valid.filter { !$0.isNap(calendar: calendar) })
+        let naps = distinct(valid.filter { $0.isNap(calendar: calendar) })
+            .filter { nap in !nights.contains(where: { nap.start < $0.end && $0.start < nap.end }) }
+        // Beginnzeiten sind verschieden (keine Überschneidungen, Ende nach Beginn): Sortierung eindeutig.
+        let ordered = (nights.map { (session: $0, isNight: true) } + naps.map { (session: $0, isNight: false) })
+            .sorted { $0.session.start < $1.session.start }
+        var result: [[HealthSession]] = []
+        for entry in ordered {
+            if let last = result.last?.last, entry.session.start >= last.end,
+               entry.session.start.timeIntervalSince(last.end) <= continuationGap {
+                result[result.count - 1].append(entry.session)
+            } else if entry.isNight {
+                result.append([entry.session])
+            }
+        }
+        return result
+    }
+
+    /// Eine Kette (``chains(_:clearedAt:calendar:)``) als eine Sitzung: Beginn des ersten bis Ende des letzten Teils, Quelle
+    /// des ersten, Phasen aller Teile (auf ihren Teil zugeschnitten, ``spans(_:)``) – die Lücken dazwischen zählen nicht als Schlaf.
+    private static func join(_ parts: [HealthSession]) -> HealthSession {
+        let first = parts[0]
+        guard parts.count > 1, let last = parts.last else { return first }
+        return HealthSession(start: first.start, end: last.end, stages: parts.flatMap { spans($0) }, source: first.source)
+    }
+
+    /// Phasen der Sitzung, auf sie zugeschnitten; ohne Phasen eine «unbekannt»-Phase über die ganze Dauer.
+    private static func spans(_ session: HealthSession) -> [StageSpan] {
+        session.stages.isEmpty ? [StageSpan(start: session.start, end: session.end, stage: .unknown)]
+            : StageCheck.clip(session.stages, from: session.start, to: session.end)
     }
 
     /// Ob `candidate` vor `current` gewählt wird: mit Phasen, länger, früher begonnen, dann Quelle.

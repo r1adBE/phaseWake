@@ -49,7 +49,7 @@ import kotlinx.coroutines.launch
 class RecordService : LifecycleService() {
 
     /** Laufende Aufzeichnung ab [start]: alle Epochen, davon [flushed] schon in der Datei; [sampled]: in Stichproben. */
-    internal class Active(val start: Instant, val epochs: MutableList<Epoch>, var flushed: Int, val learnUntil: Instant?, val sampled: Boolean) {
+    internal class Active(val start: Instant, val epochs: MutableList<Epoch>, var flushed: Int, var learnUntil: Instant?, val sampled: Boolean) {
         var lastFlushMs = SystemClock.elapsedRealtime()
         var lastStatMs = SystemClock.elapsedRealtime()
         var lastTickMs = SystemClock.elapsedRealtime()
@@ -96,6 +96,9 @@ class RecordService : LifecycleService() {
                 val reason = intent.getStringExtra(EXTRA_REASON)?.let(RecordEnd::of) ?: RecordEnd.WAKE
                 if (active?.learnUntil != null || (active != null && reason == RecordEnd.WAKE)) finish(reason)
             }
+            // Wecker verschoben: Weckzeit der laufenden Aufzeichnung der Lernphase nachführen (nur dieselbe Aufzeichnung).
+            ACTION_FOLLOW_PLAN -> active?.takeIf { it.learnUntil != null && it.start.toEpochMilli() == intent.getLongExtra(EXTRA_START, 0L) }
+                ?.let { a -> intent.getLongExtra(EXTRA_UNTIL, 0L).takeIf { it > 0 }?.let { a.learnUntil = Instant.ofEpochMilli(it) } }
             // Vom System neu gestartet (START_STICKY), ohne Auftrag: Aus dem Hintergrund darf der Dienst nicht in den
             // Vordergrund; der Prüf-Alarm darf es und nimmt die Aufzeichnung gleich wieder auf.
             null -> {
@@ -145,15 +148,19 @@ class RecordService : LifecycleService() {
             app.recordings.begin(start)
             if (continuous) app.learnMark.setContinuous(start)
             // Ohne gespeicherte Marke endet sie trotzdem beim Wecken, solange der Dienst läuft (nur nach einem Prozessende nicht).
+            var until = learnUntil
             if (learnUntil != null) {
                 try {
                     app.learnMark.set(LearnMark(start, learnUntil))
-                } catch (e: java.io.IOException) {
-                    Log.w(TAG, "Marke der Lernphase nicht gespeichert", e)
+                    // Seit dem Auftrag neu geplant (Wecker verschoben): gleich folgen; spätere Änderungen sehen die Marke.
+                    until = RecordControl.followPlan(this@RecordService, app.scheduler.nextAlarmPlan(), clock()) ?: learnUntil
+                } catch (e: Exception) {
+                    if (e is kotlinx.coroutines.CancellationException) throw e
+                    Log.w(TAG, "Marke der Lernphase nicht gespeichert oder nicht nachgeführt", e)
                 }
             }
             starting = false
-            measure(Active(start, mutableListOf(), 0, learnUntil, sampled = !continuous), "record start by $by bat=${battery ?: "-"} ${SensorAccess.of(this@RecordService).line()}")
+            measure(Active(start, mutableListOf(), 0, until, sampled = !continuous), "record start by $by bat=${battery ?: "-"} ${SensorAccess.of(this@RecordService).line()}")
         }
     }
 
@@ -255,8 +262,9 @@ class RecordService : LifecycleService() {
             finish(it, battery)
             return
         }
-        // Lernphase ohne Klingeln (z. B. Wecker übersprungen): zur eingestellten Weckzeit beenden.
-        if (a.learnUntil != null && RecordControl.endsAtTarget(clock(), a.learnUntil, WakeService.activePlan != null)) {
+        // Lernphase ohne Klingeln (z. B. Wecker übersprungen): zur Weckzeit beenden (folgt einem verschobenen Wecker, followPlan).
+        val until = a.learnUntil
+        if (until != null && RecordControl.endsAtTarget(clock(), until, WakeService.activePlan != null)) {
             finish(RecordEnd.WAKE, battery)
             return
         }
@@ -345,6 +353,10 @@ class RecordService : LifecycleService() {
 
         /** Lernphase: eingestellte Weckzeit (ms), zu der die Aufzeichnung ohne Klingeln endet. */
         internal const val EXTRA_UNTIL = "until"
+
+        /** Wecker verschoben: neue Weckzeit [EXTRA_UNTIL] für die Aufzeichnung ab [EXTRA_START] (ms, [RecordControl.followPlan]). */
+        internal const val ACTION_FOLLOW_PLAN = "com.phasewake.app.record.FOLLOW_PLAN"
+        internal const val EXTRA_START = "start"
 
         /** Abstand des Zeitgebers (Grenzen, Anhängen, Protokoll). */
         internal const val TICK_MS = 60_000L

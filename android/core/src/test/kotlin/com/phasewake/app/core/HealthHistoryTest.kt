@@ -245,7 +245,9 @@ class HealthHistoryTest {
         val first = HealthSession(t("2026-10-01T20:00:00Z"), t("2026-10-02T00:00:00Z"))
         val second = HealthSession(t("2026-10-02T00:00:00Z"), t("2026-10-02T05:00:00Z"))
         assertEquals(listOf(first, second), HealthHistory.distinct(listOf(second, first)))
-        // Gleiches Nachtdatum: im Verlauf nur die längere.
-        assertEquals(listOf(second), HealthHistory.merge(emptyList(), listOf(first, second), null, zone).map { it.session })
+        // Die zweite schliesst ohne Lücke an (HealthHistory.CONTINUATION_GAP): eine Nacht von 20:00 bis 05:00 UTC.
+        val joined = HealthHistory.merge(emptyList(), listOf(first, second), null, zone).single().session!!
+        assertEquals(first.start to second.end, joined.start to joined.end)
+        assertEquals(540, joined.asleepMinutes)
     }
 }

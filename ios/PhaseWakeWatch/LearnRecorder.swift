@@ -183,6 +183,8 @@ final class LearnRecorder {
         let model = WatchModel.shared
         guard let plan = model.realPlan else { return }
         if let mark, mark.alarmId == plan.alarmId, mark.target == plan.target { return }
+        // Wecker derselben Nacht verschoben: Die laufende Aufzeichnung folgt ihm (`LearnRecorder+Follow`).
+        if follow(plan) { return }
         // Eine andere Nacht zeichnet noch auf (Wecker in der Nacht verschoben): sie zuerst zu Ende. Läuft «Nacht
         // aufzeichnen», zählt diese Aufzeichnung (wie auf Android: «recording runs»).
         if let mark, Date() < Self.end(of: mark) {

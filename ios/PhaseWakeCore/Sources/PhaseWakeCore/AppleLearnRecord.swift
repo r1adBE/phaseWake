@@ -41,6 +41,17 @@ public enum AppleLearnRecord {
     public static func end(wokeAt: Date?, target: Date, until: Date) -> Date {
         wokeAt.map { min($0, until) } ?? target
     }
+
+    /// Zielzeit einer laufenden Aufzeichnung der Lernphase (bisher `current`) nach einem neuen Plan mit Zielzeit
+    /// `planTarget` (Wecker verschoben, Entscheid r1AD 13.11.2026): diese, wenn sie nach `now` liegt und höchstens die
+    /// längste Schlafdauer (``AlarmSpec/maxSleepMinutes``) entfernt ist, also zur selben Nacht gehört; sonst (Wecker aus,
+    /// gelöscht, übersprungen, der nächste erst in einer späteren Nacht) bleibt `current`. Wie `RecordControl.learnUntilFor`
+    /// (Galaxy Watch).
+    public static func followedTarget(current: Date, planTarget: Date?, now: Date) -> Date {
+        guard let planTarget, planTarget > now,
+              planTarget.timeIntervalSince(now) <= TimeInterval(AlarmSpec.maxSleepMinutes * 60) else { return current }
+        return planTarget
+    }
 }
 
 /// Apple Watch, automatische Einschlaf-Messung (Schalter «Einschlafen automatisch erkennen», Standard ein, wie Android;
