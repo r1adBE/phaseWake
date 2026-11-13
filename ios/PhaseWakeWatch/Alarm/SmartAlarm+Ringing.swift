@@ -6,16 +6,13 @@ extension SmartAlarm {
     // MARK: Wecken
 
     func ring(_ reason: WakeReason) {
+        // Zuerst wecken (wie Android, 13.11.2026): Zustand setzen und vibrieren, erst danach Sensoren, Rückfall, Protokoll
+        // und Speichern – sonst verzögert deren Arbeit die erste Vibration. Nur die Zeile zum Messende kommt vorher, denn
+        // sie gilt nur in der Phase «messen».
         logMeasureEnd()
-        stopSensors()
-        // Der Rückfall bleibt stehen, bis beendet wird: Endet die Sitzung, weckt er trotzdem. Klingelt die Sitzung, fallen
-        // nur die noch folgenden Mitteilungen seiner Kette weg (`NotificationChain`).
-        if session?.state == .running { removeFollowingFallback(Self.fallbackKey(for: nightPlan?.alarmId ?? plan?.alarmId)) }
         self.reason = reason
         if firstRing == nil { firstRing = Date() }
         phase = .ringing(reason, snoozesLeft: snoozesLeft)
-        DiagStore.shared.log(.ring, "watch \(reason.rawValue)")
-        save()
         hapticStart = Date()
         // Steigerung wie auf Android: sanft, deutlich, anhaltend – je eine Minute (`SessionRules.hapticStep`). Klingelt
         // diese Sitzung nicht mehr (gestoppt, geschlummert, ersetzt), endet die Wiederholung hier – auch wenn
@@ -27,6 +24,12 @@ extension SmartAlarm {
             if step.interval > 0 { haptic.pointee = step.type }
             return step.interval
         }
+        stopSensors()
+        // Der Rückfall bleibt stehen, bis beendet wird: Endet die Sitzung, weckt er trotzdem. Klingelt die Sitzung, fallen
+        // nur die noch folgenden Mitteilungen seiner Kette weg (`NotificationChain`).
+        if session?.state == .running { removeFollowingFallback(Self.fallbackKey(for: nightPlan?.alarmId ?? plan?.alarmId)) }
+        DiagStore.shared.log(.ring, "watch \(reason.rawValue)")
+        save()
         // Immer melden: Das iPhone entscheidet (Zweitwecker, Sonnenaufgang, Sicherung aussetzen).
         sendRing()
     }

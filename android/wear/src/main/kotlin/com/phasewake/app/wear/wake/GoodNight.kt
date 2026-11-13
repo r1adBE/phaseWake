@@ -16,6 +16,7 @@ import com.phasewake.app.wear.record.RecordService
 import com.phasewake.app.wear.schedule.AlarmScheduler
 import com.phasewake.app.wear.schedule.AutoOnset
 import com.phasewake.app.wear.schedule.DirectBoot
+import com.phasewake.app.wear.system.StartLock
 import com.phasewake.app.wear.wake.WakeService.Companion.ONSET_GIVE_UP
 import com.phasewake.app.wear.wake.WakeService.Companion.TAG
 import com.phasewake.app.wear.wake.WakeService.Companion.goodNightActive
@@ -156,6 +157,8 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
         }
         onset = monitor
         monitor.start()
+        // Die Messung läuft (Stichproben mit eigenem Wakelock): Start-Wakelock des Prüf-Alarms lösen.
+        StartLock.release()
         // Misst doch (z. B. «Gute Nacht» von Hand nach dem Laden): Meldung dieser Nacht aufheben.
         app.appScope.launch { app.scheduler.clearRecorderSkip(latest) }
         goodNightPending = false
@@ -252,6 +255,8 @@ internal fun WakeService.stopGoodNight(measured: Boolean = false) {
     onset = null
     goodNightActive = false
     forgetGoodNight()
+    // Auch ein Start, der nicht misst, braucht den Start-Wakelock nicht mehr.
+    StartLock.release()
     stopIfIdle()
 }
 

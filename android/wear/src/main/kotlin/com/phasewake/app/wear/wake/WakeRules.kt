@@ -6,6 +6,7 @@ import com.phasewake.app.core.WakePlan
 import com.phasewake.app.core.WakeReason
 import java.time.Duration
 import java.time.Instant
+import java.util.Locale
 
 // Entscheidungen des Weckdienstes ohne Android-Klassen (Fenster → Klingeln → Schlummern → Ende), in Unit-Tests prüfbar.
 
@@ -63,4 +64,15 @@ internal object WakeRules {
      */
     fun doneUntil(target: Instant, nominal: Instant?): Instant =
         if (nominal != null && nominal.isAfter(target) && Duration.between(target, nominal) <= GOOD_NIGHT_MAX_AHEAD) nominal else target
+
+    /**
+     * Zeile fürs Diagnose-Protokoll: Verzögerung vom geplanten Fensteralarm [scheduledAt] bis zum Start des Dienstes
+     * [now], dazu bis zum Empfang [receivedAt] (0 = unbekannt), z. B. «watch start delay 47.0s (alarm 0.3s)» (alle in ms).
+     */
+    fun startDelayLine(scheduledAt: Long, receivedAt: Long, now: Long): String {
+        val alarm = if (receivedAt > 0L) " (alarm ${seconds(receivedAt - scheduledAt)})" else ""
+        return "watch start delay ${seconds(now - scheduledAt)}$alarm"
+    }
+
+    private fun seconds(millis: Long): String = String.format(Locale.ROOT, "%.1fs", millis / 1000.0)
 }

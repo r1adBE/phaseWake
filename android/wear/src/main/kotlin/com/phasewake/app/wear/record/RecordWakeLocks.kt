@@ -2,6 +2,7 @@ package com.phasewake.app.wear.record
 
 import android.content.Context
 import android.os.PowerManager
+import com.phasewake.app.wear.system.StartLock
 
 /**
  * Wakelocks von «Nacht aufzeichnen» ([RecordService], Audit F-01): ohne aufweckenden Sensor ein langer über die ganze
@@ -41,6 +42,9 @@ internal class RecordWakeLocks(private val context: Context) {
         shortLock?.takeIf { it.isHeld }?.release()
         shortLock = null
     }
+
+    /** Der Dienst hält seinen Wakelock (oder braucht keinen): Start-Wakelock des Empfängers lösen ([StartLock]). */
+    fun startDone() = StartLock.release()
 
     private fun newLock(tag: String): PowerManager.WakeLock =
         context.getSystemService(PowerManager::class.java).newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, tag)

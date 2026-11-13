@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import com.phasewake.app.core.WakePlan
+import com.phasewake.app.wear.system.StartLock
 import com.phasewake.app.wear.wake.WakeService
 import java.time.Instant
 
@@ -16,19 +17,37 @@ class AlarmReceiver : BroadcastReceiver() {
             // Vor dem Entsperren ist «Gute Nacht» nicht lesbar; nach dem Entsperren plant der Neustart-Empfänger die Prüfung neu.
             if (!DirectBoot.isUnlocked(context)) return
             // Misst «Gute Nacht» noch, nur die nächste Prüfung stellen; sonst den Dienst neu starten (er liest den Stand).
-            if (WakeService.goodNightActive) AlarmScheduler.armGoodNightCheck(context) else WakeService.resumeGoodNight(context)
+            if (WakeService.goodNightActive) {
+                AlarmScheduler.armGoodNightCheck(context)
+            } else {
+                StartLock.acquire(context)
+                WakeService.resumeGoodNight(context)
+            }
             return
         }
         if (intent.action == AutoOnset.ACTION) {
             // Vor dem Entsperren nicht lesbar: dann keine Messung, der Wecker weckt wie bisher.
-            if (DirectBoot.isUnlocked(context)) AutoOnset.alarmIdFrom(intent)?.let { WakeService.autoOnset(context, it) }
+            if (!DirectBoot.isUnlocked(context)) return
+            AutoOnset.alarmIdFrom(intent)?.let {
+                StartLock.acquire(context)
+                WakeService.autoOnset(context, it)
+            }
             return
         }
         val plan = planFrom(intent) ?: return
-        when (intent.action) {
-            ACTION_WINDOW_START -> WakeService.start(context, plan)
-            ACTION_DEADLINE -> WakeService.command(context, WakeService.ACTION_DEADLINE, plan)
-            ACTION_SNOOZE_END -> WakeService.command(context, WakeService.ACTION_SNOOZE_END, plan)
+        val action = when (intent.action) {
+            ACTION_WINDOW_START -> WakeService.ACTION_START
+            ACTION_DEADLINE -> WakeService.ACTION_DEADLINE
+            ACTION_SNOOZE_END -> WakeService.ACTION_SNOOZE_END
+            else -> return
+        }
+        // Bis der Dienst seinen eigenen Wakelock hält; sonst schläft die Uhr nach `onReceive` (Befund 13.11.2026).
+        StartLock.acquire(context)
+        if (action == WakeService.ACTION_START) {
+            // Geplante Zeit und Empfang für die Verzögerung bis zum Start im Diagnose-Protokoll.
+            WakeService.start(context, plan, intent.getLongExtra(EXTRA_AT, 0L), System.currentTimeMillis())
+        } else {
+            WakeService.command(context, action, plan)
         }
     }
 
@@ -43,10 +62,17 @@ class AlarmReceiver : BroadcastReceiver() {
         private const val EXTRA_TARGET = "target"
         private const val EXTRA_EXACT = "exact"
 
-        /** PendingIntent für [action]; mit `plan = null` nur zum Abbrechen (gleiche Identität). */
-        fun pending(context: Context, action: String, plan: WakePlan?, requestCode: Int): PendingIntent {
+        /** Geplante Zeit des Alarms (ms), für die Verzögerung bis zum Start des Dienstes. */
+        private const val EXTRA_AT = "at"
+
+        /**
+         * PendingIntent für [action]; mit `plan = null` nur zum Abbrechen (gleiche Identität). [at]: geplante Zeit des
+         * Alarms, nur fürs Diagnose-Protokoll (Extras zählen nicht zur Identität).
+         */
+        fun pending(context: Context, action: String, plan: WakePlan?, requestCode: Int, at: Instant? = null): PendingIntent {
             val intent = Intent(context, AlarmReceiver::class.java).setAction(action)
             if (plan != null) putPlan(intent, plan)
+            if (at != null) intent.putExtra(EXTRA_AT, at.toEpochMilli())
             return PendingIntent.getBroadcast(
                 context, requestCode, intent,
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,

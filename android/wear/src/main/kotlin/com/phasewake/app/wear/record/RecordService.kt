@@ -106,6 +106,7 @@ class RecordService : LifecycleService() {
                 if (active == null && !starting) stopSelf(startId)
             }
         }
+        if (!starting) wakeLocks.startDone() // Lädt ein Start noch, erst in [measure] (eigener Wakelock steht).
         return if (active != null || starting) START_STICKY else START_NOT_STICKY
     }
 
@@ -227,6 +228,7 @@ class RecordService : LifecycleService() {
         }
         session.start(listen = !sampled)
         if (sampled) sampler = LearnSampler(this, session, startNanos, wakeLocks) { onTick() }.also { it.start() }
+        wakeLocks.startDone()
         val mode = if (sampled) "wl=sample mode=sample" else "wl=${if (wakeUp) "batch" else "hold"} mode=continuous"
         app.diag.log(DiagKind.MEASURE_START, "$startLine hrsrc=${session.heartRateSource} $mode")
         RecordControl.armCheck(this)

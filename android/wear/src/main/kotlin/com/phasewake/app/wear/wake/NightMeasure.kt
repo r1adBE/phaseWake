@@ -1,5 +1,6 @@
 package com.phasewake.app.wear.wake
 
+import android.content.Intent
 import android.os.SystemClock
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
@@ -246,6 +247,17 @@ internal fun WakeService.logMeasureEnd(n: Night, note: String = "") {
     if (n.phase != Phase.MEASURING || n.locked) return
     val summary = NoiseFloor.summary(n.detector.config, n.epochs.map { it.motion })
     app.diag.log(DiagKind.MEASURE_END, "watch ${n.epochs.size} epochs hr=${n.epochs.count { it.heartRate != null }}, $summary$note")
+}
+
+/**
+ * Eine Zeile ins Diagnose-Protokoll: wie lange nach dem geplanten Fensteralarm der Dienst startet ([WakeRules.startDelayLine],
+ * Befund 13.11.2026). Ohne geplante Zeit im Auftrag (ältere Alarme) und vor dem ersten Entsperren nichts.
+ */
+internal fun WakeService.logStartDelay(intent: Intent) {
+    val scheduledAt = intent.getLongExtra(WakeService.EXTRA_SCHEDULED_AT, 0L)
+    if (scheduledAt <= 0L || !DirectBoot.isUnlocked(this)) return
+    val line = WakeRules.startDelayLine(scheduledAt, intent.getLongExtra(WakeService.EXTRA_RECEIVED_AT, 0L), System.currentTimeMillis())
+    app.diag.log(DiagKind.WINDOW, line)
 }
 
 internal fun WakeService.onDeadline() {

@@ -15,6 +15,7 @@ import com.google.android.gms.wearable.DataMapItem
 import com.google.android.gms.wearable.DataMap
 import com.google.android.gms.wearable.Wearable
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withTimeoutOrNull
 
 /**
  * Schickt Wecker, Nächte und Weck-Ereignisse an die Gegenseite ([peer]: auf der Uhr das Handy, sonst die Uhr).
@@ -218,9 +219,19 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
         dataClient.putDataItem(clearRequest(System.currentTimeMillis())).await()
     }
 
-    /** Sendet eine Nachricht an alle erreichbaren Geräte mit der Fähigkeit [capability]. */
+    /**
+     * Sendet eine Nachricht an alle erreichbaren Geräte mit der Fähigkeit [capability]. Die Suche nach den Geräten hat eine
+     * Frist ([CAPABILITY_TIMEOUT_MS], Befund 13.11.2026): Antworten die Wear-Dienste nicht, wird nicht gesendet und
+     * protokolliert, statt dass der Aufrufer (z. B. «klingeln» ans Handy) unbegrenzt wartet.
+     */
     suspend fun message(capability: String, path: String, payload: ByteArray = ByteArray(0)) = guarded("Nachricht $path") {
-        val nodes = capabilityClient.getCapability(capability, CapabilityClient.FILTER_REACHABLE).await().nodes
+        val nodes = withTimeoutOrNull(CAPABILITY_TIMEOUT_MS) {
+            capabilityClient.getCapability(capability, CapabilityClient.FILTER_REACHABLE).await().nodes
+        }
+        if (nodes == null) {
+            Log.w(TAG, "Nachricht $path nicht gesendet: keine Geräte innert $CAPABILITY_TIMEOUT_MS ms")
+            return@guarded
+        }
         for (node in nodes) messageClient.sendMessage(node.id, path, payload).await()
     }
 
@@ -273,5 +284,8 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
     /** Formate der Datenpakete (Uhr-Status, «Verlauf löschen», Abbruch; frühere Pakete für die Umstellung), siehe [WearPackets]. */
     companion object : WearPackets() {
         private const val TAG = "WearSync"
+
+        /** Frist für die Suche nach erreichbaren Geräten in [message]. */
+        const val CAPABILITY_TIMEOUT_MS = 5_000L
     }
 }

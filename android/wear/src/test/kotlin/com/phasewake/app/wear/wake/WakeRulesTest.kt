@@ -70,4 +70,11 @@ class WakeRulesTest {
         // Die nächste Nacht (über 16 Std. später) zählt nicht.
         assertEquals(target, WakeRules.doneUntil(target, target.plus(Duration.ofDays(1))))
     }
+
+    @Test
+    fun startDelayLine() {
+        // Verzögerung bis zum Start des Dienstes, dazu bis zum Empfang des Alarms (Befund 13.11.2026).
+        assertEquals("watch start delay 47.0s (alarm 0.3s)", WakeRules.startDelayLine(1_000_000L, 1_000_300L, 1_047_000L))
+        assertEquals("watch start delay 1.2s", WakeRules.startDelayLine(1_000_000L, 0L, 1_001_249L))
+    }
 }

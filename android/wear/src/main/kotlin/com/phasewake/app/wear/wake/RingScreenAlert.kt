@@ -30,14 +30,18 @@ private const val ALARM_DELAY_MS = 1000L
 
 /**
  * Beginn einer Klingel-Runde ([why] für die Diagnose, z. B. «ring» oder «restart»): Weck-Mitteilung unter
- * neuer Kennung, Weckbildschirm auf allen Wegen anstossen, Erinnerungen starten.
+ * neuer Kennung, Weckbildschirm auf allen Wegen anstossen, Erinnerungen starten. [steps]: Dauer der Schritte beim
+ * Klingeln ([ring]). Den Zustand fürs Protokoll ([probe]) erst danach erheben: Der Weckbildschirm geht vor.
  */
-internal fun WakeService.postRinging(n: Night, why: String) {
+internal fun WakeService.postRinging(n: Night, why: String, steps: RingSteps? = null) {
     goForeground(ringingNotification(n), measuring = false, id = nextRingId())
+    steps?.mark("notif")
     realerts = 0
-    app.diag.log(DiagKind.RING_SCREEN, "watch $why: ${bringRingScreen()}")
+    bringRingScreen()
+    steps?.mark("activity")
     handler.removeCallbacks(realert)
     handler.postDelayed(realert, REALERT_MS)
+    handler.post { app.diag.log(DiagKind.RING_SCREEN, "watch $why: ${probe(this)}") }
 }
 
 /** Erinnerung: Ist der Weckbildschirm nicht zu sehen, erscheint die Weck-Mitteilung neu (Vollbild, falls das Display inzwischen aus ist). */
@@ -47,7 +51,8 @@ internal fun WakeService.onRealert() {
     if (!RingActivity.shown) {
         realerts++
         goForeground(ringingNotification(n), measuring = false, id = nextRingId())
-        val probe = bringRingScreen()
+        val probe = probe(this)
+        bringRingScreen()
         // Nur die erste Erinnerung je Runde ins Protokoll (sonst bis 30 Einträge je Runde).
         if (realerts == 1) app.diag.log(DiagKind.RING_SCREEN, "watch not visible, re-alert: $probe")
     }
@@ -66,9 +71,8 @@ internal fun cancelRingScreenAlarm(context: Context) =
 
 private fun WakeService.nextRingId(): Int = RingAlert.nextId(notificationId, Notifications.ID_RING, Notifications.ID_RING_ALT)
 
-/** Stösst Weg 2 und 3 an (Weg 1 ist die Mitteilung) und gibt den Zustand für die Diagnose zurück. */
-private fun WakeService.bringRingScreen(): String {
-    val probe = probe(this)
+/** Stösst Weg 2 und 3 an (Weg 1 ist die Mitteilung). */
+private fun WakeService.bringRingScreen() {
     scheduleRingScreenAlarm(this)
     // Ohne sichtbares Fenster verwirft das System den Start still; dann tragen Mitteilung und Alarm.
     // Aus dem Dienst nur mit neuer Aufgabe möglich (Lint «WearRecents» trifft hier nicht zu).
@@ -78,7 +82,6 @@ private fun WakeService.bringRingScreen(): String {
             .putExtra(RingActivity.EXTRA_VIA, RingActivity.VIA_DIRECT)
             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
     )
-    return probe
 }
 
 /** Wecker-Alarm in [ALARM_DELAY_MS], der den Weckbildschirm selbst öffnet; ersetzt einen schon gestellten. */

@@ -48,7 +48,7 @@ internal fun setPlanAlarms(
     // Auch ein schon begonnenes Fenster startet über einen Alarm: Nur so darf der Messdienst
     // aus dem Hintergrund (Empfänger, Data-Layer-Dienst) in den Vordergrund.
     val start = decision.windowAt ?: plan.windowStart
-    setAlarmClock(context, start, AlarmReceiver.pending(context, AlarmReceiver.ACTION_WINDOW_START, plan, REQUEST_WINDOW))
+    setAlarmClock(context, start, AlarmReceiver.pending(context, AlarmReceiver.ACTION_WINDOW_START, plan, REQUEST_WINDOW, at = start))
     if (pendingRing == null) {
         // Dazu der Plan danach: Endet eine Nacht vor dem ersten Entsperren, gilt dieser (DirectBoot.promoteNext).
         DirectBoot.save(context, plan, spec, after, specs.firstOrNull { it.id == after?.alarmId })

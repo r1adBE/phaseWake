@@ -22,6 +22,7 @@ import com.phasewake.app.wear.R
 import com.phasewake.app.wear.schedule.AlarmReceiver
 import com.phasewake.app.wear.schedule.AlarmScheduler
 import com.phasewake.app.wear.schedule.DirectBoot
+import com.phasewake.app.wear.system.StartLock
 import com.phasewake.app.wear.ui.shortTime
 import com.phasewake.app.wear.wearApp
 import java.time.Duration
@@ -90,6 +91,9 @@ class WakeService : LifecycleService() {
     internal var night: Night? = null
     internal var notification: android.app.Notification? = null
 
+    /** Schritte des letzten Klingelns ([ring]); für Tests. */
+    internal var lastRingSteps: RingSteps? = null
+
     /** Kennung der aktuellen Vordergrund-Mitteilung ([Notifications.ID_SERVICE] oder eine Weck-Kennung). */
     internal var notificationId: Int = Notifications.ID_SERVICE
 
@@ -135,7 +139,10 @@ class WakeService : LifecycleService() {
         super.onStartCommand(intent, flags, startId)
         val plan = intent?.let(AlarmReceiver::planFrom)
         when (intent?.action) {
-            ACTION_START -> plan?.let { adopt(it) }
+            ACTION_START -> plan?.let {
+                val fresh = night?.plan != it
+                if (adopt(it) && fresh) logStartDelay(intent)
+            }
             ACTION_DEADLINE -> if (plan == null) onDeadline() else if (adopt(plan)) onDeadline()
             ACTION_SNOOZE_END -> if (plan == null) ring() else if (adopt(plan)) ring()
             ACTION_SNOOZE -> snooze(notifyPhone = true)
@@ -158,6 +165,9 @@ class WakeService : LifecycleService() {
             notification?.let { goForeground(it, measuring = measuring || onset != null || goodNightPending, id = notificationId) }
         }
         if (isIdle()) stopSelf(startId)
+        // Der Auftrag ist erledigt (ein eigener Wakelock steht, falls nötig): Start-Wakelock des Empfängers lösen. Lädt
+        // «Gute Nacht» noch, erst nach dem Start der Messung ([startGoodNight]); sonst trägt das Zeitlimit.
+        if (!goodNightPending) StartLock.release()
         // Wartet «Gute Nacht» auf das Einschlafen, startet das System den Dienst nach seinem Ende neu.
         return if (onset != null || goodNightPending) START_STICKY else START_NOT_STICKY
     }
@@ -238,11 +248,15 @@ class WakeService : LifecycleService() {
         false
     }
 
+    /**
+     * Hält die Uhr höchstens [millis] wach. Zuerst den neuen Wakelock nehmen, dann den alten lösen ([swapHeld]): keine
+     * Lücke, in der die Uhr einschlafen könnte (Befund 13.11.2026). Danach braucht es den Start-Wakelock nicht mehr.
+     */
     internal fun holdWakeLock(millis: Long) {
-        releaseWakeLock()
-        wakeLock = getSystemService(PowerManager::class.java)
-            .newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "phasewake:window")
-            .apply { acquire(millis) }
+        wakeLock = swapHeld(wakeLock, {
+            getSystemService(PowerManager::class.java).newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "phasewake:window").apply { acquire(millis) }
+        }) { old -> if (old.isHeld) old.release() }
+        StartLock.release()
     }
 
     internal fun releaseWakeLock() {
@@ -279,6 +293,8 @@ class WakeService : LifecycleService() {
         private const val EXTRA_ALARM_ID = "goodNightAlarmId"
         private const val EXTRA_REMOTE_ALARM_ID = "remoteAlarmId"
         private const val EXTRA_REMOTE_TARGET = "remoteTarget"
+        internal const val EXTRA_SCHEDULED_AT = "scheduledAt"
+        internal const val EXTRA_RECEIVED_AT = "receivedAt"
         internal val ONSET_GIVE_UP: Duration = Duration.ofMinutes(15)
 
         /** «Gute Nacht» nur, wenn die eingestellte Weckzeit höchstens so weit entfernt ist. */
@@ -311,11 +327,16 @@ class WakeService : LifecycleService() {
         var goodNightActive: Boolean = false
             internal set
 
-        /** Startet die Messung für [plan] als Vordergrunddienst. */
-        fun start(context: Context, plan: WakePlan) {
+        /**
+         * Startet die Messung für [plan] als Vordergrunddienst. [scheduledAt] und [receivedAt] (ms): geplante Zeit und
+         * Empfang des Fensteralarms, für die Verzögerung bis zum Start im Diagnose-Protokoll ([logStartDelay]); 0 = unbekannt.
+         */
+        fun start(context: Context, plan: WakePlan, scheduledAt: Long = 0L, receivedAt: Long = 0L) {
             Log.i(TAG, "Fenster beginnt: $plan")
+            val intent = AlarmReceiver.putPlan(Intent(context, WakeService::class.java).setAction(ACTION_START), plan)
+                .putExtra(EXTRA_SCHEDULED_AT, scheduledAt).putExtra(EXTRA_RECEIVED_AT, receivedAt)
             // Verweigert: nur Diagnose; geweckt wird trotzdem über den Alarm zur Zielzeit.
-            StartRefused.start(context, AlarmReceiver.putPlan(Intent(context, WakeService::class.java).setAction(ACTION_START), plan), plan)
+            StartRefused.start(context, intent, plan)
         }
 
         /** Startet «Gute Nacht» für den Schlafdauer-Wecker [alarmId]. */
@@ -360,4 +381,11 @@ class WakeService : LifecycleService() {
             }
         }
     }
+}
+
+/** Nimmt zuerst den Nachfolger ([acquire]) und löst erst danach [previous] ([release]); gibt den Nachfolger zurück. */
+internal inline fun <T : Any> swapHeld(previous: T?, acquire: () -> T, release: (T) -> Unit): T {
+    val next = acquire()
+    previous?.let(release)
+    return next
 }

@@ -13,6 +13,7 @@ import com.phasewake.app.core.WakePlan
 import com.phasewake.app.core.WakeReason
 import com.phasewake.app.wear.R
 import com.phasewake.app.wear.schedule.AlarmReceiver
+import com.phasewake.app.wear.system.StartLock
 import com.phasewake.app.wear.ui.RingActivity
 import com.phasewake.app.wear.wearApp
 
@@ -39,6 +40,8 @@ internal object StartRefused {
     } catch (e: IllegalStateException) {
         // ForegroundServiceStartNotAllowedException (ab Android 12) ist eine IllegalStateException.
         onRefused(context, intent.action, plan, e)
+        // Kein Dienst, der ihn lösen würde: Start-Wakelock gleich lösen (nach der Weck-Mitteilung).
+        StartLock.release()
         false
     }
 

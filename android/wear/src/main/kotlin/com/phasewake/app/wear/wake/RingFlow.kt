@@ -29,23 +29,25 @@ import kotlinx.coroutines.launch
 internal fun WakeService.ring() {
     val n = night ?: return
     if (n.phase == Phase.RINGING) return
-    logMeasureEnd(n)
+    // Zuerst wecken (Befund 13.11.2026): Wakelock, Vibration und Ton, Weck-Mitteilung mit Vollbild und Weckbildschirm.
+    // Sensoren und Sonnenaufgang erst danach ([finishRingStart]); der Ablauf ist sonst derselbe.
+    val steps = RingSteps()
+    holdWakeLock(RING_TIMEOUT_MS + WAKE_LOCK_MARGIN_MS)
+    steps.mark("lock")
     handler.removeCallbacks(deadline)
     handler.removeCallbacks(snoozeEnd)
-    n.sensors?.stop()
-    n.phase = Phase.RINGING
-    measuringPlan = null
-    // Der Weckbildschirm übernimmt das Licht.
-    WatchSunrise.stop(this)
+    escalation.start(withSound = watchSound(n))
+    steps.mark("vib")
     val now = Instant.now()
     if (n.firstRing == null) n.firstRing = now
-    holdWakeLock(RING_TIMEOUT_MS + WAKE_LOCK_MARGIN_MS)
-
     checkTaskOnPhone(n)
-    publishRinging(n)
     // Neue Weck-Mitteilung mit Vollbild, Wecker-Alarm für den Weckbildschirm, Erinnerungen (RingScreenAlert.kt).
-    postRinging(n, "ring")
-    escalation.start(withSound = watchSound(n))
+    postRinging(n, "ring", steps)
+    // Ende der Messung ins Protokoll, solange die Phase noch «Messen» ist; neue Epochen zählen danach nicht mehr.
+    logMeasureEnd(n)
+    n.phase = Phase.RINGING
+    measuringPlan = null
+    publishRinging(n)
     handler.postDelayed(ringTimeout, RING_TIMEOUT_MS)
     armResume(n, now)
     saveProgress(n)
@@ -53,6 +55,22 @@ internal fun WakeService.ring() {
     app.diag.log(DiagKind.RING, "watch ${n.reason ?: WakeReason.DEADLINE}")
     // Immer melden: Das Handy entscheidet selbst (Zweitwecker, Sonnenaufgang, Unterdrückung der Sicherung).
     sendRing(n)
+    steps.mark("rest")
+    lastRingSteps = steps
+    handler.post { finishRingStart(n, steps) }
+}
+
+/**
+ * Nach dem Wecken, im nächsten Durchlauf des Hauptthreads: Sensoren aus, Sonnenaufgang der Uhr beenden (der
+ * Weckbildschirm übernimmt das Licht), dann die Zeile mit den Schritten ([RingSteps]). Endet die Nacht vorher, räumt
+ * ihr Ende selbst auf und hebt diesen Schritt auf.
+ */
+private fun WakeService.finishRingStart(n: Night, steps: RingSteps) {
+    steps.mark("queue")
+    n.sensors?.stop()
+    WatchSunrise.stop(this)
+    steps.mark("sensors")
+    app.diag.log(DiagKind.RING, steps.line())
 }
 
 /**

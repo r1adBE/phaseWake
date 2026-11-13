@@ -25,6 +25,7 @@ import com.phasewake.app.shared.RecordSync
 import com.phasewake.app.wear.PhaseWakeWear
 import com.phasewake.app.wear.R
 import com.phasewake.app.wear.schedule.DirectBoot
+import com.phasewake.app.wear.system.StartLock
 import com.phasewake.app.wear.ui.MainActivity
 import com.phasewake.app.wear.ui.shortTime
 import com.phasewake.app.wear.wake.Notifications
@@ -218,6 +219,7 @@ object RecordControl {
         // ForegroundServiceStartNotAllowedException (ab Android 12) ist eine IllegalStateException.
         Log.e(RecordService.TAG, "Start verweigert: $action", e)
         runCatching { context.wearApp.diag.log(DiagKind.ERROR, "record start refused ${action.substringAfterLast('.')} ${e.javaClass.simpleName}") }
+        StartLock.release()
         false
     }
 
@@ -322,12 +324,16 @@ class RecordReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         // Vor dem Entsperren ist die Aufzeichnung nicht lesbar.
         if (!DirectBoot.isUnlocked(context)) return
+        if (intent.action == RecordControl.ACTION_CHECK && RecordService.running) return RecordControl.armCheck(context)
+        // Start-Wakelock bis zum eigenen des Dienstes; sonst schläft die Uhr nach `onReceive` (Befund 13.11.2026).
+        StartLock.acquire(context)
         when (intent.action) {
-            RecordControl.ACTION_CHECK -> if (RecordService.running) RecordControl.armCheck(context) else RecordControl.resume(context)
+            RecordControl.ACTION_CHECK -> RecordControl.resume(context)
             RecordControl.ACTION_PHONE_START -> startFromPhone(context, intent)
             RecordControl.ACTION_LEARN_START -> RecordControl.startService(context, RecordService.ACTION_START_LEARN) {
                 it.putExtra(RecordService.EXTRA_UNTIL, intent.getLongExtra(RecordService.EXTRA_UNTIL, 0L))
             }
+            else -> StartLock.release()
         }
     }
 
