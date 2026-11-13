@@ -14,7 +14,10 @@ struct RecordCard: View {
         let night = WatchNight.shared
         let learning = PhoneLearning.shared
         let inLearningCard = learning.watchCanLearn(model) && learning.progress != nil
-        if night.watchCanRecord(model) && !inLearningCard {
+        // Solange die Frage «Lernphase starten / Später» offen ist, keine eigene Karte – ausser es läuft schon eine
+        // Aufzeichnung (Stopp erreichbar), wie Android (r1AD 13.11.2026).
+        let asking = learning.state.askConsent && learning.watchCanLearn(model) && night.recordSince == nil
+        if night.watchCanRecord(model) && !inLearningCard && !asking {
             let since = night.recordSince
             VStack(alignment: .leading, spacing: 8) {
                 Label(L("record_title"), systemImage: "applewatch")

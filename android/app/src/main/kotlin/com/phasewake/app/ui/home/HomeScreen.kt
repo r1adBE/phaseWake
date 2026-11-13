@@ -188,8 +188,12 @@ fun HomeScreen(
             item(key = "nap") { NapCard(extras.nap, extras.napMinutes, onNap, extras.onStopNap) }
         }
         extras.learning?.let { learning -> item(key = "learning") { LearningCard(learning, extras.record, extras.onRecord) } }
-        // Während der Lernphase steckt «Nacht aufzeichnen» in ihrer Karte, sonst eine eigene Karte (r1AD 13.11.2026).
-        extras.record?.takeIf { extras.learning?.inProgress != true }?.let { record ->
+        // Während der Lernphase steckt «Nacht aufzeichnen» in ihrer Karte, sonst eine eigene Karte (r1AD 13.11.2026). Solange
+        // die Frage «Lernphase starten / Später» offen ist, auch keine – ausser es läuft schon eine Aufzeichnung (Stopp).
+        extras.record?.takeIf { record ->
+            val learning = extras.learning
+            learning?.inProgress != true && (learning?.onConsent == null || record.since != null)
+        }?.let { record ->
             item(key = "record") { RecordCard(record.since, extras.onRecord) }
         }
         if (lastNight != null && !morningFirst) item(key = "night") { nightCard() }
