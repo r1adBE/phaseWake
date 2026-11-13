@@ -125,6 +125,19 @@ object HealthHistory {
      */
     val CONTINUATION_GAP: Duration = Duration.ofMinutes(60)
 
+    /**
+     * Kleine Überlappung, die noch als Anschluss gilt, nicht als Doppel (Audit 2c82e15): Health Connect schreibt die Teile
+     * einer getrennten Nacht oft mit einer Sekunde Überlappung. Erst wer sich länger überschneidet, ist ein Doppel.
+     */
+    val OVERLAP_TOLERANCE: Duration = Duration.ofMinutes(5)
+
+    /** Überschneiden sich [a] und [b] um mehr als [OVERLAP_TOLERANCE] (dann zählt nur eine, [distinct])? */
+    private fun clash(a: HealthSession, b: HealthSession): Boolean {
+        val from = maxOf(a.start, b.start)
+        val to = minOf(a.end, b.end)
+        return Duration.between(from, to) > OVERLAP_TOLERANCE
+    }
+
     /** So viele Tage zurück werden die Gesundheitsdaten gelesen: so weit wie der eigene Verlauf. */
     const val DAYS: Long = NightHistory.MAX_NIGHTS.toLong()
 
@@ -156,14 +169,14 @@ object HealthHistory {
     }
 
     /**
-     * Ohne doppelte Nächte: Von Sitzungen, die sich zeitlich überschneiden (Beginn vor dem Ende der anderen und
-     * umgekehrt; blosses Berühren zählt nicht), bleibt nur eine – zuerst die mit Phasen ([HealthSession.hasStages]),
+     * Ohne doppelte Nächte: Von Sitzungen, die sich um mehr als [OVERLAP_TOLERANCE] überschneiden (Berühren und kurze
+     * Überlappung zählen nicht), bleibt nur eine – zuerst die mit Phasen ([HealthSession.hasStages]),
      * dann die längste, dann der frühere Beginn, dann [HealthSession.source] (`null` zuerst). Nach Beginn sortiert.
      */
     fun distinct(sessions: List<HealthSession>): List<HealthSession> {
         val kept = mutableListOf<HealthSession>()
         for (s in sessions.sortedWith(preferred)) {
-            if (kept.none { s.start.isBefore(it.end) && it.start.isBefore(s.end) }) kept += s
+            if (kept.none { clash(s, it) }) kept += s
         }
         return kept.sortedBy { it.start }
     }
@@ -174,19 +187,22 @@ object HealthHistory {
 
     /**
      * Nächte als Ketten von Sitzungen, nach Beginn: sichtbar, Ende nach Beginn, ohne Doppel ([distinct]). Jede Kette
-     * beginnt mit einer Sitzung, die kein Nickerchen in [zone] ist; jede weitere beginnt nicht vor dem Ende der
-     * vorigen und höchstens [CONTINUATION_GAP] danach. Nickerchen ohne Anschluss fallen weg, ebenso solche, die sich
+     * beginnt mit einer Sitzung, die kein Nickerchen in [zone] ist; jede weitere beginnt höchstens [OVERLAP_TOLERANCE]
+     * vor dem Ende der vorigen und höchstens [CONTINUATION_GAP] danach. Nickerchen ohne Anschluss fallen weg, ebenso solche, die sich
      * mit einer Nacht überschneiden (andere App, dieselbe Zeit).
      */
     private fun chains(sessions: List<HealthSession>, clearedAt: Instant?, zone: ZoneId): List<List<HealthSession>> {
         val valid = visible(sessions, clearedAt).filter { it.end.isAfter(it.start) }
         val nights = distinct(valid.filter { !it.isNap(zone) })
         val naps = distinct(valid.filter { it.isNap(zone) })
-            .filter { s -> nights.none { s.start.isBefore(it.end) && it.start.isBefore(s.end) } }
+            .filter { s -> nights.none { clash(s, it) } }
         val chains = mutableListOf<MutableList<HealthSession>>()
         for ((s, night) in (nights.map { it to true } + naps.map { it to false }).sortedBy { it.first.start }) {
             val last = chains.lastOrNull()?.last()
-            if (last != null && !s.start.isBefore(last.end) && Duration.between(last.end, s.start) <= CONTINUATION_GAP) {
+            // Anschluss: beginnt höchstens [OVERLAP_TOLERANCE] vor dem Ende des vorigen Teils, endet danach, Lücke ≤ CONTINUATION_GAP.
+            if (last != null && !s.start.isBefore(last.end.minus(OVERLAP_TOLERANCE)) && s.end.isAfter(last.end) &&
+                Duration.between(last.end, s.start) <= CONTINUATION_GAP
+            ) {
                 chains.last() += s
             } else if (night) {
                 chains += mutableListOf(s)
@@ -199,8 +215,15 @@ object HealthHistory {
      * Eine Kette ([chains]) als eine Sitzung: Beginn des ersten bis Ende des letzten Teils, Quelle des ersten, Phasen
      * aller Teile (auf ihren Teil zugeschnitten, [spans]) – die Lücken dazwischen zählen nicht als Schlaf.
      */
-    private fun join(parts: List<HealthSession>): HealthSession =
-        if (parts.size == 1) parts.single() else HealthSession(parts.first().start, parts.last().end, parts.flatMap(::spans), parts.first().source)
+    private fun join(parts: List<HealthSession>): HealthSession {
+        if (parts.size == 1) return parts.single()
+        // Jeder Teil ab dem Ende des vorigen: eine kurze Überlappung zählt nicht doppelt.
+        val stages = parts.flatMapIndexed { i, p ->
+            val from = if (i == 0) p.start else maxOf(p.start, parts[i - 1].end)
+            spans(p).mapNotNull { span -> if (span.end.isAfter(from)) StageSpan(maxOf(span.start, from), span.end, span.stage) else null }
+        }
+        return HealthSession(parts.first().start, parts.last().end, stages, parts.first().source)
+    }
 
     /** Phasen der Sitzung, auf sie zugeschnitten; ohne Phasen eine «unbekannt»-Phase über die ganze Dauer. */
     private fun spans(s: HealthSession): List<StageSpan> =

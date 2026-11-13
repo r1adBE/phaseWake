@@ -135,4 +135,21 @@ class HealthContinuationTest {
         val copy = sleptOn.copy(stages = emptyList(), source = "other")
         assertEquals(listOf(438L), HealthHistory.summaries(listOf(night, sleptOn, copy), null, zone).map { it.asleepMinutes })
     }
+
+    @Test
+    fun shortOverlapIsStillAContinuation() {
+        // Audit 2c82e15: Health Connect schreibt die Teile oft mit einer Sekunde Überlappung – trotzdem Weiterschlafen.
+        val overlapping = sleptOn.copy(
+            start = night.end.minusSeconds(1),
+            stages = listOf(StageSpan(night.end.minusSeconds(1), t("2026-11-12T09:24:00Z"), SleepStage.AWAKE), span("09:24", "10:56", SleepStage.LIGHT)),
+        )
+        val session = HealthHistory.merge(emptyList(), listOf(night, overlapping), null, zone).single().session!!
+        assertEquals(night.start to overlapping.end, session.start to session.end)
+        // Die Sekunde zählt nicht doppelt; Schlaf wie ohne Überlappung: 346 + 92.
+        assertEquals(438, session.asleepMinutes)
+        assertEquals(listOf(438L), HealthHistory.summaries(listOf(night, overlapping), null, zone).map { it.asleepMinutes })
+        // Auch ein langer zweiter Teil (keine Nickerchen-Länge) mit Sekunden-Überlappung bleibt, statt als Doppel zu fallen.
+        val long = HealthSession(night.end.minusSeconds(1), night.end.plus(java.time.Duration.ofHours(4)), source = samsung)
+        assertEquals(night.end.plus(java.time.Duration.ofHours(4)), HealthHistory.merge(emptyList(), listOf(night, long), null, zone).single().session!!.end)
+    }
 }

@@ -136,6 +136,15 @@ public enum HealthHistory {
     /// dann nie ein Nickerchen und zählt überall mit der Nacht zusammen (``merge(nights:sessions:clearedAt:calendar:)``,
     /// ``summaries(_:clearedAt:calendar:)``, ``stages(_:clearedAt:calendar:)``).
     public static let continuationGap: TimeInterval = 60 * 60
+
+    /// Kleine Überlappung, die noch als Anschluss gilt, nicht als Doppel (Audit 2c82e15): Health-Daten schreiben die Teile
+    /// einer getrennten Nacht oft mit einer Sekunde Überlappung. Erst wer sich länger überschneidet, ist ein Doppel.
+    public static let overlapTolerance: TimeInterval = 5 * 60
+
+    /// Überschneiden sich `a` und `b` um mehr als ``overlapTolerance`` (dann zählt nur eine, ``distinct(_:)``)?
+    private static func clash(_ a: HealthSession, _ b: HealthSession) -> Bool {
+        min(a.end, b.end).timeIntervalSince(max(a.start, b.start)) > overlapTolerance
+    }
     /// Lesefenster der Gesundheitsdaten in Tagen, so lang wie der eigene Verlauf (`NightHistory.maxNights`).
     public static let days = 90
 
@@ -181,7 +190,7 @@ public enum HealthHistory {
     /// dann die längste, dann der frühere Beginn, dann die Quelle (`nil` zuerst, sonst alphabetisch). Nach Beginn sortiert.
     public static func distinct(_ sessions: [HealthSession]) -> [HealthSession] {
         var kept: [HealthSession] = []
-        for session in sessions.sorted(by: preferred) where !kept.contains(where: { session.start < $0.end && $0.start < session.end }) {
+        for session in sessions.sorted(by: preferred) where !kept.contains(where: { clash(session, $0) }) {
             kept.append(session)
         }
         return kept.sorted { $0.start < $1.start }
@@ -216,14 +225,15 @@ public enum HealthHistory {
         let valid = visible(sessions, clearedAt: clearedAt).filter { $0.end > $0.start }
         let nights = distinct(valid.filter { !$0.isNap(calendar: calendar) })
         let naps = distinct(valid.filter { $0.isNap(calendar: calendar) })
-            .filter { nap in !nights.contains(where: { nap.start < $0.end && $0.start < nap.end }) }
-        // Beginnzeiten sind verschieden (keine Überschneidungen, Ende nach Beginn): Sortierung eindeutig.
+            .filter { nap in !nights.contains(where: { clash(nap, $0) }) }
+        // Nach Beginn; bei gleichem Beginn zuerst die Nacht (stabil, wie Kotlin `sortedBy`).
         let ordered = (nights.map { (session: $0, isNight: true) } + naps.map { (session: $0, isNight: false) })
-            .sorted { $0.session.start < $1.session.start }
+            .sorted { $0.session.start != $1.session.start ? $0.session.start < $1.session.start : ($0.isNight && !$1.isNight) }
         var result: [[HealthSession]] = []
         for entry in ordered {
-            if let last = result.last?.last, entry.session.start >= last.end,
-               entry.session.start.timeIntervalSince(last.end) <= continuationGap {
+            // Anschluss: beginnt höchstens ``overlapTolerance`` vor dem Ende des vorigen Teils, endet danach, Lücke ≤ continuationGap.
+            if let last = result.last?.last, entry.session.start >= last.end.addingTimeInterval(-overlapTolerance),
+               entry.session.end > last.end, entry.session.start.timeIntervalSince(last.end) <= continuationGap {
                 result[result.count - 1].append(entry.session)
             } else if entry.isNight {
                 result.append([entry.session])
@@ -237,7 +247,15 @@ public enum HealthHistory {
     private static func join(_ parts: [HealthSession]) -> HealthSession {
         let first = parts[0]
         guard parts.count > 1, let last = parts.last else { return first }
-        return HealthSession(start: first.start, end: last.end, stages: parts.flatMap { spans($0) }, source: first.source)
+        // Jeder Teil ab dem Ende des vorigen: eine kurze Überlappung zählt nicht doppelt.
+        var stages: [StageSpan] = []
+        for (i, part) in parts.enumerated() {
+            let from = i == 0 ? part.start : max(part.start, parts[i - 1].end)
+            for span in spans(part) where span.end > from {
+                stages.append(StageSpan(start: max(span.start, from), end: span.end, stage: span.stage))
+            }
+        }
+        return HealthSession(start: first.start, end: last.end, stages: stages, source: first.source)
     }
 
     /// Phasen der Sitzung, auf sie zugeschnitten; ohne Phasen eine «unbekannt»-Phase über die ganze Dauer.

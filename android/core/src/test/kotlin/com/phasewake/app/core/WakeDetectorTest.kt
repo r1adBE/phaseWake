@@ -250,6 +250,16 @@ class WakeDetectorTest {
     }
 
     @Test
+    fun plausibilityIsMeasuredAgainstTheCappedWindowFloor() {
+        // Audit 2c82e15: Die Latte 0.25 × F rechnet mit F wie immer höchstens 0.04 (nicht mit dem rohen 0.08), also
+        // höchstens 0.01. Ein ruhiger Vorwert 0.012 begrenzt ein unruhiges Fenster damit auf 1.5 × 0.012 = 0.018 (K-1).
+        val restless = List(8) { 0.08 }
+        assertEquals(0.018, NoiseFloor.windowFloor(restless, DetectorConfig(personalFloor = 0.012))!!, 1e-12)
+        // Knapp darunter (0.0099 < 0.01) gilt die Grenze nicht: es bleibt 0.04.
+        assertEquals(0.04, NoiseFloor.windowFloor(restless, DetectorConfig(personalFloor = 0.0099))!!, 1e-12)
+    }
+
+    @Test
     fun implausiblyLowPriorDoesNotCap() {
         // Fix KN-2: Uhr mit Rauschen 0.02, Vorwissen 0.004 < 0.25 × 0.02 = 0.005: keine Obergrenze, es bleibt 0.02
         // (sonst Leicht-Schwelle 2.5 × 0.006 = 0.015, und das Rauschen zählte als Bewegung).

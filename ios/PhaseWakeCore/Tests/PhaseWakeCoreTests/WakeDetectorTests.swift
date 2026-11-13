@@ -229,6 +229,13 @@ final class WakeDetectorTests: XCTestCase {
         XCTAssertNil(NoiseFloor.priorFloor(DetectorConfig.standard))
     }
 
+    func testPlausibilityIsMeasuredAgainstTheCappedWindowFloor() throws {
+        // Audit 2c82e15: Die Latte 0.25 × F rechnet mit F höchstens 0.04 (nicht mit dem rohen 0.08), also höchstens 0.01.
+        let restless: [Double?] = Array(repeating: 0.08, count: 8)
+        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(restless, config: try DetectorConfig(personalFloor: 0.012))), 0.018, accuracy: 1e-12)
+        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(restless, config: try DetectorConfig(personalFloor: 0.0099))), 0.04, accuracy: 1e-12)
+    }
+
     func testImplausiblyLowPriorDoesNotCap() throws {
         // Fix KN-2: Uhr mit Rauschen 0.02, Vorwissen 0.004 < 0.25 × 0.02 = 0.005: keine Obergrenze, es bleibt 0.02.
         let noisy: [Double?] = Array(repeating: 0.02, count: 8)

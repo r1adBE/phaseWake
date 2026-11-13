@@ -133,4 +133,20 @@ final class HealthContinuationTests: XCTestCase {
         let copy = HealthSession(start: sleptOn.start, end: sleptOn.end, source: "other")
         XCTAssertEqual(summaries([night, sleptOn, copy]).map(\.asleepMinutes), [438])
     }
+
+    func testShortOverlapIsStillAContinuation() throws {
+        // Audit 2c82e15: Teile oft mit einer Sekunde Überlappung geschrieben – trotzdem Weiterschlafen.
+        let from = night.end.addingTimeInterval(-1)
+        let overlapping = HealthSession(start: from, end: sleptOn.end,
+                                        stages: [StageSpan(start: from, end: t("2026-11-12T09:24:00Z"), stage: .awake), span("09:24", "10:56", .light)],
+                                        source: samsung)
+        let session = try XCTUnwrap(merge([night, overlapping]).first?.session)
+        XCTAssertEqual(merge([night, overlapping]).count, 1)
+        XCTAssertEqual(session.start, night.start)
+        XCTAssertEqual(session.end, overlapping.end)
+        XCTAssertEqual(session.asleepMinutes, 438)
+        XCTAssertEqual(summaries([night, overlapping]).map(\.asleepMinutes), [438])
+        let long = HealthSession(start: from, end: night.end.addingTimeInterval(4 * 3600), source: samsung)
+        XCTAssertEqual(merge([night, long]).first?.session?.end, night.end.addingTimeInterval(4 * 3600))
+    }
 }
