@@ -562,7 +562,7 @@
     <string name="record_start">Записать ночь</string>
     <string name="record_stop">Остановить запись</string>
     <string name="record_since">Запись идёт с %1$s</string>
-    <string name="record_hint">Твои часы измеряют движение и пульс в течение всей ночи. По этим ночам Phase Wake на этапе обучения узнаёт твои собственные значения и подстраивает будильник под тебя. Это расходует немного заряда – заряди часы перед сном.</string>
+    <string name="record_hint">Твои часы измеряют движение и пульс в течение всей ночи. Это расходует немного заряда – заряди часы перед сном.</string>
     <string name="record_end_manual">Остановлена</string>
     <string name="record_end_cap">Завершена через 12 ч</string>
     <string name="record_end_battery">Низкий заряд часов</string>
@@ -616,7 +616,8 @@
     <string name="learn_point_nights">%1$d ночей</string>
     <string name="learn_point_battery">Это расходует немного заряда – заряди часы перед сном.</string>
     <string name="learn_point_private">Данные остаются на твоих устройствах. Этап обучения можно в любой момент отключить в настройках.</string>
-    <string name="learn_switch_hint">Часы измеряют ночью движение и пульс, чтобы подстроить будильник. Выкл.: без автоматической записи, изученные значения сохраняются.</string>
+    <string name="learn_switch_hint">Часы измеряют ночью движение и пульс (от %1$d %% заряда). Выкл.: без автоматической записи, изученные значения сохраняются.</string>
+    <string name="learn_switch_title">Активна</string>
     <string name="watch_open_app_hint">Открой Phase Wake на часах, чтобы они получили команду.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Каждая ночь с начала этапа обучения – засчитана ли она, а если нет, то почему и что поможет. Phase Wake нужно %1$d засчитанных ночей.</string>

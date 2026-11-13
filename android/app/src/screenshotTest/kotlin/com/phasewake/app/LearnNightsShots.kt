@@ -9,6 +9,7 @@ import androidx.compose.ui.unit.dp
 import com.android.tools.screenshot.PreviewTest
 import com.phasewake.app.core.LearnNights
 import com.phasewake.app.core.LearnNights.Reason
+import com.phasewake.app.shared.RecordSync
 import com.phasewake.app.ui.home.HomeLearning
 import com.phasewake.app.ui.home.LearnNightsScreen
 import com.phasewake.app.ui.home.LearningCard
@@ -44,11 +45,11 @@ fun LearnNightsDark() = Overview(ThemeMode.DARK)
 @PreviewTest @Preview(locale = "fi", name = "Lern-Übersicht Finnisch", device = PHONE) @Composable
 fun LearnNightsFinnish() = Overview(ThemeMode.DARK)
 
-/** Karte der Lernphase auf der Startseite: Nacht 3 von 7, letzte Nacht wegen Akku nicht gezählt, «Details». */
+/** Karte der Lernphase auf der Startseite: Nacht 3 von 7, letzte Nacht wegen Akku nicht gezählt, «Details», «Nacht aufzeichnen». */
 @Composable
 private fun Card(mode: ThemeMode) = Themed(mode) {
     Box(Modifier.padding(vertical = 24.dp)) {
-        LearningCard(HomeLearning(3, null, miss = sampleNights.first(), onDetails = {}))
+        LearningCard(HomeLearning(3, null, miss = sampleNights.first(), onDetails = {}), RecordSync.RecordStatus(null))
     }
 }
 

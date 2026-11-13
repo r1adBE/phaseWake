@@ -537,7 +537,7 @@
     <string name="record_start">ਰਾਤ ਰਿਕਾਰਡ ਕਰੋ</string>
     <string name="record_stop">ਰਿਕਾਰਡਿੰਗ ਰੋਕੋ</string>
     <string name="record_since">%1$s ਤੋਂ ਰਿਕਾਰਡ ਹੋ ਰਿਹਾ ਹੈ</string>
-    <string name="record_hint">ਤੇਰੀ ਘੜੀ ਸਾਰੀ ਰਾਤ ਹਿਲਜੁਲ ਅਤੇ ਨਬਜ਼ ਮਾਪਦੀ ਹੈ। ਇਨ੍ਹਾਂ ਰਾਤਾਂ ਤੋਂ Phase Wake ਸਿੱਖਣ ਦੇ ਪੜਾਅ ਵਿੱਚ ਤੇਰੇ ਆਪਣੇ ਮੁੱਲ ਸਿੱਖਦਾ ਹੈ ਅਤੇ ਅਲਾਰਮ ਨੂੰ ਤੇਰੇ ਮੁਤਾਬਕ ਢਾਲਦਾ ਹੈ। ਇਸ ਵਿੱਚ ਕੁਝ ਬੈਟਰੀ ਲੱਗਦੀ ਹੈ – ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਘੜੀ ਚਾਰਜ ਕਰ ਲੈ।</string>
+    <string name="record_hint">ਤੇਰੀ ਘੜੀ ਸਾਰੀ ਰਾਤ ਹਿਲਜੁਲ ਅਤੇ ਨਬਜ਼ ਮਾਪਦੀ ਹੈ। ਇਸ ਵਿੱਚ ਕੁਝ ਬੈਟਰੀ ਲੱਗਦੀ ਹੈ – ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਘੜੀ ਚਾਰਜ ਕਰ ਲੈ।</string>
     <string name="record_end_manual">ਰੋਕਿਆ ਗਿਆ</string>
     <string name="record_end_cap">12 ਘੰਟਿਆਂ ਬਾਅਦ ਖਤਮ</string>
     <string name="record_end_battery">ਘੜੀ ਦੀ ਬੈਟਰੀ ਘੱਟ ਹੈ</string>
@@ -591,7 +591,8 @@
     <string name="learn_point_nights">%1$d ਰਾਤਾਂ ਤੱਕ</string>
     <string name="learn_point_battery">ਇਸ ਵਿੱਚ ਕੁਝ ਬੈਟਰੀ ਲੱਗਦੀ ਹੈ – ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਘੜੀ ਚਾਰਜ ਕਰੋ।</string>
     <string name="learn_point_private">ਡਾਟਾ ਤੁਹਾਡੇ ਡਿਵਾਈਸਾਂ ’ਤੇ ਹੀ ਰਹਿੰਦਾ ਹੈ। ਸਿੱਖਣ ਦਾ ਪੜਾਅ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਕਦੇ ਵੀ ਬੰਦ ਕਰ ਸਕਦੇ ਹੋ।</string>
-    <string name="learn_switch_hint">ਅਲਾਰਮ ਢਾਲਣ ਲਈ ਤੁਹਾਡੀ ਘੜੀ ਰਾਤ ਨੂੰ ਹਿਲਜੁਲ ਅਤੇ ਨਬਜ਼ ਮਾਪਦੀ ਹੈ। ਬੰਦ: ਕੋਈ ਆਪਣੇ-ਆਪ ਰਿਕਾਰਡਿੰਗ ਨਹੀਂ, ਸਿੱਖੇ ਮੁੱਲ ਰਹਿੰਦੇ ਹਨ।</string>
+    <string name="learn_switch_hint">ਤੁਹਾਡੀ ਘੜੀ ਰਾਤ ਨੂੰ ਹਿਲਜੁਲ ਅਤੇ ਨਬਜ਼ ਮਾਪਦੀ ਹੈ (ਘੱਟੋ-ਘੱਟ %1$d %% ਬੈਟਰੀ ਨਾਲ)। ਬੰਦ: ਕੋਈ ਆਪਣੇ-ਆਪ ਰਿਕਾਰਡਿੰਗ ਨਹੀਂ, ਸਿੱਖੇ ਮੁੱਲ ਰਹਿੰਦੇ ਹਨ।</string>
+    <string name="learn_switch_title">ਚਾਲੂ</string>
     <string name="watch_open_app_hint">ਘੜੀ ’ਤੇ Phase Wake ਖੋਲ੍ਹੋ, ਤਾਂ ਜੋ ਇਸਨੂੰ ਹੁਕਮ ਮਿਲੇ।</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">ਸਿੱਖਣ ਦਾ ਪੜਾਅ ਸ਼ੁਰੂ ਹੋਣ ਤੋਂ ਬਾਅਦ ਹਰ ਰਾਤ – ਕੀ ਉਹ ਗਿਣੀ ਗਈ, ਅਤੇ ਜੇ ਨਹੀਂ ਤਾਂ ਕਿਉਂ ਅਤੇ ਕੀ ਮਦਦ ਕਰੇਗਾ। Phase Wake ਨੂੰ %1$d ਗਿਣੀਆਂ ਰਾਤਾਂ ਚਾਹੀਦੀਆਂ ਹਨ।</string>

@@ -536,7 +536,7 @@
     <string name="record_start">രാത്രി റെക്കോർഡ് ചെയ്യുക</string>
     <string name="record_stop">റെക്കോർഡിംഗ് നിർത്തുക</string>
     <string name="record_since">%1$s മുതൽ റെക്കോർഡ് ചെയ്യുന്നു</string>
-    <string name="record_hint">നിന്റെ വാച്ച് രാത്രി മുഴുവൻ ചലനവും പൾസും അളക്കുന്നു. ഈ രാത്രികളിൽ നിന്ന് Phase Wake പഠന ഘട്ടത്തിൽ നിന്റെ സ്വന്തം മൂല്യങ്ങൾ പഠിച്ച് അലാറം നിനക്ക് അനുയോജ്യമാക്കുന്നു. ഇതിന് കുറച്ച് ബാറ്ററി വേണം – ഉറങ്ങുന്നതിന് മുമ്പ് വാച്ച് ചാർജ് ചെയ്യൂ.</string>
+    <string name="record_hint">നിന്റെ വാച്ച് രാത്രി മുഴുവൻ ചലനവും പൾസും അളക്കുന്നു. ഇതിന് കുറച്ച് ബാറ്ററി വേണം – ഉറങ്ങുന്നതിന് മുമ്പ് വാച്ച് ചാർജ് ചെയ്യൂ.</string>
     <string name="record_end_manual">നിർത്തി</string>
     <string name="record_end_cap">12 മണിക്കൂറിന് ശേഷം അവസാനിച്ചു</string>
     <string name="record_end_battery">വാച്ചിന്റെ ബാറ്ററി കുറവാണ്</string>
@@ -590,7 +590,8 @@
     <string name="learn_point_nights">%1$d രാത്രികൾ</string>
     <string name="learn_point_battery">ഇതിന് കുറച്ച് ബാറ്ററി വേണം – ഉറങ്ങുന്നതിന് മുമ്പ് വാച്ച് ചാർജ് ചെയ്യുക.</string>
     <string name="learn_point_private">ഡാറ്റ നിങ്ങളുടെ ഉപകരണങ്ങളിൽ തന്നെ നിൽക്കും. പഠന ഘട്ടം ക്രമീകരണങ്ങളിൽ എപ്പോൾ വേണമെങ്കിലും ഓഫാക്കാം.</string>
-    <string name="learn_switch_hint">അലാറം ക്രമീകരിക്കാൻ നിങ്ങളുടെ വാച്ച് രാത്രിയിൽ ചലനവും പൾസും അളക്കുന്നു. ഓഫ്: സ്വയമേവ രേഖപ്പെടുത്തലില്ല, പഠിച്ച മൂല്യങ്ങൾ നിലനിൽക്കും.</string>
+    <string name="learn_switch_hint">നിങ്ങളുടെ വാച്ച് രാത്രിയിൽ ചലനവും പൾസും അളക്കുന്നു (കുറഞ്ഞത് %1$d %% ബാറ്ററിയിൽ). ഓഫ്: സ്വയമേവ രേഖപ്പെടുത്തലില്ല, പഠിച്ച മൂല്യങ്ങൾ നിലനിൽക്കും.</string>
+    <string name="learn_switch_title">സജീവം</string>
     <string name="watch_open_app_hint">കമാൻഡ് ലഭിക്കാൻ വാച്ചിൽ Phase Wake തുറക്കുക.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">പഠന ഘട്ടം തുടങ്ങിയതുമുതൽ ഓരോ രാത്രിയും – അത് എണ്ണപ്പെട്ടോ, ഇല്ലെങ്കിൽ എന്തുകൊണ്ട്, എന്ത് സഹായിക്കും. Phase Wake-ന് എണ്ണപ്പെട്ട %1$d രാത്രികൾ വേണം.</string>

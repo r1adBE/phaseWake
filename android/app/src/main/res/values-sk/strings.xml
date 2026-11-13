@@ -564,7 +564,7 @@
     <string name="record_start">Zaznamenať noc</string>
     <string name="record_stop">Zastaviť záznam</string>
     <string name="record_since">Záznam beží od %1$s</string>
-    <string name="record_hint">Tvoje hodinky merajú cez celú noc pohyb a pulz. Z týchto nocí sa Phase Wake vo fáze učenia naučí tvoje vlastné hodnoty a prispôsobí ti budík. Spotrebuje to trochu batérie – nabi hodinky pred spaním.</string>
+    <string name="record_hint">Tvoje hodinky merajú cez celú noc pohyb a pulz. Spotrebuje to trochu batérie – nabi hodinky pred spaním.</string>
     <string name="record_end_manual">Zastavené</string>
     <string name="record_end_cap">Ukončené po 12 h</string>
     <string name="record_end_battery">Slabá batéria hodiniek</string>
@@ -618,7 +618,8 @@
     <string name="learn_point_nights">%1$d nocí</string>
     <string name="learn_point_battery">Spotrebuje to trochu batérie – nabi hodinky pred spaním.</string>
     <string name="learn_point_private">Údaje zostávajú v tvojich zariadeniach. Fázu učenia môžeš kedykoľvek vypnúť v nastaveniach.</string>
-    <string name="learn_switch_hint">Hodinky v noci merajú pohyb a pulz, aby prispôsobili budík. Vypnuté: žiadny automatický záznam, naučené hodnoty zostávajú.</string>
+    <string name="learn_switch_hint">Hodinky v noci merajú pohyb a pulz (od %1$d %% batérie). Vypnuté: žiadny automatický záznam, naučené hodnoty zostávajú.</string>
+    <string name="learn_switch_title">Aktívna</string>
     <string name="watch_open_app_hint">Otvor Phase Wake na hodinkách, aby príkaz prijali.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Každá noc od začiatku fázy učenia – či sa započítala, a ak nie, prečo a čo pomôže. Phase Wake potrebuje %1$d započítaných nocí.</string>

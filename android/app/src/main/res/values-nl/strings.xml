@@ -534,7 +534,7 @@
     <string name="record_start">Nacht opnemen</string>
     <string name="record_stop">Opname stoppen</string>
     <string name="record_since">Neemt op sinds %1$s</string>
-    <string name="record_hint">Je horloge meet de hele nacht door beweging en hartslag. Uit deze nachten leert Phase Wake in de leerfase je eigen waarden en past de wekker aan jou aan. Dat kost wat batterij – laad het horloge op voordat je gaat slapen.</string>
+    <string name="record_hint">Je horloge meet de hele nacht door beweging en hartslag. Dat kost wat batterij – laad het horloge op voordat je gaat slapen.</string>
     <string name="record_end_manual">Gestopt</string>
     <string name="record_end_cap">Na 12 u beëindigd</string>
     <string name="record_end_battery">Batterij horloge bijna leeg</string>
@@ -588,7 +588,8 @@
     <string name="learn_point_nights">%1$d nachten lang</string>
     <string name="learn_point_battery">Dat kost wat batterij – laad het horloge op voordat je gaat slapen.</string>
     <string name="learn_point_private">De gegevens blijven op je apparaten. Je kunt de leerfase op elk moment uitzetten in de instellingen.</string>
-    <string name="learn_switch_hint">Je horloge meet ’s nachts beweging en hartslag om de wekker af te stemmen. Uit: geen automatische registratie, geleerde waarden blijven.</string>
+    <string name="learn_switch_hint">Je horloge meet ’s nachts beweging en hartslag (vanaf %1$d %% batterij). Uit: geen automatische registratie, geleerde waarden blijven.</string>
+    <string name="learn_switch_title">Actief</string>
     <string name="watch_open_app_hint">Open Phase Wake op je horloge zodat het de opdracht ontvangt.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Elke nacht sinds de leerfase begon – of hij meetelde en, zo niet, waarom en wat helpt. Phase Wake heeft %1$d getelde nachten nodig.</string>

@@ -537,7 +537,7 @@
     <string name="record_start">රාත්‍රිය පටිගත කරන්න</string>
     <string name="record_stop">පටිගත කිරීම නවත්වන්න</string>
     <string name="record_since">%1$s සිට පටිගත වෙමින්</string>
-    <string name="record_hint">ඔබේ ඔරලෝසුව රාත්‍රිය පුරා චලනය සහ නාඩිය මනියි. මෙම රාත්‍රීවලින් Phase Wake ඉගෙනුම් අදියරේදී ඔබේම අගයන් ඉගෙන ගෙන එලාමය ඔබට ගැළපෙන ලෙස සකසයි. මෙයට බැටරියෙන් ටිකක් වැය වේ – නින්දට පෙර ඔරලෝසුව ආරෝපණය කරන්න.</string>
+    <string name="record_hint">ඔබේ ඔරලෝසුව රාත්‍රිය පුරා චලනය සහ නාඩිය මනියි. මෙයට බැටරියෙන් ටිකක් වැය වේ – නින්දට පෙර ඔරලෝසුව ආරෝපණය කරන්න.</string>
     <string name="record_end_manual">නවත්වන ලදී</string>
     <string name="record_end_cap">පැය 12කට පසු අවසන් විය</string>
     <string name="record_end_battery">ඔරලෝසුවේ බැටරිය අඩුයි</string>
@@ -591,7 +591,8 @@
     <string name="learn_point_nights">රාත්‍රී %1$d ක් පුරා</string>
     <string name="learn_point_battery">මෙයට බැටරියෙන් ටිකක් වැය වේ – නින්දට පෙර ඔරලෝසුව ආරෝපණය කරන්න.</string>
     <string name="learn_point_private">දත්ත ඔබේ උපාංගවලම පවතී. ඕනෑම වේලාවක සැකසීම් තුළ ඉගෙනීමේ අදියර අක්‍රිය කළ හැක.</string>
-    <string name="learn_switch_hint">එලාමය සකස් කිරීමට ඔබේ ඔරලෝසුව රාත්‍රියේ චලනය සහ නාඩිය මනියි. අක්‍රියයි: ස්වයංක්‍රීය වාර්තා කිරීමක් නැත, ඉගෙනගත් අගයන් පවතී.</string>
+    <string name="learn_switch_hint">ඔබේ ඔරලෝසුව රාත්‍රියේ චලනය සහ නාඩිය මනියි (අවම %1$d %% බැටරියකින්). අක්‍රියයි: ස්වයංක්‍රීය වාර්තා කිරීමක් නැත, ඉගෙනගත් අගයන් පවතී.</string>
+    <string name="learn_switch_title">සක්‍රියයි</string>
     <string name="watch_open_app_hint">විධානය ලැබීමට ඔරලෝසුවේ Phase Wake විවෘත කරන්න.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">ඉගෙනීමේ අදියර ආරම්භ වූ දා සිට සෑම රාත්‍රියක්ම – එය ගණන් ගත්තාද, නැතිනම් ඇයි සහ උදව් වන්නේ කුමක්ද. Phase Wake ට ගණන් ගත් රාත්‍රී %1$d ක් අවශ්‍යයි.</string>

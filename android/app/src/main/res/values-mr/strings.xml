@@ -537,7 +537,7 @@
     <string name="record_start">रात्र रेकॉर्ड करा</string>
     <string name="record_stop">रेकॉर्डिंग थांबवा</string>
     <string name="record_since">%1$s पासून रेकॉर्डिंग सुरू आहे</string>
-    <string name="record_hint">तुझे घड्याळ रात्रभर हालचाल आणि नाडी मोजते. या रात्रींमधून Phase Wake शिकण्याच्या टप्प्यात तुझी स्वतःची मूल्ये शिकतो आणि अलार्म तुझ्यानुसार जुळवतो. यासाठी थोडी बॅटरी लागते – झोपण्यापूर्वी घड्याळ चार्ज कर.</string>
+    <string name="record_hint">तुझे घड्याळ रात्रभर हालचाल आणि नाडी मोजते. यासाठी थोडी बॅटरी लागते – झोपण्यापूर्वी घड्याळ चार्ज कर.</string>
     <string name="record_end_manual">थांबवले</string>
     <string name="record_end_cap">12 तासांनंतर संपले</string>
     <string name="record_end_battery">घड्याळाची बॅटरी कमी आहे</string>
@@ -591,7 +591,8 @@
     <string name="learn_point_nights">%1$d रात्री</string>
     <string name="learn_point_battery">यासाठी थोडी बॅटरी लागते – झोपण्यापूर्वी घड्याळ चार्ज करा.</string>
     <string name="learn_point_private">डेटा तुमच्या डिव्हाइसवरच राहतो. शिकण्याचा टप्पा सेटिंग्जमध्ये कधीही बंद करू शकता.</string>
-    <string name="learn_switch_hint">अलार्म जुळवण्यासाठी तुमचे घड्याळ रात्री हालचाल आणि नाडी मोजते. बंद: आपोआप नोंद नाही, शिकलेली मूल्ये राहतात.</string>
+    <string name="learn_switch_hint">तुमचे घड्याळ रात्री हालचाल आणि नाडी मोजते (किमान %1$d %% बॅटरीवर). बंद: आपोआप नोंद नाही, शिकलेली मूल्ये राहतात.</string>
+    <string name="learn_switch_title">सक्रिय</string>
     <string name="watch_open_app_hint">घड्याळावर Phase Wake उघडा, म्हणजे त्याला आदेश मिळेल.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">शिकण्याचा टप्पा सुरू झाल्यापासून प्रत्येक रात्र – ती मोजली गेली का, आणि नसेल तर का आणि काय मदत करेल. Phase Wake ला %1$d मोजलेल्या रात्री लागतात.</string>

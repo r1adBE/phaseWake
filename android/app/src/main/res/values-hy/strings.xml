@@ -522,7 +522,7 @@
     <string name="record_start">Գրառել գիշերը</string>
     <string name="record_stop">Դադարեցնել գրառումը</string>
     <string name="record_since">Գրառվում է %1$s-ից</string>
-    <string name="record_hint">Ժամացույցդ ամբողջ գիշերվա ընթացքում չափում է շարժումն ու զարկերակը։ Այդ գիշերներից Phase Wake-ը ուսուցման փուլում սովորում է քո սեփական արժեքները և զարթուցիչը հարմարեցնում քեզ։ Սա որոշ չափով մարտկոց է ծախսում – քնելուց առաջ լիցքավորիր ժամացույցը։</string>
+    <string name="record_hint">Ժամացույցդ ամբողջ գիշերվա ընթացքում չափում է շարժումն ու զարկերակը։ Սա որոշ չափով մարտկոց է ծախսում – քնելուց առաջ լիցքավորիր ժամացույցը։</string>
     <string name="record_end_manual">Դադարեցված է</string>
     <string name="record_end_cap">Ավարտվեց 12 ժ հետո</string>
     <string name="record_end_battery">Ժամացույցի մարտկոցը թույլ է</string>
@@ -576,7 +576,8 @@
     <string name="learn_point_nights">%1$d գիշեր</string>
     <string name="learn_point_battery">Սա որոշ չափով մարտկոց է ծախսում – քնելուց առաջ լիցքավորիր ժամացույցը։</string>
     <string name="learn_point_private">Տվյալները մնում են քո սարքերում։ Ուսուցման փուլը կարող ես ցանկացած ժամանակ անջատել կարգավորումներում։</string>
-    <string name="learn_switch_hint">Ժամացույցդ գիշերը չափում է շարժումն ու զարկերակը՝ զարթուցիչը հարմարեցնելու համար։ Անջատված է՝ ավտոմատ գրանցում չկա, սովորած արժեքները մնում են։</string>
+    <string name="learn_switch_hint">Ժամացույցդ գիշերը չափում է շարժումն ու զարկերակը (%1$d %% լիցքից սկսած)։ Անջատված է՝ ավտոմատ գրանցում չկա, սովորած արժեքները մնում են։</string>
+    <string name="learn_switch_title">Ակտիվ</string>
     <string name="watch_open_app_hint">Բացիր Phase Wake-ը ժամացույցում, որպեսզի այն ստանա հրամանը։</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Ամեն գիշեր ուսուցման փուլի սկզբից – հաշվվե՞լ է, և եթե ոչ, ինչու և ինչն է օգնում։ Phase Wake-ին պետք է %1$d հաշվված գիշեր։</string>

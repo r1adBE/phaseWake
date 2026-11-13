@@ -534,7 +534,7 @@
     <string name="record_start">Spela in natten</string>
     <string name="record_stop">Stoppa inspelning</string>
     <string name="record_since">Spelar in sedan %1$s</string>
-    <string name="record_hint">Din klocka mäter rörelse och puls under hela natten. Utifrån de här nätterna lär sig Phase Wake dina egna värden i inlärningsfasen och anpassar alarmet efter dig. Det drar lite batteri – ladda klockan innan du sover.</string>
+    <string name="record_hint">Din klocka mäter rörelse och puls under hela natten. Det drar lite batteri – ladda klockan innan du sover.</string>
     <string name="record_end_manual">Stoppad</string>
     <string name="record_end_cap">Avslutad efter 12 h</string>
     <string name="record_end_battery">Klockans batteri är lågt</string>
@@ -588,7 +588,8 @@
     <string name="learn_point_nights">I %1$d nätter</string>
     <string name="learn_point_battery">Det drar lite batteri – ladda klockan innan du sover.</string>
     <string name="learn_point_private">Datan stannar på dina enheter. Du kan stänga av inlärningsfasen i inställningarna när som helst.</string>
-    <string name="learn_switch_hint">Din klocka mäter rörelse och puls på natten för att anpassa larmet. Av: ingen automatisk registrering, inlärda värden finns kvar.</string>
+    <string name="learn_switch_hint">Din klocka mäter rörelse och puls på natten (från %1$d %% batteri). Av: ingen automatisk registrering, inlärda värden finns kvar.</string>
+    <string name="learn_switch_title">Aktiv</string>
     <string name="watch_open_app_hint">Öppna Phase Wake på klockan så att den tar emot kommandot.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Varje natt sedan inlärningsfasen började – om den räknades och, om inte, varför och vad som hjälper. Phase Wake behöver %1$d räknade nätter.</string>

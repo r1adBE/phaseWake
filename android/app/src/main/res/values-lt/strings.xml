@@ -565,7 +565,7 @@
     <string name="record_start">Įrašyti naktį</string>
     <string name="record_stop">Stabdyti įrašymą</string>
     <string name="record_since">Įrašoma nuo %1$s</string>
-    <string name="record_hint">Tavo laikrodis visą naktį matuoja judesį ir pulsą. Iš šių naktų Phase Wake mokymosi etape išmoksta tavo vertes ir pritaiko žadintuvą tau. Tai sunaudoja šiek tiek baterijos – įkrauk laikrodį prieš miegą.</string>
+    <string name="record_hint">Tavo laikrodis visą naktį matuoja judesį ir pulsą. Tai sunaudoja šiek tiek baterijos – įkrauk laikrodį prieš miegą.</string>
     <string name="record_end_manual">Sustabdyta</string>
     <string name="record_end_cap">Baigta po 12 val.</string>
     <string name="record_end_battery">Laikrodžio baterija senka</string>
@@ -619,7 +619,8 @@
     <string name="learn_point_nights">%1$d naktis</string>
     <string name="learn_point_battery">Tai sunaudoja šiek tiek baterijos – įkrauk laikrodį prieš miegą.</string>
     <string name="learn_point_private">Duomenys lieka tavo įrenginiuose. Mokymosi etapą gali bet kada išjungti nustatymuose.</string>
-    <string name="learn_switch_hint">Tavo laikrodis naktį matuoja judesį ir pulsą, kad pritaikytų žadintuvą. Išjungta: jokio automatinio įrašymo, išmoktos vertės lieka.</string>
+    <string name="learn_switch_hint">Tavo laikrodis naktį matuoja judesį ir pulsą (nuo %1$d %% baterijos). Išjungta: jokio automatinio įrašymo, išmoktos vertės lieka.</string>
+    <string name="learn_switch_title">Aktyvi</string>
     <string name="watch_open_app_hint">Atidaryk Phase Wake laikrodyje, kad jis gautų komandą.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Kiekviena naktis nuo mokymosi etapo pradžios – ar ji įskaityta, o jei ne, kodėl ir kas padės. Phase Wake reikia %1$d įskaitytų naktų.</string>

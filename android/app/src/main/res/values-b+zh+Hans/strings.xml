@@ -520,7 +520,7 @@
     <string name="record_start">记录夜间</string>
     <string name="record_stop">停止记录</string>
     <string name="record_since">自 %1$s 起正在记录</string>
-    <string name="record_hint">你的手表在整个夜间测量动作和脉搏。Phase Wake 会在学习阶段从这些夜晚中学习你自己的数值，并让闹钟适合你。这会消耗一些电量——睡前请给手表充电。</string>
+    <string name="record_hint">你的手表在整个夜间测量动作和脉搏。这会消耗一些电量——睡前请给手表充电。</string>
     <string name="record_end_manual">已停止</string>
     <string name="record_end_cap">12 小时后结束</string>
     <string name="record_end_battery">手表电量低</string>
@@ -574,7 +574,8 @@
     <string name="learn_point_nights">连续 %1$d 晚</string>
     <string name="learn_point_battery">这会消耗一些电量——睡前请给手表充电。</string>
     <string name="learn_point_private">数据保留在你的设备上。你可以随时在设置中关闭学习阶段。</string>
-    <string name="learn_switch_hint">你的手表会在夜间测量动作和脉搏来调整闹钟。 关闭：不再自动记录，已学到的数值保留。</string>
+    <string name="learn_switch_hint">你的手表会在夜间测量动作和脉搏（电量至少 %1$d %%）。 关闭：不再自动记录，已学到的数值保留。</string>
+    <string name="learn_switch_title">启用</string>
     <string name="watch_open_app_hint">请在手表上打开 Phase Wake，以便它接收指令。</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">学习阶段开始以来的每一晚——是否已计入；如果没有，原因是什么、怎样改善。Phase Wake 需要 %1$d 个计入的夜晚。</string>

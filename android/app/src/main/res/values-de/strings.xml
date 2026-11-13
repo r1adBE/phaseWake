@@ -534,7 +534,7 @@
     <string name="record_start">Nacht aufzeichnen</string>
     <string name="record_stop">Aufzeichnung stoppen</string>
     <string name="record_since">Aufzeichnung läuft seit %1$s</string>
-    <string name="record_hint">Deine Uhr misst über die ganze Nacht Bewegung und Puls. Daraus lernt Phase Wake in der Lernphase deine eigenen Werte und passt den Wecker an dich an. Das kostet etwas Akku – lade die Uhr vor dem Schlafen.</string>
+    <string name="record_hint">Deine Uhr misst über die ganze Nacht Bewegung und Puls. Das kostet etwas Akku – lade die Uhr vor dem Schlafen.</string>
     <string name="record_end_manual">Gestoppt</string>
     <string name="record_end_cap">Nach 12 Std. beendet</string>
     <string name="record_end_battery">Akku der Uhr schwach</string>
@@ -588,7 +588,8 @@
     <string name="learn_point_nights">%1$d Nächte lang</string>
     <string name="learn_point_battery">Das kostet etwas Akku – lade die Uhr vor dem Schlafen.</string>
     <string name="learn_point_private">Die Daten bleiben auf deinen Geräten. Du kannst die Lernphase jederzeit in den Einstellungen ausschalten.</string>
-    <string name="learn_switch_hint">Deine Uhr misst nachts Bewegung und Puls, um den Wecker anzupassen. Aus: keine automatische Aufzeichnung, gelernte Werte bleiben.</string>
+    <string name="learn_switch_hint">Die Uhr misst nachts Bewegung und Puls (ab %1$d %% Akku). Aus: keine automatische Aufzeichnung, gelernte Werte bleiben.</string>
+    <string name="learn_switch_title">Aktiv</string>
     <string name="watch_open_app_hint">Öffne Phase Wake auf der Uhr, damit sie den Befehl erhält.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Jede Nacht seit dem Beginn der Lernphase – ob sie gezählt hat und, wenn nicht, warum und was hilft. Phase Wake braucht %1$d gezählte Nächte.</string>

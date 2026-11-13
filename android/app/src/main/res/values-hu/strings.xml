@@ -534,7 +534,7 @@
     <string name="record_start">Éjszaka rögzítése</string>
     <string name="record_stop">Felvétel leállítása</string>
     <string name="record_since">Felvétel %1$s óta</string>
-    <string name="record_hint">Az órád egész éjszakán át méri a mozgást és a pulzust. Ezekből az éjszakákból a Phase Wake a tanulási szakaszban megtanulja a saját értékeidet, és hozzád igazítja az ébresztőt. Ez némi akkumulátort fogyaszt – alvás előtt töltsd fel az órát.</string>
+    <string name="record_hint">Az órád egész éjszakán át méri a mozgást és a pulzust. Ez némi akkumulátort fogyaszt – alvás előtt töltsd fel az órát.</string>
     <string name="record_end_manual">Leállítva</string>
     <string name="record_end_cap">12 óra után véget ért</string>
     <string name="record_end_battery">Az óra akkumulátora gyenge</string>
@@ -588,7 +588,8 @@
     <string name="learn_point_nights">%1$d éjszakán át</string>
     <string name="learn_point_battery">Ez némi akkumulátort fogyaszt – alvás előtt töltsd fel az órát.</string>
     <string name="learn_point_private">Az adatok a készülékeiden maradnak. A tanulási szakaszt bármikor kikapcsolhatod a beállításokban.</string>
-    <string name="learn_switch_hint">Az órád éjjel méri a mozgást és a pulzust az ébresztés igazításához. Ki: nincs automatikus rögzítés, a tanult értékek megmaradnak.</string>
+    <string name="learn_switch_hint">Az órád éjjel méri a mozgást és a pulzust (legalább %1$d %% akkumulátornál). Ki: nincs automatikus rögzítés, a tanult értékek megmaradnak.</string>
+    <string name="learn_switch_title">Aktív</string>
     <string name="watch_open_app_hint">Nyisd meg a Phase Wake-et az órán, hogy megkapja a parancsot.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Minden éjszaka a tanulási szakasz kezdete óta – beszámított-e, és ha nem, miért, és mi segít. A Phase Wake-nek %1$d beszámított éjszakára van szüksége.</string>

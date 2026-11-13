@@ -187,8 +187,11 @@ fun HomeScreen(
         extras.onNap?.let { onNap ->
             item(key = "nap") { NapCard(extras.nap, extras.napMinutes, onNap, extras.onStopNap) }
         }
-        extras.learning?.let { learning -> item(key = "learning") { LearningCard(learning) } }
-        extras.record?.let { record -> item(key = "record") { RecordCard(record.since, extras.onRecord) } }
+        extras.learning?.let { learning -> item(key = "learning") { LearningCard(learning, extras.record, extras.onRecord) } }
+        // Während der Lernphase steckt «Nacht aufzeichnen» in ihrer Karte, sonst eine eigene Karte (r1AD 13.11.2026).
+        extras.record?.takeIf { extras.learning?.inProgress != true }?.let { record ->
+            item(key = "record") { RecordCard(record.since, extras.onRecord) }
+        }
         if (lastNight != null && !morningFirst) item(key = "night") { nightCard() }
         // Morgenbericht ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): nur die Geräusche.
         soundsMorningNight(soundClips, lastNight, soundRec, plan?.windowStart, now, zone)?.let { night ->

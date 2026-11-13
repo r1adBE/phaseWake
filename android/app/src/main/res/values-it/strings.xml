@@ -548,7 +548,7 @@
     <string name="record_start">Registra la notte</string>
     <string name="record_stop">Interrompi registrazione</string>
     <string name="record_since">Registrazione dalle %1$s</string>
-    <string name="record_hint">Il tuo orologio misura movimento e battito durante tutta la notte. Da queste notti Phase Wake impara i tuoi valori nella fase di apprendimento e adatta la sveglia a te. Consuma un po’ di batteria – ricarica l’orologio prima di dormire.</string>
+    <string name="record_hint">Il tuo orologio misura movimento e battito durante tutta la notte. Consuma un po’ di batteria – ricarica l’orologio prima di dormire.</string>
     <string name="record_end_manual">Fermata</string>
     <string name="record_end_cap">Terminata dopo 12 h</string>
     <string name="record_end_battery">Batteria dell’orologio scarica</string>
@@ -602,7 +602,8 @@
     <string name="learn_point_nights">Per %1$d notti</string>
     <string name="learn_point_battery">Consuma un po’ di batteria – ricarica l’orologio prima di dormire.</string>
     <string name="learn_point_private">I dati restano sui tuoi dispositivi. Puoi disattivare la fase di apprendimento nelle impostazioni in qualsiasi momento.</string>
-    <string name="learn_switch_hint">Il tuo orologio misura movimento e battito di notte per adattare la sveglia. Disattivato: nessuna registrazione automatica, i valori appresi restano.</string>
+    <string name="learn_switch_hint">Il tuo orologio misura movimento e battito di notte (da %1$d %% di batteria). Disattivato: nessuna registrazione automatica, i valori appresi restano.</string>
+    <string name="learn_switch_title">Attiva</string>
     <string name="watch_open_app_hint">Apri Phase Wake sull’orologio perché riceva il comando.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Ogni notte dall’inizio della fase di apprendimento: se è stata conteggiata e, se no, perché e cosa aiuta. Phase Wake ha bisogno di %1$d notti conteggiate.</string>

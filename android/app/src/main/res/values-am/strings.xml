@@ -537,7 +537,7 @@
     <string name="record_start">ሌሊቱን ቅረጽ</string>
     <string name="record_stop">ቀረጻውን አቁም</string>
     <string name="record_since">ከ%1$s ጀምሮ እየተቀረጸ ነው</string>
-    <string name="record_hint">ሰዓትህ ሌሊቱን ሙሉ እንቅስቃሴና የልብ ምት ይለካል። ከእነዚህ ሌሊቶች Phase Wake በመማሪያ ጊዜው የራስህን እሴቶች ይማራል፤ ማንቂያውንም ለአንተ ያስማማል። ይህ ትንሽ ባትሪ ይጠቀማል – ከመተኛትህ በፊት ሰዓቱን ቻርጅ አድርግ።</string>
+    <string name="record_hint">ሰዓትህ ሌሊቱን ሙሉ እንቅስቃሴና የልብ ምት ይለካል። ይህ ትንሽ ባትሪ ይጠቀማል – ከመተኛትህ በፊት ሰዓቱን ቻርጅ አድርግ።</string>
     <string name="record_end_manual">ቆሟል</string>
     <string name="record_end_cap">ከ12 ሰዓት በኋላ አልቋል</string>
     <string name="record_end_battery">የሰዓቱ ባትሪ ዝቅተኛ ነው</string>
@@ -591,7 +591,8 @@
     <string name="learn_point_nights">ለ%1$d ሌሊቶች</string>
     <string name="learn_point_battery">ይህ ትንሽ ባትሪ ይጠቀማል – ከመተኛትህ በፊት ሰዓቱን ቻርጅ አድርግ።</string>
     <string name="learn_point_private">ውሂቡ በመሣሪያዎችህ ላይ ይቆያል። የመማሪያ ጊዜውን በማንኛውም ጊዜ በቅንብሮች ውስጥ ማጥፋት ትችላለህ።</string>
-    <string name="learn_switch_hint">ማንቂያውን ለማስተካከል ሰዓትህ በሌሊት እንቅስቃሴና የልብ ምት ይለካል። ጠፍቷል፦ ራስ-ሰር ቀረጻ የለም፣ የተማሩ እሴቶች ይቆያሉ።</string>
+    <string name="learn_switch_hint">ሰዓትህ በሌሊት እንቅስቃሴና የልብ ምት ይለካል (ከ%1$d %% ባትሪ ጀምሮ)። ጠፍቷል፦ ራስ-ሰር ቀረጻ የለም፣ የተማሩ እሴቶች ይቆያሉ።</string>
+    <string name="learn_switch_title">ንቁ</string>
     <string name="watch_open_app_hint">ትዕዛዙን እንዲቀበል Phase Wakeን በሰዓትህ ላይ ክፈት።</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">የመማሪያ ጊዜው ከጀመረ ጀምሮ እያንዳንዱ ሌሊት – ተቆጥሮ እንደሆነ፣ ካልሆነ ደግሞ ለምን እና ምን እንደሚረዳ። Phase Wake %1$d የተቆጠሩ ሌሊቶች ያስፈልጉታል።</string>

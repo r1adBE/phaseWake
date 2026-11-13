@@ -537,7 +537,7 @@
     <string name="record_start">Neem nag op</string>
     <string name="record_stop">Stop opname</string>
     <string name="record_since">Neem op sedert %1$s</string>
-    <string name="record_hint">Jou horlosie meet deur die hele nag beweging en polsslag. Daaruit leer Phase Wake in die leerfase jou eie waardes en pas die wekker by jou aan. Dit gebruik ’n bietjie battery – laai die horlosie voor jy gaan slaap.</string>
+    <string name="record_hint">Jou horlosie meet deur die hele nag beweging en polsslag. Dit gebruik ’n bietjie battery – laai die horlosie voor jy gaan slaap.</string>
     <string name="record_end_manual">Gestop</string>
     <string name="record_end_cap">Ná 12 h beëindig</string>
     <string name="record_end_battery">Horlosie se battery laag</string>
@@ -591,7 +591,8 @@
     <string name="learn_point_nights">%1$d nagte lank</string>
     <string name="learn_point_battery">Dit gebruik ’n bietjie battery – laai die horlosie voor jy gaan slaap.</string>
     <string name="learn_point_private">Die data bly op jou toestelle. Jy kan die leerfase enige tyd in die instellings afskakel.</string>
-    <string name="learn_switch_hint">Jou horlosie meet snags beweging en polsslag om die wekker aan te pas. Af: geen outomatiese opname nie, geleerde waardes bly.</string>
+    <string name="learn_switch_hint">Jou horlosie meet snags beweging en polsslag (vanaf %1$d %% battery). Af: geen outomatiese opname nie, geleerde waardes bly.</string>
+    <string name="learn_switch_title">Aktief</string>
     <string name="watch_open_app_hint">Maak Phase Wake op jou horlosie oop sodat dit die opdrag ontvang.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Elke nag sedert die leerfase begin het – of dit getel het en, indien nie, hoekom en wat help. Phase Wake het %1$d getelde nagte nodig.</string>

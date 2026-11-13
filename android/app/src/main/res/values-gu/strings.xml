@@ -537,7 +537,7 @@
     <string name="record_start">રાત રેકોર્ડ કરો</string>
     <string name="record_stop">રેકોર્ડિંગ બંધ કરો</string>
     <string name="record_since">%1$s થી રેકોર્ડિંગ ચાલુ છે</string>
-    <string name="record_hint">તારી ઘડિયાળ આખી રાત દરમિયાન હલનચલન અને પલ્સ માપે છે. આ રાતોમાંથી Phase Wake શીખવાના તબક્કામાં તારાં પોતાનાં મૂલ્યો શીખે છે અને એલાર્મ તારા માટે અનુકૂળ કરે છે. આમાં થોડી બેટરી વપરાય છે – સૂતા પહેલાં ઘડિયાળ ચાર્જ કરી લે.</string>
+    <string name="record_hint">તારી ઘડિયાળ આખી રાત દરમિયાન હલનચલન અને પલ્સ માપે છે. આમાં થોડી બેટરી વપરાય છે – સૂતા પહેલાં ઘડિયાળ ચાર્જ કરી લે.</string>
     <string name="record_end_manual">બંધ કર્યું</string>
     <string name="record_end_cap">12 કલાક પછી સમાપ્ત</string>
     <string name="record_end_battery">ઘડિયાળની બેટરી ઓછી છે</string>
@@ -591,7 +591,8 @@
     <string name="learn_point_nights">%1$d રાત સુધી</string>
     <string name="learn_point_battery">આમાં થોડી બેટરી વપરાય છે – સૂતા પહેલાં ઘડિયાળ ચાર્જ કરો.</string>
     <string name="learn_point_private">ડેટા તમારા ઉપકરણો પર જ રહે છે. તમે સેટિંગ્સમાં ગમે ત્યારે શીખવાનો તબક્કો બંધ કરી શકો છો.</string>
-    <string name="learn_switch_hint">એલાર્મ ગોઠવવા તમારી ઘડિયાળ રાત્રે હલનચલન અને પલ્સ માપે છે. બંધ: આપોઆપ નોંધ નહીં, શીખેલાં મૂલ્યો રહે છે.</string>
+    <string name="learn_switch_hint">તમારી ઘડિયાળ રાત્રે હલનચલન અને પલ્સ માપે છે (ઓછામાં ઓછી %1$d %% બેટરીએ). બંધ: આપોઆપ નોંધ નહીં, શીખેલાં મૂલ્યો રહે છે.</string>
+    <string name="learn_switch_title">સક્રિય</string>
     <string name="watch_open_app_hint">ઘડિયાળ પર Phase Wake ખોલો, જેથી તેને આદેશ મળે.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">શીખવાનો તબક્કો શરૂ થયો ત્યારથી દરેક રાત – તે ગણાઈ કે નહીં, અને ન ગણાઈ તો શા માટે અને શું મદદ કરે. Phase Wake ને %1$d ગણાયેલી રાતો જોઈએ.</string>

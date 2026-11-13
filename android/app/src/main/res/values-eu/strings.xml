@@ -537,7 +537,7 @@
     <string name="record_start">Grabatu gaua</string>
     <string name="record_stop">Gelditu grabazioa</string>
     <string name="record_since">%1$s(e)tik grabatzen</string>
-    <string name="record_hint">Erlojuak mugimendua eta pultsua neurtzen ditu gau osoan zehar. Gau horietatik, Phase Wakek zure balio propioak ikasten ditu ikaste-fasean eta alarma zuregana egokitzen du. Horrek bateria pixka bat gastatzen du – kargatu erlojua lo egin aurretik.</string>
+    <string name="record_hint">Erlojuak mugimendua eta pultsua neurtzen ditu gau osoan zehar. Horrek bateria pixka bat gastatzen du – kargatu erlojua lo egin aurretik.</string>
     <string name="record_end_manual">Geldituta</string>
     <string name="record_end_cap">12 h-ren ondoren amaitua</string>
     <string name="record_end_battery">Erlojuaren bateria baxu</string>
@@ -591,7 +591,8 @@
     <string name="learn_point_nights">%1$d gauez</string>
     <string name="learn_point_battery">Horrek bateria pixka bat gastatzen du – kargatu erlojua lo egin aurretik.</string>
     <string name="learn_point_private">Datuak zure gailuetan geratzen dira. Ikasketa-fasea ezarpenetan desaktiba dezakezu edozein unetan.</string>
-    <string name="learn_switch_hint">Erlojuak mugimendua eta pultsua neurtzen ditu gauez alarma egokitzeko. Desaktibatuta: ez dago grabaketa automatikorik, ikasitako balioak geratzen dira.</string>
+    <string name="learn_switch_hint">Erlojuak mugimendua eta pultsua neurtzen ditu gauez (%1$d %% bateriatik aurrera). Desaktibatuta: ez dago grabaketa automatikorik, ikasitako balioak geratzen dira.</string>
+    <string name="learn_switch_title">Aktibo</string>
     <string name="watch_open_app_hint">Ireki Phase Wake erlojuan agindua jaso dezan.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Ikasketa-fasea hasi zenetik gau bakoitza: zenbatu den ala ez, eta ez bada, zergatik eta zerk laguntzen duen. Phase Wake-k %1$d gau zenbatu behar ditu.</string>

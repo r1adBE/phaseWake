@@ -537,7 +537,7 @@
     <string name="record_start">Salvesta öö</string>
     <string name="record_stop">Peata salvestus</string>
     <string name="record_since">Salvestab alates %1$s</string>
-    <string name="record_hint">Sinu kell mõõdab kogu öö jooksul liikumist ja pulssi. Nendest öödest õpib Phase Wake õppimisfaasis sinu enda väärtused ja kohandab äratuse sulle. See kulutab veidi akut – lae kell enne magamaminekut.</string>
+    <string name="record_hint">Sinu kell mõõdab kogu öö jooksul liikumist ja pulssi. See kulutab veidi akut – lae kell enne magamaminekut.</string>
     <string name="record_end_manual">Peatatud</string>
     <string name="record_end_cap">Lõppes 12 h pärast</string>
     <string name="record_end_battery">Kella aku on tühjenemas</string>
@@ -591,7 +591,8 @@
     <string name="learn_point_nights">%1$d ööd järjest</string>
     <string name="learn_point_battery">See kulutab veidi akut – lae kell enne magamaminekut.</string>
     <string name="learn_point_private">Andmed jäävad sinu seadmetesse. Õppefaasi saad seadetes igal ajal välja lülitada.</string>
-    <string name="learn_switch_hint">Su kell mõõdab öösel liikumist ja pulssi, et äratust kohandada. Väljas: automaatset salvestamist pole, õpitud väärtused jäävad.</string>
+    <string name="learn_switch_hint">Su kell mõõdab öösel liikumist ja pulssi (alates %1$d %% akust). Väljas: automaatset salvestamist pole, õpitud väärtused jäävad.</string>
+    <string name="learn_switch_title">Aktiivne</string>
     <string name="watch_open_app_hint">Ava kellas Phase Wake, et see käsu kätte saaks.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Iga öö õppefaasi algusest – kas see läks arvesse ja kui ei, siis miks ja mis aitab. Phase Wake vajab %1$d arvesse läinud ööd.</string>

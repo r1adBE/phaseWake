@@ -537,7 +537,7 @@
     <string name="record_start">Taka upp nóttina</string>
     <string name="record_stop">Stöðva upptöku</string>
     <string name="record_since">Tekur upp síðan %1$s</string>
-    <string name="record_hint">Úrið þitt mælir hreyfingu og púls yfir alla nóttina. Út frá þessum nóttum lærir Phase Wake þín eigin gildi í lærdómsfasanum og lagar vekjarann að þér. Það notar dálítið af rafhlöðunni – hladdu úrið áður en þú ferð að sofa.</string>
+    <string name="record_hint">Úrið þitt mælir hreyfingu og púls yfir alla nóttina. Það notar dálítið af rafhlöðunni – hladdu úrið áður en þú ferð að sofa.</string>
     <string name="record_end_manual">Stöðvað</string>
     <string name="record_end_cap">Lauk eftir 12 klst.</string>
     <string name="record_end_battery">Rafhlaða úrsins lág</string>
@@ -591,7 +591,8 @@
     <string name="learn_point_nights">Í %1$d nætur</string>
     <string name="learn_point_battery">Það notar dálítið af rafhlöðunni – hladdu úrið áður en þú ferð að sofa.</string>
     <string name="learn_point_private">Gögnin haldast á tækjunum þínum. Þú getur slökkt á námsfasanum í stillingum hvenær sem er.</string>
-    <string name="learn_switch_hint">Úrið mælir hreyfingu og púls á nóttunni til að laga vekjarann. Slökkt: engin sjálfvirk skráning, lærð gildi haldast.</string>
+    <string name="learn_switch_hint">Úrið mælir hreyfingu og púls á nóttunni (frá %1$d %% rafhlöðu). Slökkt: engin sjálfvirk skráning, lærð gildi haldast.</string>
+    <string name="learn_switch_title">Virkt</string>
     <string name="watch_open_app_hint">Opnaðu Phase Wake á úrinu svo það fái skipunina.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Hver nótt frá upphafi námsfasans – hvort hún taldist með og, ef ekki, hvers vegna og hvað hjálpar. Phase Wake þarf %1$d nætur sem teljast með.</string>

@@ -539,7 +539,7 @@
     <string name="record_start">Record night</string>
     <string name="record_stop">Stop recording</string>
     <string name="record_since">Recording since %1$s</string>
-    <string name="record_hint">Your watch measures motion and pulse throughout the night. From these nights, Phase Wake learns your own values in the learning phase and adapts the alarm to you. This uses some battery – charge the watch before you go to sleep.</string>
+    <string name="record_hint">Your watch measures motion and pulse throughout the night. This uses some battery – charge the watch before you go to sleep.</string>
     <string name="record_end_manual">Stopped</string>
     <string name="record_end_cap">Ended after 12 h</string>
     <string name="record_end_battery">Watch battery low</string>
@@ -593,7 +593,8 @@
     <string name="learn_point_nights" tools:ignore="PluralsCandidate">For %1$d nights</string>
     <string name="learn_point_battery">This uses some battery – charge the watch before you go to sleep.</string>
     <string name="learn_point_private">The data stays on your devices. You can turn the learning phase off in the settings at any time.</string>
-    <string name="learn_switch_hint">Your watch measures motion and pulse at night to adapt the alarm. Off: no automatic recording, learned values stay.</string>
+    <string name="learn_switch_hint" tools:ignore="PluralsCandidate">Your watch measures motion and pulse at night (from %1$d %% battery). Off: no automatic recording, learned values stay.</string>
+    <string name="learn_switch_title">Active</string>
     <!-- Nur Apple (iPhone → Uhr, wenn die Uhr-App nicht läuft). -->
     <string name="watch_open_app_hint" tools:ignore="UnusedResources">Open Phase Wake on your watch so it receives the command.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->

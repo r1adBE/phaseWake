@@ -522,7 +522,7 @@
     <string name="record_start">ღამის ჩაწერა</string>
     <string name="record_stop">ჩაწერის შეწყვეტა</string>
     <string name="record_since">იწერება %1$s-დან</string>
-    <string name="record_hint">შენი საათი მთელი ღამის განმავლობაში ზომავს მოძრაობას და პულსს. ამ ღამეებიდან Phase Wake სწავლის ფაზაში სწავლობს შენს საკუთარ მნიშვნელობებს და მაღვიძარას შენზე არგებს. ეს ცოტა ბატარეას ხარჯავს – დაძინებამდე დატენე საათი.</string>
+    <string name="record_hint">შენი საათი მთელი ღამის განმავლობაში ზომავს მოძრაობას და პულსს. ეს ცოტა ბატარეას ხარჯავს – დაძინებამდე დატენე საათი.</string>
     <string name="record_end_manual">შეწყდა</string>
     <string name="record_end_cap">დასრულდა 12 სთ-ის შემდეგ</string>
     <string name="record_end_battery">საათის ბატარეა დაბალია</string>
@@ -576,7 +576,8 @@
     <string name="learn_point_nights">%1$d ღამის განმავლობაში</string>
     <string name="learn_point_battery">ეს ცოტა ბატარეას ხარჯავს – დაძინებამდე დატენე საათი.</string>
     <string name="learn_point_private">მონაცემები შენს მოწყობილობებზე რჩება. სწავლის ფაზის გამორთვა პარამეტრებში ნებისმიერ დროს შეგიძლია.</string>
-    <string name="learn_switch_hint">შენი საათი ღამით ზომავს მოძრაობას და პულსს მაღვიძარის მოსარგებად. გამორთული: ავტომატური ჩაწერა არ არის, ნასწავლი მნიშვნელობები რჩება.</string>
+    <string name="learn_switch_hint">შენი საათი ღამით ზომავს მოძრაობას და პულსს (%1$d %% ბატარეიდან). გამორთული: ავტომატური ჩაწერა არ არის, ნასწავლი მნიშვნელობები რჩება.</string>
+    <string name="learn_switch_title">აქტიური</string>
     <string name="watch_open_app_hint">გახსენი Phase Wake საათზე, რომ ბრძანება მიიღოს.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">ყოველი ღამე სწავლის ფაზის დაწყებიდან – ჩაითვალა თუ არა, და თუ არა, რატომ და რა დაგეხმარება. Phase Wake-ს %1$d ჩათვლილი ღამე სჭირდება.</string>

@@ -548,7 +548,7 @@
     <string name="record_start">הקלטת הלילה</string>
     <string name="record_stop">עצירת ההקלטה</string>
     <string name="record_since">מקליט מאז %1$s</string>
-    <string name="record_hint">השעון שלך מודד תנועה ודופק לאורך כל הלילה. מהלילות האלה Phase Wake לומד בשלב הלמידה את הערכים שלך ומתאים לך את ההשכמה. זה צורך מעט סוללה – כדאי לטעון את השעון לפני השינה.</string>
+    <string name="record_hint">השעון שלך מודד תנועה ודופק לאורך כל הלילה. זה צורך מעט סוללה – כדאי לטעון את השעון לפני השינה.</string>
     <string name="record_end_manual">נעצרה</string>
     <string name="record_end_cap">הסתיימה אחרי 12 שעות</string>
     <string name="record_end_battery">הסוללה של השעון חלשה</string>
@@ -602,7 +602,8 @@
     <string name="learn_point_nights">במשך %1$d לילות</string>
     <string name="learn_point_battery">זה צורך מעט סוללה – כדאי לטעון את השעון לפני השינה.</string>
     <string name="learn_point_private">הנתונים נשארים במכשירים שלך. אפשר לכבות את שלב הלמידה בהגדרות בכל עת.</string>
-    <string name="learn_switch_hint">השעון שלך מודד תנועה ודופק בלילה כדי להתאים את ההשכמה. כבוי: אין תיעוד אוטומטי, הערכים שנלמדו נשמרים.</string>
+    <string name="learn_switch_hint">השעון שלך מודד תנועה ודופק בלילה (החל מ־%1$d %% סוללה). כבוי: אין תיעוד אוטומטי, הערכים שנלמדו נשמרים.</string>
+    <string name="learn_switch_title">פעיל</string>
     <string name="watch_open_app_hint">פתח את Phase Wake בשעון כדי שיקבל את הפקודה.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">כל לילה מאז תחילת שלב הלמידה – האם נספר, ואם לא, למה ומה עוזר. Phase Wake צריך %1$d לילות שנספרו.</string>

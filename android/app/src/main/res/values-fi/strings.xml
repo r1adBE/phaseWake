@@ -534,7 +534,7 @@
     <string name="record_start">Tallenna yö</string>
     <string name="record_stop">Lopeta tallennus</string>
     <string name="record_since">Tallennus käynnissä klo %1$s alkaen</string>
-    <string name="record_hint">Kellosi mittaa liikettä ja sykettä koko yön mittaan. Näistä öistä Phase Wake oppii oppimisvaiheessa omat arvosi ja sovittaa herätyksen sinulle. Se kuluttaa hieman akkua – lataa kello ennen nukkumaanmenoa.</string>
+    <string name="record_hint">Kellosi mittaa liikettä ja sykettä koko yön mittaan. Se kuluttaa hieman akkua – lataa kello ennen nukkumaanmenoa.</string>
     <string name="record_end_manual">Pysäytetty</string>
     <string name="record_end_cap">Päättyi 12 tunnin jälkeen</string>
     <string name="record_end_battery">Kellon akku vähissä</string>
@@ -588,7 +588,8 @@
     <string name="learn_point_nights">%1$d yön ajan</string>
     <string name="learn_point_battery">Se kuluttaa hieman akkua – lataa kello ennen nukkumaanmenoa.</string>
     <string name="learn_point_private">Tiedot pysyvät laitteillasi. Voit poistaa oppimisvaiheen käytöstä asetuksissa milloin tahansa.</string>
-    <string name="learn_switch_hint">Kellosi mittaa yöllä liikettä ja sykettä herätyksen mukauttamiseksi. Pois: ei automaattista tallennusta, opitut arvot säilyvät.</string>
+    <string name="learn_switch_hint">Kellosi mittaa yöllä liikettä ja sykettä (kun akkua on vähintään %1$d %%). Pois: ei automaattista tallennusta, opitut arvot säilyvät.</string>
+    <string name="learn_switch_title">Käytössä</string>
     <string name="watch_open_app_hint">Avaa Phase Wake kellossa, jotta se saa komennon.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Jokainen yö oppimisvaiheen alusta – laskettiinko se ja jos ei, miksi ja mikä auttaa. Phase Wake tarvitsee %1$d laskettua yötä.</string>

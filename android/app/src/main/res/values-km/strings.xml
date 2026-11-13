@@ -522,7 +522,7 @@
     <string name="record_start">ថតពេលយប់</string>
     <string name="record_stop">បញ្ឈប់ការថត</string>
     <string name="record_since">កំពុងថតតាំងពី %1$s</string>
-    <string name="record_hint">នាឡិការបស់អ្នកវាស់ចលនា និងជីពចរពេញមួយយប់។ ពីយប់ទាំងនេះ Phase Wake រៀនតម្លៃផ្ទាល់ខ្លួនរបស់អ្នកក្នុងដំណាក់កាលរៀន ហើយកែសម្រួលម៉ោងរោទ៍ឱ្យសមនឹងអ្នក។ វាប្រើថ្មខ្លះ – សាកថ្មនាឡិកាមុនពេលគេង។</string>
+    <string name="record_hint">នាឡិការបស់អ្នកវាស់ចលនា និងជីពចរពេញមួយយប់។ វាប្រើថ្មខ្លះ – សាកថ្មនាឡិកាមុនពេលគេង។</string>
     <string name="record_end_manual">បានបញ្ឈប់</string>
     <string name="record_end_cap">បានបញ្ចប់ក្រោយ 12 ម៉ោង</string>
     <string name="record_end_battery">ថ្មនាឡិកាខ្សោយ</string>
@@ -576,7 +576,8 @@
     <string name="learn_point_nights">រយៈពេល %1$d យប់</string>
     <string name="learn_point_battery">វាប្រើថ្មខ្លះ – សាកថ្មនាឡិកាមុនពេលគេង។</string>
     <string name="learn_point_private">ទិន្នន័យនៅលើឧបករណ៍របស់អ្នក។ អ្នកអាចបិទដំណាក់កាលរៀននៅក្នុងការកំណត់បានគ្រប់ពេល។</string>
-    <string name="learn_switch_hint">នាឡិការបស់អ្នកវាស់ចលនា និងជីពចរពេលយប់ ដើម្បីសម្រួលម៉ោងរោទ៍។ បិទ៖ គ្មានការកត់ត្រាស្វ័យប្រវត្តិ តម្លៃដែលបានរៀននៅដដែល។</string>
+    <string name="learn_switch_hint">នាឡិការបស់អ្នកវាស់ចលនា និងជីពចរពេលយប់ (ថ្មចាប់ពី %1$d %%)។ បិទ៖ គ្មានការកត់ត្រាស្វ័យប្រវត្តិ តម្លៃដែលបានរៀននៅដដែល។</string>
+    <string name="learn_switch_title">សកម្ម</string>
     <string name="watch_open_app_hint">បើក Phase Wake នៅលើនាឡិការបស់អ្នក ដើម្បីឱ្យវាទទួលបានពាក្យបញ្ជា។</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">យប់នីមួយៗ តាំងពីដំណាក់កាលរៀនចាប់ផ្ដើម – តើវាត្រូវបានរាប់ឬអត់ ហើយបើមិនរាប់ ហេតុអ្វី និងអ្វីអាចជួយបាន។ Phase Wake ត្រូវការ %1$d យប់ដែលបានរាប់។</string>

@@ -537,7 +537,7 @@
     <string name="record_start">Regjistro natën</string>
     <string name="record_stop">Ndalo regjistrimin</string>
     <string name="record_since">Po regjistron që nga %1$s</string>
-    <string name="record_hint">Ora jote mat lëvizjen dhe pulsin gjatë gjithë natës. Nga këto net, Phase Wake mëson në fazën e mësimit vlerat e tua dhe e përshtat alarmin për ty. Kjo harxhon pak bateri – karikoje orën para se të flesh.</string>
+    <string name="record_hint">Ora jote mat lëvizjen dhe pulsin gjatë gjithë natës. Kjo harxhon pak bateri – karikoje orën para se të flesh.</string>
     <string name="record_end_manual">U ndal</string>
     <string name="record_end_cap">Përfundoi pas 12 orësh</string>
     <string name="record_end_battery">Bateria e orës e ulët</string>
@@ -591,7 +591,8 @@
     <string name="learn_point_nights">Për %1$d netë</string>
     <string name="learn_point_battery">Kjo harxhon pak bateri – karikoje orën para se të flesh.</string>
     <string name="learn_point_private">Të dhënat mbeten në pajisjet e tua. Mund ta çaktivizosh fazën e të mësuarit në cilësime në çdo kohë.</string>
-    <string name="learn_switch_hint">Ora jote mat lëvizjen dhe pulsin natën për të përshtatur alarmin. Joaktive: pa regjistrim automatik, vlerat e mësuara mbeten.</string>
+    <string name="learn_switch_hint">Ora jote mat lëvizjen dhe pulsin natën (nga %1$d %% bateri). Joaktive: pa regjistrim automatik, vlerat e mësuara mbeten.</string>
+    <string name="learn_switch_title">Aktive</string>
     <string name="watch_open_app_hint">Hap Phase Wake në orë që të marrë komandën.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Çdo natë që nga fillimi i fazës së të mësuarit – nëse u numërua dhe, nëse jo, pse dhe çfarë ndihmon. Phase Wake ka nevojë për %1$d net të numëruara.</string>

@@ -534,7 +534,7 @@
     <string name="record_start">ضبط شب</string>
     <string name="record_stop">توقف ضبط</string>
     <string name="record_since">در حال ضبط از %1$s</string>
-    <string name="record_hint">ساعتت در طول تمام شب حرکت و نبض را اندازه می‌گیرد. Phase Wake از این شب‌ها در مرحلهٔ یادگیری مقادیر خودت را یاد می‌گیرد و هشدار را با تو هماهنگ می‌کند. این کار کمی باتری مصرف می‌کند – قبل از خواب ساعت را شارژ کن.</string>
+    <string name="record_hint">ساعتت در طول تمام شب حرکت و نبض را اندازه می‌گیرد. این کار کمی باتری مصرف می‌کند – قبل از خواب ساعت را شارژ کن.</string>
     <string name="record_end_manual">متوقف شد</string>
     <string name="record_end_cap">پس از ۱۲ ساعت پایان یافت</string>
     <string name="record_end_battery">باتری ساعت کم است</string>
@@ -588,7 +588,8 @@
     <string name="learn_point_nights">به مدت %1$d شب</string>
     <string name="learn_point_battery">این کار کمی باتری مصرف می‌کند – قبل از خواب ساعت را شارژ کن.</string>
     <string name="learn_point_private">داده‌ها روی دستگاه‌هایت می‌مانند. هر وقت بخواهی می‌توانی مرحلهٔ یادگیری را در تنظیمات خاموش کنی.</string>
-    <string name="learn_switch_hint">ساعتت برای هماهنگ کردن زنگ، شب‌ها حرکت و نبض را اندازه می‌گیرد. خاموش: بدون ثبت خودکار، مقادیر یادگرفته‌شده می‌مانند.</string>
+    <string name="learn_switch_hint">ساعتت شب‌ها حرکت و نبض را اندازه می‌گیرد (از %1$d %% باتری به بالا). خاموش: بدون ثبت خودکار، مقادیر یادگرفته‌شده می‌مانند.</string>
+    <string name="learn_switch_title">فعال</string>
     <string name="watch_open_app_hint">Phase Wake را روی ساعتت باز کن تا فرمان را دریافت کند.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">هر شب از آغاز مرحلهٔ یادگیری – آیا حساب شد و اگر نه، چرا و چه چیزی کمک می‌کند. Phase Wake به %1$d شبِ حساب‌شده نیاز دارد.</string>

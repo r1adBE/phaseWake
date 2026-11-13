@@ -548,7 +548,7 @@
     <string name="record_start">Enregistrer la nuit</string>
     <string name="record_stop">Arrêter l’enregistrement</string>
     <string name="record_since">Enregistrement depuis %1$s</string>
-    <string name="record_hint">Ta montre mesure mouvements et pouls tout au long de la nuit. À partir de ces nuits, Phase Wake apprend tes propres valeurs pendant la phase d’apprentissage et adapte le réveil à toi. Cela consomme un peu de batterie – recharge la montre avant de dormir.</string>
+    <string name="record_hint">Ta montre mesure mouvements et pouls tout au long de la nuit. Cela consomme un peu de batterie – recharge la montre avant de dormir.</string>
     <string name="record_end_manual">Arrêté</string>
     <string name="record_end_cap">Terminé après 12 h</string>
     <string name="record_end_battery">Batterie de la montre faible</string>
@@ -602,7 +602,8 @@
     <string name="learn_point_nights">Pendant %1$d nuits</string>
     <string name="learn_point_battery">Cela consomme un peu de batterie – recharge la montre avant de dormir.</string>
     <string name="learn_point_private">Les données restent sur tes appareils. Tu peux désactiver la phase d’apprentissage à tout moment dans les réglages.</string>
-    <string name="learn_switch_hint">Ta montre mesure mouvements et pouls la nuit pour adapter le réveil. Désactivé : aucun enregistrement automatique, les valeurs apprises restent.</string>
+    <string name="learn_switch_hint">Ta montre mesure mouvements et pouls la nuit (à partir de %1$d %% de batterie). Désactivé : aucun enregistrement automatique, les valeurs apprises restent.</string>
+    <string name="learn_switch_title">Active</string>
     <string name="watch_open_app_hint">Ouvre Phase Wake sur ta montre pour qu’elle reçoive la commande.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Chaque nuit depuis le début de la phase d’apprentissage : si elle a compté et, sinon, pourquoi et ce qui aide. Phase Wake a besoin de %1$d nuits comptées.</string>

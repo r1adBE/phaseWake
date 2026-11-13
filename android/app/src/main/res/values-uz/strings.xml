@@ -537,7 +537,7 @@
     <string name="record_start">Tunni yozib olish</string>
     <string name="record_stop">Yozishni to‘xtatish</string>
     <string name="record_since">%1$s dan beri yozilmoqda</string>
-    <string name="record_hint">Soating tun bo‘yi harakat va pulsni o‘lchaydi. Phase Wake bu tunlardan o‘rganish bosqichida o‘z qiymatlaringni o‘rganadi va budilnikni senga moslaydi. Bu biroz batareya sarflaydi – uxlashdan oldin soatni quvvatla.</string>
+    <string name="record_hint">Soating tun bo‘yi harakat va pulsni o‘lchaydi. Bu biroz batareya sarflaydi – uxlashdan oldin soatni quvvatla.</string>
     <string name="record_end_manual">To‘xtatildi</string>
     <string name="record_end_cap">12 soatdan keyin tugadi</string>
     <string name="record_end_battery">Soat batareyasi kam</string>
@@ -591,7 +591,8 @@
     <string name="learn_point_nights">%1$d tun davomida</string>
     <string name="learn_point_battery">Bu biroz batareya sarflaydi – uxlashdan oldin soatni quvvatla.</string>
     <string name="learn_point_private">Ma’lumotlar qurilmalaringda qoladi. O‘rganish bosqichini istalgan vaqtda sozlamalardan o‘chirishing mumkin.</string>
-    <string name="learn_switch_hint">Soating budilnikni moslash uchun tunda harakat va pulsni o‘lchaydi. O‘chiq: avtomatik yozuv yo‘q, o‘rganilgan qiymatlar qoladi.</string>
+    <string name="learn_switch_hint">Soating tunda harakat va pulsni o‘lchaydi (%1$d %% batareyadan boshlab). O‘chiq: avtomatik yozuv yo‘q, o‘rganilgan qiymatlar qoladi.</string>
+    <string name="learn_switch_title">Faol</string>
     <string name="watch_open_app_hint">Buyruqni olishi uchun soatda Phase Wake’ni och.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">O‘rganish bosqichi boshlanganidan beri har bir tun – hisobga olindimi, olinmagan bo‘lsa, nega va nima yordam beradi. Phase Wake uchun %1$d ta hisobga olingan tun kerak.</string>

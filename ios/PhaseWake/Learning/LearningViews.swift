@@ -3,8 +3,9 @@ import SwiftUI
 
 /// Karte der Lernphase auf der Startseite (wie `LearningCard` auf Android), nur mit Zustimmung (Audit F-02): noch nicht
 /// gefragt und die Uhr kann aufzeichnen – einmal «Lernphase starten» / «Später»; solange sie läuft «Lernphase: Nacht N
-/// von 7» mit kurzer Erklärung, einer unerwartet nicht gezählten letzten Nacht mit Grund und «Details» zur
-/// Lern-Übersicht (r1AD 13.11.2026); danach einmal «Angepasst an dich» mit den gelernten Werten und «OK». Sonst nichts.
+/// von 7» mit kurzer Erklärung, einer unerwartet nicht gezählten letzten Nacht mit Grund, «Details» zur Lern-Übersicht
+/// und «Nacht aufzeichnen» (r1AD 13.11.2026); danach einmal «Angepasst an dich» mit den gelernten Werten und «OK».
+/// Sonst nichts.
 struct LearningHomeCard: View {
     @Environment(PhoneModel.self) private var model
     @Environment(\.colorScheme) private var scheme
@@ -26,8 +27,21 @@ struct LearningHomeCard: View {
                 if let miss = LearnNights.lastNightMiss(LearnNightsView.nights(model: model, now: now), now: now, calendar: .gregorianLocal) {
                     LastNightMissLine(miss: miss)
                 }
-                NavigationLink(L("night_details")) { LearnNightsView() }
-                    .frame(maxWidth: .infinity, minHeight: 44, alignment: .trailing)
+                // «Nacht aufzeichnen» steckt während der Lernphase in dieser Karte (r1AD 13.11.2026), siehe `RecordCard`.
+                let record = WatchNight.shared
+                let canRecord = record.watchCanRecord(model)
+                if canRecord, let since = record.recordSince {
+                    Text(L("record_since", Format.time(since)))
+                        .font(Fonts.manrope(14, relativeTo: .subheadline))
+                        .foregroundStyle(Brand.secondaryText(scheme))
+                }
+                HStack(spacing: 8) {
+                    Spacer(minLength: 0)
+                    NavigationLink(L("night_details")) { LearnNightsView() }
+                        .frame(minHeight: 44)
+                    if canRecord { RecordButton() }
+                }
+                if canRecord && record.recordUnanswered { RecordUnansweredHint() }
             }
         } else if let values = state.values, !state.active, state.consent == true, !state.seen {
             card(L("learned_title")) {
@@ -146,9 +160,10 @@ struct BedtimeAdviceCard: View {
     }
 }
 
-/// Lernphase in den Einstellungen (wie `LearningGroup` auf Android): Schalter «Lernphase» (Zustimmung), «Nacht N von 7»
-/// bzw. die gelernten Werte, «Details» zur Lern-Übersicht und «Neu lernen» mit Rückfrage. Nur mit einer Uhr, die aufzeichnen kann, oder wenn schon
-/// gelernt.
+/// Lernphase in den Einstellungen (wie `LearningGroup` auf Android): Titel «Lernphase: Nacht N von 7» bzw. «Angepasst an
+/// dich» mit den gelernten Werten, Schalter «Aktiv» (Zustimmung), «Details» zur Lern-Übersicht und «Neu lernen» mit
+/// Rückfrage; ohne die Erklärung der Startseite (r1AD 13.11.2026). Nur mit einer Uhr, die aufzeichnen kann, oder wenn
+/// schon gelernt.
 struct LearningSettingsSection: View {
     @Environment(PhoneModel.self) private var model
     @State private var confirm = false
@@ -159,12 +174,14 @@ struct LearningSettingsSection: View {
         if state.values != nil || learning.watchCanLearn(model) {
             let night = learning.progress
             Section(state.values != nil ? L("learned_title") : night.map { L("learn_progress", $0, Learning.nights) } ?? L("learn_consent_title")) {
-                Toggle(L("learn_consent_title"), isOn: Binding(get: { learning.state.consent == true }, set: { learning.setConsent($0) }))
-                Text(L("learn_switch_hint")).font(.footnote).foregroundStyle(.secondary)
+                Toggle(isOn: Binding(get: { learning.state.consent == true }, set: { learning.setConsent($0) })) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(L("learn_switch_title"))
+                        Text(L("learn_switch_hint", Learning.minBattery)).font(.footnote).foregroundStyle(.secondary)
+                    }
+                }
                 if let values = state.values {
                     LearnedLines(values: values)
-                } else if night != nil {
-                    Text(L("learn_text", Learning.nights, Learning.minBattery)).font(.footnote)
                 }
                 if state.since != nil {
                     NavigationLink(L("night_details")) { LearnNightsView() }

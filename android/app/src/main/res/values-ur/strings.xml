@@ -536,7 +536,7 @@
     <string name="record_start">رات ریکارڈ کرو</string>
     <string name="record_stop">ریکارڈنگ روکو</string>
     <string name="record_since">%1$s سے ریکارڈنگ جاری ہے</string>
-    <string name="record_hint">تمہاری گھڑی پوری رات حرکت اور نبض ناپتی ہے۔ ان راتوں سے Phase Wake سیکھنے کے مرحلے میں تمہاری اپنی قدریں سیکھتا ہے اور الارم کو تمہارے مطابق ڈھالتا ہے۔ اس میں کچھ بیٹری لگتی ہے – سونے سے پہلے گھڑی چارج کر لو۔</string>
+    <string name="record_hint">تمہاری گھڑی پوری رات حرکت اور نبض ناپتی ہے۔ اس میں کچھ بیٹری لگتی ہے – سونے سے پہلے گھڑی چارج کر لو۔</string>
     <string name="record_end_manual">روک دی گئی</string>
     <string name="record_end_cap">12 گھنٹے بعد ختم</string>
     <string name="record_end_battery">گھڑی کی بیٹری کم ہے</string>
@@ -590,7 +590,8 @@
     <string name="learn_point_nights">%1$d راتوں تک</string>
     <string name="learn_point_battery">اس میں کچھ بیٹری لگتی ہے – سونے سے پہلے گھڑی چارج کریں۔</string>
     <string name="learn_point_private">ڈیٹا آپ کے آلات پر ہی رہتا ہے۔ سیکھنے کا مرحلہ ترتیبات میں کسی بھی وقت بند کیا جا سکتا ہے۔</string>
-    <string name="learn_switch_hint">الارم ڈھالنے کے لیے آپ کی گھڑی رات کو حرکت اور نبض ناپتی ہے۔ بند: کوئی خودکار ریکارڈنگ نہیں، سیکھی گئی قدریں برقرار رہتی ہیں۔</string>
+    <string name="learn_switch_hint">آپ کی گھڑی رات کو حرکت اور نبض ناپتی ہے (کم از کم %1$d %% بیٹری پر)۔ بند: کوئی خودکار ریکارڈنگ نہیں، سیکھی گئی قدریں برقرار رہتی ہیں۔</string>
+    <string name="learn_switch_title">فعال</string>
     <string name="watch_open_app_hint">گھڑی پر Phase Wake کھولیں تاکہ اسے حکم مل جائے۔</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">سیکھنے کا مرحلہ شروع ہونے کے بعد سے ہر رات – کیا وہ گنی گئی، اور اگر نہیں تو کیوں اور کیا مدد کرے گا۔ Phase Wake کو %1$d گنی ہوئی راتیں چاہییں۔</string>

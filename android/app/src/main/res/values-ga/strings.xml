@@ -579,7 +579,7 @@
     <string name="record_start">Taifead an oíche</string>
     <string name="record_stop">Stop an taifeadadh</string>
     <string name="record_since">Ag taifeadadh ó %1$s</string>
-    <string name="record_hint">Tomhaiseann d’uaireadóir gluaiseacht agus cuisle i rith na hoíche ar fad. As na hoícheanta sin, foghlaimíonn Phase Wake do luachanna féin sa chéim foghlama agus cuireann sé an t-aláram in oiriúint duit. Úsáideann sé seo beagán ceallra – luchtaigh an t-uaireadóir sula dtéann tú a chodladh.</string>
+    <string name="record_hint">Tomhaiseann d’uaireadóir gluaiseacht agus cuisle i rith na hoíche ar fad. Úsáideann sé seo beagán ceallra – luchtaigh an t-uaireadóir sula dtéann tú a chodladh.</string>
     <string name="record_end_manual">Stoptha</string>
     <string name="record_end_cap">Críochnaithe tar éis 12 u</string>
     <string name="record_end_battery">Ceallra an uaireadóra íseal</string>
@@ -633,7 +633,8 @@
     <string name="learn_point_nights">Ar feadh %1$d oíche</string>
     <string name="learn_point_battery">Úsáideann sé seo beagán ceallra – luchtaigh an t-uaireadóir sula dtéann tú a chodladh.</string>
     <string name="learn_point_private">Fanann na sonraí ar do ghléasanna. Is féidir leat an chéim foghlama a mhúchadh sna socruithe am ar bith.</string>
-    <string name="learn_switch_hint">Tomhaiseann d’uaireadóir gluaiseacht agus cuisle san oíche chun an t-aláram a oiriúnú. As: gan taifeadadh uathoibríoch, fanann na luachanna foghlamtha.</string>
+    <string name="learn_switch_hint">Tomhaiseann d’uaireadóir gluaiseacht agus cuisle san oíche (ó %1$d %% ceallra). As: gan taifeadadh uathoibríoch, fanann na luachanna foghlamtha.</string>
+    <string name="learn_switch_title">Gníomhach</string>
     <string name="watch_open_app_hint">Oscail Phase Wake ar d’uaireadóir ionas go bhfaighidh sé an t-ordú.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Gach oíche ó thosaigh an chéim foghlama – ar comhaireadh í agus, mura ndearnadh, cén fáth agus cad a chabhródh. Tá %1$d oíche chomhairthe de dhíth ar Phase Wake.</string>

@@ -550,7 +550,7 @@
     <string name="record_start">Enregistra la nit</string>
     <string name="record_stop">Atura l’enregistrament</string>
     <string name="record_since">S’enregistra des de les %1$s</string>
-    <string name="record_hint">El rellotge mesura moviment i pols al llarg de tota la nit. A partir d’aquestes nits, Phase Wake aprèn els teus valors propis en la fase d’aprenentatge i adapta l’alarma a tu. Això gasta una mica de bateria – carrega el rellotge abans de dormir.</string>
+    <string name="record_hint">El rellotge mesura moviment i pols al llarg de tota la nit. Això gasta una mica de bateria – carrega el rellotge abans de dormir.</string>
     <string name="record_end_manual">Aturat</string>
     <string name="record_end_cap">Acabat després de 12 h</string>
     <string name="record_end_battery">Bateria del rellotge baixa</string>
@@ -604,7 +604,8 @@
     <string name="learn_point_nights">Durant %1$d nits</string>
     <string name="learn_point_battery">Això gasta una mica de bateria – carrega el rellotge abans de dormir.</string>
     <string name="learn_point_private">Les dades es queden als teus dispositius. Pots desactivar la fase d’aprenentatge a la configuració en qualsevol moment.</string>
-    <string name="learn_switch_hint">El rellotge mesura moviment i pols a la nit per adaptar l’alarma. Desactivat: cap enregistrament automàtic, els valors apresos es mantenen.</string>
+    <string name="learn_switch_hint">El rellotge mesura moviment i pols a la nit (a partir del %1$d %% de bateria). Desactivat: cap enregistrament automàtic, els valors apresos es mantenen.</string>
+    <string name="learn_switch_title">Activa</string>
     <string name="watch_open_app_hint">Obre Phase Wake al rellotge perquè rebi l’ordre.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Cada nit des que va començar la fase d’aprenentatge: si ha comptat i, si no, per què i què hi ajuda. Phase Wake necessita %1$d nits comptades.</string>

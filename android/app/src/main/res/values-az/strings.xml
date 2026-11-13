@@ -522,7 +522,7 @@
     <string name="record_start">Gecəni qeyd et</string>
     <string name="record_stop">Qeydi dayandır</string>
     <string name="record_since">Qeyd %1$s-dan bəri gedir</string>
-    <string name="record_hint">Saatın bütün gecə boyunca hərəkəti və nəbzi ölçür. Phase Wake bu gecələrdən öyrənmə mərhələsində öz dəyərlərini öyrənir və zəngli saatı sənə uyğunlaşdırır. Bu, bir az batareya sərf edir – yatmazdan əvvəl saatı doldur.</string>
+    <string name="record_hint">Saatın bütün gecə boyunca hərəkəti və nəbzi ölçür. Bu, bir az batareya sərf edir – yatmazdan əvvəl saatı doldur.</string>
     <string name="record_end_manual">Dayandırıldı</string>
     <string name="record_end_cap">12 saatdan sonra bitdi</string>
     <string name="record_end_battery">Saatın batareyası azdır</string>
@@ -576,7 +576,8 @@
     <string name="learn_point_nights">%1$d gecə boyunca</string>
     <string name="learn_point_battery">Bu, bir az batareya sərf edir – yatmazdan əvvəl saatı doldur.</string>
     <string name="learn_point_private">Məlumatlar cihazlarında qalır. Öyrənmə mərhələsini istənilən vaxt ayarlarda söndürə bilərsən.</string>
-    <string name="learn_switch_hint">Saatın zəngli saatı uyğunlaşdırmaq üçün gecələr hərəkəti və nəbzi ölçür. Sönülü: avtomatik qeyd yoxdur, öyrənilmiş dəyərlər qalır.</string>
+    <string name="learn_switch_hint">Saatın gecələr hərəkəti və nəbzi ölçür (%1$d %% batareyadan). Sönülü: avtomatik qeyd yoxdur, öyrənilmiş dəyərlər qalır.</string>
+    <string name="learn_switch_title">Aktiv</string>
     <string name="watch_open_app_hint">Əmri alması üçün Phase Wake-i saatında aç.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Öyrənmə mərhələsi başlayandan bəri hər gecə – sayılıb, ya yox; sayılmayıbsa, niyə və nə kömək edər. Phase Wake-ə %1$d sayılmış gecə lazımdır.</string>

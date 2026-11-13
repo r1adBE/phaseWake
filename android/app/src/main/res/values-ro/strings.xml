@@ -548,7 +548,7 @@
     <string name="record_start">Înregistrează noaptea</string>
     <string name="record_stop">Oprește înregistrarea</string>
     <string name="record_since">Se înregistrează din %1$s</string>
-    <string name="record_hint">Ceasul tău măsoară mișcarea și pulsul de-a lungul întregii nopți. Din aceste nopți, Phase Wake învață în faza de învățare propriile tale valori și adaptează alarma la tine. Asta consumă puțină baterie – încarcă ceasul înainte de culcare.</string>
+    <string name="record_hint">Ceasul tău măsoară mișcarea și pulsul de-a lungul întregii nopți. Asta consumă puțină baterie – încarcă ceasul înainte de culcare.</string>
     <string name="record_end_manual">Oprită</string>
     <string name="record_end_cap">Încheiată după 12 h</string>
     <string name="record_end_battery">Bateria ceasului e slabă</string>
@@ -602,7 +602,8 @@
     <string name="learn_point_nights">Timp de %1$d nopți</string>
     <string name="learn_point_battery">Asta consumă puțină baterie – încarcă ceasul înainte de culcare.</string>
     <string name="learn_point_private">Datele rămân pe dispozitivele tale. Poți dezactiva oricând faza de învățare din setări.</string>
-    <string name="learn_switch_hint">Ceasul tău măsoară noaptea mișcarea și pulsul pentru a adapta alarma. Dezactivat: fără înregistrare automată, valorile învățate rămân.</string>
+    <string name="learn_switch_hint">Ceasul tău măsoară noaptea mișcarea și pulsul (de la %1$d %% baterie). Dezactivat: fără înregistrare automată, valorile învățate rămân.</string>
+    <string name="learn_switch_title">Activă</string>
     <string name="watch_open_app_hint">Deschide Phase Wake pe ceas ca să primească comanda.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Fiecare noapte de la începutul fazei de învățare – dacă a contat și, dacă nu, de ce și ce ajută. Phase Wake are nevoie de %1$d nopți numărate.</string>

@@ -590,7 +590,7 @@
     <string name="record_start">سجّل الليلة</string>
     <string name="record_stop">أوقف التسجيل</string>
     <string name="record_since">التسجيل جارٍ منذ %1$s</string>
-    <string name="record_hint">تقيس ساعتك الحركة والنبض طوال الليل. ومن هذه الليالي يتعلّم Phase Wake قيمك الخاصة في مرحلة التعلّم ويكيّف المنبّه لك. يستهلك ذلك بعض البطارية – اشحن الساعة قبل النوم.</string>
+    <string name="record_hint">تقيس ساعتك الحركة والنبض طوال الليل. يستهلك ذلك بعض البطارية – اشحن الساعة قبل النوم.</string>
     <string name="record_end_manual">أُوقف</string>
     <string name="record_end_cap">انتهى بعد ١٢ ساعة</string>
     <string name="record_end_battery">بطارية الساعة منخفضة</string>
@@ -644,7 +644,8 @@
     <string name="learn_point_nights">لمدة %1$d ليالٍ</string>
     <string name="learn_point_battery">يستهلك ذلك بعض البطارية – اشحن الساعة قبل النوم.</string>
     <string name="learn_point_private">تبقى البيانات على أجهزتك. يمكنك إيقاف مرحلة التعلّم في الإعدادات في أي وقت.</string>
-    <string name="learn_switch_hint">تقيس ساعتك الحركة والنبض ليلًا لضبط المنبّه. متوقفة: لا تسجيل تلقائي، وتبقى القيم المتعلَّمة.</string>
+    <string name="learn_switch_hint">تقيس ساعتك الحركة والنبض ليلًا (من %1$d %% بطارية فأكثر). متوقفة: لا تسجيل تلقائي، وتبقى القيم المتعلَّمة.</string>
+    <string name="learn_switch_title">مفعّلة</string>
     <string name="watch_open_app_hint">افتح Phase Wake على ساعتك حتى تستلم الأمر.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">كل ليلة منذ بدء مرحلة التعلّم – هل احتُسبت، وإن لم تُحتسب فلماذا وما الذي يساعد. يحتاج Phase Wake إلى %1$d ليالٍ محتسبة.</string>

@@ -564,7 +564,7 @@
     <string name="record_start">Posnemi noč</string>
     <string name="record_stop">Ustavi snemanje</string>
     <string name="record_since">Snemanje od %1$s</string>
-    <string name="record_hint">Tvoja ura čez vso noč meri gibanje in utrip. Iz teh noči se Phase Wake v fazi učenja nauči tvojih lastnih vrednosti in budilko prilagodi tebi. To porabi nekaj baterije – napolni uro pred spanjem.</string>
+    <string name="record_hint">Tvoja ura čez vso noč meri gibanje in utrip. To porabi nekaj baterije – napolni uro pred spanjem.</string>
     <string name="record_end_manual">Ustavljeno</string>
     <string name="record_end_cap">Končano po 12 h</string>
     <string name="record_end_battery">Baterija ure je šibka</string>
@@ -618,7 +618,8 @@
     <string name="learn_point_nights">%1$d noči</string>
     <string name="learn_point_battery">To porabi nekaj baterije – napolni uro pred spanjem.</string>
     <string name="learn_point_private">Podatki ostanejo v tvojih napravah. Fazo učenja lahko kadar koli izklopiš v nastavitvah.</string>
-    <string name="learn_switch_hint">Ura ponoči meri gibanje in utrip, da prilagodi alarm. Izklopljeno: brez samodejnega beleženja, naučene vrednosti ostanejo.</string>
+    <string name="learn_switch_hint">Ura ponoči meri gibanje in utrip (od %1$d %% baterije). Izklopljeno: brez samodejnega beleženja, naučene vrednosti ostanejo.</string>
+    <string name="learn_switch_title">Aktivna</string>
     <string name="watch_open_app_hint">Odpri Phase Wake na uri, da prejme ukaz.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Vsaka noč od začetka faze učenja – ali je štela in, če ni, zakaj in kaj pomaga. Phase Wake potrebuje %1$d štetih noči.</string>

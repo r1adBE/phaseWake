@@ -537,7 +537,7 @@
     <string name="record_start">Шөнийг бичих</string>
     <string name="record_stop">Бичлэгийг зогсоох</string>
     <string name="record_since">%1$s-с хойш бичиж байна</string>
-    <string name="record_hint">Таны цаг шөнөжингөө хөдөлгөөн болон судасны цохилтыг хэмждэг. Эдгээр шөнөөс Phase Wake суралцах үе шатанд таны өөрийн утгуудыг сурч, сэрүүлгийг танд тохируулна. Энэ нь бага зэрэг батерей зарцуулна – унтахын өмнө цагаа цэнэглээрэй.</string>
+    <string name="record_hint">Таны цаг шөнөжингөө хөдөлгөөн болон судасны цохилтыг хэмждэг. Энэ нь бага зэрэг батерей зарцуулна – унтахын өмнө цагаа цэнэглээрэй.</string>
     <string name="record_end_manual">Зогсоосон</string>
     <string name="record_end_cap">12 цагийн дараа дууссан</string>
     <string name="record_end_battery">Цагийн батерей сул байна</string>
@@ -591,7 +591,8 @@
     <string name="learn_point_nights">%1$d шөнийн турш</string>
     <string name="learn_point_battery">Энэ нь бага зэрэг батерей зарцуулна – унтахын өмнө цагаа цэнэглээрэй.</string>
     <string name="learn_point_private">Өгөгдөл чиний төхөөрөмж дээр үлдэнэ. Суралцах үеийг тохиргооноос хүссэн үедээ унтрааж болно.</string>
-    <string name="learn_switch_hint">Цаг чинь сэрүүлгийг тохируулахын тулд шөнө хөдөлгөөн ба судасны цохилтыг хэмжинэ. Унтраасан: автомат бичлэг байхгүй, сурсан утгууд хадгалагдана.</string>
+    <string name="learn_switch_hint">Цаг чинь шөнө хөдөлгөөн ба судасны цохилтыг хэмжинэ (%1$d %% батерейгаас дээш). Унтраасан: автомат бичлэг байхгүй, сурсан утгууд хадгалагдана.</string>
+    <string name="learn_switch_title">Идэвхтэй</string>
     <string name="watch_open_app_hint">Тушаалыг хүлээн авахын тулд цаг дээрээ Phase Wake-г нээ.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Суралцах үе эхэлснээс хойших шөнө бүр – тоологдсон эсэх, тоологдоогүй бол яагаад, юу туслах вэ. Phase Wake-д тоологдсон %1$d шөнө хэрэгтэй.</string>

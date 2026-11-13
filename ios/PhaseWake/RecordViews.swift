@@ -3,14 +3,18 @@ import SwiftUI
 
 /// «Nacht aufzeichnen» auf der Startseite (wie `RecordCard` auf Android), nur mit einer Apple Watch, die es kennt
 /// (`WatchNight.watchCanRecord`): gemessen wird auf der Uhr, das iPhone schickt nur Start und Stopp. Symbol und Titel in
-/// einer Zeile, darunter der Hinweis bzw. «Aufzeichnung läuft seit …», dann der Knopf rechts.
+/// einer Zeile, darunter der Hinweis bzw. «Aufzeichnung läuft seit …», dann der Knopf rechts. Nur, solange die Lernphase
+/// nicht läuft (fertig oder aus), mit kurzem Hinweis; während der Lernphase steckt der Knopf in `LearningHomeCard`
+/// (r1AD 13.11.2026).
 struct RecordCard: View {
     @Environment(PhoneModel.self) private var model
     @Environment(\.colorScheme) private var scheme
 
     var body: some View {
         let night = WatchNight.shared
-        if night.watchCanRecord(model) {
+        let learning = PhoneLearning.shared
+        let inLearningCard = learning.watchCanLearn(model) && learning.progress != nil
+        if night.watchCanRecord(model) && !inLearningCard {
             let since = night.recordSince
             VStack(alignment: .leading, spacing: 8) {
                 Label(L("record_title"), systemImage: "applewatch")
@@ -19,19 +23,34 @@ struct RecordCard: View {
                 Text(since.map { L("record_since", Format.time($0)) } ?? L("record_hint"))
                     .font(Fonts.manrope(14, relativeTo: .subheadline))
                     .foregroundStyle(Brand.secondaryText(scheme))
-                Button(L(since != nil ? "record_stop" : "record_start")) { night.setRecording(since == nil) }
-                    .buttonStyle(.bordered)
-                    .disabled(night.recordPending)
+                RecordButton()
                     .frame(maxWidth: .infinity, alignment: .trailing)
-                // Keine Antwort der Uhr (App dort wohl zu): ehrlich sagen statt still wieder freigeben (Audit AP-8).
-                if night.recordUnanswered {
-                    Label(L("watch_open_app_hint"), systemImage: "applewatch")
-                        .font(Fonts.manrope(14, relativeTo: .subheadline))
-                        .foregroundStyle(Brand.secondaryText(scheme))
-                }
+                if night.recordUnanswered { RecordUnansweredHint() }
             }
             .card()
         }
+    }
+}
+
+/// «Nacht aufzeichnen» bzw. «Aufzeichnung stoppen» (Karte «Nacht-Aufzeichnung» und Karte der Lernphase).
+struct RecordButton: View {
+    var body: some View {
+        let night = WatchNight.shared
+        let since = night.recordSince
+        Button(L(since != nil ? "record_stop" : "record_start")) { night.setRecording(since == nil) }
+            .buttonStyle(.bordered)
+            .disabled(night.recordPending)
+    }
+}
+
+/// Keine Antwort der Uhr (App dort wohl zu): ehrlich sagen statt still wieder freigeben (Audit AP-8).
+struct RecordUnansweredHint: View {
+    @Environment(\.colorScheme) private var scheme
+
+    var body: some View {
+        Label(L("watch_open_app_hint"), systemImage: "applewatch")
+            .font(Fonts.manrope(14, relativeTo: .subheadline))
+            .foregroundStyle(Brand.secondaryText(scheme))
     }
 }
 

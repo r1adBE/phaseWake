@@ -537,7 +537,7 @@
     <string name="record_start">Qopha ubusuku</string>
     <string name="record_stop">Misa ukuqopha</string>
     <string name="record_since">Kuqoshwa kusukela ngo-%1$s</string>
-    <string name="record_hint">Iwashi lakho lilinganisa ukunyakaza nokushaya kwenhliziyo ubusuku bonke. Kulobu busuku, i-Phase Wake ifunda amanani akho esigabeni sokufunda futhi ilungisa i-alamu ikufanele. Lokhu kusebenzisa ibhethri elincane – shaja iwashi ngaphambi kokulala.</string>
+    <string name="record_hint">Iwashi lakho lilinganisa ukunyakaza nokushaya kwenhliziyo ubusuku bonke. Lokhu kusebenzisa ibhethri elincane – shaja iwashi ngaphambi kokulala.</string>
     <string name="record_end_manual">Kumisiwe</string>
     <string name="record_end_cap">Kuphele ngemva kwamahora angu-12</string>
     <string name="record_end_battery">Ibhethri lewashi liphansi</string>
@@ -591,7 +591,8 @@
     <string name="learn_point_nights">Izinsuku zobusuku ezingu-%1$d</string>
     <string name="learn_point_battery">Lokhu kusebenzisa ibhethri elincane – shaja iwashi ngaphambi kokulala.</string>
     <string name="learn_point_private">Idatha ihlala kumadivayisi akho. Ungavala isigaba sokufunda kuzilungiselelo noma nini.</string>
-    <string name="learn_switch_hint">Iwashi lakho lilinganisa ukunyakaza nokushaya kwenhliziyo ebusuku ukuze lilungise i-alamu. Kuvaliwe: akukho ukuqopha okuzenzakalelayo, amanani afundiwe ayahlala.</string>
+    <string name="learn_switch_hint">Iwashi lakho lilinganisa ukunyakaza nokushaya kwenhliziyo ebusuku (kusukela ku-%1$d %% webhethri). Kuvaliwe: akukho ukuqopha okuzenzakalelayo, amanani afundiwe ayahlala.</string>
+    <string name="learn_switch_title">Kuvuliwe</string>
     <string name="watch_open_app_hint">Vula i-Phase Wake ewashini lakho ukuze ithole umyalo.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Ubusuku ngabunye kusukela isigaba sokufunda saqala – ukuthi babalwa yini futhi, uma kungenjalo, kungani nokuthi yini esizayo. I-Phase Wake idinga ubusuku obubaliwe obungu-%1$d.</string>

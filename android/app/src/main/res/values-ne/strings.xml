@@ -537,7 +537,7 @@
     <string name="record_start">रात रेकर्ड गर</string>
     <string name="record_stop">रेकर्डिङ रोक</string>
     <string name="record_since">%1$s देखि रेकर्ड हुँदैछ</string>
-    <string name="record_hint">तिम्रो घडीले रातभर चाल र नाडी नाप्छ। यी रातहरूबाट Phase Wake सिक्ने चरणमा तिम्रा आफ्नै मानहरू सिक्छ र अलार्मलाई तिमीअनुसार मिलाउँछ। यसले केही ब्याट्री खपत गर्छ – सुत्नुअघि घडी चार्ज गर।</string>
+    <string name="record_hint">तिम्रो घडीले रातभर चाल र नाडी नाप्छ। यसले केही ब्याट्री खपत गर्छ – सुत्नुअघि घडी चार्ज गर।</string>
     <string name="record_end_manual">रोकियो</string>
     <string name="record_end_cap">१२ घण्टापछि सकियो</string>
     <string name="record_end_battery">घडीको ब्याट्री कम छ</string>
@@ -591,7 +591,8 @@
     <string name="learn_point_nights">%1$d रातसम्म</string>
     <string name="learn_point_battery">यसले केही ब्याट्री खपत गर्छ – सुत्नुअघि घडी चार्ज गर।</string>
     <string name="learn_point_private">डेटा तिम्रो उपकरणमै रहन्छ। सिक्ने चरण सेटिङमा जुनसुकै बेला बन्द गर्न सक्छौ।</string>
-    <string name="learn_switch_hint">अलार्म मिलाउन तिम्रो घडीले रातमा चाल र नाडी नाप्छ। बन्द: स्वचालित रेकर्डिङ छैन, सिकेका मानहरू रहन्छन्।</string>
+    <string name="learn_switch_hint">तिम्रो घडीले रातमा चाल र नाडी नाप्छ (कम्तीमा %1$d %% ब्याट्रीमा)। बन्द: स्वचालित रेकर्डिङ छैन, सिकेका मानहरू रहन्छन्।</string>
+    <string name="learn_switch_title">सक्रिय</string>
     <string name="watch_open_app_hint">आदेश पाउन घडीमा Phase Wake खोल।</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">सिक्ने चरण सुरु भएदेखि हरेक रात – गनियो कि गनिएन, र गनिएन भने किन र के ले मद्दत गर्छ। Phase Wake लाई %1$d गनिएका रात चाहिन्छ।</string>

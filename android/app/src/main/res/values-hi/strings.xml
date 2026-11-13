@@ -534,7 +534,7 @@
     <string name="record_start">रात रिकॉर्ड करें</string>
     <string name="record_stop">रिकॉर्डिंग रोकें</string>
     <string name="record_since">%1$s से रिकॉर्डिंग चल रही है</string>
-    <string name="record_hint">तुम्हारी घड़ी पूरी रात हलचल और पल्स मापती है। इन रातों से Phase Wake सीखने के चरण में तुम्हारे अपने मान सीखता है और अलार्म को तुम्हारे हिसाब से ढालता है। इसमें थोड़ी बैटरी लगती है – सोने से पहले घड़ी चार्ज करो।</string>
+    <string name="record_hint">तुम्हारी घड़ी पूरी रात हलचल और पल्स मापती है। इसमें थोड़ी बैटरी लगती है – सोने से पहले घड़ी चार्ज करो।</string>
     <string name="record_end_manual">रोकी गई</string>
     <string name="record_end_cap">12 घंटे बाद समाप्त</string>
     <string name="record_end_battery">वॉच की बैटरी कम है</string>
@@ -588,7 +588,8 @@
     <string name="learn_point_nights">%1$d रातों तक</string>
     <string name="learn_point_battery">इसमें थोड़ी बैटरी लगती है – सोने से पहले घड़ी चार्ज करो।</string>
     <string name="learn_point_private">डेटा तुम्हारे डिवाइस पर ही रहता है। सीखने का चरण तुम सेटिंग्स में कभी भी बंद कर सकते हो।</string>
-    <string name="learn_switch_hint">अलार्म ढालने के लिए तुम्हारी घड़ी रात में हलचल और पल्स मापती है। बंद: कोई अपने-आप रिकॉर्डिंग नहीं, सीखे गए मान बने रहते हैं।</string>
+    <string name="learn_switch_hint">तुम्हारी घड़ी रात में हलचल और पल्स मापती है (कम से कम %1$d %% बैटरी पर)। बंद: कोई अपने-आप रिकॉर्डिंग नहीं, सीखे गए मान बने रहते हैं।</string>
+    <string name="learn_switch_title">चालू</string>
     <string name="watch_open_app_hint">घड़ी पर Phase Wake खोलो, ताकि उसे निर्देश मिल सके।</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">सीखने का चरण शुरू होने के बाद से हर रात – वह गिनी गई या नहीं, और अगर नहीं, तो क्यों और क्या मदद करेगा। Phase Wake को %1$d गिनी गई रातें चाहिए।</string>

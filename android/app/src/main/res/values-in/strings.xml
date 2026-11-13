@@ -520,7 +520,7 @@
     <string name="record_start">Rekam malam</string>
     <string name="record_stop">Hentikan rekaman</string>
     <string name="record_since">Merekam sejak %1$s</string>
-    <string name="record_hint">Jam tanganmu mengukur gerakan dan denyut nadi sepanjang malam. Dari malam-malam ini, Phase Wake mempelajari nilai-nilaimu sendiri dalam fase belajar dan menyesuaikan alarm untukmu. Ini memakai sedikit baterai – isi daya jam sebelum tidur.</string>
+    <string name="record_hint">Jam tanganmu mengukur gerakan dan denyut nadi sepanjang malam. Ini memakai sedikit baterai – isi daya jam sebelum tidur.</string>
     <string name="record_end_manual">Dihentikan</string>
     <string name="record_end_cap">Berakhir setelah 12 jam</string>
     <string name="record_end_battery">Baterai jam lemah</string>
@@ -574,7 +574,8 @@
     <string name="learn_point_nights">Selama %1$d malam</string>
     <string name="learn_point_battery">Ini memakai sedikit baterai – isi daya jam sebelum tidur.</string>
     <string name="learn_point_private">Datanya tetap di perangkatmu. Kamu bisa mematikan fase belajar di pengaturan kapan saja.</string>
-    <string name="learn_switch_hint">Jam tanganmu mengukur gerakan dan denyut nadi di malam hari untuk menyesuaikan alarm. Mati: tidak ada perekaman otomatis, nilai yang dipelajari tetap ada.</string>
+    <string name="learn_switch_hint">Jam tanganmu mengukur gerakan dan denyut nadi di malam hari (mulai %1$d %% baterai). Mati: tidak ada perekaman otomatis, nilai yang dipelajari tetap ada.</string>
+    <string name="learn_switch_title">Aktif</string>
     <string name="watch_open_app_hint">Buka Phase Wake di jam tanganmu agar perintahnya diterima.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Setiap malam sejak fase belajar dimulai – apakah terhitung dan, jika tidak, apa sebabnya dan apa yang membantu. Phase Wake memerlukan %1$d malam yang terhitung.</string>

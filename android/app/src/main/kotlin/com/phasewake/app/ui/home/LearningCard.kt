@@ -11,6 +11,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -25,7 +26,9 @@ import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
 import com.phasewake.app.core.LearnNights
 import com.phasewake.app.core.Learning
+import com.phasewake.app.shared.RecordSync
 import com.phasewake.app.ui.Format
+import com.phasewake.app.ui.theme.outlinedBorder
 import java.time.Duration
 import java.time.Instant
 import kotlin.math.roundToInt
@@ -45,11 +48,18 @@ class HomeLearning(
     val onConsent: ((Boolean) -> Unit)? = null,
     val miss: LearnNights.Night? = null,
     val onDetails: (() -> Unit)? = null,
-)
+) {
+    /** Die Lernphase läuft (nicht die Frage, nicht «Angepasst an dich»): Dann steckt «Nacht aufzeichnen» in dieser Karte. */
+    val inProgress: Boolean get() = values == null && onConsent == null
+}
 
-/** Karte der Lernphase, siehe [HomeLearning]. */
+/**
+ * Karte der Lernphase, siehe [HomeLearning]. Solange sie läuft, trägt sie auch «Nacht aufzeichnen» ([record], [onRecord])
+ * als kleinen zweiten Knopf neben «Details» statt einer eigenen Karte (r1AD 13.11.2026); läuft eine Aufzeichnung, steht
+ * «Aufzeichnung läuft seit …» darüber und der Knopf stoppt sie.
+ */
 @Composable
-internal fun LearningCard(learning: HomeLearning) {
+internal fun LearningCard(learning: HomeLearning, record: RecordSync.RecordStatus? = null, onRecord: (Boolean) -> Unit = {}) {
     Card(
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = cardColor()),
@@ -93,9 +103,25 @@ internal fun LearningCard(learning: HomeLearning) {
                     )
                 }
                 learning.miss?.let { LastNightMiss(it) }
-                learning.onDetails?.let { onDetails ->
-                    TextButton(onClick = onDetails, modifier = Modifier.align(Alignment.End).heightIn(min = 48.dp)) {
-                        Text(stringResource(R.string.night_details))
+                val since = record?.since
+                if (since != null) {
+                    Text(
+                        stringResource(R.string.record_since, Format.time(since)),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.padding(top = 10.dp),
+                    )
+                }
+                Row(Modifier.align(Alignment.End).padding(top = 4.dp), verticalAlignment = Alignment.CenterVertically) {
+                    learning.onDetails?.let { onDetails ->
+                        TextButton(onClick = onDetails, modifier = Modifier.heightIn(min = 48.dp)) {
+                            Text(stringResource(R.string.night_details))
+                        }
+                    }
+                    if (record != null) {
+                        OutlinedButton(onClick = { onRecord(since == null) }, border = outlinedBorder(), modifier = Modifier.padding(start = 8.dp)) {
+                            Text(stringResource(if (since != null) R.string.record_stop else R.string.record_start))
+                        }
                     }
                 }
             }

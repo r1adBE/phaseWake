@@ -24,7 +24,8 @@ import java.time.Instant
  * «Nacht aufzeichnen» auf der Startseite (nur mit einer Galaxy Watch, die es kennt): gemessen wird auf der Uhr, das
  * Handy schickt nur Start und Stopp. Aufbau (Wunsch r1AD 08.11.2026): Symbol und Titel in einer Zeile, darunter der
  * Hinweis über die ganze Breite, dann der Knopf rechts wie bei den anderen Karten. Läuft eine Aufzeichnung, ersetzt
- * «Aufzeichnung läuft seit …» den Hinweis (Entscheid r1AD 09.11.2026).
+ * «Aufzeichnung läuft seit …» den Hinweis (Entscheid r1AD 09.11.2026). Nur, solange die Lernphase nicht läuft (fertig oder
+ * aus), mit kurzem Hinweis; während der Lernphase steckt der Knopf in [LearningCard] (r1AD 13.11.2026).
  */
 @Composable
 internal fun RecordCard(since: Instant?, onRecord: (Boolean) -> Unit) {

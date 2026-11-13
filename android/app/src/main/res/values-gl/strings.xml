@@ -537,7 +537,7 @@
     <string name="record_start">Gravar a noite</string>
     <string name="record_stop">Deter a gravación</string>
     <string name="record_since">Gravando desde as %1$s</string>
-    <string name="record_hint">O teu reloxo mide movemento e pulso ao longo de toda a noite. A partir desas noites, Phase Wake aprende os teus propios valores na fase de aprendizaxe e adapta a alarma a ti. Isto gasta algo de batería: carga o reloxo antes de durmir.</string>
+    <string name="record_hint">O teu reloxo mide movemento e pulso ao longo de toda a noite. Isto gasta algo de batería: carga o reloxo antes de durmir.</string>
     <string name="record_end_manual">Detida</string>
     <string name="record_end_cap">Rematou tras 12 h</string>
     <string name="record_end_battery">Batería do reloxo baixa</string>
@@ -591,7 +591,8 @@
     <string name="learn_point_nights">Durante %1$d noites</string>
     <string name="learn_point_battery">Isto gasta algo de batería: carga o reloxo antes de durmir.</string>
     <string name="learn_point_private">Os datos quedan nos teus dispositivos. Podes desactivar a fase de aprendizaxe na configuración cando queiras.</string>
-    <string name="learn_switch_hint">O teu reloxo mide movemento e pulso pola noite para adaptar a alarma. Desactivado: sen rexistro automático, os valores aprendidos mantéñense.</string>
+    <string name="learn_switch_hint">O teu reloxo mide movemento e pulso pola noite (desde un %1$d %% de batería). Desactivado: sen rexistro automático, os valores aprendidos mantéñense.</string>
+    <string name="learn_switch_title">Activa</string>
     <string name="watch_open_app_hint">Abre Phase Wake no reloxo para que reciba a orde.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Cada noite desde que comezou a fase de aprendizaxe: se contou e, se non, por que e que axuda. Phase Wake necesita %1$d noites contadas.</string>

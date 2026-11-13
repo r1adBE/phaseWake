@@ -64,9 +64,9 @@ class SettingsExtras(
 )
 
 /**
- * Lernphase in den Einstellungen: Schalter «Lernphase» ([consent], [onConsent]), «Nacht N von 7» ([night], nur während
- * sie läuft) bzw. die gelernten Werte ([values]), «Details» zur Lern-Übersicht ([onDetails]) und «Neu lernen»
- * ([onRestart]); beides nur, wenn sie schon begonnen hat.
+ * Lernphase in den Einstellungen: Titel «Lernphase: Nacht N von 7» ([night], nur während sie läuft) bzw. «Angepasst an
+ * dich» mit den gelernten Werten ([values]), Schalter «Aktiv» ([consent], [onConsent]), «Details» zur Lern-Übersicht
+ * ([onDetails]) und «Neu lernen» ([onRestart]); beides nur, wenn sie schon begonnen hat.
  */
 class LearningSettings(
     val night: Int?,
@@ -77,7 +77,10 @@ class LearningSettings(
     val onDetails: (() -> Unit)? = null,
 )
 
-/** Gruppe der Lernphase: Schalter, Stand, gelernte Werte und «Neu lernen» mit Rückfrage. */
+/**
+ * Gruppe der Lernphase: Stand im Titel, Schalter, gelernte Werte, «Details» und «Neu lernen» mit Rückfrage. Ohne die
+ * Erklärung der Startseite und mit «Details» und «Neu lernen» als Liste direkt untereinander (r1AD 13.11.2026).
+ */
 @Composable
 internal fun LearningGroup(ui: LearningSettings) {
     val values = ui.values
@@ -88,29 +91,31 @@ internal fun LearningGroup(ui: LearningSettings) {
         else -> stringResource(R.string.learn_consent_title)
     }
     Group(title) {
-        SwitchRow(stringResource(R.string.learn_consent_title), stringResource(R.string.learn_switch_hint), ui.consent, ui.onConsent)
-        if (values != null) {
-            LearnedLines(values, MaterialTheme.colorScheme.onSurfaceVariant)
-        } else if (night != null) {
-            Text(stringResource(R.string.learn_text, Learning.NIGHTS, Learning.MIN_BATTERY), style = MaterialTheme.typography.bodyMedium)
+        SwitchRow(stringResource(R.string.learn_switch_title), stringResource(R.string.learn_switch_hint, Learning.MIN_BATTERY), ui.consent, ui.onConsent)
+        if (values != null) LearnedLines(values, MaterialTheme.colorScheme.onSurfaceVariant)
+        // Eigene Spalte: ohne den Abstand der Gruppe zwischen den Zeilen.
+        if (ui.onDetails != null || ui.onRestart != null) Column {
+            ui.onDetails?.let { ListRow(stringResource(R.string.night_details), onClick = it) }
+            ui.onRestart?.let { RestartRow(it) }
         }
-        ui.onDetails?.let { ListRow(stringResource(R.string.night_details), onClick = it) }
-        val onRestart = ui.onRestart
-        if (onRestart != null) {
-            var confirm by remember { mutableStateOf(false) }
-            ListRow(stringResource(R.string.learn_restart)) { confirm = true }
-            if (confirm) {
-                AlertDialog(
-                    onDismissRequest = { confirm = false },
-                    title = { Text(stringResource(R.string.learn_restart)) },
-                    text = { Text(stringResource(R.string.learn_restart_text, Learning.NIGHTS)) },
-                    confirmButton = {
-                        TextButton(onClick = { confirm = false; onRestart() }) { Text(stringResource(R.string.learn_restart)) }
-                    },
-                    dismissButton = { TextButton(onClick = { confirm = false }) { Text(stringResource(R.string.action_cancel)) } },
-                )
-            }
-        }
+    }
+}
+
+/** «Neu lernen» mit Rückfrage. */
+@Composable
+private fun RestartRow(onRestart: () -> Unit) {
+    var confirm by remember { mutableStateOf(false) }
+    ListRow(stringResource(R.string.learn_restart)) { confirm = true }
+    if (confirm) {
+        AlertDialog(
+            onDismissRequest = { confirm = false },
+            title = { Text(stringResource(R.string.learn_restart)) },
+            text = { Text(stringResource(R.string.learn_restart_text, Learning.NIGHTS)) },
+            confirmButton = {
+                TextButton(onClick = { confirm = false; onRestart() }) { Text(stringResource(R.string.learn_restart)) }
+            },
+            dismissButton = { TextButton(onClick = { confirm = false }) { Text(stringResource(R.string.action_cancel)) } },
+        )
     }
 }
 

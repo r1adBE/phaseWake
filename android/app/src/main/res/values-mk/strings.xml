@@ -537,7 +537,7 @@
     <string name="record_start">Сними ја ноќта</string>
     <string name="record_stop">Запри снимање</string>
     <string name="record_since">Се снима од %1$s</string>
-    <string name="record_hint">Твојот часовник мери движење и пулс низ целата ноќ. Од тие ноќи Phase Wake во фазата на учење ги учи твоите сопствени вредности и го прилагодува алармот на тебе. Тоа троши малку батерија – наполни го часовникот пред спиење.</string>
+    <string name="record_hint">Твојот часовник мери движење и пулс низ целата ноќ. Тоа троши малку батерија – наполни го часовникот пред спиење.</string>
     <string name="record_end_manual">Запрено</string>
     <string name="record_end_cap">Завршено по 12 ч</string>
     <string name="record_end_battery">Батеријата на часовникот е слаба</string>
@@ -591,7 +591,8 @@
     <string name="learn_point_nights">%1$d ноќи</string>
     <string name="learn_point_battery">Тоа троши малку батерија – наполни го часовникот пред спиење.</string>
     <string name="learn_point_private">Податоците остануваат на твоите уреди. Фазата на учење можеш да ја исклучиш во поставките во секое време.</string>
-    <string name="learn_switch_hint">Твојот часовник ноќе мери движење и пулс за да го прилагоди алармот. Исклучено: нема автоматско снимање, научените вредности остануваат.</string>
+    <string name="learn_switch_hint">Твојот часовник ноќе мери движење и пулс (од %1$d %% батерија). Исклучено: нема автоматско снимање, научените вредности остануваат.</string>
+    <string name="learn_switch_title">Активна</string>
     <string name="watch_open_app_hint">Отвори го Phase Wake на часовникот за да ја прими командата.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Секоја ноќ од почетокот на фазата на учење – дали е пресметана и, ако не, зошто и што помага. На Phase Wake му требаат %1$d пресметани ноќи.</string>

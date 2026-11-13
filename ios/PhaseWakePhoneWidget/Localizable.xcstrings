@@ -140022,445 +140022,893 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jou horlosie meet snags beweging en polsslag om die wekker aan te pas. Af: geen outomatiese opname nie, geleerde waardes bly."
+            "value": "Jou horlosie meet snags beweging en polsslag (vanaf %1$lld %% battery). Af: geen outomatiese opname nie, geleerde waardes bly."
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "ማንቂያውን ለማስተካከል ሰዓትህ በሌሊት እንቅስቃሴና የልብ ምት ይለካል። ጠፍቷል፦ ራስ-ሰር ቀረጻ የለም፣ የተማሩ እሴቶች ይቆያሉ።"
+            "value": "ሰዓትህ በሌሊት እንቅስቃሴና የልብ ምት ይለካል (ከ%1$lld %% ባትሪ ጀምሮ)። ጠፍቷል፦ ራስ-ሰር ቀረጻ የለም፣ የተማሩ እሴቶች ይቆያሉ።"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "تقيس ساعتك الحركة والنبض ليلًا لضبط المنبّه. متوقفة: لا تسجيل تلقائي، وتبقى القيم المتعلَّمة."
+            "value": "تقيس ساعتك الحركة والنبض ليلًا (من %1$lld %% بطارية فأكثر). متوقفة: لا تسجيل تلقائي، وتبقى القيم المتعلَّمة."
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Saatın zəngli saatı uyğunlaşdırmaq üçün gecələr hərəkəti və nəbzi ölçür. Sönülü: avtomatik qeyd yoxdur, öyrənilmiş dəyərlər qalır."
+            "value": "Saatın gecələr hərəkəti və nəbzi ölçür (%1$lld %% batareyadan). Sönülü: avtomatik qeyd yoxdur, öyrənilmiş dəyərlər qalır."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Часовникът ти измерва движение и пулс през нощта, за да нагласи алармата. Изкл.: без автоматичен запис, научените стойности остават."
+            "value": "Часовникът ти измерва движение и пулс през нощта (от %1$lld %% батерия). Изкл.: без автоматичен запис, научените стойности остават."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "অ্যালার্ম মানিয়ে নিতে তোমার ঘড়ি রাতে নড়াচড়া ও পালস মাপে। বন্ধ: স্বয়ংক্রিয় রেকর্ডিং নেই, শেখা মানগুলো থাকে।"
+            "value": "তোমার ঘড়ি রাতে নড়াচড়া ও পালস মাপে (অন্তত %1$lld %% ব্যাটারিতে)। বন্ধ: স্বয়ংক্রিয় রেকর্ডিং নেই, শেখা মানগুলো থাকে।"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tvoj sat noću mjeri pokrete i puls da prilagodi alarm. Isključeno: nema automatskog snimanja, naučene vrijednosti ostaju."
+            "value": "Tvoj sat noću mjeri pokrete i puls (od %1$lld %% baterije). Isključeno: nema automatskog snimanja, naučene vrijednosti ostaju."
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "El rellotge mesura moviment i pols a la nit per adaptar l’alarma. Desactivat: cap enregistrament automàtic, els valors apresos es mantenen."
+            "value": "El rellotge mesura moviment i pols a la nit (a partir del %1$lld %% de bateria). Desactivat: cap enregistrament automàtic, els valors apresos es mantenen."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hodinky v noci měří pohyb a tep, aby přizpůsobily budík. Vypnuto: žádný automatický záznam, naučené hodnoty zůstávají."
+            "value": "Hodinky v noci měří pohyb a tep (od %1$lld %% baterie). Vypnuto: žádný automatický záznam, naučené hodnoty zůstávají."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dit ur måler bevægelse og puls om natten for at tilpasse alarmen. Fra: ingen automatisk registrering, lærte værdier bevares."
+            "value": "Dit ur måler bevægelse og puls om natten (fra %1$lld %% batteri). Fra: ingen automatisk registrering, lærte værdier bevares."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deine Uhr misst nachts Bewegung und Puls, um den Wecker anzupassen. Aus: keine automatische Aufzeichnung, gelernte Werte bleiben."
+            "value": "Die Uhr misst nachts Bewegung und Puls (ab %1$lld %% Akku). Aus: keine automatische Aufzeichnung, gelernte Werte bleiben."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Το ρολόι σου μετρά κίνηση και παλμούς τη νύχτα για να προσαρμόσει το ξυπνητήρι. Ανενεργό: καμία αυτόματη καταγραφή, οι τιμές που έμαθε μένουν."
+            "value": "Το ρολόι σου μετρά κίνηση και παλμούς τη νύχτα (από %1$lld %% μπαταρία). Ανενεργό: καμία αυτόματη καταγραφή, οι τιμές που έμαθε μένουν."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your watch measures motion and pulse at night to adapt the alarm. Off: no automatic recording, learned values stay."
+            "value": "Your watch measures motion and pulse at night (from %1$lld %% battery). Off: no automatic recording, learned values stay."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tu reloj mide movimiento y pulso por la noche para adaptar la alarma. Desactivado: sin registro automático, los valores aprendidos se mantienen."
+            "value": "Tu reloj mide movimiento y pulso por la noche (desde un %1$lld %% de batería). Desactivado: sin registro automático, los valores aprendidos se mantienen."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Su kell mõõdab öösel liikumist ja pulssi, et äratust kohandada. Väljas: automaatset salvestamist pole, õpitud väärtused jäävad."
+            "value": "Su kell mõõdab öösel liikumist ja pulssi (alates %1$lld %% akust). Väljas: automaatset salvestamist pole, õpitud väärtused jäävad."
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Erlojuak mugimendua eta pultsua neurtzen ditu gauez alarma egokitzeko. Desaktibatuta: ez dago grabaketa automatikorik, ikasitako balioak geratzen dira."
+            "value": "Erlojuak mugimendua eta pultsua neurtzen ditu gauez (%1$lld %% bateriatik aurrera). Desaktibatuta: ez dago grabaketa automatikorik, ikasitako balioak geratzen dira."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ساعتت برای هماهنگ کردن زنگ، شب‌ها حرکت و نبض را اندازه می‌گیرد. خاموش: بدون ثبت خودکار، مقادیر یادگرفته‌شده می‌مانند."
+            "value": "ساعتت شب‌ها حرکت و نبض را اندازه می‌گیرد (از %1$lld %% باتری به بالا). خاموش: بدون ثبت خودکار، مقادیر یادگرفته‌شده می‌مانند."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kellosi mittaa yöllä liikettä ja sykettä herätyksen mukauttamiseksi. Pois: ei automaattista tallennusta, opitut arvot säilyvät."
+            "value": "Kellosi mittaa yöllä liikettä ja sykettä (kun akkua on vähintään %1$lld %%). Pois: ei automaattista tallennusta, opitut arvot säilyvät."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sinusukat ng relo mo ang galaw at pulso sa gabi para iangkop ang alarm. Naka-off: walang awtomatikong pagtatala, nananatili ang natutunang value."
+            "value": "Sinusukat ng relo mo ang galaw at pulso sa gabi (simula %1$lld %% na baterya). Naka-off: walang awtomatikong pagtatala, nananatili ang natutunang value."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ta montre mesure mouvements et pouls la nuit pour adapter le réveil. Désactivé : aucun enregistrement automatique, les valeurs apprises restent."
+            "value": "Ta montre mesure mouvements et pouls la nuit (à partir de %1$lld %% de batterie). Désactivé : aucun enregistrement automatique, les valeurs apprises restent."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tomhaiseann d’uaireadóir gluaiseacht agus cuisle san oíche chun an t-aláram a oiriúnú. As: gan taifeadadh uathoibríoch, fanann na luachanna foghlamtha."
+            "value": "Tomhaiseann d’uaireadóir gluaiseacht agus cuisle san oíche (ó %1$lld %% ceallra). As: gan taifeadadh uathoibríoch, fanann na luachanna foghlamtha."
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "O teu reloxo mide movemento e pulso pola noite para adaptar a alarma. Desactivado: sen rexistro automático, os valores aprendidos mantéñense."
+            "value": "O teu reloxo mide movemento e pulso pola noite (desde un %1$lld %% de batería). Desactivado: sen rexistro automático, os valores aprendidos mantéñense."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "એલાર્મ ગોઠવવા તમારી ઘડિયાળ રાત્રે હલનચલન અને પલ્સ માપે છે. બંધ: આપોઆપ નોંધ નહીં, શીખેલાં મૂલ્યો રહે છે."
+            "value": "તમારી ઘડિયાળ રાત્રે હલનચલન અને પલ્સ માપે છે (ઓછામાં ઓછી %1$lld %% બેટરીએ). બંધ: આપોઆપ નોંધ નહીં, શીખેલાં મૂલ્યો રહે છે."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "השעון שלך מודד תנועה ודופק בלילה כדי להתאים את ההשכמה. כבוי: אין תיעוד אוטומטי, הערכים שנלמדו נשמרים."
+            "value": "השעון שלך מודד תנועה ודופק בלילה (החל מ־%1$lld %% סוללה). כבוי: אין תיעוד אוטומטי, הערכים שנלמדו נשמרים."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "अलार्म ढालने के लिए तुम्हारी घड़ी रात में हलचल और पल्स मापती है। बंद: कोई अपने-आप रिकॉर्डिंग नहीं, सीखे गए मान बने रहते हैं।"
+            "value": "तुम्हारी घड़ी रात में हलचल और पल्स मापती है (कम से कम %1$lld %% बैटरी पर)। बंद: कोई अपने-आप रिकॉर्डिंग नहीं, सीखे गए मान बने रहते हैं।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tvoj sat noću mjeri pokrete i puls kako bi prilagodio alarm. Isključeno: nema automatskog snimanja, naučene vrijednosti ostaju."
+            "value": "Tvoj sat noću mjeri pokrete i puls (od %1$lld %% baterije). Isključeno: nema automatskog snimanja, naučene vrijednosti ostaju."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Az órád éjjel méri a mozgást és a pulzust az ébresztés igazításához. Ki: nincs automatikus rögzítés, a tanult értékek megmaradnak."
+            "value": "Az órád éjjel méri a mozgást és a pulzust (legalább %1$lld %% akkumulátornál). Ki: nincs automatikus rögzítés, a tanult értékek megmaradnak."
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ժամացույցդ գիշերը չափում է շարժումն ու զարկերակը՝ զարթուցիչը հարմարեցնելու համար։ Անջատված է՝ ավտոմատ գրանցում չկա, սովորած արժեքները մնում են։"
+            "value": "Ժամացույցդ գիշերը չափում է շարժումն ու զարկերակը (%1$lld %% լիցքից սկսած)։ Անջատված է՝ ավտոմատ գրանցում չկա, սովորած արժեքները մնում են։"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jam tanganmu mengukur gerakan dan denyut nadi di malam hari untuk menyesuaikan alarm. Mati: tidak ada perekaman otomatis, nilai yang dipelajari tetap ada."
+            "value": "Jam tanganmu mengukur gerakan dan denyut nadi di malam hari (mulai %1$lld %% baterai). Mati: tidak ada perekaman otomatis, nilai yang dipelajari tetap ada."
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Úrið mælir hreyfingu og púls á nóttunni til að laga vekjarann. Slökkt: engin sjálfvirk skráning, lærð gildi haldast."
+            "value": "Úrið mælir hreyfingu og púls á nóttunni (frá %1$lld %% rafhlöðu). Slökkt: engin sjálfvirk skráning, lærð gildi haldast."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Il tuo orologio misura movimento e battito di notte per adattare la sveglia. Disattivato: nessuna registrazione automatica, i valori appresi restano."
+            "value": "Il tuo orologio misura movimento e battito di notte (da %1$lld %% di batteria). Disattivato: nessuna registrazione automatica, i valori appresi restano."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "アラームを合わせるため、時計が夜間に体の動きと脈拍を計測します。 オフ：自動記録なし、学習した値は残ります。"
+            "value": "時計が夜間に体の動きと脈拍を計測します（バッテリー %1$lld %% 以上）。 オフ：自動記録なし、学習した値は残ります。"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "შენი საათი ღამით ზომავს მოძრაობას და პულსს მაღვიძარის მოსარგებად. გამორთული: ავტომატური ჩაწერა არ არის, ნასწავლი მნიშვნელობები რჩება."
+            "value": "შენი საათი ღამით ზომავს მოძრაობას და პულსს (%1$lld %% ბატარეიდან). გამორთული: ავტომატური ჩაწერა არ არის, ნასწავლი მნიშვნელობები რჩება."
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Сағатың оятқышты бейімдеу үшін түнде қозғалыс пен пульсті өлшейді. Өшірулі: автоматты жазу жоқ, үйренген мәндер сақталады."
+            "value": "Сағатың түнде қозғалыс пен пульсті өлшейді (%1$lld %% батареядан бастап). Өшірулі: автоматты жазу жоқ, үйренген мәндер сақталады."
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "នាឡិការបស់អ្នកវាស់ចលនា និងជីពចរពេលយប់ ដើម្បីសម្រួលម៉ោងរោទ៍។ បិទ៖ គ្មានការកត់ត្រាស្វ័យប្រវត្តិ តម្លៃដែលបានរៀននៅដដែល។"
+            "value": "នាឡិការបស់អ្នកវាស់ចលនា និងជីពចរពេលយប់ (ថ្មចាប់ពី %1$lld %%)។ បិទ៖ គ្មានការកត់ត្រាស្វ័យប្រវត្តិ តម្លៃដែលបានរៀននៅដដែល។"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ಅಲಾರಾಂ ಹೊಂದಿಸಲು ನಿಮ್ಮ ವಾಚ್ ರಾತ್ರಿ ಚಲನೆ ಮತ್ತು ನಾಡಿಯನ್ನು ಅಳೆಯುತ್ತದೆ. ಆಫ್: ಸ್ವಯಂ ದಾಖಲೆ ಇಲ್ಲ, ಕಲಿತ ಮೌಲ್ಯಗಳು ಉಳಿಯುತ್ತವೆ."
+            "value": "ನಿಮ್ಮ ವಾಚ್ ರಾತ್ರಿ ಚಲನೆ ಮತ್ತು ನಾಡಿಯನ್ನು ಅಳೆಯುತ್ತದೆ (ಕನಿಷ್ಠ %1$lld %% ಬ್ಯಾಟರಿಯಲ್ಲಿ). ಆಫ್: ಸ್ವಯಂ ದಾಖಲೆ ಇಲ್ಲ, ಕಲಿತ ಮೌಲ್ಯಗಳು ಉಳಿಯುತ್ತವೆ."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "알람을 맞추기 위해 시계가 밤에 움직임과 맥박을 측정합니다. 끄기: 자동 기록 없음, 학습한 값은 유지됩니다."
+            "value": "시계가 밤에 움직임과 맥박을 측정합니다(배터리 %1$lld %% 이상). 끄기: 자동 기록 없음, 학습한 값은 유지됩니다."
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "ໂມງຂອງເຈົ້າວັດການເຄື່ອນໄຫວ ແລະ ຊີບພະຈອນໃນຕອນກາງຄືນເພື່ອປັບໂມງປຸກ. ປິດ: ບໍ່ບັນທຶກອັດຕະໂນມັດ, ຄ່າທີ່ຮຽນຮູ້ແລ້ວຍັງຢູ່."
+            "value": "ໂມງຂອງເຈົ້າວັດການເຄື່ອນໄຫວ ແລະ ຊີບພະຈອນໃນຕອນກາງຄືນ (ແບັດເຕີຣີແຕ່ %1$lld %% ຂຶ້ນໄປ). ປິດ: ບໍ່ບັນທຶກອັດຕະໂນມັດ, ຄ່າທີ່ຮຽນຮູ້ແລ້ວຍັງຢູ່."
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tavo laikrodis naktį matuoja judesį ir pulsą, kad pritaikytų žadintuvą. Išjungta: jokio automatinio įrašymo, išmoktos vertės lieka."
+            "value": "Tavo laikrodis naktį matuoja judesį ir pulsą (nuo %1$lld %% baterijos). Išjungta: jokio automatinio įrašymo, išmoktos vertės lieka."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tavs pulkstenis naktī mēra kustību un pulsu, lai pielāgotu modinātāju. Izslēgts: nav automātiskas ierakstīšanas, apgūtās vērtības paliek."
+            "value": "Tavs pulkstenis naktī mēra kustību un pulsu (no %1$lld %% akumulatora). Izslēgts: nav automātiskas ierakstīšanas, apgūtās vērtības paliek."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Твојот часовник ноќе мери движење и пулс за да го прилагоди алармот. Исклучено: нема автоматско снимање, научените вредности остануваат."
+            "value": "Твојот часовник ноќе мери движење и пулс (од %1$lld %% батерија). Исклучено: нема автоматско снимање, научените вредности остануваат."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "അലാറം ക്രമീകരിക്കാൻ നിങ്ങളുടെ വാച്ച് രാത്രിയിൽ ചലനവും പൾസും അളക്കുന്നു. ഓഫ്: സ്വയമേവ രേഖപ്പെടുത്തലില്ല, പഠിച്ച മൂല്യങ്ങൾ നിലനിൽക്കും."
+            "value": "നിങ്ങളുടെ വാച്ച് രാത്രിയിൽ ചലനവും പൾസും അളക്കുന്നു (കുറഞ്ഞത് %1$lld %% ബാറ്ററിയിൽ). ഓഫ്: സ്വയമേവ രേഖപ്പെടുത്തലില്ല, പഠിച്ച മൂല്യങ്ങൾ നിലനിൽക്കും."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Цаг чинь сэрүүлгийг тохируулахын тулд шөнө хөдөлгөөн ба судасны цохилтыг хэмжинэ. Унтраасан: автомат бичлэг байхгүй, сурсан утгууд хадгалагдана."
+            "value": "Цаг чинь шөнө хөдөлгөөн ба судасны цохилтыг хэмжинэ (%1$lld %% батерейгаас дээш). Унтраасан: автомат бичлэг байхгүй, сурсан утгууд хадгалагдана."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "अलार्म जुळवण्यासाठी तुमचे घड्याळ रात्री हालचाल आणि नाडी मोजते. बंद: आपोआप नोंद नाही, शिकलेली मूल्ये राहतात."
+            "value": "तुमचे घड्याळ रात्री हालचाल आणि नाडी मोजते (किमान %1$lld %% बॅटरीवर). बंद: आपोआप नोंद नाही, शिकलेली मूल्ये राहतात."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jam tangan anda mengukur pergerakan dan nadi pada waktu malam untuk menyesuaikan penggera. Mati: tiada rakaman automatik, nilai yang dipelajari kekal."
+            "value": "Jam tangan anda mengukur pergerakan dan nadi pada waktu malam (mulai %1$lld %% bateri). Mati: tiada rakaman automatik, nilai yang dipelajari kekal."
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "နှိုးစက်ကို ချိန်ညှိရန် သင့်နာရီသည် ညအချိန်တွင် လှုပ်ရှားမှုနှင့် သွေးခုန်နှုန်းကို တိုင်းတာသည်။ ပိတ်: အလိုအလျောက် မှတ်တမ်းမတင်၊ သင်ယူထားသော တန်ဖိုးများ ကျန်ရှိသည်။"
+            "value": "သင့်နာရီသည် ညအချိန်တွင် လှုပ်ရှားမှုနှင့် သွေးခုန်နှုန်းကို တိုင်းတာသည် (ဘက်ထရီ အနည်းဆုံး %1$lld %%)။ ပိတ်: အလိုအလျောက် မှတ်တမ်းမတင်၊ သင်ယူထားသော တန်ဖိုးများ ကျန်ရှိသည်။"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Klokken din måler bevegelse og puls om natten for å tilpasse alarmen. Av: ingen automatisk registrering, lærte verdier beholdes."
+            "value": "Klokken din måler bevegelse og puls om natten (fra %1$lld %% batteri). Av: ingen automatisk registrering, lærte verdier beholdes."
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "अलार्म मिलाउन तिम्रो घडीले रातमा चाल र नाडी नाप्छ। बन्द: स्वचालित रेकर्डिङ छैन, सिकेका मानहरू रहन्छन्।"
+            "value": "तिम्रो घडीले रातमा चाल र नाडी नाप्छ (कम्तीमा %1$lld %% ब्याट्रीमा)। बन्द: स्वचालित रेकर्डिङ छैन, सिकेका मानहरू रहन्छन्।"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Je horloge meet ’s nachts beweging en hartslag om de wekker af te stemmen. Uit: geen automatische registratie, geleerde waarden blijven."
+            "value": "Je horloge meet ’s nachts beweging en hartslag (vanaf %1$lld %% batterij). Uit: geen automatische registratie, geleerde waarden blijven."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਅਲਾਰਮ ਢਾਲਣ ਲਈ ਤੁਹਾਡੀ ਘੜੀ ਰਾਤ ਨੂੰ ਹਿਲਜੁਲ ਅਤੇ ਨਬਜ਼ ਮਾਪਦੀ ਹੈ। ਬੰਦ: ਕੋਈ ਆਪਣੇ-ਆਪ ਰਿਕਾਰਡਿੰਗ ਨਹੀਂ, ਸਿੱਖੇ ਮੁੱਲ ਰਹਿੰਦੇ ਹਨ।"
+            "value": "ਤੁਹਾਡੀ ਘੜੀ ਰਾਤ ਨੂੰ ਹਿਲਜੁਲ ਅਤੇ ਨਬਜ਼ ਮਾਪਦੀ ਹੈ (ਘੱਟੋ-ਘੱਟ %1$lld %% ਬੈਟਰੀ ਨਾਲ)। ਬੰਦ: ਕੋਈ ਆਪਣੇ-ਆਪ ਰਿਕਾਰਡਿੰਗ ਨਹੀਂ, ਸਿੱਖੇ ਮੁੱਲ ਰਹਿੰਦੇ ਹਨ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zegarek mierzy w nocy ruch i tętno, aby dopasować budzik. Wył.: brak automatycznego zapisu, wyuczone wartości zostają."
+            "value": "Zegarek mierzy w nocy ruch i tętno (od %1$lld %% baterii). Wył.: brak automatycznego zapisu, wyuczone wartości zostają."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Seu relógio mede movimento e pulso à noite para adaptar o alarme. Desativado: sem registro automático, os valores aprendidos ficam."
+            "value": "Seu relógio mede movimento e pulso à noite (a partir de %1$lld %% de bateria). Desativado: sem registro automático, os valores aprendidos ficam."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "O teu relógio mede movimento e pulso à noite para adaptar o alarme. Desativado: sem registo automático, os valores aprendidos mantêm-se."
+            "value": "O teu relógio mede movimento e pulso à noite (a partir de %1$lld %% de bateria). Desativado: sem registo automático, os valores aprendidos mantêm-se."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ceasul tău măsoară noaptea mișcarea și pulsul pentru a adapta alarma. Dezactivat: fără înregistrare automată, valorile învățate rămân."
+            "value": "Ceasul tău măsoară noaptea mișcarea și pulsul (de la %1$lld %% baterie). Dezactivat: fără înregistrare automată, valorile învățate rămân."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Часы измеряют ночью движение и пульс, чтобы подстроить будильник. Выкл.: без автоматической записи, изученные значения сохраняются."
+            "value": "Часы измеряют ночью движение и пульс (от %1$lld %% заряда). Выкл.: без автоматической записи, изученные значения сохраняются."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "එලාමය සකස් කිරීමට ඔබේ ඔරලෝසුව රාත්‍රියේ චලනය සහ නාඩිය මනියි. අක්‍රියයි: ස්වයංක්‍රීය වාර්තා කිරීමක් නැත, ඉගෙනගත් අගයන් පවතී."
+            "value": "ඔබේ ඔරලෝසුව රාත්‍රියේ චලනය සහ නාඩිය මනියි (අවම %1$lld %% බැටරියකින්). අක්‍රියයි: ස්වයංක්‍රීය වාර්තා කිරීමක් නැත, ඉගෙනගත් අගයන් පවතී."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hodinky v noci merajú pohyb a pulz, aby prispôsobili budík. Vypnuté: žiadny automatický záznam, naučené hodnoty zostávajú."
+            "value": "Hodinky v noci merajú pohyb a pulz (od %1$lld %% batérie). Vypnuté: žiadny automatický záznam, naučené hodnoty zostávajú."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ura ponoči meri gibanje in utrip, da prilagodi alarm. Izklopljeno: brez samodejnega beleženja, naučene vrednosti ostanejo."
+            "value": "Ura ponoči meri gibanje in utrip (od %1$lld %% baterije). Izklopljeno: brez samodejnega beleženja, naučene vrednosti ostanejo."
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ora jote mat lëvizjen dhe pulsin natën për të përshtatur alarmin. Joaktive: pa regjistrim automatik, vlerat e mësuara mbeten."
+            "value": "Ora jote mat lëvizjen dhe pulsin natën (nga %1$lld %% bateri). Joaktive: pa regjistrim automatik, vlerat e mësuara mbeten."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Твој сат ноћу мери покрете и пулс да прилагоди аларм. Искључено: нема аутоматског снимања, научене вредности остају."
+            "value": "Твој сат ноћу мери покрете и пулс (од %1$lld %% батерије). Искључено: нема аутоматског снимања, научене вредности остају."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Din klocka mäter rörelse och puls på natten för att anpassa larmet. Av: ingen automatisk registrering, inlärda värden finns kvar."
+            "value": "Din klocka mäter rörelse och puls på natten (från %1$lld %% batteri). Av: ingen automatisk registrering, inlärda värden finns kvar."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Saa yako hupima mwendo na mapigo ya moyo usiku ili kurekebisha kengele. Imezimwa: hakuna kurekodi kiotomatiki, thamani zilizojifunzwa zinabaki."
+            "value": "Saa yako hupima mwendo na mapigo ya moyo usiku (kuanzia betri %1$lld %%). Imezimwa: hakuna kurekodi kiotomatiki, thamani zilizojifunzwa zinabaki."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "அலாரத்தை மாற்ற உங்கள் கடிகாரம் இரவில் அசைவையும் நாடியையும் அளக்கிறது. முடக்கம்: தானியங்கு பதிவு இல்லை, கற்ற மதிப்புகள் இருக்கும்."
+            "value": "உங்கள் கடிகாரம் இரவில் அசைவையும் நாடியையும் அளக்கிறது (குறைந்தது %1$lld %% பேட்டரியில்). முடக்கம்: தானியங்கு பதிவு இல்லை, கற்ற மதிப்புகள் இருக்கும்."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "అలారాన్ని మార్చడానికి మీ వాచ్ రాత్రి కదలిక మరియు నాడిని కొలుస్తుంది. ఆఫ్: ఆటోమేటిక్ రికార్డింగ్ లేదు, నేర్చుకున్న విలువలు ఉంటాయి."
+            "value": "మీ వాచ్ రాత్రి కదలిక మరియు నాడిని కొలుస్తుంది (కనీసం %1$lld %% బ్యాటరీతో). ఆఫ్: ఆటోమేటిక్ రికార్డింగ్ లేదు, నేర్చుకున్న విలువలు ఉంటాయి."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "นาฬิกาของคุณวัดการเคลื่อนไหวและชีพจรตอนกลางคืนเพื่อปรับนาฬิกาปลุก ปิด: ไม่บันทึกอัตโนมัติ ค่าที่เรียนรู้แล้วยังอยู่"
+            "value": "นาฬิกาของคุณวัดการเคลื่อนไหวและชีพจรตอนกลางคืน (แบตเตอรี่ตั้งแต่ %1$lld %%) ปิด: ไม่บันทึกอัตโนมัติ ค่าที่เรียนรู้แล้วยังอยู่"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Saatin alarmı ayarlamak için gece hareketi ve nabzı ölçer. Kapalı: otomatik kayıt yok, öğrenilen değerler kalır."
+            "value": "Saatin gece hareketi ve nabzı ölçer (%1$lld %% pilden itibaren). Kapalı: otomatik kayıt yok, öğrenilen değerler kalır."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Годинник вимірює вночі рух і пульс, щоб підлаштувати будильник. Вимк.: без автоматичного запису, вивчені значення зберігаються."
+            "value": "Годинник вимірює вночі рух і пульс (від %1$lld %% заряду). Вимк.: без автоматичного запису, вивчені значення зберігаються."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "الارم ڈھالنے کے لیے آپ کی گھڑی رات کو حرکت اور نبض ناپتی ہے۔ بند: کوئی خودکار ریکارڈنگ نہیں، سیکھی گئی قدریں برقرار رہتی ہیں۔"
+            "value": "آپ کی گھڑی رات کو حرکت اور نبض ناپتی ہے (کم از کم %1$lld %% بیٹری پر)۔ بند: کوئی خودکار ریکارڈنگ نہیں، سیکھی گئی قدریں برقرار رہتی ہیں۔"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soating budilnikni moslash uchun tunda harakat va pulsni o‘lchaydi. O‘chiq: avtomatik yozuv yo‘q, o‘rganilgan qiymatlar qoladi."
+            "value": "Soating tunda harakat va pulsni o‘lchaydi (%1$lld %% batareyadan boshlab). O‘chiq: avtomatik yozuv yo‘q, o‘rganilgan qiymatlar qoladi."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Đồng hồ của bạn đo chuyển động và nhịp tim vào ban đêm để điều chỉnh báo thức. Tắt: không tự động ghi, các giá trị đã học vẫn giữ."
+            "value": "Đồng hồ của bạn đo chuyển động và nhịp tim vào ban đêm (từ %1$lld %% pin). Tắt: không tự động ghi, các giá trị đã học vẫn giữ."
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "你嘅手錶會喺夜間測量動作同脈搏嚟調整鬧鐘。 關閉：唔再自動記錄，已學到嘅數值會保留。"
+            "value": "你嘅手錶會喺夜間測量動作同脈搏（電量至少 %1$lld %%）。 關閉：唔再自動記錄，已學到嘅數值會保留。"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "你的手表会在夜间测量动作和脉搏来调整闹钟。 关闭：不再自动记录，已学到的数值保留。"
+            "value": "你的手表会在夜间测量动作和脉搏（电量至少 %1$lld %%）。 关闭：不再自动记录，已学到的数值保留。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "你的手錶會在夜間測量動作和脈搏來調整鬧鐘。 關閉：不再自動記錄，已學到的數值保留。"
+            "value": "你的手錶會在夜間測量動作和脈搏（電量至少 %1$lld %%）。 關閉：不再自動記錄，已學到的數值保留。"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Iwashi lakho lilinganisa ukunyakaza nokushaya kwenhliziyo ebusuku ukuze lilungise i-alamu. Kuvaliwe: akukho ukuqopha okuzenzakalelayo, amanani afundiwe ayahlala."
+            "value": "Iwashi lakho lilinganisa ukunyakaza nokushaya kwenhliziyo ebusuku (kusukela ku-%1$lld %% webhethri). Kuvaliwe: akukho ukuqopha okuzenzakalelayo, amanani afundiwe ayahlala."
+          }
+        }
+      }
+    },
+    "learn_switch_title": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktief"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ንቁ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مفعّلة"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktiv"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Активна"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "চালু"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivno"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activa"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivní"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktiv"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktiv"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ενεργή"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activa"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktiivne"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktibo"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فعال"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Käytössä"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktibo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gníomhach"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activa"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "સક્રિય"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פעיל"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "चालू"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivno"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktív"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ակտիվ"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktif"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Virkt"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attiva"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有効"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "აქტიური"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Белсенді"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "សកម្ម"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಸಕ್ರಿಯ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "사용"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ເປີດໃຊ້"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktyvi"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktīva"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Активна"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "സജീവം"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Идэвхтэй"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सक्रिय"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktif"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ဖွင့်ထားသည်"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktiv"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सक्रिय"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actief"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਚਾਲੂ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktywna"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ativa"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ativa"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activă"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Активна"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සක්‍රියයි"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktívna"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivna"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktive"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Активно"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktiv"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inatumika"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "செயலில்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "యాక్టివ్"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปิดใช้งาน"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etkin"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Активна"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فعال"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faol"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoạt động"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "啟用"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "启用"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "啟用"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kuvuliwe"
           }
         }
       }
@@ -191826,445 +192274,445 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jou horlosie meet deur die hele nag beweging en polsslag. Daaruit leer Phase Wake in die leerfase jou eie waardes en pas die wekker by jou aan. Dit gebruik ’n bietjie battery – laai die horlosie voor jy gaan slaap."
+            "value": "Jou horlosie meet deur die hele nag beweging en polsslag. Dit gebruik ’n bietjie battery – laai die horlosie voor jy gaan slaap."
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "ሰዓትህ ሌሊቱን ሙሉ እንቅስቃሴና የልብ ምት ይለካል። ከእነዚህ ሌሊቶች Phase Wake በመማሪያ ጊዜው የራስህን እሴቶች ይማራል፤ ማንቂያውንም ለአንተ ያስማማል። ይህ ትንሽ ባትሪ ይጠቀማል – ከመተኛትህ በፊት ሰዓቱን ቻርጅ አድርግ።"
+            "value": "ሰዓትህ ሌሊቱን ሙሉ እንቅስቃሴና የልብ ምት ይለካል። ይህ ትንሽ ባትሪ ይጠቀማል – ከመተኛትህ በፊት ሰዓቱን ቻርጅ አድርግ።"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "تقيس ساعتك الحركة والنبض طوال الليل. ومن هذه الليالي يتعلّم Phase Wake قيمك الخاصة في مرحلة التعلّم ويكيّف المنبّه لك. يستهلك ذلك بعض البطارية – اشحن الساعة قبل النوم."
+            "value": "تقيس ساعتك الحركة والنبض طوال الليل. يستهلك ذلك بعض البطارية – اشحن الساعة قبل النوم."
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Saatın bütün gecə boyunca hərəkəti və nəbzi ölçür. Phase Wake bu gecələrdən öyrənmə mərhələsində öz dəyərlərini öyrənir və zəngli saatı sənə uyğunlaşdırır. Bu, bir az batareya sərf edir – yatmazdan əvvəl saatı doldur."
+            "value": "Saatın bütün gecə boyunca hərəkəti və nəbzi ölçür. Bu, bir az batareya sərf edir – yatmazdan əvvəl saatı doldur."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Часовникът ти измерва движение и пулс през цялата нощ. От тези нощи Phase Wake научава твоите собствени стойности във фазата на учене и нагласява будилника за теб. Това изразходва малко батерия – зареди часовника преди сън."
+            "value": "Часовникът ти измерва движение и пулс през цялата нощ. Това изразходва малко батерия – зареди часовника преди сън."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "তোমার ঘড়ি সারা রাত জুড়ে নড়াচড়া ও পালস মাপে। এই রাতগুলো থেকে Phase Wake শেখার পর্যায়ে তোমার নিজের মান শেখে এবং অ্যালার্ম তোমার মতো করে নেয়। এতে কিছুটা ব্যাটারি লাগে – ঘুমানোর আগে ঘড়ি চার্জ করো।"
+            "value": "তোমার ঘড়ি সারা রাত জুড়ে নড়াচড়া ও পালস মাপে। এতে কিছুটা ব্যাটারি লাগে – ঘুমানোর আগে ঘড়ি চার্জ করো।"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tvoj sat mjeri pokrete i puls tokom cijele noći. Iz tih noći Phase Wake u fazi učenja uči tvoje vlastite vrijednosti i prilagođava alarm tebi. To troši nešto baterije – napuni sat prije spavanja."
+            "value": "Tvoj sat mjeri pokrete i puls tokom cijele noći. To troši nešto baterije – napuni sat prije spavanja."
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "El rellotge mesura moviment i pols al llarg de tota la nit. A partir d’aquestes nits, Phase Wake aprèn els teus valors propis en la fase d’aprenentatge i adapta l’alarma a tu. Això gasta una mica de bateria – carrega el rellotge abans de dormir."
+            "value": "El rellotge mesura moviment i pols al llarg de tota la nit. Això gasta una mica de bateria – carrega el rellotge abans de dormir."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tvoje hodinky měří přes celou noc pohyb a tep. Z těchto nocí se Phase Wake ve fázi učení naučí tvoje vlastní hodnoty a přizpůsobí ti budík. Spotřebuje to trochu baterie – nabij hodinky před spaním."
+            "value": "Tvoje hodinky měří přes celou noc pohyb a tep. Spotřebuje to trochu baterie – nabij hodinky před spaním."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dit ur måler bevægelse og puls gennem hele natten. Ud fra disse nætter lærer Phase Wake dine egne værdier i læringsfasen og tilpasser alarmen til dig. Det bruger lidt batteri – oplad uret, før du sover."
+            "value": "Dit ur måler bevægelse og puls gennem hele natten. Det bruger lidt batteri – oplad uret, før du sover."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deine Uhr misst über die ganze Nacht Bewegung und Puls. Daraus lernt Phase Wake in der Lernphase deine eigenen Werte und passt den Wecker an dich an. Das kostet etwas Akku – lade die Uhr vor dem Schlafen."
+            "value": "Deine Uhr misst über die ganze Nacht Bewegung und Puls. Das kostet etwas Akku – lade die Uhr vor dem Schlafen."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Το ρολόι σου μετρά κίνηση και παλμούς σε όλη τη διάρκεια της νύχτας. Από αυτές τις νύχτες το Phase Wake μαθαίνει τις δικές σου τιμές στη φάση εκμάθησης και προσαρμόζει το ξυπνητήρι σε σένα. Αυτό καταναλώνει λίγη μπαταρία – φόρτισε το ρολόι πριν κοιμηθείς."
+            "value": "Το ρολόι σου μετρά κίνηση και παλμούς σε όλη τη διάρκεια της νύχτας. Αυτό καταναλώνει λίγη μπαταρία – φόρτισε το ρολόι πριν κοιμηθείς."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your watch measures motion and pulse throughout the night. From these nights, Phase Wake learns your own values in the learning phase and adapts the alarm to you. This uses some battery – charge the watch before you go to sleep."
+            "value": "Your watch measures motion and pulse throughout the night. This uses some battery – charge the watch before you go to sleep."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tu reloj mide movimiento y pulso a lo largo de toda la noche. Con esas noches, Phase Wake aprende tus propios valores en la fase de aprendizaje y adapta la alarma a ti. Esto gasta algo de batería: carga el reloj antes de dormir."
+            "value": "Tu reloj mide movimiento y pulso a lo largo de toda la noche. Esto gasta algo de batería: carga el reloj antes de dormir."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sinu kell mõõdab kogu öö jooksul liikumist ja pulssi. Nendest öödest õpib Phase Wake õppimisfaasis sinu enda väärtused ja kohandab äratuse sulle. See kulutab veidi akut – lae kell enne magamaminekut."
+            "value": "Sinu kell mõõdab kogu öö jooksul liikumist ja pulssi. See kulutab veidi akut – lae kell enne magamaminekut."
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Erlojuak mugimendua eta pultsua neurtzen ditu gau osoan zehar. Gau horietatik, Phase Wakek zure balio propioak ikasten ditu ikaste-fasean eta alarma zuregana egokitzen du. Horrek bateria pixka bat gastatzen du – kargatu erlojua lo egin aurretik."
+            "value": "Erlojuak mugimendua eta pultsua neurtzen ditu gau osoan zehar. Horrek bateria pixka bat gastatzen du – kargatu erlojua lo egin aurretik."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ساعتت در طول تمام شب حرکت و نبض را اندازه می‌گیرد. Phase Wake از این شب‌ها در مرحلهٔ یادگیری مقادیر خودت را یاد می‌گیرد و هشدار را با تو هماهنگ می‌کند. این کار کمی باتری مصرف می‌کند – قبل از خواب ساعت را شارژ کن."
+            "value": "ساعتت در طول تمام شب حرکت و نبض را اندازه می‌گیرد. این کار کمی باتری مصرف می‌کند – قبل از خواب ساعت را شارژ کن."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kellosi mittaa liikettä ja sykettä koko yön mittaan. Näistä öistä Phase Wake oppii oppimisvaiheessa omat arvosi ja sovittaa herätyksen sinulle. Se kuluttaa hieman akkua – lataa kello ennen nukkumaanmenoa."
+            "value": "Kellosi mittaa liikettä ja sykettä koko yön mittaan. Se kuluttaa hieman akkua – lataa kello ennen nukkumaanmenoa."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sinusukat ng relo mo ang galaw at pulso sa buong gabi. Mula sa mga gabing ito, natututunan ng Phase Wake ang sarili mong mga value sa learning phase at iniaangkop ang alarm sa iyo. Gumagamit ito ng kaunting baterya – i-charge ang relo bago matulog."
+            "value": "Sinusukat ng relo mo ang galaw at pulso sa buong gabi. Gumagamit ito ng kaunting baterya – i-charge ang relo bago matulog."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ta montre mesure mouvements et pouls tout au long de la nuit. À partir de ces nuits, Phase Wake apprend tes propres valeurs pendant la phase d’apprentissage et adapte le réveil à toi. Cela consomme un peu de batterie – recharge la montre avant de dormir."
+            "value": "Ta montre mesure mouvements et pouls tout au long de la nuit. Cela consomme un peu de batterie – recharge la montre avant de dormir."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tomhaiseann d’uaireadóir gluaiseacht agus cuisle i rith na hoíche ar fad. As na hoícheanta sin, foghlaimíonn Phase Wake do luachanna féin sa chéim foghlama agus cuireann sé an t-aláram in oiriúint duit. Úsáideann sé seo beagán ceallra – luchtaigh an t-uaireadóir sula dtéann tú a chodladh."
+            "value": "Tomhaiseann d’uaireadóir gluaiseacht agus cuisle i rith na hoíche ar fad. Úsáideann sé seo beagán ceallra – luchtaigh an t-uaireadóir sula dtéann tú a chodladh."
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "O teu reloxo mide movemento e pulso ao longo de toda a noite. A partir desas noites, Phase Wake aprende os teus propios valores na fase de aprendizaxe e adapta a alarma a ti. Isto gasta algo de batería: carga o reloxo antes de durmir."
+            "value": "O teu reloxo mide movemento e pulso ao longo de toda a noite. Isto gasta algo de batería: carga o reloxo antes de durmir."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "તારી ઘડિયાળ આખી રાત દરમિયાન હલનચલન અને પલ્સ માપે છે. આ રાતોમાંથી Phase Wake શીખવાના તબક્કામાં તારાં પોતાનાં મૂલ્યો શીખે છે અને એલાર્મ તારા માટે અનુકૂળ કરે છે. આમાં થોડી બેટરી વપરાય છે – સૂતા પહેલાં ઘડિયાળ ચાર્જ કરી લે."
+            "value": "તારી ઘડિયાળ આખી રાત દરમિયાન હલનચલન અને પલ્સ માપે છે. આમાં થોડી બેટરી વપરાય છે – સૂતા પહેલાં ઘડિયાળ ચાર્જ કરી લે."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "השעון שלך מודד תנועה ודופק לאורך כל הלילה. מהלילות האלה Phase Wake לומד בשלב הלמידה את הערכים שלך ומתאים לך את ההשכמה. זה צורך מעט סוללה – כדאי לטעון את השעון לפני השינה."
+            "value": "השעון שלך מודד תנועה ודופק לאורך כל הלילה. זה צורך מעט סוללה – כדאי לטעון את השעון לפני השינה."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "तुम्हारी घड़ी पूरी रात हलचल और पल्स मापती है। इन रातों से Phase Wake सीखने के चरण में तुम्हारे अपने मान सीखता है और अलार्म को तुम्हारे हिसाब से ढालता है। इसमें थोड़ी बैटरी लगती है – सोने से पहले घड़ी चार्ज करो।"
+            "value": "तुम्हारी घड़ी पूरी रात हलचल और पल्स मापती है। इसमें थोड़ी बैटरी लगती है – सोने से पहले घड़ी चार्ज करो।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tvoj sat mjeri pokrete i puls tijekom cijele noći. Iz tih noći Phase Wake u fazi učenja uči tvoje vlastite vrijednosti i prilagođava alarm tebi. To troši nešto baterije – napuni sat prije spavanja."
+            "value": "Tvoj sat mjeri pokrete i puls tijekom cijele noći. To troši nešto baterije – napuni sat prije spavanja."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Az órád egész éjszakán át méri a mozgást és a pulzust. Ezekből az éjszakákból a Phase Wake a tanulási szakaszban megtanulja a saját értékeidet, és hozzád igazítja az ébresztőt. Ez némi akkumulátort fogyaszt – alvás előtt töltsd fel az órát."
+            "value": "Az órád egész éjszakán át méri a mozgást és a pulzust. Ez némi akkumulátort fogyaszt – alvás előtt töltsd fel az órát."
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ժամացույցդ ամբողջ գիշերվա ընթացքում չափում է շարժումն ու զարկերակը։ Այդ գիշերներից Phase Wake-ը ուսուցման փուլում սովորում է քո սեփական արժեքները և զարթուցիչը հարմարեցնում քեզ։ Սա որոշ չափով մարտկոց է ծախսում – քնելուց առաջ լիցքավորիր ժամացույցը։"
+            "value": "Ժամացույցդ ամբողջ գիշերվա ընթացքում չափում է շարժումն ու զարկերակը։ Սա որոշ չափով մարտկոց է ծախսում – քնելուց առաջ լիցքավորիր ժամացույցը։"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jam tanganmu mengukur gerakan dan denyut nadi sepanjang malam. Dari malam-malam ini, Phase Wake mempelajari nilai-nilaimu sendiri dalam fase belajar dan menyesuaikan alarm untukmu. Ini memakai sedikit baterai – isi daya jam sebelum tidur."
+            "value": "Jam tanganmu mengukur gerakan dan denyut nadi sepanjang malam. Ini memakai sedikit baterai – isi daya jam sebelum tidur."
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Úrið þitt mælir hreyfingu og púls yfir alla nóttina. Út frá þessum nóttum lærir Phase Wake þín eigin gildi í lærdómsfasanum og lagar vekjarann að þér. Það notar dálítið af rafhlöðunni – hladdu úrið áður en þú ferð að sofa."
+            "value": "Úrið þitt mælir hreyfingu og púls yfir alla nóttina. Það notar dálítið af rafhlöðunni – hladdu úrið áður en þú ferð að sofa."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Il tuo orologio misura movimento e battito durante tutta la notte. Da queste notti Phase Wake impara i tuoi valori nella fase di apprendimento e adatta la sveglia a te. Consuma un po’ di batteria – ricarica l’orologio prima di dormire."
+            "value": "Il tuo orologio misura movimento e battito durante tutta la notte. Consuma un po’ di batteria – ricarica l’orologio prima di dormire."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "時計が夜を通して、体の動きと脈拍を計測します。Phase Wake は学習期間にこの夜からあなた自身の値を学び、アラームをあなたに合わせます。バッテリーを少し使います – 寝る前に時計を充電してください。"
+            "value": "時計が夜を通して、体の動きと脈拍を計測します。バッテリーを少し使います – 寝る前に時計を充電してください。"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "შენი საათი მთელი ღამის განმავლობაში ზომავს მოძრაობას და პულსს. ამ ღამეებიდან Phase Wake სწავლის ფაზაში სწავლობს შენს საკუთარ მნიშვნელობებს და მაღვიძარას შენზე არგებს. ეს ცოტა ბატარეას ხარჯავს – დაძინებამდე დატენე საათი."
+            "value": "შენი საათი მთელი ღამის განმავლობაში ზომავს მოძრაობას და პულსს. ეს ცოტა ბატარეას ხარჯავს – დაძინებამდე დატენე საათი."
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Сағатың түні бойы қозғалыс пен пульсті өлшейді. Осы түндерден Phase Wake үйрену кезеңінде өз мәндеріңді үйреніп, оятқышты саған бейімдейді. Бұл біраз батарея жұмсайды – ұйықтар алдында сағатты зарядта."
+            "value": "Сағатың түні бойы қозғалыс пен пульсті өлшейді. Бұл біраз батарея жұмсайды – ұйықтар алдында сағатты зарядта."
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "នាឡិការបស់អ្នកវាស់ចលនា និងជីពចរពេញមួយយប់។ ពីយប់ទាំងនេះ Phase Wake រៀនតម្លៃផ្ទាល់ខ្លួនរបស់អ្នកក្នុងដំណាក់កាលរៀន ហើយកែសម្រួលម៉ោងរោទ៍ឱ្យសមនឹងអ្នក។ វាប្រើថ្មខ្លះ – សាកថ្មនាឡិកាមុនពេលគេង។"
+            "value": "នាឡិការបស់អ្នកវាស់ចលនា និងជីពចរពេញមួយយប់។ វាប្រើថ្មខ្លះ – សាកថ្មនាឡិកាមុនពេលគេង។"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ನಿನ್ನ ವಾಚ್ ರಾತ್ರಿಯಿಡೀ ಚಲನೆ ಮತ್ತು ನಾಡಿಯನ್ನು ಅಳೆಯುತ್ತದೆ. ಈ ರಾತ್ರಿಗಳಿಂದ Phase Wake ಕಲಿಕೆಯ ಹಂತದಲ್ಲಿ ನಿನ್ನದೇ ಮೌಲ್ಯಗಳನ್ನು ಕಲಿತು ಅಲಾರಾಂ ಅನ್ನು ನಿನಗೆ ಹೊಂದಿಸುತ್ತದೆ. ಇದಕ್ಕೆ ಸ್ವಲ್ಪ ಬ್ಯಾಟರಿ ಬೇಕು – ಮಲಗುವ ಮೊದಲು ವಾಚ್ ಚಾರ್ಜ್ ಮಾಡು."
+            "value": "ನಿನ್ನ ವಾಚ್ ರಾತ್ರಿಯಿಡೀ ಚಲನೆ ಮತ್ತು ನಾಡಿಯನ್ನು ಅಳೆಯುತ್ತದೆ. ಇದಕ್ಕೆ ಸ್ವಲ್ಪ ಬ್ಯಾಟರಿ ಬೇಕು – ಮಲಗುವ ಮೊದಲು ವಾಚ್ ಚಾರ್ಜ್ ಮಾಡು."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "시계가 밤새 움직임과 맥박을 측정해요. Phase Wake는 학습 기간에 이 밤들로 나만의 값을 배우고 알람을 나에게 맞춰요. 배터리를 조금 써요 – 자기 전에 시계를 충전하세요."
+            "value": "시계가 밤새 움직임과 맥박을 측정해요. 배터리를 조금 써요 – 자기 전에 시계를 충전하세요."
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "ໂມງຂອງເຈົ້າວັດການເຄື່ອນໄຫວ ແລະ ຊີບພະຈອນຕະຫຼອດຄືນ. ຈາກຄືນເຫຼົ່ານີ້ Phase Wake ຮຽນຮູ້ຄ່າຂອງເຈົ້າເອງໃນໄລຍະຮຽນຮູ້ ແລະ ປັບໂມງປຸກໃຫ້ເໝາະກັບເຈົ້າ. ມັນໃຊ້ແບັດເຕີຣີບາງສ່ວນ – ສາກໂມງກ່ອນນອນ."
+            "value": "ໂມງຂອງເຈົ້າວັດການເຄື່ອນໄຫວ ແລະ ຊີບພະຈອນຕະຫຼອດຄືນ. ມັນໃຊ້ແບັດເຕີຣີບາງສ່ວນ – ສາກໂມງກ່ອນນອນ."
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tavo laikrodis visą naktį matuoja judesį ir pulsą. Iš šių naktų Phase Wake mokymosi etape išmoksta tavo vertes ir pritaiko žadintuvą tau. Tai sunaudoja šiek tiek baterijos – įkrauk laikrodį prieš miegą."
+            "value": "Tavo laikrodis visą naktį matuoja judesį ir pulsą. Tai sunaudoja šiek tiek baterijos – įkrauk laikrodį prieš miegą."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tavs pulkstenis visas nakts garumā mēra kustību un pulsu. No šīm naktīm Phase Wake mācīšanās posmā apgūst tavas vērtības un pielāgo modinātāju tev. Tas patērē nedaudz akumulatora – uzlādē pulksteni pirms gulētiešanas."
+            "value": "Tavs pulkstenis visas nakts garumā mēra kustību un pulsu. Tas patērē nedaudz akumulatora – uzlādē pulksteni pirms gulētiešanas."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Твојот часовник мери движење и пулс низ целата ноќ. Од тие ноќи Phase Wake во фазата на учење ги учи твоите сопствени вредности и го прилагодува алармот на тебе. Тоа троши малку батерија – наполни го часовникот пред спиење."
+            "value": "Твојот часовник мери движење и пулс низ целата ноќ. Тоа троши малку батерија – наполни го часовникот пред спиење."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "നിന്റെ വാച്ച് രാത്രി മുഴുവൻ ചലനവും പൾസും അളക്കുന്നു. ഈ രാത്രികളിൽ നിന്ന് Phase Wake പഠന ഘട്ടത്തിൽ നിന്റെ സ്വന്തം മൂല്യങ്ങൾ പഠിച്ച് അലാറം നിനക്ക് അനുയോജ്യമാക്കുന്നു. ഇതിന് കുറച്ച് ബാറ്ററി വേണം – ഉറങ്ങുന്നതിന് മുമ്പ് വാച്ച് ചാർജ് ചെയ്യൂ."
+            "value": "നിന്റെ വാച്ച് രാത്രി മുഴുവൻ ചലനവും പൾസും അളക്കുന്നു. ഇതിന് കുറച്ച് ബാറ്ററി വേണം – ഉറങ്ങുന്നതിന് മുമ്പ് വാച്ച് ചാർജ് ചെയ്യൂ."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Таны цаг шөнөжингөө хөдөлгөөн болон судасны цохилтыг хэмждэг. Эдгээр шөнөөс Phase Wake суралцах үе шатанд таны өөрийн утгуудыг сурч, сэрүүлгийг танд тохируулна. Энэ нь бага зэрэг батерей зарцуулна – унтахын өмнө цагаа цэнэглээрэй."
+            "value": "Таны цаг шөнөжингөө хөдөлгөөн болон судасны цохилтыг хэмждэг. Энэ нь бага зэрэг батерей зарцуулна – унтахын өмнө цагаа цэнэглээрэй."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "तुझे घड्याळ रात्रभर हालचाल आणि नाडी मोजते. या रात्रींमधून Phase Wake शिकण्याच्या टप्प्यात तुझी स्वतःची मूल्ये शिकतो आणि अलार्म तुझ्यानुसार जुळवतो. यासाठी थोडी बॅटरी लागते – झोपण्यापूर्वी घड्याळ चार्ज कर."
+            "value": "तुझे घड्याळ रात्रभर हालचाल आणि नाडी मोजते. यासाठी थोडी बॅटरी लागते – झोपण्यापूर्वी घड्याळ चार्ज कर."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jam tangan anda mengukur pergerakan dan nadi sepanjang malam. Daripada malam-malam ini, Phase Wake mempelajari nilai anda sendiri dalam fasa pembelajaran dan menyesuaikan penggera untuk anda. Ini menggunakan sedikit bateri – cas jam sebelum tidur."
+            "value": "Jam tangan anda mengukur pergerakan dan nadi sepanjang malam. Ini menggunakan sedikit bateri – cas jam sebelum tidur."
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "သင့်နာရီသည် တစ်ညလုံး လှုပ်ရှားမှုနှင့် သွေးခုန်နှုန်းကို တိုင်းတာသည်။ ဤညများမှ Phase Wake သည် သင်ယူမှုအဆင့်တွင် သင့်ကိုယ်ပိုင်တန်ဖိုးများကို သင်ယူပြီး နိုးစက်ကို သင်နှင့်ကိုက်ညီအောင် ချိန်ညှိသည်။ ၎င်းသည် ဘက်ထရီ အနည်းငယ် သုံးသည် – မအိပ်မီ နာရီကို အားသွင်းပါ။"
+            "value": "သင့်နာရီသည် တစ်ညလုံး လှုပ်ရှားမှုနှင့် သွေးခုန်နှုန်းကို တိုင်းတာသည်။ ၎င်းသည် ဘက်ထရီ အနည်းငယ် သုံးသည် – မအိပ်မီ နာရီကို အားသွင်းပါ။"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Klokken din måler bevegelse og puls gjennom hele natten. Ut fra disse nettene lærer Phase Wake dine egne verdier i læringsfasen og tilpasser alarmen til deg. Det bruker litt batteri – lad klokken før du legger deg."
+            "value": "Klokken din måler bevegelse og puls gjennom hele natten. Det bruker litt batteri – lad klokken før du legger deg."
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "तिम्रो घडीले रातभर चाल र नाडी नाप्छ। यी रातहरूबाट Phase Wake सिक्ने चरणमा तिम्रा आफ्नै मानहरू सिक्छ र अलार्मलाई तिमीअनुसार मिलाउँछ। यसले केही ब्याट्री खपत गर्छ – सुत्नुअघि घडी चार्ज गर।"
+            "value": "तिम्रो घडीले रातभर चाल र नाडी नाप्छ। यसले केही ब्याट्री खपत गर्छ – सुत्नुअघि घडी चार्ज गर।"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Je horloge meet de hele nacht door beweging en hartslag. Uit deze nachten leert Phase Wake in de leerfase je eigen waarden en past de wekker aan jou aan. Dat kost wat batterij – laad het horloge op voordat je gaat slapen."
+            "value": "Je horloge meet de hele nacht door beweging en hartslag. Dat kost wat batterij – laad het horloge op voordat je gaat slapen."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਤੇਰੀ ਘੜੀ ਸਾਰੀ ਰਾਤ ਹਿਲਜੁਲ ਅਤੇ ਨਬਜ਼ ਮਾਪਦੀ ਹੈ। ਇਨ੍ਹਾਂ ਰਾਤਾਂ ਤੋਂ Phase Wake ਸਿੱਖਣ ਦੇ ਪੜਾਅ ਵਿੱਚ ਤੇਰੇ ਆਪਣੇ ਮੁੱਲ ਸਿੱਖਦਾ ਹੈ ਅਤੇ ਅਲਾਰਮ ਨੂੰ ਤੇਰੇ ਮੁਤਾਬਕ ਢਾਲਦਾ ਹੈ। ਇਸ ਵਿੱਚ ਕੁਝ ਬੈਟਰੀ ਲੱਗਦੀ ਹੈ – ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਘੜੀ ਚਾਰਜ ਕਰ ਲੈ।"
+            "value": "ਤੇਰੀ ਘੜੀ ਸਾਰੀ ਰਾਤ ਹਿਲਜੁਲ ਅਤੇ ਨਬਜ਼ ਮਾਪਦੀ ਹੈ। ਇਸ ਵਿੱਚ ਕੁਝ ਬੈਟਰੀ ਲੱਗਦੀ ਹੈ – ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਘੜੀ ਚਾਰਜ ਕਰ ਲੈ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Twój zegarek mierzy ruch i tętno przez całą noc. Z tych nocy Phase Wake w fazie nauki poznaje twoje własne wartości i dopasowuje budzik do ciebie. Zużywa to trochę baterii – naładuj zegarek przed snem."
+            "value": "Twój zegarek mierzy ruch i tętno przez całą noc. Zużywa to trochę baterii – naładuj zegarek przed snem."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Seu relógio mede movimento e pulso ao longo de toda a noite. Com essas noites, o Phase Wake aprende seus próprios valores na fase de aprendizado e adapta o alarme a você. Isso gasta um pouco de bateria – carregue o relógio antes de dormir."
+            "value": "Seu relógio mede movimento e pulso ao longo de toda a noite. Isso gasta um pouco de bateria – carregue o relógio antes de dormir."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "O teu relógio mede movimento e pulso ao longo de toda a noite. A partir dessas noites, o Phase Wake aprende os teus próprios valores na fase de aprendizagem e adapta o alarme a ti. Isto gasta um pouco de bateria – carrega o relógio antes de dormir."
+            "value": "O teu relógio mede movimento e pulso ao longo de toda a noite. Isto gasta um pouco de bateria – carrega o relógio antes de dormir."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ceasul tău măsoară mișcarea și pulsul de-a lungul întregii nopți. Din aceste nopți, Phase Wake învață în faza de învățare propriile tale valori și adaptează alarma la tine. Asta consumă puțină baterie – încarcă ceasul înainte de culcare."
+            "value": "Ceasul tău măsoară mișcarea și pulsul de-a lungul întregii nopți. Asta consumă puțină baterie – încarcă ceasul înainte de culcare."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Твои часы измеряют движение и пульс в течение всей ночи. По этим ночам Phase Wake на этапе обучения узнаёт твои собственные значения и подстраивает будильник под тебя. Это расходует немного заряда – заряди часы перед сном."
+            "value": "Твои часы измеряют движение и пульс в течение всей ночи. Это расходует немного заряда – заряди часы перед сном."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "ඔබේ ඔරලෝසුව රාත්‍රිය පුරා චලනය සහ නාඩිය මනියි. මෙම රාත්‍රීවලින් Phase Wake ඉගෙනුම් අදියරේදී ඔබේම අගයන් ඉගෙන ගෙන එලාමය ඔබට ගැළපෙන ලෙස සකසයි. මෙයට බැටරියෙන් ටිකක් වැය වේ – නින්දට පෙර ඔරලෝසුව ආරෝපණය කරන්න."
+            "value": "ඔබේ ඔරලෝසුව රාත්‍රිය පුරා චලනය සහ නාඩිය මනියි. මෙයට බැටරියෙන් ටිකක් වැය වේ – නින්දට පෙර ඔරලෝසුව ආරෝපණය කරන්න."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tvoje hodinky merajú cez celú noc pohyb a pulz. Z týchto nocí sa Phase Wake vo fáze učenia naučí tvoje vlastné hodnoty a prispôsobí ti budík. Spotrebuje to trochu batérie – nabi hodinky pred spaním."
+            "value": "Tvoje hodinky merajú cez celú noc pohyb a pulz. Spotrebuje to trochu batérie – nabi hodinky pred spaním."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tvoja ura čez vso noč meri gibanje in utrip. Iz teh noči se Phase Wake v fazi učenja nauči tvojih lastnih vrednosti in budilko prilagodi tebi. To porabi nekaj baterije – napolni uro pred spanjem."
+            "value": "Tvoja ura čez vso noč meri gibanje in utrip. To porabi nekaj baterije – napolni uro pred spanjem."
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ora jote mat lëvizjen dhe pulsin gjatë gjithë natës. Nga këto net, Phase Wake mëson në fazën e mësimit vlerat e tua dhe e përshtat alarmin për ty. Kjo harxhon pak bateri – karikoje orën para se të flesh."
+            "value": "Ora jote mat lëvizjen dhe pulsin gjatë gjithë natës. Kjo harxhon pak bateri – karikoje orën para se të flesh."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Твој сат мери покрете и пулс током целе ноћи. Из тих ноћи Phase Wake у фази учења учи твоје сопствене вредности и прилагођава аларм теби. То троши нешто батерије – напуни сат пре спавања."
+            "value": "Твој сат мери покрете и пулс током целе ноћи. То троши нешто батерије – напуни сат пре спавања."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Din klocka mäter rörelse och puls under hela natten. Utifrån de här nätterna lär sig Phase Wake dina egna värden i inlärningsfasen och anpassar alarmet efter dig. Det drar lite batteri – ladda klockan innan du sover."
+            "value": "Din klocka mäter rörelse och puls under hela natten. Det drar lite batteri – ladda klockan innan du sover."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Saa yako hupima mwendo na mapigo ya moyo usiku kucha. Kutokana na usiku huu, Phase Wake hujifunza thamani zako mwenyewe katika awamu ya kujifunza na kurekebisha kengele ikufae. Hii hutumia betri kidogo – chaji saa kabla ya kulala."
+            "value": "Saa yako hupima mwendo na mapigo ya moyo usiku kucha. Hii hutumia betri kidogo – chaji saa kabla ya kulala."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "உன் கடிகாரம் இரவு முழுவதும் அசைவையும் நாடியையும் அளக்கிறது. இந்த இரவுகளிலிருந்து Phase Wake கற்றல் கட்டத்தில் உன் சொந்த மதிப்புகளைக் கற்று அலாரத்தை உனக்கு ஏற்றபடி மாற்றுகிறது. இதற்குச் சிறிது பேட்டரி செலவாகும் – தூங்கும் முன் கடிகாரத்தை சார்ஜ் செய்."
+            "value": "உன் கடிகாரம் இரவு முழுவதும் அசைவையும் நாடியையும் அளக்கிறது. இதற்குச் சிறிது பேட்டரி செலவாகும் – தூங்கும் முன் கடிகாரத்தை சார்ஜ் செய்."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "నీ వాచ్ రాత్రంతా కదలిక, నాడిని కొలుస్తుంది. ఈ రాత్రుల నుండి Phase Wake నేర్చుకునే దశలో నీ సొంత విలువలను నేర్చుకుని అలారంను నీకు తగినట్లు మారుస్తుంది. దీనికి కొంత బ్యాటరీ ఖర్చవుతుంది – నిద్రపోయే ముందు వాచ్‌ను ఛార్జ్ చేయి."
+            "value": "నీ వాచ్ రాత్రంతా కదలిక, నాడిని కొలుస్తుంది. దీనికి కొంత బ్యాటరీ ఖర్చవుతుంది – నిద్రపోయే ముందు వాచ్‌ను ఛార్జ్ చేయి."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "นาฬิกาของคุณวัดการเคลื่อนไหวและชีพจรตลอดทั้งคืน จากคืนเหล่านี้ Phase Wake จะเรียนรู้ค่าของคุณเองในช่วงเรียนรู้และปรับนาฬิกาปลุกให้เหมาะกับคุณ การบันทึกนี้ใช้แบตเตอรี่อยู่บ้าง – ชาร์จนาฬิกาก่อนนอน"
+            "value": "นาฬิกาของคุณวัดการเคลื่อนไหวและชีพจรตลอดทั้งคืน การบันทึกนี้ใช้แบตเตอรี่อยู่บ้าง – ชาร์จนาฬิกาก่อนนอน"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Saatin bütün gece boyunca hareketi ve nabzı ölçer. Phase Wake bu gecelerden öğrenme aşamasında kendi değerlerini öğrenir ve alarmı sana göre ayarlar. Bu biraz pil harcar – uyumadan önce saati şarj et."
+            "value": "Saatin bütün gece boyunca hareketi ve nabzı ölçer. Bu biraz pil harcar – uyumadan önce saati şarj et."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Твій годинник вимірює рух і пульс протягом усієї ночі. З цих ночей Phase Wake на етапі навчання вивчає твої власні значення й підлаштовує будильник під тебе. Це витрачає трохи заряду – заряди годинник перед сном."
+            "value": "Твій годинник вимірює рух і пульс протягом усієї ночі. Це витрачає трохи заряду – заряди годинник перед сном."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "تمہاری گھڑی پوری رات حرکت اور نبض ناپتی ہے۔ ان راتوں سے Phase Wake سیکھنے کے مرحلے میں تمہاری اپنی قدریں سیکھتا ہے اور الارم کو تمہارے مطابق ڈھالتا ہے۔ اس میں کچھ بیٹری لگتی ہے – سونے سے پہلے گھڑی چارج کر لو۔"
+            "value": "تمہاری گھڑی پوری رات حرکت اور نبض ناپتی ہے۔ اس میں کچھ بیٹری لگتی ہے – سونے سے پہلے گھڑی چارج کر لو۔"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soating tun bo‘yi harakat va pulsni o‘lchaydi. Phase Wake bu tunlardan o‘rganish bosqichida o‘z qiymatlaringni o‘rganadi va budilnikni senga moslaydi. Bu biroz batareya sarflaydi – uxlashdan oldin soatni quvvatla."
+            "value": "Soating tun bo‘yi harakat va pulsni o‘lchaydi. Bu biroz batareya sarflaydi – uxlashdan oldin soatni quvvatla."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Đồng hồ của bạn đo chuyển động và nhịp tim suốt đêm. Từ những đêm này, Phase Wake học các giá trị của riêng bạn trong giai đoạn học và điều chỉnh báo thức cho phù hợp với bạn. Việc này tốn một ít pin – hãy sạc đồng hồ trước khi ngủ."
+            "value": "Đồng hồ của bạn đo chuyển động và nhịp tim suốt đêm. Việc này tốn một ít pin – hãy sạc đồng hồ trước khi ngủ."
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "你部手錶成晚測量動作同脈搏。Phase Wake 會喺學習階段由呢啲晚學你自己嘅數值，令鬧鐘更適合你。咁樣會用一啲電量——瞓覺前記得幫手錶充電。"
+            "value": "你部手錶成晚測量動作同脈搏。咁樣會用一啲電量——瞓覺前記得幫手錶充電。"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "你的手表在整个夜间测量动作和脉搏。Phase Wake 会在学习阶段从这些夜晚中学习你自己的数值，并让闹钟适合你。这会消耗一些电量——睡前请给手表充电。"
+            "value": "你的手表在整个夜间测量动作和脉搏。这会消耗一些电量——睡前请给手表充电。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "你的手錶在整個夜間測量動作和脈搏。Phase Wake 會在學習階段從這些夜晚學習你自己的數值，並讓鬧鐘適合你。這會消耗一些電量——睡前請替手錶充電。"
+            "value": "你的手錶在整個夜間測量動作和脈搏。這會消耗一些電量——睡前請替手錶充電。"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Iwashi lakho lilinganisa ukunyakaza nokushaya kwenhliziyo ubusuku bonke. Kulobu busuku, i-Phase Wake ifunda amanani akho esigabeni sokufunda futhi ilungisa i-alamu ikufanele. Lokhu kusebenzisa ibhethri elincane – shaja iwashi ngaphambi kokulala."
+            "value": "Iwashi lakho lilinganisa ukunyakaza nokushaya kwenhliziyo ubusuku bonke. Lokhu kusebenzisa ibhethri elincane – shaja iwashi ngaphambi kokulala."
           }
         }
       }

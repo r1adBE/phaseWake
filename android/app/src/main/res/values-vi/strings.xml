@@ -520,7 +520,7 @@
     <string name="record_start">Ghi lại đêm</string>
     <string name="record_stop">Dừng ghi</string>
     <string name="record_since">Đang ghi từ %1$s</string>
-    <string name="record_hint">Đồng hồ của bạn đo chuyển động và nhịp tim suốt đêm. Từ những đêm này, Phase Wake học các giá trị của riêng bạn trong giai đoạn học và điều chỉnh báo thức cho phù hợp với bạn. Việc này tốn một ít pin – hãy sạc đồng hồ trước khi ngủ.</string>
+    <string name="record_hint">Đồng hồ của bạn đo chuyển động và nhịp tim suốt đêm. Việc này tốn một ít pin – hãy sạc đồng hồ trước khi ngủ.</string>
     <string name="record_end_manual">Đã dừng</string>
     <string name="record_end_cap">Kết thúc sau 12 giờ</string>
     <string name="record_end_battery">Pin đồng hồ yếu</string>
@@ -574,7 +574,8 @@
     <string name="learn_point_nights">Trong %1$d đêm</string>
     <string name="learn_point_battery">Việc này tốn một ít pin – hãy sạc đồng hồ trước khi ngủ.</string>
     <string name="learn_point_private">Dữ liệu ở lại trên thiết bị của bạn. Bạn có thể tắt giai đoạn học trong phần cài đặt bất cứ lúc nào.</string>
-    <string name="learn_switch_hint">Đồng hồ của bạn đo chuyển động và nhịp tim vào ban đêm để điều chỉnh báo thức. Tắt: không tự động ghi, các giá trị đã học vẫn giữ.</string>
+    <string name="learn_switch_hint">Đồng hồ của bạn đo chuyển động và nhịp tim vào ban đêm (từ %1$d %% pin). Tắt: không tự động ghi, các giá trị đã học vẫn giữ.</string>
+    <string name="learn_switch_title">Hoạt động</string>
     <string name="watch_open_app_hint">Mở Phase Wake trên đồng hồ để đồng hồ nhận lệnh.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Mỗi đêm kể từ khi giai đoạn học bắt đầu – đêm đó có được tính không, và nếu không thì vì sao và điều gì giúp ích. Phase Wake cần %1$d đêm được tính.</string>

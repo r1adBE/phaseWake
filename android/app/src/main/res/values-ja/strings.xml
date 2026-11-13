@@ -520,7 +520,7 @@
     <string name="record_start">夜を記録</string>
     <string name="record_stop">記録を停止</string>
     <string name="record_since">%1$sから記録中</string>
-    <string name="record_hint">時計が夜を通して、体の動きと脈拍を計測します。Phase Wake は学習期間にこの夜からあなた自身の値を学び、アラームをあなたに合わせます。バッテリーを少し使います – 寝る前に時計を充電してください。</string>
+    <string name="record_hint">時計が夜を通して、体の動きと脈拍を計測します。バッテリーを少し使います – 寝る前に時計を充電してください。</string>
     <string name="record_end_manual">停止しました</string>
     <string name="record_end_cap">12時間で終了</string>
     <string name="record_end_battery">ウォッチのバッテリー残量が少ない</string>
@@ -574,7 +574,8 @@
     <string name="learn_point_nights">%1$d 夜のあいだ</string>
     <string name="learn_point_battery">バッテリーを少し使います – 寝る前に時計を充電してください。</string>
     <string name="learn_point_private">データはあなたのデバイスに残ります。学習期間は設定でいつでもオフにできます。</string>
-    <string name="learn_switch_hint">アラームを合わせるため、時計が夜間に体の動きと脈拍を計測します。 オフ：自動記録なし、学習した値は残ります。</string>
+    <string name="learn_switch_hint">時計が夜間に体の動きと脈拍を計測します（バッテリー %1$d %% 以上）。 オフ：自動記録なし、学習した値は残ります。</string>
+    <string name="learn_switch_title">有効</string>
     <string name="watch_open_app_hint">コマンドを受け取れるよう、ウォッチで Phase Wake を開いてください。</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">学習期間が始まってからの各夜――カウントされたか、されなかった場合はその理由と対策。Phase Wake にはカウントされた夜が %1$d 夜必要です。</string>

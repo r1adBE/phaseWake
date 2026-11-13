@@ -520,7 +520,7 @@
     <string name="record_start">บันทึกกลางคืน</string>
     <string name="record_stop">หยุดบันทึก</string>
     <string name="record_since">กำลังบันทึกตั้งแต่ %1$s</string>
-    <string name="record_hint">นาฬิกาของคุณวัดการเคลื่อนไหวและชีพจรตลอดทั้งคืน จากคืนเหล่านี้ Phase Wake จะเรียนรู้ค่าของคุณเองในช่วงเรียนรู้และปรับนาฬิกาปลุกให้เหมาะกับคุณ การบันทึกนี้ใช้แบตเตอรี่อยู่บ้าง – ชาร์จนาฬิกาก่อนนอน</string>
+    <string name="record_hint">นาฬิกาของคุณวัดการเคลื่อนไหวและชีพจรตลอดทั้งคืน การบันทึกนี้ใช้แบตเตอรี่อยู่บ้าง – ชาร์จนาฬิกาก่อนนอน</string>
     <string name="record_end_manual">หยุดแล้ว</string>
     <string name="record_end_cap">สิ้นสุดหลัง 12 ชม.</string>
     <string name="record_end_battery">แบตเตอรี่นาฬิกาเหลือน้อย</string>
@@ -574,7 +574,8 @@
     <string name="learn_point_nights">เป็นเวลา %1$d คืน</string>
     <string name="learn_point_battery">ใช้แบตเตอรี่อยู่บ้าง – ชาร์จนาฬิกาก่อนนอน</string>
     <string name="learn_point_private">ข้อมูลอยู่บนอุปกรณ์ของคุณ คุณปิดช่วงเรียนรู้ได้ทุกเมื่อในการตั้งค่า</string>
-    <string name="learn_switch_hint">นาฬิกาของคุณวัดการเคลื่อนไหวและชีพจรตอนกลางคืนเพื่อปรับนาฬิกาปลุก ปิด: ไม่บันทึกอัตโนมัติ ค่าที่เรียนรู้แล้วยังอยู่</string>
+    <string name="learn_switch_hint">นาฬิกาของคุณวัดการเคลื่อนไหวและชีพจรตอนกลางคืน (แบตเตอรี่ตั้งแต่ %1$d %%) ปิด: ไม่บันทึกอัตโนมัติ ค่าที่เรียนรู้แล้วยังอยู่</string>
+    <string name="learn_switch_title">เปิดใช้งาน</string>
     <string name="watch_open_app_hint">เปิด Phase Wake บนนาฬิกาเพื่อให้ได้รับคำสั่ง</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">ทุกคืนตั้งแต่ช่วงเรียนรู้เริ่มต้น – นับแล้วหรือไม่ และถ้าไม่นับ เพราะอะไรและอะไรช่วยได้ Phase Wake ต้องการคืนที่นับแล้ว %1$d คืน</string>

@@ -551,7 +551,7 @@
     <string name="record_start">Snimi noć</string>
     <string name="record_stop">Zaustavi snimanje</string>
     <string name="record_since">Snima se od %1$s</string>
-    <string name="record_hint">Tvoj sat mjeri pokrete i puls tokom cijele noći. Iz tih noći Phase Wake u fazi učenja uči tvoje vlastite vrijednosti i prilagođava alarm tebi. To troši nešto baterije – napuni sat prije spavanja.</string>
+    <string name="record_hint">Tvoj sat mjeri pokrete i puls tokom cijele noći. To troši nešto baterije – napuni sat prije spavanja.</string>
     <string name="record_end_manual">Zaustavljeno</string>
     <string name="record_end_cap">Završeno nakon 12 h</string>
     <string name="record_end_battery">Baterija sata je slaba</string>
@@ -605,7 +605,8 @@
     <string name="learn_point_nights">%1$d noći</string>
     <string name="learn_point_battery">To troši nešto baterije – napuni sat prije spavanja.</string>
     <string name="learn_point_private">Podaci ostaju na tvojim uređajima. Fazu učenja možeš bilo kada isključiti u postavkama.</string>
-    <string name="learn_switch_hint">Tvoj sat noću mjeri pokrete i puls da prilagodi alarm. Isključeno: nema automatskog snimanja, naučene vrijednosti ostaju.</string>
+    <string name="learn_switch_hint">Tvoj sat noću mjeri pokrete i puls (od %1$d %% baterije). Isključeno: nema automatskog snimanja, naučene vrijednosti ostaju.</string>
+    <string name="learn_switch_title">Aktivno</string>
     <string name="watch_open_app_hint">Otvori Phase Wake na satu da primi naredbu.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Svaka noć od početka faze učenja – da li je uračunata i, ako nije, zašto i šta pomaže. Phase Wake treba %1$d uračunatih noći.</string>

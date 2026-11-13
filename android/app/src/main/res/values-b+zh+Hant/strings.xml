@@ -520,7 +520,7 @@
     <string name="record_start">記錄夜間</string>
     <string name="record_stop">停止記錄</string>
     <string name="record_since">自 %1$s 起記錄中</string>
-    <string name="record_hint">你的手錶在整個夜間測量動作和脈搏。Phase Wake 會在學習階段從這些夜晚學習你自己的數值，並讓鬧鐘適合你。這會消耗一些電量——睡前請替手錶充電。</string>
+    <string name="record_hint">你的手錶在整個夜間測量動作和脈搏。這會消耗一些電量——睡前請替手錶充電。</string>
     <string name="record_end_manual">已停止</string>
     <string name="record_end_cap">12 小時後結束</string>
     <string name="record_end_battery">手錶電量低</string>
@@ -574,7 +574,8 @@
     <string name="learn_point_nights">連續 %1$d 晚</string>
     <string name="learn_point_battery">這會消耗一些電量——睡前請替手錶充電。</string>
     <string name="learn_point_private">資料保留在你的裝置上。你可以隨時在設定中關閉學習階段。</string>
-    <string name="learn_switch_hint">你的手錶會在夜間測量動作和脈搏來調整鬧鐘。 關閉：不再自動記錄，已學到的數值保留。</string>
+    <string name="learn_switch_hint">你的手錶會在夜間測量動作和脈搏（電量至少 %1$d %%）。 關閉：不再自動記錄，已學到的數值保留。</string>
+    <string name="learn_switch_title">啟用</string>
     <string name="watch_open_app_hint">請在手錶上開啟 Phase Wake，讓它接收指令。</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">學習階段開始以來的每一晚——是否已計入；若沒有，原因為何、怎樣改善。Phase Wake 需要 %1$d 個計入的夜晚。</string>

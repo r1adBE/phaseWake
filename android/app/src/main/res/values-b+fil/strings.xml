@@ -537,7 +537,7 @@
     <string name="record_start">I-record ang gabi</string>
     <string name="record_stop">Ihinto ang pag-record</string>
     <string name="record_since">Nagre-record mula %1$s</string>
-    <string name="record_hint">Sinusukat ng relo mo ang galaw at pulso sa buong gabi. Mula sa mga gabing ito, natututunan ng Phase Wake ang sarili mong mga value sa learning phase at iniaangkop ang alarm sa iyo. Gumagamit ito ng kaunting baterya – i-charge ang relo bago matulog.</string>
+    <string name="record_hint">Sinusukat ng relo mo ang galaw at pulso sa buong gabi. Gumagamit ito ng kaunting baterya – i-charge ang relo bago matulog.</string>
     <string name="record_end_manual">Itinigil</string>
     <string name="record_end_cap">Natapos pagkalipas ng 12 oras</string>
     <string name="record_end_battery">Mahina ang baterya ng relo</string>
@@ -591,7 +591,8 @@
     <string name="learn_point_nights">Sa loob ng %1$d gabi</string>
     <string name="learn_point_battery">Gumagamit ito ng kaunting baterya – i-charge ang relo bago matulog.</string>
     <string name="learn_point_private">Nananatili ang data sa mga device mo. Puwede mong i-off ang yugto ng pagkatuto sa settings anumang oras.</string>
-    <string name="learn_switch_hint">Sinusukat ng relo mo ang galaw at pulso sa gabi para iangkop ang alarm. Naka-off: walang awtomatikong pagtatala, nananatili ang natutunang value.</string>
+    <string name="learn_switch_hint">Sinusukat ng relo mo ang galaw at pulso sa gabi (simula %1$d %% na baterya). Naka-off: walang awtomatikong pagtatala, nananatili ang natutunang value.</string>
+    <string name="learn_switch_title">Aktibo</string>
     <string name="watch_open_app_hint">Buksan ang Phase Wake sa relo mo para matanggap nito ang utos.</string>
     <!-- Lern-Übersicht (r1AD 13.11.2026) -->
     <string name="learn_nights_intro">Bawat gabi mula nang magsimula ang yugto ng pagkatuto – kung nabilang ito at, kung hindi, bakit at ano ang makakatulong. Kailangan ng Phase Wake ng %1$d nabilang na gabi.</string>
