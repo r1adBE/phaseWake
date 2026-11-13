@@ -606,4 +606,35 @@
     <string name="learn_point_private">Les dades es queden als teus dispositius. Pots desactivar la fase d’aprenentatge a la configuració en qualsevol moment.</string>
     <string name="learn_switch_hint">El rellotge mesura moviment i pols a la nit per adaptar l’alarma. Desactivat: cap enregistrament automàtic, els valors apresos es mantenen.</string>
     <string name="watch_open_app_hint">Obre Phase Wake al rellotge perquè rebi l’ordre.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Cada nit des que va començar la fase d’aprenentatge: si ha comptat i, si no, per què i què hi ajuda. Phase Wake necessita %1$d nits comptades.</string>
+    <string name="learn_nights_empty">Encara no hi ha cap nit. La primera apareixerà aquí l’endemà al matí.</string>
+    <string name="learn_night_facts">%1$s mesurades · %2$d valors · pols en un %3$d %%</string>
+    <string name="learn_last_night">La nit passada no ha comptat</string>
+    <string name="learn_reason_counted">Comptada</string>
+    <string name="learn_reason_counted_no_pulse">Comptada, però gairebé sense pols: probablement no portaves el rellotge</string>
+    <string name="learn_reason_too_short">Massa curta: %1$s mesurades, en calen %2$s</string>
+    <string name="learn_reason_too_few">Massa pocs valors: %1$d de %2$d</string>
+    <string name="learn_reason_stopped">Enregistrament aturat abans d’hora</string>
+    <string name="learn_reason_ended_battery">Acabat abans d’hora: bateria del rellotge massa baixa</string>
+    <string name="learn_reason_ended_system">El sistema del rellotge l’ha aturat abans d’hora</string>
+    <string name="learn_reason_not_worn">Gairebé sense pols: probablement no portaves el rellotge</string>
+    <string name="learn_reason_battery">No enregistrada: bateria del rellotge al %1$d %%</string>
+    <string name="learn_reason_battery_low">No enregistrada: bateria del rellotge massa baixa</string>
+    <string name="learn_reason_sensors">No enregistrada: sense accés als sensors del rellotge</string>
+    <string name="learn_reason_manual">El teu propi enregistrament estava en marxa, però no ha arribat</string>
+    <string name="learn_reason_late">App del rellotge oberta massa tard al vespre</string>
+    <string name="learn_reason_off">La fase d’aprenentatge estava desactivada</string>
+    <string name="learn_reason_no_alarm">Aquesta nit no hi havia alarma</string>
+    <string name="learn_reason_pending">Encara és en camí des del rellotge</string>
+    <string name="learn_reason_auto_off">No s’ha iniciat automàticament</string>
+    <string name="learn_reason_none">No ha arribat cap enregistrament</string>
+    <string name="learn_tip_worn">Porta el rellotge una mica més ajustat a la nit i comprova que Phase Wake pugui mesurar-te el pols.</string>
+    <string name="learn_tip_run">Deixa que l’enregistrament continuï fins a l’alarma.</string>
+    <string name="learn_tip_charge">Al vespre, carrega el rellotge com a mínim fins al %1$d %%.</string>
+    <string name="learn_tip_system">Desactiva l’estalvi de bateria per a Phase Wake al rellotge.</string>
+    <string name="learn_tip_sensors">A la configuració del rellotge, permet que Phase Wake faci servir els sensors i les dades de moviment.</string>
+    <string name="learn_tip_late">Obre Phase Wake al rellotge al vespre, com a molt tard quan te’l recordi.</string>
+    <string name="learn_tip_alarm">El rellotge només enregistra les nits amb alarma.</string>
+    <string name="learn_tip_connect">Mantén el rellotge encès i connectat al telèfon: envia l’enregistrament després de l’alarma.</string>
 </resources>

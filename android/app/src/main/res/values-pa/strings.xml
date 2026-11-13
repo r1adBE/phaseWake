@@ -593,4 +593,35 @@
     <string name="learn_point_private">ਡਾਟਾ ਤੁਹਾਡੇ ਡਿਵਾਈਸਾਂ ’ਤੇ ਹੀ ਰਹਿੰਦਾ ਹੈ। ਸਿੱਖਣ ਦਾ ਪੜਾਅ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਕਦੇ ਵੀ ਬੰਦ ਕਰ ਸਕਦੇ ਹੋ।</string>
     <string name="learn_switch_hint">ਅਲਾਰਮ ਢਾਲਣ ਲਈ ਤੁਹਾਡੀ ਘੜੀ ਰਾਤ ਨੂੰ ਹਿਲਜੁਲ ਅਤੇ ਨਬਜ਼ ਮਾਪਦੀ ਹੈ। ਬੰਦ: ਕੋਈ ਆਪਣੇ-ਆਪ ਰਿਕਾਰਡਿੰਗ ਨਹੀਂ, ਸਿੱਖੇ ਮੁੱਲ ਰਹਿੰਦੇ ਹਨ।</string>
     <string name="watch_open_app_hint">ਘੜੀ ’ਤੇ Phase Wake ਖੋਲ੍ਹੋ, ਤਾਂ ਜੋ ਇਸਨੂੰ ਹੁਕਮ ਮਿਲੇ।</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">ਸਿੱਖਣ ਦਾ ਪੜਾਅ ਸ਼ੁਰੂ ਹੋਣ ਤੋਂ ਬਾਅਦ ਹਰ ਰਾਤ – ਕੀ ਉਹ ਗਿਣੀ ਗਈ, ਅਤੇ ਜੇ ਨਹੀਂ ਤਾਂ ਕਿਉਂ ਅਤੇ ਕੀ ਮਦਦ ਕਰੇਗਾ। Phase Wake ਨੂੰ %1$d ਗਿਣੀਆਂ ਰਾਤਾਂ ਚਾਹੀਦੀਆਂ ਹਨ।</string>
+    <string name="learn_nights_empty">ਹਾਲੇ ਕੋਈ ਰਾਤ ਨਹੀਂ। ਪਹਿਲੀ ਰਾਤ ਅਗਲੀ ਸਵੇਰ ਇੱਥੇ ਦਿਖੇਗੀ।</string>
+    <string name="learn_night_facts">%1$s ਮਾਪਿਆ · %2$d ਮੁੱਲ · %3$d %% ਵਿੱਚ ਨਬਜ਼</string>
+    <string name="learn_last_night">ਪਿਛਲੀ ਰਾਤ ਨਹੀਂ ਗਿਣੀ ਗਈ</string>
+    <string name="learn_reason_counted">ਗਿਣੀ ਗਈ</string>
+    <string name="learn_reason_counted_no_pulse">ਗਿਣੀ ਗਈ, ਪਰ ਨਬਜ਼ ਲਗਭਗ ਨਹੀਂ – ਸ਼ਾਇਦ ਘੜੀ ਪਹਿਨੀ ਨਹੀਂ ਸੀ</string>
+    <string name="learn_reason_too_short">ਬਹੁਤ ਛੋਟੀ: %1$s ਮਾਪਿਆ, %2$s ਚਾਹੀਦਾ</string>
+    <string name="learn_reason_too_few">ਬਹੁਤ ਘੱਟ ਮੁੱਲ: %2$d ਵਿੱਚੋਂ %1$d</string>
+    <string name="learn_reason_stopped">ਰਿਕਾਰਡਿੰਗ ਜਲਦੀ ਰੋਕ ਦਿੱਤੀ ਗਈ</string>
+    <string name="learn_reason_ended_battery">ਜਲਦੀ ਖ਼ਤਮ: ਘੜੀ ਦੀ ਬੈਟਰੀ ਬਹੁਤ ਘੱਟ</string>
+    <string name="learn_reason_ended_system">ਘੜੀ ਦੇ ਸਿਸਟਮ ਨੇ ਜਲਦੀ ਬੰਦ ਕਰ ਦਿੱਤੀ</string>
+    <string name="learn_reason_not_worn">ਨਬਜ਼ ਲਗਭਗ ਨਹੀਂ – ਘੜੀ ਸ਼ਾਇਦ ਪਹਿਨੀ ਨਹੀਂ ਸੀ</string>
+    <string name="learn_reason_battery">ਰਿਕਾਰਡ ਨਹੀਂ ਹੋਈ: ਘੜੀ ਦੀ ਬੈਟਰੀ %1$d %% ਸੀ</string>
+    <string name="learn_reason_battery_low">ਰਿਕਾਰਡ ਨਹੀਂ ਹੋਈ: ਘੜੀ ਦੀ ਬੈਟਰੀ ਬਹੁਤ ਘੱਟ</string>
+    <string name="learn_reason_sensors">ਰਿਕਾਰਡ ਨਹੀਂ ਹੋਈ: ਘੜੀ ਦੇ ਸੈਂਸਰਾਂ ਤੱਕ ਪਹੁੰਚ ਨਹੀਂ</string>
+    <string name="learn_reason_manual">ਤੁਹਾਡੀ ਆਪਣੀ ਰਿਕਾਰਡਿੰਗ ਚੱਲ ਰਹੀ ਸੀ, ਪਰ ਪਹੁੰਚੀ ਨਹੀਂ</string>
+    <string name="learn_reason_late">ਸ਼ਾਮ ਨੂੰ ਘੜੀ ਦੀ ਐਪ ਬਹੁਤ ਦੇਰ ਨਾਲ ਖੋਲ੍ਹੀ ਗਈ</string>
+    <string name="learn_reason_off">ਸਿੱਖਣ ਦਾ ਪੜਾਅ ਬੰਦ ਸੀ</string>
+    <string name="learn_reason_no_alarm">ਇਸ ਰਾਤ ਕੋਈ ਅਲਾਰਮ ਨਹੀਂ ਸੀ</string>
+    <string name="learn_reason_pending">ਹਾਲੇ ਘੜੀ ਤੋਂ ਰਾਹ ਵਿੱਚ ਹੈ</string>
+    <string name="learn_reason_auto_off">ਆਪਣੇ-ਆਪ ਸ਼ੁਰੂ ਨਹੀਂ ਹੋਈ</string>
+    <string name="learn_reason_none">ਕੋਈ ਰਿਕਾਰਡਿੰਗ ਨਹੀਂ ਪਹੁੰਚੀ</string>
+    <string name="learn_tip_worn">ਰਾਤ ਨੂੰ ਘੜੀ ਥੋੜ੍ਹੀ ਕੱਸ ਕੇ ਪਹਿਨੋ ਅਤੇ ਜਾਂਚੋ ਕਿ Phase Wake ਨੂੰ ਤੁਹਾਡੀ ਨਬਜ਼ ਮਾਪਣ ਦੀ ਇਜਾਜ਼ਤ ਹੈ।</string>
+    <string name="learn_tip_run">ਰਿਕਾਰਡਿੰਗ ਨੂੰ ਅਲਾਰਮ ਤੱਕ ਚੱਲਣ ਦਿਓ।</string>
+    <string name="learn_tip_charge">ਸ਼ਾਮ ਨੂੰ ਘੜੀ ਘੱਟੋ-ਘੱਟ %1$d %% ਤੱਕ ਚਾਰਜ ਕਰੋ।</string>
+    <string name="learn_tip_system">ਘੜੀ \'ਤੇ Phase Wake ਲਈ ਬੈਟਰੀ ਬੱਚਤ ਬੰਦ ਕਰੋ।</string>
+    <string name="learn_tip_sensors">ਘੜੀ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ Phase Wake ਨੂੰ ਸੈਂਸਰ ਅਤੇ ਹਿਲਜੁਲ ਡਾਟਾ ਵਰਤਣ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ।</string>
+    <string name="learn_tip_late">ਸ਼ਾਮ ਨੂੰ ਘੜੀ \'ਤੇ Phase Wake ਖੋਲ੍ਹੋ, ਵੱਧ ਤੋਂ ਵੱਧ ਯਾਦ-ਦਹਾਨੀ ਆਉਣ \'ਤੇ।</string>
+    <string name="learn_tip_alarm">ਘੜੀ ਸਿਰਫ਼ ਅਲਾਰਮ ਵਾਲੀਆਂ ਰਾਤਾਂ ਰਿਕਾਰਡ ਕਰਦੀ ਹੈ।</string>
+    <string name="learn_tip_connect">ਘੜੀ ਚਾਲੂ ਅਤੇ ਫ਼ੋਨ ਨਾਲ ਜੁੜੀ ਰੱਖੋ – ਇਹ ਅਲਾਰਮ ਤੋਂ ਬਾਅਦ ਰਿਕਾਰਡਿੰਗ ਭੇਜਦੀ ਹੈ।</string>
 </resources>

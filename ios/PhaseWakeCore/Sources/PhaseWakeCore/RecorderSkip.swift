@@ -7,7 +7,7 @@ import Foundation
 public struct RecorderSkip: Equatable, Sendable {
     /// Grund, mit seinem Kürzel im gemeldeten Text (``encode()``).
     public enum Reason: String, Sendable {
-        /// Akku zu schwach (Einschlaf-Messung unter 30 %, Lernphase unter 50 %).
+        /// Akku zu schwach (Einschlaf-Messung unter 30 %, Lernphase unter 40 %).
         case battery
         /// Keine Erlaubnis für Bewegungsdaten (nur Apple Watch).
         case motion

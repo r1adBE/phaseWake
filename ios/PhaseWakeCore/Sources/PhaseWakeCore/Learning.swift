@@ -16,7 +16,7 @@ public enum Learning {
     public static let minSpanEpochs = 360
 
     /// Die Uhr zeichnet in der Lernphase nur ab diesem Akkustand (Prozent) automatisch auf; der Wecker hat Vorrang.
-    public static let minBattery = 50
+    public static let minBattery = 40
 
     /// Ein Ruhepuls je Nacht erst ab so vielen Epochen mit Puls (Galaxy Watch: 30 Min, in Stichproben rund 2½ Std.);
     /// sonst wäre das 10. Perzentil zu zufällig.

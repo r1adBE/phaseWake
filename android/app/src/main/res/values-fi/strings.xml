@@ -590,4 +590,35 @@
     <string name="learn_point_private">Tiedot pysyvät laitteillasi. Voit poistaa oppimisvaiheen käytöstä asetuksissa milloin tahansa.</string>
     <string name="learn_switch_hint">Kellosi mittaa yöllä liikettä ja sykettä herätyksen mukauttamiseksi. Pois: ei automaattista tallennusta, opitut arvot säilyvät.</string>
     <string name="watch_open_app_hint">Avaa Phase Wake kellossa, jotta se saa komennon.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Jokainen yö oppimisvaiheen alusta – laskettiinko se ja jos ei, miksi ja mikä auttaa. Phase Wake tarvitsee %1$d laskettua yötä.</string>
+    <string name="learn_nights_empty">Ei vielä yhtään yötä. Ensimmäinen näkyy täällä seuraavana aamuna.</string>
+    <string name="learn_night_facts">%1$s mitattu · %2$d arvoa · syke %3$d %%:ssa</string>
+    <string name="learn_last_night">Viime yötä ei laskettu</string>
+    <string name="learn_reason_counted">Laskettu</string>
+    <string name="learn_reason_counted_no_pulse">Laskettu, mutta sykettä tuskin lainkaan – kello ei luultavasti ollut ranteessa</string>
+    <string name="learn_reason_too_short">Liian lyhyt: mitattu %1$s, tarvitaan %2$s</string>
+    <string name="learn_reason_too_few">Liian vähän arvoja: %1$d/%2$d</string>
+    <string name="learn_reason_stopped">Tallennus pysäytettiin ennenaikaisesti</string>
+    <string name="learn_reason_ended_battery">Päättyi ennenaikaisesti: kellon akku liian vähissä</string>
+    <string name="learn_reason_ended_system">Kellon järjestelmä lopetti ennenaikaisesti</string>
+    <string name="learn_reason_not_worn">Sykettä tuskin lainkaan – kello ei luultavasti ollut ranteessa</string>
+    <string name="learn_reason_battery">Ei tallennettu: kellon akku %1$d %%</string>
+    <string name="learn_reason_battery_low">Ei tallennettu: kellon akku liian vähissä</string>
+    <string name="learn_reason_sensors">Ei tallennettu: ei pääsyä kellon antureihin</string>
+    <string name="learn_reason_manual">Oma tallennuksesi oli käynnissä, mutta se ei ole saapunut</string>
+    <string name="learn_reason_late">Kellon sovellus avattiin illalla liian myöhään</string>
+    <string name="learn_reason_off">Oppimisvaihe oli pois päältä</string>
+    <string name="learn_reason_no_alarm">Tänä yönä ei ollut herätystä</string>
+    <string name="learn_reason_pending">Vielä matkalla kellosta</string>
+    <string name="learn_reason_auto_off">Ei käynnistynyt automaattisesti</string>
+    <string name="learn_reason_none">Tallennusta ei saapunut</string>
+    <string name="learn_tip_worn">Pidä kelloa yöllä hieman tiukemmalla ja tarkista, että Phase Wake saa mitata sykettäsi.</string>
+    <string name="learn_tip_run">Anna tallennuksen jatkua herätykseen asti.</string>
+    <string name="learn_tip_charge">Lataa kello illalla vähintään %1$d %%:iin.</string>
+    <string name="learn_tip_system">Poista kellosta virransäästö Phase Waken osalta.</string>
+    <string name="learn_tip_sensors">Salli kellon asetuksissa Phase Waken käyttää antureita ja liiketietoja.</string>
+    <string name="learn_tip_late">Avaa Phase Wake kellossa illalla, viimeistään muistutuksen tullessa.</string>
+    <string name="learn_tip_alarm">Kello tallentaa vain öitä, joille on herätys.</string>
+    <string name="learn_tip_connect">Pidä kello päällä ja yhdistettynä puhelimeen – se lähettää tallennuksen herätyksen jälkeen.</string>
 </resources>

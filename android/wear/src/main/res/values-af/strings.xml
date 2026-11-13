@@ -102,4 +102,10 @@
     <string name="record_since">Sedert %1$s</string>
     <string name="notification_record_title">Nag word opgeneem</string>
     <string name="record_battery_low">Battery te laag om op te neem</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Leerfase</string>
+    <string name="watch_learn_warn">Laai jou horlosie, anders tel vannag nie vir die leerfase nie (battery %1$d %%, nodig %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Vannag tel nie vir die leerfase nie: battery op %1$d %%, nodig %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Vannag tel nie vir die leerfase nie: Phase Wake kan nie die horlosie se sensors gebruik nie.</string>
+    <string name="watch_learn_skip_late">Vannag tel nie vir die leerfase nie: Phase Wake is te laat in die aand oopgemaak.</string>
 </resources>

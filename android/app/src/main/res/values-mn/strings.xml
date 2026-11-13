@@ -593,4 +593,35 @@
     <string name="learn_point_private">Өгөгдөл чиний төхөөрөмж дээр үлдэнэ. Суралцах үеийг тохиргооноос хүссэн үедээ унтрааж болно.</string>
     <string name="learn_switch_hint">Цаг чинь сэрүүлгийг тохируулахын тулд шөнө хөдөлгөөн ба судасны цохилтыг хэмжинэ. Унтраасан: автомат бичлэг байхгүй, сурсан утгууд хадгалагдана.</string>
     <string name="watch_open_app_hint">Тушаалыг хүлээн авахын тулд цаг дээрээ Phase Wake-г нээ.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Суралцах үе эхэлснээс хойших шөнө бүр – тоологдсон эсэх, тоологдоогүй бол яагаад, юу туслах вэ. Phase Wake-д тоологдсон %1$d шөнө хэрэгтэй.</string>
+    <string name="learn_nights_empty">Одоогоор шөнө алга. Эхнийх нь дараагийн өглөө энд харагдана.</string>
+    <string name="learn_night_facts">%1$s хэмжсэн · %2$d утга · %3$d %%-д судасны цохилт</string>
+    <string name="learn_last_night">Өнгөрсөн шөнө тоологдсонгүй</string>
+    <string name="learn_reason_counted">Тоологдсон</string>
+    <string name="learn_reason_counted_no_pulse">Тоологдсон ч судасны цохилт бараг алга – цагаа зүүгээгүй байж магадгүй</string>
+    <string name="learn_reason_too_short">Хэт богино: %1$s хэмжсэн, %2$s хэрэгтэй</string>
+    <string name="learn_reason_too_few">Утга хэт цөөн: %2$d-аас %1$d</string>
+    <string name="learn_reason_stopped">Бичлэг хугацаанаасаа өмнө зогссон</string>
+    <string name="learn_reason_ended_battery">Хугацаанаасаа өмнө дууссан: цагны батерей хэт сул</string>
+    <string name="learn_reason_ended_system">Цагны систем хугацаанаас нь өмнө зогсоосон</string>
+    <string name="learn_reason_not_worn">Судасны цохилт бараг алга – цагаа зүүгээгүй байж магадгүй</string>
+    <string name="learn_reason_battery">Бичигдээгүй: цагны батерей %1$d %% байсан</string>
+    <string name="learn_reason_battery_low">Бичигдээгүй: цагны батерей хэт сул</string>
+    <string name="learn_reason_sensors">Бичигдээгүй: цагны мэдрэгчид хандах эрх алга</string>
+    <string name="learn_reason_manual">Таны өөрийн бичлэг явагдаж байсан ч ирээгүй</string>
+    <string name="learn_reason_late">Цагны аппыг орой хэт оройтож нээсэн</string>
+    <string name="learn_reason_off">Суралцах үе унтраалттай байсан</string>
+    <string name="learn_reason_no_alarm">Энэ шөнө сэрүүлэг байгаагүй</string>
+    <string name="learn_reason_pending">Цагнаас одоо ч замдаа явна</string>
+    <string name="learn_reason_auto_off">Автоматаар эхлээгүй</string>
+    <string name="learn_reason_none">Ямар ч бичлэг ирээгүй</string>
+    <string name="learn_tip_worn">Шөнө цагаа арай чанга зүүж, Phase Wake таны судасны цохилтыг хэмжих зөвшөөрөлтэй эсэхийг шалгаарай.</string>
+    <string name="learn_tip_run">Бичлэгийг сэрүүлэг хүртэл үргэлжлүүлээрэй.</string>
+    <string name="learn_tip_charge">Орой цагаа дор хаяж %1$d %% хүртэл цэнэглээрэй.</string>
+    <string name="learn_tip_system">Цаган дээр Phase Wake-ийн батерей хэмнэлтийг унтраагаарай.</string>
+    <string name="learn_tip_sensors">Цагны тохиргоонд Phase Wake-д мэдрэгч болон хөдөлгөөний өгөгдөл ашиглахыг зөвшөөрөөрэй.</string>
+    <string name="learn_tip_late">Орой Phase Wake-ийг цаган дээр нээгээрэй, хамгийн оройдоо сануулга ирэхэд.</string>
+    <string name="learn_tip_alarm">Цаг зөвхөн сэрүүлэгтэй шөнийг бичдэг.</string>
+    <string name="learn_tip_connect">Цагаа асаалттай, утсандаа холбогдсон байлгаарай – сэрүүлгийн дараа бичлэгийг илгээнэ.</string>
 </resources>

@@ -168,6 +168,7 @@ final class LearnRecorder {
             // Im Hintergrund kann `now` des Modells alt sein: frisch lesen.
             WatchModel.shared.refresh()
             await startIfDue()
+            checkLearnWarning()
         }
         // Einschlafzeit jede Nacht (`LearnRecorder+AutoOnset`), auch ohne Lernphase.
         startAutoOnsetIfDue()
@@ -240,6 +241,8 @@ final class LearnRecorder {
         guard loggedSkip != target, reason != "past" else { return }
         loggedSkip = target
         DiagStore.shared.log(battery ? .battery : .measureStart, "learn record skipped: \(reason)")
+        // Lern-Übersicht: Grund ans iPhone, bei Akku, Sensoren und «zu spät» auch als Mitteilung (`LearnRecorder+Notice`).
+        if snapshot.active, let skip = AppleLearnRecord.learnSkip(reason: reason, target: target) { noteLearnSkip(skip) }
     }
 
     /// Akkustand der Uhr in Prozent; `nil`, wenn unbekannt.
@@ -361,8 +364,9 @@ final class LearnRecorder {
         } else if snapshot.active, let nextTry {
             date = nextTry
         }
-        // Automatische Einschlaf-Messung: frühester Start der nächsten Nacht.
+        // Automatische Einschlaf-Messung: frühester Start der nächsten Nacht; Lernphase: Akku-Warnung am Abend.
         if let auto = autoNextTry, auto > now { date = date.map { min($0, auto) } ?? auto }
+        if snapshot.active, let warn = Self.learnWarnAt(), warn > now { date = date.map { min($0, warn) } ?? warn }
         // Mit Wecker spätestens nach `replanRefresh` wieder, auch ohne Lernphase und Einschlaf-Messung: Die
         // Aktualisierung plant dann neu und führt die Rückfälle der nächsten Nächte nach (Audit AP-2).
         if WatchModel.shared.realPlan != nil {

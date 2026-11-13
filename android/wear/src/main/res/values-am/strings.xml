@@ -102,4 +102,10 @@
     <string name="record_since">ከ%1$s ጀምሮ</string>
     <string name="notification_record_title">ሌሊቱ እየተቀረጸ ነው</string>
     <string name="record_battery_low">ለመቅረጽ ባትሪው በጣም ዝቅተኛ ነው</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">የመማሪያ ጊዜ</string>
+    <string name="watch_learn_warn">ሰዓትህን ቻርጅ አድርግ፣ አለበለዚያ የዛሬ ሌሊት ለመማሪያ ጊዜው አይቆጠርም (ባትሪ %1$d %%፣ ያስፈልጋል %2$d %%)።</string>
+    <string name="watch_learn_skip_battery">የዛሬ ሌሊት ለመማሪያ ጊዜው አይቆጠርም፦ ባትሪ %1$d %%፣ ያስፈልጋል %2$d %%።</string>
+    <string name="watch_learn_skip_sensors">የዛሬ ሌሊት ለመማሪያ ጊዜው አይቆጠርም፦ Phase Wake የሰዓቱን ዳሳሾች መጠቀም አይችልም።</string>
+    <string name="watch_learn_skip_late">የዛሬ ሌሊት ለመማሪያ ጊዜው አይቆጠርም፦ Phase Wake ማታ በጣም ዘግይቶ ተከፍቷል።</string>
 </resources>

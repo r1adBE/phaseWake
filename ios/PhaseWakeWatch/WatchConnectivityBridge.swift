@@ -179,6 +179,13 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         deliver([SyncKeys.learnRecording: text], userInfoOnly: true)
     }
 
+    /// Lernphase zeichnet eine Nacht nicht auf (``LearnSkip``, Lern-Übersicht) als Benutzerdaten: zugestellt, sobald das
+    /// iPhone erreichbar ist, auch wenn es nachts aus ist.
+    @MainActor
+    func send(learnSkip skip: LearnSkip) {
+        deliver([SyncKeys.learnSkip: skip.encode()], userInfoOnly: true)
+    }
+
     /// Sofort, wenn das iPhone erreichbar ist; sonst zugestellt, sobald es das wieder ist.
     /// Mit Zielzeit der Nacht und Sendezeit: Das iPhone verwirft ein verspätetes «klingeln» und setzt
     /// die Sicherung genau für diese Nacht aus. `snoozeUntil` nur bei «stop» nach dem Schlummern: Das iPhone stellt

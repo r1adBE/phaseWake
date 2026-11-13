@@ -97,4 +97,10 @@
     <string name="record_since">自 %1$s 起</string>
     <string name="notification_record_title">正在記錄夜間資料</string>
     <string name="record_battery_low">電量過低，無法記錄</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">學習階段</string>
+    <string name="watch_learn_warn">請替手錶充電，否則今晚不計入學習階段（電量 %1$d %%，需要 %2$d %%）。</string>
+    <string name="watch_learn_skip_battery">今晚不計入學習階段：電量 %1$d %%，需要 %2$d %%。</string>
+    <string name="watch_learn_skip_sensors">今晚不計入學習階段：Phase Wake 無法使用手錶感測器。</string>
+    <string name="watch_learn_skip_late">今晚不計入學習階段：晚上開啟 Phase Wake 太晚了。</string>
 </resources>

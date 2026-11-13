@@ -618,4 +618,35 @@
     <string name="learn_point_private">Data zůstávají ve tvých zařízeních. Fázi učení můžeš kdykoli vypnout v nastavení.</string>
     <string name="learn_switch_hint">Hodinky v noci měří pohyb a tep, aby přizpůsobily budík. Vypnuto: žádný automatický záznam, naučené hodnoty zůstávají.</string>
     <string name="watch_open_app_hint">Otevři Phase Wake na hodinkách, aby příkaz přijaly.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Každá noc od začátku fáze učení – zda se započítala, a pokud ne, proč a co pomůže. Phase Wake potřebuje %1$d započítaných nocí.</string>
+    <string name="learn_nights_empty">Zatím žádná noc. První se tu objeví ráno po ní.</string>
+    <string name="learn_night_facts">%1$s změřeno · %2$d hodnot · tep v %3$d %%</string>
+    <string name="learn_last_night">Minulá noc se nezapočítala</string>
+    <string name="learn_reason_counted">Započítáno</string>
+    <string name="learn_reason_counted_no_pulse">Započítáno, ale skoro bez tepu – hodinky asi nebyly nasazené</string>
+    <string name="learn_reason_too_short">Příliš krátké: změřeno %1$s, potřeba %2$s</string>
+    <string name="learn_reason_too_few">Příliš málo hodnot: %1$d z %2$d</string>
+    <string name="learn_reason_stopped">Záznam předčasně zastaven</string>
+    <string name="learn_reason_ended_battery">Předčasně ukončeno: baterie hodinek příliš slabá</string>
+    <string name="learn_reason_ended_system">Předčasně ukončeno systémem hodinek</string>
+    <string name="learn_reason_not_worn">Skoro bez tepu – hodinky asi nebyly nasazené</string>
+    <string name="learn_reason_battery">Nezaznamenáno: baterie hodinek na %1$d %%</string>
+    <string name="learn_reason_battery_low">Nezaznamenáno: baterie hodinek příliš slabá</string>
+    <string name="learn_reason_sensors">Nezaznamenáno: chybí přístup k senzorům hodinek</string>
+    <string name="learn_reason_manual">Tvůj vlastní záznam běžel, ale nedorazil</string>
+    <string name="learn_reason_late">Aplikace v hodinkách otevřena večer příliš pozdě</string>
+    <string name="learn_reason_off">Fáze učení byla vypnutá</string>
+    <string name="learn_reason_no_alarm">Tuto noc nebyl budík</string>
+    <string name="learn_reason_pending">Ještě je na cestě z hodinek</string>
+    <string name="learn_reason_auto_off">Nespustilo se automaticky</string>
+    <string name="learn_reason_none">Nedorazil žádný záznam</string>
+    <string name="learn_tip_worn">Nos hodinky v noci trochu těsněji a zkontroluj, jestli Phase Wake smí měřit tvůj tep.</string>
+    <string name="learn_tip_run">Nech záznam běžet až do budíku.</string>
+    <string name="learn_tip_charge">Večer nabij hodinky aspoň na %1$d %%.</string>
+    <string name="learn_tip_system">Vypni v hodinkách úsporu baterie pro Phase Wake.</string>
+    <string name="learn_tip_sensors">V nastavení hodinek povol aplikaci Phase Wake senzory a data o pohybu.</string>
+    <string name="learn_tip_late">Večer otevři Phase Wake v hodinkách, nejpozději při připomenutí.</string>
+    <string name="learn_tip_alarm">Hodinky zaznamenávají jen noci s budíkem.</string>
+    <string name="learn_tip_connect">Nech hodinky zapnuté a spojené s telefonem – záznam pošlou po budíku.</string>
 </resources>

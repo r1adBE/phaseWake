@@ -576,4 +576,35 @@
     <string name="learn_point_private">Dữ liệu ở lại trên thiết bị của bạn. Bạn có thể tắt giai đoạn học trong phần cài đặt bất cứ lúc nào.</string>
     <string name="learn_switch_hint">Đồng hồ của bạn đo chuyển động và nhịp tim vào ban đêm để điều chỉnh báo thức. Tắt: không tự động ghi, các giá trị đã học vẫn giữ.</string>
     <string name="watch_open_app_hint">Mở Phase Wake trên đồng hồ để đồng hồ nhận lệnh.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Mỗi đêm kể từ khi giai đoạn học bắt đầu – đêm đó có được tính không, và nếu không thì vì sao và điều gì giúp ích. Phase Wake cần %1$d đêm được tính.</string>
+    <string name="learn_nights_empty">Chưa có đêm nào. Đêm đầu tiên sẽ hiện ở đây vào sáng hôm sau.</string>
+    <string name="learn_night_facts">Đã đo %1$s · %2$d giá trị · có nhịp tim ở %3$d %%</string>
+    <string name="learn_last_night">Đêm qua không được tính</string>
+    <string name="learn_reason_counted">Đã tính</string>
+    <string name="learn_reason_counted_no_pulse">Đã tính nhưng gần như không có nhịp tim – có lẽ không đeo đồng hồ</string>
+    <string name="learn_reason_too_short">Quá ngắn: đã đo %1$s, cần %2$s</string>
+    <string name="learn_reason_too_few">Quá ít giá trị: %1$d trên %2$d</string>
+    <string name="learn_reason_stopped">Bản ghi bị dừng sớm</string>
+    <string name="learn_reason_ended_battery">Kết thúc sớm: pin đồng hồ quá yếu</string>
+    <string name="learn_reason_ended_system">Hệ thống của đồng hồ đã dừng sớm</string>
+    <string name="learn_reason_not_worn">Gần như không có nhịp tim – có lẽ không đeo đồng hồ</string>
+    <string name="learn_reason_battery">Không ghi: pin đồng hồ ở mức %1$d %%</string>
+    <string name="learn_reason_battery_low">Không ghi: pin đồng hồ quá yếu</string>
+    <string name="learn_reason_sensors">Không ghi: không có quyền truy cập cảm biến của đồng hồ</string>
+    <string name="learn_reason_manual">Bản ghi do bạn tự bắt đầu vẫn chạy nhưng chưa đến</string>
+    <string name="learn_reason_late">Mở ứng dụng trên đồng hồ quá muộn vào buổi tối</string>
+    <string name="learn_reason_off">Giai đoạn học đã bị tắt</string>
+    <string name="learn_reason_no_alarm">Không có báo thức đêm này</string>
+    <string name="learn_reason_pending">Vẫn đang được gửi từ đồng hồ</string>
+    <string name="learn_reason_auto_off">Không tự động bắt đầu</string>
+    <string name="learn_reason_none">Không có bản ghi nào đến</string>
+    <string name="learn_tip_worn">Ban đêm hãy đeo đồng hồ chặt hơn một chút và kiểm tra xem Phase Wake có được phép đo nhịp tim của bạn không.</string>
+    <string name="learn_tip_run">Hãy để bản ghi chạy đến lúc báo thức.</string>
+    <string name="learn_tip_charge">Buổi tối hãy sạc đồng hồ ít nhất đến %1$d %%.</string>
+    <string name="learn_tip_system">Tắt tiết kiệm pin cho Phase Wake trên đồng hồ.</string>
+    <string name="learn_tip_sensors">Trong cài đặt đồng hồ, hãy cho phép Phase Wake dùng cảm biến và dữ liệu chuyển động.</string>
+    <string name="learn_tip_late">Buổi tối hãy mở Phase Wake trên đồng hồ, muộn nhất là khi có lời nhắc.</string>
+    <string name="learn_tip_alarm">Đồng hồ chỉ ghi những đêm có báo thức.</string>
+    <string name="learn_tip_connect">Hãy để đồng hồ bật và kết nối với điện thoại – đồng hồ gửi bản ghi sau báo thức.</string>
 </resources>

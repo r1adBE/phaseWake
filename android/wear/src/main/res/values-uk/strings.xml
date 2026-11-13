@@ -109,4 +109,10 @@
     <string name="record_since">З %1$s</string>
     <string name="notification_record_title">Триває запис ночі</string>
     <string name="record_battery_low">Заряд замалий для запису</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Етап навчання</string>
+    <string name="watch_learn_warn">Заряди годинник, інакше цю ніч не буде зараховано до етапу навчання (заряд %1$d %%, потрібно %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Ця ніч не зараховується до етапу навчання: заряд %1$d %%, потрібно %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Ця ніч не зараховується до етапу навчання: Phase Wake не може використовувати датчики годинника.</string>
+    <string name="watch_learn_skip_late">Ця ніч не зараховується до етапу навчання: Phase Wake відкрито ввечері надто пізно.</string>
 </resources>

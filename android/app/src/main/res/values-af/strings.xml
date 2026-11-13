@@ -593,4 +593,35 @@
     <string name="learn_point_private">Die data bly op jou toestelle. Jy kan die leerfase enige tyd in die instellings afskakel.</string>
     <string name="learn_switch_hint">Jou horlosie meet snags beweging en polsslag om die wekker aan te pas. Af: geen outomatiese opname nie, geleerde waardes bly.</string>
     <string name="watch_open_app_hint">Maak Phase Wake op jou horlosie oop sodat dit die opdrag ontvang.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Elke nag sedert die leerfase begin het – of dit getel het en, indien nie, hoekom en wat help. Phase Wake het %1$d getelde nagte nodig.</string>
+    <string name="learn_nights_empty">Nog geen nag nie. Die eerste verskyn hier die oggend daarna.</string>
+    <string name="learn_night_facts">%1$s gemeet · %2$d lesings · polsslag in %3$d %%</string>
+    <string name="learn_last_night">Laas nag het nie getel nie</string>
+    <string name="learn_reason_counted">Getel</string>
+    <string name="learn_reason_counted_no_pulse">Getel, maar amper geen polsslag – waarskynlik nie gedra nie</string>
+    <string name="learn_reason_too_short">Te kort: %1$s gemeet, %2$s nodig</string>
+    <string name="learn_reason_too_few">Te min lesings: %1$d van %2$d</string>
+    <string name="learn_reason_stopped">Opname te vroeg gestop</string>
+    <string name="learn_reason_ended_battery">Te vroeg geëindig: horlosie se battery te pap</string>
+    <string name="learn_reason_ended_system">Te vroeg deur die horlosie se stelsel beëindig</string>
+    <string name="learn_reason_not_worn">Amper geen polsslag – horlosie waarskynlik nie gedra nie</string>
+    <string name="learn_reason_battery">Nie opgeneem nie: horlosie se battery op %1$d %%</string>
+    <string name="learn_reason_battery_low">Nie opgeneem nie: horlosie se battery te pap</string>
+    <string name="learn_reason_sensors">Nie opgeneem nie: geen toegang tot die horlosie se sensors nie</string>
+    <string name="learn_reason_manual">Jou eie opname het geloop, maar het nie aangekom nie</string>
+    <string name="learn_reason_late">Horlosie-app te laat in die aand oopgemaak</string>
+    <string name="learn_reason_off">Leerfase was af</string>
+    <string name="learn_reason_no_alarm">Geen wekker hierdie nag nie</string>
+    <string name="learn_reason_pending">Nog op pad van die horlosie af</string>
+    <string name="learn_reason_auto_off">Nie outomaties begin nie</string>
+    <string name="learn_reason_none">Geen opname het aangekom nie</string>
+    <string name="learn_tip_worn">Dra die horlosie snags ’n bietjie stywer en kyk of Phase Wake jou polsslag mag meet.</string>
+    <string name="learn_tip_run">Laat die opname tot by die wekker loop.</string>
+    <string name="learn_tip_charge">Laai die horlosie saans tot minstens %1$d %%.</string>
+    <string name="learn_tip_system">Skakel batterybesparing vir Phase Wake op die horlosie af.</string>
+    <string name="learn_tip_sensors">Gee Phase Wake in die horlosie se instellings toegang tot die sensors en bewegingsdata.</string>
+    <string name="learn_tip_late">Maak Phase Wake saans op die horlosie oop, uiterlik wanneer dit jou herinner.</string>
+    <string name="learn_tip_alarm">Die horlosie neem net nagte met ’n wekker op.</string>
+    <string name="learn_tip_connect">Hou die horlosie aan en aan jou foon gekoppel – dit stuur die opname ná die wekker.</string>
 </resources>

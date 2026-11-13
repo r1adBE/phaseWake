@@ -590,4 +590,35 @@
     <string name="learn_point_private">De gegevens blijven op je apparaten. Je kunt de leerfase op elk moment uitzetten in de instellingen.</string>
     <string name="learn_switch_hint">Je horloge meet ’s nachts beweging en hartslag om de wekker af te stemmen. Uit: geen automatische registratie, geleerde waarden blijven.</string>
     <string name="watch_open_app_hint">Open Phase Wake op je horloge zodat het de opdracht ontvangt.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Elke nacht sinds de leerfase begon – of hij meetelde en, zo niet, waarom en wat helpt. Phase Wake heeft %1$d getelde nachten nodig.</string>
+    <string name="learn_nights_empty">Nog geen nacht. De eerste verschijnt hier de ochtend erna.</string>
+    <string name="learn_night_facts">%1$s gemeten · %2$d meetwaarden · hartslag in %3$d %%</string>
+    <string name="learn_last_night">Afgelopen nacht telde niet mee</string>
+    <string name="learn_reason_counted">Geteld</string>
+    <string name="learn_reason_counted_no_pulse">Geteld, maar nauwelijks hartslag – horloge waarschijnlijk niet gedragen</string>
+    <string name="learn_reason_too_short">Te kort: %1$s gemeten, %2$s nodig</string>
+    <string name="learn_reason_too_few">Te weinig meetwaarden: %1$d van %2$d</string>
+    <string name="learn_reason_stopped">Opname te vroeg gestopt</string>
+    <string name="learn_reason_ended_battery">Te vroeg beëindigd: batterij van het horloge te laag</string>
+    <string name="learn_reason_ended_system">Te vroeg beëindigd door het systeem van het horloge</string>
+    <string name="learn_reason_not_worn">Nauwelijks hartslag – horloge waarschijnlijk niet gedragen</string>
+    <string name="learn_reason_battery">Niet opgenomen: batterij van het horloge op %1$d %%</string>
+    <string name="learn_reason_battery_low">Niet opgenomen: batterij van het horloge te laag</string>
+    <string name="learn_reason_sensors">Niet opgenomen: geen toegang tot de sensoren van het horloge</string>
+    <string name="learn_reason_manual">Je eigen opname liep, maar is niet aangekomen</string>
+    <string name="learn_reason_late">App op het horloge ’s avonds te laat geopend</string>
+    <string name="learn_reason_off">Leerfase stond uit</string>
+    <string name="learn_reason_no_alarm">Geen wekker deze nacht</string>
+    <string name="learn_reason_pending">Nog onderweg van het horloge</string>
+    <string name="learn_reason_auto_off">Niet automatisch gestart</string>
+    <string name="learn_reason_none">Geen opname aangekomen</string>
+    <string name="learn_tip_worn">Draag het horloge ’s nachts iets strakker en controleer of Phase Wake je hartslag mag meten.</string>
+    <string name="learn_tip_run">Laat de opname doorlopen tot de wekker.</string>
+    <string name="learn_tip_charge">Laad het horloge ’s avonds op tot minstens %1$d %%.</string>
+    <string name="learn_tip_system">Zet batterijbesparing voor Phase Wake op het horloge uit.</string>
+    <string name="learn_tip_sensors">Sta Phase Wake in de instellingen van het horloge toe de sensoren en bewegingsgegevens te gebruiken.</string>
+    <string name="learn_tip_late">Open Phase Wake ’s avonds op het horloge, uiterlijk bij de herinnering.</string>
+    <string name="learn_tip_alarm">Het horloge neemt alleen nachten met een wekker op.</string>
+    <string name="learn_tip_connect">Houd het horloge aan en verbonden met je telefoon – het stuurt de opname na de wekker.</string>
 </resources>

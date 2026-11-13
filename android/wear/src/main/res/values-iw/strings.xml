@@ -105,4 +105,10 @@
     <string name="record_since">מאז %1$s</string>
     <string name="notification_record_title">הלילה מוקלט</string>
     <string name="record_battery_low">הסוללה חלשה מדי להקלטה</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">שלב למידה</string>
+    <string name="watch_learn_warn">כדאי לטעון את השעון, אחרת הלילה לא ייספר לשלב הלמידה (סוללה %1$d %%, נדרש %2$d %%).</string>
+    <string name="watch_learn_skip_battery">הלילה לא נספר לשלב הלמידה: סוללה ב-%1$d %%, נדרש %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">הלילה לא נספר לשלב הלמידה: Phase Wake לא יכול להשתמש בחיישנים של השעון.</string>
+    <string name="watch_learn_skip_late">הלילה לא נספר לשלב הלמידה: Phase Wake נפתח מאוחר מדי בערב.</string>
 </resources>

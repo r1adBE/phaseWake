@@ -72,6 +72,9 @@ open class PhaseWakeApp : Application() {
 
     /** Stand der Lernphase an die Uhr ([publishLearning]). */
     val learningSync by lazy { LearningSync(this) }
+
+    /** Lern-Übersicht: Meldungen der Uhr und Nächte mit Wecker (privat, nicht gesichert). */
+    val learnLog by lazy { com.phasewake.app.learn.LearnLogStore(phaseWakeStore) }
     val health by lazy { HealthSleep(this) }
     /** Zweitwecker; offen nur für Robolectric-Tests ohne Wear-Dienste («zuletzt gesehen» der Uhr fest). */
     open val backup: BackupAlarm by lazy { BackupAlarm(this, alarms, phaseWakeStore, sync) }
@@ -266,9 +269,10 @@ open class PhaseWakeApp : Application() {
         publishLearning()
     }
 
-    /** «Verlauf löschen»: Lernphase ab jetzt von vorn, gelernte Werte verworfen (auch auf der Uhr). */
+    /** «Verlauf löschen»: Lernphase ab jetzt von vorn, gelernte Werte verworfen (auch auf der Uhr), Lern-Übersicht leer. */
     suspend fun restartLearning() {
         learning.restart(Instant.now())
+        learnLog.clear(Instant.now())
         diag.log(DiagKind.SYNC, "learn restarted")
         publishLearning()
     }

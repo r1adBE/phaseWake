@@ -590,4 +590,35 @@
     <string name="learn_point_private">Datan stannar på dina enheter. Du kan stänga av inlärningsfasen i inställningarna när som helst.</string>
     <string name="learn_switch_hint">Din klocka mäter rörelse och puls på natten för att anpassa larmet. Av: ingen automatisk registrering, inlärda värden finns kvar.</string>
     <string name="watch_open_app_hint">Öppna Phase Wake på klockan så att den tar emot kommandot.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Varje natt sedan inlärningsfasen började – om den räknades och, om inte, varför och vad som hjälper. Phase Wake behöver %1$d räknade nätter.</string>
+    <string name="learn_nights_empty">Ingen natt än. Den första visas här morgonen efter.</string>
+    <string name="learn_night_facts">%1$s mätt · %2$d mätvärden · puls i %3$d %%</string>
+    <string name="learn_last_night">Senaste natten räknades inte</string>
+    <string name="learn_reason_counted">Räknad</string>
+    <string name="learn_reason_counted_no_pulse">Räknad, men nästan ingen puls – klockan bars troligen inte</string>
+    <string name="learn_reason_too_short">För kort: %1$s mätt, %2$s behövs</string>
+    <string name="learn_reason_too_few">För få mätvärden: %1$d av %2$d</string>
+    <string name="learn_reason_stopped">Inspelningen stoppades för tidigt</string>
+    <string name="learn_reason_ended_battery">Slutade för tidigt: klockans batteri för lågt</string>
+    <string name="learn_reason_ended_system">Avbröts för tidigt av klockans system</string>
+    <string name="learn_reason_not_worn">Nästan ingen puls – klockan bars troligen inte</string>
+    <string name="learn_reason_battery">Inte inspelad: klockans batteri på %1$d %%</string>
+    <string name="learn_reason_battery_low">Inte inspelad: klockans batteri för lågt</string>
+    <string name="learn_reason_sensors">Inte inspelad: ingen åtkomst till klockans sensorer</string>
+    <string name="learn_reason_manual">Din egen inspelning pågick men har inte kommit fram</string>
+    <string name="learn_reason_late">Appen på klockan öppnades för sent på kvällen</string>
+    <string name="learn_reason_off">Inlärningsfasen var avstängd</string>
+    <string name="learn_reason_no_alarm">Inget alarm den här natten</string>
+    <string name="learn_reason_pending">Fortfarande på väg från klockan</string>
+    <string name="learn_reason_auto_off">Startade inte automatiskt</string>
+    <string name="learn_reason_none">Ingen inspelning har kommit fram</string>
+    <string name="learn_tip_worn">Bär klockan lite stramare på natten och kontrollera att Phase Wake får mäta din puls.</string>
+    <string name="learn_tip_run">Låt inspelningen gå ända till alarmet.</string>
+    <string name="learn_tip_charge">Ladda klockan till minst %1$d %% på kvällen.</string>
+    <string name="learn_tip_system">Stäng av batterisparläget för Phase Wake på klockan.</string>
+    <string name="learn_tip_sensors">Ge Phase Wake tillgång till sensorer och rörelsedata i klockans inställningar.</string>
+    <string name="learn_tip_late">Öppna Phase Wake på klockan på kvällen, senast när den påminner dig.</string>
+    <string name="learn_tip_alarm">Klockan spelar bara in nätter med alarm.</string>
+    <string name="learn_tip_connect">Håll klockan påslagen och ansluten till telefonen – den skickar inspelningen efter alarmet.</string>
 </resources>

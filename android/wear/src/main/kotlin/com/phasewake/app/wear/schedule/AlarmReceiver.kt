@@ -5,11 +5,14 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import com.phasewake.app.core.WakePlan
+import com.phasewake.app.wear.record.LearnNotice
 import com.phasewake.app.wear.system.StartLock
 import com.phasewake.app.wear.wake.WakeService
+import com.phasewake.app.wear.wearApp
 import java.time.Instant
+import kotlinx.coroutines.launch
 
-/** Empfängt die System-Alarme und gibt sie an den [WakeService] weiter. */
+/** Empfängt die System-Alarme und gibt sie an den [WakeService] weiter (die Warnung der Lernphase an [LearnNotice]). */
 class AlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
@@ -22,6 +25,20 @@ class AlarmReceiver : BroadcastReceiver() {
             } else {
                 StartLock.acquire(context)
                 WakeService.resumeGoodNight(context)
+            }
+            return
+        }
+        if (intent.action == LearnNotice.ACTION_WARN) {
+            // Warnung der Lernphase am Abend (Akku); vor dem Entsperren nicht lesbar.
+            if (!DirectBoot.isUnlocked(context)) return
+            val async = goAsync()
+            val app = context.wearApp
+            app.appScope.launch {
+                try {
+                    LearnNotice.onWarn(context)
+                } finally {
+                    async.finish()
+                }
             }
             return
         }

@@ -590,4 +590,35 @@
     <string name="learn_point_private">Die Daten bleiben auf deinen Geräten. Du kannst die Lernphase jederzeit in den Einstellungen ausschalten.</string>
     <string name="learn_switch_hint">Deine Uhr misst nachts Bewegung und Puls, um den Wecker anzupassen. Aus: keine automatische Aufzeichnung, gelernte Werte bleiben.</string>
     <string name="watch_open_app_hint">Öffne Phase Wake auf der Uhr, damit sie den Befehl erhält.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Jede Nacht seit dem Beginn der Lernphase – ob sie gezählt hat und, wenn nicht, warum und was hilft. Phase Wake braucht %1$d gezählte Nächte.</string>
+    <string name="learn_nights_empty">Noch keine Nacht. Die erste erscheint hier am Morgen danach.</string>
+    <string name="learn_night_facts">%1$s gemessen · %2$d Messwerte · Puls in %3$d %%</string>
+    <string name="learn_last_night">Letzte Nacht hat nicht gezählt</string>
+    <string name="learn_reason_counted">Gezählt</string>
+    <string name="learn_reason_counted_no_pulse">Gezählt, aber kaum Puls – vermutlich nicht getragen</string>
+    <string name="learn_reason_too_short">Zu kurz: %1$s gemessen, nötig sind %2$s</string>
+    <string name="learn_reason_too_few">Zu wenige Messwerte: %1$d von %2$d</string>
+    <string name="learn_reason_stopped">Aufzeichnung vorzeitig gestoppt</string>
+    <string name="learn_reason_ended_battery">Vorzeitig beendet: Akku der Uhr zu schwach</string>
+    <string name="learn_reason_ended_system">Vom System der Uhr vorzeitig beendet</string>
+    <string name="learn_reason_not_worn">Kaum Puls – Uhr vermutlich nicht getragen</string>
+    <string name="learn_reason_battery">Nicht aufgezeichnet: Akku der Uhr bei %1$d %%</string>
+    <string name="learn_reason_battery_low">Nicht aufgezeichnet: Akku der Uhr zu schwach</string>
+    <string name="learn_reason_sensors">Nicht aufgezeichnet: kein Zugriff auf die Sensoren der Uhr</string>
+    <string name="learn_reason_manual">Deine eigene Aufzeichnung lief, ist aber nicht angekommen</string>
+    <string name="learn_reason_late">App auf der Uhr am Abend zu spät geöffnet</string>
+    <string name="learn_reason_off">Lernphase war aus</string>
+    <string name="learn_reason_no_alarm">Kein Wecker in dieser Nacht</string>
+    <string name="learn_reason_pending">Noch unterwegs von der Uhr</string>
+    <string name="learn_reason_auto_off">Nicht automatisch gestartet</string>
+    <string name="learn_reason_none">Keine Aufzeichnung angekommen</string>
+    <string name="learn_tip_worn">Trag die Uhr nachts etwas enger und prüfe, ob Phase Wake den Puls messen darf.</string>
+    <string name="learn_tip_run">Lass die Aufzeichnung bis zum Wecker laufen.</string>
+    <string name="learn_tip_charge">Lade die Uhr am Abend auf mindestens %1$d %%.</string>
+    <string name="learn_tip_system">Schalte auf der Uhr das Energiesparen für Phase Wake aus.</string>
+    <string name="learn_tip_sensors">Erlaube Phase Wake in den Einstellungen der Uhr die Sensoren und Bewegungsdaten.</string>
+    <string name="learn_tip_late">Öffne Phase Wake am Abend auf der Uhr, spätestens bei der Erinnerung.</string>
+    <string name="learn_tip_alarm">Die Uhr zeichnet nur Nächte mit Wecker auf.</string>
+    <string name="learn_tip_connect">Lass die Uhr eingeschaltet und mit dem Handy verbunden – sie schickt die Aufzeichnung nach dem Wecker.</string>
 </resources>

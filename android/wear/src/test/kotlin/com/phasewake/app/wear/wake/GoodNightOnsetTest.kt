@@ -177,12 +177,12 @@ class GoodNightOnsetTest {
     }
 
     @Test
-    fun learningSkipsTheRecordingBelowHalfBattery() {
-        battery(45)
+    fun learningSkipsTheRecordingBelowLearningBattery() {
+        battery(35)
         runBlocking { app.learning.setIfNewer(LearningSnapshot(true, null, null, System.currentTimeMillis())) }
         val service = service()
         service.startGoodNight(id, auto = true)
-        assertTrue(awaitLog("learn record skipped: battery 45%").kind == DiagKind.BATTERY)
+        assertTrue(awaitLog("learn record skipped: battery 35%").kind == DiagKind.BATTERY)
         assertNotNull(service.onset, "die Einschlaf-Messung selbst läuft (ab 30 %)")
         assertTrue(alarmIntents().none { it.action == RecordControl.ACTION_LEARN_START })
         service.stopGoodNight()

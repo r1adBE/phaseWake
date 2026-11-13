@@ -593,4 +593,35 @@
     <string name="learn_point_private">Idatha ihlala kumadivayisi akho. Ungavala isigaba sokufunda kuzilungiselelo noma nini.</string>
     <string name="learn_switch_hint">Iwashi lakho lilinganisa ukunyakaza nokushaya kwenhliziyo ebusuku ukuze lilungise i-alamu. Kuvaliwe: akukho ukuqopha okuzenzakalelayo, amanani afundiwe ayahlala.</string>
     <string name="watch_open_app_hint">Vula i-Phase Wake ewashini lakho ukuze ithole umyalo.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Ubusuku ngabunye kusukela isigaba sokufunda saqala – ukuthi babalwa yini futhi, uma kungenjalo, kungani nokuthi yini esizayo. I-Phase Wake idinga ubusuku obubaliwe obungu-%1$d.</string>
+    <string name="learn_nights_empty">Abukho ubusuku okwamanje. Obokuqala buzovela lapha ekuseni okulandelayo.</string>
+    <string name="learn_night_facts">Kukalwe %1$s · amanani angu-%2$d · ukushaya kwenhliziyo ku-%3$d %%</string>
+    <string name="learn_last_night">Izolo ebusuku akubalwanga</string>
+    <string name="learn_reason_counted">Kubaliwe</string>
+    <string name="learn_reason_counted_no_pulse">Kubaliwe, kodwa cishe akukho ukushaya kwenhliziyo – mhlawumbe iwashi belingagqokiwe</string>
+    <string name="learn_reason_too_short">Kufushane kakhulu: kukalwe %1$s, kudingeka %2$s</string>
+    <string name="learn_reason_too_few">Amanani ambalwa kakhulu: %1$d kwangu-%2$d</string>
+    <string name="learn_reason_stopped">Ukuqopha kumiswe kusenesikhathi</string>
+    <string name="learn_reason_ended_battery">Kuphele kusenesikhathi: ibhethri lewashi liphansi kakhulu</string>
+    <string name="learn_reason_ended_system">Isistimu yewashi iyimise kusenesikhathi</string>
+    <string name="learn_reason_not_worn">Cishe akukho ukushaya kwenhliziyo – mhlawumbe iwashi belingagqokiwe</string>
+    <string name="learn_reason_battery">Akuqoshwanga: ibhethri lewashi beliku-%1$d %%</string>
+    <string name="learn_reason_battery_low">Akuqoshwanga: ibhethri lewashi liphansi kakhulu</string>
+    <string name="learn_reason_sensors">Akuqoshwanga: ayikho imvume yezinzwa zewashi</string>
+    <string name="learn_reason_manual">Ukuqopha kwakho bekuqhubeka, kodwa akukafiki</string>
+    <string name="learn_reason_late">I-app yewashi ivulwe sekwephuze kakhulu kusihlwa</string>
+    <string name="learn_reason_off">Isigaba sokufunda besivaliwe</string>
+    <string name="learn_reason_no_alarm">Bekungekho alamu ngalobu busuku</string>
+    <string name="learn_reason_pending">Kusesendleleni kusuka ewashini</string>
+    <string name="learn_reason_auto_off">Akuqalanga ngokuzenzakalelayo</string>
+    <string name="learn_reason_none">Akukho ukuqopha okufikile</string>
+    <string name="learn_tip_worn">Ebusuku gqoka iwashi liqine kancane futhi uhlole ukuthi i-Phase Wake ivunyelwe yini ukukala ukushaya kwenhliziyo yakho.</string>
+    <string name="learn_tip_run">Vumela ukuqopha kuqhubeke kuze kube yi-alamu.</string>
+    <string name="learn_tip_charge">Kusihlwa shaja iwashi okungenani lifike ku-%1$d %%.</string>
+    <string name="learn_tip_system">Vala ukonga ibhethri kwe-Phase Wake ewashini.</string>
+    <string name="learn_tip_sensors">Kumasethingi ewashi, vumela i-Phase Wake isebenzise izinzwa nedatha yokunyakaza.</string>
+    <string name="learn_tip_late">Kusihlwa vula i-Phase Wake ewashini, okungenani lapho ikukhumbuza.</string>
+    <string name="learn_tip_alarm">Iwashi liqopha kuphela ubusuku obunama-alamu.</string>
+    <string name="learn_tip_connect">Gcina iwashi livuliwe futhi lixhunywe efonini yakho – lithumela ukuqopha ngemva kwe-alamu.</string>
 </resources>

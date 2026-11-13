@@ -102,4 +102,10 @@
     <string name="record_since">%1$s dan beri</string>
     <string name="notification_record_title">Tun yozilmoqda</string>
     <string name="record_battery_low">Yozish uchun batareya juda kam</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">O‘rganish bosqichi</string>
+    <string name="watch_learn_warn">Soatni quvvatla, aks holda bu tun o‘rganish bosqichiga hisoblanmaydi (batareya %1$d %%, kerak %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Bu tun o‘rganish bosqichiga hisoblanmaydi: batareya %1$d %%, kerak %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Bu tun o‘rganish bosqichiga hisoblanmaydi: Phase Wake soat sensorlaridan foydalana olmaydi.</string>
+    <string name="watch_learn_skip_late">Bu tun o‘rganish bosqichiga hisoblanmaydi: Phase Wake kechqurun juda kech ochildi.</string>
 </resources>

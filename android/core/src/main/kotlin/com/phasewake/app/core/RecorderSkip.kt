@@ -11,7 +11,7 @@ import java.time.Instant
 data class RecorderSkip(val target: Instant, val reason: Reason) {
     /** Grund, mit seinem Kürzel im gemeldeten Text ([encode]). */
     enum class Reason(val code: String) {
-        /** Akku zu schwach (Einschlaf-Messung unter 30 %, Lernphase unter 50 %). */
+        /** Akku zu schwach (Einschlaf-Messung unter 30 %, Lernphase unter 40 %). */
         BATTERY("battery"),
 
         /** Keine Erlaubnis für Bewegungsdaten (nur Apple Watch). */

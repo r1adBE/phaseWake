@@ -101,4 +101,10 @@
     <string name="record_since">Από τις %1$s</string>
     <string name="notification_record_title">Καταγράφεται η νύχτα</string>
     <string name="record_battery_low">Πολύ χαμηλή μπαταρία για καταγραφή</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Φάση εκμάθησης</string>
+    <string name="watch_learn_warn">Φόρτισε το ρολόι, αλλιώς απόψε δεν θα μετρήσει για τη φάση εκμάθησης (μπαταρία %1$d %%, χρειάζεται %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Απόψε δεν μετράει για τη φάση εκμάθησης: μπαταρία στο %1$d %%, χρειάζεται %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Απόψε δεν μετράει για τη φάση εκμάθησης: το Phase Wake δεν μπορεί να χρησιμοποιήσει τους αισθητήρες του ρολογιού.</string>
+    <string name="watch_learn_skip_late">Απόψε δεν μετράει για τη φάση εκμάθησης: το Phase Wake άνοιξε πολύ αργά το βράδυ.</string>
 </resources>

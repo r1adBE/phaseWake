@@ -604,4 +604,35 @@
     <string name="learn_point_private">Datele rămân pe dispozitivele tale. Poți dezactiva oricând faza de învățare din setări.</string>
     <string name="learn_switch_hint">Ceasul tău măsoară noaptea mișcarea și pulsul pentru a adapta alarma. Dezactivat: fără înregistrare automată, valorile învățate rămân.</string>
     <string name="watch_open_app_hint">Deschide Phase Wake pe ceas ca să primească comanda.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Fiecare noapte de la începutul fazei de învățare – dacă a contat și, dacă nu, de ce și ce ajută. Phase Wake are nevoie de %1$d nopți numărate.</string>
+    <string name="learn_nights_empty">Încă nicio noapte. Prima apare aici în dimineața următoare.</string>
+    <string name="learn_night_facts">%1$s măsurate · %2$d valori · puls în %3$d %%</string>
+    <string name="learn_last_night">Noaptea trecută nu a contat</string>
+    <string name="learn_reason_counted">Numărată</string>
+    <string name="learn_reason_counted_no_pulse">Numărată, dar aproape fără puls – probabil ceasul nu a fost purtat</string>
+    <string name="learn_reason_too_short">Prea scurtă: %1$s măsurate, sunt necesare %2$s</string>
+    <string name="learn_reason_too_few">Prea puține valori: %1$d din %2$d</string>
+    <string name="learn_reason_stopped">Înregistrare oprită prea devreme</string>
+    <string name="learn_reason_ended_battery">Încheiată prea devreme: bateria ceasului prea slabă</string>
+    <string name="learn_reason_ended_system">Oprită prea devreme de sistemul ceasului</string>
+    <string name="learn_reason_not_worn">Aproape fără puls – probabil ceasul nu a fost purtat</string>
+    <string name="learn_reason_battery">Neînregistrată: bateria ceasului la %1$d %%</string>
+    <string name="learn_reason_battery_low">Neînregistrată: bateria ceasului prea slabă</string>
+    <string name="learn_reason_sensors">Neînregistrată: fără acces la senzorii ceasului</string>
+    <string name="learn_reason_manual">Înregistrarea ta pornea, dar nu a ajuns</string>
+    <string name="learn_reason_late">Aplicația de pe ceas deschisă prea târziu seara</string>
+    <string name="learn_reason_off">Faza de învățare era dezactivată</string>
+    <string name="learn_reason_no_alarm">Fără alarmă în această noapte</string>
+    <string name="learn_reason_pending">Încă pe drum de la ceas</string>
+    <string name="learn_reason_auto_off">Nu a pornit automat</string>
+    <string name="learn_reason_none">Nu a sosit nicio înregistrare</string>
+    <string name="learn_tip_worn">Noaptea, poartă ceasul puțin mai strâns și verifică dacă Phase Wake are voie să-ți măsoare pulsul.</string>
+    <string name="learn_tip_run">Lasă înregistrarea să meargă până la alarmă.</string>
+    <string name="learn_tip_charge">Seara, încarcă ceasul la cel puțin %1$d %%.</string>
+    <string name="learn_tip_system">Dezactivează economisirea bateriei pentru Phase Wake pe ceas.</string>
+    <string name="learn_tip_sensors">În setările ceasului, permite-i lui Phase Wake să folosească senzorii și datele de mișcare.</string>
+    <string name="learn_tip_late">Deschide Phase Wake pe ceas seara, cel târziu la memento.</string>
+    <string name="learn_tip_alarm">Ceasul înregistrează doar nopțile cu alarmă.</string>
+    <string name="learn_tip_connect">Ține ceasul pornit și conectat la telefon – trimite înregistrarea după alarmă.</string>
 </resources>

@@ -593,4 +593,35 @@
     <string name="learn_point_private">Nananatili ang data sa mga device mo. Puwede mong i-off ang yugto ng pagkatuto sa settings anumang oras.</string>
     <string name="learn_switch_hint">Sinusukat ng relo mo ang galaw at pulso sa gabi para iangkop ang alarm. Naka-off: walang awtomatikong pagtatala, nananatili ang natutunang value.</string>
     <string name="watch_open_app_hint">Buksan ang Phase Wake sa relo mo para matanggap nito ang utos.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Bawat gabi mula nang magsimula ang yugto ng pagkatuto – kung nabilang ito at, kung hindi, bakit at ano ang makakatulong. Kailangan ng Phase Wake ng %1$d nabilang na gabi.</string>
+    <string name="learn_nights_empty">Wala pang gabi. Lalabas dito ang una kinaumagahan.</string>
+    <string name="learn_night_facts">%1$s nasukat · %2$d sukat · pulso sa %3$d %%</string>
+    <string name="learn_last_night">Hindi nabilang ang kagabi</string>
+    <string name="learn_reason_counted">Nabilang</string>
+    <string name="learn_reason_counted_no_pulse">Nabilang, pero halos walang pulso – malamang hindi suot</string>
+    <string name="learn_reason_too_short">Masyadong maikli: %1$s nasukat, %2$s ang kailangan</string>
+    <string name="learn_reason_too_few">Masyadong kaunting sukat: %1$d sa %2$d</string>
+    <string name="learn_reason_stopped">Maagang itinigil ang pag-record</string>
+    <string name="learn_reason_ended_battery">Maagang natapos: masyadong mahina ang baterya ng relo</string>
+    <string name="learn_reason_ended_system">Maagang tinapos ng system ng relo</string>
+    <string name="learn_reason_not_worn">Halos walang pulso – malamang hindi suot ang relo</string>
+    <string name="learn_reason_battery">Hindi na-record: nasa %1$d %% ang baterya ng relo</string>
+    <string name="learn_reason_battery_low">Hindi na-record: masyadong mahina ang baterya ng relo</string>
+    <string name="learn_reason_sensors">Hindi na-record: walang access sa mga sensor ng relo</string>
+    <string name="learn_reason_manual">Tumatakbo ang sarili mong recording pero hindi pa dumarating</string>
+    <string name="learn_reason_late">Masyadong gabi na nabuksan ang app sa relo</string>
+    <string name="learn_reason_off">Naka-off ang yugto ng pagkatuto</string>
+    <string name="learn_reason_no_alarm">Walang alarm ngayong gabi</string>
+    <string name="learn_reason_pending">Papunta pa mula sa relo</string>
+    <string name="learn_reason_auto_off">Hindi awtomatikong nagsimula</string>
+    <string name="learn_reason_none">Walang dumating na recording</string>
+    <string name="learn_tip_worn">Isuot ang relo nang medyo mas mahigpit sa gabi at tingnan kung pinapayagan ang Phase Wake na sukatin ang pulso mo.</string>
+    <string name="learn_tip_run">Hayaang tumakbo ang recording hanggang sa alarm.</string>
+    <string name="learn_tip_charge">I-charge ang relo sa gabi hanggang hindi bababa sa %1$d %%.</string>
+    <string name="learn_tip_system">I-off ang battery saving para sa Phase Wake sa relo.</string>
+    <string name="learn_tip_sensors">Payagan ang Phase Wake na gamitin ang mga sensor at data ng galaw sa settings ng relo.</string>
+    <string name="learn_tip_late">Buksan ang Phase Wake sa relo sa gabi, hindi lalampas sa paalala.</string>
+    <string name="learn_tip_alarm">Mga gabing may alarm lang ang nire-record ng relo.</string>
+    <string name="learn_tip_connect">Panatilihing naka-on ang relo at nakakonekta sa phone mo – ipinapadala nito ang recording pagkatapos ng alarm.</string>
 </resources>

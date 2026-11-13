@@ -116,12 +116,12 @@ final class AppleLearningTests: XCTestCase {
         let late = start.addingTimeInterval(2 * 3600)
         XCTAssertEqual(AppleLearnRecord.decide(now: late, target: target, onsetStart: onset, battery: nil),
                        .start(from: late, until: end, duration: end.timeIntervalSince(late)))
-        // 04:01: keine 3 Std. mehr; nach der Zielzeit vorbei; unter 50 % nicht.
+        // 04:01: keine 3 Std. mehr; nach der Zielzeit vorbei; unter 40 % nicht.
         XCTAssertEqual(AppleLearnRecord.decide(now: target.addingTimeInterval(-3 * 3600 + 60), target: target, onsetStart: onset, battery: 90),
                        .skip(reason: "too late"))
         XCTAssertEqual(AppleLearnRecord.decide(now: target, target: target, onsetStart: onset, battery: 90), .skip(reason: "past"))
-        XCTAssertEqual(AppleLearnRecord.decide(now: evening, target: target, onsetStart: onset, battery: 49), .skip(reason: "battery 49%"))
-        XCTAssertNotEqual(AppleLearnRecord.decide(now: evening, target: target, onsetStart: onset, battery: 50), .skip(reason: "battery 50%"))
+        XCTAssertEqual(AppleLearnRecord.decide(now: evening, target: target, onsetStart: onset, battery: 39), .skip(reason: "battery 39%"))
+        XCTAssertNotEqual(AppleLearnRecord.decide(now: evening, target: target, onsetStart: onset, battery: 40), .skip(reason: "battery 40%"))
         // Ende der Auswertung: Ende des Klingelns, höchstens Ende des Rekorders; ohne Klingeln die Zielzeit.
         XCTAssertEqual(AppleLearnRecord.end(wokeAt: target.addingTimeInterval(-600), target: target, until: end), target.addingTimeInterval(-600))
         XCTAssertEqual(AppleLearnRecord.end(wokeAt: end.addingTimeInterval(600), target: target, until: end), end)

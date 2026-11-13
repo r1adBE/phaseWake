@@ -109,4 +109,10 @@
     <string name="record_since">Od %1$s</string>
     <string name="notification_record_title">Noč se snema</string>
     <string name="record_battery_low">Baterija je prešibka za snemanje</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Faza učenja</string>
+    <string name="watch_learn_warn">Napolni uro, sicer nocoj ne bo štelo za fazo učenja (baterija %1$d %%, potrebno %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Nocoj ne šteje za fazo učenja: baterija na %1$d %%, potrebno %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Nocoj ne šteje za fazo učenja: Phase Wake ne more uporabljati senzorjev ure.</string>
+    <string name="watch_learn_skip_late">Nocoj ne šteje za fazo učenja: Phase Wake je bil odprt prepozno zvečer.</string>
 </resources>

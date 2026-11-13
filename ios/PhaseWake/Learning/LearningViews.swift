@@ -3,7 +3,8 @@ import SwiftUI
 
 /// Karte der Lernphase auf der Startseite (wie `LearningCard` auf Android), nur mit Zustimmung (Audit F-02): noch nicht
 /// gefragt und die Uhr kann aufzeichnen – einmal «Lernphase starten» / «Später»; solange sie läuft «Lernphase: Nacht N
-/// von 7» mit kurzer Erklärung; danach einmal «Angepasst an dich» mit den gelernten Werten und «OK». Sonst nichts.
+/// von 7» mit kurzer Erklärung, einer unerwartet nicht gezählten letzten Nacht mit Grund und «Details» zur
+/// Lern-Übersicht (r1AD 13.11.2026); danach einmal «Angepasst an dich» mit den gelernten Werten und «OK». Sonst nichts.
 struct LearningHomeCard: View {
     @Environment(PhoneModel.self) private var model
     @Environment(\.colorScheme) private var scheme
@@ -21,6 +22,12 @@ struct LearningHomeCard: View {
                 Text(L("learn_text", Learning.nights, Learning.minBattery))
                     .font(Fonts.manrope(14, relativeTo: .subheadline))
                     .foregroundStyle(Brand.secondaryText(scheme))
+                let now = Date()
+                if let miss = LearnNights.lastNightMiss(LearnNightsView.nights(model: model, now: now), now: now, calendar: .gregorianLocal) {
+                    LastNightMissLine(miss: miss)
+                }
+                NavigationLink(L("night_details")) { LearnNightsView() }
+                    .frame(maxWidth: .infinity, minHeight: 44, alignment: .trailing)
             }
         } else if let values = state.values, !state.active, state.consent == true, !state.seen {
             card(L("learned_title")) {
@@ -40,6 +47,25 @@ struct LearningHomeCard: View {
             content()
         }
         .card()
+    }
+}
+
+/// «Letzte Nacht zählte nicht» mit dem Grund (``LearnNightsView/reason(_:)``), wie auf Android.
+private struct LastNightMissLine: View {
+    let miss: LearnNights.Night
+    @Environment(\.colorScheme) private var scheme
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 10) {
+            Image(systemName: "exclamationmark.triangle").foregroundStyle(.red).accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(L("learn_last_night")).font(Fonts.manrope(14, .semibold, relativeTo: .subheadline))
+                Text(LearnNightsView.reason(miss))
+                    .font(Fonts.manrope(14, relativeTo: .subheadline))
+                    .foregroundStyle(Brand.secondaryText(scheme))
+            }
+        }
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -121,7 +147,7 @@ struct BedtimeAdviceCard: View {
 }
 
 /// Lernphase in den Einstellungen (wie `LearningGroup` auf Android): Schalter «Lernphase» (Zustimmung), «Nacht N von 7»
-/// bzw. die gelernten Werte und «Neu lernen» mit Rückfrage. Nur mit einer Uhr, die aufzeichnen kann, oder wenn schon
+/// bzw. die gelernten Werte, «Details» zur Lern-Übersicht und «Neu lernen» mit Rückfrage. Nur mit einer Uhr, die aufzeichnen kann, oder wenn schon
 /// gelernt.
 struct LearningSettingsSection: View {
     @Environment(PhoneModel.self) private var model
@@ -141,6 +167,7 @@ struct LearningSettingsSection: View {
                     Text(L("learn_text", Learning.nights, Learning.minBattery)).font(.footnote)
                 }
                 if state.since != nil {
+                    NavigationLink(L("night_details")) { LearnNightsView() }
                     Button(L("learn_restart")) { confirm = true }
                 }
             }

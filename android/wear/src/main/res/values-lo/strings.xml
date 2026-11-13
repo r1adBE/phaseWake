@@ -97,4 +97,10 @@
     <string name="record_since">ຕັ້ງແຕ່ %1$s</string>
     <string name="notification_record_title">ກຳລັງບັນທຶກກາງຄືນ</string>
     <string name="record_battery_low">ແບັດເຕີຣີຕ່ຳເກີນໄປທີ່ຈະບັນທຶກ</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">ໄລຍະຮຽນຮູ້</string>
+    <string name="watch_learn_warn">ສາກໂມງຂອງເຈົ້າ ບໍ່ດັ່ງນັ້ນຄືນນີ້ຈະບໍ່ນັບສຳລັບໄລຍະຮຽນຮູ້ (ແບັດເຕີຣີ %1$d %%, ຕ້ອງການ %2$d %%).</string>
+    <string name="watch_learn_skip_battery">ຄືນນີ້ບໍ່ນັບສຳລັບໄລຍະຮຽນຮູ້: ແບັດເຕີຣີ %1$d %%, ຕ້ອງການ %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">ຄືນນີ້ບໍ່ນັບສຳລັບໄລຍະຮຽນຮູ້: Phase Wake ໃຊ້ເຊັນເຊີຂອງໂມງບໍ່ໄດ້.</string>
+    <string name="watch_learn_skip_late">ຄືນນີ້ບໍ່ນັບສຳລັບໄລຍະຮຽນຮູ້: ເປີດ Phase Wake ຊ້າເກີນໄປໃນຕອນແລງ.</string>
 </resources>

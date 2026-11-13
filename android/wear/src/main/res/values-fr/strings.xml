@@ -105,4 +105,10 @@
     <string name="record_since">Depuis %1$s</string>
     <string name="notification_record_title">Enregistrement de la nuit</string>
     <string name="record_battery_low">Batterie trop faible pour enregistrer</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Phase d’apprentissage</string>
+    <string name="watch_learn_warn">Recharge ta montre, sinon cette nuit ne comptera pas pour la phase d’apprentissage (batterie %1$d %%, il faut %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Cette nuit ne compte pas pour la phase d’apprentissage : batterie à %1$d %%, il faut %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Cette nuit ne compte pas pour la phase d’apprentissage : Phase Wake ne peut pas utiliser les capteurs de la montre.</string>
+    <string name="watch_learn_skip_late">Cette nuit ne compte pas pour la phase d’apprentissage : Phase Wake a été ouvert trop tard le soir.</string>
 </resources>

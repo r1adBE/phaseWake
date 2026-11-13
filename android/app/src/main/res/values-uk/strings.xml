@@ -618,4 +618,35 @@
     <string name="learn_point_private">Дані залишаються на твоїх пристроях. Етап навчання можна будь-коли вимкнути в налаштуваннях.</string>
     <string name="learn_switch_hint">Годинник вимірює вночі рух і пульс, щоб підлаштувати будильник. Вимк.: без автоматичного запису, вивчені значення зберігаються.</string>
     <string name="watch_open_app_hint">Відкрий Phase Wake на годиннику, щоб він отримав команду.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Кожна ніч від початку етапу навчання – чи її зараховано, а якщо ні, то чому і що допоможе. Phase Wake потребує %1$d зарахованих ночей.</string>
+    <string name="learn_nights_empty">Поки немає жодної ночі. Перша з’явиться тут наступного ранку.</string>
+    <string name="learn_night_facts">Виміряно %1$s · %2$d значень · пульс у %3$d %%</string>
+    <string name="learn_last_night">Минулу ніч не зараховано</string>
+    <string name="learn_reason_counted">Зараховано</string>
+    <string name="learn_reason_counted_no_pulse">Зараховано, але пульсу майже немає – годинник, мабуть, не був на руці</string>
+    <string name="learn_reason_too_short">Закоротко: виміряно %1$s, потрібно %2$s</string>
+    <string name="learn_reason_too_few">Замало значень: %1$d з %2$d</string>
+    <string name="learn_reason_stopped">Запис зупинено завчасно</string>
+    <string name="learn_reason_ended_battery">Завершено завчасно: заряд годинника надто низький</string>
+    <string name="learn_reason_ended_system">Перервано системою годинника завчасно</string>
+    <string name="learn_reason_not_worn">Пульсу майже немає – годинник, мабуть, не був на руці</string>
+    <string name="learn_reason_battery">Не записано: заряд годинника %1$d %%</string>
+    <string name="learn_reason_battery_low">Не записано: заряд годинника надто низький</string>
+    <string name="learn_reason_sensors">Не записано: немає доступу до датчиків годинника</string>
+    <string name="learn_reason_manual">Твій власний запис тривав, але не надійшов</string>
+    <string name="learn_reason_late">Застосунок на годиннику відкрито ввечері надто пізно</string>
+    <string name="learn_reason_off">Етап навчання був вимкнений</string>
+    <string name="learn_reason_no_alarm">Цієї ночі не було будильника</string>
+    <string name="learn_reason_pending">Ще в дорозі з годинника</string>
+    <string name="learn_reason_auto_off">Не запущено автоматично</string>
+    <string name="learn_reason_none">Жоден запис не надійшов</string>
+    <string name="learn_tip_worn">Уночі носи годинник трохи щільніше й перевір, чи Phase Wake може вимірювати твій пульс.</string>
+    <string name="learn_tip_run">Дай запису тривати до будильника.</string>
+    <string name="learn_tip_charge">Увечері заряди годинник щонайменше до %1$d %%.</string>
+    <string name="learn_tip_system">Вимкни на годиннику економію заряду для Phase Wake.</string>
+    <string name="learn_tip_sensors">У налаштуваннях годинника дозволь Phase Wake використовувати датчики й дані про рух.</string>
+    <string name="learn_tip_late">Увечері відкрий Phase Wake на годиннику, найпізніше за нагадуванням.</string>
+    <string name="learn_tip_alarm">Годинник записує лише ночі з будильником.</string>
+    <string name="learn_tip_connect">Тримай годинник увімкненим і підключеним до телефона – він надсилає запис після будильника.</string>
 </resources>

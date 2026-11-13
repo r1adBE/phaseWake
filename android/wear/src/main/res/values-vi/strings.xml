@@ -97,4 +97,10 @@
     <string name="record_since">Từ %1$s</string>
     <string name="notification_record_title">Đang ghi lại đêm</string>
     <string name="record_battery_low">Pin quá yếu để ghi</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Giai đoạn học</string>
+    <string name="watch_learn_warn">Hãy sạc đồng hồ, nếu không đêm nay sẽ không được tính cho giai đoạn học (pin %1$d %%, cần %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Đêm nay không được tính cho giai đoạn học: pin %1$d %%, cần %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Đêm nay không được tính cho giai đoạn học: Phase Wake không dùng được cảm biến của đồng hồ.</string>
+    <string name="watch_learn_skip_late">Đêm nay không được tính cho giai đoạn học: Phase Wake được mở quá muộn vào buổi tối.</string>
 </resources>

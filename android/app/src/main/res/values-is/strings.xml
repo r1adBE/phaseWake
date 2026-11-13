@@ -593,4 +593,35 @@
     <string name="learn_point_private">Gögnin haldast á tækjunum þínum. Þú getur slökkt á námsfasanum í stillingum hvenær sem er.</string>
     <string name="learn_switch_hint">Úrið mælir hreyfingu og púls á nóttunni til að laga vekjarann. Slökkt: engin sjálfvirk skráning, lærð gildi haldast.</string>
     <string name="watch_open_app_hint">Opnaðu Phase Wake á úrinu svo það fái skipunina.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Hver nótt frá upphafi námsfasans – hvort hún taldist með og, ef ekki, hvers vegna og hvað hjálpar. Phase Wake þarf %1$d nætur sem teljast með.</string>
+    <string name="learn_nights_empty">Engin nótt enn. Sú fyrsta birtist hér morguninn eftir.</string>
+    <string name="learn_night_facts">%1$s mælt · %2$d gildi · púls í %3$d %%</string>
+    <string name="learn_last_night">Síðasta nótt taldist ekki með</string>
+    <string name="learn_reason_counted">Taldist með</string>
+    <string name="learn_reason_counted_no_pulse">Taldist með, en nánast enginn púls – úrið var líklega ekki á hendinni</string>
+    <string name="learn_reason_too_short">Of stutt: %1$s mælt, %2$s þarf</string>
+    <string name="learn_reason_too_few">Of fá gildi: %1$d af %2$d</string>
+    <string name="learn_reason_stopped">Upptaka stöðvuð of snemma</string>
+    <string name="learn_reason_ended_battery">Lauk of snemma: rafhlaða úrsins of lág</string>
+    <string name="learn_reason_ended_system">Kerfi úrsins stöðvaði of snemma</string>
+    <string name="learn_reason_not_worn">Nánast enginn púls – úrið var líklega ekki á hendinni</string>
+    <string name="learn_reason_battery">Ekki tekið upp: rafhlaða úrsins í %1$d %%</string>
+    <string name="learn_reason_battery_low">Ekki tekið upp: rafhlaða úrsins of lág</string>
+    <string name="learn_reason_sensors">Ekki tekið upp: enginn aðgangur að skynjurum úrsins</string>
+    <string name="learn_reason_manual">Þín eigin upptaka var í gangi en hefur ekki borist</string>
+    <string name="learn_reason_late">Forritið á úrinu opnað of seint um kvöldið</string>
+    <string name="learn_reason_off">Slökkt var á námsfasanum</string>
+    <string name="learn_reason_no_alarm">Engin vekjari þessa nótt</string>
+    <string name="learn_reason_pending">Enn á leiðinni frá úrinu</string>
+    <string name="learn_reason_auto_off">Fór ekki sjálfkrafa af stað</string>
+    <string name="learn_reason_none">Engin upptaka barst</string>
+    <string name="learn_tip_worn">Hafðu úrið aðeins þéttar á nóttunni og athugaðu hvort Phase Wake megi mæla púlsinn þinn.</string>
+    <string name="learn_tip_run">Leyfðu upptökunni að ganga fram að vekjaranum.</string>
+    <string name="learn_tip_charge">Hladdu úrið á kvöldin upp í að minnsta kosti %1$d %%.</string>
+    <string name="learn_tip_system">Slökktu á rafhlöðusparnaði fyrir Phase Wake á úrinu.</string>
+    <string name="learn_tip_sensors">Leyfðu Phase Wake að nota skynjarana og hreyfigögn í stillingum úrsins.</string>
+    <string name="learn_tip_late">Opnaðu Phase Wake á úrinu á kvöldin, í síðasta lagi þegar það minnir þig á.</string>
+    <string name="learn_tip_alarm">Úrið tekur aðeins upp nætur með vekjara.</string>
+    <string name="learn_tip_connect">Hafðu kveikt á úrinu og tengt við símann – það sendir upptökuna eftir vekjarann.</string>
 </resources>

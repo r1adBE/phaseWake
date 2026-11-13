@@ -592,4 +592,35 @@
     <string name="learn_point_private">ಡೇಟಾ ನಿಮ್ಮ ಸಾಧನಗಳಲ್ಲೇ ಇರುತ್ತದೆ. ಕಲಿಕೆಯ ಹಂತವನ್ನು ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಯಾವಾಗ ಬೇಕಾದರೂ ಆಫ್ ಮಾಡಬಹುದು.</string>
     <string name="learn_switch_hint">ಅಲಾರಾಂ ಹೊಂದಿಸಲು ನಿಮ್ಮ ವಾಚ್ ರಾತ್ರಿ ಚಲನೆ ಮತ್ತು ನಾಡಿಯನ್ನು ಅಳೆಯುತ್ತದೆ. ಆಫ್: ಸ್ವಯಂ ದಾಖಲೆ ಇಲ್ಲ, ಕಲಿತ ಮೌಲ್ಯಗಳು ಉಳಿಯುತ್ತವೆ.</string>
     <string name="watch_open_app_hint">ಆಜ್ಞೆ ಸಿಗುವಂತೆ ವಾಚ್‌ನಲ್ಲಿ Phase Wake ತೆರೆಯಿರಿ.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">ಕಲಿಕೆಯ ಹಂತ ಆರಂಭವಾದಾಗಿನಿಂದ ಪ್ರತಿ ರಾತ್ರಿ – ಅದು ಎಣಿಕೆಯಾಯಿತೇ, ಇಲ್ಲದಿದ್ದರೆ ಏಕೆ ಮತ್ತು ಏನು ಸಹಾಯ ಮಾಡುತ್ತದೆ. Phase Wake ಗೆ %1$d ಎಣಿಕೆಯಾದ ರಾತ್ರಿಗಳು ಬೇಕು.</string>
+    <string name="learn_nights_empty">ಇನ್ನೂ ಯಾವುದೇ ರಾತ್ರಿ ಇಲ್ಲ. ಮೊದಲನೆಯದು ಮರುದಿನ ಬೆಳಿಗ್ಗೆ ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ.</string>
+    <string name="learn_night_facts">%1$s ಅಳೆಯಲಾಗಿದೆ · %2$d ಮೌಲ್ಯಗಳು · %3$d %% ರಲ್ಲಿ ನಾಡಿ</string>
+    <string name="learn_last_night">ಕಳೆದ ರಾತ್ರಿ ಎಣಿಕೆಯಾಗಲಿಲ್ಲ</string>
+    <string name="learn_reason_counted">ಎಣಿಕೆಯಾಗಿದೆ</string>
+    <string name="learn_reason_counted_no_pulse">ಎಣಿಕೆಯಾಗಿದೆ, ಆದರೆ ನಾಡಿ ಬಹುತೇಕ ಇಲ್ಲ – ಬಹುಶಃ ವಾಚ್ ಧರಿಸಿರಲಿಲ್ಲ</string>
+    <string name="learn_reason_too_short">ತುಂಬಾ ಕಡಿಮೆ: %1$s ಅಳೆಯಲಾಗಿದೆ, %2$s ಬೇಕು</string>
+    <string name="learn_reason_too_few">ತುಂಬಾ ಕಡಿಮೆ ಮೌಲ್ಯಗಳು: %2$d ರಲ್ಲಿ %1$d</string>
+    <string name="learn_reason_stopped">ರೆಕಾರ್ಡಿಂಗ್ ಬೇಗನೆ ನಿಲ್ಲಿಸಲಾಗಿದೆ</string>
+    <string name="learn_reason_ended_battery">ಬೇಗನೆ ಮುಗಿಯಿತು: ವಾಚ್ ಬ್ಯಾಟರಿ ತುಂಬಾ ಕಡಿಮೆ</string>
+    <string name="learn_reason_ended_system">ವಾಚ್‌ನ ಸಿಸ್ಟಮ್ ಬೇಗನೆ ನಿಲ್ಲಿಸಿದೆ</string>
+    <string name="learn_reason_not_worn">ನಾಡಿ ಬಹುತೇಕ ಇಲ್ಲ – ವಾಚ್ ಬಹುಶಃ ಧರಿಸಿರಲಿಲ್ಲ</string>
+    <string name="learn_reason_battery">ರೆಕಾರ್ಡ್ ಆಗಿಲ್ಲ: ವಾಚ್ ಬ್ಯಾಟರಿ %1$d %% ಇತ್ತು</string>
+    <string name="learn_reason_battery_low">ರೆಕಾರ್ಡ್ ಆಗಿಲ್ಲ: ವಾಚ್ ಬ್ಯಾಟರಿ ತುಂಬಾ ಕಡಿಮೆ</string>
+    <string name="learn_reason_sensors">ರೆಕಾರ್ಡ್ ಆಗಿಲ್ಲ: ವಾಚ್ ಸೆನ್ಸರ್‌ಗಳಿಗೆ ಪ್ರವೇಶವಿಲ್ಲ</string>
+    <string name="learn_reason_manual">ನಿಮ್ಮ ಸ್ವಂತ ರೆಕಾರ್ಡಿಂಗ್ ನಡೆಯುತ್ತಿತ್ತು, ಆದರೆ ಬಂದಿಲ್ಲ</string>
+    <string name="learn_reason_late">ಸಂಜೆ ವಾಚ್ ಆ್ಯಪ್ ತುಂಬಾ ತಡವಾಗಿ ತೆರೆಯಲಾಗಿದೆ</string>
+    <string name="learn_reason_off">ಕಲಿಕೆಯ ಹಂತ ಆಫ್ ಆಗಿತ್ತು</string>
+    <string name="learn_reason_no_alarm">ಈ ರಾತ್ರಿ ಅಲಾರಾಂ ಇರಲಿಲ್ಲ</string>
+    <string name="learn_reason_pending">ಇನ್ನೂ ವಾಚ್‌ನಿಂದ ದಾರಿಯಲ್ಲಿದೆ</string>
+    <string name="learn_reason_auto_off">ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಆರಂಭವಾಗಲಿಲ್ಲ</string>
+    <string name="learn_reason_none">ಯಾವುದೇ ರೆಕಾರ್ಡಿಂಗ್ ಬಂದಿಲ್ಲ</string>
+    <string name="learn_tip_worn">ರಾತ್ರಿ ವಾಚ್ ಅನ್ನು ಸ್ವಲ್ಪ ಬಿಗಿಯಾಗಿ ಧರಿಸಿ ಮತ್ತು Phase Wake ಗೆ ನಿಮ್ಮ ನಾಡಿ ಅಳೆಯಲು ಅನುಮತಿ ಇದೆಯೇ ಎಂದು ಪರಿಶೀಲಿಸಿ.</string>
+    <string name="learn_tip_run">ಅಲಾರಾಂವರೆಗೆ ರೆಕಾರ್ಡಿಂಗ್ ನಡೆಯಲು ಬಿಡಿ.</string>
+    <string name="learn_tip_charge">ಸಂಜೆ ವಾಚ್ ಅನ್ನು ಕನಿಷ್ಠ %1$d %% ವರೆಗೆ ಚಾರ್ಜ್ ಮಾಡಿ.</string>
+    <string name="learn_tip_system">ವಾಚ್‌ನಲ್ಲಿ Phase Wake ಗಾಗಿ ಬ್ಯಾಟರಿ ಉಳಿತಾಯ ಆಫ್ ಮಾಡಿ.</string>
+    <string name="learn_tip_sensors">ವಾಚ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ Phase Wake ಗೆ ಸೆನ್ಸರ್‌ಗಳು ಮತ್ತು ಚಲನೆಯ ಡೇಟಾ ಬಳಸಲು ಅನುಮತಿ ನೀಡಿ.</string>
+    <string name="learn_tip_late">ಸಂಜೆ ವಾಚ್‌ನಲ್ಲಿ Phase Wake ತೆರೆಯಿರಿ, ಅತಿ ತಡವೆಂದರೆ ಜ್ಞಾಪನೆ ಬಂದಾಗ.</string>
+    <string name="learn_tip_alarm">ವಾಚ್ ಅಲಾರಾಂ ಇರುವ ರಾತ್ರಿಗಳನ್ನು ಮಾತ್ರ ರೆಕಾರ್ಡ್ ಮಾಡುತ್ತದೆ.</string>
+    <string name="learn_tip_connect">ವಾಚ್ ಆನ್ ಆಗಿರಲಿ ಮತ್ತು ಫೋನ್‌ಗೆ ಸಂಪರ್ಕದಲ್ಲಿರಲಿ – ಅಲಾರಾಂ ನಂತರ ಅದು ರೆಕಾರ್ಡಿಂಗ್ ಕಳುಹಿಸುತ್ತದೆ.</string>
 </resources>

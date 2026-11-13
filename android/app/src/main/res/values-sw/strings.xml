@@ -592,4 +592,35 @@
     <string name="learn_point_private">Data hubaki kwenye vifaa vyako. Unaweza kuzima hatua ya kujifunza kwenye mipangilio wakati wowote.</string>
     <string name="learn_switch_hint">Saa yako hupima mwendo na mapigo ya moyo usiku ili kurekebisha kengele. Imezimwa: hakuna kurekodi kiotomatiki, thamani zilizojifunzwa zinabaki.</string>
     <string name="watch_open_app_hint">Fungua Phase Wake kwenye saa yako ili ipokee amri.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Kila usiku tangu hatua ya kujifunza ilipoanza – kama ulihesabiwa na, kama sivyo, kwa nini na nini kinasaidia. Phase Wake inahitaji usiku %1$d uliohesabiwa.</string>
+    <string name="learn_nights_empty">Bado hakuna usiku. Wa kwanza utaonekana hapa asubuhi inayofuata.</string>
+    <string name="learn_night_facts">%1$s zimepimwa · thamani %2$d · mapigo katika %3$d %%</string>
+    <string name="learn_last_night">Usiku uliopita haukuhesabiwa</string>
+    <string name="learn_reason_counted">Umehesabiwa</string>
+    <string name="learn_reason_counted_no_pulse">Umehesabiwa, lakini karibu hakuna mapigo – huenda saa haikuvaliwa</string>
+    <string name="learn_reason_too_short">Mfupi mno: %1$s zimepimwa, zinahitajika %2$s</string>
+    <string name="learn_reason_too_few">Thamani chache mno: %1$d kati ya %2$d</string>
+    <string name="learn_reason_stopped">Kurekodi kulisimamishwa mapema</string>
+    <string name="learn_reason_ended_battery">Kuliisha mapema: betri ya saa iko chini mno</string>
+    <string name="learn_reason_ended_system">Mfumo wa saa ulikomesha mapema</string>
+    <string name="learn_reason_not_worn">Karibu hakuna mapigo – huenda saa haikuvaliwa</string>
+    <string name="learn_reason_battery">Haukurekodiwa: betri ya saa ilikuwa %1$d %%</string>
+    <string name="learn_reason_battery_low">Haukurekodiwa: betri ya saa iko chini mno</string>
+    <string name="learn_reason_sensors">Haukurekodiwa: hakuna ufikiaji wa vitambuzi vya saa</string>
+    <string name="learn_reason_manual">Rekodi yako mwenyewe ilikuwa ikiendelea, lakini haijafika</string>
+    <string name="learn_reason_late">Programu ya saa ilifunguliwa kuchelewa mno jioni</string>
+    <string name="learn_reason_off">Hatua ya kujifunza ilikuwa imezimwa</string>
+    <string name="learn_reason_no_alarm">Hakukuwa na kengele usiku huu</string>
+    <string name="learn_reason_pending">Bado iko njiani kutoka kwenye saa</string>
+    <string name="learn_reason_auto_off">Haikuanza kiotomatiki</string>
+    <string name="learn_reason_none">Hakuna rekodi iliyofika</string>
+    <string name="learn_tip_worn">Usiku, vaa saa kwa kubana kidogo zaidi na uhakikishe kuwa Phase Wake inaruhusiwa kupima mapigo yako.</string>
+    <string name="learn_tip_run">Acha kurekodi kuendelee hadi kengele.</string>
+    <string name="learn_tip_charge">Jioni, chaji saa hadi angalau %1$d %%.</string>
+    <string name="learn_tip_system">Zima uokoaji wa betri kwa Phase Wake kwenye saa.</string>
+    <string name="learn_tip_sensors">Katika mipangilio ya saa, ruhusu Phase Wake itumie vitambuzi na data ya mwendo.</string>
+    <string name="learn_tip_late">Fungua Phase Wake kwenye saa jioni, au angalau inapokukumbusha.</string>
+    <string name="learn_tip_alarm">Saa hurekodi usiku wenye kengele tu.</string>
+    <string name="learn_tip_connect">Iache saa ikiwa imewashwa na kuunganishwa na simu yako – hutuma rekodi baada ya kengele.</string>
 </resources>

@@ -12,6 +12,7 @@ backup-v2-nfc.pwbak.b64
 backup-v2.pwbak.b64
 baseline_median_six.night
 deep_sleep.night
+learn-nights.vectors
 learned_floor_sensor_start.night
 learned_resting_hr.night
 light_factor.night

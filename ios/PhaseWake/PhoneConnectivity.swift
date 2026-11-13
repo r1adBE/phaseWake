@@ -108,11 +108,16 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         }
         seenWatch()
         // Über der Grenze nicht verarbeiten (Audit S-2, wie Android).
-        for key in [SyncKeys.learnRecording, SyncKeys.night] {
+        for key in [SyncKeys.learnRecording, SyncKeys.night, SyncKeys.learnSkip] {
             if let text = userInfo[key] as? String, text.utf8.count > SyncKeys.maxPeerBytes {
                 DiagStore.shared.log(.suppressed, "\(key) too large (\(text.utf8.count) bytes)")
                 return
             }
+        }
+        // Lern-Übersicht: Die Uhr zeichnet eine Nacht nicht auf (Grund, ggf. Akku).
+        if let text = userInfo[SyncKeys.learnSkip] as? String {
+            Task { @MainActor in LearnLogStore.shared.receive(text) }
+            return
         }
         // Aufzeichnung der Lernphase (Uhr-App ab `WatchProtocol.learning`).
         if let text = userInfo[SyncKeys.learnRecording] as? String {

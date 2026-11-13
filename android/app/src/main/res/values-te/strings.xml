@@ -593,4 +593,35 @@
     <string name="learn_point_private">డేటా మీ పరికరాల్లోనే ఉంటుంది. నేర్చుకునే దశను సెట్టింగ్‌లలో ఎప్పుడైనా ఆఫ్ చేయవచ్చు.</string>
     <string name="learn_switch_hint">అలారాన్ని మార్చడానికి మీ వాచ్ రాత్రి కదలిక మరియు నాడిని కొలుస్తుంది. ఆఫ్: ఆటోమేటిక్ రికార్డింగ్ లేదు, నేర్చుకున్న విలువలు ఉంటాయి.</string>
     <string name="watch_open_app_hint">ఆదేశం అందేలా వాచ్‌లో Phase Wake తెరవండి.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">నేర్చుకునే దశ మొదలైనప్పటి నుంచి ప్రతి రాత్రి – అది లెక్కలోకి వచ్చిందా, రాకపోతే ఎందుకు, ఏది సహాయపడుతుంది. Phase Wake‌కు లెక్కలోకి వచ్చిన %1$d రాత్రులు కావాలి.</string>
+    <string name="learn_nights_empty">ఇంకా రాత్రి ఏదీ లేదు. మొదటిది మరుసటి రోజు ఉదయం ఇక్కడ కనిపిస్తుంది.</string>
+    <string name="learn_night_facts">%1$s కొలిచింది · %2$d విలువలు · %3$d %%లో నాడి</string>
+    <string name="learn_last_night">నిన్న రాత్రి లెక్కలోకి రాలేదు</string>
+    <string name="learn_reason_counted">లెక్కలోకి వచ్చింది</string>
+    <string name="learn_reason_counted_no_pulse">లెక్కలోకి వచ్చింది, కానీ నాడి దాదాపు లేదు – వాచ్ ధరించలేదేమో</string>
+    <string name="learn_reason_too_short">చాలా తక్కువ: %1$s కొలిచింది, %2$s కావాలి</string>
+    <string name="learn_reason_too_few">విలువలు చాలా తక్కువ: %2$dలో %1$d</string>
+    <string name="learn_reason_stopped">రికార్డింగ్ ముందుగానే ఆగిపోయింది</string>
+    <string name="learn_reason_ended_battery">ముందుగానే ముగిసింది: వాచ్ బ్యాటరీ చాలా తక్కువ</string>
+    <string name="learn_reason_ended_system">వాచ్ సిస్టమ్ ముందుగానే ఆపేసింది</string>
+    <string name="learn_reason_not_worn">నాడి దాదాపు లేదు – వాచ్ ధరించలేదేమో</string>
+    <string name="learn_reason_battery">రికార్డ్ కాలేదు: వాచ్ బ్యాటరీ %1$d %% ఉంది</string>
+    <string name="learn_reason_battery_low">రికార్డ్ కాలేదు: వాచ్ బ్యాటరీ చాలా తక్కువ</string>
+    <string name="learn_reason_sensors">రికార్డ్ కాలేదు: వాచ్ సెన్సార్లకు యాక్సెస్ లేదు</string>
+    <string name="learn_reason_manual">మీ సొంత రికార్డింగ్ నడుస్తోంది, కానీ చేరలేదు</string>
+    <string name="learn_reason_late">సాయంత్రం వాచ్ యాప్‌ను చాలా ఆలస్యంగా తెరిచారు</string>
+    <string name="learn_reason_off">నేర్చుకునే దశ ఆఫ్‌లో ఉంది</string>
+    <string name="learn_reason_no_alarm">ఈ రాత్రి అలారం లేదు</string>
+    <string name="learn_reason_pending">ఇంకా వాచ్ నుంచి దారిలో ఉంది</string>
+    <string name="learn_reason_auto_off">ఆటోమేటిక్‌గా మొదలవలేదు</string>
+    <string name="learn_reason_none">ఏ రికార్డింగ్ రాలేదు</string>
+    <string name="learn_tip_worn">రాత్రి వాచ్‌ను కొంచెం బిగుతుగా ధరించండి, Phase Wake‌కు మీ నాడి కొలిచే అనుమతి ఉందో లేదో చూడండి.</string>
+    <string name="learn_tip_run">అలారం వరకు రికార్డింగ్ కొనసాగనివ్వండి.</string>
+    <string name="learn_tip_charge">సాయంత్రం వాచ్‌ను కనీసం %1$d %% వరకు ఛార్జ్ చేయండి.</string>
+    <string name="learn_tip_system">వాచ్‌లో Phase Wake కోసం బ్యాటరీ సేవర్‌ను ఆఫ్ చేయండి.</string>
+    <string name="learn_tip_sensors">వాచ్ సెట్టింగ్‌లలో సెన్సార్లు, కదలిక డేటా వాడేందుకు Phase Wake‌ను అనుమతించండి.</string>
+    <string name="learn_tip_late">సాయంత్రం వాచ్‌లో Phase Wake తెరవండి, ఆలస్యమైనా రిమైండర్ వచ్చినప్పుడు.</string>
+    <string name="learn_tip_alarm">వాచ్ అలారం ఉన్న రాత్రులను మాత్రమే రికార్డ్ చేస్తుంది.</string>
+    <string name="learn_tip_connect">వాచ్‌ను ఆన్‌లో ఉంచి ఫోన్‌కు కనెక్ట్ చేసి ఉంచండి – అలారం తర్వాత అది రికార్డింగ్ పంపుతుంది.</string>
 </resources>

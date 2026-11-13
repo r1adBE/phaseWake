@@ -101,4 +101,10 @@
     <string name="record_since">Tangu %1$s</string>
     <string name="notification_record_title">Inarekodi usiku</string>
     <string name="record_battery_low">Betri iko chini mno kurekodi</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Hatua ya kujifunza</string>
+    <string name="watch_learn_warn">Chaji saa yako, la sivyo usiku wa leo hautahesabiwa kwa hatua ya kujifunza (betri %1$d %%, inahitajika %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Usiku wa leo hauhesabiwi kwa hatua ya kujifunza: betri %1$d %%, inahitajika %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Usiku wa leo hauhesabiwi kwa hatua ya kujifunza: Phase Wake haiwezi kutumia vitambuzi vya saa.</string>
+    <string name="watch_learn_skip_late">Usiku wa leo hauhesabiwi kwa hatua ya kujifunza: Phase Wake ilifunguliwa kuchelewa mno jioni.</string>
 </resources>

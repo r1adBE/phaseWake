@@ -96,4 +96,10 @@
     <string name="record_since">%1$s-dan bəri</string>
     <string name="notification_record_title">Gecə qeyd olunur</string>
     <string name="record_battery_low">Qeyd üçün batareya çox azdır</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Öyrənmə mərhələsi</string>
+    <string name="watch_learn_warn">Saatını doldur, yoxsa bu gecə öyrənmə mərhələsi üçün sayılmayacaq (batareya %1$d %%, lazımdır %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Bu gecə öyrənmə mərhələsi üçün sayılmır: batareya %1$d %%, lazımdır %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Bu gecə öyrənmə mərhələsi üçün sayılmır: Phase Wake saatın sensorlarından istifadə edə bilmir.</string>
+    <string name="watch_learn_skip_late">Bu gecə öyrənmə mərhələsi üçün sayılmır: Phase Wake axşam çox gec açıldı.</string>
 </resources>

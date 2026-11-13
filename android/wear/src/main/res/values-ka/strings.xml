@@ -96,4 +96,10 @@
     <string name="record_since">%1$s-დან</string>
     <string name="notification_record_title">ღამე იწერება</string>
     <string name="record_battery_low">ბატარეა ჩასაწერად ძალიან დაბალია</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">სწავლის ფაზა</string>
+    <string name="watch_learn_warn">დატენე საათი, თორემ ეს ღამე სწავლის ფაზაში არ ჩაითვლება (ბატარეა %1$d %%, საჭიროა %2$d %%).</string>
+    <string name="watch_learn_skip_battery">ეს ღამე სწავლის ფაზაში არ ჩაითვლება: ბატარეა %1$d %%, საჭიროა %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">ეს ღამე სწავლის ფაზაში არ ჩაითვლება: Phase Wake ვერ იყენებს საათის სენსორებს.</string>
+    <string name="watch_learn_skip_late">ეს ღამე სწავლის ფაზაში არ ჩაითვლება: Phase Wake საღამოს ძალიან გვიან გაიხსნა.</string>
 </resources>

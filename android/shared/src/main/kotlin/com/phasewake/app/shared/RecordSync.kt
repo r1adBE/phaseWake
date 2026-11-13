@@ -5,6 +5,7 @@ import android.util.Log
 import com.google.android.gms.wearable.CapabilityClient
 import com.google.android.gms.wearable.DataMap
 import com.google.android.gms.wearable.Wearable
+import com.phasewake.app.core.LearnSkip
 import java.time.Instant
 import kotlinx.coroutines.tasks.await
 
@@ -25,6 +26,14 @@ class RecordSync(context: Context) {
     /** Uhr: abgeschlossene Aufzeichnung ans Handy (eigener Schlüssel je Beginn). */
     suspend fun publishRecording(recording: NightRecording) = guarded("Aufzeichnung senden") {
         outbox.enqueue(QueueMessages.KEY_RECORDING + recording.start.toEpochMilli(), DataLayer.PATH_MSG_RECORDING, DataLayer.CAPABILITY_PHONE, NightRecording.encode(recording))
+    }
+
+    /**
+     * Uhr: Die Lernphase zeichnet eine Nacht nicht auf ([skip], Lern-Übersicht r1AD 13.11.2026) – ans Handy über die
+     * Warteschlange (bestätigt, wiederholt; kommt auch an, wenn das Handy nachts aus ist). Eigener Schlüssel je Nacht.
+     */
+    suspend fun publishLearnSkip(skip: LearnSkip) = guarded("Meldung der Lernphase senden") {
+        outbox.enqueue(QueueMessages.KEY_LEARN_SKIP + skip.target.toEpochMilli(), DataLayer.PATH_MSG_LEARN_SKIP, DataLayer.CAPABILITY_PHONE, skip.encode())
     }
 
     /**

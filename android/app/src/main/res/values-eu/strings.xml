@@ -593,4 +593,35 @@
     <string name="learn_point_private">Datuak zure gailuetan geratzen dira. Ikasketa-fasea ezarpenetan desaktiba dezakezu edozein unetan.</string>
     <string name="learn_switch_hint">Erlojuak mugimendua eta pultsua neurtzen ditu gauez alarma egokitzeko. Desaktibatuta: ez dago grabaketa automatikorik, ikasitako balioak geratzen dira.</string>
     <string name="watch_open_app_hint">Ireki Phase Wake erlojuan agindua jaso dezan.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Ikasketa-fasea hasi zenetik gau bakoitza: zenbatu den ala ez, eta ez bada, zergatik eta zerk laguntzen duen. Phase Wake-k %1$d gau zenbatu behar ditu.</string>
+    <string name="learn_nights_empty">Oraindik ez dago gaurik. Lehena biharamun goizean agertuko da hemen.</string>
+    <string name="learn_night_facts">%1$s neurtuta · %2$d balio · pultsua %3$d %%-ean</string>
+    <string name="learn_last_night">Bart ez da zenbatu</string>
+    <string name="learn_reason_counted">Zenbatuta</string>
+    <string name="learn_reason_counted_no_pulse">Zenbatuta, baina ia pultsurik gabe: seguruenik ez zenuen erlojua jantzita</string>
+    <string name="learn_reason_too_short">Laburregia: %1$s neurtuta, %2$s behar dira</string>
+    <string name="learn_reason_too_few">Balio gutxiegi: %1$d / %2$d</string>
+    <string name="learn_reason_stopped">Grabazioa goizegi gelditu da</string>
+    <string name="learn_reason_ended_battery">Goizegi amaitu da: erlojuaren bateria baxuegia</string>
+    <string name="learn_reason_ended_system">Erlojuaren sistemak goizegi amaitu du</string>
+    <string name="learn_reason_not_worn">Ia pultsurik gabe: seguruenik ez zenuen erlojua jantzita</string>
+    <string name="learn_reason_battery">Ez da grabatu: erlojuaren bateria %1$d %%-ean</string>
+    <string name="learn_reason_battery_low">Ez da grabatu: erlojuaren bateria baxuegia</string>
+    <string name="learn_reason_sensors">Ez da grabatu: ez dago erlojuaren sentsoreetarako sarbiderik</string>
+    <string name="learn_reason_manual">Zure grabazioa martxan zegoen, baina ez da iritsi</string>
+    <string name="learn_reason_late">Erlojuko aplikazioa beranduegi ireki da arratsaldean</string>
+    <string name="learn_reason_off">Ikasketa-fasea desaktibatuta zegoen</string>
+    <string name="learn_reason_no_alarm">Gau honetan ez zegoen alarmarik</string>
+    <string name="learn_reason_pending">Erlojutik bidean dago oraindik</string>
+    <string name="learn_reason_auto_off">Ez da automatikoki hasi</string>
+    <string name="learn_reason_none">Ez da grabaziorik iritsi</string>
+    <string name="learn_tip_worn">Gauez eraman erlojua pixka bat estuago eta egiaztatu Phase Wake-k zure pultsua neur dezakeela.</string>
+    <string name="learn_tip_run">Utzi grabazioa alarmara arte.</string>
+    <string name="learn_tip_charge">Arratsaldean, kargatu erlojua gutxienez %1$d %%-era arte.</string>
+    <string name="learn_tip_system">Desaktibatu bateria-aurrezpena Phase Wake-rentzat erlojuan.</string>
+    <string name="learn_tip_sensors">Erlojuaren ezarpenetan, baimendu Phase Wake-k sentsoreak eta mugimendu-datuak erabiltzea.</string>
+    <string name="learn_tip_late">Ireki Phase Wake erlojuan arratsaldean, beranduenez gogorarazten dizunean.</string>
+    <string name="learn_tip_alarm">Erlojuak alarma duten gauak soilik grabatzen ditu.</string>
+    <string name="learn_tip_connect">Eduki erlojua piztuta eta telefonora konektatuta: alarmaren ondoren bidaltzen du grabazioa.</string>
 </resources>

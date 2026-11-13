@@ -593,4 +593,35 @@
     <string name="learn_point_private">डेटा तिम्रो उपकरणमै रहन्छ। सिक्ने चरण सेटिङमा जुनसुकै बेला बन्द गर्न सक्छौ।</string>
     <string name="learn_switch_hint">अलार्म मिलाउन तिम्रो घडीले रातमा चाल र नाडी नाप्छ। बन्द: स्वचालित रेकर्डिङ छैन, सिकेका मानहरू रहन्छन्।</string>
     <string name="watch_open_app_hint">आदेश पाउन घडीमा Phase Wake खोल।</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">सिक्ने चरण सुरु भएदेखि हरेक रात – गनियो कि गनिएन, र गनिएन भने किन र के ले मद्दत गर्छ। Phase Wake लाई %1$d गनिएका रात चाहिन्छ।</string>
+    <string name="learn_nights_empty">अहिलेसम्म कुनै रात छैन। पहिलो रात भोलिपल्ट बिहान यहाँ देखिन्छ।</string>
+    <string name="learn_night_facts">%1$s नापियो · %2$d मान · %3$d %% मा नाडी</string>
+    <string name="learn_last_night">हिजो राति गनिएन</string>
+    <string name="learn_reason_counted">गनियो</string>
+    <string name="learn_reason_counted_no_pulse">गनियो, तर नाडी लगभग छैन – सायद घडी लगाइएको थिएन</string>
+    <string name="learn_reason_too_short">धेरै छोटो: %1$s नापियो, %2$s चाहिन्छ</string>
+    <string name="learn_reason_too_few">धेरै कम मान: %2$d मध्ये %1$d</string>
+    <string name="learn_reason_stopped">रेकर्डिङ चाँडै रोकियो</string>
+    <string name="learn_reason_ended_battery">चाँडै सकियो: घडीको ब्याट्री धेरै कम</string>
+    <string name="learn_reason_ended_system">घडीको प्रणालीले चाँडै रोक्यो</string>
+    <string name="learn_reason_not_worn">नाडी लगभग छैन – सायद घडी लगाइएको थिएन</string>
+    <string name="learn_reason_battery">रेकर्ड भएन: घडीको ब्याट्री %1$d %% थियो</string>
+    <string name="learn_reason_battery_low">रेकर्ड भएन: घडीको ब्याट्री धेरै कम</string>
+    <string name="learn_reason_sensors">रेकर्ड भएन: घडीका सेन्सरमा पहुँच छैन</string>
+    <string name="learn_reason_manual">तपाईंको आफ्नै रेकर्डिङ चलिरहेको थियो, तर आइपुगेन</string>
+    <string name="learn_reason_late">बेलुका घडीको एप धेरै ढिलो खोलियो</string>
+    <string name="learn_reason_off">सिक्ने चरण बन्द थियो</string>
+    <string name="learn_reason_no_alarm">यो रात अलार्म थिएन</string>
+    <string name="learn_reason_pending">अझै घडीबाट बाटोमा छ</string>
+    <string name="learn_reason_auto_off">आफैँ सुरु भएन</string>
+    <string name="learn_reason_none">कुनै रेकर्डिङ आइपुगेन</string>
+    <string name="learn_tip_worn">राति घडी अलि कसिलो गरी लगाउनुहोस् र Phase Wake लाई तपाईंको नाडी नाप्ने अनुमति छ कि छैन जाँच्नुहोस्।</string>
+    <string name="learn_tip_run">रेकर्डिङलाई अलार्मसम्म चल्न दिनुहोस्।</string>
+    <string name="learn_tip_charge">बेलुका घडीलाई कम्तीमा %1$d %% सम्म चार्ज गर्नुहोस्।</string>
+    <string name="learn_tip_system">घडीमा Phase Wake का लागि ब्याट्री बचत बन्द गर्नुहोस्।</string>
+    <string name="learn_tip_sensors">घडीको सेटिङमा Phase Wake लाई सेन्सर र चालको डेटा प्रयोग गर्न दिनुहोस्।</string>
+    <string name="learn_tip_late">बेलुका घडीमा Phase Wake खोल्नुहोस्, ढिलोमा ढिलो रिमाइन्डर आउँदा।</string>
+    <string name="learn_tip_alarm">घडीले अलार्म भएका रात मात्र रेकर्ड गर्छ।</string>
+    <string name="learn_tip_connect">घडी चालु र फोनसँग जोडिएको राख्नुहोस् – अलार्मपछि यसले रेकर्डिङ पठाउँछ।</string>
 </resources>

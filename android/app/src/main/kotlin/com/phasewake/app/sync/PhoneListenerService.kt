@@ -1,6 +1,7 @@
 package com.phasewake.app.sync
 
 import com.phasewake.app.core.DiagKind
+import com.phasewake.app.core.LearnSkip
 import com.phasewake.app.core.TestStep
 import com.phasewake.app.phoneApp
 import com.phasewake.app.transient.Transients
@@ -109,6 +110,11 @@ class PhoneListenerService : WearableListenerService() {
             DataLayer.PATH_MSG_NIGHT -> runCatching { Codec.decodeNight(body) }.getOrNull()?.let { storeNight(it) }
             DataLayer.PATH_MSG_RECORDING -> NightRecording.decode(body)?.takeIf { it.finished }?.let { storeRecording(it) }
             DataLayer.PATH_MSG_RECORD_STATUS -> RecordSync.decodeStatus(body)?.let { app.recordStatus.value = it }
+            // Lern-Übersicht: Die Uhr zeichnet eine Nacht nicht auf (Grund, ggf. Akku).
+            DataLayer.PATH_MSG_LEARN_SKIP -> LearnSkip.decode(body)?.let { skip ->
+                app.learnLog.addSkip(skip)
+                app.diag.log(DiagKind.SYNC, "learn skip ${skip.reason.code}${skip.battery?.let { " $it%" }.orEmpty()}")
+            }
             // Einschlaf-Modus der Galaxy Watch: frühere Zielzeit auch für den Zweitwecker dieser Nacht (Review K-07).
             DataLayer.PATH_MSG_ONSET_SHIFT -> OnsetShift.decode(body)?.let { app.backup.onsetShiftReceived(it) }
         }

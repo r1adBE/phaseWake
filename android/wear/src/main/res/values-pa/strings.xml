@@ -102,4 +102,10 @@
     <string name="record_since">%1$s ਤੋਂ</string>
     <string name="notification_record_title">ਰਾਤ ਰਿਕਾਰਡ ਹੋ ਰਹੀ ਹੈ</string>
     <string name="record_battery_low">ਰਿਕਾਰਡ ਕਰਨ ਲਈ ਬੈਟਰੀ ਬਹੁਤ ਘੱਟ ਹੈ</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">ਸਿੱਖਣ ਦਾ ਪੜਾਅ</string>
+    <string name="watch_learn_warn">ਘੜੀ ਚਾਰਜ ਕਰੋ, ਨਹੀਂ ਤਾਂ ਅੱਜ ਦੀ ਰਾਤ ਸਿੱਖਣ ਦੇ ਪੜਾਅ ਵਿੱਚ ਨਹੀਂ ਗਿਣੀ ਜਾਵੇਗੀ (ਬੈਟਰੀ %1$d %%, ਚਾਹੀਦੀ %2$d %%)।</string>
+    <string name="watch_learn_skip_battery">ਅੱਜ ਦੀ ਰਾਤ ਸਿੱਖਣ ਦੇ ਪੜਾਅ ਵਿੱਚ ਨਹੀਂ ਗਿਣੀ ਜਾਵੇਗੀ: ਬੈਟਰੀ %1$d %%, ਚਾਹੀਦੀ %2$d %%।</string>
+    <string name="watch_learn_skip_sensors">ਅੱਜ ਦੀ ਰਾਤ ਸਿੱਖਣ ਦੇ ਪੜਾਅ ਵਿੱਚ ਨਹੀਂ ਗਿਣੀ ਜਾਵੇਗੀ: Phase Wake ਘੜੀ ਦੇ ਸੈਂਸਰ ਨਹੀਂ ਵਰਤ ਸਕਦਾ।</string>
+    <string name="watch_learn_skip_late">ਅੱਜ ਦੀ ਰਾਤ ਸਿੱਖਣ ਦੇ ਪੜਾਅ ਵਿੱਚ ਨਹੀਂ ਗਿਣੀ ਜਾਵੇਗੀ: ਸ਼ਾਮ ਨੂੰ Phase Wake ਬਹੁਤ ਦੇਰ ਨਾਲ ਖੋਲ੍ਹਿਆ ਗਿਆ।</string>
 </resources>

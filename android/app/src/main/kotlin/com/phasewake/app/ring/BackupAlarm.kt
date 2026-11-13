@@ -58,29 +58,26 @@ class BackupAlarm(
     internal val zone: ZoneId get() = ZoneId.systemDefault()
 
     /**
-     * Plant Zweitwecker und Sonnenaufgang neu, danach Bettzeit-Erinnerung, Wochenrückblick und die Mitteilung
-     * «Nächster Wecker» (hängen an denselben Ereignissen: Wecker geändert, Neustart, Zeit oder Zeitzone). Ein Fehler
-     * dort stört den Zweitwecker nicht.
+     * Plant Zweitwecker und Sonnenaufgang neu, danach Bettzeit-Erinnerung, Wochenrückblick, die Mitteilung «Nächster
+     * Wecker» und die Nächte mit Wecker der Lern-Übersicht (hängen an denselben Ereignissen: Wecker geändert, Neustart,
+     * Zeit oder Zeitzone). Ein Fehler dort stört den Zweitwecker nicht.
      */
     suspend fun reschedule() {
         rescheduleBackup()
+        val app = context.phoneApp
+        sideWork("Bettzeit-Erinnerung nicht planbar") { app.bedtime.reschedule() }
+        sideWork("Wochenrückblick nicht planbar") { app.weekly.reschedule() }
+        sideWork("Mitteilung «Nächster Wecker» nicht planbar") { app.nextAlarm.reschedule() }
+        sideWork("Nächte mit Wecker nicht gemerkt") { app.learnLog.noteAlarms(alarms.current().alarms, app.holidays.store.current(), now()) }
+    }
+
+    /** Nebenarbeit nach dem Zweitwecker: ein Fehler ([what] ins Log) hält die übrigen nicht auf. */
+    private suspend fun sideWork(what: String, block: suspend () -> Unit) {
         try {
-            context.phoneApp.bedtime.reschedule()
+            block()
         } catch (e: Exception) {
             if (e is kotlinx.coroutines.CancellationException) throw e
-            Log.w(TAG, "Bettzeit-Erinnerung nicht planbar", e)
-        }
-        try {
-            context.phoneApp.weekly.reschedule()
-        } catch (e: Exception) {
-            if (e is kotlinx.coroutines.CancellationException) throw e
-            Log.w(TAG, "Wochenrückblick nicht planbar", e)
-        }
-        try {
-            context.phoneApp.nextAlarm.reschedule()
-        } catch (e: Exception) {
-            if (e is kotlinx.coroutines.CancellationException) throw e
-            Log.w(TAG, "Mitteilung «Nächster Wecker» nicht planbar", e)
+            Log.w(TAG, what, e)
         }
     }
 

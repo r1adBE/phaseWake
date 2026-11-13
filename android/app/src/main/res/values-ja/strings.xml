@@ -576,4 +576,35 @@
     <string name="learn_point_private">データはあなたのデバイスに残ります。学習期間は設定でいつでもオフにできます。</string>
     <string name="learn_switch_hint">アラームを合わせるため、時計が夜間に体の動きと脈拍を計測します。 オフ：自動記録なし、学習した値は残ります。</string>
     <string name="watch_open_app_hint">コマンドを受け取れるよう、ウォッチで Phase Wake を開いてください。</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">学習期間が始まってからの各夜――カウントされたか、されなかった場合はその理由と対策。Phase Wake にはカウントされた夜が %1$d 夜必要です。</string>
+    <string name="learn_nights_empty">まだ夜がありません。最初の夜は翌朝ここに表示されます。</string>
+    <string name="learn_night_facts">%1$s 測定 · 測定値 %2$d 件 · 脈拍あり %3$d %%</string>
+    <string name="learn_last_night">昨夜はカウントされませんでした</string>
+    <string name="learn_reason_counted">カウント済み</string>
+    <string name="learn_reason_counted_no_pulse">カウント済みですが脈拍がほとんどありません――ウォッチを着けていなかった可能性があります</string>
+    <string name="learn_reason_too_short">短すぎます：%1$s 測定、%2$s 必要</string>
+    <string name="learn_reason_too_few">測定値が少なすぎます：%1$d / %2$d</string>
+    <string name="learn_reason_stopped">記録が途中で停止されました</string>
+    <string name="learn_reason_ended_battery">途中で終了：ウォッチのバッテリー不足</string>
+    <string name="learn_reason_ended_system">ウォッチのシステムにより途中で終了しました</string>
+    <string name="learn_reason_not_worn">脈拍がほとんどありません――ウォッチを着けていなかった可能性があります</string>
+    <string name="learn_reason_battery">記録なし：ウォッチのバッテリー %1$d %%</string>
+    <string name="learn_reason_battery_low">記録なし：ウォッチのバッテリー不足</string>
+    <string name="learn_reason_sensors">記録なし：ウォッチのセンサーにアクセスできません</string>
+    <string name="learn_reason_manual">自分で始めた記録は動いていましたが、まだ届いていません</string>
+    <string name="learn_reason_late">夜、ウォッチのアプリを開くのが遅すぎました</string>
+    <string name="learn_reason_off">学習期間がオフでした</string>
+    <string name="learn_reason_no_alarm">この夜はアラームがありませんでした</string>
+    <string name="learn_reason_pending">ウォッチから転送中です</string>
+    <string name="learn_reason_auto_off">自動で開始されませんでした</string>
+    <string name="learn_reason_none">記録が届いていません</string>
+    <string name="learn_tip_worn">夜はウォッチを少しきつめに着け、Phase Wake が脈拍を測定できるか確認してください。</string>
+    <string name="learn_tip_run">アラームまで記録を続けてください。</string>
+    <string name="learn_tip_charge">夜のうちにウォッチを %1$d %% 以上に充電してください。</string>
+    <string name="learn_tip_system">ウォッチで Phase Wake のバッテリー節約をオフにしてください。</string>
+    <string name="learn_tip_sensors">ウォッチの設定で、Phase Wake がセンサーと動きのデータを使えるようにしてください。</string>
+    <string name="learn_tip_late">夜にウォッチで Phase Wake を開いてください。遅くともリマインダーのときに。</string>
+    <string name="learn_tip_alarm">ウォッチはアラームのある夜だけを記録します。</string>
+    <string name="learn_tip_connect">ウォッチの電源を入れたまま、スマートフォンに接続しておいてください。アラームの後に記録を送ります。</string>
 </resources>

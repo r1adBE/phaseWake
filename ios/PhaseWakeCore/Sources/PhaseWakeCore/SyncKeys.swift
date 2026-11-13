@@ -85,6 +85,9 @@ public enum SyncKeys {
     /// Benutzerdaten Uhr → iPhone: eine Aufzeichnung der Lernphase oder von «Nacht aufzeichnen» im Format
     /// «phasewake-recording 1» (`NightRecording`).
     public static let learnRecording = "learnRecording"
+    /// Benutzerdaten Uhr → iPhone: Die Lernphase zeichnet eine Nacht nicht auf (``LearnSkip/encode()``, Lern-Übersicht,
+    /// r1AD 13.11.2026). Ältere iPhone-Versionen übergehen den Schlüssel.
+    public static let learnSkip = "learnSkip"
     /// Befehl iPhone → Uhr: «Nacht aufzeichnen» starten.
     public static let recordStart = "recordStart"
     /// Befehl iPhone → Uhr: «Nacht aufzeichnen» stoppen.

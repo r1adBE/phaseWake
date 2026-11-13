@@ -117,4 +117,10 @@
     <string name="record_since">منذ %1$s</string>
     <string name="notification_record_title">جارٍ تسجيل الليلة</string>
     <string name="record_battery_low">البطارية منخفضة جدًا للتسجيل</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">مرحلة التعلّم</string>
+    <string name="watch_learn_warn">اشحن ساعتك، وإلا فلن تُحتسب هذه الليلة لمرحلة التعلّم (البطارية %1$d %%، والمطلوب %2$d %%).</string>
+    <string name="watch_learn_skip_battery">هذه الليلة لا تُحتسب لمرحلة التعلّم: البطارية عند %1$d %%، والمطلوب %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">هذه الليلة لا تُحتسب لمرحلة التعلّم: لا يستطيع Phase Wake استخدام مستشعرات الساعة.</string>
+    <string name="watch_learn_skip_late">هذه الليلة لا تُحتسب لمرحلة التعلّم: فُتح Phase Wake متأخرًا جدًا في المساء.</string>
 </resources>

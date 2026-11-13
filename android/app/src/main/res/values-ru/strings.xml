@@ -618,4 +618,35 @@
     <string name="learn_point_private">Данные остаются на твоих устройствах. Этап обучения можно в любой момент отключить в настройках.</string>
     <string name="learn_switch_hint">Часы измеряют ночью движение и пульс, чтобы подстроить будильник. Выкл.: без автоматической записи, изученные значения сохраняются.</string>
     <string name="watch_open_app_hint">Открой Phase Wake на часах, чтобы они получили команду.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Каждая ночь с начала этапа обучения – засчитана ли она, а если нет, то почему и что поможет. Phase Wake нужно %1$d засчитанных ночей.</string>
+    <string name="learn_nights_empty">Пока нет ни одной ночи. Первая появится здесь на следующее утро.</string>
+    <string name="learn_night_facts">Измерено %1$s · %2$d значений · пульс в %3$d %%</string>
+    <string name="learn_last_night">Прошлая ночь не засчитана</string>
+    <string name="learn_reason_counted">Засчитана</string>
+    <string name="learn_reason_counted_no_pulse">Засчитана, но пульса почти нет – часы, вероятно, не были надеты</string>
+    <string name="learn_reason_too_short">Слишком коротко: измерено %1$s, нужно %2$s</string>
+    <string name="learn_reason_too_few">Слишком мало значений: %1$d из %2$d</string>
+    <string name="learn_reason_stopped">Запись остановлена раньше времени</string>
+    <string name="learn_reason_ended_battery">Завершена раньше времени: слишком слабый заряд часов</string>
+    <string name="learn_reason_ended_system">Прервана системой часов раньше времени</string>
+    <string name="learn_reason_not_worn">Пульса почти нет – часы, вероятно, не были надеты</string>
+    <string name="learn_reason_battery">Не записано: заряд часов %1$d %%</string>
+    <string name="learn_reason_battery_low">Не записано: слишком слабый заряд часов</string>
+    <string name="learn_reason_sensors">Не записано: нет доступа к датчикам часов</string>
+    <string name="learn_reason_manual">Твоя собственная запись шла, но не пришла</string>
+    <string name="learn_reason_late">Приложение на часах открыто вечером слишком поздно</string>
+    <string name="learn_reason_off">Этап обучения был выключен</string>
+    <string name="learn_reason_no_alarm">В эту ночь не было будильника</string>
+    <string name="learn_reason_pending">Ещё в пути с часов</string>
+    <string name="learn_reason_auto_off">Не запущено автоматически</string>
+    <string name="learn_reason_none">Ни одна запись не пришла</string>
+    <string name="learn_tip_worn">Ночью носи часы чуть плотнее и проверь, может ли Phase Wake измерять твой пульс.</string>
+    <string name="learn_tip_run">Дай записи идти до будильника.</string>
+    <string name="learn_tip_charge">Вечером заряди часы хотя бы до %1$d %%.</string>
+    <string name="learn_tip_system">Отключи на часах экономию заряда для Phase Wake.</string>
+    <string name="learn_tip_sensors">В настройках часов разреши Phase Wake использовать датчики и данные о движении.</string>
+    <string name="learn_tip_late">Вечером открой Phase Wake на часах, самое позднее по напоминанию.</string>
+    <string name="learn_tip_alarm">Часы записывают только ночи с будильником.</string>
+    <string name="learn_tip_connect">Держи часы включёнными и подключёнными к телефону – они отправляют запись после будильника.</string>
 </resources>

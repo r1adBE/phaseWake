@@ -101,4 +101,10 @@
     <string name="record_since">%1$s óta</string>
     <string name="notification_record_title">Az éjszaka rögzítése</string>
     <string name="record_battery_low">Túl gyenge az akkumulátor a felvételhez</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Tanulási szakasz</string>
+    <string name="watch_learn_warn">Töltsd fel az órát, különben a mai éjszaka nem számít bele a tanulási szakaszba (akku %1$d %%, kell %2$d %%).</string>
+    <string name="watch_learn_skip_battery">A mai éjszaka nem számít bele a tanulási szakaszba: akku %1$d %%, kell %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">A mai éjszaka nem számít bele a tanulási szakaszba: a Phase Wake nem tudja használni az óra érzékelőit.</string>
+    <string name="watch_learn_skip_late">A mai éjszaka nem számít bele a tanulási szakaszba: a Phase Wake este túl későn nyílt meg.</string>
 </resources>

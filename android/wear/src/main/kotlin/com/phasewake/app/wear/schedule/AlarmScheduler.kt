@@ -26,6 +26,7 @@ import com.phasewake.app.shared.HolidayStore
 import com.phasewake.app.shared.TransientStore
 import com.phasewake.app.shared.WearSync
 import com.phasewake.app.wear.complication.NextAlarmComplicationService
+import com.phasewake.app.wear.record.LearnNotice
 import com.phasewake.app.wear.record.RecordControl
 import com.phasewake.app.wear.tile.NextAlarmTileService
 import com.phasewake.app.wear.ui.MainActivity
@@ -204,8 +205,8 @@ class AlarmScheduler(
 
     /**
      * Nebenarbeiten nach dem Stellen der Alarme (Audit A-3): Protokoll des geplanten [scheduled], Kachel und Komplikation, Uhr-Status ans Handy (Wear-Dienste),
-     * Einschlaf-Messung, die geplante Nacht für einen Zonenwechsel und die Weckzeit einer laufenden Aufzeichnung der
-     * Lernphase ([RecordControl.followPlan]: Wecker verschoben). Jede für sich mit Frist ([sideWork]) und
+     * Einschlaf-Messung, die geplante Nacht für einen Zonenwechsel, die Weckzeit einer laufenden Aufzeichnung der
+     * Lernphase ([RecordControl.followPlan]: Wecker verschoben) und ihre Akku-Warnung am Abend ([LearnNotice.update]). Jede für sich mit Frist ([sideWork]) und
      * abgefangenem Fehler: Eine hängende oder scheiternde stört weder die anderen noch die schon gestellten Alarme.
      */
     private suspend fun afterAlarms(scheduled: WakePlan?, alarmPlan: WakePlan?, now: Instant, zone: java.time.ZoneId) {
@@ -215,6 +216,7 @@ class AlarmScheduler(
         sideWork(TAG, "Einschlaf-Messung") { AutoOnset.update(context, alarmPlan, now) }
         sideWork(TAG, "Geplante Nacht merken") { planned.remember(alarmPlan, zone) }
         sideWork(TAG, "Aufzeichnung der Lernphase") { RecordControl.followPlan(context, alarmPlan, now) }
+        sideWork(TAG, "Akku-Warnung der Lernphase") { LearnNotice.update(context, alarmPlan, now) }
     }
 
     /**

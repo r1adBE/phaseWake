@@ -593,4 +593,35 @@
     <string name="learn_point_private">ውሂቡ በመሣሪያዎችህ ላይ ይቆያል። የመማሪያ ጊዜውን በማንኛውም ጊዜ በቅንብሮች ውስጥ ማጥፋት ትችላለህ።</string>
     <string name="learn_switch_hint">ማንቂያውን ለማስተካከል ሰዓትህ በሌሊት እንቅስቃሴና የልብ ምት ይለካል። ጠፍቷል፦ ራስ-ሰር ቀረጻ የለም፣ የተማሩ እሴቶች ይቆያሉ።</string>
     <string name="watch_open_app_hint">ትዕዛዙን እንዲቀበል Phase Wakeን በሰዓትህ ላይ ክፈት።</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">የመማሪያ ጊዜው ከጀመረ ጀምሮ እያንዳንዱ ሌሊት – ተቆጥሮ እንደሆነ፣ ካልሆነ ደግሞ ለምን እና ምን እንደሚረዳ። Phase Wake %1$d የተቆጠሩ ሌሊቶች ያስፈልጉታል።</string>
+    <string name="learn_nights_empty">እስካሁን ምንም ሌሊት የለም። የመጀመሪያው በማግስቱ ጠዋት እዚህ ይታያል።</string>
+    <string name="learn_night_facts">%1$s ተለክቷል · %2$d ልኬቶች · ምት በ%3$d %%</string>
+    <string name="learn_last_night">ትላንት ሌሊት አልተቆጠረም</string>
+    <string name="learn_reason_counted">ተቆጥሯል</string>
+    <string name="learn_reason_counted_no_pulse">ተቆጥሯል፣ ግን ምት በጣም ትንሽ ነው – ምናልባት አልተለበሰም</string>
+    <string name="learn_reason_too_short">በጣም አጭር፦ %1$s ተለክቷል፣ %2$s ያስፈልጋል</string>
+    <string name="learn_reason_too_few">በጣም ጥቂት ልኬቶች፦ %1$d ከ%2$d</string>
+    <string name="learn_reason_stopped">ቀረጻው ቀደም ብሎ ቆሟል</string>
+    <string name="learn_reason_ended_battery">ቀደም ብሎ አልቋል፦ የሰዓቱ ባትሪ በጣም ዝቅተኛ ነው</string>
+    <string name="learn_reason_ended_system">በሰዓቱ ሲስተም ቀደም ብሎ ተቋርጧል</string>
+    <string name="learn_reason_not_worn">ምት በጣም ትንሽ ነው – ሰዓቱ ምናልባት አልተለበሰም</string>
+    <string name="learn_reason_battery">አልተቀረጸም፦ የሰዓቱ ባትሪ %1$d %% ላይ ነበር</string>
+    <string name="learn_reason_battery_low">አልተቀረጸም፦ የሰዓቱ ባትሪ በጣም ዝቅተኛ ነው</string>
+    <string name="learn_reason_sensors">አልተቀረጸም፦ የሰዓቱን ዳሳሾች መጠቀም አልተቻለም</string>
+    <string name="learn_reason_manual">የራስህ ቀረጻ ይሠራ ነበር፣ ግን አልደረሰም</string>
+    <string name="learn_reason_late">የሰዓቱ መተግበሪያ ማታ በጣም ዘግይቶ ተከፍቷል</string>
+    <string name="learn_reason_off">የመማሪያ ጊዜው ጠፍቶ ነበር</string>
+    <string name="learn_reason_no_alarm">በዚህ ሌሊት ማንቂያ አልነበረም</string>
+    <string name="learn_reason_pending">ከሰዓቱ ገና በመንገድ ላይ ነው</string>
+    <string name="learn_reason_auto_off">በራስ-ሰር አልተጀመረም</string>
+    <string name="learn_reason_none">ምንም ቀረጻ አልደረሰም</string>
+    <string name="learn_tip_worn">ማታ ሰዓቱን ትንሽ አጥብቀህ ልበሰው፣ እና Phase Wake ምትህን መለካት እንደተፈቀደለት አረጋግጥ።</string>
+    <string name="learn_tip_run">ቀረጻው እስከ ማንቂያው ድረስ ይቀጥል።</string>
+    <string name="learn_tip_charge">ማታ ሰዓቱን ቢያንስ እስከ %1$d %% ቻርጅ አድርግ።</string>
+    <string name="learn_tip_system">በሰዓቱ ላይ ለPhase Wake የባትሪ ቁጠባን አጥፋ።</string>
+    <string name="learn_tip_sensors">በሰዓቱ ቅንብሮች ውስጥ Phase Wake ዳሳሾቹን እና የእንቅስቃሴ ውሂብን እንዲጠቀም ፍቀድ።</string>
+    <string name="learn_tip_late">ማታ Phase Wakeን በሰዓቱ ላይ ክፈት፣ ቢዘገይ ማስታወሻው ሲመጣ።</string>
+    <string name="learn_tip_alarm">ሰዓቱ የሚቀርጸው ማንቂያ ያላቸውን ሌሊቶች ብቻ ነው።</string>
+    <string name="learn_tip_connect">ሰዓቱን አብርተህ ከስልክህ ጋር ተገናኝቶ ተወው – ከማንቂያው በኋላ ቀረጻውን ይልካል።</string>
 </resources>

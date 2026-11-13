@@ -101,4 +101,10 @@
     <string name="record_since">Klo %1$s alkaen</string>
     <string name="notification_record_title">Yötä tallennetaan</string>
     <string name="record_battery_low">Akku liian vähissä tallennukseen</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Oppimisvaihe</string>
+    <string name="watch_learn_warn">Lataa kello, muuten tätä yötä ei lasketa oppimisvaiheeseen (akku %1$d %%, tarvitaan %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Tätä yötä ei lasketa oppimisvaiheeseen: akku %1$d %%, tarvitaan %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Tätä yötä ei lasketa oppimisvaiheeseen: Phase Wake ei voi käyttää kellon antureita.</string>
+    <string name="watch_learn_skip_late">Tätä yötä ei lasketa oppimisvaiheeseen: Phase Wake avattiin illalla liian myöhään.</string>
 </resources>

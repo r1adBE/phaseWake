@@ -105,4 +105,10 @@
     <string name="record_since">Din %1$s</string>
     <string name="notification_record_title">Se înregistrează noaptea</string>
     <string name="record_battery_low">Baterie prea slabă pentru înregistrare</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Faza de învățare</string>
+    <string name="watch_learn_warn">Încarcă ceasul, altfel noaptea aceasta nu va conta pentru faza de învățare (baterie %1$d %%, necesar %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Noaptea aceasta nu contează pentru faza de învățare: baterie la %1$d %%, necesar %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Noaptea aceasta nu contează pentru faza de învățare: Phase Wake nu poate folosi senzorii ceasului.</string>
+    <string name="watch_learn_skip_late">Noaptea aceasta nu contează pentru faza de învățare: Phase Wake a fost deschis prea târziu seara.</string>
 </resources>

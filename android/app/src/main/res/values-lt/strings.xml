@@ -621,4 +621,35 @@
     <string name="learn_point_private">Duomenys lieka tavo įrenginiuose. Mokymosi etapą gali bet kada išjungti nustatymuose.</string>
     <string name="learn_switch_hint">Tavo laikrodis naktį matuoja judesį ir pulsą, kad pritaikytų žadintuvą. Išjungta: jokio automatinio įrašymo, išmoktos vertės lieka.</string>
     <string name="watch_open_app_hint">Atidaryk Phase Wake laikrodyje, kad jis gautų komandą.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Kiekviena naktis nuo mokymosi etapo pradžios – ar ji įskaityta, o jei ne, kodėl ir kas padės. Phase Wake reikia %1$d įskaitytų naktų.</string>
+    <string name="learn_nights_empty">Dar nėra nakties. Pirmoji čia pasirodys kitą rytą.</string>
+    <string name="learn_night_facts">Išmatuota %1$s · %2$d reikšmės · pulsas %3$d %%</string>
+    <string name="learn_last_night">Praėjusi naktis neįskaityta</string>
+    <string name="learn_reason_counted">Įskaityta</string>
+    <string name="learn_reason_counted_no_pulse">Įskaityta, bet beveik be pulso – laikrodis tikriausiai nebuvo užsegtas</string>
+    <string name="learn_reason_too_short">Per trumpa: išmatuota %1$s, reikia %2$s</string>
+    <string name="learn_reason_too_few">Per mažai reikšmių: %1$d iš %2$d</string>
+    <string name="learn_reason_stopped">Įrašas sustabdytas per anksti</string>
+    <string name="learn_reason_ended_battery">Baigėsi per anksti: per silpna laikrodžio baterija</string>
+    <string name="learn_reason_ended_system">Laikrodžio sistema nutraukė per anksti</string>
+    <string name="learn_reason_not_worn">Beveik be pulso – laikrodis tikriausiai nebuvo užsegtas</string>
+    <string name="learn_reason_battery">Neįrašyta: laikrodžio baterija %1$d %%</string>
+    <string name="learn_reason_battery_low">Neįrašyta: per silpna laikrodžio baterija</string>
+    <string name="learn_reason_sensors">Neįrašyta: nėra prieigos prie laikrodžio jutiklių</string>
+    <string name="learn_reason_manual">Tavo paties įrašas vyko, bet neatkeliavo</string>
+    <string name="learn_reason_late">Laikrodžio programa vakare atidaryta per vėlai</string>
+    <string name="learn_reason_off">Mokymosi etapas buvo išjungtas</string>
+    <string name="learn_reason_no_alarm">Šią naktį nebuvo žadintuvo</string>
+    <string name="learn_reason_pending">Dar keliauja iš laikrodžio</string>
+    <string name="learn_reason_auto_off">Nepradėta automatiškai</string>
+    <string name="learn_reason_none">Joks įrašas neatkeliavo</string>
+    <string name="learn_tip_worn">Naktį užsisek laikrodį šiek tiek tvirčiau ir patikrink, ar Phase Wake gali matuoti tavo pulsą.</string>
+    <string name="learn_tip_run">Leisk įrašui veikti iki žadintuvo.</string>
+    <string name="learn_tip_charge">Vakare įkrauk laikrodį bent iki %1$d %%.</string>
+    <string name="learn_tip_system">Laikrodyje išjunk Phase Wake akumuliatoriaus taupymą.</string>
+    <string name="learn_tip_sensors">Laikrodžio nustatymuose leisk Phase Wake naudoti jutiklius ir judėjimo duomenis.</string>
+    <string name="learn_tip_late">Vakare atidaryk Phase Wake laikrodyje, vėliausiai sulaukęs priminimo.</string>
+    <string name="learn_tip_alarm">Laikrodis įrašo tik naktis su žadintuvu.</string>
+    <string name="learn_tip_connect">Laikyk laikrodį įjungtą ir prijungtą prie telefono – įrašą jis siunčia po žadintuvo.</string>
 </resources>

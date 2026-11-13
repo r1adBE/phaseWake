@@ -101,4 +101,10 @@
     <string name="record_since">От %1$s</string>
     <string name="notification_record_title">Нощта се записва</string>
     <string name="record_battery_low">Батерията е твърде слаба за запис</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Фаза на учене</string>
+    <string name="watch_learn_warn">Зареди часовника, иначе тази нощ няма да се отчете за фазата на учене (батерия %1$d %%, нужни %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Тази нощ не се отчита за фазата на учене: батерия %1$d %%, нужни %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Тази нощ не се отчита за фазата на учене: Phase Wake не може да използва сензорите на часовника.</string>
+    <string name="watch_learn_skip_late">Тази нощ не се отчита за фазата на учене: Phase Wake е отворен твърде късно вечерта.</string>
 </resources>

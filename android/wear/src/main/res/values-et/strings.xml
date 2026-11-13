@@ -102,4 +102,10 @@
     <string name="record_since">Alates %1$s</string>
     <string name="notification_record_title">Öö salvestamine</string>
     <string name="record_battery_low">Aku on salvestamiseks liiga tühi</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Õppefaas</string>
+    <string name="watch_learn_warn">Lae kella, muidu ei lähe tänane öö õppefaasis arvesse (aku %1$d %%, vaja %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Tänane öö õppefaasis arvesse ei lähe: aku %1$d %%, vaja %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Tänane öö õppefaasis arvesse ei lähe: Phase Wake ei saa kella andureid kasutada.</string>
+    <string name="watch_learn_skip_late">Tänane öö õppefaasis arvesse ei lähe: Phase Wake avati õhtul liiga hilja.</string>
 </resources>

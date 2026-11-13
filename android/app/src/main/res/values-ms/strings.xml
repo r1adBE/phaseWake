@@ -576,4 +576,35 @@
     <string name="learn_point_private">Data kekal pada peranti anda. Anda boleh mematikan fasa pembelajaran dalam tetapan pada bila-bila masa.</string>
     <string name="learn_switch_hint">Jam tangan anda mengukur pergerakan dan nadi pada waktu malam untuk menyesuaikan penggera. Mati: tiada rakaman automatik, nilai yang dipelajari kekal.</string>
     <string name="watch_open_app_hint">Buka Phase Wake pada jam tangan anda supaya ia menerima arahan.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Setiap malam sejak fasa pembelajaran bermula – sama ada dikira dan, jika tidak, sebabnya dan apa yang membantu. Phase Wake memerlukan %1$d malam yang dikira.</string>
+    <string name="learn_nights_empty">Belum ada malam lagi. Malam pertama dipaparkan di sini pada pagi berikutnya.</string>
+    <string name="learn_night_facts">%1$s diukur · %2$d nilai · nadi dalam %3$d %%</string>
+    <string name="learn_last_night">Malam tadi tidak dikira</string>
+    <string name="learn_reason_counted">Dikira</string>
+    <string name="learn_reason_counted_no_pulse">Dikira, tetapi hampir tiada nadi – jam mungkin tidak dipakai</string>
+    <string name="learn_reason_too_short">Terlalu singkat: %1$s diukur, perlu %2$s</string>
+    <string name="learn_reason_too_few">Terlalu sedikit nilai: %1$d daripada %2$d</string>
+    <string name="learn_reason_stopped">Rakaman dihentikan terlalu awal</string>
+    <string name="learn_reason_ended_battery">Tamat terlalu awal: bateri jam terlalu lemah</string>
+    <string name="learn_reason_ended_system">Dihentikan terlalu awal oleh sistem jam</string>
+    <string name="learn_reason_not_worn">Hampir tiada nadi – jam mungkin tidak dipakai</string>
+    <string name="learn_reason_battery">Tidak dirakam: bateri jam pada %1$d %%</string>
+    <string name="learn_reason_battery_low">Tidak dirakam: bateri jam terlalu lemah</string>
+    <string name="learn_reason_sensors">Tidak dirakam: tiada akses kepada penderia jam</string>
+    <string name="learn_reason_manual">Rakaman anda sendiri sedang berjalan tetapi belum sampai</string>
+    <string name="learn_reason_late">Apl jam dibuka terlalu lewat pada waktu petang</string>
+    <string name="learn_reason_off">Fasa pembelajaran dimatikan</string>
+    <string name="learn_reason_no_alarm">Tiada penggera malam ini</string>
+    <string name="learn_reason_pending">Masih dalam perjalanan dari jam</string>
+    <string name="learn_reason_auto_off">Tidak dimulakan secara automatik</string>
+    <string name="learn_reason_none">Tiada rakaman yang sampai</string>
+    <string name="learn_tip_worn">Pakai jam sedikit lebih ketat pada waktu malam dan semak sama ada Phase Wake dibenarkan mengukur nadi anda.</string>
+    <string name="learn_tip_run">Biarkan rakaman berjalan hingga penggera.</string>
+    <string name="learn_tip_charge">Cas jam pada waktu petang hingga sekurang-kurangnya %1$d %%.</string>
+    <string name="learn_tip_system">Matikan penjimat bateri untuk Phase Wake pada jam.</string>
+    <string name="learn_tip_sensors">Dalam tetapan jam, benarkan Phase Wake menggunakan penderia dan data gerakan.</string>
+    <string name="learn_tip_late">Buka Phase Wake pada jam pada waktu petang, paling lewat apabila ia mengingatkan anda.</string>
+    <string name="learn_tip_alarm">Jam hanya merakam malam yang ada penggera.</string>
+    <string name="learn_tip_connect">Biarkan jam dihidupkan dan disambungkan ke telefon anda – ia menghantar rakaman selepas penggera.</string>
 </resources>

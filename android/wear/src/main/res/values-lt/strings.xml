@@ -110,4 +110,10 @@
     <string name="record_since">Nuo %1$s</string>
     <string name="notification_record_title">Naktis įrašoma</string>
     <string name="record_battery_low">Per mažai baterijos įrašymui</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Mokymosi etapas</string>
+    <string name="watch_learn_warn">Įkrauk laikrodį, kitaip ši naktis nebus įskaityta mokymosi etapui (baterija %1$d %%, reikia %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Ši naktis neįskaitoma mokymosi etapui: baterija %1$d %%, reikia %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Ši naktis neįskaitoma mokymosi etapui: Phase Wake negali naudoti laikrodžio jutiklių.</string>
+    <string name="watch_learn_skip_late">Ši naktis neįskaitoma mokymosi etapui: Phase Wake vakare atidarytas per vėlai.</string>
 </resources>

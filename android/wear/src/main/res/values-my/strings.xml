@@ -97,4 +97,10 @@
     <string name="record_since">%1$s မှစ၍</string>
     <string name="notification_record_title">ညကို မှတ်တမ်းတင်နေသည်</string>
     <string name="record_battery_low">မှတ်တမ်းတင်ရန် ဘက်ထရီ နည်းလွန်းသည်</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">သင်ယူမှုအဆင့်</string>
+    <string name="watch_learn_warn">နာရီကို အားသွင်းပါ၊ မဟုတ်ပါက ဒီည သင်ယူမှုအဆင့်အတွက် မရေတွက်ပါ (ဘက်ထရီ %1$d %%၊ လိုအပ်ချက် %2$d %%)။</string>
+    <string name="watch_learn_skip_battery">ဒီည သင်ယူမှုအဆင့်အတွက် မရေတွက်ပါ- ဘက်ထရီ %1$d %%၊ လိုအပ်ချက် %2$d %%။</string>
+    <string name="watch_learn_skip_sensors">ဒီည သင်ယူမှုအဆင့်အတွက် မရေတွက်ပါ- Phase Wake က နာရီ၏ အာရုံခံကိရိယာများကို အသုံးမပြုနိုင်ပါ။</string>
+    <string name="watch_learn_skip_late">ဒီည သင်ယူမှုအဆင့်အတွက် မရေတွက်ပါ- ညနေတွင် Phase Wake ကို နောက်ကျလွန်းစွာ ဖွင့်ခဲ့သည်။</string>
 </resources>

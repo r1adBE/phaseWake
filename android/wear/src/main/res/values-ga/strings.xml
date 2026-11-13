@@ -114,4 +114,10 @@
     <string name="record_since">Ó %1$s</string>
     <string name="notification_record_title">Ag taifeadadh na hoíche</string>
     <string name="record_battery_low">Ceallra ró-íseal le taifeadadh</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Céim foghlama</string>
+    <string name="watch_learn_warn">Luchtaigh d’uaireadóir, nó ní chomhairfear anocht don chéim foghlama (ceallra %1$d %%, ag teastáil %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Ní chomhairtear anocht don chéim foghlama: ceallra ag %1$d %%, ag teastáil %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Ní chomhairtear anocht don chéim foghlama: ní féidir le Phase Wake braiteoirí an uaireadóra a úsáid.</string>
+    <string name="watch_learn_skip_late">Ní chomhairtear anocht don chéim foghlama: osclaíodh Phase Wake ródhéanach tráthnóna.</string>
 </resources>

@@ -576,4 +576,35 @@
     <string name="learn_point_private">데이터는 당신의 기기에 남습니다. 학습 단계는 설정에서 언제든지 끌 수 있습니다.</string>
     <string name="learn_switch_hint">알람을 맞추기 위해 시계가 밤에 움직임과 맥박을 측정합니다. 끄기: 자동 기록 없음, 학습한 값은 유지됩니다.</string>
     <string name="watch_open_app_hint">명령을 받을 수 있도록 워치에서 Phase Wake를 여세요.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">학습 단계가 시작된 뒤의 모든 밤 – 반영되었는지, 아니라면 이유와 도움이 되는 방법. Phase Wake에는 반영된 밤이 %1$d번 필요합니다.</string>
+    <string name="learn_nights_empty">아직 밤이 없습니다. 첫 밤은 다음 날 아침 여기에 표시됩니다.</string>
+    <string name="learn_night_facts">%1$s 측정 · 측정값 %2$d개 · 맥박 %3$d %%</string>
+    <string name="learn_last_night">지난밤은 반영되지 않았습니다</string>
+    <string name="learn_reason_counted">반영됨</string>
+    <string name="learn_reason_counted_no_pulse">반영됐지만 맥박이 거의 없습니다 – 시계를 차지 않았을 수 있습니다</string>
+    <string name="learn_reason_too_short">너무 짧음: %1$s 측정, %2$s 필요</string>
+    <string name="learn_reason_too_few">측정값이 너무 적음: %1$d / %2$d</string>
+    <string name="learn_reason_stopped">기록이 일찍 중지됨</string>
+    <string name="learn_reason_ended_battery">일찍 종료됨: 시계 배터리 부족</string>
+    <string name="learn_reason_ended_system">시계 시스템이 일찍 종료함</string>
+    <string name="learn_reason_not_worn">맥박이 거의 없습니다 – 시계를 차지 않았을 수 있습니다</string>
+    <string name="learn_reason_battery">기록 안 됨: 시계 배터리 %1$d %%</string>
+    <string name="learn_reason_battery_low">기록 안 됨: 시계 배터리 부족</string>
+    <string name="learn_reason_sensors">기록 안 됨: 시계 센서에 접근할 수 없음</string>
+    <string name="learn_reason_manual">직접 시작한 기록이 진행 중이었지만 도착하지 않았습니다</string>
+    <string name="learn_reason_late">저녁에 시계 앱을 너무 늦게 열었습니다</string>
+    <string name="learn_reason_off">학습 단계가 꺼져 있었습니다</string>
+    <string name="learn_reason_no_alarm">이 밤에는 알람이 없었습니다</string>
+    <string name="learn_reason_pending">시계에서 아직 전송 중</string>
+    <string name="learn_reason_auto_off">자동으로 시작되지 않음</string>
+    <string name="learn_reason_none">도착한 기록이 없습니다</string>
+    <string name="learn_tip_worn">밤에는 시계를 조금 더 꼭 맞게 차고, Phase Wake가 맥박을 측정할 수 있는지 확인하세요.</string>
+    <string name="learn_tip_run">알람까지 기록이 계속되게 두세요.</string>
+    <string name="learn_tip_charge">저녁에 시계를 %1$d %% 이상 충전하세요.</string>
+    <string name="learn_tip_system">시계에서 Phase Wake의 배터리 절약을 끄세요.</string>
+    <string name="learn_tip_sensors">시계 설정에서 Phase Wake가 센서와 움직임 데이터를 사용하도록 허용하세요.</string>
+    <string name="learn_tip_late">저녁에 시계에서 Phase Wake를 여세요. 늦어도 알림이 올 때요.</string>
+    <string name="learn_tip_alarm">시계는 알람이 있는 밤만 기록합니다.</string>
+    <string name="learn_tip_connect">시계를 켜 두고 휴대폰과 연결해 두세요. 알람 후에 기록을 보냅니다.</string>
 </resources>

@@ -576,4 +576,35 @@
     <string name="learn_point_private">ข้อมูลอยู่บนอุปกรณ์ของคุณ คุณปิดช่วงเรียนรู้ได้ทุกเมื่อในการตั้งค่า</string>
     <string name="learn_switch_hint">นาฬิกาของคุณวัดการเคลื่อนไหวและชีพจรตอนกลางคืนเพื่อปรับนาฬิกาปลุก ปิด: ไม่บันทึกอัตโนมัติ ค่าที่เรียนรู้แล้วยังอยู่</string>
     <string name="watch_open_app_hint">เปิด Phase Wake บนนาฬิกาเพื่อให้ได้รับคำสั่ง</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">ทุกคืนตั้งแต่ช่วงเรียนรู้เริ่มต้น – นับแล้วหรือไม่ และถ้าไม่นับ เพราะอะไรและอะไรช่วยได้ Phase Wake ต้องการคืนที่นับแล้ว %1$d คืน</string>
+    <string name="learn_nights_empty">ยังไม่มีคืนใด คืนแรกจะแสดงที่นี่ในเช้าวันถัดไป</string>
+    <string name="learn_night_facts">วัดได้ %1$s · %2$d ค่า · มีชีพจร %3$d %%</string>
+    <string name="learn_last_night">เมื่อคืนไม่ได้นับ</string>
+    <string name="learn_reason_counted">นับแล้ว</string>
+    <string name="learn_reason_counted_no_pulse">นับแล้ว แต่แทบไม่มีชีพจร – อาจไม่ได้สวมนาฬิกา</string>
+    <string name="learn_reason_too_short">สั้นเกินไป: วัดได้ %1$s ต้องการ %2$s</string>
+    <string name="learn_reason_too_few">ค่าน้อยเกินไป: %1$d จาก %2$d</string>
+    <string name="learn_reason_stopped">การบันทึกหยุดก่อนเวลา</string>
+    <string name="learn_reason_ended_battery">จบก่อนเวลา: แบตเตอรี่นาฬิกาต่ำเกินไป</string>
+    <string name="learn_reason_ended_system">ระบบของนาฬิกาหยุดก่อนเวลา</string>
+    <string name="learn_reason_not_worn">แทบไม่มีชีพจร – อาจไม่ได้สวมนาฬิกา</string>
+    <string name="learn_reason_battery">ไม่ได้บันทึก: แบตเตอรี่นาฬิกาอยู่ที่ %1$d %%</string>
+    <string name="learn_reason_battery_low">ไม่ได้บันทึก: แบตเตอรี่นาฬิกาต่ำเกินไป</string>
+    <string name="learn_reason_sensors">ไม่ได้บันทึก: เข้าถึงเซ็นเซอร์ของนาฬิกาไม่ได้</string>
+    <string name="learn_reason_manual">การบันทึกของคุณเองกำลังทำงาน แต่ยังมาไม่ถึง</string>
+    <string name="learn_reason_late">เปิดแอปบนนาฬิกาช้าเกินไปในตอนเย็น</string>
+    <string name="learn_reason_off">ช่วงเรียนรู้ถูกปิดอยู่</string>
+    <string name="learn_reason_no_alarm">คืนนี้ไม่มีนาฬิกาปลุก</string>
+    <string name="learn_reason_pending">ยังอยู่ระหว่างทางจากนาฬิกา</string>
+    <string name="learn_reason_auto_off">ไม่ได้เริ่มอัตโนมัติ</string>
+    <string name="learn_reason_none">ไม่มีการบันทึกมาถึง</string>
+    <string name="learn_tip_worn">ตอนกลางคืนให้สวมนาฬิกาให้กระชับขึ้นเล็กน้อย และตรวจสอบว่า Phase Wake วัดชีพจรของคุณได้</string>
+    <string name="learn_tip_run">ปล่อยให้การบันทึกทำงานไปจนถึงเวลาปลุก</string>
+    <string name="learn_tip_charge">ตอนเย็นชาร์จนาฬิกาให้ได้อย่างน้อย %1$d %%</string>
+    <string name="learn_tip_system">ปิดการประหยัดแบตเตอรี่สำหรับ Phase Wake บนนาฬิกา</string>
+    <string name="learn_tip_sensors">ในการตั้งค่าของนาฬิกา อนุญาตให้ Phase Wake ใช้เซ็นเซอร์และข้อมูลการเคลื่อนไหว</string>
+    <string name="learn_tip_late">เปิด Phase Wake บนนาฬิกาในตอนเย็น อย่างช้าที่สุดเมื่อมีการแจ้งเตือน</string>
+    <string name="learn_tip_alarm">นาฬิกาบันทึกเฉพาะคืนที่มีนาฬิกาปลุก</string>
+    <string name="learn_tip_connect">เปิดนาฬิกาไว้และเชื่อมต่อกับโทรศัพท์ – นาฬิกาจะส่งการบันทึกหลังเวลาปลุก</string>
 </resources>

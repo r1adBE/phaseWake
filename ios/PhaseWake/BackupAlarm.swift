@@ -51,7 +51,8 @@ final class BackupAlarm {
     /// Zielzeit der Nacht, die zuletzt über einen Zeitzonenwechsel behalten wurde (Diagnose einmal je Nacht).
     private var keptNight: Date?
 
-    /// Plant die Sicherung für die nächsten Nächte mit Zweitwecker.
+    /// Plant die Sicherung für die nächsten Nächte mit Zweitwecker; danach die Nächte mit Wecker der Lern-Übersicht
+    /// (``LearnLogStore/noteAlarms(_:holidays:now:)``, hängt an denselben Ereignissen wie auf Android).
     func reschedule(_ alarms: [AlarmSpec]) async {
         let previous = queue
         let task = Task { @MainActor in
@@ -60,6 +61,7 @@ final class BackupAlarm {
         }
         queue = task
         await task.value
+        LearnLogStore.shared.noteAlarms(alarms, holidays: PhoneModel.shared.holidays.dates, now: Date())
     }
 
     /// Wartet, bis die laufende Neuplanung fertig ist (Nacht-Check liest danach die gestellten Sicherungen).

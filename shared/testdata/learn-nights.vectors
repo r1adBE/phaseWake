@@ -1,0 +1,34 @@
+# Lern-Übersicht (LearnNights.reason, Entscheid r1AD 13.11.2026): erwarteter Grund, ein Tabulator, die Fakten der Nacht
+# als «Schlüssel=Wert», mit Leerzeichen getrennt («-» = keine; fehlende Schlüssel = Vorgabe). Schlüssel: recorded (0/1),
+# measured, span, hr (Epochen mit Bewegung, Spanne, Epochen mit Puls), end (Kennung von RecordEnd), before (0/1),
+# skip (Kennung von LearnSkip), consent (0/1, Vorgabe 1), alarm (1/0/-, Vorgabe -), auto (0/1, Vorgabe 1), pending (0/1).
+# Grenzen: zählt ab 72 Epochen mit Bewegung über 360 Epochen; «vermutlich nicht getragen» ab 20 Epochen mit Bewegung,
+# wenn Puls in weniger als 2 % von ihnen.
+COUNTED	recorded=1 measured=72 span=360 hr=20 end=wake
+COUNTED	recorded=1 measured=100 span=400 hr=2 end=wake
+COUNTED_NO_PULSE	recorded=1 measured=100 span=400 hr=1 end=wake
+COUNTED_NO_PULSE	recorded=1 measured=72 span=360 hr=0 end=cap
+TOO_SHORT	recorded=1 measured=72 span=359 hr=20 end=wake
+TOO_FEW	recorded=1 measured=71 span=360 hr=20 end=wake
+TOO_SHORT	recorded=1 measured=60 span=200 hr=20 end=cap
+TOO_SHORT	recorded=1 measured=19 span=19 hr=0 end=wake
+NOT_WORN	recorded=1 measured=20 span=20 hr=0 end=watch
+NOT_WORN	recorded=1 measured=60 span=300 hr=1 end=wake
+ENDED_STOPPED	recorded=1 measured=60 span=200 hr=20 end=watch
+ENDED_STOPPED	recorded=1 measured=60 span=200 hr=20 end=phone
+ENDED_BATTERY	recorded=1 measured=60 span=200 hr=20 end=battery
+ENDED_SERVICE	recorded=1 measured=60 span=200 hr=20 end=service
+COUNTED	recorded=1 measured=80 span=400 hr=20 end=phone skip=battery consent=0 alarm=0
+LEARNING_OFF	before=1 skip=battery alarm=1
+BATTERY	skip=battery alarm=1 consent=0
+SENSORS	skip=sensors alarm=0
+MANUAL	skip=manual
+LATE	skip=late pending=1
+LEARNING_OFF	consent=0 alarm=1
+NO_ALARM	alarm=0 pending=1 auto=0
+PENDING	alarm=1 pending=1 auto=0
+PENDING	pending=1
+AUTO_OFF	alarm=1 auto=0
+AUTO_OFF	auto=0
+NO_RECORDING	alarm=1
+UNKNOWN	-

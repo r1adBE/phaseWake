@@ -592,4 +592,35 @@
     <string name="learn_point_private">ڈیٹا آپ کے آلات پر ہی رہتا ہے۔ سیکھنے کا مرحلہ ترتیبات میں کسی بھی وقت بند کیا جا سکتا ہے۔</string>
     <string name="learn_switch_hint">الارم ڈھالنے کے لیے آپ کی گھڑی رات کو حرکت اور نبض ناپتی ہے۔ بند: کوئی خودکار ریکارڈنگ نہیں، سیکھی گئی قدریں برقرار رہتی ہیں۔</string>
     <string name="watch_open_app_hint">گھڑی پر Phase Wake کھولیں تاکہ اسے حکم مل جائے۔</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">سیکھنے کا مرحلہ شروع ہونے کے بعد سے ہر رات – کیا وہ گنی گئی، اور اگر نہیں تو کیوں اور کیا مدد کرے گا۔ Phase Wake کو %1$d گنی ہوئی راتیں چاہییں۔</string>
+    <string name="learn_nights_empty">ابھی کوئی رات نہیں۔ پہلی رات اگلی صبح یہاں نظر آئے گی۔</string>
+    <string name="learn_night_facts">%1$s ناپا گیا · %2$d قدریں · %3$d %% میں نبض</string>
+    <string name="learn_last_night">پچھلی رات نہیں گنی گئی</string>
+    <string name="learn_reason_counted">گنی گئی</string>
+    <string name="learn_reason_counted_no_pulse">گنی گئی، لیکن نبض تقریباً نہیں – شاید گھڑی پہنی نہیں تھی</string>
+    <string name="learn_reason_too_short">بہت چھوٹی: %1$s ناپا گیا، %2$s درکار</string>
+    <string name="learn_reason_too_few">بہت کم قدریں: %2$d میں سے %1$d</string>
+    <string name="learn_reason_stopped">ریکارڈنگ جلدی روک دی گئی</string>
+    <string name="learn_reason_ended_battery">جلدی ختم: گھڑی کی بیٹری بہت کم</string>
+    <string name="learn_reason_ended_system">گھڑی کے سسٹم نے جلدی بند کر دی</string>
+    <string name="learn_reason_not_worn">نبض تقریباً نہیں – شاید گھڑی پہنی نہیں تھی</string>
+    <string name="learn_reason_battery">ریکارڈ نہیں ہوئی: گھڑی کی بیٹری %1$d %% تھی</string>
+    <string name="learn_reason_battery_low">ریکارڈ نہیں ہوئی: گھڑی کی بیٹری بہت کم</string>
+    <string name="learn_reason_sensors">ریکارڈ نہیں ہوئی: گھڑی کے سینسرز تک رسائی نہیں</string>
+    <string name="learn_reason_manual">آپ کی اپنی ریکارڈنگ چل رہی تھی، لیکن پہنچی نہیں</string>
+    <string name="learn_reason_late">شام کو گھڑی کی ایپ بہت دیر سے کھولی گئی</string>
+    <string name="learn_reason_off">سیکھنے کا مرحلہ بند تھا</string>
+    <string name="learn_reason_no_alarm">اس رات کوئی الارم نہیں تھا</string>
+    <string name="learn_reason_pending">ابھی گھڑی سے راستے میں ہے</string>
+    <string name="learn_reason_auto_off">خود بخود شروع نہیں ہوئی</string>
+    <string name="learn_reason_none">کوئی ریکارڈنگ نہیں پہنچی</string>
+    <string name="learn_tip_worn">رات کو گھڑی تھوڑی کس کر پہنیں اور دیکھیں کہ Phase Wake کو آپ کی نبض ناپنے کی اجازت ہے۔</string>
+    <string name="learn_tip_run">ریکارڈنگ کو الارم تک چلنے دیں۔</string>
+    <string name="learn_tip_charge">شام کو گھڑی کم از کم %1$d %% تک چارج کریں۔</string>
+    <string name="learn_tip_system">گھڑی پر Phase Wake کے لیے بیٹری کی بچت بند کریں۔</string>
+    <string name="learn_tip_sensors">گھڑی کی ترتیبات میں Phase Wake کو سینسرز اور حرکت کا ڈیٹا استعمال کرنے دیں۔</string>
+    <string name="learn_tip_late">شام کو گھڑی پر Phase Wake کھولیں، زیادہ سے زیادہ یاد دہانی آنے پر۔</string>
+    <string name="learn_tip_alarm">گھڑی صرف الارم والی راتیں ریکارڈ کرتی ہے۔</string>
+    <string name="learn_tip_connect">گھڑی کو آن اور فون سے جڑا رکھیں – یہ الارم کے بعد ریکارڈنگ بھیجتی ہے۔</string>
 </resources>

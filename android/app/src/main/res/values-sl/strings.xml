@@ -620,4 +620,35 @@
     <string name="learn_point_private">Podatki ostanejo v tvojih napravah. Fazo učenja lahko kadar koli izklopiš v nastavitvah.</string>
     <string name="learn_switch_hint">Ura ponoči meri gibanje in utrip, da prilagodi alarm. Izklopljeno: brez samodejnega beleženja, naučene vrednosti ostanejo.</string>
     <string name="watch_open_app_hint">Odpri Phase Wake na uri, da prejme ukaz.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Vsaka noč od začetka faze učenja – ali je štela in, če ni, zakaj in kaj pomaga. Phase Wake potrebuje %1$d štetih noči.</string>
+    <string name="learn_nights_empty">Še ni nobene noči. Prva se tukaj prikaže naslednje jutro.</string>
+    <string name="learn_night_facts">Izmerjeno %1$s · %2$d vrednosti · utrip v %3$d %%</string>
+    <string name="learn_last_night">Prejšnja noč ni štela</string>
+    <string name="learn_reason_counted">Šteto</string>
+    <string name="learn_reason_counted_no_pulse">Šteto, vendar skoraj brez utripa – ure verjetno nisi nosil</string>
+    <string name="learn_reason_too_short">Prekratko: izmerjeno %1$s, potrebno %2$s</string>
+    <string name="learn_reason_too_few">Premalo vrednosti: %1$d od %2$d</string>
+    <string name="learn_reason_stopped">Snemanje predčasno ustavljeno</string>
+    <string name="learn_reason_ended_battery">Predčasno končano: baterija ure prešibka</string>
+    <string name="learn_reason_ended_system">Sistem ure je predčasno končal</string>
+    <string name="learn_reason_not_worn">Skoraj brez utripa – ure verjetno nisi nosil</string>
+    <string name="learn_reason_battery">Ni posneto: baterija ure na %1$d %%</string>
+    <string name="learn_reason_battery_low">Ni posneto: baterija ure prešibka</string>
+    <string name="learn_reason_sensors">Ni posneto: ni dostopa do senzorjev ure</string>
+    <string name="learn_reason_manual">Tvoje lastno snemanje je teklo, a ni prispelo</string>
+    <string name="learn_reason_late">Aplikacija na uri odprta prepozno zvečer</string>
+    <string name="learn_reason_off">Faza učenja je bila izklopljena</string>
+    <string name="learn_reason_no_alarm">To noč ni bilo budilke</string>
+    <string name="learn_reason_pending">Še na poti z ure</string>
+    <string name="learn_reason_auto_off">Ni se začelo samodejno</string>
+    <string name="learn_reason_none">Ni prispel noben posnetek</string>
+    <string name="learn_tip_worn">Ponoči nosi uro malo tesneje in preveri, ali Phase Wake sme meriti tvoj utrip.</string>
+    <string name="learn_tip_run">Pusti, da snemanje teče do budilke.</string>
+    <string name="learn_tip_charge">Zvečer napolni uro na vsaj %1$d %%.</string>
+    <string name="learn_tip_system">Na uri izklopi varčevanje z baterijo za Phase Wake.</string>
+    <string name="learn_tip_sensors">V nastavitvah ure dovoli aplikaciji Phase Wake uporabo senzorjev in podatkov o gibanju.</string>
+    <string name="learn_tip_late">Zvečer odpri Phase Wake na uri, najpozneje ob opomniku.</string>
+    <string name="learn_tip_alarm">Ura snema samo noči z budilko.</string>
+    <string name="learn_tip_connect">Uro imej vklopljeno in povezano s telefonom – posnetek pošlje po budilki.</string>
 </resources>

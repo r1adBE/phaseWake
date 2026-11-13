@@ -578,4 +578,35 @@
     <string name="learn_point_private">მონაცემები შენს მოწყობილობებზე რჩება. სწავლის ფაზის გამორთვა პარამეტრებში ნებისმიერ დროს შეგიძლია.</string>
     <string name="learn_switch_hint">შენი საათი ღამით ზომავს მოძრაობას და პულსს მაღვიძარის მოსარგებად. გამორთული: ავტომატური ჩაწერა არ არის, ნასწავლი მნიშვნელობები რჩება.</string>
     <string name="watch_open_app_hint">გახსენი Phase Wake საათზე, რომ ბრძანება მიიღოს.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">ყოველი ღამე სწავლის ფაზის დაწყებიდან – ჩაითვალა თუ არა, და თუ არა, რატომ და რა დაგეხმარება. Phase Wake-ს %1$d ჩათვლილი ღამე სჭირდება.</string>
+    <string name="learn_nights_empty">ჯერ ღამე არ არის. პირველი აქ მეორე დილით გამოჩნდება.</string>
+    <string name="learn_night_facts">გაზომილია %1$s · %2$d მნიშვნელობა · პულსი %3$d %%-ში</string>
+    <string name="learn_last_night">წუხანდელი ღამე არ ჩაითვალა</string>
+    <string name="learn_reason_counted">ჩაითვალა</string>
+    <string name="learn_reason_counted_no_pulse">ჩაითვალა, მაგრამ პულსი თითქმის არ იყო – საათი ალბათ არ გეკეთა</string>
+    <string name="learn_reason_too_short">ძალიან მოკლე: გაზომილია %1$s, საჭიროა %2$s</string>
+    <string name="learn_reason_too_few">ძალიან ცოტა მნიშვნელობა: %1$d / %2$d</string>
+    <string name="learn_reason_stopped">ჩაწერა ნაადრევად შეწყდა</string>
+    <string name="learn_reason_ended_battery">ნაადრევად დასრულდა: საათის ბატარეა ძალიან დაბალია</string>
+    <string name="learn_reason_ended_system">საათის სისტემამ ნაადრევად შეწყვიტა</string>
+    <string name="learn_reason_not_worn">პულსი თითქმის არ იყო – საათი ალბათ არ გეკეთა</string>
+    <string name="learn_reason_battery">არ ჩაიწერა: საათის ბატარეა %1$d %% იყო</string>
+    <string name="learn_reason_battery_low">არ ჩაიწერა: საათის ბატარეა ძალიან დაბალია</string>
+    <string name="learn_reason_sensors">არ ჩაიწერა: საათის სენსორებზე წვდომა არ არის</string>
+    <string name="learn_reason_manual">შენი საკუთარი ჩანაწერი მიმდინარეობდა, მაგრამ არ მოსულა</string>
+    <string name="learn_reason_late">საათის აპი საღამოს ძალიან გვიან გაიხსნა</string>
+    <string name="learn_reason_off">სწავლის ფაზა გამორთული იყო</string>
+    <string name="learn_reason_no_alarm">ამ ღამეს მაღვიძარა არ იყო</string>
+    <string name="learn_reason_pending">ჯერ კიდევ გზაშია საათიდან</string>
+    <string name="learn_reason_auto_off">ავტომატურად არ დაწყებულა</string>
+    <string name="learn_reason_none">არცერთი ჩანაწერი არ მოსულა</string>
+    <string name="learn_tip_worn">ღამით საათი ცოტა უფრო მჭიდროდ გაიკეთე და შეამოწმე, აქვს თუ არა Phase Wake-ს პულსის გაზომვის ნებართვა.</string>
+    <string name="learn_tip_run">ჩაწერა მაღვიძარამდე გააგრძელე.</string>
+    <string name="learn_tip_charge">საღამოს საათი მინიმუმ %1$d %%-მდე დატენე.</string>
+    <string name="learn_tip_system">გამორთე საათზე ბატარეის დაზოგვა Phase Wake-ისთვის.</string>
+    <string name="learn_tip_sensors">საათის პარამეტრებში მიეცი Phase Wake-ს სენსორებისა და მოძრაობის მონაცემების გამოყენების ნებართვა.</string>
+    <string name="learn_tip_late">საღამოს გახსენი Phase Wake საათზე, უგვიანეს შეხსენებისას.</string>
+    <string name="learn_tip_alarm">საათი მხოლოდ მაღვიძარიან ღამეებს იწერს.</string>
+    <string name="learn_tip_connect">საათი ჩართული და ტელეფონთან დაკავშირებული დატოვე – მაღვიძარის შემდეგ ის ჩანაწერს აგზავნის.</string>
 </resources>

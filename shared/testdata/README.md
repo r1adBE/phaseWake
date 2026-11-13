@@ -20,6 +20,10 @@ Nacht (`DetectorConfig.withOnsetFloor`), zusätzlich zu einem gelernten aus `@fl
 
 `MANIFEST` listet jede Datei dieses Ordners (ausser `README.md` und `MANIFEST`). Beide Kerne prüfen, dass genau diese Dateien da sind und so viele Nächte bewertet werden: Eine neue Datei gehört in `MANIFEST`, eine fehlende fällt auf.
 
+## Lern-Übersicht
+
+`learn-nights.vectors`: je Zeile erwarteter Grund (`LearnNights.Reason`), Tabulator, die Fakten einer Nacht als «Schlüssel=Wert» (Format im Kopf der Datei). Beide Kerne prüfen alle Zeilen und dass jeder Grund mindestens einmal vorkommt.
+
 ## Passwort-Regel
 
 `backup-password.vectors`: je Zeile erwartetes Ergebnis (`OK`, `TOO_SHORT`, `TRIVIAL`), Tabulator, Passwort (UTF-8, teils in NFD). Beide Kerne prüfen alle Zeilen (`BackupPassword`), Kotlin zusätzlich mit Türkisch als Gerätesprache.

@@ -102,4 +102,10 @@
     <string name="record_since">Síðan %1$s</string>
     <string name="notification_record_title">Nóttin er tekin upp</string>
     <string name="record_battery_low">Rafhlaðan of lág fyrir upptöku</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Námsfasi</string>
+    <string name="watch_learn_warn">Hladdu úrið, annars telst nóttin ekki með í námsfasanum (rafhlaða %1$d %%, þarf %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Nóttin í nótt telst ekki með í námsfasanum: rafhlaða í %1$d %%, þarf %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Nóttin í nótt telst ekki með í námsfasanum: Phase Wake getur ekki notað skynjara úrsins.</string>
+    <string name="watch_learn_skip_late">Nóttin í nótt telst ekki með í námsfasanum: Phase Wake var opnað of seint um kvöldið.</string>
 </resources>

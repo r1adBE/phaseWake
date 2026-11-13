@@ -590,4 +590,35 @@
     <string name="learn_point_private">डेटा तुम्हारे डिवाइस पर ही रहता है। सीखने का चरण तुम सेटिंग्स में कभी भी बंद कर सकते हो।</string>
     <string name="learn_switch_hint">अलार्म ढालने के लिए तुम्हारी घड़ी रात में हलचल और पल्स मापती है। बंद: कोई अपने-आप रिकॉर्डिंग नहीं, सीखे गए मान बने रहते हैं।</string>
     <string name="watch_open_app_hint">घड़ी पर Phase Wake खोलो, ताकि उसे निर्देश मिल सके।</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">सीखने का चरण शुरू होने के बाद से हर रात – वह गिनी गई या नहीं, और अगर नहीं, तो क्यों और क्या मदद करेगा। Phase Wake को %1$d गिनी गई रातें चाहिए।</string>
+    <string name="learn_nights_empty">अभी कोई रात नहीं है। पहली रात अगली सुबह यहाँ दिखेगी।</string>
+    <string name="learn_night_facts">%1$s मापा गया · %2$d माप · %3$d %% में नब्ज़</string>
+    <string name="learn_last_night">पिछली रात नहीं गिनी गई</string>
+    <string name="learn_reason_counted">गिनी गई</string>
+    <string name="learn_reason_counted_no_pulse">गिनी गई, पर नब्ज़ लगभग नहीं – शायद घड़ी पहनी नहीं थी</string>
+    <string name="learn_reason_too_short">बहुत छोटी: %1$s मापा गया, %2$s चाहिए</string>
+    <string name="learn_reason_too_few">बहुत कम माप: %2$d में से %1$d</string>
+    <string name="learn_reason_stopped">रिकॉर्डिंग जल्दी रोक दी गई</string>
+    <string name="learn_reason_ended_battery">जल्दी ख़त्म: घड़ी की बैटरी बहुत कम</string>
+    <string name="learn_reason_ended_system">घड़ी के सिस्टम ने जल्दी बंद कर दी</string>
+    <string name="learn_reason_not_worn">नब्ज़ लगभग नहीं – घड़ी शायद पहनी नहीं थी</string>
+    <string name="learn_reason_battery">रिकॉर्ड नहीं हुई: घड़ी की बैटरी %1$d %% थी</string>
+    <string name="learn_reason_battery_low">रिकॉर्ड नहीं हुई: घड़ी की बैटरी बहुत कम</string>
+    <string name="learn_reason_sensors">रिकॉर्ड नहीं हुई: घड़ी के सेंसर तक पहुँच नहीं</string>
+    <string name="learn_reason_manual">आपकी अपनी रिकॉर्डिंग चल रही थी, पर पहुँची नहीं</string>
+    <string name="learn_reason_late">शाम को घड़ी का ऐप बहुत देर से खोला गया</string>
+    <string name="learn_reason_off">सीखने का चरण बंद था</string>
+    <string name="learn_reason_no_alarm">इस रात कोई अलार्म नहीं था</string>
+    <string name="learn_reason_pending">अभी घड़ी से रास्ते में है</string>
+    <string name="learn_reason_auto_off">अपने आप शुरू नहीं हुई</string>
+    <string name="learn_reason_none">कोई रिकॉर्डिंग नहीं पहुँची</string>
+    <string name="learn_tip_worn">रात को घड़ी थोड़ी कसकर पहनें और जाँचें कि Phase Wake को आपकी नब्ज़ मापने की अनुमति है।</string>
+    <string name="learn_tip_run">रिकॉर्डिंग को अलार्म तक चलने दें।</string>
+    <string name="learn_tip_charge">शाम को घड़ी कम से कम %1$d %% तक चार्ज करें।</string>
+    <string name="learn_tip_system">घड़ी पर Phase Wake के लिए बैटरी बचत बंद करें।</string>
+    <string name="learn_tip_sensors">घड़ी की सेटिंग में Phase Wake को सेंसर और गतिविधि डेटा इस्तेमाल करने दें।</string>
+    <string name="learn_tip_late">शाम को घड़ी पर Phase Wake खोलें, ज़्यादा से ज़्यादा रिमाइंडर आने पर।</string>
+    <string name="learn_tip_alarm">घड़ी सिर्फ़ अलार्म वाली रातें रिकॉर्ड करती है।</string>
+    <string name="learn_tip_connect">घड़ी को चालू और फ़ोन से जुड़ा रखें – यह अलार्म के बाद रिकॉर्डिंग भेजती है।</string>
 </resources>

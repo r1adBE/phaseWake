@@ -102,4 +102,10 @@
     <string name="record_since">Desde as %1$s</string>
     <string name="notification_record_title">Gravando a noite</string>
     <string name="record_battery_low">Batería demasiado baixa para gravar</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Fase de aprendizaxe</string>
+    <string name="watch_learn_warn">Carga o reloxo ou esta noite non contará para a fase de aprendizaxe (batería %1$d %%, precísase %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Esta noite non conta para a fase de aprendizaxe: batería ao %1$d %%, precísase %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Esta noite non conta para a fase de aprendizaxe: Phase Wake non pode usar os sensores do reloxo.</string>
+    <string name="watch_learn_skip_late">Esta noite non conta para a fase de aprendizaxe: Phase Wake abriuse demasiado tarde pola noite.</string>
 </resources>

@@ -590,4 +590,35 @@
     <string name="learn_point_private">داده‌ها روی دستگاه‌هایت می‌مانند. هر وقت بخواهی می‌توانی مرحلهٔ یادگیری را در تنظیمات خاموش کنی.</string>
     <string name="learn_switch_hint">ساعتت برای هماهنگ کردن زنگ، شب‌ها حرکت و نبض را اندازه می‌گیرد. خاموش: بدون ثبت خودکار، مقادیر یادگرفته‌شده می‌مانند.</string>
     <string name="watch_open_app_hint">Phase Wake را روی ساعتت باز کن تا فرمان را دریافت کند.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">هر شب از آغاز مرحلهٔ یادگیری – آیا حساب شد و اگر نه، چرا و چه چیزی کمک می‌کند. Phase Wake به %1$d شبِ حساب‌شده نیاز دارد.</string>
+    <string name="learn_nights_empty">هنوز شبی نیست. اولین شب صبح روز بعد اینجا نشان داده می‌شود.</string>
+    <string name="learn_night_facts">%1$s اندازه‌گیری شد · %2$d مقدار · نبض در %3$d %%</string>
+    <string name="learn_last_night">دیشب حساب نشد</string>
+    <string name="learn_reason_counted">حساب شد</string>
+    <string name="learn_reason_counted_no_pulse">حساب شد، اما تقریباً بدون نبض – احتمالاً ساعت را نبسته بودی</string>
+    <string name="learn_reason_too_short">خیلی کوتاه: %1$s اندازه‌گیری شد، %2$s لازم است</string>
+    <string name="learn_reason_too_few">مقادیر خیلی کم: %1$d از %2$d</string>
+    <string name="learn_reason_stopped">ضبط زودتر متوقف شد</string>
+    <string name="learn_reason_ended_battery">زودتر تمام شد: باتری ساعت خیلی کم بود</string>
+    <string name="learn_reason_ended_system">سیستم ساعت آن را زودتر متوقف کرد</string>
+    <string name="learn_reason_not_worn">تقریباً بدون نبض – احتمالاً ساعت را نبسته بودی</string>
+    <string name="learn_reason_battery">ضبط نشد: باتری ساعت %1$d %% بود</string>
+    <string name="learn_reason_battery_low">ضبط نشد: باتری ساعت خیلی کم بود</string>
+    <string name="learn_reason_sensors">ضبط نشد: دسترسی به حسگرهای ساعت نیست</string>
+    <string name="learn_reason_manual">ضبط خودت در جریان بود، اما نرسیده است</string>
+    <string name="learn_reason_late">برنامهٔ ساعت عصر خیلی دیر باز شد</string>
+    <string name="learn_reason_off">مرحلهٔ یادگیری خاموش بود</string>
+    <string name="learn_reason_no_alarm">این شب زنگ هشداری نبود</string>
+    <string name="learn_reason_pending">هنوز از ساعت در راه است</string>
+    <string name="learn_reason_auto_off">خودکار شروع نشد</string>
+    <string name="learn_reason_none">هیچ ضبطی نرسید</string>
+    <string name="learn_tip_worn">شب‌ها ساعت را کمی محکم‌تر ببند و بررسی کن که Phase Wake اجازهٔ اندازه‌گیری نبضت را دارد.</string>
+    <string name="learn_tip_run">بگذار ضبط تا زنگ هشدار ادامه پیدا کند.</string>
+    <string name="learn_tip_charge">عصر ساعت را دست‌کم تا %1$d %% شارژ کن.</string>
+    <string name="learn_tip_system">صرفه‌جویی باتری را برای Phase Wake روی ساعت خاموش کن.</string>
+    <string name="learn_tip_sensors">در تنظیمات ساعت به Phase Wake اجازه بده از حسگرها و داده‌های حرکت استفاده کند.</string>
+    <string name="learn_tip_late">عصر Phase Wake را روی ساعت باز کن، حداکثر وقتی یادآوری می‌کند.</string>
+    <string name="learn_tip_alarm">ساعت فقط شب‌هایی را که زنگ هشدار دارند ضبط می‌کند.</string>
+    <string name="learn_tip_connect">ساعت را روشن و متصل به گوشی نگه دار – ضبط را بعد از زنگ هشدار می‌فرستد.</string>
 </resources>

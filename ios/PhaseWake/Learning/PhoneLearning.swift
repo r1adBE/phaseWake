@@ -143,9 +143,11 @@ final class PhoneLearning {
         DiagStore.shared.log(.sync, "learn relearn \(state.snapshot.diagLine)")
     }
 
-    /// «Verlauf löschen»: Aufzeichnungen weg, Lernphase ab jetzt von vorn, gelernte Werte verworfen (auch auf der Uhr).
+    /// «Verlauf löschen»: Aufzeichnungen weg, Lernphase ab jetzt von vorn, gelernte Werte verworfen (auch auf der Uhr),
+    /// Lern-Übersicht leer.
     func restart() {
         setRecordings([])
+        LearnLogStore.shared.clear(now: Date())
         var next = state
         next.restart(now: Date())
         setState(next)

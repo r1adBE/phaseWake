@@ -593,4 +593,35 @@
     <string name="learn_point_private">Të dhënat mbeten në pajisjet e tua. Mund ta çaktivizosh fazën e të mësuarit në cilësime në çdo kohë.</string>
     <string name="learn_switch_hint">Ora jote mat lëvizjen dhe pulsin natën për të përshtatur alarmin. Joaktive: pa regjistrim automatik, vlerat e mësuara mbeten.</string>
     <string name="watch_open_app_hint">Hap Phase Wake në orë që të marrë komandën.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Çdo natë që nga fillimi i fazës së të mësuarit – nëse u numërua dhe, nëse jo, pse dhe çfarë ndihmon. Phase Wake ka nevojë për %1$d net të numëruara.</string>
+    <string name="learn_nights_empty">Ende asnjë natë. E para shfaqet këtu mëngjesin pas.</string>
+    <string name="learn_night_facts">%1$s matur · %2$d vlera · pulsi në %3$d %%</string>
+    <string name="learn_last_night">Nata e kaluar nuk u numërua</string>
+    <string name="learn_reason_counted">U numërua</string>
+    <string name="learn_reason_counted_no_pulse">U numërua, por pothuajse pa puls – ora ndoshta nuk ishte veshur</string>
+    <string name="learn_reason_too_short">Shumë e shkurtër: %1$s matur, duhen %2$s</string>
+    <string name="learn_reason_too_few">Shumë pak vlera: %1$d nga %2$d</string>
+    <string name="learn_reason_stopped">Regjistrimi u ndal herët</string>
+    <string name="learn_reason_ended_battery">Përfundoi herët: bateria e orës shumë e dobët</string>
+    <string name="learn_reason_ended_system">Sistemi i orës e ndërpreu herët</string>
+    <string name="learn_reason_not_worn">Pothuajse pa puls – ora ndoshta nuk ishte veshur</string>
+    <string name="learn_reason_battery">Nuk u regjistrua: bateria e orës në %1$d %%</string>
+    <string name="learn_reason_battery_low">Nuk u regjistrua: bateria e orës shumë e dobët</string>
+    <string name="learn_reason_sensors">Nuk u regjistrua: pa qasje te sensorët e orës</string>
+    <string name="learn_reason_manual">Regjistrimi yt po vazhdonte, por nuk ka mbërritur</string>
+    <string name="learn_reason_late">Aplikacioni i orës u hap shumë vonë në mbrëmje</string>
+    <string name="learn_reason_off">Faza e të mësuarit ishte e fikur</string>
+    <string name="learn_reason_no_alarm">Nuk kishte alarm këtë natë</string>
+    <string name="learn_reason_pending">Ende në rrugë nga ora</string>
+    <string name="learn_reason_auto_off">Nuk nisi automatikisht</string>
+    <string name="learn_reason_none">Nuk mbërriti asnjë regjistrim</string>
+    <string name="learn_tip_worn">Natën vishe orën pak më ngushtë dhe kontrollo nëse Phase Wake lejohet të matë pulsin tënd.</string>
+    <string name="learn_tip_run">Lëre regjistrimin të vazhdojë deri te alarmi.</string>
+    <string name="learn_tip_charge">Në mbrëmje karikoje orën të paktën në %1$d %%.</string>
+    <string name="learn_tip_system">Fik kursimin e baterisë për Phase Wake në orë.</string>
+    <string name="learn_tip_sensors">Te cilësimet e orës, lejoji Phase Wake të përdorë sensorët dhe të dhënat e lëvizjes.</string>
+    <string name="learn_tip_late">Hape Phase Wake në orë në mbrëmje, më së voni kur të ta kujtojë.</string>
+    <string name="learn_tip_alarm">Ora regjistron vetëm netët me alarm.</string>
+    <string name="learn_tip_connect">Mbaje orën të ndezur dhe të lidhur me telefonin – e dërgon regjistrimin pas alarmit.</string>
 </resources>

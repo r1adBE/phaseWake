@@ -607,4 +607,35 @@
     <string name="learn_point_private">Podaci ostaju na tvojim uređajima. Fazu učenja možeš bilo kada isključiti u postavkama.</string>
     <string name="learn_switch_hint">Tvoj sat noću mjeri pokrete i puls da prilagodi alarm. Isključeno: nema automatskog snimanja, naučene vrijednosti ostaju.</string>
     <string name="watch_open_app_hint">Otvori Phase Wake na satu da primi naredbu.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Svaka noć od početka faze učenja – da li je uračunata i, ako nije, zašto i šta pomaže. Phase Wake treba %1$d uračunatih noći.</string>
+    <string name="learn_nights_empty">Još nema noći. Prva se ovdje pojavljuje sljedećeg jutra.</string>
+    <string name="learn_night_facts">%1$s izmjereno · %2$d vrijednosti · puls u %3$d %%</string>
+    <string name="learn_last_night">Prošla noć nije uračunata</string>
+    <string name="learn_reason_counted">Uračunato</string>
+    <string name="learn_reason_counted_no_pulse">Uračunato, ali skoro bez pulsa – sat vjerovatno nije bio nošen</string>
+    <string name="learn_reason_too_short">Prekratko: izmjereno %1$s, potrebno %2$s</string>
+    <string name="learn_reason_too_few">Premalo vrijednosti: %1$d od %2$d</string>
+    <string name="learn_reason_stopped">Snimanje prijevremeno zaustavljeno</string>
+    <string name="learn_reason_ended_battery">Prijevremeno završeno: baterija sata preslaba</string>
+    <string name="learn_reason_ended_system">Sistem sata ga je prijevremeno prekinuo</string>
+    <string name="learn_reason_not_worn">Skoro bez pulsa – sat vjerovatno nije bio nošen</string>
+    <string name="learn_reason_battery">Nije snimljeno: baterija sata na %1$d %%</string>
+    <string name="learn_reason_battery_low">Nije snimljeno: baterija sata preslaba</string>
+    <string name="learn_reason_sensors">Nije snimljeno: nema pristupa senzorima sata</string>
+    <string name="learn_reason_manual">Tvoje vlastito snimanje je radilo, ali nije stiglo</string>
+    <string name="learn_reason_late">Aplikacija na satu otvorena prekasno navečer</string>
+    <string name="learn_reason_off">Faza učenja je bila isključena</string>
+    <string name="learn_reason_no_alarm">Nema alarma ove noći</string>
+    <string name="learn_reason_pending">Još je na putu sa sata</string>
+    <string name="learn_reason_auto_off">Nije pokrenuto automatski</string>
+    <string name="learn_reason_none">Nije stiglo nikakvo snimanje</string>
+    <string name="learn_tip_worn">Noću nosi sat malo čvršće i provjeri da li Phase Wake smije mjeriti tvoj puls.</string>
+    <string name="learn_tip_run">Pusti snimanje da traje do alarma.</string>
+    <string name="learn_tip_charge">Navečer napuni sat na najmanje %1$d %%.</string>
+    <string name="learn_tip_system">Isključi štednju baterije za Phase Wake na satu.</string>
+    <string name="learn_tip_sensors">U postavkama sata dozvoli aplikaciji Phase Wake da koristi senzore i podatke o kretanju.</string>
+    <string name="learn_tip_late">Navečer otvori Phase Wake na satu, najkasnije kad te podsjeti.</string>
+    <string name="learn_tip_alarm">Sat snima samo noći s alarmom.</string>
+    <string name="learn_tip_connect">Drži sat uključen i povezan s telefonom – on šalje snimanje nakon alarma.</string>
 </resources>

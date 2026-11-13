@@ -592,4 +592,35 @@
     <string name="learn_point_private">ഡാറ്റ നിങ്ങളുടെ ഉപകരണങ്ങളിൽ തന്നെ നിൽക്കും. പഠന ഘട്ടം ക്രമീകരണങ്ങളിൽ എപ്പോൾ വേണമെങ്കിലും ഓഫാക്കാം.</string>
     <string name="learn_switch_hint">അലാറം ക്രമീകരിക്കാൻ നിങ്ങളുടെ വാച്ച് രാത്രിയിൽ ചലനവും പൾസും അളക്കുന്നു. ഓഫ്: സ്വയമേവ രേഖപ്പെടുത്തലില്ല, പഠിച്ച മൂല്യങ്ങൾ നിലനിൽക്കും.</string>
     <string name="watch_open_app_hint">കമാൻഡ് ലഭിക്കാൻ വാച്ചിൽ Phase Wake തുറക്കുക.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">പഠന ഘട്ടം തുടങ്ങിയതുമുതൽ ഓരോ രാത്രിയും – അത് എണ്ണപ്പെട്ടോ, ഇല്ലെങ്കിൽ എന്തുകൊണ്ട്, എന്ത് സഹായിക്കും. Phase Wake-ന് എണ്ണപ്പെട്ട %1$d രാത്രികൾ വേണം.</string>
+    <string name="learn_nights_empty">ഇതുവരെ രാത്രിയൊന്നുമില്ല. ആദ്യത്തേത് പിറ്റേന്ന് രാവിലെ ഇവിടെ കാണാം.</string>
+    <string name="learn_night_facts">%1$s അളന്നു · %2$d മൂല്യങ്ങൾ · %3$d %%-ൽ നാഡി</string>
+    <string name="learn_last_night">കഴിഞ്ഞ രാത്രി എണ്ണപ്പെട്ടില്ല</string>
+    <string name="learn_reason_counted">എണ്ണപ്പെട്ടു</string>
+    <string name="learn_reason_counted_no_pulse">എണ്ണപ്പെട്ടു, പക്ഷേ നാഡി ഏറെക്കുറെ ഇല്ല – വാച്ച് ധരിച്ചിരുന്നില്ലെന്ന് തോന്നുന്നു</string>
+    <string name="learn_reason_too_short">വളരെ ചെറുത്: %1$s അളന്നു, %2$s വേണം</string>
+    <string name="learn_reason_too_few">മൂല്യങ്ങൾ വളരെ കുറവ്: %2$d-ൽ %1$d</string>
+    <string name="learn_reason_stopped">റെക്കോർഡിംഗ് നേരത്തെ നിർത്തി</string>
+    <string name="learn_reason_ended_battery">നേരത്തെ അവസാനിച്ചു: വാച്ചിന്റെ ബാറ്ററി വളരെ കുറവ്</string>
+    <string name="learn_reason_ended_system">വാച്ചിന്റെ സിസ്റ്റം നേരത്തെ അവസാനിപ്പിച്ചു</string>
+    <string name="learn_reason_not_worn">നാഡി ഏറെക്കുറെ ഇല്ല – വാച്ച് ധരിച്ചിരുന്നില്ലെന്ന് തോന്നുന്നു</string>
+    <string name="learn_reason_battery">റെക്കോർഡ് ചെയ്തില്ല: വാച്ചിന്റെ ബാറ്ററി %1$d %% ആയിരുന്നു</string>
+    <string name="learn_reason_battery_low">റെക്കോർഡ് ചെയ്തില്ല: വാച്ചിന്റെ ബാറ്ററി വളരെ കുറവ്</string>
+    <string name="learn_reason_sensors">റെക്കോർഡ് ചെയ്തില്ല: വാച്ചിന്റെ സെൻസറുകളിലേക്ക് ആക്‌സസ് ഇല്ല</string>
+    <string name="learn_reason_manual">നിങ്ങളുടെ സ്വന്തം റെക്കോർഡിംഗ് നടക്കുകയായിരുന്നു, പക്ഷേ എത്തിയില്ല</string>
+    <string name="learn_reason_late">വൈകുന്നേരം വാച്ച് ആപ്പ് വളരെ വൈകി തുറന്നു</string>
+    <string name="learn_reason_off">പഠന ഘട്ടം ഓഫായിരുന്നു</string>
+    <string name="learn_reason_no_alarm">ഈ രാത്രി അലാറം ഉണ്ടായിരുന്നില്ല</string>
+    <string name="learn_reason_pending">ഇപ്പോഴും വാച്ചിൽ നിന്ന് വഴിയിലാണ്</string>
+    <string name="learn_reason_auto_off">സ്വയം ആരംഭിച്ചില്ല</string>
+    <string name="learn_reason_none">റെക്കോർഡിംഗൊന്നും എത്തിയില്ല</string>
+    <string name="learn_tip_worn">രാത്രിയിൽ വാച്ച് അൽപ്പം മുറുക്കി ധരിക്കുക, Phase Wake-ന് നിങ്ങളുടെ നാഡി അളക്കാൻ അനുമതിയുണ്ടോ എന്ന് പരിശോധിക്കുക.</string>
+    <string name="learn_tip_run">അലാറം വരെ റെക്കോർഡിംഗ് തുടരാൻ അനുവദിക്കുക.</string>
+    <string name="learn_tip_charge">വൈകുന്നേരം വാച്ച് കുറഞ്ഞത് %1$d %% വരെ ചാർജ് ചെയ്യുക.</string>
+    <string name="learn_tip_system">വാച്ചിൽ Phase Wake-നുള്ള ബാറ്ററി ലാഭിക്കൽ ഓഫാക്കുക.</string>
+    <string name="learn_tip_sensors">വാച്ചിന്റെ ക്രമീകരണങ്ങളിൽ സെൻസറുകളും ചലന ഡാറ്റയും ഉപയോഗിക്കാൻ Phase Wake-നെ അനുവദിക്കുക.</string>
+    <string name="learn_tip_late">വൈകുന്നേരം വാച്ചിൽ Phase Wake തുറക്കുക, ഏറ്റവും വൈകിയാൽ ഓർമ്മപ്പെടുത്തൽ വരുമ്പോൾ.</string>
+    <string name="learn_tip_alarm">അലാറമുള്ള രാത്രികൾ മാത്രമേ വാച്ച് റെക്കോർഡ് ചെയ്യൂ.</string>
+    <string name="learn_tip_connect">വാച്ച് ഓണാക്കി ഫോണുമായി ബന്ധിപ്പിച്ച് വയ്ക്കുക – അലാറത്തിന് ശേഷം അത് റെക്കോർഡിംഗ് അയയ്ക്കും.</string>
 </resources>

@@ -36,6 +36,7 @@ import com.phasewake.app.ui.history.NightDetailData
 import com.phasewake.app.ui.history.NightDetailScreen
 import com.phasewake.app.ui.home.Check
 import com.phasewake.app.ui.home.HomeScreen
+import com.phasewake.app.ui.home.LearnNightsScreen
 import com.phasewake.app.ui.home.MAX_ALARMS
 import com.phasewake.app.ui.settings.HealthState
 import com.phasewake.app.ui.settings.LicensesScreen
@@ -92,6 +93,7 @@ internal fun AppNavHost(app: PhaseWakeApp, state: NavState, actions: NavActions,
             )
         }
         composable(ExtraRoutes.LICENSES) { LicensesScreen(onBack = { actions.nav.popBackStack() }) }
+        composable(ExtraRoutes.LEARN_NIGHTS) { LearnNightsScreen(learnNightList(state.data), onBack = { actions.nav.popBackStack() }) }
         composable(ExtraRoutes.ONBOARDING) {
             OnboardingScreen(app, state, actions, onDone = {
                 app.appScope.launch { app.settings.setOnboardingDone(true) }
@@ -142,7 +144,7 @@ private fun AlarmsRoute(app: PhaseWakeApp, state: NavState, actions: NavActions,
         routineItems = data.routineItems,
         routineTicks = data.routineTicks,
         onToggleRoutine = { date, id -> app.appScope.launch { app.routine.toggle(date, id) } },
-        extras = homeExtras(app, data, record = recordStatus),
+        extras = homeExtras(app, data, record = recordStatus, onLearnDetails = { actions.nav.navigate(ExtraRoutes.LEARN_NIGHTS) }),
     )
 }
 

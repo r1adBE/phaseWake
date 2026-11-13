@@ -635,4 +635,35 @@
     <string name="learn_point_private">Fanann na sonraí ar do ghléasanna. Is féidir leat an chéim foghlama a mhúchadh sna socruithe am ar bith.</string>
     <string name="learn_switch_hint">Tomhaiseann d’uaireadóir gluaiseacht agus cuisle san oíche chun an t-aláram a oiriúnú. As: gan taifeadadh uathoibríoch, fanann na luachanna foghlamtha.</string>
     <string name="watch_open_app_hint">Oscail Phase Wake ar d’uaireadóir ionas go bhfaighidh sé an t-ordú.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Gach oíche ó thosaigh an chéim foghlama – ar comhaireadh í agus, mura ndearnadh, cén fáth agus cad a chabhródh. Tá %1$d oíche chomhairthe de dhíth ar Phase Wake.</string>
+    <string name="learn_nights_empty">Níl oíche ar bith ann fós. Taispeánfar an chéad cheann anseo an mhaidin dar gcionn.</string>
+    <string name="learn_night_facts">%1$s tomhaiste · %2$d luach · cuisle i %3$d %%</string>
+    <string name="learn_last_night">Níor comhaireadh aréir</string>
+    <string name="learn_reason_counted">Comhairthe</string>
+    <string name="learn_reason_counted_no_pulse">Comhairthe, ach is beag cuisle – is dócha nach raibh an t-uaireadóir á chaitheamh</string>
+    <string name="learn_reason_too_short">Ró-ghearr: %1$s tomhaiste, %2$s ag teastáil</string>
+    <string name="learn_reason_too_few">Ró-bheagán luachanna: %1$d as %2$d</string>
+    <string name="learn_reason_stopped">Stopadh an taifeadadh go luath</string>
+    <string name="learn_reason_ended_battery">Chríochnaigh go luath: ceallra an uaireadóra ró-íseal</string>
+    <string name="learn_reason_ended_system">Chuir córas an uaireadóra deireadh leis go luath</string>
+    <string name="learn_reason_not_worn">Is beag cuisle – is dócha nach raibh an t-uaireadóir á chaitheamh</string>
+    <string name="learn_reason_battery">Níor taifeadadh: ceallra an uaireadóra ag %1$d %%</string>
+    <string name="learn_reason_battery_low">Níor taifeadadh: ceallra an uaireadóra ró-íseal</string>
+    <string name="learn_reason_sensors">Níor taifeadadh: gan rochtain ar bhraiteoirí an uaireadóra</string>
+    <string name="learn_reason_manual">Bhí do thaifeadadh féin ag rith, ach níor tháinig sé</string>
+    <string name="learn_reason_late">Osclaíodh aip an uaireadóra ródhéanach tráthnóna</string>
+    <string name="learn_reason_off">Bhí an chéim foghlama múchta</string>
+    <string name="learn_reason_no_alarm">Ní raibh aláram ann an oíche seo</string>
+    <string name="learn_reason_pending">Fós ar an mbealach ón uaireadóir</string>
+    <string name="learn_reason_auto_off">Níor tosaíodh go huathoibríoch</string>
+    <string name="learn_reason_none">Níor tháinig taifeadadh ar bith</string>
+    <string name="learn_tip_worn">Caith an t-uaireadóir beagán níos teinne san oíche agus seiceáil go bhfuil cead ag Phase Wake do chuisle a thomhas.</string>
+    <string name="learn_tip_run">Lig don taifeadadh rith go dtí an t-aláram.</string>
+    <string name="learn_tip_charge">Luchtaigh an t-uaireadóir go %1$d %% ar a laghad tráthnóna.</string>
+    <string name="learn_tip_system">Múch coigilt ceallra do Phase Wake ar an uaireadóir.</string>
+    <string name="learn_tip_sensors">I socruithe an uaireadóra, ceadaigh do Phase Wake na braiteoirí agus sonraí gluaiseachta a úsáid.</string>
+    <string name="learn_tip_late">Oscail Phase Wake ar an uaireadóir tráthnóna, an meabhrúchán ar a dhéanaí.</string>
+    <string name="learn_tip_alarm">Ní thaifeadann an t-uaireadóir ach oícheanta a bhfuil aláram iontu.</string>
+    <string name="learn_tip_connect">Coinnigh an t-uaireadóir ar siúl agus ceangailte le do ghuthán – seolann sé an taifeadadh tar éis an aláraim.</string>
 </resources>

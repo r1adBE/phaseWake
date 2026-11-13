@@ -618,4 +618,35 @@
     <string name="learn_point_private">Dane zostają na twoich urządzeniach. Fazę nauki możesz w każdej chwili wyłączyć w ustawieniach.</string>
     <string name="learn_switch_hint">Zegarek mierzy w nocy ruch i tętno, aby dopasować budzik. Wył.: brak automatycznego zapisu, wyuczone wartości zostają.</string>
     <string name="watch_open_app_hint">Otwórz Phase Wake na zegarku, aby odebrał polecenie.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Każda noc od początku fazy nauki – czy została zaliczona, a jeśli nie, to dlaczego i co pomoże. Phase Wake potrzebuje %1$d zaliczonych nocy.</string>
+    <string name="learn_nights_empty">Nie ma jeszcze żadnej nocy. Pierwsza pojawi się tu następnego ranka.</string>
+    <string name="learn_night_facts">Zmierzono %1$s · %2$d wartości · tętno w %3$d %%</string>
+    <string name="learn_last_night">Ostatnia noc nie została zaliczona</string>
+    <string name="learn_reason_counted">Zaliczona</string>
+    <string name="learn_reason_counted_no_pulse">Zaliczona, ale prawie bez tętna – zegarek prawdopodobnie nie był noszony</string>
+    <string name="learn_reason_too_short">Za krótko: zmierzono %1$s, potrzeba %2$s</string>
+    <string name="learn_reason_too_few">Za mało wartości: %1$d z %2$d</string>
+    <string name="learn_reason_stopped">Nagrywanie zatrzymane przedwcześnie</string>
+    <string name="learn_reason_ended_battery">Zakończone przedwcześnie: za słaba bateria zegarka</string>
+    <string name="learn_reason_ended_system">Przerwane przedwcześnie przez system zegarka</string>
+    <string name="learn_reason_not_worn">Prawie bez tętna – zegarek prawdopodobnie nie był noszony</string>
+    <string name="learn_reason_battery">Nie nagrano: bateria zegarka na %1$d %%</string>
+    <string name="learn_reason_battery_low">Nie nagrano: za słaba bateria zegarka</string>
+    <string name="learn_reason_sensors">Nie nagrano: brak dostępu do czujników zegarka</string>
+    <string name="learn_reason_manual">Twoje własne nagranie trwało, ale nie dotarło</string>
+    <string name="learn_reason_late">Aplikacja na zegarku otwarta wieczorem za późno</string>
+    <string name="learn_reason_off">Faza nauki była wyłączona</string>
+    <string name="learn_reason_no_alarm">Tej nocy nie było budzika</string>
+    <string name="learn_reason_pending">Jeszcze w drodze z zegarka</string>
+    <string name="learn_reason_auto_off">Nie uruchomiono automatycznie</string>
+    <string name="learn_reason_none">Nie dotarło żadne nagranie</string>
+    <string name="learn_tip_worn">Noś zegarek w nocy nieco ciaśniej i sprawdź, czy Phase Wake może mierzyć twoje tętno.</string>
+    <string name="learn_tip_run">Pozwól, by nagrywanie trwało do budzika.</string>
+    <string name="learn_tip_charge">Wieczorem naładuj zegarek co najmniej do %1$d %%.</string>
+    <string name="learn_tip_system">Wyłącz na zegarku oszczędzanie baterii dla Phase Wake.</string>
+    <string name="learn_tip_sensors">W ustawieniach zegarka pozwól Phase Wake korzystać z czujników i danych o ruchu.</string>
+    <string name="learn_tip_late">Wieczorem otwórz Phase Wake na zegarku, najpóźniej przy przypomnieniu.</string>
+    <string name="learn_tip_alarm">Zegarek nagrywa tylko noce z budzikiem.</string>
+    <string name="learn_tip_connect">Trzymaj zegarek włączony i połączony z telefonem – wysyła nagranie po budziku.</string>
 </resources>

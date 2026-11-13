@@ -102,4 +102,10 @@
     <string name="record_since">%1$s සිට</string>
     <string name="notification_record_title">රාත්‍රිය පටිගත වෙමින්</string>
     <string name="record_battery_low">පටිගත කිරීමට බැටරිය ඉතා අඩුයි</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">ඉගෙනීමේ අදියර</string>
+    <string name="watch_learn_warn">ඔරලෝසුව ආරෝපණය කරන්න, නැතිනම් අද රාත්‍රිය ඉගෙනීමේ අදියරට ගණන් නොගැනේ (බැටරිය %1$d %%, අවශ්‍ය %2$d %%).</string>
+    <string name="watch_learn_skip_battery">අද රාත්‍රිය ඉගෙනීමේ අදියරට ගණන් නොගැනේ: බැටරිය %1$d %%, අවශ්‍ය %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">අද රාත්‍රිය ඉගෙනීමේ අදියරට ගණන් නොගැනේ: Phase Wake ට ඔරලෝසුවේ සංවේදක භාවිත කළ නොහැක.</string>
+    <string name="watch_learn_skip_late">අද රාත්‍රිය ඉගෙනීමේ අදියරට ගණන් නොගැනේ: සවස Phase Wake ප්‍රමාද වැඩියෙන් විවෘත කළා.</string>
 </resources>

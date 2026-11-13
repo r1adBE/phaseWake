@@ -101,4 +101,10 @@
     <string name="record_since">Sedan %1$s</string>
     <string name="notification_record_title">Spelar in natten</string>
     <string name="record_battery_low">För lite batteri för inspelning</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Inlärningsfas</string>
+    <string name="watch_learn_warn">Ladda klockan, annars räknas inte natten för inlärningsfasen (batteri %1$d %%, behöver %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Inatt räknas inte för inlärningsfasen: batteri på %1$d %%, behöver %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Inatt räknas inte för inlärningsfasen: Phase Wake kan inte använda klockans sensorer.</string>
+    <string name="watch_learn_skip_late">Inatt räknas inte för inlärningsfasen: Phase Wake öppnades för sent på kvällen.</string>
 </resources>

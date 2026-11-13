@@ -101,4 +101,10 @@
     <string name="record_since">از %1$s</string>
     <string name="notification_record_title">در حال ضبط شب</string>
     <string name="record_battery_low">باتری برای ضبط خیلی کم است</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">مرحلهٔ یادگیری</string>
+    <string name="watch_learn_warn">ساعتت را شارژ کن، وگرنه امشب برای مرحلهٔ یادگیری حساب نمی‌شود (باتری %1$d %%، لازم %2$d %%).</string>
+    <string name="watch_learn_skip_battery">امشب برای مرحلهٔ یادگیری حساب نمی‌شود: باتری %1$d %%، لازم %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">امشب برای مرحلهٔ یادگیری حساب نمی‌شود: Phase Wake نمی‌تواند از حسگرهای ساعت استفاده کند.</string>
+    <string name="watch_learn_skip_late">امشب برای مرحلهٔ یادگیری حساب نمی‌شود: Phase Wake عصر خیلی دیر باز شد.</string>
 </resources>

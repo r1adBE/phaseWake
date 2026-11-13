@@ -578,4 +578,35 @@
     <string name="learn_point_private">Məlumatlar cihazlarında qalır. Öyrənmə mərhələsini istənilən vaxt ayarlarda söndürə bilərsən.</string>
     <string name="learn_switch_hint">Saatın zəngli saatı uyğunlaşdırmaq üçün gecələr hərəkəti və nəbzi ölçür. Sönülü: avtomatik qeyd yoxdur, öyrənilmiş dəyərlər qalır.</string>
     <string name="watch_open_app_hint">Əmri alması üçün Phase Wake-i saatında aç.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Öyrənmə mərhələsi başlayandan bəri hər gecə – sayılıb, ya yox; sayılmayıbsa, niyə və nə kömək edər. Phase Wake-ə %1$d sayılmış gecə lazımdır.</string>
+    <string name="learn_nights_empty">Hələ gecə yoxdur. Birincisi səhəri gün burada görünəcək.</string>
+    <string name="learn_night_facts">%1$s ölçülüb · %2$d ölçü · nəbz %3$d %% hissədə</string>
+    <string name="learn_last_night">Dünən gecə sayılmadı</string>
+    <string name="learn_reason_counted">Sayıldı</string>
+    <string name="learn_reason_counted_no_pulse">Sayıldı, amma nəbz demək olar ki, yoxdur – yəqin taxılmayıb</string>
+    <string name="learn_reason_too_short">Çox qısa: %1$s ölçülüb, %2$s lazımdır</string>
+    <string name="learn_reason_too_few">Çox az ölçü: %1$d / %2$d</string>
+    <string name="learn_reason_stopped">Qeyd vaxtından əvvəl dayandırıldı</string>
+    <string name="learn_reason_ended_battery">Vaxtından əvvəl bitdi: saatın batareyası çox zəifdir</string>
+    <string name="learn_reason_ended_system">Saatın sistemi vaxtından əvvəl dayandırdı</string>
+    <string name="learn_reason_not_worn">Nəbz demək olar ki, yoxdur – saat yəqin taxılmayıb</string>
+    <string name="learn_reason_battery">Qeyd edilmədi: saatın batareyası %1$d %% idi</string>
+    <string name="learn_reason_battery_low">Qeyd edilmədi: saatın batareyası çox zəifdir</string>
+    <string name="learn_reason_sensors">Qeyd edilmədi: saatın sensorlarına giriş yoxdur</string>
+    <string name="learn_reason_manual">Öz qeydin gedirdi, amma gəlib çatmadı</string>
+    <string name="learn_reason_late">Saat tətbiqi axşam çox gec açıldı</string>
+    <string name="learn_reason_off">Öyrənmə mərhələsi söndürülmüşdü</string>
+    <string name="learn_reason_no_alarm">Bu gecə zəngli saat yox idi</string>
+    <string name="learn_reason_pending">Hələ saatdan yoldadır</string>
+    <string name="learn_reason_auto_off">Avtomatik başlamadı</string>
+    <string name="learn_reason_none">Heç bir qeyd gəlmədi</string>
+    <string name="learn_tip_worn">Gecə saatı bir az daha sıx tax və Phase Wake-in nəbzini ölçməyə icazəsi olduğunu yoxla.</string>
+    <string name="learn_tip_run">Qeydi zəngə qədər davam etdir.</string>
+    <string name="learn_tip_charge">Axşam saatı ən azı %1$d %%-ə qədər doldur.</string>
+    <string name="learn_tip_system">Saatda Phase Wake üçün enerji qənaətini söndür.</string>
+    <string name="learn_tip_sensors">Saatın ayarlarında Phase Wake-ə sensorlardan və hərəkət məlumatlarından istifadəyə icazə ver.</string>
+    <string name="learn_tip_late">Axşam Phase Wake-i saatda aç, ən gec xatırlatma gələndə.</string>
+    <string name="learn_tip_alarm">Saat yalnız zəngli saat olan gecələri qeyd edir.</string>
+    <string name="learn_tip_connect">Saatı açıq və telefonuna qoşulu saxla – qeydi zəngdən sonra göndərir.</string>
 </resources>

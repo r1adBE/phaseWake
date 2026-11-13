@@ -36,6 +36,12 @@ object DataLayer {
     /** Nachricht Uhr → Handy (Warteschlange): frühere Zielzeit, Inhalt `OnsetShift.encode`. */
     const val PATH_MSG_ONSET_SHIFT = "/phasewake/m/onset-shift"
 
+    /**
+     * Nachricht Uhr → Handy (Warteschlange): Die Lernphase zeichnet eine Nacht nicht auf, Inhalt `LearnSkip.encode`
+     * (Lern-Übersicht, r1AD 13.11.2026). Ältere Handys übergehen den Pfad.
+     */
+    const val PATH_MSG_LEARN_SKIP = "/phasewake/m/learn-skip"
+
     /** Nachricht Handy → Uhr (Warteschlange): Lernphase, Inhalt `LearningSnapshot.encode`. */
     const val PATH_MSG_LEARNING = "/phasewake/m/learning"
 

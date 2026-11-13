@@ -590,4 +590,35 @@
     <string name="learn_point_private">Τα δεδομένα μένουν στις συσκευές σου. Μπορείς να απενεργοποιήσεις τη φάση εκμάθησης στις ρυθμίσεις οποιαδήποτε στιγμή.</string>
     <string name="learn_switch_hint">Το ρολόι σου μετρά κίνηση και παλμούς τη νύχτα για να προσαρμόσει το ξυπνητήρι. Ανενεργό: καμία αυτόματη καταγραφή, οι τιμές που έμαθε μένουν.</string>
     <string name="watch_open_app_hint">Άνοιξε το Phase Wake στο ρολόι σου για να λάβει την εντολή.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Κάθε νύχτα από την αρχή της φάσης εκμάθησης – αν μέτρησε και, αν όχι, γιατί και τι βοηθά. Το Phase Wake χρειάζεται %1$d νύχτες που μετράνε.</string>
+    <string name="learn_nights_empty">Δεν υπάρχει ακόμη νύχτα. Η πρώτη εμφανίζεται εδώ το επόμενο πρωί.</string>
+    <string name="learn_night_facts">%1$s μετρήθηκαν · %2$d τιμές · σφυγμός στο %3$d %%</string>
+    <string name="learn_last_night">Η χθεσινή νύχτα δεν μέτρησε</string>
+    <string name="learn_reason_counted">Μέτρησε</string>
+    <string name="learn_reason_counted_no_pulse">Μέτρησε, αλλά σχεδόν χωρίς σφυγμό – μάλλον δεν φορούσες το ρολόι</string>
+    <string name="learn_reason_too_short">Πολύ σύντομη: μετρήθηκαν %1$s, χρειάζονται %2$s</string>
+    <string name="learn_reason_too_few">Πολύ λίγες τιμές: %1$d από %2$d</string>
+    <string name="learn_reason_stopped">Η καταγραφή σταμάτησε νωρίς</string>
+    <string name="learn_reason_ended_battery">Τελείωσε νωρίς: πολύ χαμηλή μπαταρία ρολογιού</string>
+    <string name="learn_reason_ended_system">Το σύστημα του ρολογιού την τερμάτισε νωρίς</string>
+    <string name="learn_reason_not_worn">Σχεδόν χωρίς σφυγμό – μάλλον δεν φορούσες το ρολόι</string>
+    <string name="learn_reason_battery">Δεν καταγράφηκε: μπαταρία ρολογιού στο %1$d %%</string>
+    <string name="learn_reason_battery_low">Δεν καταγράφηκε: πολύ χαμηλή μπαταρία ρολογιού</string>
+    <string name="learn_reason_sensors">Δεν καταγράφηκε: χωρίς πρόσβαση στους αισθητήρες του ρολογιού</string>
+    <string name="learn_reason_manual">Η δική σου καταγραφή έτρεχε, αλλά δεν έφτασε</string>
+    <string name="learn_reason_late">Η εφαρμογή του ρολογιού άνοιξε πολύ αργά το βράδυ</string>
+    <string name="learn_reason_off">Η φάση εκμάθησης ήταν απενεργοποιημένη</string>
+    <string name="learn_reason_no_alarm">Δεν υπήρχε ξυπνητήρι αυτή τη νύχτα</string>
+    <string name="learn_reason_pending">Ακόμη καθ’ οδόν από το ρολόι</string>
+    <string name="learn_reason_auto_off">Δεν ξεκίνησε αυτόματα</string>
+    <string name="learn_reason_none">Δεν έφτασε καμία καταγραφή</string>
+    <string name="learn_tip_worn">Φόρα το ρολόι λίγο πιο σφιχτά τη νύχτα και έλεγξε ότι το Phase Wake επιτρέπεται να μετρά τον σφυγμό σου.</string>
+    <string name="learn_tip_run">Άφησε την καταγραφή να τρέχει μέχρι το ξυπνητήρι.</string>
+    <string name="learn_tip_charge">Φόρτισε το ρολόι το βράδυ τουλάχιστον στο %1$d %%.</string>
+    <string name="learn_tip_system">Απενεργοποίησε την εξοικονόμηση μπαταρίας για το Phase Wake στο ρολόι.</string>
+    <string name="learn_tip_sensors">Επίτρεψε στο Phase Wake να χρησιμοποιεί τους αισθητήρες και τα δεδομένα κίνησης στις ρυθμίσεις του ρολογιού.</string>
+    <string name="learn_tip_late">Άνοιξε το Phase Wake στο ρολόι το βράδυ, το αργότερο με την υπενθύμιση.</string>
+    <string name="learn_tip_alarm">Το ρολόι καταγράφει μόνο νύχτες με ξυπνητήρι.</string>
+    <string name="learn_tip_connect">Κράτα το ρολόι ανοιχτό και συνδεδεμένο με το τηλέφωνο – στέλνει την καταγραφή μετά το ξυπνητήρι.</string>
 </resources>

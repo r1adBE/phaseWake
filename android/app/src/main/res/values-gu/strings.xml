@@ -593,4 +593,35 @@
     <string name="learn_point_private">ડેટા તમારા ઉપકરણો પર જ રહે છે. તમે સેટિંગ્સમાં ગમે ત્યારે શીખવાનો તબક્કો બંધ કરી શકો છો.</string>
     <string name="learn_switch_hint">એલાર્મ ગોઠવવા તમારી ઘડિયાળ રાત્રે હલનચલન અને પલ્સ માપે છે. બંધ: આપોઆપ નોંધ નહીં, શીખેલાં મૂલ્યો રહે છે.</string>
     <string name="watch_open_app_hint">ઘડિયાળ પર Phase Wake ખોલો, જેથી તેને આદેશ મળે.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">શીખવાનો તબક્કો શરૂ થયો ત્યારથી દરેક રાત – તે ગણાઈ કે નહીં, અને ન ગણાઈ તો શા માટે અને શું મદદ કરે. Phase Wake ને %1$d ગણાયેલી રાતો જોઈએ.</string>
+    <string name="learn_nights_empty">હજુ કોઈ રાત નથી. પહેલી રાત બીજા દિવસે સવારે અહીં દેખાશે.</string>
+    <string name="learn_night_facts">%1$s માપ્યું · %2$d માપ · %3$d %%માં નાડી</string>
+    <string name="learn_last_night">ગઈ રાત ગણાઈ નહીં</string>
+    <string name="learn_reason_counted">ગણાઈ</string>
+    <string name="learn_reason_counted_no_pulse">ગણાઈ, પણ નાડી લગભગ નથી – કદાચ ઘડિયાળ પહેરી ન હતી</string>
+    <string name="learn_reason_too_short">ખૂબ ટૂંકું: %1$s માપ્યું, %2$s જોઈએ</string>
+    <string name="learn_reason_too_few">ખૂબ ઓછા માપ: %2$d માંથી %1$d</string>
+    <string name="learn_reason_stopped">રેકોર્ડિંગ વહેલું બંધ થયું</string>
+    <string name="learn_reason_ended_battery">વહેલું પૂરું થયું: ઘડિયાળની બેટરી ખૂબ ઓછી</string>
+    <string name="learn_reason_ended_system">ઘડિયાળની સિસ્ટમે વહેલું બંધ કર્યું</string>
+    <string name="learn_reason_not_worn">નાડી લગભગ નથી – ઘડિયાળ કદાચ પહેરી ન હતી</string>
+    <string name="learn_reason_battery">રેકોર્ડ ન થયું: ઘડિયાળની બેટરી %1$d %% હતી</string>
+    <string name="learn_reason_battery_low">રેકોર્ડ ન થયું: ઘડિયાળની બેટરી ખૂબ ઓછી</string>
+    <string name="learn_reason_sensors">રેકોર્ડ ન થયું: ઘડિયાળના સેન્સર સુધી પહોંચ નથી</string>
+    <string name="learn_reason_manual">તમારું પોતાનું રેકોર્ડિંગ ચાલતું હતું, પણ પહોંચ્યું નથી</string>
+    <string name="learn_reason_late">સાંજે ઘડિયાળની ઍપ ખૂબ મોડી ખોલી</string>
+    <string name="learn_reason_off">શીખવાનો તબક્કો બંધ હતો</string>
+    <string name="learn_reason_no_alarm">આ રાતે કોઈ અલાર્મ નહોતું</string>
+    <string name="learn_reason_pending">હજુ ઘડિયાળમાંથી રસ્તામાં છે</string>
+    <string name="learn_reason_auto_off">આપમેળે શરૂ થયું નહીં</string>
+    <string name="learn_reason_none">કોઈ રેકોર્ડિંગ પહોંચ્યું નથી</string>
+    <string name="learn_tip_worn">રાત્રે ઘડિયાળ થોડી કસીને પહેરો અને તપાસો કે Phase Wake ને તમારી નાડી માપવાની પરવાનગી છે.</string>
+    <string name="learn_tip_run">અલાર્મ સુધી રેકોર્ડિંગ ચાલવા દો.</string>
+    <string name="learn_tip_charge">સાંજે ઘડિયાળને ઓછામાં ઓછી %1$d %% સુધી ચાર્જ કરો.</string>
+    <string name="learn_tip_system">ઘડિયાળ પર Phase Wake માટે બેટરી બચત બંધ કરો.</string>
+    <string name="learn_tip_sensors">ઘડિયાળના સેટિંગ્સમાં Phase Wake ને સેન્સર અને હલનચલનનો ડેટા વાપરવાની પરવાનગી આપો.</string>
+    <string name="learn_tip_late">સાંજે ઘડિયાળ પર Phase Wake ખોલો, મોડામાં મોડું રિમાઇન્ડર આવે ત્યારે.</string>
+    <string name="learn_tip_alarm">ઘડિયાળ ફક્ત અલાર્મવાળી રાતો જ રેકોર્ડ કરે છે.</string>
+    <string name="learn_tip_connect">ઘડિયાળ ચાલુ અને ફોન સાથે જોડાયેલી રાખો – તે અલાર્મ પછી રેકોર્ડિંગ મોકલે છે.</string>
 </resources>

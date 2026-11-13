@@ -11,7 +11,9 @@ import com.phasewake.app.R
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.DiagKind
+import com.phasewake.app.core.LearnNights
 import com.phasewake.app.core.Learning
+import com.phasewake.app.core.SleepNotes
 import com.phasewake.app.core.TestRuns
 import com.phasewake.app.core.Transient
 import com.phasewake.app.core.TransientConflict
@@ -43,6 +45,9 @@ internal object ExtraRoutes {
     const val ONBOARDING = "onboarding"
     const val LICENSES = "licenses"
 
+    /** Lern-Übersicht: je Nacht gezählt oder nicht und warum. */
+    const val LEARN_NIGHTS = "learnNights"
+
     /** Detailseite einer Nacht; `key` = [com.phasewake.app.core.HistoryItem.key]. */
     const val NIGHT = "night?key={key}"
 
@@ -70,13 +75,14 @@ private fun launchTransient(app: PhaseWakeApp, start: suspend () -> TransientCon
 
 /**
  * Probewecker, Powernap, Überspringen und Feiertage für die Startseite. [record]: Stand von «Nacht aufzeichnen» der
- * Uhr; `null` (Uhr kennt es nicht): keine Karte.
+ * Uhr; `null` (Uhr kennt es nicht): keine Karte. [onLearnDetails]: öffnet die Lern-Übersicht.
  */
 internal fun homeExtras(
     app: PhaseWakeApp,
     data: AppData,
     now: Instant = Instant.now(),
     record: RecordSync.RecordStatus? = null,
+    onLearnDetails: () -> Unit = {},
 ): HomeExtras {
     val transient = data.transient?.takeIf { Transient.isActive(it, now) }
     return HomeExtras(
@@ -100,17 +106,18 @@ internal fun homeExtras(
         sleepGoal = data.sleepGoal,
         record = record,
         onRecord = { start -> sendRecord(app, start) },
-        learning = homeLearning(app, data, watchRecords = record != null),
+        learning = homeLearning(app, data, watchRecords = record != null, now = now, onDetails = onLearnDetails),
         learned = data.learning?.values,
     )
 }
 
 /**
  * Karte der Lernphase, nur mit Zustimmung (Audit F-02): solange sie läuft und die Uhr aufzeichnen kann ([watchRecords])
- * «Nacht N von 7» aus den gezählten Aufzeichnungen; danach «Angepasst an dich», bis bestätigt. Noch nicht gefragt und
- * die Uhr kann aufzeichnen: einmal die Frage «Lernphase starten» / «Später». Sonst `null`.
+ * «Nacht N von 7» aus den gezählten Aufzeichnungen, dazu eine unerwartet nicht gezählte letzte Nacht und «Details»
+ * ([onDetails], Lern-Übersicht); danach «Angepasst an dich», bis bestätigt. Noch nicht gefragt und die Uhr kann
+ * aufzeichnen: einmal die Frage «Lernphase starten» / «Später». Sonst `null`.
  */
-private fun homeLearning(app: PhaseWakeApp, data: AppData, watchRecords: Boolean): HomeLearning? {
+private fun homeLearning(app: PhaseWakeApp, data: AppData, watchRecords: Boolean, now: Instant, onDetails: () -> Unit): HomeLearning? {
     val state = data.learning ?: return null
     val values = state.values
     val since = state.since
@@ -118,11 +125,27 @@ private fun homeLearning(app: PhaseWakeApp, data: AppData, watchRecords: Boolean
         state.askConsent && watchRecords ->
             HomeLearning(null, null, onConsent = { on -> app.appScope.launch { app.setLearningConsent(on) } })
         state.active && since != null && watchRecords ->
-            HomeLearning(Learning.progress(countedNights(data, since)), null, autoHint = !data.autoOnset)
+            HomeLearning(
+                Learning.progress(countedNights(data, since)), null, autoHint = !data.autoOnset,
+                miss = LearnNights.lastNightMiss(learnNightList(data, now), now, ZoneId.systemDefault()), onDetails = onDetails,
+            )
         values != null && !state.active && state.consent == true ->
             HomeLearning(null, values, onSeen = { app.appScope.launch { app.learning.setSeen() } }).takeIf { !state.seen }
         else -> null
     }
+}
+
+/**
+ * Lern-Übersicht ([LearnNights.nights]): Aufzeichnungen, Meldungen der Uhr, gemerkte Nächte mit Wecker und die Nächte
+ * der Uhr (sie belegen einen Wecker); leer, solange die Lernphase nie begonnen hat. Jüngste zuerst.
+ */
+internal fun learnNightList(data: AppData, now: Instant = Instant.now(), zone: ZoneId = ZoneId.systemDefault()): List<LearnNights.Night> {
+    val state = data.learning ?: return emptyList()
+    val since = state.since ?: return emptyList()
+    val log = data.learnLog
+    val alarms = log.alarmNights + data.nights.orEmpty().map { SleepNotes.nightDate(it, zone) }
+    val recordings = data.recordings.orEmpty().map { LearnNights.Recorded(it.toLearnNight(), it.endReason?.code) }
+    return LearnNights.nights(recordings, log.skips, alarms, log.alarmsKnownFrom, since, state.consent == true, data.autoOnset, now, zone)
 }
 
 /** Gezählte Nächte der Lernphase ab [since] aus den Aufzeichnungen. */
@@ -178,6 +201,7 @@ internal fun settingsExtras(app: PhaseWakeApp, data: AppData, actions: NavAction
             night = since?.let { Learning.progress(countedNights(data, it)) }?.takeIf { learningState.active },
             values = learningState.values,
             onRestart = if (since != null) ({ app.appScope.launch { app.relearn() } }) else null,
+            onDetails = if (since != null) ({ actions.nav.navigate(ExtraRoutes.LEARN_NIGHTS) }) else null,
             consent = learningState.consent == true,
             onConsent = { on -> app.appScope.launch { app.setLearningConsent(on) } },
         )

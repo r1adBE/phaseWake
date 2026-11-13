@@ -105,4 +105,10 @@
     <string name="record_since">Des de les %1$s</string>
     <string name="notification_record_title">S’enregistra la nit</string>
     <string name="record_battery_low">Bateria massa baixa per enregistrar</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Fase d’aprenentatge</string>
+    <string name="watch_learn_warn">Carrega el rellotge; si no, aquesta nit no comptarà per a la fase d’aprenentatge (bateria %1$d %%, cal %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Aquesta nit no compta per a la fase d’aprenentatge: bateria al %1$d %%, cal %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Aquesta nit no compta per a la fase d’aprenentatge: Phase Wake no pot fer servir els sensors del rellotge.</string>
+    <string name="watch_learn_skip_late">Aquesta nit no compta per a la fase d’aprenentatge: Phase Wake s’ha obert massa tard al vespre.</string>
 </resources>

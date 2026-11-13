@@ -592,4 +592,35 @@
     <string name="learn_point_private">தரவு உங்கள் சாதனங்களிலேயே இருக்கும். கற்றல் நிலையை அமைப்புகளில் எப்போது வேண்டுமானாலும் முடக்கலாம்.</string>
     <string name="learn_switch_hint">அலாரத்தை மாற்ற உங்கள் கடிகாரம் இரவில் அசைவையும் நாடியையும் அளக்கிறது. முடக்கம்: தானியங்கு பதிவு இல்லை, கற்ற மதிப்புகள் இருக்கும்.</string>
     <string name="watch_open_app_hint">கட்டளையைப் பெற வாட்சில் Phase Wake-ஐத் திறக்கவும்.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">கற்றல் நிலை தொடங்கியதிலிருந்து ஒவ்வொரு இரவும் – அது கணக்கிடப்பட்டதா, இல்லையெனில் ஏன், எது உதவும். Phase Wake-க்கு கணக்கிடப்பட்ட %1$d இரவுகள் தேவை.</string>
+    <string name="learn_nights_empty">இன்னும் இரவு இல்லை. முதல் இரவு மறுநாள் காலை இங்கே தோன்றும்.</string>
+    <string name="learn_night_facts">%1$s அளக்கப்பட்டது · %2$d மதிப்புகள் · %3$d %% இல் நாடித்துடிப்பு</string>
+    <string name="learn_last_night">நேற்றிரவு கணக்கிடப்படவில்லை</string>
+    <string name="learn_reason_counted">கணக்கிடப்பட்டது</string>
+    <string name="learn_reason_counted_no_pulse">கணக்கிடப்பட்டது, ஆனால் நாடித்துடிப்பு கிட்டத்தட்ட இல்லை – கடிகாரம் அணியப்படவில்லை போலும்</string>
+    <string name="learn_reason_too_short">மிகக் குறைவு: %1$s அளக்கப்பட்டது, %2$s தேவை</string>
+    <string name="learn_reason_too_few">மிகக் குறைந்த மதிப்புகள்: %2$d இல் %1$d</string>
+    <string name="learn_reason_stopped">பதிவு முன்கூட்டியே நிறுத்தப்பட்டது</string>
+    <string name="learn_reason_ended_battery">முன்கூட்டியே முடிந்தது: கடிகார பேட்டரி மிகக் குறைவு</string>
+    <string name="learn_reason_ended_system">கடிகாரத்தின் சிஸ்டம் முன்கூட்டியே நிறுத்தியது</string>
+    <string name="learn_reason_not_worn">நாடித்துடிப்பு கிட்டத்தட்ட இல்லை – கடிகாரம் அணியப்படவில்லை போலும்</string>
+    <string name="learn_reason_battery">பதிவாகவில்லை: கடிகார பேட்டரி %1$d %% இருந்தது</string>
+    <string name="learn_reason_battery_low">பதிவாகவில்லை: கடிகார பேட்டரி மிகக் குறைவு</string>
+    <string name="learn_reason_sensors">பதிவாகவில்லை: கடிகார சென்சார்களுக்கு அணுகல் இல்லை</string>
+    <string name="learn_reason_manual">உங்கள் சொந்தப் பதிவு இயங்கிக்கொண்டிருந்தது, ஆனால் வந்து சேரவில்லை</string>
+    <string name="learn_reason_late">மாலையில் கடிகார ஆப் மிகத் தாமதமாகத் திறக்கப்பட்டது</string>
+    <string name="learn_reason_off">கற்றல் நிலை அணைக்கப்பட்டிருந்தது</string>
+    <string name="learn_reason_no_alarm">இந்த இரவு அலாரம் இல்லை</string>
+    <string name="learn_reason_pending">இன்னும் கடிகாரத்திலிருந்து வழியில் உள்ளது</string>
+    <string name="learn_reason_auto_off">தானாகத் தொடங்கவில்லை</string>
+    <string name="learn_reason_none">எந்தப் பதிவும் வரவில்லை</string>
+    <string name="learn_tip_worn">இரவில் கடிகாரத்தைச் சற்று இறுக்கமாக அணிந்து, Phase Wake உங்கள் நாடித்துடிப்பை அளக்க அனுமதி உள்ளதா எனச் சரிபாருங்கள்.</string>
+    <string name="learn_tip_run">அலாரம் வரை பதிவைத் தொடர விடுங்கள்.</string>
+    <string name="learn_tip_charge">மாலையில் கடிகாரத்தைக் குறைந்தது %1$d %% வரை சார்ஜ் செய்யுங்கள்.</string>
+    <string name="learn_tip_system">கடிகாரத்தில் Phase Wake-க்கான பேட்டரி சேமிப்பை அணையுங்கள்.</string>
+    <string name="learn_tip_sensors">கடிகார அமைப்புகளில் சென்சார்களையும் இயக்கத் தரவையும் பயன்படுத்த Phase Wake-ஐ அனுமதியுங்கள்.</string>
+    <string name="learn_tip_late">மாலையில் கடிகாரத்தில் Phase Wake-ஐத் திறங்கள், அதிகபட்சம் நினைவூட்டல் வரும்போது.</string>
+    <string name="learn_tip_alarm">அலாரம் உள்ள இரவுகளை மட்டுமே கடிகாரம் பதிவு செய்கிறது.</string>
+    <string name="learn_tip_connect">கடிகாரத்தை இயக்கத்தில் வைத்து ஃபோனுடன் இணைத்திருங்கள் – அலாரத்திற்குப் பிறகு அது பதிவை அனுப்பும்.</string>
 </resources>

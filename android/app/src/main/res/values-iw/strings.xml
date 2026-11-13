@@ -604,4 +604,35 @@
     <string name="learn_point_private">הנתונים נשארים במכשירים שלך. אפשר לכבות את שלב הלמידה בהגדרות בכל עת.</string>
     <string name="learn_switch_hint">השעון שלך מודד תנועה ודופק בלילה כדי להתאים את ההשכמה. כבוי: אין תיעוד אוטומטי, הערכים שנלמדו נשמרים.</string>
     <string name="watch_open_app_hint">פתח את Phase Wake בשעון כדי שיקבל את הפקודה.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">כל לילה מאז תחילת שלב הלמידה – האם נספר, ואם לא, למה ומה עוזר. Phase Wake צריך %1$d לילות שנספרו.</string>
+    <string name="learn_nights_empty">עדיין אין לילה. הראשון יופיע כאן למחרת בבוקר.</string>
+    <string name="learn_night_facts">נמדדו %1$s · %2$d ערכים · דופק ב-%3$d %%</string>
+    <string name="learn_last_night">הלילה האחרון לא נספר</string>
+    <string name="learn_reason_counted">נספר</string>
+    <string name="learn_reason_counted_no_pulse">נספר, אבל כמעט בלי דופק – כנראה שהשעון לא היה על היד</string>
+    <string name="learn_reason_too_short">קצר מדי: נמדדו %1$s, נדרשות %2$s</string>
+    <string name="learn_reason_too_few">מעט מדי ערכים: %1$d מתוך %2$d</string>
+    <string name="learn_reason_stopped">ההקלטה נעצרה מוקדם</string>
+    <string name="learn_reason_ended_battery">הסתיימה מוקדם: הסוללה של השעון חלשה מדי</string>
+    <string name="learn_reason_ended_system">המערכת של השעון סיימה אותה מוקדם</string>
+    <string name="learn_reason_not_worn">כמעט בלי דופק – כנראה שהשעון לא היה על היד</string>
+    <string name="learn_reason_battery">לא הוקלט: הסוללה של השעון ב-%1$d %%</string>
+    <string name="learn_reason_battery_low">לא הוקלט: הסוללה של השעון חלשה מדי</string>
+    <string name="learn_reason_sensors">לא הוקלט: אין גישה לחיישנים של השעון</string>
+    <string name="learn_reason_manual">ההקלטה שלך פעלה, אבל לא הגיעה</string>
+    <string name="learn_reason_late">האפליקציה בשעון נפתחה מאוחר מדי בערב</string>
+    <string name="learn_reason_off">שלב הלמידה היה כבוי</string>
+    <string name="learn_reason_no_alarm">לא היה שעון מעורר בלילה הזה</string>
+    <string name="learn_reason_pending">עדיין בדרך מהשעון</string>
+    <string name="learn_reason_auto_off">לא התחיל אוטומטית</string>
+    <string name="learn_reason_none">לא הגיעה אף הקלטה</string>
+    <string name="learn_tip_worn">כדאי לענוד את השעון בלילה קצת יותר הדוק ולבדוק ש-Phase Wake מורשה למדוד את הדופק שלך.</string>
+    <string name="learn_tip_run">כדאי לתת להקלטה לרוץ עד השעון המעורר.</string>
+    <string name="learn_tip_charge">כדאי לטעון את השעון בערב לפחות ל-%1$d %%.</string>
+    <string name="learn_tip_system">כדאי לכבות בשעון את חיסכון הסוללה עבור Phase Wake.</string>
+    <string name="learn_tip_sensors">בהגדרות השעון יש לאפשר ל-Phase Wake להשתמש בחיישנים ובנתוני התנועה.</string>
+    <string name="learn_tip_late">כדאי לפתוח את Phase Wake בשעון בערב, לכל המאוחר כשמגיעה התזכורת.</string>
+    <string name="learn_tip_alarm">השעון מקליט רק לילות עם שעון מעורר.</string>
+    <string name="learn_tip_connect">כדאי להשאיר את השעון דלוק ומחובר לטלפון – הוא שולח את ההקלטה אחרי השעון המעורר.</string>
 </resources>

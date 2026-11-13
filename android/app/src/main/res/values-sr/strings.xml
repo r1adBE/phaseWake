@@ -607,4 +607,35 @@
     <string name="learn_point_private">Подаци остају на твојим уређајима. Фазу учења можеш било када да искључиш у подешавањима.</string>
     <string name="learn_switch_hint">Твој сат ноћу мери покрете и пулс да прилагоди аларм. Искључено: нема аутоматског снимања, научене вредности остају.</string>
     <string name="watch_open_app_hint">Отвори Phase Wake на сату да прими наредбу.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Свака ноћ од почетка фазе учења – да ли је урачуната и, ако није, зашто и шта помаже. Phase Wake треба %1$d урачунатих ноћи.</string>
+    <string name="learn_nights_empty">Још нема ноћи. Прва се овде појављује следећег јутра.</string>
+    <string name="learn_night_facts">Измерено %1$s · %2$d вредности · пулс у %3$d %%</string>
+    <string name="learn_last_night">Прошла ноћ није урачуната</string>
+    <string name="learn_reason_counted">Урачунато</string>
+    <string name="learn_reason_counted_no_pulse">Урачунато, али скоро без пулса – сат вероватно није био ношен</string>
+    <string name="learn_reason_too_short">Прекратко: измерено %1$s, потребно %2$s</string>
+    <string name="learn_reason_too_few">Премало вредности: %1$d од %2$d</string>
+    <string name="learn_reason_stopped">Снимање прерано заустављено</string>
+    <string name="learn_reason_ended_battery">Прерано завршено: батерија сата преслаба</string>
+    <string name="learn_reason_ended_system">Систем сата га је прерано прекинуо</string>
+    <string name="learn_reason_not_worn">Скоро без пулса – сат вероватно није био ношен</string>
+    <string name="learn_reason_battery">Није снимљено: батерија сата на %1$d %%</string>
+    <string name="learn_reason_battery_low">Није снимљено: батерија сата преслаба</string>
+    <string name="learn_reason_sensors">Није снимљено: нема приступа сензорима сата</string>
+    <string name="learn_reason_manual">Твоје сопствено снимање је радило, али није стигло</string>
+    <string name="learn_reason_late">Апликација на сату отворена прекасно увече</string>
+    <string name="learn_reason_off">Фаза учења је била искључена</string>
+    <string name="learn_reason_no_alarm">Ове ноћи није било аларма</string>
+    <string name="learn_reason_pending">Још је на путу са сата</string>
+    <string name="learn_reason_auto_off">Није покренуто аутоматски</string>
+    <string name="learn_reason_none">Није стигло ниједно снимање</string>
+    <string name="learn_tip_worn">Ноћу носи сат мало чвршће и провери да ли Phase Wake сме да мери твој пулс.</string>
+    <string name="learn_tip_run">Пусти снимање да траје до аларма.</string>
+    <string name="learn_tip_charge">Увече напуни сат на најмање %1$d %%.</string>
+    <string name="learn_tip_system">Искључи штедњу батерије за Phase Wake на сату.</string>
+    <string name="learn_tip_sensors">У подешавањима сата дозволи апликацији Phase Wake да користи сензоре и податке о кретању.</string>
+    <string name="learn_tip_late">Увече отвори Phase Wake на сату, најкасније кад те подсети.</string>
+    <string name="learn_tip_alarm">Сат снима само ноћи са алармом.</string>
+    <string name="learn_tip_connect">Држи сат укључен и повезан са телефоном – он шаље снимање после аларма.</string>
 </resources>

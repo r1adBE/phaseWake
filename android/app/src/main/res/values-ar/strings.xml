@@ -646,4 +646,35 @@
     <string name="learn_point_private">تبقى البيانات على أجهزتك. يمكنك إيقاف مرحلة التعلّم في الإعدادات في أي وقت.</string>
     <string name="learn_switch_hint">تقيس ساعتك الحركة والنبض ليلًا لضبط المنبّه. متوقفة: لا تسجيل تلقائي، وتبقى القيم المتعلَّمة.</string>
     <string name="watch_open_app_hint">افتح Phase Wake على ساعتك حتى تستلم الأمر.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">كل ليلة منذ بدء مرحلة التعلّم – هل احتُسبت، وإن لم تُحتسب فلماذا وما الذي يساعد. يحتاج Phase Wake إلى %1$d ليالٍ محتسبة.</string>
+    <string name="learn_nights_empty">لا توجد ليلة بعد. تظهر الأولى هنا في الصباح التالي.</string>
+    <string name="learn_night_facts">قِيس %1$s · %2$d قراءة · النبض في %3$d %%</string>
+    <string name="learn_last_night">الليلة الماضية لم تُحتسب</string>
+    <string name="learn_reason_counted">احتُسبت</string>
+    <string name="learn_reason_counted_no_pulse">احتُسبت، لكن النبض شبه معدوم – ربما لم تُرتدَ الساعة</string>
+    <string name="learn_reason_too_short">قصيرة جدًا: قِيس %1$s، والمطلوب %2$s</string>
+    <string name="learn_reason_too_few">قراءات قليلة جدًا: %1$d من %2$d</string>
+    <string name="learn_reason_stopped">توقّف التسجيل مبكرًا</string>
+    <string name="learn_reason_ended_battery">انتهى مبكرًا: بطارية الساعة ضعيفة جدًا</string>
+    <string name="learn_reason_ended_system">أنهاه نظام الساعة مبكرًا</string>
+    <string name="learn_reason_not_worn">النبض شبه معدوم – ربما لم تُرتدَ الساعة</string>
+    <string name="learn_reason_battery">لم يُسجَّل: بطارية الساعة عند %1$d %%</string>
+    <string name="learn_reason_battery_low">لم يُسجَّل: بطارية الساعة ضعيفة جدًا</string>
+    <string name="learn_reason_sensors">لم يُسجَّل: لا وصول إلى مستشعرات الساعة</string>
+    <string name="learn_reason_manual">كان تسجيلك اليدوي يعمل لكنه لم يصل</string>
+    <string name="learn_reason_late">فُتح تطبيق الساعة متأخرًا جدًا في المساء</string>
+    <string name="learn_reason_off">كانت مرحلة التعلّم متوقفة</string>
+    <string name="learn_reason_no_alarm">لا منبّه في هذه الليلة</string>
+    <string name="learn_reason_pending">ما زال في الطريق من الساعة</string>
+    <string name="learn_reason_auto_off">لم يبدأ تلقائيًا</string>
+    <string name="learn_reason_none">لم يصل أي تسجيل</string>
+    <string name="learn_tip_worn">ارتدِ الساعة ليلًا بإحكام أكثر قليلًا وتأكّد من أن Phase Wake مسموح له بقياس نبضك.</string>
+    <string name="learn_tip_run">اترك التسجيل يعمل حتى المنبّه.</string>
+    <string name="learn_tip_charge">اشحن الساعة مساءً إلى %1$d %% على الأقل.</string>
+    <string name="learn_tip_system">أوقف توفير البطارية لـ Phase Wake على الساعة.</string>
+    <string name="learn_tip_sensors">اسمح لـ Phase Wake باستخدام المستشعرات وبيانات الحركة في إعدادات الساعة.</string>
+    <string name="learn_tip_late">افتح Phase Wake على الساعة مساءً، وعلى الأكثر عند التذكير.</string>
+    <string name="learn_tip_alarm">تسجّل الساعة الليالي التي فيها منبّه فقط.</string>
+    <string name="learn_tip_connect">أبقِ الساعة مشغّلة ومتصلة بهاتفك – فهي ترسل التسجيل بعد المنبّه.</string>
 </resources>

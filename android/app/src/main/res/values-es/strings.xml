@@ -604,4 +604,35 @@
     <string name="learn_point_private">Los datos se quedan en tus dispositivos. Puedes desactivar la fase de aprendizaje en los ajustes cuando quieras.</string>
     <string name="learn_switch_hint">Tu reloj mide movimiento y pulso por la noche para adaptar la alarma. Desactivado: sin registro automático, los valores aprendidos se mantienen.</string>
     <string name="watch_open_app_hint">Abre Phase Wake en el reloj para que reciba la orden.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Cada noche desde que empezó la fase de aprendizaje: si contó y, si no, por qué y qué ayuda. Phase Wake necesita %1$d noches contadas.</string>
+    <string name="learn_nights_empty">Todavía no hay ninguna noche. La primera aparecerá aquí a la mañana siguiente.</string>
+    <string name="learn_night_facts">%1$s medidas · %2$d valores · pulso en un %3$d %%</string>
+    <string name="learn_last_night">Anoche no contó</string>
+    <string name="learn_reason_counted">Contada</string>
+    <string name="learn_reason_counted_no_pulse">Contada, pero casi sin pulso: probablemente no llevabas el reloj</string>
+    <string name="learn_reason_too_short">Demasiado corta: %1$s medidas, se necesitan %2$s</string>
+    <string name="learn_reason_too_few">Muy pocos valores: %1$d de %2$d</string>
+    <string name="learn_reason_stopped">Grabación detenida antes de tiempo</string>
+    <string name="learn_reason_ended_battery">Terminó antes de tiempo: batería del reloj demasiado baja</string>
+    <string name="learn_reason_ended_system">El sistema del reloj la detuvo antes de tiempo</string>
+    <string name="learn_reason_not_worn">Casi sin pulso: probablemente no llevabas el reloj</string>
+    <string name="learn_reason_battery">No grabada: batería del reloj al %1$d %%</string>
+    <string name="learn_reason_battery_low">No grabada: batería del reloj demasiado baja</string>
+    <string name="learn_reason_sensors">No grabada: sin acceso a los sensores del reloj</string>
+    <string name="learn_reason_manual">Tu propia grabación estaba en marcha, pero no ha llegado</string>
+    <string name="learn_reason_late">App del reloj abierta demasiado tarde por la noche</string>
+    <string name="learn_reason_off">La fase de aprendizaje estaba desactivada</string>
+    <string name="learn_reason_no_alarm">Esta noche no había alarma</string>
+    <string name="learn_reason_pending">Todavía en camino desde el reloj</string>
+    <string name="learn_reason_auto_off">No se inició automáticamente</string>
+    <string name="learn_reason_none">No ha llegado ninguna grabación</string>
+    <string name="learn_tip_worn">Por la noche, lleva el reloj un poco más ajustado y comprueba que Phase Wake pueda medir tu pulso.</string>
+    <string name="learn_tip_run">Deja que la grabación siga hasta la alarma.</string>
+    <string name="learn_tip_charge">Por la noche, carga el reloj al menos al %1$d %%.</string>
+    <string name="learn_tip_system">Desactiva el ahorro de batería para Phase Wake en el reloj.</string>
+    <string name="learn_tip_sensors">En los ajustes del reloj, permite que Phase Wake use los sensores y los datos de movimiento.</string>
+    <string name="learn_tip_late">Abre Phase Wake en el reloj por la noche, como muy tarde cuando te lo recuerde.</string>
+    <string name="learn_tip_alarm">El reloj solo graba las noches con alarma.</string>
+    <string name="learn_tip_connect">Mantén el reloj encendido y conectado al teléfono: envía la grabación después de la alarma.</string>
 </resources>

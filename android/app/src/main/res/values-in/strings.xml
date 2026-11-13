@@ -576,4 +576,35 @@
     <string name="learn_point_private">Datanya tetap di perangkatmu. Kamu bisa mematikan fase belajar di pengaturan kapan saja.</string>
     <string name="learn_switch_hint">Jam tanganmu mengukur gerakan dan denyut nadi di malam hari untuk menyesuaikan alarm. Mati: tidak ada perekaman otomatis, nilai yang dipelajari tetap ada.</string>
     <string name="watch_open_app_hint">Buka Phase Wake di jam tanganmu agar perintahnya diterima.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Setiap malam sejak fase belajar dimulai – apakah terhitung dan, jika tidak, apa sebabnya dan apa yang membantu. Phase Wake memerlukan %1$d malam yang terhitung.</string>
+    <string name="learn_nights_empty">Belum ada malam. Malam pertama muncul di sini keesokan paginya.</string>
+    <string name="learn_night_facts">%1$s terukur · %2$d nilai · denyut di %3$d %%</string>
+    <string name="learn_last_night">Tadi malam tidak terhitung</string>
+    <string name="learn_reason_counted">Terhitung</string>
+    <string name="learn_reason_counted_no_pulse">Terhitung, tetapi hampir tanpa denyut – jam mungkin tidak dipakai</string>
+    <string name="learn_reason_too_short">Terlalu singkat: %1$s terukur, perlu %2$s</string>
+    <string name="learn_reason_too_few">Terlalu sedikit nilai: %1$d dari %2$d</string>
+    <string name="learn_reason_stopped">Perekaman dihentikan terlalu cepat</string>
+    <string name="learn_reason_ended_battery">Berakhir terlalu cepat: baterai jam terlalu lemah</string>
+    <string name="learn_reason_ended_system">Dihentikan terlalu cepat oleh sistem jam</string>
+    <string name="learn_reason_not_worn">Hampir tanpa denyut – jam mungkin tidak dipakai</string>
+    <string name="learn_reason_battery">Tidak direkam: baterai jam %1$d %%</string>
+    <string name="learn_reason_battery_low">Tidak direkam: baterai jam terlalu lemah</string>
+    <string name="learn_reason_sensors">Tidak direkam: tidak ada akses ke sensor jam</string>
+    <string name="learn_reason_manual">Rekamanmu sendiri berjalan, tetapi belum sampai</string>
+    <string name="learn_reason_late">Aplikasi jam dibuka terlalu larut malam</string>
+    <string name="learn_reason_off">Fase belajar sedang nonaktif</string>
+    <string name="learn_reason_no_alarm">Tidak ada alarm malam ini</string>
+    <string name="learn_reason_pending">Masih dalam perjalanan dari jam</string>
+    <string name="learn_reason_auto_off">Tidak dimulai otomatis</string>
+    <string name="learn_reason_none">Tidak ada rekaman yang sampai</string>
+    <string name="learn_tip_worn">Pakai jam sedikit lebih ketat di malam hari dan periksa apakah Phase Wake boleh mengukur denyut nadimu.</string>
+    <string name="learn_tip_run">Biarkan perekaman berjalan sampai alarm.</string>
+    <string name="learn_tip_charge">Isi daya jam pada malam hari hingga minimal %1$d %%.</string>
+    <string name="learn_tip_system">Nonaktifkan penghemat baterai untuk Phase Wake di jam.</string>
+    <string name="learn_tip_sensors">Di setelan jam, izinkan Phase Wake memakai sensor dan data gerakan.</string>
+    <string name="learn_tip_late">Buka Phase Wake di jam pada malam hari, paling lambat saat pengingat muncul.</string>
+    <string name="learn_tip_alarm">Jam hanya merekam malam yang ada alarmnya.</string>
+    <string name="learn_tip_connect">Biarkan jam menyala dan terhubung ke ponselmu – jam mengirim rekaman setelah alarm.</string>
 </resources>

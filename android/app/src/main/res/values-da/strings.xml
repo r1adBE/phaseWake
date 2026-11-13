@@ -590,4 +590,35 @@
     <string name="learn_point_private">Dataene bliver på dine enheder. Du kan altid slå læringsfasen fra i indstillingerne.</string>
     <string name="learn_switch_hint">Dit ur måler bevægelse og puls om natten for at tilpasse alarmen. Fra: ingen automatisk registrering, lærte værdier bevares.</string>
     <string name="watch_open_app_hint">Åbn Phase Wake på dit ur, så det modtager kommandoen.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Hver nat siden læringsfasen startede – om den talte med, og hvis ikke, hvorfor og hvad der hjælper. Phase Wake skal bruge %1$d nætter, der tæller.</string>
+    <string name="learn_nights_empty">Ingen nat endnu. Den første vises her morgenen efter.</string>
+    <string name="learn_night_facts">%1$s målt · %2$d målinger · puls i %3$d %%</string>
+    <string name="learn_last_night">Sidste nat talte ikke med</string>
+    <string name="learn_reason_counted">Talte med</string>
+    <string name="learn_reason_counted_no_pulse">Talte med, men næsten ingen puls – uret blev nok ikke båret</string>
+    <string name="learn_reason_too_short">For kort: %1$s målt, %2$s kræves</string>
+    <string name="learn_reason_too_few">For få målinger: %1$d af %2$d</string>
+    <string name="learn_reason_stopped">Optagelsen blev stoppet for tidligt</string>
+    <string name="learn_reason_ended_battery">Sluttede for tidligt: urets batteri for lavt</string>
+    <string name="learn_reason_ended_system">Afbrudt for tidligt af urets system</string>
+    <string name="learn_reason_not_worn">Næsten ingen puls – uret blev nok ikke båret</string>
+    <string name="learn_reason_battery">Ikke optaget: urets batteri på %1$d %%</string>
+    <string name="learn_reason_battery_low">Ikke optaget: urets batteri for lavt</string>
+    <string name="learn_reason_sensors">Ikke optaget: ingen adgang til urets sensorer</string>
+    <string name="learn_reason_manual">Din egen optagelse kørte, men er ikke kommet frem</string>
+    <string name="learn_reason_late">Appen på uret blev åbnet for sent om aftenen</string>
+    <string name="learn_reason_off">Læringsfasen var slået fra</string>
+    <string name="learn_reason_no_alarm">Ingen alarm denne nat</string>
+    <string name="learn_reason_pending">Stadig på vej fra uret</string>
+    <string name="learn_reason_auto_off">Ikke startet automatisk</string>
+    <string name="learn_reason_none">Ingen optagelse er kommet frem</string>
+    <string name="learn_tip_worn">Bær uret lidt strammere om natten, og tjek, at Phase Wake må måle din puls.</string>
+    <string name="learn_tip_run">Lad optagelsen køre til alarmen.</string>
+    <string name="learn_tip_charge">Oplad uret til mindst %1$d %% om aftenen.</string>
+    <string name="learn_tip_system">Slå batterisparing fra for Phase Wake på uret.</string>
+    <string name="learn_tip_sensors">Giv Phase Wake adgang til sensorer og bevægelsesdata i urets indstillinger.</string>
+    <string name="learn_tip_late">Åbn Phase Wake på uret om aftenen, senest når den minder dig om det.</string>
+    <string name="learn_tip_alarm">Uret optager kun nætter med alarm.</string>
+    <string name="learn_tip_connect">Hold uret tændt og forbundet med din telefon – det sender optagelsen efter alarmen.</string>
 </resources>

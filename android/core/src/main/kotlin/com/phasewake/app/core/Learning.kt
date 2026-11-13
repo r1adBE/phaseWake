@@ -25,7 +25,7 @@ object Learning {
     const val MIN_SPAN_EPOCHS: Int = 360
 
     /** Die Uhr zeichnet in der Lernphase nur ab diesem Akkustand (Prozent) automatisch auf; der Wecker hat Vorrang. */
-    const val MIN_BATTERY: Int = 50
+    const val MIN_BATTERY: Int = 40
 
     /**
      * Ein Ruhepuls je Nacht erst ab so vielen Epochen mit Puls (30 Min, in Stichproben rund 2½ Std. der Nacht); sonst

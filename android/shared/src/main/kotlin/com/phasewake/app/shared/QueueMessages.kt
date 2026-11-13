@@ -27,6 +27,9 @@ object QueueMessages {
     const val KEY_RECORD_STATUS = "record-status"
     const val KEY_ONSET_SHIFT = "onset-shift"
     const val KEY_LEARNING = "learning"
+
+    /** Meldung der Lernphase je Nacht ([DataLayer.PATH_MSG_LEARN_SKIP]), mit der Zielzeit in ms als Zusatz. */
+    const val KEY_LEARN_SKIP = "learn-skip/"
     const val KEY_SLEEP_GOAL = "sleep-goal"
     const val KEY_AUTO_ONSET = "auto-onset"
     const val KEY_HOLIDAYS = "holidays"

@@ -97,4 +97,10 @@
     <string name="record_since">Sejak %1$s</string>
     <string name="notification_record_title">Merakam malam</string>
     <string name="record_battery_low">Bateri terlalu lemah untuk merakam</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Fasa pembelajaran</string>
+    <string name="watch_learn_warn">Cas jam anda, jika tidak malam ini tidak dikira untuk fasa pembelajaran (bateri %1$d %%, perlu %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Malam ini tidak dikira untuk fasa pembelajaran: bateri %1$d %%, perlu %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Malam ini tidak dikira untuk fasa pembelajaran: Phase Wake tidak dapat menggunakan penderia jam.</string>
+    <string name="watch_learn_skip_late">Malam ini tidak dikira untuk fasa pembelajaran: Phase Wake dibuka terlalu lewat pada waktu petang.</string>
 </resources>

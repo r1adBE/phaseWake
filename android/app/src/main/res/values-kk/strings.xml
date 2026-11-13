@@ -578,4 +578,35 @@
     <string name="learn_point_private">Деректер құрылғыларыңда қалады. Үйрену кезеңін баптауларда кез келген уақытта өшіре аласың.</string>
     <string name="learn_switch_hint">Сағатың оятқышты бейімдеу үшін түнде қозғалыс пен пульсті өлшейді. Өшірулі: автоматты жазу жоқ, үйренген мәндер сақталады.</string>
     <string name="watch_open_app_hint">Пәрменді алуы үшін сағатта Phase Wake қолданбасын аш.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Үйрену кезеңі басталғаннан бергі әр түн – есепке алынды ма, алынбаса, неге және не көмектеседі. Phase Wake-ке есепке алынған %1$d түн керек.</string>
+    <string name="learn_nights_empty">Әзірге түн жоқ. Біріншісі келесі күні таңертең осында көрінеді.</string>
+    <string name="learn_night_facts">%1$s өлшенді · %2$d мән · пульс %3$d %%-да</string>
+    <string name="learn_last_night">Өткен түн есепке алынбады</string>
+    <string name="learn_reason_counted">Есепке алынды</string>
+    <string name="learn_reason_counted_no_pulse">Есепке алынды, бірақ пульс жоқтың қасы – сағат тағылмаған болуы мүмкін</string>
+    <string name="learn_reason_too_short">Тым қысқа: %1$s өлшенді, %2$s керек</string>
+    <string name="learn_reason_too_few">Мәндер тым аз: %2$d ішінен %1$d</string>
+    <string name="learn_reason_stopped">Жазу мерзімінен бұрын тоқтатылды</string>
+    <string name="learn_reason_ended_battery">Мерзімінен бұрын аяқталды: сағат батареясы тым әлсіз</string>
+    <string name="learn_reason_ended_system">Сағат жүйесі мерзімінен бұрын тоқтатты</string>
+    <string name="learn_reason_not_worn">Пульс жоқтың қасы – сағат тағылмаған болуы мүмкін</string>
+    <string name="learn_reason_battery">Жазылмады: сағат батареясы %1$d %% болды</string>
+    <string name="learn_reason_battery_low">Жазылмады: сағат батареясы тым әлсіз</string>
+    <string name="learn_reason_sensors">Жазылмады: сағат датчиктеріне қолжетімділік жоқ</string>
+    <string name="learn_reason_manual">Өз жазбаң жүріп тұрған, бірақ келмеді</string>
+    <string name="learn_reason_late">Сағаттағы қолданба кешке тым кеш ашылды</string>
+    <string name="learn_reason_off">Үйрену кезеңі өшірулі болды</string>
+    <string name="learn_reason_no_alarm">Бұл түні оятқыш болмады</string>
+    <string name="learn_reason_pending">Сағаттан әлі жолда</string>
+    <string name="learn_reason_auto_off">Автоматты түрде басталмады</string>
+    <string name="learn_reason_none">Ешбір жазба келмеді</string>
+    <string name="learn_tip_worn">Түнде сағатты сәл тығызырақ тақ және Phase Wake-ке пульсіңді өлшеуге рұқсат бар-жоғын тексер.</string>
+    <string name="learn_tip_run">Жазуды оятқышқа дейін жалғастыр.</string>
+    <string name="learn_tip_charge">Кешке сағатты кемінде %1$d %%-ға дейін зарядта.</string>
+    <string name="learn_tip_system">Сағатта Phase Wake үшін батареяны үнемдеуді өшір.</string>
+    <string name="learn_tip_sensors">Сағат параметрлерінде Phase Wake-ке датчиктер мен қозғалыс деректерін пайдалануға рұқсат бер.</string>
+    <string name="learn_tip_late">Кешке сағатта Phase Wake-ті аш, ең кешіккенде еске салғыш келгенде.</string>
+    <string name="learn_tip_alarm">Сағат тек оятқышы бар түндерді жазады.</string>
+    <string name="learn_tip_connect">Сағатты қосулы әрі телефонға қосылған күйде ұста – ол жазбаны оятқыштан кейін жібереді.</string>
 </resources>

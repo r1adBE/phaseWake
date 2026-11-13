@@ -578,4 +578,35 @@
     <string name="learn_point_private">ဒေတာများသည် သင့်စက်များပေါ်တွင်သာ ရှိသည်။ သင်ယူမှုအဆင့်ကို ဆက်တင်များတွင် အချိန်မရွေး ပိတ်နိုင်သည်။</string>
     <string name="learn_switch_hint">နှိုးစက်ကို ချိန်ညှိရန် သင့်နာရီသည် ညအချိန်တွင် လှုပ်ရှားမှုနှင့် သွေးခုန်နှုန်းကို တိုင်းတာသည်။ ပိတ်: အလိုအလျောက် မှတ်တမ်းမတင်၊ သင်ယူထားသော တန်ဖိုးများ ကျန်ရှိသည်။</string>
     <string name="watch_open_app_hint">အမိန့်ကို လက်ခံရရှိရန် နာရီပေါ်တွင် Phase Wake ကို ဖွင့်ပါ။</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">သင်ယူမှုအဆင့် စတင်ကတည်းက ည တစ်ညစီ – ရေတွက်ခဲ့သလား၊ မရေတွက်ရင် ဘာကြောင့်လဲ၊ ဘာက ကူညီနိုင်လဲ။ Phase Wake အတွက် ရေတွက်ထားသော ည %1$d ည လိုအပ်သည်။</string>
+    <string name="learn_nights_empty">ည မရှိသေးပါ။ ပထမညကို နောက်တစ်နေ့ မနက် ဒီမှာ ပြပါမည်။</string>
+    <string name="learn_night_facts">%1$s တိုင်းထားသည် · တန်ဖိုး %2$d ခု · %3$d %% တွင် သွေးခုန်နှုန်း</string>
+    <string name="learn_last_night">မနေ့ညကို မရေတွက်ခဲ့ပါ</string>
+    <string name="learn_reason_counted">ရေတွက်ပြီး</string>
+    <string name="learn_reason_counted_no_pulse">ရေတွက်ပြီး၊ သို့သော် သွေးခုန်နှုန်း မရှိသလောက် – နာရီကို မဝတ်ထားခဲ့ဖွယ်ရှိသည်</string>
+    <string name="learn_reason_too_short">တိုလွန်းသည်- %1$s တိုင်းထားသည်၊ %2$s လိုအပ်သည်</string>
+    <string name="learn_reason_too_few">တန်ဖိုး နည်းလွန်းသည်- %2$d ခုထဲက %1$d ခု</string>
+    <string name="learn_reason_stopped">မှတ်တမ်းတင်ခြင်းကို စောစီးစွာ ရပ်ခဲ့သည်</string>
+    <string name="learn_reason_ended_battery">စောစီးစွာ ပြီးဆုံးခဲ့သည်- နာရီဘက်ထရီ နည်းလွန်းသည်</string>
+    <string name="learn_reason_ended_system">နာရီ၏ စနစ်က စောစီးစွာ ရပ်လိုက်သည်</string>
+    <string name="learn_reason_not_worn">သွေးခုန်နှုန်း မရှိသလောက် – နာရီကို မဝတ်ထားခဲ့ဖွယ်ရှိသည်</string>
+    <string name="learn_reason_battery">မှတ်တမ်းမတင်ခဲ့ပါ- နာရီဘက်ထရီ %1$d %% ရှိခဲ့သည်</string>
+    <string name="learn_reason_battery_low">မှတ်တမ်းမတင်ခဲ့ပါ- နာရီဘက်ထရီ နည်းလွန်းသည်</string>
+    <string name="learn_reason_sensors">မှတ်တမ်းမတင်ခဲ့ပါ- နာရီ၏ အာရုံခံကိရိယာများကို အသုံးပြုခွင့် မရှိပါ</string>
+    <string name="learn_reason_manual">သင်ကိုယ်တိုင် စတင်ထားသော မှတ်တမ်းတင်ခြင်း လည်ပတ်နေခဲ့သော်လည်း မရောက်လာသေးပါ</string>
+    <string name="learn_reason_late">ညနေတွင် နာရီအက်ပ်ကို နောက်ကျလွန်းစွာ ဖွင့်ခဲ့သည်</string>
+    <string name="learn_reason_off">သင်ယူမှုအဆင့်ကို ပိတ်ထားခဲ့သည်</string>
+    <string name="learn_reason_no_alarm">ဒီညမှာ နှိုးစက် မရှိခဲ့ပါ</string>
+    <string name="learn_reason_pending">နာရီမှ လမ်းခရီးတွင် ရှိနေဆဲ</string>
+    <string name="learn_reason_auto_off">အလိုအလျောက် မစတင်ခဲ့ပါ</string>
+    <string name="learn_reason_none">မှတ်တမ်း မရောက်လာပါ</string>
+    <string name="learn_tip_worn">ညဘက်တွင် နာရီကို နည်းနည်း ပိုတင်းအောင် ဝတ်ပြီး Phase Wake က သင့်သွေးခုန်နှုန်းကို တိုင်းခွင့်ရှိမရှိ စစ်ဆေးပါ။</string>
+    <string name="learn_tip_run">မှတ်တမ်းတင်ခြင်းကို နှိုးစက်အထိ ဆက်လည်ပတ်ပါစေ။</string>
+    <string name="learn_tip_charge">ညနေတွင် နာရီကို အနည်းဆုံး %1$d %% အထိ အားသွင်းပါ။</string>
+    <string name="learn_tip_system">နာရီတွင် Phase Wake အတွက် ဘက်ထရီချွေတာမှုကို ပိတ်ပါ။</string>
+    <string name="learn_tip_sensors">နာရီ၏ ဆက်တင်များတွင် Phase Wake ကို အာရုံခံကိရိယာများနှင့် လှုပ်ရှားမှုဒေတာ အသုံးပြုခွင့်ပေးပါ။</string>
+    <string name="learn_tip_late">ညနေတွင် နာရီပေါ်ရှိ Phase Wake ကို ဖွင့်ပါ၊ အနောက်ဆုံး သတိပေးချက် ရောက်လာသည့်အခါ။</string>
+    <string name="learn_tip_alarm">နာရီသည် နှိုးစက်ရှိသော ညများကိုသာ မှတ်တမ်းတင်သည်။</string>
+    <string name="learn_tip_connect">နာရီကို ဖွင့်ထားပြီး ဖုန်းနှင့် ချိတ်ဆက်ထားပါ – နှိုးစက်ပြီးနောက် မှတ်တမ်းကို ပို့ပေးသည်။</string>
 </resources>

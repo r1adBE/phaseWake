@@ -103,4 +103,10 @@
     <string name="record_since">Since %1$s</string>
     <string name="notification_record_title">Recording night</string>
     <string name="record_battery_low">Battery too low to record</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Learning phase</string>
+    <string name="watch_learn_warn" tools:ignore="PluralsCandidate">Charge your watch, or tonight won’t count for the learning phase (battery %1$d %%, needs %2$d %%).</string>
+    <string name="watch_learn_skip_battery" tools:ignore="PluralsCandidate">Tonight doesn’t count for the learning phase: battery at %1$d %%, needs %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Tonight doesn’t count for the learning phase: Phase Wake can’t use the watch’s sensors.</string>
+    <string name="watch_learn_skip_late" tools:ignore="UnusedResources">Tonight doesn’t count for the learning phase: Phase Wake was opened too late in the evening.</string>
 </resources>

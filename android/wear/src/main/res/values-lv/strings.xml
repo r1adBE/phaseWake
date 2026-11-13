@@ -106,4 +106,10 @@
     <string name="record_since">Kopš %1$s</string>
     <string name="notification_record_title">Tiek ierakstīta nakts</string>
     <string name="record_battery_low">Akumulators ir pārāk izlādējies ierakstam</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Mācīšanās posms</string>
+    <string name="watch_learn_warn">Uzlādē pulksteni, citādi šī nakts netiks ieskaitīta mācīšanās posmā (akumulators %1$d %%, vajag %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Šī nakts netiek ieskaitīta mācīšanās posmā: akumulators %1$d %%, vajag %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Šī nakts netiek ieskaitīta mācīšanās posmā: Phase Wake nevar izmantot pulksteņa sensorus.</string>
+    <string name="watch_learn_skip_late">Šī nakts netiek ieskaitīta mācīšanās posmā: Phase Wake vakarā atvērts par vēlu.</string>
 </resources>

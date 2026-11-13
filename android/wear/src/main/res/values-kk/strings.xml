@@ -96,4 +96,10 @@
     <string name="record_since">%1$s бастап</string>
     <string name="notification_record_title">Түн жазылып жатыр</string>
     <string name="record_battery_low">Жазу үшін батарея тым әлсіз</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Үйрену кезеңі</string>
+    <string name="watch_learn_warn">Сағатты зарядта, әйтпесе бүгінгі түн үйрену кезеңіне есептелмейді (батарея %1$d %%, керек %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Бүгінгі түн үйрену кезеңіне есептелмейді: батарея %1$d %%, керек %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Бүгінгі түн үйрену кезеңіне есептелмейді: Phase Wake сағат датчиктерін пайдалана алмайды.</string>
+    <string name="watch_learn_skip_late">Бүгінгі түн үйрену кезеңіне есептелмейді: Phase Wake кешке тым кеш ашылды.</string>
 </resources>

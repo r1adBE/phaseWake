@@ -101,4 +101,10 @@
     <string name="record_since">Sinds %1$s</string>
     <string name="notification_record_title">Nacht wordt opgenomen</string>
     <string name="record_battery_low">Batterij te leeg om op te nemen</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Leerfase</string>
+    <string name="watch_learn_warn">Laad je horloge op, anders telt vannacht niet mee voor de leerfase (batterij %1$d %%, nodig %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Vannacht telt niet mee voor de leerfase: batterij op %1$d %%, nodig %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Vannacht telt niet mee voor de leerfase: Phase Wake kan de sensoren van het horloge niet gebruiken.</string>
+    <string name="watch_learn_skip_late">Vannacht telt niet mee voor de leerfase: Phase Wake is ’s avonds te laat geopend.</string>
 </resources>

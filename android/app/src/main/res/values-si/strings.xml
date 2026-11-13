@@ -593,4 +593,35 @@
     <string name="learn_point_private">දත්ත ඔබේ උපාංගවලම පවතී. ඕනෑම වේලාවක සැකසීම් තුළ ඉගෙනීමේ අදියර අක්‍රිය කළ හැක.</string>
     <string name="learn_switch_hint">එලාමය සකස් කිරීමට ඔබේ ඔරලෝසුව රාත්‍රියේ චලනය සහ නාඩිය මනියි. අක්‍රියයි: ස්වයංක්‍රීය වාර්තා කිරීමක් නැත, ඉගෙනගත් අගයන් පවතී.</string>
     <string name="watch_open_app_hint">විධානය ලැබීමට ඔරලෝසුවේ Phase Wake විවෘත කරන්න.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">ඉගෙනීමේ අදියර ආරම්භ වූ දා සිට සෑම රාත්‍රියක්ම – එය ගණන් ගත්තාද, නැතිනම් ඇයි සහ උදව් වන්නේ කුමක්ද. Phase Wake ට ගණන් ගත් රාත්‍රී %1$d ක් අවශ්‍යයි.</string>
+    <string name="learn_nights_empty">තවම රාත්‍රියක් නැත. පළමු රාත්‍රිය පසුදා උදෑසන මෙහි පෙන්වයි.</string>
+    <string name="learn_night_facts">%1$s මැනුණි · අගයන් %2$d · %3$d %% තුළ නාඩිය</string>
+    <string name="learn_last_night">ඊයේ රාත්‍රිය ගණන් ගත්තේ නැත</string>
+    <string name="learn_reason_counted">ගණන් ගත්තා</string>
+    <string name="learn_reason_counted_no_pulse">ගණන් ගත්තා, නමුත් නාඩිය නැතිම තරම් – ඔරලෝසුව පැළඳ නොසිටියා විය හැක</string>
+    <string name="learn_reason_too_short">කෙටි වැඩියි: %1$s මැනුණි, %2$s අවශ්‍යයි</string>
+    <string name="learn_reason_too_few">අගයන් අඩු වැඩියි: %2$d න් %1$d</string>
+    <string name="learn_reason_stopped">පටිගත කිරීම කලින් නැවැත්වුණි</string>
+    <string name="learn_reason_ended_battery">කලින් අවසන් විය: ඔරලෝසුවේ බැටරිය අඩු වැඩියි</string>
+    <string name="learn_reason_ended_system">ඔරලෝසුවේ පද්ධතිය කලින් නැවැත්වීය</string>
+    <string name="learn_reason_not_worn">නාඩිය නැතිම තරම් – ඔරලෝසුව පැළඳ නොසිටියා විය හැක</string>
+    <string name="learn_reason_battery">පටිගත නොවීය: ඔරලෝසුවේ බැටරිය %1$d %% විය</string>
+    <string name="learn_reason_battery_low">පටිගත නොවීය: ඔරලෝසුවේ බැටරිය අඩු වැඩියි</string>
+    <string name="learn_reason_sensors">පටිගත නොවීය: ඔරලෝසුවේ සංවේදකවලට ප්‍රවේශයක් නැත</string>
+    <string name="learn_reason_manual">ඔබේම පටිගත කිරීම ක්‍රියාත්මක වුණත් තවම ලැබී නැත</string>
+    <string name="learn_reason_late">සවස ඔරලෝසු යෙදුම ප්‍රමාද වැඩියෙන් විවෘත කළා</string>
+    <string name="learn_reason_off">ඉගෙනීමේ අදියර ක්‍රියාවිරහිතව තිබුණා</string>
+    <string name="learn_reason_no_alarm">මෙම රාත්‍රියේ එලාමයක් නොතිබුණා</string>
+    <string name="learn_reason_pending">තවමත් ඔරලෝසුවෙන් එමින් පවතී</string>
+    <string name="learn_reason_auto_off">ස්වයංක්‍රීයව ආරම්භ නොවීය</string>
+    <string name="learn_reason_none">කිසිදු පටිගත කිරීමක් ලැබුණේ නැත</string>
+    <string name="learn_tip_worn">රාත්‍රියේ ඔරලෝසුව ටිකක් තදින් පළඳින්න, Phase Wake ට ඔබේ නාඩිය මැනීමට අවසර ඇත්දැයි බලන්න.</string>
+    <string name="learn_tip_run">එලාමය දක්වා පටිගත කිරීම ක්‍රියාත්මක වීමට ඉඩ දෙන්න.</string>
+    <string name="learn_tip_charge">සවස ඔරලෝසුව අවම වශයෙන් %1$d %% දක්වා ආරෝපණය කරන්න.</string>
+    <string name="learn_tip_system">ඔරලෝසුවේ Phase Wake සඳහා බැටරි ඉතිරිකිරීම අක්‍රිය කරන්න.</string>
+    <string name="learn_tip_sensors">ඔරලෝසුවේ සැකසීම්වල Phase Wake ට සංවේදක සහ චලන දත්ත භාවිතයට ඉඩ දෙන්න.</string>
+    <string name="learn_tip_late">සවස ඔරලෝසුවේ Phase Wake විවෘත කරන්න, අවම වශයෙන් සිහිකැඳවීම ආ විට.</string>
+    <string name="learn_tip_alarm">ඔරලෝසුව පටිගත කරන්නේ එලාම ඇති රාත්‍රී පමණි.</string>
+    <string name="learn_tip_connect">ඔරලෝසුව ක්‍රියාත්මකව සහ දුරකථනයට සම්බන්ධව තබන්න – එලාමයෙන් පසු එය පටිගත කිරීම යවයි.</string>
 </resources>

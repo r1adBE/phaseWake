@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.BatteryManager
 import android.os.Looper
 import com.phasewake.app.core.Epoch
+import com.phasewake.app.core.Learning
 import com.phasewake.app.shared.LearningSnapshot
 import com.phasewake.app.shared.NightRecording
 import com.phasewake.app.shared.RecordEnd
@@ -259,14 +260,14 @@ class RecordServiceTest {
     }
 
     @Test
-    fun learningStartSkipsBelowHalfBatteryAndWhileRecording() {
-        battery(42)
+    fun learningStartSkipsBelowLearningBatteryAndWhileRecording() {
+        battery(38)
         assertFalse(RecordControl.startForLearning(context, Instant.now().plus(Duration.ofHours(8))))
         assertTrue(alarms.scheduledAlarms.isEmpty())
-        assertEquals("battery 42%", RecordControl.learnSkipReason(recording = false, battery = 42))
+        assertEquals("battery 38%", RecordControl.learnSkipReason(recording = false, battery = 38))
         assertEquals("recording runs", RecordControl.learnSkipReason(recording = true, battery = 80))
         assertNull(RecordControl.learnSkipReason(recording = false, battery = null), "unbekannter Akku hindert nicht")
-        assertNull(RecordControl.learnSkipReason(recording = false, battery = 50))
+        assertNull(RecordControl.learnSkipReason(recording = false, battery = Learning.MIN_BATTERY))
         battery(80)
         val until = Instant.ofEpochMilli(System.currentTimeMillis()).plus(Duration.ofHours(8))
         assertTrue(RecordControl.startForLearning(context, until))

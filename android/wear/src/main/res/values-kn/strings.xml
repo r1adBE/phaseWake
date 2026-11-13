@@ -101,4 +101,10 @@
     <string name="record_since">%1$s ರಿಂದ</string>
     <string name="notification_record_title">ರಾತ್ರಿ ರೆಕಾರ್ಡ್ ಆಗುತ್ತಿದೆ</string>
     <string name="record_battery_low">ರೆಕಾರ್ಡ್ ಮಾಡಲು ಬ್ಯಾಟರಿ ತುಂಬಾ ಕಡಿಮೆ</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">ಕಲಿಕೆಯ ಹಂತ</string>
+    <string name="watch_learn_warn">ವಾಚ್ ಚಾರ್ಜ್ ಮಾಡಿ, ಇಲ್ಲದಿದ್ದರೆ ಇಂದಿನ ರಾತ್ರಿ ಕಲಿಕೆಯ ಹಂತಕ್ಕೆ ಎಣಿಕೆಯಾಗುವುದಿಲ್ಲ (ಬ್ಯಾಟರಿ %1$d %%, ಬೇಕು %2$d %%).</string>
+    <string name="watch_learn_skip_battery">ಇಂದಿನ ರಾತ್ರಿ ಕಲಿಕೆಯ ಹಂತಕ್ಕೆ ಎಣಿಕೆಯಾಗುವುದಿಲ್ಲ: ಬ್ಯಾಟರಿ %1$d %%, ಬೇಕು %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">ಇಂದಿನ ರಾತ್ರಿ ಕಲಿಕೆಯ ಹಂತಕ್ಕೆ ಎಣಿಕೆಯಾಗುವುದಿಲ್ಲ: Phase Wake ವಾಚ್ ಸೆನ್ಸರ್‌ಗಳನ್ನು ಬಳಸಲಾಗುತ್ತಿಲ್ಲ.</string>
+    <string name="watch_learn_skip_late">ಇಂದಿನ ರಾತ್ರಿ ಕಲಿಕೆಯ ಹಂತಕ್ಕೆ ಎಣಿಕೆಯಾಗುವುದಿಲ್ಲ: ಸಂಜೆ Phase Wake ತುಂಬಾ ತಡವಾಗಿ ತೆರೆಯಲಾಗಿದೆ.</string>
 </resources>

@@ -15,6 +15,7 @@ import androidx.wear.ongoing.Status
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Epoch
+import com.phasewake.app.core.LearnSkip
 import com.phasewake.app.core.Learning
 import com.phasewake.app.core.NoiseFloor
 import com.phasewake.app.core.WakePlan
@@ -88,7 +89,8 @@ object RecordControl {
      * Lernphase ([com.phasewake.app.core.Learning]): Die Einschlaf-Messung hat begonnen, die Aufzeichnung startet mit ihr
      * (über einen exakten Alarm gleich jetzt, wie vom Handy) und endet beim Wecken, ohne Klingeln spätestens zur
      * eingestellten Weckzeit [until]. Nicht unter [Learning.MIN_BATTERY] Akku (der Wecker hat Vorrang) und nicht, wenn schon
-     * eine Aufzeichnung läuft (eine von Hand begonnene zählt ebenso). Grund jeweils im Diagnose-Protokoll.
+     * eine Aufzeichnung läuft (eine von Hand begonnene zählt ebenso). Grund jeweils im Diagnose-Protokoll und als Meldung
+     * ans Handy ([LearnNotice.skipped], Lern-Übersicht; bei zu wenig Akku auch als Mitteilung).
      * @return ob der Start ausgelöst wurde.
      */
     fun startForLearning(context: Context, until: Instant): Boolean {
@@ -96,7 +98,10 @@ object RecordControl {
         val battery = battery(context)
         val skip = learnSkipReason(RecordService.running, battery)
         if (skip != null) {
-            app.diag.log(if (battery != null && battery < Learning.MIN_BATTERY) DiagKind.BATTERY else DiagKind.MEASURE_START, "learn record skipped: $skip")
+            val low = battery != null && battery < Learning.MIN_BATTERY
+            app.diag.log(if (low) DiagKind.BATTERY else DiagKind.MEASURE_START, "learn record skipped: $skip")
+            val reason = if (RecordService.running) LearnSkip.Reason.MANUAL else LearnSkip.Reason.BATTERY
+            app.appScope.launch { LearnNotice.skipped(app, LearnSkip(until, reason, battery?.takeIf { low })) }
             return false
         }
         val intent = Intent(context, RecordReceiver::class.java).setAction(ACTION_LEARN_START).putExtra(RecordService.EXTRA_UNTIL, until.toEpochMilli())

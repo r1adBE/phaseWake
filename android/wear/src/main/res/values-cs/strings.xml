@@ -109,4 +109,10 @@
     <string name="record_since">Od %1$s</string>
     <string name="notification_record_title">Noc se zaznamenává</string>
     <string name="record_battery_low">Baterie je na záznam příliš slabá</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Fáze učení</string>
+    <string name="watch_learn_warn">Nabij hodinky, jinak se dnešní noc do fáze učení nezapočítá (baterie %1$d %%, potřeba %2$d %%).</string>
+    <string name="watch_learn_skip_battery">Dnešní noc se do fáze učení nezapočítá: baterie %1$d %%, potřeba %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">Dnešní noc se do fáze učení nezapočítá: Phase Wake nemůže používat senzory hodinek.</string>
+    <string name="watch_learn_skip_late">Dnešní noc se do fáze učení nezapočítá: Phase Wake byl večer otevřen příliš pozdě.</string>
 </resources>

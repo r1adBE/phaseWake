@@ -592,4 +592,35 @@
     <string name="learn_point_private">ডেটা তোমার ডিভাইসেই থাকে। সেটিংসে যেকোনো সময় শেখার পর্ব বন্ধ করতে পারো।</string>
     <string name="learn_switch_hint">অ্যালার্ম মানিয়ে নিতে তোমার ঘড়ি রাতে নড়াচড়া ও পালস মাপে। বন্ধ: স্বয়ংক্রিয় রেকর্ডিং নেই, শেখা মানগুলো থাকে।</string>
     <string name="watch_open_app_hint">ঘড়িতে Phase Wake খোলো, যাতে এটি নির্দেশটি পায়।</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">শেখার পর্ব শুরু হওয়ার পর থেকে প্রতিটি রাত – গণনা হয়েছে কি না, আর না হলে কেন এবং কী সাহায্য করবে। Phase Wake-এর %1$dটি গণনা করা রাত দরকার।</string>
+    <string name="learn_nights_empty">এখনো কোনো রাত নেই। প্রথমটি পরের দিন সকালে এখানে দেখা যাবে।</string>
+    <string name="learn_night_facts">%1$s মাপা হয়েছে · %2$dটি মান · %3$d %%-এ নাড়ি</string>
+    <string name="learn_last_night">গত রাত গণনা হয়নি</string>
+    <string name="learn_reason_counted">গণনা হয়েছে</string>
+    <string name="learn_reason_counted_no_pulse">গণনা হয়েছে, কিন্তু নাড়ি প্রায় নেই – সম্ভবত পরা ছিল না</string>
+    <string name="learn_reason_too_short">খুব ছোট: %1$s মাপা হয়েছে, দরকার %2$s</string>
+    <string name="learn_reason_too_few">খুব কম মান: %2$dটির মধ্যে %1$dটি</string>
+    <string name="learn_reason_stopped">রেকর্ডিং আগেভাগে থামানো হয়েছে</string>
+    <string name="learn_reason_ended_battery">আগেভাগে শেষ: ঘড়ির ব্যাটারি খুব কম</string>
+    <string name="learn_reason_ended_system">ঘড়ির সিস্টেম আগেভাগে শেষ করেছে</string>
+    <string name="learn_reason_not_worn">নাড়ি প্রায় নেই – ঘড়ি সম্ভবত পরা ছিল না</string>
+    <string name="learn_reason_battery">রেকর্ড হয়নি: ঘড়ির ব্যাটারি ছিল %1$d %%</string>
+    <string name="learn_reason_battery_low">রেকর্ড হয়নি: ঘড়ির ব্যাটারি খুব কম</string>
+    <string name="learn_reason_sensors">রেকর্ড হয়নি: ঘড়ির সেন্সরে প্রবেশাধিকার নেই</string>
+    <string name="learn_reason_manual">তোমার নিজের রেকর্ডিং চলছিল, কিন্তু এসে পৌঁছায়নি</string>
+    <string name="learn_reason_late">সন্ধ্যায় ঘড়ির অ্যাপ খুব দেরিতে খোলা হয়েছে</string>
+    <string name="learn_reason_off">শেখার পর্ব বন্ধ ছিল</string>
+    <string name="learn_reason_no_alarm">এই রাতে কোনো অ্যালার্ম ছিল না</string>
+    <string name="learn_reason_pending">এখনো ঘড়ি থেকে আসছে</string>
+    <string name="learn_reason_auto_off">নিজে থেকে শুরু হয়নি</string>
+    <string name="learn_reason_none">কোনো রেকর্ডিং আসেনি</string>
+    <string name="learn_tip_worn">রাতে ঘড়িটা একটু শক্ত করে পরো, আর দেখো Phase Wake তোমার নাড়ি মাপার অনুমতি পেয়েছে কি না।</string>
+    <string name="learn_tip_run">অ্যালার্ম পর্যন্ত রেকর্ডিং চলতে দাও।</string>
+    <string name="learn_tip_charge">সন্ধ্যায় ঘড়ি অন্তত %1$d %% পর্যন্ত চার্জ করো।</string>
+    <string name="learn_tip_system">ঘড়িতে Phase Wake-এর জন্য ব্যাটারি সাশ্রয় বন্ধ করো।</string>
+    <string name="learn_tip_sensors">ঘড়ির সেটিংসে Phase Wake-কে সেন্সর ও চলাচলের ডেটা ব্যবহারের অনুমতি দাও।</string>
+    <string name="learn_tip_late">সন্ধ্যায় ঘড়িতে Phase Wake খোলো, সবচেয়ে দেরিতে রিমাইন্ডার এলে।</string>
+    <string name="learn_tip_alarm">ঘড়ি শুধু অ্যালার্ম থাকা রাতগুলো রেকর্ড করে।</string>
+    <string name="learn_tip_connect">ঘড়ি চালু রাখো আর ফোনের সঙ্গে সংযুক্ত রাখো – অ্যালার্মের পরে এটি রেকর্ডিং পাঠায়।</string>
 </resources>

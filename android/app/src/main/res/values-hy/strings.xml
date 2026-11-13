@@ -578,4 +578,35 @@
     <string name="learn_point_private">Տվյալները մնում են քո սարքերում։ Ուսուցման փուլը կարող ես ցանկացած ժամանակ անջատել կարգավորումներում։</string>
     <string name="learn_switch_hint">Ժամացույցդ գիշերը չափում է շարժումն ու զարկերակը՝ զարթուցիչը հարմարեցնելու համար։ Անջատված է՝ ավտոմատ գրանցում չկա, սովորած արժեքները մնում են։</string>
     <string name="watch_open_app_hint">Բացիր Phase Wake-ը ժամացույցում, որպեսզի այն ստանա հրամանը։</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Ամեն գիշեր ուսուցման փուլի սկզբից – հաշվվե՞լ է, և եթե ոչ, ինչու և ինչն է օգնում։ Phase Wake-ին պետք է %1$d հաշվված գիշեր։</string>
+    <string name="learn_nights_empty">Դեռ գիշեր չկա։ Առաջինը կհայտնվի այստեղ հաջորդ առավոտ։</string>
+    <string name="learn_night_facts">Չափվել է %1$s · %2$d արժեք · զարկերակ %3$d %%-ում</string>
+    <string name="learn_last_night">Անցած գիշերը չհաշվվեց</string>
+    <string name="learn_reason_counted">Հաշվվել է</string>
+    <string name="learn_reason_counted_no_pulse">Հաշվվել է, բայց զարկերակ գրեթե չկա – ժամացույցը հավանաբար կրված չէր</string>
+    <string name="learn_reason_too_short">Չափազանց կարճ՝ չափվել է %1$s, պետք է %2$s</string>
+    <string name="learn_reason_too_few">Չափազանց քիչ արժեքներ՝ %1$d / %2$d</string>
+    <string name="learn_reason_stopped">Ձայնագրումը վաղաժամ դադարեցվեց</string>
+    <string name="learn_reason_ended_battery">Վաղաժամ ավարտվեց՝ ժամացույցի մարտկոցը շատ թույլ է</string>
+    <string name="learn_reason_ended_system">Ժամացույցի համակարգը վաղաժամ դադարեցրեց</string>
+    <string name="learn_reason_not_worn">Զարկերակ գրեթե չկա – ժամացույցը հավանաբար կրված չէր</string>
+    <string name="learn_reason_battery">Չի գրանցվել՝ ժամացույցի մարտկոցը %1$d %% էր</string>
+    <string name="learn_reason_battery_low">Չի գրանցվել՝ ժամացույցի մարտկոցը շատ թույլ է</string>
+    <string name="learn_reason_sensors">Չի գրանցվել՝ ժամացույցի սենսորներին հասանելիություն չկա</string>
+    <string name="learn_reason_manual">Քո սեփական գրանցումն ընթանում էր, բայց չի հասել</string>
+    <string name="learn_reason_late">Ժամացույցի հավելվածը երեկոյան շատ ուշ է բացվել</string>
+    <string name="learn_reason_off">Ուսուցման փուլն անջատված էր</string>
+    <string name="learn_reason_no_alarm">Այս գիշեր զարթուցիչ չկար</string>
+    <string name="learn_reason_pending">Դեռ ճանապարհին է ժամացույցից</string>
+    <string name="learn_reason_auto_off">Ավտոմատ չի սկսվել</string>
+    <string name="learn_reason_none">Ոչ մի գրանցում չի հասել</string>
+    <string name="learn_tip_worn">Գիշերը ժամացույցը մի փոքր ավելի ամուր կրիր և ստուգիր, որ Phase Wake-ը կարող է չափել զարկերակդ։</string>
+    <string name="learn_tip_run">Թող գրանցումը շարունակվի մինչև զարթուցիչը։</string>
+    <string name="learn_tip_charge">Երեկոյան լիցքավորիր ժամացույցը առնվազն %1$d %%։</string>
+    <string name="learn_tip_system">Անջատիր ժամացույցում մարտկոցի խնայողությունը Phase Wake-ի համար։</string>
+    <string name="learn_tip_sensors">Ժամացույցի կարգավորումներում թույլ տուր Phase Wake-ին օգտագործել սենսորները և շարժման տվյալները։</string>
+    <string name="learn_tip_late">Երեկոյան բացիր Phase Wake-ը ժամացույցում, ամենաուշը հիշեցման ժամանակ։</string>
+    <string name="learn_tip_alarm">Ժամացույցը գրանցում է միայն զարթուցիչով գիշերները։</string>
+    <string name="learn_tip_connect">Ժամացույցը պահիր միացված և հեռախոսին կապված – զարթուցիչից հետո այն ուղարկում է գրանցումը։</string>
 </resources>

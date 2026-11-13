@@ -590,4 +590,35 @@
     <string name="learn_point_private">Az adatok a készülékeiden maradnak. A tanulási szakaszt bármikor kikapcsolhatod a beállításokban.</string>
     <string name="learn_switch_hint">Az órád éjjel méri a mozgást és a pulzust az ébresztés igazításához. Ki: nincs automatikus rögzítés, a tanult értékek megmaradnak.</string>
     <string name="watch_open_app_hint">Nyisd meg a Phase Wake-et az órán, hogy megkapja a parancsot.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Minden éjszaka a tanulási szakasz kezdete óta – beszámított-e, és ha nem, miért, és mi segít. A Phase Wake-nek %1$d beszámított éjszakára van szüksége.</string>
+    <string name="learn_nights_empty">Még nincs éjszaka. Az első másnap reggel jelenik meg itt.</string>
+    <string name="learn_night_facts">%1$s mérve · %2$d érték · pulzus %3$d %%-ban</string>
+    <string name="learn_last_night">A tegnap éjszaka nem számított be</string>
+    <string name="learn_reason_counted">Beszámított</string>
+    <string name="learn_reason_counted_no_pulse">Beszámított, de alig volt pulzus – valószínűleg nem volt rajtad az óra</string>
+    <string name="learn_reason_too_short">Túl rövid: %1$s mérve, %2$s kell</string>
+    <string name="learn_reason_too_few">Túl kevés érték: %1$d / %2$d</string>
+    <string name="learn_reason_stopped">A felvétel túl korán leállt</string>
+    <string name="learn_reason_ended_battery">Túl korán véget ért: az óra akkumulátora túl gyenge</string>
+    <string name="learn_reason_ended_system">Az óra rendszere túl korán leállította</string>
+    <string name="learn_reason_not_worn">Alig volt pulzus – valószínűleg nem volt rajtad az óra</string>
+    <string name="learn_reason_battery">Nincs felvétel: az óra akkumulátora %1$d %% volt</string>
+    <string name="learn_reason_battery_low">Nincs felvétel: az óra akkumulátora túl gyenge</string>
+    <string name="learn_reason_sensors">Nincs felvétel: nincs hozzáférés az óra érzékelőihez</string>
+    <string name="learn_reason_manual">A saját felvételed futott, de nem érkezett meg</string>
+    <string name="learn_reason_late">Az órán az alkalmazás este túl későn nyílt meg</string>
+    <string name="learn_reason_off">A tanulási szakasz ki volt kapcsolva</string>
+    <string name="learn_reason_no_alarm">Ezen az éjszakán nem volt ébresztő</string>
+    <string name="learn_reason_pending">Még úton van az óráról</string>
+    <string name="learn_reason_auto_off">Nem indult el automatikusan</string>
+    <string name="learn_reason_none">Nem érkezett felvétel</string>
+    <string name="learn_tip_worn">Éjszakára viseld kicsit szorosabban az órát, és nézd meg, hogy a Phase Wake mérheti-e a pulzusodat.</string>
+    <string name="learn_tip_run">Hagyd futni a felvételt az ébresztőig.</string>
+    <string name="learn_tip_charge">Este töltsd fel az órát legalább %1$d %%-ra.</string>
+    <string name="learn_tip_system">Kapcsold ki az órán az energiatakarékosságot a Phase Wake-nél.</string>
+    <string name="learn_tip_sensors">Az óra beállításaiban engedélyezd, hogy a Phase Wake használja az érzékelőket és a mozgásadatokat.</string>
+    <string name="learn_tip_late">Este nyisd meg a Phase Wake-et az órán, legkésőbb az emlékeztetőnél.</string>
+    <string name="learn_tip_alarm">Az óra csak az ébresztős éjszakákat rögzíti.</string>
+    <string name="learn_tip_connect">Tartsd az órát bekapcsolva és a telefonhoz csatlakoztatva – az ébresztő után elküldi a felvételt.</string>
 </resources>

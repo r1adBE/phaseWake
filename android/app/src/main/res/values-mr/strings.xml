@@ -593,4 +593,35 @@
     <string name="learn_point_private">डेटा तुमच्या डिव्हाइसवरच राहतो. शिकण्याचा टप्पा सेटिंग्जमध्ये कधीही बंद करू शकता.</string>
     <string name="learn_switch_hint">अलार्म जुळवण्यासाठी तुमचे घड्याळ रात्री हालचाल आणि नाडी मोजते. बंद: आपोआप नोंद नाही, शिकलेली मूल्ये राहतात.</string>
     <string name="watch_open_app_hint">घड्याळावर Phase Wake उघडा, म्हणजे त्याला आदेश मिळेल.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">शिकण्याचा टप्पा सुरू झाल्यापासून प्रत्येक रात्र – ती मोजली गेली का, आणि नसेल तर का आणि काय मदत करेल. Phase Wake ला %1$d मोजलेल्या रात्री लागतात.</string>
+    <string name="learn_nights_empty">अजून एकही रात्र नाही. पहिली रात्र दुसऱ्या दिवशी सकाळी इथे दिसेल.</string>
+    <string name="learn_night_facts">%1$s मोजले · %2$d मूल्ये · %3$d %% मध्ये नाडी</string>
+    <string name="learn_last_night">काल रात्र मोजली गेली नाही</string>
+    <string name="learn_reason_counted">मोजली</string>
+    <string name="learn_reason_counted_no_pulse">मोजली, पण नाडी जवळजवळ नाही – बहुधा घड्याळ घातले नव्हते</string>
+    <string name="learn_reason_too_short">खूप लहान: %1$s मोजले, %2$s हवे</string>
+    <string name="learn_reason_too_few">खूप कमी मूल्ये: %2$d पैकी %1$d</string>
+    <string name="learn_reason_stopped">रेकॉर्डिंग लवकर थांबवले</string>
+    <string name="learn_reason_ended_battery">लवकर संपले: घड्याळाची बॅटरी खूप कमी</string>
+    <string name="learn_reason_ended_system">घड्याळाच्या सिस्टमने लवकर थांबवले</string>
+    <string name="learn_reason_not_worn">नाडी जवळजवळ नाही – घड्याळ बहुधा घातले नव्हते</string>
+    <string name="learn_reason_battery">रेकॉर्ड झाले नाही: घड्याळाची बॅटरी %1$d %% होती</string>
+    <string name="learn_reason_battery_low">रेकॉर्ड झाले नाही: घड्याळाची बॅटरी खूप कमी</string>
+    <string name="learn_reason_sensors">रेकॉर्ड झाले नाही: घड्याळाच्या सेन्सरपर्यंत प्रवेश नाही</string>
+    <string name="learn_reason_manual">तुमचे स्वतःचे रेकॉर्डिंग चालू होते, पण पोहोचले नाही</string>
+    <string name="learn_reason_late">संध्याकाळी घड्याळाचे ॲप खूप उशिरा उघडले</string>
+    <string name="learn_reason_off">शिकण्याचा टप्पा बंद होता</string>
+    <string name="learn_reason_no_alarm">या रात्री अलार्म नव्हता</string>
+    <string name="learn_reason_pending">अजून घड्याळाकडून येत आहे</string>
+    <string name="learn_reason_auto_off">आपोआप सुरू झाले नाही</string>
+    <string name="learn_reason_none">कोणतेही रेकॉर्डिंग पोहोचले नाही</string>
+    <string name="learn_tip_worn">रात्री घड्याळ थोडे घट्ट घाला आणि Phase Wake ला तुमची नाडी मोजण्याची परवानगी आहे का ते तपासा.</string>
+    <string name="learn_tip_run">अलार्मपर्यंत रेकॉर्डिंग चालू राहू द्या.</string>
+    <string name="learn_tip_charge">संध्याकाळी घड्याळ किमान %1$d %% पर्यंत चार्ज करा.</string>
+    <string name="learn_tip_system">घड्याळावर Phase Wake साठी बॅटरी बचत बंद करा.</string>
+    <string name="learn_tip_sensors">घड्याळाच्या सेटिंग्जमध्ये Phase Wake ला सेन्सर आणि हालचालीचा डेटा वापरण्याची परवानगी द्या.</string>
+    <string name="learn_tip_late">संध्याकाळी घड्याळावर Phase Wake उघडा, उशिरात उशिरा स्मरणपत्र आल्यावर.</string>
+    <string name="learn_tip_alarm">घड्याळ फक्त अलार्म असलेल्या रात्री रेकॉर्ड करते.</string>
+    <string name="learn_tip_connect">घड्याळ चालू आणि फोनशी जोडलेले ठेवा – अलार्मनंतर ते रेकॉर्डिंग पाठवते.</string>
 </resources>

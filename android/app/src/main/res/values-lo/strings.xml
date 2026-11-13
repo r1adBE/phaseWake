@@ -578,4 +578,35 @@
     <string name="learn_point_private">ຂໍ້ມູນຢູ່ໃນອຸປະກອນຂອງເຈົ້າ. ເຈົ້າສາມາດປິດໄລຍະຮຽນຮູ້ໃນການຕັ້ງຄ່າໄດ້ທຸກເວລາ.</string>
     <string name="learn_switch_hint">ໂມງຂອງເຈົ້າວັດການເຄື່ອນໄຫວ ແລະ ຊີບພະຈອນໃນຕອນກາງຄືນເພື່ອປັບໂມງປຸກ. ປິດ: ບໍ່ບັນທຶກອັດຕະໂນມັດ, ຄ່າທີ່ຮຽນຮູ້ແລ້ວຍັງຢູ່.</string>
     <string name="watch_open_app_hint">ເປີດ Phase Wake ໃນໂມງຂອງເຈົ້າ ເພື່ອໃຫ້ມັນໄດ້ຮັບຄຳສັ່ງ.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">ທຸກຄືນນັບແຕ່ໄລຍະຮຽນຮູ້ເລີ່ມຕົ້ນ – ນັບແລ້ວບໍ່ ແລະ ຖ້າບໍ່ ເປັນຫຍັງ ແລະ ຫຍັງຊ່ວຍໄດ້. Phase Wake ຕ້ອງການ %1$d ຄືນທີ່ນັບແລ້ວ.</string>
+    <string name="learn_nights_empty">ຍັງບໍ່ມີຄືນໃດ. ຄືນທຳອິດຈະສະແດງຢູ່ນີ້ໃນຕອນເຊົ້າມື້ຕໍ່ມາ.</string>
+    <string name="learn_night_facts">ວັດແລ້ວ %1$s · %2$d ຄ່າ · ຊີບພະຈອນໃນ %3$d %%</string>
+    <string name="learn_last_night">ຄືນຜ່ານມາບໍ່ໄດ້ນັບ</string>
+    <string name="learn_reason_counted">ນັບແລ້ວ</string>
+    <string name="learn_reason_counted_no_pulse">ນັບແລ້ວ ແຕ່ເກືອບບໍ່ມີຊີບພະຈອນ – ອາດບໍ່ໄດ້ໃສ່ໂມງ</string>
+    <string name="learn_reason_too_short">ສັ້ນເກີນໄປ: ວັດແລ້ວ %1$s, ຕ້ອງການ %2$s</string>
+    <string name="learn_reason_too_few">ຄ່າໜ້ອຍເກີນໄປ: %1$d ຈາກ %2$d</string>
+    <string name="learn_reason_stopped">ການບັນທຶກຖືກຢຸດກ່ອນເວລາ</string>
+    <string name="learn_reason_ended_battery">ສິ້ນສຸດກ່ອນເວລາ: ແບັດເຕີຣີໂມງຕ່ຳເກີນໄປ</string>
+    <string name="learn_reason_ended_system">ລະບົບຂອງໂມງຢຸດກ່ອນເວລາ</string>
+    <string name="learn_reason_not_worn">ເກືອບບໍ່ມີຊີບພະຈອນ – ອາດບໍ່ໄດ້ໃສ່ໂມງ</string>
+    <string name="learn_reason_battery">ບໍ່ໄດ້ບັນທຶກ: ແບັດເຕີຣີໂມງຢູ່ທີ່ %1$d %%</string>
+    <string name="learn_reason_battery_low">ບໍ່ໄດ້ບັນທຶກ: ແບັດເຕີຣີໂມງຕ່ຳເກີນໄປ</string>
+    <string name="learn_reason_sensors">ບໍ່ໄດ້ບັນທຶກ: ບໍ່ມີສິດເຂົ້າເຖິງເຊັນເຊີຂອງໂມງ</string>
+    <string name="learn_reason_manual">ການບັນທຶກຂອງເຈົ້າເອງກຳລັງເຮັດວຽກ ແຕ່ຍັງບໍ່ມາຮອດ</string>
+    <string name="learn_reason_late">ເປີດແອັບໃນໂມງຊ້າເກີນໄປໃນຕອນແລງ</string>
+    <string name="learn_reason_off">ໄລຍະຮຽນຮູ້ຖືກປິດໄວ້</string>
+    <string name="learn_reason_no_alarm">ຄືນນີ້ບໍ່ມີໂມງປຸກ</string>
+    <string name="learn_reason_pending">ຍັງຢູ່ໃນທາງຈາກໂມງ</string>
+    <string name="learn_reason_auto_off">ບໍ່ໄດ້ເລີ່ມອັດຕະໂນມັດ</string>
+    <string name="learn_reason_none">ບໍ່ມີການບັນທຶກມາຮອດ</string>
+    <string name="learn_tip_worn">ໃນຕອນກາງຄືນ ໃສ່ໂມງໃຫ້ແໜ້ນຂຶ້ນໜ້ອຍໜຶ່ງ ແລະ ກວດເບິ່ງວ່າ Phase Wake ວັດຊີບພະຈອນຂອງເຈົ້າໄດ້.</string>
+    <string name="learn_tip_run">ປ່ອຍໃຫ້ການບັນທຶກເຮັດວຽກຈົນຮອດໂມງປຸກ.</string>
+    <string name="learn_tip_charge">ໃນຕອນແລງ ສາກໂມງໃຫ້ໄດ້ຢ່າງໜ້ອຍ %1$d %%.</string>
+    <string name="learn_tip_system">ປິດການປະຢັດແບັດເຕີຣີສຳລັບ Phase Wake ໃນໂມງ.</string>
+    <string name="learn_tip_sensors">ໃນການຕັ້ງຄ່າຂອງໂມງ ອະນຸຍາດໃຫ້ Phase Wake ໃຊ້ເຊັນເຊີ ແລະ ຂໍ້ມູນການເຄື່ອນໄຫວ.</string>
+    <string name="learn_tip_late">ເປີດ Phase Wake ໃນໂມງໃນຕອນແລງ ຢ່າງຊ້າທີ່ສຸດເມື່ອມັນແຈ້ງເຕືອນ.</string>
+    <string name="learn_tip_alarm">ໂມງບັນທຶກສະເພາະຄືນທີ່ມີໂມງປຸກເທົ່ານັ້ນ.</string>
+    <string name="learn_tip_connect">ເປີດໂມງໄວ້ ແລະ ເຊື່ອມຕໍ່ກັບໂທລະສັບ – ມັນສົ່ງການບັນທຶກຫຼັງໂມງປຸກ.</string>
 </resources>

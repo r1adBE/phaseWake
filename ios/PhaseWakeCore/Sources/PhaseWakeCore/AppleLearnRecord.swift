@@ -36,6 +36,22 @@ public enum AppleLearnRecord {
         return .start(from: from, until: end, duration: end.timeIntervalSince(now))
     }
 
+    /// Meldung ans iPhone (Lern-Übersicht, r1AD 13.11.2026) zum Grund `reason` aus dem Diagnose-Protokoll der Uhr für die
+    /// Nacht mit Zielzeit `target`: «battery 38%» → Akku mit Stand, «too late» → zu spät, «recorder unavailable» und
+    /// «motion not allowed» → keine Sensoren, «recording runs» → Aufzeichnung von Hand; sonst (z. B. «past») `nil`.
+    public static func learnSkip(reason: String, target: Date) -> LearnSkip? {
+        if reason.hasPrefix("battery ") {
+            let digits = reason.dropFirst("battery ".count).prefix { $0.isASCII && $0.isNumber }
+            return LearnSkip(target: target, reason: .battery, battery: Int(digits).flatMap { (0...100).contains($0) ? $0 : nil })
+        }
+        switch reason {
+        case "too late": return LearnSkip(target: target, reason: .late)
+        case "recorder unavailable", "motion not allowed": return LearnSkip(target: target, reason: .sensors)
+        case "recording runs": return LearnSkip(target: target, reason: .manual)
+        default: return nil
+        }
+    }
+
     /// Ende der Auswertung: Ende des Klingelns `wokeAt`, höchstens `until` (Ende des Rekorders); ohne Klingeln die
     /// Zielzeit `target` (wie auf der Galaxy Watch).
     public static func end(wokeAt: Date?, target: Date, until: Date) -> Date {

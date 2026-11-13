@@ -101,4 +101,10 @@
     <string name="record_since">Siden %1$s</string>
     <string name="notification_record_title">Tar opp natten</string>
     <string name="record_battery_low">For lite batteri til opptak</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="watch_learn_title">Læringsfase</string>
+    <string name="watch_learn_warn">Lad klokken, ellers teller ikke i natt med i læringsfasen (batteri %1$d %%, trenger %2$d %%).</string>
+    <string name="watch_learn_skip_battery">I natt teller ikke med i læringsfasen: batteri på %1$d %%, trenger %2$d %%.</string>
+    <string name="watch_learn_skip_sensors">I natt teller ikke med i læringsfasen: Phase Wake kan ikke bruke klokkens sensorer.</string>
+    <string name="watch_learn_skip_late">I natt teller ikke med i læringsfasen: Phase Wake ble åpnet for sent om kvelden.</string>
 </resources>

@@ -593,4 +593,35 @@
     <string name="learn_point_private">Os datos quedan nos teus dispositivos. Podes desactivar a fase de aprendizaxe na configuración cando queiras.</string>
     <string name="learn_switch_hint">O teu reloxo mide movemento e pulso pola noite para adaptar a alarma. Desactivado: sen rexistro automático, os valores aprendidos mantéñense.</string>
     <string name="watch_open_app_hint">Abre Phase Wake no reloxo para que reciba a orde.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Cada noite desde que comezou a fase de aprendizaxe: se contou e, se non, por que e que axuda. Phase Wake necesita %1$d noites contadas.</string>
+    <string name="learn_nights_empty">Aínda non hai ningunha noite. A primeira aparecerá aquí á mañá seguinte.</string>
+    <string name="learn_night_facts">%1$s medidas · %2$d valores · pulso nun %3$d %%</string>
+    <string name="learn_last_night">A noite pasada non contou</string>
+    <string name="learn_reason_counted">Contada</string>
+    <string name="learn_reason_counted_no_pulse">Contada, pero case sen pulso: probablemente non levabas o reloxo</string>
+    <string name="learn_reason_too_short">Demasiado curta: %1$s medidas, precísanse %2$s</string>
+    <string name="learn_reason_too_few">Moi poucos valores: %1$d de %2$d</string>
+    <string name="learn_reason_stopped">Gravación detida antes de tempo</string>
+    <string name="learn_reason_ended_battery">Rematou antes de tempo: batería do reloxo demasiado baixa</string>
+    <string name="learn_reason_ended_system">O sistema do reloxo detívoa antes de tempo</string>
+    <string name="learn_reason_not_worn">Case sen pulso: probablemente non levabas o reloxo</string>
+    <string name="learn_reason_battery">Non gravada: batería do reloxo ao %1$d %%</string>
+    <string name="learn_reason_battery_low">Non gravada: batería do reloxo demasiado baixa</string>
+    <string name="learn_reason_sensors">Non gravada: sen acceso aos sensores do reloxo</string>
+    <string name="learn_reason_manual">A túa propia gravación estaba en marcha, pero non chegou</string>
+    <string name="learn_reason_late">App do reloxo aberta demasiado tarde pola noite</string>
+    <string name="learn_reason_off">A fase de aprendizaxe estaba desactivada</string>
+    <string name="learn_reason_no_alarm">Esta noite non había alarma</string>
+    <string name="learn_reason_pending">Aínda en camiño desde o reloxo</string>
+    <string name="learn_reason_auto_off">Non se iniciou automaticamente</string>
+    <string name="learn_reason_none">Non chegou ningunha gravación</string>
+    <string name="learn_tip_worn">Pola noite, leva o reloxo un pouco máis axustado e comproba que Phase Wake poida medirche o pulso.</string>
+    <string name="learn_tip_run">Deixa que a gravación siga ata a alarma.</string>
+    <string name="learn_tip_charge">Pola noite, carga o reloxo polo menos ao %1$d %%.</string>
+    <string name="learn_tip_system">Desactiva o aforro de batería para Phase Wake no reloxo.</string>
+    <string name="learn_tip_sensors">Na configuración do reloxo, permite que Phase Wake use os sensores e os datos de movemento.</string>
+    <string name="learn_tip_late">Abre Phase Wake no reloxo pola noite, como moi tarde cando cho lembre.</string>
+    <string name="learn_tip_alarm">O reloxo só grava as noites con alarma.</string>
+    <string name="learn_tip_connect">Mantén o reloxo aceso e conectado ao teléfono: envía a gravación despois da alarma.</string>
 </resources>

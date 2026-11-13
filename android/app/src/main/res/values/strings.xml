@@ -596,4 +596,35 @@
     <string name="learn_switch_hint">Your watch measures motion and pulse at night to adapt the alarm. Off: no automatic recording, learned values stay.</string>
     <!-- Nur Apple (iPhone → Uhr, wenn die Uhr-App nicht läuft). -->
     <string name="watch_open_app_hint" tools:ignore="UnusedResources">Open Phase Wake on your watch so it receives the command.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro" tools:ignore="PluralsCandidate">Every night since the learning phase started – whether it counted and, if not, why and what helps. Phase Wake needs %1$d counted nights.</string>
+    <string name="learn_nights_empty">No night yet. The first one shows up here the morning after.</string>
+    <string name="learn_night_facts" tools:ignore="PluralsCandidate">%1$s measured · %2$d readings · pulse in %3$d %%</string>
+    <string name="learn_last_night">Last night didn’t count</string>
+    <string name="learn_reason_counted">Counted</string>
+    <string name="learn_reason_counted_no_pulse">Counted, but hardly any pulse – probably not worn</string>
+    <string name="learn_reason_too_short">Too short: %1$s measured, %2$s needed</string>
+    <string name="learn_reason_too_few" tools:ignore="PluralsCandidate">Too few readings: %1$d of %2$d</string>
+    <string name="learn_reason_stopped">Recording stopped early</string>
+    <string name="learn_reason_ended_battery">Ended early: watch battery too low</string>
+    <string name="learn_reason_ended_system">Ended early by the watch’s system</string>
+    <string name="learn_reason_not_worn">Hardly any pulse – watch probably not worn</string>
+    <string name="learn_reason_battery" tools:ignore="PluralsCandidate">Not recorded: watch battery at %1$d %%</string>
+    <string name="learn_reason_battery_low">Not recorded: watch battery too low</string>
+    <string name="learn_reason_sensors">Not recorded: no access to the watch’s sensors</string>
+    <string name="learn_reason_manual">Your own recording was running but hasn’t arrived</string>
+    <string name="learn_reason_late">Watch app opened too late in the evening</string>
+    <string name="learn_reason_off">Learning phase was off</string>
+    <string name="learn_reason_no_alarm">No alarm this night</string>
+    <string name="learn_reason_pending">Still on its way from the watch</string>
+    <string name="learn_reason_auto_off">Not started automatically</string>
+    <string name="learn_reason_none">No recording arrived</string>
+    <string name="learn_tip_worn">Wear the watch a little snugger at night and check that Phase Wake may measure your pulse.</string>
+    <string name="learn_tip_run">Let the recording run until the alarm.</string>
+    <string name="learn_tip_charge" tools:ignore="PluralsCandidate">Charge the watch to at least %1$d %% in the evening.</string>
+    <string name="learn_tip_system">Turn off battery saving for Phase Wake on the watch.</string>
+    <string name="learn_tip_sensors">Allow Phase Wake to use the sensors and motion data in the watch’s settings.</string>
+    <string name="learn_tip_late">Open Phase Wake on the watch in the evening, at the latest when it reminds you.</string>
+    <string name="learn_tip_alarm">The watch only records nights with an alarm.</string>
+    <string name="learn_tip_connect">Keep the watch switched on and connected to your phone – it sends the recording after the alarm.</string>
 </resources>

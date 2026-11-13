@@ -593,4 +593,35 @@
     <string name="learn_point_private">Ma’lumotlar qurilmalaringda qoladi. O‘rganish bosqichini istalgan vaqtda sozlamalardan o‘chirishing mumkin.</string>
     <string name="learn_switch_hint">Soating budilnikni moslash uchun tunda harakat va pulsni o‘lchaydi. O‘chiq: avtomatik yozuv yo‘q, o‘rganilgan qiymatlar qoladi.</string>
     <string name="watch_open_app_hint">Buyruqni olishi uchun soatda Phase Wake’ni och.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">O‘rganish bosqichi boshlanganidan beri har bir tun – hisobga olindimi, olinmagan bo‘lsa, nega va nima yordam beradi. Phase Wake uchun %1$d ta hisobga olingan tun kerak.</string>
+    <string name="learn_nights_empty">Hali tun yo‘q. Birinchisi ertasi kuni ertalab shu yerda ko‘rinadi.</string>
+    <string name="learn_night_facts">%1$s o‘lchandi · %2$d ta qiymat · %3$d %%da puls</string>
+    <string name="learn_last_night">O‘tgan tun hisobga olinmadi</string>
+    <string name="learn_reason_counted">Hisobga olindi</string>
+    <string name="learn_reason_counted_no_pulse">Hisobga olindi, lekin puls deyarli yo‘q – soat taqilmagan bo‘lsa kerak</string>
+    <string name="learn_reason_too_short">Juda qisqa: %1$s o‘lchandi, %2$s kerak</string>
+    <string name="learn_reason_too_few">Qiymatlar juda kam: %2$d tadan %1$d ta</string>
+    <string name="learn_reason_stopped">Yozuv muddatidan oldin to‘xtatildi</string>
+    <string name="learn_reason_ended_battery">Muddatidan oldin tugadi: soat batareyasi juda kuchsiz</string>
+    <string name="learn_reason_ended_system">Soat tizimi muddatidan oldin to‘xtatdi</string>
+    <string name="learn_reason_not_worn">Puls deyarli yo‘q – soat taqilmagan bo‘lsa kerak</string>
+    <string name="learn_reason_battery">Yozilmadi: soat batareyasi %1$d %% edi</string>
+    <string name="learn_reason_battery_low">Yozilmadi: soat batareyasi juda kuchsiz</string>
+    <string name="learn_reason_sensors">Yozilmadi: soat sensorlariga ruxsat yo‘q</string>
+    <string name="learn_reason_manual">O‘z yozuving ishlayotgan edi, lekin yetib kelmadi</string>
+    <string name="learn_reason_late">Soatdagi ilova kechqurun juda kech ochildi</string>
+    <string name="learn_reason_off">O‘rganish bosqichi o‘chiq edi</string>
+    <string name="learn_reason_no_alarm">Bu tunda budilnik yo‘q edi</string>
+    <string name="learn_reason_pending">Hali soatdan yo‘lda</string>
+    <string name="learn_reason_auto_off">Avtomatik boshlanmadi</string>
+    <string name="learn_reason_none">Hech qanday yozuv kelmadi</string>
+    <string name="learn_tip_worn">Tunda soatni biroz mahkamroq taq va Phase Wake pulsingni o‘lchashga ruxsat borligini tekshir.</string>
+    <string name="learn_tip_run">Yozuv budilnikkacha davom etsin.</string>
+    <string name="learn_tip_charge">Kechqurun soatni kamida %1$d %%gacha quvvatla.</string>
+    <string name="learn_tip_system">Soatda Phase Wake uchun batareya tejashni o‘chir.</string>
+    <string name="learn_tip_sensors">Soat sozlamalarida Phase Wake’ga sensorlar va harakat ma’lumotlaridan foydalanishga ruxsat ber.</string>
+    <string name="learn_tip_late">Kechqurun soatda Phase Wake’ni och, eng kechi eslatma kelganda.</string>
+    <string name="learn_tip_alarm">Soat faqat budilnikli tunlarni yozadi.</string>
+    <string name="learn_tip_connect">Soatni yoqiq va telefoningga ulangan holda saqla – u yozuvni budilnikdan keyin yuboradi.</string>
 </resources>

@@ -593,4 +593,35 @@
     <string name="learn_point_private">Податоците остануваат на твоите уреди. Фазата на учење можеш да ја исклучиш во поставките во секое време.</string>
     <string name="learn_switch_hint">Твојот часовник ноќе мери движење и пулс за да го прилагоди алармот. Исклучено: нема автоматско снимање, научените вредности остануваат.</string>
     <string name="watch_open_app_hint">Отвори го Phase Wake на часовникот за да ја прими командата.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Секоја ноќ од почетокот на фазата на учење – дали е пресметана и, ако не, зошто и што помага. На Phase Wake му требаат %1$d пресметани ноќи.</string>
+    <string name="learn_nights_empty">Сè уште нема ноќ. Првата ќе се појави тука следното утро.</string>
+    <string name="learn_night_facts">Измерено %1$s · %2$d вредности · пулс во %3$d %%</string>
+    <string name="learn_last_night">Минатата ноќ не е пресметана</string>
+    <string name="learn_reason_counted">Пресметано</string>
+    <string name="learn_reason_counted_no_pulse">Пресметано, но речиси без пулс – часовникот веројатно не бил носен</string>
+    <string name="learn_reason_too_short">Прекратко: измерено %1$s, потребно %2$s</string>
+    <string name="learn_reason_too_few">Премалку вредности: %1$d од %2$d</string>
+    <string name="learn_reason_stopped">Снимањето е прекинато предвреме</string>
+    <string name="learn_reason_ended_battery">Заврши предвреме: батеријата на часовникот е преслаба</string>
+    <string name="learn_reason_ended_system">Системот на часовникот го прекина предвреме</string>
+    <string name="learn_reason_not_worn">Речиси без пулс – часовникот веројатно не бил носен</string>
+    <string name="learn_reason_battery">Не е снимено: батеријата на часовникот на %1$d %%</string>
+    <string name="learn_reason_battery_low">Не е снимено: батеријата на часовникот е преслаба</string>
+    <string name="learn_reason_sensors">Не е снимено: нема пристап до сензорите на часовникот</string>
+    <string name="learn_reason_manual">Твоето сопствено снимање работеше, но не пристигна</string>
+    <string name="learn_reason_late">Апликацијата на часовникот е отворена предоцна навечер</string>
+    <string name="learn_reason_off">Фазата на учење беше исклучена</string>
+    <string name="learn_reason_no_alarm">Нема аларм оваа ноќ</string>
+    <string name="learn_reason_pending">Сè уште е на пат од часовникот</string>
+    <string name="learn_reason_auto_off">Не започна автоматски</string>
+    <string name="learn_reason_none">Не пристигна снимање</string>
+    <string name="learn_tip_worn">Ноќе носи го часовникот малку поцврсто и провери дали Phase Wake смее да ти го мери пулсот.</string>
+    <string name="learn_tip_run">Остави го снимањето да трае до алармот.</string>
+    <string name="learn_tip_charge">Навечер наполни го часовникот на најмалку %1$d %%.</string>
+    <string name="learn_tip_system">Исклучи го штедењето батерија за Phase Wake на часовникот.</string>
+    <string name="learn_tip_sensors">Во поставките на часовникот дозволи му на Phase Wake да ги користи сензорите и податоците за движење.</string>
+    <string name="learn_tip_late">Отвори го Phase Wake на часовникот навечер, најдоцна кога ќе те потсети.</string>
+    <string name="learn_tip_alarm">Часовникот снима само ноќи со аларм.</string>
+    <string name="learn_tip_connect">Држи го часовникот вклучен и поврзан со телефонот – го испраќа снимањето по алармот.</string>
 </resources>

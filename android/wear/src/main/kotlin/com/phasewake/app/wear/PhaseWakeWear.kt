@@ -114,6 +114,7 @@ open class PhaseWakeWear : Application() {
         // 12/24-Std.-Einstellung für Kachel, Komplikation und Mitteilungen auch ohne offenen Bildschirm (Audit N-10).
         com.phasewake.app.wear.ui.WearClock.update(this)
         Notifications.createChannels(this)
+        com.phasewake.app.wear.record.LearnNotice.createChannel(this)
         diag.log(if (DirectBoot.isUnlocked(this)) DiagKind.BOOT else DiagKind.DIRECT_BOOT, "app start battery ${batteryPercent()}")
         // Nachholen, was das Handy schon abgelegt hat (Wecker, «Verlauf löschen»), falls eine Änderung
         // verpasst wurde; nur nach dem ersten Entsperren, vorher ist der Speicher nicht lesbar. Danach immer neu

@@ -45,6 +45,7 @@ import com.phasewake.app.core.TransientPlan
 import com.phasewake.app.core.Streak
 import com.phasewake.app.core.Trends
 import com.phasewake.app.core.WeeklySummary
+import com.phasewake.app.learn.LearnLogState
 import com.phasewake.app.learn.LearningState
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.NightRecording
@@ -109,6 +110,8 @@ internal class AppData(
     val learning: LearningState? = null,
     /** Abgeschlossene Aufzeichnungen der Uhr (zählen für die Lernphase); `null`, bis gelesen. */
     val recordings: List<NightRecording>? = null,
+    /** Lern-Übersicht: Meldungen der Uhr und Nächte mit Wecker. */
+    val learnLog: LearnLogState = LearnLogState(),
 )
 
 /** Sammelt [AppData] aus den Repositories; Verlauf und Geräusche werden einmal geladen. */
@@ -144,11 +147,12 @@ internal fun collectAppData(app: PhaseWakeApp): AppData {
     val learning by learningFlow.collectAsStateWithLifecycle(initialValue = null)
     val recordings by app.recordings.recordings.collectAsStateWithLifecycle()
     LaunchedEffect(Unit) { app.recordings.load() }
+    val learnLog by app.learnLog.state.collectAsStateWithLifecycle(initialValue = LearnLogState())
     return AppData(
         alarms, nights, notes, customNotes, sleepGoal, bedtimeReminder, soundTimer, sound,
         soundPlaying, recording, weeklyReview, soundClips, routineItems, routineTicks,
         holidays, transient, testRun, napMinutes, onboardingDone, diagnostics, doneUntil, healthFeelings, autoOnset = autoOnset,
-        learning = learning, recordings = recordings,
+        learning = learning, recordings = recordings, learnLog = learnLog,
     )
 }
 

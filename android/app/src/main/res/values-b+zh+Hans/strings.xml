@@ -576,4 +576,35 @@
     <string name="learn_point_private">数据保留在你的设备上。你可以随时在设置中关闭学习阶段。</string>
     <string name="learn_switch_hint">你的手表会在夜间测量动作和脉搏来调整闹钟。 关闭：不再自动记录，已学到的数值保留。</string>
     <string name="watch_open_app_hint">请在手表上打开 Phase Wake，以便它接收指令。</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">学习阶段开始以来的每一晚——是否已计入；如果没有，原因是什么、怎样改善。Phase Wake 需要 %1$d 个计入的夜晚。</string>
+    <string name="learn_nights_empty">还没有夜晚。第一晚会在第二天早上显示在这里。</string>
+    <string name="learn_night_facts">测量 %1$s · %2$d 个读数 · %3$d %% 有心率</string>
+    <string name="learn_last_night">昨晚未计入</string>
+    <string name="learn_reason_counted">已计入</string>
+    <string name="learn_reason_counted_no_pulse">已计入，但几乎没有心率——可能没戴手表</string>
+    <string name="learn_reason_too_short">太短：测量了 %1$s，需要 %2$s</string>
+    <string name="learn_reason_too_few">读数太少：%1$d / %2$d</string>
+    <string name="learn_reason_stopped">记录被提前停止</string>
+    <string name="learn_reason_ended_battery">提前结束：手表电量太低</string>
+    <string name="learn_reason_ended_system">被手表系统提前结束</string>
+    <string name="learn_reason_not_worn">几乎没有心率——可能没戴手表</string>
+    <string name="learn_reason_battery">未记录：手表电量为 %1$d %%</string>
+    <string name="learn_reason_battery_low">未记录：手表电量太低</string>
+    <string name="learn_reason_sensors">未记录：无法使用手表传感器</string>
+    <string name="learn_reason_manual">你自己开始的记录在运行，但尚未传到</string>
+    <string name="learn_reason_late">晚上打开手表应用太晚了</string>
+    <string name="learn_reason_off">学习阶段当时已关闭</string>
+    <string name="learn_reason_no_alarm">这一晚没有闹钟</string>
+    <string name="learn_reason_pending">仍在从手表传来</string>
+    <string name="learn_reason_auto_off">未自动开始</string>
+    <string name="learn_reason_none">没有收到记录</string>
+    <string name="learn_tip_worn">夜里把手表戴得稍紧一些，并检查 Phase Wake 是否有权测量心率。</string>
+    <string name="learn_tip_run">让记录一直运行到闹钟响起。</string>
+    <string name="learn_tip_charge">晚上把手表充电到至少 %1$d %%。</string>
+    <string name="learn_tip_system">在手表上为 Phase Wake 关闭省电模式。</string>
+    <string name="learn_tip_sensors">在手表设置中允许 Phase Wake 使用传感器和运动数据。</string>
+    <string name="learn_tip_late">晚上在手表上打开 Phase Wake，最迟在收到提醒时。</string>
+    <string name="learn_tip_alarm">手表只记录有闹钟的夜晚。</string>
+    <string name="learn_tip_connect">让手表保持开机并与手机连接——它会在闹钟后发送记录。</string>
 </resources>

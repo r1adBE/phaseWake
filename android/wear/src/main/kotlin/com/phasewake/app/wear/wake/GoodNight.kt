@@ -6,11 +6,13 @@ import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.Calibration
 import com.phasewake.app.core.DiagKind
+import com.phasewake.app.core.LearnSkip
 import com.phasewake.app.core.NightHistory
 import com.phasewake.app.core.RecorderSkip
 import com.phasewake.app.core.WakePlan
 import com.phasewake.app.shared.OnsetShift
 import com.phasewake.app.shared.phaseWakeStore
+import com.phasewake.app.wear.record.LearnNotice
 import com.phasewake.app.wear.record.RecordControl
 import com.phasewake.app.wear.record.RecordService
 import com.phasewake.app.wear.schedule.AlarmScheduler
@@ -61,6 +63,8 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
     // Ohne Sensorrechte kein Einschlaf-Modus: dann gilt die eingestellte Weckzeit.
     if (!unlocked || !goForeground(Notifications.goodNight(this), measuring = true)) {
         if (unlocked) app.diag.log(DiagKind.MEASURE_START, "$start not started: no sensors: ${healthRefusal.orEmpty()}")
+        // Lernphase: Diese Nacht zeichnet sie nicht auf (Meldung ans Handy, Mitteilung).
+        if (unlocked && requestedAlarmId != null) app.appScope.launch { LearnNotice.sensorsRefused(app, requestedAlarmId) }
         forgetGoodNight()
         stopIfIdle()
         return
@@ -124,6 +128,10 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
                 endBeforeMeasuring(alarmId, latest, "auto onset skipped battery $battery", DiagKind.BATTERY)
                 // Nacht-Check am Handy rot bis zur Weckzeit (Audit F-06, wie die Apple Watch).
                 app.appScope.launch { app.scheduler.noteRecorderSkip(RecorderSkip(latest, RecorderSkip.Reason.BATTERY)) }
+                // Lernphase: Ihre Aufzeichnung startet mit der Einschlaf-Messung, also diese Nacht auch nicht.
+                app.appScope.launch {
+                    if (app.learning.current().active) LearnNotice.skipped(app, LearnSkip(latest, LearnSkip.Reason.BATTERY, battery))
+                }
             }
             return@launch
         }

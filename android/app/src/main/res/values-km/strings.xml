@@ -578,4 +578,35 @@
     <string name="learn_point_private">ទិន្នន័យនៅលើឧបករណ៍របស់អ្នក។ អ្នកអាចបិទដំណាក់កាលរៀននៅក្នុងការកំណត់បានគ្រប់ពេល។</string>
     <string name="learn_switch_hint">នាឡិការបស់អ្នកវាស់ចលនា និងជីពចរពេលយប់ ដើម្បីសម្រួលម៉ោងរោទ៍។ បិទ៖ គ្មានការកត់ត្រាស្វ័យប្រវត្តិ តម្លៃដែលបានរៀននៅដដែល។</string>
     <string name="watch_open_app_hint">បើក Phase Wake នៅលើនាឡិការបស់អ្នក ដើម្បីឱ្យវាទទួលបានពាក្យបញ្ជា។</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">យប់នីមួយៗ តាំងពីដំណាក់កាលរៀនចាប់ផ្ដើម – តើវាត្រូវបានរាប់ឬអត់ ហើយបើមិនរាប់ ហេតុអ្វី និងអ្វីអាចជួយបាន។ Phase Wake ត្រូវការ %1$d យប់ដែលបានរាប់។</string>
+    <string name="learn_nights_empty">មិនទាន់មានយប់ណាមួយទេ។ យប់ដំបូងនឹងបង្ហាញនៅទីនេះនៅព្រឹកបន្ទាប់។</string>
+    <string name="learn_night_facts">បានវាស់ %1$s · តម្លៃ %2$d · ជីពចរក្នុង %3$d %%</string>
+    <string name="learn_last_night">យប់មិញមិនត្រូវបានរាប់ទេ</string>
+    <string name="learn_reason_counted">បានរាប់</string>
+    <string name="learn_reason_counted_no_pulse">បានរាប់ ប៉ុន្តែស្ទើរតែគ្មានជីពចរ – ប្រហែលជាមិនបានពាក់នាឡិកា</string>
+    <string name="learn_reason_too_short">ខ្លីពេក៖ បានវាស់ %1$s ត្រូវការ %2$s</string>
+    <string name="learn_reason_too_few">តម្លៃតិចពេក៖ %1$d នៃ %2$d</string>
+    <string name="learn_reason_stopped">ការថតត្រូវបានបញ្ឈប់មុនពេល</string>
+    <string name="learn_reason_ended_battery">បានបញ្ចប់មុនពេល៖ ថ្មនាឡិកាខ្សោយពេក</string>
+    <string name="learn_reason_ended_system">ប្រព័ន្ធនាឡិកាបានបញ្ចប់មុនពេល</string>
+    <string name="learn_reason_not_worn">ស្ទើរតែគ្មានជីពចរ – ប្រហែលជាមិនបានពាក់នាឡិកា</string>
+    <string name="learn_reason_battery">មិនបានថត៖ ថ្មនាឡិកានៅ %1$d %%</string>
+    <string name="learn_reason_battery_low">មិនបានថត៖ ថ្មនាឡិកាខ្សោយពេក</string>
+    <string name="learn_reason_sensors">មិនបានថត៖ គ្មានសិទ្ធិចូលប្រើឧបករណ៍ចាប់សញ្ញារបស់នាឡិកា</string>
+    <string name="learn_reason_manual">ការថតផ្ទាល់ខ្លួនរបស់អ្នកកំពុងដំណើរការ ប៉ុន្តែមិនទាន់មកដល់ទេ</string>
+    <string name="learn_reason_late">កម្មវិធីនាឡិកាត្រូវបានបើកយឺតពេកនៅពេលល្ងាច</string>
+    <string name="learn_reason_off">ដំណាក់កាលរៀនត្រូវបានបិទ</string>
+    <string name="learn_reason_no_alarm">យប់នេះគ្មានម៉ោងរោទ៍ទេ</string>
+    <string name="learn_reason_pending">នៅតាមផ្លូវពីនាឡិកា</string>
+    <string name="learn_reason_auto_off">មិនបានចាប់ផ្ដើមដោយស្វ័យប្រវត្តិ</string>
+    <string name="learn_reason_none">គ្មានការថតមកដល់ទេ</string>
+    <string name="learn_tip_worn">នៅពេលយប់ ពាក់នាឡិកាឲ្យតឹងបន្តិច ហើយពិនិត្យថា Phase Wake អាចវាស់ជីពចររបស់អ្នកបាន។</string>
+    <string name="learn_tip_run">ទុកឲ្យការថតដំណើរការរហូតដល់ម៉ោងរោទ៍។</string>
+    <string name="learn_tip_charge">នៅពេលល្ងាច សាកថ្មនាឡិកាឲ្យបានយ៉ាងហោចណាស់ %1$d %%។</string>
+    <string name="learn_tip_system">បិទការសន្សំថ្មសម្រាប់ Phase Wake នៅលើនាឡិកា។</string>
+    <string name="learn_tip_sensors">នៅក្នុងការកំណត់នាឡិកា អនុញ្ញាតឲ្យ Phase Wake ប្រើឧបករណ៍ចាប់សញ្ញា និងទិន្នន័យចលនា។</string>
+    <string name="learn_tip_late">បើក Phase Wake នៅលើនាឡិកានៅពេលល្ងាច យ៉ាងយូរនៅពេលវារំលឹក។</string>
+    <string name="learn_tip_alarm">នាឡិកាថតតែយប់ដែលមានម៉ោងរោទ៍ប៉ុណ្ណោះ។</string>
+    <string name="learn_tip_connect">ទុកនាឡិកាឲ្យបើក ហើយភ្ជាប់ជាមួយទូរសព្ទរបស់អ្នក – វាផ្ញើការថតបន្ទាប់ពីម៉ោងរោទ៍។</string>
 </resources>

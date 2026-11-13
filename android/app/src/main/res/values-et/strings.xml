@@ -593,4 +593,35 @@
     <string name="learn_point_private">Andmed jäävad sinu seadmetesse. Õppefaasi saad seadetes igal ajal välja lülitada.</string>
     <string name="learn_switch_hint">Su kell mõõdab öösel liikumist ja pulssi, et äratust kohandada. Väljas: automaatset salvestamist pole, õpitud väärtused jäävad.</string>
     <string name="watch_open_app_hint">Ava kellas Phase Wake, et see käsu kätte saaks.</string>
+    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <string name="learn_nights_intro">Iga öö õppefaasi algusest – kas see läks arvesse ja kui ei, siis miks ja mis aitab. Phase Wake vajab %1$d arvesse läinud ööd.</string>
+    <string name="learn_nights_empty">Veel pole ühtegi ööd. Esimene ilmub siia järgmisel hommikul.</string>
+    <string name="learn_night_facts">%1$s mõõdetud · %2$d väärtust · pulss %3$d %% ajast</string>
+    <string name="learn_last_night">Eelmine öö ei läinud arvesse</string>
+    <string name="learn_reason_counted">Läks arvesse</string>
+    <string name="learn_reason_counted_no_pulse">Läks arvesse, aga pulssi peaaegu polnud – kell polnud ilmselt käel</string>
+    <string name="learn_reason_too_short">Liiga lühike: mõõdetud %1$s, vaja %2$s</string>
+    <string name="learn_reason_too_few">Liiga vähe väärtusi: %1$d / %2$d</string>
+    <string name="learn_reason_stopped">Salvestus peatati enneaegu</string>
+    <string name="learn_reason_ended_battery">Lõppes enneaegu: kella aku liiga tühi</string>
+    <string name="learn_reason_ended_system">Kella süsteem lõpetas enneaegu</string>
+    <string name="learn_reason_not_worn">Pulssi peaaegu polnud – kell polnud ilmselt käel</string>
+    <string name="learn_reason_battery">Salvestamata: kella aku oli %1$d %%</string>
+    <string name="learn_reason_battery_low">Salvestamata: kella aku liiga tühi</string>
+    <string name="learn_reason_sensors">Salvestamata: puudub ligipääs kella anduritele</string>
+    <string name="learn_reason_manual">Sinu enda salvestus käis, aga pole kohale jõudnud</string>
+    <string name="learn_reason_late">Kella rakendus avati õhtul liiga hilja</string>
+    <string name="learn_reason_off">Õppefaas oli välja lülitatud</string>
+    <string name="learn_reason_no_alarm">Sel ööl polnud äratust</string>
+    <string name="learn_reason_pending">Veel teel kellast</string>
+    <string name="learn_reason_auto_off">Ei käivitunud automaatselt</string>
+    <string name="learn_reason_none">Ühtegi salvestust ei jõudnud kohale</string>
+    <string name="learn_tip_worn">Kanna kella öösel veidi tihedamalt ja kontrolli, kas Phase Wake tohib su pulssi mõõta.</string>
+    <string name="learn_tip_run">Lase salvestusel äratuseni kesta.</string>
+    <string name="learn_tip_charge">Lae kell õhtul vähemalt %1$d %%-ni.</string>
+    <string name="learn_tip_system">Lülita kellas Phase Wake’i akusäästja välja.</string>
+    <string name="learn_tip_sensors">Luba kella seadetes Phase Wake’il kasutada andureid ja liikumisandmeid.</string>
+    <string name="learn_tip_late">Ava Phase Wake õhtul kellas, hiljemalt meeldetuletuse ajal.</string>
+    <string name="learn_tip_alarm">Kell salvestab ainult äratusega öid.</string>
+    <string name="learn_tip_connect">Hoia kell sisse lülitatud ja telefoniga ühendatud – see saadab salvestuse pärast äratust.</string>
 </resources>

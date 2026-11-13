@@ -3,7 +3,9 @@ package com.phasewake.app.ui.home
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FilledTonalButton
@@ -18,8 +20,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
+import com.phasewake.app.core.LearnNights
 import com.phasewake.app.core.Learning
 import com.phasewake.app.ui.Format
 import java.time.Duration
@@ -30,7 +34,8 @@ import kotlin.math.roundToInt
  * Lernphase auf der Startseite: solange sie läuft «Lernphase: Nacht N von 7» ([night]) mit kurzer Erklärung, danach
  * einmal «Angepasst an dich» mit den gelernten Werten ([values]) und «OK» ([onSeen]). [autoHint]: «Einschlafen automatisch
  * erkennen» ist aus – dann der Hinweis, wie die Nächte trotzdem zählen. [onConsent] gesetzt: noch nicht gefragt, die Karte
- * fragt einmal «Lernphase starten» / «Später» (Audit F-02).
+ * fragt einmal «Lernphase starten» / «Später» (Audit F-02). Lern-Übersicht (r1AD 13.11.2026): [miss] = letzte Nacht hat
+ * unerwartet nicht gezählt ([LearnNights.lastNightMiss]), mit Grund; [onDetails] öffnet die Übersicht aller Nächte.
  */
 class HomeLearning(
     val night: Int?,
@@ -38,6 +43,8 @@ class HomeLearning(
     val autoHint: Boolean = false,
     val onSeen: () -> Unit = {},
     val onConsent: ((Boolean) -> Unit)? = null,
+    val miss: LearnNights.Night? = null,
+    val onDetails: (() -> Unit)? = null,
 )
 
 /** Karte der Lernphase, siehe [HomeLearning]. */
@@ -85,7 +92,29 @@ internal fun LearningCard(learning: HomeLearning) {
                         modifier = Modifier.padding(top = 6.dp),
                     )
                 }
+                learning.miss?.let { LastNightMiss(it) }
+                learning.onDetails?.let { onDetails ->
+                    TextButton(onClick = onDetails, modifier = Modifier.align(Alignment.End).heightIn(min = 48.dp)) {
+                        Text(stringResource(R.string.night_details))
+                    }
+                }
             }
+        }
+    }
+}
+
+/** «Letzte Nacht zählte nicht» mit dem Grund ([learnReasonText]), als Warnung über «Details». */
+@Composable
+private fun LastNightMiss(miss: LearnNights.Night) {
+    val context = LocalContext.current
+    Row(Modifier.padding(top = 10.dp).semantics(mergeDescendants = true) {}, verticalAlignment = Alignment.Top) {
+        Icon(
+            painterResource(R.drawable.ic_warning), contentDescription = null, tint = MaterialTheme.colorScheme.error,
+            modifier = Modifier.padding(top = 2.dp).size(18.dp),
+        )
+        Column(Modifier.padding(start = 10.dp)) {
+            Text(stringResource(R.string.learn_last_night), style = MaterialTheme.typography.titleSmall)
+            Text(learnReasonText(context, miss), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
     }
 }

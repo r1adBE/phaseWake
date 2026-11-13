@@ -65,7 +65,8 @@ class SettingsExtras(
 
 /**
  * Lernphase in den Einstellungen: Schalter «Lernphase» ([consent], [onConsent]), «Nacht N von 7» ([night], nur während
- * sie läuft) bzw. die gelernten Werte ([values]) und «Neu lernen» ([onRestart], nur wenn sie schon begonnen hat).
+ * sie läuft) bzw. die gelernten Werte ([values]), «Details» zur Lern-Übersicht ([onDetails]) und «Neu lernen»
+ * ([onRestart]); beides nur, wenn sie schon begonnen hat.
  */
 class LearningSettings(
     val night: Int?,
@@ -73,6 +74,7 @@ class LearningSettings(
     val onRestart: (() -> Unit)?,
     val consent: Boolean = false,
     val onConsent: (Boolean) -> Unit = {},
+    val onDetails: (() -> Unit)? = null,
 )
 
 /** Gruppe der Lernphase: Schalter, Stand, gelernte Werte und «Neu lernen» mit Rückfrage. */
@@ -92,6 +94,7 @@ internal fun LearningGroup(ui: LearningSettings) {
         } else if (night != null) {
             Text(stringResource(R.string.learn_text, Learning.NIGHTS, Learning.MIN_BATTERY), style = MaterialTheme.typography.bodyMedium)
         }
+        ui.onDetails?.let { ListRow(stringResource(R.string.night_details), onClick = it) }
         val onRestart = ui.onRestart
         if (onRestart != null) {
             var confirm by remember { mutableStateOf(false) }
