@@ -505,6 +505,7 @@
     <string name="transient_alarm_soon">Je wekvenster begint al eerder.</string>
     <string name="check_watch_outdated_title">Horloge-app verouderd</string>
     <string name="check_watch_outdated_text">Werk Phase Wake op het horloge bij, zodat elke wekker afgaat zoals ingesteld.</string>
+    <string name="check_build_mismatch">Telefoon en horloge hebben verschillende testversies (%1$d / %2$d) – installeer op beide dezelfde.</string>
     <string name="watch_store_opened">Play Store geopend op je horloge – kijk er even naar.</string>
     <string name="watch_store_failed">Kan de Play Store niet openen op je horloge. Is het verbonden?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

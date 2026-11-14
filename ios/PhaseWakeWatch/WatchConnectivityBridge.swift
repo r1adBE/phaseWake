@@ -71,8 +71,8 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     /// (Nacht-Check auf dem iPhone).
     private func sendContext() {
         guard WCSession.default.activationState == .activated, !context.isEmpty else { return }
-        // Stand der Verbindung: Das iPhone erkennt so eine ältere Uhr-App (Nacht-Check «Uhr-App veraltet»).
-        context[SyncKeys.watchProtocol] = Int64(WatchProtocol.current)
+        // Stand der Verbindung und Build-Nummer: Das iPhone erkennt so eine ältere oder andere Uhr-App (Nacht-Check).
+        BuildNumber.applyWatch(to: &context)
         // Zuletzt geprüfte Erlaubnis für Mitteilungen samt Zeitpunkt, gespeichert: auch nach einem Neustart vor einer
         // neuen Prüfung dabei (sonst verlöre das iPhone Warnung und Hinweis «veraltet»).
         WatchNotificationsCheck.apply(Self.notificationsCheck, to: &context)

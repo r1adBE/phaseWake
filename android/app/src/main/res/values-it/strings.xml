@@ -519,6 +519,7 @@
     <string name="transient_alarm_soon">La finestra della tua sveglia inizia prima.</string>
     <string name="check_watch_outdated_title">App dell’orologio non aggiornata</string>
     <string name="check_watch_outdated_text">Aggiorna Phase Wake sull’orologio, così ogni sveglia suona come l’hai impostata.</string>
+    <string name="check_build_mismatch">Telefono e orologio hanno versioni di prova diverse (%1$d / %2$d): installa la stessa su entrambi.</string>
     <string name="watch_store_opened">Play Store aperto sull\'orologio – dacci un\'occhiata.</string>
     <string name="watch_store_failed">Impossibile aprire il Play Store sull\'orologio. È connesso?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

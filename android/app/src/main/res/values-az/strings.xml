@@ -493,6 +493,7 @@
     <string name="transient_alarm_soon">Siqnal pəncərən ondan əvvəl başlayır.</string>
     <string name="check_watch_outdated_title">Saat tətbiqi köhnədir</string>
     <string name="check_watch_outdated_text">Hər siqnal qurduğun kimi çalsın deyə saatında Phase Wake-i yenilə.</string>
+    <string name="check_build_mismatch">Telefon və saatda fərqli test versiyaları var (%1$d / %2$d) – hər ikisinə eynisini quraşdır.</string>
     <string name="watch_store_opened">Play Store saatında açıldı – ona bir bax.</string>
     <string name="watch_store_failed">Play Store saatında açılmadı. Saat qoşuludurmu?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

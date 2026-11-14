@@ -493,6 +493,7 @@
     <string name="transient_alarm_soon">Զարթուցիչիդ պատուհանը սկսվում է դրանից առաջ։</string>
     <string name="check_watch_outdated_title">Ժամացույցի հավելվածը հնացած է</string>
     <string name="check_watch_outdated_text">Թարմացրու Phase Wake-ը ժամացույցում, որպեսզի ամեն զարթուցիչ զնգա այնպես, ինչպես կարգավորել ես։</string>
+    <string name="check_build_mismatch">Հեռախոսն ու ժամացույցն ունեն տարբեր փորձնական տարբերակներ (%1$d / %2$d) – տեղադրիր նույնը երկուսի վրա։</string>
     <string name="watch_store_opened">Play Store-ը բացվեց ժամացույցում – նայիր դրան։</string>
     <string name="watch_store_failed">Չհաջողվեց բացել Play Store-ը ժամացույցում։ Այն միացվա՞ծ է։</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

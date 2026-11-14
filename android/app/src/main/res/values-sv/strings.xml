@@ -505,6 +505,7 @@
     <string name="transient_alarm_soon">Ditt väckningsfönster börjar redan innan.</string>
     <string name="check_watch_outdated_title">Klockappen är inaktuell</string>
     <string name="check_watch_outdated_text">Uppdatera Phase Wake på klockan så att varje alarm ringer som inställt.</string>
+    <string name="check_build_mismatch">Telefonen och klockan har olika testversioner (%1$d / %2$d) – installera samma på båda.</string>
     <string name="watch_store_opened">Play Store har öppnats på klockan – ta en titt.</string>
     <string name="watch_store_failed">Det gick inte att öppna Play Store på klockan. Är den ansluten?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

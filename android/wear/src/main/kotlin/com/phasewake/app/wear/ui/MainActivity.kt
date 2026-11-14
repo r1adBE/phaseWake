@@ -198,7 +198,8 @@ private fun DiagRoute(onHide: () -> Unit) {
         entries = withContext(Dispatchers.IO) { app.diag.entries() }
         next = app.scheduler.nextPlan()?.let { shortDay(it.target.atZone(ZoneId.systemDefault()).toLocalDate()) + " " + shortTime(it.target) }
     }
-    val version = remember { context.packageManager.getPackageInfo(context.packageName, 0).versionName.orEmpty() }
+    // Mit Build-Nummer der Testversion, z. B. «16.2.2 (96)» (r1AD 14.11.2026).
+    val version = remember { com.phasewake.app.shared.BuildNumber.ownLabel(context, watch = true) }
     DiagScreen(
         next = next,
         version = version,

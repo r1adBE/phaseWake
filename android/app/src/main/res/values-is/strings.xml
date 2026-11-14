@@ -508,6 +508,7 @@
     <string name="transient_alarm_soon">Vakningarglugginn byrjar fyrir þann tíma.</string>
     <string name="check_watch_outdated_title">Úraforritið er úrelt</string>
     <string name="check_watch_outdated_text">Uppfærðu Phase Wake á úrinu svo hver vekjari hringi eins og hann er stilltur.</string>
+    <string name="check_build_mismatch">Síminn og úrið eru með ólíkar prufuútgáfur (%1$d / %2$d) – settu þá sömu upp á báðum.</string>
     <string name="watch_store_opened">Play Store var opnað á úrinu – kíktu á það.</string>
     <string name="watch_store_failed">Ekki tókst að opna Play Store á úrinu. Er það tengt?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

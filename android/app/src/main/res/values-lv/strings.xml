@@ -522,6 +522,7 @@
     <string name="transient_alarm_soon">Tavs modināšanas logs sākas pirms tam.</string>
     <string name="check_watch_outdated_title">Pulksteņa lietotne ir novecojusi</string>
     <string name="check_watch_outdated_text">Atjaunini Phase Wake pulkstenī, lai katrs modinātājs zvanītu, kā iestatīts.</string>
+    <string name="check_build_mismatch">Tālrunī un pulkstenī ir dažādas testa versijas (%1$d / %2$d) – instalē abos vienu un to pašu.</string>
     <string name="watch_store_opened">Play Store atvērts pulkstenī – ieskaties tajā.</string>
     <string name="watch_store_failed">Neizdevās atvērt Play Store pulkstenī. Vai tas ir savienots?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

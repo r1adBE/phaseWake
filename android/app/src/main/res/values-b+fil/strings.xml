@@ -508,6 +508,7 @@
     <string name="transient_alarm_soon">Nagsisimula bago noon ang window ng paggising mo.</string>
     <string name="check_watch_outdated_title">Luma na ang app sa relo</string>
     <string name="check_watch_outdated_text">I-update ang Phase Wake sa relo mo para tumunog ang bawat alarm gaya ng itinakda.</string>
+    <string name="check_build_mismatch">Magkaiba ang test version ng telepono at relo (%1$d / %2$d) – i-install ang pareho sa dalawa.</string>
     <string name="watch_store_opened">Nabuksan ang Play Store sa relo mo – tingnan mo ito.</string>
     <string name="watch_store_failed">Hindi mabuksan ang Play Store sa relo mo. Nakakonekta ba ito?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

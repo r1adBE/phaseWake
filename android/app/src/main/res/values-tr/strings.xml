@@ -505,6 +505,7 @@
     <string name="transient_alarm_soon">Alarm aralığın bundan önce başlıyor.</string>
     <string name="check_watch_outdated_title">Saat uygulaması eski</string>
     <string name="check_watch_outdated_text">Her alarm ayarladığın gibi çalsın diye saatteki Phase Wake’i güncelle.</string>
+    <string name="check_build_mismatch">Telefon ve saatte farklı test sürümleri var (%1$d / %2$d) – ikisine de aynısını yükle.</string>
     <string name="watch_store_opened">Play Store saatte açıldı – bir göz at.</string>
     <string name="watch_store_failed">Play Store saatte açılamadı. Saat bağlı mı?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

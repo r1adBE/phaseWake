@@ -9,6 +9,7 @@ import androidx.datastore.preferences.core.edit
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.DiagReport
 import com.phasewake.app.core.DiagReports
+import com.phasewake.app.shared.BuildNumber
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.Outbox
 import com.phasewake.app.shared.phaseWakeStore
@@ -33,7 +34,8 @@ object WatchDiag {
     /** Zustand und Protokoll der Uhr; Schlüssel wie in `DiagReports` beschrieben (version, next, battery, exact, notifications). */
     suspend fun report(app: PhaseWakeWear): DiagReport {
         val plan = app.scheduler.nextPlan()
-        val version = app.packageManager.getPackageInfo(app.packageName, 0).versionName.orEmpty()
+        // Mit Build-Nummer, z. B. «16.2.2 (96)»: Das Handy zeigt sie so unter «Versionen».
+        val version = BuildNumber.ownLabel(app, watch = true)
         val battery = app.getSystemService(android.os.BatteryManager::class.java)
             ?.getIntProperty(android.os.BatteryManager.BATTERY_PROPERTY_CAPACITY)
         val status = listOf(

@@ -43,6 +43,7 @@ import com.phasewake.app.core.Learning
 import com.phasewake.app.core.RecorderSkip
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ring.BackupAlarm
+import com.phasewake.app.shared.BuildNumber
 import com.phasewake.app.shared.DoNotDisturb
 import com.phasewake.app.shared.WatchPulse
 import com.phasewake.app.ui.theme.outlinedBorder
@@ -89,6 +90,12 @@ enum class Check(
     WATCH_OUTDATED(R.string.check_watch_outdated_title, R.string.check_watch_outdated_text, null, inReadyList = false),
 
     /**
+     * Handy und Uhr haben verschiedene Testversionen (Build-Nummern, [BuildNumber.differs], r1AD 14.11.2026). Nur ein
+     * Hinweis; fehlt, wenn schon [WATCH_OUTDATED] dasteht. Text mit beiden Nummern ([NightCheckState.builds]).
+     */
+    BUILD_MISMATCH(R.string.diag_versions, R.string.check_build_mismatch, null, inReadyList = false, advisory = true),
+
+    /**
      * Die Uhr hat die Messung vor dem Schlafen für diese Nacht nicht gestartet, weil ihr Akku zu schwach war
      * ([RecorderSkip], Audit F-06): Einschlafzeit und Lernphase fehlen dann. Nur ein Hinweis, weil der Wecker trotzdem
      * klingelt (r1AD 10.11.2026; auf dem iPhone bleibt es rot). Die Uhr meldet es bis zur Zielzeit; nicht in der
@@ -133,8 +140,11 @@ enum class Check(
     ),
 }
 
-/** Ergebnis aller Prüfungen; ohne offene Prüfung (Hinweise zählen nicht) heisst: bereit für die Nacht. */
-data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = true) {
+/**
+ * Ergebnis aller Prüfungen; ohne offene Prüfung (Hinweise zählen nicht) heisst: bereit für die Nacht. [builds]: Build-
+ * Nummern von Handy und Uhr für [Check.BUILD_MISMATCH].
+ */
+data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = true, val builds: Pair<Int, Int>? = null) {
     val ready: Boolean get() = failed.none { !it.advisory }
 
     companion object {
@@ -152,6 +162,7 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
          * ([Check.WATCH_SETUP]), steht der Puls nicht noch einmal da. [autoOnset]: «Einschlafen automatisch erkennen» an,
          * [learning]: Lernphase läuft; beides für die Hinweise vorab zum Akku der Uhr ([batteryHints]). [watchCharging]: Die
          * Uhr lud beim gemeldeten Akkustand; dann misst sie trotz wenig Akku, keine Warnung dazu (Prüfrunde 2 F-6, wie iPhone).
+         * [phoneBuild], [watchBuild]: Build-Nummern (`null` = unbekannt) für [buildHint].
          */
         fun collect(
             context: Context,
@@ -165,8 +176,11 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
             autoOnset: Boolean = false,
             learning: Boolean = false,
             watchCharging: Boolean = false,
-        ): NightCheckState = NightCheckState(
-            buildList {
+            phoneBuild: Int? = null,
+            watchBuild: Int? = null,
+        ): NightCheckState {
+            val builds = buildHint(phoneBuild, watchBuild, watchOutdated)
+            return NightCheckState(buildList {
                 when {
                     watchAppMissing && !watchReachable -> add(Check.WATCH_APP)
                     !watchReachable -> add(Check.WATCH)
@@ -182,6 +196,7 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
                     batteryHints(battery, autoOnset, learning)?.let(::add)
                 }
                 if (watchOutdated) add(Check.WATCH_OUTDATED)
+                if (builds != null) add(Check.BUILD_MISMATCH)
                 if (!hasNotificationPermission(context)) add(Check.NOTIFICATIONS)
                 if (!BackupAlarm.canScheduleExact(context)) add(Check.EXACT_ALARMS)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE &&
@@ -196,8 +211,15 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
                 if (lowBattery(context)) add(Check.BATTERY)
                 val audio = context.getSystemService(android.media.AudioManager::class.java)
                 if (audio.getStreamVolume(android.media.AudioManager.STREAM_ALARM) == 0) add(Check.VOLUME)
-            },
-        )
+            }, builds = builds)
+        }
+
+        /**
+         * Build-Nummern (Handy, Uhr) für den Hinweis [Check.BUILD_MISMATCH]: nur, wenn beide bekannt und verschieden sind
+         * und nicht schon «Uhr-App veraltet» ([watchOutdated]) dasteht; sonst `null`.
+         */
+        fun buildHint(phoneBuild: Int?, watchBuild: Int?, watchOutdated: Boolean): Pair<Int, Int>? =
+            if (!watchOutdated && phoneBuild != null && watchBuild != null && BuildNumber.differs(phoneBuild, watchBuild)) phoneBuild to watchBuild else null
 
         /**
          * Hinweis vorab zum Akku der Uhr (Audit O-05), höchstens einer: unter [WATCH_ONSET_BATTERY_PERCENT] mit
@@ -296,6 +318,7 @@ internal fun NightCheckCard(
                         Check.BATTERY, Check.WATCH_BATTERY -> stringResource(check.problem, NightCheckState.LOW_BATTERY_PERCENT)
                         Check.WATCH_ONSET_BATTERY -> stringResource(check.problem, NightCheckState.WATCH_ONSET_BATTERY_PERCENT)
                         Check.WATCH_LEARN_BATTERY -> stringResource(check.problem, Learning.MIN_BATTERY)
+                        Check.BUILD_MISMATCH -> stringResource(check.problem, state.builds?.first ?: 0, state.builds?.second ?: 0)
                         else -> stringResource(check.problem)
                     }
                     Text(problem, style = MaterialTheme.typography.bodyMedium)

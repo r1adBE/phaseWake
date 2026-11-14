@@ -533,6 +533,7 @@
     <string name="transient_alarm_soon">Вікно твого будильника починається раніше.</string>
     <string name="check_watch_outdated_title">Застосунок на годиннику застарів</string>
     <string name="check_watch_outdated_text">Онови Phase Wake на годиннику, щоб кожен будильник дзвонив так, як налаштовано.</string>
+    <string name="check_build_mismatch">На телефоні й годиннику різні тестові версії (%1$d / %2$d) – встанови однакову на обидва.</string>
     <string name="watch_store_opened">Play Store відкрито на годиннику – поглянь на нього.</string>
     <string name="watch_store_failed">Не вдалося відкрити Play Store на годиннику. Він підключений?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

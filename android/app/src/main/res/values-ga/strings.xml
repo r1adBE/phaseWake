@@ -550,6 +550,7 @@
     <string name="transient_alarm_soon">Tosaíonn fuinneog d’aláraim roimhe sin.</string>
     <string name="check_watch_outdated_title">Tá aip an uaireadóra as dáta</string>
     <string name="check_watch_outdated_text">Nuashonraigh Phase Wake ar d’uaireadóir ionas go mbuailfidh gach aláram mar a shocraigh tú é.</string>
+    <string name="check_build_mismatch">Tá leaganacha tástála difriúla ar an bhfón agus ar an uaireadóir (%1$d / %2$d) – suiteáil an ceann céanna ar an dá cheann.</string>
     <string name="watch_store_opened">Osclaíodh an Play Store ar d’uaireadóir – féach air.</string>
     <string name="watch_store_failed">Níorbh fhéidir an Play Store a oscailt ar d’uaireadóir. An bhfuil sé ceangailte?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

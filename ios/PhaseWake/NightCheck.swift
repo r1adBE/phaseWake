@@ -9,12 +9,22 @@ import AlarmKit
 
 /// Nacht-Check: Was muss stimmen, damit morgen sicher geweckt wird? Gleiche Idee wie Android.
 enum PhoneCheck: CaseIterable, Hashable {
+    /// Alle Prüfungen; ``buildMismatch`` mit Platzhalter-Nummern.
+    static let allCases: [PhoneCheck] = [
+        .watch, .watchApp, .watchArm, .watchBattery, .alarms, .notifications, .battery, .watchArmTonight, .watchOutdated,
+        .buildMismatch(phone: 0, watch: 0), .backupHorizon, .silentSwitch, .watchNotifications, .watchStateOld,
+        .watchRecorderBattery, .watchRecorderMotion, .watchOnsetBattery, .watchLearnBattery,
+    ]
+
     case watch, watchApp, watchArm, watchBattery, alarms, notifications, battery
     /// Uhr nicht scharf, obwohl die Erinnerung am Abend schon kam (60 Min vor der Bettzeit, `EveningReminder` auf der
     /// Uhr): Heute Nacht weckt sie dann nur per Mitteilung, ohne Schlafphasen.
     case watchArmTonight
     /// Uhr-App älter als die iPhone-App (`WatchProtocol`).
     case watchOutdated
+    /// iPhone und Uhr haben verschiedene Testversionen (Build-Nummern, ``BuildNumber``, r1AD 14.11.2026). Nur ein
+    /// Hinweis; fehlt, wenn schon ``watchOutdated`` dasteht.
+    case buildMismatch(phone: Int, watch: Int)
     /// Zweitwecker bald aufgebraucht: iOS hat die App zu lange nicht geweckt (`BackupAlarm.horizonShort`).
     case backupHorizon
     /// Vor iOS 26 ist der Zweitwecker eine Mitteilung: Der Stummschalter macht ihn lautlos. Nur ein Hinweis.
@@ -38,6 +48,7 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .watchArm, .watchArmTonight: L("check_watch_arm")
         case .watchBattery: L("check_watch_battery")
         case .watchOutdated: L("check_watch_outdated_title")
+        case .buildMismatch: L("diag_versions")
         case .alarms: L("check_alarmkit")
         case .notifications: L("check_notifications")
         case .battery: L("check_battery")
@@ -56,6 +67,7 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .watchArmTonight: L("check_watch_arm_tonight")
         case .watchBattery: L("check_watch_battery_problem", NightCheck.lowBatteryPercent)
         case .watchOutdated: L("check_watch_outdated_text")
+        case let .buildMismatch(phone, watch): L("check_build_mismatch", phone, watch)
         case .alarms: L("check_alarmkit_problem")
         case .notifications: L("check_notifications_problem")
         case .battery: L("check_battery_problem", NightCheck.lowBatteryPercent)
@@ -73,7 +85,12 @@ enum PhoneCheck: CaseIterable, Hashable {
     var canFix: Bool { self == .alarms || self == .notifications }
 
     /// Nur ein Hinweis (nicht rot, «bereit» bleibt): Er lässt sich nicht beheben, nur beachten.
-    var isAdvisory: Bool { self == .silentSwitch || self == .watchStateOld || self == .watchOnsetBattery || self == .watchLearnBattery }
+    var isAdvisory: Bool {
+        switch self {
+        case .silentSwitch, .watchStateOld, .watchOnsetBattery, .watchLearnBattery, .buildMismatch: true
+        default: false
+        }
+    }
 }
 
 @MainActor
@@ -103,7 +120,9 @@ enum NightCheck {
             watchProtocol: model.watchProtocol,
             autoOnset: WatchNight.autoOnset,
             learning: PhoneLearning.shared.state.active,
-            charging: model.watchBatteryCharging
+            charging: model.watchBatteryCharging,
+            phoneBuild: BuildNumber.own,
+            watchBuild: model.watchBuild
         )
         var failed = watchChecks(watch, now: Date())
         if await !alarmsAllowed() { failed.append(.alarms) }
@@ -143,6 +162,9 @@ enum NightCheck {
         var learning = false
         /// Die Uhr lud beim gemeldeten Akkustand (Prüfrunde 2 F-6): Sie misst dann trotz wenig Akku, keine Warnung dazu.
         var charging = false
+        /// Build-Nummern von iPhone- und Uhr-App (``BuildNumber``); `nil`, wenn unbekannt.
+        var phoneBuild: Int?
+        var watchBuild: Int?
     }
 
     /// Prüfungen der Uhr zum Zeitpunkt `now` (ohne Systemabfragen, damit sie sich testen lassen).
@@ -178,8 +200,17 @@ enum NightCheck {
             failed.append(.watchStateOld)
         }
         // Ältere Uhr-App: Sie meldet einen älteren Stand der Verbindung (ohne Angabe 0); noch kein Kontext: keine Warnung.
-        if WatchProtocol.isOutdated(watch: watch.watchProtocol) { failed.append(.watchOutdated) }
+        let outdated = WatchProtocol.isOutdated(watch: watch.watchProtocol)
+        if outdated { failed.append(.watchOutdated) }
+        if let hint = buildHint(phone: watch.phoneBuild, watch: watch.watchBuild, outdated: outdated) { failed.append(hint) }
         return failed
+    }
+
+    /// Hinweis «verschiedene Testversionen» (wie `NightCheckState.buildHint` auf Android): nur mit beiden Nummern, wenn
+    /// sie verschieden sind und nicht schon «Uhr-App veraltet» dasteht.
+    nonisolated static func buildHint(phone: Int?, watch: Int?, outdated: Bool) -> PhoneCheck? {
+        guard !outdated, let phone, let watch, BuildNumber.differs(phone: phone, watch: watch) else { return nil }
+        return .buildMismatch(phone: phone, watch: watch)
     }
 
     /// Hinweis vorab zum Akku der Uhr (Audit O-05, wie `NightCheckState.batteryHints` auf Android), höchstens einer:
@@ -258,7 +289,7 @@ enum NightCheck {
             } else {
                 openSettings()
             }
-        case .watch, .watchApp, .watchArm, .watchArmTonight, .watchBattery, .watchOutdated, .battery, .backupHorizon, .silentSwitch,
+        case .watch, .watchApp, .watchArm, .watchArmTonight, .watchBattery, .watchOutdated, .buildMismatch, .battery, .backupHorizon, .silentSwitch,
              .watchNotifications, .watchStateOld, .watchRecorderBattery, .watchRecorderMotion, .watchOnsetBattery, .watchLearnBattery:
             break
         }

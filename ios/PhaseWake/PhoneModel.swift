@@ -62,6 +62,8 @@ final class PhoneModel {
     private var watchBatteryLevel: (percent: Int, at: Date)?
     /// Stand der Verbindung, den die Uhr-App meldet (`WatchProtocol`); `nil` = noch kein Kontext der Uhr.
     private(set) var watchProtocol: Int?
+    /// Build-Nummer der Uhr-App (``BuildNumber``); `nil` = unbekannt (ältere Uhr, lokaler Build).
+    private(set) var watchBuild: Int?
     /// Erlaubnis für Mitteilungen auf der Uhr (Rückfall), wie zuletzt gemeldet, und wann die Uhr sie geprüft hat (`nil`: ältere Uhr); `nil` = unbekannt.
     private(set) var watchNotifications: (state: WatchNotifications, checkedAt: Date?)?
 
@@ -248,8 +250,9 @@ final class PhoneModel {
     }
 
     func setWatchStatus(battery: (percent: Int, at: Date)?, version: Int?, notifications: (state: WatchNotifications, checkedAt: Date?)?,
-                        charging: Bool = false) {
+                        charging: Bool = false, build: Int? = nil) {
         (watchBatteryLevel, watchProtocol, watchNotifications, watchBatteryCharging) = (battery, version, notifications, battery != nil && charging)
+        watchBuild = build
     }
 
     /// Ob die Uhr beim gemeldeten Akkustand lud (Prüfrunde 2 F-6): Dann misst sie trotz wenig Akku (Nacht-Check O-05).

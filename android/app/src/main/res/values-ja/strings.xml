@@ -491,6 +491,7 @@
     <string name="transient_alarm_soon">アラームの時間幅はそれより前に始まります。</string>
     <string name="check_watch_outdated_title">ウォッチのアプリが古くなっています</string>
     <string name="check_watch_outdated_text">すべてのアラームが設定どおりに鳴るよう、ウォッチのPhase Wakeを更新してください。</string>
+    <string name="check_build_mismatch">スマホとウォッチのテスト版が異なります（%1$d / %2$d）。両方に同じものをインストールしてください。</string>
     <string name="watch_store_opened">ウォッチでPlay Storeを開きました – ウォッチを確認してください。</string>
     <string name="watch_store_failed">ウォッチでPlay Storeを開けませんでした。ウォッチは接続されていますか？</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

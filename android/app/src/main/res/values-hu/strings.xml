@@ -505,6 +505,7 @@
     <string name="transient_alarm_soon">Az ébresztési időablakod már előbb kezdődik.</string>
     <string name="check_watch_outdated_title">Elavult az óra alkalmazása</string>
     <string name="check_watch_outdated_text">Frissítsd a Phase Wake-et az órán, hogy minden ébresztő a beállítás szerint szóljon.</string>
+    <string name="check_build_mismatch">A telefonon és az órán különböző tesztverzió van (%1$d / %2$d) – telepítsd ugyanazt mindkettőre.</string>
     <string name="watch_store_opened">A Play Store megnyílt az órán – nézz rá.</string>
     <string name="watch_store_failed">Nem sikerült megnyitni a Play Store-t az órán. Csatlakoztatva van?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

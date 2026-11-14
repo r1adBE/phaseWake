@@ -533,6 +533,7 @@
     <string name="transient_alarm_soon">Okno tvého budíku začíná už dřív.</string>
     <string name="check_watch_outdated_title">Aplikace v hodinkách je zastaralá</string>
     <string name="check_watch_outdated_text">Aktualizuj Phase Wake v hodinkách, aby každý budík zvonil tak, jak je nastavený.</string>
+    <string name="check_build_mismatch">Telefon a hodinky mají různé testovací verze (%1$d / %2$d) – nainstaluj na obě stejnou.</string>
     <string name="watch_store_opened">Play Store se otevřel v hodinkách – podívej se na ně.</string>
     <string name="watch_store_failed">Play Store se v hodinkách nepodařilo otevřít. Jsou připojené?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

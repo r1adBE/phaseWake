@@ -508,6 +508,7 @@
     <string name="transient_alarm_soon">Сэрээх хугацаа чинь түүнээс өмнө эхэлнэ.</string>
     <string name="check_watch_outdated_title">Цагны апп хуучирсан</string>
     <string name="check_watch_outdated_text">Сэрүүлэг бүр тохируулсан ёсоороо дуугарахын тулд цаган дээрх Phase Wake-ийг шинэчил.</string>
+    <string name="check_build_mismatch">Утас, цаг хоёр өөр туршилтын хувилбартай байна (%1$d / %2$d) – хоёуланд нь ижилийг суулга.</string>
     <string name="watch_store_opened">Play Store цаган дээр нээгдлээ – түүн рүү хар.</string>
     <string name="watch_store_failed">Play Store-ийг цаган дээр нээж чадсангүй. Цаг холбогдсон уу?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

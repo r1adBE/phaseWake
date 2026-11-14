@@ -508,6 +508,7 @@
     <string name="transient_alarm_soon">Intervali i zgjimit nis më herët.</string>
     <string name="check_watch_outdated_title">Aplikacioni në orë është i vjetër</string>
     <string name="check_watch_outdated_text">Përditëso Phase Wake në orë, që çdo alarm të bjerë ashtu siç e ke caktuar.</string>
+    <string name="check_build_mismatch">Telefoni dhe ora kanë versione testuese të ndryshme (%1$d / %2$d) – instalo të njëjtin në të dyja.</string>
     <string name="watch_store_opened">Play Store u hap në orë – hidhi një sy.</string>
     <string name="watch_store_failed">Play Store nuk u hap dot në orë. A është e lidhur?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

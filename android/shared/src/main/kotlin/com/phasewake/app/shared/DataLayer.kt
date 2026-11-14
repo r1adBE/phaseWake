@@ -145,6 +145,12 @@ object DataLayer {
     const val KEY_PROTOCOL = "protocol"
 
     /**
+     * Build-Nummer der Uhr-App ohne Abstand (`BuildNumber`, Entscheid r1AD 14.11.2026) im selben Paket wie [KEY_READY];
+     * fehlt bei lokalem Build und bei älteren Uhren (dann kein Hinweis «verschiedene Testversionen»).
+     */
+    const val KEY_BUILD = "build"
+
+    /**
      * Pulsrechte der Uhr (`WatchPulse`) im selben Paket wie [KEY_READY]: Puls ([KEY_PULSE]) und Puls im Hintergrund
      * ([KEY_PULSE_BACKGROUND]). Fehlen bei älteren Uhren; dann warnt der Nacht-Check nicht.
      */

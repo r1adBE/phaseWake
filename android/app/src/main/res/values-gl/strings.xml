@@ -508,6 +508,7 @@
     <string name="transient_alarm_soon">A túa xanela de espertar comeza antes.</string>
     <string name="check_watch_outdated_title">A app do reloxo está desactualizada</string>
     <string name="check_watch_outdated_text">Actualiza Phase Wake no reloxo para que cada alarma soe tal como a configuraches.</string>
+    <string name="check_build_mismatch">O teléfono e o reloxo teñen versións de proba distintas (%1$d / %2$d): instala a mesma nos dous.</string>
     <string name="watch_store_opened">Play Store aberta no reloxo – bótalle unha ollada.</string>
     <string name="watch_store_failed">Non se puido abrir Play Store no reloxo. Está conectado?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

@@ -45,9 +45,10 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
   prüft das. Die Build-Nummer ist die Laufnummer der CI (`PHASEWAKE_BUILD`) und steigt mit jedem Build; die Uhr-App
   bekommt 1 000 000 dazu, weil Google Play für Handy und Uhr verschiedene Nummern verlangt. Store-Uploads nur aus dem
   Workflow «Store-Build» (eigene Laufnummer, signiert mit dem Upload-Schlüssel; docs/PLAY.md).
-- Produktivcode liest keine Build-Nummer (`versionCode`, `longVersionCode`, `CFBundleVersion`) und enthält keine
-  Versions- oder Build-Literale. Die Versionsbezeichnung (`versionName`, `CFBundleShortVersionString`) darf nur die
-  Einstellungsseite anzeigen.
+- Produktivcode liest die Build-Nummer (`versionCode`, `longVersionCode`, `CFBundleVersion`) nur in `BuildNumber`
+  (android/shared, ios/Shared; für «Über», Diagnose und Nacht-Check, Entscheid 14.11.2026) und enthält keine
+  Versions- oder Build-Literale. Die Versionsbezeichnung (`versionName`, `CFBundleShortVersionString`) zeigen nur «Über»
+  bzw. die Einstellungsseite und die Diagnose.
 - Kennung: Store-Version `com.phasewake.app`, Testversionen (Debug) von Handy und Uhr `com.phasewake.app.test`
   (gleich auf beiden, Pflicht für den Data Layer). Die Testversion installiert sich neben der Store-Version; eine
   ältere Testversion mit der Store-Kennung einmal deinstallieren (Daten vorher als `.pwbak` sichern). Im Code nie die

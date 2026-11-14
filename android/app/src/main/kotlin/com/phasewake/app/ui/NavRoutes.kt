@@ -228,7 +228,8 @@ private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavAction
     val context = LocalContext.current
     val res = LocalResources.current
     val data = state.data
-    val version = remember { context.packageManager.getPackageInfo(context.packageName, 0).versionName.orEmpty() }
+    // Mit Build-Nummer der Testversion, z. B. «16.2.2 (96)» (r1AD 14.11.2026).
+    val version = remember { com.phasewake.app.shared.BuildNumber.ownLabel(context, watch = false) }
     val nextAlarmNotice by app.settings.nextAlarmNotice.collectAsStateWithLifecycle(initialValue = true)
     // Export nur hier (Verlauf ohne Knopf): aktiv mit Nächten oder abgeschlossenen Aufzeichnungen.
     val recordings by app.recordings.recordings.collectAsStateWithLifecycle()

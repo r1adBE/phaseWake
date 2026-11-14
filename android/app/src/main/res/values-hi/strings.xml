@@ -505,6 +505,7 @@
     <string name="transient_alarm_soon">आपके अलार्म की विंडो उससे पहले शुरू होती है।</string>
     <string name="check_watch_outdated_title">वॉच ऐप पुराना है</string>
     <string name="check_watch_outdated_text">वॉच पर Phase Wake अपडेट करें, ताकि हर अलार्म सेट किए अनुसार बजे।</string>
+    <string name="check_build_mismatch">फ़ोन और वॉच में अलग-अलग टेस्ट वर्शन हैं (%1$d / %2$d) – दोनों पर एक ही वर्शन इंस्टॉल करें।</string>
     <string name="watch_store_opened">वॉच पर Play Store खोल दिया गया – एक बार देख लें।</string>
     <string name="watch_store_failed">वॉच पर Play Store नहीं खुल सका। क्या वॉच कनेक्ट है?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

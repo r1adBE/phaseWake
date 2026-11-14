@@ -535,6 +535,7 @@
     <string name="transient_alarm_soon">Tvoje okno bujenja se začne že prej.</string>
     <string name="check_watch_outdated_title">Aplikacija na uri je zastarela</string>
     <string name="check_watch_outdated_text">Posodobi Phase Wake na uri, da bo vsaka budilka zvonila tako, kot je nastavljena.</string>
+    <string name="check_build_mismatch">Telefon in ura imata različni preizkusni različici (%1$d / %2$d) – na obe namesti isto.</string>
     <string name="watch_store_opened">Play Store je odprt na uri – poglej nanjo.</string>
     <string name="watch_store_failed">Play Store ni bilo mogoče odpreti na uri. Je ura povezana?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

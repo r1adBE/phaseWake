@@ -127,15 +127,17 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
 
     /**
      * Uhr: meldet, ob sie für die Nacht bereit ist (Sensoren, Mitteilungen und Weckbildschirm erlaubt), mit Pulsrechten
-     * und dem Grund einer nicht gestarteten Messung vor dem Schlafen dieser Nacht ([recorderSkip], Audit F-06).
+     * und dem Grund einer nicht gestarteten Messung vor dem Schlafen dieser Nacht ([recorderSkip], Audit F-06) sowie ihrer
+     * Build-Nummer ([build], `BuildNumber`).
      * @return ob das Paket abgelegt wurde (der Data Layer stellt es dann zu).
      */
     suspend fun publishWatchReady(
         ready: Boolean, battery: Int? = null, pulse: WatchPulse? = null, recorderSkip: RecorderSkip.Reason? = null, charging: Boolean = false,
+        build: Int? = null,
     ): Boolean {
         var stored = false
         guarded("Status senden") {
-            dataClient.putDataItem(statusRequest(ready, battery, System.currentTimeMillis(), pulse, recorderSkip, charging)).await()
+            dataClient.putDataItem(statusRequest(ready, battery, System.currentTimeMillis(), pulse, recorderSkip, charging, build)).await()
             stored = true
         }
         return stored
@@ -172,6 +174,9 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
      * Wear-Dienste fehlen.
      */
     suspend fun watchProtocol(): Int? = readStatus { readProtocol(it) }
+
+    /** Handy: Build-Nummer der Uhr-App ([readBuild]); `null`, wenn unbekannt (ältere Uhr, lokaler Build). */
+    suspend fun watchBuild(): Int? = readStatus { readBuild(it) }
 
     /** Kennungen der Geräte, die ein Status-Paket ([DataLayer.PATH_WATCH_STATUS]) geschrieben haben. */
     private suspend fun statusNodes(): Set<String> {

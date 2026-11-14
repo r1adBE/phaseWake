@@ -493,6 +493,7 @@
     <string name="transient_alarm_soon">ຊ່ວງເວລາປຸກຂອງເຈົ້າເລີ່ມກ່ອນນັ້ນ</string>
     <string name="check_watch_outdated_title">ແອັບໃນໂມງລ້າສະໄໝແລ້ວ</string>
     <string name="check_watch_outdated_text">ອັບເດດ Phase Wake ຢູ່ໂມງຂອງເຈົ້າ ເພື່ອໃຫ້ທຸກໂມງປຸກດັງຕາມທີ່ຕັ້ງໄວ້.</string>
+    <string name="check_build_mismatch">ໂທລະສັບ ແລະ ໂມງມີລຸ້ນທົດສອບຕ່າງກັນ (%1$d / %2$d) – ຕິດຕັ້ງລຸ້ນດຽວກັນທັງສອງ.</string>
     <string name="watch_store_opened">ເປີດ Play Store ຢູ່ໂມງຂອງເຈົ້າແລ້ວ – ລອງເບິ່ງໂມງ</string>
     <string name="watch_store_failed">ບໍ່ສາມາດເປີດ Play Store ຢູ່ໂມງຂອງເຈົ້າໄດ້. ໂມງເຊື່ອມຕໍ່ຢູ່ບໍ?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

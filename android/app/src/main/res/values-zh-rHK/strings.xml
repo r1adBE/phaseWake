@@ -494,6 +494,7 @@
     <string name="transient_alarm_soon">你的喚醒時段在這之前已經開始。</string>
     <string name="check_watch_outdated_title">手錶 App 版本過舊</string>
     <string name="check_watch_outdated_text">請更新手錶上的 Phase Wake，讓每個鬧鐘都按設定響起。</string>
+    <string name="check_build_mismatch">手機和手錶的測試版本不同（%1$d / %2$d）– 請在兩者上安裝相同的版本。</string>
     <string name="watch_store_opened">已在手錶上開啟 Play Store – 請看看手錶。</string>
     <string name="watch_store_failed">無法在手錶上開啟 Play Store。手錶已連線嗎？</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

@@ -384,6 +384,8 @@ internal fun rememberNightCheck(app: PhaseWakeApp, checkRun: Int): NightCheckDat
                     autoOnset = app.settings.autoOnset.first(),
                     learning = app.learning.state.first().active,
                     watchCharging = app.sync.watchBatteryCharging(),
+                    phoneBuild = com.phasewake.app.shared.BuildNumber.own(context, watch = false),
+                    watchBuild = app.sync.watchBuild(),
                 )
                 check?.let { c -> com.phasewake.app.widget.NextAlarmWidget.saveCheck(context, c.failed.filterNot { it.advisory }) }
                 delay(NIGHT_CHECK_INTERVAL_MS)

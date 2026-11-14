@@ -7,6 +7,7 @@ import com.phasewake.app.R
 import com.phasewake.app.core.DiagReport
 import com.phasewake.app.ring.BackupAlarm
 import com.phasewake.app.ring.plannedTarget
+import com.phasewake.app.shared.BuildNumber
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.watchPulse
 import com.phasewake.app.ui.home.NightCheckState
@@ -33,7 +34,7 @@ internal object PhoneStatus {
         )
         val watch = report?.status?.toMap().orEmpty()
         val power = context.getSystemService(PowerManager::class.java)
-        val version = context.packageManager.getPackageInfo(context.packageName, 0).versionName.orEmpty()
+        val version = BuildNumber.ownLabel(context, watch = false)
         val battery = app.sync.watchBattery()
         return listOf(
             StatusLine(res.getString(R.string.diag_next_phone), when (val at = app.backup.plannedTarget()) {

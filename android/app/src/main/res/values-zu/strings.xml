@@ -508,6 +508,7 @@
     <string name="transient_alarm_soon">Isikhala sakho sokuvuka siqala ngaphambi kwalokho.</string>
     <string name="check_watch_outdated_title">I-app yewashi indala</string>
     <string name="check_watch_outdated_text">Buyekeza i-Phase Wake ewashini lakho ukuze i-alamu ngayinye ikhale njengoba uyisethile.</string>
+    <string name="check_build_mismatch">Ifoni newashi kunezinguqulo zokuhlola ezihlukile (%1$d / %2$d) – faka efanayo kukho kokubili.</string>
     <string name="watch_store_opened">I-Play Store ivuliwe ewashini lakho – yibheke.</string>
     <string name="watch_store_failed">Ayikwazanga ukuvula i-Play Store ewashini lakho. Ingabe lixhunyiwe?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

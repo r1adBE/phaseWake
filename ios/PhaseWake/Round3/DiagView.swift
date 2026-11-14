@@ -37,7 +37,8 @@ struct DiagVersionRow: View {
 /// Diagnose am iPhone: Zustand von iPhone und Uhr, Ereignisse beider Geräte, Teilen, Uhr-Protokoll holen,
 /// Leeren, Ausblenden. Nur lokal; geteilt wird nur, was der Nutzer selbst teilt.
 struct DiagView: View {
-    static var version: String { Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "" }
+    /// Mit Build-Nummer der Testversion, z. B. «16.2.2 (96)» (r1AD 14.11.2026).
+    static var version: String { BuildNumber.ownLabel }
 
     @Environment(PhoneModel.self) private var model
     @Environment(\.dismiss) private var dismiss

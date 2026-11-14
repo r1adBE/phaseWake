@@ -505,6 +505,7 @@
     <string name="transient_alarm_soon">Herätysikkunasi alkaa jo ennen sitä.</string>
     <string name="check_watch_outdated_title">Kellon sovellus on vanhentunut</string>
     <string name="check_watch_outdated_text">Päivitä Phase Wake kellossa, jotta jokainen herätys soi asetetulla tavalla.</string>
+    <string name="check_build_mismatch">Puhelimessa ja kellossa on eri testiversiot (%1$d / %2$d) – asenna molempiin sama.</string>
     <string name="watch_store_opened">Play Store avattiin kellossa – katso kelloa.</string>
     <string name="watch_store_failed">Play Storea ei voitu avata kellossa. Onko kello yhdistetty?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

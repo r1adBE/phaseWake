@@ -505,6 +505,7 @@
     <string name="transient_alarm_soon">بازهٔ زنگ تو زودتر شروع می‌شود.</string>
     <string name="check_watch_outdated_title">برنامهٔ ساعت قدیمی است</string>
     <string name="check_watch_outdated_text">Phase Wake را روی ساعت به‌روز کن تا هر زنگ همان‌طور که تنظیم کرده‌ای به صدا درآید.</string>
+    <string name="check_build_mismatch">گوشی و ساعت نسخه‌های آزمایشی متفاوتی دارند (%1$d / %2$d) – روی هر دو همان نسخه را نصب کن.</string>
     <string name="watch_store_opened">Play Store روی ساعت باز شد – نگاهی به آن بینداز.</string>
     <string name="watch_store_failed">باز کردن Play Store روی ساعت ممکن نشد. آیا ساعت وصل است؟</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

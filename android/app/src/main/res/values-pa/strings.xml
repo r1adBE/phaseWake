@@ -508,6 +508,7 @@
     <string name="transient_alarm_soon">ਤੁਹਾਡੀ ਜਗਾਉਣ ਦੀ ਮਿਆਦ ਉਸ ਤੋਂ ਪਹਿਲਾਂ ਸ਼ੁਰੂ ਹੁੰਦੀ ਹੈ।</string>
     <string name="check_watch_outdated_title">ਘੜੀ ਵਾਲੀ ਐਪ ਪੁਰਾਣੀ ਹੈ</string>
     <string name="check_watch_outdated_text">ਹਰ ਅਲਾਰਮ ਸੈੱਟ ਕੀਤੇ ਮੁਤਾਬਕ ਵੱਜੇ, ਇਸ ਲਈ ਆਪਣੀ ਘੜੀ ’ਤੇ Phase Wake ਅੱਪਡੇਟ ਕਰੋ।</string>
+    <string name="check_build_mismatch">ਫ਼ੋਨ ਅਤੇ ਘੜੀ ’ਤੇ ਵੱਖ-ਵੱਖ ਟੈਸਟ ਵਰਜਨ ਹਨ (%1$d / %2$d) – ਦੋਵਾਂ ’ਤੇ ਇੱਕੋ ਵਰਜਨ ਇੰਸਟਾਲ ਕਰੋ।</string>
     <string name="watch_store_opened">ਤੁਹਾਡੀ ਘੜੀ ’ਤੇ Play Store ਖੋਲ੍ਹਿਆ ਗਿਆ – ਇੱਕ ਵਾਰ ਦੇਖੋ।</string>
     <string name="watch_store_failed">ਤੁਹਾਡੀ ਘੜੀ ’ਤੇ Play Store ਨਹੀਂ ਖੁੱਲ੍ਹ ਸਕਿਆ। ਕੀ ਇਹ ਕਨੈਕਟ ਹੈ?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

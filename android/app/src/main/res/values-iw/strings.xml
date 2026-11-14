@@ -519,6 +519,7 @@
     <string name="transient_alarm_soon">חלון ההשכמה שלכם מתחיל לפני כן.</string>
     <string name="check_watch_outdated_title">אפליקציית השעון לא מעודכנת</string>
     <string name="check_watch_outdated_text">עדכנו את Phase Wake בשעון כדי שכל השכמה תצלצל כפי שהוגדרה.</string>
+    <string name="check_build_mismatch">בטלפון ובשעון יש גרסאות ניסיון שונות (%1$d / %2$d) – התקינו את אותה גרסה בשניהם.</string>
     <string name="watch_store_opened">Play Store נפתח בשעון – הציצו בו.</string>
     <string name="watch_store_failed">לא ניתן היה לפתוח את Play Store בשעון. האם הוא מחובר?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

@@ -508,6 +508,7 @@
     <string name="transient_alarm_soon">Прозорецот за будење почнува пред тоа.</string>
     <string name="check_watch_outdated_title">Апликацијата на часовникот е застарена</string>
     <string name="check_watch_outdated_text">Ажурирај го Phase Wake на часовникот за секој аларм да ѕвони како што е поставен.</string>
+    <string name="check_build_mismatch">Телефонот и часовникот имаат различни тест-верзии (%1$d / %2$d) – инсталирај ја истата на двата.</string>
     <string name="watch_store_opened">Play Store е отворен на часовникот – погледни го.</string>
     <string name="watch_store_failed">Play Store не можеше да се отвори на часовникот. Дали е поврзан?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

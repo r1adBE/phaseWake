@@ -505,6 +505,7 @@
     <string name="transient_alarm_soon">Το παράθυρο αφύπνισής σου ξεκινά νωρίτερα.</string>
     <string name="check_watch_outdated_title">Η εφαρμογή του ρολογιού είναι παλιά</string>
     <string name="check_watch_outdated_text">Ενημέρωσε το Phase Wake στο ρολόι, ώστε κάθε αφύπνιση να χτυπά όπως τη ρύθμισες.</string>
+    <string name="check_build_mismatch">Το κινητό και το ρολόι έχουν διαφορετικές δοκιμαστικές εκδόσεις (%1$d / %2$d) – εγκατάστησε την ίδια και στα δύο.</string>
     <string name="watch_store_opened">Το Play Store άνοιξε στο ρολόι – ρίξε μια ματιά.</string>
     <string name="watch_store_failed">Δεν ήταν δυνατό να ανοίξει το Play Store στο ρολόι. Είναι συνδεδεμένο;</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

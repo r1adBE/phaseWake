@@ -535,6 +535,7 @@
     <string name="transient_alarm_soon">Your alarm window starts before that.</string>
     <string name="check_watch_outdated_title">Watch app out of date</string>
     <string name="check_watch_outdated_text">Update Phase Wake on your watch so every alarm rings as set.</string>
+    <string name="check_build_mismatch">Phone and watch have different test versions (%1$d / %2$d) – install the same one on both.</string>
     <string name="watch_store_opened">Play Store opened on your watch – have a look at it.</string>
     <string name="watch_store_failed">Couldn’t open the Play Store on your watch. Is it connected?</string>
     <!-- Nacht aufzeichnen (Galaxy Watch) -->

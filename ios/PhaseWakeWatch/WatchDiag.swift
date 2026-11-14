@@ -21,7 +21,8 @@ final class WatchDiagStatus: @unchecked Sendable {
         device.isBatteryMonitoringEnabled = true
         let battery = device.batteryLevel >= 0 ? String(Int((device.batteryLevel * 100).rounded())) : ""
         let next = plan.map { ISO8601DateFormatter().string(from: $0.target) } ?? ""
-        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
+        // Mit Build-Nummer, z. B. «16.2.2 (96)»: Das iPhone zeigt sie so unter «Versionen».
+        let version = BuildNumber.ownLabel
         // «exact»: Auf der Apple Watch gibt es kein Recht für exakte Wecker; gemeldet wird, ob die Sitzung scharf ist.
         let values: [(key: String, value: String)] = [
             (key: "version", value: version), (key: "next", value: next), (key: "battery", value: battery),
@@ -40,7 +41,7 @@ struct WatchVersionRow: View {
 
     var body: some View {
         VStack(spacing: 2) {
-            Text(L("diag_version", Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""))
+            Text(L("diag_version", BuildNumber.ownLabel))
                 .font(Fonts.manrope(11, relativeTo: .caption2))
                 .foregroundStyle(Brand.muted)
             if let hint {

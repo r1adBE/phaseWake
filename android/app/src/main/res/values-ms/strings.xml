@@ -491,6 +491,7 @@
     <string name="transient_alarm_soon">Tetingkap penggera awak bermula lebih awal.</string>
     <string name="check_watch_outdated_title">Apl jam tangan sudah lapuk</string>
     <string name="check_watch_outdated_text">Kemas kini Phase Wake pada jam tangan supaya setiap penggera berbunyi seperti yang ditetapkan.</string>
+    <string name="check_build_mismatch">Telefon dan jam tangan mempunyai versi ujian yang berbeza (%1$d / %2$d) – pasang versi yang sama pada kedua-duanya.</string>
     <string name="watch_store_opened">Play Store dibuka pada jam tangan – sila lihat.</string>
     <string name="watch_store_failed">Tidak dapat membuka Play Store pada jam tangan. Adakah ia disambungkan?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

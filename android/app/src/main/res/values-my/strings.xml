@@ -493,6 +493,7 @@
     <string name="transient_alarm_soon">သင့်နှိုးချိန်အပိုင်းသည် ထိုမတိုင်မီ စတင်သည်။</string>
     <string name="check_watch_outdated_title">နာရီအက်ပ် ဗားရှင်းဟောင်းနေသည်</string>
     <string name="check_watch_outdated_text">နှိုးစက်တိုင်း သတ်မှတ်ထားသည့်အတိုင်း မြည်စေရန် နာရီပေါ်ရှိ Phase Wake ကို အပ်ဒိတ်လုပ်ပါ။</string>
+    <string name="check_build_mismatch">ဖုန်းနှင့် နာရီတွင် စမ်းသပ်ဗားရှင်း မတူပါ (%1$d / %2$d) – နှစ်ခုလုံးတွင် တူညီသည့်ဗားရှင်းကို ထည့်သွင်းပါ။</string>
     <string name="watch_store_opened">နာရီပေါ်တွင် Play Store ကို ဖွင့်ထားပါပြီ – ကြည့်လိုက်ပါ။</string>
     <string name="watch_store_failed">နာရီပေါ်တွင် Play Store ကို ဖွင့်၍မရပါ။ နာရီ ချိတ်ဆက်ထားပါသလား။</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

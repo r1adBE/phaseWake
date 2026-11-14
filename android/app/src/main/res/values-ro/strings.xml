@@ -519,6 +519,7 @@
     <string name="transient_alarm_soon">Intervalul alarmei tale începe mai devreme.</string>
     <string name="check_watch_outdated_title">Aplicația de pe ceas este învechită</string>
     <string name="check_watch_outdated_text">Actualizează Phase Wake pe ceas, ca fiecare alarmă să sune așa cum ai setat-o.</string>
+    <string name="check_build_mismatch">Telefonul și ceasul au versiuni de test diferite (%1$d / %2$d) – instalează aceeași versiune pe amândouă.</string>
     <string name="watch_store_opened">Play Store s-a deschis pe ceas – aruncă o privire.</string>
     <string name="watch_store_failed">Play Store nu s-a putut deschide pe ceas. Este conectat?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

@@ -15,6 +15,7 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.phasewake.app.core.RecorderSkip
+import com.phasewake.app.shared.BuildNumber
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.WearSync
 import com.phasewake.app.wear.wake.SensorAccess
@@ -41,7 +42,8 @@ internal class WatchStatus(
     /**
      * Sendet den Status, aber nur bei Bedarf: Bereitschaft, Pulsrechte oder Meldung [noteSkip] geändert, Akkustand um
      * mindestens [BATTERY_STEP] Punkte geändert, letzte Meldung älter als [MAX_AGE] oder noch ohne den Verbindungs-Stand
-     * dieser Version (nach einem Update gleich melden, sonst bliebe am Handy bis zu einer Stunde «veraltet»).
+     * oder die Build-Nummer dieser Version (nach einem Update gleich melden, sonst bliebe am Handy bis zu einer Stunde
+     * «veraltet» bzw. «verschiedene Testversionen»).
      * Jede Meldung ist ein dringendes Datenpaket und lässt das Handy neu planen.
      */
     suspend fun publish(): Unit = lock.withLock {
@@ -50,6 +52,7 @@ internal class WatchStatus(
         // Lädt die Uhr, misst sie trotz wenig Akku (F-6); das Handy warnt dann nicht.
         val charging = context.getSystemService(BatteryManager::class.java)?.isCharging == true
         val pulse = SensorAccess.of(context).pulse()
+        val build = BuildNumber.own(context, watch = true)
         val instant = clock().instant()
         val now = instant.toEpochMilli()
         val prefs = store.data.first()
@@ -59,14 +62,14 @@ internal class WatchStatus(
         val lastAt = prefs[SENT_AT]
         val lastBattery = prefs[SENT_BATTERY]
         val due = prefs[SENT_READY] != ready || prefs[SENT_PULSE] != pulse.heartRate || prefs[SENT_PULSE_BACKGROUND] != pulse.background ||
-            prefs[SENT_PROTOCOL] != DataLayer.PROTOCOL || prefs[SENT_SKIP] != skipCode || (prefs[SENT_CHARGING] ?: false) != charging ||
+            prefs[SENT_PROTOCOL] != DataLayer.PROTOCOL || prefs[SENT_BUILD] != build || prefs[SENT_SKIP] != skipCode || (prefs[SENT_CHARGING] ?: false) != charging ||
             (battery != null && (lastBattery == null || abs(battery - lastBattery) >= BATTERY_STEP)) ||
             lastAt == null || now - lastAt >= MAX_AGE.toMillis() || now < lastAt
         if (!due) return@withLock
         // Mit Akkustand der Uhr: Der Nacht-Check am Handy warnt, wenn er für die Nacht knapp ist. Das Paket trägt auch den
         // Verbindungs-Stand, damit das Handy eine ältere Uhr-App erkennt (Review O-04), und die Pulsrechte: Ohne Puls im
         // Hintergrund misst die Uhr nachts nicht, der Nacht-Check warnt dann.
-        if (!sync.publishWatchReady(ready, battery, pulse, skip, charging)) return@withLock
+        if (!sync.publishWatchReady(ready, battery, pulse, skip, charging, build)) return@withLock
         store.edit {
             it[SENT_READY] = ready
             it[SENT_CHARGING] = charging
@@ -75,6 +78,7 @@ internal class WatchStatus(
             it[SENT_AT] = now
             it[SENT_PROTOCOL] = DataLayer.PROTOCOL
             it[SENT_SKIP] = skipCode
+            if (build != null) it[SENT_BUILD] = build else it.remove(SENT_BUILD)
             if (battery != null) it[SENT_BATTERY] = battery else it.remove(SENT_BATTERY)
         }
     }
@@ -124,6 +128,7 @@ internal class WatchStatus(
         private val SENT_AT = longPreferencesKey("status_sent_at")
         private val SENT_PROTOCOL = intPreferencesKey("status_sent_protocol")
         private val SENT_SKIP = stringPreferencesKey("status_sent_recorder_skip")
+        private val SENT_BUILD = intPreferencesKey("status_sent_build")
 
         /** Gemerkte Meldung [noteSkip] (`RecorderSkip.encode`). */
         private val SKIP = stringPreferencesKey("status_recorder_skip")

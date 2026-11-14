@@ -508,6 +508,7 @@
     <string name="transient_alarm_soon">Zure esnatze-leihoa hori baino lehen hasten da.</string>
     <string name="check_watch_outdated_title">Erlojuko aplikazioa zaharkituta dago</string>
     <string name="check_watch_outdated_text">Eguneratu Phase Wake erlojuan, alarma bakoitzak ezarri bezala jo dezan.</string>
+    <string name="check_build_mismatch">Telefonoak eta erlojuak proba-bertsio desberdinak dituzte (%1$d / %2$d) – instalatu bera bietan.</string>
     <string name="watch_store_opened">Play Store erlojuan ireki da – begiratu erlojuari.</string>
     <string name="watch_store_failed">Ezin izan da Play Store erlojuan ireki. Konektatuta dago?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

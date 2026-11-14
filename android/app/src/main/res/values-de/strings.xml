@@ -505,6 +505,7 @@
     <string name="transient_alarm_soon">Dein Weckfenster beginnt schon vorher.</string>
     <string name="check_watch_outdated_title">Uhr-App veraltet</string>
     <string name="check_watch_outdated_text">Aktualisiere Phase Wake auf der Uhr, damit alle Wecker wie eingestellt klingeln.</string>
+    <string name="check_build_mismatch">Handy und Uhr haben verschiedene Testversionen (%1$d / %2$d) – installiere beide gleich.</string>
     <string name="watch_store_opened">Play Store auf der Uhr geöffnet – schau auf deine Uhr.</string>
     <string name="watch_store_failed">Der Play Store auf der Uhr liess sich nicht öffnen. Ist sie verbunden?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

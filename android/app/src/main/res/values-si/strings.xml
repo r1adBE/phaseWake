@@ -508,6 +508,7 @@
     <string name="transient_alarm_soon">ඔබේ අවදි පරාසය ඊට පෙර ආරම්භ වේ.</string>
     <string name="check_watch_outdated_title">ඔරලෝසු යෙදුම යල් පැන ගොස් ඇත</string>
     <string name="check_watch_outdated_text">සෑම එලාමයක්ම සැකසූ ලෙසම නාද වීමට ඔරලෝසුවේ Phase Wake යාවත්කාලීන කරන්න.</string>
+    <string name="check_build_mismatch">දුරකථනයේ සහ ඔරලෝසුවේ වෙනස් පරීක්ෂණ අනුවාද ඇත (%1$d / %2$d) – දෙකෙහිම එකම අනුවාදය ස්ථාපනය කරන්න.</string>
     <string name="watch_store_opened">ඔබේ ඔරලෝසුවේ Play Store විවෘත කළා – එය බලන්න.</string>
     <string name="watch_store_failed">ඔබේ ඔරලෝසුවේ Play Store විවෘත කළ නොහැකි විය. එය සම්බන්ධ කර තිබේද?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

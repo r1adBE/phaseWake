@@ -519,6 +519,7 @@
     <string name="transient_alarm_soon">La ventana de tu alarma empieza antes.</string>
     <string name="check_watch_outdated_title">App del reloj desactualizada</string>
     <string name="check_watch_outdated_text">Actualiza Phase Wake en el reloj para que cada alarma suene como la configuraste.</string>
+    <string name="check_build_mismatch">El teléfono y el reloj tienen versiones de prueba distintas (%1$d / %2$d): instala la misma en ambos.</string>
     <string name="watch_store_opened">Play Store abierta en el reloj – échale un vistazo.</string>
     <string name="watch_store_failed">No se pudo abrir Play Store en el reloj. ¿Está conectado?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

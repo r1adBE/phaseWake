@@ -507,6 +507,7 @@
     <string name="transient_alarm_soon">உங்கள் எழுப்பும் வரம்பு அதற்கு முன்பே தொடங்குகிறது.</string>
     <string name="check_watch_outdated_title">வாட்ச் ஆப் பழையது</string>
     <string name="check_watch_outdated_text">ஒவ்வொரு அலாரமும் அமைத்தபடியே ஒலிக்க, உங்கள் வாட்ச்சில் Phase Wake ஐப் புதுப்பியுங்கள்.</string>
+    <string name="check_build_mismatch">ஃபோனிலும் வாட்ச்சிலும் வெவ்வேறு சோதனைப் பதிப்புகள் உள்ளன (%1$d / %2$d) – இரண்டிலும் ஒரே பதிப்பை நிறுவுங்கள்.</string>
     <string name="watch_store_opened">உங்கள் வாட்ச்சில் Play Store திறக்கப்பட்டது – ஒருமுறை பாருங்கள்.</string>
     <string name="watch_store_failed">உங்கள் வாட்ச்சில் Play Store ஐத் திறக்க முடியவில்லை. அது இணைக்கப்பட்டுள்ளதா?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

@@ -18,10 +18,12 @@ abstract class WearPackets {
 
     /**
      * Status-Paket der Uhr mit dem Verbindungs-Stand ([DataLayer.PROTOCOL]) dieser Version; [battery] und [pulse]
-     * fehlen, wenn unbekannt; [recorderSkip] ist leer ohne Meldung; [charging]: Die Uhr lädt (F-6).
+     * fehlen, wenn unbekannt; [recorderSkip] ist leer ohne Meldung; [charging]: Die Uhr lädt (F-6); [build]: Build-Nummer
+     * der Uhr-App (`BuildNumber`), fehlt, wenn unbekannt.
      */
     fun statusRequest(
         ready: Boolean, battery: Int?, nowMs: Long, pulse: WatchPulse? = null, recorderSkip: RecorderSkip.Reason? = null, charging: Boolean = false,
+        build: Int? = null,
     ): PutDataRequest =
         PutDataMapRequest.create(DataLayer.PATH_WATCH_STATUS).apply {
             dataMap.putBoolean(DataLayer.KEY_READY, ready)
@@ -30,6 +32,7 @@ abstract class WearPackets {
             dataMap.putString(DataLayer.KEY_RECORDER_SKIP, recorderSkip?.code.orEmpty())
             pulse?.let { WatchPulse.put(dataMap, it) }
             dataMap.putInt(DataLayer.KEY_PROTOCOL, DataLayer.PROTOCOL)
+            if (build != null) dataMap.putInt(DataLayer.KEY_BUILD, build)
             dataMap.putLong(DataLayer.KEY_UPDATED_AT, nowMs)
         }.asPutDataRequest().setUrgent()
 
@@ -70,6 +73,9 @@ abstract class WearPackets {
 
     /** Verbindungs-Stand der Uhr aus dem Status-Paket; ohne Angabe (Uhr vor dieser Angabe) 0. */
     fun readProtocol(map: DataMap): Int = if (map.containsKey(DataLayer.KEY_PROTOCOL)) map.getInt(DataLayer.KEY_PROTOCOL) else 0
+
+    /** Build-Nummer der Uhr aus dem Status-Paket; `null` ohne Angabe (ältere Uhr, lokaler Build). */
+    fun readBuild(map: DataMap): Int? = map.takeIf { it.containsKey(DataLayer.KEY_BUILD) }?.getInt(DataLayer.KEY_BUILD)?.takeIf { it > BuildNumber.LOCAL }
 
     /**
      * Ob die Uhr-App älter ist als die Handy-App (Review O-04): ihr Verbindungs-Stand [watchProtocol] ist kleiner als

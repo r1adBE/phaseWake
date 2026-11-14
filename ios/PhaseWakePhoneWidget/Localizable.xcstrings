@@ -34945,6 +34945,454 @@
         }
       }
     },
+    "check_build_mismatch": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Foon en horlosie het verskillende toetsweergawes (%1$lld / %2$lld) – installeer dieselfde op albei."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ስልኩ እና ሰዓቱ የተለያዩ የሙከራ ስሪቶች አሏቸው (%1$lld / %2$lld) – በሁለቱም ላይ አንድ ዓይነቱን ይጫኑ።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "للهاتف والساعة إصداران تجريبيان مختلفان (%1$lld / %2$lld) – ثبّت الإصدار نفسه على كليهما."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefon və saatda fərqli test versiyaları var (%1$lld / %2$lld) – hər ikisinə eynisini quraşdır."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Телефонът и часовникът имат различни тестови версии (%1$lld / %2$lld) – инсталирай една и съща и на двата."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ফোন ও ঘড়িতে আলাদা টেস্ট সংস্করণ আছে (%1$lld / %2$lld) – দুটোতেই একই সংস্করণ ইনস্টল করো।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefon i sat imaju različite testne verzije (%1$lld / %2$lld) – instaliraj istu na oba."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El telèfon i el rellotge tenen versions de prova diferents (%1$lld / %2$lld) – instal·la la mateixa a tots dos."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefon a hodinky mají různé testovací verze (%1$lld / %2$lld) – nainstaluj na obě stejnou."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefon og ur har forskellige testversioner (%1$lld / %2$lld) – installer den samme på begge."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Handy und Uhr haben verschiedene Testversionen (%1$lld / %2$lld) – installiere beide gleich."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το κινητό και το ρολόι έχουν διαφορετικές δοκιμαστικές εκδόσεις (%1$lld / %2$lld) – εγκατάστησε την ίδια και στα δύο."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phone and watch have different test versions (%1$lld / %2$lld) – install the same one on both."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El teléfono y el reloj tienen versiones de prueba distintas (%1$lld / %2$lld): instala la misma en ambos."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefonil ja kellal on erinevad testversioonid (%1$lld / %2$lld) – paigalda mõlemale sama."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefonoak eta erlojuak proba-bertsio desberdinak dituzte (%1$lld / %2$lld) – instalatu bera bietan."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "گوشی و ساعت نسخه‌های آزمایشی متفاوتی دارند (%1$lld / %2$lld) – روی هر دو همان نسخه را نصب کن."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puhelimessa ja kellossa on eri testiversiot (%1$lld / %2$lld) – asenna molempiin sama."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Magkaiba ang test version ng telepono at relo (%1$lld / %2$lld) – i-install ang pareho sa dalawa."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le téléphone et la montre ont des versions de test différentes (%1$lld / %2$lld) – installe la même sur les deux."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tá leaganacha tástála difriúla ar an bhfón agus ar an uaireadóir (%1$lld / %2$lld) – suiteáil an ceann céanna ar an dá cheann."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O teléfono e o reloxo teñen versións de proba distintas (%1$lld / %2$lld): instala a mesma nos dous."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ફોન અને ઘડિયાળમાં અલગ ટેસ્ટ વર્ઝન છે (%1$lld / %2$lld) – બંને પર એક જ વર્ઝન ઇન્સ્ટોલ કરો."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בטלפון ובשעון יש גרסאות ניסיון שונות (%1$lld / %2$lld) – התקינו את אותה גרסה בשניהם."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फ़ोन और वॉच में अलग-अलग टेस्ट वर्शन हैं (%1$lld / %2$lld) – दोनों पर एक ही वर्शन इंस्टॉल करें।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefon i sat imaju različite testne verzije (%1$lld / %2$lld) – instaliraj istu na oba."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A telefonon és az órán különböző tesztverzió van (%1$lld / %2$lld) – telepítsd ugyanazt mindkettőre."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Հեռախոսն ու ժամացույցն ունեն տարբեր փորձնական տարբերակներ (%1$lld / %2$lld) – տեղադրիր նույնը երկուսի վրա։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ponsel dan jam tangan memiliki versi uji yang berbeda (%1$lld / %2$lld) – pasang versi yang sama di keduanya."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Síminn og úrið eru með ólíkar prufuútgáfur (%1$lld / %2$lld) – settu þá sömu upp á báðum."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefono e orologio hanno versioni di prova diverse (%1$lld / %2$lld): installa la stessa su entrambi."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スマホとウォッチのテスト版が異なります（%1$lld / %2$lld）。両方に同じものをインストールしてください。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ტელეფონსა და საათს სხვადასხვა სატესტო ვერსია აქვს (%1$lld / %2$lld) – ორივეზე ერთი და იგივე დააყენე."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Телефон мен сағаттағы сынақ нұсқалары әртүрлі (%1$lld / %2$lld) – екеуіне де бірдей нұсқаны орнат."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ទូរសព្ទ និងនាឡិកាមានកំណែសាកល្បងខុសគ្នា (%1$lld / %2$lld) – ដំឡើងកំណែដូចគ្នាលើទាំងពីរ។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಫೋನ್ ಮತ್ತು ವಾಚ್‌ನಲ್ಲಿ ಬೇರೆ ಬೇರೆ ಪರೀಕ್ಷಾ ಆವೃತ್ತಿಗಳಿವೆ (%1$lld / %2$lld) – ಎರಡರಲ್ಲೂ ಒಂದೇ ಆವೃತ್ತಿಯನ್ನು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "휴대폰과 워치의 테스트 버전이 다릅니다(%1$lld / %2$lld). 두 기기에 같은 버전을 설치해 주세요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ໂທລະສັບ ແລະ ໂມງມີລຸ້ນທົດສອບຕ່າງກັນ (%1$lld / %2$lld) – ຕິດຕັ້ງລຸ້ນດຽວກັນທັງສອງ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefone ir laikrodyje skirtingos bandomosios versijos (%1$lld / %2$lld) – įdiek abiejuose tą pačią."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tālrunī un pulkstenī ir dažādas testa versijas (%1$lld / %2$lld) – instalē abos vienu un to pašu."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Телефонот и часовникот имаат различни тест-верзии (%1$lld / %2$lld) – инсталирај ја истата на двата."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഫോണിലും വാച്ചിലും വ്യത്യസ്ത ടെസ്റ്റ് പതിപ്പുകളാണ് (%1$lld / %2$lld) – രണ്ടിലും ഒരേ പതിപ്പ് ഇൻസ്റ്റാൾ ചെയ്യുക."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Утас, цаг хоёр өөр туршилтын хувилбартай байна (%1$lld / %2$lld) – хоёуланд нь ижилийг суулга."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फोन आणि घड्याळात वेगवेगळ्या चाचणी आवृत्त्या आहेत (%1$lld / %2$lld) – दोन्हीवर एकच आवृत्ती इंस्टॉल करा."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefon dan jam tangan mempunyai versi ujian yang berbeza (%1$lld / %2$lld) – pasang versi yang sama pada kedua-duanya."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ဖုန်းနှင့် နာရီတွင် စမ်းသပ်ဗားရှင်း မတူပါ (%1$lld / %2$lld) – နှစ်ခုလုံးတွင် တူညီသည့်ဗားရှင်းကို ထည့်သွင်းပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefonen og klokken har ulike testversjoner (%1$lld / %2$lld) – installer den samme på begge."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फोन र घडीमा फरक परीक्षण संस्करण छन् (%1$lld / %2$lld) – दुवैमा उही संस्करण इन्स्टल गर।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefoon en horloge hebben verschillende testversies (%1$lld / %2$lld) – installeer op beide dezelfde."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਫ਼ੋਨ ਅਤੇ ਘੜੀ ’ਤੇ ਵੱਖ-ਵੱਖ ਟੈਸਟ ਵਰਜਨ ਹਨ (%1$lld / %2$lld) – ਦੋਵਾਂ ’ਤੇ ਇੱਕੋ ਵਰਜਨ ਇੰਸਟਾਲ ਕਰੋ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefon i zegarek mają różne wersje testowe (%1$lld / %2$lld) – zainstaluj na obu tę samą."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O celular e o relógio têm versões de teste diferentes (%1$lld / %2$lld) – instale a mesma nos dois."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O telemóvel e o relógio têm versões de teste diferentes (%1$lld / %2$lld) – instala a mesma nos dois."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefonul și ceasul au versiuni de test diferite (%1$lld / %2$lld) – instalează aceeași versiune pe amândouă."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "На телефоне и часах разные тестовые версии (%1$lld / %2$lld) – установи одну и ту же на оба устройства."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "දුරකථනයේ සහ ඔරලෝසුවේ වෙනස් පරීක්ෂණ අනුවාද ඇත (%1$lld / %2$lld) – දෙකෙහිම එකම අනුවාදය ස්ථාපනය කරන්න."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefón a hodinky majú rôzne testovacie verzie (%1$lld / %2$lld) – nainštaluj na obe rovnakú."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefon in ura imata različni preizkusni različici (%1$lld / %2$lld) – na obe namesti isto."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefoni dhe ora kanë versione testuese të ndryshme (%1$lld / %2$lld) – instalo të njëjtin në të dyja."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Телефон и сат имају различите тест верзије (%1$lld / %2$lld) – инсталирај исту на оба."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefonen och klockan har olika testversioner (%1$lld / %2$lld) – installera samma på båda."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simu na saa zina matoleo tofauti ya majaribio (%1$lld / %2$lld) – sakinisha lile lile kwenye zote mbili."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ஃபோனிலும் வாட்ச்சிலும் வெவ்வேறு சோதனைப் பதிப்புகள் உள்ளன (%1$lld / %2$lld) – இரண்டிலும் ஒரே பதிப்பை நிறுவுங்கள்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఫోన్‌లో, వాచ్‌లో వేర్వేరు టెస్ట్ వెర్షన్‌లు ఉన్నాయి (%1$lld / %2$lld) – రెండింటిలో ఒకే వెర్షన్ ఇన్‌స్టాల్ చేయండి."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "โทรศัพท์และนาฬิกามีเวอร์ชันทดสอบต่างกัน (%1$lld / %2$lld) – ติดตั้งเวอร์ชันเดียวกันทั้งสองเครื่อง"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefon ve saatte farklı test sürümleri var (%1$lld / %2$lld) – ikisine de aynısını yükle."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "На телефоні й годиннику різні тестові версії (%1$lld / %2$lld) – встанови однакову на обидва."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فون اور گھڑی پر مختلف ٹیسٹ ورژن ہیں (%1$lld / %2$lld) – دونوں پر ایک ہی ورژن انسٹال کرو۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefon va soatda turli sinov versiyalari bor (%1$lld / %2$lld) – ikkalasiga bir xilini oʻrnat."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Điện thoại và đồng hồ có phiên bản thử nghiệm khác nhau (%1$lld / %2$lld) – hãy cài cùng một bản trên cả hai."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手機和手錶的測試版本不同（%1$lld / %2$lld）– 請在兩者上安裝相同的版本。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手机和手表的测试版本不同（%1$lld / %2$lld）– 请在两者上安装相同的版本。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手機和手錶的測試版本不同（%1$lld / %2$lld）– 請在兩者上安裝相同的版本。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ifoni newashi kunezinguqulo zokuhlola ezihlukile (%1$lld / %2$lld) – faka efanayo kukho kokubili."
+          }
+        }
+      }
+    },
     "check_companion": {
       "localizations": {
         "af": {

@@ -4,6 +4,9 @@
 Durchsucht android/*/src/main und die Swift-Quellen der Apps und des Kerns (ohne Tests). Dazu Kommentare (Audit N-06):
 «Build 54», «build #54», «Build-Nummer 54» in Kommentaren aller Kotlin-, Gradle-, Swift- und YAML-Dateien (auch Tests
 und Workflows). Obergrenze: 0.
+
+Ausnahme (Entscheid r1AD 14.11.2026, Build-Nummer in «Über», Diagnose und Nacht-Check): Je eine Datei pro Plattform
+(`BuildNumber`) darf die Build-Nummer lesen; Literale, Texte und TODO-Marken sind auch dort verboten.
 """
 import re
 import sys
@@ -17,6 +20,12 @@ RULES = [
     (re.compile(r"\"[^\"]*\b[Bb]uild\s*#?\d+[^\"]*\""), "Build-Nummer als Text"),
     (re.compile(r"\b(TODO|FIXME|XXX)\b"), "TODO/FIXME/XXX im Produktivcode"),
 ]
+# Einzige Dateien, die die Build-Nummer lesen dürfen (nur die Regeln mit «lesen»).
+READERS = {
+    "android/shared/src/main/kotlin/com/phasewake/app/shared/BuildNumber.kt",
+    "ios/Shared/BuildNumber.swift",
+}
+READ_RULES = {"Build-Nummer (versionCode) im Code", "Build-Nummer (CFBundleVersion) im Code"}
 # «Build» mit Nummer (auch «Build-Nummer 54», «Build-Nr. 54», «build #54»); Zahl als eigenes Wort.
 BUILD_NUMBER = re.compile(r"\b[Bb]uild(?:-Nummer|-Nr\.?)?\s*#?\s*\d+\b")
 # Kommentar-Anfang je Sprache: Kotlin/Swift «//», «/*» oder Fortsetzung «*»; YAML «#». Grob, aber ohne Treffer in Texten.
@@ -60,8 +69,11 @@ def comment_hits():
 def main():
     found = []
     for f in sources():
+        reader = f.relative_to(ROOT).as_posix() in READERS
         for no, line in enumerate(f.read_text(encoding="utf-8").splitlines(), 1):
             for rx, msg in RULES:
+                if reader and msg in READ_RULES:
+                    continue
                 if rx.search(line):
                     found.append(f"{f.relative_to(ROOT).as_posix()}:{no}: {msg}")
     found += comment_hits()

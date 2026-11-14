@@ -491,6 +491,7 @@
     <string name="transient_alarm_soon">Khoảng thời gian báo thức của bạn bắt đầu trước đó.</string>
     <string name="check_watch_outdated_title">Ứng dụng trên đồng hồ đã cũ</string>
     <string name="check_watch_outdated_text">Cập nhật Phase Wake trên đồng hồ để mọi báo thức đều reo đúng như đã đặt.</string>
+    <string name="check_build_mismatch">Điện thoại và đồng hồ có phiên bản thử nghiệm khác nhau (%1$d / %2$d) – hãy cài cùng một bản trên cả hai.</string>
     <string name="watch_store_opened">Đã mở Play Store trên đồng hồ – hãy xem đồng hồ của bạn.</string>
     <string name="watch_store_failed">Không thể mở Play Store trên đồng hồ. Đồng hồ đã được kết nối chưa?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

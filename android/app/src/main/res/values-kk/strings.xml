@@ -493,6 +493,7 @@
     <string name="transient_alarm_soon">Оятқыш терезең одан бұрын басталады.</string>
     <string name="check_watch_outdated_title">Сағат қолданбасы ескірген</string>
     <string name="check_watch_outdated_text">Әр оятқыш орнатылғандай шырылдауы үшін сағаттағы Phase Wake-ті жаңарт.</string>
+    <string name="check_build_mismatch">Телефон мен сағаттағы сынақ нұсқалары әртүрлі (%1$d / %2$d) – екеуіне де бірдей нұсқаны орнат.</string>
     <string name="watch_store_opened">Play Store сағатта ашылды – оған қарап шық.</string>
     <string name="watch_store_failed">Play Store сағатта ашылмады. Сағат қосылған ба?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

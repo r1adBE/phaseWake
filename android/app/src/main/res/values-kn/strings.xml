@@ -507,6 +507,7 @@
     <string name="transient_alarm_soon">ಅದಕ್ಕೂ ಮೊದಲೇ ನಿಮ್ಮ ಎಚ್ಚರಿಸುವ ಅವಧಿ ಶುರುವಾಗುತ್ತದೆ.</string>
     <string name="check_watch_outdated_title">ವಾಚ್ ಆ್ಯಪ್ ಹಳೆಯದಾಗಿದೆ</string>
     <string name="check_watch_outdated_text">ಪ್ರತಿ ಅಲಾರಾಂ ಹೊಂದಿಸಿದಂತೆಯೇ ಮೊಳಗಲು ನಿಮ್ಮ ವಾಚ್‌ನಲ್ಲಿ Phase Wake ಅಪ್‌ಡೇಟ್ ಮಾಡಿ.</string>
+    <string name="check_build_mismatch">ಫೋನ್ ಮತ್ತು ವಾಚ್‌ನಲ್ಲಿ ಬೇರೆ ಬೇರೆ ಪರೀಕ್ಷಾ ಆವೃತ್ತಿಗಳಿವೆ (%1$d / %2$d) – ಎರಡರಲ್ಲೂ ಒಂದೇ ಆವೃತ್ತಿಯನ್ನು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ.</string>
     <string name="watch_store_opened">ನಿಮ್ಮ ವಾಚ್‌ನಲ್ಲಿ Play Store ತೆರೆಯಲಾಗಿದೆ – ಒಮ್ಮೆ ನೋಡಿ.</string>
     <string name="watch_store_failed">ನಿಮ್ಮ ವಾಚ್‌ನಲ್ಲಿ Play Store ತೆರೆಯಲಾಗಲಿಲ್ಲ. ಅದು ಸಂಪರ್ಕಗೊಂಡಿದೆಯೇ?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

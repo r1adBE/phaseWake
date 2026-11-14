@@ -519,6 +519,7 @@
     <string name="transient_alarm_soon">La plage de ton réveil commence avant.</string>
     <string name="check_watch_outdated_title">App de la montre obsolète</string>
     <string name="check_watch_outdated_text">Mets à jour Phase Wake sur la montre pour que chaque réveil sonne comme prévu.</string>
+    <string name="check_build_mismatch">Le téléphone et la montre ont des versions de test différentes (%1$d / %2$d) – installe la même sur les deux.</string>
     <string name="watch_store_opened">Play Store ouvert sur ta montre – jette un œil.</string>
     <string name="watch_store_failed">Impossible d\'ouvrir le Play Store sur ta montre. Est-elle connectée ?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

@@ -522,6 +522,7 @@
     <string name="transient_alarm_soon">Tvoj interval buđenja počinje prije toga.</string>
     <string name="check_watch_outdated_title">Aplikacija na satu je zastarjela</string>
     <string name="check_watch_outdated_text">Ažuriraj Phase Wake na satu kako bi svaki alarm zvonio kako je postavljen.</string>
+    <string name="check_build_mismatch">Telefon i sat imaju različite testne verzije (%1$d / %2$d) – instaliraj istu na oba.</string>
     <string name="watch_store_opened">Play Store je otvoren na satu – pogledaj ga.</string>
     <string name="watch_store_failed">Play Store se nije mogao otvoriti na satu. Je li sat povezan?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

@@ -508,6 +508,7 @@
     <string name="transient_alarm_soon">तिम्रो ब्युँझाउने अवधि त्योभन्दा अघि सुरु हुन्छ।</string>
     <string name="check_watch_outdated_title">घडीको एप पुरानो छ</string>
     <string name="check_watch_outdated_text">हरेक अलार्म सेट गरेअनुसार बजोस् भनेर घडीमा Phase Wake अपडेट गर।</string>
+    <string name="check_build_mismatch">फोन र घडीमा फरक परीक्षण संस्करण छन् (%1$d / %2$d) – दुवैमा उही संस्करण इन्स्टल गर।</string>
     <string name="watch_store_opened">घडीमा Play Store खोलियो – एक पटक हेर।</string>
     <string name="watch_store_failed">घडीमा Play Store खोल्न सकिएन। के घडी जोडिएको छ?</string>
     <!-- Verlauf & Diagramme 2.0: Detailseite der Nacht, Phasen-Summen, interaktive Diagramme -->

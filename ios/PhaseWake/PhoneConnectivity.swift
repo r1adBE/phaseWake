@@ -346,7 +346,11 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         let notifications: (state: WatchNotifications, checkedAt: Date?)? = (context[SyncKeys.watchNotifications] as? Int64)
             .flatMap(WatchNotifications.init(rawValue:)).map { (state: $0, checkedAt: checkedAt) }
         if !context.isEmpty {
-            Task { @MainActor in PhoneModel.shared.setWatchStatus(battery: level, version: version, notifications: notifications, charging: charging) }
+            // Build-Nummer der Uhr (fehlt bei älteren Uhren und lokalem Build: kein Hinweis «verschiedene Testversionen»).
+            let build = BuildNumber.watchBuild(in: context)
+            Task { @MainActor in
+                PhoneModel.shared.setWatchStatus(battery: level, version: version, notifications: notifications, charging: charging, build: build)
+            }
         }
         guard let snapshot = AlarmStamps.snapshot(context: context) else { return }
         Task { @MainActor in PhoneModel.shared.applyRemote(snapshot) }
