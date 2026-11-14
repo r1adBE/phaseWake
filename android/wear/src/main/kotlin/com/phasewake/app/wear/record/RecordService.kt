@@ -386,17 +386,7 @@ class RecordService : LifecycleService() {
         @Volatile
         internal var clock: () -> Instant = Instant::now
 
-        /**
-         * Grund fürs Diagnose-Protokoll: «manual watch», «manual phone», «cap 12h», «battery 14%», «service ended»,
-         * «wake» (Lernphase).
-         */
-        fun reasonText(reason: RecordEnd, battery: Int?): String = when (reason) {
-            RecordEnd.WATCH -> "manual watch"
-            RecordEnd.PHONE -> "manual phone"
-            RecordEnd.CAP -> "cap ${NightRecording.MAX_DURATION.toHours()}h"
-            RecordEnd.BATTERY -> "battery ${battery ?: "-"}%"
-            RecordEnd.SERVICE -> "service ended"
-            RecordEnd.WAKE -> "wake"
-        }
+        /** Grund fürs Diagnose-Protokoll, siehe [recordReasonText]. */
+        fun reasonText(reason: RecordEnd, battery: Int?): String = recordReasonText(reason, battery)
     }
 }
