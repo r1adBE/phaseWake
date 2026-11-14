@@ -7,6 +7,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import com.phasewake.app.PhaseWakeApp
@@ -35,6 +36,7 @@ internal fun NavHostController.isTop(entry: NavBackStackEntry): Boolean = curren
 @Composable
 internal fun EditorRoute(app: PhaseWakeApp, state: NavState, id: String?, actions: NavActions, entry: NavBackStackEntry) {
     val context = LocalContext.current
+    val maxAlarmsText = stringResource(R.string.home_max_alarms, MAX_ALARMS)
     val data = state.data
     // Erst zeigen, wenn die Wecker gelesen sind (nach dem Neuaufbau fehlen sie kurz): sonst wird ein bestehender
     // Wecker als neuer bearbeitet und beim Speichern doppelt angelegt.
@@ -59,7 +61,7 @@ internal fun EditorRoute(app: PhaseWakeApp, state: NavState, id: String?, action
         onSave = save@{ spec ->
             if (!actions.nav.isTop(entry) || gone) return@save
             if (existing == null && data.alarms.size >= MAX_ALARMS) {
-                Toast.makeText(context, context.getString(R.string.home_max_alarms, MAX_ALARMS), Toast.LENGTH_LONG).show()
+                Toast.makeText(context, maxAlarmsText, Toast.LENGTH_LONG).show()
                 return@save
             }
             app.afterAlarmsChanged {
