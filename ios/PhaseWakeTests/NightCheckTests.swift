@@ -108,7 +108,7 @@ final class NightCheckTests: XCTestCase {
     }
 
     func testAdvisoriesAndFixes() {
-        XCTAssertEqual(PhoneCheck.allCases.filter(\.isAdvisory), [.silentSwitch, .watchStateOld])
+        XCTAssertEqual(PhoneCheck.allCases.filter(\.isAdvisory), [.silentSwitch, .watchStateOld, .watchOnsetBattery, .watchLearnBattery])
         XCTAssertEqual(PhoneCheck.allCases.filter(\.canFix), [.alarms, .notifications])
     }
 }
