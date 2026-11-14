@@ -20,6 +20,7 @@ import com.phasewake.app.wear.wearApp
 import java.time.Duration
 import java.time.Instant
 import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -140,8 +141,9 @@ class RecordService : LifecycleService() {
         }
         starting = true
         lifecycleScope.launch {
-            // Eine liegengebliebene Aufzeichnung (Prozessende ohne Wiederaufnahme) zuerst abschliessen.
-            RecordControl.finishOrphan(app, RecordEnd.SERVICE)
+            // Eine liegengebliebene Aufzeichnung (Prozessende ohne Wiederaufnahme) zuerst abschliessen (ganz, auch wenn der
+            // Dienst dabei endet; erst danach die neue Datei).
+            write { RecordControl.finishOrphan(app, RecordEnd.SERVICE) }.join()
             val start = Instant.ofEpochMilli(clock().toEpochMilli())
             val continuous = learnUntil == null && (phoneDiag || WatchDiag.shown(this@RecordService).first())
             app.recordings.begin(start)
@@ -180,7 +182,7 @@ class RecordService : LifecycleService() {
             }
             if (!allowed) {
                 app.diag.log(DiagKind.MEASURE_END, "record resume refused: ${refusal.orEmpty()}")
-                RecordControl.finishOrphan(app, RecordEnd.SERVICE)
+                write { RecordControl.finishOrphan(app, RecordEnd.SERVICE) }.join()
                 stopSelf()
                 return@launch
             }
@@ -188,7 +190,8 @@ class RecordService : LifecycleService() {
             val battery = RecordControl.battery(this@RecordService)
             NightRecording.endNow(saved.start, now, battery)?.let { reason ->
                 app.diag.log(DiagKind.MEASURE_END, "record end ${reasonText(reason, battery)} (on resume) epochs=${saved.epochs.size}")
-                RecordControl.finishOrphan(app, reason)
+                // Abschliessen und ans Handy einreihen übersteht das Ende des Dienstes (wie [finish]).
+                write { RecordControl.finishOrphan(app, reason) }.join()
                 stopSelf()
                 return@launch
             }
@@ -332,11 +335,10 @@ class RecordService : LifecycleService() {
 
     /**
      * Schreibt im Hintergrund, über das Ende des Dienstes hinaus; in Aufruf-Reihenfolge (sofort bis zur Sperre des
-     * Speichers, die der Reihe nach vergibt), damit Anhängen und Abschliessen nie vertauscht werden.
+     * Speichers, die der Reihe nach vergibt), damit Anhängen und Abschliessen nie vertauscht werden. Der [Job] zum
+     * Abwarten (`join`): Bricht dabei der Dienst ab, läuft die Arbeit trotzdem zu Ende.
      */
-    private fun write(block: suspend () -> Unit) {
-        app.appScope.launch(start = CoroutineStart.UNDISPATCHED) { block() }
-    }
+    private fun write(block: suspend () -> Unit): Job = app.appScope.launch(start = CoroutineStart.UNDISPATCHED) { block() }
 
     companion object {
         internal const val TAG = "RecordService"

@@ -9,6 +9,8 @@ import com.phasewake.app.core.Epoch
 import com.phasewake.app.core.Learning
 import com.phasewake.app.shared.LearningSnapshot
 import com.phasewake.app.shared.NightRecording
+import com.phasewake.app.shared.Outbox
+import com.phasewake.app.shared.QueueMessages
 import com.phasewake.app.shared.RecordEnd
 import com.phasewake.app.shared.RecordSync
 import com.phasewake.app.wear.QuietWear
@@ -215,6 +217,37 @@ class RecordServiceTest {
         val done = awaitFinished(RecordEnd.CAP)
         assertNull(service.active)
         assertEquals(start.plusSeconds(30), done.end, "Ende nach der letzten gespeicherten Epoche, nicht erfunden")
+        // Das Abschliessen läuft auf dem Hauptthread des Dienstes weiter (ans Handy über die prozessweite Warteschlange,
+        // deren Sperre es dabei hält) und endet mit stopSelf. Abwarten: Sonst verwirft Robolectric die Fortsetzung beim
+        // Testende, die Sperre bliebe für alle späteren Tests im Prozess belegt (CI 14.11.2026: «Marke gelöscht» in
+        // [wakeEndsEveryRecordingLearningOffOnlyTheLearningOne] hing an Outbox.enqueue).
+        awaitUntil("Dienst beendet sich") { shadowOf(service).isStoppedBySelf }
+    }
+
+    @Test
+    fun orphanFinishedOnResumeReachesThePhoneEvenIfTheServiceEnds() {
+        // Das System beendet den Dienst, während er eine liegengebliebene Aufzeichnung abschliesst: Sie geht trotzdem in
+        // die Warteschlange ans Handy (Arbeit im Bereich der App, nicht des Dienstes).
+        val start = Instant.ofEpochMilli(System.currentTimeMillis()).minus(Duration.ofHours(13))
+        // Die Warteschlange ist prozessweit (auch frühere Tests): nur ein neuer Eintrag zählt.
+        val before = runBlocking { Outbox.forContext(context).pending() }.map { it.id }.toSet()
+        runBlocking {
+            app.recordings.begin(start)
+            app.recordings.append(start, listOf(Epoch(0.02, 58.0)))
+        }
+        launch(RecordService.ACTION_RESUME)
+        // Den Hauptthread nur bis zum Abschluss der Datei laufen lassen; danach steht das Einreihen noch aus.
+        val until = System.nanoTime() + Duration.ofSeconds(10).toNanos()
+        while (finished().none { it.start == start }) {
+            check(System.nanoTime() < until) { "abgeschlossen" }
+            shadowOf(Looper.getMainLooper()).idle()
+            Thread.sleep(1)
+        }
+        controllers.removeAt(controllers.lastIndex).destroy()
+        val key = QueueMessages.KEY_RECORDING + start.toEpochMilli()
+        fun queued() = runBlocking { Outbox.forContext(context).pending() }.filter { it.key == key && it.id !in before }
+        awaitUntil("in der Warteschlange") { queued().isNotEmpty() }
+        assertEquals(RecordEnd.CAP, NightRecording.decode(queued().single().body)?.endReason)
     }
 
     @Test
