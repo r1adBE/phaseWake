@@ -430,6 +430,7 @@
     <string name="holidays_off">बिदा छैन</string>
     <string name="holidays_hint">एक्लाएक्लै सहरका स्थानीय बिदाहरू समावेश छैनन्।</string>
     <string name="holidays_next">अर्को बिदा: %1$s</string>
+    <string name="holidays_next_estimated">अनुमानित बिदा: %1$s – अलार्म बज्छ। बिदा भए, त्यो दिन आफैं छोड।</string>
     <string name="editor_skip_holidays">बिदामा नब्युँझाऊ</string>
     <string name="editor_skip_holidays_hint">सेटिङमा देश र क्षेत्र छान।</string>
     <string name="home_holiday_skipped">%1$s: बिदा – अलार्म छैन</string>
@@ -628,4 +629,10 @@
     <string name="learn_tip_late">बेलुका घडीमा Phase Wake खोल्नुहोस्, ढिलोमा ढिलो रिमाइन्डर आउँदा।</string>
     <string name="learn_tip_alarm">घडीले अलार्म भएका रात मात्र रेकर्ड गर्छ।</string>
     <string name="learn_tip_connect">घडी चालु र फोनसँग जोडिएको राख्नुहोस् – अलार्मपछि यसले रेकर्डिङ पठाउँछ।</string>
+    <string name="battery_night">ब्याट्री: %1$s</string>
+    <string name="battery_watch">घडी −%1$d %%</string>
+    <string name="battery_phone">फोन −%1$d %%</string>
+    <string name="editor_alarm_gone">यो अलार्म यसैबीच मेटाइसकिएको छ।</string>
+    <string name="test_replaces_nap">परीक्षण अलार्मले तिम्रो छोटो निद्रा अन्त्य गर्छ।</string>
+    <string name="settings_clear_history_also">टिपोट, अनुभूति, साँझको दिनचर्याका चिनो र आवाजका अंश पनि मेटिन्छन्।</string>
 </resources>

@@ -107,4 +107,5 @@
     <string name="watch_learn_skip_battery">Inatt räknas inte för inlärningsfasen: batteri på %1$d %%, behöver %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Inatt räknas inte för inlärningsfasen: Phase Wake kan inte använda klockans sensorer.</string>
     <string name="watch_learn_skip_late">Inatt räknas inte för inlärningsfasen: Phase Wake öppnades för sent på kvällen.</string>
+    <string name="editor_alarm_gone">Det här larmet har tagits bort under tiden.</string>
 </resources>

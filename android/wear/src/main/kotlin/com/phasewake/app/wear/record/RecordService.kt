@@ -53,9 +53,7 @@ class RecordService : LifecycleService() {
         var lastFlushMs = SystemClock.elapsedRealtime()
         var lastStatMs = SystemClock.elapsedRealtime()
         var lastTickMs = SystemClock.elapsedRealtime()
-
-        /** Epochen seit der letzten Zeile im Diagnose-Protokoll. */
-        var statFrom = epochs.size
+        var statFrom = epochs.size // Epochen seit der letzten Zeile im Diagnose-Protokoll.
     }
 
     private val app by lazy { wearApp }
@@ -231,6 +229,7 @@ class RecordService : LifecycleService() {
         wakeLocks.startDone()
         val mode = if (sampled) "wl=sample mode=sample" else "wl=${if (wakeUp) "batch" else "hold"} mode=continuous"
         app.diag.log(DiagKind.MEASURE_START, "$startLine hrsrc=${session.heartRateSource} $mode")
+        com.phasewake.app.wear.wake.nightBatteryBegin(this, null, null) // Akku je Nacht: Messbeginn (r1AD 14.11.2026).
         RecordControl.armCheck(this)
         handler.postDelayed(tick, TICK_MS)
         write { app.recordSync.publishStatus(recording.start) }
@@ -318,6 +317,7 @@ class RecordService : LifecycleService() {
         val end = minOf(clock(), a.start.plus(NightRecording.MAX_DURATION))
         logStat(a, battery)
         app.diag.log(DiagKind.MEASURE_END, "record end ${reasonText(reason, battery)} epochs=${a.epochs.size} hr=${a.epochs.count { it.heartRate != null }}")
+        com.phasewake.app.wear.wake.nightBatteryRecordEnded(this)
         val rest = a.epochs.subList(a.flushed, a.epochs.size).toList()
         write {
             app.recordings.append(a.start, rest)

@@ -36,4 +36,6 @@
     <string name="check_watch_state_old">Kella olek on aegunud – ava Phase Wake korraks kellas.</string>
     <string name="editor_sleep_hint_apple">Loetakse uinumisest – puuduta magama minnes kellal „Head ööd“. Apple Watchil hindab Phase Wake sinu uinumise aega õpitud uinumisaja põhjal. Puudutuseta kehtib määratud aeg.</string>
     <string name="auto_onset_hint_apple">Ava Phase Wake Apple Watchil alates 1 tund enne magamaminekut (kell tuletab meelde) ja sellest hetkest kuni äratusaknani salvestab see su liikumise; siis arvutab Phase Wake, millal sa magama jäid.</string>
+    <string name="home_good_night_tap_cancel">puuduta tühistamiseks</string>
+    <string name="good_night_cancel">Tühista Head ööd</string>
 </resources>

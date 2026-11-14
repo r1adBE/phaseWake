@@ -102,4 +102,5 @@
     <string name="watch_learn_skip_battery">ეს ღამე სწავლის ფაზაში არ ჩაითვლება: ბატარეა %1$d %%, საჭიროა %2$d %%.</string>
     <string name="watch_learn_skip_sensors">ეს ღამე სწავლის ფაზაში არ ჩაითვლება: Phase Wake ვერ იყენებს საათის სენსორებს.</string>
     <string name="watch_learn_skip_late">ეს ღამე სწავლის ფაზაში არ ჩაითვლება: Phase Wake საღამოს ძალიან გვიან გაიხსნა.</string>
+    <string name="editor_alarm_gone">ეს მაღვიძარა ამასობაში წაიშალა.</string>
 </resources>

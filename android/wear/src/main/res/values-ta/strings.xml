@@ -107,4 +107,5 @@
     <string name="watch_learn_skip_battery">இன்றிரவு கற்றல் நிலைக்குக் கணக்கிடப்படாது: பேட்டரி %1$d %%, தேவை %2$d %%.</string>
     <string name="watch_learn_skip_sensors">இன்றிரவு கற்றல் நிலைக்குக் கணக்கிடப்படாது: Phase Wake கடிகார சென்சார்களைப் பயன்படுத்த முடியவில்லை.</string>
     <string name="watch_learn_skip_late">இன்றிரவு கற்றல் நிலைக்குக் கணக்கிடப்படாது: மாலையில் Phase Wake மிகத் தாமதமாகத் திறக்கப்பட்டது.</string>
+    <string name="editor_alarm_gone">இந்த அலாரம் இதற்கிடையில் நீக்கப்பட்டது.</string>
 </resources>

@@ -429,6 +429,7 @@
     <string name="holidays_off">ರಜಾದಿನಗಳಿಲ್ಲ</string>
     <string name="holidays_hint">ಪ್ರತ್ಯೇಕ ಊರುಗಳ ಸ್ಥಳೀಯ ರಜಾದಿನಗಳು ಸೇರಿಲ್ಲ.</string>
     <string name="holidays_next">ಮುಂದಿನ ರಜಾದಿನ: %1$s</string>
+    <string name="holidays_next_estimated">ಅಂದಾಜು ರಜಾದಿನ: %1$s – ಅಲಾರಂ ಮೊಳಗುತ್ತದೆ. ರಜೆ ಇದ್ದರೆ, ದಿನವನ್ನು ನೀವೇ ಬಿಟ್ಟುಬಿಡಿ.</string>
     <string name="editor_skip_holidays">ರಜಾದಿನಗಳಲ್ಲಿ ಎಬ್ಬಿಸಬೇಡಿ</string>
     <string name="editor_skip_holidays_hint">ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ದೇಶ ಮತ್ತು ಪ್ರದೇಶ ಆಯ್ಕೆಮಾಡಿ.</string>
     <string name="home_holiday_skipped">%1$s: ರಜಾದಿನ – ಅಲಾರಾಂ ಇಲ್ಲ</string>
@@ -627,4 +628,10 @@
     <string name="learn_tip_late">ಸಂಜೆ ವಾಚ್‌ನಲ್ಲಿ Phase Wake ತೆರೆಯಿರಿ, ಅತಿ ತಡವೆಂದರೆ ಜ್ಞಾಪನೆ ಬಂದಾಗ.</string>
     <string name="learn_tip_alarm">ವಾಚ್ ಅಲಾರಾಂ ಇರುವ ರಾತ್ರಿಗಳನ್ನು ಮಾತ್ರ ರೆಕಾರ್ಡ್ ಮಾಡುತ್ತದೆ.</string>
     <string name="learn_tip_connect">ವಾಚ್ ಆನ್ ಆಗಿರಲಿ ಮತ್ತು ಫೋನ್‌ಗೆ ಸಂಪರ್ಕದಲ್ಲಿರಲಿ – ಅಲಾರಾಂ ನಂತರ ಅದು ರೆಕಾರ್ಡಿಂಗ್ ಕಳುಹಿಸುತ್ತದೆ.</string>
+    <string name="battery_night">ಬ್ಯಾಟರಿ: %1$s</string>
+    <string name="battery_watch">ವಾಚ್ −%1$d %%</string>
+    <string name="battery_phone">ಫೋನ್ −%1$d %%</string>
+    <string name="editor_alarm_gone">ಈ ಅಲಾರಾಂ ಈ ನಡುವೆ ಅಳಿಸಲಾಗಿದೆ.</string>
+    <string name="test_replaces_nap">ಪರೀಕ್ಷಾ ಅಲಾರಾಂ ನಿಮ್ಮ ಪವರ್ ನ್ಯಾಪ್ ಅನ್ನು ಕೊನೆಗೊಳಿಸುತ್ತದೆ.</string>
+    <string name="settings_clear_history_also">ಟಿಪ್ಪಣಿಗಳು, ಅನಿಸಿಕೆ, ಸಂಜೆಯ ದಿನಚರಿಯ ಟಿಕ್‌ಗಳು ಮತ್ತು ಶಬ್ದದ ತುಣುಕುಗಳೂ ಅಳಿಸಲ್ಪಡುತ್ತವೆ.</string>
 </resources>

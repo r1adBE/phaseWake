@@ -36,4 +36,6 @@
     <string name="check_watch_state_old">വാച്ചിന്റെ നില പഴയതാണ് – വാച്ചിൽ Phase Wake അൽപനേരം തുറക്കുക.</string>
     <string name="editor_sleep_hint_apple">ഉറങ്ങിയ സമയം മുതൽ എണ്ണുന്നു – കിടക്കുമ്പോൾ വാച്ചിൽ «ശുഭരാത്രി» ടാപ്പ് ചെയ്യുക. Apple Watch-ൽ, പഠിച്ചെടുത്ത ഉറങ്ങാനെടുക്കുന്ന സമയത്തിൽ നിന്ന് നിങ്ങൾ എപ്പോൾ ഉറങ്ങുന്നുവെന്ന് Phase Wake കണക്കാക്കുന്നു. ടാപ്പ് ചെയ്തില്ലെങ്കിൽ സജ്ജീകരിച്ച സമയം ബാധകമാകും.</string>
     <string name="auto_onset_hint_apple">ഉറങ്ങുന്ന സമയത്തിന് 1 മണിക്കൂർ മുമ്പ് മുതൽ നിങ്ങളുടെ Apple Watch-ൽ Phase Wake തുറന്നാൽ (വാച്ച് ഓർമ്മിപ്പിക്കും) അപ്പോൾ മുതൽ ഉണർത്തൽ സമയപരിധി വരെ അത് ചലനം രേഖപ്പെടുത്തും; തുടർന്ന് നിങ്ങൾ എപ്പോൾ ഉറങ്ങി എന്ന് Phase Wake കണക്കാക്കും.</string>
+    <string name="home_good_night_tap_cancel">റദ്ദാക്കാൻ ടാപ്പ്</string>
+    <string name="good_night_cancel">ശുഭരാത്രി റദ്ദാക്കുക</string>
 </resources>

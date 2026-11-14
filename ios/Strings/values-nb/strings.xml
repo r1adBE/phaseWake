@@ -33,4 +33,6 @@
     <string name="check_watch_state_old">Klokkens status er utdatert – åpne Phase Wake kort på klokken.</string>
     <string name="editor_sleep_hint_apple">Telles fra du sovner – trykk på «God natt» på klokken når du legger deg. På Apple Watch anslår Phase Wake når du sovner, ut fra den lærte innsovningstiden din. Uten trykk gjelder den innstilte tiden.</string>
     <string name="auto_onset_hint_apple">Åpne Phase Wake på Apple Watch fra 1 time før leggetid (klokken minner deg på det), så tar den opp bevegelsen din fra da av til vekkevinduet; da regner Phase Wake ut når du sovnet.</string>
+    <string name="home_good_night_tap_cancel">trykk for å avbryte</string>
+    <string name="good_night_cancel">Avbryt God natt</string>
 </resources>

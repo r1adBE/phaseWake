@@ -439,6 +439,7 @@
     <string name="holidays_off">Fără sărbători</string>
     <string name="holidays_hint">Sărbătorile locale ale unor localități nu sunt incluse.</string>
     <string name="holidays_next">Următoarea sărbătoare: %1$s</string>
+    <string name="holidays_next_estimated">Sărbătoare estimată: %1$s – alarma va suna. Dacă ești liber, sari singur peste zi.</string>
     <string name="editor_skip_holidays">Nu trezi în sărbători</string>
     <string name="editor_skip_holidays_hint">Alege țara și regiunea în setări.</string>
     <string name="home_holiday_skipped">%1$s: sărbătoare – fără alarmă</string>
@@ -639,4 +640,10 @@
     <string name="learn_tip_late">Deschide Phase Wake pe ceas seara, cel târziu la memento.</string>
     <string name="learn_tip_alarm">Ceasul înregistrează doar nopțile cu alarmă.</string>
     <string name="learn_tip_connect">Ține ceasul pornit și conectat la telefon – trimite înregistrarea după alarmă.</string>
+    <string name="battery_night">Baterie: %1$s</string>
+    <string name="battery_watch">Ceas −%1$d %%</string>
+    <string name="battery_phone">Telefon −%1$d %%</string>
+    <string name="editor_alarm_gone">Această alarmă a fost ștearsă între timp.</string>
+    <string name="test_replaces_nap">Alarma de test îți încheie puiul de somn.</string>
+    <string name="settings_clear_history_also">Se șterg și notițele, starea, bifele rutinei de seară și fragmentele de sunet.</string>
 </resources>

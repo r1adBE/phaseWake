@@ -107,4 +107,5 @@
     <string name="watch_learn_skip_battery">آج کی رات سیکھنے کے مرحلے میں نہیں گنی جائے گی: بیٹری %1$d %%، درکار %2$d %%۔</string>
     <string name="watch_learn_skip_sensors">آج کی رات سیکھنے کے مرحلے میں نہیں گنی جائے گی: Phase Wake گھڑی کے سینسرز استعمال نہیں کر سکتا۔</string>
     <string name="watch_learn_skip_late">آج کی رات سیکھنے کے مرحلے میں نہیں گنی جائے گی: شام کو Phase Wake بہت دیر سے کھولا گیا۔</string>
+    <string name="editor_alarm_gone">یہ الارم اس دوران حذف ہو چکا ہے۔</string>
 </resources>

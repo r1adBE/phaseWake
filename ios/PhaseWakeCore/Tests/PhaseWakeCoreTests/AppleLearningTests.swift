@@ -204,6 +204,19 @@ final class AppleLearningTests: XCTestCase {
         XCTAssertEqual(LearningSnapshot.empty.applied(to: .standard), .standard)
     }
 
+    /// Einschlafdauer aus dem Kontext nur 0–60 Min, wie `LearningSnapshot.decode` (Kotlin, `StoresTest`).
+    func testLatencyFromContextIsCheckedLikeKotlin() {
+        func latency(_ value: Int64) -> Int? {
+            LearningSnapshot(context: [SyncKeys.learnUpdatedAt: Int64(7), SyncKeys.learnLatency: value])?.latencyMinutes
+        }
+        XCTAssertEqual(latency(0), 0)
+        XCTAssertEqual(latency(60), 60)
+        XCTAssertNil(latency(61))
+        XCTAssertNil(latency(-1))
+        XCTAssertNil(latency(Int64.max), "kein Absturz bei 32-Bit-Int")
+        XCTAssertNil(LearningSnapshot(context: [SyncKeys.learnUpdatedAt: Int64(7)])?.latencyMinutes)
+    }
+
     func testRecordingWithImplausibleTimes() {
         // Vollaudit K-7: Zeiten ausserhalb 1970–2100 gelten als unlesbar (Beginn → nil, «onset»/«end» fallen weg).
         let max = "9223372036854775807"

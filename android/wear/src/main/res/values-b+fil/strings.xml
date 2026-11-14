@@ -108,4 +108,5 @@
     <string name="watch_learn_skip_battery">Hindi mabibilang ang gabing ito sa yugto ng pagkatuto: baterya %1$d %%, kailangan %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Hindi mabibilang ang gabing ito sa yugto ng pagkatuto: hindi magamit ng Phase Wake ang mga sensor ng relo.</string>
     <string name="watch_learn_skip_late">Hindi mabibilang ang gabing ito sa yugto ng pagkatuto: masyadong gabi na nabuksan ang Phase Wake.</string>
+    <string name="editor_alarm_gone">Na-delete na ang alarm na ito.</string>
 </resources>

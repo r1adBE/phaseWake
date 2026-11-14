@@ -2,7 +2,6 @@ package com.phasewake.app.core
 
 import java.time.Duration
 import java.time.Instant
-import java.util.Locale
 
 /** Eine aufgezeichnete Weck-Nacht. Bleibt auf dem Gerät; Grundlage für Verlauf und Kalibrierung. */
 data class NightRecord(
@@ -22,6 +21,10 @@ data class NightRecord(
     val epochs: List<Epoch>,
     /** Wie erholt sich der Nutzer am Morgen fühlte, 1 (müde) bis 5 (erholt); `null` = nicht angegeben. */
     val feeling: Int? = null,
+    /** Akkustand der Uhr in dieser Nacht ([BatteryTrack]); `null` = nicht gemessen (z. B. ältere Uhr-App). */
+    val watchBattery: List<BatteryPoint>? = null,
+    /** Akkustand des Handys in dieser Nacht ([BatteryTrack]), nur auf dem Handy; `null` = nicht gemessen. */
+    val phoneBattery: List<BatteryPoint>? = null,
 ) {
     init {
         require(feeling == null || feeling in FEELING_MIN..FEELING_MAX) { "feeling muss zwischen $FEELING_MIN und $FEELING_MAX liegen" }
@@ -92,8 +95,8 @@ object NightHistory {
                 append(night.snoozes).append(',')
                 append(night.feeling?.toString() ?: "").append(',')
                 append(epochIndex).append(',')
-                append(epoch.motion?.let { String.format(Locale.ROOT, "%.6f", it) } ?: "").append(',')
-                append(epoch.heartRate?.let { String.format(Locale.ROOT, "%.1f", it) } ?: "").append(',')
+                append(epoch.motion?.let { CsvNumbers.fixed(it, 6) } ?: "").append(',')
+                append(epoch.heartRate?.let { CsvNumbers.fixed(it, 1) } ?: "").append(',')
                 append(noteText).append('\n')
             }
         }

@@ -33,4 +33,6 @@
     <string name="check_watch_state_old">وضعیت ساعت قدیمی است – Phase Wake را کوتاه روی ساعت باز کن.</string>
     <string name="editor_sleep_hint_apple">از زمان به خواب رفتن حساب می‌شود – هنگام رفتن به رختخواب روی ساعت «شب بخیر» را بزن. روی Apple Watch، Phase Wake زمان به خواب رفتنت را از مدت به خواب رفتنی که آموخته تخمین می‌زند. اگر نزنی، زمان تنظیم‌شده اعمال می‌شود.</string>
     <string name="auto_onset_hint_apple">اگر Phase Wake را از ۱ ساعت پیش از زمان خواب روی Apple Watch باز کنی (یادآوری می‌کند)، از آن موقع تا بازهٔ بیدارسازی حرکتت را ثبت می‌کند؛ سپس Phase Wake حساب می‌کند کی خوابت برده است.</string>
+    <string name="home_good_night_tap_cancel">برای لغو بزن</string>
+    <string name="good_night_cancel">لغو شب بخیر</string>
 </resources>

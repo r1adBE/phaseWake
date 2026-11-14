@@ -106,6 +106,9 @@ open class PhaseWakeApp : Application() {
         com.phasewake.app.widget.NextAlarmNotice.createChannel(this)
         com.phasewake.app.sounds.SleepSoundService.createChannel(this)
         com.phasewake.app.sounds.SoundRecorderService.createChannel(this)
+        // Akku je Nacht: Ladebeginn und -ende, solange der Prozess lebt (r1AD 14.11.2026).
+        com.phasewake.app.shared.BatteryNight.log = { diag.log(DiagKind.BATTERY, it) }
+        com.phasewake.app.shared.BatteryNight.listen(this)
         // Vor dem ersten Entsperren nach einem Neustart (nur der Zweitwecker läuft) ist der Speicher
         // nicht lesbar. Der Prozess lebt nach dem Entsperren weiter: dann [initUnlocked] nachholen (Review M-1).
         if (!BackupAlarm.isUnlocked(this)) {

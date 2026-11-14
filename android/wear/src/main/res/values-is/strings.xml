@@ -108,4 +108,5 @@
     <string name="watch_learn_skip_battery">Nóttin í nótt telst ekki með í námsfasanum: rafhlaða í %1$d %%, þarf %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Nóttin í nótt telst ekki með í námsfasanum: Phase Wake getur ekki notað skynjara úrsins.</string>
     <string name="watch_learn_skip_late">Nóttin í nótt telst ekki með í námsfasanum: Phase Wake var opnað of seint um kvöldið.</string>
+    <string name="editor_alarm_gone">Þessum vekjara hefur verið eytt á meðan.</string>
 </resources>

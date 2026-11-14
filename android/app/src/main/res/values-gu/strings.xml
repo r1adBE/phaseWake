@@ -430,6 +430,7 @@
     <string name="holidays_off">કોઈ રજા નહીં</string>
     <string name="holidays_hint">એકલ-દોકલ શહેરોની સ્થાનિક રજાઓ સામેલ નથી.</string>
     <string name="holidays_next">આગલી રજા: %1$s</string>
+    <string name="holidays_next_estimated">અંદાજિત રજા: %1$s – અલાર્મ વાગશે. જો તમારે રજા હોય, તો દિવસ જાતે છોડો.</string>
     <string name="editor_skip_holidays">રજાના દિવસે ન જગાડો</string>
     <string name="editor_skip_holidays_hint">સેટિંગમાં દેશ અને પ્રદેશ પસંદ કરો.</string>
     <string name="home_holiday_skipped">%1$s: રજા – એલાર્મ નહીં</string>
@@ -628,4 +629,10 @@
     <string name="learn_tip_late">સાંજે ઘડિયાળ પર Phase Wake ખોલો, મોડામાં મોડું રિમાઇન્ડર આવે ત્યારે.</string>
     <string name="learn_tip_alarm">ઘડિયાળ ફક્ત અલાર્મવાળી રાતો જ રેકોર્ડ કરે છે.</string>
     <string name="learn_tip_connect">ઘડિયાળ ચાલુ અને ફોન સાથે જોડાયેલી રાખો – તે અલાર્મ પછી રેકોર્ડિંગ મોકલે છે.</string>
+    <string name="battery_night">બૅટરી: %1$s</string>
+    <string name="battery_watch">ઘડિયાળ −%1$d %%</string>
+    <string name="battery_phone">ફોન −%1$d %%</string>
+    <string name="editor_alarm_gone">આ એલાર્મ દરમિયાન કાઢી નખાયો છે.</string>
+    <string name="test_replaces_nap">ટેસ્ટ એલાર્મ તમારી પાવર નેપ પૂરી કરે છે.</string>
+    <string name="settings_clear_history_also">નોંધો, મૂડ, સાંજની દિનચર્યાના ટિક અને અવાજની ક્લિપ પણ કાઢી નખાય છે.</string>
 </resources>

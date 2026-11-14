@@ -87,6 +87,28 @@ final class StorageTests: XCTestCase {
         XCTAssertEqual(s.nights().first { $0.alarmId == "b" }?.feeling, 4)
     }
 
+    /// Die Uhr schickt dieselbe Nacht noch einmal: der Akku des iPhones bleibt (wie Android `NightKeyTest.storedBatteryIsKept`).
+    func testStoredBatteryIsKept() {
+        let s = storage()
+        let start = Date(timeIntervalSince1970: 1_793_165_400)
+        let phone = [BatteryPoint(at: start, percent: 50, plugged: false, mark: .start),
+                     BatteryPoint(at: start.addingTimeInterval(1800), percent: 48, plugged: false, mark: .end)]
+        let watch = [BatteryPoint(at: start, percent: 90, plugged: false, mark: .start),
+                     BatteryPoint(at: start.addingTimeInterval(1800), percent: 80, plugged: false, mark: .end)]
+        func night(watch: [BatteryPoint]? = nil, phone: [BatteryPoint]? = nil) -> NightRecord {
+            NightRecord(alarmId: "a", windowStart: start, target: start.addingTimeInterval(1800), wokeAt: start.addingTimeInterval(900),
+                        reason: .lightSleep, snoozes: 0, epochs: [], watchBattery: watch, phoneBattery: phone)
+        }
+        s.add(night(phone: phone))
+        s.add(night(watch: watch))
+        XCTAssertEqual(s.nights().first?.phoneBattery, phone)
+        XCTAssertEqual(s.nights().first?.watchBattery, watch)
+        s.add(night())
+        XCTAssertEqual(s.nights().count, 1)
+        XCTAssertEqual(s.nights().first?.phoneBattery, phone)
+        XCTAssertEqual(s.nights().first?.watchBattery, watch)
+    }
+
     func testMinutesBeforeAndAfterTarget() {
         let target = Date(timeIntervalSince1970: 1_793_167_200)
         func night(_ offset: TimeInterval) -> NightRecord {

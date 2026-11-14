@@ -439,6 +439,7 @@
     <string name="holidays_off">בלי חגים</string>
     <string name="holidays_hint">חגים מקומיים של יישובים בודדים אינם כלולים.</string>
     <string name="holidays_next">החג הבא: %1$s</string>
+    <string name="holidays_next_estimated">חג משוער: %1$s – השעון המעורר יצלצל. אם יש לך חופש, דלג על היום בעצמך.</string>
     <string name="editor_skip_holidays">לא להעיר בחגים</string>
     <string name="editor_skip_holidays_hint">בוחרים מדינה ואזור בהגדרות.</string>
     <string name="home_holiday_skipped">%1$s: חג – בלי השכמה</string>
@@ -639,4 +640,10 @@
     <string name="learn_tip_late">כדאי לפתוח את Phase Wake בשעון בערב, לכל המאוחר כשמגיעה התזכורת.</string>
     <string name="learn_tip_alarm">השעון מקליט רק לילות עם שעון מעורר.</string>
     <string name="learn_tip_connect">כדאי להשאיר את השעון דלוק ומחובר לטלפון – הוא שולח את ההקלטה אחרי השעון המעורר.</string>
+    <string name="battery_night">סוללה: %1$s</string>
+    <string name="battery_watch">שעון −%1$d %%</string>
+    <string name="battery_phone">טלפון −%1$d %%</string>
+    <string name="editor_alarm_gone">המעורר הזה נמחק בינתיים.</string>
+    <string name="test_replaces_nap">בדיקת השעון המעורר מסיימת את התנומה שלכם.</string>
+    <string name="settings_clear_history_also">גם הערות, תחושה, סימונים בשגרת הערב וקטעי קול נמחקים.</string>
 </resources>

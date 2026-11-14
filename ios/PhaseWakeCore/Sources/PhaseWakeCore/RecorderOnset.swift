@@ -9,7 +9,8 @@ import Foundation
 ///   mit dem Grundrauschen der Epochen bis dahin, solange es zu wenige sind dem gelernten); 15 Min Ruhe am Stück
 ///   (``SleepOnset``), Einschlafzeit = Beginn der Strecke.
 /// - Zeitgrenze: ``maxDuration`` nach dem Beginn bzw. ``giveUpLead`` vor der eingestellten Weckzeit. An der Höchstdauer
-///   verlängert sich die Messung bei Unruhe in den letzten 15 Min (``restless(_:threshold:)``) um je ``extendStep``,
+///   verlängert sich die Messung um die Zeit, in der die Uhr nicht getragen wurde (``awayUntil(baseEnd:awayEpochs:latestGiveUp:cap:)``,
+///   Prüfrunde 2 HG-3), und bei Unruhe in den letzten 15 Min (``restless(_:threshold:)``) um je ``extendStep``, beides
 ///   höchstens bis ``extendCap(since:windowStart:)``. Den Akku dieser Zeit kennt die Uhr nicht: Er hindert hier nicht
 ///   (wie ein unbekannter Akku auf der Galaxy Watch).
 ///
@@ -58,33 +59,48 @@ public enum RecorderOnset {
     /// es weniger als ``NoiseFloor/minFloorEpochs`` Werte sind, `personalFloor`, vor der ersten Epoche keines. Reichen die
     /// Werte bis ins Weckfenster (``Result/open``), keines (`nil`).
     ///
-    /// `heartRates`: Puls je Epoche ab `since` (``RecorderEpochs/heartRates(_:start:count:)``). Gibt es darin mindestens
-    /// einen, beginnt eine ruhige Strecke nur, wo die Uhr getragen wurde (Puls höchstens 5 Min davor, Audit c3b8b01 E-5,
-    /// ``SleepOnset/find(_:threshold:heartRates:)``):
+    /// `heartRates`: Puls je Epoche ab `heartLead` Epochen vor `since` (``RecorderEpochs/heartRates(_:start:count:)``).
+    /// Gibt es darin mindestens einen, beginnt eine ruhige Strecke nur, wo die Uhr getragen wurde (Puls höchstens 15 Min
+    /// davor und einer in der Strecke, Audit c3b8b01 E-5, Prüfrunde 2 F-1, ``SleepOnset/find(_:threshold:heartRates:heartLead:)``):
     /// Abgelegt oder auf dem Ladegerät misst die Uhr keinen Puls, und ihr Rauschen zählte sonst als Einschlafen; die
     /// Messung wartet, bis sie wieder getragen wird. Ganz ohne Puls (keine Erlaubnis, keine Daten) gilt die Regel nicht.
+    ///
+    /// `away`: je Epoche ab `since`, ob die Uhr da lud (``awayEpochs(_:start:count:)``, F-1). Solche Epochen gelten als
+    /// leer (wie am Ladegerät auf der Galaxy Watch). Sie und Epochen ohne Puls in den 15 Min davor (nur mit Puls in der
+    /// Messung) verlängern die Zeitgrenze (HG-3).
     public static func measure(motions: [Double?], since: Date, threshold: Double, personalFloor: Double?, latest: Date,
-                               extendCap: Date?, heartRates: [Double?]? = nil) -> (result: Result, floor: Double?) {
+                               extendCap: Date?, heartRates: [Double?]? = nil, heartLead: Int = 0,
+                               away: [Bool]? = nil) -> (result: Result, floor: Double?) {
         let pulses = heartRates.flatMap { rates in rates.contains { $0 != nil } ? rates : nil }
         let latestGiveUp = latest.addingTimeInterval(-giveUpLead)
-        var maxEnd = since.addingTimeInterval(maxDuration)
+        let baseEnd = since.addingTimeInterval(maxDuration)
+        var maxEnd = baseEnd
+        var awayCount = 0
         var floor: Double?
         var seen: [Double?] = []
         seen.reserveCapacity(motions.count)
-        for (index, motion) in motions.enumerated() {
+        for (index, recorded) in motions.enumerated() {
             // Die Epoche ist bei ihrem Ende da; zuerst die Zeitgrenze wie beim Eintreffen der Werte auf der Galaxy Watch.
             let now = since.addingTimeInterval(TimeInterval((index + 1) * DetectorConfig.epochSeconds))
             if now >= min(latestGiveUp, maxEnd) {
-                let busy = restless(seen, threshold: NoiseFloor.light(threshold: threshold, floor: floor))
-                guard let cap = extendCap,
-                      let until = extendUntil(at: now, maxEnd: maxEnd, latestGiveUp: latestGiveUp, cap: cap, restless: busy) else {
-                    return (.gaveUp(at: now, reason: giveUpReason(at: now, latestGiveUp: latestGiveUp, maxEnd: maxEnd) ?? "give up"), floor)
+                if let cap = extendCap, let until = awayUntil(baseEnd: baseEnd, awayEpochs: awayCount, latestGiveUp: latestGiveUp, cap: cap),
+                   now < until {
+                    maxEnd = max(maxEnd, until)
+                } else {
+                    let busy = restless(seen, threshold: NoiseFloor.light(threshold: threshold, floor: floor))
+                    guard let cap = extendCap,
+                          let until = extendUntil(at: now, maxEnd: maxEnd, latestGiveUp: latestGiveUp, cap: cap, restless: busy) else {
+                        return (.gaveUp(at: now, reason: giveUpReason(at: now, latestGiveUp: latestGiveUp, maxEnd: maxEnd) ?? "give up"), floor)
+                    }
+                    maxEnd = until
                 }
-                maxEnd = until
             }
-            seen.append(motion)
+            let charging = away.map { index < $0.count && $0[index] } ?? false
+            if charging || unworn(index, pulses: pulses, heartLead: heartLead) { awayCount += 1 }
+            seen.append(charging ? nil : recorded)
             floor = NoiseFloor.floor(seen, personal: personalFloor)
-            if let start = SleepOnset.find(seen, threshold: NoiseFloor.light(threshold: threshold, floor: floor), heartRates: pulses) {
+            if let start = SleepOnset.find(seen, threshold: NoiseFloor.light(threshold: threshold, floor: floor), heartRates: pulses,
+                                           heartLead: heartLead) {
                 return (.asleep(at: since.addingTimeInterval(TimeInterval(start * DetectorConfig.epochSeconds)), index: start), floor)
             }
         }
@@ -104,6 +120,37 @@ public enum RecorderOnset {
         if at < maxEnd || maxEnd > latestGiveUp || !restless { return nil }
         let until = min(at.addingTimeInterval(extendStep), cap, latestGiveUp)
         return until > at ? until : nil
+    }
+
+    /// Zeitgrenze, verschoben um die Zeit ohne Tragen (Prüfrunde 2 HG-3, wie `OnsetRules.awayUntil`): `baseEnd` (Beginn
+    /// plus ``maxDuration``) plus `awayEpochs` Epochen, höchstens `cap` und `latestGiveUp`; `nil` ohne solche Epochen oder
+    /// wenn die Grenze vor der Weckzeit (`latestGiveUp`) schon früher gilt. Am Ladegerät oder abgelegt kann niemand
+    /// einschlafen; ohne Verschiebung gab die Messung nach dem Laden auf, bevor eine Strecke vollständig sein konnte.
+    public static func awayUntil(baseEnd: Date, awayEpochs: Int, latestGiveUp: Date, cap: Date) -> Date? {
+        guard awayEpochs > 0, baseEnd <= latestGiveUp else { return nil }
+        return min(baseEnd.addingTimeInterval(TimeInterval(awayEpochs * DetectorConfig.epochSeconds)), cap, latestGiveUp)
+    }
+
+    /// Ob Epoche `index` als nicht getragen zählt: Mit Puls in der Messung (`pulses`, beginnend `heartLead` Epochen vor
+    /// `since`) lag in den ``SleepOnset/wornEpochs`` Epochen bis zu ihr keiner (F-1, HG-3).
+    static func unworn(_ index: Int, pulses: [Double?]?, heartLead: Int) -> Bool {
+        guard let pulses else { return false }
+        let from = max(0, index + heartLead - SleepOnset.wornEpochs)
+        let to = min(pulses.count - 1, index + heartLead)
+        guard from <= to else { return false }
+        return !(from...to).contains { pulses[$0] != nil }
+    }
+
+    /// Epochen ab `start` (`count` Stück), die eine Zeit am Ladegerät berühren (`spans`: von–bis, F-1); wie
+    /// `OnsetRules.charging` auf der Galaxy Watch.
+    public static func awayEpochs(_ spans: [(from: Date, until: Date)], start: Date, count: Int) -> [Bool] {
+        guard count > 0 else { return [] }
+        let length = TimeInterval(DetectorConfig.epochSeconds)
+        return (0..<count).map { index in
+            let from = start.addingTimeInterval(TimeInterval(index) * length)
+            let until = from.addingTimeInterval(length)
+            return spans.contains { $0.from < until && $0.until > from }
+        }
     }
 
     /// «give up (max duration)» bzw. «give up», wenn `at` die frühere der beiden Grenzen erreicht hat; sonst `nil`
@@ -133,13 +180,30 @@ public enum RecorderOnset {
     public static let lateStartTolerance: TimeInterval = 60
 
     /// Ob der Rekorder erst nach dem Beginn der Einschlafdauer `bedAt` (``bedAt(since:automatic:latest:sleepMinutes:)``)
-    /// startete, um mehr als ``lateStartTolerance`` (Tiefenaudit AP3-2). Dann ist die Einschlafzeit unbekannt: Eine
-    /// ruhige Strecke gleich ab seinem Start hiesse nur «schlief schon», nicht «schlief da ein» (etwa Start über eine
-    /// verspätete Hintergrund-Aktualisierung mitten in der Nacht). Die Nacht gilt als gemessen ohne Ergebnis
-    /// (fail-closed wie eine gescheiterte Rechnung), ohne Einschlafzeit für Lernphase und Diagnose. Startete er vor
-    /// `bedAt`, gilt die Rechnung: Ein früheres Einschlafen zählt ohnehin erst ab `bedAt` (``onsetAt(found:bedAt:)``).
+    /// startete, um mehr als ``lateStartTolerance`` (Tiefenaudit AP3-2). Was dann gilt, sagt ``lateStart(recorderFrom:bedAt:foreground:)``.
     public static func startedLate(recorderFrom: Date, bedAt: Date) -> Bool {
         recorderFrom > bedAt.addingTimeInterval(lateStartTolerance)
+    }
+
+    /// Beginn der Messung gegenüber dem Beginn der Einschlafdauer (Entscheid r1AD 14.11.2026, Prüfrunde 2 HG-2; wie
+    /// `OnsetRules.LateStart`, Kotlin).
+    public enum LateStart: Equatable, Sendable {
+        /// Rechtzeitig: Die Rechnung gilt; ein früheres Einschlafen zählt erst ab `bedAt` (``onsetAt(found:bedAt:)``).
+        case onTime
+        /// Zu spät, aber bei offener App gestartet: Die Person war da wach. Gemessen wird ab dem Start, er ist auch der
+        /// Beginn der Einschlafdauer.
+        case foreground
+        /// Zu spät im Hintergrund gestartet (etwa eine verspätete Hintergrund-Aktualisierung mitten in der Nacht): Ruhe ab
+        /// dem Start hiesse nur «schlief schon». Die Nacht gilt als nicht gemessen, ohne Untergrenze kurzer Nächte und ohne
+        /// Einschlafzeit (vorher fail-closed: Wer die App spät öffnete, wurde schlechter geweckt als ohne Öffnen).
+        case background
+    }
+
+    /// Ob der Rekorder ab `recorderFrom` rechtzeitig zum Beginn der Einschlafdauer `bedAt` startete, sonst ob bei offener
+    /// App (`foreground`).
+    public static func lateStart(recorderFrom: Date, bedAt: Date, foreground: Bool) -> LateStart {
+        guard startedLate(recorderFrom: recorderFrom, bedAt: bedAt) else { return .onTime }
+        return foreground ? .foreground : .background
     }
 }
 

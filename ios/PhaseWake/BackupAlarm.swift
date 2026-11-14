@@ -24,7 +24,9 @@ final class BackupAlarm {
     private static let snoozeSafetyKey = "backupSnoozeSafetyId"
     private static let snoozedAtKey = "backupSnoozedAt"
     /// Schlummern an einer Sicherung: der nächste Alarm in 5 Minuten und sein Weckton.
-    private static let backupSnoozeKey = "backupSnoozeId"
+    static let backupSnoozeKey = "backupSnoozeId"
+    /// Ende dieses Schlummerns (Sekunden seit 1970): Anzeige und Stopp in der App (`BackupAlarm+Snooze`, B-9).
+    static let backupSnoozeUntilKey = "backupSnoozeUntil"
     private static let backupSnoozeToneKey = "backupSnoozeTone"
     /// Sicherung des laufenden Probeweckers oder Powernaps.
     private static let transientKey = "backupTransientId"
@@ -326,7 +328,10 @@ final class BackupAlarm {
         SettingsFile.phone.set(next.uuidString, forKey: Self.backupSnoozeKey)
         SettingsFile.phone.set(tone, forKey: Self.backupSnoozeToneKey)
         setNight(snoozedNight, for: next)
-        await schedule(id: next, at: Snooze.nextRing(Date()), snoozesLeft: max(0, snoozesLeft - 1), tone: tone.flatMap(WakeTone.init(rawValue:)))
+        let ringAt = Snooze.nextRing(Date())
+        SettingsFile.phone.set(ringAt.timeIntervalSince1970, forKey: Self.backupSnoozeUntilKey)
+        PrivateSettingChanges.shared.bump()
+        await schedule(id: next, at: ringAt, snoozesLeft: max(0, snoozesLeft - 1), tone: tone.flatMap(WakeTone.init(rawValue:)))
         DiagStore.shared.log(.snooze, "phone backup, \(max(0, snoozesLeft - 1)) left")
     }
 
@@ -339,9 +344,11 @@ final class BackupAlarm {
         PhoneConnectivity.shared.send(command: SyncKeys.stop, night: night)
     }
 
-    private func cancelBackupSnooze() {
+    func cancelBackupSnooze() {
         guard let id = storedId(Self.backupSnoozeKey) else { return }
         SettingsFile.phone.removeObject(forKey: Self.backupSnoozeKey)
+        SettingsFile.phone.removeObject(forKey: Self.backupSnoozeUntilKey)
+        PrivateSettingChanges.shared.bump()
         cancelAlarm(id)
     }
 
@@ -380,7 +387,7 @@ final class BackupAlarm {
             + plannedBackups.map(\.id)
     }
 
-    private func storedId(_ key: String) -> UUID? {
+    func storedId(_ key: String) -> UUID? {
         SettingsFile.phone.string(forKey: key).flatMap(UUID.init(uuidString:))
     }
 }

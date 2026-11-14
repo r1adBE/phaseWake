@@ -4,18 +4,31 @@ import SwiftUI
 /// Knopf «In 2 Minuten testen» mit Erklärung (Nacht-Check-Karte, Einstellungen, Einrichtung).
 struct TestAlarmButton: View {
     @Environment(PhoneModel.self) private var model
+    /// Ein Powernap wartet: Der Probewecker ersetzt ihn, darum zuerst fragen (Prüfrunde 2, B-12, wie Android).
+    @State private var confirmReplace = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Button { Task { await model.transient.startTest() } } label: {
+            Button {
+                if Self.napWaiting(model.transient.nap, now: Date()) { confirmReplace = true } else { Task { await model.transient.startTest() } }
+            } label: {
                 Label(L("test_button"), systemImage: "alarm.waves.left.and.right")
             }
             .disabled(model.transient.run != nil)
+            .confirmationDialog(L("test_replaces_nap"), isPresented: $confirmReplace, titleVisibility: .visible) {
+                Button(L("test_button")) { Task { await model.transient.startTest() } }
+                Button(L("action_cancel"), role: .cancel) {}
+            }
             Text(L("test_hint")).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
             if let refusal = model.transient.refusal(.test) {
                 Label(refusal, systemImage: "exclamationmark.circle").font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
             }
         }
+    }
+
+    /// Ob ein Powernap wartet, den der Probewecker ersetzen würde (wie `napWaiting` auf Android).
+    static func napWaiting(_ nap: TransientPlan?, now: Date) -> Bool {
+        nap.map { Transient.isActive($0, now: now) } ?? false
     }
 }
 

@@ -50,8 +50,31 @@ class SnoozeAndOnsetTest {
         assertEquals(60, SleepOnset.find(motions, 0.002, rates))
         // Getragen mit Puls je 5 Min: jede Epoche bis 10 nach einem Puls kann Beginn sein.
         assertEquals(0, SleepOnset.find(motions, 0.002, List(100) { if (it % 10 == 0) 58.0 else null }))
-        assertEquals(10, SleepOnset.WORN_EPOCHS)
+        assertEquals(30, SleepOnset.WORN_EPOCHS)
         assertEquals(0, SleepOnset.find(motions, 0.002))
+    }
+
+    @Test
+    fun aStretchNeedsAPulseInsideIt() {
+        // Prüfrunde 2 F-1 (wie Swift `AppleOnsetTests`): Puls in Epoche 40, ab 44 liegt die Uhr still auf dem Tisch und misst
+        // keinen mehr. Vorher galt «eingeschlafen beim Ablegen» (44); jetzt fehlt der Puls in der Strecke.
+        val motions = List(100) { if (it < 44) 0.5 else 0.001 }
+        assertNull(SleepOnset.find(motions, 0.002, List(100) { if (it == 40) 58.0 else null }))
+        // Getragen, Puls nur alle 12 Min (0, 24, 48, 72), still ab 36: Einschlafen bei 36, nicht erst beim nächsten Puls (48).
+        val sleeper = List(120) { if (it < 36) 0.5 else 0.001 }
+        assertEquals(36, SleepOnset.find(sleeper, 0.002, List(120) { if (it % 24 == 0) 58.0 else null }))
+        // Puls alle 15 Min (grösster üblicher Abstand der Apple Watch): ebenso gefunden.
+        assertEquals(36, SleepOnset.find(sleeper, 0.002, List(120) { if (it % 30 == 0) 58.0 else null }))
+    }
+
+    @Test
+    fun aPulseBeforeTheMeasurementCounts() {
+        // F-1: Puls 5 Min vor dem Beginn der Messung (heartLead), der nächste in der Strecke: Beginn gleich bei Epoche 0.
+        val motions = List(60) { 0.001 }
+        val rates = List(70) { if (it == 0 || it == 25 || it == 50) 58.0 else null }
+        assertEquals(0, SleepOnset.find(motions, 0.002, rates, heartLead = 10))
+        // Ohne den Puls davor beginnt die Strecke erst beim Puls in der Messung (Epoche 15).
+        assertEquals(15, SleepOnset.find(motions, 0.002, rates.drop(10)))
     }
 
     @Test

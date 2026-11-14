@@ -100,6 +100,8 @@ extension SmartAlarm {
     func finishSilently() {
         guard phase.isRinging || phase.isSnoozed else { return }
         DiagStore.shared.log(.error, "old ring state, night finished without waking")
+        // Das Ende der Nacht ist unbekannt (jetzt ist Stunden später): Akku ohne Wert statt eines falschen.
+        WatchBattery.drop("old ring state")
         finish(notifyPhone: false, catchUp: false)
     }
 

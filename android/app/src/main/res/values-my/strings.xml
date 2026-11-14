@@ -417,6 +417,7 @@
     <string name="holidays_off">ရုံးပိတ်ရက် မရှိ</string>
     <string name="holidays_hint">မြို့တစ်မြို့ချင်း၏ ဒေသဆိုင်ရာ ရုံးပိတ်ရက်များ မပါဝင်ပါ။</string>
     <string name="holidays_next">နောက် ရုံးပိတ်ရက်- %1$s</string>
+    <string name="holidays_next_estimated">ခန့်မှန်း ရုံးပိတ်ရက်- %1$s – နှိုးစက် မြည်ပါမည်။ အားလပ်ရက်ဖြစ်ပါက ကိုယ်တိုင် ကျော်ပါ။</string>
     <string name="editor_skip_holidays">ရုံးပိတ်ရက်တွင် မနှိုးပါနှင့်</string>
     <string name="editor_skip_holidays_hint">ဆက်တင်များတွင် နိုင်ငံနှင့် ဒေသ ရွေးပါ။</string>
     <string name="home_holiday_skipped">%1$s- ရုံးပိတ်ရက် – နှိုးစက် မရှိ</string>
@@ -613,4 +614,10 @@
     <string name="learn_tip_late">ညနေတွင် နာရီပေါ်ရှိ Phase Wake ကို ဖွင့်ပါ၊ အနောက်ဆုံး သတိပေးချက် ရောက်လာသည့်အခါ။</string>
     <string name="learn_tip_alarm">နာရီသည် နှိုးစက်ရှိသော ညများကိုသာ မှတ်တမ်းတင်သည်။</string>
     <string name="learn_tip_connect">နာရီကို ဖွင့်ထားပြီး ဖုန်းနှင့် ချိတ်ဆက်ထားပါ – နှိုးစက်ပြီးနောက် မှတ်တမ်းကို ပို့ပေးသည်။</string>
+    <string name="battery_night">ဘက်ထရီ- %1$s</string>
+    <string name="battery_watch">နာရီ −%1$d %%</string>
+    <string name="battery_phone">ဖုန်း −%1$d %%</string>
+    <string name="editor_alarm_gone">ဤနှိုးစက်ကို ယခုအတောအတွင်း ဖျက်ပြီးဖြစ်သည်။</string>
+    <string name="test_replaces_nap">စမ်းသပ်နှိုးစက်က သင့်ခဏအိပ်ခြင်းကို ရပ်စေမည်။</string>
+    <string name="settings_clear_history_also">မှတ်စုများ၊ ခံစားမှု၊ ညနေ လုပ်ရိုးလုပ်စဉ် အမှတ်အသားများနှင့် အသံအပိုင်းများကိုလည်း ဖျက်မည်။</string>
 </resources>

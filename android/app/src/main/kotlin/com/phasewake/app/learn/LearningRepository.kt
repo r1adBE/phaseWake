@@ -11,6 +11,7 @@ import androidx.datastore.preferences.core.longPreferencesKey
 import com.phasewake.app.core.Learning
 import com.phasewake.app.core.TimeBounds
 import com.phasewake.app.shared.LearningSnapshot
+import com.phasewake.app.shared.PhaseWakeStore
 import java.time.Instant
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -120,10 +121,12 @@ class LearningRepository(private val store: DataStore<Preferences>) {
     /**
      * Stand für die Uhr (Fix S-3): Ein Stand ohne Zeitpunkt (nie geändert, z. B. Handy neu installiert) bekommt [now].
      * Die Uhr übernimmt nur einen neueren Stand; mit 0 bliebe sie beim Stand eines früheren Handys (Lernphase an, alte
-     * Werte), obwohl hier nie zugestimmt wurde. Wie `LearningState.stampIfNever` (Swift). @return der Stand danach.
+     * Werte), obwohl hier nie zugestimmt wurde. Wie `LearningState.stampIfNever` (Swift). Nicht nach einer kaputten
+     * Datei ([PhaseWakeStore.wasReset], Audit SP-7): Der leere Stand ist kein neuer, die Uhr behält ihre gelernten Werte.
+     * @return der Stand danach.
      */
     suspend fun stampIfNever(now: Instant): LearningState {
-        store.edit { prefs -> if ((prefs[UPDATED_AT] ?: 0L) <= 0L) stamp(prefs, now) }
+        store.edit { prefs -> if ((prefs[UPDATED_AT] ?: 0L) <= 0L && !PhaseWakeStore.wasReset(prefs)) stamp(prefs, now) }
         return current()
     }
 

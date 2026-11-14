@@ -430,6 +430,7 @@
     <string name="holidays_off">सुट्ट्या नाहीत</string>
     <string name="holidays_hint">एकेका शहराच्या स्थानिक सुट्ट्या समाविष्ट नाहीत.</string>
     <string name="holidays_next">पुढची सुट्टी: %1$s</string>
+    <string name="holidays_next_estimated">अंदाजित सुट्टी: %1$s – अलार्म वाजेल. सुट्टी असल्यास तो दिवस स्वतः वगळा.</string>
     <string name="editor_skip_holidays">सुट्टीच्या दिवशी उठवू नका</string>
     <string name="editor_skip_holidays_hint">सेटिंग्जमध्ये देश आणि प्रदेश निवडा.</string>
     <string name="home_holiday_skipped">%1$s: सुट्टी – अलार्म नाही</string>
@@ -628,4 +629,10 @@
     <string name="learn_tip_late">संध्याकाळी घड्याळावर Phase Wake उघडा, उशिरात उशिरा स्मरणपत्र आल्यावर.</string>
     <string name="learn_tip_alarm">घड्याळ फक्त अलार्म असलेल्या रात्री रेकॉर्ड करते.</string>
     <string name="learn_tip_connect">घड्याळ चालू आणि फोनशी जोडलेले ठेवा – अलार्मनंतर ते रेकॉर्डिंग पाठवते.</string>
+    <string name="battery_night">बॅटरी: %1$s</string>
+    <string name="battery_watch">घड्याळ −%1$d %%</string>
+    <string name="battery_phone">फोन −%1$d %%</string>
+    <string name="editor_alarm_gone">हा अलार्म दरम्यान हटवला गेला आहे.</string>
+    <string name="test_replaces_nap">चाचणी अलार्म तुमची पॉवर नॅप संपवतो.</string>
+    <string name="settings_clear_history_also">नोंदी, मूड, संध्याकाळच्या दिनक्रमाच्या खुणा आणि आवाजाच्या क्लिप्सही हटतात.</string>
 </resources>

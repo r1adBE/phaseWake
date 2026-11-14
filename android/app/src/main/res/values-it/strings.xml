@@ -439,6 +439,7 @@
     <string name="holidays_off">Nessun festivo</string>
     <string name="holidays_hint">I festivi locali dei singoli comuni non sono inclusi.</string>
     <string name="holidays_next">Prossimo festivo: %1$s</string>
+    <string name="holidays_next_estimated">Festivo stimato: %1$s – la sveglia suonerà. Se sei libero, salta tu il giorno.</string>
     <string name="editor_skip_holidays">Non svegliare nei festivi</string>
     <string name="editor_skip_holidays_hint">Scegli paese e regione nelle impostazioni.</string>
     <string name="home_holiday_skipped">%1$s: festivo – nessuna sveglia</string>
@@ -639,4 +640,10 @@
     <string name="learn_tip_late">Apri Phase Wake sull’orologio la sera, al più tardi quando te lo ricorda.</string>
     <string name="learn_tip_alarm">L’orologio registra solo le notti con una sveglia.</string>
     <string name="learn_tip_connect">Tieni l’orologio acceso e collegato al telefono: invia la registrazione dopo la sveglia.</string>
+    <string name="battery_night">Batteria: %1$s</string>
+    <string name="battery_watch">Smartwatch −%1$d %%</string>
+    <string name="battery_phone">Telefono −%1$d %%</string>
+    <string name="editor_alarm_gone">Questa sveglia è stata eliminata nel frattempo.</string>
+    <string name="test_replaces_nap">La sveglia di prova termina il tuo pisolino.</string>
+    <string name="settings_clear_history_also">Vengono eliminati anche note, sensazione, spunte della routine serale e clip audio.</string>
 </resources>

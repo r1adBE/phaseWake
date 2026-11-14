@@ -429,6 +429,7 @@
     <string name="holidays_off">ছুটির দিন নেই</string>
     <string name="holidays_hint">আলাদা আলাদা শহরের স্থানীয় ছুটি এতে নেই।</string>
     <string name="holidays_next">পরের ছুটি: %1$s</string>
+    <string name="holidays_next_estimated">আনুমানিক ছুটি: %1$s – অ্যালার্ম বাজবে। ছুটি থাকলে দিনটি নিজেই এড়িয়ে যাও।</string>
     <string name="editor_skip_holidays">ছুটির দিনে জাগাবে না</string>
     <string name="editor_skip_holidays_hint">সেটিংসে দেশ আর অঞ্চল বেছে নাও।</string>
     <string name="home_holiday_skipped">%1$s: ছুটির দিন – অ্যালার্ম নেই</string>
@@ -627,4 +628,10 @@
     <string name="learn_tip_late">সন্ধ্যায় ঘড়িতে Phase Wake খোলো, সবচেয়ে দেরিতে রিমাইন্ডার এলে।</string>
     <string name="learn_tip_alarm">ঘড়ি শুধু অ্যালার্ম থাকা রাতগুলো রেকর্ড করে।</string>
     <string name="learn_tip_connect">ঘড়ি চালু রাখো আর ফোনের সঙ্গে সংযুক্ত রাখো – অ্যালার্মের পরে এটি রেকর্ডিং পাঠায়।</string>
+    <string name="battery_night">ব্যাটারি: %1$s</string>
+    <string name="battery_watch">ঘড়ি −%1$d %%</string>
+    <string name="battery_phone">ফোন −%1$d %%</string>
+    <string name="editor_alarm_gone">এই অ্যালার্মটি ইতিমধ্যে মুছে ফেলা হয়েছে।</string>
+    <string name="test_replaces_nap">পরীক্ষামূলক অ্যালার্ম তোমার পাওয়ার ন্যাপ শেষ করে দেবে।</string>
+    <string name="settings_clear_history_also">নোট, অনুভূতি, সন্ধ্যার রুটিনের টিক আর শব্দের ক্লিপও মুছে যাবে।</string>
 </resources>

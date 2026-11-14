@@ -427,6 +427,7 @@
     <string name="holidays_off">بدون تعطیلات</string>
     <string name="holidays_hint">تعطیلات محلی شهرهای جداگانه در آن نیست.</string>
     <string name="holidays_next">تعطیلی بعدی: %1$s</string>
+    <string name="holidays_next_estimated">تعطیلی تخمینی: %1$s – زنگ به صدا درمی‌آید. اگر آن روز تعطیلی، خودت آن را رد کن.</string>
     <string name="editor_skip_holidays">روزهای تعطیل بیدار نکن</string>
     <string name="editor_skip_holidays_hint">کشور و منطقه را در تنظیمات انتخاب کن.</string>
     <string name="home_holiday_skipped">%1$s: تعطیل – بدون زنگ</string>
@@ -625,4 +626,10 @@
     <string name="learn_tip_late">عصر Phase Wake را روی ساعت باز کن، حداکثر وقتی یادآوری می‌کند.</string>
     <string name="learn_tip_alarm">ساعت فقط شب‌هایی را که زنگ هشدار دارند ضبط می‌کند.</string>
     <string name="learn_tip_connect">ساعت را روشن و متصل به گوشی نگه دار – ضبط را بعد از زنگ هشدار می‌فرستد.</string>
+    <string name="battery_night">باتری: %1$s</string>
+    <string name="battery_watch">ساعت −%1$d %%</string>
+    <string name="battery_phone">گوشی −%1$d %%</string>
+    <string name="editor_alarm_gone">این زنگ در این فاصله حذف شده است.</string>
+    <string name="test_replaces_nap">آزمایش زنگ، چرت کوتاهت را تمام می‌کند.</string>
+    <string name="settings_clear_history_also">یادداشت‌ها، حس، تیک‌های روال شب و تکه‌های صدا هم حذف می‌شوند.</string>
 </resources>

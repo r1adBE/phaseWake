@@ -150,7 +150,8 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
          * sowie [watchPulse] (Pulsrechte; `null` = ältere Uhr, keine Warnung) und [recorderSkip] (Grund, warum die Messung
          * vor dem Schlafen dieser Nacht nicht startete; `null` = keiner). Fehlen der Uhr schon allgemein Rechte
          * ([Check.WATCH_SETUP]), steht der Puls nicht noch einmal da. [autoOnset]: «Einschlafen automatisch erkennen» an,
-         * [learning]: Lernphase läuft; beides für die Hinweise vorab zum Akku der Uhr ([batteryHints]).
+         * [learning]: Lernphase läuft; beides für die Hinweise vorab zum Akku der Uhr ([batteryHints]). [watchCharging]: Die
+         * Uhr lud beim gemeldeten Akkustand; dann misst sie trotz wenig Akku, keine Warnung dazu (Prüfrunde 2 F-6, wie iPhone).
          */
         fun collect(
             context: Context,
@@ -163,6 +164,7 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
             recorderSkip: RecorderSkip.Reason? = null,
             autoOnset: Boolean = false,
             learning: Boolean = false,
+            watchCharging: Boolean = false,
         ): NightCheckState = NightCheckState(
             buildList {
                 when {
@@ -171,11 +173,13 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
                     watchReady == false -> add(Check.WATCH_SETUP)
                 }
                 if (watchReachable && watchReady != false && WatchPulse.warns(watchPulse)) add(Check.WATCH_PULSE)
-                if (watchReachable && watchBattery != null && watchBattery < LOW_BATTERY_PERCENT) add(Check.WATCH_BATTERY)
+                // Am Ladegerät keine Warnung zum Akku der Uhr (F-6): Sie misst trotzdem und ist zur Bettzeit geladen.
+                val battery = watchBattery.takeUnless { watchCharging }
+                if (watchReachable && battery != null && battery < LOW_BATTERY_PERCENT) add(Check.WATCH_BATTERY)
                 if (recorderSkip == RecorderSkip.Reason.BATTERY) {
                     add(Check.WATCH_RECORDER)
                 } else if (watchReachable) {
-                    batteryHints(watchBattery, autoOnset, learning)?.let(::add)
+                    batteryHints(battery, autoOnset, learning)?.let(::add)
                 }
                 if (watchOutdated) add(Check.WATCH_OUTDATED)
                 if (!hasNotificationPermission(context)) add(Check.NOTIFICATIONS)

@@ -195,7 +195,9 @@ extension SmartAlarm {
                 wokeAt: firstRing,
                 reason: reason,
                 snoozes: snoozes,
-                epochs: epochs
+                epochs: epochs,
+                // Akku je Nacht (r1AD 14.11.2026): Ende jetzt, die Punkte reisen mit der Nacht zum iPhone.
+                watchBattery: WatchBattery.end()
             )
             model.storage.add(night)
             // Diese Nacht ist erledigt: nicht noch einmal planen (`markNightDone`).
@@ -206,6 +208,8 @@ extension SmartAlarm {
             // Die Aufzeichnung dieser Nacht (Lernphase oder von Hand, Audit F-01) endet mit dem Klingeln.
             LearnRecorder.shared.noteWake(alarmId: nightPlan.alarmId, target: nightPlan.target)
         }
+        // Ohne Nacht im Verlauf (nicht geweckt) gehört der Akku zu nichts; Probewecker und Powernap haben keinen begonnen.
+        if firstRing == nil, !transient { WatchBattery.drop("night ended without ring") }
         if notifyPhone { WatchConnectivityBridge.shared.send(command: SyncKeys.stop, alarmId: nightPlan?.alarmId ?? "", target: nightPlan?.target) }
         // Aus dem Speicher statt aus der Nacht: nach einem Neustart der App fehlt `spec`. Nur die Fassung, die geklingelt
         // hat (Fix G-1/S-1): Im Schlummern verschoben, oder eine neuere Änderung vom iPhone, bleibt eingeschaltet.

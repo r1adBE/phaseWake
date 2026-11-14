@@ -430,6 +430,7 @@
     <string name="holidays_off">නිවාඩු දින නැත</string>
     <string name="holidays_hint">තනි නගරවල ප්‍රාදේශීය නිවාඩු දින ඇතුළත් නැත.</string>
     <string name="holidays_next">ඊළඟ නිවාඩු දිනය: %1$s</string>
+    <string name="holidays_next_estimated">ඇස්තමේන්තු නිවාඩු දිනය: %1$s – එලාමය නාද වේ. නිවාඩු නම්, එම දිනය ඔබම මඟ හරින්න.</string>
     <string name="editor_skip_holidays">නිවාඩු දිනවල අවදි නොකරන්න</string>
     <string name="editor_skip_holidays_hint">සැකසීම්වල රට සහ කලාපය තෝරන්න.</string>
     <string name="home_holiday_skipped">%1$s: නිවාඩු දිනය – එලාමයක් නැත</string>
@@ -628,4 +629,10 @@
     <string name="learn_tip_late">සවස ඔරලෝසුවේ Phase Wake විවෘත කරන්න, අවම වශයෙන් සිහිකැඳවීම ආ විට.</string>
     <string name="learn_tip_alarm">ඔරලෝසුව පටිගත කරන්නේ එලාම ඇති රාත්‍රී පමණි.</string>
     <string name="learn_tip_connect">ඔරලෝසුව ක්‍රියාත්මකව සහ දුරකථනයට සම්බන්ධව තබන්න – එලාමයෙන් පසු එය පටිගත කිරීම යවයි.</string>
+    <string name="battery_night">බැටරිය: %1$s</string>
+    <string name="battery_watch">ඔරලෝසුව −%1$d %%</string>
+    <string name="battery_phone">දුරකථනය −%1$d %%</string>
+    <string name="editor_alarm_gone">මෙම එලාමය මේ අතරතුර මකා දමා ඇත.</string>
+    <string name="test_replaces_nap">පරීක්ෂණ එලාමය ඔබේ කෙටි නින්ද අවසන් කරයි.</string>
+    <string name="settings_clear_history_also">සටහන්, හැඟීම, සවස් චර්යාවේ ලකුණු සහ ශබ්ද කොටස් ද මැකේ.</string>
 </resources>

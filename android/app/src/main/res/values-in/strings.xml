@@ -415,6 +415,7 @@
     <string name="holidays_off">Tanpa hari libur</string>
     <string name="holidays_hint">Hari libur lokal tiap daerah tidak termasuk.</string>
     <string name="holidays_next">Hari libur berikutnya: %1$s</string>
+    <string name="holidays_next_estimated">Hari libur perkiraan: %1$s – alarm tetap berbunyi. Jika kamu libur, lewati harinya sendiri.</string>
     <string name="editor_skip_holidays">Jangan bangunkan saat hari libur</string>
     <string name="editor_skip_holidays_hint">Pilih negara dan wilayah di setelan.</string>
     <string name="home_holiday_skipped">%1$s: hari libur – tanpa alarm</string>
@@ -611,4 +612,10 @@
     <string name="learn_tip_late">Buka Phase Wake di jam pada malam hari, paling lambat saat pengingat muncul.</string>
     <string name="learn_tip_alarm">Jam hanya merekam malam yang ada alarmnya.</string>
     <string name="learn_tip_connect">Biarkan jam menyala dan terhubung ke ponselmu – jam mengirim rekaman setelah alarm.</string>
+    <string name="battery_night">Baterai: %1$s</string>
+    <string name="battery_watch">Jam tangan −%1$d %%</string>
+    <string name="battery_phone">Ponsel −%1$d %%</string>
+    <string name="editor_alarm_gone">Alarm ini sudah dihapus.</string>
+    <string name="test_replaces_nap">Uji alarm mengakhiri tidur siangmu.</string>
+    <string name="settings_clear_history_also">Catatan, perasaan, centang rutinitas malam, dan potongan suara juga dihapus.</string>
 </resources>

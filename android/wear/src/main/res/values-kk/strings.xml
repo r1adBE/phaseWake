@@ -102,4 +102,5 @@
     <string name="watch_learn_skip_battery">Бүгінгі түн үйрену кезеңіне есептелмейді: батарея %1$d %%, керек %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Бүгінгі түн үйрену кезеңіне есептелмейді: Phase Wake сағат датчиктерін пайдалана алмайды.</string>
     <string name="watch_learn_skip_late">Бүгінгі түн үйрену кезеңіне есептелмейді: Phase Wake кешке тым кеш ашылды.</string>
+    <string name="editor_alarm_gone">Бұл оятқыш осы уақытта жойылды.</string>
 </resources>

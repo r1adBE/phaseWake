@@ -47,6 +47,8 @@ internal class WatchStatus(
     suspend fun publish(): Unit = lock.withLock {
         val ready = isReady()
         val battery = batteryPercent()
+        // Lädt die Uhr, misst sie trotz wenig Akku (F-6); das Handy warnt dann nicht.
+        val charging = context.getSystemService(BatteryManager::class.java)?.isCharging == true
         val pulse = SensorAccess.of(context).pulse()
         val instant = clock().instant()
         val now = instant.toEpochMilli()
@@ -57,16 +59,17 @@ internal class WatchStatus(
         val lastAt = prefs[SENT_AT]
         val lastBattery = prefs[SENT_BATTERY]
         val due = prefs[SENT_READY] != ready || prefs[SENT_PULSE] != pulse.heartRate || prefs[SENT_PULSE_BACKGROUND] != pulse.background ||
-            prefs[SENT_PROTOCOL] != DataLayer.PROTOCOL || prefs[SENT_SKIP] != skipCode ||
+            prefs[SENT_PROTOCOL] != DataLayer.PROTOCOL || prefs[SENT_SKIP] != skipCode || (prefs[SENT_CHARGING] ?: false) != charging ||
             (battery != null && (lastBattery == null || abs(battery - lastBattery) >= BATTERY_STEP)) ||
             lastAt == null || now - lastAt >= MAX_AGE.toMillis() || now < lastAt
         if (!due) return@withLock
         // Mit Akkustand der Uhr: Der Nacht-Check am Handy warnt, wenn er für die Nacht knapp ist. Das Paket trägt auch den
         // Verbindungs-Stand, damit das Handy eine ältere Uhr-App erkennt (Review O-04), und die Pulsrechte: Ohne Puls im
         // Hintergrund misst die Uhr nachts nicht, der Nacht-Check warnt dann.
-        if (!sync.publishWatchReady(ready, battery, pulse, skip)) return@withLock
+        if (!sync.publishWatchReady(ready, battery, pulse, skip, charging)) return@withLock
         store.edit {
             it[SENT_READY] = ready
+            it[SENT_CHARGING] = charging
             it[SENT_PULSE] = pulse.heartRate
             it[SENT_PULSE_BACKGROUND] = pulse.background
             it[SENT_AT] = now
@@ -115,6 +118,7 @@ internal class WatchStatus(
         /** Zuletzt gesendeter Uhr-Status, siehe [publish]. */
         private val SENT_READY = booleanPreferencesKey("status_sent_ready")
         private val SENT_BATTERY = intPreferencesKey("status_sent_battery")
+        private val SENT_CHARGING = booleanPreferencesKey("status_sent_charging")
         private val SENT_PULSE = booleanPreferencesKey("status_sent_pulse")
         private val SENT_PULSE_BACKGROUND = booleanPreferencesKey("status_sent_pulse_background")
         private val SENT_AT = longPreferencesKey("status_sent_at")

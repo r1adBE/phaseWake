@@ -33,4 +33,6 @@
     <string name="check_watch_state_old">O status do relógio está desatualizado – abra o Phase Wake rapidamente no relógio.</string>
     <string name="editor_sleep_hint_apple">Conta a partir de quando você adormece – toque em “Boa noite” no relógio ao ir para a cama. No Apple Watch, o Phase Wake estima quando você adormece a partir do tempo para adormecer que aprendeu. Sem o toque, vale o horário definido.</string>
     <string name="auto_onset_hint_apple">Abra o Phase Wake no Apple Watch a partir de 1 hora antes de dormir (ele te lembra) e, a partir daí até a janela de despertar, ele grava seu movimento; então o Phase Wake calcula quando você adormeceu.</string>
+    <string name="home_good_night_tap_cancel">toque para cancelar</string>
+    <string name="good_night_cancel">Cancelar Boa noite</string>
 </resources>

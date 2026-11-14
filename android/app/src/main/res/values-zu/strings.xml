@@ -430,6 +430,7 @@
     <string name="holidays_off">Awekho amaholide</string>
     <string name="holidays_hint">Amaholide endawo amadolobha athile awafakiwe.</string>
     <string name="holidays_next">Iholide elilandelayo: %1$s</string>
+    <string name="holidays_next_estimated">Iholide elilinganiselwe: %1$s – i-alamu izokhala. Uma ukhululekile, yeqa usuku ngokwakho.</string>
     <string name="editor_skip_holidays">Ungavusi ngamaholide</string>
     <string name="editor_skip_holidays_hint">Khetha izwe nesifunda ezilungiselelweni.</string>
     <string name="home_holiday_skipped">%1$s: iholide – ayikho i-alamu</string>
@@ -628,4 +629,10 @@
     <string name="learn_tip_late">Kusihlwa vula i-Phase Wake ewashini, okungenani lapho ikukhumbuza.</string>
     <string name="learn_tip_alarm">Iwashi liqopha kuphela ubusuku obunama-alamu.</string>
     <string name="learn_tip_connect">Gcina iwashi livuliwe futhi lixhunywe efonini yakho – lithumela ukuqopha ngemva kwe-alamu.</string>
+    <string name="battery_night">Ibhethri: %1$s</string>
+    <string name="battery_watch">Iwashi −%1$d %%</string>
+    <string name="battery_phone">Ifoni −%1$d %%</string>
+    <string name="editor_alarm_gone">Le alamu isisusiwe phakathi naleso sikhathi.</string>
+    <string name="test_replaces_nap">I-alamu yokuhlola iqeda ukulala kwakho kancane.</string>
+    <string name="settings_clear_history_also">Amanothi, umuzwa, amamaki enqubo yakusihlwa nezingcezu zemisindo nakho kuyasuswa.</string>
 </resources>

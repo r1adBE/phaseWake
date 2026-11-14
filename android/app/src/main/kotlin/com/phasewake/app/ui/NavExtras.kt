@@ -1,10 +1,14 @@
 package com.phasewake.app.ui
 
 import android.widget.Toast
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.phasewake.app.PhaseWakeApp
 import com.phasewake.app.R
@@ -18,6 +22,7 @@ import com.phasewake.app.core.TestRuns
 import com.phasewake.app.core.Transient
 import com.phasewake.app.core.TransientConflict
 import com.phasewake.app.core.TransientKind
+import com.phasewake.app.core.TransientPlan
 import com.phasewake.app.holidays.HolidayCountry
 import com.phasewake.app.shared.NightRecording
 import com.phasewake.app.shared.RecordSync
@@ -59,6 +64,21 @@ internal object ExtraRoutes {
 /** Startet den Probewecker (im Hintergrund, übersteht das Verlassen des Bildschirms). */
 internal fun startTest(app: PhaseWakeApp) = launchTransient(app) { Transients.startTest(app) }
 
+/** Ob ein Powernap wartet, den «In 2 Minuten testen» ersetzen würde (B-12). */
+internal fun napWaiting(transient: TransientPlan?, now: Instant = Instant.now()): Boolean =
+    transient != null && transient.kind == TransientKind.NAP && Transient.isActive(transient, now)
+
+/** Rückfrage, bevor der Probewecker einen wartenden Powernap ersetzt (B-12). */
+@Composable
+internal fun TestOverNapDialog(onConfirm: () -> Unit, onDismiss: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        text = { Text(stringResource(R.string.test_replaces_nap)) },
+        confirmButton = { TextButton(onClick = onConfirm) { Text(stringResource(R.string.test_button)) } },
+        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) } },
+    )
+}
+
 /**
  * Startet einen Probewecker oder Powernap mit [start] im Hintergrund; lehnt der Kern ab (Wecker läuft oder beginnt
  * vorher), erscheint der Grund als kurzer Hinweis.
@@ -76,7 +96,7 @@ private fun launchTransient(app: PhaseWakeApp, start: suspend () -> TransientCon
 
 /**
  * Probewecker, Powernap, Überspringen und Feiertage für die Startseite. [record]: Stand von «Nacht aufzeichnen» der
- * Uhr; `null` (Uhr kennt es nicht): keine Karte. [onLearnDetails]: öffnet die Lern-Übersicht.
+ * Uhr; `null` (Uhr kennt es nicht): keine Karte. [onLearnDetails]: öffnet die Lern-Übersicht. [onTest]: Probewecker (B-12).
  */
 internal fun homeExtras(
     app: PhaseWakeApp,
@@ -84,6 +104,7 @@ internal fun homeExtras(
     now: Instant = Instant.now(),
     record: RecordSync.RecordStatus? = null,
     onLearnDetails: () -> Unit = {},
+    onTest: () -> Unit,
 ): HomeExtras {
     val transient = data.transient?.takeIf { Transient.isActive(it, now) }
     return HomeExtras(
@@ -101,7 +122,7 @@ internal fun homeExtras(
             }
         },
         onUndoSkip = { alarm -> app.afterAlarmsChanged { app.alarms.update(alarm.id, AlarmSchedule::undoSkip) } },
-        onTest = { startTest(app) },
+        onTest = onTest,
         testAt = data.testRun?.takeIf { transient?.kind == TransientKind.TEST && !TestRuns.isFinished(it, now) }?.target,
         autoOnset = data.autoOnset,
         sleepGoal = data.sleepGoal,
@@ -179,6 +200,8 @@ internal fun settingsExtras(app: PhaseWakeApp, data: AppData, actions: NavAction
     val countries by produceState(emptyList<HolidayCountry>()) { value = app.holidays.countries() }
     // Nach jeder Wahl ändern sich die Feiertage: dann die Wahl neu lesen.
     val choice by produceState("" to "", data.holidays) { value = app.holidays.choice() }
+    // Geschätzte Feiertage gelten nicht als frei (Audit F-2); der nächste steht mit «geschätzt» da.
+    val estimated by produceState(emptySet<LocalDate>(), data.holidays, choice) { value = app.holidays.estimated() }
     val today = LocalDate.now()
     val holidays = HolidaysUi(
         countries = countries.map { it.code to countryName(it.code, locale) },
@@ -192,6 +215,7 @@ internal fun settingsExtras(app: PhaseWakeApp, data: AppData, actions: NavAction
                 app.backup.reschedule()
             }
         },
+        nextEstimated = estimated.filter { !it.isBefore(today) }.minOrNull(),
     )
     // Lernphase: nur mit einer Uhr, die aufzeichnen kann, oder wenn schon gelernt. Schalter = Zustimmung (Audit F-02).
     val record by app.recordStatus.collectAsStateWithLifecycle()
@@ -211,7 +235,7 @@ internal fun settingsExtras(app: PhaseWakeApp, data: AppData, actions: NavAction
     }
     return SettingsExtras(
         learning = learning,
-        onTest = { startTest(app) },
+        onTest = actions.onTest,
         holidays = holidays.takeIf { countries.isNotEmpty() },
         backup = { BackupRows() },
         onOnboarding = { actions.nav.navigate(ExtraRoutes.ONBOARDING) },

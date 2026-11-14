@@ -1,5 +1,7 @@
 package com.phasewake.app.shared
 
+import com.phasewake.app.core.BatteryMark
+import com.phasewake.app.core.BatteryPoint
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.WakeReason
 import java.time.Duration
@@ -41,5 +43,17 @@ class NightKeyTest {
     @Test
     fun newFeelingWins() {
         assertEquals(5, mergeNight(listOf(night("a", feeling = 4)), night("a", feeling = 5)).single().feeling)
+    }
+
+    @Test
+    fun storedBatteryIsKept() {
+        val phone = listOf(BatteryPoint(start, 50, false, BatteryMark.START), BatteryPoint(start.plusSeconds(1800), 48, false, BatteryMark.END))
+        val watch = listOf(BatteryPoint(start, 90, false, BatteryMark.START), BatteryPoint(start.plusSeconds(1800), 80, false, BatteryMark.END))
+        // Die Uhr schickt dieselbe Nacht noch einmal (mit ihrem Akku): der des Handys bleibt.
+        val merged = mergeNight(listOf(night("a").copy(phoneBattery = phone)), night("a").copy(watchBattery = watch)).single()
+        assertEquals(phone, merged.phoneBattery)
+        assertEquals(watch, merged.watchBattery)
+        // Ohne Akku noch einmal: beide bleiben.
+        assertEquals(merged, mergeNight(listOf(merged), night("a")).single())
     }
 }

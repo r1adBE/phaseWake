@@ -73,8 +73,10 @@ class HealthSleep internal constructor(
                 HealthSession(
                     start = session.startTime,
                     end = session.endTime,
-                    stages = session.stages.map { StageSpan(it.startTime, it.endTime, map(it.stage)) }.sortedBy { it.start },
+                    stages = stagesOf(session),
                     source = session.metadata.dataOrigin.packageName.ifEmpty { null },
+                    // Zone der Aufzeichnung (Audit F-3): Nickerchen-Regel und Uhrzeiten wie dort, nicht wie hier.
+                    timeZone = session.startZoneOffset ?: session.endZoneOffset,
                 )
             }.sortedBy { it.start }
         } catch (e: Exception) {
@@ -95,9 +97,7 @@ class HealthSleep internal constructor(
                     TimeRangeFilter.between(night.windowStart.minus(LOOK_BACK), night.wokeAt.plus(LOOK_AHEAD)),
                 ),
             )
-            response.records.flatMap { session ->
-                session.stages.map { StageSpan(it.startTime, it.endTime, map(it.stage)) }
-            }.sortedBy { it.start }
+            response.records.flatMap(::stagesOf).sortedBy { it.start }
         } catch (e: Exception) {
             if (e is kotlinx.coroutines.CancellationException) throw e
             Log.w(TAG, "Schlafphasen nicht lesbar", e)
@@ -114,7 +114,17 @@ class HealthSleep internal constructor(
         return HealthHistory.summaries(sessions(now.minus(Duration.ofDays(days)), now), clearedAt, ZoneId.systemDefault())
     }
 
-    private fun map(stage: Int): SleepStage = when (stage) {
+    /**
+     * Phasen einer Sitzung nach Beginn, Regel wie auf Apple (`HealthSleep.sessions`, Audit F-9): «Schläft» ohne Phase
+     * ([SleepSessionRecord.STAGE_TYPE_SLEEPING], wie Apple «Schlaf ohne Phase») wird [SleepStage.UNKNOWN] und zählt als
+     * Schlaf. [SleepSessionRecord.STAGE_TYPE_UNKNOWN] («Phase unbekannt», nicht «schläft»; wie Apple «Im Bett») ist keine
+     * Phase und zählt nicht als Schlaf. Apples Wegfall von «ohne Phase» bei Überschneidung braucht es hier nicht: Health
+     * Connect lässt in einer Sitzung keine überlappenden Phasen zu.
+     */
+    private fun stagesOf(session: SleepSessionRecord): List<StageSpan> =
+        session.stages.mapNotNull { stage -> map(stage.stage)?.let { StageSpan(stage.startTime, stage.endTime, it) } }.sortedBy { it.start }
+
+    private fun map(stage: Int): SleepStage? = when (stage) {
         SleepSessionRecord.STAGE_TYPE_AWAKE,
         SleepSessionRecord.STAGE_TYPE_AWAKE_IN_BED,
         SleepSessionRecord.STAGE_TYPE_OUT_OF_BED,
@@ -122,7 +132,8 @@ class HealthSleep internal constructor(
         SleepSessionRecord.STAGE_TYPE_LIGHT -> SleepStage.LIGHT
         SleepSessionRecord.STAGE_TYPE_DEEP -> SleepStage.DEEP
         SleepSessionRecord.STAGE_TYPE_REM -> SleepStage.REM
-        else -> SleepStage.UNKNOWN
+        SleepSessionRecord.STAGE_TYPE_SLEEPING -> SleepStage.UNKNOWN
+        else -> null
     }
 
     private companion object {

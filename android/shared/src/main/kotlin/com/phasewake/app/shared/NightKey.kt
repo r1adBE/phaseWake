@@ -11,9 +11,17 @@ import java.time.Instant
 internal fun NightRecord.isNight(alarmId: String, windowStart: Instant): Boolean =
     this.alarmId == alarmId && this.windowStart == windowStart
 
-/** Ersetzt dieselbe Nacht oder hängt sie an; ein schon angegebenes Befinden bleibt, wenn die neue keines hat. */
+/**
+ * Ersetzt dieselbe Nacht oder hängt sie an; ein schon angegebenes Befinden und ein schon gespeicherter Akkustand
+ * (z. B. der des Handys) bleiben, wenn die neue keine hat (die Uhr schickt dieselbe Nacht noch einmal).
+ */
 internal fun mergeNight(current: List<NightRecord>, night: NightRecord): List<NightRecord> {
     val same: (NightRecord) -> Boolean = { it.isNight(night.alarmId, night.windowStart) }
-    val feeling = night.feeling ?: current.firstOrNull(same)?.feeling
-    return NightHistory.trim(current.filterNot(same) + night.copy(feeling = feeling))
+    val old = current.firstOrNull(same)
+    val merged = night.copy(
+        feeling = night.feeling ?: old?.feeling,
+        watchBattery = night.watchBattery ?: old?.watchBattery,
+        phoneBattery = night.phoneBattery ?: old?.phoneBattery,
+    )
+    return NightHistory.trim(current.filterNot(same) + merged)
 }

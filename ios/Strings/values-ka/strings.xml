@@ -33,4 +33,6 @@
     <string name="check_watch_state_old">საათის მდგომარეობა მოძველებულია – მოკლედ გახსენი Phase Wake საათზე.</string>
     <string name="editor_sleep_hint_apple">ითვლება ჩაძინებიდან – დაწოლისას საათზე შეეხე «ძილი ნებისა»-ს. Apple Watch-ზე Phase Wake ჩაძინების დროს ნასწავლი ჩაძინების ხანგრძლივობით აფასებს. შეხების გარეშე მოქმედებს დაყენებული დრო.</string>
     <string name="auto_onset_hint_apple">გახსენი Phase Wake Apple Watch-ზე დაძინებამდე 1 საათით ადრე ან მოგვიანებით (საათი შეგახსენებს) და იმ მომენტიდან გაღვიძების ფანჯრამდე ის შენს მოძრაობას ჩაწერს; შემდეგ Phase Wake გამოითვლის, როდის ჩაგეძინა.</string>
+    <string name="home_good_night_tap_cancel">შეეხე გასაუქმებლად</string>
+    <string name="good_night_cancel">ძილი ნებისას გაუქმება</string>
 </resources>

@@ -107,4 +107,5 @@
     <string name="watch_learn_skip_battery">I nat tæller ikke med i læringsfasen: batteri på %1$d %%, kræver %2$d %%.</string>
     <string name="watch_learn_skip_sensors">I nat tæller ikke med i læringsfasen: Phase Wake kan ikke bruge urets sensorer.</string>
     <string name="watch_learn_skip_late">I nat tæller ikke med i læringsfasen: Phase Wake blev åbnet for sent om aftenen.</string>
+    <string name="editor_alarm_gone">Denne alarm er blevet slettet i mellemtiden.</string>
 </resources>

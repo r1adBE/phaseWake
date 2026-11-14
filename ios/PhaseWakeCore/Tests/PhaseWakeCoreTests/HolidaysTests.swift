@@ -34,4 +34,15 @@ final class HolidaysTests: XCTestCase {
         XCTAssertEqual(Holidays.regionCode(country: "CH", region: ""), "CH")
         XCTAssertEqual(Holidays.regionCode(country: "CH", region: "BE"), "CH-BE")
     }
+
+    /// Gleich wie `estimatedHolidays` (Kotlin, Audit F-2).
+    func testEstimatedHolidays() {
+        XCTAssertTrue(Holidays.isEstimated("Eid al-Fitr (estimated)"))
+        XCTAssertTrue(Holidays.isEstimated("Eid al-Adha (observed, estimated)"))
+        XCTAssertTrue(Holidays.isEstimated("Eid al-Fitr (estimated); Laylat al-Qadr (estimated)"))
+        // Ein sicherer Feiertag am selben Tag: der Tag ist frei.
+        XCTAssertFalse(Holidays.isEstimated("Eid al-Fitr (estimated); National Day"))
+        XCTAssertFalse(Holidays.isEstimated("New Year's Day"))
+        XCTAssertFalse(Holidays.isEstimated("Catholic Easter (observed)"))
+    }
 }

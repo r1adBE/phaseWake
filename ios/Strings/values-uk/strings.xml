@@ -33,4 +33,6 @@
     <string name="check_watch_state_old">Стан годинника застарів – ненадовго відкрий Phase Wake на годиннику.</string>
     <string name="editor_sleep_hint_apple">Відлічується від засинання – лягаючи спати, натисни на годиннику «На добраніч». На Apple Watch Phase Wake оцінює, коли ти засинаєш, за вивченим часом засинання. Без натискання діє встановлений час.</string>
     <string name="auto_onset_hint_apple">Відкрий Phase Wake на Apple Watch за 1 годину до сну або пізніше (годинник нагадає), і відтоді до вікна пробудження він записує твої рухи; тоді Phase Wake обчислює, коли ти заснув.</string>
+    <string name="home_good_night_tap_cancel">торкнись, щоб скасувати</string>
+    <string name="good_night_cancel">Скасувати «На добраніч»</string>
 </resources>

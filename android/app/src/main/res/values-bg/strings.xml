@@ -429,6 +429,7 @@
     <string name="holidays_off">Без празници</string>
     <string name="holidays_hint">Местните празници на отделни селища не са включени.</string>
     <string name="holidays_next">Следващ празник: %1$s</string>
+    <string name="holidays_next_estimated">Приблизителен празник: %1$s – алармата ще звъни. Ако почиваш, пропусни деня сам.</string>
     <string name="editor_skip_holidays">Без събуждане в празници</string>
     <string name="editor_skip_holidays_hint">Държавата и региона избираш в настройките.</string>
     <string name="home_holiday_skipped">%1$s: празник – без будилник</string>
@@ -627,4 +628,10 @@
     <string name="learn_tip_late">Отвори Phase Wake на часовника вечерта, най-късно при напомнянето.</string>
     <string name="learn_tip_alarm">Часовникът записва само нощи с аларма.</string>
     <string name="learn_tip_connect">Остави часовника включен и свързан с телефона – той изпраща записа след алармата.</string>
+    <string name="battery_night">Батерия: %1$s</string>
+    <string name="battery_watch">Часовник −%1$d %%</string>
+    <string name="battery_phone">Телефон −%1$d %%</string>
+    <string name="editor_alarm_gone">Този будилник междувременно е изтрит.</string>
+    <string name="test_replaces_nap">Пробният будилник прекратява кратката ти дрямка.</string>
+    <string name="settings_clear_history_also">Изтриват се и бележките, усещането, отметките от вечерната рутина и звуковите откъси.</string>
 </resources>

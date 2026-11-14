@@ -112,8 +112,11 @@ private fun probe(context: Context): String {
         "notifications=${notifications.areNotificationsEnabled()} app=$visible"
 }
 
-/** Ob ein Fenster der App sichtbar ist (nur dann erlaubt Android den direkten Start aus dem Dienst). */
-private fun appVisible(): Boolean {
+/**
+ * Ob ein Fenster der App sichtbar ist (nur dann erlaubt Android den direkten Start aus dem Dienst). Auch für den späten
+ * Beginn der Einschlaf-Messung (HG-2, [OnsetRules.lateStart]): sichtbar heisst, die Person ist wach.
+ */
+internal fun appVisible(): Boolean {
     val info = ActivityManager.RunningAppProcessInfo()
     ActivityManager.getMyMemoryState(info)
     // Vordergrunddienst allein (IMPORTANCE_FOREGROUND_SERVICE) zählt nicht.

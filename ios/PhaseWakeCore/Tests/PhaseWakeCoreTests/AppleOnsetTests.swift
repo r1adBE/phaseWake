@@ -40,7 +40,7 @@ final class AppleOnsetTests: XCTestCase {
                                       heartRates: [Double?](repeating: nil, count: 100))
         XCTAssertEqual(none, .asleep(at: since, index: 0))
         XCTAssertEqual(SleepOnset.find(motions, threshold: 0.002, heartRates: rates), 60)
-        XCTAssertEqual(SleepOnset.wornEpochs, 10)
+        XCTAssertEqual(SleepOnset.wornEpochs, 30)
     }
 
     func testEmptyEpochsBreakTheRun() {

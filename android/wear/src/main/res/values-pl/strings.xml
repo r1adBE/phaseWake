@@ -115,4 +115,5 @@
     <string name="watch_learn_skip_battery">Ta noc nie zostanie zaliczona do fazy nauki: bateria %1$d %%, potrzeba %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Ta noc nie zostanie zaliczona do fazy nauki: Phase Wake nie może korzystać z czujników zegarka.</string>
     <string name="watch_learn_skip_late">Ta noc nie zostanie zaliczona do fazy nauki: Phase Wake otwarto wieczorem za późno.</string>
+    <string name="editor_alarm_gone">Ten budzik został w międzyczasie usunięty.</string>
 </resources>

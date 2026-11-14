@@ -451,6 +451,7 @@
     <string name="holidays_off">Без праздников</string>
     <string name="holidays_hint">Местные праздники отдельных населённых пунктов не учитываются.</string>
     <string name="holidays_next">Следующий праздник: %1$s</string>
+    <string name="holidays_next_estimated">Предполагаемый праздник: %1$s – будильник зазвонит. Если у тебя выходной, пропусти день сам.</string>
     <string name="editor_skip_holidays">Не будить в праздники</string>
     <string name="editor_skip_holidays_hint">Страну и регион выбери в настройках.</string>
     <string name="home_holiday_skipped">%1$s: праздник – без будильника</string>
@@ -653,4 +654,10 @@
     <string name="learn_tip_late">Вечером открой Phase Wake на часах, самое позднее по напоминанию.</string>
     <string name="learn_tip_alarm">Часы записывают только ночи с будильником.</string>
     <string name="learn_tip_connect">Держи часы включёнными и подключёнными к телефону – они отправляют запись после будильника.</string>
+    <string name="battery_night">Заряд: %1$s</string>
+    <string name="battery_watch">Часы −%1$d %%</string>
+    <string name="battery_phone">Телефон −%1$d %%</string>
+    <string name="editor_alarm_gone">Этот будильник тем временем удалён.</string>
+    <string name="test_replaces_nap">Пробный будильник завершит твой короткий сон.</string>
+    <string name="settings_clear_history_also">Также удаляются заметки, самочувствие, отметки вечернего ритуала и фрагменты звуков.</string>
 </resources>

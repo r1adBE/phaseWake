@@ -41,6 +41,30 @@ extension SmartAlarm {
         return true
     }
 
+    /// Gemerkte Sitzung `started` ist gestartet: Übernimmt sie die aktuelle Nacht (``SessionRules/usesOrphan(own:busy:serves:)``),
+    /// wird sie die Sitzung dieser Nacht, die eigene (nur geplante) gilt als ersetzt, und die Nacht misst und weckt mit
+    /// Vibration (HG-4). - Returns: ob übernommen.
+    func usesStale(_ started: WKExtendedRuntimeSession) -> Bool {
+        let model = WatchModel.shared
+        model.refresh()
+        let now = Date()
+        let serves = model.plan.map {
+            NightRules.sessionServes(start: now, plan: $0, sessionStart: Self.sessionStart($0), tolerance: Self.startTolerance, delay: Self.fallbackDelay)
+        } ?? false
+        let own = session.flatMap { $0 === started ? nil : $0 }
+        guard SessionRules.usesOrphan(own: own?.state, busy: phase.isMeasuring || phase.isRinging || phase.isSnoozed, serves: serves) else {
+            return false
+        }
+        staleSessions.removeAll { $0 === started }
+        if let own { retire(own) }
+        session = started
+        plan = nil
+        keptStart = nil
+        DiagStore.shared.log(.window, "stale session started, used for the night")
+        startNight()
+        return true
+    }
+
     /// App aktiv: gemerkte Sitzungen jetzt beenden (Aufruf bei jedem Aktivwerden, `AppDelegate`).
     func invalidateStaleSessions() {
         guard WKApplication.shared().applicationState == .active, !staleSessions.isEmpty else { return }
@@ -57,7 +81,9 @@ extension SmartAlarm {
 
     nonisolated func extendedRuntimeSessionDidStart(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
         Task { @MainActor in
-            // Verwaiste Sitzung (ersetzt, als die App sie nicht beenden durfte): gleich beenden, ohne zu vibrieren.
+            // Verwaiste Sitzung (ersetzt, als die App sie nicht beenden durfte): Kann sie die Nacht übernehmen, weckt sie
+            // (HG-4); sonst gleich beenden, ohne zu vibrieren (keine Nacht zu wecken; Apple kann dann warnen).
+            if self.isStale(extendedRuntimeSession), self.usesStale(extendedRuntimeSession) { return }
             if self.isStale(extendedRuntimeSession) {
                 DiagStore.shared.log(.error, "stale session started, ended")
                 if self.session === extendedRuntimeSession { self.session = nil }

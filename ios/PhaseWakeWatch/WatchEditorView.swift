@@ -45,6 +45,11 @@ struct WatchEditorView: View {
     @State private var skipRequest: Bool?
     @State private var loaded = false
     @State private var confirmDelete = false
+    /// Anderswo gelöscht bzw. kein Platz mehr (B-3, B-11, `EditorSave`): Hinweis.
+    @State private var gone = false
+    @State private var full = false
+    /// Selbst gelöscht: Das Verschwinden aus der Liste ist dann kein Löschen anderswo.
+    @State private var deleting = false
 
     var body: some View {
         NavigationStack {
@@ -119,12 +124,23 @@ struct WatchEditorView: View {
             }
             .confirmationDialog(L("editor_delete_title"), isPresented: $confirmDelete, titleVisibility: .visible) {
                 Button(L("editor_delete"), role: .destructive) {
+                    deleting = true
                     model.remove(start.id)
                     dismiss()
                 }
                 Button(L("action_cancel"), role: .cancel) {}
             }
             .onAppear(perform: load)
+            // Am iPhone gelöscht, während der Editor offen ist: Hinweis und zu, statt ihn neu anzulegen (B-3).
+            .onChange(of: model.alarms.map(\.id)) { _, ids in
+                if check(ids) == .gone, !deleting { gone = true }
+            }
+            .alert(L("editor_alarm_gone"), isPresented: $gone) {
+                Button(L("test_close")) { dismiss() }
+            }
+            .alert(L("home_max_alarms", Int64(WatchModel.maxAlarms)), isPresented: $full) {
+                Button(L("editor_keep_editing"), role: .cancel) {}
+            }
         }
     }
 
@@ -160,7 +176,17 @@ struct WatchEditorView: View {
         return AlarmSchedule.skippedDate(draft.with(skipUntil: saved), now: now, calendar: .gregorianLocal)
     }
 
+    /// Entscheid fürs Speichern aus den gespeicherten Weckern `ids` (B-3, B-11).
+    private func check(_ ids: [String]) -> EditorSave {
+        EditorSave.check(existed: !isNew, storedIds: ids, draftId: start.id, maxAlarms: WatchModel.maxAlarms)
+    }
+
     private func save() {
+        switch check(model.alarms.map(\.id)) {
+        case .gone: gone = true; return
+        case .full: full = true; return
+        case .save: break
+        }
         if let draft { model.save(draft, skip: skipRequest) }
         dismiss()
     }

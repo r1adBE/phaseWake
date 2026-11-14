@@ -430,6 +430,7 @@
     <string name="holidays_off">Engir frídagar</string>
     <string name="holidays_hint">Staðbundnir frídagar einstakra bæja eru ekki með.</string>
     <string name="holidays_next">Næsti frídagur: %1$s</string>
+    <string name="holidays_next_estimated">Áætlaður frídagur: %1$s – vekjarinn hringir. Ef þú átt frí skaltu sleppa deginum sjálf.</string>
     <string name="editor_skip_holidays">Ekki vekja á frídögum</string>
     <string name="editor_skip_holidays_hint">Veldu land og svæði í stillingunum.</string>
     <string name="home_holiday_skipped">%1$s: frídagur – enginn vekjari</string>
@@ -628,4 +629,10 @@
     <string name="learn_tip_late">Opnaðu Phase Wake á úrinu á kvöldin, í síðasta lagi þegar það minnir þig á.</string>
     <string name="learn_tip_alarm">Úrið tekur aðeins upp nætur með vekjara.</string>
     <string name="learn_tip_connect">Hafðu kveikt á úrinu og tengt við símann – það sendir upptökuna eftir vekjarann.</string>
+    <string name="battery_night">Rafhlaða: %1$s</string>
+    <string name="battery_watch">Úr −%1$d %%</string>
+    <string name="battery_phone">Sími −%1$d %%</string>
+    <string name="editor_alarm_gone">Þessum vekjara hefur verið eytt á meðan.</string>
+    <string name="test_replaces_nap">Prufuvekjarinn lýkur kríublundinum þínum.</string>
+    <string name="settings_clear_history_also">Athugasemdir, líðan, hök í kvöldrútínu og hljóðbútar eyðast líka.</string>
 </resources>

@@ -108,4 +108,5 @@
     <string name="watch_learn_skip_battery">ఈ రాత్రి నేర్చుకునే దశలో లెక్కలోకి రాదు: బ్యాటరీ %1$d %%, కావాలి %2$d %%.</string>
     <string name="watch_learn_skip_sensors">ఈ రాత్రి నేర్చుకునే దశలో లెక్కలోకి రాదు: Phase Wake వాచ్ సెన్సార్లను వాడలేదు.</string>
     <string name="watch_learn_skip_late">ఈ రాత్రి నేర్చుకునే దశలో లెక్కలోకి రాదు: సాయంత్రం Phase Wake చాలా ఆలస్యంగా తెరిచారు.</string>
+    <string name="editor_alarm_gone">ఈ అలారం ఈ మధ్యలో తొలగించబడింది.</string>
 </resources>

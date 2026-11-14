@@ -107,4 +107,5 @@
     <string name="watch_learn_skip_battery">ഇന്ന് രാത്രി പഠന ഘട്ടത്തിൽ എണ്ണപ്പെടില്ല: ബാറ്ററി %1$d %%, വേണ്ടത് %2$d %%.</string>
     <string name="watch_learn_skip_sensors">ഇന്ന് രാത്രി പഠന ഘട്ടത്തിൽ എണ്ണപ്പെടില്ല: Phase Wake-ന് വാച്ചിന്റെ സെൻസറുകൾ ഉപയോഗിക്കാനാവില്ല.</string>
     <string name="watch_learn_skip_late">ഇന്ന് രാത്രി പഠന ഘട്ടത്തിൽ എണ്ണപ്പെടില്ല: വൈകുന്നേരം Phase Wake വളരെ വൈകി തുറന്നു.</string>
+    <string name="editor_alarm_gone">ഈ അലാറം ഇതിനിടെ ഇല്ലാതാക്കി.</string>
 </resources>

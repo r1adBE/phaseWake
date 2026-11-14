@@ -112,4 +112,5 @@
     <string name="watch_learn_skip_battery">Ова ноћ се не рачуна у фазу учења: батерија %1$d %%, потребно %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Ова ноћ се не рачуна у фазу учења: Phase Wake не може да користи сензоре сата.</string>
     <string name="watch_learn_skip_late">Ова ноћ се не рачуна у фазу учења: Phase Wake је отворен прекасно увече.</string>
+    <string name="editor_alarm_gone">Овај аларм је у међувремену избрисан.</string>
 </resources>

@@ -103,4 +103,5 @@
     <string name="watch_learn_skip_battery">ဒီည သင်ယူမှုအဆင့်အတွက် မရေတွက်ပါ- ဘက်ထရီ %1$d %%၊ လိုအပ်ချက် %2$d %%။</string>
     <string name="watch_learn_skip_sensors">ဒီည သင်ယူမှုအဆင့်အတွက် မရေတွက်ပါ- Phase Wake က နာရီ၏ အာရုံခံကိရိယာများကို အသုံးမပြုနိုင်ပါ။</string>
     <string name="watch_learn_skip_late">ဒီည သင်ယူမှုအဆင့်အတွက် မရေတွက်ပါ- ညနေတွင် Phase Wake ကို နောက်ကျလွန်းစွာ ဖွင့်ခဲ့သည်။</string>
+    <string name="editor_alarm_gone">ဤနှိုးစက်ကို ယခုအတောအတွင်း ဖျက်ပြီးဖြစ်သည်။</string>
 </resources>

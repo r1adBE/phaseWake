@@ -59,6 +59,13 @@ extension WatchModel {
         return goodNight.alarmId == sleepAlarm.id
     }
 
+    /// Ob gerade eine Nacht misst, klingelt oder schlummert: Dann startet «Gute Nacht» nicht; der Knopf ist aus und sagt
+    /// warum (Prüfrunde 2, B-7), statt dass das Tippen still nichts tut.
+    var goodNightBusy: Bool {
+        let phase = SmartAlarm.shared.phase
+        return phase.isMeasuring || phase.isRinging || phase.isSnoozed
+    }
+
     /// Ob die eingestellte Weckzeit für «Gute Nacht» zu weit weg ist (mehr als 16 Std.).
     var goodNightTooFar: Bool {
         guard sleepAlarm != nil else { return true }
@@ -83,8 +90,7 @@ extension WatchModel {
             DiagStore.shared.log(.measureStart, "onset not started: no sleep duration")
             return
         }
-        let phase = SmartAlarm.shared.phase
-        if phase.isMeasuring || phase.isRinging || phase.isSnoozed {
+        if goodNightBusy {
             DiagStore.shared.log(.measureStart, "onset not started: night running")
             return
         }
@@ -98,6 +104,7 @@ extension WatchModel {
                                    asleep: GoodNightEstimate.asleep(tap: now, latencyMinutes: latency), target: target)
         setGoodNight(state)
         DiagStore.shared.log(.measureStart, "onset start (estimate) lat=\(latency.map { "\($0)" } ?? "-") target \(Format.logTime(target)), alarm at \(Format.logTime(plan.target))")
+        WatchBattery.begin(alarmId: spec.id, target: plan.target)
         WatchConnectivityBridge.shared.send(onsetShift: OnsetShift(alarmId: spec.id, original: OnsetShift.millis(plan.target),
                                                                    target: OnsetShift.millis(target), at: OnsetShift.millis(now)))
         // Rekorder für die Einschlafzeit am Morgen; ohne Erlaubnis gilt nur die Schätzung.

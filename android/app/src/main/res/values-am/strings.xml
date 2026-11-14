@@ -430,6 +430,7 @@
     <string name="holidays_off">በዓላት የሉም</string>
     <string name="holidays_hint">የነጠላ ከተሞች የአካባቢ በዓላት አልተካተቱም።</string>
     <string name="holidays_next">ቀጣዩ በዓል: %1$s</string>
+    <string name="holidays_next_estimated">ግምታዊ በዓል: %1$s – ማንቂያው ይደውላል። ዕረፍት ከሆንክ ቀኑን ራስህ ዝለል።</string>
     <string name="editor_skip_holidays">በበዓላት አትቀስቅስ</string>
     <string name="editor_skip_holidays_hint">አገርና ክልልን በቅንብሮች ውስጥ ይምረጡ።</string>
     <string name="home_holiday_skipped">%1$s: በዓል – ማንቂያ የለም</string>
@@ -628,4 +629,10 @@
     <string name="learn_tip_late">ማታ Phase Wakeን በሰዓቱ ላይ ክፈት፣ ቢዘገይ ማስታወሻው ሲመጣ።</string>
     <string name="learn_tip_alarm">ሰዓቱ የሚቀርጸው ማንቂያ ያላቸውን ሌሊቶች ብቻ ነው።</string>
     <string name="learn_tip_connect">ሰዓቱን አብርተህ ከስልክህ ጋር ተገናኝቶ ተወው – ከማንቂያው በኋላ ቀረጻውን ይልካል።</string>
+    <string name="battery_night">ባትሪ: %1$s</string>
+    <string name="battery_watch">ሰዓት −%1$d %%</string>
+    <string name="battery_phone">ስልክ −%1$d %%</string>
+    <string name="editor_alarm_gone">ይህ ማንቂያ በመሃሉ ተሰርዟል።</string>
+    <string name="test_replaces_nap">የሙከራ ማንቂያው አጭር እንቅልፍዎን ያቋርጣል።</string>
+    <string name="settings_clear_history_also">ማስታወሻዎች፣ ስሜት፣ የምሽት ልማድ ምልክቶች እና የድምፅ ቅንጥቦችም ይሰረዛሉ።</string>
 </resources>

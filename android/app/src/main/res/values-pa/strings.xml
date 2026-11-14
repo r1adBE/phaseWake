@@ -430,6 +430,7 @@
     <string name="holidays_off">ਕੋਈ ਛੁੱਟੀ ਨਹੀਂ</string>
     <string name="holidays_hint">ਇੱਕਾ-ਦੁੱਕਾ ਸ਼ਹਿਰਾਂ ਦੀਆਂ ਸਥਾਨਕ ਛੁੱਟੀਆਂ ਸ਼ਾਮਲ ਨਹੀਂ ਹਨ।</string>
     <string name="holidays_next">ਅਗਲੀ ਛੁੱਟੀ: %1$s</string>
+    <string name="holidays_next_estimated">ਅੰਦਾਜ਼ਨ ਛੁੱਟੀ: %1$s – ਅਲਾਰਮ ਵੱਜੇਗਾ। ਜੇ ਛੁੱਟੀ ਹੈ, ਤਾਂ ਦਿਨ ਆਪ ਛੱਡੋ।</string>
     <string name="editor_skip_holidays">ਛੁੱਟੀਆਂ ’ਤੇ ਨਾ ਜਗਾਓ</string>
     <string name="editor_skip_holidays_hint">ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਦੇਸ਼ ਅਤੇ ਖੇਤਰ ਚੁਣੋ।</string>
     <string name="home_holiday_skipped">%1$s: ਛੁੱਟੀ – ਕੋਈ ਅਲਾਰਮ ਨਹੀਂ</string>
@@ -628,4 +629,10 @@
     <string name="learn_tip_late">ਸ਼ਾਮ ਨੂੰ ਘੜੀ \'ਤੇ Phase Wake ਖੋਲ੍ਹੋ, ਵੱਧ ਤੋਂ ਵੱਧ ਯਾਦ-ਦਹਾਨੀ ਆਉਣ \'ਤੇ।</string>
     <string name="learn_tip_alarm">ਘੜੀ ਸਿਰਫ਼ ਅਲਾਰਮ ਵਾਲੀਆਂ ਰਾਤਾਂ ਰਿਕਾਰਡ ਕਰਦੀ ਹੈ।</string>
     <string name="learn_tip_connect">ਘੜੀ ਚਾਲੂ ਅਤੇ ਫ਼ੋਨ ਨਾਲ ਜੁੜੀ ਰੱਖੋ – ਇਹ ਅਲਾਰਮ ਤੋਂ ਬਾਅਦ ਰਿਕਾਰਡਿੰਗ ਭੇਜਦੀ ਹੈ।</string>
+    <string name="battery_night">ਬੈਟਰੀ: %1$s</string>
+    <string name="battery_watch">ਘੜੀ −%1$d %%</string>
+    <string name="battery_phone">ਫ਼ੋਨ −%1$d %%</string>
+    <string name="editor_alarm_gone">ਇਹ ਅਲਾਰਮ ਇਸ ਦੌਰਾਨ ਮਿਟਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।</string>
+    <string name="test_replaces_nap">ਟੈਸਟ ਅਲਾਰਮ ਤੁਹਾਡੀ ਪਾਵਰ ਨੈਪ ਖ਼ਤਮ ਕਰ ਦਿੰਦਾ ਹੈ।</string>
+    <string name="settings_clear_history_also">ਨੋਟ, ਮੂਡ, ਸ਼ਾਮ ਦੀ ਰੁਟੀਨ ਦੇ ਨਿਸ਼ਾਨ ਅਤੇ ਆਵਾਜ਼ ਦੀਆਂ ਕਲਿੱਪਾਂ ਵੀ ਮਿਟ ਜਾਂਦੀਆਂ ਹਨ।</string>
 </resources>

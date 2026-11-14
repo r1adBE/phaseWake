@@ -3,6 +3,8 @@ import SwiftUI
 
 /// Weckbildschirm: Weckpunkt oder Stopp-Knopf gedrückt halten zum Stoppen, Schlummern mit Restanzahl.
 struct RingView: View {
+    /// Mindesthöhe von «Halten zum Stoppen»: Tippziel nach Apple-Vorgabe (44 pt, Prüfrunde 2, B-16; vorher 40).
+    static let stopMinHeight: CGFloat = 44
     @State private var progress: Double = 0
     @State private var holding = false
     private let alarm = SmartAlarm.shared
@@ -99,7 +101,7 @@ struct RingView: View {
             .lineLimit(2)
             .padding(.horizontal, 12)
             .padding(.vertical, 4)
-            .frame(maxWidth: .infinity, minHeight: 40)
+            .frame(maxWidth: .infinity, minHeight: Self.stopMinHeight)
             .background {
                 GeometryReader { geo in
                     ZStack(alignment: .leading) {

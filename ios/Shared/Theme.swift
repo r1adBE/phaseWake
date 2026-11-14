@@ -178,6 +178,20 @@ struct PulsingDot: View {
 enum Format {
     static func time(_ date: Date) -> String { date.formatted(date: .omitted, time: .shortened) }
 
+    /// Uhrzeit in `zone` (Nacht aus der Gesundheits-App: Zone der Aufzeichnung, Audit F-3); `nil` = Zone des Geräts.
+    static func time(_ date: Date, in zone: TimeZone?) -> String {
+        var style = Date.FormatStyle(date: .omitted, time: .shortened)
+        if let zone { style.timeZone = zone }
+        return date.formatted(style)
+    }
+
+    /// Datum (abgekürzt, ohne Uhrzeit) in `zone`; `nil` = Zone des Geräts.
+    static func day(_ date: Date, in zone: TimeZone?) -> String {
+        var style = Date.FormatStyle(date: .abbreviated, time: .omitted)
+        if let zone { style.timeZone = zone }
+        return date.formatted(style)
+    }
+
     static func time(hour: Int, minute: Int) -> String {
         let date = Calendar.current.date(from: DateComponents(hour: hour, minute: minute)) ?? Date()
         return time(date)

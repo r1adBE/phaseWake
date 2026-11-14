@@ -161,6 +161,7 @@ final class LearnRecorder {
         defer { running = false }
         // «Nacht aufzeichnen»: Ende nach Akku (Ende nach 12 Std. ergibt sich aus `until`).
         checkBattery()
+        noteCharging()
         if let pending = mark, Date() >= Self.end(of: pending) {
             await process(pending, budget: budget)
         }
@@ -197,7 +198,7 @@ final class LearnRecorder {
         let onset = Self.nightStart(plan: plan, spec: spec, sleepGoal: model.sleepGoal)
         let battery = Self.battery()
         nextTry = nil
-        switch AppleLearnRecord.decide(now: Date(), target: plan.target, onsetStart: onset, battery: battery) {
+        switch AppleLearnRecord.decide(now: Date(), target: plan.target, onsetStart: onset, battery: battery, charging: Self.charging()) {
         case .wait(let until):
             nextTry = until
         case .skip(let reason):
@@ -221,6 +222,7 @@ final class LearnRecorder {
             ensureRecorder(until: Date().addingTimeInterval(duration))
             save(Mark(alarmId: plan.alarmId, target: plan.target, from: from, until: until, wokeAt: nil, motions: []))
             DiagStore.shared.log(.measureStart, "learn record start bat=\(battery.map { "\($0)" } ?? "-") mode=recorder")
+            WatchBattery.begin(alarmId: plan.alarmId, target: plan.target)
         }
     }
 
@@ -321,15 +323,16 @@ final class LearnRecorder {
         save(nil)
     }
 
-    /// Pulswerte (Zeitpunkt, Schläge pro Minute) aus Apple Health im Zeitraum; leer ohne Daten oder Erlaubnis.
+    /// Pulswerte (Zeitpunkt, Schläge pro Minute) der Apple Watch aus Apple Health im Zeitraum (F-8, ``WatchPulseSource``);
+    /// leer ohne Daten oder Erlaubnis.
     func heartRates(from: Date, to: Date) async -> [(at: Date, bpm: Double)] {
         guard HKHealthStore.isHealthDataAvailable(), let type = HKQuantityType.quantityType(forIdentifier: .heartRate) else { return [] }
-        let predicate = HKQuery.predicateForSamples(withStart: from, end: to)
+        let predicate = WatchPulseSource.predicate(start: from, end: to)
         let store = health
         return await withCheckedContinuation { (continuation: CheckedContinuation<[(at: Date, bpm: Double)], Never>) in
             let unit = HKUnit.count().unitDivided(by: .minute())
             let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { _, results, _ in
-                let samples = (results as? [HKQuantitySample]) ?? []
+                let samples = ((results as? [HKQuantitySample]) ?? []).filter { WatchPulseSource.counts(deviceModel: $0.device?.model) }
                 continuation.resume(returning: samples.map { (at: $0.startDate, bpm: $0.quantity.doubleValue(for: unit)) })
             }
             store.execute(query)
@@ -369,6 +372,8 @@ final class LearnRecorder {
         if snapshot.active, let warn = Self.learnWarnAt(), warn > now { date = date.map { min($0, warn) } ?? warn }
         // Mit Wecker spätestens nach `replanRefresh` wieder, auch ohne Lernphase und Einschlaf-Messung: Die
         // Aktualisierung plant dann neu und führt die Rückfälle der nächsten Nächte nach (Audit AP-2).
+        // Laden während der Einschlaf-Messung abtasten (F-1, `LearnRecorder+Charging`).
+        if let charge = chargeRefresh(now: now) { date = date.map { min($0, charge) } ?? charge }
         if WatchModel.shared.realPlan != nil {
             let replan = now.addingTimeInterval(Self.replanRefresh)
             date = date.map { min($0, replan) } ?? replan

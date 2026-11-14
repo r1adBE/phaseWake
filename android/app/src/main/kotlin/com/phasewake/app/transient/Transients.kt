@@ -10,6 +10,8 @@ import com.phasewake.app.core.Transient
 import com.phasewake.app.core.TransientConflict
 import com.phasewake.app.core.TransientKind
 import com.phasewake.app.core.TransientPlan
+import com.phasewake.app.ring.BackupAlarm
+import com.phasewake.app.ring.BackupDirectBoot
 import com.phasewake.app.ring.PhoneRingService
 import com.phasewake.app.ring.SnoozeSafety
 import com.phasewake.app.shared.DataLayer
@@ -93,10 +95,20 @@ object Transients {
         if (app.transient.clear(alarmId)) app.backup.reschedule()
     }
 
-    /** Am Handy beendet (Stopp beim Handy-Klingeln): ein Probewecker oder Powernap ist damit vorbei. */
+    /**
+     * Am Handy beendet (Stopp beim Handy-Klingeln): ein Probewecker oder Powernap ist damit vorbei. Vor dem ersten
+     * Entsperren ist der Speicher nicht lesbar (Audit SP-4): dann im geräteverschlüsselten Speicher merken
+     * ([BackupDirectBoot.markEnded]); nach dem Entsperren holt [catchUpEnded] es nach.
+     */
     fun endedHere(app: PhaseWakeApp, alarmId: String?) {
         if (Transient.kindOf(alarmId) == null || alarmId == null) return
+        if (!BackupAlarm.isUnlocked(app)) return BackupDirectBoot.markEnded(app, alarmId)
         app.appScope.launch { app.transient.clear(alarmId) }
+    }
+
+    /** Vor dem Entsperren am Handy beendete Pläne ([endedHere]) jetzt aufheben; nur entsperrt aufrufen. */
+    suspend fun catchUpEnded(app: PhaseWakeApp) {
+        BackupDirectBoot.takeEnded(app).forEach { app.transient.clear(it) }
     }
 
     private suspend fun begin(app: PhaseWakeApp, plan: TransientPlan, path: String) {

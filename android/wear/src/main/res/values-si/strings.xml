@@ -108,4 +108,5 @@
     <string name="watch_learn_skip_battery">අද රාත්‍රිය ඉගෙනීමේ අදියරට ගණන් නොගැනේ: බැටරිය %1$d %%, අවශ්‍ය %2$d %%.</string>
     <string name="watch_learn_skip_sensors">අද රාත්‍රිය ඉගෙනීමේ අදියරට ගණන් නොගැනේ: Phase Wake ට ඔරලෝසුවේ සංවේදක භාවිත කළ නොහැක.</string>
     <string name="watch_learn_skip_late">අද රාත්‍රිය ඉගෙනීමේ අදියරට ගණන් නොගැනේ: සවස Phase Wake ප්‍රමාද වැඩියෙන් විවෘත කළා.</string>
+    <string name="editor_alarm_gone">මෙම එලාමය මේ අතරතුර මකා දමා ඇත.</string>
 </resources>

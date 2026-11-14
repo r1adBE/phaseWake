@@ -439,6 +439,7 @@
     <string name="holidays_off">Aucun jour férié</string>
     <string name="holidays_hint">Les jours fériés locaux de certaines communes ne sont pas inclus.</string>
     <string name="holidays_next">Prochain jour férié : %1$s</string>
+    <string name="holidays_next_estimated">Jour férié estimé : %1$s – le réveil sonnera. Si tu es en congé, saute ce jour toi-même.</string>
     <string name="editor_skip_holidays">Ne pas réveiller les jours fériés</string>
     <string name="editor_skip_holidays_hint">Choisis le pays et la région dans les réglages.</string>
     <string name="home_holiday_skipped">%1$s : jour férié – pas de réveil</string>
@@ -639,4 +640,10 @@
     <string name="learn_tip_late">Ouvre Phase Wake sur la montre le soir, au plus tard au moment du rappel.</string>
     <string name="learn_tip_alarm">La montre n’enregistre que les nuits avec une alarme.</string>
     <string name="learn_tip_connect">Garde la montre allumée et connectée à ton téléphone – elle envoie l’enregistrement après l’alarme.</string>
+    <string name="battery_night">Batterie : %1$s</string>
+    <string name="battery_watch">Montre −%1$d %%</string>
+    <string name="battery_phone">Téléphone −%1$d %%</string>
+    <string name="editor_alarm_gone">Ce réveil a été supprimé entre-temps.</string>
+    <string name="test_replaces_nap">Le réveil test met fin à ta sieste.</string>
+    <string name="settings_clear_history_also">Les notes, le ressenti, les coches de la routine du soir et les extraits sonores sont aussi supprimés.</string>
 </resources>

@@ -429,6 +429,7 @@
     <string name="holidays_off">Hakuna sikukuu</string>
     <string name="holidays_hint">Sikukuu za miji binafsi hazijajumuishwa.</string>
     <string name="holidays_next">Sikukuu inayofuata: %1$s</string>
+    <string name="holidays_next_estimated">Sikukuu ya makadirio: %1$s – kengele italia. Ukiwa na mapumziko, ruka siku hiyo mwenyewe.</string>
     <string name="editor_skip_holidays">Usiniamshe siku za sikukuu</string>
     <string name="editor_skip_holidays_hint">Chagua nchi na eneo kwenye mipangilio.</string>
     <string name="home_holiday_skipped">%1$s: sikukuu – hakuna kengele</string>
@@ -627,4 +628,10 @@
     <string name="learn_tip_late">Fungua Phase Wake kwenye saa jioni, au angalau inapokukumbusha.</string>
     <string name="learn_tip_alarm">Saa hurekodi usiku wenye kengele tu.</string>
     <string name="learn_tip_connect">Iache saa ikiwa imewashwa na kuunganishwa na simu yako – hutuma rekodi baada ya kengele.</string>
+    <string name="battery_night">Betri: %1$s</string>
+    <string name="battery_watch">Saa −%1$d %%</string>
+    <string name="battery_phone">Simu −%1$d %%</string>
+    <string name="editor_alarm_gone">Kengele hii imefutwa wakati huo.</string>
+    <string name="test_replaces_nap">Kengele ya majaribio inamaliza usingizi wako mfupi.</string>
+    <string name="settings_clear_history_also">Madokezo, hali, alama za ratiba ya jioni na vipande vya sauti pia vinafutwa.</string>
 </resources>

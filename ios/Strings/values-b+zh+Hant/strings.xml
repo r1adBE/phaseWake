@@ -33,4 +33,6 @@
     <string name="check_watch_state_old">手錶狀態已過時 – 請在手錶上短暫開啟 Phase Wake。</string>
     <string name="editor_sleep_hint_apple">從入睡時開始計算——上床時在手錶上點一下「晚安」。在 Apple Watch 上，Phase Wake 會根據學到的入睡時間估算你何時入睡。如果不點，則按設定的時間。</string>
     <string name="auto_onset_hint_apple">在就寢時間前 1 小時起於 Apple Watch 上開啟 Phase Wake（手錶會提醒你），它就會從那時起記錄你的動作，直到喚醒時段；隨後 Phase Wake 會算出你何時入睡。</string>
+    <string name="home_good_night_tap_cancel">點選取消</string>
+    <string name="good_night_cancel">取消晚安</string>
 </resources>

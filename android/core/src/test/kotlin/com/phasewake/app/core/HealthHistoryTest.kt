@@ -287,4 +287,21 @@ class HealthHistoryTest {
         assertEquals(30, Bedtime.LEAD_MINUTES)
         assertEquals(720, Bedtime.DIAL_MINUTES)
     }
+
+    @Test
+    fun napRuleUsesTheZoneOfTheRecording() {
+        // Nickerchen in New York 13:00–15:30 (EDT), angeschaut in Zürich (19:00–21:30): bleibt ein Nickerchen (Audit F-3).
+        val newYork = HealthSession(t("2026-10-02T17:00:00Z"), t("2026-10-02T19:30:00Z"), timeZone = ZoneId.of("America/New_York"))
+        assertTrue(newYork.isNap(zone))
+        assertFalse(newYork.copy(timeZone = null).isNap(zone), "ohne Zone wie bisher in der Zone des Geräts")
+        assertTrue(HealthHistory.merge(emptyList(), listOf(newYork), null, zone).isEmpty())
+        assertTrue(HealthHistory.summaries(listOf(newYork), null, zone).isEmpty())
+        // Kurze Nacht in Tokio 23:00–01:00 (+09:00), in Zürich 16:00–18:00: bleibt eine Nacht.
+        val tokyo = HealthSession(t("2026-10-01T14:00:00Z"), t("2026-10-01T16:00:00Z"), timeZone = java.time.ZoneOffset.ofHours(9))
+        assertFalse(tokyo.isNap(zone))
+        assertTrue(tokyo.copy(timeZone = null).isNap(zone))
+        assertEquals(listOf(tokyo), HealthHistory.merge(emptyList(), listOf(tokyo), null, zone).map { it.session })
+        assertEquals(java.time.ZoneOffset.ofHours(9), tokyo.zoneOr(zone))
+        assertEquals(zone, tokyo.copy(timeZone = null).zoneOr(zone))
+    }
 }

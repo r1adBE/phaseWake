@@ -130,10 +130,12 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
      * und dem Grund einer nicht gestarteten Messung vor dem Schlafen dieser Nacht ([recorderSkip], Audit F-06).
      * @return ob das Paket abgelegt wurde (der Data Layer stellt es dann zu).
      */
-    suspend fun publishWatchReady(ready: Boolean, battery: Int? = null, pulse: WatchPulse? = null, recorderSkip: RecorderSkip.Reason? = null): Boolean {
+    suspend fun publishWatchReady(
+        ready: Boolean, battery: Int? = null, pulse: WatchPulse? = null, recorderSkip: RecorderSkip.Reason? = null, charging: Boolean = false,
+    ): Boolean {
         var stored = false
         guarded("Status senden") {
-            dataClient.putDataItem(statusRequest(ready, battery, System.currentTimeMillis(), pulse, recorderSkip)).await()
+            dataClient.putDataItem(statusRequest(ready, battery, System.currentTimeMillis(), pulse, recorderSkip, charging)).await()
             stored = true
         }
         return stored
@@ -150,6 +152,10 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
     /** Handy: zuletzt gemeldeter Akkustand der Uhr in Prozent; `null`, wenn unbekannt oder älter als [maxAgeMs]. */
     suspend fun watchBattery(maxAgeMs: Long = 6 * 3_600_000L): Int? =
         readStatus { readBattery(it, System.currentTimeMillis(), maxAgeMs) }
+
+    /** Handy: ob die Uhr beim Akkustand aus [watchBattery] lud (Prüfrunde 2 F-6); unbekannt: nein. */
+    suspend fun watchBatteryCharging(maxAgeMs: Long = 6 * 3_600_000L): Boolean =
+        readStatus { readCharging(it, System.currentTimeMillis(), maxAgeMs) } == true
 
     /**
      * Handy: Grund, warum die Messung vor dem Schlafen dieser Nacht nicht startete ([readRecorderSkip]); `null` ohne

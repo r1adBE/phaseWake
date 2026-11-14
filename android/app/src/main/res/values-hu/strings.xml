@@ -427,6 +427,7 @@
     <string name="holidays_off">Nincs ünnepnap</string>
     <string name="holidays_hint">Az egyes települések helyi ünnepei nem szerepelnek.</string>
     <string name="holidays_next">Következő ünnepnap: %1$s</string>
+    <string name="holidays_next_estimated">Becsült ünnepnap: %1$s – az ébresztő megszólal. Ha szabadnapod van, hagyd ki magad a napot.</string>
     <string name="editor_skip_holidays">Ünnepnapokon ne ébresszen</string>
     <string name="editor_skip_holidays_hint">Az országot és a régiót a beállításokban választod ki.</string>
     <string name="home_holiday_skipped">%1$s: ünnepnap – nincs ébresztés</string>
@@ -625,4 +626,10 @@
     <string name="learn_tip_late">Este nyisd meg a Phase Wake-et az órán, legkésőbb az emlékeztetőnél.</string>
     <string name="learn_tip_alarm">Az óra csak az ébresztős éjszakákat rögzíti.</string>
     <string name="learn_tip_connect">Tartsd az órát bekapcsolva és a telefonhoz csatlakoztatva – az ébresztő után elküldi a felvételt.</string>
+    <string name="battery_night">Akkumulátor: %1$s</string>
+    <string name="battery_watch">Óra −%1$d %%</string>
+    <string name="battery_phone">Telefon −%1$d %%</string>
+    <string name="editor_alarm_gone">Ezt az ébresztőt időközben törölték.</string>
+    <string name="test_replaces_nap">A próbaébresztő befejezi a szunyókálásodat.</string>
+    <string name="settings_clear_history_also">A jegyzetek, az érzés, az esti rutin pipái és a hangrészletek is törlődnek.</string>
 </resources>

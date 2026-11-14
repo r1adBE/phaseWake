@@ -69,7 +69,7 @@ struct NightDetailPage: View {
                     .font(Fonts.manrope(34, .bold, relativeTo: .largeTitle))
                     .accessibilityLabel(L("night_asleep") + " " + Format.duration(minutes: asleep))
             }
-            Text(L("night_in_bed", Format.time(data.inBed.start), Format.time(data.inBed.end)))
+            Text(L("night_in_bed", Format.time(data.inBed.start, in: data.timeZone), Format.time(data.inBed.end, in: data.timeZone)))
                 .font(Fonts.manrope(14, relativeTo: .subheadline))
             if let night = data.item.night {
                 ownLines(night)
@@ -117,6 +117,9 @@ struct NightDetailPage: View {
                 if let unmeasured = unmeasuredText(night) {
                     Text(unmeasured).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.secondaryText(scheme))
                 }
+                if let battery = batteryLine(current(night)) {
+                    Text(battery).font(Fonts.manrope(13, relativeTo: .footnote)).foregroundStyle(Brand.secondaryText(scheme))
+                }
                 if current(night).feeling == nil {
                     FeelingPicker(onPick: { model.setFeeling($0, for: night) })
                 }
@@ -134,4 +137,14 @@ struct NightDetailPage: View {
     private func current(_ night: NightRecord) -> NightRecord {
         model.nights.first { $0.alarmId == night.alarmId && $0.windowStart == night.windowStart } ?? night
     }
+}
+
+/// Akku je Nacht (r1AD 14.11.2026): «Akku: Uhr −14 % · Handy −3 %», nur die bekannten Teile (``BatteryTrack/used(_:)``);
+/// ohne Wert `nil` (keine Zeile). Wie `batteryLine` (Android).
+func batteryLine(_ night: NightRecord) -> String? {
+    let parts = [
+        BatteryTrack.used(night.watchBattery).map { L("battery_watch", Int64($0)) },
+        BatteryTrack.used(night.phoneBattery).map { L("battery_phone", Int64($0)) },
+    ].compactMap { $0 }
+    return parts.isEmpty ? nil : L("battery_night", parts.joined(separator: " · "))
 }

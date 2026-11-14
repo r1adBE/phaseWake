@@ -441,6 +441,7 @@
     <string name="holidays_off">Sense festius</string>
     <string name="holidays_hint">No s’hi inclouen els festius locals de cada municipi.</string>
     <string name="holidays_next">Proper festiu: %1$s</string>
+    <string name="holidays_next_estimated">Festiu estimat: %1$s – l’alarma sonarà. Si fas festa, omet el dia tu mateix.</string>
     <string name="editor_skip_holidays">No despertis els festius</string>
     <string name="editor_skip_holidays_hint">Tria el país i la regió a la configuració.</string>
     <string name="home_holiday_skipped">%1$s: festiu – sense alarma</string>
@@ -641,4 +642,10 @@
     <string name="learn_tip_late">Obre Phase Wake al rellotge al vespre, com a molt tard quan te’l recordi.</string>
     <string name="learn_tip_alarm">El rellotge només enregistra les nits amb alarma.</string>
     <string name="learn_tip_connect">Mantén el rellotge encès i connectat al telèfon: envia l’enregistrament després de l’alarma.</string>
+    <string name="battery_night">Bateria: %1$s</string>
+    <string name="battery_watch">Rellotge −%1$d %%</string>
+    <string name="battery_phone">Telèfon −%1$d %%</string>
+    <string name="editor_alarm_gone">Aquesta alarma s’ha suprimit mentrestant.</string>
+    <string name="test_replaces_nap">L’alarma de prova acaba la teva becaina.</string>
+    <string name="settings_clear_history_also">També s’esborren les notes, l’estat, les marques de la rutina del vespre i els fragments de so.</string>
 </resources>

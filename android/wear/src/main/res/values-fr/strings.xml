@@ -111,4 +111,5 @@
     <string name="watch_learn_skip_battery">Cette nuit ne compte pas pour la phase d’apprentissage : batterie à %1$d %%, il faut %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Cette nuit ne compte pas pour la phase d’apprentissage : Phase Wake ne peut pas utiliser les capteurs de la montre.</string>
     <string name="watch_learn_skip_late">Cette nuit ne compte pas pour la phase d’apprentissage : Phase Wake a été ouvert trop tard le soir.</string>
+    <string name="editor_alarm_gone">Ce réveil a été supprimé entre-temps.</string>
 </resources>

@@ -415,6 +415,7 @@
     <string name="holidays_off">Tiada cuti umum</string>
     <string name="holidays_hint">Cuti tempatan bagi kawasan tertentu tidak termasuk.</string>
     <string name="holidays_next">Cuti umum seterusnya: %1$s</string>
+    <string name="holidays_next_estimated">Cuti anggaran: %1$s – penggera akan berbunyi. Jika anda cuti, langkau hari itu sendiri.</string>
     <string name="editor_skip_holidays">Jangan kejutkan pada cuti umum</string>
     <string name="editor_skip_holidays_hint">Pilih negara dan wilayah dalam tetapan.</string>
     <string name="home_holiday_skipped">%1$s: cuti umum – tiada penggera</string>
@@ -611,4 +612,10 @@
     <string name="learn_tip_late">Buka Phase Wake pada jam pada waktu petang, paling lewat apabila ia mengingatkan anda.</string>
     <string name="learn_tip_alarm">Jam hanya merakam malam yang ada penggera.</string>
     <string name="learn_tip_connect">Biarkan jam dihidupkan dan disambungkan ke telefon anda – ia menghantar rakaman selepas penggera.</string>
+    <string name="battery_night">Bateri: %1$s</string>
+    <string name="battery_watch">Jam tangan −%1$d %%</string>
+    <string name="battery_phone">Telefon −%1$d %%</string>
+    <string name="editor_alarm_gone">Penggera ini telah dipadam sementara itu.</string>
+    <string name="test_replaces_nap">Uji penggera menamatkan tidur sekejap anda.</string>
+    <string name="settings_clear_history_also">Nota, perasaan, tanda rutin malam dan klip bunyi juga dipadam.</string>
 </resources>

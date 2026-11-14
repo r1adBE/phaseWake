@@ -453,6 +453,7 @@
     <string name="holidays_off">Brez praznikov</string>
     <string name="holidays_hint">Lokalni prazniki posameznih krajev niso vključeni.</string>
     <string name="holidays_next">Naslednji praznik: %1$s</string>
+    <string name="holidays_next_estimated">Ocenjeni praznik: %1$s – budilka bo zvonila. Če imaš prosto, dan preskoči sam.</string>
     <string name="editor_skip_holidays">Ob praznikih ne budi</string>
     <string name="editor_skip_holidays_hint">Državo in regijo izbereš v nastavitvah.</string>
     <string name="home_holiday_skipped">%1$s: praznik – brez budilke</string>
@@ -655,4 +656,10 @@
     <string name="learn_tip_late">Zvečer odpri Phase Wake na uri, najpozneje ob opomniku.</string>
     <string name="learn_tip_alarm">Ura snema samo noči z budilko.</string>
     <string name="learn_tip_connect">Uro imej vklopljeno in povezano s telefonom – posnetek pošlje po budilki.</string>
+    <string name="battery_night">Baterija: %1$s</string>
+    <string name="battery_watch">Ura −%1$d %%</string>
+    <string name="battery_phone">Telefon −%1$d %%</string>
+    <string name="editor_alarm_gone">Ta budilka je bila medtem izbrisana.</string>
+    <string name="test_replaces_nap">Preizkusna budilka konča tvoj kratek spanec.</string>
+    <string name="settings_clear_history_also">Izbrišejo se tudi zapiski, počutje, kljukice večerne rutine in zvočni izseki.</string>
 </resources>

@@ -103,4 +103,5 @@
     <string name="watch_learn_skip_battery">오늘 밤은 학습 단계에 반영되지 않습니다: 배터리 %1$d %%, 필요 %2$d %%.</string>
     <string name="watch_learn_skip_sensors">오늘 밤은 학습 단계에 반영되지 않습니다: Phase Wake가 시계 센서를 사용할 수 없습니다.</string>
     <string name="watch_learn_skip_late">오늘 밤은 학습 단계에 반영되지 않습니다: 저녁에 Phase Wake를 너무 늦게 열었습니다.</string>
+    <string name="editor_alarm_gone">이 알람은 그사이 삭제됐어요.</string>
 </resources>

@@ -10,6 +10,7 @@ import com.phasewake.app.core.WakePlan
 import com.phasewake.app.core.WakeReason
 import com.phasewake.app.shared.AlarmSnapshot
 import com.phasewake.app.shared.AlarmStamps
+import com.phasewake.app.shared.BatteryNight
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.OnsetShift
 import com.phasewake.app.wear.record.RecordControl
@@ -49,8 +50,14 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true, done: Boolean 
     val transient = Transient.kindOf(n.plan.alarmId) != null
     app.diag.log(DiagKind.STOP, if (n.firstRing == null) "watch ended without ring" else "watch")
     val record = n.firstRing?.takeIf { !transient }?.let { wokeAt ->
-        NightRecord(n.plan.alarmId, n.plan.windowStart, n.plan.target, wokeAt, n.reason ?: WakeReason.DEADLINE, n.snoozes, n.epochs.toList())
+        // Akku je Nacht (r1AD 14.11.2026): Ende jetzt, die Punkte reisen mit der Nacht zum Handy.
+        NightRecord(
+            n.plan.alarmId, n.plan.windowStart, n.plan.target, wokeAt, n.reason ?: WakeReason.DEADLINE, n.snoozes, n.epochs.toList(),
+            watchBattery = BatteryNight.end(this),
+        )
     }
+    // Ohne Nacht im Verlauf (nicht geweckt, Probewecker, Powernap) gehört der Akku zu nichts; ein Probewecker hat keinen begonnen.
+    if (record == null && !transient) BatteryNight.drop(this, "night ended without ring")
     val endedAt = Instant.now()
     // Vor dem ersten Entsperren nichts speichern (nicht lesbar). Nach dem Entsperren holt
     // SystemEventReceiver nach: Nacht erledigt, Einmal-Wecker aus, neu planen.

@@ -427,6 +427,7 @@
     <string name="holidays_off">कोई छुट्टी नहीं</string>
     <string name="holidays_hint">अलग-अलग शहरों की स्थानीय छुट्टियां शामिल नहीं हैं।</string>
     <string name="holidays_next">अगली छुट्टी: %1$s</string>
+    <string name="holidays_next_estimated">अनुमानित छुट्टी: %1$s – अलार्म बजेगा। अगर छुट्टी है, तो दिन खुद छोड़ें।</string>
     <string name="editor_skip_holidays">छुट्टियों पर न जगाएं</string>
     <string name="editor_skip_holidays_hint">देश और क्षेत्र सेटिंग में चुनें।</string>
     <string name="home_holiday_skipped">%1$s: छुट्टी – अलार्म नहीं</string>
@@ -625,4 +626,10 @@
     <string name="learn_tip_late">शाम को घड़ी पर Phase Wake खोलें, ज़्यादा से ज़्यादा रिमाइंडर आने पर।</string>
     <string name="learn_tip_alarm">घड़ी सिर्फ़ अलार्म वाली रातें रिकॉर्ड करती है।</string>
     <string name="learn_tip_connect">घड़ी को चालू और फ़ोन से जुड़ा रखें – यह अलार्म के बाद रिकॉर्डिंग भेजती है।</string>
+    <string name="battery_night">बैटरी: %1$s</string>
+    <string name="battery_watch">घड़ी −%1$d %%</string>
+    <string name="battery_phone">फ़ोन −%1$d %%</string>
+    <string name="editor_alarm_gone">यह अलार्म इस बीच हटा दिया गया है।</string>
+    <string name="test_replaces_nap">जांच अलार्म आपकी झपकी खत्म कर देगा।</string>
+    <string name="settings_clear_history_also">नोट्स, एहसास, शाम की दिनचर्या के टिक और आवाज़ के अंश भी हट जाते हैं।</string>
 </resources>

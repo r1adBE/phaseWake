@@ -194,9 +194,13 @@ class Outbox(
     /**
      * Grenzen der Warteschlange (Audit A-8, AN-2), nur für Nächte und Aufzeichnungen ([expires]): Einträge älter als
      * [MAX_AGE_MS] (oder aus der «Zukunft», Uhr verstellt, bleiben) entfernen, je Art ([kindOf]) nur die neuesten
-     * [MAX_PER_KIND] behalten. Zustände bleiben. Nur unter [lock].
+     * [MAX_PER_KIND] behalten. Zustände bleiben. Dazu Reste (Audit SP-8): «.tmp» (unter [lock] schreibt keiner, also
+     * liegengeblieben) und gelesene, aber unlesbare Einträge (leer oder halb nach einem Stromausfall; scheitert schon das
+     * Lesen, bleibt die Datei). Nur unter [lock].
      */
     private suspend fun prune() = withContext(io) {
+        dir.listFiles().orEmpty().filter { it.isFile && it.name.startsWith(PREFIX) && (it.name.endsWith(".tmp") || broken(it)) }
+            .forEach { Log.w(TAG, "Rest ${it.name} entfernt"); it.delete() }
         val current = now()
         val all = files().mapNotNull { file -> read(file)?.let { file to it } }.filter { expires(it.second.key) }
         val drop = all.filter { (_, e) -> current - e.createdAt > MAX_AGE_MS }.toMutableList()
@@ -246,8 +250,9 @@ class Outbox(
         dir.mkdirs()
         val file = File(dir, name(entry.key))
         val tmp = File(dir, file.name + ".tmp")
-        tmp.writeText(listOf(VERSION, entry.id, entry.key, entry.path, entry.capability, entry.createdAt.toString(), entry.body).joinToString("\n"))
-        // Ersetzen in einem Schritt: Scheitert das Schreiben, bleibt der vorige Stand.
+        val text = listOf(VERSION, entry.id, entry.key, entry.path, entry.capability, entry.createdAt.toString(), entry.body).joinToString("\n")
+        // Erst auf der Platte (fsync, Audit SP-8), dann in einem Schritt ersetzen: Scheitert das Schreiben, bleibt der vorige Stand.
+        java.io.FileOutputStream(tmp).use { out -> out.write(text.encodeToByteArray()); out.fd.sync() }
         if (!tmp.renameTo(file)) {
             file.delete()
             check(tmp.renameTo(file)) { "Eintrag nicht gespeichert" }
@@ -258,13 +263,9 @@ class Outbox(
 
     private fun files(): List<File> = dir.listFiles().orEmpty().filter { it.isFile && it.name.startsWith(PREFIX) && !it.name.endsWith(".tmp") }
 
-    private fun read(file: File): Entry? = try {
-        val parts = file.readText().split("\n", limit = 7)
-        if (parts.size < 7 || parts[0] != VERSION) null else Entry(parts[1], parts[2], parts[3], parts[4], parts[6], parts[5].toLong())
-    } catch (e: Exception) {
-        Log.w(TAG, "Eintrag unlesbar", e)
-        null
-    }
+    private fun read(file: File): Entry? = try { parse(file.readText()) } catch (e: Exception) { Log.w(TAG, "Eintrag unlesbar", e); null }
+    private fun broken(file: File): Boolean = runCatching { file.readText() }.getOrNull()?.let { parse(it) == null } == true
+    private fun parse(text: String): Entry? = text.split("\n", limit = 7).let { p -> if (p.size < 7 || p[0] != VERSION) null else p[5].toLongOrNull()?.let { Entry(p[1], p[2], p[3], p[4], p[6], it) } }
 
     /** Ein Schritt zur Gegenseite, höchstens [STEP_TIMEOUT_MS]: Hängt er, bleibt der Eintrag, die Sperre wird frei. */
     private suspend fun <T> guarded(block: suspend () -> T): T? = try {

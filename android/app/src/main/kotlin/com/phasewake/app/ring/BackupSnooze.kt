@@ -17,7 +17,8 @@ import java.time.Instant
  * «Aus» keine Sicherung (wie beim Zweitwecker). [snoozesDone]: bisherige Schlummer-Runden.
  */
 internal suspend fun BackupAlarm.snoozeSafety(alarmId: String?, at: Instant, snoozesDone: Int) {
-    val spec = alarmId?.let { id -> alarms.current().alarms.firstOrNull { it.id == id } }
+    // Vor dem ersten Entsperren sind die Wecker nicht lesbar (Audit SP-4): dann ohne Weckart, also mit Sicherung.
+    val spec = alarmId?.takeIf { BackupAlarm.isUnlocked(context) }?.let { id -> alarms.current().alarms.firstOrNull { it.id == id } }
     if (spec != null && !spec.phoneBackup) {
         cancelSnoozeSafety(alarmId)
         return

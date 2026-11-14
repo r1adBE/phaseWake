@@ -11,6 +11,9 @@ struct OnboardingView: View {
     private static let learningStep = 4
     /// Schritt «Erster Wecker».
     static let alarmStep = 3
+    /// So lange nach einem Tipp auf die Knöpfe unten zählt kein weiterer (Prüfrunde 2, B-2, wie Android
+    /// `PAGE_TAP_LOCK_MS`): «Später» der Lernseite liegt dort, wo eben «Weiter» war.
+    static let tapLock: TimeInterval = 0.4
 
     @Environment(PhoneModel.self) private var model
     @Environment(\.colorScheme) private var scheme
@@ -20,6 +23,10 @@ struct OnboardingView: View {
     @State private var time = Calendar.current.date(from: DateComponents(hour: 7, minute: 0)) ?? Date()
     @State private var window = Double(AlarmSpec.defaultWindowMinutes)
     @State private var created: AlarmSpec?
+    /// Bis hier (Systemlaufzeit) sind die Knöpfe unten gesperrt.
+    @State private var lockedUntil: TimeInterval = 0
+    /// Apple Health angefragt (wie in den Einstellungen; Lesezugriff meldet HealthKit nicht).
+    @AppStorage("healthRequested") private var healthRequested = false
 
     var body: some View {
         NavigationStack {
@@ -113,10 +120,15 @@ struct OnboardingView: View {
                 }
             }
         }
+        // Zustand wie Android «✓ Verbunden» (B-16), sobald der Zugriff angefragt ist.
         HStack {
             Text(L("onb_optional", L("health_connect")))
             Spacer()
-            Button(L("check_allow")) { Task { _ = await model.health.requestAccess() } }
+            if healthRequested {
+                Label(L("health_connected"), systemImage: "checkmark")
+            } else {
+                Button(L("check_allow")) { Task { healthRequested = await model.health.requestAccess() } }
+            }
         }
     }
 
@@ -159,7 +171,7 @@ struct OnboardingView: View {
         let askLearning = step == Self.learningStep && PhoneLearning.shared.state.consent != true
         return VStack(spacing: 8) {
             if askLearning {
-                Button { PhoneLearning.shared.setConsent(true); step += 1 } label: {
+                Button { tap { PhoneLearning.shared.setConsent(true); step += 1 } } label: {
                     Text(L("learn_consent_start")).frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
@@ -167,21 +179,32 @@ struct OnboardingView: View {
             }
             HStack {
                 if step > 0 {
-                    Button(L("onb_back")) { step -= 1 }
+                    Button(L("onb_back")) { tap { step -= 1 } }
                 }
                 Spacer()
                 if askLearning {
-                    Button(L("learn_consent_later")) { PhoneLearning.shared.setConsent(false); step += 1 }
+                    Button(L("learn_consent_later")) { tap { PhoneLearning.shared.setConsent(false); step += 1 } }
                 } else if step < Self.steps {
-                    Button(L("onb_next")) { next() }.buttonStyle(.borderedProminent)
+                    Button(L("onb_next")) { tap(next) }.buttonStyle(.borderedProminent)
                 } else {
-                    Button(L("onb_finish")) { done = true }.buttonStyle(.borderedProminent)
+                    Button(L("onb_finish")) { tap { done = true } }.buttonStyle(.borderedProminent)
                 }
             }
         }
         .padding(16)
         .background(.bar)
     }
+
+    /// Knöpfe unten: nach jedem Tipp `tapLock` gesperrt (B-2); ein Doppeltipp trifft sonst die nächste Seite.
+    private func tap(_ action: () -> Void) {
+        let now = ProcessInfo.processInfo.systemUptime
+        guard Self.tapAllowed(now: now, lockedUntil: lockedUntil) else { return }
+        lockedUntil = now + Self.tapLock
+        action()
+    }
+
+    /// Ob ein Tipp um `now` zählt (Sperre bis `lockedUntil`, beides Systemlaufzeit in Sekunden).
+    static func tapAllowed(now: TimeInterval, lockedUntil: TimeInterval) -> Bool { now >= lockedUntil }
 
     /// «Weiter»: Auf dem Schritt «Erster Wecker» legt es den gezeigten Wecker an, falls noch keiner angelegt ist (wie
     /// «Wecker anlegen», Audit UI-5) – wer nur «Weiter» tippt, hätte sonst keinen Wecker.

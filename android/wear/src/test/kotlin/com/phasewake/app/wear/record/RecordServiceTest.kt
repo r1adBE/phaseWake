@@ -268,6 +268,12 @@ class RecordServiceTest {
         assertEquals("recording runs", RecordControl.learnSkipReason(recording = true, battery = 80))
         assertNull(RecordControl.learnSkipReason(recording = false, battery = null), "unbekannter Akku hindert nicht")
         assertNull(RecordControl.learnSkipReason(recording = false, battery = Learning.MIN_BATTERY))
+        // Prüfrunde 2 F-6: Am Ladegerät nicht wegen des Akkus auslassen.
+        assertNull(RecordControl.learnSkipReason(recording = false, battery = 38, charging = true))
+        val power = shadowOf(context.getSystemService(BatteryManager::class.java))
+        power.setIsCharging(true)
+        assertTrue(RecordControl.startForLearning(context, Instant.now().plus(Duration.ofHours(8))))
+        power.setIsCharging(false)
         battery(80)
         val until = Instant.ofEpochMilli(System.currentTimeMillis()).plus(Duration.ofHours(8))
         assertTrue(RecordControl.startForLearning(context, until))

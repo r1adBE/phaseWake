@@ -288,6 +288,73 @@ class OnsetMonitorTest {
         assertTrue(logged.none { it.second.contains("extended") })
     }
 
+    @Test
+    fun timeOnTheChargerMovesTheLimit() {
+        // Prüfrunde 2 HG-3: 60 Min am Ladegerät verschieben die Grenze von 2 Std. um 60 Min (höchstens bis zur Grenze der
+        // Verlängerungen), auch ohne Unruhe. Vorher gab die Messung nach 2 Std. auf.
+        battery(80)
+        var gaveUp = 0
+        val start = clock
+        val m = monitor(onGiveUp = { gaveUp++ }, extendCap = start.plus(OnsetMonitor.MAX_EXTENDED))
+        m.start()
+        context.sendBroadcast(android.content.Intent(android.content.Intent.ACTION_POWER_CONNECTED))
+        idle(Duration.ofMinutes(60).toMillis())
+        context.sendBroadcast(android.content.Intent(android.content.Intent.ACTION_POWER_DISCONNECTED))
+        idle(10)
+        clock = start.plus(OnsetMonitor.MAX_DURATION)
+        m.tick()
+        assertEquals(0, gaveUp)
+        val until = m.giveUpAt
+        assertTrue(until >= clock.plus(Duration.ofMinutes(60)) && until <= clock.plus(Duration.ofMinutes(61)), "$until")
+        assertTrue(logged.last { it.first == DiagKind.MEASURE_START }.second.endsWith("(not worn)"), logged.toString())
+        // Danach ohne weitere Zeit am Ladegerät und ruhig: aufgeben.
+        clock = until
+        m.tick()
+        assertEquals(1, gaveUp)
+        // Höchstens bis zur Grenze der Verlängerungen.
+        val base = start.plus(OnsetMonitor.MAX_DURATION)
+        val late = start.plus(Duration.ofHours(8))
+        assertEquals(start.plus(Duration.ofMinutes(150)), OnsetRules.awayUntil(base, Duration.ofHours(1), late, start.plus(Duration.ofMinutes(150))))
+        assertNull(OnsetRules.awayUntil(base, Duration.ZERO, late, start.plus(OnsetMonitor.MAX_EXTENDED)))
+        // Ladegerät und Off-Body überlappend zählen einmal; ein offenes Ende bis jetzt.
+        assertEquals(30L, OnsetRules.awayNanos(listOf(0L to 20L, 10L to 30L), 0L, 100L))
+        assertEquals(30L, OnsetRules.awayNanos(listOf(50L to null), 0L, 80L))
+        // Gilt die Grenze vor der Weckzeit früher, verschiebt nichts.
+        assertNull(OnsetRules.awayUntil(base, Duration.ofHours(1), base.minusSeconds(1), start.plus(OnsetMonitor.MAX_EXTENDED)))
+    }
+
+    @Test
+    fun unpluggedWithLowBatteryEndsTheAutomaticMeasurement() {
+        // F-6: Trotz wenig Akku begonnen, weil die Uhr lud; vom Ladegerät mit weiter zu wenig Akku: Ende (einmal).
+        var low = 0
+        val m = OnsetMonitor(
+            context, 0.002, clock.plus(Duration.ofHours(8)), clock.plus(OnsetMonitor.MAX_DURATION), "auto onset", { _, _ -> }, {},
+            onLowBattery = { low++ }, now = { clock },
+        ) {}.also { monitor = it }
+        m.start()
+        battery(AutoOnset.MIN_BATTERY_PERCENT - 5)
+        context.sendBroadcast(android.content.Intent(android.content.Intent.ACTION_POWER_CONNECTED))
+        idle(10)
+        assertEquals(0, low)
+        context.sendBroadcast(android.content.Intent(android.content.Intent.ACTION_POWER_DISCONNECTED))
+        idle(10)
+        assertEquals(1, low)
+        // Genug geladen: weiter messen.
+        m.stop("test end")
+        var enough = 0
+        val n = OnsetMonitor(
+            context, 0.002, clock.plus(Duration.ofHours(8)), clock.plus(OnsetMonitor.MAX_DURATION), "auto onset", { _, _ -> }, {},
+            onLowBattery = { enough++ }, now = { clock },
+        ) {}.also { monitor = it }
+        n.start()
+        battery(80)
+        context.sendBroadcast(android.content.Intent(android.content.Intent.ACTION_POWER_CONNECTED))
+        idle(10)
+        context.sendBroadcast(android.content.Intent(android.content.Intent.ACTION_POWER_DISCONNECTED))
+        idle(10)
+        assertEquals(0, enough)
+    }
+
     private fun battery(percent: Int) =
         shadowOf(context.getSystemService(BatteryManager::class.java)).setIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY, percent)
 }

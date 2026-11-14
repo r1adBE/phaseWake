@@ -457,6 +457,7 @@
     <string name="holidays_off">No holidays</string>
     <string name="holidays_hint">Local holidays of single towns are not included.</string>
     <string name="holidays_next">Next holiday: %1$s</string>
+    <string name="holidays_next_estimated">Estimated holiday: %1$s – the alarm rings. If you have the day off, skip it yourself.</string>
     <string name="editor_skip_holidays">Don’t wake on holidays</string>
     <string name="editor_skip_holidays_hint">Choose country and region in the settings.</string>
     <string name="home_holiday_skipped">%1$s: holiday – no alarm</string>
@@ -631,4 +632,10 @@
     <string name="learn_tip_late">Open Phase Wake on the watch in the evening, at the latest when it reminds you.</string>
     <string name="learn_tip_alarm">The watch only records nights with an alarm.</string>
     <string name="learn_tip_connect">Keep the watch switched on and connected to your phone – it sends the recording after the alarm.</string>
+    <string name="battery_night">Battery: %1$s</string>
+    <string name="battery_watch" tools:ignore="PluralsCandidate">Watch −%1$d %%</string>
+    <string name="battery_phone" tools:ignore="PluralsCandidate">Phone −%1$d %%</string>
+    <string name="editor_alarm_gone">This alarm was deleted in the meantime.</string>
+    <string name="test_replaces_nap">The test alarm ends your power nap.</string>
+    <string name="settings_clear_history_also">Notes, how you felt, evening routine ticks and sound clips are deleted too.</string>
 </resources>

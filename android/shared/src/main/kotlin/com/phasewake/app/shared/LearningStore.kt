@@ -50,12 +50,25 @@ data class LearningSnapshot(
 
         /**
          * Inhalt der Nachricht [DataLayer.PATH_MSG_LEARNING]: «aktiv|grundrauschen|ruhepuls|updatedAt» (leer = kein Wert),
-         * mit gelernter Einschlafdauer «…|einschlafdauer» als 5. Feld (O-03). Ohne Einschlafdauer weiter 4 Felder: So
-         * versteht auch eine Uhr einer früheren Version (liest nur genau 4) den Stand, solange keine Dauer gelernt ist.
+         * immer genau 4 Felder: Uhren früherer Versionen lesen nur so viele und verwürfen sonst den ganzen Stand (Audit
+         * F-4/SP-6). Die Einschlafdauer geht getrennt ([encodeLatency], [DataLayer.PATH_MSG_LEARN_LATENCY]).
          */
         fun encode(snapshot: LearningSnapshot): String =
-            (listOf(if (snapshot.active) "1" else "0", snapshot.floor?.toString().orEmpty(), snapshot.restingHeartRate?.toString().orEmpty(), snapshot.updatedAt.toString()) +
-                listOfNotNull(snapshot.latencyMinutes?.toString())).joinToString("|")
+            listOf(if (snapshot.active) "1" else "0", snapshot.floor?.toString().orEmpty(), snapshot.restingHeartRate?.toString().orEmpty(), snapshot.updatedAt.toString())
+                .joinToString("|")
+
+        /** Inhalt der Nachricht [DataLayer.PATH_MSG_LEARN_LATENCY]: «einschlafdauer|updatedAt», ohne Dauer «-1|updatedAt». */
+        fun encodeLatency(snapshot: LearningSnapshot): String = "${snapshot.latencyMinutes ?: NO_LATENCY}|${snapshot.updatedAt}"
+
+        /**
+         * Liest [encodeLatency]: (Einschlafdauer oder `null` = keine bzw. unplausibel, Zeitpunkt); `null`, wenn unlesbar
+         * (auch ein unplausibler Zeitpunkt, [QueueMessages.decodeStamped]).
+         */
+        fun decodeLatency(body: String): Pair<Int?, Long>? =
+            QueueMessages.decodeStamped(body)?.let { (minutes, at) -> validLatency(minutes) to at }
+
+        /** «Keine Einschlafdauer» in [encodeLatency]. */
+        private const val NO_LATENCY = -1
 
         /** Einschlafdauer in Minuten, wenn plausibel (0 bis [Learning.MAX_LATENCY_MINUTES]); sonst `null`. */
         fun validLatency(value: Int?): Int? = value?.takeIf { it in 0..Learning.MAX_LATENCY_MINUTES }
@@ -65,7 +78,8 @@ data class LearningSnapshot(
          * gelten als keine, wie `LearningSnapshot(context:)` (Swift).
          */
         fun decode(body: String): LearningSnapshot? {
-            // 4 Felder (frühere Versionen) oder 5 mit Einschlafdauer (O-03).
+            // 4 Felder; 5 (mit Einschlafdauer) schickten nur Zwischenstände vor Audit F-4 – weiter lesbar, die Uhr nimmt die
+            // Dauer aber nur aus [DataLayer.PATH_MSG_LEARN_LATENCY] ([LearningStore.setIfNewer]).
             val f = body.split("|").takeIf { it.size == 4 || it.size == 5 } ?: return null
             // Unplausibler Zeitpunkt (Audit AN-5/KN-4): unlesbar, sonst gewänne er gegen jeden späteren Stand.
             val updatedAt = TimeBounds.checked(f[3].toLongOrNull()) ?: return null
@@ -89,10 +103,13 @@ class LearningSync(context: Context) {
     private val app = context.applicationContext
     private val outbox by lazy { Outbox.forContext(app) }
 
-    /** Handy: Stand an die Uhren. */
+    /** Handy: Stand an die Uhren, die Einschlafdauer als eigene Nachricht (Audit F-4/SP-6). */
     suspend fun publish(snapshot: LearningSnapshot) {
         try {
             outbox.enqueue(QueueMessages.KEY_LEARNING, DataLayer.PATH_MSG_LEARNING, DataLayer.CAPABILITY_WATCH, LearningSnapshot.encode(snapshot))
+            outbox.enqueue(
+                QueueMessages.KEY_LEARN_LATENCY, DataLayer.PATH_MSG_LEARN_LATENCY, DataLayer.CAPABILITY_WATCH, LearningSnapshot.encodeLatency(snapshot),
+            )
         } catch (e: Exception) {
             if (e is kotlinx.coroutines.CancellationException) throw e
             Log.i(TAG, "Lernphase senden nicht möglich", e)
@@ -120,23 +137,39 @@ class LearningStore(private val store: DataStore<Preferences>) {
     val latencyMinutes: Flow<Int?> = store.data.map { LearningSnapshot.validLatency(it[LATENCY]) }.distinctUntilChanged()
 
     /**
-     * Speichert [snapshot], nur wenn sein Zeitpunkt neuer ist als der gespeicherte.
+     * Speichert [snapshot] ohne die Einschlafdauer (die kommt getrennt, [setLatencyIfNewer]), nur wenn sein Zeitpunkt
+     * neuer ist als der gespeicherte.
      * @return ob gespeichert wurde und sich dabei etwas geändert hat.
      */
     suspend fun setIfNewer(snapshot: LearningSnapshot): Boolean {
         var changed = false
         store.edit { prefs ->
             if (snapshot.updatedAt <= (prefs[UPDATED_AT] ?: 0L)) return@edit
-            val before = LearningSnapshot(prefs[ACTIVE] ?: false, prefs[FLOOR], prefs[RESTING_HR], snapshot.updatedAt, prefs[LATENCY])
-            changed = before != snapshot
+            val before = LearningSnapshot(prefs[ACTIVE] ?: false, prefs[FLOOR], prefs[RESTING_HR], snapshot.updatedAt)
+            changed = before != snapshot.copy(latencyMinutes = null)
             prefs[ACTIVE] = snapshot.active
             val floor = snapshot.floor
             if (floor != null) prefs[FLOOR] = floor else prefs.remove(FLOOR)
             val pulse = snapshot.restingHeartRate
             if (pulse != null) prefs[RESTING_HR] = pulse else prefs.remove(RESTING_HR)
-            val latency = snapshot.latencyMinutes
-            if (latency != null) prefs[LATENCY] = latency else prefs.remove(LATENCY)
             prefs[UPDATED_AT] = snapshot.updatedAt
+        }
+        return changed
+    }
+
+    /**
+     * Speichert die Einschlafdauer [minutes] (`null` = keine) vom Handy ([DataLayer.PATH_MSG_LEARN_LATENCY]), nur wenn
+     * [updatedAt] neuer ist als der Zeitpunkt der gespeicherten Dauer (eigener Zeitpunkt, unabhängig vom übrigen Stand).
+     * @return ob gespeichert wurde und sich die Dauer dabei geändert hat.
+     */
+    suspend fun setLatencyIfNewer(minutes: Int?, updatedAt: Long): Boolean {
+        var changed = false
+        store.edit { prefs ->
+            if (updatedAt <= (prefs[LATENCY_AT] ?: 0L)) return@edit
+            val latency = LearningSnapshot.validLatency(minutes)
+            changed = LearningSnapshot.validLatency(prefs[LATENCY]) != latency
+            if (latency != null) prefs[LATENCY] = latency else prefs.remove(LATENCY)
+            prefs[LATENCY_AT] = updatedAt
         }
         return changed
     }
@@ -147,5 +180,6 @@ class LearningStore(private val store: DataStore<Preferences>) {
         val RESTING_HR = doublePreferencesKey("learn_resting_hr")
         val UPDATED_AT = longPreferencesKey("learn_updated_at")
         val LATENCY = intPreferencesKey("learn_latency_minutes")
+        val LATENCY_AT = longPreferencesKey("learn_latency_updated_at")
     }
 }

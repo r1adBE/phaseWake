@@ -27,7 +27,8 @@ import kotlinx.coroutines.flow.first
  * Sie endet beim erkannten Einschlafen, spätestens 2 Std. nach ihrem Beginn
  * ([com.phasewake.app.wear.wake.OnsetMonitor.MAX_DURATION]; bei Unruhe verlängert bis 4 Std., nie ins Weckfenster) und
  * 15 Min vor der Zielzeit; unter [MIN_BATTERY_PERCENT] Akku beginnt sie nicht und verlängert sich nicht
- * ([skipForBattery], Akku-Befund 03.11.2026). Im Einschlaf-Modus legt sie die Zielzeit fest
+ * ([skipForBattery], Akku-Befund 03.11.2026) – ausser die Uhr lädt (Prüfrunde 2 F-6): Dann beginnt sie und wartet am
+ * Ladegerät; ist der Akku beim Abnehmen noch zu tief, endet sie ohne Untergrenze. Im Einschlaf-Modus legt sie die Zielzeit fest
  * (wie «Gute Nacht»), sonst merkt sie nur die Einschlafzeit für die Untergrenze kurzer Nächte ([OnsetStore]).
  *
  * Geplant bei jedem Neuplanen ([AlarmScheduler.reschedule]): Neustart, geänderte Wecker, Schlafziel, Schalter am Handy
@@ -44,8 +45,11 @@ object AutoOnset {
     /** Unter diesem Akkustand (Prozent) startet die automatische Messung nicht. */
     const val MIN_BATTERY_PERCENT = 30
 
-    /** Ob die automatische Messung bei Akkustand [percent] ausfällt; unbekannt (`null`) hindert nicht. */
-    fun skipForBattery(percent: Int?): Boolean = percent != null && percent < MIN_BATTERY_PERCENT
+    /**
+     * Ob die automatische Messung bei Akkustand [percent] ausfällt; unbekannt (`null`) hindert nicht, Laden ([charging])
+     * auch nicht (F-6: Wer die Uhr am Abend lädt, hat sie zur Bettzeit voll).
+     */
+    fun skipForBattery(percent: Int?, charging: Boolean = false): Boolean = !charging && percent != null && percent < MIN_BATTERY_PERCENT
 
     /**
      * Beginn der Messung für [plan] (Plan des Weckers [spec] ohne Einschlaf-Ausnahme), oder `null`: kein gespeicherter
@@ -103,15 +107,20 @@ object AutoOnset {
  * heisst: Messung vorbei, für diese Nacht nicht noch einmal starten – mit [measuredFor] `true`, wenn sie begonnen hatte
  * und ohne Ergebnis endete (aufgegeben, vom Weckfenster oder einem Prozessende beendet; fail-closed, Entscheid r1AD
  * 10.11.2026), sonst (abgebrochen, nicht begonnen) ohne Untergrenze.
+ *
+ * Eine schon gefundene Einschlafzeit der laufenden Nacht bleibt (Audit HG-5): Wird der Wecker in der Nacht verschoben
+ * (andere Weckzeit, gleiche Kennung), misst die Uhr nicht neu ([isDone]), und eine Messung ohne Ergebnis überschreibt
+ * sie nicht ([set]).
  */
 class OnsetStore(private val store: DataStore<Preferences>) {
 
     /**
      * Messung für [alarmId] mit Weckzeit [latest] vorbei, mit Einschlafzeit [onset] oder ohne (`null`); [measured]: ohne
-     * Einschlafzeit, obwohl sie gemessen hat.
+     * Einschlafzeit, obwohl sie gemessen hat. Ohne Einschlafzeit bleibt eine gefundene der laufenden Nacht ([knownOnset]).
      */
     suspend fun set(alarmId: String, latest: Instant, onset: Instant?, measured: Boolean = false) {
         store.edit {
+            if (onset == null && knownOnset(it, alarmId, latest)) return@edit
             it.remove(ONSET)
             if (onset != null) it[ONSET] = onset.toEpochMilli()
             it[ALARM] = alarmId
@@ -120,10 +129,19 @@ class OnsetStore(private val store: DataStore<Preferences>) {
         }
     }
 
-    /** Ob die Messung für [alarmId] mit Weckzeit [latest] schon vorbei ist. */
+    /** Ob die Messung für [alarmId] mit Weckzeit [latest] schon vorbei ist (auch: Einschlafzeit dieser Nacht bekannt). */
     suspend fun isDone(alarmId: String, latest: Instant): Boolean {
         val prefs = store.data.first()
-        return prefs[ALARM] == alarmId && prefs[LATEST] == latest.toEpochMilli()
+        return prefs[ALARM] == alarmId && (prefs[LATEST] == latest.toEpochMilli() || knownOnset(prefs, alarmId, latest))
+    }
+
+    /**
+     * Gleicher Wecker, und die gemerkte Einschlafzeit gehört zur Nacht vor [latest]: vor ihr und höchstens 16 Std. davor
+     * (wie [onsetFor]), also nicht die einer früheren Nacht.
+     */
+    private fun knownOnset(prefs: Preferences, alarmId: String, latest: Instant): Boolean {
+        val onset = prefs[ONSET]?.let(Instant::ofEpochMilli) ?: return false
+        return prefs[ALARM] == alarmId && onset.isBefore(latest) && Duration.between(onset, latest) <= WakeService.GOOD_NIGHT_MAX_AHEAD
     }
 
     /**

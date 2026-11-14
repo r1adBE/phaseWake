@@ -442,6 +442,7 @@
     <string name="holidays_off">Bez svētku dienām</string>
     <string name="holidays_hint">Atsevišķu pilsētu vietējās svētku dienas nav iekļautas.</string>
     <string name="holidays_next">Nākamā svētku diena: %1$s</string>
+    <string name="holidays_next_estimated">Aptuvena svētku diena: %1$s – modinātājs zvanīs. Ja tev ir brīvdiena, izlaid to pats.</string>
     <string name="editor_skip_holidays">Nemodināt svētku dienās</string>
     <string name="editor_skip_holidays_hint">Valsti un reģionu izvēlies iestatījumos.</string>
     <string name="home_holiday_skipped">%1$s: svētku diena – nav modinātāja</string>
@@ -642,4 +643,10 @@
     <string name="learn_tip_late">Vakarā atver Phase Wake pulkstenī, vēlākais, kad tas atgādina.</string>
     <string name="learn_tip_alarm">Pulkstenis ieraksta tikai naktis ar modinātāju.</string>
     <string name="learn_tip_connect">Turi pulksteni ieslēgtu un savienotu ar tālruni – tas nosūta ierakstu pēc modinātāja.</string>
+    <string name="battery_night">Akumulators: %1$s</string>
+    <string name="battery_watch">Pulkstenis −%1$d %%</string>
+    <string name="battery_phone">Tālrunis −%1$d %%</string>
+    <string name="editor_alarm_gone">Šis modinātājs pa to laiku ir izdzēsts.</string>
+    <string name="test_replaces_nap">Testa modinātājs beigs tavu diendusu.</string>
+    <string name="settings_clear_history_also">Tiek dzēstas arī piezīmes, pašsajūta, vakara rituāla atzīmes un skaņu fragmenti.</string>
 </resources>

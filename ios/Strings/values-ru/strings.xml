@@ -33,4 +33,6 @@
     <string name="check_watch_state_old">Состояние часов устарело – ненадолго открой Phase Wake на часах.</string>
     <string name="editor_sleep_hint_apple">Отсчитывается от засыпания – ложась спать, нажми на часах «Спокойной ночи». На Apple Watch Phase Wake оценивает, когда ты засыпаешь, по изученному времени засыпания. Без нажатия действует установленное время.</string>
     <string name="auto_onset_hint_apple">Открой Phase Wake на Apple Watch за 1 час до сна или позже (часы напомнят), и с этого момента до окна пробуждения они записывают твои движения; тогда Phase Wake вычисляет, когда ты уснул.</string>
+    <string name="home_good_night_tap_cancel">нажми для отмены</string>
+    <string name="good_night_cancel">Отменить «Спокойной ночи»</string>
 </resources>

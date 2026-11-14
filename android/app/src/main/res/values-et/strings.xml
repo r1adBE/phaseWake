@@ -430,6 +430,7 @@
     <string name="holidays_off">Pühi pole</string>
     <string name="holidays_hint">Üksikute linnade kohalikke pühi pole arvestatud.</string>
     <string name="holidays_next">Järgmine püha: %1$s</string>
+    <string name="holidays_next_estimated">Hinnanguline püha: %1$s – äratus heliseb. Kui sul on vaba päev, jäta see ise vahele.</string>
     <string name="editor_skip_holidays">Ära ärata pühade ajal</string>
     <string name="editor_skip_holidays_hint">Vali riik ja piirkond seadetes.</string>
     <string name="home_holiday_skipped">%1$s: püha – äratust pole</string>
@@ -628,4 +629,10 @@
     <string name="learn_tip_late">Ava Phase Wake õhtul kellas, hiljemalt meeldetuletuse ajal.</string>
     <string name="learn_tip_alarm">Kell salvestab ainult äratusega öid.</string>
     <string name="learn_tip_connect">Hoia kell sisse lülitatud ja telefoniga ühendatud – see saadab salvestuse pärast äratust.</string>
+    <string name="battery_night">Aku: %1$s</string>
+    <string name="battery_watch">Kell −%1$d %%</string>
+    <string name="battery_phone">Telefon −%1$d %%</string>
+    <string name="editor_alarm_gone">See äratus on vahepeal kustutatud.</string>
+    <string name="test_replaces_nap">Prooviäratus lõpetab sinu uinaku.</string>
+    <string name="settings_clear_history_also">Kustutatakse ka märkmed, enesetunne, õhturutiini linnukesed ja helilõigud.</string>
 </resources>

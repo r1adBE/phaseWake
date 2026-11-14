@@ -430,6 +430,7 @@
     <string name="holidays_off">Geen vakansiedae</string>
     <string name="holidays_hint">Plaaslike vakansiedae van enkele dorpe is nie ingesluit nie.</string>
     <string name="holidays_next">Volgende vakansiedag: %1$s</string>
+    <string name="holidays_next_estimated">Geskatte vakansiedag: %1$s – die wekker lui. As jy af is, slaan die dag self oor.</string>
     <string name="editor_skip_holidays">Moenie op vakansiedae wek nie</string>
     <string name="editor_skip_holidays_hint">Kies land en streek in die instellings.</string>
     <string name="home_holiday_skipped">%1$s: vakansiedag – geen wekker</string>
@@ -628,4 +629,10 @@
     <string name="learn_tip_late">Maak Phase Wake saans op die horlosie oop, uiterlik wanneer dit jou herinner.</string>
     <string name="learn_tip_alarm">Die horlosie neem net nagte met ’n wekker op.</string>
     <string name="learn_tip_connect">Hou die horlosie aan en aan jou foon gekoppel – dit stuur die opname ná die wekker.</string>
+    <string name="battery_night">Battery: %1$s</string>
+    <string name="battery_watch">Horlosie −%1$d %%</string>
+    <string name="battery_phone">Foon −%1$d %%</string>
+    <string name="editor_alarm_gone">Hierdie wekker is intussen uitgevee.</string>
+    <string name="test_replaces_nap">Die toetswekker beëindig jou kraguiltjie.</string>
+    <string name="settings_clear_history_also">Notas, gevoel, aandroetine-merkies en klankgrepe word ook uitgevee.</string>
 </resources>

@@ -111,4 +111,5 @@
     <string name="watch_learn_skip_battery">Stanotte non conta per la fase di apprendimento: batteria al %1$d %%, serve %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Stanotte non conta per la fase di apprendimento: Phase Wake non può usare i sensori dell’orologio.</string>
     <string name="watch_learn_skip_late">Stanotte non conta per la fase di apprendimento: Phase Wake è stato aperto troppo tardi la sera.</string>
+    <string name="editor_alarm_gone">Questa sveglia è stata eliminata nel frattempo.</string>
 </resources>

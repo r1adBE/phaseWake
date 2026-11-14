@@ -40,6 +40,10 @@ class HolidayRepository(
     private val mutex = Mutex()
     private var countries: List<HolidayCountry>? = null
 
+    /** Zuletzt gelesene geschätzte Tage ([estimated]) mit «Region@Tag». */
+    @Volatile
+    private var estimatedCache: Pair<String, Set<LocalDate>>? = null
+
     /** Länder mit 2-Buchstaben-Code (die 3-Buchstaben-Duplikate der Datei nicht), nach Code sortiert. Liest die Datei einmal. */
     suspend fun countries(): List<HolidayCountry> = mutex.withLock {
         countries ?: withContext(Dispatchers.IO) { readCountries() }.also { countries = it }
@@ -59,21 +63,38 @@ class HolidayRepository(
     }
 
     /**
-     * Rechnet die Feiertage neu, wenn die Wahl sich geändert hat, der Stand älter als [REFRESH_AFTER] ist
-     * oder [force]. @return ob neu gerechnet wurde (dann ist auch die Uhr benachrichtigt).
+     * Rechnet die Feiertage neu, wenn die Wahl sich geändert hat, der Stand älter als [REFRESH_AFTER] ist, nach älteren
+     * Regeln gerechnet wurde ([RULES]) oder [force]. Nur sichere Tage gelten als frei, geschätzte nicht ([Holidays.isEstimated]).
+     * @return ob neu gerechnet wurde (dann ist auch die Uhr benachrichtigt).
      */
     suspend fun refresh(force: Boolean = false): Boolean {
         val (country, region) = choice()
         val code = Holidays.regionCode(country, region)
         val stale = Instant.now().toEpochMilli() - store.updatedAt() > REFRESH_AFTER.toMillis()
-        if (!force && !stale && store.list.first().region == code) return false
-        val dates = if (country.isEmpty()) emptySet() else withContext(Dispatchers.IO) { readDays(country, region) }
-        val list = HolidayList(code, dates)
+        val outdated = settings.holidayRules() < RULES
+        if (!force && !stale && !outdated && store.list.first().region == code) return false
+        val days = if (country.isEmpty()) HolidayDays.NONE else withContext(Dispatchers.IO) { readDays(country, region) }
+        estimatedCache = (code + "@" + LocalDate.now()) to days.estimated
+        val list = HolidayList(code, days.sure)
         val now = Instant.now().toEpochMilli()
         store.set(list, now)
         sync.publishHolidays(list, now)
-        log(DiagKind.SYNC, "holidays ${code.ifEmpty { "off" }} ${dates.size}")
+        settings.setHolidayRules(RULES)
+        log(DiagKind.SYNC, "holidays ${code.ifEmpty { "off" }} ${days.sure.size} estimated ${days.estimated.size}")
         return true
+    }
+
+    /**
+     * Geschätzte Feiertage der nächsten [Holidays.SYNC_DAYS] Tage der gewählten Region (Audit F-2): gelten nicht als frei,
+     * die Einstellungen zeigen den nächsten mit «geschätzt». Liest die Datei höchstens einmal je Region und Tag.
+     */
+    suspend fun estimated(): Set<LocalDate> {
+        val (country, region) = choice()
+        val key = Holidays.regionCode(country, region) + "@" + LocalDate.now()
+        estimatedCache?.takeIf { it.first == key }?.let { return it.second }
+        val days = if (country.isEmpty()) emptySet() else withContext(Dispatchers.IO) { readDays(country, region).estimated }
+        estimatedCache = key to days
+        return days
     }
 
     /** Erneut an die Uhr (z. B. eine neu gekoppelte), ohne neu zu rechnen. */
@@ -108,10 +129,10 @@ class HolidayRepository(
         emptyList()
     }
 
-    private fun readDays(country: String, region: String): Set<LocalDate> = try {
+    private fun readDays(country: String, region: String): HolidayDays = try {
         open().use { reader ->
-            var national = emptyList<String>()
-            var regional = emptyList<String>()
+            var national = emptyList<Pair<String, String>>()
+            var regional = emptyList<Pair<String, String>>()
             reader.inObject("countries") {
                 reader.beginObject()
                 while (reader.hasNext()) {
@@ -131,19 +152,44 @@ class HolidayRepository(
                 }
                 reader.endObject()
             }
-            Holidays.resolve(national, regional, LocalDate.now())
+            HolidayDays.of(national, regional, LocalDate.now())
         }
     } catch (e: IOException) {
         Log.w(TAG, "Feiertage nicht lesbar", e)
-        emptySet()
+        HolidayDays.NONE
     }
 
-    private companion object {
-        const val TAG = "HolidayRepository"
-        const val FILE = "holidays.json.gz"
+    internal companion object {
+        private const val TAG = "HolidayRepository"
+        private const val FILE = "holidays.json.gz"
+
+        /**
+         * Stand der Regeln für die gespeicherten Feiertage ([SettingsRepository.holidayRules]); steigt, wenn sich ändert,
+         * welche Tage als frei gelten. 1: geschätzte Tage nicht mehr (Audit F-2, 14.11.2026).
+         */
+        const val RULES = 1
 
         /** So lange gilt ein Stand; danach wird das Fenster der nächsten 400 Tage nachgeführt. */
-        val REFRESH_AFTER: Duration = Duration.ofDays(7)
+        private val REFRESH_AFTER: Duration = Duration.ofDays(7)
+    }
+}
+
+/**
+ * Feiertage der nächsten [Holidays.SYNC_DAYS] Tage: [sure] gelten als frei, [estimated] nur geschätzt
+ * ([Holidays.isEstimated], Audit F-2; ein Tag, der auch sicher ein Feiertag ist, steht nur in [sure]).
+ */
+internal data class HolidayDays(val sure: Set<LocalDate>, val estimated: Set<LocalDate>) {
+    companion object {
+        val NONE = HolidayDays(emptySet(), emptySet())
+
+        /** Aus den Einträgen (Datum, Name) des Landes ([national]) und der Region ([regional]) ab [today]. */
+        fun of(national: List<Pair<String, String>>, regional: List<Pair<String, String>>, today: LocalDate): HolidayDays {
+            val (estNational, sureNational) = national.partition { Holidays.isEstimated(it.second) }
+            val (estRegional, sureRegional) = regional.partition { Holidays.isEstimated(it.second) }
+            val sure = Holidays.resolve(sureNational.map { it.first }, sureRegional.map { it.first }, today)
+            val estimated = Holidays.resolve(estNational.map { it.first }, estRegional.map { it.first }, today) - sure
+            return HolidayDays(sure, estimated)
+        }
     }
 }
 
@@ -165,15 +211,17 @@ private fun JsonReader.readStringMap(): Map<String, String> {
     return out
 }
 
-/** Liest eine Liste von Paaren [Datum, Name] und behält die Daten. */
-private fun JsonReader.readDates(): List<String> {
-    val out = mutableListOf<String>()
+/** Liest eine Liste von Paaren [Datum, Name] (Name fehlt: leer). */
+private fun JsonReader.readDates(): List<Pair<String, String>> {
+    val out = mutableListOf<Pair<String, String>>()
     beginArray()
     while (hasNext()) {
         beginArray()
-        out += nextString()
+        val date = nextString()
+        val name = if (hasNext()) nextString() else ""
         while (hasNext()) skipValue()
         endArray()
+        out += date to name
     }
     endArray()
     return out

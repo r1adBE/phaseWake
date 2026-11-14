@@ -50,6 +50,21 @@ import java.util.UUID
 /** Höchstens so viele Wecker, wie am Handy (Handy und iPhone verhindern mehr). */
 internal const val MAX_ALARMS = 8
 
+/** Was «Speichern» im Editor der Uhr tut (Prüfrunde 2, B-3 und B-11). */
+internal enum class EditorSave { SAVE, GONE, FULL }
+
+/**
+ * Ob der Entwurf [draftId] gespeichert wird: Ein Wecker, der beim Öffnen bestand ([existed]) und in [stored] fehlt,
+ * wurde anderswo gelöscht ([EditorSave.GONE]: Hinweis, Editor zu, nichts angelegt); ein neuer bei [MAX_ALARMS]
+ * gespeicherten hat keinen Platz mehr ([EditorSave.FULL]: Hinweis, der Editor bleibt). Wie Handy und iPhone.
+ */
+internal fun editorSave(existed: Boolean, stored: List<AlarmSpec>, draftId: String): EditorSave = when {
+    stored.any { it.id == draftId } -> EditorSave.SAVE
+    existed -> EditorSave.GONE
+    stored.size >= MAX_ALARMS -> EditorSave.FULL
+    else -> EditorSave.SAVE
+}
+
 /** Weckton neuer Wecker wie am Handy («Morgenvögel», `WakeTones.DEFAULT`); die Uhr selbst spielt ihn nicht. */
 private const val DEFAULT_SOUND = "raw:wake_birds"
 

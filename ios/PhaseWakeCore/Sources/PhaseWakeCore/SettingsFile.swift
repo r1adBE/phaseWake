@@ -35,7 +35,8 @@ extension UserDefaults: SettingsStore {}
 /// iCloud-Sicherung ausgenommenen Ordner legen (wie `allowBackup="false"` auf Android). Jede Änderung schreibt die
 /// ganze Datei atomar; scheitert das (Speicher voll), bleibt der Wert im Speicher und der nächste Schreibversuch
 /// nimmt ihn mit. Ist die Datei vorhanden, aber (noch) nicht lesbar, z. B. vor dem ersten Entsperren, wird sie nie
-/// überschrieben: Änderungen bleiben im Speicher und werden beim ersten gelungenen Lesen darübergelegt.
+/// überschrieben: Änderungen bleiben im Speicher und werden beim ersten gelungenen Lesen darübergelegt (Wörterbücher je
+/// Eintrag, ``merged(disk:early:)``).
 ///
 /// Nur lesend (`readOnly`, z. B. die Komplikation der Uhr neben der schreibenden Uhr-App): Jeder Zugriff liest die
 /// Datei neu, es bleibt kein veralteter Stand im Speicher; die Datei wird nie geschrieben, verschoben oder angelegt.
@@ -52,6 +53,14 @@ public final class SettingsFile: SettingsStore, @unchecked Sendable {
 
     /// Schlüssel mit den Namen, die schon aus `UserDefaults` übernommen sind (``adopt(_:from:)``).
     static let adoptedKey = "settingsFile.adopted"
+
+    /// Zeitpunkt (ms), zu dem eine kaputte Datei durch einen leeren Stand ersetzt wurde (Prüfrunde 2 SP-7, wie
+    /// `PhaseWakeStore.RESET_AT` auf Android); sonst fehlt er.
+    public static let resetAtKey = "settingsFile.resetAt"
+
+    /// Ob der Stand nach einer kaputten Datei leer begann (``resetAtKey``): Er ist dann kein neuer Stand und wird nicht
+    /// als solcher gestempelt oder der Gegenseite aufgedrängt.
+    public var wasReset: Bool { object(forKey: Self.resetAtKey) != nil }
 
     /// Erzeugt den Speicher für die Datei `url`; ihr Ordner wird bei Bedarf angelegt. `readOnly`: nur lesen, bei jedem
     /// Zugriff frisch aus der Datei (ein anderer Prozess schreibt sie); Schreiben und ``adopt(_:from:)`` tun dann nichts.
@@ -165,11 +174,13 @@ public final class SettingsFile: SettingsStore, @unchecked Sendable {
 
     /// Liest die Datei, falls noch nicht geschehen, legt die Änderungen dieser Sitzung darüber und schreibt sie dann.
     /// Fehlt die Datei, gilt ein leerer Stand. Ist sie da, aber nicht lesbar, bleibt `loaded` falsch (der nächste
-    /// Zugriff versucht es wieder). Eine kaputte Datei wird als «.broken» beiseitegelegt, dann gilt ein leerer Stand.
+    /// Zugriff versucht es wieder). Eine kaputte Datei wird als «.broken» beiseitegelegt (die jüngste bleibt), dann gilt
+    /// ein leerer Stand mit ``resetAtKey`` (SP-7).
     /// Nur lesend: Nicht lesbar lässt den zuletzt gelesenen Stand stehen; eine kaputte Datei bleibt liegen (leerer Stand).
     private func loadLocked() {
         guard !loaded else { return }
         var disk: [String: Any] = [:]
+        var reset = false
         if FileManager.default.fileExists(atPath: url.path) {
             let data: Data
             do {
@@ -187,10 +198,15 @@ public final class SettingsFile: SettingsStore, @unchecked Sendable {
                 let broken = url.appendingPathExtension("broken")
                 try? FileManager.default.removeItem(at: broken)
                 try? FileManager.default.moveItem(at: url, to: broken)
+                reset = true
             }
         }
-        for key in changed { disk[key] = values[key] }
+        for key in changed { disk[key] = Self.merged(disk: disk[key], early: values[key]) }
         values = disk
+        if reset {
+            values[Self.resetAtKey] = NSNumber(value: Int64((Date().timeIntervalSince1970 * 1000).rounded()))
+            changed.insert(Self.resetAtKey)
+        }
         loaded = true
         if !changed.isEmpty { persistLocked() }
     }
@@ -213,6 +229,14 @@ public final class SettingsFile: SettingsStore, @unchecked Sendable {
             Self.log("Einstellungen nicht gespeichert, nächster Versuch bei der nächsten Änderung: \(error)")
             return false
         }
+    }
+
+    /// Wert für die Datei aus `disk` (Datei) und `early` (vor dem ersten Lesen gesetzt). Ein Wörterbuch entstand dann aus
+    /// dem leeren Stand (lesen, ändern, schreiben), darum je Eintrag darübergelegt: Die übrigen Einträge der Datei bleiben
+    /// (Prüfrunde 2 SP-3, z. B. `backupSuppressedByAlarm`). Alles andere ersetzt den Wert der Datei, `nil` entfernt ihn.
+    static func merged(disk: Any?, early: Any?) -> Any? {
+        guard let early = early as? [String: Any], let disk = disk as? [String: Any] else { return early }
+        return disk.merging(early) { $1 }
     }
 
     /// Zahl aus dem gespeicherten Wert (`NSNumber`, auch Bool, Int, Double); sonst `nil`.

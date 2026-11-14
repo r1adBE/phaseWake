@@ -108,4 +108,5 @@
     <string name="watch_learn_skip_battery">आजची रात्र शिकण्याच्या टप्प्यात मोजली जाणार नाही: बॅटरी %1$d %%, हवी %2$d %%.</string>
     <string name="watch_learn_skip_sensors">आजची रात्र शिकण्याच्या टप्प्यात मोजली जाणार नाही: Phase Wake घड्याळाचे सेन्सर वापरू शकत नाही.</string>
     <string name="watch_learn_skip_late">आजची रात्र शिकण्याच्या टप्प्यात मोजली जाणार नाही: संध्याकाळी Phase Wake खूप उशिरा उघडले.</string>
+    <string name="editor_alarm_gone">हा अलार्म दरम्यान हटवला गेला आहे.</string>
 </resources>

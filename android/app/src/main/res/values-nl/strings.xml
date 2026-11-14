@@ -427,6 +427,7 @@
     <string name="holidays_off">Geen feestdagen</string>
     <string name="holidays_hint">Lokale feestdagen van afzonderlijke gemeenten zijn niet inbegrepen.</string>
     <string name="holidays_next">Volgende feestdag: %1$s</string>
+    <string name="holidays_next_estimated">Geschatte feestdag: %1$s – de wekker gaat af. Ben je vrij, sla de dag dan zelf over.</string>
     <string name="editor_skip_holidays">Niet wekken op feestdagen</string>
     <string name="editor_skip_holidays_hint">Kies land en regio in de instellingen.</string>
     <string name="home_holiday_skipped">%1$s: feestdag – geen wekker</string>
@@ -625,4 +626,10 @@
     <string name="learn_tip_late">Open Phase Wake ’s avonds op het horloge, uiterlijk bij de herinnering.</string>
     <string name="learn_tip_alarm">Het horloge neemt alleen nachten met een wekker op.</string>
     <string name="learn_tip_connect">Houd het horloge aan en verbonden met je telefoon – het stuurt de opname na de wekker.</string>
+    <string name="battery_night">Batterij: %1$s</string>
+    <string name="battery_watch">Horloge −%1$d %%</string>
+    <string name="battery_phone">Telefoon −%1$d %%</string>
+    <string name="editor_alarm_gone">Deze wekker is intussen verwijderd.</string>
+    <string name="test_replaces_nap">De testwekker beëindigt je powernap.</string>
+    <string name="settings_clear_history_also">Ook notities, gevoel, vinkjes van de avondroutine en geluidsfragmenten worden verwijderd.</string>
 </resources>

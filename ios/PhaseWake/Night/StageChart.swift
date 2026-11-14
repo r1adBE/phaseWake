@@ -17,6 +17,8 @@ struct StageTimeline: Equatable {
     var wokeAt: Double?
     /// Phase beim Wecken für die Höhe des Weckpunkts; `nil` = unbekannt (Punkt auf der Zeile «Wach»).
     var stageAtWake: SleepStage?
+    /// Uhrzeiten in dieser Zone (Nacht aus der Gesundheits-App: Zone der Aufzeichnung, Audit F-3); `nil` = Gerät.
+    var timeZone: TimeZone?
 
     /// Uhrzeit `minute` Minuten nach `start`.
     func time(_ minute: Double) -> Date { start.addingTimeInterval(minute * 60) }
@@ -97,7 +99,7 @@ struct StageChart: View {
                 let row = timeline.stageAtWake.flatMap { ChartData.level($0) == nil ? nil : $0 } ?? .awake
                 PointMark(x: .value("woke", wokeAt), y: .value("stage", stageName(row)))
                     .symbol { WakeDot(scheme: scheme) }
-                    .accessibilityLabel(Text(verbatim: L("night_woke", Format.time(timeline.time(wokeAt)))))
+                    .accessibilityLabel(Text(verbatim: L("night_woke", Format.time(timeline.time(wokeAt), in: timeline.timeZone))))
                     .accessibilityValue(Text(verbatim: windowText))
             }
             if let selected {
@@ -127,7 +129,7 @@ struct StageChart: View {
             AxisMarks(values: axisValues) { value in
                 AxisGridLine()
                 AxisValueLabel {
-                    if let m = value.as(Double.self) { Text(Format.time(timeline.time(m))) }
+                    if let m = value.as(Double.self) { Text(Format.time(timeline.time(m), in: timeline.timeZone)) }
                 }
             }
         }
@@ -151,7 +153,7 @@ struct StageChart: View {
                       y: .value("stage", name), height: .ratio(0.72))
             .foregroundStyle(StageColors.color(step.stage, scheme).opacity(selectedIndex == nil || selectedIndex == i ? 1 : 0.55))
             .cornerRadius(4)
-            .accessibilityLabel(Text(verbatim: L("hypno_block", name, Format.time(timeline.time(step.fromMinute)), Format.time(timeline.time(step.toMinute)))))
+            .accessibilityLabel(Text(verbatim: L("hypno_block", name, Format.time(timeline.time(step.fromMinute), in: timeline.timeZone), Format.time(timeline.time(step.toMinute), in: timeline.timeZone))))
         if i + 1 < timeline.steps.count, abs(timeline.steps[i + 1].fromMinute - step.toMinute) < 1 {
             RuleMark(x: .value("at", step.toMinute), yStart: .value("stage", name), yEnd: .value("stage", stageName(timeline.steps[i + 1].stage)))
                 .foregroundStyle(StageColors.link(scheme))
@@ -163,8 +165,8 @@ struct StageChart: View {
     /// «Weckfenster 06:30 – 07:00» für VoiceOver beim Weckpunkt; «Genau um 07:00» ohne Fenster («Genau»); leer ohne Wecker.
     private var windowText: String {
         guard let window = timeline.window else { return "" }
-        if window.lowerBound == window.upperBound { return L("window_exact_line", Format.time(timeline.time(window.upperBound))) }
-        return L("chart_window") + " " + Format.time(timeline.time(window.lowerBound)) + " – " + Format.time(timeline.time(window.upperBound))
+        if window.lowerBound == window.upperBound { return L("window_exact_line", Format.time(timeline.time(window.upperBound), in: timeline.timeZone)) }
+        return L("chart_window") + " " + Format.time(timeline.time(window.lowerBound), in: timeline.timeZone) + " – " + Format.time(timeline.time(window.upperBound), in: timeline.timeZone)
     }
 
     /// Beginn, zwei Zwischenzeiten und Ende.
@@ -179,7 +181,7 @@ struct StageChart: View {
             let step = timeline.steps[i]
             let minute = min(max(selected, step.fromMinute), step.toMinute)
             let since = Int((minute - step.fromMinute).rounded(.down))
-            Text(L("hypno_bubble", Format.time(timeline.time(minute)), stageName(step.stage), Format.duration(minutes: since)))
+            Text(L("hypno_bubble", Format.time(timeline.time(minute), in: timeline.timeZone), stageName(step.stage), Format.duration(minutes: since)))
                 .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
                 .padding(.horizontal, 10)
                 .padding(.vertical, 5)

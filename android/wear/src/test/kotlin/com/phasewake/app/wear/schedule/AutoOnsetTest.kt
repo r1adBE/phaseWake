@@ -93,9 +93,32 @@ class AutoOnsetTest {
         assertNull(store.onsetFor(plan.copy(alarmId = "b")))
         assertNull(store.onsetFor(plan.copy(target = target.plus(Duration.ofDays(1)))))
         // Messung ohne Einschlafen vorbei: erledigt, aber keine Einschlafzeit.
-        store.set("a", target, null)
-        assertTrue(store.isDone("a", target))
-        assertNull(store.onsetFor(plan))
+        val other = OnsetStore(MemoryStore())
+        other.set("a", target, null)
+        assertTrue(other.isDone("a", target))
+        assertNull(other.onsetFor(plan))
+    }
+
+    @Test
+    fun knownOnsetOfThisNightIsKeptWhenTheAlarmMoves() = runTest {
+        // Audit HG-5: Wecker 06:30 → 06:15, die Änderung kommt erst nachts an. Die Einschlafzeit 23:50 bleibt; keine
+        // neue Messung, und eine ohne Ergebnis (später Start, fail-closed) überschreibt sie nicht.
+        val store = OnsetStore(MemoryStore())
+        val onset = Instant.parse("2026-11-02T23:50:00Z")
+        store.set("a", target, onset)
+        val earlier = target.minus(Duration.ofMinutes(15))
+        assertTrue(store.isDone("a", earlier))
+        store.set("a", earlier, null, measured = true)
+        val moved = plan.copy(windowStart = earlier.minus(Duration.ofMinutes(30)), target = earlier)
+        assertEquals(onset, store.onsetFor(moved))
+        assertFalse(store.measuredFor(moved))
+        // Anderer Wecker oder die nächste Nacht: neu messen.
+        assertFalse(store.isDone("b", earlier))
+        assertFalse(store.isDone("a", earlier.plus(Duration.ofDays(1))))
+        // Eine gefundene Einschlafzeit ersetzt die bisherige.
+        val later = Instant.parse("2026-11-03T01:10:00Z")
+        store.set("a", earlier, later)
+        assertEquals(later, store.onsetFor(moved))
     }
 
     @Test

@@ -121,7 +121,8 @@ internal fun HealthNightCard(
     score: SleepScoreResult? = null,
 ) {
     val context = LocalContext.current
-    val zone = ZoneId.systemDefault()
+    // Datum und Uhrzeiten in der Zone der Aufzeichnung (Audit F-3), ohne sie in der des Geräts.
+    val zone = session.zoneOr(ZoneId.systemDefault())
     val (times, amounts) = sessionLines(context, session, zone)
     val stats = remember(session) { StageStats.forSession(session) }
     Card(
@@ -141,7 +142,7 @@ internal fun HealthNightCard(
             score?.let { ScoreLine(it) }
             Text(times, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 8.dp))
             Text(amounts, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-            stats?.let { MiniStages(HypnoModel(session.start, session.end, it.blocks), it) }
+            stats?.let { MiniStages(HypnoModel(session.start, session.end, it.blocks, zone = session.timeZone), it) }
             Text(
                 healthLiveHint(context, session),
                 style = MaterialTheme.typography.labelSmall,

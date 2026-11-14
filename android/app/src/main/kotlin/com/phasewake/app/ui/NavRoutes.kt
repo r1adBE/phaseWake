@@ -12,7 +12,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -28,9 +27,7 @@ import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.MissHint
 import com.phasewake.app.core.SleepSound
 import com.phasewake.app.core.SleepSounds
-import com.phasewake.app.core.WindowAdvice
 import com.phasewake.app.sounds.SleepSoundService
-import com.phasewake.app.ui.editor.EditorScreen
 import com.phasewake.app.ui.history.HistoryScreen
 import com.phasewake.app.ui.history.NightDetailActions
 import com.phasewake.app.ui.history.NightDetailData
@@ -38,7 +35,6 @@ import com.phasewake.app.ui.history.NightDetailScreen
 import com.phasewake.app.ui.home.Check
 import com.phasewake.app.ui.home.HomeScreen
 import com.phasewake.app.ui.home.LearnNightsScreen
-import com.phasewake.app.ui.home.MAX_ALARMS
 import com.phasewake.app.ui.home.goodNightOffered
 import com.phasewake.app.ui.settings.HealthState
 import com.phasewake.app.ui.settings.LicensesScreen
@@ -69,6 +65,8 @@ internal class NavActions(
     val askNotificationsIfMissing: () -> Unit,
     val connectHealth: () -> Unit,
     val onFix: (Check) -> Unit,
+    /** «In 2 Minuten testen»; ersetzt er einen wartenden Powernap, fragt er zuerst (B-12). */
+    val onTest: () -> Unit,
 )
 
 @Composable
@@ -84,24 +82,27 @@ internal fun AppNavHost(app: PhaseWakeApp, state: NavState, actions: NavActions,
         composable(Routes.ALARMS) { AlarmsRoute(app, state, actions, content, homeList) }
         composable(Routes.HISTORY) { HistoryRoute(app, state, actions, content) }
         composable(Routes.SETTINGS) { SettingsRoute(app, state, actions, content) }
-        composable(Routes.SOUNDS) { SoundsRoute(app, state.data, actions) }
-        composable(ExtraRoutes.DIAGNOSTICS) {
+        // Zurück immer über backFrom (B-1): Ein zweiter schneller Tipp nimmt sonst den Bildschirm darunter mit.
+        composable(Routes.SOUNDS) { entry -> SoundsRoute(app, state.data, onBack = { actions.nav.backFrom(entry) }) }
+        composable(ExtraRoutes.DIAGNOSTICS) { entry ->
             DiagnosticsScreen(
-                onBack = { actions.nav.popBackStack() },
+                onBack = { actions.nav.backFrom(entry) },
                 onHide = {
                     app.appScope.launch { app.settings.setDiagnostics(false) }
-                    actions.nav.popBackStack()
+                    actions.nav.backFrom(entry)
                 },
             )
         }
-        composable(ExtraRoutes.LICENSES) { LicensesScreen(onBack = { actions.nav.popBackStack() }) }
-        composable(ExtraRoutes.LEARN_NIGHTS) {
+        composable(ExtraRoutes.LICENSES) { entry -> LicensesScreen(onBack = { actions.nav.backFrom(entry) }) }
+        composable(ExtraRoutes.LEARN_NIGHTS) { entry ->
             val data = state.data
             val goodNight = goodNightOffered(data.alarms, Instant.now(), ZoneId.systemDefault(), data.holidays, data.doneUntil)
-            LearnNightsScreen(learnNightList(data), onBack = { actions.nav.popBackStack() }, goodNight = goodNight)
+            LearnNightsScreen(learnNightList(data), onBack = { actions.nav.backFrom(entry) }, goodNight = goodNight)
         }
-        composable(ExtraRoutes.ONBOARDING) {
+        composable(ExtraRoutes.ONBOARDING) { entry ->
             OnboardingScreen(app, state, actions, onDone = {
+                // Nur von der offenen Einrichtung aus (zweiter Tipp auf «Fertig» oder «Überspringen»: nichts).
+                if (actions.nav.currentBackStackEntry?.id != entry.id) return@OnboardingScreen
                 app.appScope.launch { app.settings.setOnboardingDone(true) }
                 // Einrichtung selbst vom Stapel nehmen (nicht nur einen Tab wählen): sonst bleibt sie offen, weil der
                 // Wecker-Tab darunter schon liegt. Zurück dorthin, woher sie kam (Startseite oder Einstellungen).
@@ -111,11 +112,11 @@ internal fun AppNavHost(app: PhaseWakeApp, state: NavState, actions: NavActions,
         composable(
             ExtraRoutes.NIGHT,
             arguments = listOf(navArgument("key") { type = NavType.StringType; nullable = true; defaultValue = null }),
-        ) { entry -> NightRoute(app, state, entry.arguments?.getString("key"), actions) }
+        ) { entry -> NightRoute(app, state, entry.arguments?.getString("key"), onBack = { actions.nav.backFrom(entry) }) }
         composable(
             Routes.EDITOR,
             arguments = listOf(navArgument("id") { type = NavType.StringType; nullable = true; defaultValue = null }),
-        ) { entry -> EditorRoute(app, state, entry.arguments?.getString("id"), actions, entry.savedStateHandle) }
+        ) { entry -> EditorRoute(app, state, entry.arguments?.getString("id"), actions, entry) }
     }
 }
 
@@ -150,7 +151,7 @@ private fun AlarmsRoute(app: PhaseWakeApp, state: NavState, actions: NavActions,
         routineItems = data.routineItems,
         routineTicks = data.routineTicks,
         onToggleRoutine = { date, id -> app.appScope.launch { app.routine.toggle(date, id) } },
-        extras = homeExtras(app, data, record = recordStatus, onLearnDetails = { actions.nav.navigate(ExtraRoutes.LEARN_NIGHTS) }),
+        extras = homeExtras(app, data, record = recordStatus, onLearnDetails = { actions.nav.navigate(ExtraRoutes.LEARN_NIGHTS) }, onTest = actions.onTest),
     )
 }
 
@@ -194,7 +195,7 @@ private fun HistoryRoute(app: PhaseWakeApp, state: NavState, actions: NavActions
 
 /** Detailseite einer Nacht mit Wischen zu den Nächten davor und danach (Verlauf, Phasen, Notizen, Geräusche). */
 @Composable
-private fun NightRoute(app: PhaseWakeApp, state: NavState, key: String?, actions: NavActions) {
+private fun NightRoute(app: PhaseWakeApp, state: NavState, key: String?, onBack: () -> Unit) {
     val data = state.data
     val recordings by app.recordings.recordings.collectAsStateWithLifecycle()
     LaunchedEffect(Unit) { app.recordings.load() }
@@ -212,7 +213,7 @@ private fun NightRoute(app: PhaseWakeApp, state: NavState, key: String?, actions
         ),
         startKey = key,
         actions = NightDetailActions(
-            onBack = { actions.nav.popBackStack() },
+            onBack = onBack,
             onToggleNote = { date, id -> app.appScope.launch { app.notes.toggle(date, id) } },
             onHealthFeeling = { date, feeling -> app.appScope.launch { app.notes.setHealthFeeling(date, feeling) } },
             soundFile = { app.sounds.file(it) },
@@ -303,7 +304,7 @@ private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavAction
 }
 
 @Composable
-private fun SoundsRoute(app: PhaseWakeApp, data: AppData, actions: NavActions) {
+private fun SoundsRoute(app: PhaseWakeApp, data: AppData, onBack: () -> Unit) {
     val context = LocalContext.current
     // Einschlafklänge: Ende nach dem Timer, spätestens zu Beginn des nächsten Weckfensters.
     fun startSounds(chosen: SleepSound, timer: Int?) {
@@ -319,7 +320,7 @@ private fun SoundsRoute(app: PhaseWakeApp, data: AppData, actions: NavActions) {
         selected = data.sound,
         timer = data.soundTimer,
         canPlay = windowStart == null || windowStart.isAfter(now),
-        onBack = { actions.nav.popBackStack() },
+        onBack = onBack,
         onSelect = { chosen ->
             app.appScope.launch { app.settings.setSound(chosen) }
             // Läuft schon ein Klang: gleich wechseln.
@@ -332,29 +333,5 @@ private fun SoundsRoute(app: PhaseWakeApp, data: AppData, actions: NavActions) {
         },
         onPlay = { startSounds(data.sound, data.soundTimer) },
         onStop = { SleepSoundService.stop(context) },
-    )
-}
-
-@Composable
-private fun EditorRoute(app: PhaseWakeApp, state: NavState, id: String?, actions: NavActions, draft: SavedStateHandle) {
-    val data = state.data
-    // Erst zeigen, wenn die Wecker gelesen sind (nach dem Neuaufbau fehlen sie kurz): sonst wird ein bestehender
-    // Wecker als neuer bearbeitet und beim Speichern doppelt angelegt.
-    if (!data.alarmsLoaded) return
-    val existing = data.alarms.firstOrNull { it.id == id }
-    EditorScreen(
-        existing = existing,
-        advice = existing?.let { WindowAdvice.suggest(it, data.nights.orEmpty()) },
-        onBack = { actions.nav.popBackStack() },
-        onSave = { spec ->
-            // Ein neuer Wecker über dem Limit (z. B. gleichzeitig auf der Uhr angelegt) wird nicht gespeichert.
-            if (existing != null || data.alarms.size < MAX_ALARMS) app.afterAlarmsChanged { app.alarms.upsert(spec) }
-            actions.nav.popBackStack()
-        },
-        onDelete = { spec ->
-            app.afterAlarmsChanged { app.alarms.remove(spec.id) }
-            actions.nav.popBackStack()
-        },
-        draft = draft,
     )
 }

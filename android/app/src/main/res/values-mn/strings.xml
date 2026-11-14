@@ -430,6 +430,7 @@
     <string name="holidays_off">Баярын өдөргүй</string>
     <string name="holidays_hint">Тусдаа хотуудын орон нутгийн баяр ороогүй.</string>
     <string name="holidays_next">Дараагийн баяр: %1$s</string>
+    <string name="holidays_next_estimated">Таамаглалын баяр: %1$s – сэрүүлэг дуугарна. Амралттай бол тэр өдрийг өөрөө алгасаарай.</string>
     <string name="editor_skip_holidays">Баярын өдөр бүү сэрээ</string>
     <string name="editor_skip_holidays_hint">Улс, бүс нутгаа тохиргооноос сонго.</string>
     <string name="home_holiday_skipped">%1$s: баярын өдөр – сэрүүлэггүй</string>
@@ -628,4 +629,10 @@
     <string name="learn_tip_late">Орой Phase Wake-ийг цаган дээр нээгээрэй, хамгийн оройдоо сануулга ирэхэд.</string>
     <string name="learn_tip_alarm">Цаг зөвхөн сэрүүлэгтэй шөнийг бичдэг.</string>
     <string name="learn_tip_connect">Цагаа асаалттай, утсандаа холбогдсон байлгаарай – сэрүүлгийн дараа бичлэгийг илгээнэ.</string>
+    <string name="battery_night">Батарей: %1$s</string>
+    <string name="battery_watch">Цаг −%1$d %%</string>
+    <string name="battery_phone">Утас −%1$d %%</string>
+    <string name="editor_alarm_gone">Энэ сэрүүлэг энэ хооронд устгагдсан.</string>
+    <string name="test_replaces_nap">Туршилтын сэрүүлэг таны богино нойрыг дуусгана.</string>
+    <string name="settings_clear_history_also">Тэмдэглэл, мэдрэмж, оройн дэглэмийн тэмдэг, дууны хэсгүүд мөн устгагдана.</string>
 </resources>

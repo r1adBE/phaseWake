@@ -427,6 +427,7 @@
     <string name="holidays_off">Ingen helligdager</string>
     <string name="holidays_hint">Lokale helligdager i enkelte kommuner er ikke med.</string>
     <string name="holidays_next">Neste helligdag: %1$s</string>
+    <string name="holidays_next_estimated">Anslått helligdag: %1$s – alarmen ringer. Har du fri, hopp over dagen selv.</string>
     <string name="editor_skip_holidays">Ikke vekk på helligdager</string>
     <string name="editor_skip_holidays_hint">Velg land og region i innstillingene.</string>
     <string name="home_holiday_skipped">%1$s: helligdag – ingen alarm</string>
@@ -625,4 +626,10 @@
     <string name="learn_tip_late">Åpne Phase Wake på klokken om kvelden, senest når den minner deg på det.</string>
     <string name="learn_tip_alarm">Klokken tar bare opp netter med alarm.</string>
     <string name="learn_tip_connect">Hold klokken påslått og koblet til telefonen – den sender opptaket etter alarmen.</string>
+    <string name="battery_night">Batteri: %1$s</string>
+    <string name="battery_watch">Klokke −%1$d %%</string>
+    <string name="battery_phone">Telefon −%1$d %%</string>
+    <string name="editor_alarm_gone">Denne alarmen er slettet i mellomtiden.</string>
+    <string name="test_replaces_nap">Testalarmen avslutter hvilen din.</string>
+    <string name="settings_clear_history_also">Notater, følelse, haker i kveldsrutinen og lydklipp slettes også.</string>
 </resources>

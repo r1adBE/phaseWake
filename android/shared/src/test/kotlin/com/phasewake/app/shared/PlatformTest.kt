@@ -127,6 +127,12 @@ class PlatformTest {
         assertEquals("battery", skipped.getString(DataLayer.KEY_RECORDER_SKIP))
         assertEquals(RecorderSkip.Reason.BATTERY, WearSync.readRecorderSkip(skipped, 10_500L, 1_000L))
         assertNull(WearSync.readRecorderSkip(skipped, 20_000L, 1_000L), "zu alt")
+        // Prüfrunde 2 F-6: Ladezustand zum Akkustand; ohne Angabe (ältere Uhr), ohne Akku oder zu alt: lädt nicht.
+        val charging = DataMap.fromByteArray(WearSync.statusRequest(true, 25, 10_000L, charging = true).data!!)
+        assertTrue(WearSync.readCharging(charging, 10_500L, 1_000L))
+        assertFalse(WearSync.readCharging(charging, 20_000L, 1_000L))
+        assertFalse(WearSync.readCharging(status, 10_500L, 1_000L))
+        assertFalse(WearSync.readCharging(DataMap.fromByteArray(WearSync.statusRequest(true, null, 10_000L, charging = true).data!!), 10_500L, 1_000L))
 
         val cancel = WearSync.transientCancelRequest("nap-1", 5L)
         assertEquals(DataLayer.PATH_TRANSIENT_CANCELLED, cancel.uri.path)

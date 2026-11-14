@@ -430,6 +430,7 @@
     <string name="holidays_off">Jaiegunik ez</string>
     <string name="holidays_hint">Herri bakoitzeko tokiko jaiegunak ez daude barne.</string>
     <string name="holidays_next">Hurrengo jaieguna: %1$s</string>
+    <string name="holidays_next_estimated">Jaiegun estimatua: %1$s – alarmak joko du. Jai baduzu, saltatu egun hori zuk zeuk.</string>
     <string name="editor_skip_holidays">Ez esnatu jaiegunetan</string>
     <string name="editor_skip_holidays_hint">Aukeratu herrialdea eta eskualdea ezarpenetan.</string>
     <string name="home_holiday_skipped">%1$s: jaieguna – alarmarik ez</string>
@@ -628,4 +629,10 @@
     <string name="learn_tip_late">Ireki Phase Wake erlojuan arratsaldean, beranduenez gogorarazten dizunean.</string>
     <string name="learn_tip_alarm">Erlojuak alarma duten gauak soilik grabatzen ditu.</string>
     <string name="learn_tip_connect">Eduki erlojua piztuta eta telefonora konektatuta: alarmaren ondoren bidaltzen du grabazioa.</string>
+    <string name="battery_night">Bateria: %1$s</string>
+    <string name="battery_watch">Erlojua −%%%1$d</string>
+    <string name="battery_phone">Telefonoa −%%%1$d</string>
+    <string name="editor_alarm_gone">Alarma hau ezabatu egin da bitartean.</string>
+    <string name="test_replaces_nap">Proba-alarmak zure siesta laburra amaitzen du.</string>
+    <string name="settings_clear_history_also">Oharrak, sentipena, gaueko errutinaren markak eta soinu-zatiak ere ezabatzen dira.</string>
 </resources>

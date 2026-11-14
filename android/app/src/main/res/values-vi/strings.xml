@@ -415,6 +415,7 @@
     <string name="holidays_off">Không dùng ngày lễ</string>
     <string name="holidays_hint">Không gồm ngày lễ địa phương của từng xã, phường.</string>
     <string name="holidays_next">Ngày lễ tới: %1$s</string>
+    <string name="holidays_next_estimated">Ngày lễ ước tính: %1$s – báo thức vẫn reo. Nếu bạn được nghỉ, hãy tự bỏ qua ngày đó.</string>
     <string name="editor_skip_holidays">Không đánh thức vào ngày lễ</string>
     <string name="editor_skip_holidays_hint">Chọn quốc gia và vùng trong cài đặt.</string>
     <string name="home_holiday_skipped">%1$s: ngày lễ – không báo thức</string>
@@ -611,4 +612,10 @@
     <string name="learn_tip_late">Buổi tối hãy mở Phase Wake trên đồng hồ, muộn nhất là khi có lời nhắc.</string>
     <string name="learn_tip_alarm">Đồng hồ chỉ ghi những đêm có báo thức.</string>
     <string name="learn_tip_connect">Hãy để đồng hồ bật và kết nối với điện thoại – đồng hồ gửi bản ghi sau báo thức.</string>
+    <string name="battery_night">Pin: %1$s</string>
+    <string name="battery_watch">Đồng hồ −%1$d %%</string>
+    <string name="battery_phone">Điện thoại −%1$d %%</string>
+    <string name="editor_alarm_gone">Báo thức này đã bị xóa trong lúc đó.</string>
+    <string name="test_replaces_nap">Báo thức thử sẽ kết thúc giấc ngủ trưa của bạn.</string>
+    <string name="settings_clear_history_also">Ghi chú, cảm giác, dấu tích thói quen buổi tối và đoạn âm thanh cũng bị xóa.</string>
 </resources>

@@ -430,6 +430,7 @@
     <string name="holidays_off">Pa festa</string>
     <string name="holidays_hint">Festat lokale të qyteteve të veçanta nuk përfshihen.</string>
     <string name="holidays_next">Festa e radhës: %1$s</string>
+    <string name="holidays_next_estimated">Festë e përafërt: %1$s – alarmi do të bjerë. Nëse je i lirë, kapërceje vetë ditën.</string>
     <string name="editor_skip_holidays">Mos më zgjo në festa</string>
     <string name="editor_skip_holidays_hint">Zgjidh shtetin dhe rajonin te cilësimet.</string>
     <string name="home_holiday_skipped">%1$s: festë – pa alarm</string>
@@ -628,4 +629,10 @@
     <string name="learn_tip_late">Hape Phase Wake në orë në mbrëmje, më së voni kur të ta kujtojë.</string>
     <string name="learn_tip_alarm">Ora regjistron vetëm netët me alarm.</string>
     <string name="learn_tip_connect">Mbaje orën të ndezur dhe të lidhur me telefonin – e dërgon regjistrimin pas alarmit.</string>
+    <string name="battery_night">Bateria: %1$s</string>
+    <string name="battery_watch">Ora −%1$d %%</string>
+    <string name="battery_phone">Telefoni −%1$d %%</string>
+    <string name="editor_alarm_gone">Ky alarm është fshirë ndërkohë.</string>
+    <string name="test_replaces_nap">Alarmi provë e mbyll dremitjen tënde.</string>
+    <string name="settings_clear_history_also">Fshihen edhe shënimet, gjendja, shenjat e rutinës së mbrëmjes dhe copat e tingujve.</string>
 </resources>

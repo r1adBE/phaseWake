@@ -107,4 +107,5 @@
     <string name="watch_learn_skip_battery">Vannacht telt niet mee voor de leerfase: batterij op %1$d %%, nodig %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Vannacht telt niet mee voor de leerfase: Phase Wake kan de sensoren van het horloge niet gebruiken.</string>
     <string name="watch_learn_skip_late">Vannacht telt niet mee voor de leerfase: Phase Wake is ’s avonds te laat geopend.</string>
+    <string name="editor_alarm_gone">Deze wekker is intussen verwijderd.</string>
 </resources>

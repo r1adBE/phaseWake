@@ -14,13 +14,26 @@ public struct HealthSession: Equatable, Sendable {
     public let stages: [StageSpan]
     /// Herkunft: Apple Bundle-ID bzw. Quellname, Android Paketname; `nil` = unbekannt.
     public let source: String?
+    /// Zeitzone, in der die Sitzung aufgezeichnet wurde (Apple `HKMetadataKeyTimeZone`, Health Connect `startZoneOffset`);
+    /// `nil` = unbekannt, dann gilt die Zone des Geräts. Nickerchen-Regel (``isNap(calendar:)``) und angezeigte Uhrzeiten
+    /// rechnen in dieser Zone (Audit F-3): Ein Nickerchen in New York bleibt eines, auch wenn man es in Zürich anschaut.
+    public let timeZone: TimeZone?
 
     /// Erzeugt eine Sitzung; `start` liegt vor `end` (sonst übergeht ``HealthHistory/merge(nights:sessions:clearedAt:calendar:)`` sie).
-    public init(start: Date, end: Date, stages: [StageSpan] = [], source: String? = nil) {
+    public init(start: Date, end: Date, stages: [StageSpan] = [], source: String? = nil, timeZone: TimeZone? = nil) {
         self.start = start
         self.end = end
         self.stages = stages
         self.source = source
+        self.timeZone = timeZone
+    }
+
+    /// `calendar` in der Zone der Aufzeichnung (``timeZone``); ohne sie unverändert (Zone des Geräts).
+    public func localCalendar(_ calendar: Calendar) -> Calendar {
+        guard let timeZone else { return calendar }
+        var local = calendar
+        local.timeZone = timeZone
+        return local
     }
 
     /// Länge `end` − `start` in ganzen Minuten, abgerundet, nie negativ.
@@ -46,9 +59,11 @@ public struct HealthSession: Equatable, Sendable {
 
     /// Ob die Sitzung ein Nickerchen statt einer Nacht ist: kürzer als ``HealthHistory/minNightMinutes`` und ganz am
     /// Tag – Beginn frühestens ``HealthHistory/napEarliestHour`` Uhr, Ende spätestens ``HealthHistory/napLatestHour`` Uhr,
-    /// beides Ortszeit in `calendar` am selben Tag. Kurzer Schlaf in der Nacht (z. B. 01:00–03:00) bleibt eine Nacht.
-    /// Setzt die Sitzung eine Nacht fort (Weiterschlafen, ``HealthHistory/continuationGap``), zählt sie trotzdem zu dieser Nacht.
-    public func isNap(calendar: Calendar) -> Bool {
+    /// beides Ortszeit am selben Tag in der Zone der Aufzeichnung (``timeZone``), ohne sie in `calendar`. Kurzer Schlaf in der
+    /// Nacht (z. B. 01:00–03:00) bleibt eine Nacht. Setzt die Sitzung eine Nacht fort (Weiterschlafen,
+    /// ``HealthHistory/continuationGap``), zählt sie trotzdem zu dieser Nacht.
+    public func isNap(calendar deviceCalendar: Calendar) -> Bool {
+        let calendar = localCalendar(deviceCalendar)
         guard durationMinutes < HealthHistory.minNightMinutes, calendar.isDate(start, inSameDayAs: end),
               let earliest = calendar.date(bySettingHour: HealthHistory.napEarliestHour, minute: 0, second: 0, of: start),
               let latest = calendar.date(bySettingHour: HealthHistory.napLatestHour, minute: 0, second: 0, of: start) else { return false }
@@ -243,11 +258,11 @@ public enum HealthHistory {
     }
 
     /// Eine Kette (``chains(_:clearedAt:calendar:)``) als eine Sitzung: Beginn des ersten bis Ende des letzten Teils, Quelle
-    /// des ersten, Phasen aller Teile (auf ihren Teil zugeschnitten, ``spans(_:)``) – die Lücken dazwischen zählen nicht als Schlaf.
+    /// und Zone des ersten, Phasen aller Teile (auf ihren Teil zugeschnitten, ``spans(_:)``) – die Lücken dazwischen zählen nicht als Schlaf.
     private static func join(_ parts: [HealthSession]) -> HealthSession {
         let first = parts[0]
         guard parts.count > 1, let last = parts.last else { return first }
-        return HealthSession(start: first.start, end: last.end, stages: trimmed(parts), source: first.source)
+        return HealthSession(start: first.start, end: last.end, stages: trimmed(parts), source: first.source, timeZone: first.timeZone)
     }
 
     /// Phasen der Teile einer Kette (``spans(_:)``), jeder Teil erst ab dem Ende des vorigen: Eine kurze Überlappung

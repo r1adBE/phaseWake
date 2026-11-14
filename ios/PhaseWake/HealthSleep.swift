@@ -95,8 +95,19 @@ final class HealthSleep: @unchecked Sendable {
             let spans = group.compactMap(Self.span)
             let known = spans.filter { $0.stage != .unknown }
             let kept = spans.filter { s in s.stage != .unknown || !known.contains { $0.start < s.end && $0.end > s.start } }
-            return HealthSession(start: start, end: end, stages: kept.sorted { $0.start < $1.start }, source: source)
+            return HealthSession(start: start, end: end, stages: kept.sorted { $0.start < $1.start }, source: source,
+                                 timeZone: Self.timeZone(of: group))
         }
+    }
+
+    /// Zone der Aufzeichnung (Audit F-3): die erste Probe mit `HKMetadataKeyTimeZone` (Name wie «Europe/Zurich», auch
+    /// Kürzel); `nil` ohne Angabe, dann gilt die Zone des Geräts.
+    private static func timeZone(of samples: [HKCategorySample]) -> TimeZone? {
+        for sample in samples {
+            if let name = sample.metadata?[HKMetadataKeyTimeZone] as? String,
+               let zone = TimeZone(identifier: name) ?? TimeZone(abbreviation: name) { return zone }
+        }
+        return nil
     }
 
     private static func span(_ sample: HKCategorySample) -> StageSpan? {

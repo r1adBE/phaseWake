@@ -26,13 +26,39 @@ final class LearnLogStore {
         var alarmsSince: Double?
     }
 
-    @ObservationIgnored private let url = PrivateFiles.directory.appendingPathComponent("learn-log.v1")
+    @ObservationIgnored private let url: URL
+    /// Ob die Datei gelesen ist (oder fehlt); vor dem ersten Entsperren nicht: dann nie schreiben (Prüfrunde 2 SP-1).
+    @ObservationIgnored private(set) var loaded = false
+    /// Meldungen der Uhr, die vor dem Lesen kamen; ``load()`` nimmt sie danach auf.
+    @ObservationIgnored private var pending: [String] = []
 
-    private init() {
-        let stored = (try? Data(contentsOf: url)).flatMap { try? JSONDecoder().decode(Stored.self, from: $0) }
-        skips = LearnLog.decodeSkips(stored?.skips)
-        alarmNights = LearnLog.decodeAlarmNights(stored?.alarmNights)
-        alarmsSince = stored?.alarmsSince.map { Date(timeIntervalSince1970: $0) }
+    /// `directory`: Ordner der Datei; Tests geben einen eigenen, die App nutzt ``shared``.
+    init(directory: URL = PrivateFiles.directory) {
+        url = directory.appendingPathComponent("learn-log.v1")
+        skips = []
+        alarmNights = [:]
+        alarmsSince = nil
+        load()
+    }
+
+    /// Liest die Datei, falls noch nicht geschehen («fehlt» = leer, «nicht lesbar» = später, ``ProtectedFile``), und
+    /// nimmt danach gemerkte Meldungen auf. - Returns: ob gelesen (schon vorher oder jetzt).
+    @discardableResult
+    func load() -> Bool {
+        if !loaded {
+            let file = ProtectedFile.read(url)
+            guard file != .unreadable else { return false }
+            if case let .data(data) = file, let stored = try? JSONDecoder().decode(Stored.self, from: data) {
+                skips = LearnLog.decodeSkips(stored.skips)
+                alarmNights = LearnLog.decodeAlarmNights(stored.alarmNights)
+                alarmsSince = stored.alarmsSince.map { Date(timeIntervalSince1970: $0) }
+            }
+            loaded = true
+        }
+        let queued = pending
+        pending = []
+        queued.forEach(receive)
+        return true
     }
 
     /// Ab diesem Nachtdatum gilt ein fehlender Wecker als «kein Wecker» (die Nacht nach dem ersten Merken); sonst `nil`.
@@ -42,6 +68,10 @@ final class LearnLogStore {
 
     /// Meldung der Uhr (`SyncKeys.learnSkip`) speichern; dieselbe Nacht ersetzt die frühere.
     func receive(_ text: String) {
+        guard load() else {
+            pending.append(text)
+            return
+        }
         guard let skip = LearnSkip.decode(text) else {
             DiagStore.shared.log(.error, "learn skip unreadable")
             return
@@ -54,6 +84,7 @@ final class LearnLogStore {
     /// Neuplanen um `now`: die Nächte mit Wecker der nächsten Tage aus `alarms` (mit `holidays`) merken; vergangene
     /// bleiben. Beim ersten Mal beginnt das Wissen über Wecker.
     func noteAlarms(_ alarms: [AlarmSpec], holidays: Set<String>, now: Date) {
+        guard load() else { return }
         let calendar = Calendar.gregorianLocal
         let planned = LearnLog.upcomingTargets(alarms, now: now, calendar: calendar, holidays: holidays)
         let merged = LearnLog.mergeAlarmNights(alarmNights, planned: planned, now: now, calendar: calendar)
@@ -65,6 +96,7 @@ final class LearnLogStore {
 
     /// «Verlauf löschen»: Meldungen und vergangene Wecker-Nächte weg; das Wissen über Wecker beginnt ab `now` neu.
     func clear(now: Date) {
+        guard load() else { return }
         skips = []
         alarmNights = alarmNights.filter { $0.value > now }
         alarmsSince = now
@@ -72,6 +104,7 @@ final class LearnLogStore {
     }
 
     private func save() {
+        guard loaded else { return }
         let stored = Stored(skips: LearnLog.encodeSkips(skips), alarmNights: LearnLog.encodeAlarmNights(alarmNights),
                             alarmsSince: alarmsSince?.timeIntervalSince1970)
         if let data = try? JSONEncoder().encode(stored) { try? data.write(to: url, options: .atomic) }

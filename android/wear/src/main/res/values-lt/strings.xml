@@ -116,4 +116,5 @@
     <string name="watch_learn_skip_battery">Ši naktis neįskaitoma mokymosi etapui: baterija %1$d %%, reikia %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Ši naktis neįskaitoma mokymosi etapui: Phase Wake negali naudoti laikrodžio jutiklių.</string>
     <string name="watch_learn_skip_late">Ši naktis neįskaitoma mokymosi etapui: Phase Wake vakare atidarytas per vėlai.</string>
+    <string name="editor_alarm_gone">Šis žadintuvas tuo metu buvo ištrintas.</string>
 </resources>

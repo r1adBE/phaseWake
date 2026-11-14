@@ -76,7 +76,9 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle(L("settings_title"))
-            .confirmationDialog(L("settings_clear_history_text") + " " + L("settings_clear_history_learn"), isPresented: $confirmClear,
+            // Nennt alles, was gelöscht wird (Prüfrunde 2, B-13, gleicher Text wie Android).
+            .confirmationDialog([L("settings_clear_history_text"), L("settings_clear_history_also"), L("settings_clear_history_learn")].joined(separator: " "),
+                                isPresented: $confirmClear,
                                 titleVisibility: .visible) {
                 // Mit Gerätesperre zusätzlich Face ID, Touch ID oder Code; ohne Sperre genügt diese Rückfrage.
                 Button(L("settings_clear_history_confirm"), role: .destructive) {

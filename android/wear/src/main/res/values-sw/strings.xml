@@ -107,4 +107,5 @@
     <string name="watch_learn_skip_battery">Usiku wa leo hauhesabiwi kwa hatua ya kujifunza: betri %1$d %%, inahitajika %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Usiku wa leo hauhesabiwi kwa hatua ya kujifunza: Phase Wake haiwezi kutumia vitambuzi vya saa.</string>
     <string name="watch_learn_skip_late">Usiku wa leo hauhesabiwi kwa hatua ya kujifunza: Phase Wake ilifunguliwa kuchelewa mno jioni.</string>
+    <string name="editor_alarm_gone">Kengele hii imefutwa wakati huo.</string>
 </resources>

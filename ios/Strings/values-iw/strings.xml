@@ -33,4 +33,6 @@
     <string name="check_watch_state_old">מצב השעון לא עדכני – פתח לרגע את Phase Wake בשעון.</string>
     <string name="editor_sleep_hint_apple">נספר מרגע ההירדמות – הקישו על ״לילה טוב״ בשעון כשאתם הולכים לישון. ב-Apple Watch, Phase Wake מעריך מתי נרדמתם לפי זמן ההירדמות שנלמד. בלי הקשה חלה השעה שהוגדרה.</string>
     <string name="auto_onset_hint_apple">פתחו את Phase Wake ב-Apple Watch משעה לפני שעת השינה (השעון יזכיר לכם), ומאז ועד חלון ההשכמה הוא מקליט את התנועה שלכם; אז Phase Wake מחשב מתי נרדמתם.</string>
+    <string name="home_good_night_tap_cancel">הקישו לביטול</string>
+    <string name="good_night_cancel">ביטול לילה טוב</string>
 </resources>

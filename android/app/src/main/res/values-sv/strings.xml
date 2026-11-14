@@ -427,6 +427,7 @@
     <string name="holidays_off">Inga helgdagar</string>
     <string name="holidays_hint">Lokala helgdagar i enskilda kommuner ingår inte.</string>
     <string name="holidays_next">Nästa helgdag: %1$s</string>
+    <string name="holidays_next_estimated">Uppskattad helgdag: %1$s – larmet ringer. Är du ledig, hoppa över dagen själv.</string>
     <string name="editor_skip_holidays">Väck inte på helgdagar</string>
     <string name="editor_skip_holidays_hint">Välj land och region i inställningarna.</string>
     <string name="home_holiday_skipped">%1$s: helgdag – inget alarm</string>
@@ -625,4 +626,10 @@
     <string name="learn_tip_late">Öppna Phase Wake på klockan på kvällen, senast när den påminner dig.</string>
     <string name="learn_tip_alarm">Klockan spelar bara in nätter med alarm.</string>
     <string name="learn_tip_connect">Håll klockan påslagen och ansluten till telefonen – den skickar inspelningen efter alarmet.</string>
+    <string name="battery_night">Batteri: %1$s</string>
+    <string name="battery_watch">Klocka −%1$d %%</string>
+    <string name="battery_phone">Mobil −%1$d %%</string>
+    <string name="editor_alarm_gone">Det här larmet har tagits bort under tiden.</string>
+    <string name="test_replaces_nap">Testlarmet avslutar din tupplur.</string>
+    <string name="settings_clear_history_also">Anteckningar, känsla, bockar i kvällsrutinen och ljudklipp tas också bort.</string>
 </resources>

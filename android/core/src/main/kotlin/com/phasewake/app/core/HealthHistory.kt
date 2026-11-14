@@ -21,7 +21,16 @@ data class HealthSession(
     val stages: List<StageSpan> = emptyList(),
     /** Herkunft: Paketname (Android, z. B. «com.sec.android.app.shealth») bzw. Quelle (Apple); `null` = unbekannt. */
     val source: String? = null,
+    /**
+     * Zeitzone, in der die Sitzung aufgezeichnet wurde (Health Connect `startZoneOffset`, Apple `HKMetadataKeyTimeZone`);
+     * `null` = unbekannt, dann gilt die Zone des Geräts. Nickerchen-Regel ([isNap]) und angezeigte Uhrzeiten rechnen in
+     * dieser Zone (Audit F-3): Ein Nickerchen in New York bleibt eines, auch wenn man es in Zürich anschaut.
+     */
+    val timeZone: ZoneId? = null,
 ) {
+    /** Zone für Uhrzeiten dieser Sitzung: die der Aufzeichnung ([timeZone]), sonst [fallback] (Gerät). */
+    fun zoneOr(fallback: ZoneId): ZoneId = timeZone ?: fallback
+
     /** Dauer von [start] bis [end] in ganzen Minuten; 0, wenn [end] nicht nach [start] liegt. */
     val durationMinutes: Long get() = Duration.between(start, end).toMinutes().coerceAtLeast(0)
 
@@ -40,14 +49,15 @@ data class HealthSession(
 
     /**
      * Nickerchen statt Nacht: kürzer als [HealthHistory.MIN_NIGHT_MINUTES] und ganz am Tag – Beginn frühestens
-     * [HealthHistory.NAP_EARLIEST], Ende spätestens [HealthHistory.NAP_LATEST], beides Ortszeit in [zone] am selben
-     * Tag. Kurzer Schlaf in der Nacht (z. B. 01:00–03:00) bleibt eine Nacht. Setzt die Sitzung eine Nacht fort
-     * (Weiterschlafen, [HealthHistory.CONTINUATION_GAP]), zählt sie trotzdem zu dieser Nacht.
+     * [HealthHistory.NAP_EARLIEST], Ende spätestens [HealthHistory.NAP_LATEST], beides Ortszeit am selben Tag in der Zone
+     * der Aufzeichnung ([timeZone]), ohne sie in [zone]. Kurzer Schlaf in der Nacht (z. B. 01:00–03:00) bleibt eine Nacht.
+     * Setzt die Sitzung eine Nacht fort (Weiterschlafen, [HealthHistory.CONTINUATION_GAP]), zählt sie trotzdem zu dieser Nacht.
      */
     fun isNap(zone: ZoneId): Boolean {
         if (durationMinutes >= HealthHistory.MIN_NIGHT_MINUTES) return false
-        val from = start.atZone(zone).toLocalDateTime()
-        val to = end.atZone(zone).toLocalDateTime()
+        val local = zoneOr(zone)
+        val from = start.atZone(local).toLocalDateTime()
+        val to = end.atZone(local).toLocalDateTime()
         return from.toLocalDate() == to.toLocalDate() &&
             !from.toLocalTime().isBefore(HealthHistory.NAP_EARLIEST) && !to.toLocalTime().isAfter(HealthHistory.NAP_LATEST)
     }
@@ -212,12 +222,12 @@ object HealthHistory {
     }
 
     /**
-     * Eine Kette ([chains]) als eine Sitzung: Beginn des ersten bis Ende des letzten Teils, Quelle des ersten, Phasen
+     * Eine Kette ([chains]) als eine Sitzung: Beginn des ersten bis Ende des letzten Teils, Quelle und Zone des ersten, Phasen
      * aller Teile (auf ihren Teil zugeschnitten, [spans]) – die Lücken dazwischen zählen nicht als Schlaf.
      */
     private fun join(parts: List<HealthSession>): HealthSession {
         if (parts.size == 1) return parts.single()
-        return HealthSession(parts.first().start, parts.last().end, trimmed(parts), parts.first().source)
+        return HealthSession(parts.first().start, parts.last().end, trimmed(parts), parts.first().source, parts.first().timeZone)
     }
 
     /**

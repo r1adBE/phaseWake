@@ -466,6 +466,7 @@
     <string name="holidays_off">Gan laethanta saoire</string>
     <string name="holidays_hint">Níl laethanta saoire áitiúla bailte aonair san áireamh.</string>
     <string name="holidays_next">An chéad lá saoire eile: %1$s</string>
+    <string name="holidays_next_estimated">Lá saoire measta: %1$s – buailfidh an t-aláram. Má tá an lá saor agat, scipeáil é tú féin.</string>
     <string name="editor_skip_holidays">Ná dúisigh ar laethanta saoire</string>
     <string name="editor_skip_holidays_hint">Roghnaigh tír agus réigiún sna socruithe.</string>
     <string name="home_holiday_skipped">%1$s: lá saoire – gan aláram</string>
@@ -670,4 +671,10 @@
     <string name="learn_tip_late">Oscail Phase Wake ar an uaireadóir tráthnóna, an meabhrúchán ar a dhéanaí.</string>
     <string name="learn_tip_alarm">Ní thaifeadann an t-uaireadóir ach oícheanta a bhfuil aláram iontu.</string>
     <string name="learn_tip_connect">Coinnigh an t-uaireadóir ar siúl agus ceangailte le do ghuthán – seolann sé an taifeadadh tar éis an aláraim.</string>
+    <string name="battery_night">Ceallra: %1$s</string>
+    <string name="battery_watch">Uaireadóir −%1$d %%</string>
+    <string name="battery_phone">Fón −%1$d %%</string>
+    <string name="editor_alarm_gone">Scriosadh an t-aláram seo idir an dá linn.</string>
+    <string name="test_replaces_nap">Cuireann an t-aláram tástála deireadh le do néal cumhachta.</string>
+    <string name="settings_clear_history_also">Scriostar nótaí, mothú, ticeanna an ghnáthaimh tráthnóna agus gearrthóga fuaime freisin.</string>
 </resources>

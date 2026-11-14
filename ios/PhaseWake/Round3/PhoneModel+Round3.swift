@@ -19,7 +19,14 @@ extension PhoneModel {
     }
 
     /// Wecker, Feiertage, Schlafziel und Lernphase an die Uhr; der Anwendungskontext ersetzt jeweils den ganzen Stand.
+    /// Erst wenn Stand und Lernphase gelesen sind (nach dem ersten Entsperren): Ein Kontext aus dem leeren Stand gälte auf
+    /// der Uhr als neuer und löschte Lernwerte, Schlafziel, Feiertage und den Schalter für das automatische Einschlafen
+    /// (Prüfrunde 2 HG-1/SP-1). `catchUpState` sendet nach dem Lesen.
     func publishToWatch(_ snapshot: AlarmSnapshot? = nil) {
+        guard stateLoaded, PhoneLearning.shared.load() else {
+            DiagStore.shared.log(.sync, "context not sent: state not readable yet")
+            return
+        }
         PhoneConnectivity.shared.publish(snapshot ?? storage.snapshot(), holidays: holidays.list, sleepGoal: sleepGoal,
                                          learning: PhoneLearning.shared.watchSnapshot())
     }
@@ -54,23 +61,43 @@ extension PhoneModel {
     /// - Returns: ob der Stand gelesen ist (schon vorher oder jetzt).
     @discardableResult
     func catchUpState() -> Bool {
-        if stateLoaded { return true }
+        if stateLoaded {
+            // Lernphase erst jetzt lesbar: ihren Stand nachsenden.
+            if catchUpFiles() { publishToWatch() }
+            return true
+        }
         guard SettingsFile.phone.isReadable else { return false }
         loadState()
         guard stateLoaded else { return false }
+        // Feiertagswahl: beim Start galt das Land des Geräts (Prüfrunde 2 SP-2).
+        let holidaysMoved = holidays.reloadChoice()
         holidays.adopt(lastSent: storage.holidays)
         DiagStore.shared.log(.boot, "settings readable, state loaded")
         // Wecker der Uhr, die vor dem Lesen kamen, jetzt anwenden.
         applyPendingRemote()
+        catchUpFiles()
         // Bestehende Installation: keine Ersteinrichtung (wie beim Start in `PhaseWakeApp`).
         if !alarms.isEmpty || !nights.isEmpty { UserDefaults.standard.set(true, forKey: OnboardingView.doneKey) }
-        Task { await planAll() }
+        // Vorher nicht gesendet (`publishToWatch`): jetzt der gelesene Stand.
+        publishToWatch()
+        Task { await planAll(holidaysMoved: holidaysMoved) }
         return true
     }
 
-    /// Feiertage laden, dann Sicherung, Erinnerungen, laufende Probewecker und Lernphase planen.
-    private func planAll() async {
-        if await holidays.load() {
+    /// Lernphase und Lern-Übersicht nachlesen und gemerkte Nächte speichern, sobald ihre Dateien lesbar sind (Prüfrunde 2
+    /// HG-1/SP-1). - Returns: ob die Lernphase eben erst gelesen wurde.
+    @discardableResult
+    private func catchUpFiles() -> Bool {
+        LearnLogStore.shared.load()
+        let learning = PhoneLearning.shared, wasLoaded = learning.loaded
+        applyPendingNights()
+        return learning.load() && !wasLoaded
+    }
+
+    /// Feiertage laden, dann Sicherung, Erinnerungen, laufende Probewecker und Lernphase planen. `holidaysMoved`: Die
+    /// Feiertage haben sich schon vorher geändert (`HolidayStore/reloadChoice()`), also auch merken und senden.
+    private func planAll(holidaysMoved: Bool = false) async {
+        if await holidays.load() || holidaysMoved {
             holidaysChanged()
         } else {
             await backup.reschedule(alarms)

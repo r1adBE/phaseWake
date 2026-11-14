@@ -415,6 +415,7 @@
     <string name="holidays_off">공휴일 없음</string>
     <string name="holidays_hint">개별 지자체의 지역 공휴일은 포함되지 않아요.</string>
     <string name="holidays_next">다음 공휴일: %1$s</string>
+    <string name="holidays_next_estimated">예상 공휴일: %1$s – 알람이 울립니다. 쉬는 날이면 직접 건너뛰세요.</string>
     <string name="editor_skip_holidays">공휴일에는 깨우지 않기</string>
     <string name="editor_skip_holidays_hint">국가와 지역은 설정에서 선택해요.</string>
     <string name="home_holiday_skipped">%1$s: 공휴일 – 알람 없음</string>
@@ -611,4 +612,10 @@
     <string name="learn_tip_late">저녁에 시계에서 Phase Wake를 여세요. 늦어도 알림이 올 때요.</string>
     <string name="learn_tip_alarm">시계는 알람이 있는 밤만 기록합니다.</string>
     <string name="learn_tip_connect">시계를 켜 두고 휴대폰과 연결해 두세요. 알람 후에 기록을 보냅니다.</string>
+    <string name="battery_night">배터리: %1$s</string>
+    <string name="battery_watch">워치 −%1$d %%</string>
+    <string name="battery_phone">휴대폰 −%1$d %%</string>
+    <string name="editor_alarm_gone">이 알람은 그사이 삭제됐어요.</string>
+    <string name="test_replaces_nap">알람 테스트를 하면 낮잠이 끝나요.</string>
+    <string name="settings_clear_history_also">메모, 기분, 저녁 루틴 체크, 소리 클립도 함께 삭제돼요.</string>
 </resources>

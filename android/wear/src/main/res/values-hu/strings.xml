@@ -107,4 +107,5 @@
     <string name="watch_learn_skip_battery">A mai éjszaka nem számít bele a tanulási szakaszba: akku %1$d %%, kell %2$d %%.</string>
     <string name="watch_learn_skip_sensors">A mai éjszaka nem számít bele a tanulási szakaszba: a Phase Wake nem tudja használni az óra érzékelőit.</string>
     <string name="watch_learn_skip_late">A mai éjszaka nem számít bele a tanulási szakaszba: a Phase Wake este túl későn nyílt meg.</string>
+    <string name="editor_alarm_gone">Ezt az ébresztőt időközben törölték.</string>
 </resources>

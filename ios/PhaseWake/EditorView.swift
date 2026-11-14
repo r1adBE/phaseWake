@@ -26,6 +26,11 @@ struct EditorView: View {
     /// Einschlaf-Modus («nach 7½ Std.»): Schlafdauer statt fester Zielzeit; die Uhrzeit ist dann die späteste Weckzeit.
     @State private var sleepMode = false
     @State private var sleepMinutes = Double(EditorView.defaultSleepMinutes)
+    /// Anderswo gelöscht bzw. kein Platz mehr (B-3, B-11, `EditorSave`): Hinweis.
+    @State private var gone = false
+    @State private var full = false
+    /// Selbst gelöscht: Das Verschwinden aus der Liste ist dann kein Löschen anderswo.
+    @State private var deleting = false
 
     /// Vorgabe und Bereich der Schlafdauer wie Android (`EditorState`, `SLEEP_MIN`/`SLEEP_MAX`), in Schritten von 15 Min.
     private static let defaultSleepMinutes = 450
@@ -188,6 +193,7 @@ struct EditorView: View {
                         Button(L("editor_delete"), role: .destructive) { confirmDelete = true }
                             .confirmationDialog(L("editor_delete_title"), isPresented: $confirmDelete, titleVisibility: .visible) {
                                 Button(L("editor_delete"), role: .destructive) {
+                                    deleting = true
                                     model.remove(existing.id)
                                     dismiss()
                                 }
@@ -211,6 +217,16 @@ struct EditorView: View {
             .onAppear(perform: load)
             .onDisappear { preview.stop() }
             .interactiveDismissDisabled(dirty)
+            // Wecker anderswo gelöscht (Uhr), während er hier offen ist: Hinweis und zu, statt ihn neu anzulegen (B-3).
+            .onChange(of: model.alarms.map(\.id)) { _, ids in
+                if check(ids) == .gone, !deleting { gone = true }
+            }
+            .alert(L("editor_alarm_gone"), isPresented: $gone) {
+                Button(L("test_close")) { dismiss() }
+            }
+            .alert(L("home_max_alarms", Int64(PhoneModel.maxAlarms)), isPresented: $full) {
+                Button(L("editor_keep_editing"), role: .cancel) {}
+            }
         }
     }
 
@@ -285,7 +301,17 @@ struct EditorView: View {
         )
     }
 
+    /// Entscheid fürs Speichern aus den gespeicherten Weckern `ids` (B-3, B-11).
+    private func check(_ ids: [String]) -> EditorSave {
+        EditorSave.check(existed: existing != nil, storedIds: ids, draftId: existing?.id ?? newId, maxAlarms: PhoneModel.maxAlarms)
+    }
+
     private func save() {
+        switch check(model.alarms.map(\.id)) {
+        case .gone: gone = true; return
+        case .full: full = true; return
+        case .save: break
+        }
         // Geänderte Zeit oder Tage heben das Überspringen auf (wie Android und die Uhren).
         if let spec = current() { model.upsert(existing.map { spec.with(skipUntil: AlarmSchedule.keepSkip(old: $0, edited: spec)) } ?? spec) }
         dismiss()

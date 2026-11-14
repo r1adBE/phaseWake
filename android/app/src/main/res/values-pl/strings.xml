@@ -451,6 +451,7 @@
     <string name="holidays_off">Bez świąt</string>
     <string name="holidays_hint">Lokalne święta poszczególnych gmin nie są uwzględnione.</string>
     <string name="holidays_next">Następne święto: %1$s</string>
+    <string name="holidays_next_estimated">Szacowane święto: %1$s – budzik zadzwoni. Jeśli masz wolne, pomiń ten dzień sam.</string>
     <string name="editor_skip_holidays">Nie budź w święta</string>
     <string name="editor_skip_holidays_hint">Kraj i region wybierzesz w ustawieniach.</string>
     <string name="home_holiday_skipped">%1$s: święto – bez budzika</string>
@@ -653,4 +654,10 @@
     <string name="learn_tip_late">Wieczorem otwórz Phase Wake na zegarku, najpóźniej przy przypomnieniu.</string>
     <string name="learn_tip_alarm">Zegarek nagrywa tylko noce z budzikiem.</string>
     <string name="learn_tip_connect">Trzymaj zegarek włączony i połączony z telefonem – wysyła nagranie po budziku.</string>
+    <string name="battery_night">Bateria: %1$s</string>
+    <string name="battery_watch">Zegarek −%1$d %%</string>
+    <string name="battery_phone">Telefon −%1$d %%</string>
+    <string name="editor_alarm_gone">Ten budzik został w międzyczasie usunięty.</string>
+    <string name="test_replaces_nap">Budzik testowy kończy Twoją drzemkę.</string>
+    <string name="settings_clear_history_also">Usuwane są też notatki, samopoczucie, odhaczenia wieczornej rutyny i fragmenty dźwięków.</string>
 </resources>

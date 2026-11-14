@@ -115,4 +115,5 @@
     <string name="watch_learn_skip_battery">Dnešná noc sa do fázy učenia nezapočíta: batéria %1$d %%, treba %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Dnešná noc sa do fázy učenia nezapočíta: Phase Wake nemôže používať senzory hodiniek.</string>
     <string name="watch_learn_skip_late">Dnešná noc sa do fázy učenia nezapočíta: Phase Wake bol večer otvorený príliš neskoro.</string>
+    <string name="editor_alarm_gone">Tento budík bol medzitým odstránený.</string>
 </resources>

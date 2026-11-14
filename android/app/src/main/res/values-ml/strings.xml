@@ -429,6 +429,7 @@
     <string name="holidays_off">അവധിദിനങ്ങളില്ല</string>
     <string name="holidays_hint">ഓരോ പട്ടണത്തിന്റെയും പ്രാദേശിക അവധികൾ ഉൾപ്പെടുത്തിയിട്ടില്ല.</string>
     <string name="holidays_next">അടുത്ത അവധി: %1$s</string>
+    <string name="holidays_next_estimated">ഏകദേശ അവധി: %1$s – അലാറം മുഴങ്ങും. അവധിയാണെങ്കിൽ, ആ ദിവസം സ്വയം ഒഴിവാക്കുക.</string>
     <string name="editor_skip_holidays">അവധിദിനങ്ങളിൽ ഉണർത്തരുത്</string>
     <string name="editor_skip_holidays_hint">ക്രമീകരണത്തിൽ രാജ്യവും പ്രദേശവും തിരഞ്ഞെടുക്കുക.</string>
     <string name="home_holiday_skipped">%1$s: അവധി – അലാറമില്ല</string>
@@ -627,4 +628,10 @@
     <string name="learn_tip_late">വൈകുന്നേരം വാച്ചിൽ Phase Wake തുറക്കുക, ഏറ്റവും വൈകിയാൽ ഓർമ്മപ്പെടുത്തൽ വരുമ്പോൾ.</string>
     <string name="learn_tip_alarm">അലാറമുള്ള രാത്രികൾ മാത്രമേ വാച്ച് റെക്കോർഡ് ചെയ്യൂ.</string>
     <string name="learn_tip_connect">വാച്ച് ഓണാക്കി ഫോണുമായി ബന്ധിപ്പിച്ച് വയ്ക്കുക – അലാറത്തിന് ശേഷം അത് റെക്കോർഡിംഗ് അയയ്ക്കും.</string>
+    <string name="battery_night">ബാറ്ററി: %1$s</string>
+    <string name="battery_watch">വാച്ച് −%1$d %%</string>
+    <string name="battery_phone">ഫോൺ −%1$d %%</string>
+    <string name="editor_alarm_gone">ഈ അലാറം ഇതിനിടെ ഇല്ലാതാക്കി.</string>
+    <string name="test_replaces_nap">ടെസ്റ്റ് അലാറം നിങ്ങളുടെ പവർ നാപ്പ് അവസാനിപ്പിക്കും.</string>
+    <string name="settings_clear_history_also">കുറിപ്പുകൾ, അനുഭവം, വൈകുന്നേരത്തെ ദിനചര്യയിലെ ടിക്കുകൾ, ശബ്ദ ക്ലിപ്പുകൾ എന്നിവയും ഇല്ലാതാകും.</string>
 </resources>

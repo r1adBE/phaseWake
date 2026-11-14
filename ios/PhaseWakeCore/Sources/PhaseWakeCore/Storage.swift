@@ -127,6 +127,12 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     @discardableResult
     public func applyRemote(_ remote: AlarmSnapshot, now: Date = Date()) -> Bool {
         lock.lock(); defer { lock.unlock() }
+        // Eigener Stand noch nicht gelesen (vor dem ersten Entsperren): nicht gegen den leeren zusammenführen, sonst
+        // ersetzte die Gegenseite beim Lesen die ganze Liste (Prüfrunde 2 SP-3). Der Kontext kommt wieder.
+        guard settingsReadableLocked() else {
+            Self.log("Einstellungen nicht lesbar, Stand der Gegenseite nicht übernommen")
+            return false
+        }
         let nowMs = TimeBounds.millis(now)
         let current = snapshotLocked()
         let full = Dictionary(current.alarms.map { ($0.id, current.stampOf($0.id)) }, uniquingKeysWith: max)
@@ -159,9 +165,11 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     public func applyRemoteContext(_ remote: AlarmSnapshot, now: Date = Date()) -> Bool {
         let key = AlarmStamps.fingerprint(remote)
         lock.lock()
+        // Nicht lesbar: nicht als übernommen merken, der nächste Empfang wendet ihn an (Prüfrunde 2 SP-3).
+        let readable = settingsReadableLocked()
         let seen = defaults.string(forKey: Self.appliedContextKey) == key
         lock.unlock()
-        if seen { return false }
+        if seen || !readable { return false }
         let changed = applyRemote(remote, now: now)
         lock.lock(); defer { lock.unlock() }
         defaults.set(key, forKey: Self.appliedContextKey)
@@ -203,10 +211,18 @@ public final class PhaseWakeStorage: @unchecked Sendable {
                              deleted: AlarmStamps.int64Map(defaults.object(forKey: Self.deletedKey)) ?? [:])
     }
 
-    /// Ob die gespeicherten Wecker lesbar sind (nichts gespeichert zählt als lesbar).
+    /// Ob die gespeicherten Wecker lesbar sind (nichts gespeichert zählt als lesbar). Eine ``SettingsFile``, die noch
+    /// nicht gelesen ist (vor dem ersten Entsperren), ist es nicht: Ihr leerer Stand ist nicht «nichts gespeichert»
+    /// (Prüfrunde 2 SP-3).
     private func alarmsReadableLocked() -> Bool {
+        guard settingsReadableLocked() else { return false }
         let text = defaults.string(forKey: Self.alarmsKey) ?? ""
         return text.isEmpty || (try? Codec.decodeAlarms(text)) != nil
+    }
+
+    /// Ob der Ort der Wecker gelesen ist: eine ``SettingsFile`` erst nach dem ersten gelungenen Lesen, `UserDefaults` immer.
+    private func settingsReadableLocked() -> Bool {
+        (defaults as? SettingsFile)?.isReadable ?? true
     }
 
     /// Schreibt `alarms` mit einem streng steigenden Listen-Zeitpunkt: Wecker in `changed` bekommen ihn als eigenen,
@@ -244,23 +260,39 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     /// Alle gespeicherten Nächte, älteste zuerst; unlesbare fallen weg.
     public func nights() -> [NightRecord] {
         lock.lock(); defer { lock.unlock() }
-        return nightsLocked()
+        return nightsLocked() ?? []
+    }
+
+    /// Ob der Verlauf lesbar ist (oder es keinen gibt); vor dem ersten Entsperren nicht.
+    public var nightsReadable: Bool {
+        lock.lock(); defer { lock.unlock() }
+        return ProtectedFile.read(nightsURL) != .unreadable
     }
 
     /// Fügt eine Nacht hinzu (gleicher Wecker und Fensterbeginn ersetzt) und kürzt auf 90 Nächte.
-    /// Ein schon angegebenes Befinden bleibt erhalten, falls die Uhr dieselbe Nacht noch einmal schickt.
-    /// Alte Dateien brauchen keine Umstellung: Jede Nacht trägt ihren Wecker schon.
-    public func add(_ night: NightRecord) {
+    /// Ein schon angegebenes Befinden und ein gespeicherter Akkustand bleiben, falls die Uhr dieselbe Nacht noch einmal schickt.
+    /// Alte Dateien brauchen keine Umstellung: Jede Nacht trägt ihren Wecker schon. Verlauf nicht lesbar (vor dem
+    /// ersten Entsperren): nichts geschrieben (Prüfrunde 2 SP-5). - Returns: ob die Nacht gespeichert ist.
+    @discardableResult
+    public func add(_ night: NightRecord) -> Bool {
         lock.lock(); defer { lock.unlock() }
-        let current = nightsLocked()
-        let feeling = night.feeling ?? current.first { Self.sameNight($0, night) }?.feeling
-        writeNightsLocked(NightHistory.trim(current.filter { !Self.sameNight($0, night) } + [night.with(feeling: feeling)]))
+        guard let current = nightsLocked() else {
+            Self.log("Verlauf nicht lesbar, Nacht nicht gespeichert")
+            return false
+        }
+        // Befinden und Akku (z. B. des iPhones) bleiben, wenn die Uhr dieselbe Nacht ohne sie noch einmal schickt (wie Android).
+        let old = current.first { Self.sameNight($0, night) }
+        let merged = NightRecord(alarmId: night.alarmId, windowStart: night.windowStart, target: night.target, wokeAt: night.wokeAt,
+                                 reason: night.reason, snoozes: night.snoozes, epochs: night.epochs, feeling: night.feeling ?? old?.feeling,
+                                 watchBattery: night.watchBattery ?? old?.watchBattery, phoneBattery: night.phoneBattery ?? old?.phoneBattery)
+        return writeNightsLocked(NightHistory.trim(current.filter { !Self.sameNight($0, night) } + [merged]))
     }
 
-    /// Speichert das Befinden (1–5) zur Nacht dieses Weckers mit diesem Fensterbeginn.
+    /// Speichert das Befinden (1–5) zur Nacht dieses Weckers mit diesem Fensterbeginn; Verlauf nicht lesbar: nichts.
     public func setFeeling(_ feeling: Int, alarmId: String, windowStart: Date) {
         lock.lock(); defer { lock.unlock() }
-        writeNightsLocked(nightsLocked().map { $0.alarmId == alarmId && $0.windowStart == windowStart ? $0.with(feeling: feeling) : $0 })
+        guard let current = nightsLocked() else { return }
+        writeNightsLocked(current.map { $0.alarmId == alarmId && $0.windowStart == windowStart ? $0.with(feeling: feeling) : $0 })
     }
 
     /// Dieselbe Nacht: gleicher Wecker und gleicher Fensterbeginn. Zwei Wecker mit exakt gleichem
@@ -269,8 +301,15 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         a.alarmId == b.alarmId && a.windowStart == b.windowStart
     }
 
-    private func nightsLocked() -> [NightRecord] {
-        guard let text = try? String(contentsOf: nightsURL, encoding: .utf8) else { return [] }
+    /// Gespeicherte Nächte; `nil` = Datei da, aber nicht lesbar (dann nie überschreiben). Verlustbehaftet dekodiert wie
+    /// `decodeToString` auf Android: Ein ungültiges Byte kostet nur die betroffene Nacht, nicht den Verlauf (SP-5).
+    private func nightsLocked() -> [NightRecord]? {
+        let text: String
+        switch ProtectedFile.read(nightsURL) {
+        case .missing: return []
+        case .unreadable: return nil
+        case let .data(data): text = String(decoding: data, as: UTF8.self)
+        }
         return text.components(separatedBy: Self.separator)
             .filter { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
             .compactMap { try? Codec.decodeNight($0.trimmingCharacters(in: CharacterSet(charactersIn: "\n")) + "\n") }
@@ -278,12 +317,15 @@ public final class PhaseWakeStorage: @unchecked Sendable {
 
     /// Schreibt atomar (temporäre Datei, dann ersetzen): Scheitert das Schreiben, etwa bei vollem
     /// Speicher, bleibt die bisherige Datei unverändert stehen. Der Fehler wird protokolliert.
-    private func writeNightsLocked(_ nights: [NightRecord]) {
+    @discardableResult
+    private func writeNightsLocked(_ nights: [NightRecord]) -> Bool {
         let text = nights.map(Codec.encodeNight).joined(separator: Self.separator)
         do {
             try Data(text.utf8).write(to: nightsURL, options: .atomic)
+            return true
         } catch {
             Self.log("Verlauf nicht gespeichert, bisheriger Stand bleibt: \(error)")
+            return false
         }
     }
 

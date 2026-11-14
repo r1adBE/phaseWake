@@ -102,7 +102,8 @@ enum NightCheck {
             notifications: model.watchNotifications,
             watchProtocol: model.watchProtocol,
             autoOnset: WatchNight.autoOnset,
-            learning: PhoneLearning.shared.state.active
+            learning: PhoneLearning.shared.state.active,
+            charging: model.watchBatteryCharging
         )
         var failed = watchChecks(watch, now: Date())
         if await !alarmsAllowed() { failed.append(.alarms) }
@@ -140,6 +141,8 @@ enum NightCheck {
         var autoOnset = false
         /// Lernphase läuft.
         var learning = false
+        /// Die Uhr lud beim gemeldeten Akkustand (Prüfrunde 2 F-6): Sie misst dann trotz wenig Akku, keine Warnung dazu.
+        var charging = false
     }
 
     /// Prüfungen der Uhr zum Zeitpunkt `now` (ohne Systemabfragen, damit sie sich testen lassen).
@@ -154,7 +157,9 @@ enum NightCheck {
         if let plan = watch.plan, plan.windowStart.timeIntervalSince(now) < armLeadTime, watch.armedTarget != plan.target {
             failed.append(watch.reminder.map { now >= $0 } == true ? .watchArmTonight : .watchArm)
         }
-        if let percent = watch.battery, percent < lowBatteryPercent {
+        // Am Ladegerät warnt der Akku nicht (F-6): Die Uhr ist zur Bettzeit geladen und misst trotzdem.
+        let battery = watch.charging ? nil : watch.battery
+        if let percent = battery, percent < lowBatteryPercent {
             failed.append(.watchBattery)
         }
         // Rekorder heute Nacht nicht gestartet: bis zur Zielzeit dieser Nacht.
@@ -163,7 +168,7 @@ enum NightCheck {
             failed.append(skip.reason == .battery ? .watchRecorderBattery : .watchRecorderMotion)
         }
         // Vorab zum Akku (O-05): nicht, wenn die Uhr schon gemeldet hat, dass sie wegen des Akkus nicht startete.
-        if skip?.reason != .battery, let hint = batteryHint(watch.battery, autoOnset: watch.autoOnset, learning: watch.learning) {
+        if skip?.reason != .battery, let hint = batteryHint(battery, autoOnset: watch.autoOnset, learning: watch.learning) {
             failed.append(hint)
         }
         // Wie die Uhr zuletzt gemeldet hat; unbekannt (ältere Uhr, noch nicht gefragt): keine Warnung.

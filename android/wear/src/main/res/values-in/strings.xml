@@ -103,4 +103,5 @@
     <string name="watch_learn_skip_battery">Malam ini tidak terhitung untuk fase belajar: baterai %1$d %%, perlu %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Malam ini tidak terhitung untuk fase belajar: Phase Wake tidak bisa memakai sensor jam.</string>
     <string name="watch_learn_skip_late">Malam ini tidak terhitung untuk fase belajar: Phase Wake dibuka terlalu larut malam.</string>
+    <string name="editor_alarm_gone">Alarm ini sudah dihapus.</string>
 </resources>

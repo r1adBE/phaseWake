@@ -453,6 +453,7 @@
     <string name="holidays_off">Bez sviatkov</string>
     <string name="holidays_hint">Miestne sviatky jednotlivých obcí nie sú zahrnuté.</string>
     <string name="holidays_next">Ďalší sviatok: %1$s</string>
+    <string name="holidays_next_estimated">Odhadovaný sviatok: %1$s – budík zazvoní. Ak máš voľno, preskoč ten deň sám.</string>
     <string name="editor_skip_holidays">Nebudiť počas sviatkov</string>
     <string name="editor_skip_holidays_hint">Krajinu a región vyberieš v nastaveniach.</string>
     <string name="home_holiday_skipped">%1$s: sviatok – bez budíka</string>
@@ -655,4 +656,10 @@
     <string name="learn_tip_late">Večer otvor Phase Wake v hodinkách, najneskôr pri pripomenutí.</string>
     <string name="learn_tip_alarm">Hodinky zaznamenávajú len noci s budíkom.</string>
     <string name="learn_tip_connect">Nechaj hodinky zapnuté a spojené s telefónom – záznam pošlú po budíku.</string>
+    <string name="battery_night">Batéria: %1$s</string>
+    <string name="battery_watch">Hodinky −%1$d %%</string>
+    <string name="battery_phone">Telefón −%1$d %%</string>
+    <string name="editor_alarm_gone">Tento budík bol medzitým odstránený.</string>
+    <string name="test_replaces_nap">Skúšobný budík ukončí tvoj šlofík.</string>
+    <string name="settings_clear_history_also">Odstránia sa aj poznámky, pocit, zaškrtnutia večernej rutiny a zvukové úryvky.</string>
 </resources>

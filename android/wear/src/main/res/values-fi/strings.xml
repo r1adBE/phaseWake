@@ -107,4 +107,5 @@
     <string name="watch_learn_skip_battery">Tätä yötä ei lasketa oppimisvaiheeseen: akku %1$d %%, tarvitaan %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Tätä yötä ei lasketa oppimisvaiheeseen: Phase Wake ei voi käyttää kellon antureita.</string>
     <string name="watch_learn_skip_late">Tätä yötä ei lasketa oppimisvaiheeseen: Phase Wake avattiin illalla liian myöhään.</string>
+    <string name="editor_alarm_gone">Tämä herätys on poistettu sillä välin.</string>
 </resources>

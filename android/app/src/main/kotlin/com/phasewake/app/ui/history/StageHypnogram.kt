@@ -53,8 +53,17 @@ import java.time.temporal.ChronoUnit
  */
 internal data class HypnoWindow(val start: Instant, val target: Instant, val wokeAt: Instant, val exact: Boolean = false)
 
-/** Was das Hypnogramm zeigt: Zeitachse [from] bis [to], Blöcke ([StageBlock]) und das Weckfenster (nur eigene Nächte). */
-internal data class HypnoModel(val from: Instant, val to: Instant, val blocks: List<StageBlock>, val window: HypnoWindow? = null) {
+/**
+ * Was das Hypnogramm zeigt: Zeitachse [from] bis [to], Blöcke ([StageBlock]) und das Weckfenster (nur eigene Nächte).
+ * [zone]: Uhrzeiten in dieser Zone (Nacht aus der Gesundheits-App: Zone der Aufzeichnung, Audit F-3); `null` = Gerät.
+ */
+internal data class HypnoModel(
+    val from: Instant,
+    val to: Instant,
+    val blocks: List<StageBlock>,
+    val window: HypnoWindow? = null,
+    val zone: ZoneId? = null,
+) {
     /** Länge in Minuten (mindestens 1, damit nie durch 0 geteilt wird). */
     val totalMinutes: Int get() = Duration.between(from, to).toMinutes().toInt().coerceAtLeast(1)
 
@@ -107,7 +116,7 @@ internal fun StageHypnogram(
     val context = LocalContext.current
     val res = LocalResources.current
     val density = LocalDensity.current
-    val zone = ZoneId.systemDefault()
+    val zone = model.zone ?: ZoneId.systemDefault()
     val colors = stageColors()
     val scheme = MaterialTheme.colorScheme
     val measurer = rememberTextMeasurer()
@@ -207,7 +216,7 @@ private fun DrawScope.drawTimeAxis(ticks: List<Pair<TextLayoutResult, Float>>) {
 /** Je Phase ein unsichtbarer Abschnitt in ihrer Breite, damit Bildschirmleser die Phasen der Reihe nach vorlesen. */
 @Composable
 private fun BlockSemantics(model: HypnoModel, left: Dp, top: Dp, context: Context) {
-    val zone = ZoneId.systemDefault()
+    val zone = model.zone ?: ZoneId.systemDefault()
     val res = LocalResources.current
     val total = Duration.between(model.from, model.to).toMillis().coerceAtLeast(1).toFloat()
     Row(Modifier.fillMaxSize().padding(start = left, top = top, bottom = AXIS)) {

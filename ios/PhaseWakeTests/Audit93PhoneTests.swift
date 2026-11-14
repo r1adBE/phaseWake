@@ -106,4 +106,17 @@ final class Audit93PhoneTests: XCTestCase {
         XCTAssertTrue(PhoneCheck.watchOnsetBattery.isAdvisory)
         XCTAssertTrue(PhoneCheck.watchLearnBattery.isAdvisory)
     }
+
+    /// Prüfrunde 2 F-6: Die Uhr meldet den Akku jetzt auch am Ladegerät, mit Ladezustand. Dann misst sie trotz 25 % bzw.
+    /// 15 % (sie wartet am Ladegerät): kein Hinweis und keine Warnung (wie Android `NightCheckState.collect`).
+    @MainActor
+    func testNoBatteryWarningWhileTheWatchCharges() {
+        let now = Date(timeIntervalSince1970: 1_793_000_000)
+        var charging = watch(battery: 25, autoOnset: true, learning: true)
+        charging.charging = true
+        XCTAssertEqual(NightCheck.watchChecks(charging, now: now), [])
+        charging.battery = 15
+        XCTAssertEqual(NightCheck.watchChecks(charging, now: now), [])
+        XCTAssertEqual(NightCheck.watchChecks(watch(battery: 15, autoOnset: true, learning: true), now: now), [.watchBattery])
+    }
 }

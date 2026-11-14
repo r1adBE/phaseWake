@@ -16,10 +16,13 @@ object SleepOnset {
     const val MAX_TWITCHES: Int = 2
 
     /**
-     * Getragen heisst: ein Puls höchstens so viele Epochen (5 Min) vor dem Beginn der Strecke oder in ihm (E-5). Die
-     * Apple Watch misst ihn ruhend etwa alle 5 Min von selbst.
+     * Getragen heisst (E-5, Prüfrunde 2 F-1): ein Puls höchstens so viele Epochen (15 Min) vor dem Beginn der Strecke
+     * oder in ihm, und mindestens einer in der Strecke nach ihrer ersten Epoche. Die Apple Watch misst den Puls ruhend von
+     * selbst, Apple nennt keinen festen Abstand; üblich sind 5 bis 15 Min (neuere Modelle öfter). 15 Min deckt den
+     * grössten üblichen Abstand: Eine getragene Uhr hat damit vor und in jeder 15-Min-Strecke einen Puls, eine abgelegte
+     * misst ab dem Ablegen keinen mehr und findet keine Strecke.
      */
-    const val WORN_EPOCHS: Int = 10
+    const val WORN_EPOCHS: Int = 30
 
     /**
      * @param motions Bewegung je Epoche seit «Gute Nacht», in zeitlicher Reihenfolge.
@@ -27,12 +30,22 @@ object SleepOnset {
      * @return Index der ersten Epoche der ersten ruhigen Strecke, oder `null`, solange es keine gibt. Eine Strecke sind
      *   [STILL_EPOCHS] Epochen, die erste und die letzte ruhig, dazwischen höchstens [MAX_TWITCHES] einzelne Zucker; eine
      *   leere Epoche oder zwei bewegte nacheinander unterbrechen sie.
-     * @param heartRates Puls je Epoche (gleich gezählt wie [motions]) oder `null` (keiner bekannt): Dann beginnt eine Strecke
-     *   nur, wenn die Uhr getragen wurde, also höchstens [WORN_EPOCHS] Epochen davor oder in ihrer ersten Epoche ein Puls
-     *   gemessen ist (Audit c3b8b01 E-5, Puls-Stichprobe wie «vermutlich nicht getragen» der Lern-Übersicht): Abgelegt oder
-     *   auf dem Ladegerät misst die Uhr keinen, und ihr Rauschen zählte sonst als Einschlafen.
+     * @param heartRates Puls je Epoche oder `null` (keiner bekannt): Dann beginnt eine Strecke nur, wenn die Uhr getragen
+     *   wurde, also höchstens [WORN_EPOCHS] Epochen davor oder in ihrer ersten Epoche ein Puls gemessen ist und mindestens
+     *   einer in der Strecke danach (Audit c3b8b01 E-5, Prüfrunde 2 F-1): Abgelegt oder auf dem Ladegerät misst die Uhr
+     *   keinen, und ihr Rauschen zählte sonst als Einschlafen – auch, wenn sie kurz nach einem Puls abgelegt wurde.
+     * @param heartLead So viele Epochen vor [motions] beginnt [heartRates] (Puls vor dem Beginn der Messung zählt für die
+     *   erste Strecke); 0 = gleich gezählt.
      */
-    fun find(motions: List<Double?>, threshold: Double = DetectorConfig.DEFAULT_LIGHT_THRESHOLD, heartRates: List<Double?>? = null): Int? {
+    fun find(
+        motions: List<Double?>,
+        threshold: Double = DetectorConfig.DEFAULT_LIGHT_THRESHOLD,
+        heartRates: List<Double?>? = null,
+        heartLead: Int = 0,
+    ): Int? {
+        fun pulse(index: Int): Boolean = heartRates?.getOrNull(index + heartLead) != null
+        fun worn(start: Int, end: Int): Boolean = heartRates == null ||
+            ((maxOf(-heartLead, start - WORN_EPOCHS)..start).any(::pulse) && (start + 1..end).any(::pulse))
         fun quiet(index: Int): Boolean = motions[index].let { it != null && it < threshold }
         for (start in 0..motions.size - STILL_EPOCHS) {
             val end = start + STILL_EPOCHS - 1
@@ -47,7 +60,7 @@ object SleepOnset {
                     break
                 }
             }
-            if (still && (heartRates == null || (maxOf(0, start - WORN_EPOCHS)..start).any { heartRates.getOrNull(it) != null })) return start
+            if (still && worn(start, end)) return start
         }
         return null
     }

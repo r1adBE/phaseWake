@@ -427,6 +427,7 @@
     <string name="holidays_off">Tatil yok</string>
     <string name="holidays_hint">Tek tek belediyelerin yerel tatilleri dahil değildir.</string>
     <string name="holidays_next">Sonraki tatil: %1$s</string>
+    <string name="holidays_next_estimated">Tahmini tatil: %1$s – alarm çalacak. İzinliysen günü kendin atla.</string>
     <string name="editor_skip_holidays">Tatillerde uyandırma</string>
     <string name="editor_skip_holidays_hint">Ülke ve bölgeyi ayarlardan seç.</string>
     <string name="home_holiday_skipped">%1$s: tatil – alarm yok</string>
@@ -625,4 +626,10 @@
     <string name="learn_tip_late">Akşam Phase Wake\'i saatte aç, en geç hatırlatma geldiğinde.</string>
     <string name="learn_tip_alarm">Saat yalnızca alarmlı geceleri kaydeder.</string>
     <string name="learn_tip_connect">Saati açık ve telefonuna bağlı tut – kaydı alarmdan sonra gönderir.</string>
+    <string name="battery_night">Pil: %1$s</string>
+    <string name="battery_watch">Saat −%%%1$d</string>
+    <string name="battery_phone">Telefon −%%%1$d</string>
+    <string name="editor_alarm_gone">Bu alarm bu arada silindi.</string>
+    <string name="test_replaces_nap">Test alarmı şekerlemeni sonlandırır.</string>
+    <string name="settings_clear_history_also">Notlar, hissediş, akşam rutini işaretleri ve ses parçaları da silinir.</string>
 </resources>

@@ -36,4 +36,6 @@
     <string name="check_watch_state_old">Erlojuaren egoera zaharkituta dago – ireki Phase Wake une batez erlojuan.</string>
     <string name="editor_sleep_hint_apple">Lokartzen zarenetik zenbatzen da – sakatu «Gabon» erlojuan ohera zoazenean. Apple Watch-en, Phase Wake-k noiz lokartzen zaren kalkulatzen du ikasitako lokartzeko denboratik. Sakatu gabe, ezarritako ordua aplikatzen da.</string>
     <string name="auto_onset_hint_apple">Ireki Phase Wake Apple Watchean oheratu baino ordubete lehenagotik (gogorarazi egiten dizu), eta orduz geroztik esnatze-leihora arte zure mugimendua erregistratzen du; orduan, Phase Wake-k kalkulatzen du noiz geratu zinen lo.</string>
+    <string name="home_good_night_tap_cancel">sakatu bertan behera uzteko</string>
+    <string name="good_night_cancel">Utzi Gabon bertan behera</string>
 </resources>

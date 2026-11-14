@@ -427,6 +427,7 @@
     <string name="holidays_off">Ei juhlapäiviä</string>
     <string name="holidays_hint">Yksittäisten kuntien paikalliset juhlapäivät eivät ole mukana.</string>
     <string name="holidays_next">Seuraava juhlapäivä: %1$s</string>
+    <string name="holidays_next_estimated">Arvioitu juhlapäivä: %1$s – herätys soi. Jos olet vapaalla, ohita päivä itse.</string>
     <string name="editor_skip_holidays">Älä herätä juhlapäivinä</string>
     <string name="editor_skip_holidays_hint">Valitse maa ja alue asetuksissa.</string>
     <string name="home_holiday_skipped">%1$s: juhlapäivä – ei herätystä</string>
@@ -625,4 +626,10 @@
     <string name="learn_tip_late">Avaa Phase Wake kellossa illalla, viimeistään muistutuksen tullessa.</string>
     <string name="learn_tip_alarm">Kello tallentaa vain öitä, joille on herätys.</string>
     <string name="learn_tip_connect">Pidä kello päällä ja yhdistettynä puhelimeen – se lähettää tallennuksen herätyksen jälkeen.</string>
+    <string name="battery_night">Akku: %1$s</string>
+    <string name="battery_watch">Kello −%1$d %%</string>
+    <string name="battery_phone">Puhelin −%1$d %%</string>
+    <string name="editor_alarm_gone">Tämä herätys on poistettu sillä välin.</string>
+    <string name="test_replaces_nap">Testiherätys lopettaa päiväunesi.</string>
+    <string name="settings_clear_history_also">Myös muistiinpanot, olo, iltarutiinin rastit ja äänileikkeet poistetaan.</string>
 </resources>

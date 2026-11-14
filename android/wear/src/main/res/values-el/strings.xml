@@ -107,4 +107,5 @@
     <string name="watch_learn_skip_battery">Απόψε δεν μετράει για τη φάση εκμάθησης: μπαταρία στο %1$d %%, χρειάζεται %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Απόψε δεν μετράει για τη φάση εκμάθησης: το Phase Wake δεν μπορεί να χρησιμοποιήσει τους αισθητήρες του ρολογιού.</string>
     <string name="watch_learn_skip_late">Απόψε δεν μετράει για τη φάση εκμάθησης: το Phase Wake άνοιξε πολύ αργά το βράδυ.</string>
+    <string name="editor_alarm_gone">Αυτό το ξυπνητήρι διαγράφηκε στο μεταξύ.</string>
 </resources>

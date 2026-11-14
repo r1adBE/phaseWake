@@ -83,10 +83,10 @@ class OutsideTimeDigitsTest {
     fun tileWindowAndExact() {
         val window = WakePlan("a", start, target)
         val exact = window.copy(exact = true)
-        assertArabic(NextAlarmTileService.tileTexts(context(ar), window, zone, ar).first)
-        assertArabic(NextAlarmTileService.tileTexts(context(ar), exact, zone, ar).first)
-        assertEquals("06:30 – 07:00", NextAlarmTileService.tileTexts(context(de), window, zone, de).first)
-        assertLatin(NextAlarmTileService.tileTexts(context(de), exact, zone, de).first)
+        assertArabic(NextAlarmTileService.tileTexts(context(ar), window, zone, start, ar).title)
+        assertArabic(NextAlarmTileService.tileTexts(context(ar), exact, zone, start, ar).title)
+        assertEquals("06:30 – 07:00", NextAlarmTileService.tileTexts(context(de), window, zone, start, de).title)
+        assertLatin(NextAlarmTileService.tileTexts(context(de), exact, zone, start, de).title)
     }
 
     @Test

@@ -34,4 +34,6 @@
     <string name="check_watch_state_old">L’estat del rellotge no està actualitzat – obre un moment Phase Wake al rellotge.</string>
     <string name="editor_sleep_hint_apple">Compta des que t’adorms – toca «Bona nit» al rellotge quan te’n vagis al llit. A l’Apple Watch, Phase Wake estima quan t’adorms a partir del temps per adormir-te que ha après. Sense tocar-lo, val l’hora definida.</string>
     <string name="auto_onset_hint_apple">Obre Phase Wake a l’Apple Watch des d’1 hora abans d’anar a dormir (te’l recorda) i des d’aleshores fins a la finestra de despertar enregistra el teu moviment; llavors Phase Wake calcula quan et vas adormir.</string>
+    <string name="home_good_night_tap_cancel">toca per cancel·lar</string>
+    <string name="good_night_cancel">Cancel·la Bona nit</string>
 </resources>

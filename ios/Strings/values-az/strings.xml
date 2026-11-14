@@ -33,4 +33,6 @@
     <string name="check_watch_state_old">Saatın vəziyyəti köhnəlib – Phase Wake-i saatda qısa müddətə aç.</string>
     <string name="editor_sleep_hint_apple">Yuxuya getdiyin andan sayılır – yatanda saatda «Gecən xeyrə» toxun. Apple Watch-da Phase Wake yuxuya getmə vaxtını öyrəndiyi yuxuya getmə müddətinə görə təxmin edir. Toxunmasan, qurulmuş vaxt keçərlidir.</string>
     <string name="auto_onset_hint_apple">Yatma vaxtından 1 saat əvvəldən Phase Wake-i Apple Watch-da açsan (saat sənə xatırladır), o andan oyanma aralığına qədər hərəkətini qeyd edir; sonra Phase Wake nə vaxt yuxuya getdiyini hesablayır.</string>
+    <string name="home_good_night_tap_cancel">ləğv üçün toxun</string>
+    <string name="good_night_cancel">Gecən xeyrəni ləğv et</string>
 </resources>

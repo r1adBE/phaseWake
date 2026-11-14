@@ -39,6 +39,10 @@ extension LearnRecorder {
     /// Ob der Rekorder laut dem zuletzt gestarteten Zeitraum gerade aufzeichnet.
     var recorderRunning: Bool { recorderSpan.map { Date() < $0.until } ?? false }
 
+    /// Ob der zuletzt gestartete Rekorder bei offener App startete (Prüfrunde 2 HG-2); ältere Stände: nein.
+    var recorderStartedActive: Bool { SettingsFile.watchSession.bool(forKey: Self.recorderActiveKey) }
+    private static let recorderActiveKey = "recorderActive"
+
     /// Ob der Rekorder jetzt starten darf: vorhanden und erlaubt; noch nicht gefragt nur bei offener App (dann fragt
     /// watchOS beim Start).
     static var recorderAllowed: Bool {
@@ -88,7 +92,11 @@ extension LearnRecorder {
             }
             SettingsFile.watchSession.set(now.timeIntervalSince1970, forKey: Self.recorderFromKey)
             SettingsFile.watchSession.set(end.timeIntervalSince1970, forKey: Self.recorderUntilKey)
-            DiagStore.shared.log(.measureStart, "recorder start until \(Format.logTime(end))")
+            // Bei offener App gestartet: Die Person war da wach (HG-2, `WatchOnset`).
+            let active = WKApplication.shared().applicationState == .active
+            SettingsFile.watchSession.set(active, forKey: Self.recorderActiveKey)
+            resetChargeSamples(from: now)
+            DiagStore.shared.log(.measureStart, "recorder start until \(Format.logTime(end))\(active ? " (app open)" : "")")
         }
     }
 
@@ -143,6 +151,7 @@ extension LearnRecorder {
         ensureRecorder(until: until)
         save(Mark(alarmId: "", target: until, from: now, until: until, wokeAt: nil, motions: [], manual: true))
         DiagStore.shared.log(.measureStart, "record start by \(by) bat=\(battery.map { "\($0)" } ?? "-") mode=recorder")
+        WatchBattery.begin(alarmId: nil, target: nil)
         scheduleRefresh()
         return nil
     }
@@ -155,6 +164,11 @@ extension LearnRecorder {
         current.stopReason = reason.rawValue
         save(current)
         DiagStore.shared.log(reason == .battery ? .battery : .measureEnd, "record stop \(Self.reasonText(reason, battery: battery))")
+        // Läuft keine Weck-Nacht (weder Fenster noch «Gute Nacht»), gehört der Akku zu keiner Nacht im Verlauf (wie Android).
+        let phase = SmartAlarm.shared.phase
+        if reason != .wake, !(phase.isMeasuring || phase.isRinging || phase.isSnoozed), !WatchModel.shared.goodNightActive {
+            WatchBattery.drop("recording ended without alarm night")
+        }
         plan()
     }
 

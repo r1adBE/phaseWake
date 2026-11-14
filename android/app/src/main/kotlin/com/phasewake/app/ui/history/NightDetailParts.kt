@@ -30,7 +30,9 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
+import com.phasewake.app.core.BatteryTrack
 import com.phasewake.app.core.HistoryItem
+import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.NightStages
 import com.phasewake.app.core.SoundEvents
 import com.phasewake.app.core.StageTotal
@@ -191,6 +193,7 @@ internal fun NightExtras(item: HistoryItem, data: NightDetailData, actions: Nigh
                 night.feeling?.let {
                     Text(stringResource(R.string.feeling_value, feelingName(context, it)), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
+                batteryLine(context, night)?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
             }
             NightNotes(data.notes[date].orEmpty(), data.customNotes, { actions.onToggleNote(date, it) }, Modifier.padding(top = 4.dp))
             // Mehrere eigene Nächte am selben Nachtdatum: die Geräusche nur bei der zuletzt geweckten (wie im Verlauf).
@@ -198,4 +201,16 @@ internal fun NightExtras(item: HistoryItem, data: NightDetailData, actions: Nigh
             SoundClipsSection(clips, actions.soundFile, actions.onDeleteClip, { actions.onDeleteNightClips(date) })
         }
     }
+}
+
+/**
+ * Akku je Nacht (r1AD 14.11.2026): «Akku: Uhr −14 % · Handy −3 %», nur die bekannten Teile ([BatteryTrack.used]); ohne
+ * Wert `null` (keine Zeile).
+ */
+internal fun batteryLine(context: Context, night: NightRecord): String? {
+    val parts = listOfNotNull(
+        BatteryTrack.used(night.watchBattery)?.let { context.getString(R.string.battery_watch, it) },
+        BatteryTrack.used(night.phoneBattery)?.let { context.getString(R.string.battery_phone, it) },
+    )
+    return if (parts.isEmpty()) null else context.getString(R.string.battery_night, parts.joinToString(" · "))
 }

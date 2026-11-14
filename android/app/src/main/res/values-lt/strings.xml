@@ -454,6 +454,7 @@
     <string name="holidays_off">Be švenčių</string>
     <string name="holidays_hint">Atskirų miestų vietinės šventės neįtrauktos.</string>
     <string name="holidays_next">Kita šventė: %1$s</string>
+    <string name="holidays_next_estimated">Numatoma šventė: %1$s – žadintuvas skambės. Jei turi laisvą dieną, praleisk ją pats.</string>
     <string name="editor_skip_holidays">Nežadinti per šventes</string>
     <string name="editor_skip_holidays_hint">Šalį ir regioną pasirink nustatymuose.</string>
     <string name="home_holiday_skipped">%1$s: šventė – žadintuvo nėra</string>
@@ -656,4 +657,10 @@
     <string name="learn_tip_late">Vakare atidaryk Phase Wake laikrodyje, vėliausiai sulaukęs priminimo.</string>
     <string name="learn_tip_alarm">Laikrodis įrašo tik naktis su žadintuvu.</string>
     <string name="learn_tip_connect">Laikyk laikrodį įjungtą ir prijungtą prie telefono – įrašą jis siunčia po žadintuvo.</string>
+    <string name="battery_night">Baterija: %1$s</string>
+    <string name="battery_watch">Laikrodis −%1$d %%</string>
+    <string name="battery_phone">Telefonas −%1$d %%</string>
+    <string name="editor_alarm_gone">Šis žadintuvas tuo metu buvo ištrintas.</string>
+    <string name="test_replaces_nap">Bandomasis žadintuvas užbaigs tavo pogulį.</string>
+    <string name="settings_clear_history_also">Taip pat ištrinamos pastabos, savijauta, vakaro ritualo varnelės ir garso ištraukos.</string>
 </resources>

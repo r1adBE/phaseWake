@@ -439,6 +439,7 @@
     <string name="holidays_off">Sin festivos</string>
     <string name="holidays_hint">No se incluyen los festivos locales de cada municipio.</string>
     <string name="holidays_next">Próximo festivo: %1$s</string>
+    <string name="holidays_next_estimated">Festivo estimado: %1$s – la alarma sonará. Si libras, salta el día tú mismo.</string>
     <string name="editor_skip_holidays">No despertar en festivos</string>
     <string name="editor_skip_holidays_hint">Elige país y región en los ajustes.</string>
     <string name="home_holiday_skipped">%1$s: festivo – sin alarma</string>
@@ -639,4 +640,10 @@
     <string name="learn_tip_late">Abre Phase Wake en el reloj por la noche, como muy tarde cuando te lo recuerde.</string>
     <string name="learn_tip_alarm">El reloj solo graba las noches con alarma.</string>
     <string name="learn_tip_connect">Mantén el reloj encendido y conectado al teléfono: envía la grabación después de la alarma.</string>
+    <string name="battery_night">Batería: %1$s</string>
+    <string name="battery_watch">Reloj −%1$d %%</string>
+    <string name="battery_phone">Móvil −%1$d %%</string>
+    <string name="editor_alarm_gone">Esta alarma se ha eliminado mientras tanto.</string>
+    <string name="test_replaces_nap">La alarma de prueba termina tu siesta.</string>
+    <string name="settings_clear_history_also">También se eliminan las notas, la sensación, las marcas de la rutina nocturna y los fragmentos de sonido.</string>
 </resources>

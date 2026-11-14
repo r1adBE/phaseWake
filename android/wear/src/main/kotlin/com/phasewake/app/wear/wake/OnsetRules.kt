@@ -212,10 +212,60 @@ internal object OnsetRules {
      * Ob die Messung erst nach dem Beginn der Einschlafdauer [bedAt] ([plannedBedAt]) beginnt, um mehr als
      * [LATE_START_TOLERANCE] (Tiefenaudit AP3-2, wie `RecorderOnset.startedLate` auf der Apple Watch): automatisch nach
      * der Bettzeit (Neustart der Uhr, späte Änderung, Schalter spät ein), nach «Gute Nacht» beim Wiederaufnehmen nach einem
-     * Prozessende (die Erkennung beginnt dann von vorn). Ruhe ab diesem Beginn hiesse nur «schlief schon»: Die
-     * Einschlafzeit ist unbekannt, die Nacht gilt als gemessen ohne Ergebnis (fail-closed), ohne Grundrauschen.
+     * Prozessende. Was dann gilt, sagt [lateStart].
      */
     fun startedLate(measureFrom: Instant, bedAt: Instant): Boolean = measureFrom.isAfter(bedAt.plus(LATE_START_TOLERANCE))
+
+    /** Beginn der Messung gegenüber dem Beginn der Einschlafdauer (Entscheid r1AD 14.11.2026, Prüfrunde 2 HG-2). */
+    enum class LateStart {
+        /** Rechtzeitig: Die Messung gilt; ein früheres Einschlafen zählt erst ab der Bettzeit ([onsetAt]). */
+        ON_TIME,
+
+        /**
+         * Zu spät, aber bei sichtbarer App gestartet: Die Person war da wach. Gemessen wird ab jetzt, und jetzt ist auch der
+         * Beginn der Einschlafdauer.
+         */
+        FOREGROUND,
+
+        /**
+         * Zu spät im Hintergrund gestartet: Ruhe ab diesem Beginn hiesse nur «schlief schon». Die Nacht gilt als nicht
+         * gemessen, ohne Untergrenze kurzer Nächte (vorher fail-closed: Wer spät öffnete, wurde schlechter geweckt).
+         */
+        BACKGROUND,
+    }
+
+    /** Ob die Messung ab [measureFrom] rechtzeitig zu [bedAt] beginnt, sonst ob bei sichtbarer App ([foreground]). Wie `RecorderOnset.lateStart`. */
+    fun lateStart(measureFrom: Instant, bedAt: Instant, foreground: Boolean): LateStart = when {
+        !startedLate(measureFrom, bedAt) -> LateStart.ON_TIME
+        foreground -> LateStart.FOREGROUND
+        else -> LateStart.BACKGROUND
+    }
+
+    /**
+     * Zeitgrenze, verschoben um die Zeit ohne Tragen [away] (am Ladegerät oder abgelegt, Prüfrunde 2 HG-3, wie
+     * `RecorderOnset.awayUntil`): [baseEnd] (Beginn plus [OnsetMonitor.MAX_DURATION]) plus [away], höchstens [cap] und
+     * [latestGiveUp]; `null` ohne solche Zeit oder wenn die Grenze vor der Weckzeit ohnehin früher gilt. Ohne Verschiebung
+     * gab die Messung nach dem Laden auf, bevor eine ruhige Strecke vollständig sein konnte.
+     */
+    fun awayUntil(baseEnd: Instant, away: Duration, latestGiveUp: Instant, cap: Instant): Instant? {
+        if (away <= Duration.ZERO || baseEnd.isAfter(latestGiveUp)) return null
+        return minOf(baseEnd.plus(away), cap, latestGiveUp)
+    }
+
+    /** Dauer in ns, die die Zeiten [times] (wie bei [charging], Ende `null` = dauert an) zwischen [from] und [until] abdecken, Überlappungen einmal. */
+    fun awayNanos(times: List<Pair<Long, Long?>>, from: Long, until: Long): Long {
+        var total = 0L
+        var reached = from
+        for ((on, off) in times.sortedBy { it.first }) {
+            val begin = maxOf(on, reached)
+            val end = minOf(off ?: until, until)
+            if (end > begin) {
+                total += end - begin
+                reached = end
+            }
+        }
+        return total
+    }
 
     /** «give up (max duration)» bzw. «give up», wenn [at] die frühere der beiden Grenzen erreicht hat; sonst `null`. */
     fun giveUpReason(at: Instant, latestGiveUp: Instant, maxEnd: Instant): String? = when {

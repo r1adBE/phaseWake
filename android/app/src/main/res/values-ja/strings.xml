@@ -415,6 +415,7 @@
     <string name="holidays_off">祝日なし</string>
     <string name="holidays_hint">各自治体の地方祝日は含まれません。</string>
     <string name="holidays_next">次の祝日: %1$s</string>
+    <string name="holidays_next_estimated">推定の祝日: %1$s – アラームは鳴ります。休みの場合は自分でスキップしてください。</string>
     <string name="editor_skip_holidays">祝日は起こさない</string>
     <string name="editor_skip_holidays_hint">国と地域は設定で選びます。</string>
     <string name="home_holiday_skipped">%1$s: 祝日 – アラームなし</string>
@@ -611,4 +612,10 @@
     <string name="learn_tip_late">夜にウォッチで Phase Wake を開いてください。遅くともリマインダーのときに。</string>
     <string name="learn_tip_alarm">ウォッチはアラームのある夜だけを記録します。</string>
     <string name="learn_tip_connect">ウォッチの電源を入れたまま、スマートフォンに接続しておいてください。アラームの後に記録を送ります。</string>
+    <string name="battery_night">バッテリー: %1$s</string>
+    <string name="battery_watch">ウォッチ −%1$d %%</string>
+    <string name="battery_phone">スマホ −%1$d %%</string>
+    <string name="editor_alarm_gone">このアラームはすでに削除されています。</string>
+    <string name="test_replaces_nap">テストアラームで仮眠は終了します。</string>
+    <string name="settings_clear_history_also">メモ、気分、夜のルーティンのチェック、音のクリップも削除されます。</string>
 </resources>

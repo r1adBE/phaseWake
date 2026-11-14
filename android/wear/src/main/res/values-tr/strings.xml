@@ -107,4 +107,5 @@
     <string name="watch_learn_skip_battery">Bu gece öğrenme aşaması için sayılmaz: pil %1$d %%, gerekli %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Bu gece öğrenme aşaması için sayılmaz: Phase Wake saatin sensörlerini kullanamıyor.</string>
     <string name="watch_learn_skip_late">Bu gece öğrenme aşaması için sayılmaz: Phase Wake akşam çok geç açıldı.</string>
+    <string name="editor_alarm_gone">Bu alarm bu arada silindi.</string>
 </resources>

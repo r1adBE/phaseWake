@@ -89,6 +89,8 @@ private fun WakeService.begin(plan: WakePlan) {
     // Hartes Zeitlimit: Klingeln und Schlummern sind lange vorher zu Ende.
     handler.postDelayed(hardLimit, Duration.between(Instant.now(), plan.target.plus(NIGHT_HARD_LIMIT)).toMillis().coerceAtLeast(0))
     if (locked) return
+    // Akku je Nacht: Messbeginn, oder Zwischenstand nach Einschlaf-Messung bzw. Aufzeichnung.
+    nightBatteryBegin(this, plan.alarmId, plan.target)
     loadNight(current, canMeasure, healthRefusal, lostOnset)
 }
 

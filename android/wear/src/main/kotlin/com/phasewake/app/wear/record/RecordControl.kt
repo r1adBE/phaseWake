@@ -96,7 +96,8 @@ object RecordControl {
     fun startForLearning(context: Context, until: Instant): Boolean {
         val app = context.wearApp
         val battery = battery(context)
-        val skip = learnSkipReason(RecordService.running, battery)
+        val charging = context.getSystemService(BatteryManager::class.java)?.isCharging == true
+        val skip = learnSkipReason(RecordService.running, battery, charging)
         if (skip != null) {
             val low = battery != null && battery < Learning.MIN_BATTERY
             app.diag.log(if (low) DiagKind.BATTERY else DiagKind.MEASURE_START, "learn record skipped: $skip")
@@ -110,10 +111,13 @@ object RecordControl {
         return true
     }
 
-    /** Warum die Lernphase heute Nacht nicht aufzeichnet ([startForLearning]), oder `null`. Unbekannter Akku hindert nicht. */
-    internal fun learnSkipReason(recording: Boolean, battery: Int?): String? = when {
+    /**
+     * Warum die Lernphase heute Nacht nicht aufzeichnet ([startForLearning]), oder `null`. Unbekannter Akku hindert nicht,
+     * Laden ([charging]) auch nicht (Prüfrunde 2 F-6: Die Uhr ist zur Bettzeit geladen).
+     */
+    internal fun learnSkipReason(recording: Boolean, battery: Int?, charging: Boolean = false): String? = when {
         recording -> "recording runs"
-        battery != null && battery < Learning.MIN_BATTERY -> "battery $battery%"
+        !charging && battery != null && battery < Learning.MIN_BATTERY -> "battery $battery%"
         else -> null
     }
 

@@ -442,6 +442,7 @@
     <string name="holidays_off">Без празника</string>
     <string name="holidays_hint">Локални празници појединих места нису укључени.</string>
     <string name="holidays_next">Следећи празник: %1$s</string>
+    <string name="holidays_next_estimated">Процењени празник: %1$s – аларм ће звонити. Ако си слободан, сам прескочи тај дан.</string>
     <string name="editor_skip_holidays">Не буди ме празницима</string>
     <string name="editor_skip_holidays_hint">Државу и регион изабери у подешавањима.</string>
     <string name="home_holiday_skipped">%1$s: празник – без аларма</string>
@@ -642,4 +643,10 @@
     <string name="learn_tip_late">Увече отвори Phase Wake на сату, најкасније кад те подсети.</string>
     <string name="learn_tip_alarm">Сат снима само ноћи са алармом.</string>
     <string name="learn_tip_connect">Држи сат укључен и повезан са телефоном – он шаље снимање после аларма.</string>
+    <string name="battery_night">Батерија: %1$s</string>
+    <string name="battery_watch">Сат −%1$d %%</string>
+    <string name="battery_phone">Телефон −%1$d %%</string>
+    <string name="editor_alarm_gone">Овај аларм је у међувремену избрисан.</string>
+    <string name="test_replaces_nap">Пробни аларм завршава твоју кратку дремку.</string>
+    <string name="settings_clear_history_also">Бришу се и белешке, осећај, ознаке вечерње рутине и звучни исечци.</string>
 </resources>

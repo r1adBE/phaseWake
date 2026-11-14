@@ -417,6 +417,7 @@
     <string name="holidays_off">គ្មានថ្ងៃឈប់សម្រាក</string>
     <string name="holidays_hint">ថ្ងៃឈប់សម្រាកក្នុងស្រុកនៃទីក្រុងនីមួយៗ មិនរួមបញ្ចូលទេ។</string>
     <string name="holidays_next">ថ្ងៃឈប់សម្រាកបន្ទាប់៖ %1$s</string>
+    <string name="holidays_next_estimated">ថ្ងៃឈប់សម្រាកប៉ាន់ស្មាន៖ %1$s – នាឡិការោទិ៍នឹងរោទ៍។ បើអ្នកឈប់សម្រាក សូមរំលងថ្ងៃនោះដោយខ្លួនឯង។</string>
     <string name="editor_skip_holidays">កុំដាស់នៅថ្ងៃឈប់សម្រាក</string>
     <string name="editor_skip_holidays_hint">ជ្រើសប្រទេស និងតំបន់ក្នុងការកំណត់។</string>
     <string name="home_holiday_skipped">%1$s៖ ថ្ងៃឈប់សម្រាក – គ្មានម៉ោងរោទ៍</string>
@@ -613,4 +614,10 @@
     <string name="learn_tip_late">បើក Phase Wake នៅលើនាឡិកានៅពេលល្ងាច យ៉ាងយូរនៅពេលវារំលឹក។</string>
     <string name="learn_tip_alarm">នាឡិកាថតតែយប់ដែលមានម៉ោងរោទ៍ប៉ុណ្ណោះ។</string>
     <string name="learn_tip_connect">ទុកនាឡិកាឲ្យបើក ហើយភ្ជាប់ជាមួយទូរសព្ទរបស់អ្នក – វាផ្ញើការថតបន្ទាប់ពីម៉ោងរោទ៍។</string>
+    <string name="battery_night">ថ្ម៖ %1$s</string>
+    <string name="battery_watch">នាឡិកា −%1$d %%</string>
+    <string name="battery_phone">ទូរសព្ទ −%1$d %%</string>
+    <string name="editor_alarm_gone">ម៉ោងរោទ៍នេះត្រូវបានលុបរួចហើយ។</string>
+    <string name="test_replaces_nap">ម៉ោងរោទ៍សាកល្បងនឹងបញ្ចប់ការដេកខ្លីរបស់អ្នក។</string>
+    <string name="settings_clear_history_also">កំណត់ចំណាំ អារម្មណ៍ សញ្ញាធីកនៃទម្លាប់ពេលល្ងាច និងឃ្លីបសំឡេងក៏ត្រូវលុបដែរ។</string>
 </resources>

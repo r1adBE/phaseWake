@@ -110,4 +110,23 @@ class OutboxRetryTest {
         assertTrue(box.pending().isEmpty(), "bestätigt bleibt weg")
         assertEquals(0, box.flush())
     }
+
+    @Test
+    fun leftoversAreRemoved() = runTest {
+        // Audit SP-8: Ein nach einem Stromausfall leerer Eintrag und ein liegengebliebenes «.tmp» blieben für immer liegen.
+        val box = outbox()
+        put(box, "night/1-a", "n1")
+        val empty = File(dir, "e-6e696768742f32").apply { writeText("") }
+        val half = File(dir, "e-6e696768742f33").apply { writeText("v1\nid\nnight/3") }
+        val tmp = File(dir, "e-6e696768742f34.tmp").apply { writeText("v1\nid") }
+        val other = File(dir, "migrated").apply { writeText("2") }
+        box.flush()
+        assertFalse(empty.exists() || half.exists() || tmp.exists(), "Reste entfernt")
+        assertTrue(other.exists(), "andere Dateien bleiben")
+        assertEquals(listOf("n1"), box.pending().map { it.body })
+        // Geschrieben wird weiter über «.tmp» und Umbenennen; danach liegt keines mehr.
+        put(box, "night/1-a", "n1b")
+        assertEquals(listOf("n1b"), box.pending().map { it.body })
+        assertTrue(dir.listFiles().orEmpty().none { it.name.endsWith(".tmp") })
+    }
 }

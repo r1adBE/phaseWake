@@ -439,6 +439,7 @@
     <string name="holidays_off">Sem feriados</string>
     <string name="holidays_hint">Feriados locais de cada município não estão incluídos.</string>
     <string name="holidays_next">Próximo feriado: %1$s</string>
+    <string name="holidays_next_estimated">Feriado estimado: %1$s – o alarme vai tocar. Se você estiver de folga, pule o dia você mesmo.</string>
     <string name="editor_skip_holidays">Não acordar em feriados</string>
     <string name="editor_skip_holidays_hint">Escolha país e região nas configurações.</string>
     <string name="home_holiday_skipped">%1$s: feriado – sem alarme</string>
@@ -639,4 +640,10 @@
     <string name="learn_tip_late">Abra o Phase Wake no relógio à noite, no máximo quando ele lembrar você.</string>
     <string name="learn_tip_alarm">O relógio só grava noites com alarme.</string>
     <string name="learn_tip_connect">Mantenha o relógio ligado e conectado ao celular – ele envia a gravação depois do alarme.</string>
+    <string name="battery_night">Bateria: %1$s</string>
+    <string name="battery_watch">Relógio −%1$d %%</string>
+    <string name="battery_phone">Celular −%1$d %%</string>
+    <string name="editor_alarm_gone">Este alarme foi excluído nesse meio-tempo.</string>
+    <string name="test_replaces_nap">O alarme de teste encerra sua soneca.</string>
+    <string name="settings_clear_history_also">Notas, sensação, marcações da rotina da noite e trechos de som também são excluídos.</string>
 </resources>

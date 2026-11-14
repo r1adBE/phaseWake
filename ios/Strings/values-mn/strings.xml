@@ -36,4 +36,6 @@
     <string name="check_watch_state_old">Цагны төлөв хуучирсан – цаган дээр Phase Wake-ийг түр нээгээрэй.</string>
     <string name="editor_sleep_hint_apple">Унтсан цагаас тоолно – орондоо ороходоо цаган дээр «Сайхан амраарай»-г дар. Apple Watch дээр Phase Wake сурсан унтах хүртэлх хугацаагаар чамайг хэзээ унтсаныг тооцоолдог. Дарахгүй бол тохируулсан цаг хүчинтэй.</string>
     <string name="auto_onset_hint_apple">Унтах цагаас 1 цагийн өмнөөс Apple Watch дээр Phase Wake-ийг нээвэл (цаг сануулна) тэр үеэс сэрээх хугацаа хүртэл хөдөлгөөнийг чинь бичнэ; дараа нь Phase Wake хэзээ унтсаныг чинь тооцоолно.</string>
+    <string name="home_good_night_tap_cancel">цуцлахын тулд дар</string>
+    <string name="good_night_cancel">Сайхан амраарайг цуцлах</string>
 </resources>

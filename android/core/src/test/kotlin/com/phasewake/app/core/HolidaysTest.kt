@@ -42,4 +42,16 @@ class HolidaysTest {
         assertEquals("CH", Holidays.regionCode("CH", ""))
         assertEquals("CH-BE", Holidays.regionCode("CH", "BE"))
     }
+
+    @Test
+    fun estimatedHolidays() {
+        // Audit F-2: Feiertage nach Mondkalender stehen in der Datendatei mit «estimated».
+        kotlin.test.assertTrue(Holidays.isEstimated("Eid al-Fitr (estimated)"))
+        kotlin.test.assertTrue(Holidays.isEstimated("Eid al-Adha (observed, estimated)"))
+        kotlin.test.assertTrue(Holidays.isEstimated("Eid al-Fitr (estimated); Laylat al-Qadr (estimated)"))
+        // Ein sicherer Feiertag am selben Tag: der Tag ist frei.
+        kotlin.test.assertFalse(Holidays.isEstimated("Eid al-Fitr (estimated); National Day"))
+        kotlin.test.assertFalse(Holidays.isEstimated("New Year's Day"))
+        kotlin.test.assertFalse(Holidays.isEstimated("Catholic Easter (observed)"))
+    }
 }

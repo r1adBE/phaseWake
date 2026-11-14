@@ -63,7 +63,7 @@ class PhoneListenerService : WearableListenerService() {
         if (endedBeforeClear(night.wokeAt)) {
             app.diag.log(DiagKind.SYNC, "night before history clear dropped")
         } else {
-            app.nights.add(night)
+            app.nights.add(PhoneBattery.withPhone(app, night))
         }
         app.backup.cancelSnoozeSafety(night.alarmId)
         app.backup.cancelSnoozeOf(night.alarmId, night.target.toEpochMilli())
@@ -201,6 +201,8 @@ class PhoneListenerService : WearableListenerService() {
             DataLayer.PATH_NAP -> runBlocking { Transients.received(app, event.data) }
             DataLayer.PATH_TRANSIENT_CANCEL -> runBlocking { Transients.cancelled(app, event.data) }
             DataLayer.PATH_DIAG_LOG -> WatchReport.received(event.data)
+            // Akku je Nacht: Die Uhr beginnt zu messen, das Handy auch.
+            DataLayer.PATH_NIGHT_BEGIN -> PhoneBattery.nightBegun(this, RingMessage.decode(event.data))
             DataLayer.PATH_STOP -> {
                 val message = RingMessage.decode(event.data)
                 // Ohne Sendezeit: veraltete Uhr-App, kein Rückfall.
@@ -222,6 +224,8 @@ class PhoneListenerService : WearableListenerService() {
                 if (own) PhoneRingService.command(this, PhoneRingService.ACTION_STOP_SILENT)
                 // Die Uhr schickt «stop» auch beim Schlummern (mit Schlummer-Ende); einen Einmal-Wecker schaltet sie selbst aus.
                 runBlocking { app.backup.watchStopped(message, left) }
+                // Endgültig (nicht geschlummert): Ende der Nacht für den Akku des Handys.
+                if (message.snoozeUntil == null) runBlocking { PhoneBattery.stopped(app) }
             }
         }
     }

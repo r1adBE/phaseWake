@@ -33,6 +33,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.phasewake.app.shared.DoNotDisturb
+import com.phasewake.app.shared.PermissionAsks
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.WakePlan
@@ -92,8 +93,9 @@ internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit, onNap: (
     var backgroundMissing by remember { mutableStateOf(missingBackground()) }
     fun fullScreenMissing() = !NotificationManagerCompat.from(context).canUseFullScreenIntent()
     var fullScreenBlocked by remember { mutableStateOf(fullScreenMissing()) }
-    // Nach einer Ablehnung fragt das System oft nicht mehr: dann die App-Einstellungen öffnen.
-    var askedOnce by remember { mutableStateOf(false) }
+    // Nach einer Ablehnung fragt das System oft nicht mehr: dann die App-Einstellungen öffnen. «Gefragt» übersteht das
+    // Prozessende ([PermissionAsks], B-6), sonst tat der erste Tipp nach jedem Start sichtbar nichts.
+    fun blocked(permissions: List<String>) = permissions.isNotEmpty() && permissions.none { PermissionAsks.canAsk(context, it) }
     var dndBlocks by remember { mutableStateOf(DoNotDisturb.blocksAlarms(context)) }
     LifecycleResumeEffect(Unit) {
         fullScreenBlocked = fullScreenMissing()
@@ -111,14 +113,16 @@ internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit, onNap: (
     }
     val backgroundLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {
         backgroundMissing = missingBackground()
-        askedOnce = true
+    }
+    fun askBackground(permission: String) {
+        PermissionAsks.markAsked(context, listOf(permission))
+        backgroundLauncher.launch(permission)
     }
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
-        askedOnce = true
         missingPermissions = missing()
         backgroundMissing = missingBackground()
         // Gleich danach das Hintergrundrecht: Es lässt sich nur getrennt anfragen.
-        backgroundMissing?.let { backgroundLauncher.launch(it) }
+        backgroundMissing?.takeIf { PermissionAsks.canAsk(context, it) }?.let { askBackground(it) }
         app.appScope.launch { app.scheduler.reschedule() }
     }
     // Klingelt es, ohne dass der Weckbildschirm erscheinen durfte (Mitteilungen oder Vollbild nicht erlaubt): beim Öffnen zeigen.
@@ -150,9 +154,13 @@ internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit, onNap: (
         onRequestPermissions = {
             val background = backgroundMissing
             when {
-                (missingPermissions.isNotEmpty() || background != null) && askedOnce -> openAppSettings(context)
-                missingPermissions.isNotEmpty() -> launcher.launch(missingPermissions.toTypedArray())
-                background != null -> backgroundLauncher.launch(background)
+                missingPermissions.isNotEmpty() && blocked(missingPermissions) -> openAppSettings(context)
+                missingPermissions.isNotEmpty() -> {
+                    PermissionAsks.markAsked(context, missingPermissions)
+                    launcher.launch(missingPermissions.toTypedArray())
+                }
+                background != null && blocked(listOf(background)) -> openAppSettings(context)
+                background != null -> askBackground(background)
                 fullScreenBlocked -> openFullScreenSettings(context)
             }
         },

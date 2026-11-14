@@ -91,12 +91,11 @@ public struct NightRecording: Equatable, Sendable {
     /// `NightRecording.exportCsv` (Kotlin), Datei «phasewake-recordings.csv».
     public static func exportCsv(_ recordings: [NightRecording]) -> String {
         var out = "recording,end_reason,epoch,motion,hr\n"
-        let posix = Locale(identifier: "en_US_POSIX")
         for (index, recording) in recordings.filter(\.finished).sorted(by: { $0.start < $1.start }).enumerated() {
             let reason = (recording.endReason ?? .service).rawValue
             for (epochIndex, epoch) in recording.epochs.enumerated() {
-                let motion = epoch.motion.map { String(format: "%.6f", locale: posix, $0) } ?? ""
-                let hr = epoch.heartRate.map { String(format: "%.1f", locale: posix, $0) } ?? ""
+                let motion = epoch.motion.map { CsvNumbers.fixed($0, decimals: 6) } ?? ""
+                let hr = epoch.heartRate.map { CsvNumbers.fixed($0, decimals: 1) } ?? ""
                 out += "\(index + 1),\(reason),\(epochIndex),\(motion),\(hr)\n"
             }
         }

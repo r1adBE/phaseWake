@@ -42,17 +42,18 @@ struct HealthNightCard: View {
     /// Schlafwert der Nacht (``nightScore(stages:session:goalMinutes:)``); `nil`: keine Zeile.
     var score: SleepScoreResult?
 
-    private var title: String { session.end.formatted(date: .abbreviated, time: .omitted) }
+    /// Datum und Uhrzeiten in der Zone der Aufzeichnung (Audit F-3), ohne sie in der des Geräts.
+    private var title: String { Format.day(session.end, in: session.timeZone) }
 
     /// «Im Bett 23:10 · eingeschlafen 23:24 · auf 06:52» und «8 Std. im Bett · …»; ohne Phasen die kurzen Fassungen.
     private var lines: (times: String, amounts: String) {
         let s = session
         if let awake = s.awakeMinutes {
-            return (L("history_health_times", Format.time(s.start), Format.time(s.asleepAt), Format.time(s.end)),
+            return (L("history_health_times", Format.time(s.start, in: s.timeZone), Format.time(s.asleepAt, in: s.timeZone), Format.time(s.end, in: s.timeZone)),
                     L("history_health_amounts", Format.duration(minutes: s.durationMinutes), Format.duration(minutes: s.asleepMinutes),
                       Format.duration(minutes: awake)))
         }
-        return (L("history_health_times_simple", Format.time(s.start), Format.time(s.end)),
+        return (L("history_health_times_simple", Format.time(s.start, in: s.timeZone), Format.time(s.end, in: s.timeZone)),
                 L("history_health_amount_simple", Format.duration(minutes: s.durationMinutes)))
     }
 
@@ -77,7 +78,7 @@ struct HealthNightCard: View {
             HStack {
                 Text(title).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
                 Spacer()
-                Text(Format.time(session.end)).font(Fonts.manrope(16, .bold, relativeTo: .headline)).foregroundStyle(.secondary)
+                Text(Format.time(session.end, in: session.timeZone)).font(Fonts.manrope(16, .bold, relativeTo: .headline)).foregroundStyle(.secondary)
             }
             Label(L("history_health_mark"), systemImage: "heart.text.square")
                 .font(Fonts.manrope(12, .semibold, relativeTo: .caption))

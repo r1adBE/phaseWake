@@ -418,6 +418,7 @@
     <string name="holidays_off">不使用假期</string>
     <string name="holidays_hint">不包括個別城鎮的地方假期。</string>
     <string name="holidays_next">下一個假期：%1$s</string>
+    <string name="holidays_next_estimated">預計假期：%1$s – 鬧鐘仍會響。如當日放假，請自行略過。</string>
     <string name="editor_skip_holidays">假期不叫醒</string>
     <string name="editor_skip_holidays_hint">請在設定中選擇國家和地區。</string>
     <string name="home_holiday_skipped">%1$s：假期 – 不響鬧</string>
@@ -614,4 +615,10 @@
     <string name="learn_tip_late">夜晚喺手錶開 Phase Wake，最遲收到提醒嗰陣。</string>
     <string name="learn_tip_alarm">手錶只會記錄有鬧鐘嘅夜晚。</string>
     <string name="learn_tip_connect">保持手錶開機同連住手機——佢會喺鬧鐘之後傳送記錄。</string>
+    <string name="battery_night">電量：%1$s</string>
+    <string name="battery_watch">手錶 −%1$d %%</string>
+    <string name="battery_phone">手機 −%1$d %%</string>
+    <string name="editor_alarm_gone">這個鬧鐘已被刪除。</string>
+    <string name="test_replaces_nap">測試鬧鐘會結束你的小睡。</string>
+    <string name="settings_clear_history_also">筆記、感覺、晚間習慣的剔選和聲音片段亦會一併刪除。</string>
 </resources>

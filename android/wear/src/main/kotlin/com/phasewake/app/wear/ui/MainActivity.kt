@@ -14,6 +14,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.wear.compose.material3.AppScaffold
+import androidx.wear.compose.navigation.currentBackStackEntryAsState
 import androidx.wear.compose.navigation.SwipeDismissableNavHost
 import androidx.wear.compose.navigation.composable
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
@@ -56,8 +57,13 @@ private const val ROUTE_DIAG = "diag"
 private fun WatchApp() {
     val app = LocalContext.current.wearApp
     val nav = rememberSwipeDismissableNavController()
-    val alarms by app.alarms.alarms.collectAsStateWithLifecycle(initialValue = emptyList())
+    // `null`, bis die Wecker gelesen sind: Erst dann zählt ein fehlender Wecker als anderswo gelöscht (B-3).
+    val stored by app.alarms.alarms.collectAsStateWithLifecycle(initialValue = null)
+    val alarms = stored.orEmpty()
     var draft by rememberSaveable(stateSaver = draftSaver) { mutableStateOf<AlarmSpec?>(null) }
+    // Ob der Entwurf beim Öffnen ein gespeicherter Wecker war (sonst ein neuer).
+    var editingExisting by rememberSaveable { mutableStateOf(false) }
+    val top by nav.currentBackStackEntryAsState()
     // Schalter «Nächstes Mal überspringen» in diesem Bearbeiten: null = nicht angefasst (AlarmSchedule.editedSkip).
     var skipRequest by rememberSaveable { mutableStateOf<Boolean?>(null) }
     val holidays by app.holidays.dates.collectAsStateWithLifecycle(initialValue = emptySet())
@@ -71,6 +77,7 @@ private fun WatchApp() {
     fun open(spec: AlarmSpec) {
         if (nav.currentDestination?.route != ROUTE_HOME) return
         draft = spec
+        editingExisting = alarms.any { it.id == spec.id }
         skipRequest = null
         nav.navigate(ROUTE_EDITOR)
     }
@@ -101,23 +108,45 @@ private fun WatchApp() {
                     // Kein Entwurf (sollte nicht vorkommen): zurück zum Start, nie unter den Start hinaus.
                     LaunchedEffect(Unit) { nav.popBackStack(ROUTE_HOME, inclusive = false) }
                 } else {
+                    // Anderswo gelöscht (Handy), während der Editor offen ist: Hinweis und zu, statt ihn neu anzulegen (B-3).
+                    val gone = stored?.let { editorSave(editingExisting, it, current.id) } == EditorSave.GONE
+                    LaunchedEffect(gone, top?.destination?.route) {
+                        if (gone && top?.destination?.route == ROUTE_EDITOR) {
+                            Toast.makeText(app, R.string.editor_alarm_gone, Toast.LENGTH_LONG).show()
+                            back(ROUTE_EDITOR)
+                        }
+                    }
                     EditorContent(
                         draft = current,
-                        isNew = alarms.none { it.id == current.id },
+                        isNew = !editingExisting,
                         onPickTime = { if (nav.currentDestination?.route == ROUTE_EDITOR) nav.navigate(ROUTE_TIME) },
                         onChange = { draft = it },
-                        onSave = {
+                        onSave = save@{
+                            if (nav.currentDestination?.route != ROUTE_EDITOR) return@save
+                            // Höchstens MAX_ALARMS Wecker, wie am Handy: dann Hinweis, der Editor bleibt (B-11).
+                            when (editorSave(editingExisting, alarms, current.id)) {
+                                EditorSave.FULL -> {
+                                    Toast.makeText(app, app.getString(R.string.home_max_alarms, MAX_ALARMS), Toast.LENGTH_LONG).show()
+                                    return@save
+                                }
+                                EditorSave.GONE -> {
+                                    Toast.makeText(app, R.string.editor_alarm_gone, Toast.LENGTH_LONG).show()
+                                    back(ROUTE_EDITOR)
+                                    return@save
+                                }
+                                EditorSave.SAVE -> Unit
+                            }
                             val request = skipRequest
+                            val existed = editingExisting
                             // Im Prozess-Bereich: Speichern läuft weiter, auch wenn der Bildschirm schon zu ist.
                             app.appScope.launch {
                                 val list = app.alarms.current().alarms
-                                val stored = list.firstOrNull { it.id == current.id }
-                                // Höchstens MAX_ALARMS Wecker, wie am Handy.
-                                if (stored != null || list.size < MAX_ALARMS) {
+                                // Gespeicherter Stand zählt (Handy gleichzeitig): nichts wieder anlegen, keinen neunten.
+                                if (editorSave(existed, list, current.id) == EditorSave.SAVE) {
                                     val zone = ZoneId.systemDefault()
                                     val doneAt = app.scheduler.doneUntil()[current.id]
                                     val holidays = app.holidays.current()
-                                    val merged = savedEdit(stored, current, request, Instant.now(), zone, holidays, doneAt)
+                                    val merged = savedEdit(list.firstOrNull { it.id == current.id }, current, request, Instant.now(), zone, holidays, doneAt)
                                     app.sync.publishAlarms(app.alarms.upsert(merged))
                                     app.scheduler.reschedule()
                                 }

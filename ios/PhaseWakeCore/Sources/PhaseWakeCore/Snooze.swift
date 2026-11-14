@@ -23,24 +23,37 @@ public enum SleepOnset {
     /// über der Schwelle, deren beide Nachbarn ruhig sind (wie `SleepOnset.MAX_TWITCHES`, Kotlin).
     public static let maxTwitches = 2
 
-    /// Getragen heisst: ein Puls höchstens so viele Epochen (5 Min) vor dem Beginn der Strecke oder in ihm (E-5, wie
-    /// `SleepOnset.WORN_EPOCHS`, Kotlin).
-    public static let wornEpochs = 10
+    /// Getragen heisst (E-5, Prüfrunde 2 F-1): ein Puls höchstens so viele Epochen (15 Min) vor dem Beginn der Strecke oder
+    /// in ihm, und mindestens einer in der Strecke nach ihrer ersten Epoche (wie `SleepOnset.WORN_EPOCHS`, Kotlin). Die
+    /// Apple Watch misst den Puls ruhend von selbst, Apple nennt keinen festen Abstand; üblich sind 5 bis 15 Min (neuere
+    /// Modelle öfter). 15 Min deckt den grössten üblichen Abstand; eine abgelegte Uhr misst ab dem Ablegen keinen mehr.
+    public static let wornEpochs = 30
 
     /// Sucht die erste ruhige Strecke: `stillEpochs` Epochen, die erste und die letzte ruhig, dazwischen höchstens
     /// `maxTwitches` einzelne Zucker; eine leere Epoche oder zwei bewegte nacheinander unterbrechen sie.
     /// - Parameters:
     ///   - motions: Bewegung je Epoche seit «Gute Nacht», in zeitlicher Reihenfolge; `nil` (leere Epoche) unterbricht die Strecke.
     ///   - threshold: Leicht-Schwelle in m/s²; ruhig heisst Bewegung vorhanden und darunter.
-    ///   - heartRates: Puls je Epoche (gleich gezählt wie `motions`) oder `nil` (keiner bekannt): Dann beginnt eine Strecke
-    ///     nur, wenn die Uhr getragen wurde, also höchstens `wornEpochs` Epochen davor oder in ihrer ersten Epoche ein Puls
-    ///     gemessen ist (Audit c3b8b01 E-5, wie «vermutlich nicht getragen» der Lern-Übersicht).
+    ///   - heartRates: Puls je Epoche oder `nil` (keiner bekannt): Dann beginnt eine Strecke nur, wenn die Uhr getragen
+    ///     wurde, also höchstens `wornEpochs` Epochen davor oder in ihrer ersten Epoche ein Puls gemessen ist und mindestens
+    ///     einer in der Strecke danach (Audit c3b8b01 E-5, Prüfrunde 2 F-1).
+    ///   - heartLead: So viele Epochen vor `motions` beginnt `heartRates` (Puls vor dem Beginn der Messung zählt für die
+    ///     erste Strecke); 0 = gleich gezählt.
     /// - Returns: Index der ersten Epoche der ersten ruhigen Strecke, oder `nil`, solange es keine gibt.
     public static func find(_ motions: [Double?], threshold: Double = DetectorConfig.defaultLightThreshold,
-                            heartRates: [Double?]? = nil) -> Int? {
+                            heartRates: [Double?]? = nil, heartLead: Int = 0) -> Int? {
         func quiet(_ index: Int) -> Bool {
             if let motion = motions[index] { return motion < threshold }
             return false
+        }
+        func pulse(_ index: Int) -> Bool {
+            guard let heartRates else { return false }
+            let at = index + heartLead
+            return at >= 0 && at < heartRates.count && heartRates[at] != nil
+        }
+        func worn(_ start: Int, _ end: Int) -> Bool {
+            guard heartRates != nil else { return true }
+            return (max(-heartLead, start - wornEpochs)...start).contains(where: pulse) && (start + 1...end).contains(where: pulse)
         }
         guard motions.count >= stillEpochs else { return nil }
         for start in 0...(motions.count - stillEpochs) {
@@ -55,9 +68,7 @@ public enum SleepOnset {
                     break
                 }
             }
-            if still, heartRates.map({ rates in (max(0, start - wornEpochs)...start).contains { $0 < rates.count && rates[$0] != nil } }) ?? true {
-                return start
-            }
+            if still, worn(start, end) { return start }
         }
         return nil
     }

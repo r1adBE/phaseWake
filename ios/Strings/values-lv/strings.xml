@@ -36,4 +36,6 @@
     <string name="check_watch_state_old">Pulksteņa stāvoklis ir novecojis – uz brīdi atver Phase Wake pulkstenī.</string>
     <string name="editor_sleep_hint_apple">Skaita no aizmigšanas – ejot gulēt, pulkstenī pieskaries “Ar labu nakti”. Apple Watch pulkstenī Phase Wake novērtē, kad tu iemiegi, pēc apgūtā iemigšanas ilguma. Bez pieskāriena ir spēkā iestatītais laiks.</string>
     <string name="auto_onset_hint_apple">Atver Phase Wake savā Apple Watch no 1 stundas pirms gulētiešanas (pulkstenis atgādina), un no tā brīža līdz modināšanas logam tas ieraksta tavas kustības; tad Phase Wake aprēķina, kad tu aizmigi.</string>
+    <string name="home_good_night_tap_cancel">pieskaries, lai atceltu</string>
+    <string name="good_night_cancel">Atcelt Ar labu nakti</string>
 </resources>

@@ -127,6 +127,8 @@ class HolidaysUi(
     val region: String,
     val next: LocalDate?,
     val onChoose: (country: String, region: String) -> Unit,
+    /** Nächster nur geschätzter Feiertag (Audit F-2): gilt nicht als frei, steht mit «geschätzt» da; `null` = keiner. */
+    val nextEstimated: LocalDate? = null,
 )
 
 /** Landesname in der Sprache des Geräts; unbekannter Code bleibt, wie er ist. */
@@ -155,6 +157,7 @@ internal fun HolidaysGroup(ui: HolidaysUi) {
             ChoiceRow(stringResource(R.string.holidays_region), regionText) { picking = "region" }
         }
         ui.next?.let { Text(stringResource(R.string.holidays_next, Format.shortDay(it, locale)), style = MaterialTheme.typography.bodyMedium) }
+        ui.nextEstimated?.let { Text(stringResource(R.string.holidays_next_estimated, Format.shortDay(it, locale)), style = MaterialTheme.typography.bodyMedium) }
         Text(stringResource(R.string.holidays_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
     }
     when (picking) {

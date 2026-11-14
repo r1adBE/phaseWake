@@ -111,4 +111,5 @@
     <string name="watch_learn_skip_battery">Aquesta nit no compta per a la fase d’aprenentatge: bateria al %1$d %%, cal %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Aquesta nit no compta per a la fase d’aprenentatge: Phase Wake no pot fer servir els sensors del rellotge.</string>
     <string name="watch_learn_skip_late">Aquesta nit no compta per a la fase d’aprenentatge: Phase Wake s’ha obert massa tard al vespre.</string>
+    <string name="editor_alarm_gone">Aquesta alarma s’ha suprimit mentrestant.</string>
 </resources>

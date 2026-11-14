@@ -415,6 +415,7 @@
     <string name="holidays_off">ไม่ใช้วันหยุด</string>
     <string name="holidays_hint">ไม่รวมวันหยุดท้องถิ่นของแต่ละเทศบาล</string>
     <string name="holidays_next">วันหยุดถัดไป: %1$s</string>
+    <string name="holidays_next_estimated">วันหยุดโดยประมาณ: %1$s – นาฬิกาปลุกจะดัง หากคุณหยุด ให้ข้ามวันนั้นเอง</string>
     <string name="editor_skip_holidays">ไม่ปลุกในวันหยุด</string>
     <string name="editor_skip_holidays_hint">เลือกประเทศและภูมิภาคในการตั้งค่า</string>
     <string name="home_holiday_skipped">%1$s: วันหยุด – ไม่ปลุก</string>
@@ -611,4 +612,10 @@
     <string name="learn_tip_late">เปิด Phase Wake บนนาฬิกาในตอนเย็น อย่างช้าที่สุดเมื่อมีการแจ้งเตือน</string>
     <string name="learn_tip_alarm">นาฬิกาบันทึกเฉพาะคืนที่มีนาฬิกาปลุก</string>
     <string name="learn_tip_connect">เปิดนาฬิกาไว้และเชื่อมต่อกับโทรศัพท์ – นาฬิกาจะส่งการบันทึกหลังเวลาปลุก</string>
+    <string name="battery_night">แบตเตอรี่: %1$s</string>
+    <string name="battery_watch">นาฬิกา −%1$d %%</string>
+    <string name="battery_phone">โทรศัพท์ −%1$d %%</string>
+    <string name="editor_alarm_gone">นาฬิกาปลุกนี้ถูกลบไปแล้ว</string>
+    <string name="test_replaces_nap">การทดสอบนาฬิกาปลุกจะหยุดการงีบหลับของคุณ</string>
+    <string name="settings_clear_history_also">บันทึก ความรู้สึก เครื่องหมายกิจวัตรตอนเย็น และคลิปเสียงจะถูกลบด้วย</string>
 </resources>

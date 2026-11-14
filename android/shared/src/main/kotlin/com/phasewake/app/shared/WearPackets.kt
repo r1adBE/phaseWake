@@ -18,12 +18,15 @@ abstract class WearPackets {
 
     /**
      * Status-Paket der Uhr mit dem Verbindungs-Stand ([DataLayer.PROTOCOL]) dieser Version; [battery] und [pulse]
-     * fehlen, wenn unbekannt; [recorderSkip] ist leer ohne Meldung.
+     * fehlen, wenn unbekannt; [recorderSkip] ist leer ohne Meldung; [charging]: Die Uhr lädt (F-6).
      */
-    fun statusRequest(ready: Boolean, battery: Int?, nowMs: Long, pulse: WatchPulse? = null, recorderSkip: RecorderSkip.Reason? = null): PutDataRequest =
+    fun statusRequest(
+        ready: Boolean, battery: Int?, nowMs: Long, pulse: WatchPulse? = null, recorderSkip: RecorderSkip.Reason? = null, charging: Boolean = false,
+    ): PutDataRequest =
         PutDataMapRequest.create(DataLayer.PATH_WATCH_STATUS).apply {
             dataMap.putBoolean(DataLayer.KEY_READY, ready)
             if (battery != null) dataMap.putInt(DataLayer.KEY_BATTERY, battery)
+            dataMap.putBoolean(DataLayer.KEY_BATTERY_CHARGING, battery != null && charging)
             dataMap.putString(DataLayer.KEY_RECORDER_SKIP, recorderSkip?.code.orEmpty())
             pulse?.let { WatchPulse.put(dataMap, it) }
             dataMap.putInt(DataLayer.KEY_PROTOCOL, DataLayer.PROTOCOL)
@@ -52,6 +55,10 @@ abstract class WearPackets {
     fun readBattery(map: DataMap, nowMs: Long, maxAgeMs: Long): Int? =
         map.takeIf { it.containsKey(DataLayer.KEY_BATTERY) && nowMs - it.getLong(DataLayer.KEY_UPDATED_AT) <= maxAgeMs }
             ?.getInt(DataLayer.KEY_BATTERY)
+
+    /** Ob die Uhr beim Akkustand aus [readBattery] lud (F-6); ältere Uhr oder ohne gültigen Akkustand: nein. */
+    fun readCharging(map: DataMap, nowMs: Long, maxAgeMs: Long): Boolean =
+        readBattery(map, nowMs, maxAgeMs) != null && map.getBoolean(DataLayer.KEY_BATTERY_CHARGING)
 
     /**
      * Grund, warum die Messung vor dem Schlafen nicht startete ([RecorderSkip.Reason]), aus dem Status-Paket; `null` ohne

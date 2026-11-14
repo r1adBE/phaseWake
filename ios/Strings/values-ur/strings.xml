@@ -34,4 +34,6 @@
     <string name="check_watch_state_old">گھڑی کی حالت پرانی ہے – گھڑی پر Phase Wake تھوڑی دیر کے لیے کھولیں۔</string>
     <string name="editor_sleep_hint_apple">سونے کے وقت سے گنا جاتا ہے – سونے جاتے وقت گھڑی پر «شب بخیر» ٹیپ کرو۔ Apple Watch پر Phase Wake سیکھے گئے نیند آنے کے وقت سے اندازہ لگاتا ہے کہ تم کب سوتے ہو۔ ٹیپ نہ کرو تو سیٹ کیا گیا وقت لاگو ہوتا ہے۔</string>
     <string name="auto_onset_hint_apple">سونے کے وقت سے 1 گھنٹہ پہلے سے اپنی Apple Watch پر Phase Wake کھولو (گھڑی یاد دلاتی ہے)، تو تب سے جاگنے کی ونڈو تک وہ تمہاری حرکت ریکارڈ کرتی ہے؛ پھر Phase Wake حساب لگاتا ہے کہ تم کب سوئے۔</string>
+    <string name="home_good_night_tap_cancel">منسوخ کرنے کو ٹیپ کرو</string>
+    <string name="good_night_cancel">شب بخیر منسوخ کرو</string>
 </resources>

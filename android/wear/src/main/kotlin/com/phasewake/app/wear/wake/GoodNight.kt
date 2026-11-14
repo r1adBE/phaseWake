@@ -39,14 +39,19 @@ import kotlinx.coroutines.launch
  * Schlafdauer (dann wird nur die Einschlafzeit gemerkt) und nur, solange das Weckfenster nicht begonnen hat.
  *
  * Startzeit und Wecker liegen in [GoodNightState]. Endet der Prozess, nimmt der Prüf-Alarm
- * (alle 15 Minuten) den Modus mit [requestedAlarmId] `null` wieder auf. Die Einschlaf-Erkennung
- * beginnt dann von vorn; die Zielzeit liegt so höchstens etwas später, nie nach der eingestellten Weckzeit.
+ * (alle 15 Minuten) den Modus mit [requestedAlarmId] `null` wieder auf. Die Einschlaf-Erkennung beginnt nur dann von
+ * vorn, wenn das vor dem Beginn der Einschlafdauer geschieht (automatisch: vor der Bettzeit). Sonst gilt die Regel des
+ * späten Starts ([OnsetRules.lateStart], `docs/PHASENERKENNUNG.md` Abschnitt 8): im Hintergrund ist die Einschlafzeit
+ * unbekannt, die Messung endet gleich (nicht gemessen) und die eingestellte Weckzeit gilt; nur bei sichtbarer App misst
+ * sie ab jetzt. Nach «Gute Nacht» von Hand ist eine Wiederaufnahme immer spät, denn die Einschlafdauer beginnt mit dem
+ * Tippen (Prüfrunde 2, HG-7).
  *
- * Die Messung endet spätestens [OnsetMonitor.MAX_DURATION] nach ihrem Beginn (auch nach dem Wiederaufnehmen) und
+ * Die Messung endet spätestens [OnsetMonitor.MAX_DURATION] nach ihrem ersten Beginn ([GoodNightState]) und
  * 15 Min vor der eingestellten Weckzeit; dann gilt diese, und für die Nacht startet keine automatische Messung mehr.
  * Bei Unruhe verlängert sie sich ([OnsetMonitor]), bis höchstens [OnsetMonitor.MAX_EXTENDED] nach dem Beginn und nie
  * über den Beginn des Weckfensters hinaus. Wird sie nach der Höchstdauer wieder aufgenommen, endet sie wie bisher.
- * Die automatische Messung beginnt nicht unter [AutoOnset.MIN_BATTERY_PERCENT] Akku (Akku-Befund 03.11.2026).
+ * Die automatische Messung beginnt nicht unter [AutoOnset.MIN_BATTERY_PERCENT] Akku (Akku-Befund 03.11.2026), ausser
+ * die Uhr lädt (F-6); dann wartet sie am Ladegerät und endet ohne Untergrenze, wenn der Akku beim Abnehmen noch zu tief ist.
  * Beginnt sie nicht, steht der Grund im Diagnose-Protokoll («… not started: …»), ausser vor dem ersten Entsperren und
  * wenn «Gute Nacht» schon wartet (der Prüf-Alarm nimmt sie alle 15 Minuten wieder auf).
  */
@@ -120,10 +125,12 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
             if (stillWanted()) endBeforeMeasuring(alarmId, latest, "$label $reason", DiagKind.MEASURE_END, measured = resumed != null)
             return@launch
         }
-        // Wenig Akku: automatisch nicht messen (die Messung ist eine Zugabe, der Wecker hat Vorrang).
-        val battery = getSystemService(android.os.BatteryManager::class.java)
-            ?.getIntProperty(android.os.BatteryManager.BATTERY_PROPERTY_CAPACITY)?.takeIf { it in 0..100 }
-        if (automatic && AutoOnset.skipForBattery(battery)) {
+        // Wenig Akku: automatisch nicht messen (die Messung ist eine Zugabe, der Wecker hat Vorrang). Lädt die Uhr, doch: Sie
+        // wartet am Ladegerät (F-6; die Zeit dort zählt nicht und verschiebt die Grenze, HG-3).
+        val batteryManager = getSystemService(android.os.BatteryManager::class.java)
+        val battery = batteryManager?.getIntProperty(android.os.BatteryManager.BATTERY_PROPERTY_CAPACITY)?.takeIf { it in 0..100 }
+        val charging = batteryManager?.isCharging == true
+        if (automatic && AutoOnset.skipForBattery(battery, charging)) {
             if (stillWanted()) {
                 endBeforeMeasuring(alarmId, latest, "auto onset skipped battery $battery", DiagKind.BATTERY)
                 // Nacht-Check am Handy rot bis zur Weckzeit (Audit F-06, wie die Apple Watch).
@@ -140,16 +147,20 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
         val config = learning.applyTo(Calibration.calibrate(NightHistory.motionsForCalibration(app.nights.load())))
         // Beginn der Einschlafdauer für die Lernphase (Schlafenszeit-Empfehlung am Handy).
         val sleepMinutes = spec.sleepDurationMinutes ?: app.sleepGoal.minutes.first()
-        val bedAt = OnsetRules.bedAt(since, automatic, latest, sleepMinutes)
         if (!stillWanted()) return@launch
-        // Erst nach dem Beginn der Einschlafdauer gestartet (oder wieder aufgenommen): Einschlafzeit unbekannt, gemessen ohne
-        // Ergebnis (fail-closed), kein Grundrauschen (Tiefenaudit AP3-2, wie die Apple Watch). Die Lernphase zeichnet trotzdem auf.
+        // Erst nach dem Beginn der Einschlafdauer gestartet (oder wieder aufgenommen; Tiefenaudit AP3-2, Entscheid r1AD
+        // 14.11.2026 zu HG-2, wie die Apple Watch): Bei sichtbarer App ist die Person wach, gemessen wird ab jetzt. Im
+        // Hintergrund ist die Einschlafzeit unbekannt: nicht gemessen, ohne Untergrenze. Die Lernphase zeichnet trotzdem auf.
+        val now = Instant.now()
         val plannedBed = OnsetRules.plannedBedAt(since, automatic, latest, sleepMinutes)
-        if (OnsetRules.startedLate(Instant.now(), plannedBed)) {
+        val late = OnsetRules.lateStart(now, plannedBed, foreground = appVisible())
+        if (late == OnsetRules.LateStart.BACKGROUND) {
             if (learning.active && resumed == null) RecordControl.startForLearning(this@startGoodNight, latest)
-            endBeforeMeasuring(alarmId, latest, "$label start after bedtime $plannedBed: onset unknown", DiagKind.MEASURE_END, measured = true)
+            endBeforeMeasuring(alarmId, latest, "$label start after bedtime $plannedBed: onset unknown, not measured", DiagKind.MEASURE_END)
             return@launch
         }
+        val bedAt = if (late == OnsetRules.LateStart.FOREGROUND) now else OnsetRules.bedAt(since, automatic, latest, sleepMinutes)
+        if (late == OnsetRules.LateStart.FOREGROUND) app.diag.log(DiagKind.MEASURE_START, "$label after bedtime $plannedBed, app open: from now")
         app.diag.log(DiagKind.MEASURE_START, "$label start, alarm at $latest${if (resumed != null) ", resumed" else ""}")
         onsetNight = alarmId to latest
         onsetAuto = automatic
@@ -165,6 +176,12 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
                 stopGoodNight(measured = true)
             },
             extendCap = extendCap, personalFloor = config.personalFloor,
+            // F-6: wegen des Ladens trotz wenig Akku begonnen, abgenommen noch zu tief: nicht gemessen, Nacht-Check wie beim Auslassen.
+            onLowBattery = {
+                app.diag.log(DiagKind.BATTERY, "$label battery low after charging, not measured")
+                app.appScope.launch { app.scheduler.noteRecorderSkip(RecorderSkip(latest, RecorderSkip.Reason.BATTERY)) }
+                stopGoodNight()
+            }.takeIf { automatic },
         ) { found ->
             saveOnsetFloor(alarmId, latest, onset?.floor)
             // Automatisch nie vor der Bettzeit eingeschlafen (Vollaudit K-4); nach «Gute Nacht» unverändert.
@@ -174,6 +191,7 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
         }
         onset = monitor
         monitor.start()
+        nightBatteryBegin(this@startGoodNight, alarmId, latest)
         // Die Messung läuft (Stichproben mit eigenem Wakelock): Start-Wakelock des Prüf-Alarms lösen.
         StartLock.release()
         // Misst doch (z. B. «Gute Nacht» von Hand nach dem Laden): Meldung dieser Nacht aufheben.

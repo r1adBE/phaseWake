@@ -99,6 +99,10 @@ class WatchListenerService : WearableListenerService() {
                     RecordControl.onLearningChanged(this, learning)
                 }
             }
+            // Einschlafdauer getrennt (Audit F-4/SP-6): nur für die Bettzeit auf dem Ring, kein Neuplanen nötig.
+            DataLayer.PATH_MSG_LEARN_LATENCY -> LearningSnapshot.decodeLatency(body)?.let { (minutes, at) ->
+                if (app.learning.setLatencyIfNewer(minutes, at)) app.diag.log(DiagKind.SYNC, "learn latency ${if (minutes != null) "set" else "-"}")
+            }
         }
         if (replan) app.scheduler.reschedule()
     }

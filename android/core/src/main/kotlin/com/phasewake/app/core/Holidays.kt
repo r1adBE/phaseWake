@@ -33,6 +33,19 @@ object Holidays {
         return (national + regional).mapNotNull(::parse).filter { !it.isBefore(today) && it.isBefore(end) }.toSortedSet()
     }
 
+    /**
+     * Ob ein Eintrag der Datendatei nur geschätzt ist: Das Paket «holidays» kennzeichnet Feiertage nach Mondkalender, deren
+     * Tag erst kurz vorher feststeht, im Namen mit «estimated» (z. B. «Eid al-Fitr (estimated)», «… (observed, estimated)»).
+     * Mehrere Feiertage am selben Tag stehen mit «; » getrennt; der Tag ist nur geschätzt, wenn alle es sind.
+     *
+     * Geschätzte Tage gelten nicht als frei (Entscheid r1AD 14.11.2026, Audit F-2): Der Wecker klingelt, die Einstellungen
+     * zeigen den nächsten als «geschätzt», man kann den Tag selbst überspringen. Gleich in Swift.
+     */
+    fun isEstimated(name: String): Boolean = name.split(NAME_SEP).all { ESTIMATED in it }
+
+    private const val NAME_SEP = "; "
+    private const val ESTIMATED = "estimated"
+
     /** Schreibt «region|yyyy-MM-dd,yyyy-MM-dd» mit aufsteigend sortierten Daten; ohne Daten «region|». */
     fun encode(list: HolidayList): String =
         list.region + SEP + list.dates.sorted().joinToString(DATE_SEP)

@@ -115,4 +115,5 @@
     <string name="watch_learn_skip_battery">Эта ночь не засчитывается для этапа обучения: заряд %1$d %%, нужно %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Эта ночь не засчитывается для этапа обучения: Phase Wake не может использовать датчики часов.</string>
     <string name="watch_learn_skip_late">Эта ночь не засчитывается для этапа обучения: Phase Wake открыт вечером слишком поздно.</string>
+    <string name="editor_alarm_gone">Этот будильник тем временем удалён.</string>
 </resources>

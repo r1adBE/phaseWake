@@ -427,6 +427,7 @@
     <string name="holidays_off">Χωρίς αργίες</string>
     <string name="holidays_hint">Οι τοπικές αργίες μεμονωμένων δήμων δεν περιλαμβάνονται.</string>
     <string name="holidays_next">Επόμενη αργία: %1$s</string>
+    <string name="holidays_next_estimated">Εκτιμώμενη αργία: %1$s – το ξυπνητήρι θα χτυπήσει. Αν έχεις ρεπό, παράλειψε μόνος σου την ημέρα.</string>
     <string name="editor_skip_holidays">Χωρίς αφύπνιση τις αργίες</string>
     <string name="editor_skip_holidays_hint">Διάλεξε χώρα και περιοχή στις ρυθμίσεις.</string>
     <string name="home_holiday_skipped">%1$s: αργία – χωρίς αφύπνιση</string>
@@ -625,4 +626,10 @@
     <string name="learn_tip_late">Άνοιξε το Phase Wake στο ρολόι το βράδυ, το αργότερο με την υπενθύμιση.</string>
     <string name="learn_tip_alarm">Το ρολόι καταγράφει μόνο νύχτες με ξυπνητήρι.</string>
     <string name="learn_tip_connect">Κράτα το ρολόι ανοιχτό και συνδεδεμένο με το τηλέφωνο – στέλνει την καταγραφή μετά το ξυπνητήρι.</string>
+    <string name="battery_night">Μπαταρία: %1$s</string>
+    <string name="battery_watch">Ρολόι −%1$d %%</string>
+    <string name="battery_phone">Κινητό −%1$d %%</string>
+    <string name="editor_alarm_gone">Αυτό το ξυπνητήρι διαγράφηκε στο μεταξύ.</string>
+    <string name="test_replaces_nap">Η δοκιμαστική αφύπνιση τερματίζει τον υπνάκο σου.</string>
+    <string name="settings_clear_history_also">Διαγράφονται επίσης σημειώσεις, αίσθηση, σημάδια της βραδινής ρουτίνας και αποσπάσματα ήχου.</string>
 </resources>

@@ -93,6 +93,8 @@ final class PhoneModel {
                                                    queue: .main) { _ in
             Task { @MainActor in PhoneModel.shared.catchUpState() }
         }
+        // Akku je Nacht: Ladebeginn und -ende, solange die App läuft (r1AD 14.11.2026).
+        PhoneBattery.listen()
         // Einschlafklänge prüfen ihr Ende jede Minute gegen den aktuellen Plan.
         sounds.currentWindowStart = { [weak self] in
             guard let self else { return nil }
@@ -174,7 +176,26 @@ final class PhoneModel {
         queued.forEach(applyRemote)
     }
 
+    /// Von der Uhr gemeldete Nächte, solange Stand oder Verlauf nicht lesbar sind (vor dem ersten Entsperren); in der
+    /// Reihenfolge des Empfangs. `catchUpState` schreibt sie danach (Prüfrunde 2, `applyPendingNights`).
+    @ObservationIgnored private var pendingNights: [NightRecord] = []
+
+    /// Nach dem Lesen des Stands: gemerkte Nächte speichern, erst jetzt gegen «Verlauf löschen» geprüft (der Zeitpunkt
+    /// steht im Stand, vorher galt er als unbekannt).
+    func applyPendingNights() {
+        guard stateLoaded, !pendingNights.isEmpty, storage.nightsReadable else { return }
+        let queued = pendingNights
+        pendingNights = []
+        for night in queued where HistoryClear.keeps(end: night.wokeAt, clearedAt: historyClearedAt) { add(night: night) }
+    }
+
     func add(night: NightRecord) {
+        // Vor dem ersten Entsperren: nicht verlieren, sondern merken (Prüfrunde 2, `add(night:)` wie die Wecker der Uhr).
+        guard stateLoaded || catchUpState(), storage.nightsReadable else {
+            pendingNights.append(night)
+            DiagStore.shared.log(.suppressed, "night kept until history readable")
+            return
+        }
         storage.add(night)
         nights = storage.nights()
         PhoneWidgetSync.publishNight(self)
@@ -226,7 +247,13 @@ final class PhoneModel {
         watchArmedTarget = target
     }
 
-    func setWatchStatus(battery: (percent: Int, at: Date)?, version: Int?, notifications: (state: WatchNotifications, checkedAt: Date?)?) { (watchBatteryLevel, watchProtocol, watchNotifications) = (battery, version, notifications) }
+    func setWatchStatus(battery: (percent: Int, at: Date)?, version: Int?, notifications: (state: WatchNotifications, checkedAt: Date?)?,
+                        charging: Bool = false) {
+        (watchBatteryLevel, watchProtocol, watchNotifications, watchBatteryCharging) = (battery, version, notifications, battery != nil && charging)
+    }
+
+    /// Ob die Uhr beim gemeldeten Akkustand lud (Prüfrunde 2 F-6): Dann misst sie trotz wenig Akku (Nacht-Check O-05).
+    private(set) var watchBatteryCharging = false
 
     /// Akkustand der Uhr; `nil`, wenn unbekannt oder älter als 6 Stunden.
     func watchBattery(now: Date = Date()) -> Int? {

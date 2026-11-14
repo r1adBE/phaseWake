@@ -78,6 +78,8 @@ extension SmartAlarm {
             scheduleFallback(at: at, id: Self.fallbackKey(for: plan.alarmId), fixed: true)
         }
         DiagStore.shared.log(.measureStart, "\(plan.alarmId.prefix(8)) \(Format.logTime(plan.windowStart))–\(Format.logTime(plan.target)) unmeasured \(unmeasured)\(exactNight ? " exact" : "")")
+        // Akku je Nacht: Messbeginn, oder Zwischenstand nach «Gute Nacht» bzw. Aufzeichnung.
+        WatchBattery.begin(alarmId: plan.alarmId, target: plan.target)
 
         let uptimeNanos = Int64(ProcessInfo.processInfo.systemUptime * 1e9)
         let sinceStart = Int64(Date().timeIntervalSince(plan.windowStart) * 1e9)
@@ -104,6 +106,8 @@ extension SmartAlarm {
                 // CoreMotion liefert ohne Bündelung: Nachfrist 2 s plus ein Takt des Zeitgebers.
                 let closed = self.assemblerQueue.sync { assembler.advance(nowNanos: now, graceNanos: 12_000_000_000) }
                 self.feed(closed)
+                // Akku je Nacht: Ladegerät angeschlossen oder getrennt?
+                WatchBattery.poll()
             }
         }
         deadline = Timer.scheduledTimer(withTimeInterval: max(0, plan.target.timeIntervalSinceNow), repeats: false) { [weak self] _ in
@@ -134,9 +138,17 @@ extension SmartAlarm {
         phase = .idle
     }
 
+    /// Messung endet ohne Wecken (Wecker geändert, aus- oder abgeschaltet). Bei offener App bestätigt eine kurze Vibration
+    /// der laufenden Sitzung das Ende (HG-4: Eine Smart-Alarm-Sitzung ohne Vibration lässt watchOS warnen und anbieten,
+    /// künftige abzuschalten; die Person ist da wach). Im Hintergrund nicht: `notifyUser` zeigte dann den Weckhinweis des
+    /// Systems mitten in der Nacht (bleibt offen, am Gerät zu prüfen, `docs/ENTSCHEIDE.md`).
     func cancelMeasuring() {
         logMeasureEnd(" cancelled")
         stopSensors()
+        if let session, session.state == .running, WKApplication.shared().applicationState == .active {
+            // Einmal: Abstand 0 beendet die Wiederholung (`SessionRules.hapticStep`).
+            session.notifyUser(hapticType: .stop) { _ in 0 }
+        }
         invalidateSession()
         phase = .idle
         plan = nil
@@ -145,11 +157,13 @@ extension SmartAlarm {
 
     func startHeartRate(assembler: EpochAssembler) {
         guard HKHealthStore.isHealthDataAvailable(), let type = HKQuantityType.quantityType(forIdentifier: .heartRate) else { return }
-        let predicate = HKQuery.predicateForSamples(withStart: Date(), end: nil)
+        // Nur Puls der Apple Watch (F-8): Ring oder Brustgurt in Apple Health zählen nicht.
+        let predicate = WatchPulseSource.predicate(start: Date(), end: nil)
         let unit = HKUnit.count().unitDivided(by: .minute())
         let queue = assemblerQueue
         let handler: @Sendable (HKAnchoredObjectQuery, [HKSample]?, [HKDeletedObject]?, HKQueryAnchor?, Error?) -> Void = { [weak self] _, samples, _, _, _ in
-            guard let samples = samples as? [HKQuantitySample], !samples.isEmpty else { return }
+            guard let samples = (samples as? [HKQuantitySample])?.filter({ WatchPulseSource.counts(deviceModel: $0.device?.model) }),
+                  !samples.isEmpty else { return }
             // Zeitstempel der Probe auf die Systemlaufzeit umrechnen (gleiche Uhr wie CoreMotion): Alter der
             // Probe gegen die Wanduhr, abgezogen von der Laufzeit. Beide Bezugswerte im selben Moment und
             // einmal je Lieferung genommen. Bewusst kein fester Versatz ab Sitzungsbeginn: HealthKit stempelt

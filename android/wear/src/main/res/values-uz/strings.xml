@@ -108,4 +108,5 @@
     <string name="watch_learn_skip_battery">Bu tun o‘rganish bosqichiga hisoblanmaydi: batareya %1$d %%, kerak %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Bu tun o‘rganish bosqichiga hisoblanmaydi: Phase Wake soat sensorlaridan foydalana olmaydi.</string>
     <string name="watch_learn_skip_late">Bu tun o‘rganish bosqichiga hisoblanmaydi: Phase Wake kechqurun juda kech ochildi.</string>
+    <string name="editor_alarm_gone">Bu budilnik shu orada oʻchirildi.</string>
 </resources>

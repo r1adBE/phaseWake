@@ -58,6 +58,16 @@ class NightCheckWatchBatteryTest {
     }
 
     @Test
+    fun noWarningWhileTheWatchCharges() {
+        // Prüfrunde 2 F-6 (wie iPhone `watchChecks` mit `charging`): Am Ladegerät misst die Uhr trotz 25 % bzw. 15 %.
+        val charging = NightCheckState.collect(context, true, true, watchBattery = 25, autoOnset = true, learning = true, watchCharging = true)
+        assertFalse(Check.WATCH_ONSET_BATTERY in charging.failed || Check.WATCH_LEARN_BATTERY in charging.failed)
+        val low = NightCheckState.collect(context, true, true, watchBattery = 15, autoOnset = true, watchCharging = true)
+        assertFalse(Check.WATCH_BATTERY in low.failed)
+        assertFalse(NightCheckState.onsetSkipped(charging))
+    }
+
+    @Test
     fun headerLineGoesAwayWhenOnsetIsSkipped() {
         assertTrue(NightCheckState.onsetSkipped(collect(29)))
         assertTrue(NightCheckState.onsetSkipped(collect(15)))

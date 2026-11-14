@@ -108,4 +108,5 @@
     <string name="watch_learn_skip_battery">ਅੱਜ ਦੀ ਰਾਤ ਸਿੱਖਣ ਦੇ ਪੜਾਅ ਵਿੱਚ ਨਹੀਂ ਗਿਣੀ ਜਾਵੇਗੀ: ਬੈਟਰੀ %1$d %%, ਚਾਹੀਦੀ %2$d %%।</string>
     <string name="watch_learn_skip_sensors">ਅੱਜ ਦੀ ਰਾਤ ਸਿੱਖਣ ਦੇ ਪੜਾਅ ਵਿੱਚ ਨਹੀਂ ਗਿਣੀ ਜਾਵੇਗੀ: Phase Wake ਘੜੀ ਦੇ ਸੈਂਸਰ ਨਹੀਂ ਵਰਤ ਸਕਦਾ।</string>
     <string name="watch_learn_skip_late">ਅੱਜ ਦੀ ਰਾਤ ਸਿੱਖਣ ਦੇ ਪੜਾਅ ਵਿੱਚ ਨਹੀਂ ਗਿਣੀ ਜਾਵੇਗੀ: ਸ਼ਾਮ ਨੂੰ Phase Wake ਬਹੁਤ ਦੇਰ ਨਾਲ ਖੋਲ੍ਹਿਆ ਗਿਆ।</string>
+    <string name="editor_alarm_gone">ਇਹ ਅਲਾਰਮ ਇਸ ਦੌਰਾਨ ਮਿਟਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।</string>
 </resources>

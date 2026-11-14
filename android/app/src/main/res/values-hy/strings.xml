@@ -415,6 +415,7 @@
     <string name="holidays_off">Առանց տոների</string>
     <string name="holidays_hint">Առանձին բնակավայրերի տեղական տոները ներառված չեն։</string>
     <string name="holidays_next">Հաջորդ տոնը՝ %1$s</string>
+    <string name="holidays_next_estimated">Մոտավոր տոն՝ %1$s – զարթուցիչը կզնգա։ Եթե ազատ ես, ինքդ բաց թող այդ օրը։</string>
     <string name="editor_skip_holidays">Չարթնացնել տոներին</string>
     <string name="editor_skip_holidays_hint">Ընտրիր երկիրը և տարածաշրջանը կարգավորումներում։</string>
     <string name="home_holiday_skipped">%1$s՝ տոն – զարթուցիչ չկա</string>
@@ -613,4 +614,10 @@
     <string name="learn_tip_late">Երեկոյան բացիր Phase Wake-ը ժամացույցում, ամենաուշը հիշեցման ժամանակ։</string>
     <string name="learn_tip_alarm">Ժամացույցը գրանցում է միայն զարթուցիչով գիշերները։</string>
     <string name="learn_tip_connect">Ժամացույցը պահիր միացված և հեռախոսին կապված – զարթուցիչից հետո այն ուղարկում է գրանցումը։</string>
+    <string name="battery_night">Մարտկոց՝ %1$s</string>
+    <string name="battery_watch">Ժամացույց −%1$d %%</string>
+    <string name="battery_phone">Հեռախոս −%1$d %%</string>
+    <string name="editor_alarm_gone">Այս զարթուցիչն այդ ընթացքում ջնջվել է։</string>
+    <string name="test_replaces_nap">Փորձնական զարթուցիչն ավարտում է կարճ քունդ։</string>
+    <string name="settings_clear_history_also">Ջնջվում են նաև նշումները, ինքնազգացումը, երեկոյան ծեսի նշիչները և ձայնային հատվածները։</string>
 </resources>

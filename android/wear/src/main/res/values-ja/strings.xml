@@ -103,4 +103,5 @@
     <string name="watch_learn_skip_battery">今夜は学習期間にカウントされません：バッテリー %1$d %%、必要 %2$d %%。</string>
     <string name="watch_learn_skip_sensors">今夜は学習期間にカウントされません：Phase Wake がウォッチのセンサーを使えません。</string>
     <string name="watch_learn_skip_late">今夜は学習期間にカウントされません：夜、Phase Wake を開くのが遅すぎました。</string>
+    <string name="editor_alarm_gone">このアラームはすでに削除されています。</string>
 </resources>

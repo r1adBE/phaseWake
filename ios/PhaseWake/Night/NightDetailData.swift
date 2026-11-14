@@ -17,8 +17,11 @@ struct NightDetailData {
     /// Nachtdatum des Eintrags («yyyy-MM-dd»).
     var nightDate: String { item.date }
 
+    /// Zone für Datum und Uhrzeiten: bei einer Nacht aus der Gesundheits-App die ihrer Aufzeichnung (Audit F-3), sonst `nil` (Gerät).
+    var timeZone: TimeZone? { item.session?.timeZone }
+
     /// Datum wie auf der Karte: Tag des Weckens bzw. des Sitzungsendes.
-    var title: String { item.at.formatted(date: .abbreviated, time: .omitted) }
+    var title: String { Format.day(item.at, in: timeZone) }
 
     /// `stages` = alle Phasen aus Apple Health (für eigene Nächte, ``HealthHistory/stages(_:clearedAt:calendar:)``).
     init(item: HistoryItem, stages allStages: [StageSpan]) {
@@ -37,7 +40,8 @@ struct NightDetailData {
         } else if let session = item.session {
             let stages = StageStats.forSession(session)
             timeline = session.hasStages
-                ? StageTimeline(start: session.start, totalMinutes: max(1, session.end.timeIntervalSince(session.start) / 60), steps: session.steps)
+                ? StageTimeline(start: session.start, totalMinutes: max(1, session.end.timeIntervalSince(session.start) / 60), steps: session.steps,
+                                timeZone: session.timeZone)
                 : nil
             self.stages = stages
             inBed = (start: session.start, end: session.end)

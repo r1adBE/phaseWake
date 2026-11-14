@@ -36,4 +36,6 @@
     <string name="check_watch_state_old">ສະຖານະຂອງໂມງລ້າສະໄໝແລ້ວ – ເປີດ Phase Wake ໃນໂມງໄລຍະສັ້ນໆ.</string>
     <string name="editor_sleep_hint_apple">ນັບຈາກເວລາທີ່ເຈົ້າຫຼັບ – ແຕະ «ລາຕີສະຫວັດ» ໃນໂມງເມື່ອເຂົ້ານອນ. ໃນ Apple Watch, Phase Wake ຄາດຄະເນເວລາທີ່ເຈົ້າຫຼັບ ຈາກເວລາກວ່າຈະຫຼັບທີ່ມັນໄດ້ຮຽນຮູ້. ຖ້າບໍ່ແຕະ ຈະໃຊ້ເວລາທີ່ຕັ້ງໄວ້.</string>
     <string name="auto_onset_hint_apple">ເປີດ Phase Wake ໃນ Apple Watch ຂອງເຈົ້າຕັ້ງແຕ່ 1 ຊົ່ວໂມງກ່ອນເວລານອນ (ໂມງຈະເຕືອນເຈົ້າ) ແລະ ມັນຈະບັນທຶກການເຄື່ອນໄຫວຂອງເຈົ້າຕັ້ງແຕ່ຕອນນັ້ນຈົນຮອດຊ່ວງເວລາປຸກ; ຈາກນັ້ນ Phase Wake ຈະຄິດໄລ່ວ່າເຈົ້ານອນຫຼັບເມື່ອໃດ.</string>
+    <string name="home_good_night_tap_cancel">ແຕະເພື່ອຍົກເລີກ</string>
+    <string name="good_night_cancel">ຍົກເລີກ ລາຕີສະຫວັດ</string>
 </resources>

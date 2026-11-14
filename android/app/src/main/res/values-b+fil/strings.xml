@@ -430,6 +430,7 @@
     <string name="holidays_off">Walang holiday</string>
     <string name="holidays_hint">Hindi kasama ang mga lokal na holiday ng bawat bayan.</string>
     <string name="holidays_next">Susunod na holiday: %1$s</string>
+    <string name="holidays_next_estimated">Tinatayang holiday: %1$s – tutunog ang alarm. Kung day off mo, ikaw na ang lumaktaw nito.</string>
     <string name="editor_skip_holidays">Huwag manggising tuwing holiday</string>
     <string name="editor_skip_holidays_hint">Piliin ang bansa at rehiyon sa mga setting.</string>
     <string name="home_holiday_skipped">%1$s: holiday – walang alarm</string>
@@ -628,4 +629,10 @@
     <string name="learn_tip_late">Buksan ang Phase Wake sa relo sa gabi, hindi lalampas sa paalala.</string>
     <string name="learn_tip_alarm">Mga gabing may alarm lang ang nire-record ng relo.</string>
     <string name="learn_tip_connect">Panatilihing naka-on ang relo at nakakonekta sa phone mo – ipinapadala nito ang recording pagkatapos ng alarm.</string>
+    <string name="battery_night">Baterya: %1$s</string>
+    <string name="battery_watch">Relo −%1$d %%</string>
+    <string name="battery_phone">Telepono −%1$d %%</string>
+    <string name="editor_alarm_gone">Na-delete na ang alarm na ito.</string>
+    <string name="test_replaces_nap">Tatapusin ng test na alarm ang power nap mo.</string>
+    <string name="settings_clear_history_also">Mabubura rin ang mga tala, pakiramdam, tsek sa routine sa gabi at mga sound clip.</string>
 </resources>

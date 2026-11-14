@@ -112,4 +112,5 @@
     <string name="watch_learn_skip_battery">Šī nakts netiek ieskaitīta mācīšanās posmā: akumulators %1$d %%, vajag %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Šī nakts netiek ieskaitīta mācīšanās posmā: Phase Wake nevar izmantot pulksteņa sensorus.</string>
     <string name="watch_learn_skip_late">Šī nakts netiek ieskaitīta mācīšanās posmā: Phase Wake vakarā atvērts par vēlu.</string>
+    <string name="editor_alarm_gone">Šis modinātājs pa to laiku ir izdzēsts.</string>
 </resources>

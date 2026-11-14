@@ -23,6 +23,7 @@ internal object BackupDirectBoot {
     private const val FILE = "backup_direct_boot"
     private const val KEY_PLANS = "plans"
     private const val KEY_RANG = "rang"
+    private const val KEY_ENDED = "ended"
 
     // Ältere Versionen: nur ein Eintrag bzw. ein Weckvorgang (beim Lesen noch berücksichtigt).
     private const val KEY_AT = "at"
@@ -78,6 +79,21 @@ internal object BackupDirectBoot {
         prefs.getString(KEY_RANG_ID, null)?.let { rang += it to Instant.ofEpochMilli(prefs.getLong(KEY_RANG_TARGET, 0L)) }
         if (rang.isNotEmpty()) prefs.edit { remove(KEY_RANG); remove(KEY_RANG_ID); remove(KEY_RANG_TARGET) }
         return rang
+    }
+
+    /** Vor dem Entsperren am Handy beendeter Probewecker oder Powernap [alarmId] (Audit SP-4), für [takeEnded]. */
+    fun markEnded(context: Context, alarmId: String) {
+        val prefs = prefs(context)
+        val ended = prefs.getString(KEY_ENDED, null)?.lines().orEmpty().filter { it.isNotEmpty() } - alarmId + alarmId
+        prefs.edit { putString(KEY_ENDED, ended.joinToString("\n")) }
+    }
+
+    /** Gemerkte beendete Pläne ([markEnded]) einmal abholen. */
+    fun takeEnded(context: Context): List<String> {
+        val prefs = prefs(context)
+        val ended = prefs.getString(KEY_ENDED, null)?.lines().orEmpty().filter { it.isNotEmpty() }
+        if (ended.isNotEmpty()) prefs.edit { remove(KEY_ENDED) }
+        return ended
     }
 
     /**

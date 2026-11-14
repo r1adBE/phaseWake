@@ -37,6 +37,7 @@ struct HomeView: View {
                                         Task { await NightCheck.fix(check); failedChecks = await NightCheck.collect() }
                                     }
                                 }
+                                BackupSnoozeCard(now: context.date)
                                 TransientStatusCard()
                                 if model.transient.nap == nil { NapCard() }
                                 if let plan, model.alarms.first(where: { $0.id == plan.alarmId })?.sunrise != .off {
@@ -347,12 +348,23 @@ private struct AlarmRow: View {
                     }
                 }
             }
-            Spacer()
-            Toggle("", isOn: Binding(get: { alarm.enabled }, set: { model.setEnabled(alarm, $0) }))
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .contentShape(Rectangle())
+            .onTapGesture(perform: onTap)
+            .accessibilityElement(children: .combine) // VoiceOver wie Android (B-15): Zeile öffnet, Schalter getrennt.
+            .accessibilityAddTraits(.isButton)
+            .accessibilityHint(L("editor_edit"))
+            .accessibilityAction(.default, onTap)
+            .accessibilityActions {
+                if let skipped {
+                    Button(undoLabel(skipped)) { model.setSkipped(alarm, false) }
+                } else if !alarm.isOneShot && alarm.enabled {
+                    Button(skipTitle) { model.setSkipped(alarm, true) }
+                }
+            }
+            Toggle(Format.window(alarm), isOn: Binding(get: { alarm.enabled }, set: { model.setEnabled(alarm, $0) }))
                 .labelsHidden()
         }
-        .contentShape(Rectangle())
-        .onTapGesture(perform: onTap)
         .contextMenu {
             Button(L("editor_edit"), systemImage: "pencil", action: onTap)
             if skipped != nil {
@@ -361,16 +373,7 @@ private struct AlarmRow: View {
                 Button(skipTitle, systemImage: "forward.end") { model.setSkipped(alarm, true) }
             }
         }
-        .accessibilityAction(named: L("editor_edit"), onTap)
-        .accessibilityActions {
-            if let skipped {
-                Button(undoLabel(skipped)) { model.setSkipped(alarm, false) }
-            } else if !alarm.isOneShot && alarm.enabled {
-                Button(skipTitle) { model.setSkipped(alarm, true) }
-            }
-        }
         .card()
-        .accessibilityElement(children: .combine)
     }
 
     /// Übersprungener Termin «yyyy-MM-dd», solange er bevorsteht.

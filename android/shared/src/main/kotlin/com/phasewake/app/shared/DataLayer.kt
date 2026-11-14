@@ -45,6 +45,13 @@ object DataLayer {
     /** Nachricht Handy → Uhr (Warteschlange): Lernphase, Inhalt `LearningSnapshot.encode`. */
     const val PATH_MSG_LEARNING = "/phasewake/m/learning"
 
+    /**
+     * Nachricht Handy → Uhr (Warteschlange): gelernte Einschlafdauer (O-03, Bettzeit auf dem Ring), Inhalt
+     * `LearningSnapshot.encodeLatency` «minuten|updatedAt» (−1 = keine). Eigener Pfad (Audit F-4/SP-6): Uhren früherer
+     * Versionen lesen [PATH_MSG_LEARNING] nur mit genau 4 Feldern, übergehen diesen Pfad und behalten so ihren Lernstand.
+     */
+    const val PATH_MSG_LEARN_LATENCY = "/phasewake/m/learn-latency"
+
     /** Nachricht Handy → Uhr (Warteschlange): Schlafziel, Inhalt «minuten|updatedAt». */
     const val PATH_MSG_SLEEP_GOAL = "/phasewake/m/sleep-goal"
 
@@ -69,6 +76,13 @@ object DataLayer {
 
     /** Nachricht Uhr → Handy oder Handy → Uhr: Weckvorgang beendet oder auf der Uhr geschlummert; Inhalt = [RingMessage] ohne Schlummer-Runden. */
     const val PATH_STOP = "/phasewake/stop"
+
+    /**
+     * Nachricht Uhr → Handy: Die Uhr beginnt eine Nacht zu messen (Einschlaf-Messung, Aufzeichnung oder Weckfenster); das
+     * Handy hält ab jetzt seinen eigenen Akkustand fest (`BatteryNight`, r1AD 14.11.2026). Inhalt = [RingMessage] (Kennung,
+     * Zielzeit, Sendezeit); nur frisch angekommen ([RingMessage.isStale]) gilt «jetzt» als Beginn. Ältere Handys übergehen den Pfad.
+     */
+    const val PATH_NIGHT_BEGIN = "/phasewake/night-begin"
 
     /**
      * Nachricht Handy → Uhr: am Handy wurde Schlummern gewählt. Hat die Uhr keine Runde mehr,
@@ -113,6 +127,12 @@ object DataLayer {
 
     /** Akkustand der Uhr in Prozent (0–100), im selben Paket wie [KEY_READY]; fehlt bei älteren Versionen. */
     const val KEY_BATTERY = "battery"
+
+    /**
+     * Die Uhr lud beim Akkustand [KEY_BATTERY] (Prüfrunde 2 F-6, wie `SyncKeys.batteryCharging`): Dann misst sie trotz
+     * wenig Akku, der Nacht-Check warnt nicht. Fehlt bei älteren Versionen (gilt als nicht geladen).
+     */
+    const val KEY_BATTERY_CHARGING = "batteryCharging"
 
     /**
      * Stand der Verbindung Handy ↔ Uhr (Review O-04), wie eine Formatversion: steigt, wenn eine ältere Uhr etwas, das das

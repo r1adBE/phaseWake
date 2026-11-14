@@ -108,4 +108,5 @@
     <string name="watch_learn_skip_battery">የዛሬ ሌሊት ለመማሪያ ጊዜው አይቆጠርም፦ ባትሪ %1$d %%፣ ያስፈልጋል %2$d %%።</string>
     <string name="watch_learn_skip_sensors">የዛሬ ሌሊት ለመማሪያ ጊዜው አይቆጠርም፦ Phase Wake የሰዓቱን ዳሳሾች መጠቀም አይችልም።</string>
     <string name="watch_learn_skip_late">የዛሬ ሌሊት ለመማሪያ ጊዜው አይቆጠርም፦ Phase Wake ማታ በጣም ዘግይቶ ተከፍቷል።</string>
+    <string name="editor_alarm_gone">ይህ ማንቂያ በመሃሉ ተሰርዟል።</string>
 </resources>

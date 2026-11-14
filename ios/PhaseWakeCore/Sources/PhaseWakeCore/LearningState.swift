@@ -163,8 +163,15 @@ public struct LearningSnapshot: Equatable, Sendable, Codable {
             floor: Learning.validFloor(context[SyncKeys.learnFloor] as? Double),
             restingHeartRate: Learning.validRestingHeartRate(context[SyncKeys.learnRestingHr] as? Double),
             updatedAtMs: updatedAt,
-            latencyMinutes: (context[SyncKeys.learnLatency] as? Int64).map { Int($0) }
+            latencyMinutes: Self.validLatency(context[SyncKeys.learnLatency] as? Int64)
         )
+    }
+
+    /// Einschlafdauer in Minuten, wenn plausibel (0 bis ``Learning/maxLatencyMinutes``); sonst `nil` – wie
+    /// `LearningSnapshot.validLatency` (Kotlin). Geprüft am `Int64`, bevor er zu `Int` wird (32 Bit auf der Apple Watch).
+    public static func validLatency(_ value: Int64?) -> Int? {
+        guard let value, value >= 0, value <= Int64(Learning.maxLatencyMinutes) else { return nil }
+        return Int(value)
     }
 
     /// Legt den Stand in den Anwendungskontext; fehlende Werte fehlen auch dort.

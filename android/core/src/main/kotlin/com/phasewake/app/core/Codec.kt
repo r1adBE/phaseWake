@@ -123,6 +123,7 @@ object Codec {
      * und eine Zeile mit allen Epochen «Bewegung;Puls», durch Komma getrennt; fehlende Werte bleiben leer.
      * Ein Grund, den ältere Versionen nicht kennen ([WakeReason.EXACT], [WakeReason.SHORT_NIGHT]), steht in Feld 5
      * als [WakeReason.DEADLINE] (so lesen ältere Versionen die Nacht weiter) und genau in einem angehängten Feld 8.
+     * Akku der Uhr und des Handys ([BatteryTrack.encode]) in den Feldern 9 und 10, nur wenn vorhanden.
      */
     fun encodeNight(night: NightRecord): String = buildString {
         append(NIGHT_HEADER).append('\n')
@@ -136,7 +137,15 @@ object Codec {
             night.snoozes.toString(),
             night.feeling?.toString().orEmpty(),
         )
-        append((if (legacy) fields else fields + night.reason.name).joinToString(SEP)).append('\n')
+        // Akku (Felder 9 und 10, r1AD 14.11.2026): nur wenn vorhanden; Feld 8 dann notfalls leer (ältere Versionen lesen
+        // ein leeres Feld 8 wie ein fehlendes und übergehen 9 und 10).
+        val batteries = listOf(night.watchBattery, night.phoneBattery).map { it?.let(BatteryTrack::encode).orEmpty() }.dropLastWhile { it.isEmpty() }
+        val tail = when {
+            batteries.isNotEmpty() -> listOf(if (legacy) "" else night.reason.name) + batteries
+            legacy -> emptyList()
+            else -> listOf(night.reason.name)
+        }
+        append((fields + tail).joinToString(SEP)).append('\n')
         append(night.epochs.joinToString(",") { e ->
             // toString() liefert die kürzeste exakt rücklesbare Darstellung.
             (e.motion?.toString() ?: "") + ";" + (e.heartRate?.toString() ?: "")
@@ -148,7 +157,7 @@ object Codec {
      * Versionen werden ignoriert. Grund: Feld 8, wenn bekannt, sonst Feld 5; ein unbekannter Grund (aus einer
      * neueren Version) gilt als [WakeReason.DEADLINE]. Fremdes Format oder kaputte Werte (auch Zeiten ausserhalb von
      * [TimeBounds]): [CodecException]
-     * (eine Nacht ist ganz oder gar nicht lesbar).
+     * (eine Nacht ist ganz oder gar nicht lesbar). Ausnahme Akku (Felder 9 und 10): unlesbar heisst nur ohne Akku.
      */
     fun decodeNight(text: String): NightRecord {
         val lines = text.lines()
@@ -166,6 +175,9 @@ object Codec {
                 reason = reasonOf(f.getOrNull(7)) ?: reasonOf(f[4]) ?: WakeReason.DEADLINE,
                 snoozes = f[5].toInt(),
                 feeling = f.getOrNull(6)?.ifEmpty { null }?.toInt(),
+                // Unlesbar: ohne Akku statt die ganze Nacht zu verwerfen.
+                watchBattery = BatteryTrack.decode(f.getOrNull(8)),
+                phoneBattery = BatteryTrack.decode(f.getOrNull(9)),
                 epochs = if (epochLine.isEmpty()) emptyList() else epochLine.split(",").map { pair ->
                     val p = pair.split(";")
                     require(p.size == 2) { "Epoche '$pair'" }

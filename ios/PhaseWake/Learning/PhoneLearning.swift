@@ -23,15 +23,46 @@ final class PhoneLearning {
     /// Aufzeichnungen der Uhr, älteste zuerst.
     private(set) var recordings: [NightRecording]
 
-    @ObservationIgnored private let stateURL = PrivateFiles.directory.appendingPathComponent("learning.v1")
-    @ObservationIgnored private let recordingsURL = PrivateFiles.directory.appendingPathComponent("learn-recordings.v1")
+    @ObservationIgnored private let stateURL: URL
+    @ObservationIgnored private let recordingsURL: URL
     /// Nachtragen der Einschlafdauer läuft (nicht doppelt).
     @ObservationIgnored private var filling = false
+    /// Ob beide Dateien gelesen sind (oder fehlen). Vor dem ersten Entsperren nach einem Neustart nicht: Dann ist der
+    /// Stand hier leer und wird weder gestempelt, gespeichert noch gesendet (Prüfrunde 2 HG-1/SP-1); ``load()`` liest nach.
+    @ObservationIgnored private(set) var loaded = false
+    /// Aufzeichnungen der Uhr, die vor dem Lesen kamen; ``load()`` speichert sie danach.
+    @ObservationIgnored private var pending: [String] = []
 
-    private init() {
-        state = (try? Data(contentsOf: stateURL)).flatMap { try? JSONDecoder().decode(LearningState.self, from: $0) } ?? LearningState()
-        let texts = (try? Data(contentsOf: recordingsURL)).flatMap { try? JSONDecoder().decode([String].self, from: $0) } ?? []
-        recordings = texts.compactMap(NightRecording.decode).sorted { $0.start < $1.start }
+    /// `directory`: Ordner der Dateien; Tests geben einen eigenen, die App nutzt ``shared``.
+    init(directory: URL = PrivateFiles.directory) {
+        stateURL = directory.appendingPathComponent("learning.v1")
+        recordingsURL = directory.appendingPathComponent("learn-recordings.v1")
+        state = LearningState()
+        recordings = []
+        load()
+    }
+
+    /// Liest Stand und Aufzeichnungen, falls noch nicht geschehen. «Datei fehlt» ist ein leerer Stand (neue
+    /// Installation), «nicht lesbar» nicht (``ProtectedFile``). Danach kommen gemerkte Aufzeichnungen dazu.
+    /// - Returns: ob gelesen (schon vorher oder jetzt).
+    @discardableResult
+    func load() -> Bool {
+        if !loaded {
+            let stateFile = ProtectedFile.read(stateURL), recordingsFile = ProtectedFile.read(recordingsURL)
+            guard stateFile != .unreadable, recordingsFile != .unreadable else { return false }
+            if case let .data(data) = stateFile, let stored = try? JSONDecoder().decode(LearningState.self, from: data) { state = stored }
+            if case let .data(data) = recordingsFile, let texts = try? JSONDecoder().decode([String].self, from: data) {
+                recordings = texts.compactMap(NightRecording.decode).sorted { $0.start < $1.start }
+            }
+            loaded = true
+        }
+        // Gemerkte Aufzeichnungen erst mit gelesenem Stand der App (Zeitpunkt von «Verlauf löschen»).
+        if !pending.isEmpty, PhoneModel.shared.stateLoaded {
+            let queued = pending
+            pending = []
+            Task { for text in queued { await self.receive(text) } }
+        }
+        return true
     }
 
     /// Ob die Uhr aufzeichnen kann: Apple Watch gekoppelt, Phase Wake darauf in einer Version mit Lernphase. Nur dann
@@ -55,6 +86,12 @@ final class PhoneLearning {
 
     /// Aufzeichnung der Uhr (`SyncKeys.learnRecording`) speichern, Einschlafdauer nachtragen, zählen.
     func receive(_ text: String) async {
+        // Vor dem ersten Entsperren: merken, sonst ersetzte sie die gespeicherten (``load()`` holt es nach).
+        guard load(), PhoneModel.shared.stateLoaded else {
+            pending.append(text)
+            DiagStore.shared.log(.sync, "recording kept until learning readable")
+            return
+        }
         guard let recording = NightRecording.decode(text) else {
             DiagStore.shared.log(.error, "learn recording unreadable")
             return
@@ -75,6 +112,7 @@ final class PhoneLearning {
     /// Beim Öffnen und nach dem Start: Einschlafdauer nachtragen (Apple Health legt den Schlaf erst nach dem Aufwachen
     /// ab), zählen und, wenn fertig, lernen.
     func refresh() async {
+        guard load() else { return }
         await fillOnsets()
         update(received: nil)
     }
@@ -127,6 +165,7 @@ final class PhoneLearning {
     /// Zustimmung (Einrichtung, Karte auf der Startseite, Schalter in den Einstellungen): an beginnt sie bzw. läuft
     /// weiter, aus zeichnet die Uhr nicht mehr automatisch auf (eine laufende Aufzeichnung der Lernphase endet).
     func setConsent(_ on: Bool) {
+        guard load() else { return }
         var next = state
         let started = next.setConsent(on, now: Date())
         setState(next)
@@ -137,6 +176,7 @@ final class PhoneLearning {
     /// «Neu lernen»: ab jetzt von vorn; die bisherigen Werte gelten auf iPhone und Uhr weiter, bis die neuen Nächte
     /// gezählt sind.
     func relearn() {
+        guard load() else { return }
         var next = state
         next.relearn(now: Date())
         setState(next)
@@ -146,6 +186,7 @@ final class PhoneLearning {
     /// «Verlauf löschen»: Aufzeichnungen weg, Lernphase ab jetzt von vorn, gelernte Werte verworfen (auch auf der Uhr),
     /// Lern-Übersicht leer.
     func restart() {
+        guard load() else { return }
         setRecordings([])
         LearnLogStore.shared.clear(now: Date())
         var next = state
@@ -156,6 +197,7 @@ final class PhoneLearning {
 
     /// Karte «Angepasst an dich» bestätigt.
     func setSeen() {
+        guard load() else { return }
         var next = state
         next.setSeen()
         setState(next)
@@ -166,6 +208,8 @@ final class PhoneLearning {
     /// Stand für die Uhr (`PhoneModel.publishToWatch`); ohne Zeitpunkt (iPhone-App neu installiert) mit «jetzt» und
     /// gespeichert (Fix S-3, ``LearningState/stampIfNever(now:)``).
     func watchSnapshot() -> LearningSnapshot {
+        // Nur einen gelesenen Stand stempeln (Datei fehlt oder gelesen), nie den leeren vor dem ersten Entsperren (HG-1/SP-1).
+        guard load() else { return state.snapshot }
         var next = state
         if next.stampIfNever(now: Date()) {
             state = next
@@ -176,6 +220,12 @@ final class PhoneLearning {
 
     /// Speichert `next` und schickt den Stand an die Uhr, wenn er sich für sie geändert hat.
     private func setState(_ next: LearningState) {
+        // Nie den leeren Stand vor dem ersten Entsperren speichern (Prüfrunde 2 SP-1). Nur `loaded`, nicht `load()`: `next`
+        // beruht auf dem Stand vor dem Aufruf; jetzt erst gelesen, ersetzte er den gelesenen.
+        guard loaded else {
+            DiagStore.shared.log(.error, "learning not readable, change dropped")
+            return
+        }
         let sendToWatch = next.snapshot != state.snapshot
         let latencyChanged = next.values?.latencyMinutes != state.values?.latencyMinutes
         state = next
@@ -187,6 +237,7 @@ final class PhoneLearning {
 
     /// Speichert die Aufzeichnungen (die letzten ``NightRecording/maxKept``, älteste zuerst).
     private func setRecordings(_ list: [NightRecording]) {
+        guard loaded else { return }
         recordings = Array(list.sorted { $0.start < $1.start }.suffix(NightRecording.maxKept))
         if recordings.isEmpty {
             try? FileManager.default.removeItem(at: recordingsURL)

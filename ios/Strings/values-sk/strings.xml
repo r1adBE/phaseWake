@@ -34,4 +34,6 @@
     <string name="check_watch_state_old">Stav hodiniek je zastaraný – krátko otvor Phase Wake na hodinkách.</string>
     <string name="editor_sleep_hint_apple">Počíta sa od zaspania – keď ideš spať, ťukni na hodinkách na „Dobrú noc“. Na Apple Watch odhaduje Phase Wake, kedy zaspíš, podľa naučenej doby zaspávania. Bez ťuknutia platí nastavený čas.</string>
     <string name="auto_onset_hint_apple">Otvor Phase Wake na Apple Watch od 1 hodiny pred spaním (hodinky ti to pripomenú) a odvtedy až do okna budenia zaznamenávajú tvoj pohyb; potom Phase Wake vypočíta, kedy si zaspal.</string>
+    <string name="home_good_night_tap_cancel">ťukni na zrušenie</string>
+    <string name="good_night_cancel">Zrušiť Dobrú noc</string>
 </resources>

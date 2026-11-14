@@ -107,4 +107,5 @@
     <string name="watch_learn_skip_battery">Diese Nacht zählt nicht für die Lernphase: Akku bei %1$d %%, nötig sind %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Diese Nacht zählt nicht für die Lernphase: Phase Wake kann die Sensoren der Uhr nicht nutzen.</string>
     <string name="watch_learn_skip_late">Diese Nacht zählt nicht für die Lernphase: Phase Wake wurde am Abend zu spät geöffnet.</string>
+    <string name="editor_alarm_gone">Dieser Wecker wurde inzwischen gelöscht.</string>
 </resources>

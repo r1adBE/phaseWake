@@ -33,4 +33,6 @@
     <string name="check_watch_state_old">Status van het horloge is verouderd – open Phase Wake even op het horloge.</string>
     <string name="editor_sleep_hint_apple">Telt vanaf het inslapen – tik bij het naar bed gaan op ‘Welterusten’ op je horloge. Op de Apple Watch schat Phase Wake wanneer je in slaap valt op basis van je geleerde inslaaptijd. Zonder tik geldt de ingestelde tijd.</string>
     <string name="auto_onset_hint_apple">Open Phase Wake op je Apple Watch vanaf 1 uur voor bedtijd (hij herinnert je eraan), dan neemt hij vanaf dat moment tot je wekvenster je beweging op; dan berekent Phase Wake wanneer je in slaap viel.</string>
+    <string name="home_good_night_tap_cancel">tik om te annuleren</string>
+    <string name="good_night_cancel">Welterusten annuleren</string>
 </resources>

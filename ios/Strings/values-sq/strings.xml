@@ -36,4 +36,6 @@
     <string name="check_watch_state_old">Gjendja e orës është e vjetër – hap shkurt Phase Wake në orë.</string>
     <string name="editor_sleep_hint_apple">Llogaritet nga koha kur bie në gjumë – prek «Natën e mirë» në orë kur shkon të flesh. Në Apple Watch, Phase Wake vlerëson kur bie në gjumë nga koha e mësuar që të duhet për të fjetur. Pa prekje vlen ora e caktuar.</string>
     <string name="auto_onset_hint_apple">Hape Phase Wake në Apple Watch nga 1 orë para gjumit (ora ta kujton) dhe që atëherë deri te intervali i zgjimit regjistron lëvizjen tënde; atëherë Phase Wake llogarit kur ke rënë në gjumë.</string>
+    <string name="home_good_night_tap_cancel">prek për ta anuluar</string>
+    <string name="good_night_cancel">Anulo Natën e mirë</string>
 </resources>

@@ -32,6 +32,16 @@ public enum Holidays {
         return Set((national + regional).compactMap(parse).filter { $0 >= today && $0 < end })
     }
 
+    /// Ob ein Eintrag der Datendatei nur geschätzt ist: Das Paket «holidays» kennzeichnet Feiertage nach Mondkalender, deren
+    /// Tag erst kurz vorher feststeht, im Namen mit «estimated» (z. B. «Eid al-Fitr (estimated)», «… (observed, estimated)»).
+    /// Mehrere Feiertage am selben Tag stehen mit «; » getrennt; der Tag ist nur geschätzt, wenn alle es sind.
+    ///
+    /// Geschätzte Tage gelten nicht als frei (Entscheid r1AD 14.11.2026, Audit F-2): Der Wecker klingelt, die Einstellungen
+    /// zeigen den nächsten als «geschätzt», man kann den Tag selbst überspringen. Identisch zu Kotlin.
+    public static func isEstimated(_ name: String) -> Bool {
+        name.components(separatedBy: "; ").allSatisfy { $0.contains("estimated") }
+    }
+
     /// Schreibt «region|yyyy-MM-dd,yyyy-MM-dd» mit aufsteigend sortierten Daten; ohne Daten «region|».
     public static func encode(_ list: HolidayList) -> String {
         list.region + separator + list.dates.sorted().joined(separator: dateSeparator)

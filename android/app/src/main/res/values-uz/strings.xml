@@ -430,6 +430,7 @@
     <string name="holidays_off">Bayramlarsiz</string>
     <string name="holidays_hint">Alohida shaharlarning mahalliy bayramlari kiritilmagan.</string>
     <string name="holidays_next">Keyingi bayram: %1$s</string>
+    <string name="holidays_next_estimated">Taxminiy bayram: %1$s – budilnik jiringlaydi. Dam olish kuni boʻlsa, kunni oʻzing oʻtkazib yubor.</string>
     <string name="editor_skip_holidays">Bayramlarda uygʻotma</string>
     <string name="editor_skip_holidays_hint">Mamlakat va hududni sozlamalarda tanla.</string>
     <string name="home_holiday_skipped">%1$s: bayram – budilnik yoʻq</string>
@@ -628,4 +629,10 @@
     <string name="learn_tip_late">Kechqurun soatda Phase Wake’ni och, eng kechi eslatma kelganda.</string>
     <string name="learn_tip_alarm">Soat faqat budilnikli tunlarni yozadi.</string>
     <string name="learn_tip_connect">Soatni yoqiq va telefoningga ulangan holda saqla – u yozuvni budilnikdan keyin yuboradi.</string>
+    <string name="battery_night">Batareya: %1$s</string>
+    <string name="battery_watch">Soat −%1$d %%</string>
+    <string name="battery_phone">Telefon −%1$d %%</string>
+    <string name="editor_alarm_gone">Bu budilnik shu orada oʻchirildi.</string>
+    <string name="test_replaces_nap">Sinov budilnigi qisqa uyqungni tugatadi.</string>
+    <string name="settings_clear_history_also">Qaydlar, kayfiyat, kechki odat belgilari va tovush parchalari ham oʻchiriladi.</string>
 </resources>

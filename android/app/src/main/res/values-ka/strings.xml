@@ -415,6 +415,7 @@
     <string name="holidays_off">დღესასწაულების გარეშე</string>
     <string name="holidays_hint">ცალკეული დასახლებების ადგილობრივი დღესასწაულები არ შედის.</string>
     <string name="holidays_next">შემდეგი დღესასწაული: %1$s</string>
+    <string name="holidays_next_estimated">სავარაუდო დღესასწაული: %1$s – მაღვიძარა დარეკავს. თუ დასვენების დღეა, თავად გამოტოვე.</string>
     <string name="editor_skip_holidays">დღესასწაულებზე არ გამაღვიძო</string>
     <string name="editor_skip_holidays_hint">აირჩიე ქვეყანა და რეგიონი პარამეტრებში.</string>
     <string name="home_holiday_skipped">%1$s: დღესასწაული – მაღვიძარა არ არის</string>
@@ -613,4 +614,10 @@
     <string name="learn_tip_late">საღამოს გახსენი Phase Wake საათზე, უგვიანეს შეხსენებისას.</string>
     <string name="learn_tip_alarm">საათი მხოლოდ მაღვიძარიან ღამეებს იწერს.</string>
     <string name="learn_tip_connect">საათი ჩართული და ტელეფონთან დაკავშირებული დატოვე – მაღვიძარის შემდეგ ის ჩანაწერს აგზავნის.</string>
+    <string name="battery_night">ბატარეა: %1$s</string>
+    <string name="battery_watch">საათი −%1$d %%</string>
+    <string name="battery_phone">ტელეფონი −%1$d %%</string>
+    <string name="editor_alarm_gone">ეს მაღვიძარა ამასობაში წაიშალა.</string>
+    <string name="test_replaces_nap">სატესტო მაღვიძარა შენს ხანმოკლე ძილს დაასრულებს.</string>
+    <string name="settings_clear_history_also">იშლება ჩანაწერები, თვითგრძნობა, საღამოს რუტინის მონიშვნები და ხმის ფრაგმენტებიც.</string>
 </resources>

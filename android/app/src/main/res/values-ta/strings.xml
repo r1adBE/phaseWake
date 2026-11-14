@@ -429,6 +429,7 @@
     <string name="holidays_off">விடுமுறைகள் இல்லை</string>
     <string name="holidays_hint">தனிப்பட்ட ஊர்களின் உள்ளூர் விடுமுறைகள் சேர்க்கப்படவில்லை.</string>
     <string name="holidays_next">அடுத்த விடுமுறை: %1$s</string>
+    <string name="holidays_next_estimated">மதிப்பிடப்பட்ட விடுமுறை: %1$s – அலாரம் ஒலிக்கும். விடுமுறை என்றால், அந்த நாளை நீயே தவிர்.</string>
     <string name="editor_skip_holidays">விடுமுறை நாட்களில் எழுப்ப வேண்டாம்</string>
     <string name="editor_skip_holidays_hint">அமைப்புகளில் நாட்டையும் பகுதியையும் தேர்ந்தெடுங்கள்.</string>
     <string name="home_holiday_skipped">%1$s: விடுமுறை – அலாரம் இல்லை</string>
@@ -627,4 +628,10 @@
     <string name="learn_tip_late">மாலையில் கடிகாரத்தில் Phase Wake-ஐத் திறங்கள், அதிகபட்சம் நினைவூட்டல் வரும்போது.</string>
     <string name="learn_tip_alarm">அலாரம் உள்ள இரவுகளை மட்டுமே கடிகாரம் பதிவு செய்கிறது.</string>
     <string name="learn_tip_connect">கடிகாரத்தை இயக்கத்தில் வைத்து ஃபோனுடன் இணைத்திருங்கள் – அலாரத்திற்குப் பிறகு அது பதிவை அனுப்பும்.</string>
+    <string name="battery_night">பேட்டரி: %1$s</string>
+    <string name="battery_watch">வாட்ச் −%1$d %%</string>
+    <string name="battery_phone">ஃபோன் −%1$d %%</string>
+    <string name="editor_alarm_gone">இந்த அலாரம் இதற்கிடையில் நீக்கப்பட்டது.</string>
+    <string name="test_replaces_nap">சோதனை அலாரம் உங்கள் குட்டித் தூக்கத்தை முடிக்கும்.</string>
+    <string name="settings_clear_history_also">குறிப்புகள், உணர்வு, மாலை வழக்கத்தின் குறிகள் மற்றும் ஒலித் துணுக்குகளும் நீக்கப்படும்.</string>
 </resources>

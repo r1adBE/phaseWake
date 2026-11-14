@@ -9,8 +9,10 @@ struct HolidayDatabase: Sendable {
     struct Country: Sendable {
         /// Region (Kürzel) → Name, wie in den Daten.
         let regions: [String: String]
-        /// "" (landesweit) bzw. Region → Daten «yyyy-MM-dd».
+        /// "" (landesweit) bzw. Region → Daten «yyyy-MM-dd», die als frei gelten.
         let days: [String: [String]]
+        /// Wie `days`, aber nur geschätzte Tage (``Holidays/isEstimated(_:)``, Audit F-2): gelten nicht als frei.
+        var estimatedDays: [String: [String]] = [:]
     }
 
     /// Nur Länder mit zweistelligem Kürzel; die dreistelligen sind Doppel in der Datei.
@@ -26,16 +28,32 @@ struct HolidayDatabase: Sendable {
         for (code, value) in all where code.count == 2 {
             guard let entry = value as? [String: Any] else { continue }
             let rawDays = entry["days"] as? [String: Any] ?? [:]
-            let days = rawDays.mapValues { list in ((list as? [Any]) ?? []).compactMap { ($0 as? [Any])?.first as? String } }
-            countries[code] = Country(regions: entry["regions"] as? [String: String] ?? [:], days: days)
+            // Einträge [Datum, Name]; geschätzte (Name mit «estimated») getrennt, sie gelten nicht als frei (Audit F-2).
+            let entries = rawDays.mapValues { list in
+                ((list as? [Any]) ?? []).compactMap { item -> (date: String, estimated: Bool)? in
+                    guard let pair = item as? [Any], let date = pair.first as? String else { return nil }
+                    return (date: date, estimated: Holidays.isEstimated((pair.dropFirst().first as? String) ?? ""))
+                }
+            }
+            countries[code] = Country(regions: entry["regions"] as? [String: String] ?? [:],
+                                      days: entries.mapValues { list in list.filter { !$0.estimated }.map { $0.date } },
+                                      estimatedDays: entries.mapValues { list in list.filter { $0.estimated }.map { $0.date } })
         }
         return HolidayDatabase(countries: countries)
     }
 
-    /// Feiertage von heute bis `Holidays.syncDays` voraus für Land und Region (leer = ganzes Land).
+    /// Feiertage von heute bis `Holidays.syncDays` voraus für Land und Region (leer = ganzes Land); nur sichere Tage.
     func dates(country: String, region: String, today: String) -> Set<String> {
         guard let entry = countries[country] else { return [] }
         return Holidays.resolve(national: entry.days[""] ?? [], regional: region.isEmpty ? [] : entry.days[region] ?? [], today: today)
+    }
+
+    /// Nur geschätzte Feiertage im selben Zeitraum (Audit F-2), ohne Tage, die auch sicher Feiertag sind.
+    func estimatedDates(country: String, region: String, today: String) -> Set<String> {
+        guard let entry = countries[country] else { return [] }
+        let estimated = Holidays.resolve(national: entry.estimatedDays[""] ?? [],
+                                         regional: region.isEmpty ? [] : entry.estimatedDays[region] ?? [], today: today)
+        return estimated.subtracting(dates(country: country, region: region, today: today))
     }
 }
 
@@ -79,12 +97,37 @@ final class HolidayStore {
     private(set) var region: String
     /// Feiertage «yyyy-MM-dd» der nächsten 400 Tage; bis die Daten geladen sind, der zuletzt gesendete Stand.
     private(set) var dates: Set<String>
+    /// Nur geschätzte Feiertage im selben Zeitraum (Audit F-2): gelten nicht als frei; die Einstellungen zeigen den nächsten.
+    private(set) var estimated: Set<String> = []
 
-    init() {
-        let defaults = SettingsFile.phone
-        country = defaults.string(forKey: Self.countryKey) ?? Locale.current.region?.identifier ?? ""
-        region = defaults.string(forKey: Self.regionKey) ?? ""
+    init(defaults: any SettingsStore = SettingsFile.phone) {
+        let stored = Self.choice(defaults)
+        country = stored.country
+        region = stored.region
         dates = []
+    }
+
+    /// Gespeicherte Wahl; ohne Wahl das Land des Geräts, ganzes Land.
+    private static func choice(_ defaults: any SettingsStore) -> (country: String, region: String) {
+        (defaults.string(forKey: countryKey) ?? Locale.current.region?.identifier ?? "", defaults.string(forKey: regionKey) ?? "")
+    }
+
+    /// Wahl neu lesen (Prüfrunde 2 SP-2): Vor dem ersten Entsperren gestartet, galt das Land des Geräts; danach Region
+    /// prüfen und neu auflösen (mit geladenen Daten). - Returns: ob sich die Feiertage geändert haben.
+    @discardableResult
+    func reloadChoice(_ defaults: any SettingsStore = SettingsFile.phone) -> Bool {
+        let stored = Self.choice(defaults)
+        guard stored.country != country || stored.region != region else { return false }
+        country = stored.country
+        region = stored.region
+        validateRegion()
+        let changed = refresh()
+        // Daten noch nicht geladen: die bisherigen Feiertage gehören zur alten Wahl (`load` löst danach auf).
+        if database == nil, !dates.isEmpty {
+            dates = []
+            return true
+        }
+        return changed
     }
 
     /// Bis die Daten geladen sind: der zuletzt an die Uhr gesendete Stand, falls er zur Wahl passt.
@@ -119,7 +162,9 @@ final class HolidayStore {
     @discardableResult
     func refresh(now: Date = Date()) -> Bool {
         guard let database else { return false }
-        let fresh = database.dates(country: country, region: region, today: NightDate.today(now, calendar: .gregorianLocal))
+        let today = NightDate.today(now, calendar: .gregorianLocal)
+        estimated = database.estimatedDates(country: country, region: region, today: today)
+        let fresh = database.dates(country: country, region: region, today: today)
         guard fresh != dates else { return false }
         dates = fresh
         return true

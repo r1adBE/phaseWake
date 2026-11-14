@@ -415,6 +415,7 @@
     <string name="holidays_off">Bayram yoxdur</string>
     <string name="holidays_hint">Ayrı-ayrı yaşayış məntəqələrinin yerli bayramları daxil deyil.</string>
     <string name="holidays_next">Növbəti bayram: %1$s</string>
+    <string name="holidays_next_estimated">Təxmini bayram: %1$s – zəngli saat çalacaq. İstirahət günündürsə, günü özün ötür.</string>
     <string name="editor_skip_holidays">Bayramlarda oyatma</string>
     <string name="editor_skip_holidays_hint">Ölkəni və regionu ayarlarda seç.</string>
     <string name="home_holiday_skipped">%1$s: bayram – siqnal yoxdur</string>
@@ -613,4 +614,10 @@
     <string name="learn_tip_late">Axşam Phase Wake-i saatda aç, ən gec xatırlatma gələndə.</string>
     <string name="learn_tip_alarm">Saat yalnız zəngli saat olan gecələri qeyd edir.</string>
     <string name="learn_tip_connect">Saatı açıq və telefonuna qoşulu saxla – qeydi zəngdən sonra göndərir.</string>
+    <string name="battery_night">Batareya: %1$s</string>
+    <string name="battery_watch">Saat −%1$d %%</string>
+    <string name="battery_phone">Telefon −%1$d %%</string>
+    <string name="editor_alarm_gone">Bu siqnal artıq silinib.</string>
+    <string name="test_replaces_nap">Test siqnalı qısa yuxunu bitirir.</string>
+    <string name="settings_clear_history_also">Qeydlər, əhval, axşam rutini işarələri və səs parçaları da silinir.</string>
 </resources>

@@ -138,6 +138,22 @@ final class SettingsFileTests: XCTestCase {
         XCTAssertEqual(SettingsFile(url: url).string(forKey: "k"), "a")
     }
 
+    /// Prüfrunde 2 SP-7 (wie Android): Der leere Stand nach einer kaputten Datei ist markiert und bleibt es; die Kopie
+    /// enthält die kaputte Datei. Ein heiler oder neuer Stand ist nicht markiert.
+    func testResetAfterBrokenFileIsMarked() throws {
+        try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+        let garbage = Data("kein plist".utf8)
+        try garbage.write(to: url)
+        let file = SettingsFile(url: url)
+        XCTAssertTrue(file.wasReset)
+        XCTAssertGreaterThan(file.integer(forKey: SettingsFile.resetAtKey), 0)
+        XCTAssertEqual(try Data(contentsOf: url.appendingPathExtension("broken")), garbage)
+        file.set("a", forKey: "k")
+        XCTAssertTrue(SettingsFile(url: url).wasReset, "auch nach dem Neuladen")
+        let other = dir.appendingPathComponent("other.v1")
+        XCTAssertFalse(SettingsFile(url: other).wasReset)
+    }
+
     /// `PhaseWakeStorage` auf der Datei: Wecker mit Zeitstempel über Int32, erledigte Nächte, Feiertage, Schlafziel.
     func testStorageOnSettingsFile() throws {
         let storage = PhaseWakeStorage(defaults: SettingsFile(url: url), directory: dir)

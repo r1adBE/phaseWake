@@ -86,7 +86,7 @@ final class SoundRecorder {
         running = true
         stopAt = end
         expire()
-        UIDevice.current.isBatteryMonitoringEnabled = true
+        BatteryMonitoring.shared.acquire()
         stopTask?.cancel()
         stopTask = Task { @MainActor in
             try? await Task.sleep(for: .seconds(max(0, end.timeIntervalSinceNow)))
@@ -113,7 +113,8 @@ final class SoundRecorder {
         stopEngine()
         running = false
         stopAt = nil
-        UIDevice.current.isBatteryMonitoringEnabled = false
+        // Nur abgeben: Solange «Akku je Nacht» die Überwachung braucht (PhoneBattery), bleibt sie an.
+        BatteryMonitoring.shared.release()
         AudioSessionUse.recording = false
         AudioSessionUse.release()
     }

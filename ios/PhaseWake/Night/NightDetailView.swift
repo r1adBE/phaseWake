@@ -37,7 +37,7 @@ struct NightDetailView: View {
             }
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
-        .navigationTitle(index.map { items[$0].at.formatted(date: .abbreviated, time: .omitted) } ?? "")
+        .navigationTitle(index.map { Format.day(items[$0].at, in: items[$0].session?.timeZone) } ?? "")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {

@@ -80,13 +80,16 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         context[SyncKeys.recorderSkip] = Self.recorderSkip
         let device = WKInterfaceDevice.current()
         device.isBatteryMonitoringEnabled = true
-        if device.batteryState == .unplugged, device.batteryLevel >= 0 {
+        // Auch am Laden, mit Ladezustand (Prüfrunde 2 F-6): Dann misst die Uhr trotz wenig Akku, und das iPhone warnt
+        // nicht (Nacht-Check O-05). Unbekannt: nichts melden.
+        if device.batteryState != .unknown, device.batteryLevel >= 0 {
             context[SyncKeys.battery] = Int64((device.batteryLevel * 100).rounded())
             context[SyncKeys.batteryAt] = Int64(Date().timeIntervalSince1970 * 1000)
+            context[SyncKeys.batteryCharging] = device.batteryState == .charging || device.batteryState == .full
         } else {
-            // Am Laden oder unbekannt: nichts melden, das iPhone warnt dann nicht.
             context[SyncKeys.battery] = nil
             context[SyncKeys.batteryAt] = nil
+            context[SyncKeys.batteryCharging] = nil
         }
         try? WCSession.default.updateApplicationContext(context)
     }

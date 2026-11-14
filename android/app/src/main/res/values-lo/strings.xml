@@ -417,6 +417,7 @@
     <string name="holidays_off">ບໍ່ມີວັນພັກ</string>
     <string name="holidays_hint">ບໍ່ລວມວັນພັກທ້ອງຖິ່ນຂອງແຕ່ລະເມືອງ</string>
     <string name="holidays_next">ວັນພັກຖັດໄປ: %1$s</string>
+    <string name="holidays_next_estimated">ວັນພັກໂດຍປະມານ: %1$s – ໂມງປຸກຈະດັງ. ຖ້າເຈົ້າພັກ, ໃຫ້ຂ້າມມື້ນັ້ນເອງ.</string>
     <string name="editor_skip_holidays">ບໍ່ປຸກໃນວັນພັກ</string>
     <string name="editor_skip_holidays_hint">ເລືອກປະເທດ ແລະ ພາກພື້ນໃນການຕັ້ງຄ່າ</string>
     <string name="home_holiday_skipped">%1$s: ວັນພັກ – ບໍ່ມີໂມງປຸກ</string>
@@ -613,4 +614,10 @@
     <string name="learn_tip_late">ເປີດ Phase Wake ໃນໂມງໃນຕອນແລງ ຢ່າງຊ້າທີ່ສຸດເມື່ອມັນແຈ້ງເຕືອນ.</string>
     <string name="learn_tip_alarm">ໂມງບັນທຶກສະເພາະຄືນທີ່ມີໂມງປຸກເທົ່ານັ້ນ.</string>
     <string name="learn_tip_connect">ເປີດໂມງໄວ້ ແລະ ເຊື່ອມຕໍ່ກັບໂທລະສັບ – ມັນສົ່ງການບັນທຶກຫຼັງໂມງປຸກ.</string>
+    <string name="battery_night">ແບັດເຕີຣີ: %1$s</string>
+    <string name="battery_watch">ໂມງ −%1$d %%</string>
+    <string name="battery_phone">ໂທລະສັບ −%1$d %%</string>
+    <string name="editor_alarm_gone">ໂມງປຸກນີ້ຖືກລຶບໄປແລ້ວ.</string>
+    <string name="test_replaces_nap">ການທົດສອບໂມງປຸກຈະຢຸດການພັກສາຍຕາຂອງເຈົ້າ.</string>
+    <string name="settings_clear_history_also">ບັນທຶກ, ຄວາມຮູ້ສຶກ, ເຄື່ອງໝາຍກິດຈະວັດຕອນແລງ ແລະ ຄລິບສຽງກໍຖືກລຶບນຳ.</string>
 </resources>

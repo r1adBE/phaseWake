@@ -108,4 +108,5 @@
     <string name="watch_learn_skip_battery">Өнөө шөнө суралцах үед тоологдохгүй: батерей %1$d %%, хэрэгтэй %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Өнөө шөнө суралцах үед тоологдохгүй: Phase Wake цагны мэдрэгчийг ашиглаж чадахгүй байна.</string>
     <string name="watch_learn_skip_late">Өнөө шөнө суралцах үед тоологдохгүй: Phase Wake-ийг орой хэт оройтож нээсэн.</string>
+    <string name="editor_alarm_gone">Энэ сэрүүлэг энэ хооронд устгагдсан.</string>
 </resources>

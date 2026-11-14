@@ -429,6 +429,7 @@
     <string name="holidays_off">کوئی تعطیلات نہیں</string>
     <string name="holidays_hint">الگ الگ شہروں کی مقامی تعطیلات شامل نہیں۔</string>
     <string name="holidays_next">اگلی تعطیل: %1$s</string>
+    <string name="holidays_next_estimated">تخمینی تعطیل: %1$s – الارم بجے گا۔ اگر چھٹی ہو تو دن خود چھوڑ دو۔</string>
     <string name="editor_skip_holidays">تعطیلات پر نہ جگاؤ</string>
     <string name="editor_skip_holidays_hint">ملک اور علاقہ ترتیبات میں چنو۔</string>
     <string name="home_holiday_skipped">%1$s: تعطیل – کوئی الارم نہیں</string>
@@ -627,4 +628,10 @@
     <string name="learn_tip_late">شام کو گھڑی پر Phase Wake کھولیں، زیادہ سے زیادہ یاد دہانی آنے پر۔</string>
     <string name="learn_tip_alarm">گھڑی صرف الارم والی راتیں ریکارڈ کرتی ہے۔</string>
     <string name="learn_tip_connect">گھڑی کو آن اور فون سے جڑا رکھیں – یہ الارم کے بعد ریکارڈنگ بھیجتی ہے۔</string>
+    <string name="battery_night">بیٹری: %1$s</string>
+    <string name="battery_watch">گھڑی −%1$d %%</string>
+    <string name="battery_phone">فون −%1$d %%</string>
+    <string name="editor_alarm_gone">یہ الارم اس دوران حذف ہو چکا ہے۔</string>
+    <string name="test_replaces_nap">آزمائشی الارم تمہاری پاور نیپ ختم کر دیتا ہے۔</string>
+    <string name="settings_clear_history_also">نوٹس، کیفیت، شام کے معمول کے نشان اور آواز کے کلپس بھی حذف ہو جاتے ہیں۔</string>
 </resources>

@@ -108,4 +108,5 @@
     <string name="watch_learn_skip_battery">Sonte nuk numërohet për fazën e të mësuarit: bateria në %1$d %%, duhen %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Sonte nuk numërohet për fazën e të mësuarit: Phase Wake nuk mund të përdorë sensorët e orës.</string>
     <string name="watch_learn_skip_late">Sonte nuk numërohet për fazën e të mësuarit: Phase Wake u hap shumë vonë në mbrëmje.</string>
+    <string name="editor_alarm_gone">Ky alarm është fshirë ndërkohë.</string>
 </resources>

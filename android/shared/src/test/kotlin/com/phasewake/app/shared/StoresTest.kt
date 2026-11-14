@@ -158,28 +158,36 @@ class StoresTest {
     }
 
     @Test
-    fun learningMessageWithFourOrFiveFields() = runTest {
-        // O-03: 5. Feld Einschlafdauer; ohne Dauer weiter 4 Felder (eine frühere Uhr liest nur genau 4).
+    fun learningMessageKeepsFourFieldsAndLatencyTravelsApart() = runTest {
+        // Audit F-4/SP-6: Eine frühere Uhr liest nur genau 4 Felder; die Einschlafdauer (O-03) geht als eigene Nachricht.
         val with = LearningSnapshot(true, 0.02, 52.0, 7L, latencyMinutes = 14)
-        assertEquals("1|0.02|52.0|7|14", LearningSnapshot.encode(with))
-        assertEquals(with, LearningSnapshot.decode(LearningSnapshot.encode(with)))
-        assertEquals("1|0.02|52.0|7", LearningSnapshot.encode(with.copy(latencyMinutes = null)))
-        // Frühere Handys: 4 Felder, keine Dauer.
+        assertEquals("1|0.02|52.0|7", LearningSnapshot.encode(with))
+        assertEquals(4, LearningSnapshot.encode(with).split("|").size)
+        assertEquals("14|7", LearningSnapshot.encodeLatency(with))
+        assertEquals("-1|7", LearningSnapshot.encodeLatency(with.copy(latencyMinutes = null)))
+        assertEquals(14 to 7L, LearningSnapshot.decodeLatency("14|7"))
+        assertEquals(null to 7L, LearningSnapshot.decodeLatency("-1|7"))
+        assertEquals(null to 7L, LearningSnapshot.decodeLatency("61|7"), "unplausibel: keine Dauer")
+        assertNull(LearningSnapshot.decodeLatency("14"))
+        assertNull(LearningSnapshot.decodeLatency("x|7"))
+        // Lesen bleibt tolerant: 4 Felder; 5 (Zwischenstand vor F-4) noch lesbar; 6 Felder: unlesbar.
         assertEquals(LearningSnapshot(true, 0.02, 52.0, 7L), LearningSnapshot.decode("1|0.02|52.0|7"))
-        // Leer oder unplausibel (nicht 0–60): keine Dauer; 6 Felder: unlesbar.
-        assertNull(assertNotNull(LearningSnapshot.decode("1|||7|")).latencyMinutes)
+        assertEquals(14, LearningSnapshot.decode("1|0.02|52.0|7|14")?.latencyMinutes)
         assertNull(assertNotNull(LearningSnapshot.decode("1|||7|61")).latencyMinutes)
-        assertNull(assertNotNull(LearningSnapshot.decode("1|||7|-1")).latencyMinutes)
-        assertEquals(0, LearningSnapshot.decode("1|||7|0")?.latencyMinutes)
-        assertEquals(60, LearningSnapshot.decode("1|||7|60")?.latencyMinutes)
         assertNull(LearningSnapshot.decode("1|||7|5|x"))
-        // Die Uhr speichert die Dauer und gibt sie für den Ring heraus.
+        // Die Uhr: Lernstand und Dauer je mit eigenem Zeitpunkt; der Lernstand löscht die Dauer nicht.
         val store = LearningStore(MemoryStore())
-        assertTrue(store.setIfNewer(with))
+        assertTrue(store.setLatencyIfNewer(14, 7L))
         assertEquals(14, store.latencyMinutes.first())
+        assertTrue(store.setIfNewer(with.copy(latencyMinutes = null)))
+        assertEquals(14, store.latencyMinutes.first(), "4-Felder-Stand lässt die Dauer stehen")
         assertEquals(with, store.current())
-        assertTrue(store.setIfNewer(with.copy(updatedAt = 8L, latencyMinutes = null)), "nur die Dauer weg: geändert")
+        assertFalse(store.setIfNewer(with.copy(updatedAt = 8L)), "nur die Dauer anders: im Lernstand keine Änderung")
+        assertFalse(store.setLatencyIfNewer(20, 7L), "nicht neuer")
+        assertEquals(14, store.latencyMinutes.first())
+        assertTrue(store.setLatencyIfNewer(null, 9L), "Dauer weg (z. B. neu lernen)")
         assertNull(store.latencyMinutes.first())
+        assertFalse(store.setLatencyIfNewer(null, 10L))
     }
 
     @Test

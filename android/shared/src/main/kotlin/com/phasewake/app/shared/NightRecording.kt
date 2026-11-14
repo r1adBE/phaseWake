@@ -1,12 +1,12 @@
 package com.phasewake.app.shared
 
+import com.phasewake.app.core.CsvNumbers
 import com.phasewake.app.core.DetectorConfig
 import com.phasewake.app.core.Epoch
 import com.phasewake.app.core.Learning
 import com.phasewake.app.core.TimeBounds
 import java.time.Duration
 import java.time.Instant
-import java.util.Locale
 
 /**
  * Grund, warum eine Aufzeichnung endete. [code] steht in Datei, Paket und Export: nie ändern, nur ergänzen.
@@ -183,8 +183,8 @@ data class NightRecording(
                 val reason = (recording.endReason ?: RecordEnd.SERVICE).code
                 recording.epochs.forEachIndexed { epochIndex, epoch ->
                     append(index + 1).append(',').append(reason).append(',').append(epochIndex).append(',')
-                    append(epoch.motion?.let { String.format(Locale.ROOT, "%.6f", it) } ?: "").append(',')
-                    append(epoch.heartRate?.let { String.format(Locale.ROOT, "%.1f", it) } ?: "").append('\n')
+                    append(epoch.motion?.let { CsvNumbers.fixed(it, 6) } ?: "").append(',')
+                    append(epoch.heartRate?.let { CsvNumbers.fixed(it, 1) } ?: "").append('\n')
                 }
             }
         }

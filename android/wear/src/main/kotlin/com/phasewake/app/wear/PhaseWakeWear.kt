@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.DiagDevice
 import com.phasewake.app.core.DiagKind
+import com.phasewake.app.shared.BatteryNight
 import com.phasewake.app.shared.AlarmRepository
 import com.phasewake.app.shared.DiagnosticsLog
 import com.phasewake.app.shared.HolidayStore
@@ -116,17 +117,20 @@ open class PhaseWakeWear : Application() {
         Notifications.createChannels(this)
         com.phasewake.app.wear.record.LearnNotice.createChannel(this)
         diag.log(if (DirectBoot.isUnlocked(this)) DiagKind.BOOT else DiagKind.DIRECT_BOOT, "app start battery ${batteryPercent()}")
+        BatteryNight.log = { diag.log(DiagKind.BATTERY, it) }
         // Nachholen, was das Handy schon abgelegt hat (Wecker, «Verlauf löschen»), falls eine Änderung
         // verpasst wurde; nur nach dem ersten Entsperren, vorher ist der Speicher nicht lesbar. Danach immer neu
         // planen: Nach «Beenden erzwingen» oder einem Prozessende sind die Alarme weg, und nicht jeder Prozessstart
         // kommt über die Startseite (Kachel, Komplikation, Data Layer). Eine laufende Nacht bleibt dabei unberührt.
         if (DirectBoot.isUnlocked(this)) catchUpAndReschedule()
-        // Ladegerät an- oder abgesteckt: Akkustand ans Handy, falls er sich deutlich geändert hat. Nur
-        // solange der Prozess lebt (im Manifest kommen diese Meldungen nicht an); sonst beim Neuplanen.
+        // Ladegerät an- oder abgesteckt: Akkustand ans Handy, falls er sich deutlich geändert hat, und Ladebeginn bzw. -ende
+        // einer laufenden Nacht (Akku je Nacht). Nur solange der Prozess lebt (im Manifest kommen diese Meldungen nicht an);
+        // sonst beim Neuplanen bzw. über den Auftrag von [BatteryNight].
         ContextCompat.registerReceiver(
             this,
             object : BroadcastReceiver() {
                 override fun onReceive(context: Context, intent: Intent) {
+                    BatteryNight.charged(context, BatteryNight.read(context)?.copy(plugged = intent.action == Intent.ACTION_POWER_CONNECTED))
                     // Vor dem ersten Entsperren ist der Speicher nicht lesbar.
                     if (DirectBoot.isUnlocked(context)) appScope.launch { scheduler.publishStatus() }
                 }

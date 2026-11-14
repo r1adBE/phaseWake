@@ -18,12 +18,17 @@ public struct NightRecord: Equatable, Sendable {
     public let epochs: [Epoch]
     /// Befinden am Morgen, 1 (müde) bis 5 (erholt); `nil` = nicht angegeben.
     public let feeling: Int?
+    /// Akkustand der Uhr in dieser Nacht (``BatteryTrack``); `nil` = nicht gemessen (z. B. ältere Uhr-App).
+    public let watchBattery: [BatteryPoint]?
+    /// Akkustand des iPhones in dieser Nacht (``BatteryTrack``), nur auf dem iPhone; `nil` = nicht gemessen.
+    public let phoneBattery: [BatteryPoint]?
 
     /// Erlaubte Werte des Befindens.
     public static let feelingRange = 1...5
 
     /// Ein Befinden ausserhalb 1–5 wird verworfen (Kotlin lehnt es ab; der Codec prüft vorher).
-    public init(alarmId: String, windowStart: Date, target: Date, wokeAt: Date, reason: WakeReason, snoozes: Int, epochs: [Epoch], feeling: Int? = nil) {
+    public init(alarmId: String, windowStart: Date, target: Date, wokeAt: Date, reason: WakeReason, snoozes: Int, epochs: [Epoch], feeling: Int? = nil,
+                watchBattery: [BatteryPoint]? = nil, phoneBattery: [BatteryPoint]? = nil) {
         self.alarmId = alarmId
         self.windowStart = windowStart
         self.target = target
@@ -32,11 +37,20 @@ public struct NightRecord: Equatable, Sendable {
         self.snoozes = snoozes
         self.epochs = epochs
         self.feeling = feeling.flatMap { Self.feelingRange.contains($0) ? $0 : nil }
+        self.watchBattery = watchBattery
+        self.phoneBattery = phoneBattery
     }
 
-    /// Kopie mit Befinden.
+    /// Kopie mit Befinden (Akku bleibt).
     public func with(feeling: Int?) -> NightRecord {
-        NightRecord(alarmId: alarmId, windowStart: windowStart, target: target, wokeAt: wokeAt, reason: reason, snoozes: snoozes, epochs: epochs, feeling: feeling)
+        NightRecord(alarmId: alarmId, windowStart: windowStart, target: target, wokeAt: wokeAt, reason: reason, snoozes: snoozes, epochs: epochs,
+                    feeling: feeling, watchBattery: watchBattery, phoneBattery: phoneBattery)
+    }
+
+    /// Kopie mit dem Akku des iPhones (wie Kotlin `copy(phoneBattery = …)`).
+    public func with(phoneBattery: [BatteryPoint]?) -> NightRecord {
+        NightRecord(alarmId: alarmId, windowStart: windowStart, target: target, wokeAt: wokeAt, reason: reason, snoozes: snoozes, epochs: epochs,
+                    feeling: feeling, watchBattery: watchBattery, phoneBattery: phoneBattery)
     }
 
     /// Ganze Minuten vor der Zielzeit (abgerundet, nie negativ), wie `Duration.toMinutes()`.
@@ -82,8 +96,8 @@ public enum NightHistory {
             let windowMinutes = Int(night.target.timeIntervalSince(night.windowStart) / 60)
             let noteValue = SleepNotes.csvValue(notes[SleepNotes.nightDate(of: night, calendar: calendar)] ?? [])
             for (epochIndex, epoch) in night.epochs.enumerated() {
-                let motion = epoch.motion.map { String(format: "%.6f", locale: Locale(identifier: "en_US_POSIX"), $0) } ?? ""
-                let hr = epoch.heartRate.map { String(format: "%.1f", locale: Locale(identifier: "en_US_POSIX"), $0) } ?? ""
+                let motion = epoch.motion.map { CsvNumbers.fixed($0, decimals: 6) } ?? ""
+                let hr = epoch.heartRate.map { CsvNumbers.fixed($0, decimals: 1) } ?? ""
                 out += "\(nightIndex + 1),\(windowMinutes),\(night.reason.rawValue),\(night.minutesBeforeTarget),\(night.snoozes),\(night.feeling.map(String.init) ?? ""),\(epochIndex),\(motion),\(hr),\(noteValue)\n"
             }
         }

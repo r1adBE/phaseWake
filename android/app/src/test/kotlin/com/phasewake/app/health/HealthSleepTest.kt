@@ -127,13 +127,31 @@ class HealthSleepTest {
             SleepSessionRecord.STAGE_TYPE_LIGHT to SleepStage.LIGHT,
             SleepSessionRecord.STAGE_TYPE_DEEP to SleepStage.DEEP,
             SleepSessionRecord.STAGE_TYPE_REM to SleepStage.REM,
-            // «Schläft» ohne Phase und Unbekanntes: keine Phase, die Phase Wake bewerten könnte.
+            // «Schläft» ohne Phase: Schlaf ohne bekannte Phase.
             SleepSessionRecord.STAGE_TYPE_SLEEPING to SleepStage.UNKNOWN,
-            SleepSessionRecord.STAGE_TYPE_UNKNOWN to SleepStage.UNKNOWN,
+            // «Phase unbekannt» ist kein Schlaf (Audit F-9, wie Apple «Im Bett»): fällt weg.
+            SleepSessionRecord.STAGE_TYPE_UNKNOWN to null,
         )
         val stages = types.mapIndexed { i, (type, _) -> Triple(type, i * 10L, i * 10L + 10) }.toTypedArray()
         client.pages = listOf(listOf(session(0, types.size * 10L, null, *stages)))
-        assertEquals(types.map { it.second }, health.sessions(t0, at(600)).single().stages.map { it.stage })
+        val session = health.sessions(t0, at(600)).single()
+        assertEquals(types.mapNotNull { it.second }, session.stages.map { it.stage })
+        // Die 10 Min «Phase unbekannt» zählen nicht als Schlaf: 40 Min Schlaf (leicht, tief, REM, «schläft»), nicht 50.
+        assertEquals(40L, session.asleepMinutes)
+    }
+
+    @Test
+    fun zoneOfTheRecordingIsKept() = runBlocking {
+        grant()
+        val tokyo = java.time.ZoneOffset.ofHours(9)
+        client.pages = listOf(
+            listOf(
+                SleepSessionRecord(startTime = at(0), startZoneOffset = tokyo, endTime = at(60), endZoneOffset = null, metadata = Metadata.manualEntry()),
+                SleepSessionRecord(startTime = at(100), startZoneOffset = null, endTime = at(160), endZoneOffset = tokyo, metadata = Metadata.manualEntry()),
+                session(200, 260),
+            ),
+        )
+        assertEquals(listOf(tokyo, tokyo, null), health.sessions(t0, at(600)).map { it.timeZone })
     }
 
     @Test

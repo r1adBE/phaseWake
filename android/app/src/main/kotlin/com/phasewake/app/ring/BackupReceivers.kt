@@ -57,6 +57,7 @@ internal fun BroadcastReceiver.onBackupAlarm(context: Context, intent: Intent) {
     app.appScope.launch {
         try {
             BackupDirectBoot.takeRang(context).forEach { (id, at) -> app.backup.backupRang(id, at) }
+            com.phasewake.app.transient.Transients.catchUpEnded(app)
             if (intent.action == ACTION_SUNRISE) app.backup.startSunrise(intent)
             // Nur der Zweitwecker selbst trägt die Zielzeit, nicht das Ende des Schlummerns; und nur, wenn er klingelt.
             if (intent.action == ACTION && target != null && rings) app.backup.backupRang(alarmId, Instant.ofEpochMilli(target))
@@ -86,6 +87,7 @@ internal fun BroadcastReceiver.onBackupSystemEvent(context: Context, intent: Int
     app.appScope.launch {
         try {
             BackupDirectBoot.takeRang(context).forEach { (id, at) -> app.backup.backupRang(id, at) }
+            com.phasewake.app.transient.Transients.catchUpEnded(app)
             // Neustart, bei dem der Speicher gleich entsperrt war (ohne Sperre oder schnell entsperrt): ein Zweitwecker,
             // der währenddessen fällig wurde, wird hier nachgeholt (Audit A-5), wie vor dem Entsperren in restore.
             if (intent.action in BOOT_ACTIONS) app.backup.catchUpAfterBoot()

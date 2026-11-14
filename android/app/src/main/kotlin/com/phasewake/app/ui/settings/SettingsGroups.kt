@@ -45,7 +45,7 @@ import com.phasewake.app.ui.home.routineName
 
 // Bausteine der Einstellungen: Gruppe, Schalter-Zeile, eigene Notizen, Abendroutine.
 
-/** Eigene Schlafnotizen: hinzufügen, umbenennen, löschen (höchstens [SleepNotes.MAX_CUSTOM]). */
+/** Eigene Schlafnotizen: hinzufügen, umbenennen, löschen mit Rückfrage (höchstens [SleepNotes.MAX_CUSTOM]). */
 @Composable
 internal fun CustomNotesGroup(
     notes: List<CustomNote>,
@@ -55,6 +55,8 @@ internal fun CustomNotesGroup(
 ) {
     // Bearbeitete Notiz: `null` = keine, leere Kennung = neue Notiz.
     var editing by remember { mutableStateOf<CustomNote?>(null) }
+    // Zu löschende Notiz (B-10): Sie verschwindet auch aus den vergangenen Nächten, darum zuerst fragen.
+    var deleting by remember { mutableStateOf<CustomNote?>(null) }
     Group(stringResource(R.string.notes_custom_title)) {
         Text(
             stringResource(R.string.notes_custom_hint, SleepNotes.MAX_CUSTOM),
@@ -65,7 +67,7 @@ internal fun CustomNotesGroup(
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 Text(note.name, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
                 TextButton(onClick = { editing = note }) { Text(stringResource(R.string.notes_custom_rename)) }
-                IconButton(onClick = { onDelete(note.id) }) {
+                IconButton(onClick = { deleting = note }) {
                     Icon(painterResource(R.drawable.ic_delete), contentDescription = stringResource(R.string.notes_custom_delete, note.name))
                 }
             }
@@ -75,6 +77,18 @@ internal fun CustomNotesGroup(
                 Text(stringResource(R.string.notes_custom_add))
             }
         }
+    }
+    deleting?.let { note ->
+        AlertDialog(
+            onDismissRequest = { deleting = null },
+            title = { Text(stringResource(R.string.notes_custom_delete, note.name)) },
+            confirmButton = {
+                TextButton(onClick = { deleting = null; onDelete(note.id) }) {
+                    Text(stringResource(R.string.settings_clear_history_confirm), color = MaterialTheme.colorScheme.error)
+                }
+            },
+            dismissButton = { TextButton(onClick = { deleting = null }) { Text(stringResource(R.string.action_cancel)) } },
+        )
     }
     editing?.let { note ->
         var name by remember(note) { mutableStateOf(note.name) }
@@ -233,8 +247,8 @@ internal fun DataGroup(onExport: () -> Unit, canExport: Boolean, onClearHistory:
             AlertDialog(
                 onDismissRequest = { confirm = false },
                 title = { Text(stringResource(R.string.settings_clear_history)) },
-                // Nur Android: Die Lernphase gibt es am iPhone noch nicht, darum ein eigener Satz statt eines geänderten Texts.
-                text = { Text(stringResource(R.string.settings_clear_history_text) + " " + stringResource(R.string.settings_clear_history_learn)) },
+                // Was alles gelöscht wird (B-13), wie am iPhone: Nächte, dazu Notizen, Befinden, Haken und Geräusche, die Lernphase.
+                text = { Text(clearHistoryText()) },
                 confirmButton = {
                     TextButton(onClick = { confirm = false; onClearHistory() }) {
                         Text(stringResource(R.string.settings_clear_history_confirm), color = MaterialTheme.colorScheme.error)
@@ -270,3 +284,11 @@ internal fun AboutGroup(version: String, extras: SettingsExtras) {
         VersionLine(version, extras)
     }
 }
+
+/** Rückfrage «Verlauf löschen»: nennt alles, was gelöscht wird (B-13, gleicher Text am iPhone). */
+@Composable
+internal fun clearHistoryText(): String = listOf(
+    stringResource(R.string.settings_clear_history_text),
+    stringResource(R.string.settings_clear_history_also),
+    stringResource(R.string.settings_clear_history_learn),
+).joinToString(" ")

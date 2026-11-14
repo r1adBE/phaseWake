@@ -123,4 +123,5 @@
     <string name="watch_learn_skip_battery">هذه الليلة لا تُحتسب لمرحلة التعلّم: البطارية عند %1$d %%، والمطلوب %2$d %%.</string>
     <string name="watch_learn_skip_sensors">هذه الليلة لا تُحتسب لمرحلة التعلّم: لا يستطيع Phase Wake استخدام مستشعرات الساعة.</string>
     <string name="watch_learn_skip_late">هذه الليلة لا تُحتسب لمرحلة التعلّم: فُتح Phase Wake متأخرًا جدًا في المساء.</string>
+    <string name="editor_alarm_gone">حُذف هذا المنبّه في هذه الأثناء.</string>
 </resources>

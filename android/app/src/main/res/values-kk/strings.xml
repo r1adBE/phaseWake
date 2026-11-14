@@ -415,6 +415,7 @@
     <string name="holidays_off">Мерекесіз</string>
     <string name="holidays_hint">Жекелеген елді мекендердің жергілікті мерекелері кірмейді.</string>
     <string name="holidays_next">Келесі мереке: %1$s</string>
+    <string name="holidays_next_estimated">Болжамды мереке: %1$s – оятқыш шырылдайды. Демалыс болса, күнді өзің өткізіп жібер.</string>
     <string name="editor_skip_holidays">Мерекелерде оятпау</string>
     <string name="editor_skip_holidays_hint">Елді және өңірді параметрлерде таңда.</string>
     <string name="home_holiday_skipped">%1$s: мереке – оятқыш жоқ</string>
@@ -613,4 +614,10 @@
     <string name="learn_tip_late">Кешке сағатта Phase Wake-ті аш, ең кешіккенде еске салғыш келгенде.</string>
     <string name="learn_tip_alarm">Сағат тек оятқышы бар түндерді жазады.</string>
     <string name="learn_tip_connect">Сағатты қосулы әрі телефонға қосылған күйде ұста – ол жазбаны оятқыштан кейін жібереді.</string>
+    <string name="battery_night">Батарея: %1$s</string>
+    <string name="battery_watch">Сағат −%1$d %%</string>
+    <string name="battery_phone">Телефон −%1$d %%</string>
+    <string name="editor_alarm_gone">Бұл оятқыш осы уақытта жойылды.</string>
+    <string name="test_replaces_nap">Сынақ оятқыш қысқа ұйқыңды аяқтайды.</string>
+    <string name="settings_clear_history_also">Жазбалар, көңіл-күй, кешкі рәсім белгілері және дыбыс үзінділері де жойылады.</string>
 </resources>

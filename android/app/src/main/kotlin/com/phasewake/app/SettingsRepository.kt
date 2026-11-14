@@ -14,6 +14,7 @@ import com.phasewake.app.core.SleepSound
 import com.phasewake.app.core.SleepSounds
 import com.phasewake.app.core.TimeBounds
 import com.phasewake.app.core.Transient
+import com.phasewake.app.shared.PhaseWakeStore
 import com.phasewake.app.ui.theme.ThemeMode
 import java.time.Instant
 import java.time.LocalDate
@@ -47,12 +48,17 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
     /**
      * Zeitpunkt der letzten Änderung des Schlafziels (ms), für den Abgleich mit der Uhr. Fehlt er (Ziel vor dieser
      * Version gesetzt oder nie geändert), wird jetzt einer gesetzt: So übernimmt die Uhr auch ein älteres Ziel einmal.
+     * Nach einer kaputten Datei nicht ([PhaseWakeStore.wasReset], Audit SP-7): 0, die Uhr behält ihr Ziel.
      */
     suspend fun sleepGoalStamp(): Long {
         var stamp = 0L
-        store.edit { prefs -> stamp = prefs[SLEEP_GOAL_AT] ?: Instant.now().toEpochMilli().also { prefs[SLEEP_GOAL_AT] = it } }
+        store.edit { prefs -> stamp = prefs[SLEEP_GOAL_AT] ?: stampOnce(prefs) { prefs[SLEEP_GOAL_AT] = it } }
         return stamp
     }
+
+    /** Zeitpunkt für einen fehlenden Stempel, gesetzt über [put]; nach einer kaputten Datei 0 und nichts gesetzt (Audit SP-7). */
+    private fun stampOnce(prefs: Preferences, put: (Long) -> Unit): Long =
+        if (PhaseWakeStore.wasReset(prefs)) 0L else Instant.now().toEpochMilli().also(put)
 
     /** Einschlaf-Messung am Abend auf der Galaxy Watch an oder aus (Standard an); geht mit Zeitpunkt an die Uhr. */
     val autoOnset: Flow<Boolean> = store.data.map { it[AUTO_ONSET] ?: true }
@@ -68,7 +74,7 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
     suspend fun autoOnsetStamped(): Pair<Boolean, Long> {
         var result = true to 0L
         store.edit { prefs ->
-            val stamp = prefs[AUTO_ONSET_AT] ?: Instant.now().toEpochMilli().also { prefs[AUTO_ONSET_AT] = it }
+            val stamp = prefs[AUTO_ONSET_AT] ?: stampOnce(prefs) { prefs[AUTO_ONSET_AT] = it }
             result = (prefs[AUTO_ONSET] ?: true) to stamp
         }
         return result
@@ -188,6 +194,16 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
         }
     }
 
+    /**
+     * Stand der Regeln, nach denen die gespeicherten Feiertage gerechnet sind (`HolidayRepository.RULES`); 0 = vor Audit
+     * F-2 (geschätzte Tage galten noch als frei). Ein kleinerer Stand rechnet die Feiertage einmal neu.
+     */
+    suspend fun holidayRules(): Int = store.data.first()[HOLIDAY_RULES] ?: 0
+
+    suspend fun setHolidayRules(rules: Int) {
+        store.edit { it[HOLIDAY_RULES] = rules }
+    }
+
     /** Diagnose freigeschaltet (7× auf die Versionszeile getippt). */
     val diagnostics: Flow<Boolean> = store.data.map { it[DIAGNOSTICS] ?: false }
 
@@ -268,6 +284,7 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
         private val ONBOARDING_DONE = booleanPreferencesKey("onboarding_done")
         private val HOLIDAY_COUNTRY = stringPreferencesKey("holiday_country")
         private val HOLIDAY_REGION = stringPreferencesKey("holiday_region")
+        private val HOLIDAY_RULES = intPreferencesKey("holiday_rules")
         private val DIAGNOSTICS = booleanPreferencesKey("diagnostics")
         private val NAP_MINUTES = intPreferencesKey("nap_minutes")
         private val SOUND_REC_DEFAULT = booleanPreferencesKey("sound_rec_default")

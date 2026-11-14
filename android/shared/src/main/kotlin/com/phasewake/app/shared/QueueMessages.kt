@@ -28,6 +28,9 @@ object QueueMessages {
     const val KEY_ONSET_SHIFT = "onset-shift"
     const val KEY_LEARNING = "learning"
 
+    /** Gelernte Einschlafdauer ([DataLayer.PATH_MSG_LEARN_LATENCY]). */
+    const val KEY_LEARN_LATENCY = "learn-latency"
+
     /** Meldung der Lernphase je Nacht ([DataLayer.PATH_MSG_LEARN_SKIP]), mit der Zielzeit in ms als Zusatz. */
     const val KEY_LEARN_SKIP = "learn-skip/"
     const val KEY_SLEEP_GOAL = "sleep-goal"

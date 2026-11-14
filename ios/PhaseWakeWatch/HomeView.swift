@@ -8,6 +8,8 @@ struct HomeView: View {
     @Environment(\.scenePhase) private var scenePhase
     /// Wecker im Editor: ein bestehender oder ein neuer (dann noch nicht in der Liste).
     @State private var editing: AlarmSpec?
+    /// Ob der Wecker im Editor beim Öffnen neu war; fest, damit ein anderswo gelöschter nicht als neuer gilt (B-3).
+    @State private var editingNew = false
     @State private var choosingNap = false
     @State private var diagUnlocked = DiagStore.shared.unlocked
 
@@ -48,10 +50,10 @@ struct HomeView: View {
                         ForEach(model.alarms) { alarm in
                             // Zeile antippen öffnet den Editor, der Schalter schaltet ein/aus.
                             HStack {
-                                Button { editing = alarm } label: {
+                                Button { editingNew = false; editing = alarm } label: {
                                     VStack(alignment: .leading) {
                                         Text(Format.window(alarm)).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
-                                        Text([Format.days(alarm), alarm.label].filter { !$0.isEmpty }.joined(separator: " · "))
+                                        Text(alarmDetails(alarm, now: model.now))
                                             .font(Fonts.manrope(12, relativeTo: .footnote))
                                             .foregroundStyle(Brand.muted)
                                     }
@@ -69,7 +71,7 @@ struct HomeView: View {
                     }
                 }
                 if model.canAddAlarm {
-                    Button { editing = AlarmSpec.newOnWatch() } label: {
+                    Button { editingNew = true; editing = AlarmSpec.newOnWatch() } label: {
                         Label(L("home_add_alarm"), systemImage: "plus")
                             .font(Fonts.manrope(15, .semibold, relativeTo: .headline))
                     }
@@ -91,7 +93,7 @@ struct HomeView: View {
             NavigationStack { WatchNapView() }.environment(model)
         }
         .sheet(item: $editing) { alarm in
-            WatchEditorView(start: alarm, isNew: !model.alarms.contains { $0.id == alarm.id })
+            WatchEditorView(start: alarm, isNew: editingNew)
                 .environment(model)
         }
         .onChange(of: scenePhase) { _, phase in
@@ -228,4 +230,11 @@ private struct WindowRing: View {
         .padding(4)
         .accessibilityHidden(true)
     }
+}
+
+/// Zweite Zeile einer Wecker-Zeile: Tage, Name und ein übersprungener nächster Termin («Übersprungen: Do 30.10.»), wie
+/// Galaxy Watch, Handy und iPhone (Prüfrunde 2, B-8).
+func alarmDetails(_ alarm: AlarmSpec, now: Date, calendar: Calendar = .gregorianLocal) -> String {
+    let skipped = AlarmSchedule.skippedDate(alarm, now: now, calendar: calendar).map { L("alarm_skipped", Format.shortDay($0)) }
+    return [Format.days(alarm), alarm.label, skipped ?? ""].filter { !$0.isEmpty }.joined(separator: " · ")
 }

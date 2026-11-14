@@ -108,4 +108,5 @@
     <string name="watch_learn_skip_battery">आजको रात सिक्ने चरणमा गनिँदैन: ब्याट्री %1$d %%, चाहिन्छ %2$d %%।</string>
     <string name="watch_learn_skip_sensors">आजको रात सिक्ने चरणमा गनिँदैन: Phase Wake ले घडीका सेन्सर प्रयोग गर्न सक्दैन।</string>
     <string name="watch_learn_skip_late">आजको रात सिक्ने चरणमा गनिँदैन: बेलुका Phase Wake धेरै ढिलो खोलियो।</string>
+    <string name="editor_alarm_gone">यो अलार्म यसैबीच मेटाइसकिएको छ।</string>
 </resources>

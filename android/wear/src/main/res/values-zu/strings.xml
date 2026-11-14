@@ -108,4 +108,5 @@
     <string name="watch_learn_skip_battery">Namuhla ebusuku akubalelwa isigaba sokufunda: ibhethri liku-%1$d %%, kudingeka %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Namuhla ebusuku akubalelwa isigaba sokufunda: i-Phase Wake ayikwazi ukusebenzisa izinzwa zewashi.</string>
     <string name="watch_learn_skip_late">Namuhla ebusuku akubalelwa isigaba sokufunda: i-Phase Wake ivulwe sekwephuze kakhulu kusihlwa.</string>
+    <string name="editor_alarm_gone">Le alamu isisusiwe phakathi naleso sikhathi.</string>
 </resources>

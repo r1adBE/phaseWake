@@ -33,4 +33,6 @@
     <string name="check_watch_state_old">Urets status er forældet – åbn Phase Wake kort på uret.</string>
     <string name="editor_sleep_hint_apple">Tæller fra, når du falder i søvn – tryk på “Godnat” på uret, når du går i seng. På Apple Watch anslår Phase Wake, hvornår du falder i søvn, ud fra din lærte indsovningstid. Uden tryk gælder det indstillede tidspunkt.</string>
     <string name="auto_onset_hint_apple">Åbn Phase Wake på dit Apple Watch fra 1 time før sengetid (uret minder dig om det), så registrerer det din bevægelse fra da af til dit vækningsvindue; så beregner Phase Wake, hvornår du faldt i søvn.</string>
+    <string name="home_good_night_tap_cancel">tryk for at annullere</string>
+    <string name="good_night_cancel">Annuller Godnat</string>
 </resources>

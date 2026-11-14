@@ -36,4 +36,6 @@
     <string name="check_watch_state_old">Стање сата је застарело – накратко отвори Phase Wake на сату.</string>
     <string name="editor_sleep_hint_apple">Рачуна се од успављивања – додирни „Лаку ноћ“ на сату када идеш у кревет. На Apple Watch-у Phase Wake процењује када заспиш на основу наученог времена успављивања. Без додира важи подешено време.</string>
     <string name="auto_onset_hint_apple">Отвори Phase Wake на Apple Watch-у од 1 сат пре спавања (сат те подсети) и од тада до интервала буђења бележи твоје покрете; тада Phase Wake израчуна када си заспао.</string>
+    <string name="home_good_night_tap_cancel">додирни за отказивање</string>
+    <string name="good_night_cancel">Откажи Лаку ноћ</string>
 </resources>

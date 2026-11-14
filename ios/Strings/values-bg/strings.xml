@@ -34,4 +34,6 @@
     <string name="check_watch_state_old">Състоянието на часовника е остаряло – отвори за малко Phase Wake на часовника.</string>
     <string name="editor_sleep_hint_apple">Отброява се от заспиването – докосни „Лека нощ“ на часовника, когато си лягаш. На Apple Watch Phase Wake преценява кога заспиваш по наученото ти време за заспиване. Без докосване важи зададеното време.</string>
     <string name="auto_onset_hint_apple">Отвори Phase Wake на Apple Watch от 1 час преди лягане (часовникът ти напомня) и той записва движението ти оттогава до прозореца за събуждане; тогава Phase Wake изчислява кога си заспал.</string>
+    <string name="home_good_night_tap_cancel">докосни за отказ</string>
+    <string name="good_night_cancel">Отмени „Лека нощ“</string>
 </resources>

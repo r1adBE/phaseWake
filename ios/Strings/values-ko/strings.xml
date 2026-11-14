@@ -33,4 +33,6 @@
     <string name="check_watch_state_old">워치 상태가 오래되었습니다 – 워치에서 Phase Wake를 잠깐 여세요.</string>
     <string name="editor_sleep_hint_apple">잠든 시점부터 계산해요. 잠자리에 들 때 워치에서 ‘잘 자요’를 탭하세요. Apple Watch에서는 Phase Wake가 학습한 잠드는 데 걸리는 시간으로 잠든 시각을 추정해요. 탭하지 않으면 설정한 시간이 적용돼요.</string>
     <string name="auto_onset_hint_apple">취침 시간 1시간 전부터 Apple Watch에서 Phase Wake를 열면(워치가 알려 줍니다) 그때부터 기상 시간대까지 움직임을 기록합니다. 그다음 Phase Wake가 언제 잠들었는지 계산합니다.</string>
+    <string name="home_good_night_tap_cancel">탭하여 취소</string>
+    <string name="good_night_cancel">잘 자요 취소</string>
 </resources>

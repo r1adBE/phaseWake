@@ -103,4 +103,5 @@
     <string name="watch_learn_skip_battery">យប់នេះមិនរាប់សម្រាប់ដំណាក់កាលរៀនទេ៖ ថ្ម %1$d %% ត្រូវការ %2$d %%។</string>
     <string name="watch_learn_skip_sensors">យប់នេះមិនរាប់សម្រាប់ដំណាក់កាលរៀនទេ៖ Phase Wake មិនអាចប្រើឧបករណ៍ចាប់សញ្ញារបស់នាឡិកាបានទេ។</string>
     <string name="watch_learn_skip_late">យប់នេះមិនរាប់សម្រាប់ដំណាក់កាលរៀនទេ៖ Phase Wake ត្រូវបានបើកយឺតពេកនៅពេលល្ងាច។</string>
+    <string name="editor_alarm_gone">ម៉ោងរោទ៍នេះត្រូវបានលុបរួចហើយ។</string>
 </resources>

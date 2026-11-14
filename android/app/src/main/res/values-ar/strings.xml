@@ -475,6 +475,7 @@
     <string name="holidays_off">بلا عطل</string>
     <string name="holidays_hint">لا تشمل العطل المحلية لبلديات بعينها.</string>
     <string name="holidays_next">العطلة القادمة: %1$s</string>
+    <string name="holidays_next_estimated">عطلة تقديرية: %1$s – سيرنّ المنبّه. إن كان يوم عطلتك فتخطَّه بنفسك.</string>
     <string name="editor_skip_holidays">لا توقظني في العطل</string>
     <string name="editor_skip_holidays_hint">اختر البلد والمنطقة في الإعدادات.</string>
     <string name="home_holiday_skipped">%1$s: عطلة – بلا منبّه</string>
@@ -681,4 +682,10 @@
     <string name="learn_tip_late">افتح Phase Wake على الساعة مساءً، وعلى الأكثر عند التذكير.</string>
     <string name="learn_tip_alarm">تسجّل الساعة الليالي التي فيها منبّه فقط.</string>
     <string name="learn_tip_connect">أبقِ الساعة مشغّلة ومتصلة بهاتفك – فهي ترسل التسجيل بعد المنبّه.</string>
+    <string name="battery_night">البطارية: %1$s</string>
+    <string name="battery_watch">الساعة −%1$d %%</string>
+    <string name="battery_phone">الهاتف −%1$d %%</string>
+    <string name="editor_alarm_gone">حُذف هذا المنبّه في هذه الأثناء.</string>
+    <string name="test_replaces_nap">ينهي اختبار المنبّه قيلولتك.</string>
+    <string name="settings_clear_history_also">تُحذف أيضًا الملاحظات والشعور وعلامات روتين المساء ومقاطع الأصوات.</string>
 </resources>

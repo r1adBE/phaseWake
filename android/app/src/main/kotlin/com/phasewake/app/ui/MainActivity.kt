@@ -53,6 +53,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.phasewake.app.R
 import com.phasewake.app.phoneApp
+import com.phasewake.app.shared.PermissionAsks
 import com.phasewake.app.ring.PhoneRingActivity
 import com.phasewake.app.ring.PhoneRingService
 import com.phasewake.app.ui.components.Intro
@@ -131,8 +132,14 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
     val soundRec = rememberSoundRec(app, data, checkRun)
     val nightCheck = rememberNightCheck(app, checkRun)
 
-    var askedNotifications by rememberSaveable { mutableStateOf(false) }
     val notificationPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { checkRun++ }
+    // Vor jeder Anfrage gemerkt, über das Prozessende hinaus (B-6): Danach öffnet «Erlauben» gleich die Einstellungen.
+    fun askNotifications() {
+        PermissionAsks.markAsked(context, listOf(Manifest.permission.POST_NOTIFICATIONS))
+        notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+    }
+    // Probewecker über einem wartenden Powernap: zuerst fragen (B-12).
+    var confirmTest by rememberSaveable { mutableStateOf(false) }
     val healthPermission = rememberLauncherForActivityResult(PermissionController.createRequestPermissionResultContract()) {
         healthCheck++
     }
@@ -147,7 +154,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
                 context.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
             ) {
-                notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+                askNotifications()
             }
         },
         connectHealth = { healthPermission.launch(app.health.permissions) },
@@ -156,13 +163,11 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
                 item == Check.COMPANION -> connectCompanion()
                 item != Check.NOTIFICATIONS -> fixCheck(context, item, nightCheck.missingOn)
                 // Die Versionsprüfung steht hier sichtbar für Lint; canAskNotifications prüft sie ebenfalls.
-                Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && canAskNotifications(context, askedNotifications) -> {
-                    askedNotifications = true
-                    notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
-                }
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && canAskNotifications(context) -> askNotifications()
                 else -> openNotificationSettings(context)
             }
         },
+        onTest = { if (napWaiting(data.transient)) confirmTest = true else startTest(app) },
     )
 
     // Aus dem Wochenrückblick: einmal zum Verlauf.
@@ -215,6 +220,12 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
                     Export.share(context, data.nights.orEmpty(), data.notes)
                 },
                 onDismiss = { askExport = false },
+            )
+        }
+        if (confirmTest) {
+            TestOverNapDialog(
+                onConfirm = { confirmTest = false; startTest(app) },
+                onDismiss = { confirmTest = false },
             )
         }
         testResult?.let { run ->

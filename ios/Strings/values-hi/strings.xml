@@ -33,4 +33,6 @@
     <string name="check_watch_state_old">वॉच की स्थिति पुरानी है – वॉच पर कुछ देर के लिए Phase Wake खोलें।</string>
     <string name="editor_sleep_hint_apple">नींद आने के समय से गिना जाता है – सोने जाते समय घड़ी पर «शुभ रात्रि» टैप करें। Apple Watch पर Phase Wake सीखे गए नींद आने के समय से अनुमान लगाता है कि आप कब सो जाते हैं। टैप न करने पर सेट किया गया समय लागू होता है।</string>
     <string name="auto_onset_hint_apple">सोने के समय से 1 घंटा पहले से अपनी Apple Watch पर Phase Wake खोलो (घड़ी याद दिलाती है), तो तब से जागने की अवधि तक वह तुम्हारी गतिविधि रिकॉर्ड करती है; फिर Phase Wake गणना करता है कि तुम कब सोए।</string>
+    <string name="home_good_night_tap_cancel">रद्द करने के लिए टैप करो</string>
+    <string name="good_night_cancel">शुभ रात्रि रद्द करें</string>
 </resources>

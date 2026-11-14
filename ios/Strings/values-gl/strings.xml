@@ -36,4 +36,6 @@
     <string name="check_watch_state_old">O estado do reloxo está desactualizado – abre Phase Wake un momento no reloxo.</string>
     <string name="editor_sleep_hint_apple">Conta desde que adormeces: toca «Boas noites» no reloxo ao deitarte. No Apple Watch, Phase Wake estima cando adormeces a partir do tempo para durmir que aprendeu. Se non o tocas, aplícase a hora configurada.</string>
     <string name="auto_onset_hint_apple">Abre Phase Wake no teu Apple Watch desde 1 hora antes de deitarte (lémbrachelo) e desde entón ata a túa xanela de espertar rexistra o teu movemento; entón Phase Wake calcula cando adormeciches.</string>
+    <string name="home_good_night_tap_cancel">toca para cancelar</string>
+    <string name="good_night_cancel">Cancelar Boas noites</string>
 </resources>

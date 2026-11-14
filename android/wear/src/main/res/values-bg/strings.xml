@@ -107,4 +107,5 @@
     <string name="watch_learn_skip_battery">Тази нощ не се отчита за фазата на учене: батерия %1$d %%, нужни %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Тази нощ не се отчита за фазата на учене: Phase Wake не може да използва сензорите на часовника.</string>
     <string name="watch_learn_skip_late">Тази нощ не се отчита за фазата на учене: Phase Wake е отворен твърде късно вечерта.</string>
+    <string name="editor_alarm_gone">Този будилник междувременно е изтрит.</string>
 </resources>

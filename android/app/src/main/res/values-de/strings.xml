@@ -427,6 +427,7 @@
     <string name="holidays_off">Keine Feiertage</string>
     <string name="holidays_hint">Lokale Feiertage einzelner Gemeinden sind nicht enthalten.</string>
     <string name="holidays_next">Nächster Feiertag: %1$s</string>
+    <string name="holidays_next_estimated">Geschätzter Feiertag: %1$s – der Wecker klingelt. Hast du frei, überspring den Tag selbst.</string>
     <string name="editor_skip_holidays">An Feiertagen nicht wecken</string>
     <string name="editor_skip_holidays_hint">Land und Region wählst du in den Einstellungen.</string>
     <string name="home_holiday_skipped">%1$s: Feiertag – nicht geweckt</string>
@@ -625,4 +626,10 @@
     <string name="learn_tip_late">Öffne Phase Wake am Abend auf der Uhr, spätestens bei der Erinnerung.</string>
     <string name="learn_tip_alarm">Die Uhr zeichnet nur Nächte mit Wecker auf.</string>
     <string name="learn_tip_connect">Lass die Uhr eingeschaltet und mit dem Handy verbunden – sie schickt die Aufzeichnung nach dem Wecker.</string>
+    <string name="battery_night">Akku: %1$s</string>
+    <string name="battery_watch">Uhr −%1$d %%</string>
+    <string name="battery_phone">Handy −%1$d %%</string>
+    <string name="editor_alarm_gone">Dieser Wecker wurde inzwischen gelöscht.</string>
+    <string name="test_replaces_nap">Der Probewecker beendet deinen Powernap.</string>
+    <string name="settings_clear_history_also">Auch Notizen, Befinden, Haken der Abendroutine und Geräusch-Ausschnitte werden gelöscht.</string>
 </resources>

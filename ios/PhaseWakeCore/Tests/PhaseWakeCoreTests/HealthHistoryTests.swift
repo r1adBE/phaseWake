@@ -257,4 +257,23 @@ final class HealthHistoryTests: XCTestCase {
         XCTAssertEqual(Bedtime.leadMinutes, 30)
         XCTAssertEqual(Bedtime.dialMinutes, 720)
     }
+
+    /// Gleich wie `napRuleUsesTheZoneOfTheRecording` (Kotlin, Audit F-3).
+    func testNapRuleUsesTheZoneOfTheRecording() {
+        // Nickerchen in New York 13:00–15:30 (EDT), angeschaut in Zürich (19:00–21:30): bleibt ein Nickerchen.
+        let newYorkZone = TimeZone(identifier: "America/New_York")!
+        let newYork = HealthSession(start: t("2026-10-02T17:00:00Z"), end: t("2026-10-02T19:30:00Z"), timeZone: newYorkZone)
+        XCTAssertTrue(newYork.isNap(calendar: calendar))
+        XCTAssertFalse(HealthSession(start: newYork.start, end: newYork.end).isNap(calendar: calendar), "ohne Zone wie bisher")
+        XCTAssertTrue(merge([], [newYork]).isEmpty)
+        XCTAssertTrue(HealthHistory.summaries([newYork], clearedAt: nil, calendar: calendar).isEmpty)
+        // Kurze Nacht in Tokio 23:00–01:00 (+09:00), in Zürich 16:00–18:00: bleibt eine Nacht.
+        let tokyoZone = TimeZone(secondsFromGMT: 9 * 3600)!
+        let tokyo = HealthSession(start: t("2026-10-01T14:00:00Z"), end: t("2026-10-01T16:00:00Z"), timeZone: tokyoZone)
+        XCTAssertFalse(tokyo.isNap(calendar: calendar))
+        XCTAssertTrue(HealthSession(start: tokyo.start, end: tokyo.end).isNap(calendar: calendar))
+        XCTAssertEqual(merge([], [tokyo]).map(\.session), [tokyo])
+        XCTAssertEqual(tokyo.localCalendar(calendar).timeZone, tokyoZone)
+        XCTAssertEqual(HealthSession(start: tokyo.start, end: tokyo.end).localCalendar(calendar).timeZone, calendar.timeZone)
+    }
 }

@@ -107,4 +107,5 @@
     <string name="watch_learn_skip_battery">امشب برای مرحلهٔ یادگیری حساب نمی‌شود: باتری %1$d %%، لازم %2$d %%.</string>
     <string name="watch_learn_skip_sensors">امشب برای مرحلهٔ یادگیری حساب نمی‌شود: Phase Wake نمی‌تواند از حسگرهای ساعت استفاده کند.</string>
     <string name="watch_learn_skip_late">امشب برای مرحلهٔ یادگیری حساب نمی‌شود: Phase Wake عصر خیلی دیر باز شد.</string>
+    <string name="editor_alarm_gone">این زنگ در این فاصله حذف شده است.</string>
 </resources>

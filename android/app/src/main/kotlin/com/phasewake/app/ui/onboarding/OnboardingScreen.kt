@@ -1,5 +1,6 @@
 package com.phasewake.app.ui.onboarding
 
+import android.os.SystemClock
 import android.text.format.DateFormat
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
@@ -26,6 +27,7 @@ import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -49,7 +51,6 @@ import com.phasewake.app.ui.home.Check
 import com.phasewake.app.ui.home.MAX_ALARMS
 import com.phasewake.app.ui.home.NightCheckState
 import com.phasewake.app.ui.settings.HealthState
-import com.phasewake.app.ui.startTest
 import java.time.Instant
 import java.util.UUID
 import kotlinx.coroutines.launch
@@ -63,6 +64,12 @@ internal const val ALARM_PAGE = 3
 
 /** Seite der Lernphase: statt «Weiter» die Knöpfe «Später» und «Lernphase starten». */
 internal const val LEARNING_PAGE = 4
+
+/**
+ * So lange nach einem Tipp auf die Knöpfe unten zählt kein weiterer (Prüfrunde 2, B-2): «Später» der Lernseite liegt
+ * dort, wo eben «Weiter» war; ein Doppeltipp lehnte sonst die Lernphase ab, ohne dass die Seite zu sehen war.
+ */
+internal const val PAGE_TAP_LOCK_MS = 400L
 
 /**
  * Ersteinrichtung in sechs Schritten (jederzeit überspringbar): Willkommen, Uhr verbinden, Rechte, erster Wecker,
@@ -83,7 +90,7 @@ internal fun OnboardingScreen(app: PhaseWakeApp, state: NavState, actions: NavAc
         onFix = actions.onFix,
         onConnectHealth = actions.connectHealth,
         onCreateAlarm = { spec -> app.afterAlarmsChanged { app.alarms.upsert(spec) } },
-        onStartTest = { startTest(app) },
+        onStartTest = actions.onTest,
         // Neu gelesen mit jedem Nacht-Check (nach dem Verbinden prüft er sofort neu).
         companionLinked = remember(state.nightCheck.check) { CompanionLink.isAssociated(app) },
         learningConsent = state.data.learning?.consent,
@@ -131,6 +138,14 @@ internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: Onboardi
         model.onCreateAlarm(spec)
         alarmCreated = Format.window(context, spec)
     }
+    // Knöpfe unten: nach jedem Tipp kurz gesperrt (B-2), auch «Fertig».
+    var lockedUntil by remember { mutableLongStateOf(0L) }
+    fun tap(action: () -> Unit) {
+        val now = SystemClock.uptimeMillis()
+        if (now < lockedUntil) return
+        lockedUntil = now + PAGE_TAP_LOCK_MS
+        action()
+    }
     Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing).padding(horizontal = 20.dp)) {
         Row(Modifier.fillMaxWidth().padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
             Text(
@@ -164,24 +179,26 @@ internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: Onboardi
         val askLearning = page == LEARNING_PAGE && model.learningConsent != true
         if (askLearning) {
             Button(
-                onClick = { model.onLearningConsent(true); onPage(page + 1) },
+                onClick = { tap { model.onLearningConsent(true); onPage(page + 1) } },
                 modifier = Modifier.fillMaxWidth().padding(bottom = 4.dp),
             ) { Text(stringResource(R.string.learn_consent_start)) }
         }
         Row(Modifier.fillMaxWidth().padding(bottom = 12.dp), verticalAlignment = Alignment.CenterVertically) {
-            if (page > 0) OutlinedButton(onClick = { onPage(page - 1) }, border = outlinedBorder()) { Text(stringResource(R.string.onb_back)) }
+            if (page > 0) OutlinedButton(onClick = { tap { onPage(page - 1) } }, border = outlinedBorder()) { Text(stringResource(R.string.onb_back)) }
             Spacer(Modifier.weight(1f))
             when {
-                askLearning -> TextButton(onClick = { model.onLearningConsent(false); onPage(page + 1) }) {
+                askLearning -> TextButton(onClick = { tap { model.onLearningConsent(false); onPage(page + 1) } }) {
                     Text(stringResource(R.string.learn_consent_later))
                 }
                 page < STEPS -> Button(onClick = {
-                    // «Weiter» ohne «Wecker anlegen»: den gezeigten Wecker trotzdem anlegen, sonst fehlte er still –
-                    // aber nur, wenn noch keiner besteht (wiederholte Einrichtung, Audit N-1).
-                    if (page == ALARM_PAGE && createsOnNext(alarmCreated != null, model)) createAlarm()
-                    onPage(page + 1)
+                    tap {
+                        // «Weiter» ohne «Wecker anlegen»: den gezeigten Wecker trotzdem anlegen, sonst fehlte er still –
+                        // aber nur, wenn noch keiner besteht (wiederholte Einrichtung, Audit N-1).
+                        if (page == ALARM_PAGE && createsOnNext(alarmCreated != null, model)) createAlarm()
+                        onPage(page + 1)
+                    }
                 }) { Text(stringResource(R.string.onb_next)) }
-                else -> Button(onClick = onDone) { Text(stringResource(R.string.onb_finish)) }
+                else -> Button(onClick = { tap(onDone) }) { Text(stringResource(R.string.onb_finish)) }
             }
         }
     }

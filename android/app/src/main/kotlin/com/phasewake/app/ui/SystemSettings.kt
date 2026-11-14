@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import com.phasewake.app.R
 import com.phasewake.app.shared.DoNotDisturb
+import com.phasewake.app.shared.PermissionAsks
 import com.phasewake.app.ui.home.Check
 
 // Wege in die Einstellungen des Systems (Nacht-Check) und auf die Uhr (Play Store).
@@ -36,14 +37,11 @@ internal fun fixCheck(context: Context, item: Check, missingOn: List<String>) {
 }
 
 /**
- * Ob das System nach dem Mitteilungsrecht noch fragt: ab Android 13, beim ersten Mal ([asked] `false`)
- * oder solange es eine Begründung zeigen will. Sonst ist es dauerhaft abgelehnt.
+ * Ob das System nach dem Mitteilungsrecht noch fragt: ab Android 13, beim ersten Mal oder solange es eine Begründung
+ * zeigen will ([PermissionAsks], «gefragt» übersteht das Prozessende, B-6). Sonst ist es dauerhaft abgelehnt.
  */
-internal fun canAskNotifications(context: Context, asked: Boolean): Boolean {
-    val activity = context as? android.app.Activity
-    return Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
-        (!asked || activity?.shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS) == true)
-}
+internal fun canAskNotifications(context: Context): Boolean =
+    Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && PermissionAsks.canAsk(context, Manifest.permission.POST_NOTIFICATIONS)
 
 /** Dauerhaft abgelehnt: Android fragt nicht mehr, also direkt zu den Mitteilungs-Einstellungen der App. */
 internal fun openNotificationSettings(context: Context) = openSettings(

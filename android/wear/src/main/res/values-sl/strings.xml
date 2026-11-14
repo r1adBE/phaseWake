@@ -115,4 +115,5 @@
     <string name="watch_learn_skip_battery">Nocoj ne šteje za fazo učenja: baterija na %1$d %%, potrebno %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Nocoj ne šteje za fazo učenja: Phase Wake ne more uporabljati senzorjev ure.</string>
     <string name="watch_learn_skip_late">Nocoj ne šteje za fazo učenja: Phase Wake je bil odprt prepozno zvečer.</string>
+    <string name="editor_alarm_gone">Ta budilka je bila medtem izbrisana.</string>
 </resources>

@@ -133,7 +133,7 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
             // Endete vor «Verlauf löschen» (spät zugestellt): nicht zurückholen (Audit D-02/AP-6, wie Android). Die
             // Sicherung dieser Nacht bleibt trotzdem ausgesetzt – die Uhr hat geweckt.
             if HistoryClear.keeps(end: night.wokeAt, clearedAt: PhoneModel.shared.historyClearedAt) {
-                PhoneModel.shared.add(night: night)
+                PhoneModel.shared.add(night: PhoneBattery.withPhone(night))
             } else {
                 DiagStore.shared.log(.suppressed, "night before history clear dropped")
             }
@@ -194,6 +194,11 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
                 if let snoozeUntil { await model.backup.watchSnoozed(night: night, until: snoozeUntil) }
                 await model.backup.watchHandled(alarmId: alarmId, target: target)
                 if snoozeUntil == nil { await model.transient.stopArrived(alarmId) }
+                // Endgültig und frisch: Ende der Nacht für den Akku des iPhones.
+                if snoozeUntil == nil, !stale { PhoneBattery.stopped() }
+            case SyncKeys.nightBegin:
+                // Akku je Nacht: Die Uhr beginnt zu messen, das iPhone auch – nur frisch angekommen gilt «jetzt» als Beginn.
+                if sentAt != nil, !stale { PhoneBattery.begin() } else { DiagStore.shared.log(.battery, "night battery begin ignored (late)") }
             case SyncKeys.testAck:
                 model.transient.received(id)
             case SyncKeys.nap:
@@ -317,12 +322,14 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
             let skip = RecorderSkip.decode(text)
             Task { @MainActor in NightCheck.watchRecorderSkip = skip }
         }
-        // Ohne Akkustand (Uhr lädt oder kennt ihn nicht) gilt er als unbekannt.
+        // Ohne Akkustand (Uhr kennt ihn nicht, ältere Uhr beim Laden) gilt er als unbekannt.
         var battery: (percent: Int, at: Date)?
         if let percent = context[SyncKeys.battery] as? Int64, let at = SyncTime.date(context[SyncKeys.batteryAt]) {
             battery = (percent: Int(clamping: percent), at: at)
         }
         let level = battery
+        // Uhr lädt (F-6; ältere Uhren melden beim Laden keinen Akkustand).
+        let charging = context[SyncKeys.batteryCharging] as? Bool ?? false
         // Stand der Verbindung; fehlt er in einem Kontext der Uhr (sehr alte Uhr-App), zählt er als 0: Der Nacht-Check
         // meldet «Uhr-App veraltet» (wie Android, Status ohne Angabe).
         let version = Int((context[SyncKeys.watchProtocol] as? Int64) ?? 0)
@@ -332,7 +339,7 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         let notifications: (state: WatchNotifications, checkedAt: Date?)? = (context[SyncKeys.watchNotifications] as? Int64)
             .flatMap(WatchNotifications.init(rawValue:)).map { (state: $0, checkedAt: checkedAt) }
         if !context.isEmpty {
-            Task { @MainActor in PhoneModel.shared.setWatchStatus(battery: level, version: version, notifications: notifications) }
+            Task { @MainActor in PhoneModel.shared.setWatchStatus(battery: level, version: version, notifications: notifications, charging: charging) }
         }
         guard let snapshot = AlarmStamps.snapshot(context: context) else { return }
         Task { @MainActor in PhoneModel.shared.applyRemote(snapshot) }

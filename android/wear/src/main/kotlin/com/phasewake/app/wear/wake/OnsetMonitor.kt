@@ -22,6 +22,7 @@ import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Epoch
 import com.phasewake.app.core.NoiseFloor
 import com.phasewake.app.core.SleepOnset
+import com.phasewake.app.wear.schedule.AutoOnset
 import java.time.Duration
 import java.time.Instant
 
@@ -44,7 +45,8 @@ import java.time.Instant
  * Spätes Einschlafen (Befund 09.11.2026): Ist [maxEnd] erreicht und war in den letzten 15 Min eine gemessene Epoche
  * unruhig ([OnsetRules.restless]), verlängert sich die Messung um je [EXTEND_STEP] statt aufzugeben, bis höchstens
  * [extendCap], nicht unter [com.phasewake.app.wear.schedule.AutoOnset.MIN_BATTERY_PERCENT] Akku
- * ([OnsetRules.extendUntil]); Zeile «… extended until …» im Diagnose-Protokoll.
+ * ([OnsetRules.extendUntil]); Zeile «… extended until …». Zuvor verschiebt die Zeit ohne Tragen (Ladegerät, Off-Body)
+ * die Grenze um ihre Dauer, ebenso höchstens bis [extendCap] (HG-3, [OnsetRules.awayUntil]; «… (not worn)»).
  *
  * @param threshold Leicht-Schwelle (Startwert oder kalibriert).
  * @param latestGiveUp 15 Min vor der eingestellten Weckzeit.
@@ -63,11 +65,16 @@ class OnsetMonitor(
     private val extendCap: Instant? = null,
     /** Gelerntes Grundrauschen der Lernphase ([com.phasewake.app.core.DetectorConfig.personalFloor]); `null` = keines. */
     private val personalFloor: Double? = null,
+    /** F-6: Vom Ladegerät genommen und Akku unter der Grenze der automatischen Messung: aufhören; `null` = weiter messen. */
+    private val onLowBattery: (() -> Unit)? = null,
     private val now: () -> Instant = Instant::now,
     private val onOnset: (Instant) -> Unit,
 ) {
     /** Ab dann wird nicht mehr gewartet (ausser die Messung verlängert sich, siehe [extendCap]). */
     val giveUpAt: Instant get() = minOf(latestGiveUp, maxEnd)
+
+    /** Grenze ohne Verlängerungen (Beginn + [MAX_DURATION]); die Zeit ohne Tragen verschiebt sie ([OnsetRules.awayUntil]). */
+    private val baseMaxEnd = maxEnd
 
     private val handler = Handler(Looper.getMainLooper())
     private var started: Instant = now()
@@ -110,6 +117,9 @@ class OnsetMonitor(
         if (mark(chargingTimes, plugged, SystemClock.elapsedRealtimeNanos())) {
             log(DiagKind.BATTERY, "$label ${if (plugged) "charging, waiting" else "charging ended"}")
         }
+        // F-6: Die automatische Messung begann trotz wenig Akku, weil die Uhr lud; ist er nach dem Laden noch zu tief, endet sie.
+        val stop = onLowBattery ?: return
+        if (!plugged && !reported && AutoOnset.skipForBattery(battery())) { reported = true; stop() }
     }
 
     /**
@@ -248,6 +258,15 @@ class OnsetMonitor(
         if (reported) return
         val cap = extendCap
         val at = now()
+        // Zeit am Ladegerät oder nicht am Handgelenk verschiebt die Grenze (HG-3); nicht unter der Akku-Grenze, ausser beim Laden.
+        val away = Duration.ofNanos(OnsetRules.awayNanos(chargingTimes + offBodyTimes, startNanos, SystemClock.elapsedRealtimeNanos()))
+        val awayEnd = cap?.let { OnsetRules.awayUntil(baseMaxEnd, away, latestGiveUp, it) }?.takeIf { at.isBefore(it) }
+        val plugged = chargingTimes.lastOrNull()?.let { it.second == null } == true
+        if (awayEnd != null && !AutoOnset.skipForBattery(battery(), plugged)) {
+            maxEnd = awayEnd
+            log(DiagKind.MEASURE_START, "$label extended until $awayEnd (not worn)")
+            return
+        }
         val restless = OnsetRules.restless(motions, measured, NoiseFloor.light(threshold, floor))
         val battery = battery()
         val until = cap?.let { OnsetRules.extendUntil(at, maxEnd, latestGiveUp, it, restless, battery) }

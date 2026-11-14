@@ -104,6 +104,22 @@ class GoodNightOnsetTest {
         awaitSkip(RecorderSkip(latest, RecorderSkip.Reason.BATTERY))
     }
 
+    @Test
+    fun chargingWithLowBatteryStillMeasures() {
+        // Prüfrunde 2 F-6: 25 % am Ladegerät um 21:30 – die Uhr ist zur Bettzeit voll. Vorher fiel die Messung samt
+        // Lernnacht für die ganze Nacht aus; jetzt beginnt sie und wartet am Ladegerät.
+        battery(25)
+        shadowOf(context.getSystemService(BatteryManager::class.java)).setIsCharging(true)
+        runBlocking { app.learning.setIfNewer(LearningSnapshot(true, null, null, System.currentTimeMillis())) }
+        val service = service()
+        service.startGoodNight(id, auto = true)
+        awaitLog("auto onset start, alarm at")
+        assertNotNull(service.onset)
+        assertTrue(entries().none { it.detail.contains("skipped battery") })
+        assertTrue(awaitLog("learn record start bat=25").kind == DiagKind.MEASURE_START)
+        service.stopGoodNight()
+    }
+
     /** Wartet, bis die gemerkte Meldung «nicht gestartet» [skip] ist (Senden ans Handy läuft im Hintergrund). */
     private fun awaitSkip(skip: RecorderSkip?) {
         val until = System.nanoTime() + Duration.ofSeconds(10).toNanos()
@@ -255,8 +271,11 @@ class GoodNightOnsetTest {
     @Test
     fun automaticStartAfterBedtimeLeavesOnsetUnknown() {
         // Tiefenaudit AP3-2: Weckzeit in 3 Std., 8 Std. Schlaf: Die Bettzeit ist 5 Std. vorbei. Ruhe ab jetzt hiesse nur
-        // «schlief schon»: keine Messung, Einschlafzeit unbekannt, gemessen ohne Ergebnis (fail-closed).
+        // «schlief schon»: keine Messung, Einschlafzeit unbekannt. Im Hintergrund gestartet gilt die Nacht als nicht
+        // gemessen, ohne Untergrenze kurzer Nächte (Entscheid r1AD 14.11.2026 zu HG-2; vorher fail-closed).
         battery(80)
+        // Nur der Vordergrunddienst läuft, kein Fenster der App ist sichtbar.
+        appImportance(android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND_SERVICE)
         val soon = now.plus(Duration.ofHours(3)).atZone(zone)
         val late = spec.copy(hour = soon.hour, minute = soon.minute)
         runBlocking { app.alarms.upsert(late) }
@@ -265,11 +284,38 @@ class GoodNightOnsetTest {
         val service = built.create().get()
         service.startGoodNight(id, auto = true)
         assertTrue(awaitLog("auto onset start after bedtime").kind == DiagKind.MEASURE_END)
+        assertTrue(awaitLog("onset unknown, not measured").kind == DiagKind.MEASURE_END)
         val latest = assertNotNull(AlarmSchedule.nextTarget(late, now, zone))
         awaitDone(latest)
         assertNull(service.onset)
         assertNull(runBlocking { app.onsets.onsetFor(AlarmSchedule.planAt(late, latest)) })
-        assertTrue(runBlocking { app.onsets.measuredFor(AlarmSchedule.planAt(late, latest)) })
+        assertTrue(!runBlocking { app.onsets.measuredFor(AlarmSchedule.planAt(late, latest)) })
+    }
+
+    @Test
+    fun lateStartWithTheAppOpenMeasuresFromNow() {
+        // HG-2: Bettzeit 5 Std. vorbei, aber ein Fenster der App ist sichtbar (Person wach): Die Messung läuft ab jetzt.
+        battery(80)
+        appImportance(android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND)
+        val soon = now.plus(Duration.ofHours(3)).atZone(zone)
+        val late = spec.copy(hour = soon.hour, minute = soon.minute)
+        runBlocking { app.alarms.upsert(late) }
+        val built = Robolectric.buildService(WakeService::class.java)
+        controller = built
+        val service = built.create().get()
+        service.startGoodNight(id, auto = true)
+        assertTrue(awaitLog("app open: from now").kind == DiagKind.MEASURE_START)
+        awaitLog("auto onset start, alarm at")
+        assertNotNull(service.onset)
+        service.stopGoodNight()
+    }
+
+    /** Wichtigkeit des eigenen Prozesses für `appVisible` (Robolectric liest sie aus der Prozessliste). */
+    private fun appImportance(importance: Int) {
+        val info = android.app.ActivityManager.RunningAppProcessInfo(context.packageName, android.os.Process.myPid(), null)
+        info.uid = android.os.Process.myUid()
+        info.importance = importance
+        shadowOf(context.getSystemService(android.app.ActivityManager::class.java)).setProcesses(listOf(info))
     }
 
     @Test
@@ -288,6 +334,11 @@ class GoodNightOnsetTest {
         assertTrue(!OnsetRules.startedLate(tap.plusMillis(200), tap))
         assertTrue(OnsetRules.startedLate(tap.plus(Duration.ofMinutes(20)), tap))
         assertEquals(Duration.ofSeconds(60), OnsetRules.LATE_START_TOLERANCE)
+        // HG-2 (wie `RecorderOnset.lateStart`): spät bei sichtbarer App misst ab jetzt, spät im Hintergrund nicht gemessen.
+        val late = bedAt.plus(Duration.ofMinutes(15))
+        assertEquals(OnsetRules.LateStart.ON_TIME, OnsetRules.lateStart(bedAt.minus(Duration.ofMinutes(40)), bedAt, foreground = false))
+        assertEquals(OnsetRules.LateStart.FOREGROUND, OnsetRules.lateStart(late, bedAt, foreground = true))
+        assertEquals(OnsetRules.LateStart.BACKGROUND, OnsetRules.lateStart(late, bedAt, foreground = false))
     }
 
     @Test

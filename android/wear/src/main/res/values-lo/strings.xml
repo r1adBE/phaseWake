@@ -103,4 +103,5 @@
     <string name="watch_learn_skip_battery">ຄືນນີ້ບໍ່ນັບສຳລັບໄລຍະຮຽນຮູ້: ແບັດເຕີຣີ %1$d %%, ຕ້ອງການ %2$d %%.</string>
     <string name="watch_learn_skip_sensors">ຄືນນີ້ບໍ່ນັບສຳລັບໄລຍະຮຽນຮູ້: Phase Wake ໃຊ້ເຊັນເຊີຂອງໂມງບໍ່ໄດ້.</string>
     <string name="watch_learn_skip_late">ຄືນນີ້ບໍ່ນັບສຳລັບໄລຍະຮຽນຮູ້: ເປີດ Phase Wake ຊ້າເກີນໄປໃນຕອນແລງ.</string>
+    <string name="editor_alarm_gone">ໂມງປຸກນີ້ຖືກລຶບໄປແລ້ວ.</string>
 </resources>

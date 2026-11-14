@@ -111,4 +111,5 @@
     <string name="watch_learn_skip_battery">Esta noite não conta para a fase de aprendizado: bateria em %1$d %%, precisa de %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Esta noite não conta para a fase de aprendizado: o Phase Wake não consegue usar os sensores do relógio.</string>
     <string name="watch_learn_skip_late">Esta noite não conta para a fase de aprendizado: o Phase Wake foi aberto tarde demais à noite.</string>
+    <string name="editor_alarm_gone">Este alarme foi excluído nesse meio-tempo.</string>
 </resources>

@@ -36,4 +36,6 @@
     <string name="check_watch_state_old">Luma na ang status ng relo – buksan sandali ang Phase Wake sa relo.</string>
     <string name="editor_sleep_hint_apple">Binibilang mula nang makatulog ka – i-tap ang “Matutulog na” sa iyong relo kapag matutulog ka na. Sa Apple Watch, tinatantya ng Phase Wake kung kailan ka makakatulog batay sa natutunang tagal ng iyong pagkakatulog. Kung walang tap, ang nakatakdang oras ang masusunod.</string>
     <string name="auto_onset_hint_apple">Buksan ang Phase Wake sa Apple Watch mo mula 1 oras bago ang oras ng pagtulog (ipapaalala nito sa iyo) at mula noon hanggang sa iyong wake window ay nire-record nito ang paggalaw mo; pagkatapos, kinakalkula ng Phase Wake kung kailan ka nakatulog.</string>
+    <string name="home_good_night_tap_cancel">i-tap para kanselahin</string>
+    <string name="good_night_cancel">Kanselahin ang Matutulog na</string>
 </resources>

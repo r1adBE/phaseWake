@@ -111,4 +111,5 @@
     <string name="watch_learn_skip_battery">הלילה לא נספר לשלב הלמידה: סוללה ב-%1$d %%, נדרש %2$d %%.</string>
     <string name="watch_learn_skip_sensors">הלילה לא נספר לשלב הלמידה: Phase Wake לא יכול להשתמש בחיישנים של השעון.</string>
     <string name="watch_learn_skip_late">הלילה לא נספר לשלב הלמידה: Phase Wake נפתח מאוחר מדי בערב.</string>
+    <string name="editor_alarm_gone">המעורר הזה נמחק בינתיים.</string>
 </resources>

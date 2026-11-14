@@ -24,15 +24,16 @@ public enum AppleLearnRecord {
     /// Entscheidet für die Nacht mit Zielzeit `target` und Beginn der Einschlaf-Messung `onsetStart` zum Zeitpunkt
     /// `now` bei Akku `battery` (Prozent, `nil` = unbekannt). Gestartet wird ab `onsetStart` bis ``afterTarget`` nach
     /// der Zielzeit (höchstens 12 Std.). Zu spät, wenn ab dann keine 3 Std. (``Learning/minSpanEpochs``) mehr bis zur
-    /// Zielzeit bleiben: Die Nacht könnte nicht zählen. Unter ``Learning/minBattery`` nicht (der Wecker hat Vorrang).
-    public static func decide(now: Date, target: Date, onsetStart: Date, battery: Int?) -> Decision {
+    /// Zielzeit bleiben: Die Nacht könnte nicht zählen. Unter ``Learning/minBattery`` nicht (der Wecker hat Vorrang),
+    /// ausser die Uhr lädt (`charging`, Prüfrunde 2 F-6: zur Bettzeit ist sie geladen; wie `RecordControl` auf Android).
+    public static func decide(now: Date, target: Date, onsetStart: Date, battery: Int?, charging: Bool = false) -> Decision {
         if now >= target { return .skip(reason: "past") }
         let end = target.addingTimeInterval(afterTarget)
         if now < onsetStart { return .wait(until: onsetStart) }
         let from = now
         let span = TimeInterval(Learning.minSpanEpochs * DetectorConfig.epochSeconds)
         if target.timeIntervalSince(from) < span { return .skip(reason: "too late") }
-        if let battery, battery < Learning.minBattery { return .skip(reason: "battery \(battery)%") }
+        if !charging, let battery, battery < Learning.minBattery { return .skip(reason: "battery \(battery)%") }
         return .start(from: from, until: end, duration: end.timeIntervalSince(now))
     }
 
@@ -92,12 +93,15 @@ public enum AppleAutoOnset {
     }
 
     /// Entscheidet für die Nacht mit Zielzeit `target`, Fensterbeginn `windowStart` und Beginn der Einschlaf-Messung
-    /// `onsetStart` zum Zeitpunkt `now` bei Akku `battery` (Prozent, `nil` = unbekannt, hindert nicht).
-    public static func decide(now: Date, target: Date, windowStart: Date, onsetStart: Date, battery: Int?) -> Decision {
+    /// `onsetStart` zum Zeitpunkt `now` bei Akku `battery` (Prozent, `nil` = unbekannt, hindert nicht). Lädt die Uhr
+    /// (`charging`), hindert auch wenig Akku nicht (Prüfrunde 2 F-6, wie `AutoOnset.skipForBattery` auf Android): Der
+    /// Rekorder startet, die Zeit am Ladegerät zählt nicht (`LearnRecorder+Charging`).
+    public static func decide(now: Date, target: Date, windowStart: Date, onsetStart: Date, battery: Int?,
+                              charging: Bool = false) -> Decision {
         let until = min(windowStart, target.addingTimeInterval(-RecorderOnset.giveUpLead))
         if now >= until { return .skip(reason: "window begun") }
         if now < onsetStart { return .wait(until: onsetStart) }
-        if let battery, battery < minBattery { return .skip(reason: "battery \(battery)%") }
+        if !charging, let battery, battery < minBattery { return .skip(reason: "battery \(battery)%") }
         return .start(until: windowStart)
     }
 }

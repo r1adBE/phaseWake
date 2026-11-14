@@ -19,6 +19,9 @@ public enum SyncKeys {
     public static let ring = "ring"
     /// Befehl: Wecken beendet (in beide Richtungen).
     public static let stop = "stop"
+    /// Befehl Uhr → iPhone (mit `sentAt`): Die Uhr beginnt eine Nacht zu messen; das iPhone hält ab jetzt seinen Akkustand
+    /// fest (Akku je Nacht, r1AD 14.11.2026). Wie `DataLayer.PATH_NIGHT_BEGIN`. Ältere iPhone-Apps übergehen den Befehl.
+    public static let nightBegin = "nightBegin"
     /// Befehl iPhone → Uhr: Schlummern.
     public static let snooze = "snooze"
     /// Befehl iPhone → Uhr: Verlauf auf der Uhr löschen.
@@ -42,6 +45,9 @@ public enum SyncKeys {
     public static let battery = "battery"
     /// Zeitpunkt der Akkumessung in ms seit 1970 (siehe `battery`).
     public static let batteryAt = "batteryAt"
+    /// Ob die Uhr bei der Akkumessung lud (Bool, Prüfrunde 2 F-6): Dann misst sie trotz wenig Akku, der Nacht-Check warnt
+    /// nicht. Ältere Uhr-Versionen schicken beim Laden gar keinen Akkustand.
+    public static let batteryCharging = "batteryCharging"
     /// Älter als das gilt der gemeldete Akkustand als unbekannt (wie `WearSync.watchBattery()` auf Android).
     public static let maxBatteryAgeMs: Int64 = 6 * 3600_000
 

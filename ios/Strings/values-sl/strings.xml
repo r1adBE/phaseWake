@@ -34,4 +34,6 @@
     <string name="check_watch_state_old">Stanje ure je zastarelo – na kratko odpri Phase Wake na uri.</string>
     <string name="editor_sleep_hint_apple">Šteje od uspavanja – ko greš spat, na uri tapni »Lahko noč«. Na uri Apple Watch Phase Wake oceni, kdaj zaspiš, iz naučenega časa uspavanja. Brez tapa velja nastavljeni čas.</string>
     <string name="auto_onset_hint_apple">Odpri Phase Wake na uri Apple Watch od 1 ure pred spanjem (ura te opomni) in od takrat do okna bujenja snema tvoje gibanje; nato Phase Wake izračuna, kdaj si zaspal.</string>
+    <string name="home_good_night_tap_cancel">tapni za preklic</string>
+    <string name="good_night_cancel">Prekliči Lahko noč</string>
 </resources>

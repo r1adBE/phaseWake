@@ -109,4 +109,5 @@
     <string name="watch_learn_skip_battery" tools:ignore="PluralsCandidate">Tonight doesn’t count for the learning phase: battery at %1$d %%, needs %2$d %%.</string>
     <string name="watch_learn_skip_sensors">Tonight doesn’t count for the learning phase: Phase Wake can’t use the watch’s sensors.</string>
     <string name="watch_learn_skip_late" tools:ignore="UnusedResources">Tonight doesn’t count for the learning phase: Phase Wake was opened too late in the evening.</string>
+    <string name="editor_alarm_gone">This alarm was deleted in the meantime.</string>
 </resources>
