@@ -77,14 +77,14 @@ final class HealthSleep: @unchecked Sendable {
         }
     }
 
-    /// Proben einer Quelle zu Sitzungen: Lücken unter `SleepSummary.newNightGap` (3 h) gehören zur selben Sitzung.
+    /// Proben einer Quelle zu Sitzungen: Lücken bis `SleepSummary.newNightGap` (60 Min, wie die Ketten im Verlauf) gehören zur selben Sitzung.
     /// Beginn und Ende zählen auch «Im Bett» mit; Phasen sind alle anderen Proben. Hat eine Sitzung bekannte Phasen,
     /// fallen «Schlaf (ohne Phase)»-Proben weg, die sich damit überschneiden – ältere Geräte schreiben beides, und
     /// doppelt gezählt wäre der Schlaf zu lang.
     private static func sessions(_ samples: [HKCategorySample], source: String) -> [HealthSession] {
         var groups: [[HKCategorySample]] = []
         for sample in samples.sorted(by: { $0.startDate < $1.startDate }) {
-            if let group = groups.last, let end = group.map(\.endDate).max(), sample.startDate.timeIntervalSince(end) < SleepSummary.newNightGap {
+            if let group = groups.last, let end = group.map(\.endDate).max(), sample.startDate.timeIntervalSince(end) <= SleepSummary.newNightGap {
                 groups[groups.count - 1].append(sample)
             } else {
                 groups.append([sample])

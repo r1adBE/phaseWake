@@ -54,6 +54,8 @@ internal class WatchHomeExtras(
     val now: Instant? = null,
     /** Schlafziel vom Handy in Minuten (ohne Handy der Standard); setzt den Einschlafpunkt auf dem Ring. */
     val sleepGoalMinutes: Int = SleepGoal.DEFAULT_MINUTES,
+    /** Gelernte Einschlafdauer vom Handy in Minuten (O-03); verschiebt den Einschlafpunkt früher. `null` = keine. */
+    val latencyMinutes: Int? = null,
     /** Beginn der laufenden Aufzeichnung («Nacht aufzeichnen»); `null` = keine. */
     val recordSince: Instant? = null,
     /** Aufzeichnung starten oder stoppen; `null` = kein Chip. */

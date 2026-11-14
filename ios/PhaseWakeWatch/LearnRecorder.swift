@@ -193,8 +193,8 @@ final class LearnRecorder {
             return
         }
         let spec = model.alarms.first { $0.id == plan.alarmId }
-        let onset = ShortNight.autoOnsetStart(target: plan.target, sleepGoalMinutes: model.sleepGoal,
-                                              sleepDurationMinutes: spec?.sleepDurationMinutes)
+        // Ab der Erinnerung am Abend (Entscheid r1AD 14.11.2026, `nightStart`).
+        let onset = Self.nightStart(plan: plan, spec: spec, sleepGoal: model.sleepGoal)
         let battery = Self.battery()
         nextTry = nil
         switch AppleLearnRecord.decide(now: Date(), target: plan.target, onsetStart: onset, battery: battery) {

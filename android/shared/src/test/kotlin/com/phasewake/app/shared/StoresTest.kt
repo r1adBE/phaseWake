@@ -148,13 +148,38 @@ class StoresTest {
     fun learningSnapshotForTheDetector() {
         val values = Learning.Values(0.02, 52.0, 12, 7)
         val snapshot = LearningSnapshot.of(active = false, values = values, updatedAt = 5L)
-        assertEquals(LearningSnapshot(false, 0.02, 52.0, 5L), snapshot)
+        assertEquals(LearningSnapshot(false, 0.02, 52.0, 5L, latencyMinutes = 12), snapshot)
         val config = snapshot.applyTo(DetectorConfig())
         assertEquals(0.02, config.personalFloor)
         assertEquals(52.0, config.restingHeartRate)
         assertEquals(DetectorConfig(), LearningSnapshot.of(true, null, 6L).applyTo(DetectorConfig()))
         assertEquals("active=0 floor=0.0200 hr=set", snapshot.diagLine())
         assertEquals("active=1 floor=- hr=-", LearningSnapshot.of(true, null, 6L).diagLine())
+    }
+
+    @Test
+    fun learningMessageWithFourOrFiveFields() = runTest {
+        // O-03: 5. Feld Einschlafdauer; ohne Dauer weiter 4 Felder (eine frühere Uhr liest nur genau 4).
+        val with = LearningSnapshot(true, 0.02, 52.0, 7L, latencyMinutes = 14)
+        assertEquals("1|0.02|52.0|7|14", LearningSnapshot.encode(with))
+        assertEquals(with, LearningSnapshot.decode(LearningSnapshot.encode(with)))
+        assertEquals("1|0.02|52.0|7", LearningSnapshot.encode(with.copy(latencyMinutes = null)))
+        // Frühere Handys: 4 Felder, keine Dauer.
+        assertEquals(LearningSnapshot(true, 0.02, 52.0, 7L), LearningSnapshot.decode("1|0.02|52.0|7"))
+        // Leer oder unplausibel (nicht 0–60): keine Dauer; 6 Felder: unlesbar.
+        assertNull(assertNotNull(LearningSnapshot.decode("1|||7|")).latencyMinutes)
+        assertNull(assertNotNull(LearningSnapshot.decode("1|||7|61")).latencyMinutes)
+        assertNull(assertNotNull(LearningSnapshot.decode("1|||7|-1")).latencyMinutes)
+        assertEquals(0, LearningSnapshot.decode("1|||7|0")?.latencyMinutes)
+        assertEquals(60, LearningSnapshot.decode("1|||7|60")?.latencyMinutes)
+        assertNull(LearningSnapshot.decode("1|||7|5|x"))
+        // Die Uhr speichert die Dauer und gibt sie für den Ring heraus.
+        val store = LearningStore(MemoryStore())
+        assertTrue(store.setIfNewer(with))
+        assertEquals(14, store.latencyMinutes.first())
+        assertEquals(with, store.current())
+        assertTrue(store.setIfNewer(with.copy(updatedAt = 8L, latencyMinutes = null)), "nur die Dauer weg: geändert")
+        assertNull(store.latencyMinutes.first())
     }
 
     @Test

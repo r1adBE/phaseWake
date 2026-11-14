@@ -167,6 +167,14 @@ internal fun HomeContent(
  */
 internal fun warningColors(scheme: ColorScheme): Pair<Color, Color> = scheme.errorContainer to scheme.onErrorContainer
 
+/**
+ * Einschlafpunkt auf dem Ring: Zielzeit minus Schlafziel und gelernte Einschlafdauer [latencyMinutes] (O-03, wie am Handy
+ * und auf der Apple Watch, `Bedtime.onDial`). Nur zu einem gespeicherten Wecker ([alarm]), nicht zu Powernap oder
+ * Probewecker; `null`, wenn er nicht auf das Zifferblatt passt.
+ */
+internal fun ringBedtime(plan: WakePlan?, alarm: AlarmSpec?, goalMinutes: Int, latencyMinutes: Int?): Instant? =
+    plan?.takeIf { alarm != null }?.let { Bedtime.onDial(it.target, goalMinutes, latencyMinutes) }
+
 @Composable
 private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId, loading: Boolean, extras: WatchHomeExtras) {
     // Etwas kleiner als das Display, damit darunter «Gute Nacht» schon beim Öffnen zu sehen ist; oben Platz für die
@@ -179,7 +187,7 @@ private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId, loading
     ) {
         if (loading) return@Box
         // Einschlafpunkt nur zu einem gespeicherten Wecker, nicht zu Powernap oder Probewecker.
-        val bedtime = plan?.takeIf { alarm != null }?.let { Bedtime.onDial(it.target, extras.sleepGoalMinutes) }
+        val bedtime = ringBedtime(plan, alarm, extras.sleepGoalMinutes, extras.latencyMinutes)
         if (plan != null) {
             WindowRing(
                 dialFraction(plan.windowStart, zone),

@@ -180,6 +180,44 @@ class OnsetMonitorTest {
     }
 
     @Test
+    fun offBodySensorMarksTheWatchAsNotWorn() {
+        // Entscheid r1AD 14.11.2026 (E-5): Off-Body-Sensor 0 = nicht am Handgelenk, 1 = getragen; Zeiten wie am Ladegerät.
+        assertEquals(true, OnsetRules.offBody(0f))
+        assertEquals(false, OnsetRules.offBody(1f))
+        assertNull(OnsetRules.offBody(null))
+        assertNull(OnsetRules.offBody(0.5f))
+        val offBody = SensorBuilder.newBuilder().setType(Sensor.TYPE_LOW_LATENCY_OFFBODY_DETECT).build()
+        sensors.addSensor(offBody)
+        val m = monitor()
+        m.start()
+        assertEquals(1, sensors.listeners.size, "Off-Body-Sensor angemeldet")
+        fun send(value: Float) {
+            sensors.sendSensorEventToListeners(
+                SensorEventBuilder.newBuilder(offBody, floatArrayOf(value)).setTimestamp(SystemClock.elapsedRealtimeNanos()).build(),
+            )
+            idle(10)
+        }
+        send(1f)
+        send(0f)
+        send(0f)
+        send(1f)
+        assertEquals(
+            listOf(DiagKind.BATTERY to "auto onset not worn, waiting", DiagKind.BATTERY to "auto onset worn again"),
+            logged.filter { it.first == DiagKind.BATTERY },
+        )
+        m.stop("test end")
+        assertTrue(sensors.listeners.isEmpty(), "beim Ende abgemeldet")
+    }
+
+    @Test
+    fun withoutOffBodySensorOnlyTheChargerCounts() {
+        val m = monitor()
+        m.start()
+        assertTrue(sensors.listeners.isEmpty())
+        assertTrue(logged.none { it.second.contains("worn") })
+    }
+
+    @Test
     fun chargerIsLogged() {
         val m = monitor()
         m.start()

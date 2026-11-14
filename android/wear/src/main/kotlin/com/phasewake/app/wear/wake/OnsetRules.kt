@@ -175,15 +175,26 @@ internal object OnsetRules {
     fun onsetAt(found: Instant, bedAt: Instant): Instant = maxOf(found, bedAt)
 
     /**
-     * Ob Epoche [index] (ab [startNanos], Länge [OnsetMonitor.EPOCH_NANOS]) eine Zeit am Ladegerät berührt (Audit c3b8b01
-     * E-5, Entscheid r1AD 14.11.2026). [charging]: Zeiten von Netzteil an bis ab (elapsedRealtime in ns; `null` = noch
-     * angeschlossen). Solche Epochen gelten als leer: Die abgelegte Uhr misst nur Rauschen, das sonst als Einschlafen
-     * zählte; die Messung wartet, bis sie wieder getragen wird.
+     * Ob Epoche [index] (ab [startNanos], Länge [OnsetMonitor.EPOCH_NANOS]) eine Zeit berührt, in der die Uhr nicht getragen
+     * wird (Audit c3b8b01 E-5, Entscheide r1AD 14.11.2026): am Ladegerät (Netzteil an bis ab) oder laut Off-Body-Sensor nicht
+     * am Handgelenk. [charging]: diese Zeiten (elapsedRealtime in ns; Ende `null` = dauert an). Solche Epochen gelten als
+     * leer: Die abgelegte Uhr misst nur Rauschen, das sonst als Einschlafen zählte; die Messung wartet, bis sie wieder
+     * getragen wird.
      */
     fun charging(index: Long, startNanos: Long, charging: List<Pair<Long, Long?>>): Boolean {
         val from = startNanos + index * OnsetMonitor.EPOCH_NANOS
         val until = from + OnsetMonitor.EPOCH_NANOS
         return charging.any { (on, off) -> on < until && (off == null || off > from) }
+    }
+
+    /**
+     * Wert des Off-Body-Sensors (`Sensor.TYPE_LOW_LATENCY_OFFBODY_DETECT`): 0 = nicht am Handgelenk (`true`), 1 = getragen
+     * (`false`), sonst unbekannt (`null`, ändert nichts).
+     */
+    fun offBody(value: Float?): Boolean? = when (value) {
+        0f -> true
+        1f -> false
+        else -> null
     }
 
     /** Spielraum für [startedLate]: Nach «Gute Nacht» beginnt die Messung Sekundenbruchteile nach dem Tippen. */

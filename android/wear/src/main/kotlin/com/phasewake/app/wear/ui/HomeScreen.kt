@@ -178,6 +178,8 @@ private fun homeExtras(now: Instant, zone: ZoneId, onNap: () -> Unit, onDiagnost
     val diagFlow = remember { WatchDiag.shown(context) }
     val diagnostics by diagFlow.collectAsStateWithLifecycle(initialValue = false)
     val sleepGoal by app.sleepGoal.minutes.collectAsStateWithLifecycle(initialValue = SleepGoal.DEFAULT_MINUTES)
+    // Gelernte Einschlafdauer vom Handy (O-03): Bettzeit auf dem Ring wie am Handy und auf der Apple Watch.
+    val latency by app.learning.latencyMinutes.collectAsStateWithLifecycle(initialValue = null)
     var taps by remember { mutableIntStateOf(0) }
     val locale = LocalConfiguration.current.locales[0]
     val recordSince by RecordService.since.collectAsStateWithLifecycle()
@@ -201,6 +203,7 @@ private fun homeExtras(now: Instant, zone: ZoneId, onNap: () -> Unit, onDiagnost
         onDiagnostics = onDiagnostics,
         now = now,
         sleepGoalMinutes = sleepGoal,
+        latencyMinutes = latency,
         recordSince = recordSince,
         onRecord = {
             when {

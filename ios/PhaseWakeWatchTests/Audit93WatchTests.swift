@@ -48,6 +48,22 @@ final class Audit93WatchTests: XCTestCase {
         XCTAssertEqual(EveningReminder.reminderAt(target: target, sleepMinutes: 450, latencyMinutes: 15), minutes(-105))
     }
 
+    /// Entscheid r1AD 14.11.2026: Wer die App bei der Erinnerung öffnet, startet den Rekorder sicher (Einschlaf-Messung und
+    /// Lernphase). Mit dem bisherigen Beginn (60 Min vor der Bettzeit ohne Einschlafdauer) hätte er dann noch gewartet.
+    func testRecorderStartsWhenAppIsOpenedAtTheReminder() {
+        let target = minutes(9 * 60)
+        let window = target.addingTimeInterval(-1800)
+        let reminder = EveningReminder.reminderAt(target: target, sleepMinutes: 450, latencyMinutes: 20)
+        let oldStart = ShortNight.autoOnsetStart(target: target, sleepGoalMinutes: 450, sleepDurationMinutes: nil)
+        XCTAssertEqual(AppleAutoOnset.decide(now: reminder, target: target, windowStart: window, onsetStart: oldStart, battery: 80),
+                       .wait(until: oldStart))
+        XCTAssertEqual(AppleAutoOnset.decide(now: reminder, target: target, windowStart: window, onsetStart: reminder, battery: 80),
+                       .start(until: window))
+        XCTAssertEqual(AppleLearnRecord.decide(now: reminder, target: target, onsetStart: reminder, battery: 80),
+                       .start(from: reminder, until: target.addingTimeInterval(AppleLearnRecord.afterTarget),
+                              duration: target.addingTimeInterval(AppleLearnRecord.afterTarget).timeIntervalSince(reminder)))
+    }
+
     // MARK: AP3-3
 
     /// Wecker 07:00 (Fenster 30 Min, Sitzung ab 06:35) am iPhone auf 06:50 verschoben: Die geplante Sitzung übernimmt die
