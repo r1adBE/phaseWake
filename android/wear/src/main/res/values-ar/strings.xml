@@ -54,6 +54,7 @@
     <string name="home_good_night">ليلة سعيدة</string>
     <string name="home_good_night_hint">النوم لمدة %1$s من الآن</string>
     <string name="home_good_night_active">بانتظار النوم · اضغطوا للإلغاء</string>
+    <string name="good_night_cancel">إلغاء ليلة سعيدة</string>
     <string name="dnd_title">المنبّهات محجوبة</string>
     <string name="dnd_text">اسمحوا بالمنبّهات في وضع عدم الإزعاج.</string>
     <string name="duration_hours">%1$d س</string>

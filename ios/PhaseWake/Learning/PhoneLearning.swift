@@ -25,6 +25,8 @@ final class PhoneLearning {
 
     @ObservationIgnored private let stateURL: URL
     @ObservationIgnored private let recordingsURL: URL
+    /// Kopie eines kaputten Stands (``setAside()``); solange sie liegt, gilt der Stand als nach einem Fehler leer begonnen.
+    @ObservationIgnored private let brokenURL: URL
     /// Nachtragen der Einschlafdauer läuft (nicht doppelt).
     @ObservationIgnored private var filling = false
     /// Ob beide Dateien gelesen sind (oder fehlen). Vor dem ersten Entsperren nach einem Neustart nicht: Dann ist der
@@ -37,20 +39,24 @@ final class PhoneLearning {
     init(directory: URL = PrivateFiles.directory) {
         stateURL = directory.appendingPathComponent("learning.v1")
         recordingsURL = directory.appendingPathComponent("learn-recordings.v1")
+        brokenURL = stateURL.appendingPathExtension("broken")
         state = LearningState()
         recordings = []
         load()
     }
 
     /// Liest Stand und Aufzeichnungen, falls noch nicht geschehen. «Datei fehlt» ist ein leerer Stand (neue
-    /// Installation), «nicht lesbar» nicht (``ProtectedFile``). Danach kommen gemerkte Aufzeichnungen dazu.
+    /// Installation), «nicht lesbar» nicht (``ProtectedFile``); lesbar, aber kaputt, ist ein leerer Stand nach einem
+    /// Fehler (``setAside()``). Danach kommen gemerkte Aufzeichnungen dazu.
     /// - Returns: ob gelesen (schon vorher oder jetzt).
     @discardableResult
     func load() -> Bool {
         if !loaded {
             let stateFile = ProtectedFile.read(stateURL), recordingsFile = ProtectedFile.read(recordingsURL)
             guard stateFile != .unreadable, recordingsFile != .unreadable else { return false }
-            if case let .data(data) = stateFile, let stored = try? JSONDecoder().decode(LearningState.self, from: data) { state = stored }
+            if case let .data(data) = stateFile {
+                if let stored = try? JSONDecoder().decode(LearningState.self, from: data) { state = stored } else { setAside() }
+            }
             if case let .data(data) = recordingsFile, let texts = try? JSONDecoder().decode([String].self, from: data) {
                 recordings = texts.compactMap(NightRecording.decode).sorted { $0.start < $1.start }
             }
@@ -63,6 +69,22 @@ final class PhoneLearning {
             Task { for text in queued { await self.receive(text) } }
         }
         return true
+    }
+
+    /// Ob der Stand nach einem kaputten `learning.v1` leer begann (Prüfrunde 2 SP-7, wie `PhaseWakeStore.wasReset` auf
+    /// Android): Er ist kein neuer Stand und wird nicht gestempelt; die Uhr behält ihre Lernphase, bis hier etwas
+    /// geändert wird.
+    var wasReset: Bool { FileManager.default.fileExists(atPath: brokenURL.path) }
+
+    /// Legt den kaputten Stand als `learning.v1.broken` beiseite (die jüngste Kopie bleibt, wie bei ``SettingsFile``);
+    /// es gilt der leere Stand. Die Kopie bleibt liegen und markiert so den Neubeginn auch nach einem Neustart.
+    private func setAside() {
+        DiagStore.shared.log(.error, "learning unreadable, set aside")
+        try? FileManager.default.removeItem(at: brokenURL)
+        if (try? FileManager.default.moveItem(at: stateURL, to: brokenURL)) == nil {
+            // Verschieben gescheitert: wenigstens die Kopie, damit der leere Stand nicht gestempelt wird.
+            try? FileManager.default.copyItem(at: stateURL, to: brokenURL)
+        }
     }
 
     /// Ob die Uhr aufzeichnen kann: Apple Watch gekoppelt, Phase Wake darauf in einer Version mit Lernphase. Nur dann
@@ -206,10 +228,11 @@ final class PhoneLearning {
     // MARK: Speichern
 
     /// Stand für die Uhr (`PhoneModel.publishToWatch`); ohne Zeitpunkt (iPhone-App neu installiert) mit «jetzt» und
-    /// gespeichert (Fix S-3, ``LearningState/stampIfNever(now:)``).
+    /// gespeichert (Fix S-3, ``LearningState/stampIfNever(now:)``). Nach einem kaputten Stand (``wasReset``) nicht: ohne
+    /// Zeitpunkt behält die Uhr ihren (SP-7).
     func watchSnapshot() -> LearningSnapshot {
         // Nur einen gelesenen Stand stempeln (Datei fehlt oder gelesen), nie den leeren vor dem ersten Entsperren (HG-1/SP-1).
-        guard load() else { return state.snapshot }
+        guard load(), !wasReset else { return state.snapshot }
         var next = state
         if next.stampIfNever(now: Date()) {
             state = next

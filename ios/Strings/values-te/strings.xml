@@ -37,5 +37,4 @@
     <string name="editor_sleep_hint_apple">నిద్రపోయినప్పటి నుండి లెక్కిస్తుంది – పడుకునేటప్పుడు వాచ్‌లో «శుభ రాత్రి» నొక్కండి. Apple Watchలో Phase Wake నేర్చుకున్న నిద్రపట్టడానికి పట్టే సమయం నుండి మీరు ఎప్పుడు నిద్రపోతారో అంచనా వేస్తుంది. నొక్కకపోతే సెట్ చేసిన సమయం వర్తిస్తుంది.</string>
     <string name="auto_onset_hint_apple">నిద్రపోయే సమయానికి 1 గంట ముందు నుండి మీ Apple Watch‌లో Phase Wake తెరవండి (వాచ్ గుర్తు చేస్తుంది), అప్పటి నుండి మేల్కొలుపు వ్యవధి వరకు అది మీ కదలికను రికార్డ్ చేస్తుంది; తర్వాత మీరు ఎప్పుడు నిద్రపోయారో Phase Wake లెక్కిస్తుంది.</string>
     <string name="home_good_night_tap_cancel">రద్దుకు నొక్కండి</string>
-    <string name="good_night_cancel">శుభ రాత్రి రద్దు చేయి</string>
 </resources>

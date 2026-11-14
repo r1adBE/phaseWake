@@ -37,5 +37,4 @@
     <string name="editor_sleep_hint_apple">Skaičiuojama nuo užmigimo – eidamas miegoti laikrodyje paliesk „Labanakt“. Apple Watch laikrodyje Phase Wake įvertina, kada užmiegi, pagal išmoktą tavo užmigimo trukmę. Nepalietus galioja nustatytas laikas.</string>
     <string name="auto_onset_hint_apple">Atidaryk Phase Wake savo Apple Watch nuo 1 valandos prieš miegą (laikrodis primins), ir nuo tada iki žadinimo lango jis įrašys tavo judėjimą; tada Phase Wake apskaičiuoja, kada užmigai.</string>
     <string name="home_good_night_tap_cancel">bakstelėk, kad atšauktum</string>
-    <string name="good_night_cancel">Atšaukti Labanakt</string>
 </resources>

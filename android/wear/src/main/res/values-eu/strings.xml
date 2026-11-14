@@ -47,6 +47,7 @@
     <string name="home_good_night">Gabon</string>
     <string name="home_good_night_hint">Lo egin %1$s orain hasita</string>
     <string name="home_good_night_active">Loaren zain · sakatu bertan behera uzteko</string>
+    <string name="good_night_cancel">Utzi Gabon bertan behera</string>
     <string name="dnd_title">Alarmak blokeatuta</string>
     <string name="dnd_text">Baimendu alarmak «Ez molestatu» moduan.</string>
     <string name="duration_hours">%1$d h</string>

@@ -44,6 +44,7 @@
     <string name="home_good_night">Selamat tidur</string>
     <string name="home_good_night_hint">Tidur %1$s mulai sekarang</string>
     <string name="home_good_night_active">Menunggu tidur · ketuk untuk batal</string>
+    <string name="good_night_cancel">Batalkan Selamat tidur</string>
     <string name="dnd_title">Alarm diblokir</string>
     <string name="dnd_text">Izinkan alarm saat Jangan Ganggu.</string>
     <string name="duration_hours">%1$d j</string>

@@ -47,6 +47,7 @@
     <string name="home_good_night">શુભ રાત્રિ</string>
     <string name="home_good_night_hint">હવેથી %1$s ઊંઘ</string>
     <string name="home_good_night_active">ઊંઘની રાહ · રદ કરવા ટૅપ કરો</string>
+    <string name="good_night_cancel">શુભ રાત્રિ રદ કરો</string>
     <string name="dnd_title">એલાર્મ રોકાયા</string>
     <string name="dnd_text">“ખલેલ પાડશો નહીં”માં એલાર્મને મંજૂરી આપો.</string>
     <string name="duration_hours">%1$d ક.</string>

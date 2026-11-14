@@ -47,6 +47,7 @@
     <string name="home_good_night">Xayrli tun</string>
     <string name="home_good_night_hint">Hozirdan %1$s uxla</string>
     <string name="home_good_night_active">Uyqu kutilmoqda · bekor qilish uchun bos</string>
+    <string name="good_night_cancel">Xayrli tunni bekor qilish</string>
     <string name="dnd_title">Budilniklar toʻsilgan</string>
     <string name="dnd_text">«Bezovta qilinmasin»da budilniklarga ruxsat ber.</string>
     <string name="duration_hours">%1$d soat</string>

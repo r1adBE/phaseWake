@@ -34,5 +34,4 @@
     <string name="editor_sleep_hint_apple">Μετρά από τη στιγμή που αποκοιμιέσαι – πάτησε «Καληνύχτα» στο ρολόι όταν πας για ύπνο. Στο Apple Watch, το Phase Wake εκτιμά πότε αποκοιμιέσαι από τον χρόνο αποκοίμισης που έχει μάθει. Χωρίς πάτημα ισχύει η ώρα που έχεις ορίσει.</string>
     <string name="auto_onset_hint_apple">Άνοιξε το Phase Wake στο Apple Watch από 1 ώρα πριν από την ώρα ύπνου (σου το θυμίζει) και από τότε έως το παράθυρο αφύπνισης καταγράφει την κίνησή σου· τότε το Phase Wake υπολογίζει πότε αποκοιμήθηκες.</string>
     <string name="home_good_night_tap_cancel">πάτα για ακύρωση</string>
-    <string name="good_night_cancel">Ακύρωση Καληνύχτα</string>
 </resources>

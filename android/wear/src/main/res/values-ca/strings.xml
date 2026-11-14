@@ -48,6 +48,7 @@
     <string name="home_good_night">Bona nit</string>
     <string name="home_good_night_hint">Dormir %1$s a partir d’ara</string>
     <string name="home_good_night_active">Esperant el son · toca per cancel·lar</string>
+    <string name="good_night_cancel">Cancel·la Bona nit</string>
     <string name="dnd_title">Alarmes bloquejades</string>
     <string name="dnd_text">Permet les alarmes amb «No molestis».</string>
     <string name="duration_hours">%1$d h</string>

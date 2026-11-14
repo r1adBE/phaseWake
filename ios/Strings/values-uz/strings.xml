@@ -37,5 +37,4 @@
     <string name="editor_sleep_hint_apple">Uxlab qolgan paytdan hisoblanadi – yotayotganda soatda «Xayrli tun»ga bos. Apple Watchʼda Phase Wake qachon uxlab qolishingni oʻrgangan uxlab qolish vaqtingdan taxmin qiladi. Bosmasang, o‘rnatilgan vaqt amal qiladi.</string>
     <string name="auto_onset_hint_apple">Uyqu vaqtidan 1 soat oldindan Apple Watch’da Phase Wake’ni och (soat eslatadi), shunda u oʻsha paytdan uygʻotish oraligʻigacha harakatingni yozib boradi; soʻng Phase Wake qachon uxlab qolganingni hisoblaydi.</string>
     <string name="home_good_night_tap_cancel">bekor qilish uchun bos</string>
-    <string name="good_night_cancel">Xayrli tunni bekor qilish</string>
 </resources>

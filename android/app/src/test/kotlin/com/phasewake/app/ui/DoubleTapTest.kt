@@ -16,10 +16,13 @@ import com.phasewake.app.R
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.phoneApp
 import com.phasewake.app.ring.ComposeTree
+import com.phasewake.app.shared.phaseWakeStore
+import androidx.datastore.preferences.core.edit
 import java.time.DayOfWeek
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After
+import org.junit.Before
 import org.junit.runner.RunWith
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
@@ -43,6 +46,15 @@ import kotlin.test.assertTrue
 class DoubleTapTest {
     private val context: Context get() = RuntimeEnvironment.getApplication()
     private var open: ActivityController<MainActivity>? = null
+
+    /**
+     * Eigener, leerer Stand: Der DataStore ist im Prozess nur einmal da und behält, was frühere Tests gesetzt haben
+     * (etwa die Zustimmung zur Lernphase aus `LearningFlowTest`); im Gesamtlauf scheiterte sonst die Einrichtung.
+     */
+    @Before
+    fun freshStore() {
+        runBlocking { context.phaseWakeStore.edit { it.clear() } }
+    }
 
     @After
     fun cleanUp() {

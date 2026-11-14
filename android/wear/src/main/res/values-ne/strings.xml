@@ -47,6 +47,7 @@
     <string name="home_good_night">शुभ रात्रि</string>
     <string name="home_good_night_hint">अहिलेदेखि %1$s सुत</string>
     <string name="home_good_night_active">निद्रा पर्खँदै · रद्द गर्न थिच</string>
+    <string name="good_night_cancel">शुभ रात्रि रद्द गर</string>
     <string name="dnd_title">अलार्म रोकिएको छ</string>
     <string name="dnd_text">“बाधा नपुर्‍याउनुहोस्” मा अलार्मलाई अनुमति देऊ।</string>
     <string name="duration_hours">%1$d घ.</string>

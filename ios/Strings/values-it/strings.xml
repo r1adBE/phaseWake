@@ -34,5 +34,4 @@
     <string name="editor_sleep_hint_apple">Conta da quando ti addormenti – tocca «Buonanotte» sull’orologio quando vai a letto. Su Apple Watch, Phase Wake stima quando ti addormenti in base al tempo per addormentarti che ha imparato. Senza il tocco vale l’orario impostato.</string>
     <string name="auto_onset_hint_apple">Apri Phase Wake sull’Apple Watch da 1 ora prima di andare a dormire (te lo ricorda) e da quel momento fino alla finestra di sveglia registra il tuo movimento; poi Phase Wake calcola quando ti sei addormentato.</string>
     <string name="home_good_night_tap_cancel">tocca per annullare</string>
-    <string name="good_night_cancel">Annulla Buonanotte</string>
 </resources>

@@ -50,6 +50,7 @@
     <string name="home_good_night">На добраніч</string>
     <string name="home_good_night_hint">Відтепер спи %1$s</string>
     <string name="home_good_night_active">Чекаю на сон · торкнись, щоб скасувати</string>
+    <string name="good_night_cancel">Скасувати «На добраніч»</string>
     <string name="dnd_title">Будильники заблоковано</string>
     <string name="dnd_text">Дозволь будильники в режимі «Не турбувати».</string>
     <string name="duration_hours">%1$d год</string>

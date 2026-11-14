@@ -34,5 +34,4 @@
     <string name="editor_sleep_hint_apple">Ұйықтап кеткен сәттен бастап есептеледі – төсекке жатқанда сағаттан «Қайырлы түн» түймесін түрт. Apple Watch-та Phase Wake қашан ұйықтап кететініңді үйренген ұйықтап кету уақытыңнан бағалайды. Түртпесең, орнатылған уақыт қолданылады.</string>
     <string name="auto_onset_hint_apple">Ұйықтау уақытынан 1 сағат бұрыннан бастап Apple Watch-та Phase Wake-ті аш (сағат еске салады), сонда ол сол сәттен ояту аралығына дейін қозғалысыңды жазады; содан кейін Phase Wake қашан ұйықтап қалғаныңды есептейді.</string>
     <string name="home_good_night_tap_cancel">бас тарту үшін түрт</string>
-    <string name="good_night_cancel">Қайырлы түннен бас тарту</string>
 </resources>

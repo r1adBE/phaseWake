@@ -48,6 +48,7 @@
     <string name="home_good_night">Boa noite</string>
     <string name="home_good_night_hint">Dormir %1$s a partir de agora</string>
     <string name="home_good_night_active">A aguardar o sono · toca para cancelar</string>
+    <string name="good_night_cancel">Cancelar Boa noite</string>
     <string name="dnd_title">Alarmes bloqueados</string>
     <string name="dnd_text">Permite alarmes em Não incomodar.</string>
     <string name="duration_hours">%1$d h</string>

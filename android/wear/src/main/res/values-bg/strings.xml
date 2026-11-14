@@ -46,6 +46,7 @@
     <string name="home_good_night">Лека нощ</string>
     <string name="home_good_night_hint">Сън %1$s от сега</string>
     <string name="home_good_night_active">Изчаква съня · докосни за отказ</string>
+    <string name="good_night_cancel">Отмени „Лека нощ“</string>
     <string name="dnd_title">Будилниците са блокирани</string>
     <string name="dnd_text">Разреши будилниците при „Не безпокойте“.</string>
     <string name="duration_hours">%1$d ч</string>

@@ -46,6 +46,7 @@
     <string name="home_good_night">ಶುಭ ರಾತ್ರಿ</string>
     <string name="home_good_night_hint">ಈಗಿನಿಂದ %1$s ನಿದ್ರೆ</string>
     <string name="home_good_night_active">ನಿದ್ರೆಗಾಗಿ ಕಾಯುತ್ತಿದೆ · ರದ್ದುಮಾಡಲು ಟ್ಯಾಪ್</string>
+    <string name="good_night_cancel">ಶುಭ ರಾತ್ರಿ ರದ್ದುಮಾಡಿ</string>
     <string name="dnd_title">ಅಲಾರಾಂಗಳು ತಡೆಯಲ್ಪಟ್ಟಿವೆ</string>
     <string name="dnd_text">ಅಡಚಣೆ ಮಾಡಬೇಡಿ ಯಲ್ಲಿ ಅಲಾರಾಂಗಳನ್ನು ಅನುಮತಿಸಿ.</string>
     <string name="duration_hours">%1$d ಗಂ.</string>

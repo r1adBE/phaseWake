@@ -46,6 +46,7 @@
     <string name="home_good_night">ശുഭരാത്രി</string>
     <string name="home_good_night_hint">ഇപ്പോൾ മുതൽ %1$s ഉറക്കം</string>
     <string name="home_good_night_active">ഉറക്കത്തിനായി കാത്തിരിക്കുന്നു · റദ്ദാക്കാൻ ടാപ്പ്</string>
+    <string name="good_night_cancel">ശുഭരാത്രി റദ്ദാക്കുക</string>
     <string name="dnd_title">അലാറങ്ങൾ തടഞ്ഞു</string>
     <string name="dnd_text">ശല്യപ്പെടുത്തരുത് മോഡിൽ അലാറങ്ങൾ അനുവദിക്കുക.</string>
     <string name="duration_hours">%1$d മ.</string>

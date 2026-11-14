@@ -47,6 +47,7 @@
     <string name="home_good_night">शुभ रात्री</string>
     <string name="home_good_night_hint">आतापासून %1$s झोप</string>
     <string name="home_good_night_active">झोपेची वाट · रद्द करण्यासाठी टॅप करा</string>
+    <string name="good_night_cancel">शुभ रात्री रद्द करा</string>
     <string name="dnd_title">अलार्म अडवले</string>
     <string name="dnd_text">“व्यत्यय आणू नका” मध्ये अलार्मना परवानगी द्या.</string>
     <string name="duration_hours">%1$d ता.</string>

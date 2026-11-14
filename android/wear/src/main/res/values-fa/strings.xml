@@ -46,6 +46,7 @@
     <string name="home_good_night">شب بخیر</string>
     <string name="home_good_night_hint">از الان %1$s بخواب</string>
     <string name="home_good_night_active">منتظر خواب · برای لغو بزن</string>
+    <string name="good_night_cancel">لغو شب بخیر</string>
     <string name="dnd_title">زنگ‌ها مسدودند</string>
     <string name="dnd_text">در «مزاحم نشو» اجازهٔ زنگ بده.</string>
     <string name="duration_hours">%1$d س</string>

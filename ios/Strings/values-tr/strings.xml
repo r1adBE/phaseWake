@@ -34,5 +34,4 @@
     <string name="editor_sleep_hint_apple">Uykuya daldığın andan itibaren sayılır – yatarken saatte «İyi geceler»e dokun. Apple Watch’ta Phase Wake ne zaman uykuya daldığını öğrendiği uykuya dalma süresinden tahmin eder. Dokunmazsan ayarlanan saat geçerli olur.</string>
     <string name="auto_onset_hint_apple">Yatma saatinden 1 saat önceden itibaren Apple Watch’ta Phase Wake’i aç (saat sana hatırlatır), o andan uyandırma aralığına kadar hareketini kaydeder; ardından Phase Wake ne zaman uykuya daldığını hesaplar.</string>
     <string name="home_good_night_tap_cancel">iptal için dokun</string>
-    <string name="good_night_cancel">İyi geceleri iptal et</string>
 </resources>

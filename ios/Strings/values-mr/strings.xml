@@ -37,5 +37,4 @@
     <string name="editor_sleep_hint_apple">झोप लागल्यापासून मोजले जाते – झोपायला जाताना घड्याळावर «शुभ रात्री» टॅप करा. Apple Watch वर Phase Wake शिकलेल्या झोप लागण्याच्या वेळेवरून तुम्ही कधी झोपता याचा अंदाज लावते. टॅप न केल्यास सेट केलेली वेळ लागू होते.</string>
     <string name="auto_onset_hint_apple">झोपण्याच्या वेळेच्या 1 तास आधीपासून तुमच्या Apple Watch वर Phase Wake उघडा (घड्याळ आठवण करून देते), तेव्हापासून उठवण्याच्या कालावधीपर्यंत ते तुमची हालचाल नोंदवते; नंतर तुम्ही कधी झोपलात हे Phase Wake मोजते.</string>
     <string name="home_good_night_tap_cancel">रद्द करण्यासाठी टॅप करा</string>
-    <string name="good_night_cancel">शुभ रात्री रद्द करा</string>
 </resources>

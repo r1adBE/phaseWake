@@ -46,6 +46,7 @@
     <string name="home_good_night">God natt</string>
     <string name="home_good_night_hint">Sov %1$s fra nå</string>
     <string name="home_good_night_active">Venter på søvn · trykk for å avbryte</string>
+    <string name="good_night_cancel">Avbryt God natt</string>
     <string name="dnd_title">Alarmer blokkert</string>
     <string name="dnd_text">Tillat alarmer i Ikke forstyrr.</string>
     <string name="duration_hours">%1$d t</string>

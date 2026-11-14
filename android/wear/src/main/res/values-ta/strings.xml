@@ -46,6 +46,7 @@
     <string name="home_good_night">இனிய இரவு</string>
     <string name="home_good_night_hint">இப்போதிலிருந்து %1$s தூக்கம்</string>
     <string name="home_good_night_active">தூக்கத்துக்காகக் காத்திருக்கிறது · ரத்துசெய்யத் தட்டுங்கள்</string>
+    <string name="good_night_cancel">இனிய இரவை ரத்துசெய்</string>
     <string name="dnd_title">அலாரங்கள் தடுக்கப்பட்டன</string>
     <string name="dnd_text">“தொந்தரவு செய்ய வேண்டாம்” இல் அலாரங்களை அனுமதியுங்கள்.</string>
     <string name="duration_hours">%1$d மணி</string>

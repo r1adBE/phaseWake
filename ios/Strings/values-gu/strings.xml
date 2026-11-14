@@ -37,5 +37,4 @@
     <string name="editor_sleep_hint_apple">ઊંઘી જાઓ ત્યારથી ગણાય છે – સૂવા જાઓ ત્યારે ઘડિયાળ પર «શુભ રાત્રિ» ટૅપ કરો. Apple Watch પર Phase Wake શીખેલા ઊંઘ આવવાના સમય પરથી તમે ક્યારે ઊંઘી જાઓ છો તેનો અંદાજ લગાવે છે. ટૅપ ન કરો તો સેટ કરેલો સમય લાગુ થાય છે.</string>
     <string name="auto_onset_hint_apple">સૂવાના સમયના 1 કલાક પહેલાંથી તમારી Apple Watch પર Phase Wake ખોલો (ઘડિયાળ યાદ અપાવે છે), તો ત્યારથી જગાડવાના સમયગાળા સુધી તે તમારું હલનચલન નોંધે છે; પછી Phase Wake ગણે છે કે તમે ક્યારે ઊંઘી ગયા.</string>
     <string name="home_good_night_tap_cancel">રદ કરવા ટૅપ કરો</string>
-    <string name="good_night_cancel">શુભ રાત્રિ રદ કરો</string>
 </resources>

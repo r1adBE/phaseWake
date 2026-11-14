@@ -34,5 +34,4 @@
     <string name="editor_sleep_hint_apple">Cuenta desde que te duermes: toca «Buenas noches» en el reloj al acostarte. En el Apple Watch, Phase Wake estima cuándo te duermes a partir del tiempo en dormirte que ha aprendido. Si no lo tocas, se aplica la hora configurada.</string>
     <string name="auto_onset_hint_apple">Abre Phase Wake en tu Apple Watch desde 1 hora antes de acostarte (te lo recuerda) y desde entonces hasta tu ventana de despertar registra tu movimiento; entonces Phase Wake calcula cuándo te dormiste.</string>
     <string name="home_good_night_tap_cancel">toca para cancelar</string>
-    <string name="good_night_cancel">Cancelar Buenas noches</string>
 </resources>

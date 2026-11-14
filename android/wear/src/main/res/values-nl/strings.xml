@@ -46,6 +46,7 @@
     <string name="home_good_night">Welterusten</string>
     <string name="home_good_night_hint">Vanaf nu %1$s slapen</string>
     <string name="home_good_night_active">Wacht op slaap · tik om te annuleren</string>
+    <string name="good_night_cancel">Welterusten annuleren</string>
     <string name="dnd_title">Wekkers geblokkeerd</string>
     <string name="dnd_text">Sta wekkers toe bij Niet storen.</string>
     <string name="duration_hours">%1$d u</string>

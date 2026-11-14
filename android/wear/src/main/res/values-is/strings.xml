@@ -47,6 +47,7 @@
     <string name="home_good_night">Góða nótt</string>
     <string name="home_good_night_hint">Sofa %1$s héðan í frá</string>
     <string name="home_good_night_active">Bíður eftir svefni · ýttu til að hætta við</string>
+    <string name="good_night_cancel">Hætta við Góða nótt</string>
     <string name="dnd_title">Lokað á vekjara</string>
     <string name="dnd_text">Leyfðu vekjara í „Ónáðið ekki“.</string>
     <string name="duration_hours">%1$d klst</string>

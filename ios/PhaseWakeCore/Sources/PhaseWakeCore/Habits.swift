@@ -58,25 +58,37 @@ public enum Regularity {
     /// Nachtdaten, über die der Median gebildet wird.
     public static let medianNights = 14
 
-    /// Bettzeiten als (Nachtdatum, Einschlafbeginn) aus den Nächten der Gesundheits-App.
-    public static func bedtimes(of sleeps: [SleepSummary], calendar: Calendar) -> [(date: String, start: Date)] {
-        sleeps.map { (date: SleepNotes.nightDate(of: $0, calendar: calendar), start: $0.start) }
+    /// Bettzeiten als (Nachtdatum, Einschlafbeginn, Zone der Aufzeichnung) aus den Nächten der Gesundheits-App
+    /// (``SleepSummary/timeZone``; `nil` = Zone des Geräts, Audit F-3).
+    public static func bedtimes(of sleeps: [SleepSummary], calendar: Calendar) -> [(date: String, start: Date, timeZone: TimeZone?)] {
+        sleeps.map { (date: SleepNotes.nightDate(of: $0, calendar: calendar), start: $0.start, timeZone: $0.timeZone) }
     }
 
     /// (regelmässig, gezählt) für die 7 Nachtdaten bis `until` (einschliesslich), gemessen am Median der
     /// 14 Nachtdaten bis `until`. Je Nachtdatum zählt die früheste Bettzeit. `until` `nil`: das jüngste
-    /// Nachtdatum mit Daten. Ohne Daten (0, 0).
+    /// Nachtdatum mit Daten. Ohne Daten (0, 0). Uhrzeiten in `calendar`.
     public static func count(_ bedtimes: [(date: String, start: Date)], calendar: Calendar,
                              toleranceMinutes: Int = Regularity.toleranceMinutes, until: String? = nil) -> (regular: Int, total: Int) {
-        var byDate: [String: Date] = [:]
-        for b in bedtimes { byDate[b.date] = min(byDate[b.date] ?? b.start, b.start) }
+        count(bedtimes.map { (date: $0.date, start: $0.start, timeZone: TimeZone?.none) }, calendar: calendar,
+              toleranceMinutes: toleranceMinutes, until: until)
+    }
+
+    /// Wie oben, jede Bettzeit in ihrer eigenen Zone (``bedtimes(of:calendar:)``; ohne Zone `calendar`).
+    public static func count(_ bedtimes: [(date: String, start: Date, timeZone: TimeZone?)], calendar: Calendar,
+                             toleranceMinutes: Int = Regularity.toleranceMinutes, until: String? = nil) -> (regular: Int, total: Int) {
+        var byDate: [String: (start: Date, timeZone: TimeZone?)] = [:]
+        for b in bedtimes where byDate[b.date].map({ b.start < $0.start }) ?? true { byDate[b.date] = (b.start, b.timeZone) }
         guard let end = until ?? byDate.keys.max() else { return (0, 0) }
         let medianFrom = NightDate.adding(-medianNights, to: end)
         let medianDates = byDate.filter { $0.key <= end && $0.key > medianFrom }
         guard !medianDates.isEmpty else { return (0, 0) }
         // Ohne Sprung um Mittag (`unwrap`): 11:30 und 12:30 liegen 60 Min auseinander, nicht 1380.
         let entries = Array(medianDates)
-        let unwrapped = unwrap(entries.map { minutesFromNoon($0.value, calendar: calendar) })
+        let unwrapped = unwrap(entries.map { entry -> Double in
+            var local = calendar
+            if let zone = entry.value.timeZone { local.timeZone = zone }
+            return minutesFromNoon(entry.value.start, calendar: local)
+        })
         let minutes = Dictionary(uniqueKeysWithValues: zip(entries.map(\.key), unwrapped))
         let median = SoundEventDetector.median(Array(minutes.values))
         let weekFrom = NightDate.adding(-weekNights, to: end)

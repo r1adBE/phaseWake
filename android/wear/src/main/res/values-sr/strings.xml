@@ -49,6 +49,7 @@
     <string name="home_good_night">Лаку ноћ</string>
     <string name="home_good_night_hint">Спавај %1$s од сада</string>
     <string name="home_good_night_active">Чека се сан · додирни за отказивање</string>
+    <string name="good_night_cancel">Откажи Лаку ноћ</string>
     <string name="dnd_title">Аларми блокирани</string>
     <string name="dnd_text">Дозволи аларме у режиму „Не узнемиравај“.</string>
     <string name="duration_hours">%1$d ч</string>

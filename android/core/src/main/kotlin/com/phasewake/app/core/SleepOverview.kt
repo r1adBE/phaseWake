@@ -129,8 +129,9 @@ object SleepOverviews {
             goalMinutes = goalMinutes,
             averageMinutes = minutes.sum() / minutes.size,
             // Ohne Sprung um Mittag (Audit W-1): Aufwachen 11:56 und 12:50 ergibt 12:23, nicht 00:23.
-            bedtimeMinute = Regularity.meanMinute(inRange.map { Regularity.minutesFromNoon(it.start, zone) }),
-            wakeMinute = Regularity.meanMinute(inRange.map { Regularity.minutesFromNoon(it.end, zone) }),
+            // Je Nacht in der Zone ihrer Aufzeichnung (Audit F-3).
+            bedtimeMinute = Regularity.meanMinute(inRange.map { Regularity.minutesFromNoon(it.start, it.zoneOr(zone)) }),
+            wakeMinute = Regularity.meanMinute(inRange.map { Regularity.minutesFromNoon(it.end, it.zoneOr(zone)) }),
             counted = minutes.size,
             reachedNights = minutes.count { SleepGoal.reached(it, goalMinutes) },
             scaleMinutes = maxOf(goalMinutes.toLong(), bars.maxOf { it.asleepMinutes ?: 0 }),

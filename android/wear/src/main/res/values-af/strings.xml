@@ -47,6 +47,7 @@
     <string name="home_good_night">Goeienag</string>
     <string name="home_good_night_hint">Slaap %1$s van nou af</string>
     <string name="home_good_night_active">Wag vir slaap · tik om te kanselleer</string>
+    <string name="good_night_cancel">Kanselleer Goeienag</string>
     <string name="dnd_title">Wekkers geblokkeer</string>
     <string name="dnd_text">Laat wekkers in Moenie Steur Nie toe.</string>
     <string name="duration_hours">%1$d h</string>

@@ -34,5 +34,4 @@
     <string name="editor_sleep_hint_apple">นับตั้งแต่ตอนที่คุณหลับ – แตะ «ราตรีสวัสดิ์» บนนาฬิกาเมื่อเข้านอน บน Apple Watch, Phase Wake ประมาณเวลาที่คุณหลับจากเวลาจนหลับที่เรียนรู้ไว้ หากไม่แตะ จะใช้เวลาที่ตั้งไว้</string>
     <string name="auto_onset_hint_apple">เปิด Phase Wake บน Apple Watch ตั้งแต่ 1 ชั่วโมงก่อนเวลานอน (นาฬิกาจะเตือนคุณ) แล้วนาฬิกาจะบันทึกการเคลื่อนไหวของคุณตั้งแต่ตอนนั้นจนถึงช่วงเวลาปลุก จากนั้น Phase Wake จะคำนวณว่าคุณหลับไปเมื่อใด</string>
     <string name="home_good_night_tap_cancel">แตะเพื่อยกเลิก</string>
-    <string name="good_night_cancel">ยกเลิกราตรีสวัสดิ์</string>
 </resources>

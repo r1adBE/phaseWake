@@ -47,6 +47,7 @@
     <string name="home_good_night">Ulale kahle</string>
     <string name="home_good_night_hint">Lala %1$s kusukela manje</string>
     <string name="home_good_night_active">Ilinde ubuthongo · thepha ukuze ukhansele</string>
+    <string name="good_night_cancel">Khansela u-Ulale kahle</string>
     <string name="dnd_title">Ama-alamu avinjiwe</string>
     <string name="dnd_text">Vumela ama-alamu ku-Ungaphazamisi.</string>
     <string name="duration_hours">%1$d h</string>

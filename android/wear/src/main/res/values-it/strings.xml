@@ -48,6 +48,7 @@
     <string name="home_good_night">Buonanotte</string>
     <string name="home_good_night_hint">Dormi %1$s da ora</string>
     <string name="home_good_night_active">In attesa del sonno · tocca per annullare</string>
+    <string name="good_night_cancel">Annulla Buonanotte</string>
     <string name="dnd_title">Sveglie bloccate</string>
     <string name="dnd_text">Consenti le sveglie in Non disturbare.</string>
     <string name="duration_hours">%1$d h</string>

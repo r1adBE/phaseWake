@@ -35,5 +35,4 @@
     <string name="editor_sleep_hint_apple">Kubalwa kusukela lapho uzumeka – thepha u-“Ulale kahle” ewashini lakho lapho uyolala. Ku-Apple Watch, i-Phase Wake ilinganisela ukuthi uzumeka nini ngesikhathi sokuzumeka esiyifundile. Ngaphandle kokuthepha, kusebenza isikhathi esisethiwe.</string>
     <string name="auto_onset_hint_apple">Vula i-Phase Wake ku-Apple Watch yakho kusukela ehoreni elingu-1 ngaphambi kokulala (iwashi liyakukhumbuza), bese liqopha ukunyakaza kwakho kusukela lapho kuze kube sewindini lokuvuka; bese i-Phase Wake ibala ukuthi uzumeke nini.</string>
     <string name="home_good_night_tap_cancel">thepha ukuze ukhansele</string>
-    <string name="good_night_cancel">Khansela u-Ulale kahle</string>
 </resources>

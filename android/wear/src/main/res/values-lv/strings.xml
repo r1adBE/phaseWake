@@ -49,6 +49,7 @@
     <string name="home_good_night">Ar labu nakti</string>
     <string name="home_good_night_hint">Gulēt %1$s no šī brīža</string>
     <string name="home_good_night_active">Gaida miegu · pieskaries, lai atceltu</string>
+    <string name="good_night_cancel">Atcelt Ar labu nakti</string>
     <string name="dnd_title">Modinātāji bloķēti</string>
     <string name="dnd_text">Atļauj modinātājus režīmā „Netraucēt“.</string>
     <string name="duration_hours">%1$d st.</string>

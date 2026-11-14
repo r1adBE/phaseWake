@@ -51,6 +51,7 @@
     <string name="home_good_night">Labanakt</string>
     <string name="home_good_night_hint">Miegas %1$s nuo dabar</string>
     <string name="home_good_night_active">Laukiama miego · bakstelėk, kad atšauktum</string>
+    <string name="good_night_cancel">Atšaukti Labanakt</string>
     <string name="dnd_title">Žadintuvai blokuojami</string>
     <string name="dnd_text">Leisk žadintuvus režimu „Netrukdyti“.</string>
     <string name="duration_hours">%1$d val.</string>

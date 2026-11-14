@@ -32,12 +32,29 @@ public struct SleepSummary: Equatable, Sendable {
     public let end: Date
     /// Geschlafene Minuten (alle Phasen ausser «wach»; Millisekunden summiert, dann auf ganze Minuten abgerundet).
     public let asleepMinutes: Int
+    /// Zone der Aufzeichnung (``HealthSession/timeZone``); `nil` = unbekannt, dann die des Geräts. Nachtdatum und Uhrzeiten
+    /// (Diagramme, Ø-Bett-/Aufwachzeit, Trends, Regelmässigkeit, Schlafziel) rechnen in ihr (``localCalendar(_:)``; Audit F-3).
+    public let timeZone: TimeZone?
 
     /// Erzeugt eine Nacht; `start` liegt vor `end`.
-    public init(start: Date, end: Date, asleepMinutes: Int) {
+    public init(start: Date, end: Date, asleepMinutes: Int, timeZone: TimeZone? = nil) {
         self.start = start
         self.end = end
         self.asleepMinutes = asleepMinutes
+        self.timeZone = timeZone
+    }
+
+    /// `calendar` in der Zone der Aufzeichnung (``timeZone``); ohne sie unverändert (Zone des Geräts). Wie `zoneOr` (Kotlin).
+    public func localCalendar(_ calendar: Calendar) -> Calendar {
+        guard let timeZone else { return calendar }
+        var local = calendar
+        local.timeZone = timeZone
+        return local
+    }
+
+    /// Dieselbe Nacht mit der Zone `timeZone`.
+    func with(timeZone: TimeZone?) -> SleepSummary {
+        SleepSummary(start: start, end: end, asleepMinutes: asleepMinutes, timeZone: timeZone)
     }
 
     /// Lücke zwischen zwei Phasen, die noch zur selben Nacht gehört (einschliesslich); darüber beginnt eine neue. Eine
@@ -115,7 +132,7 @@ public struct Trends: Equatable, Sendable {
         // Einschlafzeit als Minuten ab Mittag, damit 23:30 und 00:30 nahe beieinander liegen; ohne Sprung um Mittag
         // (`Regularity.unwrap`, Audit W-1).
         let bedtimes = Regularity.unwrap(sleeps.filter { $0.end > twoWeeksAgo && $0.end <= now }.map {
-            Regularity.minutesFromNoon($0.start, calendar: calendar)
+            Regularity.minutesFromNoon($0.start, calendar: $0.localCalendar(calendar))
         })
         var spread: Int?
         if bedtimes.count >= minNightsForSpread {

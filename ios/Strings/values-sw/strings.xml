@@ -35,5 +35,4 @@
     <string name="editor_sleep_hint_apple">Huhesabiwa kuanzia unaposinzia – gusa “Usiku mwema” kwenye saa unapoenda kulala. Kwenye Apple Watch, Phase Wake inakadiria wakati unapolala kutokana na muda wa kupata usingizi ilioujifunza. Usipogusa, muda uliowekwa ndio hutumika.</string>
     <string name="auto_onset_hint_apple">Fungua Phase Wake kwenye Apple Watch yako kuanzia saa 1 kabla ya kulala (saa itakukumbusha), nayo itarekodi mwendo wako tangu hapo hadi dirisha la kuamka; kisha Phase Wake hukokotoa ulisinzia lini.</string>
     <string name="home_good_night_tap_cancel">gusa ili kughairi</string>
-    <string name="good_night_cancel">Ghairi Usiku mwema</string>
 </resources>

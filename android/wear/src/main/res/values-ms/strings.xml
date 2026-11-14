@@ -44,6 +44,7 @@
     <string name="home_good_night">Selamat malam</string>
     <string name="home_good_night_hint">Tidur %1$s mulai sekarang</string>
     <string name="home_good_night_active">Menunggu tidur · ketik untuk batal</string>
+    <string name="good_night_cancel">Batalkan Selamat malam</string>
     <string name="dnd_title">Penggera disekat</string>
     <string name="dnd_text">Benarkan penggera dalam Jangan Ganggu.</string>
     <string name="duration_hours">%1$d j</string>

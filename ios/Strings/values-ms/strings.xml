@@ -34,5 +34,4 @@
     <string name="editor_sleep_hint_apple">Dikira sejak awak tertidur – ketik “Selamat malam” pada jam apabila awak masuk tidur. Pada Apple Watch, Phase Wake menganggarkan bila awak tertidur berdasarkan masa untuk tertidur yang telah dipelajarinya. Tanpa ketikan, masa yang ditetapkan digunakan.</string>
     <string name="auto_onset_hint_apple">Buka Phase Wake pada Apple Watch awak dari 1 jam sebelum waktu tidur (jam akan mengingatkan awak), lalu sejak itu hingga tetingkap bangun ia merakam pergerakan awak; kemudian Phase Wake mengira bila awak tertidur.</string>
     <string name="home_good_night_tap_cancel">ketik untuk batal</string>
-    <string name="good_night_cancel">Batalkan Selamat malam</string>
 </resources>

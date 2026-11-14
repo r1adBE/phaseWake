@@ -23,8 +23,9 @@ data class HealthSession(
     val source: String? = null,
     /**
      * Zeitzone, in der die Sitzung aufgezeichnet wurde (Health Connect `startZoneOffset`, Apple `HKMetadataKeyTimeZone`);
-     * `null` = unbekannt, dann gilt die Zone des Geräts. Nickerchen-Regel ([isNap]) und angezeigte Uhrzeiten rechnen in
-     * dieser Zone (Audit F-3): Ein Nickerchen in New York bleibt eines, auch wenn man es in Zürich anschaut.
+     * `null` = unbekannt, dann gilt die Zone des Geräts. Nickerchen-Regel ([isNap]), Nachtdatum ([SleepNotes.nightDate]),
+     * angezeigte Uhrzeiten und alle Auswertungen ([HealthHistory.summaries]) rechnen in dieser Zone (Audit F-3, Entscheid
+     * r1AD 14.11.2026): Ein Nickerchen in New York bleibt eines, auch wenn man es in Zürich anschaut.
      */
     val timeZone: ZoneId? = null,
 ) {
@@ -265,11 +266,12 @@ object HealthHistory {
      * dieselbe Regel wie der Verlauf (Sitzungen, die als Nacht zählen: sichtbar, kein Nickerchen, ohne Doppel – nichts
      * zählt zweimal; Weiterschlafen nach [CONTINUATION_GAP] zählt zur Nacht, die Lücke nicht als Schlaf). Eine Sitzung
      * ohne Phasen zählt als Schlaf über ihre ganze Dauer. Zwei Ketten mit mehr als [CONTINUATION_GAP] Lücke sind zwei
-     * Nächte, auch am selben Nachtdatum (Entscheid r1AD 14.11.2026, Audit W-2). Nach Beginn.
+     * Nächte, auch am selben Nachtdatum (Entscheid r1AD 14.11.2026, Audit W-2). Jede Nacht trägt die Zone ihres ersten
+     * Teils ([SleepSummary.timeZone], wie [join]; Audit F-3). Nach Beginn.
      */
     fun summaries(sessions: List<HealthSession>, clearedAt: Instant?, zone: ZoneId): List<SleepSummary> =
         // Je Teil zugeschnitten und ab dem Ende des vorigen wie in der Detailseite ([join], [trimmed]).
-        chains(sessions, clearedAt, zone).mapNotNull { SleepSummary.of(trimmed(it)) }
+        chains(sessions, clearedAt, zone).mapNotNull { chain -> SleepSummary.of(trimmed(chain))?.copy(timeZone = chain.first().timeZone) }
 
     private val preferred: Comparator<HealthSession> =
         compareByDescending<HealthSession> { it.hasStages }

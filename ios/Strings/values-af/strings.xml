@@ -35,5 +35,4 @@
     <string name="editor_sleep_hint_apple">Tel vanaf wanneer jy aan die slaap raak – tik “Goeienag” op jou horlosie wanneer jy gaan slaap. Op die Apple Watch skat Phase Wake wanneer jy aan die slaap raak uit jou aangeleerde insluimertyd. Sonder die tik geld die ingestelde tyd.</string>
     <string name="auto_onset_hint_apple">Maak Phase Wake van 1 uur voor slaaptyd op jou Apple Watch oop (dit herinner jou), dan teken dit van daar af tot jou wekvenster jou beweging aan; dan bepaal Phase Wake wanneer jy aan die slaap geraak het.</string>
     <string name="home_good_night_tap_cancel">tik om te kanselleer</string>
-    <string name="good_night_cancel">Kanselleer Goeienag</string>
 </resources>

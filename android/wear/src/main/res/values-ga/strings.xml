@@ -53,6 +53,7 @@
     <string name="home_good_night">Oíche mhaith</string>
     <string name="home_good_night_hint">Codladh %1$s as seo amach</string>
     <string name="home_good_night_active">Ag fanacht le codladh · tapáil chun cealú</string>
+    <string name="good_night_cancel">Cealaigh Oíche mhaith</string>
     <string name="dnd_title">Aláraim faoi bhac</string>
     <string name="dnd_text">Ceadaigh aláraim in “Ná Cuir Isteach Orm”.</string>
     <string name="duration_hours">%1$d u</string>

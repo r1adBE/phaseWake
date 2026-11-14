@@ -37,5 +37,4 @@
     <string name="editor_sleep_hint_apple">Се брои од заспивањето – допри „Добра ноќ“ на часовникот кога легнуваш. На Apple Watch, Phase Wake проценува кога заспиваш според наученото време за заспивање. Без допир важи поставеното време.</string>
     <string name="auto_onset_hint_apple">Отвори го Phase Wake на Apple Watch од 1 час пред спиење (часовникот те потсетува) и оттогаш до прозорецот за будење го снима твоето движење; тогаш Phase Wake пресметува кога си заспал.</string>
     <string name="home_good_night_tap_cancel">допри за откажување</string>
-    <string name="good_night_cancel">Откажи Добра ноќ</string>
 </resources>

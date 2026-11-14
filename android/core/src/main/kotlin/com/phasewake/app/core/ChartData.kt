@@ -191,8 +191,9 @@ object ChartData {
         val bars = range(last, nights).map { date ->
             val sleep = longest[date] ?: return@map SleepBar(date, null, null)
             // Uhrzeiten (nicht Dauer), damit eine Zeitumstellung den Balken nicht verschiebt.
-            val start = Regularity.minutesFromNoon(sleep.start, zone).toInt()
-            val end = Regularity.minutesFromNoon(sleep.end, zone).toInt()
+            // In der Zone der Aufzeichnung (Audit F-3): eine Nacht in Tokio 23:00–07:00 bleibt das auch in Zürich.
+            val start = Regularity.minutesFromNoon(sleep.start, sleep.zoneOr(zone)).toInt()
+            val end = Regularity.minutesFromNoon(sleep.end, sleep.zoneOr(zone)).toInt()
             SleepBar(date, start, if (end <= start) end + 24 * 60 else end)
         }
         if (bars.none { it.hasData }) return null

@@ -46,6 +46,7 @@
     <string name="home_good_night">शुभ रात्रि</string>
     <string name="home_good_night_hint">अब से %1$s सोना</string>
     <string name="home_good_night_active">सोने का इंतज़ार · रद्द करने के लिए टैप करो</string>
+    <string name="good_night_cancel">शुभ रात्रि रद्द करें</string>
     <string name="dnd_title">अलार्म रुके हैं</string>
     <string name="dnd_text">डू नॉट डिस्टर्ब में अलार्म की अनुमति दो।</string>
     <string name="duration_hours">%1$d घं.</string>

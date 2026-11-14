@@ -37,5 +37,4 @@
     <string name="editor_sleep_hint_apple">निदाएदेखि गनिन्छ – सुत्न जाँदा घडीमा «शुभ रात्रि» थिच। Apple Watch मा Phase Wake ले सिकेको निदाउन लाग्ने समयबाट तिमी कहिले निदायौ भनी अनुमान गर्छ। नथिचे सेट गरिएको समय लागू हुन्छ।</string>
     <string name="auto_onset_hint_apple">सुत्ने समयभन्दा 1 घण्टा अघिदेखि आफ्नो Apple Watch मा Phase Wake खोल (घडीले सम्झाउँछ), त्यसबेलादेखि उठाउने समयावधिसम्म यसले तिम्रो चालचलन रेकर्ड गर्छ; त्यसपछि Phase Wake ले तिमी कहिले निदायौ भनेर हिसाब गर्छ।</string>
     <string name="home_good_night_tap_cancel">रद्द गर्न थिच</string>
-    <string name="good_night_cancel">शुभ रात्रि रद्द गर</string>
 </resources>

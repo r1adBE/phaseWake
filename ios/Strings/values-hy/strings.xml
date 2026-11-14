@@ -34,5 +34,4 @@
     <string name="editor_sleep_hint_apple">Հաշվվում է քնելու պահից – պառկելիս ժամացույցի վրա հպիր «Բարի գիշեր»։ Apple Watch-ում Phase Wake-ը գնահատում է, թե երբ ես քնում, քո սովորած քնելու ժամանակից։ Առանց հպման գործում է սահմանված ժամը։</string>
     <string name="auto_onset_hint_apple">Բացիր Phase Wake-ը Apple Watch-ում քնելուց 1 ժամ առաջվանից (ժամացույցը կհիշեցնի), և այդ պահից մինչև արթնացման պատուհանը այն կգրանցի շարժումներդ․ այնուհետև Phase Wake-ը կհաշվի, թե երբ ես քնել։</string>
     <string name="home_good_night_tap_cancel">հպիր՝ չեղարկելու</string>
-    <string name="good_night_cancel">Չեղարկել «Բարի գիշեր»-ը</string>
 </resources>

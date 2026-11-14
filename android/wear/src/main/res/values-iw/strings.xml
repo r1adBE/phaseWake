@@ -48,6 +48,7 @@
     <string name="home_good_night">לילה טוב</string>
     <string name="home_good_night_hint">לישון %1$s מעכשיו</string>
     <string name="home_good_night_active">ממתין להירדמות · הקישו לביטול</string>
+    <string name="good_night_cancel">ביטול לילה טוב</string>
     <string name="dnd_title">המעוררים חסומים</string>
     <string name="dnd_text">אפשרו מעוררים במצב ‘נא לא להפריע’.</string>
     <string name="duration_hours">%1$d ש׳</string>

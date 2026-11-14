@@ -37,5 +37,4 @@
     <string name="editor_sleep_hint_apple">Telst frá því að þú sofnar – ýttu á „Góða nótt“ á úrinu þegar þú ferð að sofa. Á Apple Watch áætlar Phase Wake hvenær þú sofnar út frá lærðum tíma sem það tekur þig að sofna. Án þess gildir stilltur tími.</string>
     <string name="auto_onset_hint_apple">Opnaðu Phase Wake á Apple Watch frá 1 klst. fyrir háttatíma (úrið minnir þig á) og þá skráir það hreyfinguna þína frá þeim tíma fram að vökuglugganum; þá reiknar Phase Wake út hvenær þú sofnaðir.</string>
     <string name="home_good_night_tap_cancel">ýttu til að hætta við</string>
-    <string name="good_night_cancel">Hætta við Góða nótt</string>
 </resources>

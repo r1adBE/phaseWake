@@ -44,6 +44,7 @@
     <string name="home_good_night">잘 자요</string>
     <string name="home_good_night_hint">지금부터 %1$s 자기</string>
     <string name="home_good_night_active">잠들기 대기 중 · 탭하여 취소</string>
+    <string name="good_night_cancel">잘 자요 취소</string>
     <string name="dnd_title">알람이 차단됨</string>
     <string name="dnd_text">방해 금지 모드에서 알람을 허용하세요.</string>
     <string name="duration_hours">%1$d시간</string>

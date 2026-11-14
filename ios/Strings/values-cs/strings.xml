@@ -34,5 +34,4 @@
     <string name="editor_sleep_hint_apple">Počítá se od usnutí – když jdeš spát, klepni na hodinkách na „Dobrou noc“. Na Apple Watch odhaduje Phase Wake, kdy usneš, podle tvé naučené doby usínání. Bez klepnutí platí nastavený čas.</string>
     <string name="auto_onset_hint_apple">Otevři Phase Wake na Apple Watch od 1 hodiny před spaním (hodinky ti to připomenou) a od té chvíle až do okna buzení zaznamenávají tvůj pohyb; pak Phase Wake spočítá, kdy jsi usnul.</string>
     <string name="home_good_night_tap_cancel">klepnutím zrušíš</string>
-    <string name="good_night_cancel">Zrušit Dobrou noc</string>
 </resources>

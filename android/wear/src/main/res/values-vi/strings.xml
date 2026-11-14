@@ -44,6 +44,7 @@
     <string name="home_good_night">Ngủ ngon</string>
     <string name="home_good_night_hint">Ngủ %1$s từ bây giờ</string>
     <string name="home_good_night_active">Chờ ngủ · chạm để hủy</string>
+    <string name="good_night_cancel">Hủy Ngủ ngon</string>
     <string name="dnd_title">Báo thức bị chặn</string>
     <string name="dnd_text">Cho phép báo thức khi bật Không làm phiền.</string>
     <string name="duration_hours">%1$d giờ</string>

@@ -46,6 +46,7 @@
     <string name="home_good_night">İyi geceler</string>
     <string name="home_good_night_hint">Şu andan itibaren uyku: %1$s</string>
     <string name="home_good_night_active">Uyku bekleniyor · iptal için dokun</string>
+    <string name="good_night_cancel">İyi geceleri iptal et</string>
     <string name="dnd_title">Alarmlar engellendi</string>
     <string name="dnd_text">Rahatsız Etme\'de alarmlara izin ver.</string>
     <string name="duration_hours">%1$d sa</string>

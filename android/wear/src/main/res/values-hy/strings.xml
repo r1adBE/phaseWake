@@ -44,6 +44,7 @@
     <string name="home_good_night">Բարի գիշեր</string>
     <string name="home_good_night_hint">Քնիր %1$s՝ սկսած հիմա</string>
     <string name="home_good_night_active">Սպասում է քնին · հպիր՝ չեղարկելու</string>
+    <string name="good_night_cancel">Չեղարկել «Բարի գիշեր»-ը</string>
     <string name="dnd_title">Զարթուցիչներն արգելափակված են</string>
     <string name="dnd_text">Թույլատրիր զարթուցիչները «Չանհանգստացնել» ռեժիմում։</string>
     <string name="duration_hours">%1$d ժ</string>

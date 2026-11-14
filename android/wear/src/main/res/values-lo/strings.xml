@@ -44,6 +44,7 @@
     <string name="home_good_night">ລາຕີສະຫວັດ</string>
     <string name="home_good_night_hint">ນອນ %1$s ຕັ້ງແຕ່ຕອນນີ້</string>
     <string name="home_good_night_active">ກຳລັງລໍຖ້າການຫຼັບ · ແຕະເພື່ອຍົກເລີກ</string>
+    <string name="good_night_cancel">ຍົກເລີກ ລາຕີສະຫວັດ</string>
     <string name="dnd_title">ໂມງປຸກຖືກກັນ</string>
     <string name="dnd_text">ອະນຸຍາດໂມງປຸກໃນ “ຫ້າມລົບກວນ”</string>
     <string name="duration_hours">%1$d ຊມ</string>

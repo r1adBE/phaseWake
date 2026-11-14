@@ -37,5 +37,4 @@
     <string name="editor_sleep_hint_apple">ನಿದ್ರೆಗೆ ಜಾರಿದಾಗಿನಿಂದ ಎಣಿಸಲಾಗುತ್ತದೆ – ಮಲಗುವಾಗ ವಾಚ್‌ನಲ್ಲಿ «ಶುಭ ರಾತ್ರಿ» ಟ್ಯಾಪ್ ಮಾಡಿ. Apple Watch ನಲ್ಲಿ Phase Wake ಕಲಿತ ನಿದ್ರೆ ಬರಲು ಬೇಕಾದ ಸಮಯದಿಂದ ನೀವು ಯಾವಾಗ ನಿದ್ರಿಸುತ್ತೀರಿ ಎಂದು ಅಂದಾಜಿಸುತ್ತದೆ. ಟ್ಯಾಪ್ ಮಾಡದಿದ್ದರೆ ಹೊಂದಿಸಿದ ಸಮಯ ಅನ್ವಯಿಸುತ್ತದೆ.</string>
     <string name="auto_onset_hint_apple">ಮಲಗುವ ಸಮಯಕ್ಕೆ 1 ಗಂಟೆ ಮೊದಲಿನಿಂದ ನಿಮ್ಮ Apple Watch‌ನಲ್ಲಿ Phase Wake ತೆರೆಯಿರಿ (ವಾಚ್ ನೆನಪಿಸುತ್ತದೆ), ಆಗಿನಿಂದ ಎಚ್ಚರಿಸುವ ಅವಧಿಯವರೆಗೆ ಅದು ನಿಮ್ಮ ಚಲನೆಯನ್ನು ದಾಖಲಿಸುತ್ತದೆ; ನಂತರ ನೀವು ಯಾವಾಗ ನಿದ್ರೆಗೆ ಜಾರಿದಿರಿ ಎಂದು Phase Wake ಲೆಕ್ಕ ಹಾಕುತ್ತದೆ.</string>
     <string name="home_good_night_tap_cancel">ರದ್ದುಮಾಡಲು ಟ್ಯಾಪ್</string>
-    <string name="good_night_cancel">ಶುಭ ರಾತ್ರಿ ರದ್ದುಮಾಡಿ</string>
 </resources>

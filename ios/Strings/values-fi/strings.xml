@@ -34,5 +34,4 @@
     <string name="editor_sleep_hint_apple">Lasketaan nukahtamisesta – napauta kellosta ”Hyvää yötä”, kun menet nukkumaan. Apple Watchissa Phase Wake arvioi nukahtamisesi ajankohdan oppimasi nukahtamisajan perusteella. Ilman napautusta käytetään asetettua aikaa.</string>
     <string name="auto_onset_hint_apple">Avaa Phase Wake Apple Watchissa tuntia ennen nukkumaanmenoa tai myöhemmin (kello muistuttaa), niin se tallentaa liikkeesi siitä lähtien heräämisikkunaan asti; silloin Phase Wake laskee, milloin nukahdit.</string>
     <string name="home_good_night_tap_cancel">peruuta napauttamalla</string>
-    <string name="good_night_cancel">Peru Hyvää yötä</string>
 </resources>

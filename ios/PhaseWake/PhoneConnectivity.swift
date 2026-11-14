@@ -14,21 +14,28 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
 
     /// Wecker, Feiertage, Schlafziel (Minuten) und Stand der Lernphase als Anwendungskontext (ersetzt jeweils den ganzen
     /// Stand, darum immer alles).
-    func publish(_ snapshot: AlarmSnapshot, holidays: HolidayList, sleepGoal: Int, learning: LearningSnapshot) {
+    /// `sleepGoal`, `autoOnset`: `nil` lässt den Schlüssel weg, die Uhr behält dann ihren Stand (``afterReset(_:key:in:)``).
+    func publish(_ snapshot: AlarmSnapshot, holidays: HolidayList, sleepGoal: Int?, autoOnset: Bool?, learning: LearningSnapshot) {
         guard WCSession.default.activationState == .activated, WCSession.default.isPaired, WCSession.default.isWatchAppInstalled else { return }
-        var context: [String: Any] = [
-            SyncKeys.holidays: Holidays.encode(holidays),
-            SyncKeys.sleepGoal: Int64(sleepGoal),
-        ]
+        var context: [String: Any] = [SyncKeys.holidays: Holidays.encode(holidays)]
+        if let sleepGoal { context[SyncKeys.sleepGoal] = Int64(sleepGoal) }
         AlarmStamps.apply(snapshot, to: &context)
         learning.apply(to: &context)
-        context[SyncKeys.autoOnset] = WatchNight.autoOnset
+        if let autoOnset { context[SyncKeys.autoOnset] = autoOnset }
         do {
             try WCSession.default.updateApplicationContext(context)
             DiagStore.shared.log(.sync, "sent \(snapshot.alarms.count) alarms, \(holidays.dates.count) holidays")
         } catch {
             DiagStore.shared.log(.error, "context not sent: \(error.localizedDescription)")
         }
+    }
+
+    /// Wert einer Einstellung für die Uhr oder `nil` (weglassen): Nach einer kaputten Einstellungsdatei
+    /// (``SettingsFile/wasReset``, Prüfrunde 2 SP-7) nur, was seither hier gesetzt wurde; der Standard des leeren Stands
+    /// ersetzte sonst den Stand der Uhr. Wie `sleepGoalStamp`/`autoOnsetStamped` auf Android (Zeitpunkt 0). Feiertage
+    /// gehen wie auf Android weiter mit (das iPhone plant mit ihnen; sonst wichen iPhone und Uhr voneinander ab).
+    static func afterReset<T>(_ value: T, key: String, in settings: SettingsFile) -> T? {
+        settings.wasReset && settings.object(forKey: key) == nil ? nil : value
     }
 
     /// Befehle, die vor der Aktivierung kamen (z. B. Stopp am Wecker, App dafür im Hintergrund gestartet).

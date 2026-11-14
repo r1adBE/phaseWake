@@ -47,6 +47,7 @@
     <string name="home_good_night">Сайхан амраарай</string>
     <string name="home_good_night_hint">Одооноос %1$s унт</string>
     <string name="home_good_night_active">Нойр хүлээж байна · цуцлахын тулд дар</string>
+    <string name="good_night_cancel">Сайхан амраарайг цуцлах</string>
     <string name="dnd_title">Сэрүүлэг хаагдсан</string>
     <string name="dnd_text">«Бүү саад бол»-д сэрүүлгийг зөвшөөр.</string>
     <string name="duration_hours">%1$d ц</string>

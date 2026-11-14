@@ -44,6 +44,7 @@
     <string name="home_good_night">ကောင်းသောညပါ</string>
     <string name="home_good_night_hint">ယခုမှစ၍ %1$s အိပ်မည်</string>
     <string name="home_good_night_active">အိပ်ပျော်ရန် စောင့်နေ · ပယ်ရန် တို့ပါ</string>
+    <string name="good_night_cancel">ကောင်းသောညပါ ကို ပယ်ဖျက်ရန်</string>
     <string name="dnd_title">နှိုးစက်များ ပိတ်ဆို့ခံရ</string>
     <string name="dnd_text">မနှောင့်ယှက်ရ တွင် နှိုးစက်များကို ခွင့်ပြုပါ။</string>
     <string name="duration_hours">%1$d နာရီ</string>

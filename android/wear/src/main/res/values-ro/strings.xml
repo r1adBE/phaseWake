@@ -48,6 +48,7 @@
     <string name="home_good_night">Noapte bună</string>
     <string name="home_good_night_hint">Dormi %1$s de acum</string>
     <string name="home_good_night_active">Așteaptă somnul · atinge pentru anulare</string>
+    <string name="good_night_cancel">Anulează Noapte bună</string>
     <string name="dnd_title">Alarme blocate</string>
     <string name="dnd_text">Permite alarmele în modul Nu deranja.</string>
     <string name="duration_hours">%1$d h</string>

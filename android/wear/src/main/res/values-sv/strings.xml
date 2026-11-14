@@ -46,6 +46,7 @@
     <string name="home_good_night">Godnatt</string>
     <string name="home_good_night_hint">Sov %1$s från nu</string>
     <string name="home_good_night_active">Väntar på sömn · tryck för att avbryta</string>
+    <string name="good_night_cancel">Avbryt Godnatt</string>
     <string name="dnd_title">Larm blockerade</string>
     <string name="dnd_text">Tillåt larm i Stör ej.</string>
     <string name="duration_hours">%1$d h</string>

@@ -46,6 +46,7 @@
     <string name="home_good_night">Καληνύχτα</string>
     <string name="home_good_night_hint">Από τώρα κοιμήσου %1$s</string>
     <string name="home_good_night_active">Αναμονή ύπνου · πάτα για ακύρωση</string>
+    <string name="good_night_cancel">Ακύρωση Καληνύχτα</string>
     <string name="dnd_title">Ξυπνητήρια μπλοκαρισμένα</string>
     <string name="dnd_text">Επίτρεψε ξυπνητήρια στο «Μην ενοχλείτε».</string>
     <string name="duration_hours">%1$d ώ.</string>

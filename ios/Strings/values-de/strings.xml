@@ -34,5 +34,4 @@
     <string name="editor_sleep_hint_apple">Zählt ab dem Einschlafen – tippe beim Zubettgehen auf der Uhr auf «Gute Nacht». Auf der Apple Watch schätzt Phase Wake die Einschlafzeit aus deiner gelernten Einschlafdauer. Ohne Tippen gilt die eingestellte Uhrzeit.</string>
     <string name="auto_onset_hint_apple">Öffnest du Phase Wake ab 1 Std. vor der Bettzeit auf der Apple Watch (sie erinnert dich), zeichnet sie von da an bis zum Weckfenster die Bewegung auf; dann rechnet Phase Wake aus, wann du eingeschlafen bist.</string>
     <string name="home_good_night_tap_cancel">Tippen zum Abbrechen</string>
-    <string name="good_night_cancel">Gute Nacht aufheben</string>
 </resources>

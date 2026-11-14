@@ -50,6 +50,7 @@
     <string name="home_good_night">Спокойной ночи</string>
     <string name="home_good_night_hint">Сон %1$s с этого момента</string>
     <string name="home_good_night_active">Ждём сна · нажми для отмены</string>
+    <string name="good_night_cancel">Отменить «Спокойной ночи»</string>
     <string name="dnd_title">Будильники заблокированы</string>
     <string name="dnd_text">Разреши будильники в режиме «Не беспокоить».</string>
     <string name="duration_hours">%1$d ч</string>

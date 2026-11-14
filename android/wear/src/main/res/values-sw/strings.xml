@@ -46,6 +46,7 @@
     <string name="home_good_night">Usiku mwema</string>
     <string name="home_good_night_hint">Lala %1$s kuanzia sasa</string>
     <string name="home_good_night_active">Inasubiri usingizi · gusa ili kughairi</string>
+    <string name="good_night_cancel">Ghairi Usiku mwema</string>
     <string name="dnd_title">Kengele zimezuiwa</string>
     <string name="dnd_text">Ruhusu kengele katika “Usinisumbue”.</string>
     <string name="duration_hours">saa %1$d</string>

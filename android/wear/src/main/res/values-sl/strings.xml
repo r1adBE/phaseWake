@@ -50,6 +50,7 @@
     <string name="home_good_night">Lahko noč</string>
     <string name="home_good_night_hint">Spanec %1$s od zdaj</string>
     <string name="home_good_night_active">Čaka na spanec · tapni za preklic</string>
+    <string name="good_night_cancel">Prekliči Lahko noč</string>
     <string name="dnd_title">Budilke blokirane</string>
     <string name="dnd_text">Dovoli budilke v načinu »Ne moti«.</string>
     <string name="duration_hours">%1$d h</string>

@@ -15,8 +15,9 @@ public struct HealthSession: Equatable, Sendable {
     /// Herkunft: Apple Bundle-ID bzw. Quellname, Android Paketname; `nil` = unbekannt.
     public let source: String?
     /// Zeitzone, in der die Sitzung aufgezeichnet wurde (Apple `HKMetadataKeyTimeZone`, Health Connect `startZoneOffset`);
-    /// `nil` = unbekannt, dann gilt die Zone des Geräts. Nickerchen-Regel (``isNap(calendar:)``) und angezeigte Uhrzeiten
-    /// rechnen in dieser Zone (Audit F-3): Ein Nickerchen in New York bleibt eines, auch wenn man es in Zürich anschaut.
+    /// `nil` = unbekannt, dann gilt die Zone des Geräts. Nickerchen-Regel (``isNap(calendar:)``), Nachtdatum
+    /// (`SleepNotes.nightDate(of:)`), angezeigte Uhrzeiten und alle Auswertungen (`HealthHistory.summaries`) rechnen in
+    /// dieser Zone (Audit F-3, Entscheid r1AD 14.11.2026): Ein Nickerchen in New York bleibt eines, auch in Zürich angeschaut.
     public let timeZone: TimeZone?
 
     /// Erzeugt eine Sitzung; `start` liegt vor `end` (sonst übergeht ``HealthHistory/merge(nights:sessions:clearedAt:calendar:)`` sie).
@@ -221,10 +222,13 @@ public enum HealthHistory {
     /// dieselbe Regel wie der Verlauf (Sitzungen, die als Nacht zählen: sichtbar, kein Nickerchen, ohne Doppel – nichts
     /// zählt zweimal; Weiterschlafen nach ``continuationGap`` zählt zur Nacht, die Lücke nicht als Schlaf); eine Sitzung
     /// ohne Phasen zählt als eine «unbekannt»-Phase über die ganze Dauer. Zwei Ketten mit mehr als ``continuationGap``
-    /// Lücke sind zwei Nächte, auch am selben Nachtdatum (Entscheid r1AD 14.11.2026, Audit W-2). Nach Beginn.
+    /// Lücke sind zwei Nächte, auch am selben Nachtdatum (Entscheid r1AD 14.11.2026, Audit W-2). Jede Nacht trägt die Zone
+    /// ihres ersten Teils (``SleepSummary/timeZone``, wie `join`; Audit F-3). Nach Beginn.
     public static func summaries(_ sessions: [HealthSession], clearedAt: Date?, calendar: Calendar) -> [SleepSummary] {
         // Je Teil zugeschnitten und ab dem Ende des vorigen wie in der Detailseite (`join`, `trimmed`).
-        chains(sessions, clearedAt: clearedAt, calendar: calendar).compactMap { SleepSummary.of(trimmed($0)) }
+        chains(sessions, clearedAt: clearedAt, calendar: calendar).compactMap { chain in
+            SleepSummary.of(trimmed(chain))?.with(timeZone: chain.first?.timeZone)
+        }
     }
 
     /// Sitzungen, die als Nacht zählen (``chains(_:clearedAt:calendar:)``), je Nacht zu einer Sitzung zusammengefasst.

@@ -44,6 +44,7 @@
     <string name="home_good_night">おやすみ</string>
     <string name="home_good_night_hint">今から%1$s眠る</string>
     <string name="home_good_night_active">入眠待ち · タップで取消</string>
+    <string name="good_night_cancel">おやすみを取消</string>
     <string name="dnd_title">アラームがブロック中</string>
     <string name="dnd_text">サイレントモード中のアラームを許可してください。</string>
     <string name="duration_hours">%1$d時間</string>

@@ -47,6 +47,7 @@
     <string name="home_good_night">ደህና እደሩ</string>
     <string name="home_good_night_hint">ከአሁን ጀምሮ %1$s ይተኙ</string>
     <string name="home_good_night_active">እንቅልፍ እየጠበቀ · ለመሰረዝ ይንኩ</string>
+    <string name="good_night_cancel">ደህና እደሩን ሰርዝ</string>
     <string name="dnd_title">ማንቂያዎች ታግደዋል</string>
     <string name="dnd_text">በአትረብሽ ውስጥ ማንቂያዎችን ይፍቀዱ።</string>
     <string name="duration_hours">%1$d ሰ</string>

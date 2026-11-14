@@ -37,5 +37,4 @@
     <string name="editor_sleep_hint_apple">නින්දට ගිය වේලාවේ සිට ගණන් කෙරේ – නිදාගන්නා විට ඔරලෝසුවේ «සුබ රාත්‍රියක්» තට්ටු කරන්න. Apple Watch හි Phase Wake ඉගෙන ගත් නින්දට යාමට ගතවන කාලයෙන් ඔබ නින්දට යන වේලාව ඇස්තමේන්තු කරයි. තට්ටු නොකළහොත් සැකසූ වේලාව අදාළ වේ.</string>
     <string name="auto_onset_hint_apple">නින්දට යාමට පැය 1කට පෙර සිට ඔබේ Apple Watch හි Phase Wake විවෘත කරන්න (ඔරලෝසුව මතක් කරයි), එවිට එතැන් සිට අවදි කිරීමේ කාලය දක්වා එය ඔබේ චලනය පටිගත කරයි; ඉන්පසු ඔබ නින්දට ගිය වේලාව Phase Wake ගණනය කරයි.</string>
     <string name="home_good_night_tap_cancel">අවලංගුයට තට්ටු කරන්න</string>
-    <string name="good_night_cancel">සුබ රාත්‍රියක් අවලංගු කරන්න</string>
 </resources>

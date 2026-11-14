@@ -47,6 +47,7 @@
     <string name="home_good_night">ਸ਼ੁਭ ਰਾਤ</string>
     <string name="home_good_night_hint">ਹੁਣ ਤੋਂ %1$s ਨੀਂਦ</string>
     <string name="home_good_night_active">ਨੀਂਦ ਦੀ ਉਡੀਕ · ਰੱਦ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
+    <string name="good_night_cancel">ਸ਼ੁਭ ਰਾਤ ਰੱਦ ਕਰੋ</string>
     <string name="dnd_title">ਅਲਾਰਮ ਰੋਕੇ ਗਏ</string>
     <string name="dnd_text">“ਪਰੇਸ਼ਾਨ ਨਾ ਕਰੋ” ਵਿੱਚ ਅਲਾਰਮਾਂ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ।</string>
     <string name="duration_hours">%1$d ਘੰ.</string>

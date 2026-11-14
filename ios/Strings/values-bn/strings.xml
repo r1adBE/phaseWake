@@ -35,5 +35,4 @@
     <string name="editor_sleep_hint_apple">ঘুমিয়ে পড়ার সময় থেকে গোনা হয় – শুতে যাওয়ার সময় ঘড়িতে «শুভরাত্রি» চাপো। Apple Watch-এ Phase Wake তোমার শেখা ঘুমিয়ে পড়ার সময় থেকে অনুমান করে তুমি কখন ঘুমিয়ে পড়ো। না চাপলে সেট করা সময়ই প্রযোজ্য।</string>
     <string name="auto_onset_hint_apple">ঘুমানোর সময়ের 1 ঘণ্টা আগে থেকে তোমার Apple Watch-এ Phase Wake খুললে (ঘড়ি মনে করিয়ে দেয়) তখন থেকে জাগানোর সময়সীমা পর্যন্ত এটি তোমার নড়াচড়া রেকর্ড করে; তারপর Phase Wake হিসাব করে তুমি কখন ঘুমিয়েছিলে।</string>
     <string name="home_good_night_tap_cancel">বাতিল করতে ট্যাপ করো</string>
-    <string name="good_night_cancel">শুভরাত্রি বাতিল করো</string>
 </resources>

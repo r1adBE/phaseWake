@@ -44,6 +44,7 @@
     <string name="home_good_night">Gecən xeyrə</string>
     <string name="home_good_night_hint">İndidən %1$s yat</string>
     <string name="home_good_night_active">Yuxu gözlənilir · ləğv üçün toxun</string>
+    <string name="good_night_cancel">Gecən xeyrəni ləğv et</string>
     <string name="dnd_title">Siqnallar bloklanıb</string>
     <string name="dnd_text">“Narahat etməyin” rejimində siqnallara icazə ver.</string>
     <string name="duration_hours">%1$d st</string>

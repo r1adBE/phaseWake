@@ -245,8 +245,10 @@ public enum ChartData {
         let bars = range(last, nights).map { date -> SleepBar in
             guard let sleep = longest[date] else { return SleepBar(date: date, startMinute: nil, endMinute: nil) }
             // Uhrzeiten (nicht Dauer), damit eine Zeitumstellung den Balken nicht verschiebt.
-            let start = Int(Regularity.minutesFromNoon(sleep.start, calendar: calendar))
-            let end = Int(Regularity.minutesFromNoon(sleep.end, calendar: calendar))
+            // In der Zone der Aufzeichnung (Audit F-3): eine Nacht in Tokio 23:00–07:00 bleibt das auch in Zürich.
+            let local = sleep.localCalendar(calendar)
+            let start = Int(Regularity.minutesFromNoon(sleep.start, calendar: local))
+            let end = Int(Regularity.minutesFromNoon(sleep.end, calendar: local))
             return SleepBar(date: date, startMinute: start, endMinute: end <= start ? end + 24 * 60 : end)
         }
         guard bars.contains(where: \.hasData) else { return nil }

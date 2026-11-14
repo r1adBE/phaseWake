@@ -47,6 +47,7 @@
     <string name="home_good_night">Head ööd</string>
     <string name="home_good_night_hint">Maga nüüdsest %1$s</string>
     <string name="home_good_night_active">Une ootel · puuduta tühistamiseks</string>
+    <string name="good_night_cancel">Tühista Head ööd</string>
     <string name="dnd_title">Äratused blokeeritud</string>
     <string name="dnd_text">Luba äratused režiimis „Mitte segada“.</string>
     <string name="duration_hours">%1$d h</string>

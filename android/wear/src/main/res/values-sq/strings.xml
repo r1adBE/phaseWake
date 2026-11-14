@@ -47,6 +47,7 @@
     <string name="home_good_night">Natën e mirë</string>
     <string name="home_good_night_hint">Fli %1$s nga tani</string>
     <string name="home_good_night_active">Në pritje të gjumit · prek për ta anuluar</string>
+    <string name="good_night_cancel">Anulo Natën e mirë</string>
     <string name="dnd_title">Alarmet janë bllokuar</string>
     <string name="dnd_text">Lejo alarmet te „Mos shqetëso“.</string>
     <string name="duration_hours">%1$d orë</string>

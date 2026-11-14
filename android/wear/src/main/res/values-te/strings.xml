@@ -47,6 +47,7 @@
     <string name="home_good_night">శుభ రాత్రి</string>
     <string name="home_good_night_hint">ఇప్పటి నుంచి %1$s నిద్ర</string>
     <string name="home_good_night_active">నిద్ర కోసం వేచి ఉంది · రద్దుకు నొక్కండి</string>
+    <string name="good_night_cancel">శుభ రాత్రి రద్దు చేయి</string>
     <string name="dnd_title">అలారాలు ఆగిపోయాయి</string>
     <string name="dnd_text">“అంతరాయం కలిగించవద్దు”లో అలారాలను అనుమతించండి.</string>
     <string name="duration_hours">%1$d గం.</string>

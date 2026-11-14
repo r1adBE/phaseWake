@@ -50,8 +50,13 @@ object NightQuality {
  *
  * @property start Beginn der ersten Schlafphase (ungefähr die Einschlafzeit).
  * @property asleepMinutes Summe aller Phasen ausser «wach» (Millisekunden summiert, dann auf ganze Minuten abgerundet).
+ * @property timeZone Zone der Aufzeichnung ([HealthSession.timeZone]); `null` = unbekannt, dann die des Geräts. Nachtdatum
+ *   und Uhrzeiten (Diagramme, Ø-Bett-/Aufwachzeit, Trends, Regelmässigkeit, Schlafziel) rechnen in ihr ([zoneOr]; Audit F-3).
  */
-data class SleepSummary(val start: Instant, val end: Instant, val asleepMinutes: Long) {
+data class SleepSummary(val start: Instant, val end: Instant, val asleepMinutes: Long, val timeZone: ZoneId? = null) {
+    /** Zone für Nachtdatum und Uhrzeiten dieser Nacht: die der Aufzeichnung ([timeZone]), sonst [fallback] (Gerät). */
+    fun zoneOr(fallback: ZoneId): ZoneId = timeZone ?: fallback
+
     companion object {
         /**
          * Lücke zwischen zwei Phasen, die noch zur selben Nacht gehört (einschliesslich); darüber beginnt eine neue.
@@ -144,7 +149,7 @@ data class Trends(
 
             // Einschlafzeit als Minuten ab Mittag, damit 23:30 und 00:30 nahe beieinander liegen; ohne Sprung um
             // Mittag ([Regularity.unwrap], Audit W-1).
-            val bedtimes = Regularity.unwrap(inRange(sleeps, { it.end }, twoWeeksAgo, now).map { Regularity.minutesFromNoon(it.start, zone) })
+            val bedtimes = Regularity.unwrap(inRange(sleeps, { it.end }, twoWeeksAgo, now).map { Regularity.minutesFromNoon(it.start, it.zoneOr(zone)) })
             val spread = bedtimes.takeIf { it.size >= MIN_NIGHTS_FOR_SPREAD }?.let { list ->
                 val mean = list.average()
                 list.map { kotlin.math.abs(it - mean) }.average().toLong()

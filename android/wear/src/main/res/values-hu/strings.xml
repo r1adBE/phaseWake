@@ -46,6 +46,7 @@
     <string name="home_good_night">Jó éjszakát</string>
     <string name="home_good_night_hint">Mostantól alvás: %1$s</string>
     <string name="home_good_night_active">Elalvásra vár · koppints a megszakításhoz</string>
+    <string name="good_night_cancel">Jó éjszakát megszakítása</string>
     <string name="dnd_title">Ébresztők letiltva</string>
     <string name="dnd_text">Engedélyezd az ébresztőket Ne zavarjanak módban.</string>
     <string name="duration_hours">%1$d ó</string>

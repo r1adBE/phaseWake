@@ -22,28 +22,40 @@ object Regularity {
     /** Nachtdaten, aus denen der Median der Bettzeit kommt (zwei Wochen). */
     const val MEDIAN_NIGHTS: Int = 14
 
-    /** Bettzeiten als (Nachtdatum, Einschlafbeginn) aus den Nächten der Gesundheits-App. */
-    fun bedtimesOf(sleeps: List<SleepSummary>, zone: ZoneId): List<Pair<LocalDate, Instant>> =
-        sleeps.map { SleepNotes.nightDate(it, zone) to it.start }
+    /**
+     * Bettzeiten als (Nachtdatum, Einschlafbeginn, Zone der Aufzeichnung) aus den Nächten der Gesundheits-App
+     * ([SleepSummary.timeZone]; `null` = Zone des Geräts, Audit F-3).
+     */
+    fun bedtimesOf(sleeps: List<SleepSummary>, zone: ZoneId): List<Triple<LocalDate, Instant, ZoneId?>> =
+        sleeps.map { Triple(SleepNotes.nightDate(it, zone), it.start, it.timeZone) }
 
     /**
      * (regelmässig, gezählt) für die [WEEK_NIGHTS] Nachtdaten bis [until] (einschliesslich), gemessen
      * am Median der [MEDIAN_NIGHTS] Nachtdaten bis [until]. Je Nachtdatum zählt die früheste Bettzeit.
-     * [until] `null`: das jüngste Nachtdatum mit Daten. Ohne Daten (0, 0).
+     * [until] `null`: das jüngste Nachtdatum mit Daten. Ohne Daten (0, 0). Uhrzeiten in [zone].
      */
     fun count(
         bedtimes: List<Pair<LocalDate, Instant>>,
         zone: ZoneId,
         toleranceMinutes: Int = TOLERANCE_MINUTES,
         until: LocalDate? = null,
+    ): Pair<Int, Int> = count(bedtimes.map { Triple(it.first, it.second, null) }, zone, toleranceMinutes, until)
+
+    /** Wie oben, jede Bettzeit in ihrer eigenen Zone ([bedtimesOf]; ohne Zone [zone]). */
+    @JvmName("countInZones")
+    fun count(
+        bedtimes: List<Triple<LocalDate, Instant, ZoneId?>>,
+        zone: ZoneId,
+        toleranceMinutes: Int = TOLERANCE_MINUTES,
+        until: LocalDate? = null,
     ): Pair<Int, Int> {
-        val byDate = bedtimes.groupBy({ it.first }, { it.second }).mapValues { (_, list) -> list.min() }
+        val byDate = bedtimes.groupBy { it.first }.mapValues { (_, list) -> list.minBy { it.second } }
         val end = until ?: byDate.keys.maxOrNull() ?: return 0 to 0
         val medianDates = byDate.filterKeys { !it.isAfter(end) && it.isAfter(end.minusDays(MEDIAN_NIGHTS.toLong())) }
         if (medianDates.isEmpty()) return 0 to 0
         // Ohne Sprung um Mittag ([unwrap]): 11:30 und 12:30 liegen 60 Min auseinander, nicht 1380.
         val dates = medianDates.keys.toList()
-        val minutes = dates.zip(unwrap(dates.map { minutesFromNoon(medianDates.getValue(it), zone) })).toMap()
+        val minutes = dates.zip(unwrap(dates.map { medianDates.getValue(it).let { b -> minutesFromNoon(b.second, b.third ?: zone) } })).toMap()
         val median = SoundEventDetector.median(minutes.values)
         val week = minutes.filterKeys { it.isAfter(end.minusDays(WEEK_NIGHTS.toLong())) }
         return week.values.count { abs(it - median) <= toleranceMinutes + 1e-9 } to week.size

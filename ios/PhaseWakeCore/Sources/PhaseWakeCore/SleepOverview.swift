@@ -119,8 +119,9 @@ public enum SleepOverviews {
             goalMinutes: goalMinutes,
             averageMinutes: minutes.reduce(0, +) / minutes.count,
             // Ohne Sprung um Mittag (Audit W-1): Aufwachen 11:56 und 12:50 ergibt 12:23, nicht 00:23.
-            bedtimeMinute: Regularity.meanMinute(inRange.map { Regularity.minutesFromNoon($0.start, calendar: calendar) }),
-            wakeMinute: Regularity.meanMinute(inRange.map { Regularity.minutesFromNoon($0.end, calendar: calendar) }),
+            // Je Nacht in der Zone ihrer Aufzeichnung (Audit F-3).
+            bedtimeMinute: Regularity.meanMinute(inRange.map { Regularity.minutesFromNoon($0.start, calendar: $0.localCalendar(calendar)) }),
+            wakeMinute: Regularity.meanMinute(inRange.map { Regularity.minutesFromNoon($0.end, calendar: $0.localCalendar(calendar)) }),
             counted: minutes.count,
             reachedNights: minutes.filter { SleepGoal.reached(asleepMinutes: $0, goalMinutes: goalMinutes) }.count,
             scaleMinutes: max(goalMinutes, bars.map { $0.asleepMinutes ?? 0 }.max() ?? 0)

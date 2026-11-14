@@ -44,6 +44,7 @@
     <string name="home_good_night">រាត្រីសួស្តី</string>
     <string name="home_good_night_hint">ដេក %1$s ចាប់ពីឥឡូវ</string>
     <string name="home_good_night_active">កំពុងរង់ចាំដំណេក · ចុចដើម្បីបោះបង់</string>
+    <string name="good_night_cancel">បោះបង់ រាត្រីសួស្តី</string>
     <string name="dnd_title">ម៉ោងរោទ៍ត្រូវបានរារាំង</string>
     <string name="dnd_text">អនុញ្ញាតម៉ោងរោទ៍ក្នុង «កុំរំខាន»។</string>
     <string name="duration_hours">%1$d ម៉ោង</string>

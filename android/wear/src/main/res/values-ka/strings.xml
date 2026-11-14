@@ -44,6 +44,7 @@
     <string name="home_good_night">ძილი ნებისა</string>
     <string name="home_good_night_hint">იძინე %1$s ამ წუთიდან</string>
     <string name="home_good_night_active">ელოდება ძილს · შეეხე გასაუქმებლად</string>
+    <string name="good_night_cancel">ძილი ნებისას გაუქმება</string>
     <string name="dnd_title">მაღვიძარები დაბლოკილია</string>
     <string name="dnd_text">დაუშვი მაღვიძარები „არ შემაწუხოთ“ რეჟიმში.</string>
     <string name="duration_hours">%1$d სთ</string>

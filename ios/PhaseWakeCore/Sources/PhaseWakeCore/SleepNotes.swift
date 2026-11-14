@@ -72,14 +72,15 @@ public enum SleepNotes {
         nightDate(start.addingTimeInterval(end.timeIntervalSince(start) / 2), calendar: calendar)
     }
 
-    /// Nachtdatum einer Nacht für Diagramme und Trends: über ihre Mitte (``nightDate(from:to:calendar:)``).
+    /// Nachtdatum einer Nacht für Diagramme und Trends: über ihre Mitte (``nightDate(from:to:calendar:)``), in der Zone der
+    /// Aufzeichnung (``SleepSummary/localCalendar(_:)``, sonst `calendar`; Audit F-3).
     public static func nightDate(of sleep: SleepSummary, calendar: Calendar) -> String {
-        nightDate(from: sleep.start, to: sleep.end, calendar: calendar)
+        nightDate(from: sleep.start, to: sleep.end, calendar: sleep.localCalendar(calendar))
     }
 
-    /// Nachtdatum einer Sitzung im Verlauf: über ihre Mitte (``nightDate(from:to:calendar:)``).
+    /// Nachtdatum einer Sitzung im Verlauf: wie oben, in der Zone der Aufzeichnung (``HealthSession/localCalendar(_:)``).
     public static func nightDate(of session: HealthSession, calendar: Calendar) -> String {
-        nightDate(from: session.start, to: session.end, calendar: calendar)
+        nightDate(from: session.start, to: session.end, calendar: session.localCalendar(calendar))
     }
 
     /// Kalenderdatum «yyyy-MM-dd» von `date` in der Zeitzone des Kalenders mit vierstelligem Jahr – immer gregorianisch

@@ -19,6 +19,10 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
+import androidx.compose.ui.res.stringResource
+import androidx.wear.compose.material3.AlertDialog
+import androidx.wear.compose.material3.AlertDialogDefaults
+import androidx.wear.compose.material3.Text
 import com.phasewake.app.core.DiagUnlock
 import com.phasewake.app.core.SleepGoal
 import com.phasewake.app.core.Transient
@@ -55,6 +59,19 @@ private fun requiredPermissions(): List<String> = buildList {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) add(Manifest.permission.POST_NOTIFICATIONS)
 }
 
+/** Was ein Tipp auf «Gute Nacht» tut ([goodNightTap]). */
+internal enum class GoodNightTap { START, CONFIRM_CANCEL, NONE }
+
+/**
+ * Tipp auf «Gute Nacht»: läuft sie, fragt das Aufheben zuerst ([GoodNightTap.CONFIRM_CANCEL], wie auf der Apple Watch,
+ * Prüfrunde 2 B-7); sonst starten, ausser die Weckzeit ist noch zu weit weg.
+ */
+internal fun goodNightTap(active: Boolean, tooFar: Boolean): GoodNightTap = when {
+    active -> GoodNightTap.CONFIRM_CANCEL
+    tooFar -> GoodNightTap.NONE
+    else -> GoodNightTap.START
+}
+
 @Composable
 internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit, onNap: () -> Unit = {}, onDiagnostics: () -> Unit = {}) {
     val context = LocalContext.current
@@ -79,6 +96,7 @@ internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit, onNap: (
     // Aus dem Speicher: zeigt «Gute Nacht» auch nach einem Neustart des Prozesses richtig an.
     val goodNightSince by app.goodNight.since.collectAsStateWithLifecycle(initialValue = null)
     val sleepAlarm = alarms.firstOrNull { it.id == plan?.alarmId && it.sleepDurationMinutes != null }
+    var confirmCancel by remember { mutableStateOf(false) }
     // «Gute Nacht» nur für die kommende Nacht (eingestellte Weckzeit höchstens 16 Std. entfernt).
     fun goodNightTooFar(at: Instant): Boolean {
         val latest = sleepAlarm?.let { AlarmSchedule.nextTarget(it, at, zone) } ?: return true
@@ -145,10 +163,10 @@ internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit, onNap: (
         dndBlocks = dndBlocks,
         onGoodNight = {
             val alarm = sleepAlarm ?: return@HomeContent
-            if (goodNightSince != null) {
-                WakeService.cancelGoodNight(context)
-            } else if (!goodNightTooFar(Instant.now())) {
-                WakeService.goodNight(context, alarm.id)
+            when (goodNightTap(active = goodNightSince != null, tooFar = goodNightTooFar(Instant.now()))) {
+                GoodNightTap.CONFIRM_CANCEL -> confirmCancel = true
+                GoodNightTap.START -> WakeService.goodNight(context, alarm.id)
+                GoodNightTap.NONE -> Unit
             }
         },
         onRequestPermissions = {
@@ -173,6 +191,17 @@ internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit, onNap: (
         },
         onAdd = onAdd,
         onEdit = onEdit,
+    )
+    AlertDialog(
+        visible = confirmCancel && goodNightSince != null,
+        onDismissRequest = { confirmCancel = false },
+        confirmButton = {
+            AlertDialogDefaults.ConfirmButton(onClick = {
+                confirmCancel = false
+                WakeService.cancelGoodNight(context)
+            })
+        },
+        title = { Text(stringResource(R.string.good_night_cancel)) },
     )
 }
 

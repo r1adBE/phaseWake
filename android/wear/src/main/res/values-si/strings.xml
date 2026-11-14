@@ -47,6 +47,7 @@
     <string name="home_good_night">සුබ රාත්‍රියක්</string>
     <string name="home_good_night_hint">දැන් සිට %1$s නිදාගන්න</string>
     <string name="home_good_night_active">නින්දට රැඳී සිටී · අවලංගුයට තට්ටු කරන්න</string>
+    <string name="good_night_cancel">සුබ රාත්‍රියක් අවලංගු කරන්න</string>
     <string name="dnd_title">එලාම අවහිරයි</string>
     <string name="dnd_text">“බාධා නොකරන්න” තුළ එලාමවලට ඉඩ දෙන්න.</string>
     <string name="duration_hours">පැය %1$d</string>

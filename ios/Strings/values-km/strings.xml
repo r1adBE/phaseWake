@@ -37,5 +37,4 @@
     <string name="editor_sleep_hint_apple">រាប់ពីពេលអ្នកដេកលក់ – ចុច «រាត្រីសួស្តី» នៅលើនាឡិកា ពេលអ្នកចូលគេង។ នៅលើ Apple Watch, Phase Wake ប៉ាន់ស្មានពេលដែលអ្នកលង់លក់ ពីរយៈពេលលង់លក់ដែលវាបានរៀន។ បើមិនចុច ពេលវេលាដែលបានកំណត់នឹងត្រូវប្រើ។</string>
     <string name="auto_onset_hint_apple">បើក Phase Wake នៅលើ Apple Watch របស់អ្នកចាប់ពី 1 ម៉ោងមុនពេលចូលគេង (នាឡិកានឹងរំលឹកអ្នក) ហើយវានឹងកត់ត្រាចលនារបស់អ្នកចាប់ពីពេលនោះរហូតដល់ចន្លោះពេលដាស់។ បន្ទាប់មក Phase Wake គណនាថាអ្នកដេកលក់នៅពេលណា។</string>
     <string name="home_good_night_tap_cancel">ចុចដើម្បីបោះបង់</string>
-    <string name="good_night_cancel">បោះបង់ រាត្រីសួស្តី</string>
 </resources>

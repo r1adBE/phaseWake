@@ -54,7 +54,7 @@ final class HabitsTests: XCTestCase {
         let sparse = [bedtime(until, "23:40"), bedtime(until, "23:00"), bedtime(minus(1, until), "23:10")]
         assertCount(Regularity.count(sparse, calendar: zurich), 2, 2)
         assertCount(Regularity.count(sparse, calendar: zurich, until: minus(1, until)), 1, 1)
-        assertCount(Regularity.count([], calendar: zurich), 0, 0)
+        assertCount(Regularity.count([] as [(date: String, start: Date)], calendar: zurich), 0, 0)
         // Mitternacht dazwischen: 23:50 und 00:15 liegen 25 Min auseinander.
         XCTAssertEqual(Regularity.minutesFromNoon(at("2026-10-28T03:00"), calendar: zurich), 15 * 60)
         assertCount(Regularity.count([bedtime(until, "23:50"), bedtime(minus(1, until), "00:15")], calendar: zurich), 2, 2)

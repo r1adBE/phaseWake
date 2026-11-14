@@ -46,6 +46,7 @@
     <string name="home_good_night">Hyvää yötä</string>
     <string name="home_good_night_hint">Nuku nyt %1$s</string>
     <string name="home_good_night_active">Odottaa untasi · peruuta napauttamalla</string>
+    <string name="good_night_cancel">Peru Hyvää yötä</string>
     <string name="dnd_title">Herätykset estetty</string>
     <string name="dnd_text">Salli herätykset Älä häiritse -tilassa.</string>
     <string name="duration_hours">%1$d t</string>

@@ -46,6 +46,7 @@
     <string name="home_good_night">شب بخیر</string>
     <string name="home_good_night_hint">ابھی سے %1$s نیند</string>
     <string name="home_good_night_active">نیند کا انتظار · منسوخ کرنے کو ٹیپ کرو</string>
+    <string name="good_night_cancel">شب بخیر منسوخ کرو</string>
     <string name="dnd_title">الارم بند ہیں</string>
     <string name="dnd_text">“ڈسٹرب نہ کریں” میں الارم کی اجازت دو۔</string>
     <string name="duration_hours">%1$d گھنٹے</string>

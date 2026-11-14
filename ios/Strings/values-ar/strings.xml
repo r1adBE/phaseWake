@@ -34,5 +34,4 @@
     <string name="editor_sleep_hint_apple">يُحسب من وقت نومك – اضغط «ليلة سعيدة» على الساعة عندما تذهب إلى السرير. على Apple Watch يقدّر Phase Wake وقت نومك من مدة الخلود إلى النوم التي تعلّمها. دون الضغط يسري الوقت المضبوط.</string>
     <string name="auto_onset_hint_apple">افتح Phase Wake على Apple Watch بدءًا من ساعة قبل موعد النوم (تذكّرك الساعة)، فتسجّل حركتك من ذلك الحين حتى نافذة الاستيقاظ؛ ثم يحسب Phase Wake متى غفوت.</string>
     <string name="home_good_night_tap_cancel">اضغطوا للإلغاء</string>
-    <string name="good_night_cancel">إلغاء ليلة سعيدة</string>
 </resources>

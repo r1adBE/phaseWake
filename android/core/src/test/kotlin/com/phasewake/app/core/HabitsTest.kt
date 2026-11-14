@@ -40,7 +40,7 @@ class HabitsTest {
         val sparse = listOf(bedtime(until, "23:40"), bedtime(until, "23:00"), bedtime(until.minusDays(1), "23:10"))
         assertEquals(2 to 2, Regularity.count(sparse, zone))
         assertEquals(1 to 1, Regularity.count(sparse, zone, until = until.minusDays(1)))
-        assertEquals(0 to 0, Regularity.count(emptyList(), zone))
+        assertEquals(0 to 0, Regularity.count(emptyList<Pair<LocalDate, Instant>>(), zone))
         // Mitternacht dazwischen: 23:50 und 00:15 liegen 25 Min auseinander.
         assertEquals(15.0 * 60, Regularity.minutesFromNoon(at("2026-10-28T03:00"), zone))
         assertEquals(2 to 2, Regularity.count(listOf(bedtime(until, "23:50"), bedtime(until.minusDays(1), "00:15")), zone))

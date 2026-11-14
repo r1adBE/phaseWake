@@ -46,6 +46,7 @@
     <string name="home_good_night">শুভরাত্রি</string>
     <string name="home_good_night_hint">এখন থেকে %1$s ঘুম</string>
     <string name="home_good_night_active">ঘুমের অপেক্ষায় · বাতিল করতে ট্যাপ করো</string>
+    <string name="good_night_cancel">শুভরাত্রি বাতিল করো</string>
     <string name="dnd_title">অ্যালার্ম আটকানো</string>
     <string name="dnd_text">“বিরক্ত করবে না”-তে অ্যালার্মের অনুমতি দাও।</string>
     <string name="duration_hours">%1$d ঘ.</string>

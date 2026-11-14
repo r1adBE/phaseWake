@@ -34,5 +34,4 @@
     <string name="editor_sleep_hint_apple">从入睡时开始计算——上床时在手表上轻点“晚安”。在 Apple Watch 上，Phase Wake 会根据学到的入睡时长估算你的入睡时间。如果不轻点，则按设定的时间。</string>
     <string name="auto_onset_hint_apple">在就寝时间前 1 小时起于 Apple Watch 上打开 Phase Wake（手表会提醒你），它就会从那时起记录你的动作，直到唤醒时间窗；随后 Phase Wake 会算出你何时入睡。</string>
     <string name="home_good_night_tap_cancel">点按取消</string>
-    <string name="good_night_cancel">取消晚安</string>
 </resources>

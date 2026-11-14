@@ -54,6 +54,19 @@ final class PhoneTransient {
         let base = model.nextPlan().flatMap { plan in model.alarms.first { $0.id == plan.alarmId } }
         let plan = Transient.test(base: base, now: Date(), calendar: .gregorianLocal, uuid: UUID().uuidString.lowercased())
         guard allowed(plan) else { return }
+        begin(test: plan)
+        PhoneConnectivity.shared.send(command: SyncKeys.test, extra: [SyncKeys.payload: Transient.encode(plan)])
+        if let id = await model.backup.scheduleTransient(plan) { addRingId(id) }
+        DiagStore.shared.log(.test, "start \(Format.logTime(plan.plan.target))")
+        waitForResult()
+    }
+
+    /// Stand für den neuen Probewecker `plan`. Ersetzt einen wartenden Powernap wie die Uhr (ein Platz für
+    /// vorübergehende Pläne) und Android (Prüfrunde 2 B-12): Die Powernap-Karte verschwindet; dessen Sicherung ersetzt
+    /// `scheduleTransient` (ein Platz).
+    func begin(test plan: TransientPlan) {
+        if nap != nil { DiagStore.shared.log(.nap, "replaced by test") }
+        nap = nil
         test = plan
         run = TestRun(id: plan.plan.alarmId, target: plan.plan.target, phoneAlert: plan.spec.phone)
         waitingForWatch = true
@@ -61,10 +74,24 @@ final class PhoneTransient {
         phoneRingUnobserved = false
         ringIds = []
         save()
-        PhoneConnectivity.shared.send(command: SyncKeys.test, extra: [SyncKeys.payload: Transient.encode(plan)])
-        if let id = await model.backup.scheduleTransient(plan) { addRingId(id) }
-        DiagStore.shared.log(.test, "start \(Format.logTime(plan.plan.target))")
-        waitForResult()
+    }
+
+    /// Stand für den neuen Powernap `plan` (hier oder auf der Uhr gestartet); `waiting`: «Öffne Phase Wake auf der Uhr».
+    /// Ersetzt einen wartenden Probewecker wie die Uhr und Android (ein Platz): Er endet ohne Ergebnis.
+    func begin(nap plan: TransientPlan, waiting: Bool) {
+        if test != nil {
+            DiagStore.shared.log(.test, "replaced by nap")
+            test = nil
+            run = nil
+            showResult = false
+            phoneRingUnobserved = false
+            ringIds = []
+            resultTask?.cancel()
+            alertTask?.cancel()
+        }
+        nap = plan
+        waitingForWatch = waiting
+        save()
     }
 
     /// Ergebnis geschlossen: der Probewecker ist vorbei.
@@ -86,9 +113,7 @@ final class PhoneTransient {
         let base = model.nextPlan().flatMap { plan in model.alarms.first { $0.id == plan.alarmId } }
         let plan = Transient.nap(base: base, now: Date(), calendar: .gregorianLocal, minutes: minutes, uuid: UUID().uuidString.lowercased())
         guard allowed(plan) else { return }
-        nap = plan
-        waitingForWatch = !(WCSession.isSupported() && WCSession.default.isReachable)
-        save()
+        begin(nap: plan, waiting: !(WCSession.isSupported() && WCSession.default.isReachable))
         PhoneConnectivity.shared.send(command: SyncKeys.nap, extra: [SyncKeys.payload: Transient.encode(plan)])
         await model.backup.scheduleTransient(plan)
         DiagStore.shared.log(.nap, "start \(minutes) min")
@@ -140,9 +165,7 @@ final class PhoneTransient {
 
     /// Powernap auf der Uhr gestartet: Sicherung stellen.
     func napFromWatch(_ plan: TransientPlan) async {
-        nap = plan
-        waitingForWatch = false
-        save()
+        begin(nap: plan, waiting: false)
         await PhoneModel.shared.backup.scheduleTransient(plan)
         DiagStore.shared.log(.nap, "from watch \(Format.logTime(plan.plan.target))")
     }

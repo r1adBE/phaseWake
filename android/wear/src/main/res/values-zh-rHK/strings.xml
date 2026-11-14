@@ -45,6 +45,7 @@
     <string name="home_good_night">晚安</string>
     <string name="home_good_night_hint">由現在起睡 %1$s</string>
     <string name="home_good_night_active">等待入睡 · 點按取消</string>
+    <string name="good_night_cancel">取消晚安</string>
     <string name="dnd_title">鬧鐘被封鎖</string>
     <string name="dnd_text">請在「請勿打擾」中允許鬧鐘。</string>
     <string name="duration_hours">%1$d 小時</string>

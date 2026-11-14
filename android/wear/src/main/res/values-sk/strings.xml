@@ -50,6 +50,7 @@
     <string name="home_good_night">Dobrú noc</string>
     <string name="home_good_night_hint">Spánok %1$s od teraz</string>
     <string name="home_good_night_active">Čaká na spánok · ťukni na zrušenie</string>
+    <string name="good_night_cancel">Zrušiť Dobrú noc</string>
     <string name="dnd_title">Budíky blokované</string>
     <string name="dnd_text">Povoľ budíky v režime Nerušiť.</string>
     <string name="duration_hours">%1$d h</string>

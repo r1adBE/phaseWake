@@ -89,11 +89,14 @@ object SleepNotes {
     fun nightDate(start: Instant, end: Instant, zone: ZoneId): LocalDate =
         nightDate(start.plus(Duration.between(start, end).dividedBy(2)), zone)
 
-    /** Nachtdatum einer Nacht für Diagramme und Trends: über ihre Mitte ([nightDate] mit Beginn und Ende). */
-    fun nightDate(sleep: SleepSummary, zone: ZoneId): LocalDate = nightDate(sleep.start, sleep.end, zone)
+    /**
+     * Nachtdatum einer Nacht für Diagramme und Trends: über ihre Mitte ([nightDate] mit Beginn und Ende), in der Zone der
+     * Aufzeichnung ([SleepSummary.zoneOr], sonst [zone]; Audit F-3).
+     */
+    fun nightDate(sleep: SleepSummary, zone: ZoneId): LocalDate = nightDate(sleep.start, sleep.end, sleep.zoneOr(zone))
 
-    /** Nachtdatum einer Sitzung im Verlauf: über ihre Mitte ([nightDate] mit Beginn und Ende). */
-    fun nightDate(session: HealthSession, zone: ZoneId): LocalDate = nightDate(session.start, session.end, zone)
+    /** Nachtdatum einer Sitzung im Verlauf: wie oben, in der Zone der Aufzeichnung ([HealthSession.zoneOr], sonst [zone]). */
+    fun nightDate(session: HealthSession, zone: ZoneId): LocalDate = nightDate(session.start, session.end, session.zoneOr(zone))
 
     /**
      * Ob die Startseite nach den Notizen für die kommende Nacht fragt: ab 17:00 des Abends bis zum
