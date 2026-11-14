@@ -60,6 +60,33 @@ final class HabitsTests: XCTestCase {
         assertCount(Regularity.count([bedtime(until, "23:50"), bedtime(minus(1, until), "00:15")], calendar: zurich), 2, 2)
     }
 
+    func testRegularityAroundNoon() {
+        // Audit W-1: Bettzeiten 11:30 und 12:30 liegen 60 Min auseinander → Median 12:00, beide regelmässig (vorher 0 von 2).
+        let until = "2026-10-27"
+        assertCount(Regularity.count([(date: until, start: at(until + "T12:30")), (date: minus(1, until), start: at(until + "T11:30"))],
+                                     calendar: zurich), 2, 2)
+        // 31 Min daneben zählt nicht mehr.
+        assertCount(Regularity.count([(date: until, start: at(until + "T12:31")), (date: minus(1, until), start: at(until + "T11:29"))],
+                                     calendar: zurich, toleranceMinutes: 30), 0, 2)
+    }
+
+    func testUnwrapCutsTheClockInTheWidestGap() {
+        // Lücke um Mittag am grössten: unverändert (wie bisher).
+        XCTAssertEqual(Regularity.unwrap([660, 690, 750]), [660, 690, 750])
+        // Grösste Lücke mitten in der Nacht: Zeiten kurz nach Mittag bekommen 1440 dazu, Reihenfolge bleibt.
+        XCTAssertEqual(Regularity.unwrap([1436, 50]), [1436, 1490])
+        XCTAssertEqual(Regularity.unwrap([50, 1436, 10]), [1490, 1436, 1450])
+        // Gleich grosse Lücken: die um Mittag gewinnt (unverändert).
+        XCTAssertEqual(Regularity.unwrap([0, 720]), [0, 720])
+        XCTAssertEqual(Regularity.unwrap([5]), [5])
+        XCTAssertEqual(Regularity.unwrap([]), [])
+        XCTAssertEqual(Regularity.dayMinutes, 1440)
+        // Mittel: 11:56 und 12:50 → 12:23; 22:30 und 23:00 → 22:45 (x.5 aufwärts).
+        XCTAssertEqual(Regularity.meanMinute([1436, 50]), 23)
+        XCTAssertEqual(Regularity.meanMinute([630, 660]), 645)
+        XCTAssertEqual(Regularity.meanMinute([630, 661]), 646)
+    }
+
     func testStreakCurrentAndLongest() {
         var reached: [String: Bool] = [
             minus(1, today): true, minus(2, today): true, minus(3, today): true,

@@ -240,6 +240,8 @@
     <string name="check_watch_battery_problem">Unter %1$d %% – lade die Uhr, damit sie die Nacht durchhält und dich weckt.</string>
     <string name="check_watch_recorder">Messung heute Nacht</string>
     <string name="check_watch_recorder_battery">Die Uhr hat die Messung vor dem Schlafen nicht gestartet – ihr Akku war zu schwach. Geweckt wirst du trotzdem.</string>
+    <string name="check_watch_onset_battery">Unter %1$d %% Akku misst die Uhr heute Nacht dein Einschlafen nicht – lade sie vorher. Geweckt wirst du trotzdem.</string>
+    <string name="check_watch_learn_battery">Unter %1$d %% Akku zeichnet die Uhr heute Nacht nicht für die Lernphase auf – lade sie vorher. Geweckt wirst du trotzdem.</string>
     <string name="check_watch_pulse">Puls im Hintergrund (Uhr)</string>
     <string name="check_watch_pulse_problem">Uhr darf den Puls nachts nicht messen – auf der Uhr bei Phase Wake «Sensoren/Fitness» auf «Immer zulassen» stellen.</string>
     <string name="export_contents_hint">Die Datei enthält je Nacht Bewegung und Puls je 30 s, Befinden und deine Notizen – ohne Namen, Datum oder Gerätekennung.</string>
@@ -580,6 +582,7 @@
     <string name="overview_no_stages">Ohne Phasen</string>
     <string name="settings_clear_history_learn">Die Lernphase beginnt von vorn.</string>
     <string name="learn_auto_hint">Tippe abends auf der Uhr auf «Gute Nacht» oder schalte «Einschlafen automatisch erkennen» ein, damit die Nächte zählen.</string>
+    <string name="learn_auto_hint_clock">Schalte «Einschlafen automatisch erkennen» ein – dann erkennt die Uhr dein Einschlafen selbst, und die Nächte zählen.</string>
     <string name="learn_consent_title">Lernphase</string>
     <string name="learn_consent_text">Damit Phase Wake den Wecker an dich anpasst, misst deine Uhr %1$d Nächte lang Bewegung und Puls über die Nacht. Das kostet etwas Akku – lade die Uhr vor dem Schlafen. Die Daten bleiben auf deinen Geräten. Du kannst die Lernphase jederzeit in den Einstellungen ausschalten.</string>
     <string name="learn_consent_start">Lernphase starten</string>

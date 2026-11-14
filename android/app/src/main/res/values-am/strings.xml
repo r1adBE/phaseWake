@@ -242,6 +242,8 @@
     <string name="check_watch_battery_problem">ከ%1$d %% በታች – ሌሊቱን እንዲቆይና እንዲቀሰቅስዎ ሰዓትዎን ኃይል ይሙሉ።</string>
     <string name="check_watch_recorder">የዛሬ ሌሊት ልኬት</string>
     <string name="check_watch_recorder_battery">ሰዓትህ ከእንቅልፍ በፊት ያለውን ልኬት አልጀመረም – ባትሪው በጣም ዝቅተኛ ነበር። ቢሆንም ማንቂያው ይቀሰቅስሃል።</string>
+    <string name="check_watch_onset_battery">ከ%1$d %% ባትሪ በታች ሰዓትህ ዛሬ ማታ እንቅልፍ መውሰድህን አይለካም – አስቀድመህ ኃይል ሙላው። ቢሆንም ማንቂያው ይቀሰቅስሃል።</string>
+    <string name="check_watch_learn_battery">ከ%1$d %% ባትሪ በታች ሰዓትህ ዛሬ ማታ ለመማሪያ ጊዜ አይቀርጽም – አስቀድመህ ኃይል ሙላው። ቢሆንም ማንቂያው ይቀሰቅስሃል።</string>
     <string name="check_watch_pulse">የዳራ ምት (ሰዓት)</string>
     <string name="check_watch_pulse_problem">ሰዓቱ ማታ ምትህን መለካት አይፈቀድለትም – በሰዓቱ ላይ የPhase Wake የዳሳሽ ፈቃድን ወደ “ሁልጊዜ ፍቀድ” አቀናብር።</string>
     <string name="export_contents_hint">ፋይሉ ለእያንዳንዱ ሌሊት በየ30 ሰከንዱ እንቅስቃሴና የልብ ምት፣ ስሜትህንና ማስታወሻዎችህን ይዟል – ያለ ስም፣ ቀን ወይም የመሣሪያ መታወቂያ።</string>
@@ -583,6 +585,7 @@
     <string name="overview_no_stages">ያለ ደረጃዎች</string>
     <string name="settings_clear_history_learn">የመማሪያ ጊዜው ከመጀመሪያው ይጀምራል።</string>
     <string name="learn_auto_hint">ሌሊቶቹ እንዲቆጠሩ ማታ በሰዓትህ ላይ «ደህና እደሩ»ን ንካ ወይም «እንቅልፍ መውሰድን በራስ-ሰር ለይ»ን አብራ።</string>
+    <string name="learn_auto_hint_clock">«እንቅልፍ መውሰድን በራስ-ሰር ለይ»ን አብራ – ከዚያ ሰዓትህ እንቅልፍ መውሰድህን ራሱ ይለያል፣ ሌሊቶቹም ይቆጠራሉ።</string>
     <string name="learn_consent_title">የመማሪያ ጊዜ</string>
     <string name="learn_consent_text">Phase Wake ማንቂያውን ለአንተ እንዲያስተካክል ሰዓትህ ለ%1$d ሌሊቶች ሌሊቱን ሙሉ እንቅስቃሴና የልብ ምት ይለካል። ይህ ትንሽ ባትሪ ይጠቀማል – ከመተኛትህ በፊት ሰዓቱን ቻርጅ አድርግ። ውሂቡ በመሣሪያዎችህ ላይ ይቆያል። የመማሪያ ጊዜውን በማንኛውም ጊዜ በቅንብሮች ውስጥ ማጥፋት ትችላለህ።</string>
     <string name="learn_consent_start">የመማሪያ ጊዜ ጀምር</string>

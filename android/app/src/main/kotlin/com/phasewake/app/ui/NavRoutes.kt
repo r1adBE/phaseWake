@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -38,6 +39,7 @@ import com.phasewake.app.ui.home.Check
 import com.phasewake.app.ui.home.HomeScreen
 import com.phasewake.app.ui.home.LearnNightsScreen
 import com.phasewake.app.ui.home.MAX_ALARMS
+import com.phasewake.app.ui.home.goodNightOffered
 import com.phasewake.app.ui.settings.HealthState
 import com.phasewake.app.ui.settings.LicensesScreen
 import com.phasewake.app.ui.settings.SettingsScreen
@@ -93,7 +95,11 @@ internal fun AppNavHost(app: PhaseWakeApp, state: NavState, actions: NavActions,
             )
         }
         composable(ExtraRoutes.LICENSES) { LicensesScreen(onBack = { actions.nav.popBackStack() }) }
-        composable(ExtraRoutes.LEARN_NIGHTS) { LearnNightsScreen(learnNightList(state.data), onBack = { actions.nav.popBackStack() }) }
+        composable(ExtraRoutes.LEARN_NIGHTS) {
+            val data = state.data
+            val goodNight = goodNightOffered(data.alarms, Instant.now(), ZoneId.systemDefault(), data.holidays, data.doneUntil)
+            LearnNightsScreen(learnNightList(data), onBack = { actions.nav.popBackStack() }, goodNight = goodNight)
+        }
         composable(ExtraRoutes.ONBOARDING) {
             OnboardingScreen(app, state, actions, onDone = {
                 app.appScope.launch { app.settings.setOnboardingDone(true) }
@@ -109,7 +115,7 @@ internal fun AppNavHost(app: PhaseWakeApp, state: NavState, actions: NavActions,
         composable(
             Routes.EDITOR,
             arguments = listOf(navArgument("id") { type = NavType.StringType; nullable = true; defaultValue = null }),
-        ) { entry -> EditorRoute(app, state, entry.arguments?.getString("id"), actions) }
+        ) { entry -> EditorRoute(app, state, entry.arguments?.getString("id"), actions, entry.savedStateHandle) }
     }
 }
 
@@ -330,8 +336,11 @@ private fun SoundsRoute(app: PhaseWakeApp, data: AppData, actions: NavActions) {
 }
 
 @Composable
-private fun EditorRoute(app: PhaseWakeApp, state: NavState, id: String?, actions: NavActions) {
+private fun EditorRoute(app: PhaseWakeApp, state: NavState, id: String?, actions: NavActions, draft: SavedStateHandle) {
     val data = state.data
+    // Erst zeigen, wenn die Wecker gelesen sind (nach dem Neuaufbau fehlen sie kurz): sonst wird ein bestehender
+    // Wecker als neuer bearbeitet und beim Speichern doppelt angelegt.
+    if (!data.alarmsLoaded) return
     val existing = data.alarms.firstOrNull { it.id == id }
     EditorScreen(
         existing = existing,
@@ -346,5 +355,6 @@ private fun EditorRoute(app: PhaseWakeApp, state: NavState, id: String?, actions
             app.afterAlarmsChanged { app.alarms.remove(spec.id) }
             actions.nav.popBackStack()
         },
+        draft = draft,
     )
 }

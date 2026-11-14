@@ -34,7 +34,9 @@ class SharedNightsTest {
             val detector = WakeDetector()
             return night.epochs.indexOfFirst { detector.onEpoch(it) is Decision.Wake }.takeIf { it >= 0 }
         }
-        assertEquals(5, firstWake(byName.getValue("learned_floor_sensor_start")))
+        // Seit E-1 (Audit c3b8b01) wartet die Leicht-Regel ohne Grundrauschen: Ohne gelernten Wert zählt das Rauschen zu
+        // Beginn nicht mehr (früher Epoche 5), es weckt wie mit gelerntem Wert erst die echte Bewegung.
+        assertEquals(32, firstWake(byName.getValue("learned_floor_sensor_start")))
         assertEquals(null, firstWake(byName.getValue("learned_resting_hr")))
         // Ohne Obergrenze aus dem gelernten Grundrauschen bleibt der unruhige Beginn still (Vollaudit K-1).
         assertEquals(null, firstWake(byName.getValue("restless_start_learned_floor")))

@@ -240,6 +240,8 @@
     <string name="check_watch_battery_problem">Pil %1$d %% altında – gece boyunca dayanması ve seni uyandırabilmesi için saatini şarj et.</string>
     <string name="check_watch_recorder">Bu geceki ölçüm</string>
     <string name="check_watch_recorder_battery">Saatin uyku öncesi ölçümü başlatmadı – pili çok zayıftı. Alarm seni yine de uyandıracak.</string>
+    <string name="check_watch_onset_battery">Pil %1$d %% altındayken saat bu gece ne zaman uykuya daldığını ölçmez – önceden şarj et. Alarm seni yine de uyandıracak.</string>
+    <string name="check_watch_learn_battery">Pil %1$d %% altındayken saat bu gece öğrenme aşaması için kayıt yapmaz – önceden şarj et. Alarm seni yine de uyandıracak.</string>
     <string name="check_watch_pulse">Arka planda nabız (saat)</string>
     <string name="check_watch_pulse_problem">Saatin gece nabzını ölçmesine izin yok – saatte Phase Wake’in sensör iznini “Her zaman izin ver” olarak ayarla.</string>
     <string name="export_contents_hint">Dosya her gece için 30 sn’lik hareket ve nabzı, nasıl hissettiğini ve notlarını içerir – adsız, tarihsiz ve cihaz kimliği olmadan.</string>
@@ -580,6 +582,7 @@
     <string name="overview_no_stages">Evresiz</string>
     <string name="settings_clear_history_learn">Öğrenme aşaması baştan başlar.</string>
     <string name="learn_auto_hint">Gecelerin sayılması için akşam saatinde “İyi geceler” öğesine dokun veya “Uykuya dalmayı otomatik algıla” seçeneğini aç.</string>
+    <string name="learn_auto_hint_clock">“Uykuya dalmayı otomatik algıla” seçeneğini aç – böylece saat ne zaman uykuya daldığını kendisi algılar ve geceler sayılır.</string>
     <string name="learn_consent_title">Öğrenme aşaması</string>
     <string name="learn_consent_text">Phase Wake alarmı sana göre ayarlayabilsin diye saatin %1$d gece boyunca gece içinde hareketi ve nabzı ölçer. Bu biraz pil harcar – uyumadan önce saati şarj et. Veriler cihazlarında kalır. Öğrenme aşamasını istediğin zaman ayarlardan kapatabilirsin.</string>
     <string name="learn_consent_start">Öğrenme aşamasını başlat</string>

@@ -245,6 +245,8 @@
     <string name="check_watch_battery_problem">Sotto il %1$d %% – ricarica l’orologio perché duri tutta la notte e possa svegliarti.</string>
     <string name="check_watch_recorder">Misurazione di stanotte</string>
     <string name="check_watch_recorder_battery">L’orologio non ha avviato la misurazione prima di dormire – la batteria era troppo scarica. La sveglia ti sveglierà comunque.</string>
+    <string name="check_watch_onset_battery">Con meno del %1$d %% di batteria, stanotte l’orologio non misurerà quando ti addormenti – ricaricalo prima. La sveglia ti sveglierà comunque.</string>
+    <string name="check_watch_learn_battery">Con meno del %1$d %% di batteria, stanotte l’orologio non registrerà per la fase di apprendimento – ricaricalo prima. La sveglia ti sveglierà comunque.</string>
     <string name="check_watch_pulse">Battito in background (orologio)</string>
     <string name="check_watch_pulse_problem">L’orologio non può misurare il tuo battito di notte – sull’orologio imposta l’autorizzazione sensori di Phase Wake su “Consenti sempre”.</string>
     <string name="export_contents_hint">Il file contiene per ogni notte movimento e battito ogni 30 s, come ti sentivi e le tue note – senza nomi, date o ID dei dispositivi.</string>
@@ -594,6 +596,7 @@
     <string name="overview_no_stages">Senza fasi</string>
     <string name="settings_clear_history_learn">La fase di apprendimento ricomincia da capo.</string>
     <string name="learn_auto_hint">La sera tocca «Buonanotte» sull’orologio o attiva «Rileva automaticamente l\'addormentamento», così le notti contano.</string>
+    <string name="learn_auto_hint_clock">Attiva «Rileva automaticamente l\'addormentamento»: così l’orologio rileva da solo quando ti addormenti e le notti contano.</string>
     <string name="learn_consent_title">Fase di apprendimento</string>
     <string name="learn_consent_text">Perché Phase Wake possa adattare la sveglia a te, il tuo orologio misura movimento e battito durante la notte per %1$d notti. Consuma un po’ di batteria – ricarica l’orologio prima di dormire. I dati restano sui tuoi dispositivi. Puoi disattivare la fase di apprendimento nelle impostazioni in qualsiasi momento.</string>
     <string name="learn_consent_start">Avvia fase di apprendimento</string>

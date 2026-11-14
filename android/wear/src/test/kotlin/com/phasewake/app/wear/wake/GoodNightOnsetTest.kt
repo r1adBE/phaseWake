@@ -46,7 +46,8 @@ class GoodNightOnsetTest {
     private var controller: ServiceController<WakeService>? = null
     private val now = Instant.ofEpochMilli(System.currentTimeMillis())
     private val zone = ZoneId.systemDefault()
-    private val at = now.plus(Duration.ofHours(3)).atZone(zone)
+    // 9 Std. vor der Weckzeit, 8 Std. Schlaf: Bettzeit in 1 Std., die automatische Messung beginnt planmässig (AP3-2).
+    private val at = now.plus(Duration.ofHours(9)).atZone(zone)
     // Speicher und Protokoll bleiben zwischen Tests derselben JVM: eigene Kennung, nur Zeilen ab Teststart.
     private val id = "onset-${System.nanoTime()}"
     private val spec = AlarmSpec(id = id, hour = at.hour, minute = at.minute, sleepDurationMinutes = 480)
@@ -249,6 +250,44 @@ class GoodNightOnsetTest {
         val latest = assertNotNull(AlarmSchedule.nextTarget(spec, now, zone))
         awaitDone(latest)
         assertTrue(!runBlocking { app.onsets.measuredFor(AlarmSchedule.planAt(spec, latest)) })
+    }
+
+    @Test
+    fun automaticStartAfterBedtimeLeavesOnsetUnknown() {
+        // Tiefenaudit AP3-2: Weckzeit in 3 Std., 8 Std. Schlaf: Die Bettzeit ist 5 Std. vorbei. Ruhe ab jetzt hiesse nur
+        // «schlief schon»: keine Messung, Einschlafzeit unbekannt, gemessen ohne Ergebnis (fail-closed).
+        battery(80)
+        val soon = now.plus(Duration.ofHours(3)).atZone(zone)
+        val late = spec.copy(hour = soon.hour, minute = soon.minute)
+        runBlocking { app.alarms.upsert(late) }
+        val built = Robolectric.buildService(WakeService::class.java)
+        controller = built
+        val service = built.create().get()
+        service.startGoodNight(id, auto = true)
+        assertTrue(awaitLog("auto onset start after bedtime").kind == DiagKind.MEASURE_END)
+        val latest = assertNotNull(AlarmSchedule.nextTarget(late, now, zone))
+        awaitDone(latest)
+        assertNull(service.onset)
+        assertNull(runBlocking { app.onsets.onsetFor(AlarmSchedule.planAt(late, latest)) })
+        assertTrue(runBlocking { app.onsets.measuredFor(AlarmSchedule.planAt(late, latest)) })
+    }
+
+    @Test
+    fun lateStartRule() {
+        // Gleiche Fälle wie `Audit93WatchTests` (Apple Watch, `RecorderOnset.startedLate`).
+        val latest = now.plus(Duration.ofHours(9))
+        val bedAt = OnsetRules.plannedBedAt(now, automatic = true, latest = latest, sleepMinutes = 450)
+        assertEquals(latest.minus(Duration.ofMinutes(450)), bedAt)
+        assertTrue(OnsetRules.startedLate(bedAt.plus(Duration.ofHours(4)), bedAt))
+        assertTrue(!OnsetRules.startedLate(bedAt.minus(Duration.ofMinutes(40)), bedAt))
+        assertTrue(!OnsetRules.startedLate(bedAt.plus(OnsetRules.LATE_START_TOLERANCE), bedAt))
+        assertTrue(OnsetRules.startedLate(bedAt.plus(OnsetRules.LATE_START_TOLERANCE).plusSeconds(1), bedAt))
+        // «Gute Nacht»: Beginn ist das Tippen; Sekundenbruchteile danach gilt die Messung, nach einem Prozessende nicht mehr.
+        val tap = now.minus(Duration.ofHours(2))
+        assertEquals(tap, OnsetRules.plannedBedAt(tap, automatic = false, latest = latest, sleepMinutes = 450))
+        assertTrue(!OnsetRules.startedLate(tap.plusMillis(200), tap))
+        assertTrue(OnsetRules.startedLate(tap.plus(Duration.ofMinutes(20)), tap))
+        assertEquals(Duration.ofSeconds(60), OnsetRules.LATE_START_TOLERANCE)
     }
 
     @Test

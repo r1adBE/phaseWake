@@ -115,7 +115,8 @@ fun HomeScreen(
 
     // Automatische Einschlaf-Messung der Uhr (nur Galaxy Watch), solange das Fenster noch nicht begonnen hat und die Uhr bereit ist.
     val watchOk = check != null && check.watchChecked && check.failed.none { it in WATCH_PROBLEMS }
-    val autoOnset = plan?.takeIf { extras.autoOnset && watchOk && now.isBefore(it.windowStart) }?.let { p ->
+    // Akku der Uhr zu schwach: Sie misst das Einschlafen nicht, also keine Zeile dazu (Audit O-05; der Check sagt es).
+    val autoOnset = plan?.takeIf { extras.autoOnset && watchOk && !NightCheckState.onsetSkipped(check) && now.isBefore(it.windowStart) }?.let { p ->
         alarms.firstOrNull { it.id == p.alarmId }?.let { a -> Format.time(ShortNight.autoOnsetStart(p.target, extras.sleepGoal, a.sleepDurationMinutes), zone) }
     }
     // Morgenbericht zuerst: vom Wecken heute bis 12 Uhr steht die letzte Nacht direkt unter dem Kopf.

@@ -52,7 +52,7 @@ object BackupManager {
             customNotes = custom,
             routineItems = items,
             routineTicks = ticks,
-            settings = app.settings.backupSettings(),
+            settings = app.settings.backupSettings(app.holidays.choice()),
             healthFeelings = app.notes.rawHealthFeelings(),
         )
         val sealed = withContext(Dispatchers.Default) {

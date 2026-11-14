@@ -27,6 +27,26 @@ class StageStatsTest {
     }
 
     @Test
+    fun sourceWithoutStageDetailHasNoStages() {
+        // Audit W-5: Schlaf «unbekannt» 23:00–07:00 mit 30 Min wach (Health Connect STAGE_TYPE_SLEEPING, HealthKit
+        // asleepUnspecified): keine Phasen statt «Wach 100 %».
+        val unknownWithAwake = listOf(span(0, 200, SleepStage.UNKNOWN), span(200, 230, SleepStage.AWAKE), span(230, 480, SleepStage.UNKNOWN))
+        assertNull(StageStats.of(unknownWithAwake, at(0), at(480)))
+        assertNull(of(span(0, 30, SleepStage.AWAKE)))
+        val session = HealthSession(at(0), at(480), unknownWithAwake)
+        assertNull(StageStats.forSession(session))
+        // Die Sitzung behält Schlaf und Wachzeit; der Schlafwert kommt aus der Dauer (vorläufig, höchstens 84).
+        assertEquals(450L, session.asleepMinutes)
+        assertEquals(30L, session.awakeMinutes)
+        val score = SleepScore.of(ScoreInput(session.asleepMinutes, 480))!!
+        assertEquals(true, score.provisional)
+        assertEquals(84, score.score)
+        assertEquals(ScoreBand.GOOD, score.band)
+        // Eine einzige Schlafphase genügt für eine Auswertung.
+        assertEquals(listOf(50, 0, 50, 0), percents(of(span(0, 30, SleepStage.AWAKE), span(30, 60, SleepStage.LIGHT))!!))
+    }
+
+    @Test
     fun mergesTouchingBlocksOfTheSameStage() {
         val s = of(span(0, 30, SleepStage.LIGHT), span(30, 50, SleepStage.LIGHT), span(50, 80, SleepStage.DEEP))!!
         assertEquals(listOf(StageBlock(SleepStage.LIGHT, at(0), at(50)), StageBlock(SleepStage.DEEP, at(50), at(80))), s.blocks)

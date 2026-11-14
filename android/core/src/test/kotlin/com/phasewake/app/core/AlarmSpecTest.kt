@@ -25,6 +25,20 @@ class AlarmSpecTest {
     }
 
     @Test
+    fun documentedNumbersAsLiterals() {
+        // Audit BE-3: Zahlen aus der Doku als Wert, nicht nur symbolisch (Wert − 1 / Wert / Wert + 1).
+        assertEquals(8, AlarmSpec.MAX_ALARMS)
+        assertEquals(0, AlarmSpec.EXACT_WINDOW)
+        assertTrue(alarm().copy(windowMinutes = 0).isExact)
+        assertEquals(60, AlarmSpec.MIN_SLEEP_MINUTES)
+        assertFailsWith<IllegalArgumentException> { alarm().copy(sleepDurationMinutes = 59) }
+        assertEquals(60, alarm().copy(sleepDurationMinutes = 60).sleepDurationMinutes)
+        assertEquals(61, alarm().copy(sleepDurationMinutes = 61).sleepDurationMinutes)
+        assertEquals(120, Sunrise.RING_SECONDS)
+        assertEquals(60, Sunrise.CATCH_UP_SECONDS)
+    }
+
+    @Test
     fun exactWindowIsZeroAndMeasuresThirtyMinutes() {
         val exact = alarm().copy(windowMinutes = AlarmSpec.EXACT_WINDOW)
         assertTrue(exact.isExact)

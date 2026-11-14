@@ -39,6 +39,8 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -52,6 +54,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.IntentCompat
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import com.phasewake.app.R
 import com.phasewake.app.core.AlarmSpec
@@ -70,14 +73,32 @@ fun EditorScreen(
     onBack: () -> Unit,
     onSave: (AlarmSpec) -> Unit,
     onDelete: (AlarmSpec) -> Unit,
+    /**
+     * Entwurf im Zustand des Navigationseintrags (Audit O-01): Alle Eingaben, Uhrzeit und die Kennung eines neuen Weckers
+     * überstehen so Drehen, Neuaufbau und Prozessende, unabhängig von der Stelle im Baum (rememberSaveable allein ging
+     * nach dem Neuaufbau verloren). `null`: nur rememberSaveable (Vorschauen).
+     */
+    draft: SavedStateHandle? = null,
 ) {
     val context = LocalContext.current
-    // Alle Felder überstehen Drehen und Neuaufbau (rememberSaveable), auch die Kennung eines neuen Weckers.
-    val newId = rememberSaveable { UUID.randomUUID().toString() }
+    val newId = rememberSaveable { draft?.get<String>(DRAFT_NEW_ID) ?: UUID.randomUUID().toString().also { draft?.set(DRAFT_NEW_ID, it) } }
     // Neue Wecker wecken mit «Morgenvögel»; bestehende behalten ihren Ton (leer = Standard des Systems).
     val base = existing ?: AlarmSpec(id = newId, hour = 7, minute = 0, days = WEEKDAYS, sound = WakeTones.DEFAULT)
-    val time = rememberTimePickerState(base.hour, base.minute, is24Hour = DateFormat.is24HourFormat(context))
-    val state = rememberSaveable(saver = EditorState.saver(base)) { EditorState(base) }
+    // Entwurf je Wecker: die Eingaben gehören immer zum gezeigten Wecker.
+    val draftKey = DRAFT_PREFIX + base.id
+    val saved = remember(draftKey) { draft?.get<ArrayList<*>>(draftKey) }
+    val time = rememberTimePickerState(
+        (saved?.getOrNull(0) as? Int) ?: base.hour,
+        (saved?.getOrNull(1) as? Int) ?: base.minute,
+        is24Hour = DateFormat.is24HourFormat(context),
+    )
+    val state = rememberSaveable(existing?.id, saver = EditorState.saver(base)) {
+        saved?.let { EditorState.restore(base, it.drop(2)) } ?: EditorState(base)
+    }
+    LaunchedEffect(state, time, draftKey) {
+        snapshotFlow { arrayListOf<Any?>(time.hour, time.minute).apply { addAll(EditorState.encode(state)) } }
+            .collect { draft?.set(draftKey, it) }
+    }
     val soundPicker = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         val uri = result.data?.let { IntentCompat.getParcelableExtra(it, RingtoneManager.EXTRA_RINGTONE_PICKED_URI, Uri::class.java) }
         if (result.resultCode == Activity.RESULT_OK) state.sound = uri?.toString().orEmpty()
@@ -188,3 +209,7 @@ private fun EditorDialogs(
         )
     }
 }
+
+/** Schlüssel des Entwurfs im Navigationseintrag ([EditorScreen], Audit O-01). */
+private const val DRAFT_NEW_ID = "editor_new_id"
+private const val DRAFT_PREFIX = "editor_draft_"

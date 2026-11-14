@@ -54,6 +54,14 @@ final class BackupAlarm {
     /// Plant die Sicherung für die nächsten Nächte mit Zweitwecker; danach die Nächte mit Wecker der Lern-Übersicht
     /// (``LearnLogStore/noteAlarms(_:holidays:now:)``, hängt an denselben Ereignissen wie auf Android).
     func reschedule(_ alarms: [AlarmSpec]) async {
+        // Stand vor dem ersten Entsperren nicht lesbar: `alarms` und die gemerkten Sicherungen wären leer, das Neuplanen
+        // verwürfe alle Zweitwecker oder liesse sie verwaist stehen (Tiefenaudit AP3-1). Nichts tun; ist er inzwischen
+        // lesbar, liest `catchUpState` ihn und plant mit dem echten Stand neu (nie mit dem leeren `alarms` von hier).
+        let model = PhoneModel.shared
+        guard model.stateLoaded else {
+            if !model.catchUpState() { DiagStore.shared.log(.scheduled, "phone backup not planned: settings not readable yet") }
+            return
+        }
         let previous = queue
         let task = Task { @MainActor in
             await previous?.value
@@ -97,7 +105,7 @@ final class BackupAlarm {
             guard let first = firstTargets[spec.id], now > first.addingTimeInterval(grace) else { return false }
             return !planned.contains { $0.slot.alarmId == spec.id && $0.slot.fireAt > now }
         }
-        for spec in expired { PhoneModel.shared.setEnabled(spec, false) }
+        for spec in expired { PhoneModel.shared.disableAfterRing(spec) }
         let skip = Set(expired.map(\.id))
         var wanted: [BackupSlot] = []
         var kept: [PlannedBackup] = []

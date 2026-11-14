@@ -55,9 +55,10 @@ struct HistoryChartsData {
     }
 
     /// Schlafprofil: die jüngste der letzten 14 Uhr-Nächte mit Schlafphasen. Befinden auch zu Nächten aus anderen Apps (`health`).
-    /// `firstDay`: erster Tag der Woche für die Übersicht (Sprache des Geräts).
+    /// `firstDay`: erster Tag der Woche für die Übersicht (Sprache des Geräts). `latencyMinutes`: gelernte Einschlafdauer
+    /// für die Bettzeit-Linie (die eine Bettzeit, Audit O-03).
     static func of(nights: [NightRecord], sleeps: [SleepSummary], stages: [StageSpan], notes: [String: [String]],
-                   nextTarget: Date?, goalMinutes: Int, now: Date, calendar: Calendar, health: [HealthFeeling] = [],
+                   nextTarget: Date?, goalMinutes: Int, latencyMinutes: Int? = nil, now: Date, calendar: Calendar, health: [HealthFeeling] = [],
                    firstDay: Weekday = .monday) -> HistoryChartsData {
         let today = SleepNotes.nightDate(now, calendar: calendar)
         let night = stages.isEmpty ? nil : nights.sorted { $0.wokeAt > $1.wokeAt }.prefix(ChartData.nights)
@@ -65,7 +66,8 @@ struct HistoryChartsData {
         var periods: [Int: PeriodCharts] = [:]
         for count in ChartData.periods {
             periods[count] = PeriodCharts(
-                bars: ChartData.sleepBars(sleeps, calendar: calendar, today: today, nextTarget: nextTarget, goalMinutes: goalMinutes, nights: count),
+                bars: ChartData.sleepBars(sleeps, calendar: calendar, today: today, nextTarget: nextTarget, goalMinutes: goalMinutes, nights: count,
+                                        latencyMinutes: latencyMinutes),
                 wake: ChartData.wakeMoments(nights, calendar: calendar, count: count),
                 feeling: ChartData.feelingSeries(nights, notes: notes, calendar: calendar, today: today, days: count, health: health)
             )

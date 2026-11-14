@@ -231,8 +231,9 @@ public enum ChartData {
     /// Schlaf-Streifen der `nights` Nachtdaten bis `lastDate`. Je Nachtdatum die längste Nacht der
     /// Gesundheits-App. Achse 21:00–11:00, erweitert auf ganze Stunden, damit alle Balken und die Bettzeit
     /// Platz haben (höchstens 24 Stunden). `nextTarget` = Zielzeit des nächsten Weckers für die Bettzeit.
+    /// `latencyMinutes`: gelernte Einschlafdauer für die Bettzeit-Linie (`Bedtime.bedtime`); `nil` = nicht gelernt.
     public static func sleepBars(_ sleeps: [SleepSummary], calendar: Calendar, today: String, nextTarget: Date?,
-                                 goalMinutes: Int, nights: Int = ChartData.nights) -> SleepBars? {
+                                 goalMinutes: Int, nights: Int = ChartData.nights, latencyMinutes: Int? = nil) -> SleepBars? {
         var longest: [String: SleepSummary] = [:]
         for sleep in sleeps {
             let date = SleepNotes.nightDate(of: sleep, calendar: calendar)
@@ -249,7 +250,7 @@ public enum ChartData {
             return SleepBar(date: date, startMinute: start, endMinute: end <= start ? end + 24 * 60 : end)
         }
         guard bars.contains(where: \.hasData) else { return nil }
-        let bedtime = nextTarget.map { Int(Regularity.minutesFromNoon(Bedtime.bedtime(nextAlarmTarget: $0, goalMinutes: goalMinutes), calendar: calendar)) }
+        let bedtime = nextTarget.map { Int(Regularity.minutesFromNoon(Bedtime.bedtime(nextAlarmTarget: $0, goalMinutes: goalMinutes, latencyMinutes: latencyMinutes), calendar: calendar)) }
         let starts = bars.compactMap(\.startMinute) + (bedtime.map { [$0] } ?? [])
         let ends = bars.compactMap(\.endMinute) + (bedtime.map { [$0] } ?? [])
         let lo = min(axisStart, starts.min()! / 60 * 60)
@@ -307,13 +308,13 @@ public enum ChartData {
         return WakeMoments(points: points, scaleMinutes: max(1, points.map(\.windowMinutes).max() ?? 1), averageBefore: average)
     }
 
-    /// Schlafprofil der Nacht von `night`: die Phasen der Gesundheits-App, die mit Lücken unter
-    /// `SleepSummary.newNightGap` zusammenhängen und das Weckfenster bis zum Wecken berühren. Der Bereich
+    /// Schlafprofil der Nacht von `night`: die Phasen der Gesundheits-App, die mit Lücken bis
+    /// `SleepSummary.newNightGap` (60 Min, wie der Verlauf) zusammenhängen und das Weckfenster bis zum Wecken berühren. Der Bereich
     /// reicht mindestens über Weckfenster und Weckmoment. `nil` ohne bekannte Phasen.
     public static func hypnogram(_ stages: [StageSpan], night: NightRecord) -> Hypnogram? {
         var groups: [[StageSpan]] = []
         for span in stages.sorted(by: { $0.start < $1.start }) {
-            if let group = groups.last, let groupEnd = group.map(\.end).max(), span.start.timeIntervalSince(groupEnd) < SleepSummary.newNightGap {
+            if let group = groups.last, let groupEnd = group.map(\.end).max(), span.start.timeIntervalSince(groupEnd) <= SleepSummary.newNightGap {
                 groups[groups.count - 1].append(span)
             } else {
                 groups.append([span])

@@ -94,6 +94,22 @@ class OnsetMonitor(
     private val tickReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) = tick()
     }
+
+    /** Zeiten am Ladegerät seit dem Beginn (elapsedRealtime in ns, Ende `null` = noch angeschlossen), [OnsetRules.charging]. */
+    private val chargingTimes = mutableListOf<Pair<Long, Long?>>()
+    private val powerReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) = onPower(intent.action == Intent.ACTION_POWER_CONNECTED)
+    }
+
+    /** Netzteil an ([plugged]) oder ab: Zeit am Ladegerät beginnen bzw. beenden (E-5). */
+    private fun onPower(plugged: Boolean) {
+        val nowNanos = SystemClock.elapsedRealtimeNanos()
+        val open = chargingTimes.lastOrNull()?.takeIf { it.second == null }
+        if (plugged && open == null) chargingTimes += nowNanos to null
+        if (!plugged && open != null) chargingTimes[chargingTimes.size - 1] = open.first to nowNanos
+        if (plugged == (open == null)) log(DiagKind.BATTERY, "$label ${if (plugged) "charging, waiting" else "charging ended"}")
+    }
+
     private val endSample = Runnable { endSample() }
 
     /** Ob gerade durchgehend gemessen wird (sonst Stichproben). */
@@ -109,6 +125,14 @@ class OnsetMonitor(
         log(DiagKind.MEASURE_START, "$label sensor wake=${if (s.continuous) 1 else 0} fifo=${s.wakeUpFifo} mode=${if (s.continuous) "continuous" else "sample"}")
         s.start(listen = s.continuous)
         ContextCompat.registerReceiver(context, tickReceiver, IntentFilter(ACTION_TICK), ContextCompat.RECEIVER_NOT_EXPORTED)
+        // Uhr am Ladegerät (E-5): Stand jetzt, danach jede Änderung (Systemmeldungen erreichen auch nicht exportierte Empfänger).
+        val battery = context.registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
+        if ((battery?.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) ?: 0) != 0) chargingTimes += startNanos to null
+        val power = IntentFilter().apply {
+            addAction(Intent.ACTION_POWER_CONNECTED)
+            addAction(Intent.ACTION_POWER_DISCONNECTED)
+        }
+        ContextCompat.registerReceiver(context, powerReceiver, power, ContextCompat.RECEIVER_NOT_EXPORTED)
         scheduleTick()
     }
 
@@ -126,10 +150,12 @@ class OnsetMonitor(
         logStat()
         log(DiagKind.MEASURE_END, "$label $why")
         context.getSystemService(AlarmManager::class.java).cancel(tickIntent())
-        try {
-            context.unregisterReceiver(tickReceiver)
-        } catch (e: IllegalArgumentException) {
-            Log.w(TAG, "Empfänger war nicht angemeldet", e)
+        for (receiver in listOf(tickReceiver, powerReceiver)) {
+            try {
+                context.unregisterReceiver(receiver)
+            } catch (e: IllegalArgumentException) {
+                Log.w(TAG, "Empfänger war nicht angemeldet", e)
+            }
         }
         s.stop()
         session = null
@@ -150,9 +176,11 @@ class OnsetMonitor(
         epochs.forEachIndexed { i, epoch ->
             val index = first + i
             val inSample = s.continuous || index in sampleFrom until sampleUntil
-            motions += epoch.motion
+            // Am Ladegerät leer (E-5): unterbricht die ruhige Strecke, zählt nicht fürs Grundrauschen.
+            val motion = if (OnsetRules.charging(index, startNanos, chargingTimes)) null else epoch.motion
+            motions += motion
             measured += inSample
-            if (inSample) period.add(epoch.motion)
+            if (inSample) period.add(motion)
         }
         // Epoche für Epoche: Grundrauschen und Regel nur bis zur Epoche, in der das Einschlafen erkannt ist (Fix KN-3).
         val (index, noise) = OnsetRules.scan(motions, measured, from, threshold, personalFloor, s.continuous, floor)

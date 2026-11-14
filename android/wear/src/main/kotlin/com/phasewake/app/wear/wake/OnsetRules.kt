@@ -10,31 +10,51 @@ import java.time.Instant
 /** Reine Regeln der Einschlaf-Messung in Stichproben, ohne Android (Tests: `OnsetRulesTest`). */
 internal object OnsetRules {
     /**
-     * Längste Lücke ungemessener Epochen (10 Min), die eine ruhige Strecke nicht unterbricht. Regulär liegen 8 dazwischen;
-     * so übersteht eine Strecke einen verspäteten Alarm, nicht aber eine längere Pause.
+     * Längste Lücke ungemessener Epochen (10 Min), die eine ruhige Strecke nicht unterbricht. Regulär liegen 8 dazwischen
+     * (Takt 10 Epochen, [nextTick]); so übersteht eine Strecke einen verspäteten Alarm, nicht aber eine längere Pause.
      */
     const val MAX_GAP_EPOCHS = 20
 
     /**
+     * Stichproben: Die ruhige Strecke muss so viele Epochen über [SleepOnset.STILL_EPOCHS] hinaus umfassen (10 Min, zwei
+     * Stichproben mehr; Audit c3b8b01 E-4). Die Stichproben sehen nur 2 von 10 Epochen; ohne diese Bestätigung meldete je nach
+     * Lage der Stichproben schon eine zufällig ruhige Viertelstunde das Einschlafen (an einer echten Nacht bis 1 Std. zu früh,
+     * obwohl die Person danach wieder aktiv war).
+     */
+    const val SAMPLED_CONFIRM_EPOCHS = 20
+
+    /** Stichproben: höchstens so viele einzelne Zucker je Strecke (bewegte Epoche, die andere der Stichprobe ruhig). */
+    const val SAMPLED_MAX_TWITCHES = 1
+
+    /**
      * Einschlafen in Stichproben: wie [SleepOnset.find], aber ungemessene Epochen ([measured] `false`) unterbrechen die
-     * Strecke nicht und zählen nicht als ruhig. Die Strecke ruhiger gemessener Epochen (Bewegung vorhanden und unter
-     * [threshold]) muss mindestens [SleepOnset.STILL_EPOCHS] Epochen (15 Min) umfassen, von der ersten bis zur letzten.
-     * Eine gemessene leere oder bewegte Epoche oder eine Lücke über [MAX_GAP_EPOCHS] beginnt von vorn. Sind alle Epochen
-     * gemessen, gilt genau [SleepOnset.find].
+     * Strecke nicht und zählen nicht als ruhig. Die Strecke gemessener Epochen beginnt und endet mit einer ruhigen
+     * (Bewegung vorhanden und unter [threshold]) und muss von der ersten bis zur letzten mindestens
+     * [SleepOnset.STILL_EPOCHS] + [SAMPLED_CONFIRM_EPOCHS] Epochen (25 Min) umfassen. Dazwischen darf höchstens
+     * [SAMPLED_MAX_TWITCHES] einzelner Zucker liegen (bewegte Epoche, deren gemessene Nachbarn ruhig sind; wie
+     * [SleepOnset.MAX_TWITCHES]). Eine gemessene leere Epoche, zwei bewegte nacheinander, ein weiterer Zucker oder eine
+     * Lücke über [MAX_GAP_EPOCHS] beginnt von vorn.
      * @return Index der ersten Epoche der Strecke, oder `null`.
      */
     fun find(motions: List<Double?>, measured: List<Boolean>, threshold: Double): Int? {
-        var runStart = -1
-        var lastMeasured = -1
-        for ((index, motion) in motions.withIndex()) {
-            if (!measured.getOrElse(index) { false }) continue
-            if (runStart >= 0 && index - lastMeasured - 1 > MAX_GAP_EPOCHS) runStart = -1
-            lastMeasured = index
-            if (motion != null && motion < threshold) {
-                if (runStart < 0) runStart = index
-                if (index - runStart + 1 >= SleepOnset.STILL_EPOCHS) return runStart
-            } else {
-                runStart = -1
+        fun isMeasured(index: Int): Boolean = index in motions.indices && measured.getOrElse(index) { false }
+        fun quiet(index: Int): Boolean = motions[index].let { it != null && it < threshold }
+        val indices = motions.indices.filter(::isMeasured)
+        for ((position, start) in indices.withIndex()) {
+            if (!quiet(start)) continue
+            var last = start
+            var twitches = 0
+            for (index in indices.subList(position + 1, indices.size)) {
+                if (index - last - 1 > MAX_GAP_EPOCHS) break
+                last = index
+                if (quiet(index)) {
+                    if (index - start + 1 >= SleepOnset.STILL_EPOCHS + SAMPLED_CONFIRM_EPOCHS) return start
+                    continue
+                }
+                twitches++
+                val neighbourMoved = (index - 1 >= start && isMeasured(index - 1) && !quiet(index - 1)) ||
+                    (isMeasured(index + 1) && !quiet(index + 1))
+                if (motions[index] == null || neighbourMoved || twitches > SAMPLED_MAX_TWITCHES) break
             }
         }
         return null
@@ -71,14 +91,20 @@ internal object OnsetRules {
         return (elapsed + OnsetMonitor.EPOCH_NANOS - 1) / OnsetMonitor.EPOCH_NANOS
     }
 
+    /** Epochen je Takt ([OnsetMonitor.TICK_INTERVAL], 5 Min = 10 Epochen). */
+    val TICK_EPOCHS: Long = OnsetMonitor.TICK_INTERVAL.toNanos() / OnsetMonitor.EPOCH_NANOS
+
     /**
-     * Nächster Alarm (elapsedRealtime in ns): frühestens [OnsetMonitor.TICK_INTERVAL] nach [nowNanos], und zwar
-     * [OnsetMonitor.SAMPLE_LEAD_MS] vor einer Epochengrenze, damit die Stichprobe eine volle Epoche früh beginnt.
+     * Nächster Alarm (elapsedRealtime in ns): [OnsetMonitor.SAMPLE_LEAD_MS] vor der Epochengrenze, die [TICK_EPOCHS]
+     * Epochen nach der Grenze liegt, die [nowNanos] (plus Vorlauf) am nächsten ist. So bleibt der Takt bei genau
+     * 10 Epochen, auch wenn ein Alarm einige Sekunden zu spät kommt (Audit c3b8b01 E-3: «jetzt + 5 Min» aufgerundet ergab
+     * bei jeder Verspätung 11 Epochen, Stichproben alle 5½ Min). Abstand zu [nowNanos]: 5 Min ± eine halbe Epoche.
      */
     fun nextTick(startNanos: Long, nowNanos: Long): Long {
         val lead = OnsetMonitor.SAMPLE_LEAD_MS * 1_000_000L
-        val boundary = firstFullEpoch(startNanos, nowNanos + OnsetMonitor.TICK_INTERVAL.toNanos() + lead)
-        return startNanos + boundary * OnsetMonitor.EPOCH_NANOS - lead
+        val elapsed = (nowNanos + lead - startNanos).coerceAtLeast(0L)
+        val nearest = (elapsed + OnsetMonitor.EPOCH_NANOS / 2) / OnsetMonitor.EPOCH_NANOS
+        return startNanos + (nearest + TICK_EPOCHS) * OnsetMonitor.EPOCH_NANOS - lead
     }
 
     /**
@@ -147,6 +173,38 @@ internal object OnsetRules {
      * `RecorderOnset.onsetAt` (Swift).
      */
     fun onsetAt(found: Instant, bedAt: Instant): Instant = maxOf(found, bedAt)
+
+    /**
+     * Ob Epoche [index] (ab [startNanos], Länge [OnsetMonitor.EPOCH_NANOS]) eine Zeit am Ladegerät berührt (Audit c3b8b01
+     * E-5, Entscheid r1AD 14.11.2026). [charging]: Zeiten von Netzteil an bis ab (elapsedRealtime in ns; `null` = noch
+     * angeschlossen). Solche Epochen gelten als leer: Die abgelegte Uhr misst nur Rauschen, das sonst als Einschlafen
+     * zählte; die Messung wartet, bis sie wieder getragen wird.
+     */
+    fun charging(index: Long, startNanos: Long, charging: List<Pair<Long, Long?>>): Boolean {
+        val from = startNanos + index * OnsetMonitor.EPOCH_NANOS
+        val until = from + OnsetMonitor.EPOCH_NANOS
+        return charging.any { (on, off) -> on < until && (off == null || off > from) }
+    }
+
+    /** Spielraum für [startedLate]: Nach «Gute Nacht» beginnt die Messung Sekundenbruchteile nach dem Tippen. */
+    val LATE_START_TOLERANCE: Duration = Duration.ofSeconds(60)
+
+    /**
+     * Beginn der Einschlafdauer für [startedLate]: automatisch die Bettzeit (Weckzeit [latest] minus Schlaf
+     * [sleepMinutes]), auch wenn die Messung erst danach beginnt; nach «Gute Nacht» das Tippen [since]. Wie
+     * `RecorderOnset.bedAt` (Swift) mit dem planmässigen Beginn 60 Min vor der Bettzeit.
+     */
+    fun plannedBedAt(since: Instant, automatic: Boolean, latest: Instant, sleepMinutes: Int): Instant =
+        if (automatic) latest.minus(Duration.ofMinutes(sleepMinutes.toLong())) else since
+
+    /**
+     * Ob die Messung erst nach dem Beginn der Einschlafdauer [bedAt] ([plannedBedAt]) beginnt, um mehr als
+     * [LATE_START_TOLERANCE] (Tiefenaudit AP3-2, wie `RecorderOnset.startedLate` auf der Apple Watch): automatisch nach
+     * der Bettzeit (Neustart der Uhr, späte Änderung, Schalter spät ein), nach «Gute Nacht» beim Wiederaufnehmen nach einem
+     * Prozessende (die Erkennung beginnt dann von vorn). Ruhe ab diesem Beginn hiesse nur «schlief schon»: Die
+     * Einschlafzeit ist unbekannt, die Nacht gilt als gemessen ohne Ergebnis (fail-closed), ohne Grundrauschen.
+     */
+    fun startedLate(measureFrom: Instant, bedAt: Instant): Boolean = measureFrom.isAfter(bedAt.plus(LATE_START_TOLERANCE))
 
     /** «give up (max duration)» bzw. «give up», wenn [at] die frühere der beiden Grenzen erreicht hat; sonst `null`. */
     fun giveUpReason(at: Instant, latestGiveUp: Instant, maxEnd: Instant): String? = when {

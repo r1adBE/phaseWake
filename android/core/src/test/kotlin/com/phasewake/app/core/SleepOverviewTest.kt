@@ -45,6 +45,20 @@ class SleepOverviewTest {
     }
 
     @Test
+    fun averageTimesDoNotJumpAtNoon() {
+        // Audit W-1: Aufwachen 11:56 und 12:50 → Ø 12:23 (23 Min ab Mittag), nicht 00:23 (743).
+        val late = listOf(sleep(today, 23, 0, wakeHour = 11, wakeMinute = 56), sleep(today.minusDays(1), 23, 0, wakeHour = 12, wakeMinute = 50))
+        val o = SleepOverviews.of(late, zone, today, 450, OverviewUnit.DAYS)!!
+        assertEquals(23, o.wakeMinute)
+        assertEquals(11 * 60, o.bedtimeMinute)
+        // Einschlafen 11:30 und 12:30 (Tagschläfer) → Ø 12:00 (0), nicht 00:00 (720).
+        val day = listOf(sleep(today, 11, 30), sleep(today.minusDays(1), 12, 30))
+        assertEquals(0, SleepOverviews.of(day, zone, today, 450, OverviewUnit.DAYS)!!.bedtimeMinute)
+        // 11:59 und 12:00 → Ø 11:59:30 rundet auf 12:00 und bleibt in 0 ≤ m < 1440.
+        assertEquals(0, Regularity.meanMinute(listOf(1439.0, 0.0)))
+    }
+
+    @Test
     fun weeksGoByTheMorningAndTheFirstDayOfTheWeek() {
         val ranges = SleepOverviews.ranges(today, OverviewUnit.WEEKS, DayOfWeek.MONDAY)
         assertEquals(8, ranges.size)
@@ -116,6 +130,17 @@ class SleepOverviewTest {
         // Weckfenster 30 Min mit Puls nur in 5 Stücken: keine Kurve; in 6 Stücken: Kurve.
         assertNull(SleepOverviews.pulse(List(60) { i -> Epoch(0.01, if (i < 10) null else 60.0) }, start))
         assertEquals(6, SleepOverviews.pulse(List(60) { Epoch(0.01, 60.0) }, start)!!.buckets.size)
+    }
+
+    @Test
+    fun nightWithOnlyAwakeHasNoStageSplit() {
+        // Audit W-5: Quelle ohne Phasendetail (nur «wach» bekannt) gibt eine neutrale Säule, keine Säule «ganz wach».
+        val night = sleep(today, 23, 0)
+        val t = night.start
+        val stages = listOf(StageSpan(t, t.plusSeconds(200 * 60), SleepStage.UNKNOWN), StageSpan(t.plusSeconds(200 * 60), t.plusSeconds(230 * 60), SleepStage.AWAKE))
+        assertEquals(emptyMap(), SleepOverviews.stageAverage(listOf(night), stages))
+        val withLight = stages + StageSpan(t.plusSeconds(230 * 60), t.plusSeconds(300 * 60), SleepStage.LIGHT)
+        assertEquals(70L, SleepOverviews.stageAverage(listOf(night), withLight)[SleepStage.LIGHT])
     }
 
     @Test

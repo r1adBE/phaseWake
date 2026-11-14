@@ -240,6 +240,8 @@
     <string name="check_watch_battery_problem">Under %1$d %% – oplad dit ur, så det holder natten igennem og kan vække dig.</string>
     <string name="check_watch_recorder">Måling i nat</string>
     <string name="check_watch_recorder_battery">Uret startede ikke målingen før søvn – batteriet var for lavt. Du bliver stadig vækket.</string>
+    <string name="check_watch_onset_battery">Under %1$d %% batteri måler uret ikke i nat, hvornår du falder i søvn – oplad det inden. Du bliver stadig vækket.</string>
+    <string name="check_watch_learn_battery">Under %1$d %% batteri optager uret ikke i nat til læringsfasen – oplad det inden. Du bliver stadig vækket.</string>
     <string name="check_watch_pulse">Puls i baggrunden (ur)</string>
     <string name="check_watch_pulse_problem">Uret må ikke måle din puls om natten – indstil på uret Phase Wakes sensortilladelse til “Tillad altid”.</string>
     <string name="export_contents_hint">Filen indeholder for hver nat bevægelse og puls pr. 30 s, hvordan du havde det, og dine noter – uden navne, datoer eller enheds-id’er.</string>
@@ -580,6 +582,7 @@
     <string name="overview_no_stages">Uden faser</string>
     <string name="settings_clear_history_learn">Læringsfasen starter forfra.</string>
     <string name="learn_auto_hint">Tryk om aftenen på »Godnat« på uret, eller slå »Registrér automatisk, når du falder i søvn« til, så nætterne tæller.</string>
+    <string name="learn_auto_hint_clock">Slå »Registrér automatisk, når du falder i søvn« til – så registrerer uret selv, hvornår du falder i søvn, og nætterne tæller.</string>
     <string name="learn_consent_title">Læringsfase</string>
     <string name="learn_consent_text">For at Phase Wake kan tilpasse alarmen til dig, måler dit ur bevægelse og puls gennem natten i %1$d nætter. Det bruger lidt batteri – oplad uret, før du sover. Dataene bliver på dine enheder. Du kan altid slå læringsfasen fra i indstillingerne.</string>
     <string name="learn_consent_start">Start læringsfase</string>

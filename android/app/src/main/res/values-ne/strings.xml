@@ -242,6 +242,8 @@
     <string name="check_watch_battery_problem">%1$d %% भन्दा कम – रातभर चलोस् र तिमीलाई ब्युँझाउन सकोस् भनेर घडी चार्ज गर।</string>
     <string name="check_watch_recorder">आज रातको मापन</string>
     <string name="check_watch_recorder_battery">तिम्रो घडीले सुत्नुअघिको मापन सुरु गरेन – यसको ब्याट्री धेरै कम थियो। अलार्मले तिमीलाई तैपनि उठाउनेछ।</string>
+    <string name="check_watch_onset_battery">%1$d %% भन्दा कम ब्याट्रीमा घडीले आज राति तिमी कहिले निदायौ भनेर मापन गर्दैन – पहिल्यै चार्ज गर। अलार्मले तिमीलाई तैपनि उठाउनेछ।</string>
+    <string name="check_watch_learn_battery">%1$d %% भन्दा कम ब्याट्रीमा घडीले आज राति सिक्ने चरणका लागि रेकर्ड गर्दैन – पहिल्यै चार्ज गर। अलार्मले तिमीलाई तैपनि उठाउनेछ।</string>
     <string name="check_watch_pulse">पृष्ठभूमिमा पल्स (घडी)</string>
     <string name="check_watch_pulse_problem">घडीलाई रातमा तिम्रो पल्स नाप्ने अनुमति छैन – घडीमा Phase Wake को सेन्सर अनुमति “सधैँ अनुमति दिनुहोस्” मा सेट गर।</string>
     <string name="export_contents_hint">फाइलमा हरेक रातको हरेक 30 सेकेन्डको चालचलन र मुटुको धड्कन, तिमीलाई कस्तो लाग्यो र तिम्रा नोटहरू छन् – नाम, मिति वा उपकरण ID बिना।</string>
@@ -583,6 +585,7 @@
     <string name="overview_no_stages">चरणबिना</string>
     <string name="settings_clear_history_learn">सिक्ने चरण फेरि सुरुदेखि सुरु हुन्छ।</string>
     <string name="learn_auto_hint">रातहरू गनिऊन् भन्नाका लागि साँझ घडीमा “शुभ रात्रि” ट्याप गर वा “निदाएको आफैँ पत्ता लगाऊ” सक्रिय गर।</string>
+    <string name="learn_auto_hint_clock">“निदाएको आफैँ पत्ता लगाऊ” सक्रिय गर – त्यसपछि तिमी कहिले निदायौ भनेर घडीले आफैँ पत्ता लगाउँछ, र रातहरू गनिन्छन्।</string>
     <string name="learn_consent_title">सिक्ने चरण</string>
     <string name="learn_consent_text">Phase Wake ले अलार्मलाई तिमी अनुसार मिलाउन सकोस् भनेर तिम्रो घडीले %1$d रातसम्म रातभर चाल र नाडी नाप्छ। यसले केही ब्याट्री खपत गर्छ – सुत्नुअघि घडी चार्ज गर। डेटा तिम्रो उपकरणमै रहन्छ। सिक्ने चरण सेटिङमा जुनसुकै बेला बन्द गर्न सक्छौ।</string>
     <string name="learn_consent_start">सिक्ने चरण सुरु गर</string>

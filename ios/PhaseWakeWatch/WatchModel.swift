@@ -219,6 +219,19 @@ final class WatchModel {
         reschedule()
     }
 
+    /// Auto-Aus nach dem Klingeln (Fix G-1/S-1): schaltet den Einmal-Wecker `alarmId` nur aus, wenn er noch die Fassung
+    /// ist, die zur Zielzeit `target` geklingelt hat (``AlarmStamps/rang(_:rung:target:calendar:shifted:)``; `rung` =
+    /// Wecker zu Beginn der Nacht, `shifted` = «Gute Nacht» hat diese Nacht vorverlegt). Zeitpunkt der bisherigen
+    /// Fassung + 1 ms: Eine neuere Änderung am iPhone gewinnt beim Abgleich. Wie `NightFinish` (Wear OS).
+    func disableAfterRing(_ alarmId: String, rung: AlarmSpec?, target: Date, shifted: Bool) {
+        guard let snapshot = storage.disableAfterRing(alarmId, rang: {
+            AlarmStamps.rang($0, rung: rung, target: target, calendar: .gregorianLocal, shifted: shifted)
+        }) else { return }
+        alarms = snapshot.alarms
+        WatchConnectivityBridge.shared.publish(snapshot)
+        reschedule()
+    }
+
     /// Höchstens so viele Wecker wie am iPhone.
     static let maxAlarms = 8
     var canAddAlarm: Bool { alarms.count < Self.maxAlarms }
@@ -299,7 +312,8 @@ final class WatchModel {
 
     /// Vom iPhone empfangene Wecker je Wecker übernehmen (Audit A-4, ``AlarmStamps``).
     func applyRemote(_ snapshot: AlarmSnapshot) {
-        guard storage.applyRemote(snapshot) else { return }
+        // Derselbe Kontext nicht zweimal (Fix S-5): Er kommt bei jedem Start erneut.
+        guard storage.applyRemoteContext(snapshot) else { return }
         alarms = storage.snapshot().alarms
         DiagStore.shared.log(.alarmsReceived, "\(alarms.count) alarms")
         reschedule()

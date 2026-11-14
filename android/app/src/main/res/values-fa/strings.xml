@@ -240,6 +240,8 @@
     <string name="check_watch_battery_problem">کمتر از %1$d %% – ساعت را شارژ کن تا تمام شب روشن بماند و بیدارت کند.</string>
     <string name="check_watch_recorder">اندازه‌گیری امشب</string>
     <string name="check_watch_recorder_battery">ساعتت اندازه‌گیری پیش از خواب را شروع نکرد – باتری‌اش خیلی کم بود. زنگ هشدار باز هم بیدارت می‌کند.</string>
+    <string name="check_watch_onset_battery">با باتری کمتر از %1$d %% ساعت امشب زمان به خواب رفتنت را اندازه نمی‌گیرد – از قبل شارژش کن. زنگ هشدار باز هم بیدارت می‌کند.</string>
+    <string name="check_watch_learn_battery">با باتری کمتر از %1$d %% ساعت امشب برای مرحلهٔ یادگیری ضبط نمی‌کند – از قبل شارژش کن. زنگ هشدار باز هم بیدارت می‌کند.</string>
     <string name="check_watch_pulse">نبض در پس‌زمینه (ساعت)</string>
     <string name="check_watch_pulse_problem">ساعت اجازه ندارد شب‌ها نبضت را اندازه بگیرد – در ساعت، اجازهٔ حسگر Phase Wake را روی «همیشه مجاز است» بگذار.</string>
     <string name="export_contents_hint">فایل برای هر شب حرکت و ضربان قلب هر ۳۰ ثانیه، حالت تو و یادداشت‌هایت را دارد – بدون نام، تاریخ یا شناسهٔ دستگاه.</string>
@@ -580,6 +582,7 @@
     <string name="overview_no_stages">بدون مرحله</string>
     <string name="settings_clear_history_learn">مرحلهٔ یادگیری از نو شروع می‌شود.</string>
     <string name="learn_auto_hint">شب‌ها روی ساعت «شب بخیر» را بزن یا «تشخیص خودکار به خواب رفتن» را روشن کن تا شب‌ها شمرده شوند.</string>
+    <string name="learn_auto_hint_clock">«تشخیص خودکار به خواب رفتن» را روشن کن – آن‌وقت ساعت خودش تشخیص می‌دهد کی به خواب می‌روی و شب‌ها شمرده می‌شوند.</string>
     <string name="learn_consent_title">مرحلهٔ یادگیری</string>
     <string name="learn_consent_text">برای اینکه Phase Wake زنگ را با تو هماهنگ کند، ساعتت %1$d شب در طول شب حرکت و نبض را اندازه می‌گیرد. این کار کمی باتری مصرف می‌کند – قبل از خواب ساعت را شارژ کن. داده‌ها روی دستگاه‌هایت می‌مانند. هر وقت بخواهی می‌توانی مرحلهٔ یادگیری را در تنظیمات خاموش کنی.</string>
     <string name="learn_consent_start">شروع مرحلهٔ یادگیری</string>

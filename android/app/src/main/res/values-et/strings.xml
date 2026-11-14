@@ -242,6 +242,8 @@
     <string name="check_watch_battery_problem">Alla %1$d %% – lae kella, et see peaks öö vastu ja saaks sind äratada.</string>
     <string name="check_watch_recorder">Tänaöine mõõtmine</string>
     <string name="check_watch_recorder_battery">Kell ei alustanud enne magamaminekut mõõtmist – aku oli liiga tühi. Äratus äratab sind ikkagi.</string>
+    <string name="check_watch_onset_battery">Alla %1$d %% aku korral ei mõõda kell täna öösel, millal sa uinud – lae see enne. Äratus äratab sind ikkagi.</string>
+    <string name="check_watch_learn_battery">Alla %1$d %% aku korral ei salvesta kell täna öösel õppefaasi jaoks – lae see enne. Äratus äratab sind ikkagi.</string>
     <string name="check_watch_pulse">Pulss taustal (kell)</string>
     <string name="check_watch_pulse_problem">Kell ei tohi öösel su pulssi mõõta – määra kellas Phase Wake’i andurite luba valikule „Luba alati“.</string>
     <string name="export_contents_hint">Fail sisaldab iga öö kohta liikumist ja pulssi iga 30 s kohta, sinu enesetunnet ja märkmeid – ilma nimede, kuupäevade ja seadme-ID-deta.</string>
@@ -583,6 +585,7 @@
     <string name="overview_no_stages">Faasideta</string>
     <string name="settings_clear_history_learn">Õppimisfaas algab otsast peale.</string>
     <string name="learn_auto_hint">Puuduta õhtul kellal „Head ööd“ või lülita sisse „Tuvasta uinumine automaatselt“, et ööd loeksid.</string>
+    <string name="learn_auto_hint_clock">Lülita sisse „Tuvasta uinumine automaatselt“ – siis tuvastab kell ise, millal sa uinud, ja ööd loevad.</string>
     <string name="learn_consent_title">Õppefaas</string>
     <string name="learn_consent_text">Et Phase Wake saaks äratuse sinu järgi kohandada, mõõdab su kell %1$d ööd järjest öö jooksul liikumist ja pulssi. See kulutab veidi akut – lae kell enne magamaminekut. Andmed jäävad sinu seadmetesse. Õppefaasi saad seadetes igal ajal välja lülitada.</string>
     <string name="learn_consent_start">Alusta õppefaasi</string>

@@ -43,10 +43,11 @@ import java.time.Duration
 /**
  * Lern-Übersicht (Entscheid r1AD 13.11.2026, aus «Details» der Karte der Lernphase auf der Startseite und in den
  * Einstellungen): je Nacht seit dem Beginn eine Zeile mit Datum (Morgen der Nacht, wie im Verlauf), ✓ gezählt bzw. ✗ mit
- * Grund, kurzen Angaben zur Aufzeichnung und einem Tipp. [nights]: jüngste zuerst ([LearnNights.nights]).
+ * Grund, kurzen Angaben zur Aufzeichnung und einem Tipp. [nights]: jüngste zuerst ([LearnNights.nights]). [goodNight]: Die
+ * Uhr bietet «Gute Nacht» an ([goodNightOffered]); der Tipp bei «Einschlafen automatisch erkennen» aus richtet sich danach.
  */
 @Composable
-fun LearnNightsScreen(nights: List<LearnNights.Night>, onBack: () -> Unit) {
+fun LearnNightsScreen(nights: List<LearnNights.Night>, onBack: () -> Unit, goodNight: Boolean = true) {
     Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing)) {
         Row(Modifier.fillMaxWidth().padding(4.dp), verticalAlignment = Alignment.CenterVertically) {
             IconButton(onClick = onBack) { Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.onb_back)) }
@@ -71,14 +72,14 @@ fun LearnNightsScreen(nights: List<LearnNights.Night>, onBack: () -> Unit) {
             if (nights.isEmpty()) {
                 item(key = "empty") { Text(stringResource(R.string.learn_nights_empty), style = MaterialTheme.typography.bodyMedium) }
             }
-            items(nights, key = { it.date.toString() }) { NightRow(it) }
+            items(nights, key = { it.date.toString() }) { NightRow(it, goodNight) }
         }
     }
 }
 
 /** Eine Nacht: Datum, ✓/✗, Grund, Angaben und Tipp; für TalkBack eine Einheit (Symbol ohne eigene Beschreibung). */
 @Composable
-private fun NightRow(night: LearnNights.Night) {
+private fun NightRow(night: LearnNights.Night, goodNight: Boolean) {
     val context = LocalContext.current
     val locale = LocalConfiguration.current.locales[0]
     val ok = night.reason.counted
@@ -107,7 +108,7 @@ private fun NightRow(night: LearnNights.Night) {
                 learnFactsText(context, night)?.let {
                     Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
-                learnTipText(context, night.reason)?.let {
+                learnTipText(context, night.reason, goodNight)?.let {
                     Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.primary)
                 }
             }
@@ -157,7 +158,7 @@ internal fun learnFactsText(context: Context, night: LearnNights.Night): String?
 }
 
 /** Kurzer Tipp zum Grund; `null`, wenn es nichts zu tun gibt. */
-internal fun learnTipText(context: Context, reason: Reason): String? = when (reason) {
+internal fun learnTipText(context: Context, reason: Reason, goodNight: Boolean = true): String? = when (reason) {
     Reason.COUNTED, Reason.LEARNING_OFF -> null
     Reason.COUNTED_NO_PULSE, Reason.NOT_WORN -> context.getString(R.string.learn_tip_worn)
     Reason.TOO_SHORT, Reason.ENDED_STOPPED -> context.getString(R.string.learn_tip_run)
@@ -166,6 +167,6 @@ internal fun learnTipText(context: Context, reason: Reason): String? = when (rea
     Reason.SENSORS -> context.getString(R.string.learn_tip_sensors)
     Reason.LATE -> context.getString(R.string.learn_tip_late)
     Reason.NO_ALARM -> context.getString(R.string.learn_tip_alarm)
-    Reason.AUTO_OFF -> context.getString(R.string.learn_auto_hint)
+    Reason.AUTO_OFF -> context.getString(learnAutoHint(goodNight))
     Reason.MANUAL, Reason.PENDING, Reason.NO_RECORDING, Reason.UNKNOWN -> context.getString(R.string.learn_tip_connect)
 }

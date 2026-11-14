@@ -17,6 +17,25 @@ final class AlarmScheduleTests: XCTestCase {
         try! AlarmSpec(id: id, hour: hour, minute: minute, days: days)
     }
 
+    func testSkippedWeeklyAlarmFindsTheTermAfterNextWeek() {
+        // Audit BE-4 (mayDrop): Wecker nur montags, Montag 2.11. übersprungen, heute Dienstag 27.10. → Montag 9.11.,
+        // 13 Tage voraus, hinter der gewohnten Suche von 8 Tagen.
+        let monday = alarm(days: [.monday])
+        let now = at(2026, 10, 27, 8, 0)
+        let skipped = AlarmSchedule.skipNext(monday, now: now, calendar: zurich)
+        XCTAssertEqual(skipped.skipUntil, AlarmSchedule.wallMillis(at(2026, 11, 2, 7, 0), calendar: zurich))
+        XCTAssertEqual(AlarmSchedule.nextTarget(skipped, now: now, calendar: zurich), at(2026, 11, 9, 7, 0))
+        // Feiertag am 2.11. mit skipHolidays: ebenso 9.11.; dazu der 9.11. übersprungen: 16.11. (20 Tage).
+        let holidays: Set<String> = ["2026-11-02"]
+        XCTAssertEqual(AlarmSchedule.nextTarget(monday.with(skipHolidays: true), now: now, calendar: zurich, holidays: holidays), at(2026, 11, 9, 7, 0))
+        let both = monday.with(skipHolidays: true).with(skipUntil: AlarmSchedule.wallMillis(at(2026, 11, 9, 7, 0), calendar: zurich))
+        XCTAssertEqual(AlarmSchedule.nextTarget(both, now: now, calendar: zurich, holidays: holidays), at(2026, 11, 16, 7, 0))
+        // Grenze der Suche: ein Jahr Feiertage → nil statt endloser Suche; 370 Tage.
+        XCTAssertEqual(AlarmSchedule.maxSearchDays, 370)
+        let everyMonday = Set((0...60).map { NightDate.adding($0 * 7, to: "2026-11-02") })
+        XCTAssertNil(AlarmSchedule.nextTarget(monday.with(skipHolidays: true), now: now, calendar: zurich, holidays: everyMonday))
+    }
+
     func testOneShot() {
         XCTAssertEqual(AlarmSchedule.nextTarget(alarm(), now: at(2026, 10, 28, 1, 0), calendar: zurich), at(2026, 10, 28, 7, 0))
         XCTAssertEqual(AlarmSchedule.nextTarget(alarm(), now: at(2026, 10, 28, 7, 0), calendar: zurich), at(2026, 10, 29, 7, 0))
@@ -82,6 +101,21 @@ final class AlarmScheduleTests: XCTestCase {
         let still = [Double?](repeating: 0.0, count: 30)
         XCTAssertEqual(SleepOnset.find(restless + shortRest + [nil] + still), 31)
         XCTAssertNil(SleepOnset.find([Double?](repeating: 0.002, count: 60)))
+    }
+
+    /// Audit c3b8b01 E-4: Zucker im Schlaf (eine Epoche, Nachbarn ruhig) brechen die Strecke nicht, höchstens zwei (wie Kotlin).
+    func testSingleTwitchesDoNotBreakTheStretch() {
+        func night(_ moved: Int...) -> [Double?] { (0..<45).map { moved.contains($0) ? 0.2 : 0.001 } }
+        XCTAssertEqual(SleepOnset.find(night(10), threshold: 0.002), 0)
+        XCTAssertEqual(SleepOnset.find(night(10, 20), threshold: 0.002), 0)
+        // Ein dritter in denselben 30 Epochen: erst nach dem ersten.
+        XCTAssertEqual(SleepOnset.find(night(10, 20, 25), threshold: 0.002), 11)
+        // Zwei nacheinander (1 Min Bewegung) sind kein Zucker: die Strecke beginnt danach.
+        XCTAssertEqual(SleepOnset.find(night(10, 11), threshold: 0.002), 12)
+        // Erste und letzte Epoche der Strecke müssen ruhig sein.
+        XCTAssertNil(SleepOnset.find([Double?](repeating: 0.001, count: 29) + [0.2], threshold: 0.002))
+        XCTAssertEqual(SleepOnset.maxTwitches, 2)
+        XCTAssertEqual(SleepOnset.stillEpochs, 30)
     }
 
     /// Abgeleitete Eigenschaften des Weckers (wie `AlarmSpec` in Kotlin).

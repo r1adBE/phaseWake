@@ -143,6 +143,9 @@ class AlarmScheduler(
         }
     }
 
+    /** Ende der zuletzt beendeten Nacht, die geweckt hat ([noteNightEnded]), oder `null`; für [AutoOnset.startAt]. */
+    suspend fun lastNightEnded(): Instant? = store.data.first()[CATCH_UP_UNTIL]?.let(Instant::ofEpochMilli)
+
     /**
      * Am Handy beendet (Zweitwecker oder dessen Schlummern), aber nicht die Nacht, die die Uhr gerade
      * führt: Diese Nacht des Weckers [alarmId] gilt als erledigt; sie wird weder nachgeholt noch erneut

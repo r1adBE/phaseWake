@@ -83,11 +83,13 @@ class WakeServiceTest {
     }
 
     /** Startet den Dienst für [of] und wartet, bis die Nacht geladen ist (Messen im Fenster). */
-    private fun startNight(of: WakePlan = plan): WakeService {
+    private fun startNight(of: WakePlan = plan, fromSensorStart: Boolean = true): WakeService {
         val built = Robolectric.buildService(WakeService::class.java, intent(WakeService.ACTION_START, withPlan = true, of = of))
         controller = built
         val service = built.create().startCommand(0, 1).get()
         awaitLoaded(service)
+        // Die Tests liefern Epochen ab dem Start der Sensoren, nicht die leeren davor (E-1, eigener Test unten).
+        if (fromSensorStart) service.night?.unmeasured = 0
         return service
     }
 
@@ -278,6 +280,24 @@ class WakeServiceTest {
         assertEquals(WakeService.Phase.RINGING, n.phase)
         assertEquals(WakeReason.AWAKE, n.reason)
         assertEquals(1, between(WakeRules.resumeAt(before), WakeRules.resumeAt(Instant.now())).size, "Wiederaufnahme-Alarm")
+    }
+
+    @Test
+    fun epochsBeforeTheSensorsStartDoNotReachTheDetector() {
+        // Audit c3b8b01 E-1: Fensterbeginn vor 1 Min: Die ersten 2 Epochen sind vorbei, bevor die Sensoren laufen, und bleiben
+        // leer. Sie gehen in den Verlauf, aber nicht an die Erkennung (Aufwärmphase und Basispuls zählen ab dem Start).
+        val service = startNight(fromSensorStart = false)
+        val n = assertNotNull(service.night)
+        assertEquals(2, n.unmeasured)
+        val empty = List(2) { Epoch(null, null) }
+        // Ohne Überspringen wären die leeren Epochen das Aufwärmen gewesen und die zwei Wach-Epochen am Ende entschieden.
+        service.onEpochs(n, empty + listOf(Epoch(0.5, 60.0), Epoch(0.5, 60.0)))
+        assertEquals(WakeService.Phase.MEASURING, n.phase)
+        assertEquals(4, n.epochs.size, "für den Verlauf gespeichert")
+        service.onEpochs(n, listOf(Epoch(0.5, 60.0), Epoch(0.5, 60.0)))
+        shadowOf(Looper.getMainLooper()).idle()
+        assertEquals(WakeService.Phase.RINGING, n.phase)
+        assertEquals(WakeReason.AWAKE, n.reason)
     }
 
     @Test

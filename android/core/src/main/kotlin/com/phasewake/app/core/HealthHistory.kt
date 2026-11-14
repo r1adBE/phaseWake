@@ -217,13 +217,21 @@ object HealthHistory {
      */
     private fun join(parts: List<HealthSession>): HealthSession {
         if (parts.size == 1) return parts.single()
-        // Jeder Teil ab dem Ende des vorigen: eine kurze Überlappung zählt nicht doppelt.
-        val stages = parts.flatMapIndexed { i, p ->
-            val from = if (i == 0) p.start else maxOf(p.start, parts[i - 1].end)
-            spans(p).mapNotNull { span -> if (span.end.isAfter(from)) StageSpan(maxOf(span.start, from), span.end, span.stage) else null }
-        }
-        return HealthSession(parts.first().start, parts.last().end, stages, parts.first().source)
+        return HealthSession(parts.first().start, parts.last().end, trimmed(parts), parts.first().source)
     }
+
+    /**
+     * Phasen der Teile einer Kette ([spans]), jeder Teil erst ab dem Ende des vorigen: Eine kurze Überlappung
+     * (≤ [OVERLAP_TOLERANCE]) zählt nicht doppelt – gleich in Verlauf, Detailseite ([join]), Diagrammen und Trends
+     * ([summaries]) und im Schlafprofil eigener Nächte ([stages]); Audit BE-2. [filler] `false`: Teile ohne Phasen
+     * liefern nichts statt einer «unbekannt»-Phase.
+     */
+    private fun trimmed(parts: List<HealthSession>, filler: Boolean = true): List<StageSpan> =
+        parts.flatMapIndexed { i, p ->
+            val from = if (i == 0) p.start else maxOf(p.start, parts[i - 1].end)
+            val own = if (filler || p.stages.isNotEmpty()) spans(p) else emptyList()
+            own.mapNotNull { span -> if (span.end.isAfter(from)) StageSpan(maxOf(span.start, from), span.end, span.stage) else null }
+        }
 
     /** Phasen der Sitzung, auf sie zugeschnitten; ohne Phasen eine «unbekannt»-Phase über die ganze Dauer. */
     private fun spans(s: HealthSession): List<StageSpan> =
@@ -237,21 +245,21 @@ object HealthHistory {
 
     /**
      * Phasen der Sitzungen, die als Nacht zählen (ohne Doppel, mit Weiterschlafen, [CONTINUATION_GAP]), nach Beginn:
-     * zum Anreichern der eigenen Nächte.
+     * zum Anreichern der eigenen Nächte. Je Teil auf ihn zugeschnitten und ab dem Ende des vorigen Teils ([trimmed]).
      */
     fun stages(sessions: List<HealthSession>, clearedAt: Instant?, zone: ZoneId): List<StageSpan> =
-        chains(sessions, clearedAt, zone).flatten().flatMap { it.stages }.sortedBy { it.start }
+        chains(sessions, clearedAt, zone).flatMap { trimmed(it, filler = false) }.sortedBy { it.start }
 
     /**
-     * Nächte für Diagramme, Trends, Wochenbilanz, Serien und Regelmässigkeit: [SleepSummary.group] über die
-     * Phasen der Sitzungen, die als Nacht zählen (sichtbar, kein Nickerchen, ohne Doppel – nichts zählt zweimal;
-     * Weiterschlafen nach [CONTINUATION_GAP] zählt zur Nacht, die Lücke nicht als Schlaf).
-     * Eine Sitzung ohne Phasen zählt als Schlaf über ihre ganze Dauer.
+     * Nächte für Diagramme, Trends, Wochenbilanz, Serien und Regelmässigkeit: je Kette eine Nacht ([SleepSummary.of]),
+     * dieselbe Regel wie der Verlauf (Sitzungen, die als Nacht zählen: sichtbar, kein Nickerchen, ohne Doppel – nichts
+     * zählt zweimal; Weiterschlafen nach [CONTINUATION_GAP] zählt zur Nacht, die Lücke nicht als Schlaf). Eine Sitzung
+     * ohne Phasen zählt als Schlaf über ihre ganze Dauer. Zwei Ketten mit mehr als [CONTINUATION_GAP] Lücke sind zwei
+     * Nächte, auch am selben Nachtdatum (Entscheid r1AD 14.11.2026, Audit W-2). Nach Beginn.
      */
     fun summaries(sessions: List<HealthSession>, clearedAt: Instant?, zone: ZoneId): List<SleepSummary> =
-        // Je Teil zugeschnitten wie in der Detailseite ([HealthSession.asleepMinutes]); Lücken ≤ CONTINUATION_GAP liegen
-        // unter SleepSummary.NEW_NIGHT_GAP, die Teile bleiben also eine Nacht.
-        SleepSummary.group(chains(sessions, clearedAt, zone).flatten().flatMap(::spans))
+        // Je Teil zugeschnitten und ab dem Ende des vorigen wie in der Detailseite ([join], [trimmed]).
+        chains(sessions, clearedAt, zone).mapNotNull { SleepSummary.of(trimmed(it)) }
 
     private val preferred: Comparator<HealthSession> =
         compareByDescending<HealthSession> { it.hasStages }

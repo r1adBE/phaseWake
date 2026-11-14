@@ -197,19 +197,19 @@ public enum HealthHistory {
     }
 
     /// Phasen der Sitzungen, die als Nacht zählen (ohne Doppel, mit Weiterschlafen – ``continuationGap``), nach Beginn –
-    /// für das Schlafprofil eigener Nächte.
+    /// für das Schlafprofil eigener Nächte. Je Teil auf ihn zugeschnitten und ab dem Ende des vorigen Teils (``trimmed(_:filler:)``).
     public static func stages(_ sessions: [HealthSession], clearedAt: Date?, calendar: Calendar) -> [StageSpan] {
-        chains(sessions, clearedAt: clearedAt, calendar: calendar).flatMap { $0 }.flatMap(\.stages).sorted { $0.start < $1.start }
+        chains(sessions, clearedAt: clearedAt, calendar: calendar).flatMap { trimmed($0, filler: false) }.sorted { $0.start < $1.start }
     }
 
-    /// Nächte für Diagramme, Trends, Wochenbilanz, Serien und Regelmässigkeit: `SleepSummary.group` über die
-    /// Phasen der Sitzungen, die als Nacht zählen (sichtbar, kein Nickerchen, ohne Doppel – nichts zählt zweimal;
-    /// Weiterschlafen nach ``continuationGap`` zählt zur Nacht, die Lücke nicht als Schlaf);
-    /// eine Sitzung ohne Phasen zählt als eine «unbekannt»-Phase über die ganze Dauer.
+    /// Nächte für Diagramme, Trends, Wochenbilanz, Serien und Regelmässigkeit: je Kette eine Nacht (`SleepSummary.of`),
+    /// dieselbe Regel wie der Verlauf (Sitzungen, die als Nacht zählen: sichtbar, kein Nickerchen, ohne Doppel – nichts
+    /// zählt zweimal; Weiterschlafen nach ``continuationGap`` zählt zur Nacht, die Lücke nicht als Schlaf); eine Sitzung
+    /// ohne Phasen zählt als eine «unbekannt»-Phase über die ganze Dauer. Zwei Ketten mit mehr als ``continuationGap``
+    /// Lücke sind zwei Nächte, auch am selben Nachtdatum (Entscheid r1AD 14.11.2026, Audit W-2). Nach Beginn.
     public static func summaries(_ sessions: [HealthSession], clearedAt: Date?, calendar: Calendar) -> [SleepSummary] {
-        // Je Teil zugeschnitten wie in der Detailseite (`HealthSession.asleepMinutes`); Lücken bis `continuationGap` liegen
-        // unter `SleepSummary.newNightGap`, die Teile bleiben also eine Nacht.
-        SleepSummary.group(chains(sessions, clearedAt: clearedAt, calendar: calendar).flatMap { $0 }.flatMap { spans($0) })
+        // Je Teil zugeschnitten und ab dem Ende des vorigen wie in der Detailseite (`join`, `trimmed`).
+        chains(sessions, clearedAt: clearedAt, calendar: calendar).compactMap { SleepSummary.of(trimmed($0)) }
     }
 
     /// Sitzungen, die als Nacht zählen (``chains(_:clearedAt:calendar:)``), je Nacht zu einer Sitzung zusammengefasst.
@@ -247,15 +247,23 @@ public enum HealthHistory {
     private static func join(_ parts: [HealthSession]) -> HealthSession {
         let first = parts[0]
         guard parts.count > 1, let last = parts.last else { return first }
-        // Jeder Teil ab dem Ende des vorigen: eine kurze Überlappung zählt nicht doppelt.
+        return HealthSession(start: first.start, end: last.end, stages: trimmed(parts), source: first.source)
+    }
+
+    /// Phasen der Teile einer Kette (``spans(_:)``), jeder Teil erst ab dem Ende des vorigen: Eine kurze Überlappung
+    /// (≤ ``overlapTolerance``) zählt nicht doppelt – gleich in Verlauf, Detailseite (``join(_:)``), Diagrammen und Trends
+    /// (``summaries(_:clearedAt:calendar:)``) und im Schlafprofil eigener Nächte (``stages(_:clearedAt:calendar:)``);
+    /// Audit BE-2. `filler` `false`: Teile ohne Phasen liefern nichts statt einer «unbekannt»-Phase. Wie Kotlin.
+    private static func trimmed(_ parts: [HealthSession], filler: Bool = true) -> [StageSpan] {
         var stages: [StageSpan] = []
         for (i, part) in parts.enumerated() {
             let from = i == 0 ? part.start : max(part.start, parts[i - 1].end)
-            for span in spans(part) where span.end > from {
+            let own = filler || !part.stages.isEmpty ? spans(part) : []
+            for span in own where span.end > from {
                 stages.append(StageSpan(start: max(span.start, from), end: span.end, stage: span.stage))
             }
         }
-        return HealthSession(start: first.start, end: last.end, stages: stages, source: first.source)
+        return stages
     }
 
     /// Phasen der Sitzung, auf sie zugeschnitten; ohne Phasen eine «unbekannt»-Phase über die ganze Dauer.

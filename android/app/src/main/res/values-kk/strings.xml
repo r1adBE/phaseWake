@@ -232,6 +232,8 @@
     <string name="check_watch_battery_problem">%1$d %%-дан төмен – түнге жетіп, сені оятуы үшін сағатты зарядта.</string>
     <string name="check_watch_recorder">Бүгінгі түнгі өлшеу</string>
     <string name="check_watch_recorder_battery">Сағатың ұйқы алдындағы өлшеуді бастамады – батареясы тым аз болды. Оятқыш бәрібір сені оятады.</string>
+    <string name="check_watch_onset_battery">Батарея %1$d %%-дан төмен болса, сағат бүгін түнде сенің қашан ұйықтағаныңды өлшемейді – алдын ала зарядта. Оятқыш бәрібір сені оятады.</string>
+    <string name="check_watch_learn_battery">Батарея %1$d %%-дан төмен болса, сағат бүгін түнде үйрену кезеңі үшін жазбайды – алдын ала зарядта. Оятқыш бәрібір сені оятады.</string>
     <string name="check_watch_pulse">Фондағы пульс (сағат)</string>
     <string name="check_watch_pulse_problem">Сағатқа түнде пульсіңді өлшеуге рұқсат жоқ – сағатта Phase Wake сенсор рұқсатын «Әрқашан рұқсат ету» күйіне қой.</string>
     <string name="export_contents_hint">Файлда әр түн үшін әр 30 с сайынғы қозғалыс пен пульс, көңіл күйің және жазбаларың бар – аты, күні немесе құрылғы ID-і жоқ.</string>
@@ -568,6 +570,7 @@
     <string name="overview_no_stages">Фазаларсыз</string>
     <string name="settings_clear_history_learn">Үйрену кезеңі басынан басталады.</string>
     <string name="learn_auto_hint">Түндер есептелуі үшін кешке сағатта «Қайырлы түн» түймесін түрт немесе «Ұйықтап кетуді автоматты түрде анықтау» функциясын қос.</string>
+    <string name="learn_auto_hint_clock">«Ұйықтап кетуді автоматты түрде анықтау» функциясын қос – сонда сағат сенің қашан ұйықтағаныңды өзі анықтайды, ал түндер есептеледі.</string>
     <string name="learn_consent_title">Үйрену кезеңі</string>
     <string name="learn_consent_text">Phase Wake оятқышты саған бейімдеуі үшін сағатың %1$d түн бойы түнде қозғалыс пен пульсті өлшейді. Бұл біраз батарея жұмсайды – ұйықтар алдында сағатты зарядта. Деректер құрылғыларыңда қалады. Үйрену кезеңін баптауларда кез келген уақытта өшіре аласың.</string>
     <string name="learn_consent_start">Үйрену кезеңін бастау</string>

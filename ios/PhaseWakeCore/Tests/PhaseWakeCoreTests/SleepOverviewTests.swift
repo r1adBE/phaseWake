@@ -48,6 +48,19 @@ final class SleepOverviewTests: XCTestCase {
         XCTAssertEqual(o.bars.last?.reached, true)
     }
 
+    func testAverageTimesDoNotJumpAtNoon() {
+        // Audit W-1: Aufwachen 11:56 und 12:50 → Ø 12:23 (23 Min ab Mittag), nicht 00:23 (743).
+        let late = [sleep(today, 23, 0, wakeHour: 11, wakeMinute: 56), sleep(day(1), 23, 0, wakeHour: 12, wakeMinute: 50)]
+        let o = SleepOverviews.of(late, calendar: zurich, today: today, goalMinutes: 450, unit: .days)!
+        XCTAssertEqual(o.wakeMinute, 23)
+        XCTAssertEqual(o.bedtimeMinute, 11 * 60)
+        // Einschlafen 11:30 und 12:30 (Tagschläfer) → Ø 12:00 (0), nicht 00:00 (720).
+        let daySleepers = [sleep(today, 11, 30), sleep(day(1), 12, 30)]
+        XCTAssertEqual(SleepOverviews.of(daySleepers, calendar: zurich, today: today, goalMinutes: 450, unit: .days)!.bedtimeMinute, 0)
+        // 11:59 und 12:00 → Ø 11:59:30 rundet auf 12:00 und bleibt in 0 ≤ m < 1440.
+        XCTAssertEqual(Regularity.meanMinute([1439, 0]), 0)
+    }
+
     func testWeeksGoByTheMorningAndTheFirstDayOfTheWeek() {
         let ranges = SleepOverviews.ranges(last: today, unit: .weeks, firstDay: .monday)
         XCTAssertEqual(ranges.count, 8)
@@ -127,6 +140,17 @@ final class SleepOverviewTests: XCTestCase {
         // Weckfenster 30 Min mit Puls nur in 5 Stücken: keine Kurve; in 6 Stücken: Kurve.
         XCTAssertNil(SleepOverviews.pulse((0..<60).map { Epoch(motion: 0.01, heartRate: $0 < 10 ? nil : 60) }, start: start))
         XCTAssertEqual(SleepOverviews.pulse(Array(repeating: Epoch(motion: 0.01, heartRate: 60), count: 60), start: start)?.buckets.count, 6)
+    }
+
+    func testNightWithOnlyAwakeHasNoStageSplit() {
+        // Audit W-5: Quelle ohne Phasendetail (nur «wach» bekannt) gibt eine neutrale Säule, keine Säule «ganz wach».
+        let night = sleep(today, 23, 0)
+        let t = night.start
+        let stages = [StageSpan(start: t, end: t.addingTimeInterval(200 * 60), stage: .unknown),
+                      StageSpan(start: t.addingTimeInterval(200 * 60), end: t.addingTimeInterval(230 * 60), stage: .awake)]
+        XCTAssertEqual(SleepOverviews.stageAverage([night], stages: stages), [:])
+        let withLight = stages + [StageSpan(start: t.addingTimeInterval(230 * 60), end: t.addingTimeInterval(300 * 60), stage: .light)]
+        XCTAssertEqual(SleepOverviews.stageAverage([night], stages: withLight)[.light], 70)
     }
 
     func testBarsCarryTheAverageStageMinutes() {

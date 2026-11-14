@@ -27,6 +27,22 @@ final class AppleOnsetTests: XCTestCase {
         XCTAssertEqual(find(motions), .asleep(at: minutes(10), index: 20))
     }
 
+    /// Audit c3b8b01 E-5: Die Uhr liegt 30 Min auf dem Ladegerät (still, kein Puls), danach getragen (Puls je 5 Min): Die
+    /// Messung wartet, die Einschlafzeit liegt nach dem Ladegerät. Ganz ohne Puls (keine Erlaubnis) gilt die Regel nicht.
+    func testWithoutPulseTheWatchIsNotWornAndTheMeasurementWaits() {
+        let motions: [Double?] = Array(repeating: quiet, count: 100)
+        let rates: [Double?] = (0..<100).map { $0 >= 60 && $0 % 10 == 0 ? 58.0 : nil }
+        let found = RecorderOnset.find(motions: motions, since: since, threshold: DetectorConfig.defaultLightThreshold, personalFloor: nil,
+                                       latest: since.addingTimeInterval(10 * 3600), extendCap: nil, heartRates: rates)
+        XCTAssertEqual(found, .asleep(at: minutes(30), index: 60))
+        let none = RecorderOnset.find(motions: motions, since: since, threshold: DetectorConfig.defaultLightThreshold, personalFloor: nil,
+                                      latest: since.addingTimeInterval(10 * 3600), extendCap: nil,
+                                      heartRates: [Double?](repeating: nil, count: 100))
+        XCTAssertEqual(none, .asleep(at: since, index: 0))
+        XCTAssertEqual(SleepOnset.find(motions, threshold: 0.002, heartRates: rates), 60)
+        XCTAssertEqual(SleepOnset.wornEpochs, 10)
+    }
+
     func testEmptyEpochsBreakTheRun() {
         var motions: [Double?] = Array(repeating: quiet, count: 20) + [nil] + Array(repeating: quiet, count: 29)
         XCTAssertEqual(find(motions), .open)

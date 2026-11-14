@@ -240,6 +240,8 @@
     <string name="check_watch_battery_problem">%1$d %% alatt – töltsd fel az órát, hogy kibírja az éjszakát és fel tudjon ébreszteni.</string>
     <string name="check_watch_recorder">Ma éjjeli mérés</string>
     <string name="check_watch_recorder_battery">Az órád nem indította el az alvás előtti mérést – túl alacsony volt az akkumulátora. Az ébresztő így is felébreszt.</string>
+    <string name="check_watch_onset_battery">%1$d %% alatti akkumulátorral az óra ma éjjel nem méri, mikor alszol el – töltsd fel előtte. Az ébresztő így is felébreszt.</string>
+    <string name="check_watch_learn_battery">%1$d %% alatti akkumulátorral az óra ma éjjel nem rögzít a tanulási szakaszhoz – töltsd fel előtte. Az ébresztő így is felébreszt.</string>
     <string name="check_watch_pulse">Pulzus a háttérben (óra)</string>
     <string name="check_watch_pulse_problem">Az óra éjjel nem mérheti a pulzusodat – az órán állítsd a Phase Wake érzékelőengedélyét „Mindig engedélyezett” értékre.</string>
     <string name="export_contents_hint">A fájl minden éjszakára tartalmazza a 30 másodpercenkénti mozgást és pulzust, a közérzetedet és a jegyzeteidet – nevek, dátumok és eszközazonosítók nélkül.</string>
@@ -580,6 +582,7 @@
     <string name="overview_no_stages">Fázisok nélkül</string>
     <string name="settings_clear_history_learn">A tanulási szakasz elölről kezdődik.</string>
     <string name="learn_auto_hint">Este koppints az órán a(z) „Jó éjszakát” gombra, vagy kapcsold be: „Elalvás automatikus felismerése”, hogy az éjszakák számítsanak.</string>
+    <string name="learn_auto_hint_clock">Kapcsold be: „Elalvás automatikus felismerése” – így az óra magától felismeri, mikor alszol el, és az éjszakák számítanak.</string>
     <string name="learn_consent_title">Tanulási szakasz</string>
     <string name="learn_consent_text">Hogy a Phase Wake hozzád igazíthassa az ébresztést, az órád %1$d éjszakán át éjjel méri a mozgást és a pulzust. Ez némi akkumulátort fogyaszt – alvás előtt töltsd fel az órát. Az adatok a készülékeiden maradnak. A tanulási szakaszt bármikor kikapcsolhatod a beállításokban.</string>
     <string name="learn_consent_start">Tanulási szakasz indítása</string>

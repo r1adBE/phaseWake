@@ -63,6 +63,7 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -112,12 +113,17 @@ internal class AppData(
     val recordings: List<NightRecording>? = null,
     /** Lern-Übersicht: Meldungen der Uhr und Nächte mit Wecker. */
     val learnLog: LearnLogState = LearnLogState(),
+    /** Wecker gelesen; vorher ist [alarms] leer, ohne dass es keine gibt. */
+    val alarmsLoaded: Boolean = true,
 )
 
 /** Sammelt [AppData] aus den Repositories; Verlauf und Geräusche werden einmal geladen. */
 @Composable
 internal fun collectAppData(app: PhaseWakeApp): AppData {
-    val alarms by app.alarms.alarms.collectAsStateWithLifecycle(initialValue = emptyList())
+    // `null`, bis die Wecker gelesen sind: der Editor wartet darauf (nach dem Neuaufbau sonst ein zweiter Wecker).
+    val alarmsFlow = remember { app.alarms.alarms.map<List<AlarmSpec>, List<AlarmSpec>?> { it } }
+    val loadedAlarms by alarmsFlow.collectAsStateWithLifecycle(initialValue = null)
+    val alarms = loadedAlarms.orEmpty()
     val nights by app.nights.nights.collectAsStateWithLifecycle()
     LaunchedEffect(Unit) { app.nights.load() }
     val notes by app.notes.notes.collectAsStateWithLifecycle(initialValue = emptyMap())
@@ -152,7 +158,7 @@ internal fun collectAppData(app: PhaseWakeApp): AppData {
         alarms, nights, notes, customNotes, sleepGoal, bedtimeReminder, soundTimer, sound,
         soundPlaying, recording, weeklyReview, soundClips, routineItems, routineTicks,
         holidays, transient, testRun, napMinutes, onboardingDone, diagnostics, doneUntil, healthFeelings, autoOnset = autoOnset,
-        learning = learning, recordings = recordings, learnLog = learnLog,
+        learning = learning, recordings = recordings, learnLog = learnLog, alarmsLoaded = loadedAlarms != null,
     )
 }
 
@@ -215,8 +221,9 @@ internal fun rememberInsights(app: PhaseWakeApp, data: AppData, healthCheck: Int
     }
     val habits = remember(sleeps, data.sleepGoal, data.routineItems, data.routineTicks) { habitLines(sleeps, data) }
     // Diagramme im Verlauf: Schlaf aus Health Connect, Weckmomente und Befinden aus dem Verlauf.
-    val charts = remember(nights, sleeps, stages, data.notes, data.alarms, data.sleepGoal, feelings) {
-        HistoryCharts.of(nights.orEmpty(), sleeps, stages, data.notes, data.alarms, data.sleepGoal, Instant.now(), zone, feelings)
+    val latency = data.learning?.values?.latencyMinutes
+    val charts = remember(nights, sleeps, stages, data.notes, data.alarms, data.sleepGoal, feelings, latency) {
+        HistoryCharts.of(nights.orEmpty(), sleeps, stages, data.notes, data.alarms, data.sleepGoal, Instant.now(), zone, feelings, latencyMinutes = latency)
     }
     val weekly = remember(nights, sleeps, data.notes, data.sleepGoal, feelings) { weeklyCard(nights.orEmpty(), sleeps, data, feelings) }
     // Text der nächsten Wochenrückblick-Mitteilung hier vorberechnen (App offen, neue Nacht, Befinden,
@@ -286,10 +293,14 @@ internal fun rememberSoundRec(app: PhaseWakeApp, data: AppData, checkRun: Int): 
     val soundRecChoice by app.settings.soundRecChoice.collectAsStateWithLifecycle(initialValue = null)
     fun tonight() = SleepNotes.nightDate(Instant.now(), ZoneId.systemDefault())
     val soundRecChosen = soundRecChoice?.takeIf { it.first == tonight() }?.second
-    val soundRecAuto = remember(soundRecDefault, data.alarms, data.sleepGoal, data.holidays, checkRun) {
+    // Ab der einen Bettzeit (mit gelernter Einschlafdauer, Audit O-03).
+    val latency = data.learning?.values?.latencyMinutes
+    val soundRecAuto = remember(soundRecDefault, data.alarms, data.sleepGoal, data.holidays, checkRun, latency) {
         val now = Instant.now()
         val zone = ZoneId.systemDefault()
-        soundRecDefault && AlarmSchedule.earliestPlan(data.alarms, now, zone, data.holidays).let { plan -> SoundEvents.mayAutoStart(now, plan?.target, data.sleepGoal, zone, plan?.windowStart) }
+        soundRecDefault && AlarmSchedule.earliestPlan(data.alarms, now, zone, data.holidays).let { plan ->
+            SoundEvents.mayAutoStart(now, plan?.target, data.sleepGoal, zone, plan?.windowStart, latency)
+        }
     }
     val soundRecWanted = soundRecChosen ?: soundRecAuto
     var micDenied by rememberSaveable { mutableStateOf(false) }
@@ -370,6 +381,8 @@ internal fun rememberNightCheck(app: PhaseWakeApp, checkRun: Int): NightCheckDat
                     watchOutdated = outdated,
                     watchPulse = app.sync.watchPulse(),
                     recorderSkip = app.sync.watchRecorderSkip(),
+                    autoOnset = app.settings.autoOnset.first(),
+                    learning = app.learning.state.first().active,
                 )
                 check?.let { c -> com.phasewake.app.widget.NextAlarmWidget.saveCheck(context, c.failed.filterNot { it.advisory }) }
                 delay(NIGHT_CHECK_INTERVAL_MS)

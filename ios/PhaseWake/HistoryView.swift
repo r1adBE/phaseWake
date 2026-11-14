@@ -139,7 +139,7 @@ struct HistoryView: View {
         return HistoryChartsData.of(
             nights: model.nights, sleeps: sleeps, stages: allStages, notes: model.notes,
             nextTarget: model.nextPlan(now: now)?.target,
-            goalMinutes: model.sleepGoal, now: now, calendar: .gregorianLocal, health: feelings,
+            goalMinutes: model.sleepGoal, latencyMinutes: model.learnedLatency, now: now, calendar: .gregorianLocal, health: feelings,
             // Erster Tag der Woche nach der Sprache des Geräts (Calendar: 1 = Sonntag; Weekday: 1 = Montag).
             firstDay: Weekday(rawValue: (Calendar.autoupdatingCurrent.firstWeekday + 5) % 7 + 1) ?? .monday
         )

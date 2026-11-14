@@ -177,11 +177,11 @@ object Learning {
     /**
      * Empfohlene Schlafenszeit vor der Zielzeit [target]: spätestens Zielzeit − Schlaf [sleepMinutes] (Schlafziel bzw.
      * Schlafdauer des Weckers) − Einschlafdauer [latencyMinutes] (ungelernt 0), abgerundet auf [ROUND_MINUTES]; frühestens
-     * [BEDTIME_RANGE_MINUTES] davor. Feste Dauern wie [Bedtime.bedtime].
+     * [BEDTIME_RANGE_MINUTES] davor. Spätestens = [Bedtime.bedtime] (die eine Bettzeit, Audit O-03), abgerundet.
      * @return (frühestens, spätestens).
      */
     fun bedtimeRange(target: Instant, sleepMinutes: Int, latencyMinutes: Int?): Pair<Instant, Instant> {
-        val latest = target.minus(Duration.ofMinutes(sleepMinutes.toLong() + (latencyMinutes ?: 0)))
+        val latest = Bedtime.bedtime(target, sleepMinutes, latencyMinutes)
         val step = ROUND_MINUTES * 60_000L
         val rounded = Instant.ofEpochMilli(Math.floorDiv(latest.toEpochMilli(), step) * step)
         return rounded.minus(Duration.ofMinutes(BEDTIME_RANGE_MINUTES.toLong())) to rounded

@@ -232,6 +232,8 @@
     <string name="check_watch_battery_problem">%1$d %%-ზე ნაკლები – დატენე საათი, რომ ღამეს გაუძლოს და გაგაღვიძოს.</string>
     <string name="check_watch_recorder">ამაღამინდელი გაზომვა</string>
     <string name="check_watch_recorder_battery">საათმა ძილის წინა გაზომვა არ დაიწყო – ბატარეა ძალიან დაბალი იყო. მაღვიძარა მაინც გაგაღვიძებს.</string>
+    <string name="check_watch_onset_battery">%1$d %%-ზე ნაკლები ბატარეით საათი ამაღამ ვერ გაზომავს, როდის ჩაგეძინება – წინასწარ დატენე. მაღვიძარა მაინც გაგაღვიძებს.</string>
+    <string name="check_watch_learn_battery">%1$d %%-ზე ნაკლები ბატარეით საათი ამაღამ სწავლის ფაზისთვის არ ჩაწერს – წინასწარ დატენე. მაღვიძარა მაინც გაგაღვიძებს.</string>
     <string name="check_watch_pulse">პულსი ფონურ რეჟიმში (საათი)</string>
     <string name="check_watch_pulse_problem">საათს ღამით შენი პულსის გაზომვის უფლება არ აქვს – საათზე Phase Wake-ის სენსორების ნებართვა დააყენე „ყოველთვის დაშვებაზე“.</string>
     <string name="export_contents_hint">ფაილი ყოველი ღამისთვის შეიცავს მოძრაობასა და პულსს ყოველ 30 წმ-ში, შენს თვითგრძნობასა და ჩანაწერებს – სახელების, თარიღების და მოწყობილობის ID-ების გარეშე.</string>
@@ -568,6 +570,7 @@
     <string name="overview_no_stages">ფაზების გარეშე</string>
     <string name="settings_clear_history_learn">სწავლის ფაზა თავიდან იწყება.</string>
     <string name="learn_auto_hint">საღამოს შეეხე საათზე „ძილი ნებისა“-ს ან ჩართე „ჩაძინების ავტომატური ამოცნობა“, რომ ღამეები ჩაითვალოს.</string>
+    <string name="learn_auto_hint_clock">ჩართე „ჩაძინების ავტომატური ამოცნობა“ – მაშინ საათი თავად ამოიცნობს, როდის ჩაგეძინება, და ღამეები ჩაითვლება.</string>
     <string name="learn_consent_title">სწავლის ფაზა</string>
     <string name="learn_consent_text">იმისთვის, რომ Phase Wake-მა მაღვიძარა შენზე მოარგოს, შენი საათი %1$d ღამის განმავლობაში ღამით ზომავს მოძრაობას და პულსს. ეს ცოტა ბატარეას ხარჯავს – დაძინებამდე დატენე საათი. მონაცემები შენს მოწყობილობებზე რჩება. სწავლის ფაზის გამორთვა პარამეტრებში ნებისმიერ დროს შეგიძლია.</string>
     <string name="learn_consent_start">სწავლის ფაზის დაწყება</string>

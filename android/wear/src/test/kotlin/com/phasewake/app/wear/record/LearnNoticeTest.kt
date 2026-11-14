@@ -161,4 +161,17 @@ class LearnNoticeTest {
         LearnNotice.sensorsRefused(app, "unbekannt")
         assertEquals(pending.size, Outbox.forContext(context).pending().size)
     }
+
+    @Test
+    fun sensorsRefusedReportsNothingWhenLearningIsOff() = runBlocking {
+        // Audit BE-1c: Lernphase aus → keine Meldung «keine Sensoren», auch für einen bekannten Wecker.
+        val spec = AlarmSpec(id = "w", hour = 7, minute = 0, days = everyDay)
+        app.alarms.replaceAll(listOf(spec))
+        app.learning.setIfNewer(LearningSnapshot(false, null, null, System.currentTimeMillis() + 1))
+        // Die Warteschlange ist prozessweit (auch frühere Tests); ein ersetzter Eintrag bekäme eine neue Kennung.
+        val before = Outbox.forContext(context).pending().map { it.id }
+        LearnNotice.sensorsRefused(app, "w")
+        assertEquals(before, Outbox.forContext(context).pending().map { it.id })
+        assertTrue(notifications.allNotifications.isEmpty(), "keine Mitteilung")
+    }
 }

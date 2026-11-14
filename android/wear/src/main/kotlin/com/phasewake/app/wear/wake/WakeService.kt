@@ -79,6 +79,8 @@ class WakeService : LifecycleService() {
          * neuer Moment kommt in den letzten [com.phasewake.app.core.ShortNight.LATE_MINUTES] davor.
          */
         var earlyBlocked: Boolean = false,
+        /** Epochen vor dem Start der Sensoren ([WakeRules.unmeasuredEpochs]): leer, nicht an die Erkennung (E-1). */
+        var unmeasured: Int = 0,
     ) {
         /** «Genau»: nur messen, zur Zielzeit wecken; aus dem Plan oder (ältere Alarme ohne Angabe) dem Wecker. */
         val exact: Boolean get() = plan.exact || spec?.isExact == true

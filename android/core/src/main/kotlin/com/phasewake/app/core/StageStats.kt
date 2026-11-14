@@ -103,13 +103,14 @@ object StageStats {
 
     /**
      * Auswertung der [spans] im Bereich [from] bis [to] (Spannen werden darauf zugeschnitten, [StageCheck.clip]).
-     * `null`, wenn [to] nicht nach [from] liegt oder keine bekannte Phase im Bereich liegt.
+     * `null`, wenn [to] nicht nach [from] liegt oder keine Schlafphase (REM, leicht, tief) im Bereich liegt: Eine Quelle
+     * ohne Phasendetail (Schlaf «unbekannt» und «wach») hat keine Phasen, sonst stünde dort «Wach 100 %» (Audit W-5).
      */
     fun of(spans: List<StageSpan>, from: Instant, to: Instant): NightStages? {
         if (!to.isAfter(from)) return null
         val clipped = StageCheck.clip(spans, from, to)
         val blocks = blocksOf(clipped)
-        if (blocks.isEmpty()) return null
+        if (blocks.none { it.stage != SleepStage.AWAKE }) return null
         val ms = ORDER.associateWith { stage -> clipped.filter { it.stage == stage }.sumOf { millis(it) } }
         val totals = totalsOf(ms)
         val sleepMs = clipped.filter { it.stage != SleepStage.AWAKE }.sumOf { millis(it) }

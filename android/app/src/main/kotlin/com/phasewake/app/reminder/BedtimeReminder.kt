@@ -46,7 +46,10 @@ class BedtimeReminder(
         // Nach einer gezeigten Erinnerung (ungenau, evtl. bis 5 Min zu früh) erst die nächste Nacht.
         val from = maxOf(current, Instant.ofEpochMilli(settings.bedtimeShownAt()))
         val holidays = context.phoneApp.holidays.store.current()
-        val reminder = Bedtime.next(alarms.current().alarms, from, ZoneId.systemDefault(), settings.sleepGoalNow(), holidays = holidays) ?: return@withLock
+        // Die eine Bettzeit mit gelernter Einschlafdauer (Audit O-03).
+        val latency = context.phoneApp.learning.current().values?.latencyMinutes
+        val reminder = Bedtime.next(alarms.current().alarms, from, ZoneId.systemDefault(), settings.sleepGoalNow(), holidays = holidays, latencyMinutes = latency)
+            ?: return@withLock
         val start = maxOf(reminder.at.minus(TOLERANCE), current)
         alarmManager.setWindow(AlarmManager.RTC_WAKEUP, start.toEpochMilli(), TOLERANCE.multipliedBy(2).toMillis(), pending(reminder))
     }

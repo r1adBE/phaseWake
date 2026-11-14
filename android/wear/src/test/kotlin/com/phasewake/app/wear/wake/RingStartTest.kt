@@ -66,6 +66,8 @@ class RingStartTest {
             shadowOf(Looper.getMainLooper()).idle()
             Thread.sleep(5)
         }
+        // Die Tests liefern Epochen ab dem Start der Sensoren, nicht die leeren davor (E-1, `WakeServiceTest`).
+        service.night?.unmeasured = 0
         return service
     }
 

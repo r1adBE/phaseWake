@@ -22,7 +22,7 @@ extension SmartAlarm {
         }
     }
 
-    private func keepStale(_ old: WKExtendedRuntimeSession) {
+    func keepStale(_ old: WKExtendedRuntimeSession) {
         guard !isStale(old) else { return }
         staleSessions.append(old)
         DiagStore.shared.log(.scheduled, "session end pending (\(old.state.rawValue))")

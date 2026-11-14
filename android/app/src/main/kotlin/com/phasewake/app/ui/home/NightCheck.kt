@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.phasewake.app.R
 import com.phasewake.app.companion.CompanionLink
+import com.phasewake.app.core.Learning
 import com.phasewake.app.core.RecorderSkip
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ring.BackupAlarm
@@ -94,6 +95,19 @@ enum class Check(
      * Bereit-Liste (meist gibt es nichts zu melden).
      */
     WATCH_RECORDER(R.string.check_watch_recorder, R.string.check_watch_recorder_battery, null, inReadyList = false, advisory = true),
+
+    /**
+     * Vorab (Audit O-05): Akku der Uhr unter [NightCheckState.WATCH_ONSET_BATTERY_PERCENT] bei «Einschlafen automatisch
+     * erkennen»: Die Uhr beginnt die Einschlaf-Messung nicht (und damit auch keine Aufzeichnung der Lernphase). Nur ein
+     * Hinweis, der Wecker klingelt trotzdem; nicht in der Bereit-Liste.
+     */
+    WATCH_ONSET_BATTERY(R.string.check_watch_recorder, R.string.check_watch_onset_battery, null, inReadyList = false, advisory = true),
+
+    /**
+     * Vorab (Audit O-05): Lernphase läuft, Akku der Uhr unter [Learning.MIN_BATTERY]: Die Uhr zeichnet diese Nacht nicht
+     * für die Lernphase auf. Nur ein Hinweis; nicht in der Bereit-Liste.
+     */
+    WATCH_LEARN_BATTERY(R.string.check_watch_recorder, R.string.check_watch_learn_battery, null, inReadyList = false, advisory = true),
     NOTIFICATIONS(R.string.check_notifications, R.string.check_notifications_problem, R.string.check_allow),
     FULL_SCREEN(R.string.check_full_screen, R.string.check_full_screen_problem, R.string.check_allow),
 
@@ -127,12 +141,16 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
         /** Unter diesem Akkustand (Handy ohne Ladekabel, Uhr laut ihrer Meldung) warnt der Check. */
         const val LOW_BATTERY_PERCENT = 20
 
+        /** Unter diesem Akkustand der Uhr beginnt die automatische Einschlaf-Messung nicht (wie `AutoOnset` der Uhr). */
+        const val WATCH_ONSET_BATTERY_PERCENT = 30
+
         /**
          * Prüft alles, was ohne Uhr geht; die Uhr kommt aus [watchReachable], [watchReady],
          * [watchBattery] (Prozent, `null` = unbekannt oder zu alt) und [watchOutdated] (Version der Uhr)
          * sowie [watchPulse] (Pulsrechte; `null` = ältere Uhr, keine Warnung) und [recorderSkip] (Grund, warum die Messung
          * vor dem Schlafen dieser Nacht nicht startete; `null` = keiner). Fehlen der Uhr schon allgemein Rechte
-         * ([Check.WATCH_SETUP]), steht der Puls nicht noch einmal da.
+         * ([Check.WATCH_SETUP]), steht der Puls nicht noch einmal da. [autoOnset]: «Einschlafen automatisch erkennen» an,
+         * [learning]: Lernphase läuft; beides für die Hinweise vorab zum Akku der Uhr ([batteryHints]).
          */
         fun collect(
             context: Context,
@@ -143,6 +161,8 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
             watchOutdated: Boolean = false,
             watchPulse: WatchPulse? = null,
             recorderSkip: RecorderSkip.Reason? = null,
+            autoOnset: Boolean = false,
+            learning: Boolean = false,
         ): NightCheckState = NightCheckState(
             buildList {
                 when {
@@ -152,7 +172,11 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
                 }
                 if (watchReachable && watchReady != false && WatchPulse.warns(watchPulse)) add(Check.WATCH_PULSE)
                 if (watchReachable && watchBattery != null && watchBattery < LOW_BATTERY_PERCENT) add(Check.WATCH_BATTERY)
-                if (recorderSkip == RecorderSkip.Reason.BATTERY) add(Check.WATCH_RECORDER)
+                if (recorderSkip == RecorderSkip.Reason.BATTERY) {
+                    add(Check.WATCH_RECORDER)
+                } else if (watchReachable) {
+                    batteryHints(watchBattery, autoOnset, learning)?.let(::add)
+                }
                 if (watchOutdated) add(Check.WATCH_OUTDATED)
                 if (!hasNotificationPermission(context)) add(Check.NOTIFICATIONS)
                 if (!BackupAlarm.canScheduleExact(context)) add(Check.EXACT_ALARMS)
@@ -170,6 +194,23 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
                 if (audio.getStreamVolume(android.media.AudioManager.STREAM_ALARM) == 0) add(Check.VOLUME)
             },
         )
+
+        /**
+         * Hinweis vorab zum Akku der Uhr (Audit O-05), höchstens einer: unter [WATCH_ONSET_BATTERY_PERCENT] mit
+         * automatischer Einschlaf-Messung [Check.WATCH_ONSET_BATTERY], sonst in der Lernphase unter [Learning.MIN_BATTERY]
+         * [Check.WATCH_LEARN_BATTERY]. Keiner unter [LOW_BATTERY_PERCENT] (dort sagt [Check.WATCH_BATTERY] schon «lade die
+         * Uhr») und bei unbekanntem Akku.
+         */
+        fun batteryHints(watchBattery: Int?, autoOnset: Boolean, learning: Boolean): Check? = when {
+            watchBattery == null || watchBattery < LOW_BATTERY_PERCENT -> null
+            autoOnset && watchBattery < WATCH_ONSET_BATTERY_PERCENT -> Check.WATCH_ONSET_BATTERY
+            learning && watchBattery < Learning.MIN_BATTERY -> Check.WATCH_LEARN_BATTERY
+            else -> null
+        }
+
+        /** Ob die Uhr heute Abend ihre automatische Einschlaf-Messung auslässt (Akku); dann keine Kopfzeile dazu. */
+        fun onsetSkipped(state: NightCheckState?): Boolean =
+            state != null && state.failed.any { it == Check.WATCH_ONSET_BATTERY || it == Check.WATCH_BATTERY || it == Check.WATCH_RECORDER }
 
         fun hasNotificationPermission(context: Context) =
             Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
@@ -247,10 +288,11 @@ internal fun NightCheckCard(
                 // Text über die ganze Breite, Knopf darunter rechts: lange Texte bleiben lesbar.
                 Column(Modifier.fillMaxWidth()) {
                     Text(stringResource(check.problemTitle), style = MaterialTheme.typography.titleSmall)
-                    val problem = if (check == Check.BATTERY || check == Check.WATCH_BATTERY) {
-                        stringResource(check.problem, NightCheckState.LOW_BATTERY_PERCENT)
-                    } else {
-                        stringResource(check.problem)
+                    val problem = when (check) {
+                        Check.BATTERY, Check.WATCH_BATTERY -> stringResource(check.problem, NightCheckState.LOW_BATTERY_PERCENT)
+                        Check.WATCH_ONSET_BATTERY -> stringResource(check.problem, NightCheckState.WATCH_ONSET_BATTERY_PERCENT)
+                        Check.WATCH_LEARN_BATTERY -> stringResource(check.problem, Learning.MIN_BATTERY)
+                        else -> stringResource(check.problem)
                     }
                     Text(problem, style = MaterialTheme.typography.bodyMedium)
                     check.action?.let { action ->

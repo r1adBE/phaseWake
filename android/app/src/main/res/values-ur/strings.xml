@@ -241,6 +241,8 @@
     <string name="check_watch_battery_problem">%1$d %% سے کم – گھڑی چارج کرو تاکہ وہ پوری رات چلے اور تمہیں جگا سکے۔</string>
     <string name="check_watch_recorder">آج رات کی پیمائش</string>
     <string name="check_watch_recorder_battery">تمہاری گھڑی نے سونے سے پہلے کی پیمائش شروع نہیں کی – اس کی بیٹری بہت کم تھی۔ الارم پھر بھی تمہیں جگائے گا۔</string>
+    <string name="check_watch_onset_battery">%1$d %% سے کم بیٹری پر گھڑی آج رات یہ نہیں ناپے گی کہ تم کب سوئے – پہلے سے چارج کر لو۔ الارم پھر بھی تمہیں جگائے گا۔</string>
+    <string name="check_watch_learn_battery">%1$d %% سے کم بیٹری پر گھڑی آج رات سیکھنے کے مرحلے کے لیے ریکارڈ نہیں کرے گی – پہلے سے چارج کر لو۔ الارم پھر بھی تمہیں جگائے گا۔</string>
     <string name="check_watch_pulse">پس منظر میں نبض (گھڑی)</string>
     <string name="check_watch_pulse_problem">گھڑی کو رات میں تمہاری نبض ناپنے کی اجازت نہیں – گھڑی پر Phase Wake کی سینسر اجازت ”ہمیشہ اجازت دیں“ پر سیٹ کرو۔</string>
     <string name="export_contents_hint">فائل میں ہر رات کے لیے ہر 30 سیکنڈ کی حرکت اور دل کی دھڑکن، تمہیں کیسا لگا اور تمہارے نوٹس ہیں – نام، تاریخ یا ڈیوائس ID کے بغیر۔</string>
@@ -582,6 +584,7 @@
     <string name="overview_no_stages">مراحل کے بغیر</string>
     <string name="settings_clear_history_learn">سیکھنے کا مرحلہ دوبارہ شروع سے شروع ہوتا ہے۔</string>
     <string name="learn_auto_hint">راتیں گنی جائیں، اس لیے شام کو گھڑی پر “شب بخیر” ٹیپ کرو یا “سو جانے کا خودکار طور پر پتا لگائیں” آن کرو۔</string>
+    <string name="learn_auto_hint_clock">“سو جانے کا خودکار طور پر پتا لگائیں” آن کرو – پھر گھڑی خود پتا لگائے گی کہ تم کب سوئے، اور راتیں گنی جائیں گی۔</string>
     <string name="learn_consent_title">سیکھنے کا مرحلہ</string>
     <string name="learn_consent_text">تاکہ Phase Wake الارم کو آپ کے مطابق ڈھال سکے، آپ کی گھڑی %1$d راتوں تک رات بھر حرکت اور نبض ناپتی ہے۔ اس میں کچھ بیٹری لگتی ہے – سونے سے پہلے گھڑی چارج کریں۔ ڈیٹا آپ کے آلات پر ہی رہتا ہے۔ سیکھنے کا مرحلہ ترتیبات میں کسی بھی وقت بند کیا جا سکتا ہے۔</string>
     <string name="learn_consent_start">سیکھنے کا مرحلہ شروع کریں</string>

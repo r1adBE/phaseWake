@@ -111,7 +111,8 @@ class WakeDetectorTest {
 
     @Test
     fun zeroWarmupHasNoBaselineUntilTwoPulses() {
-        val detector = WakeDetector(DetectorConfig(warmupEpochs = 0))
+        // Gelerntes Grundrauschen 0.001 (Leicht-Schwelle 0.0025): Ohne Grundrauschen wartete die Leicht-Regel (E-1).
+        val detector = WakeDetector(DetectorConfig(warmupEpochs = 0, personalFloor = 0.001))
         detector.onEpoch(Epoch(0.003, 52.0))
         // Erst ein Puls davor: kein Basispuls, die Pulsbedingung ist nicht erfüllt.
         assertEquals(Decision.Wait, detector.onEpoch(Epoch(0.003, 60.0)))
@@ -327,11 +328,16 @@ class WakeDetectorTest {
 
     @Test
     fun personalFloorAppliesBeforeTheWindowHasItsOwn() {
-        // Sensor liefert anfangs keine Bewegung: Ohne eigenes Grundrauschen gälte 0.002, 0.03 wäre leichte Bewegung.
+        // Sensor liefert anfangs keine Bewegung: Ohne Grundrauschen wartet die Leicht-Regel (Audit c3b8b01 E-1; früher
+        // galt 0.002, und 0.03 war leichte Bewegung).
         val gap = Epoch(null, 52.0)
         val plain = WakeDetector()
         plain.feed(gap, gap, gap, Epoch(0.03, 57.0))
-        assertEquals(Decision.Wake(WakeReason.LIGHT_SLEEP), plain.onEpoch(Epoch(0.03, 57.0)))
+        assertEquals(Decision.Wait, plain.onEpoch(Epoch(0.03, 57.0)))
+        // Gelernt 0.005 → Leicht-Schwelle 0.0125: 0.03 ist leichte Bewegung.
+        val small = WakeDetector(DetectorConfig(personalFloor = 0.005))
+        small.feed(gap, gap, gap, Epoch(0.03, 57.0))
+        assertEquals(Decision.Wake(WakeReason.LIGHT_SLEEP), small.onEpoch(Epoch(0.03, 57.0)))
         // Gelernt 0.02 → Leicht-Schwelle 0.05: 0.03 ist Rauschen.
         val learned = WakeDetector(DetectorConfig(personalFloor = 0.02))
         learned.feed(gap, gap, gap, Epoch(0.03, 57.0))

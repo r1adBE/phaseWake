@@ -118,8 +118,9 @@ public enum SleepOverviews {
             bars: bars,
             goalMinutes: goalMinutes,
             averageMinutes: minutes.reduce(0, +) / minutes.count,
-            bedtimeMinute: roundHalfUp(mean(inRange.map { Regularity.minutesFromNoon($0.start, calendar: calendar) })),
-            wakeMinute: roundHalfUp(mean(inRange.map { Regularity.minutesFromNoon($0.end, calendar: calendar) })),
+            // Ohne Sprung um Mittag (Audit W-1): Aufwachen 11:56 und 12:50 ergibt 12:23, nicht 00:23.
+            bedtimeMinute: Regularity.meanMinute(inRange.map { Regularity.minutesFromNoon($0.start, calendar: calendar) }),
+            wakeMinute: Regularity.meanMinute(inRange.map { Regularity.minutesFromNoon($0.end, calendar: calendar) }),
             counted: minutes.count,
             reachedNights: minutes.filter { SleepGoal.reached(asleepMinutes: $0, goalMinutes: goalMinutes) }.count,
             scaleMinutes: max(goalMinutes, bars.map { $0.asleepMinutes ?? 0 }.max() ?? 0)
@@ -127,13 +128,14 @@ public enum SleepOverviews {
     }
 
     /// Durchschnittliche Minuten je bekannter Phase über die Nächte in `sleeps` (Phasen auf die Nacht zugeschnitten,
-    /// Millisekunden summiert, dann abgerundet). Leer, wenn `sleeps` leer ist oder eine Nacht keine Phasen hat: Ein
-    /// Durchschnitt nur über einen Teil der Nächte passte nicht zur Höhe der Säule (Durchschnitt aller Nächte).
+    /// Millisekunden summiert, dann abgerundet). Leer, wenn `sleeps` leer ist oder eine Nacht keine Schlafphase
+    /// (REM, leicht, tief) hat: Ein Durchschnitt nur über einen Teil der Nächte passte nicht zur Höhe der Säule (Durchschnitt aller Nächte).
     public static func stageAverage(_ sleeps: [SleepSummary], stages: [StageSpan]) -> [SleepStage: Int] {
         let perNight = sleeps.map { sleep in
             StageCheck.clip(stages, from: sleep.start, to: sleep.end).filter { ChartData.level($0.stage) != nil }
         }
-        if perNight.isEmpty || perNight.contains(where: \.isEmpty) { return [:] }
+        // Eine Nacht nur mit «wach» (Quelle ohne Phasendetail) hat keine Phasen wie in `StageStats.of` (Audit W-5).
+        if perNight.isEmpty || perNight.contains(where: { spans in !spans.contains(where: { $0.stage != .awake }) }) { return [:] }
         var out: [SleepStage: Int] = [:]
         for stage in StageStats.order {
             let ms = perNight.reduce(Int64(0)) { sum, spans in

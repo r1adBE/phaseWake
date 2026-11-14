@@ -1,9 +1,12 @@
 package com.phasewake.app.shared
 
+import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.TimeBounds
 import java.net.URLDecoder
 import java.net.URLEncoder
+import java.time.Instant
+import java.time.ZoneId
 
 /**
  * Abgleich der Wecker je Wecker (Audit A-4, Entscheid «per-alarm updatedAt merge»): Früher gewann die neuere ganze Liste;
@@ -44,6 +47,45 @@ object AlarmStamps {
             }
         }
         return AlarmSnapshot(alarms, maxOf(local.updatedAt, remote.updatedAt), stamps, prune(deleted, now))
+    }
+
+    /**
+     * So weit darf die eingestellte Weckzeit nach der Zielzeit einer früher geweckten Nacht liegen (Einschlaf-Modus,
+     * gleich `WakeRules.GOOD_NIGHT_MAX_AHEAD` bzw. `GoodNightEstimate.maxAhead` in Swift): 16 Std.
+     */
+    const val SHIFT_MAX_AHEAD_MS = 16 * 3_600_000L
+
+    /**
+     * Ob [spec] noch die Fassung des Einmal-Weckers ist, die zur Zielzeit [target] geklingelt hat (Fix G-1/S-1). Nur sie
+     * darf das Auto-Aus nach dem Klingeln treffen; eine danach verschobene oder geänderte Uhrzeit nicht.
+     * - [rung]: der Wecker, wie er zu Beginn der Nacht geladen wurde (`null`, wenn unbekannt, z. B. nach einem Neustart
+     *   der App). Bekannt: Uhrzeit und Tage müssen gleich sein.
+     * - Unbekannt: Die eingestellte Weckzeit von [spec] für diese Nacht (`nextTarget(spec, target − 1 ms)`) muss [target]
+     *   sein; bei einer früher geweckten Nacht ([shifted], Einschlaf-Modus) höchstens [SHIFT_MAX_AHEAD_MS] danach.
+     * Wie Swift.
+     */
+    fun rang(spec: AlarmSpec, rung: AlarmSpec?, target: Instant, zone: ZoneId, shifted: Boolean): Boolean {
+        if (rung != null) return rung.hour == spec.hour && rung.minute == spec.minute && rung.days == spec.days
+        val nominal = AlarmSchedule.nextTarget(spec, target.minusMillis(1), zone) ?: return false
+        if (nominal == target) return true
+        return shifted && nominal.isAfter(target) && nominal.toEpochMilli() - target.toEpochMilli() <= SHIFT_MAX_AHEAD_MS
+    }
+
+    /**
+     * Auto-Aus eines Einmal-Weckers nach dem Klingeln (Fix G-1/S-1): Schaltet [id] in [local] aus, wenn er ein
+     * eingeschalteter Einmal-Wecker ist und [rang] ihn als die geklingelte Fassung erkennt; sonst `null` (nichts tun).
+     * Der Wecker bekommt als Zeitpunkt den seiner bisherigen Fassung + 1 ms, nicht «jetzt»: Er ersetzt so genau die
+     * Fassung, die geklingelt hat. Eine neuere Änderung, die hier noch nicht angekommen ist (z. B. am Handy verschoben,
+     * während die Uhr nicht erreichbar war), gewinnt beim Abgleich weiter. Ohne plausiblen bisherigen Zeitpunkt gilt
+     * [listStamp]. Listen-Zeitpunkt: [listStamp]. Wie Swift.
+     */
+    fun autoOff(local: AlarmSnapshot, id: String, listStamp: Long, rang: (AlarmSpec) -> Boolean): AlarmSnapshot? {
+        val spec = local.alarms.firstOrNull { it.id == id } ?: return null
+        if (!spec.isOneShot || !spec.enabled || !rang(spec)) return null
+        val stamps = local.alarms.associate { it.id to local.stampOf(it.id) } +
+            (id to (TimeBounds.checked(local.stampOf(id))?.plus(1)?.takeIf(TimeBounds::contains) ?: listStamp))
+        val alarms = local.alarms.map { if (it.id == id) it.copy(enabled = false) else it }
+        return AlarmSnapshot(alarms, listStamp, stamps, local.deleted)
     }
 
     /** Die neuere von zwei Fassungen (Wecker, Zeitpunkt); bei Gleichstand fest nach Inhalt. */

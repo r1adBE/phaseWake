@@ -1,5 +1,6 @@
 package com.phasewake.app.wear.wake
 
+import com.phasewake.app.core.DetectorConfig
 import com.phasewake.app.core.Snooze
 import com.phasewake.app.core.Transient
 import com.phasewake.app.core.WakePlan
@@ -73,6 +74,14 @@ internal object WakeRules {
         val alarm = if (receivedAt > 0L) " (alarm ${seconds(receivedAt - scheduledAt)})" else ""
         return "watch start delay ${seconds(now - scheduledAt)}$alarm"
     }
+
+    /**
+     * Epochen ab Fensterbeginn [windowStart], die beim Start der Sensoren ([now]) schon vorbei sind: Sie bleiben leer und
+     * zählen nicht für die Erkennung (Aufwärmphase, Basispuls), nur für den Verlauf (Audit c3b8b01 E-1). Identisch zu
+     * `unmeasured` der Apple Watch (`SmartAlarm+Measuring.swift`): ganze 30-s-Epochen seit Fensterbeginn, nie negativ.
+     */
+    fun unmeasuredEpochs(windowStart: Instant, now: Instant): Int =
+        (Duration.between(windowStart, now).seconds / DetectorConfig.EPOCH_SECONDS).coerceIn(0L, Int.MAX_VALUE.toLong()).toInt()
 
     private fun seconds(millis: Long): String = String.format(Locale.ROOT, "%.1fs", millis / 1000.0)
 }

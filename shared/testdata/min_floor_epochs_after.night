@@ -1,41 +1,41 @@
-# Fix KN-6: Gegenstück zu min_floor_epochs_before. Epoche 4 (3 Werte, Startschwelle): Puls (52 + 57) / 2 = 54.5 unter
-# 54.6. Epoche 5 hat 4 Werte: Grundrauschen 0.03, Leicht-Schwelle 0.075, Puls 57 weckt nicht. Erst ab 5 Werten
-# hiesse es in Epoche 5 noch Startschwelle (LIGHT_SLEEP).
-@expect none
+# Fix KN-6, angepasst an E-1 (Audit c3b8b01): Gegenstück zu min_floor_epochs_before. Epoche 5 hat 4 Werte:
+# Grundrauschen 0.001, Leicht-Schwelle 0.0025, Treffer in Epoche 4 und 5, Puls 56 >= 54.6 -> LIGHT_SLEEP. Erst ab
+# 5 Werten wartete die Leicht-Regel in Epoche 5 noch, und danach ist der Puls zu tief.
+@expect 5 LIGHT_SLEEP
 motion,hr
 ,52
 ,52
-0.03,52
-0.03,52
-0.03,57
-0.03,57
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
+0.001,52
+0.001,52
+0.003,56
+0.003,56
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52

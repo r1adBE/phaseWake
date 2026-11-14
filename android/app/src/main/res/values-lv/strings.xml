@@ -247,6 +247,8 @@
     <string name="check_watch_battery_problem">Zem %1$d %% – uzlādē pulksteni, lai tas izturētu visu nakti un varētu tevi pamodināt.</string>
     <string name="check_watch_recorder">Šīs nakts mērījums</string>
     <string name="check_watch_recorder_battery">Pulkstenis nesāka mērījumu pirms miega – akumulators bija pārāk tukšs. Modinātājs tevi tik un tā pamodinās.</string>
+    <string name="check_watch_onset_battery">Ja akumulators ir zem %1$d %%, pulkstenis šonakt nemērīs, kad tu aizmiedz – uzlādē to iepriekš. Modinātājs tevi tik un tā pamodinās.</string>
+    <string name="check_watch_learn_battery">Ja akumulators ir zem %1$d %%, pulkstenis šonakt neierakstīs mācīšanās posmam – uzlādē to iepriekš. Modinātājs tevi tik un tā pamodinās.</string>
     <string name="check_watch_pulse">Pulss fonā (pulkstenis)</string>
     <string name="check_watch_pulse_problem">Pulkstenim nav atļauts naktī mērīt tavu pulsu – pulkstenī iestati Phase Wake sensoru atļauju uz “Atļaut vienmēr”.</string>
     <string name="export_contents_hint">Failā ir katras nakts kustības un pulss ik pēc 30 s, tava pašsajūta un piezīmes – bez vārdiem, datumiem un ierīču ID.</string>
@@ -597,6 +599,7 @@
     <string name="overview_no_stages">Bez fāzēm</string>
     <string name="settings_clear_history_learn">Mācīšanās posms sākas no jauna.</string>
     <string name="learn_auto_hint">Vakarā pulkstenī pieskaries „Ar labu nakti“ vai ieslēdz „Automātiski noteikt aizmigšanu“, lai naktis tiktu skaitītas.</string>
+    <string name="learn_auto_hint_clock">Ieslēdz „Automātiski noteikt aizmigšanu“ – tad pulkstenis pats noteiks, kad tu aizmiedz, un naktis tiks skaitītas.</string>
     <string name="learn_consent_title">Mācīšanās posms</string>
     <string name="learn_consent_text">Lai Phase Wake varētu pielāgot modinātāju tev, tavs pulkstenis %1$d naktis visas nakts garumā mēra kustību un pulsu. Tas patērē nedaudz akumulatora – uzlādē pulksteni pirms gulētiešanas. Dati paliek tavās ierīcēs. Mācīšanās posmu vari jebkurā laikā izslēgt iestatījumos.</string>
     <string name="learn_consent_start">Sākt mācīšanās posmu</string>

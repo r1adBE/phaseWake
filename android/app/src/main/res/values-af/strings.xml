@@ -242,6 +242,8 @@
     <string name="check_watch_battery_problem">Onder %1$d %% – laai jou horlosie sodat dit die nag hou en jou wakker kan maak.</string>
     <string name="check_watch_recorder">Meting vannag</string>
     <string name="check_watch_recorder_battery">Jou horlosie het nie die meting voor die slaap begin nie – sy battery was te laag. Jy sal steeds gewek word.</string>
+    <string name="check_watch_onset_battery">Met minder as %1$d %% battery meet jou horlosie vannag nie wanneer jy aan die slaap raak nie – laai dit vooraf. Jy sal steeds gewek word.</string>
+    <string name="check_watch_learn_battery">Met minder as %1$d %% battery teken jou horlosie vannag nie vir die leerfase op nie – laai dit vooraf. Jy sal steeds gewek word.</string>
     <string name="check_watch_pulse">Polsslag in die agtergrond (horlosie)</string>
     <string name="check_watch_pulse_problem">Die horlosie mag nie jou polsslag snags meet nie – stel op die horlosie Phase Wake se sensortoestemming op “Laat heeltyd toe”.</string>
     <string name="export_contents_hint">Die lêer bevat vir elke nag beweging en hartklop per 30 s, hoe jy gevoel het en jou notas – sonder name, datums of toestel-ID’s.</string>
@@ -583,6 +585,7 @@
     <string name="overview_no_stages">Sonder fases</string>
     <string name="settings_clear_history_learn">Die leerfase begin weer van voor af.</string>
     <string name="learn_auto_hint">Tik saans op jou horlosie op “Goeienag” of skakel “Bespeur outomaties wanneer jy aan die slaap raak” aan sodat die nagte tel.</string>
+    <string name="learn_auto_hint_clock">Skakel “Bespeur outomaties wanneer jy aan die slaap raak” aan – dan bespeur jou horlosie self wanneer jy aan die slaap raak, en die nagte tel.</string>
     <string name="learn_consent_title">Leerfase</string>
     <string name="learn_consent_text">Sodat Phase Wake die wekker by jou kan aanpas, meet jou horlosie %1$d nagte lank deur die nag beweging en polsslag. Dit gebruik ’n bietjie battery – laai die horlosie voor jy gaan slaap. Die data bly op jou toestelle. Jy kan die leerfase enige tyd in die instellings afskakel.</string>
     <string name="learn_consent_start">Begin leerfase</string>

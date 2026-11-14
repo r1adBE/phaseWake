@@ -53,28 +53,39 @@ object NightQuality {
  */
 data class SleepSummary(val start: Instant, val end: Instant, val asleepMinutes: Long) {
     companion object {
-        /** Ab dieser Lücke zwischen zwei Phasen beginnt eine neue Nacht. */
-        val NEW_NIGHT_GAP: Duration = Duration.ofHours(3)
+        /**
+         * Lücke zwischen zwei Phasen, die noch zur selben Nacht gehört (einschliesslich); darüber beginnt eine neue.
+         * Eine Regel für «eine Nacht» überall: gleich wie [HealthHistory.CONTINUATION_GAP] (60 Min; Entscheid r1AD
+         * 14.11.2026, Audit W-2 – vorher 3 Std.).
+         */
+        val NEW_NIGHT_GAP: Duration = HealthHistory.CONTINUATION_GAP
 
         /**
-         * Fasst Phasen zu Nächten zusammen, älteste zuerst; Strecken ganz ohne Schlaf fallen weg. Ohne Mindestdauer:
-         * Welche Sitzung eine Nacht ist (Nickerchen nur am Tag), entscheidet vorher [HealthHistory] – wie im Verlauf.
+         * Fasst Phasen zu Nächten zusammen (Lücke höchstens [NEW_NIGHT_GAP]), älteste zuerst; Strecken ganz ohne Schlaf
+         * fallen weg. Ohne Mindestdauer: Welche Sitzung eine Nacht ist (Nickerchen nur am Tag), entscheidet vorher
+         * [HealthHistory] – wie im Verlauf.
          */
         fun group(spans: List<StageSpan>): List<SleepSummary> {
             val groups = mutableListOf<MutableList<StageSpan>>()
             for (span in spans.sortedBy { it.start }) {
                 val last = groups.lastOrNull()
-                if (last != null && Duration.between(last.maxOf { it.end }, span.start) < NEW_NIGHT_GAP) last += span
+                if (last != null && Duration.between(last.maxOf { it.end }, span.start) <= NEW_NIGHT_GAP) last += span
                 else groups += mutableListOf(span)
             }
-            return groups.mapNotNull { group ->
-                val asleep = group.filter { it.stage != SleepStage.AWAKE }
-                if (asleep.isEmpty()) return@mapNotNull null
-                // Millisekunden erst summieren, dann abrunden – wie die Detailseite ([HealthSession.asleepMinutes]);
-                // je Phase abgerundet fehlten bei vielen Phasen bis zu einer Minute je Phase.
-                val minutes = asleep.sumOf { Duration.between(it.start, it.end).toMillis() } / StageStats.MS_PER_MINUTE
-                SleepSummary(asleep.minOf { it.start }, group.maxOf { it.end }, minutes)
-            }
+            return groups.mapNotNull(::of)
+        }
+
+        /**
+         * Eine Nacht aus [spans]: Beginn der ersten Schlafphase bis Ende der letzten Phase, Schlaf aller Phasen ausser
+         * «wach». `null` ohne Schlaf. Für die Nächte des Verlaufs je Kette ([HealthHistory.summaries]).
+         */
+        fun of(spans: List<StageSpan>): SleepSummary? {
+            val asleep = spans.filter { it.stage != SleepStage.AWAKE }
+            if (asleep.isEmpty()) return null
+            // Millisekunden erst summieren, dann abrunden – wie die Detailseite ([HealthSession.asleepMinutes]);
+            // je Phase abgerundet fehlten bei vielen Phasen bis zu einer Minute je Phase.
+            val minutes = asleep.sumOf { Duration.between(it.start, it.end).toMillis() } / StageStats.MS_PER_MINUTE
+            return SleepSummary(asleep.minOf { it.start }, spans.maxOf { it.end }, minutes)
         }
     }
 }
@@ -131,11 +142,9 @@ data class Trends(
                 return (own + other).takeIf { it.size >= MIN_NIGHTS_PER_WEEK }?.average()
             }
 
-            // Einschlafzeit als Minuten ab Mittag, damit 23:30 und 00:30 nahe beieinander liegen.
-            val bedtimes = inRange(sleeps, { it.end }, twoWeeksAgo, now).map {
-                val t = it.start.atZone(zone).toLocalTime()
-                Math.floorMod(t.hour * 60 + t.minute - 12 * 60, 24 * 60).toDouble()
-            }
+            // Einschlafzeit als Minuten ab Mittag, damit 23:30 und 00:30 nahe beieinander liegen; ohne Sprung um
+            // Mittag ([Regularity.unwrap], Audit W-1).
+            val bedtimes = Regularity.unwrap(inRange(sleeps, { it.end }, twoWeeksAgo, now).map { Regularity.minutesFromNoon(it.start, zone) })
             val spread = bedtimes.takeIf { it.size >= MIN_NIGHTS_FOR_SPREAD }?.let { list ->
                 val mean = list.average()
                 list.map { kotlin.math.abs(it - mean) }.average().toLong()

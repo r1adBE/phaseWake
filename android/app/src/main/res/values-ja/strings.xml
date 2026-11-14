@@ -235,6 +235,8 @@
     <string name="check_watch_battery_problem">%1$d %%未満です – 一晩もって確実に起こせるよう、ウォッチを充電してください。</string>
     <string name="check_watch_recorder">今夜の計測</string>
     <string name="check_watch_recorder_battery">ウォッチは就寝前の計測を開始しませんでした – バッテリーが少なすぎました。アラームはそれでも鳴ります。</string>
+    <string name="check_watch_onset_battery">バッテリーが%1$d %%未満のため、今夜ウォッチは入眠を計測しません – 事前に充電してください。アラームはそれでも鳴ります。</string>
+    <string name="check_watch_learn_battery">バッテリーが%1$d %%未満のため、今夜ウォッチは学習期間の記録をしません – 事前に充電してください。アラームはそれでも鳴ります。</string>
     <string name="check_watch_pulse">バックグラウンドの脈拍（ウォッチ）</string>
     <string name="check_watch_pulse_problem">ウォッチは夜間に脈拍を測定できません – ウォッチで Phase Wake のセンサーの権限を「常に許可」に設定してください。</string>
     <string name="export_contents_hint">ファイルには各夜の 30 秒ごとの体動と心拍、気分、メモが含まれます。名前・日付・デバイス ID は含みません。</string>
@@ -566,6 +568,7 @@
     <string name="overview_no_stages">ステージなし</string>
     <string name="settings_clear_history_learn">学習期間を最初からやり直します。</string>
     <string name="learn_auto_hint">夜をカウントするには、夜にウォッチで「おやすみ」をタップするか、「入眠を自動で検出」をオンにしてください。</string>
+    <string name="learn_auto_hint_clock">「入眠を自動で検出」をオンにしてください。ウォッチが入眠を自動で検出し、夜がカウントされます。</string>
     <string name="learn_consent_title">学習期間</string>
     <string name="learn_consent_text">Phase Wake がアラームをあなたに合わせられるように、時計が %1$d 夜のあいだ、夜を通して体の動きと脈拍を計測します。バッテリーを少し使います – 寝る前に時計を充電してください。 データはあなたのデバイスに残ります。学習期間は設定でいつでもオフにできます。</string>
     <string name="learn_consent_start">学習期間を開始</string>

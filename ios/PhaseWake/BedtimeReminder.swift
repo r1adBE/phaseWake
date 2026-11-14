@@ -3,7 +3,8 @@ import PhaseWakeCore
 import UserNotifications
 
 /// Bettzeit-Erinnerung: gewöhnliche Mitteilung (nicht zeitkritisch) 30 Minuten vor der Bettzeit,
-/// Bettzeit = Zielzeit des nächsten Weckers minus Schlafziel. iOS weckt die App nach der Mitteilung
+/// Bettzeit = Zielzeit des nächsten Weckers minus Schlafziel minus gelernte Einschlafdauer (die eine Bettzeit,
+/// `Bedtime.bedtime`, Audit O-03). iOS weckt die App nach der Mitteilung
 /// nicht auf, darum stehen die Erinnerungen für die nächsten Nächte im Voraus.
 @MainActor
 final class BedtimeReminder {
@@ -18,25 +19,27 @@ final class BedtimeReminder {
         await NotificationLog.requestPermission("bedtime")
     }
 
-    func reschedule(alarms: [AlarmSpec], goalMinutes: Int, enabled: Bool, holidays: Set<String>) async {
+    func reschedule(alarms: [AlarmSpec], goalMinutes: Int, enabled: Bool, holidays: Set<String>, latencyMinutes: Int?) async {
         let previous = queue
         let task = Task { @MainActor in
             await previous?.value
-            await self.rescheduleNow(alarms: alarms, goalMinutes: goalMinutes, enabled: enabled, holidays: holidays)
+            await self.rescheduleNow(alarms: alarms, goalMinutes: goalMinutes, enabled: enabled, holidays: holidays,
+                                     latencyMinutes: latencyMinutes)
         }
         queue = task
         await task.value
     }
 
     /// Je Nacht zählt nur der früheste Wecker; eine schon verpasste Erinnerung entfällt (Regel im Kern, `Bedtime.next`).
-    private func rescheduleNow(alarms: [AlarmSpec], goalMinutes: Int, enabled: Bool, holidays: Set<String>) async {
+    private func rescheduleNow(alarms: [AlarmSpec], goalMinutes: Int, enabled: Bool, holidays: Set<String>, latencyMinutes: Int?) async {
         let center = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: (0..<Self.nightsAhead).map(Self.identifier))
         guard enabled else { return }
         let calendar = Calendar.gregorianLocal
         var from = Date()
         for index in 0..<Self.nightsAhead {
-            guard let reminder = Bedtime.next(alarms, from: from, calendar: calendar, goalMinutes: goalMinutes, holidays: holidays) else { break }
+            guard let reminder = Bedtime.next(alarms, from: from, calendar: calendar, goalMinutes: goalMinutes, holidays: holidays,
+                                                latencyMinutes: latencyMinutes) else { break }
             // Die nächste Erinnerung liegt echt nach dieser: so folgt die nächste Nacht.
             from = reminder.at
             let content = UNMutableNotificationContent()

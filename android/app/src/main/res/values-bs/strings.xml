@@ -247,6 +247,8 @@
     <string name="check_watch_battery_problem">Ispod %1$d %% – napuni sat kako bi izdržao noć i probudio te.</string>
     <string name="check_watch_recorder">Mjerenje noćas</string>
     <string name="check_watch_recorder_battery">Sat nije pokrenuo mjerenje prije spavanja – baterija mu je bila preslaba. Alarm će te ipak probuditi.</string>
+    <string name="check_watch_onset_battery">Ispod %1$d %% baterije sat noćas neće mjeriti kada zaspiš – napuni ga prije toga. Alarm će te ipak probuditi.</string>
+    <string name="check_watch_learn_battery">Ispod %1$d %% baterije sat noćas neće snimati za fazu učenja – napuni ga prije toga. Alarm će te ipak probuditi.</string>
     <string name="check_watch_pulse">Puls u pozadini (sat)</string>
     <string name="check_watch_pulse_problem">Sat ne smije noću mjeriti tvoj puls – na satu postavi dozvolu za senzore za Phase Wake na „Dozvoli uvijek“.</string>
     <string name="export_contents_hint">Datoteka za svaku noć sadrži pokret i puls svakih 30 s, kako si se osjećao i tvoje bilješke – bez imena, datuma i ID-ova uređaja.</string>
@@ -597,6 +599,7 @@
     <string name="overview_no_stages">Bez faza</string>
     <string name="settings_clear_history_learn">Faza učenja počinje ispočetka.</string>
     <string name="learn_auto_hint">Navečer dodirni „Laku noć“ na satu ili uključi „Automatski prepoznaj uspavljivanje“ da bi se noći brojale.</string>
+    <string name="learn_auto_hint_clock">Uključi „Automatski prepoznaj uspavljivanje“ – tada sat sam prepoznaje kada zaspiš, i noći se broje.</string>
     <string name="learn_consent_title">Faza učenja</string>
     <string name="learn_consent_text">Da bi Phase Wake prilagodio alarm tebi, tvoj sat %1$d noći mjeri pokrete i puls tokom noći. To troši nešto baterije – napuni sat prije spavanja. Podaci ostaju na tvojim uređajima. Fazu učenja možeš bilo kada isključiti u postavkama.</string>
     <string name="learn_consent_start">Pokreni fazu učenja</string>

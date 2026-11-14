@@ -163,7 +163,9 @@ private fun WakeService.loadNight(current: Night, canMeasure: Boolean, refusal: 
 
 private fun WakeService.startSensors(n: Night) {
     val elapsedNow = SystemClock.elapsedRealtimeNanos()
-    val sinceStart = Duration.between(n.plan.windowStart, Instant.now()).toNanos()
+    val now = Instant.now()
+    val sinceStart = Duration.between(n.plan.windowStart, now).toNanos()
+    n.unmeasured = WakeRules.unmeasuredEpochs(n.plan.windowStart, now)
     n.sensors = SensorSession(this, elapsedNow - sinceStart, SystemClock::elapsedRealtimeNanos) { epochs ->
         onEpochs(n, epochs)
     }.also { it.start() }
@@ -217,6 +219,9 @@ internal fun WakeService.onEpochs(n: Night, epochs: List<Epoch>) {
     if (night !== n || n.phase != Phase.MEASURING) return
     for (epoch in epochs) {
         n.epochs += epoch
+        // Vor dem Start der Sensoren gab es keine Werte: Diese Epochen zählen nicht fürs Aufwärmen der Erkennung (wie die
+        // Apple Watch, Audit c3b8b01 E-1).
+        if (n.epochs.size <= n.unmeasured) continue
         // «Genau»: nur für den Verlauf messen, geweckt wird zur Zielzeit.
         if (n.exact) continue
         val decision = n.detector.onEpoch(epoch)

@@ -52,6 +52,21 @@ class LearningTest {
     }
 
     @Test
+    fun countsAtExactlyTheLimits() {
+        // Audit c3b8b01 BE-1d: genau 72 gemessene Epochen über genau 360 zählt; eine weniger von beidem nicht.
+        fun night(measured: Int, span: Int): Learning.Night {
+            val at = (0 until measured).map { if (it == measured - 1) span - 1 else it }.toSet()
+            return Learning.Night(evening(0), List(span) { if (it in at) Epoch(0.02, 55.0) else Epoch(null, null) })
+        }
+        assertEquals(72, Learning.MIN_MEASURED_EPOCHS)
+        assertEquals(360, Learning.MIN_SPAN_EPOCHS)
+        assertTrue(Learning.counts(night(72, 360)))
+        assertFalse(Learning.counts(night(71, 360)))
+        assertFalse(Learning.counts(night(72, 359)))
+        assertEquals(72, Learning.measuredEpochs(night(72, 360)))
+    }
+
+    @Test
     fun countsOneNightPerDateFromTheStart() {
         val since = evening(1)
         val nights = listOf(

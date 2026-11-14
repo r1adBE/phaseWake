@@ -74,31 +74,32 @@ internal class EditorState(val base: AlarmSpec) {
         private const val DEFAULT_SLEEP_MINUTES = 450
 
         /** Speichert alle Eingaben als einfache Werte (Zahlen, Text), Aufzählungen über ihren Namen. */
-        fun saver(base: AlarmSpec): Saver<EditorState, Any> = listSaver(
-            save = {
-                listOf(
-                    it.window, ArrayList(it.days.map { day -> day.value }), it.sleepMode, it.sleepMinutes,
-                    it.phone.name, it.watchSound, it.sound, it.sunrise.name, it.sunriseDevice.name,
-                    it.wakeTask.name, it.label, it.more, it.skipHolidays,
-                )
-            },
-            restore = { v ->
-                EditorState(base).apply {
-                    window = v[0] as Float
-                    days = (v[1] as List<*>).map { day -> DayOfWeek.of(day as Int) }.toSet()
-                    sleepMode = v[2] as Boolean
-                    sleepMinutes = v[3] as Float
-                    phone = PhoneAlert.valueOf(v[4] as String)
-                    watchSound = v[5] as Boolean
-                    sound = v[6] as String
-                    sunrise = Sunrise.valueOf(v[7] as String)
-                    sunriseDevice = SunriseDevice.valueOf(v[8] as String)
-                    wakeTask = WakeTask.valueOf(v[9] as String)
-                    label = v[10] as String
-                    more = v[11] as Boolean
-                    skipHolidays = v[12] as Boolean
-                }
-            },
-        )
+        fun saver(base: AlarmSpec): Saver<EditorState, Any> = listSaver(save = { encode(it) }, restore = { v -> restore(base, v) })
+
+        /** Alle Eingaben von [state] als einfache Werte (für [saver] und den Entwurf im Navigationseintrag). */
+        fun encode(state: EditorState): ArrayList<Any?> = with(state) {
+            arrayListOf(
+                window, ArrayList(days.map { day -> day.value }), sleepMode, sleepMinutes,
+                phone.name, watchSound, sound, sunrise.name, sunriseDevice.name,
+                wakeTask.name, label, more, skipHolidays,
+            )
+        }
+
+        /** Eingaben aus [encode] auf [base]. */
+        fun restore(base: AlarmSpec, v: List<*>): EditorState = EditorState(base).apply {
+            window = v[0] as Float
+            days = (v[1] as List<*>).map { day -> DayOfWeek.of(day as Int) }.toSet()
+            sleepMode = v[2] as Boolean
+            sleepMinutes = v[3] as Float
+            phone = PhoneAlert.valueOf(v[4] as String)
+            watchSound = v[5] as Boolean
+            sound = v[6] as String
+            sunrise = Sunrise.valueOf(v[7] as String)
+            sunriseDevice = SunriseDevice.valueOf(v[8] as String)
+            wakeTask = WakeTask.valueOf(v[9] as String)
+            label = v[10] as String
+            more = v[11] as Boolean
+            skipHolidays = v[12] as Boolean
+        }
     }
 }

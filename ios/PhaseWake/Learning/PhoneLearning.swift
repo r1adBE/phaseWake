@@ -163,12 +163,26 @@ final class PhoneLearning {
 
     // MARK: Speichern
 
+    /// Stand für die Uhr (`PhoneModel.publishToWatch`); ohne Zeitpunkt (iPhone-App neu installiert) mit «jetzt» und
+    /// gespeichert (Fix S-3, ``LearningState/stampIfNever(now:)``).
+    func watchSnapshot() -> LearningSnapshot {
+        var next = state
+        if next.stampIfNever(now: Date()) {
+            state = next
+            if let data = try? JSONEncoder().encode(next) { try? data.write(to: stateURL, options: .atomic) }
+        }
+        return state.snapshot
+    }
+
     /// Speichert `next` und schickt den Stand an die Uhr, wenn er sich für sie geändert hat.
     private func setState(_ next: LearningState) {
         let sendToWatch = next.snapshot != state.snapshot
+        let latencyChanged = next.values?.latencyMinutes != state.values?.latencyMinutes
         state = next
         if let data = try? JSONEncoder().encode(next) { try? data.write(to: stateURL, options: .atomic) }
         if sendToWatch { PhoneModel.shared.publishToWatch() }
+        // Gelernte Einschlafdauer geändert: Die Bettzeit-Erinnerung folgt der einen Bettzeit (Audit O-03).
+        if latencyChanged { Task { await PhoneModel.shared.replanBedtime() } }
     }
 
     /// Speichert die Aufzeichnungen (die letzten ``NightRecording/maxKept``, älteste zuerst).

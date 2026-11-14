@@ -245,6 +245,8 @@
     <string name="check_watch_battery_problem">Sub %1$d %% – încarcă ceasul ca să reziste toată noaptea și să te poată trezi.</string>
     <string name="check_watch_recorder">Măsurarea din noaptea asta</string>
     <string name="check_watch_recorder_battery">Ceasul nu a pornit măsurarea dinainte de somn – bateria era prea descărcată. Alarma te va trezi oricum.</string>
+    <string name="check_watch_onset_battery">Sub %1$d %% baterie, ceasul nu va măsura în noaptea asta când adormi – încarcă-l dinainte. Alarma te va trezi oricum.</string>
+    <string name="check_watch_learn_battery">Sub %1$d %% baterie, ceasul nu va înregistra în noaptea asta pentru faza de învățare – încarcă-l dinainte. Alarma te va trezi oricum.</string>
     <string name="check_watch_pulse">Puls în fundal (ceas)</string>
     <string name="check_watch_pulse_problem">Ceasul nu are voie să-ți măsoare pulsul noaptea – pe ceas, setează permisiunea pentru senzori a Phase Wake la „Permite oricând”.</string>
     <string name="export_contents_hint">Fișierul conține pentru fiecare noapte mișcarea și pulsul la fiecare 30 s, cum te-ai simțit și notițele tale – fără nume, date sau ID-uri de dispozitiv.</string>
@@ -594,6 +596,7 @@
     <string name="overview_no_stages">Fără faze</string>
     <string name="settings_clear_history_learn">Faza de învățare începe de la capăt.</string>
     <string name="learn_auto_hint">Seara, atinge „Noapte bună” pe ceas sau activează „Detectează automat adormirea”, ca nopțile să fie numărate.</string>
+    <string name="learn_auto_hint_clock">Activează „Detectează automat adormirea” – atunci ceasul detectează singur când adormi, iar nopțile sunt numărate.</string>
     <string name="learn_consent_title">Faza de învățare</string>
     <string name="learn_consent_text">Ca Phase Wake să poată adapta alarma la tine, ceasul tău măsoară mișcarea și pulsul de-a lungul nopții timp de %1$d nopți. Asta consumă puțină baterie – încarcă ceasul înainte de culcare. Datele rămân pe dispozitivele tale. Poți dezactiva oricând faza de învățare din setări.</string>
     <string name="learn_consent_start">Pornește faza de învățare</string>

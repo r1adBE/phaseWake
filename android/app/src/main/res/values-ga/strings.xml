@@ -257,6 +257,8 @@
     <string name="check_watch_battery_problem">Faoi %1$d %% – luchtaigh d’uaireadóir ionas go maireann sé an oíche agus gur féidir leis thú a dhúiseacht.</string>
     <string name="check_watch_recorder">Tomhas anocht</string>
     <string name="check_watch_recorder_battery">Níor thosaigh d’uaireadóir an tomhas roimh chodladh – bhí an ceallra ró-íseal. Dúiseoidh an t-aláram thú mar sin féin.</string>
+    <string name="check_watch_onset_battery">Le níos lú ná %1$d %% ceallra, ní thomhaisfidh d’uaireadóir anocht cathain a thiteann tú i do chodladh – luchtaigh roimh ré é. Dúiseoidh an t-aláram thú mar sin féin.</string>
+    <string name="check_watch_learn_battery">Le níos lú ná %1$d %% ceallra, ní thaifeadfaidh d’uaireadóir anocht don chéim foghlama – luchtaigh roimh ré é. Dúiseoidh an t-aláram thú mar sin féin.</string>
     <string name="check_watch_pulse">Cuisle sa chúlra (uaireadóir)</string>
     <string name="check_watch_pulse_problem">Níl cead ag an uaireadóir do chuisle a thomhas san oíche – ar an uaireadóir, socraigh cead braiteora Phase Wake go “Ceadaigh i gcónaí”.</string>
     <string name="export_contents_hint">Tá gluaiseacht agus ráta croí in aghaidh 30 s, conas a mhothaigh tú agus do nótaí do gach oíche sa chomhad – gan ainmneacha, dátaí ná aitheantais gléis.</string>
@@ -625,6 +627,7 @@
     <string name="overview_no_stages">Gan céimeanna</string>
     <string name="settings_clear_history_learn">Tosaíonn an chéim foghlama as an nua.</string>
     <string name="learn_auto_hint">Tapáil “Oíche mhaith” ar d’uaireadóir tráthnóna nó cas air “Braith titim i do chodladh go huathoibríoch” ionas go gcomhairtear na hoícheanta.</string>
+    <string name="learn_auto_hint_clock">Cas air “Braith titim i do chodladh go huathoibríoch” – ansin braithfidh d’uaireadóir féin cathain a thiteann tú i do chodladh, agus comhairfear na hoícheanta.</string>
     <string name="learn_consent_title">Céim foghlama</string>
     <string name="learn_consent_text">Ionas gur féidir le Phase Wake an t-aláram a oiriúnú duit, tomhaiseann d’uaireadóir gluaiseacht agus cuisle i rith na hoíche ar feadh %1$d oíche. Úsáideann sé seo beagán ceallra – luchtaigh an t-uaireadóir sula dtéann tú a chodladh. Fanann na sonraí ar do ghléasanna. Is féidir leat an chéim foghlama a mhúchadh sna socruithe am ar bith.</string>
     <string name="learn_consent_start">Tosaigh an chéim foghlama</string>

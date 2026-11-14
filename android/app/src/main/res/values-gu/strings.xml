@@ -242,6 +242,8 @@
     <string name="check_watch_battery_problem">%1$d %%થી ઓછી – ઘડિયાળ આખી રાત ચાલે અને તમને જગાડી શકે તે માટે તેને ચાર્જ કરો.</string>
     <string name="check_watch_recorder">આજ રાતનું માપન</string>
     <string name="check_watch_recorder_battery">તારી ઘડિયાળે ઊંઘ પહેલાંનું માપન શરૂ ન કર્યું – તેની બેટરી બહુ ઓછી હતી. એલાર્મ તો પણ તને જગાડશે.</string>
+    <string name="check_watch_onset_battery">%1$d %%થી ઓછી બેટરીમાં ઘડિયાળ આજે રાત્રે તને ક્યારે ઊંઘ આવી તે માપશે નહીં – પહેલાં ચાર્જ કર. એલાર્મ તો પણ તને જગાડશે.</string>
+    <string name="check_watch_learn_battery">%1$d %%થી ઓછી બેટરીમાં ઘડિયાળ આજે રાત્રે શીખવાના તબક્કા માટે રેકોર્ડ કરશે નહીં – પહેલાં ચાર્જ કર. એલાર્મ તો પણ તને જગાડશે.</string>
     <string name="check_watch_pulse">બૅકગ્રાઉન્ડમાં પલ્સ (ઘડિયાળ)</string>
     <string name="check_watch_pulse_problem">ઘડિયાળ રાત્રે તારી પલ્સ માપી શકતી નથી – ઘડિયાળ પર Phase Wake ની સેન્સર પરવાનગી “હંમેશાં મંજૂરી આપો” પર સેટ કર.</string>
     <string name="export_contents_hint">ફાઇલમાં દરેક રાત માટે દર 30 સેકન્ડનું હલનચલન અને હૃદયના ધબકારા, તમને કેવું લાગ્યું અને તમારી નોંધો છે – નામ, તારીખ કે ઉપકરણ ID વિના.</string>
@@ -583,6 +585,7 @@
     <string name="overview_no_stages">તબક્કા વિના</string>
     <string name="settings_clear_history_learn">શીખવાનો તબક્કો ફરીથી શરૂ થાય છે.</string>
     <string name="learn_auto_hint">રાતો ગણાય તે માટે સાંજે ઘડિયાળ પર “શુભ રાત્રિ” ટૅપ કર અથવા “ઊંઘ આવવાનું આપમેળે ઓળખો” ચાલુ કર.</string>
+    <string name="learn_auto_hint_clock">“ઊંઘ આવવાનું આપમેળે ઓળખો” ચાલુ કર – પછી ઘડિયાળ જાતે ઓળખશે કે તને ક્યારે ઊંઘ આવી, અને રાતો ગણાશે.</string>
     <string name="learn_consent_title">શીખવાનો તબક્કો</string>
     <string name="learn_consent_text">Phase Wake એલાર્મને તમારા મુજબ ગોઠવી શકે તે માટે, તમારી ઘડિયાળ %1$d રાત સુધી રાત દરમિયાન હલનચલન અને પલ્સ માપે છે. આમાં થોડી બેટરી વપરાય છે – સૂતા પહેલાં ઘડિયાળ ચાર્જ કરો. ડેટા તમારા ઉપકરણો પર જ રહે છે. તમે સેટિંગ્સમાં ગમે ત્યારે શીખવાનો તબક્કો બંધ કરી શકો છો.</string>
     <string name="learn_consent_start">શીખવાનો તબક્કો શરૂ કરો</string>

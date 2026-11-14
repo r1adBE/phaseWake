@@ -117,6 +117,16 @@ class LearningRepository(private val store: DataStore<Preferences>) {
         return done
     }
 
+    /**
+     * Stand für die Uhr (Fix S-3): Ein Stand ohne Zeitpunkt (nie geändert, z. B. Handy neu installiert) bekommt [now].
+     * Die Uhr übernimmt nur einen neueren Stand; mit 0 bliebe sie beim Stand eines früheren Handys (Lernphase an, alte
+     * Werte), obwohl hier nie zugestimmt wurde. Wie `LearningState.stampIfNever` (Swift). @return der Stand danach.
+     */
+    suspend fun stampIfNever(now: Instant): LearningState {
+        store.edit { prefs -> if ((prefs[UPDATED_AT] ?: 0L) <= 0L) stamp(prefs, now) }
+        return current()
+    }
+
     /** Karte «Angepasst an dich» bestätigt. */
     suspend fun setSeen() {
         store.edit { it[SEEN] = true }

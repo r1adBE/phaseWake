@@ -47,8 +47,8 @@ object SleepGoal {
 }
 
 /**
- * Bettzeit-Erinnerung: Bettzeit = Zielzeit des nächsten Weckers − Schlafziel; erinnert
- * [LEAD_MINUTES] Minuten davor. Beim Einschlaf-Modus gilt die eingestellte (späteste) Weckzeit.
+ * Bettzeit-Erinnerung: Bettzeit = Zielzeit des nächsten Weckers − Schlafziel − gelernte Einschlafdauer ([bedtime]);
+ * erinnert [LEAD_MINUTES] Minuten davor. Beim Einschlaf-Modus gilt die eingestellte (späteste) Weckzeit.
  */
 object Bedtime {
     /** Vorlauf der Erinnerung vor der Bettzeit in Minuten. */
@@ -61,26 +61,29 @@ object Bedtime {
     data class Reminder(val at: Instant, val bedtime: Instant, val target: Instant)
 
     /**
-     * Bettzeit: [nextAlarmTarget] minus [goalMinutes] als feste Dauer (bei einer Zeitumstellung in der
-     * Nacht bleibt die Schlafdauer gleich, die Uhrzeit verschiebt sich).
+     * Die eine Bettzeit überall (Karte, Erinnerung, Ring der Uhr, Diagramm, Start der Geräusch-Aufnahme; Entscheid
+     * r1AD 14.11.2026, Audit O-03): [nextAlarmTarget] minus [goalMinutes] minus gelernte Einschlafdauer
+     * [latencyMinutes] ([Learning.Values.latencyMinutes]; `null` = nicht gelernt, zählt 0 – wie bisher), als feste
+     * Dauer (bei einer Zeitumstellung in der Nacht bleibt die Schlafdauer gleich, die Uhrzeit verschiebt sich).
+     * Negative Einschlafdauern zählen 0.
      */
-    fun bedtime(nextAlarmTarget: Instant, goalMinutes: Int): Instant =
-        nextAlarmTarget.minus(Duration.ofMinutes(goalMinutes.toLong()))
+    fun bedtime(nextAlarmTarget: Instant, goalMinutes: Int, latencyMinutes: Int? = null): Instant =
+        nextAlarmTarget.minus(Duration.ofMinutes(goalMinutes.toLong() + (latencyMinutes ?: 0).coerceAtLeast(0)))
 
     /** Minuten eines 12-Stunden-Zifferblatts (Ring auf der Uhr); weiter zurück wäre die Bettzeit dort nicht eindeutig. */
     const val DIAL_MINUTES: Int = 720
 
     /**
-     * Bettzeit für den Einschlafpunkt auf dem 12-Stunden-Ring der Uhr: [bedtime], oder `null`, wenn [goalMinutes]
-     * nicht zwischen 1 und [DIAL_MINUTES] (ausschliesslich) liegt – der Punkt fiele sonst auf oder hinter den
-     * Weckpunkt. Mit einem Ziel aus [SleepGoal.clamp] (höchstens 10 Std.) nie `null`.
+     * Bettzeit für den Einschlafpunkt auf dem 12-Stunden-Ring der Uhr: [bedtime], oder `null`, wenn [goalMinutes] plus
+     * [latencyMinutes] nicht zwischen 1 und [DIAL_MINUTES] (ausschliesslich) liegt – der Punkt fiele sonst auf oder
+     * hinter den Weckpunkt.
      */
-    fun onDial(nextAlarmTarget: Instant, goalMinutes: Int): Instant? =
-        if (goalMinutes in 1 until DIAL_MINUTES) bedtime(nextAlarmTarget, goalMinutes) else null
+    fun onDial(nextAlarmTarget: Instant, goalMinutes: Int, latencyMinutes: Int? = null): Instant? =
+        if (goalMinutes + (latencyMinutes ?: 0).coerceAtLeast(0) in 1 until DIAL_MINUTES) bedtime(nextAlarmTarget, goalMinutes, latencyMinutes) else null
 
     /** Zeitpunkt der Erinnerung: [bedtime] minus [leadMinutes]. */
-    fun reminderAt(nextAlarmTarget: Instant, goalMinutes: Int, leadMinutes: Int = LEAD_MINUTES): Instant =
-        bedtime(nextAlarmTarget, goalMinutes).minus(Duration.ofMinutes(leadMinutes.toLong()))
+    fun reminderAt(nextAlarmTarget: Instant, goalMinutes: Int, leadMinutes: Int = LEAD_MINUTES, latencyMinutes: Int? = null): Instant =
+        bedtime(nextAlarmTarget, goalMinutes, latencyMinutes).minus(Duration.ofMinutes(leadMinutes.toLong()))
 
     /**
      * Nächste Erinnerung, die echt nach [from] liegt: zum frühesten Wecker nach [from]; liegt dessen
@@ -97,13 +100,15 @@ object Bedtime {
         leadMinutes: Int = LEAD_MINUTES,
         /** Feiertage für Wecker mit [AlarmSpec.skipHolidays]; an solchen Tagen keine Erinnerung. */
         holidays: Set<LocalDate> = emptySet(),
+        /** Gelernte Einschlafdauer ([bedtime]); `null` = nicht gelernt. */
+        latencyMinutes: Int? = null,
     ): Reminder? {
         var cursor = from
         val remaining = specs.toMutableList()
         repeat(MAX_STEPS) {
             val plan = AlarmSchedule.earliestPlan(remaining, cursor, zone, holidays) ?: return null
-            val at = reminderAt(plan.target, goalMinutes, leadMinutes)
-            if (at.isAfter(cursor)) return Reminder(at, bedtime(plan.target, goalMinutes), plan.target)
+            val at = reminderAt(plan.target, goalMinutes, leadMinutes, latencyMinutes)
+            if (at.isAfter(cursor)) return Reminder(at, bedtime(plan.target, goalMinutes, latencyMinutes), plan.target)
             // Ein Einmal-Wecker klingelt nur diese eine Nacht; er kommt danach nicht wieder.
             remaining.removeAll { it.id == plan.alarmId && it.isOneShot }
             cursor = plan.target

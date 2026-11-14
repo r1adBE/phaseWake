@@ -46593,6 +46593,454 @@
         }
       }
     },
+    "check_watch_learn_battery": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Met minder as %1$lld %% battery teken jou horlosie vannag nie vir die leerfase op nie – laai dit vooraf. Jy sal steeds gewek word."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ከ%1$lld %% ባትሪ በታች ሰዓትህ ዛሬ ማታ ለመማሪያ ጊዜ አይቀርጽም – አስቀድመህ ኃይል ሙላው። ቢሆንም ማንቂያው ይቀሰቅስሃል።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مع بطارية أقل من %1$lld %% لن تسجّل ساعتك الليلة لمرحلة التعلّم – اشحنها مسبقًا. سيوقظك المنبّه مع ذلك."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Batareya %1$lld %%-dən aşağı olduqda saat bu gecə öyrənmə mərhələsi üçün qeyd aparmayacaq – onu əvvəlcədən doldur. Zəngli saat səni yenə də oyadacaq."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Под %1$lld %% батерия часовникът няма да записва довечера за фазата на учене – зареди го предварително. Алармата пак ще те събуди."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ব্যাটারি %1$lld %%-এর নিচে থাকলে ঘড়ি আজ রাতে শেখার পর্বের জন্য রেকর্ড করবে না – আগেই চার্জ দাও। অ্যালার্ম তবুও তোমাকে জাগাবে।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ispod %1$lld %% baterije sat noćas neće snimati za fazu učenja – napuni ga prije toga. Alarm će te ipak probuditi."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amb menys del %1$lld %% de bateria, el rellotge no enregistrarà aquesta nit per a la fase d’aprenentatge – carrega'l abans. L’alarma et despertarà igualment."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pod %1$lld %% baterie hodinky dnes v noci nenahrávají pro fázi učení – nabij je předem. Budík tě přesto vzbudí."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under %1$lld %% batteri optager uret ikke i nat til læringsfasen – oplad det inden. Du bliver stadig vækket."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unter %1$lld %% Akku zeichnet die Uhr heute Nacht nicht für die Lernphase auf – lade sie vorher. Geweckt wirst du trotzdem."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Με μπαταρία κάτω από %1$lld %% το ρολόι δεν θα καταγράψει απόψε για τη φάση εκμάθησης – φόρτισέ το πριν. Το ξυπνητήρι θα σε ξυπνήσει κανονικά."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With less than %1$lld %% battery, your watch won’t record for the learning phase tonight – charge it beforehand. You’ll still be woken."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con menos del %1$lld %% de batería, el reloj no grabará esta noche para la fase de aprendizaje: cárgalo antes. La alarma te despertará igualmente."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alla %1$lld %% aku korral ei salvesta kell täna öösel õppefaasi jaoks – lae see enne. Äratus äratab sind ikkagi."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bateria %%%1$lld baino gutxiago bada, erlojuak ez du gaur gauean grabatuko ikasketa-faserako – kargatu aurretik. Alarmak esnatuko zaitu hala ere."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "با باتری کمتر از %1$lld %% ساعت امشب برای مرحلهٔ یادگیری ضبط نمی‌کند – از قبل شارژش کن. زنگ هشدار باز هم بیدارت می‌کند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle %1$lld %% akulla kello ei tallenna tänä yönä oppimisvaihetta varten – lataa se etukäteen. Herätys herättää sinut silti."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kapag mas mababa sa %1$lld %% ang baterya, hindi magre-record ang relo mo ngayong gabi para sa yugto ng pagkatuto – i-charge ito bago matulog. Gigisingin ka pa rin ng alarm."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avec moins de %1$lld %% de batterie, ta montre n’enregistrera pas cette nuit pour la phase d’apprentissage – recharge-la avant. L’alarme te réveillera quand même."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le níos lú ná %1$lld %% ceallra, ní thaifeadfaidh d’uaireadóir anocht don chéim foghlama – luchtaigh roimh ré é. Dúiseoidh an t-aláram thú mar sin féin."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con menos do %1$lld %% de batería, o reloxo non gravará esta noite para a fase de aprendizaxe: cárgao antes. A alarma espertarate igualmente."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %%થી ઓછી બેટરીમાં ઘડિયાળ આજે રાત્રે શીખવાના તબક્કા માટે રેકોર્ડ કરશે નહીં – પહેલાં ચાર્જ કર. એલાર્મ તો પણ તને જગાડશે."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עם פחות מ-%1$lld %% סוללה השעון לא יקליט הלילה עבור שלב הלמידה – טען אותו מראש. ההשכמה תעיר אותך בכל זאת."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %% से कम बैटरी पर घड़ी आज रात सीखने के चरण के लिए रिकॉर्ड नहीं करेगी – पहले चार्ज कर लो। अलार्म फिर भी तुम्हें जगाएगा।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ispod %1$lld %% baterije sat noćas neće snimati za fazu učenja – napuni ga prije toga. Alarm će te ipak probuditi."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %% alatti akkumulátorral az óra ma éjjel nem rögzít a tanulási szakaszhoz – töltsd fel előtte. Az ébresztő így is felébreszt."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %%-ից ցածր մարտկոցով ժամացույցն այս գիշեր չի ձայնագրի ուսուցման փուլի համար – նախապես լիցքավորիր այն։ Զարթուցիչը միևնույն է կարթնացնի քեզ։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dengan baterai di bawah %1$lld %%, jam tanganmu tidak akan merekam untuk fase belajar malam ini – isi dayanya lebih dulu. Alarm tetap akan membangunkanmu."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Með undir %1$lld %% rafhlöðu skráir úrið ekki í nótt fyrir námsfasann – hladdu það fyrir fram. Vekjarinn vekur þig samt."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con meno del %1$lld %% di batteria, stanotte l’orologio non registrerà per la fase di apprendimento – ricaricalo prima. La sveglia ti sveglierà comunque."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "バッテリーが%1$lld %%未満のため、今夜ウォッチは学習期間の記録をしません – 事前に充電してください。アラームはそれでも鳴ります。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %%-ზე ნაკლები ბატარეით საათი ამაღამ სწავლის ფაზისთვის არ ჩაწერს – წინასწარ დატენე. მაღვიძარა მაინც გაგაღვიძებს."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Батарея %1$lld %%-дан төмен болса, сағат бүгін түнде үйрену кезеңі үшін жазбайды – алдын ала зарядта. Оятқыш бәрібір сені оятады."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ពេលថ្មទាបជាង %1$lld %% នាឡិកានឹងមិនថតសម្រាប់ដំណាក់កាលរៀននៅយប់នេះទេ – សូមសាកវាជាមុន។ ម៉ោងរោទ៍នឹងនៅតែដាស់អ្នក។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %% ಕ್ಕಿಂತ ಕಡಿಮೆ ಬ್ಯಾಟರಿಯಲ್ಲಿ ಇಂದು ರಾತ್ರಿ ಕಲಿಕೆಯ ಹಂತಕ್ಕಾಗಿ ವಾಚ್ ರೆಕಾರ್ಡ್ ಮಾಡುವುದಿಲ್ಲ – ಮೊದಲೇ ಚಾರ್ಜ್ ಮಾಡು. ಅಲಾರಾಂ ಆದರೂ ನಿನ್ನನ್ನು ಎಬ್ಬಿಸುತ್ತದೆ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "배터리가 %1$lld %% 미만이면 오늘 밤 시계가 학습 단계용으로 기록하지 않아요 – 미리 충전해 주세요. 알람은 그래도 울려요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ເມື່ອແບັດເຕີຣີຕ່ຳກວ່າ %1$lld %% ໂມງຈະບໍ່ບັນທຶກສຳລັບໄລຍະຮຽນຮູ້ໃນຄືນນີ້ – ສາກໄວ້ກ່ອນ. ໂມງປຸກຍັງຈະປຸກເຈົ້າຢູ່."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kai baterija mažesnė nei %1$lld %%, laikrodis šiąnakt neįrašys mokymosi etapui – įkrauk jį iš anksto. Žadintuvas vis tiek tave pažadins."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ja akumulators ir zem %1$lld %%, pulkstenis šonakt neierakstīs mācīšanās posmam – uzlādē to iepriekš. Modinātājs tevi tik un tā pamodinās."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Под %1$lld %% батерија часовникот вечерва нема да снима за фазата на учење – наполни го однапред. Алармот сепак ќе те разбуди."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %%-ൽ താഴെ ബാറ്ററിയിൽ ഇന്ന് രാത്രി പഠന ഘട്ടത്തിനായി വാച്ച് റെക്കോർഡ് ചെയ്യില്ല – മുൻകൂട്ടി ചാർജ് ചെയ്യുക. എന്നാലും അലാറം നിന്നെ ഉണർത്തും."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Батерей %1$lld %%-иас бага бол цаг өнөө шөнө суралцах үед зориулж бичлэг хийхгүй – урьдчилан цэнэглэ. Сэрүүлэг чамайг ямар ч байсан сэрээнэ."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %% पेक्षा कमी बॅटरीवर घड्याळ आज रात्री शिकण्याच्या टप्प्यासाठी रेकॉर्ड करणार नाही – आधीच चार्ज कर. अलार्म तरीही तुला उठवेल."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dengan bateri di bawah %1$lld %%, jam tangan tidak akan merakam untuk fasa pembelajaran malam ini – cas dahulu. Penggera tetap akan mengejutkan awak."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ဘက်ထရီ %1$lld %% အောက်ဆိုလျှင် ယနေ့ည သင်ယူမှုအဆင့်အတွက် နာရီက မမှတ်တမ်းတင်ပါ – ကြိုတင် အားသွင်းပါ။ သို့သော် နိုးစက်က သင့်ကို နှိုးပေးမည်။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under %1$lld %% batteri tar ikke klokken opp for læringsfasen i natt – lad den før. Du blir vekket likevel."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %% भन्दा कम ब्याट्रीमा घडीले आज राति सिक्ने चरणका लागि रेकर्ड गर्दैन – पहिल्यै चार्ज गर। अलार्मले तिमीलाई तैपनि उठाउनेछ।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Met minder dan %1$lld %% batterij neemt je horloge vannacht niet op voor de leerfase – laad het vooraf op. Je wordt toch gewekt."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %% ਤੋਂ ਘੱਟ ਬੈਟਰੀ ’ਤੇ ਘੜੀ ਅੱਜ ਰਾਤ ਸਿੱਖਣ ਦੇ ਪੜਾਅ ਲਈ ਰਿਕਾਰਡ ਨਹੀਂ ਕਰੇਗੀ – ਪਹਿਲਾਂ ਚਾਰਜ ਕਰ ਲੈ। ਅਲਾਰਮ ਫਿਰ ਵੀ ਤੈਨੂੰ ਜਗਾਏਗਾ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poniżej %1$lld %% baterii zegarek nie nagra dziś w nocy dla fazy nauki – naładuj go wcześniej. Budzik i tak cię obudzi."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com menos de %1$lld %% de bateria, o relógio não vai gravar hoje à noite para a fase de aprendizado – carregue-o antes. O alarme vai te acordar mesmo assim."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com menos de %1$lld %% de bateria, o relógio não vai gravar esta noite para a fase de aprendizagem – carrega-o antes. O alarme vai acordar-te na mesma."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sub %1$lld %% baterie, ceasul nu va înregistra în noaptea asta pentru faza de învățare – încarcă-l dinainte. Alarma te va trezi oricum."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "При заряде ниже %1$lld %% часы сегодня ночью не будут записывать для этапа обучения, – заряди их заранее. Будильник всё равно тебя разбудит."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "බැටරිය %1$lld %% ට අඩු නම් අද රාත්‍රියේ ඉගෙනීමේ අදියර සඳහා ඔරලෝසුව පටිගත කරන්නේ නැත – කලින්ම ආරෝපණය කරන්න. එලාමය කෙසේ වෙතත් ඔබව අවදි කරයි."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pod %1$lld %% batérie hodinky dnes v noci nebudú nahrávať pre fázu učenia – nabi ich vopred. Budík ťa aj tak zobudí."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pod %1$lld %% baterije ura nocoj ne bo snemala za fazo učenja – napolni jo vnaprej. Budilka te bo vseeno zbudila."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Me më pak se %1$lld %% bateri, ora sonte nuk do të regjistrojë për fazën e të mësuarit – karikoje më parë. Alarmi do të të zgjojë gjithsesi."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Испод %1$lld %% батерије сат ноћас неће снимати за фазу учења – напуни га пре тога. Аларм ће те ипак пробудити."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under %1$lld %% batteri spelar klockan inte in för inlärningsfasen i natt – ladda den innan. Du blir väckt ändå."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Betri ikiwa chini ya %1$lld %%, saa haitarekodi usiku wa leo kwa hatua ya kujifunza – ichaji mapema. Kengele bado itakuamsha."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %% க்குக் குறைவான பேட்டரியில் இன்றிரவு கற்றல் நிலைக்காகக் கடிகாரம் பதிவு செய்யாது – முன்பே சார்ஜ் செய். அலாரம் எப்படியும் உன்னை எழுப்பும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %% కంటే తక్కువ బ్యాటరీతో ఈ రాత్రి నేర్చుకునే దశ కోసం వాచ్ రికార్డ్ చేయదు – ముందే ఛార్జ్ చెయ్యి. అయినా అలారం నిన్ను లేపుతుంది."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เมื่อแบตเตอรี่ต่ำกว่า %1$lld %% คืนนี้นาฬิกาจะไม่บันทึกสำหรับช่วงเรียนรู้ – ชาร์จไว้ก่อน แต่นาฬิกาปลุกจะยังปลุกคุณตามปกติ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pil %1$lld %% altındayken saat bu gece öğrenme aşaması için kayıt yapmaz – önceden şarj et. Alarm seni yine de uyandıracak."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Із зарядом нижче %1$lld %% годинник цієї ночі не записуватиме для етапу навчання, – заряди його заздалегідь. Будильник усе одно тебе розбудить."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %% سے کم بیٹری پر گھڑی آج رات سیکھنے کے مرحلے کے لیے ریکارڈ نہیں کرے گی – پہلے سے چارج کر لو۔ الارم پھر بھی تمہیں جگائے گا۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Batareya %1$lld %% dan kam bo‘lsa, soat bu kecha o‘rganish bosqichi uchun yozib olmaydi – oldindan quvvatla. Budilnik baribir seni uyg‘otadi."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Khi pin dưới %1$lld %%, đêm nay đồng hồ sẽ không ghi lại cho giai đoạn học – hãy sạc trước. Báo thức vẫn sẽ đánh thức bạn."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "電量低過 %1$lld %% 嘅時候，手錶今晚唔會為學習階段錄製——請預先充電。鬧鐘照樣會叫醒你。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "电量低于 %1$lld %% 时，手表今晚不会为学习阶段记录——请提前充电。闹钟仍会叫醒你。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "電量低於 %1$lld %% 時，手錶今晚不會為學習階段記錄——請提前充電。鬧鐘仍會叫醒你。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uma ibhethri lingaphansi kuka-%1$lld %%, iwashi ngeke liqophe namuhla ebusuku esigabeni sokufunda – lishaje kusenesikhathi. I-alamu isazokuvusa."
+          }
+        }
+      }
+    },
     "check_watch_notifications": {
       "localizations": {
         "af": {
@@ -47485,6 +47933,454 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vumela izaziso ezibucayi ngesikhathi ze-Phase Wake ku-Apple Watch yakho. Uma kungenjalo, ayikwazi ukukuvusa ngesaziso uma kungekho kukala okuqhubekayo."
+          }
+        }
+      }
+    },
+    "check_watch_onset_battery": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Met minder as %1$lld %% battery meet jou horlosie vannag nie wanneer jy aan die slaap raak nie – laai dit vooraf. Jy sal steeds gewek word."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ከ%1$lld %% ባትሪ በታች ሰዓትህ ዛሬ ማታ እንቅልፍ መውሰድህን አይለካም – አስቀድመህ ኃይል ሙላው። ቢሆንም ማንቂያው ይቀሰቅስሃል።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مع بطارية أقل من %1$lld %% لن تقيس ساعتك الليلة متى تنام – اشحنها مسبقًا. سيوقظك المنبّه مع ذلك."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Batareya %1$lld %%-dən aşağı olduqda saat bu gecə yuxuya getməyini ölçməyəcək – onu əvvəlcədən doldur. Zəngli saat səni yenə də oyadacaq."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Под %1$lld %% батерия часовникът няма да измерва довечера кога заспиваш – зареди го предварително. Алармата пак ще те събуди."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ব্যাটারি %1$lld %%-এর নিচে থাকলে ঘড়ি আজ রাতে তুমি কখন ঘুমিয়ে পড়লে তা মাপবে না – আগেই চার্জ দাও। অ্যালার্ম তবুও তোমাকে জাগাবে।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ispod %1$lld %% baterije sat noćas neće mjeriti kada zaspiš – napuni ga prije toga. Alarm će te ipak probuditi."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amb menys del %1$lld %% de bateria, el rellotge no mesurarà aquesta nit quan t'adorms – carrega'l abans. L’alarma et despertarà igualment."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pod %1$lld %% baterie hodinky dnes v noci neměří, kdy usneš – nabij je předem. Budík tě přesto vzbudí."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under %1$lld %% batteri måler uret ikke i nat, hvornår du falder i søvn – oplad det inden. Du bliver stadig vækket."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unter %1$lld %% Akku misst die Uhr heute Nacht dein Einschlafen nicht – lade sie vorher. Geweckt wirst du trotzdem."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Με μπαταρία κάτω από %1$lld %% το ρολόι δεν θα μετρήσει απόψε πότε αποκοιμιέσαι – φόρτισέ το πριν. Το ξυπνητήρι θα σε ξυπνήσει κανονικά."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With less than %1$lld %% battery, your watch won’t measure when you fall asleep tonight – charge it beforehand. You’ll still be woken."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con menos del %1$lld %% de batería, el reloj no medirá esta noche cuándo te duermes: cárgalo antes. La alarma te despertará igualmente."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alla %1$lld %% aku korral ei mõõda kell täna öösel, millal sa uinud – lae see enne. Äratus äratab sind ikkagi."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bateria %%%1$lld baino gutxiago bada, erlojuak ez du gaur gauean neurtuko noiz hartzen zaituen loak – kargatu aurretik. Alarmak esnatuko zaitu hala ere."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "با باتری کمتر از %1$lld %% ساعت امشب زمان به خواب رفتنت را اندازه نمی‌گیرد – از قبل شارژش کن. زنگ هشدار باز هم بیدارت می‌کند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle %1$lld %% akulla kello ei mittaa tänä yönä, milloin nukahdat – lataa se etukäteen. Herätys herättää sinut silti."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kapag mas mababa sa %1$lld %% ang baterya, hindi susukatin ng relo mo ngayong gabi kung kailan ka nakatulog – i-charge ito bago matulog. Gigisingin ka pa rin ng alarm."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avec moins de %1$lld %% de batterie, ta montre ne mesurera pas ton endormissement cette nuit – recharge-la avant. L’alarme te réveillera quand même."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le níos lú ná %1$lld %% ceallra, ní thomhaisfidh d’uaireadóir anocht cathain a thiteann tú i do chodladh – luchtaigh roimh ré é. Dúiseoidh an t-aláram thú mar sin féin."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con menos do %1$lld %% de batería, o reloxo non medirá esta noite cando adormeces: cárgao antes. A alarma espertarate igualmente."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %%થી ઓછી બેટરીમાં ઘડિયાળ આજે રાત્રે તને ક્યારે ઊંઘ આવી તે માપશે નહીં – પહેલાં ચાર્જ કર. એલાર્મ તો પણ તને જગાડશે."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עם פחות מ-%1$lld %% סוללה השעון לא ימדוד הלילה מתי נרדמת – טען אותו מראש. ההשכמה תעיר אותך בכל זאת."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %% से कम बैटरी पर घड़ी आज रात यह नहीं मापेगी कि तुम कब सोए – पहले चार्ज कर लो। अलार्म फिर भी तुम्हें जगाएगा।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ispod %1$lld %% baterije sat noćas neće mjeriti kada zaspiš – napuni ga prije toga. Alarm će te ipak probuditi."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %% alatti akkumulátorral az óra ma éjjel nem méri, mikor alszol el – töltsd fel előtte. Az ébresztő így is felébreszt."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %%-ից ցածր մարտկոցով ժամացույցն այս գիշեր չի չափի, թե երբ ես քնում – նախապես լիցքավորիր այն։ Զարթուցիչը միևնույն է կարթնացնի քեզ։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dengan baterai di bawah %1$lld %%, jam tanganmu tidak akan mengukur kapan kamu tertidur malam ini – isi dayanya lebih dulu. Alarm tetap akan membangunkanmu."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Með undir %1$lld %% rafhlöðu mælir úrið ekki í nótt hvenær þú sofnar – hladdu það fyrir fram. Vekjarinn vekur þig samt."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con meno del %1$lld %% di batteria, stanotte l’orologio non misurerà quando ti addormenti – ricaricalo prima. La sveglia ti sveglierà comunque."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "バッテリーが%1$lld %%未満のため、今夜ウォッチは入眠を計測しません – 事前に充電してください。アラームはそれでも鳴ります。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %%-ზე ნაკლები ბატარეით საათი ამაღამ ვერ გაზომავს, როდის ჩაგეძინება – წინასწარ დატენე. მაღვიძარა მაინც გაგაღვიძებს."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Батарея %1$lld %%-дан төмен болса, сағат бүгін түнде сенің қашан ұйықтағаныңды өлшемейді – алдын ала зарядта. Оятқыш бәрібір сені оятады."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ពេលថ្មទាបជាង %1$lld %% នាឡិកានឹងមិនវាស់ពេលដែលអ្នកដេកលក់នៅយប់នេះទេ – សូមសាកវាជាមុន។ ម៉ោងរោទ៍នឹងនៅតែដាស់អ្នក។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %% ಕ್ಕಿಂತ ಕಡಿಮೆ ಬ್ಯಾಟರಿಯಲ್ಲಿ ಇಂದು ರಾತ್ರಿ ನೀನು ಯಾವಾಗ ನಿದ್ರೆಗೆ ಜಾರಿದೆ ಎಂದು ವಾಚ್ ಅಳೆಯುವುದಿಲ್ಲ – ಮೊದಲೇ ಚಾರ್ಜ್ ಮಾಡು. ಅಲಾರಾಂ ಆದರೂ ನಿನ್ನನ್ನು ಎಬ್ಬಿಸುತ್ತದೆ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "배터리가 %1$lld %% 미만이면 오늘 밤 시계가 잠드는 시점을 측정하지 않아요 – 미리 충전해 주세요. 알람은 그래도 울려요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ເມື່ອແບັດເຕີຣີຕ່ຳກວ່າ %1$lld %% ໂມງຈະບໍ່ວັດແທກວ່າເຈົ້ານອນຫຼັບເມື່ອໃດໃນຄືນນີ້ – ສາກໄວ້ກ່ອນ. ໂມງປຸກຍັງຈະປຸກເຈົ້າຢູ່."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kai baterija mažesnė nei %1$lld %%, laikrodis šiąnakt nematuos, kada užmiegi – įkrauk jį iš anksto. Žadintuvas vis tiek tave pažadins."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ja akumulators ir zem %1$lld %%, pulkstenis šonakt nemērīs, kad tu aizmiedz – uzlādē to iepriekš. Modinātājs tevi tik un tā pamodinās."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Под %1$lld %% батерија часовникот вечерва нема да мери кога заспиваш – наполни го однапред. Алармот сепак ќе те разбуди."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %%-ൽ താഴെ ബാറ്ററിയിൽ നീ എപ്പോൾ ഉറങ്ങിയെന്ന് ഇന്ന് രാത്രി വാച്ച് അളക്കില്ല – മുൻകൂട്ടി ചാർജ് ചെയ്യുക. എന്നാലും അലാറം നിന്നെ ഉണർത്തും."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Батерей %1$lld %%-иас бага бол цаг өнөө шөнө хэзээ унтсаныг чинь хэмжихгүй – урьдчилан цэнэглэ. Сэрүүлэг чамайг ямар ч байсан сэрээнэ."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %% पेक्षा कमी बॅटरीवर घड्याळ आज रात्री तुला झोप कधी लागली हे मोजणार नाही – आधीच चार्ज कर. अलार्म तरीही तुला उठवेल."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dengan bateri di bawah %1$lld %%, jam tangan tidak akan mengukur bila awak tertidur malam ini – cas dahulu. Penggera tetap akan mengejutkan awak."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ဘက်ထရီ %1$lld %% အောက်ဆိုလျှင် ယနေ့ည သင်အိပ်ပျော်သွားချိန်ကို နာရီက မတိုင်းတာပါ – ကြိုတင် အားသွင်းပါ။ သို့သော် နိုးစက်က သင့်ကို နှိုးပေးမည်။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under %1$lld %% batteri måler ikke klokken i natt når du sovner – lad den før. Du blir vekket likevel."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %% भन्दा कम ब्याट्रीमा घडीले आज राति तिमी कहिले निदायौ भनेर मापन गर्दैन – पहिल्यै चार्ज गर। अलार्मले तिमीलाई तैपनि उठाउनेछ।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Met minder dan %1$lld %% batterij meet je horloge vannacht niet wanneer je in slaap valt – laad het vooraf op. Je wordt toch gewekt."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %% ਤੋਂ ਘੱਟ ਬੈਟਰੀ ’ਤੇ ਘੜੀ ਅੱਜ ਰਾਤ ਇਹ ਨਹੀਂ ਮਾਪੇਗੀ ਕਿ ਤੂੰ ਕਦੋਂ ਸੌਂ ਗਿਆ – ਪਹਿਲਾਂ ਚਾਰਜ ਕਰ ਲੈ। ਅਲਾਰਮ ਫਿਰ ਵੀ ਤੈਨੂੰ ਜਗਾਏਗਾ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poniżej %1$lld %% baterii zegarek nie zmierzy dziś w nocy, kiedy zasypiasz – naładuj go wcześniej. Budzik i tak cię obudzi."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com menos de %1$lld %% de bateria, o relógio não vai medir hoje à noite quando você adormece – carregue-o antes. O alarme vai te acordar mesmo assim."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Com menos de %1$lld %% de bateria, o relógio não vai medir esta noite quando adormeces – carrega-o antes. O alarme vai acordar-te na mesma."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sub %1$lld %% baterie, ceasul nu va măsura în noaptea asta când adormi – încarcă-l dinainte. Alarma te va trezi oricum."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "При заряде ниже %1$lld %% часы сегодня ночью не будут измерять, когда ты засыпаешь, – заряди их заранее. Будильник всё равно тебя разбудит."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "බැටරිය %1$lld %% ට අඩු නම් අද රාත්‍රියේ ඔබ නින්දට ගිය වේලාව ඔරලෝසුව මනින්නේ නැත – කලින්ම ආරෝපණය කරන්න. එලාමය කෙසේ වෙතත් ඔබව අවදි කරයි."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pod %1$lld %% batérie hodinky dnes v noci nebudú merať, kedy zaspíš – nabi ich vopred. Budík ťa aj tak zobudí."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pod %1$lld %% baterije ura nocoj ne bo merila, kdaj zaspiš – napolni jo vnaprej. Budilka te bo vseeno zbudila."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Me më pak se %1$lld %% bateri, ora sonte nuk do ta matë kur të zë gjumi – karikoje më parë. Alarmi do të të zgjojë gjithsesi."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Испод %1$lld %% батерије сат ноћас неће мерити када заспиш – напуни га пре тога. Аларм ће те ипак пробудити."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under %1$lld %% batteri mäter klockan inte i natt när du somnar – ladda den innan. Du blir väckt ändå."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Betri ikiwa chini ya %1$lld %%, saa haitapima usiku wa leo unaposinzia – ichaji mapema. Kengele bado itakuamsha."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %% க்குக் குறைவான பேட்டரியில் இன்றிரவு நீ எப்போது தூங்கினாய் என்பதைக் கடிகாரம் அளக்காது – முன்பே சார்ஜ் செய். அலாரம் எப்படியும் உன்னை எழுப்பும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %% కంటే తక్కువ బ్యాటరీతో ఈ రాత్రి నువ్వు ఎప్పుడు నిద్రపోయావో వాచ్ కొలవదు – ముందే ఛార్జ్ చెయ్యి. అయినా అలారం నిన్ను లేపుతుంది."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เมื่อแบตเตอรี่ต่ำกว่า %1$lld %% คืนนี้นาฬิกาจะไม่วัดว่าคุณหลับเมื่อไร – ชาร์จไว้ก่อน แต่นาฬิกาปลุกจะยังปลุกคุณตามปกติ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pil %1$lld %% altındayken saat bu gece ne zaman uykuya daldığını ölçmez – önceden şarj et. Alarm seni yine de uyandıracak."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Із зарядом нижче %1$lld %% годинник цієї ночі не вимірюватиме, коли ти засинаєш, – заряди його заздалегідь. Будильник усе одно тебе розбудить."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld %% سے کم بیٹری پر گھڑی آج رات یہ نہیں ناپے گی کہ تم کب سوئے – پہلے سے چارج کر لو۔ الارم پھر بھی تمہیں جگائے گا۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Batareya %1$lld %% dan kam bo‘lsa, soat bu kecha qachon uxlab qolganingni o‘lchamaydi – oldindan quvvatla. Budilnik baribir seni uyg‘otadi."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Khi pin dưới %1$lld %%, đêm nay đồng hồ sẽ không đo lúc bạn ngủ thiếp đi – hãy sạc trước. Báo thức vẫn sẽ đánh thức bạn."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "電量低過 %1$lld %% 嘅時候，手錶今晚唔會量度你幾時瞓着——請預先充電。鬧鐘照樣會叫醒你。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "电量低于 %1$lld %% 时，手表今晚不会测量你何时入睡——请提前充电。闹钟仍会叫醒你。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "電量低於 %1$lld %% 時，手錶今晚不會測量你何時入睡——請提前充電。鬧鐘仍會叫醒你。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uma ibhethri lingaphansi kuka-%1$lld %%, iwashi ngeke lilinganise namuhla ebusuku lapho ulala – lishaje kusenesikhathi. I-alamu isazokuvusa."
           }
         }
       }
@@ -125229,6 +126125,454 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kusihlwa thepha “Ulale kahle” ewashini noma uvule “Bona ngokuzenzakalela lapho ulala” ukuze ubusuku bubalwe."
+          }
+        }
+      }
+    },
+    "learn_auto_hint_clock": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skakel “Bespeur outomaties wanneer jy aan die slaap raak” aan – dan bespeur jou horlosie self wanneer jy aan die slaap raak, en die nagte tel."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«እንቅልፍ መውሰድን በራስ-ሰር ለይ»ን አብራ – ከዚያ ሰዓትህ እንቅልፍ መውሰድህን ራሱ ይለያል፣ ሌሊቶቹም ይቆጠራሉ።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شغّل “اكتشاف النوم تلقائيًا” – عندها تكتشف ساعتك بنفسها متى تنام، وتُحتسب الليالي."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“Yuxuya getməyi avtomatik aşkar et” funksiyasını aç – onda saat yuxuya getməyini özü aşkar edəcək və gecələr sayılacaq."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Включи „Автоматично разпознаване на заспиването“ – тогава часовникът сам ще разпознава кога заспиваш и нощите ще се броят."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“ঘুমিয়ে পড়া স্বয়ংক্রিয়ভাবে শনাক্ত করো” চালু করো – তাহলে ঘড়ি নিজেই বুঝবে তুমি কখন ঘুমিয়ে পড়লে, আর রাতগুলো গোনা হবে।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uključi „Automatski prepoznaj uspavljivanje“ – tada sat sam prepoznaje kada zaspiš, i noći se broje."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activa «Detecta automàticament quan t'adorms» – així el rellotge detectarà tot sol quan t'adorms, i les nits comptaran."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zapni „Automaticky rozpoznat usnutí“ – hodinky pak samy rozpoznají, kdy usneš, a noci se budou počítat."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slå »Registrér automatisk, når du falder i søvn« til – så registrerer uret selv, hvornår du falder i søvn, og nætterne tæller."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schalte «Einschlafen automatisch erkennen» ein – dann erkennt die Uhr dein Einschlafen selbst, und die Nächte zählen."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ενεργοποίησε το «Αυτόματος εντοπισμός αποκοίμισης» – τότε το ρολόι εντοπίζει μόνο του πότε αποκοιμιέσαι και οι νύχτες μετρούν."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn on “Detect falling asleep automatically” – then your watch detects on its own when you fall asleep, and the nights count."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activa «Detectar automáticamente cuándo te duermes»: así el reloj detectará por sí solo cuándo te duermes y las noches contarán."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lülita sisse „Tuvasta uinumine automaatselt“ – siis tuvastab kell ise, millal sa uinud, ja ööd loevad."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktibatu «Loak hartzea automatikoki hauteman» – horrela, erlojuak berak hautemango du noiz hartzen zaituen loak, eta gauak kontatuko dira."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«تشخیص خودکار به خواب رفتن» را روشن کن – آن‌وقت ساعت خودش تشخیص می‌دهد کی به خواب می‌روی و شب‌ها شمرده می‌شوند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ota ”Tunnista nukahtaminen automaattisesti” käyttöön – silloin kello tunnistaa itse, milloin nukahdat, ja yöt lasketaan."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I-on ang “Awtomatikong tukuyin ang pagkakatulog” – sa gayon, ang relo mo mismo ang tutukoy kung kailan ka nakatulog, at mabibilang ang mga gabi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active « Détecter l'endormissement automatiquement » – ta montre détectera alors elle-même quand tu t’endors, et les nuits compteront."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cas air “Braith titim i do chodladh go huathoibríoch” – ansin braithfidh d’uaireadóir féin cathain a thiteann tú i do chodladh, agus comhairfear na hoícheanta."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activa «Detectar automaticamente cando adormeces»: así o reloxo detectará por si só cando adormeces e as noites contarán."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“ઊંઘ આવવાનું આપમેળે ઓળખો” ચાલુ કર – પછી ઘડિયાળ જાતે ઓળખશે કે તને ક્યારે ઊંઘ આવી, અને રાતો ગણાશે."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הפעל את “זיהוי הירדמות אוטומטי” – כך השעון יזהה בעצמו מתי נרדמת, והלילות ייספרו."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“सो जाने का अपने आप पता लगाओ” चालू करो – फिर घड़ी खुद पता लगाएगी कि तुम कब सोए, और रातें गिनी जाएँगी।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uključi „Automatski prepoznaj uspavljivanje“ – tada sat sam prepoznaje kada zaspiš, i noći se broje."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kapcsold be: „Elalvás automatikus felismerése” – így az óra magától felismeri, mikor alszol el, és az éjszakák számítanak."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Միացրու «Ինքնաշխատ հայտնաբերել քնելը»-ը – այդ դեպքում ժամացույցն ինքը կհայտնաբերի, թե երբ ես քնում, և գիշերները կհաշվվեն։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktifkan “Deteksi saat tertidur secara otomatis” – jam tanganmu akan mendeteksi sendiri kapan kamu tertidur, dan malamnya dihitung."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kveiktu á „Greina sjálfkrafa þegar þú sofnar“ – þá greinir úrið sjálft hvenær þú sofnar og næturnar teljast."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attiva «Rileva automaticamente l'addormentamento»: così l’orologio rileva da solo quando ti addormenti e le notti contano."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "「入眠を自動で検出」をオンにしてください。ウォッチが入眠を自動で検出し、夜がカウントされます。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ჩართე „ჩაძინების ავტომატური ამოცნობა“ – მაშინ საათი თავად ამოიცნობს, როდის ჩაგეძინება, და ღამეები ჩაითვლება."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Ұйықтап кетуді автоматты түрде анықтау» функциясын қос – сонда сағат сенің қашан ұйықтағаныңды өзі анықтайды, ал түндер есептеледі."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "បើក «រកឃើញការដេកលក់ដោយស្វ័យប្រវត្តិ» – បន្ទាប់មកនាឡិកានឹងរកឃើញដោយខ្លួនឯងនូវពេលដែលអ្នកដេកលក់ ហើយយប់នឹងត្រូវបានរាប់។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“ನಿದ್ರೆಗೆ ಜಾರುವುದನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪತ್ತೆಹಚ್ಚು” ಆನ್ ಮಾಡು – ಆಗ ನೀನು ಯಾವಾಗ ನಿದ್ರೆಗೆ ಜಾರಿದೆ ಎಂದು ವಾಚ್ ತಾನೇ ಪತ್ತೆಹಚ್ಚುತ್ತದೆ, ಮತ್ತು ರಾತ್ರಿಗಳು ಎಣಿಕೆಯಾಗುತ್ತವೆ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“잠드는 시점 자동 감지”을 켜 주세요. 그러면 시계가 잠드는 시점을 스스로 감지하고 밤이 계산돼요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ເປີດ “ກວດຫາການນອນຫຼັບໂດຍອັດຕະໂນມັດ” – ແລ້ວໂມງຈະກວດຫາເອງວ່າເຈົ້ານອນຫຼັບເມື່ອໃດ ແລະ ຈະນັບຄືນ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Įjunk „Automatiškai atpažinti užmigimą“ – tada laikrodis pats atpažins, kada užmiegi, ir naktys bus skaičiuojamos."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ieslēdz „Automātiski noteikt aizmigšanu“ – tad pulkstenis pats noteiks, kad tu aizmiedz, un naktis tiks skaitītas."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вклучи „Автоматски препознај заспивање“ – тогаш часовникот сам препознава кога заспиваш, и ноќите се бројат."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“ഉറങ്ങിപ്പോകുന്നത് സ്വയമേവ കണ്ടെത്തുക” ഓണാക്കുക – അപ്പോൾ നീ എപ്പോൾ ഉറങ്ങിയെന്ന് വാച്ച് സ്വയം കണ്ടെത്തും, രാത്രികൾ എണ്ണപ്പെടും."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Унтаж эхлэхийг автоматаар илрүүлэх»-г асаа – тэгвэл цаг чинь хэзээ унтсаныг чинь өөрөө илрүүлж, шөнүүд тоологдоно."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“झोप लागणे आपोआप ओळखा” चालू कर – मग तुला झोप कधी लागली हे घड्याळ स्वतः ओळखेल, आणि रात्री मोजल्या जातील."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hidupkan “Kesan bila awak tertidur secara automatik” – jam tangan akan mengesan sendiri bila awak tertidur, dan malam dikira."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“အိပ်ပျော်သွားခြင်းကို အလိုအလျောက် သိရှိရန်” ကို ဖွင့်ပါ – ထို့နောက် သင်အိပ်ပျော်သွားချိန်ကို နာရီက ကိုယ်တိုင် သိရှိပြီး ညများကို ရေတွက်ပါမည်။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slå på «Registrer automatisk når du sovner» – da registrerer klokken selv når du sovner, og nettene teller."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“निदाएको आफैँ पत्ता लगाऊ” सक्रिय गर – त्यसपछि तिमी कहिले निदायौ भनेर घडीले आफैँ पत्ता लगाउँछ, र रातहरू गनिन्छन्।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zet “Inslapen automatisch herkennen” aan – dan herkent je horloge zelf wanneer je in slaap valt, en tellen de nachten mee."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“ਸੌਂ ਜਾਣ ਦਾ ਆਪਣੇ-ਆਪ ਪਤਾ ਲਗਾਓ” ਚਾਲੂ ਕਰ – ਫਿਰ ਘੜੀ ਆਪ ਪਤਾ ਲਗਾਏਗੀ ਕਿ ਤੂੰ ਕਦੋਂ ਸੌਂ ਗਿਆ, ਅਤੇ ਰਾਤਾਂ ਗਿਣੀਆਂ ਜਾਣਗੀਆਂ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Włącz „Automatycznie wykrywaj zasypianie” – wtedy zegarek sam wykryje, kiedy zasypiasz, a noce będą się liczyć."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ative “Detectar automaticamente quando você adormece” – assim o relógio detecta sozinho quando você adormece, e as noites contam."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ativa “Detetar automaticamente quando adormeces” – assim o relógio deteta sozinho quando adormeces, e as noites contam."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activează „Detectează automat adormirea” – atunci ceasul detectează singur când adormi, iar nopțile sunt numărate."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Включи «Автоматически определять засыпание» – тогда часы сами определят, когда ты засыпаешь, и ночи будут засчитываться."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“නින්දට යාම ස්වයංක්‍රීයව හඳුනාගන්න” සක්‍රිය කරන්න – එවිට ඔබ නින්දට ගිය වේලාව ඔරලෝසුව විසින්ම හඳුනාගන්නා අතර රාත්‍රී ගණන් වේ."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zapni „Automaticky rozpoznať zaspávanie“ – hodinky potom samy rozpoznajú, kedy zaspíš, a noci sa budú rátať."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vklopi »Samodejno zaznaj uspavanje« – potem ura sama zazna, kdaj zaspiš, in noči se štejejo."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivizo „Dallo automatikisht kur fle“ – atëherë ora e dallon vetë kur të zë gjumi, dhe netët numërohen."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Укључи „Аутоматски препознај заспивање“ – тада сат сам препознаје када заспиш, и ноћи се броје."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slå på ”Känn av automatiskt när du somnar” – då känner klockan själv av när du somnar, och nätterna räknas."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Washa “Tambua kiotomatiki unaposinzia” – kisha saa itatambua yenyewe unaposinzia, na usiku utahesabiwa."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“தூங்குவதைத் தானாகக் கண்டறி” இயக்கு – அப்போது நீ எப்போது தூங்கினாய் என்பதைக் கடிகாரமே கண்டறியும், இரவுகள் கணக்கில் வரும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“నిద్రపోవడాన్ని ఆటోమేటిక్‌గా గుర్తించు” ఆన్ చెయ్యి – అప్పుడు నువ్వు ఎప్పుడు నిద్రపోయావో వాచ్ స్వయంగా గుర్తిస్తుంది, రాత్రులు లెక్కలోకి వస్తాయి."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เปิด “ตรวจจับการหลับโดยอัตโนมัติ” – แล้วนาฬิกาจะตรวจจับเองว่าคุณหลับเมื่อไร และนับคืนให้"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“Uykuya dalmayı otomatik algıla” seçeneğini aç – böylece saat ne zaman uykuya daldığını kendisi algılar ve geceler sayılır."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Увімкни «Автоматично визначати засинання» – тоді годинник сам визначатиме, коли ти засинаєш, і ночі зараховуватимуться."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“سو جانے کا خودکار طور پر پتا لگائیں” آن کرو – پھر گھڑی خود پتا لگائے گی کہ تم کب سوئے، اور راتیں گنی جائیں گی۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Uxlab qolishni avtomatik aniqlash» funksiyasini yoq – shunda soat qachon uxlab qolganingni o‘zi aniqlaydi va tunlar hisoblanadi."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hãy bật “Tự động nhận biết khi bạn ngủ thiếp đi” – khi đó đồng hồ sẽ tự nhận biết lúc bạn ngủ thiếp đi, và các đêm được tính."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開啟「自動偵測入睡」——咁手錶會自己偵測你幾時瞓着，啲晚亦會計入。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开“自动检测入睡”——这样手表会自己检测你何时入睡，夜晚也会被计入。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開啟「自動偵測入睡」——這樣手錶會自己偵測你何時入睡，夜晚也會被計入。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vula “Bona ngokuzenzakalela lapho ulala” – khona-ke iwashi lizobona ngokwalo lapho ulala, futhi ubusuku buzobalwa."
           }
         }
       }

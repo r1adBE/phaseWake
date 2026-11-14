@@ -110,6 +110,7 @@ extension BackupAlarm {
     /// wird nicht gestellt und nicht gemerkt (der Nacht-Check sieht dann den kürzeren Vorlauf).
     func apply(_ wanted: [BackupSlot], now: Date) async {
         await cancelLegacyBackups()
+        cancelOrphans()
         let pending = await pendingState()
         var unused = plannedBackups
         var result: [PlannedBackup] = []
@@ -243,6 +244,27 @@ extension BackupAlarm {
             }
         }
         return (present, notes, other)
+    }
+
+    /// Kennungen aus `scheduled` (geplante, noch nicht klingelnde AlarmKit-Alarme), die die App nicht kennt (`known`,
+    /// ``activeIds``).
+    nonisolated static func orphans(scheduled: [UUID], known: Set<UUID>) -> [UUID] {
+        scheduled.filter { !known.contains($0) }
+    }
+
+    /// Verwirft geplante AlarmKit-Alarme ohne gemerkte Kennung (``orphans(scheduled:known:)``). Sie entstanden, wenn ein
+    /// Neuplanen vor dem ersten Entsperren den gemerkten Stand überschrieb (Tiefenaudit AP3-1), und klängen sonst
+    /// doppelt oder nach dem Ausschalten des Weckers. Jede eigene Kennung wird gemerkt, bevor ihr Alarm gestellt wird;
+    /// `apply` läuft nur mit gelesenem Stand (`reschedule`). Ein klingelnder oder laufender Alarm bleibt.
+    private func cancelOrphans() {
+        #if canImport(AlarmKit)
+        if #available(iOS 26.0, *) {
+            guard let alarms = try? AlarmManager.shared.alarms else { return }
+            let found = Self.orphans(scheduled: alarms.filter { $0.state == .scheduled }.map(\.id), known: Set(activeIds))
+            for id in found { cancelAlarm(id) }
+            if !found.isEmpty { DiagStore.shared.log(.scheduled, "alarmkit unknown alarms cancelled \(found.count)") }
+        }
+        #endif
     }
 
     /// Bis Version 16.2 nur Kennungen ohne Nacht gemerkt: einmal alle verwerfen, danach gilt `plannedBackups`.

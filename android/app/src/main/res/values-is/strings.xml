@@ -242,6 +242,8 @@
     <string name="check_watch_battery_problem">Undir %1$d %% – hladdu úrið svo það endist nóttina og geti vakið þig.</string>
     <string name="check_watch_recorder">Mæling í nótt</string>
     <string name="check_watch_recorder_battery">Úrið hóf ekki mælinguna fyrir svefn – rafhlaðan var of lág. Vekjarinn vekur þig samt.</string>
+    <string name="check_watch_onset_battery">Með undir %1$d %% rafhlöðu mælir úrið ekki í nótt hvenær þú sofnar – hladdu það fyrir fram. Vekjarinn vekur þig samt.</string>
+    <string name="check_watch_learn_battery">Með undir %1$d %% rafhlöðu skráir úrið ekki í nótt fyrir námsfasann – hladdu það fyrir fram. Vekjarinn vekur þig samt.</string>
     <string name="check_watch_pulse">Púls í bakgrunni (úr)</string>
     <string name="check_watch_pulse_problem">Úrið má ekki mæla púlsinn þinn á nóttunni – stilltu skynjaraheimild Phase Wake á úrinu á „Leyfa alltaf“.</string>
     <string name="export_contents_hint">Skráin inniheldur fyrir hverja nótt hreyfingu og púls á 30 s fresti, líðan þína og glósurnar þínar – án nafna, dagsetninga eða auðkenna tækja.</string>
@@ -583,6 +585,7 @@
     <string name="overview_no_stages">Án stiga</string>
     <string name="settings_clear_history_learn">Lærdómsfasinn byrjar upp á nýtt.</string>
     <string name="learn_auto_hint">Ýttu á kvöldin á „Góða nótt“ á úrinu eða kveiktu á „Greina sjálfkrafa þegar þú sofnar“ svo næturnar teljist.</string>
+    <string name="learn_auto_hint_clock">Kveiktu á „Greina sjálfkrafa þegar þú sofnar“ – þá greinir úrið sjálft hvenær þú sofnar og næturnar teljast.</string>
     <string name="learn_consent_title">Námsfasi</string>
     <string name="learn_consent_text">Til að Phase Wake geti lagað vekjarann að þér mælir úrið hreyfingu og púls yfir nóttina í %1$d nætur. Það notar dálítið af rafhlöðunni – hladdu úrið áður en þú ferð að sofa. Gögnin haldast á tækjunum þínum. Þú getur slökkt á námsfasanum í stillingum hvenær sem er.</string>
     <string name="learn_consent_start">Hefja námsfasa</string>

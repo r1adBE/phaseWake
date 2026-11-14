@@ -322,7 +322,7 @@ final class LearnRecorder {
     }
 
     /// Pulswerte (Zeitpunkt, Schläge pro Minute) aus Apple Health im Zeitraum; leer ohne Daten oder Erlaubnis.
-    private func heartRates(from: Date, to: Date) async -> [(at: Date, bpm: Double)] {
+    func heartRates(from: Date, to: Date) async -> [(at: Date, bpm: Double)] {
         guard HKHealthStore.isHealthDataAvailable(), let type = HKQuantityType.quantityType(forIdentifier: .heartRate) else { return [] }
         let predicate = HKQuery.predicateForSamples(withStart: from, end: to)
         let store = health

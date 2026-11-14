@@ -235,6 +235,8 @@
     <string name="check_watch_battery_problem">Kurang daripada %1$d %% – cas jam tangan awak supaya tahan sepanjang malam dan boleh mengejutkan awak.</string>
     <string name="check_watch_recorder">Pengukuran malam ini</string>
     <string name="check_watch_recorder_battery">Jam awak tidak memulakan pengukuran sebelum tidur – baterinya terlalu lemah. Penggera tetap akan mengejutkan awak.</string>
+    <string name="check_watch_onset_battery">Dengan bateri di bawah %1$d %%, jam tangan tidak akan mengukur bila awak tertidur malam ini – cas dahulu. Penggera tetap akan mengejutkan awak.</string>
+    <string name="check_watch_learn_battery">Dengan bateri di bawah %1$d %%, jam tangan tidak akan merakam untuk fasa pembelajaran malam ini – cas dahulu. Penggera tetap akan mengejutkan awak.</string>
     <string name="check_watch_pulse">Nadi di latar belakang (jam)</string>
     <string name="check_watch_pulse_problem">Jam tangan tidak dibenarkan mengukur nadi awak pada waktu malam – pada jam tangan, tetapkan kebenaran penderia Phase Wake kepada “Benarkan sepanjang masa”.</string>
     <string name="export_contents_hint">Fail ini mengandungi pergerakan dan kadar denyutan jantung setiap 30 s, perasaan awak dan nota awak bagi setiap malam – tanpa nama, tarikh atau ID peranti.</string>
@@ -566,6 +568,7 @@
     <string name="overview_no_stages">Tanpa peringkat</string>
     <string name="settings_clear_history_learn">Fasa pembelajaran bermula semula.</string>
     <string name="learn_auto_hint">Pada waktu petang, ketik “Selamat malam” pada jam tangan atau hidupkan “Kesan bila awak tertidur secara automatik” supaya malam dikira.</string>
+    <string name="learn_auto_hint_clock">Hidupkan “Kesan bila awak tertidur secara automatik” – jam tangan akan mengesan sendiri bila awak tertidur, dan malam dikira.</string>
     <string name="learn_consent_title">Fasa pembelajaran</string>
     <string name="learn_consent_text">Supaya Phase Wake dapat menyesuaikan penggera dengan anda, jam tangan anda mengukur pergerakan dan nadi sepanjang malam selama %1$d malam. Ini menggunakan sedikit bateri – cas jam sebelum tidur. Data kekal pada peranti anda. Anda boleh mematikan fasa pembelajaran dalam tetapan pada bila-bila masa.</string>
     <string name="learn_consent_start">Mulakan fasa pembelajaran</string>

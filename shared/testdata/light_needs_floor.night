@@ -1,0 +1,42 @@
+# Audit c3b8b01 E-1: Der Dienst startet spät, Epoche 0 ist leer; danach nur Rauschen 0.02 einer Galaxy Watch, der Puls
+# steigt in Epoche 3 kurz an (58 -> 64). In Epoche 3 gibt es erst 3 Werte, also kein Grundrauschen: Früher galt die
+# Startschwelle 0.002, das Rauschen zählte zweimal, und der Puls (58 + 64) / 2 = 61 >= 60.9 weckte LIGHT_SLEEP. Seither
+# wartet die Leicht-Regel ohne Grundrauschen; ab Epoche 4 (0.02 -> Leicht-Schwelle 0.05) ist es Rauschen.
+@expect none
+motion,hr
+,
+0.0200,58
+0.0200,58
+0.0200,64
+0.0200,64
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58
+0.0200,58

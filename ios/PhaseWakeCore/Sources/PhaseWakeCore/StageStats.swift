@@ -105,12 +105,13 @@ public enum StageStats {
     public static let order: [SleepStage] = [.awake, .rem, .light, .deep]
 
     /// Auswertung von `spans`, zugeschnitten auf `from`–`to` (``StageCheck/clip(_:from:to:)``).
-    /// `nil`, wenn `to` nicht nach `from` liegt oder keine bekannte Phase im Bereich ist.
+    /// `nil`, wenn `to` nicht nach `from` liegt oder keine Schlafphase (REM, leicht, tief) im Bereich ist: Eine Quelle
+    /// ohne Phasendetail (Schlaf «unbekannt» und «wach») hat keine Phasen, sonst stünde dort «Wach 100 %» (Audit W-5).
     public static func of(_ spans: [StageSpan], from: Date, to: Date) -> NightStages? {
         guard to > from else { return nil }
         let clipped = StageCheck.clip(spans, from: from, to: to)
         let known = clipped.filter { ChartData.level($0.stage) != nil }
-        guard !known.isEmpty else { return nil }
+        guard known.contains(where: { $0.stage != .awake }) else { return nil }
         let blocks = merge(known)
         let totals = totalsOf(known)
         let sleepMs = clipped.filter { $0.stage != .awake }.reduce(Int64(0)) { $0 + millis($1.start, $1.end) }

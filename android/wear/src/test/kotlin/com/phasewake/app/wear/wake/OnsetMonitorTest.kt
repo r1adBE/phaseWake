@@ -13,7 +13,6 @@ import com.phasewake.app.wear.QuietWear
 import com.phasewake.app.wear.schedule.AutoOnset
 import java.time.Duration
 import java.time.Instant
-import kotlin.random.Random
 import org.junit.After
 import org.junit.Before
 import org.junit.runner.RunWith
@@ -79,18 +78,12 @@ class OnsetMonitorTest {
     // --- Regel in Stichproben ---
 
     @Test
-    fun allMeasuredIsTheRuleOfSection6() {
-        val random = Random(42)
-        repeat(500) {
-            val motions = List(random.nextInt(0, 120)) {
-                when (random.nextInt(10)) {
-                    0 -> null
-                    1 -> 0.01
-                    else -> 0.001
-                }
-            }
-            assertEquals(SleepOnset.find(motions, 0.002), OnsetRules.find(motions, List(motions.size) { true }, 0.002))
-        }
+    fun allMeasuredNeedsTheLongerSampledStretch() {
+        // Audit c3b8b01 E-4: Stichproben verlangen 25 Min (30 + 20 Epochen) statt 15; auch wenn alle Epochen gemessen sind.
+        val still = List(50) { 0.001 }
+        assertEquals(0, OnsetRules.find(still, List(50) { true }, 0.002))
+        assertNull(OnsetRules.find(still.take(49), List(49) { true }, 0.002))
+        assertEquals(0, SleepOnset.find(still.take(30), 0.002))
     }
 
     /** Stichproben wie in der Messung: alle 10 Epochen 2 gemessene, dazwischen ungemessen (leer). */
@@ -101,22 +94,32 @@ class OnsetMonitorTest {
     }
 
     @Test
-    fun samplesSpanningFifteenMinutesAreAsleep() {
-        // Vier ruhige Stichproben: von der ersten (Epoche 3) bis zur letzten (Epoche 34) über 30 Epochen.
-        val (motions, measured) = sampled({ 0.001 }, samples = 4)
+    fun samplesSpanningTwentyFiveMinutesAreAsleep() {
+        // Sechs ruhige Stichproben: von der ersten (Epoche 3) bis zur letzten (Epoche 54) über 50 Epochen (E-4).
+        val (motions, measured) = sampled({ 0.001 }, samples = 6)
         assertEquals(3, OnsetRules.find(motions, measured, 0.002))
-        // Drei reichen nicht (nur 22 Epochen).
-        val (three, measuredThree) = sampled({ 0.001 }, samples = 3)
-        assertNull(OnsetRules.find(three, measuredThree, 0.002))
+        // Fünf reichen nicht mehr (nur 42 Epochen; früher genügten vier über 30).
+        val (five, measuredFive) = sampled({ 0.001 }, samples = 5)
+        assertNull(OnsetRules.find(five, measuredFive, 0.002))
+    }
+
+    @Test
+    fun oneSingleTwitchIsTolerated() {
+        // E-4: Ein Zucker in einer Epoche der zweiten Stichprobe (Epoche 14, Epoche 13 ruhig) unterbricht nicht.
+        val (twitch, m1) = sampled({ if (it == 14) 0.01 else 0.001 }, samples = 6)
+        assertEquals(3, OnsetRules.find(twitch, m1, 0.002))
+        // Ein zweiter Zucker (Epoche 34) beginnt von vorn: ab der Stichprobe nach dem ersten (Epoche 23).
+        val (two, m2) = sampled({ if (it == 14 || it == 34) 0.01 else 0.001 }, samples = 9)
+        assertEquals(23, OnsetRules.find(two, m2, 0.002))
     }
 
     @Test
     fun movementEmptyEpochOrLongGapStartsOver() {
-        // Bewegung in der zweiten Stichprobe: Strecke beginnt bei der dritten (Epoche 23).
-        val (moved, m1) = sampled({ if (it == 14) 0.01 else 0.001 }, samples = 6)
+        // Bewegung in beiden Epochen der zweiten Stichprobe: Strecke beginnt bei der dritten (Epoche 23).
+        val (moved, m1) = sampled({ if (it == 13 || it == 14) 0.01 else 0.001 }, samples = 8)
         assertEquals(23, OnsetRules.find(moved, m1, 0.002))
         // Gemessen, aber leer (zu wenig Werte): ebenso.
-        val (empty, m2) = sampled({ if (it == 14) null else 0.001 }, samples = 6)
+        val (empty, m2) = sampled({ if (it == 14) null else 0.001 }, samples = 8)
         assertEquals(23, OnsetRules.find(empty, m2, 0.002))
         // Zwei verpasste Alarme (Lücke 28 Epochen): kein Einschlafen über die Lücke hinweg.
         val measured = List(80) { it in 0..1 || it in 30..31 || it in 40..41 || it in 50..51 }
@@ -130,16 +133,62 @@ class OnsetMonitorTest {
     fun ticksLeadAnEpochBoundaryAtLeastFiveMinutesAhead() {
         val start = 1_000_000_000L
         val epoch = OnsetMonitor.EPOCH_NANOS
+        val lead = OnsetMonitor.SAMPLE_LEAD_MS * 1_000_000L
         for (now in listOf(start, start + 1, start + epoch / 2, start + 7 * epoch + 123)) {
             val tick = OnsetRules.nextTick(start, now)
-            val lead = OnsetMonitor.SAMPLE_LEAD_MS * 1_000_000L
-            assertTrue(tick >= now + OnsetMonitor.TICK_INTERVAL.toNanos(), "frühestens 5 Min später")
-            assertTrue(tick < now + OnsetMonitor.TICK_INTERVAL.toNanos() + epoch, "höchstens eine Epoche mehr")
+            assertTrue(tick >= now + OnsetMonitor.TICK_INTERVAL.toNanos() - epoch / 2 - lead, "5 Min, höchstens eine halbe Epoche früher")
+            assertTrue(tick <= now + OnsetMonitor.TICK_INTERVAL.toNanos() + epoch / 2, "höchstens eine halbe Epoche später")
             assertEquals(0L, (tick + lead - start) % epoch, "kurz vor einer Epochengrenze")
         }
+        // Erster Alarm nach dem Start: Stichprobe ab Epoche 10, nicht 11.
+        assertEquals(start + 10 * epoch - lead, OnsetRules.nextTick(start, start + 1_000_000L))
         assertEquals(0L, OnsetRules.firstFullEpoch(start, start))
         assertEquals(1L, OnsetRules.firstFullEpoch(start, start + 1))
         assertEquals(1L, OnsetRules.firstFullEpoch(start, start + epoch))
+    }
+
+    @Test
+    fun lateAlarmsKeepTenEpochsBetweenSamples() {
+        // Audit c3b8b01 E-3: Jeder Alarm kommt etwas zu spät (0 bis 1,9 s): Die Stichproben liegen trotzdem genau
+        // 10 Epochen auseinander (früher 11, also alle 5½ Min, und 3 Std. ergaben 65 statt 72 gemessene Epochen).
+        val start = 1_000_000_000L
+        val epoch = OnsetMonitor.EPOCH_NANOS
+        var now = start + 3_000_000L
+        val samples = mutableListOf<Long>()
+        repeat(36) { i ->
+            val tick = OnsetRules.nextTick(start, now)
+            now = tick + (i % 20) * 100_000_000L
+            samples += OnsetRules.firstFullEpoch(start, now)
+        }
+        assertEquals((1..36).map { it * 10L }, samples)
+        assertEquals(OnsetRules.TICK_EPOCHS, 10L)
+    }
+
+    @Test
+    fun epochsOnTheChargerAreEmpty() {
+        // Audit c3b8b01 E-5: Netzteil an bei 95 s, ab bei 200 s (Beginn 1 s): Epochen 3 bis 6 berühren die Zeit am Ladegerät.
+        val start = 1_000_000_000L
+        val second = 1_000_000_000L
+        val times: List<Pair<Long, Long?>> = listOf(Pair(start + 95 * second, start + 200 * second))
+        assertEquals((0L..8L).map { it in 3L..6L }, (0L..8L).map { OnsetRules.charging(it, start, times) })
+        // Noch angeschlossen: alle Epochen ab dem Anschliessen.
+        assertTrue(OnsetRules.charging(1_000L, start, listOf(start + 95 * second to null)))
+        assertFalse(OnsetRules.charging(2L, start, listOf(start + 95 * second to null)))
+        // Leer heisst: Die ruhige Strecke beginnt erst nach dem Ladegerät (wie eine leere Epoche).
+        val motions = List(60) { if (it in 3..6) null else 0.001 }
+        assertEquals(7, SleepOnset.find(motions, 0.002))
+    }
+
+    @Test
+    fun chargerIsLogged() {
+        val m = monitor()
+        m.start()
+        context.sendBroadcast(android.content.Intent(android.content.Intent.ACTION_POWER_CONNECTED))
+        idle(10)
+        context.sendBroadcast(android.content.Intent(android.content.Intent.ACTION_POWER_DISCONNECTED))
+        idle(10)
+        assertTrue(DiagKind.BATTERY to "auto onset charging, waiting" in logged, logged.toString())
+        assertTrue(DiagKind.BATTERY to "auto onset charging ended" in logged, logged.toString())
     }
 
     @Test
@@ -150,13 +199,13 @@ class OnsetMonitorTest {
         m.start()
         assertFalse(m.continuous)
         assertEquals(DiagKind.MEASURE_START to "auto onset sensor wake=0 fifo=-1 mode=sample", logged.single())
-        // Kein Sensor und kein Wakelock bis zum ersten Alarm, der steht in höchstens 5½ Min.
+        // Kein Sensor und kein Wakelock bis zum ersten Alarm, der steht kurz vor Epoche 10 (5 Min, E-3).
         assertTrue(sensors.listeners.isEmpty(), "Sensor erst in der Stichprobe")
         assertFalse(wakeLockHeld())
         val first = ticks().single()
         assertTrue(first.isAllowWhileIdle, "auch im Ruhezustand")
         val now = SystemClock.elapsedRealtime()
-        assertTrue(first.triggerAtMs in now + 300_000..now + 330_000, "${first.triggerAtMs - now}")
+        assertTrue(first.triggerAtMs in now + 290_000..now + 300_000, "${first.triggerAtMs - now}")
 
         // Alarm: Stichprobe mit Sensor und kurzem Wakelock, nächster Alarm gestellt.
         idle(first.triggerAtMs - SystemClock.elapsedRealtime())

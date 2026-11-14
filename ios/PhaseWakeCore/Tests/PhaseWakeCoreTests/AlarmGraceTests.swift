@@ -110,6 +110,24 @@ final class AlarmGraceTests: XCTestCase {
         XCTAssertNil(AlarmSchedule.missedPlan([a, b], catchUp: narrow, now: at(2026, 10, 28, 6, 55), doneUntil: done, calendar: zurich))
     }
 
+    func testMissedNeedsTargetWithinNightAndNotAhead() {
+        // Audit BE-4: Zielzeit genau am Ende der Nacht und genau jetzt: wird nachgeholt (beide Grenzen eingeschlossen).
+        let edge = CatchUpWindow(from: at(2026, 10, 28, 6, 20), until: at(2026, 10, 28, 7, 0), alarmIds: ["b"])
+        XCTAssertEqual(AlarmSchedule.missedPlan([b], catchUp: edge, now: at(2026, 10, 28, 7, 0), calendar: zurich)?.target, at(2026, 10, 28, 7, 0))
+        // Nach dem Ende der Nacht fällig, auch wenn schon vorbei: kein Nachholen (gewohnter Plan).
+        let early = CatchUpWindow(from: at(2026, 10, 28, 6, 20), until: at(2026, 10, 28, 6, 59), alarmIds: ["b"])
+        XCTAssertNil(AlarmSchedule.missedPlan([b], catchUp: early, now: at(2026, 10, 28, 7, 0), calendar: zurich))
+        // In der Nacht, aber noch nicht fällig: kein Nachholen.
+        let long = CatchUpWindow(from: at(2026, 10, 28, 6, 20), until: at(2026, 10, 28, 7, 10), alarmIds: ["b"])
+        XCTAssertNil(AlarmSchedule.missedPlan([b], catchUp: long, now: at(2026, 10, 28, 6, 59), calendar: zurich))
+        // Zielzeit genau am Ende der Nacht zählt als fällig geworden.
+        XCTAssertEqual(AlarmSchedule.catchUpAfter(nil, windowStart: at(2026, 10, 28, 6, 20), until: at(2026, 10, 28, 7, 0), specs: [a, b],
+                                                  calendar: zurich).alarmIds, ["a", "b"])
+        XCTAssertEqual(AlarmSchedule.catchUpAfter(nil, windowStart: at(2026, 10, 28, 6, 20), until: at(2026, 10, 28, 6, 59), specs: [a, b],
+                                                  calendar: zurich).alarmIds, ["a"])
+        XCTAssertEqual(CatchUpWindow.valid, 10 * 60)
+    }
+
     func testCatchUpExtendsAdjoiningNight() {
         let c = alarm(hour: 7, minute: 15, id: "c")
         let next = AlarmSchedule.catchUpAfter(window, windowStart: at(2026, 10, 28, 7, 10), until: at(2026, 10, 28, 7, 20), specs: [a, b, c],

@@ -175,6 +175,7 @@ object ChartData {
      * Bettzeit Platz haben (höchstens 24 Stunden).
      *
      * @param nextTarget Zielzeit des nächsten Weckers für die Bettzeit-Linie; `null` ohne Wecker.
+     * @param latencyMinutes Gelernte Einschlafdauer für die Bettzeit ([Bedtime.bedtime]); `null` = nicht gelernt.
      */
     fun sleepBars(
         sleeps: List<SleepSummary>,
@@ -183,6 +184,7 @@ object ChartData {
         nextTarget: Instant?,
         goalMinutes: Int,
         nights: Int = NIGHTS,
+        latencyMinutes: Int? = null,
     ): SleepBars? {
         val longest = sleeps.groupBy { SleepNotes.nightDate(it, zone) }.mapValues { (_, list) -> list.maxBy { it.asleepMinutes } }
         val last = lastDate(longest.keys, today)
@@ -194,7 +196,7 @@ object ChartData {
             SleepBar(date, start, if (end <= start) end + 24 * 60 else end)
         }
         if (bars.none { it.hasData }) return null
-        val bedtime = nextTarget?.let { Regularity.minutesFromNoon(Bedtime.bedtime(it, goalMinutes), zone).toInt() }
+        val bedtime = nextTarget?.let { Regularity.minutesFromNoon(Bedtime.bedtime(it, goalMinutes, latencyMinutes), zone).toInt() }
         val starts = bars.mapNotNull { it.startMinute } + listOfNotNull(bedtime)
         val ends = bars.mapNotNull { it.endMinute } + listOfNotNull(bedtime)
         val axisStart = minOf(AXIS_START, starts.min() / 60 * 60)
@@ -258,15 +260,15 @@ object ChartData {
     }
 
     /**
-     * Schlafprofil der Nacht von [night]: die Phasen der Gesundheits-App, die mit Lücken unter
-     * [SleepSummary.NEW_NIGHT_GAP] zusammenhängen und das Weckfenster bis zum Wecken berühren. Der
+     * Schlafprofil der Nacht von [night]: die Phasen der Gesundheits-App, die mit Lücken bis
+     * [SleepSummary.NEW_NIGHT_GAP] (60 Min, wie der Verlauf) zusammenhängen und das Weckfenster bis zum Wecken berühren. Der
      * Bereich reicht mindestens über Weckfenster und Weckmoment. `null` ohne bekannte Phasen.
      */
     fun hypnogram(stages: List<StageSpan>, night: NightRecord): Hypnogram? {
         val groups = mutableListOf<MutableList<StageSpan>>()
         for (span in stages.sortedBy { it.start }) {
             val group = groups.lastOrNull()
-            if (group != null && Duration.between(group.maxOf { it.end }, span.start) < SleepSummary.NEW_NIGHT_GAP) group += span
+            if (group != null && Duration.between(group.maxOf { it.end }, span.start) <= SleepSummary.NEW_NIGHT_GAP) group += span
             else groups += mutableListOf(span)
         }
         val until = maxOf(night.wokeAt, night.target)

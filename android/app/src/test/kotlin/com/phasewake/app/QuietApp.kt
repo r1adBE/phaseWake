@@ -17,7 +17,7 @@ open class QuietApp : PhaseWakeApp() {
     val learningSent: MutableList<LearningSnapshot> = Collections.synchronizedList(mutableListOf())
 
     override suspend fun publishLearning() {
-        learningSent += learning.current().snapshot()
+        learningSent += learningForWatch()
     }
 }
 

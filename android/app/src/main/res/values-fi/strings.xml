@@ -240,6 +240,8 @@
     <string name="check_watch_battery_problem">Alle %1$d %% – lataa kello, jotta se kestää yön yli ja voi herättää sinut.</string>
     <string name="check_watch_recorder">Tämän yön mittaus</string>
     <string name="check_watch_recorder_battery">Kello ei aloittanut mittausta ennen nukkumista – sen akku oli liian vähissä. Herätys herättää sinut silti.</string>
+    <string name="check_watch_onset_battery">Alle %1$d %% akulla kello ei mittaa tänä yönä, milloin nukahdat – lataa se etukäteen. Herätys herättää sinut silti.</string>
+    <string name="check_watch_learn_battery">Alle %1$d %% akulla kello ei tallenna tänä yönä oppimisvaihetta varten – lataa se etukäteen. Herätys herättää sinut silti.</string>
     <string name="check_watch_pulse">Syke taustalla (kello)</string>
     <string name="check_watch_pulse_problem">Kello ei saa mitata sykettäsi yöllä – aseta kellossa Phase Waken anturilupa tilaan ”Salli aina”.</string>
     <string name="export_contents_hint">Tiedosto sisältää joka yöltä liikkeen ja sykkeen 30 s välein, vointisi ja muistiinpanosi – ilman nimiä, päivämääriä tai laitetunnuksia.</string>
@@ -580,6 +582,7 @@
     <string name="overview_no_stages">Ilman vaiheita</string>
     <string name="settings_clear_history_learn">Oppimisvaihe alkaa alusta.</string>
     <string name="learn_auto_hint">Napauta illalla kellossa ”Hyvää yötä” tai ota ”Tunnista nukahtaminen automaattisesti” käyttöön, jotta yöt lasketaan.</string>
+    <string name="learn_auto_hint_clock">Ota ”Tunnista nukahtaminen automaattisesti” käyttöön – silloin kello tunnistaa itse, milloin nukahdat, ja yöt lasketaan.</string>
     <string name="learn_consent_title">Oppimisvaihe</string>
     <string name="learn_consent_text">Jotta Phase Wake voi mukauttaa herätyksen sinulle, kellosi mittaa liikettä ja sykettä yön mittaan %1$d yön ajan. Se kuluttaa hieman akkua – lataa kello ennen nukkumaanmenoa. Tiedot pysyvät laitteillasi. Voit poistaa oppimisvaiheen käytöstä asetuksissa milloin tahansa.</string>
     <string name="learn_consent_start">Aloita oppimisvaihe</string>

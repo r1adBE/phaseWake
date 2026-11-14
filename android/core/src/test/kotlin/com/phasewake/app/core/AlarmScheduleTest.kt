@@ -20,6 +20,26 @@ class AlarmScheduleTest {
         AlarmSpec(id = id, hour = hour, minute = minute, days = days)
 
     @Test
+    fun skippedWeeklyAlarmFindsTheTermAfterNextWeek() {
+        // Audit BE-4 (mayDrop): Wecker nur montags, Montag 2.11. übersprungen, heute Dienstag 27.10. → Montag 9.11.,
+        // 13 Tage voraus, hinter der gewohnten Suche von 8 Tagen.
+        val monday = alarm(days = setOf(DayOfWeek.MONDAY))
+        val now = at("2026-10-27T08:00")
+        val skipped = AlarmSchedule.skipNext(monday, now, zurich)
+        assertEquals(AlarmSchedule.wallMillis(at("2026-11-02T07:00"), zurich), skipped.skipUntil)
+        assertEquals(at("2026-11-09T07:00"), AlarmSchedule.nextTarget(skipped, now, zurich))
+        // Feiertag am 2.11. mit skipHolidays: ebenso 9.11.; dazu der 9.11. übersprungen: 16.11. (20 Tage).
+        val holiday = setOf(java.time.LocalDate.of(2026, 11, 2))
+        assertEquals(at("2026-11-09T07:00"), AlarmSchedule.nextTarget(monday.copy(skipHolidays = true), now, zurich, holiday))
+        val both = monday.copy(skipHolidays = true, skipUntil = AlarmSchedule.wallMillis(at("2026-11-09T07:00"), zurich))
+        assertEquals(at("2026-11-16T07:00"), AlarmSchedule.nextTarget(both, now, zurich, holiday))
+        // Grenze der Suche: ein Jahr Feiertage → null statt endloser Suche; 370 Tage.
+        assertEquals(370L, AlarmSchedule.MAX_SEARCH_DAYS)
+        val everyMonday = (0L..60L).map { java.time.LocalDate.of(2026, 11, 2).plusWeeks(it) }.toSet()
+        assertNull(AlarmSchedule.nextTarget(monday.copy(skipHolidays = true), now, zurich, everyMonday))
+    }
+
+    @Test
     fun oneShotLaterToday() {
         assertEquals(at("2026-10-28T07:00"), AlarmSchedule.nextTarget(alarm(), at("2026-10-28T01:00"), zurich))
     }

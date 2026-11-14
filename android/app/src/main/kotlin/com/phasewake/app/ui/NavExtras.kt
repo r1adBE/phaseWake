@@ -24,6 +24,7 @@ import com.phasewake.app.shared.RecordSync
 import com.phasewake.app.transient.Transients
 import com.phasewake.app.ui.home.HomeExtras
 import com.phasewake.app.ui.home.HomeLearning
+import com.phasewake.app.ui.home.goodNightOffered
 import com.phasewake.app.ui.settings.BackupRows
 import com.phasewake.app.ui.settings.HolidaysUi
 import com.phasewake.app.ui.settings.LearningSettings
@@ -127,6 +128,7 @@ private fun homeLearning(app: PhaseWakeApp, data: AppData, watchRecords: Boolean
         state.active && since != null && watchRecords ->
             HomeLearning(
                 Learning.progress(countedNights(data, since)), null, autoHint = !data.autoOnset,
+                goodNight = goodNightOffered(data.alarms, now, ZoneId.systemDefault(), data.holidays, data.doneUntil),
                 miss = LearnNights.lastNightMiss(learnNightList(data, now), now, ZoneId.systemDefault()), onDetails = onDetails,
             )
         values != null && !state.active && state.consent == true ->

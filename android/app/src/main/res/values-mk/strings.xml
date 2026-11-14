@@ -242,6 +242,8 @@
     <string name="check_watch_battery_problem">Под %1$d %% – полни го часовникот за да издржи цела ноќ и да може да те разбуди.</string>
     <string name="check_watch_recorder">Мерење вечерва</string>
     <string name="check_watch_recorder_battery">Часовникот не го започна мерењето пред спиење – батеријата беше преслаба. Алармот сепак ќе те разбуди.</string>
+    <string name="check_watch_onset_battery">Под %1$d %% батерија часовникот вечерва нема да мери кога заспиваш – наполни го однапред. Алармот сепак ќе те разбуди.</string>
+    <string name="check_watch_learn_battery">Под %1$d %% батерија часовникот вечерва нема да снима за фазата на учење – наполни го однапред. Алармот сепак ќе те разбуди.</string>
     <string name="check_watch_pulse">Пулс во заднина (часовник)</string>
     <string name="check_watch_pulse_problem">Часовникот не смее да ти го мери пулсот ноќе – на часовникот постави ја дозволата за сензори на Phase Wake на „Дозволи секогаш“.</string>
     <string name="export_contents_hint">Датотеката за секоја ноќ содржи движење и пулс на секои 30 s, како се чувствуваше и твоите белешки – без имиња, датуми и ID на уреди.</string>
@@ -583,6 +585,7 @@
     <string name="overview_no_stages">Без фази</string>
     <string name="settings_clear_history_learn">Фазата на учење почнува одново.</string>
     <string name="learn_auto_hint">Навечер допри „Добра ноќ“ на часовникот или вклучи „Автоматски препознај заспивање“ за ноќите да се бројат.</string>
+    <string name="learn_auto_hint_clock">Вклучи „Автоматски препознај заспивање“ – тогаш часовникот сам препознава кога заспиваш, и ноќите се бројат.</string>
     <string name="learn_consent_title">Фаза на учење</string>
     <string name="learn_consent_text">За Phase Wake да го прилагоди алармот кон тебе, твојот часовник %1$d ноќи мери движење и пулс низ ноќта. Тоа троши малку батерија – наполни го часовникот пред спиење. Податоците остануваат на твоите уреди. Фазата на учење можеш да ја исклучиш во поставките во секое време.</string>
     <string name="learn_consent_start">Започни ја фазата на учење</string>

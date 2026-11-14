@@ -183,6 +183,10 @@ extension SmartAlarm {
         let model = WatchModel.shared
         // Probewecker und Powernap: kein Verlauf, kein «erledigt», kein Ausschalten (`Transient`).
         let transient = Transient.kindOf(nightPlan?.alarmId) != nil
+        // «Gute Nacht» hat diese Nacht vorverlegt (vor `markNightDone` gelesen, das sie verfallen lässt): für das Auto-Aus.
+        let shifted = nightPlan.map { night in
+            model.goodNight.map { $0.alarmId == night.alarmId && TimeBounds.millis($0.target) == TimeBounds.millis(night.target) } ?? false
+        } ?? false
         if let nightPlan, let firstRing, !transient {
             let night = NightRecord(
                 alarmId: nightPlan.alarmId,
@@ -203,9 +207,10 @@ extension SmartAlarm {
             LearnRecorder.shared.noteWake(alarmId: nightPlan.alarmId, target: nightPlan.target)
         }
         if notifyPhone { WatchConnectivityBridge.shared.send(command: SyncKeys.stop, alarmId: nightPlan?.alarmId ?? "", target: nightPlan?.target) }
-        // Aus dem Speicher statt aus der Nacht: nach einem Neustart der App fehlt `spec`.
-        if let alarm = model.alarms.first(where: { $0.id == nightPlan?.alarmId }), alarm.isOneShot, alarm.enabled {
-            model.setEnabled(alarm, false)
+        // Aus dem Speicher statt aus der Nacht: nach einem Neustart der App fehlt `spec`. Nur die Fassung, die geklingelt
+        // hat (Fix G-1/S-1): Im Schlummern verschoben, oder eine neuere Änderung vom iPhone, bleibt eingeschaltet.
+        if let nightPlan, !transient, let alarm = model.alarms.first(where: { $0.id == nightPlan.alarmId }), alarm.isOneShot, alarm.enabled {
+            model.disableAfterRing(alarm.id, rung: spec, target: nightPlan.target, shifted: shifted)
         }
         if transient { model.endTransient(nightPlan?.alarmId) }
         phase = .idle

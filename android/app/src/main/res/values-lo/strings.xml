@@ -236,6 +236,8 @@
     <string name="check_watch_battery_problem">ຕ່ຳກວ່າ %1$d %% – ສາກໂມງ ເພື່ອໃຫ້ໃຊ້ໄດ້ຕະຫຼອດຄືນ ແລະ ປຸກເຈົ້າໄດ້</string>
     <string name="check_watch_recorder">ການວັດແທກຄືນນີ້</string>
     <string name="check_watch_recorder_battery">ໂມງຂອງເຈົ້າບໍ່ໄດ້ເລີ່ມການວັດແທກກ່ອນນອນ – ແບັດເຕີຣີຕ່ຳເກີນໄປ. ໂມງປຸກຍັງຈະປຸກເຈົ້າຢູ່.</string>
+    <string name="check_watch_onset_battery">ເມື່ອແບັດເຕີຣີຕ່ຳກວ່າ %1$d %% ໂມງຈະບໍ່ວັດແທກວ່າເຈົ້ານອນຫຼັບເມື່ອໃດໃນຄືນນີ້ – ສາກໄວ້ກ່ອນ. ໂມງປຸກຍັງຈະປຸກເຈົ້າຢູ່.</string>
+    <string name="check_watch_learn_battery">ເມື່ອແບັດເຕີຣີຕ່ຳກວ່າ %1$d %% ໂມງຈະບໍ່ບັນທຶກສຳລັບໄລຍະຮຽນຮູ້ໃນຄືນນີ້ – ສາກໄວ້ກ່ອນ. ໂມງປຸກຍັງຈະປຸກເຈົ້າຢູ່.</string>
     <string name="check_watch_pulse">ຊີບພະຈອນໃນພື້ນຫຼັງ (ໂມງ)</string>
     <string name="check_watch_pulse_problem">ໂມງບໍ່ໄດ້ຮັບອະນຸຍາດໃຫ້ວັດແທກຊີບພະຈອນຂອງເຈົ້າໃນຕອນກາງຄືນ – ໃນໂມງ ໃຫ້ຕັ້ງການອະນຸຍາດເຊັນເຊີຂອງ Phase Wake ເປັນ “ອະນຸຍາດຕະຫຼອດເວລາ”.</string>
     <string name="export_contents_hint">ໄຟລ໌ມີການເຄື່ອນໄຫວ ແລະ ອັດຕາການເຕັ້ນຂອງຫົວໃຈທຸກ 30 ວິນາທີ, ຄວາມຮູ້ສຶກຂອງເຈົ້າ ແລະ ບັນທຶກຂອງເຈົ້າສຳລັບແຕ່ລະຄືນ – ບໍ່ມີຊື່, ວັນທີ ຫຼື ID ອຸປະກອນ.</string>
@@ -568,6 +570,7 @@
     <string name="overview_no_stages">ບໍ່ມີໄລຍະ</string>
     <string name="settings_clear_history_learn">ໄລຍະຮຽນຮູ້ເລີ່ມຕົ້ນໃໝ່.</string>
     <string name="learn_auto_hint">ຕອນແລງ ແຕະ “ລາຕີສະຫວັດ” ຢູ່ໂມງ ຫຼື ເປີດ “ກວດຫາການນອນຫຼັບໂດຍອັດຕະໂນມັດ” ເພື່ອໃຫ້ນັບຄືນ.</string>
+    <string name="learn_auto_hint_clock">ເປີດ “ກວດຫາການນອນຫຼັບໂດຍອັດຕະໂນມັດ” – ແລ້ວໂມງຈະກວດຫາເອງວ່າເຈົ້ານອນຫຼັບເມື່ອໃດ ແລະ ຈະນັບຄືນ.</string>
     <string name="learn_consent_title">ໄລຍະຮຽນຮູ້</string>
     <string name="learn_consent_text">ເພື່ອໃຫ້ Phase Wake ປັບໂມງປຸກໃຫ້ເໝາະກັບເຈົ້າ, ໂມງຂອງເຈົ້າຈະວັດການເຄື່ອນໄຫວ ແລະ ຊີບພະຈອນຕະຫຼອດຄືນ ເປັນເວລາ %1$d ຄືນ. ມັນໃຊ້ແບັດເຕີຣີບາງສ່ວນ – ສາກໂມງກ່ອນນອນ. ຂໍ້ມູນຢູ່ໃນອຸປະກອນຂອງເຈົ້າ. ເຈົ້າສາມາດປິດໄລຍະຮຽນຮູ້ໃນການຕັ້ງຄ່າໄດ້ທຸກເວລາ.</string>
     <string name="learn_consent_start">ເລີ່ມໄລຍະຮຽນຮູ້</string>

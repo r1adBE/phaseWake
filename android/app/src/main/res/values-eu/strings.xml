@@ -242,6 +242,8 @@
     <string name="check_watch_battery_problem">%%%1$d baino gutxiago – kargatu erlojua, gau osoa iraun eta esnatu ahal zaitzan.</string>
     <string name="check_watch_recorder">Gaurko neurketa</string>
     <string name="check_watch_recorder_battery">Erlojuak ez du lo egin aurreko neurketa hasi – bateria baxuegi zuen. Alarmak esnatuko zaitu hala ere.</string>
+    <string name="check_watch_onset_battery">Bateria %%%1$d baino gutxiago bada, erlojuak ez du gaur gauean neurtuko noiz hartzen zaituen loak – kargatu aurretik. Alarmak esnatuko zaitu hala ere.</string>
+    <string name="check_watch_learn_battery">Bateria %%%1$d baino gutxiago bada, erlojuak ez du gaur gauean grabatuko ikasketa-faserako – kargatu aurretik. Alarmak esnatuko zaitu hala ere.</string>
     <string name="check_watch_pulse">Pultsua atzeko planoan (erlojua)</string>
     <string name="check_watch_pulse_problem">Erlojuak ezin du gauez zure pultsua neurtu – erlojuan, ezarri Phase Wake-ren sentsore-baimena “Baimendu beti” aukeran.</string>
     <string name="export_contents_hint">Fitxategiak gau bakoitzeko 30 s-ko mugimendua eta bihotz-maiztasuna, nola sentitu zinen eta zure oharrak ditu – izenik, datarik eta gailu-IDrik gabe.</string>
@@ -583,6 +585,7 @@
     <string name="overview_no_stages">Faserik gabe</string>
     <string name="settings_clear_history_learn">Ikaste-fasea hasieratik hasten da.</string>
     <string name="learn_auto_hint">Arratsean, sakatu «Gabon» erlojuan edo aktibatu «Loak hartzea automatikoki hauteman», gauak kontatu daitezen.</string>
+    <string name="learn_auto_hint_clock">Aktibatu «Loak hartzea automatikoki hauteman» – horrela, erlojuak berak hautemango du noiz hartzen zaituen loak, eta gauak kontatuko dira.</string>
     <string name="learn_consent_title">Ikasketa-fasea</string>
     <string name="learn_consent_text">Phase Wake-k alarma zuri egokitzeko, erlojuak mugimendua eta pultsua neurtzen ditu gauean zehar, %1$d gauez. Horrek bateria pixka bat gastatzen du – kargatu erlojua lo egin aurretik. Datuak zure gailuetan geratzen dira. Ikasketa-fasea ezarpenetan desaktiba dezakezu edozein unetan.</string>
     <string name="learn_consent_start">Hasi ikasketa-fasea</string>

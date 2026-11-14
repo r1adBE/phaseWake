@@ -202,7 +202,8 @@ public enum Learning {
     /// frühestens ``bedtimeRangeMinutes`` davor. Feste Dauern wie ``Bedtime``.
     /// - Returns: (frühestens, spätestens).
     public static func bedtimeRange(target: Date, sleepMinutes: Int, latencyMinutes: Int?) -> (from: Date, until: Date) {
-        let latest = target.addingTimeInterval(-TimeInterval((sleepMinutes + (latencyMinutes ?? 0)) * 60))
+        // Spätestens = die eine Bettzeit (`Bedtime.bedtime`, Audit O-03), abgerundet.
+        let latest = Bedtime.bedtime(nextAlarmTarget: target, goalMinutes: sleepMinutes, latencyMinutes: latencyMinutes)
         let step = Int64(roundMinutes * 60_000)
         let millis = Int64((latest.timeIntervalSince1970 * 1000).rounded(.down))
         // Abrunden wie `Math.floorDiv` (auch vor 1970).

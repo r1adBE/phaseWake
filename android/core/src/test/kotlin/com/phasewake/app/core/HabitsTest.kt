@@ -47,6 +47,35 @@ class HabitsTest {
     }
 
     @Test
+    fun regularityAroundNoon() {
+        // Audit W-1: Bettzeiten 11:30 und 12:30 liegen 60 Min auseinander → Median 12:00, beide regelmässig (vorher 0 von 2).
+        val until = LocalDate.of(2026, 10, 27)
+        val noon = listOf(until to until.atTime(12, 30).atZone(zone).toInstant(), until.minusDays(1) to until.atTime(11, 30).atZone(zone).toInstant())
+        assertEquals(2 to 2, Regularity.count(noon, zone))
+        // 31 Min daneben zählt nicht mehr.
+        val off = listOf(until to until.atTime(12, 31).atZone(zone).toInstant(), until.minusDays(1) to until.atTime(11, 29).atZone(zone).toInstant())
+        assertEquals(0 to 2, Regularity.count(off, zone, toleranceMinutes = 30))
+    }
+
+    @Test
+    fun unwrapCutsTheClockInTheWidestGap() {
+        // Lücke um Mittag am grössten: unverändert (wie bisher).
+        assertEquals(listOf(660.0, 690.0, 750.0), Regularity.unwrap(listOf(660.0, 690.0, 750.0)))
+        // Grösste Lücke mitten in der Nacht: Zeiten kurz nach Mittag bekommen 1440 dazu, Reihenfolge bleibt.
+        assertEquals(listOf(1436.0, 1490.0), Regularity.unwrap(listOf(1436.0, 50.0)))
+        assertEquals(listOf(1490.0, 1436.0, 1450.0), Regularity.unwrap(listOf(50.0, 1436.0, 10.0)))
+        // Gleich grosse Lücken: die um Mittag gewinnt (unverändert).
+        assertEquals(listOf(0.0, 720.0), Regularity.unwrap(listOf(0.0, 720.0)))
+        assertEquals(listOf(5.0), Regularity.unwrap(listOf(5.0)))
+        assertEquals(emptyList(), Regularity.unwrap(emptyList()))
+        assertEquals(1440, Regularity.DAY_MINUTES)
+        // Mittel: 11:56 und 12:50 → 12:23; 22:30 und 23:00 → 22:45 (x.5 aufwärts).
+        assertEquals(23, Regularity.meanMinute(listOf(1436.0, 50.0)))
+        assertEquals(645, Regularity.meanMinute(listOf(630.0, 660.0)))
+        assertEquals(646, Regularity.meanMinute(listOf(630.0, 661.0)))
+    }
+
+    @Test
     fun streakCurrentAndLongest() {
         val reached = mapOf(
             today.minusDays(1) to true, today.minusDays(2) to true, today.minusDays(3) to true,

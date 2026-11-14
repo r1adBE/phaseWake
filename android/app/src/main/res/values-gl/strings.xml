@@ -242,6 +242,8 @@
     <string name="check_watch_battery_problem">Menos do %1$d %% – carga o reloxo para que aguante a noite e poida espertarte.</string>
     <string name="check_watch_recorder">Medición desta noite</string>
     <string name="check_watch_recorder_battery">O teu reloxo non iniciou a medición antes de durmir: tiña a batería demasiado baixa. A alarma espertarate igualmente.</string>
+    <string name="check_watch_onset_battery">Con menos do %1$d %% de batería, o reloxo non medirá esta noite cando adormeces: cárgao antes. A alarma espertarate igualmente.</string>
+    <string name="check_watch_learn_battery">Con menos do %1$d %% de batería, o reloxo non gravará esta noite para a fase de aprendizaxe: cárgao antes. A alarma espertarate igualmente.</string>
     <string name="check_watch_pulse">Pulso en segundo plano (reloxo)</string>
     <string name="check_watch_pulse_problem">O reloxo non pode medir o teu pulso pola noite – no reloxo, pon o permiso de sensores de Phase Wake en “Permitir sempre”.</string>
     <string name="export_contents_hint">O ficheiro contén, de cada noite, movemento e pulso cada 30 s, como te sentiches e as túas notas – sen nomes, datas nin identificadores do dispositivo.</string>
@@ -583,6 +585,7 @@
     <string name="overview_no_stages">Sen fases</string>
     <string name="settings_clear_history_learn">A fase de aprendizaxe comeza de novo.</string>
     <string name="learn_auto_hint">Pola noite, toca «Boas noites» no reloxo ou activa «Detectar automaticamente cando adormeces» para que as noites conten.</string>
+    <string name="learn_auto_hint_clock">Activa «Detectar automaticamente cando adormeces»: así o reloxo detectará por si só cando adormeces e as noites contarán.</string>
     <string name="learn_consent_title">Fase de aprendizaxe</string>
     <string name="learn_consent_text">Para que Phase Wake adapte a alarma a ti, o teu reloxo mide movemento e pulso ao longo da noite durante %1$d noites. Isto gasta algo de batería: carga o reloxo antes de durmir. Os datos quedan nos teus dispositivos. Podes desactivar a fase de aprendizaxe na configuración cando queiras.</string>
     <string name="learn_consent_start">Iniciar fase de aprendizaxe</string>

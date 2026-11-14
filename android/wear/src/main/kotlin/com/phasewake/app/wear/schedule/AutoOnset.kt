@@ -51,11 +51,14 @@ object AutoOnset {
      * Beginn der Messung für [plan] (Plan des Weckers [spec] ohne Einschlaf-Ausnahme), oder `null`: kein gespeicherter
      * Wecker (Powernap, Probewecker), schon erledigt ([done]: eingeschlafen, aufgegeben, abgebrochen), oder der Beginn
      * läge nicht vor dem Fenster und 15 Min vor der Zielzeit oder mehr als 16 Std. davor. Liegt die Bettzeit schon
-     * zurück, beginnt sie gleich.
+     * zurück, beginnt sie gleich – ausser es endete seit dem Beginn schon eine Nacht mit Wecken ([lastNightEnded],
+     * [AlarmScheduler.lastNightEnded]): zweiter Wecker am selben Morgen, der Schlaf dieser Nacht ist vorbei. Eine Messung
+     * gleich nach dem Wecken fände kein Einschlafen und sperrte das frühe Wecken (fail-closed, Audit G-2).
      */
-    fun startAt(plan: WakePlan?, spec: AlarmSpec?, goalMinutes: Int, now: Instant, done: Boolean): Instant? {
+    fun startAt(plan: WakePlan?, spec: AlarmSpec?, goalMinutes: Int, now: Instant, done: Boolean, lastNightEnded: Instant? = null): Instant? {
         if (plan == null || spec == null || spec.id != plan.alarmId || done || Transient.kindOf(plan.alarmId) != null) return null
         val start = ShortNight.autoOnsetStart(plan.target, goalMinutes, spec.sleepDurationMinutes)
+        if (lastNightEnded != null && !lastNightEnded.isBefore(start)) return null
         val at = maxOf(start, now.plus(IMMEDIATE))
         val giveUp = plan.target.minus(WakeService.ONSET_GIVE_UP)
         if (!at.isBefore(giveUp) || !at.isBefore(plan.windowStart)) return null
@@ -70,7 +73,7 @@ object AutoOnset {
         val done = plan != null && app.onsets.isDone(plan.alarmId, plan.target)
         val goal = app.sleepGoal.minutes.first()
         // Schalter am Handy aus: kein Alarm, ein gestellter wird aufgehoben.
-        val at = if (app.autoOnset.enabled.first()) startAt(plan, spec, goal, now, done) else null
+        val at = if (app.autoOnset.enabled.first()) startAt(plan, spec, goal, now, done, app.scheduler.lastNightEnded()) else null
         if (plan == null || at == null) {
             context.getSystemService(AlarmManager::class.java).cancel(pending(context, null))
             return

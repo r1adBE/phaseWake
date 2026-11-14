@@ -33,7 +33,9 @@ final class SharedNightsTests: XCTestCase {
             }
             return nil
         }
-        XCTAssertEqual(firstWake(byName["learned_floor_sensor_start"]), 5)
+        // Seit E-1 (Audit c3b8b01) wartet die Leicht-Regel ohne Grundrauschen: Ohne gelernten Wert zählt das Rauschen zu
+        // Beginn nicht mehr (früher Epoche 5), es weckt wie mit gelerntem Wert erst die echte Bewegung.
+        XCTAssertEqual(firstWake(byName["learned_floor_sensor_start"]), 32)
         XCTAssertNil(firstWake(byName["learned_resting_hr"]))
         XCTAssertNotNil(byName["learned_resting_hr"])
         // Ohne Obergrenze aus dem gelernten Grundrauschen bleibt der unruhige Beginn still (Vollaudit K-1).

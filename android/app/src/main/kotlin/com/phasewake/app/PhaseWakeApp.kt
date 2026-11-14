@@ -246,6 +246,9 @@ open class PhaseWakeApp : Application() {
         if (learning.finish(values, Instant.now())) {
             diag.log(DiagKind.SYNC, "learn done ${learning.current().snapshot().diagLine()} lat=${values.latencyMinutes ?: "-"}")
             publishLearning()
+            // Bettzeit mit der gelernten Einschlafdauer (Audit O-03): Erinnerung und Mitteilung neu planen.
+            bedtime.reschedule()
+            nextAlarm.reschedule()
         }
     }
 
@@ -254,8 +257,12 @@ open class PhaseWakeApp : Application() {
      * die Meldung prüfen (dort gibt es keinen Data Layer).
      */
     internal open suspend fun publishLearning() {
-        learningSync.publish(learning.current().snapshot())
+        learningSync.publish(learningForWatch())
     }
+
+    /** Stand der Lernphase für die Uhr; ohne Zeitpunkt (Handy neu installiert) mit «jetzt» (Fix S-3). */
+    internal suspend fun learningForWatch(): com.phasewake.app.shared.LearningSnapshot =
+        learning.stampIfNever(Instant.now()).snapshot()
 
     /**
      * Zustimmung zur Lernphase (Einrichtung, Karte auf der Startseite, Schalter in den Einstellungen): an beginnt sie

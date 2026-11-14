@@ -240,6 +240,8 @@
     <string name="check_watch_battery_problem">Under %1$d %% – ladda klockan så att den räcker hela natten och kan väcka dig.</string>
     <string name="check_watch_recorder">Mätning i natt</string>
     <string name="check_watch_recorder_battery">Klockan startade inte mätningen före sömnen – batteriet var för lågt. Du blir väckt ändå.</string>
+    <string name="check_watch_onset_battery">Under %1$d %% batteri mäter klockan inte i natt när du somnar – ladda den innan. Du blir väckt ändå.</string>
+    <string name="check_watch_learn_battery">Under %1$d %% batteri spelar klockan inte in för inlärningsfasen i natt – ladda den innan. Du blir väckt ändå.</string>
     <string name="check_watch_pulse">Puls i bakgrunden (klocka)</string>
     <string name="check_watch_pulse_problem">Klockan får inte mäta din puls på natten – ställ in Phase Wakes sensorbehörighet på klockan till ”Tillåt alltid”.</string>
     <string name="export_contents_hint">Filen innehåller för varje natt rörelse och puls per 30 s, hur du mådde och dina anteckningar – utan namn, datum eller enhets-id.</string>
@@ -580,6 +582,7 @@
     <string name="overview_no_stages">Utan faser</string>
     <string name="settings_clear_history_learn">Inlärningsfasen börjar om.</string>
     <string name="learn_auto_hint">Tryck på ”Godnatt” på klockan på kvällen eller slå på ”Känn av automatiskt när du somnar” så att nätterna räknas.</string>
+    <string name="learn_auto_hint_clock">Slå på ”Känn av automatiskt när du somnar” – då känner klockan själv av när du somnar, och nätterna räknas.</string>
     <string name="learn_consent_title">Inlärningsfas</string>
     <string name="learn_consent_text">För att Phase Wake ska kunna anpassa larmet efter dig mäter din klocka rörelse och puls under natten i %1$d nätter. Det drar lite batteri – ladda klockan innan du sover. Datan stannar på dina enheter. Du kan stänga av inlärningsfasen i inställningarna när som helst.</string>
     <string name="learn_consent_start">Starta inlärningsfas</string>

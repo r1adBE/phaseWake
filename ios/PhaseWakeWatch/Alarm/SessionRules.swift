@@ -65,6 +65,16 @@ enum SessionRules {
         }
     }
 
+    /// Startet das System eine Sitzung, die nicht die eigene ist (`SmartAlarm.adopt`), etwa eine aus der Zeit vor einem
+    /// Neustart der App: Ob die eigene im Zustand `own` gilt (Tiefenaudit AP3-4). Geplant oder laufend: ja, die
+    /// ankommende wird bei ihrem Start beendet. Ohne eigene oder schon beendet: nein, die ankommende wird übernommen.
+    static func keepsOwn(_ own: WKExtendedRuntimeSessionState?) -> Bool {
+        switch own {
+        case .scheduled?, .running?: true
+        default: false
+        }
+    }
+
     /// Vibration beim Klingeln nach `elapsed` Sekunden: Steigerung wie auf Android (sanft, deutlich, anhaltend – je eine
     /// Minute) und Abstand bis zur nächsten. Klingelt diese Sitzung nicht mehr (`ringing` falsch: gestoppt,
     /// geschlummert, Sitzung ersetzt), Abstand 0: Das beendet die Wiederholung, auch wenn `invalidate()` im Hintergrund

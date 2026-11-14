@@ -242,6 +242,8 @@
     <string name="check_watch_battery_problem">Ngaphansi kuka-%1$d %% – shaja iwashi lakho ukuze lihlale ubusuku bonke futhi likuvuse.</string>
     <string name="check_watch_recorder">Ukulinganisa kwanamuhla ebusuku</string>
     <string name="check_watch_recorder_battery">Iwashi lakho alizange liqale ukulinganisa ngaphambi kokulala – ibhethri lalo beliphansi kakhulu. I-alamu isazokuvusa.</string>
+    <string name="check_watch_onset_battery">Uma ibhethri lingaphansi kuka-%1$d %%, iwashi ngeke lilinganise namuhla ebusuku lapho ulala – lishaje kusenesikhathi. I-alamu isazokuvusa.</string>
+    <string name="check_watch_learn_battery">Uma ibhethri lingaphansi kuka-%1$d %%, iwashi ngeke liqophe namuhla ebusuku esigabeni sokufunda – lishaje kusenesikhathi. I-alamu isazokuvusa.</string>
     <string name="check_watch_pulse">Ukushaya kwenhliziyo ngemuva (iwashi)</string>
     <string name="check_watch_pulse_problem">Iwashi alivunyelwe ukukala ukushaya kwenhliziyo yakho ebusuku – ewashini, setha imvume yenzwa ye-Phase Wake ibe “Vumela ngaso sonke isikhathi”.</string>
     <string name="export_contents_hint">Ifayela liqukethe, ngobusuku ngabunye, ukunyakaza nokushaya kwenhliziyo njalo ngemizuzwana engu-30, indlela obuzizwa ngayo kanye namanothi akho – ngaphandle kwamagama, izinsuku noma ama-ID edivayisi.</string>
@@ -583,6 +585,7 @@
     <string name="overview_no_stages">Ngaphandle kwezigaba</string>
     <string name="settings_clear_history_learn">Isigaba sokufunda siqala kabusha.</string>
     <string name="learn_auto_hint">Kusihlwa thepha “Ulale kahle” ewashini noma uvule “Bona ngokuzenzakalela lapho ulala” ukuze ubusuku bubalwe.</string>
+    <string name="learn_auto_hint_clock">Vula “Bona ngokuzenzakalela lapho ulala” – khona-ke iwashi lizobona ngokwalo lapho ulala, futhi ubusuku buzobalwa.</string>
     <string name="learn_consent_title">Isigaba sokufunda</string>
     <string name="learn_consent_text">Ukuze i-Phase Wake ikwazi ukulungisa i-alamu ikufanele, iwashi lakho lilinganisa ukunyakaza nokushaya kwenhliziyo ebusuku izinsuku zobusuku ezingu-%1$d. Lokhu kusebenzisa ibhethri elincane – shaja iwashi ngaphambi kokulala. Idatha ihlala kumadivayisi akho. Ungavala isigaba sokufunda kuzilungiselelo noma nini.</string>
     <string name="learn_consent_start">Qala isigaba sokufunda</string>

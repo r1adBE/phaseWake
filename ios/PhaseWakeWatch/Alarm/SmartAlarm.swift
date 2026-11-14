@@ -81,6 +81,9 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     @ObservationIgnored var staleSessions: [WKExtendedRuntimeSession] = []
     /// Plan der laufenden Sitzung (nach Schlummern: der Schlummer-Termin).
     @ObservationIgnored var plan: WakePlan?
+    /// Start der geplanten Sitzung, die bei geschlossener App eine geänderte Nacht übernommen hat (`keepsSession`,
+    /// Tiefenaudit AP3-3); `nil`, wenn die Sitzung für ihren eigenen Plan steht. Beim nächsten Öffnen plant die App neu.
+    @ObservationIgnored var keptStart: Date?
     /// Ursprünglicher Plan der Nacht; wird im Verlauf gespeichert.
     @ObservationIgnored var nightPlan: WakePlan?
     @ObservationIgnored var spec: AlarmSpec?
@@ -182,7 +185,8 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         if Transient.kindOf(plan.alarmId) != nil { keepRealFallback() }
         let active = WKApplication.shared().applicationState == .active
         if !active, keepsRealSession(for: plan) { return }
-        if case .scheduled(let current) = phase, current == plan, session != nil { return }
+        // Eine übernommene Sitzung (`keptStart`) bei offener App durch eine zum Plan passende ersetzen.
+        if case .scheduled(let current) = phase, current == plan, session != nil, !active || keptStart == nil { return }
         // Nach einem Neustart der App: die noch geplante Sitzung behalten, nie eine zweite (Vollaudit AP2-1).
         if keepsRestoredSession(for: plan) { return }
 
@@ -191,8 +195,17 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         // Eine ausstehende Nacht startet ihre Sitzung nur, bis ihr Rückfall fällig ist; danach wartet sie auf ihn.
         let startsNow = WatchRules.startsSession(plan, pending: pending, now: now, delay: Self.fallbackDelay)
         guard active, !tooEarly, startsNow else {
-            // Eine schon geplante Sitzung für einen anderen Plan ist überholt.
-            if case .scheduled(let current) = phase, current != plan { invalidateSession() }
+            // Eine schon geplante Sitzung für einen anderen Plan: übernimmt sie die geänderte Nacht, bleibt sie
+            // (Tiefenaudit AP3-3); sonst ist sie überholt, und die App bittet ums Öffnen, damit die Nacht eine Sitzung
+            // bekommt (nicht nur den Rückfall).
+            if case .scheduled(let current) = phase, current != plan {
+                if !tooEarly, startsNow, keepsSession(from: current, for: plan) { return }
+                invalidateSession()
+                // Startet doch noch eine Sitzung, die die App nicht mehr kennt (vom System über einen Neustart der App
+                // behalten, AP3-4), prüft `startNight` sie gegen den dann aktuellen Plan statt gegen den alten.
+                self.plan = nil
+                if !tooEarly, startsNow { notifyOpenApp(for: plan) }
+            }
             if case .scheduled = phase, session != nil, !tooEarly { return }
             if phase != .waiting(plan) {
                 DiagStore.shared.log(.scheduled, "waiting \(Format.logTime(plan.target)) active \(active)\(pending ? " pending" : "")")
@@ -249,6 +262,24 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         }
         cancelMeasuring()
         return false
+    }
+
+    /// Wecker geändert, während die App nicht offen ist (Tiefenaudit AP3-3): Eine neue Sitzung lässt sich dann nicht
+    /// planen, die schon geplante für `current` auch nicht beenden. Kann sie `plan` übernehmen
+    /// (``NightRules/sessionServes(start:plan:sessionStart:tolerance:delay:)``, wie `startNight` beim Start prüft), bleibt
+    /// sie und misst `plan` ab ihrem Start; beim nächsten Öffnen plant die App die passende. - Returns: ob so behandelt.
+    private func keepsSession(from current: WakePlan, for plan: WakePlan) -> Bool {
+        guard let session, session.state == .scheduled else { return false }
+        let start = keptStart ?? Self.sessionStart(current)
+        guard NightRules.sessionServes(start: start, plan: plan, sessionStart: Self.sessionStart(plan),
+                                       tolerance: Self.startTolerance, delay: Self.fallbackDelay) else { return false }
+        DiagStore.shared.log(.scheduled, "session \(Format.logTime(start)) kept for changed target \(Format.logTime(plan.target))")
+        keptStart = start
+        self.plan = plan
+        phase = .scheduled(plan)
+        notePlanZone(plan)
+        publishArmed()
+        return true
     }
 
     /// Bei geschlossener App lässt sich keine neue Sitzung planen: Ein vorübergehender Plan verdrängt dann nicht die
@@ -312,7 +343,16 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         extendedSession.delegate = self
         // Eine gemerkte, nicht mehr gültige Sitzung wird beim Start beendet (`extendedRuntimeSessionDidStart`).
         if isStale(extendedSession) { return }
-        if let session, session !== extendedSession { retire(session) }
+        if let session, session !== extendedSession {
+            // Die eigene, geplante oder laufende Sitzung nie verwerfen (Tiefenaudit AP3-4): Die ankommende ist dann eine
+            // verwaiste aus der Zeit vor einem Neustart der App und endet bei ihrem Start, ohne zu vibrieren.
+            if SessionRules.keepsOwn(session.state) {
+                DiagStore.shared.log(.error, "other session started, own kept")
+                keepStale(extendedSession)
+                return
+            }
+            retire(session)
+        }
         session = extendedSession
     }
 
@@ -320,6 +360,7 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     /// gemerkt (`staleSessions`) und endet beim nächsten Aktivwerden oder gleich bei ihrem Start (Audit AP-3).
     func invalidateSession() {
         forgetScheduled()
+        keptStart = nil
         guard let old = session else { return }
         session = nil
         retire(old)

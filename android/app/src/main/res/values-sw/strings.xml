@@ -241,6 +241,8 @@
     <string name="check_watch_battery_problem">Chini ya %1$d %% – chaji saa yako ili idumu usiku mzima na iweze kukuamsha.</string>
     <string name="check_watch_recorder">Kipimo cha usiku huu</string>
     <string name="check_watch_recorder_battery">Saa yako haikuanza kipimo cha kabla ya kulala – betri yake ilikuwa chini mno. Kengele bado itakuamsha.</string>
+    <string name="check_watch_onset_battery">Betri ikiwa chini ya %1$d %%, saa haitapima usiku wa leo unaposinzia – ichaji mapema. Kengele bado itakuamsha.</string>
+    <string name="check_watch_learn_battery">Betri ikiwa chini ya %1$d %%, saa haitarekodi usiku wa leo kwa hatua ya kujifunza – ichaji mapema. Kengele bado itakuamsha.</string>
     <string name="check_watch_pulse">Mapigo ya moyo chinichini (saa)</string>
     <string name="check_watch_pulse_problem">Saa hairuhusiwi kupima mapigo yako ya moyo usiku – kwenye saa, weka ruhusa ya vitambuzi ya Phase Wake kuwa “Ruhusu wakati wote”.</string>
     <string name="export_contents_hint">Faili lina, kwa kila usiku, mwendo na mapigo ya moyo kila sekunde 30, ulivyojisikia na madokezo yako – bila majina, tarehe wala vitambulisho vya kifaa.</string>
@@ -582,6 +584,7 @@
     <string name="overview_no_stages">Bila hatua</string>
     <string name="settings_clear_history_learn">Awamu ya kujifunza inaanza upya.</string>
     <string name="learn_auto_hint">Jioni gusa “Usiku mwema” kwenye saa au washa “Tambua kiotomatiki unaposinzia” ili usiku uhesabiwe.</string>
+    <string name="learn_auto_hint_clock">Washa “Tambua kiotomatiki unaposinzia” – kisha saa itatambua yenyewe unaposinzia, na usiku utahesabiwa.</string>
     <string name="learn_consent_title">Hatua ya kujifunza</string>
     <string name="learn_consent_text">Ili Phase Wake iweze kurekebisha kengele kwa ajili yako, saa yako hupima mwendo na mapigo ya moyo usiku kucha kwa usiku %1$d. Hii hutumia betri kidogo – chaji saa kabla ya kulala. Data hubaki kwenye vifaa vyako. Unaweza kuzima hatua ya kujifunza kwenye mipangilio wakati wowote.</string>
     <string name="learn_consent_start">Anza hatua ya kujifunza</string>

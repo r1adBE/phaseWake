@@ -46,6 +46,17 @@ enum NightRules {
         return now < saved.start.addingTimeInterval(tolerance)
     }
 
+    // MARK: Wecker geändert, Uhr-App nicht offen (Tiefenaudit AP3-3)
+
+    /// Ob eine schon geplante Sitzung mit Start `start` die Nacht `plan` übernehmen kann: Sie beginnt frühestens
+    /// `tolerance` vor dem Sitzungsstart von `plan` (`sessionStart`) und vor der Zielzeit plus `delay` – dieselbe
+    /// Prüfung wie beim Start der Sitzung (`SmartAlarm.startNight`). Dann misst sie `plan` ab ihrem Start (die Minuten
+    /// davor bleiben ungemessen), statt verworfen zu werden. Eine spätere Zielzeit deckt sie nicht (Sitzung höchstens
+    /// 30 Min).
+    static func sessionServes(start: Date, plan: WakePlan, sessionStart: Date, tolerance: TimeInterval, delay: TimeInterval) -> Bool {
+        start >= sessionStart.addingTimeInterval(-tolerance) && start < plan.target.addingTimeInterval(delay)
+    }
+
     // MARK: «stop» vom iPhone (AP2-5)
 
     /// Die Nacht, die ein «stop» vom iPhone (Wecker `alarmId`, Zielzeit `target`) beendet, obwohl die Uhr nicht klingelt:

@@ -235,6 +235,8 @@
     <string name="check_watch_battery_problem">Dưới %1$d %% – hãy sạc đồng hồ để đồng hồ chạy suốt đêm và có thể đánh thức bạn.</string>
     <string name="check_watch_recorder">Đo đêm nay</string>
     <string name="check_watch_recorder_battery">Đồng hồ không bắt đầu đo trước khi ngủ – pin quá yếu. Báo thức vẫn sẽ đánh thức bạn.</string>
+    <string name="check_watch_onset_battery">Khi pin dưới %1$d %%, đêm nay đồng hồ sẽ không đo lúc bạn ngủ thiếp đi – hãy sạc trước. Báo thức vẫn sẽ đánh thức bạn.</string>
+    <string name="check_watch_learn_battery">Khi pin dưới %1$d %%, đêm nay đồng hồ sẽ không ghi lại cho giai đoạn học – hãy sạc trước. Báo thức vẫn sẽ đánh thức bạn.</string>
     <string name="check_watch_pulse">Nhịp tim trong nền (đồng hồ)</string>
     <string name="check_watch_pulse_problem">Đồng hồ không được phép đo nhịp tim của bạn vào ban đêm – trên đồng hồ, hãy đặt quyền cảm biến của Phase Wake thành “Luôn cho phép”.</string>
     <string name="export_contents_hint">Tệp chứa chuyển động và nhịp tim mỗi 30 giây, cảm giác của bạn và ghi chú của bạn cho từng đêm – không có tên, ngày hay ID thiết bị.</string>
@@ -566,6 +568,7 @@
     <string name="overview_no_stages">Không có giai đoạn</string>
     <string name="settings_clear_history_learn">Giai đoạn học bắt đầu lại từ đầu.</string>
     <string name="learn_auto_hint">Buổi tối, hãy nhấn “Ngủ ngon” trên đồng hồ hoặc bật “Tự động nhận biết khi bạn ngủ thiếp đi” để các đêm được tính.</string>
+    <string name="learn_auto_hint_clock">Hãy bật “Tự động nhận biết khi bạn ngủ thiếp đi” – khi đó đồng hồ sẽ tự nhận biết lúc bạn ngủ thiếp đi, và các đêm được tính.</string>
     <string name="learn_consent_title">Giai đoạn học</string>
     <string name="learn_consent_text">Để Phase Wake điều chỉnh báo thức theo bạn, đồng hồ của bạn đo chuyển động và nhịp tim suốt đêm trong %1$d đêm. Việc này tốn một ít pin – hãy sạc đồng hồ trước khi ngủ. Dữ liệu ở lại trên thiết bị của bạn. Bạn có thể tắt giai đoạn học trong phần cài đặt bất cứ lúc nào.</string>
     <string name="learn_consent_start">Bắt đầu giai đoạn học</string>

@@ -49,6 +49,30 @@ class SleepGoalTest {
     }
 
     @Test
+    fun oneBedtimeIncludesLearnedLatency() {
+        // Entscheid r1AD 14.11. (Audit O-03): Bettzeit = Weckzeit − Schlafziel − gelernte Einschlafdauer, überall gleich.
+        val target = at("2026-10-28T06:00")
+        assertEquals(at("2026-10-27T22:15"), Bedtime.bedtime(target, 450, latencyMinutes = 15))
+        // Nicht gelernt: wie bisher; negative Werte zählen 0.
+        assertEquals(at("2026-10-27T22:30"), Bedtime.bedtime(target, 450, latencyMinutes = null))
+        assertEquals(at("2026-10-27T22:30"), Bedtime.bedtime(target, 450, latencyMinutes = -5))
+        assertEquals(at("2026-10-27T21:45"), Bedtime.reminderAt(target, 450, latencyMinutes = 15))
+        assertEquals(at("2026-10-27T22:15"), Bedtime.onDial(target, 450, latencyMinutes = 15))
+        // Auf dem Ring zählt die ganze Strecke: 700 + 19 passt noch, 700 + 20 nicht mehr.
+        assertEquals(at("2026-10-27T18:01"), Bedtime.onDial(target, 700, latencyMinutes = 19))
+        assertNull(Bedtime.onDial(target, 700, latencyMinutes = 20))
+        val reminder = Bedtime.next(listOf(alarm("a", 6, 0)), at("2026-10-27T20:00"), zone, 450, latencyMinutes = 15)!!
+        assertEquals(at("2026-10-27T21:45"), reminder.at)
+        assertEquals(at("2026-10-27T22:15"), reminder.bedtime)
+        // Empfohlene Schlafenszeit (Karte) endet an derselben Bettzeit (abgerundet auf 5 Min).
+        assertEquals(Bedtime.bedtime(target, 450, 15), Learning.bedtimeRange(target, 450, 15).second)
+        // Diagramm: die Bettzeit-Linie (Minuten ab Mittag) liegt 15 Min früher.
+        val sleeps = listOf(SleepSummary(at("2026-10-26T23:00"), at("2026-10-27T06:30"), 450))
+        assertEquals(10 * 60 + 15, ChartData.sleepBars(sleeps, zone, day, target, 450, latencyMinutes = 15)!!.bedtimeMinute)
+        assertEquals(10 * 60 + 30, ChartData.sleepBars(sleeps, zone, day, target, 450)!!.bedtimeMinute)
+    }
+
+    @Test
     fun bedtimeOnDialOnlyWithinTwelveHours() {
         val target = at("2026-10-28T06:00")
         assertEquals(at("2026-10-27T22:30"), Bedtime.onDial(target, 450))

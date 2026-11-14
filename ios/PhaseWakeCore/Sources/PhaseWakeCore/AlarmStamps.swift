@@ -98,6 +98,16 @@ public enum AlarmStamps {
         return AlarmSnapshot(alarms: alarms, updatedAt: updatedAt, stamps: stamps, deleted: int64Map(context[SyncKeys.alarmsDeleted]) ?? [:])
     }
 
+    /// Fingerabdruck eines empfangenen Stands (Wecker, Listen-Zeitpunkt, Zeitpunkte je Wecker, gelöschte Wecker), fest
+    /// geordnet: gleich genau dann, wenn derselbe Stand nochmals kommt (Fix S-5, `PhaseWakeStorage.applyRemoteContext`).
+    public static func fingerprint(_ snapshot: AlarmSnapshot) -> String {
+        func map(_ values: [String: Int64]) -> String {
+            values.sorted { $0.key < $1.key }.map { "\($0.key)=\($0.value)" }.joined(separator: ",")
+        }
+        return [Codec.encodeAlarms(snapshot.alarms), String(snapshot.updatedAt), map(snapshot.stamps), map(snapshot.deleted),
+                snapshot.perAlarm ? "1" : "0"].joined(separator: "\n#\n")
+    }
+
     /// Wörterbuch Kennung → ms aus einer Property List (Werte `Int64` oder `NSNumber`); `nil`, wenn es keines ist.
     /// Unlesbare Werte und unplausible Zeitpunkte (``TimeBounds``, Fix KN-4) fallen weg.
     static func int64Map(_ value: Any?) -> [String: Int64]? {
@@ -108,6 +118,40 @@ public enum AlarmStamps {
     /// Wecker nach Kennung; bei doppelter Kennung gilt der erste.
     static func byId(_ alarms: [AlarmSpec]) -> [String: AlarmSpec] {
         Dictionary(alarms.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+    }
+
+    /// So weit darf die eingestellte Weckzeit nach der Zielzeit einer früher geweckten Nacht liegen («Gute Nacht»,
+    /// gleich ``GoodNightEstimate/maxAhead``): 16 Std. in ms (wie `AlarmStamps.SHIFT_MAX_AHEAD_MS`, Kotlin).
+    public static let shiftMaxAheadMs: Int64 = 16 * 3_600_000
+
+    /// Ob `spec` noch die Fassung des Einmal-Weckers ist, die zur Zielzeit `target` geklingelt hat (Fix G-1/S-1). Nur sie
+    /// darf das Auto-Aus nach dem Klingeln treffen; eine danach verschobene oder geänderte Uhrzeit nicht.
+    /// - `rung`: der Wecker, wie er zu Beginn der Nacht geladen wurde (`nil`, wenn unbekannt, z. B. nach einem Neustart
+    ///   der App). Bekannt: Uhrzeit und Tage müssen gleich sein.
+    /// - Unbekannt: Die eingestellte Weckzeit von `spec` für diese Nacht (`nextTarget(spec, target − 1 ms)`) muss `target`
+    ///   sein (auf ms verglichen); bei einer früher geweckten Nacht (`shifted`, «Gute Nacht») höchstens
+    ///   ``shiftMaxAheadMs`` danach. Wie Kotlin.
+    public static func rang(_ spec: AlarmSpec, rung: AlarmSpec?, target: Date, calendar: Calendar, shifted: Bool) -> Bool {
+        if let rung { return rung.hour == spec.hour && rung.minute == spec.minute && rung.days == spec.days }
+        guard let nominal = AlarmSchedule.nextTarget(spec, now: target.addingTimeInterval(-0.001), calendar: calendar) else { return false }
+        let ahead = TimeBounds.millis(nominal) - TimeBounds.millis(target)
+        if ahead == 0 { return true }
+        return shifted && ahead > 0 && ahead <= shiftMaxAheadMs
+    }
+
+    /// Auto-Aus eines Einmal-Weckers nach dem Klingeln (Fix G-1/S-1): Schaltet `id` in `local` aus, wenn er ein
+    /// eingeschalteter Einmal-Wecker ist und `rang` ihn als die geklingelte Fassung erkennt; sonst `nil` (nichts tun).
+    /// Der Wecker bekommt als Zeitpunkt den seiner bisherigen Fassung + 1 ms, nicht «jetzt»: Er ersetzt so genau die
+    /// Fassung, die geklingelt hat. Eine neuere Änderung, die hier noch nicht angekommen ist (z. B. am iPhone verschoben,
+    /// während die Uhr nicht erreichbar war), gewinnt beim Abgleich weiter. Ohne plausiblen bisherigen Zeitpunkt gilt
+    /// `listStamp`. Listen-Zeitpunkt: `listStamp`. Wie Kotlin.
+    public static func autoOff(_ local: AlarmSnapshot, id: String, listStamp: Int64, rang: (AlarmSpec) -> Bool) -> AlarmSnapshot? {
+        guard let spec = local.alarms.first(where: { $0.id == id }), spec.isOneShot, spec.enabled, rang(spec) else { return nil }
+        var stamps = Dictionary(local.alarms.map { ($0.id, local.stampOf($0.id)) }, uniquingKeysWith: max)
+        let next = TimeBounds.checked(local.stampOf(id)).map { $0 + 1 }
+        stamps[id] = next.flatMap { TimeBounds.checked($0) } ?? listStamp
+        let alarms = local.alarms.map { $0.id == id ? $0.with(enabled: false) : $0 }
+        return AlarmSnapshot(alarms: alarms, updatedAt: listStamp, stamps: stamps, deleted: local.deleted)
     }
 
     /// Die neuere von zwei Fassungen (Wecker, Zeitpunkt); bei Gleichstand fest nach Inhalt.

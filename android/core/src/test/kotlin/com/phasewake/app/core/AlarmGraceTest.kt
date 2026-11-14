@@ -106,6 +106,23 @@ class AlarmGraceTest {
     }
 
     @Test
+    fun missedNeedsTargetWithinNightAndNotAhead() {
+        // Audit BE-4: Zielzeit genau am Ende der Nacht und genau jetzt: wird nachgeholt (beide Grenzen eingeschlossen).
+        val edge = CatchUpWindow(at("2026-10-28T06:20"), at("2026-10-28T07:00"), setOf("b"))
+        assertEquals(at("2026-10-28T07:00"), AlarmSchedule.missedPlan(listOf(b), edge, at("2026-10-28T07:00"), zurich)!!.target)
+        // Nach dem Ende der Nacht fällig, auch wenn schon vorbei: kein Nachholen (gewohnter Plan).
+        val early = CatchUpWindow(at("2026-10-28T06:20"), at("2026-10-28T06:59"), setOf("b"))
+        assertNull(AlarmSchedule.missedPlan(listOf(b), early, at("2026-10-28T07:00"), zurich))
+        // In der Nacht, aber noch nicht fällig: kein Nachholen.
+        val long = CatchUpWindow(at("2026-10-28T06:20"), at("2026-10-28T07:10"), setOf("b"))
+        assertNull(AlarmSchedule.missedPlan(listOf(b), long, at("2026-10-28T06:59"), zurich))
+        // Zielzeit genau am Ende der Nacht zählt als fällig geworden.
+        assertEquals(setOf("a", "b"), AlarmSchedule.catchUpAfter(null, at("2026-10-28T06:20"), at("2026-10-28T07:00"), listOf(a, b), zurich).alarmIds)
+        assertEquals(setOf("a"), AlarmSchedule.catchUpAfter(null, at("2026-10-28T06:20"), at("2026-10-28T06:59"), listOf(a, b), zurich).alarmIds)
+        assertEquals(Duration.ofMinutes(10), CatchUpWindow.VALID)
+    }
+
+    @Test
     fun catchUpExtendsAdjoiningNight() {
         val c = alarm(hour = 7, minute = 15, id = "c")
         val next = AlarmSchedule.catchUpAfter(window, at("2026-10-28T07:10"), at("2026-10-28T07:20"), listOf(a, b, c), zurich)

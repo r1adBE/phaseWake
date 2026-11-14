@@ -45,6 +45,19 @@ class AutoOnsetTest {
     }
 
     @Test
+    fun noStartWhenANightEndedSinceItsStart() {
+        // Audit G-2: zweiter Wecker am selben Morgen; der erste hat um 05:00 geweckt, Beginn wäre 22:00 gewesen.
+        val now = Instant.parse("2026-11-03T05:01:00Z")
+        assertNull(AutoOnset.startAt(plan, spec, goal, now, done = false, lastNightEnded = Instant.parse("2026-11-03T05:00:00Z")))
+        // Grenze: genau zum Beginn geendet zählt schon, 1 ms davor nicht.
+        val evening = Instant.parse("2026-11-02T20:00:00Z")
+        assertNull(AutoOnset.startAt(plan, spec, goal, evening, done = false, lastNightEnded = start))
+        assertEquals(start, AutoOnset.startAt(plan, spec, goal, evening, done = false, lastNightEnded = start.minusMillis(1)))
+        // Die Nacht davor (gestern Morgen geweckt) hindert die heutige Messung nicht.
+        assertEquals(start, AutoOnset.startAt(plan, spec, goal, evening, done = false, lastNightEnded = Instant.parse("2026-11-02T06:30:00Z")))
+    }
+
+    @Test
     fun noStartWithoutStoredAlarmOrWhenDone() {
         val now = Instant.parse("2026-11-02T20:00:00Z")
         assertNull(AutoOnset.startAt(null, spec, goal, now, done = false))

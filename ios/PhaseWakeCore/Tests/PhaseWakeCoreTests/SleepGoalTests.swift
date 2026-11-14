@@ -49,6 +49,33 @@ final class SleepGoalTests: XCTestCase {
         XCTAssertEqual(double.total, 2)
     }
 
+    func testOneBedtimeIncludesLearnedLatency() throws {
+        // Entscheid r1AD 14.11. (Audit O-03): Bettzeit = Weckzeit − Schlafziel − gelernte Einschlafdauer, überall gleich.
+        let target = at("2026-10-28T06:00")
+        XCTAssertEqual(Bedtime.bedtime(nextAlarmTarget: target, goalMinutes: 450, latencyMinutes: 15), at("2026-10-27T22:15"))
+        // Nicht gelernt: wie bisher; negative Werte zählen 0.
+        XCTAssertEqual(Bedtime.bedtime(nextAlarmTarget: target, goalMinutes: 450, latencyMinutes: nil), at("2026-10-27T22:30"))
+        XCTAssertEqual(Bedtime.bedtime(nextAlarmTarget: target, goalMinutes: 450, latencyMinutes: -5), at("2026-10-27T22:30"))
+        XCTAssertEqual(Bedtime.reminderAt(nextAlarmTarget: target, goalMinutes: 450, latencyMinutes: 15), at("2026-10-27T21:45"))
+        XCTAssertEqual(Bedtime.onDial(nextAlarmTarget: target, goalMinutes: 450, latencyMinutes: 15), at("2026-10-27T22:15"))
+        // Auf dem Ring zählt die ganze Strecke: 700 + 19 passt noch, 700 + 20 nicht mehr.
+        XCTAssertEqual(Bedtime.onDial(nextAlarmTarget: target, goalMinutes: 700, latencyMinutes: 19), at("2026-10-27T18:01"))
+        XCTAssertNil(Bedtime.onDial(nextAlarmTarget: target, goalMinutes: 700, latencyMinutes: 20))
+        let reminder = try XCTUnwrap(Bedtime.next([alarm("a", 6, 0)], from: at("2026-10-27T20:00"), calendar: zurich, goalMinutes: 450,
+                                                  latencyMinutes: 15))
+        XCTAssertEqual(reminder.at, at("2026-10-27T21:45"))
+        XCTAssertEqual(reminder.bedtime, at("2026-10-27T22:15"))
+        // Empfohlene Schlafenszeit (Karte) endet an derselben Bettzeit (abgerundet auf 5 Min).
+        XCTAssertEqual(Learning.bedtimeRange(target: target, sleepMinutes: 450, latencyMinutes: 15).until,
+                       Bedtime.bedtime(nextAlarmTarget: target, goalMinutes: 450, latencyMinutes: 15))
+        // Diagramm: die Bettzeit-Linie (Minuten ab Mittag) liegt 15 Min früher.
+        let sleeps = [SleepSummary(start: at("2026-10-26T23:00"), end: at("2026-10-27T06:30"), asleepMinutes: 450)]
+        XCTAssertEqual(ChartData.sleepBars(sleeps, calendar: zurich, today: "2026-10-27", nextTarget: target, goalMinutes: 450,
+                                           latencyMinutes: 15)?.bedtimeMinute, 10 * 60 + 15)
+        XCTAssertEqual(ChartData.sleepBars(sleeps, calendar: zurich, today: "2026-10-27", nextTarget: target, goalMinutes: 450)?.bedtimeMinute,
+                       10 * 60 + 30)
+    }
+
     func testBedtimeIsTargetMinusGoal() {
         let target = at("2026-10-28T06:00")
         XCTAssertEqual(Bedtime.bedtime(nextAlarmTarget: target, goalMinutes: 450), at("2026-10-27T22:30"))

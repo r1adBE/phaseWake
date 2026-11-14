@@ -1,39 +1,42 @@
-# Fix KN-6: Grundrauschen erst ab 4 gemessenen Werten. Epoche 0/1 ohne Bewegung; Epoche 4 hat erst 3 Werte (0.03):
-# Startschwelle 0.002, das Rauschen zählt, Puls 56 -> LIGHT_SLEEP. Mit schon 3 Werten hiesse es Rauschen (kein Wecken).
-@expect 4 LIGHT_SLEEP
+# Fix KN-6, angepasst an E-1 (Audit c3b8b01): Grundrauschen erst ab 4 gemessenen Werten. Epoche 0/1 ohne Bewegung;
+# Epoche 4 hat erst 3 Werte: kein Grundrauschen, die Leicht-Regel wartet. Ab 3 Werten hiesse es dort Grundrauschen
+# 0.001, Leicht-Schwelle 0.0025, Treffer in Epoche 3 und 4, Puls 56 >= 54.6 -> LIGHT_SLEEP. In Epoche 5 (4 Werte) ist
+# der Puls (56 + 52) / 2 = 54 zu tief, danach fehlen Treffer.
+@expect none
 motion,hr
 ,52
 ,52
-0.03,52
-0.03,56
-0.03,56
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
-0.03,52
+0.001,52
+0.003,56
+0.003,56
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52
+0.001,52

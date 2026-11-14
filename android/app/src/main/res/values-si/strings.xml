@@ -242,6 +242,8 @@
     <string name="check_watch_battery_problem">%1$d %% ට අඩුයි – රාත්‍රිය පුරා පවතින්නට සහ ඔබව අවදි කිරීමට ඔරලෝසුව ආරෝපණය කරන්න.</string>
     <string name="check_watch_recorder">අද රාත්‍රියේ මිනුම</string>
     <string name="check_watch_recorder_battery">ඔබේ ඔරලෝසුව නින්දට පෙර මිනුම ආරම්භ කළේ නැත – එහි බැටරිය ඉතා අඩු විය. එලාමය කෙසේ වෙතත් ඔබව අවදි කරයි.</string>
+    <string name="check_watch_onset_battery">බැටරිය %1$d %% ට අඩු නම් අද රාත්‍රියේ ඔබ නින්දට ගිය වේලාව ඔරලෝසුව මනින්නේ නැත – කලින්ම ආරෝපණය කරන්න. එලාමය කෙසේ වෙතත් ඔබව අවදි කරයි.</string>
+    <string name="check_watch_learn_battery">බැටරිය %1$d %% ට අඩු නම් අද රාත්‍රියේ ඉගෙනීමේ අදියර සඳහා ඔරලෝසුව පටිගත කරන්නේ නැත – කලින්ම ආරෝපණය කරන්න. එලාමය කෙසේ වෙතත් ඔබව අවදි කරයි.</string>
     <string name="check_watch_pulse">පසුබිමේ නාඩිය (ඔරලෝසුව)</string>
     <string name="check_watch_pulse_problem">ඔරලෝසුවට රාත්‍රියේ ඔබේ නාඩිය මැනීමට අවසර නැත – ඔරලෝසුවේ Phase Wake හි සංවේදක අවසරය “සෑම විටම ඉඩ දෙන්න” ලෙස සකසන්න.</string>
     <string name="export_contents_hint">ගොනුවේ සෑම රාත්‍රියකටම තත්පර 30 කට වරක් චලනය හා හෘද ස්පන්දනය, ඔබට දැනුණු ආකාරය සහ ඔබේ සටහන් ඇත – නම, දිනය හෝ උපාංග ID නොමැතිව.</string>
@@ -583,6 +585,7 @@
     <string name="overview_no_stages">අදියර නොමැතිව</string>
     <string name="settings_clear_history_learn">ඉගෙනුම් අදියර නැවත මුල සිට ආරම්භ වේ.</string>
     <string name="learn_auto_hint">රාත්‍රී ගණන් වීමට සවස ඔරලෝසුවේ “සුබ රාත්‍රියක්” තට්ටු කරන්න හෝ “නින්දට යාම ස්වයංක්‍රීයව හඳුනාගන්න” සක්‍රිය කරන්න.</string>
+    <string name="learn_auto_hint_clock">“නින්දට යාම ස්වයංක්‍රීයව හඳුනාගන්න” සක්‍රිය කරන්න – එවිට ඔබ නින්දට ගිය වේලාව ඔරලෝසුව විසින්ම හඳුනාගන්නා අතර රාත්‍රී ගණන් වේ.</string>
     <string name="learn_consent_title">ඉගෙනීමේ අදියර</string>
     <string name="learn_consent_text">Phase Wake හට එලාමය ඔබට ගැලපෙන ලෙස සකස් කිරීමට, ඔබේ ඔරලෝසුව රාත්‍රී %1$d ක් පුරා රාත්‍රිය තුළ චලනය සහ නාඩිය මනියි. මෙයට බැටරියෙන් ටිකක් වැය වේ – නින්දට පෙර ඔරලෝසුව ආරෝපණය කරන්න. දත්ත ඔබේ උපාංගවලම පවතී. ඕනෑම වේලාවක සැකසීම් තුළ ඉගෙනීමේ අදියර අක්‍රිය කළ හැක.</string>
     <string name="learn_consent_start">ඉගෙනීමේ අදියර අරඹන්න</string>

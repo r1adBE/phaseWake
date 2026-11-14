@@ -244,6 +244,8 @@
     <string name="check_watch_battery_problem">Below %1$d %% – charge your watch so it lasts the night and can wake you.</string>
     <string name="check_watch_recorder">Tonight’s measurement</string>
     <string name="check_watch_recorder_battery">Your watch didn’t start the measurement before sleep – its battery was too low. You’ll still be woken.</string>
+    <string name="check_watch_onset_battery">With less than %1$d %% battery, your watch won’t measure when you fall asleep tonight – charge it beforehand. You’ll still be woken.</string>
+    <string name="check_watch_learn_battery">With less than %1$d %% battery, your watch won’t record for the learning phase tonight – charge it beforehand. You’ll still be woken.</string>
     <string name="check_watch_pulse">Background pulse (watch)</string>
     <string name="check_watch_pulse_problem">The watch may not measure your pulse at night – on the watch set Phase Wake’s sensor permission to “Allow all the time”.</string>
     <string name="export_contents_hint">The file contains motion and heart rate per 30 s, how you felt and your notes for each night – without names, dates or device IDs.</string>
@@ -585,6 +587,7 @@
     <string name="overview_no_stages">No stages</string>
     <string name="settings_clear_history_learn">The learning phase starts over.</string>
     <string name="learn_auto_hint">Tap “Good night” on your watch in the evening or turn on “Detect falling asleep automatically” so the nights count.</string>
+    <string name="learn_auto_hint_clock">Turn on “Detect falling asleep automatically” – then your watch detects on its own when you fall asleep, and the nights count.</string>
     <string name="learn_consent_title">Learning phase</string>
     <string name="learn_consent_text" tools:ignore="PluralsCandidate">So Phase Wake can adapt the alarm to you, your watch measures motion and pulse through the night for %1$d nights. This uses some battery – charge the watch before you go to sleep. The data stays on your devices. You can turn the learning phase off in the settings at any time.</string>
     <string name="learn_consent_start">Start learning phase</string>

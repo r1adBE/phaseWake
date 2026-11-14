@@ -242,6 +242,8 @@
     <string name="check_watch_battery_problem">Nën %1$d %% – karikoje orën, që të mbajë gjithë natën dhe të të zgjojë.</string>
     <string name="check_watch_recorder">Matja e sonte</string>
     <string name="check_watch_recorder_battery">Ora jote nuk e nisi matjen para gjumit – bateria ishte shumë e ulët. Alarmi do të të zgjojë gjithsesi.</string>
+    <string name="check_watch_onset_battery">Me më pak se %1$d %% bateri, ora sonte nuk do ta matë kur të zë gjumi – karikoje më parë. Alarmi do të të zgjojë gjithsesi.</string>
+    <string name="check_watch_learn_battery">Me më pak se %1$d %% bateri, ora sonte nuk do të regjistrojë për fazën e të mësuarit – karikoje më parë. Alarmi do të të zgjojë gjithsesi.</string>
     <string name="check_watch_pulse">Pulsi në sfond (ora)</string>
     <string name="check_watch_pulse_problem">Ora nuk lejohet të të matë pulsin natën – në orë, vendose lejen e sensorëve të Phase Wake në “Lejo gjithmonë”.</string>
     <string name="export_contents_hint">Skedari përmban për çdo natë lëvizjen dhe pulsin çdo 30 s, si u ndjeve dhe shënimet e tua – pa emra, data apo ID pajisjesh.</string>
@@ -583,6 +585,7 @@
     <string name="overview_no_stages">Pa faza</string>
     <string name="settings_clear_history_learn">Faza e mësimit fillon nga e para.</string>
     <string name="learn_auto_hint">Në mbrëmje prek „Natën e mirë“ në orë ose aktivizo „Dallo automatikisht kur fle“, që netët të numërohen.</string>
+    <string name="learn_auto_hint_clock">Aktivizo „Dallo automatikisht kur fle“ – atëherë ora e dallon vetë kur të zë gjumi, dhe netët numërohen.</string>
     <string name="learn_consent_title">Faza e të mësuarit</string>
     <string name="learn_consent_text">Që Phase Wake ta përshtatë alarmin për ty, ora jote mat lëvizjen dhe pulsin gjatë natës për %1$d netë. Kjo harxhon pak bateri – karikoje orën para se të flesh. Të dhënat mbeten në pajisjet e tua. Mund ta çaktivizosh fazën e të mësuarit në cilësime në çdo kohë.</string>
     <string name="learn_consent_start">Nis fazën e të mësuarit</string>

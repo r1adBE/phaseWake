@@ -8,9 +8,11 @@ import android.util.Log
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Transient
 import com.phasewake.app.shared.AlarmSnapshot
+import com.phasewake.app.shared.AlarmStamps
 import com.phasewake.app.wear.sync.PhoneCatchUp
 import com.phasewake.app.wear.wearApp
 import java.time.Instant
+import java.time.ZoneId
 import kotlin.coroutines.cancellation.CancellationException
 import kotlinx.coroutines.launch
 
@@ -41,8 +43,9 @@ class SystemEventReceiver : BroadcastReceiver() {
                     rang?.takeIf { Transient.kindOf(it.first) == null }?.let { (alarmId, target) ->
                         app.scheduler.markDone(alarmId, target)
                         app.scheduler.saveDone()
-                        val spec = app.alarms.current().alarms.firstOrNull { it.id == alarmId }
-                        if (spec?.isOneShot == true && spec.enabled) changed = app.alarms.setEnabled(spec.id, false)
+                        // Nur die Fassung, die geklingelt hat (Fix G-1/S-1); früher geweckt: Ausnahme dieser Nacht.
+                        val shifted = app.onsetOverride.get()?.let { it.alarmId == alarmId && it.target == target } == true
+                        changed = app.alarms.disableAfterRing(alarmId) { AlarmStamps.rang(it, null, target, ZoneId.systemDefault(), shifted) }
                     }
                 } catch (e: Exception) {
                     if (e is CancellationException) throw e

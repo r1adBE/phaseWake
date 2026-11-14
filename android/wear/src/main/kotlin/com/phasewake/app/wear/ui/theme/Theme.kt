@@ -39,7 +39,8 @@ private fun manrope(weight: Int) = Font(
 /** Manrope als variable Schrift; jede Stärke stellt die Achse «wght» passend ein. */
 val Manrope = FontFamily(manrope(400), manrope(500), manrope(600), manrope(700), manrope(800))
 
-private val colors = ColorScheme(
+/** Farbschema der Uhr; `internal` für die Kontrast-Tests. */
+internal val colors = ColorScheme(
     primary = Brand.Wave,
     primaryDim = Brand.Echo,
     primaryContainer = Brand.Deep,

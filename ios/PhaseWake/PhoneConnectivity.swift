@@ -85,8 +85,12 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
     }
 
     /// Uhr gekoppelt oder entkoppelt, App auf der Uhr installiert oder entfernt: Nachfrist des Zweitweckers anpassen.
+    /// Uhr-App erst jetzt installiert (Fix S-4): den Stand gleich senden; `publish` bricht ohne installierte Uhr-App ab,
+    /// sonst käme er erst mit der nächsten Änderung oder dem nächsten Start.
     func sessionWatchStateDidChange(_ session: WCSession) {
         BackupAlarm.noteWatchState(session)
+        guard session.activationState == .activated, session.isPaired, session.isWatchAppInstalled else { return }
+        Task { @MainActor in PhoneModel.shared.publishToWatch() }
     }
 
     /// Uhr wieder erreichbar (App dort offen): einen unbeantworteten Start von «Nacht aufzeichnen» nachreichen

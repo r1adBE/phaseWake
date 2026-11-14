@@ -245,6 +245,8 @@
     <string name="check_watch_battery_problem">מתחת ל-%1$d %% – טענו את השעון כדי שיחזיק כל הלילה ויוכל להעיר אתכם.</string>
     <string name="check_watch_recorder">המדידה הלילה</string>
     <string name="check_watch_recorder_battery">השעון לא התחיל את המדידה לפני השינה – הסוללה שלו הייתה חלשה מדי. ההשכמה תעיר אותך בכל זאת.</string>
+    <string name="check_watch_onset_battery">עם פחות מ-%1$d %% סוללה השעון לא ימדוד הלילה מתי נרדמת – טען אותו מראש. ההשכמה תעיר אותך בכל זאת.</string>
+    <string name="check_watch_learn_battery">עם פחות מ-%1$d %% סוללה השעון לא יקליט הלילה עבור שלב הלמידה – טען אותו מראש. ההשכמה תעיר אותך בכל זאת.</string>
     <string name="check_watch_pulse">דופק ברקע (שעון)</string>
     <string name="check_watch_pulse_problem">לשעון אסור למדוד את הדופק שלך בלילה – בשעון, הגדר את הרשאת החיישנים של Phase Wake ל„אישור כל הזמן”.</string>
     <string name="export_contents_hint">הקובץ מכיל לכל לילה תנועה ודופק לכל 30 שניות, איך הרגשתם וההערות שלכם – ללא שמות, תאריכים או מזהי מכשירים.</string>
@@ -594,6 +596,7 @@
     <string name="overview_no_stages">ללא שלבים</string>
     <string name="settings_clear_history_learn">שלב הלמידה מתחיל מחדש.</string>
     <string name="learn_auto_hint">בערב הקש על “לילה טוב” בשעון או הפעל את “זיהוי הירדמות אוטומטי” כדי שהלילות ייספרו.</string>
+    <string name="learn_auto_hint_clock">הפעל את “זיהוי הירדמות אוטומטי” – כך השעון יזהה בעצמו מתי נרדמת, והלילות ייספרו.</string>
     <string name="learn_consent_title">שלב למידה</string>
     <string name="learn_consent_text">כדי ש-Phase Wake יוכל להתאים את השעון המעורר אליך, השעון שלך מודד תנועה ודופק לאורך הלילה במשך %1$d לילות. זה צורך מעט סוללה – כדאי לטעון את השעון לפני השינה. הנתונים נשארים במכשירים שלך. אפשר לכבות את שלב הלמידה בהגדרות בכל עת.</string>
     <string name="learn_consent_start">להתחיל את שלב הלמידה</string>

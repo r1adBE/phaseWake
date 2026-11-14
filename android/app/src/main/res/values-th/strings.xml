@@ -235,6 +235,8 @@
     <string name="check_watch_battery_problem">ต่ำกว่า %1$d %% – ชาร์จนาฬิกาเพื่อให้ใช้งานได้ตลอดคืนและปลุกคุณได้</string>
     <string name="check_watch_recorder">การวัดคืนนี้</string>
     <string name="check_watch_recorder_battery">นาฬิกาของคุณไม่ได้เริ่มการวัดก่อนนอน – แบตเตอรี่ต่ำเกินไป แต่นาฬิกาปลุกจะยังปลุกคุณตามปกติ</string>
+    <string name="check_watch_onset_battery">เมื่อแบตเตอรี่ต่ำกว่า %1$d %% คืนนี้นาฬิกาจะไม่วัดว่าคุณหลับเมื่อไร – ชาร์จไว้ก่อน แต่นาฬิกาปลุกจะยังปลุกคุณตามปกติ</string>
+    <string name="check_watch_learn_battery">เมื่อแบตเตอรี่ต่ำกว่า %1$d %% คืนนี้นาฬิกาจะไม่บันทึกสำหรับช่วงเรียนรู้ – ชาร์จไว้ก่อน แต่นาฬิกาปลุกจะยังปลุกคุณตามปกติ</string>
     <string name="check_watch_pulse">ชีพจรในเบื้องหลัง (นาฬิกา)</string>
     <string name="check_watch_pulse_problem">นาฬิกาไม่ได้รับอนุญาตให้วัดชีพจรของคุณตอนกลางคืน – บนนาฬิกา ให้ตั้งค่าสิทธิ์เซ็นเซอร์ของ Phase Wake เป็น “อนุญาตตลอดเวลา”</string>
     <string name="export_contents_hint">ไฟล์มีการเคลื่อนไหวและอัตราการเต้นของหัวใจทุก 30 วินาที ความรู้สึกของคุณ และบันทึกของคุณสำหรับแต่ละคืน – ไม่มีชื่อ วันที่ หรือ ID อุปกรณ์</string>
@@ -566,6 +568,7 @@
     <string name="overview_no_stages">ไม่มีระยะ</string>
     <string name="settings_clear_history_learn">ช่วงเรียนรู้จะเริ่มใหม่ตั้งแต่ต้น</string>
     <string name="learn_auto_hint">ตอนเย็นให้แตะ “ราตรีสวัสดิ์” บนนาฬิกา หรือเปิด “ตรวจจับการหลับโดยอัตโนมัติ” เพื่อให้นับคืน</string>
+    <string name="learn_auto_hint_clock">เปิด “ตรวจจับการหลับโดยอัตโนมัติ” – แล้วนาฬิกาจะตรวจจับเองว่าคุณหลับเมื่อไร และนับคืนให้</string>
     <string name="learn_consent_title">ช่วงเรียนรู้</string>
     <string name="learn_consent_text">เพื่อให้ Phase Wake ปรับนาฬิกาปลุกให้เข้ากับคุณ นาฬิกาของคุณจะวัดการเคลื่อนไหวและชีพจรตลอดคืนเป็นเวลา %1$d คืน ซึ่งใช้แบตเตอรี่อยู่บ้าง – ชาร์จนาฬิกาก่อนนอน ข้อมูลอยู่บนอุปกรณ์ของคุณ คุณปิดช่วงเรียนรู้ได้ทุกเมื่อในการตั้งค่า</string>
     <string name="learn_consent_start">เริ่มช่วงเรียนรู้</string>

@@ -139,8 +139,17 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
         val learning = app.learning.current()
         val config = learning.applyTo(Calibration.calibrate(NightHistory.motionsForCalibration(app.nights.load())))
         // Beginn der Einschlafdauer für die Lernphase (Schlafenszeit-Empfehlung am Handy).
-        val bedAt = OnsetRules.bedAt(since, automatic, latest, spec.sleepDurationMinutes ?: app.sleepGoal.minutes.first())
+        val sleepMinutes = spec.sleepDurationMinutes ?: app.sleepGoal.minutes.first()
+        val bedAt = OnsetRules.bedAt(since, automatic, latest, sleepMinutes)
         if (!stillWanted()) return@launch
+        // Erst nach dem Beginn der Einschlafdauer gestartet (oder wieder aufgenommen): Einschlafzeit unbekannt, gemessen ohne
+        // Ergebnis (fail-closed), kein Grundrauschen (Tiefenaudit AP3-2, wie die Apple Watch). Die Lernphase zeichnet trotzdem auf.
+        val plannedBed = OnsetRules.plannedBedAt(since, automatic, latest, sleepMinutes)
+        if (OnsetRules.startedLate(Instant.now(), plannedBed)) {
+            if (learning.active && resumed == null) RecordControl.startForLearning(this@startGoodNight, latest)
+            endBeforeMeasuring(alarmId, latest, "$label start after bedtime $plannedBed: onset unknown", DiagKind.MEASURE_END, measured = true)
+            return@launch
+        }
         app.diag.log(DiagKind.MEASURE_START, "$label start, alarm at $latest${if (resumed != null) ", resumed" else ""}")
         onsetNight = alarmId to latest
         onsetAuto = automatic

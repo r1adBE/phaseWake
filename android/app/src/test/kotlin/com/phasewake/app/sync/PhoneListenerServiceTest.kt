@@ -36,6 +36,7 @@ import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
@@ -226,21 +227,33 @@ class PhoneListenerServiceTest {
         runBlocking { app.backup.watchHandled("a", Instant.ofEpochMilli(max)) }
     }
 
+    /** Zweitwecker des Weckers [id] ausgesetzt (die Uhr hat die Nacht übernommen)? */
+    private fun paused(id: String): Boolean = runBlocking { app.backup.doneUntil()[id] != null }
+
     @Test
     fun staleStopChangesNothing() {
+        // Audit BE-1a: Zustand prüfen, nicht nur die Zeile im Protokoll.
         val old = System.currentTimeMillis() - Duration.ofMinutes(10).toMillis()
-        service.onMessageReceived(Event(DataLayer.PATH_STOP, RingMessage("a", old, old).encode()))
+        service.onMessageReceived(Event(DataLayer.PATH_STOP, RingMessage("s", old, old).encode()))
         awaitDiag { it == "from watch (stale, ignored)" }
+        assertFalse(paused("s"), "ein veraltetes «stop» setzt den Zweitwecker nicht aus")
+        // Gegenprobe: dasselbe «stop» frisch setzt ihn aus.
+        val now = System.currentTimeMillis()
+        service.onMessageReceived(Event(DataLayer.PATH_STOP, RingMessage("s", now, now).encode()))
+        assertTrue(paused("s"))
     }
 
     @Test
     fun outdatedWatchMessagesAreIgnored() {
-        // Veraltete Uhr-App: nur die Kennung, ohne Sendezeit bzw. ohne Schlummer-Runden – kein Rückfall.
-        service.onMessageReceived(Event(DataLayer.PATH_STOP, "a".encodeToByteArray()))
+        // Veraltete Uhr-App: nur die Kennung, ohne Sendezeit bzw. ohne Schlummer-Runden – kein Rückfall (Audit BE-1a:
+        // Zustand prüfen, nicht nur die Zeile im Protokoll).
+        service.onMessageReceived(Event(DataLayer.PATH_STOP, "o1".encodeToByteArray()))
         awaitDiag { it == "from watch (incomplete, ignored)" }
+        assertFalse(paused("o1"), "«stop» ohne Sendezeit setzt den Zweitwecker nicht aus")
         val now = System.currentTimeMillis()
-        service.onMessageReceived(Event(DataLayer.PATH_RING, RingMessage("a", now, now).encode()))
+        service.onMessageReceived(Event(DataLayer.PATH_RING, RingMessage("o2", now, now).encode()))
         awaitDiag { it == "watch rang (incomplete, ignored)" }
+        assertFalse(paused("o2"), "«klingeln» ohne Schlummer-Runden setzt den Zweitwecker nicht aus")
     }
 
     @Test

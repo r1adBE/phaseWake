@@ -24,6 +24,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
+import com.phasewake.app.core.AlarmSchedule
+import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.LearnNights
 import com.phasewake.app.core.Learning
 import com.phasewake.app.shared.RecordSync
@@ -31,6 +33,8 @@ import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.theme.outlinedBorder
 import java.time.Duration
 import java.time.Instant
+import java.time.LocalDate
+import java.time.ZoneId
 import kotlin.math.roundToInt
 
 /**
@@ -40,10 +44,24 @@ import kotlin.math.roundToInt
  * fragt einmal «Lernphase starten» / «Später» (Audit F-02). Lern-Übersicht (r1AD 13.11.2026): [miss] = letzte Nacht hat
  * unerwartet nicht gezählt ([LearnNights.lastNightMiss]), mit Grund; [onDetails] öffnet die Übersicht aller Nächte.
  */
+/**
+ * Ob die Uhr «Gute Nacht» anbietet: nur, wenn der nächste Wecker im Einschlaf-Modus ist (wie die Startseite der Galaxy
+ * Watch, `HomeContent`). Audit O-02: Bei Uhrzeit-Weckern gibt es den Knopf nicht.
+ */
+internal fun goodNightOffered(alarms: List<AlarmSpec>, now: Instant, zone: ZoneId, holidays: Set<LocalDate>, done: Map<String, Instant>): Boolean {
+    val plan = AlarmSchedule.earliestPlan(alarms, now, zone, holidays, done) ?: return false
+    return alarms.firstOrNull { it.id == plan.alarmId }?.sleepDurationMinutes != null
+}
+
+/** Hinweis bei «Einschlafen automatisch erkennen» aus, je Weckerart ([goodNight]: «Gute Nacht» auf der Uhr möglich). */
+internal fun learnAutoHint(goodNight: Boolean): Int = if (goodNight) R.string.learn_auto_hint else R.string.learn_auto_hint_clock
+
 class HomeLearning(
     val night: Int?,
     val values: Learning.Values?,
     val autoHint: Boolean = false,
+    /** Die Uhr bietet «Gute Nacht» an ([goodNightOffered]); sonst nennt der Hinweis nur den Schalter (Audit O-02). */
+    val goodNight: Boolean = true,
     val onSeen: () -> Unit = {},
     val onConsent: ((Boolean) -> Unit)? = null,
     val miss: LearnNights.Night? = null,
@@ -96,7 +114,7 @@ internal fun LearningCard(learning: HomeLearning, record: RecordSync.RecordStatu
                 )
                 if (learning.autoHint) {
                     Text(
-                        stringResource(R.string.learn_auto_hint),
+                        stringResource(learnAutoHint(learning.goodNight)),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.padding(top = 6.dp),

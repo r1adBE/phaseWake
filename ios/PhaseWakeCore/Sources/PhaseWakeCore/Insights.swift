@@ -40,27 +40,34 @@ public struct SleepSummary: Equatable, Sendable {
         self.asleepMinutes = asleepMinutes
     }
 
-    /// Ab 3 Stunden Lücke zwischen Phasen beginnt eine neue Nacht (ein Mittagsschlaf gehört nicht zur Nacht).
-    public static let newNightGap: TimeInterval = 3 * 3600
-    /// Fasst Phasen zu Nächten zusammen, älteste zuerst; Strecken ganz ohne Schlaf fallen weg. Ohne Mindestdauer:
-    /// Welche Sitzung eine Nacht ist (Nickerchen nur am Tag), entscheidet vorher `HealthHistory` – wie im Verlauf.
+    /// Lücke zwischen zwei Phasen, die noch zur selben Nacht gehört (einschliesslich); darüber beginnt eine neue. Eine
+    /// Regel für «eine Nacht» überall: gleich wie ``HealthHistory/continuationGap`` (60 Min; Entscheid r1AD 14.11.2026,
+    /// Audit W-2 – vorher 3 Std.).
+    public static let newNightGap: TimeInterval = HealthHistory.continuationGap
+    /// Fasst Phasen zu Nächten zusammen (Lücke höchstens ``newNightGap``), älteste zuerst; Strecken ganz ohne Schlaf
+    /// fallen weg. Ohne Mindestdauer: Welche Sitzung eine Nacht ist (Nickerchen nur am Tag), entscheidet vorher
+    /// `HealthHistory` – wie im Verlauf.
     public static func group(_ spans: [StageSpan]) -> [SleepSummary] {
         var groups: [[StageSpan]] = []
         for span in spans.sorted(by: { $0.start < $1.start }) {
-            if let last = groups.last, let lastEnd = last.map(\.end).max(), span.start.timeIntervalSince(lastEnd) < newNightGap {
+            if let last = groups.last, let lastEnd = last.map(\.end).max(), span.start.timeIntervalSince(lastEnd) <= newNightGap {
                 groups[groups.count - 1].append(span)
             } else {
                 groups.append([span])
             }
         }
-        return groups.compactMap { group in
-            let asleep = group.filter { $0.stage != .awake }
-            guard let start = asleep.map(\.start).min(), let end = group.map(\.end).max() else { return nil }
-            // Millisekunden erst summieren, dann abrunden – wie die Detailseite (`HealthSession.asleepMinutes`);
-            // je Phase abgerundet fehlten bei vielen Phasen bis zu einer Minute je Phase.
-            let minutes = StageStats.minutes(asleep.reduce(Int64(0)) { $0 + StageStats.millis($1.start, $1.end) })
-            return SleepSummary(start: start, end: end, asleepMinutes: minutes)
-        }
+        return groups.compactMap { of($0) }
+    }
+
+    /// Eine Nacht aus `spans`: Beginn der ersten Schlafphase bis Ende der letzten Phase, Schlaf aller Phasen ausser
+    /// «wach». `nil` ohne Schlaf. Für die Nächte des Verlaufs je Kette (``HealthHistory/summaries(_:clearedAt:calendar:)``).
+    public static func of(_ spans: [StageSpan]) -> SleepSummary? {
+        let asleep = spans.filter { $0.stage != .awake }
+        guard let start = asleep.map(\.start).min(), let end = spans.map(\.end).max() else { return nil }
+        // Millisekunden erst summieren, dann abrunden – wie die Detailseite (`HealthSession.asleepMinutes`);
+        // je Phase abgerundet fehlten bei vielen Phasen bis zu einer Minute je Phase.
+        let minutes = StageStats.minutes(asleep.reduce(Int64(0)) { $0 + StageStats.millis($1.start, $1.end) })
+        return SleepSummary(start: start, end: end, asleepMinutes: minutes)
     }
 }
 
@@ -105,12 +112,11 @@ public struct Trends: Equatable, Sendable {
             guard list.count >= minNightsPerWeek else { return nil }
             return Double(list.reduce(0, +)) / Double(list.count)
         }
-        // Einschlafzeit als Minuten ab Mittag, damit 23:30 und 00:30 nahe beieinander liegen.
-        let bedtimes: [Double] = sleeps.filter { $0.end > twoWeeksAgo && $0.end <= now }.map {
-            let c = calendar.dateComponents([.hour, .minute], from: $0.start)
-            let m = (c.hour ?? 0) * 60 + (c.minute ?? 0) - 12 * 60
-            return Double(((m % 1440) + 1440) % 1440)
-        }
+        // Einschlafzeit als Minuten ab Mittag, damit 23:30 und 00:30 nahe beieinander liegen; ohne Sprung um Mittag
+        // (`Regularity.unwrap`, Audit W-1).
+        let bedtimes = Regularity.unwrap(sleeps.filter { $0.end > twoWeeksAgo && $0.end <= now }.map {
+            Regularity.minutesFromNoon($0.start, calendar: calendar)
+        })
         var spread: Int?
         if bedtimes.count >= minNightsForSpread {
             let mean = bedtimes.reduce(0, +) / Double(bedtimes.count)

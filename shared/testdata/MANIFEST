@@ -11,12 +11,15 @@ backup-v1.pwbak.b64
 backup-v2-nfc.pwbak.b64
 backup-v2.pwbak.b64
 baseline_median_six.night
+calibration-real.vectors
 deep_sleep.night
+hr_rise_exact.night
 learn-nights.vectors
 learned_floor_sensor_start.night
 learned_resting_hr.night
 light_factor.night
 light_motion_no_hr_rise.night
+light_needs_floor.night
 light_sleep_hr_rise.night
 light_window_four.night
 low_prior_ignored.night

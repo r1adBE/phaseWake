@@ -109,6 +109,13 @@ final class SoundEventsTests: XCTestCase {
         XCTAssertFalse(SoundEvents.mayAutoStart(now: at("2026-10-28T07:00"), nextTarget: at("2026-10-29T06:30"), goalMinutes: 450, calendar: zurich))
     }
 
+    func testAutoStartFromTheOneBedtimeWithLatency() {
+        // Audit O-03: mit gelernter Einschlafdauer 20 Min ab 22:40 statt 23:00.
+        let target = at("2026-10-28T06:30")
+        XCTAssertFalse(SoundEvents.mayAutoStart(now: at("2026-10-27T22:39"), nextTarget: target, goalMinutes: 450, calendar: zurich, latencyMinutes: 20))
+        XCTAssertTrue(SoundEvents.mayAutoStart(now: at("2026-10-27T22:40"), nextTarget: target, goalMinutes: 450, calendar: zurich, latencyMinutes: 20))
+    }
+
     func testAutoStartWithoutAlarmFrom21() {
         XCTAssertFalse(SoundEvents.mayAutoStart(now: at("2026-10-27T20:59"), nextTarget: nil, goalMinutes: 450, calendar: zurich))
         XCTAssertTrue(SoundEvents.mayAutoStart(now: at("2026-10-27T21:00"), nextTarget: nil, goalMinutes: 450, calendar: zurich))

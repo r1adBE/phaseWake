@@ -242,6 +242,8 @@
     <string name="check_watch_battery_problem">Mababa sa %1$d %% – i-charge ang relo mo para tumagal ito buong gabi at magising ka nito.</string>
     <string name="check_watch_recorder">Pagsukat ngayong gabi</string>
     <string name="check_watch_recorder_battery">Hindi sinimulan ng relo mo ang pagsukat bago matulog – masyadong mahina ang baterya nito. Gigisingin ka pa rin ng alarm.</string>
+    <string name="check_watch_onset_battery">Kapag mas mababa sa %1$d %% ang baterya, hindi susukatin ng relo mo ngayong gabi kung kailan ka nakatulog – i-charge ito bago matulog. Gigisingin ka pa rin ng alarm.</string>
+    <string name="check_watch_learn_battery">Kapag mas mababa sa %1$d %% ang baterya, hindi magre-record ang relo mo ngayong gabi para sa yugto ng pagkatuto – i-charge ito bago matulog. Gigisingin ka pa rin ng alarm.</string>
     <string name="check_watch_pulse">Pulso sa background (relo)</string>
     <string name="check_watch_pulse_problem">Hindi puwedeng sukatin ng relo ang pulso mo sa gabi – sa relo, itakda ang pahintulot sa sensor ng Phase Wake sa “Payagan sa lahat ng oras”.</string>
     <string name="export_contents_hint">Laman ng file para sa bawat gabi ang galaw at heart rate bawat 30 s, ang pakiramdam mo at ang mga tala mo – walang pangalan, petsa o ID ng device.</string>
@@ -583,6 +585,7 @@
     <string name="overview_no_stages">Walang yugto</string>
     <string name="settings_clear_history_learn">Magsisimula ulit ang learning phase.</string>
     <string name="learn_auto_hint">Sa gabi, i-tap ang “Matutulog na” sa relo mo o i-on ang “Awtomatikong tukuyin ang pagkakatulog” para mabilang ang mga gabi.</string>
+    <string name="learn_auto_hint_clock">I-on ang “Awtomatikong tukuyin ang pagkakatulog” – sa gayon, ang relo mo mismo ang tutukoy kung kailan ka nakatulog, at mabibilang ang mga gabi.</string>
     <string name="learn_consent_title">Yugto ng pagkatuto</string>
     <string name="learn_consent_text">Para maiangkop ng Phase Wake ang alarm sa iyo, sinusukat ng relo mo ang galaw at pulso sa buong gabi sa loob ng %1$d gabi. Gumagamit ito ng kaunting baterya – i-charge ang relo bago matulog. Nananatili ang data sa mga device mo. Puwede mong i-off ang yugto ng pagkatuto sa settings anumang oras.</string>
     <string name="learn_consent_start">Simulan ang pagkatuto</string>

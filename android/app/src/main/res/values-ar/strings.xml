@@ -260,6 +260,8 @@
     <string name="check_watch_battery_problem">أقل من %1$d %% – اشحن ساعتك لتصمد طوال الليل وتوقظك.</string>
     <string name="check_watch_recorder">قياس الليلة</string>
     <string name="check_watch_recorder_battery">لم تبدأ ساعتك القياس قبل النوم – كانت بطاريتها منخفضة جدًا. سيوقظك المنبّه مع ذلك.</string>
+    <string name="check_watch_onset_battery">مع بطارية أقل من %1$d %% لن تقيس ساعتك الليلة متى تنام – اشحنها مسبقًا. سيوقظك المنبّه مع ذلك.</string>
+    <string name="check_watch_learn_battery">مع بطارية أقل من %1$d %% لن تسجّل ساعتك الليلة لمرحلة التعلّم – اشحنها مسبقًا. سيوقظك المنبّه مع ذلك.</string>
     <string name="check_watch_pulse">النبض في الخلفية (الساعة)</string>
     <string name="check_watch_pulse_problem">لا يُسمح للساعة بقياس نبضك ليلًا – على الساعة اضبط إذن المستشعرات لـ Phase Wake على «السماح طوال الوقت».</string>
     <string name="export_contents_hint">يحتوي الملف لكل ليلة على الحركة ونبض القلب لكل ٣٠ ثانية وشعورك وملاحظاتك – دون أسماء أو تواريخ أو معرّفات أجهزة.</string>
@@ -636,6 +638,7 @@
     <string name="overview_no_stages">بدون مراحل</string>
     <string name="settings_clear_history_learn">تبدأ مرحلة التعلّم من جديد.</string>
     <string name="learn_auto_hint">اضغط مساءً على “ليلة سعيدة” في ساعتك أو شغّل “اكتشاف النوم تلقائيًا” لكي تُحتسب الليالي.</string>
+    <string name="learn_auto_hint_clock">شغّل “اكتشاف النوم تلقائيًا” – عندها تكتشف ساعتك بنفسها متى تنام، وتُحتسب الليالي.</string>
     <string name="learn_consent_title">مرحلة التعلّم</string>
     <string name="learn_consent_text">لكي يضبط Phase Wake المنبّه حسبك، تقيس ساعتك الحركة والنبض طوال الليل لمدة %1$d ليالٍ. يستهلك ذلك بعض البطارية – اشحن الساعة قبل النوم. تبقى البيانات على أجهزتك. يمكنك إيقاف مرحلة التعلّم في الإعدادات في أي وقت.</string>
     <string name="learn_consent_start">ابدأ مرحلة التعلّم</string>

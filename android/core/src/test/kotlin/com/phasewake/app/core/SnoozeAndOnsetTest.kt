@@ -26,6 +26,35 @@ class SnoozeAndOnsetTest {
     }
 
     @Test
+    fun singleTwitchesDoNotBreakTheStretch() {
+        // Audit c3b8b01 E-4: Zucker im Schlaf (eine Epoche, Nachbarn ruhig) brechen die Strecke nicht, höchstens zwei.
+        fun night(vararg moved: Int): List<Double?> = List(45) { if (it in moved) 0.2 else 0.001 }
+        assertEquals(0, SleepOnset.find(night(10), 0.002))
+        assertEquals(0, SleepOnset.find(night(10, 20), 0.002))
+        // Ein dritter in denselben 30 Epochen: erst nach dem ersten.
+        assertEquals(11, SleepOnset.find(night(10, 20, 25), 0.002))
+        // Zwei nacheinander (1 Min Bewegung) sind kein Zucker: die Strecke beginnt danach.
+        assertEquals(12, SleepOnset.find(night(10, 11), 0.002))
+        // Erste und letzte Epoche der Strecke müssen ruhig sein.
+        assertNull(SleepOnset.find(List(29) { 0.001 } + listOf(0.2), 0.002))
+        assertEquals(2, SleepOnset.MAX_TWITCHES)
+        assertEquals(30, SleepOnset.STILL_EPOCHS)
+    }
+
+    @Test
+    fun withHeartRatesAStretchNeedsAPulse() {
+        // Audit c3b8b01 E-5 (wie Swift `AppleOnsetTests`): 30 Min auf dem Ladegerät (still, kein Puls), danach getragen
+        // (Puls je 5 Min, ab Epoche 60): Die Strecke beginnt erst mit dem ersten Puls.
+        val motions = List(100) { 0.001 }
+        val rates = List(100) { if (it >= 60 && it % 10 == 0) 58.0 else null }
+        assertEquals(60, SleepOnset.find(motions, 0.002, rates))
+        // Getragen mit Puls je 5 Min: jede Epoche bis 10 nach einem Puls kann Beginn sein.
+        assertEquals(0, SleepOnset.find(motions, 0.002, List(100) { if (it % 10 == 0) 58.0 else null }))
+        assertEquals(10, SleepOnset.WORN_EPOCHS)
+        assertEquals(0, SleepOnset.find(motions, 0.002))
+    }
+
+    @Test
     fun noOnsetWhileRestless() {
         assertNull(SleepOnset.find(List(29) { 0.0 }))
         assertNull(SleepOnset.find(List(60) { 0.002 })) // genau auf der Schwelle ist nicht ruhig

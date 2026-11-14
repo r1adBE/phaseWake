@@ -14,7 +14,8 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             List {
-                NextWindow(plan: model.plan, alarm: model.alarms.first { $0.id == model.plan?.alarmId }, sleepGoal: model.sleepGoal)
+                NextWindow(plan: model.plan, alarm: model.alarms.first { $0.id == model.plan?.alarmId }, sleepGoal: model.sleepGoal,
+                           latencyMinutes: LearnRecorder.shared.snapshot.latencyMinutes)
                     .listRowBackground(Color.clear)
                 if case .waiting = SmartAlarm.shared.phase {
                     // Nicht scharf: watchOS plant nur bei offener App und höchstens 36 h im Voraus. Ab der Erinnerung am
@@ -116,11 +117,13 @@ private struct NextWindow: View {
     let alarm: AlarmSpec?
     /// Schlafziel in Minuten für den Einschlafpunkt.
     let sleepGoal: Int
+    /// Gelernte Einschlafdauer (Lernphase) für die eine Bettzeit (Audit O-03); `nil` = nicht gelernt.
+    let latencyMinutes: Int?
 
     /// Einschlafpunkt nur zu einem gespeicherten Wecker, nicht zu Powernap oder Probewecker.
     private var bedtime: Date? {
         guard let plan, alarm != nil else { return nil }
-        return Bedtime.onDial(nextAlarmTarget: plan.target, goalMinutes: sleepGoal)
+        return Bedtime.onDial(nextAlarmTarget: plan.target, goalMinutes: sleepGoal, latencyMinutes: latencyMinutes)
     }
 
     var body: some View {

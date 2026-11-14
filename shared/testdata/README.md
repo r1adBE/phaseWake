@@ -20,6 +20,15 @@ Nacht (`DetectorConfig.withOnsetFloor`), zusätzlich zu einem gelernten aus `@fl
 
 `MANIFEST` listet jede Datei dieses Ordners (ausser `README.md` und `MANIFEST`). Beide Kerne prüfen, dass genau diese Dateien da sind und so viele Nächte bewertet werden: Eine neue Datei gehört in `MANIFEST`, eine fehlende fällt auf.
 
+Audit c3b8b01: `light_needs_floor` (E-1, die Leicht-Regel wartet ohne Grundrauschen); `min_floor_epochs_before`/`_after`
+sind dafür neu gerechnet. `hr_rise_exact` (BE-4): Puls genau Basispuls × 1.05 weckt («mindestens»).
+
+## Kalibrierung
+
+`calibration-real.vectors`: 4 echte, ohne Namen aufgezeichnete Fensternächte einer Galaxy Watch, je Zeile eine Nacht
+(Bewegung je Epoche, Komma-getrennt, leer = keine), dazu `@expect <leicht> <wach>`. Beide Kerne müssen diese Schwellen
+kalibrieren (Abschnitt 4, Audit c3b8b01 E-2: Grundrauschen je Nacht abziehen, Wach höchstens 0.1).
+
 ## Lern-Übersicht
 
 `learn-nights.vectors`: je Zeile erwarteter Grund (`LearnNights.Reason`), Tabulator, die Fakten einer Nacht als «Schlüssel=Wert» (Format im Kopf der Datei). Beide Kerne prüfen alle Zeilen und dass jeder Grund mindestens einmal vorkommt.

@@ -41,16 +41,51 @@ object Regularity {
         val end = until ?: byDate.keys.maxOrNull() ?: return 0 to 0
         val medianDates = byDate.filterKeys { !it.isAfter(end) && it.isAfter(end.minusDays(MEDIAN_NIGHTS.toLong())) }
         if (medianDates.isEmpty()) return 0 to 0
-        val median = SoundEventDetector.median(medianDates.values.map { minutesFromNoon(it, zone) })
-        val week = medianDates.filterKeys { it.isAfter(end.minusDays(WEEK_NIGHTS.toLong())) }
-        return week.values.count { abs(minutesFromNoon(it, zone) - median) <= toleranceMinutes + 1e-9 } to week.size
+        // Ohne Sprung um Mittag ([unwrap]): 11:30 und 12:30 liegen 60 Min auseinander, nicht 1380.
+        val dates = medianDates.keys.toList()
+        val minutes = dates.zip(unwrap(dates.map { minutesFromNoon(medianDates.getValue(it), zone) })).toMap()
+        val median = SoundEventDetector.median(minutes.values)
+        val week = minutes.filterKeys { it.isAfter(end.minusDays(WEEK_NIGHTS.toLong())) }
+        return week.values.count { abs(it - median) <= toleranceMinutes + 1e-9 } to week.size
     }
 
     /** Uhrzeit als Minuten ab Mittag, damit 23:30 und 00:30 nahe beieinander liegen. */
     fun minutesFromNoon(at: Instant, zone: ZoneId): Double {
         val t = at.atZone(zone).toLocalTime()
-        return Math.floorMod(t.hour * 60 + t.minute - 12 * 60, 24 * 60).toDouble()
+        return Math.floorMod(t.hour * 60 + t.minute - 12 * 60, DAY_MINUTES).toDouble()
     }
+
+    /** Minuten eines Tages: Umfang der Uhr in [minutesFromNoon]. */
+    const val DAY_MINUTES: Int = 24 * 60
+
+    /**
+     * Uhrzeiten in Minuten ab Mittag ([minutesFromNoon], 0 ≤ m < [DAY_MINUTES]) ohne Sprung (Audit W-1): Die Uhr wird in
+     * der grössten Lücke zwischen den Zeiten aufgeschnitten, damit auch Zeiten um Mittag (11:56 und 12:50) nahe
+     * beieinander liegen. Ist die Lücke um Mittag die grösste (bei Gleichstand bevorzugt), bleiben die Werte wie sie
+     * sind; sonst bekommen die Zeiten bis zur grössten Lücke [DAY_MINUTES] dazu. Reihenfolge wie [minutes]. Gleich in Swift.
+     */
+    fun unwrap(minutes: List<Double>): List<Double> {
+        if (minutes.size < 2) return minutes
+        val sorted = minutes.sorted()
+        // Lücke um Mittag: von der spätesten Zeit bis zur frühesten des nächsten Tages.
+        var widest = sorted.first() + DAY_MINUTES - sorted.last()
+        var cut: Double? = null
+        for (i in 0 until sorted.lastIndex) {
+            val gap = sorted[i + 1] - sorted[i]
+            if (gap > widest) {
+                widest = gap
+                cut = sorted[i]
+            }
+        }
+        val at = cut ?: return minutes
+        return minutes.map { if (it <= at) it + DAY_MINUTES else it }
+    }
+
+    /**
+     * Mittlere Uhrzeit der [minutes] (Minuten ab Mittag) ohne Sprung um Mittag ([unwrap]), gerundet (x.5 aufwärts) und
+     * wieder in 0 ≤ m < [DAY_MINUTES]. [minutes] darf nicht leer sein.
+     */
+    fun meanMinute(minutes: List<Double>): Int = Math.floorMod(Math.round(unwrap(minutes).average()).toInt(), DAY_MINUTES)
 }
 
 /** Serien: Nächte in Folge mit erreichtem Schlafziel. Keine Punkte, keine Abzeichen. */

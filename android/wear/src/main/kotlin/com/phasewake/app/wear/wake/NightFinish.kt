@@ -9,6 +9,7 @@ import com.phasewake.app.core.Transient
 import com.phasewake.app.core.WakePlan
 import com.phasewake.app.core.WakeReason
 import com.phasewake.app.shared.AlarmSnapshot
+import com.phasewake.app.shared.AlarmStamps
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.OnsetShift
 import com.phasewake.app.wear.record.RecordControl
@@ -88,7 +89,12 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true, done: Boolean 
             }
             runStep("Stand löschen") { app.nightProgress.clear(n.plan) }
             if (record != null) runStep("Nacht speichern") { app.nights.add(record) }
-            if (!transient && spec?.isOneShot == true && spec.enabled) disabled = runStep("Einmal-Wecker ausschalten") { app.alarms.setEnabled(spec.id, false) }
+            // Nur die Fassung, die geklingelt hat (Fix G-1/S-1): Im Schlummern verschoben, oder eine neuere Änderung vom
+            // Handy, bleibt eingeschaltet. Früher geweckt (Einschlaf-Modus): die Ausnahme dieser Nacht ([cleared]).
+            if (!transient && spec?.isOneShot == true && spec.enabled) disabled = runStep("Einmal-Wecker ausschalten") {
+                val shifted = cleared == n.plan
+                app.alarms.disableAfterRing(spec.id) { AlarmStamps.rang(it, n.spec, n.plan.target, ZoneId.systemDefault(), shifted) }
+            }
             runStep("Neu planen") { app.scheduler.reschedule() }
             // Einreihen fürs Handy, solange der Dienst noch läuft (Audit AN-6): Es speichert nur lokal (schnell), gesendet
             // wird im Hintergrund. Endete der Prozess mit dem Dienst, ginge die Nacht sonst nie ans Handy.

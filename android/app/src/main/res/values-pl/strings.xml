@@ -250,6 +250,8 @@
     <string name="check_watch_battery_problem">Poniżej %1$d %% – naładuj zegarek, aby wytrzymał całą noc i mógł cię obudzić.</string>
     <string name="check_watch_recorder">Pomiar tej nocy</string>
     <string name="check_watch_recorder_battery">Zegarek nie rozpoczął pomiaru przed snem – bateria była zbyt słaba. Budzik i tak cię obudzi.</string>
+    <string name="check_watch_onset_battery">Poniżej %1$d %% baterii zegarek nie zmierzy dziś w nocy, kiedy zasypiasz – naładuj go wcześniej. Budzik i tak cię obudzi.</string>
+    <string name="check_watch_learn_battery">Poniżej %1$d %% baterii zegarek nie nagra dziś w nocy dla fazy nauki – naładuj go wcześniej. Budzik i tak cię obudzi.</string>
     <string name="check_watch_pulse">Tętno w tle (zegarek)</string>
     <string name="check_watch_pulse_problem">Zegarek nie może mierzyć twojego tętna w nocy – na zegarku ustaw uprawnienie czujników dla Phase Wake na „Zezwalaj zawsze”.</string>
     <string name="export_contents_hint">Plik zawiera dla każdej nocy ruch i tętno co 30 s, twoje samopoczucie i notatki – bez imion, dat i identyfikatorów urządzeń.</string>
@@ -608,6 +610,7 @@
     <string name="overview_no_stages">Bez faz</string>
     <string name="settings_clear_history_learn">Faza nauki zaczyna się od nowa.</string>
     <string name="learn_auto_hint">Wieczorem stuknij na zegarku „Dobranoc” lub włącz „Automatycznie wykrywaj zasypianie”, aby noce się liczyły.</string>
+    <string name="learn_auto_hint_clock">Włącz „Automatycznie wykrywaj zasypianie” – wtedy zegarek sam wykryje, kiedy zasypiasz, a noce będą się liczyć.</string>
     <string name="learn_consent_title">Faza nauki</string>
     <string name="learn_consent_text">Aby Phase Wake mógł dopasować budzik do ciebie, zegarek przez %1$d nocy mierzy ruch i tętno w ciągu nocy. Zużywa to trochę baterii – naładuj zegarek przed snem. Dane zostają na twoich urządzeniach. Fazę nauki możesz w każdej chwili wyłączyć w ustawieniach.</string>
     <string name="learn_consent_start">Rozpocznij fazę nauki</string>

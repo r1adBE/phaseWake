@@ -16,6 +16,7 @@ import java.io.File
 import java.time.Duration
 import java.time.Instant
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
@@ -100,6 +101,21 @@ class BackupManagerTest {
         assertEquals(listOf(listOf("a")), synced.map { s -> s.alarms.map { it.id } })
         // Abgeschlossen: keine Marke, beim nächsten Start nichts zu tun.
         assertNull(RestoreJournal(context.filesDir).pendingToken())
+    }
+
+    @Test
+    fun neverChosenHolidayCountryIsBackedUpAsTheDeviceCountry() = runBlocking {
+        // Fix S-2: Feiertage nie angefasst = Land des Geräts (`HolidayRepository.choice`, von `BackupManager.create`
+        // übergeben); gesichert wird dieses Land statt «keine Feiertage». Die Länderdatei liegt unter Robolectric nicht
+        // vor, darum die aufgelöste Wahl direkt.
+        assertNull(app.settings.holidayChoice.first(), "nie gewählt")
+        assertEquals("", app.settings.backupSettings().holidayCountry, "ohne aufgelöste Wahl: gespeicherter Wert (leer)")
+        val settings = app.settings.backupSettings("CH" to "")
+        assertEquals("CH", settings.holidayCountry)
+        app.phaseWakeStore.edit { app.settings.restoreInto(it, settings) }
+        assertEquals("CH" to "", app.settings.holidayChoice.first())
+        // Gewählt: die Wahl, wie sie ist.
+        assertEquals("DE" to "BY", app.settings.backupSettings("DE" to "BY").let { it.holidayCountry to it.holidayRegion })
     }
 
     private fun assertNotNullBytes(bytes: ByteArray?): ByteArray = kotlin.test.assertNotNull(bytes, "Sicherung nicht lesbar")

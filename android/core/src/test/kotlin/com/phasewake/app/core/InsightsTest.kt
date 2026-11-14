@@ -109,6 +109,17 @@ class InsightsTest {
     }
 
     @Test
+    fun bedtimeAroundNoonIsNotSplit() {
+        // Audit W-1: Einschlafen abwechselnd 11:50 und 12:10 (Tagschläfer): Abweichung um 10 Min, nicht um 12 Stunden.
+        val now = Instant.parse("2026-10-28T20:00:00Z")
+        val sleeps = (0L until 5L).map { d ->
+            val bed = Instant.parse("2026-10-28T11:50:00Z").minus(Duration.ofDays(d)).plus(Duration.ofMinutes(if (d % 2 == 0L) 0 else 20))
+            SleepSummary(bed, bed.plus(Duration.ofHours(7)), 400)
+        }
+        assertEquals(9, Trends.compute(emptyList(), sleeps, now, zone).bedtimeSpreadMinutes)
+    }
+
+    @Test
     fun emptyNightHasNoQualityAndChangeNeedsBothWeeks() {
         assertEquals(DataQuality.NONE, NightQuality.of(night(epochs(2, { 0.01 }, { 60.0 }))))
         assertEquals(DataQuality.NONE, NightQuality.of(night(epochs(10, { null }, { 60.0 }))))

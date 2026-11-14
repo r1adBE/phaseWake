@@ -100,12 +100,14 @@ data class HistoryCharts(
             health: List<HealthFeeling> = emptyList(),
             /** Erster Tag der Woche für die Übersicht (Sprache des Geräts). */
             firstDay: DayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek,
+            /** Gelernte Einschlafdauer für die Bettzeit-Linie (die eine Bettzeit, Audit O-03); `null` = nicht gelernt. */
+            latencyMinutes: Int? = null,
         ): HistoryCharts {
             val today = SleepNotes.nightDate(now, zone)
             val nextTarget = AlarmSchedule.earliestPlan(alarms, now, zone)?.target
             val hypnoNight = if (stages.isEmpty()) null else nights.sortedByDescending { it.wokeAt }.take(ChartData.NIGHTS).firstOrNull { ChartData.hypnogram(stages, it) != null }
             return HistoryCharts(
-                bars = periods { ChartData.sleepBars(sleeps, zone, today, nextTarget, goalMinutes, it) },
+                bars = periods { ChartData.sleepBars(sleeps, zone, today, nextTarget, goalMinutes, it, latencyMinutes) },
                 wake = periods { ChartData.wakeMoments(nights, zone, it) },
                 hypnogram = hypnoNight?.let { ChartData.hypnogram(stages, it) },
                 hypnogramNight = hypnoNight,

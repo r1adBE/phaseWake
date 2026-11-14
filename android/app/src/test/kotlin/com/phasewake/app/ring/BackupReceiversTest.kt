@@ -90,13 +90,28 @@ class BackupReceiversTest {
 
     @Test
     fun backupRingsMarksTheNightAndTurnsOffAOneShot() {
-        add(AlarmSpec(id = "r1", hour = 7, minute = 0))
+        // Der Einmal-Wecker zur Zielzeit des Zweitweckers (Fix G-1/S-1: nur die Fassung, die geklingelt hat).
+        val local = target.atZone(java.time.ZoneId.systemDefault())
+        add(AlarmSpec(id = "r1", hour = local.hour, minute = local.minute))
         send(BackupAlarm.ACTION, "r1", target)
         val started = startedRing()
         assertEquals("r1", started.getStringExtra(PhoneRingService.EXTRA_ALARM_ID))
         assertEquals(target.toEpochMilli(), started.getLongExtra(PhoneRingService.EXTRA_TARGET, 0L))
         until("Nacht ausgesetzt") { app.backup.doneUntil()["r1"] != null }
         until("Einmal-Wecker aus") { !enabled("r1") }
+    }
+
+    @Test
+    fun backupOfAMovedOneShotLeavesTheNewTimeOn() {
+        // Fix G-1/S-1: Inzwischen (z. B. auf der Uhr) auf 30 Min später verschoben – das Klingeln der alten Zeit schaltet
+        // die neue nicht aus.
+        val moved = target.plus(Duration.ofMinutes(30)).atZone(java.time.ZoneId.systemDefault())
+        add(AlarmSpec(id = "r5", hour = moved.hour, minute = moved.minute))
+        send(BackupAlarm.ACTION, "r5", target)
+        startedRing()
+        until("Nacht ausgesetzt") { app.backup.doneUntil()["r5"] != null }
+        Thread.sleep(200)
+        assertTrue(runBlocking { enabled("r5") }, "der verschobene Einmal-Wecker bleibt eingeschaltet")
     }
 
     @Test

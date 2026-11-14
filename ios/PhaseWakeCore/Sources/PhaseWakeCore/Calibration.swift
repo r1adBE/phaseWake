@@ -20,9 +20,15 @@ public enum Calibration {
         let measured = nights.map { $0.dropFirst(defaults.warmupEpochs).compactMap { $0 } }.filter { !$0.isEmpty }
         guard measured.count >= minNights else { return defaults }
 
+        // Je Nacht ihr Grundrauschen (``NoiseFloor/floor(_:personal:)``, ab 4 Werten, höchstens 0.04) abziehen (Audit
+        // c3b8b01 E-2, Entscheid r1AD 14.11.2026): Sonst hob das Rauschen einer Uhr wie der Galaxy Watch (ruhig 0.02) das
+        // Perzentil.
         let values = measured
             .suffix(maxNights)
-            .flatMap { $0 }
+            .flatMap { night -> [Double] in
+                let floor = NoiseFloor.floor(night.map { Optional($0) }) ?? 0.0
+                return night.map { max(0.0, $0 - floor) }
+            }
             .sorted()
         guard values.count >= minValues else { return defaults }
 
@@ -34,6 +40,9 @@ public enum Calibration {
             max(percentile80, DetectorConfig.defaultLightThreshold * 0.5),
             DetectorConfig.defaultLightThreshold * 2.0
         )
-        return defaults.withThresholds(light: light, wake: light * wakeToLightRatio)
+        // Wach-Schwelle höchstens beim Startwert (E-2, r1AD 14.11.2026): Sie passt sich nur nach unten an und verdoppelt sich
+        // nicht mehr mit der oberen Grenze der Leicht-Schwelle (0.004 × 50 = 0.2).
+        let wake = min(light * wakeToLightRatio, DetectorConfig.defaultWakeThreshold)
+        return defaults.withThresholds(light: light, wake: wake)
     }
 }

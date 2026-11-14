@@ -77,4 +77,16 @@ class WakeRulesTest {
         assertEquals("watch start delay 47.0s (alarm 0.3s)", WakeRules.startDelayLine(1_000_000L, 1_000_300L, 1_047_000L))
         assertEquals("watch start delay 1.2s", WakeRules.startDelayLine(1_000_000L, 0L, 1_001_249L))
     }
+
+    @Test
+    fun epochsBeforeTheSensorsStartAreNotMeasured() {
+        // Audit c3b8b01 E-1: Der Dienst startet 47 s nach Fensterbeginn: Epoche 0 ist vorbei und bleibt leer, Epoche 1 nicht.
+        val start = plan.windowStart
+        assertEquals(1, WakeRules.unmeasuredEpochs(start, start.plusSeconds(47)))
+        assertEquals(0, WakeRules.unmeasuredEpochs(start, start.plusSeconds(29)))
+        assertEquals(1, WakeRules.unmeasuredEpochs(start, start.plusSeconds(30)))
+        assertEquals(4, WakeRules.unmeasuredEpochs(start, start.plusSeconds(2 * 60 + 1)))
+        // Vor dem Fensterbeginn (Uhr ungenau): keine.
+        assertEquals(0, WakeRules.unmeasuredEpochs(start, start.minusSeconds(5)))
+    }
 }

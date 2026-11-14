@@ -96,7 +96,8 @@ final class WakeDetectorTests: XCTestCase {
     }
 
     func testZeroWarmupHasNoBaselineUntilTwoPulses() throws {
-        let detector = WakeDetector(config: try DetectorConfig(warmupEpochs: 0))
+        // Gelerntes Grundrauschen 0.001 (Leicht-Schwelle 0.0025): Ohne Grundrauschen wartete die Leicht-Regel (E-1).
+        let detector = WakeDetector(config: try DetectorConfig(warmupEpochs: 0, personalFloor: 0.001))
         _ = detector.onEpoch(Epoch(motion: 0.003, heartRate: 52.0))
         // Erst ein Puls davor: kein Basispuls, die Pulsbedingung ist nicht erfüllt.
         XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.003, heartRate: 60.0)), .wait)
@@ -302,11 +303,16 @@ final class WakeDetectorTests: XCTestCase {
     }
 
     func testPersonalFloorAppliesBeforeTheWindowHasItsOwn() throws {
-        // Sensor liefert anfangs keine Bewegung: Ohne eigenes Grundrauschen gälte 0.002, 0.03 wäre leichte Bewegung.
+        // Sensor liefert anfangs keine Bewegung: Ohne Grundrauschen wartet die Leicht-Regel (Audit c3b8b01 E-1; früher
+        // galt 0.002, und 0.03 war leichte Bewegung).
         let gap = Epoch(motion: nil, heartRate: 52.0)
         let plain = WakeDetector()
         _ = feed(plain, gap, gap, gap, Epoch(motion: 0.03, heartRate: 57.0))
-        XCTAssertEqual(plain.onEpoch(Epoch(motion: 0.03, heartRate: 57.0)), .wake(.lightSleep))
+        XCTAssertEqual(plain.onEpoch(Epoch(motion: 0.03, heartRate: 57.0)), .wait)
+        // Gelernt 0.005 → Leicht-Schwelle 0.0125: 0.03 ist leichte Bewegung.
+        let small = WakeDetector(config: try DetectorConfig(personalFloor: 0.005))
+        _ = feed(small, gap, gap, gap, Epoch(motion: 0.03, heartRate: 57.0))
+        XCTAssertEqual(small.onEpoch(Epoch(motion: 0.03, heartRate: 57.0)), .wake(.lightSleep))
         // Gelernt 0.02 → Leicht-Schwelle 0.05: 0.03 ist Rauschen.
         let learned = WakeDetector(config: try DetectorConfig(personalFloor: 0.02))
         _ = feed(learned, gap, gap, gap, Epoch(motion: 0.03, heartRate: 57.0))

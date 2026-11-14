@@ -251,6 +251,8 @@
     <string name="check_watch_battery_problem">Pod %1$d %% – nabi hodinky, aby vydržali celú noc a mohli ťa zobudiť.</string>
     <string name="check_watch_recorder">Meranie dnes v noci</string>
     <string name="check_watch_recorder_battery">Hodinky nezačali merať pred spaním – batéria bola príliš slabá. Budík ťa aj tak zobudí.</string>
+    <string name="check_watch_onset_battery">Pod %1$d %% batérie hodinky dnes v noci nebudú merať, kedy zaspíš – nabi ich vopred. Budík ťa aj tak zobudí.</string>
+    <string name="check_watch_learn_battery">Pod %1$d %% batérie hodinky dnes v noci nebudú nahrávať pre fázu učenia – nabi ich vopred. Budík ťa aj tak zobudí.</string>
     <string name="check_watch_pulse">Tep na pozadí (hodinky)</string>
     <string name="check_watch_pulse_problem">Hodinky nesmú v noci merať tvoj tep – na hodinkách nastav povolenie senzorov pre Phase Wake na „Povoliť vždy“.</string>
     <string name="export_contents_hint">Súbor obsahuje za každú noc pohyb a pulz každých 30 s, ako si sa cítil, a tvoje poznámky – bez mien, dátumov a ID zariadení.</string>
@@ -610,6 +612,7 @@
     <string name="overview_no_stages">Bez fáz</string>
     <string name="settings_clear_history_learn">Fáza učenia sa začína odznova.</string>
     <string name="learn_auto_hint">Večer ťukni na hodinkách na „Dobrú noc“ alebo zapni „Automaticky rozpoznať zaspávanie“, aby sa noci rátali.</string>
+    <string name="learn_auto_hint_clock">Zapni „Automaticky rozpoznať zaspávanie“ – hodinky potom samy rozpoznajú, kedy zaspíš, a noci sa budú rátať.</string>
     <string name="learn_consent_title">Fáza učenia</string>
     <string name="learn_consent_text">Aby Phase Wake mohol prispôsobiť budík tebe, hodinky %1$d nocí merajú cez noc pohyb a pulz. Spotrebuje to trochu batérie – nabi hodinky pred spaním. Údaje zostávajú v tvojich zariadeniach. Fázu učenia môžeš kedykoľvek vypnúť v nastaveniach.</string>
     <string name="learn_consent_start">Spustiť fázu učenia</string>

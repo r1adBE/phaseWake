@@ -128,8 +128,9 @@ object SleepOverviews {
             bars = bars,
             goalMinutes = goalMinutes,
             averageMinutes = minutes.sum() / minutes.size,
-            bedtimeMinute = Math.round(inRange.map { Regularity.minutesFromNoon(it.start, zone) }.average()).toInt(),
-            wakeMinute = Math.round(inRange.map { Regularity.minutesFromNoon(it.end, zone) }.average()).toInt(),
+            // Ohne Sprung um Mittag (Audit W-1): Aufwachen 11:56 und 12:50 ergibt 12:23, nicht 00:23.
+            bedtimeMinute = Regularity.meanMinute(inRange.map { Regularity.minutesFromNoon(it.start, zone) }),
+            wakeMinute = Regularity.meanMinute(inRange.map { Regularity.minutesFromNoon(it.end, zone) }),
             counted = minutes.size,
             reachedNights = minutes.count { SleepGoal.reached(it, goalMinutes) },
             scaleMinutes = maxOf(goalMinutes.toLong(), bars.maxOf { it.asleepMinutes ?: 0 }),
@@ -138,14 +139,15 @@ object SleepOverviews {
 
     /**
      * Durchschnittliche Minuten je bekannter Phase über die Nächte in [sleeps] (Phasen auf die Nacht zugeschnitten,
-     * Millisekunden summiert, dann abgerundet). Leer, wenn [sleeps] leer ist oder eine Nacht keine Phasen hat: Ein
-     * Durchschnitt nur über einen Teil der Nächte passte nicht zur Höhe der Säule (Durchschnitt aller Nächte).
+     * Millisekunden summiert, dann abgerundet). Leer, wenn [sleeps] leer ist oder eine Nacht keine Schlafphase (REM,
+     * leicht, tief) hat: Ein Durchschnitt nur über einen Teil der Nächte passte nicht zur Höhe der Säule (Durchschnitt aller Nächte).
      */
     fun stageAverage(sleeps: Collection<SleepSummary>, stages: List<StageSpan>): Map<SleepStage, Long> {
         val perNight = sleeps.map { sleep ->
             StageCheck.clip(stages, sleep.start, sleep.end).filter { ChartData.level(it.stage) != null }
         }
-        if (perNight.isEmpty() || perNight.any { it.isEmpty() }) return emptyMap()
+        // Eine Nacht nur mit «wach» (Quelle ohne Phasendetail) hat keine Phasen wie in [StageStats.of] (Audit W-5).
+        if (perNight.isEmpty() || perNight.any { spans -> spans.none { it.stage != SleepStage.AWAKE } }) return emptyMap()
         return StageStats.ORDER.associateWith { stage ->
             perNight.sumOf { spans -> spans.filter { it.stage == stage }.sumOf { Duration.between(it.start, it.end).toMillis() } } /
                 perNight.size / StageStats.MS_PER_MINUTE

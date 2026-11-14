@@ -97,6 +97,17 @@ public struct LearningState: Equatable, Sendable, Codable {
         return true
     }
 
+    /// Stand für die Uhr (Fix S-3): Ein Stand ohne Zeitpunkt (nie geändert, z. B. iPhone-App neu installiert) bekommt
+    /// `now`. Die Uhr übernimmt nur einen neueren Stand; mit 0 bliebe sie beim Stand eines früheren iPhones (Lernphase
+    /// an, alte Werte), obwohl hier nie zugestimmt wurde. Wie `LearningRepository.stampIfNever` (Kotlin).
+    /// - Returns: ob gestempelt wurde.
+    @discardableResult
+    public mutating func stampIfNever(now: Date) -> Bool {
+        guard updatedAtMs <= 0 else { return false }
+        updatedAtMs = Self.stamp(now, after: updatedAtMs)
+        return true
+    }
+
     /// Karte «Angepasst an dich» bestätigt.
     public mutating func setSeen() {
         seen = true

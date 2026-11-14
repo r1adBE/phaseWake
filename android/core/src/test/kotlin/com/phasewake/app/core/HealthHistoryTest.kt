@@ -250,4 +250,41 @@ class HealthHistoryTest {
         assertEquals(first.start to second.end, joined.start to joined.end)
         assertEquals(540, joined.asleepMinutes)
     }
+
+    @Test
+    fun foreignSessionOnTheDateOfAnOwnNight() {
+        // Audit BE-4: Phase-Wake-Nacht 06:30–07:00 (2.10., Nachtdatum 1.10.).
+        val own = night("2026-10-02T04:30:00Z", "2026-10-02T05:00:00Z")
+        // Fremde Sitzung am selben Nachtdatum ohne Überschneidung (Nachmittag 1.10.): fällt weg.
+        val sameDate = HealthSession(t("2026-10-01T14:00:00Z"), t("2026-10-01T18:00:00Z"))
+        assertEquals(listOf(HistoryKind.PHASE_WAKE), HealthHistory.merge(listOf(own), listOf(sameDate), null, zone).map { it.kind })
+        // Wecker am Mittag (Fenster 12:30–13:00, Nachtdatum 2.10.): Sitzung 04:30–12:30 (Nachtdatum 1.10.) endet genau am
+        // Fensterbeginn und bleibt; eine Sekunde länger überschneidet sie sich und fällt weg.
+        val noon = night("2026-10-02T10:30:00Z", "2026-10-02T11:00:00Z")
+        val before = HealthSession(t("2026-10-02T02:30:00Z"), t("2026-10-02T10:30:00Z"))
+        assertEquals(2, HealthHistory.merge(listOf(noon), listOf(before), null, zone).size)
+        assertEquals(1, HealthHistory.merge(listOf(noon), listOf(before.copy(end = t("2026-10-02T10:30:01Z"))), null, zone).size)
+        // Anderes Nachtdatum, beginnt genau beim Wecken: bleibt; eine Sekunde früher: fällt weg.
+        val after = HealthSession(t("2026-10-02T05:00:00Z"), t("2026-10-02T20:00:00Z"))
+        assertEquals(2, HealthHistory.merge(listOf(own), listOf(after), null, zone).size)
+        assertEquals(1, HealthHistory.merge(listOf(own), listOf(after.copy(start = t("2026-10-02T04:59:59Z"))), null, zone).size)
+    }
+
+    @Test
+    fun documentedNumbersAsLiterals() {
+        // Audit BE-3: Zahlen der Regeln für Nächte, Trends und Bettzeit als Wert.
+        assertEquals(180L, HealthHistory.MIN_NIGHT_MINUTES)
+        assertEquals(java.time.LocalTime.of(9, 0), HealthHistory.NAP_EARLIEST)
+        assertEquals(java.time.LocalTime.of(19, 0), HealthHistory.NAP_LATEST)
+        assertEquals(java.time.Duration.ofMinutes(60), HealthHistory.CONTINUATION_GAP)
+        assertEquals(java.time.Duration.ofMinutes(5), HealthHistory.OVERLAP_TOLERANCE)
+        assertEquals(90L, HealthHistory.DAYS)
+        assertEquals(3, Trends.MIN_NIGHTS_PER_WEEK)
+        assertEquals(5, Trends.MIN_NIGHTS_FOR_SPREAD)
+        assertEquals(30, Regularity.TOLERANCE_MINUTES)
+        assertEquals(7, Regularity.WEEK_NIGHTS)
+        assertEquals(14, Regularity.MEDIAN_NIGHTS)
+        assertEquals(30, Bedtime.LEAD_MINUTES)
+        assertEquals(720, Bedtime.DIAL_MINUTES)
+    }
 }

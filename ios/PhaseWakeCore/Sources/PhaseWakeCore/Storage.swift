@@ -94,6 +94,22 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         return writeLocked(updated, before: current, changed: changed, now: now)
     }
 
+    /// Auto-Aus eines Einmal-Weckers nach dem Klingeln (``AlarmStamps/autoOff(_:id:listStamp:rang:)``, Fix G-1/S-1):
+    /// nur, wenn `rang` den gespeicherten Wecker `id` als die geklingelte Fassung erkennt
+    /// (``AlarmStamps/rang(_:rung:target:calendar:shifted:)``); sein Zeitpunkt wird der seiner bisherigen Fassung + 1 ms,
+    /// damit eine neuere Änderung der Gegenseite gewinnt. Lesen und Schreiben unter einer Sperre (wie Android
+    /// `AlarmRepository.disableAfterRing`). - Returns: neuer Stand, `nil` = nichts ausgeschaltet.
+    @discardableResult
+    public func disableAfterRing(_ id: String, now: Date = Date(), rang: (AlarmSpec) -> Bool) -> AlarmSnapshot? {
+        lock.lock(); defer { lock.unlock() }
+        guard alarmsReadableLocked() else { return nil }
+        let current = snapshotLocked()
+        let listStamp = TimeBounds.next(now: TimeBounds.millis(now), previous: current.updatedAt)
+        guard let off = AlarmStamps.autoOff(current, id: id, listStamp: listStamp, rang: rang) else { return nil }
+        return saveLocked(Self.sorted(off.alarms), updatedAt: off.updatedAt, stamps: off.stamps, deleted: off.deleted,
+                          now: TimeBounds.millis(now))
+    }
+
     /// Ersetzt alle Wecker (Wiederherstellen einer Sicherung; gleiche Kennung zählt einmal). Alle gelten als jetzt
     /// geändert, die bisherigen, die fehlen, als jetzt gelöscht: Die Uhr übernimmt den Stand. - Returns: neuer Stand.
     @discardableResult
@@ -131,6 +147,27 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         saveLocked(list, updatedAt: merged.updatedAt, stamps: merged.stamps, deleted: merged.deleted, now: nowMs)
         return list != current.alarms
     }
+
+    /// Wie ``applyRemote(_:now:)`` für einen Anwendungskontext (Fix S-5): WatchConnectivity liefert den zuletzt
+    /// empfangenen Kontext bei jedem Start erneut (`receivedApplicationContext`). Ein Stand, der genau so schon übernommen
+    /// wurde (``AlarmStamps/fingerprint(_:)``), wird nicht nochmals angewendet: Sonst brächte ein alter Kontext einen
+    /// hier gelöschten Wecker zurück, sobald dessen Grabstein nach ``AlarmStamps/tombstoneMaxAgeMs`` verfallen ist.
+    /// - Returns: ob sich die Wecker geändert haben.
+    @discardableResult
+    public func applyRemoteContext(_ remote: AlarmSnapshot, now: Date = Date()) -> Bool {
+        let key = AlarmStamps.fingerprint(remote)
+        lock.lock()
+        let seen = defaults.string(forKey: Self.appliedContextKey) == key
+        lock.unlock()
+        if seen { return false }
+        let changed = applyRemote(remote, now: now)
+        lock.lock(); defer { lock.unlock() }
+        defaults.set(key, forKey: Self.appliedContextKey)
+        return changed
+    }
+
+    /// Fingerabdruck des zuletzt übernommenen Anwendungskontexts (``applyRemoteContext(_:now:)``).
+    private static let appliedContextKey = "alarmsAppliedContext"
 
     /// Pro Wecker: bis zu diesem Zeitpunkt ist seine Weck-Nacht erledigt; sie wird nicht noch einmal geplant.
     public var doneUntil: [String: Date] {

@@ -246,6 +246,8 @@
     <string name="check_watch_battery_problem">Menys del %1$d %% – carrega el rellotge perquè aguanti tota la nit i et pugui despertar.</string>
     <string name="check_watch_recorder">Mesura d’aquesta nit</string>
     <string name="check_watch_recorder_battery">El rellotge no ha començat la mesura abans de dormir – tenia la bateria massa baixa. L’alarma et despertarà igualment.</string>
+    <string name="check_watch_onset_battery">Amb menys del %1$d %% de bateria, el rellotge no mesurarà aquesta nit quan t\'adorms – carrega\'l abans. L’alarma et despertarà igualment.</string>
+    <string name="check_watch_learn_battery">Amb menys del %1$d %% de bateria, el rellotge no enregistrarà aquesta nit per a la fase d’aprenentatge – carrega\'l abans. L’alarma et despertarà igualment.</string>
     <string name="check_watch_pulse">Pols en segon pla (rellotge)</string>
     <string name="check_watch_pulse_problem">El rellotge no pot mesurar-te el pols a la nit – al rellotge, posa el permís de sensors de Phase Wake a «Permet sempre».</string>
     <string name="export_contents_hint">El fitxer conté, per a cada nit, moviment i freqüència cardíaca cada 30 s, com et vas sentir i les teves notes – sense noms, dates ni identificadors de dispositiu.</string>
@@ -596,6 +598,7 @@
     <string name="overview_no_stages">Sense fases</string>
     <string name="settings_clear_history_learn">La fase d’aprenentatge torna a començar.</string>
     <string name="learn_auto_hint">Al vespre, toca «Bona nit» al rellotge o activa «Detecta automàticament quan t\'adorms» perquè les nits comptin.</string>
+    <string name="learn_auto_hint_clock">Activa «Detecta automàticament quan t\'adorms» – així el rellotge detectarà tot sol quan t\'adorms, i les nits comptaran.</string>
     <string name="learn_consent_title">Fase d’aprenentatge</string>
     <string name="learn_consent_text">Perquè Phase Wake adapti l’alarma a tu, el rellotge mesura moviment i pols al llarg de la nit durant %1$d nits. Això gasta una mica de bateria – carrega el rellotge abans de dormir. Les dades es queden als teus dispositius. Pots desactivar la fase d’aprenentatge a la configuració en qualsevol moment.</string>
     <string name="learn_consent_start">Inicia la fase d’aprenentatge</string>

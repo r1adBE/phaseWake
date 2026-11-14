@@ -231,4 +231,20 @@ final class LearnNightsTests: XCTestCase {
         XCTAssertEqual(LearnLog.encodeAlarmNights(merged), "2026-11-03=\(TimeBounds.millis(at(4, 7)))\n2026-11-06=\(TimeBounds.millis(at(7, 6)))")
         XCTAssertEqual(LearnLog.decodeAlarmNights("2026-13-01=5\nx=1\n2026-11-01=abc"), [:])
     }
+
+    func testAlarmNightsKeepTheEarlierTargetAndTheBoundaryAtNow() {
+        // Audit BE-4: zwei Wecker derselben Nacht, der frühere zuerst geplant – er bleibt (der spätere ersetzt ihn nicht).
+        let now = at(5, 12)
+        XCTAssertEqual(LearnLog.mergeAlarmNights([:], planned: [at(6, 5), at(6, 6)], now: now, calendar: calendar), ["2026-11-05": at(6, 5)])
+        // Ein Eintrag genau zur Zeit des Neuplanens ist vergangen und bleibt, auch wenn der Plan ihn nicht mehr hat.
+        let old = ["2026-11-04": now]
+        XCTAssertEqual(LearnLog.mergeAlarmNights(old, planned: [], now: now, calendar: calendar), old)
+        // Eine Zielzeit genau jetzt gehört nicht mehr zum Plan (nur echt künftige).
+        XCTAssertEqual(LearnLog.mergeAlarmNights([:], planned: [now], now: now, calendar: calendar), [:])
+        // Vergangene Nacht am selben Nachtdatum wie ein späterer zweiter Wecker: die vergangene (frühere) bleibt.
+        let rang = at(6, 5).addingTimeInterval(-7 * 3600)
+        let past = ["2026-11-05": rang]
+        XCTAssertEqual(LearnLog.mergeAlarmNights(past, planned: [rang.addingTimeInterval(8 * 3600)], now: rang.addingTimeInterval(60),
+                                                 calendar: calendar), past)
+    }
 }

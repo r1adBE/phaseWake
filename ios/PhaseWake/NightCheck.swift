@@ -26,6 +26,10 @@ enum PhoneCheck: CaseIterable, Hashable {
     /// Die Uhr-App lief, der Rekorder startete für diese Nacht aber nicht, obwohl Einschlaf-Messung oder Lernphase ihn
     /// wollten (``RecorderSkip``, Audit F-06, wie Android): Akku zu schwach bzw. keine Erlaubnis für Bewegungsdaten.
     case watchRecorderBattery, watchRecorderMotion
+    /// Vorab (Audit O-05, wie Android): Akku der Uhr unter ``NightCheck/watchOnsetBatteryPercent`` mit «Einschlafen
+    /// automatisch erkennen» – die Uhr startet die Einschlaf-Messung nicht; sonst in der Lernphase unter
+    /// ``Learning/minBattery`` – sie zeichnet nicht auf. Nur ein Hinweis, der Wecker klingelt trotzdem.
+    case watchOnsetBattery, watchLearnBattery
 
     var title: String {
         switch self {
@@ -40,7 +44,7 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .backupHorizon: L("check_backup_horizon_title")
         case .silentSwitch: L("check_silent_switch_title")
         case .watchNotifications, .watchStateOld: L("check_watch_notifications")
-        case .watchRecorderBattery, .watchRecorderMotion: L("check_watch_recorder")
+        case .watchRecorderBattery, .watchRecorderMotion, .watchOnsetBattery, .watchLearnBattery: L("check_watch_recorder")
         }
     }
 
@@ -61,18 +65,22 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .watchStateOld: L("check_watch_state_old")
         case .watchRecorderBattery: L("check_watch_recorder_battery")
         case .watchRecorderMotion: L("check_watch_recorder_motion")
+        case .watchOnsetBattery: L("check_watch_onset_battery", NightCheck.watchOnsetBatteryPercent)
+        case .watchLearnBattery: L("check_watch_learn_battery", Learning.minBattery)
         }
     }
 
     var canFix: Bool { self == .alarms || self == .notifications }
 
     /// Nur ein Hinweis (nicht rot, «bereit» bleibt): Er lässt sich nicht beheben, nur beachten.
-    var isAdvisory: Bool { self == .silentSwitch || self == .watchStateOld }
+    var isAdvisory: Bool { self == .silentSwitch || self == .watchStateOld || self == .watchOnsetBattery || self == .watchLearnBattery }
 }
 
 @MainActor
 enum NightCheck {
     nonisolated static let lowBatteryPercent = 20
+    /// Unter diesem Akkustand der Uhr startet die automatische Einschlaf-Messung nicht (``AppleAutoOnset/minBattery``).
+    nonisolated static let watchOnsetBatteryPercent = AppleAutoOnset.minBattery
     /// So weit im Voraus nimmt watchOS eine Smart-Alarm-Sitzung an (`SmartAlarm.maxLeadTime` auf der Uhr).
     private static let armLeadTime: TimeInterval = 36 * 3600
     /// Zuletzt gemeldet: Rekorder für eine Nacht nicht gestartet (`PhoneConnectivity`); `nil` = keine Meldung.
@@ -92,7 +100,9 @@ enum NightCheck {
             battery: model.watchBattery(),
             recorderSkip: watchRecorderSkip,
             notifications: model.watchNotifications,
-            watchProtocol: model.watchProtocol
+            watchProtocol: model.watchProtocol,
+            autoOnset: WatchNight.autoOnset,
+            learning: PhoneLearning.shared.state.active
         )
         var failed = watchChecks(watch, now: Date())
         if await !alarmsAllowed() { failed.append(.alarms) }
@@ -126,6 +136,10 @@ enum NightCheck {
         var notifications: (state: WatchNotifications, checkedAt: Date?)?
         /// Stand der Verbindung der Uhr-App (``WatchProtocol``); `nil`, wenn unbekannt.
         var watchProtocol: Int?
+        /// «Einschlafen automatisch erkennen» an (Schalter am iPhone).
+        var autoOnset = false
+        /// Lernphase läuft.
+        var learning = false
     }
 
     /// Prüfungen der Uhr zum Zeitpunkt `now` (ohne Systemabfragen, damit sie sich testen lassen).
@@ -144,8 +158,13 @@ enum NightCheck {
             failed.append(.watchBattery)
         }
         // Rekorder heute Nacht nicht gestartet: bis zur Zielzeit dieser Nacht.
-        if let skip = watch.recorderSkip, skip.applies(at: now) {
+        let skip = watch.recorderSkip.flatMap { $0.applies(at: now) ? $0 : nil }
+        if let skip {
             failed.append(skip.reason == .battery ? .watchRecorderBattery : .watchRecorderMotion)
+        }
+        // Vorab zum Akku (O-05): nicht, wenn die Uhr schon gemeldet hat, dass sie wegen des Akkus nicht startete.
+        if skip?.reason != .battery, let hint = batteryHint(watch.battery, autoOnset: watch.autoOnset, learning: watch.learning) {
+            failed.append(hint)
         }
         // Wie die Uhr zuletzt gemeldet hat; unbekannt (ältere Uhr, noch nicht gefragt): keine Warnung.
         if watch.notifications?.state.isProblem == true { failed.append(.watchNotifications) }
@@ -158,16 +177,30 @@ enum NightCheck {
         return failed
     }
 
+    /// Hinweis vorab zum Akku der Uhr (Audit O-05, wie `NightCheckState.batteryHints` auf Android), höchstens einer:
+    /// unter ``watchOnsetBatteryPercent`` mit automatischer Einschlaf-Messung, sonst in der Lernphase unter
+    /// ``Learning/minBattery``. Keiner unter ``lowBatteryPercent`` (dort sagt ``PhoneCheck/watchBattery`` schon «lade die
+    /// Uhr») und bei unbekanntem Akku.
+    nonisolated static func batteryHint(_ battery: Int?, autoOnset: Bool, learning: Bool) -> PhoneCheck? {
+        guard let battery, battery >= lowBatteryPercent else { return nil }
+        if autoOnset, battery < watchOnsetBatteryPercent { return .watchOnsetBattery }
+        if learning, battery < Learning.minBattery { return .watchLearnBattery }
+        return nil
+    }
+
     /// iPhone-Akku zu schwach für die Nacht: nicht am Strom und unter ``lowBatteryPercent`` (`level` von `UIDevice`,
     /// 0 bis 1, negativ = unbekannt).
     static func phoneBatteryLow(unplugged: Bool, level: Float) -> Bool {
         unplugged && level >= 0 && level * 100 < Float(lowBatteryPercent)
     }
 
-    /// Erinnerung am Abend der Uhr für `plan`: 60 Min vor der Bettzeit (Zielzeit minus Schlafdauer bzw. Schlafziel).
+    /// Erinnerung am Abend der Uhr für `plan`: 60 Min vor der einen Bettzeit (Zielzeit minus Schlafdauer bzw. Schlafziel
+    /// minus gelernte Einschlafdauer, Audit O-03), wie `EveningReminder.reminderAt` auf der Uhr.
     private static func reminderTime(_ plan: WakePlan, model: PhoneModel) -> Date {
         let spec = model.alarms.first { $0.id == plan.alarmId }
-        return ShortNight.autoOnsetStart(target: plan.target, sleepGoalMinutes: model.sleepGoal, sleepDurationMinutes: spec?.sleepDurationMinutes)
+        return Bedtime.bedtime(nextAlarmTarget: plan.target, goalMinutes: spec?.sleepDurationMinutes ?? model.sleepGoal,
+                               latencyMinutes: model.learnedLatency)
+            .addingTimeInterval(-TimeInterval(ShortNight.autoLeadMinutes * 60))
     }
 
     /// Ob der Zweitwecker über AlarmKit klingelt (ab iOS 26) und nicht als Mitteilung.
@@ -221,7 +254,7 @@ enum NightCheck {
                 openSettings()
             }
         case .watch, .watchApp, .watchArm, .watchArmTonight, .watchBattery, .watchOutdated, .battery, .backupHorizon, .silentSwitch,
-             .watchNotifications, .watchStateOld, .watchRecorderBattery, .watchRecorderMotion:
+             .watchNotifications, .watchStateOld, .watchRecorderBattery, .watchRecorderMotion, .watchOnsetBattery, .watchLearnBattery:
             break
         }
     }

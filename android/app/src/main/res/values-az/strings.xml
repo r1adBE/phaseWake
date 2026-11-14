@@ -232,6 +232,8 @@
     <string name="check_watch_battery_problem">%1$d %%-dən aşağı – gecəyə çatsın və səni oyada bilsin deyə saatını doldur.</string>
     <string name="check_watch_recorder">Bu gecənin ölçməsi</string>
     <string name="check_watch_recorder_battery">Saatın yuxudan əvvəlki ölçməni başlatmadı – batareyası çox zəif idi. Zəngli saat səni yenə də oyadacaq.</string>
+    <string name="check_watch_onset_battery">Batareya %1$d %%-dən aşağı olduqda saat bu gecə yuxuya getməyini ölçməyəcək – onu əvvəlcədən doldur. Zəngli saat səni yenə də oyadacaq.</string>
+    <string name="check_watch_learn_battery">Batareya %1$d %%-dən aşağı olduqda saat bu gecə öyrənmə mərhələsi üçün qeyd aparmayacaq – onu əvvəlcədən doldur. Zəngli saat səni yenə də oyadacaq.</string>
     <string name="check_watch_pulse">Arxa planda nəbz (saat)</string>
     <string name="check_watch_pulse_problem">Saata gecə nəbzini ölçməyə icazə verilmir – saatda Phase Wake üçün sensor icazəsini “Həmişə icazə verin” et.</string>
     <string name="export_contents_hint">Faylda hər gecə üçün hər 30 s-lik hərəkət və nəbz, özünü necə hiss etdiyin və qeydlərin var – adsız, tarixsiz və cihaz ID-siz.</string>
@@ -568,6 +570,7 @@
     <string name="overview_no_stages">Fazasız</string>
     <string name="settings_clear_history_learn">Öyrənmə mərhələsi yenidən başlayır.</string>
     <string name="learn_auto_hint">Gecələrin sayılması üçün axşam saatında “Gecən xeyrə” düyməsinə toxun və ya “Yuxuya getməyi avtomatik aşkar et” funksiyasını aç.</string>
+    <string name="learn_auto_hint_clock">“Yuxuya getməyi avtomatik aşkar et” funksiyasını aç – onda saat yuxuya getməyini özü aşkar edəcək və gecələr sayılacaq.</string>
     <string name="learn_consent_title">Öyrənmə mərhələsi</string>
     <string name="learn_consent_text">Phase Wake zəngli saatı sənə uyğunlaşdırsın deyə, saatın %1$d gecə boyunca gecə ərzində hərəkəti və nəbzi ölçür. Bu, bir az batareya sərf edir – yatmazdan əvvəl saatı doldur. Məlumatlar cihazlarında qalır. Öyrənmə mərhələsini istənilən vaxt ayarlarda söndürə bilərsən.</string>
     <string name="learn_consent_start">Öyrənmə mərhələsini başlat</string>

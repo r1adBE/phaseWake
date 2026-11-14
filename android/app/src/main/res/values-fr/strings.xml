@@ -245,6 +245,8 @@
     <string name="check_watch_battery_problem">Moins de %1$d %% – recharge ta montre pour qu’elle tienne toute la nuit et puisse te réveiller.</string>
     <string name="check_watch_recorder">Mesure de cette nuit</string>
     <string name="check_watch_recorder_battery">Ta montre n’a pas lancé la mesure avant le sommeil – sa batterie était trop faible. L’alarme te réveillera quand même.</string>
+    <string name="check_watch_onset_battery">Avec moins de %1$d %% de batterie, ta montre ne mesurera pas ton endormissement cette nuit – recharge-la avant. L’alarme te réveillera quand même.</string>
+    <string name="check_watch_learn_battery">Avec moins de %1$d %% de batterie, ta montre n’enregistrera pas cette nuit pour la phase d’apprentissage – recharge-la avant. L’alarme te réveillera quand même.</string>
     <string name="check_watch_pulse">Pouls en arrière-plan (montre)</string>
     <string name="check_watch_pulse_problem">La montre n’a pas le droit de mesurer ton pouls la nuit – sur la montre, règle l’autorisation des capteurs de Phase Wake sur « Toujours autoriser ».</string>
     <string name="export_contents_hint">Le fichier contient pour chaque nuit les mouvements et la fréquence cardiaque toutes les 30 s, ton ressenti et tes notes – sans nom, date ni identifiant d’appareil.</string>
@@ -594,6 +596,7 @@
     <string name="overview_no_stages">Sans phases</string>
     <string name="settings_clear_history_learn">La phase d’apprentissage recommence depuis le début.</string>
     <string name="learn_auto_hint">Le soir, appuie sur « Bonne nuit » sur ta montre ou active « Détecter l\'endormissement automatiquement » pour que les nuits comptent.</string>
+    <string name="learn_auto_hint_clock">Active « Détecter l\'endormissement automatiquement » – ta montre détectera alors elle-même quand tu t’endors, et les nuits compteront.</string>
     <string name="learn_consent_title">Phase d’apprentissage</string>
     <string name="learn_consent_text">Pour que Phase Wake adapte le réveil à toi, ta montre mesure mouvements et pouls au fil de la nuit pendant %1$d nuits. Cela consomme un peu de batterie – recharge la montre avant de dormir. Les données restent sur tes appareils. Tu peux désactiver la phase d’apprentissage à tout moment dans les réglages.</string>
     <string name="learn_consent_start">Lancer la phase d’apprentissage</string>

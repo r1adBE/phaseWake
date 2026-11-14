@@ -67,6 +67,24 @@ class AlarmRepository(
         list.map { if (it.id == id) it.copy(enabled = enabled) else it }
     }
 
+    /**
+     * Auto-Aus eines Einmal-Weckers nach dem Klingeln ([AlarmStamps.autoOff], Fix G-1/S-1): nur, wenn [rang] den
+     * gespeicherten Wecker [id] als die geklingelte Fassung erkennt ([AlarmStamps.rang]); sein Zeitpunkt wird der seiner
+     * bisherigen Fassung + 1 ms, damit eine neuere Änderung der Gegenseite gewinnt. Lesen und Schreiben in einem Schritt.
+     * @return neuer Stand, oder `null`, wenn nichts ausgeschaltet wurde.
+     */
+    suspend fun disableAfterRing(id: String, rang: (AlarmSpec) -> Boolean): AlarmSnapshot? {
+        var result: AlarmSnapshot? = null
+        store.edit { prefs ->
+            val current = decode(prefs[ALARMS]) ?: return@edit
+            val listStamp = prefs[UPDATED_AT] ?: 0L
+            val local = AlarmSnapshot(current, listStamp, fullStamps(prefs, current, listStamp), AlarmStamps.decodeMap(prefs[DELETED]))
+            val off = AlarmStamps.autoOff(local, id, TimeBounds.next(clock(), prefs[UPDATED_AT]), rang) ?: return@edit
+            result = save(prefs, off.alarms.sortedWith(ORDER), off.updatedAt, off.stamps, off.deleted)
+        }
+        return result
+    }
+
     /** Ändert den Wecker [id] mit [change] (z. B. «Nächstes Mal überspringen»); fehlt er, bleibt alles. */
     suspend fun update(id: String, change: (AlarmSpec) -> AlarmSpec): AlarmSnapshot = mutate { list ->
         list.map { if (it.id == id) change(it) else it }

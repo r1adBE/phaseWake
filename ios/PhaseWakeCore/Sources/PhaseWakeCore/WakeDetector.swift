@@ -57,7 +57,10 @@ public final class WakeDetector {
         if hits(window: config.awakeWindow, threshold: NoiseFloor.wake(config: config, floor: floor)) >= config.awakeHits {
             return wake(.awake)
         }
-        if hits(window: config.lightWindow, threshold: NoiseFloor.light(config: config, floor: floor)) >= config.lightHits,
+        // Leicht-Regel erst mit Grundrauschen (4 Werte oder Vorwert, Audit c3b8b01 E-1): Ohne zählte das Rauschen einer
+        // Uhr wie der Galaxy Watch (ruhig 0.02) gegen die Startschwelle 0.002 als Bewegung, und es entschied allein der Puls.
+        if floor != nil,
+           hits(window: config.lightWindow, threshold: NoiseFloor.light(config: config, floor: floor)) >= config.lightHits,
            heartRateRisen(baseline) {
             return wake(.lightSleep)
         }

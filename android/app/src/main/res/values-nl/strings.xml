@@ -240,6 +240,8 @@
     <string name="check_watch_battery_problem">Onder %1$d %% – laad je horloge op zodat het de nacht doorkomt en je kan wekken.</string>
     <string name="check_watch_recorder">Meting vannacht</string>
     <string name="check_watch_recorder_battery">Je horloge is de meting voor het slapen niet gestart – de batterij was te leeg. Je wordt toch gewekt.</string>
+    <string name="check_watch_onset_battery">Met minder dan %1$d %% batterij meet je horloge vannacht niet wanneer je in slaap valt – laad het vooraf op. Je wordt toch gewekt.</string>
+    <string name="check_watch_learn_battery">Met minder dan %1$d %% batterij neemt je horloge vannacht niet op voor de leerfase – laad het vooraf op. Je wordt toch gewekt.</string>
     <string name="check_watch_pulse">Hartslag op de achtergrond (horloge)</string>
     <string name="check_watch_pulse_problem">Het horloge mag je hartslag ’s nachts niet meten – zet op het horloge de sensortoestemming van Phase Wake op ‘Altijd toestaan’.</string>
     <string name="export_contents_hint">Het bestand bevat per nacht beweging en hartslag per 30 s, hoe je je voelde en je notities – zonder namen, datums of apparaat-ID’s.</string>
@@ -580,6 +582,7 @@
     <string name="overview_no_stages">Zonder fases</string>
     <string name="settings_clear_history_learn">De leerfase begint opnieuw.</string>
     <string name="learn_auto_hint">Tik ’s avonds op je horloge op “Welterusten” of zet “Inslapen automatisch herkennen” aan, zodat de nachten meetellen.</string>
+    <string name="learn_auto_hint_clock">Zet “Inslapen automatisch herkennen” aan – dan herkent je horloge zelf wanneer je in slaap valt, en tellen de nachten mee.</string>
     <string name="learn_consent_title">Leerfase</string>
     <string name="learn_consent_text">Zodat Phase Wake de wekker op jou kan afstemmen, meet je horloge %1$d nachten lang gedurende de nacht beweging en hartslag. Dat kost wat batterij – laad het horloge op voordat je gaat slapen. De gegevens blijven op je apparaten. Je kunt de leerfase op elk moment uitzetten in de instellingen.</string>
     <string name="learn_consent_start">Leerfase starten</string>

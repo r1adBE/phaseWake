@@ -129,6 +129,15 @@ public final class SettingsFile: SettingsStore, @unchecked Sendable {
         return changed.isEmpty || persistLocked()
     }
 
+    /// Ob der Stand der Datei gelesen ist (oder es keine Datei gibt); ist er es noch nicht, versucht es jetzt nochmals.
+    /// Vor dem ersten Entsperren falsch: Wer aus diesem Stand Wecker plant oder löscht, wartet damit (Tiefenaudit AP3-1).
+    public var isReadable: Bool {
+        lock.lock(); defer { lock.unlock() }
+        if readOnly { loaded = false }
+        loadLocked()
+        return loaded
+    }
+
     /// Übernimmt `keys` einmalig aus `legacy` (frühere Versionen) und löscht sie dort erst, nachdem die Datei
     /// geschrieben ist. Ein schon in der Datei stehender Wert gilt (er ist neuer). Die übernommenen Namen stehen in
     /// derselben Datei: Endet die App vor dem Löschen, holt der nächste Start einen Wert, den die App inzwischen

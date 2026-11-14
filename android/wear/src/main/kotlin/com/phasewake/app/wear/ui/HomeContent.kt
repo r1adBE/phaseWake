@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
@@ -25,6 +26,7 @@ import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
 import androidx.wear.compose.material3.Button
 import androidx.wear.compose.material3.ButtonDefaults
+import androidx.wear.compose.material3.ColorScheme
 import androidx.wear.compose.material3.ListHeader
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.ScreenScaffold
@@ -101,7 +103,9 @@ internal fun HomeContent(
                     Button(
                         onClick = onOpenDnd,
                         modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.errorContainer),
+                        colors = warningColors(MaterialTheme.colorScheme).let { (container, content) ->
+                            ButtonDefaults.buttonColors(containerColor = container, contentColor = content, secondaryContentColor = content)
+                        },
                         label = { Text(stringResource(R.string.dnd_title)) },
                         secondaryLabel = { Text(stringResource(R.string.dnd_text)) },
                     )
@@ -156,6 +160,12 @@ internal fun HomeContent(
         }
     }
 }
+
+/**
+ * Warnknopf «Wecker blockiert» (Nicht stören): Fläche und Schrift beider Zeilen aus [scheme], Fehlerfläche mit ihrer
+ * Schriftfarbe (≥ 4.5:1, Audit O-04; vorher Schrift des Standardknopfs, 1.8:1).
+ */
+internal fun warningColors(scheme: ColorScheme): Pair<Color, Color> = scheme.errorContainer to scheme.onErrorContainer
 
 @Composable
 private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId, loading: Boolean, extras: WatchHomeExtras) {

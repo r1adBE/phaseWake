@@ -242,6 +242,8 @@
     <string name="check_watch_battery_problem">%1$d %% dan kam – tun boʻyi yetishi va seni uygʻota olishi uchun soatingni quvvatla.</string>
     <string name="check_watch_recorder">Bugungi tungi o‘lchov</string>
     <string name="check_watch_recorder_battery">Soating uyqudan oldingi o‘lchovni boshlamadi – batareyasi juda kam edi. Budilnik baribir seni uyg‘otadi.</string>
+    <string name="check_watch_onset_battery">Batareya %1$d %% dan kam bo‘lsa, soat bu kecha qachon uxlab qolganingni o‘lchamaydi – oldindan quvvatla. Budilnik baribir seni uyg‘otadi.</string>
+    <string name="check_watch_learn_battery">Batareya %1$d %% dan kam bo‘lsa, soat bu kecha o‘rganish bosqichi uchun yozib olmaydi – oldindan quvvatla. Budilnik baribir seni uyg‘otadi.</string>
     <string name="check_watch_pulse">Fonda puls (soat)</string>
     <string name="check_watch_pulse_problem">Soatga tunda pulsingni oʻlchashga ruxsat yoʻq – soatda Phase Wake sensor ruxsatini “Doim ruxsat berish” qilib qoʻy.</string>
     <string name="export_contents_hint">Faylda har bir tun uchun har 30 soniyalik harakat va yurak urishi, oʻzingni qanday his qilganing va qaydlaring bor – nomlar, sanalar va qurilma IDlarisiz.</string>
@@ -583,6 +585,7 @@
     <string name="overview_no_stages">Bosqichlarsiz</string>
     <string name="settings_clear_history_learn">O‘rganish bosqichi boshidan boshlanadi.</string>
     <string name="learn_auto_hint">Tunlar hisoblanishi uchun kechqurun soatda «Xayrli tun» tugmasini bos yoki «Uxlab qolishni avtomatik aniqlash» funksiyasini yoq.</string>
+    <string name="learn_auto_hint_clock">«Uxlab qolishni avtomatik aniqlash» funksiyasini yoq – shunda soat qachon uxlab qolganingni o‘zi aniqlaydi va tunlar hisoblanadi.</string>
     <string name="learn_consent_title">O‘rganish bosqichi</string>
     <string name="learn_consent_text">Phase Wake budilnikni senga moslashi uchun soating %1$d tun davomida tun bo‘yi harakat va pulsni o‘lchaydi. Bu biroz batareya sarflaydi – uxlashdan oldin soatni quvvatla. Ma’lumotlar qurilmalaringda qoladi. O‘rganish bosqichini istalgan vaqtda sozlamalardan o‘chirishing mumkin.</string>
     <string name="learn_consent_start">O‘rganish bosqichini boshlash</string>

@@ -224,4 +224,37 @@ final class HealthHistoryTests: XCTestCase {
         XCTAssertEqual(joined.first?.session?.end, second.end)
         XCTAssertEqual(joined.first?.session?.asleepMinutes, 540)
     }
+
+    func testForeignSessionOnTheDateOfAnOwnNight() {
+        // Audit BE-4: Phase-Wake-Nacht 06:30–07:00 (2.10., Nachtdatum 1.10.).
+        let own = night("2026-10-02T04:30:00Z", "2026-10-02T05:00:00Z")
+        // Fremde Sitzung am selben Nachtdatum ohne Überschneidung (Nachmittag 1.10.): fällt weg.
+        let sameDate = HealthSession(start: t("2026-10-01T14:00:00Z"), end: t("2026-10-01T18:00:00Z"))
+        XCTAssertEqual(merge([own], [sameDate]).map(\.kind), [.phaseWake])
+        // Wecker am Mittag (Fenster 12:30–13:00, Nachtdatum 2.10.): Sitzung 04:30–12:30 (Nachtdatum 1.10.) endet genau am
+        // Fensterbeginn und bleibt; eine Sekunde länger überschneidet sie sich und fällt weg.
+        let noon = night("2026-10-02T10:30:00Z", "2026-10-02T11:00:00Z")
+        XCTAssertEqual(merge([noon], [HealthSession(start: t("2026-10-02T02:30:00Z"), end: t("2026-10-02T10:30:00Z"))]).count, 2)
+        XCTAssertEqual(merge([noon], [HealthSession(start: t("2026-10-02T02:30:00Z"), end: t("2026-10-02T10:30:01Z"))]).count, 1)
+        // Anderes Nachtdatum, beginnt genau beim Wecken: bleibt; eine Sekunde früher: fällt weg.
+        XCTAssertEqual(merge([own], [HealthSession(start: t("2026-10-02T05:00:00Z"), end: t("2026-10-02T20:00:00Z"))]).count, 2)
+        XCTAssertEqual(merge([own], [HealthSession(start: t("2026-10-02T04:59:59Z"), end: t("2026-10-02T20:00:00Z"))]).count, 1)
+    }
+
+    func testDocumentedNumbersAsLiterals() {
+        // Audit BE-3: Zahlen der Regeln für Nächte, Trends und Bettzeit als Wert.
+        XCTAssertEqual(HealthHistory.minNightMinutes, 180)
+        XCTAssertEqual(HealthHistory.napEarliestHour, 9)
+        XCTAssertEqual(HealthHistory.napLatestHour, 19)
+        XCTAssertEqual(HealthHistory.continuationGap, 60 * 60)
+        XCTAssertEqual(HealthHistory.overlapTolerance, 5 * 60)
+        XCTAssertEqual(HealthHistory.days, 90)
+        XCTAssertEqual(Trends.minNightsPerWeek, 3)
+        XCTAssertEqual(Trends.minNightsForSpread, 5)
+        XCTAssertEqual(Regularity.toleranceMinutes, 30)
+        XCTAssertEqual(Regularity.weekNights, 7)
+        XCTAssertEqual(Regularity.medianNights, 14)
+        XCTAssertEqual(Bedtime.leadMinutes, 30)
+        XCTAssertEqual(Bedtime.dialMinutes, 720)
+    }
 }

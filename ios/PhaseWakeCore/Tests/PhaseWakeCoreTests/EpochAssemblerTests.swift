@@ -47,6 +47,42 @@ final class EpochAssemblerTests: XCTestCase {
         XCTAssertEqual(a.currentIndex, 1)
     }
 
+    /// Audit c3b8b01 BE-1b: Nicht nur «nichts geschlossen» – der Wert darf auch in keiner Epoche landen (wie Kotlin).
+    func testValuesBeforeStartDoNotCount() {
+        let a = EpochAssembler(startNanos: start)
+        XCTAssertTrue(a.addHeartRate(timestampNanos: start - s, bpm: 90).isEmpty)
+        _ = a.addHeartRate(timestampNanos: start + 5 * s, bpm: 60)
+        let closed = a.advance(nowNanos: start + 31 * s, graceNanos: 0)
+        XCTAssertEqual(closed.count, 1)
+        XCTAssertEqual(closed.first?.heartRate, 60)
+    }
+
+    func testLateValuesDoNotLandInTheCurrentEpoch() {
+        let a = EpochAssembler(startNanos: start)
+        _ = a.addHeartRate(timestampNanos: start + 5 * s, bpm: 60)
+        XCTAssertEqual(a.advance(nowNanos: start + 31 * s, graceNanos: 0).first?.heartRate, 60)
+        // Verspätet für Epoche 0 (schon abgeschlossen): weder Puls noch Bewegung zählen in Epoche 1.
+        XCTAssertTrue(a.addHeartRate(timestampNanos: start + 6 * s, bpm: 100).isEmpty)
+        XCTAssertTrue(a.addMotion(timestampNanos: start + 29_950_000_000, x: 5, y: 0, z: 9.81).isEmpty)
+        _ = a.addHeartRate(timestampNanos: start + 40 * s, bpm: 62)
+        _ = fill(a, epoch: 1, jump: 0)
+        let epoch1 = a.advance(nowNanos: start + 61 * s, graceNanos: 0)
+        XCTAssertEqual(epoch1.count, 1)
+        XCTAssertEqual(epoch1.first?.heartRate, 62)
+        XCTAssertEqual(epoch1.first?.motion ?? -1, 0, accuracy: 1e-12)
+    }
+
+    func testValuesMoreThanTwentyFourHoursLaterAreATimeJump() {
+        // Epoche 2880 (24 Std.) gilt noch, 2881 ist ein Zeitsprung der Sensoruhr (Abschnitt 7).
+        XCTAssertEqual(EpochAssembler.maxEpochs, 2880)
+        let jump = EpochAssembler(startNanos: start)
+        XCTAssertTrue(jump.addHeartRate(timestampNanos: start + 2881 * 30 * s, bpm: 60).isEmpty)
+        XCTAssertEqual(jump.currentIndex, 0)
+        let last = EpochAssembler(startNanos: start)
+        XCTAssertEqual(last.addHeartRate(timestampNanos: start + 2880 * 30 * s, bpm: 60).count, 2880)
+        XCTAssertEqual(last.currentIndex, 2880)
+    }
+
     func testAdvanceClosesWithGrace() {
         let a = EpochAssembler(startNanos: start)
         _ = fill(a, epoch: 0, jump: 0)

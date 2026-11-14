@@ -251,6 +251,8 @@
     <string name="check_watch_battery_problem">Pod %1$d %% – napolni uro, da zdrži vso noč in te lahko zbudi.</string>
     <string name="check_watch_recorder">Meritev nocoj</string>
     <string name="check_watch_recorder_battery">Ura ni začela meritve pred spanjem – baterija je bila preveč prazna. Budilka te bo vseeno zbudila.</string>
+    <string name="check_watch_onset_battery">Pod %1$d %% baterije ura nocoj ne bo merila, kdaj zaspiš – napolni jo vnaprej. Budilka te bo vseeno zbudila.</string>
+    <string name="check_watch_learn_battery">Pod %1$d %% baterije ura nocoj ne bo snemala za fazo učenja – napolni jo vnaprej. Budilka te bo vseeno zbudila.</string>
     <string name="check_watch_pulse">Utrip v ozadju (ura)</string>
     <string name="check_watch_pulse_problem">Ura ponoči ne sme meriti tvojega utripa – na uri nastavi dovoljenje za senzorje za Phase Wake na »Vedno dovoli«.</string>
     <string name="export_contents_hint">Datoteka za vsako noč vsebuje gibanje in utrip na 30 s, tvoje počutje in zapiske – brez imen, datumov in ID-jev naprav.</string>
@@ -610,6 +612,7 @@
     <string name="overview_no_stages">Brez faz</string>
     <string name="settings_clear_history_learn">Faza učenja se začne znova.</string>
     <string name="learn_auto_hint">Zvečer na uri tapni »Lahko noč« ali vklopi »Samodejno zaznaj uspavanje«, da se noči štejejo.</string>
+    <string name="learn_auto_hint_clock">Vklopi »Samodejno zaznaj uspavanje« – potem ura sama zazna, kdaj zaspiš, in noči se štejejo.</string>
     <string name="learn_consent_title">Faza učenja</string>
     <string name="learn_consent_text">Da lahko Phase Wake alarm prilagodi tebi, ura %1$d noči čez noč meri gibanje in utrip. To porabi nekaj baterije – napolni uro pred spanjem. Podatki ostanejo v tvojih napravah. Fazo učenja lahko kadar koli izklopiš v nastavitvah.</string>
     <string name="learn_consent_start">Začni fazo učenja</string>

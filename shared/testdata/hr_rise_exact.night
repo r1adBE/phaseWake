@@ -1,0 +1,41 @@
+# Audit c3b8b01 BE-4: Pulsbedingung genau an der Grenze. Basispuls 60 (Median der ersten 6 Epochen), Anstieg 5 %:
+# 60 x 1.05 = 63.0 exakt. Epoche 10 und 11: leichte Bewegung (Grundrauschen 0.001 -> Leicht-Schwelle 0.0025) und Puls 63
+# -> «mindestens» 63 ist erfüllt, LIGHT_SLEEP in Epoche 11. Mit «mehr als» weckte es nicht.
+@expect 11 LIGHT_SLEEP
+motion,hr
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.003,63
+0.003,63
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60
+0.001,60

@@ -18,6 +18,19 @@ final class AlarmSpecTests: XCTestCase {
         XCTAssertEqual(alarm().windowMinutes, 20)
     }
 
+    func testDocumentedNumbersAsLiterals() throws {
+        // Audit BE-3: Zahlen aus der Doku als Wert, nicht nur symbolisch (Wert − 1 / Wert / Wert + 1).
+        XCTAssertEqual(AlarmSpec.maxAlarms, 8)
+        XCTAssertEqual(AlarmSpec.exactWindow, 0)
+        XCTAssertTrue(try AlarmSpec(id: "a", hour: 7, minute: 0, windowMinutes: 0).isExact)
+        XCTAssertEqual(AlarmSpec.minSleepMinutes, 60)
+        XCTAssertThrowsError(try AlarmSpec(id: "a", hour: 7, minute: 0, sleepDurationMinutes: 59))
+        XCTAssertNoThrow(try AlarmSpec(id: "a", hour: 7, minute: 0, sleepDurationMinutes: 60))
+        XCTAssertNoThrow(try AlarmSpec(id: "a", hour: 7, minute: 0, sleepDurationMinutes: 61))
+        XCTAssertEqual(Sunrise.ringSeconds, 120)
+        XCTAssertEqual(Sunrise.catchUpSeconds, 60)
+    }
+
     func testExactWindowIsZeroAndMeasuresThirtyMinutes() throws {
         let exact = try AlarmSpec(id: "a", hour: 7, minute: 0, windowMinutes: AlarmSpec.exactWindow)
         XCTAssertTrue(exact.isExact)

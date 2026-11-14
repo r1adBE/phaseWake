@@ -86,17 +86,24 @@ object SoundEvents {
     /**
      * Ob die Vorgabe «für neue Nächte ein» die Aufnahme beim Öffnen der App jetzt von selbst starten
      * darf: ab der Bettzeit der kommenden Nacht ([Bedtime.bedtime] = Zielzeit des nächsten Weckers −
-     * Schlafziel) bis zur Zielzeit. Liegt kein Wecker innerhalb von [AUTO_START_LOOKAHEAD] (oder
+     * Schlafziel − gelernte Einschlafdauer [latencyMinutes]) bis zur Zielzeit. Liegt kein Wecker innerhalb von [AUTO_START_LOOKAHEAD] (oder
      * keiner), ab [AUTO_START_HOUR] Uhr bis Mitternacht. Davor startet sie nur, wenn der Nutzer sie
      * selbst einschaltet.
      *
      * @param nextTarget Zielzeit des nächsten Weckers (Einschlaf-Modus: die eingestellte späteste Zeit).
      */
-    fun mayAutoStart(now: Instant, nextTarget: Instant?, goalMinutes: Int, zone: ZoneId, windowStart: Instant? = null): Boolean {
+    fun mayAutoStart(
+        now: Instant,
+        nextTarget: Instant?,
+        goalMinutes: Int,
+        zone: ZoneId,
+        windowStart: Instant? = null,
+        latencyMinutes: Int? = null,
+    ): Boolean {
         if (nextTarget != null && nextTarget.isAfter(now) && !nextTarget.isAfter(now.plus(AUTO_START_LOOKAHEAD))) {
             // Im Weckfenster nicht mehr: Wer dann öffnet, ist meist schon wach (entschieden mit r1AD).
             if (windowStart != null && !now.isBefore(windowStart)) return false
-            return !now.isBefore(Bedtime.bedtime(nextTarget, goalMinutes))
+            return !now.isBefore(Bedtime.bedtime(nextTarget, goalMinutes, latencyMinutes))
         }
         return now.atZone(zone).hour >= AUTO_START_HOUR
     }

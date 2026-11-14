@@ -74,10 +74,14 @@ public enum Regularity {
         let medianFrom = NightDate.adding(-medianNights, to: end)
         let medianDates = byDate.filter { $0.key <= end && $0.key > medianFrom }
         guard !medianDates.isEmpty else { return (0, 0) }
-        let median = SoundEventDetector.median(medianDates.values.map { minutesFromNoon($0, calendar: calendar) })
+        // Ohne Sprung um Mittag (`unwrap`): 11:30 und 12:30 liegen 60 Min auseinander, nicht 1380.
+        let entries = Array(medianDates)
+        let unwrapped = unwrap(entries.map { minutesFromNoon($0.value, calendar: calendar) })
+        let minutes = Dictionary(uniqueKeysWithValues: zip(entries.map(\.key), unwrapped))
+        let median = SoundEventDetector.median(Array(minutes.values))
         let weekFrom = NightDate.adding(-weekNights, to: end)
-        let week = medianDates.filter { $0.key > weekFrom }
-        let regular = week.values.filter { abs(minutesFromNoon($0, calendar: calendar) - median) <= Double(toleranceMinutes) + 1e-9 }.count
+        let week = minutes.filter { $0.key > weekFrom }
+        let regular = week.values.filter { abs($0 - median) <= Double(toleranceMinutes) + 1e-9 }.count
         return (regular, week.count)
     }
 
@@ -85,7 +89,39 @@ public enum Regularity {
     public static func minutesFromNoon(_ at: Date, calendar: Calendar) -> Double {
         let c = calendar.dateComponents([.hour, .minute], from: at)
         let m = (c.hour ?? 0) * 60 + (c.minute ?? 0) - 12 * 60
-        return Double(((m % 1440) + 1440) % 1440)
+        return Double(((m % dayMinutes) + dayMinutes) % dayMinutes)
+    }
+
+    /// Minuten eines Tages: Umfang der Uhr in ``minutesFromNoon(_:calendar:)``.
+    public static let dayMinutes = 24 * 60
+
+    /// Uhrzeiten in Minuten ab Mittag (0 ≤ m < ``dayMinutes``) ohne Sprung (Audit W-1): Die Uhr wird in der grössten
+    /// Lücke zwischen den Zeiten aufgeschnitten, damit auch Zeiten um Mittag (11:56 und 12:50) nahe beieinander liegen.
+    /// Ist die Lücke um Mittag die grösste (bei Gleichstand bevorzugt), bleiben die Werte wie sie sind; sonst bekommen
+    /// die Zeiten bis zur grössten Lücke ``dayMinutes`` dazu. Reihenfolge wie `minutes`. Identisch zu Kotlin.
+    public static func unwrap(_ minutes: [Double]) -> [Double] {
+        guard minutes.count >= 2 else { return minutes }
+        let sorted = minutes.sorted()
+        // Lücke um Mittag: von der spätesten Zeit bis zur frühesten des nächsten Tages.
+        var widest = sorted[0] + Double(dayMinutes) - sorted[sorted.count - 1]
+        var cut: Double?
+        for i in 0..<(sorted.count - 1) {
+            let gap = sorted[i + 1] - sorted[i]
+            if gap > widest {
+                widest = gap
+                cut = sorted[i]
+            }
+        }
+        guard let at = cut else { return minutes }
+        return minutes.map { $0 <= at ? $0 + Double(dayMinutes) : $0 }
+    }
+
+    /// Mittlere Uhrzeit der `minutes` (Minuten ab Mittag) ohne Sprung um Mittag (``unwrap(_:)``), gerundet (x.5 aufwärts,
+    /// wie `Math.round`) und wieder in 0 ≤ m < ``dayMinutes``. `minutes` darf nicht leer sein.
+    public static func meanMinute(_ minutes: [Double]) -> Int {
+        let values = unwrap(minutes)
+        let rounded = Int((values.reduce(0, +) / Double(values.count) + 0.5).rounded(.down))
+        return ((rounded % dayMinutes) + dayMinutes) % dayMinutes
     }
 }
 

@@ -215,8 +215,12 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
         store.edit { it[HISTORY_CLEARED_AT] = at.toEpochMilli() }
     }
 
-    /** Alle Einstellungen für die Sicherung. */
-    suspend fun backupSettings(): BackupSettings {
+    /**
+     * Alle Einstellungen für die Sicherung. [holiday]: aufgelöste Feiertagswahl (`HolidayRepository.choice`, Fix S-2):
+     * Nie gewählt heisst «Land des Geräts», nicht «keine Feiertage»; gesichert wird darum das Land, das gilt (wie das
+     * iPhone). Ohne: der gespeicherte Wert.
+     */
+    suspend fun backupSettings(holiday: Pair<String, String>? = null): BackupSettings {
         val prefs = store.data.first()
         return BackupSettings(
             sleepGoal = sleepGoal.first(),
@@ -224,8 +228,8 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
             weeklyReview = prefs[WEEKLY_REVIEW] ?: false,
             soundRecDefault = prefs[SOUND_REC_DEFAULT] ?: false,
             theme = themeMode.first().name,
-            holidayCountry = prefs[HOLIDAY_COUNTRY].orEmpty(),
-            holidayRegion = prefs[HOLIDAY_REGION].orEmpty(),
+            holidayCountry = holiday?.first ?: prefs[HOLIDAY_COUNTRY].orEmpty(),
+            holidayRegion = holiday?.second ?: prefs[HOLIDAY_REGION].orEmpty(),
             historyClearedAt = clearedAt(prefs[HISTORY_CLEARED_AT], now()),
             nextAlarmNotice = prefs[NEXT_ALARM_NOTICE] ?: true,
             autoOnset = prefs[AUTO_ONSET] ?: true,

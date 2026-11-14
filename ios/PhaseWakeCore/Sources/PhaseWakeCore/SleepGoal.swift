@@ -65,25 +65,31 @@ public enum Bedtime {
         }
     }
 
-    /// Zielzeit des nächsten eingeschalteten Weckers minus Schlafziel, als feste Dauer (bei einer
-    /// Zeitumstellung in der Nacht bleibt die Schlafdauer gleich, die Uhrzeit verschiebt sich).
-    public static func bedtime(nextAlarmTarget: Date, goalMinutes: Int) -> Date {
-        nextAlarmTarget.addingTimeInterval(-TimeInterval(goalMinutes * 60))
+    /// Die eine Bettzeit überall (Karte, Erinnerung, Ring der Uhr, Diagramm, Start der Geräusch-Aufnahme; Entscheid
+    /// r1AD 14.11.2026, Audit O-03): Zielzeit des nächsten eingeschalteten Weckers minus Schlafziel minus gelernte
+    /// Einschlafdauer `latencyMinutes` (`nil` = nicht gelernt, zählt 0 – wie bisher), als feste Dauer (bei einer
+    /// Zeitumstellung in der Nacht bleibt die Schlafdauer gleich, die Uhrzeit verschiebt sich). Negative Einschlafdauern
+    /// zählen 0. Identisch zu Kotlin.
+    public static func bedtime(nextAlarmTarget: Date, goalMinutes: Int, latencyMinutes: Int? = nil) -> Date {
+        nextAlarmTarget.addingTimeInterval(-TimeInterval((goalMinutes + max(0, latencyMinutes ?? 0)) * 60))
     }
 
     /// Minuten eines 12-Stunden-Zifferblatts (Ring auf der Uhr); weiter zurück wäre die Bettzeit dort nicht eindeutig.
     public static let dialMinutes = 720
 
-    /// Bettzeit für den Einschlafpunkt auf dem 12-Stunden-Ring der Uhr: `bedtime`, oder `nil`, wenn `goalMinutes`
-    /// nicht zwischen 1 und `dialMinutes` (ausschliesslich) liegt – der Punkt fiele sonst auf oder hinter den
-    /// Weckpunkt. Mit einem Ziel aus `SleepGoal.clamp` (höchstens 10 Std.) nie `nil`. Identisch zu Kotlin.
-    public static func onDial(nextAlarmTarget: Date, goalMinutes: Int) -> Date? {
-        (1..<dialMinutes).contains(goalMinutes) ? bedtime(nextAlarmTarget: nextAlarmTarget, goalMinutes: goalMinutes) : nil
+    /// Bettzeit für den Einschlafpunkt auf dem 12-Stunden-Ring der Uhr: `bedtime`, oder `nil`, wenn `goalMinutes` plus
+    /// `latencyMinutes` nicht zwischen 1 und `dialMinutes` (ausschliesslich) liegt – der Punkt fiele sonst auf oder
+    /// hinter den Weckpunkt. Identisch zu Kotlin.
+    public static func onDial(nextAlarmTarget: Date, goalMinutes: Int, latencyMinutes: Int? = nil) -> Date? {
+        (1..<dialMinutes).contains(goalMinutes + max(0, latencyMinutes ?? 0))
+            ? bedtime(nextAlarmTarget: nextAlarmTarget, goalMinutes: goalMinutes, latencyMinutes: latencyMinutes) : nil
     }
 
     /// Zeitpunkt der Bettzeit-Erinnerung: `leadMinutes` Minuten vor der Bettzeit.
-    public static func reminderAt(nextAlarmTarget: Date, goalMinutes: Int, leadMinutes: Int = Bedtime.leadMinutes) -> Date {
-        bedtime(nextAlarmTarget: nextAlarmTarget, goalMinutes: goalMinutes).addingTimeInterval(-TimeInterval(leadMinutes * 60))
+    public static func reminderAt(nextAlarmTarget: Date, goalMinutes: Int, leadMinutes: Int = Bedtime.leadMinutes,
+                                  latencyMinutes: Int? = nil) -> Date {
+        bedtime(nextAlarmTarget: nextAlarmTarget, goalMinutes: goalMinutes, latencyMinutes: latencyMinutes)
+            .addingTimeInterval(-TimeInterval(leadMinutes * 60))
     }
 
     /// Nächste Erinnerung, die echt nach `from` liegt: zum frühesten Wecker nach `from`; liegt dessen
@@ -98,14 +104,18 @@ public enum Bedtime {
         calendar: Calendar,
         goalMinutes: Int,
         leadMinutes: Int = Bedtime.leadMinutes,
-        holidays: Set<String> = []
+        holidays: Set<String> = [],
+        latencyMinutes: Int? = nil
     ) -> Reminder? {
         var cursor = from
         var remaining = specs
         for _ in 0..<maxSteps {
             guard let plan = AlarmSchedule.earliestPlan(remaining, now: cursor, calendar: calendar, holidays: holidays) else { return nil }
-            let at = reminderAt(nextAlarmTarget: plan.target, goalMinutes: goalMinutes, leadMinutes: leadMinutes)
-            if at > cursor { return Reminder(at: at, bedtime: bedtime(nextAlarmTarget: plan.target, goalMinutes: goalMinutes), target: plan.target) }
+            let at = reminderAt(nextAlarmTarget: plan.target, goalMinutes: goalMinutes, leadMinutes: leadMinutes, latencyMinutes: latencyMinutes)
+            if at > cursor {
+                return Reminder(at: at, bedtime: bedtime(nextAlarmTarget: plan.target, goalMinutes: goalMinutes, latencyMinutes: latencyMinutes),
+                                target: plan.target)
+            }
             // Ein Einmal-Wecker klingelt nur diese eine Nacht; er kommt danach nicht wieder.
             remaining.removeAll { $0.id == plan.alarmId && $0.isOneShot }
             cursor = plan.target

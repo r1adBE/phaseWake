@@ -54,6 +54,44 @@ class EpochAssemblerTest {
     }
 
     @Test
+    fun valuesBeforeStartDoNotCount() {
+        // Audit c3b8b01 BE-1b: Nicht nur «nichts geschlossen» – der Wert darf auch in keiner Epoche landen.
+        val a = EpochAssembler(start)
+        assertTrue(a.addHeartRate(start - s, 90.0).isEmpty())
+        a.addHeartRate(start + 5 * s, 60.0)
+        val closed = a.advance(start + 31 * s, 0)
+        assertEquals(1, closed.size)
+        assertEquals(60.0, closed[0].heartRate)
+    }
+
+    @Test
+    fun lateValuesDoNotLandInTheCurrentEpoch() {
+        val a = EpochAssembler(start)
+        a.addHeartRate(start + 5 * s, 60.0)
+        assertEquals(60.0, a.advance(start + 31 * s, 0).single().heartRate)
+        // Verspätet für Epoche 0 (schon abgeschlossen): weder Puls noch Bewegung zählen in Epoche 1.
+        assertTrue(a.addHeartRate(start + 6 * s, 100.0).isEmpty())
+        assertTrue(a.addMotion(start + 29_950_000_000L, 5.0, 0.0, 9.81).isEmpty())
+        a.addHeartRate(start + 40 * s, 62.0)
+        a.fillEpoch(1, 0.0)
+        val epoch1 = a.advance(start + 61 * s, 0).single()
+        assertEquals(62.0, epoch1.heartRate)
+        assertEquals(0.0, epoch1.motion!!, 1e-12)
+    }
+
+    @Test
+    fun valuesMoreThanTwentyFourHoursLaterAreATimeJump() {
+        // Epoche 2880 (24 Std.) gilt noch, 2881 ist ein Zeitsprung der Sensoruhr (Abschnitt 7).
+        assertEquals(2880L, EpochAssembler.MAX_EPOCHS)
+        val jump = EpochAssembler(start)
+        assertTrue(jump.addHeartRate(start + 2881L * 30 * s, 60.0).isEmpty())
+        assertEquals(0L, jump.currentIndex)
+        val last = EpochAssembler(start)
+        assertEquals(2880, last.addHeartRate(start + 2880L * 30 * s, 60.0).size)
+        assertEquals(2880L, last.currentIndex)
+    }
+
+    @Test
     fun advanceClosesWithGrace() {
         val a = EpochAssembler(start)
         a.fillEpoch(0, 0.0)

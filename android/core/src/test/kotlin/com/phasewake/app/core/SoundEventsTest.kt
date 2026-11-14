@@ -112,6 +112,14 @@ class SoundEventsTest {
     }
 
     @Test
+    fun autoStartFromTheOneBedtimeWithLatency() {
+        // Audit O-03: mit gelernter Einschlafdauer 20 Min ab 22:40 statt 23:00.
+        val target = at("2026-10-28T06:30")
+        assertEquals(false, SoundEvents.mayAutoStart(at("2026-10-27T22:39"), target, 450, zone, latencyMinutes = 20))
+        assertTrue(SoundEvents.mayAutoStart(at("2026-10-27T22:40"), target, 450, zone, latencyMinutes = 20))
+    }
+
+    @Test
     fun autoStartWithoutAlarmFrom21() {
         assertEquals(false, SoundEvents.mayAutoStart(at("2026-10-27T20:59"), null, 450, zone))
         assertTrue(SoundEvents.mayAutoStart(at("2026-10-27T21:00"), null, 450, zone))

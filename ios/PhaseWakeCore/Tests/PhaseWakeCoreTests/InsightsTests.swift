@@ -90,6 +90,17 @@ final class InsightsTests: XCTestCase {
         }
         XCTAssertEqual(Trends.compute(nights: [], sleeps: sleeps, now: now, calendar: utc).bedtimeSpreadMinutes, 9)
     }
+
+    func testBedtimeAroundNoonIsNotSplit() {
+        // Audit W-1: Einschlafen abwechselnd 11:50 und 12:10 (Tagschläfer): Abweichung um 10 Min, nicht um 12 Stunden.
+        let now = ISO8601DateFormatter().date(from: "2026-10-28T20:00:00Z")!
+        let base = ISO8601DateFormatter().date(from: "2026-10-28T11:50:00Z")!
+        let sleeps = (0..<5).map { d -> SleepSummary in
+            let bed = base.addingTimeInterval(-Double(d) * 86_400 + (d % 2 == 0 ? 0 : 1200))
+            return SleepSummary(start: bed, end: bed.addingTimeInterval(7 * 3600), asleepMinutes: 400)
+        }
+        XCTAssertEqual(Trends.compute(nights: [], sleeps: sleeps, now: now, calendar: utc).bedtimeSpreadMinutes, 9)
+    }
 }
 
 /// Gleiche Fälle wie `MissHintTest` (Kotlin).

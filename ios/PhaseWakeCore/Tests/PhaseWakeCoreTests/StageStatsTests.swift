@@ -28,6 +28,25 @@ final class StageStatsTests: XCTestCase {
         XCTAssertNil(of(span(0, 60, .unknown)))
     }
 
+    func testSourceWithoutStageDetailHasNoStages() {
+        // Audit W-5: Schlaf «unbekannt» 23:00–07:00 mit 30 Min wach (Health Connect STAGE_TYPE_SLEEPING, HealthKit
+        // asleepUnspecified): keine Phasen statt «Wach 100 %».
+        let unknownWithAwake = [span(0, 200, .unknown), span(200, 230, .awake), span(230, 480, .unknown)]
+        XCTAssertNil(StageStats.of(unknownWithAwake, from: at(0), to: at(480)))
+        XCTAssertNil(of(span(0, 30, .awake)))
+        let session = HealthSession(start: at(0), end: at(480), stages: unknownWithAwake)
+        XCTAssertNil(StageStats.forSession(session))
+        // Die Sitzung behält Schlaf und Wachzeit; der Schlafwert kommt aus der Dauer (vorläufig, höchstens 84).
+        XCTAssertEqual(session.asleepMinutes, 450)
+        XCTAssertEqual(session.awakeMinutes, 30)
+        let score = SleepScore.of(ScoreInput(asleepMinutes: session.asleepMinutes, goalMinutes: 480))!
+        XCTAssertTrue(score.provisional)
+        XCTAssertEqual(score.score, 84)
+        XCTAssertEqual(score.band, .good)
+        // Eine einzige Schlafphase genügt für eine Auswertung.
+        XCTAssertEqual(percents(of(span(0, 30, .awake), span(30, 60, .light))!), [50, 0, 50, 0])
+    }
+
     func testMergesTouchingBlocksOfTheSameStage() {
         let s = of(span(0, 30, .light), span(30, 50, .light), span(50, 80, .deep))!
         XCTAssertEqual(s.blocks, [StageBlock(stage: .light, start: at(0), end: at(50)), StageBlock(stage: .deep, start: at(50), end: at(80))])

@@ -89,4 +89,20 @@ class LearnSkipTest {
         assertEquals("2026-11-03=${at(4, 7).toEpochMilli()}\n2026-11-06=${at(7, 6).toEpochMilli()}", LearnLog.encodeAlarmNights(merged))
         assertEquals(emptyMap(), LearnLog.decodeAlarmNights("2026-13-01=5\nx=1\n2026-11-01=abc"))
     }
+
+    @Test
+    fun alarmNightsKeepTheEarlierTargetAndTheBoundaryAtNow() {
+        // Audit BE-4: zwei Wecker derselben Nacht, der frühere zuerst geplant – er bleibt (der spätere ersetzt ihn nicht).
+        val now = at(5, 12)
+        assertEquals(mapOf(LocalDate.of(2026, 11, 5) to at(6, 5)), LearnLog.mergeAlarmNights(emptyMap(), listOf(at(6, 5), at(6, 6)), now, zone))
+        // Ein Eintrag genau zur Zeit des Neuplanens ist vergangen und bleibt, auch wenn der Plan ihn nicht mehr hat.
+        val old = mapOf(LocalDate.of(2026, 11, 4) to now)
+        assertEquals(old, LearnLog.mergeAlarmNights(old, emptyList(), now, zone))
+        // Eine Zielzeit genau jetzt gehört nicht mehr zum Plan (nur echt künftige).
+        assertEquals(emptyMap(), LearnLog.mergeAlarmNights(emptyMap(), listOf(now), now, zone))
+        // Vergangene Nacht am selben Nachtdatum wie ein späterer zweiter Wecker: die vergangene (frühere) bleibt.
+        val rang = mapOf(LocalDate.of(2026, 11, 5) to at(6, 5).minusSeconds(7 * 3600))
+        val later = rang.values.single().plusSeconds(60 * 60 * 7 + 3600)
+        assertEquals(rang, LearnLog.mergeAlarmNights(rang, listOf(later), rang.values.single().plusSeconds(60), zone))
+    }
 }

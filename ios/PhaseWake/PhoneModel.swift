@@ -64,6 +64,11 @@ final class PhoneModel {
     /// Erlaubnis für Mitteilungen auf der Uhr (Rückfall), wie zuletzt gemeldet, und wann die Uhr sie geprüft hat (`nil`: ältere Uhr); `nil` = unbekannt.
     private(set) var watchNotifications: (state: WatchNotifications, checkedAt: Date?)?
 
+    /// Ob `loadState` den gespeicherten Stand lesen konnte. Vor dem ersten Entsperren nach einem Neustart nicht (Datei
+    /// geschützt): Dann sind Wecker und Einstellungen hier leer, und die App plant und löscht nichts daraus, bis
+    /// `catchUpState` sie gelesen hat (Tiefenaudit AP3-1).
+    private(set) var stateLoaded = false
+
     /// Höchstens so viele Wecker (wie Android): Die Uhr führt ohnehin nur die nächste Nacht.
     static let maxAlarms = 8
     var canAddAlarm: Bool { alarms.count < Self.maxAlarms }
@@ -81,6 +86,12 @@ final class PhoneModel {
                 }
             }
         }
+        // Erstes Entsperren nach einem Neustart: Stand nachlesen und alles planen (Tiefenaudit AP3-1). Läuft die App
+        // dann nicht, holt es das nächste Öffnen bzw. Neuplanen nach (`catchUpState`).
+        _ = NotificationCenter.default.addObserver(forName: UIApplication.protectedDataDidBecomeAvailableNotification, object: nil,
+                                                   queue: .main) { _ in
+            Task { @MainActor in PhoneModel.shared.catchUpState() }
+        }
         // Einschlafklänge prüfen ihr Ende jede Minute gegen den aktuellen Plan.
         sounds.currentWindowStart = { [weak self] in
             guard let self else { return nil }
@@ -90,6 +101,8 @@ final class PhoneModel {
 
     /// Liest den ganzen Stand aus dem Speicher (beim Start und nach dem Wiederherstellen einer Sicherung).
     func loadState() {
+        // Zuerst: Ist die Datei nicht lesbar, ist alles Folgende leer (AP3-1).
+        stateLoaded = SettingsFile.phone.isReadable
         alarms = storage.snapshot().alarms
         nights = storage.nights()
         notes = privateNotes.notes()
@@ -134,11 +147,30 @@ final class PhoneModel {
     }
 
     func applyRemote(_ snapshot: AlarmSnapshot) {
-        guard storage.applyRemote(snapshot) else { return }
+        // Stand noch nicht gelesen (vor dem ersten Entsperren, AP3-1): nicht auf den leeren Stand anwenden, sondern
+        // merken; `catchUpState` wendet es danach an (`applyPendingRemote`).
+        guard stateLoaded || catchUpState() else {
+            pendingRemote.append(snapshot)
+            DiagStore.shared.log(.alarmsReceived, "alarms from watch kept until settings readable")
+            return
+        }
+        // Derselbe Kontext nicht zweimal (Fix S-5): Er kommt bei jedem Start erneut.
+        guard storage.applyRemoteContext(snapshot) else { return }
         alarms = storage.snapshot().alarms
         DiagStore.shared.log(.alarmsReceived, "\(alarms.count) alarms from watch")
         Task { await backup.reschedule(alarms) }
         Task { await replanBedtime() }
+    }
+
+    /// Von der Uhr empfangene Wecker, solange der Stand nicht gelesen ist (AP3-1); in der Reihenfolge des Empfangs.
+    @ObservationIgnored private var pendingRemote: [AlarmSnapshot] = []
+
+    /// Nach dem Lesen des Stands (`catchUpState`): gemerkte Wecker der Uhr anwenden.
+    func applyPendingRemote() {
+        guard stateLoaded else { return }
+        let queued = pendingRemote
+        pendingRemote = []
+        queued.forEach(applyRemote)
     }
 
     func add(night: NightRecord) {
@@ -223,6 +255,19 @@ final class PhoneModel {
         PhoneConnectivity.shared.send(command: SyncKeys.clearHistory)
     }
 
+    /// Auto-Aus eines Einmal-Weckers nach seiner Nacht (Fix G-1/S-1): nur, wenn der gespeicherte Wecker noch dieselbe
+    /// Uhrzeit wie die geklingelte Fassung `rung` hat (``AlarmStamps/rang(_:rung:target:calendar:shifted:)``; die Zielzeit
+    /// zählt dann nicht). Zeitpunkt der bisherigen Fassung + 1 ms: Eine neuere Änderung auf der Uhr gewinnt beim Abgleich.
+    func disableAfterRing(_ rung: AlarmSpec) {
+        guard let snapshot = storage.disableAfterRing(rung.id, rang: {
+            AlarmStamps.rang($0, rung: rung, target: .distantPast, calendar: .gregorianLocal, shifted: false)
+        }) else { return }
+        alarms = snapshot.alarms
+        publishToWatch(snapshot)
+        Task { await backup.reschedule(alarms) }
+        Task { await replanBedtime() }
+    }
+
     private func change(_ edit: ([AlarmSpec]) -> [AlarmSpec]) {
         // Unlesbare gespeicherte Wecker: keine Änderung, nichts an die Uhr (Fix KN-5).
         guard let snapshot = storage.mutate(edit) else { return }
@@ -291,8 +336,14 @@ final class PhoneModel {
 
     /// Plant die Bettzeit-Erinnerung neu (Wecker, Ziel, Einstellung, Zeitzone oder neue Nacht geändert).
     func replanBedtime() async {
-        await bedtime.reschedule(alarms: alarms, goalMinutes: sleepGoal, enabled: bedtimeReminder, holidays: holidays.dates)
+        // Stand noch nicht gelesen: nichts verwerfen; `catchUpState` plant danach neu (AP3-1).
+        guard stateLoaded || catchUpState() else { return }
+        await bedtime.reschedule(alarms: alarms, goalMinutes: sleepGoal, enabled: bedtimeReminder, holidays: holidays.dates,
+                                 latencyMinutes: learnedLatency)
     }
+
+    /// Gelernte Einschlafdauer (Lernphase) für die eine Bettzeit (`Bedtime.bedtime`, Audit O-03); `nil` = nicht gelernt.
+    var learnedLatency: Int? { PhoneLearning.shared.state.values?.latencyMinutes }
 }
 
 // MARK: - Runde 2: Geräusche, Abendroutine, Wochenrückblick
@@ -328,7 +379,8 @@ extension PhoneModel {
             guard choice.on, SleepNotes.entryVisible(now: now, nextWindowStart: plan?.windowStart, calendar: .gregorianLocal) else { return }
         } else {
             guard soundRecDefault,
-                  SoundEvents.mayAutoStart(now: now, nextTarget: plan?.target, goalMinutes: sleepGoal, calendar: .gregorianLocal, windowStart: plan?.windowStart) else { return }
+                  SoundEvents.mayAutoStart(now: now, nextTarget: plan?.target, goalMinutes: sleepGoal, calendar: .gregorianLocal, windowStart: plan?.windowStart,
+                                           latencyMinutes: learnedLatency) else { return }
         }
         await recorder.start(nextAlarmTarget: plan?.target)
     }
@@ -395,6 +447,7 @@ extension PhoneModel {
 
     /// Plant die Mitteilung zum nächsten Sonntag 18 Uhr mit dem aktuellen Stand neu.
     func replanWeekly() async {
+        guard stateLoaded || catchUpState() else { return }
         await weekly.reschedule(model: self)
     }
 }

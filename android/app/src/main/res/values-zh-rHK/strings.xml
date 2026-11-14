@@ -237,6 +237,8 @@
     <string name="check_watch_battery_problem">低於 %1$d %% – 請為手錶充電，讓它撐過整晚並叫醒你。</string>
     <string name="check_watch_recorder">今晚嘅量度</string>
     <string name="check_watch_recorder_battery">手錶冇喺瞓覺前開始量度——電量太低。鬧鐘照樣會叫醒你。</string>
+    <string name="check_watch_onset_battery">電量低過 %1$d %% 嘅時候，手錶今晚唔會量度你幾時瞓着——請預先充電。鬧鐘照樣會叫醒你。</string>
+    <string name="check_watch_learn_battery">電量低過 %1$d %% 嘅時候，手錶今晚唔會為學習階段錄製——請預先充電。鬧鐘照樣會叫醒你。</string>
     <string name="check_watch_pulse">背景心率（手錶）</string>
     <string name="check_watch_pulse_problem">手錶無法在夜間量度你的心率 – 請在手錶上將 Phase Wake 的感應器權限設為「一律允許」。</string>
     <string name="export_contents_hint">檔案包括每晚每 30 秒的動作和心率、你的感覺同你的備註，不含姓名、日期或裝置 ID。</string>
@@ -569,6 +571,7 @@
     <string name="overview_no_stages">無階段</string>
     <string name="settings_clear_history_learn">學習階段會重新開始。</string>
     <string name="learn_auto_hint">夜晚請喺手錶上撳「晚安」，或者開啟「自動偵測入睡」，咁啲晚先會計入。</string>
+    <string name="learn_auto_hint_clock">開啟「自動偵測入睡」——咁手錶會自己偵測你幾時瞓着，啲晚亦會計入。</string>
     <string name="learn_consent_title">學習階段</string>
     <string name="learn_consent_text">為咗等 Phase Wake 按你調整鬧鐘，你嘅手錶會連續 %1$d 晚喺夜間測量動作同脈搏。咁樣會用一啲電量——瞓覺前記得幫手錶充電。 資料留喺你嘅裝置上。你隨時可以喺設定度關閉學習階段。</string>
     <string name="learn_consent_start">開始學習階段</string>

@@ -245,6 +245,8 @@
     <string name="check_watch_battery_problem">Abaixo de %1$d %% – carrega o relógio para que dure a noite toda e te possa acordar.</string>
     <string name="check_watch_recorder">Medição desta noite</string>
     <string name="check_watch_recorder_battery">O teu relógio não iniciou a medição antes de dormir – a bateria estava demasiado fraca. O alarme vai acordar-te na mesma.</string>
+    <string name="check_watch_onset_battery">Com menos de %1$d %% de bateria, o relógio não vai medir esta noite quando adormeces – carrega-o antes. O alarme vai acordar-te na mesma.</string>
+    <string name="check_watch_learn_battery">Com menos de %1$d %% de bateria, o relógio não vai gravar esta noite para a fase de aprendizagem – carrega-o antes. O alarme vai acordar-te na mesma.</string>
     <string name="check_watch_pulse">Pulso em segundo plano (relógio)</string>
     <string name="check_watch_pulse_problem">O relógio não pode medir o teu pulso à noite – no relógio, define a autorização de sensores do Phase Wake como “Permitir sempre”.</string>
     <string name="export_contents_hint">O ficheiro contém, de cada noite, movimento e frequência cardíaca a cada 30 s, como te sentiste e as tuas notas – sem nomes, datas ou IDs de dispositivo.</string>
@@ -594,6 +596,7 @@
     <string name="overview_no_stages">Sem fases</string>
     <string name="settings_clear_history_learn">A fase de aprendizagem recomeça.</string>
     <string name="learn_auto_hint">À noite, toca em “Boa noite” no relógio ou ativa “Detetar automaticamente quando adormeces” para que as noites contem.</string>
+    <string name="learn_auto_hint_clock">Ativa “Detetar automaticamente quando adormeces” – assim o relógio deteta sozinho quando adormeces, e as noites contam.</string>
     <string name="learn_consent_title">Fase de aprendizagem</string>
     <string name="learn_consent_text">Para o Phase Wake adaptar o alarme a ti, o teu relógio mede movimento e pulso ao longo da noite durante %1$d noites. Isto gasta um pouco de bateria – carrega o relógio antes de dormir. Os dados ficam nos teus dispositivos. Podes desativar a fase de aprendizagem nas definições a qualquer momento.</string>
     <string name="learn_consent_start">Iniciar fase de aprendizagem</string>
