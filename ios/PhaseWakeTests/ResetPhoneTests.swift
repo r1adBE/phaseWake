@@ -68,12 +68,15 @@ final class ResetPhoneTests: XCTestCase {
     }
 
     /// B-12: «In 2 Minuten testen» ersetzt einen wartenden Powernap; die Powernap-Karte verschwindet wie auf der Uhr.
+    /// Den Powernap nur als Stand anlegen (`begin(nap:)`, wie `napFromWatch` ohne Sicherung): `napFromWatch` stellt die
+    /// Sicherung über AlarmKit, und dessen `requestAuthorization()` wartet im Simulator ohne Antwort auf die Rückfrage –
+    /// der Testlauf hing daran (CI, Audit 93).
     @MainActor
-    func testTestReplacesWaitingNap() async {
+    func testTestReplacesWaitingNap() {
         let transient = PhoneTransient()
         let now = Date()
         let nap = Transient.nap(base: nil, now: now, calendar: .gregorianLocal, minutes: 20, uuid: UUID().uuidString.lowercased())
-        await transient.napFromWatch(nap)
+        transient.begin(nap: nap, waiting: false)
         XCTAssertNotNil(transient.nap)
 
         let test = Transient.test(base: nil, now: now, calendar: .gregorianLocal, uuid: UUID().uuidString.lowercased())
@@ -82,7 +85,6 @@ final class ResetPhoneTests: XCTestCase {
         XCTAssertEqual(transient.test?.plan.alarmId, test.plan.alarmId)
 
         transient.closeResult()
-        await PhoneModel.shared.backup.cancelTransient()
     }
 
     /// Umgekehrt: Ein neuer Powernap ersetzt einen wartenden Probewecker (wie Uhr und Android); er endet ohne Ergebnis.

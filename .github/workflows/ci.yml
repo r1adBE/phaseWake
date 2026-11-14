@@ -229,16 +229,22 @@ jobs:
       # Aufzeichnung, Erinnerung am Abend, Smart Alarm, Einschlafzeit (Uhr).
       - name: Tests iPhone-App
         shell: bash
+        # Ein hängender Test bricht ab statt den Lauf stundenlang zu blockieren (Audit 93: Lauf hing über 78 Minuten).
+        timeout-minutes: 30
         run: |
           set -o pipefail
           xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWake -destination "id=$PHONE_SIM" \
+            -test-timeouts-enabled YES -default-test-execution-time-allowance 60 -maximum-test-execution-time-allowance 120 \
             CODE_SIGNING_ALLOWED=NO test >> build.log 2>&1
           grep -E "Executed [0-9]+ tests?" build.log | tail -1 | sed 's/^/::notice title=Tests iPhone-App::/'
       - name: Tests Watch-App
         shell: bash
+        # Ein hängender Test bricht ab statt den Lauf stundenlang zu blockieren (Audit 93: Lauf hing über 78 Minuten).
+        timeout-minutes: 30
         run: |
           set -o pipefail
           xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWakeWatch -destination "id=$WATCH_SIM" \
+            -test-timeouts-enabled YES -default-test-execution-time-allowance 60 -maximum-test-execution-time-allowance 120 \
             CODE_SIGNING_ALLOWED=NO test >> build.log 2>&1
           grep -E "Executed [0-9]+ tests?" build.log | tail -1 | sed 's/^/::notice title=Tests Watch-App::/'
       - name: Warnungen (Übersicht)
@@ -258,3 +264,9 @@ jobs:
           grep -E "error:" build.log | sort -u > errors.log || true
           [ -s errors.log ] || tail -60 build.log > errors.log
           .github/scripts/annotate-errors.sh errors.log
+      - name: Build-Protokoll
+        if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: apple-build-log
+          path: build.log
