@@ -65,15 +65,26 @@ final class HealthSleep: @unchecked Sendable {
         return (inBed: inBed, asleep: asleep)
     }
 
-    /// Alle Proben im Zeitraum in einer Abfrage.
+    /// Höchstens so lange (Sekunden) auf die Antwort von HealthKit warten; bleibt sie aus, gilt die Abfrage als leer. Sonst
+    /// hinge, wer wartet, für immer (Lernphase: `PhoneLearning.fillOnsets` bliebe belegt, keine Nacht würde mehr gezählt).
+    static let queryTimeout: TimeInterval = 20
+
+    /// Alle Proben im Zeitraum in einer Abfrage; nach ``queryTimeout`` ohne Antwort leer (abgebrochen, im Protokoll).
     private func query(from: Date, to: Date) async -> [HKCategorySample] {
         guard isAvailable else { return [] }
         let predicate = HKQuery.predicateForSamples(withStart: from, end: to)
+        let answer = QueryAnswer()
         return await withCheckedContinuation { continuation in
             let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { _, results, _ in
-                continuation.resume(returning: (results as? [HKCategorySample]) ?? [])
+                answer.give((results as? [HKCategorySample]) ?? [])
             }
+            answer.wait(continuation, query: query)
             store.execute(query)
+            DispatchQueue.global().asyncAfter(deadline: .now() + Self.queryTimeout) { [self] in
+                guard let open = answer.give([]) else { return }
+                store.stop(open)
+                DiagStore.shared.log(.error, "health query timed out")
+            }
         }
     }
 
@@ -123,5 +134,33 @@ final class HealthSleep: @unchecked Sendable {
         case .asleepUnspecified: .unknown
         default: nil // «Im Bett» ist keine Schlafphase
         }
+    }
+}
+
+/// Genau eine Antwort je Abfrage (``HealthSleep/query(from:to:)``): die von HealthKit oder, nach
+/// ``HealthSleep/queryTimeout``, die leere – was zuerst kommt; die andere fällt weg.
+private final class QueryAnswer: @unchecked Sendable {
+    private let lock = NSLock()
+    private var continuation: CheckedContinuation<[HKCategorySample], Never>?
+    private var query: HKQuery?
+
+    /// Vor dem Start der Abfrage: wer auf die Antwort wartet.
+    func wait(_ continuation: CheckedContinuation<[HKCategorySample], Never>, query: HKQuery) {
+        lock.lock(); defer { lock.unlock() }
+        self.continuation = continuation
+        self.query = query
+    }
+
+    /// Antwortet, falls noch nicht geschehen. - Returns: die Abfrage, wenn dies die Antwort war; sonst `nil`.
+    @discardableResult
+    func give(_ samples: [HKCategorySample]) -> HKQuery? {
+        lock.lock()
+        let waiting = continuation, open = query
+        continuation = nil
+        query = nil
+        lock.unlock()
+        guard let waiting else { return nil }
+        waiting.resume(returning: samples)
+        return open
     }
 }

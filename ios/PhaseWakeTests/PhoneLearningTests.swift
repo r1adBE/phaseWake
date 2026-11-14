@@ -4,7 +4,7 @@ import XCTest
 
 /// Lernphase am iPhone (``PhoneLearning``, Audit F-03, wie `LearningFlowTest` auf Android): Beginn nur mit Zustimmung,
 /// Aufzeichnungen der Uhr speichern (dieselbe zweimal nur einmal, unlesbare nicht) und zählen, «Verlauf löschen» von
-/// vorn. Läuft in der App (Testwirt); ohne Apple Health bleibt die Einschlafdauer leer.
+/// vorn. Läuft in der App (Testwirt); ohne Apple Health (leere Quelle statt HealthKit) bleibt die Einschlafdauer leer.
 final class PhoneLearningTests: XCTestCase {
 
     /// Aufzeichnung ab `start` mit `epochs` Epochen mit Bewegung und Puls, abgeschlossen beim Wecken.
@@ -14,13 +14,18 @@ final class PhoneLearningTests: XCTestCase {
     }
 
     override func setUp() async throws {
-        await MainActor.run { PhoneLearning.shared.restart() }
+        await MainActor.run {
+            // Ohne HealthKit: Im Simulator ohne Signatur (CI) wartet eine Abfrage auf HealthKit; der Test hing dort (> 60 s).
+            PhoneLearning.shared.onsetSamples = { _, _ in (inBed: [], asleep: []) }
+            PhoneLearning.shared.restart()
+        }
     }
 
     override func tearDown() async throws {
         await MainActor.run {
             PhoneLearning.shared.setConsent(false)
             PhoneLearning.shared.restart()
+            PhoneLearning.shared.onsetSamples = PhoneLearning.healthOnsets
         }
     }
 

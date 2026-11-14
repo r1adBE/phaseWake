@@ -34,6 +34,14 @@ final class PhoneLearning {
     @ObservationIgnored private(set) var loaded = false
     /// Aufzeichnungen der Uhr, die vor dem Lesen kamen; ``load()`` speichert sie danach.
     @ObservationIgnored private var pending: [String] = []
+    /// Proben aus Apple Health fürs Nachtragen der Einschlafdauer (``HealthSleep/onsetSamples(from:to:)``). Tests setzen
+    /// eine Quelle ohne HealthKit: Im Simulator ohne Signatur (CI) wartet eine Abfrage sonst auf HealthKit.
+    @ObservationIgnored var onsetSamples: @MainActor (Date, Date) async -> (inBed: [Date], asleep: [Date]) = PhoneLearning.healthOnsets
+
+    /// Quelle der App: Apple Health.
+    static func healthOnsets(from: Date, to: Date) async -> (inBed: [Date], asleep: [Date]) {
+        await PhoneModel.shared.health.onsetSamples(from: from, to: to)
+    }
 
     /// `directory`: Ordner der Dateien; Tests geben einen eigenen, die App nutzt ``shared``.
     init(directory: URL = PrivateFiles.directory) {
@@ -149,7 +157,7 @@ final class PhoneLearning {
         var changed = false
         var list = recordings
         for (index, recording) in list.enumerated() where recording.start >= since {
-            let samples = await PhoneModel.shared.health.onsetSamples(from: recording.start, to: recording.until)
+            let samples = await onsetSamples(recording.start, recording.until)
             // In Millisekunden verglichen wie im Dateiformat: sonst gälte jede gelesene Aufzeichnung als geändert.
             guard let onset = Learning.healthOnset(start: recording.start, inBed: samples.inBed, asleep: samples.asleep),
                   Self.ms(onset.bedAt) != recording.bedAt.map(Self.ms) || Self.ms(onset.asleepAt) != recording.asleepAt.map(Self.ms)

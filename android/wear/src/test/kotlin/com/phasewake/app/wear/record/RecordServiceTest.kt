@@ -17,7 +17,9 @@ import com.phasewake.app.wear.wearApp
 import java.io.File
 import java.time.Duration
 import java.time.Instant
-import kotlinx.coroutines.cancel
+import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.job
+import kotlinx.coroutines.withTimeout
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
@@ -61,7 +63,8 @@ class RecordServiceTest {
         controllers.forEach { it.destroy() }
         runBlocking { WatchDiag.setShown(context, false) }
         RecordService.clock = Instant::now
-        context.wearApp.appScope.cancel()
+        // Beenden und abwarten (z. B. die Mitteilung von [LearnNotice.skipped]); sonst käme sie verspätet im nächsten Test an.
+        runBlocking { withTimeout(10_000) { context.wearApp.appScope.coroutineContext.job.cancelAndJoin() } }
         File(context.filesDir, "recordings").deleteRecursively()
     }
 

@@ -26,7 +26,9 @@ import java.time.DayOfWeek
 import java.time.Duration
 import java.time.Instant
 import java.time.ZoneId
-import kotlinx.coroutines.cancel
+import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.job
+import kotlinx.coroutines.withTimeout
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
@@ -62,8 +64,14 @@ class LearnNoticeTest {
         runBlocking { app.learning.setIfNewer(LearningSnapshot(true, null, null, System.currentTimeMillis())) }
     }
 
+    /**
+     * Hintergrundarbeit dieses Tests beenden und abwarten: Ein `cancel` allein liesse den Rest einer Arbeit ohne
+     * Haltepunkt weiterlaufen (z. B. die Mitteilung nach der Meldung in [LearnNotice.skipped]). Die Mitteilungen der
+     * Robolectric-Schatten sind prozessweit; eine verspätete landete sonst im nächsten Test (CI 14.11.2026:
+     * «genug Akku» in [warningShowsOnlyWithLowBatteryWhileNotCharging] nach [learningStartBelowTheThresholdReportsTheNight]).
+     */
     @After
-    fun cleanUp() = app.appScope.cancel()
+    fun cleanUp() = runBlocking { withTimeout(10_000) { app.appScope.coroutineContext.job.cancelAndJoin() } }
 
     private fun battery(percent: Int, charging: Boolean = false) {
         val manager = shadowOf(context.getSystemService(BatteryManager::class.java))
@@ -148,6 +156,9 @@ class LearnNoticeTest {
         awaitUntil("Meldung eingereiht") { runBlocking { Outbox.forContext(context).pending() }.any { it.key == key } }
         val body = runBlocking { Outbox.forContext(context).pending() }.single { it.key == key }.body
         assertEquals(LearnSkip(until, LearnSkip.Reason.BATTERY, Learning.MIN_BATTERY - 2), LearnSkip.decode(body))
+        // Die Mitteilung kommt nach der Meldung ans Handy; abwarten, damit die Arbeit in diesem Test endet.
+        awaitUntil("Mitteilung gezeigt") { notifications.allNotifications.isNotEmpty() }
+        assertEquals(LearnNotice.CHANNEL, notifications.allNotifications.single().channelId)
     }
 
     @Test

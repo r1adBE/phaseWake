@@ -233,7 +233,10 @@ jobs:
         timeout-minutes: 30
         run: |
           set -o pipefail
+          # Ergebnisbündel an festem Ort (bei Zeitüberschreitung mit Stack-Sample), im Fehlerfall hochgeladen.
+          rm -rf build/phone.xcresult
           xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWake -destination "id=$PHONE_SIM" \
+            -resultBundlePath build/phone.xcresult \
             -test-timeouts-enabled YES -default-test-execution-time-allowance 60 -maximum-test-execution-time-allowance 120 \
             CODE_SIGNING_ALLOWED=NO test >> build.log 2>&1
           grep -E "Executed [0-9]+ tests?" build.log | tail -1 | sed 's/^/::notice title=Tests iPhone-App::/'
@@ -243,7 +246,9 @@ jobs:
         timeout-minutes: 30
         run: |
           set -o pipefail
+          rm -rf build/watch.xcresult
           xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWakeWatch -destination "id=$WATCH_SIM" \
+            -resultBundlePath build/watch.xcresult \
             -test-timeouts-enabled YES -default-test-execution-time-allowance 60 -maximum-test-execution-time-allowance 120 \
             CODE_SIGNING_ALLOWED=NO test >> build.log 2>&1
           grep -E "Executed [0-9]+ tests?" build.log | tail -1 | sed 's/^/::notice title=Tests Watch-App::/'
@@ -269,4 +274,8 @@ jobs:
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: apple-build-log
-          path: build.log
+          # Dazu die Ergebnisbündel der Tests (bei Zeitüberschreitung mit Stack-Sample des hängenden Tests).
+          path: |
+            build.log
+            build/phone.xcresult
+            build/watch.xcresult
