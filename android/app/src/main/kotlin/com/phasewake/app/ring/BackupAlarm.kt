@@ -23,7 +23,6 @@ import com.phasewake.app.core.TestStep
 import com.phasewake.app.core.Transient
 import com.phasewake.app.phoneApp
 import com.phasewake.app.shared.AlarmRepository
-import com.phasewake.app.shared.AlarmStamps
 import com.phasewake.app.shared.RingMessage
 import com.phasewake.app.ui.MainActivity
 import java.time.Duration
@@ -246,21 +245,6 @@ class BackupAlarm(
             }
         }
         disableOneShot(alarmId, target)
-    }
-
-    /**
-     * Schaltet einen noch eingeschalteten Einmal-Wecker aus (über die Uhr-Synchronisation). Nur die Fassung, die
-     * geklingelt hat (Fix G-1/S-1, [AlarmStamps.rang]): Mit Zielzeit [target] muss sie dessen Weckzeit dieser Nacht sein
-     * (früher geweckt: gemeldete Ausnahme [onsetShift]); ohne (Ende des Schlummerns) gilt der gespeicherte Wecker. Der
-     * Zeitpunkt wird der der bisherigen Fassung + 1 ms: Eine neuere Änderung auf der Uhr gewinnt beim Abgleich.
-     */
-    suspend fun disableOneShot(alarmId: String?, target: Instant? = null) {
-        val spec = alarms.current().alarms.firstOrNull { it.id == alarmId } ?: return
-        if (!spec.isOneShot || !spec.enabled) return
-        val shifted = target != null && onsetShift()?.let { it.alarmId == spec.id && it.target == target.toEpochMilli() } == true
-        val rang: (AlarmSpec) -> Boolean = { target == null || AlarmStamps.rang(it, null, target, zone, shifted) }
-        if (!rang(spec)) return
-        context.phoneApp.afterAlarmsChanged { alarms.disableAfterRing(spec.id, rang) ?: alarms.current() }
     }
 
     /**
