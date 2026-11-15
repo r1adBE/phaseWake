@@ -75,7 +75,7 @@ enum StageColors {
     /// Plastischer Block (Schlafprofil): dunkel oben um 35 % aufgehellt, hell unten um 25 % vertieft – die Farbe entfernt
     /// sich nie Richtung Karte und behält ihren Kontrast (wie `drawBlocks` auf Android).
     static func plasticGradient(_ color: Color, _ scheme: ColorScheme) -> Gradient {
-        scheme == .dark ? Gradient(colors: [color.mix(with: .white, by: 0.35), color]) : Gradient(colors: [color, color.mix(with: .black, by: 0.25)])
+        scheme == .dark ? Gradient(colors: [color.blended(with: .white, by: 0.35), color]) : Gradient(colors: [color, color.blended(with: .black, by: 0.25)])
     }
     static func plastic(_ color: Color, _ scheme: ColorScheme) -> LinearGradient {
         LinearGradient(gradient: plasticGradient(color, scheme), startPoint: .top, endPoint: .bottom)
@@ -85,6 +85,21 @@ enum StageColors {
 }
 
 extension Color {
+    /// Mischt linear im sRGB-Raum mit [other] (Anteil [fraction] 0…1). Eigene Fassung statt `mix(with:by:)`,
+    /// das es erst ab iOS 18 / watchOS 11 gibt.
+    func blended(with other: Color, by fraction: Double) -> Color {
+        let env = EnvironmentValues()
+        let a = resolve(in: env), b = other.resolve(in: env)
+        let f = Float(min(1, max(0, fraction)))
+        return Color(
+            .sRGB,
+            red: Double(a.red + (b.red - a.red) * f),
+            green: Double(a.green + (b.green - a.green) * f),
+            blue: Double(a.blue + (b.blue - a.blue) * f),
+            opacity: Double(a.opacity + (b.opacity - a.opacity) * f)
+        )
+    }
+
     init(hex: UInt32, opacity: Double = 1) {
         self.init(
             .sRGB,
