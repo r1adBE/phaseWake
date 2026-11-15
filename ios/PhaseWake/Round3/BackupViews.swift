@@ -111,14 +111,18 @@ private struct BackupPasswordSheet: View {
     var body: some View {
         NavigationStack {
             Form {
-                SecureField(L("backup_password"), text: $password).textContentType(.newPassword)
-                SecureField(L("backup_password_repeat"), text: $repeated).textContentType(.newPassword)
-                if let problem, !password.isEmpty { Text(problem).font(.footnote).foregroundStyle(.red) }
-                Text(L("backup_password_hint")).font(.footnote).foregroundStyle(.secondary)
-                Text(L("backup_health_hint_apple")).font(.footnote).foregroundStyle(.secondary)
-                if busy { ProgressView(L("backup_busy")) }
-                if failed { Text(L("backup_failed")).font(.footnote) }
+                Group {
+                    SecureField(L("backup_password"), text: $password).textContentType(.newPassword)
+                    SecureField(L("backup_password_repeat"), text: $repeated).textContentType(.newPassword)
+                    if let problem, !password.isEmpty { Text(problem).font(.footnote).foregroundStyle(.red) }
+                    Text(L("backup_password_hint")).font(.footnote).foregroundStyle(.secondary)
+                    Text(L("backup_health_hint_apple")).font(.footnote).foregroundStyle(.secondary)
+                    if busy { ProgressView(L("backup_busy")) }
+                    if failed { Text(L("backup_failed")).font(.footnote) }
+                }
+                .skyRows()
             }
+            .skyPage()
             .navigationTitle(L("settings_backup"))
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button(L("action_cancel")) { dismiss() } }
@@ -159,18 +163,22 @@ private struct RestoreSheet: View {
     var body: some View {
         NavigationStack {
             Form {
-                SecureField(L("backup_password"), text: $password).textContentType(.password)
-                if wrong { Text(L("restore_wrong_password")).font(.footnote).foregroundStyle(.red) }
-                // Schreiben gescheitert (z. B. Speicher voll): Alles ist zurückgesetzt, nichts geändert.
-                if failed { Text(L("restore_failed")).font(.footnote).foregroundStyle(.red) }
-                if busy { ProgressView(L("backup_busy")) }
-                if let payload {
-                    let c = BackupIO.counts(payload)
-                    Text(L("restore_preview", Int64(c.alarms), Int64(c.nights), Int64(c.noteDays)))
-                    Text(L("backup_health_hint_apple")).font(.footnote).foregroundStyle(.secondary)
-                    Button(L("restore_confirm"), role: .destructive) { confirm = true }
+                Group {
+                    SecureField(L("backup_password"), text: $password).textContentType(.password)
+                    if wrong { Text(L("restore_wrong_password")).font(.footnote).foregroundStyle(.red) }
+                    // Schreiben gescheitert (z. B. Speicher voll): Alles ist zurückgesetzt, nichts geändert.
+                    if failed { Text(L("restore_failed")).font(.footnote).foregroundStyle(.red) }
+                    if busy { ProgressView(L("backup_busy")) }
+                    if let payload {
+                        let c = BackupIO.counts(payload)
+                        Text(L("restore_preview", Int64(c.alarms), Int64(c.nights), Int64(c.noteDays)))
+                        Text(L("backup_health_hint_apple")).font(.footnote).foregroundStyle(.secondary)
+                        Button(L("restore_confirm"), role: .destructive) { confirm = true }
+                    }
                 }
+                .skyRows()
             }
+            .skyPage()
             .navigationTitle(L("settings_restore"))
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button(L("action_cancel")) { dismiss() } }

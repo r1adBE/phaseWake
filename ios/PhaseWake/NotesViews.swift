@@ -130,6 +130,7 @@ struct NightNotesButton: View {
                 ScrollView {
                     NoteChips(nightDate: nightDate).padding()
                 }
+                .skyPage()
                 .navigationTitle(title)
                 .navigationBarTitleDisplayMode(.inline)
             }

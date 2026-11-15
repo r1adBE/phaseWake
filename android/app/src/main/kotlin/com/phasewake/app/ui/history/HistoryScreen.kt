@@ -1,7 +1,18 @@
 package com.phasewake.app.ui.history
 
+import com.phasewake.app.ui.components.skyCardColors
+import com.phasewake.app.ui.components.skyCardEdge
+import com.phasewake.app.ui.components.skyCardLift
 import android.content.Context
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
+import androidx.compose.ui.platform.LocalLayoutDirection
+import com.phasewake.app.ui.components.PAGE_SIDE
+import com.phasewake.app.ui.components.PageTitle
+import com.phasewake.app.ui.components.SkyHeader
+import com.phasewake.app.ui.components.SkyPage
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -12,7 +23,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -156,13 +166,24 @@ fun HistoryScreen(
     }
     // Eine Auswahl «Tage / Wochen / Monate» für Übersicht und Diagramme; gemerkt über Drehen und Zurückkehren.
     var unit by rememberSaveable { mutableStateOf(OverviewUnit.DAYS) }
+    // Himmel wie auf der Startseite; der Rand liegt im Innenabstand, damit der Kopf randlos sein kann.
+    val direction = LocalLayoutDirection.current
+    val padding = PaddingValues(
+        start = contentPadding.calculateStartPadding(direction) + PAGE_SIDE,
+        top = contentPadding.calculateTopPadding(),
+        end = contentPadding.calculateEndPadding(direction) + PAGE_SIDE,
+        bottom = contentPadding.calculateBottomPadding(),
+    )
+    SkyPage {
     LazyColumn(
-        contentPadding = contentPadding,
+        contentPadding = padding,
         verticalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp),
+        modifier = Modifier.fillMaxSize(),
     ) {
         item(key = "title") {
-            Text(stringResource(R.string.history_title), style = MaterialTheme.typography.headlineMedium, modifier = Modifier.padding(start = 4.dp, bottom = 4.dp))
+            SkyHeader(bleedSide = PAGE_SIDE, bleedTop = contentPadding.calculateTopPadding()) {
+                PageTitle(stringResource(R.string.history_title))
+            }
         }
         // Diagramme zuoberst, auch ohne Uhr-Nächte (Schlaf aus der Gesundheits-App).
         // Blase in einem Diagramm antippen: die Nacht dieses Nachtdatums, falls sie im Verlauf steht.
@@ -216,6 +237,7 @@ fun HistoryScreen(
             }
         }
     }
+    }
 }
 
 @Composable
@@ -229,14 +251,17 @@ private fun Stats(nights: List<NightRecord>) {
     }
 }
 
+/** Kennzahl-Kachel wie auf der Detailseite: Glaskarte mit getönter Oberkante. */
 @Composable
 private fun StatTile(text: String, modifier: Modifier) {
     Card(
         shape = MaterialTheme.shapes.medium,
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
+        colors = skyCardColors(),
+        border = skyCardEdge(),
+        elevation = skyCardLift(),
         modifier = modifier,
     ) {
-        Text(text, style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(16.dp))
+        Text(text, style = MaterialTheme.typography.titleMedium, modifier = Modifier.background(tileTint(MaterialTheme.colorScheme.primary)).padding(16.dp))
     }
 }
 
@@ -265,7 +290,9 @@ private fun NightCard(
     val score = remember(view, recordings, goalMinutes) { nightScore(view, recordings, goalMinutes)?.result }
     Card(
         shape = MaterialTheme.shapes.medium,
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
+        colors = skyCardColors(),
+        border = skyCardEdge(),
+        elevation = skyCardLift(),
         modifier = modifier.fillMaxWidth().opensDetail(MaterialTheme.shapes.medium, stringResource(R.string.night_open), onOpen),
     ) {
         Column(Modifier.padding(16.dp)) {
@@ -298,53 +325,6 @@ private fun NightCard(
     }
 }
 
-/** Eintrag im Verlauf: eine Nacht, nur Geräusche eines Nachtdatums oder eine Aufzeichnung. */
-private sealed interface HistoryEntry {
-    val key: String
-
-    // Schlüssel wie bisher: Wecker und Fensterbeginn (zwei Wecker können gleich starten).
-    data class Night(val item: HistoryItem) : HistoryEntry {
-        override val key: String get() = item.night?.let { "${it.alarmId}@${it.windowStart.toEpochMilli()}" } ?: item.key
-    }
-
-    /** Nacht aus Health Connect ohne Phase-Wake-Wecker; höchstens eine je Nachtdatum. */
-    data class Health(val item: HistoryItem) : HistoryEntry {
-        override val key: String get() = "health@${item.date}"
-    }
-
-    /** [last] = Beginn des jüngsten Ausschnitts. */
-    data class Sounds(val night: LocalDate, val last: Instant) : HistoryEntry {
-        override val key: String get() = "sounds@$night"
-    }
-
-    /** Aufzeichnung der Galaxy Watch («Nacht aufzeichnen»), eingereiht nach ihrem Ende. */
-    data class Recording(val recording: NightRecording) : HistoryEntry {
-        override val key: String get() = "recording@${recording.start.toEpochMilli()}"
-    }
-}
-
-/** Zeitpunkt eines Eintrags fürs Einreihen der Aufzeichnungen (Nächte: geweckt bzw. Ende des Schlafs). */
-private val HistoryEntry.at: Instant
-    get() = when (this) {
-        is HistoryEntry.Night -> item.at
-        is HistoryEntry.Health -> item.at
-        is HistoryEntry.Sounds -> last
-        is HistoryEntry.Recording -> recording.end ?: recording.start
-    }
-
-/** Reiht [recordings] (älteste zuerst) nach ihrem Ende in [entries] (neueste zuerst) ein. */
-private fun withRecordings(entries: List<HistoryEntry>, recordings: List<NightRecording>): List<HistoryEntry> {
-    if (recordings.isEmpty()) return entries
-    val pending = ArrayDeque(recordings.sortedByDescending { it.end ?: it.start }.map { HistoryEntry.Recording(it) })
-    return buildList {
-        for (entry in entries) {
-            while (pending.isNotEmpty() && pending.first().at.isAfter(entry.at)) add(pending.removeFirst())
-            add(entry)
-        }
-        addAll(pending)
-    }
-}
-
 /**
  * Geräusche einer Nacht ohne aufgezeichnete Nacht: Datum (des jüngsten Ausschnitts, wie bei den
  * Nächten das Weckdatum) und die Ausschnitte.
@@ -361,7 +341,9 @@ private fun SoundsOnlyCard(
     val night = entry.night
     Card(
         shape = MaterialTheme.shapes.medium,
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
+        colors = skyCardColors(),
+        border = skyCardEdge(),
+        elevation = skyCardLift(),
         modifier = modifier.fillMaxWidth(),
     ) {
         Column(Modifier.padding(16.dp)) {

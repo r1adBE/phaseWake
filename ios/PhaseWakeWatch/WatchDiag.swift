@@ -96,6 +96,9 @@ struct WatchDiagView: View {
                 dismiss()
             }
         }
+        // Himmel wie auf dem Start der Uhr (ruhend, im Always-On nur dunkel).
+        .background(NightSky(strength: NightSky.watchPage))
+        .scrollContentBackground(.hidden)
         .navigationTitle(L("diag_title"))
         .onAppear { entries = DiagStore.shared.entries() }
     }

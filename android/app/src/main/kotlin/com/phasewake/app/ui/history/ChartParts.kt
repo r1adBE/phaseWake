@@ -1,5 +1,8 @@
 package com.phasewake.app.ui.history
 
+import com.phasewake.app.ui.components.skyCardColors
+import com.phasewake.app.ui.components.skyCardEdge
+import com.phasewake.app.ui.components.skyCardLift
 import android.provider.Settings
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
@@ -15,7 +18,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathEffect
@@ -63,12 +66,14 @@ internal fun ChartCard(
 ) {
     Card(
         shape = MaterialTheme.shapes.medium,
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
+        colors = skyCardColors(),
+        border = skyCardEdge(),
+        elevation = skyCardLift(),
         modifier = modifier,
     ) {
         Column(Modifier.padding(16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(title, style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
+                Text(title, style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
                 trailing()
             }
             takeaway?.let {
@@ -221,6 +226,16 @@ internal fun stageColors(): Map<SleepStage, Color> {
         SleepStage.LIGHT to brand.stageLight,
         SleepStage.DEEP to brand.stageDeep,
     )
+}
+
+/**
+ * Getönte Oberkante einer Kennzahl-Kachel auf der Karte der Seiten: [accent] mit [TILE_TINT_DARK] bzw. [TILE_TINT_LIGHT]
+ * oben, nach unten auslaufend. Auf hell gleich wie [tileTop] auf Weiss; dunkel scheint das Glas darunter durch.
+ */
+@Composable
+internal fun tileTint(accent: Color): Brush {
+    val tint = if (PhaseWakeTheme.isDark) TILE_TINT_DARK else TILE_TINT_LIGHT
+    return Brush.verticalGradient(listOf(accent.copy(alpha = tint), accent.copy(alpha = 0f)))
 }
 
 /**

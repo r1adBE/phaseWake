@@ -1,5 +1,8 @@
 package com.phasewake.app.ui.editor
 
+import com.phasewake.app.ui.components.skyCardColors
+import com.phasewake.app.ui.components.skyCardEdge
+import com.phasewake.app.ui.components.skyCardLift
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -25,7 +28,6 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -126,7 +128,9 @@ internal fun soundTitle(context: Context, sound: String): String {
 internal fun Section(content: @Composable androidx.compose.foundation.layout.ColumnScope.() -> Unit) {
     Card(
         shape = MaterialTheme.shapes.medium,
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
+        colors = skyCardColors(),
+        border = skyCardEdge(),
+        elevation = skyCardLift(),
         modifier = Modifier.fillMaxWidth(),
     ) {
         Column(Modifier.fillMaxWidth().padding(16.dp), content = content)

@@ -1,12 +1,14 @@
 package com.phasewake.app.ui.history
 
+import com.phasewake.app.ui.components.skyCardColors
+import com.phasewake.app.ui.components.skyCardEdge
+import com.phasewake.app.ui.components.skyCardLift
 import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -48,7 +50,9 @@ internal fun RecordingCard(recording: NightRecording, modifier: Modifier = Modif
     val end = recording.end ?: recording.start.plus(recording.duration)
     Card(
         shape = MaterialTheme.shapes.medium,
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
+        colors = skyCardColors(),
+        border = skyCardEdge(),
+        elevation = skyCardLift(),
         modifier = modifier.fillMaxWidth().semantics(mergeDescendants = true) { },
     ) {
         Column(Modifier.padding(16.dp)) {

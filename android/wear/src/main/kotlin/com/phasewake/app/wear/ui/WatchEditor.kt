@@ -1,5 +1,7 @@
 package com.phasewake.app.wear.ui
 
+import com.phasewake.app.wear.ui.theme.PAGE_GLOW
+import com.phasewake.app.wear.ui.theme.nightGlow
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -142,7 +144,7 @@ internal fun EditorContent(
             EdgeButton(onClick = onSave) { Text(stringResource(R.string.editor_save)) }
         },
     ) { contentPadding ->
-        ScalingLazyColumn(state = listState, contentPadding = contentPadding, modifier = Modifier.fillMaxSize()) {
+        ScalingLazyColumn(state = listState, contentPadding = contentPadding, modifier = Modifier.fillMaxSize().nightGlow(strength = PAGE_GLOW)) {
             item { ListHeader { Text(stringResource(if (isNew) R.string.editor_new else R.string.editor_edit)) } }
             item {
                 // Bei Schlafdauer ist die Uhrzeit die späteste Weckzeit.

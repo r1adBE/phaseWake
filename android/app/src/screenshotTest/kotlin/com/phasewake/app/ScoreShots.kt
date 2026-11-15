@@ -1,5 +1,6 @@
 package com.phasewake.app
 
+import com.phasewake.app.ui.components.SkyPage
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -71,9 +72,11 @@ private fun overviewOf(withStages: Boolean) = OverviewUnit.entries.mapNotNull { 
 /** Auswahl und Übersicht wie oben im Verlauf. */
 @Composable
 private fun Overview(mode: ThemeMode, unit: OverviewUnit, withStages: Boolean = true) = Themed(mode) {
-    Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        OverviewSwitch(unit, {})
-        OverviewCard(overviewOf(withStages), unit, { null }, Modifier.fillMaxWidth())
+    SkyPage {
+        Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            OverviewSwitch(unit, {})
+            OverviewCard(overviewOf(withStages), unit, { null }, Modifier.fillMaxWidth())
+        }
     }
 }
 

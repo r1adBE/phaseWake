@@ -13,68 +13,72 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section(L("settings_theme")) {
-                    Picker(L("settings_theme"), selection: $themeMode) {
-                        Text(L("settings_theme_system")).tag(ThemeMode.system)
-                        Text(L("settings_theme_light")).tag(ThemeMode.light)
-                        Text(L("settings_theme_dark")).tag(ThemeMode.dark)
+                Group {
+                    Section(L("settings_theme")) {
+                        Picker(L("settings_theme"), selection: $themeMode) {
+                            Text(L("settings_theme_system")).tag(ThemeMode.system)
+                            Text(L("settings_theme_light")).tag(ThemeMode.light)
+                            Text(L("settings_theme_dark")).tag(ThemeMode.dark)
+                        }
+                        .pickerStyle(.segmented)
+                        // Grosse Segmente: Tippziel nahe 44 pt.
+                        .controlSize(.large)
                     }
-                    .pickerStyle(.segmented)
-                    // Grosse Segmente: Tippziel nahe 44 pt.
-                    .controlSize(.large)
-                }
-                Section(L("health_connect")) {
-                    Text(L("health_rationale_apple")).font(.footnote)
-                    Button(L("health_connect")) { Task { healthRequested = await model.health.requestAccess() } }
-                }
-                Section(L("goal_title")) {
-                    Stepper(value: Binding(get: { model.sleepGoal }, set: { model.setSleepGoal($0) }),
-                            in: SleepGoal.minMinutes...SleepGoal.maxMinutes, step: SleepGoal.stepMinutes) {
-                        Text(L("goal_value", Format.duration(minutes: model.sleepGoal)))
+                    Section(L("health_connect")) {
+                        Text(L("health_rationale_apple")).font(.footnote)
+                        Button(L("health_connect")) { Task { healthRequested = await model.health.requestAccess() } }
                     }
-                    Text(L("goal_hint")).font(.footnote).foregroundStyle(.secondary)
-                }
-                Section {
-                    Toggle(L("bedtime_title"), isOn: Binding(get: { model.bedtimeReminder }, set: { model.setBedtimeReminder($0) }))
-                    Text(L("bedtime_text", Bedtime.leadMinutes)).font(.footnote).foregroundStyle(.secondary)
-                    Toggle(L("weekly_title"), isOn: Binding(get: { model.weeklyReview }, set: { model.setWeeklyReview($0) }))
-                    Text(L("weekly_toggle")).font(.footnote).foregroundStyle(.secondary)
-                }
-                LearningSettingsSection()
-                // Wie Android; auf Apple über den Bewegungs-Rekorder der Uhr (eigener Hinweis).
-                Section {
-                    let night = WatchNight.shared
-                    let _ = night.autoOnsetRevision
-                    Toggle(L("auto_onset_title"), isOn: Binding(get: { WatchNight.autoOnset }, set: { night.setAutoOnset($0) }))
-                    Text(L("auto_onset_hint_apple")).font(.footnote).foregroundStyle(.secondary)
-                }
-                Section(L("test_title")) { TestAlarmButton() }
-                HolidaySettingsSection()
-                CustomNotesSection()
-                RoutineSection()
-                Section(L("sound_rec_title")) {
-                    Toggle(L("sound_rec_default"), isOn: Binding(get: { model.soundRecDefault }, set: { on in Task { await model.setSoundRecDefault(on) } }))
-                    Text(L("sound_rec_default_hint")).font(.footnote).foregroundStyle(.secondary)
-                }
-                Section(L("settings_data")) {
-                    Text(L("settings_data_text_apple")).font(.footnote)
-                    HistoryExportLink { Text(L("settings_export")) }
-                    Text(L("export_contents_hint")).font(.footnote).foregroundStyle(.secondary)
-                    Button(L("settings_clear_history"), role: .destructive) { confirmClear = true }
-                }
-                BackupSection()
-                Section(L("settings_about")) {
-                    Link(L("settings_open_source"), destination: URL(string: "https://github.com/r1adBE/phaseWake")!)
-                    Link(L("settings_privacy"), destination: URL(string: "https://github.com/r1adBE/phaseWake/blob/main/docs/DATENSCHUTZ.md")!)
-                    Button(L("settings_onboarding")) { onboardingDone = false }
-                    // Lizenzen mit vollem Text je Bestandteil (`LicensesView`).
-                    NavigationLink(L("settings_licenses")) { LicensesView() }
-                    DiagVersionRow(unlocked: $diagUnlocked)
-                    if diagUnlocked {
-                        NavigationLink(L("diag_title")) { DiagView(unlocked: $diagUnlocked) }
+                    Section(L("goal_title")) {
+                        Stepper(value: Binding(get: { model.sleepGoal }, set: { model.setSleepGoal($0) }),
+                                in: SleepGoal.minMinutes...SleepGoal.maxMinutes, step: SleepGoal.stepMinutes) {
+                            Text(L("goal_value", Format.duration(minutes: model.sleepGoal)))
+                        }
+                        Text(L("goal_hint")).font(.footnote).foregroundStyle(.secondary)
+                    }
+                    Section {
+                        Toggle(L("bedtime_title"), isOn: Binding(get: { model.bedtimeReminder }, set: { model.setBedtimeReminder($0) }))
+                        Text(L("bedtime_text", Bedtime.leadMinutes)).font(.footnote).foregroundStyle(.secondary)
+                        Toggle(L("weekly_title"), isOn: Binding(get: { model.weeklyReview }, set: { model.setWeeklyReview($0) }))
+                        Text(L("weekly_toggle")).font(.footnote).foregroundStyle(.secondary)
+                    }
+                    LearningSettingsSection()
+                    // Wie Android; auf Apple über den Bewegungs-Rekorder der Uhr (eigener Hinweis).
+                    Section {
+                        let night = WatchNight.shared
+                        let _ = night.autoOnsetRevision
+                        Toggle(L("auto_onset_title"), isOn: Binding(get: { WatchNight.autoOnset }, set: { night.setAutoOnset($0) }))
+                        Text(L("auto_onset_hint_apple")).font(.footnote).foregroundStyle(.secondary)
+                    }
+                    Section(L("test_title")) { TestAlarmButton() }
+                    HolidaySettingsSection()
+                    CustomNotesSection()
+                    RoutineSection()
+                    Section(L("sound_rec_title")) {
+                        Toggle(L("sound_rec_default"), isOn: Binding(get: { model.soundRecDefault }, set: { on in Task { await model.setSoundRecDefault(on) } }))
+                        Text(L("sound_rec_default_hint")).font(.footnote).foregroundStyle(.secondary)
+                    }
+                    Section(L("settings_data")) {
+                        Text(L("settings_data_text_apple")).font(.footnote)
+                        HistoryExportLink { Text(L("settings_export")) }
+                        Text(L("export_contents_hint")).font(.footnote).foregroundStyle(.secondary)
+                        Button(L("settings_clear_history"), role: .destructive) { confirmClear = true }
+                    }
+                    BackupSection()
+                    Section(L("settings_about")) {
+                        Link(L("settings_open_source"), destination: URL(string: "https://github.com/r1adBE/phaseWake")!)
+                        Link(L("settings_privacy"), destination: URL(string: "https://github.com/r1adBE/phaseWake/blob/main/docs/DATENSCHUTZ.md")!)
+                        Button(L("settings_onboarding")) { onboardingDone = false }
+                        // Lizenzen mit vollem Text je Bestandteil (`LicensesView`).
+                        NavigationLink(L("settings_licenses")) { LicensesView() }
+                        DiagVersionRow(unlocked: $diagUnlocked)
+                        if diagUnlocked {
+                            NavigationLink(L("diag_title")) { DiagView(unlocked: $diagUnlocked) }
+                        }
                     }
                 }
+                .skyRows()
             }
+            .skyPage()
             .navigationTitle(L("settings_title"))
             // Nennt alles, was gelöscht wird (Prüfrunde 2, B-13, gleicher Text wie Android).
             .confirmationDialog([L("settings_clear_history_text"), L("settings_clear_history_also"), L("settings_clear_history_learn")].joined(separator: " "),

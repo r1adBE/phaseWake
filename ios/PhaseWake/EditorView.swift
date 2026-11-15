@@ -39,168 +39,172 @@ struct EditorView: View {
     var body: some View {
         NavigationStack {
             Form {
-                // «Uhrzeit · Schlafdauer» wie Android. Einschlaf-Modus auf der Apple Watch: «Gute Nacht» legt die Zielzeit
-                // aus der gelernten Einschlafdauer fest (Näherung, `GoodNightState`); ohne Tippen gilt die Uhrzeit.
-                Section {
-                    Picker(L("editor_mode_sleep"), selection: $sleepMode) {
-                        Text(L("editor_mode_clock")).tag(false)
-                        Text(L("editor_mode_sleep")).tag(true)
-                    }
-                    .pickerStyle(.segmented)
-                    .controlSize(.large)
-                }
-
-                Section(L(sleepMode ? "editor_latest" : "editor_target")) {
-                    DatePicker("", selection: $time, displayedComponents: .hourAndMinute)
-                        .datePickerStyle(.wheel)
-                        .labelsHidden()
-                        .frame(maxWidth: .infinity)
-                }
-
-                if sleepMode {
+                Group {
+                    // «Uhrzeit · Schlafdauer» wie Android. Einschlaf-Modus auf der Apple Watch: «Gute Nacht» legt die Zielzeit
+                    // aus der gelernten Einschlafdauer fest (Näherung, `GoodNightState`); ohne Tippen gilt die Uhrzeit.
                     Section {
-                        Text(L("editor_sleep_duration", Format.duration(minutes: Int(sleepMinutes)))).font(.headline)
-                        Slider(value: $sleepMinutes, in: Self.sleepRange, step: 15)
-                            .accessibilityValue(Format.duration(minutes: Int(sleepMinutes)))
-                        Text(L("editor_sleep_hint_apple")).font(.footnote).foregroundStyle(.secondary)
+                        Picker(L("editor_mode_sleep"), selection: $sleepMode) {
+                            Text(L("editor_mode_clock")).tag(false)
+                            Text(L("editor_mode_sleep")).tag(true)
+                        }
+                        .pickerStyle(.segmented)
+                        .controlSize(.large)
                     }
-                }
 
-                // «Genau» ist bewusst gewählt: dann kein Vorschlag für ein grösseres Fenster.
-                if let existing, Int(window) != AlarmSpec.exactWindow,
-                   let advice = WindowAdvice.suggest(existing, history: model.nights), Int(window) < advice.windowMinutes {
-                    Section {
-                        Text(L("editor_advice_title")).font(.headline)
-                        Text(LP("editor_advice_text", advice.nights, advice.deadlineNights, advice.nights, advice.windowMinutes)).font(.footnote)
-                        Button(L("editor_advice_apply", advice.windowMinutes)) { window = Double(advice.windowMinutes) }
+                    Section(L(sleepMode ? "editor_latest" : "editor_target")) {
+                        DatePicker("", selection: $time, displayedComponents: .hourAndMinute)
+                            .datePickerStyle(.wheel)
+                            .labelsHidden()
+                            .frame(maxWidth: .infinity)
                     }
-                }
 
-                Section {
-                    // «Genau · 10 · 20 · 30» wie Android; ein älterer Wert (15, 25) bleibt als eigene Wahl erhalten.
-                    Picker(L("chart_window"), selection: $window) {
-                        ForEach(windowChoices(keeping: Int(window)), id: \.self) { minutes in
-                            Text(minutes == AlarmSpec.exactWindow ? L("editor_window_exact") : L("duration_minutes", Int64(minutes)))
-                                .tag(Double(minutes))
+                    if sleepMode {
+                        Section {
+                            Text(L("editor_sleep_duration", Format.duration(minutes: Int(sleepMinutes)))).font(.headline)
+                            Slider(value: $sleepMinutes, in: Self.sleepRange, step: 15)
+                                .accessibilityValue(Format.duration(minutes: Int(sleepMinutes)))
+                            Text(L("editor_sleep_hint_apple")).font(.footnote).foregroundStyle(.secondary)
                         }
                     }
-                    .pickerStyle(.segmented)
-                    // Grosse Segmente: Tippziel nahe 44 pt.
-                    .controlSize(.large)
-                    if Int(window) == AlarmSpec.exactWindow {
-                        Text(L("editor_window_exact_hint")).font(.footnote).foregroundStyle(.secondary)
-                    } else {
-                        Text(L("editor_window_hint", Format.time(time.addingTimeInterval(-window * 60)), Format.time(time)))
-                            .font(.footnote).foregroundStyle(.secondary)
-                    }
-                } header: {
-                    Text(L("chart_window"))
-                }
 
-                Section(L("editor_days")) {
-                    HStack {
-                        ForEach(weekOrder, id: \.self) { day in
-                            let on = days.contains(day)
-                            Button { if on { days.remove(day) } else { days.insert(day) } } label: {
-                                VStack(spacing: 2) {
-                                    Text(dayName(day))
-                                    // Punkt unter dem gewählten Tag: Form zusätzlich zur Füllung (Farbe nie allein).
-                                    Circle().frame(width: 4, height: 4).opacity(on ? 1 : 0).accessibilityHidden(true)
+                    // «Genau» ist bewusst gewählt: dann kein Vorschlag für ein grösseres Fenster.
+                    if let existing, Int(window) != AlarmSpec.exactWindow,
+                       let advice = WindowAdvice.suggest(existing, history: model.nights), Int(window) < advice.windowMinutes {
+                        Section {
+                            Text(L("editor_advice_title")).font(.headline)
+                            Text(LP("editor_advice_text", advice.nights, advice.deadlineNights, advice.nights, advice.windowMinutes)).font(.footnote)
+                            Button(L("editor_advice_apply", advice.windowMinutes)) { window = Double(advice.windowMinutes) }
+                        }
+                    }
+
+                    Section {
+                        // «Genau · 10 · 20 · 30» wie Android; ein älterer Wert (15, 25) bleibt als eigene Wahl erhalten.
+                        Picker(L("chart_window"), selection: $window) {
+                            ForEach(windowChoices(keeping: Int(window)), id: \.self) { minutes in
+                                Text(minutes == AlarmSpec.exactWindow ? L("editor_window_exact") : L("duration_minutes", Int64(minutes)))
+                                    .tag(Double(minutes))
+                            }
+                        }
+                        .pickerStyle(.segmented)
+                        // Grosse Segmente: Tippziel nahe 44 pt.
+                        .controlSize(.large)
+                        if Int(window) == AlarmSpec.exactWindow {
+                            Text(L("editor_window_exact_hint")).font(.footnote).foregroundStyle(.secondary)
+                        } else {
+                            Text(L("editor_window_hint", Format.time(time.addingTimeInterval(-window * 60)), Format.time(time)))
+                                .font(.footnote).foregroundStyle(.secondary)
+                        }
+                    } header: {
+                        Text(L("chart_window"))
+                    }
+
+                    Section(L("editor_days")) {
+                        HStack {
+                            ForEach(weekOrder, id: \.self) { day in
+                                let on = days.contains(day)
+                                Button { if on { days.remove(day) } else { days.insert(day) } } label: {
+                                    VStack(spacing: 2) {
+                                        Text(dayName(day))
+                                        // Punkt unter dem gewählten Tag: Form zusätzlich zur Füllung (Farbe nie allein).
+                                        Circle().frame(width: 4, height: 4).opacity(on ? 1 : 0).accessibilityHidden(true)
+                                    }
+                                    // Mindestens 44 pt hoch, und die ganze Fläche ist Tippziel (nicht nur der Buchstabe).
+                                    .frame(maxWidth: .infinity, minHeight: 44)
+                                    .contentShape(Capsule())
                                 }
-                                // Mindestens 44 pt hoch, und die ganze Fläche ist Tippziel (nicht nur der Buchstabe).
-                                .frame(maxWidth: .infinity, minHeight: 44)
-                                .contentShape(Capsule())
+                                    .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
+                                    .background(on ? Brand.accentLight : Color.secondary.opacity(0.12), in: Capsule())
+                                    .foregroundStyle(on ? .white : .primary)
+                                    .buttonStyle(.plain)
+                                    .accessibilityAddTraits(on ? .isSelected : [])
                             }
-                                .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
-                                .background(on ? Brand.accentLight : Color.secondary.opacity(0.12), in: Capsule())
-                                .foregroundStyle(on ? .white : .primary)
-                                .buttonStyle(.plain)
-                                .accessibilityAddTraits(on ? .isSelected : [])
                         }
+                        HStack {
+                            quickDays("editor_weekdays", [.monday, .tuesday, .wednesday, .thursday, .friday])
+                            quickDays("editor_weekend", [.saturday, .sunday])
+                            quickDays("alarm_every_day", Set(Weekday.allCases))
+                        }
+                        .buttonStyle(.borderless)
+                        .font(.footnote)
                     }
-                    HStack {
-                        quickDays("editor_weekdays", [.monday, .tuesday, .wednesday, .thursday, .friday])
-                        quickDays("editor_weekend", [.saturday, .sunday])
-                        quickDays("alarm_every_day", Set(Weekday.allCases))
-                    }
-                    .buttonStyle(.borderless)
-                    .font(.footnote)
-                }
 
-                Section {
-                    Text(L("editor_alert_hint")).font(.footnote).foregroundStyle(.secondary)
-                    // Auf Apple nur, was wirkt: Die Apple Watch weckt per Haptik (ohne Ton), das iPhone
-                    // klingelt über AlarmKit immer mit Ton.
-                    Picker(L("editor_alert_phone"), selection: $phone) {
-                        Text(L("alert_off")).tag(PhoneAlert.off)
-                        Text(L("alert_sound")).tag(PhoneAlert.sound)
-                    }
-                } header: {
-                    Text(L("editor_alert"))
-                }
-
-                // Selten gebraucht, zugeklappt unter «Mehr» (Audit U-3, wie Android): Sonnenaufgang, Feiertage, Weckton
-                // und Name. Sichtbar bleiben Zeit, Fenster, Wiederholen und Weckart.
-                Section {
-                    DisclosureGroup(isExpanded: $showMore) {
-                        // Sonnenaufgang. Nur auf dem iPhone: Die Apple Watch hält ihren Bildschirm in der
-                        // Smart-Alarm-Sitzung nicht zuverlässig an, darum keine Gerätewahl (gilt als «Handy»).
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(L("sunrise_title")).font(.headline)
-                            // Auf dem iPhone leuchtet immer das iPhone: Hinweis zum Hinlegen gleich dazu.
-                            Text(L("editor_sunrise_hint") + " " + L("editor_sunrise_phone_hint")).font(.footnote).foregroundStyle(.secondary)
-                            Picker(L("sunrise_title"), selection: $sunrise) {
-                                Text(L("alert_off")).tag(Sunrise.off)
-                                Text(L("sunrise_ring")).tag(Sunrise.ring)
-                                Text(L("sunrise_window")).tag(Sunrise.window)
-                            }
-                            .pickerStyle(.segmented)
-                            .controlSize(.large)
-                            if sunrise != .off {
-                                Text(sunrise == .window ? L("editor_sunrise_window_hint") : LP("editor_sunrise_ring_hint", Sunrise.ringSeconds / 60, Sunrise.ringSeconds / 60))
-                                    .font(.footnote).foregroundStyle(.secondary)
-                                // Auf dem iPhone nur mit offener App möglich.
-                                Text(L("editor_sunrise_ios_hint")).font(.footnote)
-                            }
-                        }
-                        // Feiertage nur für wiederholte Wecker; Land und Region stehen in den Einstellungen.
-                        if !days.isEmpty { HolidaySkipRow(skipHolidays: $skipHolidays) }
-                        if phone != .off {
-                            // Eigene Töne oder der Standardton des Systems; eine Auswahl spielt kurz an.
-                            let choice = Binding(get: { sound }, set: { value in
-                                sound = value
-                                if let tone = WakeTone(rawValue: value) { preview.play(tone) } else { preview.stop() }
-                            })
-                            Picker(L("editor_sound"), selection: choice) {
-                                ForEach(WakeTone.allCases, id: \.self) { tone in
-                                    Text(L(tone.textKey)).tag(tone.rawValue)
-                                }
-                                // Standardton: leer, oder ein vorhandener fremder Wert bleibt unverändert.
-                                Text(L("editor_sound_default")).tag(WakeTone(rawValue: sound) == nil ? sound : "")
-                            }
-                        }
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(L("editor_label")).font(.headline)
-                            TextField(L("editor_label_hint"), text: $label)
-                        }
-                    } label: {
-                        Text(L("editor_more"))
-                    }
-                }
-
-                if let existing {
                     Section {
-                        Button(L("editor_delete"), role: .destructive) { confirmDelete = true }
-                            .confirmationDialog(L("editor_delete_title"), isPresented: $confirmDelete, titleVisibility: .visible) {
-                                Button(L("editor_delete"), role: .destructive) {
-                                    deleting = true
-                                    model.remove(existing.id)
-                                    dismiss()
+                        Text(L("editor_alert_hint")).font(.footnote).foregroundStyle(.secondary)
+                        // Auf Apple nur, was wirkt: Die Apple Watch weckt per Haptik (ohne Ton), das iPhone
+                        // klingelt über AlarmKit immer mit Ton.
+                        Picker(L("editor_alert_phone"), selection: $phone) {
+                            Text(L("alert_off")).tag(PhoneAlert.off)
+                            Text(L("alert_sound")).tag(PhoneAlert.sound)
+                        }
+                    } header: {
+                        Text(L("editor_alert"))
+                    }
+
+                    // Selten gebraucht, zugeklappt unter «Mehr» (Audit U-3, wie Android): Sonnenaufgang, Feiertage, Weckton
+                    // und Name. Sichtbar bleiben Zeit, Fenster, Wiederholen und Weckart.
+                    Section {
+                        DisclosureGroup(isExpanded: $showMore) {
+                            // Sonnenaufgang. Nur auf dem iPhone: Die Apple Watch hält ihren Bildschirm in der
+                            // Smart-Alarm-Sitzung nicht zuverlässig an, darum keine Gerätewahl (gilt als «Handy»).
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text(L("sunrise_title")).font(.headline)
+                                // Auf dem iPhone leuchtet immer das iPhone: Hinweis zum Hinlegen gleich dazu.
+                                Text(L("editor_sunrise_hint") + " " + L("editor_sunrise_phone_hint")).font(.footnote).foregroundStyle(.secondary)
+                                Picker(L("sunrise_title"), selection: $sunrise) {
+                                    Text(L("alert_off")).tag(Sunrise.off)
+                                    Text(L("sunrise_ring")).tag(Sunrise.ring)
+                                    Text(L("sunrise_window")).tag(Sunrise.window)
+                                }
+                                .pickerStyle(.segmented)
+                                .controlSize(.large)
+                                if sunrise != .off {
+                                    Text(sunrise == .window ? L("editor_sunrise_window_hint") : LP("editor_sunrise_ring_hint", Sunrise.ringSeconds / 60, Sunrise.ringSeconds / 60))
+                                        .font(.footnote).foregroundStyle(.secondary)
+                                    // Auf dem iPhone nur mit offener App möglich.
+                                    Text(L("editor_sunrise_ios_hint")).font(.footnote)
                                 }
                             }
+                            // Feiertage nur für wiederholte Wecker; Land und Region stehen in den Einstellungen.
+                            if !days.isEmpty { HolidaySkipRow(skipHolidays: $skipHolidays) }
+                            if phone != .off {
+                                // Eigene Töne oder der Standardton des Systems; eine Auswahl spielt kurz an.
+                                let choice = Binding(get: { sound }, set: { value in
+                                    sound = value
+                                    if let tone = WakeTone(rawValue: value) { preview.play(tone) } else { preview.stop() }
+                                })
+                                Picker(L("editor_sound"), selection: choice) {
+                                    ForEach(WakeTone.allCases, id: \.self) { tone in
+                                        Text(L(tone.textKey)).tag(tone.rawValue)
+                                    }
+                                    // Standardton: leer, oder ein vorhandener fremder Wert bleibt unverändert.
+                                    Text(L("editor_sound_default")).tag(WakeTone(rawValue: sound) == nil ? sound : "")
+                                }
+                            }
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text(L("editor_label")).font(.headline)
+                                TextField(L("editor_label_hint"), text: $label)
+                            }
+                        } label: {
+                            Text(L("editor_more"))
+                        }
+                    }
+
+                    if let existing {
+                        Section {
+                            Button(L("editor_delete"), role: .destructive) { confirmDelete = true }
+                                .confirmationDialog(L("editor_delete_title"), isPresented: $confirmDelete, titleVisibility: .visible) {
+                                    Button(L("editor_delete"), role: .destructive) {
+                                        deleting = true
+                                        model.remove(existing.id)
+                                        dismiss()
+                                    }
+                                }
+                        }
                     }
                 }
+                .skyRows()
             }
+            .skyPage()
             .navigationTitle(L(existing == nil ? "editor_new" : "editor_edit"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

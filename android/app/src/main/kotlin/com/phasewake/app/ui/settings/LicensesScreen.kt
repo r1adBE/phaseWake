@@ -1,5 +1,6 @@
 package com.phasewake.app.ui.settings
 
+import com.phasewake.app.ui.components.SkyBarPage
 import android.content.Context
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -50,11 +51,10 @@ fun LicensesScreen(onBack: () -> Unit) {
         val file = open ?: return@LaunchedEffect
         if (file !in texts) texts[file] = withContext(Dispatchers.IO) { Licenses.paragraphs(readLicense(context, file)) }
     }
-    Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing)) {
-        Row(Modifier.fillMaxWidth().padding(4.dp)) {
-            IconButton(onClick = onBack) { Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.onb_back)) }
-            Text(stringResource(R.string.settings_licenses), style = MaterialTheme.typography.titleLarge, modifier = Modifier.padding(top = 10.dp))
-        }
+    SkyBarPage(bar = {
+        IconButton(onClick = onBack) { Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.onb_back)) }
+        Text(stringResource(R.string.settings_licenses), style = MaterialTheme.typography.titleLarge)
+    }) {
         LazyColumn(Modifier.fillMaxSize().padding(horizontal = 16.dp)) {
             Licenses.entries.forEach { entry ->
                 item(key = entry.file) {

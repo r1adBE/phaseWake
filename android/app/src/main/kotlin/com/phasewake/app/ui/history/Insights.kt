@@ -1,5 +1,8 @@
 package com.phasewake.app.ui.history
 
+import com.phasewake.app.ui.components.skyCardColors
+import com.phasewake.app.ui.components.skyCardEdge
+import com.phasewake.app.ui.components.skyCardLift
 import android.content.Context
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.heightIn
@@ -10,7 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -138,7 +140,9 @@ fun TrendsCard(
     if (lines.isEmpty() && covered.isNotEmpty() && healthConnected) return
     Card(
         shape = MaterialTheme.shapes.medium,
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
+        colors = skyCardColors(),
+        border = skyCardEdge(),
+        elevation = skyCardLift(),
         modifier = Modifier.fillMaxWidth(),
     ) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {

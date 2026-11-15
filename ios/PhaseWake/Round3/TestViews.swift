@@ -72,13 +72,17 @@ struct TestResultSheet: View {
     var body: some View {
         NavigationStack {
             List {
-                if TestStep.allCases.allSatisfy({ outcome($0) != .failed }) {
-                    Label(L("test_all_ok"), systemImage: "checkmark.seal").font(Fonts.manrope(16, .semibold, relativeTo: .headline))
+                Group {
+                    if TestStep.allCases.allSatisfy({ outcome($0) != .failed }) {
+                        Label(L("test_all_ok"), systemImage: "checkmark.seal").font(Fonts.manrope(16, .semibold, relativeTo: .headline))
+                    }
+                    ForEach(TestStep.allCases, id: \.self) { step in
+                        row(step, outcome(step))
+                    }
                 }
-                ForEach(TestStep.allCases, id: \.self) { step in
-                    row(step, outcome(step))
-                }
+                .skyRows()
             }
+            .skyPage()
             .navigationTitle(L("test_result_title"))
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {

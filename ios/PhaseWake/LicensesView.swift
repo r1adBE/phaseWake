@@ -23,27 +23,31 @@ struct LicensesView: View {
 
     var body: some View {
         List {
-            Section {
-                Text(L("settings_licenses_text_apple") + "\n" + L("settings_license_holidays"))
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-            }
-            Section {
-                ForEach(Self.components) { component in
-                    // Fehlt eine Datei im Bundle, fehlt nur ihre Zeile (die Übersicht oben bleibt).
-                    if let text = Self.text(component.file) {
-                        NavigationLink {
-                            LicenseTextView(title: component.name, text: text)
-                        } label: {
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text(verbatim: component.name)
-                                Text(verbatim: component.license).font(.footnote).foregroundStyle(.secondary)
+            Group {
+                Section {
+                    Text(L("settings_licenses_text_apple") + "\n" + L("settings_license_holidays"))
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
+                Section {
+                    ForEach(Self.components) { component in
+                        // Fehlt eine Datei im Bundle, fehlt nur ihre Zeile (die Übersicht oben bleibt).
+                        if let text = Self.text(component.file) {
+                            NavigationLink {
+                                LicenseTextView(title: component.name, text: text)
+                            } label: {
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(verbatim: component.name)
+                                    Text(verbatim: component.license).font(.footnote).foregroundStyle(.secondary)
+                                }
                             }
                         }
                     }
                 }
             }
+            .skyRows()
         }
+        .skyPage()
         .navigationTitle(L("settings_licenses"))
     }
 
@@ -67,6 +71,7 @@ private struct LicenseTextView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
         }
+        .skyPage()
         .navigationTitle(title)
         .navigationBarTitleDisplayMode(.inline)
     }

@@ -89,6 +89,12 @@ fun PhaseWakeTheme(content: @Composable () -> Unit) {
 }
 
 /**
+ * Stärke des Nachthimmels auf den Seiten der Uhr (Start mit Weckerliste, Editor, Powernap, Diagnose): schwach, OLED-schonend,
+ * der Rand bleibt schwarz. Schrift darauf ≥ 4.5:1 (WatchPagesContrastTest).
+ */
+const val PAGE_GLOW = 0.55f
+
+/**
  * Nachthimmel wie auf dem Handy: Mitternachts-Indigo mit Lavendel-Schein oben rechts. [strength] 0–1: auf dem
  * Startbildschirm schwach (OLED-schonend, Rand bleibt schwarz), beim Wecken voll. Ruhend, ohne Bewegung.
  */

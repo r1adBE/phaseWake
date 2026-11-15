@@ -10,22 +10,21 @@ struct LearnNightsView: View {
 
     var body: some View {
         let nights = Self.nights(model: model, now: Date())
-        ZStack {
-            if scheme == .dark { NightSky().ignoresSafeArea() } else { Brand.paper.ignoresSafeArea() }
-            ScrollView {
-                LazyVStack(alignment: .leading, spacing: 10) {
-                    Text(L("learn_nights_intro", Learning.nights))
-                        .font(Fonts.manrope(14, relativeTo: .subheadline))
-                        .foregroundStyle(Brand.secondaryText(scheme))
-                    if nights.isEmpty {
-                        Text(L("learn_nights_empty")).font(Fonts.manrope(15, relativeTo: .body))
-                    }
-                    ForEach(nights) { LearnNightRow(night: $0) }
+        // Himmel und Kopf wie auf der Startseite (`skyPage`).
+        ScrollView {
+            LazyVStack(alignment: .leading, spacing: 10) {
+                Text(L("learn_nights_intro", Learning.nights))
+                    .font(Fonts.manrope(14, relativeTo: .subheadline))
+                    .foregroundStyle(Brand.secondaryText(scheme))
+                if nights.isEmpty {
+                    Text(L("learn_nights_empty")).font(Fonts.manrope(15, relativeTo: .body))
                 }
-                .padding(.horizontal, 16)
-                .padding(.bottom, 24)
+                ForEach(nights) { LearnNightRow(night: $0) }
             }
+            .padding(.horizontal, 16)
+            .padding(.bottom, 24)
         }
+        .skyPage()
         .navigationTitle(L("learn_consent_title"))
     }
 

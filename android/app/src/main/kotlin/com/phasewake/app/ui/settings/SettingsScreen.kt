@@ -1,5 +1,9 @@
 package com.phasewake.app.ui.settings
 
+import com.phasewake.app.ui.components.PAGE_SIDE
+import com.phasewake.app.ui.components.PageTitle
+import com.phasewake.app.ui.components.SkyHeader
+import com.phasewake.app.ui.components.SkyPage
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -95,11 +99,15 @@ fun SettingsScreen(
     extras: SettingsExtras = SettingsExtras(),
 ) {
     val uri = LocalUriHandler.current
+    // Himmel wie auf der Startseite; der Titel steht im Kopf, hell randlos im Himmel.
+    SkyPage {
     Column(
-        Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(contentPadding).padding(horizontal = 16.dp),
+        Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(contentPadding).padding(horizontal = PAGE_SIDE),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        Text(stringResource(R.string.settings_title), style = MaterialTheme.typography.headlineMedium, modifier = Modifier.padding(start = 4.dp, bottom = 4.dp))
+        SkyHeader(bleedSide = PAGE_SIDE, bleedTop = contentPadding.calculateTopPadding()) {
+            PageTitle(stringResource(R.string.settings_title))
+        }
 
         Group(stringResource(R.string.settings_theme)) {
             val modes = listOf(
@@ -195,6 +203,7 @@ fun SettingsScreen(
         }
 
         AboutGroup(version, extras)
+    }
     }
 }
 

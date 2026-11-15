@@ -41,6 +41,7 @@ import com.phasewake.app.wear.R
 import com.phasewake.app.wear.ui.components.FlowingWave
 import com.phasewake.app.wear.ui.components.WindowRing
 import com.phasewake.app.wear.ui.theme.Brand
+import com.phasewake.app.wear.ui.theme.PAGE_GLOW
 import com.phasewake.app.wear.ui.theme.nightGlow
 import com.phasewake.app.wear.wake.ringReasonRes
 import java.time.Instant
@@ -74,7 +75,7 @@ internal fun HomeContent(
     val sleepAlarm = alarms.firstOrNull { it.id == plan?.alarmId && it.sleepDurationMinutes != null }
     val listState = rememberScalingLazyListState()
     ScreenScaffold(scrollState = listState) {
-        ScalingLazyColumn(state = listState, modifier = Modifier.fillMaxSize().nightGlow(strength = 0.55f)) {
+        ScalingLazyColumn(state = listState, modifier = Modifier.fillMaxSize().nightGlow(strength = PAGE_GLOW)) {
             item { NextWindow(plan, alarms.firstOrNull { it.id == plan?.alarmId }, zone, loading, extras) }
             if (sleepAlarm != null) {
                 item {

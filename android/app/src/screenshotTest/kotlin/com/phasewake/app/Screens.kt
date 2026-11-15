@@ -4,6 +4,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import com.phasewake.app.ui.components.LocalSkyMood
+import com.phasewake.app.ui.components.SkyMood
+import com.phasewake.app.ui.components.SkyPage
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -82,8 +86,11 @@ private val padding = PaddingValues(top = 24.dp, bottom = 96.dp)
 internal fun Themed(mode: ThemeMode, content: @Composable () -> Unit) {
     // Auf dem Gerät folgt die Standard-Sprache der App-Sprache; im Renderer muss man sie setzen.
     java.util.Locale.setDefault(java.util.Locale.forLanguageTag("de-CH"))
-    PhaseWakeTheme(mode) { Surface { content() } }
+    PhaseWakeTheme(mode) { CompositionLocalProvider(LocalSkyMood provides SHOT_MOOD) { Surface { content() } } }
 }
+
+/** Himmel der Seiten zur festen Testzeit (Morgendämmerung um 07:20), wie die Startseite in den Bildschirmfotos. */
+internal val SHOT_MOOD: SkyMood = SkyMood.at(FIXED_NOW, java.time.ZoneId.of("Europe/Zurich"), null)
 
 @Composable
 private fun Home(mode: ThemeMode, list: List<AlarmSpec>, check: NightCheckState = NightCheckState(emptyList())) = Themed(mode) {
@@ -176,10 +183,10 @@ fun HistoryLight() = Themed(ThemeMode.LIGHT) { HistoryScreen(nights, padding, lo
 fun HistoryDark() = Themed(ThemeMode.DARK) { HistoryScreen(nights, padding, loadStages = { stages }, trends = trends, healthConnected = false, charts = charts) }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf Diagramme hell", device = PHONE_TALL) @Composable
-fun HistoryChartsLight() = Themed(ThemeMode.LIGHT) { HistoryChartsStacked(charts, emptyList(), Modifier.padding(16.dp)) }
+fun HistoryChartsLight() = Themed(ThemeMode.LIGHT) { SkyPage { HistoryChartsStacked(charts, emptyList(), Modifier.padding(16.dp)) } }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf Diagramme dunkel", device = PHONE_TALL) @Composable
-fun HistoryChartsDark() = Themed(ThemeMode.DARK) { HistoryChartsStacked(charts, emptyList(), Modifier.padding(16.dp)) }
+fun HistoryChartsDark() = Themed(ThemeMode.DARK) { SkyPage { HistoryChartsStacked(charts, emptyList(), Modifier.padding(16.dp)) } }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Einstellungen hell", device = PHONE) @Composable
 fun SettingsLight() = Themed(ThemeMode.LIGHT) {

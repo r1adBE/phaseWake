@@ -128,6 +128,12 @@ struct NightSky: View {
     }
 }
 
+extension NightSky {
+    /// Stärke des Himmels auf den Seiten der Apple Watch (Start mit Weckerliste, Editor, Powernap, Diagnose): schwach,
+    /// der Rand bleibt schwarz; wie `PAGE_GLOW` auf Wear OS (Schrift ≥ 4.5:1, dort mit WatchPagesContrastTest geprüft).
+    static let watchPage = 0.55
+}
+
 /// Sterne der tiefen Nacht wie Android: feste Lage aus demselben Zufallsstrom, klein und gedämpft, nur in der oberen
 /// Hälfte. Ruhend.
 struct Stars: View {

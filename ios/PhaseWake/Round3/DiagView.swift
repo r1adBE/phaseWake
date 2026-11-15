@@ -50,33 +50,37 @@ struct DiagView: View {
 
     var body: some View {
         List {
-            Text(L("diag_hint")).font(.footnote).foregroundStyle(.secondary)
-            Section(L("diag_status")) {
-                ForEach(status, id: \.label) { row in
-                    LabeledContent(row.label, value: row.value)
+            Group {
+                Text(L("diag_hint")).font(.footnote).foregroundStyle(.secondary)
+                Section(L("diag_status")) {
+                    ForEach(status, id: \.label) { row in
+                        LabeledContent(row.label, value: row.value)
+                    }
+                }
+                Section {
+                    ShareLink(item: shareText) { Label(L("diag_share"), systemImage: "square.and.arrow.up") }
+                    Button(L("diag_fetch_watch")) { Task { await fetchWatch() } }
+                    if noAnswer { Text(L("diag_watch_no_answer")).font(.footnote) }
+                    Button(L("diag_clear"), role: .destructive) {
+                        DiagStore.shared.clear()
+                        entries = []
+                    }
+                    Toggle(L("diag_show"), isOn: Binding(get: { unlocked }, set: { on in
+                        DiagStore.shared.unlocked = on
+                        unlocked = on
+                        if !on { dismiss() }
+                    }))
+                }
+                Section(L("diag_events")) {
+                    if allEntries.isEmpty { Text(L("diag_empty")).foregroundStyle(.secondary) }
+                    ForEach(allEntries.indices.reversed(), id: \.self) { i in
+                        Text(DiagLog.format([allEntries[i]], timeZone: .current)).font(.caption.monospaced())
+                    }
                 }
             }
-            Section {
-                ShareLink(item: shareText) { Label(L("diag_share"), systemImage: "square.and.arrow.up") }
-                Button(L("diag_fetch_watch")) { Task { await fetchWatch() } }
-                if noAnswer { Text(L("diag_watch_no_answer")).font(.footnote) }
-                Button(L("diag_clear"), role: .destructive) {
-                    DiagStore.shared.clear()
-                    entries = []
-                }
-                Toggle(L("diag_show"), isOn: Binding(get: { unlocked }, set: { on in
-                    DiagStore.shared.unlocked = on
-                    unlocked = on
-                    if !on { dismiss() }
-                }))
-            }
-            Section(L("diag_events")) {
-                if allEntries.isEmpty { Text(L("diag_empty")).foregroundStyle(.secondary) }
-                ForEach(allEntries.indices.reversed(), id: \.self) { i in
-                    Text(DiagLog.format([allEntries[i]], timeZone: .current)).font(.caption.monospaced())
-                }
-            }
+            .skyRows()
         }
+        .skyPage()
         .navigationTitle(L("diag_title"))
         .task {
             entries = DiagStore.shared.entries()

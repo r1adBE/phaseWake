@@ -86,7 +86,7 @@ struct HomeView: View {
                 }
                 WatchVersionRow(unlocked: $diagUnlocked).listRowBackground(Color.clear)
             }
-            .background(NightSky(strength: 0.55))
+            .background(NightSky(strength: NightSky.watchPage))
             .scrollContentBackground(.hidden)
         }
         .sheet(isPresented: $choosingNap) {

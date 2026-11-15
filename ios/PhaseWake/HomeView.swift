@@ -225,21 +225,30 @@ struct HomeView: View {
     }
 }
 
-/// Karte auf dem Hintergrund: dunkel Weiss mit 6 %, hell weiss; Radius 22 wie auf Android.
+/// Karte auf dem Hintergrund: dunkel Weiss mit 6 % (auf den übrigen Seiten das dichtere Glas ``Brand/panel(_:)``),
+/// hell weiss; Radius 22 wie auf Android. `tinted`: Kennzahl mit einem Hauch der Hauptfarbe oben (wie `tileTint`).
 struct CardBackground: ViewModifier {
+    var tinted = false
     @Environment(\.colorScheme) private var scheme
+    @Environment(\.skyPanel) private var panel
     func body(content: Content) -> some View {
         content
             .padding(16)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Brand.card(scheme), in: RoundedRectangle(cornerRadius: Brand.cardRadius)).overlay(CardEdge())
+            .background {
+                if tinted {
+                    LinearGradient(colors: [Brand.accent(scheme).opacity(scheme == .dark ? 0.18 : 0.10), .clear], startPoint: .top, endPoint: .bottom)
+                        .clipShape(RoundedRectangle(cornerRadius: Brand.cardRadius))
+                }
+            }
+            .background(panel ? Brand.panel(scheme) : Brand.card(scheme), in: RoundedRectangle(cornerRadius: Brand.cardRadius)).overlay(CardEdge())
             .shadow(color: scheme == .dark ? .clear : .black.opacity(0.10), radius: 6, y: 2)
             .padding(.horizontal, 16)
     }
 }
 
 extension View {
-    func card() -> some View { modifier(CardBackground()) }
+    func card(tinted: Bool = false) -> some View { modifier(CardBackground(tinted: tinted)) }
 }
 
 private struct LastNightCard: View {

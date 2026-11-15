@@ -37,6 +37,7 @@ struct NightDetailView: View {
             }
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
+        .skyPage()
         .navigationTitle(index.map { Format.day(items[$0].at, in: items[$0].session?.timeZone) } ?? "")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {

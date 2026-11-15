@@ -85,6 +85,7 @@ struct HistoryView: View {
                 }
                 .padding(.vertical)
             }
+            .skyPage()
             .navigationTitle(L("history_title"))
             .navigationDestination(for: String.self) { key in
                 NightDetailView(items: items, stages: allStages, startKey: key, sourceName: sourceName, sessions: health.sessions)
@@ -222,7 +223,7 @@ struct HistoryView: View {
             }
         }
         .font(Fonts.manrope(16, .semibold, relativeTo: .headline))
-        .card()
+        .card(tinted: true)
     }
 }
 

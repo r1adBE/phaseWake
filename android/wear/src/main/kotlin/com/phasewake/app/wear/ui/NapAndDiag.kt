@@ -1,5 +1,7 @@
 package com.phasewake.app.wear.ui
 
+import com.phasewake.app.wear.ui.theme.PAGE_GLOW
+import com.phasewake.app.wear.ui.theme.nightGlow
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -88,7 +90,7 @@ internal fun NapScreen(initial: Int, onStart: (Int) -> Unit) {
         scrollState = listState,
         edgeButton = { EdgeButton(onClick = { onStart(minutes) }) { Text(stringResource(R.string.nap_start)) } },
     ) { padding ->
-        ScalingLazyColumn(state = listState, contentPadding = padding, modifier = Modifier.fillMaxSize()) {
+        ScalingLazyColumn(state = listState, contentPadding = padding, modifier = Modifier.fillMaxSize().nightGlow(strength = PAGE_GLOW)) {
             item { ListHeader { Text(stringResource(R.string.nap_title)) } }
             item {
                 Text(
@@ -116,12 +118,13 @@ internal fun DiagScreen(next: String?, version: String, entries: List<DiagEntry>
     val listState = rememberScalingLazyListState()
     val zone = ZoneId.systemDefault()
     ScreenScaffold(scrollState = listState) { padding ->
-        ScalingLazyColumn(state = listState, contentPadding = padding, modifier = Modifier.fillMaxSize()) {
+        ScalingLazyColumn(state = listState, contentPadding = padding, modifier = Modifier.fillMaxSize().nightGlow(strength = PAGE_GLOW)) {
             item { ListHeader { Text(stringResource(R.string.diag_title)) } }
             item { Text(stringResource(R.string.diag_next, next ?: "–"), style = MaterialTheme.typography.bodySmall, textAlign = TextAlign.Center) }
             item { Text(stringResource(R.string.diag_version, version), style = MaterialTheme.typography.bodySmall, color = Brand.Muted) }
-            item { Button(onClick = onClear, modifier = Modifier.fillMaxWidth(), label = { Text(stringResource(R.string.diag_clear)) }) }
-            item { Button(onClick = onHide, modifier = Modifier.fillMaxWidth(), label = { Text(stringResource(R.string.diag_hide)) }) }
+            // Ruhige Zeilen wie auf dem Start (getönt statt voll Lavendel).
+            item { Button(onClick = onClear, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.filledTonalButtonColors(), label = { Text(stringResource(R.string.diag_clear)) }) }
+            item { Button(onClick = onHide, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.filledTonalButtonColors(), label = { Text(stringResource(R.string.diag_hide)) }) }
             if (entries.isEmpty()) item { Text(stringResource(R.string.diag_empty), style = MaterialTheme.typography.bodySmall) }
             entries.sortedByDescending { it.at }.forEach { entry ->
                 item {

@@ -2,6 +2,8 @@ package com.phasewake.app
 
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import com.phasewake.app.ui.components.LocalSkyMood
 import androidx.compose.ui.tooling.preview.Preview
 import com.android.tools.screenshot.PreviewTest
 import com.phasewake.app.core.AlarmSpec
@@ -32,7 +34,7 @@ internal const val PHONE_SMALL_TALL = "spec:width=360dp,height=1700dp"
 @Composable
 internal fun ThemedIn(tag: String, mode: ThemeMode, content: @Composable () -> Unit) {
     java.util.Locale.setDefault(java.util.Locale.forLanguageTag(tag))
-    PhaseWakeTheme(mode) { Surface { content() } }
+    PhaseWakeTheme(mode) { CompositionLocalProvider(LocalSkyMood provides SHOT_MOOD) { Surface { content() } } }
 }
 
 private val ringing = PhoneRingService.State.Ringing(fromWatch = true, snoozesLeft = 3)

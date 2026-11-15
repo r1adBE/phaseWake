@@ -1,5 +1,6 @@
 package com.phasewake.app
 
+import com.phasewake.app.ui.components.SkyPage
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -91,8 +92,10 @@ fun NightDetailHealthDark() = Detail(ThemeMode.DARK, items.first { it.session !=
 private fun Selected(mode: ThemeMode) = Themed(mode) {
     val view = nightView(items.first { it.night != null }, ownStages)
     val model = view.hypno ?: return@Themed
-    ChartCard(stringResource(R.string.chart_stages_title), null, Modifier.fillMaxWidth().padding(16.dp)) {
-        StageHypnogram(model, height = 240.dp, initialMinute = model.totalMinutes / 2)
+    SkyPage {
+        ChartCard(stringResource(R.string.chart_stages_title), null, Modifier.fillMaxWidth().padding(16.dp)) {
+            StageHypnogram(model, height = 240.dp, initialMinute = model.totalMinutes / 2)
+        }
     }
 }
 

@@ -1,5 +1,6 @@
 package com.phasewake.app.diag
 
+import com.phasewake.app.ui.components.SkyBarPage
 import androidx.compose.foundation.layout.heightIn
 import android.content.Context
 import android.content.Intent
@@ -94,11 +95,10 @@ internal class DiagnosticsActions(
  */
 @Composable
 internal fun DiagnosticsContent(status: List<StatusLine>, entries: List<DiagEntry>, noAnswer: Boolean, actions: DiagnosticsActions) {
-    Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing)) {
-        Row(Modifier.fillMaxWidth().padding(4.dp)) {
-            IconButton(onClick = actions.onBack) { Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.onb_back)) }
-            Text(stringResource(R.string.diag_title), style = MaterialTheme.typography.titleLarge, modifier = Modifier.padding(top = 10.dp))
-        }
+    SkyBarPage(bar = {
+        IconButton(onClick = actions.onBack) { Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.onb_back)) }
+        Text(stringResource(R.string.diag_title), style = MaterialTheme.typography.titleLarge)
+    }) {
         LazyColumn(Modifier.fillMaxSize().padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             item { Text(stringResource(R.string.diag_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
             item {

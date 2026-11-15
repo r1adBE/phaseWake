@@ -1,5 +1,9 @@
 package com.phasewake.app.ui.sounds
 
+import com.phasewake.app.ui.components.skyCard
+import com.phasewake.app.ui.components.skyCardEdge
+import com.phasewake.app.ui.components.skyCardLift
+import com.phasewake.app.ui.components.SkyBarPage
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Arrangement
@@ -68,11 +72,10 @@ fun SoundsScreen(
     onStop: () -> Unit,
 ) {
     val context = LocalContext.current
-    Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing)) {
-        Row(Modifier.fillMaxWidth().padding(4.dp), verticalAlignment = Alignment.CenterVertically) {
-            IconButton(onClick = onBack) { Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.action_cancel)) }
-            Text(stringResource(R.string.sounds_title), style = MaterialTheme.typography.titleLarge)
-        }
+    SkyBarPage(bar = {
+        IconButton(onClick = onBack) { Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.action_cancel)) }
+        Text(stringResource(R.string.sounds_title), style = MaterialTheme.typography.titleLarge)
+    }) {
         Column(
             Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -149,9 +152,11 @@ private fun SoundTile(sound: SleepSound, active: Boolean, modifier: Modifier, on
     Card(
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(
-            containerColor = if (active) colors.primaryContainer else colors.surfaceContainer,
+            containerColor = if (active) colors.primaryContainer else skyCard(),
             contentColor = if (active) colors.onPrimaryContainer else colors.onSurface,
         ),
+        border = skyCardEdge(),
+        elevation = skyCardLift(),
         modifier = modifier.selectable(selected = active, role = Role.RadioButton, onClick = onClick),
     ) {
         Column(Modifier.fillMaxWidth().padding(16.dp)) {

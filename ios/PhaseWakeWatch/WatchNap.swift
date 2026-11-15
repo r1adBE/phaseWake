@@ -26,6 +26,9 @@ struct WatchNapView: View {
                     .font(Fonts.manrope(13, relativeTo: .footnote))
             }
         }
+        // Himmel wie auf dem Start der Uhr (ruhend, im Always-On nur dunkel).
+        .background(NightSky(strength: NightSky.watchPage))
+        .scrollContentBackground(.hidden)
         .navigationTitle(L("nap_title"))
     }
 }

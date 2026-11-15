@@ -28,6 +28,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.derivedStateOf
@@ -57,6 +58,7 @@ import com.phasewake.app.shared.PermissionAsks
 import com.phasewake.app.ring.PhoneRingActivity
 import com.phasewake.app.ring.PhoneRingService
 import com.phasewake.app.ui.components.Intro
+import com.phasewake.app.ui.components.LocalSkyMood
 import com.phasewake.app.ui.components.Night
 import com.phasewake.app.ui.history.Export
 import com.phasewake.app.ui.history.ExportDialog
@@ -247,7 +249,8 @@ private fun AppScaffold(app: com.phasewake.app.PhaseWakeApp, state: NavState, ac
         contentWindowInsets = WindowInsets.safeDrawing,
         bottomBar = {
             if (route !in FULL_SCREEN_ROUTES) {
-                val onNight = route == Routes.ALARMS && PhaseWakeTheme.isDark
+                // Dunkel liegt auf jeder Seite der Nachthimmel (wie auf der Startseite).
+                val onNight = PhaseWakeTheme.isDark
                 NavigationBar(containerColor = if (onNight) Night.Bar else MaterialTheme.colorScheme.surfaceContainerLow) {
                     tabs.forEach { tab ->
                         NavigationBarItem(
@@ -286,7 +289,9 @@ private fun AppScaffold(app: com.phasewake.app.PhaseWakeApp, state: NavState, ac
             top = padding.calculateTopPadding() + 12.dp,
             bottom = padding.calculateBottomPadding() + 12.dp,
         )
-        AppNavHost(app, state, actions, content, homeList)
+        CompositionLocalProvider(LocalSkyMood provides rememberSkyMood(state.data)) {
+            AppNavHost(app, state, actions, content, homeList)
+        }
     }
 }
 

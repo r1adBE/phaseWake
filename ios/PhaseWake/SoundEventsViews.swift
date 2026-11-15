@@ -101,21 +101,25 @@ private struct NightSoundsSheet: View {
         let clips = model.recorder.nightClips(night)
         NavigationStack {
             List {
-                if let summary = soundSummaryText(clips) {
-                    Text(summary).font(Fonts.manrope(14, relativeTo: .body))
-                }
-                Section(L("sound_clips_title")) {
-                    ForEach(clips) { clip in
-                        row(clip)
+                Group {
+                    if let summary = soundSummaryText(clips) {
+                        Text(summary).font(Fonts.manrope(14, relativeTo: .body))
                     }
-                    .onDelete { offsets in
-                        for index in offsets { delete(clips[index]) }
+                    Section(L("sound_clips_title")) {
+                        ForEach(clips) { clip in
+                            row(clip)
+                        }
+                        .onDelete { offsets in
+                            for index in offsets { delete(clips[index]) }
+                        }
+                    }
+                    if !clips.isEmpty {
+                        Button(L("sound_clips_delete_all"), role: .destructive) { confirmAll = true }
                     }
                 }
-                if !clips.isEmpty {
-                    Button(L("sound_clips_delete_all"), role: .destructive) { confirmAll = true }
-                }
+                .skyRows()
             }
+            .skyPage()
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
             .confirmationDialog(L("sound_clips_delete_all"), isPresented: $confirmAll, titleVisibility: .visible) {

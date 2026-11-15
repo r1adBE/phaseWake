@@ -1,5 +1,7 @@
 package com.phasewake.app.ui.editor
 
+import com.phasewake.app.ui.components.skyButtonColors
+import com.phasewake.app.ui.components.SkyBarPage
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.IntrinsicSize
 import android.app.Activity
@@ -124,18 +126,18 @@ fun EditorScreen(
     )
 
     // Randlos: Statusleiste oben, Navigationsleiste unten und Tastatur freihalten.
-    Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing)) {
-        Row(Modifier.fillMaxWidth().padding(horizontal = 4.dp, vertical = 4.dp), verticalAlignment = Alignment.CenterVertically) {
-            IconButton(onClick = back) { Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.action_cancel)) }
-            Text(
-                stringResource(if (existing == null) R.string.editor_new else R.string.editor_edit),
-                style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.weight(1f),
-            )
-            Button(onClick = { onSave(state.result(time)) }, modifier = Modifier.padding(end = 12.dp)) {
-                Text(stringResource(R.string.editor_save))
-            }
+    SkyBarPage(bar = {
+        IconButton(onClick = back) { Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.action_cancel)) }
+        Text(
+            stringResource(if (existing == null) R.string.editor_new else R.string.editor_edit),
+            style = MaterialTheme.typography.titleLarge,
+            modifier = Modifier.weight(1f),
+        )
+        // Im Himmel-Kopf immer der helle Knopf der Nacht (dunkel ohnehin die Hauptfarbe).
+        Button(onClick = { onSave(state.result(time)) }, colors = skyButtonColors(), modifier = Modifier.padding(end = 12.dp)) {
+            Text(stringResource(R.string.editor_save))
         }
+    }) {
         Column(
             Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp),

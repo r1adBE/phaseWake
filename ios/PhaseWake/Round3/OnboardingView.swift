@@ -45,6 +45,7 @@ struct OnboardingView: View {
                     .frame(maxWidth: .infinity, minHeight: geo.size.height, alignment: .leading)
                 }
             }
+            .skyPage()
             .safeAreaInset(edge: .bottom) { navigation }
             .toolbar {
                 if step < Self.steps {

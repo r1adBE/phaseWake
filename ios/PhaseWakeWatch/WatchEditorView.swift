@@ -113,6 +113,9 @@ struct WatchEditorView: View {
                     }
                 }
             }
+            // Himmel wie auf dem Start der Uhr (ruhend, im Always-On nur dunkel).
+            .background(NightSky(strength: NightSky.watchPage))
+            .scrollContentBackground(.hidden)
             .navigationTitle(L(isNew ? "editor_new" : "editor_edit"))
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {

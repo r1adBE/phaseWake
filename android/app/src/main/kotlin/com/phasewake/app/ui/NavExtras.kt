@@ -5,8 +5,12 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -27,6 +31,7 @@ import com.phasewake.app.holidays.HolidayCountry
 import com.phasewake.app.shared.NightRecording
 import com.phasewake.app.shared.RecordSync
 import com.phasewake.app.transient.Transients
+import com.phasewake.app.ui.components.SkyMood
 import com.phasewake.app.ui.home.HomeExtras
 import com.phasewake.app.ui.home.HomeLearning
 import com.phasewake.app.ui.home.goodNightOffered
@@ -39,11 +44,35 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 // Neues aus Runde 3 für die Bildschirme: Startseite (Powernap, Überspringen, Probewecker) und Einstellungen.
+
+/**
+ * Stimmung des Himmels für Verlauf, Einstellungen und die übrigen Seiten, wie auf der Startseite: aus der Tageszeit und
+ * dem nächsten Weckfenster ([SkyMood.at]), jede Minute neu.
+ */
+@Composable
+internal fun rememberSkyMood(data: AppData): SkyMood {
+    var now by remember { mutableStateOf(Instant.now()) }
+    LaunchedEffect(Unit) {
+        while (true) {
+            delay(SKY_TICK_MS)
+            now = Instant.now()
+        }
+    }
+    val zone = ZoneId.systemDefault()
+    val plan = remember(data.alarms, now, data.holidays, data.doneUntil) {
+        AlarmSchedule.earliestPlan(data.alarms, now, zone, data.holidays, data.doneUntil)
+    }
+    return SkyMood.at(now, zone, plan?.windowStart, plan?.target)
+}
+
+/** So oft rechnet der Himmel der Seiten seine Stimmung neu. */
+private const val SKY_TICK_MS = 60_000L
 
 /** Weitere Ziele der Navigation (ohne untere Leiste). */
 internal object ExtraRoutes {

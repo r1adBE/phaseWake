@@ -102,6 +102,7 @@ struct SoundsSheet: View {
                 }
                 .padding()
             }
+            .skyPage()
             .navigationTitle(L("sounds_title"))
             .navigationBarTitleDisplayMode(.inline)
         }

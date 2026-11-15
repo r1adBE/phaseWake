@@ -1,5 +1,8 @@
 package com.phasewake.app.ui.history
 
+import com.phasewake.app.ui.components.skyCardColors
+import com.phasewake.app.ui.components.skyCardEdge
+import com.phasewake.app.ui.components.skyCardLift
 import android.content.Context
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -12,7 +15,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.PathEffect
@@ -179,13 +180,14 @@ internal fun NightTiles(stats: NightStages, withLatency: Boolean = true) {
 @Composable
 private fun NightTile(label: String, value: String, modifier: Modifier) {
     val scheme = MaterialTheme.colorScheme
-    val top = tileTop(scheme.primary, scheme.surfaceContainer, com.phasewake.app.ui.theme.PhaseWakeTheme.isDark)
     Card(
         shape = MaterialTheme.shapes.medium,
-        colors = CardDefaults.cardColors(containerColor = scheme.surfaceContainer),
+        colors = skyCardColors(),
+        border = skyCardEdge(),
+        elevation = skyCardLift(),
         modifier = modifier.semantics(mergeDescendants = true) { },
     ) {
-        Column(Modifier.background(Brush.verticalGradient(listOf(top, scheme.surfaceContainer))).padding(16.dp)) {
+        Column(Modifier.background(tileTint(scheme.primary)).padding(16.dp)) {
             Text(value, style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.ExtraBold))
             Text(label, style = MaterialTheme.typography.labelMedium, color = scheme.onSurfaceVariant)
         }
@@ -200,7 +202,9 @@ internal fun NightExtras(item: HistoryItem, data: NightDetailData, actions: Nigh
     val night = item.night
     Card(
         shape = MaterialTheme.shapes.medium,
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
+        colors = skyCardColors(),
+        border = skyCardEdge(),
+        elevation = skyCardLift(),
         modifier = Modifier.fillMaxWidth(),
     ) {
         Column(Modifier.padding(16.dp)) {

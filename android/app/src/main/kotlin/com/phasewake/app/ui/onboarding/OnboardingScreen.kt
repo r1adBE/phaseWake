@@ -1,5 +1,11 @@
 package com.phasewake.app.ui.onboarding
 
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.only
+import androidx.compose.material3.ButtonDefaults
+import com.phasewake.app.ui.components.Night
+import com.phasewake.app.ui.components.SkyHeader
+import com.phasewake.app.ui.components.SkyPage
 import android.os.SystemClock
 import android.text.format.DateFormat
 import androidx.activity.compose.BackHandler
@@ -146,16 +152,23 @@ internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: Onboardi
         lockedUntil = now + PAGE_TAP_LOCK_MS
         action()
     }
-    Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing).padding(horizontal = 20.dp)) {
-        Row(Modifier.fillMaxWidth().padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-            Text(
-                if (page < STEPS) stringResource(R.string.onb_step, page + 1, STEPS) else "",
-                style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.weight(1f),
-            )
-            if (page < STEPS) TextButton(onClick = onDone) { Text(stringResource(R.string.onb_skip)) }
+    // Himmel wie auf der Startseite; Schrittzahl und «Überspringen» im Kopf (hell ein Stück Nachthimmel), in Nachtfarben.
+    SkyPage {
+    Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom))) {
+        SkyHeader(statusBar = true) {
+            Row(Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp, top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    if (page < STEPS) stringResource(R.string.onb_step, page + 1, STEPS) else "",
+                    style = MaterialTheme.typography.labelLarge,
+                    color = Night.Muted,
+                    modifier = Modifier.weight(1f),
+                )
+                if (page < STEPS) {
+                    TextButton(onClick = onDone, colors = ButtonDefaults.textButtonColors(contentColor = Night.Wave)) { Text(stringResource(R.string.onb_skip)) }
+                }
+            }
         }
+    Column(Modifier.weight(1f).padding(horizontal = 20.dp)) {
         // Inhalt senkrecht mittig (Gestaltung 2); längere Schritte scrollen.
         BoxWithConstraints(Modifier.weight(1f)) {
         Column(
@@ -201,6 +214,8 @@ internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: Onboardi
                 else -> Button(onClick = { tap(onDone) }) { Text(stringResource(R.string.onb_finish)) }
             }
         }
+    }
+    }
     }
 }
 

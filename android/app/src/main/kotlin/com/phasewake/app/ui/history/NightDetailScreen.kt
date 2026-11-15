@@ -4,6 +4,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.only
+import com.phasewake.app.ui.components.SkyHeader
+import com.phasewake.app.ui.components.SkyPage
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -133,7 +137,10 @@ internal fun NightDetailScreen(data: NightDetailData, startKey: String?, actions
     val pager = rememberPagerState(initialPage = start) { pages.size }
     val scope = rememberCoroutineScope()
     val current = pages[pager.currentPage.coerceIn(0, pages.lastIndex)]
-    Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing)) {
+    // Himmel wie auf der Startseite; hell trägt der Kopf mit Datum und Pfeilen ein Stück Nachthimmel.
+    SkyPage {
+    Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom))) {
+        SkyHeader(statusBar = true) {
         Row(Modifier.fillMaxWidth().padding(4.dp), verticalAlignment = Alignment.CenterVertically) {
             IconButton(onClick = actions.onBack) { Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.action_cancel)) }
             Text(
@@ -150,9 +157,11 @@ internal fun NightDetailScreen(data: NightDetailData, startKey: String?, actions
                 Icon(painterResource(R.drawable.ic_chevron_end), contentDescription = stringResource(R.string.night_next))
             }
         }
-        HorizontalPager(state = pager, key = { pages[it].key }, verticalAlignment = Alignment.Top, modifier = Modifier.weight(1f)) { page ->
+        }
+        HorizontalPager(state = pager, key = { pages[it].key }, verticalAlignment = Alignment.Top, modifier = Modifier.weight(1f).padding(top = 8.dp)) { page ->
             NightDetailPage(pages[page], data, actions)
         }
+    }
     }
 }
 

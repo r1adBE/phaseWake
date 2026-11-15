@@ -59,6 +59,11 @@ object Night {
     val MutedSoft = Color(0xFFC9C3E6).copy(alpha = 0.8f)
     /** Navigationsleiste auf dem Nachthimmel: untere Verlaufsfarbe mit 93 %. */
     val Bar = Color(0xFF070914).copy(alpha = 0.93f)
+    /**
+     * Karten der Seiten ausser der Startseite: Diagrammkarte #161B3A mit 72 % als dichteres Glas. Darauf behalten
+     * Phasenfarben und Ränder auch über dem Abendrot ≥ 3:1 und Schrift ≥ 4.5:1 (SkyPageContrastTest).
+     */
+    val Panel = Color(0xFF161B3A).copy(alpha = 0.72f)
 }
 
 /**
