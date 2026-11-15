@@ -67,9 +67,22 @@ struct StageChart: View {
     var height: CGFloat = StageChart.defaultHeight
     @Environment(\.colorScheme) private var scheme
     @State private var selected: Double?
+    /// Breite des ganzen Diagramms in Punkten (für die Mindestbreite des Scheins).
+    @State private var chartWidth: CGFloat = 0
 
     /// Höhe der Zeichenfläche in Punkten (Auftrag: 200–240).
     static let defaultHeight: CGFloat = 220
+    /// Mindestbreite eines Blocks in Punkten für den Schein; schmalere Blöcke bleiben scharf (wie Android `GLOW_MIN`).
+    private static let glowMin: CGFloat = 8
+    /// Mindestbreite eines Blocks in Punkten für gerundete Ecken; schmalere bleiben eckig (wie Android `ROUND_MIN`).
+    private static let roundMin: CGFloat = 6
+    /// Ungefähre Breite der Zeilenbeschriftung links, die von der Zeichenfläche abgeht.
+    private static let labelWidth: CGFloat = 56
+
+    /// Ungefähre Breite eines Blocks von `minutes` Länge in Punkten (0, solange die Breite unbekannt ist).
+    private func blockWidth(_ minutes: Double) -> CGFloat {
+        max(0, chartWidth - Self.labelWidth) * minutes / max(1, timeline.totalMinutes)
+    }
 
     private var names: [String] { stageRows.map(stageName) }
 
@@ -80,6 +93,7 @@ struct StageChart: View {
             bubble.frame(minHeight: 30, alignment: .leading)
             chart
                 .frame(height: height)
+                .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { chartWidth = $0 }
                 .sensoryFeedback(.selection, trigger: selectedIndex)
         }
     }
@@ -152,18 +166,21 @@ struct StageChart: View {
         let step = timeline.steps[i]
         let name = stageName(step.stage)
         let color = StageColors.color(step.stage, scheme)
-        // Plastisch wie Android: Verlauf (dunkel oben aufgehellt, hell unten vertieft), weicher Schein in der Phasenfarbe.
+        // Plastisch wie Android: Verlauf (dunkel oben aufgehellt, hell unten vertieft); schwacher, schmaler Schein in der
+        // Phasenfarbe nur bei breiten Blöcken, damit viele kurze Blöcke nicht zu einem Brei verschmieren.
+        let width = blockWidth(step.toMinute - step.fromMinute)
+        let wide = width >= Self.glowMin
         RectangleMark(xStart: .value("from", step.fromMinute), xEnd: .value("to", max(step.toMinute, step.fromMinute + 0.5)),
                       y: .value("stage", name), height: .ratio(0.76))
             .foregroundStyle(StageColors.plastic(color, scheme))
             .opacity(selectedIndex == nil || selectedIndex == i ? 1 : 0.55)
-            .cornerRadius(6)
-            .shadow(color: color.opacity(0.45), radius: 4)
+            .cornerRadius(width >= Self.roundMin ? min(6, width / 4) : 0)
+            .shadow(color: wide ? color.opacity(0.25) : .clear, radius: wide ? 2 : 0)
             .accessibilityLabel(Text(verbatim: L("hypno_block", name, Format.time(timeline.time(step.fromMinute), in: timeline.timeZone), Format.time(timeline.time(step.toMinute), in: timeline.timeZone))))
         if i + 1 < timeline.steps.count, abs(timeline.steps[i + 1].fromMinute - step.toMinute) < 1 {
             RuleMark(x: .value("at", step.toMinute), yStart: .value("stage", name), yEnd: .value("stage", stageName(timeline.steps[i + 1].stage)))
                 .foregroundStyle(StageColors.link(scheme))
-                .lineStyle(StrokeStyle(lineWidth: 1.5))
+                .lineStyle(StrokeStyle(lineWidth: 1))
                 .accessibilityHidden(true)
         }
     }

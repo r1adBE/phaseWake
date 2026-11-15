@@ -49,6 +49,7 @@ import java.time.Duration
 import java.time.Instant
 import java.time.ZoneId
 import java.time.temporal.ChronoUnit
+import kotlin.math.roundToInt
 
 // Gestuftes Hypnogramm: vier Zeilen (oben wach, REM, leicht, unten tief), gefüllte, abgerundete Blöcke je Phase.
 
@@ -203,10 +204,16 @@ internal fun DrawScope.drawWindowBand(color: Color, topLeft: Offset, area: Size)
 }
 
 /**
- * Blöcke als gerundete, plastische Rechtecke je Zeile: kräftige Phasenfarbe im Verlauf (dunkel oben aufgehellt, hell
- * unten vertieft – so entfernt sich die Farbe nie Richtung Karte und behält ihren Kontrast), oben eine feine Glanzkante,
- * darunter ein weicher Schein; dazu ein leiser Farbschleier von jedem Block bis zum Boden. Aneinanderstossende Phasen
- * verbindet eine Stufenlinie im Verlauf von der einen zur anderen Phasenfarbe.
+ * Blöcke je Zeile, auf ganze Pixel gesetzt (keine weichen Kanten), mindestens 1 px breit und nie aufgeblasen; Ecken
+ * nur gerundet, wo ein Block mindestens [ROUND_MIN] breit ist, sonst eckig.
+ *
+ * [glow] (grosses Hypnogramm): kräftige Phasenfarbe im Verlauf (dunkel oben aufgehellt, hell unten vertieft – so
+ * entfernt sich die Farbe nie Richtung Karte und behält ihren Kontrast), oben eine feine Glanzkante; nur breite Blöcke
+ * (ab [GLOW_MIN]) bekommen einen schwachen, schmalen Schein und einen leisen Farbschleier bis zum Boden. Stufenlinien
+ * im Verlauf von der einen zur anderen Phasenfarbe.
+ *
+ * Ohne [glow] (kleines Hypnogramm der Nachtkarte): flache, kräftige Phasenfarbe ohne Schein, Schleier und Glanz; die
+ * Stufenlinien sind 1 px dünn in [connector]. Viele kurze Blöcke (z. B. aus Samsung Health) bleiben so scharf.
  */
 internal fun DrawScope.drawBlocks(
     model: HypnoModel,
@@ -216,49 +223,67 @@ internal fun DrawScope.drawBlocks(
     connector: Color,
     corner: Float,
     dark: Boolean,
+    glow: Boolean = true,
 ) {
     val lane = area.height / stageOrder.size
-    val barHeight = lane * 0.76f
-    fun x(at: Instant) = origin.x + area.width * model.fraction(at)
+    val barHeight = (lane * 0.76f).roundToInt().toFloat()
+    val floor = origin.y + area.height
+    fun x(at: Instant) = (origin.x + area.width * model.fraction(at)).roundToInt().toFloat()
     var previous: StageBlock? = null
     model.blocks.forEach { block ->
         val level = ChartData.level(block.stage) ?: return@forEach
         val cy = origin.y + lane * (level + 0.5f)
         val color = colors[block.stage] ?: connector
         val x0 = x(block.start)
-        val w = (x(block.end) - x0).coerceAtLeast(2.dp.toPx())
-        // Schleier bis zum Boden: Das Profil wirkt wie eine farbige Landschaft.
-        val floor = origin.y + area.height
-        drawRect(
-            Brush.verticalGradient(listOf(color.copy(alpha = 0.22f), color.copy(alpha = 0f)), startY = cy, endY = floor),
-            Offset(x0, cy), Size(w, (floor - cy).coerceAtLeast(0f)),
-        )
+        val w = (x(block.end) - x0).coerceAtLeast(1f)
+        val top = (cy - barHeight / 2).roundToInt().toFloat()
+        val wide = w >= GLOW_MIN.toPx()
+        // Schleier bis zum Boden (nur breite Blöcke im grossen Hypnogramm): Das Profil wirkt wie eine farbige Landschaft.
+        if (glow && wide) {
+            drawRect(
+                Brush.verticalGradient(listOf(color.copy(alpha = 0.16f), color.copy(alpha = 0f)), startY = cy, endY = floor),
+                Offset(x0, cy), Size(w, (floor - cy).coerceAtLeast(0f)),
+            )
+        }
         previous?.let { p ->
             val pl = ChartData.level(p.stage)
             if (pl != null && !block.start.isAfter(p.end.plusSeconds(60))) {
-                val from = Offset(x(block.start), origin.y + lane * (pl + 0.5f))
-                val to = Offset(x(block.start), cy)
-                val fromColor = colors[p.stage] ?: connector
-                drawLine(Brush.linearGradient(listOf(fromColor, color), start = from, end = to), from, to, strokeWidth = 1.5.dp.toPx())
+                val from = Offset(x0, origin.y + lane * (pl + 0.5f))
+                val to = Offset(x0, cy)
+                if (glow) {
+                    val fromColor = colors[p.stage] ?: connector
+                    drawLine(Brush.linearGradient(listOf(fromColor, color), start = from, end = to), from, to, strokeWidth = 1.dp.toPx())
+                } else {
+                    // Haarlinie auf der Pixelmitte, damit sie nicht über zwei Pixel verschwimmt.
+                    val px = Offset(0.5f, 0f)
+                    drawLine(connector, from + px, to + px, strokeWidth = 1f)
+                }
             }
         }
-        val halo = 3.dp.toPx()
-        val r = minOf(corner, w / 2)
-        drawRoundRect(
-            color.copy(alpha = 0.22f),
-            Offset(x0 - halo, cy - barHeight / 2 - halo), Size(w + 2 * halo, barHeight + 2 * halo),
-            CornerRadius(r + halo),
-        )
-        val top = cy - barHeight / 2
-        val (upper, lower) = if (dark) mixColor(color, Color.White, 0.35f) to color else color to mixColor(color, Color.Black, 0.25f)
-        drawRoundRect(Brush.verticalGradient(listOf(upper, lower), startY = top, endY = top + barHeight), Offset(x0, top), Size(w, barHeight), CornerRadius(r))
-        // Glanzkante oben (nur wo der Block breit genug ist).
-        if (w > 2 * r + 2.dp.toPx()) {
-            drawLine(Color.White.copy(alpha = if (dark) 0.45f else 0.35f), Offset(x0 + r, top + 1.dp.toPx()), Offset(x0 + w - r, top + 1.dp.toPx()), strokeWidth = 1.dp.toPx())
+        val r = if (w >= ROUND_MIN.toPx()) minOf(corner, w / 4) else 0f
+        if (glow && wide) {
+            val halo = 1.5.dp.toPx()
+            drawRoundRect(color.copy(alpha = 0.14f), Offset(x0 - halo, top - halo), Size(w + 2 * halo, barHeight + 2 * halo), CornerRadius(r + halo))
+        }
+        if (glow) {
+            val (upper, lower) = if (dark) mixColor(color, Color.White, 0.35f) to color else color to mixColor(color, Color.Black, 0.25f)
+            drawRoundRect(Brush.verticalGradient(listOf(upper, lower), startY = top, endY = top + barHeight), Offset(x0, top), Size(w, barHeight), CornerRadius(r))
+            // Glanzkante oben (nur wo der Block breit genug ist).
+            if (w > 2 * r + 2.dp.toPx()) {
+                drawLine(Color.White.copy(alpha = if (dark) 0.45f else 0.35f), Offset(x0 + r, top + 1.dp.toPx()), Offset(x0 + w - r, top + 1.dp.toPx()), strokeWidth = 1.dp.toPx())
+            }
+        } else {
+            drawRoundRect(color, Offset(x0, top), Size(w, barHeight), CornerRadius(r))
         }
         previous = block
     }
 }
+
+/** Mindestbreite eines Blocks für Schein und Schleier im grossen Hypnogramm. */
+private val GLOW_MIN = 8.dp
+
+/** Mindestbreite eines Blocks für gerundete Ecken; schmalere Blöcke bleiben eckig. */
+private val ROUND_MIN = 6.dp
 
 /** Beginn, zwei Zwischenzeiten (auf volle Stunden, wenn möglich) und Ende. */
 private fun axisTicks(model: HypnoModel): List<Instant> {
@@ -318,7 +343,7 @@ internal fun MiniHypnogram(model: HypnoModel, modifier: Modifier = Modifier) {
             val x0 = size.width * model.fraction(w.start)
             drawWindowBand(scheme.primary, Offset(x0, 0f), Size(size.width * model.fraction(w.target) - x0, size.height))
         }
-        clipRect(right = size.width * reveal) { drawBlocks(model, colors, Offset.Zero, size, scheme.outline, 4.dp.toPx(), dark) }
+        clipRect(right = size.width * reveal) { drawBlocks(model, colors, Offset.Zero, size, scheme.outlineVariant, 3.dp.toPx(), dark, glow = false) }
         model.window?.let { w -> drawCircle(scheme.primary, 3.5.dp.toPx(), Offset(size.width * model.fraction(w.wokeAt), 3.5.dp.toPx())) }
     }
 }
