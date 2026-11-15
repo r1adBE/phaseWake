@@ -72,8 +72,6 @@ struct StageChart: View {
 
     /// Höhe der Zeichenfläche in Punkten (Auftrag: 200–240).
     static let defaultHeight: CGFloat = 220
-    /// Mindestbreite eines Blocks in Punkten für den Schein; schmalere Blöcke bleiben scharf (wie Android `GLOW_MIN`).
-    private static let glowMin: CGFloat = 8
     /// Mindestbreite eines Blocks in Punkten für gerundete Ecken; schmalere bleiben eckig (wie Android `ROUND_MIN`).
     private static let roundMin: CGFloat = 6
     /// Ungefähre Breite der Zeilenbeschriftung links, die von der Zeichenfläche abgeht.
@@ -166,16 +164,13 @@ struct StageChart: View {
         let step = timeline.steps[i]
         let name = stageName(step.stage)
         let color = StageColors.color(step.stage, scheme)
-        // Plastisch wie Android: Verlauf (dunkel oben aufgehellt, hell unten vertieft); schwacher, schmaler Schein in der
-        // Phasenfarbe nur bei breiten Blöcken, damit viele kurze Blöcke nicht zu einem Brei verschmieren.
+        // Schlicht wie Android (Entscheid r1AD 15.11.): flache Phasenfarbe, kein Verlauf, kein Schein.
         let width = blockWidth(step.toMinute - step.fromMinute)
-        let wide = width >= Self.glowMin
         RectangleMark(xStart: .value("from", step.fromMinute), xEnd: .value("to", max(step.toMinute, step.fromMinute + 0.5)),
                       y: .value("stage", name), height: .ratio(0.76))
-            .foregroundStyle(StageColors.plastic(color, scheme))
+            .foregroundStyle(color)
             .opacity(selectedIndex == nil || selectedIndex == i ? 1 : 0.55)
             .cornerRadius(width >= Self.roundMin ? min(6, width / 4) : 0)
-            .shadow(color: wide ? color.opacity(0.25) : .clear, radius: wide ? 2 : 0)
             .accessibilityLabel(Text(verbatim: L("hypno_block", name, Format.time(timeline.time(step.fromMinute), in: timeline.timeZone), Format.time(timeline.time(step.toMinute), in: timeline.timeZone))))
         if i + 1 < timeline.steps.count, abs(timeline.steps[i + 1].fromMinute - step.toMinute) < 1 {
             RuleMark(x: .value("at", step.toMinute), yStart: .value("stage", name), yEnd: .value("stage", stageName(timeline.steps[i + 1].stage)))

@@ -207,7 +207,8 @@ internal fun DrawScope.drawWindowBand(color: Color, topLeft: Offset, area: Size)
  * Blöcke je Zeile, auf ganze Pixel gesetzt (keine weichen Kanten), mindestens 1 px breit und nie aufgeblasen; Ecken
  * nur gerundet, wo ein Block mindestens [ROUND_MIN] breit ist, sonst eckig.
  *
- * [glow] (grosses Hypnogramm): kräftige Phasenfarbe im Verlauf (dunkel oben aufgehellt, hell unten vertieft – so
+ * Entscheid r1AD 15.11.: beide Hypnogramme schlicht, ohne Schein – [glow] bleibt nur als Option.
+ * [glow]: kräftige Phasenfarbe im Verlauf (dunkel oben aufgehellt, hell unten vertieft – so
  * entfernt sich die Farbe nie Richtung Karte und behält ihren Kontrast), oben eine feine Glanzkante; nur breite Blöcke
  * (ab [GLOW_MIN]) bekommen einen schwachen, schmalen Schein und einen leisen Farbschleier bis zum Boden. Stufenlinien
  * im Verlauf von der einen zur anderen Phasenfarbe.
@@ -223,7 +224,7 @@ internal fun DrawScope.drawBlocks(
     connector: Color,
     corner: Float,
     dark: Boolean,
-    glow: Boolean = true,
+    glow: Boolean = false,
 ) {
     val lane = area.height / stageOrder.size
     val barHeight = (lane * 0.76f).roundToInt().toFloat()
