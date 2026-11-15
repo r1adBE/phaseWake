@@ -13,6 +13,7 @@ backup-v2.pwbak.b64
 baseline_median_six.night
 calibration-real.vectors
 deep_sleep.night
+findings-onset.vectors
 findings.vectors
 hr_rise_exact.night
 learn-nights.vectors

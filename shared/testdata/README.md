@@ -39,6 +39,10 @@ kalibrieren (Abschnitt 4, Audit c3b8b01 E-2: Grundrauschen je Nacht abziehen, Wa
 und die Fakten der Nächte (Format im Kopf der Datei): jede Grenze knapp darunter, genau und knapp darüber, zu wenige
 Nächte, keine Phasen, Zusammenhang, Zeitzone, Priorität und die echten Werte des Besitzers. Beide Kerne prüfen alle Zeilen.
 
+`findings-onset.vectors`: je Zeile die erwartete Einschlafdauer aus der eigenen Messung der Uhr (`Findings.ownLatency`,
+Entscheid r1AD 15.11.2026), die Nacht der Gesundheits-App und die Aufzeichnungen mit erkanntem Einschlafen (Format im
+Kopf der Datei): keine, nur berührt, Einschlafzeit vor dem Beginn, längste Überschneidung, Gleichstand. Beide Kerne prüfen alle Zeilen.
+
 ## Passwort-Regel
 
 `backup-password.vectors`: je Zeile erwartetes Ergebnis (`OK`, `TOO_SHORT`, `TRIVIAL`), Tabulator, Passwort (UTF-8, teils in NFD). Beide Kerne prüfen alle Zeilen (`BackupPassword`), Kotlin zusätzlich mit Türkisch als Gerätesprache.

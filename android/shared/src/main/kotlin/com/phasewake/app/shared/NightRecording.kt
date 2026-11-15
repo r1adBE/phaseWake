@@ -4,6 +4,7 @@ import com.phasewake.app.core.CsvNumbers
 import com.phasewake.app.core.DetectorConfig
 import com.phasewake.app.core.Epoch
 import com.phasewake.app.core.Learning
+import com.phasewake.app.core.OwnOnset
 import com.phasewake.app.core.TimeBounds
 import java.time.Duration
 import java.time.Instant
@@ -53,6 +54,15 @@ data class NightRecording(
 ) {
     /** Für die Lernphase ([com.phasewake.app.core.Learning]). */
     fun toLearnNight(): Learning.Night = Learning.Night(start, epochs, bedAt, asleepAt)
+
+    /**
+     * Eigene Messung des Einschlafens für die Auffälligkeiten ([com.phasewake.app.core.Findings.ownLatency]): nur
+     * abgeschlossen und mit erkanntem Einschlafen, sonst `null`.
+     */
+    fun ownOnset(): OwnOnset? {
+        val until = end ?: return null
+        return OwnOnset(start, until, bedAt ?: return null, asleepAt ?: return null)
+    }
 
     /** Abgeschlossen (Ende gespeichert)? */
     val finished: Boolean get() = end != null

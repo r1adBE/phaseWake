@@ -34,6 +34,7 @@ import com.phasewake.app.core.BatteryTrack
 import com.phasewake.app.core.HistoryItem
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.NightStages
+import com.phasewake.app.core.SleepStage
 import com.phasewake.app.core.SoundEvents
 import com.phasewake.app.core.StageTotal
 import com.phasewake.app.ui.Format
@@ -67,7 +68,7 @@ private fun typicalText(context: Context, total: StageTotal): String =
     else context.getString(R.string.stages_typical_range, total.range.low, total.range.high)
 
 /**
- * Phasen-Summen unter dem Hypnogramm (in derselben Karte, ein Titel): je Phase Name, Anteil, Dauer und Balken über einem hellen, gestrichelt umrandeten «üblichen
+ * Phasen-Summen unter dem Hypnogramm (in derselben Karte, ein Titel): je Phase Name, Anteil am Schlaf, Dauer und Balken (wach nur Dauer) über einem hellen, gestrichelt umrandeten «üblichen
  * Bereich»; darunter die Legende und einmal Quelle samt «Keine medizinische Bewertung.». Bewusst ohne wertenden Satz
  * zur Nacht: Uhren schätzen Phasen nur ungefähr.
  */
@@ -102,7 +103,10 @@ private fun androidx.compose.ui.graphics.drawscope.DrawScope.typicalBand(color: 
     )
 }
 
-/** Eine Phase: Name mit Farbmarke, Anteil und Dauer, Balken mit üblichem Bereich, darunter der Bereich als Text. */
+/**
+ * Eine Phase: Name mit Farbmarke, Anteil am Schlaf und Dauer, Balken mit üblichem Bereich, darunter der Bereich als Text.
+ * Wach nur mit Dauer (Entscheid r1AD 15.11.2026): kein Anteil am Schlaf, darum ohne Balken und Bereich.
+ */
 @Composable
 private fun StageTotalRow(total: StageTotal) {
     val context = LocalContext.current
@@ -110,8 +114,16 @@ private fun StageTotalRow(total: StageTotal) {
     val color = stageColors().getValue(total.stage)
     val brand = com.phasewake.app.ui.theme.PhaseWakeTheme.brand
     val name = stageName(context, total.stage)
-    val share = stringResource(R.string.stages_share, total.percent)
     val duration = Format.duration(context, Duration.ofMinutes(total.minutes))
+    if (total.stage == SleepStage.AWAKE) {
+        Row(Modifier.fillMaxWidth().semantics(mergeDescendants = true) { contentDescription = "$name: $duration" }, verticalAlignment = Alignment.CenterVertically) {
+            Canvas(Modifier.size(10.dp)) { drawRoundRect(color, cornerRadius = CornerRadius(2.dp.toPx())) }
+            Text(name, style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(start = 8.dp).weight(1f))
+            Text(duration, style = MaterialTheme.typography.titleSmall)
+        }
+        return
+    }
+    val share = stringResource(R.string.stages_share, total.percent)
     val typical = typicalText(context, total)
     Column(Modifier.fillMaxWidth().semantics(mergeDescendants = true) { contentDescription = "$name: $share, $duration. $typical" }) {
         Row(verticalAlignment = Alignment.CenterVertically) {

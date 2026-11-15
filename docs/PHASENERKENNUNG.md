@@ -167,7 +167,9 @@ Galaxy Watch mit Android-Handy (Entscheid r1AD 09.11.2026) und Apple Watch mit i
 
 ## 11. Schlafwert
 
-Nur zur Orientierung, keine medizinische Bewertung. Rechnet der Kern (`SleepScore`, Android und Swift gleich). Jeder Faktor gibt 0–100 Punkte (ganze Zahl, kaufmännisch gerundet); Prozente sind die Anteile der Phasen wie auf der Detailseite (wach, REM, leicht, tief zusammen 100).
+Nur zur Orientierung, keine medizinische Bewertung. Rechnet der Kern (`SleepScore`, Android und Swift gleich). Jeder Faktor gibt 0–100 Punkte (ganze Zahl, kaufmännisch gerundet); Prozente wie auf der Detailseite (`StageTotal.percent`): Tief und REM als Anteil am Schlaf, Wach als Anteil an allen vier Phasen.
+
+- **Anteile der Phasen** (Detailseite und Schlafwert, Entscheid r1AD 15.11.2026): REM, leicht und tief rechnen am tatsächlichen Schlaf ohne Wachzeit (alles ausser «wach», «unbekannt» zählt als Schlaf), aus den ganzen Minuten, halbe aufwärts – gleich wie der Tiefschlaf-Anteil der Auffälligkeiten (`StageStats.sleepPercent`, `Findings.deepPercent`); die drei ergeben darum nicht immer genau 100. Vorher waren es Anteile an allen vier Phasen samt Wachzeit (Summe 100). Wach zeigen die Detailseite und die Kachel des Schlafwerts nur in Minuten (ohne Balken und üblichen Bereich); gerechnet wird «Wach» weiter als Anteil an allen vier Phasen (Restverfahren), unverändert.
 
 | Faktor | Gewicht | 100 Punkte | 0 Punkte | dazwischen |
 |---|---|---|---|---|

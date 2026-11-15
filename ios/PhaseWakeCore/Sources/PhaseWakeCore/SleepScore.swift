@@ -27,7 +27,7 @@ public enum ScoreBand: String, Sendable {
 }
 
 /// Messwerte einer Nacht für den Schlafwert; fehlende Werte `nil` (der Faktor fällt dann weg).
-/// Prozente wie in ``StageTotal/percent`` (Anteil an wach, REM, leicht, tief). Identisch zu `ScoreInput` (Kotlin).
+/// Prozente wie in ``StageTotal/percent``: Tief und REM am Schlaf, Wach an allen vier Phasen. Identisch zu `ScoreInput` (Kotlin).
 public struct ScoreInput: Equatable, Sendable {
     /// Schlaf ohne Wachphasen in Minuten.
     public let asleepMinutes: Int?
@@ -41,16 +41,19 @@ public struct ScoreInput: Equatable, Sendable {
     public let awakePercent: Int?
     /// Einschlafdauer in Minuten.
     public let latencyMinutes: Int?
+    /// Wachzeit in Minuten: nur zur Anzeige des Faktors «Wach» (Entscheid r1AD 15.11.2026), zählt nicht in den Wert.
+    public let awakeMinutes: Int?
 
     /// Erzeugt die Eingabe; fehlende Werte `nil`.
     public init(asleepMinutes: Int?, goalMinutes: Int, deepPercent: Int? = nil, remPercent: Int? = nil,
-                awakePercent: Int? = nil, latencyMinutes: Int? = nil) {
+                awakePercent: Int? = nil, latencyMinutes: Int? = nil, awakeMinutes: Int? = nil) {
         self.asleepMinutes = asleepMinutes
         self.goalMinutes = goalMinutes
         self.deepPercent = deepPercent
         self.remPercent = remPercent
         self.awakePercent = awakePercent
         self.latencyMinutes = latencyMinutes
+        self.awakeMinutes = awakeMinutes
     }
 }
 
@@ -159,7 +162,7 @@ public enum SleepScore {
         return round(clamp(full * Double(latencyZeroMinutes - minutes) / span))
     }
 
-    /// Eingabe aus den Phasen einer Nacht (``StageStats``): Schlaf, Anteile Tief, REM und Wach, Einschlafdauer (falls bekannt).
+    /// Eingabe aus den Phasen einer Nacht (``StageStats``): Schlaf, Anteile Tief, REM und Wach, Einschlafdauer (falls bekannt), Wachzeit.
     public static func inputOf(_ stats: NightStages, goalMinutes: Int) -> ScoreInput {
         ScoreInput(
             asleepMinutes: stats.asleepMinutes,
@@ -167,7 +170,8 @@ public enum SleepScore {
             deepPercent: stats.total(.deep)?.percent,
             remPercent: stats.total(.rem)?.percent,
             awakePercent: stats.total(.awake)?.percent,
-            latencyMinutes: stats.latencyMinutes
+            latencyMinutes: stats.latencyMinutes,
+            awakeMinutes: stats.total(.awake)?.minutes
         )
     }
 

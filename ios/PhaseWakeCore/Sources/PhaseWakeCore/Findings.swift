@@ -13,7 +13,8 @@ public struct NightFacts: Equatable, Hashable, Sendable {
     public let timeZone: TimeZone?
     /// Schlaf in Minuten (``HealthSession/asleepMinutes``).
     public let asleepMinutes: Int
-    /// Einschlafdauer wie auf der Detailseite (``NightStages/latencyMinutes``); `nil` = unbekannt.
+    /// Einschlafdauer: aus der Gesundheits-App wie auf der Detailseite (``NightStages/latencyMinutes``), sonst aus der
+    /// eigenen Messung der Uhr (``Findings/ownLatency(start:end:own:)``, Entscheid r1AD 15.11.2026); `nil` = unbekannt.
     public let latencyMinutes: Int?
     /// Tiefschlaf in Minuten; `nil` ohne Phasen (``StageStats/of(_:from:to:)`` ergibt `nil`).
     public let deepMinutes: Int?
@@ -41,8 +42,9 @@ public struct NightFacts: Equatable, Hashable, Sendable {
         return local
     }
 
-    /// Fakten einer Nacht; Nachtdatum in der Zone der Aufzeichnung, ohne sie in `calendar`.
-    public static func of(_ session: HealthSession, calendar: Calendar) -> NightFacts {
+    /// Fakten einer Nacht; Nachtdatum in der Zone der Aufzeichnung, ohne sie in `calendar`. Einschlafdauer aus der
+    /// Gesundheits-App, ohne sie aus der eigenen Messung `own` (``Findings/ownLatency(start:end:own:)``).
+    public static func of(_ session: HealthSession, calendar: Calendar, own: [OwnOnset] = []) -> NightFacts {
         let stats = StageStats.forSession(session)
         let latency = stats?.latencyMinutes
         return NightFacts(
@@ -51,15 +53,38 @@ public struct NightFacts: Equatable, Hashable, Sendable {
             end: session.end,
             timeZone: session.timeZone,
             asleepMinutes: session.asleepMinutes,
-            latencyMinutes: latency,
+            latencyMinutes: latency ?? Findings.ownLatency(start: session.start, end: session.end, own: own),
             deepMinutes: stats?.total(.deep)?.minutes,
+            // Nur die Einschlafdauer der Gesundheits-App liegt in deren Wachphasen.
             awakeMinutes: stats.map { max(0, ($0.total(.awake)?.minutes ?? 0) - (latency ?? 0)) }
         )
     }
 
-    /// Fakten aller Nächte aus `sessions` (dieselben wie im Verlauf), nach Beginn.
-    public static func of(_ sessions: [HealthSession], clearedAt: Date?, calendar: Calendar) -> [NightFacts] {
-        HealthHistory.countedNights(sessions, clearedAt: clearedAt, calendar: calendar).map { of($0, calendar: calendar) }
+    /// Fakten aller Nächte aus `sessions` (dieselben wie im Verlauf), nach Beginn; `own` siehe oben.
+    public static func of(_ sessions: [HealthSession], clearedAt: Date?, calendar: Calendar, own: [OwnOnset] = []) -> [NightFacts] {
+        HealthHistory.countedNights(sessions, clearedAt: clearedAt, calendar: calendar).map { of($0, calendar: calendar, own: own) }
+    }
+}
+
+/// Eigene Messung des Einschlafens einer Nacht: abgeschlossene Aufzeichnung der Uhr von `start` bis `end` (Apple Watch
+/// Rekorder bei «Nacht aufzeichnen», Lernphase, «Gute Nacht» oder automatisch; Galaxy Watch gleich) mit Beginn der
+/// Einschlafdauer `bedAt` und Einschlafzeit `asleepAt` (Zeile `onset=` der Aufzeichnung). Identisch zu `OwnOnset` (Kotlin).
+public struct OwnOnset: Equatable, Sendable {
+    /// Beginn der Aufzeichnung.
+    public let start: Date
+    /// Ende der Aufzeichnung.
+    public let end: Date
+    /// Beginn der Einschlafdauer.
+    public let bedAt: Date
+    /// Einschlafzeit.
+    public let asleepAt: Date
+
+    /// Erzeugt eine Messung.
+    public init(start: Date, end: Date, bedAt: Date, asleepAt: Date) {
+        self.start = start
+        self.end = end
+        self.bedAt = bedAt
+        self.asleepAt = asleepAt
     }
 }
 
@@ -211,8 +236,24 @@ public enum Findings {
         return (now, before)
     }
 
+    /// Einschlafdauer aus der eigenen Messung für eine Nacht der Gesundheits-App von `start` bis `end` (nur, wenn diese
+    /// keine liefert): die Messung aus `own`, deren Aufzeichnung sich am längsten mit der Nacht überschneidet (gleich: die
+    /// erste; wie die Aufzeichnung zur Nacht auf der Detailseite), in ganzen Minuten von `bedAt` bis `asleepAt`
+    /// (abgerundet). `nil` ohne Überschneidung oder wenn die Einschlafzeit vor dem Beginn liegt. Wie Kotlin.
+    public static func ownLatency(start: Date, end: Date, own: [OwnOnset]) -> Int? {
+        var best: (onset: OwnOnset, overlap: Int64)?
+        for onset in own where onset.start < end && onset.end > start {
+            let overlap = StageStats.millis(max(onset.start, start), min(onset.end, end))
+            if best.map({ overlap > $0.overlap }) ?? true { best = (onset, overlap) }
+        }
+        guard let best, best.onset.asleepAt >= best.onset.bedAt else { return nil }
+        return StageStats.minutes(StageStats.millis(best.onset.bedAt, best.onset.asleepAt))
+    }
+
     /// Tiefschlaf-Anteil am Schlaf in ganzen Prozent (halbe aufwärts) – eine Nacht wie die Regel; `nil` ohne Schlaf.
-    public static func deepPercent(deepMinutes: Int, asleepMinutes: Int) -> Int? { percent(deepMinutes, asleepMinutes) }
+    public static func deepPercent(deepMinutes: Int, asleepMinutes: Int) -> Int? {
+        StageStats.sleepPercent(deepMinutes, asleepMinutes: asleepMinutes)
+    }
 
     private static func lowDeep(_ share: Int, staged: [NightFacts], nights list: [NightFacts], calendar: Calendar) -> Finding {
         let minutes = bedtimes(list, calendar: calendar)

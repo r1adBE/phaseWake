@@ -42,7 +42,12 @@ data class StageTotal(
     val stage: SleepStage,
     /** Minuten der Phase: Millisekunden summiert, dann abgerundet. */
     val minutes: Long,
-    /** Anteil an allen vier Phasen in ganzen Prozent; die vier ergeben zusammen 100 (Restverfahren). */
+    /**
+     * Anteil in ganzen Prozent (Entscheid r1AD 15.11.2026). REM, leicht, tief: am Schlaf ([NightStages.asleepMinutes],
+     * unbekannt zählt als Schlaf), aus den ganzen Minuten, halbe aufwärts, wie [Findings.deepPercent]; die drei ergeben
+     * darum nicht immer genau 100. Wach: an allen vier Phasen (Restverfahren wie bisher), nur für Einordnung und
+     * Schlafwert; angezeigt wird Wach in Minuten.
+     */
     val percent: Int,
     /** Üblicher Bereich für Erwachsene ([StageStats.TYPICAL]). */
     val range: StageRange,
@@ -112,8 +117,8 @@ object StageStats {
         val blocks = blocksOf(clipped)
         if (blocks.none { it.stage != SleepStage.AWAKE }) return null
         val ms = ORDER.associateWith { stage -> clipped.filter { it.stage == stage }.sumOf { millis(it) } }
-        val totals = totalsOf(ms)
         val sleepMs = clipped.filter { it.stage != SleepStage.AWAKE }.sumOf { millis(it) }
+        val totals = totalsOf(ms, sleepMs / MS_PER_MINUTE)
         val rangeMs = Duration.between(from, to).toMillis()
         val awakenings = blocks.indices.count { i ->
             blocks[i].stage == SleepStage.AWAKE &&
@@ -164,22 +169,37 @@ object StageStats {
         return blocks
     }
 
-    /** Summen mit Prozent nach dem Restverfahren (Summe 100; Gleichstand nach [ORDER]). */
-    private fun totalsOf(ms: Map<SleepStage, Long>): List<StageTotal> {
+    /**
+     * Anteil von [minutes] am Schlaf [asleepMinutes] in ganzen Prozent, halbe aufwärts; `null` ohne Schlaf. So rechnen
+     * die Detailseite ([StageTotal.percent]) und die Auffälligkeiten ([Findings.deepPercent]).
+     */
+    fun sleepPercent(minutes: Long, asleepMinutes: Long): Int? =
+        if (asleepMinutes <= 0) null else kotlin.math.floor(minutes * 100.0 / asleepMinutes + 0.5).toInt()
+
+    /**
+     * Summen mit Prozent: wach nach dem Restverfahren über alle vier Phasen (Summe 100; Gleichstand nach [ORDER]),
+     * REM, leicht und tief am Schlaf [asleepMinutes] ([sleepPercent]).
+     */
+    private fun totalsOf(ms: Map<SleepStage, Long>, asleepMinutes: Long): List<StageTotal> {
         val total = ms.values.sum()
         val floor = ORDER.associateWith { if (total == 0L) 0L else ms.getValue(it) * PERCENT / total }
         val rest = ORDER.associateWith { if (total == 0L) 0L else ms.getValue(it) * PERCENT % total }
         val missing = if (total == 0L) 0 else (PERCENT - floor.values.sum()).toInt()
         val bonus = ORDER.sortedWith(compareByDescending<SleepStage> { rest.getValue(it) }.thenBy { ORDER.indexOf(it) }).take(missing).toSet()
         return ORDER.map { stage ->
-            val percent = (floor.getValue(stage) + if (stage in bonus) 1 else 0).toInt()
+            val minutes = ms.getValue(stage) / MS_PER_MINUTE
+            val percent = if (stage == SleepStage.AWAKE) {
+                (floor.getValue(stage) + if (stage in bonus) 1 else 0).toInt()
+            } else {
+                sleepPercent(minutes, asleepMinutes) ?: 0
+            }
             val range = TYPICAL.getValue(stage)
             val rating = when {
                 percent < range.low -> StageRating.BELOW
                 percent > range.high -> StageRating.ABOVE
                 else -> StageRating.TYPICAL
             }
-            StageTotal(stage, ms.getValue(stage) / MS_PER_MINUTE, percent, range, rating)
+            StageTotal(stage, minutes, percent, range, rating)
         }
     }
 

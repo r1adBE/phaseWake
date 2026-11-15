@@ -55,7 +55,10 @@ public struct StageTotal: Equatable, Sendable {
     public let stage: SleepStage
     /// Minuten der Phase: Millisekunden summiert, dann abgerundet.
     public let minutes: Int
-    /// Anteil an allen vier Phasen in ganzen Prozent; die vier ergeben zusammen 100 (Restverfahren), 0 ohne Zeit.
+    /// Anteil in ganzen Prozent (Entscheid r1AD 15.11.2026). REM, leicht, tief: am Schlaf (``NightStages/asleepMinutes``,
+    /// «unbekannt» zählt als Schlaf), aus den ganzen Minuten, halbe aufwärts, wie ``Findings/deepPercent(deepMinutes:asleepMinutes:)``;
+    /// die drei ergeben darum nicht immer genau 100. Wach: an allen vier Phasen (Restverfahren wie bisher), nur für
+    /// Einordnung und Schlafwert; angezeigt wird Wach in Minuten. 0 ohne Zeit.
     public let percent: Int
     /// Üblicher Bereich (``StageStats/typical``).
     public let range: StageRange
@@ -113,8 +116,8 @@ public enum StageStats {
         let known = clipped.filter { ChartData.level($0.stage) != nil }
         guard known.contains(where: { $0.stage != .awake }) else { return nil }
         let blocks = merge(known)
-        let totals = totalsOf(known)
         let sleepMs = clipped.filter { $0.stage != .awake }.reduce(Int64(0)) { $0 + millis($1.start, $1.end) }
+        let totals = totalsOf(known, asleepMinutes: minutes(sleepMs))
         let rangeMs = millis(from, to)
         let latency: Int? = blocks.count > 1 && blocks[0].stage == .awake ? minutes(millis(blocks[0].start, blocks[1].start)) : nil
         return NightStages(
@@ -157,8 +160,16 @@ public enum StageStats {
         return out
     }
 
-    /// Summen in der Reihenfolge wach, REM, leicht, tief; Prozent nach dem Restverfahren (Summe 100).
-    private static func totalsOf(_ known: [StageSpan]) -> [StageTotal] {
+    /// Anteil von `minutes` am Schlaf `asleepMinutes` in ganzen Prozent, halbe aufwärts; `nil` ohne Schlaf. So rechnen
+    /// die Detailseite (``StageTotal/percent``) und die Auffälligkeiten (``Findings/deepPercent(deepMinutes:asleepMinutes:)``).
+    /// Identisch zu `StageStats.sleepPercent` (Kotlin).
+    public static func sleepPercent(_ minutes: Int, asleepMinutes: Int) -> Int? {
+        asleepMinutes <= 0 ? nil : Int((Double(minutes) * 100 / Double(asleepMinutes) + 0.5).rounded(.down))
+    }
+
+    /// Summen in der Reihenfolge wach, REM, leicht, tief; wach nach dem Restverfahren über alle vier Phasen (Summe 100),
+    /// REM, leicht und tief am Schlaf `asleepMinutes` (``sleepPercent(_:asleepMinutes:)``).
+    private static func totalsOf(_ known: [StageSpan], asleepMinutes: Int) -> [StageTotal] {
         let ms = order.map { stage in known.filter { $0.stage == stage }.reduce(Int64(0)) { $0 + millis($1.start, $1.end) } }
         let total = ms.reduce(0, +)
         var percent = ms.map { total > 0 ? Int($0 * 100 / total) : 0 }
@@ -170,7 +181,9 @@ public enum StageStats {
         }
         return order.indices.map { i in
             let range = typical[order[i]] ?? StageRange(low: 0, high: 100)
-            return StageTotal(stage: order[i], minutes: minutes(ms[i]), percent: percent[i], range: range, rating: range.rate(percent[i]))
+            let stageMinutes = minutes(ms[i])
+            let share = order[i] == .awake ? percent[i] : sleepPercent(stageMinutes, asleepMinutes: asleepMinutes) ?? 0
+            return StageTotal(stage: order[i], minutes: stageMinutes, percent: share, range: range, rating: range.rate(share))
         }
     }
 

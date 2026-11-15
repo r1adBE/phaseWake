@@ -43,8 +43,8 @@ final class StageStatsTests: XCTestCase {
         XCTAssertTrue(score.provisional)
         XCTAssertEqual(score.score, 84)
         XCTAssertEqual(score.band, .good)
-        // Eine einzige Schlafphase genügt für eine Auswertung.
-        XCTAssertEqual(percents(of(span(0, 30, .awake), span(30, 60, .light))!), [50, 0, 50, 0])
+        // Eine einzige Schlafphase genügt für eine Auswertung (leicht = aller Schlaf; wach an allen vier Phasen).
+        XCTAssertEqual(percents(of(span(0, 30, .awake), span(30, 60, .light))!), [50, 0, 100, 0])
     }
 
     func testMergesTouchingBlocksOfTheSameStage() {
@@ -54,17 +54,26 @@ final class StageStatsTests: XCTestCase {
         XCTAssertEqual(gap.blocks.count, 2)
     }
 
-    func testPercentsAddUpToHundred() {
+    func testSleepStagesAreShareOfSleep() {
+        // Entscheid r1AD 15.11.2026: REM, leicht, tief am Schlaf (wie Findings.deepPercent); wach an allen vier Phasen
+        // nach dem Restverfahren (34 statt 33).
         let s = of(span(0, 10, .awake), span(10, 20, .rem), span(20, 30, .light))!
-        XCTAssertEqual(percents(s), [34, 33, 33, 0])
+        XCTAssertEqual(percents(s), [34, 50, 50, 0])
+        // Halbe aufwärts aus ganzen Minuten: 1 von 8 = 12.5 → 13, 3 von 8 = 37.5 → 38 (Summe 101).
+        XCTAssertEqual(percents(of(span(0, 1, .deep), span(1, 4, .rem), span(4, 8, .light))!), [0, 38, 50, 13])
+        // «Unbekannt» zählt als Schlaf: 30 tief von 60 Min Schlaf = 50 %.
+        XCTAssertEqual(of(span(0, 30, .deep), span(30, 60, .unknown))!.total(.deep)?.percent, 50)
+        XCTAssertEqual(StageStats.sleepPercent(42, asleepMinutes: 432), Findings.deepPercent(deepMinutes: 42, asleepMinutes: 432))
+        XCTAssertNil(StageStats.sleepPercent(10, asleepMinutes: 0))
     }
 
     func testTypicalNight() {
         let s = of(span(0, 30, .awake), span(30, 150, .light), span(150, 240, .deep),
                    span(240, 300, .rem), span(300, 420, .light), span(420, 480, .rem))!
         XCTAssertEqual(s.totals.map(\.minutes), [30, 120, 240, 90])
-        XCTAssertEqual(percents(s), [6, 25, 50, 19])
-        XCTAssertEqual(s.totals.map(\.rating), Array(repeating: StageRating.typical, count: 4))
+        // Am Schlaf von 450 Min: REM 120 → 27 %, leicht 240 → 53 %, tief 90 → 20 %; wach 30 von 480 → 6 %.
+        XCTAssertEqual(percents(s), [6, 27, 53, 20])
+        XCTAssertEqual(s.totals.map(\.rating), [.typical, .above, .typical, .typical])
         XCTAssertEqual(s.latencyMinutes, 30)
         XCTAssertEqual(s.awakenings, 0)
         XCTAssertEqual(s.longestDeepMinutes, 90)
@@ -90,7 +99,8 @@ final class StageStatsTests: XCTestCase {
         XCTAssertEqual(awakeAndLowDeep.total(.awake)?.rating, .above)
         XCTAssertEqual(awakeAndLowDeep.total(.deep)?.rating, .below)
         let lowRem = of(span(0, 260, .light), span(260, 340, .deep), span(340, 380, .rem), span(380, 400, .awake))!
-        XCTAssertEqual(percents(lowRem), [5, 10, 65, 20])
+        // Schlaf 380 Min: REM 40 → 11 %, leicht 260 → 68 %, tief 80 → 21 %; wach 20 von 400 → 5 %.
+        XCTAssertEqual(percents(lowRem), [5, 11, 68, 21])
         XCTAssertEqual(lowRem.total(.rem)?.rating, .below)
     }
 

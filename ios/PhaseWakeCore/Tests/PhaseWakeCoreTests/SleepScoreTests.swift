@@ -124,8 +124,10 @@ final class SleepScoreTests: XCTestCase {
             StageSpan(start: at(110), end: at(120), stage: .awake),
         ]
         let stats = StageStats.of(spans, from: at(0), to: at(120))!
+        // Tief und REM am Schlaf (30 und 20 von 100 Min), wach an allen vier Phasen (20 von 120, Restverfahren 17).
         XCTAssertEqual(SleepScore.inputOf(stats, goalMinutes: 450),
-                       ScoreInput(asleepMinutes: 100, goalMinutes: 450, deepPercent: 25, remPercent: 17, awakePercent: 17, latencyMinutes: 10))
+                       ScoreInput(asleepMinutes: 100, goalMinutes: 450, deepPercent: 30, remPercent: 20, awakePercent: 17, latencyMinutes: 10,
+                                  awakeMinutes: 20))
     }
 
     func testInputFromRecording() {

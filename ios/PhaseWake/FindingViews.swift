@@ -65,7 +65,9 @@ struct FindingHomeCard: View {
         guard healthRequested, scenePhase == .active else { return }
         let sessions = await model.health.sessions().sessions
         let calendar = Calendar.gregorianLocal
-        let facts = NightFacts.of(sessions, clearedAt: model.historyClearedAt, calendar: calendar)
+        // Ohne Einschlafdauer aus Apple Health gilt die eigene Messung der Uhr (Aufzeichnungen, ``NightRecording/ownOnset``).
+        let facts = NightFacts.of(sessions, clearedAt: model.historyClearedAt, calendar: calendar,
+                                  own: PhoneLearning.shared.recordings.compactMap(\.ownOnset))
         findings = Findings.of(facts, today: SleepNotes.nightDate(Date(), calendar: calendar), calendar: calendar)
     }
 }

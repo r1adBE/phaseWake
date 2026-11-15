@@ -1,7 +1,7 @@
 import PhaseWakeCore
 import SwiftUI
 
-/// Phasen-Summen der Detailseite: je Phase Name, Anteil, Dauer und Balken; dahinter heller, gestrichelt umrandeter
+/// Phasen-Summen der Detailseite: je Phase Name, Anteil am Schlaf, Dauer und Balken (wach nur Dauer); dahinter heller, gestrichelt umrandeter
 /// «üblicher Bereich für Erwachsene» mit Legende. Darunter klein und einmal die Quelle der Richtwerte samt «Keine
 /// medizinische Bewertung.» – bewusst ohne Urteil über die Nacht, denn Uhren schätzen Phasen nur ungefähr.
 /// Ohne Farbe lesbar: Prozent, Dauer und Bereich stehen als Text. Wie `StageTotals` (Android).
@@ -33,15 +33,33 @@ func typicalText(_ range: StageRange) -> String {
     range.low == 0 ? L("stages_typical_below", Int64(range.high + 1)) : L("stages_typical_range", Int64(range.low), Int64(range.high))
 }
 
-/// Eine Zeile: Name und Anteil links, Dauer rechts, darunter der Balken mit dem üblichen Bereich und dessen Text.
+/// Eine Zeile: Name und Anteil am Schlaf links, Dauer rechts, darunter der Balken mit dem üblichen Bereich und dessen
+/// Text. Wach nur mit Dauer (Entscheid r1AD 15.11.2026): kein Anteil am Schlaf, darum ohne Balken und Bereich. Wie Android.
 private struct StageTotalRow: View {
     let total: StageTotal
     @Environment(\.colorScheme) private var scheme
 
     var body: some View {
+        if total.stage == .awake { awakeRow } else { shareRow }
+    }
+
+    private var awakeRow: some View {
+        let duration = Format.duration(minutes: total.minutes)
+        return HStack(alignment: .firstTextBaseline) {
+            Circle().fill(StageColors.color(total.stage, scheme)).frame(width: 10, height: 10)
+            Text(stageName(total.stage)).font(Fonts.manrope(14, .semibold, relativeTo: .subheadline))
+            Spacer()
+            Text(duration).font(Fonts.manrope(14, .bold, relativeTo: .subheadline))
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(stageName(total.stage))
+        .accessibilityValue(duration)
+    }
+
+    private var shareRow: some View {
         let share = L("stages_share", Int64(total.percent))
         let duration = Format.duration(minutes: total.minutes)
-        VStack(alignment: .leading, spacing: 4) {
+        return VStack(alignment: .leading, spacing: 4) {
             HStack(alignment: .firstTextBaseline) {
                 Circle().fill(StageColors.color(total.stage, scheme)).frame(width: 10, height: 10)
                 Text(stageName(total.stage)).font(Fonts.manrope(14, .semibold, relativeTo: .subheadline))

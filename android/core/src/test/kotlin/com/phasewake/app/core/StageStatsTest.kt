@@ -42,8 +42,8 @@ class StageStatsTest {
         assertEquals(true, score.provisional)
         assertEquals(84, score.score)
         assertEquals(ScoreBand.GOOD, score.band)
-        // Eine einzige Schlafphase genügt für eine Auswertung.
-        assertEquals(listOf(50, 0, 50, 0), percents(of(span(0, 30, SleepStage.AWAKE), span(30, 60, SleepStage.LIGHT))!!))
+        // Eine einzige Schlafphase genügt für eine Auswertung (leicht = aller Schlaf; wach an allen vier Phasen).
+        assertEquals(listOf(50, 0, 100, 0), percents(of(span(0, 30, SleepStage.AWAKE), span(30, 60, SleepStage.LIGHT))!!))
     }
 
     @Test
@@ -55,9 +55,18 @@ class StageStatsTest {
     }
 
     @Test
-    fun percentsAddUpToHundred() {
+    fun sleepStagesAreShareOfSleep() {
+        // Entscheid r1AD 15.11.2026: REM, leicht, tief am Schlaf (wie Findings.deepPercent); wach an allen vier Phasen
+        // nach dem Restverfahren (34 statt 33).
         val s = of(span(0, 10, SleepStage.AWAKE), span(10, 20, SleepStage.REM), span(20, 30, SleepStage.LIGHT))!!
-        assertEquals(listOf(34, 33, 33, 0), percents(s))
+        assertEquals(listOf(34, 50, 50, 0), percents(s))
+        // Halbe aufwärts aus ganzen Minuten: 1 von 8 = 12.5 → 13, 3 von 8 = 37.5 → 38 (Summe 101).
+        val half = of(span(0, 1, SleepStage.DEEP), span(1, 4, SleepStage.REM), span(4, 8, SleepStage.LIGHT))!!
+        assertEquals(listOf(0, 38, 50, 13), percents(half))
+        // Unbekannt zählt als Schlaf: 30 tief von 60 Min Schlaf = 50 %.
+        assertEquals(50, of(span(0, 30, SleepStage.DEEP), span(30, 60, SleepStage.UNKNOWN))!!.total(SleepStage.DEEP)?.percent)
+        assertEquals(Findings.deepPercent(42, 432), StageStats.sleepPercent(42, 432))
+        assertNull(StageStats.sleepPercent(10, 0))
     }
 
     @Test
@@ -67,8 +76,9 @@ class StageStatsTest {
             span(240, 300, SleepStage.REM), span(300, 420, SleepStage.LIGHT), span(420, 480, SleepStage.REM),
         )!!
         assertEquals(listOf(30L, 120L, 240L, 90L), s.totals.map { it.minutes })
-        assertEquals(listOf(6, 25, 50, 19), percents(s))
-        assertEquals(List(4) { StageRating.TYPICAL }, s.totals.map { it.rating })
+        // Am Schlaf von 450 Min: REM 120 → 27 %, leicht 240 → 53 %, tief 90 → 20 %; wach 30 von 480 → 6 %.
+        assertEquals(listOf(6, 27, 53, 20), percents(s))
+        assertEquals(listOf(StageRating.TYPICAL, StageRating.ABOVE, StageRating.TYPICAL, StageRating.TYPICAL), s.totals.map { it.rating })
         assertEquals(30L, s.latencyMinutes)
         assertEquals(0, s.awakenings)
         assertEquals(90L, s.longestDeepMinutes)
@@ -98,7 +108,8 @@ class StageStatsTest {
         assertEquals(StageRating.ABOVE, awakeAndLowDeep.total(SleepStage.AWAKE)?.rating)
         assertEquals(StageRating.BELOW, awakeAndLowDeep.total(SleepStage.DEEP)?.rating)
         val lowRem = of(span(0, 260, SleepStage.LIGHT), span(260, 340, SleepStage.DEEP), span(340, 380, SleepStage.REM), span(380, 400, SleepStage.AWAKE))!!
-        assertEquals(listOf(5, 10, 65, 20), percents(lowRem))
+        // Schlaf 380 Min: REM 40 → 11 %, leicht 260 → 68 %, tief 80 → 21 %; wach 20 von 400 → 5 %.
+        assertEquals(listOf(5, 11, 68, 21), percents(lowRem))
         assertEquals(StageRating.BELOW, lowRem.total(SleepStage.REM)?.rating)
     }
 

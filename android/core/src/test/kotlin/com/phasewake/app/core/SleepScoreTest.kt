@@ -137,7 +137,8 @@ class SleepScoreTest {
         )
         val stats = StageStats.of(spans, at(0), at(120))!!
         val input = SleepScore.inputOf(stats, 450)
-        assertEquals(ScoreInput(100, 450, deepPercent = 25, remPercent = 17, awakePercent = 17, latencyMinutes = 10), input)
+        // Tief und REM am Schlaf (30 und 20 von 100 Min), wach an allen vier Phasen (20 von 120, Restverfahren 17).
+        assertEquals(ScoreInput(100, 450, deepPercent = 30, remPercent = 20, awakePercent = 17, latencyMinutes = 10, awakeMinutes = 20), input)
     }
 
     @Test

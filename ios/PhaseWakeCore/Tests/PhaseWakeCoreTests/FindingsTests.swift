@@ -84,8 +84,11 @@ final class FindingsTests: XCTestCase {
         XCTAssertEqual(facts.map(\.asleepMinutes), [434, 432, 284, 474, 438, 479, 353])
         let findings = Findings.of(facts, today: "2026-11-14", calendar: calendar)
         XCTAssertEqual(describe(findings), "LONG_LATENCY=68,LOW_DEEP=11/SHORT_NIGHTS/5/13,BEDTIME_VARIES=174")
-        // Startseite: die wichtigste – lange Einschlafdauer.
+        // Startseite: die wichtigste – lange Einschlafdauer; ausgeblendet die nächstwichtige (Entscheid r1AD 15.11.2026).
         XCTAssertEqual(Findings.home(findings, hidden: [:], now: at(15, 9))?.kind, .longLatency)
+        let hidden = Findings.hide([:], kind: .longLatency, now: at(15, 9))
+        XCTAssertEqual(Findings.home(findings, hidden: hidden, now: at(15, 9, 1))?.kind, .lowDeep)
+        XCTAssertEqual(Findings.home(findings, hidden: Findings.hide(hidden, kind: .lowDeep, now: at(15, 10)), now: at(15, 11))?.kind, .bedtimeVaries)
         // Nacht-Detail: 42 von 432 Min Schlaf = 10 % (gleich gerechnet wie die Regel).
         XCTAssertEqual(Findings.deepPercent(deepMinutes: 42, asleepMinutes: 432), 10)
         XCTAssertNil(Findings.deepPercent(deepMinutes: 42, asleepMinutes: 0))
@@ -103,6 +106,44 @@ final class FindingsTests: XCTestCase {
                                    calendar: calendar)
         XCTAssertNil(direct.latencyMinutes)
         XCTAssertEqual(direct.awakeMinutes, 30)
+    }
+
+    func testOwnOnsetVectors() throws {
+        // Gemeinsame Fälle mit Kotlin (shared/testdata/findings-onset.vectors); Minuten ab 2026-11-08 22:00 UTC.
+        let t0 = Date(timeIntervalSince1970: 1_794_175_200)
+        func t(_ m: String) -> Date { t0.addingTimeInterval(Double(Int(m)!) * 60) }
+        let text = try String(contentsOf: NightFixtures.directory.appendingPathComponent("findings-onset.vectors"), encoding: .utf8)
+        let lines = text.components(separatedBy: "\n").filter { !$0.isEmpty && !$0.hasPrefix("#") }
+        for line in lines {
+            let parts = line.components(separatedBy: "\t")
+            XCTAssertEqual(parts.count, 3, line)
+            guard parts.count == 3 else { continue }
+            let night = parts[1].components(separatedBy: " ")
+            let own = parts[2].components(separatedBy: ";").filter { !$0.trimmingCharacters(in: .whitespaces).isEmpty }.map { r in
+                let f = r.components(separatedBy: " ")
+                return OwnOnset(start: t(f[0]), end: t(f[1]), bedAt: t(f[2]), asleepAt: t(f[3]))
+            }
+            XCTAssertEqual(Findings.ownLatency(start: t(night[0]), end: t(night[1]), own: own).map { String($0) } ?? "-", parts[0], line)
+        }
+        XCTAssertEqual(lines.count, 9)
+    }
+
+    func testHealthLatencyBeforeOwnMeasurement() {
+        // Samsung-Nacht mit Wachphase am Anfang (Einschlafdauer 20): die Gesundheits-App geht vor.
+        let withLatency = session(9, 1, 0, latency: 20, deep: 60, asleep: 400, awakeAfter: 30)
+        let own = [OwnOnset(start: withLatency.start.addingTimeInterval(-600), end: withLatency.end, bedAt: withLatency.start,
+                            asleepAt: withLatency.start.addingTimeInterval(50 * 60))]
+        XCTAssertEqual(NightFacts.of(withLatency, calendar: calendar, own: own).latencyMinutes, 20)
+        // Ohne Wachphase am Anfang (Apple Watch): die eigene Messung (50 Min); Wach nach dem Einschlafen bleibt 30.
+        let direct = HealthSession(start: withLatency.start, end: withLatency.end, stages: Array(withLatency.stages.dropFirst()), timeZone: zone)
+        let facts = NightFacts.of(direct, calendar: calendar, own: own)
+        XCTAssertEqual(facts.latencyMinutes, 50)
+        XCTAssertEqual(facts.awakeMinutes, 30)
+        XCTAssertNil(NightFacts.of(direct, calendar: calendar).latencyMinutes)
+        // Ganz ohne Phasen ebenso; über die Liste der Sitzungen gleich.
+        let bare = session(9, 1, 0, latency: 20, deep: 60, asleep: 400, awakeAfter: 30, stages: false)
+        XCTAssertEqual(NightFacts.of(bare, calendar: calendar, own: own).latencyMinutes, 50)
+        XCTAssertEqual(NightFacts.of([direct], clearedAt: nil, calendar: calendar, own: own).map(\.latencyMinutes), [50])
     }
 
     func testHiddenFindingReturnsAfterSevenDays() {

@@ -38,7 +38,7 @@ enum class ScoreBand {
 
 /**
  * Messwerte einer Nacht für den Schlafwert; fehlende Werte `null` (der Faktor fällt dann weg).
- * Prozente wie in [StageTotal.percent] (Anteil an wach, REM, leicht, tief).
+ * Prozente wie in [StageTotal.percent]: Tief und REM am Schlaf, Wach an allen vier Phasen.
  */
 data class ScoreInput(
     /** Schlaf ohne Wachphasen in Minuten. */
@@ -53,6 +53,8 @@ data class ScoreInput(
     val awakePercent: Int? = null,
     /** Einschlafdauer in Minuten. */
     val latencyMinutes: Long? = null,
+    /** Wachzeit in Minuten: nur zur Anzeige des Faktors «Wach» (Entscheid r1AD 15.11.2026), zählt nicht in den Wert. */
+    val awakeMinutes: Long? = null,
 )
 
 /** Ein Faktor mit seinem Wert: [points] 0–100, [weight] laut [SleepScore.WEIGHTS], [band] aus [points]. */
@@ -149,7 +151,7 @@ object SleepScore {
         return round((FULL * (LATENCY_ZERO_MINUTES - minutes) / span).coerceIn(0.0, FULL))
     }
 
-    /** Eingabe aus den Phasen einer Nacht ([StageStats]): Schlaf, Anteile Tief, REM und Wach, Einschlafdauer (falls bekannt). */
+    /** Eingabe aus den Phasen einer Nacht ([StageStats]): Schlaf, Anteile Tief, REM und Wach, Einschlafdauer (falls bekannt), Wachzeit. */
     fun inputOf(stats: NightStages, goalMinutes: Int): ScoreInput = ScoreInput(
         asleepMinutes = stats.asleepMinutes,
         goalMinutes = goalMinutes,
@@ -157,6 +159,7 @@ object SleepScore {
         remPercent = stats.total(SleepStage.REM)?.percent,
         awakePercent = stats.total(SleepStage.AWAKE)?.percent,
         latencyMinutes = stats.latencyMinutes,
+        awakeMinutes = stats.total(SleepStage.AWAKE)?.minutes,
     )
 
     /**

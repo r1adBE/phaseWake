@@ -107,6 +107,13 @@ public struct NightRecording: Equatable, Sendable {
         Learning.Night(start: start, epochs: epochs, bedAt: bedAt, asleepAt: asleepAt)
     }
 
+    /// Eigene Messung des Einschlafens für die Auffälligkeiten (``Findings/ownLatency(start:end:own:)``): nur
+    /// abgeschlossen und mit erkanntem Einschlafen, sonst `nil`. Wie `NightRecording.ownOnset` (Kotlin).
+    public var ownOnset: OwnOnset? {
+        guard let end, let bedAt, let asleepAt else { return nil }
+        return OwnOnset(start: start, end: end, bedAt: bedAt, asleepAt: asleepAt)
+    }
+
     /// Kopie mit Beginn der Einschlafdauer und Einschlafzeit (iPhone, aus Apple Health nachgetragen).
     public func with(bedAt: Date, asleepAt: Date) -> NightRecording {
         NightRecording(start: start, epochs: epochs, end: end, endReason: endReason, bedAt: bedAt, asleepAt: asleepAt)

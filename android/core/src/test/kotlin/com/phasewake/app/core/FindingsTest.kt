@@ -84,8 +84,11 @@ class FindingsTest {
         assertEquals(listOf(434L, 432, 284, 474, 438, 479, 353), facts.map { it.asleepMinutes })
         val findings = Findings.of(facts, LocalDate.of(2026, 11, 14), zone)
         assertEquals("LONG_LATENCY=68,LOW_DEEP=11/SHORT_NIGHTS/5/13,BEDTIME_VARIES=174", text(findings))
-        // Startseite: die wichtigste – lange Einschlafdauer.
+        // Startseite: die wichtigste – lange Einschlafdauer; ausgeblendet die nächstwichtige (Entscheid r1AD 15.11.2026).
         assertEquals(FindingKind.LONG_LATENCY, Findings.home(findings, emptyMap(), at(15, 9))?.kind)
+        val hidden = Findings.hide(emptyMap(), FindingKind.LONG_LATENCY, at(15, 9))
+        assertEquals(FindingKind.LOW_DEEP, Findings.home(findings, hidden, at(15, 9, 1))?.kind)
+        assertEquals(FindingKind.BEDTIME_VARIES, Findings.home(findings, Findings.hide(hidden, FindingKind.LOW_DEEP, at(15, 10)), at(15, 11))?.kind)
         // Nacht-Detail: 42 von 432 Min Schlaf = 10 % (gleich gerechnet wie die Regel).
         assertEquals(10, Findings.deepPercent(42, 432))
         assertNull(Findings.deepPercent(42, 0))
@@ -102,6 +105,39 @@ class FindingsTest {
         val direct = NightFacts.of(session(9, 1, 0, 0, 60, 400, 30).let { s -> s.copy(stages = s.stages.drop(1)) }, zone)
         assertNull(direct.latencyMinutes)
         assertEquals(30, direct.awakeMinutes)
+    }
+
+    @Test
+    fun ownOnsetVectors() {
+        // Gemeinsame Fälle mit Swift (shared/testdata/findings-onset.vectors); Minuten ab 2026-11-08 22:00 UTC.
+        val t0 = Instant.parse("2026-11-08T22:00:00Z")
+        fun t(m: String): Instant = t0.plus(Duration.ofMinutes(m.toLong()))
+        val cases = NightFixtures.directory().resolve("findings-onset.vectors").readLines(Charsets.UTF_8)
+            .filter { it.isNotBlank() && !it.startsWith("#") }
+        for (line in cases) {
+            val (expected, night, recs) = line.split('\t')
+            val (start, end) = night.split(' ')
+            val own = recs.split(';').filter { it.isNotBlank() }.map { r -> r.split(' ').let { OwnOnset(t(it[0]), t(it[1]), t(it[2]), t(it[3])) } }
+            assertEquals(expected, Findings.ownLatency(t(start), t(end), own)?.toString() ?: "-", line)
+        }
+        assertEquals(9, cases.size)
+    }
+
+    @Test
+    fun healthLatencyBeforeOwnMeasurement() {
+        // Samsung-Nacht mit Wachphase am Anfang (Einschlafdauer 20): die Gesundheits-App geht vor.
+        val withLatency = session(9, 1, 0, 20, 60, 400, 30)
+        val own = listOf(OwnOnset(withLatency.start.minusSeconds(600), withLatency.end, withLatency.start, withLatency.start.plus(Duration.ofMinutes(50))))
+        assertEquals(20, NightFacts.of(withLatency, zone, own).latencyMinutes)
+        // Ohne Wachphase am Anfang (Apple Watch): die eigene Messung (50 Min); Wach nach dem Einschlafen bleibt 30.
+        val direct = withLatency.copy(stages = withLatency.stages.drop(1))
+        val facts = NightFacts.of(direct, zone, own)
+        assertEquals(50, facts.latencyMinutes)
+        assertEquals(30, facts.awakeMinutes)
+        assertNull(NightFacts.of(direct, zone).latencyMinutes)
+        // Ganz ohne Phasen ebenso; über die Liste der Sitzungen gleich.
+        assertEquals(50, NightFacts.of(session(9, 1, 0, 20, 60, 400, 30, stages = false), zone, own).latencyMinutes)
+        assertEquals(listOf<Long?>(50), NightFacts.of(listOf(direct), null, zone, own).map { it.latencyMinutes })
     }
 
     @Test
