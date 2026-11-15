@@ -98,6 +98,8 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     /// Einschlafzeit der Nacht aus dem Rekorder (`WatchOnset`); `nil` = unbekannt (Untergrenze kurzer Nächte dann nur,
     /// wenn `onsetMeasured`).
     @ObservationIgnored var asleepAt: Date?
+    /// Beginn der Einschlafdauer zu `asleepAt` (geht mit der Nacht ans iPhone, r1AD 15.11.2026); `nil` = unbekannt.
+    @ObservationIgnored var onsetBedAt: Date?
     /// Der Rekorder lief in dieser Nacht, die Rechnung brachte aber keine Einschlafzeit (fail-closed, `ShortNight`).
     @ObservationIgnored var onsetMeasured = false
     /// Die Einschlafzeit wird noch gerechnet: Frühe Momente warten so lange (`heldWake`).

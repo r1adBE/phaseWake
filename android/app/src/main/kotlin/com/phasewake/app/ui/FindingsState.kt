@@ -10,6 +10,7 @@ import com.phasewake.app.core.Finding
 import com.phasewake.app.core.FindingKind
 import com.phasewake.app.core.Findings
 import com.phasewake.app.core.NightFacts
+import com.phasewake.app.core.OwnOnset
 import com.phasewake.app.core.SleepNotes
 import com.phasewake.app.core.WeeklySummary
 import com.phasewake.app.shared.NightRecording
@@ -31,19 +32,25 @@ internal class FindingsState(
 
 /**
  * Rechnet die [FindingsState] aus den Sitzungen von Health Connect ([Insights.sessions]); ohne Freigabe nichts. Fehlt
- * dort die Einschlafdauer einer Nacht, gilt die eigene Messung aus den Aufzeichnungen der Uhr ([NightRecording.ownOnset]).
+ * dort die Einschlafdauer einer Nacht, gilt die eigene Messung der Uhr: zuerst die Nacht im Verlauf ([OwnOnset.of]),
+ * sonst die Aufzeichnung ([NightRecording.ownOnset]).
  */
 @Composable
 internal fun rememberFindings(app: PhaseWakeApp, insights: Insights): FindingsState {
     val clearedAt by app.settings.historyClearedAt.collectAsStateWithLifecycle(initialValue = null)
     val hidden by app.settings.findingsHidden.collectAsStateWithLifecycle(initialValue = emptyMap())
     val recordings by app.recordings.recordings.collectAsStateWithLifecycle()
-    LaunchedEffect(Unit) { app.recordings.load() }
+    val nights by app.nights.nights.collectAsStateWithLifecycle()
+    LaunchedEffect(Unit) {
+        app.recordings.load()
+        app.nights.load()
+    }
     val zone = ZoneId.systemDefault()
     val now = Instant.now()
     val today = SleepNotes.nightDate(now, zone)
     val own = remember(recordings) { recordings.orEmpty().mapNotNull(NightRecording::ownOnset) }
-    val facts = remember(insights.sessions, clearedAt, own) { NightFacts.of(insights.sessions, clearedAt, zone, own) }
+    val watch = remember(nights) { nights.orEmpty().mapNotNull(OwnOnset::of) }
+    val facts = remember(insights.sessions, clearedAt, own, watch) { NightFacts.of(insights.sessions, clearedAt, zone, own, watch) }
     val all = remember(facts, today) { Findings.of(facts, today, zone) }
     val weekEnd = WeeklySummary.weekEnd(LocalDate.now(zone))
     val weekDeep = remember(facts, weekEnd) { Findings.weekDeep(facts, weekEnd) }

@@ -25,6 +25,13 @@ data class NightRecord(
     val watchBattery: List<BatteryPoint>? = null,
     /** Akkustand des Handys in dieser Nacht ([BatteryTrack]), nur auf dem Handy; `null` = nicht gemessen. */
     val phoneBattery: List<BatteryPoint>? = null,
+    /**
+     * Beginn der Einschlafdauer dieser Nacht (Bettzeit der automatischen Messung bzw. «Gute Nacht»), von der Uhr gemessen
+     * (Entscheid r1AD 15.11.2026); `null` = unbekannt (nicht gemessen, ältere Uhr-App).
+     */
+    val bedAt: Instant? = null,
+    /** Einschlafzeit dieser Nacht aus der Einschlaf-Messung der Uhr; `null` = unbekannt. */
+    val asleepAt: Instant? = null,
 ) {
     init {
         require(feeling == null || feeling in FEELING_MIN..FEELING_MAX) { "feeling muss zwischen $FEELING_MIN und $FEELING_MAX liegen" }

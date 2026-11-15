@@ -109,6 +109,27 @@ final class StorageTests: XCTestCase {
         XCTAssertEqual(s.nights().first?.watchBattery, watch)
     }
 
+    /// Einschlafzeit samt Beginn bleibt, wenn dieselbe Nacht ohne sie noch einmal kommt (wie Android
+    /// `NightKeyTest.storedOnsetIsKeptTogether`, Entscheid r1AD 15.11.2026).
+    func testStoredOnsetIsKeptTogether() {
+        let s = storage()
+        let start = Date(timeIntervalSince1970: 1_793_165_400)
+        let bed = start.addingTimeInterval(-7 * 3600)
+        let asleep = bed.addingTimeInterval(25 * 60)
+        let plain = NightRecord(alarmId: "a", windowStart: start, target: start.addingTimeInterval(1800), wokeAt: start.addingTimeInterval(900),
+                                reason: .lightSleep, snoozes: 0, epochs: [])
+        s.add(plain.with(bedAt: bed, asleepAt: asleep))
+        s.add(plain)
+        XCTAssertEqual(s.nights().first?.bedAt, bed)
+        XCTAssertEqual(s.nights().first?.asleepAt, asleep)
+        // Nur ein Beginn ohne Einschlafzeit ersetzt nichts; eine neue Messung beide.
+        s.add(plain.with(bedAt: bed.addingTimeInterval(60), asleepAt: nil))
+        XCTAssertEqual(s.nights().first?.bedAt, bed)
+        s.add(plain.with(bedAt: bed.addingTimeInterval(60), asleepAt: asleep.addingTimeInterval(600)))
+        XCTAssertEqual(s.nights().first?.bedAt, bed.addingTimeInterval(60))
+        XCTAssertEqual(s.nights().first?.asleepAt, asleep.addingTimeInterval(600))
+    }
+
     func testMinutesBeforeAndAfterTarget() {
         let target = Date(timeIntervalSince1970: 1_793_167_200)
         func night(_ offset: TimeInterval) -> NightRecord {

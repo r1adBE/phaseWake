@@ -117,12 +117,15 @@ class OnsetStore(private val store: DataStore<Preferences>) {
     /**
      * Messung für [alarmId] mit Weckzeit [latest] vorbei, mit Einschlafzeit [onset] oder ohne (`null`); [measured]: ohne
      * Einschlafzeit, obwohl sie gemessen hat. Ohne Einschlafzeit bleibt eine gefundene der laufenden Nacht ([knownOnset]).
+     * [bedAt]: Beginn der Einschlafdauer dieser Messung (für die Nacht im Verlauf, [bedFor]); `null` = unbekannt.
      */
-    suspend fun set(alarmId: String, latest: Instant, onset: Instant?, measured: Boolean = false) {
+    suspend fun set(alarmId: String, latest: Instant, onset: Instant?, measured: Boolean = false, bedAt: Instant? = null) {
         store.edit {
             if (onset == null && knownOnset(it, alarmId, latest)) return@edit
             it.remove(ONSET)
+            it.remove(BED)
             if (onset != null) it[ONSET] = onset.toEpochMilli()
+            if (onset != null && bedAt != null) it[BED] = bedAt.toEpochMilli()
             it[ALARM] = alarmId
             it[LATEST] = latest.toEpochMilli()
             it[MEASURED] = onset == null && measured
@@ -156,6 +159,10 @@ class OnsetStore(private val store: DataStore<Preferences>) {
         return onset.takeIf { Duration.between(it, plan.target) <= WakeService.GOOD_NIGHT_MAX_AHEAD }
     }
 
+    /** Beginn der Einschlafdauer zur Einschlafzeit der Nacht [plan] ([onsetFor]); ohne sie oder ohne Beginn `null`. */
+    suspend fun bedFor(plan: WakePlan): Instant? =
+        if (onsetFor(plan) == null) null else store.data.first()[BED]?.let(Instant::ofEpochMilli)
+
     /** Ob für die Nacht [plan] gemessen wurde, aber ohne Einschlafzeit (siehe [set]). */
     suspend fun measuredFor(plan: WakePlan): Boolean {
         val prefs = store.data.first()
@@ -173,6 +180,7 @@ class OnsetStore(private val store: DataStore<Preferences>) {
         val ALARM = stringPreferencesKey("onset_night_alarm")
         val LATEST = longPreferencesKey("onset_night_latest")
         val ONSET = longPreferencesKey("onset_night_at")
+        val BED = longPreferencesKey("onset_night_bed")
         val MEASURED = booleanPreferencesKey("onset_night_measured")
     }
 }

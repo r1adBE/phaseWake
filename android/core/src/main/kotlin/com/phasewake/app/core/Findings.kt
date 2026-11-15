@@ -37,9 +37,10 @@ data class NightFacts(
     companion object {
         /**
          * Fakten einer Nacht ([HealthHistory.nights]); Nachtdatum in der Zone der Aufzeichnung, ohne sie in [zone].
-         * Einschlafdauer aus der Gesundheits-App, ohne sie aus der eigenen Messung [own] ([Findings.ownLatency]).
+         * Einschlafdauer aus der Gesundheits-App, ohne sie aus der eigenen Messung: zuerst die Nächte der Uhr [watch]
+         * ([OwnOnset.of]), sonst die Aufzeichnungen [own] ([Findings.ownLatency]).
          */
-        fun of(session: HealthSession, zone: ZoneId, own: List<OwnOnset> = emptyList()): NightFacts {
+        fun of(session: HealthSession, zone: ZoneId, own: List<OwnOnset> = emptyList(), watch: List<OwnOnset> = emptyList()): NightFacts {
             val stats = StageStats.forSession(session)
             val latency = stats?.latencyMinutes
             return NightFacts(
@@ -48,25 +49,38 @@ data class NightFacts(
                 end = session.end,
                 timeZone = session.timeZone,
                 asleepMinutes = session.asleepMinutes,
-                latencyMinutes = latency ?: Findings.ownLatency(session.start, session.end, own),
+                latencyMinutes = latency ?: Findings.ownLatency(session.start, session.end, own, watch),
                 deepMinutes = stats?.total(SleepStage.DEEP)?.minutes,
                 // Nur die Einschlafdauer der Gesundheits-App liegt in deren Wachphasen.
                 awakeMinutes = stats?.let { ((it.total(SleepStage.AWAKE)?.minutes ?: 0) - (latency ?: 0)).coerceAtLeast(0) },
             )
         }
 
-        /** Fakten aller Nächte aus [sessions] (dieselben wie im Verlauf, [HealthHistory.nights]), nach Beginn; [own] siehe oben. */
-        fun of(sessions: List<HealthSession>, clearedAt: Instant?, zone: ZoneId, own: List<OwnOnset> = emptyList()): List<NightFacts> =
-            HealthHistory.nights(sessions, clearedAt, zone).map { of(it, zone, own) }
+        /** Fakten aller Nächte aus [sessions] (dieselben wie im Verlauf, [HealthHistory.nights]), nach Beginn; [own], [watch] siehe oben. */
+        fun of(
+            sessions: List<HealthSession>,
+            clearedAt: Instant?,
+            zone: ZoneId,
+            own: List<OwnOnset> = emptyList(),
+            watch: List<OwnOnset> = emptyList(),
+        ): List<NightFacts> = HealthHistory.nights(sessions, clearedAt, zone).map { of(it, zone, own, watch) }
     }
 }
 
 /**
- * Eigene Messung des Einschlafens einer Nacht: abgeschlossene Aufzeichnung der Uhr von [start] bis [end] (Galaxy Watch
- * «Nacht aufzeichnen» bzw. Lernphase mit Einschlaf-Messung, «Gute Nacht» oder automatisch; Apple Watch Rekorder) mit
- * Beginn der Einschlafdauer [bedAt] und Einschlafzeit [asleepAt] (Zeile `onset=` der Aufzeichnung). Gleich in Swift (`OwnOnset`).
+ * Eigene Messung des Einschlafens einer Nacht von [start] bis [end] mit Beginn der Einschlafdauer [bedAt] und
+ * Einschlafzeit [asleepAt]: eine Nacht der Uhr ([of], Felder 11 und 12 von [Codec.encodeNight]) oder eine abgeschlossene
+ * Aufzeichnung (Galaxy Watch «Nacht aufzeichnen» bzw. Lernphase, Apple Watch Rekorder; Zeile `onset=`). Gleich in Swift (`OwnOnset`).
  */
-data class OwnOnset(val start: Instant, val end: Instant, val bedAt: Instant, val asleepAt: Instant)
+data class OwnOnset(val start: Instant, val end: Instant, val bedAt: Instant, val asleepAt: Instant) {
+    companion object {
+        /** Messung einer Nacht der Uhr: Beginn der Einschlafdauer bis zum Wecken; `null` ohne Beginn oder Einschlafzeit. */
+        fun of(night: NightRecord): OwnOnset? {
+            val bed = night.bedAt ?: return null
+            return OwnOnset(bed, night.wokeAt, bed, night.asleepAt ?: return null)
+        }
+    }
+}
 
 /** Art einer Auffälligkeit; die Reihenfolge ist die Priorität (die erste ist die wichtigste). */
 enum class FindingKind { LONG_LATENCY, SHORT_NIGHTS, LOW_DEEP, MUCH_AWAKE, SOCIAL_JETLAG, BEDTIME_VARIES }
@@ -206,11 +220,15 @@ object Findings {
 
     /**
      * Einschlafdauer aus der eigenen Messung für eine Nacht der Gesundheits-App von [start] bis [end] (nur, wenn diese
-     * keine liefert): die Messung aus [own], deren Aufzeichnung sich am längsten mit der Nacht überschneidet (gleich: die
-     * erste; wie die Aufzeichnung zur Nacht auf der Detailseite), in ganzen Minuten von [OwnOnset.bedAt] bis
-     * [OwnOnset.asleepAt] (abgerundet). `null` ohne Überschneidung oder wenn die Einschlafzeit vor dem Beginn liegt.
+     * keine liefert; Entscheid r1AD 15.11.2026): zuerst aus den Nächten der Uhr [watch], sonst aus den Aufzeichnungen [own].
+     * Je die Messung, die sich am längsten mit der Nacht überschneidet (gleich: die erste; wie die Aufzeichnung zur Nacht
+     * auf der Detailseite), in ganzen Minuten von [OwnOnset.bedAt] bis [OwnOnset.asleepAt] (abgerundet). `null` ohne
+     * Überschneidung oder wenn die Einschlafzeit vor dem Beginn liegt.
      */
-    fun ownLatency(start: Instant, end: Instant, own: List<OwnOnset>): Long? {
+    fun ownLatency(start: Instant, end: Instant, own: List<OwnOnset>, watch: List<OwnOnset> = emptyList()): Long? =
+        latencyOf(start, end, watch) ?: latencyOf(start, end, own)
+
+    private fun latencyOf(start: Instant, end: Instant, own: List<OwnOnset>): Long? {
         val best = own.filter { it.start.isBefore(end) && it.end.isAfter(start) }
             .maxByOrNull { Duration.between(maxOf(it.start, start), minOf(it.end, end)).toMillis() } ?: return null
         if (best.asleepAt.isBefore(best.bedAt)) return null

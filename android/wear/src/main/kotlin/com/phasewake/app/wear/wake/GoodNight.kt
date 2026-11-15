@@ -259,7 +259,7 @@ internal fun WakeService.onAsleep(spec: AlarmSpec, latest: Instant, asleep: Inst
         app.appScope.launch { (RecordService.since.value ?: app.recordings.active()?.start)?.let { app.recordings.appendOnset(it, bedAt, asleep) } }
     }
     app.appScope.launch {
-        app.onsets.set(spec.id, latest, asleep)
+        app.onsets.set(spec.id, latest, asleep, bedAt = bedAt)
         if (plan != null) app.onsetOverride.set(plan)
         // Zuerst die eigenen Alarme auf die neue Zielzeit (Audit AN-6): Das Senden ans Handy darf sie nicht aufhalten.
         app.scheduler.reschedule()

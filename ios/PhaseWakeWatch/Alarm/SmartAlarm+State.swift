@@ -11,8 +11,10 @@ extension SmartAlarm {
     /// Klingel- und Schlummer-Zustand überstehen das Beenden der App durch das System.
     func save() {
         guard let nightPlan, let firstRing else { return }
+        // Einschlafzeit samt Beginn mit (Felder 11 und 12), damit sie nach einem Neustart mit der Nacht ans iPhone geht.
         let night = NightRecord(alarmId: nightPlan.alarmId, windowStart: nightPlan.windowStart, target: nightPlan.target,
-                                wokeAt: firstRing, reason: reason, snoozes: snoozes, epochs: epochs)
+                                wokeAt: firstRing, reason: reason, snoozes: snoozes, epochs: epochs,
+                                bedAt: asleepAt == nil ? nil : onsetBedAt, asleepAt: asleepAt)
         var state: [String: Any] = ["night": Codec.encodeNight(night)]
         if case .snoozed(let until, _) = phase { state["snoozedUntil"] = until.timeIntervalSince1970 }
         Self.writeState(state)
@@ -52,6 +54,8 @@ extension SmartAlarm {
         reason = night.reason
         snoozes = night.snoozes
         epochs = night.epochs
+        asleepAt = night.asleepAt
+        onsetBedAt = night.bedAt
         // Unlesbare Schlummer-Zeit gilt als fehlend (dann wie beim Klingeln).
         let snoozed = (state["snoozedUntil"] as? Double).flatMap { $0.isFinite ? Date(timeIntervalSince1970: $0) : nil }
         if let date = snoozed {

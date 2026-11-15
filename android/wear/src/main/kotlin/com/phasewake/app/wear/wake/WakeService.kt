@@ -70,6 +70,8 @@ class WakeService : LifecycleService() {
          * mit [onsetMeasured].
          */
         var asleepAt: Instant? = null,
+        /** Beginn der Einschlafdauer zu [asleepAt] (für die Nacht im Verlauf, r1AD 15.11.2026); `null` = unbekannt. */
+        var bedAt: Instant? = null,
         /** Gemessen, aber ohne Einschlafzeit: Untergrenze bis 10 Min vor der Zielzeit (fail-closed, `ShortNight`). */
         var onsetMeasured: Boolean = false,
         /** Schlafziel für die Untergrenze: Schlafdauer im Einschlaf-Modus, sonst das Schlafziel. */

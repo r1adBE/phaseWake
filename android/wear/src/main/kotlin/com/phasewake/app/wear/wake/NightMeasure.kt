@@ -117,10 +117,12 @@ private fun WakeService.loadNight(current: Night, canMeasure: Boolean, refusal: 
         // nach einer Messung ohne Ergebnis fail-closed.
         val asleepAt = app.onsets.onsetFor(plan)
         val onsetMeasured = asleepAt == null && app.onsets.measuredFor(plan)
+        val bedAt = app.onsets.bedFor(plan)
         val goal = spec?.sleepDurationMinutes ?: app.sleepGoal.minutes.first()
         if (night !== current) return@launch
         current.spec = spec
         current.asleepAt = asleepAt
+        current.bedAt = bedAt
         current.onsetMeasured = onsetMeasured
         current.goalMinutes = goal
         if (saved != null) {

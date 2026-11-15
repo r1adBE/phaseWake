@@ -79,25 +79,28 @@ public enum Codec {
     /// Schreibt eine Nacht im Format «phasewake-night 1»: Kopfzeile, Zeile mit 7 Feldern (Zeiten in Millisekunden seit 1970), Zeile mit den Epochen «Bewegung;Puls», getrennt durch Kommas (leere Werte leer).
     /// Ein Grund, den ältere Versionen nicht kennen (`exact`, `shortNight`), steht in Feld 5 als `deadline` (so lesen
     /// ältere Versionen die Nacht weiter) und genau in einem angehängten Feld 8. Akku der Uhr und des iPhones
-    /// (``BatteryTrack/encode(_:)``) in den Feldern 9 und 10, nur wenn vorhanden. Identisch zu Kotlin.
+    /// (``BatteryTrack/encode(_:)``) in den Feldern 9 und 10, Beginn der Einschlafdauer und Einschlafzeit der Uhr (ms) in den
+    /// Feldern 11 und 12 (Entscheid r1AD 15.11.2026), je nur wenn vorhanden; davor fehlende Felder bleiben leer, leere am
+    /// Ende fallen weg. Identisch zu Kotlin.
     public static func encodeNight(_ night: NightRecord) -> String {
         var out = nightHeader + "\n"
         let legacy = legacyReasons.contains(night.reason)
-        var fields = [
+        let fields = [
             escape(night.alarmId), String(millis(night.windowStart)), String(millis(night.target)),
             String(millis(night.wokeAt)), legacy ? night.reason.rawValue : WakeReason.deadline.rawValue, String(night.snoozes),
             night.feeling.map(String.init) ?? "",
         ]
-        // Akku (Felder 9 und 10, r1AD 14.11.2026): nur wenn vorhanden; Feld 8 dann notfalls leer (wie Kotlin).
-        var batteries = [night.watchBattery, night.phoneBattery].map { $0.map(BatteryTrack.encode) ?? "" }
-        while batteries.last?.isEmpty == true { batteries.removeLast() }
-        if !batteries.isEmpty {
-            fields.append(legacy ? "" : night.reason.rawValue)
-            fields += batteries
-        } else if !legacy {
-            fields.append(night.reason.rawValue)
-        }
-        out += fields.joined(separator: "|") + "\n"
+        // Akku (Felder 9 und 10, r1AD 14.11.2026) und Einschlafen (11 und 12, r1AD 15.11.2026): nur wenn vorhanden; Feld 8
+        // und davor fehlende dann leer, leere am Ende fallen weg (wie Kotlin).
+        var tail = [
+            legacy ? "" : night.reason.rawValue,
+            night.watchBattery.map(BatteryTrack.encode) ?? "",
+            night.phoneBattery.map(BatteryTrack.encode) ?? "",
+            night.bedAt.map { String(millis($0)) } ?? "",
+            night.asleepAt.map { String(millis($0)) } ?? "",
+        ]
+        while tail.last?.isEmpty == true { tail.removeLast() }
+        out += (fields + tail).joined(separator: "|") + "\n"
         out += night.epochs.map { e in
             (e.motion.map(number) ?? "") + ";" + (e.heartRate.map(number) ?? "")
         }.joined(separator: ",") + "\n"
@@ -105,7 +108,8 @@ public enum Codec {
     }
 
     /// Liest `encodeNight`. Ältere Stände ohne Befinden (6 Felder) werden gelesen, weitere neuere Felder ignoriert.
-    /// Akku in den Feldern 9 und 10 (``BatteryTrack/decode(_:)``); unlesbar heisst nur ohne Akku.
+    /// Akku in den Feldern 9 und 10 (``BatteryTrack/decode(_:)``), Einschlafen in 11 und 12; fehlend, unlesbar oder
+    /// ausserhalb von ``TimeBounds`` heisst nur ohne.
     /// Grund: Feld 8, wenn bekannt, sonst Feld 5; ein unbekannter Grund (aus einer neueren Version) gilt als `deadline`.
     /// - Throws: ``CodecError`` bei fremdem Format, fehlenden Feldern, Befinden ausserhalb 1–5, unlesbaren Zahlen oder
     ///   Zeiten ausserhalb von ``TimeBounds``.
@@ -128,7 +132,8 @@ public enum Codec {
             alarmId: unescape(f[0]), windowStart: try date(f[1]), target: try date(f[2]), wokeAt: try date(f[3]),
             reason: reason, snoozes: try int(f[5]), epochs: epochs, feeling: feeling,
             // Unlesbar: ohne Akku statt die ganze Nacht zu verwerfen (wie Kotlin).
-            watchBattery: BatteryTrack.decode(f.count > 8 ? f[8] : nil), phoneBattery: BatteryTrack.decode(f.count > 9 ? f[9] : nil)
+            watchBattery: BatteryTrack.decode(f.count > 8 ? f[8] : nil), phoneBattery: BatteryTrack.decode(f.count > 9 ? f[9] : nil),
+            bedAt: f.count > 10 ? (try? date(f[10])) : nil, asleepAt: f.count > 11 ? (try? date(f[11])) : nil
         )
     }
 

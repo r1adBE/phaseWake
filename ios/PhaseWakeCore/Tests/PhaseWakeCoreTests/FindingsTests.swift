@@ -116,16 +116,22 @@ final class FindingsTests: XCTestCase {
         let lines = text.components(separatedBy: "\n").filter { !$0.isEmpty && !$0.hasPrefix("#") }
         for line in lines {
             let parts = line.components(separatedBy: "\t")
-            XCTAssertEqual(parts.count, 3, line)
-            guard parts.count == 3 else { continue }
+            XCTAssertTrue(parts.count == 3 || parts.count == 4, line)
+            guard parts.count >= 3 else { continue }
             let night = parts[1].components(separatedBy: " ")
-            let own = parts[2].components(separatedBy: ";").filter { !$0.trimmingCharacters(in: .whitespaces).isEmpty }.map { r in
-                let f = r.components(separatedBy: " ")
-                return OwnOnset(start: t(f[0]), end: t(f[1]), bedAt: t(f[2]), asleepAt: t(f[3]))
+            func tokens(_ field: String) -> [[String]] {
+                field.components(separatedBy: ";").filter { !$0.trimmingCharacters(in: .whitespaces).isEmpty }.map { $0.components(separatedBy: " ") }
             }
-            XCTAssertEqual(Findings.ownLatency(start: t(night[0]), end: t(night[1]), own: own).map { String($0) } ?? "-", parts[0], line)
+            let own = tokens(parts[2]).map { f in OwnOnset(start: t(f[0]), end: t(f[1]), bedAt: t(f[2]), asleepAt: t(f[3])) }
+            // Nächte der Uhr über NightRecord (Felder 11 und 12) und OwnOnset.of.
+            let watch = tokens(parts.count > 3 ? parts[3] : "").compactMap { f in
+                OwnOnset.of(NightRecord(alarmId: "a", windowStart: t(f[2]), target: t(f[2]), wokeAt: t(f[2]), reason: .deadline, snoozes: 0,
+                                        epochs: [], bedAt: t(f[0]), asleepAt: t(f[1])))
+            }
+            XCTAssertEqual(Findings.ownLatency(start: t(night[0]), end: t(night[1]), own: own, watch: watch).map { String($0) } ?? "-",
+                           parts[0], line)
         }
-        XCTAssertEqual(lines.count, 9)
+        XCTAssertEqual(lines.count, 13)
     }
 
     func testHealthLatencyBeforeOwnMeasurement() {
@@ -144,6 +150,14 @@ final class FindingsTests: XCTestCase {
         let bare = session(9, 1, 0, latency: 20, deep: 60, asleep: 400, awakeAfter: 30, stages: false)
         XCTAssertEqual(NightFacts.of(bare, calendar: calendar, own: own).latencyMinutes, 50)
         XCTAssertEqual(NightFacts.of([direct], clearedAt: nil, calendar: calendar, own: own).map(\.latencyMinutes), [50])
+        // Nacht der Uhr (Felder 11 und 12) vor der Aufzeichnung: 35 statt 50; ohne Einschlafzeit keine Messung.
+        let night = NightRecord(alarmId: "a", windowStart: withLatency.end, target: withLatency.end, wokeAt: withLatency.end, reason: .deadline,
+                                snoozes: 0, epochs: [], bedAt: withLatency.start, asleepAt: withLatency.start.addingTimeInterval(35 * 60))
+        let watch = [OwnOnset.of(night)].compactMap { $0 }
+        XCTAssertEqual(NightFacts.of(direct, calendar: calendar, own: own, watch: watch).latencyMinutes, 35)
+        XCTAssertEqual(NightFacts.of(withLatency, calendar: calendar, own: own, watch: watch).latencyMinutes, 20)
+        XCTAssertNil(OwnOnset.of(night.with(bedAt: withLatency.start, asleepAt: nil)))
+        XCTAssertNil(OwnOnset.of(night.with(bedAt: nil, asleepAt: withLatency.start)))
     }
 
     func testHiddenFindingReturnsAfterSevenDays() {

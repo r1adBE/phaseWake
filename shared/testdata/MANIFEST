@@ -30,6 +30,7 @@ min_baseline_two.night
 min_floor_epochs_after.night
 min_floor_epochs_before.night
 motion_only_no_hr.night
+night-onset.vectors
 no_baseline_hr.night
 no_current_hr.night
 noisy_watch_hr_rise.night

@@ -41,7 +41,14 @@ Nächte, keine Phasen, Zusammenhang, Zeitzone, Priorität und die echten Werte d
 
 `findings-onset.vectors`: je Zeile die erwartete Einschlafdauer aus der eigenen Messung der Uhr (`Findings.ownLatency`,
 Entscheid r1AD 15.11.2026), die Nacht der Gesundheits-App und die Aufzeichnungen mit erkanntem Einschlafen (Format im
-Kopf der Datei): keine, nur berührt, Einschlafzeit vor dem Beginn, längste Überschneidung, Gleichstand. Beide Kerne prüfen alle Zeilen.
+Kopf der Datei): keine, nur berührt, Einschlafzeit vor dem Beginn, längste Überschneidung, Gleichstand, Nacht der Uhr vor
+der Aufzeichnung. Beide Kerne prüfen alle Zeilen.
+
+## Nachtformat mit Einschlafen
+
+`night-onset.vectors`: je Zeile Grund, Akku und Einschlafen der Uhr (Felder 11 und 12 von `Codec.encodeNight`, Entscheid
+r1AD 15.11.2026), wie sie gelesen werden, und ob Schreiben genau die Zeile ergibt: alte Stände (6 und 7 Felder, mit Akku),
+neue mit und ohne Akku, nur Beginn, unlesbar, ausserhalb 1970–2100, weiteres Feld einer neueren Version. Beide Kerne prüfen alle Zeilen.
 
 ## Passwort-Regel
 

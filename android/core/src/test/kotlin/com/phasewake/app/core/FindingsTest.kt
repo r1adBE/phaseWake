@@ -115,12 +115,16 @@ class FindingsTest {
         val cases = NightFixtures.directory().resolve("findings-onset.vectors").readLines(Charsets.UTF_8)
             .filter { it.isNotBlank() && !it.startsWith("#") }
         for (line in cases) {
-            val (expected, night, recs) = line.split('\t')
-            val (start, end) = night.split(' ')
-            val own = recs.split(';').filter { it.isNotBlank() }.map { r -> r.split(' ').let { OwnOnset(t(it[0]), t(it[1]), t(it[2]), t(it[3])) } }
-            assertEquals(expected, Findings.ownLatency(t(start), t(end), own)?.toString() ?: "-", line)
+            val parts = line.split('\t')
+            val (start, end) = parts[1].split(' ')
+            val own = parts[2].split(';').filter { it.isNotBlank() }.map { r -> r.split(' ').let { OwnOnset(t(it[0]), t(it[1]), t(it[2]), t(it[3])) } }
+            // Nächte der Uhr über NightRecord (Felder 11 und 12) und OwnOnset.of.
+            val watch = parts.getOrElse(3) { "" }.split(';').filter { it.isNotBlank() }.mapNotNull { r ->
+                r.split(' ').let { OwnOnset.of(NightRecord("a", t(it[2]), t(it[2]), t(it[2]), WakeReason.DEADLINE, 0, emptyList(), bedAt = t(it[0]), asleepAt = t(it[1]))) }
+            }
+            assertEquals(parts[0], Findings.ownLatency(t(start), t(end), own, watch)?.toString() ?: "-", line)
         }
-        assertEquals(9, cases.size)
+        assertEquals(13, cases.size)
     }
 
     @Test
@@ -138,6 +142,13 @@ class FindingsTest {
         // Ganz ohne Phasen ebenso; über die Liste der Sitzungen gleich.
         assertEquals(50, NightFacts.of(session(9, 1, 0, 20, 60, 400, 30, stages = false), zone, own).latencyMinutes)
         assertEquals(listOf<Long?>(50), NightFacts.of(listOf(direct), null, zone, own).map { it.latencyMinutes })
+        // Nacht der Uhr (Felder 11 und 12) vor der Aufzeichnung: 35 statt 50; ohne Einschlafzeit keine Messung.
+        val night = NightRecord("a", withLatency.end, withLatency.end, withLatency.end, WakeReason.DEADLINE, 0, emptyList(),
+            bedAt = withLatency.start, asleepAt = withLatency.start.plus(Duration.ofMinutes(35)))
+        assertEquals(35, NightFacts.of(direct, zone, own, listOfNotNull(OwnOnset.of(night))).latencyMinutes)
+        assertEquals(20, NightFacts.of(withLatency, zone, own, listOfNotNull(OwnOnset.of(night))).latencyMinutes)
+        assertNull(OwnOnset.of(night.copy(asleepAt = null)))
+        assertNull(OwnOnset.of(night.copy(bedAt = null)))
     }
 
     @Test

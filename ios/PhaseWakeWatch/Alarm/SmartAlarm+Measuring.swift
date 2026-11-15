@@ -46,6 +46,7 @@ extension SmartAlarm {
         firstRing = nil
         snoozes = 0
         asleepAt = nil
+        onsetBedAt = nil
         onsetMeasured = false
         heldWake = nil
         earlyBlocked = false
@@ -244,7 +245,9 @@ extension SmartAlarm {
             DiagStore.shared.log(.phase, "onset floor \(NoiseFloor.format(detector.config.onsetFloor))")
         }
         switch result {
-        case .asleep(let at): asleepAt = at
+        case .asleep(let at, let bed):
+            asleepAt = at
+            onsetBedAt = bed
         case .notMeasured: break
         case .failed: onsetMeasured = true
         }

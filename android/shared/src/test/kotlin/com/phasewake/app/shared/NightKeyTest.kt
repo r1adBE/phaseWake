@@ -56,4 +56,17 @@ class NightKeyTest {
         // Ohne Akku noch einmal: beide bleiben.
         assertEquals(merged, mergeNight(listOf(merged), night("a")).single())
     }
+
+    @Test
+    fun storedOnsetIsKeptTogether() {
+        // Entscheid r1AD 15.11.2026: Einschlafzeit samt Beginn bleibt, wenn dieselbe Nacht ohne sie noch einmal kommt.
+        val bed = start.minus(Duration.ofHours(7))
+        val asleep = bed.plus(Duration.ofMinutes(25))
+        val measured = night("a").copy(bedAt = bed, asleepAt = asleep)
+        assertEquals(measured, mergeNight(listOf(measured), night("a")).single())
+        // Neue Messung ersetzt beide; nur ein Beginn ohne Einschlafzeit ersetzt nichts.
+        val newer = night("a").copy(bedAt = bed.plusSeconds(60), asleepAt = asleep.plusSeconds(600))
+        assertEquals(newer, mergeNight(listOf(measured), newer).single())
+        assertEquals(measured, mergeNight(listOf(measured), night("a").copy(bedAt = bed.plusSeconds(60))).single())
+    }
 }

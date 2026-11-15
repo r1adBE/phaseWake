@@ -280,11 +280,13 @@ public final class PhaseWakeStorage: @unchecked Sendable {
             Self.log("Verlauf nicht lesbar, Nacht nicht gespeichert")
             return false
         }
-        // Befinden und Akku (z. B. des iPhones) bleiben, wenn die Uhr dieselbe Nacht ohne sie noch einmal schickt (wie Android).
+        // Befinden, Akku (z. B. des iPhones) und Einschlafen bleiben, wenn die Uhr dieselbe Nacht ohne sie noch einmal schickt
+        // (wie Android); Beginn und Einschlafzeit nur zusammen (gehören zur selben Messung).
         let old = current.first { Self.sameNight($0, night) }
         let merged = NightRecord(alarmId: night.alarmId, windowStart: night.windowStart, target: night.target, wokeAt: night.wokeAt,
                                  reason: night.reason, snoozes: night.snoozes, epochs: night.epochs, feeling: night.feeling ?? old?.feeling,
-                                 watchBattery: night.watchBattery ?? old?.watchBattery, phoneBattery: night.phoneBattery ?? old?.phoneBattery)
+                                 watchBattery: night.watchBattery ?? old?.watchBattery, phoneBattery: night.phoneBattery ?? old?.phoneBattery,
+                                 bedAt: night.asleepAt != nil ? night.bedAt : old?.bedAt, asleepAt: night.asleepAt ?? old?.asleepAt)
         return writeNightsLocked(NightHistory.trim(current.filter { !Self.sameNight($0, night) } + [merged]))
     }
 

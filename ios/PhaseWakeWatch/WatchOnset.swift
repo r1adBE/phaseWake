@@ -18,7 +18,8 @@ import PhaseWakeCore
 /// Untergrenze bis 10 Min vor der Zielzeit (`failed`, fail-closed, Entscheid r1AD 10.11.2026, wie die Galaxy Watch nach
 /// einer begonnenen Messung ohne Ergebnis). Puls ab 15 Min vor dem Beginn und Zeiten am Ladegerät siehe F-1
 /// (`LearnRecorder+Charging`). Neue Werte liefert der Rekorder erst nach bis zu 3 Min; die letzten Minuten
-/// vor der Sitzung fehlen darum. Die Einschlafzeit geht in die laufende Aufzeichnung (`LearnRecorder.noteOnset`) und
+/// vor der Sitzung fehlen darum. Die Einschlafzeit geht in die laufende Aufzeichnung (`LearnRecorder.noteOnset`), samt
+/// Beginn mit der Nacht ans iPhone (`NightRecord.bedAt`, `asleepAt`, r1AD 15.11.2026) und
 /// ins Diagnose-Protokoll, nach «Gute Nacht» samt Vergleich mit der Schätzung.
 enum WatchOnset {
     /// Rechenzeit für das Lesen des Rekorders (bis 4 Std. Werte, rund 720 000).
@@ -28,8 +29,8 @@ enum WatchOnset {
 
     /// Ergebnis der Rechnung.
     enum Result: Equatable {
-        /// Eingeschlafen um `at`.
-        case asleep(Date)
+        /// Eingeschlafen um `at`, Beginn der Einschlafdauer `bedAt` (für die Nacht im Verlauf, r1AD 15.11.2026).
+        case asleep(Date, bedAt: Date)
         /// Kein Rekorder in dieser Nacht (oder Schalter aus, Powernap, Probewecker): unbekannt, keine Untergrenze.
         case notMeasured
         /// Rekorder lief, aber keine Einschlafzeit: Untergrenze bis 10 Min vor der Zielzeit.
@@ -122,7 +123,7 @@ enum WatchOnset {
                 DiagStore.shared.log(.phase, "onset estimate \(Format.logTime(manual.asleep)), recorder \(Format.logTime(at)) (\(diff >= 0 ? "+" : "")\(diff) min)")
             }
             LearnRecorder.shared.noteOnset(bedAt: bedAt, asleepAt: at)
-            return (.asleep(at), floor)
+            return (.asleep(at, bedAt: bedAt), floor)
         case .gaveUp(_, let reason):
             DiagStore.shared.log(.measureEnd, "\(stat), \(reason)")
         case .open:

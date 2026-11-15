@@ -1,7 +1,8 @@
 # Einschlafdauer aus der eigenen Messung der Uhr (Findings.ownLatency, Entscheid r1AD 15.11.2026), nur für Nächte, in
 # denen die Gesundheits-App keine liefert: je Zeile erwartete Minuten («-» = keine), Tabulator, Nacht der
 # Gesundheits-App «Beginn Ende», Tabulator, Aufzeichnungen mit erkanntem Einschlafen mit «;» getrennt
-# «Beginn Ende Bett Eingeschlafen» (leer = keine). Zeiten in Minuten ab 2026-11-08 22:00 UTC.
+# «Beginn Ende Bett Eingeschlafen» (leer = keine), optional Tabulator und Nächte der Uhr mit «;» getrennt
+# «Bett Eingeschlafen Geweckt» (gehen den Aufzeichnungen vor). Zeiten in Minuten ab 2026-11-08 22:00 UTC.
 # eine Aufzeichnung über die Nacht
 25	60 540	30 600 40 65
 # keine Aufzeichnung
@@ -18,3 +19,10 @@
 20	60 540	0 300 10 30;300 600 310 350
 # Aufzeichnung ganz in der Nacht, Einschlafen nach dem Beginn der Nacht
 95	60 540	120 500 125 220
+# Nacht der Uhr geht der Aufzeichnung vor (30 statt 25)
+30	60 540	30 600 40 65	50 80 500
+# Nacht der Uhr ohne Überschneidung bzw. mit Einschlafzeit vor dem Beginn: die Aufzeichnung
+25	60 540	30 600 40 65	600 620 900
+25	60 540	30 600 40 65	50 45 500
+# nur die Nacht der Uhr
+10	60 540		55 65 500

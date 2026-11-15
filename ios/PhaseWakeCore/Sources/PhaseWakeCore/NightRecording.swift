@@ -107,7 +107,7 @@ public struct NightRecording: Equatable, Sendable {
         Learning.Night(start: start, epochs: epochs, bedAt: bedAt, asleepAt: asleepAt)
     }
 
-    /// Eigene Messung des Einschlafens für die Auffälligkeiten (``Findings/ownLatency(start:end:own:)``): nur
+    /// Eigene Messung des Einschlafens für die Auffälligkeiten (``Findings/ownLatency(start:end:own:watch:)``): nur
     /// abgeschlossen und mit erkanntem Einschlafen, sonst `nil`. Wie `NightRecording.ownOnset` (Kotlin).
     public var ownOnset: OwnOnset? {
         guard let end, let bedAt, let asleepAt else { return nil }

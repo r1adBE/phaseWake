@@ -117,6 +117,41 @@ class CodecTest {
     }
 
     @Test
+    fun nightOnsetVectors() {
+        // Gemeinsame Fälle mit Swift (shared/testdata/night-onset.vectors): Felder 11 und 12, alte und neue Stände.
+        val cases = NightFixtures.directory().resolve("night-onset.vectors").readLines(Charsets.UTF_8)
+            .filter { it.isNotBlank() && !it.startsWith("#") }
+        for (line in cases) {
+            val (expected, mode, fields) = line.split('\t')
+            val text = "phasewake-night 1\n$fields\n\n"
+            val night = Codec.decodeNight(text)
+            val got = listOf(
+                night.reason.name,
+                if (night.watchBattery != null) "B" else "-",
+                night.bedAt?.toEpochMilli()?.toString() ?: "-",
+                night.asleepAt?.toEpochMilli()?.toString() ?: "-",
+            ).joinToString(" ")
+            assertEquals(expected, got, line)
+            if (mode == "=") assertEquals(text, Codec.encodeNight(night), line)
+        }
+        assertEquals(10, cases.size)
+    }
+
+    @Test
+    fun nightOnsetRoundTripAndOlderReaders() {
+        val base = Codec.decodeNight("phasewake-night 1\na|1794200000000|1794201800000|1794201080000|DEADLINE|0\n0.0;52.0\n")
+        val bed = Instant.ofEpochMilli(1_794_170_000_000)
+        val asleep = Instant.ofEpochMilli(1_794_171_800_000)
+        val night = base.copy(bedAt = bed, asleepAt = asleep)
+        assertEquals(night, Codec.decodeNight(Codec.encodeNight(night)))
+        // Ein älterer Leser (bis Feld 10) sieht dieselbe Nacht ohne Akku und ohne Einschlafen: Felder 8–10 leer.
+        val fields = Codec.encodeNight(night).lines()[1].split('|')
+        assertEquals(listOf("", "", "", bed.toEpochMilli().toString(), asleep.toEpochMilli().toString()), fields.drop(7))
+        // Ohne Einschlafen unverändert wie bisher (7 Felder).
+        assertEquals("phasewake-night 1\na|1794200000000|1794201800000|1794201080000|DEADLINE|0|\n0.0;52.0\n", Codec.encodeNight(base))
+    }
+
+    @Test
     fun nightRoundTrip() {
         val night = NightRecord(
             alarmId = "3f2a-77",

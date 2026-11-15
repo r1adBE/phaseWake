@@ -196,8 +196,11 @@ extension SmartAlarm {
                 reason: reason,
                 snoozes: snoozes,
                 epochs: epochs,
-                // Akku je Nacht (r1AD 14.11.2026): Ende jetzt, die Punkte reisen mit der Nacht zum iPhone.
-                watchBattery: WatchBattery.end()
+                // Akku je Nacht (r1AD 14.11.2026): Ende jetzt, die Punkte reisen mit der Nacht zum iPhone; ebenso die
+                // Einschlafzeit samt Beginn (r1AD 15.11.2026), nur zusammen.
+                watchBattery: WatchBattery.end(),
+                bedAt: asleepAt == nil ? nil : onsetBedAt,
+                asleepAt: asleepAt
             )
             model.storage.add(night)
             // Diese Nacht ist erledigt: nicht noch einmal planen (`markNightDone`).

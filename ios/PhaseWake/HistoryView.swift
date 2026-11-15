@@ -46,7 +46,8 @@ struct HistoryView: View {
                     } else {
                         // Auffälligkeiten der letzten 7 Nächte: alle an einer Stelle, in den Trends (wie Android).
                         let facts = NightFacts.of(health.sessions, clearedAt: model.historyClearedAt, calendar: .gregorianLocal,
-                                                  own: PhoneLearning.shared.recordings.compactMap(\.ownOnset))
+                                                  own: PhoneLearning.shared.recordings.compactMap(\.ownOnset),
+                                                  watch: model.nights.compactMap(OwnOnset.of))
                         if let summary = weekly(feelings) {
                             WeeklyCard(summary: summary, deep: Findings.weekDeep(facts, weekEnd: summary.to))
                         }

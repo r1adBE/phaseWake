@@ -50,10 +50,13 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true, done: Boolean 
     val transient = Transient.kindOf(n.plan.alarmId) != null
     app.diag.log(DiagKind.STOP, if (n.firstRing == null) "watch ended without ring" else "watch")
     val record = n.firstRing?.takeIf { !transient }?.let { wokeAt ->
-        // Akku je Nacht (r1AD 14.11.2026): Ende jetzt, die Punkte reisen mit der Nacht zum Handy.
+        // Akku je Nacht (r1AD 14.11.2026): Ende jetzt, die Punkte reisen mit der Nacht zum Handy; ebenso die Einschlafzeit
+        // samt Beginn (r1AD 15.11.2026), nur zusammen.
         NightRecord(
             n.plan.alarmId, n.plan.windowStart, n.plan.target, wokeAt, n.reason ?: WakeReason.DEADLINE, n.snoozes, n.epochs.toList(),
             watchBattery = BatteryNight.end(this),
+            bedAt = n.bedAt?.takeIf { n.asleepAt != null },
+            asleepAt = n.asleepAt,
         )
     }
     // Ohne Nacht im Verlauf (nicht geweckt, Probewecker, Powernap) gehört der Akku zu nichts; ein Probewecker hat keinen begonnen.

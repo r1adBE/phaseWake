@@ -143,6 +143,36 @@ final class CodecTests: XCTestCase {
         XCTAssertThrowsError(try Codec.decodeNight("phasewake-night 1\na|0|1800000|1080000|DEADLINE\n\n"))
     }
 
+    /// Gemeinsame Fälle mit Kotlin (shared/testdata/night-onset.vectors): Felder 11 und 12, alte und neue Stände.
+    func testNightOnsetVectors() throws {
+        let text = try String(contentsOf: NightFixtures.directory.appendingPathComponent("night-onset.vectors"), encoding: .utf8)
+        let lines = text.components(separatedBy: "\n").filter { !$0.isEmpty && !$0.hasPrefix("#") }
+        func ms(_ d: Date?) -> String { d.map { String(TimeBounds.millis($0)) } ?? "-" }
+        for line in lines {
+            let parts = line.components(separatedBy: "\t")
+            XCTAssertEqual(parts.count, 3, line)
+            guard parts.count == 3 else { continue }
+            let nightText = "phasewake-night 1\n\(parts[2])\n\n"
+            let night = try Codec.decodeNight(nightText)
+            let got = [night.reason.rawValue, night.watchBattery != nil ? "B" : "-", ms(night.bedAt), ms(night.asleepAt)].joined(separator: " ")
+            XCTAssertEqual(got, parts[0], line)
+            if parts[1] == "=" { XCTAssertEqual(Codec.encodeNight(night), nightText, line) }
+        }
+        XCTAssertEqual(lines.count, 10)
+    }
+
+    /// Wie Kotlin `nightOnsetRoundTripAndOlderReaders`: Felder 8–10 leer, ohne Einschlafen unverändert 7 Felder.
+    func testNightOnsetRoundTripAndOlderReaders() throws {
+        let base = try Codec.decodeNight("phasewake-night 1\na|1794200000000|1794201800000|1794201080000|DEADLINE|0\n0.0;52.0\n")
+        let bed = Date(timeIntervalSince1970: 1_794_170_000)
+        let asleep = Date(timeIntervalSince1970: 1_794_171_800)
+        let night = base.with(bedAt: bed, asleepAt: asleep)
+        XCTAssertEqual(try Codec.decodeNight(Codec.encodeNight(night)), night)
+        let fields = Codec.encodeNight(night).components(separatedBy: "\n")[1].components(separatedBy: "|")
+        XCTAssertEqual(Array(fields.dropFirst(7)), ["", "", "", "1794170000000", "1794171800000"])
+        XCTAssertEqual(Codec.encodeNight(base), "phasewake-night 1\na|1794200000000|1794201800000|1794201080000|DEADLINE|0|\n0.0;52.0\n")
+    }
+
     func testDayFormat() {
         let de = Locale(identifier: "de_CH")
         func f(_ d: Set<Weekday>, _ l: Locale = de) -> String { DayFormat.format(d, locale: l, once: "Einmalig", daily: "Täglich") }
