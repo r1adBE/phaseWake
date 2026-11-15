@@ -635,4 +635,16 @@
     <string name="editor_alarm_gone">Kengele hii imefutwa wakati huo.</string>
     <string name="test_replaces_nap">Kengele ya majaribio inamaliza usingizi wako mfupi.</string>
     <string name="settings_clear_history_also">Madokezo, hali, alama za ratiba ya jioni na vipande vya sauti pia vinafutwa.</string>
+    <string name="finding_title">Kilichoonekana katika usiku wako 7 uliopita</string>
+    <string name="finding_hide">Ficha</string>
+    <string name="finding_latency">Kwa wastani ulichukua %1$s kupata usingizi. Kidokezo: ukiwa bado macho baada ya dakika 20, amka na urudi kitandani tu unapohisi usingizi. Hali hii ikiendelea kwa wiki kadhaa, zungumza na daktari wako.</string>
+    <string name="finding_short_nights">Usiku chini ya saa 6: %1$d kati ya 7. Kidokezo: hesabu muda wa kulala kurudi nyuma kutoka muda wa kuamka na uushike.</string>
+    <string name="finding_low_deep">Usingizi mzito ulikuwa takriban %1$d %% tu ya usingizi wako (kwa kawaida %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">Katika usiku chini ya saa 6 ulikuwa wazi kuwa mdogo: %1$d %% badala ya %2$d %%.</string>
+    <string name="finding_deep_late">Katika usiku uliolala kwa kuchelewa ulikuwa wazi kuwa mdogo: %1$d %% badala ya %2$d %%.</string>
+    <string name="finding_tip_deep">Kidokezo: bila kafeini kuanzia mchana na bila skrini katika saa ya mwisho kabla ya kulala.</string>
+    <string name="finding_awake">Baada ya kulala ulikuwa macho takriban %1$d %% ya muda. Kidokezo: weka chumba cha kulala giza, kimya na baridi, na epuka pombe jioni.</string>
+    <string name="finding_bedtime">Muda wako wa kulala ulitofautiana hadi %1$s. Kidokezo: lala karibu saa ileile kila siku, hata wikendi.</string>
+    <string name="finding_jetlag">Wikendi usingizi wako ulisogea %1$s ukilinganisha na siku za kazi. Kidokezo: shika muda uleule wa kulala hata wikendi.</string>
+    <string name="weekly_deep">Usingizi mzito %1$s ya usingizi wako</string>
 </resources>

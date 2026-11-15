@@ -633,4 +633,16 @@
     <string name="editor_alarm_gone">Denne alarm er blevet slettet i mellemtiden.</string>
     <string name="test_replaces_nap">Testalarmen afslutter din lur.</string>
     <string name="settings_clear_history_also">Noter, følelse, flueben i aftenrutinen og lydklip slettes også.</string>
+    <string name="finding_title">Bemærket i dine sidste 7 nætter</string>
+    <string name="finding_hide">Skjul</string>
+    <string name="finding_latency">I gennemsnit tog det dig %1$s at falde i søvn. Tip: er du stadig vågen efter 20 minutter, så stå op og gå først i seng igen, når du er søvnig. Varer det i uger, så tal med din læge.</string>
+    <string name="finding_short_nights">Nætter under 6 timer: %1$d af 7. Tip: regn din sengetid ud fra dit vækketidspunkt, og hold dig til den.</string>
+    <string name="finding_low_deep">Dyb søvn udgjorde kun omkring %1$d %% af din søvn (normalt %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">I nætter under 6 timer var den tydeligt lavere: %1$d %% i stedet for %2$d %%.</string>
+    <string name="finding_deep_late">I nætter, hvor du gik sent i seng, var den tydeligt lavere: %1$d %% i stedet for %2$d %%.</string>
+    <string name="finding_tip_deep">Tip: ingen koffein fra eftermiddagen og ingen skærme den sidste time før søvn.</string>
+    <string name="finding_awake">Efter du faldt i søvn, var du vågen omkring %1$d %% af tiden. Tip: hold soveværelset mørkt, stille og køligt, og drop alkohol om aftenen.</string>
+    <string name="finding_bedtime">Din sengetid svingede med op til %1$s. Tip: gå i seng omtrent samme tid hver dag, også i weekenden.</string>
+    <string name="finding_jetlag">I weekenden var din søvn forskudt %1$s i forhold til hverdage. Tip: hold de samme sovetider i weekenden.</string>
+    <string name="weekly_deep">Dyb søvn %1$s af din søvn</string>
 </resources>

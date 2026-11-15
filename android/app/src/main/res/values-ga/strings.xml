@@ -678,4 +678,16 @@
     <string name="editor_alarm_gone">Scriosadh an t-aláram seo idir an dá linn.</string>
     <string name="test_replaces_nap">Cuireann an t-aláram tástála deireadh le do néal cumhachta.</string>
     <string name="settings_clear_history_also">Scriostar nótaí, mothú, ticeanna an ghnáthaimh tráthnóna agus gearrthóga fuaime freisin.</string>
+    <string name="finding_title">Tugtha faoi deara i do 7 n-oíche dheireanacha</string>
+    <string name="finding_hide">Folaigh</string>
+    <string name="finding_latency">Ar an meán thóg sé %1$s ort titim i do chodladh. Leid: má tá tú i do dhúiseacht fós tar éis 20 nóiméad, éirigh agus ná fill ar an leaba go dtí go mbíonn codladh ort. Má mhaireann sé seo ar feadh seachtainí, labhair le do dhochtúir.</string>
+    <string name="finding_short_nights">Oícheanta faoi 6 uair: %1$d as 7. Leid: oibrigh amach d’am codlata ó d’am dúiseachta agus cloígh leis.</string>
+    <string name="finding_low_deep">Ní raibh sa chodladh domhain ach thart ar %1$d %% de do chodladh (de ghnáth %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">Oícheanta faoi 6 uair bhí sé i bhfad níos lú: %1$d %% in áit %2$d %%.</string>
+    <string name="finding_deep_late">Oícheanta a ndeachaigh tú a chodladh go déanach bhí sé i bhfad níos lú: %1$d %% in áit %2$d %%.</string>
+    <string name="finding_tip_deep">Leid: gan caiféin ón tráthnóna ar aghaidh agus gan scáileáin san uair dheireanach roimh chodladh.</string>
+    <string name="finding_awake">Tar éis duit titim i do chodladh bhí tú i do dhúiseacht thart ar %1$d %% den am. Leid: coinnigh an seomra leapa dorcha, ciúin agus fionnuar, agus seachain alcól tráthnóna.</string>
+    <string name="finding_bedtime">D’athraigh d’am codlata suas le %1$s. Leid: téigh a chodladh thart ar an am céanna gach lá, ag an deireadh seachtaine freisin.</string>
+    <string name="finding_jetlag">Ag an deireadh seachtaine bhog do chodladh %1$s i gcomparáid le laethanta oibre. Leid: coinnigh na hamanna codlata céanna ag an deireadh seachtaine freisin.</string>
+    <string name="weekly_deep">Codladh domhain %1$s de do chodladh</string>
 </resources>

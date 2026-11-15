@@ -636,4 +636,16 @@
     <string name="editor_alarm_gone">ይህ ማንቂያ በመሃሉ ተሰርዟል።</string>
     <string name="test_replaces_nap">የሙከራ ማንቂያው አጭር እንቅልፍዎን ያቋርጣል።</string>
     <string name="settings_clear_history_also">ማስታወሻዎች፣ ስሜት፣ የምሽት ልማድ ምልክቶች እና የድምፅ ቅንጥቦችም ይሰረዛሉ።</string>
+    <string name="finding_title">ባለፉት 7 ሌሊቶች የታየ</string>
+    <string name="finding_hide">ደብቅ</string>
+    <string name="finding_latency">ለመተኛት በአማካይ %1$s ወስዶብሃል። ምክር፦ ከ20 ደቂቃ በኋላ አሁንም ነቅተህ ከሆነ ተነስ፣ እንቅልፍ ሲመጣብህ ብቻ ወደ አልጋ ተመለስ። ይህ ለሳምንታት ከቀጠለ ሐኪምህን አነጋግር።</string>
+    <string name="finding_short_nights">ከ6 ሰዓት ያነሱ ሌሊቶች፦ ከ7 %1$d። ምክር፦ የመኝታ ሰዓትህን ከመነሻ ሰዓትህ ወደኋላ አስላና ጠብቀው።</string>
+    <string name="finding_low_deep">ጥልቅ እንቅልፍ ከእንቅልፍህ ወደ %1$d %% ብቻ ነበር (በተለምዶ %2$d–%3$d %%)።</string>
+    <string name="finding_deep_short">ከ6 ሰዓት ባነሱ ሌሊቶች በግልጽ ያነሰ ነበር፦ ከ%2$d %% ይልቅ %1$d %%።</string>
+    <string name="finding_deep_late">ዘግይተህ በተኛህባቸው ሌሊቶች በግልጽ ያነሰ ነበር፦ ከ%2$d %% ይልቅ %1$d %%።</string>
+    <string name="finding_tip_deep">ምክር፦ ከሰዓት በኋላ ካፌይን አትውሰድ፣ ከመተኛትህ በፊት ባለው የመጨረሻ ሰዓት ስክሪን አትመልከት።</string>
+    <string name="finding_awake">ከተኛህ በኋላ ከጊዜው ወደ %1$d %% ነቅተህ ነበር። ምክር፦ መኝታ ቤትህን ጨለማ፣ ጸጥ ያለና ቀዝቃዛ አድርገው፣ ምሽት ላይ አልኮል አትጠጣ።</string>
+    <string name="finding_bedtime">የመኝታ ሰዓትህ እስከ %1$s ተለዋውጧል። ምክር፦ በየቀኑ በግምት በተመሳሳይ ሰዓት ተኛ፣ ቅዳሜና እሁድም ጭምር።</string>
+    <string name="finding_jetlag">ቅዳሜና እሁድ እንቅልፍህ ከሥራ ቀናት ጋር ሲነጻጸር በ%1$s ተዛውሯል። ምክር፦ ቅዳሜና እሁድም ተመሳሳይ የእንቅልፍ ሰዓት ጠብቅ።</string>
+    <string name="weekly_deep">ጥልቅ እንቅልፍ ከእንቅልፍህ %1$s</string>
 </resources>

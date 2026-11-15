@@ -635,4 +635,16 @@
     <string name="editor_alarm_gone">এই অ্যালার্মটি ইতিমধ্যে মুছে ফেলা হয়েছে।</string>
     <string name="test_replaces_nap">পরীক্ষামূলক অ্যালার্ম তোমার পাওয়ার ন্যাপ শেষ করে দেবে।</string>
     <string name="settings_clear_history_also">নোট, অনুভূতি, সন্ধ্যার রুটিনের টিক আর শব্দের ক্লিপও মুছে যাবে।</string>
+    <string name="finding_title">তোমার শেষ ৭ রাতে চোখে পড়েছে</string>
+    <string name="finding_hide">লুকাও</string>
+    <string name="finding_latency">ঘুমিয়ে পড়তে তোমার গড়ে %1$s লেগেছে। পরামর্শ: ২০ মিনিট পরেও জেগে থাকলে উঠে পড়ো এবং ঘুম পেলে তবেই বিছানায় ফেরো। কয়েক সপ্তাহ এমন চললে তোমার ডাক্তারের সঙ্গে কথা বলো।</string>
+    <string name="finding_short_nights">৬ ঘণ্টার কম রাত: ৭টির মধ্যে %1$dটি। পরামর্শ: ঘুম থেকে ওঠার সময় থেকে পিছিয়ে শোয়ার সময় ঠিক করো এবং তা মেনে চলো।</string>
+    <string name="finding_low_deep">গভীর ঘুম তোমার ঘুমের মাত্র প্রায় %1$d %% ছিল (সাধারণত %2$d–%3$d %%)।</string>
+    <string name="finding_deep_short">৬ ঘণ্টার কম রাতে এটি স্পষ্টভাবে কম ছিল: %2$d %%-এর বদলে %1$d %%।</string>
+    <string name="finding_deep_late">যে রাতে দেরিতে শুয়েছ, সেদিন এটি স্পষ্টভাবে কম ছিল: %2$d %%-এর বদলে %1$d %%।</string>
+    <string name="finding_tip_deep">পরামর্শ: বিকেল থেকে ক্যাফেইন নয় এবং ঘুমানোর আগের শেষ ঘণ্টায় স্ক্রিন নয়।</string>
+    <string name="finding_awake">ঘুমিয়ে পড়ার পর তুমি সময়ের প্রায় %1$d %% জেগে ছিলে। পরামর্শ: শোবার ঘর অন্ধকার, শান্ত ও ঠান্ডা রাখো এবং সন্ধ্যায় মদ এড়িয়ে চলো।</string>
+    <string name="finding_bedtime">তোমার শোয়ার সময় %1$s পর্যন্ত বদলেছে। পরামর্শ: প্রতিদিন প্রায় একই সময়ে শুতে যাও, সপ্তাহান্তেও।</string>
+    <string name="finding_jetlag">সপ্তাহান্তে তোমার ঘুম কাজের দিনের তুলনায় %1$s সরে গেছে। পরামর্শ: সপ্তাহান্তেও একই ঘুমের সময় বজায় রাখো।</string>
+    <string name="weekly_deep">গভীর ঘুম তোমার ঘুমের %1$s</string>
 </resources>

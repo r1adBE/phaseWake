@@ -664,4 +664,16 @@
     <string name="editor_alarm_gone">Šis žadintuvas tuo metu buvo ištrintas.</string>
     <string name="test_replaces_nap">Bandomasis žadintuvas užbaigs tavo pogulį.</string>
     <string name="settings_clear_history_also">Taip pat ištrinamos pastabos, savijauta, vakaro ritualo varnelės ir garso ištraukos.</string>
+    <string name="finding_title">Pastebėta per paskutines 7 naktis</string>
+    <string name="finding_hide">Slėpti</string>
+    <string name="finding_latency">Vidutiniškai užmigti tau prireikė %1$s. Patarimas: jei po 20 minučių vis dar nemiegi, atsikelk ir grįžk į lovą tik tada, kai būsi mieguistas. Jei tai trunka savaites, pasikalbėk su savo gydytoju.</string>
+    <string name="finding_short_nights">Naktys, trumpesnės nei 6 valandos: %1$d iš 7. Patarimas: apskaičiuok ėjimo miegoti laiką nuo kėlimosi laiko ir jo laikykis.</string>
+    <string name="finding_low_deep">Gilus miegas sudarė tik apie %1$d %% tavo miego (paprastai %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">Naktimis, trumpesnėmis nei 6 valandos, jo buvo aiškiai mažiau: %1$d %% vietoj %2$d %%.</string>
+    <string name="finding_deep_late">Naktimis, kai ėjai miegoti vėlai, jo buvo aiškiai mažiau: %1$d %% vietoj %2$d %%.</string>
+    <string name="finding_tip_deep">Patarimas: nuo popietės jokio kofeino ir paskutinę valandą prieš miegą jokių ekranų.</string>
+    <string name="finding_awake">Užmigęs budėjai apie %1$d %% laiko. Patarimas: miegamąjį laikyk tamsų, tylų ir vėsų, o vakare atsisakyk alkoholio.</string>
+    <string name="finding_bedtime">Tavo ėjimo miegoti laikas svyravo iki %1$s. Patarimas: kasdien eik miegoti maždaug tuo pačiu metu, ir savaitgaliais.</string>
+    <string name="finding_jetlag">Savaitgaliais tavo miegas pasislinko %1$s, palyginti su darbo dienomis. Patarimas: savaitgaliais irgi laikykis tų pačių miego valandų.</string>
+    <string name="weekly_deep">Gilus miegas: %1$s tavo miego</string>
 </resources>

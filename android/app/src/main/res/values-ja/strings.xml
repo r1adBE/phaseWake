@@ -619,4 +619,16 @@
     <string name="editor_alarm_gone">このアラームはすでに削除されています。</string>
     <string name="test_replaces_nap">テストアラームで仮眠は終了します。</string>
     <string name="settings_clear_history_also">メモ、気分、夜のルーティンのチェック、音のクリップも削除されます。</string>
+    <string name="finding_title">直近7夜で気になったこと</string>
+    <string name="finding_hide">非表示</string>
+    <string name="finding_latency">寝つくまでに平均%1$sかかりました。ヒント：20分たっても眠れないときは起きて、眠くなってから寝床に戻りましょう。何週間も続くなら医師に相談してください。</string>
+    <string name="finding_short_nights">6時間未満の夜：7夜中%1$d夜。ヒント：起きる時刻から就寝時刻を逆算して守りましょう。</string>
+    <string name="finding_low_deep">深い睡眠は睡眠の約%1$d %%にとどまりました（通常%2$d–%3$d %%）。</string>
+    <string name="finding_deep_short">6時間未満の夜ははっきり少なめでした：%2$d %%に対して%1$d %%。</string>
+    <string name="finding_deep_late">遅く寝た夜ははっきり少なめでした：%2$d %%に対して%1$d %%。</string>
+    <string name="finding_tip_deep">ヒント：午後からはカフェインを控え、寝る前の1時間は画面を見ないようにしましょう。</string>
+    <string name="finding_awake">寝ついた後、時間の約%1$d %%は起きていました。ヒント：寝室を暗く静かで涼しく保ち、夜はお酒を控えましょう。</string>
+    <string name="finding_bedtime">就寝時刻が最大%1$sずれました。ヒント：週末も含め、毎日ほぼ同じ時刻に寝ましょう。</string>
+    <string name="finding_jetlag">週末は平日と比べて睡眠が%1$sずれていました。ヒント：週末も同じ睡眠時間帯を保ちましょう。</string>
+    <string name="weekly_deep">深い睡眠：睡眠の%1$s</string>
 </resources>

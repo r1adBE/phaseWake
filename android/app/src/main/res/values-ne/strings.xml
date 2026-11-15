@@ -636,4 +636,16 @@
     <string name="editor_alarm_gone">यो अलार्म यसैबीच मेटाइसकिएको छ।</string>
     <string name="test_replaces_nap">परीक्षण अलार्मले तिम्रो छोटो निद्रा अन्त्य गर्छ।</string>
     <string name="settings_clear_history_also">टिपोट, अनुभूति, साँझको दिनचर्याका चिनो र आवाजका अंश पनि मेटिन्छन्।</string>
+    <string name="finding_title">तिम्रो पछिल्लो 7 रातमा देखिएको</string>
+    <string name="finding_hide">लुकाऊ</string>
+    <string name="finding_latency">निदाउन तिमीलाई औसतमा %1$s लाग्यो। सुझाव: 20 मिनेटपछि पनि ब्युँझै छौ भने उठ, अनि निद्रा लागेपछि मात्र ओछ्यानमा फर्क। हप्तौँसम्म यस्तै भए आफ्नो डाक्टरसँग कुरा गर।</string>
+    <string name="finding_short_nights">6 घण्टाभन्दा छोटा रात: 7 मध्ये %1$d। सुझाव: उठ्ने समयबाट पछाडि गन्दै सुत्ने समय तय गर र त्यसमा टिकिरहू।</string>
+    <string name="finding_low_deep">गहिरो निद्रा तिम्रो निद्राको करिब %1$d %% मात्र थियो (सामान्यतया %2$d–%3$d %%)।</string>
+    <string name="finding_deep_short">6 घण्टाभन्दा छोटा रातहरूमा यो स्पष्ट रूपमा कम थियो: %2$d %% को सट्टा %1$d %%।</string>
+    <string name="finding_deep_late">ढिलो सुतेका रातहरूमा यो स्पष्ट रूपमा कम थियो: %2$d %% को सट्टा %1$d %%।</string>
+    <string name="finding_tip_deep">सुझाव: दिउँसोदेखि क्याफिन नखाऊ र सुत्नुअघिको अन्तिम घण्टामा स्क्रिन नहेर।</string>
+    <string name="finding_awake">निदाएपछि तिमी समयको करिब %1$d %% ब्युँझै थियौ। सुझाव: सुत्ने कोठा अँध्यारो, शान्त र चिसो राख, र साँझ मदिरा नखाऊ।</string>
+    <string name="finding_bedtime">तिम्रो सुत्ने समय %1$s सम्म फरक पर्‍यो। सुझाव: हरेक दिन लगभग एउटै समयमा सुत, सप्ताहान्तमा पनि।</string>
+    <string name="finding_jetlag">सप्ताहान्तमा तिम्रो निद्रा कामका दिनको तुलनामा %1$s सर्‍यो। सुझाव: सप्ताहान्तमा पनि उही सुत्ने समय कायम राख।</string>
+    <string name="weekly_deep">गहिरो निद्रा तिम्रो निद्राको %1$s</string>
 </resources>

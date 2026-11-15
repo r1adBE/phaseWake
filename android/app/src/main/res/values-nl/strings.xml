@@ -633,4 +633,16 @@
     <string name="editor_alarm_gone">Deze wekker is intussen verwijderd.</string>
     <string name="test_replaces_nap">De testwekker beëindigt je powernap.</string>
     <string name="settings_clear_history_also">Ook notities, gevoel, vinkjes van de avondroutine en geluidsfragmenten worden verwijderd.</string>
+    <string name="finding_title">Opgevallen in je laatste 7 nachten</string>
+    <string name="finding_hide">Verbergen</string>
+    <string name="finding_latency">Gemiddeld deed je %1$s over het inslapen. Tip: ben je na 20 minuten nog wakker, sta dan op en ga pas terug naar bed als je slaperig bent. Blijft dit wekenlang zo, praat dan met je arts.</string>
+    <string name="finding_short_nights">Nachten korter dan 6 uur: %1$d van 7. Tip: reken je bedtijd terug vanaf je wektijd en houd je eraan.</string>
+    <string name="finding_low_deep">Diepe slaap was maar ongeveer %1$d %% van je slaap (gewoonlijk %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">In nachten korter dan 6 uur was die duidelijk lager: %1$d %% in plaats van %2$d %%.</string>
+    <string name="finding_deep_late">In nachten dat je laat naar bed ging, was die duidelijk lager: %1$d %% in plaats van %2$d %%.</string>
+    <string name="finding_tip_deep">Tip: geen cafeïne vanaf de middag en geen schermen in het laatste uur voor het slapen.</string>
+    <string name="finding_awake">Na het inslapen was je ongeveer %1$d %% van de tijd wakker. Tip: houd je slaapkamer donker, stil en koel, en sla alcohol ’s avonds over.</string>
+    <string name="finding_bedtime">Je bedtijd schommelde tot %1$s. Tip: ga elke dag rond dezelfde tijd naar bed, ook in het weekend.</string>
+    <string name="finding_jetlag">In het weekend was je slaap %1$s verschoven ten opzichte van doordeweeks. Tip: houd ook in het weekend dezelfde slaaptijden aan.</string>
+    <string name="weekly_deep">Diepe slaap %1$s van je slaap</string>
 </resources>

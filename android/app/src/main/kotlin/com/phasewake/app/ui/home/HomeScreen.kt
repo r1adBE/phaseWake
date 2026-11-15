@@ -1,5 +1,7 @@
 package com.phasewake.app.ui.home
 
+import com.phasewake.app.core.Finding
+import com.phasewake.app.core.FindingKind
 import com.phasewake.app.core.MissHint
 import com.phasewake.app.shared.RecordSync
 import androidx.compose.foundation.layout.Arrangement
@@ -70,6 +72,9 @@ fun HomeScreen(
     onToggle: (AlarmSpec, Boolean) -> Unit,
     onFeeling: (NightRecord, Int) -> Unit = { _, _ -> },
     missHint: MissHint? = null,
+    /** Die wichtigste Auffälligkeit der letzten 7 Nächte ([com.phasewake.app.core.Findings.home]); `null`: keine Karte. */
+    finding: Finding? = null,
+    onHideFinding: (FindingKind) -> Unit = {},
     /** Schlafnotizen je Nachtdatum und die eigenen Notizen. */
     notes: Map<LocalDate, List<String>> = emptyMap(),
     customNotes: List<CustomNote> = emptyList(),
@@ -197,6 +202,7 @@ fun HomeScreen(
         }?.let { record ->
             item(key = "record") { RecordCard(record.since, extras.onRecord) }
         }
+        finding?.let { f -> item(key = "finding") { FindingCard(f) { onHideFinding(f.kind) } } }
         if (lastNight != null && !morningFirst) item(key = "night") { nightCard() }
         // Morgenbericht ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): nur die Geräusche.
         soundsMorningNight(soundClips, lastNight, soundRec, plan?.windowStart, now, zone)?.let { night ->

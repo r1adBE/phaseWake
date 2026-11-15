@@ -90,15 +90,17 @@ func habitLines(model: PhoneModel, sleeps: [SleepSummary], healthConnected: Bool
     return lines
 }
 
-/// Verlauf am Sonntag und Montag: Rückblick auf die zuletzt abgeschlossene Woche.
+/// Verlauf am Sonntag und Montag: Rückblick auf die zuletzt abgeschlossene Woche; `deep` Tiefschlaf-Anteil (``weeklyDeepLine(_:)``).
 struct WeeklyCard: View {
     @Environment(PhoneModel.self) private var model
     let summary: WeeklySummary
+    var deep: (week: Int, before: Int)?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Label(L("weekly_title"), systemImage: "calendar").font(Fonts.manrope(15, .semibold, relativeTo: .headline))
             Text(weeklyText(summary)).font(Fonts.manrope(15, relativeTo: .body))
+            if let deep { Text(weeklyDeepLine(deep)).font(Fonts.manrope(15, relativeTo: .body)) }
             if let note = weeklyNoteLine(summary, model: model) {
                 Text(note).font(Fonts.manrope(15, relativeTo: .body))
             }

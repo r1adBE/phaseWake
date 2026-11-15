@@ -619,4 +619,16 @@
     <string name="editor_alarm_gone">이 알람은 그사이 삭제됐어요.</string>
     <string name="test_replaces_nap">알람 테스트를 하면 낮잠이 끝나요.</string>
     <string name="settings_clear_history_also">메모, 기분, 저녁 루틴 체크, 소리 클립도 함께 삭제돼요.</string>
+    <string name="finding_title">최근 7일 밤에 눈에 띈 점</string>
+    <string name="finding_hide">숨기기</string>
+    <string name="finding_latency">잠들기까지 평균 %1$s 걸렸어요. 팁: 20분이 지나도 깨어 있으면 일어났다가 졸릴 때만 다시 잠자리에 드세요. 몇 주씩 계속되면 의사와 상담하세요.</string>
+    <string name="finding_short_nights">6시간 미만인 밤: 7일 중 %1$d일. 팁: 기상 시간에서 거꾸로 취침 시간을 정하고 지키세요.</string>
+    <string name="finding_low_deep">깊은 수면은 전체 수면의 약 %1$d %%에 그쳤어요(보통 %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">6시간 미만인 밤에는 뚜렷하게 적었어요: %2$d %% 대신 %1$d %%.</string>
+    <string name="finding_deep_late">늦게 잔 밤에는 뚜렷하게 적었어요: %2$d %% 대신 %1$d %%.</string>
+    <string name="finding_tip_deep">팁: 오후부터는 카페인을 피하고 잠들기 전 마지막 한 시간은 화면을 보지 마세요.</string>
+    <string name="finding_awake">잠든 뒤 시간의 약 %1$d %% 동안 깨어 있었어요. 팁: 침실을 어둡고 조용하고 서늘하게 유지하고 저녁에는 술을 피하세요.</string>
+    <string name="finding_bedtime">취침 시간이 최대 %1$s까지 달라졌어요. 팁: 주말을 포함해 매일 비슷한 시간에 잠자리에 드세요.</string>
+    <string name="finding_jetlag">주말에는 평일보다 수면이 %1$s 밀렸어요. 팁: 주말에도 같은 수면 시간을 지키세요.</string>
+    <string name="weekly_deep">깊은 수면: 수면의 %1$s</string>
 </resources>

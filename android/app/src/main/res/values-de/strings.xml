@@ -633,4 +633,16 @@
     <string name="editor_alarm_gone">Dieser Wecker wurde inzwischen gelöscht.</string>
     <string name="test_replaces_nap">Der Probewecker beendet deinen Powernap.</string>
     <string name="settings_clear_history_also">Auch Notizen, Befinden, Haken der Abendroutine und Geräusch-Ausschnitte werden gelöscht.</string>
+    <string name="finding_title">Auffällig in den letzten 7 Nächten</string>
+    <string name="finding_hide">Ausblenden</string>
+    <string name="finding_latency">Du hast im Schnitt %1$s zum Einschlafen gebraucht. Tipp: Bist du nach 20 Minuten noch wach, steh auf und geh erst müde wieder ins Bett. Bleibt das über Wochen so, sprich mit deinem Arzt.</string>
+    <string name="finding_short_nights">Nächte unter 6 Stunden: %1$d von 7. Tipp: Rechne deine Bettzeit von der Weckzeit zurück und halte sie ein.</string>
+    <string name="finding_low_deep">Tiefschlaf war nur etwa %1$d %% deines Schlafs (üblich %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">In Nächten unter 6 Stunden war er deutlich geringer: %1$d %% statt %2$d %%.</string>
+    <string name="finding_deep_late">Wenn du spät ins Bett gingst, war er deutlich geringer: %1$d %% statt %2$d %%.</string>
+    <string name="finding_tip_deep">Tipp: Ab dem Nachmittag kein Koffein und in der letzten Stunde vor dem Schlafen keine Bildschirme.</string>
+    <string name="finding_awake">Nach dem Einschlafen warst du etwa %1$d %% der Zeit wach. Tipp: Halte das Schlafzimmer dunkel, ruhig und kühl und verzichte am Abend auf Alkohol.</string>
+    <string name="finding_bedtime">Deine Bettzeit schwankte um bis zu %1$s. Tipp: Geh jeden Tag etwa zur gleichen Zeit ins Bett, auch am Wochenende.</string>
+    <string name="finding_jetlag">Am Wochenende war dein Schlaf um %1$s gegenüber den Werktagen verschoben. Tipp: Behalte deine Schlafzeiten auch am Wochenende bei.</string>
+    <string name="weekly_deep">Tiefschlaf %1$s deines Schlafs</string>
 </resources>

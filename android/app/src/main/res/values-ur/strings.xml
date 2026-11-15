@@ -635,4 +635,16 @@
     <string name="editor_alarm_gone">یہ الارم اس دوران حذف ہو چکا ہے۔</string>
     <string name="test_replaces_nap">آزمائشی الارم تمہاری پاور نیپ ختم کر دیتا ہے۔</string>
     <string name="settings_clear_history_also">نوٹس، کیفیت، شام کے معمول کے نشان اور آواز کے کلپس بھی حذف ہو جاتے ہیں۔</string>
+    <string name="finding_title">آپ کی پچھلی 7 راتوں میں نمایاں</string>
+    <string name="finding_hide">چھپائیں</string>
+    <string name="finding_latency">اوسطاً آپ کو سونے میں %1$s لگے۔ مشورہ: اگر 20 منٹ بعد بھی جاگ رہے ہوں تو اٹھ جائیں اور نیند آنے پر ہی بستر پر واپس جائیں۔ اگر یہ ہفتوں تک رہے تو اپنے ڈاکٹر سے بات کریں۔</string>
+    <string name="finding_short_nights">6 گھنٹے سے کم کی راتیں: 7 میں سے %1$d۔ مشورہ: جاگنے کے وقت سے سونے کا وقت نکالیں اور اس پر قائم رہیں۔</string>
+    <string name="finding_low_deep">گہری نیند آپ کی نیند کا صرف تقریباً %1$d %% تھی (عموماً %2$d–%3$d %%)۔</string>
+    <string name="finding_deep_short">6 گھنٹے سے کم کی راتوں میں یہ واضح طور پر کم تھی: %2$d %% کے بجائے %1$d %%۔</string>
+    <string name="finding_deep_late">جن راتوں آپ دیر سے سوئے ان میں یہ واضح طور پر کم تھی: %2$d %% کے بجائے %1$d %%۔</string>
+    <string name="finding_tip_deep">مشورہ: دوپہر کے بعد کیفین نہیں اور سونے سے پہلے آخری گھنٹے میں اسکرین نہیں۔</string>
+    <string name="finding_awake">سونے کے بعد آپ تقریباً %1$d %% وقت جاگتے رہے۔ مشورہ: سونے کا کمرہ تاریک، پُرسکون اور ٹھنڈا رکھیں اور شام کو الکحل سے پرہیز کریں۔</string>
+    <string name="finding_bedtime">آپ کے سونے کا وقت %1$s تک بدلتا رہا۔ مشورہ: ہر روز تقریباً ایک ہی وقت پر سوئیں، ہفتے کے آخر میں بھی۔</string>
+    <string name="finding_jetlag">ہفتے کے آخر میں آپ کی نیند کام کے دنوں کے مقابلے میں %1$s سرک گئی۔ مشورہ: ہفتے کے آخر میں بھی سونے کے وہی اوقات رکھیں۔</string>
+    <string name="weekly_deep">گہری نیند آپ کی نیند کا %1$s</string>
 </resources>

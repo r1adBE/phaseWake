@@ -636,4 +636,16 @@
     <string name="editor_alarm_gone">हा अलार्म दरम्यान हटवला गेला आहे.</string>
     <string name="test_replaces_nap">चाचणी अलार्म तुमची पॉवर नॅप संपवतो.</string>
     <string name="settings_clear_history_also">नोंदी, मूड, संध्याकाळच्या दिनक्रमाच्या खुणा आणि आवाजाच्या क्लिप्सही हटतात.</string>
+    <string name="finding_title">तुझ्या शेवटच्या 7 रात्रींमध्ये लक्षात आलेले</string>
+    <string name="finding_hide">लपवा</string>
+    <string name="finding_latency">झोप लागायला तुला सरासरी %1$s लागले. टीप: 20 मिनिटांनंतरही जागा असशील तर उठ आणि झोप आल्यावरच अंथरुणात परत जा. असे आठवडेभर चालू राहिले तर तुझ्या डॉक्टरांशी बोल.</string>
+    <string name="finding_short_nights">6 तासांपेक्षा कमी रात्री: 7 पैकी %1$d. टीप: उठण्याच्या वेळेपासून मागे मोजून झोपण्याची वेळ ठरव आणि ती पाळ.</string>
+    <string name="finding_low_deep">गाढ झोप तुझ्या झोपेच्या फक्त सुमारे %1$d %% होती (साधारणपणे %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">6 तासांपेक्षा कमी रात्रींमध्ये ती स्पष्टपणे कमी होती: %2$d %% ऐवजी %1$d %%.</string>
+    <string name="finding_deep_late">ज्या रात्री तू उशिरा झोपलास, तेव्हा ती स्पष्टपणे कमी होती: %2$d %% ऐवजी %1$d %%.</string>
+    <string name="finding_tip_deep">टीप: दुपारपासून कॅफिन नको आणि झोपण्यापूर्वीच्या शेवटच्या तासात स्क्रीन नको.</string>
+    <string name="finding_awake">झोप लागल्यानंतर तू सुमारे %1$d %% वेळ जागा होतास. टीप: बेडरूम अंधारी, शांत आणि थंड ठेव आणि संध्याकाळी मद्य टाळ.</string>
+    <string name="finding_bedtime">तुझी झोपण्याची वेळ %1$s पर्यंत बदलली. टीप: दररोज साधारण एकाच वेळी झोप, आठवड्याच्या शेवटीही.</string>
+    <string name="finding_jetlag">आठवड्याच्या शेवटी तुझी झोप कामाच्या दिवसांच्या तुलनेत %1$s सरकली. टीप: आठवड्याच्या शेवटीही त्याच झोपेच्या वेळा पाळ.</string>
+    <string name="weekly_deep">गाढ झोप तुझ्या झोपेच्या %1$s</string>
 </resources>

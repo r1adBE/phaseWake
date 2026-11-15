@@ -633,4 +633,16 @@
     <string name="editor_alarm_gone">Ezt az ébresztőt időközben törölték.</string>
     <string name="test_replaces_nap">A próbaébresztő befejezi a szunyókálásodat.</string>
     <string name="settings_clear_history_also">A jegyzetek, az érzés, az esti rutin pipái és a hangrészletek is törlődnek.</string>
+    <string name="finding_title">Feltűnt az utolsó 7 éjszakádban</string>
+    <string name="finding_hide">Elrejtés</string>
+    <string name="finding_latency">Átlagosan %1$s kellett az elalváshoz. Tipp: ha 20 perc után is ébren vagy, kelj fel, és csak akkor feküdj vissza, ha álmos vagy. Ha ez hetekig így marad, beszélj az orvosoddal.</string>
+    <string name="finding_short_nights">6 óránál rövidebb éjszakák: %1$d a 7-ből. Tipp: számold ki a lefekvés idejét az ébresztéstől visszafelé, és tartsd is be.</string>
+    <string name="finding_low_deep">A mélyalvás csak kb. %1$d %% volt az alvásodból (általában %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">A 6 óránál rövidebb éjszakákon jóval kevesebb volt: %1$d %% a %2$d %% helyett.</string>
+    <string name="finding_deep_late">Azokon az éjszakákon, amikor későn feküdtél le, jóval kevesebb volt: %1$d %% a %2$d %% helyett.</string>
+    <string name="finding_tip_deep">Tipp: délutántól ne igyál koffeint, és lefekvés előtt egy órával már ne nézz képernyőt.</string>
+    <string name="finding_awake">Elalvás után az idő kb. %1$d %%-ában voltál ébren. Tipp: legyen a hálószoba sötét, csendes és hűvös, és este hagyd ki az alkoholt.</string>
+    <string name="finding_bedtime">A lefekvésed ideje akár %1$s eltérést is mutatott. Tipp: feküdj le minden nap nagyjából ugyanakkor, hétvégén is.</string>
+    <string name="finding_jetlag">Hétvégén az alvásod %1$s eltolódott a hétköznapokhoz képest. Tipp: hétvégén is tartsd ugyanazokat az alvásidőket.</string>
+    <string name="weekly_deep">Mélyalvás: az alvásod %1$s-a</string>
 </resources>

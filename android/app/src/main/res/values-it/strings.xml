@@ -647,4 +647,16 @@
     <string name="editor_alarm_gone">Questa sveglia è stata eliminata nel frattempo.</string>
     <string name="test_replaces_nap">La sveglia di prova termina il tuo pisolino.</string>
     <string name="settings_clear_history_also">Vengono eliminati anche note, sensazione, spunte della routine serale e clip audio.</string>
+    <string name="finding_title">Notato nelle tue ultime 7 notti</string>
+    <string name="finding_hide">Nascondi</string>
+    <string name="finding_latency">In media hai impiegato %1$s ad addormentarti. Consiglio: se dopo 20 minuti sei ancora sveglio, alzati e torna a letto solo quando hai sonno. Se dura per settimane, parlane con il tuo medico.</string>
+    <string name="finding_short_nights">Notti sotto le 6 ore: %1$d su 7. Consiglio: calcola l’ora di andare a letto partendo dalla sveglia e rispettala.</string>
+    <string name="finding_low_deep">Il sonno profondo era solo circa il %1$d %% del tuo sonno (di solito %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">Nelle notti sotto le 6 ore era nettamente più basso: %1$d %% invece di %2$d %%.</string>
+    <string name="finding_deep_late">Nelle notti in cui sei andato a letto tardi era nettamente più basso: %1$d %% invece di %2$d %%.</string>
+    <string name="finding_tip_deep">Consiglio: niente caffeina dal pomeriggio e niente schermi nell’ultima ora prima di dormire.</string>
+    <string name="finding_awake">Dopo esserti addormentato sei stato sveglio circa il %1$d %% del tempo. Consiglio: tieni la camera buia, silenziosa e fresca ed evita l’alcol la sera.</string>
+    <string name="finding_bedtime">L’ora in cui vai a letto è variata fino a %1$s. Consiglio: vai a letto ogni giorno più o meno alla stessa ora, anche nel fine settimana.</string>
+    <string name="finding_jetlag">Nel fine settimana il tuo sonno era spostato di %1$s rispetto ai giorni feriali. Consiglio: mantieni gli stessi orari anche nel fine settimana.</string>
+    <string name="weekly_deep">Sonno profondo %1$s del tuo sonno</string>
 </resources>

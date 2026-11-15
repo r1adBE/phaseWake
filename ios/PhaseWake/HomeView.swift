@@ -59,9 +59,9 @@ struct HomeView: View {
                                 SoundsButton { sounds = true }
                                 LearningHomeCard()
                                 RecordCard()
+                                FindingHomeCard() // höchstens eine Auffälligkeit, die wichtigste (wie Android)
                                 if !morningFirst { lastNight(now: context.date, morningFirst: false) }
-                                // Morgenbericht ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): nur die Geräusche.
-                                // Nicht während der Aufnahme und nicht für die Nacht, die gerade läuft.
+                                // Morgenbericht ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): nur die Geräusche – nicht während der Aufnahme und nicht für die Nacht, die gerade läuft.
                                 let recorded = Set(model.nights.last.map { [SleepNotes.nightDate(of: $0, calendar: .gregorianLocal)] } ?? [])
                                 if let sounds = SoundEvents.nightsWithoutRecord(model.recorder.clips, recorded: recorded).first,
                                    context.date.timeIntervalSince(sounds.last) < 12 * 3600, !model.recorder.running,

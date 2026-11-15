@@ -636,4 +636,16 @@
     <string name="editor_alarm_gone">આ એલાર્મ દરમિયાન કાઢી નખાયો છે.</string>
     <string name="test_replaces_nap">ટેસ્ટ એલાર્મ તમારી પાવર નેપ પૂરી કરે છે.</string>
     <string name="settings_clear_history_also">નોંધો, મૂડ, સાંજની દિનચર્યાના ટિક અને અવાજની ક્લિપ પણ કાઢી નખાય છે.</string>
+    <string name="finding_title">તારી છેલ્લી 7 રાતોમાં ધ્યાનમાં આવ્યું</string>
+    <string name="finding_hide">છુપાવો</string>
+    <string name="finding_latency">ઊંઘ આવવામાં તને સરેરાશ %1$s લાગ્યા. સૂચન: 20 મિનિટ પછી પણ જાગતો હોય તો ઊઠી જા અને ઊંઘ આવે ત્યારે જ પથારીમાં પાછો જા. જો અઠવાડિયાં સુધી આવું રહે, તો તારા ડૉક્ટર સાથે વાત કર.</string>
+    <string name="finding_short_nights">6 કલાકથી ઓછી રાતો: 7માંથી %1$d. સૂચન: ઊઠવાના સમયથી પાછળ ગણીને સૂવાનો સમય નક્કી કર અને તેને વળગી રહે.</string>
+    <string name="finding_low_deep">ગાઢ ઊંઘ તારી ઊંઘનો માત્ર આશરે %1$d %% હતી (સામાન્ય રીતે %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">6 કલાકથી ઓછી રાતોમાં તે સ્પષ્ટ રીતે ઓછી હતી: %2$d %%ને બદલે %1$d %%.</string>
+    <string name="finding_deep_late">જે રાતે તું મોડો સૂતો, ત્યારે તે સ્પષ્ટ રીતે ઓછી હતી: %2$d %%ને બદલે %1$d %%.</string>
+    <string name="finding_tip_deep">સૂચન: બપોર પછી કૅફીન નહીં અને સૂતાં પહેલાંના છેલ્લા કલાકમાં સ્ક્રીન નહીં.</string>
+    <string name="finding_awake">ઊંઘ્યા પછી તું આશરે %1$d %% સમય જાગતો રહ્યો. સૂચન: શયનખંડ અંધારો, શાંત અને ઠંડો રાખ, અને સાંજે દારૂ ટાળ.</string>
+    <string name="finding_bedtime">તારો સૂવાનો સમય %1$s સુધી બદલાયો. સૂચન: દરરોજ લગભગ એક જ સમયે સૂ, સપ્તાહાંતે પણ.</string>
+    <string name="finding_jetlag">સપ્તાહાંતે તારી ઊંઘ કામકાજના દિવસો કરતાં %1$s ખસી ગઈ. સૂચન: સપ્તાહાંતે પણ એ જ ઊંઘના સમય જાળવ.</string>
+    <string name="weekly_deep">ગાઢ ઊંઘ તારી ઊંઘનો %1$s</string>
 </resources>

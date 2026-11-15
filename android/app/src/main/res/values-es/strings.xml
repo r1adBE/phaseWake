@@ -647,4 +647,16 @@
     <string name="editor_alarm_gone">Esta alarma se ha eliminado mientras tanto.</string>
     <string name="test_replaces_nap">La alarma de prueba termina tu siesta.</string>
     <string name="settings_clear_history_also">También se eliminan las notas, la sensación, las marcas de la rutina nocturna y los fragmentos de sonido.</string>
+    <string name="finding_title">Observado en tus últimas 7 noches</string>
+    <string name="finding_hide">Ocultar</string>
+    <string name="finding_latency">De media tardaste %1$s en dormirte. Consejo: si sigues despierto después de 20 minutos, levántate y vuelve a la cama solo cuando tengas sueño. Si esto dura semanas, habla con tu médico.</string>
+    <string name="finding_short_nights">Noches de menos de 6 horas: %1$d de 7. Consejo: calcula tu hora de acostarte a partir de la hora de despertar y cúmplela.</string>
+    <string name="finding_low_deep">El sueño profundo fue solo un %1$d %% aproximado de tu sueño (lo habitual, %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">En las noches de menos de 6 horas fue claramente menor: %1$d %% en lugar de %2$d %%.</string>
+    <string name="finding_deep_late">En las noches en que te acostaste tarde fue claramente menor: %1$d %% en lugar de %2$d %%.</string>
+    <string name="finding_tip_deep">Consejo: nada de cafeína a partir de la tarde y nada de pantallas en la última hora antes de dormir.</string>
+    <string name="finding_awake">Después de dormirte estuviste despierto cerca del %1$d %% del tiempo. Consejo: mantén el dormitorio oscuro, tranquilo y fresco, y evita el alcohol por la noche.</string>
+    <string name="finding_bedtime">Tu hora de dormir varió hasta %1$s. Consejo: acuéstate cada día más o menos a la misma hora, también el fin de semana.</string>
+    <string name="finding_jetlag">El fin de semana tu sueño se desplazó %1$s respecto a los días laborables. Consejo: mantén los mismos horarios también el fin de semana.</string>
+    <string name="weekly_deep">Sueño profundo %1$s de tu sueño</string>
 </resources>

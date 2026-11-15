@@ -42,6 +42,7 @@ import com.phasewake.app.ui.notes.NoteEffectsCard
 import com.phasewake.app.core.SoundClip
 import com.phasewake.app.core.SoundEvents
 import com.phasewake.app.core.WeeklySummary
+import com.phasewake.app.core.Finding
 import com.phasewake.app.ui.sounds.SoundClipsSection
 import com.phasewake.app.ui.sounds.soundSummary
 import androidx.compose.runtime.remember
@@ -111,6 +112,10 @@ fun HistoryScreen(
     habits: HabitLines? = null,
     /** Wochenrückblick (Sonntag und Montag); `null`: keine Karte. */
     weekly: WeeklySummary? = null,
+    /** Tiefschlaf-Anteil (%) der Woche des Rückblicks und der Vorwoche; `null`: keine Zeile. */
+    weeklyDeep: Pair<Int, Int>? = null,
+    /** Auffälligkeiten der letzten 7 Nächte für die Trends ([com.phasewake.app.core.Findings.of]). */
+    findings: List<Finding> = emptyList(),
     /** Aufgenommene Geräusche (alle Nächte). */
     soundClips: List<SoundClip> = emptyList(),
     soundFile: (SoundClip) -> File? = { null },
@@ -174,8 +179,8 @@ fun HistoryScreen(
             return@LazyColumn
         }
         if (nights.isNotEmpty()) item(key = "stats") { Stats(nights) }
-        weekly?.let { item(key = "weekly") { WeeklyCard(it, customNotes) } }
-        trends?.let { item(key = "trends") { TrendsCard(it, healthConnected, onConnectHealth, goalWeek, habits, charts?.covered.orEmpty()) } }
+        weekly?.let { item(key = "weekly") { WeeklyCard(it, customNotes, weeklyDeep) } }
+        trends?.let { item(key = "trends") { TrendsCard(it, healthConnected, onConnectHealth, goalWeek, habits, charts?.covered.orEmpty(), findings) } }
         noteEffects?.let { item(key = "effects") { NoteEffectsCard(it, customNotes) } }
         items(entries, key = { it.key }) { entry ->
             when (entry) {

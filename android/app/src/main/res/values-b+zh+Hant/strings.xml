@@ -619,4 +619,16 @@
     <string name="editor_alarm_gone">這個鬧鐘已被刪除。</string>
     <string name="test_replaces_nap">測試鬧鐘會結束你的小睡。</string>
     <string name="settings_clear_history_also">筆記、感覺、晚間習慣的勾選和聲音片段也會一併刪除。</string>
+    <string name="finding_title">最近 7 晚值得注意</string>
+    <string name="finding_hide">隱藏</string>
+    <string name="finding_latency">你平均花了 %1$s 才入睡。建議：如果 20 分鐘後仍醒著，就起床，等有睡意再回到床上。如果持續數週，請諮詢你的醫師。</string>
+    <string name="finding_short_nights">不到 6 小時的夜晚：7 晚中 %1$d 晚。建議：從起床時間倒推就寢時間，並確實遵守。</string>
+    <string name="finding_low_deep">深層睡眠只占你睡眠的約 %1$d %%（通常為 %2$d–%3$d %%）。</string>
+    <string name="finding_deep_short">在不到 6 小時的夜晚明顯較少：%1$d %%，而不是 %2$d %%。</string>
+    <string name="finding_deep_late">在你晚睡的夜晚明顯較少：%1$d %%，而不是 %2$d %%。</string>
+    <string name="finding_tip_deep">建議：下午起不攝取咖啡因，睡前最後一小時不看螢幕。</string>
+    <string name="finding_awake">入睡後你約有 %1$d %% 的時間醒著。建議：讓臥室保持黑暗、安靜、涼爽，晚上不喝酒。</string>
+    <string name="finding_bedtime">你的就寢時間最多相差 %1$s。建議：每天大約同一時間上床，週末也一樣。</string>
+    <string name="finding_jetlag">週末你的睡眠比平日延後了 %1$s。建議：週末也維持相同的作息時間。</string>
+    <string name="weekly_deep">深層睡眠占你睡眠的 %1$s</string>
 </resources>

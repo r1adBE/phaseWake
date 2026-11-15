@@ -636,4 +636,16 @@
     <string name="editor_alarm_gone">Bu budilnik shu orada oʻchirildi.</string>
     <string name="test_replaces_nap">Sinov budilnigi qisqa uyqungni tugatadi.</string>
     <string name="settings_clear_history_also">Qaydlar, kayfiyat, kechki odat belgilari va tovush parchalari ham oʻchiriladi.</string>
+    <string name="finding_title">Oxirgi 7 kechangda koʻzga tashlangan</string>
+    <string name="finding_hide">Yashirish</string>
+    <string name="finding_latency">Uxlab qolishing oʻrtacha %1$s davom etdi. Maslahat: 20 daqiqadan keyin ham uygʻoq boʻlsang, tur va faqat uyqung kelganda toʻshakka qayt. Bu haftalab davom etsa, shifokoring bilan gaplash.</string>
+    <string name="finding_short_nights">6 soatdan qisqa kechalar: 7 tadan %1$d ta. Maslahat: uxlash vaqtini uygʻonish vaqtidan orqaga hisobla va unga amal qil.</string>
+    <string name="finding_low_deep">Chuqur uyqu uyqungning atigi taxminan %1$d %% qismi edi (odatda %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">6 soatdan qisqa kechalarda u sezilarli darajada kam edi: %2$d %% oʻrniga %1$d %%.</string>
+    <string name="finding_deep_late">Kech yotgan kechalaringda u sezilarli darajada kam edi: %2$d %% oʻrniga %1$d %%.</string>
+    <string name="finding_tip_deep">Maslahat: tushdan keyin kofein yoʻq, uxlashdan oldingi oxirgi soatda ekran yoʻq.</string>
+    <string name="finding_awake">Uxlab qolganingdan keyin vaqtning taxminan %1$d %% qismida uygʻoq boʻlding. Maslahat: yotoqxonani qorongʻi, sokin va salqin tut, kechqurun spirtli ichimlikdan voz kech.</string>
+    <string name="finding_bedtime">Uxlash vaqting %1$s gacha oʻzgardi. Maslahat: har kuni taxminan bir vaqtda uxla, dam olish kunlari ham.</string>
+    <string name="finding_jetlag">Dam olish kunlari uyqung ish kunlariga nisbatan %1$s siljidi. Maslahat: dam olish kunlari ham xuddi shu uyqu vaqtlariga amal qil.</string>
+    <string name="weekly_deep">Chuqur uyqu uyqungning %1$s qismi</string>
 </resources>

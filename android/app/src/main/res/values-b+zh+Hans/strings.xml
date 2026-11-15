@@ -619,4 +619,16 @@
     <string name="editor_alarm_gone">这个闹钟已被删除。</string>
     <string name="test_replaces_nap">测试闹钟会结束你的小睡。</string>
     <string name="settings_clear_history_also">笔记、感觉、晚间习惯的勾选和声音片段也会一并删除。</string>
+    <string name="finding_title">最近 7 晚值得注意</string>
+    <string name="finding_hide">隐藏</string>
+    <string name="finding_latency">你平均花了 %1$s 才入睡。建议：如果 20 分钟后仍醒着，就起床，等有困意再回到床上。如果持续数周，请咨询你的医生。</string>
+    <string name="finding_short_nights">不足 6 小时的夜晚：7 晚中 %1$d 晚。建议：根据起床时间倒推就寝时间，并坚持执行。</string>
+    <string name="finding_low_deep">深睡只占你睡眠的约 %1$d %%（通常为 %2$d–%3$d %%）。</string>
+    <string name="finding_deep_short">在不足 6 小时的夜晚明显更少：%1$d %%，而不是 %2$d %%。</string>
+    <string name="finding_deep_late">在你晚睡的夜晚明显更少：%1$d %%，而不是 %2$d %%。</string>
+    <string name="finding_tip_deep">建议：下午起不摄入咖啡因，睡前最后一小时不看屏幕。</string>
+    <string name="finding_awake">入睡后你约有 %1$d %% 的时间醒着。建议：让卧室保持黑暗、安静、凉爽，晚上不喝酒。</string>
+    <string name="finding_bedtime">你的就寝时间最多相差 %1$s。建议：每天大约同一时间上床，周末也一样。</string>
+    <string name="finding_jetlag">周末你的睡眠比工作日推迟了 %1$s。建议：周末也保持相同的作息时间。</string>
+    <string name="weekly_deep">深睡占你睡眠的 %1$s</string>
 </resources>

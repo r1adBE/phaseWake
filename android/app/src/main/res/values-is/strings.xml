@@ -636,4 +636,16 @@
     <string name="editor_alarm_gone">Þessum vekjara hefur verið eytt á meðan.</string>
     <string name="test_replaces_nap">Prufuvekjarinn lýkur kríublundinum þínum.</string>
     <string name="settings_clear_history_also">Athugasemdir, líðan, hök í kvöldrútínu og hljóðbútar eyðast líka.</string>
+    <string name="finding_title">Tekið eftir síðustu 7 nætur</string>
+    <string name="finding_hide">Fela</string>
+    <string name="finding_latency">Að meðaltali tók það þig %1$s að sofna. Ráð: ef þú ert enn vakandi eftir 20 mínútur, farðu fram úr og farðu aftur í rúmið þegar þú ert syfjaður. Ef þetta varir vikum saman, ræddu við lækninn þinn.</string>
+    <string name="finding_short_nights">Nætur undir 6 klst.: %1$d af 7. Ráð: reiknaðu háttatímann út frá vakningartímanum og haltu þig við hann.</string>
+    <string name="finding_low_deep">Djúpsvefn var aðeins um %1$d %% af svefninum (venjulega %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">Nætur undir 6 klst. var hann greinilega minni: %1$d %% í stað %2$d %%.</string>
+    <string name="finding_deep_late">Nætur sem þú fórst seint að sofa var hann greinilega minni: %1$d %% í stað %2$d %%.</string>
+    <string name="finding_tip_deep">Ráð: ekkert koffín frá hádegi og enga skjái síðustu klukkustundina fyrir svefn.</string>
+    <string name="finding_awake">Eftir að þú sofnaðir varstu vakandi um %1$d %% af tímanum. Ráð: hafðu svefnherbergið dimmt, hljóðlátt og svalt og slepptu áfengi á kvöldin.</string>
+    <string name="finding_bedtime">Háttatíminn þinn sveiflaðist um allt að %1$s. Ráð: farðu að sofa á svipuðum tíma alla daga, líka um helgar.</string>
+    <string name="finding_jetlag">Um helgar hliðraðist svefninn um %1$s miðað við virka daga. Ráð: haltu sömu svefntímum líka um helgar.</string>
+    <string name="weekly_deep">Djúpsvefn %1$s af svefninum</string>
 </resources>

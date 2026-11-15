@@ -636,4 +636,16 @@
     <string name="editor_alarm_gone">Esta alarma eliminouse mentres tanto.</string>
     <string name="test_replaces_nap">A alarma de proba remata a túa sesta curta.</string>
     <string name="settings_clear_history_also">Tamén se eliminan as notas, o estado, as marcas da rutina nocturna e os fragmentos de son.</string>
+    <string name="finding_title">Observado nas túas últimas 7 noites</string>
+    <string name="finding_hide">Ocultar</string>
+    <string name="finding_latency">De media tardaches %1$s en durmir. Consello: se despois de 20 minutos segues esperto, levántate e volve á cama só cando teñas sono. Se isto dura semanas, fala co teu médico.</string>
+    <string name="finding_short_nights">Noites de menos de 6 horas: %1$d de 7. Consello: calcula a túa hora de deitarte a partir da hora de espertar e cúmprea.</string>
+    <string name="finding_low_deep">O sono profundo foi só arredor do %1$d %% do teu sono (normalmente %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">Nas noites de menos de 6 horas foi claramente menor: %1$d %% en vez de %2$d %%.</string>
+    <string name="finding_deep_late">Nas noites en que te deitaches tarde foi claramente menor: %1$d %% en vez de %2$d %%.</string>
+    <string name="finding_tip_deep">Consello: nada de cafeína desde a tarde e nada de pantallas na última hora antes de durmir.</string>
+    <string name="finding_awake">Despois de durmir estiveches esperto arredor do %1$d %% do tempo. Consello: mantén o cuarto escuro, tranquilo e fresco, e evita o alcohol pola noite.</string>
+    <string name="finding_bedtime">A túa hora de deitarte variou ata %1$s. Consello: déitate cada día máis ou menos á mesma hora, tamén na fin de semana.</string>
+    <string name="finding_jetlag">Na fin de semana o teu sono desprazouse %1$s respecto dos días laborables. Consello: mantén os mesmos horarios tamén na fin de semana.</string>
+    <string name="weekly_deep">Sono profundo %1$s do teu sono</string>
 </resources>

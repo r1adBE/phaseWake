@@ -633,4 +633,16 @@
     <string name="editor_alarm_gone">Det här larmet har tagits bort under tiden.</string>
     <string name="test_replaces_nap">Testlarmet avslutar din tupplur.</string>
     <string name="settings_clear_history_also">Anteckningar, känsla, bockar i kvällsrutinen och ljudklipp tas också bort.</string>
+    <string name="finding_title">Märkt under dina senaste 7 nätter</string>
+    <string name="finding_hide">Dölj</string>
+    <string name="finding_latency">I snitt tog det %1$s för dig att somna. Tips: är du fortfarande vaken efter 20 minuter, gå upp och gå tillbaka till sängen först när du är sömnig. Håller det i sig i veckor, prata med din läkare.</string>
+    <string name="finding_short_nights">Nätter under 6 timmar: %1$d av 7. Tips: räkna ut din läggtid från din väckningstid och håll dig till den.</string>
+    <string name="finding_low_deep">Djupsömnen var bara cirka %1$d %% av din sömn (normalt %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">Nätter under 6 timmar var den tydligt lägre: %1$d %% i stället för %2$d %%.</string>
+    <string name="finding_deep_late">Nätter då du gick och lade dig sent var den tydligt lägre: %1$d %% i stället för %2$d %%.</string>
+    <string name="finding_tip_deep">Tips: inget koffein från eftermiddagen och inga skärmar sista timmen före sömnen.</string>
+    <string name="finding_awake">Efter att du somnat var du vaken cirka %1$d %% av tiden. Tips: håll sovrummet mörkt, tyst och svalt och avstå från alkohol på kvällen.</string>
+    <string name="finding_bedtime">Din läggtid varierade med upp till %1$s. Tips: lägg dig ungefär samma tid varje dag, även på helgen.</string>
+    <string name="finding_jetlag">På helgen var din sömn förskjuten %1$s jämfört med vardagar. Tips: behåll samma sovtider även på helgen.</string>
+    <string name="weekly_deep">Djupsömn %1$s av din sömn</string>
 </resources>

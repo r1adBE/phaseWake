@@ -231,8 +231,9 @@ public enum HealthHistory {
         }
     }
 
-    /// Sitzungen, die als Nacht zählen (``chains(_:clearedAt:calendar:)``), je Nacht zu einer Sitzung zusammengefasst.
-    private static func countedNights(_ sessions: [HealthSession], clearedAt: Date?, calendar: Calendar) -> [HealthSession] {
+    /// Sitzungen, die als Nacht zählen (``chains(_:clearedAt:calendar:)``), je Nacht zu einer Sitzung zusammengefasst:
+    /// Verlauf und Auffälligkeiten (``NightFacts/of(_:clearedAt:calendar:)``). Wie `HealthHistory.nights` (Kotlin).
+    public static func countedNights(_ sessions: [HealthSession], clearedAt: Date?, calendar: Calendar) -> [HealthSession] {
         chains(sessions, clearedAt: clearedAt, calendar: calendar).map { join($0) }
     }
 

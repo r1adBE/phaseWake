@@ -9,6 +9,8 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.phasewake.app.core.BackupSettings
+import com.phasewake.app.core.FindingKind
+import com.phasewake.app.core.Findings
 import com.phasewake.app.core.SleepGoal
 import com.phasewake.app.core.SleepSound
 import com.phasewake.app.core.SleepSounds
@@ -231,6 +233,16 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
         store.edit { it[HISTORY_CLEARED_AT] = at.toEpochMilli() }
     }
 
+    /** Auf der Startseite ausgeblendete Auffälligkeiten mit Zeitpunkt ([Findings.decodeHidden]); nur auf dem Handy, nicht gesichert. */
+    val findingsHidden: Flow<Map<FindingKind, Instant>> = store.data.map { Findings.decodeHidden(it[FINDINGS_HIDDEN]) }
+
+    /** Blendet [kind] jetzt aus; erscheint frühestens nach [Findings.HIDE_FOR] wieder. */
+    suspend fun hideFinding(kind: FindingKind) {
+        store.edit { prefs ->
+            prefs[FINDINGS_HIDDEN] = Findings.encodeHidden(Findings.hide(Findings.decodeHidden(prefs[FINDINGS_HIDDEN]), kind, Instant.ofEpochMilli(now())))
+        }
+    }
+
     /**
      * Alle Einstellungen für die Sicherung. [holiday]: aufgelöste Feiertagswahl (`HolidayRepository.choice`, Fix S-2):
      * Nie gewählt heisst «Land des Geräts», nicht «keine Feiertage»; gesichert wird darum das Land, das gilt (wie das
@@ -303,6 +315,7 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
         private val SOUND_TIMER = intPreferencesKey("sound_timer_minutes")
         private val SOUND = stringPreferencesKey("sleep_sound")
         private val HISTORY_CLEARED_AT = longPreferencesKey("history_cleared_at")
+        private val FINDINGS_HIDDEN = stringPreferencesKey("findings_hidden")
         private const val NO_TIMER = 0
     }
 }

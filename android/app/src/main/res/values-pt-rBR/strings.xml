@@ -647,4 +647,16 @@
     <string name="editor_alarm_gone">Este alarme foi excluído nesse meio-tempo.</string>
     <string name="test_replaces_nap">O alarme de teste encerra sua soneca.</string>
     <string name="settings_clear_history_also">Notas, sensação, marcações da rotina da noite e trechos de som também são excluídos.</string>
+    <string name="finding_title">Notado nas suas últimas 7 noites</string>
+    <string name="finding_hide">Ocultar</string>
+    <string name="finding_latency">Em média você levou %1$s para pegar no sono. Dica: se ainda estiver acordado após 20 minutos, levante-se e só volte para a cama quando sentir sono. Se isso durar semanas, fale com seu médico.</string>
+    <string name="finding_short_nights">Noites com menos de 6 horas: %1$d de 7. Dica: calcule sua hora de dormir a partir da hora de acordar e mantenha-a.</string>
+    <string name="finding_low_deep">O sono profundo foi só cerca de %1$d %% do seu sono (normalmente %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">Nas noites com menos de 6 horas ele foi bem menor: %1$d %% em vez de %2$d %%.</string>
+    <string name="finding_deep_late">Nas noites em que você foi dormir tarde ele foi bem menor: %1$d %% em vez de %2$d %%.</string>
+    <string name="finding_tip_deep">Dica: nada de cafeína a partir da tarde e nada de telas na última hora antes de dormir.</string>
+    <string name="finding_awake">Depois de pegar no sono você ficou acordado cerca de %1$d %% do tempo. Dica: mantenha o quarto escuro, silencioso e fresco, e evite álcool à noite.</string>
+    <string name="finding_bedtime">Seu horário de dormir variou até %1$s. Dica: vá dormir todo dia mais ou menos no mesmo horário, inclusive no fim de semana.</string>
+    <string name="finding_jetlag">No fim de semana seu sono ficou deslocado %1$s em relação aos dias úteis. Dica: mantenha os mesmos horários também no fim de semana.</string>
+    <string name="weekly_deep">Sono profundo %1$s do seu sono</string>
 </resources>

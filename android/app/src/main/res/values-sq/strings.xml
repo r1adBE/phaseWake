@@ -636,4 +636,16 @@
     <string name="editor_alarm_gone">Ky alarm është fshirë ndërkohë.</string>
     <string name="test_replaces_nap">Alarmi provë e mbyll dremitjen tënde.</string>
     <string name="settings_clear_history_also">Fshihen edhe shënimet, gjendja, shenjat e rutinës së mbrëmjes dhe copat e tingujve.</string>
+    <string name="finding_title">Vënë re në 7 netët e tua të fundit</string>
+    <string name="finding_hide">Fshih</string>
+    <string name="finding_latency">Mesatarisht të është dashur %1$s për të fjetur. Këshillë: nëse pas 20 minutash je ende zgjuar, ngrihu dhe kthehu në shtrat vetëm kur të vijë gjumi. Nëse kjo zgjat me javë, fol me mjekun tënd.</string>
+    <string name="finding_short_nights">Net nën 6 orë: %1$d nga 7. Këshillë: llogarit orën e gjumit duke u nisur nga ora e zgjimit dhe mbaje.</string>
+    <string name="finding_low_deep">Gjumi i thellë ishte vetëm rreth %1$d %% e gjumit tënd (zakonisht %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">Në netët nën 6 orë ishte dukshëm më pak: %1$d %% në vend të %2$d %%.</string>
+    <string name="finding_deep_late">Në netët kur fjete vonë ishte dukshëm më pak: %1$d %% në vend të %2$d %%.</string>
+    <string name="finding_tip_deep">Këshillë: pa kafeinë që nga pasditja dhe pa ekrane në orën e fundit para gjumit.</string>
+    <string name="finding_awake">Pasi fjete, ishe zgjuar rreth %1$d %% të kohës. Këshillë: mbaje dhomën e gjumit të errët, të qetë dhe të freskët, dhe shmang alkoolin në mbrëmje.</string>
+    <string name="finding_bedtime">Ora jote e gjumit ndryshoi deri në %1$s. Këshillë: shko të flesh çdo ditë afërsisht në të njëjtën orë, edhe në fundjavë.</string>
+    <string name="finding_jetlag">Në fundjavë gjumi yt u zhvendos %1$s krahasuar me ditët e punës. Këshillë: mbaj të njëjtat orare gjumi edhe në fundjavë.</string>
+    <string name="weekly_deep">Gjumi i thellë %1$s e gjumit tënd</string>
 </resources>

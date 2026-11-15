@@ -619,4 +619,16 @@
     <string name="editor_alarm_gone">Báo thức này đã bị xóa trong lúc đó.</string>
     <string name="test_replaces_nap">Báo thức thử sẽ kết thúc giấc ngủ trưa của bạn.</string>
     <string name="settings_clear_history_also">Ghi chú, cảm giác, dấu tích thói quen buổi tối và đoạn âm thanh cũng bị xóa.</string>
+    <string name="finding_title">Đáng chú ý trong 7 đêm gần nhất</string>
+    <string name="finding_hide">Ẩn</string>
+    <string name="finding_latency">Trung bình bạn mất %1$s để ngủ. Mẹo: nếu sau 20 phút vẫn còn thức, hãy dậy và chỉ quay lại giường khi buồn ngủ. Nếu kéo dài nhiều tuần, hãy nói chuyện với bác sĩ.</string>
+    <string name="finding_short_nights">Đêm dưới 6 giờ: %1$d trên 7. Mẹo: tính giờ đi ngủ ngược từ giờ thức dậy và giữ đúng.</string>
+    <string name="finding_low_deep">Ngủ sâu chỉ chiếm khoảng %1$d %% giấc ngủ của bạn (thường %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">Vào các đêm dưới 6 giờ, nó thấp hơn rõ rệt: %1$d %% thay vì %2$d %%.</string>
+    <string name="finding_deep_late">Vào các đêm bạn đi ngủ muộn, nó thấp hơn rõ rệt: %1$d %% thay vì %2$d %%.</string>
+    <string name="finding_tip_deep">Mẹo: không dùng caffeine từ buổi chiều và không dùng màn hình trong giờ cuối trước khi ngủ.</string>
+    <string name="finding_awake">Sau khi ngủ, bạn thức khoảng %1$d %% thời gian. Mẹo: giữ phòng ngủ tối, yên tĩnh và mát, và tránh rượu bia vào buổi tối.</string>
+    <string name="finding_bedtime">Giờ đi ngủ của bạn chênh nhau tới %1$s. Mẹo: đi ngủ vào khoảng cùng một giờ mỗi ngày, kể cả cuối tuần.</string>
+    <string name="finding_jetlag">Cuối tuần giấc ngủ của bạn lệch %1$s so với ngày thường. Mẹo: giữ cùng giờ ngủ cả vào cuối tuần.</string>
+    <string name="weekly_deep">Ngủ sâu %1$s giấc ngủ của bạn</string>
 </resources>

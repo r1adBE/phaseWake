@@ -663,4 +663,16 @@
     <string name="editor_alarm_gone">Tento budík bol medzitým odstránený.</string>
     <string name="test_replaces_nap">Skúšobný budík ukončí tvoj šlofík.</string>
     <string name="settings_clear_history_also">Odstránia sa aj poznámky, pocit, zaškrtnutia večernej rutiny a zvukové úryvky.</string>
+    <string name="finding_title">Zaznamenané za posledných 7 nocí</string>
+    <string name="finding_hide">Skryť</string>
+    <string name="finding_latency">Zaspávanie ti v priemere trvalo %1$s. Tip: ak si po 20 minútach stále hore, vstaň a vráť sa do postele, až keď budeš ospalý. Ak to trvá týždne, porozprávaj sa so svojím lekárom.</string>
+    <string name="finding_short_nights">Noci kratšie ako 6 hodín: %1$d zo 7. Tip: vypočítaj si čas uloženia od času budenia a dodržiavaj ho.</string>
+    <string name="finding_low_deep">Hlboký spánok tvoril len asi %1$d %% tvojho spánku (zvyčajne %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">V nociach kratších ako 6 hodín ho bolo výrazne menej: %1$d %% namiesto %2$d %%.</string>
+    <string name="finding_deep_late">V nociach, keď si išiel spať neskoro, ho bolo výrazne menej: %1$d %% namiesto %2$d %%.</string>
+    <string name="finding_tip_deep">Tip: od popoludnia žiadny kofeín a poslednú hodinu pred spaním žiadne obrazovky.</string>
+    <string name="finding_awake">Po zaspaní si bol hore asi %1$d %% času. Tip: udržuj spálňu tmavú, tichú a chladnú a večer vynechaj alkohol.</string>
+    <string name="finding_bedtime">Čas, keď ideš spať, kolísal až o %1$s. Tip: choď spať každý deň zhruba v rovnakom čase, aj cez víkend.</string>
+    <string name="finding_jetlag">Cez víkend bol tvoj spánok posunutý o %1$s oproti pracovným dňom. Tip: dodržiavaj rovnaké časy spánku aj cez víkend.</string>
+    <string name="weekly_deep">Hlboký spánok %1$s tvojho spánku</string>
 </resources>

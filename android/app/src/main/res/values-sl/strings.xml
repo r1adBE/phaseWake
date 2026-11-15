@@ -663,4 +663,16 @@
     <string name="editor_alarm_gone">Ta budilka je bila medtem izbrisana.</string>
     <string name="test_replaces_nap">Preizkusna budilka konča tvoj kratek spanec.</string>
     <string name="settings_clear_history_also">Izbrišejo se tudi zapiski, počutje, kljukice večerne rutine in zvočni izseki.</string>
+    <string name="finding_title">Opaženo v zadnjih 7 nočeh</string>
+    <string name="finding_hide">Skrij</string>
+    <string name="finding_latency">V povprečju si za uspavanje potreboval %1$s. Nasvet: če po 20 minutah še bediš, vstani in se vrni v posteljo šele, ko boš zaspan. Če to traja tedne, se pogovori s svojim zdravnikom.</string>
+    <string name="finding_short_nights">Noči, krajše od 6 ur: %1$d od 7. Nasvet: čas za spanje izračunaj od ure bujenja in se ga drži.</string>
+    <string name="finding_low_deep">Globoki spanec je bil le približno %1$d %% tvojega spanca (običajno %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">V nočeh, krajših od 6 ur, ga je bilo izrazito manj: %1$d %% namesto %2$d %%.</string>
+    <string name="finding_deep_late">V nočeh, ko si šel pozno spat, ga je bilo izrazito manj: %1$d %% namesto %2$d %%.</string>
+    <string name="finding_tip_deep">Nasvet: od popoldneva brez kofeina in zadnjo uro pred spanjem brez zaslonov.</string>
+    <string name="finding_awake">Po uspavanju si bedel približno %1$d %% časa. Nasvet: spalnica naj bo temna, tiha in hladna, zvečer pa se odpovej alkoholu.</string>
+    <string name="finding_bedtime">Čas, ko greš spat, je nihal do %1$s. Nasvet: vsak dan pojdi spat ob približno istem času, tudi med vikendom.</string>
+    <string name="finding_jetlag">Med vikendom je bil tvoj spanec zamaknjen za %1$s glede na delavnike. Nasvet: tudi med vikendom ohrani enake čase spanja.</string>
+    <string name="weekly_deep">Globoki spanec %1$s tvojega spanca</string>
 </resources>

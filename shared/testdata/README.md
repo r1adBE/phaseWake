@@ -33,6 +33,12 @@ kalibrieren (Abschnitt 4, Audit c3b8b01 E-2: Grundrauschen je Nacht abziehen, Wa
 
 `learn-nights.vectors`: je Zeile erwarteter Grund (`LearnNights.Reason`), Tabulator, die Fakten einer Nacht als «Schlüssel=Wert» (Format im Kopf der Datei). Beide Kerne prüfen alle Zeilen und dass jeder Grund mindestens einmal vorkommt.
 
+## Auffälligkeiten
+
+`findings.vectors`: je Zeile die erwarteten Auffälligkeiten (`Findings`, Entscheid r1AD 15.11.2026), Nachtdatum «heute»
+und die Fakten der Nächte (Format im Kopf der Datei): jede Grenze knapp darunter, genau und knapp darüber, zu wenige
+Nächte, keine Phasen, Zusammenhang, Zeitzone, Priorität und die echten Werte des Besitzers. Beide Kerne prüfen alle Zeilen.
+
 ## Passwort-Regel
 
 `backup-password.vectors`: je Zeile erwartetes Ergebnis (`OK`, `TOO_SHORT`, `TRIVIAL`), Tabulator, Passwort (UTF-8, teils in NFD). Beide Kerne prüfen alle Zeilen (`BackupPassword`), Kotlin zusätzlich mit Türkisch als Gerätesprache.

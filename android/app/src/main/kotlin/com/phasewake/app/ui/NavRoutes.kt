@@ -125,11 +125,14 @@ private fun AlarmsRoute(app: PhaseWakeApp, state: NavState, actions: NavActions,
     val data = state.data
     val recordStatus by app.recordStatus.collectAsStateWithLifecycle()
     val nights = data.nights
+    val findings = rememberFindings(app, state.insights)
     HomeScreen(
         listState = homeList,
         alarms = data.alarms,
         lastNight = nights?.lastOrNull(),
         missHint = nights?.lastOrNull()?.let { last -> MissHint.of(data.alarms.firstOrNull { it.id == last.alarmId }, nights.orEmpty()) },
+        finding = findings.home,
+        onHideFinding = findings.onHide,
         check = state.nightCheck.check,
         onFix = actions.onFix,
         contentPadding = content,
@@ -159,6 +162,7 @@ private fun AlarmsRoute(app: PhaseWakeApp, state: NavState, actions: NavActions,
 private fun HistoryRoute(app: PhaseWakeApp, state: NavState, actions: NavActions, content: PaddingValues) {
     val data = state.data
     val insights = state.insights
+    val findings = rememberFindings(app, insights)
     val recordings by app.recordings.recordings.collectAsStateWithLifecycle()
     LaunchedEffect(Unit) { app.recordings.load() }
     HistoryScreen(
@@ -179,6 +183,8 @@ private fun HistoryRoute(app: PhaseWakeApp, state: NavState, actions: NavActions
         noteEffects = insights.noteEffects,
         habits = insights.habits,
         weekly = insights.weekly,
+        weeklyDeep = findings.weekDeep,
+        findings = findings.all,
         soundClips = data.soundClips.orEmpty(),
         soundFile = { app.sounds.file(it) },
         onDeleteClip = { clip -> app.appScope.launch { app.sounds.delete(clip) } },

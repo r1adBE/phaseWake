@@ -633,4 +633,16 @@
     <string name="editor_alarm_gone">Bu alarm bu arada silindi.</string>
     <string name="test_replaces_nap">Test alarmı şekerlemeni sonlandırır.</string>
     <string name="settings_clear_history_also">Notlar, hissediş, akşam rutini işaretleri ve ses parçaları da silinir.</string>
+    <string name="finding_title">Son 7 gecende dikkat çeken</string>
+    <string name="finding_hide">Gizle</string>
+    <string name="finding_latency">Uykuya dalman ortalama %1$s sürdü. İpucu: 20 dakika sonra hâlâ uyanıksan kalk ve ancak uykun gelince yatağa dön. Bu haftalarca sürerse doktorunla konuş.</string>
+    <string name="finding_short_nights">6 saatten kısa geceler: 7’de %1$d. İpucu: yatma saatini uyanma saatinden geriye doğru hesapla ve ona uy.</string>
+    <string name="finding_low_deep">Derin uyku, uykunun yalnızca yaklaşık %%%1$d kadarıydı (genelde %%%2$d–%3$d).</string>
+    <string name="finding_deep_short">6 saatten kısa gecelerde belirgin şekilde daha azdı: %%%2$d yerine %%%1$d.</string>
+    <string name="finding_deep_late">Geç yattığın gecelerde belirgin şekilde daha azdı: %%%2$d yerine %%%1$d.</string>
+    <string name="finding_tip_deep">İpucu: öğleden sonra kafein yok, yatmadan önceki son saatte ekran yok.</string>
+    <string name="finding_awake">Uykuya daldıktan sonra zamanın yaklaşık %%%1$d kadarında uyanıktın. İpucu: yatak odanı karanlık, sessiz ve serin tut, akşamları alkolü bırak.</string>
+    <string name="finding_bedtime">Yatma saatin %1$s kadar değişti. İpucu: hafta sonu dahil her gün yaklaşık aynı saatte yat.</string>
+    <string name="finding_jetlag">Hafta sonu uykun hafta içine göre %1$s kaydı. İpucu: hafta sonu da aynı uyku saatlerini koru.</string>
+    <string name="weekly_deep">Derin uyku: uykunun %1$s kadarı</string>
 </resources>

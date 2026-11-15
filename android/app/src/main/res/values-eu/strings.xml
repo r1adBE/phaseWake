@@ -636,4 +636,16 @@
     <string name="editor_alarm_gone">Alarma hau ezabatu egin da bitartean.</string>
     <string name="test_replaces_nap">Proba-alarmak zure siesta laburra amaitzen du.</string>
     <string name="settings_clear_history_also">Oharrak, sentipena, gaueko errutinaren markak eta soinu-zatiak ere ezabatzen dira.</string>
+    <string name="finding_title">Zure azken 7 gauetan nabarmendua</string>
+    <string name="finding_hide">Ezkutatu</string>
+    <string name="finding_latency">Batez beste %1$s behar izan zenituen lokartzeko. Aholkua: 20 minuturen ondoren oraindik esna bazaude, altxatu eta itzuli ohera logurak hartzen zaituenean bakarrik. Asteetan horrela jarraitzen badu, hitz egin zure medikuarekin.</string>
+    <string name="finding_short_nights">6 ordutik beherako gauak: 7tik %1$d. Aholkua: kalkulatu oheratzeko ordua esnatzeko orditik atzera eta bete ezazu.</string>
+    <string name="finding_low_deep">Lo sakona zure loaren %% %1$d inguru besterik ez zen izan (normalean %% %2$d–%3$d).</string>
+    <string name="finding_deep_short">6 ordutik beherako gauetan nabarmen txikiagoa izan zen: %% %1$d, %% %2$d izan beharrean.</string>
+    <string name="finding_deep_late">Berandu oheratu zinen gauetan nabarmen txikiagoa izan zen: %% %1$d, %% %2$d izan beharrean.</string>
+    <string name="finding_tip_deep">Aholkua: arratsaldetik aurrera kafeinarik ez, eta lo egin aurreko azken orduan pantailarik ez.</string>
+    <string name="finding_awake">Lokartu ondoren denboraren %% %1$d inguru egon zinen esna. Aholkua: mantendu logela ilun, isil eta fresko, eta saihestu alkohola arratsaldean.</string>
+    <string name="finding_bedtime">Oheratzeko ordua %1$s arte aldatu zen. Aholkua: oheratu egunero gutxi gorabehera ordu berean, asteburuetan ere bai.</string>
+    <string name="finding_jetlag">Asteburuan zure loa %1$s lekualdatu zen lanegunekin alderatuta. Aholkua: mantendu lo-ordutegi berak asteburuan ere.</string>
+    <string name="weekly_deep">Lo sakona: zure loaren %1$s</string>
 </resources>

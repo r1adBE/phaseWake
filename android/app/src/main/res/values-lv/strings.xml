@@ -650,4 +650,16 @@
     <string name="editor_alarm_gone">Šis modinātājs pa to laiku ir izdzēsts.</string>
     <string name="test_replaces_nap">Testa modinātājs beigs tavu diendusu.</string>
     <string name="settings_clear_history_also">Tiek dzēstas arī piezīmes, pašsajūta, vakara rituāla atzīmes un skaņu fragmenti.</string>
+    <string name="finding_title">Pamanīts tavās pēdējās 7 naktīs</string>
+    <string name="finding_hide">Paslēpt</string>
+    <string name="finding_latency">Vidēji iemigšana tev aizņēma %1$s. Padoms: ja pēc 20 minūtēm vēl esi nomodā, celies augšā un atgriezies gultā tikai tad, kad nāk miegs. Ja tas turpinās nedēļām, aprunājies ar savu ārstu.</string>
+    <string name="finding_short_nights">Naktis, īsākas par 6 stundām: %1$d no 7. Padoms: aprēķini gulētiešanas laiku no mošanās laika un ievēro to.</string>
+    <string name="finding_low_deep">Dziļais miegs bija tikai aptuveni %1$d %% no tava miega (parasti %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">Naktīs, kas īsākas par 6 stundām, tā bija manāmi mazāk: %1$d %% nevis %2$d %%.</string>
+    <string name="finding_deep_late">Naktīs, kad gāji gulēt vēlu, tā bija manāmi mazāk: %1$d %% nevis %2$d %%.</string>
+    <string name="finding_tip_deep">Padoms: no pēcpusdienas bez kofeīna un pēdējā stundā pirms miega bez ekrāniem.</string>
+    <string name="finding_awake">Pēc iemigšanas tu biji nomodā aptuveni %1$d %% laika. Padoms: uzturi guļamistabu tumšu, klusu un vēsu, un vakarā izvairies no alkohola.</string>
+    <string name="finding_bedtime">Tavs gulētiešanas laiks svārstījās līdz %1$s. Padoms: ej gulēt katru dienu apmēram vienā laikā, arī brīvdienās.</string>
+    <string name="finding_jetlag">Brīvdienās tavs miegs nobīdījās par %1$s, salīdzinot ar darbdienām. Padoms: ievēro tos pašus miega laikus arī brīvdienās.</string>
+    <string name="weekly_deep">Dziļais miegs: %1$s no tava miega</string>
 </resources>

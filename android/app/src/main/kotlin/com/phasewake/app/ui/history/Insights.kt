@@ -27,10 +27,13 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
 import com.phasewake.app.core.DataQuality
+import com.phasewake.app.core.Finding
+import com.phasewake.app.core.FindingKind
 import com.phasewake.app.core.NightQuality
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.Trends
 import com.phasewake.app.ui.Format
+import com.phasewake.app.ui.home.findingText
 import java.time.Duration
 import java.util.Locale
 import kotlin.math.abs
@@ -96,6 +99,8 @@ fun TrendsCard(
     habits: HabitLines? = null,
     /** Zeilen, die ein Diagramm oben schon zeigt: hier weggelassen. */
     covered: Set<TrendLine> = emptySet(),
+    /** Auffälligkeiten der letzten 7 Nächte, wichtigste zuerst; hier alle an einer Stelle (Entscheid r1AD 15.11.2026). */
+    findings: List<Finding> = emptyList(),
 ) {
     val context = LocalContext.current
     val res = LocalResources.current
@@ -125,6 +130,9 @@ fun TrendsCard(
             add(res.getString(R.string.trends_feeling, decimal(feeling)) + last)
         }
         habits?.let { addAll(habitLines(context, it, healthConnected, regularShown = TrendLine.REGULAR in covered)) }
+        // Steht der Hinweis auf regelmässige Schlafzeiten schon da, nicht noch einmal die schwankende Bettzeit.
+        val regularHint = (trends.bedtimeSpreadMinutes ?: 0) > IRREGULAR_MINUTES
+        findings.filterNot { regularHint && it.kind == FindingKind.BEDTIME_VARIES }.forEach { add(findingText(context, it)) }
     }
     // Alles steht schon in den Diagrammen: keine leere Karte.
     if (lines.isEmpty() && covered.isNotEmpty() && healthConnected) return

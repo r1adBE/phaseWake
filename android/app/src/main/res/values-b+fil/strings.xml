@@ -636,4 +636,16 @@
     <string name="editor_alarm_gone">Na-delete na ang alarm na ito.</string>
     <string name="test_replaces_nap">Tatapusin ng test na alarm ang power nap mo.</string>
     <string name="settings_clear_history_also">Mabubura rin ang mga tala, pakiramdam, tsek sa routine sa gabi at mga sound clip.</string>
+    <string name="finding_title">Napansin sa huling 7 gabi mo</string>
+    <string name="finding_hide">Itago</string>
+    <string name="finding_latency">Sa karaniwan, %1$s bago ka nakatulog. Tip: kung gising ka pa rin pagkalipas ng 20 minuto, bumangon at bumalik lang sa kama kapag inaantok ka na. Kung ilang linggo na itong ganito, kausapin ang iyong doktor.</string>
+    <string name="finding_short_nights">Mga gabing kulang sa 6 na oras: %1$d sa 7. Tip: kalkulahin ang oras ng pagtulog mula sa oras ng paggising at sundin ito.</string>
+    <string name="finding_low_deep">Ang malalim na tulog ay mga %1$d %% lang ng iyong tulog (karaniwan %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">Sa mga gabing kulang sa 6 na oras, malinaw na mas mababa ito: %1$d %% sa halip na %2$d %%.</string>
+    <string name="finding_deep_late">Sa mga gabing late kang natulog, malinaw na mas mababa ito: %1$d %% sa halip na %2$d %%.</string>
+    <string name="finding_tip_deep">Tip: walang caffeine mula hapon at walang screen sa huling oras bago matulog.</string>
+    <string name="finding_awake">Pagkatapos makatulog, gising ka sa mga %1$d %% ng oras. Tip: panatilihing madilim, tahimik at malamig ang kwarto, at iwasan ang alak sa gabi.</string>
+    <string name="finding_bedtime">Nag-iba-iba ang oras ng pagtulog mo nang hanggang %1$s. Tip: matulog sa halos parehong oras araw-araw, pati sa weekend.</string>
+    <string name="finding_jetlag">Sa weekend, umusog ang tulog mo nang %1$s kumpara sa mga araw ng trabaho. Tip: panatilihin ang parehong oras ng tulog kahit weekend.</string>
+    <string name="weekly_deep">Malalim na tulog %1$s ng iyong tulog</string>
 </resources>

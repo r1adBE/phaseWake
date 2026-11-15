@@ -636,4 +636,16 @@
     <string name="editor_alarm_gone">See äratus on vahepeal kustutatud.</string>
     <string name="test_replaces_nap">Prooviäratus lõpetab sinu uinaku.</string>
     <string name="settings_clear_history_also">Kustutatakse ka märkmed, enesetunne, õhturutiini linnukesed ja helilõigud.</string>
+    <string name="finding_title">Märgatud sinu viimase 7 öö jooksul</string>
+    <string name="finding_hide">Peida</string>
+    <string name="finding_latency">Uinumiseks kulus sul keskmiselt %1$s. Nõuanne: kui oled 20 minuti pärast veel ärkvel, tõuse üles ja mine voodisse tagasi alles siis, kui oled unine. Kui see kestab nädalaid, räägi oma arstiga.</string>
+    <string name="finding_short_nights">Alla 6-tunnised ööd: %1$d 7-st. Nõuanne: arvuta magamamineku aeg äratusajast tagasi ja pea sellest kinni.</string>
+    <string name="finding_low_deep">Sügavat und oli vaid umbes %1$d %% sinu unest (tavaliselt %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">Alla 6-tunnistel öödel oli seda selgelt vähem: %1$d %%, mitte %2$d %%.</string>
+    <string name="finding_deep_late">Öödel, kui läksid hilja magama, oli seda selgelt vähem: %1$d %%, mitte %2$d %%.</string>
+    <string name="finding_tip_deep">Nõuanne: alates pärastlõunast mitte kofeiini ja viimasel tunnil enne magamist mitte ekraane.</string>
+    <string name="finding_awake">Pärast uinumist olid ärkvel umbes %1$d %% ajast. Nõuanne: hoia magamistuba pime, vaikne ja jahe ning jäta õhtul alkohol vahele.</string>
+    <string name="finding_bedtime">Sinu magamamineku aeg kõikus kuni %1$s. Nõuanne: mine iga päev magama umbes samal ajal, ka nädalavahetusel.</string>
+    <string name="finding_jetlag">Nädalavahetusel nihkus su uni tööpäevadega võrreldes %1$s. Nõuanne: hoia samu uneaegu ka nädalavahetusel.</string>
+    <string name="weekly_deep">Sügav uni %1$s sinu unest</string>
 </resources>

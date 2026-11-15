@@ -649,4 +649,16 @@
     <string name="editor_alarm_gone">Aquesta alarma s’ha suprimit mentrestant.</string>
     <string name="test_replaces_nap">L’alarma de prova acaba la teva becaina.</string>
     <string name="settings_clear_history_also">També s’esborren les notes, l’estat, les marques de la rutina del vespre i els fragments de so.</string>
+    <string name="finding_title">Observat en les teves últimes 7 nits</string>
+    <string name="finding_hide">Amaga</string>
+    <string name="finding_latency">De mitjana vas trigar %1$s a adormir-te. Consell: si després de 20 minuts encara estàs despert, aixeca’t i torna al llit només quan tinguis son. Si dura setmanes, parla amb el teu metge.</string>
+    <string name="finding_short_nights">Nits de menys de 6 hores: %1$d de 7. Consell: calcula l’hora d’anar a dormir a partir de l’hora de despertar-te i compleix-la.</string>
+    <string name="finding_low_deep">El son profund va ser només un %1$d %% aproximat del teu son (normalment %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">Les nits de menys de 6 hores va ser clarament menor: %1$d %% en lloc de %2$d %%.</string>
+    <string name="finding_deep_late">Les nits que vas anar a dormir tard va ser clarament menor: %1$d %% en lloc de %2$d %%.</string>
+    <string name="finding_tip_deep">Consell: res de cafeïna a partir de la tarda i res de pantalles l’última hora abans de dormir.</string>
+    <string name="finding_awake">Després d’adormir-te vas estar despert prop del %1$d %% del temps. Consell: mantén l’habitació fosca, tranquil·la i fresca, i evita l’alcohol al vespre.</string>
+    <string name="finding_bedtime">La teva hora d’anar a dormir va variar fins a %1$s. Consell: ves a dormir cada dia més o menys a la mateixa hora, també el cap de setmana.</string>
+    <string name="finding_jetlag">El cap de setmana el teu son es va desplaçar %1$s respecte als dies feiners. Consell: mantén els mateixos horaris també el cap de setmana.</string>
+    <string name="weekly_deep">Son profund %1$s del teu son</string>
 </resources>

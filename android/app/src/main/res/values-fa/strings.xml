@@ -633,4 +633,16 @@
     <string name="editor_alarm_gone">این زنگ در این فاصله حذف شده است.</string>
     <string name="test_replaces_nap">آزمایش زنگ، چرت کوتاهت را تمام می‌کند.</string>
     <string name="settings_clear_history_also">یادداشت‌ها، حس، تیک‌های روال شب و تکه‌های صدا هم حذف می‌شوند.</string>
+    <string name="finding_title">در ۷ شب اخیر به چشم آمد</string>
+    <string name="finding_hide">پنهان کردن</string>
+    <string name="finding_latency">به‌طور میانگین %1$s طول کشید تا خوابت ببرد. نکته: اگر بعد از ۲۰ دقیقه هنوز بیداری، بلند شو و فقط وقتی خواب‌آلود شدی به رختخواب برگرد. اگر این وضع هفته‌ها ادامه داشت، با پزشکت صحبت کن.</string>
+    <string name="finding_short_nights">شب‌های کمتر از ۶ ساعت: %1$d از ۷. نکته: ساعت خوابت را از ساعت بیداری حساب کن و به آن پایبند بمان.</string>
+    <string name="finding_low_deep">خواب عمیق فقط حدود %1$d %% از خوابت بود (معمولاً %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">در شب‌های کمتر از ۶ ساعت به‌وضوح کمتر بود: %1$d %% به‌جای %2$d %%.</string>
+    <string name="finding_deep_late">در شب‌هایی که دیر خوابیدی به‌وضوح کمتر بود: %1$d %% به‌جای %2$d %%.</string>
+    <string name="finding_tip_deep">نکته: از بعدازظهر کافئین نخور و در ساعت آخر پیش از خواب از صفحه‌نمایش دوری کن.</string>
+    <string name="finding_awake">بعد از به خواب رفتن حدود %1$d %% از زمان بیدار بودی. نکته: اتاق خواب را تاریک، آرام و خنک نگه دار و شب‌ها الکل ننوش.</string>
+    <string name="finding_bedtime">ساعت خوابت تا %1$s تغییر کرد. نکته: هر روز تقریباً در یک ساعت بخواب، آخر هفته هم.</string>
+    <string name="finding_jetlag">آخر هفته خوابت نسبت به روزهای کاری %1$s جابه‌جا شد. نکته: آخر هفته هم همان ساعت‌های خواب را نگه دار.</string>
+    <string name="weekly_deep">خواب عمیق %1$s از خوابت</string>
 </resources>

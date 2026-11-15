@@ -636,4 +636,16 @@
     <string name="editor_alarm_gone">Le alamu isisusiwe phakathi naleso sikhathi.</string>
     <string name="test_replaces_nap">I-alamu yokuhlola iqeda ukulala kwakho kancane.</string>
     <string name="settings_clear_history_also">Amanothi, umuzwa, amamaki enqubo yakusihlwa nezingcezu zemisindo nakho kuyasuswa.</string>
+    <string name="finding_title">Okubonakele ebusuku bakho bokugcina obu-7</string>
+    <string name="finding_hide">Fihla</string>
+    <string name="finding_latency">Ngokwesilinganiso kukuthathe u-%1$s ukuze ulale. Ithiphu: uma usaphapheme ngemva kwemizuzu engu-20, vuka ubuyele embhedeni kuphela lapho usozela. Uma lokhu kuqhubeka amasonto, khuluma nodokotela wakho.</string>
+    <string name="finding_short_nights">Ubusuku obungaphansi kwamahora angu-6: %1$d kwangu-7. Ithiphu: bala isikhathi sakho sokulala usuka esikhathini sokuvuka futhi usigcine.</string>
+    <string name="finding_low_deep">Ukulala okujulile bekungu-%1$d %% kuphela wokulala kwakho (ngokuvamile %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">Ebusuku obungaphansi kwamahora angu-6 bekuncane ngokusobala: %1$d %% esikhundleni sika-%2$d %%.</string>
+    <string name="finding_deep_late">Ebusuku owalala ngabo sekwephuzile bekuncane ngokusobala: %1$d %% esikhundleni sika-%2$d %%.</string>
+    <string name="finding_tip_deep">Ithiphu: ungaphuzi i-caffeine kusukela ntambama futhi ungasebenzisi izikrini ehoreni lokugcina ngaphambi kokulala.</string>
+    <string name="finding_awake">Ngemva kokulala ubuphapheme cishe u-%1$d %% wesikhathi. Ithiphu: gcina igumbi lokulala limnyama, lithule futhi lipholile, futhi ugweme utshwala kusihlwa.</string>
+    <string name="finding_bedtime">Isikhathi sakho sokulala sishintshe kufika ku-%1$s. Ithiphu: lala cishe ngesikhathi esifanayo nsuku zonke, nangezimpelasonto.</string>
+    <string name="finding_jetlag">Ngezimpelasonto ukulala kwakho kushintshe ngo-%1$s uma kuqhathaniswa nezinsuku zomsebenzi. Ithiphu: gcina izikhathi ezifanayo zokulala nangezimpelasonto.</string>
+    <string name="weekly_deep">Ukulala okujulile %1$s wokulala kwakho</string>
 </resources>

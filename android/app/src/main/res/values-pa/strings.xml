@@ -636,4 +636,16 @@
     <string name="editor_alarm_gone">ਇਹ ਅਲਾਰਮ ਇਸ ਦੌਰਾਨ ਮਿਟਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।</string>
     <string name="test_replaces_nap">ਟੈਸਟ ਅਲਾਰਮ ਤੁਹਾਡੀ ਪਾਵਰ ਨੈਪ ਖ਼ਤਮ ਕਰ ਦਿੰਦਾ ਹੈ।</string>
     <string name="settings_clear_history_also">ਨੋਟ, ਮੂਡ, ਸ਼ਾਮ ਦੀ ਰੁਟੀਨ ਦੇ ਨਿਸ਼ਾਨ ਅਤੇ ਆਵਾਜ਼ ਦੀਆਂ ਕਲਿੱਪਾਂ ਵੀ ਮਿਟ ਜਾਂਦੀਆਂ ਹਨ।</string>
+    <string name="finding_title">ਤੇਰੀਆਂ ਪਿਛਲੀਆਂ 7 ਰਾਤਾਂ ਵਿੱਚ ਧਿਆਨ ਵਿੱਚ ਆਇਆ</string>
+    <string name="finding_hide">ਲੁਕਾਓ</string>
+    <string name="finding_latency">ਸੌਣ ਵਿੱਚ ਤੈਨੂੰ ਔਸਤਨ %1$s ਲੱਗੇ। ਸੁਝਾਅ: ਜੇ 20 ਮਿੰਟ ਬਾਅਦ ਵੀ ਜਾਗਦਾ ਹੈਂ, ਤਾਂ ਉੱਠ ਜਾ ਅਤੇ ਨੀਂਦ ਆਉਣ ’ਤੇ ਹੀ ਬਿਸਤਰੇ ’ਤੇ ਵਾਪਸ ਜਾ। ਜੇ ਇਹ ਹਫ਼ਤਿਆਂ ਤੱਕ ਰਹੇ, ਤਾਂ ਆਪਣੇ ਡਾਕਟਰ ਨਾਲ ਗੱਲ ਕਰ।</string>
+    <string name="finding_short_nights">6 ਘੰਟਿਆਂ ਤੋਂ ਘੱਟ ਰਾਤਾਂ: 7 ਵਿੱਚੋਂ %1$d। ਸੁਝਾਅ: ਉੱਠਣ ਦੇ ਸਮੇਂ ਤੋਂ ਪਿੱਛੇ ਗਿਣ ਕੇ ਸੌਣ ਦਾ ਸਮਾਂ ਤੈਅ ਕਰ ਅਤੇ ਉਸ ’ਤੇ ਟਿਕਿਆ ਰਹਿ।</string>
+    <string name="finding_low_deep">ਡੂੰਘੀ ਨੀਂਦ ਤੇਰੀ ਨੀਂਦ ਦਾ ਸਿਰਫ਼ ਲਗਭਗ %1$d %% ਸੀ (ਆਮ ਤੌਰ ’ਤੇ %2$d–%3$d %%)।</string>
+    <string name="finding_deep_short">6 ਘੰਟਿਆਂ ਤੋਂ ਘੱਟ ਰਾਤਾਂ ਵਿੱਚ ਇਹ ਸਾਫ਼ ਤੌਰ ’ਤੇ ਘੱਟ ਸੀ: %2$d %% ਦੀ ਥਾਂ %1$d %%।</string>
+    <string name="finding_deep_late">ਜਿਨ੍ਹਾਂ ਰਾਤਾਂ ਤੂੰ ਦੇਰ ਨਾਲ ਸੁੱਤਾ, ਉਨ੍ਹਾਂ ਵਿੱਚ ਇਹ ਸਾਫ਼ ਤੌਰ ’ਤੇ ਘੱਟ ਸੀ: %2$d %% ਦੀ ਥਾਂ %1$d %%।</string>
+    <string name="finding_tip_deep">ਸੁਝਾਅ: ਦੁਪਹਿਰ ਤੋਂ ਬਾਅਦ ਕੈਫ਼ੀਨ ਨਹੀਂ ਅਤੇ ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਆਖ਼ਰੀ ਘੰਟੇ ਵਿੱਚ ਸਕ੍ਰੀਨ ਨਹੀਂ।</string>
+    <string name="finding_awake">ਸੌਣ ਤੋਂ ਬਾਅਦ ਤੂੰ ਲਗਭਗ %1$d %% ਸਮਾਂ ਜਾਗਦਾ ਰਿਹਾ। ਸੁਝਾਅ: ਸੌਣ ਵਾਲਾ ਕਮਰਾ ਹਨੇਰਾ, ਸ਼ਾਂਤ ਅਤੇ ਠੰਢਾ ਰੱਖ ਅਤੇ ਸ਼ਾਮ ਨੂੰ ਸ਼ਰਾਬ ਤੋਂ ਬਚ।</string>
+    <string name="finding_bedtime">ਤੇਰਾ ਸੌਣ ਦਾ ਸਮਾਂ %1$s ਤੱਕ ਬਦਲਿਆ। ਸੁਝਾਅ: ਹਰ ਰੋਜ਼ ਲਗਭਗ ਇੱਕੋ ਸਮੇਂ ਸੌਂ, ਹਫ਼ਤੇ ਦੇ ਅੰਤ ’ਤੇ ਵੀ।</string>
+    <string name="finding_jetlag">ਹਫ਼ਤੇ ਦੇ ਅੰਤ ’ਤੇ ਤੇਰੀ ਨੀਂਦ ਕੰਮ ਦੇ ਦਿਨਾਂ ਦੇ ਮੁਕਾਬਲੇ %1$s ਖਿਸਕ ਗਈ। ਸੁਝਾਅ: ਹਫ਼ਤੇ ਦੇ ਅੰਤ ’ਤੇ ਵੀ ਉਹੀ ਸੌਣ ਦੇ ਸਮੇਂ ਰੱਖ।</string>
+    <string name="weekly_deep">ਡੂੰਘੀ ਨੀਂਦ ਤੇਰੀ ਨੀਂਦ ਦਾ %1$s</string>
 </resources>

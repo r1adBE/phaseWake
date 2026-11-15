@@ -633,4 +633,16 @@
     <string name="editor_alarm_gone">यह अलार्म इस बीच हटा दिया गया है।</string>
     <string name="test_replaces_nap">जांच अलार्म आपकी झपकी खत्म कर देगा।</string>
     <string name="settings_clear_history_also">नोट्स, एहसास, शाम की दिनचर्या के टिक और आवाज़ के अंश भी हट जाते हैं।</string>
+    <string name="finding_title">पिछली 7 रातों में दिखा</string>
+    <string name="finding_hide">छिपाएँ</string>
+    <string name="finding_latency">तुम्हें सोने में औसतन %1$s लगे। सुझाव: अगर 20 मिनट बाद भी जागे हो, तो उठ जाओ और नींद आने पर ही बिस्तर पर लौटो। अगर ऐसा हफ़्तों तक रहे, तो अपने डॉक्टर से बात करो।</string>
+    <string name="finding_short_nights">6 घंटे से कम की रातें: 7 में से %1$d। सुझाव: जागने के समय से सोने का समय तय करो और उस पर टिके रहो।</string>
+    <string name="finding_low_deep">गहरी नींद तुम्हारी नींद का केवल लगभग %1$d %% थी (आमतौर पर %2$d–%3$d %%)।</string>
+    <string name="finding_deep_short">6 घंटे से कम की रातों में यह साफ़ तौर पर कम थी: %2$d %% की जगह %1$d %%।</string>
+    <string name="finding_deep_late">जिन रातों तुम देर से सोए, उनमें यह साफ़ तौर पर कम थी: %2$d %% की जगह %1$d %%।</string>
+    <string name="finding_tip_deep">सुझाव: दोपहर के बाद कैफ़ीन नहीं और सोने से पहले के आख़िरी घंटे में स्क्रीन नहीं।</string>
+    <string name="finding_awake">सोने के बाद तुम लगभग %1$d %% समय जागे रहे। सुझाव: बेडरूम को अँधेरा, शांत और ठंडा रखो और शाम को शराब से बचो।</string>
+    <string name="finding_bedtime">तुम्हारे सोने का समय %1$s तक बदलता रहा। सुझाव: हर दिन लगभग एक ही समय पर सोओ, सप्ताहांत में भी।</string>
+    <string name="finding_jetlag">सप्ताहांत में तुम्हारी नींद कामकाजी दिनों की तुलना में %1$s खिसक गई। सुझाव: सप्ताहांत में भी वही सोने का समय रखो।</string>
+    <string name="weekly_deep">गहरी नींद तुम्हारी नींद का %1$s</string>
 </resources>

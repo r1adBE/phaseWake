@@ -633,4 +633,16 @@
     <string name="editor_alarm_gone">Tämä herätys on poistettu sillä välin.</string>
     <string name="test_replaces_nap">Testiherätys lopettaa päiväunesi.</string>
     <string name="settings_clear_history_also">Myös muistiinpanot, olo, iltarutiinin rastit ja äänileikkeet poistetaan.</string>
+    <string name="finding_title">Huomattu viimeisten 7 yön aikana</string>
+    <string name="finding_hide">Piilota</string>
+    <string name="finding_latency">Nukahtamiseen meni keskimäärin %1$s. Vinkki: jos olet vielä hereillä 20 minuutin jälkeen, nouse ja palaa sänkyyn vasta kun väsyttää. Jos tämä jatkuu viikkoja, puhu lääkärisi kanssa.</string>
+    <string name="finding_short_nights">Alle 6 tunnin yöt: %1$d/7. Vinkki: laske nukkumaanmenoaika herätysajasta taaksepäin ja pidä siitä kiinni.</string>
+    <string name="finding_low_deep">Syvää unta oli vain noin %1$d %% unestasi (tavallisesti %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">Alle 6 tunnin öinä sitä oli selvästi vähemmän: %1$d %% eikä %2$d %%.</string>
+    <string name="finding_deep_late">Öinä, jolloin menit myöhään nukkumaan, sitä oli selvästi vähemmän: %1$d %% eikä %2$d %%.</string>
+    <string name="finding_tip_deep">Vinkki: ei kofeiinia iltapäivästä alkaen eikä näyttöjä viimeisenä tuntina ennen nukkumaanmenoa.</string>
+    <string name="finding_awake">Nukahtamisen jälkeen olit hereillä noin %1$d %% ajasta. Vinkki: pidä makuuhuone pimeänä, hiljaisena ja viileänä ja jätä alkoholi illalla väliin.</string>
+    <string name="finding_bedtime">Nukkumaanmenoaikasi vaihteli jopa %1$s. Vinkki: mene nukkumaan joka päivä suunnilleen samaan aikaan, myös viikonloppuna.</string>
+    <string name="finding_jetlag">Viikonloppuna unesi siirtyi %1$s arkipäiviin verrattuna. Vinkki: pidä samat unirytmit myös viikonloppuna.</string>
+    <string name="weekly_deep">Syvää unta %1$s unestasi</string>
 </resources>

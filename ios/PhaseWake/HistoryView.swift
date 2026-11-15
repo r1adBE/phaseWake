@@ -44,8 +44,10 @@ struct HistoryView: View {
                             }
                         }
                     } else {
+                        // Auffälligkeiten der letzten 7 Nächte: alle an einer Stelle, in den Trends (wie Android).
+                        let facts = NightFacts.of(health.sessions, clearedAt: model.historyClearedAt, calendar: .gregorianLocal)
                         if let summary = weekly(feelings) {
-                            WeeklyCard(summary: summary)
+                            WeeklyCard(summary: summary, deep: Findings.weekDeep(facts, weekEnd: summary.to))
                         }
                         if !model.nights.isEmpty { stats }
                         TrendsCard(
@@ -54,7 +56,8 @@ struct HistoryView: View {
                             healthConnected: healthRequested,
                             onConnectHealth: { connectHealth() },
                             habits: habitLines(model: model, sleeps: sleeps, healthConnected: healthRequested, regularShown: charts.covered.contains(.regular)),
-                            covered: charts.covered
+                            covered: charts.covered,
+                            findings: Findings.of(facts, today: SleepNotes.nightDate(Date(), calendar: .gregorianLocal), calendar: .gregorianLocal)
                         )
                         NoteEffectsCard(effects: NoteEffect.compute(nights: model.nights, notes: model.notes, asleepByNight: asleepByNight,
                                                                     health: feelings, calendar: .gregorianLocal))

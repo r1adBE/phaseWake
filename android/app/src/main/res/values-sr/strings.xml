@@ -650,4 +650,16 @@
     <string name="editor_alarm_gone">Овај аларм је у међувремену избрисан.</string>
     <string name="test_replaces_nap">Пробни аларм завршава твоју кратку дремку.</string>
     <string name="settings_clear_history_also">Бришу се и белешке, осећај, ознаке вечерње рутине и звучни исечци.</string>
+    <string name="finding_title">Примећено у последњих 7 ноћи</string>
+    <string name="finding_hide">Сакриј</string>
+    <string name="finding_latency">У просеку ти је требало %1$s да заспиш. Савет: ако си после 20 минута још будан, устани и врати се у кревет тек кад постанеш поспан. Ако то траје недељама, разговарај са својим лекаром.</string>
+    <string name="finding_short_nights">Ноћи краће од 6 сати: %1$d од 7. Савет: израчунај време одласка на спавање од времена буђења и држи га се.</string>
+    <string name="finding_low_deep">Дубоки сан је био само око %1$d %% твог сна (обично %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">У ноћима краћим од 6 сати био је знатно мањи: %1$d %% уместо %2$d %%.</string>
+    <string name="finding_deep_late">У ноћима кад си касно легао био је знатно мањи: %1$d %% уместо %2$d %%.</string>
+    <string name="finding_tip_deep">Савет: без кофеина од поподнева и без екрана последњи сат пре спавања.</string>
+    <string name="finding_awake">Након што си заспао, био си будан око %1$d %% времена. Савет: нека спаваћа соба буде тамна, тиха и прохладна, а увече избегавај алкохол.</string>
+    <string name="finding_bedtime">Време одласка на спавање варирало је до %1$s. Савет: иди на спавање сваког дана отприлике у исто време, и викендом.</string>
+    <string name="finding_jetlag">Викендом ти је сан био померен за %1$s у односу на радне дане. Савет: задржи исте термине спавања и викендом.</string>
+    <string name="weekly_deep">Дубоки сан %1$s твог сна</string>
 </resources>

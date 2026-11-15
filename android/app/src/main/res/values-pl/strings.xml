@@ -661,4 +661,16 @@
     <string name="editor_alarm_gone">Ten budzik został w międzyczasie usunięty.</string>
     <string name="test_replaces_nap">Budzik testowy kończy Twoją drzemkę.</string>
     <string name="settings_clear_history_also">Usuwane są też notatki, samopoczucie, odhaczenia wieczornej rutyny i fragmenty dźwięków.</string>
+    <string name="finding_title">Zauważone w ostatnich 7 nocach</string>
+    <string name="finding_hide">Ukryj</string>
+    <string name="finding_latency">Średnio zasypianie zajmowało ci %1$s. Wskazówka: jeśli po 20 minutach wciąż nie śpisz, wstań i wróć do łóżka dopiero, gdy poczujesz senność. Jeśli trwa to tygodniami, porozmawiaj z lekarzem.</string>
+    <string name="finding_short_nights">Noce krótsze niż 6 godzin: %1$d z 7. Wskazówka: wylicz porę snu od godziny budzenia i trzymaj się jej.</string>
+    <string name="finding_low_deep">Sen głęboki stanowił tylko około %1$d %% twojego snu (zwykle %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">W noce krótsze niż 6 godzin było go wyraźnie mniej: %1$d %% zamiast %2$d %%.</string>
+    <string name="finding_deep_late">W noce, gdy kładłeś się późno, było go wyraźnie mniej: %1$d %% zamiast %2$d %%.</string>
+    <string name="finding_tip_deep">Wskazówka: bez kofeiny od popołudnia i bez ekranów w ostatniej godzinie przed snem.</string>
+    <string name="finding_awake">Po zaśnięciu nie spałeś przez około %1$d %% czasu. Wskazówka: zadbaj o ciemną, cichą i chłodną sypialnię i zrezygnuj wieczorem z alkoholu.</string>
+    <string name="finding_bedtime">Pora twojego snu wahała się nawet o %1$s. Wskazówka: kładź się codziennie mniej więcej o tej samej porze, także w weekend.</string>
+    <string name="finding_jetlag">W weekend twój sen był przesunięty o %1$s względem dni roboczych. Wskazówka: trzymaj te same godziny snu także w weekend.</string>
+    <string name="weekly_deep">Sen głęboki %1$s twojego snu</string>
 </resources>

@@ -99435,6 +99435,4934 @@
         }
       }
     },
+    "finding_awake": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nadat jy aan die slaap geraak het, was jy sowat %1$lld %% van die tyd wakker. Wenk: hou jou slaapkamer donker, stil en koel, en los alkohol in die aand."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ከተኛህ በኋላ ከጊዜው ወደ %1$lld %% ነቅተህ ነበር። ምክር፦ መኝታ ቤትህን ጨለማ፣ ጸጥ ያለና ቀዝቃዛ አድርገው፣ ምሽት ላይ አልኮል አትጠጣ።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بعد أن نمت كنت مستيقظًا نحو %1$lld %% من الوقت. نصيحة: اجعل غرفة النوم مظلمة وهادئة وباردة، وتجنب الكحول مساءً."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yuxuya getdikdən sonra vaxtın təxminən %1$lld %%-ində oyaq idin. Məsləhət: yataq otağını qaranlıq, sakit və sərin saxla, axşam spirtli içkidən imtina et."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "След заспиване си бил буден около %1$lld %% от времето. Съвет: дръж спалнята тъмна, тиха и хладна и се откажи от алкохола вечер."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ঘুমিয়ে পড়ার পর তুমি সময়ের প্রায় %1$lld %% জেগে ছিলে। পরামর্শ: শোবার ঘর অন্ধকার, শান্ত ও ঠান্ডা রাখো এবং সন্ধ্যায় মদ এড়িয়ে চলো।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nakon što si zaspao, bio si budan oko %1$lld %% vremena. Savjet: neka spavaća soba bude tamna, tiha i prohladna, a navečer izbjegavaj alkohol."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Després d’adormir-te vas estar despert prop del %1$lld %% del temps. Consell: mantén l’habitació fosca, tranquil·la i fresca, i evita l’alcohol al vespre."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Po usnutí jsi byl vzhůru asi %1$lld %% času. Tip: udržuj ložnici tmavou, tichou a chladnou a večer vynech alkohol."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Efter du faldt i søvn, var du vågen omkring %1$lld %% af tiden. Tip: hold soveværelset mørkt, stille og køligt, og drop alkohol om aftenen."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nach dem Einschlafen warst du etwa %1$lld %% der Zeit wach. Tipp: Halte das Schlafzimmer dunkel, ruhig und kühl und verzichte am Abend auf Alkohol."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αφού αποκοιμήθηκες, ήσουν ξύπνιος περίπου το %1$lld %% του χρόνου. Συμβουλή: κράτα το υπνοδωμάτιο σκοτεινό, ήσυχο και δροσερό και απόφυγε το αλκοόλ το βράδυ."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "After falling asleep you were awake about %1$lld %% of the time. Tip: keep your bedroom dark, quiet and cool, and skip alcohol in the evening."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Después de dormirte estuviste despierto cerca del %1$lld %% del tiempo. Consejo: mantén el dormitorio oscuro, tranquilo y fresco, y evita el alcohol por la noche."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pärast uinumist olid ärkvel umbes %1$lld %% ajast. Nõuanne: hoia magamistuba pime, vaikne ja jahe ning jäta õhtul alkohol vahele."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lokartu ondoren denboraren %% %1$lld inguru egon zinen esna. Aholkua: mantendu logela ilun, isil eta fresko, eta saihestu alkohola arratsaldean."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بعد از به خواب رفتن حدود %1$lld %% از زمان بیدار بودی. نکته: اتاق خواب را تاریک، آرام و خنک نگه دار و شب‌ها الکل ننوش."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nukahtamisen jälkeen olit hereillä noin %1$lld %% ajasta. Vinkki: pidä makuuhuone pimeänä, hiljaisena ja viileänä ja jätä alkoholi illalla väliin."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pagkatapos makatulog, gising ka sa mga %1$lld %% ng oras. Tip: panatilihing madilim, tahimik at malamig ang kwarto, at iwasan ang alak sa gabi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Après t’être endormi, tu étais éveillé environ %1$lld %% du temps. Conseil : garde ta chambre sombre, calme et fraîche, et évite l’alcool le soir."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tar éis duit titim i do chodladh bhí tú i do dhúiseacht thart ar %1$lld %% den am. Leid: coinnigh an seomra leapa dorcha, ciúin agus fionnuar, agus seachain alcól tráthnóna."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Despois de durmir estiveches esperto arredor do %1$lld %% do tempo. Consello: mantén o cuarto escuro, tranquilo e fresco, e evita o alcohol pola noite."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઊંઘ્યા પછી તું આશરે %1$lld %% સમય જાગતો રહ્યો. સૂચન: શયનખંડ અંધારો, શાંત અને ઠંડો રાખ, અને સાંજે દારૂ ટાળ."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אחרי שנרדמת היית ער כ־%1$lld %% מהזמן. טיפ: שמור על חדר שינה חשוך, שקט וקריר, והימנע מאלכוהול בערב."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सोने के बाद तुम लगभग %1$lld %% समय जागे रहे। सुझाव: बेडरूम को अँधेरा, शांत और ठंडा रखो और शाम को शराब से बचो।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nakon što si zaspao, bio si budan oko %1$lld %% vremena. Savjet: neka spavaća soba bude tamna, tiha i prohladna, a navečer izbjegavaj alkohol."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elalvás után az idő kb. %1$lld %%-ában voltál ébren. Tipp: legyen a hálószoba sötét, csendes és hűvös, és este hagyd ki az alkoholt."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Քնելուց հետո ժամանակի մոտ %1$lld %%-ը արթուն ես եղել։ Խորհուրդ՝ ննջարանը պահիր մութ, հանգիստ ու զով, և երեկոյան խուսափիր ալկոհոլից։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Setelah tertidur, kamu terjaga sekitar %1$lld %% dari waktunya. Tips: jaga kamar tetap gelap, tenang, dan sejuk, dan hindari alkohol di malam hari."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eftir að þú sofnaðir varstu vakandi um %1$lld %% af tímanum. Ráð: hafðu svefnherbergið dimmt, hljóðlátt og svalt og slepptu áfengi á kvöldin."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dopo esserti addormentato sei stato sveglio circa il %1$lld %% del tempo. Consiglio: tieni la camera buia, silenziosa e fresca ed evita l’alcol la sera."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "寝ついた後、時間の約%1$lld %%は起きていました。ヒント：寝室を暗く静かで涼しく保ち、夜はお酒を控えましょう。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ჩაძინების შემდეგ დროის დაახლოებით %1$lld %% ფხიზლად იყავი. რჩევა: საძინებელი იყოს ბნელი, მშვიდი და გრილი, საღამოს კი ალკოჰოლს მოერიდე."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұйықтап кеткеннен кейін уақыттың шамамен %1$lld %% ояу болдың. Кеңес: жатын бөлмені қараңғы, тыныш әрі салқын ұста, кешке алкогольден бас тарт."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ក្រោយលង់លក់ អ្នកភ្ញាក់ប្រហែល %1$lld %% នៃពេលវេលា។ គន្លឹះ៖ រក្សាបន្ទប់គេងឱ្យងងឹត ស្ងាត់ និងត្រជាក់ ហើយជៀសវាងស្រានៅពេលល្ងាច។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಿದ್ರೆ ಬಂದ ನಂತರ ಸಮಯದ ಸುಮಾರು %1$lld %% ನೀನು ಎಚ್ಚರವಾಗಿದ್ದೆ. ಸಲಹೆ: ಮಲಗುವ ಕೋಣೆಯನ್ನು ಕತ್ತಲು, ಶಾಂತ ಮತ್ತು ತಂಪಾಗಿ ಇಡು, ಸಂಜೆ ಮದ್ಯ ತಪ್ಪಿಸು."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "잠든 뒤 시간의 약 %1$lld %% 동안 깨어 있었어요. 팁: 침실을 어둡고 조용하고 서늘하게 유지하고 저녁에는 술을 피하세요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ຫຼັງຈາກນອນຫຼັບແລ້ວ ເຈົ້າຕື່ນຢູ່ປະມານ %1$lld %% ຂອງເວລາ. ຄຳແນະນຳ: ຮັກສາຫ້ອງນອນໃຫ້ມືດ ງຽບ ແລະ ເຢັນ, ແລະ ຫຼີກລ່ຽງເຫຼົ້າຕອນແລງ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Užmigęs budėjai apie %1$lld %% laiko. Patarimas: miegamąjį laikyk tamsų, tylų ir vėsų, o vakare atsisakyk alkoholio."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pēc iemigšanas tu biji nomodā aptuveni %1$lld %% laika. Padoms: uzturi guļamistabu tumšu, klusu un vēsu, un vakarā izvairies no alkohola."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Откако заспа, беше буден околу %1$lld %% од времето. Совет: спалната соба нека биде темна, тивка и свежа, а навечер избегнувај алкохол."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഉറങ്ങിയ ശേഷം സമയത്തിന്റെ ഏകദേശം %1$lld %% നീ ഉണർന്നിരുന്നു. നുറുങ്ങ്: കിടപ്പുമുറി ഇരുട്ടും ശാന്തവും തണുപ്പുമായി സൂക്ഷിക്കുക, വൈകുന്നേരം മദ്യം ഒഴിവാക്കുക."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Унтсаны дараа хугацааны ойролцоогоор %1$lld %% сэрүүн байсан. Зөвлөгөө: унтлагын өрөөгөө харанхуй, нам гүм, сэрүүн байлгаж, орой согтууруулах ундаанаас татгалз."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "झोप लागल्यानंतर तू सुमारे %1$lld %% वेळ जागा होतास. टीप: बेडरूम अंधारी, शांत आणि थंड ठेव आणि संध्याकाळी मद्य टाळ."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selepas tertidur anda berjaga kira-kira %1$lld %% daripada masa itu. Petua: pastikan bilik tidur gelap, senyap dan sejuk, dan elakkan alkohol pada waktu malam."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "အိပ်ပျော်ပြီးနောက် အချိန်၏ %1$lld %% ခန့် နိုးနေခဲ့သည်။ အကြံပြုချက်- အိပ်ခန်းကို မှောင်၊ တိတ်ဆိတ်၊ အေးအောင်ထားပြီး ညနေတွင် အရက်ရှောင်ပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etter at du sovnet, var du våken omtrent %1$lld %% av tiden. Tips: hold soverommet mørkt, stille og kjølig, og dropp alkohol om kvelden."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "निदाएपछि तिमी समयको करिब %1$lld %% ब्युँझै थियौ। सुझाव: सुत्ने कोठा अँध्यारो, शान्त र चिसो राख, र साँझ मदिरा नखाऊ।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na het inslapen was je ongeveer %1$lld %% van de tijd wakker. Tip: houd je slaapkamer donker, stil en koel, en sla alcohol ’s avonds over."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੌਣ ਤੋਂ ਬਾਅਦ ਤੂੰ ਲਗਭਗ %1$lld %% ਸਮਾਂ ਜਾਗਦਾ ਰਿਹਾ। ਸੁਝਾਅ: ਸੌਣ ਵਾਲਾ ਕਮਰਾ ਹਨੇਰਾ, ਸ਼ਾਂਤ ਅਤੇ ਠੰਢਾ ਰੱਖ ਅਤੇ ਸ਼ਾਮ ਨੂੰ ਸ਼ਰਾਬ ਤੋਂ ਬਚ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Po zaśnięciu nie spałeś przez około %1$lld %% czasu. Wskazówka: zadbaj o ciemną, cichą i chłodną sypialnię i zrezygnuj wieczorem z alkoholu."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Depois de pegar no sono você ficou acordado cerca de %1$lld %% do tempo. Dica: mantenha o quarto escuro, silencioso e fresco, e evite álcool à noite."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Depois de adormeceres estiveste acordado cerca de %1$lld %% do tempo. Dica: mantém o quarto escuro, silencioso e fresco, e evita álcool à noite."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "După ce ai adormit ai fost treaz aproximativ %1$lld %% din timp. Sfat: păstrează dormitorul întunecat, liniștit și răcoros și renunță la alcool seara."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "После засыпания ты бодрствовал(а) около %1$lld %% времени. Совет: держи спальню тёмной, тихой и прохладной и откажись от алкоголя вечером."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "නින්දට ගිය පසු ඔබ කාලයෙන් ආසන්න වශයෙන් %1$lld %%ක් අවදිව සිටියා. ඉඟිය: නිදන කාමරය අඳුරු, නිහඬ සහ සිසිල්ව තබා, සවස මත්පැන් වළක්වන්න."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Po zaspaní si bol hore asi %1$lld %% času. Tip: udržuj spálňu tmavú, tichú a chladnú a večer vynechaj alkohol."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Po uspavanju si bedel približno %1$lld %% časa. Nasvet: spalnica naj bo temna, tiha in hladna, zvečer pa se odpovej alkoholu."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasi fjete, ishe zgjuar rreth %1$lld %% të kohës. Këshillë: mbaje dhomën e gjumit të errët, të qetë dhe të freskët, dhe shmang alkoolin në mbrëmje."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Након што си заспао, био си будан око %1$lld %% времена. Савет: нека спаваћа соба буде тамна, тиха и прохладна, а увече избегавај алкохол."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Efter att du somnat var du vaken cirka %1$lld %% av tiden. Tips: håll sovrummet mörkt, tyst och svalt och avstå från alkohol på kvällen."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baada ya kulala ulikuwa macho takriban %1$lld %% ya muda. Kidokezo: weka chumba cha kulala giza, kimya na baridi, na epuka pombe jioni."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "தூங்கிய பிறகு நேரத்தில் சுமார் %1$lld %% நீ விழித்திருந்தாய். குறிப்பு: படுக்கையறையை இருட்டாக, அமைதியாக, குளிர்ச்சியாக வைத்திரு, மாலையில் மதுவைத் தவிர்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నిద్ర పట్టిన తర్వాత సమయంలో సుమారు %1$lld %% నువ్వు మెలకువగా ఉన్నావు. సూచన: పడకగదిని చీకటిగా, నిశ్శబ్దంగా, చల్లగా ఉంచు, సాయంత్రం మద్యం మానుకో."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "หลังหลับไปแล้ว คุณตื่นอยู่ราว %1$lld %% ของเวลา เคล็ดลับ: ทำให้ห้องนอนมืด เงียบ และเย็น และงดแอลกอฮอล์ตอนเย็น"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uykuya daldıktan sonra zamanın yaklaşık %%%1$lld kadarında uyanıktın. İpucu: yatak odanı karanlık, sessiz ve serin tut, akşamları alkolü bırak."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Після засинання ти не спав(ла) близько %1$lld %% часу. Порада: тримай спальню темною, тихою та прохолодною і відмовся від алкоголю ввечері."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سونے کے بعد آپ تقریباً %1$lld %% وقت جاگتے رہے۔ مشورہ: سونے کا کمرہ تاریک، پُرسکون اور ٹھنڈا رکھیں اور شام کو الکحل سے پرہیز کریں۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uxlab qolganingdan keyin vaqtning taxminan %1$lld %% qismida uygʻoq boʻlding. Maslahat: yotoqxonani qorongʻi, sokin va salqin tut, kechqurun spirtli ichimlikdan voz kech."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sau khi ngủ, bạn thức khoảng %1$lld %% thời gian. Mẹo: giữ phòng ngủ tối, yên tĩnh và mát, và tránh rượu bia vào buổi tối."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "入睡之後你約有 %1$lld %% 時間醒著。建議：保持睡房黑暗、安靜、涼爽，夜晚唔好飲酒。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "入睡后你约有 %1$lld %% 的时间醒着。建议：让卧室保持黑暗、安静、凉爽，晚上不喝酒。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "入睡後你約有 %1$lld %% 的時間醒著。建議：讓臥室保持黑暗、安靜、涼爽，晚上不喝酒。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ngemva kokulala ubuphapheme cishe u-%1$lld %% wesikhathi. Ithiphu: gcina igumbi lokulala limnyama, lithule futhi lipholile, futhi ugweme utshwala kusihlwa."
+          }
+        }
+      }
+    },
+    "finding_bedtime": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jou slaaptyd het met tot %1$@ gewissel. Wenk: gaan elke dag omtrent dieselfde tyd slaap, ook oor naweke."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "የመኝታ ሰዓትህ እስከ %1$@ ተለዋውጧል። ምክር፦ በየቀኑ በግምት በተመሳሳይ ሰዓት ተኛ፣ ቅዳሜና እሁድም ጭምር።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تفاوت موعد نومك حتى %1$@. نصيحة: نم كل يوم في الموعد نفسه تقريبًا، وفي عطلة نهاية الأسبوع أيضًا."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yatma vaxtın %1$@-dək dəyişdi. Məsləhət: hər gün təxminən eyni vaxtda yat, həftəsonu da."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Часът ти за лягане е варирал до %1$@. Съвет: лягай всеки ден по едно и също време, и през уикенда."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "তোমার শোয়ার সময় %1$@ পর্যন্ত বদলেছে। পরামর্শ: প্রতিদিন প্রায় একই সময়ে শুতে যাও, সপ্তাহান্তেও।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vrijeme odlaska na spavanje variralo je do %1$@. Savjet: idi spavati svaki dan otprilike u isto vrijeme, i vikendom."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La teva hora d’anar a dormir va variar fins a %1$@. Consell: ves a dormir cada dia més o menys a la mateixa hora, també el cap de setmana."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Čas, kdy jdeš spát, kolísal až o %1$@. Tip: choď spát každý den zhruba ve stejnou dobu, i o víkendu."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din sengetid svingede med op til %1$@. Tip: gå i seng omtrent samme tid hver dag, også i weekenden."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Bettzeit schwankte um bis zu %1$@. Tipp: Geh jeden Tag etwa zur gleichen Zeit ins Bett, auch am Wochenende."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Η ώρα ύπνου σου διέφερε έως και %1$@. Συμβουλή: πήγαινε για ύπνο κάθε μέρα περίπου την ίδια ώρα, και τα Σαββατοκύριακα."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your bedtime varied by up to %1$@. Tip: go to bed at about the same time every day, weekends included."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu hora de dormir varió hasta %1$@. Consejo: acuéstate cada día más o menos a la misma hora, también el fin de semana."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sinu magamamineku aeg kõikus kuni %1$@. Nõuanne: mine iga päev magama umbes samal ajal, ka nädalavahetusel."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oheratzeko ordua %1$@ arte aldatu zen. Aholkua: oheratu egunero gutxi gorabehera ordu berean, asteburuetan ere bai."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ساعت خوابت تا %1$@ تغییر کرد. نکته: هر روز تقریباً در یک ساعت بخواب، آخر هفته هم."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nukkumaanmenoaikasi vaihteli jopa %1$@. Vinkki: mene nukkumaan joka päivä suunnilleen samaan aikaan, myös viikonloppuna."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nag-iba-iba ang oras ng pagtulog mo nang hanggang %1$@. Tip: matulog sa halos parehong oras araw-araw, pati sa weekend."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ton heure de coucher a varié jusqu’à %1$@. Conseil : couche-toi chaque jour à peu près à la même heure, week-end compris."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "D’athraigh d’am codlata suas le %1$@. Leid: téigh a chodladh thart ar an am céanna gach lá, ag an deireadh seachtaine freisin."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A túa hora de deitarte variou ata %1$@. Consello: déitate cada día máis ou menos á mesma hora, tamén na fin de semana."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "તારો સૂવાનો સમય %1$@ સુધી બદલાયો. સૂચન: દરરોજ લગભગ એક જ સમયે સૂ, સપ્તાહાંતે પણ."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שעת השינה שלך השתנתה בעד %1$@. טיפ: לך לישון כל יום בערך באותה שעה, גם בסוף השבוע."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुम्हारे सोने का समय %1$@ तक बदलता रहा। सुझाव: हर दिन लगभग एक ही समय पर सोओ, सप्ताहांत में भी।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vrijeme odlaska na spavanje variralo je do %1$@. Savjet: idi spavati svaki dan otprilike u isto vrijeme, i vikendom."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A lefekvésed ideje akár %1$@ eltérést is mutatott. Tipp: feküdj le minden nap nagyjából ugyanakkor, hétvégén is."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Քո քնելու ժամը տատանվել է մինչև %1$@։ Խորհուրդ՝ ամեն օր քնիր մոտավորապես նույն ժամին, նաև հանգստյան օրերին։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jam tidurmu bergeser hingga %1$@. Tips: tidurlah sekitar jam yang sama setiap hari, termasuk akhir pekan."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Háttatíminn þinn sveiflaðist um allt að %1$@. Ráð: farðu að sofa á svipuðum tíma alla daga, líka um helgar."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’ora in cui vai a letto è variata fino a %1$@. Consiglio: vai a letto ogni giorno più o meno alla stessa ora, anche nel fine settimana."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "就寝時刻が最大%1$@ずれました。ヒント：週末も含め、毎日ほぼ同じ時刻に寝ましょう。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "შენი დაძინების დრო %1$@-მდე მერყეობდა. რჩევა: ყოველდღე დაახლოებით ერთსა და იმავე დროს დაწექი, შაბათ-კვირასაც."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұйықтау уақытың %1$@ дейін өзгерді. Кеңес: күн сайын шамамен бір уақытта жат, демалыс күндері де."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ម៉ោងចូលគេងរបស់អ្នកប្រែប្រួលរហូតដល់ %1$@។ គន្លឹះ៖ ចូលគេងប្រហែលម៉ោងដដែលរៀងរាល់ថ្ងៃ រួមទាំងចុងសប្តាហ៍។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಿನ್ನ ಮಲಗುವ ಸಮಯ %1$@ ವರೆಗೆ ಬದಲಾಯಿತು. ಸಲಹೆ: ಪ್ರತಿದಿನ ಸುಮಾರು ಒಂದೇ ಸಮಯಕ್ಕೆ ಮಲಗು, ವಾರಾಂತ್ಯದಲ್ಲೂ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "취침 시간이 최대 %1$@까지 달라졌어요. 팁: 주말을 포함해 매일 비슷한 시간에 잠자리에 드세요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ເວລາເຂົ້ານອນຂອງເຈົ້າຕ່າງກັນເຖິງ %1$@. ຄຳແນະນຳ: ເຂົ້ານອນເວລາໃກ້ຄຽງກັນທຸກມື້ ລວມທັງທ້າຍອາທິດ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tavo ėjimo miegoti laikas svyravo iki %1$@. Patarimas: kasdien eik miegoti maždaug tuo pačiu metu, ir savaitgaliais."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tavs gulētiešanas laiks svārstījās līdz %1$@. Padoms: ej gulēt katru dienu apmēram vienā laikā, arī brīvdienās."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Времето кога легнуваш варираше до %1$@. Совет: легнувај секој ден приближно во исто време, и за викенд."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നിന്റെ ഉറങ്ങുന്ന സമയം %1$@ വരെ മാറി. നുറുങ്ങ്: എല്ലാ ദിവസവും ഏകദേശം ഒരേ സമയത്ത് ഉറങ്ങുക, വാരാന്ത്യത്തിലും."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Унтах цаг чинь %1$@ хүртэл зөрсөн. Зөвлөгөө: өдөр бүр ойролцоогоор нэг цагт унт, амралтын өдрүүдэд ч мөн."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुझी झोपण्याची वेळ %1$@ पर्यंत बदलली. टीप: दररोज साधारण एकाच वेळी झोप, आठवड्याच्या शेवटीही."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waktu tidur anda berubah sehingga %1$@. Petua: tidur pada waktu yang hampir sama setiap hari, termasuk hujung minggu."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "သင့်အိပ်ချိန်သည် %1$@ အထိ ကွာခြားခဲ့သည်။ အကြံပြုချက်- နေ့တိုင်း အချိန်တူနီးပါးတွင် အိပ်ပါ၊ စနေတနင်္ဂနွေတွင်လည်း။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leggetiden din varierte med opptil %1$@. Tips: legg deg omtrent samme tid hver dag, også i helgen."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तिम्रो सुत्ने समय %1$@ सम्म फरक पर्‍यो। सुझाव: हरेक दिन लगभग एउटै समयमा सुत, सप्ताहान्तमा पनि।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je bedtijd schommelde tot %1$@. Tip: ga elke dag rond dezelfde tijd naar bed, ook in het weekend."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੇਰਾ ਸੌਣ ਦਾ ਸਮਾਂ %1$@ ਤੱਕ ਬਦਲਿਆ। ਸੁਝਾਅ: ਹਰ ਰੋਜ਼ ਲਗਭਗ ਇੱਕੋ ਸਮੇਂ ਸੌਂ, ਹਫ਼ਤੇ ਦੇ ਅੰਤ ’ਤੇ ਵੀ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pora twojego snu wahała się nawet o %1$@. Wskazówka: kładź się codziennie mniej więcej o tej samej porze, także w weekend."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seu horário de dormir variou até %1$@. Dica: vá dormir todo dia mais ou menos no mesmo horário, inclusive no fim de semana."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A tua hora de deitar variou até %1$@. Dica: deita-te todos os dias mais ou menos à mesma hora, também ao fim de semana."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ora ta de culcare a variat cu până la %1$@. Sfat: culcă-te în fiecare zi cam la aceeași oră, și în weekend."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Время отхода ко сну колебалось до %1$@. Совет: ложись каждый день примерно в одно и то же время, и в выходные тоже."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබේ නින්දට යන වේලාව %1$@ දක්වා වෙනස් විය. ඉඟිය: සෑම දිනකම දළ වශයෙන් එකම වේලාවට නින්දට යන්න, සති අන්තයේත්."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Čas, keď ideš spať, kolísal až o %1$@. Tip: choď spať každý deň zhruba v rovnakom čase, aj cez víkend."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Čas, ko greš spat, je nihal do %1$@. Nasvet: vsak dan pojdi spat ob približno istem času, tudi med vikendom."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ora jote e gjumit ndryshoi deri në %1$@. Këshillë: shko të flesh çdo ditë afërsisht në të njëjtën orë, edhe në fundjavë."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Време одласка на спавање варирало је до %1$@. Савет: иди на спавање сваког дана отприлике у исто време, и викендом."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din läggtid varierade med upp till %1$@. Tips: lägg dig ungefär samma tid varje dag, även på helgen."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muda wako wa kulala ulitofautiana hadi %1$@. Kidokezo: lala karibu saa ileile kila siku, hata wikendi."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "உன் தூங்கும் நேரம் %1$@ வரை மாறியது. குறிப்பு: தினமும் ஏறக்குறைய ஒரே நேரத்தில் தூங்கு, வார இறுதியிலும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నీ పడుకునే సమయం %1$@ వరకు మారింది. సూచన: ప్రతిరోజూ దాదాపు ఒకే సమయానికి పడుకో, వారాంతంలో కూడా."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เวลาเข้านอนของคุณต่างกันได้ถึง %1$@ เคล็ดลับ: เข้านอนเวลาใกล้เคียงกันทุกวัน รวมถึงวันหยุดสุดสัปดาห์"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yatma saatin %1$@ kadar değişti. İpucu: hafta sonu dahil her gün yaklaşık aynı saatte yat."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Час відходу до сну коливався до %1$@. Порада: лягай щодня приблизно в той самий час, і у вихідні теж."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "آپ کے سونے کا وقت %1$@ تک بدلتا رہا۔ مشورہ: ہر روز تقریباً ایک ہی وقت پر سوئیں، ہفتے کے آخر میں بھی۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uxlash vaqting %1$@ gacha oʻzgardi. Maslahat: har kuni taxminan bir vaqtda uxla, dam olish kunlari ham."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giờ đi ngủ của bạn chênh nhau tới %1$@. Mẹo: đi ngủ vào khoảng cùng một giờ mỗi ngày, kể cả cuối tuần."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的就寢時間最多相差 %1$@。建議：每日大約同一時間上床，週末都一樣。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的就寝时间最多相差 %1$@。建议：每天大约同一时间上床，周末也一样。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的就寢時間最多相差 %1$@。建議：每天大約同一時間上床，週末也一樣。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isikhathi sakho sokulala sishintshe kufika ku-%1$@. Ithiphu: lala cishe ngesikhathi esifanayo nsuku zonke, nangezimpelasonto."
+          }
+        }
+      }
+    },
+    "finding_deep_late": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In nagte wat jy laat gaan slaap het, was dit duidelik laer: %1$lld %% in plaas van %2$lld %%."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ዘግይተህ በተኛህባቸው ሌሊቶች በግልጽ ያነሰ ነበር፦ ከ%2$lld %% ይልቅ %1$lld %%።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "في الليالي التي نمت فيها متأخرًا كان أقل بوضوح: %1$lld %% بدلًا من %2$lld %%."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gec yatdığın gecələrdə nəzərəçarpacaq dərəcədə az idi: %2$lld %% əvəzinə %1$lld %%."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В нощите, когато си си легнал късно, е бил осезаемо по-малко: %1$lld %% вместо %2$lld %%."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "যে রাতে দেরিতে শুয়েছ, সেদিন এটি স্পষ্টভাবে কম ছিল: %2$lld %%-এর বদলে %1$lld %%।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "U noćima kad si kasno legao bio je znatno manji: %1$lld %% umjesto %2$lld %%."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les nits que vas anar a dormir tard va ser clarament menor: %1$lld %% en lloc de %2$lld %%."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "V nocích, kdy jsi šel spát pozdě, ho bylo výrazně méně: %1$lld %% místo %2$lld %%."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I nætter, hvor du gik sent i seng, var den tydeligt lavere: %1$lld %% i stedet for %2$lld %%."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wenn du spät ins Bett gingst, war er deutlich geringer: %1$lld %% statt %2$lld %%."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Τις νύχτες που ξάπλωσες αργά ήταν αισθητά λιγότερος: %1$lld %% αντί για %2$lld %%."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On nights you went to bed late it was clearly lower: %1$lld %% instead of %2$lld %%."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En las noches en que te acostaste tarde fue claramente menor: %1$lld %% en lugar de %2$lld %%."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öödel, kui läksid hilja magama, oli seda selgelt vähem: %1$lld %%, mitte %2$lld %%."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Berandu oheratu zinen gauetan nabarmen txikiagoa izan zen: %% %1$lld, %% %2$lld izan beharrean."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "در شب‌هایی که دیر خوابیدی به‌وضوح کمتر بود: %1$lld %% به‌جای %2$lld %%."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öinä, jolloin menit myöhään nukkumaan, sitä oli selvästi vähemmän: %1$lld %% eikä %2$lld %%."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sa mga gabing late kang natulog, malinaw na mas mababa ito: %1$lld %% sa halip na %2$lld %%."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les nuits où tu t’es couché tard, il était nettement plus faible : %1$lld %% au lieu de %2$lld %%."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oícheanta a ndeachaigh tú a chodladh go déanach bhí sé i bhfad níos lú: %1$lld %% in áit %2$lld %%."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nas noites en que te deitaches tarde foi claramente menor: %1$lld %% en vez de %2$lld %%."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "જે રાતે તું મોડો સૂતો, ત્યારે તે સ્પષ્ટ રીતે ઓછી હતી: %2$lld %%ને બદલે %1$lld %%."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בלילות שבהם הלכת לישון מאוחר היא הייתה נמוכה בבירור: %1$lld %% במקום %2$lld %%."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जिन रातों तुम देर से सोए, उनमें यह साफ़ तौर पर कम थी: %2$lld %% की जगह %1$lld %%।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "U noćima kad si kasno legao bio je znatno manji: %1$lld %% umjesto %2$lld %%."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Azokon az éjszakákon, amikor későn feküdtél le, jóval kevesebb volt: %1$lld %% a %2$lld %% helyett."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ուշ պառկած գիշերներին այն զգալիորեն քիչ էր՝ %1$lld %%՝ %2$lld %%-ի փոխարեն։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pada malam kamu tidur larut jelas lebih rendah: %1$lld %%, bukan %2$lld %%."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nætur sem þú fórst seint að sofa var hann greinilega minni: %1$lld %% í stað %2$lld %%."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nelle notti in cui sei andato a letto tardi era nettamente più basso: %1$lld %% invece di %2$lld %%."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "遅く寝た夜ははっきり少なめでした：%2$lld %%に対して%1$lld %%。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ღამეებში, როცა გვიან დაწექი, ის აშკარად ნაკლები იყო: %1$lld %% %2$lld %%-ის ნაცვლად."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кеш жатқан түндерде ол айтарлықтай аз болды: %2$lld %% орнына %1$lld %%."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "នៅយប់ដែលអ្នកចូលគេងយឺត វាទាបជាងយ៉ាងច្បាស់៖ %1$lld %% ជំនួសឱ្យ %2$lld %%។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನೀನು ತಡವಾಗಿ ಮಲಗಿದ ರಾತ್ರಿಗಳಲ್ಲಿ ಅದು ಸ್ಪಷ್ಟವಾಗಿ ಕಡಿಮೆ ಇತ್ತು: %2$lld %% ಬದಲು %1$lld %%."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "늦게 잔 밤에는 뚜렷하게 적었어요: %2$lld %% 대신 %1$lld %%."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ໃນຄືນທີ່ເຈົ້າເຂົ້ານອນຊ້າ ມັນຕ່ຳລົງຢ່າງຈະແຈ້ງ: %1$lld %% ແທນ %2$lld %%."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Naktimis, kai ėjai miegoti vėlai, jo buvo aiškiai mažiau: %1$lld %% vietoj %2$lld %%."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Naktīs, kad gāji gulēt vēlu, tā bija manāmi mazāk: %1$lld %% nevis %2$lld %%."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Во ноќите кога легна доцна беше значително помал: %1$lld %% наместо %2$lld %%."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നീ വൈകി ഉറങ്ങിയ രാത്രികളിൽ അത് വ്യക്തമായി കുറവായിരുന്നു: %2$lld %%-ന് പകരം %1$lld %%."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Оройтож унтсан шөнүүдэд мэдэгдэхүйц бага байсан: %2$lld %%-ийн оронд %1$lld %%."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ज्या रात्री तू उशिरा झोपलास, तेव्हा ती स्पष्टपणे कमी होती: %2$lld %% ऐवजी %1$lld %%."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pada malam anda tidur lewat ia jelas lebih rendah: %1$lld %% dan bukannya %2$lld %%."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "နောက်ကျမှ အိပ်ခဲ့သော ညများတွင် သိသိသာသာ နည်းခဲ့သည်- %2$lld %% အစား %1$lld %%။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Netter du la deg sent, var den tydelig lavere: %1$lld %% i stedet for %2$lld %%."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ढिलो सुतेका रातहरूमा यो स्पष्ट रूपमा कम थियो: %2$lld %% को सट्टा %1$lld %%।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In nachten dat je laat naar bed ging, was die duidelijk lager: %1$lld %% in plaats van %2$lld %%."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਜਿਨ੍ਹਾਂ ਰਾਤਾਂ ਤੂੰ ਦੇਰ ਨਾਲ ਸੁੱਤਾ, ਉਨ੍ਹਾਂ ਵਿੱਚ ਇਹ ਸਾਫ਼ ਤੌਰ ’ਤੇ ਘੱਟ ਸੀ: %2$lld %% ਦੀ ਥਾਂ %1$lld %%।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "W noce, gdy kładłeś się późno, było go wyraźnie mniej: %1$lld %% zamiast %2$lld %%."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nas noites em que você foi dormir tarde ele foi bem menor: %1$lld %% em vez de %2$lld %%."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nas noites em que te deitaste tarde foi claramente menor: %1$lld %% em vez de %2$lld %%."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "În nopțile în care te-ai culcat târziu a fost vizibil mai puțin: %1$lld %% în loc de %2$lld %%."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В ночи, когда ты ложился(лась) поздно, его было заметно меньше: %1$lld %% вместо %2$lld %%."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබ ප්‍රමාද වී නින්දට ගිය රාත්‍රීවල එය පැහැදිලිවම අඩු විය: %2$lld %% වෙනුවට %1$lld %%."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "V nociach, keď si išiel spať neskoro, ho bolo výrazne menej: %1$lld %% namiesto %2$lld %%."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "V nočeh, ko si šel pozno spat, ga je bilo izrazito manj: %1$lld %% namesto %2$lld %%."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Në netët kur fjete vonë ishte dukshëm më pak: %1$lld %% në vend të %2$lld %%."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "У ноћима кад си касно легао био је знатно мањи: %1$lld %% уместо %2$lld %%."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nätter då du gick och lade dig sent var den tydligt lägre: %1$lld %% i stället för %2$lld %%."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Katika usiku uliolala kwa kuchelewa ulikuwa wazi kuwa mdogo: %1$lld %% badala ya %2$lld %%."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "நீ தாமதமாகத் தூங்கிய இரவுகளில் அது தெளிவாகக் குறைவாக இருந்தது: %2$lld %%-க்குப் பதில் %1$lld %%."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నువ్వు ఆలస్యంగా పడుకున్న రాత్రుల్లో అది స్పష్టంగా తక్కువగా ఉంది: %2$lld %% బదులు %1$lld %%."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ในคืนที่คุณเข้านอนดึกมีน้อยลงอย่างชัดเจน: %1$lld %% แทนที่จะเป็น %2$lld %%"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geç yattığın gecelerde belirgin şekilde daha azdı: %%%2$lld yerine %%%1$lld."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "У ночі, коли ти лягав(ла) пізно, його було помітно менше: %1$lld %% замість %2$lld %%."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جن راتوں آپ دیر سے سوئے ان میں یہ واضح طور پر کم تھی: %2$lld %% کے بجائے %1$lld %%۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kech yotgan kechalaringda u sezilarli darajada kam edi: %2$lld %% oʻrniga %1$lld %%."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vào các đêm bạn đi ngủ muộn, nó thấp hơn rõ rệt: %1$lld %% thay vì %2$lld %%."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你夜瞓的晚上明顯較少：%1$lld %%，而唔係 %2$lld %%。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在你晚睡的夜晚明显更少：%1$lld %%，而不是 %2$lld %%。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在你晚睡的夜晚明顯較少：%1$lld %%，而不是 %2$lld %%。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ebusuku owalala ngabo sekwephuzile bekuncane ngokusobala: %1$lld %% esikhundleni sika-%2$lld %%."
+          }
+        }
+      }
+    },
+    "finding_deep_short": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In nagte korter as 6 uur was dit duidelik laer: %1$lld %% in plaas van %2$lld %%."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ከ6 ሰዓት ባነሱ ሌሊቶች በግልጽ ያነሰ ነበር፦ ከ%2$lld %% ይልቅ %1$lld %%።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "في الليالي الأقل من 6 ساعات كان أقل بوضوح: %1$lld %% بدلًا من %2$lld %%."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 saatdan qısa gecələrdə nəzərəçarpacaq dərəcədə az idi: %2$lld %% əvəzinə %1$lld %%."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В нощите под 6 часа е бил осезаемо по-малко: %1$lld %% вместо %2$lld %%."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "৬ ঘণ্টার কম রাতে এটি স্পষ্টভাবে কম ছিল: %2$lld %%-এর বদলে %1$lld %%।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "U noćima kraćim od 6 sati bio je znatno manji: %1$lld %% umjesto %2$lld %%."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les nits de menys de 6 hores va ser clarament menor: %1$lld %% en lloc de %2$lld %%."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "V nocích kratších než 6 hodin ho bylo výrazně méně: %1$lld %% místo %2$lld %%."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I nætter under 6 timer var den tydeligt lavere: %1$lld %% i stedet for %2$lld %%."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In Nächten unter 6 Stunden war er deutlich geringer: %1$lld %% statt %2$lld %%."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Τις νύχτες κάτω από 6 ώρες ήταν αισθητά λιγότερος: %1$lld %% αντί για %2$lld %%."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On nights under 6 hours it was clearly lower: %1$lld %% instead of %2$lld %%."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En las noches de menos de 6 horas fue claramente menor: %1$lld %% en lugar de %2$lld %%."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alla 6-tunnistel öödel oli seda selgelt vähem: %1$lld %%, mitte %2$lld %%."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 ordutik beherako gauetan nabarmen txikiagoa izan zen: %% %1$lld, %% %2$lld izan beharrean."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "در شب‌های کمتر از ۶ ساعت به‌وضوح کمتر بود: %1$lld %% به‌جای %2$lld %%."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle 6 tunnin öinä sitä oli selvästi vähemmän: %1$lld %% eikä %2$lld %%."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sa mga gabing kulang sa 6 na oras, malinaw na mas mababa ito: %1$lld %% sa halip na %2$lld %%."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les nuits de moins de 6 heures, il était nettement plus faible : %1$lld %% au lieu de %2$lld %%."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oícheanta faoi 6 uair bhí sé i bhfad níos lú: %1$lld %% in áit %2$lld %%."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nas noites de menos de 6 horas foi claramente menor: %1$lld %% en vez de %2$lld %%."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 કલાકથી ઓછી રાતોમાં તે સ્પષ્ટ રીતે ઓછી હતી: %2$lld %%ને બદલે %1$lld %%."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בלילות של פחות מ־6 שעות היא הייתה נמוכה בבירור: %1$lld %% במקום %2$lld %%."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 घंटे से कम की रातों में यह साफ़ तौर पर कम थी: %2$lld %% की जगह %1$lld %%।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "U noćima kraćim od 6 sati bio je znatno manji: %1$lld %% umjesto %2$lld %%."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A 6 óránál rövidebb éjszakákon jóval kevesebb volt: %1$lld %% a %2$lld %% helyett."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 ժամից կարճ գիշերներին այն զգալիորեն քիչ էր՝ %1$lld %%՝ %2$lld %%-ի փոխարեն։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pada malam di bawah 6 jam jelas lebih rendah: %1$lld %%, bukan %2$lld %%."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nætur undir 6 klst. var hann greinilega minni: %1$lld %% í stað %2$lld %%."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nelle notti sotto le 6 ore era nettamente più basso: %1$lld %% invece di %2$lld %%."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6時間未満の夜ははっきり少なめでした：%2$lld %%に対して%1$lld %%。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 საათზე ნაკლებ ღამეებში ის აშკარად ნაკლები იყო: %1$lld %% %2$lld %%-ის ნაცვლად."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 сағаттан қысқа түндерде ол айтарлықтай аз болды: %2$lld %% орнына %1$lld %%."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "នៅយប់ដែលតិចជាង 6 ម៉ោង វាទាបជាងយ៉ាងច្បាស់៖ %1$lld %% ជំនួសឱ្យ %2$lld %%។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 ಗಂಟೆಗಿಂತ ಕಡಿಮೆ ರಾತ್ರಿಗಳಲ್ಲಿ ಅದು ಸ್ಪಷ್ಟವಾಗಿ ಕಡಿಮೆ ಇತ್ತು: %2$lld %% ಬದಲು %1$lld %%."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6시간 미만인 밤에는 뚜렷하게 적었어요: %2$lld %% 대신 %1$lld %%."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ໃນຄືນທີ່ນ້ອຍກວ່າ 6 ຊົ່ວໂມງ ມັນຕ່ຳລົງຢ່າງຈະແຈ້ງ: %1$lld %% ແທນ %2$lld %%."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Naktimis, trumpesnėmis nei 6 valandos, jo buvo aiškiai mažiau: %1$lld %% vietoj %2$lld %%."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Naktīs, kas īsākas par 6 stundām, tā bija manāmi mazāk: %1$lld %% nevis %2$lld %%."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Во ноќите пократки од 6 часа беше значително помал: %1$lld %% наместо %2$lld %%."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 മണിക്കൂറിൽ കുറഞ്ഞ രാത്രികളിൽ അത് വ്യക്തമായി കുറവായിരുന്നു: %2$lld %%-ന് പകരം %1$lld %%."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 цагаас богино шөнүүдэд мэдэгдэхүйц бага байсан: %2$lld %%-ийн оронд %1$lld %%."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 तासांपेक्षा कमी रात्रींमध्ये ती स्पष्टपणे कमी होती: %2$lld %% ऐवजी %1$lld %%."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pada malam kurang 6 jam ia jelas lebih rendah: %1$lld %% dan bukannya %2$lld %%."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 နာရီအောက် ညများတွင် သိသိသာသာ နည်းခဲ့သည်- %2$lld %% အစား %1$lld %%။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Netter under 6 timer var den tydelig lavere: %1$lld %% i stedet for %2$lld %%."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 घण्टाभन्दा छोटा रातहरूमा यो स्पष्ट रूपमा कम थियो: %2$lld %% को सट्टा %1$lld %%।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In nachten korter dan 6 uur was die duidelijk lager: %1$lld %% in plaats van %2$lld %%."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 ਘੰਟਿਆਂ ਤੋਂ ਘੱਟ ਰਾਤਾਂ ਵਿੱਚ ਇਹ ਸਾਫ਼ ਤੌਰ ’ਤੇ ਘੱਟ ਸੀ: %2$lld %% ਦੀ ਥਾਂ %1$lld %%।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "W noce krótsze niż 6 godzin było go wyraźnie mniej: %1$lld %% zamiast %2$lld %%."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nas noites com menos de 6 horas ele foi bem menor: %1$lld %% em vez de %2$lld %%."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nas noites com menos de 6 horas foi claramente menor: %1$lld %% em vez de %2$lld %%."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "În nopțile sub 6 ore a fost vizibil mai puțin: %1$lld %% în loc de %2$lld %%."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В ночи короче 6 часов его было заметно меньше: %1$lld %% вместо %2$lld %%."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "පැය 6ට අඩු රාත්‍රීවල එය පැහැදිලිවම අඩු විය: %2$lld %% වෙනුවට %1$lld %%."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "V nociach kratších ako 6 hodín ho bolo výrazne menej: %1$lld %% namiesto %2$lld %%."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "V nočeh, krajših od 6 ur, ga je bilo izrazito manj: %1$lld %% namesto %2$lld %%."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Në netët nën 6 orë ishte dukshëm më pak: %1$lld %% në vend të %2$lld %%."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "У ноћима краћим од 6 сати био је знатно мањи: %1$lld %% уместо %2$lld %%."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nätter under 6 timmar var den tydligt lägre: %1$lld %% i stället för %2$lld %%."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Katika usiku chini ya saa 6 ulikuwa wazi kuwa mdogo: %1$lld %% badala ya %2$lld %%."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 மணி நேரத்துக்குக் குறைவான இரவுகளில் அது தெளிவாகக் குறைவாக இருந்தது: %2$lld %%-க்குப் பதில் %1$lld %%."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 గంటల కంటే తక్కువ రాత్రుల్లో అది స్పష్టంగా తక్కువగా ఉంది: %2$lld %% బదులు %1$lld %%."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ในคืนที่นอนน้อยกว่า 6 ชั่วโมงมีน้อยลงอย่างชัดเจน: %1$lld %% แทนที่จะเป็น %2$lld %%"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 saatten kısa gecelerde belirgin şekilde daha azdı: %%%2$lld yerine %%%1$lld."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "У ночі коротші за 6 годин його було помітно менше: %1$lld %% замість %2$lld %%."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 گھنٹے سے کم کی راتوں میں یہ واضح طور پر کم تھی: %2$lld %% کے بجائے %1$lld %%۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 soatdan qisqa kechalarda u sezilarli darajada kam edi: %2$lld %% oʻrniga %1$lld %%."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vào các đêm dưới 6 giờ, nó thấp hơn rõ rệt: %1$lld %% thay vì %2$lld %%."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "少過 6 小時的夜晚明顯較少：%1$lld %%，而唔係 %2$lld %%。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在不足 6 小时的夜晚明显更少：%1$lld %%，而不是 %2$lld %%。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在不到 6 小時的夜晚明顯較少：%1$lld %%，而不是 %2$lld %%。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ebusuku obungaphansi kwamahora angu-6 bekuncane ngokusobala: %1$lld %% esikhundleni sika-%2$lld %%."
+          }
+        }
+      }
+    },
+    "finding_hide": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versteek"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ደብቅ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إخفاء"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gizlət"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скрий"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "লুকাও"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sakrij"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amaga"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skrýt"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skjul"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ausblenden"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Απόκρυψη"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peida"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ezkutatu"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پنهان کردن"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Piilota"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Itago"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Masquer"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Folaigh"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "છુપાવો"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הסתרה"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "छिपाएँ"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sakrij"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elrejtés"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Թաքցնել"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sembunyikan"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fela"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nascondi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "非表示"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "დამალვა"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жасыру"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "លាក់"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಮರೆಮಾಡು"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "숨기기"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ເຊື່ອງ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slėpti"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paslēpt"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скриј"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "മറയ്ക്കുക"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нуух"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लपवा"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sembunyikan"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ဖျောက်ရန်"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skjul"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लुकाऊ"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbergen"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਲੁਕਾਓ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukryj"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ascunde"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скрыть"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සඟවන්න"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skryť"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skrij"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fshih"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сакриј"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dölj"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ficha"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "மறை"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "దాచు"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ซ่อน"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gizle"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сховати"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "چھپائیں"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yashirish"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ẩn"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "隱藏"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "隐藏"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "隱藏"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fihla"
+          }
+        }
+      }
+    },
+    "finding_jetlag": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oor naweke het jou slaap %1$@ verskuif teenoor weeksdae. Wenk: hou dieselfde slaaptye ook oor naweke."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ቅዳሜና እሁድ እንቅልፍህ ከሥራ ቀናት ጋር ሲነጻጸር በ%1$@ ተዛውሯል። ምክር፦ ቅዳሜና እሁድም ተመሳሳይ የእንቅልፍ ሰዓት ጠብቅ።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "في عطلة نهاية الأسبوع تأخر نومك %1$@ مقارنةً بأيام العمل. نصيحة: حافظ على مواعيد النوم نفسها في العطلة أيضًا."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Həftəsonu yuxun iş günlərinə nisbətən %1$@ sürüşdü. Məsləhət: həftəsonu da eyni yuxu vaxtlarını saxla."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "През уикенда сънят ти е бил изместен с %1$@ спрямо делничните дни. Съвет: спазвай същите часове за сън и през уикенда."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "সপ্তাহান্তে তোমার ঘুম কাজের দিনের তুলনায় %1$@ সরে গেছে। পরামর্শ: সপ্তাহান্তেও একই ঘুমের সময় বজায় রাখো।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vikendom ti je san bio pomjeren za %1$@ u odnosu na radne dane. Savjet: zadrži iste termine spavanja i vikendom."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El cap de setmana el teu son es va desplaçar %1$@ respecte als dies feiners. Consell: mantén els mateixos horaris també el cap de setmana."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O víkendu byl tvůj spánek posunutý o %1$@ oproti všedním dnům. Tip: dodržuj stejné časy spánku i o víkendu."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I weekenden var din søvn forskudt %1$@ i forhold til hverdage. Tip: hold de samme sovetider i weekenden."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Am Wochenende war dein Schlaf um %1$@ gegenüber den Werktagen verschoben. Tipp: Behalte deine Schlafzeiten auch am Wochenende bei."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Τα Σαββατοκύριακα ο ύπνος σου μετατοπίστηκε κατά %1$@ σε σχέση με τις καθημερινές. Συμβουλή: κράτα τις ίδιες ώρες ύπνου και τα Σαββατοκύριακα."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On weekends your sleep was shifted by %1$@ compared with weekdays. Tip: keep the same sleep times on weekends too."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El fin de semana tu sueño se desplazó %1$@ respecto a los días laborables. Consejo: mantén los mismos horarios también el fin de semana."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nädalavahetusel nihkus su uni tööpäevadega võrreldes %1$@. Nõuanne: hoia samu uneaegu ka nädalavahetusel."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Asteburuan zure loa %1$@ lekualdatu zen lanegunekin alderatuta. Aholkua: mantendu lo-ordutegi berak asteburuan ere."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "آخر هفته خوابت نسبت به روزهای کاری %1$@ جابه‌جا شد. نکته: آخر هفته هم همان ساعت‌های خواب را نگه دار."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viikonloppuna unesi siirtyi %1$@ arkipäiviin verrattuna. Vinkki: pidä samat unirytmit myös viikonloppuna."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sa weekend, umusog ang tulog mo nang %1$@ kumpara sa mga araw ng trabaho. Tip: panatilihin ang parehong oras ng tulog kahit weekend."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le week-end, ton sommeil était décalé de %1$@ par rapport à la semaine. Conseil : garde les mêmes horaires de sommeil le week-end aussi."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ag an deireadh seachtaine bhog do chodladh %1$@ i gcomparáid le laethanta oibre. Leid: coinnigh na hamanna codlata céanna ag an deireadh seachtaine freisin."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na fin de semana o teu sono desprazouse %1$@ respecto dos días laborables. Consello: mantén os mesmos horarios tamén na fin de semana."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "સપ્તાહાંતે તારી ઊંઘ કામકાજના દિવસો કરતાં %1$@ ખસી ગઈ. સૂચન: સપ્તાહાંતે પણ એ જ ઊંઘના સમય જાળવ."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בסוף השבוע השינה שלך זזה ב־%1$@ לעומת ימי חול. טיפ: שמור על אותן שעות שינה גם בסוף השבוע."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सप्ताहांत में तुम्हारी नींद कामकाजी दिनों की तुलना में %1$@ खिसक गई। सुझाव: सप्ताहांत में भी वही सोने का समय रखो।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vikendom ti je san bio pomaknut za %1$@ u odnosu na radne dane. Savjet: zadrži iste termine spavanja i vikendom."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hétvégén az alvásod %1$@ eltolódott a hétköznapokhoz képest. Tipp: hétvégén is tartsd ugyanazokat az alvásidőket."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Հանգստյան օրերին քո քունը աշխատանքային օրերի համեմատ տեղաշարժվել է %1$@։ Խորհուրդ՝ նույն քնի ժամերը պահիր նաև հանգստյան օրերին։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Di akhir pekan tidurmu bergeser %1$@ dibanding hari kerja. Tips: pertahankan jam tidur yang sama di akhir pekan juga."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Um helgar hliðraðist svefninn um %1$@ miðað við virka daga. Ráð: haltu sömu svefntímum líka um helgar."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nel fine settimana il tuo sonno era spostato di %1$@ rispetto ai giorni feriali. Consiglio: mantieni gli stessi orari anche nel fine settimana."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "週末は平日と比べて睡眠が%1$@ずれていました。ヒント：週末も同じ睡眠時間帯を保ちましょう。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "შაბათ-კვირას შენი ძილი სამუშაო დღეებთან შედარებით %1$@-ით გადაინაცვლა. რჩევა: შაბათ-კვირასაც იგივე ძილის დრო შეინარჩუნე."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Демалыс күндері ұйқың жұмыс күндерімен салыстырғанда %1$@ ығысты. Кеңес: демалыс күндері де сол ұйқы уақытын сақта."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "នៅចុងសប្តាហ៍ ដំណេករបស់អ្នករំកិល %1$@ បើធៀបនឹងថ្ងៃធ្វើការ។ គន្លឹះ៖ រក្សាម៉ោងគេងដដែលនៅចុងសប្តាហ៍ផងដែរ។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ವಾರಾಂತ್ಯದಲ್ಲಿ ನಿನ್ನ ನಿದ್ರೆ ಕೆಲಸದ ದಿನಗಳಿಗೆ ಹೋಲಿಸಿದರೆ %1$@ ಸರಿಯಿತು. ಸಲಹೆ: ವಾರಾಂತ್ಯದಲ್ಲೂ ಅದೇ ನಿದ್ರೆಯ ಸಮಯ ಪಾಲಿಸು."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "주말에는 평일보다 수면이 %1$@ 밀렸어요. 팁: 주말에도 같은 수면 시간을 지키세요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ໃນທ້າຍອາທິດ ການນອນຂອງເຈົ້າເລື່ອນໄປ %1$@ ເມື່ອທຽບກັບມື້ເຮັດວຽກ. ຄຳແນະນຳ: ຮັກສາເວລານອນເດີມໃນທ້າຍອາທິດນຳ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Savaitgaliais tavo miegas pasislinko %1$@, palyginti su darbo dienomis. Patarimas: savaitgaliais irgi laikykis tų pačių miego valandų."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brīvdienās tavs miegs nobīdījās par %1$@, salīdzinot ar darbdienām. Padoms: ievēro tos pašus miega laikus arī brīvdienās."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "За викенд сонот ти беше поместен за %1$@ во однос на работните денови. Совет: задржи ги истите времиња за спиење и за викенд."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വാരാന്ത്യത്തിൽ നിന്റെ ഉറക്കം പ്രവൃത്തിദിവസങ്ങളെ അപേക്ഷിച്ച് %1$@ മാറി. നുറുങ്ങ്: വാരാന്ത്യത്തിലും അതേ ഉറക്കസമയം പാലിക്കുക."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Амралтын өдрүүдэд нойр чинь ажлын өдрүүдээс %1$@ шилжсэн. Зөвлөгөө: амралтын өдрүүдэд ч ижил унтах цагаа баримтал."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आठवड्याच्या शेवटी तुझी झोप कामाच्या दिवसांच्या तुलनेत %1$@ सरकली. टीप: आठवड्याच्या शेवटीही त्याच झोपेच्या वेळा पाळ."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pada hujung minggu tidur anda beralih %1$@ berbanding hari bekerja. Petua: kekalkan waktu tidur yang sama pada hujung minggu juga."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "စနေတနင်္ဂနွေတွင် သင့်အိပ်စက်ခြင်းသည် အလုပ်ရက်များထက် %1$@ ရွှေ့သွားခဲ့သည်။ အကြံပြုချက်- စနေတနင်္ဂနွေတွင်လည်း အိပ်ချိန်တူအတိုင်း ထားပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I helgen var søvnen din forskjøvet %1$@ sammenlignet med hverdager. Tips: hold de samme sovetidene i helgen også."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सप्ताहान्तमा तिम्रो निद्रा कामका दिनको तुलनामा %1$@ सर्‍यो। सुझाव: सप्ताहान्तमा पनि उही सुत्ने समय कायम राख।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In het weekend was je slaap %1$@ verschoven ten opzichte van doordeweeks. Tip: houd ook in het weekend dezelfde slaaptijden aan."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਹਫ਼ਤੇ ਦੇ ਅੰਤ ’ਤੇ ਤੇਰੀ ਨੀਂਦ ਕੰਮ ਦੇ ਦਿਨਾਂ ਦੇ ਮੁਕਾਬਲੇ %1$@ ਖਿਸਕ ਗਈ। ਸੁਝਾਅ: ਹਫ਼ਤੇ ਦੇ ਅੰਤ ’ਤੇ ਵੀ ਉਹੀ ਸੌਣ ਦੇ ਸਮੇਂ ਰੱਖ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "W weekend twój sen był przesunięty o %1$@ względem dni roboczych. Wskazówka: trzymaj te same godziny snu także w weekend."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No fim de semana seu sono ficou deslocado %1$@ em relação aos dias úteis. Dica: mantenha os mesmos horários também no fim de semana."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ao fim de semana o teu sono esteve desfasado %1$@ em relação aos dias úteis. Dica: mantém os mesmos horários também ao fim de semana."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "În weekend somnul tău a fost decalat cu %1$@ față de zilele lucrătoare. Sfat: păstrează aceleași ore de somn și în weekend."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В выходные твой сон сдвигался на %1$@ по сравнению с буднями. Совет: соблюдай тот же режим сна и в выходные."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සති අන්තයේ ඔබේ නින්ද වැඩ කරන දිනවලට සාපේක්ෂව %1$@ කින් විතැන් විය. ඉඟිය: සති අන්තයේත් එකම නින්දේ වේලාවන් පවත්වාගන්න."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cez víkend bol tvoj spánok posunutý o %1$@ oproti pracovným dňom. Tip: dodržiavaj rovnaké časy spánku aj cez víkend."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Med vikendom je bil tvoj spanec zamaknjen za %1$@ glede na delavnike. Nasvet: tudi med vikendom ohrani enake čase spanja."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Në fundjavë gjumi yt u zhvendos %1$@ krahasuar me ditët e punës. Këshillë: mbaj të njëjtat orare gjumi edhe në fundjavë."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Викендом ти је сан био померен за %1$@ у односу на радне дане. Савет: задржи исте термине спавања и викендом."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "På helgen var din sömn förskjuten %1$@ jämfört med vardagar. Tips: behåll samma sovtider även på helgen."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wikendi usingizi wako ulisogea %1$@ ukilinganisha na siku za kazi. Kidokezo: shika muda uleule wa kulala hata wikendi."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "வார இறுதியில் உன் தூக்கம் வேலை நாட்களை விட %1$@ நகர்ந்தது. குறிப்பு: வார இறுதியிலும் அதே தூக்க நேரங்களைக் கடைப்பிடி."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "వారాంతంలో నీ నిద్ర పని దినాలతో పోలిస్తే %1$@ జరిగింది. సూచన: వారాంతంలో కూడా అవే నిద్ర సమయాలు పాటించు."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ช่วงสุดสัปดาห์ การนอนของคุณเลื่อนไป %1$@ เมื่อเทียบกับวันทำงาน เคล็ดลับ: รักษาเวลานอนเดิมในวันหยุดด้วย"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hafta sonu uykun hafta içine göre %1$@ kaydı. İpucu: hafta sonu da aynı uyku saatlerini koru."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "У вихідні твій сон зсувався на %1$@ порівняно з буднями. Порада: дотримуйся того самого режиму сну й у вихідні."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ہفتے کے آخر میں آپ کی نیند کام کے دنوں کے مقابلے میں %1$@ سرک گئی۔ مشورہ: ہفتے کے آخر میں بھی سونے کے وہی اوقات رکھیں۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dam olish kunlari uyqung ish kunlariga nisbatan %1$@ siljidi. Maslahat: dam olish kunlari ham xuddi shu uyqu vaqtlariga amal qil."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuối tuần giấc ngủ của bạn lệch %1$@ so với ngày thường. Mẹo: giữ cùng giờ ngủ cả vào cuối tuần."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "週末你的睡眠比平日推遲咗 %1$@。建議：週末都保持相同的作息時間。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "周末你的睡眠比工作日推迟了 %1$@。建议：周末也保持相同的作息时间。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "週末你的睡眠比平日延後了 %1$@。建議：週末也維持相同的作息時間。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ngezimpelasonto ukulala kwakho kushintshe ngo-%1$@ uma kuqhathaniswa nezinsuku zomsebenzi. Ithiphu: gcina izikhathi ezifanayo zokulala nangezimpelasonto."
+          }
+        }
+      }
+    },
+    "finding_latency": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gemiddeld het dit jou %1$@ geneem om aan die slaap te raak. Wenk: is jy ná 20 minute nog wakker, staan op en gaan eers terug bed toe as jy vaak is. Hou dit weke lank aan, praat met jou dokter."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ለመተኛት በአማካይ %1$@ ወስዶብሃል። ምክር፦ ከ20 ደቂቃ በኋላ አሁንም ነቅተህ ከሆነ ተነስ፣ እንቅልፍ ሲመጣብህ ብቻ ወደ አልጋ ተመለስ። ይህ ለሳምንታት ከቀጠለ ሐኪምህን አነጋግር።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "استغرقت في المتوسط %1$@ حتى تنام. نصيحة: إذا بقيت مستيقظًا بعد 20 دقيقة، فانهض ولا تعد إلى السرير إلا عندما تشعر بالنعاس. إذا استمر ذلك لأسابيع، فتحدث إلى طبيبك."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yuxuya getməyin orta hesabla %1$@ çəkdi. Məsləhət: 20 dəqiqədən sonra hələ oyaqsansa, qalx və yalnız yuxun gələndə yatağa qayıt. Bu həftələrlə davam edərsə, həkiminlə danış."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Средно ти е отнемало %1$@ да заспиш. Съвет: ако след 20 минути още си буден, стани и се върни в леглото едва когато ти се доспи. Ако това продължава седмици, говори с лекаря си."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ঘুমিয়ে পড়তে তোমার গড়ে %1$@ লেগেছে। পরামর্শ: ২০ মিনিট পরেও জেগে থাকলে উঠে পড়ো এবং ঘুম পেলে তবেই বিছানায় ফেরো। কয়েক সপ্তাহ এমন চললে তোমার ডাক্তারের সঙ্গে কথা বলো।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "U prosjeku ti je trebalo %1$@ da zaspiš. Savjet: ako si nakon 20 minuta još budan, ustani i vrati se u krevet tek kad postaneš pospan. Ako to traje sedmicama, razgovaraj sa svojim ljekarom."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De mitjana vas trigar %1$@ a adormir-te. Consell: si després de 20 minuts encara estàs despert, aixeca’t i torna al llit només quan tinguis son. Si dura setmanes, parla amb el teu metge."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usínání ti v průměru trvalo %1$@. Tip: pokud jsi po 20 minutách stále vzhůru, vstaň a vrať se do postele, až budeš ospalý. Pokud to trvá týdny, promluv si se svým lékařem."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I gennemsnit tog det dig %1$@ at falde i søvn. Tip: er du stadig vågen efter 20 minutter, så stå op og gå først i seng igen, når du er søvnig. Varer det i uger, så tal med din læge."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast im Schnitt %1$@ zum Einschlafen gebraucht. Tipp: Bist du nach 20 Minuten noch wach, steh auf und geh erst müde wieder ins Bett. Bleibt das über Wochen so, sprich mit deinem Arzt."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Κατά μέσο όρο χρειάστηκες %1$@ για να αποκοιμηθείς. Συμβουλή: αν μετά από 20 λεπτά είσαι ακόμη ξύπνιος, σήκω και γύρνα στο κρεβάτι μόνο όταν νυστάζεις. Αν αυτό κρατά εβδομάδες, μίλησε με τον γιατρό σου."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On average you took %1$@ to fall asleep. Tip: if you’re still awake after 20 minutes, get up and go back to bed only when you feel sleepy. If this lasts for weeks, talk to your doctor."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De media tardaste %1$@ en dormirte. Consejo: si sigues despierto después de 20 minutos, levántate y vuelve a la cama solo cuando tengas sueño. Si esto dura semanas, habla con tu médico."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uinumiseks kulus sul keskmiselt %1$@. Nõuanne: kui oled 20 minuti pärast veel ärkvel, tõuse üles ja mine voodisse tagasi alles siis, kui oled unine. Kui see kestab nädalaid, räägi oma arstiga."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Batez beste %1$@ behar izan zenituen lokartzeko. Aholkua: 20 minuturen ondoren oraindik esna bazaude, altxatu eta itzuli ohera logurak hartzen zaituenean bakarrik. Asteetan horrela jarraitzen badu, hitz egin zure medikuarekin."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "به‌طور میانگین %1$@ طول کشید تا خوابت ببرد. نکته: اگر بعد از ۲۰ دقیقه هنوز بیداری، بلند شو و فقط وقتی خواب‌آلود شدی به رختخواب برگرد. اگر این وضع هفته‌ها ادامه داشت، با پزشکت صحبت کن."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nukahtamiseen meni keskimäärin %1$@. Vinkki: jos olet vielä hereillä 20 minuutin jälkeen, nouse ja palaa sänkyyn vasta kun väsyttää. Jos tämä jatkuu viikkoja, puhu lääkärisi kanssa."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sa karaniwan, %1$@ bago ka nakatulog. Tip: kung gising ka pa rin pagkalipas ng 20 minuto, bumangon at bumalik lang sa kama kapag inaantok ka na. Kung ilang linggo na itong ganito, kausapin ang iyong doktor."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En moyenne, tu as mis %1$@ à t’endormir. Conseil : si tu es encore éveillé après 20 minutes, lève-toi et ne retourne au lit que quand tu as sommeil. Si cela dure des semaines, parles-en à ton médecin."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ar an meán thóg sé %1$@ ort titim i do chodladh. Leid: má tá tú i do dhúiseacht fós tar éis 20 nóiméad, éirigh agus ná fill ar an leaba go dtí go mbíonn codladh ort. Má mhaireann sé seo ar feadh seachtainí, labhair le do dhochtúir."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De media tardaches %1$@ en durmir. Consello: se despois de 20 minutos segues esperto, levántate e volve á cama só cando teñas sono. Se isto dura semanas, fala co teu médico."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઊંઘ આવવામાં તને સરેરાશ %1$@ લાગ્યા. સૂચન: 20 મિનિટ પછી પણ જાગતો હોય તો ઊઠી જા અને ઊંઘ આવે ત્યારે જ પથારીમાં પાછો જા. જો અઠવાડિયાં સુધી આવું રહે, તો તારા ડૉક્ટર સાથે વાત કર."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בממוצע לקח לך %1$@ להירדם. טיפ: אם אחרי 20 דקות אתה עדיין ער, קום וחזור למיטה רק כשאתה מנומנם. אם זה נמשך שבועות, דבר עם הרופא שלך."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुम्हें सोने में औसतन %1$@ लगे। सुझाव: अगर 20 मिनट बाद भी जागे हो, तो उठ जाओ और नींद आने पर ही बिस्तर पर लौटो। अगर ऐसा हफ़्तों तक रहे, तो अपने डॉक्टर से बात करो।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "U prosjeku ti je trebalo %1$@ da zaspiš. Savjet: ako si nakon 20 minuta još budan, ustani i vrati se u krevet tek kad budeš pospan. Ako to traje tjednima, razgovaraj sa svojim liječnikom."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Átlagosan %1$@ kellett az elalváshoz. Tipp: ha 20 perc után is ébren vagy, kelj fel, és csak akkor feküdj vissza, ha álmos vagy. Ha ez hetekig így marad, beszélj az orvosoddal."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Միջինում քնելու համար քեզ պետք եղավ %1$@։ Խորհուրդ՝ եթե 20 րոպե անց դեռ արթուն ես, վեր կաց և անկողին վերադարձիր միայն քնկոտ զգալիս։ Եթե դա շաբաթներ շարունակվի, խոսիր քո բժշկի հետ։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rata-rata kamu butuh %1$@ untuk tertidur. Tips: kalau setelah 20 menit masih terjaga, bangunlah dan kembali ke tempat tidur hanya saat mengantuk. Kalau ini berlangsung berminggu-minggu, bicarakan dengan doktermu."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Að meðaltali tók það þig %1$@ að sofna. Ráð: ef þú ert enn vakandi eftir 20 mínútur, farðu fram úr og farðu aftur í rúmið þegar þú ert syfjaður. Ef þetta varir vikum saman, ræddu við lækninn þinn."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In media hai impiegato %1$@ ad addormentarti. Consiglio: se dopo 20 minuti sei ancora sveglio, alzati e torna a letto solo quando hai sonno. Se dura per settimane, parlane con il tuo medico."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "寝つくまでに平均%1$@かかりました。ヒント：20分たっても眠れないときは起きて、眠くなってから寝床に戻りましょう。何週間も続くなら医師に相談してください。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ჩაძინებას საშუალოდ %1$@ დასჭირდა. რჩევა: თუ 20 წუთის შემდეგაც ფხიზლობ, ადექი და საწოლში მხოლოდ მაშინ დაბრუნდი, როცა ძილი მოგერევა. თუ ეს კვირების განმავლობაში გრძელდება, ესაუბრე შენს ექიმს."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұйықтап кетуге орта есеппен %1$@ кетті. Кеңес: 20 минуттан кейін әлі ояу болсаң, тұрып, ұйқың келгенде ғана төсекке орал. Бұл апталап созылса, дәрігеріңмен сөйлес."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ជាមធ្យម អ្នកត្រូវការ %1$@ ដើម្បីលង់លក់។ គន្លឹះ៖ បើក្រោយ 20 នាទីនៅតែភ្ញាក់ សូមក្រោកឡើង ហើយត្រឡប់ទៅគ្រែវិញតែពេលងងុយ។ បើបែបនេះយូរច្រើនសប្តាហ៍ សូមពិភាក្សាជាមួយគ្រូពេទ្យរបស់អ្នក។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಿದ್ರೆ ಬರಲು ಸರಾಸರಿ %1$@ ಬೇಕಾಯಿತು. ಸಲಹೆ: 20 ನಿಮಿಷದ ನಂತರವೂ ಎಚ್ಚರವಿದ್ದರೆ ಎದ್ದೇಳು, ನಿದ್ದೆ ಬಂದಾಗ ಮಾತ್ರ ಹಾಸಿಗೆಗೆ ಮರಳು. ಇದು ವಾರಗಟ್ಟಲೆ ಮುಂದುವರಿದರೆ ನಿನ್ನ ವೈದ್ಯರೊಂದಿಗೆ ಮಾತನಾಡು."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "잠들기까지 평균 %1$@ 걸렸어요. 팁: 20분이 지나도 깨어 있으면 일어났다가 졸릴 때만 다시 잠자리에 드세요. 몇 주씩 계속되면 의사와 상담하세요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ໂດຍສະເລ່ຍເຈົ້າໃຊ້ເວລາ %1$@ ກວ່າຈະນອນຫຼັບ. ຄຳແນະນຳ: ຖ້າຜ່ານໄປ 20 ນາທີແລ້ວຍັງບໍ່ຫຼັບ ໃຫ້ລຸກຂຶ້ນ ແລ້ວກັບໄປນອນເມື່ອງ່ວງເທົ່ານັ້ນ. ຖ້າເປັນແບບນີ້ຫຼາຍອາທິດ ໃຫ້ປຶກສາທ່ານໝໍຂອງເຈົ້າ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vidutiniškai užmigti tau prireikė %1$@. Patarimas: jei po 20 minučių vis dar nemiegi, atsikelk ir grįžk į lovą tik tada, kai būsi mieguistas. Jei tai trunka savaites, pasikalbėk su savo gydytoju."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vidēji iemigšana tev aizņēma %1$@. Padoms: ja pēc 20 minūtēm vēl esi nomodā, celies augšā un atgriezies gultā tikai tad, kad nāk miegs. Ja tas turpinās nedēļām, aprunājies ar savu ārstu."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Во просек ти требаше %1$@ да заспиеш. Совет: ако по 20 минути си уште буден, стани и врати се во кревет дури кога ќе се поспиеш. Ако тоа трае со недели, разговарај со својот лекар."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഉറങ്ങാൻ നിനക്ക് ശരാശരി %1$@ വേണ്ടിവന്നു. നുറുങ്ങ്: 20 മിനിറ്റ് കഴിഞ്ഞും ഉണർന്നിരിക്കുന്നുവെങ്കിൽ എഴുന്നേൽക്കുക, ഉറക്കം വരുമ്പോൾ മാത്രം കിടക്കയിലേക്ക് മടങ്ങുക. ഇത് ആഴ്ചകളോളം തുടർന്നാൽ നിന്റെ ഡോക്ടറുമായി സംസാരിക്കുക."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Унтахад чинь дунджаар %1$@ зарцуулагдсан. Зөвлөгөө: 20 минутын дараа ч сэрүүн байвал босоод, нойр хүрсэн үедээ л орондоо буц. Хэрэв энэ олон долоо хоног үргэлжилбэл эмчтэйгээ ярилц."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "झोप लागायला तुला सरासरी %1$@ लागले. टीप: 20 मिनिटांनंतरही जागा असशील तर उठ आणि झोप आल्यावरच अंथरुणात परत जा. असे आठवडेभर चालू राहिले तर तुझ्या डॉक्टरांशी बोल."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Secara purata anda mengambil %1$@ untuk tertidur. Petua: jika masih berjaga selepas 20 minit, bangun dan kembali ke katil hanya apabila mengantuk. Jika ini berlarutan berminggu-minggu, berbincanglah dengan doktor anda."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "အိပ်ပျော်ရန် ပျမ်းမျှ %1$@ ကြာခဲ့သည်။ အကြံပြုချက်- မိနစ် 20 ကြာပြီး နိုးနေသေးလျှင် ထပြီး အိပ်ချင်မှသာ အိပ်ရာသို့ ပြန်ပါ။ ရက်သတ္တပတ်များစွာ ဆက်ဖြစ်နေလျှင် သင့်ဆရာဝန်နှင့် တိုင်ပင်ပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I snitt brukte du %1$@ på å sovne. Tips: er du fortsatt våken etter 20 minutter, stå opp og legg deg igjen først når du er søvnig. Varer dette i uker, snakk med legen din."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "निदाउन तिमीलाई औसतमा %1$@ लाग्यो। सुझाव: 20 मिनेटपछि पनि ब्युँझै छौ भने उठ, अनि निद्रा लागेपछि मात्र ओछ्यानमा फर्क। हप्तौँसम्म यस्तै भए आफ्नो डाक्टरसँग कुरा गर।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gemiddeld deed je %1$@ over het inslapen. Tip: ben je na 20 minuten nog wakker, sta dan op en ga pas terug naar bed als je slaperig bent. Blijft dit wekenlang zo, praat dan met je arts."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੌਣ ਵਿੱਚ ਤੈਨੂੰ ਔਸਤਨ %1$@ ਲੱਗੇ। ਸੁਝਾਅ: ਜੇ 20 ਮਿੰਟ ਬਾਅਦ ਵੀ ਜਾਗਦਾ ਹੈਂ, ਤਾਂ ਉੱਠ ਜਾ ਅਤੇ ਨੀਂਦ ਆਉਣ ’ਤੇ ਹੀ ਬਿਸਤਰੇ ’ਤੇ ਵਾਪਸ ਜਾ। ਜੇ ਇਹ ਹਫ਼ਤਿਆਂ ਤੱਕ ਰਹੇ, ਤਾਂ ਆਪਣੇ ਡਾਕਟਰ ਨਾਲ ਗੱਲ ਕਰ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Średnio zasypianie zajmowało ci %1$@. Wskazówka: jeśli po 20 minutach wciąż nie śpisz, wstań i wróć do łóżka dopiero, gdy poczujesz senność. Jeśli trwa to tygodniami, porozmawiaj z lekarzem."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em média você levou %1$@ para pegar no sono. Dica: se ainda estiver acordado após 20 minutos, levante-se e só volte para a cama quando sentir sono. Se isso durar semanas, fale com seu médico."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em média demoraste %1$@ a adormecer. Dica: se ainda estiveres acordado ao fim de 20 minutos, levanta-te e só volta para a cama quando tiveres sono. Se isto durar semanas, fala com o teu médico."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "În medie ți-a luat %1$@ să adormi. Sfat: dacă după 20 de minute ești încă treaz, ridică-te și întoarce-te în pat doar când ți-e somn. Dacă asta durează săptămâni, vorbește cu medicul tău."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В среднем ты засыпал(а) %1$@. Совет: если через 20 минут ты ещё не спишь, встань и возвращайся в постель, только когда захочется спать. Если так продолжается неделями, поговори с врачом."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "නින්දට යාමට ඔබට සාමාන්‍යයෙන් %1$@ ගත විය. ඉඟිය: මිනිත්තු 20කට පසුත් අවදිව සිටී නම්, නැඟිට නිදිමත දැනෙන විට පමණක් ඇඳට ආපසු යන්න. මෙය සති ගණනක් පැවතුණහොත් ඔබේ වෛද්‍යවරයා සමඟ කතා කරන්න."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zaspávanie ti v priemere trvalo %1$@. Tip: ak si po 20 minútach stále hore, vstaň a vráť sa do postele, až keď budeš ospalý. Ak to trvá týždne, porozprávaj sa so svojím lekárom."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "V povprečju si za uspavanje potreboval %1$@. Nasvet: če po 20 minutah še bediš, vstani in se vrni v posteljo šele, ko boš zaspan. Če to traja tedne, se pogovori s svojim zdravnikom."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mesatarisht të është dashur %1$@ për të fjetur. Këshillë: nëse pas 20 minutash je ende zgjuar, ngrihu dhe kthehu në shtrat vetëm kur të vijë gjumi. Nëse kjo zgjat me javë, fol me mjekun tënd."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "У просеку ти је требало %1$@ да заспиш. Савет: ако си после 20 минута још будан, устани и врати се у кревет тек кад постанеш поспан. Ако то траје недељама, разговарај са својим лекаром."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I snitt tog det %1$@ för dig att somna. Tips: är du fortfarande vaken efter 20 minuter, gå upp och gå tillbaka till sängen först när du är sömnig. Håller det i sig i veckor, prata med din läkare."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kwa wastani ulichukua %1$@ kupata usingizi. Kidokezo: ukiwa bado macho baada ya dakika 20, amka na urudi kitandani tu unapohisi usingizi. Hali hii ikiendelea kwa wiki kadhaa, zungumza na daktari wako."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "தூங்க உனக்கு சராசரியாக %1$@ ஆனது. குறிப்பு: 20 நிமிடங்களுக்குப் பிறகும் விழித்திருந்தால் எழுந்துவிடு, தூக்கம் வரும்போது மட்டும் படுக்கைக்குத் திரும்பு. இது வாரக்கணக்கில் தொடர்ந்தால் உன் மருத்துவரிடம் பேசு."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నిద్ర పట్టడానికి నీకు సగటున %1$@ పట్టింది. సూచన: 20 నిమిషాల తర్వాత కూడా మెలకువగా ఉంటే లేచి, నిద్ర వచ్చినప్పుడే మంచానికి తిరిగి వెళ్లు. ఇది వారాల తరబడి కొనసాగితే నీ డాక్టర్‌తో మాట్లాడు."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "โดยเฉลี่ยคุณใช้เวลา %1$@ กว่าจะหลับ เคล็ดลับ: ถ้าผ่านไป 20 นาทียังไม่หลับ ให้ลุกขึ้นแล้วกลับไปนอนเมื่อรู้สึกง่วงเท่านั้น หากเป็นแบบนี้ติดต่อกันหลายสัปดาห์ ให้ปรึกษาแพทย์"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uykuya dalman ortalama %1$@ sürdü. İpucu: 20 dakika sonra hâlâ uyanıksan kalk ve ancak uykun gelince yatağa dön. Bu haftalarca sürerse doktorunla konuş."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "У середньому ти засинав(ла) %1$@. Порада: якщо через 20 хвилин ти ще не спиш, встань і повертайся в ліжко, лише коли захочеш спати. Якщо так триває тижнями, поговори з лікарем."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اوسطاً آپ کو سونے میں %1$@ لگے۔ مشورہ: اگر 20 منٹ بعد بھی جاگ رہے ہوں تو اٹھ جائیں اور نیند آنے پر ہی بستر پر واپس جائیں۔ اگر یہ ہفتوں تک رہے تو اپنے ڈاکٹر سے بات کریں۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uxlab qolishing oʻrtacha %1$@ davom etdi. Maslahat: 20 daqiqadan keyin ham uygʻoq boʻlsang, tur va faqat uyqung kelganda toʻshakka qayt. Bu haftalab davom etsa, shifokoring bilan gaplash."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trung bình bạn mất %1$@ để ngủ. Mẹo: nếu sau 20 phút vẫn còn thức, hãy dậy và chỉ quay lại giường khi buồn ngủ. Nếu kéo dài nhiều tuần, hãy nói chuyện với bác sĩ."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你平均要 %1$@ 先入睡。建議：如果 20 分鐘後仍然醒著，就起床，等有睡意先返回床上。如果持續幾星期，請同你的醫生傾下。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你平均花了 %1$@ 才入睡。建议：如果 20 分钟后仍醒着，就起床，等有困意再回到床上。如果持续数周，请咨询你的医生。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你平均花了 %1$@ 才入睡。建議：如果 20 分鐘後仍醒著，就起床，等有睡意再回到床上。如果持續數週，請諮詢你的醫師。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ngokwesilinganiso kukuthathe u-%1$@ ukuze ulale. Ithiphu: uma usaphapheme ngemva kwemizuzu engu-20, vuka ubuyele embhedeni kuphela lapho usozela. Uma lokhu kuqhubeka amasonto, khuluma nodokotela wakho."
+          }
+        }
+      }
+    },
+    "finding_low_deep": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diep slaap was net sowat %1$lld %% van jou slaap (gewoonlik %2$lld–%3$lld %%)."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ጥልቅ እንቅልፍ ከእንቅልፍህ ወደ %1$lld %% ብቻ ነበር (በተለምዶ %2$lld–%3$lld %%)።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "كان النوم العميق نحو %1$lld %% فقط من نومك (عادةً %2$lld–%3$lld %%)."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dərin yuxu yuxunun cəmi təxminən %1$lld %%-i idi (adətən %2$lld–%3$lld %%)."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дълбокият сън е бил само около %1$lld %% от съня ти (обикновено %2$lld–%3$lld %%)."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "গভীর ঘুম তোমার ঘুমের মাত্র প্রায় %1$lld %% ছিল (সাধারণত %2$lld–%3$lld %%)।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duboki san bio je samo oko %1$lld %% tvog sna (obično %2$lld–%3$lld %%)."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El son profund va ser només un %1$lld %% aproximat del teu son (normalment %2$lld–%3$lld %%)."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hluboký spánek tvořil jen asi %1$lld %% tvého spánku (obvykle %2$lld–%3$lld %%)."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dyb søvn udgjorde kun omkring %1$lld %% af din søvn (normalt %2$lld–%3$lld %%)."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiefschlaf war nur etwa %1$lld %% deines Schlafs (üblich %2$lld–%3$lld %%)."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ο βαθύς ύπνος ήταν μόνο περίπου %1$lld %% του ύπνου σου (συνήθως %2$lld–%3$lld %%)."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deep sleep made up only about %1$lld %% of your sleep (typically %2$lld–%3$lld %%)."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El sueño profundo fue solo un %1$lld %% aproximado de tu sueño (lo habitual, %2$lld–%3$lld %%)."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sügavat und oli vaid umbes %1$lld %% sinu unest (tavaliselt %2$lld–%3$lld %%)."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lo sakona zure loaren %% %1$lld inguru besterik ez zen izan (normalean %% %2$lld–%3$lld)."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "خواب عمیق فقط حدود %1$lld %% از خوابت بود (معمولاً %2$lld–%3$lld %%)."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Syvää unta oli vain noin %1$lld %% unestasi (tavallisesti %2$lld–%3$lld %%)."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ang malalim na tulog ay mga %1$lld %% lang ng iyong tulog (karaniwan %2$lld–%3$lld %%)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le sommeil profond ne représentait qu’environ %1$lld %% de ton sommeil (habituellement %2$lld–%3$lld %%)."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ní raibh sa chodladh domhain ach thart ar %1$lld %% de do chodladh (de ghnáth %2$lld–%3$lld %%)."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O sono profundo foi só arredor do %1$lld %% do teu sono (normalmente %2$lld–%3$lld %%)."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ગાઢ ઊંઘ તારી ઊંઘનો માત્ર આશરે %1$lld %% હતી (સામાન્ય રીતે %2$lld–%3$lld %%)."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שינה עמוקה הייתה רק כ־%1$lld %% מהשינה שלך (בדרך כלל %2$lld–%3$lld %%)."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "गहरी नींद तुम्हारी नींद का केवल लगभग %1$lld %% थी (आमतौर पर %2$lld–%3$lld %%)।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duboki san bio je samo oko %1$lld %% tvog sna (obično %2$lld–%3$lld %%)."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A mélyalvás csak kb. %1$lld %% volt az alvásodból (általában %2$lld–%3$lld %%)."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Խոր քունը կազմել է քո քնի միայն մոտ %1$lld %%-ը (սովորաբար %2$lld–%3$lld %%)։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidur nyenyak hanya sekitar %1$lld %% dari tidurmu (biasanya %2$lld–%3$lld %%)."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Djúpsvefn var aðeins um %1$lld %% af svefninum (venjulega %2$lld–%3$lld %%)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il sonno profondo era solo circa il %1$lld %% del tuo sonno (di solito %2$lld–%3$lld %%)."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "深い睡眠は睡眠の約%1$lld %%にとどまりました（通常%2$lld–%3$lld %%）。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ღრმა ძილი შენი ძილის მხოლოდ დაახლოებით %1$lld %% იყო (ჩვეულებრივ %2$lld–%3$lld %%)."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Терең ұйқы ұйқыңның тек шамамен %1$lld %% болды (әдетте %2$lld–%3$lld %%)."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ដំណេកជ្រៅមានត្រឹមប្រហែល %1$lld %% នៃដំណេករបស់អ្នក (ធម្មតា %2$lld–%3$lld %%)។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಗಾಢ ನಿದ್ರೆ ನಿನ್ನ ನಿದ್ರೆಯ ಸುಮಾರು %1$lld %% ಮಾತ್ರ ಇತ್ತು (ಸಾಮಾನ್ಯವಾಗಿ %2$lld–%3$lld %%)."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "깊은 수면은 전체 수면의 약 %1$lld %%에 그쳤어요(보통 %2$lld–%3$lld %%)."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ການນອນຫຼັບເລິກມີພຽງປະມານ %1$lld %% ຂອງການນອນຂອງເຈົ້າ (ປົກກະຕິ %2$lld–%3$lld %%)."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gilus miegas sudarė tik apie %1$lld %% tavo miego (paprastai %2$lld–%3$lld %%)."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dziļais miegs bija tikai aptuveni %1$lld %% no tava miega (parasti %2$lld–%3$lld %%)."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Длабокиот сон беше само околу %1$lld %% од твојот сон (обично %2$lld–%3$lld %%)."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഗാഢനിദ്ര നിന്റെ ഉറക്കത്തിന്റെ ഏകദേശം %1$lld %% മാത്രമായിരുന്നു (സാധാരണ %2$lld–%3$lld %%)."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Гүн нойр чиний нойрны ердөө ойролцоогоор %1$lld %% байсан (ихэвчлэн %2$lld–%3$lld %%)."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "गाढ झोप तुझ्या झोपेच्या फक्त सुमारे %1$lld %% होती (साधारणपणे %2$lld–%3$lld %%)."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidur nyenyak hanya kira-kira %1$lld %% daripada tidur anda (biasanya %2$lld–%3$lld %%)."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "နက်ရှိုင်းသောအိပ်စက်ခြင်းသည် သင့်အိပ်စက်ခြင်း၏ %1$lld %% ခန့်သာ ရှိခဲ့သည် (ပုံမှန် %2$lld–%3$lld %%)။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dyp søvn var bare omtrent %1$lld %% av søvnen din (vanligvis %2$lld–%3$lld %%)."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "गहिरो निद्रा तिम्रो निद्राको करिब %1$lld %% मात्र थियो (सामान्यतया %2$lld–%3$lld %%)।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diepe slaap was maar ongeveer %1$lld %% van je slaap (gewoonlijk %2$lld–%3$lld %%)."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਡੂੰਘੀ ਨੀਂਦ ਤੇਰੀ ਨੀਂਦ ਦਾ ਸਿਰਫ਼ ਲਗਭਗ %1$lld %% ਸੀ (ਆਮ ਤੌਰ ’ਤੇ %2$lld–%3$lld %%)।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sen głęboki stanowił tylko około %1$lld %% twojego snu (zwykle %2$lld–%3$lld %%)."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O sono profundo foi só cerca de %1$lld %% do seu sono (normalmente %2$lld–%3$lld %%)."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O sono profundo foi apenas cerca de %1$lld %% do teu sono (normalmente %2$lld–%3$lld %%)."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Somnul profund a fost doar aproximativ %1$lld %% din somnul tău (de obicei %2$lld–%3$lld %%)."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Глубокий сон составил лишь около %1$lld %% твоего сна (обычно %2$lld–%3$lld %%)."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ගැඹුරු නින්ද ඔබේ නින්දෙන් ආසන්න වශයෙන් %1$lld %% පමණක් විය (සාමාන්‍යයෙන් %2$lld–%3$lld %%)."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hlboký spánok tvoril len asi %1$lld %% tvojho spánku (zvyčajne %2$lld–%3$lld %%)."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Globoki spanec je bil le približno %1$lld %% tvojega spanca (običajno %2$lld–%3$lld %%)."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gjumi i thellë ishte vetëm rreth %1$lld %% e gjumit tënd (zakonisht %2$lld–%3$lld %%)."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дубоки сан је био само око %1$lld %% твог сна (обично %2$lld–%3$lld %%)."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Djupsömnen var bara cirka %1$lld %% av din sömn (normalt %2$lld–%3$lld %%)."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usingizi mzito ulikuwa takriban %1$lld %% tu ya usingizi wako (kwa kawaida %2$lld–%3$lld %%)."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ஆழ்ந்த தூக்கம் உன் தூக்கத்தில் சுமார் %1$lld %% மட்டுமே (பொதுவாக %2$lld–%3$lld %%)."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "గాఢ నిద్ర నీ నిద్రలో సుమారు %1$lld %% మాత్రమే (సాధారణంగా %2$lld–%3$lld %%)."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "การหลับลึกมีเพียงราว %1$lld %% ของการนอนของคุณ (ปกติ %2$lld–%3$lld %%)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Derin uyku, uykunun yalnızca yaklaşık %%%1$lld kadarıydı (genelde %%%2$lld–%3$lld)."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Глибокий сон становив лише близько %1$lld %% твого сну (зазвичай %2$lld–%3$lld %%)."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "گہری نیند آپ کی نیند کا صرف تقریباً %1$lld %% تھی (عموماً %2$lld–%3$lld %%)۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chuqur uyqu uyqungning atigi taxminan %1$lld %% qismi edi (odatda %2$lld–%3$lld %%)."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ngủ sâu chỉ chiếm khoảng %1$lld %% giấc ngủ của bạn (thường %2$lld–%3$lld %%)."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "深層睡眠只佔你睡眠約 %1$lld %%（通常 %2$lld–%3$lld %%）。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "深睡只占你睡眠的约 %1$lld %%（通常为 %2$lld–%3$lld %%）。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "深層睡眠只占你睡眠的約 %1$lld %%（通常為 %2$lld–%3$lld %%）。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukulala okujulile bekungu-%1$lld %% kuphela wokulala kwakho (ngokuvamile %2$lld–%3$lld %%)."
+          }
+        }
+      }
+    },
+    "finding_short_nights": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nagte korter as 6 uur: %1$lld uit 7. Wenk: reken jou slaaptyd terug van jou wektyd af en hou daarby."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ከ6 ሰዓት ያነሱ ሌሊቶች፦ ከ7 %1$lld። ምክር፦ የመኝታ ሰዓትህን ከመነሻ ሰዓትህ ወደኋላ አስላና ጠብቀው።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ليالٍ أقل من 6 ساعات: %1$lld من 7. نصيحة: احسب موعد نومك انطلاقًا من موعد استيقاظك والتزم به."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 saatdan qısa gecələr: 7-dən %1$lld. Məsləhət: yatma vaxtını oyanma vaxtından geriyə hesabla və ona əməl et."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нощи под 6 часа: %1$lld от 7. Съвет: изчисли часа за лягане от часа на ставане и се придържай към него."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "৬ ঘণ্টার কম রাত: ৭টির মধ্যে %1$lldটি। পরামর্শ: ঘুম থেকে ওঠার সময় থেকে পিছিয়ে শোয়ার সময় ঠিক করো এবং তা মেনে চলো।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noći kraće od 6 sati: %1$lld od 7. Savjet: izračunaj vrijeme odlaska na spavanje od vremena buđenja i drži ga se."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nits de menys de 6 hores: %1$lld de 7. Consell: calcula l’hora d’anar a dormir a partir de l’hora de despertar-te i compleix-la."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noci kratší než 6 hodin: %1$lld ze 7. Tip: spočítej si čas ulehnutí od času buzení a dodržuj ho."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nætter under 6 timer: %1$lld af 7. Tip: regn din sengetid ud fra dit vækketidspunkt, og hold dig til den."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nächte unter 6 Stunden: %1$lld von 7. Tipp: Rechne deine Bettzeit von der Weckzeit zurück und halte sie ein."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Νύχτες κάτω από 6 ώρες: %1$lld από 7. Συμβουλή: υπολόγισε την ώρα ύπνου από την ώρα αφύπνισης και τήρησέ την."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nights under 6 hours: %1$lld of 7. Tip: work out your bedtime from your wake-up time and stick to it."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noches de menos de 6 horas: %1$lld de 7. Consejo: calcula tu hora de acostarte a partir de la hora de despertar y cúmplela."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alla 6-tunnised ööd: %1$lld 7-st. Nõuanne: arvuta magamamineku aeg äratusajast tagasi ja pea sellest kinni."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 ordutik beherako gauak: 7tik %1$lld. Aholkua: kalkulatu oheratzeko ordua esnatzeko orditik atzera eta bete ezazu."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شب‌های کمتر از ۶ ساعت: %1$lld از ۷. نکته: ساعت خوابت را از ساعت بیداری حساب کن و به آن پایبند بمان."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle 6 tunnin yöt: %1$lld/7. Vinkki: laske nukkumaanmenoaika herätysajasta taaksepäin ja pidä siitä kiinni."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mga gabing kulang sa 6 na oras: %1$lld sa 7. Tip: kalkulahin ang oras ng pagtulog mula sa oras ng paggising at sundin ito."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuits de moins de 6 heures : %1$lld sur 7. Conseil : calcule ton heure de coucher à partir de ton heure de réveil et respecte-la."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oícheanta faoi 6 uair: %1$lld as 7. Leid: oibrigh amach d’am codlata ó d’am dúiseachta agus cloígh leis."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noites de menos de 6 horas: %1$lld de 7. Consello: calcula a túa hora de deitarte a partir da hora de espertar e cúmprea."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 કલાકથી ઓછી રાતો: 7માંથી %1$lld. સૂચન: ઊઠવાના સમયથી પાછળ ગણીને સૂવાનો સમય નક્કી કર અને તેને વળગી રહે."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לילות של פחות מ־6 שעות: %1$lld מתוך 7. טיפ: חשב את שעת השינה לפי שעת ההשכמה והקפד עליה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 घंटे से कम की रातें: 7 में से %1$lld। सुझाव: जागने के समय से सोने का समय तय करो और उस पर टिके रहो।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noći kraće od 6 sati: %1$lld od 7. Savjet: izračunaj vrijeme odlaska na spavanje od vremena buđenja i drži ga se."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 óránál rövidebb éjszakák: %1$lld a 7-ből. Tipp: számold ki a lefekvés idejét az ébresztéstől visszafelé, és tartsd is be."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 ժամից կարճ գիշերներ՝ %1$lld՝ 7-ից։ Խորհուրդ՝ քնելու ժամը հաշվիր արթնանալու ժամից հետ և պահպանիր այն։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Malam di bawah 6 jam: %1$lld dari 7. Tips: hitung jam tidurmu mundur dari jam bangun dan patuhi."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nætur undir 6 klst.: %1$lld af 7. Ráð: reiknaðu háttatímann út frá vakningartímanum og haltu þig við hann."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notti sotto le 6 ore: %1$lld su 7. Consiglio: calcola l’ora di andare a letto partendo dalla sveglia e rispettala."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6時間未満の夜：7夜中%1$lld夜。ヒント：起きる時刻から就寝時刻を逆算して守りましょう。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 საათზე ნაკლები ღამეები: %1$lld 7-დან. რჩევა: დაძინების დრო გამოთვალე გაღვიძების დროიდან უკან და დაიცავი."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 сағаттан қысқа түндер: 7-нің %1$lld-і. Кеңес: ұйықтау уақытын ояну уақытынан кері есепте және соны ұстан."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "យប់ដែលតិចជាង 6 ម៉ោង៖ %1$lld ក្នុងចំណោម 7។ គន្លឹះ៖ គណនាម៉ោងចូលគេងថយក្រោយពីម៉ោងភ្ញាក់ ហើយប្រកាន់ខ្ជាប់។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 ಗಂಟೆಗಿಂತ ಕಡಿಮೆ ರಾತ್ರಿಗಳು: 7ರಲ್ಲಿ %1$lld. ಸಲಹೆ: ಏಳುವ ಸಮಯದಿಂದ ಹಿಂದಕ್ಕೆ ಮಲಗುವ ಸಮಯ ಲೆಕ್ಕಹಾಕಿ ಅದನ್ನು ಪಾಲಿಸು."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6시간 미만인 밤: 7일 중 %1$lld일. 팁: 기상 시간에서 거꾸로 취침 시간을 정하고 지키세요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ຄືນທີ່ນ້ອຍກວ່າ 6 ຊົ່ວໂມງ: %1$lld ໃນ 7. ຄຳແນະນຳ: ຄິດໄລ່ເວລາເຂົ້ານອນຖອຍຫຼັງຈາກເວລາຕື່ນ ແລະ ເຮັດຕາມ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Naktys, trumpesnės nei 6 valandos: %1$lld iš 7. Patarimas: apskaičiuok ėjimo miegoti laiką nuo kėlimosi laiko ir jo laikykis."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Naktis, īsākas par 6 stundām: %1$lld no 7. Padoms: aprēķini gulētiešanas laiku no mošanās laika un ievēro to."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ноќи пократки од 6 часа: %1$lld од 7. Совет: пресметај го времето за спиење од времето на будење и држи се до него."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 മണിക്കൂറിൽ കുറഞ്ഞ രാത്രികൾ: 7-ൽ %1$lld. നുറുങ്ങ്: ഉണരുന്ന സമയത്തിൽ നിന്ന് പിന്നോട്ട് ഉറങ്ങുന്ന സമയം കണക്കാക്കി അത് പാലിക്കുക."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 цагаас богино шөнө: 7-оос %1$lld. Зөвлөгөө: сэрэх цагаасаа ухраан унтах цагаа тооцоолж, түүнийгээ баримтал."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 तासांपेक्षा कमी रात्री: 7 पैकी %1$lld. टीप: उठण्याच्या वेळेपासून मागे मोजून झोपण्याची वेळ ठरव आणि ती पाळ."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Malam kurang 6 jam: %1$lld daripada 7. Petua: kira waktu tidur anda ke belakang dari waktu bangun dan patuhinya."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 နာရီအောက် ညများ- 7 ညတွင် %1$lld ည။ အကြံပြုချက်- နိုးမည့်အချိန်မှ ပြန်တွက်ပြီး အိပ်ချိန်သတ်မှတ်ကာ လိုက်နာပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Netter under 6 timer: %1$lld av 7. Tips: regn ut leggetiden fra vekketiden og hold deg til den."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 घण्टाभन्दा छोटा रात: 7 मध्ये %1$lld। सुझाव: उठ्ने समयबाट पछाडि गन्दै सुत्ने समय तय गर र त्यसमा टिकिरहू।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nachten korter dan 6 uur: %1$lld van 7. Tip: reken je bedtijd terug vanaf je wektijd en houd je eraan."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 ਘੰਟਿਆਂ ਤੋਂ ਘੱਟ ਰਾਤਾਂ: 7 ਵਿੱਚੋਂ %1$lld। ਸੁਝਾਅ: ਉੱਠਣ ਦੇ ਸਮੇਂ ਤੋਂ ਪਿੱਛੇ ਗਿਣ ਕੇ ਸੌਣ ਦਾ ਸਮਾਂ ਤੈਅ ਕਰ ਅਤੇ ਉਸ ’ਤੇ ਟਿਕਿਆ ਰਹਿ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noce krótsze niż 6 godzin: %1$lld z 7. Wskazówka: wylicz porę snu od godziny budzenia i trzymaj się jej."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noites com menos de 6 horas: %1$lld de 7. Dica: calcule sua hora de dormir a partir da hora de acordar e mantenha-a."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noites com menos de 6 horas: %1$lld de 7. Dica: calcula a tua hora de deitar a partir da hora de acordar e cumpre-a."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nopți sub 6 ore: %1$lld din 7. Sfat: calculează-ți ora de culcare pornind de la ora de trezire și respect-o."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ночи короче 6 часов: %1$lld из 7. Совет: рассчитай время отхода ко сну от времени пробуждения и придерживайся его."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "පැය 6ට අඩු රාත්‍රී: 7න් %1$lld. ඉඟිය: අවදි වන වේලාවේ සිට ආපසු ගණන් කර නින්දට යන වේලාව තීරණය කර එය පිළිපදින්න."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noci kratšie ako 6 hodín: %1$lld zo 7. Tip: vypočítaj si čas uloženia od času budenia a dodržiavaj ho."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noči, krajše od 6 ur: %1$lld od 7. Nasvet: čas za spanje izračunaj od ure bujenja in se ga drži."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Net nën 6 orë: %1$lld nga 7. Këshillë: llogarit orën e gjumit duke u nisur nga ora e zgjimit dhe mbaje."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ноћи краће од 6 сати: %1$lld од 7. Савет: израчунај време одласка на спавање од времена буђења и држи га се."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nätter under 6 timmar: %1$lld av 7. Tips: räkna ut din läggtid från din väckningstid och håll dig till den."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usiku chini ya saa 6: %1$lld kati ya 7. Kidokezo: hesabu muda wa kulala kurudi nyuma kutoka muda wa kuamka na uushike."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 மணி நேரத்துக்குக் குறைவான இரவுகள்: 7-இல் %1$lld. குறிப்பு: எழும் நேரத்திலிருந்து பின்னோக்கிக் கணக்கிட்டு தூங்கும் நேரத்தை முடிவு செய்து அதைக் கடைப்பிடி."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 గంటల కంటే తక్కువ రాత్రులు: 7లో %1$lld. సూచన: లేచే సమయం నుంచి వెనక్కి లెక్కించి పడుకునే సమయం నిర్ణయించుకుని పాటించు."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "คืนที่นอนน้อยกว่า 6 ชั่วโมง: %1$lld จาก 7 คืน เคล็ดลับ: คำนวณเวลาเข้านอนย้อนจากเวลาตื่น แล้วทำตามให้ได้"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 saatten kısa geceler: 7’de %1$lld. İpucu: yatma saatini uyanma saatinden geriye doğru hesapla ve ona uy."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ночі коротші за 6 годин: %1$lld з 7. Порада: розрахуй час відходу до сну від часу пробудження й дотримуйся його."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 گھنٹے سے کم کی راتیں: 7 میں سے %1$lld۔ مشورہ: جاگنے کے وقت سے سونے کا وقت نکالیں اور اس پر قائم رہیں۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6 soatdan qisqa kechalar: 7 tadan %1$lld ta. Maslahat: uxlash vaqtini uygʻonish vaqtidan orqaga hisobla va unga amal qil."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đêm dưới 6 giờ: %1$lld trên 7. Mẹo: tính giờ đi ngủ ngược từ giờ thức dậy và giữ đúng."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "少過 6 小時的夜晚：7 晚中 %1$lld 晚。建議：由起床時間倒推就寢時間，並且遵守。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不足 6 小时的夜晚：7 晚中 %1$lld 晚。建议：根据起床时间倒推就寝时间，并坚持执行。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不到 6 小時的夜晚：7 晚中 %1$lld 晚。建議：從起床時間倒推就寢時間，並確實遵守。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ubusuku obungaphansi kwamahora angu-6: %1$lld kwangu-7. Ithiphu: bala isikhathi sakho sokulala usuka esikhathini sokuvuka futhi usigcine."
+          }
+        }
+      }
+    },
+    "finding_tip_deep": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wenk: geen kafeïen van die middag af nie en geen skerms in die laaste uur voor slaaptyd nie."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ምክር፦ ከሰዓት በኋላ ካፌይን አትውሰድ፣ ከመተኛትህ በፊት ባለው የመጨረሻ ሰዓት ስክሪን አትመልከት።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نصيحة: لا كافيين بعد الظهر ولا شاشات في الساعة الأخيرة قبل النوم."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Məsləhət: günortadan sonra kofein yox, yatmazdan əvvəlki son saatda ekran yox."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Съвет: без кофеин от следобеда и без екрани последния час преди сън."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "পরামর্শ: বিকেল থেকে ক্যাফেইন নয় এবং ঘুমানোর আগের শেষ ঘণ্টায় স্ক্রিন নয়।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Savjet: bez kofeina od popodneva i bez ekrana zadnji sat prije spavanja."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consell: res de cafeïna a partir de la tarda i res de pantalles l’última hora abans de dormir."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tip: od odpoledne žádný kofein a poslední hodinu před spaním žádné obrazovky."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tip: ingen koffein fra eftermiddagen og ingen skærme den sidste time før søvn."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipp: Ab dem Nachmittag kein Koffein und in der letzten Stunde vor dem Schlafen keine Bildschirme."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Συμβουλή: όχι καφεΐνη από το απόγευμα και όχι οθόνες την τελευταία ώρα πριν τον ύπνο."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tip: no caffeine from the afternoon on and no screens in the last hour before bed."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consejo: nada de cafeína a partir de la tarde y nada de pantallas en la última hora antes de dormir."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nõuanne: alates pärastlõunast mitte kofeiini ja viimasel tunnil enne magamist mitte ekraane."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aholkua: arratsaldetik aurrera kafeinarik ez, eta lo egin aurreko azken orduan pantailarik ez."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نکته: از بعدازظهر کافئین نخور و در ساعت آخر پیش از خواب از صفحه‌نمایش دوری کن."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vinkki: ei kofeiinia iltapäivästä alkaen eikä näyttöjä viimeisenä tuntina ennen nukkumaanmenoa."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tip: walang caffeine mula hapon at walang screen sa huling oras bago matulog."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conseil : pas de caféine à partir de l’après-midi et pas d’écrans dans la dernière heure avant de dormir."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leid: gan caiféin ón tráthnóna ar aghaidh agus gan scáileáin san uair dheireanach roimh chodladh."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consello: nada de cafeína desde a tarde e nada de pantallas na última hora antes de durmir."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "સૂચન: બપોર પછી કૅફીન નહીં અને સૂતાં પહેલાંના છેલ્લા કલાકમાં સ્ક્રીન નહીં."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "טיפ: בלי קפאין מהצהריים ובלי מסכים בשעה האחרונה לפני השינה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सुझाव: दोपहर के बाद कैफ़ीन नहीं और सोने से पहले के आख़िरी घंटे में स्क्रीन नहीं।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Savjet: bez kofeina od poslijepodneva i bez ekrana zadnji sat prije spavanja."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipp: délutántól ne igyál koffeint, és lefekvés előtt egy órával már ne nézz képernyőt."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Խորհուրդ՝ կեսօրից հետո առանց կոֆեինի, իսկ քնելուց առաջ վերջին ժամին՝ առանց էկրանների։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tips: tanpa kafein sejak sore dan tanpa layar di jam terakhir sebelum tidur."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ráð: ekkert koffín frá hádegi og enga skjái síðustu klukkustundina fyrir svefn."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consiglio: niente caffeina dal pomeriggio e niente schermi nell’ultima ora prima di dormire."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ヒント：午後からはカフェインを控え、寝る前の1時間は画面を見ないようにしましょう。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "რჩევა: შუადღიდან კოფეინი არა და ძილის წინ ბოლო საათში ეკრანები არა."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кеңес: түстен кейін кофеин ішпе, ұйықтар алдындағы соңғы сағатта экранға қарама."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "គន្លឹះ៖ គ្មានកាហ្វេអ៊ីនចាប់ពីរសៀល និងគ្មានអេក្រង់ក្នុងម៉ោងចុងក្រោយមុនគេង។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಸಲಹೆ: ಮಧ್ಯಾಹ್ನದಿಂದ ಕೆಫೀನ್ ಬೇಡ, ಮಲಗುವ ಮೊದಲಿನ ಕೊನೆಯ ಗಂಟೆಯಲ್ಲಿ ಸ್ಕ್ರೀನ್ ಬೇಡ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "팁: 오후부터는 카페인을 피하고 잠들기 전 마지막 한 시간은 화면을 보지 마세요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ຄຳແນະນຳ: ບໍ່ມີຄາເຟອີນຕັ້ງແຕ່ຕອນບ່າຍ ແລະ ບໍ່ມີໜ້າຈໍໃນຊົ່ວໂມງສຸດທ້າຍກ່ອນນອນ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Patarimas: nuo popietės jokio kofeino ir paskutinę valandą prieš miegą jokių ekranų."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Padoms: no pēcpusdienas bez kofeīna un pēdējā stundā pirms miega bez ekrāniem."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Совет: без кофеин од попладне и без екрани последниот час пред спиење."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നുറുങ്ങ്: ഉച്ചയ്ക്കു ശേഷം കഫീൻ വേണ്ട, ഉറങ്ങുന്നതിനു മുമ്പുള്ള അവസാന മണിക്കൂറിൽ സ്ക്രീൻ വേണ്ട."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Зөвлөгөө: үдээс хойш кофеингүй, унтахын өмнөх сүүлийн цагт дэлгэцгүй."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "टीप: दुपारपासून कॅफिन नको आणि झोपण्यापूर्वीच्या शेवटच्या तासात स्क्रीन नको."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Petua: tiada kafein mulai petang dan tiada skrin pada jam terakhir sebelum tidur."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "အကြံပြုချက်- နေ့လယ်မှစ၍ ကဖိန်းမသောက်ပါနှင့်၊ အိပ်ရာမဝင်မီ နောက်ဆုံးတစ်နာရီတွင် စခရင် မကြည့်ပါနှင့်။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tips: ikke koffein fra ettermiddagen og ikke skjermer den siste timen før du sover."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सुझाव: दिउँसोदेखि क्याफिन नखाऊ र सुत्नुअघिको अन्तिम घण्टामा स्क्रिन नहेर।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tip: geen cafeïne vanaf de middag en geen schermen in het laatste uur voor het slapen."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੁਝਾਅ: ਦੁਪਹਿਰ ਤੋਂ ਬਾਅਦ ਕੈਫ਼ੀਨ ਨਹੀਂ ਅਤੇ ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਆਖ਼ਰੀ ਘੰਟੇ ਵਿੱਚ ਸਕ੍ਰੀਨ ਨਹੀਂ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wskazówka: bez kofeiny od popołudnia i bez ekranów w ostatniej godzinie przed snem."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dica: nada de cafeína a partir da tarde e nada de telas na última hora antes de dormir."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dica: nada de cafeína a partir da tarde e nada de ecrãs na última hora antes de dormir."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sfat: fără cafeină de după-amiază și fără ecrane în ultima oră înainte de somn."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Совет: без кофеина с середины дня и без экранов за час до сна."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඉඟිය: දහවලින් පසු කැෆේන් එපා, නින්දට පෙර අවසාන පැයේ තිර එපා."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tip: od popoludnia žiadny kofeín a poslednú hodinu pred spaním žiadne obrazovky."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nasvet: od popoldneva brez kofeina in zadnjo uro pred spanjem brez zaslonov."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Këshillë: pa kafeinë që nga pasditja dhe pa ekrane në orën e fundit para gjumit."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Савет: без кофеина од поподнева и без екрана последњи сат пре спавања."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tips: inget koffein från eftermiddagen och inga skärmar sista timmen före sömnen."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kidokezo: bila kafeini kuanzia mchana na bila skrini katika saa ya mwisho kabla ya kulala."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "குறிப்பு: மதியத்திலிருந்து காஃபின் வேண்டாம், தூங்குவதற்கு முந்தைய கடைசி மணி நேரத்தில் திரை வேண்டாம்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సూచన: మధ్యాహ్నం నుంచి కెఫీన్ వద్దు, పడుకునే ముందు చివరి గంటలో స్క్రీన్ వద్దు."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เคล็ดลับ: งดคาเฟอีนตั้งแต่ช่วงบ่าย และงดหน้าจอในชั่วโมงสุดท้ายก่อนนอน"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İpucu: öğleden sonra kafein yok, yatmadan önceki son saatte ekran yok."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Порада: без кофеїну з другої половини дня і без екранів за годину до сну."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مشورہ: دوپہر کے بعد کیفین نہیں اور سونے سے پہلے آخری گھنٹے میں اسکرین نہیں۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maslahat: tushdan keyin kofein yoʻq, uxlashdan oldingi oxirgi soatda ekran yoʻq."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mẹo: không dùng caffeine từ buổi chiều và không dùng màn hình trong giờ cuối trước khi ngủ."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "建議：下晝開始唔好飲咖啡因，瞓覺前最後一個鐘唔好睇螢幕。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "建议：下午起不摄入咖啡因，睡前最后一小时不看屏幕。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "建議：下午起不攝取咖啡因，睡前最後一小時不看螢幕。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ithiphu: ungaphuzi i-caffeine kusukela ntambama futhi ungasebenzisi izikrini ehoreni lokugcina ngaphambi kokulala."
+          }
+        }
+      }
+    },
+    "finding_title": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opgemerk in jou laaste 7 nagte"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ባለፉት 7 ሌሊቶች የታየ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لوحظ في آخر 7 ليالٍ"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Son 7 gecəndə diqqət çəkən"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Забелязано през последните 7 нощи"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "তোমার শেষ ৭ রাতে চোখে পড়েছে"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Primijećeno u zadnjih 7 noći"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observat en les teves últimes 7 nits"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zaznamenáno za posledních 7 nocí"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bemærket i dine sidste 7 nætter"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auffällig in den letzten 7 Nächten"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Παρατηρήθηκε τις τελευταίες 7 νύχτες"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noticed in your last 7 nights"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observado en tus últimas 7 noches"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Märgatud sinu viimase 7 öö jooksul"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zure azken 7 gauetan nabarmendua"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "در ۷ شب اخیر به چشم آمد"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Huomattu viimeisten 7 yön aikana"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Napansin sa huling 7 gabi mo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remarqué sur tes 7 dernières nuits"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tugtha faoi deara i do 7 n-oíche dheireanacha"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observado nas túas últimas 7 noites"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "તારી છેલ્લી 7 રાતોમાં ધ્યાનમાં આવ્યું"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בלט ב־7 הלילות האחרונים"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछली 7 रातों में दिखा"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Primijećeno u zadnjih 7 noći"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Feltűnt az utolsó 7 éjszakádban"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Նկատվել է քո վերջին 7 գիշերներում"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terlihat dalam 7 malam terakhirmu"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekið eftir síðustu 7 nætur"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notato nelle tue ultime 7 notti"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "直近7夜で気になったこと"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "შენს ბოლო 7 ღამეში შესამჩნევი"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Соңғы 7 түнде байқалғаны"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "អ្វីដែលគួរកត់សម្គាល់ក្នុង 7 យប់ចុងក្រោយ"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಿನ್ನ ಕೊನೆಯ 7 ರಾತ್ರಿಗಳಲ್ಲಿ ಕಂಡುಬಂದದ್ದು"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "최근 7일 밤에 눈에 띈 점"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ສິ່ງທີ່ສັງເກດເຫັນໃນ 7 ຄືນຫຼ້າສຸດ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pastebėta per paskutines 7 naktis"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pamanīts tavās pēdējās 7 naktīs"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Забележано во последните 7 ноќи"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "നിന്റെ കഴിഞ്ഞ 7 രാത്രികളിൽ ശ്രദ്ധയിൽപ്പെട്ടത്"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сүүлийн 7 шөнөд анзаарагдсан"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुझ्या शेवटच्या 7 रात्रींमध्ये लक्षात आलेले"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dikesan dalam 7 malam terakhir anda"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "နောက်ဆုံး ည 7 ညတွင် သတိထားမိသည်"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lagt merke til de siste 7 nettene"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तिम्रो पछिल्लो 7 रातमा देखिएको"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opgevallen in je laatste 7 nachten"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੇਰੀਆਂ ਪਿਛਲੀਆਂ 7 ਰਾਤਾਂ ਵਿੱਚ ਧਿਆਨ ਵਿੱਚ ਆਇਆ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zauważone w ostatnich 7 nocach"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notado nas suas últimas 7 noites"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notado nas tuas últimas 7 noites"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observat în ultimele tale 7 nopți"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Замечено за последние 7 ночей"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබේ පසුගිය රාත්‍රී 7 තුළ දුටු දේ"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zaznamenané za posledných 7 nocí"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opaženo v zadnjih 7 nočeh"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vënë re në 7 netët e tua të fundit"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Примећено у последњих 7 ноћи"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Märkt under dina senaste 7 nätter"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilichoonekana katika usiku wako 7 uliopita"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "உன் கடைசி 7 இரவுகளில் கவனிக்கப்பட்டது"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "నీ చివరి 7 రాత్రుల్లో గమనించినది"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "สิ่งที่น่าสังเกตใน 7 คืนล่าสุด"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Son 7 gecende dikkat çeken"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Помічено за останні 7 ночей"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "آپ کی پچھلی 7 راتوں میں نمایاں"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oxirgi 7 kechangda koʻzga tashlangan"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đáng chú ý trong 7 đêm gần nhất"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最近 7 晚值得留意"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最近 7 晚值得注意"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最近 7 晚值得注意"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Okubonakele ebusuku bakho bokugcina obu-7"
+          }
+        }
+      }
+    },
     "goal_hint": {
       "localizations": {
         "af": {
@@ -293633,6 +298561,454 @@
           "stringUnit": {
             "state": "translated",
             "value": "I-Play Store ivuliwe ewashini lakho – yibheke."
+          }
+        }
+      }
+    },
+    "weekly_deep": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diep slaap %1$@ van jou slaap"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ጥልቅ እንቅልፍ ከእንቅልፍህ %1$@"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "النوم العميق %1$@ من نومك"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dərin yuxu yuxunun %1$@-i"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дълбок сън %1$@ от съня ти"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "গভীর ঘুম তোমার ঘুমের %1$@"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duboki san %1$@ tvog sna"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Son profund %1$@ del teu son"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hluboký spánek %1$@ tvého spánku"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dyb søvn %1$@ af din søvn"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiefschlaf %1$@ deines Schlafs"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Βαθύς ύπνος %1$@ του ύπνου σου"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deep sleep %1$@ of your sleep"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sueño profundo %1$@ de tu sueño"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sügav uni %1$@ sinu unest"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lo sakona: zure loaren %1$@"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "خواب عمیق %1$@ از خوابت"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Syvää unta %1$@ unestasi"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Malalim na tulog %1$@ ng iyong tulog"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sommeil profond %1$@ de ton sommeil"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Codladh domhain %1$@ de do chodladh"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sono profundo %1$@ do teu sono"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ગાઢ ઊંઘ તારી ઊંઘનો %1$@"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שינה עמוקה %1$@ מהשינה שלך"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "गहरी नींद तुम्हारी नींद का %1$@"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duboki san %1$@ tvog sna"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mélyalvás: az alvásod %1$@-a"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Խոր քուն՝ քո քնի %1$@"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidur nyenyak %1$@ dari tidurmu"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Djúpsvefn %1$@ af svefninum"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonno profondo %1$@ del tuo sonno"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "深い睡眠：睡眠の%1$@"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ღრმა ძილი შენი ძილის %1$@"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Терең ұйқы ұйқыңның %1$@"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ដំណេកជ្រៅ %1$@ នៃដំណេករបស់អ្នក"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಗಾಢ ನಿದ್ರೆ ನಿನ್ನ ನಿದ್ರೆಯ %1$@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "깊은 수면: 수면의 %1$@"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ການນອນຫຼັບເລິກ %1$@ ຂອງການນອນ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gilus miegas: %1$@ tavo miego"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dziļais miegs: %1$@ no tava miega"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Длабок сон %1$@ од твојот сон"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഗാഢനിദ്ര നിന്റെ ഉറക്കത്തിന്റെ %1$@"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Гүн нойр: нойрны %1$@"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "गाढ झोप तुझ्या झोपेच्या %1$@"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidur nyenyak %1$@ daripada tidur anda"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "နက်ရှိုင်းသောအိပ်စက်ခြင်း %1$@"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dyp søvn %1$@ av søvnen din"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "गहिरो निद्रा तिम्रो निद्राको %1$@"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diepe slaap %1$@ van je slaap"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਡੂੰਘੀ ਨੀਂਦ ਤੇਰੀ ਨੀਂਦ ਦਾ %1$@"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sen głęboki %1$@ twojego snu"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sono profundo %1$@ do seu sono"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sono profundo %1$@ do teu sono"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Somn profund %1$@ din somnul tău"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Глубокий сон %1$@ твоего сна"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ගැඹුරු නින්ද ඔබේ නින්දෙන් %1$@"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hlboký spánok %1$@ tvojho spánku"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Globoki spanec %1$@ tvojega spanca"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gjumi i thellë %1$@ e gjumit tënd"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дубоки сан %1$@ твог сна"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Djupsömn %1$@ av din sömn"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usingizi mzito %1$@ ya usingizi wako"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ஆழ்ந்த தூக்கம் உன் தூக்கத்தில் %1$@"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "గాఢ నిద్ర నీ నిద్రలో %1$@"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "หลับลึก %1$@ ของการนอน"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Derin uyku: uykunun %1$@ kadarı"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Глибокий сон %1$@ твого сну"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "گہری نیند آپ کی نیند کا %1$@"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chuqur uyqu uyqungning %1$@ qismi"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ngủ sâu %1$@ giấc ngủ của bạn"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "深層睡眠佔你睡眠的 %1$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "深睡占你睡眠的 %1$@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "深層睡眠占你睡眠的 %1$@"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukulala okujulile %1$@ wokulala kwakho"
           }
         }
       }

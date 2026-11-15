@@ -98,6 +98,8 @@ struct TrendsCard: View {
     var habits: [String] = []
     /// Zeilen, die ein Diagramm oben schon zeigt: hier weggelassen.
     var covered: Set<TrendLine> = []
+    /// Auffälligkeiten der letzten 7 Nächte, wichtigste zuerst; hier alle an einer Stelle (Entscheid r1AD 15.11.2026).
+    var findings: [Finding] = []
 
     /// Ab dieser Schwankung der Einschlafzeit gibt es den Hinweis auf regelmässige Schlafzeiten.
     private static let irregularMinutes = 45
@@ -124,6 +126,9 @@ struct TrendsCard: View {
             out.append(L("trends_feeling", decimal(feeling)) + last)
         }
         out += habits
+        // Steht der Hinweis auf regelmässige Schlafzeiten schon da, nicht noch einmal die schwankende Bettzeit.
+        let regularHint = (trends.bedtimeSpreadMinutes ?? 0) > Self.irregularMinutes
+        out += findings.filter { !(regularHint && $0.kind == .bedtimeVaries) }.map(findingText)
         return out
     }
 

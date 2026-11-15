@@ -647,4 +647,16 @@
     <string name="editor_alarm_gone">Ce réveil a été supprimé entre-temps.</string>
     <string name="test_replaces_nap">Le réveil test met fin à ta sieste.</string>
     <string name="settings_clear_history_also">Les notes, le ressenti, les coches de la routine du soir et les extraits sonores sont aussi supprimés.</string>
+    <string name="finding_title">Remarqué sur tes 7 dernières nuits</string>
+    <string name="finding_hide">Masquer</string>
+    <string name="finding_latency">En moyenne, tu as mis %1$s à t’endormir. Conseil : si tu es encore éveillé après 20 minutes, lève-toi et ne retourne au lit que quand tu as sommeil. Si cela dure des semaines, parles-en à ton médecin.</string>
+    <string name="finding_short_nights">Nuits de moins de 6 heures : %1$d sur 7. Conseil : calcule ton heure de coucher à partir de ton heure de réveil et respecte-la.</string>
+    <string name="finding_low_deep">Le sommeil profond ne représentait qu’environ %1$d %% de ton sommeil (habituellement %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">Les nuits de moins de 6 heures, il était nettement plus faible : %1$d %% au lieu de %2$d %%.</string>
+    <string name="finding_deep_late">Les nuits où tu t’es couché tard, il était nettement plus faible : %1$d %% au lieu de %2$d %%.</string>
+    <string name="finding_tip_deep">Conseil : pas de caféine à partir de l’après-midi et pas d’écrans dans la dernière heure avant de dormir.</string>
+    <string name="finding_awake">Après t’être endormi, tu étais éveillé environ %1$d %% du temps. Conseil : garde ta chambre sombre, calme et fraîche, et évite l’alcool le soir.</string>
+    <string name="finding_bedtime">Ton heure de coucher a varié jusqu’à %1$s. Conseil : couche-toi chaque jour à peu près à la même heure, week-end compris.</string>
+    <string name="finding_jetlag">Le week-end, ton sommeil était décalé de %1$s par rapport à la semaine. Conseil : garde les mêmes horaires de sommeil le week-end aussi.</string>
+    <string name="weekly_deep">Sommeil profond %1$s de ton sommeil</string>
 </resources>

@@ -636,4 +636,16 @@
     <string name="editor_alarm_gone">Hierdie wekker is intussen uitgevee.</string>
     <string name="test_replaces_nap">Die toetswekker beëindig jou kraguiltjie.</string>
     <string name="settings_clear_history_also">Notas, gevoel, aandroetine-merkies en klankgrepe word ook uitgevee.</string>
+    <string name="finding_title">Opgemerk in jou laaste 7 nagte</string>
+    <string name="finding_hide">Versteek</string>
+    <string name="finding_latency">Gemiddeld het dit jou %1$s geneem om aan die slaap te raak. Wenk: is jy ná 20 minute nog wakker, staan op en gaan eers terug bed toe as jy vaak is. Hou dit weke lank aan, praat met jou dokter.</string>
+    <string name="finding_short_nights">Nagte korter as 6 uur: %1$d uit 7. Wenk: reken jou slaaptyd terug van jou wektyd af en hou daarby.</string>
+    <string name="finding_low_deep">Diep slaap was net sowat %1$d %% van jou slaap (gewoonlik %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">In nagte korter as 6 uur was dit duidelik laer: %1$d %% in plaas van %2$d %%.</string>
+    <string name="finding_deep_late">In nagte wat jy laat gaan slaap het, was dit duidelik laer: %1$d %% in plaas van %2$d %%.</string>
+    <string name="finding_tip_deep">Wenk: geen kafeïen van die middag af nie en geen skerms in die laaste uur voor slaaptyd nie.</string>
+    <string name="finding_awake">Nadat jy aan die slaap geraak het, was jy sowat %1$d %% van die tyd wakker. Wenk: hou jou slaapkamer donker, stil en koel, en los alkohol in die aand.</string>
+    <string name="finding_bedtime">Jou slaaptyd het met tot %1$s gewissel. Wenk: gaan elke dag omtrent dieselfde tyd slaap, ook oor naweke.</string>
+    <string name="finding_jetlag">Oor naweke het jou slaap %1$s verskuif teenoor weeksdae. Wenk: hou dieselfde slaaptye ook oor naweke.</string>
+    <string name="weekly_deep">Diep slaap %1$s van jou slaap</string>
 </resources>

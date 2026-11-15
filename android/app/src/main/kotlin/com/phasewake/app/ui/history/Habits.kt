@@ -67,9 +67,14 @@ fun weeklyText(context: Context, summary: WeeklySummary): String {
 fun weeklyNoteLine(context: Context, summary: WeeklySummary, custom: List<CustomNote>): String? =
     summary.strongestNote?.let { noteEffectLine(context, it, custom) }
 
-/** Karte im Verlauf am Sonntag und Montag: der Rückblick auf die zuletzt abgeschlossene Woche. */
+/** «Tiefschlaf 11 % deines Schlafs · Vorwoche 13 %» (beide Wochen mit mindestens 3 Nächten mit Phasen). */
+fun weeklyDeepLine(context: Context, deep: Pair<Int, Int>): String =
+    context.getString(R.string.weekly_deep, context.getString(R.string.stages_share, deep.first)) + " · " +
+        context.getString(R.string.trends_feeling_change, context.getString(R.string.stages_share, deep.second))
+
+/** Karte im Verlauf am Sonntag und Montag: der Rückblick auf die zuletzt abgeschlossene Woche; [deep] Tiefschlaf-Anteil ([weeklyDeepLine]). */
 @Composable
-fun WeeklyCard(summary: WeeklySummary, custom: List<CustomNote>) {
+fun WeeklyCard(summary: WeeklySummary, custom: List<CustomNote>, deep: Pair<Int, Int>? = null) {
     val context = LocalContext.current
     Card(
         shape = MaterialTheme.shapes.medium,
@@ -79,6 +84,7 @@ fun WeeklyCard(summary: WeeklySummary, custom: List<CustomNote>) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Text(stringResource(R.string.weekly_title), style = MaterialTheme.typography.titleSmall)
             Text(weeklyText(context, summary), style = MaterialTheme.typography.bodyMedium)
+            deep?.let { Text(weeklyDeepLine(context, it), style = MaterialTheme.typography.bodyMedium) }
             weeklyNoteLine(context, summary, custom)?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
         }
     }

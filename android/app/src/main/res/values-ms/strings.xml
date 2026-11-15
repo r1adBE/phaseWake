@@ -619,4 +619,16 @@
     <string name="editor_alarm_gone">Penggera ini telah dipadam sementara itu.</string>
     <string name="test_replaces_nap">Uji penggera menamatkan tidur sekejap anda.</string>
     <string name="settings_clear_history_also">Nota, perasaan, tanda rutin malam dan klip bunyi juga dipadam.</string>
+    <string name="finding_title">Dikesan dalam 7 malam terakhir anda</string>
+    <string name="finding_hide">Sembunyikan</string>
+    <string name="finding_latency">Secara purata anda mengambil %1$s untuk tertidur. Petua: jika masih berjaga selepas 20 minit, bangun dan kembali ke katil hanya apabila mengantuk. Jika ini berlarutan berminggu-minggu, berbincanglah dengan doktor anda.</string>
+    <string name="finding_short_nights">Malam kurang 6 jam: %1$d daripada 7. Petua: kira waktu tidur anda ke belakang dari waktu bangun dan patuhinya.</string>
+    <string name="finding_low_deep">Tidur nyenyak hanya kira-kira %1$d %% daripada tidur anda (biasanya %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">Pada malam kurang 6 jam ia jelas lebih rendah: %1$d %% dan bukannya %2$d %%.</string>
+    <string name="finding_deep_late">Pada malam anda tidur lewat ia jelas lebih rendah: %1$d %% dan bukannya %2$d %%.</string>
+    <string name="finding_tip_deep">Petua: tiada kafein mulai petang dan tiada skrin pada jam terakhir sebelum tidur.</string>
+    <string name="finding_awake">Selepas tertidur anda berjaga kira-kira %1$d %% daripada masa itu. Petua: pastikan bilik tidur gelap, senyap dan sejuk, dan elakkan alkohol pada waktu malam.</string>
+    <string name="finding_bedtime">Waktu tidur anda berubah sehingga %1$s. Petua: tidur pada waktu yang hampir sama setiap hari, termasuk hujung minggu.</string>
+    <string name="finding_jetlag">Pada hujung minggu tidur anda beralih %1$s berbanding hari bekerja. Petua: kekalkan waktu tidur yang sama pada hujung minggu juga.</string>
+    <string name="weekly_deep">Tidur nyenyak %1$s daripada tidur anda</string>
 </resources>

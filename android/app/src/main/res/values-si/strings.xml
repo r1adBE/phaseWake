@@ -636,4 +636,16 @@
     <string name="editor_alarm_gone">මෙම එලාමය මේ අතරතුර මකා දමා ඇත.</string>
     <string name="test_replaces_nap">පරීක්ෂණ එලාමය ඔබේ කෙටි නින්ද අවසන් කරයි.</string>
     <string name="settings_clear_history_also">සටහන්, හැඟීම, සවස් චර්යාවේ ලකුණු සහ ශබ්ද කොටස් ද මැකේ.</string>
+    <string name="finding_title">ඔබේ පසුගිය රාත්‍රී 7 තුළ දුටු දේ</string>
+    <string name="finding_hide">සඟවන්න</string>
+    <string name="finding_latency">නින්දට යාමට ඔබට සාමාන්‍යයෙන් %1$s ගත විය. ඉඟිය: මිනිත්තු 20කට පසුත් අවදිව සිටී නම්, නැඟිට නිදිමත දැනෙන විට පමණක් ඇඳට ආපසු යන්න. මෙය සති ගණනක් පැවතුණහොත් ඔබේ වෛද්‍යවරයා සමඟ කතා කරන්න.</string>
+    <string name="finding_short_nights">පැය 6ට අඩු රාත්‍රී: 7න් %1$d. ඉඟිය: අවදි වන වේලාවේ සිට ආපසු ගණන් කර නින්දට යන වේලාව තීරණය කර එය පිළිපදින්න.</string>
+    <string name="finding_low_deep">ගැඹුරු නින්ද ඔබේ නින්දෙන් ආසන්න වශයෙන් %1$d %% පමණක් විය (සාමාන්‍යයෙන් %2$d–%3$d %%).</string>
+    <string name="finding_deep_short">පැය 6ට අඩු රාත්‍රීවල එය පැහැදිලිවම අඩු විය: %2$d %% වෙනුවට %1$d %%.</string>
+    <string name="finding_deep_late">ඔබ ප්‍රමාද වී නින්දට ගිය රාත්‍රීවල එය පැහැදිලිවම අඩු විය: %2$d %% වෙනුවට %1$d %%.</string>
+    <string name="finding_tip_deep">ඉඟිය: දහවලින් පසු කැෆේන් එපා, නින්දට පෙර අවසාන පැයේ තිර එපා.</string>
+    <string name="finding_awake">නින්දට ගිය පසු ඔබ කාලයෙන් ආසන්න වශයෙන් %1$d %%ක් අවදිව සිටියා. ඉඟිය: නිදන කාමරය අඳුරු, නිහඬ සහ සිසිල්ව තබා, සවස මත්පැන් වළක්වන්න.</string>
+    <string name="finding_bedtime">ඔබේ නින්දට යන වේලාව %1$s දක්වා වෙනස් විය. ඉඟිය: සෑම දිනකම දළ වශයෙන් එකම වේලාවට නින්දට යන්න, සති අන්තයේත්.</string>
+    <string name="finding_jetlag">සති අන්තයේ ඔබේ නින්ද වැඩ කරන දිනවලට සාපේක්ෂව %1$s කින් විතැන් විය. ඉඟිය: සති අන්තයේත් එකම නින්දේ වේලාවන් පවත්වාගන්න.</string>
+    <string name="weekly_deep">ගැඹුරු නින්ද ඔබේ නින්දෙන් %1$s</string>
 </resources>

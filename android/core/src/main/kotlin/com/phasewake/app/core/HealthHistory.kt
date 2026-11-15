@@ -192,8 +192,11 @@ object HealthHistory {
         return kept.sortedBy { it.start }
     }
 
-    /** Die Sitzungen, die als Nacht zählen ([chains]), je Nacht zu einer Sitzung zusammengefasst ([join]). */
-    private fun nights(sessions: List<HealthSession>, clearedAt: Instant?, zone: ZoneId): List<HealthSession> =
+    /**
+     * Die Sitzungen, die als Nacht zählen ([chains]), je Nacht zu einer Sitzung zusammengefasst ([join]): Verlauf und
+     * Auffälligkeiten ([NightFacts.of]). Gleich in Swift (`countedNights`).
+     */
+    fun nights(sessions: List<HealthSession>, clearedAt: Instant?, zone: ZoneId): List<HealthSession> =
         chains(sessions, clearedAt, zone).map(::join)
 
     /**
