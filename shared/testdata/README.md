@@ -23,6 +23,12 @@ Nacht (`DetectorConfig.withOnsetFloor`), zusätzlich zu einem gelernten aus `@fl
 Audit c3b8b01: `light_needs_floor` (E-1, die Leicht-Regel wartet ohne Grundrauschen); `min_floor_epochs_before`/`_after`
 sind dafür neu gerechnet. `hr_rise_exact` (BE-4): Puls genau Basispuls × 1.05 weckt («mindestens»).
 
+Regel S5 (Entscheid r1AD 15.11.2026, eine starke Bewegung ≥ wirksame Wach-Schwelle in den letzten 2 Epochen mit
+Pulsanstieg): `real_window_1` bis `_6` sind echte, ohne Namen aufgezeichnete Weckfenster (Nacht 6 = 15.11.2026, jetzt
+Epoche 49 statt Zielzeit; 1–5 unverändert), `strong_motion_at_wake_threshold`/`_below_wake_threshold` (genau an bzw. knapp
+unter der Schwelle), `strong_motion_no_hr_rise`, `strong_motion_window_two`, `strong_motion_needs_floor` und
+`strong_awake_same_epoch` (Wach hat in derselben Epoche Vorrang). `awake_precedes_light` weckt seither in Epoche 15 sanft.
+
 ## Kalibrierung
 
 `calibration-real.vectors`: 4 echte, ohne Namen aufgezeichnete Fensternächte einer Galaxy Watch, je Zeile eine Nacht

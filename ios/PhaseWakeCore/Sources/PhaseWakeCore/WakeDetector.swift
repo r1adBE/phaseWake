@@ -9,6 +9,9 @@
 public final class WakeDetector {
     private static let currentHeartRateEpochs = 2
 
+    /// Regel S5: Fenster (letzte Epochen inkl. aktueller), in dem eine Bewegung ≥ wirksame Wach-Schwelle genügt.
+    private static let strongWindow = 2
+
     /// Startwerte oder kalibrierte Schwellen; das Grundrauschen (``NoiseFloor``) hebt sie je Epoche höchstens an. Ändert
     /// sich nur über ``useOnsetFloor(_:)``.
     public private(set) var config: DetectorConfig
@@ -54,14 +57,17 @@ public final class WakeDetector {
         // Solange die Messung zu wenige Werte hat, gilt das bekannte (Einschlaf-Messung, sonst gelernt); es begrenzt auch
         // das des Fensters (``NoiseFloor/windowFloor(_:config:)``).
         let floor = NoiseFloor.windowFloor(motions, config: config)
-        if hits(window: config.awakeWindow, threshold: NoiseFloor.wake(config: config, floor: floor)) >= config.awakeHits {
+        let wakeThreshold = NoiseFloor.wake(config: config, floor: floor)
+        if hits(window: config.awakeWindow, threshold: wakeThreshold) >= config.awakeHits {
             return wake(.awake)
         }
         // Leicht-Regel erst mit Grundrauschen (4 Werte oder Vorwert, Audit c3b8b01 E-1): Ohne zählte das Rauschen einer
         // Uhr wie der Galaxy Watch (ruhig 0.02) gegen die Startschwelle 0.002 als Bewegung, und es entschied allein der Puls.
-        if floor != nil,
-           hits(window: config.lightWindow, threshold: NoiseFloor.light(config: config, floor: floor)) >= config.lightHits,
-           heartRateRisen(baseline) {
+        // Regel S5 (Entscheid r1AD 15.11.2026): Statt 2 leichter Bewegungen genügt eine starke (≥ wirksame Wach-Schwelle)
+        // in den letzten `strongWindow` Epochen, mit derselben Pulsbedingung und denselben Sperren.
+        let moved = hits(window: Self.strongWindow, threshold: wakeThreshold) >= 1
+            || hits(window: config.lightWindow, threshold: NoiseFloor.light(config: config, floor: floor)) >= config.lightHits
+        if floor != nil, moved, heartRateRisen(baseline) {
             return wake(.lightSleep)
         }
         return .wait

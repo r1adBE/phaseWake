@@ -1,0 +1,19 @@
+# Echtes Weckfenster (30 Min), ohne Namen aufgezeichnet, Export «phasewake-nights.csv» Nacht 2 (Regel S5, 15.11.2026).
+# Ergebnis mit S5 unverändert.
+@expect 14 AWAKE
+motion,hr
+0.025165,58.2
+0.023715,59.3
+0.022511,59.3
+0.024729,59.8
+0.025521,62.1
+0.024207,60.8
+0.021186,60.5
+0.141291,61.8
+0.021186,59.8
+0.023164,59.7
+0.022474,61.0
+0.023147,61.2
+0.023992,60.9
+0.436541,61.4
+0.170013,70.3

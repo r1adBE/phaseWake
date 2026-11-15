@@ -52,12 +52,17 @@ class WakeDetector(config: DetectorConfig = DetectorConfig()) {
         // Solange die Messung zu wenige Werte hat, gilt das bekannte (Einschlaf-Messung, sonst gelernt); es begrenzt auch
         // das des Fensters ([NoiseFloor.windowFloor]).
         val floor = NoiseFloor.windowFloor(motions, config)
-        if (hits(config.awakeWindow, NoiseFloor.wake(config, floor)) >= config.awakeHits) {
+        val wakeThreshold = NoiseFloor.wake(config, floor)
+        if (hits(config.awakeWindow, wakeThreshold) >= config.awakeHits) {
             return wake(WakeReason.AWAKE)
         }
         // Leicht-Regel erst mit Grundrauschen (4 Werte oder Vorwert, Audit c3b8b01 E-1): Ohne zählte das Rauschen einer
         // Uhr wie der Galaxy Watch (ruhig 0.02) gegen die Startschwelle 0.002 als Bewegung, und es entschied allein der Puls.
-        if (floor != null && hits(config.lightWindow, NoiseFloor.light(config, floor)) >= config.lightHits && heartRateRisen(baseline)) {
+        // Regel S5 (Entscheid r1AD 15.11.2026): Statt 2 leichter Bewegungen genügt eine starke (≥ wirksame Wach-Schwelle)
+        // in den letzten [STRONG_WINDOW] Epochen, mit derselben Pulsbedingung und denselben Sperren.
+        val moved = hits(STRONG_WINDOW, wakeThreshold) >= 1 ||
+            hits(config.lightWindow, NoiseFloor.light(config, floor)) >= config.lightHits
+        if (floor != null && moved && heartRateRisen(baseline)) {
             return wake(WakeReason.LIGHT_SLEEP)
         }
         return Decision.Wait
@@ -135,5 +140,8 @@ class WakeDetector(config: DetectorConfig = DetectorConfig()) {
 
     private companion object {
         const val CURRENT_HEART_RATE_EPOCHS = 2
+
+        /** Regel S5: Fenster (letzte Epochen inkl. aktueller), in dem eine Bewegung ≥ wirksame Wach-Schwelle genügt. */
+        const val STRONG_WINDOW = 2
     }
 }
