@@ -299,10 +299,12 @@ private fun FactorTile(factor: FactorScore, input: ScoreInput, goalMinutes: Int,
     val view = factorView(factor, input, goalMinutes)
     val band = bandName(context, factor.band)
     val spoken = listOfNotNull(view.label + ": " + view.value, view.extra, band).joinToString(". ")
+    val accent = view.stage ?: brand.chartActive
+    val grow = com.phasewake.app.ui.components.rememberReveal(factor)
     Column(
         modifier
             .clip(MaterialTheme.shapes.small)
-            .background(scheme.surfaceContainerHigh)
+            .background(Brush.verticalGradient(listOf(tileTop(accent, scheme.surfaceContainerHigh, PhaseWakeTheme.isDark), scheme.surfaceContainerHigh)))
             .padding(12.dp)
             .clearAndSetSemantics { contentDescription = spoken },
     ) {
@@ -311,15 +313,20 @@ private fun FactorTile(factor: FactorScore, input: ScoreInput, goalMinutes: Int,
             view.stage?.let { color -> Canvas(Modifier.padding(end = 6.dp).size(8.dp)) { drawRoundRect(color, cornerRadius = CornerRadius(2.dp.toPx())) } }
             Text(view.label, style = MaterialTheme.typography.labelMedium, color = scheme.onSurfaceVariant)
         }
-        Text(view.value, style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(top = 2.dp))
+        Text(view.value, style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.ExtraBold), modifier = Modifier.padding(top = 2.dp))
         view.extra?.let { Text(it, style = MaterialTheme.typography.labelSmall, color = scheme.onSurfaceVariant) }
-        // Balken und Bewertung unten bündig, auch neben der höheren Kachel der Schlafdauer.
+        // Balken und Bewertung unten bündig, auch neben der höheren Kachel der Schlafdauer. Wächst beim Erscheinen.
         Spacer(Modifier.weight(1f))
-        Canvas(Modifier.padding(top = 8.dp).fillMaxWidth().height(6.dp)) {
+        Canvas(Modifier.padding(top = 8.dp).fillMaxWidth().height(8.dp)) {
             val corner = CornerRadius(size.height / 2)
             drawRoundRect(brand.chartTrack, cornerRadius = corner)
-            val w = size.width * factor.points / 100f
-            if (w > 0f) drawRoundRect(brand.chartActive, size = Size(w.coerceAtLeast(size.height), size.height), cornerRadius = corner)
+            val w = size.width * factor.points / 100f * grow
+            if (w > 0f) {
+                drawRoundRect(
+                    Brush.horizontalGradient(listOf(brand.stageDeep, brand.chartActive), endX = size.width),
+                    size = Size(w.coerceAtLeast(size.height), size.height), cornerRadius = corner,
+                )
+            }
         }
         Text(band, style = MaterialTheme.typography.labelLarge, modifier = Modifier.padding(top = 6.dp))
     }

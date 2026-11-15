@@ -11,7 +11,8 @@ struct RingView: View {
 
     var body: some View {
         ZStack {
-            NightSky()
+            // Kräftiger Sonnenaufgang (Weckhimmel), wie auf Wear OS und dem Android-Handy.
+            WakeSky()
             // Fortschritt des Haltens zusätzlich als Ring am Rand.
             Circle()
                 .trim(from: 0, to: progress)
@@ -33,10 +34,16 @@ struct RingView: View {
         }
     }
 
+    private var isRinging: Bool {
+        if case .ringing = alarm.phase { return true }
+        return false
+    }
+
     private func column(dot: Bool, reason: Bool) -> some View {
         VStack(spacing: 3) {
             if dot {
-                PulsingDot()
+                // Pulsiert, solange es klingelt (bis zum Stoppen); beim Schlummern ruhend.
+                PulsingDot(pulsing: isRinging)
                     .frame(width: 44, height: 44)
                     .contentShape(Circle())
                     .holdToStop(progress: $progress, holding: $holding) { alarm.dismiss() }

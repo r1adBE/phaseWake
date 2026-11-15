@@ -18,7 +18,7 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                if scheme == .dark { NightSky() }
+                if scheme == .dark { TimelineView(.everyMinute) { c in NightSky(mood: .at(now: c.date, plan: model.nextPlan(now: c.date))) } }
                 ScrollView {
                     VStack(spacing: 16) {
                         TimelineView(.everyMinute) { context in
@@ -175,26 +175,11 @@ struct HomeView: View {
             .padding(.bottom, 26)
             Text(L(greetingKey(now))).font(Fonts.manrope(15, .semibold, relativeTo: .subheadline)).foregroundStyle(Brand.muted)
             if let plan, let alarm = model.alarms.first(where: { $0.id == plan.alarmId }) {
-                Text(Format.window(start: plan.windowStart, target: plan.target, exact: plan.exact))
-                    .font(Fonts.manrope(44, .heavy, relativeTo: .largeTitle))
-                    .minimumScaleFactor(0.6)
-                    .lineLimit(1)
-                let day = Format.day(plan.target, todayKey: "home_next_today", tomorrowKey: "home_next_tomorrow")
-                // «Genau»: bis zur Zielzeit zählen; das Messen davor ist kein Weckfenster und weckt nie früher.
-                let minutes = Int((plan.exact ? plan.target : plan.windowStart).timeIntervalSince(now) / 60)
-                // Zwei Zeilen: wann und welcher – dann wie lange noch (oder: Fenster läuft).
-                Text([day, alarm.label].filter { !$0.isEmpty }.joined(separator: " · "))
-                    .font(Fonts.manrope(14, relativeTo: .subheadline))
-                    .foregroundStyle(Brand.muted)
-                Text(plan.exact ? L("home_next_in_exact", Format.duration(minutes: max(0, minutes)))
-                     : minutes > 0 ? L("home_next_in", Format.duration(minutes: minutes)) : L("home_window_running"))
-                    .font(Fonts.manrope(14, relativeTo: .subheadline))
-                    .foregroundStyle(Brand.muted)
+                // Grosser Countdown-Bogen mit dem Weckfenster darin (wie Android).
+                HeroPlan(plan: plan, alarm: alarm, now: now)
                 if let holiday = skippedHoliday(now: now) {
                     Text(L("home_holiday_skipped", Format.shortDay(holiday))).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.muted)
                 }
-                // «Genau»: ohne hellen Fensterbereich, die Welle endet nur im Weckpunkt.
-                HeroWave(windowFraction: plan.exact ? 0 : 0.32).frame(height: 72).padding(.top, 14)
             } else {
                 Text(L("home_no_alarm_title")).font(Fonts.manrope(28, .bold, relativeTo: .title))
                 Text(L("home_no_alarm_text")).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.muted)
@@ -216,7 +201,7 @@ struct HomeView: View {
         .padding(.bottom, 24)
         .background {
             if scheme != .dark {
-                NightSky().clipShape(UnevenRoundedRectangle(bottomLeadingRadius: 32, bottomTrailingRadius: 32))
+                NightSky(mood: .at(now: now, plan: plan)).clipShape(UnevenRoundedRectangle(bottomLeadingRadius: 32, bottomTrailingRadius: 32))
             }
         }
         .onTapGesture { if let plan { editing = model.alarms.first { $0.id == plan.alarmId } } }
@@ -247,7 +232,8 @@ struct CardBackground: ViewModifier {
         content
             .padding(16)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Brand.card(scheme), in: RoundedRectangle(cornerRadius: Brand.cardRadius))
+            .background(Brand.card(scheme), in: RoundedRectangle(cornerRadius: Brand.cardRadius)).overlay(CardEdge())
+            .shadow(color: scheme == .dark ? .clear : .black.opacity(0.10), radius: 6, y: 2)
             .padding(.horizontal, 16)
     }
 }

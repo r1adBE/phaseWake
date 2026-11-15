@@ -186,24 +186,48 @@ private struct WindowRing: View {
     let now: Double
     let bedtime: Double?
     var exact = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.isLuminanceReduced) private var dimmed
+    /// Einmal beim Erscheinen zeichnet sich das Weckfenster ein (wie Wear OS); keine Dauerbewegung.
+    @State private var drawn: Double = 0
 
     var body: some View {
         let sweep = max(0.01, (end - start + 1).truncatingRemainder(dividingBy: 1))
+        // Countdown von «jetzt» bis zum Weckfenster (wie Wear OS); im Fenster selbst keiner.
+        let lead = (start - now + 1).truncatingRemainder(dividingBy: 1)
         GeometryReader { geo in
             let r = min(geo.size.width, geo.size.height) / 2
             ZStack {
-                Circle().stroke(Brand.track, lineWidth: 5)
+                Circle().stroke(Brand.track, lineWidth: 7)
                 ForEach(0..<4, id: \.self) { k in
                     Capsule()
                         .fill(Brand.muted)
-                        .frame(width: 1.5, height: k == 0 ? 8 : 5)
-                        .offset(y: -(r - 4.5 - (k == 0 ? 4 : 2.5)))
+                        .frame(width: 1.5, height: k == 0 ? 10 : 6)
+                        .offset(y: -(r - 6.5 - (k == 0 ? 5 : 3)))
                         .rotationEffect(.degrees(Double(k) * 90))
                 }
-                if !exact {
+                if !dimmed && lead > 0.003 && lead < 0.997 {
                     Circle()
-                        .trim(from: 0, to: sweep)
-                        .stroke(Brand.wave, style: StrokeStyle(lineWidth: 5, lineCap: .round))
+                        .trim(from: 0, to: lead * drawn)
+                        .stroke(AngularGradient(colors: [Brand.deep, Brand.echo], center: .center, startAngle: .zero, endAngle: .degrees(lead * 360)),
+                                style: StrokeStyle(lineWidth: 4, lineCap: .butt))
+                        .rotationEffect(.degrees(now * 360 - 90))
+                }
+                if !exact {
+                    // Leuchtendes Weckfenster: weicher Schein, darauf der Verlauf vom Lavendel-Schein über Lavendel zum Mondweiss;
+                    // im Always-On flach und gedimmt.
+                    if !dimmed {
+                        Circle()
+                            .trim(from: 0, to: sweep * drawn)
+                            .stroke(Brand.wave.opacity(0.22), style: StrokeStyle(lineWidth: 15, lineCap: .round))
+                            .rotationEffect(.degrees(start * 360 - 90))
+                    }
+                    Circle()
+                        .trim(from: 0, to: sweep * drawn)
+                        .stroke(dimmed ? AnyShapeStyle(Brand.wave.opacity(0.6))
+                                : AnyShapeStyle(AngularGradient(stops: [.init(color: Brand.glow, location: 0), .init(color: Brand.wave, location: 0.7), .init(color: Brand.moon, location: 1)],
+                                                                center: .center, startAngle: .zero, endAngle: .degrees(sweep * 360))),
+                                style: StrokeStyle(lineWidth: 7, lineCap: .round))
                         .rotationEffect(.degrees(start * 360 - 90))
                 }
                 if let bedtime {
@@ -219,16 +243,25 @@ private struct WindowRing: View {
                     .frame(width: 2.5, height: 13)
                     .offset(y: -r)
                     .rotationEffect(.degrees(now * 360))
-                Circle()
-                    .fill(Brand.moon)
-                    .frame(width: 8, height: 8)
-                    .offset(y: -r)
-                    .rotationEffect(.degrees(end * 360))
+                // Weckpunkt mit ruhendem Schein und Ring (im Always-On ohne Schein).
+                ZStack {
+                    if !dimmed {
+                        Circle().fill(RadialGradient(colors: [Brand.wave.opacity(0.6), Brand.wave.opacity(0)], center: .center, startRadius: 0, endRadius: 17))
+                            .frame(width: 34, height: 34)
+                        Circle().stroke(Brand.moon.opacity(0.7), lineWidth: 1.5).frame(width: 14, height: 14)
+                    }
+                    Circle().fill(Brand.moon).frame(width: 9, height: 9)
+                }
+                .offset(y: -r)
+                .rotationEffect(.degrees(end * 360))
             }
             .frame(width: geo.size.width, height: geo.size.height)
         }
-        .padding(4)
+        .padding(6)
         .accessibilityHidden(true)
+        .onAppear {
+            if reduceMotion || dimmed { drawn = 1 } else { withAnimation(.easeOut(duration: 0.7)) { drawn = 1 } }
+        }
     }
 }
 

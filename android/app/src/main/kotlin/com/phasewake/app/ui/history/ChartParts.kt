@@ -2,6 +2,7 @@ package com.phasewake.app.ui.history
 
 import android.provider.Settings
 import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
@@ -29,6 +30,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.clipRect
 import androidx.compose.ui.graphics.drawscope.Stroke
@@ -48,8 +50,8 @@ import java.util.Locale
 
 // Gemeinsame Bausteine der Diagramme im Verlauf: Karte, Einblenden, Beschriftung, Legende und Marken.
 
-/** Kurze Einblendung der Diagramme; mit «Animationen entfernen» und in Bildschirmfotos keine. */
-private const val FADE_MS = 300
+/** Erscheinen der Diagramme (einblenden und von unten wachsen); mit «Animationen entfernen» und in Bildschirmfotos keins. */
+private const val GROW_MS = 700
 
 @Composable
 internal fun ChartCard(
@@ -77,7 +79,10 @@ internal fun ChartCard(
     }
 }
 
-/** Einblenden über kurze Zeit (Modifier.graphicsLayer); sofort sichtbar bei «Animationen entfernen». */
+/**
+ * Erscheinen eines Diagramms (Modifier.graphicsLayer): blendet ein und wächst dabei von unten herauf (Höhe 70 → 100 %,
+ * von der Grundlinie aus); sofort ganz da bei «Animationen entfernen». Einmal, danach ruht es.
+ */
 @Composable
 internal fun Modifier.fadeIn(): Modifier {
     val context = LocalContext.current
@@ -85,9 +90,14 @@ internal fun Modifier.fadeIn(): Modifier {
         Settings.Global.getFloat(context.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f) == 0f
     }
     val still = LocalInspectionMode.current || noAnimations
-    val alpha = remember { Animatable(if (still) 1f else 0f) }
-    LaunchedEffect(Unit) { if (!still) alpha.animateTo(1f, tween(FADE_MS)) }
-    return graphicsLayer { this.alpha = alpha.value }
+    val progress = remember { Animatable(if (still) 1f else 0f) }
+    LaunchedEffect(Unit) { if (!still) progress.animateTo(1f, tween(GROW_MS, easing = FastOutSlowInEasing)) }
+    return graphicsLayer {
+        val p = progress.value
+        alpha = (p * 2f).coerceAtMost(1f)
+        transformOrigin = TransformOrigin(0.5f, 1f)
+        scaleY = 0.7f + 0.3f * p
+    }
 }
 
 /** Nachtdatum als Datum des Morgens (wie die Nächte im Verlauf), z. B. «28. Okt.». */
@@ -212,3 +222,13 @@ internal fun stageColors(): Map<SleepStage, Color> {
         SleepStage.DEEP to brand.stageDeep,
     )
 }
+
+/**
+ * Obere Farbe einer Kennzahl-Kachel (Verlauf nach unten zur Fläche [container]): die Fläche mit einem Hauch der Farbe
+ * [accent], dunkel 18 %, hell 10 %. Nebentext bleibt darauf ≥ 4.5:1 (TileTintTest).
+ */
+internal fun tileTop(accent: Color, container: Color, dark: Boolean): Color =
+    com.phasewake.app.ui.components.mixColor(container, accent, if (dark) TILE_TINT_DARK else TILE_TINT_LIGHT)
+
+internal const val TILE_TINT_DARK = 0.18f
+internal const val TILE_TINT_LIGHT = 0.10f

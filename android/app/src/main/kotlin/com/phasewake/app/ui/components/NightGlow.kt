@@ -4,6 +4,8 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.snap
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
@@ -63,14 +65,36 @@ object Night {
  * Hintergrund wie ein Nachthimmel kurz vor der Dämmerung: Verlauf von Mitternachts-Indigo nach Fast-Schwarz,
  * darüber ein weicher Lichtschein, der langsam wandert ([drift] 0–1).
  */
-fun Modifier.nightGlow(drift: Float = 0f): Modifier = drawBehind { drawNight(drift) }
+fun Modifier.nightGlow(drift: Float = 0f, mood: SkyMood = SkyMood.Plain): Modifier = drawBehind { drawNight(drift, mood) }
 
-private fun DrawScope.drawNight(drift: Float) {
-    drawRect(Brush.verticalGradient(listOf(Night.Top, Night.Bottom)))
+private fun DrawScope.drawNight(drift: Float, mood: SkyMood) {
+    drawRect(Brush.verticalGradient(listOf(mood.top, Night.Bottom)))
+    // Tiefe Nacht: ruhende Sterne im oberen Himmel (keine Bewegung).
+    if (mood.night > 0f) drawStars(mood.night.coerceIn(0f, 1f))
+    // Horizont nach Tageszeit ([SkyMood]): Abendrot oder Morgendämmerung, von unten aufsteigend.
+    val horizon = mood.horizon
+    if (horizon.alpha > 0f) {
+        drawRect(
+            Brush.verticalGradient(
+                SkyMood.HORIZON_START to horizon.copy(alpha = 0f),
+                1f to horizon,
+            ),
+        )
+        // Schein über dem Horizont, wo die Sonne käme; reicht nie über HORIZON_START (wie im Kontrast-Test gerechnet).
+        val sun = mood.sun
+        drawRect(
+            Brush.radialGradient(
+                listOf(sun, sun.copy(alpha = sun.alpha * 0.45f), sun.copy(alpha = 0f)),
+                center = Offset(size.width * 0.5f, size.height),
+                radius = size.height * (1f - SkyMood.HORIZON_START),
+            ),
+        )
+    }
     val glowCenter = Offset(size.width * (0.78f + 0.08f * drift), size.height * (0.08f + 0.06f * drift))
+    val glow = mood.glow
     drawRect(
         Brush.radialGradient(
-            listOf(Night.Glow.copy(alpha = 0.55f), Night.Glow.copy(alpha = 0.12f), Color.Transparent),
+            listOf(glow.copy(alpha = mood.glowAlpha), glow.copy(alpha = 0.12f), Color.Transparent),
             center = glowCenter,
             radius = size.maxDimension * 0.7f,
         ),
@@ -87,14 +111,53 @@ private fun DrawScope.drawNight(drift: Float) {
     )
 }
 
-/** Vollflächiger, langsam lebender Nachthimmel. */
-@Composable
-fun AnimatedNight(modifier: Modifier = Modifier, content: @Composable () -> Unit = {}) {
-    val drift by rememberInfiniteTransition(label = "night").animateFloat(
-        0f, 1f, infiniteRepeatable(tween(9000, easing = FastOutSlowInEasing), RepeatMode.Reverse), label = "drift",
-    )
-    Box(modifier.drawBehind { drawNight(drift) }) { content() }
+/**
+ * Sterne der tiefen Nacht: feste Lage (immer dieselben), klein und gedämpft, nur in der oberen Hälfte; [strength] 0–1
+ * blendet sie mit der Stimmung ein.
+ */
+private fun DrawScope.drawStars(strength: Float) {
+    val unit = 1.dp.toPx()
+    STARS.forEach { (x, y, r) ->
+        val a = (0.35f + 0.45f * r) * strength
+        drawCircle(Night.Moon.copy(alpha = a), radius = (0.6f + 0.9f * r) * unit, center = Offset(size.width * x, size.height * y))
+    }
 }
+
+/** Lage (x, y als Anteil) und Grösse (0–1) der Sterne; aus einem festen Zufallsstrom, damit sie nie springen. */
+private val STARS: List<Triple<Float, Float, Float>> = run {
+    var seed = 0x5EEDL
+    fun next(): Float {
+        seed = (seed * 1103515245L + 12345L) and 0x7FFFFFFFL
+        return seed / 2147483647f
+    }
+    List(STAR_COUNT) { Triple(next(), next() * 0.5f, next()) }
+}
+
+private const val STAR_COUNT = 46
+
+/**
+ * Vollflächiger, langsam lebender Nachthimmel mit der Stimmung [mood]. Mit «Animationen entfernen» ruht der Lichtschein;
+ * die Stimmung wechselt sanft, wenn sie sich ändert (sonst sofort). Die Sterne ruhen immer.
+ */
+@Composable
+fun AnimatedNight(modifier: Modifier = Modifier, mood: SkyMood = SkyMood.Plain, content: @Composable () -> Unit = {}) {
+    val moving = motionAllowed()
+    val dusk by animateFloatAsState(mood.dusk, if (moving) tween(MOOD_MS) else snap(), label = "dusk")
+    val dawn by animateFloatAsState(mood.dawn, if (moving) tween(MOOD_MS) else snap(), label = "dawn")
+    val night by animateFloatAsState(mood.night, if (moving) tween(MOOD_MS) else snap(), label = "night")
+    val shown = SkyMood(dusk, dawn, night)
+    if (moving) {
+        val drift by rememberInfiniteTransition(label = "night").animateFloat(
+            0f, 1f, infiniteRepeatable(tween(9000, easing = FastOutSlowInEasing), RepeatMode.Reverse), label = "drift",
+        )
+        Box(modifier.drawBehind { drawNight(drift, shown) }) { content() }
+    } else {
+        Box(modifier.drawBehind { drawNight(0f, shown) }) { content() }
+    }
+}
+
+/** Übergang zwischen zwei Stimmungen des Himmels. */
+private const val MOOD_MS = 1500
 
 /**
  * Das Logo als Zeichnung: Mondsichel, Welle der Schlafzyklen, Weckpunkt. Ohne Hintergrund. [moon]: Farbe von Mond und

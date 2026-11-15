@@ -72,6 +72,14 @@ enum StageColors {
     static func window(_ scheme: ColorScheme) -> Color { Brand.accent(scheme).opacity(0.12) }
     /// «Üblicher Bereich» hinter den Summen: Nebentext mit 18 %, Rand gestrichelt in `typicalEdge`.
     static func typical(_ scheme: ColorScheme) -> Color { Brand.secondaryText(scheme).opacity(0.18) }
+    /// Plastischer Block (Schlafprofil): dunkel oben um 35 % aufgehellt, hell unten um 25 % vertieft – die Farbe entfernt
+    /// sich nie Richtung Karte und behält ihren Kontrast (wie `drawBlocks` auf Android).
+    static func plasticGradient(_ color: Color, _ scheme: ColorScheme) -> Gradient {
+        scheme == .dark ? Gradient(colors: [color.mix(with: .white, by: 0.35), color]) : Gradient(colors: [color, color.mix(with: .black, by: 0.25)])
+    }
+    static func plastic(_ color: Color, _ scheme: ColorScheme) -> LinearGradient {
+        LinearGradient(gradient: plasticGradient(color, scheme), startPoint: .top, endPoint: .bottom)
+    }
     /// Gestrichelter Rand des üblichen Bereichs.
     static func typicalEdge(_ scheme: ColorScheme) -> Color { Brand.secondaryText(scheme) }
 }
@@ -101,33 +109,6 @@ enum Fonts {
     }
 }
 
-/// Nachthimmel: Verlauf von Mitternachts-Indigo nach Fast-Schwarz, Lavendel-Schein oben rechts, der langsam wandert.
-struct NightSky: View {
-    var strength: Double = 1
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @State private var drift = false
-
-    var body: some View {
-        GeometryReader { geo in
-            ZStack {
-                LinearGradient(colors: [Brand.nightTop.opacity(strength), Brand.nightBottom.opacity(strength), .black.opacity(1 - strength)], startPoint: .top, endPoint: .bottom)
-                RadialGradient(
-                    colors: [Brand.glow.opacity(0.55 * strength), Brand.glow.opacity(0.12 * strength), .clear],
-                    center: UnitPoint(x: drift ? 0.86 : 0.78, y: drift ? 0.14 : 0.08),
-                    startRadius: 0,
-                    endRadius: max(geo.size.width, geo.size.height) * 0.7
-                )
-            }
-        }
-        .ignoresSafeArea()
-        .accessibilityHidden(true)
-        .onAppear {
-            guard !reduceMotion else { return }
-            withAnimation(.easeInOut(duration: 9).repeatForever(autoreverses: true)) { drift = true }
-        }
-    }
-}
-
 /// Das Logo als Zeichnung: Mondsichel, Welle, Weckpunkt (200er Raster wie docs/logo.svg).
 struct LogoMark: View {
     var body: some View {
@@ -151,22 +132,30 @@ struct LogoMark: View {
     }
 }
 
-/// Pulsierende Ringe um den Weckpunkt (Logo-Motiv).
+/// Pulsierende Ringe um den Weckpunkt (Logo-Motiv), für den Weckbildschirm der Apple Watch: pulsiert fortlaufend, solange
+/// `pulsing` (es klingelt, bis zum Stoppen), wie Wear OS; sonst, mit «Bewegung reduzieren» und im Always-On ruhend.
 struct PulsingDot: View {
+    var pulsing = true
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    #if os(watchOS)
+    @Environment(\.isLuminanceReduced) private var dimmed
+    #else
+    private let dimmed = false
+    #endif
 
     var body: some View {
-        TimelineView(.animation(paused: reduceMotion)) { timeline in
+        let still = reduceMotion || dimmed || !pulsing
+        TimelineView(.animation(paused: still)) { timeline in
             Canvas { context, size in
-                let t = timeline.date.timeIntervalSinceReferenceDate.truncatingRemainder(dividingBy: 2) / 2
+                let t = still ? 0.2 : (timeline.date.timeIntervalSinceReferenceDate / 1.8).truncatingRemainder(dividingBy: 1)
                 let base = min(size.width, size.height) / 2
                 let center = CGPoint(x: size.width / 2, y: size.height / 2)
                 for k in 0..<3 {
                     let p = (t + Double(k) / 3).truncatingRemainder(dividingBy: 1)
-                    let r = base * (0.22 + 0.78 * p)
-                    context.stroke(Path(ellipseIn: CGRect(x: center.x - r, y: center.y - r, width: 2 * r, height: 2 * r)), with: .color(Brand.wave.opacity((1 - p) * 0.7)), lineWidth: 2)
+                    let r = base * (0.25 + 0.75 * p)
+                    context.stroke(Path(ellipseIn: CGRect(x: center.x - r, y: center.y - r, width: 2 * r, height: 2 * r)), with: .color(Brand.wave.opacity((1 - p) * 0.75)), lineWidth: 2)
                 }
-                let d = base * 0.2
+                let d = base * 0.22
                 context.fill(Path(ellipseIn: CGRect(x: center.x - d, y: center.y - d, width: 2 * d, height: 2 * d)), with: .color(Brand.moon))
             }
         }

@@ -1,39 +1,76 @@
 import PhaseWakeCore
 import SwiftUI
 
-/// Welle der Schlafzyklen, die im Weckfenster ausläuft und im pulsierenden Weckpunkt endet.
+/// Welle der Schlafzyklen, die im Weckfenster ausläuft und im pulsierenden Weckpunkt endet. Das Weckfenster leuchtet als
+/// weiches Band, die Welle wird zum Weckpunkt hin heller und zeichnet sich beim Erscheinen einmal von links her (wie
+/// Android). Mit «Bewegung reduzieren» ruht sie ganz.
 struct HeroWave: View {
     var windowFraction: Double = 0.32
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var appeared = Date()
 
     var body: some View {
         TimelineView(.animation(paused: reduceMotion)) { timeline in
             Canvas { context, size in
                 let t = timeline.date.timeIntervalSinceReferenceDate
-                let phase = (t / 7).truncatingRemainder(dividingBy: 1) * 2 * .pi
-                let pulse = (t / 2.2).truncatingRemainder(dividingBy: 1)
-                let windowLeft = size.width * (1 - windowFraction)
-                context.fill(Path(roundedRect: CGRect(x: windowLeft, y: 0, width: size.width - windowLeft, height: size.height), cornerRadius: 14), with: .color(.white.opacity(0.08)))
+                let phase = reduceMotion ? 0 : (t / 7).truncatingRemainder(dividingBy: 1) * 2 * .pi
+                let pulse = reduceMotion ? 0.45 : (t / 2.2).truncatingRemainder(dividingBy: 1)
+                let raw = reduceMotion ? 1 : min(1, max(0, timeline.date.timeIntervalSince(appeared) / 1.1))
+                let reveal = 1 - pow(1 - raw, 3)
+                if windowFraction > 0 {
+                    let left = size.width * (1 - windowFraction)
+                    let band = Path(roundedRect: CGRect(x: left, y: 0, width: size.width - left, height: size.height), cornerRadius: 14)
+                    context.fill(band, with: .linearGradient(
+                        Gradient(stops: [.init(color: Brand.beam.opacity(0), location: 0), .init(color: Brand.beam.opacity(0.16 * reveal), location: 0.5), .init(color: Brand.beam.opacity(0.064 * reveal), location: 1)]),
+                        startPoint: CGPoint(x: left, y: 0), endPoint: CGPoint(x: left, y: size.height)))
+                    var edge = Path()
+                    edge.move(to: CGPoint(x: left, y: 0)); edge.addLine(to: CGPoint(x: left, y: size.height))
+                    context.stroke(edge, with: .linearGradient(
+                        Gradient(colors: [Brand.beam.opacity(0), Brand.beam.opacity(0.48 * reveal), Brand.beam.opacity(0)]),
+                        startPoint: CGPoint(x: left, y: 0), endPoint: CGPoint(x: left, y: size.height)), lineWidth: 1)
+                }
                 let dotX = size.width - 14
                 func y(_ i: Int) -> CGFloat {
                     let f = Double(i) / 80
                     return size.height * 0.55 + size.height * 0.32 * (1 - 0.6 * f) * sin(phase + f * 4.6 * .pi)
                 }
+                let shown = min(80, max(1, Int(80 * reveal)))
                 var echo = Path(), wave = Path()
-                for i in 0...80 {
+                for i in 0...shown {
                     let x = dotX * CGFloat(i) / 80
                     if i == 0 { echo.move(to: CGPoint(x: x + 6, y: y(i) + 8)); wave.move(to: CGPoint(x: x, y: y(i))) }
                     else { echo.addLine(to: CGPoint(x: x + 6, y: y(i) + 8)); wave.addLine(to: CGPoint(x: x, y: y(i))) }
                 }
-                context.stroke(echo, with: .color(Brand.waveEcho), style: StrokeStyle(lineWidth: 3.5, lineCap: .round))
-                context.stroke(wave, with: .color(Brand.wave), style: StrokeStyle(lineWidth: 4, lineCap: .round))
+                context.stroke(echo, with: .color(Brand.waveEcho.opacity(0.8)), style: StrokeStyle(lineWidth: 3.5, lineCap: .round))
+                context.stroke(wave, with: .linearGradient(
+                    Gradient(stops: [.init(color: Brand.wave.opacity(0.7), location: 0), .init(color: Brand.wave, location: 0.55), .init(color: Brand.moon, location: 1)]),
+                    startPoint: .zero, endPoint: CGPoint(x: dotX, y: 0)), style: StrokeStyle(lineWidth: 4, lineCap: .round))
+                guard shown == 80 else { return }
                 let dot = CGPoint(x: dotX, y: y(80))
+                context.fill(Path(ellipseIn: CGRect(x: dot.x - 22, y: dot.y - 22, width: 44, height: 44)), with: .radialGradient(
+                    Gradient(colors: [Brand.wave.opacity(0.45), Brand.wave.opacity(0)]), center: dot, startRadius: 0, endRadius: 22))
                 let r = 6 + 12 * pulse
                 context.stroke(Path(ellipseIn: CGRect(x: dot.x - r, y: dot.y - r, width: 2 * r, height: 2 * r)), with: .color(Brand.wave.opacity((1 - pulse) * 0.6)), lineWidth: 1.5)
                 context.fill(Path(ellipseIn: CGRect(x: dot.x - 5, y: dot.y - 5, width: 10, height: 10)), with: .color(Brand.moon))
             }
         }
+        .onAppear { appeared = Date() }
         .accessibilityHidden(true)
+    }
+}
+
+/// Glaskante der Karten wie Android (`cardEdge`): dunkel oben hell mit Lavendel-Schimmer, nach unten auslaufend; hell ein
+/// Hauch Lavendel. Reine Zierde.
+struct CardEdge: View {
+    @Environment(\.colorScheme) private var scheme
+
+    var body: some View {
+        RoundedRectangle(cornerRadius: Brand.cardRadius)
+            .strokeBorder(scheme == .dark
+                          ? AnyShapeStyle(LinearGradient(colors: [.white.opacity(0.30), Brand.wave.opacity(0.10), .white.opacity(0.02)], startPoint: .top, endPoint: .bottom))
+                          : AnyShapeStyle(Brand.glow.opacity(0.10)), lineWidth: 1)
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
     }
 }
 

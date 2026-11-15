@@ -21,8 +21,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.graphics.drawscope.clipRect
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
@@ -40,6 +42,9 @@ import com.phasewake.app.core.ChartData
 import com.phasewake.app.core.SleepStage
 import com.phasewake.app.core.StageBlock
 import com.phasewake.app.ui.Format
+import com.phasewake.app.ui.components.mixColor
+import com.phasewake.app.ui.components.rememberReveal
+import com.phasewake.app.ui.theme.PhaseWakeTheme
 import java.time.Duration
 import java.time.Instant
 import java.time.ZoneId
@@ -118,6 +123,7 @@ internal fun StageHypnogram(
     val density = LocalDensity.current
     val zone = model.zone ?: ZoneId.systemDefault()
     val colors = stageColors()
+    val dark = PhaseWakeTheme.isDark
     val scheme = MaterialTheme.colorScheme
     val measurer = rememberTextMeasurer()
     val label = labelStyle()
@@ -127,6 +133,7 @@ internal fun StageHypnogram(
     val tick = rememberTick()
     val summary = res.getString(R.string.chart_stages_title) + ". " + Format.time(model.from, zone) + " – " + Format.time(model.to, zone)
     var width by remember { mutableFloatStateOf(0f) }
+    val reveal = rememberReveal(model)
     Box(modifier.fillMaxWidth().height(height).onSizeChanged { width = it.width.toFloat() }) {
         Canvas(
             Modifier.fillMaxSize().fadeIn().semantics { contentDescription = summary }.chartTouch(
@@ -144,13 +151,16 @@ internal fun StageHypnogram(
             val plot = size.height - top - AXIS.toPx()
             val lane = plot / stageOrder.size
             fun x(at: Instant) = left + (size.width - left) * model.fraction(at)
-            model.window?.takeUnless { it.exact }?.let { w -> drawRect(scheme.primary.copy(alpha = 0.12f), Offset(x(w.start), top), Size(x(w.target) - x(w.start), plot)) }
+            model.window?.takeUnless { it.exact }?.let { w -> drawWindowBand(scheme.primary, Offset(x(w.start), top), Size(x(w.target) - x(w.start), plot)) }
             names.forEachIndexed { i, text ->
                 val cy = top + lane * (i + 0.5f)
                 drawText(text, topLeft = Offset(0f, cy - text.size.height / 2f))
                 drawLine(scheme.outlineVariant, Offset(left, cy), Offset(size.width, cy), strokeWidth = 1.dp.toPx())
             }
-            drawBlocks(model, colors, Offset(left, top), Size(size.width - left, plot), scheme.outline, 4.dp.toPx())
+            // Phasen zeichnen sich beim Erscheinen einmal von links nach rechts ein.
+            clipRect(right = left + (size.width - left) * reveal) {
+                drawBlocks(model, colors, Offset(left, top), Size(size.width - left, plot), scheme.outline, 6.dp.toPx(), dark)
+            }
             model.window?.let { w ->
                 dashed(scheme.primary, Offset(x(w.target), top), Offset(x(w.target), top + plot))
                 val level = model.blocks.lastOrNull { !w.wokeAt.isBefore(it.start) && w.wokeAt.isBefore(it.end) }?.let { ChartData.level(it.stage) } ?: 0
@@ -173,24 +183,79 @@ internal fun StageHypnogram(
     }
 }
 
-/** Blöcke als gerundete Rechtecke je Zeile, verbunden mit dünnen Stufenlinien, wenn sie aneinanderstossen. */
-internal fun DrawScope.drawBlocks(model: HypnoModel, colors: Map<SleepStage, Color>, origin: Offset, area: Size, connector: Color, corner: Float) {
+/**
+ * Weckfenster als leuchtendes Band: in der Mitte am kräftigsten, oben und unten weich auslaufend, mit feinem Rand am
+ * Beginn des Fensters.
+ */
+internal fun DrawScope.drawWindowBand(color: Color, topLeft: Offset, area: Size) {
+    if (area.width <= 0f) return
+    drawRect(
+        Brush.verticalGradient(
+            0f to color.copy(alpha = 0.05f),
+            0.5f to color.copy(alpha = 0.18f),
+            1f to color.copy(alpha = 0.05f),
+            startY = topLeft.y,
+            endY = topLeft.y + area.height,
+        ),
+        topLeft, area,
+    )
+    drawLine(color.copy(alpha = 0.35f), topLeft, Offset(topLeft.x, topLeft.y + area.height), strokeWidth = 1.dp.toPx())
+}
+
+/**
+ * Blöcke als gerundete, plastische Rechtecke je Zeile: kräftige Phasenfarbe im Verlauf (dunkel oben aufgehellt, hell
+ * unten vertieft – so entfernt sich die Farbe nie Richtung Karte und behält ihren Kontrast), oben eine feine Glanzkante,
+ * darunter ein weicher Schein; dazu ein leiser Farbschleier von jedem Block bis zum Boden. Aneinanderstossende Phasen
+ * verbindet eine Stufenlinie im Verlauf von der einen zur anderen Phasenfarbe.
+ */
+internal fun DrawScope.drawBlocks(
+    model: HypnoModel,
+    colors: Map<SleepStage, Color>,
+    origin: Offset,
+    area: Size,
+    connector: Color,
+    corner: Float,
+    dark: Boolean,
+) {
     val lane = area.height / stageOrder.size
-    val barHeight = lane * 0.72f
+    val barHeight = lane * 0.76f
     fun x(at: Instant) = origin.x + area.width * model.fraction(at)
     var previous: StageBlock? = null
     model.blocks.forEach { block ->
         val level = ChartData.level(block.stage) ?: return@forEach
         val cy = origin.y + lane * (level + 0.5f)
+        val color = colors[block.stage] ?: connector
+        val x0 = x(block.start)
+        val w = (x(block.end) - x0).coerceAtLeast(2.dp.toPx())
+        // Schleier bis zum Boden: Das Profil wirkt wie eine farbige Landschaft.
+        val floor = origin.y + area.height
+        drawRect(
+            Brush.verticalGradient(listOf(color.copy(alpha = 0.22f), color.copy(alpha = 0f)), startY = cy, endY = floor),
+            Offset(x0, cy), Size(w, (floor - cy).coerceAtLeast(0f)),
+        )
         previous?.let { p ->
             val pl = ChartData.level(p.stage)
             if (pl != null && !block.start.isAfter(p.end.plusSeconds(60))) {
-                drawLine(connector, Offset(x(block.start), origin.y + lane * (pl + 0.5f)), Offset(x(block.start), cy), strokeWidth = 1.dp.toPx())
+                val from = Offset(x(block.start), origin.y + lane * (pl + 0.5f))
+                val to = Offset(x(block.start), cy)
+                val fromColor = colors[p.stage] ?: connector
+                drawLine(Brush.linearGradient(listOf(fromColor, color), start = from, end = to), from, to, strokeWidth = 1.5.dp.toPx())
             }
         }
-        val x0 = x(block.start)
-        val w = (x(block.end) - x0).coerceAtLeast(2.dp.toPx())
-        drawRoundRect(colors[block.stage] ?: connector, Offset(x0, cy - barHeight / 2), Size(w, barHeight), CornerRadius(minOf(corner, w / 2)))
+        val halo = 3.dp.toPx()
+        val r = minOf(corner, w / 2)
+        drawRoundRect(
+            color.copy(alpha = 0.22f),
+            Offset(x0 - halo, cy - barHeight / 2 - halo), Size(w + 2 * halo, barHeight + 2 * halo),
+            CornerRadius(r + halo),
+        )
+        val top = cy - barHeight / 2
+        val (upper, lower) = if (dark) mixColor(color, Color.White, 0.35f) to color else color to mixColor(color, Color.Black, 0.25f)
+        drawRoundRect(Brush.verticalGradient(listOf(upper, lower), startY = top, endY = top + barHeight), Offset(x0, top), Size(w, barHeight), CornerRadius(r))
+        // Glanzkante oben (nur wo der Block breit genug ist).
+        if (w > 2 * r + 2.dp.toPx()) {
+            drawLine(Color.White.copy(alpha = if (dark) 0.45f else 0.35f), Offset(x0 + r, top + 1.dp.toPx()), Offset(x0 + w - r, top + 1.dp.toPx()), strokeWidth = 1.dp.toPx())
+        }
         previous = block
     }
 }
@@ -243,15 +308,17 @@ private const val MIN_WEIGHT = 0.0001f
 @Composable
 internal fun MiniHypnogram(model: HypnoModel, modifier: Modifier = Modifier) {
     val colors = stageColors()
+    val dark = PhaseWakeTheme.isDark
+    val reveal = rememberReveal(model)
     val scheme = MaterialTheme.colorScheme
     Canvas(modifier.fillMaxWidth().height(64.dp).clearAndSetSemantics { }) {
         val lane = size.height / stageOrder.size
         for (i in 0..stageOrder.size) drawLine(scheme.outlineVariant, Offset(0f, lane * i), Offset(size.width, lane * i), strokeWidth = 0.5.dp.toPx())
         model.window?.takeUnless { it.exact }?.let { w ->
             val x0 = size.width * model.fraction(w.start)
-            drawRect(scheme.primary.copy(alpha = 0.12f), Offset(x0, 0f), Size(size.width * model.fraction(w.target) - x0, size.height))
+            drawWindowBand(scheme.primary, Offset(x0, 0f), Size(size.width * model.fraction(w.target) - x0, size.height))
         }
-        drawBlocks(model, colors, Offset.Zero, size, scheme.outline, 3.dp.toPx())
+        clipRect(right = size.width * reveal) { drawBlocks(model, colors, Offset.Zero, size, scheme.outline, 4.dp.toPx(), dark) }
         model.window?.let { w -> drawCircle(scheme.primary, 3.5.dp.toPx(), Offset(size.width * model.fraction(w.wokeAt), 3.5.dp.toPx())) }
     }
 }

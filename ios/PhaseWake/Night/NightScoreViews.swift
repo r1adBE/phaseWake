@@ -208,6 +208,9 @@ private struct FactorTile: View {
     let input: ScoreInput
     let goalMinutes: Int
     @Environment(\.colorScheme) private var scheme
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    /// Balken wächst beim Erscheinen einmal (wie Android).
+    @State private var grown = false
 
     private var view: (label: String, value: String, extra: String?, stage: SleepStage?) {
         func share(_ percent: Int?) -> String { L("stages_share", Int64(percent ?? 0)) }
@@ -234,7 +237,7 @@ private struct FactorTile: View {
                 }
                 Text(view.label).font(Fonts.manrope(12, .semibold, relativeTo: .caption)).foregroundStyle(Brand.secondaryText(scheme))
             }
-            Text(view.value).font(Fonts.manrope(17, .bold, relativeTo: .headline))
+            Text(view.value).font(Fonts.manrope(24, .heavy, relativeTo: .title2))
             if let extra = view.extra {
                 Text(extra).font(Fonts.manrope(11, relativeTo: .caption2)).foregroundStyle(Brand.secondaryText(scheme))
             }
@@ -242,17 +245,22 @@ private struct FactorTile: View {
             GeometryReader { geo in
                 ZStack(alignment: .leading) {
                     Capsule().fill(palette.track)
-                    Capsule().fill(palette.active).frame(width: max(6, geo.size.width * Double(factor.points) / 100))
+                    Capsule().fill(LinearGradient(colors: [StageColors.color(.deep, scheme), palette.active], startPoint: .leading, endPoint: .trailing))
+                        .frame(width: max(8, geo.size.width * Double(factor.points) / 100 * (grown ? 1 : 0)))
                         .opacity(factor.points > 0 ? 1 : 0)
                 }
             }
-            .frame(height: 6)
+            .frame(height: 8)
             .padding(.top, 8)
             Text(band).font(Fonts.manrope(13, .semibold, relativeTo: .footnote)).padding(.top, 4)
         }
         .padding(12)
         .frame(maxWidth: .infinity, alignment: .topLeading)
         .background(StageColors.track(scheme).opacity(scheme == .dark ? 0.6 : 0.7), in: RoundedRectangle(cornerRadius: 16))
+        // Hauch der Phasenfarbe oben (dunkel 18 %, hell 10 %, wie Android `tileTop`), nach unten auslaufend.
+        .background(LinearGradient(colors: [(view.stage.map { StageColors.color($0, scheme) } ?? palette.active).opacity(scheme == .dark ? 0.18 : 0.10), .clear],
+                                   startPoint: .top, endPoint: .bottom), in: RoundedRectangle(cornerRadius: 16))
+        .onAppear { if reduceMotion { grown = true } else { withAnimation(.easeOut(duration: 1.1)) { grown = true } } }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(([view.label + ": " + view.value, view.extra, band] as [String?]).compactMap { $0 }.joined(separator: ". "))
     }
