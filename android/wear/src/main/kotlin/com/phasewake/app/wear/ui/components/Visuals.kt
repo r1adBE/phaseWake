@@ -3,11 +3,15 @@ package com.phasewake.app.wear.ui.components
 import android.provider.Settings
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -49,8 +53,8 @@ fun WindowRing(
     // Einmal beim Öffnen: Das Weckfenster zeichnet sich ein. Keine Dauerbewegung (Akku); ohne Bewegung gleich ganz.
     val draw = rememberWatchReveal(startFraction to endFraction)
     Canvas(modifier.clearAndSetSemantics { }) {
-        val stroke = 6.dp.toPx()
-        val inset = stroke / 2 + 2.dp.toPx()
+        val stroke = 8.dp.toPx()
+        val inset = stroke / 2 + 4.dp.toPx()
         val arcSize = Size(size.width - 2 * inset, size.height - 2 * inset)
         val topLeft = Offset(inset, inset)
         val r = arcSize.width / 2
@@ -62,27 +66,51 @@ fun WindowRing(
         // Stundenmarken innen an der Spur; 12 Uhr etwas länger, damit oben erkennbar ist.
         for (k in 0 until 4) {
             val f = k / 4f
-            val length = if (k == 0) stroke * 1.6f else stroke
+            val length = if (k == 0) stroke * 1.4f else stroke * 0.9f
             drawLine(Brand.Muted, at(f, r - stroke * 0.9f), at(f, r - stroke * 0.9f - length), strokeWidth = 1.5.dp.toPx(), cap = StrokeCap.Round)
         }
         val sweep = ((endFraction - startFraction + 1f) % 1f).coerceAtLeast(0.01f) * 360f
         val start = startFraction * 360f - 90f
-        if (showArc) drawGlowArc(start, sweep * draw, topLeft, arcSize, stroke)
+        // Countdown: von «jetzt» bis zum Weckfenster ein ruhiger Lavendel-Verlauf, wie der Bogen auf dem Handy.
+        nowFraction?.let { now ->
+            val lead = ((startFraction - now + 1f) % 1f) * 360f
+            if (lead in 1f..359f) drawLeadArc(now * 360f - 90f, lead * draw, topLeft, arcSize, stroke)
+        }
+        if (showArc) {
+            // Leuchtendes Weckfenster: breiter weicher Schein, darauf der Bogen im Verlauf.
+            drawArc(Brand.Wave.copy(alpha = 0.22f), start, sweep * draw, false, topLeft, arcSize, style = Stroke(stroke * 2.2f, cap = StrokeCap.Round))
+            drawGlowArc(start, sweep * draw, topLeft, arcSize, stroke)
+        }
         // Hohl, damit die Spur durchscheint; Mist hat auf Spur und Nachthimmel über 8 : 1 Kontrast.
         bedtimeFraction?.let { bed ->
-            drawCircle(Brand.Mist, radius = stroke * 0.7f, center = at(bed, r), style = Stroke(1.5.dp.toPx()))
+            drawCircle(Brand.Mist, radius = stroke * 0.6f, center = at(bed, r), style = Stroke(1.5.dp.toPx()))
         }
         nowFraction?.let { now ->
-            drawLine(Brand.Moon, at(now, r - stroke * 1.3f), at(now, r + stroke * 1.3f), strokeWidth = 2.5.dp.toPx(), cap = StrokeCap.Round)
+            drawLine(Brand.Moon, at(now, r - stroke * 1.2f), at(now, r + stroke * 1.2f), strokeWidth = 2.5.dp.toPx(), cap = StrokeCap.Round)
         }
-        // Weckpunkt mit ruhendem Schein (vorher pulsierend; auf der Uhr ohne Dauerbewegung).
+        // Weckpunkt mit ruhendem Schein und Ring (keine Dauerbewegung).
         val dot = at(endFraction, r)
         drawCircle(
-            Brush.radialGradient(listOf(Brand.Wave.copy(alpha = 0.5f), Brand.Wave.copy(alpha = 0f)), center = dot, radius = stroke * 2.2f),
-            radius = stroke * 2.2f,
+            Brush.radialGradient(listOf(Brand.Wave.copy(alpha = 0.6f), Brand.Wave.copy(alpha = 0f)), center = dot, radius = stroke * 2.4f),
+            radius = stroke * 2.4f,
             center = dot,
         )
-        drawCircle(Brand.Moon, radius = stroke * 0.75f, center = dot)
+        drawCircle(Brand.Moon.copy(alpha = 0.7f), radius = stroke * 1.0f, center = dot, style = Stroke(1.5.dp.toPx()))
+        drawCircle(Brand.Moon, radius = stroke * 0.6f, center = dot)
+    }
+}
+
+/** Strecke von «jetzt» bis zum Weckfenster: vom tiefen Violett leise zum Lavendel-Schein, schmaler als das Fenster. */
+private fun DrawScope.drawLeadArc(start: Float, sweep: Float, topLeft: Offset, arcSize: Size, stroke: Float) {
+    if (sweep <= 0f) return
+    val pieces = (sweep / ARC_PIECE_DEGREES).toInt().coerceAtLeast(1)
+    val piece = sweep / pieces
+    for (k in 0 until pieces) {
+        val t = (k + 0.5f) / pieces
+        drawArc(
+            lerp(Brand.Deep, Brand.Echo, t), start + k * piece, piece + if (k < pieces - 1) 0.6f else 0f, false, topLeft, arcSize,
+            style = Stroke(stroke * 0.55f, cap = StrokeCap.Butt),
+        )
     }
 }
 
@@ -96,7 +124,7 @@ private fun DrawScope.drawGlowArc(start: Float, sweep: Float, topLeft: Offset, a
     val piece = sweep / pieces
     for (k in 0 until pieces) {
         val t = (k + 0.5f) / pieces
-        val color = lerp(Brand.Glow, Brand.Wave, t)
+        val color = if (t < 0.7f) lerp(Brand.Glow, Brand.Wave, t / 0.7f) else lerp(Brand.Wave, Brand.Moon, (t - 0.7f) / 0.3f)
         val cap = if (k == 0 || k == pieces - 1) StrokeCap.Round else StrokeCap.Butt
         // Ein Hauch Überlappung, damit keine Fugen zwischen den Stücken sichtbar sind.
         drawArc(color, start + k * piece, piece + if (k < pieces - 1) 0.6f else 0f, false, topLeft, arcSize, style = Stroke(stroke, cap = cap))
@@ -133,34 +161,35 @@ private const val WAVE_PHASE = 0.6f
 
 /**
  * Ringe um den Weckpunkt (Logo-Motiv), für den Weckbildschirm. [color]/[dot]: hell auf Sonnenaufgang anpassbar. Pulsiert
- * nur ein paar Mal beim Erscheinen und ruht dann (Akku, keine Dauerbewegung); ohne Bewegung gleich ruhend.
+ * fortlaufend, solange [pulsing] (es klingelt, bis zum Stoppen); sonst und ohne Bewegung ruhend. Sonst keine
+ * Dauerbewegung auf der Uhr.
  */
 @Composable
-fun PulsingDot(modifier: Modifier = Modifier, color: Color = Brand.Wave, dot: Color = Brand.Moon) {
-    val allowed = watchMotionAllowed()
-    val pulse = remember { Animatable(if (allowed) 0f else PULSES) }
-    LaunchedEffect(allowed) {
-        if (allowed) pulse.animateTo(PULSES, tween((PULSE_MS * PULSES).toInt(), easing = LinearEasing)) else pulse.snapTo(PULSES)
+fun PulsingDot(modifier: Modifier = Modifier, pulsing: Boolean = true, color: Color = Brand.Wave, dot: Color = Brand.Moon) {
+    val t = if (pulsing && watchMotionAllowed()) {
+        val v by rememberInfiniteTransition(label = "pulse").animateFloat(
+            0f, 1f, infiniteRepeatable(tween(PULSE_MS, easing = LinearEasing)), label = "t",
+        )
+        v
+    } else {
+        STILL_PULSE
     }
-    // Ruhend: Stand eines Pulses, bei dem die drei Ringe gleichmässig verteilt stehen.
-    val t = if (pulse.value >= PULSES) STILL_PULSE else pulse.value % 1f
     Canvas(modifier.clearAndSetSemantics { }) {
         val base = size.minDimension / 2
         for (k in 0 until 3) {
             val p = (t + k / 3f) % 1f
             drawCircle(
-                color.copy(alpha = (1f - p) * 0.7f),
+                color.copy(alpha = (1f - p) * 0.75f),
                 radius = base * (0.25f + 0.75f * p),
-                style = Stroke(1.5.dp.toPx()),
+                style = Stroke(2.dp.toPx()),
             )
         }
         drawCircle(dot, radius = base * 0.22f)
     }
 }
 
-/** Anzahl Pulse beim Erscheinen und Dauer eines Pulses. */
-private const val PULSES = 3f
-private const val PULSE_MS = 1800f
+/** Dauer eines Pulses. */
+private const val PULSE_MS = 1800
 
 /** Ruhestand der Ringe. */
 private const val STILL_PULSE = 0.2f

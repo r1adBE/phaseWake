@@ -88,6 +88,7 @@ private fun NightRow(night: LearnNights.Night, goodNight: Boolean) {
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = cardColor()),
         border = cardEdge(),
+        elevation = cardLift(),
         modifier = Modifier.fillMaxWidth(),
     ) {
         Row(

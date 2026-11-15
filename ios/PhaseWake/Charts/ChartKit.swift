@@ -41,7 +41,8 @@ func clock(_ minutesFromNoon: Int) -> String {
 }
 
 extension View {
-    /// Kurz einblenden; mit «Bewegung reduzieren» sofort sichtbar.
+    /// Erscheinen wie Android: einblenden und von der Grundlinie her wachsen (70 → 100 %); mit «Bewegung reduzieren»
+    /// sofort ganz da. Einmal, danach ruht es.
     func chartFadeIn() -> some View { modifier(ChartFadeIn()) }
 }
 
@@ -52,8 +53,9 @@ struct ChartFadeIn: ViewModifier {
     func body(content: Content) -> some View {
         content
             .opacity(shown ? 1 : 0)
+            .scaleEffect(x: 1, y: shown ? 1 : 0.7, anchor: .bottom)
             .onAppear {
-                if reduceMotion { shown = true } else { withAnimation(.easeOut(duration: 0.3)) { shown = true } }
+                if reduceMotion { shown = true } else { withAnimation(.easeOut(duration: 0.7)) { shown = true } }
             }
     }
 }

@@ -79,6 +79,7 @@ internal fun LastNightCard(
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = cardColor()),
         border = cardEdge(),
+        elevation = cardLift(),
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         Column(Modifier.padding(16.dp)) {
@@ -162,6 +163,7 @@ internal fun SoundsEntry(playing: SleepSoundService.Playing?, now: Instant, onCl
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = cardColor()),
         border = cardEdge(),
+        elevation = cardLift(),
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         Row(Modifier.clickable(onClick = onClick).padding(horizontal = 18.dp, vertical = 14.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -213,6 +215,7 @@ internal fun AlarmRow(
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = cardColor()),
         border = cardEdge(),
+        elevation = cardLift(),
         modifier = modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         Row(

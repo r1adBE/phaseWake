@@ -7,6 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Row
@@ -56,10 +57,9 @@ import com.phasewake.app.core.MathChallenge
 import com.phasewake.app.core.WakeTask
 import com.phasewake.app.phoneApp
 import com.phasewake.app.ui.Format
-import com.phasewake.app.ui.components.AnimatedNight
 import com.phasewake.app.ui.components.Night as NightColors
 import com.phasewake.app.ui.components.PulsingDot
-import com.phasewake.app.ui.components.SkyMood
+import com.phasewake.app.ui.components.wakeSky
 import com.phasewake.app.ui.components.SunriseBackground
 import com.phasewake.app.ui.components.SunriseSky
 import com.phasewake.app.ui.theme.PhaseWakeTheme
@@ -189,9 +189,10 @@ internal fun RingScreen(
             now = clock()
         }
     }
-    // Ohne Sonnenaufgang: Nachthimmel mit Morgendämmerung am Horizont. Mit Sonnenaufgang: Licht statt Nachthimmel; jeder Text nimmt die Schrift, die an seiner Stelle lesbar ist.
+    // Ohne Sonnenaufgang: kräftiger, ruhender Weckhimmel (WakeSky). Mit Sonnenaufgang: Licht statt Nachthimmel; jeder Text
+    // nimmt die Schrift, die an seiner Stelle lesbar ist.
     val background: @Composable (@Composable () -> Unit) -> Unit = { inner ->
-        if (light != null) SunriseBackground(light, Modifier.fillMaxSize(), inner) else AnimatedNight(Modifier.fillMaxSize(), SkyMood.Wake) { inner() }
+        if (light != null) SunriseBackground(light, Modifier.fillMaxSize(), inner) else Box(Modifier.fillMaxSize().wakeSky()) { inner() }
     }
     val task = when (state) {
         is PhoneRingService.State.Ringing -> state.wakeTask

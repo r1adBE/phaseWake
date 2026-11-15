@@ -151,10 +151,14 @@ struct StageChart: View {
     private func stepMarks(_ i: Int) -> some ChartContent {
         let step = timeline.steps[i]
         let name = stageName(step.stage)
+        let color = StageColors.color(step.stage, scheme)
+        // Plastisch wie Android: Verlauf (dunkel oben aufgehellt, hell unten vertieft), weicher Schein in der Phasenfarbe.
         RectangleMark(xStart: .value("from", step.fromMinute), xEnd: .value("to", max(step.toMinute, step.fromMinute + 0.5)),
-                      y: .value("stage", name), height: .ratio(0.72))
-            .foregroundStyle(StageColors.color(step.stage, scheme).opacity(selectedIndex == nil || selectedIndex == i ? 1 : 0.55))
-            .cornerRadius(4)
+                      y: .value("stage", name), height: .ratio(0.76))
+            .foregroundStyle(StageColors.plastic(color, scheme))
+            .opacity(selectedIndex == nil || selectedIndex == i ? 1 : 0.55)
+            .cornerRadius(6)
+            .shadow(color: color.opacity(0.45), radius: 4)
             .accessibilityLabel(Text(verbatim: L("hypno_block", name, Format.time(timeline.time(step.fromMinute), in: timeline.timeZone), Format.time(timeline.time(step.toMinute), in: timeline.timeZone))))
         if i + 1 < timeline.steps.count, abs(timeline.steps[i + 1].fromMinute - step.toMinute) < 1 {
             RuleMark(x: .value("at", step.toMinute), yStart: .value("stage", name), yEnd: .value("stage", stageName(timeline.steps[i + 1].stage)))

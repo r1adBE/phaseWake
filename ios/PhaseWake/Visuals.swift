@@ -59,18 +59,18 @@ struct HeroWave: View {
     }
 }
 
-/// Feine Glaskante der Karten auf dem Nachthimmel (dunkel): oben heller, nach unten auslaufend, wie Android
-/// (`cardEdge`). Hell keine. Reine Zierde.
+/// Glaskante der Karten wie Android (`cardEdge`): dunkel oben hell mit Lavendel-Schimmer, nach unten auslaufend; hell ein
+/// Hauch Lavendel. Reine Zierde.
 struct CardEdge: View {
     @Environment(\.colorScheme) private var scheme
 
     var body: some View {
-        if scheme == .dark {
-            RoundedRectangle(cornerRadius: Brand.cardRadius)
-                .strokeBorder(LinearGradient(colors: [.white.opacity(0.16), .white.opacity(0.03)], startPoint: .top, endPoint: .bottom), lineWidth: 1)
-                .allowsHitTesting(false)
-                .accessibilityHidden(true)
-        }
+        RoundedRectangle(cornerRadius: Brand.cardRadius)
+            .strokeBorder(scheme == .dark
+                          ? AnyShapeStyle(LinearGradient(colors: [.white.opacity(0.30), Brand.wave.opacity(0.10), .white.opacity(0.02)], startPoint: .top, endPoint: .bottom))
+                          : AnyShapeStyle(Brand.glow.opacity(0.10)), lineWidth: 1)
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
     }
 }
 

@@ -6,6 +6,8 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -47,6 +49,8 @@ import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import com.phasewake.app.R
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.WakePlan
@@ -112,30 +116,40 @@ internal fun Header(
                     Text(stringResource(greeting(now, zone)), style = MaterialTheme.typography.titleMedium, color = Night.Muted)
                     if (plan != null && alarm != null) {
                         val dayText = dayLabel(plan.target, now, zone)
-                        HeroTime(plan, zone)
-                        // Zwei Zeilen statt eines Umbruchs mitten im Satz: wann und welcher – dann wie lange noch.
-                        Text(
-                            listOf(dayText, alarm.label).filter { it.isNotBlank() }.joinToString(" · "),
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = Night.Muted,
-                        )
-                        // «Genau»: kein «Weckt im leichten Schlaf» und kein «Weckfenster läuft»; die Zeile oben sagt schon alles.
-                        if (!plan.exact) {
-                            Text(
-                                if (now.isBefore(plan.windowStart)) {
-                                    stringResource(R.string.home_next_in, Format.duration(context, Duration.between(now, plan.windowStart)))
-                                } else {
-                                    stringResource(R.string.home_window_running)
-                                },
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = Night.Muted,
-                            )
+                        // Grosser Countdown-Bogen; darin das Weckfenster gross, darunter wann und welcher, dann wie lange noch.
+                        BoxWithConstraints(Modifier.fillMaxWidth().padding(top = 6.dp)) {
+                            WakeArc(now, plan.windowStart, plan.target, plan.exact, Modifier.fillMaxWidth().aspectRatio(ARC_ASPECT))
+                            Column(
+                                Modifier.fillMaxWidth().padding(horizontal = maxWidth * ARC_TEXT_SIDE, vertical = 0.dp).padding(top = maxWidth * ARC_TEXT_TOP),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                            ) {
+                                HeroTime(plan, zone)
+                                Text(
+                                    listOf(dayText, alarm.label).filter { it.isNotBlank() }.joinToString(" · "),
+                                    style = MaterialTheme.typography.titleMedium,
+                                    color = Night.Text,
+                                    textAlign = TextAlign.Center,
+                                )
+                                // «Genau»: kein «Weckt im leichten Schlaf» und kein «Weckfenster läuft»; die Zeile oben sagt schon alles.
+                                if (!plan.exact) {
+                                    Text(
+                                        if (now.isBefore(plan.windowStart)) {
+                                            stringResource(R.string.home_next_in, Format.duration(context, Duration.between(now, plan.windowStart)))
+                                        } else {
+                                            stringResource(R.string.home_window_running)
+                                        },
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        color = Night.Muted,
+                                        textAlign = TextAlign.Center,
+                                        modifier = Modifier.padding(top = 2.dp),
+                                    )
+                                }
+                            }
                         }
                         autoOnset?.let {
                             Text(stringResource(R.string.home_auto_onset, it), style = MaterialTheme.typography.bodySmall, color = Night.Muted)
                         }
                         holidayNote?.let { HolidayNote(it) }
-                        HeroWave(Modifier.fillMaxWidth().height(76.dp).padding(top = 18.dp), windowFraction = 0.32f, onNight = true)
                     } else {
                         Text(
                             stringResource(R.string.home_no_alarm_title),
@@ -163,6 +177,10 @@ internal fun Header(
     }
 }
 
+/** Abstand der Texte im Bogen: oben und seitlich als Anteil der Breite (innerhalb der Bogenlinie). */
+private const val ARC_TEXT_TOP = 0.25f
+private const val ARC_TEXT_SIDE = 0.11f
+
 /**
  * Das Weckfenster gross in einer Zeile (Gestaltung 1, Audit N-2): AM/PM klein hinter der Zeit, und reicht die Breite
  * nicht (lange Sprachen, Arabisch, grosse Schrift), wird die Schrift schrittweise kleiner statt umzubrechen.
@@ -178,7 +196,8 @@ private fun HeroTime(plan: WakePlan, zone: ZoneId) {
         val start = Format.timeWithPeriod(plan.windowStart, zone)
         heroText(start.first + " – " + target.first, listOf(start, target), 0)
     }
-    val style = if (plan.exact) MaterialTheme.typography.displaySmall else MaterialTheme.typography.displayMedium
+    val style = (if (plan.exact) MaterialTheme.typography.displayMedium else MaterialTheme.typography.displayLarge)
+        .copy(fontWeight = FontWeight.ExtraBold, textAlign = TextAlign.Center)
     BasicText(
         text,
         style = style.copy(color = Night.Text),

@@ -40,6 +40,8 @@ fun RoutineCard(items: List<RoutineItem>, done: List<String>, containerColor: Co
     Card(
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = containerColor),
+        border = cardEdge(),
+        elevation = cardLift(),
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         Column(Modifier.padding(vertical = 12.dp)) {

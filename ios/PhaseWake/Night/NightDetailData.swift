@@ -81,7 +81,7 @@ struct NightMetricTiles: View {
     }
 }
 
-/// Eine Kachel: Symbol und Titel klein, Wert gross.
+/// Eine Kachel: Symbol und Titel klein, Wert gross (wie Android).
 private struct MetricTile: View {
     let title: String
     let value: String
@@ -93,11 +93,14 @@ private struct MetricTile: View {
             Label(title, systemImage: symbol)
                 .font(Fonts.manrope(12, .semibold, relativeTo: .caption))
                 .foregroundStyle(Brand.secondaryText(scheme))
-            Text(value).font(Fonts.manrope(20, .bold, relativeTo: .title3))
+            Text(value).font(Fonts.manrope(28, .heavy, relativeTo: .title))
         }
-        .padding(14)
+        .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(StageColors.track(scheme).opacity(scheme == .dark ? 0.6 : 0.7), in: RoundedRectangle(cornerRadius: 16))
+        // Hauch der Hauptfarbe oben (dunkel 18 %, hell 10 %, wie Android `tileTop`).
+        .background(LinearGradient(colors: [Brand.accent(scheme).opacity(scheme == .dark ? 0.18 : 0.10), .clear], startPoint: .top, endPoint: .bottom),
+                    in: RoundedRectangle(cornerRadius: 16))
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(title)
         .accessibilityValue(value)

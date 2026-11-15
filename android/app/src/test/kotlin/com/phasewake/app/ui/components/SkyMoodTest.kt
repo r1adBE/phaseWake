@@ -9,8 +9,9 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 /**
- * Stimmung des Nachthimmels: Abendrot und Morgendämmerung färben nur den Horizont und lassen Schrift auf dem Himmel und
- * auf den durchscheinenden Karten (Weiss 6 %) überall ≥ 4.5:1, auch der leiseren Stufe (Muted mit 80 %).
+ * Stimmung des Nachthimmels: Abendrot, Morgendämmerung und tiefe Nacht lassen Schrift auf dem Himmel und auf den
+ * durchscheinenden Karten (Weiss 6 %) überall ≥ 4.5:1, auch der leiseren Stufe (Muted mit 80 %); im Lichtschein oben
+ * rechts Text und Nebentext.
  */
 class SkyMoodTest {
 
@@ -21,7 +22,7 @@ class SkyMoodTest {
     @Test
     fun textStaysReadableInEveryMood() {
         val moods = buildList {
-            for (d in 0..10) for (w in 0..10) add(SkyMood(dusk = d / 10f, dawn = w / 10f))
+            for (d in 0..10) for (w in 0..10) for (n in 0..2) add(SkyMood(dusk = d / 10f, dawn = w / 10f, night = n / 2f))
         }
         val inks = listOf(Night.Text, Night.Muted)
         for (mood in moods) for (step in 0..20) {
@@ -37,6 +38,19 @@ class SkyMoodTest {
                 assertTrue(ratio >= SunriseSky.MIN_CONTRAST, "leise $mood y=$step: $ratio:1")
             }
         }
+        for (mood in moods) for (ink in inks) {
+            val ratio = SunriseSky.contrast(ink, mood.glowCenter())
+            assertTrue(ratio >= SunriseSky.MIN_CONTRAST, "Schein $mood: $ratio:1")
+        }
+    }
+
+    @Test
+    fun starsOnlyInTheDeepNight() {
+        val tomorrow = at(6, 30).plusSeconds(24 * 3600L)
+        assertEquals(1f, SkyMood.at(at(23, 30), zone, tomorrow, tomorrow.plusSeconds(1800)).night)
+        assertEquals(0f, SkyMood.at(at(14, 0), zone, tomorrow, tomorrow.plusSeconds(1800)).night)
+        // Kurz vor dem Weckfenster weicht die Nacht der Dämmerung.
+        assertEquals(0f, SkyMood.at(at(6, 45), zone, at(6, 30), at(7, 0)).night)
     }
 
     @Test

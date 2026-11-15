@@ -82,6 +82,7 @@ internal fun LearningCard(learning: HomeLearning, record: RecordSync.RecordStatu
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = cardColor()),
         border = cardEdge(),
+        elevation = cardLift(),
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         Column(Modifier.fillMaxWidth().padding(horizontal = 18.dp, vertical = 14.dp)) {
@@ -203,6 +204,7 @@ internal fun BedtimeAdviceCard(from: Instant, until: Instant) {
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = cardColor()),
         border = cardEdge(),
+        elevation = cardLift(),
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         Row(Modifier.fillMaxWidth().padding(horizontal = 18.dp, vertical = 14.dp), verticalAlignment = Alignment.CenterVertically) {

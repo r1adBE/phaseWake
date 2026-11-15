@@ -15,6 +15,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -53,6 +54,7 @@ import com.phasewake.app.ui.Format
 import androidx.compose.ui.platform.LocalConfiguration
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.ui.components.AnimatedNight
+import com.phasewake.app.ui.components.Night
 import com.phasewake.app.ui.components.SkyMood
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import java.time.Duration
@@ -300,15 +302,19 @@ internal val FAB_CLEARANCE: Dp = 88.dp
 internal fun cardColor(): Color = PhaseWakeTheme.brand.card
 
 /**
- * Rand der Karten: auf dem Nachthimmel eine feine Glaskante (oben heller, nach unten auslaufend) für etwas Tiefe; hell
- * keiner. Reine Zierde, kein Bedienrand (die Fläche selbst trägt keine Information).
+ * Rand der Karten: auf dem Nachthimmel eine Glaskante (oben hell mit Lavendel-Schimmer, nach unten auslaufend) für Tiefe;
+ * hell ein Hauch Lavendel als Kante. Reine Zierde, kein Bedienrand (die Fläche selbst trägt keine Information).
  */
 @Composable
 internal fun cardEdge(): BorderStroke? = if (PhaseWakeTheme.isDark) {
-    BorderStroke(1.dp, Brush.verticalGradient(listOf(Color.White.copy(alpha = 0.16f), Color.White.copy(alpha = 0.03f))))
+    BorderStroke(1.dp, Brush.verticalGradient(listOf(Color.White.copy(alpha = 0.30f), Night.Wave.copy(alpha = 0.10f), Color.White.copy(alpha = 0.02f))))
 } else {
-    null
+    BorderStroke(1.dp, Night.Glow.copy(alpha = 0.10f))
 }
+
+/** Tiefe der Karten: hell ein weicher Schatten, dunkel keiner (die Glaskante trägt die Tiefe). */
+@Composable
+internal fun cardLift(): CardElevation = CardDefaults.cardElevation(defaultElevation = if (PhaseWakeTheme.isDark) 0.dp else 3.dp)
 
 /** Schalter «Geräusche aufnehmen» für diese Nacht. */
 data class SoundRecState(val enabled: Boolean, val recording: Boolean, val permissionDenied: Boolean)
@@ -342,6 +348,7 @@ private fun SoundsMorningCard(clips: List<SoundClip>, soundFile: (SoundClip) -> 
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = cardColor()),
         border = cardEdge(),
+        elevation = cardLift(),
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         Column(Modifier.padding(16.dp)) {

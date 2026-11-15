@@ -72,7 +72,7 @@ import com.phasewake.app.wear.ui.components.SunriseSky
 import com.phasewake.app.wear.ui.components.sunriseSky
 import com.phasewake.app.wear.ui.theme.Brand
 import com.phasewake.app.wear.ui.theme.PhaseWakeTheme
-import com.phasewake.app.wear.ui.theme.nightGlow
+import com.phasewake.app.wear.ui.theme.wakeSky
 import com.phasewake.app.wear.wake.RingUi
 import com.phasewake.app.wear.wake.StartRefused
 import com.phasewake.app.wear.wake.WakeService
@@ -235,7 +235,7 @@ private fun RingContent(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit,
     val holdMillis = if (taskOnPhone) EMERGENCY_HOLD_MILLIS else HOLD_MILLIS
     val holdLabel = stringResource(if (taskOnPhone) R.string.wake_task_on_phone else R.string.ring_hold_to_stop)
     // Mit Sonnenaufgang: Licht statt Nachthimmel, jeder Text mit der Schrift, die an seiner Stelle lesbar ist.
-    val background = if (light != null) Modifier.sunriseSky(light) else Modifier.nightGlow(dawn = 1f)
+    val background = if (light != null) Modifier.sunriseSky(light) else Modifier.wakeSky()
     val sidePadding = if (compact) 12 else 18
     // Mit Aufgabe am Handy braucht der Hinweis «… oder 5 s halten» den Platz: kein Grund (Audit UI-4).
     val reason = (ui as? RingUi.Ringing)?.takeIf { !taskOnPhone }?.let { stringResource(ringReasonRes(it.reason)) }.orEmpty()
@@ -296,7 +296,9 @@ private fun RingContent(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit,
             ),
         ) {
             val (dotInk, dotPlace) = rememberSkyInk(light, NIGHT_INK, plaque = false)
+            // Pulsiert, solange es klingelt (bis zum Stoppen oder Schlummern); beim Schlummern ruhend.
             PulsingDot(
+                pulsing = ui is RingUi.Ringing,
                 color = if (light != null) dotInk.content.copy(alpha = 0.6f) else Brand.Wave,
                 dot = dotInk.content,
                 modifier = Modifier

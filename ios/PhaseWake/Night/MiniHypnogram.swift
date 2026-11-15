@@ -42,8 +42,10 @@ struct MiniHypnogram: View {
                                                                endPoint: CGPoint(x: x0, y: rowY(level) + rowHeight / 2)), lineWidth: 1)
                 }
                 // Weicher Schein in der Phasenfarbe hinter dem Block.
-                context.fill(Path(roundedRect: rect.insetBy(dx: -2, dy: -2), cornerRadius: min(3, w / 2) + 2), with: .color(color.opacity(0.18)))
-                context.fill(Path(roundedRect: rect, cornerRadius: min(3, w / 2)), with: .color(color))
+                context.fill(Path(roundedRect: rect.insetBy(dx: -2.5, dy: -2.5), cornerRadius: min(4, w / 2) + 2.5), with: .color(color.opacity(0.22)))
+                // Plastisch wie Android: Verlauf in der Phasenfarbe.
+                context.fill(Path(roundedRect: rect, cornerRadius: min(4, w / 2)), with: .linearGradient(
+                    StageColors.plasticGradient(color, scheme), startPoint: CGPoint(x: rect.midX, y: rect.minY), endPoint: CGPoint(x: rect.midX, y: rect.maxY)))
                 previous = (size.width * step.toMinute / total, level, color)
             }
             if let wokeAt {

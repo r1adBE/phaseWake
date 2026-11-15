@@ -50,6 +50,7 @@ internal fun NapCard(running: TransientPlan?, minutes: Int, onStart: (Int) -> Un
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = cardColor()),
         border = cardEdge(),
+        elevation = cardLift(),
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         val open = expanded && running == null

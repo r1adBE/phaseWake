@@ -271,6 +271,8 @@ internal fun NightCheckCard(
         colors = CardDefaults.cardColors(
             containerColor = if (ready) containerColor else MaterialTheme.colorScheme.errorContainer,
         ),
+        border = cardEdge(),
+        elevation = cardLift(),
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {

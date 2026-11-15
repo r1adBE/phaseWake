@@ -90,10 +90,9 @@ fun PhaseWakeTheme(content: @Composable () -> Unit) {
 
 /**
  * Nachthimmel wie auf dem Handy: Mitternachts-Indigo mit Lavendel-Schein oben rechts. [strength] 0–1: auf dem
- * Startbildschirm schwach (OLED-schonend, Rand bleibt schwarz), beim Wecken voll. [dawn] 0–1: Morgendämmerung am
- * unteren Rand (Weckbildschirm), gleich wie auf dem Handy und der Apple Watch; ruhend, ohne Bewegung.
+ * Startbildschirm schwach (OLED-schonend, Rand bleibt schwarz), beim Wecken voll. Ruhend, ohne Bewegung.
  */
-fun androidx.compose.ui.Modifier.nightGlow(strength: Float = 1f, dawn: Float = 0f): androidx.compose.ui.Modifier =
+fun androidx.compose.ui.Modifier.nightGlow(strength: Float = 1f): androidx.compose.ui.Modifier =
     this.then(
         androidx.compose.ui.Modifier.drawBehind {
             drawRect(
@@ -101,15 +100,6 @@ fun androidx.compose.ui.Modifier.nightGlow(strength: Float = 1f, dawn: Float = 0
                     listOf(Brand.Night.copy(alpha = strength), Brand.NightBottom.copy(alpha = strength), Color.Black),
                 ),
             )
-            if (dawn > 0f) {
-                val horizon = Dawn.Color.copy(alpha = Dawn.MAX_ALPHA * dawn.coerceIn(0f, 1f))
-                drawRect(
-                    androidx.compose.ui.graphics.Brush.verticalGradient(
-                        Dawn.START to horizon.copy(alpha = 0f),
-                        1f to horizon,
-                    ),
-                )
-            }
             drawRect(
                 androidx.compose.ui.graphics.Brush.radialGradient(
                     listOf(Brand.Glow.copy(alpha = 0.5f * strength), Color.Transparent),
@@ -120,13 +110,46 @@ fun androidx.compose.ui.Modifier.nightGlow(strength: Float = 1f, dawn: Float = 0
         },
     )
 
-/** Morgendämmerung am unteren Rand des Weckbildschirms: Farbe und Stärke wie `SkyMood.Dawn` auf dem Handy. */
-internal object Dawn {
-    val Color = androidx.compose.ui.graphics.Color(0xFFC86A5A)
+/**
+ * Himmel des Weckbildschirms ohne Sonnenaufgangslicht, gleich wie `WakeSky` auf dem Handy und der Apple Watch: ein
+ * kräftiger Sonnenaufgang von Indigo über Violett und Magenta-Rosé bis zur Glut unten, mit warmem Schein am unteren Rand
+ * und Lavendel-Schein oben rechts. Ruhend. Helle Schrift bleibt überall ≥ 4.5:1 (WakeSkyContrastTest).
+ */
+internal object WakeSky {
+    val Stops: List<Pair<Float, Color>> = listOf(
+        0f to Color(0xFF161A4A),
+        0.35f to Color(0xFF2E1A5C),
+        0.62f to Color(0xFF5E1E5E),
+        0.84f to Color(0xFF82244A),
+        1f to Color(0xFF8A2E0E),
+    )
+    val Sun = Color(0xFFC2481A)
+    const val SUN_ALPHA = 0.12f
+    const val SUN_FROM = 0.5f
+    const val GLOW_ALPHA = 0.28f
 
-    /** Höchste Deckkraft ganz unten. */
-    const val MAX_ALPHA = 0.28f
-
-    /** Ab hier (Anteil der Höhe von oben) beginnt die Dämmerung. */
-    const val START = 0.45f
+    /** Bis hier (Anteil der Höhe) reicht der Lavendel-Schein oben. */
+    const val GLOW_REACH = 0.45f
 }
+
+/** Weckhimmel ([WakeSky]) als Hintergrund. */
+fun androidx.compose.ui.Modifier.wakeSky(): androidx.compose.ui.Modifier =
+    this.then(
+        androidx.compose.ui.Modifier.drawBehind {
+            drawRect(androidx.compose.ui.graphics.Brush.verticalGradient(*WakeSky.Stops.toTypedArray()))
+            drawRect(
+                androidx.compose.ui.graphics.Brush.radialGradient(
+                    listOf(WakeSky.Sun.copy(alpha = WakeSky.SUN_ALPHA), WakeSky.Sun.copy(alpha = 0f)),
+                    center = androidx.compose.ui.geometry.Offset(size.width * 0.5f, size.height),
+                    radius = size.height * (1f - WakeSky.SUN_FROM),
+                ),
+            )
+            drawRect(
+                androidx.compose.ui.graphics.Brush.radialGradient(
+                    listOf(Brand.Glow.copy(alpha = WakeSky.GLOW_ALPHA), Color.Transparent),
+                    center = androidx.compose.ui.geometry.Offset(size.width * 0.8f, size.height * 0.1f),
+                    radius = size.height * (WakeSky.GLOW_REACH - 0.1f),
+                ),
+            )
+        },
+    )
