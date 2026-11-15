@@ -25,20 +25,26 @@ struct MiniHypnogram: View {
                 let row = CGRect(x: 0, y: rowY(level), width: size.width, height: rowHeight)
                 context.fill(Path(roundedRect: row, cornerRadius: 3), with: .color(StageColors.track(scheme)))
             }
-            var previous: (x: CGFloat, level: Int)?
+            var previous: (x: CGFloat, level: Int, color: Color)?
             for step in steps {
                 guard let level = ChartData.level(step.stage) else { continue }
                 let x0 = size.width * step.fromMinute / total
                 let w = max(1.5, size.width * (step.toMinute - step.fromMinute) / total)
                 let rect = CGRect(x: x0, y: rowY(level), width: w, height: rowHeight)
+                let color = StageColors.color(step.stage, scheme)
                 if let previous, abs(previous.x - x0) < 1, previous.level != level {
                     var link = Path()
                     link.move(to: CGPoint(x: x0, y: rowY(previous.level) + rowHeight / 2))
                     link.addLine(to: CGPoint(x: x0, y: rowY(level) + rowHeight / 2))
-                    context.stroke(link, with: .color(StageColors.link(scheme)), lineWidth: 1)
+                    // Stufe im Verlauf von der einen zur anderen Phasenfarbe (wie Android).
+                    context.stroke(link, with: .linearGradient(Gradient(colors: [previous.color, color]),
+                                                               startPoint: CGPoint(x: x0, y: rowY(previous.level) + rowHeight / 2),
+                                                               endPoint: CGPoint(x: x0, y: rowY(level) + rowHeight / 2)), lineWidth: 1)
                 }
-                context.fill(Path(roundedRect: rect, cornerRadius: min(3, w / 2)), with: .color(StageColors.color(step.stage, scheme)))
-                previous = (size.width * step.toMinute / total, level)
+                // Weicher Schein in der Phasenfarbe hinter dem Block.
+                context.fill(Path(roundedRect: rect.insetBy(dx: -2, dy: -2), cornerRadius: min(3, w / 2) + 2), with: .color(color.opacity(0.18)))
+                context.fill(Path(roundedRect: rect, cornerRadius: min(3, w / 2)), with: .color(color))
+                previous = (size.width * step.toMinute / total, level, color)
             }
             if let wokeAt {
                 let x = size.width * min(max(0, wokeAt), total) / total

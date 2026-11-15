@@ -116,7 +116,9 @@ struct StageChart: View {
                 if let window = timeline.window, let frame = proxy.plotFrame,
                    let x0 = proxy.position(forX: window.lowerBound), let x1 = proxy.position(forX: window.upperBound) {
                     let plot = geo[frame]
-                    Rectangle().fill(StageColors.window(scheme))
+                    // Leuchtendes Band: in der Mitte am kräftigsten, oben und unten weich, mit feinem Rand am Beginn (wie Android).
+                    Rectangle().fill(LinearGradient(colors: [StageColors.marker(scheme).opacity(0.05), StageColors.marker(scheme).opacity(0.18), StageColors.marker(scheme).opacity(0.05)], startPoint: .top, endPoint: .bottom))
+                        .overlay(alignment: .leading) { Rectangle().fill(StageColors.marker(scheme).opacity(0.35)).frame(width: 1) }
                         .frame(width: max(0, x1 - x0), height: plot.height)
                         .position(x: plot.minX + (x0 + x1) / 2, y: plot.midY)
                 }

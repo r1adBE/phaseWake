@@ -101,29 +101,100 @@ enum Fonts {
     }
 }
 
-/// Nachthimmel: Verlauf von Mitternachts-Indigo nach Fast-Schwarz, Lavendel-Schein oben rechts, der langsam wandert.
+/// Stimmung des Nachthimmels nach Tageszeit, wie `SkyMood` auf Android: `dusk` 0–1 färbt den Horizont am Abend leicht
+/// rosé-violett, `dawn` 0–1 lässt ihn vor dem Weckfenster warm aufhellen. Nur unten am Horizont und schwach genug, dass
+/// Schrift darauf ≥ 4.5:1 behält (auf Android mit SkyMoodTest geprüft, gleiche Werte).
+struct SkyMood: Equatable {
+    var dusk: Double = 0
+    var dawn: Double = 0
+
+    static let plain = SkyMood()
+    /// Weckbildschirm ohne Sonnenaufgang: volle Morgendämmerung.
+    static let wake = SkyMood(dawn: 1)
+    /// Höchste Deckkraft ganz unten, Sonnenschein als Anteil davon, Beginn des Horizonts (Anteil der Höhe).
+    static let maxAlpha = 0.20
+    static let sunAlpha = 0.5
+    static let horizonStart = 0.5
+
+    /// Dämmerung in den drei Stunden vor dem Weckfenster und im Fenster voll, am frühen Morgen (5–10 Uhr) ohnehin;
+    /// Abendrot von 17 bis 23 Uhr, am stärksten 19–21 Uhr.
+    static func at(now: Date, plan: WakePlan?, calendar: Calendar = .current) -> SkyMood {
+        var planDawn = 0.0
+        if let plan {
+            let minutes = plan.windowStart.timeIntervalSince(now) / 60
+            if now >= plan.windowStart && now < plan.target { planDawn = 1 } else if minutes >= 0 { planDawn = min(1, max(0, 1 - minutes / 180)) }
+        }
+        let c = calendar.dateComponents([.hour, .minute], from: now)
+        let hour = Double(c.hour ?? 0) + Double(c.minute ?? 0) / 60
+        let dawn = max(planDawn, ramp(hour, 5, 7) * (1 - ramp(hour, 10, 11)))
+        let evening = ramp(hour, 17, 19) * (1 - ramp(hour, 21, 23))
+        return SkyMood(dusk: evening * (1 - dawn), dawn: dawn)
+    }
+
+    private static func ramp(_ x: Double, _ from: Double, _ to: Double) -> Double {
+        let f = min(1, max(0, (x - from) / (to - from)))
+        return f * f * (3 - 2 * f)
+    }
+
+    /// Mischung aus Abendrot (9B5AA8) und Dämmerung (C86A5A) im sRGB-Raum und ihre Deckkraft ganz unten (0 = keine Färbung).
+    var horizon: (color: Color, alpha: Double) {
+        let total = min(1, dusk + dawn)
+        guard total > 0 else { return (.clear, 0) }
+        let w = dawn / (dusk + dawn)
+        func mix(_ a: Double, _ b: Double) -> Double { (a + (b - a) * w) / 255 }
+        return (Color(.sRGB, red: mix(0x9B, 0xC8), green: mix(0x5A, 0x6A), blue: mix(0xA8, 0x5A)), SkyMood.maxAlpha * total)
+    }
+}
+
+/// Nachthimmel: Verlauf von Mitternachts-Indigo nach Fast-Schwarz, Lavendel-Schein oben rechts, unten der Horizont
+/// nach `mood`. Auf dem iPhone wandert der Schein langsam (nicht mit «Bewegung reduzieren»); auf der Apple Watch ruht er
+/// (Akku), und im Always-On (gedimmt) bleibt nur ein dunkler Grund ohne Schein.
 struct NightSky: View {
     var strength: Double = 1
+    var mood: SkyMood = .plain
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    #if os(watchOS)
+    @Environment(\.isLuminanceReduced) private var dimmed
+    #else
+    private let dimmed = false
+    #endif
     @State private var drift = false
 
     var body: some View {
         GeometryReader { geo in
             ZStack {
                 LinearGradient(colors: [Brand.nightTop.opacity(strength), Brand.nightBottom.opacity(strength), .black.opacity(1 - strength)], startPoint: .top, endPoint: .bottom)
-                RadialGradient(
-                    colors: [Brand.glow.opacity(0.55 * strength), Brand.glow.opacity(0.12 * strength), .clear],
-                    center: UnitPoint(x: drift ? 0.86 : 0.78, y: drift ? 0.14 : 0.08),
-                    startRadius: 0,
-                    endRadius: max(geo.size.width, geo.size.height) * 0.7
-                )
+                if !dimmed {
+                    let horizon = mood.horizon
+                    if horizon.alpha > 0 {
+                        LinearGradient(
+                            stops: [.init(color: horizon.color.opacity(0), location: SkyMood.horizonStart), .init(color: horizon.color.opacity(horizon.alpha), location: 1)],
+                            startPoint: .top, endPoint: .bottom
+                        )
+                        RadialGradient(
+                            colors: [horizon.color.opacity(horizon.alpha * SkyMood.sunAlpha), horizon.color.opacity(0)],
+                            center: UnitPoint(x: 0.72, y: 1.04),
+                            startRadius: 0,
+                            endRadius: max(geo.size.width, geo.size.height) * 0.55
+                        )
+                    }
+                    RadialGradient(
+                        colors: [Brand.glow.opacity(0.55 * strength), Brand.glow.opacity(0.12 * strength), .clear],
+                        center: UnitPoint(x: drift ? 0.86 : 0.78, y: drift ? 0.14 : 0.08),
+                        startRadius: 0,
+                        endRadius: max(geo.size.width, geo.size.height) * 0.7
+                    )
+                }
             }
+            .animation(reduceMotion ? nil : .easeInOut(duration: 1.5), value: mood)
         }
         .ignoresSafeArea()
         .accessibilityHidden(true)
         .onAppear {
+            #if os(iOS)
             guard !reduceMotion else { return }
             withAnimation(.easeInOut(duration: 9).repeatForever(autoreverses: true)) { drift = true }
+            #endif
         }
     }
 }
@@ -151,14 +222,27 @@ struct LogoMark: View {
     }
 }
 
-/// Pulsierende Ringe um den Weckpunkt (Logo-Motiv).
+/// Pulsierende Ringe um den Weckpunkt (Logo-Motiv). Auf dem iPhone fortlaufend; auf der Apple Watch nur ein paar Mal
+/// beim Erscheinen, dann ruhend (Akku, wie Wear OS); mit «Bewegung reduzieren» und im Always-On gleich ruhend.
 struct PulsingDot: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    #if os(watchOS)
+    @Environment(\.isLuminanceReduced) private var dimmed
+    private let pulses: Double? = 3
+    #else
+    private let dimmed = false
+    private let pulses: Double? = nil
+    #endif
+    @State private var appeared = Date()
+    /// Uhr: Pulse vorbei, die Zeitleiste hält an (kein Neuzeichnen mehr).
+    @State private var done = false
 
     var body: some View {
-        TimelineView(.animation(paused: reduceMotion)) { timeline in
+        TimelineView(.animation(paused: reduceMotion || dimmed || done)) { timeline in
             Canvas { context, size in
-                let t = timeline.date.timeIntervalSinceReferenceDate.truncatingRemainder(dividingBy: 2) / 2
+                let elapsed = timeline.date.timeIntervalSince(appeared) / 2
+                let still = reduceMotion || dimmed || done || (pulses.map { elapsed >= $0 } ?? false)
+                let t = still ? 0.2 : elapsed.truncatingRemainder(dividingBy: 1)
                 let base = min(size.width, size.height) / 2
                 let center = CGPoint(x: size.width / 2, y: size.height / 2)
                 for k in 0..<3 {
@@ -169,6 +253,12 @@ struct PulsingDot: View {
                 let d = base * 0.2
                 context.fill(Path(ellipseIn: CGRect(x: center.x - d, y: center.y - d, width: 2 * d, height: 2 * d)), with: .color(Brand.moon))
             }
+        }
+        .onAppear { appeared = Date() }
+        .task {
+            guard let pulses else { return }
+            try? await Task.sleep(for: .seconds(pulses * 2))
+            done = true
         }
         .accessibilityHidden(true)
     }

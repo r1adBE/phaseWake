@@ -1,5 +1,6 @@
 package com.phasewake.app.ui.home
 
+import androidx.compose.foundation.BorderStroke
 import com.phasewake.app.core.MissHint
 import com.phasewake.app.shared.RecordSync
 import androidx.compose.foundation.layout.Arrangement
@@ -23,6 +24,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
@@ -51,6 +53,7 @@ import com.phasewake.app.ui.Format
 import androidx.compose.ui.platform.LocalConfiguration
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.ui.components.AnimatedNight
+import com.phasewake.app.ui.components.SkyMood
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import java.time.Duration
 import java.time.Instant
@@ -140,6 +143,8 @@ fun HomeScreen(
 
     // Dunkel: die ganze Seite ist Nachthimmel. Hell: nur der Kopfbereich, darunter helle Karten.
     val dark = PhaseWakeTheme.isDark
+    // Himmel nach Tageszeit: Abendrot, Nacht, Morgendämmerung auf das Weckfenster zu.
+    val mood = SkyMood.at(now, zone, plan?.windowStart, plan?.target)
     val list = @Composable {
     // Unten Platz für Navigationsleiste (in [contentPadding]) und den Knopf «Neuer Wecker»: Die letzte
     // Karte bleibt ganz sichtbar und liegt am Ende nie unter dem Knopf.
@@ -153,7 +158,7 @@ fun HomeScreen(
         item(key = "hero") {
             Header(
                 plan, plan?.let { p -> alarms.first { it.id == p.alarmId } }, now, zone, fullPage = dark,
-                onAdd = onAdd.takeIf { alarms.size < MAX_ALARMS }, onEdit = onEdit, holidayNote = holidayNote, autoOnset = autoOnset,
+                onAdd = onAdd.takeIf { alarms.size < MAX_ALARMS }, onEdit = onEdit, holidayNote = holidayNote, autoOnset = autoOnset, mood = mood,
             )
         }
         if (morningFirst) item(key = "night") { nightCard() }
@@ -219,7 +224,7 @@ fun HomeScreen(
         }
     }
     }
-    if (dark) AnimatedNight(Modifier.fillMaxSize()) { list() } else list()
+    if (dark) AnimatedNight(Modifier.fillMaxSize(), mood) { list() } else list()
 }
 
 /** Neues der Startseite (Runde 3); Vorgaben = nichts davon, wie in den Bildschirmfotos. */
@@ -294,6 +299,17 @@ internal val FAB_CLEARANCE: Dp = 88.dp
 @Composable
 internal fun cardColor(): Color = PhaseWakeTheme.brand.card
 
+/**
+ * Rand der Karten: auf dem Nachthimmel eine feine Glaskante (oben heller, nach unten auslaufend) für etwas Tiefe; hell
+ * keiner. Reine Zierde, kein Bedienrand (die Fläche selbst trägt keine Information).
+ */
+@Composable
+internal fun cardEdge(): BorderStroke? = if (PhaseWakeTheme.isDark) {
+    BorderStroke(1.dp, Brush.verticalGradient(listOf(Color.White.copy(alpha = 0.16f), Color.White.copy(alpha = 0.03f))))
+} else {
+    null
+}
+
 /** Schalter «Geräusche aufnehmen» für diese Nacht. */
 data class SoundRecState(val enabled: Boolean, val recording: Boolean, val permissionDenied: Boolean)
 
@@ -325,6 +341,7 @@ private fun SoundsMorningCard(clips: List<SoundClip>, soundFile: (SoundClip) -> 
     Card(
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = cardColor()),
+        border = cardEdge(),
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         Column(Modifier.padding(16.dp)) {

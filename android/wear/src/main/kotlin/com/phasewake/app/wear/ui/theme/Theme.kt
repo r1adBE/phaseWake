@@ -90,9 +90,10 @@ fun PhaseWakeTheme(content: @Composable () -> Unit) {
 
 /**
  * Nachthimmel wie auf dem Handy: Mitternachts-Indigo mit Lavendel-Schein oben rechts. [strength] 0–1: auf dem
- * Startbildschirm schwach (OLED-schonend, Rand bleibt schwarz), beim Wecken voll.
+ * Startbildschirm schwach (OLED-schonend, Rand bleibt schwarz), beim Wecken voll. [dawn] 0–1: Morgendämmerung am
+ * unteren Rand (Weckbildschirm), gleich wie auf dem Handy und der Apple Watch; ruhend, ohne Bewegung.
  */
-fun androidx.compose.ui.Modifier.nightGlow(strength: Float = 1f): androidx.compose.ui.Modifier =
+fun androidx.compose.ui.Modifier.nightGlow(strength: Float = 1f, dawn: Float = 0f): androidx.compose.ui.Modifier =
     this.then(
         androidx.compose.ui.Modifier.drawBehind {
             drawRect(
@@ -100,6 +101,15 @@ fun androidx.compose.ui.Modifier.nightGlow(strength: Float = 1f): androidx.compo
                     listOf(Brand.Night.copy(alpha = strength), Brand.NightBottom.copy(alpha = strength), Color.Black),
                 ),
             )
+            if (dawn > 0f) {
+                val horizon = Dawn.Color.copy(alpha = Dawn.MAX_ALPHA * dawn.coerceIn(0f, 1f))
+                drawRect(
+                    androidx.compose.ui.graphics.Brush.verticalGradient(
+                        Dawn.START to horizon.copy(alpha = 0f),
+                        1f to horizon,
+                    ),
+                )
+            }
             drawRect(
                 androidx.compose.ui.graphics.Brush.radialGradient(
                     listOf(Brand.Glow.copy(alpha = 0.5f * strength), Color.Transparent),
@@ -109,3 +119,14 @@ fun androidx.compose.ui.Modifier.nightGlow(strength: Float = 1f): androidx.compo
             )
         },
     )
+
+/** Morgendämmerung am unteren Rand des Weckbildschirms: Farbe und Stärke wie `SkyMood.Dawn` auf dem Handy. */
+internal object Dawn {
+    val Color = androidx.compose.ui.graphics.Color(0xFFC86A5A)
+
+    /** Höchste Deckkraft ganz unten. */
+    const val MAX_ALPHA = 0.28f
+
+    /** Ab hier (Anteil der Höhe von oben) beginnt die Dämmerung. */
+    const val START = 0.45f
+}

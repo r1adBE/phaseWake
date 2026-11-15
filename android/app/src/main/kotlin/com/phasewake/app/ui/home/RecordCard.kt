@@ -32,6 +32,7 @@ internal fun RecordCard(since: Instant?, onRecord: (Boolean) -> Unit) {
     Card(
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = cardColor()),
+        border = cardEdge(),
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         Column(Modifier.fillMaxWidth().padding(horizontal = 18.dp, vertical = 14.dp)) {

@@ -52,7 +52,9 @@ struct SleepBarsCard: View {
                 if let start = bar.startMinute, let end = bar.endMinute {
                     BarMark(xStart: .value("start", max(start, bars.axisStart)), xEnd: .value("end", min(end, bars.axisEnd)),
                             y: .value("night", bar.date), height: .fixed(selectedIndex == i ? barHeight + 4 : barHeight))
-                        .foregroundStyle(palette.active.opacity(selectedIndex != nil && selectedIndex != i ? 0.45 : 1))
+                        // Von der Nacht (tief) zum Morgen (hell), wie Android.
+                        .foregroundStyle(LinearGradient(colors: [StageColors.color(.deep, scheme), palette.active], startPoint: .leading, endPoint: .trailing)
+                            .opacity(selectedIndex != nil && selectedIndex != i ? 0.45 : 1))
                         .cornerRadius(4)
                         .accessibilityLabel(Text(verbatim: longDate(bar.date)))
                         .accessibilityValue(Text(verbatim: value(bar)))

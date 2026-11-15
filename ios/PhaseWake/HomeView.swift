@@ -18,7 +18,7 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                if scheme == .dark { NightSky() }
+                if scheme == .dark { TimelineView(.everyMinute) { c in NightSky(mood: .at(now: c.date, plan: model.nextPlan(now: c.date))) } }
                 ScrollView {
                     VStack(spacing: 16) {
                         TimelineView(.everyMinute) { context in
@@ -216,7 +216,7 @@ struct HomeView: View {
         .padding(.bottom, 24)
         .background {
             if scheme != .dark {
-                NightSky().clipShape(UnevenRoundedRectangle(bottomLeadingRadius: 32, bottomTrailingRadius: 32))
+                NightSky(mood: .at(now: now, plan: plan)).clipShape(UnevenRoundedRectangle(bottomLeadingRadius: 32, bottomTrailingRadius: 32))
             }
         }
         .onTapGesture { if let plan { editing = model.alarms.first { $0.id == plan.alarmId } } }
@@ -247,7 +247,7 @@ struct CardBackground: ViewModifier {
         content
             .padding(16)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Brand.card(scheme), in: RoundedRectangle(cornerRadius: Brand.cardRadius))
+            .background(Brand.card(scheme), in: RoundedRectangle(cornerRadius: Brand.cardRadius)).overlay(CardEdge())
             .padding(.horizontal, 16)
     }
 }

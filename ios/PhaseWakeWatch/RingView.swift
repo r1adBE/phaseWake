@@ -11,7 +11,7 @@ struct RingView: View {
 
     var body: some View {
         ZStack {
-            NightSky()
+            NightSky(mood: .wake)
             // Fortschritt des Haltens zusätzlich als Ring am Rand.
             Circle()
                 .trim(from: 0, to: progress)

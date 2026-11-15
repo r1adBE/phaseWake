@@ -55,6 +55,7 @@ import com.phasewake.app.ui.components.AnimatedNight
 import com.phasewake.app.ui.components.HeroWave
 import com.phasewake.app.ui.components.LogoMark
 import com.phasewake.app.ui.components.Night
+import com.phasewake.app.ui.components.SkyMood
 import java.time.Duration
 import java.time.Instant
 import java.time.ZoneId
@@ -79,6 +80,8 @@ internal fun Header(
     holidayNote: String? = null,
     /** Beginn der automatischen Einschlaf-Messung der Uhr (schon formatiert); `null` = keine Zeile. */
     autoOnset: String? = null,
+    /** Stimmung des Himmels nach Tageszeit (nur hell sichtbar; dunkel trägt sie die ganze Seite). */
+    mood: SkyMood = SkyMood.Plain,
 ) {
     val context = LocalContext.current
     // In Vorschau und Bildschirmfotos gibt es keinen zweiten Frame: dort gleich sichtbar.
@@ -92,7 +95,7 @@ internal fun Header(
         .then(if (plan != null) Modifier.clickable { onEdit(plan.alarmId) } else Modifier)
     // Auf der ganzseitigen Nacht (dunkel) braucht der Kopf keinen eigenen Hintergrund.
     val background: @Composable (Modifier, @Composable () -> Unit) -> Unit =
-        if (fullPage) { m, c -> Box(m) { c() } } else { m, c -> AnimatedNight(m) { c() } }
+        if (fullPage) { m, c -> Box(m) { c() } } else { m, c -> AnimatedNight(m, mood) { c() } }
     background(base) {
         Column(Modifier.statusBarsPadding().padding(start = 22.dp, end = 22.dp, top = 18.dp, bottom = 24.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {

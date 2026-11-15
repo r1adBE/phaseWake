@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
@@ -18,6 +19,7 @@ import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
+import com.phasewake.app.ui.components.rememberReveal
 import com.phasewake.app.core.SleepBar
 import com.phasewake.app.core.SleepBars
 import com.phasewake.app.ui.theme.PhaseWakeTheme
@@ -74,6 +76,7 @@ internal fun SleepBarsCard(chart: SleepBars?, opener: (LocalDate) -> (() -> Unit
             text = { barLine(context, bars.bars[it]) },
             open = { opener(bars.bars[it].date) },
         )
+        val reveal = rememberReveal(bars)
         TouchChart(bars, description, pick) { selected ->
             fun x(minute: Int) = size.width * (minute - bars.axisStart) / span
             val rowHeight = (size.height - axis) / rows
@@ -95,7 +98,11 @@ internal fun SleepBarsCard(chart: SleepBars?, opener: (LocalDate) -> (() -> Unit
                 if (bar.hasData) {
                     val x0 = x(bar.startMinute!!).coerceAtLeast(0f)
                     val x1 = x(bar.endMinute!!).coerceAtMost(size.width)
-                    drawRoundRect(brand.chartActive, Offset(x0, cy - barHeight / 2), Size((x1 - x0).coerceAtLeast(barHeight), barHeight), CornerRadius(barHeight / 2))
+                    // Von der Nacht (tief) zum Morgen (hell); wächst beim Erscheinen Zeile für Zeile vom Einschlafen her.
+                    val grow = ((reveal * (1f + STAGGER)) - STAGGER * i / rows).coerceIn(0f, 1f)
+                    val w = ((x1 - x0) * grow).coerceAtLeast(barHeight)
+                    val night = Brush.horizontalGradient(listOf(brand.stageDeep, brand.chartActive), startX = x0, endX = x0 + (x1 - x0).coerceAtLeast(barHeight))
+                    drawRoundRect(night, Offset(x0, cy - barHeight / 2), Size(w, barHeight), CornerRadius(barHeight / 2))
                 } else {
                     drawLine(brand.chartTrack, Offset(0f, cy), Offset(size.width, cy), strokeWidth = 2.dp.toPx(), cap = StrokeCap.Round)
                 }
@@ -107,3 +114,6 @@ internal fun SleepBarsCard(chart: SleepBars?, opener: (LocalDate) -> (() -> Unit
         }
     }
 }
+
+/** Versatz der Zeilen beim Erscheinen (Anteil der Dauer über alle Zeilen). */
+private const val STAGGER = 0.35f

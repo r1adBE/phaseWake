@@ -235,7 +235,7 @@ private fun RingContent(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit,
     val holdMillis = if (taskOnPhone) EMERGENCY_HOLD_MILLIS else HOLD_MILLIS
     val holdLabel = stringResource(if (taskOnPhone) R.string.wake_task_on_phone else R.string.ring_hold_to_stop)
     // Mit Sonnenaufgang: Licht statt Nachthimmel, jeder Text mit der Schrift, die an seiner Stelle lesbar ist.
-    val background = if (light != null) Modifier.sunriseSky(light) else Modifier.nightGlow()
+    val background = if (light != null) Modifier.sunriseSky(light) else Modifier.nightGlow(dawn = 1f)
     val sidePadding = if (compact) 12 else 18
     // Mit Aufgabe am Handy braucht der Hinweis «… oder 5 s halten» den Platz: kein Grund (Audit UI-4).
     val reason = (ui as? RingUi.Ringing)?.takeIf { !taskOnPhone }?.let { stringResource(ringReasonRes(it.reason)) }.orEmpty()
