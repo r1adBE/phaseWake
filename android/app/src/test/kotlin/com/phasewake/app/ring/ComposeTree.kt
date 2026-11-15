@@ -60,6 +60,19 @@ internal class ComposeTree(private val activity: Activity) {
             node.config.getOrNull(SemanticsProperties.ContentDescription)?.contains(label) == true
     } ?: fail("nichts zum Antippen mit «$label»; Texte: ${texts()}")
 
+    /**
+     * Scrollt die Liste, die einen Eintrag mit dem Schlüssel [key] führt, zu diesem Eintrag (wie `performScrollToKey`).
+     * Eine LazyColumn baut nur sichtbare Einträge; was je nach Tageszeit darüber steht (am Abend Notizen, Routine,
+     * Geräusche), schiebt ihn sonst aus dem Baum.
+     */
+    fun scrollToKey(key: Any) {
+        val list = nodes().firstOrNull { (it.config.getOrNull(SemanticsProperties.IndexForKey)?.invoke(key) ?: -1) >= 0 }
+            ?: fail("keine Liste mit dem Eintrag «$key»; Texte: ${texts()}")
+        val scroll = list.config.getOrNull(SemanticsActions.ScrollToIndex)?.action ?: fail("Liste ohne Scrollaktion")
+        scroll(list.config[SemanticsProperties.IndexForKey](key))
+        idle()
+    }
+
     /** Ob [label] antippbar und eingeschaltet ist. */
     fun enabled(label: String): Boolean = !clickable(label).config.contains(SemanticsProperties.Disabled)
 

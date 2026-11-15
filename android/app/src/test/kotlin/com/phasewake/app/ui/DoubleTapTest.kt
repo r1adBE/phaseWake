@@ -115,7 +115,11 @@ class DoubleTapTest {
         open = controller
         val tree = ComposeTree(controller.get())
         tree.idle(1_000)
-        settle(tree, "Startseite zeigt den Wecker nicht") { tree.texts().any { it.contains("Arbeit") } }
+        // Zur Zeile scrollen: Am Abend stehen mehr Karten über der Liste und schieben sie aus dem Bild.
+        settle(tree, "Startseite zeigt den Wecker nicht") {
+            tree.scrollToKey("work")
+            tree.nodes().any { it.config.getOrNull(SemanticsActions.OnClick) != null && tree.text(it).contains("Arbeit") }
+        }
         val item = tree.nodes().first { it.config.getOrNull(SemanticsActions.OnClick) != null && tree.text(it).contains("Arbeit") }
         item.config[SemanticsActions.OnClick].action!!.invoke()
         tree.idle(1_000)
