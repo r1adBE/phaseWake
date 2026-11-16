@@ -239,7 +239,7 @@
     <string name="check_watch_learn_battery">Khi pin dưới %1$d %%, đêm nay đồng hồ sẽ không ghi lại cho giai đoạn học – hãy sạc trước. Báo thức vẫn sẽ đánh thức bạn.</string>
     <string name="check_watch_pulse">Nhịp tim trong nền (đồng hồ)</string>
     <string name="check_watch_pulse_problem">Đồng hồ không được phép đo nhịp tim của bạn vào ban đêm – trên đồng hồ, hãy đặt quyền cảm biến của Phase Wake thành “Luôn cho phép”.</string>
-    <string name="export_contents_hint">Tệp chứa chuyển động và nhịp tim mỗi 30 giây, cảm giác của bạn và ghi chú của bạn cho từng đêm – không có tên, ngày hay ID thiết bị.</string>
+    <string name="export_contents_hint">Tệp chứa chuyển động và nhịp tim mỗi 30 giây, cảm giác của bạn và ghi chú của bạn cho từng đêm, cùng giờ đánh thức và giai đoạn ngủ nếu có – không có tên, ngày hay ID thiết bị.</string>
     <string name="editor_more">Thêm</string>
     <string name="home_max_alarms">Tối đa %1$d báo thức – hãy xóa một báo thức để thêm báo thức mới.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -464,7 +464,7 @@
     </plurals>
     <string name="diag_unlocked">Chẩn đoán giờ có trong cài đặt.</string>
     <string name="diag_show">Hiện chẩn đoán</string>
-    <string name="diag_hint">Nhật ký kỹ thuật của 7 ngày gần nhất, chỉ trên thiết bị của bạn. Nhật ký có thời gian và giá trị đo (vd. chuyển động, giờ ngủ thiếp đi) – chỉ chia sẻ khi bạn muốn.</string>
+    <string name="diag_hint">Nhật ký kỹ thuật của 7 ngày gần nhất, chỉ trên thiết bị của bạn. Nhật ký có thời gian và giá trị đo (vd. chuyển động, giờ ngủ thiếp đi, giờ đánh thức, giai đoạn ngủ) – chỉ chia sẻ khi bạn muốn.</string>
     <string name="diag_events">Sự kiện</string>
     <string name="diag_empty">Chưa có sự kiện.</string>
     <string name="diag_status">Trạng thái</string>

@@ -245,7 +245,7 @@
     <string name="check_watch_learn_battery">%1$d %% سے کم بیٹری پر گھڑی آج رات سیکھنے کے مرحلے کے لیے ریکارڈ نہیں کرے گی – پہلے سے چارج کر لو۔ الارم پھر بھی تمہیں جگائے گا۔</string>
     <string name="check_watch_pulse">پس منظر میں نبض (گھڑی)</string>
     <string name="check_watch_pulse_problem">گھڑی کو رات میں تمہاری نبض ناپنے کی اجازت نہیں – گھڑی پر Phase Wake کی سینسر اجازت ”ہمیشہ اجازت دیں“ پر سیٹ کرو۔</string>
-    <string name="export_contents_hint">فائل میں ہر رات کے لیے ہر 30 سیکنڈ کی حرکت اور دل کی دھڑکن، تمہیں کیسا لگا اور تمہارے نوٹس ہیں – نام، تاریخ یا ڈیوائس ID کے بغیر۔</string>
+    <string name="export_contents_hint">فائل میں ہر رات کے لیے ہر 30 سیکنڈ کی حرکت اور دل کی دھڑکن، تمہیں کیسا لگا، تمہارے نوٹس اور اگر ہوں تو جگانے کا وقت اور نیند کے مراحل ہیں – نام، تاریخ یا ڈیوائس ID کے بغیر۔</string>
     <string name="editor_more">مزید</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">زیادہ سے زیادہ %1$d الارم – نیا بنانے کے لیے ایک حذف کرو۔</string>
@@ -480,7 +480,7 @@
     </plurals>
     <string name="diag_unlocked">تشخیص اب ترتیبات میں نظر آتی ہے۔</string>
     <string name="diag_show">تشخیص دکھاؤ</string>
-    <string name="diag_hint">پچھلے 7 دنوں کا تکنیکی لاگ، صرف آپ کے آلات پر۔ اس میں اوقات اور ناپی گئی قدریں ہیں (مثلاً حرکت، سونے کا وقت) – صرف چاہیں تو شیئر کریں۔</string>
+    <string name="diag_hint">پچھلے 7 دنوں کا تکنیکی لاگ، صرف آپ کے آلات پر۔ اس میں اوقات اور ناپی گئی قدریں ہیں (مثلاً حرکت، سونے کا وقت، جگانے کا وقت، نیند کے مراحل) – صرف چاہیں تو شیئر کریں۔</string>
     <string name="diag_events">واقعات</string>
     <string name="diag_empty">ابھی کوئی واقعہ نہیں۔</string>
     <string name="diag_status">حالت</string>

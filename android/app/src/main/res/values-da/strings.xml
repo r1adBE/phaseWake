@@ -244,7 +244,7 @@
     <string name="check_watch_learn_battery">Under %1$d %% batteri optager uret ikke i nat til læringsfasen – oplad det inden. Du bliver stadig vækket.</string>
     <string name="check_watch_pulse">Puls i baggrunden (ur)</string>
     <string name="check_watch_pulse_problem">Uret må ikke måle din puls om natten – indstil på uret Phase Wakes sensortilladelse til “Tillad altid”.</string>
-    <string name="export_contents_hint">Filen indeholder for hver nat bevægelse og puls pr. 30 s, hvordan du havde det, og dine noter – uden navne, datoer eller enheds-id’er.</string>
+    <string name="export_contents_hint">Filen indeholder for hver nat bevægelse og puls pr. 30 s, hvordan du havde det, og dine noter, samt vækketider og søvnfaser, hvis de findes – uden navne, datoer eller enheds-id’er.</string>
     <string name="editor_more">Mere</string>
     <string name="home_max_alarms">Højst %1$d alarmer – slet en for at tilføje en ny.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -478,7 +478,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnosen findes nu i indstillingerne.</string>
     <string name="diag_show">Vis diagnose</string>
-    <string name="diag_hint">Teknisk log for de seneste 7 dage, kun på dine enheder. Den indeholder tidspunkter og måleværdier (f.eks. bevægelse, indsovningstid) – del den kun, hvis du vil.</string>
+    <string name="diag_hint">Teknisk log for de seneste 7 dage, kun på dine enheder. Den indeholder tidspunkter og måleværdier (f.eks. bevægelse, indsovningstid, vækketider, søvnfaser) – del den kun, hvis du vil.</string>
     <string name="diag_events">Hændelser</string>
     <string name="diag_empty">Ingen hændelser endnu.</string>
     <string name="diag_status">Status</string>

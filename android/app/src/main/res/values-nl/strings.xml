@@ -244,7 +244,7 @@
     <string name="check_watch_learn_battery">Met minder dan %1$d %% batterij neemt je horloge vannacht niet op voor de leerfase – laad het vooraf op. Je wordt toch gewekt.</string>
     <string name="check_watch_pulse">Hartslag op de achtergrond (horloge)</string>
     <string name="check_watch_pulse_problem">Het horloge mag je hartslag ’s nachts niet meten – zet op het horloge de sensortoestemming van Phase Wake op ‘Altijd toestaan’.</string>
-    <string name="export_contents_hint">Het bestand bevat per nacht beweging en hartslag per 30 s, hoe je je voelde en je notities – zonder namen, datums of apparaat-ID’s.</string>
+    <string name="export_contents_hint">Het bestand bevat per nacht beweging en hartslag per 30 s, hoe je je voelde en je notities, plus wektijden en slaapfasen als die er zijn – zonder namen, datums of apparaat-ID’s.</string>
     <string name="editor_more">Meer</string>
     <string name="home_max_alarms">Maximaal %1$d wekkers – verwijder er een om een nieuwe toe te voegen.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -478,7 +478,7 @@
     </plurals>
     <string name="diag_unlocked">De diagnose staat nu in de instellingen.</string>
     <string name="diag_show">Diagnose tonen</string>
-    <string name="diag_hint">Technisch logboek van de afgelopen 7 dagen, alleen op je apparaten. Het bevat tijden en meetwaarden (bijv. beweging, inslaaptijd) – deel het alleen als je dat wilt.</string>
+    <string name="diag_hint">Technisch logboek van de afgelopen 7 dagen, alleen op je apparaten. Het bevat tijden en meetwaarden (bijv. beweging, inslaaptijd, wektijden, slaapfasen) – deel het alleen als je dat wilt.</string>
     <string name="diag_events">Gebeurtenissen</string>
     <string name="diag_empty">Nog geen gebeurtenissen.</string>
     <string name="diag_status">Status</string>

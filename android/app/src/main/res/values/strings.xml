@@ -248,7 +248,7 @@
     <string name="check_watch_learn_battery">With less than %1$d %% battery, your watch won’t record for the learning phase tonight – charge it beforehand. You’ll still be woken.</string>
     <string name="check_watch_pulse">Background pulse (watch)</string>
     <string name="check_watch_pulse_problem">The watch may not measure your pulse at night – on the watch set Phase Wake’s sensor permission to “Allow all the time”.</string>
-    <string name="export_contents_hint">The file contains motion and heart rate per 30 s, how you felt and your notes for each night – without names, dates or device IDs.</string>
+    <string name="export_contents_hint">The file contains motion and heart rate per 30 s, how you felt and your notes for each night, plus wake-up times and sleep stages if available – without names, dates or device IDs.</string>
     <string name="editor_more">More</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Up to %1$d alarms – delete one to add a new one.</string>
@@ -508,7 +508,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnostics are now shown in the settings.</string>
     <string name="diag_show">Show diagnostics</string>
-    <string name="diag_hint">Technical log of the last 7 days, only on your devices. It contains times and measurements (e.g. motion, when you fell asleep) – share it only if you want to.</string>
+    <string name="diag_hint">Technical log of the last 7 days, only on your devices. It contains times and measurements (e.g. motion, when you fell asleep, wake-up times, sleep stages) – share it only if you want to.</string>
     <string name="diag_events">Events</string>
     <string name="diag_empty">No events yet.</string>
     <string name="diag_status">Status</string>

@@ -245,7 +245,7 @@
     <string name="check_watch_learn_battery">Betri ikiwa chini ya %1$d %%, saa haitarekodi usiku wa leo kwa hatua ya kujifunza – ichaji mapema. Kengele bado itakuamsha.</string>
     <string name="check_watch_pulse">Mapigo ya moyo chinichini (saa)</string>
     <string name="check_watch_pulse_problem">Saa hairuhusiwi kupima mapigo yako ya moyo usiku – kwenye saa, weka ruhusa ya vitambuzi ya Phase Wake kuwa “Ruhusu wakati wote”.</string>
-    <string name="export_contents_hint">Faili lina, kwa kila usiku, mwendo na mapigo ya moyo kila sekunde 30, ulivyojisikia na madokezo yako – bila majina, tarehe wala vitambulisho vya kifaa.</string>
+    <string name="export_contents_hint">Faili lina, kwa kila usiku, mwendo na mapigo ya moyo kila sekunde 30, ulivyojisikia na madokezo yako, pamoja na nyakati za kuamshwa na hatua za usingizi ikiwa zipo – bila majina, tarehe wala vitambulisho vya kifaa.</string>
     <string name="editor_more">Zaidi</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Hadi kengele %1$d – futa moja ili kuongeza mpya.</string>
@@ -480,7 +480,7 @@
     </plurals>
     <string name="diag_unlocked">Uchunguzi sasa unaonyeshwa kwenye mipangilio.</string>
     <string name="diag_show">Onyesha uchunguzi</string>
-    <string name="diag_hint">Kumbukumbu ya kiufundi ya siku 7 zilizopita, kwenye vifaa vyako tu. Ina nyakati na thamani zilizopimwa (k.m. mwendo, muda wa kulala) – ishiriki tu ukitaka.</string>
+    <string name="diag_hint">Kumbukumbu ya kiufundi ya siku 7 zilizopita, kwenye vifaa vyako tu. Ina nyakati na thamani zilizopimwa (k.m. mwendo, muda wa kulala, nyakati za kuamshwa, hatua za usingizi) – ishiriki tu ukitaka.</string>
     <string name="diag_events">Matukio</string>
     <string name="diag_empty">Bado hakuna matukio.</string>
     <string name="diag_status">Hali</string>

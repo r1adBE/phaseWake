@@ -239,7 +239,7 @@
     <string name="check_watch_learn_battery">Dengan baterai di bawah %1$d %%, jam tanganmu tidak akan merekam untuk fase belajar malam ini – isi dayanya lebih dulu. Alarm tetap akan membangunkanmu.</string>
     <string name="check_watch_pulse">Denyut di latar belakang (jam)</string>
     <string name="check_watch_pulse_problem">Jam tangan tidak boleh mengukur denyut nadimu di malam hari – di jam tangan, setel izin sensor Phase Wake ke “Izinkan sepanjang waktu”.</string>
-    <string name="export_contents_hint">File berisi gerakan dan detak jantung per 30 detik, perasaanmu, dan catatanmu untuk setiap malam – tanpa nama, tanggal, atau ID perangkat.</string>
+    <string name="export_contents_hint">File berisi gerakan dan detak jantung per 30 detik, perasaanmu, dan catatanmu untuk setiap malam, serta waktu bangun dan fase tidur jika ada – tanpa nama, tanggal, atau ID perangkat.</string>
     <string name="editor_more">Lainnya</string>
     <string name="home_max_alarms">Maksimal %1$d alarm – hapus satu untuk menambahkan yang baru.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -464,7 +464,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnostik sekarang ada di setelan.</string>
     <string name="diag_show">Tampilkan diagnostik</string>
-    <string name="diag_hint">Log teknis 7 hari terakhir, hanya di perangkatmu. Berisi waktu dan nilai ukur (mis. gerakan, waktu tertidur) – bagikan hanya jika kamu mau.</string>
+    <string name="diag_hint">Log teknis 7 hari terakhir, hanya di perangkatmu. Berisi waktu dan nilai ukur (mis. gerakan, waktu tertidur, waktu bangun, fase tidur) – bagikan hanya jika kamu mau.</string>
     <string name="diag_events">Peristiwa</string>
     <string name="diag_empty">Belum ada peristiwa.</string>
     <string name="diag_status">Status</string>

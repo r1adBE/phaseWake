@@ -246,7 +246,7 @@
     <string name="check_watch_learn_battery">Met minder as %1$d %% battery teken jou horlosie vannag nie vir die leerfase op nie – laai dit vooraf. Jy sal steeds gewek word.</string>
     <string name="check_watch_pulse">Polsslag in die agtergrond (horlosie)</string>
     <string name="check_watch_pulse_problem">Die horlosie mag nie jou polsslag snags meet nie – stel op die horlosie Phase Wake se sensortoestemming op “Laat heeltyd toe”.</string>
-    <string name="export_contents_hint">Die lêer bevat vir elke nag beweging en hartklop per 30 s, hoe jy gevoel het en jou notas – sonder name, datums of toestel-ID’s.</string>
+    <string name="export_contents_hint">Die lêer bevat vir elke nag beweging en hartklop per 30 s, hoe jy gevoel het en jou notas, en indien beskikbaar ook wektye en slaapfases – sonder name, datums of toestel-ID’s.</string>
     <string name="editor_more">Meer</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Tot %1$d wekkers – vee een uit om ’n nuwe by te voeg.</string>
@@ -481,7 +481,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnostiek word nou in die instellings gewys.</string>
     <string name="diag_show">Wys diagnostiek</string>
-    <string name="diag_hint">Tegniese logboek van die afgelope 7 dae, net op jou toestelle. Dit bevat tye en meetwaardes (bv. beweging, wanneer jy aan die slaap geraak het) – deel dit net as jy wil.</string>
+    <string name="diag_hint">Tegniese logboek van die afgelope 7 dae, net op jou toestelle. Dit bevat tye en meetwaardes (bv. beweging, wanneer jy aan die slaap geraak het, wektye, slaapfases) – deel dit net as jy wil.</string>
     <string name="diag_events">Gebeure</string>
     <string name="diag_empty">Nog geen gebeure nie.</string>
     <string name="diag_status">Status</string>

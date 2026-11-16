@@ -246,7 +246,7 @@
     <string name="check_watch_learn_battery">Batareya %1$d %% dan kam bo‘lsa, soat bu kecha o‘rganish bosqichi uchun yozib olmaydi – oldindan quvvatla. Budilnik baribir seni uyg‘otadi.</string>
     <string name="check_watch_pulse">Fonda puls (soat)</string>
     <string name="check_watch_pulse_problem">Soatga tunda pulsingni oʻlchashga ruxsat yoʻq – soatda Phase Wake sensor ruxsatini “Doim ruxsat berish” qilib qoʻy.</string>
-    <string name="export_contents_hint">Faylda har bir tun uchun har 30 soniyalik harakat va yurak urishi, oʻzingni qanday his qilganing va qaydlaring bor – nomlar, sanalar va qurilma IDlarisiz.</string>
+    <string name="export_contents_hint">Faylda har bir tun uchun har 30 soniyalik harakat va yurak urishi, oʻzingni qanday his qilganing, qaydlaring va boʻlsa, uygʻotish vaqtlari va uyqu fazalari bor – nomlar, sanalar va qurilma IDlarisiz.</string>
     <string name="editor_more">Yana</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Eng koʻpi %1$d ta budilnik – yangisini qoʻshish uchun bittasini oʻchir.</string>
@@ -481,7 +481,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnostika endi sozlamalarda koʻrsatiladi.</string>
     <string name="diag_show">Diagnostikani koʻrsatish</string>
-    <string name="diag_hint">Oxirgi 7 kunlik texnik jurnal, faqat qurilmalaringda. Unda vaqtlar va o‘lchangan qiymatlar bor (masalan, harakat, uxlab qolish vaqti) – faqat xohlasang ulash.</string>
+    <string name="diag_hint">Oxirgi 7 kunlik texnik jurnal, faqat qurilmalaringda. Unda vaqtlar va o‘lchangan qiymatlar bor (masalan, harakat, uxlab qolish vaqti, uyg‘otish vaqtlari, uyqu fazalari) – faqat xohlasang ulash.</string>
     <string name="diag_events">Hodisalar</string>
     <string name="diag_empty">Hali hodisalar yoʻq.</string>
     <string name="diag_status">Holat</string>

@@ -239,7 +239,7 @@
     <string name="check_watch_learn_battery">電量低於 %1$d %% 時，手錶今晚不會為學習階段記錄——請提前充電。鬧鐘仍會叫醒你。</string>
     <string name="check_watch_pulse">背景心率（手錶）</string>
     <string name="check_watch_pulse_problem">手錶無法在夜間測量你的心率 – 請在手錶上將 Phase Wake 的感應器權限設為「一律允許」。</string>
-    <string name="export_contents_hint">檔案包含每晚每 30 秒的體動和心率、你的感受和你的筆記，不含姓名、日期或裝置 ID。</string>
+    <string name="export_contents_hint">檔案包含每晚每 30 秒的體動和心率、你的感受和你的筆記，以及（如有）喚醒時間和睡眠階段，不含姓名、日期或裝置 ID。</string>
     <string name="editor_more">更多</string>
     <string name="home_max_alarms">最多 %1$d 個鬧鐘 – 刪除一個後才能新增。</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -464,7 +464,7 @@
     </plurals>
     <string name="diag_unlocked">診斷現已顯示在設定中。</string>
     <string name="diag_show">顯示診斷</string>
-    <string name="diag_hint">最近 7 天的技術記錄，只存在你的裝置上。其中包含時間和測量值（例如動作、入睡時間）——只在你願意時分享。</string>
+    <string name="diag_hint">最近 7 天的技術記錄，只存在你的裝置上。其中包含時間和測量值（例如動作、入睡時間、喚醒時間、睡眠階段）——只在你願意時分享。</string>
     <string name="diag_events">事件</string>
     <string name="diag_empty">還沒有事件。</string>
     <string name="diag_status">狀態</string>

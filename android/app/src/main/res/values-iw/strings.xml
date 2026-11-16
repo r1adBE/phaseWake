@@ -249,7 +249,7 @@
     <string name="check_watch_learn_battery">עם פחות מ-%1$d %% סוללה השעון לא יקליט הלילה עבור שלב הלמידה – טען אותו מראש. ההשכמה תעיר אותך בכל זאת.</string>
     <string name="check_watch_pulse">דופק ברקע (שעון)</string>
     <string name="check_watch_pulse_problem">לשעון אסור למדוד את הדופק שלך בלילה – בשעון, הגדר את הרשאת החיישנים של Phase Wake ל„אישור כל הזמן”.</string>
-    <string name="export_contents_hint">הקובץ מכיל לכל לילה תנועה ודופק לכל 30 שניות, איך הרגשתם וההערות שלכם – ללא שמות, תאריכים או מזהי מכשירים.</string>
+    <string name="export_contents_hint">הקובץ מכיל לכל לילה תנועה ודופק לכל 30 שניות, איך הרגשתם וההערות שלכם, ואם יש, גם שעות השכמה ושלבי שינה – ללא שמות, תאריכים או מזהי מכשירים.</string>
     <string name="editor_more">עוד</string>
     <string name="home_max_alarms">עד %1$d מעוררים – מחקו אחד כדי להוסיף חדש.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -492,7 +492,7 @@
     </plurals>
     <string name="diag_unlocked">האבחון מופיע עכשיו בהגדרות.</string>
     <string name="diag_show">הצגת אבחון</string>
-    <string name="diag_hint">יומן טכני של 7 הימים האחרונים, רק במכשירים שלך. הוא מכיל זמנים וערכי מדידה (למשל תנועה, שעת הירדמות) – שתף אותו רק אם תרצה.</string>
+    <string name="diag_hint">יומן טכני של 7 הימים האחרונים, רק במכשירים שלך. הוא מכיל זמנים וערכי מדידה (למשל תנועה, שעת הירדמות, שעות השכמה, שלבי שינה) – שתף אותו רק אם תרצה.</string>
     <string name="diag_events">אירועים</string>
     <string name="diag_empty">עדיין אין אירועים.</string>
     <string name="diag_status">מצב</string>

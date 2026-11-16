@@ -19,6 +19,7 @@ Reihenfolge bis zur Produktion: [Checkliste Store-Start](#checkliste-store-start
 | `USE_FULL_SCREEN_INTENT` | ✓ | ✓ | Weckbildschirm bei gesperrtem Gerät |
 | Vordergrund-Dienst `systemExempted` | ✓ | ✓ | Klingeln bzw. Wecken ohne Messung |
 | Vordergrund-Dienst `health` | – | ✓ | Messung im Weckfenster, Einschlaf-Messung (auch nach «Gute Nacht»), «Nacht aufzeichnen», Lernphase |
+| Vordergrund-Dienst `shortService` | – | ✓ | Nur kurzer Rückfall der Aufzeichnung, wenn Android `health` verweigert (endet sofort, ohne Messung) |
 | Vordergrund-Dienst `mediaPlayback` | ✓ | – | Einschlafklänge |
 | Vordergrund-Dienst `microphone`, `RECORD_AUDIO` | ✓ | – | Geräusche in der Nacht (Option) |
 | `BODY_SENSORS` (bis Wear OS 5), `BODY_SENSORS_BACKGROUND` (bis Wear OS 5) | – | ✓ | Puls im Weckfenster |
@@ -42,9 +43,7 @@ Ruhemodus des Geräts. Die Alarme erscheinen im System als Wecker (Uhrzeit in de
 (Handy: Zweitwecker oder Weiterleitung der Uhr; Uhr: bei jedem Klingeln und Schlummern, dazu im Weckfenster, wenn nicht
 gemessen werden kann – vor dem ersten Entsperren nach einem Neustart oder ohne Sensorrechte). Er hält Ton, Vibration und
 Weckbildschirm am Leben, bis du beendest oder schlummerst. Als Wecker-App mit `USE_EXACT_ALARM` ist dieser Typ vorgesehen.
-Rückfall auf der Uhr: Verweigert das System einer Aufzeichnung («Nacht aufzeichnen», Lernphase; `RecordService`) den
-Typ «health» (z. B. Sensorrechte entzogen), geht der Dienst nur kurz mit «systemExempted» in den Vordergrund, weil
-Android das nach dem Start verlangt, protokolliert den Grund und beendet sich sofort, ohne zu messen.
+Nur der Weckdienst (`WakeService`) nutzt ihn, nie die Aufzeichnung.
 
 **Vordergrund-Dienst «health» (Uhr).** Läuft im Weckfenster (10–30 Minuten vor der Zielzeit) und am Abend bis zum
 Einschlafen: automatisch ab 1 Std. vor der Bettzeit (Einschlaf-Messung, ab Werk an, in den Einstellungen abschaltbar)
@@ -53,7 +52,10 @@ und nach «Gute Nacht» (Wecker mit Schlafdauer, du tippst es selbst an). Dazu n
 nur mit freigeschalteter Diagnose; endet beim Stoppen, beim Wecken oder unter 15 % Akku) und die freiwillige Lernphase
 (7 Nächte, nur nach Zustimmung, in Stichproben über die Nacht). Er liest Bewegung (Beschleunigungssensor) und Puls, um
 einen leichten Schlafmoment zum Wecken zu finden bzw. deine Nacht aufzuzeichnen. Jede Messung zeigt eine laufende
-Benachrichtigung.
+Benachrichtigung. Fehlen die Rechte für «health» (Bewegung oder Puls; aus dem Hintergrund Puls nur mit dem
+Hintergrundrecht), startet eine Aufzeichnung gar nicht. Verweigert Android «health» trotzdem, geht der Dienst nur kurz
+als «shortService» in den Vordergrund (Android verlangt das nach dem Start), protokolliert den Grund und beendet sich
+sofort, ohne zu messen; eine laufende Aufzeichnung endet dann.
 
 **Vordergrund-Dienst «mediaPlayback» (Handy).** Einschlafklänge (Rauschen, Regen, Meer …), die du startest; mit
 Medien-Benachrichtigung und Timer. Endet beim Stoppen oder nach Ablauf des Timers.
@@ -105,10 +107,7 @@ appears even when the phone is locked or the watch screen is off. No other full-
 backup alarm or forwarded watch alarm; watch: on every ring and snooze, plus during the wake window when measuring is not
 possible – before the first unlock after a restart or without sensor permissions). It keeps sound,
 vibration and the alarm screen alive until the user stops or snoozes. This type is intended for alarm clock apps
-holding `USE_EXACT_ALARM`. Fallback on the watch: if the system refuses the “health” type for a recording (“Record
-night”, learning phase; `RecordService`), e.g. because sensor permissions were revoked, the service enters the
-foreground with “systemExempted” only briefly, because Android requires this after the start, logs the reason and stops
-at once without measuring.
+holding `USE_EXACT_ALARM`. Only the alarm service (`WakeService`) uses it, never the recording.
 
 **Foreground service type “health” (watch).** Runs during the wake window (10–30 minutes before the target time) and in
 the evening until the user falls asleep: automatically from 1 hour before bedtime (falling-asleep measurement, on by
@@ -117,7 +116,10 @@ In addition only at the user’s request: “Record night” (started on the wat
 of 60 seconds every 5 minutes, continuously only with diagnostics unlocked; ends when stopped, when the user is woken or
 below 15 % battery) and the optional learning phase (7 nights, only after the user agrees, in samples through the
 night). It reads movement (accelerometer) and heart rate to find a light-sleep moment to wake the user or to record the
-night. Every measurement shows an ongoing notification.
+night. Every measurement shows an ongoing notification. Without the permissions for “health” (movement or heart rate;
+from the background heart rate only with the background permission) a recording does not start at all. If Android
+still refuses “health”, the service enters the foreground only briefly as “shortService” (Android requires this after
+the start), logs the reason and stops at once without measuring; a running recording ends.
 
 **Foreground service type “mediaPlayback” (phone).** Sleep sounds (noise, rain, sea …) started by the user, with a media
 notification and a timer. Ends when stopped or when the timer runs out.
@@ -229,6 +231,8 @@ Stand 16.11.2026. Reihenfolge für ein neues privates Entwicklerkonto; T = Start
      - `microphone` (Handy): «Geräusche aufnehmen» für die Nacht einschalten → Mitteilung → Stopp über die Mitteilung.
      - `mediaPlayback` (Handy): Einschlafklang starten → Medien-Mitteilung mit Timer → Stopp.
      - `systemExempted`, falls die Konsole ihn abfragt: Probewecker klingelt → Schlummern → Beenden.
+     - `shortService` (Uhr), falls die Konsole ihn abfragt: kein eigener Ablauf, nur Rückfall ohne Messung, wenn
+       Android `health` verweigert (Text oben unter «health»).
    - Inhaltsbewertung, Zielgruppe, Werbung (keine).
 5. **Interner Test:** Bundles hochladen (Schritt 6 unten), auf eigenen Geräten installieren.
 6. **Pre-Launch-Bericht:** Nach jedem Upload in einen Test-Track unter Testen → Pre-Launch-Bericht → «Barrierefreiheit»

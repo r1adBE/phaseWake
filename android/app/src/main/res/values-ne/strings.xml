@@ -246,7 +246,7 @@
     <string name="check_watch_learn_battery">%1$d %% भन्दा कम ब्याट्रीमा घडीले आज राति सिक्ने चरणका लागि रेकर्ड गर्दैन – पहिल्यै चार्ज गर। अलार्मले तिमीलाई तैपनि उठाउनेछ।</string>
     <string name="check_watch_pulse">पृष्ठभूमिमा पल्स (घडी)</string>
     <string name="check_watch_pulse_problem">घडीलाई रातमा तिम्रो पल्स नाप्ने अनुमति छैन – घडीमा Phase Wake को सेन्सर अनुमति “सधैँ अनुमति दिनुहोस्” मा सेट गर।</string>
-    <string name="export_contents_hint">फाइलमा हरेक रातको हरेक 30 सेकेन्डको चालचलन र मुटुको धड्कन, तिमीलाई कस्तो लाग्यो र तिम्रा नोटहरू छन् – नाम, मिति वा उपकरण ID बिना।</string>
+    <string name="export_contents_hint">फाइलमा हरेक रातको हरेक 30 सेकेन्डको चालचलन र मुटुको धड्कन, तिमीलाई कस्तो लाग्यो, तिम्रा नोटहरू र भए ब्युँझाउने समय र निद्राका चरण छन् – नाम, मिति वा उपकरण ID बिना।</string>
     <string name="editor_more">थप</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">बढीमा %1$d अलार्म – नयाँ थप्न एउटा मेटाऊ।</string>
@@ -481,7 +481,7 @@
     </plurals>
     <string name="diag_unlocked">अब निदान सेटिङमा देखिन्छ।</string>
     <string name="diag_show">निदान देखाऊ</string>
-    <string name="diag_hint">पछिल्ला ७ दिनको प्राविधिक लग, तिम्रा उपकरणमा मात्र। यसमा समय र मापन गरिएका मानहरू छन् (जस्तै चाल, निदाएको समय) – चाहेमा मात्र साझा गर।</string>
+    <string name="diag_hint">पछिल्ला ७ दिनको प्राविधिक लग, तिम्रा उपकरणमा मात्र। यसमा समय र मापन गरिएका मानहरू छन् (जस्तै चाल, निदाएको समय, ब्युँझाउने समय, निद्राका चरण) – चाहेमा मात्र साझा गर।</string>
     <string name="diag_events">घटनाहरू</string>
     <string name="diag_empty">अहिलेसम्म कुनै घटना छैन।</string>
     <string name="diag_status">स्थिति</string>

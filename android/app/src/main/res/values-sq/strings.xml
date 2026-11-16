@@ -246,7 +246,7 @@
     <string name="check_watch_learn_battery">Me më pak se %1$d %% bateri, ora sonte nuk do të regjistrojë për fazën e të mësuarit – karikoje më parë. Alarmi do të të zgjojë gjithsesi.</string>
     <string name="check_watch_pulse">Pulsi në sfond (ora)</string>
     <string name="check_watch_pulse_problem">Ora nuk lejohet të të matë pulsin natën – në orë, vendose lejen e sensorëve të Phase Wake në “Lejo gjithmonë”.</string>
-    <string name="export_contents_hint">Skedari përmban për çdo natë lëvizjen dhe pulsin çdo 30 s, si u ndjeve dhe shënimet e tua – pa emra, data apo ID pajisjesh.</string>
+    <string name="export_contents_hint">Skedari përmban për çdo natë lëvizjen dhe pulsin çdo 30 s, si u ndjeve dhe shënimet e tua, si dhe oraret e zgjimit dhe fazat e gjumit, nëse ka – pa emra, data apo ID pajisjesh.</string>
     <string name="editor_more">Më shumë</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Deri në %1$d alarme – fshi një për të shtuar një të ri.</string>
@@ -481,7 +481,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnostikimi tani shfaqet te cilësimet.</string>
     <string name="diag_show">Shfaq diagnostikimin</string>
-    <string name="diag_hint">Regjistër teknik i 7 ditëve të fundit, vetëm në pajisjet e tua. Përmban orare dhe vlera të matura (p.sh. lëvizje, ora e rënies në gjumë) – ndaje vetëm nëse do.</string>
+    <string name="diag_hint">Regjistër teknik i 7 ditëve të fundit, vetëm në pajisjet e tua. Përmban orare dhe vlera të matura (p.sh. lëvizje, ora e rënies në gjumë, oraret e zgjimit, fazat e gjumit) – ndaje vetëm nëse do.</string>
     <string name="diag_events">Ngjarjet</string>
     <string name="diag_empty">Ende asnjë ngjarje.</string>
     <string name="diag_status">Gjendja</string>

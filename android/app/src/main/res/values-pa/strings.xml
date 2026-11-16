@@ -246,7 +246,7 @@
     <string name="check_watch_learn_battery">%1$d %% ਤੋਂ ਘੱਟ ਬੈਟਰੀ ’ਤੇ ਘੜੀ ਅੱਜ ਰਾਤ ਸਿੱਖਣ ਦੇ ਪੜਾਅ ਲਈ ਰਿਕਾਰਡ ਨਹੀਂ ਕਰੇਗੀ – ਪਹਿਲਾਂ ਚਾਰਜ ਕਰ ਲੈ। ਅਲਾਰਮ ਫਿਰ ਵੀ ਤੈਨੂੰ ਜਗਾਏਗਾ।</string>
     <string name="check_watch_pulse">ਬੈਕਗ੍ਰਾਊਂਡ ਵਿੱਚ ਨਬਜ਼ (ਘੜੀ)</string>
     <string name="check_watch_pulse_problem">ਘੜੀ ਨੂੰ ਰਾਤ ਨੂੰ ਤੇਰੀ ਨਬਜ਼ ਮਾਪਣ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ – ਘੜੀ ’ਤੇ Phase Wake ਦੀ ਸੈਂਸਰ ਇਜਾਜ਼ਤ “ਹਮੇਸ਼ਾਂ ਇਜਾਜ਼ਤ ਦਿਓ” ’ਤੇ ਸੈੱਟ ਕਰ।</string>
-    <string name="export_contents_hint">ਫ਼ਾਈਲ ਵਿੱਚ ਹਰ ਰਾਤ ਲਈ ਹਰ 30 ਸਕਿੰਟ ਦੀ ਹਿਲਜੁਲ ਅਤੇ ਦਿਲ ਦੀ ਧੜਕਣ, ਤੁਹਾਨੂੰ ਕਿਵੇਂ ਲੱਗਾ ਅਤੇ ਤੁਹਾਡੇ ਨੋਟ ਹਨ – ਨਾਂ, ਤਾਰੀਖ਼ ਜਾਂ ਡਿਵਾਈਸ ID ਤੋਂ ਬਿਨਾਂ।</string>
+    <string name="export_contents_hint">ਫ਼ਾਈਲ ਵਿੱਚ ਹਰ ਰਾਤ ਲਈ ਹਰ 30 ਸਕਿੰਟ ਦੀ ਹਿਲਜੁਲ ਅਤੇ ਦਿਲ ਦੀ ਧੜਕਣ, ਤੁਹਾਨੂੰ ਕਿਵੇਂ ਲੱਗਾ, ਤੁਹਾਡੇ ਨੋਟ ਅਤੇ ਹੋਣ ਤਾਂ ਜਗਾਉਣ ਦਾ ਸਮਾਂ ਤੇ ਨੀਂਦ ਦੇ ਪੜਾਅ ਹਨ – ਨਾਂ, ਤਾਰੀਖ਼ ਜਾਂ ਡਿਵਾਈਸ ID ਤੋਂ ਬਿਨਾਂ।</string>
     <string name="editor_more">ਹੋਰ</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">ਵੱਧ ਤੋਂ ਵੱਧ %1$d ਅਲਾਰਮ – ਨਵਾਂ ਜੋੜਨ ਲਈ ਇੱਕ ਮਿਟਾਓ।</string>
@@ -481,7 +481,7 @@
     </plurals>
     <string name="diag_unlocked">ਡਾਇਗਨੌਸਟਿਕਸ ਹੁਣ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਦਿਖਦੇ ਹਨ।</string>
     <string name="diag_show">ਡਾਇਗਨੌਸਟਿਕਸ ਦਿਖਾਓ</string>
-    <string name="diag_hint">ਪਿਛਲੇ 7 ਦਿਨਾਂ ਦਾ ਤਕਨੀਕੀ ਲੌਗ, ਸਿਰਫ਼ ਤੁਹਾਡੇ ਡੀਵਾਈਸਾਂ ’ਤੇ। ਇਸ ਵਿੱਚ ਸਮੇਂ ਅਤੇ ਮਾਪੇ ਮੁੱਲ ਹਨ (ਜਿਵੇਂ ਹਿਲਜੁਲ, ਨੀਂਦ ਆਉਣ ਦਾ ਸਮਾਂ) – ਚਾਹੋ ਤਾਂ ਹੀ ਸਾਂਝਾ ਕਰੋ।</string>
+    <string name="diag_hint">ਪਿਛਲੇ 7 ਦਿਨਾਂ ਦਾ ਤਕਨੀਕੀ ਲੌਗ, ਸਿਰਫ਼ ਤੁਹਾਡੇ ਡੀਵਾਈਸਾਂ ’ਤੇ। ਇਸ ਵਿੱਚ ਸਮੇਂ ਅਤੇ ਮਾਪੇ ਮੁੱਲ ਹਨ (ਜਿਵੇਂ ਹਿਲਜੁਲ, ਨੀਂਦ ਆਉਣ ਦਾ ਸਮਾਂ, ਜਗਾਉਣ ਦਾ ਸਮਾਂ, ਨੀਂਦ ਦੇ ਪੜਾਅ) – ਚਾਹੋ ਤਾਂ ਹੀ ਸਾਂਝਾ ਕਰੋ।</string>
     <string name="diag_events">ਘਟਨਾਵਾਂ</string>
     <string name="diag_empty">ਅਜੇ ਕੋਈ ਘਟਨਾ ਨਹੀਂ।</string>
     <string name="diag_status">ਸਥਿਤੀ</string>

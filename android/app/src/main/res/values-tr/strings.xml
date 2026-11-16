@@ -244,7 +244,7 @@
     <string name="check_watch_learn_battery">Pil %1$d %% altındayken saat bu gece öğrenme aşaması için kayıt yapmaz – önceden şarj et. Alarm seni yine de uyandıracak.</string>
     <string name="check_watch_pulse">Arka planda nabız (saat)</string>
     <string name="check_watch_pulse_problem">Saatin gece nabzını ölçmesine izin yok – saatte Phase Wake’in sensör iznini “Her zaman izin ver” olarak ayarla.</string>
-    <string name="export_contents_hint">Dosya her gece için 30 sn’lik hareket ve nabzı, nasıl hissettiğini ve notlarını içerir – adsız, tarihsiz ve cihaz kimliği olmadan.</string>
+    <string name="export_contents_hint">Dosya her gece için 30 sn’lik hareket ve nabzı, nasıl hissettiğini, notlarını ve varsa uyandırma saatlerini ve uyku evrelerini içerir – adsız, tarihsiz ve cihaz kimliği olmadan.</string>
     <string name="editor_more">Daha fazla</string>
     <string name="home_max_alarms">En fazla %1$d alarm – yenisini eklemek için birini sil.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -478,7 +478,7 @@
     </plurals>
     <string name="diag_unlocked">Tanılama artık ayarlarda.</string>
     <string name="diag_show">Tanılamayı göster</string>
-    <string name="diag_hint">Son 7 günün teknik kaydı, yalnızca cihazlarında. Saatler ve ölçüm değerleri içerir (ör. hareket, uykuya dalma saati) – yalnızca istersen paylaş.</string>
+    <string name="diag_hint">Son 7 günün teknik kaydı, yalnızca cihazlarında. Saatler ve ölçüm değerleri içerir (ör. hareket, uykuya dalma saati, uyandırma saatleri, uyku evreleri) – yalnızca istersen paylaş.</string>
     <string name="diag_events">Olaylar</string>
     <string name="diag_empty">Henüz olay yok.</string>
     <string name="diag_status">Durum</string>

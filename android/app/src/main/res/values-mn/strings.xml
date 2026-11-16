@@ -246,7 +246,7 @@
     <string name="check_watch_learn_battery">Батерей %1$d %%-иас бага бол цаг өнөө шөнө суралцах үед зориулж бичлэг хийхгүй – урьдчилан цэнэглэ. Сэрүүлэг чамайг ямар ч байсан сэрээнэ.</string>
     <string name="check_watch_pulse">Арын горимын судасны цохилт (цаг)</string>
     <string name="check_watch_pulse_problem">Цаг шөнө судасны цохилтыг чинь хэмжих эрхгүй – цаган дээр Phase Wake-ийн мэдрэгчийн зөвшөөрлийг «Үргэлж зөвшөөрөх» болго.</string>
-    <string name="export_contents_hint">Файлд шөнө бүрийн 30 с тутмын хөдөлгөөн ба зүрхний цохилт, сэтгэгдэл, тэмдэглэл чинь бий – нэр, огноо, төхөөрөмжийн ID-гүй.</string>
+    <string name="export_contents_hint">Файлд шөнө бүрийн 30 с тутмын хөдөлгөөн ба зүрхний цохилт, сэтгэгдэл, тэмдэглэл чинь, байвал сэрээсэн цаг ба нойрны үе шат бий – нэр, огноо, төхөөрөмжийн ID-гүй.</string>
     <string name="editor_more">Бусад</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Дээд тал нь %1$d сэрүүлэг – шинийг нэмэхийн тулд нэгийг устга.</string>
@@ -481,7 +481,7 @@
     </plurals>
     <string name="diag_unlocked">Оношилгоо одоо тохиргоонд харагдана.</string>
     <string name="diag_show">Оношилгоо харуулах</string>
-    <string name="diag_hint">Сүүлийн 7 хоногийн техникийн бүртгэл, зөвхөн чиний төхөөрөмжүүд дээр. Цаг болон хэмжсэн утгууд агуулна (жишээ нь хөдөлгөөн, унтсан цаг) – хүсвэл л хуваалц.</string>
+    <string name="diag_hint">Сүүлийн 7 хоногийн техникийн бүртгэл, зөвхөн чиний төхөөрөмжүүд дээр. Цаг болон хэмжсэн утгууд агуулна (жишээ нь хөдөлгөөн, унтсан цаг, сэрээсэн цаг, нойрны үе шат) – хүсвэл л хуваалц.</string>
     <string name="diag_events">Үйл явдал</string>
     <string name="diag_empty">Одоохондоо үйл явдал алга.</string>
     <string name="diag_status">Төлөв</string>

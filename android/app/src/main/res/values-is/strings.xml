@@ -246,7 +246,7 @@
     <string name="check_watch_learn_battery">Með undir %1$d %% rafhlöðu skráir úrið ekki í nótt fyrir námsfasann – hladdu það fyrir fram. Vekjarinn vekur þig samt.</string>
     <string name="check_watch_pulse">Púls í bakgrunni (úr)</string>
     <string name="check_watch_pulse_problem">Úrið má ekki mæla púlsinn þinn á nóttunni – stilltu skynjaraheimild Phase Wake á úrinu á „Leyfa alltaf“.</string>
-    <string name="export_contents_hint">Skráin inniheldur fyrir hverja nótt hreyfingu og púls á 30 s fresti, líðan þína og glósurnar þínar – án nafna, dagsetninga eða auðkenna tækja.</string>
+    <string name="export_contents_hint">Skráin inniheldur fyrir hverja nótt hreyfingu og púls á 30 s fresti, líðan þína og glósurnar þínar, og ef til eru, vakningartíma og svefnstig – án nafna, dagsetninga eða auðkenna tækja.</string>
     <string name="editor_more">Meira</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Hámark %1$d vekjarar – eyddu einum til að bæta nýjum við.</string>
@@ -481,7 +481,7 @@
     </plurals>
     <string name="diag_unlocked">Greining birtist nú í stillingunum.</string>
     <string name="diag_show">Sýna greiningu</string>
-    <string name="diag_hint">Tæknileg skráning síðustu 7 daga, aðeins á tækjunum þínum. Hún inniheldur tíma og mæligildi (t.d. hreyfingu, hvenær þú sofnaðir) – deildu henni aðeins ef þú vilt.</string>
+    <string name="diag_hint">Tæknileg skráning síðustu 7 daga, aðeins á tækjunum þínum. Hún inniheldur tíma og mæligildi (t.d. hreyfingu, hvenær þú sofnaðir, vakningartíma, svefnstig) – deildu henni aðeins ef þú vilt.</string>
     <string name="diag_events">Atburðir</string>
     <string name="diag_empty">Engir atburðir enn.</string>
     <string name="diag_status">Staða</string>

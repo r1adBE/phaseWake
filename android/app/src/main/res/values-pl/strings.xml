@@ -254,7 +254,7 @@
     <string name="check_watch_learn_battery">Poniżej %1$d %% baterii zegarek nie nagra dziś w nocy dla fazy nauki – naładuj go wcześniej. Budzik i tak cię obudzi.</string>
     <string name="check_watch_pulse">Tętno w tle (zegarek)</string>
     <string name="check_watch_pulse_problem">Zegarek nie może mierzyć twojego tętna w nocy – na zegarku ustaw uprawnienie czujników dla Phase Wake na „Zezwalaj zawsze”.</string>
-    <string name="export_contents_hint">Plik zawiera dla każdej nocy ruch i tętno co 30 s, twoje samopoczucie i notatki – bez imion, dat i identyfikatorów urządzeń.</string>
+    <string name="export_contents_hint">Plik zawiera dla każdej nocy ruch i tętno co 30 s, twoje samopoczucie i notatki, a jeśli są dostępne, także godziny budzenia i fazy snu – bez imion, dat i identyfikatorów urządzeń.</string>
     <string name="editor_more">Więcej</string>
     <string name="home_max_alarms">Maksymalnie %1$d budzików – usuń jeden, aby dodać nowy.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -506,7 +506,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnostyka jest teraz w ustawieniach.</string>
     <string name="diag_show">Pokaż diagnostykę</string>
-    <string name="diag_hint">Dziennik techniczny z ostatnich 7 dni, tylko na twoich urządzeniach. Zawiera godziny i zmierzone wartości (np. ruch, porę zaśnięcia) – udostępniaj go tylko, jeśli chcesz.</string>
+    <string name="diag_hint">Dziennik techniczny z ostatnich 7 dni, tylko na twoich urządzeniach. Zawiera godziny i zmierzone wartości (np. ruch, porę zaśnięcia, godziny budzenia, fazy snu) – udostępniaj go tylko, jeśli chcesz.</string>
     <string name="diag_events">Zdarzenia</string>
     <string name="diag_empty">Brak zdarzeń.</string>
     <string name="diag_status">Stan</string>

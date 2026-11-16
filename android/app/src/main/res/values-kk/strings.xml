@@ -236,7 +236,7 @@
     <string name="check_watch_learn_battery">Батарея %1$d %%-дан төмен болса, сағат бүгін түнде үйрену кезеңі үшін жазбайды – алдын ала зарядта. Оятқыш бәрібір сені оятады.</string>
     <string name="check_watch_pulse">Фондағы пульс (сағат)</string>
     <string name="check_watch_pulse_problem">Сағатқа түнде пульсіңді өлшеуге рұқсат жоқ – сағатта Phase Wake сенсор рұқсатын «Әрқашан рұқсат ету» күйіне қой.</string>
-    <string name="export_contents_hint">Файлда әр түн үшін әр 30 с сайынғы қозғалыс пен пульс, көңіл күйің және жазбаларың бар – аты, күні немесе құрылғы ID-і жоқ.</string>
+    <string name="export_contents_hint">Файлда әр түн үшін әр 30 с сайынғы қозғалыс пен пульс, көңіл күйің, жазбаларың және болса, ояту уақыттары мен ұйқы фазалары бар – аты, күні немесе құрылғы ID-і жоқ.</string>
     <string name="editor_more">Тағы</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Ең көбі %1$d оятқыш – жаңасын қосу үшін біреуін жой.</string>
     <string name="notes_title">Бүгінгі түнге жазбалар</string>
@@ -466,7 +466,7 @@
     </plurals>
     <string name="diag_unlocked">Диагностика енді параметрлерде көрсетіледі.</string>
     <string name="diag_show">Диагностиканы көрсету</string>
-    <string name="diag_hint">Соңғы 7 күннің техникалық журналы, тек сенің құрылғыларыңда. Онда уақыттар мен өлшем мәндері бар (мыс. қозғалыс, ұйықтап кеткен уақыт) – қаласаң ғана бөліс.</string>
+    <string name="diag_hint">Соңғы 7 күннің техникалық журналы, тек сенің құрылғыларыңда. Онда уақыттар мен өлшем мәндері бар (мыс. қозғалыс, ұйықтап кеткен уақыт, ояту уақыттары, ұйқы фазалары) – қаласаң ғана бөліс.</string>
     <string name="diag_events">Оқиғалар</string>
     <string name="diag_empty">Әзірге оқиғалар жоқ.</string>
     <string name="diag_status">Күйі</string>

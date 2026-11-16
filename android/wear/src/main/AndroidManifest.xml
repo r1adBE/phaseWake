@@ -88,11 +88,12 @@
             android:exported="false"
             android:foregroundServiceType="health|systemExempted" />
 
-        <!-- «Nacht aufzeichnen»: eigener Messdienst neben dem Weckdienst; nicht vor dem ersten Entsperren. -->
+        <!-- «Nacht aufzeichnen»: eigener Messdienst neben dem Weckdienst; nicht vor dem ersten Entsperren. «shortService» nur
+             als kurzer Rückfall, wenn «health» verweigert wird (danach endet der Dienst sofort). -->
         <service
             android:name=".record.RecordService"
             android:exported="false"
-            android:foregroundServiceType="health|systemExempted" />
+            android:foregroundServiceType="health|shortService" />
 
         <receiver
             android:name=".record.RecordReceiver"

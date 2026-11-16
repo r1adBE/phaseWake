@@ -254,7 +254,7 @@
     <string name="check_watch_learn_battery">При заряде ниже %1$d %% часы сегодня ночью не будут записывать для этапа обучения, – заряди их заранее. Будильник всё равно тебя разбудит.</string>
     <string name="check_watch_pulse">Пульс в фоне (часы)</string>
     <string name="check_watch_pulse_problem">Часам не разрешено измерять твой пульс ночью – на часах установи для Phase Wake разрешение датчиков «Разрешить всегда».</string>
-    <string name="export_contents_hint">Файл содержит для каждой ночи движение и пульс каждые 30 с, твоё самочувствие и заметки – без имён, дат и ID устройств.</string>
+    <string name="export_contents_hint">Файл содержит для каждой ночи движение и пульс каждые 30 с, твоё самочувствие и заметки, а при наличии также время пробуждения и фазы сна – без имён, дат и ID устройств.</string>
     <string name="editor_more">Ещё</string>
     <string name="home_max_alarms">Не больше %1$d будильников – удали один, чтобы добавить новый.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -506,7 +506,7 @@
     </plurals>
     <string name="diag_unlocked">Диагностика теперь в настройках.</string>
     <string name="diag_show">Показывать диагностику</string>
-    <string name="diag_hint">Технический журнал за последние 7 дней, только на твоих устройствах. Он содержит время и измеренные значения (например, движение, время засыпания) – делись им, только если хочешь.</string>
+    <string name="diag_hint">Технический журнал за последние 7 дней, только на твоих устройствах. Он содержит время и измеренные значения (например, движение, время засыпания, время пробуждения, фазы сна) – делись им, только если хочешь.</string>
     <string name="diag_events">События</string>
     <string name="diag_empty">Событий пока нет.</string>
     <string name="diag_status">Состояние</string>

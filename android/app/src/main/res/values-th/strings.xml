@@ -239,7 +239,7 @@
     <string name="check_watch_learn_battery">เมื่อแบตเตอรี่ต่ำกว่า %1$d %% คืนนี้นาฬิกาจะไม่บันทึกสำหรับช่วงเรียนรู้ – ชาร์จไว้ก่อน แต่นาฬิกาปลุกจะยังปลุกคุณตามปกติ</string>
     <string name="check_watch_pulse">ชีพจรในเบื้องหลัง (นาฬิกา)</string>
     <string name="check_watch_pulse_problem">นาฬิกาไม่ได้รับอนุญาตให้วัดชีพจรของคุณตอนกลางคืน – บนนาฬิกา ให้ตั้งค่าสิทธิ์เซ็นเซอร์ของ Phase Wake เป็น “อนุญาตตลอดเวลา”</string>
-    <string name="export_contents_hint">ไฟล์มีการเคลื่อนไหวและอัตราการเต้นของหัวใจทุก 30 วินาที ความรู้สึกของคุณ และบันทึกของคุณสำหรับแต่ละคืน – ไม่มีชื่อ วันที่ หรือ ID อุปกรณ์</string>
+    <string name="export_contents_hint">ไฟล์มีการเคลื่อนไหวและอัตราการเต้นของหัวใจทุก 30 วินาที ความรู้สึกของคุณ และบันทึกของคุณสำหรับแต่ละคืน รวมถึงเวลาปลุกและระยะการนอนหากมี – ไม่มีชื่อ วันที่ หรือ ID อุปกรณ์</string>
     <string name="editor_more">เพิ่มเติม</string>
     <string name="home_max_alarms">ตั้งได้สูงสุด %1$d รายการ – ลบหนึ่งรายการเพื่อเพิ่มใหม่</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -464,7 +464,7 @@
     </plurals>
     <string name="diag_unlocked">ตอนนี้การวินิจฉัยอยู่ในการตั้งค่าแล้ว</string>
     <string name="diag_show">แสดงการวินิจฉัย</string>
-    <string name="diag_hint">บันทึกทางเทคนิคของ 7 วันล่าสุด อยู่บนอุปกรณ์ของคุณเท่านั้น มีเวลาและค่าที่วัดได้ (เช่น การเคลื่อนไหว เวลาที่หลับ) – แชร์เฉพาะเมื่อคุณต้องการ</string>
+    <string name="diag_hint">บันทึกทางเทคนิคของ 7 วันล่าสุด อยู่บนอุปกรณ์ของคุณเท่านั้น มีเวลาและค่าที่วัดได้ (เช่น การเคลื่อนไหว เวลาที่หลับ เวลาปลุก ระยะการนอน) – แชร์เฉพาะเมื่อคุณต้องการ</string>
     <string name="diag_events">เหตุการณ์</string>
     <string name="diag_empty">ยังไม่มีเหตุการณ์</string>
     <string name="diag_status">สถานะ</string>

@@ -246,7 +246,7 @@
     <string name="check_watch_learn_battery">%1$d %% కంటే తక్కువ బ్యాటరీతో ఈ రాత్రి నేర్చుకునే దశ కోసం వాచ్ రికార్డ్ చేయదు – ముందే ఛార్జ్ చెయ్యి. అయినా అలారం నిన్ను లేపుతుంది.</string>
     <string name="check_watch_pulse">బ్యాక్‌గ్రౌండ్‌లో నాడి (వాచ్)</string>
     <string name="check_watch_pulse_problem">రాత్రి నీ నాడిని కొలవడానికి వాచ్‌కు అనుమతి లేదు – వాచ్‌లో Phase Wake సెన్సార్ అనుమతిని “ఎల్లప్పుడూ అనుమతించు”కు సెట్ చెయ్యి.</string>
-    <string name="export_contents_hint">ఫైల్‌లో ప్రతి రాత్రికి ప్రతి 30 సెకన్ల కదలిక మరియు గుండె వేగం, మీకు ఎలా అనిపించింది, మీ నోట్స్ ఉంటాయి – పేరు, తేదీ లేదా పరికర ID లేకుండా.</string>
+    <string name="export_contents_hint">ఫైల్‌లో ప్రతి రాత్రికి ప్రతి 30 సెకన్ల కదలిక మరియు గుండె వేగం, మీకు ఎలా అనిపించింది, మీ నోట్స్, ఉంటే మేల్కొలిపిన సమయం మరియు నిద్ర దశలు ఉంటాయి – పేరు, తేదీ లేదా పరికర ID లేకుండా.</string>
     <string name="editor_more">మరిన్ని</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">గరిష్ఠంగా %1$d అలారాలు – కొత్తది జోడించడానికి ఒకటి తొలగించండి.</string>
@@ -481,7 +481,7 @@
     </plurals>
     <string name="diag_unlocked">డయాగ్నస్టిక్స్ ఇప్పుడు సెట్టింగ్‌లలో కనిపిస్తాయి.</string>
     <string name="diag_show">డయాగ్నస్టిక్స్ చూపండి</string>
-    <string name="diag_hint">గత 7 రోజుల సాంకేతిక లాగ్, మీ పరికరాల్లో మాత్రమే. ఇందులో సమయాలు, కొలిచిన విలువలు ఉన్నాయి (ఉదా. కదలిక, నిద్రపోయిన సమయం) – మీకు కావాలంటేనే షేర్ చేయండి.</string>
+    <string name="diag_hint">గత 7 రోజుల సాంకేతిక లాగ్, మీ పరికరాల్లో మాత్రమే. ఇందులో సమయాలు, కొలిచిన విలువలు ఉన్నాయి (ఉదా. కదలిక, నిద్రపోయిన సమయం, మేల్కొలిపిన సమయం, నిద్ర దశలు) – మీకు కావాలంటేనే షేర్ చేయండి.</string>
     <string name="diag_events">ఈవెంట్‌లు</string>
     <string name="diag_empty">ఇంకా ఈవెంట్‌లు లేవు.</string>
     <string name="diag_status">స్థితి</string>

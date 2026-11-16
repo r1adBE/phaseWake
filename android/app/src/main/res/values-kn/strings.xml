@@ -245,7 +245,7 @@
     <string name="check_watch_learn_battery">%1$d %% ಕ್ಕಿಂತ ಕಡಿಮೆ ಬ್ಯಾಟರಿಯಲ್ಲಿ ಇಂದು ರಾತ್ರಿ ಕಲಿಕೆಯ ಹಂತಕ್ಕಾಗಿ ವಾಚ್ ರೆಕಾರ್ಡ್ ಮಾಡುವುದಿಲ್ಲ – ಮೊದಲೇ ಚಾರ್ಜ್ ಮಾಡು. ಅಲಾರಾಂ ಆದರೂ ನಿನ್ನನ್ನು ಎಬ್ಬಿಸುತ್ತದೆ.</string>
     <string name="check_watch_pulse">ಹಿನ್ನೆಲೆಯಲ್ಲಿ ನಾಡಿ (ವಾಚ್)</string>
     <string name="check_watch_pulse_problem">ವಾಚ್ ರಾತ್ರಿ ನಿನ್ನ ನಾಡಿಯನ್ನು ಅಳೆಯಲು ಅನುಮತಿ ಇಲ್ಲ – ವಾಚ್‌ನಲ್ಲಿ Phase Wake ನ ಸೆನ್ಸರ್ ಅನುಮತಿಯನ್ನು “ಎಲ್ಲಾ ಸಮಯದಲ್ಲೂ ಅನುಮತಿಸಿ” ಗೆ ಹೊಂದಿಸು.</string>
-    <string name="export_contents_hint">ಫೈಲ್‌ನಲ್ಲಿ ಪ್ರತಿ ರಾತ್ರಿಗೆ ಪ್ರತಿ 30 ಸೆ. ಚಲನೆ ಮತ್ತು ಹೃದಯ ಬಡಿತ, ನಿಮಗೆ ಹೇಗನಿಸಿತು ಮತ್ತು ನಿಮ್ಮ ಟಿಪ್ಪಣಿಗಳಿವೆ – ಹೆಸರು, ದಿನಾಂಕ ಅಥವಾ ಸಾಧನ ID ಇಲ್ಲದೆ.</string>
+    <string name="export_contents_hint">ಫೈಲ್‌ನಲ್ಲಿ ಪ್ರತಿ ರಾತ್ರಿಗೆ ಪ್ರತಿ 30 ಸೆ. ಚಲನೆ ಮತ್ತು ಹೃದಯ ಬಡಿತ, ನಿಮಗೆ ಹೇಗನಿಸಿತು, ನಿಮ್ಮ ಟಿಪ್ಪಣಿಗಳು ಮತ್ತು ಇದ್ದರೆ ಎಚ್ಚರಿಸುವ ಸಮಯ ಹಾಗೂ ನಿದ್ರೆಯ ಹಂತಗಳಿವೆ – ಹೆಸರು, ದಿನಾಂಕ ಅಥವಾ ಸಾಧನ ID ಇಲ್ಲದೆ.</string>
     <string name="editor_more">ಇನ್ನಷ್ಟು</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">ಗರಿಷ್ಠ %1$d ಅಲಾರಾಂಗಳು – ಹೊಸದನ್ನು ಸೇರಿಸಲು ಒಂದನ್ನು ಅಳಿಸಿ.</string>
@@ -480,7 +480,7 @@
     </plurals>
     <string name="diag_unlocked">ಡಯಾಗ್ನಾಸ್ಟಿಕ್ಸ್ ಈಗ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಕಾಣುತ್ತದೆ.</string>
     <string name="diag_show">ಡಯಾಗ್ನಾಸ್ಟಿಕ್ಸ್ ತೋರಿಸಿ</string>
-    <string name="diag_hint">ಕಳೆದ 7 ದಿನಗಳ ತಾಂತ್ರಿಕ ಲಾಗ್, ನಿಮ್ಮ ಸಾಧನಗಳಲ್ಲಿ ಮಾತ್ರ. ಇದರಲ್ಲಿ ಸಮಯಗಳು ಮತ್ತು ಅಳತೆ ಮೌಲ್ಯಗಳಿವೆ (ಉದಾ. ಚಲನೆ, ನಿದ್ರೆ ಬಂದ ಸಮಯ) – ನೀವು ಬಯಸಿದರೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಿ.</string>
+    <string name="diag_hint">ಕಳೆದ 7 ದಿನಗಳ ತಾಂತ್ರಿಕ ಲಾಗ್, ನಿಮ್ಮ ಸಾಧನಗಳಲ್ಲಿ ಮಾತ್ರ. ಇದರಲ್ಲಿ ಸಮಯಗಳು ಮತ್ತು ಅಳತೆ ಮೌಲ್ಯಗಳಿವೆ (ಉದಾ. ಚಲನೆ, ನಿದ್ರೆ ಬಂದ ಸಮಯ, ಎಚ್ಚರಿಸುವ ಸಮಯ, ನಿದ್ರೆಯ ಹಂತಗಳು) – ನೀವು ಬಯಸಿದರೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಿ.</string>
     <string name="diag_events">ಘಟನೆಗಳು</string>
     <string name="diag_empty">ಇನ್ನೂ ಯಾವುದೇ ಘಟನೆ ಇಲ್ಲ.</string>
     <string name="diag_status">ಸ್ಥಿತಿ</string>

@@ -59590,445 +59590,445 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tegniese logboek van die afgelope 7 dae, net op jou toestelle. Dit bevat tye en meetwaardes (bv. beweging, wanneer jy aan die slaap geraak het) – deel dit net as jy wil."
+            "value": "Tegniese logboek van die afgelope 7 dae, net op jou toestelle. Dit bevat tye en meetwaardes (bv. beweging, wanneer jy aan die slaap geraak het, wektye, slaapfases) – deel dit net as jy wil."
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "ያለፉት 7 ቀናት ቴክኒካዊ መዝገብ፣ በመሣሪያዎችህ ላይ ብቻ። ሰዓቶችንና መለኪያዎችን ይዟል (ለምሳሌ እንቅስቃሴ፣ የእንቅልፍ ጊዜ) – ከፈለግህ ብቻ አጋራው።"
+            "value": "ያለፉት 7 ቀናት ቴክኒካዊ መዝገብ፣ በመሣሪያዎችህ ላይ ብቻ። ሰዓቶችንና መለኪያዎችን ይዟል (ለምሳሌ እንቅስቃሴ፣ የእንቅልፍ ጊዜ፣ የመንቂያ ሰዓቶች፣ የእንቅልፍ ደረጃዎች) – ከፈለግህ ብቻ አጋራው።"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "سجل تقني لآخر ٧ أيام، على أجهزتك فقط. يحتوي على أوقات وقيم قياس (مثل الحركة ووقت النوم) – شاركه فقط إذا أردت."
+            "value": "سجل تقني لآخر ٧ أيام، على أجهزتك فقط. يحتوي على أوقات وقيم قياس (مثل الحركة ووقت النوم وأوقات الاستيقاظ ومراحل النوم) – شاركه فقط إذا أردت."
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Son 7 günün texniki jurnalı, yalnız sənin cihazlarında. Vaxtları və ölçü dəyərlərini ehtiva edir (məs. hərəkət, yuxuya getmə vaxtı) – yalnız istəsən paylaş."
+            "value": "Son 7 günün texniki jurnalı, yalnız sənin cihazlarında. Vaxtları və ölçü dəyərlərini ehtiva edir (məs. hərəkət, yuxuya getmə vaxtı, oyanma vaxtları, yuxu fazaları) – yalnız istəsən paylaş."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Технически дневник за последните 7 дни, само на твоите устройства. Съдържа часове и измерени стойности (напр. движение, време на заспиване) – споделяй го само ако искаш."
+            "value": "Технически дневник за последните 7 дни, само на твоите устройства. Съдържа часове и измерени стойности (напр. движение, време на заспиване, часове на събуждане, фази на съня) – споделяй го само ако искаш."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "গত ৭ দিনের প্রযুক্তিগত লগ, শুধু তোমার ডিভাইসে। এতে সময় ও পরিমাপের মান আছে (যেমন নড়াচড়া, ঘুমিয়ে পড়ার সময়) – চাইলে তবেই শেয়ার করো।"
+            "value": "গত ৭ দিনের প্রযুক্তিগত লগ, শুধু তোমার ডিভাইসে। এতে সময় ও পরিমাপের মান আছে (যেমন নড়াচড়া, ঘুমিয়ে পড়ার সময়, জাগানোর সময়, ঘুমের পর্যায়) – চাইলে তবেই শেয়ার করো।"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tehnički dnevnik zadnjih 7 dana, samo na tvojim uređajima. Sadrži vremena i izmjerene vrijednosti (npr. pokret, vrijeme uspavljivanja) – dijeli ga samo ako želiš."
+            "value": "Tehnički dnevnik zadnjih 7 dana, samo na tvojim uređajima. Sadrži vremena i izmjerene vrijednosti (npr. pokret, vrijeme uspavljivanja, vremena buđenja, faze sna) – dijeli ga samo ako želiš."
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "Registre tècnic dels últims 7 dies, només als teus dispositius. Conté hores i valors mesurats (p. ex. moviment, hora d’adormir-te) – comparteix-lo només si vols."
+            "value": "Registre tècnic dels últims 7 dies, només als teus dispositius. Conté hores i valors mesurats (p. ex. moviment, hora d’adormir-te, hores de despertar, fases del son) – comparteix-lo només si vols."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Technický záznam za posledních 7 dní, jen ve tvých zařízeních. Obsahuje časy a naměřené hodnoty (např. pohyb, čas usnutí) – sdílej ho, jen když chceš."
+            "value": "Technický záznam za posledních 7 dní, jen ve tvých zařízeních. Obsahuje časy a naměřené hodnoty (např. pohyb, čas usnutí, časy buzení, fáze spánku) – sdílej ho, jen když chceš."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Teknisk log for de seneste 7 dage, kun på dine enheder. Den indeholder tidspunkter og måleværdier (f.eks. bevægelse, indsovningstid) – del den kun, hvis du vil."
+            "value": "Teknisk log for de seneste 7 dage, kun på dine enheder. Den indeholder tidspunkter og måleværdier (f.eks. bevægelse, indsovningstid, vækketider, søvnfaser) – del den kun, hvis du vil."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Technisches Protokoll der letzten 7 Tage, nur auf deinen Geräten. Es enthält Zeiten und Messwerte (z. B. Bewegung, Einschlafzeit) – teile es nur, wenn du willst."
+            "value": "Technisches Protokoll der letzten 7 Tage, nur auf deinen Geräten. Es enthält Zeiten und Messwerte (z. B. Bewegung, Einschlafzeit, Weckzeiten, Schlafphasen) – teile es nur, wenn du willst."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Τεχνικό αρχείο καταγραφής των τελευταίων 7 ημερών, μόνο στις συσκευές σου. Περιέχει ώρες και μετρήσεις (π.χ. κίνηση, ώρα που αποκοιμήθηκες) – μοιράσου το μόνο αν θέλεις."
+            "value": "Τεχνικό αρχείο καταγραφής των τελευταίων 7 ημερών, μόνο στις συσκευές σου. Περιέχει ώρες και μετρήσεις (π.χ. κίνηση, ώρα που αποκοιμήθηκες, ώρες αφύπνισης, φάσεις ύπνου) – μοιράσου το μόνο αν θέλεις."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Technical log of the last 7 days, only on your devices. It contains times and measurements (e.g. motion, when you fell asleep) – share it only if you want to."
+            "value": "Technical log of the last 7 days, only on your devices. It contains times and measurements (e.g. motion, when you fell asleep, wake-up times, sleep stages) – share it only if you want to."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Registro técnico de los últimos 7 días, solo en tus dispositivos. Contiene horas y valores medidos (p. ej., movimiento, hora en que te dormiste): compártelo solo si quieres."
+            "value": "Registro técnico de los últimos 7 días, solo en tus dispositivos. Contiene horas y valores medidos (p. ej., movimiento, hora en que te dormiste, horas de despertar, fases del sueño): compártelo solo si quieres."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Viimase 7 päeva tehniline logi, ainult sinu seadmetes. See sisaldab aegu ja mõõteväärtusi (nt liikumine, uinumise aeg) – jaga seda ainult siis, kui tahad."
+            "value": "Viimase 7 päeva tehniline logi, ainult sinu seadmetes. See sisaldab aegu ja mõõteväärtusi (nt liikumine, uinumise aeg, äratusajad, unefaasid) – jaga seda ainult siis, kui tahad."
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Azken 7 egunetako erregistro teknikoa, zure gailuetan soilik. Orduak eta neurketak ditu (adib. mugimendua, lokartzeko ordua); partekatu nahi baduzu bakarrik."
+            "value": "Azken 7 egunetako erregistro teknikoa, zure gailuetan soilik. Orduak eta neurketak ditu (adib. mugimendua, lokartzeko ordua, esnatzeko orduak, lo-faseak); partekatu nahi baduzu bakarrik."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "گزارش فنی ۷ روز گذشته، فقط روی دستگاه‌های تو. شامل زمان‌ها و مقادیر اندازه‌گیری‌شده است (مثلاً حرکت، زمان به خواب رفتن) – فقط اگر خواستی آن را به اشتراک بگذار."
+            "value": "گزارش فنی ۷ روز گذشته، فقط روی دستگاه‌های تو. شامل زمان‌ها و مقادیر اندازه‌گیری‌شده است (مثلاً حرکت، زمان به خواب رفتن، زمان‌های بیدارباش، مراحل خواب) – فقط اگر خواستی آن را به اشتراک بگذار."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Viimeisten 7 päivän tekninen loki, vain laitteillasi. Se sisältää aikoja ja mittausarvoja (esim. liike, nukahtamisaika) – jaa se vain, jos haluat."
+            "value": "Viimeisten 7 päivän tekninen loki, vain laitteillasi. Se sisältää aikoja ja mittausarvoja (esim. liike, nukahtamisaika, herätysajat, univaiheet) – jaa se vain, jos haluat."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Teknikal na log ng huling 7 araw, sa mga device mo lang. May mga oras at sukat ito (hal. galaw, oras ng pagtulog) – ibahagi lang kung gusto mo."
+            "value": "Teknikal na log ng huling 7 araw, sa mga device mo lang. May mga oras at sukat ito (hal. galaw, oras ng pagtulog, oras ng paggising, yugto ng tulog) – ibahagi lang kung gusto mo."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Journal technique des 7 derniers jours, uniquement sur tes appareils. Il contient des heures et des valeurs mesurées (p. ex. mouvement, heure d’endormissement) – ne le partage que si tu le veux."
+            "value": "Journal technique des 7 derniers jours, uniquement sur tes appareils. Il contient des heures et des valeurs mesurées (p. ex. mouvement, heure d’endormissement, heures de réveil, phases de sommeil) – ne le partage que si tu le veux."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Loga teicniúil na 7 lá deiridh, ar do ghléasanna amháin. Tá amanna agus luachanna tomhaiste ann (m.sh. gluaiseacht, am titim i do chodladh) – ná roinn é ach más mian leat."
+            "value": "Loga teicniúil na 7 lá deiridh, ar do ghléasanna amháin. Tá amanna agus luachanna tomhaiste ann (m.sh. gluaiseacht, am titim i do chodladh, amanna dúisithe, céimeanna codlata) – ná roinn é ach más mian leat."
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rexistro técnico dos últimos 7 días, só nos teus dispositivos. Contén horas e valores medidos (p. ex. movemento, hora de adormecer) – compárteo só se queres."
+            "value": "Rexistro técnico dos últimos 7 días, só nos teus dispositivos. Contén horas e valores medidos (p. ex. movemento, hora de adormecer, horas de espertar, fases do sono) – compárteo só se queres."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "છેલ્લા 7 દિવસનો ટેકનિકલ લૉગ, ફક્ત તમારા ડિવાઇસ પર. તેમાં સમય અને માપેલા મૂલ્યો છે (દા.ત. હલનચલન, ઊંઘ આવવાનો સમય) – તમે ઇચ્છો તો જ શેર કરો."
+            "value": "છેલ્લા 7 દિવસનો ટેકનિકલ લૉગ, ફક્ત તમારા ડિવાઇસ પર. તેમાં સમય અને માપેલા મૂલ્યો છે (દા.ત. હલનચલન, ઊંઘ આવવાનો સમય, જગાડવાનો સમય, ઊંઘના તબક્કા) – તમે ઇચ્છો તો જ શેર કરો."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "יומן טכני של 7 הימים האחרונים, רק במכשירים שלך. הוא מכיל זמנים וערכי מדידה (למשל תנועה, שעת הירדמות) – שתף אותו רק אם תרצה."
+            "value": "יומן טכני של 7 הימים האחרונים, רק במכשירים שלך. הוא מכיל זמנים וערכי מדידה (למשל תנועה, שעת הירדמות, שעות השכמה, שלבי שינה) – שתף אותו רק אם תרצה."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "पिछले 7 दिनों का तकनीकी लॉग, सिर्फ़ तुम्हारे डिवाइस पर। इसमें समय और मापे गए मान हैं (जैसे हलचल, नींद आने का समय) – चाहो तभी शेयर करो।"
+            "value": "पिछले 7 दिनों का तकनीकी लॉग, सिर्फ़ तुम्हारे डिवाइस पर। इसमें समय और मापे गए मान हैं (जैसे हलचल, नींद आने का समय, जगाने का समय, नींद के चरण) – चाहो तभी शेयर करो।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tehnički zapisnik zadnjih 7 dana, samo na tvojim uređajima. Sadrži vremena i izmjerene vrijednosti (npr. pokret, vrijeme uspavljivanja) – dijeli ga samo ako želiš."
+            "value": "Tehnički zapisnik zadnjih 7 dana, samo na tvojim uređajima. Sadrži vremena i izmjerene vrijednosti (npr. pokret, vrijeme uspavljivanja, vremena buđenja, faze sna) – dijeli ga samo ako želiš."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Az elmúlt 7 nap technikai naplója, csak a készülékeiden. Időpontokat és mért értékeket tartalmaz (pl. mozgás, elalvás ideje) – csak akkor oszd meg, ha szeretnéd."
+            "value": "Az elmúlt 7 nap technikai naplója, csak a készülékeiden. Időpontokat és mért értékeket tartalmaz (pl. mozgás, elalvás ideje, ébresztési idők, alvásfázisok) – csak akkor oszd meg, ha szeretnéd."
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Վերջին 7 օրվա տեխնիկական մատյան՝ միայն քո սարքերում։ Պարունակում է ժամեր և չափված արժեքներ (օր.՝ շարժում, քնելու ժամ)․ կիսվիր միայն, եթե ուզում ես։"
+            "value": "Վերջին 7 օրվա տեխնիկական մատյան՝ միայն քո սարքերում։ Պարունակում է ժամեր և չափված արժեքներ (օր.՝ շարժում, քնելու ժամ, արթնացման ժամեր, քնի փուլեր)․ կիսվիր միայն, եթե ուզում ես։"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Log teknis 7 hari terakhir, hanya di perangkatmu. Berisi waktu dan nilai ukur (mis. gerakan, waktu tertidur) – bagikan hanya jika kamu mau."
+            "value": "Log teknis 7 hari terakhir, hanya di perangkatmu. Berisi waktu dan nilai ukur (mis. gerakan, waktu tertidur, waktu bangun, fase tidur) – bagikan hanya jika kamu mau."
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tæknileg skráning síðustu 7 daga, aðeins á tækjunum þínum. Hún inniheldur tíma og mæligildi (t.d. hreyfingu, hvenær þú sofnaðir) – deildu henni aðeins ef þú vilt."
+            "value": "Tæknileg skráning síðustu 7 daga, aðeins á tækjunum þínum. Hún inniheldur tíma og mæligildi (t.d. hreyfingu, hvenær þú sofnaðir, vakningartíma, svefnstig) – deildu henni aðeins ef þú vilt."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Registro tecnico degli ultimi 7 giorni, solo sui tuoi dispositivi. Contiene orari e valori misurati (ad es. movimento, ora in cui ti sei addormentato) – condividilo solo se vuoi."
+            "value": "Registro tecnico degli ultimi 7 giorni, solo sui tuoi dispositivi. Contiene orari e valori misurati (ad es. movimento, ora in cui ti sei addormentato, orari di sveglia, fasi del sonno) – condividilo solo se vuoi."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "過去 7 日間の技術ログで、あなたのデバイスにのみ保存されます。時刻や測定値（例：動き、入眠時刻）が含まれます。共有するのは必要なときだけにしてください。"
+            "value": "過去 7 日間の技術ログで、あなたのデバイスにのみ保存されます。時刻や測定値（例：動き、入眠時刻、起床時刻、睡眠段階）が含まれます。共有するのは必要なときだけにしてください。"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "ბოლო 7 დღის ტექნიკური ჟურნალი, მხოლოდ შენს მოწყობილობებზე. შეიცავს დროებს და გაზომილ მნიშვნელობებს (მაგ. მოძრაობა, ჩაძინების დრო) – გააზიარე მხოლოდ თუ გინდა."
+            "value": "ბოლო 7 დღის ტექნიკური ჟურნალი, მხოლოდ შენს მოწყობილობებზე. შეიცავს დროებს და გაზომილ მნიშვნელობებს (მაგ. მოძრაობა, ჩაძინების დრო, გაღვიძების დროები, ძილის ფაზები) – გააზიარე მხოლოდ თუ გინდა."
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Соңғы 7 күннің техникалық журналы, тек сенің құрылғыларыңда. Онда уақыттар мен өлшем мәндері бар (мыс. қозғалыс, ұйықтап кеткен уақыт) – қаласаң ғана бөліс."
+            "value": "Соңғы 7 күннің техникалық журналы, тек сенің құрылғыларыңда. Онда уақыттар мен өлшем мәндері бар (мыс. қозғалыс, ұйықтап кеткен уақыт, ояту уақыттары, ұйқы фазалары) – қаласаң ғана бөліс."
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "កំណត់ហេតុបច្ចេកទេសនៃ 7 ថ្ងៃចុងក្រោយ មានតែនៅលើឧបករណ៍របស់អ្នកប៉ុណ្ណោះ។ វាមានពេលវេលា និងតម្លៃវាស់ (ឧ. ចលនា ពេលងងុយគេង) – ចែករំលែកវាតែពេលអ្នកចង់ប៉ុណ្ណោះ។"
+            "value": "កំណត់ហេតុបច្ចេកទេសនៃ 7 ថ្ងៃចុងក្រោយ មានតែនៅលើឧបករណ៍របស់អ្នកប៉ុណ្ណោះ។ វាមានពេលវេលា និងតម្លៃវាស់ (ឧ. ចលនា ពេលងងុយគេង ពេលដាស់ ដំណាក់កាលគេង) – ចែករំលែកវាតែពេលអ្នកចង់ប៉ុណ្ណោះ។"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ಕಳೆದ 7 ದಿನಗಳ ತಾಂತ್ರಿಕ ಲಾಗ್, ನಿಮ್ಮ ಸಾಧನಗಳಲ್ಲಿ ಮಾತ್ರ. ಇದರಲ್ಲಿ ಸಮಯಗಳು ಮತ್ತು ಅಳತೆ ಮೌಲ್ಯಗಳಿವೆ (ಉದಾ. ಚಲನೆ, ನಿದ್ರೆ ಬಂದ ಸಮಯ) – ನೀವು ಬಯಸಿದರೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಿ."
+            "value": "ಕಳೆದ 7 ದಿನಗಳ ತಾಂತ್ರಿಕ ಲಾಗ್, ನಿಮ್ಮ ಸಾಧನಗಳಲ್ಲಿ ಮಾತ್ರ. ಇದರಲ್ಲಿ ಸಮಯಗಳು ಮತ್ತು ಅಳತೆ ಮೌಲ್ಯಗಳಿವೆ (ಉದಾ. ಚಲನೆ, ನಿದ್ರೆ ಬಂದ ಸಮಯ, ಎಚ್ಚರಿಸುವ ಸಮಯ, ನಿದ್ರೆಯ ಹಂತಗಳು) – ನೀವು ಬಯಸಿದರೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಿ."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "최근 7일간의 기술 로그로, 내 기기에만 저장됩니다. 시간과 측정값(예: 움직임, 잠든 시각)이 들어 있으니 원할 때만 공유하세요."
+            "value": "최근 7일간의 기술 로그로, 내 기기에만 저장됩니다. 시간과 측정값(예: 움직임, 잠든 시각, 깨우는 시각, 수면 단계)이 들어 있으니 원할 때만 공유하세요."
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "ບັນທຶກທາງເທັກນິກຂອງ 7 ມື້ຫຼ້າສຸດ, ຢູ່ໃນອຸປະກອນຂອງເຈົ້າເທົ່ານັ້ນ. ມີເວລາ ແລະ ຄ່າທີ່ວັດໄດ້ (ເຊັ່ນ ການເຄື່ອນໄຫວ, ເວລານອນຫຼັບ) – ແບ່ງປັນສະເພາະເມື່ອເຈົ້າຕ້ອງການ."
+            "value": "ບັນທຶກທາງເທັກນິກຂອງ 7 ມື້ຫຼ້າສຸດ, ຢູ່ໃນອຸປະກອນຂອງເຈົ້າເທົ່ານັ້ນ. ມີເວລາ ແລະ ຄ່າທີ່ວັດໄດ້ (ເຊັ່ນ ການເຄື່ອນໄຫວ, ເວລານອນຫຼັບ, ເວລາປຸກ, ໄລຍະການນອນ) – ແບ່ງປັນສະເພາະເມື່ອເຈົ້າຕ້ອງການ."
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Paskutinių 7 dienų techninis žurnalas, tik tavo įrenginiuose. Jame yra laikai ir išmatuotos vertės (pvz., judesys, užmigimo laikas) – bendrink jį tik jei nori."
+            "value": "Paskutinių 7 dienų techninis žurnalas, tik tavo įrenginiuose. Jame yra laikai ir išmatuotos vertės (pvz., judesys, užmigimo laikas, žadinimo laikai, miego fazės) – bendrink jį tik jei nori."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pēdējo 7 dienu tehniskais žurnāls, tikai tavās ierīcēs. Tajā ir laiki un izmērītās vērtības (piem., kustība, iemigšanas laiks) – kopīgo to tikai tad, ja vēlies."
+            "value": "Pēdējo 7 dienu tehniskais žurnāls, tikai tavās ierīcēs. Tajā ir laiki un izmērītās vērtības (piem., kustība, iemigšanas laiks, modināšanas laiki, miega fāzes) – kopīgo to tikai tad, ja vēlies."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Технички дневник за последните 7 дена, само на твоите уреди. Содржи времиња и измерени вредности (на пр. движење, време на заспивање) – сподели го само ако сакаш."
+            "value": "Технички дневник за последните 7 дена, само на твоите уреди. Содржи времиња и измерени вредности (на пр. движење, време на заспивање, времиња на будење, фази на сон) – сподели го само ако сакаш."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "കഴിഞ്ഞ 7 ദിവസത്തെ സാങ്കേതിക ലോഗ്, നിങ്ങളുടെ ഉപകരണങ്ങളിൽ മാത്രം. ഇതിൽ സമയങ്ങളും അളന്ന മൂല്യങ്ങളും ഉണ്ട് (ഉദാ. ചലനം, ഉറങ്ങിയ സമയം) – വേണമെങ്കിൽ മാത്രം പങ്കിടുക."
+            "value": "കഴിഞ്ഞ 7 ദിവസത്തെ സാങ്കേതിക ലോഗ്, നിങ്ങളുടെ ഉപകരണങ്ങളിൽ മാത്രം. ഇതിൽ സമയങ്ങളും അളന്ന മൂല്യങ്ങളും ഉണ്ട് (ഉദാ. ചലനം, ഉറങ്ങിയ സമയം, ഉണർത്തിയ സമയം, ഉറക്ക ഘട്ടങ്ങൾ) – വേണമെങ്കിൽ മാത്രം പങ്കിടുക."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Сүүлийн 7 хоногийн техникийн бүртгэл, зөвхөн чиний төхөөрөмжүүд дээр. Цаг болон хэмжсэн утгууд агуулна (жишээ нь хөдөлгөөн, унтсан цаг) – хүсвэл л хуваалц."
+            "value": "Сүүлийн 7 хоногийн техникийн бүртгэл, зөвхөн чиний төхөөрөмжүүд дээр. Цаг болон хэмжсэн утгууд агуулна (жишээ нь хөдөлгөөн, унтсан цаг, сэрээсэн цаг, нойрны үе шат) – хүсвэл л хуваалц."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "मागील 7 दिवसांचा तांत्रिक लॉग, फक्त तुमच्या डिव्हाइसवर. यात वेळा आणि मोजलेली मूल्ये आहेत (उदा. हालचाल, झोप लागण्याची वेळ) – तुम्हाला हवे असेल तरच शेअर करा."
+            "value": "मागील 7 दिवसांचा तांत्रिक लॉग, फक्त तुमच्या डिव्हाइसवर. यात वेळा आणि मोजलेली मूल्ये आहेत (उदा. हालचाल, झोप लागण्याची वेळ, उठवण्याची वेळ, झोपेचे टप्पे) – तुम्हाला हवे असेल तरच शेअर करा."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Log teknikal 7 hari terakhir, hanya pada peranti anda. Ia mengandungi masa dan nilai ukuran (cth. pergerakan, masa tertidur) – kongsi hanya jika anda mahu."
+            "value": "Log teknikal 7 hari terakhir, hanya pada peranti anda. Ia mengandungi masa dan nilai ukuran (cth. pergerakan, masa tertidur, masa bangun, fasa tidur) – kongsi hanya jika anda mahu."
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "နောက်ဆုံး ၇ ရက်၏ နည်းပညာမှတ်တမ်း၊ သင့်စက်များပေါ်တွင်သာ။ အချိန်များနှင့် တိုင်းတာထားသောတန်ဖိုးများ (ဥပမာ လှုပ်ရှားမှု၊ အိပ်ပျော်ချိန်) ပါဝင်သည် – လိုချင်မှသာ မျှဝေပါ။"
+            "value": "နောက်ဆုံး ၇ ရက်၏ နည်းပညာမှတ်တမ်း၊ သင့်စက်များပေါ်တွင်သာ။ အချိန်များနှင့် တိုင်းတာထားသောတန်ဖိုးများ (ဥပမာ လှုပ်ရှားမှု၊ အိပ်ပျော်ချိန်၊ နှိုးချိန်၊ အိပ်စက်မှုအဆင့်) ပါဝင်သည် – လိုချင်မှသာ မျှဝေပါ။"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Teknisk logg for de siste 7 dagene, bare på enhetene dine. Den inneholder tidspunkter og måleverdier (f.eks. bevegelse, innsovningstid) – del den bare hvis du vil."
+            "value": "Teknisk logg for de siste 7 dagene, bare på enhetene dine. Den inneholder tidspunkter og måleverdier (f.eks. bevegelse, innsovningstid, vekketider, søvnfaser) – del den bare hvis du vil."
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "पछिल्ला ७ दिनको प्राविधिक लग, तिम्रा उपकरणमा मात्र। यसमा समय र मापन गरिएका मानहरू छन् (जस्तै चाल, निदाएको समय) – चाहेमा मात्र साझा गर।"
+            "value": "पछिल्ला ७ दिनको प्राविधिक लग, तिम्रा उपकरणमा मात्र। यसमा समय र मापन गरिएका मानहरू छन् (जस्तै चाल, निदाएको समय, ब्युँझाउने समय, निद्राका चरण) – चाहेमा मात्र साझा गर।"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Technisch logboek van de afgelopen 7 dagen, alleen op je apparaten. Het bevat tijden en meetwaarden (bijv. beweging, inslaaptijd) – deel het alleen als je dat wilt."
+            "value": "Technisch logboek van de afgelopen 7 dagen, alleen op je apparaten. Het bevat tijden en meetwaarden (bijv. beweging, inslaaptijd, wektijden, slaapfasen) – deel het alleen als je dat wilt."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਪਿਛਲੇ 7 ਦਿਨਾਂ ਦਾ ਤਕਨੀਕੀ ਲੌਗ, ਸਿਰਫ਼ ਤੁਹਾਡੇ ਡੀਵਾਈਸਾਂ ’ਤੇ। ਇਸ ਵਿੱਚ ਸਮੇਂ ਅਤੇ ਮਾਪੇ ਮੁੱਲ ਹਨ (ਜਿਵੇਂ ਹਿਲਜੁਲ, ਨੀਂਦ ਆਉਣ ਦਾ ਸਮਾਂ) – ਚਾਹੋ ਤਾਂ ਹੀ ਸਾਂਝਾ ਕਰੋ।"
+            "value": "ਪਿਛਲੇ 7 ਦਿਨਾਂ ਦਾ ਤਕਨੀਕੀ ਲੌਗ, ਸਿਰਫ਼ ਤੁਹਾਡੇ ਡੀਵਾਈਸਾਂ ’ਤੇ। ਇਸ ਵਿੱਚ ਸਮੇਂ ਅਤੇ ਮਾਪੇ ਮੁੱਲ ਹਨ (ਜਿਵੇਂ ਹਿਲਜੁਲ, ਨੀਂਦ ਆਉਣ ਦਾ ਸਮਾਂ, ਜਗਾਉਣ ਦਾ ਸਮਾਂ, ਨੀਂਦ ਦੇ ਪੜਾਅ) – ਚਾਹੋ ਤਾਂ ਹੀ ਸਾਂਝਾ ਕਰੋ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dziennik techniczny z ostatnich 7 dni, tylko na twoich urządzeniach. Zawiera godziny i zmierzone wartości (np. ruch, porę zaśnięcia) – udostępniaj go tylko, jeśli chcesz."
+            "value": "Dziennik techniczny z ostatnich 7 dni, tylko na twoich urządzeniach. Zawiera godziny i zmierzone wartości (np. ruch, porę zaśnięcia, godziny budzenia, fazy snu) – udostępniaj go tylko, jeśli chcesz."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Registro técnico dos últimos 7 dias, só nos seus dispositivos. Contém horários e valores medidos (ex.: movimento, hora em que você adormeceu) – compartilhe só se quiser."
+            "value": "Registro técnico dos últimos 7 dias, só nos seus dispositivos. Contém horários e valores medidos (ex.: movimento, hora em que você adormeceu, horários de despertar, fases do sono) – compartilhe só se quiser."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Registo técnico dos últimos 7 dias, só nos teus dispositivos. Contém horas e valores medidos (p. ex. movimento, hora a que adormeceste) – partilha-o só se quiseres."
+            "value": "Registo técnico dos últimos 7 dias, só nos teus dispositivos. Contém horas e valores medidos (p. ex. movimento, hora a que adormeceste, horas de despertar, fases do sono) – partilha-o só se quiseres."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jurnal tehnic al ultimelor 7 zile, doar pe dispozitivele tale. Conține ore și valori măsurate (de ex. mișcare, ora adormirii) – partajează-l doar dacă vrei."
+            "value": "Jurnal tehnic al ultimelor 7 zile, doar pe dispozitivele tale. Conține ore și valori măsurate (de ex. mișcare, ora adormirii, orele de trezire, fazele somnului) – partajează-l doar dacă vrei."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Технический журнал за последние 7 дней, только на твоих устройствах. Он содержит время и измеренные значения (например, движение, время засыпания) – делись им, только если хочешь."
+            "value": "Технический журнал за последние 7 дней, только на твоих устройствах. Он содержит время и измеренные значения (например, движение, время засыпания, время пробуждения, фазы сна) – делись им, только если хочешь."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "පසුගිය දින 7 හි තාක්ෂණික ලොගය, ඔබේ උපාංගවල පමණි. එහි වේලාවන් සහ මනින ලද අගයන් ඇත (උදා. චලනය, නින්දට ගිය වේලාව) – ඔබට අවශ්‍ය නම් පමණක් බෙදාගන්න."
+            "value": "පසුගිය දින 7 හි තාක්ෂණික ලොගය, ඔබේ උපාංගවල පමණි. එහි වේලාවන් සහ මනින ලද අගයන් ඇත (උදා. චලනය, නින්දට ගිය වේලාව, අවදි කළ වේලාව, නින්දේ අදියර) – ඔබට අවශ්‍ය නම් පමණක් බෙදාගන්න."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Technický záznam za posledných 7 dní, len v tvojich zariadeniach. Obsahuje časy a namerané hodnoty (napr. pohyb, čas zaspania) – zdieľaj ho, len ak chceš."
+            "value": "Technický záznam za posledných 7 dní, len v tvojich zariadeniach. Obsahuje časy a namerané hodnoty (napr. pohyb, čas zaspania, časy budenia, fázy spánku) – zdieľaj ho, len ak chceš."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tehnični dnevnik zadnjih 7 dni, samo v tvojih napravah. Vsebuje čase in izmerjene vrednosti (npr. gibanje, čas uspavanja) – deli ga le, če želiš."
+            "value": "Tehnični dnevnik zadnjih 7 dni, samo v tvojih napravah. Vsebuje čase in izmerjene vrednosti (npr. gibanje, čas uspavanja, časi bujenja, faze spanja) – deli ga le, če želiš."
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Regjistër teknik i 7 ditëve të fundit, vetëm në pajisjet e tua. Përmban orare dhe vlera të matura (p.sh. lëvizje, ora e rënies në gjumë) – ndaje vetëm nëse do."
+            "value": "Regjistër teknik i 7 ditëve të fundit, vetëm në pajisjet e tua. Përmban orare dhe vlera të matura (p.sh. lëvizje, ora e rënies në gjumë, oraret e zgjimit, fazat e gjumit) – ndaje vetëm nëse do."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Технички дневник последњих 7 дана, само на твојим уређајима. Садржи времена и измерене вредности (нпр. покрет, време успављивања) – дели га само ако желиш."
+            "value": "Технички дневник последњих 7 дана, само на твојим уређајима. Садржи времена и измерене вредности (нпр. покрет, време успављивања, времена буђења, фазе сна) – дели га само ако желиш."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Teknisk logg för de senaste 7 dagarna, bara på dina enheter. Den innehåller tider och mätvärden (t.ex. rörelse, insomningstid) – dela den bara om du vill."
+            "value": "Teknisk logg för de senaste 7 dagarna, bara på dina enheter. Den innehåller tider och mätvärden (t.ex. rörelse, insomningstid, väckningstider, sömnfaser) – dela den bara om du vill."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kumbukumbu ya kiufundi ya siku 7 zilizopita, kwenye vifaa vyako tu. Ina nyakati na thamani zilizopimwa (k.m. mwendo, muda wa kulala) – ishiriki tu ukitaka."
+            "value": "Kumbukumbu ya kiufundi ya siku 7 zilizopita, kwenye vifaa vyako tu. Ina nyakati na thamani zilizopimwa (k.m. mwendo, muda wa kulala, nyakati za kuamshwa, hatua za usingizi) – ishiriki tu ukitaka."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "கடந்த 7 நாட்களின் தொழில்நுட்பப் பதிவு, உங்கள் சாதனங்களில் மட்டும். இதில் நேரங்களும் அளவிடப்பட்ட மதிப்புகளும் உள்ளன (எ.கா. அசைவு, தூங்கிய நேரம்) – விரும்பினால் மட்டும் பகிருங்கள்."
+            "value": "கடந்த 7 நாட்களின் தொழில்நுட்பப் பதிவு, உங்கள் சாதனங்களில் மட்டும். இதில் நேரங்களும் அளவிடப்பட்ட மதிப்புகளும் உள்ளன (எ.கா. அசைவு, தூங்கிய நேரம், எழுப்பிய நேரம், உறக்க நிலைகள்) – விரும்பினால் மட்டும் பகிருங்கள்."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "గత 7 రోజుల సాంకేతిక లాగ్, మీ పరికరాల్లో మాత్రమే. ఇందులో సమయాలు, కొలిచిన విలువలు ఉన్నాయి (ఉదా. కదలిక, నిద్రపోయిన సమయం) – మీకు కావాలంటేనే షేర్ చేయండి."
+            "value": "గత 7 రోజుల సాంకేతిక లాగ్, మీ పరికరాల్లో మాత్రమే. ఇందులో సమయాలు, కొలిచిన విలువలు ఉన్నాయి (ఉదా. కదలిక, నిద్రపోయిన సమయం, మేల్కొలిపిన సమయం, నిద్ర దశలు) – మీకు కావాలంటేనే షేర్ చేయండి."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "บันทึกทางเทคนิคของ 7 วันล่าสุด อยู่บนอุปกรณ์ของคุณเท่านั้น มีเวลาและค่าที่วัดได้ (เช่น การเคลื่อนไหว เวลาที่หลับ) – แชร์เฉพาะเมื่อคุณต้องการ"
+            "value": "บันทึกทางเทคนิคของ 7 วันล่าสุด อยู่บนอุปกรณ์ของคุณเท่านั้น มีเวลาและค่าที่วัดได้ (เช่น การเคลื่อนไหว เวลาที่หลับ เวลาปลุก ระยะการนอน) – แชร์เฉพาะเมื่อคุณต้องการ"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Son 7 günün teknik kaydı, yalnızca cihazlarında. Saatler ve ölçüm değerleri içerir (ör. hareket, uykuya dalma saati) – yalnızca istersen paylaş."
+            "value": "Son 7 günün teknik kaydı, yalnızca cihazlarında. Saatler ve ölçüm değerleri içerir (ör. hareket, uykuya dalma saati, uyandırma saatleri, uyku evreleri) – yalnızca istersen paylaş."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Технічний журнал за останні 7 днів, лише на твоїх пристроях. Він містить час і виміряні значення (наприклад, рух, час засинання) – ділися ним, лише якщо хочеш."
+            "value": "Технічний журнал за останні 7 днів, лише на твоїх пристроях. Він містить час і виміряні значення (наприклад, рух, час засинання, час пробудження, фази сну) – ділися ним, лише якщо хочеш."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "پچھلے 7 دنوں کا تکنیکی لاگ، صرف آپ کے آلات پر۔ اس میں اوقات اور ناپی گئی قدریں ہیں (مثلاً حرکت، سونے کا وقت) – صرف چاہیں تو شیئر کریں۔"
+            "value": "پچھلے 7 دنوں کا تکنیکی لاگ، صرف آپ کے آلات پر۔ اس میں اوقات اور ناپی گئی قدریں ہیں (مثلاً حرکت، سونے کا وقت، جگانے کا وقت، نیند کے مراحل) – صرف چاہیں تو شیئر کریں۔"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Oxirgi 7 kunlik texnik jurnal, faqat qurilmalaringda. Unda vaqtlar va o‘lchangan qiymatlar bor (masalan, harakat, uxlab qolish vaqti) – faqat xohlasang ulash."
+            "value": "Oxirgi 7 kunlik texnik jurnal, faqat qurilmalaringda. Unda vaqtlar va o‘lchangan qiymatlar bor (masalan, harakat, uxlab qolish vaqti, uyg‘otish vaqtlari, uyqu fazalari) – faqat xohlasang ulash."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nhật ký kỹ thuật của 7 ngày gần nhất, chỉ trên thiết bị của bạn. Nhật ký có thời gian và giá trị đo (vd. chuyển động, giờ ngủ thiếp đi) – chỉ chia sẻ khi bạn muốn."
+            "value": "Nhật ký kỹ thuật của 7 ngày gần nhất, chỉ trên thiết bị của bạn. Nhật ký có thời gian và giá trị đo (vd. chuyển động, giờ ngủ thiếp đi, giờ đánh thức, giai đoạn ngủ) – chỉ chia sẻ khi bạn muốn."
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "最近 7 日嘅技術記錄，只存喺你部裝置度。入面有時間同量度數值（例如動作、入睡時間）——你想先好分享。"
+            "value": "最近 7 日嘅技術記錄，只存喺你部裝置度。入面有時間同量度數值（例如動作、入睡時間、喚醒時間、睡眠階段）——你想先好分享。"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "最近 7 天的技术日志，仅保存在你的设备上。其中包含时间和测量值（例如动作、入睡时间）——只在你愿意时分享。"
+            "value": "最近 7 天的技术日志，仅保存在你的设备上。其中包含时间和测量值（例如动作、入睡时间、唤醒时间、睡眠阶段）——只在你愿意时分享。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "最近 7 天的技術記錄，只存在你的裝置上。其中包含時間和測量值（例如動作、入睡時間）——只在你願意時分享。"
+            "value": "最近 7 天的技術記錄，只存在你的裝置上。其中包含時間和測量值（例如動作、入睡時間、喚醒時間、睡眠階段）——只在你願意時分享。"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Irekhodi lobuchwepheshe lezinsuku eziyi-7 ezedlule, kumadivayisi akho kuphela. Liqukethe izikhathi namanani alinganisiwe (isb. ukunyakaza, isikhathi sokulala) – yabelana ngalo kuphela uma ufuna."
+            "value": "Irekhodi lobuchwepheshe lezinsuku eziyi-7 ezedlule, kumadivayisi akho kuphela. Liqukethe izikhathi namanani alinganisiwe (isb. ukunyakaza, isikhathi sokulala, izikhathi zokuvusa, izigaba zokulala) – yabelana ngalo kuphela uma ufuna."
           }
         }
       }
@@ -91824,445 +91824,445 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die lêer bevat vir elke nag beweging en hartklop per 30 s, hoe jy gevoel het en jou notas – sonder name, datums of toestel-ID’s."
+            "value": "Die lêer bevat vir elke nag beweging en hartklop per 30 s, hoe jy gevoel het en jou notas, en indien beskikbaar ook wektye en slaapfases – sonder name, datums of toestel-ID’s."
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "ፋይሉ ለእያንዳንዱ ሌሊት በየ30 ሰከንዱ እንቅስቃሴና የልብ ምት፣ ስሜትህንና ማስታወሻዎችህን ይዟል – ያለ ስም፣ ቀን ወይም የመሣሪያ መታወቂያ።"
+            "value": "ፋይሉ ለእያንዳንዱ ሌሊት በየ30 ሰከንዱ እንቅስቃሴና የልብ ምት፣ ስሜትህንና ማስታወሻዎችህን፣ ካሉም የመንቂያ ሰዓቶችንና የእንቅልፍ ደረጃዎችን ይዟል – ያለ ስም፣ ቀን ወይም የመሣሪያ መታወቂያ።"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يحتوي الملف لكل ليلة على الحركة ونبض القلب لكل ٣٠ ثانية وشعورك وملاحظاتك – دون أسماء أو تواريخ أو معرّفات أجهزة."
+            "value": "يحتوي الملف لكل ليلة على الحركة ونبض القلب لكل ٣٠ ثانية وشعورك وملاحظاتك، وأوقات الاستيقاظ ومراحل النوم إن وُجدت – دون أسماء أو تواريخ أو معرّفات أجهزة."
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Faylda hər gecə üçün hər 30 s-lik hərəkət və nəbz, özünü necə hiss etdiyin və qeydlərin var – adsız, tarixsiz və cihaz ID-siz."
+            "value": "Faylda hər gecə üçün hər 30 s-lik hərəkət və nəbz, özünü necə hiss etdiyin, qeydlərin, varsa oyanma vaxtları və yuxu fazaları var – adsız, tarixsiz və cihaz ID-siz."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Файлът съдържа за всяка нощ движение и пулс на всеки 30 s, как си се чувствал и бележките ти – без имена, дати и ID на устройства."
+            "value": "Файлът съдържа за всяка нощ движение и пулс на всеки 30 s, как си се чувствал и бележките ти, а при наличие и часове на събуждане и фази на съня – без имена, дати и ID на устройства."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ফাইলে প্রতি রাতের প্রতি 30 সেকেন্ডের নড়াচড়া ও হৃদস্পন্দন, তোমার অনুভূতি আর তোমার নোট থাকে – নাম, তারিখ বা ডিভাইস আইডি ছাড়া।"
+            "value": "ফাইলে প্রতি রাতের প্রতি 30 সেকেন্ডের নড়াচড়া ও হৃদস্পন্দন, তোমার অনুভূতি, তোমার নোট এবং থাকলে জাগানোর সময় ও ঘুমের পর্যায় থাকে – নাম, তারিখ বা ডিভাইস আইডি ছাড়া।"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Datoteka za svaku noć sadrži pokret i puls svakih 30 s, kako si se osjećao i tvoje bilješke – bez imena, datuma i ID-ova uređaja."
+            "value": "Datoteka za svaku noć sadrži pokret i puls svakih 30 s, kako si se osjećao i tvoje bilješke, a ako postoje i vremena buđenja i faze sna – bez imena, datuma i ID-ova uređaja."
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "El fitxer conté, per a cada nit, moviment i freqüència cardíaca cada 30 s, com et vas sentir i les teves notes – sense noms, dates ni identificadors de dispositiu."
+            "value": "El fitxer conté, per a cada nit, moviment i freqüència cardíaca cada 30 s, com et vas sentir i les teves notes, a més d’hores de despertar i fases del son si n’hi ha – sense noms, dates ni identificadors de dispositiu."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Soubor obsahuje za každou noc pohyb a tep po 30 s, jak ses cítil a tvoje poznámky – bez jmen, dat a ID zařízení."
+            "value": "Soubor obsahuje za každou noc pohyb a tep po 30 s, jak ses cítil a tvoje poznámky, případně i časy buzení a fáze spánku – bez jmen, dat a ID zařízení."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Filen indeholder for hver nat bevægelse og puls pr. 30 s, hvordan du havde det, og dine noter – uden navne, datoer eller enheds-id’er."
+            "value": "Filen indeholder for hver nat bevægelse og puls pr. 30 s, hvordan du havde det, og dine noter, samt vækketider og søvnfaser, hvis de findes – uden navne, datoer eller enheds-id’er."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die Datei enthält je Nacht Bewegung und Puls je 30 s, Befinden und deine Notizen – ohne Namen, Datum oder Gerätekennung."
+            "value": "Die Datei enthält je Nacht Bewegung und Puls je 30 s, Befinden und deine Notizen, falls vorhanden auch Weckzeiten und Schlafphasen – ohne Namen, Datum oder Gerätekennung."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Το αρχείο περιέχει για κάθε νύχτα κίνηση και παλμούς ανά 30 s, πώς ένιωθες και τις σημειώσεις σου – χωρίς ονόματα, ημερομηνίες ή αναγνωριστικά συσκευής."
+            "value": "Το αρχείο περιέχει για κάθε νύχτα κίνηση και παλμούς ανά 30 s, πώς ένιωθες και τις σημειώσεις σου, καθώς και ώρες αφύπνισης και φάσεις ύπνου, αν υπάρχουν – χωρίς ονόματα, ημερομηνίες ή αναγνωριστικά συσκευής."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The file contains motion and heart rate per 30 s, how you felt and your notes for each night – without names, dates or device IDs."
+            "value": "The file contains motion and heart rate per 30 s, how you felt and your notes for each night, plus wake-up times and sleep stages if available – without names, dates or device IDs."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "El archivo contiene, de cada noche, movimiento y frecuencia cardíaca cada 30 s, cómo te sentiste y tus notas – sin nombres, fechas ni identificadores de dispositivo."
+            "value": "El archivo contiene, de cada noche, movimiento y frecuencia cardíaca cada 30 s, cómo te sentiste y tus notas, además de horas de despertar y fases del sueño si las hay – sin nombres, fechas ni identificadores de dispositivo."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fail sisaldab iga öö kohta liikumist ja pulssi iga 30 s kohta, sinu enesetunnet ja märkmeid – ilma nimede, kuupäevade ja seadme-ID-deta."
+            "value": "Fail sisaldab iga öö kohta liikumist ja pulssi iga 30 s kohta, sinu enesetunnet ja märkmeid, olemasolul ka äratusaegu ja unefaase – ilma nimede, kuupäevade ja seadme-ID-deta."
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fitxategiak gau bakoitzeko 30 s-ko mugimendua eta bihotz-maiztasuna, nola sentitu zinen eta zure oharrak ditu – izenik, datarik eta gailu-IDrik gabe."
+            "value": "Fitxategiak gau bakoitzeko 30 s-ko mugimendua eta bihotz-maiztasuna, nola sentitu zinen, zure oharrak eta, badaude, esnatzeko orduak eta lo-faseak ditu – izenik, datarik eta gailu-IDrik gabe."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "فایل برای هر شب حرکت و ضربان قلب هر ۳۰ ثانیه، حالت تو و یادداشت‌هایت را دارد – بدون نام، تاریخ یا شناسهٔ دستگاه."
+            "value": "فایل برای هر شب حرکت و ضربان قلب هر ۳۰ ثانیه، حالت تو، یادداشت‌هایت و در صورت وجود زمان‌های بیدارباش و مراحل خواب را دارد – بدون نام، تاریخ یا شناسهٔ دستگاه."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tiedosto sisältää joka yöltä liikkeen ja sykkeen 30 s välein, vointisi ja muistiinpanosi – ilman nimiä, päivämääriä tai laitetunnuksia."
+            "value": "Tiedosto sisältää joka yöltä liikkeen ja sykkeen 30 s välein, vointisi ja muistiinpanosi sekä mahdolliset herätysajat ja univaiheet – ilman nimiä, päivämääriä tai laitetunnuksia."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Laman ng file para sa bawat gabi ang galaw at heart rate bawat 30 s, ang pakiramdam mo at ang mga tala mo – walang pangalan, petsa o ID ng device."
+            "value": "Laman ng file para sa bawat gabi ang galaw at heart rate bawat 30 s, ang pakiramdam mo at ang mga tala mo, at kung mayroon, oras ng paggising at yugto ng tulog – walang pangalan, petsa o ID ng device."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Le fichier contient pour chaque nuit les mouvements et la fréquence cardiaque toutes les 30 s, ton ressenti et tes notes – sans nom, date ni identifiant d’appareil."
+            "value": "Le fichier contient pour chaque nuit les mouvements et la fréquence cardiaque toutes les 30 s, ton ressenti et tes notes, ainsi que les heures de réveil et les phases de sommeil si disponibles – sans nom, date ni identifiant d’appareil."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tá gluaiseacht agus ráta croí in aghaidh 30 s, conas a mhothaigh tú agus do nótaí do gach oíche sa chomhad – gan ainmneacha, dátaí ná aitheantais gléis."
+            "value": "Tá gluaiseacht agus ráta croí in aghaidh 30 s, conas a mhothaigh tú agus do nótaí do gach oíche sa chomhad, chomh maith le hamanna dúisithe agus céimeanna codlata má tá siad ann – gan ainmneacha, dátaí ná aitheantais gléis."
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "O ficheiro contén, de cada noite, movemento e pulso cada 30 s, como te sentiches e as túas notas – sen nomes, datas nin identificadores do dispositivo."
+            "value": "O ficheiro contén, de cada noite, movemento e pulso cada 30 s, como te sentiches e as túas notas, ademais de horas de espertar e fases do sono se as hai – sen nomes, datas nin identificadores do dispositivo."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "ફાઇલમાં દરેક રાત માટે દર 30 સેકન્ડનું હલનચલન અને હૃદયના ધબકારા, તમને કેવું લાગ્યું અને તમારી નોંધો છે – નામ, તારીખ કે ઉપકરણ ID વિના."
+            "value": "ફાઇલમાં દરેક રાત માટે દર 30 સેકન્ડનું હલનચલન અને હૃદયના ધબકારા, તમને કેવું લાગ્યું, તમારી નોંધો અને હોય તો જગાડવાનો સમય અને ઊંઘના તબક્કા છે – નામ, તારીખ કે ઉપકરણ ID વિના."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "הקובץ מכיל לכל לילה תנועה ודופק לכל 30 שניות, איך הרגשתם וההערות שלכם – ללא שמות, תאריכים או מזהי מכשירים."
+            "value": "הקובץ מכיל לכל לילה תנועה ודופק לכל 30 שניות, איך הרגשתם וההערות שלכם, ואם יש, גם שעות השכמה ושלבי שינה – ללא שמות, תאריכים או מזהי מכשירים."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "फ़ाइल में हर रात के लिए हर 30 सेकंड की गतिविधि और हृदय गति, तुम्हें कैसा लगा और तुम्हारे नोट्स हैं – नाम, तारीख या डिवाइस ID के बिना।"
+            "value": "फ़ाइल में हर रात के लिए हर 30 सेकंड की गतिविधि और हृदय गति, तुम्हें कैसा लगा, तुम्हारे नोट्स और उपलब्ध हों तो जगाने का समय और नींद के चरण हैं – नाम, तारीख या डिवाइस ID के बिना।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Datoteka za svaku noć sadrži pokret i puls svakih 30 s, kako si se osjećao i tvoje bilješke – bez imena, datuma i ID-ova uređaja."
+            "value": "Datoteka za svaku noć sadrži pokret i puls svakih 30 s, kako si se osjećao i tvoje bilješke, a ako postoje i vremena buđenja i faze sna – bez imena, datuma i ID-ova uređaja."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "A fájl minden éjszakára tartalmazza a 30 másodpercenkénti mozgást és pulzust, a közérzetedet és a jegyzeteidet – nevek, dátumok és eszközazonosítók nélkül."
+            "value": "A fájl minden éjszakára tartalmazza a 30 másodpercenkénti mozgást és pulzust, a közérzetedet és a jegyzeteidet, és ha van, az ébresztési időket és az alvásfázisokat is – nevek, dátumok és eszközazonosítók nélkül."
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ֆայլը յուրաքանչյուր գիշերվա համար պարունակում է շարժումն ու զարկերը յուրաքանչյուր 30 վրկ-ում, ինքնազգացողությունդ և նշումներդ – առանց անունների, ամսաթվերի կամ սարքի ID-ների։"
+            "value": "Ֆայլը յուրաքանչյուր գիշերվա համար պարունակում է շարժումն ու զարկերը յուրաքանչյուր 30 վրկ-ում, ինքնազգացողությունդ, նշումներդ, իսկ առկայության դեպքում՝ արթնացման ժամերն ու քնի փուլերը – առանց անունների, ամսաթվերի կամ սարքի ID-ների։"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "File berisi gerakan dan detak jantung per 30 detik, perasaanmu, dan catatanmu untuk setiap malam – tanpa nama, tanggal, atau ID perangkat."
+            "value": "File berisi gerakan dan detak jantung per 30 detik, perasaanmu, dan catatanmu untuk setiap malam, serta waktu bangun dan fase tidur jika ada – tanpa nama, tanggal, atau ID perangkat."
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Skráin inniheldur fyrir hverja nótt hreyfingu og púls á 30 s fresti, líðan þína og glósurnar þínar – án nafna, dagsetninga eða auðkenna tækja."
+            "value": "Skráin inniheldur fyrir hverja nótt hreyfingu og púls á 30 s fresti, líðan þína og glósurnar þínar, og ef til eru, vakningartíma og svefnstig – án nafna, dagsetninga eða auðkenna tækja."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Il file contiene per ogni notte movimento e battito ogni 30 s, come ti sentivi e le tue note – senza nomi, date o ID dei dispositivi."
+            "value": "Il file contiene per ogni notte movimento e battito ogni 30 s, come ti sentivi e le tue note, più orari di sveglia e fasi del sonno se disponibili – senza nomi, date o ID dei dispositivi."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ファイルには各夜の 30 秒ごとの体動と心拍、気分、メモが含まれます。名前・日付・デバイス ID は含みません。"
+            "value": "ファイルには各夜の 30 秒ごとの体動と心拍、気分、メモ、あれば起床時刻と睡眠段階が含まれます。名前・日付・デバイス ID は含みません。"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "ფაილი ყოველი ღამისთვის შეიცავს მოძრაობასა და პულსს ყოველ 30 წმ-ში, შენს თვითგრძნობასა და ჩანაწერებს – სახელების, თარიღების და მოწყობილობის ID-ების გარეშე."
+            "value": "ფაილი ყოველი ღამისთვის შეიცავს მოძრაობასა და პულსს ყოველ 30 წმ-ში, შენს თვითგრძნობას, ჩანაწერებს და, თუ არის, გაღვიძების დროებსა და ძილის ფაზებს – სახელების, თარიღების და მოწყობილობის ID-ების გარეშე."
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Файлда әр түн үшін әр 30 с сайынғы қозғалыс пен пульс, көңіл күйің және жазбаларың бар – аты, күні немесе құрылғы ID-і жоқ."
+            "value": "Файлда әр түн үшін әр 30 с сайынғы қозғалыс пен пульс, көңіл күйің, жазбаларың және болса, ояту уақыттары мен ұйқы фазалары бар – аты, күні немесе құрылғы ID-і жоқ."
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "ឯកសារមានចលនា និងចង្វាក់បេះដូងរៀងរាល់ 30 វិនាទី អារម្មណ៍របស់អ្នក និងកំណត់ចំណាំរបស់អ្នកសម្រាប់យប់នីមួយៗ – គ្មានឈ្មោះ កាលបរិច្ឆេទ ឬ ID ឧបករណ៍ទេ។"
+            "value": "ឯកសារមានចលនា និងចង្វាក់បេះដូងរៀងរាល់ 30 វិនាទី អារម្មណ៍របស់អ្នក និងកំណត់ចំណាំរបស់អ្នកសម្រាប់យប់នីមួយៗ ព្រមទាំងពេលដាស់ និងដំណាក់កាលគេង បើមាន – គ្មានឈ្មោះ កាលបរិច្ឆេទ ឬ ID ឧបករណ៍ទេ។"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ಫೈಲ್‌ನಲ್ಲಿ ಪ್ರತಿ ರಾತ್ರಿಗೆ ಪ್ರತಿ 30 ಸೆ. ಚಲನೆ ಮತ್ತು ಹೃದಯ ಬಡಿತ, ನಿಮಗೆ ಹೇಗನಿಸಿತು ಮತ್ತು ನಿಮ್ಮ ಟಿಪ್ಪಣಿಗಳಿವೆ – ಹೆಸರು, ದಿನಾಂಕ ಅಥವಾ ಸಾಧನ ID ಇಲ್ಲದೆ."
+            "value": "ಫೈಲ್‌ನಲ್ಲಿ ಪ್ರತಿ ರಾತ್ರಿಗೆ ಪ್ರತಿ 30 ಸೆ. ಚಲನೆ ಮತ್ತು ಹೃದಯ ಬಡಿತ, ನಿಮಗೆ ಹೇಗನಿಸಿತು, ನಿಮ್ಮ ಟಿಪ್ಪಣಿಗಳು ಮತ್ತು ಇದ್ದರೆ ಎಚ್ಚರಿಸುವ ಸಮಯ ಹಾಗೂ ನಿದ್ರೆಯ ಹಂತಗಳಿವೆ – ಹೆಸರು, ದಿನಾಂಕ ಅಥವಾ ಸಾಧನ ID ಇಲ್ಲದೆ."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "파일에는 밤마다 30초 단위의 움직임과 심박수, 컨디션, 메모가 들어 있습니다. 이름, 날짜, 기기 ID는 없습니다."
+            "value": "파일에는 밤마다 30초 단위의 움직임과 심박수, 컨디션, 메모와 함께 있으면 깨우는 시각과 수면 단계도 들어 있습니다. 이름, 날짜, 기기 ID는 없습니다."
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "ໄຟລ໌ມີການເຄື່ອນໄຫວ ແລະ ອັດຕາການເຕັ້ນຂອງຫົວໃຈທຸກ 30 ວິນາທີ, ຄວາມຮູ້ສຶກຂອງເຈົ້າ ແລະ ບັນທຶກຂອງເຈົ້າສຳລັບແຕ່ລະຄືນ – ບໍ່ມີຊື່, ວັນທີ ຫຼື ID ອຸປະກອນ."
+            "value": "ໄຟລ໌ມີການເຄື່ອນໄຫວ ແລະ ອັດຕາການເຕັ້ນຂອງຫົວໃຈທຸກ 30 ວິນາທີ, ຄວາມຮູ້ສຶກຂອງເຈົ້າ ແລະ ບັນທຶກຂອງເຈົ້າສຳລັບແຕ່ລະຄືນ ພ້ອມທັງເວລາປຸກ ແລະ ໄລຍະການນອນ ຖ້າມີ – ບໍ່ມີຊື່, ວັນທີ ຫຼື ID ອຸປະກອນ."
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Faile yra kiekvienos nakties judėjimas ir pulsas kas 30 s, tavo savijauta ir užrašai – be vardų, datų ir įrenginių ID."
+            "value": "Faile yra kiekvienos nakties judėjimas ir pulsas kas 30 s, tavo savijauta ir užrašai, jei yra, ir žadinimo laikai bei miego fazės – be vardų, datų ir įrenginių ID."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Failā ir katras nakts kustības un pulss ik pēc 30 s, tava pašsajūta un piezīmes – bez vārdiem, datumiem un ierīču ID."
+            "value": "Failā ir katras nakts kustības un pulss ik pēc 30 s, tava pašsajūta un piezīmes, ja ir, arī modināšanas laiki un miega fāzes – bez vārdiem, datumiem un ierīču ID."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Датотеката за секоја ноќ содржи движење и пулс на секои 30 s, како се чувствуваше и твоите белешки – без имиња, датуми и ID на уреди."
+            "value": "Датотеката за секоја ноќ содржи движење и пулс на секои 30 s, како се чувствуваше и твоите белешки, а ако ги има, и времиња на будење и фази на сон – без имиња, датуми и ID на уреди."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "ഫയലിൽ ഓരോ രാത്രിക്കും ഓരോ 30 സെക്കൻഡിലെയും ചലനവും ഹൃദയമിടിപ്പും, നിങ്ങളുടെ അനുഭവവും കുറിപ്പുകളും ഉണ്ട് – പേര്, തീയതി, ഉപകരണ ID എന്നിവയില്ലാതെ."
+            "value": "ഫയലിൽ ഓരോ രാത്രിക്കും ഓരോ 30 സെക്കൻഡിലെയും ചലനവും ഹൃദയമിടിപ്പും, നിങ്ങളുടെ അനുഭവവും കുറിപ്പുകളും, ലഭ്യമെങ്കിൽ ഉണർത്തിയ സമയവും ഉറക്ക ഘട്ടങ്ങളും ഉണ്ട് – പേര്, തീയതി, ഉപകരണ ID എന്നിവയില്ലാതെ."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Файлд шөнө бүрийн 30 с тутмын хөдөлгөөн ба зүрхний цохилт, сэтгэгдэл, тэмдэглэл чинь бий – нэр, огноо, төхөөрөмжийн ID-гүй."
+            "value": "Файлд шөнө бүрийн 30 с тутмын хөдөлгөөн ба зүрхний цохилт, сэтгэгдэл, тэмдэглэл чинь, байвал сэрээсэн цаг ба нойрны үе шат бий – нэр, огноо, төхөөрөмжийн ID-гүй."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "फाइलमध्ये प्रत्येक रात्रीची दर 30 सेकंदांची हालचाल आणि हृदयाचे ठोके, तुम्हाला कसे वाटले आणि तुमच्या नोंदी आहेत – नाव, तारीख किंवा डिव्हाइस ID शिवाय."
+            "value": "फाइलमध्ये प्रत्येक रात्रीची दर 30 सेकंदांची हालचाल आणि हृदयाचे ठोके, तुम्हाला कसे वाटले, तुमच्या नोंदी आणि असल्यास उठवण्याची वेळ व झोपेचे टप्पे आहेत – नाव, तारीख किंवा डिव्हाइस ID शिवाय."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fail ini mengandungi pergerakan dan kadar denyutan jantung setiap 30 s, perasaan awak dan nota awak bagi setiap malam – tanpa nama, tarikh atau ID peranti."
+            "value": "Fail ini mengandungi pergerakan dan kadar denyutan jantung setiap 30 s, perasaan awak dan nota awak bagi setiap malam, serta masa bangun dan fasa tidur jika ada – tanpa nama, tarikh atau ID peranti."
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "ဖိုင်တွင် ညတိုင်းအတွက် စက္ကန့် 30 တိုင်း လှုပ်ရှားမှုနှင့် နှလုံးခုန်နှုန်း၊ သင့်ခံစားချက်နှင့် သင့်မှတ်စုများ ပါဝင်သည် – အမည်၊ ရက်စွဲ သို့မဟုတ် စက် ID မပါပါ။"
+            "value": "ဖိုင်တွင် ညတိုင်းအတွက် စက္ကန့် 30 တိုင်း လှုပ်ရှားမှုနှင့် နှလုံးခုန်နှုန်း၊ သင့်ခံစားချက်၊ သင့်မှတ်စုများနှင့် ရှိပါက နှိုးချိန်နှင့် အိပ်စက်မှုအဆင့်များ ပါဝင်သည် – အမည်၊ ရက်စွဲ သို့မဟုတ် စက် ID မပါပါ။"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Filen inneholder for hver natt bevegelse og puls per 30 s, hvordan du hadde det og notatene dine – uten navn, datoer eller enhets-ID-er."
+            "value": "Filen inneholder for hver natt bevegelse og puls per 30 s, hvordan du hadde det og notatene dine, samt vekketider og søvnfaser hvis de finnes – uten navn, datoer eller enhets-ID-er."
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "फाइलमा हरेक रातको हरेक 30 सेकेन्डको चालचलन र मुटुको धड्कन, तिमीलाई कस्तो लाग्यो र तिम्रा नोटहरू छन् – नाम, मिति वा उपकरण ID बिना।"
+            "value": "फाइलमा हरेक रातको हरेक 30 सेकेन्डको चालचलन र मुटुको धड्कन, तिमीलाई कस्तो लाग्यो, तिम्रा नोटहरू र भए ब्युँझाउने समय र निद्राका चरण छन् – नाम, मिति वा उपकरण ID बिना।"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Het bestand bevat per nacht beweging en hartslag per 30 s, hoe je je voelde en je notities – zonder namen, datums of apparaat-ID’s."
+            "value": "Het bestand bevat per nacht beweging en hartslag per 30 s, hoe je je voelde en je notities, plus wektijden en slaapfasen als die er zijn – zonder namen, datums of apparaat-ID’s."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਫ਼ਾਈਲ ਵਿੱਚ ਹਰ ਰਾਤ ਲਈ ਹਰ 30 ਸਕਿੰਟ ਦੀ ਹਿਲਜੁਲ ਅਤੇ ਦਿਲ ਦੀ ਧੜਕਣ, ਤੁਹਾਨੂੰ ਕਿਵੇਂ ਲੱਗਾ ਅਤੇ ਤੁਹਾਡੇ ਨੋਟ ਹਨ – ਨਾਂ, ਤਾਰੀਖ਼ ਜਾਂ ਡਿਵਾਈਸ ID ਤੋਂ ਬਿਨਾਂ।"
+            "value": "ਫ਼ਾਈਲ ਵਿੱਚ ਹਰ ਰਾਤ ਲਈ ਹਰ 30 ਸਕਿੰਟ ਦੀ ਹਿਲਜੁਲ ਅਤੇ ਦਿਲ ਦੀ ਧੜਕਣ, ਤੁਹਾਨੂੰ ਕਿਵੇਂ ਲੱਗਾ, ਤੁਹਾਡੇ ਨੋਟ ਅਤੇ ਹੋਣ ਤਾਂ ਜਗਾਉਣ ਦਾ ਸਮਾਂ ਤੇ ਨੀਂਦ ਦੇ ਪੜਾਅ ਹਨ – ਨਾਂ, ਤਾਰੀਖ਼ ਜਾਂ ਡਿਵਾਈਸ ID ਤੋਂ ਬਿਨਾਂ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Plik zawiera dla każdej nocy ruch i tętno co 30 s, twoje samopoczucie i notatki – bez imion, dat i identyfikatorów urządzeń."
+            "value": "Plik zawiera dla każdej nocy ruch i tętno co 30 s, twoje samopoczucie i notatki, a jeśli są dostępne, także godziny budzenia i fazy snu – bez imion, dat i identyfikatorów urządzeń."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O arquivo contém, de cada noite, movimento e frequência cardíaca a cada 30 s, como você se sentiu e suas notas – sem nomes, datas ou IDs de dispositivo."
+            "value": "O arquivo contém, de cada noite, movimento e frequência cardíaca a cada 30 s, como você se sentiu e suas notas, além de horários de despertar e fases do sono, se houver – sem nomes, datas ou IDs de dispositivo."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "O ficheiro contém, de cada noite, movimento e frequência cardíaca a cada 30 s, como te sentiste e as tuas notas – sem nomes, datas ou IDs de dispositivo."
+            "value": "O ficheiro contém, de cada noite, movimento e frequência cardíaca a cada 30 s, como te sentiste e as tuas notas, além de horas de despertar e fases do sono, se existirem – sem nomes, datas ou IDs de dispositivo."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fișierul conține pentru fiecare noapte mișcarea și pulsul la fiecare 30 s, cum te-ai simțit și notițele tale – fără nume, date sau ID-uri de dispozitiv."
+            "value": "Fișierul conține pentru fiecare noapte mișcarea și pulsul la fiecare 30 s, cum te-ai simțit și notițele tale, plus orele de trezire și fazele somnului, dacă există – fără nume, date sau ID-uri de dispozitiv."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Файл содержит для каждой ночи движение и пульс каждые 30 с, твоё самочувствие и заметки – без имён, дат и ID устройств."
+            "value": "Файл содержит для каждой ночи движение и пульс каждые 30 с, твоё самочувствие и заметки, а при наличии также время пробуждения и фазы сна – без имён, дат и ID устройств."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "ගොනුවේ සෑම රාත්‍රියකටම තත්පර 30 කට වරක් චලනය හා හෘද ස්පන්දනය, ඔබට දැනුණු ආකාරය සහ ඔබේ සටහන් ඇත – නම, දිනය හෝ උපාංග ID නොමැතිව."
+            "value": "ගොනුවේ සෑම රාත්‍රියකටම තත්පර 30 කට වරක් චලනය හා හෘද ස්පන්දනය, ඔබට දැනුණු ආකාරය, ඔබේ සටහන් සහ තිබේ නම් අවදි කළ වේලාව හා නින්දේ අදියර ඇත – නම, දිනය හෝ උපාංග ID නොමැතිව."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Súbor obsahuje za každú noc pohyb a pulz každých 30 s, ako si sa cítil, a tvoje poznámky – bez mien, dátumov a ID zariadení."
+            "value": "Súbor obsahuje za každú noc pohyb a pulz každých 30 s, ako si sa cítil, a tvoje poznámky, prípadne aj časy budenia a fázy spánku – bez mien, dátumov a ID zariadení."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Datoteka za vsako noč vsebuje gibanje in utrip na 30 s, tvoje počutje in zapiske – brez imen, datumov in ID-jev naprav."
+            "value": "Datoteka za vsako noč vsebuje gibanje in utrip na 30 s, tvoje počutje in zapiske, če so na voljo, tudi čase bujenja in faze spanja – brez imen, datumov in ID-jev naprav."
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Skedari përmban për çdo natë lëvizjen dhe pulsin çdo 30 s, si u ndjeve dhe shënimet e tua – pa emra, data apo ID pajisjesh."
+            "value": "Skedari përmban për çdo natë lëvizjen dhe pulsin çdo 30 s, si u ndjeve dhe shënimet e tua, si dhe oraret e zgjimit dhe fazat e gjumit, nëse ka – pa emra, data apo ID pajisjesh."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Датотека за сваку ноћ садржи покрет и пулс на сваких 30 s, како си се осећао и твоје белешке – без имена, датума и ID-јева уређаја."
+            "value": "Датотека за сваку ноћ садржи покрет и пулс на сваких 30 s, како си се осећао и твоје белешке, а ако постоје и времена буђења и фазе сна – без имена, датума и ID-јева уређаја."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Filen innehåller för varje natt rörelse och puls per 30 s, hur du mådde och dina anteckningar – utan namn, datum eller enhets-id."
+            "value": "Filen innehåller för varje natt rörelse och puls per 30 s, hur du mådde och dina anteckningar, samt väckningstider och sömnfaser om de finns – utan namn, datum eller enhets-id."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Faili lina, kwa kila usiku, mwendo na mapigo ya moyo kila sekunde 30, ulivyojisikia na madokezo yako – bila majina, tarehe wala vitambulisho vya kifaa."
+            "value": "Faili lina, kwa kila usiku, mwendo na mapigo ya moyo kila sekunde 30, ulivyojisikia na madokezo yako, pamoja na nyakati za kuamshwa na hatua za usingizi ikiwa zipo – bila majina, tarehe wala vitambulisho vya kifaa."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "கோப்பில் ஒவ்வொரு இரவுக்கும் ஒவ்வொரு 30 வினாடிக்கான அசைவு மற்றும் இதயத் துடிப்பு, நீங்கள் எப்படி உணர்ந்தீர்கள், உங்கள் குறிப்புகள் உள்ளன – பெயர், தேதி அல்லது சாதன ID இல்லாமல்."
+            "value": "கோப்பில் ஒவ்வொரு இரவுக்கும் ஒவ்வொரு 30 வினாடிக்கான அசைவு மற்றும் இதயத் துடிப்பு, நீங்கள் எப்படி உணர்ந்தீர்கள், உங்கள் குறிப்புகள், இருந்தால் எழுப்பிய நேரம் மற்றும் உறக்க நிலைகள் உள்ளன – பெயர், தேதி அல்லது சாதன ID இல்லாமல்."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "ఫైల్‌లో ప్రతి రాత్రికి ప్రతి 30 సెకన్ల కదలిక మరియు గుండె వేగం, మీకు ఎలా అనిపించింది, మీ నోట్స్ ఉంటాయి – పేరు, తేదీ లేదా పరికర ID లేకుండా."
+            "value": "ఫైల్‌లో ప్రతి రాత్రికి ప్రతి 30 సెకన్ల కదలిక మరియు గుండె వేగం, మీకు ఎలా అనిపించింది, మీ నోట్స్, ఉంటే మేల్కొలిపిన సమయం మరియు నిద్ర దశలు ఉంటాయి – పేరు, తేదీ లేదా పరికర ID లేకుండా."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "ไฟล์มีการเคลื่อนไหวและอัตราการเต้นของหัวใจทุก 30 วินาที ความรู้สึกของคุณ และบันทึกของคุณสำหรับแต่ละคืน – ไม่มีชื่อ วันที่ หรือ ID อุปกรณ์"
+            "value": "ไฟล์มีการเคลื่อนไหวและอัตราการเต้นของหัวใจทุก 30 วินาที ความรู้สึกของคุณ และบันทึกของคุณสำหรับแต่ละคืน รวมถึงเวลาปลุกและระยะการนอนหากมี – ไม่มีชื่อ วันที่ หรือ ID อุปกรณ์"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dosya her gece için 30 sn’lik hareket ve nabzı, nasıl hissettiğini ve notlarını içerir – adsız, tarihsiz ve cihaz kimliği olmadan."
+            "value": "Dosya her gece için 30 sn’lik hareket ve nabzı, nasıl hissettiğini, notlarını ve varsa uyandırma saatlerini ve uyku evrelerini içerir – adsız, tarihsiz ve cihaz kimliği olmadan."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Файл містить для кожної ночі рух і пульс кожні 30 с, твоє самопочуття й нотатки – без імен, дат та ID пристроїв."
+            "value": "Файл містить для кожної ночі рух і пульс кожні 30 с, твоє самопочуття й нотатки, а за наявності також час пробудження й фази сну – без імен, дат та ID пристроїв."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "فائل میں ہر رات کے لیے ہر 30 سیکنڈ کی حرکت اور دل کی دھڑکن، تمہیں کیسا لگا اور تمہارے نوٹس ہیں – نام، تاریخ یا ڈیوائس ID کے بغیر۔"
+            "value": "فائل میں ہر رات کے لیے ہر 30 سیکنڈ کی حرکت اور دل کی دھڑکن، تمہیں کیسا لگا، تمہارے نوٹس اور اگر ہوں تو جگانے کا وقت اور نیند کے مراحل ہیں – نام، تاریخ یا ڈیوائس ID کے بغیر۔"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Faylda har bir tun uchun har 30 soniyalik harakat va yurak urishi, oʻzingni qanday his qilganing va qaydlaring bor – nomlar, sanalar va qurilma IDlarisiz."
+            "value": "Faylda har bir tun uchun har 30 soniyalik harakat va yurak urishi, oʻzingni qanday his qilganing, qaydlaring va boʻlsa, uygʻotish vaqtlari va uyqu fazalari bor – nomlar, sanalar va qurilma IDlarisiz."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tệp chứa chuyển động và nhịp tim mỗi 30 giây, cảm giác của bạn và ghi chú của bạn cho từng đêm – không có tên, ngày hay ID thiết bị."
+            "value": "Tệp chứa chuyển động và nhịp tim mỗi 30 giây, cảm giác của bạn và ghi chú của bạn cho từng đêm, cùng giờ đánh thức và giai đoạn ngủ nếu có – không có tên, ngày hay ID thiết bị."
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "檔案包括每晚每 30 秒的動作和心率、你的感覺同你的備註，不含姓名、日期或裝置 ID。"
+            "value": "檔案包括每晚每 30 秒的動作和心率、你的感覺同你的備註，仲有（如有）喚醒時間同睡眠階段，不含姓名、日期或裝置 ID。"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "文件包含每晚每 30 秒的体动和心率、你的感受和你的笔记，不含姓名、日期或设备 ID。"
+            "value": "文件包含每晚每 30 秒的体动和心率、你的感受和你的笔记，以及（如有）唤醒时间和睡眠阶段，不含姓名、日期或设备 ID。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "檔案包含每晚每 30 秒的體動和心率、你的感受和你的筆記，不含姓名、日期或裝置 ID。"
+            "value": "檔案包含每晚每 30 秒的體動和心率、你的感受和你的筆記，以及（如有）喚醒時間和睡眠階段，不含姓名、日期或裝置 ID。"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ifayela liqukethe, ngobusuku ngabunye, ukunyakaza nokushaya kwenhliziyo njalo ngemizuzwana engu-30, indlela obuzizwa ngayo kanye namanothi akho – ngaphandle kwamagama, izinsuku noma ama-ID edivayisi."
+            "value": "Ifayela liqukethe, ngobusuku ngabunye, ukunyakaza nokushaya kwenhliziyo njalo ngemizuzwana engu-30, indlela obuzizwa ngayo kanye namanothi akho, kanye nezikhathi zokuvusa nezigaba zokulala uma zikhona – ngaphandle kwamagama, izinsuku noma ama-ID edivayisi."
           }
         }
       }

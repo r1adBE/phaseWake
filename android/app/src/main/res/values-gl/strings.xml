@@ -246,7 +246,7 @@
     <string name="check_watch_learn_battery">Con menos do %1$d %% de batería, o reloxo non gravará esta noite para a fase de aprendizaxe: cárgao antes. A alarma espertarate igualmente.</string>
     <string name="check_watch_pulse">Pulso en segundo plano (reloxo)</string>
     <string name="check_watch_pulse_problem">O reloxo non pode medir o teu pulso pola noite – no reloxo, pon o permiso de sensores de Phase Wake en “Permitir sempre”.</string>
-    <string name="export_contents_hint">O ficheiro contén, de cada noite, movemento e pulso cada 30 s, como te sentiches e as túas notas – sen nomes, datas nin identificadores do dispositivo.</string>
+    <string name="export_contents_hint">O ficheiro contén, de cada noite, movemento e pulso cada 30 s, como te sentiches e as túas notas, ademais de horas de espertar e fases do sono se as hai – sen nomes, datas nin identificadores do dispositivo.</string>
     <string name="editor_more">Máis</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Ata %1$d alarmas – elimina unha para engadir outra nova.</string>
@@ -481,7 +481,7 @@
     </plurals>
     <string name="diag_unlocked">O diagnóstico móstrase agora nos axustes.</string>
     <string name="diag_show">Mostrar diagnóstico</string>
-    <string name="diag_hint">Rexistro técnico dos últimos 7 días, só nos teus dispositivos. Contén horas e valores medidos (p. ex. movemento, hora de adormecer) – compárteo só se queres.</string>
+    <string name="diag_hint">Rexistro técnico dos últimos 7 días, só nos teus dispositivos. Contén horas e valores medidos (p. ex. movemento, hora de adormecer, horas de espertar, fases do sono) – compárteo só se queres.</string>
     <string name="diag_events">Eventos</string>
     <string name="diag_empty">Aínda non hai eventos.</string>
     <string name="diag_status">Estado</string>

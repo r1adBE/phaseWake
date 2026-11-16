@@ -246,7 +246,7 @@
     <string name="check_watch_learn_battery">Alla %1$d %% aku korral ei salvesta kell täna öösel õppefaasi jaoks – lae see enne. Äratus äratab sind ikkagi.</string>
     <string name="check_watch_pulse">Pulss taustal (kell)</string>
     <string name="check_watch_pulse_problem">Kell ei tohi öösel su pulssi mõõta – määra kellas Phase Wake’i andurite luba valikule „Luba alati“.</string>
-    <string name="export_contents_hint">Fail sisaldab iga öö kohta liikumist ja pulssi iga 30 s kohta, sinu enesetunnet ja märkmeid – ilma nimede, kuupäevade ja seadme-ID-deta.</string>
+    <string name="export_contents_hint">Fail sisaldab iga öö kohta liikumist ja pulssi iga 30 s kohta, sinu enesetunnet ja märkmeid, olemasolul ka äratusaegu ja unefaase – ilma nimede, kuupäevade ja seadme-ID-deta.</string>
     <string name="editor_more">Rohkem</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Kuni %1$d äratust – uue lisamiseks kustuta üks.</string>
@@ -481,7 +481,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnostikat näidatakse nüüd seadetes.</string>
     <string name="diag_show">Näita diagnostikat</string>
-    <string name="diag_hint">Viimase 7 päeva tehniline logi, ainult sinu seadmetes. See sisaldab aegu ja mõõteväärtusi (nt liikumine, uinumise aeg) – jaga seda ainult siis, kui tahad.</string>
+    <string name="diag_hint">Viimase 7 päeva tehniline logi, ainult sinu seadmetes. See sisaldab aegu ja mõõteväärtusi (nt liikumine, uinumise aeg, äratusajad, unefaasid) – jaga seda ainult siis, kui tahad.</string>
     <string name="diag_events">Sündmused</string>
     <string name="diag_empty">Sündmusi veel pole.</string>
     <string name="diag_status">Olek</string>

@@ -246,7 +246,7 @@
     <string name="check_watch_learn_battery">%1$d %%થી ઓછી બેટરીમાં ઘડિયાળ આજે રાત્રે શીખવાના તબક્કા માટે રેકોર્ડ કરશે નહીં – પહેલાં ચાર્જ કર. એલાર્મ તો પણ તને જગાડશે.</string>
     <string name="check_watch_pulse">બૅકગ્રાઉન્ડમાં પલ્સ (ઘડિયાળ)</string>
     <string name="check_watch_pulse_problem">ઘડિયાળ રાત્રે તારી પલ્સ માપી શકતી નથી – ઘડિયાળ પર Phase Wake ની સેન્સર પરવાનગી “હંમેશાં મંજૂરી આપો” પર સેટ કર.</string>
-    <string name="export_contents_hint">ફાઇલમાં દરેક રાત માટે દર 30 સેકન્ડનું હલનચલન અને હૃદયના ધબકારા, તમને કેવું લાગ્યું અને તમારી નોંધો છે – નામ, તારીખ કે ઉપકરણ ID વિના.</string>
+    <string name="export_contents_hint">ફાઇલમાં દરેક રાત માટે દર 30 સેકન્ડનું હલનચલન અને હૃદયના ધબકારા, તમને કેવું લાગ્યું, તમારી નોંધો અને હોય તો જગાડવાનો સમય અને ઊંઘના તબક્કા છે – નામ, તારીખ કે ઉપકરણ ID વિના.</string>
     <string name="editor_more">વધુ</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">વધુમાં વધુ %1$d એલાર્મ – નવો ઉમેરવા માટે એક કાઢી નાખો.</string>
@@ -481,7 +481,7 @@
     </plurals>
     <string name="diag_unlocked">નિદાન હવે સેટિંગમાં દેખાય છે.</string>
     <string name="diag_show">નિદાન બતાવો</string>
-    <string name="diag_hint">છેલ્લા 7 દિવસનો ટેકનિકલ લૉગ, ફક્ત તમારા ડિવાઇસ પર. તેમાં સમય અને માપેલા મૂલ્યો છે (દા.ત. હલનચલન, ઊંઘ આવવાનો સમય) – તમે ઇચ્છો તો જ શેર કરો.</string>
+    <string name="diag_hint">છેલ્લા 7 દિવસનો ટેકનિકલ લૉગ, ફક્ત તમારા ડિવાઇસ પર. તેમાં સમય અને માપેલા મૂલ્યો છે (દા.ત. હલનચલન, ઊંઘ આવવાનો સમય, જગાડવાનો સમય, ઊંઘના તબક્કા) – તમે ઇચ્છો તો જ શેર કરો.</string>
     <string name="diag_events">ઘટનાઓ</string>
     <string name="diag_empty">હજી કોઈ ઘટના નથી.</string>
     <string name="diag_status">સ્થિતિ</string>

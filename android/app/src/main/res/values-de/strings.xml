@@ -244,7 +244,7 @@
     <string name="check_watch_learn_battery">Unter %1$d %% Akku zeichnet die Uhr heute Nacht nicht für die Lernphase auf – lade sie vorher. Geweckt wirst du trotzdem.</string>
     <string name="check_watch_pulse">Puls im Hintergrund (Uhr)</string>
     <string name="check_watch_pulse_problem">Uhr darf den Puls nachts nicht messen – auf der Uhr bei Phase Wake «Sensoren/Fitness» auf «Immer zulassen» stellen.</string>
-    <string name="export_contents_hint">Die Datei enthält je Nacht Bewegung und Puls je 30 s, Befinden und deine Notizen – ohne Namen, Datum oder Gerätekennung.</string>
+    <string name="export_contents_hint">Die Datei enthält je Nacht Bewegung und Puls je 30 s, Befinden und deine Notizen, falls vorhanden auch Weckzeiten und Schlafphasen – ohne Namen, Datum oder Gerätekennung.</string>
     <string name="editor_more">Mehr</string>
     <string name="home_max_alarms">Höchstens %1$d Wecker – lösche einen, um einen neuen anzulegen.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -478,7 +478,7 @@
     </plurals>
     <string name="diag_unlocked">Die Diagnose steht jetzt in den Einstellungen.</string>
     <string name="diag_show">Diagnose anzeigen</string>
-    <string name="diag_hint">Technisches Protokoll der letzten 7 Tage, nur auf deinen Geräten. Es enthält Zeiten und Messwerte (z. B. Bewegung, Einschlafzeit) – teile es nur, wenn du willst.</string>
+    <string name="diag_hint">Technisches Protokoll der letzten 7 Tage, nur auf deinen Geräten. Es enthält Zeiten und Messwerte (z. B. Bewegung, Einschlafzeit, Weckzeiten, Schlafphasen) – teile es nur, wenn du willst.</string>
     <string name="diag_events">Ereignisse</string>
     <string name="diag_empty">Noch keine Ereignisse.</string>
     <string name="diag_status">Status</string>

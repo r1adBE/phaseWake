@@ -255,7 +255,7 @@
     <string name="check_watch_learn_battery">Pod %1$d %% batérie hodinky dnes v noci nebudú nahrávať pre fázu učenia – nabi ich vopred. Budík ťa aj tak zobudí.</string>
     <string name="check_watch_pulse">Tep na pozadí (hodinky)</string>
     <string name="check_watch_pulse_problem">Hodinky nesmú v noci merať tvoj tep – na hodinkách nastav povolenie senzorov pre Phase Wake na „Povoliť vždy“.</string>
-    <string name="export_contents_hint">Súbor obsahuje za každú noc pohyb a pulz každých 30 s, ako si sa cítil, a tvoje poznámky – bez mien, dátumov a ID zariadení.</string>
+    <string name="export_contents_hint">Súbor obsahuje za každú noc pohyb a pulz každých 30 s, ako si sa cítil, a tvoje poznámky, prípadne aj časy budenia a fázy spánku – bez mien, dátumov a ID zariadení.</string>
     <string name="editor_more">Viac</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Najviac %1$d budíkov – na pridanie nového jeden odstráň.</string>
@@ -508,7 +508,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnostika sa teraz zobrazuje v nastaveniach.</string>
     <string name="diag_show">Zobraziť diagnostiku</string>
-    <string name="diag_hint">Technický záznam za posledných 7 dní, len v tvojich zariadeniach. Obsahuje časy a namerané hodnoty (napr. pohyb, čas zaspania) – zdieľaj ho, len ak chceš.</string>
+    <string name="diag_hint">Technický záznam za posledných 7 dní, len v tvojich zariadeniach. Obsahuje časy a namerané hodnoty (napr. pohyb, čas zaspania, časy budenia, fázy spánku) – zdieľaj ho, len ak chceš.</string>
     <string name="diag_events">Udalosti</string>
     <string name="diag_empty">Zatiaľ žiadne udalosti.</string>
     <string name="diag_status">Stav</string>

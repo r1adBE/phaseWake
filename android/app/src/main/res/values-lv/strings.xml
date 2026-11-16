@@ -251,7 +251,7 @@
     <string name="check_watch_learn_battery">Ja akumulators ir zem %1$d %%, pulkstenis šonakt neierakstīs mācīšanās posmam – uzlādē to iepriekš. Modinātājs tevi tik un tā pamodinās.</string>
     <string name="check_watch_pulse">Pulss fonā (pulkstenis)</string>
     <string name="check_watch_pulse_problem">Pulkstenim nav atļauts naktī mērīt tavu pulsu – pulkstenī iestati Phase Wake sensoru atļauju uz “Atļaut vienmēr”.</string>
-    <string name="export_contents_hint">Failā ir katras nakts kustības un pulss ik pēc 30 s, tava pašsajūta un piezīmes – bez vārdiem, datumiem un ierīču ID.</string>
+    <string name="export_contents_hint">Failā ir katras nakts kustības un pulss ik pēc 30 s, tava pašsajūta un piezīmes, ja ir, arī modināšanas laiki un miega fāzes – bez vārdiem, datumiem un ierīču ID.</string>
     <string name="editor_more">Vairāk</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Līdz %1$d modinātājiem – izdzēs vienu, lai pievienotu jaunu.</string>
@@ -495,7 +495,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnostika tagad redzama iestatījumos.</string>
     <string name="diag_show">Rādīt diagnostiku</string>
-    <string name="diag_hint">Pēdējo 7 dienu tehniskais žurnāls, tikai tavās ierīcēs. Tajā ir laiki un izmērītās vērtības (piem., kustība, iemigšanas laiks) – kopīgo to tikai tad, ja vēlies.</string>
+    <string name="diag_hint">Pēdējo 7 dienu tehniskais žurnāls, tikai tavās ierīcēs. Tajā ir laiki un izmērītās vērtības (piem., kustība, iemigšanas laiks, modināšanas laiki, miega fāzes) – kopīgo to tikai tad, ja vēlies.</string>
     <string name="diag_events">Notikumi</string>
     <string name="diag_empty">Vēl nav notikumu.</string>
     <string name="diag_status">Statuss</string>

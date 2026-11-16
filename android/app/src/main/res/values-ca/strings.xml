@@ -250,7 +250,7 @@
     <string name="check_watch_learn_battery">Amb menys del %1$d %% de bateria, el rellotge no enregistrarà aquesta nit per a la fase d’aprenentatge – carrega\'l abans. L’alarma et despertarà igualment.</string>
     <string name="check_watch_pulse">Pols en segon pla (rellotge)</string>
     <string name="check_watch_pulse_problem">El rellotge no pot mesurar-te el pols a la nit – al rellotge, posa el permís de sensors de Phase Wake a «Permet sempre».</string>
-    <string name="export_contents_hint">El fitxer conté, per a cada nit, moviment i freqüència cardíaca cada 30 s, com et vas sentir i les teves notes – sense noms, dates ni identificadors de dispositiu.</string>
+    <string name="export_contents_hint">El fitxer conté, per a cada nit, moviment i freqüència cardíaca cada 30 s, com et vas sentir i les teves notes, a més d’hores de despertar i fases del son si n’hi ha – sense noms, dates ni identificadors de dispositiu.</string>
     <string name="editor_more">Més</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Com a màxim %1$d alarmes – suprimeix-ne una per afegir-ne una de nova.</string>
@@ -494,7 +494,7 @@
     </plurals>
     <string name="diag_unlocked">Ara el diagnòstic es mostra a la configuració.</string>
     <string name="diag_show">Mostra el diagnòstic</string>
-    <string name="diag_hint">Registre tècnic dels últims 7 dies, només als teus dispositius. Conté hores i valors mesurats (p. ex. moviment, hora d’adormir-te) – comparteix-lo només si vols.</string>
+    <string name="diag_hint">Registre tècnic dels últims 7 dies, només als teus dispositius. Conté hores i valors mesurats (p. ex. moviment, hora d’adormir-te, hores de despertar, fases del son) – comparteix-lo només si vols.</string>
     <string name="diag_events">Esdeveniments</string>
     <string name="diag_empty">Encara no hi ha esdeveniments.</string>
     <string name="diag_status">Estat</string>

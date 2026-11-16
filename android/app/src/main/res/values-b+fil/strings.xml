@@ -246,7 +246,7 @@
     <string name="check_watch_learn_battery">Kapag mas mababa sa %1$d %% ang baterya, hindi magre-record ang relo mo ngayong gabi para sa yugto ng pagkatuto – i-charge ito bago matulog. Gigisingin ka pa rin ng alarm.</string>
     <string name="check_watch_pulse">Pulso sa background (relo)</string>
     <string name="check_watch_pulse_problem">Hindi puwedeng sukatin ng relo ang pulso mo sa gabi – sa relo, itakda ang pahintulot sa sensor ng Phase Wake sa “Payagan sa lahat ng oras”.</string>
-    <string name="export_contents_hint">Laman ng file para sa bawat gabi ang galaw at heart rate bawat 30 s, ang pakiramdam mo at ang mga tala mo – walang pangalan, petsa o ID ng device.</string>
+    <string name="export_contents_hint">Laman ng file para sa bawat gabi ang galaw at heart rate bawat 30 s, ang pakiramdam mo at ang mga tala mo, at kung mayroon, oras ng paggising at yugto ng tulog – walang pangalan, petsa o ID ng device.</string>
     <string name="editor_more">Higit pa</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Hanggang %1$d alarm – mag-delete ng isa para magdagdag ng bago.</string>
@@ -481,7 +481,7 @@
     </plurals>
     <string name="diag_unlocked">Ipinapakita na ngayon ang diagnostics sa mga setting.</string>
     <string name="diag_show">Ipakita ang diagnostics</string>
-    <string name="diag_hint">Teknikal na log ng huling 7 araw, sa mga device mo lang. May mga oras at sukat ito (hal. galaw, oras ng pagtulog) – ibahagi lang kung gusto mo.</string>
+    <string name="diag_hint">Teknikal na log ng huling 7 araw, sa mga device mo lang. May mga oras at sukat ito (hal. galaw, oras ng pagtulog, oras ng paggising, yugto ng tulog) – ibahagi lang kung gusto mo.</string>
     <string name="diag_events">Mga event</string>
     <string name="diag_empty">Wala pang event.</string>
     <string name="diag_status">Status</string>

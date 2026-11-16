@@ -245,7 +245,7 @@
     <string name="check_watch_learn_battery">Под %1$d %% батерия часовникът няма да записва довечера за фазата на учене – зареди го предварително. Алармата пак ще те събуди.</string>
     <string name="check_watch_pulse">Пулс във фонов режим (часовник)</string>
     <string name="check_watch_pulse_problem">Часовникът няма право да измерва пулса ти през нощта – на часовника задай разрешението за сензори на Phase Wake на „Разрешаване през цялото време“.</string>
-    <string name="export_contents_hint">Файлът съдържа за всяка нощ движение и пулс на всеки 30 s, как си се чувствал и бележките ти – без имена, дати и ID на устройства.</string>
+    <string name="export_contents_hint">Файлът съдържа за всяка нощ движение и пулс на всеки 30 s, как си се чувствал и бележките ти, а при наличие и часове на събуждане и фази на съня – без имена, дати и ID на устройства.</string>
     <string name="editor_more">Още</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">До %1$d будилника – изтрий един, за да добавиш нов.</string>
@@ -480,7 +480,7 @@
     </plurals>
     <string name="diag_unlocked">Диагностиката вече се показва в настройките.</string>
     <string name="diag_show">Покажи диагностиката</string>
-    <string name="diag_hint">Технически дневник за последните 7 дни, само на твоите устройства. Съдържа часове и измерени стойности (напр. движение, време на заспиване) – споделяй го само ако искаш.</string>
+    <string name="diag_hint">Технически дневник за последните 7 дни, само на твоите устройства. Съдържа часове и измерени стойности (напр. движение, време на заспиване, часове на събуждане, фази на съня) – споделяй го само ако искаш.</string>
     <string name="diag_events">Събития</string>
     <string name="diag_empty">Още няма събития.</string>
     <string name="diag_status">Състояние</string>

@@ -246,7 +246,7 @@
     <string name="check_watch_learn_battery">Uma ibhethri lingaphansi kuka-%1$d %%, iwashi ngeke liqophe namuhla ebusuku esigabeni sokufunda – lishaje kusenesikhathi. I-alamu isazokuvusa.</string>
     <string name="check_watch_pulse">Ukushaya kwenhliziyo ngemuva (iwashi)</string>
     <string name="check_watch_pulse_problem">Iwashi alivunyelwe ukukala ukushaya kwenhliziyo yakho ebusuku – ewashini, setha imvume yenzwa ye-Phase Wake ibe “Vumela ngaso sonke isikhathi”.</string>
-    <string name="export_contents_hint">Ifayela liqukethe, ngobusuku ngabunye, ukunyakaza nokushaya kwenhliziyo njalo ngemizuzwana engu-30, indlela obuzizwa ngayo kanye namanothi akho – ngaphandle kwamagama, izinsuku noma ama-ID edivayisi.</string>
+    <string name="export_contents_hint">Ifayela liqukethe, ngobusuku ngabunye, ukunyakaza nokushaya kwenhliziyo njalo ngemizuzwana engu-30, indlela obuzizwa ngayo kanye namanothi akho, kanye nezikhathi zokuvusa nezigaba zokulala uma zikhona – ngaphandle kwamagama, izinsuku noma ama-ID edivayisi.</string>
     <string name="editor_more">Okwengeziwe</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Kufika kuma-alamu angu-%1$d – susa eyodwa ukuze ungeze entsha.</string>
@@ -481,7 +481,7 @@
     </plurals>
     <string name="diag_unlocked">Ukuhlola amaphutha manje kuboniswa ezilungiselelweni.</string>
     <string name="diag_show">Bonisa ukuhlola amaphutha</string>
-    <string name="diag_hint">Irekhodi lobuchwepheshe lezinsuku eziyi-7 ezedlule, kumadivayisi akho kuphela. Liqukethe izikhathi namanani alinganisiwe (isb. ukunyakaza, isikhathi sokulala) – yabelana ngalo kuphela uma ufuna.</string>
+    <string name="diag_hint">Irekhodi lobuchwepheshe lezinsuku eziyi-7 ezedlule, kumadivayisi akho kuphela. Liqukethe izikhathi namanani alinganisiwe (isb. ukunyakaza, isikhathi sokulala, izikhathi zokuvusa, izigaba zokulala) – yabelana ngalo kuphela uma ufuna.</string>
     <string name="diag_events">Izehlakalo</string>
     <string name="diag_empty">Azikho izehlakalo okwamanje.</string>
     <string name="diag_status">Isimo</string>

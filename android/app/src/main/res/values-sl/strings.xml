@@ -255,7 +255,7 @@
     <string name="check_watch_learn_battery">Pod %1$d %% baterije ura nocoj ne bo snemala za fazo učenja – napolni jo vnaprej. Budilka te bo vseeno zbudila.</string>
     <string name="check_watch_pulse">Utrip v ozadju (ura)</string>
     <string name="check_watch_pulse_problem">Ura ponoči ne sme meriti tvojega utripa – na uri nastavi dovoljenje za senzorje za Phase Wake na »Vedno dovoli«.</string>
-    <string name="export_contents_hint">Datoteka za vsako noč vsebuje gibanje in utrip na 30 s, tvoje počutje in zapiske – brez imen, datumov in ID-jev naprav.</string>
+    <string name="export_contents_hint">Datoteka za vsako noč vsebuje gibanje in utrip na 30 s, tvoje počutje in zapiske, če so na voljo, tudi čase bujenja in faze spanja – brez imen, datumov in ID-jev naprav.</string>
     <string name="editor_more">Več</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Največ %1$d budilk – izbriši eno, da dodaš novo.</string>
@@ -508,7 +508,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnostika je zdaj prikazana v nastavitvah.</string>
     <string name="diag_show">Prikaži diagnostiko</string>
-    <string name="diag_hint">Tehnični dnevnik zadnjih 7 dni, samo v tvojih napravah. Vsebuje čase in izmerjene vrednosti (npr. gibanje, čas uspavanja) – deli ga le, če želiš.</string>
+    <string name="diag_hint">Tehnični dnevnik zadnjih 7 dni, samo v tvojih napravah. Vsebuje čase in izmerjene vrednosti (npr. gibanje, čas uspavanja, časi bujenja, faze spanja) – deli ga le, če želiš.</string>
     <string name="diag_events">Dogodki</string>
     <string name="diag_empty">Še ni dogodkov.</string>
     <string name="diag_status">Stanje</string>

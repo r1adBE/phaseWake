@@ -245,7 +245,7 @@
     <string name="check_watch_learn_battery">ব্যাটারি %1$d %%-এর নিচে থাকলে ঘড়ি আজ রাতে শেখার পর্বের জন্য রেকর্ড করবে না – আগেই চার্জ দাও। অ্যালার্ম তবুও তোমাকে জাগাবে।</string>
     <string name="check_watch_pulse">ব্যাকগ্রাউন্ডে পালস (ঘড়ি)</string>
     <string name="check_watch_pulse_problem">ঘড়িটি রাতে তোমার পালস মাপতে পারবে না – ঘড়িতে Phase Wake-এর সেন্সর অনুমতি “সব সময় অনুমতি দিন”-এ সেট করো।</string>
-    <string name="export_contents_hint">ফাইলে প্রতি রাতের প্রতি 30 সেকেন্ডের নড়াচড়া ও হৃদস্পন্দন, তোমার অনুভূতি আর তোমার নোট থাকে – নাম, তারিখ বা ডিভাইস আইডি ছাড়া।</string>
+    <string name="export_contents_hint">ফাইলে প্রতি রাতের প্রতি 30 সেকেন্ডের নড়াচড়া ও হৃদস্পন্দন, তোমার অনুভূতি, তোমার নোট এবং থাকলে জাগানোর সময় ও ঘুমের পর্যায় থাকে – নাম, তারিখ বা ডিভাইস আইডি ছাড়া।</string>
     <string name="editor_more">আরও</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">সর্বোচ্চ %1$dটি অ্যালার্ম – নতুন যোগ করতে একটা মুছে ফেলো।</string>
@@ -480,7 +480,7 @@
     </plurals>
     <string name="diag_unlocked">ডায়াগনস্টিকস এখন সেটিংসে দেখা যাচ্ছে।</string>
     <string name="diag_show">ডায়াগনস্টিকস দেখাও</string>
-    <string name="diag_hint">গত ৭ দিনের প্রযুক্তিগত লগ, শুধু তোমার ডিভাইসে। এতে সময় ও পরিমাপের মান আছে (যেমন নড়াচড়া, ঘুমিয়ে পড়ার সময়) – চাইলে তবেই শেয়ার করো।</string>
+    <string name="diag_hint">গত ৭ দিনের প্রযুক্তিগত লগ, শুধু তোমার ডিভাইসে। এতে সময় ও পরিমাপের মান আছে (যেমন নড়াচড়া, ঘুমিয়ে পড়ার সময়, জাগানোর সময়, ঘুমের পর্যায়) – চাইলে তবেই শেয়ার করো।</string>
     <string name="diag_events">ঘটনা</string>
     <string name="diag_empty">এখনও কোনো ঘটনা নেই।</string>
     <string name="diag_status">অবস্থা</string>

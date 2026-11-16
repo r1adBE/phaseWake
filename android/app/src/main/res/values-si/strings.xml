@@ -246,7 +246,7 @@
     <string name="check_watch_learn_battery">බැටරිය %1$d %% ට අඩු නම් අද රාත්‍රියේ ඉගෙනීමේ අදියර සඳහා ඔරලෝසුව පටිගත කරන්නේ නැත – කලින්ම ආරෝපණය කරන්න. එලාමය කෙසේ වෙතත් ඔබව අවදි කරයි.</string>
     <string name="check_watch_pulse">පසුබිමේ නාඩිය (ඔරලෝසුව)</string>
     <string name="check_watch_pulse_problem">ඔරලෝසුවට රාත්‍රියේ ඔබේ නාඩිය මැනීමට අවසර නැත – ඔරලෝසුවේ Phase Wake හි සංවේදක අවසරය “සෑම විටම ඉඩ දෙන්න” ලෙස සකසන්න.</string>
-    <string name="export_contents_hint">ගොනුවේ සෑම රාත්‍රියකටම තත්පර 30 කට වරක් චලනය හා හෘද ස්පන්දනය, ඔබට දැනුණු ආකාරය සහ ඔබේ සටහන් ඇත – නම, දිනය හෝ උපාංග ID නොමැතිව.</string>
+    <string name="export_contents_hint">ගොනුවේ සෑම රාත්‍රියකටම තත්පර 30 කට වරක් චලනය හා හෘද ස්පන්දනය, ඔබට දැනුණු ආකාරය, ඔබේ සටහන් සහ තිබේ නම් අවදි කළ වේලාව හා නින්දේ අදියර ඇත – නම, දිනය හෝ උපාංග ID නොමැතිව.</string>
     <string name="editor_more">තව</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">එලාම %1$d ක් දක්වා – අලුත් එකක් එක් කිරීමට එකක් මකන්න.</string>
@@ -481,7 +481,7 @@
     </plurals>
     <string name="diag_unlocked">දෝෂ නිර්ණය දැන් සැකසීම්වල පෙන්වයි.</string>
     <string name="diag_show">දෝෂ නිර්ණය පෙන්වන්න</string>
-    <string name="diag_hint">පසුගිය දින 7 හි තාක්ෂණික ලොගය, ඔබේ උපාංගවල පමණි. එහි වේලාවන් සහ මනින ලද අගයන් ඇත (උදා. චලනය, නින්දට ගිය වේලාව) – ඔබට අවශ්‍ය නම් පමණක් බෙදාගන්න.</string>
+    <string name="diag_hint">පසුගිය දින 7 හි තාක්ෂණික ලොගය, ඔබේ උපාංගවල පමණි. එහි වේලාවන් සහ මනින ලද අගයන් ඇත (උදා. චලනය, නින්දට ගිය වේලාව, අවදි කළ වේලාව, නින්දේ අදියර) – ඔබට අවශ්‍ය නම් පමණක් බෙදාගන්න.</string>
     <string name="diag_events">සිදුවීම්</string>
     <string name="diag_empty">තවම සිදුවීම් නැත.</string>
     <string name="diag_status">තත්ත්වය</string>

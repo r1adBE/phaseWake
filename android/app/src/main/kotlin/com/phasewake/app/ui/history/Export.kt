@@ -90,7 +90,8 @@ object Export {
 }
 
 /**
- * Vor dem Teilen ein Satz dazu, was die Datei enthält: Bewegungs- und Pulsreihen je Nacht. Ohne Namen
+ * Vor dem Teilen ein Satz dazu, was die Datei enthält: Bewegungs- und Pulsreihen je Nacht, mit Schlafphasen auch
+ * Weckzeiten und Phasen der Validierungs-Datei (Entscheid r1AD 16.11.2026). Ohne Namen
  * und Datumsangaben, aber nicht anonym im engeren Sinn – das soll man vor dem Weitergeben wissen.
  */
 @Composable

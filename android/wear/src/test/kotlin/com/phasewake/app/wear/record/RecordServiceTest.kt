@@ -1,6 +1,8 @@
 package com.phasewake.app.wear.record
 
+import android.Manifest
 import android.app.AlarmManager
+import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.os.BatteryManager
@@ -55,6 +57,8 @@ class RecordServiceTest {
     fun setUp() {
         ShadowAlarmManager.setCanScheduleExactAlarms(true)
         battery(80)
+        // Voraussetzung für «health» (RecordControl startet sonst nicht, OFFEN 4a).
+        shadowOf(context as Application).grantPermissions(Manifest.permission.ACTIVITY_RECOGNITION)
     }
 
     @After

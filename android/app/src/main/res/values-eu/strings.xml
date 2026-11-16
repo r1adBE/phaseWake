@@ -246,7 +246,7 @@
     <string name="check_watch_learn_battery">Bateria %%%1$d baino gutxiago bada, erlojuak ez du gaur gauean grabatuko ikasketa-faserako – kargatu aurretik. Alarmak esnatuko zaitu hala ere.</string>
     <string name="check_watch_pulse">Pultsua atzeko planoan (erlojua)</string>
     <string name="check_watch_pulse_problem">Erlojuak ezin du gauez zure pultsua neurtu – erlojuan, ezarri Phase Wake-ren sentsore-baimena “Baimendu beti” aukeran.</string>
-    <string name="export_contents_hint">Fitxategiak gau bakoitzeko 30 s-ko mugimendua eta bihotz-maiztasuna, nola sentitu zinen eta zure oharrak ditu – izenik, datarik eta gailu-IDrik gabe.</string>
+    <string name="export_contents_hint">Fitxategiak gau bakoitzeko 30 s-ko mugimendua eta bihotz-maiztasuna, nola sentitu zinen, zure oharrak eta, badaude, esnatzeko orduak eta lo-faseak ditu – izenik, datarik eta gailu-IDrik gabe.</string>
     <string name="editor_more">Gehiago</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Gehienez %1$d alarma – ezabatu bat berri bat gehitzeko.</string>
@@ -481,7 +481,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnostikoa ezarpenetan agertzen da orain.</string>
     <string name="diag_show">Erakutsi diagnostikoa</string>
-    <string name="diag_hint">Azken 7 egunetako erregistro teknikoa, zure gailuetan soilik. Orduak eta neurketak ditu (adib. mugimendua, lokartzeko ordua); partekatu nahi baduzu bakarrik.</string>
+    <string name="diag_hint">Azken 7 egunetako erregistro teknikoa, zure gailuetan soilik. Orduak eta neurketak ditu (adib. mugimendua, lokartzeko ordua, esnatzeko orduak, lo-faseak); partekatu nahi baduzu bakarrik.</string>
     <string name="diag_events">Gertaerak</string>
     <string name="diag_empty">Oraindik ez dago gertaerarik.</string>
     <string name="diag_status">Egoera</string>

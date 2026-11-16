@@ -30,6 +30,7 @@ import com.phasewake.app.wear.system.StartLock
 import com.phasewake.app.wear.ui.MainActivity
 import com.phasewake.app.wear.ui.shortTime
 import com.phasewake.app.wear.wake.Notifications
+import com.phasewake.app.wear.wake.SensorAccess
 import com.phasewake.app.wear.wearApp
 import java.time.Duration
 import java.time.Instant
@@ -219,17 +220,50 @@ object RecordControl {
 
     /**
      * Startet den Dienst im Vordergrund ([extras] ergänzt den Auftrag); `false`, wenn das System es verweigert (dann steht
-     * es im Protokoll).
+     * es im Protokoll). Fehlen die Rechte für den Typ «health» ([SensorAccess.allowsHealth]; nur der Knopf auf der Uhr
+     * startet bei sichtbarer App, alles andere aus dem Hintergrund), startet der Dienst gar nicht (OFFEN 4a, r1AD
+     * 16.11.2026): Grund im Protokoll wie im Dienst, eine liegengebliebene Aufzeichnung wird beim Wiederaufnehmen
+     * abgeschlossen.
      */
-    internal fun startService(context: Context, action: String, extras: (Intent) -> Unit = {}): Boolean = try {
-        ContextCompat.startForegroundService(context, Intent(context, RecordService::class.java).setAction(action).also(extras))
-        true
-    } catch (e: IllegalStateException) {
-        // ForegroundServiceStartNotAllowedException (ab Android 12) ist eine IllegalStateException.
-        Log.e(RecordService.TAG, "Start verweigert: $action", e)
-        runCatching { context.wearApp.diag.log(DiagKind.ERROR, "record start refused ${action.substringAfterLast('.')} ${e.javaClass.simpleName}") }
-        StartLock.release()
-        false
+    internal fun startService(context: Context, action: String, extras: (Intent) -> Unit = {}): Boolean {
+        val access = SensorAccess.of(context)
+        if (!access.allowsHealth(fromBackground = action != RecordService.ACTION_START)) {
+            noSensors(context, action, access)
+            StartLock.release()
+            return false
+        }
+        return try {
+            ContextCompat.startForegroundService(context, Intent(context, RecordService::class.java).setAction(action).also(extras))
+            true
+        } catch (e: IllegalStateException) {
+            // ForegroundServiceStartNotAllowedException (ab Android 12) ist eine IllegalStateException.
+            Log.e(RecordService.TAG, "Start verweigert: $action", e)
+            runCatching { context.wearApp.diag.log(DiagKind.ERROR, "record start refused ${action.substringAfterLast('.')} ${e.javaClass.simpleName}") }
+            StartLock.release()
+            false
+        }
+    }
+
+    /** Ohne Rechte für «health» nicht gestartet ([startService]): Zeile wie im Dienst, Stand ans Handy. */
+    private fun noSensors(context: Context, action: String, access: SensorAccess) {
+        val app = context.wearApp
+        if (action == RecordService.ACTION_RESUME) {
+            cancelCheck(app)
+            app.diag.log(DiagKind.MEASURE_END, "record resume refused: no sensors ${access.line()}")
+            app.appScope.launch {
+                finishOrphan(app, RecordEnd.SERVICE)
+                app.recordSync.publishStatus(null)
+            }
+            return
+        }
+        val by = when (action) {
+            RecordService.ACTION_START -> "watch"
+            RecordService.ACTION_START_PHONE -> "phone"
+            RecordService.ACTION_START_LEARN -> "learn"
+            else -> action.substringAfterLast('.').lowercase()
+        }
+        app.diag.log(DiagKind.MEASURE_START, "record not started ($by): no sensors: ${access.line()}")
+        app.appScope.launch { app.recordSync.publishStatus(null) }
     }
 
     /**

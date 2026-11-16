@@ -249,7 +249,7 @@
     <string name="check_watch_learn_battery">Con menos del %1$d %% de batería, el reloj no grabará esta noche para la fase de aprendizaje: cárgalo antes. La alarma te despertará igualmente.</string>
     <string name="check_watch_pulse">Pulso en segundo plano (reloj)</string>
     <string name="check_watch_pulse_problem">El reloj no puede medir tu pulso por la noche – en el reloj, pon el permiso de sensores de Phase Wake en «Permitir todo el tiempo».</string>
-    <string name="export_contents_hint">El archivo contiene, de cada noche, movimiento y frecuencia cardíaca cada 30 s, cómo te sentiste y tus notas – sin nombres, fechas ni identificadores de dispositivo.</string>
+    <string name="export_contents_hint">El archivo contiene, de cada noche, movimiento y frecuencia cardíaca cada 30 s, cómo te sentiste y tus notas, además de horas de despertar y fases del sueño si las hay – sin nombres, fechas ni identificadores de dispositivo.</string>
     <string name="editor_more">Más</string>
     <string name="home_max_alarms">Máximo %1$d alarmas: elimina una para añadir otra.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -492,7 +492,7 @@
     </plurals>
     <string name="diag_unlocked">El diagnóstico ya aparece en los ajustes.</string>
     <string name="diag_show">Mostrar diagnóstico</string>
-    <string name="diag_hint">Registro técnico de los últimos 7 días, solo en tus dispositivos. Contiene horas y valores medidos (p. ej., movimiento, hora en que te dormiste): compártelo solo si quieres.</string>
+    <string name="diag_hint">Registro técnico de los últimos 7 días, solo en tus dispositivos. Contiene horas y valores medidos (p. ej., movimiento, hora en que te dormiste, horas de despertar, fases del sueño): compártelo solo si quieres.</string>
     <string name="diag_events">Eventos</string>
     <string name="diag_empty">Aún no hay eventos.</string>
     <string name="diag_status">Estado</string>

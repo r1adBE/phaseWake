@@ -1,5 +1,7 @@
 package com.phasewake.app.wear.system
 
+import android.Manifest
+import android.app.Application
 import android.app.ForegroundServiceStartNotAllowedException
 import android.content.ComponentName
 import android.content.Context
@@ -57,6 +59,8 @@ class StartLockTest {
     fun setUp() {
         StartLock.resetForTest()
         ShadowAlarmManager.setCanScheduleExactAlarms(true)
+        // Voraussetzung für «health» (RecordControl startet sonst nicht, OFFEN 4a).
+        shadowOf(context as Application).grantPermissions(Manifest.permission.ACTIVITY_RECOGNITION)
     }
 
     @After

@@ -246,7 +246,7 @@
     <string name="check_watch_learn_battery">%1$d %% पेक्षा कमी बॅटरीवर घड्याळ आज रात्री शिकण्याच्या टप्प्यासाठी रेकॉर्ड करणार नाही – आधीच चार्ज कर. अलार्म तरीही तुला उठवेल.</string>
     <string name="check_watch_pulse">बॅकग्राउंडमधील पल्स (घड्याळ)</string>
     <string name="check_watch_pulse_problem">घड्याळाला रात्री तुझी पल्स मोजण्याची परवानगी नाही – घड्याळावर Phase Wake ची सेन्सर परवानगी “नेहमी अनुमती द्या” वर सेट कर.</string>
-    <string name="export_contents_hint">फाइलमध्ये प्रत्येक रात्रीची दर 30 सेकंदांची हालचाल आणि हृदयाचे ठोके, तुम्हाला कसे वाटले आणि तुमच्या नोंदी आहेत – नाव, तारीख किंवा डिव्हाइस ID शिवाय.</string>
+    <string name="export_contents_hint">फाइलमध्ये प्रत्येक रात्रीची दर 30 सेकंदांची हालचाल आणि हृदयाचे ठोके, तुम्हाला कसे वाटले, तुमच्या नोंदी आणि असल्यास उठवण्याची वेळ व झोपेचे टप्पे आहेत – नाव, तारीख किंवा डिव्हाइस ID शिवाय.</string>
     <string name="editor_more">अधिक</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">जास्तीत जास्त %1$d अलार्म – नवीन जोडण्यासाठी एक हटवा.</string>
@@ -481,7 +481,7 @@
     </plurals>
     <string name="diag_unlocked">निदान आता सेटिंग्जमध्ये दिसते.</string>
     <string name="diag_show">निदान दाखवा</string>
-    <string name="diag_hint">मागील 7 दिवसांचा तांत्रिक लॉग, फक्त तुमच्या डिव्हाइसवर. यात वेळा आणि मोजलेली मूल्ये आहेत (उदा. हालचाल, झोप लागण्याची वेळ) – तुम्हाला हवे असेल तरच शेअर करा.</string>
+    <string name="diag_hint">मागील 7 दिवसांचा तांत्रिक लॉग, फक्त तुमच्या डिव्हाइसवर. यात वेळा आणि मोजलेली मूल्ये आहेत (उदा. हालचाल, झोप लागण्याची वेळ, उठवण्याची वेळ, झोपेचे टप्पे) – तुम्हाला हवे असेल तरच शेअर करा.</string>
     <string name="diag_events">घटना</string>
     <string name="diag_empty">अजून घटना नाहीत.</string>
     <string name="diag_status">स्थिती</string>

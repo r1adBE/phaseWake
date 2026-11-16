@@ -244,7 +244,7 @@
     <string name="check_watch_learn_battery">با باتری کمتر از %1$d %% ساعت امشب برای مرحلهٔ یادگیری ضبط نمی‌کند – از قبل شارژش کن. زنگ هشدار باز هم بیدارت می‌کند.</string>
     <string name="check_watch_pulse">نبض در پس‌زمینه (ساعت)</string>
     <string name="check_watch_pulse_problem">ساعت اجازه ندارد شب‌ها نبضت را اندازه بگیرد – در ساعت، اجازهٔ حسگر Phase Wake را روی «همیشه مجاز است» بگذار.</string>
-    <string name="export_contents_hint">فایل برای هر شب حرکت و ضربان قلب هر ۳۰ ثانیه، حالت تو و یادداشت‌هایت را دارد – بدون نام، تاریخ یا شناسهٔ دستگاه.</string>
+    <string name="export_contents_hint">فایل برای هر شب حرکت و ضربان قلب هر ۳۰ ثانیه، حالت تو، یادداشت‌هایت و در صورت وجود زمان‌های بیدارباش و مراحل خواب را دارد – بدون نام، تاریخ یا شناسهٔ دستگاه.</string>
     <string name="editor_more">بیشتر</string>
     <string name="home_max_alarms">حداکثر %1$d زنگ – برای افزودن زنگ جدید، یکی را حذف کن.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -478,7 +478,7 @@
     </plurals>
     <string name="diag_unlocked">عیب‌یابی اکنون در تنظیمات است.</string>
     <string name="diag_show">نمایش عیب‌یابی</string>
-    <string name="diag_hint">گزارش فنی ۷ روز گذشته، فقط روی دستگاه‌های تو. شامل زمان‌ها و مقادیر اندازه‌گیری‌شده است (مثلاً حرکت، زمان به خواب رفتن) – فقط اگر خواستی آن را به اشتراک بگذار.</string>
+    <string name="diag_hint">گزارش فنی ۷ روز گذشته، فقط روی دستگاه‌های تو. شامل زمان‌ها و مقادیر اندازه‌گیری‌شده است (مثلاً حرکت، زمان به خواب رفتن، زمان‌های بیدارباش، مراحل خواب) – فقط اگر خواستی آن را به اشتراک بگذار.</string>
     <string name="diag_events">رویدادها</string>
     <string name="diag_empty">هنوز رویدادی نیست.</string>
     <string name="diag_status">وضعیت</string>

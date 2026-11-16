@@ -246,7 +246,7 @@
     <string name="check_watch_learn_battery">ከ%1$d %% ባትሪ በታች ሰዓትህ ዛሬ ማታ ለመማሪያ ጊዜ አይቀርጽም – አስቀድመህ ኃይል ሙላው። ቢሆንም ማንቂያው ይቀሰቅስሃል።</string>
     <string name="check_watch_pulse">የዳራ ምት (ሰዓት)</string>
     <string name="check_watch_pulse_problem">ሰዓቱ ማታ ምትህን መለካት አይፈቀድለትም – በሰዓቱ ላይ የPhase Wake የዳሳሽ ፈቃድን ወደ “ሁልጊዜ ፍቀድ” አቀናብር።</string>
-    <string name="export_contents_hint">ፋይሉ ለእያንዳንዱ ሌሊት በየ30 ሰከንዱ እንቅስቃሴና የልብ ምት፣ ስሜትህንና ማስታወሻዎችህን ይዟል – ያለ ስም፣ ቀን ወይም የመሣሪያ መታወቂያ።</string>
+    <string name="export_contents_hint">ፋይሉ ለእያንዳንዱ ሌሊት በየ30 ሰከንዱ እንቅስቃሴና የልብ ምት፣ ስሜትህንና ማስታወሻዎችህን፣ ካሉም የመንቂያ ሰዓቶችንና የእንቅልፍ ደረጃዎችን ይዟል – ያለ ስም፣ ቀን ወይም የመሣሪያ መታወቂያ።</string>
     <string name="editor_more">ተጨማሪ</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">እስከ %1$d ማንቂያዎች – አዲስ ለማከል አንዱን ይሰርዙ።</string>
@@ -481,7 +481,7 @@
     </plurals>
     <string name="diag_unlocked">ምርመራ አሁን በቅንብሮች ውስጥ ይታያል።</string>
     <string name="diag_show">ምርመራ አሳይ</string>
-    <string name="diag_hint">ያለፉት 7 ቀናት ቴክኒካዊ መዝገብ፣ በመሣሪያዎችህ ላይ ብቻ። ሰዓቶችንና መለኪያዎችን ይዟል (ለምሳሌ እንቅስቃሴ፣ የእንቅልፍ ጊዜ) – ከፈለግህ ብቻ አጋራው።</string>
+    <string name="diag_hint">ያለፉት 7 ቀናት ቴክኒካዊ መዝገብ፣ በመሣሪያዎችህ ላይ ብቻ። ሰዓቶችንና መለኪያዎችን ይዟል (ለምሳሌ እንቅስቃሴ፣ የእንቅልፍ ጊዜ፣ የመንቂያ ሰዓቶች፣ የእንቅልፍ ደረጃዎች) – ከፈለግህ ብቻ አጋራው።</string>
     <string name="diag_events">ክስተቶች</string>
     <string name="diag_empty">እስካሁን ምንም ክስተት የለም።</string>
     <string name="diag_status">ሁኔታ</string>

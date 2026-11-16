@@ -239,7 +239,7 @@
     <string name="check_watch_learn_battery">Dengan bateri di bawah %1$d %%, jam tangan tidak akan merakam untuk fasa pembelajaran malam ini – cas dahulu. Penggera tetap akan mengejutkan awak.</string>
     <string name="check_watch_pulse">Nadi di latar belakang (jam)</string>
     <string name="check_watch_pulse_problem">Jam tangan tidak dibenarkan mengukur nadi awak pada waktu malam – pada jam tangan, tetapkan kebenaran penderia Phase Wake kepada “Benarkan sepanjang masa”.</string>
-    <string name="export_contents_hint">Fail ini mengandungi pergerakan dan kadar denyutan jantung setiap 30 s, perasaan awak dan nota awak bagi setiap malam – tanpa nama, tarikh atau ID peranti.</string>
+    <string name="export_contents_hint">Fail ini mengandungi pergerakan dan kadar denyutan jantung setiap 30 s, perasaan awak dan nota awak bagi setiap malam, serta masa bangun dan fasa tidur jika ada – tanpa nama, tarikh atau ID peranti.</string>
     <string name="editor_more">Lagi</string>
     <string name="home_max_alarms">Maksimum %1$d penggera – padam satu untuk menambah yang baharu.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -464,7 +464,7 @@
     </plurals>
     <string name="diag_unlocked">Diagnostik kini ada dalam tetapan.</string>
     <string name="diag_show">Tunjukkan diagnostik</string>
-    <string name="diag_hint">Log teknikal 7 hari terakhir, hanya pada peranti anda. Ia mengandungi masa dan nilai ukuran (cth. pergerakan, masa tertidur) – kongsi hanya jika anda mahu.</string>
+    <string name="diag_hint">Log teknikal 7 hari terakhir, hanya pada peranti anda. Ia mengandungi masa dan nilai ukuran (cth. pergerakan, masa tertidur, masa bangun, fasa tidur) – kongsi hanya jika anda mahu.</string>
     <string name="diag_events">Peristiwa</string>
     <string name="diag_empty">Belum ada peristiwa.</string>
     <string name="diag_status">Status</string>

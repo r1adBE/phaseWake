@@ -71,7 +71,7 @@ class RecordService : LifecycleService() {
     private var starting = false
 
     /** Stopp, der während [starting] kam; gilt, sobald die Messung läuft. */
-    private var pendingStop: RecordEnd? = null
+    internal var pendingStop: RecordEnd? = null
 
     /** Grund, warum «health» verweigert wurde ([SensorAccess.refusal]); `null`, wenn es gelang ([goForeground]). */
     internal var refusal: String? = null
@@ -106,8 +106,12 @@ class RecordService : LifecycleService() {
             }
         }
         if (!starting) wakeLocks.startDone() // Lädt ein Start noch, erst in [measure] (eigener Wakelock steht).
-        return if (active != null || starting) START_STICKY else START_NOT_STICKY
+        // «health» verweigert ([refusal], nur kurz als «shortService» im Vordergrund): nicht neu starten lassen.
+        return if (refusal == null && (active != null || starting)) START_STICKY else START_NOT_STICKY
     }
+
+    /** Rückfall «shortService» ([goForeground]) läuft ab: spätestens jetzt beenden, sonst beendet Android die App. */
+    override fun onTimeout(startId: Int) = if (active != null) finish(RecordEnd.SERVICE) else stopSelf()
 
     override fun onDestroy() {
         // Vom System beendet, solange noch aufgezeichnet wird: Gespeichertes bleibt, Ende «service ended».
@@ -128,7 +132,7 @@ class RecordService : LifecycleService() {
     private fun begin(by: String, learnUntil: Instant? = null, phoneDiag: Boolean = false) {
         val battery = RecordControl.battery(this)
         if (active != null || starting) {
-            goForeground(active?.start ?: clock())
+            if (!goForeground(active?.start ?: clock())) healthLost()
             return
         }
         val low = battery != null && battery < NightRecording.MIN_BATTERY
@@ -168,7 +172,7 @@ class RecordService : LifecycleService() {
     /** Nach einem Prozessende (Prüf-Alarm): gespeicherte Aufzeichnung weiterführen, Lücke mit leeren Epochen füllen. */
     private fun resume() {
         if (active != null || starting) {
-            goForeground(active?.start ?: clock())
+            if (!goForeground(active?.start ?: clock())) healthLost()
             return
         }
         starting = true
@@ -213,7 +217,7 @@ class RecordService : LifecycleService() {
     private fun measure(recording: Active, startLine: String) {
         active = recording
         sinceState.value = recording.start
-        goForeground(recording.start)
+        if (!goForeground(recording.start)) return healthLost().also { wakeLocks.startDone() }
         val sampled = recording.sampled
         val startNanos = SystemClock.elapsedRealtimeNanos()
         val session = SensorSession(this, startNanos, SystemClock::elapsedRealtimeNanos, batch = !sampled, sampled = sampled) { epochs ->
@@ -294,7 +298,7 @@ class RecordService : LifecycleService() {
     }
 
     /** Beendet die Aufzeichnung mit [reason]: Rest anhängen, abschliessen, ans Handy, Dienst beenden. */
-    private fun finish(reason: RecordEnd, battery: Int? = RecordControl.battery(this)) {
+    internal fun finish(reason: RecordEnd, battery: Int? = RecordControl.battery(this)) {
         val a = active ?: run {
             // Kein laufender Stand im Speicher (z. B. Stopp kurz nach einem Prozessende): die Datei abschliessen.
             if (starting) {

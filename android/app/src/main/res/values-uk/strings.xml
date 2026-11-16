@@ -254,7 +254,7 @@
     <string name="check_watch_learn_battery">Із зарядом нижче %1$d %% годинник цієї ночі не записуватиме для етапу навчання, – заряди його заздалегідь. Будильник усе одно тебе розбудить.</string>
     <string name="check_watch_pulse">Пульс у фоні (годинник)</string>
     <string name="check_watch_pulse_problem">Годиннику не дозволено вимірювати твій пульс уночі – на годиннику встанови для Phase Wake дозвіл датчиків «Дозволяти завжди».</string>
-    <string name="export_contents_hint">Файл містить для кожної ночі рух і пульс кожні 30 с, твоє самопочуття й нотатки – без імен, дат та ID пристроїв.</string>
+    <string name="export_contents_hint">Файл містить для кожної ночі рух і пульс кожні 30 с, твоє самопочуття й нотатки, а за наявності також час пробудження й фази сну – без імен, дат та ID пристроїв.</string>
     <string name="editor_more">Більше</string>
     <string name="home_max_alarms">Не більше %1$d будильників – видали один, щоб додати новий.</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -506,7 +506,7 @@
     </plurals>
     <string name="diag_unlocked">Діагностика тепер у налаштуваннях.</string>
     <string name="diag_show">Показувати діагностику</string>
-    <string name="diag_hint">Технічний журнал за останні 7 днів, лише на твоїх пристроях. Він містить час і виміряні значення (наприклад, рух, час засинання) – ділися ним, лише якщо хочеш.</string>
+    <string name="diag_hint">Технічний журнал за останні 7 днів, лише на твоїх пристроях. Він містить час і виміряні значення (наприклад, рух, час засинання, час пробудження, фази сну) – ділися ним, лише якщо хочеш.</string>
     <string name="diag_events">Події</string>
     <string name="diag_empty">Подій ще немає.</string>
     <string name="diag_status">Стан</string>

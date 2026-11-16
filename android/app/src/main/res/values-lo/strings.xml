@@ -240,7 +240,7 @@
     <string name="check_watch_learn_battery">ເມື່ອແບັດເຕີຣີຕ່ຳກວ່າ %1$d %% ໂມງຈະບໍ່ບັນທຶກສຳລັບໄລຍະຮຽນຮູ້ໃນຄືນນີ້ – ສາກໄວ້ກ່ອນ. ໂມງປຸກຍັງຈະປຸກເຈົ້າຢູ່.</string>
     <string name="check_watch_pulse">ຊີບພະຈອນໃນພື້ນຫຼັງ (ໂມງ)</string>
     <string name="check_watch_pulse_problem">ໂມງບໍ່ໄດ້ຮັບອະນຸຍາດໃຫ້ວັດແທກຊີບພະຈອນຂອງເຈົ້າໃນຕອນກາງຄືນ – ໃນໂມງ ໃຫ້ຕັ້ງການອະນຸຍາດເຊັນເຊີຂອງ Phase Wake ເປັນ “ອະນຸຍາດຕະຫຼອດເວລາ”.</string>
-    <string name="export_contents_hint">ໄຟລ໌ມີການເຄື່ອນໄຫວ ແລະ ອັດຕາການເຕັ້ນຂອງຫົວໃຈທຸກ 30 ວິນາທີ, ຄວາມຮູ້ສຶກຂອງເຈົ້າ ແລະ ບັນທຶກຂອງເຈົ້າສຳລັບແຕ່ລະຄືນ – ບໍ່ມີຊື່, ວັນທີ ຫຼື ID ອຸປະກອນ.</string>
+    <string name="export_contents_hint">ໄຟລ໌ມີການເຄື່ອນໄຫວ ແລະ ອັດຕາການເຕັ້ນຂອງຫົວໃຈທຸກ 30 ວິນາທີ, ຄວາມຮູ້ສຶກຂອງເຈົ້າ ແລະ ບັນທຶກຂອງເຈົ້າສຳລັບແຕ່ລະຄືນ ພ້ອມທັງເວລາປຸກ ແລະ ໄລຍະການນອນ ຖ້າມີ – ບໍ່ມີຊື່, ວັນທີ ຫຼື ID ອຸປະກອນ.</string>
     <string name="editor_more">ເພີ່ມເຕີມ</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">ສູງສຸດ %1$d ໂມງປຸກ – ລຶບອັນໜຶ່ງເພື່ອເພີ່ມອັນໃໝ່</string>
@@ -466,7 +466,7 @@
     </plurals>
     <string name="diag_unlocked">ຕອນນີ້ການວິນິດໄສສະແດງໃນການຕັ້ງຄ່າແລ້ວ</string>
     <string name="diag_show">ສະແດງການວິນິດໄສ</string>
-    <string name="diag_hint">ບັນທຶກທາງເທັກນິກຂອງ 7 ມື້ຫຼ້າສຸດ, ຢູ່ໃນອຸປະກອນຂອງເຈົ້າເທົ່ານັ້ນ. ມີເວລາ ແລະ ຄ່າທີ່ວັດໄດ້ (ເຊັ່ນ ການເຄື່ອນໄຫວ, ເວລານອນຫຼັບ) – ແບ່ງປັນສະເພາະເມື່ອເຈົ້າຕ້ອງການ.</string>
+    <string name="diag_hint">ບັນທຶກທາງເທັກນິກຂອງ 7 ມື້ຫຼ້າສຸດ, ຢູ່ໃນອຸປະກອນຂອງເຈົ້າເທົ່ານັ້ນ. ມີເວລາ ແລະ ຄ່າທີ່ວັດໄດ້ (ເຊັ່ນ ການເຄື່ອນໄຫວ, ເວລານອນຫຼັບ, ເວລາປຸກ, ໄລຍະການນອນ) – ແບ່ງປັນສະເພາະເມື່ອເຈົ້າຕ້ອງການ.</string>
     <string name="diag_events">ເຫດການ</string>
     <string name="diag_empty">ຍັງບໍ່ມີເຫດການ</string>
     <string name="diag_status">ສະຖານະ</string>

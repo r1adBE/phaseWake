@@ -261,7 +261,7 @@
     <string name="check_watch_learn_battery">Le níos lú ná %1$d %% ceallra, ní thaifeadfaidh d’uaireadóir anocht don chéim foghlama – luchtaigh roimh ré é. Dúiseoidh an t-aláram thú mar sin féin.</string>
     <string name="check_watch_pulse">Cuisle sa chúlra (uaireadóir)</string>
     <string name="check_watch_pulse_problem">Níl cead ag an uaireadóir do chuisle a thomhas san oíche – ar an uaireadóir, socraigh cead braiteora Phase Wake go “Ceadaigh i gcónaí”.</string>
-    <string name="export_contents_hint">Tá gluaiseacht agus ráta croí in aghaidh 30 s, conas a mhothaigh tú agus do nótaí do gach oíche sa chomhad – gan ainmneacha, dátaí ná aitheantais gléis.</string>
+    <string name="export_contents_hint">Tá gluaiseacht agus ráta croí in aghaidh 30 s, conas a mhothaigh tú agus do nótaí do gach oíche sa chomhad, chomh maith le hamanna dúisithe agus céimeanna codlata má tá siad ann – gan ainmneacha, dátaí ná aitheantais gléis.</string>
     <string name="editor_more">Tuilleadh</string>
     <!-- Die Zahl ist fest (8); eine Pluralform ist nicht nötig. -->
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Suas le %1$d aláram – scrios ceann chun ceann nua a chur leis.</string>
@@ -523,7 +523,7 @@
     </plurals>
     <string name="diag_unlocked">Taispeántar diagnóisic sna socruithe anois.</string>
     <string name="diag_show">Taispeáin diagnóisic</string>
-    <string name="diag_hint">Loga teicniúil na 7 lá deiridh, ar do ghléasanna amháin. Tá amanna agus luachanna tomhaiste ann (m.sh. gluaiseacht, am titim i do chodladh) – ná roinn é ach más mian leat.</string>
+    <string name="diag_hint">Loga teicniúil na 7 lá deiridh, ar do ghléasanna amháin. Tá amanna agus luachanna tomhaiste ann (m.sh. gluaiseacht, am titim i do chodladh, amanna dúisithe, céimeanna codlata) – ná roinn é ach más mian leat.</string>
     <string name="diag_events">Imeachtaí</string>
     <string name="diag_empty">Níl aon imeachtaí fós.</string>
     <string name="diag_status">Stádas</string>

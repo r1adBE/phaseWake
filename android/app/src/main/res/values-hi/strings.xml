@@ -244,7 +244,7 @@
     <string name="check_watch_learn_battery">%1$d %% से कम बैटरी पर घड़ी आज रात सीखने के चरण के लिए रिकॉर्ड नहीं करेगी – पहले चार्ज कर लो। अलार्म फिर भी तुम्हें जगाएगा।</string>
     <string name="check_watch_pulse">बैकग्राउंड में पल्स (घड़ी)</string>
     <string name="check_watch_pulse_problem">घड़ी रात में तुम्हारी पल्स नहीं माप सकती – घड़ी पर Phase Wake की सेंसर अनुमति “हमेशा अनुमति दें” पर सेट करो।</string>
-    <string name="export_contents_hint">फ़ाइल में हर रात के लिए हर 30 सेकंड की गतिविधि और हृदय गति, तुम्हें कैसा लगा और तुम्हारे नोट्स हैं – नाम, तारीख या डिवाइस ID के बिना।</string>
+    <string name="export_contents_hint">फ़ाइल में हर रात के लिए हर 30 सेकंड की गतिविधि और हृदय गति, तुम्हें कैसा लगा, तुम्हारे नोट्स और उपलब्ध हों तो जगाने का समय और नींद के चरण हैं – नाम, तारीख या डिवाइस ID के बिना।</string>
     <string name="editor_more">और</string>
     <string name="home_max_alarms">अधिकतम %1$d अलार्म – नया जोड़ने के लिए एक हटाएँ।</string>
     <!-- Überschreibt die Material-Texte des Uhrzeit-Wählers (12-h-Format): kurz, damit nichts umbricht. -->
@@ -478,7 +478,7 @@
     </plurals>
     <string name="diag_unlocked">जांच-जानकारी अब सेटिंग में है।</string>
     <string name="diag_show">जांच-जानकारी दिखाएं</string>
-    <string name="diag_hint">पिछले 7 दिनों का तकनीकी लॉग, सिर्फ़ तुम्हारे डिवाइस पर। इसमें समय और मापे गए मान हैं (जैसे हलचल, नींद आने का समय) – चाहो तभी शेयर करो।</string>
+    <string name="diag_hint">पिछले 7 दिनों का तकनीकी लॉग, सिर्फ़ तुम्हारे डिवाइस पर। इसमें समय और मापे गए मान हैं (जैसे हलचल, नींद आने का समय, जगाने का समय, नींद के चरण) – चाहो तभी शेयर करो।</string>
     <string name="diag_events">घटनाएं</string>
     <string name="diag_empty">अभी कोई घटना नहीं।</string>
     <string name="diag_status">स्थिति</string>
