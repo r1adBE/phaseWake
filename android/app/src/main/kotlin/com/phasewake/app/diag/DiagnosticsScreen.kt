@@ -40,6 +40,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.phasewake.app.R
 import com.phasewake.app.core.DiagEntry
 import com.phasewake.app.core.DiagLog
+import com.phasewake.app.core.ValidationReport
 import com.phasewake.app.phoneApp
 import java.time.ZoneId
 import kotlinx.coroutines.Dispatchers
@@ -60,20 +61,27 @@ fun DiagnosticsScreen(onBack: () -> Unit, onHide: () -> Unit) {
     val changes by app.diag.changes.collectAsStateWithLifecycle()
     var status by remember { mutableStateOf(emptyList<StatusLine>()) }
     var phoneEntries by remember { mutableStateOf(emptyList<DiagEntry>()) }
+    var validation by remember { mutableStateOf(emptyList<String>()) }
     var noAnswer by remember { mutableStateOf(false) }
     LaunchedEffect(report, changes) {
         status = PhoneStatus.lines(context, app, report)
         phoneEntries = withContext(Dispatchers.IO) { app.diag.entries() }
+    }
+    // Validierungs-Modus (Entscheid r1AD 16.11.2026): einmal beim Öffnen, nur gerechnet, ändert nichts am Wecken. Nicht
+    // an [changes] gebunden: Das Lesen von Health Connect schreibt selbst eine Zeile ins Protokoll.
+    LaunchedEffect(Unit) {
+        validation = withContext(Dispatchers.IO) { ValidationReport.lines(ValidationData.entries(app)) }
     }
     val entries = (phoneEntries + report?.entries.orEmpty()).sortedByDescending { it.at }
     DiagnosticsContent(
         status = status,
         entries = entries,
         noAnswer = noAnswer,
+        validation = validation,
         actions = DiagnosticsActions(
             onBack = onBack,
             onHide = onHide,
-            onShare = { share(context, status, entries) },
+            onShare = { share(context, status, validation, entries) },
             onFetchWatch = { scope.launch { noAnswer = WatchReport.fetch(app) == null } },
             onClear = { scope.launch(Dispatchers.IO) { app.diag.clear() } },
         ),
@@ -91,10 +99,17 @@ internal class DiagnosticsActions(
 
 /**
  * Diagnose-Seite ohne eigenen Zustand (auch für Bildschirmfotos): [status] als «Bezeichnung: Wert», [entries]
- * neueste zuerst; [noAnswer]: Die Uhr hat auf «Von der Uhr holen» nicht geantwortet.
+ * neueste zuerst; [noAnswer]: Die Uhr hat auf «Von der Uhr holen» nicht geantwortet. [validation]: Zeilen des
+ * Validierungs-Modus ([ValidationReport.lines]); leer: Abschnitt fehlt.
  */
 @Composable
-internal fun DiagnosticsContent(status: List<StatusLine>, entries: List<DiagEntry>, noAnswer: Boolean, actions: DiagnosticsActions) {
+internal fun DiagnosticsContent(
+    status: List<StatusLine>,
+    entries: List<DiagEntry>,
+    noAnswer: Boolean,
+    actions: DiagnosticsActions,
+    validation: List<String> = emptyList(),
+) {
     SkyBarPage(bar = {
         IconButton(onClick = actions.onBack) { Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.onb_back)) }
         Text(stringResource(R.string.diag_title), style = MaterialTheme.typography.titleLarge)
@@ -123,6 +138,11 @@ internal fun DiagnosticsContent(status: List<StatusLine>, entries: List<DiagEntr
             items(status) { line ->
                 Text("${line.label}: ${line.value}", style = MaterialTheme.typography.bodyMedium)
             }
+            if (validation.isNotEmpty()) {
+                // Technischer Abschnitt wie die Zeilen des Protokolls, darum ohne übersetzten Titel.
+                item { Text(ValidationReport.TITLE, style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(top = 8.dp)) }
+                items(validation) { line -> Text(line, style = MaterialTheme.typography.bodySmall) }
+            }
             item { Text(stringResource(R.string.diag_events), style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(top = 8.dp)) }
             if (entries.isEmpty()) {
                 item { Text(stringResource(R.string.diag_empty), style = MaterialTheme.typography.bodyMedium) }
@@ -135,9 +155,10 @@ internal fun DiagnosticsContent(status: List<StatusLine>, entries: List<DiagEntr
     }
 }
 
-/** Teilt Zustand und Protokoll als Text über das Teilen-Menü. */
-private fun share(context: Context, status: List<StatusLine>, entries: List<DiagEntry>) {
-    val text = status.joinToString("\n") { "${it.label}: ${it.value}" } + "\n\n" + DiagLog.format(entries, ZoneId.systemDefault())
+/** Teilt Zustand, Validierung (falls vorhanden) und Protokoll als Text über das Teilen-Menü. */
+private fun share(context: Context, status: List<StatusLine>, validation: List<String>, entries: List<DiagEntry>) {
+    val section = if (validation.isEmpty()) "" else (listOf(ValidationReport.TITLE) + validation).joinToString("\n") + "\n\n"
+    val text = status.joinToString("\n") { "${it.label}: ${it.value}" } + "\n\n" + section + DiagLog.format(entries, ZoneId.systemDefault())
     val send = Intent(Intent.ACTION_SEND).setType("text/plain").putExtra(Intent.EXTRA_TEXT, text)
         .putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.diag_title))
     context.startActivity(Intent.createChooser(send, null).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))

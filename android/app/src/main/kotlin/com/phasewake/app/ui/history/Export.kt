@@ -11,6 +11,9 @@ import androidx.core.content.FileProvider
 import com.phasewake.app.R
 import com.phasewake.app.core.NightHistory
 import com.phasewake.app.core.NightRecord
+import com.phasewake.app.core.Validation
+import com.phasewake.app.core.ValidationReport
+import com.phasewake.app.diag.ValidationData
 import com.phasewake.app.phoneApp
 import com.phasewake.app.shared.NightRecording
 import java.io.File
@@ -24,6 +27,8 @@ import kotlinx.coroutines.withContext
  * Teilt den Verlauf als CSV-Datei (Format siehe [NightHistory.exportCsv]): ohne Namen, Kennungen und Datumsangaben,
  * aber mit Bewegungs- und Pulsreihen je Nacht, also nicht anonym im engeren Sinn ([ExportDialog] sagt das vorher).
  * Gibt es Aufzeichnungen («Nacht aufzeichnen»), kommt eine zweite Datei im selben Format dazu ([NightRecording.exportCsv]).
+ * Hat mindestens eine Nacht Schlafphasen aus Health Connect, kommt die Datei des Validierungs-Modus dazu
+ * («phasewake-validation.csv», [ValidationReport.exportCsv], Entscheid r1AD 16.11.2026: Uhrzeit ohne Datum je Entscheid).
  * Die Datei liegt nur kurz im Cache: Die empfangende App liest sie oft erst später (z. B. beim Senden einer Mail), darum
  * wird sie nicht sofort gelöscht, sondern nach [KEEP] ([cleanup]: nach dem Teilen, im täglichen Aufräumen und beim
  * nächsten Start der App).
@@ -44,6 +49,7 @@ object Export {
         val zone = java.time.ZoneId.systemDefault()
         app.appScope.launch(Dispatchers.Main) {
             val recordings = app.recordings.load()
+            val validation = withContext(Dispatchers.IO) { ValidationData.entries(app) }.takeIf { list -> list.any { it.ref != Validation.Ref.NONE } }
             val uris = withContext(Dispatchers.IO) {
                 val dir = File(app.cacheDir, DIR).apply { mkdirs() }
                 buildList {
@@ -51,9 +57,10 @@ object Export {
                         add(write(app, File(dir, "phasewake-nights.csv"), NightHistory.exportCsv(nights, notes, zone)))
                     }
                     if (recordings.isNotEmpty()) add(write(app, File(dir, "phasewake-recordings.csv"), NightRecording.exportCsv(recordings)))
+                    validation?.let { add(write(app, File(dir, "phasewake-validation.csv"), ValidationReport.exportCsv(it))) }
                 }
             }
-            // Eine Datei wie bisher; mit Aufzeichnungen beide Dateien im selben Teilen.
+            // Eine Datei wie bisher; mit Aufzeichnungen bzw. Validierung alle Dateien im selben Teilen.
             val base = if (uris.size == 1) {
                 Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_STREAM, uris.first())
             } else {

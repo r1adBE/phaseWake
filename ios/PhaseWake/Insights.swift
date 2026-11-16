@@ -161,7 +161,9 @@ struct TrendsCard: View {
 /// Verlauf als echte .csv-Dateien zum Teilen (nicht als Text), für `ShareLink(items:)`: die Nächte
 /// («phasewake-nights.csv», ``NightHistory/exportCsv(_:notes:calendar:)``) und, falls es Aufzeichnungen der Uhr gibt
 /// («Nacht aufzeichnen», Lernphase), diese als zweite Datei («phasewake-recordings.csv», ``NightRecording/exportCsv(_:)``),
-/// wie Android. Die Dateien mit Bewegungs- und Pulsreihen entstehen erst, wenn wirklich geteilt wird – im Hintergrund,
+/// wie Android. Hat mindestens eine Nacht Schlafphasen aus Apple Health, kommt die Datei des Validierungs-Modus dazu
+/// («phasewake-validation.csv», ``ValidationReport/exportCsv(_:)``, Entscheid r1AD 16.11.2026: Uhrzeit ohne Datum je
+/// Entscheid). Die Dateien mit Bewegungs- und Pulsreihen entstehen erst, wenn wirklich geteilt wird – im Hintergrund,
 /// nicht bei jedem Neuzeichnen der Ansicht –, je in einem eigenen Ordner der temporären Dateien. Ältere Exporte werden
 /// beim nächsten Teilen und beim nächsten Start der App entfernt (`cleanUp`), damit die Daten nicht liegen bleiben.
 struct NightsExport: Transferable, Sendable {
@@ -169,6 +171,7 @@ struct NightsExport: Transferable, Sendable {
     enum Content: Sendable {
         case nights([NightRecord], notes: [String: [String]])
         case recordings([NightRecording])
+        case validation([Validation.Entry])
     }
 
     let content: Content
@@ -177,6 +180,8 @@ struct NightsExport: Transferable, Sendable {
     private static let fileName = "phasewake-nights.csv"
     /// Name der Datei mit den Aufzeichnungen.
     private static let recordingsName = "phasewake-recordings.csv"
+    /// Name der Datei des Validierungs-Modus.
+    private static let validationName = "phasewake-validation.csv"
     /// Exporte, die jünger sind, bleiben beim Teilen stehen (die andere Datei desselben Teilens).
     private static let keepRecent: TimeInterval = 60
 
@@ -186,12 +191,15 @@ struct NightsExport: Transferable, Sendable {
     }
 
     /// Dateien zum Teilen: die Nächte (auch ohne Nacht, wenn es keine Aufzeichnung gibt) und die abgeschlossenen
-    /// Aufzeichnungen, falls es welche gibt (wie `Export.kt`, Android).
-    static func files(nights: [NightRecord], notes: [String: [String]], recordings: [NightRecording]) -> [NightsExport] {
+    /// Aufzeichnungen, falls es welche gibt, und die Entscheide des Validierungs-Modus `validation`, falls eine Nacht
+    /// Referenz hat (wie `Export.kt`, Android).
+    static func files(nights: [NightRecord], notes: [String: [String]], recordings: [NightRecording],
+                      validation: [Validation.Entry] = []) -> [NightsExport] {
         let finished = recordings.filter(\.finished)
         var out: [NightsExport] = []
         if !nights.isEmpty || finished.isEmpty { out.append(NightsExport(content: .nights(nights, notes: notes))) }
         if !finished.isEmpty { out.append(NightsExport(content: .recordings(finished))) }
+        if validation.contains(where: { $0.ref != .noReference }) { out.append(NightsExport(content: .validation(validation))) }
         return out
     }
 
@@ -215,6 +223,9 @@ struct NightsExport: Transferable, Sendable {
         case .recordings(let recordings):
             name = Self.recordingsName
             text = NightRecording.exportCsv(recordings)
+        case .validation(let entries):
+            name = Self.validationName
+            text = ValidationReport.exportCsv(entries)
         }
         let url = folder.appendingPathComponent(name)
         try text.write(to: url, atomically: true, encoding: .utf8)
@@ -240,14 +251,18 @@ struct NightsExport: Transferable, Sendable {
 }
 
 /// Knopf «Verlauf exportieren» (Verlauf und Einstellungen): teilt die Nächte und die Aufzeichnungen der Uhr
-/// (``NightsExport``); ohne beides gesperrt.
+/// (``NightsExport``), dazu die Datei des Validierungs-Modus (``ValidationData``, beim Erscheinen gerechnet); ohne Nächte
+/// und Aufzeichnungen gesperrt.
 struct HistoryExportLink<Content: View>: View {
     @Environment(PhoneModel.self) private var model
     @ViewBuilder let label: () -> Content
+    @State private var validation: [Validation.Entry] = []
 
     var body: some View {
-        let files = NightsExport.files(nights: model.nights, notes: model.notes, recordings: PhoneLearning.shared.recordings)
+        let files = NightsExport.files(nights: model.nights, notes: model.notes, recordings: PhoneLearning.shared.recordings,
+                                       validation: validation)
         ShareLink(items: files, preview: { _ in SharePreview(L("history_export_subject")) }, label: label)
             .disabled(model.nights.isEmpty && !PhoneLearning.shared.recordings.contains(where: \.finished))
+            .task(id: model.nights.count) { validation = await ValidationData.entries(model: model) }
     }
 }

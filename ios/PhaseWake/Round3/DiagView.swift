@@ -47,6 +47,8 @@ struct DiagView: View {
     @State private var watchReport: DiagReport?
     @State private var noAnswer = false
     @State private var failed: [PhoneCheck] = []
+    /// Zeilen des Validierungs-Modus (``ValidationReport/lines(_:)``); leer: Abschnitt fehlt.
+    @State private var validation: [String] = []
 
     var body: some View {
         List {
@@ -71,6 +73,14 @@ struct DiagView: View {
                         if !on { dismiss() }
                     }))
                 }
+                if !validation.isEmpty {
+                    // Technischer Abschnitt wie die Zeilen des Protokolls, darum ohne übersetzten Titel (wie Android).
+                    Section(ValidationReport.title) {
+                        ForEach(validation.indices, id: \.self) { i in
+                            Text(validation[i]).font(.caption.monospaced())
+                        }
+                    }
+                }
                 Section(L("diag_events")) {
                     if allEntries.isEmpty { Text(L("diag_empty")).foregroundStyle(.secondary) }
                     ForEach(allEntries.indices.reversed(), id: \.self) { i in
@@ -85,6 +95,9 @@ struct DiagView: View {
         .task {
             entries = DiagStore.shared.entries()
             failed = await NightCheck.collect()
+            // Validierungs-Modus (Entscheid r1AD 16.11.2026): nur gerechnet, ändert nichts am Wecken.
+            let decisions = await ValidationData.entries(model: model)
+            validation = ValidationReport.lines(decisions)
         }
     }
 
@@ -112,7 +125,8 @@ struct DiagView: View {
     }
 
     private var shareText: String {
-        (status.map { "\($0.label): \($0.value)" } + ["", DiagLog.format(allEntries, timeZone: .current)]).joined(separator: "\n")
+        let section = validation.isEmpty ? [] : [ValidationReport.title] + validation + [""]
+        return (status.map { "\($0.label): \($0.value)" } + [""] + section + [DiagLog.format(allEntries, timeZone: .current)]).joined(separator: "\n")
     }
 
     private func stamp(_ date: Date) -> String { date.formatted(date: .abbreviated, time: .shortened) }

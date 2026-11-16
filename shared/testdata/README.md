@@ -56,6 +56,15 @@ der Aufzeichnung. Beide Kerne prüfen alle Zeilen.
 r1AD 15.11.2026), wie sie gelesen werden, und ob Schreiben genau die Zeile ergibt: alte Stände (6 und 7 Felder, mit Akku),
 neue mit und ohne Akku, nur Beginn, unlesbar, ausserhalb 1970–2100, weiteres Feld einer neueren Version. Beide Kerne prüfen alle Zeilen.
 
+## Validierung
+
+`validation.vectors`: Validierungs-Modus (`Validation`, Entscheid r1AD 16.11.2026, PHASENERKENNUNG 12). Zeilen `ref`:
+Referenzphase an den Grenzen ±60 s (abgedeckt, Beginn, Ende, 59/60/61 s, Gleichstand, «unbekannt» übergangen,
+Überlappung). Fälle `case`: Nächte, Aufzeichnungen, Sitzungen und gelernte Werte mit den erwarteten Zeilen des Exports und
+den Summen – Schattenfenster (leicht, ohne Moment, wach), Nacht ohne Referenz, Stichproben, Zeitzone der Sitzung, 45/44
+von 60 Epochen gemessen, gelernter Ruhepuls und Kalibrierung nur aus Nächten vor der Aufzeichnung. Beide Kerne prüfen alle
+Zeilen.
+
 ## Passwort-Regel
 
 `backup-password.vectors`: je Zeile erwartetes Ergebnis (`OK`, `TOO_SHORT`, `TRIVIAL`), Tabulator, Passwort (UTF-8, teils in NFD). Beide Kerne prüfen alle Zeilen (`BackupPassword`), Kotlin zusätzlich mit Türkisch als Gerätesprache.

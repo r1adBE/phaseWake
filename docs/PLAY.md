@@ -8,7 +8,8 @@ Play Console verlangt meist englischen Text, die deutsche Fassung dient zur Kont
 Ohne Erklärung: `VIBRATE`, `WAKE_LOCK`, `RECEIVE_BOOT_COMPLETED`, `FOREGROUND_SERVICE`, `USE_BIOMETRIC`. Kein
 `INTERNET` und kein `ACCESS_NETWORK_STATE` (in beiden Manifesten entfernt): Die App sendet nichts.
 
-Wie die Bundles für den Upload entstehen: Abschnitt [Store-Build](#store-build-upload-schlüssel-und-upload) am Ende.
+Wie die Bundles für den Upload entstehen: Abschnitt [Store-Build](#store-build-upload-schlüssel-und-upload) am Ende;
+Reihenfolge bis zur Produktion: [Checkliste Store-Start](#checkliste-store-start-zeitplan).
 
 ## Übersicht
 
@@ -199,6 +200,57 @@ nicht dazu. Vor dem Einreichen gegen die aktuellen Manifeste, DATENSCHUTZ.md und
 - **Encrypted in transit:** not asked when collection is “No”; otherwise: system connection.
 - **Deletion:** everything stays on the devices; “Clear history” in the app or uninstalling deletes it. No account, so
   no deletion request is needed.
+
+## Checkliste Store-Start (Zeitplan)
+
+Stand 16.11.2026. Reihenfolge für ein neues privates Entwicklerkonto; T = Start des geschlossenen Tests.
+
+**Vor T (Vorbereitung, ohne neue Funktionen)**
+
+1. **Konto:** privates Entwicklerkonto anlegen, Identität bestätigen.
+2. **Upload-Schlüssel und Secrets** (OFFEN 4): Schritte 1–3 im Abschnitt Store-Build unten; danach Store-Build von `main`.
+3. **App anlegen:** Play App Signing an, Formfaktor Wear OS hinzufügen (Schritt 6 unten); Datenschutzerklärung
+   (docs/DATENSCHUTZ.md) als öffentliche URL eintragen.
+4. **App-Inhalte ausfüllen:**
+   - **Datensicherheit:** Antworten im Abschnitt oben («Nein» bei Erhebung). Einordnung: Datenpakete des Data Layers
+     enthalten nur technische Angaben zur Uhr und gehen über die Uhr-Verbindung des Systems an dein eigenes Gerät, nicht
+     an den Entwickler; Google Data Transport (`com.google.android.datatransport`, im Handy-Bundle mit MediaPipe) kann
+     ohne `INTERNET` nichts senden (`release_check.py` prüft, dass kein Netzrecht eingeschleppt wird). Beides vor dem
+     Absenden von r1AD bestätigen.
+   - **Gesundheits-Apps** und **Health Connect:** Handy `READ_SLEEP`; Uhr `health.READ_HEART_RATE` und
+     `health.READ_HEALTH_DATA_IN_BACKGROUND` (ab Wear OS 6 Ersatz für `BODY_SENSORS` bzw. `BODY_SENSORS_BACKGROUND`, die
+     Plattform nutzt dafür die Rechte von Health Connect). Texte: Abschnitte «Körpersensoren und Puls» und «Health Connect».
+   - **Exakte Alarme, Vollbild-Benachrichtigung:** Texte oben.
+   - **Vordergrund-Dienste:** je Typ Beschreibung, Folgen bei Unterbrechung und ein Video-Link (z. B. nicht gelistetes
+     Video). Google verlangt, dass das Video die Schritte zeigt, mit denen du die Funktion auslöst
+     ([Play-Hilfe](https://support.google.com/googleplay/android-developer/answer/13392821)):
+     - `health` (Uhr, Bildschirmaufnahme der Uhr): «Nacht aufzeichnen» auf der Uhr antippen → laufende Mitteilung →
+       Stopp; dazu «In 2 Minuten testen» am Handy → Messung im Weckfenster mit Mitteilung → Klingeln.
+     - `microphone` (Handy): «Geräusche aufnehmen» für die Nacht einschalten → Mitteilung → Stopp über die Mitteilung.
+     - `mediaPlayback` (Handy): Einschlafklang starten → Medien-Mitteilung mit Timer → Stopp.
+     - `systemExempted`, falls die Konsole ihn abfragt: Probewecker klingelt → Schlummern → Beenden.
+   - Inhaltsbewertung, Zielgruppe, Werbung (keine).
+5. **Interner Test:** Bundles hochladen (Schritt 6 unten), auf eigenen Geräten installieren.
+6. **Pre-Launch-Bericht:** Nach jedem Upload in einen Test-Track unter Testen → Pre-Launch-Bericht → «Barrierefreiheit»
+   die Befunde durchgehen (Kontrast, Grösse der Tippziele, fehlende Beschriftungen); Fehler beheben, Rest in OFFEN.
+
+**Ab T (geschlossener Test, mindestens 14 Tage)**
+
+7. **Geschlossener Test:** Für private Konten, die nach dem 13.11.2023 erstellt wurden, gilt: mindestens 12 Tester,
+   14 Tage ununterbrochen eingetragen; vorher bleiben Produktion und Vorregistrierung gesperrt. Wer austritt, zählt
+   nicht; wer wieder eintritt, beginnt bei null
+   ([Play-Hilfe](https://support.google.com/googleplay/android-developer/answer/14151465), geprüft 16.11.2026). Darum
+   ein paar Tester mehr einladen. Handy- und Uhr-Bundle im selben Track.
+8. **Während des Tests:** Rückmeldungen und Abstürze (Android Vitals) sammeln, nur Fehler beheben; die Fragen des
+   Antrags (nächster Schritt) laufend notieren.
+
+**Ab T + 14 Tage**
+
+9. **Produktion beantragen:** Dashboard → «Apply for production»: Fragen zum geschlossenen Test (Gewinnung der Tester,
+   Nutzung, Rückmeldungen), zur App (Zielgruppe, Nutzen, erwartete Installationen im ersten Jahr) und zur Bereitschaft
+   (Änderungen aus dem Test). Prüfung laut Google meist höchstens 7 Tage. Fällt sie negativ aus (z. B. zu wenig Tester
+   oder Nutzung), weiter testen.
+10. **Produktion:** gestaffelte Einführung; danach Abschnitt «Nach dem Release».
 
 ## Store-Build: Upload-Schlüssel und Upload
 

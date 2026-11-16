@@ -1,0 +1,110 @@
+# Validierungs-Modus (Validation, Entscheid r1AD 16.11.2026): Schattenfenster, Referenzphase, Zeitzone, Summen.
+# Felder mit Tabulator getrennt. Zeilen «ref»: erwartete Referenzphase, Zeitpunkt, Phasen «Beginn-Ende:PHASE» mit
+# Kommas («-» = keine), alles in Sekunden ab 2026-11-08 22:00 UTC (Validation.reference, ±60 s).
+# Fälle ab «case Name Gerätezone» bis zum nächsten, Zeiten in Minuten ab 2026-11-08 22:00 UTC:
+#   night   «Fensterbeginn Zielzeit Wecken GRUND» und optional Epochen (eigene Nacht)
+#   record  «Beginn» und Epochen (abgeschlossene Aufzeichnung)
+#   session «Beginn Ende Zone|-» und Phasen «Beginn-Ende:PHASE» mit Kommas (Gesundheits-App)
+#   learned «Grundrauschen|- Ruhepuls|-» (gelernte Werte)
+#   row     erwartete Zeilen von ValidationReport.exportCsv ohne Kopf, alle, in Reihenfolge
+#   sum     erwartete Zeilen «night N: …» und «all: …» von ValidationReport.lines, alle, in Reihenfolge
+# Epochen: «Anzahl*Bewegung/Puls» mit Leerzeichen, «-» = leer.
+ref	light	900	600-1200:LIGHT,1200-1800:UNKNOWN,1860-2400:DEEP,2400-3000:REM,3120-3600:AWAKE
+ref	light	600	600-1200:LIGHT,1200-1800:UNKNOWN,1860-2400:DEEP,2400-3000:REM,3120-3600:AWAKE
+ref	light	599	600-1200:LIGHT,1200-1800:UNKNOWN,1860-2400:DEEP,2400-3000:REM,3120-3600:AWAKE
+ref	light	540	600-1200:LIGHT,1200-1800:UNKNOWN,1860-2400:DEEP,2400-3000:REM,3120-3600:AWAKE
+ref	unknown	539	600-1200:LIGHT,1200-1800:UNKNOWN,1860-2400:DEEP,2400-3000:REM,3120-3600:AWAKE
+ref	light	1200	600-1200:LIGHT,1200-1800:UNKNOWN,1860-2400:DEEP,2400-3000:REM,3120-3600:AWAKE
+ref	light	1260	600-1200:LIGHT,1200-1800:UNKNOWN,1860-2400:DEEP,2400-3000:REM,3120-3600:AWAKE
+ref	unknown	1261	600-1200:LIGHT,1200-1800:UNKNOWN,1860-2400:DEEP,2400-3000:REM,3120-3600:AWAKE
+ref	unknown	1799	600-1200:LIGHT,1200-1800:UNKNOWN,1860-2400:DEEP,2400-3000:REM,3120-3600:AWAKE
+ref	deep	1800	600-1200:LIGHT,1200-1800:UNKNOWN,1860-2400:DEEP,2400-3000:REM,3120-3600:AWAKE
+ref	rem	2400	600-1200:LIGHT,1200-1800:UNKNOWN,1860-2400:DEEP,2400-3000:REM,3120-3600:AWAKE
+ref	rem	3060	600-1200:LIGHT,1200-1800:UNKNOWN,1860-2400:DEEP,2400-3000:REM,3120-3600:AWAKE
+ref	awake	3061	600-1200:LIGHT,1200-1800:UNKNOWN,1860-2400:DEEP,2400-3000:REM,3120-3600:AWAKE
+ref	awake	3660	600-1200:LIGHT,1200-1800:UNKNOWN,1860-2400:DEEP,2400-3000:REM,3120-3600:AWAKE
+ref	unknown	3661	600-1200:LIGHT,1200-1800:UNKNOWN,1860-2400:DEEP,2400-3000:REM,3120-3600:AWAKE
+ref	unknown	100	-
+ref	light	400	0-600:DEEP,300-900:LIGHT
+ref	deep	400	300-900:LIGHT,0-600:DEEP
+# Schatten: Leicht im 1. Fenster, ohne Moment im 2. (Zielzeit, Gleichstand ±60 s: die frühere Phase), Wach im 3.; echter
+# Entscheid 60 s nach dem Ende der Phase (zählt noch)
+case	shadows_and_tolerance	Europe/Zurich
+record	60	10*0.02/55 1*0.3/62 89*0.02/55 2*0.3/55 18*0.02/55
+night	450 480 470 LIGHT_SLEEP
+session	30 475 -	30-70:LIGHT,70-104:DEEP,106-130:REM,130-469:LIGHT
+row	1,00:05,shadow,LIGHT_SLEEP,light
+row	1,00:45,shadow,DEADLINE,deep
+row	1,00:51,shadow,AWAKE,rem
+row	1,06:50,real,LIGHT_SLEEP,light
+sum	night 1: LIGHT_SLEEP real 1/1 shadow 1/1 · target real - shadow deep 1 · hits real 1/1
+sum	all: 1 nights, 1 with reference · LIGHT_SLEEP real 1/1 shadow 1/1 · target real - shadow deep 1 · hits real 1/1
+# Nacht ohne Referenz: aufgeführt, zählt nicht
+case	no_reference	Europe/Zurich
+night	450 480 480 DEADLINE
+row	1,07:00,real,DEADLINE,none
+sum	night 1: no reference
+sum	all: 1 nights, 0 with reference
+# Stichproben (2 von 10 Epochen): kein Schattenfenster, nur der echte Entscheid; 5 Min nach der Phase: unbekannt
+case	sampled_only_real	Europe/Zurich
+record	60	2*0.02/55 8*-/- 2*0.02/55 8*-/- 2*0.02/55 8*-/- 2*0.02/55 8*-/- 2*0.02/55 8*-/- 2*0.02/55 8*-/- 2*0.02/55 8*-/- 2*0.02/55 8*-/- 2*0.02/55 8*-/- 2*0.02/55 8*-/- 2*0.02/55 8*-/- 2*0.02/55 8*-/-
+night	450 480 480 DEADLINE
+session	30 475 -	30-470:LIGHT,470-475:DEEP
+row	1,07:00,real,DEADLINE,unknown
+sum	night 1: LIGHT_SLEEP real - shadow - · target real unknown 1 shadow - · hits real 0/0 unknown 1
+sum	all: 1 nights, 1 with reference · LIGHT_SLEEP real - shadow - · target real unknown 1 shadow - · hits real 0/0 unknown 1
+# Zeitzone der Aufzeichnung (New York) für die Uhrzeit; zwei Nächte; Fenster mit 45 von 60 Epochen zählt, mit 44 nicht
+case	zone_and_two_nights	Europe/Zurich
+night	450 480 465 LIGHT_SLEEP
+session	0 470 America/New_York	0-460:LIGHT,460-470:DEEP
+night	1890 1920 1920 EXACT
+record	1500	15*-/- 45*0.02/55
+record	1600	16*-/- 44*0.02/55
+session	1440 1925 -	1440-1925:REM
+row	1,00:45,real,LIGHT_SLEEP,deep
+row	2,00:30,shadow,DEADLINE,rem
+row	2,07:00,real,EXACT,rem
+sum	night 1: LIGHT_SLEEP real 0/1 shadow - · target real - shadow - · hits real 0/1
+sum	night 2: LIGHT_SLEEP real - shadow - · target real rem 1 shadow rem 1 · hits real 1/1
+sum	all: 2 nights, 2 with reference · LIGHT_SLEEP real 0/1 shadow - · target real rem 1 shadow rem 1 · hits real 1/2
+# Gelernter Ruhepuls wie im echten Fenster: ohne kein Basispuls (Zielzeit), mit Ersatz-Basispuls leichter Schlaf
+case	without_learned	Europe/Zurich
+record	60	10*0.02/- 1*0.3/70 49*0.02/-
+row	1,00:30,shadow,DEADLINE,none
+sum	night 1: no reference
+sum	all: 1 nights, 0 with reference
+case	with_learned	Europe/Zurich
+learned	- 55
+record	60	10*0.02/- 1*0.3/70 49*0.02/-
+row	1,00:05,shadow,LIGHT_SLEEP,none
+sum	night 1: no reference
+sum	all: 1 nights, 0 with reference
+# Kalibrierung aus 3 eigenen Nächten vor der Aufzeichnung (Wach-Schwelle 0.05): Wach
+case	calibrated_before	Europe/Zurich
+night	-3870 -3840 -3840 DEADLINE	40*0.008/-
+night	-2430 -2400 -2400 DEADLINE	40*0.008/-
+night	-990 -960 -960 DEADLINE	40*0.008/-
+record	60	20*0.008/55 2*0.07/55 38*0.008/55
+row	1,07:00,real,DEADLINE,none
+row	2,07:00,real,DEADLINE,none
+row	3,07:00,real,DEADLINE,none
+row	4,00:11,shadow,AWAKE,none
+sum	night 1: no reference
+sum	night 2: no reference
+sum	night 3: no reference
+sum	night 4: no reference
+sum	all: 4 nights, 0 with reference
+# Eine der 3 Nächte liegt nach der Aufzeichnung: ohne Kalibrierung (Wach-Schwelle 0.1), Zielzeit
+case	calibrated_after	Europe/Zurich
+night	-3870 -3840 -3840 DEADLINE	40*0.008/-
+night	-2430 -2400 -2400 DEADLINE	40*0.008/-
+night	450 480 480 DEADLINE	40*0.008/-
+record	60	20*0.008/55 2*0.07/55 38*0.008/55
+row	1,07:00,real,DEADLINE,none
+row	2,07:00,real,DEADLINE,none
+row	3,00:30,shadow,DEADLINE,none
+row	3,07:00,real,DEADLINE,none
+sum	night 1: no reference
+sum	night 2: no reference
+sum	night 3: no reference
+sum	all: 3 nights, 0 with reference
