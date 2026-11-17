@@ -51,7 +51,7 @@ public enum SyncKeys {
     /// Älter als das gilt der gemeldete Akkustand als unbekannt (wie `WearSync.watchBattery()` auf Android).
     public static let maxBatteryAgeMs: Int64 = 6 * 3600_000
 
-    // MARK: Runde 3 (gleiche Bedeutung wie die Pfade des Data Layer auf Android)
+    // MARK: Feiertage, Probewecker, Powernap, Diagnose, Lernphase (gleiche Bedeutung wie die Pfade des Data Layer auf Android)
 
     /// Anwendungskontext iPhone → Uhr: Feiertage im Format von `Holidays.encode`.
     public static let holidays = "holidays"

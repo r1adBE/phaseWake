@@ -320,7 +320,7 @@ class GoodNightOnsetTest {
 
     @Test
     fun lateStartRule() {
-        // Gleiche Fälle wie `Audit93WatchTests` (Apple Watch, `RecorderOnset.startedLate`).
+        // Gleiche Fälle wie `BedtimeOnsetWatchTests` (Apple Watch, `RecorderOnset.startedLate`).
         val latest = now.plus(Duration.ofHours(9))
         val bedAt = OnsetRules.plannedBedAt(now, automatic = true, latest = latest, sleepMinutes = 450)
         assertEquals(latest.minus(Duration.ofMinutes(450)), bedAt)

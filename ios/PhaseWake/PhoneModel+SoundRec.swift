@@ -1,7 +1,7 @@
 import PhaseWakeCore
 import SwiftUI
 
-// MARK: - Runde 2: Geräusche, Abendroutine, Wochenrückblick
+// MARK: - Geräusch-Aufnahme in der Nacht
 
 extension PhoneModel {
     /// Ob für diese Nacht aufgenommen werden soll: eigene Wahl, sonst die Vorgabe.
@@ -53,56 +53,4 @@ extension PhoneModel {
 
     /// Zielzeit des nächsten Weckers (früh geweckte Nächte übersprungen).
     private func nextAlarmTarget(now: Date = Date()) -> Date? { nextPlan(now: now)?.target }
-
-    // MARK: Abendroutine
-
-    var canAddRoutineItem: Bool { routineItems.count < Routine.maxItems }
-
-    func addRoutineItem(_ text: String) {
-        let clean = Routine.cleanText(text)
-        guard canAddRoutineItem, !clean.isEmpty else { return }
-        setRoutineItems(routineItems + [RoutineItem(id: Routine.customId(UUID().uuidString.lowercased()), text: clean)])
-    }
-
-    func removeRoutineItem(_ id: String) { setRoutineItems(routineItems.filter { $0.id != id }) }
-
-    private func setRoutineItems(_ items: [RoutineItem]) {
-        let text = Routine.encodeItems(items)
-        privateNotes.setRoutineItemsText(text)
-        routineItems = Routine.decodeItems(text)
-    }
-
-    func routineDone(night: String) -> [String] { routineTicks[night] ?? [] }
-
-    func toggleRoutine(_ id: String, night: String) {
-        routineTicks = Routine.toggle(routineTicks, date: night, id: id)
-        privateNotes.setRoutineTicks(routineTicks)
-    }
-
-    /// Anzeigename: Vorschläge übersetzt, eigene mit ihrem Text.
-    func routineName(_ item: RoutineItem) -> String {
-        switch item.id {
-        case Routine.phone: L("routine_item_phone")
-        case Routine.light: L("routine_item_light")
-        case Routine.water: L("routine_item_water")
-        default: item.text
-        }
-    }
-
-    // MARK: Wochenrückblick
-
-    func setWeeklyReview(_ enabled: Bool) {
-        weeklyReview = enabled
-        SettingsFile.phone.set(enabled, forKey: Self.weeklyKey)
-        Task {
-            if enabled { await bedtime.requestPermission() }
-            await replanWeekly()
-        }
-    }
-
-    /// Plant die Mitteilung zum nächsten Sonntag 18 Uhr mit dem aktuellen Stand neu.
-    func replanWeekly() async {
-        guard stateLoaded || catchUpState() else { return }
-        await weekly.reschedule(model: self)
-    }
 }

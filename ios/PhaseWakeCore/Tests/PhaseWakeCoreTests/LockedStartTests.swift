@@ -2,7 +2,7 @@ import XCTest
 @testable import PhaseWakeCore
 
 /// Prüfrunde 2 (SP-3, SP-5): Start vor dem ersten Entsperren. Eine Datei an ihrem Platz, die (noch) nicht lesbar ist,
-/// steht hier für die geschützte Datei auf dem Gerät (ein Ordner an ihrer Stelle, wie in `Audit93PhoneTests`).
+/// steht hier für die geschützte Datei auf dem Gerät (ein Ordner an ihrer Stelle, wie in `LockedSettingsPhoneTests`).
 final class LockedStartTests: XCTestCase {
     private var dir: URL!
 

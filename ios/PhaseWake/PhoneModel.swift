@@ -21,13 +21,13 @@ final class PhoneModel {
     /// Geräusche in der Nacht (nur auf Wunsch).
     let recorder = SoundRecorder()
     let weekly = WeeklyReview()
-    /// Feiertage (Land, Region, Daten) sowie Probewecker und Powernap (Runde 3, eigene Dateien).
+    /// Feiertage (Land, Region, Daten) sowie Probewecker und Powernap (eigene Dateien: `Holidays/`, `Transient/`).
     let holidays = HolidayStore()
     let transient = PhoneTransient()
     /// Gewählter Reiter (eine Mitteilung kann den Verlauf öffnen).
     var selectedTab = AppTab.alarms
     /// Geräusche aufnehmen: Vorgabe für neue Nächte, Standard aus.
-    /// Setzer intern statt privat (wie die übrigen Werte der Runde 2): Die Erweiterung in `PhoneModel+Round2.swift` setzt sie.
+    /// Setzer intern statt privat (wie Abendroutine und Wochenrückblick): Die Erweiterung in `PhoneModel+SoundRec.swift` setzt sie.
     var soundRecDefault = false
     /// Wahl für eine bestimmte Nacht (Nachtdatum, an/aus), falls selbst gewählt oder gestoppt.
     var soundRecChoice: (night: String, on: Bool)?

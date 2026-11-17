@@ -344,4 +344,12 @@ final class BackupAlarmPhoneTests: XCTestCase {
         backup.backupStopped(UUID().uuidString)
         XCTAssertEqual(host.stops.count, 1)
     }
+
+    /// Verwaiste AlarmKit-Alarme: nur geplante, deren Kennung die App nicht kennt (Herkunft: Tiefenaudit c3b8b01 AP3-1).
+    func testOnlyUnknownScheduledAlarmsAreOrphans() {
+        let known = UUID(), orphan = UUID(), other = UUID()
+        XCTAssertEqual(BackupAlarm.orphans(scheduled: [known, orphan], known: [known, other]), [orphan])
+        XCTAssertEqual(BackupAlarm.orphans(scheduled: [known], known: [known]), [])
+        XCTAssertEqual(BackupAlarm.orphans(scheduled: [], known: []), [])
+    }
 }

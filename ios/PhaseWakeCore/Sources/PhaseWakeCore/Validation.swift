@@ -90,14 +90,16 @@ public enum Validation {
     }
 
     /// Schattenentscheide einer Aufzeichnung ab `start`: Fenster ab Epoche 0, ``stepEpochs``, 2 · ``stepEpochs`` …,
-    /// solange ein ganzes Fenster (``windowEpochs``) Platz hat; nur durchgehend gemessene (``measured(_:)``).
+    /// solange ein ganzes Fenster (``windowEpochs``) Platz hat; nur durchgehend gemessene (``measured(_:)``). Entscheiden
+    /// zwei überlappende Fenster im selben Moment gleich, zählt der Moment einmal (r1AD 17.11.2026). Identisch zu Kotlin.
     public static func shadows(start: Date, epochs: [Epoch], config: DetectorConfig) -> [Moment] {
         var moments: [Moment] = []
         var from = 0
         while from + windowEpochs <= epochs.count {
             let part = epochs[from..<(from + windowEpochs)]
             if measured(part) {
-                moments.append(window(start: start.addingTimeInterval(Double(from) * epochSeconds), epochs: part, config: config))
+                let moment = window(start: start.addingTimeInterval(Double(from) * epochSeconds), epochs: part, config: config)
+                if !moments.contains(moment) { moments.append(moment) }
             }
             from += stepEpochs
         }

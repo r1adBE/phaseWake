@@ -83,7 +83,13 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 | übrige Handy-App `android/app`, Uhr-App `android/wear` | keine (nur Information) | JaCoCo + `.github/scripts/coverage_check.py`, CI |
 | Zweitwecker am iPhone (`ios/PhaseWake/BackupAlarm.swift`, `+Plan`, `+Snooze` ohne die Karte, `+Transient`) | je Datei **65 / 50 / 80 / 80 %** | `-enableCodeCoverage YES`, `xccov` + `.github/scripts/xccov_check.py`, Job «Apple-Apps», CI |
 | übrige iPhone- und Watch-App (`ios/PhaseWakeTests`, `ios/PhaseWakeWatchTests`, App als Testwirt) | keine (nur Tests) | `xcodebuild test` im Simulator, Job «Apple-Apps», CI |
-| Bildschirme | jeder Bildschirm mit Vorschau im Screenshot-Test (hell/dunkel, Uhr rund) | Workflow «Bildschirmfotos» |
+| Bildschirme | jeder Bildschirm mit Vorschau im Screenshot-Test (hell/dunkel, Uhr rund); jede Abweichung von der Referenz ist ein Fehler | `validateDebugScreenshotTest`, Job «Android», CI; Referenzen rendert der Workflow «Bildschirmfotos» (Artefakt `referenzbilder`) |
+
+- **Referenzbilder erneuern:** Workflow «Bildschirmfotos» auf dem Arbeitszweig starten, Artefakt `referenzbilder`
+  herunterladen und nach `android/{app,wear}/src/screenshotTestDebug/reference/` übernehmen (alte Dateien vorher
+  löschen). Lokal gerenderte Bilder weichen in der Kantenglättung ab und taugen nicht als Referenz. Vorschauen
+  zeigen feste Zeiten und feste Zufallswerte (Uhrzeit am Rand der Uhr, Rechenaufgabe), sonst weichen sie bei jedem
+  Lauf ab.
 
 - **Gleiche Fälle in beiden Kernen:** Ein Kern-Test in Kotlin hat sein Gegenstück in Swift mit denselben Eingaben
   und Erwartungen. Die Testnächte in `shared/testdata` müssen beide Kerne gleich bewerten.

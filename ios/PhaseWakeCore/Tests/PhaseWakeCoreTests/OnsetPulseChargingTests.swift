@@ -1,10 +1,10 @@
 import XCTest
 import PhaseWakeCore
 
-/// Prüfrunde 2, Erkennung (gleiche Fälle wie Kotlin `SnoozeAndOnsetTest`, `OnsetMonitorTest`, `GoodNightOnsetTest`):
-/// Puls in der ruhigen Strecke (F-1), Zeit am Ladegerät verschiebt die Zeitgrenze (HG-3), später Start (HG-2), Laden statt
-/// Akkugrenze (F-6).
-final class OnsetRound2Tests: XCTestCase {
+/// Einschlaf-Erkennung mit Puls und Ladegerät (gleiche Fälle wie Kotlin `SnoozeAndOnsetTest`, `OnsetMonitorTest`,
+/// `GoodNightOnsetTest`): Puls in der ruhigen Strecke, Zeit am Ladegerät verschiebt die Zeitgrenze, später Start, Laden
+/// statt Akkugrenze (Herkunft: Prüfrunde 2 F-1, HG-3, HG-2, F-6).
+final class OnsetPulseChargingTests: XCTestCase {
     private let since = Date(timeIntervalSince1970: 1_793_570_400) // 2026-11-01 23:00 Zürich
     private let quiet = 0.0005
     private let busy = 0.5

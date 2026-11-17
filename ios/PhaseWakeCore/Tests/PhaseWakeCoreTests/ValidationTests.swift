@@ -91,6 +91,16 @@ final class ValidationTests: XCTestCase {
         XCTAssertEqual(cases.count, 8)
     }
 
+    func testSameMomentOfOverlappingWindowsCountsOnce() {
+        let quiet = Epoch(motion: 0.02, heartRate: 55)
+        let moved = Epoch(motion: 0.9, heartRate: 80)
+        // Fenster ab 0 und ab 30 sehen dieselbe Bewegung (Epochen 50, 51) und wecken im selben Moment.
+        let epochs = Array(repeating: quiet, count: 50) + Array(repeating: moved, count: 2) + Array(repeating: quiet, count: 38)
+        let moments = Validation.shadows(start: t0, epochs: epochs, config: .standard)
+        XCTAssertEqual(moments.count, 1)
+        XCTAssertNotEqual(moments.first?.reason, .deadline)
+    }
+
     func testWindowsAndMeasured() {
         let quiet = Epoch(motion: 0.02, heartRate: 55)
         let empty = Epoch(motion: nil, heartRate: nil)

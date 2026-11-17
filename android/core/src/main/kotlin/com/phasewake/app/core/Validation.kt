@@ -75,13 +75,17 @@ object Validation {
     /**
      * Schattenentscheide einer Aufzeichnung ab [start]: Fenster ab Epoche 0, [STEP_EPOCHS], 2 · [STEP_EPOCHS] …, solange ein
      * ganzes Fenster ([WINDOW_EPOCHS]) Platz hat; nur durchgehend gemessene ([measured]). Je Fenster ein neuer Detektor.
+     * Entscheiden zwei überlappende Fenster im selben Moment gleich, zählt der Moment einmal (r1AD 17.11.2026).
      */
     fun shadows(start: Instant, epochs: List<Epoch>, config: DetectorConfig): List<Moment> {
         val moments = mutableListOf<Moment>()
         var from = 0
         while (from + WINDOW_EPOCHS <= epochs.size) {
             val part = epochs.subList(from, from + WINDOW_EPOCHS)
-            if (measured(part)) moments += window(start.plusSeconds(from * EPOCH_SECONDS), part, config)
+            if (measured(part)) {
+                val moment = window(start.plusSeconds(from * EPOCH_SECONDS), part, config)
+                if (moment !in moments) moments += moment
+            }
             from += STEP_EPOCHS
         }
         return moments

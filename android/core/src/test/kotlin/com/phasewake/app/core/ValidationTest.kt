@@ -83,6 +83,17 @@ class ValidationTest {
     }
 
     @Test
+    fun sameMomentOfOverlappingWindowsCountsOnce() {
+        val quiet = Epoch(0.02, 55.0)
+        val moved = Epoch(0.9, 80.0)
+        // Fenster ab 0 und ab 30 sehen dieselbe Bewegung (Epochen 50, 51) und wecken im selben Moment.
+        val epochs = List(50) { quiet } + List(2) { moved } + List(38) { quiet }
+        val moments = Validation.shadows(t0, epochs, DetectorConfig())
+        assertEquals(1, moments.size)
+        assertTrue(moments.single().reason != WakeReason.DEADLINE)
+    }
+
+    @Test
     fun windowsAndMeasured() {
         val quiet = Epoch(0.02, 55.0)
         // 45 von 60 Epochen mit Bewegung zählen, 44 nicht; leer nie.

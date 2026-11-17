@@ -1,75 +1,16 @@
-import CoreMotion
 import PhaseWakeCore
-import WatchKit
 import XCTest
 @testable import PhaseWakeWatch
 
-/// Vollaudit 11.11.2026, Apple Watch: Ende der Sitzung (AP-1), verwaiste Sitzungen und Vibration (AP-3), Abbruch beim
-/// Messen (AP-4), Rückfälle der nächsten Nächte (AP-2), «Verlauf löschen» mit Sendezeit (AP-6), Rekorder nur mit
-/// Erlaubnis gemerkt (AP-7), Plan der Komplikation (AP-9).
-final class SessionAuditTests: XCTestCase {
+/// Rückfälle der nächsten Nächte auf der Apple Watch: zwei Wochen nach der nächsten Nacht, Ketten und Budget der
+/// Mitteilungen, Kennungen, nur in der Zukunft (Herkunft: Vollaudit 11.11.2026 AP-2; Vollaudit 071597f AP2-2).
+final class UpcomingFallbacksWatchTests: XCTestCase {
     private let utc = Calendar.gregorian(in: TimeZone(identifier: "UTC")!)
     private let now = Date(timeIntervalSince1970: 1_793_000_000)
 
-    // MARK: AP-1
-
-    func testSystemStopWhileRingingCountsAsDismiss() {
-        XCTAssertEqual(SessionRules.ending(.none, ringing: true), .dismissed)
-        for reason: WKExtendedRuntimeSessionInvalidationReason in [.expired, .error, .sessionInProgress, .resignedFrontmost] {
-            XCTAssertEqual(SessionRules.ending(reason, ringing: true), .interrupted, "\(reason.rawValue)")
-        }
-        // Unbekannter oder künftiger Grund (z. B. vom System unterdrückt): Abbruch, nie Stopp.
-        if let suppressed = WKExtendedRuntimeSessionInvalidationReason(rawValue: 4) {
-            XCTAssertEqual(SessionRules.ending(suppressed, ringing: true), .interrupted)
-        }
+    private func plan(_ id: String = "d", targetIn seconds: TimeInterval) -> WakePlan {
+        WakePlan(alarmId: id, windowStart: now.addingTimeInterval(seconds - 1800), target: now.addingTimeInterval(seconds))
     }
-
-    func testRegularEndOutsideRingingStaysInterruption() {
-        XCTAssertEqual(SessionRules.ending(.none, ringing: false), .interrupted)
-        XCTAssertEqual(SessionRules.ending(.expired, ringing: false), .interrupted)
-    }
-
-    func testReasonNameCarriesRawValue() {
-        XCTAssertEqual(SessionRules.reasonName(.none), "none/\(WKExtendedRuntimeSessionInvalidationReason.none.rawValue)")
-        XCTAssertTrue(SessionRules.reasonName(.expired).hasPrefix("expired/"))
-        XCTAssertTrue(SessionRules.reasonName(.error).hasPrefix("error/"))
-    }
-
-    // MARK: AP-3
-
-    func testScheduledSessionIsEndedOnlyWhenActive() {
-        XCTAssertEqual(SessionRules.retire(.scheduled, active: true), .now)
-        XCTAssertEqual(SessionRules.retire(.scheduled, active: false), .whenActive)
-        XCTAssertEqual(SessionRules.retire(.running, active: true), .now)
-        XCTAssertEqual(SessionRules.retire(.running, active: false), .tryNowAndKeep)
-        XCTAssertEqual(SessionRules.retire(.notStarted, active: false), .now)
-        XCTAssertEqual(SessionRules.retire(.invalid, active: false), .drop)
-    }
-
-    func testHapticsStopWhenSessionNoLongerRings() {
-        XCTAssertEqual(SessionRules.hapticStep(elapsed: 500, ringing: false).interval, 0)
-        let first = SessionRules.hapticStep(elapsed: 10, ringing: true)
-        XCTAssertEqual(first.type, .notification)
-        XCTAssertEqual(first.interval, 3)
-        let second = SessionRules.hapticStep(elapsed: 90, ringing: true)
-        XCTAssertEqual(second.type, .retry)
-        XCTAssertEqual(second.interval, 2)
-        let third = SessionRules.hapticStep(elapsed: 200, ringing: true)
-        XCTAssertEqual(third.type, .failure)
-        XCTAssertEqual(third.interval, 1.5)
-    }
-
-    // MARK: AP-4
-
-    func testInterruptedMeasuringWakesOnlyFromTarget() {
-        let target = now.addingTimeInterval(600)
-        // Vor der Zielzeit nicht sofort (und nicht zusätzlich 60 s später): Es weckt der feste Rückfall.
-        XCTAssertNil(SessionRules.interruptedWake(now: now, target: target))
-        XCTAssertEqual(SessionRules.interruptedWake(now: target, target: target), target)
-        XCTAssertEqual(SessionRules.interruptedWake(now: target.addingTimeInterval(5), target: target), target.addingTimeInterval(5))
-    }
-
-    // MARK: AP-2
 
     private func noon() -> Date {
         utc.date(from: DateComponents(year: 2026, month: 11, day: 2, hour: 12))!
@@ -154,52 +95,18 @@ final class SessionAuditTests: XCTestCase {
         XCTAssertEqual(UpcomingFallbacks.otherPending(pending, reserved: [SmartAlarm.fallbackId, "x"]), 3)
     }
 
-    // MARK: AP-6
-
-    func testClearHistoryNeedsSendTimeAndAppliesOnce() {
-        let sent = now
-        XCTAssertNil(HistoryClear.clearUntil(sentAt: nil, applied: nil))
-        XCTAssertEqual(HistoryClear.clearUntil(sentAt: sent, applied: nil), sent)
-        XCTAssertNil(HistoryClear.clearUntil(sentAt: sent, applied: sent))
-        XCTAssertNil(HistoryClear.clearUntil(sentAt: sent, applied: sent.addingTimeInterval(1)))
-        XCTAssertEqual(HistoryClear.clearUntil(sentAt: sent.addingTimeInterval(1), applied: sent), sent.addingTimeInterval(1))
-    }
-
-    func testClearHistoryKeepsOnlyWhatEndedLater() {
-        XCTAssertFalse(HistoryClear.keeps(end: now.addingTimeInterval(-60), clearedAt: now))
-        XCTAssertFalse(HistoryClear.keeps(end: now, clearedAt: now))
-        XCTAssertTrue(HistoryClear.keeps(end: now.addingTimeInterval(1), clearedAt: now))
-        XCTAssertTrue(HistoryClear.keeps(end: .distantPast, clearedAt: nil))
-    }
-
-    // MARK: AP-7
-
-    func testRecorderSpanRememberedOnlyWithPermission() {
-        XCTAssertTrue(LearnRecorder.remembersSpan(.authorized))
-        XCTAssertFalse(LearnRecorder.remembersSpan(.notDetermined))
-        XCTAssertFalse(LearnRecorder.remembersSpan(.denied))
-        XCTAssertFalse(LearnRecorder.remembersSpan(.restricted))
-    }
-
-    // MARK: AP-9
-
-    func testComplicationShowsThePlanTheWatchWakesBy() throws {
-        let stored = WakePlan(alarmId: "d", windowStart: now.addingTimeInterval(3000), target: now.addingTimeInterval(3600), exact: true)
-        let computed = WakePlan(alarmId: "d", windowStart: now.addingTimeInterval(4800), target: now.addingTimeInterval(5400))
-        let decoded = try XCTUnwrap(EffectivePlan.decode(EffectivePlan.encode(stored)))
-        XCTAssertEqual(decoded, stored)
-        XCTAssertEqual(EffectivePlan.choose(stored: decoded, computed: computed, now: now), stored)
-        // Zielzeit (plus eine Minute) vorbei: wieder aus den Weckern gerechnet.
-        XCTAssertEqual(EffectivePlan.choose(stored: decoded, computed: computed, now: stored.target.addingTimeInterval(60)), computed)
-        XCTAssertEqual(EffectivePlan.choose(stored: nil, computed: computed, now: now), computed)
-        XCTAssertNil(EffectivePlan.encode(nil))
-    }
-
-    func testComplicationIgnoresImplausibleStoredPlans() {
-        XCTAssertNil(EffectivePlan.decode(nil))
-        XCTAssertNil(EffectivePlan.decode("x"))
-        XCTAssertNil(EffectivePlan.decode(["alarm": "d", "window": 2_000_000_000.0, "target": 1_900_000_000.0]))
-        XCTAssertNil(EffectivePlan.decode(["alarm": "d", "window": 0.0, "target": 9.2e18]))
-        XCTAssertNil(EffectivePlan.decode(["window": 1_800_000_000.0, "target": 1_800_000_600.0]))
+    func testPastNightGetsNoUpcomingFallbacks() throws {
+        let daily = try AlarmSpec(id: "d", hour: 7, minute: 0, days: Set(Weekday.allCases))
+        let start = utc.date(from: DateComponents(year: 2026, month: 11, day: 5, hour: 12))!
+        // Erste Nacht liegt drei Tage zurück (ausstehend, nachgeholt): keine Nacht vor jetzt bekommt einen Rückfall.
+        let past = try XCTUnwrap(AlarmSchedule.nextPlan(daily, now: start.addingTimeInterval(-3 * 86400), calendar: utc))
+        let nights = UpcomingFallbacks.nights(after: past, specs: [daily], now: start, doneUntil: [:], nominalFirst: nil,
+                                              calendar: utc, holidays: [])
+        XCTAssertFalse(nights.isEmpty)
+        XCTAssertTrue(nights.allSatisfy { $0.target > start })
+        // Auch eine übergebene vergangene Nacht fällt beim Planen der Mitteilungen weg.
+        let entries = UpcomingFallbacks.plan([plan(targetIn: -600), plan(targetIn: 3600)], now: now, otherPending: 0, delay: 60)
+        XCTAssertEqual(entries.count, 1)
+        XCTAssertTrue(entries.allSatisfy { ($0.dates.first ?? .distantPast) > now })
     }
 }

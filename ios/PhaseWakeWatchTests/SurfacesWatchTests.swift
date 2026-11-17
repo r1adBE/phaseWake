@@ -2,11 +2,11 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWakeWatch
 
-/// Prüfrunde 2 (Bedienung), Apple Watch: «Gute Nacht» mit «Tippen zum Abbrechen» und Grund, wenn eine Nacht läuft (B-7),
-/// übersprungener Termin in der Wecker-Zeile (B-8), Editor nach Änderungen am iPhone (B-3, B-11), Stopp-Knopf 44 pt
-/// (B-16). Gegenstücke auf der Galaxy Watch: `WatchSurfacesTest`, `GoodNightButton`.
+/// Oberfläche der Apple Watch: «Gute Nacht» mit «Tippen zum Abbrechen» und Grund, wenn eine Nacht läuft, übersprungener
+/// Termin in der Wecker-Zeile, Stopp-Knopf 44 pt (Herkunft: Prüfrunde 2 B-7, B-8, B-16), Räder 12/24 Std. (Vollaudit
+/// 071597f N-10). Gegenstücke auf der Galaxy Watch: `WatchSurfacesTest`, `GoodNightButton`.
 @MainActor
-final class Round2UiWatchTests: XCTestCase {
+final class SurfacesWatchTests: XCTestCase {
     private var zurich: Calendar {
         var c = Calendar(identifier: .gregorian)
         c.timeZone = TimeZone(identifier: "Europe/Zurich")!
@@ -41,14 +41,23 @@ final class Round2UiWatchTests: XCTestCase {
         XCTAssertFalse(alarmDetails(alarm, now: evening, calendar: zurich).contains(L("alarm_skipped", Format.shortDay("2026-10-29"))))
     }
 
-    func testEditorSaveAfterChangesOnPhone() {
-        let eight = (1...8).map { "a\($0)" }
-        XCTAssertEqual(EditorSave.check(existed: true, storedIds: eight.filter { $0 != "a1" }, draftId: "a1", maxAlarms: WatchModel.maxAlarms), .gone)
-        XCTAssertEqual(EditorSave.check(existed: false, storedIds: eight, draftId: "new", maxAlarms: WatchModel.maxAlarms), .full)
-        XCTAssertEqual(EditorSave.check(existed: true, storedIds: eight, draftId: "a1", maxAlarms: WatchModel.maxAlarms), .save)
-    }
-
     func testStopButtonMeetsMinimumTarget() {
         XCTAssertGreaterThanOrEqual(RingView.stopMinHeight, 44)
+    }
+
+    func testWheelsConvertBetweenTwelveAndTwentyFourHours() {
+        XCTAssertEqual(WheelClock.hour12(0), 12)
+        XCTAssertEqual(WheelClock.hour12(7), 7)
+        XCTAssertEqual(WheelClock.hour12(12), 12)
+        XCTAssertEqual(WheelClock.hour12(23), 11)
+        XCTAssertEqual(WheelClock.hour24(hour12: 12, pm: false), 0)
+        XCTAssertEqual(WheelClock.hour24(hour12: 12, pm: true), 12)
+        XCTAssertEqual(WheelClock.hour24(hour12: 7, pm: true), 19)
+        for hour in 0..<24 {
+            XCTAssertEqual(WheelClock.hour24(hour12: WheelClock.hour12(hour), pm: hour >= 12), hour)
+        }
+        XCTAssertTrue(WheelClock.usesTwelveHours(Locale(identifier: "en_US")))
+        XCTAssertFalse(WheelClock.usesTwelveHours(Locale(identifier: "de_CH")))
+        XCTAssertNotEqual(WheelClock.unitName(.hours), WheelClock.unitName(.minutes))
     }
 }

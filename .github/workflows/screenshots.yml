@@ -66,10 +66,22 @@ jobs:
           path: shots/
           retention-days: 1
           if-no-files-found: error
+      # Referenzbilder, wie die CI sie rendert (UX-08): Sie werden ins Repo übernommen, und die CI prüft gegen sie.
+      # Lokal gerenderte Bilder weichen in der Kantenglättung ab und eignen sich darum nicht als Referenz.
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: referenzbilder
+          path: |
+            android/app/src/screenshotTestDebug/reference/
+            android/wear/src/screenshotTestDebug/reference/
+          retention-days: 3
+          if-no-files-found: error
 
   publish:
     name: In den Zweig «screenshots» legen
     needs: render
+    # Nur main: Ein Lauf auf einem Arbeitszweig liefert nur das Artefakt «referenzbilder».
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: write

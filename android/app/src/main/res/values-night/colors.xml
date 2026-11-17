@@ -6,4 +6,6 @@
     <color name="widget_bottom">#FF070914</color>
     <color name="widget_text">#FFFBF7F0</color>
     <color name="widget_text_secondary">#FFC9C3E6</color>
+    <!-- Titel Lavendel wie PhoneWidgetPalette.title (iOS), r1AD 17.11.2026. -->
+    <color name="widget_title">#FFB9AEFF</color>
 </resources>

@@ -2,47 +2,9 @@ import PhaseWakeCore
 import SwiftUI
 import UIKit
 
-// MARK: - Runde 3: Feiertage, Probewecker, Powernap, Start
+// MARK: - Start, Stand nach dem ersten Entsperren, Öffnen der App
 
 extension PhoneModel {
-    /// Weckart zur Kennung aus «klingeln»: gespeicherter Wecker oder der laufende Probewecker/Powernap.
-    func ringSpec(_ alarmId: String?) -> AlarmSpec? {
-        alarms.first { $0.id == alarmId } ?? transient.spec(for: alarmId)
-    }
-
-    /// Feiertage geändert (Wahl, neuer Tag): merken, an die Uhr, Sicherung und Erinnerung neu planen.
-    func holidaysChanged() {
-        storage.holidays = holidays.list
-        publishToWatch()
-        Task { await backup.reschedule(alarms) }
-        Task { await replanBedtime() }
-    }
-
-    /// Wecker, Feiertage, Schlafziel und Lernphase an die Uhr; der Anwendungskontext ersetzt jeweils den ganzen Stand.
-    /// Erst wenn Stand und Lernphase gelesen sind (nach dem ersten Entsperren): Ein Kontext aus dem leeren Stand gälte auf
-    /// der Uhr als neuer und löschte Lernwerte, Schlafziel, Feiertage und den Schalter für das automatische Einschlafen
-    /// (Prüfrunde 2 HG-1/SP-1). `catchUpState` sendet nach dem Lesen.
-    func publishToWatch(_ snapshot: AlarmSnapshot? = nil) {
-        guard stateLoaded, PhoneLearning.shared.load() else {
-            DiagStore.shared.log(.sync, "context not sent: state not readable yet")
-            return
-        }
-        let file = SettingsFile.phone
-        PhoneConnectivity.shared.publish(snapshot ?? storage.snapshot(), holidays: holidays.list,
-                                         sleepGoal: PhoneConnectivity.afterReset(sleepGoal, key: Self.sleepGoalKey, in: file),
-                                         autoOnset: PhoneConnectivity.afterReset(WatchNight.autoOnset, key: BackupIO.autoOnsetKey, in: file),
-                                         learning: PhoneLearning.shared.watchSnapshot())
-    }
-
-    /// «Nächstes Mal überspringen» bzw. rückgängig; geht an die Uhr wie jede Änderung. Nach früh geweckter Nacht
-    /// (Zielzeit noch vorn) trifft es den nächsten Termin, nicht den erledigten heutigen.
-    func setSkipped(_ alarm: AlarmSpec, _ skipped: Bool) {
-        let updated = skipped
-            ? AlarmSchedule.skipNext(alarm, now: Date(), doneUntil: doneUntil[alarm.id], calendar: .gregorianLocal, holidays: holidays.dates)
-            : AlarmSchedule.undoSkip(alarm)
-        upsert(updated)
-    }
-
     /// Beim Start: Ereignis fürs Protokoll, Feiertage laden, dann alles planen.
     func startUp() async {
         let device = UIDevice.current

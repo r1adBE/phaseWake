@@ -4,7 +4,7 @@ import XCTest
 
 /// Prüfrunde 2, iPhone-Start vor dem ersten Entsperren (HG-1/SP-1, SP-2): Lernphase und Lern-Übersicht weder aus dem
 /// leeren Stand stempeln noch schreiben, gemerkte Meldungen danach aufnehmen; Feiertagswahl nachlesen. Eine Datei mit
-/// einem Ordner an ihrer Stelle steht für die geschützte Datei (wie `Audit93PhoneTests`).
+/// einem Ordner an ihrer Stelle steht für die geschützte Datei (wie `LockedSettingsPhoneTests`).
 final class LockedStartPhoneTests: XCTestCase {
     private var dir: URL!
 
