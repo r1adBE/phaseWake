@@ -38,7 +38,14 @@ internal class HealthReadGate {
          * Ob nach dem letzten Lesen um [lastAt] (ab [lastFrom], nach Erteilung [lastGrant]) jetzt neu gelesen wird.
          * Eine zurückgestellte Uhr ([now] vor [lastAt]) liest gleich.
          */
-        fun due(lastAt: Instant?, lastFrom: Instant?, lastGrant: Int, now: Instant, from: Instant, grant: Int): Boolean =
+        fun due(
+            lastAt: Instant?,
+            lastFrom: Instant?,
+            lastGrant: Int,
+            now: Instant,
+            from: Instant,
+            grant: Int,
+        ): Boolean =
             lastAt == null || lastFrom == null || grant != lastGrant || now.isBefore(lastAt) ||
                 Duration.between(lastAt, now) >= MIN_INTERVAL || from.isBefore(lastFrom)
     }

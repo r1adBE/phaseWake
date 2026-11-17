@@ -107,7 +107,8 @@ fun SettingsScreen(
     // Himmel wie auf der Startseite; der Titel steht im Kopf, hell randlos im Himmel.
     SkyPage {
     Column(
-        Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(contentPadding).padding(horizontal = PAGE_SIDE),
+        Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(contentPadding)
+            .padding(horizontal = PAGE_SIDE),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         SkyHeader(bleedSide = PAGE_SIDE, bleedTop = contentPadding.calculateTopPadding()) {
@@ -139,7 +140,9 @@ fun SettingsScreen(
             // Beim Ziehen nur anzeigen, gespeichert (und die Erinnerung neu geplant) beim Loslassen.
             var dragging by remember(goalMinutes) { mutableFloatStateOf(goalMinutes.toFloat()) }
             Text(
-                stringResource(R.string.goal_value, Format.duration(context, Duration.ofMinutes(dragging.roundToInt().toLong()))),
+                stringResource(
+                    R.string.goal_value, Format.duration(context, Duration.ofMinutes(dragging.roundToInt().toLong())),
+                ),
                 style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.primary,
             )
@@ -150,9 +153,14 @@ fun SettingsScreen(
                 valueRange = SleepGoal.MIN_MINUTES.toFloat()..SleepGoal.MAX_MINUTES.toFloat(),
                 steps = (SleepGoal.MAX_MINUTES - SleepGoal.MIN_MINUTES) / SleepGoal.STEP_MINUTES - 1,
             )
-            Text(stringResource(R.string.goal_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(
+                stringResource(R.string.goal_hint), style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
             Row(
-                Modifier.fillMaxWidth().heightIn(min = MIN_TOUCH).toggleable(value = bedtimeReminder, role = Role.Switch, onValueChange = onBedtimeReminder).padding(top = 8.dp),
+                Modifier.fillMaxWidth().heightIn(min = MIN_TOUCH).toggleable(
+                    value = bedtimeReminder, role = Role.Switch, onValueChange = onBedtimeReminder,
+                ).padding(top = 8.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Column(Modifier.weight(1f).padding(end = 12.dp)) {
@@ -166,13 +174,22 @@ fun SettingsScreen(
                 // Die ganze Zeile schaltet; der Schalter zeigt nur den Zustand.
                 Switch(checked = bedtimeReminder, onCheckedChange = null)
             }
-            SwitchRow(stringResource(R.string.weekly_title), stringResource(R.string.weekly_toggle), weeklyReview, onWeeklyReview)
+            SwitchRow(
+                stringResource(R.string.weekly_title), stringResource(R.string.weekly_toggle), weeklyReview,
+                onWeeklyReview,
+            )
         }
 
         // Sperrbildschirm und Einschlaferkennung gehören zum Wecker, nicht zum Schlafziel.
         Group(stringResource(R.string.nav_alarms)) {
-            SwitchRow(stringResource(R.string.next_alarm_notif_title), stringResource(R.string.next_alarm_notif_hint), nextAlarmNotice, onNextAlarmNotice)
-            SwitchRow(stringResource(R.string.auto_onset_title), stringResource(R.string.auto_onset_hint), autoOnset, onAutoOnset)
+            SwitchRow(
+                stringResource(R.string.next_alarm_notif_title), stringResource(R.string.next_alarm_notif_hint),
+                nextAlarmNotice, onNextAlarmNotice,
+            )
+            SwitchRow(
+                stringResource(R.string.auto_onset_title), stringResource(R.string.auto_onset_hint), autoOnset,
+                onAutoOnset,
+            )
         }
 
         extras.learning?.let { LearningGroup(it) }
@@ -186,7 +203,10 @@ fun SettingsScreen(
         RoutineGroup(routineItems, onAddRoutineItem, onRemoveRoutineItem)
 
         Group(stringResource(R.string.sound_rec_title)) {
-            SwitchRow(stringResource(R.string.sound_rec_default), stringResource(R.string.sound_rec_default_hint), soundRecDefault, onSoundRecDefault)
+            SwitchRow(
+                stringResource(R.string.sound_rec_default), stringResource(R.string.sound_rec_default_hint),
+                soundRecDefault, onSoundRecDefault,
+            )
         }
 
         DataGroup(onExport, canExport, onClearHistory, extras)
@@ -204,8 +224,12 @@ fun SettingsScreen(
                     style = MaterialTheme.typography.titleSmall,
                     color = MaterialTheme.colorScheme.primary,
                 )
-                HealthState.AVAILABLE -> Button(onClick = onConnectHealth) { Text(stringResource(R.string.health_connect)) }
-                HealthState.UPDATE_REQUIRED -> Button(onClick = { uri.openUri(HEALTH_CONNECT_STORE) }) { Text(stringResource(R.string.health_update)) }
+                HealthState.AVAILABLE -> Button(onClick = onConnectHealth) {
+                    Text(stringResource(R.string.health_connect))
+                }
+                HealthState.UPDATE_REQUIRED -> Button(onClick = { uri.openUri(HEALTH_CONNECT_STORE) }) {
+                    Text(stringResource(R.string.health_update))
+                }
             }
         }
 
@@ -217,7 +241,8 @@ fun SettingsScreen(
 /** Health Connect: fehlt, muss aktualisiert werden, ist bereit oder schon verbunden. */
 enum class HealthState { UNAVAILABLE, UPDATE_REQUIRED, AVAILABLE, CONNECTED }
 
-private const val HEALTH_CONNECT_STORE = "https://play.google.com/store/apps/details?id=com.google.android.apps.healthdata"
+private const val HEALTH_CONNECT_STORE =
+    "https://play.google.com/store/apps/details?id=com.google.android.apps.healthdata"
 internal const val PRIVACY_URL = "https://github.com/r1adBE/phaseWake/blob/main/docs/DATENSCHUTZ.md"
 internal const val REPO_URL = "https://github.com/r1adBE/phaseWake"
 

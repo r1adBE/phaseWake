@@ -49,13 +49,17 @@ final class BuildNumberPhoneTests: XCTestCase {
 
     @MainActor
     func testNightCheckHint() {
-        XCTAssertEqual(NightCheck.watchChecks(state(phone: 96, watch: 95), now: now), [.buildMismatch(phone: 96, watch: 95)])
-        XCTAssertTrue(PhoneCheck.buildMismatch(phone: 96, watch: 95).isAdvisory, "nur ein Hinweis, die Karte bleibt bereit")
+        XCTAssertEqual(NightCheck.watchChecks(state(phone: 96, watch: 95), now: now),
+                       [.buildMismatch(phone: 96, watch: 95)])
+        XCTAssertTrue(PhoneCheck.buildMismatch(phone: 96, watch: 95).isAdvisory,
+                      "nur ein Hinweis, die Karte bleibt bereit")
         XCTAssertEqual(NightCheck.watchChecks(state(phone: 96, watch: 96), now: now), [])
-        XCTAssertEqual(NightCheck.watchChecks(state(phone: 96, watch: nil), now: now), [], "ältere Uhr oder lokaler Build")
+        XCTAssertEqual(NightCheck.watchChecks(state(phone: 96, watch: nil), now: now), [],
+                       "ältere Uhr oder lokaler Build")
         XCTAssertEqual(NightCheck.watchChecks(state(phone: nil, watch: 95), now: now), [])
         // Mit «Uhr-App veraltet» kein zweiter Hinweis.
-        XCTAssertEqual(NightCheck.watchChecks(state(phone: 96, watch: 95, watchProtocol: 0), now: now), [.watchOutdated])
+        XCTAssertEqual(NightCheck.watchChecks(state(phone: 96, watch: 95, watchProtocol: 0), now: now),
+                       [.watchOutdated])
         XCTAssertNil(NightCheck.buildHint(phone: 96, watch: 95, outdated: true))
     }
 }

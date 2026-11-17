@@ -23,6 +23,8 @@ internal object ValidationData {
         val oldest = (nights.map { it.windowStart } + recordings.map { it.start }).minOrNull() ?: return emptyList()
         val sessions = app.health.sessions(oldest.minus(LOOK_BACK), Instant.now())
         val clearedAt = app.settings.historyClearedAt.first()
-        return Validation.evaluate(nights, recordings, sessions, clearedAt, app.learning.current().values, ZoneId.systemDefault())
+        return Validation.evaluate(
+            nights, recordings, sessions, clearedAt, app.learning.current().values, ZoneId.systemDefault(),
+        )
     }
 }

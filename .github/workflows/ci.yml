@@ -64,9 +64,10 @@ jobs:
           distribution: temurin
           java-version: 21
       - uses: gradle/actions/setup-gradle@8da46b539cd8fe6ab27ca75128919a18d757604c # v6.4.1
-      - name: Regeln (Dateigrösse, Build-Nummern, TODO)
+      - name: Regeln (Dateigrösse, Zeilenbreite, Funktionslänge, Parameter, Build-Nummern, TODO)
         run: |
           python3 ../.github/scripts/line_limit.py --ci
+          python3 ../.github/scripts/code_limits.py --ci
           python3 ../.github/scripts/no_build_numbers.py --ci
           python3 ../.github/scripts/version_check.py
           python3 ../.github/scripts/doc_check.py --ci
@@ -335,8 +336,9 @@ jobs:
           # Oberfläche und zählt nicht.
           xcrun xccov view --report --json build/phone.xcresult > build/phone-coverage.json
           python3 .github/scripts/xccov_check.py "iPhone-Zweitwecker" build/phone-coverage.json --exclude BackupSnoozeCard \
-            ios/PhaseWake/BackupAlarm.swift=65 ios/PhaseWake/BackupAlarm+Plan.swift=50 \
-            ios/PhaseWake/BackupAlarm+Snooze.swift=80 ios/PhaseWake/BackupAlarm+Transient.swift=80
+            ios/PhaseWake/BackupAlarm.swift=65 ios/PhaseWake/BackupAlarm+Reschedule.swift=65 \
+            ios/PhaseWake/BackupAlarm+Plan.swift=50 ios/PhaseWake/BackupAlarm+Snooze.swift=80 \
+            ios/PhaseWake/BackupAlarm+Transient.swift=80
       - name: Tests Watch-App
         shell: bash
         # Ein hängender Test bricht ab statt den Lauf stundenlang zu blockieren (ein Lauf hing schon über 78 Minuten).

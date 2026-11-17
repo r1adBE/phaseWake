@@ -25,7 +25,8 @@ final class WatchRulesTests: XCTestCase {
 
     private func pending(_ current: WakePlan?, now: Date, specs: [AlarmSpec]? = nil, done: [String: Date] = [:],
                          holidays: Set<String> = []) -> WakePlan? {
-        WatchRules.pendingNight(current, specs: specs ?? [daily], now: now, doneUntil: done, ringLimit: ringLimit, calendar: zurich,
+        WatchRules.pendingNight(current, specs: specs ?? [daily], now: now, doneUntil: done, ringLimit: ringLimit,
+                                calendar: zurich,
                                 holidays: holidays)
     }
 
@@ -44,9 +45,11 @@ final class WatchRulesTests: XCTestCase {
         XCTAssertEqual(pending(today, now: now, done: ["a": at(27, 7, 0)]), today, "nur die Nacht davor erledigt")
         XCTAssertNil(pending(today, now: now, specs: []), "Wecker gelöscht")
         XCTAssertNil(pending(today, now: now, specs: [daily.with(enabled: false)]), "ausgeschaltet")
-        XCTAssertNil(pending(today, now: now, specs: [try! AlarmSpec(id: "a", hour: 7, minute: 30, days: Set(Weekday.allCases))]),
+        XCTAssertNil(pending(today, now: now,
+                             specs: [try! AlarmSpec(id: "a", hour: 7, minute: 30, days: Set(Weekday.allCases))]),
                      "Zeit geändert")
-        XCTAssertNil(pending(today, now: now, specs: [daily.with(skipHolidays: true)], holidays: ["2026-10-28"]), "Feiertag")
+        XCTAssertNil(pending(today, now: now, specs: [daily.with(skipHolidays: true)], holidays: ["2026-10-28"]),
+                     "Feiertag")
     }
 
     func testTransientNeverPending() {

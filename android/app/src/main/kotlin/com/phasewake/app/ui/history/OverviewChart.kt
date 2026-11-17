@@ -14,6 +14,7 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.RoundRect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.platform.LocalInspectionMode
@@ -63,7 +64,10 @@ private val unitLabels = mapOf(
 /** Datum des Morgens zu einem Nachtdatum mit [skeleton] (Sprache des Geräts). */
 private fun morningAs(date: LocalDate, skeleton: String): String {
     val locale = Locale.getDefault()
-    return Format.digits(DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, skeleton), locale), locale).format(date.plusDays(1))
+    return Format.digits(
+        DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, skeleton), locale),
+        locale,
+    ).format(date.plusDays(1))
 }
 
 /** Beschriftung unter der Säule: Wochentag, Wochenbeginn bzw. Monat (je des Morgens). */
@@ -81,7 +85,8 @@ private fun barPeriod(unit: OverviewUnit, bar: OverviewBar): String = when (unit
 }
 
 private fun barValue(context: Context, bar: OverviewBar): String =
-    bar.asleepMinutes?.let { Format.duration(context, Duration.ofMinutes(it)) } ?: context.getString(R.string.chart_no_data)
+    bar.asleepMinutes?.let { Format.duration(context, Duration.ofMinutes(it)) } ?:
+        context.getString(R.string.chart_no_data)
 
 /** Die drei Durchschnitte als (Bezeichnung, Wert). */
 private fun averages(context: Context, o: SleepOverview): List<Pair<String, String>> = listOf(
@@ -149,19 +154,7 @@ internal fun OverviewCard(
             NoDataText()
             return@ChartCard
         }
-        val (asleep, bedtime, wake) = averages(context, o)
-        Row(Modifier.fillMaxWidth().padding(top = 6.dp), verticalAlignment = Alignment.Bottom) {
-            Column(Modifier.weight(1.5f).clearAndSetSemantics { contentDescription = "${asleep.first}: ${asleep.second}" }) {
-                Text(asleep.second, style = MaterialTheme.typography.titleLarge, maxLines = 1)
-                Text(asleep.first, style = MaterialTheme.typography.labelSmall, color = scheme.onSurfaceVariant)
-            }
-            listOf(bedtime, wake).forEach { (name, value) ->
-                Column(Modifier.weight(1f).clearAndSetSemantics { contentDescription = "$name: $value" }) {
-                    Text(value, style = MaterialTheme.typography.titleMedium)
-                    Text(name, style = MaterialTheme.typography.labelSmall, color = scheme.onSurfaceVariant)
-                }
-            }
-        }
+        OverviewAverages(averages(context, o))
         Text(
             res.getQuantityString(R.plurals.goal_week, o.counted, o.reachedNights, o.counted),
             style = MaterialTheme.typography.bodyMedium,
@@ -195,12 +188,16 @@ internal fun OverviewCard(
             selected?.let { highlight(scheme.primary, it * slot, slot, bottom) }
             // Feine Hilfslinie am Boden, damit leere Tage nicht in der Luft hängen.
             drawLine(scheme.outlineVariant, Offset(0f, bottom), Offset(size.width, bottom), strokeWidth = 1.dp.toPx())
-            val gradient = Brush.verticalGradient(listOf(brand.chartActive, brand.stageDeep), startY = top, endY = bottom)
+            val gradient =
+                Brush.verticalGradient(listOf(brand.chartActive, brand.stageDeep), startY = top, endY = bottom)
             o.bars.forEachIndexed { i, bar ->
                 val x = i * slot + (slot - w) / 2
                 val minutes = bar.asleepMinutes
                 if (minutes == null) {
-                    drawRoundRect(brand.chartTrack, Offset(x, bottom - 4.dp.toPx()), Size(w, 4.dp.toPx()), CornerRadius(2.dp.toPx()))
+                    drawRoundRect(
+                        brand.chartTrack, Offset(x, bottom - 4.dp.toPx()), Size(w, 4.dp.toPx()),
+                        CornerRadius(2.dp.toPx()),
+                    )
                 } else {
                     val yTop = bottom - (bottom - y(minutes.toDouble())) * grow.value
                     val h = (bottom - yTop).coerceAtLeast(w.coerceAtMost(6.dp.toPx()))
@@ -219,7 +216,10 @@ internal fun OverviewCard(
                             stackOrder.forEach { stage ->
                                 val part = h * (bar.stageMinutes[stage] ?: 0L) / total
                                 if (part > 0f) {
-                                    drawRect(colors.getValue(stage), Offset(x, y0 - part), Size(w, (part - gap).coerceAtLeast(part / 2)))
+                                    drawRect(
+                                        colors.getValue(stage), Offset(x, y0 - part),
+                                        Size(w, (part - gap).coerceAtLeast(part / 2)),
+                                    )
                                     y0 -= part
                                 }
                             }
@@ -227,22 +227,60 @@ internal fun OverviewCard(
                             drawRect(gradient, Offset(x, bottom - h), Size(w, h))
                         }
                     }
-                    if (bar.reached && grow.value >= 1f) mark(LegendMark.CHECK, scheme.primary, Offset(x + w / 2, bottom - h - check * 1.4f), check * 0.8f)
+                    if (bar.reached && grow.value >= 1f) mark(
+                        LegendMark.CHECK, scheme.primary, Offset(x + w / 2, bottom - h - check * 1.4f), check * 0.8f,
+                    )
                 }
                 val text = labels[i]
-                drawText(text, topLeft = Offset(i * slot + (slot - text.size.width) / 2, size.height - text.size.height))
+                drawText(
+                    text, topLeft = Offset(i * slot + (slot - text.size.width) / 2, size.height - text.size.height),
+                )
             }
             val goalY = y(o.goalMinutes.toDouble())
             dashed(scheme.primary, Offset(0f, goalY), Offset(size.width, goalY))
         }
-        Legend(
-            listOfNotNull(
-                LegendItem(stringResource(R.string.chart_goal, Format.duration(context, Duration.ofMinutes(o.goalMinutes.toLong()))), LegendMark.DASH, scheme.primary),
-                LegendItem(stringResource(R.string.chart_goal_met), LegendMark.NONE, scheme.primary),
-            ) + (if (stacked) stackOrder.map { LegendItem(stageName(context, it), LegendMark.SQUARE, colors.getValue(it)) } else emptyList()) +
-                (if (neutral) listOf(LegendItem(stringResource(R.string.overview_no_stages), LegendMark.STRIPES, scheme.onSurfaceVariant)) else emptyList()),
-        )
+        OverviewLegend(o, stacked, neutral, colors)
     }
+}
+
+/** Ø Schlafdauer gross, daneben Ø Schlafenszeit und Ø Aufwachzeit ([averages]). */
+@Composable
+private fun OverviewAverages(values: List<Pair<String, String>>) {
+    val scheme = MaterialTheme.colorScheme
+    val (asleep, bedtime, wake) = values
+    Row(Modifier.fillMaxWidth().padding(top = 6.dp), verticalAlignment = Alignment.Bottom) {
+        Column(
+            Modifier.weight(1.5f).clearAndSetSemantics { contentDescription = "${asleep.first}: ${asleep.second}" }
+        ) {
+            Text(asleep.second, style = MaterialTheme.typography.titleLarge, maxLines = 1)
+            Text(asleep.first, style = MaterialTheme.typography.labelSmall, color = scheme.onSurfaceVariant)
+        }
+        listOf(bedtime, wake).forEach { (name, value) ->
+            Column(Modifier.weight(1f).clearAndSetSemantics { contentDescription = "$name: $value" }) {
+                Text(value, style = MaterialTheme.typography.titleMedium)
+                Text(name, style = MaterialTheme.typography.labelSmall, color = scheme.onSurfaceVariant)
+            }
+        }
+    }
+}
+
+/** Legende: Ziel, erreichtes Ziel, mit Phasen ([stacked]) die Phasen, daneben ([neutral]) «Ohne Phasen». */
+@Composable
+private fun OverviewLegend(o: SleepOverview, stacked: Boolean, neutral: Boolean, colors: Map<SleepStage, Color>) {
+    val context = LocalContext.current
+    val scheme = MaterialTheme.colorScheme
+    val goal = Format.duration(context, Duration.ofMinutes(o.goalMinutes.toLong()))
+    val items = buildList {
+        add(LegendItem(stringResource(R.string.chart_goal, goal), LegendMark.DASH, scheme.primary))
+        add(LegendItem(stringResource(R.string.chart_goal_met), LegendMark.NONE, scheme.primary))
+        if (stacked) {
+            stackOrder.forEach { add(LegendItem(stageName(context, it), LegendMark.SQUARE, colors.getValue(it))) }
+        }
+        if (neutral) {
+            add(LegendItem(stringResource(R.string.overview_no_stages), LegendMark.STRIPES, scheme.onSurfaceVariant))
+        }
+    }
+    Legend(items)
 }
 
 /** Minuten tief + leicht + REM einer Säule (0 ohne Phasen). */
@@ -254,6 +292,7 @@ private fun rememberAnimationsOn(): Boolean {
     val context = LocalContext.current
     val inspection = LocalInspectionMode.current
     return remember {
-        !inspection && Settings.Global.getFloat(context.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f) != 0f
+        !inspection &&
+            Settings.Global.getFloat(context.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f) != 0f
     }
 }

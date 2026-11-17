@@ -152,7 +152,8 @@ enum BackupIO {
         PrivateSettingChanges.shared.bump()
         defaults.set(NSNumber(value: payload.createdAt), forKey: restoredKey)
         let saved = defaults.flush()
-        DiagStore.shared.log(saved ? DiagKind.sync : .error, saved ? "restored \(alarms.count) alarms" : "restored settings not saved, retry")
+        DiagStore.shared.log(saved ? DiagKind.sync : .error,
+                             saved ? "restored \(alarms.count) alarms" : "restored settings not saved, retry")
         return saved
     }
 

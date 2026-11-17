@@ -45,7 +45,8 @@ enum Plural {
         case "mk", "is":
             return mod10 == 1 && mod100 != 11 ? "one" : "other"
         case "ga":
-            return n == 1 ? "one" : n == 2 ? "two" : (3...6).contains(n) ? "few" : (7...10).contains(n) ? "many" : "other"
+            return n == 1 ? "one" : n == 2 ? "two" : (3...6).contains(n) ? "few" : (7...10).contains(n) ? "many"
+                : "other"
         case "km", "lo", "my":
             return "other"
         case "fil":
@@ -63,7 +64,8 @@ enum Plural {
 
 /// Text mit Pluralform: `count` wählt die Form, `args` füllen die Platzhalter.
 func LP(_ key: String, _ count: Int, _ args: CVarArg...) -> String {
-    let language = Bundle.main.preferredLocalizations.first.map { Locale(identifier: $0).language.languageCode?.identifier ?? "en" } ?? "en"
+    let language = Bundle.main.preferredLocalizations.first
+        .map { Locale(identifier: $0).language.languageCode?.identifier ?? "en" } ?? "en"
     let category = Plural.category(count, language: language)
     let missing = "\u{0}"
     var format = Bundle.main.localizedString(forKey: "\(key)|\(category)", value: missing, table: nil)

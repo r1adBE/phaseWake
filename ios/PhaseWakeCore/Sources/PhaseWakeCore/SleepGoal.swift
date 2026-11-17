@@ -24,7 +24,8 @@ public enum SleepGoal {
 
     /// Wie viele der letzten 7 Nächte (die 7 jüngsten Nachtdaten) das Ziel erreicht haben: (erreicht, gezählt).
     /// Mehrere Einträge zum selben Nachtdatum zählen als eine Nacht mit dem längsten Schlaf. Ohne Daten (0, 0).
-    public static func weekStatus(_ nights: [(date: String, asleepMinutes: Int)], goalMinutes: Int) -> (reached: Int, total: Int) {
+    public static func weekStatus(_ nights: [(date: String, asleepMinutes: Int)], goalMinutes: Int) -> (reached: Int,
+                                                                                                        total: Int) {
         var byDate: [String: Int] = [:]
         for night in nights { byDate[night.date] = max(byDate[night.date] ?? 0, night.asleepMinutes) }
         let recent = byDate.keys.sorted().suffix(weekNights)
@@ -110,10 +111,14 @@ public enum Bedtime {
         var cursor = from
         var remaining = specs
         for _ in 0..<maxSteps {
-            guard let plan = AlarmSchedule.earliestPlan(remaining, now: cursor, calendar: calendar, holidays: holidays) else { return nil }
-            let at = reminderAt(nextAlarmTarget: plan.target, goalMinutes: goalMinutes, leadMinutes: leadMinutes, latencyMinutes: latencyMinutes)
+            guard let plan = AlarmSchedule.earliestPlan(remaining, now: cursor, calendar: calendar,
+                                                        holidays: holidays) else { return nil }
+            let at = reminderAt(nextAlarmTarget: plan.target, goalMinutes: goalMinutes, leadMinutes: leadMinutes,
+                                latencyMinutes: latencyMinutes)
             if at > cursor {
-                return Reminder(at: at, bedtime: bedtime(nextAlarmTarget: plan.target, goalMinutes: goalMinutes, latencyMinutes: latencyMinutes),
+                return Reminder(at: at,
+                                bedtime: bedtime(nextAlarmTarget: plan.target, goalMinutes: goalMinutes,
+                                                 latencyMinutes: latencyMinutes),
                                 target: plan.target)
             }
             // Ein Einmal-Wecker klingelt nur diese eine Nacht; er kommt danach nicht wieder.

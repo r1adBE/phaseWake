@@ -61,7 +61,8 @@ class PhoneResumeAlarmTest {
     @Test
     fun earlierOnsetTargetAlsoCoversConfiguredTime() = runBlocking {
         val zone = ZoneId.systemDefault()
-        val spec = AlarmSpec(id = "a", hour = 7, minute = 0, days = DayOfWeek.entries.toSet(), sleepDurationMinutes = 450)
+        val spec =
+            AlarmSpec(id = "a", hour = 7, minute = 0, days = DayOfWeek.entries.toSet(), sleepDurationMinutes = 450)
         repository.upsert(spec)
         val configured = AlarmSchedule.nextTarget(spec, now.minus(Duration.ofHours(12)), zone)!!
         val earlier = configured.minus(Duration.ofMinutes(40))

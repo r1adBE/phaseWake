@@ -9,7 +9,8 @@ final class UpcomingFallbacksWatchTests: XCTestCase {
     private let now = Date(timeIntervalSince1970: 1_793_000_000)
 
     private func plan(_ id: String = "d", targetIn seconds: TimeInterval) -> WakePlan {
-        WakePlan(alarmId: id, windowStart: now.addingTimeInterval(seconds - 1800), target: now.addingTimeInterval(seconds))
+        WakePlan(alarmId: id, windowStart: now.addingTimeInterval(seconds - 1800),
+                 target: now.addingTimeInterval(seconds))
     }
 
     private func noon() -> Date {
@@ -20,24 +21,26 @@ final class UpcomingFallbacksWatchTests: XCTestCase {
         let daily = try AlarmSpec(id: "d", hour: 7, minute: 0, days: Set(Weekday.allCases))
         let start = noon()
         let first = try XCTUnwrap(AlarmSchedule.nextPlan(daily, now: start, calendar: utc))
-        let nights = UpcomingFallbacks.nights(after: first, specs: [daily], now: start, doneUntil: [:], nominalFirst: nil,
-                                              calendar: utc, holidays: [])
+        let nights = UpcomingFallbacks.nights(after: first, specs: [daily], now: start, doneUntil: [:],
+                                              nominalFirst: nil, calendar: utc, holidays: [])
         // Nächste Nacht hat ihren eigenen Rückfall; danach jede bis 14 Tage ab jetzt.
         XCTAssertEqual(nights.count, 13)
         XCTAssertEqual(nights.first?.target, first.target.addingTimeInterval(86400))
-        XCTAssertTrue(nights.allSatisfy { $0.target > first.target && $0.target <= start.addingTimeInterval(UpcomingFallbacks.horizon) })
+        let horizon = start.addingTimeInterval(UpcomingFallbacks.horizon)
+        XCTAssertTrue(nights.allSatisfy { $0.target > first.target && $0.target <= horizon })
     }
 
     func testGoodNightDoesNotRingAgainAtTheSetTime() throws {
         let daily = try AlarmSpec(id: "d", hour: 7, minute: 0, days: Set(Weekday.allCases))
         let start = noon()
         let nominal = try XCTUnwrap(AlarmSchedule.nextPlan(daily, now: start, calendar: utc))
-        let earlier = WakePlan(alarmId: "d", windowStart: nominal.target.addingTimeInterval(-3600), target: nominal.target.addingTimeInterval(-1800))
-        let withNominal = UpcomingFallbacks.nights(after: earlier, specs: [daily], now: start, doneUntil: [:], nominalFirst: nominal.target,
-                                                   calendar: utc, holidays: [])
+        let earlier = WakePlan(alarmId: "d", windowStart: nominal.target.addingTimeInterval(-3600),
+                               target: nominal.target.addingTimeInterval(-1800))
+        let withNominal = UpcomingFallbacks.nights(after: earlier, specs: [daily], now: start, doneUntil: [:],
+                                                   nominalFirst: nominal.target, calendar: utc, holidays: [])
         XCTAssertEqual(withNominal.first?.target, nominal.target.addingTimeInterval(86400))
-        let without = UpcomingFallbacks.nights(after: earlier, specs: [daily], now: start, doneUntil: [:], nominalFirst: nil,
-                                               calendar: utc, holidays: [])
+        let without = UpcomingFallbacks.nights(after: earlier, specs: [daily], now: start, doneUntil: [:],
+                                               nominalFirst: nil, calendar: utc, holidays: [])
         XCTAssertEqual(without.first?.target, nominal.target)
     }
 
@@ -46,22 +49,26 @@ final class UpcomingFallbacksWatchTests: XCTestCase {
         let once = try AlarmSpec(id: "o", hour: 9, minute: 0)
         let start = noon()
         let first = try XCTUnwrap(AlarmSchedule.nextPlan(daily, now: start, calendar: utc))
-        let nights = UpcomingFallbacks.nights(after: first, specs: [daily, once], now: start, doneUntil: [:], nominalFirst: nil,
-                                              calendar: utc, holidays: [])
+        let nights = UpcomingFallbacks.nights(after: first, specs: [daily, once], now: start, doneUntil: [:],
+                                              nominalFirst: nil, calendar: utc, holidays: [])
         XCTAssertEqual(nights.filter { $0.alarmId == "o" }.count, 1)
         // Der einmalige Wecker ist selbst die nächste Nacht: danach nichts mehr von ihm.
         let onlyOnce = try XCTUnwrap(AlarmSchedule.nextPlan(once, now: start, calendar: utc))
-        XCTAssertTrue(UpcomingFallbacks.nights(after: onlyOnce, specs: [once], now: start, doneUntil: [:], nominalFirst: nil,
-                                               calendar: utc, holidays: []).isEmpty)
-        let nap = WakePlan(alarmId: Transient.napPrefix + "1", windowStart: start, target: start.addingTimeInterval(1200))
-        XCTAssertTrue(UpcomingFallbacks.nights(after: nap, specs: [daily], now: start, doneUntil: [:], nominalFirst: nil,
-                                               calendar: utc, holidays: []).isEmpty)
-        XCTAssertTrue(UpcomingFallbacks.nights(after: nil, specs: [daily], now: start, doneUntil: [:], nominalFirst: nil,
-                                               calendar: utc, holidays: []).isEmpty)
+        XCTAssertTrue(UpcomingFallbacks.nights(after: onlyOnce, specs: [once], now: start, doneUntil: [:],
+                                               nominalFirst: nil, calendar: utc, holidays: []).isEmpty)
+        let nap = WakePlan(alarmId: Transient.napPrefix + "1", windowStart: start,
+                           target: start.addingTimeInterval(1200))
+        XCTAssertTrue(UpcomingFallbacks.nights(after: nap, specs: [daily], now: start, doneUntil: [:],
+                                               nominalFirst: nil, calendar: utc, holidays: []).isEmpty)
+        XCTAssertTrue(UpcomingFallbacks.nights(after: nil, specs: [daily], now: start, doneUntil: [:],
+                                               nominalFirst: nil, calendar: utc, holidays: []).isEmpty)
     }
 
     private func nights(hoursAhead: [Double]) -> [WakePlan] {
-        hoursAhead.map { WakePlan(alarmId: "d", windowStart: now.addingTimeInterval($0 * 3600 - 1800), target: now.addingTimeInterval($0 * 3600)) }
+        hoursAhead.map {
+            WakePlan(alarmId: "d", windowStart: now.addingTimeInterval($0 * 3600 - 1800),
+                     target: now.addingTimeInterval($0 * 3600))
+        }
     }
 
     func testUpcomingChainsWithin48HoursThenSingle() {
@@ -99,13 +106,15 @@ final class UpcomingFallbacksWatchTests: XCTestCase {
         let daily = try AlarmSpec(id: "d", hour: 7, minute: 0, days: Set(Weekday.allCases))
         let start = utc.date(from: DateComponents(year: 2026, month: 11, day: 5, hour: 12))!
         // Erste Nacht liegt drei Tage zurück (ausstehend, nachgeholt): keine Nacht vor jetzt bekommt einen Rückfall.
-        let past = try XCTUnwrap(AlarmSchedule.nextPlan(daily, now: start.addingTimeInterval(-3 * 86400), calendar: utc))
-        let nights = UpcomingFallbacks.nights(after: past, specs: [daily], now: start, doneUntil: [:], nominalFirst: nil,
-                                              calendar: utc, holidays: [])
+        let past = try XCTUnwrap(AlarmSchedule.nextPlan(daily, now: start.addingTimeInterval(-3 * 86400),
+                                                        calendar: utc))
+        let nights = UpcomingFallbacks.nights(after: past, specs: [daily], now: start, doneUntil: [:],
+                                              nominalFirst: nil, calendar: utc, holidays: [])
         XCTAssertFalse(nights.isEmpty)
         XCTAssertTrue(nights.allSatisfy { $0.target > start })
         // Auch eine übergebene vergangene Nacht fällt beim Planen der Mitteilungen weg.
-        let entries = UpcomingFallbacks.plan([plan(targetIn: -600), plan(targetIn: 3600)], now: now, otherPending: 0, delay: 60)
+        let entries = UpcomingFallbacks.plan([plan(targetIn: -600), plan(targetIn: 3600)], now: now, otherPending: 0,
+                                             delay: 60)
         XCTAssertEqual(entries.count, 1)
         XCTAssertTrue(entries.allSatisfy { ($0.dates.first ?? .distantPast) > now })
     }

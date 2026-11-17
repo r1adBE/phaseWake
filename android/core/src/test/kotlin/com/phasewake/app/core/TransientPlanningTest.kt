@@ -15,7 +15,8 @@ import kotlin.test.assertTrue
 class TransientPlanningTest {
     private val zurich = ZoneId.of("Europe/Zurich")
     private val now = LocalDateTime.parse("2026-10-29T05:45").atZone(zurich).toInstant()
-    private val alarm = AlarmSpec(id = "a", hour = 7, minute = 0, windowMinutes = 30, days = setOf(java.time.DayOfWeek.THURSDAY))
+    private val alarm =
+        AlarmSpec(id = "a", hour = 7, minute = 0, windowMinutes = 30, days = setOf(java.time.DayOfWeek.THURSDAY))
     private val real = AlarmSchedule.nextPlan(alarm, now, zurich)!!
 
     @Test
@@ -50,11 +51,20 @@ class TransientPlanningTest {
         val at = nap.plan.target
         val missed = java.time.Duration.ofMinutes(30)
         assertTrue(Transient.catchesUpAfterBoot(nap.plan.alarmId, at, at.minusSeconds(60), missed))
-        assertTrue(Transient.catchesUpAfterBoot(nap.plan.alarmId, at, at.plus(Transient.PLAN_AFTER_TARGET).minusMillis(1), missed))
+        assertTrue(
+            Transient.catchesUpAfterBoot(
+                nap.plan.alarmId,
+                at,
+                at.plus(Transient.PLAN_AFTER_TARGET).minusMillis(1),
+                missed,
+            ),
+        )
         assertFalse(Transient.catchesUpAfterBoot(nap.plan.alarmId, at, at.plus(Transient.PLAN_AFTER_TARGET), missed))
         assertFalse(Transient.catchesUpAfterBoot(nap.plan.alarmId, at, at.plusSeconds(20 * 60), missed))
         val test = Transient.test(null, now, zurich, "2")
-        assertFalse(Transient.catchesUpAfterBoot(test.plan.alarmId, test.plan.target, test.plan.target.plusSeconds(61), missed))
+        assertFalse(
+            Transient.catchesUpAfterBoot(test.plan.alarmId, test.plan.target, test.plan.target.plusSeconds(61), missed),
+        )
         // Geschlummerter Powernap: Grenze ab dem Schlummer-Ende.
         val snoozeEnd = at.plusSeconds(9 * 60)
         assertTrue(Transient.catchesUpAfterBoot(nap.plan.alarmId, snoozeEnd, snoozeEnd.plusSeconds(30), missed))
@@ -64,7 +74,9 @@ class TransientPlanningTest {
         // Handy-Schlummersicherung ohne Kennung (leer): wie ein gespeicherter Wecker.
         assertTrue(Transient.catchesUpAfterBoot("", real.target, real.target.plusSeconds(20 * 60), missed))
         // Zweitwecker am Handy für einen Powernap: ebenfalls nur 60 s.
-        assertFalse(Transient.catchesUpAfterBoot(Transient.NAP_PREFIX + "x", real.target, real.target.plusSeconds(61), missed))
+        assertFalse(
+            Transient.catchesUpAfterBoot(Transient.NAP_PREFIX + "x", real.target, real.target.plusSeconds(61), missed),
+        )
     }
 
     @Test
@@ -86,7 +98,10 @@ class TransientPlanningTest {
         // Im Fenster 6:30–7:00.
         val inWindow = real.windowStart.plusSeconds(600)
         val later = Transient.test(null, inWindow, zurich, "2")
-        assertEquals(TransientConflict.ALARM_RUNNING, Transient.conflict(later, real, nightActive = false, now = inWindow))
+        assertEquals(
+            TransientConflict.ALARM_RUNNING,
+            Transient.conflict(later, real, nightActive = false, now = inWindow),
+        )
         assertEquals(TransientConflict.ALARM_RUNNING, Transient.conflict(later, real, false, real.windowStart))
         // Nap bis 7:15 überdeckt das Fenster ab 6:30.
         val nap = Transient.nap(null, now, zurich, 90, "3")
@@ -95,6 +110,13 @@ class TransientPlanningTest {
         val fits = Transient.nap(null, real.windowStart.minusSeconds(45 * 60), zurich, 45, "4")
         assertNull(Transient.conflict(fits, real, false, real.windowStart.minusSeconds(45 * 60)))
         // Nach der Zielzeit (Nacht erledigt, nächster Plan ist morgen): erlaubt.
-        assertNull(Transient.conflict(Transient.test(null, real.target, zurich, "5"), AlarmSchedule.nextPlan(alarm, real.target, zurich), false, real.target))
+        assertNull(
+            Transient.conflict(
+                Transient.test(null, real.target, zurich, "5"),
+                AlarmSchedule.nextPlan(alarm, real.target, zurich),
+                false,
+                real.target,
+            ),
+        )
     }
 }

@@ -92,7 +92,12 @@ class DocumentedValuesTest {
     @Test
     fun restartCatchesUpForThirtyMinutes() {
         assertEquals(Duration.ofMinutes(30), DirectBoot.MISSED_DURING_BOOT)
-        val saved = DirectBoot.Saved(WakePlan("a", at.minus(Duration.ofMinutes(30)), at), at, watchSound = false, label = "")
+        val saved = DirectBoot.Saved(
+            WakePlan("a", at.minus(Duration.ofMinutes(30)), at),
+            at,
+            watchSound = false,
+            label = "",
+        )
         assertTrue(DirectBoot.catchesUp(saved, at.plus(Duration.ofMinutes(29))))
         assertTrue(DirectBoot.catchesUp(saved, at.plus(Duration.ofMinutes(30))))
         assertFalse(DirectBoot.catchesUp(saved, at.plus(Duration.ofMinutes(31))))

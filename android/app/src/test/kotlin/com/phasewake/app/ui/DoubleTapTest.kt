@@ -66,7 +66,9 @@ class DoubleTapTest {
     private fun settle(tree: ComposeTree, what: String, check: () -> Boolean) {
         val end = System.nanoTime() + 20_000_000_000L
         while (!(try { check() } catch (e: AssertionError) { false })) {
-            if (System.nanoTime() > end) error("$what; Texte: ${try { tree.texts() } catch (e: AssertionError) { listOf(e.message) }}")
+            if (System.nanoTime() > end) error(
+                "$what; Texte: ${try { tree.texts() } catch (e: AssertionError) { listOf(e.message) }}"
+            )
             Thread.sleep(20)
             shadowOf(Looper.getMainLooper()).idle()
             tree.idle(200)
@@ -118,9 +120,11 @@ class DoubleTapTest {
         // Zur Zeile scrollen: Am Abend stehen mehr Karten über der Liste und schieben sie aus dem Bild.
         settle(tree, "Startseite zeigt den Wecker nicht") {
             tree.scrollToKey("work")
-            tree.nodes().any { it.config.getOrNull(SemanticsActions.OnClick) != null && tree.text(it).contains("Arbeit") }
+            tree.nodes()
+                .any { it.config.getOrNull(SemanticsActions.OnClick) != null && tree.text(it).contains("Arbeit") }
         }
-        val item = tree.nodes().first { it.config.getOrNull(SemanticsActions.OnClick) != null && tree.text(it).contains("Arbeit") }
+        val item = tree.nodes()
+            .first { it.config.getOrNull(SemanticsActions.OnClick) != null && tree.text(it).contains("Arbeit") }
         item.config[SemanticsActions.OnClick].action!!.invoke()
         tree.idle(1_000)
         settle(tree, "Editor nicht offen") { tree.shows(context.getString(R.string.editor_edit)) }
@@ -138,7 +142,10 @@ class DoubleTapTest {
         tapAt(controller.get(), at)
         tree.idle(3_000)
         val texts = tree.texts()
-        assertTrue(texts.any { it.contains("Arbeit") }, "Nach zwei Tipps auf «$label» ($gapMs ms) ist die Startseite leer: $texts")
+        assertTrue(
+            texts.any { it.contains("Arbeit") },
+            "Nach zwei Tipps auf «$label» ($gapMs ms) ist die Startseite leer: $texts",
+        )
         assertTrue(tree.shows(context.getString(R.string.nav_history)), "Untere Leiste fehlt: $texts")
         assertFalse(controller.get().isFinishing)
     }
@@ -180,9 +187,14 @@ class DoubleTapTest {
         tree.idle(150)
         tapAt(controller.get(), at)
         tree.idle(1_500)
-        assertEquals(consentBefore, runBlocking { app.learning.state.first().consent }, "Zweiter Tipp hat die Lernphase beantwortet")
+        assertEquals(
+            consentBefore, runBlocking { app.learning.state.first().consent },
+            "Zweiter Tipp hat die Lernphase beantwortet",
+        )
         assertNull(consentBefore)
-        assertTrue(tree.shows(context.getString(R.string.learn_consent_start)), "Lernseite übersprungen: ${tree.texts()}")
+        assertTrue(
+            tree.shows(context.getString(R.string.learn_consent_start)), "Lernseite übersprungen: ${tree.texts()}",
+        )
         assertEquals(1, runBlocking { app.alarms.current().alarms.size })
     }
 }

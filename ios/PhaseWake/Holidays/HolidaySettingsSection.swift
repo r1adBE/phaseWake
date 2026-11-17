@@ -16,11 +16,13 @@ struct HolidaySettingsSection: View {
                 }
                 // Gespeichertes Land, das (noch) nicht geladen ist, bleibt wählbar.
                 if !store.country.isEmpty, !store.countries.contains(where: { $0.code == store.country }) {
-                    Text(Locale.current.localizedString(forRegionCode: store.country) ?? store.country).tag(store.country)
+                    Text(Locale.current.localizedString(forRegionCode: store.country) ?? store.country)
+                        .tag(store.country)
                 }
             }
             if !store.regions.isEmpty {
-                Picker(L("holidays_region"), selection: Binding(get: { store.region }, set: { select(store.country, $0) })) {
+                Picker(L("holidays_region"),
+                       selection: Binding(get: { store.region }, set: { select(store.country, $0) })) {
                     Text(L("holidays_whole_country")).tag("")
                     ForEach(store.regions, id: \.code) { region in
                         Text(region.name).tag(region.code)

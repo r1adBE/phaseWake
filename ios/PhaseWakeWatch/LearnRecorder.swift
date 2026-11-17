@@ -117,7 +117,8 @@ final class LearnRecorder {
     /// Aufzeichnung läuft: Sie endet ohne Auswertung (Grund `phone`). Danach neu planen.
     func apply(_ new: LearningSnapshot) {
         guard new.replaces(snapshot) else { return }
-        let changed = new.active != snapshot.active || new.floor != snapshot.floor || new.restingHeartRate != snapshot.restingHeartRate
+        let changed = new.active != snapshot.active || new.floor != snapshot.floor
+            || new.restingHeartRate != snapshot.restingHeartRate
         snapshot = new
         SettingsFile.watchSession.set(try? JSONEncoder().encode(new), forKey: Self.snapshotKey)
         if changed { DiagStore.shared.log(.sync, "learning \(new.diagLine)") }
@@ -139,7 +140,8 @@ final class LearnRecorder {
             return
         }
         guard var current = mark, current.alarmId == alarmId,
-              abs(current.target.timeIntervalSince(target)) <= GoodNightEstimate.maxAhead, current.wokeAt == nil else { return }
+              abs(current.target.timeIntervalSince(target)) <= GoodNightEstimate.maxAhead,
+              current.wokeAt == nil else { return }
         current.wokeAt = Date()
         save(current)
     }
@@ -202,7 +204,8 @@ final class LearnRecorder {
         let onset = Self.nightStart(plan: plan, spec: spec, sleepGoal: model.sleepGoal)
         let battery = Self.battery()
         nextTry = nil
-        switch AppleLearnRecord.decide(now: Date(), target: plan.target, onsetStart: onset, battery: battery, charging: Self.charging()) {
+        switch AppleLearnRecord.decide(now: Date(), target: plan.target, onsetStart: onset, battery: battery,
+                                       charging: Self.charging()) {
         case .wait(let until):
             nextTry = until
         case .skip(let reason):
@@ -225,7 +228,8 @@ final class LearnRecorder {
             if let pending = mark { await finish(pending) }
             ensureRecorder(until: Date().addingTimeInterval(duration))
             save(Mark(alarmId: plan.alarmId, target: plan.target, from: from, until: until, wokeAt: nil, motions: []))
-            DiagStore.shared.log(.measureStart, "learn record start bat=\(battery.map { "\($0)" } ?? "-") mode=recorder")
+            let bat = battery.map { "\($0)" } ?? "-"
+            DiagStore.shared.log(.measureStart, "learn record start bat=\(bat) mode=recorder")
             WatchBattery.begin(alarmId: plan.alarmId, target: plan.target)
         }
     }
@@ -237,7 +241,8 @@ final class LearnRecorder {
         // Nie neben einer laufenden Aufzeichnung: Ein zweiter Aufruf könnte ihre Dauer verkürzen.
         if let start = Self.nightStart(), Date() >= start { return }
         guard !askedMotion, mark == nil, !recorderRunning, WKApplication.shared().applicationState == .active,
-              CMSensorRecorder.isAccelerometerRecordingAvailable(), CMSensorRecorder.authorizationStatus() == .notDetermined else { return }
+              CMSensorRecorder.isAccelerometerRecordingAvailable(),
+              CMSensorRecorder.authorizationStatus() == .notDetermined else { return }
         askedMotion = true
         CMSensorRecorder().recordAccelerometer(forDuration: 1)
     }
@@ -249,7 +254,9 @@ final class LearnRecorder {
         DiagStore.shared.log(battery ? .battery : .measureStart, "learn record skipped: \(reason)")
         // Lern-Übersicht: Grund ans iPhone, bei Akku, Sensoren und «zu spät» auch als Mitteilung
         // (`LearnRecorder+Notice`).
-        if snapshot.active, let skip = AppleLearnRecord.learnSkip(reason: reason, target: target) { noteLearnSkip(skip) }
+        if snapshot.active, let skip = AppleLearnRecord.learnSkip(reason: reason, target: target) {
+            noteLearnSkip(skip)
+        }
     }
 
     /// Akkustand der Uhr in Prozent; `nil`, wenn unbekannt.
@@ -259,86 +266,22 @@ final class LearnRecorder {
         return device.batteryLevel >= 0 ? Int((device.batteryLevel * 100).rounded()) : nil
     }
 
-    // MARK: Auswerten
-
-    /// Ende der Auswertung: von Hand gestoppt dann (höchstens Ende des Rekorders); sonst bei «Nacht aufzeichnen» das
-    /// Ende des Rekorders (12 Std.), in der Lernphase das Ende des Klingelns (höchstens Ende des Rekorders), ohne
-    /// Klingeln die Zielzeit.
-    nonisolated static func end(of mark: Mark) -> Date {
-        if let stopped = mark.stoppedAt { return min(stopped, mark.until) }
-        if mark.manual == true { return mark.until }
-        return AppleLearnRecord.end(wokeAt: mark.wokeAt, target: mark.target, until: mark.until)
-    }
-
-    /// Grund des Endes: von Hand bzw. Akku wie gemerkt, sonst nach 12 Std. (von Hand) bzw. beim Wecken (Lernphase).
-    nonisolated static func reason(of mark: Mark) -> RecordEnd {
-        if let code = mark.stopReason { return RecordEnd.of(code) }
-        return mark.manual == true ? .cap : .wake
-    }
-
-    /// Letzte Epochengrenze ab `from` bis `until`.
-    nonisolated private static func boundary(from: Date, until: Date) -> Date {
-        let epochs = max(0, Int(until.timeIntervalSince(from)) / DetectorConfig.epochSeconds)
-        return from.addingTimeInterval(TimeInterval(min(epochs, NightRecording.maxEpochs) * DetectorConfig.epochSeconds))
-    }
-
-    /// Wertet `pending` bis zu den abrufbaren Werten aus (höchstens `budget` Sekunden), speichert den Stand und schickt
-    /// die Aufzeichnung ans iPhone, sobald sie bis zum Ende ausgewertet ist (oder die Werte bald verfallen).
-    func process(_ pending: Mark, budget: TimeInterval) async {
-        let now = Date()
-        let end = Self.end(of: pending)
-        let stop = Self.boundary(from: pending.from, until: min(end, now.addingTimeInterval(-Self.dataDelay)))
-        let deadline = now.addingTimeInterval(budget)
-        let motions = await Task.detached(priority: .utility) {
-            Self.motions(pending, until: stop, deadline: deadline)
-        }.value
-        // Inzwischen verworfen (Lernphase aus, Verlauf gelöscht): nichts speichern.
-        guard mark == pending else { return }
-        var updated = pending
-        updated.motions = motions
-        let complete = motions.count * DetectorConfig.epochSeconds >= Int(Self.boundary(from: pending.from, until: end).timeIntervalSince(pending.from))
-        if complete || now.timeIntervalSince(end) > Self.giveUpAfter {
-            await finish(updated)
-        } else {
-            save(updated)
-        }
-    }
-
-    /// Bewegung je Epoche aus dem Rekorder ab dem gespeicherten Stand bis `until` (Epochengrenze), Abschnitt für
-    /// Abschnitt, bis `deadline`. Läuft abseits des Main-Threads.
-    nonisolated private static func motions(_ mark: Mark, until stop: Date, deadline: Date) -> [Double?] {
-        recordedMotions(start: mark.from, done: mark.motions, until: stop, deadline: deadline)
-    }
-
-    /// Puls aus Apple Health dazu, Aufzeichnung ans iPhone (mit der Einschlafzeit, falls bekannt), Stand löschen.
-    func finish(_ done: Mark) async {
-        let end = Self.end(of: done)
-        let pulses = await heartRates(from: done.from, to: end)
-        guard mark?.from == done.from else { return }
-        let current = mark ?? done
-        let rates = RecorderEpochs.heartRates(pulses, start: done.from, count: done.motions.count)
-        let reason = Self.reason(of: current)
-        var recording = NightRecording(start: done.from, epochs: RecorderEpochs.epochs(motions: done.motions, heartRates: rates),
-                                       end: end, endReason: reason)
-        if let bed = current.bedAt, let asleep = current.asleepAt { recording = recording.with(bedAt: bed, asleepAt: asleep) }
-        let measured = done.motions.compactMap { $0 }.count
-        let withPulse = rates.compactMap { $0 }.count
-        DiagStore.shared.log(.measureEnd, "record end \(Self.reasonText(reason, battery: nil)) epochs=\(done.motions.count) motion=\(measured) hr=\(withPulse)")
-        WatchConnectivityBridge.shared.send(learnRecording: NightRecording.encode(recording))
-        save(nil)
-    }
-
     /// Pulswerte (Zeitpunkt, Schläge pro Minute) der Apple Watch aus Apple Health im Zeitraum (``WatchPulseSource``);
     /// leer ohne Daten oder Erlaubnis.
     func heartRates(from: Date, to: Date) async -> [(at: Date, bpm: Double)] {
-        guard HKHealthStore.isHealthDataAvailable(), let type = HKQuantityType.quantityType(forIdentifier: .heartRate) else { return [] }
+        guard HKHealthStore.isHealthDataAvailable(),
+              let type = HKQuantityType.quantityType(forIdentifier: .heartRate) else { return [] }
         let predicate = WatchPulseSource.predicate(start: from, end: to)
         let store = health
         return await withCheckedContinuation { (continuation: CheckedContinuation<[(at: Date, bpm: Double)], Never>) in
             let unit = HKUnit.count().unitDivided(by: .minute())
-            let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { _, results, _ in
-                let samples = ((results as? [HKQuantitySample]) ?? []).filter { WatchPulseSource.counts(deviceModel: $0.device?.model) }
-                continuation.resume(returning: samples.map { (at: $0.startDate, bpm: $0.quantity.doubleValue(for: unit)) })
+            let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: HKObjectQueryNoLimit,
+                                      sortDescriptors: nil) { _, results, _ in
+                let samples = ((results as? [HKQuantitySample]) ?? [])
+                    .filter { WatchPulseSource.counts(deviceModel: $0.device?.model) }
+                continuation.resume(returning: samples.map {
+                    (at: $0.startDate, bpm: $0.quantity.doubleValue(for: unit))
+                })
             }
             store.execute(query)
         }
@@ -371,7 +314,9 @@ final class LearnRecorder {
             let end = Self.end(of: mark)
             let ready = end.addingTimeInterval(Self.dataDelay + 60)
             date = now < ready ? ready : now.addingTimeInterval(Self.retry)
-            if mark.manual == true, now < end, let check = date { date = min(check, now.addingTimeInterval(Self.batteryCheck)) }
+            if mark.manual == true, now < end, let check = date {
+                date = min(check, now.addingTimeInterval(Self.batteryCheck))
+            }
         } else if snapshot.active, let nextTry {
             date = nextTry
         }

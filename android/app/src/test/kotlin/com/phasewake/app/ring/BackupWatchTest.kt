@@ -49,7 +49,11 @@ class BackupWatchTest {
     private val configured: Instant = AlarmSchedule.nextTarget(spec, Instant.parse("2026-11-03T12:00:00Z"), zone)!!
     private val now = configured.minus(Duration.ofMinutes(5))
     private val repository = AlarmRepository(MemoryStore())
-    private val backup by lazy { BackupAlarm(context, repository, MemoryStore(), WearSync(context), now = { now }, watchSeenAt = { now.toEpochMilli() }) }
+    private val backup by lazy {
+        BackupAlarm(
+            context, repository, MemoryStore(), WearSync(context), now = { now }, watchSeenAt = { now.toEpochMilli() },
+        )
+    }
 
     @Before
     fun clean() {
@@ -60,10 +64,12 @@ class BackupWatchTest {
     @After
     fun cleanUp() = SunriseLight.stop(context)
 
-    private fun ring(id: String? = "a") = RingMessage(id, configured.toEpochMilli(), now.toEpochMilli(), snoozesLeft = 2)
+    private fun ring(id: String? = "a") =
+        RingMessage(id, configured.toEpochMilli(), now.toEpochMilli(), snoozesLeft = 2)
 
     @Suppress("DEPRECATION") // ScheduledAlarm.operation: in Robolectric 4.14 ohne Getter.
-    private fun scheduled(action: String) = alarms.scheduledAlarms.filter { shadowOf(it.operation).savedIntent.action == action }
+    private fun scheduled(action: String) =
+        alarms.scheduledAlarms.filter { shadowOf(it.operation).savedIntent.action == action }
 
     @Suppress("DEPRECATION")
     private fun intentOf(alarm: ShadowAlarmManager.ScheduledAlarm): Intent = shadowOf(alarm.operation).savedIntent
@@ -144,7 +150,9 @@ class BackupWatchTest {
         val light = spec.copy(sunrise = Sunrise.WINDOW)
         repository.upsert(light)
         backup.reschedule()
-        assertEquals(configured.plus(BackupAlarm.GRACE).toEpochMilli(), scheduled(BackupAlarm.ACTION).single().triggerAtMs)
+        assertEquals(
+            configured.plus(BackupAlarm.GRACE).toEpochMilli(), scheduled(BackupAlarm.ACTION).single().triggerAtMs,
+        )
         val sunrise = scheduled(BackupAlarm.ACTION_SUNRISE).single()
         val windowStart = AlarmSchedule.planAt(light, configured).windowStart
         assertEquals(maxOf(windowStart, now).toEpochMilli(), sunrise.triggerAtMs)
@@ -161,7 +169,10 @@ class BackupWatchTest {
         SunriseLight.stop(context)
         assertTrue(diag.entries().any { it.kind == DiagKind.STOP && it.detail == "phone sunrise end" })
         backup.rescheduleSunrise()
-        assertTrue(scheduled(BackupAlarm.ACTION_SUNRISE).none { intentOf(it).getLongExtra(SunriseLight.EXTRA_END, 0L) == configured.toEpochMilli() })
+        assertTrue(
+            scheduled(BackupAlarm.ACTION_SUNRISE)
+                .none { intentOf(it).getLongExtra(SunriseLight.EXTRA_END, 0L) == configured.toEpochMilli() }
+        )
     }
 
     @Test

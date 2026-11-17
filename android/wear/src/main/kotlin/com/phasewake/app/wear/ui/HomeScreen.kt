@@ -73,7 +73,12 @@ internal fun goodNightTap(active: Boolean, tooFar: Boolean): GoodNightTap = when
 }
 
 @Composable
-internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit, onNap: () -> Unit = {}, onDiagnostics: () -> Unit = {}) {
+internal fun HomeScreen(
+    onAdd: () -> Unit,
+    onEdit: (AlarmSpec) -> Unit,
+    onNap: () -> Unit = {},
+    onDiagnostics: () -> Unit = {},
+) {
     val context = LocalContext.current
     val app = context.wearApp
     val scope = rememberCoroutineScope()
@@ -103,18 +108,23 @@ internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit, onNap: (
         return Duration.between(at, latest) > WakeService.GOOD_NIGHT_MAX_AHEAD
     }
 
-    fun granted(permission: String) = ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
+    fun granted(permission: String) =
+        ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
     fun missing() = requiredPermissions().filterNot(::granted)
     // Puls im Hintergrund (ab Wear OS 4): getrennt und erst, wenn das Pulsrecht erteilt ist (sonst lehnt das System es
     // ab).
-    fun missingBackground() = SensorAccess.backgroundPermission()?.takeIf { granted(SensorAccess.heartRatePermission()) && !granted(it) }
+    fun missingBackground() = SensorAccess.backgroundPermission()?.takeIf {
+        granted(SensorAccess.heartRatePermission()) && !granted(it)
+    }
     var missingPermissions by remember { mutableStateOf(missing()) }
     var backgroundMissing by remember { mutableStateOf(missingBackground()) }
     fun fullScreenMissing() = !NotificationManagerCompat.from(context).canUseFullScreenIntent()
     var fullScreenBlocked by remember { mutableStateOf(fullScreenMissing()) }
     // Nach einer Ablehnung fragt das System oft nicht mehr: dann die App-Einstellungen öffnen. «Gefragt» übersteht das
     // Prozessende ([PermissionAsks]), sonst tat der erste Tipp nach jedem Start sichtbar nichts.
-    fun blocked(permissions: List<String>) = permissions.isNotEmpty() && permissions.none { PermissionAsks.canAsk(context, it) }
+    fun blocked(permissions: List<String>) = permissions.isNotEmpty() && permissions.none {
+        PermissionAsks.canAsk(context, it)
+    }
     var dndBlocks by remember { mutableStateOf(DoNotDisturb.blocksAlarms(context)) }
     LifecycleResumeEffect(Unit) {
         fullScreenBlocked = fullScreenMissing()
@@ -153,46 +163,50 @@ internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit, onNap: (
 
     val extras = homeExtras(now, zone, onNap, onDiagnostics)
     HomeContent(
-        extras = extras,
-        alarms = alarms,
-        loading = loaded == null,
-        lastNight = nights?.lastOrNull(),
-        plan = plan,
-        zone = zone,
-        goodNightActive = goodNightSince != null,
-        goodNightTooFar = goodNightTooFar(now),
-        permissionsMissing = missingPermissions.isNotEmpty() || backgroundMissing != null || fullScreenBlocked,
-        dndBlocks = dndBlocks,
-        onGoodNight = {
-            val alarm = sleepAlarm ?: return@HomeContent
-            when (goodNightTap(active = goodNightSince != null, tooFar = goodNightTooFar(Instant.now()))) {
-                GoodNightTap.CONFIRM_CANCEL -> confirmCancel = true
-                GoodNightTap.START -> WakeService.goodNight(context, alarm.id)
-                GoodNightTap.NONE -> Unit
-            }
-        },
-        onRequestPermissions = {
-            val background = backgroundMissing
-            when {
-                missingPermissions.isNotEmpty() && blocked(missingPermissions) -> openAppSettings(context)
-                missingPermissions.isNotEmpty() -> {
-                    PermissionAsks.markAsked(context, missingPermissions)
-                    launcher.launch(missingPermissions.toTypedArray())
+        state = HomeState(
+            alarms = alarms,
+            loading = loaded == null,
+            lastNight = nights?.lastOrNull(),
+            plan = plan,
+            zone = zone,
+            goodNightActive = goodNightSince != null,
+            goodNightTooFar = goodNightTooFar(now),
+            permissionsMissing = missingPermissions.isNotEmpty() || backgroundMissing != null || fullScreenBlocked,
+            dndBlocks = dndBlocks,
+        ),
+        actions = HomeActions(
+            onGoodNight = {
+                val alarm = sleepAlarm ?: return@HomeActions
+                when (goodNightTap(active = goodNightSince != null, tooFar = goodNightTooFar(Instant.now()))) {
+                    GoodNightTap.CONFIRM_CANCEL -> confirmCancel = true
+                    GoodNightTap.START -> WakeService.goodNight(context, alarm.id)
+                    GoodNightTap.NONE -> Unit
                 }
-                background != null && blocked(listOf(background)) -> openAppSettings(context)
-                background != null -> askBackground(background)
-                fullScreenBlocked -> openFullScreenSettings(context)
-            }
-        },
-        onOpenDnd = { DoNotDisturb.openSettings(context) },
-        onToggle = { alarm, enabled ->
-            scope.launch {
-                app.sync.publishAlarms(app.alarms.setEnabled(alarm.id, enabled))
-                app.scheduler.reschedule()
-            }
-        },
-        onAdd = onAdd,
-        onEdit = onEdit,
+            },
+            onRequestPermissions = {
+                val background = backgroundMissing
+                when {
+                    missingPermissions.isNotEmpty() && blocked(missingPermissions) -> openAppSettings(context)
+                    missingPermissions.isNotEmpty() -> {
+                        PermissionAsks.markAsked(context, missingPermissions)
+                        launcher.launch(missingPermissions.toTypedArray())
+                    }
+                    background != null && blocked(listOf(background)) -> openAppSettings(context)
+                    background != null -> askBackground(background)
+                    fullScreenBlocked -> openFullScreenSettings(context)
+                }
+            },
+            onOpenDnd = { DoNotDisturb.openSettings(context) },
+            onToggle = { alarm, enabled ->
+                scope.launch {
+                    app.sync.publishAlarms(app.alarms.setEnabled(alarm.id, enabled))
+                    app.scheduler.reschedule()
+                }
+            },
+            onAdd = onAdd,
+            onEdit = onEdit,
+        ),
+        extras = extras,
     )
     AlertDialog(
         visible = confirmCancel && goodNightSince != null,
@@ -228,13 +242,22 @@ private fun homeExtras(now: Instant, zone: ZoneId, onNap: () -> Unit, onDiagnost
         onStopNap = { id -> app.appScope.launch { TransientInbox.cancelled(app, id, fromWatch = true) } },
         skipped = { alarm ->
             AlarmSchedule.skippedDate(alarm, now, zone)?.let {
-                localizedDigits(java.time.format.DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, "EEEdM"), locale), locale).format(it)
+                localizedDigits(
+                    java.time.format.DateTimeFormatter.ofPattern(
+                        android.text.format.DateFormat.getBestDateTimePattern(locale, "EEEdM"),
+                        locale,
+                    ),
+                    locale,
+                ).format(it)
             }
         },
         onWindowTap = {
             if (!diagnostics) {
                 taps++
-                DiagUnlock.remaining(taps)?.let { Toast.makeText(context, res.getQuantityString(R.plurals.diag_taps_left, it, it), Toast.LENGTH_SHORT).show() }
+                DiagUnlock.remaining(taps)?.let {
+                    Toast.makeText(context, res.getQuantityString(R.plurals.diag_taps_left, it, it), Toast.LENGTH_SHORT)
+                        .show()
+                }
                 if (DiagUnlock.unlocked(taps)) app.appScope.launch { WatchDiag.setShown(context, true) }
             }
         },
@@ -248,7 +271,11 @@ private fun homeExtras(now: Instant, zone: ZoneId, onNap: () -> Unit, onDiagnost
             when {
                 recordSince != null -> RecordControl.stopFromWatch(context)
                 // Zu wenig Akku: nichts starten (der Wecker hat Vorrang), nur ein kurzer Hinweis.
-                !RecordControl.startFromWatch(context) -> Toast.makeText(context, R.string.record_battery_low, Toast.LENGTH_SHORT).show()
+                !RecordControl.startFromWatch(context) -> Toast.makeText(
+                    context,
+                    R.string.record_battery_low,
+                    Toast.LENGTH_SHORT,
+                ).show()
             }
         },
     )
@@ -256,7 +283,10 @@ private fun homeExtras(now: Instant, zone: ZoneId, onNap: () -> Unit, onDiagnost
 
 /** App-Einstellungen (Berechtigungen), wenn das System nicht mehr nachfragt. */
 private fun openAppSettings(context: android.content.Context) {
-    val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS, android.net.Uri.fromParts("package", context.packageName, null))
+    val intent = Intent(
+        android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+        android.net.Uri.fromParts("package", context.packageName, null),
+    )
     try {
         context.startActivity(intent)
     } catch (_: android.content.ActivityNotFoundException) {
@@ -267,7 +297,10 @@ private fun openAppSettings(context: android.content.Context) {
 /** Erlaubnis für den Weckbildschirm (Vollbild-Mitteilung); sonst die App-Einstellungen. */
 private fun openFullScreenSettings(context: android.content.Context) {
     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-        val intent = Intent(android.provider.Settings.ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT, android.net.Uri.fromParts("package", context.packageName, null))
+        val intent = Intent(
+            android.provider.Settings.ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT,
+            android.net.Uri.fromParts("package", context.packageName, null),
+        )
         try {
             context.startActivity(intent)
             return

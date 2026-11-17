@@ -64,7 +64,8 @@ public enum AlarmSchedule {
     /// Sommer-/Winterzeit: in der Lücke die erste gültige Zeit danach, in der Überlappung die frühere.
     /// Ein wiederholter Wecker lässt Termine bis `skipUntil` (Wandzeit, `wallMillis`) aus und, mit `skipHolidays`,
     /// Termine an `holidays`.
-    public static func nextTarget(_ spec: AlarmSpec, now: Date, calendar: Calendar, holidays: Set<String> = []) -> Date? {
+    public static func nextTarget(_ spec: AlarmSpec, now: Date, calendar: Calendar,
+                                  holidays: Set<String> = []) -> Date? {
         guard spec.enabled else { return nil }
         let today = calendar.startOfDay(for: now)
         let limit = mayDrop(spec, holidays: holidays) ? maxSearchDays : searchDays
@@ -76,13 +77,15 @@ public enum AlarmSchedule {
             parts.minute = spec.minute
             guard let target = resolve(parts, calendar: calendar), target > now else { continue }
             let wall = wallMillis(target, calendar: calendar)
-            if !dropped(spec, wall: wall, date: SleepNotes.dateString(day, calendar: calendar), holidays: holidays) { return target }
+            if !dropped(spec, wall: wall, date: SleepNotes.dateString(day, calendar: calendar),
+                        holidays: holidays) { return target }
         }
         return nil
     }
 
     /// Plan für die nächste Nacht des Weckers (Zielzeit echt nach `now`), oder `nil`, wenn er aus ist.
-    public static func nextPlan(_ spec: AlarmSpec, now: Date, calendar: Calendar, holidays: Set<String> = []) -> WakePlan? {
+    public static func nextPlan(_ spec: AlarmSpec, now: Date, calendar: Calendar,
+                                holidays: Set<String> = []) -> WakePlan? {
         guard let target = nextTarget(spec, now: now, calendar: calendar, holidays: holidays) else { return nil }
         return plan(spec, target: target)
     }
@@ -90,13 +93,15 @@ public enum AlarmSchedule {
     /// Plan des Weckers `spec` für die Zielzeit `target`: Messbeginn `measureWindowMinutes` davor; bei «Genau» mit
     /// `exact`.
     public static func plan(_ spec: AlarmSpec, target: Date) -> WakePlan {
-        WakePlan(alarmId: spec.id, windowStart: windowStart(target, windowMinutes: spec.measureWindowMinutes), target: target,
+        WakePlan(alarmId: spec.id, windowStart: windowStart(target, windowMinutes: spec.measureWindowMinutes),
+                 target: target,
                  exact: spec.isExact)
     }
 
     /// Der früheste Plan über alle Wecker, oder `nil`, wenn keiner aktiv ist. Bei gleicher Zielzeit gewinnt die
     /// kleinere Kennung, damit beide Plattformen denselben Wecker wählen.
-    public static func earliestPlan(_ specs: [AlarmSpec], now: Date, calendar: Calendar, holidays: Set<String> = []) -> WakePlan? {
+    public static func earliestPlan(_ specs: [AlarmSpec], now: Date, calendar: Calendar,
+                                    holidays: Set<String> = []) -> WakePlan? {
         earliestPlan(specs, now: now, doneUntil: [:], calendar: calendar, holidays: holidays)
     }
 
@@ -104,7 +109,8 @@ public enum AlarmSchedule {
     /// Ein zweiter Wecker am selben Morgen bleibt davon unberührt.
     public static func earliestPlan(_ specs: [AlarmSpec], now: Date, doneUntil: [String: Date], calendar: Calendar,
                                     holidays: Set<String> = []) -> WakePlan? {
-        specs.compactMap { nextPlan($0, now: searchFrom(now, doneUntil[$0.id]), calendar: calendar, holidays: holidays) }
+        specs.compactMap { nextPlan($0, now: searchFrom(now, doneUntil[$0.id]), calendar: calendar,
+                                    holidays: holidays) }
             .min { ($0.target, $0.alarmId) < ($1.target, $1.alarmId) }
     }
 
@@ -114,11 +120,13 @@ public enum AlarmSchedule {
     /// (`suppressedUntil` vor der Zielzeit), bleibt dieser Plan. Sonst `nil`. `nextTarget` sucht nur nach `now`; ohne
     /// diese Prüfung fiele die Sicherung weg, wenn in der Nachfrist neu geplant wird (Kaltstart der App). Mit `grace` 0
     /// nie. Wie Kotlin.
-    public static func inGrace(_ spec: AlarmSpec, plannedTarget: Date?, now: Date, grace: TimeInterval, calendar: Calendar,
+    public static func inGrace(_ spec: AlarmSpec, plannedTarget: Date?, now: Date, grace: TimeInterval,
+                               calendar: Calendar,
                                holidays: Set<String> = [], suppressedUntil: Date? = nil) -> WakePlan? {
         guard let target = plannedTarget, target <= now, target.addingTimeInterval(grace) > now else { return nil }
         if let suppressedUntil, suppressedUntil >= target { return nil }
-        guard let next = nextTarget(spec, now: target.addingTimeInterval(-0.001), calendar: calendar, holidays: holidays),
+        guard let next = nextTarget(spec, now: target.addingTimeInterval(-0.001), calendar: calendar,
+                                    holidays: holidays),
               millis(next) == millis(target) else { return nil }
         return plan(spec, target: target)
     }
@@ -131,12 +139,14 @@ public enum AlarmSchedule {
     /// (`suppressedUntil` vor der Zielzeit). Sonst `nil`, ebenso ohne Zielzeit oder ohne Kalender (alte Daten). Vor dem
     /// Fensterbeginn gilt die neue Ortszeit. Wie Kotlin.
     public static func begunNight(_ spec: AlarmSpec, plannedTarget: Date?, plannedCalendar: Calendar?, now: Date,
-                                  grace: TimeInterval, holidays: Set<String> = [], suppressedUntil: Date? = nil) -> WakePlan? {
+                                  grace: TimeInterval, holidays: Set<String> = [],
+                                  suppressedUntil: Date? = nil) -> WakePlan? {
         guard let target = plannedTarget, let calendar = plannedCalendar else { return nil }
         let begun = plan(spec, target: target)
         guard begun.windowStart <= now, target.addingTimeInterval(grace) > now else { return nil }
         if let suppressedUntil, suppressedUntil >= target { return nil }
-        guard let next = nextTarget(spec, now: target.addingTimeInterval(-0.001), calendar: calendar, holidays: holidays),
+        guard let next = nextTarget(spec, now: target.addingTimeInterval(-0.001), calendar: calendar,
+                                    holidays: holidays),
               millis(next) == millis(target) else { return nil }
         return begun
     }
@@ -146,7 +156,8 @@ public enum AlarmSchedule {
     /// dieser (vergangenen) Zielzeit, damit er gleich klingelt statt erst am nächsten Tag. Nur Wecker aus
     /// `catchUp.alarmIds`. Mehrere: die früheste Zielzeit, bei Gleichstand die kleinere Kennung. Sonst `nil`.
     /// Ohne Nachholen gilt `earliestPlan` mit denselben Werten. Wie Kotlin.
-    public static func missedPlan(_ specs: [AlarmSpec], catchUp: CatchUpWindow?, now: Date, doneUntil: [String: Date] = [:],
+    public static func missedPlan(_ specs: [AlarmSpec], catchUp: CatchUpWindow?, now: Date,
+                                  doneUntil: [String: Date] = [:],
                                   calendar: Calendar, holidays: Set<String> = []) -> WakePlan? {
         guard let catchUp, catchUp.isValid(now: now) else { return nil }
         return specs.filter { catchUp.alarmIds.contains($0.id) }.compactMap { spec -> WakePlan? in
@@ -179,7 +190,8 @@ public enum AlarmSchedule {
     public static func skipNext(_ spec: AlarmSpec, now: Date, doneUntil: Date? = nil, calendar: Calendar,
                                 holidays: Set<String> = []) -> AlarmSpec {
         guard !spec.isOneShot,
-              let target = nextTarget(spec, now: searchFrom(now, doneUntil), calendar: calendar, holidays: holidays) else { return spec }
+              let target = nextTarget(spec, now: searchFrom(now, doneUntil), calendar: calendar,
+                                      holidays: holidays) else { return spec }
         return spec.with(skipUntil: wallMillis(target, calendar: calendar))
     }
 
@@ -188,7 +200,8 @@ public enum AlarmSchedule {
     public static func nextSkipDate(_ spec: AlarmSpec, now: Date, doneUntil: Date? = nil, calendar: Calendar,
                                     holidays: Set<String> = []) -> String? {
         guard !spec.isOneShot,
-              let target = nextTarget(spec, now: searchFrom(now, doneUntil), calendar: calendar, holidays: holidays) else { return nil }
+              let target = nextTarget(spec, now: searchFrom(now, doneUntil), calendar: calendar,
+                                      holidays: holidays) else { return nil }
         return SleepNotes.dateString(target, calendar: calendar)
     }
 
@@ -207,11 +220,13 @@ public enum AlarmSchedule {
     /// - `false` = ausgeschaltet → 0.
     ///
     /// `edited.skipUntil` wird nicht gelesen.
-    public static func editedSkip(old: AlarmSpec, edited: AlarmSpec, requested: Bool?, now: Date, doneUntil: Date? = nil,
+    public static func editedSkip(old: AlarmSpec, edited: AlarmSpec, requested: Bool?, now: Date,
+                                  doneUntil: Date? = nil,
                                   calendar: Calendar, holidays: Set<String> = []) -> Int64 {
         switch requested {
         case nil: keepSkip(old: old, edited: edited)
-        case true?: skipNext(undoSkip(edited), now: now, doneUntil: doneUntil, calendar: calendar, holidays: holidays).skipUntil
+        case true?: skipNext(undoSkip(edited), now: now, doneUntil: doneUntil, calendar: calendar,
+                             holidays: holidays).skipUntil
         case false?: 0
         }
     }
@@ -223,12 +238,14 @@ public enum AlarmSchedule {
     /// sonst `nil`. Das Datum hängt nicht von der Zeitzone ab (Wandzeit).
     public static func skippedDate(_ spec: AlarmSpec, now: Date, calendar: Calendar) -> String? {
         guard !spec.isOneShot, spec.skipUntil > wallMillis(now, calendar: calendar) else { return nil }
-        return SleepNotes.dateString(Date(timeIntervalSince1970: TimeInterval(spec.skipUntil) / 1000), calendar: utcCalendar)
+        return SleepNotes.dateString(Date(timeIntervalSince1970: TimeInterval(spec.skipUntil) / 1000),
+                                     calendar: utcCalendar)
     }
 
     /// Datum des nächsten Termins ohne Feiertagsregel (aber mit `skipUntil`), wenn es ein Feiertag ist und
     /// `skipHolidays` gilt; sonst `nil`. Für «Do 30.10.: Feiertag – nicht geweckt».
-    public static func skippedHoliday(_ spec: AlarmSpec, now: Date, calendar: Calendar, holidays: Set<String>) -> String? {
+    public static func skippedHoliday(_ spec: AlarmSpec, now: Date, calendar: Calendar,
+                                      holidays: Set<String>) -> String? {
         guard spec.skipHolidays, !spec.isOneShot, !holidays.isEmpty,
               let target = nextTarget(spec.with(skipHolidays: false), now: now, calendar: calendar) else { return nil }
         let date = SleepNotes.dateString(target, calendar: calendar)
@@ -244,7 +261,8 @@ public enum AlarmSchedule {
         guard let day = specs.compactMap({
             skippedHoliday($0, now: searchFrom(now, doneUntil[$0.id]), calendar: calendar, holidays: holidays)
         }).min() else { return nil }
-        guard let plan = earliestPlan(specs, now: now, doneUntil: doneUntil, calendar: calendar, holidays: holidays) else { return day }
+        guard let plan = earliestPlan(specs, now: now, doneUntil: doneUntil, calendar: calendar,
+                                      holidays: holidays) else { return day }
         return day <= SleepNotes.dateString(plan.target, calendar: calendar) ? day : nil
     }
 

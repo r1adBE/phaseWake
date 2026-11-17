@@ -52,7 +52,8 @@ struct PhoneWidgetSnapshot: Codable, Equatable {
     /// Datei des Stands im Ordner «Private» der App-Gruppe; der Ordner ist von der Sicherung ausgenommen.
     /// `nil` ohne App-Gruppe. Einmal je Prozess bestimmt (Ordner anlegen und ausnehmen).
     private static let fileURL: URL? = {
-        guard let group = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: PhaseWakeStorage.watchGroup) else {
+        guard let group = FileManager.default
+            .containerURL(forSecurityApplicationGroupIdentifier: PhaseWakeStorage.watchGroup) else {
             return nil
         }
         var dir = group.appendingPathComponent("Private", isDirectory: true)

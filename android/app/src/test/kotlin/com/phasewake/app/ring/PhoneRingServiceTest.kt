@@ -55,7 +55,8 @@ class PhoneRingServiceTest {
     fun ringArmsResumeTakeOverRearmsTimeoutSnoozes() {
         val resumeAt = Instant.ofEpochMilli(now.toEpochMilli() + RingRules.TIMEOUT_MS + RingRules.RESUME_MARGIN_MS)
         // Zweitwecker «a» klingelt (das Handy führt): alle Runden, Wiederaufnahme-Alarm steht.
-        val service = Robolectric.buildService(PhoneRingService::class.java, ringIntent("a", now)).create().startCommand(0, 1)
+        val service =
+            Robolectric.buildService(PhoneRingService::class.java, ringIntent("a", now)).create().startCommand(0, 1)
         controller = service
         assertEquals(PhoneRingService.State.Ringing(fromWatch = false, snoozesLeft = Snooze.MAX_COUNT), plain())
         assertEquals(PhoneSnooze.Saved(resumeAt, "a", 0, now.toEpochMilli()), PhoneSnooze.load(context))
@@ -69,7 +70,9 @@ class PhoneRingServiceTest {
         // Niemand reagiert: Zeitgrenze → selbst schlummern, Schlummer-Ende ersetzt die Wiederaufnahme.
         shadowOf(Looper.getMainLooper()).idleFor(Duration.ofMillis(RingRules.TIMEOUT_MS + 1_000))
         assertEquals(PhoneRingService.State.Snoozed::class, PhoneRingService.ringState.value::class)
-        assertEquals(Snooze.MAX_COUNT - 1, (PhoneRingService.ringState.value as PhoneRingService.State.Snoozed).snoozesLeft)
+        assertEquals(
+            Snooze.MAX_COUNT - 1, (PhoneRingService.ringState.value as PhoneRingService.State.Snoozed).snoozesLeft,
+        )
         assertEquals(PhoneSnooze.Saved(Snooze.nextRing(now), "b", 1, targetB), PhoneSnooze.load(context))
     }
 
@@ -81,10 +84,14 @@ class PhoneRingServiceTest {
         val service = Robolectric.buildService(PhoneRingService::class.java, intent).create().startCommand(0, 1)
         controller = service
         assertEquals(PhoneRingService.State.Ringing(fromWatch = true, snoozesLeft = 2), plain())
-        assertEquals(PhoneSnooze.Saved(resumeAt, "a", Snooze.MAX_COUNT - 2, now.toEpochMilli()), PhoneSnooze.load(context))
+        assertEquals(
+            PhoneSnooze.Saved(resumeAt, "a", Snooze.MAX_COUNT - 2, now.toEpochMilli()), PhoneSnooze.load(context),
+        )
         // Am Handy geschlummert: Die Uhr schlummert, statt der Wiederaufnahme gilt die Sicherung nach dem
         // Schlummer-Ende.
-        service.get().onStartCommand(Intent(context, PhoneRingService::class.java).setAction(PhoneRingService.ACTION_SNOOZE), 0, 2)
+        service.get().onStartCommand(
+            Intent(context, PhoneRingService::class.java).setAction(PhoneRingService.ACTION_SNOOZE), 0, 2,
+        )
         shadowOf(Looper.getMainLooper()).idle()
         assertEquals(PhoneRingService.State.Idle, PhoneRingService.ringState.value)
         assertNull(PhoneSnooze.load(context))
@@ -93,6 +100,10 @@ class PhoneRingServiceTest {
     /** Klingelzustand ohne die Angaben, die der Weckbildschirm später ergänzt (Licht, Aufgabe). */
     private fun plain(): PhoneRingService.State {
         val state = PhoneRingService.ringState.value
-        return if (state is PhoneRingService.State.Ringing) PhoneRingService.State.Ringing(state.fromWatch, state.snoozesLeft) else state
+        return if (state is PhoneRingService.State.Ringing) {
+            PhoneRingService.State.Ringing(state.fromWatch, state.snoozesLeft)
+        } else {
+            state
+        }
     }
 }

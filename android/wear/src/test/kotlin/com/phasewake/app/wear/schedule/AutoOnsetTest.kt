@@ -36,7 +36,10 @@ class AutoOnsetTest {
         assertEquals(start, AutoOnset.startAt(plan, spec, goal, Instant.parse("2026-11-02T20:00:00Z"), done = false))
         // Einschlaf-Modus: die Dauer des Weckers statt des Schlafziels.
         val withDuration = spec.copy(sleepDurationMinutes = 480)
-        assertEquals(Instant.parse("2026-11-02T21:30:00Z"), AutoOnset.startAt(plan, withDuration, goal, Instant.parse("2026-11-02T20:00:00Z"), done = false))
+        assertEquals(
+            Instant.parse("2026-11-02T21:30:00Z"),
+            AutoOnset.startAt(plan, withDuration, goal, Instant.parse("2026-11-02T20:00:00Z"), done = false),
+        )
     }
 
     @Test
@@ -49,13 +52,35 @@ class AutoOnsetTest {
     fun noStartWhenANightEndedSinceItsStart() {
         // Zweiter Wecker am selben Morgen; der erste hat um 05:00 geweckt, Beginn wäre 22:00 gewesen.
         val now = Instant.parse("2026-11-03T05:01:00Z")
-        assertNull(AutoOnset.startAt(plan, spec, goal, now, done = false, lastNightEnded = Instant.parse("2026-11-03T05:00:00Z")))
+        assertNull(
+            AutoOnset.startAt(
+                plan,
+                spec,
+                goal,
+                now,
+                done = false,
+                lastNightEnded = Instant.parse("2026-11-03T05:00:00Z"),
+            ),
+        )
         // Grenze: genau zum Beginn geendet zählt schon, 1 ms davor nicht.
         val evening = Instant.parse("2026-11-02T20:00:00Z")
         assertNull(AutoOnset.startAt(plan, spec, goal, evening, done = false, lastNightEnded = start))
-        assertEquals(start, AutoOnset.startAt(plan, spec, goal, evening, done = false, lastNightEnded = start.minusMillis(1)))
+        assertEquals(
+            start,
+            AutoOnset.startAt(plan, spec, goal, evening, done = false, lastNightEnded = start.minusMillis(1)),
+        )
         // Die Nacht davor (gestern Morgen geweckt) hindert die heutige Messung nicht.
-        assertEquals(start, AutoOnset.startAt(plan, spec, goal, evening, done = false, lastNightEnded = Instant.parse("2026-11-02T06:30:00Z")))
+        assertEquals(
+            start,
+            AutoOnset.startAt(
+                plan,
+                spec,
+                goal,
+                evening,
+                done = false,
+                lastNightEnded = Instant.parse("2026-11-02T06:30:00Z"),
+            ),
+        )
     }
 
     @Test

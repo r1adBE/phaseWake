@@ -5,15 +5,20 @@ final class CodecTests: XCTestCase {
 
     func testAlarmsRoundTripAndFormat() throws {
         let alarms = [
-            try AlarmSpec(id: "3f2a-77", hour: 6, minute: 30, days: [.friday, .monday], windowMinutes: 25, phone: .vibrate, watchSound: true, sound: "content://media/internal/audio/media/42", label: "Arbeit | früh, 100 %"),
-            try AlarmSpec(id: "b", hour: 9, minute: 30, windowMinutes: 30, enabled: false, phone: .off, sleepDurationMinutes: 450, sunrise: .window),
+            try AlarmSpec(id: "3f2a-77", hour: 6, minute: 30, days: [.friday, .monday], windowMinutes: 25,
+                          phone: .vibrate, watchSound: true, sound: "content://media/internal/audio/media/42",
+                          label: "Arbeit | früh, 100 %"),
+            try AlarmSpec(id: "b", hour: 9, minute: 30, windowMinutes: 30, enabled: false, phone: .off,
+                          sleepDurationMinutes: 450, sunrise: .window),
         ]
         XCTAssertEqual(try Codec.decodeAlarms(Codec.encodeAlarms(alarms)), alarms)
         XCTAssertEqual(try Codec.decodeAlarms(Codec.encodeAlarms([])), [])
         // Byte-gleich mit Android (CodecTest.alarmsFormatIsStable).
         XCTAssertEqual(
             Codec.encodeAlarms([alarms[0]]),
-            "phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|VIBRATE|1||content%3A%2F%2Fmedia%2Finternal%2Faudio%2Fmedia%2F42|Arbeit+%7C+fr%C3%BCh%2C+100+%25|OFF|NONE|PHONE|0|0\n"
+            "phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|VIBRATE|1||"
+                + "content%3A%2F%2Fmedia%2Finternal%2Faudio%2Fmedia%2F42|"
+                + "Arbeit+%7C+fr%C3%BCh%2C+100+%25|OFF|NONE|PHONE|0|0\n"
         )
     }
 
@@ -23,22 +28,29 @@ final class CodecTests: XCTestCase {
         // Byte-gleich mit Android: 13. Feld am Ende.
         XCTAssertEqual(Codec.encodeAlarms([math]), "phasewake-alarms 1\nm|6|0||30|1|SOUND|0||||OFF|MATH|PHONE|0|0\n")
         // Ältere Stände ohne 13. Feld und unbekannte Werte → Halten.
-        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nm|6|0||30|1|SOUND|0||||OFF\n").first?.wakeTask, WakeTask.none)
-        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nm|6|0||30|1|SOUND|0||||RING|PUZZLE|extra\n").first?.wakeTask, WakeTask.none)
-        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nm|6|0||30|1|SOUND|0||||RING|MATH|extra\n").first?.wakeTask, .math)
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nm|6|0||30|1|SOUND|0||||OFF\n").first?.wakeTask,
+                       WakeTask.none)
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nm|6|0||30|1|SOUND|0||||RING|PUZZLE|extra\n")
+            .first?.wakeTask, WakeTask.none)
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nm|6|0||30|1|SOUND|0||||RING|MATH|extra\n")
+            .first?.wakeTask, .math)
         // Ein-/Ausschalten behält die Aufgabe.
         XCTAssertEqual(math.with(enabled: false).wakeTask, .math)
     }
 
     func testSunriseDeviceField() throws {
-        let watch = try AlarmSpec(id: "d", hour: 6, minute: 15, windowMinutes: 20, phone: .off, sunrise: .ring, sunriseDevice: .watch)
+        let watch = try AlarmSpec(id: "d", hour: 6, minute: 15, windowMinutes: 20, phone: .off, sunrise: .ring,
+                                  sunriseDevice: .watch)
         XCTAssertEqual(try Codec.decodeAlarms(Codec.encodeAlarms([watch])), [watch])
         // Byte-gleich mit Android (CodecTest.alarmsFormatIsStable): 14. Feld am Ende.
         XCTAssertEqual(Codec.encodeAlarms([watch]), "phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|WATCH|0|0\n")
         // Ältere Stände ohne 14. Feld und unbekannte Werte → Handy (wie CodecTest.sunriseDeviceIsTolerant).
-        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE\n").first?.sunriseDevice, .phone)
-        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|LAMP\n").first?.sunriseDevice, .phone)
-        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|BOTH|neu\n").first?.sunriseDevice, .both)
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE\n")
+            .first?.sunriseDevice, .phone)
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|LAMP\n")
+            .first?.sunriseDevice, .phone)
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|BOTH|neu\n")
+            .first?.sunriseDevice, .both)
         // Pro Gerät (wie CodecTest.sunrisePerDevice); Ein-/Ausschalten behält das Gerät.
         XCTAssertEqual(watch.phoneSunrise, .off)
         XCTAssertEqual(watch.watchSunrise, .ring)
@@ -49,7 +61,8 @@ final class CodecTests: XCTestCase {
         // Gespeicherte Wecker tragen ihr Fenster (Feld 5) immer selbst: Ein alter 30-Min-Wecker bleibt 30 Min,
         // auch wenn neue Wecker mit 20 Min starten (wie CodecTest.storedWindowIgnoresDefault).
         XCTAssertEqual(AlarmSpec.defaultWindowMinutes, 20)
-        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nb|9|30||30|0|OFF|0|450||\n").first?.windowMinutes, 30)
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nb|9|30||30|0|OFF|0|450||\n").first?.windowMinutes,
+                       30)
         let stored = try AlarmSpec(id: "a", hour: 7, minute: 0, windowMinutes: 30)
         XCTAssertEqual(try Codec.decodeAlarms(Codec.encodeAlarms([stored])).first?.windowMinutes, 30)
         // Ohne Fensterfeld ist die Zeile unlesbar; es gibt keinen stillen Rückfall auf den Standard.
@@ -90,10 +103,12 @@ final class CodecTests: XCTestCase {
             target: Date(timeIntervalSince1970: 1_793_167_200),
             wokeAt: Date(timeIntervalSince1970: 1_793_166_450),
             reason: .lightSleep, snoozes: 2,
-            epochs: [Epoch(motion: 0, heartRate: 52), Epoch(motion: 0.000213456789123, heartRate: nil), Epoch(motion: nil, heartRate: 55.583333333333336), Epoch(motion: nil, heartRate: nil)]
+            epochs: [Epoch(motion: 0, heartRate: 52), Epoch(motion: 0.000213456789123, heartRate: nil),
+                     Epoch(motion: nil, heartRate: 55.583333333333336), Epoch(motion: nil, heartRate: nil)]
         )
         XCTAssertEqual(try Codec.decodeNight(Codec.encodeNight(night)), night)
-        let empty = NightRecord(alarmId: night.alarmId, windowStart: night.windowStart, target: night.target, wokeAt: night.wokeAt,
+        let empty = NightRecord(alarmId: night.alarmId, windowStart: night.windowStart, target: night.target,
+                                wokeAt: night.wokeAt,
                                 reason: night.reason, snoozes: night.snoozes, epochs: [])
         XCTAssertEqual(try Codec.decodeNight(Codec.encodeNight(empty)), empty)
         XCTAssertEqual(night.minutesBeforeTarget, 12)
@@ -119,17 +134,20 @@ final class CodecTests: XCTestCase {
     }
 
     func testNewReasonsStayReadableForOlderVersions() throws {
-        let night = NightRecord(alarmId: "a", windowStart: Date(timeIntervalSince1970: 0), target: Date(timeIntervalSince1970: 1800),
+        let night = NightRecord(alarmId: "a", windowStart: Date(timeIntervalSince1970: 0),
+                                target: Date(timeIntervalSince1970: 1800),
                                 wokeAt: Date(timeIntervalSince1970: 1800), reason: .exact, snoozes: 0, epochs: [])
         // Byte-gleich mit Android (CodecTest.newReasonsStayReadableForOlderVersions): Feld 5 DEADLINE, Feld 8 der neue
         // Grund.
         XCTAssertEqual(Codec.encodeNight(night), "phasewake-night 1\na|0|1800000|1800000|DEADLINE|0||EXACT\n\n")
         XCTAssertEqual(try Codec.decodeNight(Codec.encodeNight(night)), night)
-        let short = NightRecord(alarmId: "a", windowStart: night.windowStart, target: night.target, wokeAt: night.wokeAt,
+        let short = NightRecord(alarmId: "a", windowStart: night.windowStart, target: night.target,
+                                wokeAt: night.wokeAt,
                                 reason: .shortNight, snoozes: 0, epochs: [], feeling: 3)
         XCTAssertEqual(try Codec.decodeNight(Codec.encodeNight(short)), short)
         // Bekannte Gründe ohne Feld 8, wie bisher.
-        let deadline = NightRecord(alarmId: "a", windowStart: night.windowStart, target: night.target, wokeAt: night.wokeAt,
+        let deadline = NightRecord(alarmId: "a", windowStart: night.windowStart, target: night.target,
+                                   wokeAt: night.wokeAt,
                                    reason: .deadline, snoozes: 0, epochs: [])
         XCTAssertEqual(Codec.encodeNight(deadline), "phasewake-night 1\na|0|1800000|1800000|DEADLINE|0|\n\n")
         // Unbekannter Grund aus einer neueren Version: Zielzeit.
@@ -146,7 +164,8 @@ final class CodecTests: XCTestCase {
 
     /// Gemeinsame Fälle mit Kotlin (shared/testdata/night-onset.vectors): Felder 11 und 12, alte und neue Stände.
     func testNightOnsetVectors() throws {
-        let text = try String(contentsOf: NightFixtures.directory.appendingPathComponent("night-onset.vectors"), encoding: .utf8)
+        let text = try String(contentsOf: NightFixtures.directory.appendingPathComponent("night-onset.vectors"),
+                              encoding: .utf8)
         let lines = text.components(separatedBy: "\n").filter { !$0.isEmpty && !$0.hasPrefix("#") }
         func ms(_ d: Date?) -> String { d.map { String(TimeBounds.millis($0)) } ?? "-" }
         for line in lines {
@@ -155,7 +174,8 @@ final class CodecTests: XCTestCase {
             guard parts.count == 3 else { continue }
             let nightText = "phasewake-night 1\n\(parts[2])\n\n"
             let night = try Codec.decodeNight(nightText)
-            let got = [night.reason.rawValue, night.watchBattery != nil ? "B" : "-", ms(night.bedAt), ms(night.asleepAt)].joined(separator: " ")
+            let got = [night.reason.rawValue, night.watchBattery != nil ? "B" : "-", ms(night.bedAt),
+                       ms(night.asleepAt)].joined(separator: " ")
             XCTAssertEqual(got, parts[0], line)
             if parts[1] == "=" { XCTAssertEqual(Codec.encodeNight(night), nightText, line) }
         }
@@ -164,19 +184,23 @@ final class CodecTests: XCTestCase {
 
     /// Wie Kotlin `nightOnsetRoundTripAndOlderReaders`: Felder 8–10 leer, ohne Einschlafen unverändert 7 Felder.
     func testNightOnsetRoundTripAndOlderReaders() throws {
-        let base = try Codec.decodeNight("phasewake-night 1\na|1794200000000|1794201800000|1794201080000|DEADLINE|0\n0.0;52.0\n")
+        let base = try Codec.decodeNight(
+            "phasewake-night 1\na|1794200000000|1794201800000|1794201080000|DEADLINE|0\n0.0;52.0\n"
+        )
         let bed = Date(timeIntervalSince1970: 1_794_170_000)
         let asleep = Date(timeIntervalSince1970: 1_794_171_800)
         let night = base.with(bedAt: bed, asleepAt: asleep)
         XCTAssertEqual(try Codec.decodeNight(Codec.encodeNight(night)), night)
         let fields = Codec.encodeNight(night).components(separatedBy: "\n")[1].components(separatedBy: "|")
         XCTAssertEqual(Array(fields.dropFirst(7)), ["", "", "", "1794170000000", "1794171800000"])
-        XCTAssertEqual(Codec.encodeNight(base), "phasewake-night 1\na|1794200000000|1794201800000|1794201080000|DEADLINE|0|\n0.0;52.0\n")
+        XCTAssertEqual(Codec.encodeNight(base),
+                       "phasewake-night 1\na|1794200000000|1794201800000|1794201080000|DEADLINE|0|\n0.0;52.0\n")
     }
 
     func testDayFormat() {
         let de = Locale(identifier: "de_CH")
-        func f(_ d: Set<Weekday>, _ l: Locale = de) -> String { DayFormat.format(d, locale: l, once: "Einmalig", daily: "Täglich") }
+        func f(_ d: Set<Weekday>,
+               _ l: Locale = de) -> String { DayFormat.format(d, locale: l, once: "Einmalig", daily: "Täglich") }
         XCTAssertEqual(f([]), "Einmalig")
         XCTAssertEqual(f(Set(Weekday.allCases)), "Täglich")
         XCTAssertEqual(f([.monday, .tuesday, .wednesday, .thursday, .friday]), "Mo–Fr")
@@ -201,7 +225,9 @@ final class CodecTests: XCTestCase {
         XCTAssertEqual(edge.target, Date(timeIntervalSince1970: 4_102_444_800))
         // Überspringen-bis ausserhalb: nichts überspringen (wie unlesbar).
         func skip(_ value: String) throws -> Int64 {
-            try XCTUnwrap(Codec.decodeAlarms("phasewake-alarms 1\nb|9|30|MO|30|1|OFF|0||||OFF|NONE|PHONE|\(value)|0\n").first).skipUntil
+            try XCTUnwrap(
+                Codec.decodeAlarms("phasewake-alarms 1\nb|9|30|MO|30|1|OFF|0||||OFF|NONE|PHONE|\(value)|0\n").first
+            ).skipUntil
         }
         XCTAssertEqual(try skip(max), 0)
         XCTAssertEqual(try skip("-5"), 0)
@@ -209,7 +235,8 @@ final class CodecTests: XCTestCase {
         XCTAssertTrue(TimeBounds.contains(0) && TimeBounds.contains(TimeBounds.maxMs))
         XCTAssertNil(TimeBounds.checked(Int64.min))
         // Zurückrechnen bricht auch mit einer kaputten Zeit nie ab.
-        XCTAssertEqual(TimeBounds.millis(Date(timeIntervalSince1970: 9_223_372_036_854_775.807)), 9_000_000_000_000_000_000)
+        XCTAssertEqual(TimeBounds.millis(Date(timeIntervalSince1970: 9_223_372_036_854_775.807)),
+                       9_000_000_000_000_000_000)
         XCTAssertEqual(TimeBounds.millis(Date(timeIntervalSince1970: -1e300)), -9_000_000_000_000_000_000)
         XCTAssertEqual(TimeBounds.millis(Date(timeIntervalSince1970: .nan)), 0)
     }

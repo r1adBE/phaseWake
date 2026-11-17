@@ -42,7 +42,11 @@ internal object PhoneBattery {
     fun withPhone(context: Context, night: NightRecord, now: Instant = Instant.now()): NightRecord {
         if (night.phoneBattery != null) return night
         val track = BatteryNight.takeDone(context) { BatteryTrack.belongsTo(it, night) }
-            ?: if (BatteryTrack.arrivedFresh(night, now)) BatteryNight.end(context)?.takeIf { BatteryTrack.belongsTo(it, night) } else null
+            ?: if (BatteryTrack.arrivedFresh(night, now)) {
+                BatteryNight.end(context)?.takeIf { BatteryTrack.belongsTo(it, night) }
+            } else {
+                null
+            }
         return if (track != null) night.copy(phoneBattery = track) else night
     }
 }

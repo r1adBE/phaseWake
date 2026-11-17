@@ -14,8 +14,9 @@ val robolectricImagesByVersion = mapOf(
 val robolectricVersion = extensions.getByType<VersionCatalogsExtension>().named("libs")
     .findVersion("robolectric").map { it.requiredVersion }.orElse("")
 val robolectricImages = robolectricImagesByVersion[robolectricVersion] ?: throw GradleException(
-    "Robolectric $robolectricVersion: Abbilder in gradle/robolectric.gradle.kts nachführen (robolectricImagesByVersion, " +
-        "Versionen von android-all-instrumented aus DefaultSdkProvider dieser Robolectric-Version, siehe docs/ENTWICKLUNG.md).",
+    "Robolectric $robolectricVersion: Abbilder in gradle/robolectric.gradle.kts nachführen " +
+        "(robolectricImagesByVersion, Versionen von android-all-instrumented aus DefaultSdkProvider dieser " +
+        "Robolectric-Version, siehe docs/ENTWICKLUNG.md).",
 )
 val robolectricSdks = robolectricImages.map { version ->
     configurations.create("robolectricSdk-$version") {

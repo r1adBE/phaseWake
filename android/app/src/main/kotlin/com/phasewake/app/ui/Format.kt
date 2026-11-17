@@ -31,8 +31,14 @@ object Format {
     private val time: DateTimeFormatter
         get() {
             val locale = Locale.getDefault()
-            val is24 = use24Hour ?: return digits(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).withLocale(locale), locale)
-            return digits(DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, if (is24) "Hm" else "hm"), locale), locale)
+            val is24 = use24Hour ?:
+                return digits(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).withLocale(locale), locale)
+            return digits(
+                DateTimeFormatter.ofPattern(
+                    android.text.format.DateFormat.getBestDateTimePattern(locale, if (is24) "Hm" else "hm"), locale,
+                ),
+                locale,
+            )
         }
 
     /**
@@ -63,7 +69,10 @@ object Format {
 
     /** Kurzes Datum mit Wochentag nach Sprache und Region, z. B. «Do., 30.10.». */
     fun shortDay(date: LocalDate, locale: Locale): String =
-        digits(DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, "EEEdM"), locale), locale).format(date)
+        digits(
+            DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, "EEEdM"), locale),
+            locale,
+        ).format(date)
 
     /** «06:30 – 07:00»; bei «Genau» ([AlarmSpec.isExact]) «Genau um 07:00». */
     fun window(context: Context, alarm: AlarmSpec): String {

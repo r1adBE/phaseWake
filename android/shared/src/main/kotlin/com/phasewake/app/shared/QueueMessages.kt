@@ -38,7 +38,8 @@ object QueueMessages {
     const val KEY_HOLIDAYS = "holidays"
 
     /** Schlüssel einer Nacht: Fensterbeginn und Kennung (zwei Wecker mit gleichem Fensterbeginn bleiben getrennt). */
-    fun nightKey(night: NightRecord): String = KEY_NIGHT + night.windowStart.toEpochMilli() + "-" + Uri.encode(night.alarmId)
+    fun nightKey(night: NightRecord): String =
+        KEY_NIGHT + night.windowStart.toEpochMilli() + "-" + Uri.encode(night.alarmId)
 
     /**
      * Inhalt der Nachricht [DataLayer.PATH_MSG_ALARMS]: «updatedAt», Zeilenumbruch, Wecker, danach die
@@ -50,8 +51,12 @@ object QueueMessages {
         append(snapshot.updatedAt).append('\n').append(Codec.encodeAlarms(snapshot.alarms))
         if (snapshot.perAlarm) {
             append(STAMPS_HEADER).append('\n')
-            snapshot.stamps.forEach { (id, at) -> append(STAMP).append(AlarmStamps.escape(id)).append('=').append(at).append('\n') }
-            snapshot.deleted.forEach { (id, at) -> append(DELETED).append(AlarmStamps.escape(id)).append('=').append(at).append('\n') }
+            snapshot.stamps.forEach { (id, at) ->
+                append(STAMP).append(AlarmStamps.escape(id)).append('=').append(at).append('\n')
+            }
+            snapshot.deleted.forEach { (id, at) ->
+                append(DELETED).append(AlarmStamps.escape(id)).append('=').append(at).append('\n')
+            }
         }
     }
 
@@ -83,7 +88,9 @@ object QueueMessages {
             }
         }
         // Zeitpunkte nach [TimeBounds] geprüft: unplausibler Listen-Zeitpunkt → Nachricht verworfen.
-        AlarmStamps.checked(AlarmSnapshot(Codec.decodeAlarms(alarmsText), updatedAt, stamps, deleted, perAlarm = marker >= 0))
+        AlarmStamps.checked(
+            AlarmSnapshot(Codec.decodeAlarms(alarmsText), updatedAt, stamps, deleted, perAlarm = marker >= 0),
+        )
     }.onFailure { Log.w(TAG, "Wecker-Nachricht unlesbar", it) }.getOrNull()
 
     /** Beginn der Zeitpunkte je Wecker in [encodeAlarms]. */
@@ -141,28 +148,50 @@ object QueueMessages {
         fun own(path: String) = Uri.Builder().scheme("wear").authority(local).path(path).build()
         val result = mutableListOf<Outbox.Legacy>()
         suspend fun collect(path: String, prefix: Boolean, entry: (DataMap) -> Outbox.Entry?) {
-            val items = if (prefix) dataClient.getDataItems(own(path), DataClient.FILTER_PREFIX).await() else dataClient.getDataItems(own(path)).await()
+            val items = if (prefix) {
+                dataClient.getDataItems(own(path), DataClient.FILTER_PREFIX).await()
+            } else {
+                dataClient.getDataItems(own(path)).await()
+            }
             try {
                 items.forEach { result += Outbox.Legacy(it.uri, entry(DataMapItem.fromDataItem(it).dataMap)) }
             } finally {
                 items.release()
             }
         }
-        fun make(key: String, path: String, body: String) = Outbox.Entry(UUID.randomUUID().toString(), key, path, peer, body, now)
+        fun make(key: String, path: String, body: String) =
+            Outbox.Entry(UUID.randomUUID().toString(), key, path, peer, body, now)
         collect(DataLayer.PATH_ALARMS, prefix = false) { null }
         if (peer == DataLayer.CAPABILITY_PHONE) {
             collect(DataLayer.PATH_NIGHT_PREFIX, prefix = true) { map ->
                 WearSync.readNight(map)?.let { make(nightKey(it), DataLayer.PATH_MSG_NIGHT, Codec.encodeNight(it)) }
             }
             collect(DataLayer.PATH_RECORDING_PREFIX, prefix = true) { map ->
-                RecordSync.readRecording(map)?.let { make(KEY_RECORDING + it.start.toEpochMilli(), DataLayer.PATH_MSG_RECORDING, NightRecording.encode(it)) }
+                RecordSync.readRecording(map)?.let {
+                    make(
+                        KEY_RECORDING + it.start.toEpochMilli(),
+                        DataLayer.PATH_MSG_RECORDING,
+                        NightRecording.encode(it),
+                    )
+                }
             }
-            collect(DataLayer.PATH_ONSET_SHIFT, prefix = false) { map -> OnsetShift.read(map)?.let { make(KEY_ONSET_SHIFT, DataLayer.PATH_MSG_ONSET_SHIFT, it.encode()) } }
+            collect(DataLayer.PATH_ONSET_SHIFT, prefix = false) { map ->
+                OnsetShift.read(map)?.let { make(KEY_ONSET_SHIFT, DataLayer.PATH_MSG_ONSET_SHIFT, it.encode()) }
+            }
             collect(DataLayer.PATH_RECORD_STATUS, prefix = false) { map ->
-                make(KEY_RECORD_STATUS, DataLayer.PATH_MSG_RECORD_STATUS, map.getLong(DataLayer.KEY_RECORD_SINCE).toString())
+                make(
+                    KEY_RECORD_STATUS,
+                    DataLayer.PATH_MSG_RECORD_STATUS,
+                    map.getLong(DataLayer.KEY_RECORD_SINCE).toString(),
+                )
             }
         } else {
-            for (path in listOf(DataLayer.PATH_LEARNING, DataLayer.PATH_HOLIDAYS, DataLayer.PATH_SLEEP_GOAL, DataLayer.PATH_AUTO_ONSET)) {
+            for (path in listOf(
+                DataLayer.PATH_LEARNING,
+                DataLayer.PATH_HOLIDAYS,
+                DataLayer.PATH_SLEEP_GOAL,
+                DataLayer.PATH_AUTO_ONSET,
+            )) {
                 collect(path, prefix = false) { null }
             }
         }

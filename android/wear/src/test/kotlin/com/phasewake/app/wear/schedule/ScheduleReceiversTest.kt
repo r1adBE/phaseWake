@@ -103,7 +103,8 @@ class ScheduleReceiversTest {
     fun complicationIsPushedAtTheTargetNotPolled() {
         // Kein Abruf alle 30 Min. durch das System ...
         val info = context.packageManager.getServiceInfo(
-            ComponentName(context, NextAlarmComplicationService::class.java), PackageManager.ComponentInfoFlags.of(PackageManager.GET_META_DATA.toLong()),
+            ComponentName(context, NextAlarmComplicationService::class.java),
+            PackageManager.ComponentInfoFlags.of(PackageManager.GET_META_DATA.toLong()),
         )
         assertEquals(0, info.metaData.getInt("android.support.wearable.complications.UPDATE_PERIOD_SECONDS", -1))
         // ... dafür zur Zielzeit ein Update (auch wenn danach nichts neu plant), vor dem Entsperren nicht.

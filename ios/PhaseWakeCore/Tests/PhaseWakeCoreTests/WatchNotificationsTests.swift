@@ -15,7 +15,8 @@ final class WatchNotificationsTests: XCTestCase {
 
     func testOutdatedAfterThreeDays() {
         XCTAssertFalse(WatchNotifications.isOutdated(checkedAt: now.addingTimeInterval(-day), now: now))
-        XCTAssertFalse(WatchNotifications.isOutdated(checkedAt: now.addingTimeInterval(-3 * day), now: now), "genau 3 Tage: noch nicht")
+        XCTAssertFalse(WatchNotifications.isOutdated(checkedAt: now.addingTimeInterval(-3 * day), now: now),
+                       "genau 3 Tage: noch nicht")
         XCTAssertTrue(WatchNotifications.isOutdated(checkedAt: now.addingTimeInterval(-3 * day - 1), now: now))
         XCTAssertTrue(WatchNotifications.isOutdated(checkedAt: now.addingTimeInterval(-10 * day), now: now))
     }

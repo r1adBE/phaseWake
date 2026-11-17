@@ -45,7 +45,8 @@ internal data class SensorAccess(val heartRate: Boolean, val background: Boolean
 
         /** Liest die Rechte der App auf dieser Uhr. */
         fun of(context: Context): SensorAccess {
-            fun granted(permission: String) = ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
+            fun granted(permission: String) =
+                ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
             val sdk = Build.VERSION.SDK_INT
             val heartRate = granted(heartRatePermission(sdk))
             val background = backgroundPermission(sdk)?.let(::granted) ?: heartRate

@@ -21,8 +21,8 @@ object Codec {
     private const val SEP = "|"
 
     /**
-     * id|Stunde|Minute|Tage|Fenster|ein|Handy|Uhr-Ton|Schlafdauer|Ton|Name|Sonnenaufgang|Weckaufgabe|Sonnenaufgang-Gerät|
-     * Überspringen-bis|Feiertage
+     * id|Stunde|Minute|Tage|Fenster|ein|Handy|Uhr-Ton|Schlafdauer|Ton|Name|Sonnenaufgang|Weckaufgabe|
+     * Sonnenaufgang-Gerät|Überspringen-bis|Feiertage
      */
     private const val FIELDS = 16
 
@@ -103,11 +103,16 @@ object Codec {
                     sleepDurationMinutes = f[8].ifEmpty { null }?.toInt(),
                     sound = unescape(f[9]),
                     label = unescape(f[10]),
-                    sunrise = if (f.size > FIELDS_V1) Sunrise.entries.firstOrNull { it.name == f[11] } ?: Sunrise.OFF else Sunrise.OFF,
+                    sunrise = f.takeIf { it.size > FIELDS_V1 }
+                        ?.let { fields -> Sunrise.entries.firstOrNull { it.name == fields[11] } } ?: Sunrise.OFF,
                     // Feld 13 fehlt bei älteren Ständen, unbekannt aus neueren: Halten.
-                    wakeTask = f.getOrNull(12)?.let { v -> WakeTask.entries.firstOrNull { it.name == v } } ?: WakeTask.NONE,
+                    wakeTask = f.getOrNull(12)?.let { v ->
+                        WakeTask.entries.firstOrNull { it.name == v }
+                    } ?: WakeTask.NONE,
                     // Feld 14 fehlt bei älteren Ständen, unbekannt aus neueren: Handy.
-                    sunriseDevice = f.getOrNull(13)?.let { v -> SunriseDevice.entries.firstOrNull { it.name == v } } ?: SunriseDevice.PHONE,
+                    sunriseDevice = f.getOrNull(13)?.let { v ->
+                        SunriseDevice.entries.firstOrNull { it.name == v }
+                    } ?: SunriseDevice.PHONE,
                     // Felder 15 und 16 fehlen bei älteren Ständen (bis 14 Felder): nichts überspringen. Unlesbar oder
                     // ausserhalb von [TimeBounds] (z. B. aus einer manipulierten Sicherung): ebenso.
                     skipUntil = TimeBounds.checked(f.getOrNull(14)?.toLongOrNull()) ?: 0L,

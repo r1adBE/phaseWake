@@ -31,13 +31,27 @@ class NightRecordingTest {
     fun implausibleTimesAreRejected() {
         // Kaputte oder manipulierte Zeitpunkte (z. B. Long.MAX_VALUE) laufen später in Rechnungen über.
         val huge = Long.MAX_VALUE
-        val done = NightRecording(start, epochs, start.plusSeconds(120), RecordEnd.PHONE, start.plusSeconds(30), start.plusSeconds(60))
+        val done = NightRecording(
+            start,
+            epochs,
+            start.plusSeconds(120),
+            RecordEnd.PHONE,
+            start.plusSeconds(30),
+            start.plusSeconds(60),
+        )
         val text = NightRecording.encode(done)
-        assertNull(NightRecording.decode(text.replace("start=${start.toEpochMilli()}", "start=$huge")), "Beginn unplausibel: unlesbar")
+        assertNull(
+            NightRecording.decode(text.replace("start=${start.toEpochMilli()}", "start=$huge")),
+            "Beginn unplausibel: unlesbar",
+        )
         assertNull(NightRecording.decode(text.replace("start=${start.toEpochMilli()}", "start=-1")))
-        val badEnd = assertNotNull(NightRecording.decode(text.replace("end=${start.plusSeconds(120).toEpochMilli()}", "end=$huge")))
+        val badEnd = assertNotNull(
+            NightRecording.decode(text.replace("end=${start.plusSeconds(120).toEpochMilli()}", "end=$huge")),
+        )
         assertNull(badEnd.end, "Ende unplausibel: gilt als laufend")
-        val badOnset = assertNotNull(NightRecording.decode(text.replace("onset=${start.plusSeconds(30).toEpochMilli()}", "onset=$huge")))
+        val badOnset = assertNotNull(
+            NightRecording.decode(text.replace("onset=${start.plusSeconds(30).toEpochMilli()}", "onset=$huge")),
+        )
         assertNull(badOnset.bedAt)
         assertNull(badOnset.asleepAt)
         assertEquals(done.end, badOnset.end)
@@ -47,7 +61,9 @@ class NightRecordingTest {
     @Test
     fun appendedFileReadsLikeEncoded() {
         // Wie die Uhr schreibt: Kopf, Epochen in Stücken, Schlusszeile.
-        val text = NightRecording.header(start) + NightRecording.epochLines(epochs.take(2)) + NightRecording.epochLines(epochs.drop(2)) +
+        val text =
+            NightRecording.header(start) + NightRecording.epochLines(epochs.take(2)) +
+                NightRecording.epochLines(epochs.drop(2)) +
             NightRecording.endLine(start.plusSeconds(150), RecordEnd.CAP)
         assertEquals(NightRecording(start, epochs, start.plusSeconds(150), RecordEnd.CAP), NightRecording.decode(text))
     }
@@ -83,7 +99,12 @@ class NightRecordingTest {
 
     @Test
     fun csvWithoutDatesNumberedOldestFirst() {
-        val later = NightRecording(start.plus(Duration.ofDays(1)), listOf(Epoch(0.1, 70.04)), start.plus(Duration.ofDays(1)).plusSeconds(30), RecordEnd.BATTERY)
+        val later = NightRecording(
+            start.plus(Duration.ofDays(1)),
+            listOf(Epoch(0.1, 70.04)),
+            start.plus(Duration.ofDays(1)).plusSeconds(30),
+            RecordEnd.BATTERY,
+        )
         val first = NightRecording(start, epochs.take(2), start.plusSeconds(60), RecordEnd.WATCH)
         val running = NightRecording(start.plus(Duration.ofDays(2)), epochs)
         val csv = NightRecording.exportCsv(listOf(later, running, first))
@@ -102,7 +123,9 @@ class NightRecordingTest {
         // Zeile «onset=…» zwischen den Epochen (die Uhr hängt sie beim Einschlafen an): keine Epoche, Werte gelesen.
         val bed = start.plusSeconds(600)
         val asleep = start.plusSeconds(1_500)
-        val text = NightRecording.header(start) + NightRecording.epochLines(epochs.take(2)) + NightRecording.onsetLine(bed, asleep) +
+        val text =
+            NightRecording.header(start) + NightRecording.epochLines(epochs.take(2)) +
+                NightRecording.onsetLine(bed, asleep) +
             NightRecording.epochLines(epochs.drop(2)) + NightRecording.endLine(start.plusSeconds(90), RecordEnd.WAKE)
         val read = assertNotNull(NightRecording.decode(text))
         assertEquals(epochs, read.epochs)

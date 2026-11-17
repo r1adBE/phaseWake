@@ -64,5 +64,6 @@ object EveningDark {
     /** Längste Suche: ein Tag und zwei Stunden (mehr als jeder Sommerzeit-Wechsel verschiebt). */
     private const val SEARCH_MINUTES = DAY_MINUTES + 120
 
-    private fun minuteOfDay(at: Instant, zone: ZoneId): Int = at.atZone(zone).toLocalTime().let { it.hour * 60 + it.minute }
+    private fun minuteOfDay(at: Instant, zone: ZoneId): Int =
+        at.atZone(zone).toLocalTime().let { it.hour * 60 + it.minute }
 }

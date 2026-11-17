@@ -45,10 +45,16 @@ class HealthSleepTest {
      * Connect setzt sie selbst, darum hier über Reflexion (ohne Angabe bleibt sie leer wie bei einer unbekannten
      * Herkunft).
      */
-    private fun session(from: Long, to: Long, origin: String? = null, vararg stages: Triple<Int, Long, Long>): SleepSessionRecord {
+    private fun session(
+        from: Long,
+        to: Long,
+        origin: String? = null,
+        vararg stages: Triple<Int, Long, Long>,
+    ): SleepSessionRecord {
         val metadata = Metadata.manualEntry()
         if (origin != null) {
-            Metadata::class.java.getDeclaredField("dataOrigin").apply { isAccessible = true }.set(metadata, DataOrigin(origin))
+            Metadata::class.java.getDeclaredField("dataOrigin").apply { isAccessible = true }
+                .set(metadata, DataOrigin(origin))
         }
         return SleepSessionRecord(
             startTime = at(from),
@@ -114,7 +120,10 @@ class HealthSleepTest {
         assertEquals(HealthSource.SAMSUNG_HEALTH, sessions[1].source)
         assertEquals(at(540), sessions[1].end)
         assertEquals(
-            listOf(StageSpan(at(480), at(490), SleepStage.LIGHT), StageSpan(at(490), at(510), SleepStage.DEEP), StageSpan(at(510), at(540), SleepStage.REM)),
+            listOf(
+                StageSpan(at(480), at(490), SleepStage.LIGHT), StageSpan(at(490), at(510), SleepStage.DEEP),
+                StageSpan(at(510), at(540), SleepStage.REM),
+            ),
             sessions[1].stages,
         )
     }
@@ -148,8 +157,14 @@ class HealthSleepTest {
         val tokyo = java.time.ZoneOffset.ofHours(9)
         client.pages = listOf(
             listOf(
-                SleepSessionRecord(startTime = at(0), startZoneOffset = tokyo, endTime = at(60), endZoneOffset = null, metadata = Metadata.manualEntry()),
-                SleepSessionRecord(startTime = at(100), startZoneOffset = null, endTime = at(160), endZoneOffset = tokyo, metadata = Metadata.manualEntry()),
+                SleepSessionRecord(
+                    startTime = at(0), startZoneOffset = tokyo, endTime = at(60), endZoneOffset = null,
+                    metadata = Metadata.manualEntry(),
+                ),
+                SleepSessionRecord(
+                    startTime = at(100), startZoneOffset = null, endTime = at(160), endZoneOffset = tokyo,
+                    metadata = Metadata.manualEntry(),
+                ),
                 session(200, 260),
             ),
         )
@@ -181,7 +196,10 @@ class HealthSleepTest {
         health.sessions(t0, at(600))
         client.failure = null
         health.sessions(t0, at(600))
-        assertEquals(listOf("health read failed IllegalStateException", "health read 2 sessions, 2 sources, 0 own"), logged.drop(2))
+        assertEquals(
+            listOf("health read failed IllegalStateException", "health read 2 sessions, 2 sources, 0 own"),
+            logged.drop(2),
+        )
     }
 
     /** Nacht mit Fensterbeginn 06:30 und Aufwachen 06:50 (UTC) am Morgen nach [t0]. */
@@ -192,7 +210,10 @@ class HealthSleepTest {
         grant()
         client.pages = listOf(
             listOf(
-                session(300, 540, null, Triple(SleepSessionRecord.STAGE_TYPE_DEEP, 300, 400), Triple(SleepSessionRecord.STAGE_TYPE_LIGHT, 400, 540)),
+                session(
+                    300, 540, null, Triple(SleepSessionRecord.STAGE_TYPE_DEEP, 300, 400),
+                    Triple(SleepSessionRecord.STAGE_TYPE_LIGHT, 400, 540),
+                ),
                 session(0, 120, null, Triple(SleepSessionRecord.STAGE_TYPE_REM, 0, 120)),
             ),
         )
@@ -211,7 +232,12 @@ class HealthSleepTest {
         val start = LocalDate.now(zone).minusDays(2).atTime(23, 0).atZone(zone).toInstant()
         val end = start.plus(Duration.ofHours(7))
         client.pages = listOf(
-            listOf(SleepSessionRecord(startTime = start, startZoneOffset = null, endTime = end, endZoneOffset = null, metadata = Metadata.manualEntry())),
+            listOf(
+                SleepSessionRecord(
+                    startTime = start, startZoneOffset = null, endTime = end, endZoneOffset = null,
+                    metadata = Metadata.manualEntry(),
+                )
+            ),
         )
         val summary = health.recentSleep(days = 7, clearedAt = null).single()
         assertEquals(start, summary.start)

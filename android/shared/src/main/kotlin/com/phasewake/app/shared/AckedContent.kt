@@ -66,10 +66,12 @@ class AckedContent(private val file: File) {
         }
 
         /** Prüfsumme eines Inhalts (SHA-256, hexadezimal). */
-        fun hash(body: String): String = MessageDigest.getInstance("SHA-256").digest(body.encodeToByteArray()).let(::hexBytes)
+        fun hash(body: String): String =
+            MessageDigest.getInstance("SHA-256").digest(body.encodeToByteArray()).let(::hexBytes)
 
         private fun hex(key: String) = hexBytes(key.encodeToByteArray())
-        private fun hexBytes(bytes: ByteArray) = bytes.joinToString("") { (it.toInt() and 0xff).toString(16).padStart(2, '0') }
+        private fun hexBytes(bytes: ByteArray) =
+            bytes.joinToString("") { (it.toInt() and 0xff).toString(16).padStart(2, '0') }
         private fun unhex(text: String): String? = runCatching {
             ByteArray(text.length / 2) { text.substring(it * 2, it * 2 + 2).toInt(16).toByte() }.decodeToString()
         }.getOrNull()?.takeIf { text.length % 2 == 0 }
@@ -82,7 +84,13 @@ class AckedContent(private val file: File) {
  * eingereiht, sonst bliebe der wartende (z. B. nach dem Zurückändern auf den bestätigten Stand).
  * @return die Kennung des Eintrags oder `null`, wenn nichts eingereiht wurde.
  */
-suspend fun Outbox.enqueueIfChanged(content: AckedContent, key: String, path: String, capability: String, body: String): String? {
+suspend fun Outbox.enqueueIfChanged(
+    content: AckedContent,
+    key: String,
+    path: String,
+    capability: String,
+    body: String,
+): String? {
     if (pending().none { it.key == key } && content.matches(key, body)) return null
     return enqueue(key, path, capability, body)
 }

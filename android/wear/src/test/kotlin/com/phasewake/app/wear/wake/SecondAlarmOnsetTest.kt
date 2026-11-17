@@ -52,7 +52,8 @@ class SecondAlarmOnsetTest {
     @Before
     fun setUp() {
         ShadowAlarmManager.setCanScheduleExactAlarms(true)
-        shadowOf(context.getSystemService(BatteryManager::class.java)).setIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY, 80)
+        shadowOf(context.getSystemService(BatteryManager::class.java))
+            .setIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY, 80)
         StartLock.resetForTest()
     }
 
@@ -110,7 +111,10 @@ class SecondAlarmOnsetTest {
         send(service, WakeService.ACTION_DISMISS, 3)
         awaitUntil("Abschluss nicht fertig") { service.finishing == 0 }
         assertEquals("b", runBlocking { app.scheduler.nextAlarmPlan() }?.alarmId)
-        assertTrue(autoOnsetFor().isEmpty(), "Einschlaf-Messung für den zweiten Wecker gleich nach dem ersten: ${autoOnsetFor()}")
+        assertTrue(
+            autoOnsetFor().isEmpty(),
+            "Einschlaf-Messung für den zweiten Wecker gleich nach dem ersten: ${autoOnsetFor()}",
+        )
     }
 
     @Test

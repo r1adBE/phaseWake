@@ -68,7 +68,8 @@ struct OverviewCard: View {
     private func value(_ text: String, _ label: String, size: CGFloat) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(text).font(Fonts.manrope(size, .bold, relativeTo: .title3)).lineLimit(1).minimumScaleFactor(0.7)
-            Text(label).font(Fonts.manrope(11, .semibold, relativeTo: .caption2)).foregroundStyle(Brand.secondaryText(scheme))
+            Text(label)
+                .font(Fonts.manrope(11, .semibold, relativeTo: .caption2)).foregroundStyle(Brand.secondaryText(scheme))
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(label + ": " + text)
@@ -78,7 +79,8 @@ struct OverviewCard: View {
         let palette = ChartPalette(scheme)
         let scale = Double(o.scaleMinutes) * 1.12
         let index = selectedIndex(o)
-        let plain = LinearGradient(colors: [palette.active, StageColors.color(.deep, scheme)], startPoint: .top, endPoint: .bottom)
+        let plain = LinearGradient(colors: [palette.active, StageColors.color(.deep, scheme)], startPoint: .top,
+                                   endPoint: .bottom)
         return Chart {
             ForEach(o.bars.indices, id: \.self) { i in
                 barMarks(o, i, stacked: stacked, dim: index != nil && index != i, plain: plain, scale: scale)
@@ -111,7 +113,8 @@ struct OverviewCard: View {
     /// Eine Säule: ganze Höhe (trägt ✓ und VoiceOver; mit Phasen durchsichtig, die Teile liegen darüber), ohne Daten
     /// ein flacher Strich.
     @ChartContentBuilder
-    private func barMarks(_ o: SleepOverview, _ i: Int, stacked: Bool, dim: Bool, plain: LinearGradient, scale: Double) -> some ChartContent {
+    private func barMarks(_ o: SleepOverview, _ i: Int, stacked: Bool, dim: Bool, plain: LinearGradient,
+                          scale: Double) -> some ChartContent {
         let palette = ChartPalette(scheme)
         let bar = o.bars[i]
         let height = Double(bar.asleepMinutes ?? 0)
@@ -130,7 +133,8 @@ struct OverviewCard: View {
             .accessibilityLabel(Text(verbatim: period(o.unit, bar)))
             .accessibilityValue(Text(verbatim: barValue(bar)))
         ForEach(total > 0 && bar.asleepMinutes != nil ? segments(bar, height: height) : []) { part in
-            BarMark(x: .value("bar", bar.first), yStart: .value("minutes", part.from), yEnd: .value("minutes", part.to), width: .ratio(0.55))
+            BarMark(x: .value("bar", bar.first), yStart: .value("minutes", part.from), yEnd: .value("minutes", part.to),
+                    width: .ratio(0.55))
                 .foregroundStyle(StageColors.color(part.stage, scheme))
                 .cornerRadius(part.stage == .rem ? 6 : 2)
                 .opacity(dim ? 0.45 : 1)
@@ -156,7 +160,8 @@ struct OverviewCard: View {
     /// Ziellinie und «✓ Ziel erreicht».
     private func goalLegend(_ o: SleepOverview) -> [(symbol: AnyView, text: String)] {
         [
-            (symbol: AnyView(DashSymbol(color: .accentColor)), text: L("chart_goal", Format.duration(minutes: o.goalMinutes))),
+            (symbol: AnyView(DashSymbol(color: .accentColor)),
+             text: L("chart_goal", Format.duration(minutes: o.goalMinutes))),
             // Das Zeichen steht schon im Text («✓ Ziel erreicht»).
             (symbol: AnyView(EmptyView()), text: L("chart_goal_met")),
         ]
@@ -167,13 +172,17 @@ struct OverviewCard: View {
         var items: [(symbol: AnyView, text: String)] = []
         if stacked {
             for stage in Self.stack {
-                items.append((symbol: AnyView(RoundedRectangle(cornerRadius: 2).fill(StageColors.color(stage, scheme)).frame(width: 10, height: 10)),
-                              text: stageName(stage)))
+                let symbol = RoundedRectangle(cornerRadius: 2)
+                    .fill(StageColors.color(stage, scheme))
+                    .frame(width: 10, height: 10)
+                items.append((symbol: AnyView(symbol), text: stageName(stage)))
             }
         }
         if neutral {
-            items.append((symbol: AnyView(RoundedRectangle(cornerRadius: 2).fill(Brand.secondaryText(scheme).opacity(0.3)).frame(width: 10, height: 10)),
-                          text: L("overview_no_stages")))
+            let symbol = RoundedRectangle(cornerRadius: 2)
+                .fill(Brand.secondaryText(scheme).opacity(0.3))
+                .frame(width: 10, height: 10)
+            items.append((symbol: AnyView(symbol), text: L("overview_no_stages")))
         }
         return items
     }
@@ -189,14 +198,17 @@ struct OverviewCard: View {
     @ViewBuilder private func bubble(_ o: SleepOverview) -> some View {
         if let i = selectedIndex(o) {
             let bar = o.bars[i]
-            ChartSelectionBubble(text: period(o.unit, bar) + " · " + barValue(bar), fraction: slotFraction(i, of: o.bars.count),
+            ChartSelectionBubble(text: period(o.unit, bar) + " · " + barValue(bar),
+                                 fraction: slotFraction(i, of: o.bars.count),
                                  onOpen: o.unit == .days && bar.asleepMinutes != nil ? { onOpen(bar.first) } : nil)
         } else {
             ChartTouchHint()
         }
     }
 
-    private func selectedIndex(_ o: SleepOverview) -> Int? { selected.flatMap { s in o.bars.firstIndex { $0.first == s } } }
+    private func selectedIndex(_ o: SleepOverview) -> Int? {
+        selected.flatMap { s in o.bars.firstIndex { $0.first == s } }
+    }
 
     /// Minuten tief + leicht + REM einer Säule (0 ohne Phasen).
     private static func total(_ bar: OverviewBar) -> Int { stack.reduce(0) { $0 + (bar.stageMinutes[$1] ?? 0) } }

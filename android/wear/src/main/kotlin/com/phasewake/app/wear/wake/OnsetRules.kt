@@ -71,7 +71,12 @@ internal object OnsetRules {
      * @return Beginn der ruhigen Strecke (oder `null`) und das Grundrauschen bis zur erkennenden bzw. letzten Epoche.
      */
     fun scan(
-        motions: List<Double?>, measured: List<Boolean>, from: Int, threshold: Double, personalFloor: Double?, continuous: Boolean,
+        motions: List<Double?>,
+        measured: List<Boolean>,
+        from: Int,
+        threshold: Double,
+        personalFloor: Double?,
+        continuous: Boolean,
         floor: Double?,
     ): Pair<Int?, Double?> {
         var current = floor
@@ -137,7 +142,12 @@ internal object OnsetRules {
      * Unruhig: In den letzten [recent] Epochen hat mindestens eine gemessene Epoche Bewegung an oder über [threshold]
      * (wirksame Leicht-Schwelle). Leere und ungemessene Epochen zählen nicht.
      */
-    fun restless(motions: List<Double?>, measured: List<Boolean>, threshold: Double, recent: Int = RECENT_EPOCHS): Boolean {
+    fun restless(
+        motions: List<Double?>,
+        measured: List<Boolean>,
+        threshold: Double,
+        recent: Int = RECENT_EPOCHS,
+    ): Boolean {
         val from = (motions.size - recent).coerceAtLeast(0)
         return (from until motions.size).any { i ->
             val motion = motions[i]
@@ -151,7 +161,14 @@ internal object OnsetRules {
      * waren ([restless]) und der Akku nicht unter [AutoOnset.MIN_BATTERY_PERCENT] liegt (unbekannt hindert nicht). Dann
      * [at] + [OnsetMonitor.EXTEND_STEP], höchstens [cap] und [latestGiveUp].
      */
-    fun extendUntil(at: Instant, maxEnd: Instant, latestGiveUp: Instant, cap: Instant, restless: Boolean, battery: Int?): Instant? {
+    fun extendUntil(
+        at: Instant,
+        maxEnd: Instant,
+        latestGiveUp: Instant,
+        cap: Instant,
+        restless: Boolean,
+        battery: Int?,
+    ): Instant? {
         if (at.isBefore(maxEnd) || maxEnd.isAfter(latestGiveUp) || !restless) return null
         if (AutoOnset.skipForBattery(battery)) return null
         val until = minOf(at.plus(OnsetMonitor.EXTEND_STEP), cap, latestGiveUp)
@@ -215,7 +232,8 @@ internal object OnsetRules {
      * der Bettzeit (Neustart der Uhr, späte Änderung, Schalter spät ein), nach «Gute Nacht» beim Wiederaufnehmen nach
      * einem Prozessende. Was dann gilt, sagt [lateStart].
      */
-    fun startedLate(measureFrom: Instant, bedAt: Instant): Boolean = measureFrom.isAfter(bedAt.plus(LATE_START_TOLERANCE))
+    fun startedLate(measureFrom: Instant, bedAt: Instant): Boolean =
+        measureFrom.isAfter(bedAt.plus(LATE_START_TOLERANCE))
 
     /** Beginn der Messung gegenüber dem Beginn der Einschlafdauer. */
     enum class LateStart {
@@ -282,25 +300,36 @@ internal object OnsetRules {
     }
 
     /**
-     * Eine Zeile je 15 Min fürs Diagnose-Protokoll (Ursachensuche): aufweckender Sensor (1/0),
+     * Werte einer Zeile von [statLine]: Art der Messung [label], aufweckender Sensor [wakeUp], erhaltene Werte
+     * [samples], gemessene Epochen [epochs], davon leer [empty], mittlere/grösste Bewegung [mean]/[max], wirksame
+     * Schwelle [threshold], Grundrauschen [floor] ([NoiseFloor]), Wakelock in Sekunden [wakeLockSeconds], Akku
+     * [battery].
+     */
+    data class Stat(
+        val label: String,
+        val wakeUp: Boolean,
+        val samples: Long,
+        val epochs: Int,
+        val empty: Int,
+        val mean: Double?,
+        val max: Double?,
+        val threshold: Double,
+        val floor: Double?,
+        val wakeLockSeconds: Long,
+        val battery: Int?,
+    )
+
+    /**
+     * Eine Zeile je 15 Min fürs Diagnose-Protokoll (Ursachensuche) aus [stat]: aufweckender Sensor (1/0),
      * erhaltene Werte, gemessene Epochen, davon leer, mittlere/grösste Bewegung, wirksame Schwelle, Grundrauschen
      * ([NoiseFloor]), Wakelock in Sekunden, Akku.
      */
-    fun statLine(
-        label: String,
-        wakeUp: Boolean,
-        samples: Long,
-        epochs: Int,
-        empty: Int,
-        mean: Double?,
-        max: Double?,
-        threshold: Double,
-        floor: Double?,
-        wakeLockSeconds: Long,
-        battery: Int?,
-    ): String {
+    fun statLine(stat: Stat): String {
         val f = NoiseFloor::format
-        return "$label stat wake=${if (wakeUp) 1 else 0} samples=$samples epochs=$epochs empty=$empty " +
-            "motion=${f(mean)}/${f(max)} thr=${f(threshold)} floor=${f(floor)} wl=${wakeLockSeconds}s bat=${battery ?: "-"}"
+        return with(stat) {
+            "$label stat wake=${if (wakeUp) 1 else 0} samples=$samples epochs=$epochs empty=$empty " +
+                "motion=${f(mean)}/${f(max)} thr=${f(threshold)} floor=${f(floor)} wl=${wakeLockSeconds}s " +
+                "bat=${battery ?: "-"}"
+        }
     }
 }

@@ -29,7 +29,9 @@ public enum CompanionPick {
             return (device, name)
         }
         if let hit = named.first(where: { nodes.contains($0.1) }) { return hit.0 }
-        if let hit = named.first(where: { pair in nodes.contains { pair.1.contains($0) || $0.contains(pair.1) } }) { return hit.0 }
+        if let hit = named.first(where: { pair in nodes.contains { pair.1.contains($0) || $0.contains(pair.1) } }) {
+            return hit.0
+        }
         let wearables = devices.filter(\.wearable)
         return wearables.count == 1 ? wearables[0] : nil
     }

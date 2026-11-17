@@ -20,7 +20,8 @@ final class SleepNotesTests: XCTestCase {
 
     private func night(_ windowStart: String, feeling: Int?) -> NightRecord {
         let ws = at(windowStart)
-        return NightRecord(alarmId: "a", windowStart: ws, target: ws.addingTimeInterval(1800), wokeAt: ws.addingTimeInterval(1200),
+        return NightRecord(alarmId: "a", windowStart: ws, target: ws.addingTimeInterval(1800),
+                           wokeAt: ws.addingTimeInterval(1200),
                            reason: .lightSleep, snoozes: 0, epochs: [], feeling: feeling)
     }
 
@@ -31,11 +32,13 @@ final class SleepNotesTests: XCTestCase {
         XCTAssertEqual(SleepNotes.nightDate(at("2026-10-28T11:59"), calendar: zurich), "2026-10-27")
         XCTAssertEqual(SleepNotes.nightDate(at("2026-10-28T12:00"), calendar: zurich), "2026-10-28")
         XCTAssertEqual(SleepNotes.nightDate(at("2026-10-28T22:00"), calendar: zurich), "2026-10-28")
-        XCTAssertEqual(SleepNotes.nightDate(of: night("2026-10-28T06:00", feeling: nil), calendar: zurich), "2026-10-27")
+        XCTAssertEqual(SleepNotes.nightDate(of: night("2026-10-28T06:00", feeling: nil), calendar: zurich),
+                       "2026-10-27")
     }
 
     func testHealthNightDateUsesMidpoint() {
-        func date(_ from: String, _ to: String) -> String { SleepNotes.nightDate(from: at(from), to: at(to), calendar: zurich) }
+        func date(_ from: String,
+                  _ to: String) -> String { SleepNotes.nightDate(from: at(from), to: at(to), calendar: zurich) }
         // Samsung-Health-Nacht 02:42–12:50: Abend des 31. Oktober (Morgen 1. November). Über das Ende wäre es der 1.
         XCTAssertEqual(date("2026-11-01T02:42", "2026-11-01T12:50"), "2026-10-31")
         XCTAssertEqual(SleepNotes.nightDate(at("2026-11-01T12:50"), calendar: zurich), "2026-11-01")
@@ -49,9 +52,11 @@ final class SleepNotesTests: XCTestCase {
         XCTAssertEqual(date("2026-03-28T23:00", "2026-03-29T07:00"), "2026-03-28")
         XCTAssertEqual(date("2026-03-29T01:30", "2026-03-29T13:10"), "2026-03-28")
         // Nacht für Diagramme und Sitzung im Verlauf: dieselbe Regel.
-        XCTAssertEqual(SleepNotes.nightDate(of: SleepSummary(start: at("2026-11-01T02:42"), end: at("2026-11-01T12:50"), asleepMinutes: 0),
+        XCTAssertEqual(SleepNotes.nightDate(of: SleepSummary(start: at("2026-11-01T02:42"), end: at("2026-11-01T12:50"),
+                                                             asleepMinutes: 0),
                                             calendar: zurich), "2026-10-31")
-        XCTAssertEqual(SleepNotes.nightDate(of: HealthSession(start: at("2026-11-01T02:42"), end: at("2026-11-01T12:50")), calendar: zurich),
+        XCTAssertEqual(SleepNotes.nightDate(of: HealthSession(start: at("2026-11-01T02:42"),
+                                                              end: at("2026-11-01T12:50")), calendar: zurich),
                        "2026-10-31")
     }
 
@@ -62,7 +67,8 @@ final class SleepNotesTests: XCTestCase {
         XCTAssertTrue(SleepNotes.entryVisible(now: at("2026-10-29T01:00"), nextWindowStart: window, calendar: zurich))
         XCTAssertFalse(SleepNotes.entryVisible(now: at("2026-10-29T06:00"), nextWindowStart: window, calendar: zurich))
         // Nach dem Wecken: nächstes Fenster erst morgen – am Vormittag keine Notizen.
-        XCTAssertFalse(SleepNotes.entryVisible(now: at("2026-10-29T08:00"), nextWindowStart: at("2026-10-30T06:00"), calendar: zurich))
+        XCTAssertFalse(SleepNotes.entryVisible(now: at("2026-10-29T08:00"), nextWindowStart: at("2026-10-30T06:00"),
+                                               calendar: zurich))
         // Ohne Wecker: abends ja, nach Mitternacht nein.
         XCTAssertTrue(SleepNotes.entryVisible(now: at("2026-10-28T23:00"), nextWindowStart: nil, calendar: zurich))
         XCTAssertFalse(SleepNotes.entryVisible(now: at("2026-10-29T01:00"), nextWindowStart: nil, calendar: zurich))
@@ -71,7 +77,8 @@ final class SleepNotesTests: XCTestCase {
     // MARK: Format
 
     func testNormalizeOrdersFixedThenCustom() {
-        XCTAssertEqual(SleepNotes.normalize(["custom:b", "SICK", "CAFFEINE", "custom:a", "SICK", ""]), ["CAFFEINE", "SICK", "custom:a", "custom:b"])
+        XCTAssertEqual(SleepNotes.normalize(["custom:b", "SICK", "CAFFEINE", "custom:a", "SICK", ""]),
+                       ["CAFFEINE", "SICK", "custom:a", "custom:b"])
         XCTAssertEqual(SleepNotes.toggle("ALCOHOL", in: ["SICK"]), ["ALCOHOL", "SICK"])
         XCTAssertEqual(SleepNotes.toggle("SICK", in: ["ALCOHOL", "SICK"]), ["ALCOHOL"])
     }
@@ -83,7 +90,8 @@ final class SleepNotesTests: XCTestCase {
         XCTAssertEqual(SleepNotes.decode(text), ["2026-10-26": ["custom:x"], "2026-10-27": ["CAFFEINE", "STRESS"]])
         XCTAssertEqual(SleepNotes.decode("kaputt\n2026-10-27|SICK\n|x"), ["2026-10-27": ["SICK"]])
         var many: [String: [String]] = [:]
-        for day in 0..<100 { many[SleepNotes.dateString(at("2026-01-01T12:00").addingTimeInterval(Double(day) * 86_400), calendar: zurich)] = ["NAP"] }
+        for day in 0..<100 { many[SleepNotes.dateString(at("2026-01-01T12:00").addingTimeInterval(Double(day) * 86_400),
+                                                        calendar: zurich)] = ["NAP"] }
         let trimmed = SleepNotes.decode(SleepNotes.encode(many))
         XCTAssertEqual(trimmed.count, 90)
         XCTAssertNil(trimmed["2026-01-01"])
@@ -97,7 +105,8 @@ final class SleepNotesTests: XCTestCase {
         let decoded = SleepNotes.decodeCustom(SleepNotes.encodeCustom(notes))
         XCTAssertEqual(decoded.count, 5)
         XCTAssertEqual(decoded[1], CustomNote(id: "custom:1", name: "Tee 1"))
-        XCTAssertEqual(SleepNotes.decodeCustom("CAFFEINE|nein\ncustom:a|\ncustom:b|Tee"), [CustomNote(id: "custom:b", name: "Tee")])
+        XCTAssertEqual(SleepNotes.decodeCustom("CAFFEINE|nein\ncustom:a|\ncustom:b|Tee"),
+                       [CustomNote(id: "custom:b", name: "Tee")])
         XCTAssertTrue(SleepNotes.newCustomId().hasPrefix("custom:"))
     }
 
@@ -105,7 +114,8 @@ final class SleepNotesTests: XCTestCase {
         XCTAssertEqual(SleepNotes.csvValue(["custom:a", "SICK", "ALCOHOL"]), "ALCOHOL;SICK;custom")
         XCTAssertEqual(SleepNotes.csvValue([]), "")
         let ws = at("2026-10-28T06:00")
-        let n = NightRecord(alarmId: "a", windowStart: ws, target: ws.addingTimeInterval(1800), wokeAt: ws.addingTimeInterval(1200),
+        let n = NightRecord(alarmId: "a", windowStart: ws, target: ws.addingTimeInterval(1800),
+                            wokeAt: ws.addingTimeInterval(1200),
                             reason: .lightSleep, snoozes: 0, epochs: [Epoch(motion: 0, heartRate: nil)], feeling: 3)
         let csv = NightHistory.exportCsv([n], notes: ["2026-10-27": ["ALCOHOL", "custom:a"]], calendar: zurich)
         XCTAssertEqual(csv.split(separator: "\n")[1], "1,30,LIGHT_SLEEP,10,0,3,0,0.000000,,ALCOHOL;custom")
@@ -121,7 +131,8 @@ final class SleepNotesTests: XCTestCase {
             let ws = "2026-10-\(String(format: "%02d", day + 1))T06:00"
             let alcohol = day <= 3
             nights.append(night(ws, feeling: alcohol ? 2 : 4))
-            notes["2026-10-\(String(format: "%02d", day))"] = (alcohol ? ["ALCOHOL"] : []) + (day <= 2 ? ["STRESS"] : [])
+            notes["2026-10-\(String(format: "%02d", day))"] = (alcohol ? ["ALCOHOL"] : [])
+                + (day <= 2 ? ["STRESS"] : [])
         }
         // Nacht ohne Befinden zählt nicht.
         nights.append(night("2026-10-20T06:00", feeling: nil))
@@ -161,8 +172,10 @@ final class SleepNotesTests: XCTestCase {
     func testSameNightDateCountsOnce() {
         // Zwei Wecker am selben Morgen: eine Nacht, das Befinden der zuletzt geweckten zählt (wie Kotlin).
         let first = night("2026-09-01T06:00", feeling: 1)
-        let second = NightRecord(alarmId: "b", windowStart: first.windowStart.addingTimeInterval(1800), target: first.target,
-                                 wokeAt: first.wokeAt.addingTimeInterval(1800), reason: .lightSleep, snoozes: 0, epochs: [], feeling: 5)
+        let second = NightRecord(alarmId: "b", windowStart: first.windowStart.addingTimeInterval(1800),
+                                 target: first.target,
+                                 wokeAt: first.wokeAt.addingTimeInterval(1800), reason: .lightSleep, snoozes: 0,
+                                 epochs: [], feeling: 5)
         var nights = [first, second]
         for day in 2...6 { nights.append(night("2026-09-0\(day)T06:00", feeling: 3)) }
         let notes = ["2026-08-31": ["NAP"], "2026-09-01": ["NAP"], "2026-09-02": ["NAP"]]
@@ -185,9 +198,11 @@ final class SleepNotesTests: XCTestCase {
     }
 
     func testSmallDeltaIsNotVisible() {
-        let e = NoteEffect(noteId: "NAP", nightsWith: 3, nightsWithout: 3, avgFeelingWith: 3.4, avgFeelingWithout: 3, avgAsleepWith: nil, avgAsleepWithout: nil)
+        let e = NoteEffect(noteId: "NAP", nightsWith: 3, nightsWithout: 3, avgFeelingWith: 3.4, avgFeelingWithout: 3,
+                           avgAsleepWith: nil, avgAsleepWithout: nil)
         XCTAssertFalse(e.isVisible)
-        let f = NoteEffect(noteId: "NAP", nightsWith: 3, nightsWithout: 3, avgFeelingWith: 3.5, avgFeelingWithout: 3, avgAsleepWith: nil, avgAsleepWithout: nil)
+        let f = NoteEffect(noteId: "NAP", nightsWith: 3, nightsWithout: 3, avgFeelingWith: 3.5, avgFeelingWithout: 3,
+                           avgAsleepWith: nil, avgAsleepWithout: nil)
         XCTAssertTrue(f.isVisible)
     }
 
@@ -220,7 +235,8 @@ final class SleepNotesTests: XCTestCase {
         let target = at("2026-10-29T06:00")
         XCTAssertEqual(Bedtime.bedtime(nextAlarmTarget: target, goalMinutes: 450), at("2026-10-28T22:30"))
         XCTAssertEqual(Bedtime.reminderAt(nextAlarmTarget: target, goalMinutes: 450), at("2026-10-28T22:00"))
-        XCTAssertEqual(Bedtime.reminderAt(nextAlarmTarget: target, goalMinutes: 480, leadMinutes: 15), at("2026-10-28T21:45"))
+        XCTAssertEqual(Bedtime.reminderAt(nextAlarmTarget: target, goalMinutes: 480, leadMinutes: 15),
+                       at("2026-10-28T21:45"))
     }
 
     /// Kennungen und Namen eigener Notizen.
@@ -229,7 +245,8 @@ final class SleepNotesTests: XCTestCase {
         XCTAssertFalse(SleepNotes.isCustom("CAFFEINE"))
         XCTAssertEqual(SleepNotes.cleanName(" Tee\nspät\r|x "), "Tee spät  x")
         XCTAssertEqual(CustomNote(id: "custom:a", name: "\n|").name, "")
-        XCTAssertEqual(SleepNotes.trim(["2026-10-27": ["SICK", "SICK", "ALCOHOL"], "2026-10-26": []]), ["2026-10-27": ["ALCOHOL", "SICK"]])
+        XCTAssertEqual(SleepNotes.trim(["2026-10-27": ["SICK", "SICK", "ALCOHOL"], "2026-10-26": []]),
+                       ["2026-10-27": ["ALCOHOL", "SICK"]])
     }
 
     /// Wie `SleepNotesTest.toggleAndStorageRoundTrip` (Kotlin).

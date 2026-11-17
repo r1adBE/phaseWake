@@ -20,7 +20,7 @@ object DoNotDisturb {
         return when (manager.currentInterruptionFilter) {
             NotificationManager.INTERRUPTION_FILTER_NONE -> Alarms.BLOCKED
             NotificationManager.INTERRUPTION_FILTER_PRIORITY -> runCatching {
-                if (manager.notificationPolicy.priorityCategories and NotificationManager.Policy.PRIORITY_CATEGORY_ALARMS == 0) Alarms.BLOCKED else Alarms.ALLOWED
+                if (alarmsMuted(manager)) Alarms.BLOCKED else Alarms.ALLOWED
             }.getOrDefault(Alarms.UNKNOWN)
             else -> Alarms.ALLOWED
         }
@@ -31,11 +31,15 @@ object DoNotDisturb {
         return when (manager.currentInterruptionFilter) {
             NotificationManager.INTERRUPTION_FILTER_NONE -> true
             NotificationManager.INTERRUPTION_FILTER_PRIORITY -> runCatching {
-                manager.notificationPolicy.priorityCategories and NotificationManager.Policy.PRIORITY_CATEGORY_ALARMS == 0
+                alarmsMuted(manager)
             }.getOrDefault(false)
             else -> false
         }
     }
+
+    /** Ob die Prioritäts-Regel von «Nicht stören» Wecker ausschliesst (kann ohne Sonderrecht werfen). */
+    private fun alarmsMuted(manager: NotificationManager): Boolean =
+        manager.notificationPolicy.priorityCategories and NotificationManager.Policy.PRIORITY_CATEGORY_ALARMS == 0
 
     /** Öffnet die «Nicht stören»-Einstellungen, ersatzweise die allgemeinen Einstellungen. */
     fun openSettings(context: Context) {

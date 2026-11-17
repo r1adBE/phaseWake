@@ -128,7 +128,9 @@ class RecordingRepository(
     /** Älteste abgeschlossene über [NightRecording.MAX_KEPT] löschen und den Stand neu lesen. */
     private suspend fun trimLocked() {
         val finished = withContext(io) {
-            val all = files().mapNotNull { f -> read(f)?.let { f to it } }.filter { it.second.finished }.sortedBy { it.second.start }
+            val all =
+                files().mapNotNull { f -> read(f)?.let { f to it } }.filter { it.second.finished }
+                    .sortedBy { it.second.start }
             all.dropLast(NightRecording.MAX_KEPT).forEach { it.first.delete() }
             all.takeLast(NightRecording.MAX_KEPT).map { it.second }
         }
@@ -137,7 +139,10 @@ class RecordingRepository(
 
     private fun fileOf(start: Instant) = File(dir, PREFIX + start.toEpochMilli())
 
-    private fun files(): List<File> = dir.listFiles().orEmpty().filter { it.isFile && it.name.startsWith(PREFIX) && !it.name.endsWith(".new") && !it.name.endsWith(".bak") }
+    private fun files(): List<File> =
+        dir.listFiles().orEmpty().filter {
+            it.isFile && it.name.startsWith(PREFIX) && !it.name.endsWith(".new") && !it.name.endsWith(".bak")
+        }
 
     private fun readAll(): List<NightRecording> = files().mapNotNull(::read)
 

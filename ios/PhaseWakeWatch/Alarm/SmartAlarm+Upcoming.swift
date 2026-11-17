@@ -45,8 +45,8 @@ enum UpcomingFallbacks {
     /// Zeit. Gesucht ab dem späteren von `first.target` und `now`: Liegt `first` schon zurück (ausstehende
     /// Nacht, nachgeholter Wecker), bekäme sonst jede Nacht dazwischen einen Rückfall in der Vergangenheit, der sofort
     /// weckt.
-    static func nights(after first: WakePlan?, specs: [AlarmSpec], now: Date, doneUntil: [String: Date], nominalFirst: Date?,
-                       calendar: Calendar, holidays: Set<String>) -> [WakePlan] {
+    static func nights(after first: WakePlan?, specs: [AlarmSpec], now: Date, doneUntil: [String: Date],
+                       nominalFirst: Date?, calendar: Calendar, holidays: Set<String>) -> [WakePlan] {
         guard let first, Transient.kindOf(first.alarmId) == nil else { return [] }
         var suppressed = doneUntil
         let sameNight = GoodNightEstimate.doneUntil(target: first.target, nominal: nominalFirst)
@@ -56,8 +56,10 @@ enum UpcomingFallbacks {
             firstTargets[spec.id] = AlarmSchedule.nextTarget(spec, now: now, calendar: calendar, holidays: holidays)
         }
         let candidates = specs.filter { !$0.isOneShot || firstTargets[$0.id] != nil }
-        return BackupPlan.nights(candidates, now: max(first.target, now), until: now.addingTimeInterval(horizon), maxNights: maxNights,
-                                 suppressed: suppressed, firstTargets: firstTargets, calendar: calendar, holidays: holidays)
+        let input = BackupPlan.Input(candidates, suppressed: suppressed, firstTargets: firstTargets,
+                                     holidays: holidays)
+        return BackupPlan.nights(input, now: max(first.target, now), until: now.addingTimeInterval(horizon),
+                                 maxNights: maxNights, calendar: calendar)
     }
 
     /// Mitteilungen je Nacht `nights` (nach Zielzeit sortiert), Rückfall `delay` nach der Zielzeit. `otherPending` =
@@ -106,11 +108,13 @@ extension SmartAlarm {
         let holidays = model.storage.holidays.dates
         let nominal = first.flatMap { night in
             model.alarms.first { $0.id == night.alarmId }.flatMap {
-                AlarmSchedule.nextTarget($0, now: night.target.addingTimeInterval(-0.001), calendar: .gregorianLocal, holidays: holidays)
+                AlarmSchedule.nextTarget($0, now: night.target.addingTimeInterval(-0.001), calendar: .gregorianLocal,
+                                         holidays: holidays)
             }
         }
-        let nights = UpcomingFallbacks.nights(after: first, specs: model.alarms, now: now, doneUntil: model.storage.doneUntil,
-                                              nominalFirst: nominal, calendar: .gregorianLocal, holidays: holidays)
+        let nights = UpcomingFallbacks.nights(after: first, specs: model.alarms, now: now,
+                                              doneUntil: model.storage.doneUntil, nominalFirst: nominal,
+                                              calendar: .gregorianLocal, holidays: holidays)
         upcomingRun += 1
         let run = upcomingRun
         let reserved = NotificationChain.allIds([Self.fallbackId, Self.interruptedId])
@@ -120,13 +124,15 @@ extension SmartAlarm {
             let pending = await center.pendingNotificationRequests().map(\.identifier)
             guard run == self.upcomingRun else { return }
             let now = Date()
-            let entries = UpcomingFallbacks.plan(nights, now: now, otherPending: UpcomingFallbacks.otherPending(pending, reserved: reserved),
+            let otherPending = UpcomingFallbacks.otherPending(pending, reserved: reserved)
+            let entries = UpcomingFallbacks.plan(nights, now: now, otherPending: otherPending,
                                                  delay: Self.fallbackDelay)
             center.removePendingNotificationRequests(withIdentifiers: UpcomingFallbacks.allIds)
             let content = Self.fallbackContent()
             for entry in entries {
                 for (id, at) in zip(entry.ids, entry.dates) {
-                    let request = UNNotificationRequest(identifier: id, content: content, trigger: LocalTrigger.at(at, now: now))
+                    let request = UNNotificationRequest(identifier: id, content: content,
+                                                        trigger: LocalTrigger.at(at, now: now))
                     center.add(request) { error in
                         guard let error else { return }
                         DiagStore.shared.log(.error, "fallback \(id) not set \((error as NSError).code)")

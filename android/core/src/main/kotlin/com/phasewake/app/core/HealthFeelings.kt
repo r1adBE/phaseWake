@@ -36,7 +36,8 @@ object HealthFeelings {
 
     /** Behält die jüngsten [MAX_DATES] Nachtdaten mit gültigem Wert. */
     fun trim(feelings: Map<LocalDate, Int>): Map<LocalDate, Int> =
-        feelings.filterValues(::valid).toSortedMap().entries.toList().takeLast(MAX_DATES).associate { it.key to it.value }
+        feelings.filterValues(::valid).toSortedMap().entries.toList().takeLast(MAX_DATES)
+            .associate { it.key to it.value }
 
     /** Je Nachtdatum eine Zeile «yyyy-MM-dd|n», nach Datum sortiert. */
     fun encode(feelings: Map<LocalDate, Int>): String =

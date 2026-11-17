@@ -116,7 +116,10 @@ data class NightRecording(
 
         /** Eine Epoche je Zeile, «bewegung;puls» (leer = keine Werte), wie die Epochen in `Codec.encodeNight`. */
         fun epochLines(epochs: List<Epoch>): String = buildString {
-            for (e in epochs) append(e.motion?.toString().orEmpty()).append(';').append(e.heartRate?.toString().orEmpty()).append('\n')
+            for (e in epochs) {
+                append(e.motion?.toString().orEmpty()).append(';')
+                append(e.heartRate?.toString().orEmpty()).append('\n')
+            }
         }
 
         /** Schlusszeile «end=ms,grund». */
@@ -126,7 +129,8 @@ data class NightRecording(
          * Zeile «onset=bettMs,eingeschlafenMs» (Lernphase); darf zwischen den Epochen stehen und zählt nicht als
          * Epoche. Ältere Versionen überspringen sie als unlesbare Epochen-Zeile.
          */
-        fun onsetLine(bedAt: Instant, asleepAt: Instant): String = "$ONSET${bedAt.toEpochMilli()},${asleepAt.toEpochMilli()}\n"
+        fun onsetLine(bedAt: Instant, asleepAt: Instant): String =
+            "$ONSET${bedAt.toEpochMilli()},${asleepAt.toEpochMilli()}\n"
 
         /** Ganze Aufzeichnung als Text (Datei am Handy, Paket an das Handy). */
         fun encode(recording: NightRecording): String = buildString {
@@ -148,7 +152,8 @@ data class NightRecording(
             val lines = complete.lines().dropLastWhile { it.isEmpty() }
             if (lines.firstOrNull() != HEADER) return null
             // Zeitpunkte ausserhalb von TimeBounds (kaputt oder manipuliert): Beginn unlesbar, sonst übergangen.
-            val start = TimeBounds.checked(lines.getOrNull(1)?.takeIf { it.startsWith(START) }?.removePrefix(START)?.toLongOrNull()) ?: return null
+            val startMs = lines.getOrNull(1)?.takeIf { it.startsWith(START) }?.removePrefix(START)?.toLongOrNull()
+            val start = TimeBounds.checked(startMs) ?: return null
             val epochs = ArrayList<Epoch>()
             var end: Instant? = null
             var reason: RecordEnd? = null

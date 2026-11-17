@@ -49,15 +49,20 @@ object Export {
         val zone = java.time.ZoneId.systemDefault()
         app.appScope.launch(Dispatchers.Main) {
             val recordings = app.recordings.load()
-            val validation = withContext(Dispatchers.IO) { ValidationData.entries(app) }.takeIf { list -> list.any { it.ref != Validation.Ref.NONE } }
+            val validation = withContext(Dispatchers.IO) { ValidationData.entries(app) }
+                .takeIf { list -> list.any { it.ref != Validation.Ref.NONE } }
             val uris = withContext(Dispatchers.IO) {
                 val dir = File(app.cacheDir, DIR).apply { mkdirs() }
                 buildList {
                     if (nights.isNotEmpty() || recordings.isEmpty()) {
                         add(write(app, File(dir, "phasewake-nights.csv"), NightHistory.exportCsv(nights, notes, zone)))
                     }
-                    if (recordings.isNotEmpty()) add(write(app, File(dir, "phasewake-recordings.csv"), NightRecording.exportCsv(recordings)))
-                    validation?.let { add(write(app, File(dir, "phasewake-validation.csv"), ValidationReport.exportCsv(it))) }
+                    if (recordings.isNotEmpty()) add(
+                        write(app, File(dir, "phasewake-recordings.csv"), NightRecording.exportCsv(recordings))
+                    )
+                    validation?.let {
+                        add(write(app, File(dir, "phasewake-validation.csv"), ValidationReport.exportCsv(it)))
+                    }
                 }
             }
             // Eine Datei wie bisher; mit Aufzeichnungen bzw. Validierung alle Dateien im selben Teilen.

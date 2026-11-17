@@ -30,7 +30,8 @@ struct StageTotalsView: View {
 
 /// «Üblich 20–25 %» bzw. «Üblich unter 10 %», wenn der Bereich bei 0 beginnt (wach).
 func typicalText(_ range: StageRange) -> String {
-    range.low == 0 ? L("stages_typical_below", Int64(range.high + 1)) : L("stages_typical_range", Int64(range.low), Int64(range.high))
+    range.low == 0 ? L("stages_typical_below", Int64(range.high + 1))
+        : L("stages_typical_range", Int64(range.low), Int64(range.high))
 }
 
 /// Eine Zeile: Name und Anteil am Schlaf links, Dauer rechts, darunter der Balken mit dem üblichen Bereich und dessen
@@ -65,7 +66,8 @@ private struct StageTotalRow: View {
                 Text(stageName(total.stage)).font(Fonts.manrope(14, .semibold, relativeTo: .subheadline))
                 Text(share).font(Fonts.manrope(14, .bold, relativeTo: .subheadline))
                 Spacer()
-                Text(duration).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.secondaryText(scheme))
+                Text(duration)
+                    .font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.secondaryText(scheme))
             }
             ShareBar(percent: total.percent, range: total.range, color: StageColors.color(total.stage, scheme))
                 .frame(height: 12)
@@ -89,17 +91,20 @@ private struct ShareBar: View {
     var body: some View {
         Canvas { context, size in
             let r = size.height / 2
-            context.fill(Path(roundedRect: CGRect(origin: .zero, size: size), cornerRadius: r), with: .color(StageColors.track(scheme)))
+            context.fill(Path(roundedRect: CGRect(origin: .zero, size: size), cornerRadius: r),
+                         with: .color(StageColors.track(scheme)))
             // «Unter 10 %» reicht bis 10, sonst von Grenze zu Grenze.
             let upper = range.low == 0 ? range.high + 1 : range.high
             let band = CGRect(x: size.width * CGFloat(range.low) / 100, y: 0,
                               width: size.width * CGFloat(upper - range.low) / 100, height: size.height)
             context.fill(Path(roundedRect: band, cornerRadius: 3), with: .color(StageColors.typical(scheme)))
-            context.stroke(Path(roundedRect: band.insetBy(dx: 0.5, dy: 0.5), cornerRadius: 3), with: .color(StageColors.typicalEdge(scheme)),
+            context.stroke(Path(roundedRect: band.insetBy(dx: 0.5, dy: 0.5), cornerRadius: 3),
+                           with: .color(StageColors.typicalEdge(scheme)),
                            style: StrokeStyle(lineWidth: 1, dash: [3, 2]))
             let width = size.width * CGFloat(min(100, max(0, percent))) / 100
             if width > 0 {
-                let bar = CGRect(x: 0, y: size.height * 0.2, width: max(width, size.height * 0.6), height: size.height * 0.6)
+                let bar = CGRect(x: 0, y: size.height * 0.2, width: max(width, size.height * 0.6),
+                                 height: size.height * 0.6)
                 context.fill(Path(roundedRect: bar, cornerRadius: bar.height / 2), with: .color(color))
             }
         }
@@ -114,6 +119,7 @@ private struct TypicalSwatch: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 3)
             .fill(StageColors.typical(scheme))
-            .overlay(RoundedRectangle(cornerRadius: 3).strokeBorder(StageColors.typicalEdge(scheme), style: StrokeStyle(lineWidth: 1, dash: [3, 2])))
+            .overlay(RoundedRectangle(cornerRadius: 3).strokeBorder(StageColors.typicalEdge(scheme),
+                                                                    style: StrokeStyle(lineWidth: 1, dash: [3, 2])))
     }
 }

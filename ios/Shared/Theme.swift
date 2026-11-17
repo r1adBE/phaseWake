@@ -46,13 +46,17 @@ enum Brand {
     static func chipBorder(_ scheme: ColorScheme) -> Color { scheme == .dark ? wave.opacity(0.75) : glow.opacity(0.9) }
     /// Umriss von Bedienelementen (wie Material `outline` auf Android), ≥ 3:1 zu Karte und Hintergrund
     /// (WCAG 1.4.11): dunkel 726EA4 ≈ 3.5:1 auf der Karte, hell 857A8E ≈ 4.0:1 auf der Karte, 3.7:1 auf Creme.
-    static func outline(_ scheme: ColorScheme) -> Color { scheme == .dark ? Color(hex: 0x726EA4) : Color(hex: 0x857A8E) }
+    static func outline(_ scheme: ColorScheme) -> Color {
+        scheme == .dark ? Color(hex: 0x726EA4) : Color(hex: 0x857A8E)
+    }
     /// Fläche eines gewählten Chips: hell helles Caramel (Zweitakzent).
     static func chipSelected(_ scheme: ColorScheme) -> Color { scheme == .dark ? wave.opacity(0.25) : caramelLight }
     /// Leiser Nebentext (Erklärung), ≥ 4.5:1 (hell 6.3:1 auf Creme).
     static func secondaryText(_ scheme: ColorScheme) -> Color { scheme == .dark ? Brand.muted : Color(hex: 0x5E5670) }
     /// Zusatzinfo, eine Stufe leiser: dunkel 80 %, hell ein fester Ton (5.4:1 auf Creme; 80 % wäre < 4.5:1).
-    static func tertiaryText(_ scheme: ColorScheme) -> Color { scheme == .dark ? Brand.muted.opacity(0.8) : Color(hex: 0x6A5F74) }
+    static func tertiaryText(_ scheme: ColorScheme) -> Color {
+        scheme == .dark ? Brand.muted.opacity(0.8) : Color(hex: 0x6A5F74)
+    }
     /// Kartenradius überall.
     static let cardRadius: CGFloat = 22
 }
@@ -88,7 +92,8 @@ enum StageColors {
     /// Plastischer Block (Schlafprofil): dunkel oben um 35 % aufgehellt, hell unten um 25 % vertieft – die Farbe
     /// entfernt sich nie Richtung Karte und behält ihren Kontrast (wie `drawBlocks` auf Android).
     static func plasticGradient(_ color: Color, _ scheme: ColorScheme) -> Gradient {
-        scheme == .dark ? Gradient(colors: [color.blended(with: .white, by: 0.35), color]) : Gradient(colors: [color, color.blended(with: .black, by: 0.25)])
+        scheme == .dark ? Gradient(colors: [color.blended(with: .white, by: 0.35), color])
+            : Gradient(colors: [color, color.blended(with: .black, by: 0.25)])
     }
     static func plastic(_ color: Color, _ scheme: ColorScheme) -> LinearGradient {
         LinearGradient(gradient: plasticGradient(color, scheme), startPoint: .top, endPoint: .bottom)
@@ -132,7 +137,8 @@ enum Fonts {
     }
 
     /// Manrope in Grösse und Stärke, wächst mit der dynamischen Schriftgrösse mit.
-    static func manrope(_ size: CGFloat, _ weight: Font.Weight = .regular, relativeTo style: Font.TextStyle = .body) -> Font {
+    static func manrope(_ size: CGFloat, _ weight: Font.Weight = .regular,
+                        relativeTo style: Font.TextStyle = .body) -> Font {
         Font.custom("Manrope", size: size, relativeTo: style).weight(weight)
     }
 }
@@ -152,11 +158,16 @@ struct LogoMark: View {
             context.fill(moonPath, with: .color(self.moon))
             var wavePath = Path()
             wavePath.move(to: CGPoint(x: 16, y: 158))
-            wavePath.addCurve(to: CGPoint(x: 44, y: 122), control1: CGPoint(x: 30, y: 158), control2: CGPoint(x: 30, y: 122))
-            wavePath.addCurve(to: CGPoint(x: 72, y: 158), control1: CGPoint(x: 58, y: 122), control2: CGPoint(x: 58, y: 158))
-            wavePath.addCurve(to: CGPoint(x: 100, y: 118), control1: CGPoint(x: 86, y: 158), control2: CGPoint(x: 86, y: 118))
-            wavePath.addCurve(to: CGPoint(x: 128, y: 152), control1: CGPoint(x: 114, y: 118), control2: CGPoint(x: 114, y: 152))
-            wavePath.addCurve(to: CGPoint(x: 158, y: 122), control1: CGPoint(x: 140, y: 152), control2: CGPoint(x: 146, y: 134))
+            wavePath.addCurve(to: CGPoint(x: 44, y: 122), control1: CGPoint(x: 30, y: 158),
+                              control2: CGPoint(x: 30, y: 122))
+            wavePath.addCurve(to: CGPoint(x: 72, y: 158), control1: CGPoint(x: 58, y: 122),
+                              control2: CGPoint(x: 58, y: 158))
+            wavePath.addCurve(to: CGPoint(x: 100, y: 118), control1: CGPoint(x: 86, y: 158),
+                              control2: CGPoint(x: 86, y: 118))
+            wavePath.addCurve(to: CGPoint(x: 128, y: 152), control1: CGPoint(x: 114, y: 118),
+                              control2: CGPoint(x: 114, y: 152))
+            wavePath.addCurve(to: CGPoint(x: 158, y: 122), control1: CGPoint(x: 140, y: 152),
+                              control2: CGPoint(x: 146, y: 134))
             context.stroke(wavePath, with: .color(self.wave), style: StrokeStyle(lineWidth: 9, lineCap: .round))
             context.fill(Path(ellipseIn: CGRect(x: 156, y: 108, width: 16, height: 16)), with: .color(self.moon))
         }
@@ -180,16 +191,19 @@ struct PulsingDot: View {
         let still = reduceMotion || dimmed || !pulsing
         TimelineView(.animation(paused: still)) { timeline in
             Canvas { context, size in
-                let t = still ? 0.2 : (timeline.date.timeIntervalSinceReferenceDate / 1.8).truncatingRemainder(dividingBy: 1)
+                let t = still ? 0.2
+                    : (timeline.date.timeIntervalSinceReferenceDate / 1.8).truncatingRemainder(dividingBy: 1)
                 let base = min(size.width, size.height) / 2
                 let center = CGPoint(x: size.width / 2, y: size.height / 2)
                 for k in 0..<3 {
                     let p = (t + Double(k) / 3).truncatingRemainder(dividingBy: 1)
                     let r = base * (0.25 + 0.75 * p)
-                    context.stroke(Path(ellipseIn: CGRect(x: center.x - r, y: center.y - r, width: 2 * r, height: 2 * r)), with: .color(Brand.wave.opacity((1 - p) * 0.75)), lineWidth: 2)
+                    let ring = Path(ellipseIn: CGRect(x: center.x - r, y: center.y - r, width: 2 * r, height: 2 * r))
+                    context.stroke(ring, with: .color(Brand.wave.opacity((1 - p) * 0.75)), lineWidth: 2)
                 }
                 let d = base * 0.22
-                context.fill(Path(ellipseIn: CGRect(x: center.x - d, y: center.y - d, width: 2 * d, height: 2 * d)), with: .color(Brand.moon))
+                context.fill(Path(ellipseIn: CGRect(x: center.x - d, y: center.y - d, width: 2 * d, height: 2 * d)),
+                             with: .color(Brand.moon))
             }
         }
         .accessibilityHidden(true)
@@ -225,7 +239,8 @@ enum Format {
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = zone
         let parts = calendar.dateComponents([.hour, .minute], from: date)
-        return String(format: "%02d:%02d", locale: Locale(identifier: "en_US_POSIX"), parts.hour ?? 0, parts.minute ?? 0)
+        return String(format: "%02d:%02d", locale: Locale(identifier: "en_US_POSIX"), parts.hour ?? 0,
+                      parts.minute ?? 0)
     }
 
     /// Zweistellige Zahl («07») mit den Ziffern der Sprache wie bei den Uhrzeiten (Arabisch: ٠–٩);
@@ -237,7 +252,8 @@ enum Format {
     /// «06:30 – 07:00»; bei «Genau» (Fenster 0) «Genau um 07:00».
     static func window(_ alarm: AlarmSpec) -> String {
         let target = Calendar.current.date(from: DateComponents(hour: alarm.hour, minute: alarm.minute)) ?? Date()
-        return window(start: target.addingTimeInterval(-Double(alarm.windowMinutes * 60)), target: target, exact: alarm.isExact)
+        return window(start: target.addingTimeInterval(-Double(alarm.windowMinutes * 60)), target: target,
+                      exact: alarm.isExact)
     }
 
     /// «06:30 – 07:00» (Trenner wählbar, auf der Uhr ohne Leerzeichen); bei `exact` «Genau um 07:00»,
@@ -262,7 +278,8 @@ enum Format {
     static func shortDay(_ date: String) -> String {
         let parts = date.split(separator: "-").compactMap { Int($0) }
         guard parts.count == 3,
-              let day = Calendar.gregorianLocal.date(from: DateComponents(year: parts[0], month: parts[1], day: parts[2], hour: 12)) else { return date }
+              let day = Calendar.gregorianLocal.date(from: DateComponents(year: parts[0], month: parts[1],
+                                                                          day: parts[2], hour: 12)) else { return date }
         return day.formatted(.dateTime.weekday(.abbreviated).day().month(.defaultDigits))
     }
 

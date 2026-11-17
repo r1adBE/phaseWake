@@ -84,8 +84,14 @@ internal fun LastNightCard(
     ) {
         Column(Modifier.padding(16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(stringResource(if (morning) R.string.home_morning else R.string.home_last_night), style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
-                if (!morning) Text(Format.time(night.wokeAt), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+                Text(
+                    stringResource(if (morning) R.string.home_morning else R.string.home_last_night),
+                    style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f),
+                )
+                if (!morning) Text(
+                    Format.time(night.wokeAt), style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.primary,
+                )
             }
             // Morgenbericht: «Geweckt 6:42» gross, der Grund steht gleich darunter in der Erklärung.
             if (morning) {
@@ -123,7 +129,12 @@ internal fun LastNightCard(
                         .background(MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.6f))
                         .padding(12.dp),
                 ) {
-                    Text(LocalResources.current.getQuantityString(R.plurals.hint_title, MissHint.NIGHTS, MissHint.NIGHTS), style = MaterialTheme.typography.labelLarge)
+                    Text(
+                        LocalResources.current.getQuantityString(
+                            R.plurals.hint_title, MissHint.NIGHTS, MissHint.NIGHTS,
+                        ),
+                        style = MaterialTheme.typography.labelLarge,
+                    )
                     Text(
                         stringResource(
                             when (hint) {
@@ -166,8 +177,14 @@ internal fun SoundsEntry(playing: SleepSoundService.Playing?, now: Instant, onCl
         elevation = cardLift(),
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
-        Row(Modifier.clickable(onClick = onClick).padding(horizontal = 18.dp, vertical = 14.dp), verticalAlignment = Alignment.CenterVertically) {
-            Icon(painterResource(R.drawable.ic_sound), contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+        Row(
+            Modifier.clickable(onClick = onClick).padding(horizontal = 18.dp, vertical = 14.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Icon(
+                painterResource(R.drawable.ic_sound), contentDescription = null,
+                tint = MaterialTheme.colorScheme.primary,
+            )
             Column(Modifier.weight(1f).padding(start = 14.dp)) {
                 Text(stringResource(R.string.sounds_title), style = MaterialTheme.typography.titleMedium)
                 if (playing != null) {
@@ -224,7 +241,9 @@ internal fun AlarmRow(
         ) {
             Column(Modifier.weight(1f)) {
                 val title = alarm.sleepDurationMinutes?.let {
-                    stringResource(R.string.alarm_after_sleep, Format.duration(context, Duration.ofMinutes(it.toLong())))
+                    stringResource(
+                        R.string.alarm_after_sleep, Format.duration(context, Duration.ofMinutes(it.toLong())),
+                    )
                 } ?: Format.window(context, alarm)
                 Text(
                     title,
@@ -234,22 +253,34 @@ internal fun AlarmRow(
                 val details = buildList {
                     add(Format.days(context, alarm))
                     if (alarm.sleepDurationMinutes != null) {
-                        add(res.getString(R.string.alarm_latest, Format.time(java.time.LocalTime.of(alarm.hour, alarm.minute))))
+                        add(
+                            res.getString(
+                                R.string.alarm_latest, Format.time(java.time.LocalTime.of(alarm.hour, alarm.minute)),
+                            )
+                        )
                     }
                     if (alarm.label.isNotBlank()) add(alarm.label)
                 }
                 Text(details.joinToString(" · "), style = MaterialTheme.typography.bodySmall, color = muted)
                 if (skipped != null) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text(stringResource(R.string.alarm_skipped, skipped), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.primary)
+                        Text(
+                            stringResource(R.string.alarm_skipped, skipped), style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.primary,
+                        )
                         val undoLabel = stringResource(R.string.alarm_skip_undo_for, "$skipped · $switchLabel")
-                        TextButton(onClick = onUndoSkip, modifier = Modifier.semantics { contentDescription = undoLabel }) {
+                        TextButton(
+                            onClick = onUndoSkip, modifier = Modifier.semantics { contentDescription = undoLabel },
+                        ) {
                             Text(stringResource(R.string.alarm_skip_undo))
                         }
                     }
                 }
             }
-            Switch(checked = alarm.enabled, onCheckedChange = onToggle, modifier = Modifier.semantics { contentDescription = switchLabel })
+            Switch(
+                checked = alarm.enabled, onCheckedChange = onToggle,
+                modifier = Modifier.semantics { contentDescription = switchLabel },
+            )
             AlarmMenu(switchLabel, onSkip.takeIf { skipped == null && alarm.enabled && !alarm.isOneShot }, skipDate)
         }
     }
@@ -268,11 +299,19 @@ private fun AlarmMenu(name: String, onSkip: (() -> Unit)?, skipDate: String?) {
         var open by remember { mutableStateOf(false) }
         Box {
             IconButton(onClick = { open = true }) {
-                Icon(painterResource(R.drawable.ic_more), contentDescription = stringResource(R.string.alarm_actions, name))
+                Icon(
+                    painterResource(R.drawable.ic_more),
+                    contentDescription = stringResource(R.string.alarm_actions, name),
+                )
             }
             DropdownMenu(expanded = open, onDismissRequest = { open = false }) {
                 DropdownMenuItem(
-                    text = { Text(skipDate?.let { stringResource(R.string.alarm_skip_on, it) } ?: stringResource(R.string.alarm_skip)) },
+                    text = {
+                        Text(
+                            skipDate?.let { stringResource(R.string.alarm_skip_on, it) } ?:
+                                stringResource(R.string.alarm_skip)
+                        )
+                    },
                     onClick = {
                         open = false
                         onSkip()

@@ -99,13 +99,20 @@ final class SleepSoundsTests: XCTestCase {
         XCTAssertEqual(SleepSounds.gain(elapsed: 5000, total: nil), 1)
 
         let start = Date(timeIntervalSince1970: 1_793_000_000)
-        XCTAssertEqual(SleepSounds.stopAt(start: start, timerMinutes: 30, nextWindowStart: nil), start.addingTimeInterval(1800))
-        XCTAssertEqual(SleepSounds.stopAt(start: start, timerMinutes: 60, nextWindowStart: start.addingTimeInterval(600)), start.addingTimeInterval(600))
-        XCTAssertEqual(SleepSounds.stopAt(start: start, timerMinutes: nil, nextWindowStart: start.addingTimeInterval(9000)), start.addingTimeInterval(9000))
+        XCTAssertEqual(SleepSounds.stopAt(start: start, timerMinutes: 30, nextWindowStart: nil),
+                       start.addingTimeInterval(1800))
+        XCTAssertEqual(SleepSounds.stopAt(start: start, timerMinutes: 60,
+                                          nextWindowStart: start.addingTimeInterval(600)),
+                       start.addingTimeInterval(600))
+        XCTAssertEqual(SleepSounds.stopAt(start: start, timerMinutes: nil,
+                                          nextWindowStart: start.addingTimeInterval(9000)),
+                       start.addingTimeInterval(9000))
         XCTAssertNil(SleepSounds.stopAt(start: start, timerMinutes: nil, nextWindowStart: nil))
         // Läuft das Weckfenster schon, enden die Klänge sofort (wie Kotlin), nicht in der Vergangenheit.
-        XCTAssertEqual(SleepSounds.stopAt(start: start, timerMinutes: 15, nextWindowStart: start.addingTimeInterval(-60)), start)
-        XCTAssertEqual(SleepSounds.stopAt(start: start, timerMinutes: nil, nextWindowStart: start.addingTimeInterval(-60)), start)
+        XCTAssertEqual(SleepSounds.stopAt(start: start, timerMinutes: 15,
+                                          nextWindowStart: start.addingTimeInterval(-60)), start)
+        XCTAssertEqual(SleepSounds.stopAt(start: start, timerMinutes: nil,
+                                          nextWindowStart: start.addingTimeInterval(-60)), start)
         XCTAssertEqual(SleepSounds.timerOptions, [15, 30, 60, nil])
         XCTAssertEqual(SleepSounds.defaultTimerMinutes, 30)
     }

@@ -67,7 +67,9 @@ class StoresTest {
 
     @Test
     fun transientStoreIgnoresBrokenText() = runTest {
-        val broken = MemoryStore(emptyPreferences().toMutablePreferences().apply { this[stringPreferencesKey("transient_plan")] = "kaputt" })
+        val broken = MemoryStore(
+            emptyPreferences().toMutablePreferences().apply { this[stringPreferencesKey("transient_plan")] = "kaputt" },
+        )
         val store = TransientStore(broken) { now }
         assertNull(store.active())
         assertTrue(store.clear())
@@ -227,7 +229,13 @@ class StoresTest {
         val updated = repo.update("a") { it.copy(skipUntil = 5L) }
         assertEquals(5L, updated.alarms.single().skipUntil)
         assertEquals(updated.alarms, repo.update("fehlt") { it.copy(hour = 1) }.alarms)
-        val replaced = repo.replaceAll(listOf(AlarmSpec(id = "c", hour = 9, minute = 0), AlarmSpec(id = "b", hour = 6, minute = 0), AlarmSpec(id = "b", hour = 5, minute = 0)))
+        val replaced = repo.replaceAll(
+            listOf(
+                AlarmSpec(id = "c", hour = 9, minute = 0),
+                AlarmSpec(id = "b", hour = 6, minute = 0),
+                AlarmSpec(id = "b", hour = 5, minute = 0),
+            ),
+        )
         assertEquals(listOf("b", "c"), replaced.alarms.map { it.id })
         assertTrue(replaced.updatedAt > updated.updatedAt)
         assertEquals(replaced, repo.current())
@@ -235,9 +243,16 @@ class StoresTest {
 
     @Test
     fun replaceAllOverwritesUnreadableState() = runTest {
-        val broken = MemoryStore(emptyPreferences().toMutablePreferences().apply { this[stringPreferencesKey("alarms")] = "phasewake-alarms 99" })
+        val broken = MemoryStore(
+            emptyPreferences().toMutablePreferences().apply {
+                this[stringPreferencesKey("alarms")] = "phasewake-alarms 99"
+            },
+        )
         val repo = AlarmRepository(broken) { 1L }
-        assertEquals(listOf("x"), repo.replaceAll(listOf(AlarmSpec(id = "x", hour = 7, minute = 0))).alarms.map { it.id })
+        assertEquals(
+            listOf("x"),
+            repo.replaceAll(listOf(AlarmSpec(id = "x", hour = 7, minute = 0))).alarms.map { it.id },
+        )
         assertEquals(1L, repo.current().updatedAt)
     }
 }

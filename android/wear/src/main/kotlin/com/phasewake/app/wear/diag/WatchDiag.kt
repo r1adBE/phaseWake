@@ -45,7 +45,10 @@ object WatchDiag {
             "version" to version,
             "next" to (plan?.let { "${it.windowStart} – ${it.target}" } ?: ""),
             "battery" to (battery?.toString() ?: ""),
-            "exact" to (Build.VERSION.SDK_INT < Build.VERSION_CODES.S || app.getSystemService(AlarmManager::class.java).canScheduleExactAlarms()).toString(),
+            "exact" to (
+                Build.VERSION.SDK_INT < Build.VERSION_CODES.S ||
+                    app.getSystemService(AlarmManager::class.java).canScheduleExactAlarms()
+            ).toString(),
             "notifications" to NotificationManagerCompat.from(app).areNotificationsEnabled().toString(),
         )
         return DiagReport(status, withContext(Dispatchers.IO) { app.diag.entries() })

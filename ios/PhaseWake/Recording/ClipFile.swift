@@ -12,11 +12,15 @@ enum ClipFile {
     /// Auf 16 kHz mono umrechnen und als AAC (.m4a) speichern.
     static func write(_ samples: [Float], sampleRate: Double, to url: URL) -> Bool {
         let rate = Double(SoundEvents.sampleRate)
-        guard let inFormat = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: sampleRate, channels: 1, interleaved: false),
-              let outFormat = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: rate, channels: 1, interleaved: false),
+        guard let inFormat = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: sampleRate, channels: 1,
+                                           interleaved: false),
+              let outFormat = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: rate, channels: 1,
+                                            interleaved: false),
               let input = AVAudioPCMBuffer(pcmFormat: inFormat, frameCapacity: AVAudioFrameCount(samples.count)),
               let converter = AVAudioConverter(from: inFormat, to: outFormat),
-              let output = AVAudioPCMBuffer(pcmFormat: outFormat, frameCapacity: AVAudioFrameCount(Double(samples.count) * rate / sampleRate) + 4096),
+              let output = AVAudioPCMBuffer(pcmFormat: outFormat,
+                                            frameCapacity:
+                                                AVAudioFrameCount(Double(samples.count) * rate / sampleRate) + 4096),
               let target = input.floatChannelData?[0] else { return false }
         let peak = samples.reduce(Float(0)) { max($0, abs($1)) }
         let gain = peak > 0 ? min(maxGain, targetPeak / peak) : 1
@@ -42,7 +46,8 @@ enum ClipFile {
         ]
         do {
             // Die Datei wird geschlossen, sobald `file` den Block verlässt.
-            let file = try AVAudioFile(forWriting: url, settings: settings, commonFormat: .pcmFormatFloat32, interleaved: false)
+            let file = try AVAudioFile(forWriting: url, settings: settings, commonFormat: .pcmFormatFloat32,
+                                       interleaved: false)
             try file.write(from: output)
         } catch {
             try? FileManager.default.removeItem(at: url)

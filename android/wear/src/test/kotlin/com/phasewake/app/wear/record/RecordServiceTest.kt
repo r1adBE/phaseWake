@@ -74,7 +74,8 @@ class RecordServiceTest {
     }
 
     private fun battery(percent: Int) =
-        shadowOf(context.getSystemService(BatteryManager::class.java)).setIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY, percent)
+        shadowOf(context.getSystemService(BatteryManager::class.java))
+            .setIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY, percent)
 
     private fun intent(action: String) = Intent(context, RecordService::class.java).setAction(action)
 
@@ -105,7 +106,11 @@ class RecordServiceTest {
      * Hauptthread, den der Test beim Warten belegt (sonst warteten beide aufeinander).
      */
     private fun stored(): List<NightRecording> =
-        File(context.filesDir, "recordings").listFiles().orEmpty().filter { !it.name.contains('.') }.mapNotNull { NightRecording.decode(it.readText()) }
+        File(context.filesDir, "recordings")
+            .listFiles()
+            .orEmpty()
+            .filter { !it.name.contains('.') }
+            .mapNotNull { NightRecording.decode(it.readText()) }
 
     private fun finished(): List<NightRecording> = stored().filter { it.finished }
 
@@ -118,7 +123,9 @@ class RecordServiceTest {
         return done
     }
 
-    private fun checkAlarmArmed(): Boolean = alarms.scheduledAlarms.any { it.triggerAtMs > System.currentTimeMillis() + 60_000 }
+    private fun checkAlarmArmed(): Boolean = alarms.scheduledAlarms.any {
+        it.triggerAtMs > System.currentTimeMillis() + 60_000
+    }
 
     @Test
     fun startStoresEpochsAndStopOnTheWatchFinishes() {
@@ -128,7 +135,11 @@ class RecordServiceTest {
         assertTrue(checkAlarmArmed(), "Prüf-Alarm für das Wiederaufnehmen")
         assertNotNull(active(), "Datei angelegt")
         service.onEpochs(listOf(Epoch(0.02, 60.0), Epoch(null, null), Epoch(0.4, null)))
-        service.onStartCommand(intent(RecordService.ACTION_STOP).putExtra(RecordService.EXTRA_REASON, RecordEnd.WATCH.code), 0, 2)
+        service.onStartCommand(
+            intent(RecordService.ACTION_STOP).putExtra(RecordService.EXTRA_REASON, RecordEnd.WATCH.code),
+            0,
+            2,
+        )
         val done = awaitFinished(RecordEnd.WATCH)
         assertEquals(listOf(Epoch(0.02, 60.0), Epoch(null, null), Epoch(0.4, null)), done.epochs)
         assertNull(RecordService.since.value)
@@ -188,9 +199,17 @@ class RecordServiceTest {
         awaitUntil("wieder aufgenommen") { service.active != null }
         val active = assertNotNull(service.active)
         assertEquals(start, active.start)
-        assertEquals(NightRecording.epochsUntil(start, Instant.now()), active.epochs.size, "Lücke mit leeren Epochen gefüllt")
+        assertEquals(
+            NightRecording.epochsUntil(start, Instant.now()),
+            active.epochs.size,
+            "Lücke mit leeren Epochen gefüllt",
+        )
         assertTrue(active.epochs.drop(5).all { it.motion == null && it.heartRate == null })
-        service.onStartCommand(intent(RecordService.ACTION_STOP).putExtra(RecordService.EXTRA_REASON, RecordEnd.PHONE.code), 0, 2)
+        service.onStartCommand(
+            intent(RecordService.ACTION_STOP).putExtra(RecordService.EXTRA_REASON, RecordEnd.PHONE.code),
+            0,
+            2,
+        )
         val done = awaitFinished(RecordEnd.PHONE)
         assertTrue(done.epochs.size >= 20, "gespeicherte und aufgefüllte Epochen")
     }

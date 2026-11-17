@@ -7,7 +7,8 @@ extension PhaseWakeStorage {
     /// (`PrivateFiles`) wie auf dem iPhone. Die Sicherung der Uhr hängt an der des iPhones und ginge sonst mit Weckern,
     /// Bewegung und Puls je Epoche in iCloud. Frühere Versionen legten `nights.v1` direkt in Application Support ab;
     /// `adopt` holt die Datei einmalig herüber.
-    static let watch = PhaseWakeStorage(defaults: SettingsFile.watchAlarms, directory: PrivateFiles.adopt(["nights.v1"]))
+    static let watch = PhaseWakeStorage(defaults: SettingsFile.watchAlarms,
+                                        directory: PrivateFiles.adopt(["nights.v1"]))
 }
 
 extension SettingsFile {
@@ -28,13 +29,17 @@ extension SettingsFile {
             }
         }
         let file = SettingsFile(url: url)
-        if let group = UserDefaults(suiteName: PhaseWakeStorage.watchGroup) { file.adopt(SettingsFile.alarmKeys, from: group) }
+        if let group = UserDefaults(suiteName: PhaseWakeStorage.watchGroup) {
+            file.adopt(SettingsFile.alarmKeys, from: group)
+        }
         file.adopt(SettingsFile.alarmKeys, from: .standard)
         return file
     }()
 
     /// Schlüssel, die in früheren Versionen in den `UserDefaults` der App-Gruppe lagen (`PhaseWakeStorage`).
-    static let alarmKeys = ["alarms", "alarmsUpdatedAt", "nightDoneUntilByAlarm", "nightDoneUntil", "holidays", "sleepGoalMinutes"]
+    static let alarmKeys = [
+        "alarms", "alarmsUpdatedAt", "nightDoneUntilByAlarm", "nightDoneUntil", "holidays", "sleepGoalMinutes",
+    ]
 
     /// Merker der laufenden Planung als Datei «session.v1» im ausgenommenen Ordner `PrivateFiles`: Zeitzone des Plans
     /// (`SmartAlarm.sessionZoneKey`), Probewecker oder Powernap und Zeitraum zum Nachholen (`WatchModel`), zuletzt

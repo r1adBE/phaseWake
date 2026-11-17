@@ -28,7 +28,13 @@ object ShortNight {
      * beendet, gescheitert oder ohne Werte – fail-closed); ohne Messung nie. In den letzten
      * [LATE_MINUTES] vor der Zielzeit [target] nie mehr (ohne [target]: bis zum Schluss gesperrt).
      */
-    fun blocksEarly(onset: Instant?, now: Instant, sleepGoalMinutes: Int, target: Instant? = null, measured: Boolean = false): Boolean {
+    fun blocksEarly(
+        onset: Instant?,
+        now: Instant,
+        sleepGoalMinutes: Int,
+        target: Instant? = null,
+        measured: Boolean = false,
+    ): Boolean {
         if (target != null && !now.isBefore(target.minus(Duration.ofMinutes(LATE_MINUTES.toLong())))) return false
         if (onset == null) return measured
         return Duration.between(onset, now) < Duration.ofMinutes((sleepGoalMinutes - MARGIN_MINUTES).toLong())

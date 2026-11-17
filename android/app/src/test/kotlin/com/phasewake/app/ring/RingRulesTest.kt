@@ -25,6 +25,10 @@ class RingRulesTest {
 
     private fun alarm(id: String, hour: Int = 7, minute: Int = 0) = AlarmSpec(id = id, hour = hour, minute = minute)
 
+    /** Regeln mit Nachfrist [grace], ohne Feiertage. */
+    private fun scope(suppressed: Map<String, Instant> = emptyMap(), zone: ZoneId = zurich) =
+        RingRules.BackupScope(suppressed, grace, zone, emptySet())
+
     private fun plan(
         backups: List<AlarmSpec>,
         now: Instant,
@@ -33,7 +37,9 @@ class RingRulesTest {
         suppressed: Map<String, Instant> = emptyMap(),
         grace: Duration = this.grace,
         transient: WakePlan? = null,
-    ): WakePlan? = RingRules.backupPlan(backups, transient, plannedId, plannedTarget, suppressed, now, grace, zurich, emptySet())
+    ): WakePlan? = RingRules.backupPlan(
+        backups, transient, plannedId, plannedTarget, now, RingRules.BackupScope(suppressed, grace, zurich, emptySet()),
+    )
 
     @Test
     fun graceKeepsPlannedBackupAtProcessStart() {
@@ -41,19 +47,27 @@ class RingRulesTest {
         val kept = plan(listOf(alarm("a")), at("2026-10-28T07:01"), "a", at("2026-10-28T07:00"))!!
         assertEquals(at("2026-10-28T07:00"), kept.target)
         // Ohne Uhr (Nachfrist null) gibt es keine Nachfrist: der nächste Termin.
-        val noWatch = plan(listOf(alarm("a")), at("2026-10-28T07:01"), "a", at("2026-10-28T07:00"), grace = Duration.ZERO)!!
+        val noWatch =
+            plan(listOf(alarm("a")), at("2026-10-28T07:01"), "a", at("2026-10-28T07:00"), grace = Duration.ZERO)!!
         assertEquals(at("2026-10-29T07:00"), noWatch.target)
         // Nach der Nachfrist oder ausgesetzt (Uhr hat übernommen, Zweitwecker hat geklingelt): nächster Termin.
-        assertEquals(at("2026-10-29T07:00"), plan(listOf(alarm("a")), at("2026-10-28T07:02"), "a", at("2026-10-28T07:00"))!!.target)
+        assertEquals(
+            at("2026-10-29T07:00"),
+            plan(listOf(alarm("a")), at("2026-10-28T07:02"), "a", at("2026-10-28T07:00"))!!.target,
+        )
         val handled = mapOf("a" to at("2026-10-28T07:02"))
-        assertEquals(at("2026-10-29T07:00"), plan(listOf(alarm("a")), at("2026-10-28T07:01"), "a", at("2026-10-28T07:00"), handled)!!.target)
+        assertEquals(
+            at("2026-10-29T07:00"),
+            plan(listOf(alarm("a")), at("2026-10-28T07:01"), "a", at("2026-10-28T07:00"), handled)!!.target,
+        )
     }
 
     @Test
     fun secondAlarmStaysPlannedAfterFirstRang() {
         // 07:00 hat geklingelt (bis 07:02 ausgesetzt): 07:05 desselben Morgens bleibt der nächste Zweitwecker.
         val specs = listOf(alarm("a"), alarm("b", minute = 5))
-        val next = plan(specs, at("2026-10-28T07:02"), "a", at("2026-10-28T07:00"), mapOf("a" to at("2026-10-28T07:02")))!!
+        val next =
+            plan(specs, at("2026-10-28T07:02"), "a", at("2026-10-28T07:00"), mapOf("a" to at("2026-10-28T07:02")))!!
         assertEquals("b", next.alarmId)
         assertEquals(at("2026-10-28T07:05"), next.target)
     }
@@ -68,10 +82,14 @@ class RingRulesTest {
         assertEquals(at("2026-10-28T07:03"), RingRules.backupAt(next, grace, at("2026-10-28T07:02")))
         // Hat die Uhr «b» übernommen (ausgesetzt), klingelt er nicht noch einmal: der nächste Termin.
         val handled = rang + ("b" to at("2026-10-28T07:03"))
-        assertEquals(at("2026-10-29T07:00"), plan(specs, at("2026-10-28T07:03"), "b", at("2026-10-28T07:01"), handled)!!.target)
+        assertEquals(
+            at("2026-10-29T07:00"), plan(specs, at("2026-10-28T07:03"), "b", at("2026-10-28T07:01"), handled)!!.target,
+        )
         // Das Nachholen endet nach Nachfrist + CATCH_UP (07:01 + 4 min).
         assertEquals("b", plan(specs, at("2026-10-28T07:05"), "a", at("2026-10-28T07:00"), rang)!!.alarmId)
-        assertEquals(at("2026-10-29T07:00"), plan(specs, at("2026-10-28T07:05:01"), "a", at("2026-10-28T07:00"), rang)!!.target)
+        assertEquals(
+            at("2026-10-29T07:00"), plan(specs, at("2026-10-28T07:05:01"), "a", at("2026-10-28T07:00"), rang)!!.target,
+        )
     }
 
     @Test
@@ -88,10 +106,19 @@ class RingRulesTest {
         assertEquals("b" to at("2026-10-28T07:00"), withWatch.alarmId to withWatch.target)
         // Nach «b» (ausgesetzt) keiner mehr; der geplante selbst klingelt nie nach, auch abgewiesen (keine Schleife).
         val both = rang + ("b" to at("2026-10-28T07:02"))
-        assertEquals(at("2026-10-29T07:00"), plan(specs, now.plusSeconds(1), "b", at("2026-10-28T07:00"), both, Duration.ZERO)!!.target)
-        assertEquals(at("2026-10-29T07:00"), plan(specs, now.plusSeconds(1), "b", at("2026-10-28T07:00"), rang, Duration.ZERO)!!.target)
+        assertEquals(
+            at("2026-10-29T07:00"),
+            plan(specs, now.plusSeconds(1), "b", at("2026-10-28T07:00"), both, Duration.ZERO)!!.target,
+        )
+        assertEquals(
+            at("2026-10-29T07:00"),
+            plan(specs, now.plusSeconds(1), "b", at("2026-10-28T07:00"), rang, Duration.ZERO)!!.target,
+        )
         // Ein soeben auf 07:00 gestellter Wecker (geplant war morgen) klingelt nicht nachträglich.
-        assertEquals(at("2026-10-29T07:00"), plan(listOf(alarm("a")), at("2026-10-28T07:01"), "a", at("2026-10-29T07:00"))!!.target)
+        assertEquals(
+            at("2026-10-29T07:00"),
+            plan(listOf(alarm("a")), at("2026-10-28T07:01"), "a", at("2026-10-29T07:00"))!!.target,
+        )
     }
 
     @Test
@@ -99,7 +126,12 @@ class RingRulesTest {
         val nap = WakePlan("nap:1", at("2026-10-28T13:00"), at("2026-10-28T13:20"))
         assertEquals(nap, plan(emptyList(), at("2026-10-28T13:21"), transient = nap))
         assertNull(plan(emptyList(), at("2026-10-28T13:22"), transient = nap))
-        assertNull(plan(emptyList(), at("2026-10-28T13:21"), suppressed = mapOf("nap:1" to at("2026-10-28T13:22")), transient = nap))
+        assertNull(
+            plan(
+                emptyList(), at("2026-10-28T13:21"), suppressed = mapOf("nap:1" to at("2026-10-28T13:22")),
+                transient = nap,
+            )
+        )
     }
 
     @Test
@@ -127,7 +159,9 @@ class RingRulesTest {
         val now = 1_000_000_000L
         val own = RingMessage("a", 1L, now - 1_000)
         assertTrue(RingRules.stopApplies(own, now, active = true, currentId = "a", currentTarget = 1L))
-        assertFalse(RingRules.stopApplies(own, now, active = false, currentId = "a", currentTarget = 1L), "nichts läuft")
+        assertFalse(
+            RingRules.stopApplies(own, now, active = false, currentId = "a", currentTarget = 1L), "nichts läuft",
+        )
         assertFalse(RingRules.stopApplies(own, now, active = true, currentId = "b", currentTarget = 2L), "andere Nacht")
         val stale = own.copy(sentAt = now - RingMessage.MAX_AGE_MS - 1)
         assertFalse(RingRules.stopApplies(stale, now, active = true, currentId = "a", currentTarget = 1L), "veraltet")
@@ -140,7 +174,9 @@ class RingRulesTest {
         // «stop» oder Nacht der Uhr hebt Schlummern bzw. Wiederaufnahme am Handy derselben Nacht auf.
         assertTrue(RingRules.watchEndsPhoneSnooze("a", 1L, savedId = "a", savedTarget = 1L))
         assertFalse(RingRules.watchEndsPhoneSnooze("b", 2L, savedId = "a", savedTarget = 1L), "anderer Wecker")
-        assertFalse(RingRules.watchEndsPhoneSnooze("a", 2L, savedId = "a", savedTarget = 1L), "gleicher Wecker, andere Nacht")
+        assertFalse(
+            RingRules.watchEndsPhoneSnooze("a", 2L, savedId = "a", savedTarget = 1L), "gleicher Wecker, andere Nacht",
+        )
         // Fehlende Angaben (ältere Einträge, ältere Uhr) widersprechen nicht.
         assertTrue(RingRules.watchEndsPhoneSnooze("a", 1L, savedId = "a", savedTarget = null))
         assertTrue(RingRules.watchEndsPhoneSnooze(null, null, savedId = "a", savedTarget = 1L))
@@ -152,19 +188,29 @@ class RingRulesTest {
         val daily = alarm("d", 6, 30).copy(days = java.time.DayOfWeek.entries.toSet())
         val once = alarm("o", 7, 0)
         val first = plan(listOf(daily, once), at("2026-10-28T01:00"))!!
-        val plans = RingRules.directBootPlans(first, listOf(daily, once), null, emptyMap(), grace, grace, zurich, emptySet(), 4)
+        val plans = RingRules.directBootPlans(first, listOf(daily, once), null, scope(), grace, 4)
         assertEquals(
-            listOf("d" to at("2026-10-28T06:30"), "o" to at("2026-10-28T07:00"), "d" to at("2026-10-29T06:30"), "d" to at("2026-10-30T06:30")),
+            listOf(
+                "d" to at("2026-10-28T06:30"), "o" to at("2026-10-28T07:00"), "d" to at("2026-10-29T06:30"),
+                "d" to at("2026-10-30T06:30"),
+            ),
             plans.map { it.alarmId to it.target },
         )
         // Der Einmal-Wecker kommt nach seinem Klingeln nicht wieder; ohne weitere Wecker endet die Liste.
-        val onlyOnce = RingRules.directBootPlans(plan(listOf(once), at("2026-10-28T01:00"))!!, listOf(once), null, emptyMap(), grace, grace, zurich, emptySet(), 4)
+        val onlyOnce = RingRules.directBootPlans(
+            plan(listOf(once), at("2026-10-28T01:00"))!!, listOf(once), null, scope(), grace, 4,
+        )
         assertEquals(listOf(at("2026-10-28T07:00")), onlyOnce.map { it.target })
         // Zwei Wecker auf derselben Minute: beide in der Liste, bei Gleichstand nach Kennung.
         val same = listOf(alarm("b").copy(days = daily.days), alarm("a").copy(days = daily.days))
-        val sameList = RingRules.directBootPlans(plan(same, at("2026-10-28T01:00"))!!, same, null, emptyMap(), grace, grace, zurich, emptySet(), 4)
+        val sameList = RingRules.directBootPlans(
+            plan(same, at("2026-10-28T01:00"))!!, same, null, scope(), grace, 4,
+        )
         assertEquals(listOf("a", "b", "a", "b"), sameList.map { it.alarmId })
-        assertEquals(listOf(at("2026-10-28T07:00"), at("2026-10-28T07:00"), at("2026-10-29T07:00"), at("2026-10-29T07:00")), sameList.map { it.target })
+        assertEquals(
+            listOf(at("2026-10-28T07:00"), at("2026-10-28T07:00"), at("2026-10-29T07:00"), at("2026-10-29T07:00")),
+            sameList.map { it.target },
+        )
     }
 
     @Test
@@ -173,11 +219,18 @@ class RingRulesTest {
         val daily = alarm("d", 6, 30).copy(days = java.time.DayOfWeek.entries.toSet())
         val first = plan(listOf(daily), at("2026-10-28T01:00"))!!
         val nap = WakePlan("nap", at("2026-10-28T06:24"), at("2026-10-28T06:29"), exact = true)
-        val plans = RingRules.directBootPlans(first, listOf(daily), nap, emptyMap(), grace, grace, zurich, emptySet(), 3)
-        assertEquals(listOf("nap" to at("2026-10-28T06:29"), "d" to at("2026-10-28T06:30"), "d" to at("2026-10-29T06:30")), plans.map { it.alarmId to it.target })
+        val plans = RingRules.directBootPlans(first, listOf(daily), nap, scope(), grace, 3)
+        assertEquals(
+            listOf("nap" to at("2026-10-28T06:29"), "d" to at("2026-10-28T06:30"), "d" to at("2026-10-29T06:30")),
+            plans.map { it.alarmId to it.target },
+        )
         assertEquals(plans.sortedBy { it.target }, plans)
         // Mit nur zwei Plätzen bleibt der erste Zweitwecker immer dabei.
-        assertEquals(listOf("nap", "d"), RingRules.directBootPlans(first, listOf(daily), nap, emptyMap(), grace, grace, zurich, emptySet(), 2).map { it.alarmId })
+        assertEquals(
+            listOf("nap", "d"),
+            RingRules.directBootPlans(first, listOf(daily), nap, scope(), grace, 2)
+                .map { it.alarmId },
+        )
     }
 
     private val tokyo = ZoneId.of("Asia/Tokyo")
@@ -193,7 +246,7 @@ class RingRulesTest {
         earlier: Instant? = null,
         transient: WakePlan? = null,
     ) = RingRules.backupPlan(
-        backups, transient, "a", earlier ?: zurichSeven, suppressed, now, grace, tokyo, emptySet(),
+        backups, transient, "a", earlier ?: zurichSeven, now, scope(suppressed, tokyo),
         RingRules.PlannedBackup("a", zurichSeven, plannedZone, earlier),
     )
 
@@ -208,16 +261,21 @@ class RingRulesTest {
         assertEquals(planned, inTokyo(at("2026-11-04T07:01"))?.target)
         assertTrue(inTokyo(at("2026-11-04T07:02"))!!.target.isAfter(planned.plus(Duration.ofHours(1))))
         // Vor dem Fenster, ohne Zone (alte Daten), ausgesetzt oder geänderter Wecker: wie bisher (Ortszeit Tokio).
-        val tokyoNext = RingRules.backupPlan(listOf(spec), null, null, null, emptyMap(), at("2026-11-04T06:40"), grace, tokyo, emptySet())
+        val tokyoNext =
+            RingRules.backupPlan(listOf(spec), null, null, null, at("2026-11-04T06:40"), scope(zone = tokyo))
         assertEquals(tokyoNext, inTokyo(at("2026-11-04T06:40"), plannedZone = null))
         assertTrue(inTokyo(at("2026-11-04T06:20"))!!.target != planned)
         assertTrue(inTokyo(at("2026-11-04T06:40"), suppressed = mapOf("a" to planned))!!.target != planned)
         assertTrue(inTokyo(at("2026-11-04T06:40"), backups = listOf(spec.copy(minute = 30)))!!.target != planned)
         val kept = RingRules.PlannedBackup("a", planned, zurich)
-        assertNull(RingRules.keptBackup(listOf(spec), kept, emptyMap(), at("2026-11-04T06:40"), grace, zurich, emptySet()))
+        assertNull(
+            RingRules.keptBackup(listOf(spec), kept, at("2026-11-04T06:40"), scope())
+        )
         // Zürich → Berlin: Ortszeit gleich, kein Behalten (ein früherer neuer Wecker gilt wie bisher).
         val berlin = ZoneId.of("Europe/Berlin")
-        assertNull(RingRules.keptBackup(listOf(spec), kept, emptyMap(), at("2026-11-04T06:40"), grace, berlin, emptySet()))
+        assertNull(
+            RingRules.keptBackup(listOf(spec), kept, at("2026-11-04T06:40"), scope(zone = berlin))
+        )
     }
 
     @Test
@@ -225,7 +283,8 @@ class RingRulesTest {
         // Einschlaf-Modus: Die Uhr hat 07:00 auf 06:20 vorverlegt (Fenster ab 06:20). Wechsel nach Tokio um 06:21.
         val earlier = at("2026-11-04T06:20")
         val now = at("2026-11-04T06:21")
-        val shift = OnsetShift("a", zurichSeven.toEpochMilli(), earlier.toEpochMilli(), at("2026-11-04T01:00").toEpochMilli())
+        val shift =
+            OnsetShift("a", zurichSeven.toEpochMilli(), earlier.toEpochMilli(), at("2026-11-04T01:00").toEpochMilli())
         val kept = assertNotNull(inTokyo(now, earlier = earlier))
         assertEquals(zurichSeven, kept.target, "eingestellte Zielzeit der Nacht")
         // Wie gewohnt darüber gelegt: Der Zweitwecker klingelt zur früheren Zielzeit.
@@ -241,12 +300,15 @@ class RingRulesTest {
         val both = listOf(windowed, b)
         assertEquals("a", inTokyo(at("2026-11-04T06:40"), backups = both)?.alarmId)
         // Ohne die Regel hätte «b» ihn verdrängt.
-        val plain = RingRules.backupPlan(both, null, null, null, emptyMap(), at("2026-11-04T06:40"), grace, tokyo, emptySet())
+        val plain = RingRules.backupPlan(both, null, null, null, at("2026-11-04T06:40"), scope(zone = tokyo))
         assertEquals("b", plain?.alarmId)
         // Nach dem Klingeln von «a» (ausgesetzt): wieder wie gewohnt nach der Ortszeit Tokio.
         val handled = mapOf("a" to at("2026-11-04T07:02"))
         val after = inTokyo(at("2026-11-04T07:02"), suppressed = handled, backups = both)
-        assertEquals(RingRules.backupPlan(both, null, null, null, handled, at("2026-11-04T07:02"), grace, tokyo, emptySet()), after)
+        assertEquals(
+            RingRules.backupPlan(both, null, null, null, at("2026-11-04T07:02"), scope(handled, tokyo)),
+            after,
+        )
         // Ein Probewecker oder Powernap davor klingelt trotzdem.
         val nap = WakePlan("nap", at("2026-11-04T06:41"), at("2026-11-04T06:45"))
         assertEquals(nap, inTokyo(at("2026-11-04T06:40"), backups = both, transient = nap))

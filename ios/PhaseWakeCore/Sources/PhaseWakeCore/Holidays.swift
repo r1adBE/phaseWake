@@ -27,7 +27,8 @@ public enum Holidays {
 
     /// Landesweite Tage (`national`) und die zusätzlichen der Region (`regional`) als Daten «yyyy-MM-dd»,
     /// eingeschränkt auf `today` bis vor `today + days`. Unlesbare Einträge fallen weg.
-    public static func resolve(national: [String], regional: [String], today: String, days: Int = Holidays.syncDays) -> Set<String> {
+    public static func resolve(national: [String], regional: [String], today: String,
+                               days: Int = Holidays.syncDays) -> Set<String> {
         let end = NightDate.adding(days, to: today)
         return Set((national + regional).compactMap(parse).filter { $0 >= today && $0 < end })
     }

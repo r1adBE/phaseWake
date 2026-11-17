@@ -6,7 +6,9 @@ final class AlarmStampsTests: XCTestCase {
     private func storage() -> (PhaseWakeStorage, UserDefaults) {
         let suite = "test-\(UUID().uuidString)"
         let defaults = UserDefaults(suiteName: suite)!
-        return (PhaseWakeStorage(defaults: defaults, directory: FileManager.default.temporaryDirectory.appendingPathComponent(suite)), defaults)
+        return (PhaseWakeStorage(defaults: defaults,
+                                 directory: FileManager.default.temporaryDirectory.appendingPathComponent(suite)),
+                defaults)
     }
 
     private func alarm(_ id: String, _ hour: Int = 7, _ minute: Int = 0) -> AlarmSpec {
@@ -23,9 +25,11 @@ final class AlarmStampsTests: XCTestCase {
         XCTAssertTrue(watch.applyRemote(base, now: at(1_000)))
         XCTAssertEqual(watch.snapshot().alarms, base.alarms)
 
-        let fromWatch = try XCTUnwrap(watch.mutate({ $0.map { $0.id == "once" ? $0.with(enabled: false) : $0 } }, now: at(5_000)))
+        let fromWatch = try XCTUnwrap(watch.mutate({ $0.map { $0.id == "once" ? $0.with(enabled: false) : $0 } },
+                                                   now: at(5_000)))
         phone.mutate({ $0 + [self.alarm("new", 9)] }, now: at(6_000))
-        let fromPhone = try XCTUnwrap(phone.mutate({ $0.map { $0.id == "daily" ? self.alarm("daily", 6, 15) : $0 } }, now: at(6_000)))
+        let fromPhone = try XCTUnwrap(phone.mutate({ $0.map { $0.id == "daily" ? self.alarm("daily", 6, 15) : $0 } },
+                                                   now: at(6_000)))
 
         // Beide Stände kreuzen sich; beide Seiten führen zusammen und kommen zum selben Stand.
         XCTAssertTrue(phone.applyRemote(fromWatch, now: at(7_000)))
@@ -77,13 +81,16 @@ final class AlarmStampsTests: XCTestCase {
         defaults.set(NSNumber(value: Int64(7)), forKey: "alarmsUpdatedAt")
         let changed = try XCTUnwrap(s.mutate({ $0.map { $0.id == "b" ? self.alarm("b", 8, 30) : $0 } }, now: at(1_000)))
         XCTAssertEqual(changed.stamps, ["a": 7, "b": 1_000])
-        XCTAssertTrue(s.applyRemote(AlarmSnapshot(alarms: [alarm("a", 5)], updatedAt: 8, stamps: ["a": 8]), now: at(1_000)))
+        XCTAssertTrue(s.applyRemote(AlarmSnapshot(alarms: [alarm("a", 5)], updatedAt: 8, stamps: ["a": 8]),
+                                    now: at(1_000)))
         XCTAssertEqual(s.snapshot().alarms, [alarm("a", 5), alarm("b", 8, 30)])
     }
 
     func testMergeIsTheSameOnBothSidesAndPrunesOldTombstones() {
-        let left = AlarmSnapshot(alarms: [alarm("a", 6), alarm("b")], updatedAt: 10, stamps: ["a": 10, "b": 4], deleted: ["old": 1])
-        let right = AlarmSnapshot(alarms: [alarm("a", 5), alarm("c")], updatedAt: 9, stamps: ["a": 10, "c": 9], deleted: ["b": 5])
+        let left = AlarmSnapshot(alarms: [alarm("a", 6), alarm("b")], updatedAt: 10, stamps: ["a": 10, "b": 4],
+                                 deleted: ["old": 1])
+        let right = AlarmSnapshot(alarms: [alarm("a", 5), alarm("c")], updatedAt: 9, stamps: ["a": 10, "c": 9],
+                                  deleted: ["b": 5])
         let now = AlarmStamps.tombstoneMaxAgeMs + 2
         let one = AlarmStamps.merge(local: left, remote: right, now: now)
         let other = AlarmStamps.merge(local: right, remote: left, now: now)

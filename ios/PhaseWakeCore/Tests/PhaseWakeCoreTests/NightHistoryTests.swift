@@ -6,9 +6,11 @@ final class NightHistoryTests: XCTestCase {
     /// 2026-10-01T04:30:00Z.
     private let start = Date(timeIntervalSince1970: 1_790_829_000)
 
-    private func night(_ day: Int, _ epochs: [Epoch] = [Epoch(motion: 0, heartRate: 52)], wokeMinutes: Double = 18, reason: WakeReason = .lightSleep) -> NightRecord {
+    private func night(_ day: Int, _ epochs: [Epoch] = [Epoch(motion: 0, heartRate: 52)], wokeMinutes: Double = 18,
+                       reason: WakeReason = .lightSleep) -> NightRecord {
         let ws = start.addingTimeInterval(Double(day) * 86_400)
-        return NightRecord(alarmId: "geheim-123", windowStart: ws, target: ws.addingTimeInterval(1800), wokeAt: ws.addingTimeInterval(wokeMinutes * 60),
+        return NightRecord(alarmId: "geheim-123", windowStart: ws, target: ws.addingTimeInterval(1800),
+                           wokeAt: ws.addingTimeInterval(wokeMinutes * 60),
                            reason: reason, snoozes: 1, epochs: epochs)
     }
 
@@ -35,9 +37,12 @@ final class NightHistoryTests: XCTestCase {
     }
 
     func testCsvIsAnonymous() {
-        let csv = NightHistory.exportCsv([night(1, [Epoch(motion: 0.0021, heartRate: 52.34), Epoch(motion: nil, heartRate: nil)]).with(feeling: 4), night(0)])
+        let csv = NightHistory.exportCsv([night(1,
+                                                [Epoch(motion: 0.0021, heartRate: 52.34),
+                                                 Epoch(motion: nil, heartRate: nil)]).with(feeling: 4), night(0)])
         let lines = csv.split(separator: "\n").map(String.init)
-        XCTAssertEqual(lines[0], "night,window_minutes,reason,woke_minutes_before_target,snoozes,feeling,epoch,motion,hr,notes")
+        XCTAssertEqual(lines[0],
+                       "night,window_minutes,reason,woke_minutes_before_target,snoozes,feeling,epoch,motion,hr,notes")
         XCTAssertEqual(lines[1], "1,30,LIGHT_SLEEP,12,1,,0,0.000000,52.0,")
         XCTAssertEqual(lines[2], "2,30,LIGHT_SLEEP,12,1,4,0,0.002100,52.3,")
         XCTAssertEqual(lines[3], "2,30,LIGHT_SLEEP,12,1,4,1,,,")

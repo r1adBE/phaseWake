@@ -20,12 +20,15 @@ final class DiagTransferTests: XCTestCase {
         let startMs: Int64 = 1_794_348_000_000
         let kinds = DiagKind.allCases
         let entries = (0..<DiagLog.maxEntries).map { i in
-            let detail = String(String(repeating: "\(i) record ä–ö phase light sleep window ", count: 10).prefix(DiagLog.maxDetail))
+            let detail = String(String(repeating: "\(i) record ä–ö phase light sleep window ",
+                                       count: 10).prefix(DiagLog.maxDetail))
                 .trimmingCharacters(in: .whitespaces)
-            return DiagEntry(at: Date(timeIntervalSince1970: Double(startMs + Int64(i) * 60_000) / 1000), device: .watch,
+            return DiagEntry(at: Date(timeIntervalSince1970: Double(startMs + Int64(i) * 60_000) / 1000),
+                             device: .watch,
                              kind: kinds[i % kinds.count], detail: detail)
         }
-        let status = [(key: "version", value: "16.2.2 (82)"), (key: "next", value: "2026-11-12T05:30:00Z"), (key: "battery", value: "64")]
+        let status = [(key: "version", value: "16.2.2 (82)"), (key: "next", value: "2026-11-12T05:30:00Z"),
+                      (key: "battery", value: "64")]
         return DiagReport(status: status, entries: entries)
     }
 
@@ -40,7 +43,8 @@ final class DiagTransferTests: XCTestCase {
     }
 
     func testSmallReportFitsTheReply() {
-        let report = DiagReport(status: [(key: "version", value: "16.2.2 (83)")], entries: Array(fullReport().entries.prefix(3)))
+        let report = DiagReport(status: [(key: "version", value: "16.2.2 (83)")],
+                                entries: Array(fullReport().entries.prefix(3)))
         XCTAssertTrue(DiagTransfer.fitsReply(DiagReports.encode(report)))
     }
 

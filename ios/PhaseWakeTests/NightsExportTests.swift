@@ -18,14 +18,17 @@ final class NightsExportTests: XCTestCase {
     }
 
     private var night: NightRecord {
-        NightRecord(alarmId: "a", windowStart: start, target: start.addingTimeInterval(1800), wokeAt: start.addingTimeInterval(1200),
+        NightRecord(alarmId: "a", windowStart: start, target: start.addingTimeInterval(1800),
+                    wokeAt: start.addingTimeInterval(1200),
                     reason: .lightSleep, snoozes: 1, epochs: [Epoch(motion: 0.01, heartRate: 52)])
     }
 
     func testNightsFileEvenWhenEmpty() {
         let files = NightsExport.files(nights: [], notes: [:], recordings: [running])
         XCTAssertEqual(files.count, 1)
-        guard case .nights(let nights, let notes) = files[0].content else { return XCTFail("Datei der Nächte erwartet") }
+        guard case .nights(let nights, let notes) = files[0].content else {
+            return XCTFail("Datei der Nächte erwartet")
+        }
         XCTAssertTrue(nights.isEmpty)
         XCTAssertTrue(notes.isEmpty)
     }
@@ -33,7 +36,9 @@ final class NightsExportTests: XCTestCase {
     func testOnlyFinishedRecordingsInTheirOwnFile() {
         let files = NightsExport.files(nights: [], notes: [:], recordings: [running, finished])
         XCTAssertEqual(files.count, 1)
-        guard case .recordings(let recordings) = files[0].content else { return XCTFail("Datei der Aufzeichnungen erwartet") }
+        guard case .recordings(let recordings) = files[0].content else {
+            return XCTFail("Datei der Aufzeichnungen erwartet")
+        }
         XCTAssertEqual(recordings, [finished])
         // Inhalt: Kopf, je Epoche eine Zeile mit Grund des Endes.
         let lines = NightRecording.exportCsv(recordings).split(separator: "\n")
@@ -47,12 +52,15 @@ final class NightsExportTests: XCTestCase {
         let files = NightsExport.files(nights: [night], notes: notes, recordings: [finished])
         XCTAssertEqual(files.count, 2)
         guard case .nights(let nights, let exportedNotes) = files[0].content,
-              case .recordings(let recordings) = files[1].content else { return XCTFail("Nächte, dann Aufzeichnungen erwartet") }
+              case .recordings(let recordings) = files[1].content else {
+            return XCTFail("Nächte, dann Aufzeichnungen erwartet")
+        }
         XCTAssertEqual(nights, [night])
         XCTAssertEqual(exportedNotes, notes)
         XCTAssertEqual(recordings, [finished])
         let csv = NightHistory.exportCsv(nights, notes: exportedNotes)
-        XCTAssertTrue(csv.hasPrefix("night,window_minutes,reason,woke_minutes_before_target,snoozes,feeling,epoch,motion,hr,notes\n"))
+        XCTAssertTrue(csv.hasPrefix("night,window_minutes,reason,woke_minutes_before_target,snoozes,feeling,"
+                                    + "epoch,motion,hr,notes\n"))
     }
 
     func testCleanUpRemovesExportsAndTheOldFile() throws {

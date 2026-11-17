@@ -56,7 +56,10 @@ class NoiseFloorTest {
     @Test
     fun summaryForDiagnosis() {
         val config = DetectorConfig()
-        assertEquals("floor=0.0200 light=0.0500 wake=0.1000", NoiseFloor.summary(config, listOf(0.02, null, 0.02, 0.02, 0.4)))
+        assertEquals(
+            "floor=0.0200 light=0.0500 wake=0.1000",
+            NoiseFloor.summary(config, listOf(0.02, null, 0.02, 0.02, 0.4)),
+        )
         assertEquals("floor=- light=0.0020 wake=0.1000", NoiseFloor.summary(config, listOf(0.02, null)))
     }
 
@@ -69,6 +72,9 @@ class NoiseFloorTest {
         // Ab 4 Werten gilt nur das eigene der Messung, auch wenn es tiefer liegt.
         assertEquals(0.001, NoiseFloor.floor(listOf(0.001, 0.002, 0.003, 0.004), personal = 0.02))
         // Zusammenfassung mit dem gelernten Wert, solange die Messung zu wenige hat.
-        assertEquals("floor=0.0200 light=0.0500 wake=0.1000", NoiseFloor.summary(DetectorConfig(personalFloor = 0.02), listOf(0.3)))
+        assertEquals(
+            "floor=0.0200 light=0.0500 wake=0.1000",
+            NoiseFloor.summary(DetectorConfig(personalFloor = 0.02), listOf(0.3)),
+        )
     }
 }

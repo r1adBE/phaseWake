@@ -66,7 +66,9 @@ private val stages: List<StageSpan> = sleeps.filterIndexed { i, _ -> i % 3 != 0 
 }
 
 private fun overviewOf(withStages: Boolean) = OverviewUnit.entries.mapNotNull { unit ->
-    SleepOverviews.of(sleeps, zone, today, 450, unit, DayOfWeek.MONDAY, if (withStages) stages else emptyList())?.let { unit to it }
+    SleepOverviews.of(sleeps, zone, today, 450, unit, DayOfWeek.MONDAY, if (withStages) stages else emptyList())?.let {
+        unit to it
+    }
 }.toMap()
 
 /** Auswahl und Übersicht wie oben im Verlauf. */
@@ -99,7 +101,10 @@ fun OverviewPlainDark() = Overview(ThemeMode.DARK, OverviewUnit.DAYS, withStages
 private val ownNight: NightRecord = run {
     val start = today.plusDays(1).atTime(6, 30).atZone(zone).toInstant()
     val target = start.plus(Duration.ofMinutes(30))
-    NightRecord("work", start, target, target.minus(Duration.ofMinutes(12)), WakeReason.LIGHT_SLEEP, 0, List(40) { Epoch(0.004 + (it % 7) * 0.003, 58.0 + it % 5) })
+    NightRecord(
+        "work", start, target, target.minus(Duration.ofMinutes(12)), WakeReason.LIGHT_SLEEP, 0,
+        List(40) { Epoch(0.004 + (it % 7) * 0.003, 58.0 + it % 5) },
+    )
 }
 
 /**
@@ -115,14 +120,19 @@ private val recording: NightRecording = run {
         val pulse = if (i in 400 until 440) null else 64 - 10 * sin(PI * f) + 3 * cycle + (if (f > 0.93) 6 else 0)
         Epoch(motion, pulse)
     }
-    NightRecording(start, epochs, ownNight.wokeAt, RecordEnd.WAKE, bedAt = start, asleepAt = start.plus(Duration.ofMinutes(18)))
+    NightRecording(
+        start, epochs, ownNight.wokeAt, RecordEnd.WAKE, bedAt = start, asleepAt = start.plus(Duration.ofMinutes(18)),
+    )
 }
 
 private val recordedItems = HealthHistory.merge(listOf(ownNight), emptyList(), null, zone)
 
 @Composable
 private fun Recorded(mode: ThemeMode) = Themed(mode) {
-    NightDetailScreen(NightDetailData(items = recordedItems, recordings = listOf(recording)), recordedItems.first().key, NightDetailActions())
+    NightDetailScreen(
+        NightDetailData(items = recordedItems, recordings = listOf(recording)), recordedItems.first().key,
+        NightDetailActions(),
+    )
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Nacht Detail Aufzeichnung hell", device = PHONE_TALL) @Composable

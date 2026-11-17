@@ -18,7 +18,15 @@ class OnsetScanTest {
         // 30 × 0.01, dann 30 sehr ruhige (0.001) im selben Bündel: erkannt in Epoche 29, Grundrauschen 0.01 (über alle
         // 0.001).
         val motions = List(30) { 0.01 } + List(30) { 0.001 }
-        val (index, floor) = OnsetRules.scan(motions, List(60) { true }, 0, threshold, null, continuous = true, floor = null)
+        val (index, floor) = OnsetRules.scan(
+            motions,
+            List(60) { true },
+            0,
+            threshold,
+            null,
+            continuous = true,
+            floor = null,
+        )
         assertEquals(0, index)
         assertEquals(0.01, floor!!, 1e-12)
     }
@@ -37,7 +45,15 @@ class OnsetScanTest {
 
     @Test
     fun learnedFloorWhileTooFewValues() {
-        val (index, floor) = OnsetRules.scan(listOf(0.5, 0.5), listOf(true, true), 0, threshold, 0.05, continuous = true, floor = null)
+        val (index, floor) = OnsetRules.scan(
+            listOf(0.5, 0.5),
+            listOf(true, true),
+            0,
+            threshold,
+            0.05,
+            continuous = true,
+            floor = null,
+        )
         assertNull(index)
         assertEquals(NoiseFloor.MAX_FLOOR, floor!!, 1e-12)
     }
@@ -48,7 +64,15 @@ class OnsetScanTest {
         // selben Bündel. Epoche für Epoche: erkannt in Epoche 32, Beginn 3. Mit dem Grundrauschen des ganzen Bündels
         // (0.04 → Schwelle 0.1) begänne die Strecke schon bei 0: Das Bündel änderte die Einschlafzeit.
         val motions = List(3) { 0.03 } + List(30) { 0.0015 } + List(200) { 0.2 }
-        val (index, _) = OnsetRules.scan(motions, List(motions.size) { true }, 0, threshold, null, continuous = true, floor = null)
+        val (index, _) = OnsetRules.scan(
+            motions,
+            List(motions.size) { true },
+            0,
+            threshold,
+            null,
+            continuous = true,
+            floor = null,
+        )
         assertEquals(3, index)
     }
 }

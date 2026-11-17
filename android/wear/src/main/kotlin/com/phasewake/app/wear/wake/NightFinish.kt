@@ -34,31 +34,12 @@ import kotlinx.coroutines.withContext
  */
 internal fun WakeService.finishNight(notifyPhone: Boolean = true, done: Boolean = false) {
     val n = night ?: return
-    WatchSunrise.stop(this)
-    night = null
-    measuringPlan = null
-    activePlan = null
-    handler.removeCallbacksAndMessages(null)
-    n.sensors?.stop()
-    AlarmScheduler.cancelDeadlineAndSnooze(this)
-    app.ringState.publish(RingUi.Idle)
-    cancelRingScreenAlarm(this)
-    Notifications.cancelService(this)
-    releaseWakeLock()
+    tearDownNight(n)
 
     // Probewecker und Powernap: kein Eintrag im Verlauf, nichts «erledigt», kein Einmal-Wecker.
     val transient = Transient.kindOf(n.plan.alarmId) != null
     app.diag.log(DiagKind.STOP, if (n.firstRing == null) "watch ended without ring" else "watch")
-    val record = n.firstRing?.takeIf { !transient }?.let { wokeAt ->
-        // Akku je Nacht: Ende jetzt, die Punkte reisen mit der Nacht zum Handy; ebenso die Einschlafzeit
-        // samt Beginn, nur zusammen.
-        NightRecord(
-            n.plan.alarmId, n.plan.windowStart, n.plan.target, wokeAt, n.reason ?: WakeReason.DEADLINE, n.snoozes, n.epochs.toList(),
-            watchBattery = BatteryNight.end(this),
-            bedAt = n.bedAt?.takeIf { n.asleepAt != null },
-            asleepAt = n.asleepAt,
-        )
-    }
+    val record = nightRecord(n, transient)
     // Ohne Nacht im Verlauf (nicht geweckt, Probewecker, Powernap) gehört der Akku zu nichts; ein Probewecker hat
     // keinen begonnen.
     if (record == null && !transient) BatteryNight.drop(this, "night ended without ring")
@@ -75,44 +56,17 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true, done: Boolean 
     if (record != null || done) app.scheduler.markDone(n.plan.alarmId, doneUntil(n.plan, n.spec))
     // Geweckt: Die Aufzeichnung dieser Nacht endet (Lernphase wie von Hand begonnen).
     if (record != null) RecordControl.endLearning(this)
-    if (notifyPhone) app.appScope.launch { app.sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_STOP, stopMessage(n.plan)) }
+    if (notifyPhone) app.appScope.launch {
+        app.sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_STOP, stopMessage(n.plan))
+    }
 
     // Prozessweiter Bereich. Der Dienst bleibt (Vordergrund), bis gespeichert und neu geplant ist:
     // Sonst könnte das System den Prozess vorher beenden, und für morgen stünde kein Wecker.
     // Jeder Schritt für sich abgesichert, damit ein Fehler die folgenden nicht überspringt.
     finishing++
     app.appScope.launch {
-        var disabled: AlarmSnapshot? = null
-        var cleared: WakePlan? = null
         try {
-            // Aus dem Speicher statt aus der Nacht: Nach einem Neustart des Dienstes fehlt n.spec.
-            val spec = runStep("Wecker laden") { app.alarms.current().alarms.firstOrNull { it.id == n.plan.alarmId } }
-            if (record != null || done) {
-                if (n.spec == null) app.scheduler.markDone(n.plan.alarmId, doneUntil(n.plan, spec))
-                runStep("Erledigt speichern") { app.scheduler.saveDone() }
-            }
-            // Zielzeiten anderer Wecker, die während dieser Nacht fällig wurden, nachholen.
-            if (record != null) runStep("Nacht-Zeitraum merken") { app.scheduler.noteNightEnded(n.plan.windowStart, endedAt) }
-            if (transient) runStep("Vorübergehenden Plan löschen") { app.transient.clear(n.plan.alarmId) }
-            runStep("Einschlaf-Ausnahme löschen") {
-                cleared = app.onsetOverride.get()
-                app.onsetOverride.clear()
-            }
-            runStep("Stand löschen") { app.nightProgress.clear(n.plan) }
-            if (record != null) runStep("Nacht speichern") { app.nights.add(record) }
-            // Nur die Fassung, die geklingelt hat: Im Schlummern verschoben, oder eine neuere Änderung vom
-            // Handy, bleibt eingeschaltet. Früher geweckt (Einschlaf-Modus): die Ausnahme dieser Nacht ([cleared]).
-            if (!transient && spec?.isOneShot == true && spec.enabled) disabled = runStep("Einmal-Wecker ausschalten") {
-                val shifted = cleared == n.plan
-                app.alarms.disableAfterRing(spec.id) { AlarmStamps.rang(it, n.spec, n.plan.target, ZoneId.systemDefault(), shifted) }
-            }
-            runStep("Neu planen") { app.scheduler.reschedule() }
-            // Einreihen fürs Handy, solange der Dienst noch läuft: Es speichert nur lokal (schnell), gesendet
-            // wird im Hintergrund. Endete der Prozess mit dem Dienst, ginge die Nacht sonst nie ans Handy.
-            if (record != null) runStep("Nacht einreihen") { app.sync.publishNight(record) }
-            disabled?.let { runStep("Einmal-Wecker einreihen") { app.sync.publishAlarms(it) } }
-            // Ausnahme weg: Auch das Handy plant wieder ohne frühere Zielzeit (Meldung ohne frühere Zielzeit).
-            cleared?.let { runStep("Einschlaf-Ausnahme einreihen") { app.publishOnsetShift(OnsetShift.cancel(it, System.currentTimeMillis())) } }
+            saveFinishedNight(n, record, done, transient, endedAt)
         } finally {
             withContext(Dispatchers.Main) {
                 finishing--
@@ -122,12 +76,97 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true, done: Boolean 
     }
 }
 
+/** Beendet Messung, Klingeln und Vordergrund der Nacht [n] sofort (Sensoren, Alarme, Mitteilungen, Wakelock). */
+private fun WakeService.tearDownNight(n: WakeService.Night) {
+    WatchSunrise.stop(this)
+    night = null
+    measuringPlan = null
+    activePlan = null
+    handler.removeCallbacksAndMessages(null)
+    n.sensors?.stop()
+    AlarmScheduler.cancelDeadlineAndSnooze(this)
+    app.ringState.publish(RingUi.Idle)
+    cancelRingScreenAlarm(this)
+    Notifications.cancelService(this)
+    releaseWakeLock()
+}
+
+/**
+ * Eintrag der Nacht [n] für den Verlauf, nur wenn sie geweckt hat und kein Probewecker oder Powernap ([transient])
+ * war. Akku je Nacht: Ende jetzt, die Punkte reisen mit der Nacht zum Handy; ebenso die Einschlafzeit samt Beginn, nur
+ * zusammen.
+ */
+private fun WakeService.nightRecord(n: WakeService.Night, transient: Boolean): NightRecord? =
+    n.firstRing?.takeIf { !transient }?.let { wokeAt ->
+        NightRecord(
+            n.plan.alarmId, n.plan.windowStart, n.plan.target, wokeAt, n.reason ?: WakeReason.DEADLINE, n.snoozes,
+            n.epochs.toList(),
+            watchBattery = BatteryNight.end(this),
+            bedAt = n.bedAt?.takeIf { n.asleepAt != null },
+            asleepAt = n.asleepAt,
+        )
+    }
+
+/**
+ * Speichert die beendete Nacht [n] (Eintrag [record], [done] wie bei [finishNight], [transient] für Probewecker und
+ * Powernap, beendet um [endedAt]), schaltet einen Einmal-Wecker aus, plant neu und reiht alles fürs Handy ein. Jeder
+ * Schritt für sich abgesichert ([runStep]), damit ein Fehler die folgenden nicht überspringt.
+ */
+private suspend fun WakeService.saveFinishedNight(
+    n: WakeService.Night,
+    record: NightRecord?,
+    done: Boolean,
+    transient: Boolean,
+    endedAt: Instant,
+) {
+    var disabled: AlarmSnapshot? = null
+    var cleared: WakePlan? = null
+    // Aus dem Speicher statt aus der Nacht: Nach einem Neustart des Dienstes fehlt n.spec.
+    val spec = runStep("Wecker laden") { app.alarms.current().alarms.firstOrNull { it.id == n.plan.alarmId } }
+    if (record != null || done) {
+        if (n.spec == null) app.scheduler.markDone(n.plan.alarmId, doneUntil(n.plan, spec))
+        runStep("Erledigt speichern") { app.scheduler.saveDone() }
+    }
+    // Zielzeiten anderer Wecker, die während dieser Nacht fällig wurden, nachholen.
+    if (record != null) runStep("Nacht-Zeitraum merken") { app.scheduler.noteNightEnded(n.plan.windowStart, endedAt) }
+    if (transient) runStep("Vorübergehenden Plan löschen") { app.transient.clear(n.plan.alarmId) }
+    runStep("Einschlaf-Ausnahme löschen") {
+        cleared = app.onsetOverride.get()
+        app.onsetOverride.clear()
+    }
+    runStep("Stand löschen") { app.nightProgress.clear(n.plan) }
+    if (record != null) runStep("Nacht speichern") { app.nights.add(record) }
+    // Nur die Fassung, die geklingelt hat: Im Schlummern verschoben, oder eine neuere Änderung vom
+    // Handy, bleibt eingeschaltet. Früher geweckt (Einschlaf-Modus): die Ausnahme dieser Nacht ([cleared]).
+    if (!transient && spec?.isOneShot == true && spec.enabled) {
+        disabled = runStep("Einmal-Wecker ausschalten") {
+            val shifted = cleared == n.plan
+            app.alarms.disableAfterRing(spec.id) {
+                AlarmStamps.rang(it, n.spec, n.plan.target, ZoneId.systemDefault(), shifted)
+            }
+        }
+    }
+    runStep("Neu planen") { app.scheduler.reschedule() }
+    // Einreihen fürs Handy, solange der Dienst noch läuft: Es speichert nur lokal (schnell), gesendet
+    // wird im Hintergrund. Endete der Prozess mit dem Dienst, ginge die Nacht sonst nie ans Handy.
+    if (record != null) runStep("Nacht einreihen") { app.sync.publishNight(record) }
+    disabled?.let { runStep("Einmal-Wecker einreihen") { app.sync.publishAlarms(it) } }
+    // Ausnahme weg: Auch das Handy plant wieder ohne frühere Zielzeit (Meldung ohne frühere Zielzeit).
+    cleared?.let {
+        runStep("Einschlaf-Ausnahme einreihen") {
+            app.publishOnsetShift(OnsetShift.cancel(it, System.currentTimeMillis()))
+        }
+    }
+}
+
 /** Abschluss vor dem ersten Entsperren: nur Direct-Boot-Speicher, nichts Verschlüsseltes. */
 private fun WakeService.finishLocked(plan: WakePlan, rang: Boolean, notifyPhone: Boolean) {
     // Der abgelegte Plan danach wird zum Eintrag: Bleibt die Uhr gesperrt, weckt sie auch am nächsten Morgen.
     DirectBoot.promoteNext(this)?.let { DirectBoot.setDeadlineAt(this, it) }
     if (rang) DirectBoot.markRang(this, plan.alarmId, plan.target)
-    if (notifyPhone) app.appScope.launch { app.sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_STOP, stopMessage(plan)) }
+    if (notifyPhone) app.appScope.launch {
+        app.sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_STOP, stopMessage(plan))
+    }
     handler.post { stopIfIdle() }
 }
 

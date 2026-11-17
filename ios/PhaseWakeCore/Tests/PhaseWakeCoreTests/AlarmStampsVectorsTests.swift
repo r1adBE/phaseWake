@@ -11,7 +11,8 @@ final class AlarmStampsVectorsTests: XCTestCase {
     }
 
     func testSharedVectors() throws {
-        let text = try String(contentsOf: NightFixtures.directory.appendingPathComponent("alarm-stamps.vectors"), encoding: .utf8)
+        let text = try String(contentsOf: NightFixtures.directory.appendingPathComponent("alarm-stamps.vectors"),
+                              encoding: .utf8)
         let lines = text.components(separatedBy: "\n").filter { !$0.isEmpty && !$0.hasPrefix("#") }
         for line in lines {
             let f = line.components(separatedBy: "\t")
@@ -34,7 +35,8 @@ final class AlarmStampsVectorsTests: XCTestCase {
     /// «Listen-Zeitpunkt Wecker Zeitpunkte Gelöschte», mit Leerzeichen getrennt.
     private func snapshot(_ text: String) throws -> AlarmSnapshot {
         let f = text.components(separatedBy: " ")
-        guard f.count == 4, let updatedAt = Int64(f[0]) else { throw FormatError(description: "Stand mit 4 Teilen erwartet: \(text)") }
+        guard f.count == 4, let updatedAt = Int64(f[0])
+        else { throw FormatError(description: "Stand mit 4 Teilen erwartet: \(text)") }
         let alarms: [AlarmSpec] = try f[1] == "-" ? [] : f[1].components(separatedBy: ";").map(alarm)
         let stamps = try map(f[2]), deleted = try map(f[3])
         return AlarmSnapshot(alarms: alarms, updatedAt: updatedAt, stamps: stamps, deleted: deleted)
@@ -51,7 +53,8 @@ final class AlarmStampsVectorsTests: XCTestCase {
         var out: [String: Int64] = [:]
         for pair in text.components(separatedBy: ",") {
             let parts = pair.components(separatedBy: "=")
-            guard parts.count == 2, let ms = Int64(parts[1]) else { throw FormatError(description: "Eintrag '\(pair)'") }
+            guard parts.count == 2, let ms = Int64(parts[1])
+            else { throw FormatError(description: "Eintrag '\(pair)'") }
             out[parts[0]] = ms
         }
         return out
@@ -62,7 +65,8 @@ final class AlarmStampsVectorsTests: XCTestCase {
         func pairs(_ m: [String: Int64]) -> String {
             m.isEmpty ? "-" : m.sorted { $0.key < $1.key }.map { "\($0.key)=\($0.value)" }.joined(separator: ",")
         }
-        return [String(s.updatedAt), alarms.isEmpty ? "-" : alarms.joined(separator: ";"), pairs(s.stamps), pairs(s.deleted)]
+        return [String(s.updatedAt), alarms.isEmpty ? "-" : alarms.joined(separator: ";"), pairs(s.stamps),
+                pairs(s.deleted)]
             .joined(separator: " ")
     }
 }

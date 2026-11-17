@@ -86,8 +86,12 @@ class SkyPageContrastTest {
     fun cremeCaramelReadable() {
         val c = com.phasewake.app.ui.theme.LightScheme
         val b = com.phasewake.app.ui.theme.LightBrand
-        val grounds = listOf(c.background, c.surface, c.surfaceContainer, c.surfaceContainerLow, c.surfaceVariant, b.card, b.chipSelected)
-        val inks = listOf(c.onSurface, c.onSurfaceVariant, b.mutedSoft, c.primary, c.tertiary, c.error, Creme.CaramelText)
+        val grounds = listOf(
+            c.background, c.surface, c.surfaceContainer, c.surfaceContainerLow, c.surfaceVariant, b.card,
+            b.chipSelected,
+        )
+        val inks =
+            listOf(c.onSurface, c.onSurfaceVariant, b.mutedSoft, c.primary, c.tertiary, c.error, Creme.CaramelText)
         for (bg in grounds) for (ink in inks) {
             val ratio = SunriseSky.contrast(ink, bg)
             assertTrue(ratio >= SunriseSky.MIN_CONTRAST, "hell $ink auf $bg: $ratio:1")
@@ -97,8 +101,11 @@ class SkyPageContrastTest {
             c.onPrimaryContainer to c.primaryContainer, c.onSecondaryContainer to c.secondaryContainer,
             c.onTertiaryContainer to c.tertiaryContainer,
         )
-        for ((ink, bg) in filled) assertTrue(SunriseSky.contrast(ink, bg) >= SunriseSky.MIN_CONTRAST, "hell $ink auf $bg")
-        val shapes = listOf(c.outline, Creme.Caramel, Creme.Lavender, b.stageAwake, b.stageRem, b.stageLight, b.stageDeep)
+        for ((ink, bg) in filled) assertTrue(
+            SunriseSky.contrast(ink, bg) >= SunriseSky.MIN_CONTRAST, "hell $ink auf $bg",
+        )
+        val shapes =
+            listOf(c.outline, Creme.Caramel, Creme.Lavender, b.stageAwake, b.stageRem, b.stageLight, b.stageDeep)
         for (bg in listOf(c.background, b.card)) {
             for (shape in shapes) assertTrue(SunriseSky.contrast(shape, bg) >= NON_TEXT, "hell Form $shape auf $bg")
             val chip = mixColor(bg, b.chipBorder.copy(alpha = 1f), b.chipBorder.alpha)

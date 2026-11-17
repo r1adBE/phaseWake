@@ -49,14 +49,20 @@ internal fun EveningDarkRows(setting: EveningDarkSetting, onEnabled: (Boolean) -
     var picking by remember { mutableStateOf(false) }
     Row(
         // Mindestens 48 dp hoch (Tippziel).
-        Modifier.fillMaxWidth().heightIn(min = MIN_TOUCH).clickable(role = Role.Button) { picking = true }.padding(vertical = 8.dp),
+        Modifier.fillMaxWidth().heightIn(min = MIN_TOUCH).clickable(role = Role.Button) { picking = true }
+            .padding(vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Text(stringResource(R.string.settings_evening_dark_from), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
+        Text(
+            stringResource(R.string.settings_evening_dark_from), style = MaterialTheme.typography.titleSmall,
+            modifier = Modifier.weight(1f),
+        )
         Text(from, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.primary)
     }
     if (picking) {
-        EveningTimeDialog(setting.fromMinutes, onPick = { picking = false; onFrom(it) }, onDismiss = { picking = false })
+        EveningTimeDialog(
+            setting.fromMinutes, onPick = { picking = false; onFrom(it) }, onDismiss = { picking = false },
+        )
     }
 }
 
@@ -70,9 +76,14 @@ private fun EveningTimeDialog(minutes: Int, onPick: (Int) -> Unit, onDismiss: ()
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.settings_evening_dark_from)) },
         text = {
-            TimePicker(state = time, colors = TimePickerDefaults.colors(clockDialColor = MaterialTheme.colorScheme.surfaceContainerHighest))
+            TimePicker(
+                state = time,
+                colors = TimePickerDefaults.colors(clockDialColor = MaterialTheme.colorScheme.surfaceContainerHighest),
+            )
         },
-        confirmButton = { TextButton(onClick = { onPick(time.hour * 60 + time.minute) }) { Text(stringResource(R.string.editor_save)) } },
+        confirmButton = { TextButton(onClick = { onPick(time.hour * 60 + time.minute) }) {
+            Text(stringResource(R.string.editor_save))
+        } },
         dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) } },
     )
 }

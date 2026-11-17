@@ -13,8 +13,10 @@ struct WatchTimeWheels: View {
         let value = Format.time(hour: hour, minute: minute)
         HStack(spacing: 2) {
             if twelveHours {
-                Picker(WheelClock.unitName(.hours), selection: Binding(get: { WheelClock.hour12(hour) },
-                                                                      set: { hour = WheelClock.hour24(hour12: $0, pm: hour >= 12) })) {
+                Picker(WheelClock.unitName(.hours), selection: Binding(
+                    get: { WheelClock.hour12(hour) },
+                    set: { hour = WheelClock.hour24(hour12: $0, pm: hour >= 12) }
+                )) {
                     ForEach(1...12, id: \.self) { Text(Format.twoDigits($0)).tag($0) }
                 }
                 .accessibilityValue(value)
@@ -32,7 +34,8 @@ struct WatchTimeWheels: View {
             if twelveHours {
                 let calendar = Calendar.current
                 Picker(calendar.amSymbol + "/" + calendar.pmSymbol,
-                       selection: Binding(get: { hour >= 12 }, set: { hour = WheelClock.hour24(hour12: WheelClock.hour12(hour), pm: $0) })) {
+                       selection: Binding(get: { hour >= 12 },
+                                          set: { hour = WheelClock.hour24(hour12: WheelClock.hour12(hour), pm: $0) })) {
                     Text(calendar.amSymbol).tag(false)
                     Text(calendar.pmSymbol).tag(true)
                 }

@@ -10,7 +10,8 @@ final class NightZonePhoneTests: XCTestCase {
     private func item(_ zone: TimeZone?) -> HistoryItem {
         let start = Date(timeIntervalSince1970: 1_790_863_200) // 2026-10-01T14:00:00Z
         let end = start.addingTimeInterval(8 * 3600)
-        let session = HealthSession(start: start, end: end, stages: [StageSpan(start: start, end: end, stage: .light)], timeZone: zone)
+        let session = HealthSession(start: start, end: end, stages: [StageSpan(start: start, end: end, stage: .light)],
+                                    timeZone: zone)
         return HistoryItem(kind: .health, date: "2026-10-01", session: session)
     }
 

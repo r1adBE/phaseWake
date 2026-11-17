@@ -34,7 +34,9 @@ data class NightRecord(
     val asleepAt: Instant? = null,
 ) {
     init {
-        require(feeling == null || feeling in FEELING_MIN..FEELING_MAX) { "feeling muss zwischen $FEELING_MIN und $FEELING_MAX liegen" }
+        require(feeling == null || feeling in FEELING_MIN..FEELING_MAX) {
+            "feeling muss zwischen $FEELING_MIN und $FEELING_MAX liegen"
+        }
     }
 
     /** Wie viele Minuten vor der Zielzeit geweckt wurde (0 bei Zielzeit und danach). */
@@ -93,7 +95,8 @@ object NightHistory {
         append("night,window_minutes,reason,woke_minutes_before_target,snoozes,feeling,epoch,motion,hr,notes\n")
         trim(nights).forEachIndexed { nightIndex, night ->
             val windowMinutes = Duration.between(night.windowStart, night.target).toMinutes()
-            val noteText = notes[SleepNotes.nightDate(night, zone)].orEmpty().joinToString(";") { SleepNotes.exportId(it) }
+            val noteText =
+                notes[SleepNotes.nightDate(night, zone)].orEmpty().joinToString(";") { SleepNotes.exportId(it) }
             night.epochs.forEachIndexed { epochIndex, epoch ->
                 append(nightIndex + 1).append(',')
                 append(windowMinutes).append(',')

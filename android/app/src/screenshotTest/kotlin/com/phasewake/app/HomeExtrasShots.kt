@@ -33,10 +33,14 @@ private val extrasPadding = PaddingValues(top = 24.dp, bottom = 96.dp)
 private val work = AlarmSpec(id = "work", hour = 7, minute = 0, days = weekdays, label = "Arbeit", skipHolidays = true)
 
 /** Wecker «Sport»: der nächste Termin ist übersprungen (wie nach «Nächstes Mal überspringen»). */
-private val sport = AlarmSchedule.skipNext(AlarmSpec(id = "sport", hour = 6, minute = 30, days = weekdays, label = "Sport"), FIXED_NOW, zone)
+private val sport = AlarmSchedule.skipNext(
+    AlarmSpec(id = "sport", hour = 6, minute = 30, days = weekdays, label = "Sport"), FIXED_NOW, zone,
+)
 
 /** Der nächste Arbeitstag ist ein Feiertag; so erscheint der Hinweis unabhängig von der Zeitzone des Renderers. */
-private val holidays: Set<LocalDate> = setOfNotNull(AlarmSchedule.nextSkipDate(work.copy(skipHolidays = false), FIXED_NOW, zone))
+private val holidays: Set<LocalDate> = setOfNotNull(
+    AlarmSchedule.nextSkipDate(work.copy(skipHolidays = false), FIXED_NOW, zone)
+)
 
 /** Startseite ohne letzte Nacht und ohne Nacht-Check, damit Powernap und Wecker-Liste sichtbar bleiben. */
 @Composable

@@ -45,15 +45,18 @@ struct FindingHomeCard: View {
 
     var body: some View {
         Group {
-            if let finding = Findings.home(findings, hidden: Findings.decodeHidden(hidden), now: Date(), bedtimeAdvice: bedtimeAdvice) {
+            if let finding = Findings.home(findings, hidden: Findings.decodeHidden(hidden), now: Date(),
+                                           bedtimeAdvice: bedtimeAdvice) {
                 VStack(alignment: .leading, spacing: 6) {
                     Text(L("finding_title")).font(Fonts.manrope(16, .semibold, relativeTo: .headline))
                     Text(findingText(finding)).font(Fonts.manrope(14, relativeTo: .subheadline))
-                    Text(L("stages_not_medical")).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.tertiaryText(scheme))
+                    Text(L("stages_not_medical"))
+                        .font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.tertiaryText(scheme))
                     HStack {
                         Spacer()
                         Button(L("finding_hide")) {
-                            hidden = Findings.encodeHidden(Findings.hide(Findings.decodeHidden(hidden), kind: finding.kind, now: Date()))
+                            hidden = Findings.encodeHidden(Findings.hide(Findings.decodeHidden(hidden),
+                                                                         kind: finding.kind, now: Date()))
                         }
                         .font(Fonts.manrope(14, .semibold, relativeTo: .subheadline))
                     }
@@ -61,7 +64,9 @@ struct FindingHomeCard: View {
                 .card()
             }
         }
-        .task(id: "\(scenePhase == .active)|\(healthRequested)|\(model.historyClearedAt?.timeIntervalSince1970 ?? 0)") { await reload() }
+        .task(id: "\(scenePhase == .active)|\(healthRequested)|\(model.historyClearedAt?.timeIntervalSince1970 ?? 0)") {
+            await reload()
+        }
     }
 
     /// Liest Apple Health und rechnet die Auffälligkeiten bis heute (Nachtdatum von «jetzt»).
@@ -72,7 +77,8 @@ struct FindingHomeCard: View {
         // Ohne Einschlafdauer aus Apple Health gilt die eigene Messung der Uhr: zuerst die Nacht im Verlauf
         // (``OwnOnset/of(_:)``), sonst die Aufzeichnung (``NightRecording/ownOnset``).
         let facts = NightFacts.of(sessions, clearedAt: model.historyClearedAt, calendar: calendar,
-                                  own: PhoneLearning.shared.recordings.compactMap(\.ownOnset), watch: model.nights.compactMap(OwnOnset.of))
+                                  own: PhoneLearning.shared.recordings.compactMap(\.ownOnset),
+                                  watch: model.nights.compactMap(OwnOnset.of))
         findings = Findings.of(facts, today: SleepNotes.nightDate(Date(), calendar: calendar), calendar: calendar)
     }
 }

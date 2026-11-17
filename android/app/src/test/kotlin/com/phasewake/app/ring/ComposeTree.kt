@@ -66,7 +66,8 @@ internal class ComposeTree(private val activity: Activity) {
      * Geräusche), schiebt ihn sonst aus dem Baum.
      */
     fun scrollToKey(key: Any) {
-        val list = nodes().firstOrNull { (it.config.getOrNull(SemanticsProperties.IndexForKey)?.invoke(key) ?: -1) >= 0 }
+        val list =
+            nodes().firstOrNull { (it.config.getOrNull(SemanticsProperties.IndexForKey)?.invoke(key) ?: -1) >= 0 }
             ?: fail("keine Liste mit dem Eintrag «$key»; Texte: ${texts()}")
         val scroll = list.config.getOrNull(SemanticsActions.ScrollToIndex)?.action ?: fail("Liste ohne Scrollaktion")
         scroll(list.config[SemanticsProperties.IndexForKey](key))

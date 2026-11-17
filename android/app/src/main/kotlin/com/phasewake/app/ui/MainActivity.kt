@@ -145,7 +145,8 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
     val soundRec = rememberSoundRec(app, data, checkRun)
     val nightCheck = rememberNightCheck(app, checkRun)
 
-    val notificationPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { checkRun++ }
+    val notificationPermission =
+        rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { checkRun++ }
     // Vor jeder Anfrage gemerkt, über das Prozessende hinaus: Danach öffnet «Erlauben» gleich die Einstellungen.
     fun askNotifications() {
         PermissionAsks.markAsked(context, listOf(Manifest.permission.POST_NOTIFICATIONS))
@@ -153,7 +154,9 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
     }
     // Probewecker über einem wartenden Powernap: zuerst fragen.
     var confirmTest by rememberSaveable { mutableStateOf(false) }
-    val healthPermission = rememberLauncherForActivityResult(PermissionController.createRequestPermissionResultContract()) {
+    val healthPermission = rememberLauncherForActivityResult(
+        PermissionController.createRequestPermissionResultContract()
+    ) {
         healthGrant++
         healthCheck++
     }
@@ -177,30 +180,15 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
                 item == Check.COMPANION -> connectCompanion()
                 item != Check.NOTIFICATIONS -> fixCheck(context, item, nightCheck.missingOn)
                 // Die Versionsprüfung steht hier sichtbar für Lint; canAskNotifications prüft sie ebenfalls.
-                Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && canAskNotifications(context) -> askNotifications()
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+                    canAskNotifications(context) -> askNotifications()
                 else -> openNotificationSettings(context)
             }
         },
         onTest = { if (napWaiting(data.transient)) confirmTest = true else startTest(app) },
     )
 
-    // Aus dem Wochenrückblick: einmal zum Verlauf.
-    var openedHistory by rememberSaveable { mutableStateOf(false) }
-    LaunchedEffect(openHistory) {
-        if (openHistory && !openedHistory) {
-            openedHistory = true
-            nav.switchTab(Routes.HISTORY)
-        }
-    }
-    // Erster Start: Einrichtung. Bestehende Installationen (Wecker oder Verlauf vorhanden) überspringen sie.
-    LaunchedEffect(data.onboardingDone) {
-        if (data.onboardingDone != false || openHistory) return@LaunchedEffect
-        if (app.alarms.current().alarms.isNotEmpty() || app.nights.load().isNotEmpty()) {
-            app.settings.setOnboardingDone(true)
-        } else if (route != ExtraRoutes.ONBOARDING) {
-            nav.navigate(ExtraRoutes.ONBOARDING)
-        }
-    }
+    NavEffects(app, nav, data, route, openHistory)
     // Ergebnis des Probeweckers, sobald es feststeht (Stopp angekommen oder 3 Minuten nach der Zielzeit).
     var tick by remember { mutableIntStateOf(0) }
     LaunchedEffect(data.testRun) {
@@ -210,19 +198,6 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
         }
     }
     val testResult = data.testRun?.takeIf { tick >= 0 && TestRuns.isFinished(it, java.time.Instant.now()) }
-    // Klingelt es, ohne dass der Weckbildschirm erscheinen durfte (Vollbild nicht erlaubt): beim Öffnen zeigen.
-    val ringing by PhoneRingService.ringState.collectAsStateWithLifecycle()
-    LaunchedEffect(ringing) {
-        if (ringing is PhoneRingService.State.Ringing) context.startActivity(Intent(context, PhoneRingActivity::class.java))
-    }
-    // Hell liegt unter der Statusleiste überall der helle Tageshimmel oder die Creme-Fläche: dunkle Symbole; dunkel
-    // (auch abends dunkel) helle.
-    val view = LocalView.current
-    val lightBars = !PhaseWakeTheme.isDark
-    SideEffect {
-        val window = (view.context as? android.app.Activity)?.window ?: return@SideEffect
-        WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = lightBars
-    }
     // Wer «Animationen entfernen» eingeschaltet hat, bekommt keine Start-Animation.
     var intro by rememberSaveable { mutableStateOf(animationsEnabled(context)) }
 
@@ -244,9 +219,56 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
             )
         }
         testResult?.let { run ->
-            TestResultDialog(run, nightCheck.check, onFix = actions.onFix, onClose = { app.appScope.launch { app.testRuns.clear() } })
+            TestResultDialog(
+                run, nightCheck.check, onFix = actions.onFix,
+                onClose = { app.appScope.launch { app.testRuns.clear() } },
+            )
         }
         if (intro) Intro(onFinished = { intro = false })
+    }
+}
+
+/** Einmal zum Verlauf, Einrichtung beim ersten Start, Weckbildschirm beim Öffnen und Farbe der Statusleiste. */
+@Composable
+private fun NavEffects(
+    app: com.phasewake.app.PhaseWakeApp,
+    nav: NavHostController,
+    data: AppData,
+    route: String?,
+    openHistory: Boolean,
+) {
+    val context = LocalContext.current
+    // Aus dem Wochenrückblick: einmal zum Verlauf.
+    var openedHistory by rememberSaveable { mutableStateOf(false) }
+    LaunchedEffect(openHistory) {
+        if (openHistory && !openedHistory) {
+            openedHistory = true
+            nav.switchTab(Routes.HISTORY)
+        }
+    }
+    // Erster Start: Einrichtung. Bestehende Installationen (Wecker oder Verlauf vorhanden) überspringen sie.
+    LaunchedEffect(data.onboardingDone) {
+        if (data.onboardingDone != false || openHistory) return@LaunchedEffect
+        if (app.alarms.current().alarms.isNotEmpty() || app.nights.load().isNotEmpty()) {
+            app.settings.setOnboardingDone(true)
+        } else if (route != ExtraRoutes.ONBOARDING) {
+            nav.navigate(ExtraRoutes.ONBOARDING)
+        }
+    }
+    // Klingelt es, ohne dass der Weckbildschirm erscheinen durfte (Vollbild nicht erlaubt): beim Öffnen zeigen.
+    val ringing by PhoneRingService.ringState.collectAsStateWithLifecycle()
+    LaunchedEffect(ringing) {
+        if (ringing is PhoneRingService.State.Ringing) {
+            context.startActivity(Intent(context, PhoneRingActivity::class.java))
+        }
+    }
+    // Hell liegt unter der Statusleiste überall der helle Tageshimmel oder die Creme-Fläche: dunkle Symbole; dunkel
+    // (auch abends dunkel) helle.
+    val view = LocalView.current
+    val lightBars = !PhaseWakeTheme.isDark
+    SideEffect {
+        val window = (view.context as? android.app.Activity)?.window ?: return@SideEffect
+        WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = lightBars
     }
 }
 
@@ -264,7 +286,9 @@ private fun AppScaffold(app: com.phasewake.app.PhaseWakeApp, state: NavState, ac
             if (route !in FULL_SCREEN_ROUTES) {
                 // Dunkel liegt auf jeder Seite der Nachthimmel (wie auf der Startseite).
                 val onNight = PhaseWakeTheme.isDark
-                NavigationBar(containerColor = if (onNight) Night.Bar else MaterialTheme.colorScheme.surfaceContainerLow) {
+                NavigationBar(
+                    containerColor = if (onNight) Night.Bar else MaterialTheme.colorScheme.surfaceContainerLow
+                ) {
                     tabs.forEach { tab ->
                         NavigationBarItem(
                             selected = route == tab.route,
@@ -285,7 +309,10 @@ private fun AppScaffold(app: com.phasewake.app.PhaseWakeApp, state: NavState, ac
                     icon = {
                         // Eingeklappt bleibt der Name für Bildschirmleser erhalten.
                         val label = stringResource(R.string.home_add_alarm)
-                        Icon(painterResource(R.drawable.ic_add), contentDescription = if (fabExpanded) null else label, modifier = Modifier.size(20.dp))
+                        Icon(
+                            painterResource(R.drawable.ic_add), contentDescription = if (fabExpanded) null else label,
+                            modifier = Modifier.size(20.dp),
+                        )
                     },
                     text = { Text(stringResource(R.string.home_add_alarm)) },
                     shape = MaterialTheme.shapes.medium,
@@ -309,7 +336,8 @@ private fun AppScaffold(app: com.phasewake.app.PhaseWakeApp, state: NavState, ac
 }
 
 /** Bildschirme ohne untere Navigationsleiste. */
-private val FULL_SCREEN_ROUTES = setOf(Routes.EDITOR, Routes.SOUNDS, ExtraRoutes.DIAGNOSTICS, ExtraRoutes.ONBOARDING, ExtraRoutes.NIGHT)
+private val FULL_SCREEN_ROUTES =
+    setOf(Routes.EDITOR, Routes.SOUNDS, ExtraRoutes.DIAGNOSTICS, ExtraRoutes.ONBOARDING, ExtraRoutes.NIGHT)
 
 /** So oft wird geprüft, ob das Ergebnis des Probeweckers feststeht. */
 private const val TEST_TICK_MS = 5_000L

@@ -103,7 +103,11 @@ object SunriseSky {
      * Schrift für einen Text auf [area]: hell oder dunkel, je nachdem, welche über die Fläche ([GRID] × [GRID] Punkte)
      * den grösseren kleinsten Kontrast hat. Der leisere Ton nur, wenn auch er überall ≥ [MIN_CONTRAST] erreicht.
      */
-    fun ink(progress: Float, area: Area = Area.CENTER, aspect: Float = ASPECT): Ink = pick(samples(progress, area, aspect))
+    fun ink(
+        progress: Float,
+        area: Area = Area.CENTER,
+        aspect: Float = ASPECT,
+    ): Ink = pick(samples(progress, area, aspect))
 
     /** Schild hinter einem Text: [color] ist der Gegenpol der Schrift, [alpha] ihre Deckkraft. */
     data class Plaque(val color: Color, val alpha: Float)
@@ -151,7 +155,15 @@ object SunriseSky {
         val steps = (0 until GRID).map { it / (GRID - 1f) }
         return steps.flatMap { fx ->
             steps.map { fy ->
-                background(p, c.top, c.bottom, c.sun, area.left + (area.right - area.left) * fx, area.top + (area.bottom - area.top) * fy, aspect)
+                background(
+                    p,
+                    c.top,
+                    c.bottom,
+                    c.sun,
+                    area.left + (area.right - area.left) * fx,
+                    area.top + (area.bottom - area.top) * fy,
+                    aspect,
+                )
             }
         }
     }
@@ -207,7 +219,12 @@ fun rememberSkyInk(
         val root = coords.findRootCoordinates().size
         if (root.width <= 0 || root.height <= 0) return@onGloballyPositioned
         val b = coords.boundsInRoot()
-        val next = SunriseSky.Area(b.left / root.width, b.top / root.height, b.right / root.width, b.bottom / root.height) to
+        val next = SunriseSky.Area(
+            b.left / root.width,
+            b.top / root.height,
+            b.right / root.width,
+            b.bottom / root.height,
+        ) to
             root.height.toFloat() / root.width
         if (next != place.value) place.value = next
     }

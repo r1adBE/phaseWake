@@ -86,7 +86,9 @@ class LearnOverviewTest {
         val state = app.learnLog.state.first()
         val next = assertNotNull(AlarmSchedule.nextTarget(spec, now, zone))
         assertTrue(SleepNotes.nightDate(next, zone) in state.alarmNights)
-        assertEquals(SleepNotes.nightDate(now, zone).plusDays(1), state.alarmsKnownFrom, "erst ab der nächsten Nacht sicher")
+        assertEquals(
+            SleepNotes.nightDate(now, zone).plusDays(1), state.alarmsKnownFrom, "erst ab der nächsten Nacht sicher",
+        )
         // Wecker aus: die künftigen Nächte fallen heraus.
         app.learnLog.noteAlarms(listOf(spec.copy(enabled = false)), emptySet(), now)
         assertTrue(app.learnLog.state.first().alarmNights.isEmpty())
@@ -95,27 +97,43 @@ class LearnOverviewTest {
     @Test
     fun everyReasonHasATextAndTheRightTip() {
         for (reason in LearnNights.Reason.entries) {
-            val night = LearnNights.Night(LocalDate.of(2026, 11, 3), reason, minutes = 130, measuredEpochs = 40, pulsePercent = 1, battery = 35)
+            val night = LearnNights.Night(
+                LocalDate.of(2026, 11, 3), reason, minutes = 130, measuredEpochs = 40, pulsePercent = 1, battery = 35,
+            )
             assertTrue(learnReasonText(context, night).isNotBlank(), reason.name)
-            assertEquals(reason == LearnNights.Reason.COUNTED || reason == LearnNights.Reason.LEARNING_OFF, learnTipText(context, reason) == null, reason.name)
+            assertEquals(
+                reason == LearnNights.Reason.COUNTED || reason == LearnNights.Reason.LEARNING_OFF,
+                learnTipText(context, reason) == null, reason.name,
+            )
         }
         val battery = LearnNights.Night(LocalDate.of(2026, 11, 3), LearnNights.Reason.BATTERY, battery = 35)
         assertEquals(context.getString(R.string.learn_reason_battery, 35), learnReasonText(context, battery))
-        assertEquals(context.getString(R.string.learn_reason_battery_low), learnReasonText(context, battery.copy(battery = null)))
-        assertEquals(context.getString(R.string.learn_tip_charge, Learning.MIN_BATTERY), learnTipText(context, LearnNights.Reason.BATTERY))
+        assertEquals(
+            context.getString(R.string.learn_reason_battery_low),
+            learnReasonText(context, battery.copy(battery = null)),
+        )
+        assertEquals(
+            context.getString(R.string.learn_tip_charge, Learning.MIN_BATTERY),
+            learnTipText(context, LearnNights.Reason.BATTERY),
+        )
         assertNull(learnFactsText(context, battery), "ohne Aufzeichnung keine Angaben")
-        assertTrue(learnFactsText(context, battery.copy(minutes = 130, measuredEpochs = 40, pulsePercent = 20))!!.contains("40"))
+        val facts = learnFactsText(context, battery.copy(minutes = 130, measuredEpochs = 40, pulsePercent = 20))
+        assertTrue(facts!!.contains("40"))
     }
 
     @Test
     fun screenListsTheNights() {
         val nights = listOf(
             LearnNights.Night(LocalDate.of(2026, 11, 4), LearnNights.Reason.BATTERY, battery = 35),
-            LearnNights.Night(LocalDate.of(2026, 11, 3), LearnNights.Reason.COUNTED, minutes = 400, measuredEpochs = 160, pulsePercent = 21),
+            LearnNights.Night(
+                LocalDate.of(2026, 11, 3), LearnNights.Reason.COUNTED, minutes = 400, measuredEpochs = 160,
+                pulsePercent = 21,
+            ),
         )
         var back = false
         val controller = Robolectric.buildActivity(ComponentActivity::class.java).setup()
-        controller.get().setContent { PhaseWakeTheme(ThemeMode.DARK) { LearnNightsScreen(nights, onBack = { back = true }) } }
+        controller.get()
+            .setContent { PhaseWakeTheme(ThemeMode.DARK) { LearnNightsScreen(nights, onBack = { back = true }) } }
         val tree = ComposeTree(controller.get()).also { it.idle(500) }
         val texts = tree.texts().joinToString("\n")
         assertTrue(texts.contains(context.getString(R.string.learn_reason_battery, 35)), texts)

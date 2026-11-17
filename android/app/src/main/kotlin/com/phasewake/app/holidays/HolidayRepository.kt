@@ -77,7 +77,8 @@ class HolidayRepository(
         val stale = Instant.now().toEpochMilli() - store.updatedAt() > REFRESH_AFTER.toMillis()
         val outdated = settings.holidayRules() < RULES
         if (!force && !stale && !outdated && store.list.first().region == code) return false
-        val days = if (country.isEmpty()) HolidayDays.NONE else withContext(Dispatchers.IO) { readDays(country, region) }
+        val days =
+            if (country.isEmpty()) HolidayDays.NONE else withContext(Dispatchers.IO) { readDays(country, region) }
         estimatedCache = (code + "@" + LocalDate.now()) to days.estimated
         val list = HolidayList(code, days.sure)
         val now = Instant.now().toEpochMilli()
@@ -96,7 +97,8 @@ class HolidayRepository(
         val (country, region) = choice()
         val key = Holidays.regionCode(country, region) + "@" + LocalDate.now()
         estimatedCache?.takeIf { it.first == key }?.let { return it.second }
-        val days = if (country.isEmpty()) emptySet() else withContext(Dispatchers.IO) { readDays(country, region).estimated }
+        val days =
+            if (country.isEmpty()) emptySet() else withContext(Dispatchers.IO) { readDays(country, region).estimated }
         estimatedCache = key to days
         return days
     }
@@ -187,7 +189,11 @@ internal data class HolidayDays(val sure: Set<LocalDate>, val estimated: Set<Loc
         val NONE = HolidayDays(emptySet(), emptySet())
 
         /** Aus den Einträgen (Datum, Name) des Landes ([national]) und der Region ([regional]) ab [today]. */
-        fun of(national: List<Pair<String, String>>, regional: List<Pair<String, String>>, today: LocalDate): HolidayDays {
+        fun of(
+            national: List<Pair<String, String>>,
+            regional: List<Pair<String, String>>,
+            today: LocalDate,
+        ): HolidayDays {
             val (estNational, sureNational) = national.partition { Holidays.isEstimated(it.second) }
             val (estRegional, sureRegional) = regional.partition { Holidays.isEstimated(it.second) }
             val sure = Holidays.resolve(sureNational.map { it.first }, sureRegional.map { it.first }, today)

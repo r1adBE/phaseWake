@@ -32,8 +32,10 @@ public struct RecorderSkip: Equatable, Sendable {
 
     /// Liest ``encode()``; `nil` bei leerem oder unlesbarem Text oder unbekanntem Grund (neuere Uhr).
     public static func decode(_ text: String?) -> RecorderSkip? {
-        guard let parts = text?.trimmingCharacters(in: .whitespacesAndNewlines).split(separator: "|", omittingEmptySubsequences: false),
-              parts.count >= 2, let ms = Int64(parts[0]), ms > 0, let reason = Reason(rawValue: String(parts[1])) else { return nil }
+        guard let parts = text?.trimmingCharacters(in: .whitespacesAndNewlines).split(separator: "|",
+                                                                                      omittingEmptySubsequences: false),
+              parts.count >= 2, let ms = Int64(parts[0]), ms > 0, let reason = Reason(rawValue: String(parts[1]))
+        else { return nil }
         return RecorderSkip(target: Date(timeIntervalSince1970: Double(ms) / 1000), reason: reason)
     }
 }

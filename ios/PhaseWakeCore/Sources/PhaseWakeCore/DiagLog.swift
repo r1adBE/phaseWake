@@ -88,7 +88,8 @@ public enum DiagLog {
 
     /// Eine Zeile; «|» und Zeilenumbrüche im Text werden zu Leerzeichen, zu lange Texte gekürzt.
     public static func encode(_ entry: DiagEntry) -> String {
-        [String(AlarmSchedule.millis(entry.at)), entry.device.rawValue, entry.kind.rawValue, clean(entry.detail)].joined(separator: separator)
+        [String(AlarmSchedule.millis(entry.at)), entry.device.rawValue, entry.kind.rawValue,
+         clean(entry.detail)].joined(separator: separator)
     }
 
     /// Liest `encode`; unbekannte Art wird `.other`, eine kaputte Zeile `nil`.
@@ -113,7 +114,8 @@ public enum DiagLog {
         formatter.timeZone = timeZone
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return stableSorted(entries).map { e in
-            [formatter.string(from: e.at), e.device.name, e.kind.rawValue, e.detail].filter { !$0.isEmpty }.joined(separator: " ")
+            [formatter.string(from: e.at), e.device.name, e.kind.rawValue,
+             e.detail].filter { !$0.isEmpty }.joined(separator: " ")
         }.joined(separator: "\n")
     }
 
@@ -146,7 +148,8 @@ public struct DiagReport: Equatable, Sendable {
 
     /// Gleich bei gleichem Zustand (in Reihenfolge) und gleichem Protokoll.
     public static func == (lhs: DiagReport, rhs: DiagReport) -> Bool {
-        lhs.status.map(\.key) == rhs.status.map(\.key) && lhs.status.map(\.value) == rhs.status.map(\.value) && lhs.entries == rhs.entries
+        lhs.status.map(\.key) == rhs.status.map(\.key) && lhs.status.map(\.value) == rhs.status.map(\.value)
+            && lhs.entries == rhs.entries
     }
 }
 
@@ -175,7 +178,8 @@ public enum DiagReports {
             guard let cut = line.firstIndex(of: "=") else { return nil }
             return (key: String(line[..<cut]), value: String(line[line.index(after: cut)...]))
         }
-        let entries = lines.dropFirst(end + 1).filter { !$0.trimmingCharacters(in: .whitespaces).isEmpty }.compactMap(DiagLog.decode)
+        let entries = lines.dropFirst(end + 1).filter { !$0.trimmingCharacters(in: .whitespaces).isEmpty }
+            .compactMap(DiagLog.decode)
         return DiagReport(status: status, entries: entries)
     }
 }

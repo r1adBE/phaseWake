@@ -106,7 +106,9 @@ class SoundEventDetector {
     fun finish(atMs: Long): List<Action> {
         val onset = onsetMs ?: return emptyList()
         val actions = mutableListOf<Action>()
-        clipStartMs?.let { clip -> actions += Action.ClipEnd(onset, minOf(atMs, clip + MAX_CLIP_MS).coerceAtLeast(onset)) }
+        clipStartMs?.let { clip ->
+            actions += Action.ClipEnd(onset, minOf(atMs, clip + MAX_CLIP_MS).coerceAtLeast(onset))
+        }
         clipStartMs = null
         actions += endEvent()
         return actions

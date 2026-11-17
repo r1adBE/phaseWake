@@ -137,7 +137,10 @@ class WakeDetectorTest {
         val quiet = Epoch(0.03, 52.0)
         detector.feed(quiet, quiet, quiet, quiet, quiet)
         // Rauschen 0.03 → Wach-Schwelle 0.15: zweimal 0.12 reicht nicht mehr (ohne Rauschen: wach).
-        assertEquals(listOf<Decision>(Decision.Wait, Decision.Wait), detector.feed(Epoch(0.12, 52.0), Epoch(0.12, 52.0)))
+        assertEquals(
+            listOf<Decision>(Decision.Wait, Decision.Wait),
+            detector.feed(Epoch(0.12, 52.0), Epoch(0.12, 52.0)),
+        )
         assertEquals(Decision.Wait, detector.onEpoch(Epoch(0.2, 52.0)))
         assertEquals(Decision.Wake(WakeReason.AWAKE), detector.onEpoch(Epoch(0.2, 52.0)))
     }
@@ -270,7 +273,11 @@ class WakeDetectorTest {
         // Genau an der Grenze (0.005 = 0.25 × 0.02) gilt sie: 1.5 × 0.005 = 0.0075.
         assertEquals(0.0075, NoiseFloor.windowFloor(noisy, DetectorConfig(personalFloor = 0.005))!!, 1e-12)
         // Das tiefe der Einschlaf-Messung verdrängt ein plausibles gelerntes nicht (das grössere zählt).
-        assertEquals(0.02, NoiseFloor.windowFloor(noisy, DetectorConfig(personalFloor = 0.018).withOnsetFloor(0.002))!!, 1e-12)
+        assertEquals(
+            0.02,
+            NoiseFloor.windowFloor(noisy, DetectorConfig(personalFloor = 0.018).withOnsetFloor(0.002))!!,
+            1e-12,
+        )
         val detector = WakeDetector(DetectorConfig(personalFloor = 0.004))
         detector.feed(*noisy.map { Epoch(it, 52.0) }.toTypedArray())
         // Rauschen 0.03 mit Pulsanstieg: unter 2.5 × 0.02 = 0.05, also keine leichte Bewegung.
@@ -320,7 +327,10 @@ class WakeDetectorTest {
         assertEquals(0.02, ok.personalFloor)
         assertEquals(52.0, ok.restingHeartRate)
         assertEquals(0.0, DetectorConfig().withLearned(0.0, null).personalFloor)
-        assertEquals(DetectorConfig(), Learning.withLearned(DetectorConfig(), Learning.Values(Double.NaN, -1.0, null, 7)))
+        assertEquals(
+            DetectorConfig(),
+            Learning.withLearned(DetectorConfig(), Learning.Values(Double.NaN, -1.0, null, 7)),
+        )
         // Das Grundrauschen der Einschlaf-Messung bleibt beim Übernehmen erhalten.
         assertEquals(0.01, DetectorConfig().withOnsetFloor(0.01).withLearned(0.02, 52.0).onsetFloor)
         WakeDetector(DetectorConfig().withLearned(Double.NaN, Double.NaN)).onEpoch(still)

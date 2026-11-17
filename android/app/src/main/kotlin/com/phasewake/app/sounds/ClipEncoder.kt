@@ -26,7 +26,7 @@ object ClipEncoder {
         if (count == 0) return false
         var codec: MediaCodec? = null
         var muxer: MediaMuxer? = null
-        var muxing = false
+        var run: Run? = null
         var ok = false
         try {
             val format = MediaFormat.createAudioFormat(MediaFormat.MIMETYPE_AUDIO_AAC, sampleRate, 1).apply {
@@ -39,67 +39,94 @@ object ClipEncoder {
                 start()
             }
             muxer = MediaMuxer(file.path, MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4)
-            val info = MediaCodec.BufferInfo()
-            var track = -1
-            var offset = 0
-            var inputDone = false
-            var idle = 0
-            while (idle < MAX_IDLE_ROUNDS) {
-                var progress = false
-                if (!inputDone) {
-                    val index = codec.dequeueInputBuffer(TIMEOUT_US)
-                    if (index >= 0) {
-                        progress = true
-                        val buffer = codec.getInputBuffer(index) ?: throw IllegalStateException("kein Eingabepuffer")
-                        buffer.clear()
-                        val samples = minOf(count - offset, buffer.remaining() / 2)
-                        val presentationUs = offset * 1_000_000L / sampleRate
-                        if (samples <= 0) {
-                            codec.queueInputBuffer(index, 0, 0, presentationUs, MediaCodec.BUFFER_FLAG_END_OF_STREAM)
-                            inputDone = true
-                        } else {
-                            buffer.order(ByteOrder.nativeOrder()).asShortBuffer().put(pcm, offset, samples)
-                            codec.queueInputBuffer(index, 0, samples * 2, presentationUs, 0)
-                            offset += samples
-                        }
-                    }
-                }
-                val out = codec.dequeueOutputBuffer(info, TIMEOUT_US)
-                when {
-                    out == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED -> {
-                        progress = true
-                        track = muxer.addTrack(codec.outputFormat)
-                        muxer.start()
-                        muxing = true
-                    }
-                    out >= 0 -> {
-                        progress = true
-                        val data = codec.getOutputBuffer(out)
-                        val config = info.flags and MediaCodec.BUFFER_FLAG_CODEC_CONFIG != 0
-                        if (data != null && muxing && !config && info.size > 0) {
-                            data.position(info.offset)
-                            data.limit(info.offset + info.size)
-                            muxer.writeSampleData(track, data, info)
-                        }
-                        codec.releaseOutputBuffer(out, false)
-                        if (info.flags and MediaCodec.BUFFER_FLAG_END_OF_STREAM != 0) {
-                            ok = muxing
-                            break
-                        }
-                    }
-                }
-                idle = if (progress) 0 else idle + 1
-            }
+            run = Run(codec, muxer, pcm, count, sampleRate)
+            ok = run.encode()
         } catch (e: Exception) {
             Log.w(TAG, "Ausschnitt nicht speicherbar", e)
             ok = false
         } finally {
             runCatching { codec?.stop() }
             runCatching { codec?.release() }
-            if (muxing) runCatching { muxer?.stop() }.onFailure { ok = false }
+            if (run?.muxing == true) runCatching { muxer?.stop() }.onFailure { ok = false }
             runCatching { muxer?.release() }
             if (!ok) file.delete()
         }
         return ok
+    }
+
+    /** Ergebnis eines Auslese-Schritts am Ausgang des Codecs. */
+    private enum class Drain { NONE, PROGRESS, END }
+
+    /** Ein Durchlauf: [count] Werte aus [pcm] in den Codec, fertige Blöcke in den Muxer. */
+    private class Run(
+        private val codec: MediaCodec,
+        private val muxer: MediaMuxer,
+        private val pcm: ShortArray,
+        private val count: Int,
+        private val sampleRate: Int,
+    ) {
+        /** Muxer gestartet (muss dann gestoppt werden). */
+        var muxing = false
+            private set
+        private val info = MediaCodec.BufferInfo()
+        private var track = -1
+        private var offset = 0
+        private var inputDone = false
+
+        /** @return ob das Ende erreicht und die Spur geschrieben wurde. */
+        fun encode(): Boolean {
+            var idle = 0
+            while (idle < MAX_IDLE_ROUNDS) {
+                val fed = !inputDone && feed()
+                val drained = drain()
+                if (drained == Drain.END) return muxing
+                idle = if (fed || drained == Drain.PROGRESS) 0 else idle + 1
+            }
+            return false
+        }
+
+        /** Füllt einen freien Eingabepuffer; am Ende mit Ende-Markierung. @return ob ein Puffer frei war. */
+        private fun feed(): Boolean {
+            val index = codec.dequeueInputBuffer(TIMEOUT_US)
+            if (index < 0) return false
+            val buffer = codec.getInputBuffer(index) ?: throw IllegalStateException("kein Eingabepuffer")
+            buffer.clear()
+            val samples = minOf(count - offset, buffer.remaining() / 2)
+            val presentationUs = offset * 1_000_000L / sampleRate
+            if (samples <= 0) {
+                codec.queueInputBuffer(index, 0, 0, presentationUs, MediaCodec.BUFFER_FLAG_END_OF_STREAM)
+                inputDone = true
+            } else {
+                buffer.order(ByteOrder.nativeOrder()).asShortBuffer().put(pcm, offset, samples)
+                codec.queueInputBuffer(index, 0, samples * 2, presentationUs, 0)
+                offset += samples
+            }
+            return true
+        }
+
+        /** Holt einen Ausgabepuffer ab und schreibt ihn in den Muxer. */
+        private fun drain(): Drain {
+            val out = codec.dequeueOutputBuffer(info, TIMEOUT_US)
+            return when {
+                out == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED -> {
+                    track = muxer.addTrack(codec.outputFormat)
+                    muxer.start()
+                    muxing = true
+                    Drain.PROGRESS
+                }
+                out >= 0 -> {
+                    val data = codec.getOutputBuffer(out)
+                    val config = info.flags and MediaCodec.BUFFER_FLAG_CODEC_CONFIG != 0
+                    if (data != null && muxing && !config && info.size > 0) {
+                        data.position(info.offset)
+                        data.limit(info.offset + info.size)
+                        muxer.writeSampleData(track, data, info)
+                    }
+                    codec.releaseOutputBuffer(out, false)
+                    if (info.flags and MediaCodec.BUFFER_FLAG_END_OF_STREAM != 0) Drain.END else Drain.PROGRESS
+                }
+                else -> Drain.NONE
+            }
+        }
     }
 }

@@ -21,7 +21,8 @@ import kotlin.test.assertTrue
 class NightCheckRecorderTest {
     private val context: Context get() = RuntimeEnvironment.getApplication()
 
-    private fun failed(skip: RecorderSkip.Reason?) = NightCheckState.collect(context, true, true, recorderSkip = skip)
+    private fun failed(skip: RecorderSkip.Reason?) =
+        NightCheckState.collect(context, WatchFacts(true, true, recorderSkip = skip))
 
     @Test
     fun skippedMeasurementIsAdvisory() {

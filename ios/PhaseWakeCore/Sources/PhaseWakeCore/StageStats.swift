@@ -123,7 +123,8 @@ public enum StageStats {
         let sleepMs = clipped.filter { $0.stage != .awake }.reduce(Int64(0)) { $0 + millis($1.start, $1.end) }
         let totals = totalsOf(known, asleepMinutes: minutes(sleepMs))
         let rangeMs = millis(from, to)
-        let latency: Int? = blocks.count > 1 && blocks[0].stage == .awake ? minutes(millis(blocks[0].start, blocks[1].start)) : nil
+        let latency: Int? = blocks.count > 1 && blocks[0].stage == .awake ? minutes(millis(blocks[0].start,
+                                                                                           blocks[1].start)) : nil
         return NightStages(
             start: from,
             end: to,
@@ -174,7 +175,8 @@ public enum StageStats {
     /// Summen in der Reihenfolge wach, REM, leicht, tief; wach nach dem Restverfahren über alle vier Phasen (Summe
     /// 100), REM, leicht und tief am Schlaf `asleepMinutes` (``sleepPercent(_:asleepMinutes:)``).
     private static func totalsOf(_ known: [StageSpan], asleepMinutes: Int) -> [StageTotal] {
-        let ms = order.map { stage in known.filter { $0.stage == stage }.reduce(Int64(0)) { $0 + millis($1.start, $1.end) } }
+        let ms = order.map { stage in known.filter { $0.stage == stage }.reduce(Int64(0)) { $0 + millis($1.start,
+                                                                                                        $1.end) } }
         let total = ms.reduce(0, +)
         var percent = ms.map { total > 0 ? Int($0 * 100 / total) : 0 }
         if total > 0 {
@@ -187,7 +189,8 @@ public enum StageStats {
             let range = typical[order[i]] ?? StageRange(low: 0, high: 100)
             let stageMinutes = minutes(ms[i])
             let share = order[i] == .awake ? percent[i] : sleepPercent(stageMinutes, asleepMinutes: asleepMinutes) ?? 0
-            return StageTotal(stage: order[i], minutes: stageMinutes, percent: share, range: range, rating: range.rate(share))
+            return StageTotal(stage: order[i], minutes: stageMinutes, percent: share, range: range,
+                              rating: range.rate(share))
         }
     }
 

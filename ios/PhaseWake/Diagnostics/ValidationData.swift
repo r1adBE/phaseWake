@@ -12,7 +12,8 @@ enum ValidationData {
         let recordings = PhoneLearning.shared.recordings.filter(\.finished).map(\.learnNight)
         if model.nights.isEmpty && recordings.isEmpty { return [] }
         let health = await model.health.sessions()
-        return Validation.evaluate(nights: model.nights, recordings: recordings, sessions: health.sessions, clearedAt: model.historyClearedAt,
+        return Validation.evaluate(nights: model.nights, recordings: recordings, sessions: health.sessions,
+                                   clearedAt: model.historyClearedAt,
                                    learned: PhoneLearning.shared.state.values, calendar: .gregorianLocal)
     }
 }

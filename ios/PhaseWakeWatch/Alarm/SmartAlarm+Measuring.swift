@@ -34,6 +34,37 @@ extension SmartAlarm {
 
     func beginMeasuring(_ plan: WakePlan) {
         stopSensors()
+        resetNight(plan)
+        phase = .measuring(plan)
+        publishArmed()
+        startOnset(plan)
+        // Ab Fensterbeginn gilt die geplante Zeit (`AlarmSchedule.begunNight`): Rückfall jetzt zum festen Zeitpunkt.
+        // Als Kalenderzeit ohne Zone läge er nach einer Reise nach Osten schon zurück (iOS stellte ihn womöglich sofort
+        // zu, dann weckte die Sitzung zur geplanten Zeit ein zweites Mal) oder rutschte auf morgen.
+        let pending = plan == WatchModel.shared.pendingNight
+        if let at = WatchRules.fallbackDate(plan, pending: pending, now: Date(), delay: Self.fallbackDelay) {
+            scheduleFallback(at: at, id: Self.fallbackKey(for: plan.alarmId), fixed: true)
+        }
+        let window = "\(Format.logTime(plan.windowStart))–\(Format.logTime(plan.target))"
+        DiagStore.shared.log(
+            .measureStart,
+            "\(plan.alarmId.prefix(8)) \(window) unmeasured \(unmeasured)\(exactNight ? " exact" : "")"
+        )
+        // Akku je Nacht: Messbeginn, oder Zwischenstand nach «Gute Nacht» bzw. Aufzeichnung.
+        WatchBattery.begin(alarmId: plan.alarmId, target: plan.target)
+
+        let uptimeNanos = Int64(ProcessInfo.processInfo.systemUptime * 1e9)
+        let sinceStart = Int64(Date().timeIntervalSince(plan.windowStart) * 1e9)
+        let assembler = EpochAssembler(startNanos: uptimeNanos - sinceStart)
+        self.assembler = assembler
+
+        startMotion(assembler: assembler)
+        startHeartRate(assembler: assembler)
+        startTimers(plan)
+    }
+
+    /// Stand der Nacht für `plan` zurücksetzen: Plan, Erkennung (mit den gelernten Werten) und Merker der Nacht.
+    private func resetNight(_ plan: WakePlan) {
         let model = WatchModel.shared
         self.plan = plan
         nightPlan = plan
@@ -51,18 +82,21 @@ extension SmartAlarm {
         heldWake = nil
         earlyBlocked = false
         goalMinutes = spec?.sleepDurationMinutes ?? model.sleepGoal
-        phase = .measuring(plan)
-        publishArmed()
-        // Einschlafzeit aus dem Rekorder (Untergrenze kurzer Nächte), abseits der Messung. Bis sie da ist, wartet ein
-        // früher Moment (`heldWake`); kommt nach `WatchOnset.timeout` kein Ergebnis, gilt die Rechnung als gescheitert.
+    }
+
+    /// Einschlafzeit aus dem Rekorder (Untergrenze kurzer Nächte), abseits der Messung. Bis sie da ist, wartet ein
+    /// früher Moment (`heldWake`); kommt nach `WatchOnset.timeout` kein Ergebnis, gilt die Rechnung als gescheitert.
+    private func startOnset(_ plan: WakePlan) {
+        let model = WatchModel.shared
         let config = detector.config
         let nightSpec = spec
         onsetPending = true
         onsetRun += 1
         let run = onsetRun
         Task { @MainActor in
-            let outcome = await WatchOnset.compute(plan: plan, spec: nightSpec, config: config, goodNight: model.goodNight,
-                                                   sleepGoal: model.sleepGoal)
+            let outcome = await WatchOnset.compute(
+                plan: plan, spec: nightSpec, config: config, goodNight: model.goodNight, sleepGoal: model.sleepGoal
+            )
             self.onsetDone(outcome.result, run: run, plan: plan, floor: outcome.floor)
         }
         Task { @MainActor in
@@ -71,35 +105,25 @@ extension SmartAlarm {
             DiagStore.shared.log(.error, "onset computation timed out")
             self.onsetDone(.failed, run: run, plan: plan)
         }
-        // Ab Fensterbeginn gilt die geplante Zeit (`AlarmSchedule.begunNight`): Rückfall jetzt zum festen Zeitpunkt.
-        // Als Kalenderzeit ohne Zone läge er nach einer Reise nach Osten schon zurück (iOS stellte ihn womöglich sofort
-        // zu, dann weckte die Sitzung zur geplanten Zeit ein zweites Mal) oder rutschte auf morgen.
-        let pending = plan == model.pendingNight
-        if let at = WatchRules.fallbackDate(plan, pending: pending, now: Date(), delay: Self.fallbackDelay) {
-            scheduleFallback(at: at, id: Self.fallbackKey(for: plan.alarmId), fixed: true)
+    }
+
+    /// Beschleunigungssensor mit 25 Hz an `assembler` anschliessen (falls vorhanden).
+    private func startMotion(assembler: EpochAssembler) {
+        guard motion.isAccelerometerAvailable else { return }
+        motion.accelerometerUpdateInterval = 1.0 / 25
+        motion.startAccelerometerUpdates(to: motionQueue) { [weak self] data, _ in
+            guard let data else { return }
+            // CoreMotion liefert g; die Regel rechnet in m/s².
+            let g = 9.80665
+            let nanos = Int64(data.timestamp * 1e9)
+            let a = data.acceleration
+            let closed = assembler.addMotion(timestampNanos: nanos, x: a.x * g, y: a.y * g, z: a.z * g)
+            if !closed.isEmpty { Task { @MainActor in self?.feed(closed) } }
         }
-        DiagStore.shared.log(.measureStart, "\(plan.alarmId.prefix(8)) \(Format.logTime(plan.windowStart))–\(Format.logTime(plan.target)) unmeasured \(unmeasured)\(exactNight ? " exact" : "")")
-        // Akku je Nacht: Messbeginn, oder Zwischenstand nach «Gute Nacht» bzw. Aufzeichnung.
-        WatchBattery.begin(alarmId: plan.alarmId, target: plan.target)
+    }
 
-        let uptimeNanos = Int64(ProcessInfo.processInfo.systemUptime * 1e9)
-        let sinceStart = Int64(Date().timeIntervalSince(plan.windowStart) * 1e9)
-        let assembler = EpochAssembler(startNanos: uptimeNanos - sinceStart)
-        self.assembler = assembler
-
-        if motion.isAccelerometerAvailable {
-            motion.accelerometerUpdateInterval = 1.0 / 25
-            motion.startAccelerometerUpdates(to: motionQueue) { [weak self] data, _ in
-                guard let data else { return }
-                // CoreMotion liefert g; die Regel rechnet in m/s².
-                let g = 9.80665
-                let nanos = Int64(data.timestamp * 1e9)
-                let closed = assembler.addMotion(timestampNanos: nanos, x: data.acceleration.x * g, y: data.acceleration.y * g, z: data.acceleration.z * g)
-                if !closed.isEmpty { Task { @MainActor in self?.feed(closed) } }
-            }
-        }
-        startHeartRate(assembler: assembler)
-
+    /// Takt alle 10 s (Epochen schliessen, Akku prüfen) und Zeitgeber zur Zielzeit von `plan`.
+    private func startTimers(_ plan: WakePlan) {
         ticker = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { [weak self] _ in
             Task { @MainActor in
                 guard let self, let assembler = self.assembler else { return }
@@ -111,7 +135,8 @@ extension SmartAlarm {
                 WatchBattery.poll()
             }
         }
-        deadline = Timer.scheduledTimer(withTimeInterval: max(0, plan.target.timeIntervalSinceNow), repeats: false) { [weak self] _ in
+        let untilTarget = max(0, plan.target.timeIntervalSinceNow)
+        deadline = Timer.scheduledTimer(withTimeInterval: untilTarget, repeats: false) { [weak self] _ in
             Task { @MainActor in
                 guard let self, self.phase.isMeasuring else { return }
                 self.ring(self.targetReason())
@@ -127,9 +152,10 @@ extension SmartAlarm {
         logMeasureEnd(" interrupted")
         guard let at = SessionRules.interruptedWake(now: Date(), target: plan.target) else {
             if let nightPlan, !epochs.isEmpty, Transient.kindOf(nightPlan.alarmId) == nil {
-                WatchModel.shared.lastNight.add(NightRecord(alarmId: nightPlan.alarmId, windowStart: nightPlan.windowStart,
-                                                            target: nightPlan.target, wokeAt: nightPlan.target, reason: .deadline,
-                                                            snoozes: 0, epochs: epochs))
+                WatchModel.shared.lastNight.add(NightRecord(
+                    alarmId: nightPlan.alarmId, windowStart: nightPlan.windowStart, target: nightPlan.target,
+                    wokeAt: nightPlan.target, reason: .deadline, snoozes: 0, epochs: epochs
+                ))
             }
             DiagStore.shared.log(.scheduled, "measuring interrupted, fallback at target \(Format.logTime(plan.target))")
             phase = .waiting(plan)
@@ -157,13 +183,18 @@ extension SmartAlarm {
     }
 
     func startHeartRate(assembler: EpochAssembler) {
-        guard HKHealthStore.isHealthDataAvailable(), let type = HKQuantityType.quantityType(forIdentifier: .heartRate) else { return }
+        guard HKHealthStore.isHealthDataAvailable(),
+              let type = HKQuantityType.quantityType(forIdentifier: .heartRate) else { return }
         // Nur Puls der Apple Watch: Ring oder Brustgurt in Apple Health zählen nicht.
         let predicate = WatchPulseSource.predicate(start: Date(), end: nil)
         let unit = HKUnit.count().unitDivided(by: .minute())
         let queue = assemblerQueue
-        let handler: @Sendable (HKAnchoredObjectQuery, [HKSample]?, [HKDeletedObject]?, HKQueryAnchor?, Error?) -> Void = { [weak self] _, samples, _, _, _ in
-            guard let samples = (samples as? [HKQuantitySample])?.filter({ WatchPulseSource.counts(deviceModel: $0.device?.model) }),
+        typealias Handler = @Sendable (
+            HKAnchoredObjectQuery, [HKSample]?, [HKDeletedObject]?, HKQueryAnchor?, Error?
+        ) -> Void
+        let handler: Handler = { [weak self] _, samples, _, _, _ in
+            guard let samples = (samples as? [HKQuantitySample])?
+                .filter({ WatchPulseSource.counts(deviceModel: $0.device?.model) }),
                   !samples.isEmpty else { return }
             // Zeitstempel der Probe auf die Systemlaufzeit umrechnen (gleiche Uhr wie CoreMotion): Alter der
             // Probe gegen die Wanduhr, abgezogen von der Laufzeit. Beide Bezugswerte im selben Moment und
@@ -180,7 +211,9 @@ extension SmartAlarm {
             }
             if !closed.isEmpty { Task { @MainActor in self?.feed(closed) } }
         }
-        let query = HKAnchoredObjectQuery(type: type, predicate: predicate, anchor: nil, limit: HKObjectQueryNoLimit, resultsHandler: handler)
+        let query = HKAnchoredObjectQuery(
+            type: type, predicate: predicate, anchor: nil, limit: HKObjectQueryNoLimit, resultsHandler: handler
+        )
         query.updateHandler = handler
         health.execute(query)
         heartRateQuery = query
@@ -222,7 +255,9 @@ extension SmartAlarm {
     /// Messung ohne Ergebnis fail-closed).
     func blocksEarly() -> Bool {
         guard let target = nightPlan?.target else { return false }
-        return ShortNight.blocksEarly(onset: asleepAt, now: Date(), sleepGoalMinutes: goalMinutes, target: target, measured: onsetMeasured)
+        return ShortNight.blocksEarly(
+            onset: asleepAt, now: Date(), sleepGoalMinutes: goalMinutes, target: target, measured: onsetMeasured
+        )
     }
 
     /// Früher Moment `reason` übergangen: einmal je Nacht ins Protokoll; zur Zielzeit weckt es mit `shortNight`.
@@ -270,7 +305,9 @@ extension SmartAlarm {
         guard phase.isMeasuring else { return }
         let withHeartRate = epochs.filter { $0.heartRate != nil }.count
         let summary = NoiseFloor.summary(config: detector.config, motions: epochs.map(\.motion))
-        DiagStore.shared.log(.measureEnd, "\(epochs.count) epochs, hr epochs \(withHeartRate)/\(epochs.count), \(summary)\(note)")
+        DiagStore.shared.log(
+            .measureEnd, "\(epochs.count) epochs, hr epochs \(withHeartRate)/\(epochs.count), \(summary)\(note)"
+        )
     }
 
     /// Wecker «Genau» (`WakePlan.exact` bzw. `AlarmSpec.isExact`): misst, weckt aber erst zur Zielzeit.

@@ -33,7 +33,10 @@ class WatchDiagTest {
     private val since = Instant.now().minusSeconds(1)
 
     /** Handy im Test: erreichbar oder nicht, Fehler beim Senden, alles Gesendete. */
-    private class Phone(private val reachable: Boolean = true, private val failing: Boolean = false) : Outbox.Transport {
+    private class Phone(
+        private val reachable: Boolean = true,
+        private val failing: Boolean = false,
+    ) : Outbox.Transport {
         val sent = mutableListOf<Pair<String, ByteArray>>()
 
         override suspend fun nodes(capability: String): List<String> = if (reachable) listOf("phone") else emptyList()
@@ -48,7 +51,9 @@ class WatchDiagTest {
     fun cleanUp() = app.appScope.cancel()
 
     /** Zeilen «diag report not sent» im Protokoll der Uhr. */
-    private fun notSent() = app.diag.entries().count { !it.at.isBefore(since) && it.kind == DiagKind.SYNC && it.detail.startsWith("diag report not sent") }
+    private fun notSent() = app.diag.entries().count {
+        !it.at.isBefore(since) && it.kind == DiagKind.SYNC && it.detail.startsWith("diag report not sent")
+    }
 
     /** Sendet über [phone] und wartet, bis das Protokoll (schreibt im Hintergrund) eine Zeile «not sent» mehr hat. */
     private fun sendAndAwaitNotSent(phone: Phone) {

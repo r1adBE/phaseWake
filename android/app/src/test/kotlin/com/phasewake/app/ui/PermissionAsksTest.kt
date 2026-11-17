@@ -36,7 +36,8 @@ class PermissionAsksTest {
     fun rationaleAllowsAskingAgain() {
         val activity = Robolectric.buildActivity(android.app.Activity::class.java).setup().get()
         PermissionAsks.markAsked(activity, listOf(permission))
-        org.robolectric.Shadows.shadowOf(activity.packageManager).setShouldShowRequestPermissionRationale(permission, true)
+        org.robolectric.Shadows.shadowOf(activity.packageManager)
+            .setShouldShowRequestPermissionRationale(permission, true)
         assertTrue(canAskNotifications(activity), "Einmal abgelehnt: Das System fragt noch einmal")
     }
 }

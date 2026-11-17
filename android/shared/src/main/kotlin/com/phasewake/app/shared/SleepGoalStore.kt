@@ -20,7 +20,8 @@ import kotlinx.coroutines.flow.map
 class SleepGoalStore(private val store: DataStore<Preferences>) {
 
     /** Schlafziel in Minuten, mit [SleepGoal.clamp]; ohne gespeicherten Stand der Standard. */
-    val minutes: Flow<Int> = store.data.map { SleepGoal.clamp(it[MINUTES] ?: SleepGoal.DEFAULT_MINUTES) }.distinctUntilChanged()
+    val minutes: Flow<Int> =
+        store.data.map { SleepGoal.clamp(it[MINUTES] ?: SleepGoal.DEFAULT_MINUTES) }.distinctUntilChanged()
 
     /** Zeitpunkt des gespeicherten Stands (ms); 0 ohne Daten. */
     suspend fun updatedAt(): Long = store.data.first()[UPDATED_AT] ?: 0L

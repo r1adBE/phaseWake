@@ -42,7 +42,8 @@ public struct LearnSkip: Equatable, Sendable {
     /// Liest ``encode()``; `nil` bei leerem oder unlesbarem Text, unplausibler Zielzeit (``TimeBounds``) oder
     /// unbekanntem Grund (neuere Uhr). Ein Akku ausserhalb 0–100 gilt als unbekannt.
     public static func decode(_ text: String?) -> LearnSkip? {
-        guard let parts = text?.trimmingCharacters(in: .whitespacesAndNewlines).split(separator: "|", omittingEmptySubsequences: false),
+        guard let parts = text?.trimmingCharacters(in: .whitespacesAndNewlines).split(separator: "|",
+                                                                                      omittingEmptySubsequences: false),
               parts.count >= 2, let ms = TimeBounds.checked(Int64(parts[0])), ms > 0,
               let reason = Reason(rawValue: String(parts[1])) else { return nil }
         let battery = parts.count > 2 ? Int(parts[2]).flatMap { (0...100).contains($0) ? $0 : nil } : nil
@@ -79,12 +80,14 @@ public enum LearnLog {
     /// Zielzeiten der Wecker `alarms` (nur eingeschaltete) ab `now` bis ``planDays`` Tage voraus, mit den Feiertagen
     /// `holidays` (``AlarmSchedule/nextTarget(_:now:calendar:holidays:)``); ein einmaliger Wecker nur mit seinem
     /// nächsten Termin.
-    public static func upcomingTargets(_ alarms: [AlarmSpec], now: Date, calendar: Calendar, holidays: Set<String>) -> [Date] {
+    public static func upcomingTargets(_ alarms: [AlarmSpec], now: Date, calendar: Calendar,
+                                       holidays: Set<String>) -> [Date] {
         let until = now.addingTimeInterval(TimeInterval(planDays * 86_400))
         var result: [Date] = []
         for spec in alarms {
             var from = now
-            while let target = AlarmSchedule.nextTarget(spec, now: from, calendar: calendar, holidays: holidays), target <= until {
+            while let target = AlarmSchedule.nextTarget(spec, now: from, calendar: calendar,
+                                                        holidays: holidays), target <= until {
                 result.append(target)
                 if spec.isOneShot { break }
                 from = target
@@ -97,7 +100,8 @@ public enum LearnLog {
     /// Verlauf; die künftigen ersetzt der neue Plan `planned` (ein ausgeschalteter oder übersprungener Wecker fällt so
     /// heraus). Je Nachtdatum die früheste Zielzeit; höchstens die jüngsten ``LearnNights/maxNights`` vergangenen
     /// Nächte.
-    public static func mergeAlarmNights(_ old: [String: Date], planned: [Date], now: Date, calendar: Calendar) -> [String: Date] {
+    public static func mergeAlarmNights(_ old: [String: Date], planned: [Date], now: Date,
+                                        calendar: Calendar) -> [String: Date] {
         let past = old.filter { $0.value <= now }.sorted { $0.key < $1.key }.suffix(LearnNights.maxNights)
         var result: [String: Date] = [:]
         for (date, target) in past { result[date] = target }
@@ -118,8 +122,10 @@ public enum LearnLog {
     public static func decodeAlarmNights(_ text: String?) -> [String: Date] {
         var result: [String: Date] = [:]
         for line in (text ?? "").components(separatedBy: "\n") {
-            let parts = line.trimmingCharacters(in: .whitespaces).split(separator: "=", omittingEmptySubsequences: false).map(String.init)
-            guard parts.count == 2, NightDate.isValid(parts[0]), let ms = TimeBounds.checked(Int64(parts[1])) else { continue }
+            let parts = line.trimmingCharacters(in: .whitespaces)
+                .split(separator: "=", omittingEmptySubsequences: false).map(String.init)
+            guard parts.count == 2, NightDate.isValid(parts[0]), let ms = TimeBounds.checked(Int64(parts[1]))
+            else { continue }
             result[parts[0]] = Date(timeIntervalSince1970: Double(ms) / 1000)
         }
         return result

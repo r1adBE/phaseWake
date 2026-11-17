@@ -22,25 +22,31 @@ import kotlinx.coroutines.flow.map
  */
 class NotesRepository(private val store: DataStore<Preferences>) {
 
-    val notes: Flow<Map<LocalDate, List<String>>> = store.data.map { SleepNotes.decode(it[NOTES]) }.distinctUntilChanged()
+    val notes: Flow<Map<LocalDate, List<String>>> = store.data.map { SleepNotes.decode(it[NOTES]) }
+        .distinctUntilChanged()
 
     val custom: Flow<List<CustomNote>> = store.data.map { SleepNotes.decodeCustom(it[CUSTOM]) }.distinctUntilChanged()
 
     /** Befinden (1–5) je Nachtdatum zu Nächten aus anderen Apps, z. B. Samsung Health ([HealthFeelings]). */
-    val healthFeelings: Flow<Map<LocalDate, Int>> = store.data.map { HealthFeelings.decode(it[HEALTH_FEELINGS]) }.distinctUntilChanged()
+    val healthFeelings: Flow<Map<LocalDate, Int>> = store.data.map { HealthFeelings.decode(it[HEALTH_FEELINGS]) }
+        .distinctUntilChanged()
 
     suspend fun current(): Map<LocalDate, List<String>> = notes.first()
 
     /** Befinden zur Nacht aus einer anderen App mit Nachtdatum [date]; sofort gespeichert. */
     suspend fun setHealthFeeling(date: LocalDate, feeling: Int) {
         store.edit { prefs ->
-            prefs[HEALTH_FEELINGS] = HealthFeelings.encode(HealthFeelings.set(HealthFeelings.decode(prefs[HEALTH_FEELINGS]), date, feeling))
+            prefs[HEALTH_FEELINGS] = HealthFeelings.encode(
+                HealthFeelings.set(HealthFeelings.decode(prefs[HEALTH_FEELINGS]), date, feeling)
+            )
         }
     }
 
     /** Setzt oder entfernt eine Notiz für ein Nachtdatum; sofort gespeichert. */
     suspend fun toggle(date: LocalDate, id: String) {
-        store.edit { prefs -> prefs[NOTES] = SleepNotes.encode(SleepNotes.toggle(SleepNotes.decode(prefs[NOTES]), date, id)) }
+        store.edit { prefs ->
+            prefs[NOTES] = SleepNotes.encode(SleepNotes.toggle(SleepNotes.decode(prefs[NOTES]), date, id))
+        }
     }
 
     /**
@@ -61,7 +67,9 @@ class NotesRepository(private val store: DataStore<Preferences>) {
         store.edit { prefs ->
             val list = SleepNotes.decodeCustom(prefs[CUSTOM])
             if (list.size < SleepNotes.MAX_CUSTOM) {
-                prefs[CUSTOM] = SleepNotes.encodeCustom(list + CustomNote(SleepNotes.customId(UUID.randomUUID().toString()), clean))
+                prefs[CUSTOM] = SleepNotes.encodeCustom(
+                    list + CustomNote(SleepNotes.customId(UUID.randomUUID().toString()), clean)
+                )
             }
         }
     }
@@ -70,7 +78,9 @@ class NotesRepository(private val store: DataStore<Preferences>) {
         val clean = SleepNotes.cleanName(name)
         if (clean.isEmpty()) return
         store.edit { prefs ->
-            prefs[CUSTOM] = SleepNotes.encodeCustom(SleepNotes.decodeCustom(prefs[CUSTOM]).map { if (it.id == id) it.copy(name = clean) else it })
+            prefs[CUSTOM] = SleepNotes.encodeCustom(
+                SleepNotes.decodeCustom(prefs[CUSTOM]).map { if (it.id == id) it.copy(name = clean) else it }
+            )
         }
     }
 

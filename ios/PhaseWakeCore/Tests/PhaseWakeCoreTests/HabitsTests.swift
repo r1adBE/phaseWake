@@ -46,7 +46,8 @@ final class HabitsTests: XCTestCase {
         let until = "2026-10-27"
         // 14 Nächte um 23:00, die letzten 7 davon: 23:20, 23:30, 23:31, 00:10, 22:45, 23:00, 22:29.
         let older = (7..<14).map { bedtime(minus($0, until), "23:00") }
-        let week = ["23:20", "23:30", "23:31", "00:10", "22:45", "23:00", "22:29"].enumerated().map { bedtime(minus(6 - $0.offset, until), $0.element) }
+        let week = ["23:20", "23:30", "23:31", "00:10", "22:45", "23:00",
+                    "22:29"].enumerated().map { bedtime(minus(6 - $0.offset, until), $0.element) }
         // Median aller 14: 23:00 → innerhalb ± 30 Min: 23:20, 23:30, 22:45, 23:00 = 4.
         assertCount(Regularity.count(older + week, calendar: zurich), 4, 7)
         assertCount(Regularity.count(older + week, calendar: zurich, until: until), 4, 7)
@@ -57,16 +58,19 @@ final class HabitsTests: XCTestCase {
         assertCount(Regularity.count([] as [(date: String, start: Date)], calendar: zurich), 0, 0)
         // Mitternacht dazwischen: 23:50 und 00:15 liegen 25 Min auseinander.
         XCTAssertEqual(Regularity.minutesFromNoon(at("2026-10-28T03:00"), calendar: zurich), 15 * 60)
-        assertCount(Regularity.count([bedtime(until, "23:50"), bedtime(minus(1, until), "00:15")], calendar: zurich), 2, 2)
+        assertCount(Regularity.count([bedtime(until, "23:50"), bedtime(minus(1, until), "00:15")], calendar: zurich), 2,
+                    2)
     }
 
     func testRegularityAroundNoon() {
         // Bettzeiten 11:30 und 12:30 liegen 60 Min auseinander → Median 12:00, beide regelmässig (vorher 0 von 2).
         let until = "2026-10-27"
-        assertCount(Regularity.count([(date: until, start: at(until + "T12:30")), (date: minus(1, until), start: at(until + "T11:30"))],
+        assertCount(Regularity.count([(date: until, start: at(until + "T12:30")),
+                                      (date: minus(1, until), start: at(until + "T11:30"))],
                                      calendar: zurich), 2, 2)
         // 31 Min daneben zählt nicht mehr.
-        assertCount(Regularity.count([(date: until, start: at(until + "T12:31")), (date: minus(1, until), start: at(until + "T11:29"))],
+        assertCount(Regularity.count([(date: until, start: at(until + "T12:31")),
+                                      (date: minus(1, until), start: at(until + "T11:29"))],
                                      calendar: zurich, toleranceMinutes: 30), 0, 2)
     }
 
@@ -114,7 +118,8 @@ final class HabitsTests: XCTestCase {
             SleepSummary(start: at("2026-10-26T23:00"), end: at("2026-10-27T07:00"), asleepMinutes: 470),
             SleepSummary(start: at("2026-10-27T23:00"), end: at("2026-10-28T06:00"), asleepMinutes: 400),
         ]
-        XCTAssertEqual(Streak.reachedByNight(sleeps, calendar: zurich, goalMinutes: 450), ["2026-10-26": true, "2026-10-27": false])
+        XCTAssertEqual(Streak.reachedByNight(sleeps, calendar: zurich, goalMinutes: 450),
+                       ["2026-10-26": true, "2026-10-27": false])
     }
 
     func testWeeklyWindowAndNotificationTime() {
@@ -124,9 +129,12 @@ final class HabitsTests: XCTestCase {
         XCTAssertTrue(WeeklySummary.cardVisible(today: "2026-10-25"))
         XCTAssertTrue(WeeklySummary.cardVisible(today: "2026-10-26"))
         XCTAssertFalse(WeeklySummary.cardVisible(today: today))
-        XCTAssertEqual(WeeklySummary.nextNotification(after: at("2026-10-28T12:00"), calendar: zurich), at("2026-11-01T18:00"))
-        XCTAssertEqual(WeeklySummary.nextNotification(after: at("2026-10-25T18:00"), calendar: zurich), at("2026-11-01T18:00"))
-        XCTAssertEqual(WeeklySummary.nextNotification(after: at("2026-10-25T17:59"), calendar: zurich), at("2026-10-25T18:00"))
+        XCTAssertEqual(WeeklySummary.nextNotification(after: at("2026-10-28T12:00"), calendar: zurich),
+                       at("2026-11-01T18:00"))
+        XCTAssertEqual(WeeklySummary.nextNotification(after: at("2026-10-25T18:00"), calendar: zurich),
+                       at("2026-11-01T18:00"))
+        XCTAssertEqual(WeeklySummary.nextNotification(after: at("2026-10-25T17:59"), calendar: zurich),
+                       at("2026-10-25T18:00"))
     }
 
     private func night(woke: Date, feeling: Int) -> NightRecord {
@@ -140,14 +148,16 @@ final class HabitsTests: XCTestCase {
         let sleeps = (0..<7).map { i -> SleepSummary in
             let start = at(minus(i, end) + "T23:00")
             let minutes = i % 2 == 0 ? 480 : 420
-            return SleepSummary(start: start, end: start.addingTimeInterval(Double(minutes + 10) * 60), asleepMinutes: minutes)
+            return SleepSummary(start: start, end: start.addingTimeInterval(Double(minutes + 10) * 60),
+                                asleepMinutes: minutes)
         } + [SleepSummary(start: at("2026-10-25T23:00"), end: at("2026-10-26T07:00"), asleepMinutes: 480)]
         let nights = [
             night(woke: at("2026-10-20T06:30"), feeling: 4),
             night(woke: at("2026-10-22T06:30"), feeling: 2),
             night(woke: at("2026-10-27T06:30"), feeling: 1),
         ]
-        let summary = WeeklySummary.of(nights: nights, sleeps: sleeps, notes: [:], calendar: zurich, goalMinutes: 450, weekEnd: end)
+        let summary = WeeklySummary.of(nights: nights, sleeps: sleeps, notes: [:], calendar: zurich, goalMinutes: 450,
+                                       weekEnd: end)
         XCTAssertEqual(summary.from, "2026-10-18")
         XCTAssertEqual(summary.asleepAverage, (4 * 480 + 3 * 420) / 7)
         XCTAssertEqual(summary.goalReached, 4)
@@ -157,7 +167,8 @@ final class HabitsTests: XCTestCase {
         XCTAssertEqual(summary.feelingAverage!, 3, accuracy: 1e-9)
         XCTAssertNil(summary.strongestNote)
         XCTAssertTrue(summary.hasData)
-        let empty = WeeklySummary.of(nights: [], sleeps: [], notes: [:], calendar: zurich, goalMinutes: 450, weekEnd: end)
+        let empty = WeeklySummary.of(nights: [], sleeps: [], notes: [:], calendar: zurich, goalMinutes: 450,
+                                     weekEnd: end)
         XCTAssertFalse(empty.hasData)
         XCTAssertNil(empty.asleepAverage)
     }
@@ -186,7 +197,8 @@ final class HabitsTests: XCTestCase {
         XCTAssertEqual(Routine.average(ticks, items: Routine.defaults, today: today)!, 2, accuracy: 1e-9)
         // Abhaken rückgängig; ohne Haken fällt das Datum weg.
         XCTAssertEqual(Routine.toggle(ticks, date: today, id: Routine.phone)[today], [Routine.light])
-        XCTAssertNil(Routine.toggle(Routine.toggle(ticks, date: today, id: Routine.phone), date: today, id: Routine.light)[today])
+        XCTAssertNil(Routine.toggle(Routine.toggle(ticks, date: today, id: Routine.phone), date: today,
+                                    id: Routine.light)[today])
         XCTAssertEqual(Routine.decodeTicks(Routine.encodeTicks(ticks)), ticks)
         // Gelöschter Punkt zählt nicht mehr.
         XCTAssertNil(Routine.average(ticks, items: [RoutineItem(id: Routine.water)], today: today))

@@ -96,13 +96,18 @@ class WeeklyReminder(private val context: Context, private val now: () -> Instan
         // nicht geöffnet – jetzt rechnen; dann meist ohne Schlafdaten, nur mit dem Befinden.
         val prepared = app.settings.weeklyPrepared()?.takeIf { it.first == weekEnd }?.second
         val text = prepared ?: textOf(
-            WeeklySummary.of(app.nights.load(), app.health.recentSleep(NightHistory.MAX_NIGHTS + 1L, app.settings.historyClearedAt.first()), app.notes.current(), zone, app.settings.sleepGoalNow(), weekEnd),
+            WeeklySummary.of(
+                app.nights.load(),
+                app.health.recentSleep(NightHistory.MAX_NIGHTS + 1L, app.settings.historyClearedAt.first()),
+                app.notes.current(), zone, app.settings.sleepGoalNow(), weekEnd,
+            ),
             app.notes.custom.first(),
         )
         if (text.isNullOrEmpty()) return
         val open = PendingIntent.getActivity(
             context, REQUEST_OPEN,
-            Intent(context, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            Intent(context, MainActivity::class.java)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 .putExtra(MainActivity.EXTRA_OPEN, MainActivity.OPEN_HISTORY),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
         )
@@ -121,7 +126,9 @@ class WeeklyReminder(private val context: Context, private val now: () -> Instan
     private fun pending(at: Instant? = null): PendingIntent {
         val intent = Intent(context, Receiver::class.java).setAction(ACTION)
         if (at != null) intent.putExtra(EXTRA_AT, at.toEpochMilli())
-        return PendingIntent.getBroadcast(context, REQUEST_CODE, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+        return PendingIntent.getBroadcast(
+            context, REQUEST_CODE, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+        )
     }
 
     /** Zeigt den Rückblick. Nicht exportiert: nur der eigene Alarm. */

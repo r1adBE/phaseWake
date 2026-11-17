@@ -32,7 +32,8 @@ extension LearnRecorder {
         let charging = device.batteryState == .charging || device.batteryState == .full
         let battery = Self.battery()
         guard let level = battery,
-              LearnNights.shouldWarn(active: true, battery: battery, charging: charging, now: Date(), recordStart: start) else { return }
+              LearnNights.shouldWarn(active: true, battery: battery, charging: charging, now: Date(),
+                                     recordStart: start) else { return }
         SettingsFile.watchSession.set(target, forKey: Self.warnedKey)
         DiagStore.shared.log(.battery, "learn warn battery \(level)%")
         Self.notify(L("watch_learn_warn", Int64(level), Int64(Learning.minBattery)))

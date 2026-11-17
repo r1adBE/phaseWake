@@ -28,9 +28,16 @@ object Holidays {
      * Landesweite Tage ([national]) und die zusätzlichen der Region ([regional]) als Daten «yyyy-MM-dd»,
      * eingeschränkt auf `today` bis vor `today + days`. Unlesbare Einträge fallen weg.
      */
-    fun resolve(national: List<String>, regional: List<String>, today: LocalDate, days: Int = SYNC_DAYS): Set<LocalDate> {
+    fun resolve(
+        national: List<String>,
+        regional: List<String>,
+        today: LocalDate,
+        days: Int = SYNC_DAYS,
+    ): Set<LocalDate> {
         val end = today.plusDays(days.toLong())
-        return (national + regional).mapNotNull(::parse).filter { !it.isBefore(today) && it.isBefore(end) }.toSortedSet()
+        return (national + regional).mapNotNull(::parse).filter {
+            !it.isBefore(today) && it.isBefore(end)
+        }.toSortedSet()
     }
 
     /**

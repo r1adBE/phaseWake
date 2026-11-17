@@ -8,7 +8,8 @@ public enum ValidationReport {
     public static let title = "VALIDATION"
 
     /// Erste Zeile von ``lines(_:)``: was die Referenz ist und wie die Summen zu lesen sind.
-    public static let note = "reference = sleep stages of the health app (estimate of the watch, not a sleep lab), ±1 min; "
+    public static let note = "reference = sleep stages of the health app (estimate of the watch, not a sleep lab), "
+        + "±1 min; "
         + "x/y = light, REM or awake of decisions with a known stage; target = DEADLINE, EXACT, SHORT_NIGHT"
 
     /// Kopfzeile von ``exportCsv(_:)``.
@@ -66,7 +67,8 @@ public enum ValidationReport {
         let targetReal = tally(.real) { $0.atTarget }.stages()
         let targetShadow = tally(.shadow) { $0.atTarget }.stages()
         let hits = tally(.real) { _ in true }.ratio()
-        return "LIGHT_SLEEP real \(lightReal) shadow \(lightShadow) · target real \(targetReal) shadow \(targetShadow) · hits real \(hits)"
+        return "LIGHT_SLEEP real \(lightReal) shadow \(lightShadow) · target real \(targetReal) shadow \(targetShadow)"
+            + " · hits real \(hits)"
     }
 
     /// Zeilen des Abschnitts: ``note``, je Nacht ihre Entscheide «night N HH:mm kind REASON ref» und «night N: …» mit
@@ -80,7 +82,10 @@ public enum ValidationReport {
         var withRef = 0
         for night in nights {
             let list = entries.filter { $0.night == night }
-            for e in list { out.append("night \(night) \(time(e.at, e.timeZone)) \(e.kind.rawValue) \(e.reason.rawValue) \(e.ref.rawValue)") }
+            for e in list {
+                out.append("night \(night) \(time(e.at, e.timeZone)) \(e.kind.rawValue) \(e.reason.rawValue) "
+                           + "\(e.ref.rawValue)")
+            }
             if list.allSatisfy({ $0.ref == .noReference }) {
                 out.append("night \(night): no reference")
             } else {
@@ -88,7 +93,8 @@ public enum ValidationReport {
                 out.append("night \(night): \(summary(list))")
             }
         }
-        out.append("all: \(nights.count) nights, \(withRef) with reference" + (withRef > 0 ? " · \(summary(entries))" : ""))
+        out.append("all: \(nights.count) nights, \(withRef) with reference"
+                   + (withRef > 0 ? " · \(summary(entries))" : ""))
         return out
     }
 

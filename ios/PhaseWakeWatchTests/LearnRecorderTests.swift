@@ -10,15 +10,17 @@ final class LearnRecorderTests: XCTestCase {
     private var target: Date { from.addingTimeInterval(8 * 3600) }
     private var until: Date { from.addingTimeInterval(9 * 3600) }
 
-    private func mark(manual: Bool? = nil, wokeAt: Date? = nil, stoppedAt: Date? = nil, stopReason: String? = nil) -> LearnRecorder.Mark {
-        LearnRecorder.Mark(alarmId: "a", target: target, from: from, until: until, wokeAt: wokeAt, motions: [], manual: manual,
-                           stoppedAt: stoppedAt, stopReason: stopReason)
+    private func mark(manual: Bool? = nil, wokeAt: Date? = nil, stoppedAt: Date? = nil,
+                      stopReason: String? = nil) -> LearnRecorder.Mark {
+        LearnRecorder.Mark(alarmId: "a", target: target, from: from, until: until, wokeAt: wokeAt, motions: [],
+                           manual: manual, stoppedAt: stoppedAt, stopReason: stopReason)
     }
 
     func testEndOfTheLearningNight() {
         // Ohne Wecken: die Zielzeit; beim Wecken dann, höchstens bis zum Ende des Rekorders.
         XCTAssertEqual(LearnRecorder.end(of: mark()), target)
-        XCTAssertEqual(LearnRecorder.end(of: mark(wokeAt: target.addingTimeInterval(300))), target.addingTimeInterval(300))
+        XCTAssertEqual(LearnRecorder.end(of: mark(wokeAt: target.addingTimeInterval(300))),
+                       target.addingTimeInterval(300))
         XCTAssertEqual(LearnRecorder.end(of: mark(wokeAt: until.addingTimeInterval(600))), until)
     }
 
@@ -26,7 +28,8 @@ final class LearnRecorderTests: XCTestCase {
         // «Nacht aufzeichnen»: Ende des Rekorders (12 Std.); von Hand oder beim Wecken gestoppt: dann.
         XCTAssertEqual(LearnRecorder.end(of: mark(manual: true)), until)
         let stopped = from.addingTimeInterval(3 * 3600)
-        XCTAssertEqual(LearnRecorder.end(of: mark(manual: true, stoppedAt: stopped, stopReason: RecordEnd.wake.rawValue)), stopped)
+        XCTAssertEqual(LearnRecorder.end(of: mark(manual: true, stoppedAt: stopped,
+                                                  stopReason: RecordEnd.wake.rawValue)), stopped)
         XCTAssertEqual(LearnRecorder.end(of: mark(manual: true, stoppedAt: until.addingTimeInterval(60))), until)
     }
 

@@ -24,9 +24,12 @@ struct HeroWave: View {
                 let reveal = 1 - pow(1 - raw, 3)
                 if windowFraction > 0 {
                     let left = size.width * (1 - windowFraction)
-                    let band = Path(roundedRect: CGRect(x: left, y: 0, width: size.width - left, height: size.height), cornerRadius: 14)
+                    let band = Path(roundedRect: CGRect(x: left, y: 0, width: size.width - left, height: size.height),
+                                    cornerRadius: 14)
                     context.fill(band, with: .linearGradient(
-                        Gradient(stops: [.init(color: ink.band.opacity(0), location: 0), .init(color: ink.band.opacity(0.16 * reveal), location: 0.5), .init(color: ink.band.opacity(0.064 * reveal), location: 1)]),
+                        Gradient(stops: [.init(color: ink.band.opacity(0), location: 0),
+                                         .init(color: ink.band.opacity(0.16 * reveal), location: 0.5),
+                                         .init(color: ink.band.opacity(0.064 * reveal), location: 1)]),
                         startPoint: CGPoint(x: left, y: 0), endPoint: CGPoint(x: left, y: size.height)))
                     var edge = Path()
                     edge.move(to: CGPoint(x: left, y: 0)); edge.addLine(to: CGPoint(x: left, y: size.height))
@@ -46,17 +49,24 @@ struct HeroWave: View {
                     if i == 0 { echo.move(to: CGPoint(x: x + 6, y: y(i) + 8)); wave.move(to: CGPoint(x: x, y: y(i))) }
                     else { echo.addLine(to: CGPoint(x: x + 6, y: y(i) + 8)); wave.addLine(to: CGPoint(x: x, y: y(i))) }
                 }
-                context.stroke(echo, with: .color(ink.waveEcho.opacity(0.8)), style: StrokeStyle(lineWidth: 3.5, lineCap: .round))
+                context.stroke(echo, with: .color(ink.waveEcho.opacity(0.8)),
+                               style: StrokeStyle(lineWidth: 3.5, lineCap: .round))
                 context.stroke(wave, with: .linearGradient(
-                    Gradient(stops: [.init(color: ink.wave.opacity(0.7), location: 0), .init(color: ink.wave, location: 0.55), .init(color: ink.moon, location: 1)]),
-                    startPoint: .zero, endPoint: CGPoint(x: dotX, y: 0)), style: StrokeStyle(lineWidth: 4, lineCap: .round))
+                    Gradient(stops: [.init(color: ink.wave.opacity(0.7), location: 0),
+                                     .init(color: ink.wave, location: 0.55), .init(color: ink.moon, location: 1)]),
+                    startPoint: .zero, endPoint: CGPoint(x: dotX, y: 0)), style: StrokeStyle(lineWidth: 4,
+                                                                                             lineCap: .round))
                 guard shown == 80 else { return }
                 let dot = CGPoint(x: dotX, y: y(80))
-                context.fill(Path(ellipseIn: CGRect(x: dot.x - 22, y: dot.y - 22, width: 44, height: 44)), with: .radialGradient(
-                    Gradient(colors: [ink.wave.opacity(0.45), ink.wave.opacity(0)]), center: dot, startRadius: 0, endRadius: 22))
+                context.fill(Path(ellipseIn: CGRect(x: dot.x - 22, y: dot.y - 22, width: 44, height: 44)),
+                             with: .radialGradient(
+                    Gradient(colors: [ink.wave.opacity(0.45), ink.wave.opacity(0)]), center: dot, startRadius: 0,
+                    endRadius: 22))
                 let r = 6 + 12 * pulse
-                context.stroke(Path(ellipseIn: CGRect(x: dot.x - r, y: dot.y - r, width: 2 * r, height: 2 * r)), with: .color(ink.wave.opacity((1 - pulse) * 0.6)), lineWidth: 1.5)
-                context.fill(Path(ellipseIn: CGRect(x: dot.x - 5, y: dot.y - 5, width: 10, height: 10)), with: .color(ink.moon))
+                context.stroke(Path(ellipseIn: CGRect(x: dot.x - r, y: dot.y - r, width: 2 * r, height: 2 * r)),
+                               with: .color(ink.wave.opacity((1 - pulse) * 0.6)), lineWidth: 1.5)
+                context.fill(Path(ellipseIn: CGRect(x: dot.x - 5, y: dot.y - 5, width: 10, height: 10)),
+                             with: .color(ink.moon))
             }
         }
         .onAppear { appeared = Date() }
@@ -72,7 +82,9 @@ struct CardEdge: View {
     var body: some View {
         RoundedRectangle(cornerRadius: Brand.cardRadius)
             .strokeBorder(scheme == .dark
-                          ? AnyShapeStyle(LinearGradient(colors: [.white.opacity(0.30), Brand.wave.opacity(0.10), .white.opacity(0.02)], startPoint: .top, endPoint: .bottom))
+                          ? AnyShapeStyle(LinearGradient(colors: [.white.opacity(0.30), Brand.wave.opacity(0.10),
+                                                                  .white.opacity(0.02)],
+                                                         startPoint: .top, endPoint: .bottom))
                           : AnyShapeStyle(Brand.glow.opacity(0.10)), lineWidth: 1)
             .allowsHitTesting(false)
             .accessibilityHidden(true)
@@ -99,12 +111,15 @@ struct NightBars: View {
             let track = scheme == .dark ? Color(hex: 0x2A2D55) : Color(hex: 0xF1E7D8)
             for (i, e) in epochs.enumerated() {
                 let h: CGFloat = e.motion.map { 3 + (size.height - 13) * CGFloat($0 / maxMotion) } ?? 3
-                let color = i < unmeasured ? track.opacity(0.35) : e.motion == nil ? track : (i >= epochs.count - 3 ? active : quiet)
-                context.fill(Path(roundedRect: CGRect(x: CGFloat(i) * (w + gap), y: size.height - h, width: w, height: h), cornerRadius: w / 2), with: .color(color))
+                let color = i < unmeasured ? track.opacity(0.35) : e.motion == nil ? track
+                    : (i >= epochs.count - 3 ? active : quiet)
+                context.fill(Path(roundedRect: CGRect(x: CGFloat(i) * (w + gap), y: size.height - h, width: w,
+                                                      height: h), cornerRadius: w / 2), with: .color(color))
             }
             if !epochs.isEmpty {
                 let x = CGFloat(epochs.count - 1) * (w + gap) + w / 2
-                context.fill(Path(ellipseIn: CGRect(x: x - 4, y: 1, width: 8, height: 8)), with: .color(scheme == .dark ? Brand.moon : Brand.accentLight))
+                context.fill(Path(ellipseIn: CGRect(x: x - 4, y: 1, width: 8, height: 8)),
+                             with: .color(scheme == .dark ? Brand.moon : Brand.accentLight))
             }
         }
         .accessibilityHidden(true)

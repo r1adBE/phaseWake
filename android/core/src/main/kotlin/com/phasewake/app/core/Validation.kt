@@ -59,10 +59,18 @@ object Validation {
      * Ein ausgewerteter Entscheid: Nacht [night] (1 = älteste mit Entscheiden), Zeitpunkt [at], angezeigt in [zone]
      * (Zone der Aufzeichnung der Gesundheits-App dieser Nacht, sonst des Geräts), Art, Grund und Referenzphase.
      */
-    data class Entry(val night: Int, val at: Instant, val zone: ZoneId, val kind: Kind, val reason: WakeReason, val ref: Ref)
+    data class Entry(
+        val night: Int,
+        val at: Instant,
+        val zone: ZoneId,
+        val kind: Kind,
+        val reason: WakeReason,
+        val ref: Ref,
+    )
 
     /** Ob mindestens 3/4 der [epochs] Bewegung haben (durchgehend gemessen; Stichproben haben rund 1/5). */
-    fun measured(epochs: List<Epoch>): Boolean = epochs.isNotEmpty() && epochs.count { it.motion != null } * 4 >= epochs.size * 3
+    fun measured(epochs: List<Epoch>): Boolean =
+        epochs.isNotEmpty() && epochs.count { it.motion != null } * 4 >= epochs.size * 3
 
     /**
      * Ein Fenster ab [start]: erster Entscheid des [WakeDetector] mit [config], Zeitpunkt am Ende der entscheidenden
@@ -109,7 +117,10 @@ object Validation {
         var best: StageSpan? = null
         var bestGap = Long.MAX_VALUE
         for (span in known.sortedBy { it.start }) {
-            val gap = if (!at.isBefore(span.end)) Duration.between(span.end, at).toMillis() else Duration.between(at, span.start).toMillis()
+            val gap = if (!at.isBefore(span.end)) Duration.between(span.end, at).toMillis() else Duration.between(
+                at,
+                span.start,
+            ).toMillis()
             if (gap <= TOLERANCE.toMillis() && gap < bestGap) {
                 best = span
                 bestGap = gap
@@ -143,7 +154,12 @@ object Validation {
         val spans = HealthHistory.stages(sessions, clearedAt, zone).filter { it.stage != SleepStage.UNKNOWN }
         val counted = HealthHistory.nights(sessions, clearedAt, zone)
         fun config(before: Instant) =
-            Learning.withLearned(Calibration.calibrate(NightHistory.motionsForCalibration(nights.filter { it.windowStart.isBefore(before) })), learned)
+            Learning.withLearned(
+                Calibration.calibrate(
+                    NightHistory.motionsForCalibration(nights.filter { it.windowStart.isBefore(before) }),
+                ),
+                learned,
+            )
         val own = nights.sortedBy { it.windowStart }.groupBy { SleepNotes.nightDate(it, zone) }
         val recorded = recordings.sortedBy { it.start }.groupBy { SleepNotes.nightDate(it.start, zone) }
         val entries = mutableListOf<Entry>()
@@ -160,7 +176,8 @@ object Validation {
             val from = ranges.minOf { it.first }.minus(TOLERANCE)
             val to = ranges.maxOf { it.second }.plus(TOLERANCE)
             val known = spans.filter { !it.start.isAfter(to) && !it.end.isBefore(from) }
-            val nightZone = counted.firstOrNull { !it.start.isAfter(to) && !it.end.isBefore(from) }?.zoneOr(zone) ?: zone
+            val nightZone =
+                counted.firstOrNull { !it.start.isAfter(to) && !it.end.isBefore(from) }?.zoneOr(zone) ?: zone
             // Stabil nach Zeit, echte zuerst: dieselbe Reihenfolge wie Swift (dort mit Laufnummer).
             for ((kind, moment) in moments.sortedWith(compareBy({ it.second.at }, { it.first.ordinal }))) {
                 val ref = if (known.isEmpty()) Ref.NONE else Ref.of(reference(known, moment.at))

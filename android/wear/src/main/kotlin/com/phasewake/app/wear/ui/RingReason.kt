@@ -39,7 +39,11 @@ internal fun rememberReasonFit(text: String, style: TextStyle, maxWidthDp: Int):
         for (lines in 1..2) {
             var size = full.value
             while (size >= min) {
-                val fit = ReasonFit(size.sp, if (lines == 1) style.lineHeight else (size * REASON_TWO_LINE_HEIGHT).sp, lines)
+                val fit = ReasonFit(
+                    size.sp,
+                    if (lines == 1) style.lineHeight else (size * REASON_TWO_LINE_HEIGHT).sp,
+                    lines,
+                )
                 if (fits(fit)) return@remember fit
                 size -= 0.5f
             }

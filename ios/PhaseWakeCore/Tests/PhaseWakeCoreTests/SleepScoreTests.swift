@@ -67,7 +67,8 @@ final class SleepScoreTests: XCTestCase {
     }
 
     func testAllFactorsAreWeighted() {
-        let r = SleepScore.of(ScoreInput(asleepMinutes: 405, goalMinutes: 450, deepPercent: 10, remPercent: 20, awakePercent: 15, latencyMinutes: 40))!
+        let r = SleepScore.of(ScoreInput(asleepMinutes: 405, goalMinutes: 450, deepPercent: 10, remPercent: 20,
+                                         awakePercent: 15, latencyMinutes: 40))!
         XCTAssertEqual(r.factors.map(\.points), [80, 77, 100, 71, 50])
         // (80·35 + 77·20 + 100·20 + 71·15 + 50·10) / 100 = 79.05.
         XCTAssertEqual(r.score, 79)
@@ -103,12 +104,14 @@ final class SleepScoreTests: XCTestCase {
     }
 
     func testNoScoreWithoutDuration() {
-        XCTAssertNil(SleepScore.of(ScoreInput(asleepMinutes: nil, goalMinutes: 450, deepPercent: 20, remPercent: 22, awakePercent: 3)))
+        XCTAssertNil(SleepScore.of(ScoreInput(asleepMinutes: nil, goalMinutes: 450, deepPercent: 20, remPercent: 22,
+                                              awakePercent: 3)))
         XCTAssertNil(SleepScore.of(ScoreInput(asleepMinutes: 400, goalMinutes: 0)))
     }
 
     func testPerfectNightIsHundred() {
-        let r = SleepScore.of(ScoreInput(asleepMinutes: 480, goalMinutes: 450, deepPercent: 18, remPercent: 22, awakePercent: 4, latencyMinutes: 12))!
+        let r = SleepScore.of(ScoreInput(asleepMinutes: 480, goalMinutes: 450, deepPercent: 18, remPercent: 22,
+                                         awakePercent: 4, latencyMinutes: 12))!
         XCTAssertEqual(r.score, 100)
         XCTAssertEqual(r.band, .excellent)
         XCTAssertFalse(r.provisional)
@@ -126,7 +129,8 @@ final class SleepScoreTests: XCTestCase {
         let stats = StageStats.of(spans, from: at(0), to: at(120))!
         // Tief und REM am Schlaf (30 und 20 von 100 Min), wach an allen vier Phasen (20 von 120, Restverfahren 17).
         XCTAssertEqual(SleepScore.inputOf(stats, goalMinutes: 450),
-                       ScoreInput(asleepMinutes: 100, goalMinutes: 450, deepPercent: 30, remPercent: 20, awakePercent: 17, latencyMinutes: 10,
+                       ScoreInput(asleepMinutes: 100, goalMinutes: 450, deepPercent: 30, remPercent: 20,
+                                  awakePercent: 17, latencyMinutes: 10,
                                   awakeMinutes: 20))
     }
 

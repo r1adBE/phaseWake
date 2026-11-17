@@ -35,7 +35,9 @@ class BackupDirectBootTest {
     @Test
     fun savedPlansSurviveInOrder() {
         BackupDirectBoot.save(context, listOf(entry("a", nextDay), entry("a", first), entry("b|x", second)))
-        assertEquals(listOf(entry("a", first), entry("b|x", second), entry("a", nextDay)), BackupDirectBoot.load(context))
+        assertEquals(
+            listOf(entry("a", first), entry("b|x", second), entry("a", nextDay)), BackupDirectBoot.load(context),
+        )
         BackupDirectBoot.clear(context)
         assertEquals(emptyList(), BackupDirectBoot.load(context))
     }

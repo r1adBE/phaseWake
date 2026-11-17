@@ -25,7 +25,8 @@ class DocumentedValuesTest {
     @Test
     fun restartCatchesUpForThirtyMinutes() {
         assertEquals(Duration.ofMinutes(30), BackupAlarm.MISSED_DURING_BOOT)
-        fun catchesUp(after: Duration) = Transient.catchesUpAfterBoot("a", at, at.plus(after), BackupAlarm.MISSED_DURING_BOOT)
+        fun catchesUp(after: Duration) =
+            Transient.catchesUpAfterBoot("a", at, at.plus(after), BackupAlarm.MISSED_DURING_BOOT)
         assertTrue(catchesUp(Duration.ofMinutes(29)))
         assertTrue(catchesUp(Duration.ofMinutes(30)))
         assertFalse(catchesUp(Duration.ofMinutes(31)))

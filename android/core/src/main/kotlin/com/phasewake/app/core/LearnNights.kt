@@ -125,7 +125,8 @@ object LearnNights {
     fun reason(f: Facts): Reason {
         if (f.recorded) {
             val counts = f.measuredEpochs >= Learning.MIN_MEASURED_EPOCHS && f.spanEpochs >= Learning.MIN_SPAN_EPOCHS
-            val notWorn = f.measuredEpochs >= MIN_WORN_EPOCHS && f.heartRateEpochs * 100 < f.measuredEpochs * MIN_PULSE_PERCENT
+            val notWorn =
+                f.measuredEpochs >= MIN_WORN_EPOCHS && f.heartRateEpochs * 100 < f.measuredEpochs * MIN_PULSE_PERCENT
             return when {
                 counts -> if (notWorn) Reason.COUNTED_NO_PULSE else Reason.COUNTED
                 notWorn -> Reason.NOT_WORN
@@ -184,38 +185,48 @@ object LearnNights {
     )
 
     /**
-     * Die Nächte seit dem Beginn der Lernphase [since] bis jetzt ([now], in [zone]), höchstens [MAX_NIGHTS], jüngste
-     * zuerst. Die laufende Nacht erscheint nur mit Aufzeichnung oder Meldung, sonst erst ab Mitternacht (dann «noch
-     * unterwegs», bis Mittag). Je Nacht die beste Aufzeichnung (eine zählende vor einer mit mehr Messungen). Wecker:
-     * [alarmNights] (gemerkt oder belegt); ab [alarmsKnownFrom] gilt ein fehlendes Datum als «kein Wecker», davor als
-     * unbekannt.
+     * Eingaben der Übersicht [nights]: Aufzeichnungen [recordings], Meldungen der Uhr [skips], Nächte mit Wecker
+     * [alarmNights] (gemerkt oder belegt; ab [alarmsKnownFrom] gilt ein fehlendes Datum als «kein Wecker», davor als
+     * unbekannt), Beginn der Lernphase [since], Einwilligung [consent] und automatischer Beginn [autoOnset]. Wie
+     * `LearnNights.Input` (Swift).
      */
-    fun nights(
-        recordings: List<Recorded>,
-        skips: List<LearnSkip>,
-        alarmNights: Set<LocalDate>,
-        alarmsKnownFrom: LocalDate?,
-        since: Instant,
-        consent: Boolean,
-        autoOnset: Boolean,
-        now: Instant,
-        zone: ZoneId,
-    ): List<Night> {
+    data class Input(
+        val recordings: List<Recorded>,
+        val skips: List<LearnSkip>,
+        val alarmNights: Set<LocalDate>,
+        val alarmsKnownFrom: LocalDate?,
+        val since: Instant,
+        val consent: Boolean,
+        val autoOnset: Boolean,
+    )
+
+    /**
+     * Die Nächte seit dem Beginn der Lernphase ([Input.since]) bis jetzt ([now], in [zone]), höchstens [MAX_NIGHTS],
+     * jüngste zuerst. Die laufende Nacht erscheint nur mit Aufzeichnung oder Meldung, sonst erst ab Mitternacht (dann
+     * «noch unterwegs», bis Mittag). Je Nacht die beste Aufzeichnung (eine zählende vor einer mit mehr Messungen).
+     * Wecker: [Input.alarmNights] (gemerkt oder belegt); ab [Input.alarmsKnownFrom] gilt ein fehlendes Datum als «kein
+     * Wecker», davor als unbekannt.
+     */
+    fun nights(input: Input, now: Instant, zone: ZoneId): List<Night> {
+        val since = input.since
         val today = SleepNotes.nightDate(now, zone)
         val first = SleepNotes.nightDate(since, zone)
-        val byDate = recordings.groupBy { SleepNotes.nightDate(it.night.start, zone) }
-        val skipByDate = skips.associateBy { SleepNotes.nightDate(it.target, zone) }
+        val byDate = input.recordings.groupBy { SleepNotes.nightDate(it.night.start, zone) }
+        val skipByDate = input.skips.associateBy { SleepNotes.nightDate(it.target, zone) }
         val result = mutableListOf<Night>()
         var date = today
         while (!date.isBefore(first) && result.size < MAX_NIGHTS) {
             val all = byDate[date].orEmpty()
             val own = all.filter { !it.night.start.isBefore(since) }
-            val best = own.maxWithOrNull(compareBy({ Learning.counts(it.night) }, { Learning.measuredEpochs(it.night) }))
+            val best = own.maxWithOrNull(
+                compareBy({ Learning.counts(it.night) }, { Learning.measuredEpochs(it.night) }),
+            )
             val skip = skipByDate[date]
             val afterMidnight = now.atZone(zone).toLocalDate() == date.plusDays(1)
             val current = date == today
             if (!current || best != null || skip != null || all.isNotEmpty() || afterMidnight) {
-                result += night(date, best, all.isNotEmpty() && own.isEmpty(), skip, consent, alarmOf(date, alarmNights, alarmsKnownFrom), autoOnset, current)
+                val alarm = alarmOf(date, input.alarmNights, input.alarmsKnownFrom)
+                result += night(date, best, all.isNotEmpty() && own.isEmpty(), skip, alarm, current, input)
             }
             date = date.minusDays(1)
         }
@@ -229,16 +240,21 @@ object LearnNights {
     }
 
     private fun night(
-        date: LocalDate, best: Recorded?, beforeStart: Boolean, skip: LearnSkip?, consent: Boolean, alarm: Boolean?,
-        autoOnset: Boolean, pending: Boolean,
+        date: LocalDate,
+        best: Recorded?,
+        beforeStart: Boolean,
+        skip: LearnSkip?,
+        alarm: Boolean?,
+        pending: Boolean,
+        input: Input,
     ): Night {
         val measured = best?.let { Learning.measuredEpochs(it.night) } ?: 0
         val span = best?.let { spanEpochs(it.night) } ?: 0
         val pulse = best?.night?.epochs?.count { it.heartRate != null } ?: 0
         val facts = Facts(
             recorded = best != null, measuredEpochs = measured, spanEpochs = span, heartRateEpochs = pulse,
-            endCode = best?.endCode, beforeStart = beforeStart, skip = skip?.reason, consent = consent,
-            alarm = alarm ?: if (skip != null) true else null, autoOnset = autoOnset, pending = pending,
+            endCode = best?.endCode, beforeStart = beforeStart, skip = skip?.reason, consent = input.consent,
+            alarm = alarm ?: if (skip != null) true else null, autoOnset = input.autoOnset, pending = pending,
         )
         return Night(
             date = date,

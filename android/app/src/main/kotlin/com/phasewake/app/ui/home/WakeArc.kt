@@ -29,7 +29,14 @@ import kotlin.math.sin
  * der Zeit). Reine Zierde: Die Texte im Bogen sagen dasselbe.
  */
 @Composable
-internal fun WakeArc(now: Instant, windowStart: Instant, target: Instant, exact: Boolean, modifier: Modifier = Modifier, ink: SkyInk = SkyInk.OnNight) {
+internal fun WakeArc(
+    now: Instant,
+    windowStart: Instant,
+    target: Instant,
+    exact: Boolean,
+    modifier: Modifier = Modifier,
+    ink: SkyInk = SkyInk.OnNight,
+) {
     val dawnGlow = ink.dawn
     val reveal = rememberReveal(target)
     val start = if (exact) target else windowStart
@@ -47,10 +54,16 @@ internal fun WakeArc(now: Instant, windowStart: Instant, target: Instant, exact:
             val a = angle(p) / 180f * PI.toFloat()
             return Offset(center.x + radius * cos(a), center.y + radius * sin(a))
         }
-        drawArc(ink.text.copy(alpha = 0.10f), ARC_START, ARC_SWEEP, false, topLeft, arc, style = Stroke(stroke, cap = StrokeCap.Round))
+        drawArc(
+            ink.text.copy(alpha = 0.10f), ARC_START, ARC_SWEEP, false, topLeft, arc,
+            style = Stroke(stroke, cap = StrokeCap.Round),
+        )
         for (k in 0..ARC_HOURS) {
             val p = k / ARC_HOURS.toFloat()
-            drawCircle(ink.muted.copy(alpha = if (k % 3 == 0) 0.55f else 0.28f), radius = (if (k % 3 == 0) 1.6f else 1.1f).dp.toPx(), center = at(p, r - stroke * 1.35f))
+            drawCircle(
+                ink.muted.copy(alpha = if (k % 3 == 0) 0.55f else 0.28f),
+                radius = (if (k % 3 == 0) 1.6f else 1.1f).dp.toPx(), center = at(p, r - stroke * 1.35f),
+            )
         }
         val shown = reveal
         // Vergangene Zeit: vom Anfang bis «jetzt», vom tiefen Violett zum Lavendel.
@@ -59,26 +72,47 @@ internal fun WakeArc(now: Instant, windowStart: Instant, target: Instant, exact:
         // Weckfenster: warmes, leuchtendes Segment mit weichem Schein.
         if (!exact && shown > windowAt) {
             val end = shown.coerceAtMost(1f)
-            drawArc(dawnGlow.copy(alpha = 0.18f), angle(windowAt), ARC_SWEEP * (end - windowAt), false, topLeft, arc, style = Stroke(stroke * 2.6f, cap = StrokeCap.Round))
+            drawArc(
+                dawnGlow.copy(alpha = 0.18f), angle(windowAt), ARC_SWEEP * (end - windowAt), false, topLeft, arc,
+                style = Stroke(stroke * 2.6f, cap = StrokeCap.Round),
+            )
             gradientArc(windowAt, end, ink.wave, dawnGlow, topLeft, arc, stroke * 1.15f)
         }
         if (shown < 1f) return@Canvas
         // Weckpunkt am Ende: warmer Schein, heller Punkt mit Ring.
         val wake = at(1f)
-        drawCircle(Brush.radialGradient(listOf(dawnGlow.copy(alpha = 0.55f), dawnGlow.copy(alpha = 0f)), center = wake, radius = stroke * 2.6f), radius = stroke * 2.6f, center = wake)
+        drawCircle(
+            Brush.radialGradient(
+                listOf(dawnGlow.copy(alpha = 0.55f), dawnGlow.copy(alpha = 0f)), center = wake, radius = stroke * 2.6f,
+            ),
+            radius = stroke * 2.6f, center = wake,
+        )
         drawCircle(ink.moon.copy(alpha = 0.7f), radius = stroke * 1.05f, center = wake, style = Stroke(1.5.dp.toPx()))
         drawCircle(ink.moon, radius = stroke * 0.62f, center = wake)
         // «Jetzt»: heller Punkt mit Lavendel-Schein, solange die Zielzeit vorn liegt.
         if (now.isBefore(target)) {
             val p = at(nowAt)
-            drawCircle(Brush.radialGradient(listOf(ink.wave.copy(alpha = 0.6f), ink.wave.copy(alpha = 0f)), center = p, radius = stroke * 1.9f), radius = stroke * 1.9f, center = p)
+            drawCircle(
+                Brush.radialGradient(
+                    listOf(ink.wave.copy(alpha = 0.6f), ink.wave.copy(alpha = 0f)), center = p, radius = stroke * 1.9f,
+                ),
+                radius = stroke * 1.9f, center = p,
+            )
             drawCircle(ink.moon, radius = stroke * 0.5f, center = p)
         }
     }
 }
 
 /** Bogen von [from] bis [to] (Anteile) im Verlauf [start] → [end], in kurzen Stücken, mit runden Enden. */
-private fun DrawScope.gradientArc(from: Float, to: Float, start: Color, end: Color, topLeft: Offset, arc: Size, stroke: Float) {
+private fun DrawScope.gradientArc(
+    from: Float,
+    to: Float,
+    start: Color,
+    end: Color,
+    topLeft: Offset,
+    arc: Size,
+    stroke: Float,
+) {
     val sweep = (to - from) * ARC_SWEEP
     if (sweep <= 0f) return
     val pieces = (sweep / PIECE_DEGREES).toInt().coerceAtLeast(1)
@@ -87,7 +121,8 @@ private fun DrawScope.gradientArc(from: Float, to: Float, start: Color, end: Col
         val t = (k + 0.5f) / pieces
         val cap = if (k == 0 || k == pieces - 1) StrokeCap.Round else StrokeCap.Butt
         drawArc(
-            lerp(start, end, t), ARC_START + from * ARC_SWEEP + k * piece, piece + if (k < pieces - 1) 0.6f else 0f, false,
+            lerp(start, end, t), ARC_START +
+                from * ARC_SWEEP + k * piece, piece + if (k < pieces - 1) 0.6f else 0f, false,
             topLeft, arc, style = Stroke(stroke, cap = cap),
         )
     }

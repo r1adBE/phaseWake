@@ -42,7 +42,11 @@ class ReceiverBudgetTest {
     @Test
     fun finishesAfterTheBudgetWhenPlanningHangs() = runTest {
         val finished = mutableListOf<Long>()
-        backgroundScope.launchWithin(8_000L, { finished += testScheduler.currentTime }, first = { awaitCancellation() }) {}
+        backgroundScope.launchWithin(
+            8_000L,
+            { finished += testScheduler.currentTime },
+            first = { awaitCancellation() },
+        ) {}
         advanceTimeBy(7_999L)
         runCurrent()
         assertEquals(emptyList(), finished)
@@ -56,7 +60,9 @@ class ReceiverBudgetTest {
         var finished = 0
         var sideRan = false
         // Wie der Bereich der App: Ein Fehler wird gemeldet, nicht weitergereicht.
-        val scope = CoroutineScope(SupervisorJob() + StandardTestDispatcher(testScheduler) + CoroutineExceptionHandler { _, _ -> })
+        val scope = CoroutineScope(
+            SupervisorJob() + StandardTestDispatcher(testScheduler) + CoroutineExceptionHandler { _, _ -> },
+        )
         val job = scope.launchWithin(8_000L, { finished++ }, first = { error("Planen gescheitert") }) { sideRan = true }
         runCurrent()
         advanceTimeBy(10_000L)

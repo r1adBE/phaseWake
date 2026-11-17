@@ -76,8 +76,13 @@ data class SkyInk(
     val dawn: Color,
 ) {
     companion object {
-        val OnNight = SkyInk(Night.Text, Night.Muted, Night.Wave, Night.Wave, Night.WaveEcho, Night.Moon, Night.Wave, Night.Top, Color(0xFFFFB27A))
-        val OnDay = SkyInk(Day.Text, Day.Muted, Day.Accent, Day.Wave, Day.WaveEcho, Day.Moon, Day.Wave, Color.White, Creme.Caramel)
+        val OnNight = SkyInk(
+            Night.Text, Night.Muted, Night.Wave, Night.Wave, Night.WaveEcho, Night.Moon, Night.Wave, Night.Top,
+            Color(0xFFFFB27A),
+        )
+        val OnDay = SkyInk(
+            Day.Text, Day.Muted, Day.Accent, Day.Wave, Day.WaveEcho, Day.Moon, Day.Wave, Color.White, Creme.Caramel,
+        )
     }
 }
 
@@ -96,7 +101,8 @@ val SkyMood.dayHorizon: Color
     get() {
         if (dayTint <= 0f) return Color.Transparent
         val w = dayMorning
-        return mixColor(Day.DuskLow, Day.DawnLow, w).copy(alpha = (Day.DUSK_ALPHA + (Day.DAWN_ALPHA - Day.DUSK_ALPHA) * w) * dayTint)
+        return mixColor(Day.DuskLow, Day.DawnLow, w)
+            .copy(alpha = (Day.DUSK_ALPHA + (Day.DAWN_ALPHA - Day.DUSK_ALPHA) * w) * dayTint)
     }
 
 /** Schein über dem Horizont am Tag mit seiner Deckkraft in der Mitte. */
@@ -104,7 +110,8 @@ val SkyMood.daySun: Color
     get() {
         if (dayTint <= 0f) return Color.Transparent
         val w = dayMorning
-        return mixColor(Day.DuskHigh, Day.DawnHigh, w).copy(alpha = (Day.DUSK_SUN + (Day.DAWN_SUN - Day.DUSK_SUN) * w) * dayTint)
+        return mixColor(Day.DuskHigh, Day.DawnHigh, w)
+            .copy(alpha = (Day.DUSK_SUN + (Day.DAWN_SUN - Day.DUSK_SUN) * w) * dayTint)
     }
 
 /**

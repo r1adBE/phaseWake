@@ -24,7 +24,8 @@ public enum ShortNight {
     /// gemessen wurde, die Messung aber kein Ergebnis brachte (`measured`: begonnen, dann aufgegeben, vom System
     /// beendet, gescheitert oder ohne Werte – fail-closed); ohne Messung nie. In den letzten
     /// `lateMinutes` vor der Zielzeit `target` nie mehr (ohne `target`: bis zum Schluss gesperrt).
-    public static func blocksEarly(onset: Date?, now: Date, sleepGoalMinutes: Int, target: Date? = nil, measured: Bool = false) -> Bool {
+    public static func blocksEarly(onset: Date?, now: Date, sleepGoalMinutes: Int, target: Date? = nil,
+                                   measured: Bool = false) -> Bool {
         if let target, now >= target.addingTimeInterval(-TimeInterval(lateMinutes * 60)) { return false }
         guard let onset else { return measured }
         return now.timeIntervalSince(onset) < TimeInterval((sleepGoalMinutes - marginMinutes) * 60)

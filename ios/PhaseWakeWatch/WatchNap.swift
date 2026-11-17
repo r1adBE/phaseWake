@@ -12,7 +12,8 @@ struct WatchNapView: View {
 
     var body: some View {
         List {
-            Stepper(value: $minutes, in: Transient.napMinMinutes...Transient.napMaxMinutes, step: Transient.napStepMinutes) {
+            Stepper(value: $minutes, in: Transient.napMinMinutes...Transient.napMaxMinutes,
+                    step: Transient.napStepMinutes) {
                 Text(LP("nap_minutes", minutes, Int64(minutes)))
                     .font(Fonts.manrope(15, .semibold, relativeTo: .headline))
             }
@@ -22,7 +23,8 @@ struct WatchNapView: View {
             }
             .tint(Brand.echo)
             if let refused {
-                Label(L(refused == .alarmRunning ? "transient_alarm_running" : "transient_alarm_soon"), systemImage: "exclamationmark.circle")
+                Label(L(refused == .alarmRunning ? "transient_alarm_running" : "transient_alarm_soon"),
+                      systemImage: "exclamationmark.circle")
                     .font(Fonts.manrope(13, relativeTo: .footnote))
             }
         }
@@ -39,9 +41,11 @@ struct WatchNapRow: View {
     @Binding var choosing: Bool
 
     var body: some View {
-        if let nap = model.transient, nap.kind == .nap, model.now < nap.plan.target.addingTimeInterval(SmartAlarm.fallbackDelay) {
+        if let nap = model.transient, nap.kind == .nap,
+           model.now < nap.plan.target.addingTimeInterval(SmartAlarm.fallbackDelay) {
             VStack(alignment: .leading, spacing: 4) {
-                Text(L("nap_running", Format.time(nap.plan.target))).font(Fonts.manrope(14, .semibold, relativeTo: .headline))
+                Text(L("nap_running", Format.time(nap.plan.target)))
+                    .font(Fonts.manrope(14, .semibold, relativeTo: .headline))
                 Button(L("nap_stop")) { model.stopNap() }
                     .font(Fonts.manrope(13, relativeTo: .footnote))
             }

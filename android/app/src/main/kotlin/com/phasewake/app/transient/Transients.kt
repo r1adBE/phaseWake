@@ -45,7 +45,8 @@ object Transients {
     suspend fun startNap(app: PhaseWakeApp, minutes: Int): TransientConflict? {
         val now = Instant.now()
         app.settings.setNapMinutes(minutes)
-        val plan = Transient.nap(nextAlarm(app, now), now, ZoneId.systemDefault(), minutes, UUID.randomUUID().toString())
+        val plan =
+            Transient.nap(nextAlarm(app, now), now, ZoneId.systemDefault(), minutes, UUID.randomUUID().toString())
         conflict(app, plan, now)?.let { return it }
         begin(app, plan, DataLayer.PATH_NAP)
         return null
@@ -58,9 +59,13 @@ object Transients {
      */
     private suspend fun conflict(app: PhaseWakeApp, plan: TransientPlan, now: Instant): TransientConflict? {
         val zone = ZoneId.systemDefault()
-        val next = AlarmSchedule.earliestPlan(app.alarms.current().alarms, now, zone, app.holidays.store.current(), app.backup.doneUntil())
-        val running = app.transient.active()?.plan?.let { !now.isBefore(it.windowStart) && now.isBefore(it.target) } == true
-        val night = PhoneRingService.ringState.value != PhoneRingService.State.Idle || SnoozeSafety.load(app) != null || running
+        val next = AlarmSchedule.earliestPlan(
+            app.alarms.current().alarms, now, zone, app.holidays.store.current(), app.backup.doneUntil(),
+        )
+        val running =
+            app.transient.active()?.plan?.let { !now.isBefore(it.windowStart) && now.isBefore(it.target) } == true
+        val night =
+            PhoneRingService.ringState.value != PhoneRingService.State.Idle || SnoozeSafety.load(app) != null || running
         return Transient.conflict(plan, next, night, now)
     }
 
@@ -113,14 +118,17 @@ object Transients {
 
     private suspend fun begin(app: PhaseWakeApp, plan: TransientPlan, path: String) {
         app.transient.set(plan)
-        app.diag.log(if (plan.kind == TransientKind.TEST) DiagKind.TEST else DiagKind.NAP, "start until ${plan.plan.target}")
+        app.diag.log(
+            if (plan.kind == TransientKind.TEST) DiagKind.TEST else DiagKind.NAP, "start until ${plan.plan.target}",
+        )
         app.sync.message(DataLayer.CAPABILITY_WATCH, path, Transient.encode(plan).encodeToByteArray())
         app.backup.reschedule()
     }
 
     /** Der nächste echte Wecker (für die Weckart), oder `null`. */
     private suspend fun nextAlarm(app: PhaseWakeApp, now: Instant) = app.alarms.current().alarms.let { list ->
-        AlarmSchedule.earliestPlan(list, now, ZoneId.systemDefault(), app.holidays.store.current())?.let { plan -> list.firstOrNull { it.id == plan.alarmId } }
+        AlarmSchedule.earliestPlan(list, now, ZoneId.systemDefault(), app.holidays.store.current())
+            ?.let { plan -> list.firstOrNull { it.id == plan.alarmId } }
             ?: list.firstOrNull()
     }
 }

@@ -43,17 +43,26 @@ class HabitsTest {
         assertEquals(0 to 0, Regularity.count(emptyList<Pair<LocalDate, Instant>>(), zone))
         // Mitternacht dazwischen: 23:50 und 00:15 liegen 25 Min auseinander.
         assertEquals(15.0 * 60, Regularity.minutesFromNoon(at("2026-10-28T03:00"), zone))
-        assertEquals(2 to 2, Regularity.count(listOf(bedtime(until, "23:50"), bedtime(until.minusDays(1), "00:15")), zone))
+        assertEquals(
+            2 to 2,
+            Regularity.count(listOf(bedtime(until, "23:50"), bedtime(until.minusDays(1), "00:15")), zone),
+        )
     }
 
     @Test
     fun regularityAroundNoon() {
         // Bettzeiten 11:30 und 12:30 liegen 60 Min auseinander → Median 12:00, beide regelmässig (vorher 0 von 2).
         val until = LocalDate.of(2026, 10, 27)
-        val noon = listOf(until to until.atTime(12, 30).atZone(zone).toInstant(), until.minusDays(1) to until.atTime(11, 30).atZone(zone).toInstant())
+        val noon = listOf(
+            until to until.atTime(12, 30).atZone(zone).toInstant(),
+            until.minusDays(1) to until.atTime(11, 30).atZone(zone).toInstant(),
+        )
         assertEquals(2 to 2, Regularity.count(noon, zone))
         // 31 Min daneben zählt nicht mehr.
-        val off = listOf(until to until.atTime(12, 31).atZone(zone).toInstant(), until.minusDays(1) to until.atTime(11, 29).atZone(zone).toInstant())
+        val off = listOf(
+            until to until.atTime(12, 31).atZone(zone).toInstant(),
+            until.minusDays(1) to until.atTime(11, 29).atZone(zone).toInstant(),
+        )
         assertEquals(0 to 2, Regularity.count(off, zone, toleranceMinutes = 30))
     }
 
@@ -80,7 +89,10 @@ class HabitsTest {
         val reached = mapOf(
             today.minusDays(1) to true, today.minusDays(2) to true, today.minusDays(3) to true,
             today.minusDays(4) to false,
-            today.minusDays(5) to true, today.minusDays(6) to true, today.minusDays(7) to true, today.minusDays(8) to true,
+            today.minusDays(5) to true,
+            today.minusDays(6) to true,
+            today.minusDays(7) to true,
+            today.minusDays(8) to true,
             // Lücke (keine Daten) bei −9.
             today.minusDays(10) to true,
         )
@@ -102,7 +114,10 @@ class HabitsTest {
             SleepSummary(at("2026-10-26T23:00"), at("2026-10-27T07:00"), 470),
             SleepSummary(at("2026-10-27T23:00"), at("2026-10-28T06:00"), 400),
         )
-        assertEquals(mapOf(LocalDate.of(2026, 10, 26) to true, LocalDate.of(2026, 10, 27) to false), Streak.reachedByNight(sleeps, zone, 450))
+        assertEquals(
+            mapOf(LocalDate.of(2026, 10, 26) to true, LocalDate.of(2026, 10, 27) to false),
+            Streak.reachedByNight(sleeps, zone, 450),
+        )
     }
 
     @Test
@@ -119,7 +134,16 @@ class HabitsTest {
     }
 
     private fun night(woke: Instant, feeling: Int) =
-        NightRecord("a", woke.minus(Duration.ofMinutes(30)), woke, woke, WakeReason.LIGHT_SLEEP, 0, emptyList(), feeling)
+        NightRecord(
+            "a",
+            woke.minus(Duration.ofMinutes(30)),
+            woke,
+            woke,
+            WakeReason.LIGHT_SLEEP,
+            0,
+            emptyList(),
+            feeling,
+        )
 
     @Test
     fun weeklySummaryOfLastWeek() {

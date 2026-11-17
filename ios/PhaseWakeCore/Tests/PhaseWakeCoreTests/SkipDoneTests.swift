@@ -27,10 +27,11 @@ final class SkipDoneTests: XCTestCase {
 
     private func wall(_ text: String) -> Int64 { AlarmSchedule.millis(at(text, "UTC")) }
 
+    /// Wecker mit diesen Werten; ausgeschaltet bzw. mit Feiertagsregel über `with(enabled:)` / `with(skipHolidays:)`.
     private func alarm(id: String = "a", hour: Int = 7, minute: Int = 0, days: Set<Weekday>? = nil, window: Int = 30,
-                       enabled: Bool = true, label: String = "", skipUntil: Int64 = 0, skipHolidays: Bool = false) -> AlarmSpec {
-        try! AlarmSpec(id: id, hour: hour, minute: minute, days: days ?? weekdays, windowMinutes: window, enabled: enabled,
-                       label: label, skipUntil: skipUntil, skipHolidays: skipHolidays)
+                       label: String = "", skipUntil: Int64 = 0) -> AlarmSpec {
+        try! AlarmSpec(id: id, hour: hour, minute: minute, days: days ?? weekdays, windowMinutes: window,
+                       label: label, skipUntil: skipUntil)
     }
 
     func testNightDoneTargetAheadSkipsNextOccurrence() {
@@ -41,20 +42,23 @@ final class SkipDoneTests: XCTestCase {
         XCTAssertEqual(skipped.skipUntil, wall("2026-10-30T07:00"))
         XCTAssertEqual(AlarmSchedule.nextSkipDate(alarm(), now: now, doneUntil: done, calendar: zurich), "2026-10-30")
         XCTAssertEqual(AlarmSchedule.skippedDate(skipped, now: now, calendar: zurich), "2026-10-30")
-        XCTAssertEqual(AlarmSchedule.nextTarget(skipped, now: at("2026-10-29T07:30"), calendar: zurich), at("2026-11-02T07:00"))
+        XCTAssertEqual(AlarmSchedule.nextTarget(skipped, now: at("2026-10-29T07:30"), calendar: zurich),
+                       at("2026-11-02T07:00"))
         // Sperre des Zweitweckers am Handy: Zielzeit + 2 Min.
-        XCTAssertEqual(AlarmSchedule.skipNext(alarm(), now: now, doneUntil: done.addingTimeInterval(120), calendar: zurich).skipUntil,
+        XCTAssertEqual(AlarmSchedule.skipNext(alarm(), now: now, doneUntil: done.addingTimeInterval(120),
+                                              calendar: zurich).skipUntil,
                        wall("2026-10-30T07:00"))
         // Ohne erledigte Nacht (oder erledigt in der Vergangenheit) gilt der heutige Termin.
         XCTAssertEqual(AlarmSchedule.nextSkipDate(alarm(), now: now, calendar: zurich), "2026-10-29")
-        XCTAssertEqual(AlarmSchedule.skipNext(alarm(), now: now, doneUntil: at("2026-10-28T07:00"), calendar: zurich).skipUntil,
+        XCTAssertEqual(AlarmSchedule.skipNext(alarm(), now: now, doneUntil: at("2026-10-28T07:00"),
+                                              calendar: zurich).skipUntil,
                        wall("2026-10-29T07:00"))
     }
 
     func testNextSkipDateWithoutOccurrence() {
         let now = at("2026-10-28T22:00")
         XCTAssertNil(AlarmSchedule.nextSkipDate(alarm(days: []), now: now, calendar: zurich))
-        XCTAssertNil(AlarmSchedule.nextSkipDate(alarm(enabled: false), now: now, calendar: zurich))
+        XCTAssertNil(AlarmSchedule.nextSkipDate(alarm().with(enabled: false), now: now, calendar: zurich))
     }
 
     func testEarliestPlanRespectsDoneUntil() {
@@ -64,8 +68,10 @@ final class SkipDoneTests: XCTestCase {
         let b = alarm(id: "b", hour: 8)
         XCTAssertEqual(AlarmSchedule.earliestPlan([a, b], now: now, calendar: zurich)?.alarmId, "a")
         // Der zweite Wecker am selben Morgen bleibt.
-        XCTAssertEqual(AlarmSchedule.earliestPlan([a, b], now: now, doneUntil: done, calendar: zurich)?.target, at("2026-10-29T08:00"))
-        XCTAssertEqual(AlarmSchedule.earliestPlan([a], now: now, doneUntil: done, calendar: zurich)?.target, at("2026-10-30T07:00"))
+        XCTAssertEqual(AlarmSchedule.earliestPlan([a, b], now: now, doneUntil: done, calendar: zurich)?.target,
+                       at("2026-10-29T08:00"))
+        XCTAssertEqual(AlarmSchedule.earliestPlan([a], now: now, doneUntil: done, calendar: zurich)?.target,
+                       at("2026-10-30T07:00"))
     }
 
     func testSkipKeepsCalendarDayWhenTravellingWest() {
@@ -73,38 +79,47 @@ final class SkipDoneTests: XCTestCase {
         let skipped = AlarmSchedule.skipNext(alarm(), now: at("2026-10-28T22:00"), calendar: zurich)
         XCTAssertEqual(skipped.skipUntil, wall("2026-10-29T07:00"))
         let nyMorning = at("2026-10-29T05:00", "America/New_York")
-        XCTAssertEqual(AlarmSchedule.nextTarget(skipped, now: nyMorning, calendar: newYork), at("2026-10-30T07:00", "America/New_York"))
+        XCTAssertEqual(AlarmSchedule.nextTarget(skipped, now: nyMorning, calendar: newYork),
+                       at("2026-10-30T07:00", "America/New_York"))
         XCTAssertEqual(AlarmSchedule.skippedDate(skipped, now: nyMorning, calendar: newYork), "2026-10-29")
-        XCTAssertNil(AlarmSchedule.skippedDate(skipped, now: at("2026-10-29T07:00", "America/New_York"), calendar: newYork))
+        XCTAssertNil(AlarmSchedule.skippedDate(skipped, now: at("2026-10-29T07:00", "America/New_York"),
+                                               calendar: newYork))
     }
 
     func testSkipKeepsCalendarDayWhenTravellingEast() {
-        let skipped = AlarmSchedule.skipNext(alarm(), now: at("2026-10-28T20:00", "America/New_York"), calendar: newYork)
+        let skipped = AlarmSchedule.skipNext(alarm(), now: at("2026-10-28T20:00", "America/New_York"),
+                                             calendar: newYork)
         let tokyoEvening = at("2026-10-28T23:00", "Asia/Tokyo")
         // Do 7:00 in Tokio fällt aus, Fr 7:00 nicht.
-        XCTAssertEqual(AlarmSchedule.nextTarget(skipped, now: tokyoEvening, calendar: tokyo), at("2026-10-30T07:00", "Asia/Tokyo"))
+        XCTAssertEqual(AlarmSchedule.nextTarget(skipped, now: tokyoEvening, calendar: tokyo),
+                       at("2026-10-30T07:00", "Asia/Tokyo"))
         XCTAssertEqual(AlarmSchedule.skippedDate(skipped, now: tokyoEvening, calendar: tokyo), "2026-10-29")
     }
 
     func testWallMillisIgnoresZoneAndHandlesGap() {
         XCTAssertEqual(AlarmSchedule.wallMillis(at("2026-10-29T07:00"), calendar: zurich), 1_793_257_200_000)
-        XCTAssertEqual(AlarmSchedule.wallMillis(at("2026-10-29T07:00", "America/New_York"), calendar: newYork), 1_793_257_200_000)
+        XCTAssertEqual(AlarmSchedule.wallMillis(at("2026-10-29T07:00", "America/New_York"), calendar: newYork),
+                       1_793_257_200_000)
         // Bruchteile einer Millisekunde: abgeschnitten, nie aufgerundet (wie Kotlin). Kotlin prüft + 999 999 ns; so nah
         // an der vollen Millisekunde kann `Date` (Double, rund 0,24 µs Auflösung um 2026) nicht rechnen, darum + 900
         // µs.
-        XCTAssertEqual(AlarmSchedule.wallMillis(at("2026-10-29T07:00").addingTimeInterval(0.000_9), calendar: zurich), 1_793_257_200_000)
-        XCTAssertEqual(AlarmSchedule.wallMillis(at("2026-10-29T07:00").addingTimeInterval(0.001_5), calendar: zurich), 1_793_257_200_001)
+        XCTAssertEqual(AlarmSchedule.wallMillis(at("2026-10-29T07:00").addingTimeInterval(0.000_9), calendar: zurich),
+                       1_793_257_200_000)
+        XCTAssertEqual(AlarmSchedule.wallMillis(at("2026-10-29T07:00").addingTimeInterval(0.001_5), calendar: zurich),
+                       1_793_257_200_001)
         // Zeitumstellung (28.3.2027, 2:30 fällt aus → 3:30): Übersprungen wird genau dieser Termin.
         let night = alarm(hour: 2, minute: 30, days: Set(Weekday.allCases))
         let skipped = AlarmSchedule.skipNext(night, now: at("2027-03-27T22:00"), calendar: zurich)
         XCTAssertEqual(skipped.skipUntil, wall("2027-03-28T03:30"))
-        XCTAssertEqual(AlarmSchedule.nextTarget(skipped, now: at("2027-03-27T22:00"), calendar: zurich), at("2027-03-29T02:30"))
+        XCTAssertEqual(AlarmSchedule.nextTarget(skipped, now: at("2027-03-27T22:00"), calendar: zurich),
+                       at("2027-03-29T02:30"))
     }
 
     func testKeepSkipOnlyForSameSchedule() {
         let skip = wall("2026-10-29T07:00")
         let old = alarm(skipUntil: skip)
-        XCTAssertEqual(AlarmSchedule.keepSkip(old: old, edited: alarm(window: 20, enabled: false, label: "Neu", skipUntil: skip)), skip)
+        let edited = alarm(window: 20, label: "Neu", skipUntil: skip).with(enabled: false)
+        XCTAssertEqual(AlarmSchedule.keepSkip(old: old, edited: edited), skip)
         XCTAssertEqual(AlarmSchedule.keepSkip(old: old, edited: alarm(hour: 8, skipUntil: skip)), 0)
         XCTAssertEqual(AlarmSchedule.keepSkip(old: old, edited: alarm(minute: 15, skipUntil: skip)), 0)
         XCTAssertEqual(AlarmSchedule.keepSkip(old: old, edited: alarm(days: [.monday], skipUntil: skip)), 0)
@@ -115,28 +130,37 @@ final class SkipDoneTests: XCTestCase {
         let now = at("2026-10-28T22:00")
         let old = alarm(skipUntil: wall("2026-10-29T07:00"))
         // Schalter nicht angefasst (nil): wie keepSkip; edited.skipUntil zählt nicht.
-        XCTAssertEqual(AlarmSchedule.editedSkip(old: old, edited: alarm(window: 20, skipUntil: old.skipUntil), requested: nil,
+        XCTAssertEqual(AlarmSchedule.editedSkip(old: old, edited: alarm(window: 20, skipUntil: old.skipUntil),
+                                                requested: nil,
                                                 now: now, calendar: zurich), old.skipUntil)
-        XCTAssertEqual(AlarmSchedule.editedSkip(old: old, edited: old.with(skipUntil: 0), requested: nil, now: now, calendar: zurich),
+        XCTAssertEqual(AlarmSchedule.editedSkip(old: old, edited: old.with(skipUntil: 0), requested: nil, now: now,
+                                                calendar: zurich),
                        old.skipUntil)
-        XCTAssertEqual(AlarmSchedule.editedSkip(old: old, edited: alarm(hour: 8, skipUntil: old.skipUntil), requested: nil,
+        XCTAssertEqual(AlarmSchedule.editedSkip(old: old, edited: alarm(hour: 8, skipUntil: old.skipUntil),
+                                                requested: nil,
                                                 now: now, calendar: zurich), 0)
         // Ausgeschaltet.
         XCTAssertEqual(AlarmSchedule.editedSkip(old: old, edited: old, requested: false, now: now, calendar: zurich), 0)
         // Zeit geändert und Schalter bewusst eingeschaltet: gilt für die neue Zeit.
         let plain = alarm()
-        XCTAssertEqual(AlarmSchedule.editedSkip(old: plain, edited: alarm(hour: 8), requested: true, now: now, calendar: zurich),
+        XCTAssertEqual(AlarmSchedule.editedSkip(old: plain, edited: alarm(hour: 8), requested: true, now: now,
+                                                calendar: zurich),
                        wall("2026-10-29T08:00"))
         // … und nach frühem Wecken ab der erledigten Nacht.
-        XCTAssertEqual(AlarmSchedule.editedSkip(old: plain, edited: alarm(hour: 8), requested: true, now: at("2026-10-29T06:50"),
-                                                doneUntil: at("2026-10-29T08:00"), calendar: zurich), wall("2026-10-30T08:00"))
+        XCTAssertEqual(AlarmSchedule.editedSkip(old: plain, edited: alarm(hour: 8), requested: true,
+                                                now: at("2026-10-29T06:50"),
+                                                doneUntil: at("2026-10-29T08:00"), calendar: zurich),
+                       wall("2026-10-30T08:00"))
         // Nur die Tage geändert, derselbe Termin wie vorher (Do 7:00) bewusst wieder eingeschaltet: bleibt
         // übersprungen.
         let sixDays = alarm(days: weekdays.union([.saturday]), skipUntil: old.skipUntil)
-        XCTAssertEqual(AlarmSchedule.editedSkip(old: old, edited: sixDays, requested: true, now: now, calendar: zurich), old.skipUntil)
-        XCTAssertEqual(AlarmSchedule.editedSkip(old: old, edited: sixDays, requested: nil, now: now, calendar: zurich), 0)
+        XCTAssertEqual(AlarmSchedule.editedSkip(old: old, edited: sixDays, requested: true, now: now, calendar: zurich),
+                       old.skipUntil)
+        XCTAssertEqual(AlarmSchedule.editedSkip(old: old, edited: sixDays, requested: nil, now: now, calendar: zurich),
+                       0)
         // Einmal-Wecker: kein Überspringen.
-        XCTAssertEqual(AlarmSchedule.editedSkip(old: plain, edited: alarm(days: []), requested: true, now: now, calendar: zurich), 0)
+        XCTAssertEqual(AlarmSchedule.editedSkip(old: plain, edited: alarm(days: []), requested: true, now: now,
+                                                calendar: zurich), 0)
     }
 
     func testEditorShowsSkipAsSaved() {
@@ -145,7 +169,8 @@ final class SkipDoneTests: XCTestCase {
         let now = at("2026-10-28T22:00")
         let old = alarm(skipUntil: wall("2026-10-29T07:00"))
         func shown(_ edited: AlarmSpec, _ requested: Bool?) -> String? {
-            let saved = AlarmSchedule.editedSkip(old: old, edited: edited, requested: requested, now: now, calendar: zurich)
+            let saved = AlarmSchedule.editedSkip(old: old, edited: edited, requested: requested, now: now,
+                                                 calendar: zurich)
             return AlarmSchedule.skippedDate(edited.with(skipUntil: saved), now: now, calendar: zurich)
         }
         // Nicht angefasst, Zeit gleich: weiter «Übersprungen: Do».
@@ -162,26 +187,31 @@ final class SkipDoneTests: XCTestCase {
 
     func testHolidayNoteOnlyUpToNextPlan() {
         let holidays: Set<String> = ["2026-10-29"]
-        let a = alarm(id: "a", skipHolidays: true)
+        let a = alarm(id: "a").with(skipHolidays: true)
         let b = alarm(id: "b", hour: 9, days: Set(Weekday.allCases))
         // Dienstag: B weckt am Mittwoch zuerst, der Feiertag am Donnerstag ist noch kein Hinweis.
-        XCTAssertNil(AlarmSchedule.holidayNote([a, b], now: at("2026-10-27T22:00"), calendar: zurich, holidays: holidays))
+        XCTAssertNil(AlarmSchedule.holidayNote([a, b], now: at("2026-10-27T22:00"), calendar: zurich,
+                                               holidays: holidays))
         // Mittwochabend: B weckt am Feiertag selbst (ohne Feiertagsregel) → Hinweis für A.
-        XCTAssertEqual(AlarmSchedule.holidayNote([a, b], now: at("2026-10-28T22:00"), calendar: zurich, holidays: holidays), "2026-10-29")
-        XCTAssertEqual(AlarmSchedule.holidayNote([a], now: at("2026-10-28T22:00"), calendar: zurich, holidays: holidays), "2026-10-29")
+        XCTAssertEqual(AlarmSchedule.holidayNote([a, b], now: at("2026-10-28T22:00"), calendar: zurich,
+                                                 holidays: holidays), "2026-10-29")
+        XCTAssertEqual(AlarmSchedule.holidayNote([a], now: at("2026-10-28T22:00"), calendar: zurich,
+                                                 holidays: holidays), "2026-10-29")
         XCTAssertNil(AlarmSchedule.holidayNote([b], now: at("2026-10-28T22:00"), calendar: zurich, holidays: holidays))
         XCTAssertNil(AlarmSchedule.holidayNote([], now: at("2026-10-28T22:00"), calendar: zurich, holidays: holidays))
         // Jeder Tag Feiertag: kein Plan, der Hinweis gilt trotzdem.
         let all = Set((0...(AlarmSchedule.maxSearchDays + 1)).map { NightDate.adding($0, to: "2026-10-28") })
-        XCTAssertEqual(AlarmSchedule.holidayNote([a], now: at("2026-10-28T22:00"), calendar: zurich, holidays: all), "2026-10-29")
+        XCTAssertEqual(AlarmSchedule.holidayNote([a], now: at("2026-10-28T22:00"), calendar: zurich, holidays: all),
+                       "2026-10-29")
     }
 
     func testHolidayNoteAfterEarlyWake() {
         let holidays: Set<String> = ["2026-10-30"]
-        let a = alarm(id: "a", skipHolidays: true)
+        let a = alarm(id: "a").with(skipHolidays: true)
         let now = at("2026-10-29T06:50")
         XCTAssertNil(AlarmSchedule.holidayNote([a], now: now, calendar: zurich, holidays: holidays))
         let done = ["a": at("2026-10-29T07:00")]
-        XCTAssertEqual(AlarmSchedule.holidayNote([a], now: now, doneUntil: done, calendar: zurich, holidays: holidays), "2026-10-30")
+        XCTAssertEqual(AlarmSchedule.holidayNote([a], now: now, doneUntil: done, calendar: zurich, holidays: holidays),
+                       "2026-10-30")
     }
 }

@@ -24,7 +24,8 @@ struct LearningHomeCard: View {
                     .font(Fonts.manrope(14, relativeTo: .subheadline))
                     .foregroundStyle(Brand.secondaryText(scheme))
                 let now = Date()
-                if let miss = LearnNights.lastNightMiss(LearnNightsView.nights(model: model, now: now), now: now, calendar: .gregorianLocal) {
+                if let miss = LearnNights.lastNightMiss(LearnNightsView.nights(model: model, now: now), now: now,
+                                                        calendar: .gregorianLocal) {
                     LastNightMissLine(miss: miss)
                 }
                 // «Nacht aufzeichnen» steckt während der Lernphase in dieser Karte, siehe `RecordCard`.
@@ -117,7 +118,8 @@ struct LearnedLines: View {
         VStack(alignment: .leading, spacing: 4) {
             Text(L(Learning.raisesThresholds(values.floor) ? "learned_motion_raised" : "learned_motion_default"))
             Text(values.restingHeartRate.map { L("learned_pulse", Int($0.rounded())) } ?? L("learned_pulse_none"))
-            Text(values.latencyMinutes.map { L("learned_latency", Format.duration(minutes: $0)) } ?? L("learned_latency_none"))
+            Text(values.latencyMinutes.map { L("learned_latency", Format.duration(minutes: $0)) }
+                 ?? L("learned_latency_none"))
         }
         .font(Fonts.manrope(14, relativeTo: .subheadline))
         .foregroundStyle(color)
@@ -153,9 +155,11 @@ struct BedtimeAdviceCard: View {
     /// Spanne für den Wecker dieser Nacht; `nil` ohne gelernte Werte, ohne Wecker heute Nacht oder nach ihrem Ende.
     static func range(model: PhoneModel, values: Learning.Values?, now: Date) -> (from: Date, until: Date)? {
         guard let values, let plan = model.nextPlan(now: now),
-              SleepNotes.nightDate(plan.windowStart, calendar: .gregorianLocal) == SleepNotes.nightDate(now, calendar: .gregorianLocal),
+              SleepNotes.nightDate(plan.windowStart, calendar: .gregorianLocal)
+                  == SleepNotes.nightDate(now, calendar: .gregorianLocal),
               let alarm = model.alarms.first(where: { $0.id == plan.alarmId }) else { return nil }
-        let range = Learning.bedtimeRange(target: plan.target, sleepMinutes: alarm.sleepDurationMinutes ?? model.sleepGoal,
+        let range = Learning.bedtimeRange(target: plan.target,
+                                          sleepMinutes: alarm.sleepDurationMinutes ?? model.sleepGoal,
                                           latencyMinutes: values.latencyMinutes)
         return now < range.until ? range : nil
     }
@@ -174,7 +178,9 @@ struct LearningSettingsSection: View {
         let state = learning.state
         if state.values != nil || learning.watchCanLearn(model) {
             let night = learning.progress
-            Section(state.values != nil ? L("learned_title") : night.map { L("learn_progress", $0, Learning.nights) } ?? L("learn_consent_title")) {
+            let progressTitle = night.map { L("learn_progress", $0, Learning.nights) } ?? L("learn_consent_title")
+            let sectionTitle = state.values != nil ? L("learned_title") : progressTitle
+            Section(sectionTitle) {
                 Toggle(isOn: Binding(get: { learning.state.consent == true }, set: { learning.setConsent($0) })) {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(L("learn_switch_title"))
@@ -206,7 +212,8 @@ struct LearningOnboardingStep: View {
     var body: some View {
         Text(L("learn_intro"))
         VStack(alignment: .leading, spacing: 8) {
-            ForEach([L("learn_point_nights", Learning.nights), L("learn_point_battery"), L("learn_point_private")], id: \.self) { point in
+            ForEach([L("learn_point_nights", Learning.nights), L("learn_point_battery"), L("learn_point_private")],
+                    id: \.self) { point in
                 HStack(alignment: .firstTextBaseline, spacing: 10) {
                     Text(verbatim: "•").accessibilityHidden(true)
                     Text(point)

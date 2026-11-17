@@ -89,7 +89,8 @@ extension SmartAlarm {
             AlarmSchedule.nextTarget($0, now: night.target.addingTimeInterval(-0.001), calendar: .gregorianLocal,
                                      holidays: model.storage.holidays.dates)
         }
-        model.storage.markDone(alarmId: night.alarmId, until: GoodNightEstimate.doneUntil(target: night.target, nominal: nominal))
+        let doneUntil = GoodNightEstimate.doneUntil(target: night.target, nominal: nominal)
+        model.storage.markDone(alarmId: night.alarmId, until: doneUntil)
     }
 
     // MARK: Alter Klingel-Zustand

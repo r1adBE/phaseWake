@@ -108,7 +108,8 @@ final class ClipProcessor: @unchecked Sendable {
         return (0..<n).map { ring[(ringWrite - n + $0 + ring.count) % ring.count] }
     }
 
-    private func writeAndClassify(_ samples: [Float], onsetMs: Int64) -> (onsetMs: Int64, file: String, type: SoundType)? {
+    private func writeAndClassify(_ samples: [Float],
+                                  onsetMs: Int64) -> (onsetMs: Int64, file: String, type: SoundType)? {
         guard !samples.isEmpty else { return nil }
         let at = startedAt.addingTimeInterval(TimeInterval(onsetMs) / 1000)
         let file = "clip-\(Int64((at.timeIntervalSince1970 * 1000).rounded(.down))).m4a"

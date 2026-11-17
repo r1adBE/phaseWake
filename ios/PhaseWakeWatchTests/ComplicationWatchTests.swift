@@ -8,17 +8,21 @@ final class ComplicationWatchTests: XCTestCase {
     private let now = Date(timeIntervalSince1970: 1_793_000_000)
 
     private func plan(_ id: String = "d", targetIn seconds: TimeInterval) -> WakePlan {
-        WakePlan(alarmId: id, windowStart: now.addingTimeInterval(seconds - 1800), target: now.addingTimeInterval(seconds))
+        WakePlan(alarmId: id, windowStart: now.addingTimeInterval(seconds - 1800),
+                 target: now.addingTimeInterval(seconds))
     }
 
     func testComplicationShowsThePlanTheWatchWakesBy() throws {
-        let stored = WakePlan(alarmId: "d", windowStart: now.addingTimeInterval(3000), target: now.addingTimeInterval(3600), exact: true)
-        let computed = WakePlan(alarmId: "d", windowStart: now.addingTimeInterval(4800), target: now.addingTimeInterval(5400))
+        let stored = WakePlan(alarmId: "d", windowStart: now.addingTimeInterval(3000),
+                              target: now.addingTimeInterval(3600), exact: true)
+        let computed = WakePlan(alarmId: "d", windowStart: now.addingTimeInterval(4800),
+                                target: now.addingTimeInterval(5400))
         let decoded = try XCTUnwrap(EffectivePlan.decode(EffectivePlan.encode(stored)))
         XCTAssertEqual(decoded, stored)
         XCTAssertEqual(EffectivePlan.choose(stored: decoded, computed: computed, now: now), stored)
         // Zielzeit (plus eine Minute) vorbei: wieder aus den Weckern gerechnet.
-        XCTAssertEqual(EffectivePlan.choose(stored: decoded, computed: computed, now: stored.target.addingTimeInterval(60)), computed)
+        XCTAssertEqual(EffectivePlan.choose(stored: decoded, computed: computed,
+                                            now: stored.target.addingTimeInterval(60)), computed)
         XCTAssertEqual(EffectivePlan.choose(stored: nil, computed: computed, now: now), computed)
         XCTAssertNil(EffectivePlan.encode(nil))
     }

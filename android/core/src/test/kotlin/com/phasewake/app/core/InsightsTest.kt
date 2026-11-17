@@ -29,7 +29,10 @@ class InsightsTest {
     @Test
     fun qualityFollowsSignalShares() {
         assertEquals(DataQuality.FULL, NightQuality.of(night(epochs(12, { 0.001 }, { 55.0 }))))
-        assertEquals(DataQuality.MOTION_ONLY, NightQuality.of(night(epochs(12, { 0.001 }, { if (it < 5) 55.0 else null }))))
+        assertEquals(
+            DataQuality.MOTION_ONLY,
+            NightQuality.of(night(epochs(12, { 0.001 }, { if (it < 5) 55.0 else null }))),
+        )
         assertEquals(DataQuality.PARTIAL, NightQuality.of(night(epochs(12, { if (it < 8) 0.001 else null }, { 55.0 }))))
         assertEquals(DataQuality.NONE, NightQuality.of(night(epochs(12, { null }, { 55.0 }))))
         assertEquals(DataQuality.NONE, NightQuality.of(night(epochs(2, { 0.001 }, { 55.0 }))))
@@ -55,7 +58,10 @@ class InsightsTest {
         assertEquals(SleepSummary(at("2026-10-26T23:10"), at("2026-10-27T06:40"), 230 + 200), nights[0])
         assertEquals(40, nights[1].asleepMinutes)
         assertEquals(360, nights[2].asleepMinutes)
-        assertEquals(emptyList(), SleepSummary.group(listOf(span("2026-10-27T01:00", "2026-10-27T07:00", SleepStage.AWAKE))))
+        assertEquals(
+            emptyList(),
+            SleepSummary.group(listOf(span("2026-10-27T01:00", "2026-10-27T07:00", SleepStage.AWAKE))),
+        )
     }
 
     @Test
@@ -81,7 +87,12 @@ class InsightsTest {
             sleep(0, 420, 23, 0), sleep(1, 400, 23, 30), sleep(2, 440, 23, 0), // diese Woche: Ø 420
             sleep(8, 460, 22, 30), sleep(9, 440, 23, 0), sleep(10, 450, 23, 30), // Vorwoche: Ø 450
         )
-        val nights = listOf(night(emptyList(), 4, 0), night(emptyList(), 3, 1), night(emptyList(), 5, 2), night(emptyList(), 2, 8))
+        val nights = listOf(
+            night(emptyList(), 4, 0),
+            night(emptyList(), 3, 1),
+            night(emptyList(), 5, 2),
+            night(emptyList(), 2, 8),
+        )
         val trends = Trends.compute(nights, sleeps, now, zone)
         assertEquals(420, trends.asleepThisWeek)
         assertEquals(450, trends.asleepLastWeek)
@@ -101,7 +112,9 @@ class InsightsTest {
     fun bedtimeAroundMidnightIsNotSplit() {
         val now = Instant.parse("2026-10-28T08:00:00Z")
         val sleeps = (0L until 5L).map { d ->
-            val bed = Instant.parse("2026-10-27T23:50:00Z").minus(Duration.ofDays(d)).plus(Duration.ofMinutes(if (d % 2 == 0L) 0 else 20))
+            val bed = Instant.parse("2026-10-27T23:50:00Z").minus(Duration.ofDays(d)).plus(
+                Duration.ofMinutes(if (d % 2 == 0L) 0 else 20),
+            )
             SleepSummary(bed, bed.plus(Duration.ofHours(7)), 400)
         }
         // 23:50 und 00:10 abwechselnd: Abweichung um 10 Min, nicht um 12 Stunden.
@@ -113,7 +126,9 @@ class InsightsTest {
         // Einschlafen abwechselnd 11:50 und 12:10 (Tagschläfer): Abweichung um 10 Min, nicht um 12 Stunden.
         val now = Instant.parse("2026-10-28T20:00:00Z")
         val sleeps = (0L until 5L).map { d ->
-            val bed = Instant.parse("2026-10-28T11:50:00Z").minus(Duration.ofDays(d)).plus(Duration.ofMinutes(if (d % 2 == 0L) 0 else 20))
+            val bed = Instant.parse("2026-10-28T11:50:00Z").minus(Duration.ofDays(d)).plus(
+                Duration.ofMinutes(if (d % 2 == 0L) 0 else 20),
+            )
             SleepSummary(bed, bed.plus(Duration.ofHours(7)), 400)
         }
         assertEquals(9, Trends.compute(emptyList(), sleeps, now, zone).bedtimeSpreadMinutes)
@@ -133,7 +148,13 @@ class MissHintTest {
     private val spec = AlarmSpec(id = "a", hour = 7, minute = 0, windowMinutes = 30)
     private val start = Instant.parse("2026-10-20T05:30:00Z")
 
-    private fun night(day: Long, reason: WakeReason = WakeReason.DEADLINE, hr: Double? = 55.0, motion: Double? = 0.0005, id: String = "a") =
+    private fun night(
+        day: Long,
+        reason: WakeReason = WakeReason.DEADLINE,
+        hr: Double? = 55.0,
+        motion: Double? = 0.0005,
+        id: String = "a",
+    ) =
         NightRecord(
             alarmId = id,
             windowStart = start.plus(Duration.ofDays(day)),
@@ -158,8 +179,14 @@ class MissHintTest {
 
     @Test
     fun causeFollowsDataQuality() {
-        assertEquals(MissHint.HEART_MISSING, MissHint.of(spec, listOf(night(0, hr = null), night(1, hr = null), night(2))))
-        assertEquals(MissHint.GAPS, MissHint.of(spec, listOf(night(0, motion = null), night(1, motion = null), night(2, hr = null))))
+        assertEquals(
+            MissHint.HEART_MISSING,
+            MissHint.of(spec, listOf(night(0, hr = null), night(1, hr = null), night(2))),
+        )
+        assertEquals(
+            MissHint.GAPS,
+            MissHint.of(spec, listOf(night(0, motion = null), night(1, motion = null), night(2, hr = null))),
+        )
     }
 }
 

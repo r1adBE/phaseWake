@@ -67,8 +67,10 @@ public struct HealthSession: Equatable, Sendable {
     public func isNap(calendar deviceCalendar: Calendar) -> Bool {
         let calendar = localCalendar(deviceCalendar)
         guard durationMinutes < HealthHistory.minNightMinutes, calendar.isDate(start, inSameDayAs: end),
-              let earliest = calendar.date(bySettingHour: HealthHistory.napEarliestHour, minute: 0, second: 0, of: start),
-              let latest = calendar.date(bySettingHour: HealthHistory.napLatestHour, minute: 0, second: 0, of: start) else { return false }
+              let earliest = calendar.date(bySettingHour: HealthHistory.napEarliestHour, minute: 0, second: 0,
+                                           of: start),
+              let latest = calendar.date(bySettingHour: HealthHistory.napLatestHour, minute: 0, second: 0,
+                                         of: start) else { return false }
         return start >= earliest && end <= latest
     }
 
@@ -81,7 +83,8 @@ public struct HealthSession: Equatable, Sendable {
     /// Phasenband der Karte.
     public var steps: [HypnoStep] {
         clipped.filter { ChartData.level($0.stage) != nil }.map {
-            HypnoStep(fromMinute: $0.start.timeIntervalSince(start) / 60, toMinute: $0.end.timeIntervalSince(start) / 60, stage: $0.stage)
+            HypnoStep(fromMinute: $0.start.timeIntervalSince(start) / 60,
+                      toMinute: $0.end.timeIntervalSince(start) / 60, stage: $0.stage)
         }
     }
 
@@ -186,7 +189,8 @@ public enum HealthHistory {
     /// überschneiden (Sitzungsbeginn vor dem Weckmoment und Sitzungsende nach dem Fensterbeginn). Mehrere am selben
     /// Nachtdatum: nach derselben Vorliebe wie ``distinct(_:)``. Sortierung nach ``HistoryItem/at`` absteigend; gleich:
     /// eigene Nacht vor Sitzung, zwei eigene Nächte nach Fensterbeginn absteigend, dann Wecker-Kennung aufsteigend.
-    public static func merge(nights: [NightRecord], sessions: [HealthSession], clearedAt: Date?, calendar: Calendar) -> [HistoryItem] {
+    public static func merge(nights: [NightRecord], sessions: [HealthSession], clearedAt: Date?,
+                             calendar: Calendar) -> [HistoryItem] {
         let ownDates = Set(nights.map { SleepNotes.nightDate(of: $0, calendar: calendar) })
         let candidates = countedNights(sessions, clearedAt: clearedAt, calendar: calendar).filter { session in
             !ownDates.contains(SleepNotes.nightDate(of: session, calendar: calendar))
@@ -198,7 +202,8 @@ public enum HealthHistory {
             if let current = best[date], !preferred(session, over: current) { continue }
             best[date] = session
         }
-        let items = nights.map { HistoryItem(kind: .phaseWake, date: SleepNotes.nightDate(of: $0, calendar: calendar), night: $0) }
+        let items = nights.map { HistoryItem(kind: .phaseWake, date: SleepNotes.nightDate(of: $0, calendar: calendar),
+                                             night: $0) }
             + best.map { HistoryItem(kind: .health, date: $0.key, session: $0.value) }
         return items.sorted(by: newerFirst)
     }
@@ -225,7 +230,8 @@ public enum HealthHistory {
     /// – für das Schlafprofil eigener Nächte. Je Teil auf ihn zugeschnitten und ab dem Ende des vorigen Teils
     /// (``trimmed(_:filler:)``).
     public static func stages(_ sessions: [HealthSession], clearedAt: Date?, calendar: Calendar) -> [StageSpan] {
-        chains(sessions, clearedAt: clearedAt, calendar: calendar).flatMap { trimmed($0, filler: false) }.sorted { $0.start < $1.start }
+        chains(sessions, clearedAt: clearedAt,
+               calendar: calendar).flatMap { trimmed($0, filler: false) }.sorted { $0.start < $1.start }
     }
 
     /// Nächte für Diagramme, Trends, Wochenbilanz, Serien und Regelmässigkeit: je Kette eine Nacht (`SleepSummary.of`),
@@ -243,7 +249,8 @@ public enum HealthHistory {
 
     /// Sitzungen, die als Nacht zählen (``chains(_:clearedAt:calendar:)``), je Nacht zu einer Sitzung zusammengefasst:
     /// Verlauf und Auffälligkeiten (``NightFacts/of(_:clearedAt:calendar:)``). Wie `HealthHistory.nights` (Kotlin).
-    public static func countedNights(_ sessions: [HealthSession], clearedAt: Date?, calendar: Calendar) -> [HealthSession] {
+    public static func countedNights(_ sessions: [HealthSession], clearedAt: Date?,
+                                     calendar: Calendar) -> [HealthSession] {
         chains(sessions, clearedAt: clearedAt, calendar: calendar).map { join($0) }
     }
 
@@ -258,7 +265,9 @@ public enum HealthHistory {
             .filter { nap in !nights.contains(where: { clash(nap, $0) }) }
         // Nach Beginn; bei gleichem Beginn zuerst die Nacht (stabil, wie Kotlin `sortedBy`).
         let ordered = (nights.map { (session: $0, isNight: true) } + naps.map { (session: $0, isNight: false) })
-            .sorted { $0.session.start != $1.session.start ? $0.session.start < $1.session.start : ($0.isNight && !$1.isNight) }
+            .sorted {
+                $0.session.start != $1.session.start ? $0.session.start < $1.session.start : ($0.isNight && !$1.isNight)
+            }
         var result: [[HealthSession]] = []
         for entry in ordered {
             // Anschluss: beginnt höchstens ``overlapTolerance`` vor dem Ende des vorigen Teils, endet danach, Lücke ≤
@@ -279,7 +288,8 @@ public enum HealthHistory {
     private static func join(_ parts: [HealthSession]) -> HealthSession {
         let first = parts[0]
         guard parts.count > 1, let last = parts.last else { return first }
-        return HealthSession(start: first.start, end: last.end, stages: trimmed(parts), source: first.source, timeZone: first.timeZone)
+        return HealthSession(start: first.start, end: last.end, stages: trimmed(parts), source: first.source,
+                             timeZone: first.timeZone)
     }
 
     /// Phasen der Teile einer Kette (``spans(_:)``), jeder Teil erst ab dem Ende des vorigen: Eine kurze Überlappung

@@ -29,8 +29,14 @@ class OnsetOverrideTest {
         val skipped = plan(Instant.parse("2026-11-13T06:30:00Z"))
         assertEquals(OnsetOverride.Use.CLEAR, OnsetOverride.decide(override, skipped, now))
         // Grenze: genau die längste Schlafdauer nach der Ausnahme gilt noch.
-        assertEquals(OnsetOverride.Use.OVERRIDE, OnsetOverride.decide(override, plan(target.plus(Duration.ofHours(12))), now))
-        assertEquals(OnsetOverride.Use.CLEAR, OnsetOverride.decide(override, plan(target.plus(Duration.ofHours(12)).plusMillis(1)), now))
+        assertEquals(
+            OnsetOverride.Use.OVERRIDE,
+            OnsetOverride.decide(override, plan(target.plus(Duration.ofHours(12))), now),
+        )
+        assertEquals(
+            OnsetOverride.Use.CLEAR,
+            OnsetOverride.decide(override, plan(target.plus(Duration.ofHours(12)).plusMillis(1)), now),
+        )
         // Anderer Wecker oder keiner: Plan, die Ausnahme bleibt für später.
         assertEquals(OnsetOverride.Use.PLAN, OnsetOverride.decide(override, plan(sameNight.target, id = "b"), now))
         assertEquals(OnsetOverride.Use.PLAN, OnsetOverride.decide(override, null, now))

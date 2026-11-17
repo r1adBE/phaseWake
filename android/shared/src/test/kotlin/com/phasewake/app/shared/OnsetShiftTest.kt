@@ -55,7 +55,10 @@ class OnsetShiftTest {
         assertSame(plan, shift.copy(alarmId = "c").applyTo(plan, night, grace))
         val tomorrow = plan.copy(target = configured.plus(Duration.ofDays(1)))
         assertSame(tomorrow, shift.applyTo(tomorrow, night, grace))
-        assertSame(plan, shift.copy(target = configured.plus(Duration.ofMinutes(5)).toEpochMilli()).applyTo(plan, night, grace))
+        assertSame(
+            plan,
+            shift.copy(target = configured.plus(Duration.ofMinutes(5)).toEpochMilli()).applyTo(plan, night, grace),
+        )
     }
 
     @Test

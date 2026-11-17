@@ -39,7 +39,10 @@ class ShortNightTest {
         assertEquals(10, ShortNight.LATE_MINUTES)
         assertTrue(ShortNight.blocksEarly(onset, at("2026-11-10T07:32"), 450, target), "Moment um 07:32 übergangen")
         assertTrue(ShortNight.blocksEarly(onset, at("2026-11-10T07:46"), 450, target))
-        assertFalse(ShortNight.blocksEarly(onset, at("2026-11-10T07:47"), 450, target), "ab 07:47 weckt ein neuer Moment")
+        assertFalse(
+            ShortNight.blocksEarly(onset, at("2026-11-10T07:47"), 450, target),
+            "ab 07:47 weckt ein neuer Moment",
+        )
         assertFalse(ShortNight.blocksEarly(onset, at("2026-11-10T07:55"), 450, target))
         // Ohne Zielzeit wie bisher bis zum Schluss gesperrt.
         assertTrue(ShortNight.blocksEarly(onset, at("2026-11-10T07:50"), 450))
@@ -57,7 +60,9 @@ class ShortNightTest {
         assertTrue(ShortNight.blocksEarly(null, at("2026-11-10T06:55"), 450, measured = true))
         assertFalse(ShortNight.blocksEarly(null, at("2026-11-10T06:35"), 450, target, measured = false))
         // Eine bekannte Einschlafzeit geht vor: lange Nacht, nicht gesperrt.
-        assertFalse(ShortNight.blocksEarly(at("2026-11-09T22:30"), at("2026-11-10T06:35"), 450, target, measured = true))
+        assertFalse(
+            ShortNight.blocksEarly(at("2026-11-09T22:30"), at("2026-11-10T06:35"), 450, target, measured = true),
+        )
     }
 
     @Test

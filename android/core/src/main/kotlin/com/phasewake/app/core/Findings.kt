@@ -43,7 +43,12 @@ data class NightFacts(
          * Einschlafdauer aus der Gesundheits-App, ohne sie aus der eigenen Messung: zuerst die Nächte der Uhr [watch]
          * ([OwnOnset.of]), sonst die Aufzeichnungen [own] ([Findings.ownLatency]).
          */
-        fun of(session: HealthSession, zone: ZoneId, own: List<OwnOnset> = emptyList(), watch: List<OwnOnset> = emptyList()): NightFacts {
+        fun of(
+            session: HealthSession,
+            zone: ZoneId,
+            own: List<OwnOnset> = emptyList(),
+            watch: List<OwnOnset> = emptyList(),
+        ): NightFacts {
             val stats = StageStats.forSession(session)
             val latency = stats?.latencyMinutes
             return NightFacts(
@@ -55,7 +60,9 @@ data class NightFacts(
                 latencyMinutes = latency ?: Findings.ownLatency(session.start, session.end, own, watch),
                 deepMinutes = stats?.total(SleepStage.DEEP)?.minutes,
                 // Nur die Einschlafdauer der Gesundheits-App liegt in deren Wachphasen.
-                awakeMinutes = stats?.let { ((it.total(SleepStage.AWAKE)?.minutes ?: 0) - (latency ?: 0)).coerceAtLeast(0) },
+                awakeMinutes = stats?.let {
+                    ((it.total(SleepStage.AWAKE)?.minutes ?: 0) - (latency ?: 0)).coerceAtLeast(0)
+                },
             )
         }
 
@@ -169,7 +176,8 @@ object Findings {
     const val WEEK_NIGHTS: Int = Trends.MIN_NIGHTS_PER_WEEK
 
     /** Nächte der [NIGHTS] Nachtdaten bis [today] (einschliesslich); je Nachtdatum die mit dem meisten Schlaf. */
-    fun recent(facts: List<NightFacts>, today: LocalDate): List<NightFacts> = byDate(facts, today.minusDays(NIGHTS - 1L), today)
+    fun recent(facts: List<NightFacts>, today: LocalDate): List<NightFacts> =
+        byDate(facts, today.minusDays(NIGHTS - 1L), today)
 
     /**
      * Alle Auffälligkeiten bis [today] (Nachtdatum von «jetzt»), wichtigste zuerst. Uhrzeiten in der Zone der
@@ -189,7 +197,9 @@ object Findings {
         if (staged.size >= MIN_NIGHTS) {
             deepShare(staged)?.takeIf { it < DEEP_PERCENT }?.let { out += lowDeep(it, staged, nights, zone) }
             val awake = staged.sumOf { it.awakeMinutes!! }
-            percent(awake, staged.sumOf { it.asleepMinutes } + awake)?.takeIf { it > AWAKE_PERCENT }?.let { out += Finding(FindingKind.MUCH_AWAKE, it) }
+            percent(awake, staged.sumOf { it.asleepMinutes } + awake)?.takeIf { it > AWAKE_PERCENT }?.let {
+                out += Finding(FindingKind.MUCH_AWAKE, it)
+            }
         }
         if (nights.size >= MIN_NIGHTS) {
             val jetlag = jetlag(nights, zone)?.takeIf { it > JETLAG_MINUTES }
@@ -207,7 +217,12 @@ object Findings {
      * [bedtimeAdvice]: Die Startseite zeigt schon die Bettzeit-Karte; dann treten die Auffälligkeiten mit demselben
      * Tipp ([BEDTIME_TIP]) zurück, damit er nicht zweimal steht. Im Verlauf bleiben sie.
      */
-    fun home(findings: List<Finding>, hidden: Map<FindingKind, Instant>, now: Instant, bedtimeAdvice: Boolean = false): Finding? =
+    fun home(
+        findings: List<Finding>,
+        hidden: Map<FindingKind, Instant>,
+        now: Instant,
+        bedtimeAdvice: Boolean = false,
+    ): Finding? =
         findings.firstOrNull { f ->
             hidden[f.kind]?.let { now.isBefore(it.plus(HIDE_FOR)) } != true && !(bedtimeAdvice && f.kind in BEDTIME_TIP)
         }
@@ -267,9 +282,14 @@ object Findings {
         val minutes = bedtimes(nights, zone)
         val median = SoundEventDetector.median(minutes)
         val late = nights.zip(minutes).filter { it.second > median + LATE_MINUTES }.map { it.first }.toSet()
-        val links = listOfNotNull(link(DeepLink.SHORT_NIGHTS, staged) { isShort(it) }, link(DeepLink.LATE_BEDTIME, staged) { it in late })
+        val links = listOfNotNull(
+            link(DeepLink.SHORT_NIGHTS, staged) { isShort(it) },
+            link(DeepLink.LATE_BEDTIME, staged) { it in late },
+        )
         // Der grössere Unterschied; gleich: kurze Nächte (Reihenfolge von [DeepLink]).
-        val best = links.maxWithOrNull(compareBy<Finding> { it.withoutPercent - it.withPercent }.thenByDescending { it.link!!.ordinal })
+        val best = links.maxWithOrNull(
+            compareBy<Finding> { it.withoutPercent - it.withPercent }.thenByDescending { it.link!!.ordinal },
+        )
         return best?.copy(value = share) ?: Finding(FindingKind.LOW_DEEP, share)
     }
 
@@ -286,8 +306,18 @@ object Findings {
      * wenig Nächten.
      */
     private fun jetlag(nights: List<NightFacts>, zone: ZoneId): Int? {
-        val mids = Regularity.unwrap(nights.map { Regularity.minutesFromNoon(it.asleepAt.plus(Duration.between(it.asleepAt, it.end).dividedBy(2)), it.zoneOr(zone)) })
-        val weekend = nights.indices.filter { nights[it].date.dayOfWeek == DayOfWeek.FRIDAY || nights[it].date.dayOfWeek == DayOfWeek.SATURDAY }
+        val mids = Regularity.unwrap(
+            nights.map {
+                Regularity.minutesFromNoon(
+                    it.asleepAt.plus(Duration.between(it.asleepAt, it.end).dividedBy(2)),
+                    it.zoneOr(zone),
+                )
+            },
+        )
+        val weekend =
+            nights.indices.filter {
+                nights[it].date.dayOfWeek == DayOfWeek.FRIDAY || nights[it].date.dayOfWeek == DayOfWeek.SATURDAY
+            }
         val weekdays = nights.indices - weekend.toSet()
         if (weekend.size < JETLAG_NIGHTS || weekdays.size < JETLAG_NIGHTS) return null
         return round(kotlin.math.abs(weekend.map { mids[it] }.average() - weekdays.map { mids[it] }.average()))
@@ -304,7 +334,8 @@ object Findings {
             .map { (_, list) -> list.maxBy { it.asleepMinutes } }.sortedBy { it.date }
 
     /** Tiefschlaf aller [nights] am Schlaf aller [nights], gerundet. */
-    private fun deepShare(nights: List<NightFacts>): Int? = percent(nights.sumOf { it.deepMinutes ?: 0 }, nights.sumOf { it.asleepMinutes })
+    private fun deepShare(nights: List<NightFacts>): Int? =
+        percent(nights.sumOf { it.deepMinutes ?: 0 }, nights.sumOf { it.asleepMinutes })
 
     private fun percent(part: Long, whole: Long): Int? = if (whole <= 0) null else round(part * 100.0 / whole)
 

@@ -48,7 +48,8 @@ class AlarmAutoOffTest {
         }
     }
 
-    private fun rangAt7(spec: AlarmSpec) = AlarmStamps.rang(spec, null, Instant.ofEpochMilli(at(7)), zone, shifted = false)
+    private fun rangAt7(spec: AlarmSpec) =
+        AlarmStamps.rang(spec, null, Instant.ofEpochMilli(at(7)), zone, shifted = false)
 
     @Test
     fun s1_changeOnPhoneWhileWatchUnreachableSurvivesAutoOff() = runTest {

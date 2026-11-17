@@ -39,12 +39,18 @@ internal suspend fun BackupAlarm.rescheduleSunrise() {
     setAlarm(at, show = null, operation = sunrisePending(plan.alarmId, plan.windowStart, plan.target))
 }
 
-private fun BackupAlarm.sunrisePending(alarmId: String? = null, start: Instant? = null, end: Instant? = null): PendingIntent {
+private fun BackupAlarm.sunrisePending(
+    alarmId: String? = null,
+    start: Instant? = null,
+    end: Instant? = null,
+): PendingIntent {
     val intent = Intent(context, BackupAlarm.Receiver::class.java).setAction(ACTION_SUNRISE)
     if (alarmId != null) intent.putExtra(PhoneRingService.EXTRA_ALARM_ID, alarmId)
     if (start != null) intent.putExtra(SunriseLight.EXTRA_START, start.toEpochMilli())
     if (end != null) intent.putExtra(SunriseLight.EXTRA_END, end.toEpochMilli())
-    return PendingIntent.getBroadcast(context, 2, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+    return PendingIntent.getBroadcast(
+        context, 2, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+    )
 }
 
 /** Licht starten und merken, damit es nach dem Neuplanen nicht erneut beginnt. */

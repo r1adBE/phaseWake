@@ -49,20 +49,29 @@ fun LicensesScreen(onBack: () -> Unit) {
     val texts = remember { mutableStateMapOf<String, List<String>>() }
     LaunchedEffect(open) {
         val file = open ?: return@LaunchedEffect
-        if (file !in texts) texts[file] = withContext(Dispatchers.IO) { Licenses.paragraphs(readLicense(context, file)) }
+        if (file !in texts) texts[file] = withContext(Dispatchers.IO) {
+            Licenses.paragraphs(readLicense(context, file))
+        }
     }
     SkyBarPage(bar = {
-        IconButton(onClick = onBack) { Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.onb_back)) }
+        IconButton(onClick = onBack) {
+            Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.onb_back))
+        }
         Text(stringResource(R.string.settings_licenses), style = MaterialTheme.typography.titleLarge)
     }) {
         LazyColumn(Modifier.fillMaxSize().padding(horizontal = 16.dp)) {
             Licenses.entries.forEach { entry ->
                 item(key = entry.file) {
-                    LicenseHeader(entry, expanded = open == entry.file) { open = if (open == entry.file) null else entry.file }
+                    LicenseHeader(entry, expanded = open == entry.file) {
+                        open = if (open == entry.file) null else entry.file
+                    }
                 }
                 if (open == entry.file) {
                     items(texts[entry.file].orEmpty()) { paragraph ->
-                        Text(paragraph, style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(bottom = 8.dp))
+                        Text(
+                            paragraph, style = MaterialTheme.typography.bodySmall,
+                            modifier = Modifier.padding(bottom = 8.dp),
+                        )
                     }
                 }
             }
@@ -73,13 +82,25 @@ fun LicensesScreen(onBack: () -> Unit) {
 /** Kopf einer Lizenz: Name, Datei und Bestandteile; der Pfeil zeigt, ob der Volltext offen ist. */
 @Composable
 private fun LicenseHeader(entry: LicenseEntry, expanded: Boolean, onToggle: () -> Unit) {
-    Column(Modifier.fillMaxWidth().heightIn(min = MIN_TOUCH).clickable(role = Role.Button, onClick = onToggle).padding(vertical = 10.dp)) {
+    Column(
+        Modifier.fillMaxWidth().heightIn(min = MIN_TOUCH).clickable(role = Role.Button, onClick = onToggle)
+            .padding(vertical = 10.dp)
+    ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(entry.title, style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary, modifier = Modifier.weight(1f))
-            Icon(painterResource(R.drawable.ic_expand), contentDescription = null, modifier = Modifier.rotate(if (expanded) 180f else 0f))
+            Text(
+                entry.title, style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.weight(1f),
+            )
+            Icon(
+                painterResource(R.drawable.ic_expand), contentDescription = null,
+                modifier = Modifier.rotate(if (expanded) 180f else 0f),
+            )
         }
         entry.components.forEach { component ->
-            Text(component, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(
+                component, style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
     }
     HorizontalDivider()

@@ -2,6 +2,37 @@ import PhaseWakeCore
 import WatchKit
 
 extension SmartAlarm {
+    // MARK: Sitzung übernehmen und beenden
+
+    /// Vom System gestartete Sitzung übernehmen. Muss synchron in `handle(_:)` geschehen,
+    /// sonst beendet das System die Sitzung.
+    func adopt(_ extendedSession: WKExtendedRuntimeSession) {
+        extendedSession.delegate = self
+        // Eine gemerkte, nicht mehr gültige Sitzung wird beim Start beendet (`extendedRuntimeSessionDidStart`).
+        if isStale(extendedSession) { return }
+        if let session, session !== extendedSession {
+            // Die eigene, geplante oder laufende Sitzung nie verwerfen: Die ankommende ist dann eine
+            // verwaiste aus der Zeit vor einem Neustart der App und endet bei ihrem Start, ohne zu vibrieren.
+            if SessionRules.keepsOwn(session.state) {
+                DiagStore.shared.log(.error, "other session started, own kept")
+                keepStale(extendedSession)
+                return
+            }
+            retire(session)
+        }
+        session = extendedSession
+    }
+
+    /// Beendet die Sitzung dieser Nacht. Darf die App sie gerade nicht beenden (`SessionRules.retire`), bleibt sie
+    /// gemerkt (`staleSessions`) und endet beim nächsten Aktivwerden oder gleich bei ihrem Start.
+    func invalidateSession() {
+        forgetScheduled()
+        keptStart = nil
+        guard let old = session else { return }
+        session = nil
+        retire(old)
+    }
+
     // MARK: Nicht mehr gültige Sitzungen
 
     /// Sitzung `old` beenden oder für später merken (`SessionRules.retire`). Gemerkte Sitzungen behalten den Delegate:
@@ -49,10 +80,12 @@ extension SmartAlarm {
         model.refresh()
         let now = Date()
         let serves = model.plan.map {
-            NightRules.sessionServes(start: now, plan: $0, sessionStart: Self.sessionStart($0), tolerance: Self.startTolerance, delay: Self.fallbackDelay)
+            NightRules.sessionServes(start: now, plan: $0, sessionStart: Self.sessionStart($0),
+                                     tolerance: Self.startTolerance, delay: Self.fallbackDelay)
         } ?? false
         let own = session.flatMap { $0 === started ? nil : $0 }
-        guard SessionRules.usesOrphan(own: own?.state, busy: phase.isMeasuring || phase.isRinging || phase.isSnoozed, serves: serves) else {
+        let busy = phase.isMeasuring || phase.isRinging || phase.isSnoozed
+        guard SessionRules.usesOrphan(own: own?.state, busy: busy, serves: serves) else {
             return false
         }
         staleSessions.removeAll { $0 === started }
@@ -114,7 +147,9 @@ extension SmartAlarm {
     /// - Returns: ob die Sitzung hier behandelt ist (gehaltene Nacht misst, oder neu geplant und beendet).
     func replansAfterZoneChange(_ started: WKExtendedRuntimeSession) -> Bool {
         let saved = Self.savedPlanZone
-        guard WatchRules.zoneShifted(plannedZone: saved?.zone, target: saved?.target, zone: .current) else { return false }
+        guard WatchRules.zoneShifted(plannedZone: saved?.zone, target: saved?.target, zone: .current) else {
+            return false
+        }
         // Nach einem Neustart der App ist der Plan unbekannt (`idle`): dann die gemerkte Nacht.
         var night: WakePlan?
         if case .scheduled(let current) = phase { night = current }
@@ -157,7 +192,9 @@ extension SmartAlarm {
             self.stopSensors()
             // Grund und Fehlercode ins Protokoll.
             let ending = SessionRules.ending(reason, ringing: self.phase.isRinging)
-            DiagStore.shared.log(ending == .dismissed ? .stop : .error, "session invalidated \(SessionRules.reasonName(reason))\(code)")
+            DiagStore.shared.log(
+                ending == .dismissed ? .stop : .error, "session invalidated \(SessionRules.reasonName(reason))\(code)"
+            )
             switch self.phase {
             case .ringing where ending == .dismissed:
                 // Weckhinweis des Systems gestoppt: wie Stopp auf der Uhr – iPhone hört auf, die Kette fällt weg.

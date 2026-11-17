@@ -11,10 +11,12 @@ final class HealthHistoryTests: XCTestCase {
 
     private func t(_ text: String) -> Date { ISO8601DateFormatter().date(from: text)! }
 
-    private func span(_ from: String, _ to: String, _ stage: SleepStage) -> StageSpan { StageSpan(start: t(from), end: t(to), stage: stage) }
+    private func span(_ from: String, _ to: String,
+                      _ stage: SleepStage) -> StageSpan { StageSpan(start: t(from), end: t(to), stage: stage) }
 
     private func night(_ windowStart: String, _ wokeAt: String, _ alarmId: String = "a") -> NightRecord {
-        NightRecord(alarmId: alarmId, windowStart: t(windowStart), target: t(windowStart).addingTimeInterval(30 * 60), wokeAt: t(wokeAt),
+        NightRecord(alarmId: alarmId, windowStart: t(windowStart), target: t(windowStart).addingTimeInterval(30 * 60),
+                    wokeAt: t(wokeAt),
                     reason: .lightSleep, snoozes: 0, epochs: [])
     }
 
@@ -28,7 +30,8 @@ final class HealthHistoryTests: XCTestCase {
         ], source: "com.sec.android.app.shealth")
     }
 
-    private func merge(_ nights: [NightRecord], _ sessions: [HealthSession], _ clearedAt: Date? = nil) -> [HistoryItem] {
+    private func merge(_ nights: [NightRecord], _ sessions: [HealthSession],
+                       _ clearedAt: Date? = nil) -> [HistoryItem] {
         HealthHistory.merge(nights: nights, sessions: sessions, clearedAt: clearedAt, calendar: calendar)
     }
 
@@ -38,7 +41,8 @@ final class HealthHistoryTests: XCTestCase {
         let first = t("2026-11-01T01:53:00Z")
         let kinds: [SleepStage] = [.light, .deep, .light, .rem]
         let middle = (0..<60).map { i in
-            StageSpan(start: first.addingTimeInterval(Double(i) * 570), end: first.addingTimeInterval(Double(i + 1) * 570), stage: kinds[i % kinds.count])
+            StageSpan(start: first.addingTimeInterval(Double(i) * 570),
+                      end: first.addingTimeInterval(Double(i + 1) * 570), stage: kinds[i % kinds.count])
         }
         return HealthSession(start: t("2026-11-01T01:42:00Z"), end: t("2026-11-01T11:50:00Z"),
                              stages: [span("2026-11-01T01:42:00Z", "2026-11-01T01:53:00Z", .awake)] + middle
@@ -54,7 +58,8 @@ final class HealthHistoryTests: XCTestCase {
         // Verlauf und Detailseite: Nacht vom 31. Oktober (Morgen 1. November).
         XCTAssertEqual(merge([], [lateNight]).map(\.date), ["2026-10-31"])
         // Diagramme: dasselbe Nachtdatum, dieselbe Dauer («today» = Nachtdatum am Morgen des 2. November).
-        let bars = ChartData.sleepBars(sleeps, calendar: calendar, today: "2026-11-01", nextTarget: nil, goalMinutes: 480)
+        let bars = ChartData.sleepBars(sleeps, calendar: calendar, today: "2026-11-01", nextTarget: nil,
+                                       goalMinutes: 480)
         XCTAssertEqual(bars?.bars.last?.date, "2026-10-31")
         XCTAssertEqual(bars?.bars.last?.hasData, true)
         XCTAssertEqual(NoteEffect.asleepByNight(sleeps, calendar: calendar), ["2026-10-31": 570])
@@ -123,13 +128,18 @@ final class HealthHistoryTests: XCTestCase {
     func testNapOnlyInDaytime() {
         // Europe/Zurich im Oktober: UTC+2. Kurz und ganz zwischen 09:00 und 19:00 Ortszeit: Nickerchen (Grenzen
         // einschliesslich).
-        XCTAssertTrue(HealthSession(start: t("2026-10-02T07:00:00Z"), end: t("2026-10-02T09:00:00Z")).isNap(calendar: calendar))
-        XCTAssertTrue(HealthSession(start: t("2026-10-02T15:00:00Z"), end: t("2026-10-02T17:00:00Z")).isNap(calendar: calendar))
+        XCTAssertTrue(HealthSession(start: t("2026-10-02T07:00:00Z"),
+                                    end: t("2026-10-02T09:00:00Z")).isNap(calendar: calendar))
+        XCTAssertTrue(HealthSession(start: t("2026-10-02T15:00:00Z"),
+                                    end: t("2026-10-02T17:00:00Z")).isNap(calendar: calendar))
         // Beginn 08:59 oder Ende 19:01: Nacht.
-        XCTAssertFalse(HealthSession(start: t("2026-10-02T06:59:00Z"), end: t("2026-10-02T08:59:00Z")).isNap(calendar: calendar))
-        XCTAssertFalse(HealthSession(start: t("2026-10-02T15:01:00Z"), end: t("2026-10-02T17:01:00Z")).isNap(calendar: calendar))
+        XCTAssertFalse(HealthSession(start: t("2026-10-02T06:59:00Z"),
+                                     end: t("2026-10-02T08:59:00Z")).isNap(calendar: calendar))
+        XCTAssertFalse(HealthSession(start: t("2026-10-02T15:01:00Z"),
+                                     end: t("2026-10-02T17:01:00Z")).isNap(calendar: calendar))
         // Über Mitternacht (23:00–01:00) und kurz in der Nacht (01:00–03:00): Nacht, im Verlauf.
-        XCTAssertFalse(HealthSession(start: t("2026-10-01T21:00:00Z"), end: t("2026-10-01T23:00:00Z")).isNap(calendar: calendar))
+        XCTAssertFalse(HealthSession(start: t("2026-10-01T21:00:00Z"),
+                                     end: t("2026-10-01T23:00:00Z")).isNap(calendar: calendar))
         let short = HealthSession(start: t("2026-10-01T23:00:00Z"), end: t("2026-10-02T01:00:00Z"))
         XCTAssertFalse(short.isNap(calendar: calendar))
         let items = merge([], [short])
@@ -137,7 +147,8 @@ final class HealthHistoryTests: XCTestCase {
         XCTAssertEqual(items.first?.date, "2026-10-01")
         // Diagramme und Trends nach derselben Regel: kurze Nacht zählt, Nickerchen am Tag nicht.
         let dayNap = HealthSession(start: t("2026-10-02T10:00:00Z"), end: t("2026-10-02T12:00:00Z"))
-        XCTAssertEqual(HealthHistory.summaries([short, dayNap], clearedAt: nil, calendar: calendar).map(\.asleepMinutes), [120])
+        XCTAssertEqual(HealthHistory.summaries([short, dayNap], clearedAt: nil,
+                                               calendar: calendar).map(\.asleepMinutes), [120])
         XCTAssertEqual(HealthHistory.napEarliestHour, 9)
         XCTAssertEqual(HealthHistory.napLatestHour, 19)
     }
@@ -193,8 +204,10 @@ final class HealthHistoryTests: XCTestCase {
 
     func testSummariesRespectCleared() {
         let plain = HealthSession(start: t("2026-10-03T22:00:00Z"), end: t("2026-10-04T06:00:00Z"))
-        XCTAssertEqual(HealthHistory.summaries([full, plain], clearedAt: nil, calendar: calendar).map(\.asleepMinutes), [435, 480])
-        XCTAssertEqual(HealthHistory.summaries([full, plain], clearedAt: full.end, calendar: calendar).map(\.asleepMinutes), [480])
+        XCTAssertEqual(HealthHistory.summaries([full, plain], clearedAt: nil, calendar: calendar).map(\.asleepMinutes),
+                       [435, 480])
+        XCTAssertEqual(HealthHistory.summaries([full, plain], clearedAt: full.end,
+                                               calendar: calendar).map(\.asleepMinutes), [480])
         XCTAssertEqual(HealthHistory.stages([plain, full], clearedAt: nil, calendar: calendar).count, 5)
         XCTAssertEqual(HealthHistory.stages([plain, full], clearedAt: nil, calendar: calendar).first, full.stages.first)
         XCTAssertTrue(HealthHistory.stages([full], clearedAt: full.end, calendar: calendar).isEmpty)
@@ -202,9 +215,11 @@ final class HealthHistoryTests: XCTestCase {
 
     func testOverlappingAppsCountOnce() {
         // Zwei Apps schreiben dieselbe Nacht: die mit Phasen gewinnt, auch wenn die andere länger ist.
-        let fit = HealthSession(start: t("2026-10-01T20:30:00Z"), end: t("2026-10-02T06:00:00Z"), source: "com.google.android.apps.fitness")
+        let fit = HealthSession(start: t("2026-10-01T20:30:00Z"), end: t("2026-10-02T06:00:00Z"),
+                                source: "com.google.android.apps.fitness")
         XCTAssertEqual(merge([], [fit, full]).map(\.session), [full])
-        XCTAssertEqual(HealthHistory.summaries([fit, full], clearedAt: nil, calendar: calendar).map(\.asleepMinutes), [435])
+        XCTAssertEqual(HealthHistory.summaries([fit, full], clearedAt: nil, calendar: calendar).map(\.asleepMinutes),
+                       [435])
         XCTAssertEqual(HealthHistory.stages([fit, full], clearedAt: nil, calendar: calendar), full.stages)
         // Beide ohne Phasen: die längere.
         let short = HealthSession(start: t("2026-10-01T22:00:00Z"), end: t("2026-10-02T05:00:00Z"))
@@ -232,11 +247,19 @@ final class HealthHistoryTests: XCTestCase {
         // Wecker am Mittag (Fenster 12:30–13:00, Nachtdatum 2.10.): Sitzung 04:30–12:30 (Nachtdatum 1.10.) endet genau
         // am Fensterbeginn und bleibt; eine Sekunde länger überschneidet sie sich und fällt weg.
         let noon = night("2026-10-02T10:30:00Z", "2026-10-02T11:00:00Z")
-        XCTAssertEqual(merge([noon], [HealthSession(start: t("2026-10-02T02:30:00Z"), end: t("2026-10-02T10:30:00Z"))]).count, 2)
-        XCTAssertEqual(merge([noon], [HealthSession(start: t("2026-10-02T02:30:00Z"), end: t("2026-10-02T10:30:01Z"))]).count, 1)
+        XCTAssertEqual(merge([noon],
+                             [HealthSession(start: t("2026-10-02T02:30:00Z"), end: t("2026-10-02T10:30:00Z"))]).count,
+                       2)
+        XCTAssertEqual(merge([noon],
+                             [HealthSession(start: t("2026-10-02T02:30:00Z"), end: t("2026-10-02T10:30:01Z"))]).count,
+                       1)
         // Anderes Nachtdatum, beginnt genau beim Wecken: bleibt; eine Sekunde früher: fällt weg.
-        XCTAssertEqual(merge([own], [HealthSession(start: t("2026-10-02T05:00:00Z"), end: t("2026-10-02T20:00:00Z"))]).count, 2)
-        XCTAssertEqual(merge([own], [HealthSession(start: t("2026-10-02T04:59:59Z"), end: t("2026-10-02T20:00:00Z"))]).count, 1)
+        XCTAssertEqual(merge([own],
+                             [HealthSession(start: t("2026-10-02T05:00:00Z"), end: t("2026-10-02T20:00:00Z"))]).count,
+                       2)
+        XCTAssertEqual(merge([own],
+                             [HealthSession(start: t("2026-10-02T04:59:59Z"), end: t("2026-10-02T20:00:00Z"))]).count,
+                       1)
     }
 
     func testDocumentedNumbersAsLiterals() {
@@ -260,9 +283,11 @@ final class HealthHistoryTests: XCTestCase {
     func testNapRuleUsesTheZoneOfTheRecording() {
         // Nickerchen in New York 13:00–15:30 (EDT), angeschaut in Zürich (19:00–21:30): bleibt ein Nickerchen.
         let newYorkZone = TimeZone(identifier: "America/New_York")!
-        let newYork = HealthSession(start: t("2026-10-02T17:00:00Z"), end: t("2026-10-02T19:30:00Z"), timeZone: newYorkZone)
+        let newYork = HealthSession(start: t("2026-10-02T17:00:00Z"), end: t("2026-10-02T19:30:00Z"),
+                                    timeZone: newYorkZone)
         XCTAssertTrue(newYork.isNap(calendar: calendar))
-        XCTAssertFalse(HealthSession(start: newYork.start, end: newYork.end).isNap(calendar: calendar), "ohne Zone wie bisher")
+        XCTAssertFalse(HealthSession(start: newYork.start, end: newYork.end).isNap(calendar: calendar),
+                       "ohne Zone wie bisher")
         XCTAssertTrue(merge([], [newYork]).isEmpty)
         XCTAssertTrue(HealthHistory.summaries([newYork], clearedAt: nil, calendar: calendar).isEmpty)
         // Kurze Nacht in Tokio 23:00–01:00 (+09:00), in Zürich 16:00–18:00: bleibt eine Nacht.
@@ -272,6 +297,7 @@ final class HealthHistoryTests: XCTestCase {
         XCTAssertTrue(HealthSession(start: tokyo.start, end: tokyo.end).isNap(calendar: calendar))
         XCTAssertEqual(merge([], [tokyo]).map(\.session), [tokyo])
         XCTAssertEqual(tokyo.localCalendar(calendar).timeZone, tokyoZone)
-        XCTAssertEqual(HealthSession(start: tokyo.start, end: tokyo.end).localCalendar(calendar).timeZone, calendar.timeZone)
+        XCTAssertEqual(HealthSession(start: tokyo.start, end: tokyo.end).localCalendar(calendar).timeZone,
+                       calendar.timeZone)
     }
 }

@@ -13,7 +13,9 @@ final class InsightsTests: XCTestCase {
 
     private func night(_ epochs: [Epoch], feeling: Int? = nil, daysAgo: Double = 0) -> NightRecord {
         let ws = start.addingTimeInterval(-daysAgo * 86_400)
-        return NightRecord(alarmId: "a", windowStart: ws, target: ws.addingTimeInterval(1800), wokeAt: ws.addingTimeInterval(1200), reason: .lightSleep, snoozes: 0, epochs: epochs, feeling: feeling)
+        return NightRecord(alarmId: "a", windowStart: ws, target: ws.addingTimeInterval(1800),
+                           wokeAt: ws.addingTimeInterval(1200), reason: .lightSleep, snoozes: 0, epochs: epochs,
+                           feeling: feeling)
     }
 
     private func epochs(_ n: Int, _ motion: (Int) -> Double?, _ hr: (Int) -> Double?) -> [Epoch] {
@@ -30,7 +32,8 @@ final class InsightsTests: XCTestCase {
     }
 
     private func at(_ text: String) -> Date { ISO8601DateFormatter().date(from: text + ":00Z")! }
-    private func span(_ from: String, _ to: String, _ stage: SleepStage) -> StageSpan { StageSpan(start: at(from), end: at(to), stage: stage) }
+    private func span(_ from: String, _ to: String,
+                      _ stage: SleepStage) -> StageSpan { StageSpan(start: at(from), end: at(to), stage: stage) }
 
     func testSleepIsGroupedIntoNights() {
         let nights = SleepSummary.group([
@@ -42,7 +45,8 @@ final class InsightsTests: XCTestCase {
             span("2026-10-28T00:30", "2026-10-28T06:30", .rem),
         ])
         XCTAssertEqual(nights.count, 3)
-        XCTAssertEqual(nights[0], SleepSummary(start: at("2026-10-26T23:10"), end: at("2026-10-27T06:40"), asleepMinutes: 430))
+        XCTAssertEqual(nights[0],
+                       SleepSummary(start: at("2026-10-26T23:10"), end: at("2026-10-27T06:40"), asleepMinutes: 430))
         XCTAssertEqual(nights[1].asleepMinutes, 40)
         XCTAssertEqual(nights[2].asleepMinutes, 360)
         XCTAssertEqual(SleepSummary.group([span("2026-10-27T01:00", "2026-10-27T07:00", .awake)]), [])
@@ -52,7 +56,8 @@ final class InsightsTests: XCTestCase {
         // Drei Phasen à 10 Min. 30 s: 31 Minuten (je Phase abgerundet wären es 30).
         let first = at("2026-10-27T01:00")
         let spans = [SleepStage.light, .deep, .rem].enumerated().map { i, stage in
-            StageSpan(start: first.addingTimeInterval(Double(i) * 630), end: first.addingTimeInterval(Double(i + 1) * 630), stage: stage)
+            StageSpan(start: first.addingTimeInterval(Double(i) * 630),
+                      end: first.addingTimeInterval(Double(i + 1) * 630), stage: stage)
         }
         XCTAssertEqual(SleepSummary.group(spans).map(\.asleepMinutes), [31])
     }
@@ -65,8 +70,10 @@ final class InsightsTests: XCTestCase {
             let bed = day.addingTimeInterval(Double(bedHour * 3600 + bedMinute * 60))
             return SleepSummary(start: bed, end: end, asleepMinutes: minutes)
         }
-        let sleeps = [sleep(0, 420, 23, 0), sleep(1, 400, 23, 30), sleep(2, 440, 23, 0), sleep(8, 460, 22, 30), sleep(9, 440, 23, 0), sleep(10, 450, 23, 30)]
-        let nights = [night([], feeling: 4, daysAgo: 0), night([], feeling: 3, daysAgo: 1), night([], feeling: 5, daysAgo: 2), night([], feeling: 2, daysAgo: 8)]
+        let sleeps = [sleep(0, 420, 23, 0), sleep(1, 400, 23, 30), sleep(2, 440, 23, 0), sleep(8, 460, 22, 30),
+                      sleep(9, 440, 23, 0), sleep(10, 450, 23, 30)]
+        let nights = [night([], feeling: 4, daysAgo: 0), night([], feeling: 3, daysAgo: 1),
+                      night([], feeling: 5, daysAgo: 2), night([], feeling: 2, daysAgo: 8)]
         let trends = Trends.compute(nights: nights, sleeps: sleeps, now: now, calendar: utc)
         XCTAssertEqual(trends.asleepThisWeek, 420)
         XCTAssertEqual(trends.asleepLastWeek, 450)
@@ -75,7 +82,8 @@ final class InsightsTests: XCTestCase {
         XCTAssertNil(trends.feelingLastWeek)
         XCTAssertEqual(trends.bedtimeSpreadMinutes, 16)
 
-        let few = Trends.compute(nights: Array(nights.prefix(2)), sleeps: Array(sleeps.prefix(2)), now: now, calendar: utc)
+        let few = Trends.compute(nights: Array(nights.prefix(2)), sleeps: Array(sleeps.prefix(2)), now: now,
+                                 calendar: utc)
         XCTAssertNil(few.asleepThisWeek)
         XCTAssertNil(few.asleepChange)
         XCTAssertNil(few.bedtimeSpreadMinutes)
@@ -108,9 +116,11 @@ final class MissHintTests: XCTestCase {
     private let spec = try! AlarmSpec(id: "a", hour: 7, minute: 0, windowMinutes: 30)
     private let start = ISO8601DateFormatter().date(from: "2026-10-20T05:30:00Z")!
 
-    private func night(_ day: Double, _ reason: WakeReason = .deadline, hr: Double? = 55, motion: Double? = 0.0005, id: String = "a") -> NightRecord {
+    private func night(_ day: Double, _ reason: WakeReason = .deadline, hr: Double? = 55, motion: Double? = 0.0005,
+                       id: String = "a") -> NightRecord {
         let ws = start.addingTimeInterval(day * 86_400)
-        return NightRecord(alarmId: id, windowStart: ws, target: ws.addingTimeInterval(1800), wokeAt: ws.addingTimeInterval(1800), reason: reason, snoozes: 0,
+        return NightRecord(alarmId: id, windowStart: ws, target: ws.addingTimeInterval(1800),
+                           wokeAt: ws.addingTimeInterval(1800), reason: reason, snoozes: 0,
                            epochs: Array(repeating: Epoch(motion: motion, heartRate: hr), count: 60))
     }
 
@@ -126,7 +136,8 @@ final class MissHintTests: XCTestCase {
 
     func testCauseFollowsDataQuality() {
         XCTAssertEqual(MissHint.of(spec, nights: [night(0, hr: nil), night(1, hr: nil), night(2)]), .heartMissing)
-        XCTAssertEqual(MissHint.of(spec, nights: [night(0, motion: nil), night(1, motion: nil), night(2, hr: nil)]), .gaps)
+        XCTAssertEqual(MissHint.of(spec, nights: [night(0, motion: nil), night(1, motion: nil), night(2, hr: nil)]),
+                       .gaps)
     }
 }
 

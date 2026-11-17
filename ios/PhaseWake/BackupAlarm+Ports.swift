@@ -9,7 +9,8 @@ protocol BackupPlatform: AnyObject {
     /// Ob AlarmKit da ist (ab iOS 26); sonst gibt es nur Mitteilungen.
     var alarmKit: Bool { get }
     /// Stellt einen iPhone-Alarm (``BackupAlarm/schedule(id:at:fromWatch:snoozesLeft:tone:chain:)``).
-    func place(id: UUID, at date: Date, fromWatch: Bool, snoozesLeft: Int, tone: WakeTone?, chain: Int) async -> BackupAlarm.Placement
+    func place(id: UUID, at date: Date, fromWatch: Bool, snoozesLeft: Int, tone: WakeTone?,
+               chain: Int) async -> BackupAlarm.Placement
     /// Stellt die Kette als Mitteilung (``BackupAlarm/scheduleNotification(id:at:tone:fixed:count:skip:)``).
     /// - Returns: wie viele der Kette danach stehen.
     func notify(id: UUID, at date: Date, tone: WakeTone?, fixed: Bool, count: Int, skip: Set<String>) async -> Int
@@ -68,7 +69,9 @@ final class AppBackupHost: BackupHost {
     func disableAfterRing(_ spec: AlarmSpec) { PhoneModel.shared.disableAfterRing(spec) }
     func phoneAlerted(_ id: String) { PhoneModel.shared.transient.phoneAlerted(id) }
     func shifted(_ plan: WakePlan?, now: Date) -> WakePlan? { WatchNight.shared.apply(plan, now: now) }
-    func originalTarget(alarmId: String?, target: Date?) -> Date? { WatchNight.shared.original(alarmId: alarmId, target: target) }
+    func originalTarget(alarmId: String?, target: Date?) -> Date? {
+        WatchNight.shared.original(alarmId: alarmId, target: target)
+    }
     func noteAlarms(_ alarms: [AlarmSpec], now: Date) {
         LearnLogStore.shared.noteAlarms(alarms, holidays: PhoneModel.shared.holidays.dates, now: now)
     }

@@ -103,7 +103,10 @@ class PhoneRingStopTest {
         SnoozeSafety.save(context, SnoozeSafety.Saved(now, "a", 1))
         shadowOf(RuntimeEnvironment.getApplication()).clearStartedServices()
         PhoneRingService.command(context, PhoneRingService.ACTION_STOP_SILENT)
-        assertEquals(PhoneRingService.ACTION_STOP_SILENT, shadowOf(RuntimeEnvironment.getApplication()).nextStartedService?.action)
+        assertEquals(
+            PhoneRingService.ACTION_STOP_SILENT,
+            shadowOf(RuntimeEnvironment.getApplication()).nextStartedService?.action,
+        )
         send(service, PhoneRingService.ACTION_STOP_SILENT, 2)
         assertEquals(PhoneRingService.State.Idle, PhoneRingService.ringState.value)
         assertNull(PhoneSnooze.load(context))
@@ -123,7 +126,9 @@ class PhoneRingStopTest {
     @Test
     fun ownToneFadesInAndDucksWhileTyping() {
         val harp = WakeTones.ALL.first { it.key == "raw:wake_harp" }
-        ShadowMediaPlayer.addMediaInfo(DataSource.toDataSource(context, WakeTones.uri(context, harp)), ShadowMediaPlayer.MediaInfo(28_000, 0))
+        ShadowMediaPlayer.addMediaInfo(
+            DataSource.toDataSource(context, WakeTones.uri(context, harp)), ShadowMediaPlayer.MediaInfo(28_000, 0),
+        )
         runBlocking { context.phoneApp.alarms.upsert(AlarmSpec(id = "tone", hour = 7, minute = 0, sound = harp.key)) }
         val service = start(ringIntent("tone"))
         // Tippen in der Weckaufgabe: leiser, nach einer Pause wieder voll; das Klingeln läuft weiter.
@@ -141,7 +146,8 @@ class PhoneRingStopTest {
         val service = start(ringIntent("a"))
         // Zweite Weckmeldung derselben Nacht (ohne Zielzeit), jetzt von der Uhr mit ihrer Restzahl: die Uhr führt.
         val again = Intent(context, PhoneRingService::class.java).setAction(PhoneRingService.ACTION_RING)
-            .putExtra(PhoneRingService.EXTRA_ALARM_ID, "a").putExtra("fromWatch", true).putExtra(PhoneRingService.EXTRA_SNOOZES_LEFT, 1)
+            .putExtra(PhoneRingService.EXTRA_ALARM_ID, "a").putExtra("fromWatch", true)
+            .putExtra(PhoneRingService.EXTRA_SNOOZES_LEFT, 1)
         service.onStartCommand(again, 0, 2)
         shadowOf(Looper.getMainLooper()).idle()
         val state = PhoneRingService.ringState.value as PhoneRingService.State.Ringing
@@ -152,7 +158,9 @@ class PhoneRingStopTest {
     @Test
     fun tonePreviewPlaysAndEndsByItself() {
         val harp = WakeTones.ALL.first { it.key == "raw:wake_harp" }
-        ShadowMediaPlayer.addMediaInfo(DataSource.toDataSource(context, WakeTones.uri(context, harp)), ShadowMediaPlayer.MediaInfo(28_000, 0))
+        ShadowMediaPlayer.addMediaInfo(
+            DataSource.toDataSource(context, WakeTones.uri(context, harp)), ShadowMediaPlayer.MediaInfo(28_000, 0),
+        )
         val preview = WakeTonePreview(context)
         preview.play(harp)
         // Nach einigen Sekunden endet das Probehören von selbst; ein zweites «stop» schadet nicht.

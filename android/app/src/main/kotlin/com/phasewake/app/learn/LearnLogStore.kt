@@ -53,7 +53,8 @@ class LearnLogStore(private val store: DataStore<Preferences>, private val zone:
     suspend fun noteAlarms(alarms: List<AlarmSpec>, holidays: Set<LocalDate>, now: Instant) {
         val planned = LearnLog.upcomingTargets(alarms, now, zone(), holidays)
         store.edit { prefs ->
-            val merged = LearnLog.mergeAlarmNights(LearnLog.decodeAlarmNights(prefs[ALARM_NIGHTS]), planned, now, zone())
+            val merged =
+                LearnLog.mergeAlarmNights(LearnLog.decodeAlarmNights(prefs[ALARM_NIGHTS]), planned, now, zone())
             prefs[ALARM_NIGHTS] = LearnLog.encodeAlarmNights(merged)
             if (prefs[ALARMS_SINCE] == null) prefs[ALARMS_SINCE] = now.toEpochMilli()
         }
@@ -63,7 +64,9 @@ class LearnLogStore(private val store: DataStore<Preferences>, private val zone:
     suspend fun clear(now: Instant) {
         store.edit { prefs ->
             prefs.remove(SKIPS)
-            prefs[ALARM_NIGHTS] = LearnLog.encodeAlarmNights(LearnLog.decodeAlarmNights(prefs[ALARM_NIGHTS]).filterValues { it.isAfter(now) })
+            prefs[ALARM_NIGHTS] = LearnLog.encodeAlarmNights(
+                LearnLog.decodeAlarmNights(prefs[ALARM_NIGHTS]).filterValues { it.isAfter(now) }
+            )
             prefs[ALARMS_SINCE] = now.toEpochMilli()
         }
     }

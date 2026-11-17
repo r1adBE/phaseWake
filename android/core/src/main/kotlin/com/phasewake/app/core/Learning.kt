@@ -152,7 +152,8 @@ object Learning {
         return Values(
             floor = median(floors),
             restingHeartRate = pulses.takeIf { it.size >= MIN_VALUE_NIGHTS }?.let(::median),
-            latencyMinutes = latencies.takeIf { it.size >= MIN_VALUE_NIGHTS }?.let { median(it.map(Int::toDouble)) }?.let { Math.round(it).toInt() },
+            latencyMinutes = latencies.takeIf { it.size >= MIN_VALUE_NIGHTS }?.let { median(it.map(Int::toDouble)) }
+                ?.let { Math.round(it).toInt() },
             nights = counted.size,
         )
     }

@@ -116,10 +116,14 @@ object SleepOverviews {
         /** Phasen aus der Gesundheits-App ([HealthHistory.stages]) für die Aufteilung der Säulen; leer: keine. */
         stages: List<StageSpan> = emptyList(),
     ): SleepOverview? {
-        val longest = sleeps.groupBy { SleepNotes.nightDate(it, zone) }.mapValues { (_, list) -> list.maxBy { it.asleepMinutes } }
+        val longest =
+            sleeps.groupBy { SleepNotes.nightDate(it, zone) }.mapValues { (_, list) -> list.maxBy { it.asleepMinutes } }
         val last = ChartData.lastDate(longest.keys, today)
         val ranges = ranges(last, unit, firstDay)
-        val inRange = longest.filterKeys { date -> !date.isBefore(ranges.first().first) && !date.isAfter(ranges.last().second) }.values
+        val inRange =
+            longest.filterKeys { date ->
+                !date.isBefore(ranges.first().first) && !date.isAfter(ranges.last().second)
+            }.values
         if (inRange.isEmpty()) return null
         val bars = ranges.map { (first, lastDate) ->
             val sleepsInBar = longest.filterKeys { !it.isBefore(first) && !it.isAfter(lastDate) }.values
@@ -136,7 +140,9 @@ object SleepOverviews {
             averageMinutes = minutes.sum() / minutes.size,
             // Ohne Sprung um Mittag: Aufwachen 11:56 und 12:50 ergibt 12:23, nicht 00:23.
             // Je Nacht in der Zone ihrer Aufzeichnung.
-            bedtimeMinute = Regularity.meanMinute(inRange.map { Regularity.minutesFromNoon(it.start, it.zoneOr(zone)) }),
+            bedtimeMinute = Regularity.meanMinute(
+                inRange.map { Regularity.minutesFromNoon(it.start, it.zoneOr(zone)) },
+            ),
             wakeMinute = Regularity.meanMinute(inRange.map { Regularity.minutesFromNoon(it.end, it.zoneOr(zone)) }),
             counted = minutes.size,
             reachedNights = minutes.count { SleepGoal.reached(it, goalMinutes) },
@@ -155,15 +161,22 @@ object SleepOverviews {
             StageCheck.clip(stages, sleep.start, sleep.end).filter { ChartData.level(it.stage) != null }
         }
         // Eine Nacht nur mit «wach» (Quelle ohne Phasendetail) hat keine Phasen wie in [StageStats.of].
-        if (perNight.isEmpty() || perNight.any { spans -> spans.none { it.stage != SleepStage.AWAKE } }) return emptyMap()
+        val onlyAwake = perNight.any { spans -> spans.none { it.stage != SleepStage.AWAKE } }
+        if (perNight.isEmpty() || onlyAwake) return emptyMap()
         return StageStats.ORDER.associateWith { stage ->
-            perNight.sumOf { spans -> spans.filter { it.stage == stage }.sumOf { Duration.between(it.start, it.end).toMillis() } } /
+            perNight.sumOf { spans ->
+                spans.filter { it.stage == stage }.sumOf { Duration.between(it.start, it.end).toMillis() }
+            } /
                 perNight.size / StageStats.MS_PER_MINUTE
         }
     }
 
     /** Bereiche der Säulen als Nachtdaten (erstes, letztes), älteste zuerst; der letzte enthält [last]. */
-    fun ranges(last: LocalDate, unit: OverviewUnit, firstDay: DayOfWeek = DayOfWeek.MONDAY): List<Pair<LocalDate, LocalDate>> {
+    fun ranges(
+        last: LocalDate,
+        unit: OverviewUnit,
+        firstDay: DayOfWeek = DayOfWeek.MONDAY,
+    ): List<Pair<LocalDate, LocalDate>> {
         // Wochen und Monate über den Morgen: Nachtdatum + 1 Tag.
         val morning = last.plusDays(1)
         return (unit.count - 1 downTo 0).map { back ->

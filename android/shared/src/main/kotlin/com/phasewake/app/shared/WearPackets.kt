@@ -22,7 +22,12 @@ abstract class WearPackets {
      * der Uhr-App (`BuildNumber`), fehlt, wenn unbekannt.
      */
     fun statusRequest(
-        ready: Boolean, battery: Int?, nowMs: Long, pulse: WatchPulse? = null, recorderSkip: RecorderSkip.Reason? = null, charging: Boolean = false,
+        ready: Boolean,
+        battery: Int?,
+        nowMs: Long,
+        pulse: WatchPulse? = null,
+        recorderSkip: RecorderSkip.Reason? = null,
+        charging: Boolean = false,
         build: Int? = null,
     ): PutDataRequest =
         PutDataMapRequest.create(DataLayer.PATH_WATCH_STATUS).apply {
@@ -72,16 +77,21 @@ abstract class WearPackets {
             ?.let { code -> RecorderSkip.Reason.entries.firstOrNull { it.code == code } }
 
     /** Verbindungs-Stand der Uhr aus dem Status-Paket; ohne Angabe (Uhr vor dieser Angabe) 0. */
-    fun readProtocol(map: DataMap): Int = if (map.containsKey(DataLayer.KEY_PROTOCOL)) map.getInt(DataLayer.KEY_PROTOCOL) else 0
+    fun readProtocol(map: DataMap): Int =
+        if (map.containsKey(DataLayer.KEY_PROTOCOL)) map.getInt(DataLayer.KEY_PROTOCOL) else 0
 
     /** Build-Nummer der Uhr aus dem Status-Paket; `null` ohne Angabe (ältere Uhr, lokaler Build). */
-    fun readBuild(map: DataMap): Int? = map.takeIf { it.containsKey(DataLayer.KEY_BUILD) }?.getInt(DataLayer.KEY_BUILD)?.takeIf { it > BuildNumber.LOCAL }
+    fun readBuild(map: DataMap): Int? =
+        map.takeIf {
+            it.containsKey(DataLayer.KEY_BUILD)
+        }?.getInt(DataLayer.KEY_BUILD)?.takeIf { it > BuildNumber.LOCAL }
 
     /**
      * Ob die Uhr-App älter ist als die Handy-App: ihr Verbindungs-Stand [watchProtocol] ist kleiner als
      * [own]. `null` (keine Uhr bekannt) warnt nicht; ein Status ohne Angabe stammt von einer älteren Uhr.
      */
-    fun watchOutdated(watchProtocol: Int?, own: Int = DataLayer.PROTOCOL): Boolean = watchProtocol != null && watchProtocol < own
+    fun watchOutdated(watchProtocol: Int?, own: Int = DataLayer.PROTOCOL): Boolean =
+        watchProtocol != null && watchProtocol < own
 
     /** Zeitpunkt des Status-Pakets (ms); `null` ohne Angabe. */
     fun readSeenAt(map: DataMap): Long? = map.getLong(DataLayer.KEY_UPDATED_AT).takeIf { it > 0 }

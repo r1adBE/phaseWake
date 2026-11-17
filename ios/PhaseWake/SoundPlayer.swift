@@ -36,13 +36,15 @@ final class SoundPlayer {
 
     init() {
         let center = NotificationCenter.default
-        observers.append(center.addObserver(forName: AVAudioSession.interruptionNotification, object: nil, queue: .main) { [weak self] note in
+        observers.append(center.addObserver(forName: AVAudioSession.interruptionNotification, object: nil,
+                                            queue: .main) { [weak self] note in
             let raw = note.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt
             guard raw.flatMap(AVAudioSession.InterruptionType.init(rawValue:)) == .began else { return }
             Task { @MainActor in self?.teardown() }
         })
         // Ausgabe gewechselt (Kopfhörer): Die Engine hält an und muss neu starten.
-        observers.append(center.addObserver(forName: .AVAudioEngineConfigurationChange, object: nil, queue: .main) { [weak self] _ in
+        observers.append(center.addObserver(forName: .AVAudioEngineConfigurationChange, object: nil,
+                                            queue: .main) { [weak self] _ in
             Task { @MainActor in
                 guard let self, self.playing != nil, let engine = self.engine, !engine.isRunning else { return }
                 do { try engine.start() } catch { self.teardown() }
@@ -111,9 +113,11 @@ final class SoundPlayer {
 
     private func begin(_ sound: SleepSound, recording: LoopedRecording?, end: Date?, now: Date) {
         let rate = recording?.buffer.format.sampleRate ?? Self.sampleRate
-        let generator = recording == nil ? NoiseGenerator(sound: sound, sampleRate: rate, seed: UInt64(now.timeIntervalSince1970)) : nil
+        let generator = recording == nil
+            ? NoiseGenerator(sound: sound, sampleRate: rate, seed: UInt64(now.timeIntervalSince1970)) : nil
         let channels = recording.map { Int($0.buffer.format.channelCount) } ?? generator?.channels ?? 1
-        guard let format = AVAudioFormat(standardFormatWithSampleRate: rate, channels: AVAudioChannelCount(channels)) else {
+        guard let format = AVAudioFormat(standardFormatWithSampleRate: rate,
+                                         channels: AVAudioChannelCount(channels)) else {
             teardown()
             return
         }
@@ -122,10 +126,7 @@ final class SoundPlayer {
         do {
             try AudioSessionUse.activate()
         } catch {
-            AudioSessionUse.playing = false
-            AudioSessionUse.release()
-            playing = nil
-            endsAt = nil
+            abandonStart()
             return
         }
         let state = RenderState(
@@ -145,10 +146,7 @@ final class SoundPlayer {
         do {
             try engine.start()
         } catch {
-            AudioSessionUse.playing = false
-            AudioSessionUse.release()
-            playing = nil
-            endsAt = nil
+            abandonStart()
             return
         }
         generation += 1
@@ -168,6 +166,14 @@ final class SoundPlayer {
                 self.shortenToWindow()
             }
         }
+    }
+
+    /// Start gescheitert: Sitzung freigeben, nichts spielt.
+    private func abandonStart() {
+        AudioSessionUse.playing = false
+        AudioSessionUse.release()
+        playing = nil
+        endsAt = nil
     }
 
     /// Räumt nach dem Ende auf (ausgeblendet ist dann schon).
@@ -260,7 +266,8 @@ private final class RenderState: @unchecked Sendable {
     /// Verstärkung der Aufnahme (`SleepSound.gain`); erzeugte Klänge 1.
     private let boost: Float
 
-    init(generator: NoiseGenerator?, recording: LoopedRecording?, channels: Int, sampleRate: Double, totalFrames: Int64, boost: Float = 1) {
+    init(generator: NoiseGenerator?, recording: LoopedRecording?, channels: Int, sampleRate: Double, totalFrames: Int64,
+         boost: Float = 1) {
         self.generator = generator
         self.recording = recording
         self.channels = channels
@@ -313,7 +320,8 @@ final class LoopedRecording: @unchecked Sendable {
     /// Stille am Rand (Vorlauf des AAC-Decoders) bis zu diesem Betrag wird abgeschnitten (4 von 32768).
     private static let silence: Float = 4 / 32_768
 
-    private init(buffer: AVAudioPCMBuffer, data: UnsafePointer<UnsafeMutablePointer<Float>>, start: Int, loopStart: Int, end: Int) {
+    private init(buffer: AVAudioPCMBuffer, data: UnsafePointer<UnsafeMutablePointer<Float>>, start: Int, loopStart: Int,
+                 end: Int) {
         self.buffer = buffer
         self.data = data
         self.start = start
@@ -330,7 +338,8 @@ final class LoopedRecording: @unchecked Sendable {
         guard let url = Bundle.main.url(forResource: name, withExtension: "m4a")
                 ?? Bundle.main.url(forResource: name, withExtension: "m4a", subdirectory: "Sounds"),
               let file = try? AVAudioFile(forReading: url),
-              let buffer = AVAudioPCMBuffer(pcmFormat: file.processingFormat, frameCapacity: AVAudioFrameCount(file.length)),
+              let buffer = AVAudioPCMBuffer(pcmFormat: file.processingFormat,
+                                            frameCapacity: AVAudioFrameCount(file.length)),
               (try? file.read(into: buffer)) != nil,
               let data = buffer.floatChannelData else { return nil }
         let channels = Int(buffer.format.channelCount)

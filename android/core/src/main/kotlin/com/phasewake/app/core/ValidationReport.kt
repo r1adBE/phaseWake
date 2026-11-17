@@ -13,14 +13,21 @@ object ValidationReport {
     const val TITLE: String = "VALIDATION"
 
     /** Erste Zeile von [lines]: was die Referenz ist und wie die Summen zu lesen sind. */
-    const val NOTE: String = "reference = sleep stages of the health app (estimate of the watch, not a sleep lab), ±1 min; " +
+    const val NOTE: String =
+        "reference = sleep stages of the health app (estimate of the watch, not a sleep lab), ±1 min; " +
         "x/y = light, REM or awake of decisions with a known stage; target = DEADLINE, EXACT, SHORT_NIGHT"
 
     /** Kopfzeile von [exportCsv]. */
     const val CSV_HEADER: String = "night,time,kind,reason,ref_stage"
 
     /** Zählt die Referenzphasen von Entscheiden ([Validation.Ref.NONE] zählt nicht). */
-    data class Tally(val awake: Int = 0, val light: Int = 0, val rem: Int = 0, val deep: Int = 0, val unknown: Int = 0) {
+    data class Tally(
+        val awake: Int = 0,
+        val light: Int = 0,
+        val rem: Int = 0,
+        val deep: Int = 0,
+        val unknown: Int = 0,
+    ) {
         /** Leicht, REM oder wach: ein guter Moment. */
         val good: Int get() = awake + light + rem
 
@@ -56,10 +63,12 @@ object ValidationReport {
      */
     fun summary(entries: List<Validation.Entry>): String {
         val counted = entries.filter { it.ref != Validation.Ref.NONE }
-        fun of(kind: Validation.Kind, filter: (WakeReason) -> Boolean) = Tally.of(counted.filter { it.kind == kind && filter(it.reason) })
+        fun of(kind: Validation.Kind, filter: (WakeReason) -> Boolean) =
+            Tally.of(counted.filter { it.kind == kind && filter(it.reason) })
         val real = Validation.Kind.REAL
         val shadow = Validation.Kind.SHADOW
-        return "LIGHT_SLEEP real ${of(real) { it == WakeReason.LIGHT_SLEEP }.ratio()} shadow ${of(shadow) { it == WakeReason.LIGHT_SLEEP }.ratio()}" +
+        val light = { kind: Validation.Kind -> of(kind) { it == WakeReason.LIGHT_SLEEP }.ratio() }
+        return "LIGHT_SLEEP real ${light(real)} shadow ${light(shadow)}" +
             " · target real ${of(real) { it.atTarget }.stages()} shadow ${of(shadow) { it.atTarget }.stages()}" +
             " · hits real ${of(real) { true }.ratio()}"
     }
@@ -74,11 +83,15 @@ object ValidationReport {
         val byNight = entries.groupBy { it.night }
         val out = mutableListOf(NOTE)
         for ((night, list) in byNight) {
-            list.forEach { out += "night $night ${time(it.at, it.zone)} ${it.kind.code} ${it.reason.name} ${it.ref.code}" }
-            out += if (list.all { it.ref == Validation.Ref.NONE }) "night $night: no reference" else "night $night: ${summary(list)}"
+            list.forEach {
+                out += "night $night ${time(it.at, it.zone)} ${it.kind.code} ${it.reason.name} ${it.ref.code}"
+            }
+            val noRef = list.all { it.ref == Validation.Ref.NONE }
+            out += if (noRef) "night $night: no reference" else "night $night: ${summary(list)}"
         }
         val withRef = byNight.values.count { list -> list.any { it.ref != Validation.Ref.NONE } }
-        out += "all: ${byNight.size} nights, $withRef with reference" + if (withRef > 0) " · ${summary(entries)}" else ""
+        val all = if (withRef > 0) " · ${summary(entries)}" else ""
+        out += "all: ${byNight.size} nights, $withRef with reference$all"
         return out
     }
 

@@ -88,7 +88,8 @@ internal fun MathTaskPanel(
             "${problem.a} + ${problem.b} = " + input.ifEmpty { "?" },
             style = MaterialTheme.typography.displaySmall,
             color = sumInk.content,
-            modifier = Modifier.padding(vertical = 8.dp).then(sumPlace).semantics { liveRegion = LiveRegionMode.Polite },
+            modifier = Modifier.padding(vertical = 8.dp).then(sumPlace)
+                .semantics { liveRegion = LiveRegionMode.Polite },
         )
         // Ohne Meldung kein (leeres) Schild.
         val (wrongInk, wrongPlace) = rememberSkyInk(light, NIGHT_INK, plaque = wrong)
@@ -97,13 +98,18 @@ internal fun MathTaskPanel(
             style = MaterialTheme.typography.bodyMedium,
             color = wrongInk.content,
             textAlign = TextAlign.Center,
-            modifier = Modifier.heightIn(min = 24.dp).then(wrongPlace).semantics { liveRegion = LiveRegionMode.Assertive },
+            modifier = Modifier.heightIn(min = 24.dp).then(wrongPlace)
+                .semantics { liveRegion = LiveRegionMode.Assertive },
         )
         val rows = listOf("123", "456", "789")
-        Column(verticalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+        ) {
             rows.forEach { row ->
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
-                    row.forEach { digit -> Key(digit.toString(), light, keyHeight, Modifier.weight(1f)) { type(digit) } }
+                    row.forEach { digit ->
+                        Key(digit.toString(), light, keyHeight, Modifier.weight(1f)) { type(digit) }
+                    }
                 }
             }
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
@@ -117,16 +123,31 @@ internal fun MathTaskPanel(
                     border = BorderStroke(1.dp, ink.content.copy(alpha = 0.6f)),
                     contentPadding = PaddingValues(0.dp),
                     modifier = Modifier.weight(1f).heightIn(min = keyHeight).then(place),
-                ) { Icon(painterResource(R.drawable.ic_back), contentDescription = delete, tint = ink.content, modifier = Modifier.size(24.dp)) }
+                ) {
+                    Icon(
+                        painterResource(R.drawable.ic_back), contentDescription = delete, tint = ink.content,
+                        modifier = Modifier.size(24.dp),
+                    )
+                }
                 Key("0", light, keyHeight, Modifier.weight(1f)) { type('0') }
-                Key(stringResource(R.string.wake_task_check), light, keyHeight, Modifier.weight(1f), enabled = input.isNotEmpty()) { check() }
+                Key(
+                    stringResource(R.string.wake_task_check), light, keyHeight, Modifier.weight(1f),
+                    enabled = input.isNotEmpty(),
+                ) { check() }
             }
         }
     }
 }
 
 @Composable
-private fun Key(label: String, light: Float?, height: Dp, modifier: Modifier, enabled: Boolean = true, onClick: () -> Unit) {
+private fun Key(
+    label: String,
+    light: Float?,
+    height: Dp,
+    modifier: Modifier,
+    enabled: Boolean = true,
+    onClick: () -> Unit,
+) {
     // Schild in der Form der Taste (ohne Überstand).
     val (ink, place) = rememberSkyInk(light, NIGHT_INK, padding = 0.dp)
     OutlinedButton(
@@ -135,7 +156,12 @@ private fun Key(label: String, light: Float?, height: Dp, modifier: Modifier, en
         border = BorderStroke(1.dp, ink.content.copy(alpha = if (enabled) 0.6f else 0.2f)),
         contentPadding = PaddingValues(0.dp),
         modifier = modifier.heightIn(min = height).then(place),
-    ) { Text(label, style = MaterialTheme.typography.headlineSmall, color = ink.content.copy(alpha = if (enabled) 1f else 0.4f), maxLines = 1) }
+    ) {
+        Text(
+            label, style = MaterialTheme.typography.headlineSmall,
+            color = ink.content.copy(alpha = if (enabled) 1f else 0.4f), maxLines = 1,
+        )
+    }
 }
 
 private val KEY_HEIGHT = 60.dp

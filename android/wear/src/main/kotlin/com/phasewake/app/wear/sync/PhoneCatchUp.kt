@@ -75,7 +75,9 @@ object PhoneCatchUp {
         val client = Wearable.getDataClient(app)
         val items = client.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_CLEAR_HISTORY).build()).await()
         return try {
-            items.mapNotNull { DataMapItem.fromDataItem(it).dataMap.getLong(DataLayer.KEY_UPDATED_AT).takeIf { t -> t > 0 } }.maxOrNull()
+            items.mapNotNull {
+                DataMapItem.fromDataItem(it).dataMap.getLong(DataLayer.KEY_UPDATED_AT).takeIf { t -> t > 0 }
+            }.maxOrNull()
         } finally {
             items.release()
         }

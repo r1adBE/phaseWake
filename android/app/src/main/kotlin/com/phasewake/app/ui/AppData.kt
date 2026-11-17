@@ -42,6 +42,7 @@ import com.phasewake.app.sounds.SleepSoundService
 import com.phasewake.app.sounds.SoundRecorderService
 import com.phasewake.app.ui.home.NightCheckState
 import com.phasewake.app.ui.home.SoundRecState
+import com.phasewake.app.ui.home.WatchFacts
 import java.time.Duration
 import java.time.Instant
 import java.time.LocalDate
@@ -117,7 +118,8 @@ internal fun collectAppData(app: PhaseWakeApp): AppData {
     val customNotes by app.notes.custom.collectAsStateWithLifecycle(initialValue = emptyList())
     val sleepGoal by app.settings.sleepGoal.collectAsStateWithLifecycle(initialValue = SleepGoal.DEFAULT_MINUTES)
     val bedtimeReminder by app.settings.bedtimeReminder.collectAsStateWithLifecycle(initialValue = false)
-    val soundTimer by app.settings.soundTimer.collectAsStateWithLifecycle(initialValue = SleepSounds.DEFAULT_TIMER_MINUTES)
+    val soundTimer by app.settings.soundTimer
+        .collectAsStateWithLifecycle(initialValue = SleepSounds.DEFAULT_TIMER_MINUTES)
     val sound by app.settings.sound.collectAsStateWithLifecycle(initialValue = SleepSound.PINK)
     val soundPlaying by SleepSoundService.playing.collectAsStateWithLifecycle()
     val recording by SoundRecorderService.recording.collectAsStateWithLifecycle()
@@ -144,7 +146,8 @@ internal fun collectAppData(app: PhaseWakeApp): AppData {
     return AppData(
         alarms, nights, notes, customNotes, sleepGoal, bedtimeReminder, soundTimer, sound,
         soundPlaying, recording, weeklyReview, soundClips, routineItems, routineTicks,
-        holidays, transient, testRun, napMinutes, onboardingDone, diagnostics, doneUntil, healthFeelings, autoOnset = autoOnset,
+        holidays, transient, testRun, napMinutes, onboardingDone, diagnostics, doneUntil, healthFeelings,
+        autoOnset = autoOnset,
         learning = learning, recordings = recordings, learnLog = learnLog, alarmsLoaded = loadedAlarms != null,
     )
 }
@@ -199,7 +202,8 @@ internal fun rememberSoundRec(app: PhaseWakeApp, data: AppData, checkRun: Int): 
         }
     }
     // Vorgabe in den Einstellungen: nur fragen, nichts starten. Eingeschaltet bleibt sie nur mit Mikrofon (wie iPhone).
-    val micPermissionDefault = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+    val micPermissionDefault =
+        rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
         micDenied = !granted
         if (granted) app.appScope.launch { app.settings.setSoundRecDefault(true) }
     }
@@ -220,10 +224,13 @@ internal fun rememberSoundRec(app: PhaseWakeApp, data: AppData, checkRun: Int): 
         if (!lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) return@LaunchedEffect
         val now = Instant.now()
         val zone = ZoneId.systemDefault()
-        if (soundRecChosen != true || SleepNotes.entryVisible(now, zone, AlarmSchedule.earliestPlan(data.alarms, now, zone, data.holidays)?.windowStart)) startRecording()
+        val windowStart = AlarmSchedule.earliestPlan(data.alarms, now, zone, data.holidays)?.windowStart
+        if (soundRecChosen != true || SleepNotes.entryVisible(now, zone, windowStart)) startRecording()
     }
     return SoundRecControl(
-        state = SoundRecState(soundRecWanted && (data.recording != null || hasMic()), data.recording != null, micDenied),
+        state = SoundRecState(
+            soundRecWanted && (data.recording != null || hasMic()), data.recording != null, micDenied,
+        ),
         default = soundRecDefault,
         onSoundRec = ::onSoundRec,
         onDefault = { enabled ->
@@ -257,22 +264,27 @@ internal fun rememberNightCheck(app: PhaseWakeApp, checkRun: Int): NightCheckDat
             while (true) {
                 missingOn = app.sync.nodesWithout(DataLayer.CAPABILITY_WATCH)
                 val outdated = WearSync.watchOutdated(app.sync.watchProtocol())
-                check = NightCheckState.collect(
-                    context,
+                val watch = WatchFacts(
                     app.sync.isReachable(DataLayer.CAPABILITY_WATCH),
                     app.sync.watchReady(),
                     app.sync.watchBattery(),
-                    watchAppMissing = missingOn.isNotEmpty(),
-                    watchOutdated = outdated,
-                    watchPulse = app.sync.watchPulse(),
+                    appMissing = missingOn.isNotEmpty(),
+                    outdated = outdated,
+                    pulse = app.sync.watchPulse(),
                     recorderSkip = app.sync.watchRecorderSkip(),
+                    charging = app.sync.watchBatteryCharging(),
+                    build = app.sync.watchBuild(),
+                )
+                check = NightCheckState.collect(
+                    context,
+                    watch,
                     autoOnset = app.settings.autoOnset.first(),
                     learning = app.learning.state.first().active,
-                    watchCharging = app.sync.watchBatteryCharging(),
                     phoneBuild = com.phasewake.app.shared.BuildNumber.own(context, watch = false),
-                    watchBuild = app.sync.watchBuild(),
                 )
-                check?.let { c -> com.phasewake.app.widget.NextAlarmWidget.saveCheck(context, c.failed.filterNot { it.advisory }) }
+                check?.let { c ->
+                    com.phasewake.app.widget.NextAlarmWidget.saveCheck(context, c.failed.filterNot { it.advisory })
+                }
                 delay(NIGHT_CHECK_INTERVAL_MS)
             }
         }

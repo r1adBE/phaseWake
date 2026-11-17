@@ -20,14 +20,17 @@ extension SmartAlarm {
         let ringing = session
         ringing?.notifyUser(hapticType: .notification) { [weak self] haptic in
             let current = self.map { $0.phase.isRinging && $0.session === ringing } ?? false
-            let step = SessionRules.hapticStep(elapsed: Date().timeIntervalSince(self?.hapticStart ?? Date()), ringing: current)
+            let elapsed = Date().timeIntervalSince(self?.hapticStart ?? Date())
+            let step = SessionRules.hapticStep(elapsed: elapsed, ringing: current)
             if step.interval > 0 { haptic.pointee = step.type }
             return step.interval
         }
         stopSensors()
         // Der Rückfall bleibt stehen, bis beendet wird: Endet die Sitzung, weckt er trotzdem. Klingelt die Sitzung,
         // fallen nur die noch folgenden Mitteilungen seiner Kette weg (`NotificationChain`).
-        if session?.state == .running { removeFollowingFallback(Self.fallbackKey(for: nightPlan?.alarmId ?? plan?.alarmId)) }
+        if session?.state == .running {
+            removeFollowingFallback(Self.fallbackKey(for: nightPlan?.alarmId ?? plan?.alarmId))
+        }
         DiagStore.shared.log(.ring, "watch \(reason.rawValue)")
         save()
         // Immer melden: Das iPhone entscheidet (Zweitwecker, Sonnenaufgang, Sicherung aussetzen).
@@ -41,11 +44,14 @@ extension SmartAlarm {
     /// Jede Mitteilung der Kette (`NotificationChain`) gilt wie die erste.
     func fallbackArrived(_ notificationId: String) {
         // Rückfall einer späteren Nacht (`UpcomingFallbacks`, App lief seither nicht): gilt wie der des echten Weckers.
-        let id = UpcomingFallbacks.isUpcoming(notificationId) ? Self.fallbackId : NotificationChain.baseId(notificationId)
+        let id = UpcomingFallbacks.isUpcoming(notificationId)
+            ? Self.fallbackId
+            : NotificationChain.baseId(notificationId)
         let now = Date()
         // Zielzeit da, aber höchstens `ringLimit` zurück (ein alter Rückfall, spät angetippt, weckt nicht mehr).
         func due(_ night: WakePlan) -> Bool {
-            Self.fallbackKey(for: night.alarmId) == id && night.target <= now && now < night.target.addingTimeInterval(Self.ringLimit)
+            Self.fallbackKey(for: night.alarmId) == id && night.target <= now
+                && now < night.target.addingTimeInterval(Self.ringLimit)
         }
         switch phase {
         case .snoozed(let until, _) where Self.fallbackKey(for: nightPlan?.alarmId) == id && until <= now:
@@ -132,7 +138,9 @@ extension SmartAlarm {
         save()
         // Mit Schlummer-Ende: Das iPhone hört auf zu klingeln, behält die Nacht aber und stellt 90 s nach dem
         // Schlummer-Ende eine eigene Sicherung (falls die neue Sitzung nicht startet).
-        WatchConnectivityBridge.shared.send(command: SyncKeys.stop, alarmId: plan.alarmId, target: nightPlan?.target, snoozeUntil: until)
+        WatchConnectivityBridge.shared.send(
+            command: SyncKeys.stop, alarmId: plan.alarmId, target: nightPlan?.target, snoozeUntil: until
+        )
     }
 
     /// Wecker beenden, Nacht speichern, nächste Nacht planen.
@@ -187,9 +195,7 @@ extension SmartAlarm {
         let transient = Transient.kindOf(nightPlan?.alarmId) != nil
         // «Gute Nacht» hat diese Nacht vorverlegt (vor `markNightDone` gelesen, das sie verfallen lässt): für das
         // Auto-Aus.
-        let shifted = nightPlan.map { night in
-            model.goodNight.map { $0.alarmId == night.alarmId && TimeBounds.millis($0.target) == TimeBounds.millis(night.target) } ?? false
-        } ?? false
+        let shifted = shiftedByGoodNight(model)
         if let nightPlan, let firstRing, !transient {
             let night = NightRecord(
                 alarmId: nightPlan.alarmId,
@@ -217,10 +223,15 @@ extension SmartAlarm {
         // Ohne Nacht im Verlauf (nicht geweckt) gehört der Akku zu nichts; Probewecker und Powernap haben keinen
         // begonnen.
         if firstRing == nil, !transient { WatchBattery.drop("night ended without ring") }
-        if notifyPhone { WatchConnectivityBridge.shared.send(command: SyncKeys.stop, alarmId: nightPlan?.alarmId ?? "", target: nightPlan?.target) }
+        if notifyPhone {
+            WatchConnectivityBridge.shared.send(
+                command: SyncKeys.stop, alarmId: nightPlan?.alarmId ?? "", target: nightPlan?.target
+            )
+        }
         // Aus dem Speicher statt aus der Nacht: nach einem Neustart der App fehlt `spec`. Nur die Fassung, die
         // geklingelt hat: Im Schlummern verschoben, oder eine neuere Änderung vom iPhone, bleibt eingeschaltet.
-        if let nightPlan, !transient, let alarm = model.alarms.first(where: { $0.id == nightPlan.alarmId }), alarm.isOneShot, alarm.enabled {
+        if let nightPlan, !transient, let alarm = model.alarms.first(where: { $0.id == nightPlan.alarmId }),
+           alarm.isOneShot, alarm.enabled {
             model.disableAfterRing(alarm.id, rung: spec, target: nightPlan.target, shifted: shifted)
         }
         if transient { model.endTransient(nightPlan?.alarmId) }
@@ -232,5 +243,14 @@ extension SmartAlarm {
         // Nächste Nacht planen; bei geschlossener App (z. B. am iPhone gestoppt) die Bitte, sie zu öffnen – nach einer
         // echten Nacht wie nach Probewecker und Powernap.
         model.transientEnded()
+    }
+
+    /// Ob «Gute Nacht» (`WatchModel.goodNight`) die laufende Nacht vorverlegt hat (gleicher Wecker, gleiche Zielzeit).
+    private func shiftedByGoodNight(_ model: WatchModel) -> Bool {
+        nightPlan.map { night in
+            model.goodNight.map {
+                $0.alarmId == night.alarmId && TimeBounds.millis($0.target) == TimeBounds.millis(night.target)
+            } ?? false
+        } ?? false
     }
 }

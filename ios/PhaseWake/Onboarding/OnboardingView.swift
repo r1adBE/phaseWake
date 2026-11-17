@@ -112,7 +112,9 @@ struct OnboardingView: View {
                 Text(check.title)
                 Spacer()
                 if failed.contains(check) {
-                    Button(L("check_allow")) { Task { await NightCheck.fix(check); failed = await NightCheck.collect() } }
+                    Button(L("check_allow")) {
+                        Task { await NightCheck.fix(check); failed = await NightCheck.collect() }
+                    }
                         .buttonStyle(.borderedProminent)
                 } else {
                     Label(L("onb_granted"), systemImage: "checkmark")
@@ -145,7 +147,8 @@ struct OnboardingView: View {
         Text(exact ? L("editor_window_exact") : L("editor_window", Int(window)))
         Picker(L("chart_window"), selection: $window) {
             ForEach([AlarmSpec.exactWindow, 10, 20, AlarmSpec.maxWindowMinutes], id: \.self) { minutes in
-                Text(minutes == AlarmSpec.exactWindow ? L("editor_window_exact") : L("duration_minutes", Int64(minutes)))
+                Text(minutes == AlarmSpec.exactWindow
+                     ? L("editor_window_exact") : L("duration_minutes", Int64(minutes)))
                     .tag(Double(minutes))
             }
         }
@@ -208,7 +211,8 @@ struct OnboardingView: View {
     /// «Weiter»: Auf dem Schritt «Erster Wecker» legt es den gezeigten Wecker an, falls noch keiner angelegt ist (wie
     /// «Wecker anlegen») – wer nur «Weiter» tippt, hätte sonst keinen Wecker.
     private func next() {
-        if Self.createsOnNext(step: step, created: created != nil, hasAlarms: !model.alarms.isEmpty, canAdd: model.canAddAlarm) {
+        if Self.createsOnNext(step: step, created: created != nil, hasAlarms: !model.alarms.isEmpty,
+                              canAdd: model.canAddAlarm) {
             createAlarm()
         }
         step += 1
@@ -224,7 +228,8 @@ struct OnboardingView: View {
     private func createAlarm() {
         let c = Calendar.current.dateComponents([.hour, .minute], from: time)
         guard let spec = try? AlarmSpec(id: UUID().uuidString, hour: c.hour ?? 7, minute: c.minute ?? 0,
-                                        days: [.monday, .tuesday, .wednesday, .thursday, .friday], windowMinutes: Int(window)) else { return }
+                                        days: [.monday, .tuesday, .wednesday, .thursday, .friday],
+                                        windowMinutes: Int(window)) else { return }
         model.upsert(spec)
         created = spec
     }

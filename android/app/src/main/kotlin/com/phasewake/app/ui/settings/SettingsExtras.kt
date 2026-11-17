@@ -91,7 +91,10 @@ internal fun LearningGroup(ui: LearningSettings) {
         else -> stringResource(R.string.learn_consent_title)
     }
     Group(title) {
-        SwitchRow(stringResource(R.string.learn_switch_title), stringResource(R.string.learn_switch_hint, Learning.MIN_BATTERY), ui.consent, ui.onConsent)
+        SwitchRow(
+            stringResource(R.string.learn_switch_title),
+            stringResource(R.string.learn_switch_hint, Learning.MIN_BATTERY), ui.consent, ui.onConsent,
+        )
         if (values != null) LearnedLines(values, MaterialTheme.colorScheme.onSurfaceVariant)
         // Eigene Spalte: ohne den Abstand der Gruppe zwischen den Zeilen.
         if (ui.onDetails != null || ui.onRestart != null) Column {
@@ -114,7 +117,9 @@ private fun RestartRow(onRestart: () -> Unit) {
             confirmButton = {
                 TextButton(onClick = { confirm = false; onRestart() }) { Text(stringResource(R.string.learn_restart)) }
             },
-            dismissButton = { TextButton(onClick = { confirm = false }) { Text(stringResource(R.string.action_cancel)) } },
+            dismissButton = {
+                TextButton(onClick = { confirm = false }) { Text(stringResource(R.string.action_cancel)) }
+            },
         )
     }
 }
@@ -133,13 +138,17 @@ class HolidaysUi(
 
 /** Landesname in der Sprache des Geräts; unbekannter Code bleibt, wie er ist. */
 internal fun countryName(code: String, locale: Locale): String =
-    runCatching { Locale.Builder().setRegion(code).build().getDisplayCountry(locale) }.getOrNull()?.takeIf { it.isNotBlank() } ?: code
+    runCatching { Locale.Builder().setRegion(code).build().getDisplayCountry(locale) }.getOrNull()
+        ?.takeIf { it.isNotBlank() } ?: code
 
 /** Gruppe «Wecker testen». */
 @Composable
 internal fun TestGroup(onTest: () -> Unit) {
     Group(stringResource(R.string.test_title)) {
-        Text(stringResource(R.string.test_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(
+            stringResource(R.string.test_hint), style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
         OutlinedButton(onClick = onTest, border = outlinedBorder()) { Text(stringResource(R.string.test_button)) }
     }
 }
@@ -150,15 +159,30 @@ internal fun HolidaysGroup(ui: HolidaysUi) {
     val locale = LocalConfiguration.current.locales[0]
     var picking by remember { mutableStateOf<String?>(null) }
     Group(stringResource(R.string.settings_holidays)) {
-        val countryText = if (ui.country.isEmpty()) stringResource(R.string.holidays_off) else countryName(ui.country, locale)
+        val countryText =
+            if (ui.country.isEmpty()) stringResource(R.string.holidays_off) else countryName(ui.country, locale)
         ChoiceRow(stringResource(R.string.holidays_country), countryText) { picking = "country" }
         if (ui.country.isNotEmpty() && ui.regions.isNotEmpty()) {
-            val regionText = ui.regions.firstOrNull { it.first == ui.region }?.second ?: stringResource(R.string.holidays_whole_country)
+            val regionText = ui.regions.firstOrNull { it.first == ui.region }
+                ?.second ?: stringResource(R.string.holidays_whole_country)
             ChoiceRow(stringResource(R.string.holidays_region), regionText) { picking = "region" }
         }
-        ui.next?.let { Text(stringResource(R.string.holidays_next, Format.shortDay(it, locale)), style = MaterialTheme.typography.bodyMedium) }
-        ui.nextEstimated?.let { Text(stringResource(R.string.holidays_next_estimated, Format.shortDay(it, locale)), style = MaterialTheme.typography.bodyMedium) }
-        Text(stringResource(R.string.holidays_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        ui.next?.let {
+            Text(
+                stringResource(R.string.holidays_next, Format.shortDay(it, locale)),
+                style = MaterialTheme.typography.bodyMedium,
+            )
+        }
+        ui.nextEstimated?.let {
+            Text(
+                stringResource(R.string.holidays_next_estimated, Format.shortDay(it, locale)),
+                style = MaterialTheme.typography.bodyMedium,
+            )
+        }
+        Text(
+            stringResource(R.string.holidays_hint), style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
     }
     when (picking) {
         "country" -> PickDialog(
@@ -183,7 +207,8 @@ internal fun HolidaysGroup(ui: HolidaysUi) {
 private fun ChoiceRow(label: String, value: String, onClick: () -> Unit) {
     Row(
         // Mindestens 48 dp hoch (Tippziel).
-        Modifier.fillMaxWidth().heightIn(min = 48.dp).clickable(role = Role.Button, onClick = onClick).padding(vertical = 8.dp),
+        Modifier.fillMaxWidth().heightIn(min = 48.dp).clickable(role = Role.Button, onClick = onClick)
+            .padding(vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(label, style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
@@ -193,7 +218,13 @@ private fun ChoiceRow(label: String, value: String, onClick: () -> Unit) {
 
 /** Auswahl aus einer langen Liste mit Suchfeld (Länder, Regionen). */
 @Composable
-private fun PickDialog(title: String, options: List<Pair<String, String>>, selected: String, onPick: (String) -> Unit, onDismiss: () -> Unit) {
+private fun PickDialog(
+    title: String,
+    options: List<Pair<String, String>>,
+    selected: String,
+    onPick: (String) -> Unit,
+    onDismiss: () -> Unit,
+) {
     var filter by remember { mutableStateOf("") }
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -201,10 +232,15 @@ private fun PickDialog(title: String, options: List<Pair<String, String>>, selec
         text = {
             Column {
                 if (options.size > SEARCH_FROM) {
-                    OutlinedTextField(value = filter, onValueChange = { filter = it }, label = { Text(title) }, singleLine = true, modifier = Modifier.fillMaxWidth())
+                    OutlinedTextField(
+                        value = filter, onValueChange = { filter = it }, label = { Text(title) }, singleLine = true,
+                        modifier = Modifier.fillMaxWidth(),
+                    )
                 }
                 LazyColumn(Modifier.heightIn(max = 360.dp)) {
-                    items(options.filter { it.second.contains(filter.trim(), ignoreCase = true) }, key = { it.first }) { (code, name) ->
+                    items(
+                        options.filter { it.second.contains(filter.trim(), ignoreCase = true) }, key = { it.first },
+                    ) { (code, name) ->
                         Row(
                             Modifier.fillMaxWidth().selectable(selected = code == selected, role = Role.RadioButton) {
                                 onPick(code)
@@ -213,7 +249,10 @@ private fun PickDialog(title: String, options: List<Pair<String, String>>, selec
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
                             RadioButton(selected = code == selected, onClick = null)
-                            Text(name, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.padding(start = 12.dp))
+                            Text(
+                                name, style = MaterialTheme.typography.bodyLarge,
+                                modifier = Modifier.padding(start = 12.dp),
+                            )
                         }
                     }
                 }
@@ -245,7 +284,10 @@ internal fun VersionLine(version: String, extras: SettingsExtras) {
                 return@clickable
             }
             taps++
-            DiagUnlock.remaining(taps)?.let { Toast.makeText(context, res.getQuantityString(R.plurals.diag_taps_left, it, it), Toast.LENGTH_SHORT).show() }
+            DiagUnlock.remaining(taps)?.let {
+                Toast.makeText(context, res.getQuantityString(R.plurals.diag_taps_left, it, it), Toast.LENGTH_SHORT)
+                    .show()
+            }
             if (DiagUnlock.unlocked(taps)) {
                 Toast.makeText(context, res.getString(R.string.diag_unlocked), Toast.LENGTH_SHORT).show()
                 extras.onUnlockDiagnostics()

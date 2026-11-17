@@ -98,12 +98,21 @@ internal fun SunriseScreen(progress: Float, now: Instant, onOff: () -> Unit) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
-            Text(Format.time(now), style = MaterialTheme.typography.displayLarge, color = timeInk.content, modifier = timePlace)
+            Text(
+                Format.time(now), style = MaterialTheme.typography.displayLarge, color = timeInk.content,
+                modifier = timePlace,
+            )
             Spacer(Modifier.height(PLAQUE_GAP))
-            Text(stringResource(R.string.sunrise_title), style = MaterialTheme.typography.titleLarge, color = titleInk.muted, modifier = titlePlace)
+            Text(
+                stringResource(R.string.sunrise_title), style = MaterialTheme.typography.titleLarge,
+                color = titleInk.muted, modifier = titlePlace,
+            )
             Spacer(Modifier.height(48.dp))
             TextButton(onClick = onOff, modifier = offPlace) {
-                Text(stringResource(R.string.sunrise_off), style = MaterialTheme.typography.titleMedium, color = offInk.content)
+                Text(
+                    stringResource(R.string.sunrise_off), style = MaterialTheme.typography.titleMedium,
+                    color = offInk.content,
+                )
             }
         }
     }

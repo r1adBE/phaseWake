@@ -39,17 +39,30 @@ class FindingsTest {
         return NightFacts(date, bed.toInstant(), end.toInstant(), local, f[3].toLong(), num(4), num(5), num(6))
     }
 
-    private fun text(findings: List<Finding>): String = if (findings.isEmpty()) "-" else findings.joinToString(",") { f ->
-        "${f.kind}=${f.value}" + (f.link?.let { "/$it/${f.withPercent}/${f.withoutPercent}" } ?: "")
-    }
+    private fun text(findings: List<Finding>): String =
+        if (findings.isEmpty()) {
+            "-"
+        } else {
+            findings.joinToString(",") { f ->
+                "${f.kind}=${f.value}" + (f.link?.let { "/$it/${f.withPercent}/${f.withoutPercent}" } ?: "")
+            }
+        }
 
-    private fun at(day: Int, hour: Int, minute: Int = 0): Instant = ZonedDateTime.of(2026, 11, day, hour, minute, 0, 0, zone).toInstant()
+    private fun at(day: Int, hour: Int, minute: Int = 0): Instant =
+        ZonedDateTime.of(2026, 11, day, hour, minute, 0, 0, zone).toInstant()
 
-    private fun span(from: Instant, minutes: Long, stage: SleepStage) = StageSpan(from, from.plus(Duration.ofMinutes(minutes)), stage)
+    private fun span(from: Instant, minutes: Long, stage: SleepStage) =
+        StageSpan(from, from.plus(Duration.ofMinutes(minutes)), stage)
 
-    /** Sitzung wie Samsung Health: wach bis zum Einschlafen, Tief, Leicht, Wach-Rest am Ende. */
-    private fun session(day: Int, bedHour: Int, bedMinute: Int, latency: Long, deep: Long, asleep: Long, awakeAfter: Long, stages: Boolean = true): HealthSession {
-        val asleepAt = at(day, bedHour, bedMinute)
+    /** Sitzung wie Samsung Health, eingeschlafen [asleepAt]: wach bis zum Einschlafen, Tief, Leicht, Wach-Rest. */
+    private fun session(
+        asleepAt: Instant,
+        latency: Long,
+        deep: Long,
+        asleep: Long,
+        awakeAfter: Long,
+        stages: Boolean = true,
+    ): HealthSession {
         val start = asleepAt.minus(Duration.ofMinutes(latency))
         val end = asleepAt.plus(Duration.ofMinutes(asleep + awakeAfter))
         if (!stages) return HealthSession(start, end)
@@ -58,7 +71,8 @@ class FindingsTest {
             start, end,
             listOf(
                 span(start, latency, SleepStage.AWAKE), span(asleepAt, deep, SleepStage.DEEP),
-                span(light, asleep - deep, SleepStage.LIGHT), span(light.plus(Duration.ofMinutes(asleep - deep)), awakeAfter, SleepStage.AWAKE),
+                span(light, asleep - deep, SleepStage.LIGHT),
+                span(light.plus(Duration.ofMinutes(asleep - deep)), awakeAfter, SleepStage.AWAKE),
             ),
             timeZone = zone,
         )
@@ -76,7 +90,7 @@ class FindingsTest {
             val v = line.split(' ')
             val bed = LocalTime.parse(v[0])
             val inBed = Duration.between(bed, LocalTime.parse(v[1])).toMinutes()
-            session(9 + i, bed.hour, bed.minute, v[3].toLong(), v[4].toLong(), v[2].toLong(), inBed - v[2].toLong())
+            session(at(9 + i, bed.hour, bed.minute), v[3].toLong(), v[4].toLong(), v[2].toLong(), inBed - v[2].toLong())
         }
         val facts = NightFacts.of(sessions, null, zone)
         assertEquals((8..14).map { LocalDate.of(2026, 11, it) }, facts.map { it.date })
@@ -89,7 +103,10 @@ class FindingsTest {
         assertEquals(FindingKind.LONG_LATENCY, Findings.home(findings, emptyMap(), at(15, 9))?.kind)
         val hidden = Findings.hide(emptyMap(), FindingKind.LONG_LATENCY, at(15, 9))
         assertEquals(FindingKind.LOW_DEEP, Findings.home(findings, hidden, at(15, 9, 1))?.kind)
-        assertEquals(FindingKind.BEDTIME_VARIES, Findings.home(findings, Findings.hide(hidden, FindingKind.LOW_DEEP, at(15, 10)), at(15, 11))?.kind)
+        assertEquals(
+            FindingKind.BEDTIME_VARIES,
+            Findings.home(findings, Findings.hide(hidden, FindingKind.LOW_DEEP, at(15, 10)), at(15, 11))?.kind,
+        )
         // Nacht-Detail: 42 von 432 Min Schlaf = 10 % (gleich gerechnet wie die Regel).
         assertEquals(10, Findings.deepPercent(42, 432))
         assertNull(Findings.deepPercent(42, 0))
@@ -97,13 +114,14 @@ class FindingsTest {
 
     @Test
     fun factsWithoutStagesHaveNoPhases() {
-        val facts = NightFacts.of(session(9, 1, 0, 20, 60, 400, 20, stages = false), zone)
+        val facts = NightFacts.of(session(at(9, 1), 20, 60, 400, 20, stages = false), zone)
         assertNull(facts.deepMinutes)
         assertNull(facts.awakeMinutes)
         assertNull(facts.latencyMinutes)
         assertEquals(440, facts.asleepMinutes)
         // Mit Phasen, ohne Wachphase am Anfang: Einschlafdauer unbekannt, Wach nach dem Einschlafen bleibt.
-        val direct = NightFacts.of(session(9, 1, 0, 0, 60, 400, 30).let { s -> s.copy(stages = s.stages.drop(1)) }, zone)
+        val direct =
+            NightFacts.of(session(at(9, 1), 0, 60, 400, 30).let { s -> s.copy(stages = s.stages.drop(1)) }, zone)
         assertNull(direct.latencyMinutes)
         assertEquals(30, direct.awakeMinutes)
     }
@@ -118,10 +136,27 @@ class FindingsTest {
         for (line in cases) {
             val parts = line.split('\t')
             val (start, end) = parts[1].split(' ')
-            val own = parts[2].split(';').filter { it.isNotBlank() }.map { r -> r.split(' ').let { OwnOnset(t(it[0]), t(it[1]), t(it[2]), t(it[3])) } }
+            val own =
+                parts[2].split(';').filter { it.isNotBlank() }.map { r ->
+                    r.split(' ').let { OwnOnset(t(it[0]), t(it[1]), t(it[2]), t(it[3])) }
+                }
             // Nächte der Uhr über NightRecord (Felder 11 und 12) und OwnOnset.of.
             val watch = parts.getOrElse(3) { "" }.split(';').filter { it.isNotBlank() }.mapNotNull { r ->
-                r.split(' ').let { OwnOnset.of(NightRecord("a", t(it[2]), t(it[2]), t(it[2]), WakeReason.DEADLINE, 0, emptyList(), bedAt = t(it[0]), asleepAt = t(it[1]))) }
+                r.split(' ').let {
+                    OwnOnset.of(
+                        NightRecord(
+                            "a",
+                            t(it[2]),
+                            t(it[2]),
+                            t(it[2]),
+                            WakeReason.DEADLINE,
+                            0,
+                            emptyList(),
+                            bedAt = t(it[0]),
+                            asleepAt = t(it[1]),
+                        ),
+                    )
+                }
             }
             assertEquals(parts[0], Findings.ownLatency(t(start), t(end), own, watch)?.toString() ?: "-", line)
         }
@@ -131,8 +166,15 @@ class FindingsTest {
     @Test
     fun healthLatencyBeforeOwnMeasurement() {
         // Samsung-Nacht mit Wachphase am Anfang (Einschlafdauer 20): die Gesundheits-App geht vor.
-        val withLatency = session(9, 1, 0, 20, 60, 400, 30)
-        val own = listOf(OwnOnset(withLatency.start.minusSeconds(600), withLatency.end, withLatency.start, withLatency.start.plus(Duration.ofMinutes(50))))
+        val withLatency = session(at(9, 1), 20, 60, 400, 30)
+        val own = listOf(
+            OwnOnset(
+                withLatency.start.minusSeconds(600),
+                withLatency.end,
+                withLatency.start,
+                withLatency.start.plus(Duration.ofMinutes(50)),
+            ),
+        )
         assertEquals(20, NightFacts.of(withLatency, zone, own).latencyMinutes)
         // Ohne Wachphase am Anfang (Apple Watch): die eigene Messung (50 Min); Wach nach dem Einschlafen bleibt 30.
         val direct = withLatency.copy(stages = withLatency.stages.drop(1))
@@ -141,10 +183,16 @@ class FindingsTest {
         assertEquals(30, facts.awakeMinutes)
         assertNull(NightFacts.of(direct, zone).latencyMinutes)
         // Ganz ohne Phasen ebenso; über die Liste der Sitzungen gleich.
-        assertEquals(50, NightFacts.of(session(9, 1, 0, 20, 60, 400, 30, stages = false), zone, own).latencyMinutes)
+        assertEquals(50, NightFacts.of(session(at(9, 1), 20, 60, 400, 30, stages = false), zone, own).latencyMinutes)
         assertEquals(listOf<Long?>(50), NightFacts.of(listOf(direct), null, zone, own).map { it.latencyMinutes })
         // Nacht der Uhr (Felder 11 und 12) vor der Aufzeichnung: 35 statt 50; ohne Einschlafzeit keine Messung.
-        val night = NightRecord("a", withLatency.end, withLatency.end, withLatency.end, WakeReason.DEADLINE, 0, emptyList(),
+        val night = NightRecord("a",
+        withLatency.end,
+        withLatency.end,
+        withLatency.end,
+        WakeReason.DEADLINE,
+        0,
+        emptyList(),
             bedAt = withLatency.start, asleepAt = withLatency.start.plus(Duration.ofMinutes(35)))
         assertEquals(35, NightFacts.of(direct, zone, own, listOfNotNull(OwnOnset.of(night))).latencyMinutes)
         assertEquals(20, NightFacts.of(withLatency, zone, own, listOfNotNull(OwnOnset.of(night))).latencyMinutes)
@@ -158,18 +206,28 @@ class FindingsTest {
         val hiddenAt = at(10, 8)
         val hidden = Findings.hide(emptyMap(), FindingKind.LONG_LATENCY, hiddenAt)
         // Ausgeblendet: die nächste; genau 7 Tage danach wieder die wichtigste.
-        assertEquals(FindingKind.BEDTIME_VARIES, Findings.home(findings, hidden, hiddenAt.plus(Duration.ofDays(7)).minusMillis(1))?.kind)
+        assertEquals(
+            FindingKind.BEDTIME_VARIES,
+            Findings.home(findings, hidden, hiddenAt.plus(Duration.ofDays(7)).minusMillis(1))?.kind,
+        )
         assertEquals(FindingKind.LONG_LATENCY, Findings.home(findings, hidden, hiddenAt.plus(Duration.ofDays(7)))?.kind)
         val both = Findings.hide(hidden, FindingKind.BEDTIME_VARIES, hiddenAt.plusSeconds(60))
         assertNull(Findings.home(findings, both, hiddenAt.plus(Duration.ofDays(1))))
         assertNull(Findings.home(emptyList(), emptyMap(), hiddenAt))
         // Abgelaufene fallen beim nächsten Ausblenden weg.
-        assertEquals(setOf(FindingKind.SHORT_NIGHTS), Findings.hide(hidden, FindingKind.SHORT_NIGHTS, hiddenAt.plus(Duration.ofDays(8))).keys)
+        assertEquals(
+            setOf(FindingKind.SHORT_NIGHTS),
+            Findings.hide(hidden, FindingKind.SHORT_NIGHTS, hiddenAt.plus(Duration.ofDays(8))).keys,
+        )
     }
 
     @Test
     fun bedtimeCardDefersFindingsWithTheSameTip() {
-        val findings = listOf(Finding(FindingKind.SHORT_NIGHTS, 3), Finding(FindingKind.LOW_DEEP, 11), Finding(FindingKind.BEDTIME_VARIES, 120))
+        val findings = listOf(
+            Finding(FindingKind.SHORT_NIGHTS, 3),
+            Finding(FindingKind.LOW_DEEP, 11),
+            Finding(FindingKind.BEDTIME_VARIES, 120),
+        )
         val now = at(15, 21)
         // Ohne Bettzeit-Karte wie bisher die wichtigste; mit ihr tritt der gleiche Tipp zurück.
         assertEquals(FindingKind.SHORT_NIGHTS, Findings.home(findings, emptyMap(), now)?.kind)
@@ -180,16 +238,31 @@ class FindingsTest {
 
     @Test
     fun hiddenEncodesAndDecodes() {
-        val hidden = mapOf(FindingKind.BEDTIME_VARIES to Instant.ofEpochMilli(2000), FindingKind.LONG_LATENCY to Instant.ofEpochMilli(1000))
+        val hidden = mapOf(
+            FindingKind.BEDTIME_VARIES to Instant.ofEpochMilli(2000),
+            FindingKind.LONG_LATENCY to Instant.ofEpochMilli(1000),
+        )
         val text = Findings.encodeHidden(hidden)
         assertEquals("LONG_LATENCY|1000\nBEDTIME_VARIES|2000", text)
         assertEquals(hidden, Findings.decodeHidden(text))
-        assertEquals(mapOf(FindingKind.MUCH_AWAKE to Instant.ofEpochMilli(5)), Findings.decodeHidden("OTHER|3\nMUCH_AWAKE|5\nLOW_DEEP|x\n\n"))
+        assertEquals(
+            mapOf(FindingKind.MUCH_AWAKE to Instant.ofEpochMilli(5)),
+            Findings.decodeHidden("OTHER|3\nMUCH_AWAKE|5\nLOW_DEEP|x\n\n"),
+        )
         assertEquals(emptyMap(), Findings.decodeHidden(null))
     }
 
     private fun night(day: Int, asleep: Long, deep: Long?) =
-        NightFacts(LocalDate.of(2026, 11, day), at(day + 1, 0), at(day + 1, 8), null, asleep, null, deep, deep?.let { 20L })
+        NightFacts(
+            LocalDate.of(2026, 11, day),
+            at(day + 1, 0),
+            at(day + 1, 8),
+            null,
+            asleep,
+            null,
+            deep,
+            deep?.let { 20L },
+        )
 
     @Test
     fun weeklyDeepComparesWithTheWeekBefore() {

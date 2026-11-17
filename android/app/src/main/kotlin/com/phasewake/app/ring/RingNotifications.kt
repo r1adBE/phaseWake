@@ -28,7 +28,9 @@ object RingNotifications {
 
     fun createChannels(context: Context) {
         context.getSystemService(NotificationManager::class.java).createNotificationChannel(
-            NotificationChannel(CHANNEL_ALARM, context.getString(R.string.channel_alarm), NotificationManager.IMPORTANCE_HIGH).apply {
+            NotificationChannel(
+                CHANNEL_ALARM, context.getString(R.string.channel_alarm), NotificationManager.IMPORTANCE_HIGH,
+            ).apply {
                 description = context.getString(R.string.channel_alarm_description)
                 setSound(null, null) // Ton und Vibration steuert der Dienst (sanft ansteigend).
                 enableVibration(false)
@@ -56,11 +58,13 @@ object RingNotifications {
     }
 
     /** Weckbildschirm über einen Wecker-Alarm des Systems ([PhoneRingAlert]); gleiche Identität zum Abbrechen. */
-    fun ringScreenByAlarm(context: Context): PendingIntent = ringScreen(context, PhoneRingActivity.VIA_ALARM, REQUEST_ALARM)
+    fun ringScreenByAlarm(context: Context): PendingIntent =
+        ringScreen(context, PhoneRingActivity.VIA_ALARM, REQUEST_ALARM)
 
     private fun ringScreen(context: Context, via: String, requestCode: Int): PendingIntent = PendingIntent.getActivity(
         context, requestCode,
-        Intent(context, PhoneRingActivity::class.java).putExtra(PhoneRingActivity.EXTRA_VIA, via).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
+        Intent(context, PhoneRingActivity::class.java).putExtra(PhoneRingActivity.EXTRA_VIA, via)
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
         PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
     )
 }

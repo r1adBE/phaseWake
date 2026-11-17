@@ -39,7 +39,11 @@ android {
             .associateWith { providers.environmentVariable("PHASEWAKE_UPLOAD_$it").orNull?.takeIf(String::isNotEmpty) }
         if (upload.values.any { it != null }) {
             val missing = upload.filterValues { it == null }.keys
-            if (missing.isNotEmpty()) throw GradleException("Upload-Schlüssel unvollständig, es fehlt: ${missing.joinToString { "PHASEWAKE_UPLOAD_$it" }}")
+            if (missing.isNotEmpty()) {
+                throw GradleException(
+                    "Upload-Schlüssel unvollständig, es fehlt: ${missing.joinToString { "PHASEWAKE_UPLOAD_$it" }}",
+                )
+            }
             create("upload") {
                 storeFile = file(upload.getValue("KEYSTORE")!!)
                 storePassword = upload.getValue("STORE_PASSWORD")
@@ -138,8 +142,12 @@ dependencies {
     // Sicherheit (OSV): Guava 32.0.x und protobuf-javalite 4.26.1 kommen transitiv mit; nur die Version
     // anheben, nichts zusätzlich einbinden.
     constraints {
-        implementation("com.google.guava:guava:${libs.versions.guava.get()}") { because("OSV: Guava 32.0.x mit bekannten Schwachstellen") }
-        implementation("com.google.protobuf:protobuf-javalite:${libs.versions.protobufJavalite.get()}") { because("OSV: protobuf-javalite 4.26.1 (CVE-2024-7254)") }
+        implementation("com.google.guava:guava:${libs.versions.guava.get()}") {
+            because("OSV: Guava 32.0.x mit bekannten Schwachstellen")
+        }
+        implementation("com.google.protobuf:protobuf-javalite:${libs.versions.protobufJavalite.get()}") {
+            because("OSV: protobuf-javalite 4.26.1 (CVE-2024-7254)")
+        }
     }
 
     // Planung der Uhr (Einschlaf-Messung, Direct Boot, Wiederaufnahme) in Unit-Tests; Robolectric nur zum Testen.

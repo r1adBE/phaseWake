@@ -27,7 +27,8 @@ public enum AppleLearnRecord {
     /// der Zielzeit (höchstens 12 Std.). Zu spät, wenn ab dann keine 3 Std. (``Learning/minSpanEpochs``) mehr bis zur
     /// Zielzeit bleiben: Die Nacht könnte nicht zählen. Unter ``Learning/minBattery`` nicht (der Wecker hat Vorrang),
     /// ausser die Uhr lädt (`charging`: zur Bettzeit ist sie geladen; wie `RecordControl` auf Android).
-    public static func decide(now: Date, target: Date, onsetStart: Date, battery: Int?, charging: Bool = false) -> Decision {
+    public static func decide(now: Date, target: Date, onsetStart: Date, battery: Int?,
+                              charging: Bool = false) -> Decision {
         if now >= target { return .skip(reason: "past") }
         let end = target.addingTimeInterval(afterTarget)
         if now < onsetStart { return .wait(until: onsetStart) }
@@ -44,7 +45,8 @@ public enum AppleLearnRecord {
     public static func learnSkip(reason: String, target: Date) -> LearnSkip? {
         if reason.hasPrefix("battery ") {
             let digits = reason.dropFirst("battery ".count).prefix { $0.isASCII && $0.isNumber }
-            return LearnSkip(target: target, reason: .battery, battery: Int(digits).flatMap { (0...100).contains($0) ? $0 : nil })
+            return LearnSkip(target: target, reason: .battery,
+                             battery: Int(digits).flatMap { (0...100).contains($0) ? $0 : nil })
         }
         switch reason {
         case "too late": return LearnSkip(target: target, reason: .late)

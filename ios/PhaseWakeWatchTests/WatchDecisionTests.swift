@@ -50,7 +50,8 @@ final class WatchDecisionTests: XCTestCase {
         XCTAssertTrue(SmartAlarm.Phase.snoozed(until: now, snoozesLeft: 2).isSnoozed)
         let plan = WakePlan(alarmId: "a", windowStart: now, target: now.addingTimeInterval(1800))
         XCTAssertTrue(SmartAlarm.Phase.measuring(plan).isMeasuring)
-        XCTAssertFalse(SmartAlarm.Phase.scheduled(plan).isMeasuring || SmartAlarm.Phase.idle.isRinging || SmartAlarm.Phase.waiting(plan).isSnoozed)
+        XCTAssertFalse(SmartAlarm.Phase.scheduled(plan).isMeasuring || SmartAlarm.Phase.idle.isRinging
+            || SmartAlarm.Phase.waiting(plan).isSnoozed)
     }
 
     @MainActor
@@ -58,13 +59,15 @@ final class WatchDecisionTests: XCTestCase {
         let target = now.addingTimeInterval(8 * 3600)
         let plan = WakePlan(alarmId: "a", windowStart: target.addingTimeInterval(-1800), target: target)
         // Wecker inzwischen gelöscht: unbekannt, keine Untergrenze kurzer Nächte.
-        let withoutSpec = await WatchOnset.compute(plan: plan, spec: nil, config: .standard, goodNight: nil, sleepGoal: 450)
+        let withoutSpec = await WatchOnset.compute(plan: plan, spec: nil, config: .standard, goodNight: nil,
+                                                   sleepGoal: 450)
         XCTAssertEqual(withoutSpec.result, .notMeasured)
         XCTAssertNil(withoutSpec.floor)
         // Probewecker und Powernap: nie gemessen.
         let nap = WakePlan(alarmId: Transient.napPrefix + "1", windowStart: plan.windowStart, target: target)
         let spec = try AlarmSpec(id: nap.alarmId, hour: 7, minute: 0)
-        let napResult = await WatchOnset.compute(plan: nap, spec: spec, config: .standard, goodNight: nil, sleepGoal: 450)
+        let napResult = await WatchOnset.compute(plan: nap, spec: spec, config: .standard, goodNight: nil,
+                                                 sleepGoal: 450)
         XCTAssertEqual(napResult.result, .notMeasured)
         XCTAssertNil(napResult.floor)
     }

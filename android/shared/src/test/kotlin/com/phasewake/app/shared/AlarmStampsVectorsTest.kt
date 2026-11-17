@@ -33,7 +33,9 @@ internal object AlarmStampsVectors {
     private fun directory(): File = File(System.getProperty("phasewake.testdata") ?: "../../shared/testdata")
 
     fun lines(): List<String> =
-        File(directory(), "alarm-stamps.vectors").readLines(Charsets.UTF_8).filter { it.isNotBlank() && !it.startsWith("#") }
+        File(directory(), "alarm-stamps.vectors").readLines(Charsets.UTF_8).filter {
+            it.isNotBlank() && !it.startsWith("#")
+        }
 
     /** Ergebnis von [AlarmStamps.merge] der Stände [local] und [remote] zu [now] (ms), als Text wie in der Datei. */
     fun merged(local: String, remote: String, now: String): String =
@@ -51,11 +53,21 @@ internal object AlarmStampsVectors {
         Codec.decodeAlarms("phasewake-alarms 1\n$line\n").singleOrNull() ?: error("Weckerzeile unlesbar: $line")
 
     private fun map(text: String): Map<String, Long> =
-        if (text == "-") emptyMap() else text.split(',').associate { it.substringBefore('=') to it.substringAfter('=').toLong() }
+        if (text == "-") {
+            emptyMap()
+        } else {
+            text.split(',').associate { it.substringBefore('=') to it.substringAfter('=').toLong() }
+        }
 
     private fun text(s: AlarmSnapshot): String {
         val alarms = Codec.encodeAlarms(s.alarms).lines().drop(1).filter { it.isNotEmpty() }
-        fun pairs(m: Map<String, Long>) = if (m.isEmpty()) "-" else m.entries.sortedBy { it.key }.joinToString(",") { "${it.key}=${it.value}" }
-        return listOf(s.updatedAt.toString(), alarms.joinToString(";").ifEmpty { "-" }, pairs(s.stamps), pairs(s.deleted)).joinToString(" ")
+        fun pairs(m: Map<String, Long>) =
+            if (m.isEmpty()) "-" else m.entries.sortedBy { it.key }.joinToString(",") { "${it.key}=${it.value}" }
+        return listOf(
+            s.updatedAt.toString(),
+            alarms.joinToString(";").ifEmpty { "-" },
+            pairs(s.stamps),
+            pairs(s.deleted),
+        ).joinToString(" ")
     }
 }

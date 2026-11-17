@@ -149,7 +149,8 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     /// Puls lesen (zweite Stimme der Erkennung) und Mitteilungen (Rückfall) – beim ersten Start fragen. Scheitert eine
     /// Anfrage, steht es im Protokoll; danach geht der Stand der Mitteilungen ans iPhone (Nacht-Check).
     func requestAccess() async {
-        if HKHealthStore.isHealthDataAvailable(), let heartRate = HKQuantityType.quantityType(forIdentifier: .heartRate) {
+        if HKHealthStore.isHealthDataAvailable(),
+           let heartRate = HKQuantityType.quantityType(forIdentifier: .heartRate) {
             do {
                 try await health.requestAuthorization(toShare: [], read: [heartRate])
             } catch {
@@ -200,26 +201,39 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         // Eine ausstehende Nacht startet ihre Sitzung nur, bis ihr Rückfall fällig ist; danach wartet sie auf ihn.
         let startsNow = WatchRules.startsSession(plan, pending: pending, now: now, delay: Self.fallbackDelay)
         guard active, !tooEarly, startsNow else {
-            // Eine schon geplante Sitzung für einen anderen Plan: übernimmt sie die geänderte Nacht, bleibt sie;
-            // sonst ist sie überholt, und die App bittet ums Öffnen, damit die Nacht eine Sitzung
-            // bekommt (nicht nur den Rückfall).
-            if case .scheduled(let current) = phase, current != plan {
-                if !tooEarly, startsNow, keepsSession(from: current, for: plan) { return }
-                invalidateSession()
-                // Startet doch noch eine Sitzung, die die App nicht mehr kennt (vom System über einen Neustart der App
-                // behalten), prüft `startNight` sie gegen den dann aktuellen Plan statt gegen den alten.
-                self.plan = nil
-                if !tooEarly, startsNow { notifyOpenApp(for: plan) }
-            }
-            if case .scheduled = phase, session != nil, !tooEarly { return }
-            if phase != .waiting(plan) {
-                DiagStore.shared.log(.scheduled, "waiting \(Format.logTime(plan.target)) active \(active)\(pending ? " pending" : "")")
-            }
-            phase = .waiting(plan)
-            notePlanZone(plan)
-            publishArmed()
+            waitForSession(plan, active: active, tooEarly: tooEarly, startsNow: startsNow, pending: pending)
             return
         }
+        startSession(plan, start: start, now: now)
+    }
+
+    /// `schedule` kann für `plan` jetzt keine Sitzung planen (App nicht aktiv, zu früh oder Rückfall schon fällig):
+    /// Der Plan wartet; eine überholte Sitzung für einen anderen Plan endet, ausser sie übernimmt die Nacht.
+    private func waitForSession(_ plan: WakePlan, active: Bool, tooEarly: Bool, startsNow: Bool, pending: Bool) {
+        // Eine schon geplante Sitzung für einen anderen Plan: übernimmt sie die geänderte Nacht, bleibt sie;
+        // sonst ist sie überholt, und die App bittet ums Öffnen, damit die Nacht eine Sitzung
+        // bekommt (nicht nur den Rückfall).
+        if case .scheduled(let current) = phase, current != plan {
+            if !tooEarly, startsNow, keepsSession(from: current, for: plan) { return }
+            invalidateSession()
+            // Startet doch noch eine Sitzung, die die App nicht mehr kennt (vom System über einen Neustart der App
+            // behalten), prüft `startNight` sie gegen den dann aktuellen Plan statt gegen den alten.
+            self.plan = nil
+            if !tooEarly, startsNow { notifyOpenApp(for: plan) }
+        }
+        if case .scheduled = phase, session != nil, !tooEarly { return }
+        if phase != .waiting(plan) {
+            DiagStore.shared.log(
+                .scheduled, "waiting \(Format.logTime(plan.target)) active \(active)\(pending ? " pending" : "")"
+            )
+        }
+        phase = .waiting(plan)
+        notePlanZone(plan)
+        publishArmed()
+    }
+
+    /// Neue Sitzung für `plan` ab `start` planen (oder gleich starten, wenn `start` schon da ist).
+    private func startSession(_ plan: WakePlan, start: Date, now: Date) {
         invalidateSession()
         let newSession = WKExtendedRuntimeSession()
         newSession.delegate = self
@@ -279,7 +293,9 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         let start = keptStart ?? Self.sessionStart(current)
         guard NightRules.sessionServes(start: start, plan: plan, sessionStart: Self.sessionStart(plan),
                                        tolerance: Self.startTolerance, delay: Self.fallbackDelay) else { return false }
-        DiagStore.shared.log(.scheduled, "session \(Format.logTime(start)) kept for changed target \(Format.logTime(plan.target))")
+        DiagStore.shared.log(
+            .scheduled, "session \(Format.logTime(start)) kept for changed target \(Format.logTime(plan.target))"
+        )
         keptStart = start
         self.plan = plan
         phase = .scheduled(plan)
@@ -341,35 +357,6 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     var ringExpired: Bool {
         guard let target = nightPlan?.target else { return true }
         return Date() > target.addingTimeInterval(Self.ringLimit)
-    }
-
-    /// Vom System gestartete Sitzung übernehmen. Muss synchron in `handle(_:)` geschehen,
-    /// sonst beendet das System die Sitzung.
-    func adopt(_ extendedSession: WKExtendedRuntimeSession) {
-        extendedSession.delegate = self
-        // Eine gemerkte, nicht mehr gültige Sitzung wird beim Start beendet (`extendedRuntimeSessionDidStart`).
-        if isStale(extendedSession) { return }
-        if let session, session !== extendedSession {
-            // Die eigene, geplante oder laufende Sitzung nie verwerfen: Die ankommende ist dann eine
-            // verwaiste aus der Zeit vor einem Neustart der App und endet bei ihrem Start, ohne zu vibrieren.
-            if SessionRules.keepsOwn(session.state) {
-                DiagStore.shared.log(.error, "other session started, own kept")
-                keepStale(extendedSession)
-                return
-            }
-            retire(session)
-        }
-        session = extendedSession
-    }
-
-    /// Beendet die Sitzung dieser Nacht. Darf die App sie gerade nicht beenden (`SessionRules.retire`), bleibt sie
-    /// gemerkt (`staleSessions`) und endet beim nächsten Aktivwerden oder gleich bei ihrem Start.
-    func invalidateSession() {
-        forgetScheduled()
-        keptStart = nil
-        guard let old = session else { return }
-        session = nil
-        retire(old)
     }
 
     /// Meldet dem iPhone, für welche Zielzeit die Uhr scharf ist (Nacht-Check).

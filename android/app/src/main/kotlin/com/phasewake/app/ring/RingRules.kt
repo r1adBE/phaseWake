@@ -50,7 +50,13 @@ internal object RingRules {
      * [currentId]/[currentTarget] klingelt. Fehlende Angaben (Schlummer-Ende, ältere Uhr) widersprechen nicht
      * ([RingMessage.sameNight]).
      */
-    fun incoming(ringing: Boolean, alarmId: String?, target: Long?, currentId: String?, currentTarget: Long?): Incoming = when {
+    fun incoming(
+        ringing: Boolean,
+        alarmId: String?,
+        target: Long?,
+        currentId: String?,
+        currentTarget: Long?,
+    ): Incoming = when {
         !ringing -> Incoming.NEW_ROUND
         RingMessage(alarmId, target).sameNight(currentId, currentTarget) -> Incoming.SAME_NIGHT
         else -> Incoming.TAKE_OVER
@@ -135,7 +141,13 @@ internal object RingRules {
      * nicht veraltet (älter als [RingMessage.MAX_AGE_MS], wie das iPhone in die andere Richtung) und gehört zur Nacht,
      * die gerade klingelt ([currentId]/[currentTarget]). Ein verspätetes «stop» einer anderen Nacht beendet sie nicht.
      */
-    fun stopApplies(message: RingMessage, nowMs: Long, active: Boolean, currentId: String?, currentTarget: Long?): Boolean =
+    fun stopApplies(
+        message: RingMessage,
+        nowMs: Long,
+        active: Boolean,
+        currentId: String?,
+        currentTarget: Long?,
+    ): Boolean =
         active && !message.isStale(nowMs) && message.sameNight(currentId, currentTarget)
 
     /**
@@ -156,8 +168,20 @@ internal object RingRules {
     fun ringPausesBackup(message: RingMessage, nowMs: Long): Boolean = !message.isStale(nowMs)
 
     /**
-     * Zweitwecker, der als Nächstes gilt: der früheste von
-     * - dem nächsten Termin jedes Weckers in [backups] (erst nach [suppressed], siehe [BackupAlarm.watchHandled]),
+     * Gemeinsame Werte der Zweitwecker-Regeln: je Wecker ausgesetzt bis [suppressed] (siehe
+     * [BackupAlarm.watchHandled]), Nachfrist [grace], Zone [zone] und Feiertage [holidays].
+     */
+    data class BackupScope(
+        val suppressed: Map<String, Instant>,
+        val grace: Duration,
+        val zone: ZoneId,
+        val holidays: Set<LocalDate>,
+    )
+
+    /**
+     * Zweitwecker, der als Nächstes gilt (Werte aus [scope]): der früheste von
+     * - dem nächsten Termin jedes Weckers in [backups] (erst nach [BackupScope.suppressed], siehe
+     * [BackupAlarm.watchHandled]),
      * - dem schon geplanten Zweitwecker [plannedId]/[plannedTarget], solange seine Nachfrist läuft
      * ([AlarmSchedule.inGrace]),
      * - dem Probewecker oder Powernap [transient] (auch in der Nachfrist: er kommt nicht wieder), wenn nicht
@@ -174,14 +198,12 @@ internal object RingRules {
         transient: WakePlan?,
         plannedId: String?,
         plannedTarget: Instant?,
-        suppressed: Map<String, Instant>,
         now: Instant,
-        grace: Duration,
-        zone: ZoneId,
-        holidays: Set<LocalDate>,
+        scope: BackupScope,
         planned: PlannedBackup? = null,
     ): WakePlan? {
-        val kept = keptBackup(backups, planned, suppressed, now, grace, zone, holidays)
+        val (suppressed, grace, zone, holidays) = scope
+        val kept = keptBackup(backups, planned, now, scope)
         val extra = transient?.takeIf { plan ->
             plan.target.plus(grace).isAfter(now) && (suppressed[plan.alarmId] ?: Instant.EPOCH) < plan.target
         }
@@ -191,8 +213,9 @@ internal object RingRules {
         }
         val inGrace = backups.firstOrNull { it.id == plannedId }
             ?.let { AlarmSchedule.inGrace(it, plannedTarget, now, grace, zone, holidays, suppressed[it.id]) }
-        val missed = backups.mapNotNull { catchUp(it, plannedId, plannedTarget, planned, suppressed, now, grace, zone, holidays) }
-        return (upcoming + missed + listOfNotNull(inGrace, extra)).minWithOrNull(compareBy({ it.target }, { it.alarmId }))
+        val missed = backups.mapNotNull { catchUp(it, plannedId, plannedTarget, planned, now, scope) }
+        return (upcoming + missed + listOfNotNull(inGrace, extra))
+            .minWithOrNull(compareBy({ it.target }, { it.alarmId }))
     }
 
     /**
@@ -206,26 +229,24 @@ internal object RingRules {
     private val CATCH_UP_DELAY: Duration = Duration.ofSeconds(1)
 
     /**
-     * Nachholen in der Nachfrist: Ein Termin von [spec] in [now] − ([grace] + [CATCH_UP]) bis [now],
-     * der noch gilt (`nextTarget` ab Fensterbeginn − 1 ms, in [zone] mit [holidays]) und nicht ausgesetzt ist
-     * ([suppressed] vor der Zielzeit: nicht geklungen, die Uhr hat ihn nicht übernommen), klingelt gleich – statt erst
-     * am nächsten Termin (zweiter Wecker eine Minute nach dem ersten, beide auf derselben Minute). Nur Termine ab der
-     * Zielzeit des geplanten Zweitweckers [plannedTarget] (verdrängt; ein soeben eingestellter Wecker in der
-     * Vergangenheit klingelt nicht) und nie dieser selbst ([plannedId], auch mit der eingestellten Zielzeit aus
-     * [planned]): Er hat schon ausgelöst oder gilt über [AlarmSchedule.inGrace]; abgewiesen klingelt er nicht in
-     * Schleife. Sonst `null`.
+     * Nachholen in der Nachfrist: Ein Termin von [spec] in [now] − (Nachfrist [BackupScope.grace] + [CATCH_UP]) bis
+     * [now], der noch gilt (`nextTarget` ab Fensterbeginn − 1 ms, in Zone und mit Feiertagen aus [scope]) und nicht
+     * ausgesetzt ist ([BackupScope.suppressed] vor der Zielzeit: nicht geklungen, die Uhr hat ihn nicht übernommen),
+     * klingelt gleich – statt erst am nächsten Termin (zweiter Wecker eine Minute nach dem ersten, beide auf
+     * derselben Minute). Nur Termine ab der Zielzeit des geplanten Zweitweckers [plannedTarget] (verdrängt; ein soeben
+     * eingestellter Wecker in der Vergangenheit klingelt nicht) und nie dieser selbst ([plannedId], auch mit der
+     * eingestellten Zielzeit aus [planned]): Er hat schon ausgelöst oder gilt über [AlarmSchedule.inGrace]; abgewiesen
+     * klingelt er nicht in Schleife. Sonst `null`.
      */
     fun catchUp(
         spec: AlarmSpec,
         plannedId: String?,
         plannedTarget: Instant?,
         planned: PlannedBackup?,
-        suppressed: Map<String, Instant>,
         now: Instant,
-        grace: Duration,
-        zone: ZoneId,
-        holidays: Set<LocalDate>,
+        scope: BackupScope,
     ): WakePlan? {
+        val (suppressed, grace, zone, holidays) = scope
         val since = plannedTarget ?: return null
         val from = now.minus(grace).minus(CATCH_UP).minusMillis(1)
         val target = AlarmSchedule.nextTarget(spec, from, zone, holidays) ?: return null
@@ -239,33 +260,37 @@ internal object RingRules {
      * Wann der Zweitwecker [plan] auslöst: Zielzeit + [grace], ist das schon vorbei (nachgeholt, [catchUp]), gleich
      * nach [now].
      */
-    fun backupAt(plan: WakePlan, grace: Duration, now: Instant): Instant = maxOf(plan.target.plus(grace), now.plus(CATCH_UP_DELAY))
+    fun backupAt(plan: WakePlan, grace: Duration, now: Instant): Instant =
+        maxOf(plan.target.plus(grace), now.plus(CATCH_UP_DELAY))
 
     /**
      * Geplanter Zweitwecker für [keptBackup]: Wecker [alarmId], eingestellte Zielzeit [target] dieser Nacht (ohne
      * Einschlaf-Modus), Zone der Planung [zone] (`null` bei älteren Daten) und, wenn die Uhr die Zielzeit vorverlegt
      * hat, die frühere Zielzeit [earlierTarget] (`OnsetShift`).
      */
-    data class PlannedBackup(val alarmId: String, val target: Instant, val zone: ZoneId?, val earlierTarget: Instant? = null)
+    data class PlannedBackup(
+        val alarmId: String,
+        val target: Instant,
+        val zone: ZoneId?,
+        val earlierTarget: Instant? = null,
+    )
 
     /**
      * Zeitzonenwechsel im laufenden Weckfenster (docs/ENTSCHEIDE.md, 04.11.2026): Hat sich die Ortszeit seit der
-     * Planung von [planned] verschoben ([AlarmSchedule.zoneShifted] gegenüber [zone]) und ist dessen eingestellte
-     * Zielzeit in der Zone der Planung eine begonnene Nacht ([AlarmSchedule.begunNight] mit der Nachfrist [grace],
-     * ausgesetzt bis [suppressed]), bleibt sie zur geplanten absoluten Zeit; eine frühere Zielzeit des Einschlaf-Modus
-     * legt der Aufrufer danach wie gewohnt darüber. Mit früherer Zielzeit beginnt die Nacht schon mit deren Fenster
-     * (frühere Zielzeit, höchstens der eingestellte Fensterbeginn, wie `OnsetShift.applyTo`). Sonst `null` (Ortszeit
-     * gleich, ohne Zone, Wecker geändert, Fenster noch nicht begonnen).
+     * Planung von [planned] verschoben ([AlarmSchedule.zoneShifted] gegenüber [BackupScope.zone]) und ist dessen
+     * eingestellte Zielzeit in der Zone der Planung eine begonnene Nacht ([AlarmSchedule.begunNight] mit der Nachfrist
+     * [BackupScope.grace], ausgesetzt bis [BackupScope.suppressed]), bleibt sie zur geplanten absoluten Zeit; eine
+     * frühere Zielzeit des Einschlaf-Modus legt der Aufrufer danach wie gewohnt darüber. Mit früherer Zielzeit beginnt
+     * die Nacht schon mit deren Fenster (frühere Zielzeit, höchstens der eingestellte Fensterbeginn, wie
+     * `OnsetShift.applyTo`). Sonst `null` (Ortszeit gleich, ohne Zone, Wecker geändert, Fenster noch nicht begonnen).
      */
     fun keptBackup(
         backups: List<AlarmSpec>,
         planned: PlannedBackup?,
-        suppressed: Map<String, Instant>,
         now: Instant,
-        grace: Duration,
-        zone: ZoneId,
-        holidays: Set<LocalDate>,
+        scope: BackupScope,
     ): WakePlan? {
+        val (suppressed, grace, zone, holidays) = scope
         if (planned == null) return null
         val plannedZone = planned.zone ?: return null
         if (!AlarmSchedule.zoneShifted(planned.target, plannedZone, zone)) return null
@@ -280,9 +305,10 @@ internal object RingRules {
      * Zweitwecker ab [first] für die Zeit vor dem ersten Entsperren (nur dann ist allein der geräteverschlüsselte
      * Speicher lesbar): [first] und danach pro Wecker seine folgenden Termine, zusammengeführt nach Zielzeit (bei
      * Gleichstand die kleinere Kennung, wie `BackupPlan.nights` auf dem iPhone). Andere Wecker ab der Zielzeit von
-     * [first] (auch auf derselben Minute), nicht ausgesetzte ([suppressed]); jede Nacht gilt als geklungen – bis
-     * Zielzeit + [pause] ausgesetzt (wie `BackupAlarm.backupRang`), ein Einmal-Wecker danach aus. Dazu der Probewecker
-     * oder Powernap [transient], solange seine Nachfrist [grace] nach [first] läuft. Höchstens [count] Einträge;
+     * [first] (auch auf derselben Minute), nicht ausgesetzte ([BackupScope.suppressed]); jede Nacht gilt als
+     * geklungen – bis Zielzeit + [pause] ausgesetzt (wie `BackupAlarm.backupRang`), ein Einmal-Wecker danach aus. Dazu
+     * der Probewecker oder Powernap [transient], solange seine Nachfrist [BackupScope.grace] nach [first] läuft
+     * (Zone und Feiertage aus [scope]). Höchstens [count] Einträge;
      * [first] ist immer dabei, und die ganze Liste ist nach Zielzeit geordnet (ein Powernap mit Zielzeit vor [first]
      * steht vorne).
      */
@@ -290,13 +316,11 @@ internal object RingRules {
         first: WakePlan,
         backups: List<AlarmSpec>,
         transient: WakePlan?,
-        suppressed: Map<String, Instant>,
-        grace: Duration,
+        scope: BackupScope,
         pause: Duration,
-        zone: ZoneId,
-        holidays: Set<LocalDate>,
         count: Int,
     ): List<WakePlan> {
+        val (suppressed, grace, zone, holidays) = scope
         if (count <= 1) return listOf(first)
         val following = backups.flatMap { spec ->
             val nights = mutableListOf<WakePlan>()

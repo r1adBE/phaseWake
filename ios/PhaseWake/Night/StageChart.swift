@@ -112,7 +112,8 @@ struct StageChart: View {
                 let row = timeline.stageAtWake.flatMap { ChartData.level($0) == nil ? nil : $0 } ?? .awake
                 PointMark(x: .value("woke", wokeAt), y: .value("stage", stageName(row)))
                     .symbol { WakeDot(scheme: scheme) }
-                    .accessibilityLabel(Text(verbatim: L("night_woke", Format.time(timeline.time(wokeAt), in: timeline.timeZone))))
+                    .accessibilityLabel(Text(verbatim: L("night_woke",
+                                                         Format.time(timeline.time(wokeAt), in: timeline.timeZone))))
                     .accessibilityValue(Text(verbatim: windowText))
             }
             if let selected {
@@ -131,8 +132,14 @@ struct StageChart: View {
                     let plot = geo[frame]
                     // Leuchtendes Band: in der Mitte am kräftigsten, oben und unten weich, mit feinem Rand am Beginn
                     // (wie Android).
-                    Rectangle().fill(LinearGradient(colors: [StageColors.marker(scheme).opacity(0.05), StageColors.marker(scheme).opacity(0.18), StageColors.marker(scheme).opacity(0.05)], startPoint: .top, endPoint: .bottom))
-                        .overlay(alignment: .leading) { Rectangle().fill(StageColors.marker(scheme).opacity(0.35)).frame(width: 1) }
+                    Rectangle()
+                        .fill(LinearGradient(colors: [StageColors.marker(scheme).opacity(0.05),
+                                                      StageColors.marker(scheme).opacity(0.18),
+                                                      StageColors.marker(scheme).opacity(0.05)],
+                                             startPoint: .top, endPoint: .bottom))
+                        .overlay(alignment: .leading) {
+                            Rectangle().fill(StageColors.marker(scheme).opacity(0.35)).frame(width: 1)
+                        }
                         .frame(width: max(0, x1 - x0), height: plot.height)
                         .position(x: plot.minX + (x0 + x1) / 2, y: plot.midY)
                 }
@@ -153,7 +160,9 @@ struct StageChart: View {
             AxisMarks(position: .leading) { value in
                 AxisGridLine()
                 AxisValueLabel {
-                    if let name = value.as(String.self) { Text(name).font(Fonts.manrope(12, .semibold, relativeTo: .caption)) }
+                    if let name = value.as(String.self) {
+                        Text(name).font(Fonts.manrope(12, .semibold, relativeTo: .caption))
+                    }
                 }
             }
         }
@@ -168,14 +177,18 @@ struct StageChart: View {
         let color = StageColors.color(step.stage, scheme)
         // Schlicht wie Android: flache Phasenfarbe, kein Verlauf, kein Schein.
         let width = blockWidth(step.toMinute - step.fromMinute)
-        RectangleMark(xStart: .value("from", step.fromMinute), xEnd: .value("to", max(step.toMinute, step.fromMinute + 0.5)),
+        RectangleMark(xStart: .value("from", step.fromMinute),
+                      xEnd: .value("to", max(step.toMinute, step.fromMinute + 0.5)),
                       y: .value("stage", name), height: .ratio(0.76))
             .foregroundStyle(color)
             .opacity(selectedIndex == nil || selectedIndex == i ? 1 : 0.55)
             .cornerRadius(width >= Self.roundMin ? min(6, width / 4) : 0)
-            .accessibilityLabel(Text(verbatim: L("hypno_block", name, Format.time(timeline.time(step.fromMinute), in: timeline.timeZone), Format.time(timeline.time(step.toMinute), in: timeline.timeZone))))
+            .accessibilityLabel(Text(verbatim: L("hypno_block", name,
+                                                 Format.time(timeline.time(step.fromMinute), in: timeline.timeZone),
+                                                 Format.time(timeline.time(step.toMinute), in: timeline.timeZone))))
         if i + 1 < timeline.steps.count, abs(timeline.steps[i + 1].fromMinute - step.toMinute) < 1 {
-            RuleMark(x: .value("at", step.toMinute), yStart: .value("stage", name), yEnd: .value("stage", stageName(timeline.steps[i + 1].stage)))
+            RuleMark(x: .value("at", step.toMinute), yStart: .value("stage", name),
+                     yEnd: .value("stage", stageName(timeline.steps[i + 1].stage)))
                 .foregroundStyle(StageColors.link(scheme))
                 .lineStyle(StrokeStyle(lineWidth: 1))
                 .accessibilityHidden(true)
@@ -186,8 +199,11 @@ struct StageChart: View {
     /// Wecker.
     private var windowText: String {
         guard let window = timeline.window else { return "" }
-        if window.lowerBound == window.upperBound { return L("window_exact_line", Format.time(timeline.time(window.upperBound), in: timeline.timeZone)) }
-        return L("chart_window") + " " + Format.time(timeline.time(window.lowerBound), in: timeline.timeZone) + " – " + Format.time(timeline.time(window.upperBound), in: timeline.timeZone)
+        if window.lowerBound == window.upperBound {
+            return L("window_exact_line", Format.time(timeline.time(window.upperBound), in: timeline.timeZone))
+        }
+        return L("chart_window") + " " + Format.time(timeline.time(window.lowerBound), in: timeline.timeZone) + " – "
+            + Format.time(timeline.time(window.upperBound), in: timeline.timeZone)
     }
 
     /// Beginn, zwei Zwischenzeiten und Ende.
@@ -202,7 +218,8 @@ struct StageChart: View {
             let step = timeline.steps[i]
             let minute = min(max(selected, step.fromMinute), step.toMinute)
             let since = Int((minute - step.fromMinute).rounded(.down))
-            Text(L("hypno_bubble", Format.time(timeline.time(minute), in: timeline.timeZone), stageName(step.stage), Format.duration(minutes: since)))
+            Text(L("hypno_bubble", Format.time(timeline.time(minute), in: timeline.timeZone), stageName(step.stage),
+                   Format.duration(minutes: since)))
                 .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
                 .padding(.horizontal, 10)
                 .padding(.vertical, 5)

@@ -25,7 +25,8 @@ let chartHeight: CGFloat = 168
 func morning(_ night: String) -> Date {
     let parts = NightDate.adding(1, to: night).split(separator: "-").compactMap { Int($0) }
     guard parts.count == 3 else { return Date() }
-    return Calendar.gregorianLocal.date(from: DateComponents(year: parts[0], month: parts[1], day: parts[2], hour: 12)) ?? Date()
+    return Calendar.gregorianLocal.date(from: DateComponents(year: parts[0], month: parts[1], day: parts[2], hour: 12))
+        ?? Date()
 }
 
 /// «28. Okt.»
@@ -85,7 +86,8 @@ struct ChartCard<Content: View, Trailing: View>: View {
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .topLeading)
         // Glaskante und (hell) Schatten wie die Karten der Startseite; auf den Seiten das dichtere Glas.
-        .background(panel ? Brand.panel(scheme) : Brand.card(scheme), in: RoundedRectangle(cornerRadius: Brand.cardRadius))
+        .background(panel ? Brand.panel(scheme) : Brand.card(scheme),
+                    in: RoundedRectangle(cornerRadius: Brand.cardRadius))
         .overlay(CardEdge())
         .shadow(color: scheme == .dark ? .clear : .black.opacity(0.10), radius: 6, y: 2)
     }

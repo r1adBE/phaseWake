@@ -11,7 +11,8 @@ import AlarmKit
 enum PhoneCheck: CaseIterable, Hashable {
     /// Alle Prüfungen; ``buildMismatch`` mit Platzhalter-Nummern.
     static let allCases: [PhoneCheck] = [
-        .watch, .watchApp, .watchArm, .watchBattery, .alarms, .notifications, .battery, .watchArmTonight, .watchOutdated,
+        .watch, .watchApp, .watchArm, .watchBattery, .alarms, .notifications, .battery, .watchArmTonight,
+        .watchOutdated,
         .buildMismatch(phone: 0, watch: 0), .backupHorizon, .silentSwitch, .watchNotifications, .watchStateOld,
         .watchRecorderBattery, .watchRecorderMotion, .watchOnsetBattery, .watchLearnBattery,
     ]
@@ -55,7 +56,8 @@ enum PhoneCheck: CaseIterable, Hashable {
         case .backupHorizon: L("check_backup_horizon_title")
         case .silentSwitch: L("check_silent_switch_title")
         case .watchNotifications, .watchStateOld: L("check_watch_notifications")
-        case .watchRecorderBattery, .watchRecorderMotion, .watchOnsetBattery, .watchLearnBattery: L("check_watch_recorder")
+        case .watchRecorderBattery, .watchRecorderMotion, .watchOnsetBattery, .watchLearnBattery:
+            L("check_watch_recorder")
         }
     }
 
@@ -129,7 +131,8 @@ enum NightCheck {
         if await !notificationsAllowed() { failed.append(.notifications) }
         if await model.backup.horizonShort(model.alarms) { failed.append(.backupHorizon) }
         UIDevice.current.isBatteryMonitoringEnabled = true
-        if phoneBatteryLow(unplugged: UIDevice.current.batteryState == .unplugged, level: UIDevice.current.batteryLevel) {
+        if phoneBatteryLow(unplugged: UIDevice.current.batteryState == .unplugged,
+                           level: UIDevice.current.batteryLevel) {
             failed.append(.battery)
         }
         if !hasAlarmKit { failed.append(.silentSwitch) }
@@ -176,7 +179,8 @@ enum NightCheck {
         // Hat die Uhr noch nie gemeldet (App dort nie geöffnet), ist sie auch nicht scharf.
         // Weiter voraus lässt es sich noch nicht scharf schalten, also auch nicht warnen.
         // Ab der Erinnerung am Abend (60 Min vor der Bettzeit, wie auf der Uhr) deutlicher: heute Nacht ohne Phasen.
-        if let plan = watch.plan, plan.windowStart.timeIntervalSince(now) < armLeadTime, watch.armedTarget != plan.target {
+        if let plan = watch.plan, plan.windowStart.timeIntervalSince(now) < armLeadTime,
+           watch.armedTarget != plan.target {
             failed.append(watch.reminder.map { now >= $0 } == true ? .watchArmTonight : .watchArm)
         }
         // Am Ladegerät warnt der Akku nicht: Die Uhr ist zur Bettzeit geladen und misst trotzdem.
@@ -190,7 +194,8 @@ enum NightCheck {
             failed.append(skip.reason == .battery ? .watchRecorderBattery : .watchRecorderMotion)
         }
         // Vorab zum Akku: nicht, wenn die Uhr schon gemeldet hat, dass sie wegen des Akkus nicht startete.
-        if skip?.reason != .battery, let hint = batteryHint(battery, autoOnset: watch.autoOnset, learning: watch.learning) {
+        if skip?.reason != .battery,
+           let hint = batteryHint(battery, autoOnset: watch.autoOnset, learning: watch.learning) {
             failed.append(hint)
         }
         // Wie die Uhr zuletzt gemeldet hat; unbekannt (ältere Uhr, noch nicht gefragt): keine Warnung.
@@ -203,7 +208,9 @@ enum NightCheck {
         // Warnung.
         let outdated = WatchProtocol.isOutdated(watch: watch.watchProtocol)
         if outdated { failed.append(.watchOutdated) }
-        if let hint = buildHint(phone: watch.phoneBuild, watch: watch.watchBuild, outdated: outdated) { failed.append(hint) }
+        if let hint = buildHint(phone: watch.phoneBuild, watch: watch.watchBuild, outdated: outdated) {
+            failed.append(hint)
+        }
         return failed
     }
 
@@ -291,8 +298,10 @@ enum NightCheck {
             } else {
                 openSettings()
             }
-        case .watch, .watchApp, .watchArm, .watchArmTonight, .watchBattery, .watchOutdated, .buildMismatch, .battery, .backupHorizon, .silentSwitch,
-             .watchNotifications, .watchStateOld, .watchRecorderBattery, .watchRecorderMotion, .watchOnsetBattery, .watchLearnBattery:
+        case .watch, .watchApp, .watchArm, .watchArmTonight, .watchBattery, .watchOutdated, .buildMismatch, .battery,
+             .backupHorizon, .silentSwitch,
+             .watchNotifications, .watchStateOld, .watchRecorderBattery, .watchRecorderMotion, .watchOnsetBattery,
+             .watchLearnBattery:
             break
         }
     }
@@ -321,9 +330,12 @@ struct NightCheckCard: View {
                         .foregroundStyle(blocking.isEmpty ? Brand.accent(scheme) : .red)
                         .font(.title3)
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(L(blocking.isEmpty ? "check_ready" : "check_not_ready")).font(Fonts.manrope(16, .semibold, relativeTo: .headline))
+                        Text(L(blocking.isEmpty ? "check_ready" : "check_not_ready"))
+                            .font(Fonts.manrope(16, .semibold, relativeTo: .headline))
                         if blocking.isEmpty {
-                            Text(L("check_ready_text")).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.secondaryText(scheme))
+                            Text(L("check_ready_text"))
+                                .font(Fonts.manrope(14, relativeTo: .subheadline))
+                                .foregroundStyle(Brand.secondaryText(scheme))
                         }
                     }
                     Spacer()
@@ -333,7 +345,8 @@ struct NightCheckCard: View {
             .disabled(!blocking.isEmpty)
             if blocking.isEmpty && expanded {
                 ForEach([PhoneCheck.watch, .watchApp, .alarms, .battery], id: \.self) { check in
-                    Label(check.title, systemImage: "checkmark").font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.tertiaryText(scheme))
+                    Label(check.title, systemImage: "checkmark")
+                        .font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.tertiaryText(scheme))
                 }
             }
             ForEach(failed, id: \.self) { check in
@@ -359,7 +372,8 @@ struct NightCheckCard: View {
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(blocking.isEmpty ? Brand.card(scheme) : Color.red.opacity(0.14), in: RoundedRectangle(cornerRadius: Brand.cardRadius))
+        .background(blocking.isEmpty ? Brand.card(scheme) : Color.red.opacity(0.14),
+                    in: RoundedRectangle(cornerRadius: Brand.cardRadius))
         .padding(.horizontal, 16)
     }
 }

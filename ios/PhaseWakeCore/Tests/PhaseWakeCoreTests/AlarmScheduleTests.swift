@@ -27,18 +27,24 @@ final class AlarmScheduleTests: XCTestCase {
         XCTAssertEqual(AlarmSchedule.nextTarget(skipped, now: now, calendar: zurich), at(2026, 11, 9, 7, 0))
         // Feiertag am 2.11. mit skipHolidays: ebenso 9.11.; dazu der 9.11. übersprungen: 16.11. (20 Tage).
         let holidays: Set<String> = ["2026-11-02"]
-        XCTAssertEqual(AlarmSchedule.nextTarget(monday.with(skipHolidays: true), now: now, calendar: zurich, holidays: holidays), at(2026, 11, 9, 7, 0))
-        let both = monday.with(skipHolidays: true).with(skipUntil: AlarmSchedule.wallMillis(at(2026, 11, 9, 7, 0), calendar: zurich))
-        XCTAssertEqual(AlarmSchedule.nextTarget(both, now: now, calendar: zurich, holidays: holidays), at(2026, 11, 16, 7, 0))
+        XCTAssertEqual(AlarmSchedule.nextTarget(monday.with(skipHolidays: true), now: now, calendar: zurich,
+                                                holidays: holidays), at(2026, 11, 9, 7, 0))
+        let both = monday.with(skipHolidays: true).with(skipUntil: AlarmSchedule.wallMillis(at(2026, 11, 9, 7, 0),
+                                                                                            calendar: zurich))
+        XCTAssertEqual(AlarmSchedule.nextTarget(both, now: now, calendar: zurich, holidays: holidays),
+                       at(2026, 11, 16, 7, 0))
         // Grenze der Suche: ein Jahr Feiertage → nil statt endloser Suche; 370 Tage.
         XCTAssertEqual(AlarmSchedule.maxSearchDays, 370)
         let everyMonday = Set((0...60).map { NightDate.adding($0 * 7, to: "2026-11-02") })
-        XCTAssertNil(AlarmSchedule.nextTarget(monday.with(skipHolidays: true), now: now, calendar: zurich, holidays: everyMonday))
+        XCTAssertNil(AlarmSchedule.nextTarget(monday.with(skipHolidays: true), now: now, calendar: zurich,
+                                              holidays: everyMonday))
     }
 
     func testOneShot() {
-        XCTAssertEqual(AlarmSchedule.nextTarget(alarm(), now: at(2026, 10, 28, 1, 0), calendar: zurich), at(2026, 10, 28, 7, 0))
-        XCTAssertEqual(AlarmSchedule.nextTarget(alarm(), now: at(2026, 10, 28, 7, 0), calendar: zurich), at(2026, 10, 29, 7, 0))
+        XCTAssertEqual(AlarmSchedule.nextTarget(alarm(), now: at(2026, 10, 28, 1, 0), calendar: zurich),
+                       at(2026, 10, 28, 7, 0))
+        XCTAssertEqual(AlarmSchedule.nextTarget(alarm(), now: at(2026, 10, 28, 7, 0), calendar: zurich),
+                       at(2026, 10, 29, 7, 0))
     }
 
     func testRunningWindow() {
@@ -49,12 +55,15 @@ final class AlarmScheduleTests: XCTestCase {
 
     func testWeekdays() {
         let weekdays: Set<Weekday> = [.monday, .tuesday, .wednesday, .thursday, .friday]
-        XCTAssertEqual(AlarmSchedule.nextTarget(alarm(days: weekdays), now: at(2026, 10, 30, 8, 0), calendar: zurich), at(2026, 11, 2, 7, 0))
-        XCTAssertEqual(AlarmSchedule.nextTarget(alarm(days: [.wednesday]), now: at(2026, 10, 28, 7, 30), calendar: zurich), at(2026, 11, 4, 7, 0))
+        XCTAssertEqual(AlarmSchedule.nextTarget(alarm(days: weekdays), now: at(2026, 10, 30, 8, 0), calendar: zurich),
+                       at(2026, 11, 2, 7, 0))
+        XCTAssertEqual(AlarmSchedule.nextTarget(alarm(days: [.wednesday]), now: at(2026, 10, 28, 7, 30),
+                                                calendar: zurich), at(2026, 11, 4, 7, 0))
     }
 
     func testDisabled() {
-        XCTAssertNil(AlarmSchedule.nextTarget(alarm().with(enabled: false), now: at(2026, 10, 28, 1, 0), calendar: zurich))
+        XCTAssertNil(AlarmSchedule.nextTarget(alarm().with(enabled: false), now: at(2026, 10, 28, 1, 0),
+                                              calendar: zurich))
     }
 
     func testSpringForwardGap() {
@@ -65,17 +74,20 @@ final class AlarmScheduleTests: XCTestCase {
 
     func testFallBackOverlap() {
         // 25.10.2026: 02:30 gibt es zweimal; es gilt die frühere = 00:30 UTC.
-        let target = AlarmSchedule.nextTarget(alarm(hour: 2, minute: 30), now: at(2026, 10, 25, 0, 0), calendar: zurich)!
+        let target = AlarmSchedule.nextTarget(alarm(hour: 2, minute: 30), now: at(2026, 10, 25, 0, 0),
+                                              calendar: zurich)!
         XCTAssertEqual(target, ISO8601DateFormatter().date(from: "2026-10-25T00:30:00Z"))
     }
 
     func testEarliestAndSleepTarget() {
         let now = at(2026, 10, 28, 1, 0)
-        XCTAssertEqual(AlarmSchedule.earliestPlan([alarm(hour: 8, id: "b"), alarm(hour: 6, id: "c")], now: now, calendar: zurich)?.alarmId, "c")
+        XCTAssertEqual(AlarmSchedule.earliestPlan([alarm(hour: 8, id: "b"), alarm(hour: 6, id: "c")], now: now,
+                                                  calendar: zurich)?.alarmId, "c")
         XCTAssertNil(AlarmSchedule.earliestPlan([], now: now, calendar: zurich))
         let onset = at(2026, 10, 27, 23, 10)
         let latest = at(2026, 10, 28, 7, 0)
-        XCTAssertEqual(AlarmSchedule.sleepTarget(onset: onset, sleepDurationMinutes: 450, latest: latest), at(2026, 10, 28, 6, 40))
+        XCTAssertEqual(AlarmSchedule.sleepTarget(onset: onset, sleepDurationMinutes: 450, latest: latest),
+                       at(2026, 10, 28, 6, 40))
         XCTAssertEqual(AlarmSchedule.sleepTarget(onset: onset, sleepDurationMinutes: 600, latest: latest), latest)
     }
 

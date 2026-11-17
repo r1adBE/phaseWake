@@ -55,28 +55,44 @@ struct HistoryChartsData {
         return out
     }
 
-    /// Schlafprofil: die jüngste der letzten 14 Uhr-Nächte mit Schlafphasen. Befinden auch zu Nächten aus anderen Apps
-    /// (`health`). `firstDay`: erster Tag der Woche für die Übersicht (Sprache des Geräts). `latencyMinutes`: gelernte
-    /// Einschlafdauer für die Bettzeit-Linie (die eine Bettzeit).
-    static func of(nights: [NightRecord], sleeps: [SleepSummary], stages: [StageSpan], notes: [String: [String]],
-                   nextTarget: Date?, goalMinutes: Int, latencyMinutes: Int? = nil, now: Date, calendar: Calendar, health: [HealthFeeling] = [],
-                   firstDay: Weekday = .monday) -> HistoryChartsData {
+    /// Eingaben von ``of(_:now:calendar:)``: eigene Nächte, Schlaf und Phasen aus Apple Health, Notizen, Befinden
+    /// auch zu Nächten aus anderen Apps (`health`). `nextTarget`, `goalMinutes` und `latencyMinutes` (gelernte
+    /// Einschlafdauer) ergeben die Bettzeit-Linie; `firstDay`: erster Tag der Woche für die Übersicht.
+    struct Input {
+        var nights: [NightRecord] = []
+        var sleeps: [SleepSummary] = []
+        var stages: [StageSpan] = []
+        var notes: [String: [String]] = [:]
+        var health: [HealthFeeling] = []
+        var nextTarget: Date?
+        var goalMinutes: Int
+        var latencyMinutes: Int?
+        var firstDay: Weekday = .monday
+    }
+
+    /// Schlafprofil: die jüngste der letzten 14 Uhr-Nächte mit Schlafphasen.
+    static func of(_ input: Input, now: Date, calendar: Calendar) -> HistoryChartsData {
+        let nights = input.nights
+        let sleeps = input.sleeps
+        let stages = input.stages
         let today = SleepNotes.nightDate(now, calendar: calendar)
         let night = stages.isEmpty ? nil : nights.sorted { $0.wokeAt > $1.wokeAt }.prefix(ChartData.nights)
             .first { ChartData.hypnogram(stages, night: $0) != nil }
         var periods: [Int: PeriodCharts] = [:]
         for count in ChartData.periods {
             periods[count] = PeriodCharts(
-                bars: ChartData.sleepBars(sleeps, calendar: calendar, today: today, nextTarget: nextTarget, goalMinutes: goalMinutes, nights: count,
-                                        latencyMinutes: latencyMinutes),
+                bars: ChartData.sleepBars(sleeps, calendar: calendar, today: today, nextTarget: input.nextTarget,
+                                          goalMinutes: input.goalMinutes, nights: count,
+                                          latencyMinutes: input.latencyMinutes),
                 wake: ChartData.wakeMoments(nights, calendar: calendar, count: count),
-                feeling: ChartData.feelingSeries(nights, notes: notes, calendar: calendar, today: today, days: count, health: health)
+                feeling: ChartData.feelingSeries(nights, notes: input.notes, calendar: calendar, today: today,
+                                                 days: count, health: input.health)
             )
         }
         var overview: [OverviewUnit: SleepOverview] = [:]
         for unit in OverviewUnit.allCases {
-            overview[unit] = SleepOverviews.of(sleeps, calendar: calendar, today: today, goalMinutes: goalMinutes, unit: unit,
-                                               firstDay: firstDay, stages: stages)
+            overview[unit] = SleepOverviews.of(sleeps, calendar: calendar, today: today, goalMinutes: input.goalMinutes,
+                                               unit: unit, firstDay: input.firstDay, stages: stages)
         }
         return HistoryChartsData(
             periods: periods,

@@ -15,13 +15,15 @@ final class NightstandSchedulePhoneTests: XCTestCase {
     }
 
     func testWithoutSunriseOnlyFullMinutes() {
-        let dates = Array(NightstandSchedule(light: nil).entries(from: t0.addingTimeInterval(59.5), mode: .normal).prefix(3))
+        let dates =
+            Array(NightstandSchedule(light: nil).entries(from: t0.addingTimeInterval(59.5), mode: .normal).prefix(3))
         XCTAssertEqual(dates.map { $0.timeIntervalSince(t0) }, [59.5, 60, 120])
     }
 
     func testRunningSunriseTicksEverySecond() {
         // Begonnen (oder die Uhr hat eben geweckt): ab jetzt jede Sekunde.
         XCTAssertEqual(NightstandSchedule.next(after: t0, light: t0.addingTimeInterval(-600)), t0.addingTimeInterval(1))
-        XCTAssertEqual(NightstandSchedule.next(after: t0.addingTimeInterval(0.5), light: t0.addingTimeInterval(1)), t0.addingTimeInterval(1.5))
+        XCTAssertEqual(NightstandSchedule.next(after: t0.addingTimeInterval(0.5), light: t0.addingTimeInterval(1)),
+                       t0.addingTimeInterval(1.5))
     }
 }

@@ -61,7 +61,13 @@ class BackupReceiversTest {
 
     private fun add(spec: AlarmSpec) = runBlocking { app.alarms.upsert(spec) }.also { ids += spec.id }
 
-    private fun send(action: String, alarmId: String?, target: Instant? = null, receiver: Class<*> = BackupAlarm.Receiver::class.java, extra: (Intent) -> Unit = {}) {
+    private fun send(
+        action: String,
+        alarmId: String?,
+        target: Instant? = null,
+        receiver: Class<*> = BackupAlarm.Receiver::class.java,
+        extra: (Intent) -> Unit = {},
+    ) {
         val intent = Intent(context, receiver).setAction(action)
         if (alarmId != null) intent.putExtra(PhoneRingService.EXTRA_ALARM_ID, alarmId)
         if (target != null) intent.putExtra(PhoneRingService.EXTRA_TARGET, target.toEpochMilli())
@@ -139,7 +145,8 @@ class BackupReceiversTest {
     fun sunriseStartsTheLightOnce() {
         val end = Instant.now().plus(Duration.ofMinutes(20))
         send(BackupAlarm.ACTION_SUNRISE, "r4") {
-            it.putExtra(SunriseLight.EXTRA_START, Instant.now().toEpochMilli()).putExtra(SunriseLight.EXTRA_END, end.toEpochMilli())
+            it.putExtra(SunriseLight.EXTRA_START, Instant.now().toEpochMilli())
+                .putExtra(SunriseLight.EXTRA_END, end.toEpochMilli())
         }
         until("Licht läuft") { SunriseLight.active.value != null }
         assertEquals("r4", SunriseLight.active.value?.alarmId)
@@ -160,7 +167,9 @@ class BackupReceiversTest {
     fun beforeUnlockTheNextSavedBackupIsSetAndTheNightRemembered() {
         users.setUserUnlocked(false)
         val next = target.plus(Duration.ofDays(1))
-        BackupDirectBoot.save(context, listOf(BackupDirectBoot.Entry(target, "r6", target), BackupDirectBoot.Entry(next, "r6", next)))
+        BackupDirectBoot.save(
+            context, listOf(BackupDirectBoot.Entry(target, "r6", target), BackupDirectBoot.Entry(next, "r6", next)),
+        )
         send(BackupAlarm.ACTION, "r6", target)
         startedRing()
         assertEquals(listOf(next), BackupDirectBoot.load(context).map { it.target })

@@ -19,9 +19,14 @@ object CompanionPick {
      */
     fun choose(devices: List<PairedDevice>, nodeNames: List<String>): PairedDevice? {
         val nodes = nodeNames.map(::normalized).filter { it.isNotEmpty() }
-        val named = devices.mapNotNull { device -> device.name?.let(::normalized)?.takeIf { it.isNotEmpty() }?.let { device to it } }
+        val named =
+            devices.mapNotNull { device ->
+                device.name?.let(::normalized)?.takeIf { it.isNotEmpty() }?.let { device to it }
+            }
         named.firstOrNull { (_, name) -> name in nodes }?.let { return it.first }
-        named.firstOrNull { (_, name) -> nodes.any { node -> name.contains(node) || node.contains(name) } }?.let { return it.first }
+        named.firstOrNull { (_, name) ->
+            nodes.any { node -> name.contains(node) || node.contains(name) }
+        }?.let { return it.first }
         return devices.singleOrNull { it.wearable }
     }
 

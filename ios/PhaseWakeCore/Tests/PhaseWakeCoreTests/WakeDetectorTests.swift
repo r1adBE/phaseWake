@@ -120,7 +120,8 @@ final class WakeDetectorTests: XCTestCase {
         let quiet = Epoch(motion: 0.03, heartRate: 52.0)
         _ = feed(detector, quiet, quiet, quiet, quiet, quiet)
         // Rauschen 0.03 → Wach-Schwelle 0.15: zweimal 0.12 reicht nicht mehr (ohne Rauschen: wach).
-        XCTAssertEqual(feed(detector, Epoch(motion: 0.12, heartRate: 52.0), Epoch(motion: 0.12, heartRate: 52.0)), [.wait, .wait])
+        XCTAssertEqual(feed(detector, Epoch(motion: 0.12, heartRate: 52.0), Epoch(motion: 0.12, heartRate: 52.0)),
+                       [.wait, .wait])
         XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.2, heartRate: 52.0)), .wait)
         XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.2, heartRate: 52.0)), .wake(.awake))
     }
@@ -181,7 +182,8 @@ final class WakeDetectorTests: XCTestCase {
         // (64, 64, 60, 60, 60, 60) = 60 → 63.
         let detector = WakeDetector()
         let calm = Epoch(motion: 0.0, heartRate: 60.0)
-        _ = feed(detector, Epoch(motion: 0.0, heartRate: 64.0), Epoch(motion: 0.0, heartRate: 64.0), calm, calm, calm, calm, calm, calm)
+        _ = feed(detector, Epoch(motion: 0.0, heartRate: 64.0), Epoch(motion: 0.0, heartRate: 64.0), calm, calm, calm,
+                 calm, calm, calm)
         XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.003, heartRate: 63.0)), .wait)
         XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.003, heartRate: 64.0)), .wake(.lightSleep))
     }
@@ -189,11 +191,15 @@ final class WakeDetectorTests: XCTestCase {
     func testLearnedRestingHeartRateBoundsTheBaseline() throws {
         // Basispuls des Fensters 45 unter dem Ruhepuls 50: gilt 50 → 52.5; 52 ist kein Anstieg.
         let low = WakeDetector(config: try DetectorConfig(restingHeartRate: 50.0))
-        _ = run(low, Array(repeating: Epoch(motion: 0.0, heartRate: 45.0), count: 6) + [Epoch(motion: 0.003, heartRate: 52.0)])
+        _ = run(low,
+                Array(repeating: Epoch(motion: 0.0, heartRate: 45.0),
+                      count: 6) + [Epoch(motion: 0.003, heartRate: 52.0)])
         XCTAssertEqual(low.onEpoch(Epoch(motion: 0.003, heartRate: 52.0)), .wait)
         // Basispuls 80 über Ruhepuls × 1.3 = 65: gilt 65 → 68.25; 70 ist ein Anstieg.
         let high = WakeDetector(config: try DetectorConfig(restingHeartRate: 50.0))
-        _ = run(high, Array(repeating: Epoch(motion: 0.0, heartRate: 80.0), count: 6) + [Epoch(motion: 0.003, heartRate: 70.0)])
+        _ = run(high,
+                Array(repeating: Epoch(motion: 0.0, heartRate: 80.0),
+                      count: 6) + [Epoch(motion: 0.003, heartRate: 70.0)])
         XCTAssertEqual(high.onEpoch(Epoch(motion: 0.003, heartRate: 70.0)), .wake(.lightSleep))
     }
 
@@ -215,17 +221,20 @@ final class WakeDetectorTests: XCTestCase {
         let restless = Array(repeating: Epoch(motion: 0.08, heartRate: 60.0), count: 8)
         let config = try DetectorConfig(personalFloor: 0.03).withOnsetFloor(0.012)
         XCTAssertEqual(NoiseFloor.priorFloor(config), 0.03)
-        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(restless.map(\.motion), config: config)), 0.04, accuracy: 1e-12)
+        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(restless.map(\.motion), config: config)), 0.04,
+                       accuracy: 1e-12)
         // Einschlaf-Messung 0.018 über gelernt 0.012: Obergrenze 1.5 × 0.018 = 0.027 → Wach 0.135, zweimal 0.14 weckt.
         let higher = try DetectorConfig(personalFloor: 0.012).withOnsetFloor(0.018)
-        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(restless.map(\.motion), config: higher)), 0.027, accuracy: 1e-12)
+        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(restless.map(\.motion), config: higher)), 0.027,
+                       accuracy: 1e-12)
         let detector = WakeDetector(config: higher)
         _ = run(detector, restless + [Epoch(motion: 0.14, heartRate: 60.0)])
         XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.14, heartRate: 60.0)), .wake(.awake))
         // Zu wenige Werte: das der Einschlaf-Messung gilt vor dem gelernten, auch wenn es tiefer ist; ruhiger als das
         // bekannte: das eigene des Fensters.
         XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor([nil, 0.5], config: config)), 0.012, accuracy: 1e-12)
-        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(Array(repeating: 0.01, count: 8), config: config)), 0.01, accuracy: 1e-12)
+        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(Array(repeating: 0.01, count: 8), config: config)), 0.01,
+                       accuracy: 1e-12)
         XCTAssertNil(DetectorConfig.standard.withOnsetFloor(.nan).onsetFloor)
         XCTAssertNil(NoiseFloor.priorFloor(DetectorConfig.standard))
     }
@@ -233,17 +242,25 @@ final class WakeDetectorTests: XCTestCase {
     func testPlausibilityIsMeasuredAgainstTheCappedWindowFloor() throws {
         // Die Latte 0.25 × F rechnet mit F höchstens 0.04 (nicht mit dem rohen 0.08), also höchstens 0.01.
         let restless: [Double?] = Array(repeating: 0.08, count: 8)
-        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(restless, config: try DetectorConfig(personalFloor: 0.012))), 0.018, accuracy: 1e-12)
-        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(restless, config: try DetectorConfig(personalFloor: 0.0099))), 0.04, accuracy: 1e-12)
+        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(restless,
+                                                            config: try DetectorConfig(personalFloor: 0.012))), 0.018,
+                       accuracy: 1e-12)
+        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(restless,
+                                                            config: try DetectorConfig(personalFloor: 0.0099))), 0.04,
+                       accuracy: 1e-12)
     }
 
     func testImplausiblyLowPriorDoesNotCap() throws {
         // Uhr mit Rauschen 0.02, Vorwissen 0.004 < 0.25 × 0.02 = 0.005: keine Obergrenze, es bleibt 0.02.
         let noisy: [Double?] = Array(repeating: 0.02, count: 8)
-        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(noisy, config: try DetectorConfig(personalFloor: 0.004))), 0.02, accuracy: 1e-12)
-        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(noisy, config: DetectorConfig.standard.withOnsetFloor(0.002))), 0.02, accuracy: 1e-12)
+        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(noisy, config: try DetectorConfig(personalFloor: 0.004))),
+                       0.02, accuracy: 1e-12)
+        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(noisy,
+                                                            config: DetectorConfig.standard.withOnsetFloor(0.002))),
+                       0.02, accuracy: 1e-12)
         // Genau an der Grenze (0.005 = 0.25 × 0.02) gilt sie: 1.5 × 0.005 = 0.0075.
-        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(noisy, config: try DetectorConfig(personalFloor: 0.005))), 0.0075, accuracy: 1e-12)
+        XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(noisy, config: try DetectorConfig(personalFloor: 0.005))),
+                       0.0075, accuracy: 1e-12)
         // Das tiefe der Einschlaf-Messung verdrängt ein plausibles gelerntes nicht (das grössere zählt).
         let both = try DetectorConfig(personalFloor: 0.018).withOnsetFloor(0.002)
         XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(noisy, config: both)), 0.02, accuracy: 1e-12)
@@ -284,18 +301,24 @@ final class WakeDetectorTests: XCTestCase {
     func testInvalidLearnedValuesCountAsNone() {
         // Wie Kotlin: kaputte Werte gelten als keine.
         for floor in [Double.nan, -0.01, .infinity, 5.0] {
-            XCTAssertNil(DetectorConfig.standard.withLearned(floor: floor, restingHeartRate: nil).personalFloor, "\(floor)")
+            XCTAssertNil(DetectorConfig.standard.withLearned(floor: floor, restingHeartRate: nil).personalFloor,
+                         "\(floor)")
         }
         for pulse in [Double.nan, 0.0, -50.0, 10.0, 400.0, .infinity] {
-            XCTAssertNil(DetectorConfig.standard.withLearned(floor: nil, restingHeartRate: pulse).restingHeartRate, "\(pulse)")
+            XCTAssertNil(DetectorConfig.standard.withLearned(floor: nil, restingHeartRate: pulse).restingHeartRate,
+                         "\(pulse)")
         }
         let ok = DetectorConfig.standard.withLearned(floor: 0.02, restingHeartRate: 52.0)
         XCTAssertEqual(ok.personalFloor, 0.02)
         XCTAssertEqual(ok.restingHeartRate, 52.0)
         XCTAssertEqual(DetectorConfig.standard.withLearned(floor: 0.0, restingHeartRate: nil).personalFloor, 0.0)
-        XCTAssertEqual(Learning.withLearned(.standard, Learning.Values(floor: .nan, restingHeartRate: -1, latencyMinutes: nil, nights: 7)),
+        XCTAssertEqual(Learning.withLearned(.standard,
+                                            Learning.Values(floor: .nan, restingHeartRate: -1, latencyMinutes: nil,
+                                                            nights: 7)),
                        .standard)
-        XCTAssertEqual(DetectorConfig.standard.withOnsetFloor(0.01).withLearned(floor: 0.02, restingHeartRate: 52.0).onsetFloor, 0.01)
+        XCTAssertEqual(DetectorConfig.standard.withOnsetFloor(0.01).withLearned(floor: 0.02,
+                                                                                restingHeartRate: 52.0).onsetFloor,
+                       0.01)
         let snapshot = LearningSnapshot(context: [SyncKeys.learnUpdatedAt: Int64(5), SyncKeys.learnFloor: Double.nan,
                                                   SyncKeys.learnRestingHr: 1e9])
         XCTAssertNil(snapshot?.floor)

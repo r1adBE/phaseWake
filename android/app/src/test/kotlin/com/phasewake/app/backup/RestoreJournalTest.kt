@@ -29,7 +29,10 @@ class RestoreJournalTest {
     private val nightsFile get() = File(dir, "nights.v1")
 
     private fun night(id: String, start: Long) =
-        NightRecord(id, Instant.ofEpochMilli(start), Instant.ofEpochMilli(start + 1_800_000), Instant.ofEpochMilli(start + 900_000), WakeReason.DEADLINE, 0, emptyList())
+        NightRecord(
+            id, Instant.ofEpochMilli(start), Instant.ofEpochMilli(start + 1_800_000),
+            Instant.ofEpochMilli(start + 900_000), WakeReason.DEADLINE, 0, emptyList(),
+        )
 
     private val old = listOf(night("alt", 1_000_000))
     private val restored = listOf(night("neu", 2_000_000), night("neu", 3_000_000))

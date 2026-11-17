@@ -2,13 +2,10 @@ package com.phasewake.app.wear.wake
 
 import android.content.Context
 import android.content.Intent
-import android.content.pm.ServiceInfo
 import android.os.Handler
 import android.os.Looper
 import android.os.PowerManager
 import android.util.Log
-import androidx.core.app.NotificationManagerCompat
-import androidx.core.app.ServiceCompat
 import androidx.lifecycle.LifecycleService
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.Epoch
@@ -151,22 +148,30 @@ class WakeService : LifecycleService() {
             ACTION_SNOOZE_END -> if (plan == null) ring() else if (adopt(plan)) ring()
             ACTION_SNOOZE -> snooze(notifyPhone = true)
             ACTION_PHONE_SNOOZE -> if (isForThisNight(intent)) snooze(notifyPhone = true, fromPhone = true)
-            ACTION_DISMISS -> if (isForThisNight(intent)) dismiss(notifyPhone = true, fromPhone = intent.hasExtra(EXTRA_REMOTE_ALARM_ID))
+            ACTION_DISMISS -> if (isForThisNight(intent)) {
+                dismiss(notifyPhone = true, fromPhone = intent.hasExtra(EXTRA_REMOTE_ALARM_ID))
+            }
             ACTION_CANCEL -> cancelMeasuring()
             ACTION_GOOD_NIGHT -> intent.getStringExtra(EXTRA_ALARM_ID)?.let { startGoodNight(it) }
             ACTION_AUTO_ONSET -> intent.getStringExtra(EXTRA_ALARM_ID)?.let { startGoodNight(it, auto = true) }
             ACTION_GOOD_NIGHT_RESUME -> startGoodNight(null)
             ACTION_GOOD_NIGHT_CANCEL -> stopGoodNight()
             ACTION_TASK_SHOWN -> if (isForThisNight(intent)) onTaskShown(remoteTarget(intent))
-            ACTION_TASK_GONE -> if (isForThisNight(intent) && isSameTarget(remoteTarget(intent))) taskFallback("Aufgabe am Handy beendet")
+            ACTION_TASK_GONE -> if (isForThisNight(intent) && isSameTarget(remoteTarget(intent))) {
+                taskFallback("Aufgabe am Handy beendet")
+            }
             // Vom System neu gestartet (START_STICKY), ohne Auftrag: «Gute Nacht» über den Prüf-Alarm
             // wieder aufnehmen; nur dieser darf den Messdienst aus dem Hintergrund in den Vordergrund holen.
-            null -> if (intent == null && DirectBoot.isUnlocked(this)) AlarmScheduler.armGoodNightCheck(this, Instant.now().plusSeconds(1))
+            null -> if (intent == null && DirectBoot.isUnlocked(this)) {
+                AlarmScheduler.armGoodNightCheck(this, Instant.now().plusSeconds(1))
+            }
         }
         // Jeder Start über startForegroundService verlangt eine Vordergrund-Meldung, auch wenn schon eine steht.
         if (plan != null || intent?.action?.let { it in FOREGROUND_ACTIONS } == true) {
             val measuring = night?.let { it.phase == Phase.MEASURING && !it.locked } ?: false
-            notification?.let { goForeground(it, measuring = measuring || onset != null || goodNightPending, id = notificationId) }
+            notification?.let {
+                goForeground(it, measuring = measuring || onset != null || goodNightPending, id = notificationId)
+            }
         }
         if (isIdle()) stopSelf(startId)
         // Der Auftrag ist erledigt (ein eigener Wakelock steht, falls nötig): Start-Wakelock des Empfängers lösen. Lädt
@@ -215,50 +220,14 @@ class WakeService : LifecycleService() {
     }
 
     /**
-     * Vordergrund mit dem passenden Typ: «health» zum Messen (braucht Sensorrechte), sonst
-     * «systemExempted» (Wecker-Apps). Schlägt «health» fehl, läuft der Dienst ohne Messung weiter.
-     * [id]: Kennung der Mitteilung; eine neue Kennung ersetzt die bisherige (das System entfernt die alte,
-     * hier zur Sicherheit auch selbst). Nur so startet eine Weck-Mitteilung ihr Vollbild ([postRinging]).
-     * @return `true`, wenn gemessen werden darf.
-     */
-    // Die Diensttypen (API 34) setzt ServiceCompat auf älteren Versionen nicht; das Einbetten ist unbedenklich.
-    @android.annotation.SuppressLint("InlinedApi")
-    internal fun goForeground(shown: android.app.Notification, measuring: Boolean, id: Int = Notifications.ID_SERVICE): Boolean {
-        notification = shown
-        val previous = notificationId
-        notificationId = id
-        val measured = measuring && foregroundForHealth(shown, id)
-        if (!measured) {
-            try {
-                ServiceCompat.startForeground(this, id, shown, ServiceInfo.FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED)
-            } catch (e: RuntimeException) {
-                Log.e(TAG, "Vordergrund nicht möglich", e)
-            }
-        }
-        if (previous != id) NotificationManagerCompat.from(this).cancel(previous)
-        return measured
-    }
-
-    @android.annotation.SuppressLint("InlinedApi")
-    private fun foregroundForHealth(shown: android.app.Notification, id: Int): Boolean = try {
-        ServiceCompat.startForeground(this, id, shown, ServiceInfo.FOREGROUND_SERVICE_TYPE_HEALTH)
-        healthRefusal = null
-        true
-    } catch (e: RuntimeException) {
-        // SecurityException (Rechte fehlen) oder ForegroundServiceStartNotAllowedException. Grund und Rechte auch ins
-        // Diagnose-Protokoll (schreiben die Aufrufer), nicht nur ins Systemprotokoll.
-        Log.w(TAG, "Messen nicht erlaubt, nur Wecken zur Zielzeit", e)
-        healthRefusal = SensorAccess.refusal(e, SensorAccess.of(this))
-        false
-    }
-
-    /**
      * Hält die Uhr höchstens [millis] wach. Zuerst den neuen Wakelock nehmen, dann den alten lösen ([swapHeld]): keine
      * Lücke, in der die Uhr einschlafen könnte. Danach braucht es den Start-Wakelock nicht mehr.
      */
     internal fun holdWakeLock(millis: Long) {
         wakeLock = swapHeld(wakeLock, {
-            getSystemService(PowerManager::class.java).newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "phasewake:window").apply { acquire(millis) }
+            getSystemService(PowerManager::class.java)
+                .newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "phasewake:window")
+                .apply { acquire(millis) }
         }) { old -> if (old.isHeld) old.release() }
         StartLock.release()
     }
@@ -352,7 +321,11 @@ class WakeService : LifecycleService() {
 
         /** Startet «Gute Nacht» für den Schlafdauer-Wecker [alarmId]. */
         fun goodNight(context: Context, alarmId: String) {
-            StartRefused.start(context, Intent(context, WakeService::class.java).setAction(ACTION_GOOD_NIGHT).putExtra(EXTRA_ALARM_ID, alarmId), null)
+            StartRefused.start(
+                context,
+                Intent(context, WakeService::class.java).setAction(ACTION_GOOD_NIGHT).putExtra(EXTRA_ALARM_ID, alarmId),
+                null,
+            )
         }
 
         /**
@@ -360,12 +333,20 @@ class WakeService : LifecycleService() {
          * [com.phasewake.app.wear.schedule.AutoOnset]).
          */
         fun autoOnset(context: Context, alarmId: String) {
-            StartRefused.start(context, Intent(context, WakeService::class.java).setAction(ACTION_AUTO_ONSET).putExtra(EXTRA_ALARM_ID, alarmId), null)
+            StartRefused.start(
+                context,
+                Intent(context, WakeService::class.java).setAction(ACTION_AUTO_ONSET).putExtra(EXTRA_ALARM_ID, alarmId),
+                null,
+            )
         }
 
         /** Nimmt «Gute Nacht» nach einem Ende des Prozesses wieder auf (aus dem Prüf-Alarm). */
         fun resumeGoodNight(context: Context) {
-            StartRefused.start(context, Intent(context, WakeService::class.java).setAction(ACTION_GOOD_NIGHT_RESUME), null)
+            StartRefused.start(
+                context,
+                Intent(context, WakeService::class.java).setAction(ACTION_GOOD_NIGHT_RESUME),
+                null,
+            )
         }
 
         /** Beendet «Gute Nacht»; auch wenn der Dienst nicht mehr läuft, gilt der gespeicherte Stand nicht mehr. */
@@ -381,7 +362,13 @@ class WakeService : LifecycleService() {
          * [remoteAlarmId]: Wecker, den das Handy meint (aus [RingMessage]); `null` gilt für jede Nacht.
          * [remoteTarget]: Zielzeit, die das Handy meint (nur für die Weckaufgabe geprüft).
          */
-        fun command(context: Context, action: String, plan: WakePlan? = null, remoteAlarmId: String? = null, remoteTarget: Long? = null) {
+        fun command(
+            context: Context,
+            action: String,
+            plan: WakePlan? = null,
+            remoteAlarmId: String? = null,
+            remoteTarget: Long? = null,
+        ) {
             val intent = Intent(context, WakeService::class.java).setAction(action)
             if (remoteAlarmId != null) intent.putExtra(EXTRA_REMOTE_ALARM_ID, remoteAlarmId)
             if (remoteTarget != null) intent.putExtra(EXTRA_REMOTE_TARGET, remoteTarget)

@@ -92,7 +92,10 @@ class SleepNotesTest {
         val notes = listOf(CustomNote("custom:1", "Meditation"), CustomNote("custom:2", "  Lange Arbeit | spät\n"))
         val text = SleepNotes.encodeCustom(notes)
         assertEquals("custom:1|Meditation\ncustom:2|Lange Arbeit | spät", text)
-        assertEquals(listOf(CustomNote("custom:1", "Meditation"), CustomNote("custom:2", "Lange Arbeit | spät")), SleepNotes.decodeCustom(text))
+        assertEquals(
+            listOf(CustomNote("custom:1", "Meditation"), CustomNote("custom:2", "Lange Arbeit | spät")),
+            SleepNotes.decodeCustom(text),
+        )
         assertEquals(30, SleepNotes.cleanName("x".repeat(40)).length)
         assertEquals(emptyList(), SleepNotes.decodeCustom("ALCOHOL|x\ncustom:|y\ncustom:3|"))
         assertEquals(5, SleepNotes.decodeCustom((1..7).joinToString("\n") { "custom:$it|n$it" }).size)
@@ -173,14 +176,22 @@ class SleepNotesTest {
     fun sameNightDateCountsOnceAndHealthNightsMapByMidpoint() {
         // Zwei Wecker am selben Morgen: eine Nacht, das Befinden der zuletzt geweckten zählt.
         val first = night(0, 1)
-        val second = first.copy(alarmId = "b", windowStart = first.windowStart.plusSeconds(1800), wokeAt = first.wokeAt.plusSeconds(1800), feeling = 5)
+        val second = first.copy(
+            alarmId = "b",
+            windowStart = first.windowStart.plusSeconds(1800),
+            wokeAt = first.wokeAt.plusSeconds(1800),
+            feeling = 5,
+        )
         val nights = listOf(first, second) + (1L..5L).map { night(it, 3) }
         val notes = (0L..2L).associate { dateOf(it) to listOf(SleepNotes.NAP) }
         val effect = NoteEffect.compute(nights, notes, zone).single()
         assertEquals(3, effect.nightsWith)
         assertEquals((5.0 + 3 + 3) / 3, effect.avgFeelingWith, 1e-9)
 
-        val sleeps = listOf(SleepSummary(at("2026-10-27T23:00"), at("2026-10-28T06:30"), 420), SleepSummary(at("2026-10-28T13:00"), at("2026-10-28T16:30"), 200))
+        val sleeps = listOf(
+            SleepSummary(at("2026-10-27T23:00"), at("2026-10-28T06:30"), 420),
+            SleepSummary(at("2026-10-28T13:00"), at("2026-10-28T16:30"), 200),
+        )
         assertEquals(mapOf(day to 420L, day.plusDays(1) to 200L), NoteEffect.asleepByNight(sleeps, zone))
         // Mitte und Ende ergeben verschiedene Daten (spät aufgewacht): es zählt die Mitte, also der Abend davor.
         val late = SleepSummary(at("2026-10-28T02:42"), at("2026-10-28T12:50"), 570)

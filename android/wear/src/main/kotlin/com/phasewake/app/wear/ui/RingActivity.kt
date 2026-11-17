@@ -73,6 +73,7 @@ import com.phasewake.app.wear.ui.components.sunriseSky
 import com.phasewake.app.wear.ui.theme.Brand
 import com.phasewake.app.wear.ui.theme.PhaseWakeTheme
 import com.phasewake.app.wear.ui.theme.wakeSky
+import com.phasewake.app.wear.wake.RingState
 import com.phasewake.app.wear.wake.RingUi
 import com.phasewake.app.wear.wake.StartRefused
 import com.phasewake.app.wear.wake.WakeService
@@ -97,59 +98,72 @@ class RingActivity : ComponentActivity() {
         val ringState = wearApp.ringState
         // Über die Weck-Mitteilung ohne laufenden Dienst (Start verweigert): Dienst jetzt nachholen.
         val rescue = savedInstanceState == null && StartRefused.resume(this, intent)
-        setContent {
-            PhaseWakeTheme {
-                val ui by ringState.ui.collectAsStateWithLifecycle()
-                var rang by rememberSaveable { mutableStateOf(false) }
-                LaunchedEffect(ui) {
-                    when (ui) {
-                        RingUi.Idle -> {
-                            // Beim Nachholen kurz auf den Dienst warten, sonst schlösse sich der Bildschirm sofort.
-                            if (rescue && !rang) delay(RESCUE_WAIT_MS)
-                            finish()
-                        }
-                        is RingUi.Ringing -> {
-                            rang = true
-                            window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-                        }
-                        // Beim Schlummern geht das Display aus. Wurde hier geschlummert, schliesst sich der
-                        // Bildschirm; beim nächsten Klingeln öffnet ihn die Weck-Mitteilung wieder. Über die
-                        // Schlummer-Mitteilung geöffnet, bleibt er (Beenden durch Halten), ohne das Display wach zu
-                        // halten.
-                        is RingUi.Snoozed -> {
-                            window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-                            if (rang) finish()
-                        }
-                    }
+        setContent { PhaseWakeTheme { RingRoot(ringState, rescue) } }
+    }
+
+    /**
+     * Inhalt des Weckbildschirms zum Stand [ringState]: schliesst sich, sobald nichts mehr klingelt (beim Nachholen
+     * [rescue] erst nach kurzem Warten auf den Dienst), und führt den Sonnenaufgang samt Helligkeit des Displays.
+     */
+    @Composable
+    private fun RingRoot(ringState: RingState, rescue: Boolean) {
+        val ui by ringState.ui.collectAsStateWithLifecycle()
+        var rang by rememberSaveable { mutableStateOf(false) }
+        LaunchedEffect(ui) {
+            when (ui) {
+                RingUi.Idle -> {
+                    // Beim Nachholen kurz auf den Dienst warten, sonst schlösse sich der Bildschirm sofort.
+                    if (rescue && !rang) delay(RESCUE_WAIT_MS)
+                    finish()
                 }
-                // Sonnenaufgang auf der Uhr als Hintergrund: beim Wecken in zwei Minuten von dunkel zu hell,
-                // ab Fenster in einer Minute vom erreichten Stand aus (wie auf dem Handy).
-                val ringing = ui as? RingUi.Ringing
-                val sunrise = ringing?.sunrise ?: Sunrise.OFF
-                val light = remember { Animatable(0f) }
-                LaunchedEffect(sunrise, ringing?.lightFrom) {
-                    val from = ringing?.lightFrom ?: return@LaunchedEffect
-                    if (sunrise == Sunrise.OFF) return@LaunchedEffect
-                    // Nur heller werden, nie zurück.
-                    if (from > light.value) light.snapTo(from)
-                    val millis = if (from > 0f) Sunrise.CATCH_UP_SECONDS * 1000 else (Sunrise.RING_SECONDS * 1000 * (1f - light.value)).toInt()
-                    light.animateTo(1f, tween(millis.coerceAtLeast(1), easing = LinearEasing))
+                is RingUi.Ringing -> {
+                    rang = true
+                    window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
                 }
-                LaunchedEffect(sunrise) {
-                    snapshotFlow { light.value }.collect { value ->
-                        window.attributes = window.attributes.apply {
-                            screenBrightness = if (sunrise == Sunrise.OFF) WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE else Sunrise.brightness(value)
-                        }
-                    }
+                // Beim Schlummern geht das Display aus. Wurde hier geschlummert, schliesst sich der
+                // Bildschirm; beim nächsten Klingeln öffnet ihn die Weck-Mitteilung wieder. Über die
+                // Schlummer-Mitteilung geöffnet, bleibt er (Beenden durch Halten), ohne das Display wach zu
+                // halten.
+                is RingUi.Snoozed -> {
+                    window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+                    if (rang) finish()
                 }
-                RingScreen(
-                    ui = ui,
-                    onDismiss = { WakeService.command(this, WakeService.ACTION_DISMISS) },
-                    onSnooze = { WakeService.command(this, WakeService.ACTION_SNOOZE) },
-                    light = if (sunrise == Sunrise.OFF) null else light.value,
-                )
             }
         }
+        // Sonnenaufgang auf der Uhr als Hintergrund: beim Wecken in zwei Minuten von dunkel zu hell,
+        // ab Fenster in einer Minute vom erreichten Stand aus (wie auf dem Handy).
+        val ringing = ui as? RingUi.Ringing
+        val sunrise = ringing?.sunrise ?: Sunrise.OFF
+        val light = remember { Animatable(0f) }
+        LaunchedEffect(sunrise, ringing?.lightFrom) {
+            val from = ringing?.lightFrom ?: return@LaunchedEffect
+            if (sunrise == Sunrise.OFF) return@LaunchedEffect
+            // Nur heller werden, nie zurück.
+            if (from > light.value) light.snapTo(from)
+            val millis = if (from > 0f) {
+                Sunrise.CATCH_UP_SECONDS * 1000
+            } else {
+                (Sunrise.RING_SECONDS * 1000 * (1f - light.value)).toInt()
+            }
+            light.animateTo(1f, tween(millis.coerceAtLeast(1), easing = LinearEasing))
+        }
+        LaunchedEffect(sunrise) {
+            snapshotFlow { light.value }.collect { value ->
+                window.attributes = window.attributes.apply {
+                    screenBrightness = if (sunrise == Sunrise.OFF) {
+                        WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
+                    } else {
+                        Sunrise.brightness(value)
+                    }
+                }
+            }
+        }
+        RingScreen(
+            ui = ui,
+            onDismiss = { WakeService.command(this, WakeService.ACTION_DISMISS) },
+            onSnooze = { WakeService.command(this, WakeService.ACTION_SNOOZE) },
+            light = if (sunrise == Sunrise.OFF) null else light.value,
+        )
     }
 
     // singleInstance: Ein weiterer Start (Vollbild, Alarm, Erinnerung) kommt hier an, ohne zweiten Bildschirm;
@@ -223,7 +237,9 @@ private const val LARGE_FONT_SCALE = 1.05f
 @Composable
 internal fun RingScreen(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit, light: Float? = null) {
     val density = LocalDensity.current
-    CompositionLocalProvider(LocalDensity provides Density(density.density, density.fontScale.coerceAtMost(MAX_FONT_SCALE))) {
+    CompositionLocalProvider(
+        LocalDensity provides Density(density.density, density.fontScale.coerceAtMost(MAX_FONT_SCALE)),
+    ) {
         RingContent(ui, onDismiss, onSnooze, light)
     }
 }
@@ -245,8 +261,15 @@ private fun RingContent(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit,
     val background = if (light != null) Modifier.sunriseSky(light) else Modifier.wakeSky()
     val sidePadding = if (compact) 12 else 18
     // Mit Aufgabe am Handy braucht der Hinweis «… oder 5 s halten» den Platz: kein Grund.
-    val reason = (ui as? RingUi.Ringing)?.takeIf { !taskOnPhone }?.let { stringResource(ringReasonRes(it.reason)) }.orEmpty()
-    val reasonFit = rememberReasonFit(reason, MaterialTheme.typography.bodySmall, configuration.screenWidthDp - 2 * sidePadding)
+    val reason = (ui as? RingUi.Ringing)
+        ?.takeIf { !taskOnPhone }
+        ?.let { stringResource(ringReasonRes(it.reason)) }
+        .orEmpty()
+    val reasonFit = rememberReasonFit(
+        reason,
+        MaterialTheme.typography.bodySmall,
+        configuration.screenWidthDp - 2 * sidePadding,
+    )
     // Zweizeiliger Grund: Punkt kleiner und kein Abstand darunter, damit der Schlummer-Knopf nicht in den Rand rutscht.
     val twoLines = reason.isNotEmpty() && reasonFit.lines > 1
     // Punkt und Stopp-Knopf teilen sich dasselbe Halten und denselben Fortschritt. Gemessen wird an der Uhr,
@@ -276,7 +299,11 @@ private fun RingContent(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit,
 
     Box(Modifier.fillMaxSize().then(background), contentAlignment = Alignment.Center) {
         // Fortschritt des Haltens zusätzlich als Ring am Rand.
-        val ringColor = if (light != null) SunriseSky.ink(light, SunriseSky.Area(0f, 0f, 1f, 1f)).content else Brand.Wave
+        val ringColor = if (light != null) {
+            SunriseSky.ink(light, SunriseSky.Area(0f, 0f, 1f, 1f)).content
+        } else {
+            Brand.Wave
+        }
         Canvas(Modifier.fillMaxSize()) {
             val stroke = 6.dp.toPx()
             val inset = stroke / 2 + 1.dp.toPx()

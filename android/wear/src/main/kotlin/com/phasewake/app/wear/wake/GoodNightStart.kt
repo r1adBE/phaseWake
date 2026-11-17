@@ -58,25 +58,29 @@ internal object GoodNightStart {
     }
 
     /**
-     * Nach dem Lesen: Wecker gefunden ([alarmFound]) mit Schlafdauer ([hasDuration]), automatisch ([automatic]), Beginn
-     * von «Gute Nacht» [since], eingestellte Weckzeit der Nacht [latest] mit Beginn des Weckfensters [windowStart],
-     * Nacht schon erledigt ([alreadyDone], nur automatisch), jetzt [now], Akku [battery] (Prozent, `null` unbekannt)
-     * und [charging]. Reihenfolge wie bisher: Gründe gegen den Start, dann die Zeitgrenze, dann der Akku.
+     * Gelesene Nacht für [decide]: Wecker gefunden ([alarmFound]) mit Schlafdauer ([hasDuration]), automatisch
+     * ([automatic]), Beginn von «Gute Nacht» [since], eingestellte Weckzeit der Nacht [latest] mit Beginn des
+     * Weckfensters [windowStart], Nacht schon erledigt ([alreadyDone], nur automatisch).
      */
-    fun decide(
-        alarmFound: Boolean,
-        hasDuration: Boolean,
-        automatic: Boolean,
-        since: Instant,
-        latest: Instant?,
-        windowStart: Instant?,
-        alreadyDone: Boolean,
-        now: Instant,
-        battery: Int?,
-        charging: Boolean,
-    ): Decision {
+    data class Request(
+        val alarmFound: Boolean,
+        val hasDuration: Boolean,
+        val automatic: Boolean,
+        val since: Instant,
+        val latest: Instant?,
+        val windowStart: Instant?,
+        val alreadyDone: Boolean,
+    )
+
+    /**
+     * Nach dem Lesen: Nacht [request], jetzt [now], Akku [battery] (Prozent, `null` unbekannt) und [charging].
+     * Reihenfolge wie bisher: Gründe gegen den Start, dann die Zeitgrenze, dann der Akku.
+     */
+    fun decide(request: Request, now: Instant, battery: Int?, charging: Boolean): Decision {
+        val (alarmFound, hasDuration, automatic, since, latest, windowStart, alreadyDone) = request
         val windowBegun = windowStart != null && !now.isBefore(windowStart)
-        val notStarted = OnsetRules.notStartedReason(alarmFound, hasDuration, automatic, since, latest, windowBegun, alreadyDone)
+        val notStarted =
+            OnsetRules.notStartedReason(alarmFound, hasDuration, automatic, since, latest, windowBegun, alreadyDone)
         if (notStarted != null || !alarmFound || latest == null) return Decision.NotStarted(notStarted ?: "no alarm")
         val latestGiveUp = latest.minus(WakeService.ONSET_GIVE_UP)
         val maxEnd = since.plus(OnsetMonitor.MAX_DURATION)
@@ -88,5 +92,6 @@ internal object GoodNightStart {
     /**
      * Grenze der Verlängerung bei spätem Einschlafen: [OnsetMonitor.MAX_EXTENDED] nach [since], nie über [windowStart].
      */
-    fun extendCap(since: Instant, windowStart: Instant?): Instant? = windowStart?.let { minOf(since.plus(OnsetMonitor.MAX_EXTENDED), it) }
+    fun extendCap(since: Instant, windowStart: Instant?): Instant? =
+        windowStart?.let { minOf(since.plus(OnsetMonitor.MAX_EXTENDED), it) }
 }

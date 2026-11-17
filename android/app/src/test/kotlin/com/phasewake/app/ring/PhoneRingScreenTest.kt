@@ -93,7 +93,9 @@ class PhoneRingScreenTest {
     private val activity: PhoneRingActivity get() = screen!!.get()
 
     /** Befehle, die der Bildschirm an den Dienst geschickt hat (in Reihenfolge); danach ist die Liste leer. */
-    private fun sentCommands(): List<Intent> = generateSequence { shadowOf(RuntimeEnvironment.getApplication()).nextStartedService }
+    private fun sentCommands(): List<Intent> = generateSequence {
+        shadowOf(RuntimeEnvironment.getApplication()).nextStartedService
+    }
         .filter { it.component?.className == PhoneRingService::class.java.name }
         .toList()
 
@@ -117,7 +119,9 @@ class PhoneRingScreenTest {
     private val holdLabel: String get() = string(R.string.ring_hold_to_stop)
 
     private val snoozeLabel: String
-        get() = context.resources.getQuantityString(R.plurals.ring_snooze, Snooze.MAX_COUNT, Snooze.MINUTES, Snooze.MAX_COUNT)
+        get() = context.resources.getQuantityString(
+            R.plurals.ring_snooze, Snooze.MAX_COUNT, Snooze.MINUTES, Snooze.MAX_COUNT,
+        )
 
     @Test
     @Config(qualifiers = "w411dp-h891dp-port")
@@ -153,7 +157,9 @@ class PhoneRingScreenTest {
         tree.click(snoozeLabel)
         assertEquals(listOf(PhoneRingService.ACTION_SNOOZE), deliver(tree))
         assertTrue(PhoneRingService.ringState.value is PhoneRingService.State.Snoozed)
-        assertTrue(tree.shows(string(R.string.ring_snoozed, Snooze.MINUTES)), "Schlummer-Hinweis fehlt: ${tree.texts()}")
+        assertTrue(
+            tree.shows(string(R.string.ring_snoozed, Snooze.MINUTES)), "Schlummer-Hinweis fehlt: ${tree.texts()}",
+        )
         assertFalse(activity.isFinishing)
         // Mit Bildschirmleser genügt ein Doppeltipp auf «Halten»: auch aus dem Schlummern ganz beendet.
         tree.click(holdLabel)
@@ -169,7 +175,9 @@ class PhoneRingScreenTest {
         val tree = open()
         // Mit Aufgabe kein Halten, dafür die Tastatur; Schlummern geht weiter ohne Aufgabe.
         assertFalse(tree.nodes().any { tree.text(it) == holdLabel }, "mit Aufgabe kein Halten")
-        assertTrue(tree.shows(string(R.string.wake_task_solve, 1, MathChallenge.STEPS)), "Schritt fehlt: ${tree.texts()}")
+        assertTrue(
+            tree.shows(string(R.string.wake_task_solve, 1, MathChallenge.STEPS)), "Schritt fehlt: ${tree.texts()}",
+        )
         assertTrue(tree.enabled(snoozeLabel))
         val check = string(R.string.wake_task_check)
         assertFalse(tree.enabled(check), "ohne Eingabe nichts zu prüfen")
@@ -189,12 +197,17 @@ class PhoneRingScreenTest {
         assertFalse(activity.isFinishing)
         // Alle Schritte richtig: erst nach dem letzten «Stopp» an den Dienst, dann schliesst sich der Bildschirm.
         repeat(MathChallenge.STEPS) { index ->
-            assertTrue(tree.shows(string(R.string.wake_task_solve, index + 1, MathChallenge.STEPS)), "Schritt ${index + 1}")
+            assertTrue(
+                tree.shows(string(R.string.wake_task_solve, index + 1, MathChallenge.STEPS)), "Schritt ${index + 1}",
+            )
             val (x, y) = problem(tree)
             type(tree, x + y)
             tree.click(check)
             val sent = deliver(tree)
-            assertEquals(index == MathChallenge.STEPS - 1, PhoneRingService.ACTION_STOP in sent, "Stopp nach Schritt ${index + 1}")
+            assertEquals(
+                index == MathChallenge.STEPS - 1, PhoneRingService.ACTION_STOP in sent,
+                "Stopp nach Schritt ${index + 1}",
+            )
         }
         assertEquals(PhoneRingService.State.Idle, PhoneRingService.ringState.value)
         assertTrue(activity.isFinishing)
@@ -212,7 +225,9 @@ class PhoneRingScreenTest {
         tree.clickable(snoozeLabel)
         assertFalse(activity.isFinishing)
         // Der Wecker endet anderswo (z. B. auf der Uhr): Der Bildschirm schliesst sich ohne eigenes Zutun.
-        service!!.get().onStartCommand(Intent(context, PhoneRingService::class.java).setAction(PhoneRingService.ACTION_STOP_SILENT), 0, startId++)
+        service!!.get().onStartCommand(
+            Intent(context, PhoneRingService::class.java).setAction(PhoneRingService.ACTION_STOP_SILENT), 0, startId++,
+        )
         tree.idle()
         assertTrue(activity.isFinishing)
     }
@@ -246,7 +261,10 @@ class PhoneRingScreenTest {
         open()
         assertTrue(activity.isFinishing)
         // Ein weiterer Start (Vollbild) kommt beim selben Bildschirm an.
-        screen!!.newIntent(Intent(context, PhoneRingActivity::class.java).putExtra(PhoneRingActivity.EXTRA_VIA, PhoneRingActivity.VIA_TAP))
+        screen!!.newIntent(
+            Intent(context, PhoneRingActivity::class.java)
+                .putExtra(PhoneRingActivity.EXTRA_VIA, PhoneRingActivity.VIA_TAP)
+        )
         assertEquals(PhoneRingActivity.VIA_TAP, activity.intent.getStringExtra(PhoneRingActivity.EXTRA_VIA))
     }
 

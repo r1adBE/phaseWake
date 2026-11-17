@@ -31,7 +31,10 @@ private val ownNights = listOf(nights.first(), nights.last())
 private val samsung = run {
     val start = at(LocalDate.of(2026, 10, 26), 23, 5)
     val end = at(LocalDate.of(2026, 10, 27), 6, 55)
-    val cycle = listOf(SleepStage.AWAKE to 15, SleepStage.LIGHT to 40, SleepStage.DEEP to 50, SleepStage.LIGHT to 25, SleepStage.REM to 25)
+    val cycle = listOf(
+        SleepStage.AWAKE to 15, SleepStage.LIGHT to 40, SleepStage.DEEP to 50, SleepStage.LIGHT to 25,
+        SleepStage.REM to 25,
+    )
     val spans = buildList {
         var t = start
         var k = 0
@@ -47,10 +50,13 @@ private val samsung = run {
 }
 
 /** Unbekannte App ohne Phasen, Nacht der Zeitumstellung (24./25.10.). */
-private val unknown = HealthSession(at(LocalDate.of(2026, 10, 24), 23, 40), at(LocalDate.of(2026, 10, 25), 8, 10), source = null)
+private val unknown =
+    HealthSession(at(LocalDate.of(2026, 10, 24), 23, 40), at(LocalDate.of(2026, 10, 25), 8, 10), source = null)
 
 /** Nickerchen am Nachmittag (kurz und ganz zwischen 09:00 und 19:00): zählt nicht. */
-private val nap = HealthSession(at(LocalDate.of(2026, 10, 25), 14, 0), at(LocalDate.of(2026, 10, 25), 14, 40), source = HealthSource.SAMSUNG_HEALTH)
+private val nap = HealthSession(
+    at(LocalDate.of(2026, 10, 25), 14, 0), at(LocalDate.of(2026, 10, 25), 14, 40), source = HealthSource.SAMSUNG_HEALTH,
+)
 
 private val mixed = HealthHistory.merge(ownNights, listOf(samsung, unknown, nap), null, zone)
 

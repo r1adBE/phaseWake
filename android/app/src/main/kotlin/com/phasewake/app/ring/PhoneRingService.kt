@@ -44,7 +44,8 @@ class PhoneRingService : Service() {
                 intent.getStringExtra(EXTRA_ALARM_ID),
                 fromWatch = intent.getBooleanExtra(EXTRA_FROM_WATCH, false),
                 target = if (intent.hasExtra(EXTRA_TARGET)) intent.getLongExtra(EXTRA_TARGET, 0L) else null,
-                watchSnoozesLeft = if (intent.hasExtra(EXTRA_SNOOZES_LEFT)) intent.getIntExtra(EXTRA_SNOOZES_LEFT, 0) else null,
+                watchSnoozesLeft =
+                    if (intent.hasExtra(EXTRA_SNOOZES_LEFT)) intent.getIntExtra(EXTRA_SNOOZES_LEFT, 0) else null,
                 snoozesDone = intent.getIntExtra(EXTRA_SNOOZES_DONE, 0),
             )
             ACTION_STOP -> stop(notifyWatch = true)
@@ -79,17 +80,7 @@ class PhoneRingService : Service() {
         val ringing = state.value as? State.Ringing
         val incoming = RingRules.incoming(ringing != null, alarmId, target, lastAlarmId, lastTarget)
         if (ringing != null && incoming == RingRules.Incoming.SAME_NIGHT) {
-            alert.post(newRound = false)
-            // Zweite Weckmeldung derselben Nacht (z. B. nach einem Neustart des Weckdienstes der Uhr):
-            // Restzahl der Uhr übernehmen, sonst schlummerten Handy und Uhr unterschiedlich oft.
-            if (fromWatch && watchSnoozesLeft != null) {
-                // Die Uhr führt nun (mit ihrer Restzahl; der Wiederaufnahme-Alarm ist oben schon aufgehoben).
-                state.value = ringing.copy(fromWatch = true, snoozesLeft = watchSnoozesLeft.coerceIn(0, Snooze.MAX_COUNT))
-                if (lastAlarmId == null) lastAlarmId = alarmId
-                if (lastTarget == null) lastTarget = target
-            }
-            // Wiederaufnahme-Alarm neu stellen (oben aufgehoben), ob Handy oder Uhr führt.
-            (state.value as? State.Ringing)?.let { armResume(lastAlarmId ?: alarmId, Snooze.MAX_COUNT - it.snoozesLeft, lastTarget ?: target) }
+            sameNight(ringing, alarmId, fromWatch, target, watchSnoozesLeft)
             return
         }
         alert.post(newRound = true)
@@ -110,31 +101,57 @@ class PhoneRingService : Service() {
         lastTarget = target ?: lastTarget.takeIf { afterSnooze && lastAlarmId == alarmId }
         lastAlarmId = alarmId
         armResume(alarmId, RingRules.resumeSnoozesDone(fromWatch, left, snoozesDone), lastTarget)
-        phoneApp.appScope.launch(Dispatchers.Main) {
-            // Vor dem ersten Entsperren nach einem Neustart sind die Wecker nicht lesbar: Standard-Weckton.
-            val unlocked = BackupAlarm.isUnlocked(this@PhoneRingService)
-            val spec = if (unlocked) phoneApp.specFor(alarmId) else null
-            val took = if (ringing != null) " (took over)" else ""
-            phoneApp.diag.log(DiagKind.RING, if (fromWatch) "phone with watch$took" else "phone backup$took")
-            if (unlocked) phoneApp.testRuns.record(alarmId, TestStep.PHONE_RANG, now())
-            // Nur der Sonnenaufgang für das Handy; leuchtet er nur auf der Uhr, bleibt der Bildschirm normal.
-            val sunrise = spec?.phoneSunrise ?: Sunrise.OFF
-            // Weckaufgabe nur mit Handy-Wecker; ohne ihn (oder vor dem Entsperren) gilt Halten, wie auf der Uhr.
-            val task = spec?.takeIf { it.phone != PhoneAlert.OFF }?.wakeTask ?: WakeTask.NONE
-            if (task != WakeTask.NONE) (state.value as? State.Ringing)?.let { state.value = it.copy(wakeTask = task) }
-            if (sunrise != Sunrise.OFF) {
-                // Läuft schon ein Licht ab Weckfenster, macht der Weckbildschirm dort weiter.
-                val from = SunriseLight.progressFor(alarmId)
-                (state.value as? State.Ringing)?.let { state.value = it.copy(sunrise = sunrise, lightFrom = from) }
-            }
-            when (spec?.phone ?: PhoneAlert.SOUND) {
-                // Ohne Ton und Vibration bleibt nur das Licht – oder gar nichts.
-                PhoneAlert.OFF -> if (sunrise == Sunrise.OFF) stop(notifyWatch = false)
-                PhoneAlert.VIBRATE -> vibrate()
-                PhoneAlert.SOUND -> {
-                    if (state.value is State.Ringing) sound.play(spec?.sound.orEmpty())
-                    vibrate()
-                }
+        phoneApp.appScope.launch(Dispatchers.Main) { applySpec(alarmId, fromWatch, tookOver = ringing != null) }
+    }
+
+    /**
+     * Zweite Weckmeldung derselben Nacht (z. B. nach einem Neustart des Weckdienstes der Uhr): Restzahl der Uhr
+     * übernehmen, sonst schlummerten Handy und Uhr unterschiedlich oft.
+     */
+    private fun sameNight(
+        ringing: State.Ringing,
+        alarmId: String?,
+        fromWatch: Boolean,
+        target: Long?,
+        watchLeft: Int?,
+    ) {
+        alert.post(newRound = false)
+        if (fromWatch && watchLeft != null) {
+            // Die Uhr führt nun (mit ihrer Restzahl; der Wiederaufnahme-Alarm ist oben schon aufgehoben).
+            state.value = ringing.copy(fromWatch = true, snoozesLeft = watchLeft.coerceIn(0, Snooze.MAX_COUNT))
+            if (lastAlarmId == null) lastAlarmId = alarmId
+            if (lastTarget == null) lastTarget = target
+        }
+        // Wiederaufnahme-Alarm neu stellen (oben aufgehoben), ob Handy oder Uhr führt.
+        (state.value as? State.Ringing)
+            ?.let { armResume(lastAlarmId ?: alarmId, Snooze.MAX_COUNT - it.snoozesLeft, lastTarget ?: target) }
+    }
+
+    /** Einstellungen des Weckers anwenden: Protokoll, Probewecker, Sonnenaufgang, Aufgabe, Ton und Vibration. */
+    private suspend fun applySpec(alarmId: String?, fromWatch: Boolean, tookOver: Boolean) {
+        // Vor dem ersten Entsperren nach einem Neustart sind die Wecker nicht lesbar: Standard-Weckton.
+        val unlocked = BackupAlarm.isUnlocked(this@PhoneRingService)
+        val spec = if (unlocked) phoneApp.specFor(alarmId) else null
+        val took = if (tookOver) " (took over)" else ""
+        phoneApp.diag.log(DiagKind.RING, if (fromWatch) "phone with watch$took" else "phone backup$took")
+        if (unlocked) phoneApp.testRuns.record(alarmId, TestStep.PHONE_RANG, now())
+        // Nur der Sonnenaufgang für das Handy; leuchtet er nur auf der Uhr, bleibt der Bildschirm normal.
+        val sunrise = spec?.phoneSunrise ?: Sunrise.OFF
+        // Weckaufgabe nur mit Handy-Wecker; ohne ihn (oder vor dem Entsperren) gilt Halten, wie auf der Uhr.
+        val task = spec?.takeIf { it.phone != PhoneAlert.OFF }?.wakeTask ?: WakeTask.NONE
+        if (task != WakeTask.NONE) (state.value as? State.Ringing)?.let { state.value = it.copy(wakeTask = task) }
+        if (sunrise != Sunrise.OFF) {
+            // Läuft schon ein Licht ab Weckfenster, macht der Weckbildschirm dort weiter.
+            val from = SunriseLight.progressFor(alarmId)
+            (state.value as? State.Ringing)?.let { state.value = it.copy(sunrise = sunrise, lightFrom = from) }
+        }
+        when (spec?.phone ?: PhoneAlert.SOUND) {
+            // Ohne Ton und Vibration bleibt nur das Licht – oder gar nichts.
+            PhoneAlert.OFF -> if (sunrise == Sunrise.OFF) stop(notifyWatch = false)
+            PhoneAlert.VIBRATE -> vibrate()
+            PhoneAlert.SOUND -> {
+                if (state.value is State.Ringing) sound.play(spec?.sound.orEmpty())
+                vibrate()
             }
         }
     }
@@ -160,7 +177,9 @@ class PhoneRingService : Service() {
             state.value = State.Idle
             stopSelf()
         } else {
-            state.value = State.Snoozed(snoozesLeft = Snooze.MAX_COUNT - done, sunrise = ringing.sunrise, wakeTask = ringing.wakeTask)
+            state.value = State.Snoozed(
+                snoozesLeft = Snooze.MAX_COUNT - done, sunrise = ringing.sunrise, wakeTask = ringing.wakeTask,
+            )
             // Über einen System-Wecker statt eines Handlers: Der steht im Tiefschlaf des Handys still.
             phoneApp.backup.snoozeUntil(Snooze.nextRing(now()), lastAlarmId, done, lastTarget)
         }
@@ -212,7 +231,9 @@ class PhoneRingService : Service() {
         phoneApp.backup.cancelSnooze()
         // Am Handy beendet: auch keine Sicherung nach dem Schlummern mehr (nicht beim stillen Stopp
         // auf «stop» der Uhr hin, der kann ein Schlummern sein).
-        if (notifyWatch) phoneApp.backup.cancelSnoozeSafety(lastAlarmId).also { Transients.endedHere(phoneApp, lastAlarmId) }
+        if (notifyWatch) phoneApp.backup.cancelSnoozeSafety(lastAlarmId).also {
+            Transients.endedHere(phoneApp, lastAlarmId)
+        }
         SunriseLight.stop(this)
         state.value = State.Idle
         // Still beendet (Zeitgrenze, Handy-Weckart «Aus», «stop» der Uhr): Die Aufgabe ist weg, die Uhr erlaubt wieder
@@ -222,7 +243,9 @@ class PhoneRingService : Service() {
         // und holt sie nicht nach, falls sie gerade eine andere Nacht führt (zwei Wecker am selben Morgen).
         if (notifyWatch && before != State.Idle && (wasFromWatch || lastAlarmId != null)) {
             val message = RingMessage(alarmId = lastAlarmId, target = lastTarget, sentAt = System.currentTimeMillis())
-            phoneApp.appScope.launch { phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_STOP, message.encode()) }
+            phoneApp.appScope.launch {
+                phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_STOP, message.encode())
+            }
         }
         stopSelf()
     }
@@ -236,8 +259,11 @@ class PhoneRingService : Service() {
      */
     private fun taskShown() {
         if (!watchTask(state.value)) return
-        val message = RingMessage(alarmId = lastAlarmId, target = lastTarget, sentAt = System.currentTimeMillis()).encode()
-        phoneApp.appScope.launch { phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_TASK_SHOWN, message) }
+        val message =
+            RingMessage(alarmId = lastAlarmId, target = lastTarget, sentAt = System.currentTimeMillis()).encode()
+        phoneApp.appScope.launch {
+            phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_TASK_SHOWN, message)
+        }
     }
 
     /**
@@ -245,8 +271,11 @@ class PhoneRingService : Service() {
      */
     private fun taskGone(before: State) {
         if (!watchTask(before)) return
-        val message = RingMessage(alarmId = lastAlarmId, target = lastTarget, sentAt = System.currentTimeMillis()).encode()
-        phoneApp.appScope.launch { phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_TASK_GONE, message) }
+        val message =
+            RingMessage(alarmId = lastAlarmId, target = lastTarget, sentAt = System.currentTimeMillis()).encode()
+        phoneApp.appScope.launch {
+            phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_TASK_GONE, message)
+        }
     }
 
     private fun vibrate() {
@@ -271,7 +300,11 @@ class PhoneRingService : Service() {
             /** Was zum Beenden nötig ist (Schlummern geht immer ohne). */
             val wakeTask: WakeTask = WakeTask.NONE,
         ) : State
-        data class Snoozed(val snoozesLeft: Int, val sunrise: Sunrise = Sunrise.OFF, val wakeTask: WakeTask = WakeTask.NONE) : State
+        data class Snoozed(
+            val snoozesLeft: Int,
+            val sunrise: Sunrise = Sunrise.OFF,
+            val wakeTask: WakeTask = WakeTask.NONE,
+        ) : State
     }
 
     companion object {
@@ -359,7 +392,9 @@ class PhoneRingService : Service() {
         }
 
         fun command(context: Context, action: String) {
-            if (state.value != State.Idle) context.startService(Intent(context, PhoneRingService::class.java).setAction(action))
+            if (state.value != State.Idle) context.startService(
+                Intent(context, PhoneRingService::class.java).setAction(action)
+            )
         }
     }
 }

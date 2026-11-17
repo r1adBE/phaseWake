@@ -62,8 +62,9 @@ internal class WatchStatus(
         val skipCode = skip?.code.orEmpty()
         val lastAt = prefs[SENT_AT]
         val lastBattery = prefs[SENT_BATTERY]
-        val due = prefs[SENT_READY] != ready || prefs[SENT_PULSE] != pulse.heartRate || prefs[SENT_PULSE_BACKGROUND] != pulse.background ||
-            prefs[SENT_PROTOCOL] != DataLayer.PROTOCOL || prefs[SENT_BUILD] != build || prefs[SENT_SKIP] != skipCode || (prefs[SENT_CHARGING] ?: false) != charging ||
+        val due = prefs[SENT_READY] != ready || prefs[SENT_PULSE] != pulse.heartRate ||
+            prefs[SENT_PULSE_BACKGROUND] != pulse.background || prefs[SENT_PROTOCOL] != DataLayer.PROTOCOL ||
+            prefs[SENT_BUILD] != build || prefs[SENT_SKIP] != skipCode || (prefs[SENT_CHARGING] ?: false) != charging ||
             (battery != null && (lastBattery == null || abs(battery - lastBattery) >= BATTERY_STEP)) ||
             lastAt == null || now - lastAt >= MAX_AGE.toMillis() || now < lastAt
         if (!due) return@withLock
@@ -106,7 +107,9 @@ internal class WatchStatus(
 
     /** Sind die Rechte erteilt, die Messen und Wecken brauchen? */
     private fun isReady(): Boolean {
-        val sensors = SENSOR_PERMISSIONS.any { ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED }
+        val sensors = SENSOR_PERMISSIONS.any {
+            ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
+        }
         val notifications = NotificationManagerCompat.from(context)
         // Ohne Vollbild-Mitteilung erscheint der Weckbildschirm nicht von selbst. Das Hintergrundrecht
         // für den Puls ist nicht nötig: Ohne Puls entscheidet die Bewegung allein.

@@ -76,7 +76,9 @@ internal class EditorState(val base: AlarmSpec) {
         private const val DEFAULT_SLEEP_MINUTES = 450
 
         /** Speichert alle Eingaben als einfache Werte (Zahlen, Text), Aufzählungen über ihren Namen. */
-        fun saver(base: AlarmSpec): Saver<EditorState, Any> = listSaver(save = { encode(it) }, restore = { v -> restore(base, v) })
+        fun saver(base: AlarmSpec): Saver<EditorState, Any> = listSaver(
+            save = { encode(it) }, restore = { v -> restore(base, v) },
+        )
 
         /** Alle Eingaben von [state] als einfache Werte (für [saver] und den Entwurf im Navigationseintrag). */
         fun encode(state: EditorState): ArrayList<Any?> = with(state) {

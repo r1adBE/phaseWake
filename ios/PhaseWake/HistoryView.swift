@@ -22,7 +22,8 @@ struct HistoryView: View {
     /// Phasen für die Karte einer eigenen Nacht: so lange nach dem Wecken (Sekunden), samt Weiterschlafen – Beginn bis
     /// `HealthHistory.continuationGap` nach dem Wecken, kürzer als `HealthHistory.minNightMinutes`. Wie `STAGES_AFTER`
     /// (Android).
-    private static let stagesAfter: TimeInterval = HealthHistory.continuationGap + TimeInterval(HealthHistory.minNightMinutes * 60)
+    private static let stagesAfter: TimeInterval = HealthHistory.continuationGap
+        + TimeInterval(HealthHistory.minNightMinutes * 60)
 
     var body: some View {
         let items = self.items
@@ -38,7 +39,8 @@ struct HistoryView: View {
                         if let item = HealthHistory.itemFor(items, date: date) { path.append(item.key) }
                     })
                     if entries.allSatisfy(\.isSoundsOnly) {
-                        HistoryEmptyCard(healthConnected: healthRequested, loaded: loaded, onConnect: { connectHealth() })
+                        HistoryEmptyCard(healthConnected: healthRequested, loaded: loaded,
+                                         onConnect: { connectHealth() })
                         // Ohne Nächte: nur Karten mit Geräuschen.
                         ForEach(entries) { entry in
                             if case .sounds(let night, let last) = entry {
@@ -47,7 +49,8 @@ struct HistoryView: View {
                         }
                     } else {
                         // Auffälligkeiten der letzten 7 Nächte: alle an einer Stelle, in den Trends (wie Android).
-                        let facts = NightFacts.of(health.sessions, clearedAt: model.historyClearedAt, calendar: .gregorianLocal,
+                        let facts = NightFacts.of(health.sessions, clearedAt: model.historyClearedAt,
+                                                  calendar: .gregorianLocal,
                                                   own: PhoneLearning.shared.recordings.compactMap(\.ownOnset),
                                                   watch: model.nights.compactMap(OwnOnset.of))
                         if let summary = weekly(feelings) {
@@ -55,27 +58,40 @@ struct HistoryView: View {
                         }
                         if !model.nights.isEmpty { stats }
                         TrendsCard(
-                            trends: Trends.compute(nights: model.nights, sleeps: sleeps, now: Date(), calendar: .gregorianLocal, health: feelings),
+                            trends: Trends.compute(nights: model.nights, sleeps: sleeps, now: Date(),
+                                                   calendar: .gregorianLocal, health: feelings),
                             goalWeek: goalWeek,
                             healthConnected: healthRequested,
                             onConnectHealth: { connectHealth() },
-                            habits: habitLines(model: model, sleeps: sleeps, healthConnected: healthRequested, regularShown: charts.covered.contains(.regular)),
+                            habits: habitLines(model: model, sleeps: sleeps, healthConnected: healthRequested,
+                                               regularShown: charts.covered.contains(.regular)),
                             covered: charts.covered,
-                            findings: Findings.of(facts, today: SleepNotes.nightDate(Date(), calendar: .gregorianLocal), calendar: .gregorianLocal)
+                            findings: Findings.of(facts, today: SleepNotes.nightDate(Date(), calendar: .gregorianLocal),
+                                                  calendar: .gregorianLocal)
                         )
-                        NoteEffectsCard(effects: NoteEffect.compute(nights: model.nights, notes: model.notes, asleepByNight: asleepByNight,
+                        NoteEffectsCard(effects: NoteEffect.compute(nights: model.nights, notes: model.notes,
+                                                                    asleepByNight: asleepByNight,
                                                                     health: feelings, calendar: .gregorianLocal))
                         ForEach(entries) { entry in
                             switch entry {
                             case .night(let night):
-                                NightCard(night: night, stages: allStages.filter { $0.end > night.windowStart.addingTimeInterval(-14 * 3600) && $0.start < night.wokeAt.addingTimeInterval(Self.stagesAfter) },
+                                NightCard(night: night,
+                                          stages: allStages.filter {
+                                              $0.end > night.windowStart.addingTimeInterval(-14 * 3600)
+                                                  && $0.start < night.wokeAt.addingTimeInterval(Self.stagesAfter)
+                                          },
                                           goalMinutes: model.sleepGoal, recordings: PhoneLearning.shared.recordings) {
-                                    path.append(HistoryItem(kind: .phaseWake, date: SleepNotes.nightDate(of: night, calendar: .gregorianLocal), night: night).key)
+                                    let date = SleepNotes.nightDate(of: night, calendar: .gregorianLocal)
+                                    path.append(HistoryItem(kind: .phaseWake, date: date, night: night).key)
                                 }
                             case .health(let session, let date):
-                                HealthNightCard(session: session, nightDate: date, sourceName: sourceName(session), feeling: model.healthFeelings[date],
-                                                onOpen: { path.append(HistoryItem(kind: .health, date: date, session: session).key) },
-                                                score: nightScore(stages: StageStats.forSession(session), session: session, goalMinutes: model.sleepGoal)?.result)
+                                HealthNightCard(session: session, nightDate: date, sourceName: sourceName(session),
+                                                feeling: model.healthFeelings[date],
+                                                onOpen: { path.append(HistoryItem(kind: .health, date: date,
+                                                                                  session: session).key) },
+                                                score: nightScore(stages: StageStats.forSession(session),
+                                                                  session: session,
+                                                                  goalMinutes: model.sleepGoal)?.result)
                             case .sounds(let night, let last):
                                 SoundsOnlyCard(night: night, last: last)
                             case .recording(let recording):
@@ -90,7 +106,8 @@ struct HistoryView: View {
             .skyPage()
             .navigationTitle(L("history_title"))
             .navigationDestination(for: String.self) { key in
-                NightDetailView(items: items, stages: allStages, startKey: key, sourceName: sourceName, sessions: health.sessions)
+                NightDetailView(items: items, stages: allStages, startKey: key, sourceName: sourceName,
+                                sessions: health.sessions)
             }
             // Neu lesen beim Öffnen, nach dem Freigeben und nach «Verlauf löschen».
             .task(id: "\(healthRequested)|\(model.historyClearedAt?.timeIntervalSince1970 ?? 0)") { await reload() }
@@ -144,18 +161,20 @@ struct HistoryView: View {
     /// Diagramme: Schlaf aus Apple Health, Weckmomente und Befinden aus dem Verlauf (auch zu Nächten aus anderen Apps).
     private func charts(_ feelings: [HealthFeeling]) -> HistoryChartsData {
         let now = Date()
-        return HistoryChartsData.of(
-            nights: model.nights, sleeps: sleeps, stages: allStages, notes: model.notes,
+        let input = HistoryChartsData.Input(
+            nights: model.nights, sleeps: sleeps, stages: allStages, notes: model.notes, health: feelings,
             nextTarget: model.nextPlan(now: now)?.target,
-            goalMinutes: model.sleepGoal, latencyMinutes: model.learnedLatency, now: now, calendar: .gregorianLocal, health: feelings,
+            goalMinutes: model.sleepGoal, latencyMinutes: model.learnedLatency,
             // Erster Tag der Woche nach der Sprache des Geräts (Calendar: 1 = Sonntag; Weekday: 1 = Montag).
             firstDay: Weekday(rawValue: (Calendar.autoupdatingCurrent.firstWeekday + 5) % 7 + 1) ?? .monday
         )
+        return HistoryChartsData.of(input, now: now, calendar: .gregorianLocal)
     }
 
     /// Verlauf aus eigenen Nächten und Nächten aus Apple Health, neueste zuerst (`HealthHistory.merge`).
     private var items: [HistoryItem] {
-        HealthHistory.merge(nights: model.nights, sessions: health.sessions, clearedAt: model.historyClearedAt, calendar: .gregorianLocal)
+        HealthHistory.merge(nights: model.nights, sessions: health.sessions, clearedAt: model.historyClearedAt,
+                            calendar: .gregorianLocal)
     }
 
     /// Nächte (neueste zuerst) und dazwischen nach Zeit die Karten nur mit Geräuschen (Nachtdaten ohne Nacht).
@@ -200,8 +219,10 @@ struct HistoryView: View {
     private func weekly(_ feelings: [HealthFeeling]) -> WeeklySummary? {
         let today = NightDate.today(Date(), calendar: .gregorianLocal)
         guard WeeklySummary.cardVisible(today: today) else { return nil }
-        let summary = WeeklySummary.of(nights: model.nights, sleeps: sleeps, notes: model.notes, calendar: .gregorianLocal,
-                                       goalMinutes: model.sleepGoal, weekEnd: WeeklySummary.weekEnd(today: today), health: feelings)
+        let summary = WeeklySummary.of(nights: model.nights, sleeps: sleeps, notes: model.notes,
+                                       calendar: .gregorianLocal,
+                                       goalMinutes: model.sleepGoal, weekEnd: WeeklySummary.weekEnd(today: today),
+                                       health: feelings)
         return summary.hasData ? summary : nil
     }
 
@@ -274,7 +295,8 @@ private struct SoundsOnlyCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(last.formatted(date: .abbreviated, time: .omitted)).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+            Text(last.formatted(date: .abbreviated, time: .omitted))
+                .font(Fonts.manrope(15, .semibold, relativeTo: .headline))
             NightSoundsButton(night: night, title: last.formatted(date: .abbreviated, time: .omitted))
         }
         .card()
@@ -318,19 +340,24 @@ private struct NightCard: View {
         let nightStages = StageStats.forNight(stages, night: night)
         let totals = nightStages.map(stageTotalsLine)
         // Ohne Phasen aus einer Aufzeichnung der Uhr mit Einschlafzeit (vorläufig), sonst kein Schlafwert.
-        let score = nightScore(stages: nightStages, session: nil, goalMinutes: goalMinutes, night: night, recordings: recordings)?.result
+        let score = nightScore(stages: nightStages, session: nil, goalMinutes: goalMinutes, night: night,
+                               recordings: recordings)?.result
         return VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text(night.wokeAt.formatted(date: .abbreviated, time: .omitted)).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+                Text(night.wokeAt.formatted(date: .abbreviated, time: .omitted))
+                    .font(Fonts.manrope(15, .semibold, relativeTo: .headline))
                 Spacer()
-                Text(Format.time(night.wokeAt)).font(Fonts.manrope(16, .bold, relativeTo: .headline)).foregroundStyle(.tint)
+                Text(Format.time(night.wokeAt))
+                    .font(Fonts.manrope(16, .bold, relativeTo: .headline)).foregroundStyle(.tint)
             }
             if let score { ScoreLine(result: score) }
             if let hypnogram {
                 MiniHypnogram(steps: hypnogram.steps, totalMinutes: hypnogram.totalMinutes, wokeAt: hypnogram.wokeAt)
                     .frame(height: miniHypnogramHeight)
             } else {
-                NightBars(epochs: night.epochs, totalEpochs: Int(night.target.timeIntervalSince(night.windowStart) / 30), unmeasured: unmeasuredEpochs(night)).frame(height: 44)
+                NightBars(epochs: night.epochs,
+                          totalEpochs: Int(night.target.timeIntervalSince(night.windowStart) / 30),
+                          unmeasured: unmeasuredEpochs(night)).frame(height: 44)
             }
             if let totals, !totals.isEmpty {
                 Text(totals).font(Fonts.manrope(12, .semibold, relativeTo: .caption)).foregroundStyle(.secondary)

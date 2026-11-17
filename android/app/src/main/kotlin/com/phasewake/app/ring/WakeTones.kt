@@ -59,7 +59,8 @@ class WakeTonePreview(private val context: Context) {
         val created = MediaPlayer()
         try {
             created.setAudioAttributes(
-                AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build(),
+                AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build(),
             )
             created.setDataSource(context, WakeTones.uri(context, tone))
             created.setVolume(VOLUME, VOLUME)

@@ -23,9 +23,26 @@ class CodecTest {
             sound = "content://media/internal/audio/media/42",
             label = "Arbeit | früh, 100 %",
         ),
-        AlarmSpec(id = "b", hour = 9, minute = 30, windowMinutes = 30, enabled = false, phone = PhoneAlert.OFF, sleepDurationMinutes = 450, sunrise = Sunrise.WINDOW),
+        AlarmSpec(
+            id = "b",
+            hour = 9,
+            minute = 30,
+            windowMinutes = 30,
+            enabled = false,
+            phone = PhoneAlert.OFF,
+            sleepDurationMinutes = 450,
+            sunrise = Sunrise.WINDOW,
+        ),
         AlarmSpec(id = "c", hour = 7, minute = 0, windowMinutes = 30, wakeTask = WakeTask.MATH),
-        AlarmSpec(id = "d", hour = 6, minute = 15, windowMinutes = 20, phone = PhoneAlert.OFF, sunrise = Sunrise.RING, sunriseDevice = SunriseDevice.WATCH),
+        AlarmSpec(
+            id = "d",
+            hour = 6,
+            minute = 15,
+            windowMinutes = 20,
+            phone = PhoneAlert.OFF,
+            sunrise = Sunrise.RING,
+            sunriseDevice = SunriseDevice.WATCH,
+        ),
     )
 
     @Test
@@ -37,9 +54,20 @@ class CodecTest {
     @Test
     fun alarmsFormatIsStable() {
         val text = Codec.encodeAlarms(alarms.take(1))
-        assertEquals("phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|VIBRATE|1||content%3A%2F%2Fmedia%2Finternal%2Faudio%2Fmedia%2F42|Arbeit+%7C+fr%C3%BCh%2C+100+%25|OFF|NONE|PHONE|0|0\n", text)
-        assertEquals("phasewake-alarms 1\nc|7|0||30|1|SOUND|0||||OFF|MATH|PHONE|0|0\n", Codec.encodeAlarms(alarms.drop(2).take(1)))
-        assertEquals("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|WATCH|0|0\n", Codec.encodeAlarms(alarms.drop(3)))
+        assertEquals(
+            "phasewake-alarms 1\n3f2a-77|6|30|MO,FR|25|1|VIBRATE|1||" +
+                "content%3A%2F%2Fmedia%2Finternal%2Faudio%2Fmedia%2F42|Arbeit+%7C+fr%C3%BCh%2C+100+%25|OFF|NONE|" +
+                "PHONE|0|0\n",
+            text,
+        )
+        assertEquals(
+            "phasewake-alarms 1\nc|7|0||30|1|SOUND|0||||OFF|MATH|PHONE|0|0\n",
+            Codec.encodeAlarms(alarms.drop(2).take(1)),
+        )
+        assertEquals(
+            "phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|WATCH|0|0\n",
+            Codec.encodeAlarms(alarms.drop(3)),
+        )
     }
 
     @Test
@@ -48,7 +76,15 @@ class CodecTest {
         // auch wenn neue Wecker mit 20 Min starten (AlarmSpec.DEFAULT_WINDOW_MINUTES).
         assertEquals(20, AlarmSpec.DEFAULT_WINDOW_MINUTES)
         assertEquals(30, Codec.decodeAlarms("phasewake-alarms 1\nb|9|30||30|0|OFF|0|450||\n").single().windowMinutes)
-        assertEquals(30, Codec.decodeAlarms(Codec.encodeAlarms(listOf(AlarmSpec(id = "a", hour = 7, minute = 0, windowMinutes = 30)))).single().windowMinutes)
+        assertEquals(
+            30,
+            Codec.decodeAlarms(Codec.encodeAlarms(listOf(AlarmSpec(
+                id = "a",
+                hour = 7,
+                minute = 0,
+                windowMinutes = 30,
+            )))).single().windowMinutes,
+        )
         // Ohne Fensterfeld ist die Zeile unlesbar; es gibt keinen stillen Rückfall auf den Standard.
         assertEquals(emptyList(), Codec.decodeAlarms("phasewake-alarms 1\nb|9|30||\n"))
     }
@@ -60,7 +96,10 @@ class CodecTest {
         assertEquals(WakeTask.NONE, old.wakeTask)
         assertEquals(alarms[2].copy(wakeTask = WakeTask.NONE), old)
         // Neuere Version mit weiteren Feldern: gelesen, was diese kennt.
-        assertEquals(WakeTask.MATH, Codec.decodeAlarms("phasewake-alarms 1\nc|7|0||30|1|SOUND|0||||OFF|MATH|neu\n").single().wakeTask)
+        assertEquals(
+            WakeTask.MATH,
+            Codec.decodeAlarms("phasewake-alarms 1\nc|7|0||30|1|SOUND|0||||OFF|MATH|neu\n").single().wakeTask,
+        )
     }
 
     @Test
@@ -69,8 +108,14 @@ class CodecTest {
         val old = Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE\n").single()
         assertEquals(alarms[3].copy(sunriseDevice = SunriseDevice.PHONE), old)
         // Unbekannter Wert aus einer neueren Version: Handy; weitere Felder werden ignoriert.
-        assertEquals(SunriseDevice.PHONE, Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|LAMP\n").single().sunriseDevice)
-        assertEquals(SunriseDevice.BOTH, Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|BOTH|neu\n").single().sunriseDevice)
+        assertEquals(
+            SunriseDevice.PHONE,
+            Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|LAMP\n").single().sunriseDevice,
+        )
+        assertEquals(
+            SunriseDevice.BOTH,
+            Codec.decodeAlarms("phasewake-alarms 1\nd|6|15||20|1|OFF|0||||RING|NONE|BOTH|neu\n").single().sunriseDevice,
+        )
     }
 
     @Test
@@ -139,16 +184,23 @@ class CodecTest {
 
     @Test
     fun nightOnsetRoundTripAndOlderReaders() {
-        val base = Codec.decodeNight("phasewake-night 1\na|1794200000000|1794201800000|1794201080000|DEADLINE|0\n0.0;52.0\n")
+        val base =
+            Codec.decodeNight("phasewake-night 1\na|1794200000000|1794201800000|1794201080000|DEADLINE|0\n0.0;52.0\n")
         val bed = Instant.ofEpochMilli(1_794_170_000_000)
         val asleep = Instant.ofEpochMilli(1_794_171_800_000)
         val night = base.copy(bedAt = bed, asleepAt = asleep)
         assertEquals(night, Codec.decodeNight(Codec.encodeNight(night)))
         // Ein älterer Leser (bis Feld 10) sieht dieselbe Nacht ohne Akku und ohne Einschlafen: Felder 8–10 leer.
         val fields = Codec.encodeNight(night).lines()[1].split('|')
-        assertEquals(listOf("", "", "", bed.toEpochMilli().toString(), asleep.toEpochMilli().toString()), fields.drop(7))
+        assertEquals(
+            listOf("", "", "", bed.toEpochMilli().toString(), asleep.toEpochMilli().toString()),
+            fields.drop(7),
+        )
         // Ohne Einschlafen unverändert wie bisher (7 Felder).
-        assertEquals("phasewake-night 1\na|1794200000000|1794201800000|1794201080000|DEADLINE|0|\n0.0;52.0\n", Codec.encodeNight(base))
+        assertEquals(
+            "phasewake-night 1\na|1794200000000|1794201800000|1794201080000|DEADLINE|0|\n0.0;52.0\n",
+            Codec.encodeNight(base),
+        )
     }
 
     @Test
@@ -160,10 +212,18 @@ class CodecTest {
             wokeAt = Instant.parse("2026-10-28T05:47:30Z"),
             reason = WakeReason.LIGHT_SLEEP,
             snoozes = 2,
-            epochs = listOf(Epoch(0.0, 52.0), Epoch(0.000213456789123, null), Epoch(null, 55.583333333333336), Epoch(null, null)),
+            epochs = listOf(
+                Epoch(0.0, 52.0),
+                Epoch(0.000213456789123, null),
+                Epoch(null, 55.583333333333336),
+                Epoch(null, null),
+            ),
         )
         assertEquals(night, Codec.decodeNight(Codec.encodeNight(night)))
-        assertEquals(night.copy(epochs = emptyList()), Codec.decodeNight(Codec.encodeNight(night.copy(epochs = emptyList()))))
+        assertEquals(
+            night.copy(epochs = emptyList()),
+            Codec.decodeNight(Codec.encodeNight(night.copy(epochs = emptyList()))),
+        )
     }
 
     @Test
@@ -173,7 +233,10 @@ class CodecTest {
         assertEquals(emptyList(), Codec.decodeAlarms("phasewake-alarms 1\nx|25|0||30|1|SOUND|0|||"))
         assertEquals(emptyList(), Codec.decodeAlarms("phasewake-alarms 1\nx|6|0|XX|30|1|SOUND|0|||"))
         assertEquals(emptyList(), Codec.decodeAlarms("phasewake-alarms 1\nx|6"))
-        assertEquals(listOf("b"), Codec.decodeAlarms("phasewake-alarms 1\nx|6\nb|9|30||30|0|OFF|0|450||\n").map { it.id })
+        assertEquals(
+            listOf("b"),
+            Codec.decodeAlarms("phasewake-alarms 1\nx|6\nb|9|30||30|0|OFF|0|450||\n").map { it.id },
+        )
         assertFailsWith<CodecException> { Codec.decodeNight("phasewake-alarms 1\n") }
     }
 
@@ -181,11 +244,16 @@ class CodecTest {
     fun implausibleTimesAreRejected() {
         // Manipulierte Sicherung mit 9223372036854775807 (Swift bräche beim Zurückrechnen ab).
         val max = Long.MAX_VALUE.toString()
-        assertFailsWith<CodecException> { Codec.decodeNight("phasewake-night 1\na|$max|1800000|1080000|DEADLINE|0\n\n") }
+        assertFailsWith<CodecException> {
+            Codec.decodeNight("phasewake-night 1\na|$max|1800000|1080000|DEADLINE|0\n\n")
+        }
         assertFailsWith<CodecException> { Codec.decodeNight("phasewake-night 1\na|0|$max|1080000|DEADLINE|0\n\n") }
         assertFailsWith<CodecException> { Codec.decodeNight("phasewake-night 1\na|0|1800000|-1|DEADLINE|0\n\n") }
         assertFailsWith<CodecException> { Codec.decodeNight("phasewake-night 1\na|0|4102444800001|0|DEADLINE|0\n\n") }
-        assertEquals(4_102_444_800_000L, Codec.decodeNight("phasewake-night 1\na|0|4102444800000|0|DEADLINE|0\n\n").target.toEpochMilli())
+        assertEquals(
+            4_102_444_800_000L,
+            Codec.decodeNight("phasewake-night 1\na|0|4102444800000|0|DEADLINE|0\n\n").target.toEpochMilli(),
+        )
         // Überspringen-bis ausserhalb: nichts überspringen (wie unlesbar).
         val line = "phasewake-alarms 1\nb|9|30|MO|30|1|OFF|0||||OFF|NONE|PHONE|%s|0\n"
         assertEquals(0L, Codec.decodeAlarms(line.format(max)).single().skipUntil)
@@ -197,7 +265,15 @@ class CodecTest {
 
     @Test
     fun newReasonsStayReadableForOlderVersions() {
-        val night = NightRecord("a", Instant.ofEpochMilli(0), Instant.ofEpochMilli(1_800_000), Instant.ofEpochMilli(1_800_000), WakeReason.EXACT, 0, emptyList())
+        val night = NightRecord(
+            "a",
+            Instant.ofEpochMilli(0),
+            Instant.ofEpochMilli(1_800_000),
+            Instant.ofEpochMilli(1_800_000),
+            WakeReason.EXACT,
+            0,
+            emptyList(),
+        )
         // Byte-gleich mit Apple (CodecTests.testNewReasonsStayReadableForOlderVersions): Feld 5 DEADLINE, Feld 8 der
         // neue Grund.
         assertEquals("phasewake-night 1\na|0|1800000|1800000|DEADLINE|0||EXACT\n\n", Codec.encodeNight(night))
@@ -205,7 +281,10 @@ class CodecTest {
         val short = night.copy(reason = WakeReason.SHORT_NIGHT, feeling = 3)
         assertEquals(short, Codec.decodeNight(Codec.encodeNight(short)))
         // Bekannte Gründe ohne Feld 8, wie bisher.
-        assertEquals("phasewake-night 1\na|0|1800000|1800000|DEADLINE|0|\n\n", Codec.encodeNight(night.copy(reason = WakeReason.DEADLINE)))
+        assertEquals(
+            "phasewake-night 1\na|0|1800000|1800000|DEADLINE|0|\n\n",
+            Codec.encodeNight(night.copy(reason = WakeReason.DEADLINE)),
+        )
         // Unbekannter Grund aus einer neueren Version: Zielzeit.
         assertEquals(WakeReason.DEADLINE, Codec.decodeNight("phasewake-night 1\na|1|2|3|NOPE|0\n").reason)
         assertEquals(WakeReason.AWAKE, Codec.decodeNight("phasewake-night 1\na|1|2|3|AWAKE|0||LATER\n").reason)

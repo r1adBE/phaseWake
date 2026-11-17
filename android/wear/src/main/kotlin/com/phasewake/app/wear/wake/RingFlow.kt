@@ -136,7 +136,15 @@ internal fun WakeService.publishRinging(n: Night) {
         else -> 0f
     }
     app.ringState.publish(
-        RingUi.Ringing(label(n), n.reason ?: WakeReason.DEADLINE, since, snoozesLeft(n), n.taskOnPhone, sunrise, lightFrom),
+        RingUi.Ringing(
+            label(n),
+            n.reason ?: WakeReason.DEADLINE,
+            since,
+            snoozesLeft(n),
+            n.taskOnPhone,
+            sunrise,
+            lightFrom,
+        ),
     )
 }
 
@@ -210,7 +218,9 @@ internal fun WakeService.snooze(notifyPhone: Boolean, fromPhone: Boolean = false
     holdWakeLock(Duration.between(Instant.now(), until).toMillis() + RING_TIMEOUT_MS + WAKE_LOCK_MARGIN_MS)
     handler.postDelayed(snoozeEnd, Duration.between(Instant.now(), until).toMillis())
     saveProgress(n)
-    if (notifyPhone) lifecycleScope.launch { app.sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_STOP, stopMessage(n.plan, snoozeUntil = until)) }
+    if (notifyPhone) lifecycleScope.launch {
+        app.sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_STOP, stopMessage(n.plan, snoozeUntil = until))
+    }
 }
 
 /**

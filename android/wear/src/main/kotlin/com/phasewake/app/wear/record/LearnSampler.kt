@@ -56,7 +56,12 @@ internal class LearnSampler(
     fun start() {
         if (running) return
         running = true
-        ContextCompat.registerReceiver(context, receiver, IntentFilter(ACTION_TICK), ContextCompat.RECEIVER_NOT_EXPORTED)
+        ContextCompat.registerReceiver(
+            context,
+            receiver,
+            IntentFilter(ACTION_TICK),
+            ContextCompat.RECEIVER_NOT_EXPORTED,
+        )
         scheduleTick()
     }
 
@@ -94,7 +99,8 @@ internal class LearnSampler(
         val nowNanos = SystemClock.elapsedRealtimeNanos()
         sampleFrom = OnsetRules.firstFullEpoch(startNanos, nowNanos)
         sampleUntil = sampleFrom + OnsetMonitor.SAMPLE_EPOCHS
-        val delayMs = (startNanos + sampleUntil * OnsetMonitor.EPOCH_NANOS - nowNanos) / 1_000_000L + OnsetMonitor.SAMPLE_MARGIN_MS
+        val delayMs = (startNanos + sampleUntil * OnsetMonitor.EPOCH_NANOS - nowNanos) / 1_000_000L +
+            OnsetMonitor.SAMPLE_MARGIN_MS
         sampling = true
         // Zeitlimit als Sicherung: Auch wenn das Ende ausbliebe, hält der Wakelock nicht länger als die Stichprobe.
         wakeLocks.short(delayMs + WAKE_LOCK_SLACK_MS)

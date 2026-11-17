@@ -87,7 +87,8 @@ internal fun ChartBubble(text: String, anchorX: Float, onOpen: (() -> Unit)?, mo
     val scheme = MaterialTheme.colorScheme
     val open = stringResource(R.string.night_open)
     val inner = if (onOpen != null) {
-        Modifier.minimumInteractiveComponentSize().clip(MaterialTheme.shapes.small).clickable(onClickLabel = open, onClick = onOpen)
+        Modifier.minimumInteractiveComponentSize().clip(MaterialTheme.shapes.small)
+            .clickable(onClickLabel = open, onClick = onOpen)
     } else {
         Modifier.clip(MaterialTheme.shapes.small)
     }
@@ -97,7 +98,8 @@ internal fun ChartBubble(text: String, anchorX: Float, onOpen: (() -> Unit)?, mo
             .fillMaxWidth()
             .layout { measurable, constraints ->
                 val placeable = measurable.measure(constraints.copy(minWidth = 0))
-                val x = (anchorX - placeable.width / 2f).roundToInt().coerceIn(0, (constraints.maxWidth - placeable.width).coerceAtLeast(0))
+                val x = (anchorX - placeable.width / 2f).roundToInt()
+                    .coerceIn(0, (constraints.maxWidth - placeable.width).coerceAtLeast(0))
                 layout(constraints.maxWidth, placeable.height) { placeable.place(x, 0) }
             }
             .then(inner)
@@ -127,13 +129,20 @@ internal class ChartPick(
  * [draw] zeichnet mit der gewählten Stelle (`null`: keine). [key] setzt die Auswahl zurück, wenn sich die Daten ändern.
  */
 @Composable
-internal fun TouchChart(key: Any?, description: String, pick: ChartPick, modifier: Modifier = Modifier, draw: DrawScope.(Int?) -> Unit) {
+internal fun TouchChart(
+    key: Any?,
+    description: String,
+    pick: ChartPick,
+    modifier: Modifier = Modifier,
+    draw: DrawScope.(Int?) -> Unit,
+) {
     var selected by remember(key) { mutableStateOf<Int?>(null) }
     var width by remember { mutableFloatStateOf(0f) }
     val tick = rememberTick()
     Box(modifier.fillMaxWidth().height(CHART_HEIGHT).onSizeChanged { width = it.width.toFloat() }) {
         Canvas(
-            Modifier.fillMaxWidth().height(CHART_HEIGHT).fadeIn().semantics { contentDescription = description }.chartTouch(
+            Modifier.fillMaxWidth().height(CHART_HEIGHT).fadeIn().semantics { contentDescription = description }
+                .chartTouch(
                 key = key,
                 indexAt = pick.indexAt,
                 onTap = { selected = toggled(selected, it) },

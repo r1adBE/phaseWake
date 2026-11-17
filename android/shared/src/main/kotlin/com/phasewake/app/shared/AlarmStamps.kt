@@ -71,7 +71,8 @@ object AlarmStamps {
         if (rung != null) return rung.hour == spec.hour && rung.minute == spec.minute && rung.days == spec.days
         val nominal = AlarmSchedule.nextTarget(spec, target.minusMillis(1), zone) ?: return false
         if (nominal == target) return true
-        return shifted && nominal.isAfter(target) && nominal.toEpochMilli() - target.toEpochMilli() <= SHIFT_MAX_AHEAD_MS
+        return shifted && nominal.isAfter(target) &&
+            nominal.toEpochMilli() - target.toEpochMilli() <= SHIFT_MAX_AHEAD_MS
     }
 
     /**

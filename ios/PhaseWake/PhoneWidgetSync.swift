@@ -40,7 +40,9 @@ enum PhoneWidgetSync {
         guard UserDefaults.standard.bool(forKey: "healthRequested"), UIApplication.shared.isProtectedDataAvailable,
               PhoneWidgetSnapshot.load()?.morningNight(at: now) != nil else { return }
         let health = await model.health.sessions(now: now)
-        publishAsleep(model, sleeps: HealthHistory.summaries(health.sessions, clearedAt: model.historyClearedAt, calendar: .gregorianLocal))
+        publishAsleep(model,
+                      sleeps: HealthHistory.summaries(health.sessions, clearedAt: model.historyClearedAt,
+                                                      calendar: .gregorianLocal))
     }
 
     /// Legt die Schlafdauer der jüngsten Nacht aus `sleeps` (schon geladene Nächte aus Apple Health) ab, gleiche
@@ -49,7 +51,8 @@ enum PhoneWidgetSync {
         guard var snapshot = PhoneWidgetSnapshot.load(), var stored = snapshot.lastNight,
               let night = latest(model), night.wokeAt == stored.wokeAt else { return }
         let calendar = Calendar.gregorianLocal
-        stored.asleepMinutes = NoteEffect.asleepByNight(sleeps, calendar: calendar)[SleepNotes.nightDate(of: night, calendar: calendar)]
+        let nightDate = SleepNotes.nightDate(of: night, calendar: calendar)
+        stored.asleepMinutes = NoteEffect.asleepByNight(sleeps, calendar: calendar)[nightDate]
         snapshot.lastNight = stored
         if snapshot.save() { WidgetCenter.shared.reloadTimelines(ofKind: PhoneWidgetSnapshot.kind) }
     }
@@ -60,7 +63,9 @@ enum PhoneWidgetSync {
     /// Schlafdauer bleibt vom letzten Stand derselben Nacht (``publishAsleep(_:sleeps:)`` trägt sie nach).
     private static func lastNight(_ model: PhoneModel) -> PhoneWidgetSnapshot.LastNight? {
         guard let night = latest(model) else { return nil }
-        let previous = PhoneWidgetSnapshot.load()?.lastNight.flatMap { $0.wokeAt == night.wokeAt ? $0.asleepMinutes : nil }
+        let previous = PhoneWidgetSnapshot.load()?.lastNight.flatMap {
+            $0.wokeAt == night.wokeAt ? $0.asleepMinutes : nil
+        }
         return .init(wokeAt: night.wokeAt, reason: wakeTiming(night),
                      feeling: night.feeling.map { L("feeling_value", feelingName($0)) }, asleepMinutes: previous)
     }

@@ -22,7 +22,7 @@ class NightCheckBuildTest {
     private val context: Context get() = RuntimeEnvironment.getApplication()
 
     private fun collect(phone: Int?, watch: Int?, outdated: Boolean = false) =
-        NightCheckState.collect(context, true, true, watchOutdated = outdated, phoneBuild = phone, watchBuild = watch)
+        NightCheckState.collect(context, WatchFacts(true, true, outdated = outdated, build = watch), phoneBuild = phone)
 
     @Test
     fun hintWhenNumbersDiffer() {
@@ -30,7 +30,10 @@ class NightCheckBuildTest {
         val state = collect(96, 95)
         assertTrue(Check.BUILD_MISMATCH in state.failed)
         assertEquals(96 to 95, state.builds)
-        assertTrue(NightCheckState(listOf(Check.BUILD_MISMATCH), builds = 96 to 95).ready, "nur ein Hinweis, die Karte bleibt bereit")
+        assertTrue(
+            NightCheckState(listOf(Check.BUILD_MISMATCH), builds = 96 to 95).ready,
+            "nur ein Hinweis, die Karte bleibt bereit",
+        )
         assertTrue(Check.BUILD_MISMATCH.advisory && !Check.BUILD_MISMATCH.inReadyList)
     }
 

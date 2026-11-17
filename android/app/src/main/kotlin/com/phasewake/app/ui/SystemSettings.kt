@@ -23,16 +23,22 @@ import com.phasewake.app.ui.home.Check
 internal fun fixCheck(context: Context, item: Check, missingOn: List<String>) {
     when (item) {
         Check.FULL_SCREEN -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            openSettings(context, Intent(Settings.ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT, "package:${context.packageName}".toUri()))
+            openSettings(
+                context,
+                Intent(Settings.ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT, "package:${context.packageName}".toUri()),
+            )
         }
         Check.EXACT_ALARMS -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            openSettings(context, Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, "package:${context.packageName}".toUri()))
+            openSettings(
+                context, Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, "package:${context.packageName}".toUri()),
+            )
         }
         Check.DND, Check.DND_UNKNOWN -> DoNotDisturb.openSettings(context)
         Check.VOLUME -> openSettings(context, Intent(Settings.ACTION_SOUND_SETTINGS))
         Check.WATCH_APP -> missingOn.firstOrNull()?.let { node -> openStoreOnWatch(context, node) }
         Check.NOTIFICATIONS, Check.COMPANION, Check.WATCH, Check.WATCH_SETUP, Check.WATCH_PULSE, Check.WATCH_BATTERY,
-        Check.WATCH_OUTDATED, Check.BUILD_MISMATCH, Check.WATCH_RECORDER, Check.WATCH_ONSET_BATTERY, Check.WATCH_LEARN_BATTERY,
+        Check.WATCH_OUTDATED, Check.BUILD_MISMATCH, Check.WATCH_RECORDER, Check.WATCH_ONSET_BATTERY,
+        Check.WATCH_LEARN_BATTERY,
         Check.BATTERY -> Unit
     }
 }
@@ -42,7 +48,8 @@ internal fun fixCheck(context: Context, item: Check, missingOn: List<String>) {
  * zeigen will ([PermissionAsks], «gefragt» übersteht das Prozessende). Sonst ist es dauerhaft abgelehnt.
  */
 internal fun canAskNotifications(context: Context): Boolean =
-    Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && PermissionAsks.canAsk(context, Manifest.permission.POST_NOTIFICATIONS)
+    Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+        PermissionAsks.canAsk(context, Manifest.permission.POST_NOTIFICATIONS)
 
 /** Dauerhaft abgelehnt: Android fragt nicht mehr, also direkt zu den Mitteilungs-Einstellungen der App. */
 internal fun openNotificationSettings(context: Context) = openSettings(

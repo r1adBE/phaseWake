@@ -27,9 +27,11 @@ enum NightRules {
         /// Gespeicherte Sitzung; `nil`, wenn keine oder unlesbar (auch unplausible Zeiten, ``TimeBounds``).
         static func decode(_ value: Any?) -> ScheduledSession? {
             guard let dict = value as? [String: Any], let alarmId = dict["alarm"] as? String,
-                  let target = (dict["target"] as? NSNumber)?.doubleValue, let start = (dict["start"] as? NSNumber)?.doubleValue,
+                  let target = (dict["target"] as? NSNumber)?.doubleValue,
+                  let start = (dict["start"] as? NSNumber)?.doubleValue,
                   plausible(target), plausible(start) else { return nil }
-            return ScheduledSession(alarmId: alarmId, target: Date(timeIntervalSince1970: target), start: Date(timeIntervalSince1970: start))
+            return ScheduledSession(alarmId: alarmId, target: Date(timeIntervalSince1970: target),
+                                    start: Date(timeIntervalSince1970: start))
         }
 
         /// Ob `seconds` (seit 1970) im Bereich von ``TimeBounds`` liegt.
@@ -41,8 +43,10 @@ enum NightRules {
     /// Ob die gemerkte Sitzung `saved` noch für `plan` (Sitzungsstart `start`) steht: gleicher Wecker, gleiche Zielzeit
     /// und gleicher Start (auf die Millisekunde), und sie hat noch nicht begonnen (Start plus `tolerance` liegt vorn).
     /// Dann gilt die Uhr als scharf, ohne eine neue Sitzung zu planen.
-    static func keepsScheduled(_ saved: ScheduledSession?, plan: WakePlan, start: Date, now: Date, tolerance: TimeInterval) -> Bool {
-        guard let saved, saved.alarmId == plan.alarmId, TimeBounds.millis(saved.target) == TimeBounds.millis(plan.target),
+    static func keepsScheduled(_ saved: ScheduledSession?, plan: WakePlan, start: Date, now: Date,
+                               tolerance: TimeInterval) -> Bool {
+        guard let saved, saved.alarmId == plan.alarmId,
+              TimeBounds.millis(saved.target) == TimeBounds.millis(plan.target),
               TimeBounds.millis(saved.start) == TimeBounds.millis(start) else { return false }
         return now < saved.start.addingTimeInterval(tolerance)
     }
@@ -54,7 +58,8 @@ enum NightRules {
     /// Prüfung wie beim Start der Sitzung (`SmartAlarm.startNight`). Dann misst sie `plan` ab ihrem Start (die Minuten
     /// davor bleiben ungemessen), statt verworfen zu werden. Eine spätere Zielzeit deckt sie nicht (Sitzung höchstens
     /// 30 Min).
-    static func sessionServes(start: Date, plan: WakePlan, sessionStart: Date, tolerance: TimeInterval, delay: TimeInterval) -> Bool {
+    static func sessionServes(start: Date, plan: WakePlan, sessionStart: Date, tolerance: TimeInterval,
+                              delay: TimeInterval) -> Bool {
         start >= sessionStart.addingTimeInterval(-tolerance) && start < plan.target.addingTimeInterval(delay)
     }
 
@@ -88,7 +93,8 @@ enum NightRules {
     /// Entscheid für einen Zustand der Nacht mit Zielzeit `target` (geschlummert bis `snoozedUntil`) um `now`: älter
     /// als `staleAfter` nach der Zielzeit → ohne Wecken abschliessen (früher verworfen, dabei gingen Nacht und Epochen
     /// verloren); Schlummer-Ende plus `tolerance` noch nicht vorbei → weiter; sonst weiterwecken und abschliessen.
-    static func restored(target: Date, snoozedUntil: Date?, now: Date, staleAfter: TimeInterval, tolerance: TimeInterval) -> Restored {
+    static func restored(target: Date, snoozedUntil: Date?, now: Date, staleAfter: TimeInterval,
+                         tolerance: TimeInterval) -> Restored {
         if now.timeIntervalSince(target) > staleAfter { return .finishSilently }
         if let snoozedUntil, snoozedUntil.addingTimeInterval(tolerance) >= now { return .resume }
         return .finishWaking

@@ -76,21 +76,34 @@ internal fun nightView(item: HistoryItem, stages: List<StageSpan>): NightView {
     if (night != null) {
         val stats = StageStats.forNight(stages, night)
         val h = ChartData.hypnogram(stages, night)
-        val model = if (h != null && stats != null) HypnoModel(h.start, h.end, stats.blocks, HypnoWindow(night.windowStart, night.target, night.wokeAt, night.reason == WakeReason.EXACT)) else null
+        val model = if (h != null && stats != null) {
+            val window = HypnoWindow(night.windowStart, night.target, night.wokeAt, night.reason == WakeReason.EXACT)
+            HypnoModel(h.start, h.end, stats.blocks, window)
+        } else {
+            null
+        }
         return NightView(item, stats, model)
     }
     val session = item.session ?: return NightView(item, null, null)
     val stats = StageStats.forSession(session)
-    return NightView(item, stats, stats?.let { HypnoModel(session.start, session.end, it.blocks, zone = session.timeZone) })
+    return NightView(
+        item, stats, stats?.let { HypnoModel(session.start, session.end, it.blocks, zone = session.timeZone) },
+    )
 }
 
 /**
  * Datum der Nacht als Morgen mit Wochentag, z. B. «Dienstag, 28. Oktober»; eine Nacht aus der Gesundheits-App in der
  * Zone ihrer Aufzeichnung.
  */
-internal fun nightTitle(item: HistoryItem, zone: ZoneId = item.session?.zoneOr(ZoneId.systemDefault()) ?: ZoneId.systemDefault()): String {
+internal fun nightTitle(
+    item: HistoryItem,
+    zone: ZoneId = item.session?.zoneOr(ZoneId.systemDefault()) ?: ZoneId.systemDefault(),
+): String {
     val locale = Locale.getDefault()
-    return Format.digits(DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, "EEEEdMMMM"), locale), locale).format(item.at.atZone(zone))
+    return Format.digits(
+        DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, "EEEEdMMMM"), locale),
+        locale,
+    ).format(item.at.atZone(zone))
 }
 
 /** Was die Detailseite zeigt: alle Nächte des Verlaufs (neueste zuerst) und was zu ihnen gehört. */
@@ -140,10 +153,15 @@ internal fun NightDetailScreen(data: NightDetailData, startKey: String?, actions
     val current = pages[pager.currentPage.coerceIn(0, pages.lastIndex)]
     // Himmel wie auf der Startseite; hell trägt der Kopf mit Datum und Pfeilen ein Stück Tageshimmel.
     SkyPage {
-    Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom))) {
+    Column(
+        Modifier.fillMaxSize()
+            .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom))
+    ) {
         SkyHeader(statusBar = true) {
         Row(Modifier.fillMaxWidth().padding(4.dp), verticalAlignment = Alignment.CenterVertically) {
-            IconButton(onClick = actions.onBack) { Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.action_cancel)) }
+            IconButton(onClick = actions.onBack) {
+                Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.action_cancel))
+            }
             Text(
                 nightTitle(current),
                 style = MaterialTheme.typography.titleLarge,
@@ -151,15 +169,27 @@ internal fun NightDetailScreen(data: NightDetailData, startKey: String?, actions
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier.weight(1f).semantics { heading() },
             )
-            IconButton(onClick = { scope.launch { pager.animateScrollToPage(pager.currentPage - 1) } }, enabled = pager.currentPage > 0) {
+            IconButton(
+                onClick = { scope.launch { pager.animateScrollToPage(pager.currentPage - 1) } },
+                enabled = pager.currentPage > 0,
+            ) {
                 Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.night_prev))
             }
-            IconButton(onClick = { scope.launch { pager.animateScrollToPage(pager.currentPage + 1) } }, enabled = pager.currentPage < pages.lastIndex) {
-                Icon(painterResource(R.drawable.ic_chevron_end), contentDescription = stringResource(R.string.night_next))
+            IconButton(
+                onClick = { scope.launch { pager.animateScrollToPage(pager.currentPage + 1) } },
+                enabled = pager.currentPage < pages.lastIndex,
+            ) {
+                Icon(
+                    painterResource(R.drawable.ic_chevron_end),
+                    contentDescription = stringResource(R.string.night_next),
+                )
             }
         }
         }
-        HorizontalPager(state = pager, key = { pages[it].key }, verticalAlignment = Alignment.Top, modifier = Modifier.weight(1f).padding(top = 8.dp)) { page ->
+        HorizontalPager(
+            state = pager, key = { pages[it].key }, verticalAlignment = Alignment.Top,
+            modifier = Modifier.weight(1f).padding(top = 8.dp),
+        ) { page ->
             NightDetailPage(pages[page], data, actions)
         }
     }
@@ -171,18 +201,27 @@ internal fun NightDetailScreen(data: NightDetailData, startKey: String?, actions
  * Notizen und Geräusche.
  */
 @Composable
-internal fun NightDetailPage(item: HistoryItem, data: NightDetailData, actions: NightDetailActions, modifier: Modifier = Modifier) {
+internal fun NightDetailPage(
+    item: HistoryItem,
+    data: NightDetailData,
+    actions: NightDetailActions,
+    modifier: Modifier = Modifier,
+) {
     val context = LocalContext.current
     val view = remember(item, data.stages) { nightView(item, data.stages) }
-    val score = remember(view, data.recordings, data.goalMinutes) { nightScore(view, data.recordings, data.goalMinutes) }
+    val score =
+        remember(view, data.recordings, data.goalMinutes) { nightScore(view, data.recordings, data.goalMinutes) }
     val series = remember(item, data.recordings) { nightSeries(item, data.recordings) }
     val pulse = remember(series) { series?.let { SleepOverviews.pulse(it.epochs, it.start) } }
     Column(
-        modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp).padding(bottom = 24.dp),
+        modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp)
+            .padding(bottom = 24.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         NightHeader(view)
-        score?.let { ScoreCard(it, scoreSourceText(context, item, it, data.sessions), data.goalMinutes, Modifier.fillMaxWidth()) }
+        score?.let {
+            ScoreCard(it, scoreSourceText(context, item, it, data.sessions), data.goalMinutes, Modifier.fillMaxWidth())
+        }
         HypnogramSection(view)
         if (pulse != null && series != null) PulseCard(pulse, series.fullNight, Modifier.fillMaxWidth())
         // Bewegung über die ganze Nacht nur mit Aufzeichnung; das Weckfenster zeigt ohne Phasen schon das
@@ -211,11 +250,17 @@ private fun NightHeader(view: NightView) {
     Column(Modifier.fillMaxWidth().padding(top = 4.dp)) {
         asleep?.let {
             Text(Format.duration(context, Duration.ofMinutes(it)), style = MaterialTheme.typography.displaySmall)
-            Text(stringResource(R.string.night_asleep), style = MaterialTheme.typography.labelLarge, color = scheme.onSurfaceVariant)
+            Text(
+                stringResource(R.string.night_asleep), style = MaterialTheme.typography.labelLarge,
+                color = scheme.onSurfaceVariant,
+            )
         }
         val bed = view.stats?.let { it.start to it.end } ?: session?.let { it.start to it.end }
         bed?.let { (from, to) ->
-            Text(stringResource(R.string.night_in_bed, Format.time(from, zone), Format.time(to, zone)), style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(top = 8.dp))
+            Text(
+                stringResource(R.string.night_in_bed, Format.time(from, zone), Format.time(to, zone)),
+                style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(top = 8.dp),
+            )
         }
         val night = view.item.night
         if (night != null) {
@@ -225,13 +270,25 @@ private fun NightHeader(view: NightView) {
                 color = scheme.primary,
                 modifier = Modifier.padding(top = 8.dp),
             )
-            Text(nightSummary(context, night), style = MaterialTheme.typography.bodyMedium, color = scheme.onSurfaceVariant)
+            Text(
+                nightSummary(context, night), style = MaterialTheme.typography.bodyMedium,
+                color = scheme.onSurfaceVariant,
+            )
         } else if (session != null) {
             Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 8.dp)) {
-                Icon(painterResource(R.drawable.ic_health), contentDescription = null, tint = scheme.onSurfaceVariant, modifier = Modifier.size(16.dp))
-                Text(healthMark(context), style = MaterialTheme.typography.labelMedium, color = scheme.onSurfaceVariant, modifier = Modifier.padding(start = 6.dp))
+                Icon(
+                    painterResource(R.drawable.ic_health), contentDescription = null, tint = scheme.onSurfaceVariant,
+                    modifier = Modifier.size(16.dp),
+                )
+                Text(
+                    healthMark(context), style = MaterialTheme.typography.labelMedium, color = scheme.onSurfaceVariant,
+                    modifier = Modifier.padding(start = 6.dp),
+                )
             }
-            Text(healthLiveHint(context, session), style = MaterialTheme.typography.bodySmall, color = scheme.onSurfaceVariant, modifier = Modifier.padding(top = 2.dp))
+            Text(
+                healthLiveHint(context, session), style = MaterialTheme.typography.bodySmall,
+                color = scheme.onSurfaceVariant, modifier = Modifier.padding(top = 2.dp),
+            )
         }
     }
 }
@@ -249,7 +306,10 @@ private fun HypnogramSection(view: NightView) {
         // «Genau»: die Messzeit ist kein Weckfenster, darum dann der Titel der Phasen (wie iPhone).
         val title = if (night.reason == WakeReason.EXACT) R.string.chart_stages_title else R.string.chart_window
         ChartCard(stringResource(title), stringResource(R.string.night_no_stages), Modifier.fillMaxWidth()) {
-            NightBars(night.epochs, Modifier.fillMaxWidth().height(56.dp), totalEpochs = (Duration.between(night.windowStart, night.target).toMinutes() * 2).toInt())
+            NightBars(
+                night.epochs, Modifier.fillMaxWidth().height(56.dp),
+                totalEpochs = (Duration.between(night.windowStart, night.target).toMinutes() * 2).toInt(),
+            )
         }
         return
     }

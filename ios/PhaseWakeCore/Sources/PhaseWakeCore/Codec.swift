@@ -66,7 +66,8 @@ public enum Codec {
             return try AlarmSpec(
                 id: unescape(f[0]), hour: int(f[1]), minute: int(f[2]), days: days, windowMinutes: int(f[4]),
                 enabled: f[5] == "1", phone: phone, watchSound: f[7] == "1",
-                sleepDurationMinutes: f[8].isEmpty ? nil : int(f[8]), sound: unescape(f[9]), label: unescape(f[10]), sunrise: sunrise,
+                sleepDurationMinutes: f[8].isEmpty ? nil : int(f[8]), sound: unescape(f[9]), label: unescape(f[10]),
+                sunrise: sunrise,
                 wakeTask: wakeTask, sunriseDevice: sunriseDevice, skipUntil: skipUntil, skipHolidays: skipHolidays
             )
         } catch let error as DetectorConfigError {
@@ -88,7 +89,8 @@ public enum Codec {
         let legacy = legacyReasons.contains(night.reason)
         let fields = [
             escape(night.alarmId), String(millis(night.windowStart)), String(millis(night.target)),
-            String(millis(night.wokeAt)), legacy ? night.reason.rawValue : WakeReason.deadline.rawValue, String(night.snoozes),
+            String(millis(night.wokeAt)), legacy ? night.reason.rawValue : WakeReason.deadline.rawValue,
+            String(night.snoozes),
             night.feeling.map(String.init) ?? "",
         ]
         // Akku (Felder 9 und 10) und Einschlafen (11 und 12): nur wenn vorhanden; Feld 8
@@ -122,19 +124,23 @@ public enum Codec {
         // 7 Felder; ältere Stände ohne Befinden haben 6, neuere dürfen weitere anhängen.
         guard f.count >= 6 else { throw CodecError(description: "Nacht: 7 Felder erwartet") }
         let feeling: Int? = try f.count >= 7 && !f[6].isEmpty ? int(f[6]) : nil
-        if let feeling, !NightRecord.feelingRange.contains(feeling) { throw CodecError(description: "Nacht: Befinden '\(feeling)'") }
+        if let feeling, !NightRecord.feelingRange.contains(feeling) {
+            throw CodecError(description: "Nacht: Befinden '\(feeling)'")
+        }
         let reason = (f.count > 7 ? WakeReason(rawValue: f[7]) : nil) ?? WakeReason(rawValue: f[4]) ?? .deadline
         let epochLine = lines.count > 2 ? lines[2] : ""
         let epochs: [Epoch] = try epochLine.isEmpty ? [] : epochLine.components(separatedBy: ",").map { pair in
             let p = pair.components(separatedBy: ";")
             guard p.count == 2 else { throw CodecError(description: "Epoche '\(pair)'") }
-            return Epoch(motion: try p[0].isEmpty ? nil : double(p[0]), heartRate: try p[1].isEmpty ? nil : double(p[1]))
+            return Epoch(motion: try p[0].isEmpty ? nil : double(p[0]),
+                         heartRate: try p[1].isEmpty ? nil : double(p[1]))
         }
         return try NightRecord(
             alarmId: unescape(f[0]), windowStart: try date(f[1]), target: try date(f[2]), wokeAt: try date(f[3]),
             reason: reason, snoozes: try int(f[5]), epochs: epochs, feeling: feeling,
             // Unlesbar: ohne Akku statt die ganze Nacht zu verwerfen (wie Kotlin).
-            watchBattery: BatteryTrack.decode(f.count > 8 ? f[8] : nil), phoneBattery: BatteryTrack.decode(f.count > 9 ? f[9] : nil),
+            watchBattery: BatteryTrack.decode(f.count > 8 ? f[8] : nil),
+            phoneBattery: BatteryTrack.decode(f.count > 9 ? f[9] : nil),
             bedAt: f.count > 10 ? (try? date(f[10])) : nil, asleepAt: f.count > 11 ? (try? date(f[11])) : nil
         )
     }
@@ -168,7 +174,8 @@ public enum Codec {
         var out = ""
         for byte in value.utf8 {
             switch byte {
-            case UInt8(ascii: "a")...UInt8(ascii: "z"), UInt8(ascii: "A")...UInt8(ascii: "Z"), UInt8(ascii: "0")...UInt8(ascii: "9"),
+            case UInt8(ascii: "a")...UInt8(ascii: "z"), UInt8(ascii: "A")...UInt8(ascii: "Z"),
+                 UInt8(ascii: "0")...UInt8(ascii: "9"),
                  UInt8(ascii: "."), UInt8(ascii: "-"), UInt8(ascii: "*"), UInt8(ascii: "_"):
                 out.append(Character(UnicodeScalar(byte)))
             case UInt8(ascii: " "):
@@ -205,7 +212,8 @@ public enum DayFormat {
         // firstWeekday: 1 = Sonntag … 7 = Samstag; Weekday: 1 = Montag … 7 = Sonntag.
         let firstRaw = (calendar.firstWeekday + 5) % 7 + 1
         let week = (0..<7).map { Weekday(rawValue: (firstRaw - 1 + $0) % 7 + 1)! }
-        let start = days.contains(week[0]) && days.contains(week[6]) ? (week.lastIndex { !days.contains($0) } ?? -1) + 1 : 0
+        let start = days.contains(week[0]) && days.contains(week[6])
+            ? (week.lastIndex { !days.contains($0) } ?? -1) + 1 : 0
         let sorted = (0..<7).map { week[(start + $0) % 7] }.filter { days.contains($0) }
         var parts: [String] = []
         var i = 0

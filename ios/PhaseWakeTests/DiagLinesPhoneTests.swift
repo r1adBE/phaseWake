@@ -16,21 +16,25 @@ final class DiagLinesPhoneTests: XCTestCase {
             ("sig", ExitLines.number(11)), ("exc", ExitLines.number(1)), ("code", ExitLines.number(nil)), ("v", "1.4"),
             ("reason", "  Namespace SIGNAL, Code 11 Segmentation fault: 11  "),
         ], zone: utc)
-        XCTAssertEqual(line, "exit crash at 2026-11-06 21:20 sig=11 exc=1 v=1.4 reason=Namespace SIGNAL, Code 11 Segmentation fault: 11")
+        XCTAssertEqual(line,
+                       "exit crash at 2026-11-06 21:20 sig=11 exc=1 v=1.4 "
+                           + "reason=Namespace SIGNAL, Code 11 Segmentation fault: 11")
         // Passt ins Protokoll, ohne Trennzeichen.
         XCTAssertEqual(DiagLog.clean(line), line)
     }
 
     func testLongReasonIsCut() {
         let line = ExitLines.line("crash", at: at, fields: [("reason", String(repeating: "x", count: 500))], zone: utc)
-        XCTAssertEqual(line, "exit crash at 2026-11-06 21:20 reason=" + String(repeating: "x", count: ExitLines.maxReason))
+        XCTAssertEqual(line,
+                       "exit crash at 2026-11-06 21:20 reason=" + String(repeating: "x", count: ExitLines.maxReason))
     }
 
     func testDurationsAndWritesAreFormattedWithoutLocale() {
         XCTAssertEqual(ExitLines.seconds(Measurement(value: 2500, unit: .milliseconds)), "2.5s")
         XCTAssertEqual(ExitLines.seconds(Measurement(value: 3, unit: .minutes)), "180.0s")
         XCTAssertEqual(ExitLines.megabytes(Measurement(value: 1.1, unit: .gigabytes)), "1100MB")
-        XCTAssertEqual(ExitLines.line("hang", at: at, fields: [("dur", "2.5s"), ("v", "")], zone: utc), "exit hang at 2026-11-06 21:20 dur=2.5s")
+        XCTAssertEqual(ExitLines.line("hang", at: at, fields: [("dur", "2.5s"), ("v", "")], zone: utc),
+                       "exit hang at 2026-11-06 21:20 dur=2.5s")
     }
 
     func testReportIsLoggedOnlyOnce() {
@@ -47,7 +51,8 @@ final class DiagLinesPhoneTests: XCTestCase {
         let start = Date()
         PhoneConnectivity.shared.session(WCSession.default, didReceiveUserInfo: [SyncKeys.night: "not a night"])
         let logged = DiagStore.shared.entries().filter { $0.at >= start.addingTimeInterval(-1) }
-        XCTAssertTrue(logged.contains { $0.kind == .sync && $0.detail == "night unreadable, dropped (len=11)" }, "\(logged)")
+        XCTAssertTrue(logged.contains { $0.kind == .sync && $0.detail == "night unreadable, dropped (len=11)" },
+                      "\(logged)")
     }
 
     @MainActor

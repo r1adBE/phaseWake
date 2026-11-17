@@ -29,7 +29,11 @@ class HealthSleep internal constructor(
     clientFactory: () -> HealthConnectClient,
     private val diagLog: ((String) -> Unit)? = null,
 ) {
-    constructor(context: Context) : this(context, { HealthConnectClient.getSdkStatus(context) }, { HealthConnectClient.getOrCreate(context) })
+    constructor(context: Context) : this(
+        context,
+        { HealthConnectClient.getSdkStatus(context) },
+        { HealthConnectClient.getOrCreate(context) },
+    )
 
     val permissions: Set<String> = setOf(HealthPermission.getReadPermission(SleepSessionRecord::class))
 
@@ -49,13 +53,16 @@ class HealthSleep internal constructor(
 
     private fun diag(text: String) {
         val log = diagLog ?: { line: String ->
-            com.phasewake.app.shared.DiagnosticsLog.forContext(context, com.phasewake.app.core.DiagDevice.PHONE).log(com.phasewake.app.core.DiagKind.SYNC, line)
+            com.phasewake.app.shared.DiagnosticsLog.forContext(context, com.phasewake.app.core.DiagDevice.PHONE)
+                .log(com.phasewake.app.core.DiagKind.SYNC, line)
         }
         log(text)
     }
 
     suspend fun isGranted(): Boolean =
-        isAvailable && runCatching { client.permissionController.getGrantedPermissions().containsAll(permissions) }.getOrDefault(false)
+        isAvailable && runCatching {
+            client.permissionController.getGrantedPermissions().containsAll(permissions)
+        }.getOrDefault(false)
 
     /**
      * Alle Schlafsitzungen, die von [from] bis [to] in Health Connect liegen, mit Phasen und Herkunft
@@ -68,7 +75,9 @@ class HealthSleep internal constructor(
             var pageToken: String? = null
             do {
                 val response = client.readRecords(
-                    ReadRecordsRequest(SleepSessionRecord::class, TimeRangeFilter.between(from, to), pageToken = pageToken),
+                    ReadRecordsRequest(
+                        SleepSessionRecord::class, TimeRangeFilter.between(from, to), pageToken = pageToken,
+                    ),
                 )
                 records += response.records
                 pageToken = response.pageToken
@@ -77,7 +86,8 @@ class HealthSleep internal constructor(
             // Namen der Apps (DATENSCHUTZ.md: der Name der Quell-App wird nicht gespeichert). Nur bei einer Änderung
             // (sonst füllte jedes Öffnen den Ringpuffer).
             val origins = records.map { it.metadata.dataOrigin.packageName }
-            val line = "health read ${records.size} sessions, ${origins.toSet().size} sources, ${origins.count { it == context.packageName }} own"
+            val own = origins.count { it == context.packageName }
+            val line = "health read ${records.size} sessions, ${origins.toSet().size} sources, $own own"
             if (line != lastReadLine) {
                 lastReadLine = line
                 diag(line)
@@ -126,7 +136,9 @@ class HealthSleep internal constructor(
      */
     suspend fun recentSleep(days: Long, clearedAt: Instant?): List<SleepSummary> {
         val now = Instant.now()
-        return HealthHistory.summaries(sessions(now.minus(Duration.ofDays(days)), now), clearedAt, ZoneId.systemDefault())
+        return HealthHistory.summaries(
+            sessions(now.minus(Duration.ofDays(days)), now), clearedAt, ZoneId.systemDefault(),
+        )
     }
 
     /**
@@ -137,7 +149,8 @@ class HealthSleep internal constructor(
      * Health Connect lässt in einer Sitzung keine überlappenden Phasen zu.
      */
     private fun stagesOf(session: SleepSessionRecord): List<StageSpan> =
-        session.stages.mapNotNull { stage -> map(stage.stage)?.let { StageSpan(stage.startTime, stage.endTime, it) } }.sortedBy { it.start }
+        session.stages.mapNotNull { stage -> map(stage.stage)?.let { StageSpan(stage.startTime, stage.endTime, it) } }
+            .sortedBy { it.start }
 
     private fun map(stage: Int): SleepStage? = when (stage) {
         SleepSessionRecord.STAGE_TYPE_AWAKE,

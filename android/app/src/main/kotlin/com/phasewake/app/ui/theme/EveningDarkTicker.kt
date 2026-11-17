@@ -11,7 +11,10 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 
 /** Einstellung «Abends dunkel ab»: an/aus und Beginn in Minuten des Tages ([EveningDark]). */
-data class EveningDarkSetting(val enabled: Boolean = EveningDark.DEFAULT_ENABLED, val fromMinutes: Int = EveningDark.DEFAULT_FROM_MINUTES)
+data class EveningDarkSetting(
+    val enabled: Boolean = EveningDark.DEFAULT_ENABLED,
+    val fromMinutes: Int = EveningDark.DEFAULT_FROM_MINUTES,
+)
 
 /**
  * Ob «Abends dunkel ab» gerade gilt, als Flow: sofort der Zustand jetzt, danach genau an jeder Grenze

@@ -16,7 +16,8 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             List {
-                NextWindow(plan: model.plan, alarm: model.alarms.first { $0.id == model.plan?.alarmId }, sleepGoal: model.sleepGoal,
+                NextWindow(plan: model.plan, alarm: model.alarms.first { $0.id == model.plan?.alarmId },
+                           sleepGoal: model.sleepGoal,
                            latencyMinutes: LearnRecorder.shared.snapshot.latencyMinutes)
                     .listRowBackground(Color.clear)
                 if case .waiting = SmartAlarm.shared.phase {
@@ -34,7 +35,9 @@ struct HomeView: View {
                 if let night = model.lastNight.night {
                     // Letzte Nacht: wann und warum geweckt wurde.
                     VStack(spacing: 1) {
-                        Text(L("home_last_night")).font(Fonts.manrope(11, relativeTo: .caption2)).foregroundStyle(Brand.muted)
+                        Text(L("home_last_night"))
+                            .font(Fonts.manrope(11, relativeTo: .caption2))
+                            .foregroundStyle(Brand.muted)
                         Text(Format.time(night.wokeAt)).font(Fonts.manrope(17, .bold, relativeTo: .headline))
                         Text(L(ringReasonKey(night.reason)))
                             .font(Fonts.manrope(11, relativeTo: .caption2))
@@ -52,7 +55,8 @@ struct HomeView: View {
                             HStack {
                                 Button { editingNew = false; editing = alarm } label: {
                                     VStack(alignment: .leading) {
-                                        Text(Format.window(alarm)).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
+                                        Text(Format.window(alarm))
+                                            .font(Fonts.manrope(15, .semibold, relativeTo: .headline))
                                         Text(alarmDetails(alarm, now: model.now))
                                             .font(Fonts.manrope(12, relativeTo: .footnote))
                                             .foregroundStyle(Brand.muted)
@@ -62,7 +66,8 @@ struct HomeView: View {
                                 }
                                 .buttonStyle(.plain)
                                 .accessibilityHint(L("editor_edit"))
-                                Toggle(Format.window(alarm), isOn: Binding(get: { alarm.enabled }, set: { model.setEnabled(alarm, $0) }))
+                                Toggle(Format.window(alarm), isOn: Binding(get: { alarm.enabled },
+                                                                           set: { model.setEnabled(alarm, $0) }))
                                     .labelsHidden()
                                     .tint(Brand.echo)
                                     .fixedSize()
@@ -209,7 +214,8 @@ private struct WindowRing: View {
                 if !dimmed && lead > 0.003 && lead < 0.997 {
                     Circle()
                         .trim(from: 0, to: lead * drawn)
-                        .stroke(AngularGradient(colors: [Brand.deep, Brand.echo], center: .center, startAngle: .zero, endAngle: .degrees(lead * 360)),
+                        .stroke(AngularGradient(colors: [Brand.deep, Brand.echo], center: .center, startAngle: .zero,
+                                                endAngle: .degrees(lead * 360)),
                                 style: StrokeStyle(lineWidth: 4, lineCap: .butt))
                         .rotationEffect(.degrees(now * 360 - 90))
                 }
@@ -225,8 +231,11 @@ private struct WindowRing: View {
                     Circle()
                         .trim(from: 0, to: sweep * drawn)
                         .stroke(dimmed ? AnyShapeStyle(Brand.wave.opacity(0.6))
-                                : AnyShapeStyle(AngularGradient(stops: [.init(color: Brand.glow, location: 0), .init(color: Brand.wave, location: 0.7), .init(color: Brand.moon, location: 1)],
-                                                                center: .center, startAngle: .zero, endAngle: .degrees(sweep * 360))),
+                                : AnyShapeStyle(AngularGradient(stops: [.init(color: Brand.glow, location: 0),
+                                                                        .init(color: Brand.wave, location: 0.7),
+                                                                        .init(color: Brand.moon, location: 1)],
+                                                                center: .center, startAngle: .zero,
+                                                                endAngle: .degrees(sweep * 360))),
                                 style: StrokeStyle(lineWidth: 7, lineCap: .round))
                         .rotationEffect(.degrees(start * 360 - 90))
                 }
@@ -246,7 +255,8 @@ private struct WindowRing: View {
                 // Weckpunkt mit ruhendem Schein und Ring (im Always-On ohne Schein).
                 ZStack {
                     if !dimmed {
-                        Circle().fill(RadialGradient(colors: [Brand.wave.opacity(0.6), Brand.wave.opacity(0)], center: .center, startRadius: 0, endRadius: 17))
+                        Circle().fill(RadialGradient(colors: [Brand.wave.opacity(0.6), Brand.wave.opacity(0)],
+                                                     center: .center, startRadius: 0, endRadius: 17))
                             .frame(width: 34, height: 34)
                         Circle().stroke(Brand.moon.opacity(0.7), lineWidth: 1.5).frame(width: 14, height: 14)
                     }
@@ -268,6 +278,7 @@ private struct WindowRing: View {
 /// Zweite Zeile einer Wecker-Zeile: Tage, Name und ein übersprungener nächster Termin («Übersprungen: Do 30.10.»), wie
 /// Galaxy Watch, Handy und iPhone.
 func alarmDetails(_ alarm: AlarmSpec, now: Date, calendar: Calendar = .gregorianLocal) -> String {
-    let skipped = AlarmSchedule.skippedDate(alarm, now: now, calendar: calendar).map { L("alarm_skipped", Format.shortDay($0)) }
+    let skipped = AlarmSchedule.skippedDate(alarm, now: now, calendar: calendar)
+        .map { L("alarm_skipped", Format.shortDay($0)) }
     return [Format.days(alarm), alarm.label, skipped ?? ""].filter { !$0.isEmpty }.joined(separator: " · ")
 }

@@ -22,7 +22,9 @@ class PhoneRingFlowTest {
         assertEquals(RingRules.Timeout.SNOOZE, RingRules.timeout(ringing = true, fromWatch = false, snoozesLeft = 1))
         assertEquals(RingRules.Timeout.STOP, RingRules.timeout(ringing = true, fromWatch = false, snoozesLeft = 0))
         // Die Uhr führt: Handy still, eigene Sicherung nach ihrem Schlummer-Ende; ohne Runden ebenfalls Ende.
-        assertEquals(RingRules.Timeout.STOP_WITH_SAFETY, RingRules.timeout(ringing = true, fromWatch = true, snoozesLeft = 2))
+        assertEquals(
+            RingRules.Timeout.STOP_WITH_SAFETY, RingRules.timeout(ringing = true, fromWatch = true, snoozesLeft = 2),
+        )
         assertEquals(RingRules.Timeout.STOP, RingRules.timeout(ringing = true, fromWatch = true, snoozesLeft = 0))
         // Nichts klingelt (schon beendet oder geschlummert): nur aufräumen.
         assertEquals(RingRules.Timeout.STOP, RingRules.timeout(ringing = false, fromWatch = false, snoozesLeft = 3))
@@ -54,7 +56,9 @@ class PhoneRingFlowTest {
         // Begrenzt auf 0 … MAX_COUNT; der Probewecker schlummert nie.
         assertEquals(Snooze.MAX_COUNT, RingRules.snoozesLeft("a", true, watchSnoozesLeft = 9, snoozesDone = 0))
         assertEquals(0, RingRules.snoozesLeft("a", false, watchSnoozesLeft = null, snoozesDone = 7))
-        assertEquals(0, RingRules.snoozesLeft(Transient.TEST_PREFIX + "1", false, watchSnoozesLeft = null, snoozesDone = 0))
+        assertEquals(
+            0, RingRules.snoozesLeft(Transient.TEST_PREFIX + "1", false, watchSnoozesLeft = null, snoozesDone = 0),
+        )
     }
 
     @Test
@@ -64,7 +68,9 @@ class PhoneRingFlowTest {
         assertTrue(RingRules.resumeAt(now) > now + RingRules.TIMEOUT_MS)
         // Führt das Handy, zählen seine Runden; führt die Uhr, ihre Restzahl.
         assertEquals(2, RingRules.resumeSnoozesDone(fromWatch = false, snoozesLeft = 0, snoozesDone = 2))
-        assertEquals(Snooze.MAX_COUNT - 1, RingRules.resumeSnoozesDone(fromWatch = true, snoozesLeft = 1, snoozesDone = 0))
+        assertEquals(
+            Snooze.MAX_COUNT - 1, RingRules.resumeSnoozesDone(fromWatch = true, snoozesLeft = 1, snoozesDone = 0),
+        )
         assertEquals(0, RingRules.resumeSnoozesDone(fromWatch = true, snoozesLeft = 9, snoozesDone = 0))
     }
 

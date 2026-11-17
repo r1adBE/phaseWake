@@ -27,18 +27,22 @@ final class SurfacesWatchTests: XCTestCase {
         let active = GoodNightRow.secondary(target: target, busy: false, tooFar: false, minutes: 450)
         XCTAssertTrue(active.hasPrefix(L("notification_window_text", Format.time(target))), active)
         XCTAssertTrue(active.hasSuffix(L("home_good_night_tap_cancel")), active)
-        XCTAssertEqual(GoodNightRow.secondary(target: nil, busy: true, tooFar: false, minutes: 450), L("transient_alarm_running"))
-        XCTAssertEqual(GoodNightRow.secondary(target: nil, busy: false, tooFar: true, minutes: 450), L("home_good_night_too_far"))
+        XCTAssertEqual(GoodNightRow.secondary(target: nil, busy: true, tooFar: false, minutes: 450),
+                       L("transient_alarm_running"))
+        XCTAssertEqual(GoodNightRow.secondary(target: nil, busy: false, tooFar: true, minutes: 450),
+                       L("home_good_night_too_far"))
     }
 
     func testAlarmRowShowsSkippedOccurrence() throws {
         let evening = at("2026-10-28T22:00")
-        let alarm = try AlarmSpec(id: "a", hour: 7, minute: 0, days: [.monday, .tuesday, .wednesday, .thursday, .friday], label: "Arbeit")
+        let alarm = try AlarmSpec(id: "a", hour: 7, minute: 0,
+                                  days: [.monday, .tuesday, .wednesday, .thursday, .friday], label: "Arbeit")
         let skipped = AlarmSchedule.skipNext(alarm, now: evening, calendar: zurich)
         let line = alarmDetails(skipped, now: evening, calendar: zurich)
         XCTAssertTrue(line.hasSuffix(" · " + L("alarm_skipped", Format.shortDay("2026-10-29"))), line)
         XCTAssertTrue(line.contains("Arbeit"), line)
-        XCTAssertFalse(alarmDetails(alarm, now: evening, calendar: zurich).contains(L("alarm_skipped", Format.shortDay("2026-10-29"))))
+        XCTAssertFalse(alarmDetails(alarm, now: evening, calendar: zurich)
+            .contains(L("alarm_skipped", Format.shortDay("2026-10-29"))))
     }
 
     func testStopButtonMeetsMinimumTarget() {

@@ -33,7 +33,10 @@ class DiagLogTest {
         val old = DiagEntry(now.minus(DiagLog.MAX_AGE).minusSeconds(1), DiagDevice.PHONE, DiagKind.BOOT, "")
         val edge = DiagEntry(now.minus(DiagLog.MAX_AGE), DiagDevice.PHONE, DiagKind.BOOT, "edge")
         assertEquals(listOf(edge), DiagLog.trim(listOf(old, edge), now))
-        val many = (0 until DiagLog.MAX_ENTRIES + 20).map { DiagEntry(now.minusSeconds(it.toLong()), DiagDevice.PHONE, DiagKind.SYNC, "$it") }
+        val many =
+            (0 until DiagLog.MAX_ENTRIES + 20).map {
+                DiagEntry(now.minusSeconds(it.toLong()), DiagDevice.PHONE, DiagKind.SYNC, "$it")
+            }
         val kept = DiagLog.trim(many, now)
         assertEquals(DiagLog.MAX_ENTRIES, kept.size)
         assertEquals("0", kept.last().detail)

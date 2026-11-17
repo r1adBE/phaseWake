@@ -31,18 +31,34 @@ struct HistoryChartsSection: View {
                     OverviewCard(overview: data.overview[unit], onOpen: onOpen).padding(.horizontal, 16)
                 }
                 if !data.isEmpty {
-                    Text(L("charts_title")).font(Fonts.manrope(17, .bold, relativeTo: .title3)).padding(.horizontal, 20).padding(.top, 4)
+                    Text(L("charts_title"))
+                        .font(Fonts.manrope(17, .bold, relativeTo: .title3)).padding(.horizontal, 20).padding(.top, 4)
                     ScrollView(.horizontal) {
                         HStack(alignment: .top, spacing: 12) {
                             if longest.bars != nil {
-                                if let bars = period.bars { SleepBarsCard(bars: bars, onOpen: onOpen).page() } else { EmptyChartCard(title: L("chart_bars_title")).page() }
+                                if let bars = period.bars {
+                                    SleepBarsCard(bars: bars, onOpen: onOpen).page()
+                                } else {
+                                    EmptyChartCard(title: L("chart_bars_title")).page()
+                                }
                             }
                             if longest.wake != nil {
-                                if let wake = period.wake { WakeCard(wake: wake, onOpen: onOpen).page() } else { EmptyChartCard(title: L("chart_wake_title")).page() }
+                                if let wake = period.wake {
+                                    WakeCard(wake: wake, onOpen: onOpen).page()
+                                } else {
+                                    EmptyChartCard(title: L("chart_wake_title")).page()
+                                }
                             }
-                            if let h = data.hypnogram, let night = data.hypnogramNight { HypnogramCard(h: h, night: night, onOpen: onOpen).page() }
+                            if let h = data.hypnogram,
+                               let night = data.hypnogramNight {
+                                HypnogramCard(h: h, night: night, onOpen: onOpen).page()
+                            }
                             if longest.feeling != nil {
-                                if let feeling = period.feeling { FeelingCard(series: feeling, onOpen: onOpen).page() } else { EmptyChartCard(title: L("chart_feeling_title")).page() }
+                                if let feeling = period.feeling {
+                                    FeelingCard(series: feeling, onOpen: onOpen).page()
+                                } else {
+                                    EmptyChartCard(title: L("chart_feeling_title")).page()
+                                }
                             }
                         }
                         .scrollTargetLayout()

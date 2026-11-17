@@ -22,7 +22,8 @@ class SyncGate(private val file: File, private val now: () -> Long = System::cur
         }
     }
 
-    private fun last(): Long? = runCatching { if (file.exists()) file.readText().trim().toLongOrNull() else null }.getOrNull()
+    private fun last(): Long? =
+        runCatching { if (file.exists()) file.readText().trim().toLongOrNull() else null }.getOrNull()
 
     companion object {
         /** Mindestabstand zweier Anfragen beim Start: 30 Min. */
@@ -35,6 +36,7 @@ class SyncGate(private val file: File, private val now: () -> Long = System::cur
         fun due(last: Long?, now: Long): Boolean = last == null || now < last || now - last >= MIN_INTERVAL_MS
 
         /** Die Datei dieses Geräts (im Ordner der Warteschlange, nicht gesichert). */
-        fun forContext(context: Context): SyncGate = SyncGate(File(context.applicationContext.filesDir, "outbox/sync-requested"))
+        fun forContext(context: Context): SyncGate =
+            SyncGate(File(context.applicationContext.filesDir, "outbox/sync-requested"))
     }
 }

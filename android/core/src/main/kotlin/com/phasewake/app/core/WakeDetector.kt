@@ -42,7 +42,9 @@ class WakeDetector(config: DetectorConfig = DetectorConfig()) {
         motions += epoch.motion
         // Basispuls aus den Epochen vor dieser; danach zählt der Puls dieser Epoche für die folgenden.
         val baseline = baselineHeartRate()
-        if (index < maxOf(DetectorConfig.BASELINE_EPOCHS, config.warmupEpochs)) epoch.heartRate?.let { baselineHeartRates += it }
+        if (index < maxOf(DetectorConfig.BASELINE_EPOCHS, config.warmupEpochs)) {
+            epoch.heartRate?.let { baselineHeartRates += it }
+        }
         if (index < config.warmupEpochs) return Decision.Wait
 
         if (recent.size == config.maxWindow) recent.removeFirst()
@@ -95,7 +97,10 @@ class WakeDetector(config: DetectorConfig = DetectorConfig()) {
         val sorted = baselineHeartRates.sorted()
         val mid = sorted.size / 2
         val median = if (sorted.size % 2 == 1) sorted[mid] else (sorted[mid - 1] + sorted[mid]) / 2.0
-        return if (resting == null) median else minOf(maxOf(median, resting), resting * DetectorConfig.RESTING_CLAMP_FACTOR)
+        return if (resting == null) median else minOf(
+            maxOf(median, resting),
+            resting * DetectorConfig.RESTING_CLAMP_FACTOR,
+        )
     }
 
     /**

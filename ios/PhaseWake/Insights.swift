@@ -24,8 +24,10 @@ func unmeasuredEpochs(_ night: NightRecord) -> Int {
 func measuredPart(_ night: NightRecord) -> NightRecord {
     let skip = unmeasuredEpochs(night)
     guard skip > 0 else { return night }
-    return NightRecord(alarmId: night.alarmId, windowStart: night.windowStart, target: night.target, wokeAt: night.wokeAt,
-                       reason: night.reason, snoozes: night.snoozes, epochs: Array(night.epochs.dropFirst(skip)), feeling: night.feeling)
+    return NightRecord(alarmId: night.alarmId, windowStart: night.windowStart, target: night.target,
+                       wokeAt: night.wokeAt,
+                       reason: night.reason, snoozes: night.snoozes, epochs: Array(night.epochs.dropFirst(skip)),
+                       feeling: night.feeling)
 }
 
 func qualityText(_ night: NightRecord) -> String {
@@ -38,7 +40,8 @@ func qualityText(_ night: NightRecord) -> String {
 }
 
 func nightDetails(_ night: NightRecord) -> String {
-    ([qualityText(night)] + (night.feeling.map { [L("feeling_value", feelingName($0))] } ?? [])).joined(separator: " · ")
+    ([qualityText(night)] + (night.feeling.map { [L("feeling_value", feelingName($0))] } ?? []))
+        .joined(separator: " · ")
 }
 
 /// «Erste 5 Min nicht gemessen …» oder `nil`, wenn die Uhr das ganze Fenster gemessen hat.
@@ -147,9 +150,11 @@ struct TrendsCard: View {
             ForEach(lines, id: \.self) { Text($0).font(Fonts.manrope(15, relativeTo: .body)) }
             if !healthConnected {
                 HStack {
-                    Text(L("trends_health_hint_apple")).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+                    Text(L("trends_health_hint_apple"))
+                        .font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
                     Spacer()
-                    Button(L("health_connect"), action: onConnectHealth).font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
+                    Button(L("health_connect"), action: onConnectHealth)
+                        .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
                 }
             }
         }
@@ -201,7 +206,9 @@ struct NightsExport: Transferable, Sendable {
         var out: [NightsExport] = []
         if !nights.isEmpty || finished.isEmpty { out.append(NightsExport(content: .nights(nights, notes: notes))) }
         if !finished.isEmpty { out.append(NightsExport(content: .recordings(finished))) }
-        if validation.contains(where: { $0.ref != .noReference }) { out.append(NightsExport(content: .validation(validation))) }
+        if validation.contains(where: { $0.ref != .noReference }) {
+            out.append(NightsExport(content: .validation(validation)))
+        }
         return out
     }
 
@@ -244,7 +251,8 @@ struct NightsExport: Transferable, Sendable {
             return
         }
         let limit = Date().addingTimeInterval(-age)
-        let folders = (try? manager.contentsOfDirectory(at: directory, includingPropertiesForKeys: [.creationDateKey])) ?? []
+        let folders = (try? manager.contentsOfDirectory(at: directory, includingPropertiesForKeys: [.creationDateKey]))
+            ?? []
         for folder in folders {
             let created = (try? folder.resourceValues(forKeys: [.creationDateKey]))?.creationDate ?? .distantPast
             if created < limit { try? manager.removeItem(at: folder) }
@@ -261,7 +269,8 @@ struct HistoryExportLink<Content: View>: View {
     @State private var validation: [Validation.Entry] = []
 
     var body: some View {
-        let files = NightsExport.files(nights: model.nights, notes: model.notes, recordings: PhoneLearning.shared.recordings,
+        let files = NightsExport.files(nights: model.nights, notes: model.notes,
+                                       recordings: PhoneLearning.shared.recordings,
                                        validation: validation)
         ShareLink(items: files, preview: { _ in SharePreview(L("history_export_subject")) }, label: label)
             .disabled(model.nights.isEmpty && !PhoneLearning.shared.recordings.contains(where: \.finished))

@@ -52,89 +52,116 @@ import java.time.format.DateTimeFormatter
 
 // Startbildschirm der Uhr ohne eigenen Zustand: nächstes Fenster, letzte Nacht, Wecker.
 
+/** Was die Startseite ([HomeContent]) zeigt: Wecker, nächster Plan, letzte Nacht und Hinweise. */
+internal data class HomeState(
+    val alarms: List<AlarmSpec>,
+    val plan: WakePlan?,
+    val loading: Boolean = false,
+    val lastNight: NightRecord? = null,
+    val zone: ZoneId,
+    val goodNightActive: Boolean,
+    val goodNightTooFar: Boolean = false,
+    val permissionsMissing: Boolean,
+    val dndBlocks: Boolean,
+)
+
+/** Aktionen der Startseite ([HomeContent]). */
+internal data class HomeActions(
+    val onGoodNight: () -> Unit,
+    val onRequestPermissions: () -> Unit,
+    val onOpenDnd: () -> Unit,
+    val onToggle: (AlarmSpec, Boolean) -> Unit,
+    val onAdd: () -> Unit = {},
+    val onEdit: (AlarmSpec) -> Unit = {},
+)
+
 /** Startbildschirm ohne eigenen Zustand; so auch für Vorschau und Bildschirmfotos nutzbar. */
 @Composable
 internal fun HomeContent(
-    alarms: List<AlarmSpec>,
-    plan: WakePlan?,
-    loading: Boolean = false,
-    lastNight: NightRecord? = null,
-    zone: ZoneId,
-    goodNightActive: Boolean,
-    goodNightTooFar: Boolean = false,
-    permissionsMissing: Boolean,
-    dndBlocks: Boolean,
-    onGoodNight: () -> Unit,
-    onRequestPermissions: () -> Unit,
-    onOpenDnd: () -> Unit,
-    onToggle: (AlarmSpec, Boolean) -> Unit,
-    onAdd: () -> Unit = {},
-    onEdit: (AlarmSpec) -> Unit = {},
+    state: HomeState,
+    actions: HomeActions,
     extras: WatchHomeExtras = WatchHomeExtras(),
 ) {
-    val sleepAlarm = alarms.firstOrNull { it.id == plan?.alarmId && it.sleepDurationMinutes != null }
+    val planAlarm = state.alarms.firstOrNull { it.id == state.plan?.alarmId }
+    val sleepAlarm = state.alarms.firstOrNull { it.id == state.plan?.alarmId && it.sleepDurationMinutes != null }
     val listState = rememberScalingLazyListState()
     ScreenScaffold(scrollState = listState) {
         ScalingLazyColumn(state = listState, modifier = Modifier.fillMaxSize().nightGlow(strength = PAGE_GLOW)) {
-            item { NextWindow(plan, alarms.firstOrNull { it.id == plan?.alarmId }, zone, loading, extras) }
+            item { NextWindow(state.plan, planAlarm, state.zone, state.loading, extras) }
             if (sleepAlarm != null) {
                 item {
                     GoodNightButton(
-                        active = goodNightActive,
-                        tooFar = goodNightTooFar && !goodNightActive,
+                        active = state.goodNightActive,
+                        tooFar = state.goodNightTooFar && !state.goodNightActive,
                         sleepMinutes = sleepAlarm.sleepDurationMinutes ?: 0,
-                        onClick = onGoodNight,
+                        onClick = actions.onGoodNight,
                     )
                 }
             }
-            extras.onNap?.let { onNap -> item { NapChip(extras.nap, zone, onNap, extras.onStopNap) } }
-            extras.onRecord?.let { onRecord -> item { RecordChip(extras.recordSince, zone, onRecord) } }
-            if (permissionsMissing) {
+            extras.onNap?.let { onNap -> item { NapChip(extras.nap, state.zone, onNap, extras.onStopNap) } }
+            extras.onRecord?.let { onRecord -> item { RecordChip(extras.recordSince, state.zone, onRecord) } }
+            if (state.permissionsMissing) {
                 item {
                     Button(
-                        onClick = onRequestPermissions,
+                        onClick = actions.onRequestPermissions,
                         modifier = Modifier.fillMaxWidth(),
                         label = { Text(stringResource(R.string.home_permissions)) },
                         secondaryLabel = { Text(stringResource(R.string.home_permissions_hint)) },
                     )
                 }
             }
-            if (dndBlocks) {
+            if (state.dndBlocks) {
                 item {
                     Button(
-                        onClick = onOpenDnd,
+                        onClick = actions.onOpenDnd,
                         modifier = Modifier.fillMaxWidth(),
                         colors = warningColors(MaterialTheme.colorScheme).let { (container, content) ->
-                            ButtonDefaults.buttonColors(containerColor = container, contentColor = content, secondaryContentColor = content)
+                            ButtonDefaults.buttonColors(
+                                containerColor = container,
+                                contentColor = content,
+                                secondaryContentColor = content,
+                            )
                         },
                         label = { Text(stringResource(R.string.dnd_title)) },
                         secondaryLabel = { Text(stringResource(R.string.dnd_text)) },
                     )
                 }
             }
-            if (lastNight != null) {
-                item { LastNight(lastNight, zone) }
+            if (state.lastNight != null) {
+                item { LastNight(state.lastNight, state.zone) }
             }
-            if (alarms.isNotEmpty()) {
+            if (state.alarms.isNotEmpty()) {
                 item { ListHeader { Text(stringResource(R.string.home_alarms)) } }
             }
-            items(alarms.size) { index ->
-                val alarm = alarms[index]
-                AlarmSwitch(alarm, extras.skipped(alarm), onEdit = { onEdit(alarm) }) { enabled -> onToggle(alarm, enabled) }
+            items(state.alarms.size) { index ->
+                val alarm = state.alarms[index]
+                AlarmSwitch(alarm, extras.skipped(alarm), onEdit = { actions.onEdit(alarm) }) { enabled ->
+                    actions.onToggle(alarm, enabled)
+                }
             }
             if (extras.diagnostics) {
                 item {
-                    Button(onClick = extras.onDiagnostics, modifier = Modifier.fillMaxWidth(), label = { Text(stringResource(R.string.diag_title)) })
+                    Button(
+                        onClick = extras.onDiagnostics,
+                        modifier = Modifier.fillMaxWidth(),
+                        label = { Text(stringResource(R.string.diag_title)) },
+                    )
                 }
             }
-            if (!loading) {
+            if (!state.loading) {
                 item {
-                    if (alarms.size < MAX_ALARMS) {
+                    if (state.alarms.size < MAX_ALARMS) {
                         Button(
-                            onClick = onAdd,
+                            onClick = actions.onAdd,
                             modifier = Modifier.fillMaxWidth(),
                             colors = ButtonDefaults.filledTonalButtonColors(),
-                            icon = { Text("+", style = MaterialTheme.typography.titleLarge, modifier = Modifier.clearAndSetSemantics { }) },
+                            icon = {
+                                Text(
+                                    "+",
+                                    style = MaterialTheme.typography.titleLarge,
+                                    modifier = Modifier.clearAndSetSemantics { },
+                                )
+                            },
                             label = { Text(stringResource(R.string.home_add_alarm)) },
                         )
                     } else {
@@ -183,7 +210,9 @@ private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId, loading
     // Tippen zählt nur für das Freischalten der Diagnose (7×), ohne Rolle für Bildschirmleser.
     val onTap = extras.onWindowTap
     Box(
-        Modifier.padding(top = TIME_TEXT_SPACE).size(width = 164.dp, height = 164.dp).pointerInput(Unit) { detectTapGestures { onTap() } },
+        Modifier.padding(top = TIME_TEXT_SPACE)
+            .size(width = 164.dp, height = 164.dp)
+            .pointerInput(Unit) { detectTapGestures { onTap() } },
         contentAlignment = Alignment.Center,
     ) {
         if (loading) return@Box
@@ -210,11 +239,18 @@ private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId, loading
             modifier = if (texts == null) {
                 Modifier.semantics(mergeDescendants = true) { }
             } else {
-                Modifier.clearAndSetSemantics { contentDescription = (texts.filter { it.isNotEmpty() } + listOfNotNull(bedtimeText)).joinToString(", ") }
+                Modifier.clearAndSetSemantics {
+                    contentDescription = (texts.filter { it.isNotEmpty() } + listOfNotNull(bedtimeText))
+                        .joinToString(", ")
+                }
             },
         ) {
             if (texts == null) {
-                Text(stringResource(R.string.home_no_alarm), style = MaterialTheme.typography.titleMedium, textAlign = TextAlign.Center)
+                Text(
+                    stringResource(R.string.home_no_alarm),
+                    style = MaterialTheme.typography.titleMedium,
+                    textAlign = TextAlign.Center,
+                )
                 Text(
                     stringResource(R.string.home_no_alarm_hint),
                     style = MaterialTheme.typography.bodySmall,
@@ -246,14 +282,18 @@ private fun windowTexts(plan: WakePlan, alarm: AlarmSpec?, zone: ZoneId, now: In
         when (day) {
             today -> stringResource(R.string.home_today)
             today.plusDays(1) -> stringResource(R.string.home_tomorrow)
-            else -> day.dayOfWeek.getDisplayName(java.time.format.TextStyle.FULL, locale).replaceFirstChar { it.titlecase(locale) }
+            else -> day.dayOfWeek.getDisplayName(java.time.format.TextStyle.FULL, locale)
+                .replaceFirstChar { it.titlecase(locale) }
         },
         if (plan.exact) {
             stringResource(R.string.window_exact_line, formatTime(plan.target, zone))
         } else {
             stringResource(R.string.home_window, formatTime(plan.windowStart, zone), formatTime(plan.target, zone))
         },
-        if (plan.exact) "" else stringResource(R.string.home_window_length, alarm?.windowMinutes ?: AlarmSpec.DEFAULT_WINDOW_MINUTES),
+        if (plan.exact) "" else stringResource(
+            R.string.home_window_length,
+            alarm?.windowMinutes ?: AlarmSpec.DEFAULT_WINDOW_MINUTES,
+        ),
     )
 }
 

@@ -35,7 +35,8 @@ class SunriseSkyTest {
         val area = SunriseSky.Area(0.2f, 0.84f, 0.8f, 0.9f)
         val ink = SunriseSky.ink(0.62f, area)
         for (x in listOf(0.2f, 0.5f, 0.8f)) for (y in listOf(0.84f, 0.87f, 0.9f)) {
-            assertTrue(SunriseSky.contrast(ink.content, SunriseSky.backgroundAt(0.62f, x, y, SunriseSky.PORTRAIT)) >= SunriseSky.MIN_CONTRAST)
+            val background = SunriseSky.backgroundAt(0.62f, x, y, SunriseSky.PORTRAIT)
+            assertTrue(SunriseSky.contrast(ink.content, background) >= SunriseSky.MIN_CONTRAST)
         }
     }
 

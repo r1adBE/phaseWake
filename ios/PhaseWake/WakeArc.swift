@@ -56,7 +56,8 @@ struct WakeArc: View {
     @State private var reveal: Double = 0
 
     var body: some View {
-        WakeArcDrawing(now: now, windowStart: windowStart, target: target, exact: exact, ink: SkyInk.of(scheme), reveal: reveal)
+        WakeArcDrawing(now: now, windowStart: windowStart, target: target, exact: exact, ink: SkyInk.of(scheme),
+                       reveal: reveal)
             .accessibilityHidden(true)
             .onAppear {
                 guard !reduceMotion else { reveal = 1; return }
@@ -116,32 +117,45 @@ private struct WakeArcDrawing: View, Animatable {
                 return CGPoint(x: center.x + radius * cos(a), y: center.y + radius * sin(a))
             }
             func arc(_ from: Double, _ to: Double) -> Path {
-                Path { $0.addArc(center: center, radius: r, startAngle: angle(from), endAngle: angle(to), clockwise: false) }
+                Path {
+                    $0.addArc(center: center, radius: r, startAngle: angle(from), endAngle: angle(to), clockwise: false)
+                }
             }
-            func dot(_ c: CGPoint, _ radius: CGFloat) -> Path { Path(ellipseIn: CGRect(x: c.x - radius, y: c.y - radius, width: 2 * radius, height: 2 * radius)) }
+            func dot(_ c: CGPoint, _ radius: CGFloat) -> Path {
+                Path(ellipseIn: CGRect(x: c.x - radius, y: c.y - radius, width: 2 * radius, height: 2 * radius))
+            }
             func gradientArc(_ from: Double, _ to: Double, _ a: Color, _ b: Color, _ width: CGFloat) {
                 guard to > from else { return }
-                context.stroke(arc(from, to), with: .linearGradient(Gradient(colors: [a, b]), startPoint: at(from, r), endPoint: at(to, r)),
+                context.stroke(arc(from, to),
+                               with: .linearGradient(Gradient(colors: [a, b]), startPoint: at(from, r),
+                                                     endPoint: at(to, r)),
                                style: StrokeStyle(lineWidth: width, lineCap: .round))
             }
-            context.stroke(arc(0, 1), with: .color(ink.text.opacity(0.10)), style: StrokeStyle(lineWidth: stroke, lineCap: .round))
+            context.stroke(arc(0, 1), with: .color(ink.text.opacity(0.10)),
+                           style: StrokeStyle(lineWidth: stroke, lineCap: .round))
             for k in 0...12 {
-                context.fill(dot(at(Double(k) / 12, r - stroke * 1.35), k % 3 == 0 ? 1.6 : 1.1), with: .color(ink.muted.opacity(k % 3 == 0 ? 0.55 : 0.28)))
+                context.fill(dot(at(Double(k) / 12, r - stroke * 1.35), k % 3 == 0 ? 1.6 : 1.1),
+                             with: .color(ink.muted.opacity(k % 3 == 0 ? 0.55 : 0.28)))
             }
             let shown = reveal
             gradientArc(0, min(nowAt, windowAt) * shown, ink.waveEcho.opacity(0.55), ink.wave, stroke)
             if !exact && shown > windowAt {
-                context.stroke(arc(windowAt, shown), with: .color(ink.dawn.opacity(0.18)), style: StrokeStyle(lineWidth: stroke * 2.6, lineCap: .round))
+                context.stroke(arc(windowAt, shown), with: .color(ink.dawn.opacity(0.18)),
+                               style: StrokeStyle(lineWidth: stroke * 2.6, lineCap: .round))
                 gradientArc(windowAt, shown, ink.wave, ink.dawn, stroke * 1.15)
             }
             guard shown >= 1 else { return }
             let wake = at(1, r)
-            context.fill(dot(wake, stroke * 2.6), with: .radialGradient(Gradient(colors: [ink.dawn.opacity(0.55), ink.dawn.opacity(0)]), center: wake, startRadius: 0, endRadius: stroke * 2.6))
+            context.fill(dot(wake, stroke * 2.6),
+                         with: .radialGradient(Gradient(colors: [ink.dawn.opacity(0.55), ink.dawn.opacity(0)]),
+                                               center: wake, startRadius: 0, endRadius: stroke * 2.6))
             context.stroke(dot(wake, stroke * 1.05), with: .color(ink.moon.opacity(0.7)), lineWidth: 1.5)
             context.fill(dot(wake, stroke * 0.62), with: .color(ink.moon))
             if now < target {
                 let p = at(nowAt, r)
-                context.fill(dot(p, stroke * 1.9), with: .radialGradient(Gradient(colors: [ink.wave.opacity(0.6), ink.wave.opacity(0)]), center: p, startRadius: 0, endRadius: stroke * 1.9))
+                context.fill(dot(p, stroke * 1.9),
+                             with: .radialGradient(Gradient(colors: [ink.wave.opacity(0.6), ink.wave.opacity(0)]),
+                                                   center: p, startRadius: 0, endRadius: stroke * 1.9))
                 context.fill(dot(p, stroke * 0.5), with: .color(ink.moon))
             }
         }

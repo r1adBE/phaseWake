@@ -26,7 +26,9 @@ internal class RecordWakeLocks(private val context: Context) {
 
     /** Kurzer Wakelock, löst sich spätestens nach [millis]; ein neuer Aufruf verlängert ihn. */
     fun short(millis: Long) {
-        val lock = shortLock ?: newLock("phasewake:record-short").apply { setReferenceCounted(false) }.also { shortLock = it }
+        val lock = shortLock ?: newLock("phasewake:record-short")
+            .apply { setReferenceCounted(false) }
+            .also { shortLock = it }
         lock.acquire(millis)
     }
 

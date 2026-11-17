@@ -18,7 +18,8 @@ struct NightDetailPage: View {
     var body: some View {
         // Aufzeichnungen der Uhr: Puls und Bewegung über die ganze Nacht, Schlafwert ohne Phasen (wie Android).
         let recordings = PhoneLearning.shared.recordings
-        let score = nightScore(stages: data.stages, session: data.item.session, goalMinutes: model.sleepGoal, night: data.item.night,
+        let score = nightScore(stages: data.stages, session: data.item.session, goalMinutes: model.sleepGoal,
+                               night: data.item.night,
                                recordings: recordings)
         let series = nightSeries(data.item, recordings: recordings)
         let pulse = series.flatMap { SleepOverviews.pulse($0.epochs, start: $0.start) }
@@ -35,10 +36,12 @@ struct NightDetailPage: View {
                         StageChart(timeline: timeline)
                         if timeline.window != nil { legend }
                     } else {
-                        Text(L("night_no_stages")).font(Fonts.manrope(14, relativeTo: .body)).foregroundStyle(Brand.secondaryText(scheme))
+                        Text(L("night_no_stages"))
+                            .font(Fonts.manrope(14, relativeTo: .body)).foregroundStyle(Brand.secondaryText(scheme))
                     }
                     if let night = data.item.night {
-                        NightBars(epochs: night.epochs, totalEpochs: Int(night.target.timeIntervalSince(night.windowStart) / 30),
+                        NightBars(epochs: night.epochs,
+                                  totalEpochs: Int(night.target.timeIntervalSince(night.windowStart) / 30),
                                   unmeasured: unmeasuredEpochs(night))
                             .frame(height: 44)
                             .padding(.top, 4)
@@ -63,13 +66,15 @@ struct NightDetailPage: View {
 
     private var header: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text(data.title).font(Fonts.manrope(15, .semibold, relativeTo: .headline)).foregroundStyle(Brand.secondaryText(scheme))
+            Text(data.title)
+                .font(Fonts.manrope(15, .semibold, relativeTo: .headline)).foregroundStyle(Brand.secondaryText(scheme))
             if let asleep = data.asleepMinutes {
                 Text(Format.duration(minutes: asleep))
                     .font(Fonts.manrope(34, .bold, relativeTo: .largeTitle))
                     .accessibilityLabel(L("night_asleep") + " " + Format.duration(minutes: asleep))
             }
-            Text(L("night_in_bed", Format.time(data.inBed.start, in: data.timeZone), Format.time(data.inBed.end, in: data.timeZone)))
+            Text(L("night_in_bed", Format.time(data.inBed.start, in: data.timeZone),
+                   Format.time(data.inBed.end, in: data.timeZone)))
                 .font(Fonts.manrope(14, relativeTo: .subheadline))
             if let night = data.item.night {
                 ownLines(night)
@@ -91,15 +96,18 @@ struct NightDetailPage: View {
         Text(L("night_woke", Format.time(night.wokeAt)) + " · " + L("night_target", Format.time(night.target)))
             .font(Fonts.manrope(14, .semibold, relativeTo: .subheadline))
             .foregroundStyle(.tint)
-        Text(nightSummary(night)).font(Fonts.manrope(13, relativeTo: .footnote)).foregroundStyle(Brand.secondaryText(scheme))
+        Text(nightSummary(night))
+            .font(Fonts.manrope(13, relativeTo: .footnote)).foregroundStyle(Brand.secondaryText(scheme))
     }
 
     /// Legende des Profils; «Genau» hat kein Weckfenster, dann ohne dessen Zeichen.
     private var legend: some View {
         var items: [(symbol: AnyView, text: String)] = []
         if data.item.night?.wasExact != true {
-            items.append((symbol: AnyView(RoundedRectangle(cornerRadius: 2).fill(StageColors.marker(scheme).opacity(0.25)).frame(width: 14, height: 8)),
-                          text: L("chart_window")))
+            let windowSymbol = RoundedRectangle(cornerRadius: 2)
+                .fill(StageColors.marker(scheme).opacity(0.25))
+                .frame(width: 14, height: 8)
+            items.append((symbol: AnyView(windowSymbol), text: L("chart_window")))
         }
         items.append((symbol: AnyView(DashSymbol(color: StageColors.marker(scheme))),
                       text: data.item.night.map { L("night_target", Format.time($0.target)) } ?? ""))
@@ -113,18 +121,22 @@ struct NightDetailPage: View {
     @ViewBuilder private var extras: some View {
         VStack(alignment: .leading, spacing: 10) {
             if let night = data.item.night {
-                Text(nightDetails(current(night))).font(Fonts.manrope(13, relativeTo: .footnote)).foregroundStyle(Brand.secondaryText(scheme))
+                Text(nightDetails(current(night)))
+                    .font(Fonts.manrope(13, relativeTo: .footnote)).foregroundStyle(Brand.secondaryText(scheme))
                 if let unmeasured = unmeasuredText(night) {
-                    Text(unmeasured).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.secondaryText(scheme))
+                    Text(unmeasured)
+                        .font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.secondaryText(scheme))
                 }
                 if let battery = batteryLine(current(night)) {
-                    Text(battery).font(Fonts.manrope(13, relativeTo: .footnote)).foregroundStyle(Brand.secondaryText(scheme))
+                    Text(battery)
+                        .font(Fonts.manrope(13, relativeTo: .footnote)).foregroundStyle(Brand.secondaryText(scheme))
                 }
                 if current(night).feeling == nil {
                     FeelingPicker(onPick: { model.setFeeling($0, for: night) })
                 }
             } else if let feeling = model.healthFeelings[data.nightDate] {
-                Text(L("feeling_value", feelingName(feeling))).font(Fonts.manrope(13, relativeTo: .footnote)).foregroundStyle(Brand.secondaryText(scheme))
+                Text(L("feeling_value", feelingName(feeling)))
+                    .font(Fonts.manrope(13, relativeTo: .footnote)).foregroundStyle(Brand.secondaryText(scheme))
             } else {
                 FeelingPicker(onPick: { model.setHealthFeeling($0, nightDate: data.nightDate) }, showsHint: false)
             }

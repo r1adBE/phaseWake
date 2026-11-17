@@ -70,7 +70,8 @@ public struct SleepSummary: Equatable, Sendable {
     public static func group(_ spans: [StageSpan]) -> [SleepSummary] {
         var groups: [[StageSpan]] = []
         for span in spans.sorted(by: { $0.start < $1.start }) {
-            if let last = groups.last, let lastEnd = last.map(\.end).max(), span.start.timeIntervalSince(lastEnd) <= newNightGap {
+            if let last = groups.last, let lastEnd = last.map(\.end).max(),
+               span.start.timeIntervalSince(lastEnd) <= newNightGap {
                 groups[groups.count - 1].append(span)
             } else {
                 groups.append([span])
@@ -165,7 +166,8 @@ public enum MissHint: String, Sendable {
     /// zur Zielzeit weckten. Die Mehrheit entscheidet über den Grund: Lücken, fehlender Puls, sonst ruhiger Schlaf.
     public static func of(_ spec: AlarmSpec?, nights: [NightRecord]) -> MissHint? {
         guard let spec, spec.windowMinutes >= AlarmSpec.maxWindowMinutes else { return nil }
-        let recent = Array(nights.filter { $0.alarmId == spec.id }.sorted { $0.windowStart < $1.windowStart }.suffix(Self.nights))
+        let recent = Array(nights.filter { $0.alarmId == spec.id }.sorted { $0.windowStart < $1.windowStart }
+            .suffix(Self.nights))
         guard recent.count >= Self.nights, recent.allSatisfy({ $0.reason == .deadline }) else { return nil }
         let qualities = recent.map { NightQuality.of($0) }
         let majority = Self.nights / 2 + 1

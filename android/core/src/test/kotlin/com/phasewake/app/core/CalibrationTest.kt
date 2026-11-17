@@ -58,7 +58,8 @@ class CalibrationTest {
         // Gemeinsame Fälle mit Swift (shared/testdata/calibration-real.vectors): 4 echte Nächte einer Galaxy Watch.
         val lines = NightFixtures.directory().resolve("calibration-real.vectors").readLines(Charsets.UTF_8)
             .filter { it.isNotBlank() && !it.startsWith("#") }
-        val expect = lines.single { it.startsWith("@expect ") }.removePrefix("@expect ").split(" ").map(String::toDouble)
+        val expect =
+            lines.single { it.startsWith("@expect ") }.removePrefix("@expect ").split(" ").map(String::toDouble)
         val nights = lines.filterNot { it.startsWith("@") }.map { line -> line.split(",").map { it.toDoubleOrNull() } }
         assertEquals(4, nights.size)
         val config = Calibration.calibrate(nights)

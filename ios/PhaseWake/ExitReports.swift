@@ -36,19 +36,25 @@ final class ExitReports: NSObject, MXMetricManagerSubscriber, @unchecked Sendabl
         for d in (payload.crashDiagnostics ?? []).prefix(limit) {
             out.append(ExitLines.line("crash", at: at, fields: [
                 ("sig", ExitLines.number(d.signal)), ("exc", ExitLines.number(d.exceptionType)),
-                ("code", ExitLines.number(d.exceptionCode)), ("v", d.applicationVersion), ("reason", d.terminationReason),
+                ("code", ExitLines.number(d.exceptionCode)), ("v", d.applicationVersion), ("reason",
+                                                                                           d.terminationReason),
             ]))
         }
         for d in (payload.hangDiagnostics ?? []).prefix(limit) {
-            out.append(ExitLines.line("hang", at: at, fields: [("dur", ExitLines.seconds(d.hangDuration)), ("v", d.applicationVersion)]))
+            out.append(ExitLines.line("hang", at: at, fields: [
+                ("dur", ExitLines.seconds(d.hangDuration)), ("v", d.applicationVersion),
+            ]))
         }
         for d in (payload.cpuExceptionDiagnostics ?? []).prefix(limit) {
             out.append(ExitLines.line("cpu", at: at, fields: [
-                ("cpu", ExitLines.seconds(d.totalCPUTime)), ("sampled", ExitLines.seconds(d.totalSampledTime)), ("v", d.applicationVersion),
+                ("cpu", ExitLines.seconds(d.totalCPUTime)), ("sampled", ExitLines.seconds(d.totalSampledTime)),
+                ("v", d.applicationVersion),
             ]))
         }
         for d in (payload.diskWriteExceptionDiagnostics ?? []).prefix(limit) {
-            out.append(ExitLines.line("disk", at: at, fields: [("writes", ExitLines.megabytes(d.totalWritesCaused)), ("v", d.applicationVersion)]))
+            out.append(ExitLines.line("disk", at: at,
+                                      fields: [("writes", ExitLines.megabytes(d.totalWritesCaused)),
+                                               ("v", d.applicationVersion)]))
         }
         return out
     }

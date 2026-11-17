@@ -37,7 +37,9 @@ struct HolidayDatabase: Sendable {
             }
             countries[code] = Country(regions: entry["regions"] as? [String: String] ?? [:],
                                       days: entries.mapValues { list in list.filter { !$0.estimated }.map { $0.date } },
-                                      estimatedDays: entries.mapValues { list in list.filter { $0.estimated }.map { $0.date } })
+                                      estimatedDays: entries.mapValues { list in
+                                          list.filter { $0.estimated }.map { $0.date }
+                                      })
         }
         return HolidayDatabase(countries: countries)
     }
@@ -45,14 +47,16 @@ struct HolidayDatabase: Sendable {
     /// Feiertage von heute bis `Holidays.syncDays` voraus für Land und Region (leer = ganzes Land); nur sichere Tage.
     func dates(country: String, region: String, today: String) -> Set<String> {
         guard let entry = countries[country] else { return [] }
-        return Holidays.resolve(national: entry.days[""] ?? [], regional: region.isEmpty ? [] : entry.days[region] ?? [], today: today)
+        return Holidays.resolve(national: entry.days[""] ?? [],
+                                regional: region.isEmpty ? [] : entry.days[region] ?? [], today: today)
     }
 
     /// Nur geschätzte Feiertage im selben Zeitraum, ohne Tage, die auch sicher Feiertag sind.
     func estimatedDates(country: String, region: String, today: String) -> Set<String> {
         guard let entry = countries[country] else { return [] }
         let estimated = Holidays.resolve(national: entry.estimatedDays[""] ?? [],
-                                         regional: region.isEmpty ? [] : entry.estimatedDays[region] ?? [], today: today)
+                                         regional: region.isEmpty ? [] : entry.estimatedDays[region] ?? [],
+                                         today: today)
         return estimated.subtracting(dates(country: country, region: region, today: today))
     }
 }
@@ -109,7 +113,8 @@ final class HolidayStore {
 
     /// Gespeicherte Wahl; ohne Wahl das Land des Geräts, ganzes Land.
     private static func choice(_ defaults: any SettingsStore) -> (country: String, region: String) {
-        (defaults.string(forKey: countryKey) ?? Locale.current.region?.identifier ?? "", defaults.string(forKey: regionKey) ?? "")
+        (defaults.string(forKey: countryKey) ?? Locale.current.region?.identifier ?? "",
+         defaults.string(forKey: regionKey) ?? "")
     }
 
     /// Wahl neu lesen: Vor dem ersten Entsperren gestartet, galt das Land des Geräts; danach Region
@@ -132,7 +137,8 @@ final class HolidayStore {
 
     /// Bis die Daten geladen sind: der zuletzt an die Uhr gesendete Stand, falls er zur Wahl passt.
     func adopt(lastSent: HolidayList) {
-        if database == nil, lastSent.region == Holidays.regionCode(country: country, region: region) { dates = lastSent.dates }
+        if database == nil,
+           lastSent.region == Holidays.regionCode(country: country, region: region) { dates = lastSent.dates }
     }
 
     /// Liste für die Uhr: Region und Daten.
@@ -140,7 +146,9 @@ final class HolidayStore {
 
     /// Länder mit übersetztem Namen, alphabetisch.
     var countries: [(code: String, name: String)] {
-        (database?.countries.keys.map { (code: $0, name: Locale.current.localizedString(forRegionCode: $0) ?? $0) } ?? [])
+        (database?.countries.keys.map {
+            (code: $0, name: Locale.current.localizedString(forRegionCode: $0) ?? $0)
+        } ?? [])
             .sorted { $0.name.localizedCompare($1.name) == .orderedAscending }
     }
 

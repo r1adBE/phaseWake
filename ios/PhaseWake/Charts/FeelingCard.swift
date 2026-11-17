@@ -14,7 +14,9 @@ struct FeelingCard: View {
 
     private var takeaway: String? {
         let last = series.lastWeek.map { L("trends_feeling_change", decimalText($0)) }
-        if let this = series.thisWeek { return L("trends_feeling", decimalText(this)) + (last.map { " · " + $0 } ?? "") }
+        if let this = series.thisWeek {
+            return L("trends_feeling", decimalText(this)) + (last.map { " · " + $0 } ?? "")
+        }
         return last
     }
 
@@ -82,17 +84,22 @@ struct FeelingCard: View {
                 }
             }
             ForEach(segments, id: \.index) { p in
-                LineMark(x: .value("night", Double(p.index)), y: .value("feeling", Double(p.value)), series: .value("segment", p.segment))
+                LineMark(x: .value("night", Double(p.index)), y: .value("feeling", Double(p.value)),
+                         series: .value("segment", p.segment))
                     .foregroundStyle(palette.quiet)
                     .lineStyle(StrokeStyle(lineWidth: 2, lineCap: .round))
                     .accessibilityHidden(true)
                 PointMark(x: .value("night", Double(p.index)), y: .value("feeling", Double(p.value)))
                     .symbol {
                         ZStack {
-                            if p.index == selectedIndex { Circle().fill(Color.accentColor.opacity(0.2)).frame(width: 24, height: 24) }
+                            if p.index == selectedIndex {
+                                Circle().fill(Color.accentColor.opacity(0.2)).frame(width: 24, height: 24)
+                            }
                             Circle().fill(palette.active).frame(width: 10, height: 10)
                             // Nächte mit Notiz: kleiner Ring.
-                            if !names(series.points[p.index]).isEmpty { Circle().stroke(Color.accentColor, lineWidth: 1.5).frame(width: 17, height: 17) }
+                            if !names(series.points[p.index]).isEmpty {
+                                Circle().stroke(Color.accentColor, lineWidth: 1.5).frame(width: 17, height: 17)
+                            }
                         }
                     }
                     .accessibilityLabel(Text(verbatim: longDate(series.points[p.index].date)))
@@ -104,7 +111,10 @@ struct FeelingCard: View {
         .chartXAxis {
             AxisMarks(values: [0, Double(n - 1)]) { value in
                 AxisValueLabel {
-                    if let v = value.as(Double.self), series.points.indices.contains(Int(v.rounded())) { Text(shortDate(series.points[Int(v.rounded())].date)) }
+                    if let v = value.as(Double.self),
+                       series.points.indices.contains(Int(v.rounded())) {
+                        Text(shortDate(series.points[Int(v.rounded())].date))
+                    }
                 }
             }
         }

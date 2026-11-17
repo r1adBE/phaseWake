@@ -10,7 +10,11 @@ class SharedNightsTest {
     fun allNightsMatchExpectation() {
         val nights = NightFixtures.all()
         // Genau die Nächte laut MANIFEST: Eine fehlende Datei fiele sonst nicht auf.
-        assertEquals(NightFixtures.manifest().count { it.endsWith(".night") }, nights.size, "Testnächte in ${NightFixtures.directory().absolutePath}")
+        assertEquals(
+            NightFixtures.manifest().count { it.endsWith(".night") },
+            nights.size,
+            "Testnächte in ${NightFixtures.directory().absolutePath}",
+        )
 
         for (night in nights) {
             val wake = night.firstWake()

@@ -24,7 +24,8 @@ struct EveningDarkModifier: ViewModifier {
     @PrivateSetting(EveningDarkKeys.enabled) private var enabled = EveningDark.defaultEnabled
     @PrivateSetting(EveningDarkKeys.from) private var from = EveningDark.defaultFromMinutes
     @Environment(\.scenePhase) private var scenePhase
-    @State private var evening = EveningDark.isDark(now: Date(), calendar: .current, enabled: EveningDark.defaultEnabled,
+    @State private var evening = EveningDark.isDark(now: Date(), calendar: .current,
+                                                    enabled: EveningDark.defaultEnabled,
                                                     fromMinutes: EveningDark.defaultFromMinutes)
     /// Zählt Uhr- und Zeitzonenwechsel und den Weg in den Vordergrund; startet die Wartezeit neu.
     @State private var clockChanges = 0
@@ -38,7 +39,8 @@ struct EveningDarkModifier: ViewModifier {
                 while !Task.isCancelled {
                     let now = Date()
                     evening = EveningDark.isDark(now: now, calendar: .current, enabled: enabled, fromMinutes: from)
-                    guard let next = EveningDark.nextChange(now: now, calendar: .current, enabled: enabled, fromMinutes: from)
+                    guard let next = EveningDark.nextChange(now: now, calendar: .current, enabled: enabled,
+                                                            fromMinutes: from)
                     else { return }
                     // Kleiner Zuschlag, damit die Grenzminute sicher erreicht ist.
                     let wait = max(0, next.timeIntervalSince(now)) + 0.05
@@ -46,8 +48,13 @@ struct EveningDarkModifier: ViewModifier {
                 }
             }
             .onChange(of: scenePhase) { _, phase in if phase == .active { clockChanges &+= 1 } }
-            .onReceive(NotificationCenter.default.publisher(for: .NSSystemTimeZoneDidChange)) { _ in clockChanges &+= 1 }
-            .onReceive(NotificationCenter.default.publisher(for: UIApplication.significantTimeChangeNotification)) { _ in clockChanges &+= 1 }
+            .onReceive(NotificationCenter.default.publisher(for: .NSSystemTimeZoneDidChange)) { _ in
+                clockChanges &+= 1
+            }
+            .onReceive(NotificationCenter.default
+                .publisher(for: UIApplication.significantTimeChangeNotification)) { _ in
+                clockChanges &+= 1
+            }
     }
 }
 

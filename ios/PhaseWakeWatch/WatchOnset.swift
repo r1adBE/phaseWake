@@ -38,7 +38,7 @@ enum WatchOnset {
     }
 
     /// Ergebnis und Grundrauschen der nachgerechneten Messung
-    /// (``RecorderOnset/measure(motions:since:threshold:personalFloor:latest:extendCap:heartRates:)``: Epochen bis zum
+    /// (``RecorderOnset/measure(motions:since:threshold:personalFloor:latest:extendCap:worn:)``: Epochen bis zum
     /// erkannten Einschlafen bzw. Aufgeben; `nil` ohne Rechnung oder wenn sie ins Weckfenster lief). Das Grundrauschen
     /// gilt im Weckfenster derselben Nacht als Vorwissen (``WakeDetector/useOnsetFloor(_:)``), wie auf der Galaxy Watch
     /// (`OnsetFloorStore`).
@@ -46,7 +46,8 @@ enum WatchOnset {
 
     /// Rechnet die Einschlafzeit für die Nacht `plan` (Wecker `spec`, Schwellen `config`) nach.
     @MainActor
-    static func compute(plan: WakePlan, spec: AlarmSpec?, config: DetectorConfig, goodNight: GoodNightState?, sleepGoal: Int) async -> Outcome {
+    static func compute(plan: WakePlan, spec: AlarmSpec?, config: DetectorConfig, goodNight: GoodNightState?,
+                        sleepGoal: Int) async -> Outcome {
         guard let spec, Transient.kindOf(plan.alarmId) == nil else { return (.notMeasured, nil) }
         let manual = goodNight.flatMap { $0.alarmId == plan.alarmId && $0.target == plan.target ? $0 : nil }
         let label = manual != nil ? "onset" : "auto onset"
@@ -68,33 +69,73 @@ enum WatchOnset {
             DiagStore.shared.log(.measureStart, "\(label) not computed: no recorder")
             return (.notMeasured, nil)
         }
-        // Rekorder erst nach dem Beginn der Einschlafdauer gestartet (wie die Galaxy Watch):
-        // bei offener App ab seinem Start gemessen (die Person war wach), im Hintergrund nicht gemessen.
-        let plannedBed = RecorderOnset.bedAt(since: begin, automatic: manual == nil, latest: latest, sleepMinutes: sleepMinutes)
-        let late = RecorderOnset.lateStart(recorderFrom: span.from, bedAt: plannedBed, foreground: LearnRecorder.shared.recorderStartedActive)
-        let after = "\(label) recorder from \(Format.logTime(span.from)), after bedtime \(Format.logTime(plannedBed))"
+        guard let bedAt = recorderBed(label: label, recorderFrom: span.from, begin: begin, automatic: manual == nil,
+                                      latest: latest, sleepMinutes: sleepMinutes) else {
+            return (.notMeasured, nil)
+        }
+        let since = max(begin, span.from)
+        let stop = [now.addingTimeInterval(-LearnRecorder.dataDelay), span.until,
+                    since.addingTimeInterval(RecorderOnset.maxExtended),
+                    latest.addingTimeInterval(-RecorderOnset.giveUpLead)].min() ?? now
+        guard stop > since else {
+            DiagStore.shared.log(.measureStart, "\(label) not computed: too late")
+            return (.failed, nil)
+        }
+        let data = await readRecorder(since: since, stop: stop, deadline: now.addingTimeInterval(budget))
+        let windowStart = AlarmSchedule.plan(spec, target: latest).windowStart
+        // Grundrauschen nur bis zur Epoche, in der das Einschlafen erkannt ist bzw. bis zum Aufgeben; lief die Messung
+        // ins Weckfenster, keines (wie `OnsetMonitor` auf der Galaxy Watch).
+        let extendCap = RecorderOnset.extendCap(since: since, windowStart: windowStart)
+        let (result, floor) = RecorderOnset.measure(motions: data.motions, since: since,
+                                                    threshold: config.lightThreshold,
+                                                    personalFloor: config.personalFloor, latest: latest,
+                                                    extendCap: extendCap,
+                                                    worn: RecorderOnset.Worn(heartRates: data.rates,
+                                                                             heartLead: SleepOnset.wornEpochs,
+                                                                             away: data.away))
+        let empty = data.motions.filter { $0 == nil }.count
+        let pulsed = data.rates.compactMap { $0 }.count
+        let thr = NoiseFloor.format(NoiseFloor.light(threshold: config.lightThreshold, floor: floor))
+        let stat = "\(label) recorder from \(Format.time(since)) epochs=\(data.motions.count) "
+            + "empty=\(empty) hr=\(pulsed) "
+            + "charging=\(data.away.filter { $0 }.count) "
+            + "floor=\(NoiseFloor.format(floor)) thr=\(thr)"
+        return report(result, floor: floor, stat: stat, bedAt: bedAt, manual: manual)
+    }
+
+    /// Beginn der Einschlafdauer, ab dem gemessen wird; `nil`, wenn der Rekorder (ab `recorderFrom`) erst danach im
+    /// Hintergrund startete (dann nicht gemessen). Rekorder erst nach dem Beginn der Einschlafdauer gestartet (wie die
+    /// Galaxy Watch): bei offener App ab seinem Start gemessen (die Person war wach), im Hintergrund nicht gemessen.
+    @MainActor
+    private static func recorderBed(label: String, recorderFrom: Date, begin: Date, automatic: Bool, latest: Date,
+                                    sleepMinutes: Int) -> Date? {
+        let plannedBed = RecorderOnset.bedAt(since: begin, automatic: automatic, latest: latest,
+                                             sleepMinutes: sleepMinutes)
+        let late = RecorderOnset.lateStart(recorderFrom: recorderFrom, bedAt: plannedBed,
+                                           foreground: LearnRecorder.shared.recorderStartedActive)
+        let after = "\(label) recorder from \(Format.logTime(recorderFrom)), "
+            + "after bedtime \(Format.logTime(plannedBed))"
         switch late {
         case .background:
             DiagStore.shared.log(.measureEnd, "\(after): onset unknown, not measured")
-            return (.notMeasured, nil)
+            return nil
         case .foreground:
             DiagStore.shared.log(.measureStart, "\(after), app open: from recorder start")
         case .onTime:
             break
         }
-        let bedAt = late == .foreground ? span.from : plannedBed
-        let since = max(begin, span.from)
-        let stop = [now.addingTimeInterval(-LearnRecorder.dataDelay), span.until,
-                    since.addingTimeInterval(RecorderOnset.maxExtended), latest.addingTimeInterval(-RecorderOnset.giveUpLead)].min() ?? now
-        guard stop > since else {
-            DiagStore.shared.log(.measureStart, "\(label) not computed: too late")
-            return (.failed, nil)
-        }
-        let deadline = now.addingTimeInterval(budget)
+        return late == .foreground ? recorderFrom : plannedBed
+    }
+
+    /// Bewegung (ab `since` bis `stop`, Rechenzeit bis `deadline`), Puls ab ``SleepOnset/wornEpochs`` davor und
+    /// Epochen am Ladegerät aus dem Rekorder lesen.
+    @MainActor
+    private static func readRecorder(since: Date, stop: Date,
+                                     deadline: Date) async -> (motions: [Double?], rates: [Double?], away: [Bool]) {
         // Niedrige Priorität mit Pausen zwischen den Abschnitten: begrenzte Rechenlast, 40-s-Grenze bleibt.
         let motions = await Task.detached(priority: .utility) {
-            LearnRecorder.recordedMotions(start: since, done: [], until: stop, deadline: deadline, pause: LearnRecorder.onsetPause,
-                                          kind: .measureStart)
+            LearnRecorder.recordedMotions(start: since, done: [], until: stop, deadline: deadline,
+                                          pause: LearnRecorder.onsetPause, kind: .measureStart)
         }.value
         // Puls aus Apple Health dazu: Eine ruhige Strecke zählt nur, wenn die Uhr davor und darin getragen wurde;
         // ein Puls bis ``SleepOnset/wornEpochs`` vor dem Beginn zählt für die erste (sonst zählte einer kurz vor «Gute
@@ -105,25 +146,30 @@ enum WatchOnset {
         let rates = RecorderEpochs.heartRates(pulses, start: pulseStart, count: motions.count + lead)
         // Zeiten am Ladegerät (abgetastet): leer, und sie verschieben die Zeitgrenze.
         LearnRecorder.shared.noteCharging()
-        let away = RecorderOnset.awayEpochs(LearnRecorder.shared.chargeSpans(until: stop), start: since, count: motions.count)
-        let windowStart = AlarmSchedule.plan(spec, target: latest).windowStart
-        // Grundrauschen nur bis zur Epoche, in der das Einschlafen erkannt ist bzw. bis zum Aufgeben; lief die Messung
-        // ins Weckfenster, keines (wie `OnsetMonitor` auf der Galaxy Watch).
-        let (result, floor) = RecorderOnset.measure(motions: motions, since: since, threshold: config.lightThreshold,
-                                                    personalFloor: config.personalFloor, latest: latest,
-                                                    extendCap: RecorderOnset.extendCap(since: since, windowStart: windowStart),
-                                                    heartRates: rates, heartLead: lead, away: away)
-        let stat = "\(label) recorder from \(Format.time(since)) epochs=\(motions.count) empty=\(motions.filter { $0 == nil }.count) hr=\(rates.compactMap { $0 }.count) "
-            + "charging=\(away.filter { $0 }.count) "
-            + "floor=\(NoiseFloor.format(floor)) thr=\(NoiseFloor.format(NoiseFloor.light(threshold: config.lightThreshold, floor: floor)))"
+        let away = RecorderOnset.awayEpochs(LearnRecorder.shared.chargeSpans(until: stop), start: since,
+                                            count: motions.count)
+        return (motions, rates, away)
+    }
+
+    /// Ergebnis `result` der nachgerechneten Messung ins Protokoll (`stat`) und, wenn eingeschlafen, in die
+    /// Aufzeichnung; nach «Gute Nacht» (`manual`) samt Vergleich mit der Schätzung.
+    @MainActor
+    private static func report(_ result: RecorderOnset.Result, floor: Double?, stat: String, bedAt: Date,
+                               manual: GoodNightState?) -> Outcome {
         switch result {
         case .asleep(let found, _):
             // Automatisch nie vor der Bettzeit eingeschlafen; nach «Gute Nacht» unverändert.
             let at = RecorderOnset.onsetAt(found: found, bedAt: bedAt)
-            DiagStore.shared.log(.phase, "\(stat), asleep \(Format.logTime(at))" + (at != found ? " (still since \(Format.logTime(found)))" : ""))
+            let still = at != found ? " (still since \(Format.logTime(found)))" : ""
+            DiagStore.shared.log(.phase, "\(stat), asleep \(Format.logTime(at))" + still)
             if let manual {
                 let diff = Int((at.timeIntervalSince(manual.asleep) / 60).rounded())
-                DiagStore.shared.log(.phase, "onset estimate \(Format.logTime(manual.asleep)), recorder \(Format.logTime(at)) (\(diff >= 0 ? "+" : "")\(diff) min)")
+                let sign = diff >= 0 ? "+" : ""
+                DiagStore.shared.log(
+                    .phase,
+                    "onset estimate \(Format.logTime(manual.asleep)), "
+                        + "recorder \(Format.logTime(at)) (\(sign)\(diff) min)"
+                )
             }
             LearnRecorder.shared.noteOnset(bedAt: bedAt, asleepAt: at)
             return (.asleep(at, bedAt: bedAt), floor)

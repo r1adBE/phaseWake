@@ -20,7 +20,9 @@ final class RecorderRulesWatchTests: XCTestCase {
 
     func testRecorderPauseNeverPassesTheDeadline() {
         XCTAssertEqual(LearnRecorder.pauseLength(0.2, now: now, deadline: now.addingTimeInterval(10)), 0.2)
-        XCTAssertEqual(LearnRecorder.pauseLength(0.2, now: now, deadline: now.addingTimeInterval(0.05)), 0.05, accuracy: 1e-6) // Date rechnet ab 2001 in Sekunden: ~5e-8 Rundung
+        // Date rechnet ab 2001 in Sekunden: ~5e-8 Rundung
+        XCTAssertEqual(LearnRecorder.pauseLength(0.2, now: now, deadline: now.addingTimeInterval(0.05)), 0.05,
+                       accuracy: 1e-6)
         XCTAssertEqual(LearnRecorder.pauseLength(0.2, now: now, deadline: now.addingTimeInterval(-1)), 0)
         XCTAssertEqual(LearnRecorder.pauseLength(0, now: now, deadline: now.addingTimeInterval(10)), 0)
     }
@@ -30,16 +32,20 @@ final class RecorderRulesWatchTests: XCTestCase {
     func testChargeSpansFromSamples() {
         let gap = LearnRecorder.chargeCheck
         XCTAssertEqual(gap, 15 * 60)
-        let spans = LearnRecorder.chargeSpans([(at: minutes(30), charging: true), (at: minutes(0), charging: true), (at: minutes(60), charging: false)],
+        let spans = LearnRecorder.chargeSpans([(at: minutes(30), charging: true), (at: minutes(0), charging: true),
+                                               (at: minutes(60), charging: false)],
                                               until: minutes(300), gap: gap)
         XCTAssertEqual(spans.map { $0.from }, [minutes(0)])
         XCTAssertEqual(spans.map { $0.until }, [minutes(60)])
-        let open = LearnRecorder.chargeSpans([(at: minutes(0), charging: false), (at: minutes(90), charging: true)], until: minutes(300), gap: gap)
+        let open = LearnRecorder.chargeSpans([(at: minutes(0), charging: false), (at: minutes(90), charging: true)],
+                                             until: minutes(300), gap: gap)
         XCTAssertEqual(open.map { $0.from }, [minutes(90)])
         XCTAssertEqual(open.map { $0.until }, [minutes(105)])
         // Nie über das Ende der Rechnung hinaus, und ohne ladende Stichprobe keine Zeit.
-        XCTAssertEqual(LearnRecorder.chargeSpans([(at: minutes(90), charging: true)], until: minutes(95), gap: gap).map { $0.until }, [minutes(95)])
-        XCTAssertTrue(LearnRecorder.chargeSpans([(at: minutes(0), charging: false)], until: minutes(300), gap: gap).isEmpty)
+        XCTAssertEqual(LearnRecorder.chargeSpans([(at: minutes(90), charging: true)], until: minutes(95), gap: gap)
+            .map { $0.until }, [minutes(95)])
+        XCTAssertTrue(LearnRecorder.chargeSpans([(at: minutes(0), charging: false)], until: minutes(300), gap: gap)
+            .isEmpty)
     }
 
     func testRetriedRecordStartIsAcceptedUpToTenMinutes() {

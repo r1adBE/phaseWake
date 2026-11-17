@@ -75,54 +75,67 @@ class PhoneRingActivity : ComponentActivity() {
         setTurnScreenOn(true)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         setContent {
-            PhaseWakeTheme(ThemeMode.DARK) {
-                val state by PhoneRingService.ringState.collectAsStateWithLifecycle()
-                // Bildschirm bleibt auch beim Schlummern bewusst an: Das Aufstehen soll nicht verzögert werden.
-                LaunchedEffect(state) { if (state is PhoneRingService.State.Idle) finish() }
-                // Weckaufgabe einer Nacht der Uhr: Solange dieser Bildschirm sichtbar ist und die Aufgabe zeigt,
-                // der Uhr bestätigen (sofort, dann regelmässig). Ohne Bestätigung gilt auf der Uhr wieder Halten.
-                val lifecycle = LocalLifecycleOwner.current.lifecycle
-                val showsWatchTask = (state as? PhoneRingService.State.Ringing)?.let { it.fromWatch && it.wakeTask == WakeTask.MATH } == true
-                LaunchedEffect(showsWatchTask) {
-                    if (!showsWatchTask) return@LaunchedEffect
-                    lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                        while (true) {
-                            PhoneRingService.command(this@PhoneRingActivity, PhoneRingService.ACTION_TASK_SHOWN)
-                            delay(DataLayer.TASK_SHOWN_REFRESH_MS)
-                        }
-                    }
+            PhaseWakeTheme(ThemeMode.DARK) { RingContent() }
+        }
+    }
+
+    /** Weckbildschirm samt Sonnenaufgang, Helligkeit und Bestätigung der Weckaufgabe an die Uhr. */
+    @Composable
+    private fun RingContent() {
+        val state by PhoneRingService.ringState.collectAsStateWithLifecycle()
+        // Bildschirm bleibt auch beim Schlummern bewusst an: Das Aufstehen soll nicht verzögert werden.
+        LaunchedEffect(state) { if (state is PhoneRingService.State.Idle) finish() }
+        // Weckaufgabe einer Nacht der Uhr: Solange dieser Bildschirm sichtbar ist und die Aufgabe zeigt,
+        // der Uhr bestätigen (sofort, dann regelmässig). Ohne Bestätigung gilt auf der Uhr wieder Halten.
+        val lifecycle = LocalLifecycleOwner.current.lifecycle
+        val showsWatchTask = (state as? PhoneRingService.State.Ringing)
+            ?.let { it.fromWatch && it.wakeTask == WakeTask.MATH } == true
+        LaunchedEffect(showsWatchTask) {
+            if (!showsWatchTask) return@LaunchedEffect
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                while (true) {
+                    PhoneRingService.command(this@PhoneRingActivity, PhoneRingService.ACTION_TASK_SHOWN)
+                    delay(DataLayer.TASK_SHOWN_REFRESH_MS)
                 }
-                val sunrise = when (val s = state) {
-                    is PhoneRingService.State.Ringing -> s.sunrise
-                    is PhoneRingService.State.Snoozed -> s.sunrise
-                    PhoneRingService.State.Idle -> Sunrise.OFF
-                }
-                val light = remember { Animatable(0f) }
-                LaunchedEffect(sunrise, (state as? PhoneRingService.State.Ringing)?.lightFrom) {
-                    val ringing = state as? PhoneRingService.State.Ringing ?: return@LaunchedEffect
-                    if (sunrise == Sunrise.OFF) return@LaunchedEffect
-                    // Nur heller werden, nie zurück (z. B. nach dem Schlummern).
-                    if (ringing.lightFrom > light.value) light.snapTo(ringing.lightFrom)
-                    // Lief schon ein Licht ab Weckfenster: in einer Minute voll. Sonst zwei Minuten von dunkel.
-                    val millis = if (ringing.lightFrom > 0f) Sunrise.CATCH_UP_SECONDS * 1000 else (Sunrise.RING_SECONDS * 1000 * (1f - light.value)).toInt()
-                    light.animateTo(1f, tween(millis.coerceAtLeast(1), easing = LinearEasing))
-                }
-                LaunchedEffect(sunrise) {
-                    snapshotFlow { light.value }.collect { value ->
-                        window.attributes = window.attributes.apply {
-                            screenBrightness = if (sunrise == Sunrise.OFF) WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE else Sunrise.brightness(value)
-                        }
-                    }
-                }
-                RingScreen(
-                    state = state,
-                    light = if (sunrise == Sunrise.OFF) null else light.value,
-                    onStop = { PhoneRingService.command(this, PhoneRingService.ACTION_STOP) },
-                    onSnooze = { PhoneRingService.command(this, PhoneRingService.ACTION_SNOOZE) },
-                    onTyping = { PhoneRingService.command(this, PhoneRingService.ACTION_TYPING) },
-                )
             }
         }
+        val sunrise = when (val s = state) {
+            is PhoneRingService.State.Ringing -> s.sunrise
+            is PhoneRingService.State.Snoozed -> s.sunrise
+            PhoneRingService.State.Idle -> Sunrise.OFF
+        }
+        val light = remember { Animatable(0f) }
+        LaunchedEffect(sunrise, (state as? PhoneRingService.State.Ringing)?.lightFrom) {
+            val ringing = state as? PhoneRingService.State.Ringing ?: return@LaunchedEffect
+            if (sunrise == Sunrise.OFF) return@LaunchedEffect
+            // Nur heller werden, nie zurück (z. B. nach dem Schlummern).
+            if (ringing.lightFrom > light.value) light.snapTo(ringing.lightFrom)
+            // Lief schon ein Licht ab Weckfenster: in einer Minute voll. Sonst zwei Minuten von dunkel.
+            val millis = if (ringing.lightFrom > 0f) {
+                Sunrise.CATCH_UP_SECONDS * 1000
+            } else {
+                (Sunrise.RING_SECONDS * 1000 * (1f - light.value)).toInt()
+            }
+            light.animateTo(1f, tween(millis.coerceAtLeast(1), easing = LinearEasing))
+        }
+        LaunchedEffect(sunrise) {
+            snapshotFlow { light.value }.collect { value ->
+                window.attributes = window.attributes.apply {
+                    screenBrightness = if (sunrise == Sunrise.OFF) {
+                        WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
+                    } else {
+                        Sunrise.brightness(value)
+                    }
+                }
+            }
+        }
+        RingScreen(
+            state = state,
+            light = if (sunrise == Sunrise.OFF) null else light.value,
+            onStop = { PhoneRingService.command(this, PhoneRingService.ACTION_STOP) },
+            onSnooze = { PhoneRingService.command(this, PhoneRingService.ACTION_SNOOZE) },
+            onTyping = { PhoneRingService.command(this, PhoneRingService.ACTION_TYPING) },
+        )
     }
 
     // singleInstance: Ein weiterer Start (Vollbild, Alarm, Erinnerung) kommt hier an, ohne zweiten Bildschirm;
@@ -194,7 +207,11 @@ internal fun RingScreen(
     // Ohne Sonnenaufgang: kräftiger, ruhender Weckhimmel (WakeSky). Mit Sonnenaufgang: Licht statt Nachthimmel; jeder
     // Text nimmt die Schrift, die an seiner Stelle lesbar ist.
     val background: @Composable (@Composable () -> Unit) -> Unit = { inner ->
-        if (light != null) SunriseBackground(light, Modifier.fillMaxSize(), inner) else Box(Modifier.fillMaxSize().wakeSky()) { inner() }
+        if (light != null) {
+            SunriseBackground(light, Modifier.fillMaxSize(), inner)
+        } else {
+            Box(Modifier.fillMaxSize().wakeSky()) { inner() }
+        }
     }
     val task = when (state) {
         is PhoneRingService.State.Ringing -> state.wakeTask
@@ -219,14 +236,17 @@ internal fun RingScreen(
                 RingActions(state, light, math, size, challenge, onStop, onSnooze, onTyping)
             }
             if (landscape) {
-                Row(Modifier.fillMaxSize().padding(horizontal = 24.dp), verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    Modifier.fillMaxSize().padding(horizontal = 24.dp), verticalAlignment = Alignment.CenterVertically,
+                ) {
                     Column(
                         Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(vertical = 12.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) { header() }
                     Spacer(Modifier.width(24.dp))
                     Column(
-                        Modifier.weight(1f).fillMaxHeight().verticalScroll(rememberScrollState()).padding(vertical = 12.dp),
+                        Modifier.weight(1f).fillMaxHeight().verticalScroll(rememberScrollState())
+                            .padding(vertical = 12.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center,
                     ) { actions() }
@@ -263,7 +283,10 @@ private fun RingHeader(now: Instant, light: Float?, math: Boolean, size: RingSiz
     }
     if (dot != null) {
         val (ink, place) = rememberSkyInk(light, NIGHT_INK, plaque = false)
-        PulsingDot(Modifier.size(dot).then(place), color = if (light != null) ink.content.copy(alpha = 0.6f) else NightColors.Wave, dot = ink.content)
+        PulsingDot(
+            Modifier.size(dot).then(place),
+            color = if (light != null) ink.content.copy(alpha = 0.6f) else NightColors.Wave, dot = ink.content,
+        )
         Spacer(Modifier.height(if (math || size != RingSize.TALL) 8.dp else 24.dp))
     }
     val (timeInk, timePlace) = rememberSkyInk(light, NIGHT_INK)
@@ -308,7 +331,10 @@ private fun RingActions(
     }
     val stop: @Composable () -> Unit = {
         if (math) {
-            MathTaskPanel(challenge, light, onTyping, onSolved = onStop, modifier = Modifier.fillMaxWidth(), keyHeight = keyHeight)
+            MathTaskPanel(
+                challenge, light, onTyping, onSolved = onStop, modifier = Modifier.fillMaxWidth(),
+                keyHeight = keyHeight,
+            )
         } else HoldToStopButton(
             label = stringResource(R.string.ring_hold_to_stop),
             onStop = onStop,
@@ -325,10 +351,13 @@ private fun RingActions(
                 OutlinedButton(
                     onClick = onSnooze,
                     border = BorderStroke(1.dp, ink.content.copy(alpha = 0.6f)),
-                    modifier = Modifier.fillMaxWidth().heightIn(min = if (size == RingSize.TALL) 56.dp else 48.dp).then(place),
+                    modifier = Modifier.fillMaxWidth()
+                        .heightIn(min = if (size == RingSize.TALL) 56.dp else 48.dp).then(place),
                 ) {
                     Text(
-                        LocalResources.current.getQuantityString(R.plurals.ring_snooze, state.snoozesLeft, Snooze.MINUTES, state.snoozesLeft),
+                        LocalResources.current.getQuantityString(
+                            R.plurals.ring_snooze, state.snoozesLeft, Snooze.MINUTES, state.snoozesLeft,
+                        ),
                         color = ink.content,
                         textAlign = TextAlign.Center,
                     )

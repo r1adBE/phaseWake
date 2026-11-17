@@ -77,14 +77,23 @@ class WakeServiceTest {
     }
 
     /** Ein weiterer Auftrag an den laufenden Dienst, wie vom System zugestellt. */
-    private fun send(service: WakeService, action: String, startId: Int, withPlan: Boolean = false, of: WakePlan = plan) {
+    private fun send(
+        service: WakeService,
+        action: String,
+        startId: Int,
+        withPlan: Boolean = false,
+        of: WakePlan = plan,
+    ) {
         service.onStartCommand(intent(action, withPlan, of), 0, startId)
         shadowOf(Looper.getMainLooper()).idle()
     }
 
     /** Startet den Dienst für [of] und wartet, bis die Nacht geladen ist (Messen im Fenster). */
     private fun startNight(of: WakePlan = plan, fromSensorStart: Boolean = true): WakeService {
-        val built = Robolectric.buildService(WakeService::class.java, intent(WakeService.ACTION_START, withPlan = true, of = of))
+        val built = Robolectric.buildService(
+            WakeService::class.java,
+            intent(WakeService.ACTION_START, withPlan = true, of = of),
+        )
         controller = built
         val service = built.create().startCommand(0, 1).get()
         awaitLoaded(service)
@@ -119,7 +128,8 @@ class WakeServiceTest {
     private fun triggers(): List<Long> = alarms.scheduledAlarms.map { it.triggerAtMs }
 
     /** Gestellte Alarme zwischen [from] und [to] (beide eingeschlossen). */
-    private fun between(from: Instant, to: Instant): List<Long> = triggers().filter { it in from.toEpochMilli()..to.toEpochMilli() }
+    private fun between(from: Instant, to: Instant): List<Long> =
+        triggers().filter { it in from.toEpochMilli()..to.toEpochMilli() }
 
     /**
      * Wartet, bis die Nacht Wecker und Schwellen geladen hat (Speicher im Hintergrund, danach Hauptthread): Erst dann
@@ -251,7 +261,9 @@ class WakeServiceTest {
         val built = Robolectric.buildService(WakeService::class.java)
         controller = built
         built.create().get().onAsleep(spec, latest, asleep)
-        awaitUntil("Neu geplant mit früherer Zielzeit") { app.onsetShifts.isNotEmpty() && expected.target.toEpochMilli() in triggers() }
+        awaitUntil("Neu geplant mit früherer Zielzeit") {
+            app.onsetShifts.isNotEmpty() && expected.target.toEpochMilli() in triggers()
+        }
 
         assertEquals(expected, runBlocking { app.onsetOverride.get() })
         assertEquals(asleep, runBlocking { app.onsets.onsetFor(expected) })
@@ -279,7 +291,8 @@ class WakeServiceTest {
         shadowOf(Looper.getMainLooper()).idle()
         assertEquals(WakeService.Phase.RINGING, n.phase)
         assertEquals(WakeReason.AWAKE, n.reason)
-        assertEquals(1, between(WakeRules.resumeAt(before), WakeRules.resumeAt(Instant.now())).size, "Wiederaufnahme-Alarm")
+        val resumes = between(WakeRules.resumeAt(before), WakeRules.resumeAt(Instant.now()))
+        assertEquals(1, resumes.size, "Wiederaufnahme-Alarm")
     }
 
     @Test

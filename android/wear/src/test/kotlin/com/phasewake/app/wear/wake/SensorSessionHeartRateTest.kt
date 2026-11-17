@@ -50,14 +50,24 @@ class SensorSessionHeartRateTest {
             it.start()
         }
 
-    private fun heartRate(sensor: Sensor, seconds: Long, bpm: Float, accuracy: Int = SensorManager.SENSOR_STATUS_ACCURACY_HIGH) =
+    private fun heartRate(
+        sensor: Sensor,
+        seconds: Long,
+        bpm: Float,
+        accuracy: Int = SensorManager.SENSOR_STATUS_ACCURACY_HIGH,
+    ) =
         sensors.sendSensorEventToListeners(
-            SensorEventBuilder.newBuilder(sensor, floatArrayOf(bpm)).setTimestamp(seconds * 1_000_000_000L).setAccuracy(accuracy).build(),
+            SensorEventBuilder.newBuilder(sensor, floatArrayOf(bpm))
+                .setTimestamp(seconds * 1_000_000_000L)
+                .setAccuracy(accuracy)
+                .build(),
             sensor,
         )
 
     private fun motion(seconds: Long) = sensors.sendSensorEventToListeners(
-        SensorEventBuilder.newBuilder(accelerometer, floatArrayOf(0f, 0f, 9.81f)).setTimestamp(seconds * 1_000_000_000L).build(),
+        SensorEventBuilder.newBuilder(accelerometer, floatArrayOf(0f, 0f, 9.81f))
+            .setTimestamp(seconds * 1_000_000_000L)
+            .build(),
         accelerometer,
     )
 

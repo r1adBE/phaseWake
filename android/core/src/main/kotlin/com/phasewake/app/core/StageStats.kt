@@ -128,7 +128,8 @@ object StageStats {
         val rangeMs = Duration.between(from, to).toMillis()
         val awakenings = blocks.indices.count { i ->
             blocks[i].stage == SleepStage.AWAKE &&
-                blocks.take(i).any { it.stage != SleepStage.AWAKE } && blocks.drop(i + 1).any { it.stage != SleepStage.AWAKE }
+                blocks.take(i).any { it.stage != SleepStage.AWAKE } &&
+                    blocks.drop(i + 1).any { it.stage != SleepStage.AWAKE }
         }
         return NightStages(
             start = from,
@@ -191,7 +192,9 @@ object StageStats {
         val floor = ORDER.associateWith { if (total == 0L) 0L else ms.getValue(it) * PERCENT / total }
         val rest = ORDER.associateWith { if (total == 0L) 0L else ms.getValue(it) * PERCENT % total }
         val missing = if (total == 0L) 0 else (PERCENT - floor.values.sum()).toInt()
-        val bonus = ORDER.sortedWith(compareByDescending<SleepStage> { rest.getValue(it) }.thenBy { ORDER.indexOf(it) }).take(missing).toSet()
+        val bonus =
+            ORDER.sortedWith(compareByDescending<SleepStage> { rest.getValue(it) }.thenBy { ORDER.indexOf(it) })
+                .take(missing).toSet()
         return ORDER.map { stage ->
             val minutes = ms.getValue(stage) / MS_PER_MINUTE
             val percent = if (stage == SleepStage.AWAKE) {

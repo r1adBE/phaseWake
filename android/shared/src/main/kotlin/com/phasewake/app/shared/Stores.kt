@@ -75,7 +75,10 @@ object PhaseWakeStore {
 }
 
 /** [store] nur nach dem ersten Entsperren von [context] (siehe [phaseWakeStore]). */
-internal class UnlockedOnly(private val context: Context, private val store: DataStore<Preferences>) : DataStore<Preferences> {
+internal class UnlockedOnly(
+    private val context: Context,
+    private val store: DataStore<Preferences>,
+) : DataStore<Preferences> {
     override val data: Flow<Preferences> = flow {
         checkUnlocked()
         emitAll(store.data)

@@ -78,7 +78,8 @@ enum RestoreJournal {
     /// Sicherung. Nächte, Notizen und Befinden bleiben leer, damit sie nicht ein zweites Mal im Arbeitsordner liegen.
     static func settingsOnly(_ payload: BackupPayload) -> BackupPayload {
         BackupPayload(createdAt: payload.createdAt, alarms: payload.alarms, nights: [], notes: "", customNotes: "",
-                      routineItems: payload.routineItems, routineTicks: payload.routineTicks, settings: payload.settings)
+                      routineItems: payload.routineItems, routineTicks: payload.routineTicks,
+                      settings: payload.settings)
     }
 
     /// Setzt jede Datei aus `staging` an ihren Platz, die noch dort liegt; die übrigen sind schon getauscht.
@@ -158,7 +159,8 @@ enum RestoreJournal {
         }
         if rollingBack {
             let done = rollBack(marker, model: model)
-            DiagStore.shared.log(done ? DiagKind.sync : .error, done ? "restore rolled back after restart" : "restore rollback pending")
+            DiagStore.shared.log(done ? DiagKind.sync : .error,
+                                 done ? "restore rolled back after restart" : "restore rollback pending")
             return
         }
         do {

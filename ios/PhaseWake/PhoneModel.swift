@@ -82,7 +82,8 @@ final class PhoneModel {
         loadState()
         holidays.adopt(lastSent: storage.holidays)
         // Zeitzone oder Uhrzeit geändert (Reise): Die AlarmKit-Wecker stehen auf festen Zeitpunkten, also neu planen.
-        let names: [Notification.Name] = [.NSSystemTimeZoneDidChange, .NSSystemClockDidChange, UIApplication.significantTimeChangeNotification]
+        let names: [Notification.Name] = [.NSSystemTimeZoneDidChange, .NSSystemClockDidChange,
+                                          UIApplication.significantTimeChangeNotification]
         for name in names {
             _ = NotificationCenter.default.addObserver(forName: name, object: nil, queue: .main) { _ in
                 Task { @MainActor in
@@ -93,7 +94,8 @@ final class PhoneModel {
         }
         // Erstes Entsperren nach einem Neustart: Stand nachlesen und alles planen. Läuft die App
         // dann nicht, holt es das nächste Öffnen bzw. Neuplanen nach (`catchUpState`).
-        _ = NotificationCenter.default.addObserver(forName: UIApplication.protectedDataDidBecomeAvailableNotification, object: nil,
+        _ = NotificationCenter.default.addObserver(forName: UIApplication.protectedDataDidBecomeAvailableNotification,
+                                                   object: nil,
                                                    queue: .main) { _ in
             Task { @MainActor in PhoneModel.shared.catchUpState() }
         }
@@ -129,7 +131,8 @@ final class PhoneModel {
         routineTicks = privateNotes.routineTicks()
         weeklyReview = defaults.bool(forKey: Self.weeklyKey)
         // Höchstens jetzt, gleich so gespeichert, damit ein späterer Wert nicht mitwandert.
-        let stored = (defaults.object(forKey: Self.historyClearedKey) as? NSNumber)?.int64Value, cleared = HistoryClear.clamped(ms: stored, now: Date())
+        let stored = (defaults.object(forKey: Self.historyClearedKey) as? NSNumber)?.int64Value
+        let cleared = HistoryClear.clamped(ms: stored, now: Date())
         if cleared != stored { defaults.set(cleared.map { NSNumber(value: $0) }, forKey: Self.historyClearedKey) }
         historyClearedAt = cleared.map { Date(timeIntervalSince1970: Double($0) / 1000) }
     }
@@ -137,13 +140,19 @@ final class PhoneModel {
     /// Nächster Plan über alle Wecker: früh geweckte Nächte und Feiertage übersprungen; «Gute Nacht» der Uhr verlegt
     /// die Zielzeit vor (`WatchNight`).
     func nextPlan(now: Date = Date()) -> WakePlan? {
-        WatchNight.shared.apply(AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: doneUntil, calendar: .gregorianLocal, holidays: holidays.dates), now: now)
+        WatchNight.shared.apply(AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: doneUntil,
+                                                           calendar: .gregorianLocal,
+                                                           holidays: holidays.dates), now: now)
     }
 
     func upsert(_ spec: AlarmSpec) {
         change { list in
             var list = list
-            if let i = list.firstIndex(where: { $0.id == spec.id }) { list[i] = spec } else if list.count < Self.maxAlarms { list.append(spec) }
+            if let i = list.firstIndex(where: { $0.id == spec.id }) {
+                list[i] = spec
+            } else if list.count < Self.maxAlarms {
+                list.append(spec)
+            }
             return list
         }
     }
@@ -191,7 +200,9 @@ final class PhoneModel {
         guard stateLoaded, !pendingNights.isEmpty, storage.nightsReadable else { return }
         let queued = pendingNights
         pendingNights = []
-        for night in queued where HistoryClear.keeps(end: night.wokeAt, clearedAt: historyClearedAt) { add(night: night) }
+        for night in queued where HistoryClear.keeps(end: night.wokeAt, clearedAt: historyClearedAt) {
+            add(night: night)
+        }
     }
 
     func add(night: NightRecord) {
@@ -252,9 +263,11 @@ final class PhoneModel {
         watchArmedTarget = target
     }
 
-    func setWatchStatus(battery: (percent: Int, at: Date)?, version: Int?, notifications: (state: WatchNotifications, checkedAt: Date?)?,
+    func setWatchStatus(battery: (percent: Int, at: Date)?, version: Int?,
+                        notifications: (state: WatchNotifications, checkedAt: Date?)?,
                         charging: Bool = false, build: Int? = nil) {
-        (watchBatteryLevel, watchProtocol, watchNotifications, watchBatteryCharging) = (battery, version, notifications, battery != nil && charging)
+        (watchBatteryLevel, watchProtocol, watchNotifications, watchBatteryCharging) = (battery, version, notifications,
+                                                                                        battery != nil && charging)
         watchBuild = build
     }
 
@@ -373,7 +386,8 @@ final class PhoneModel {
     func replanBedtime() async {
         // Stand noch nicht gelesen: nichts verwerfen; `catchUpState` plant danach neu.
         guard stateLoaded || catchUpState() else { return }
-        await bedtime.reschedule(alarms: alarms, goalMinutes: sleepGoal, enabled: bedtimeReminder, holidays: holidays.dates,
+        await bedtime.reschedule(alarms: alarms, goalMinutes: sleepGoal, enabled: bedtimeReminder,
+                                 holidays: holidays.dates,
                                  latencyMinutes: learnedLatency)
     }
 

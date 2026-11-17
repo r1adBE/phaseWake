@@ -14,7 +14,8 @@ struct SunriseBackground: View {
             ZStack {
                 LinearGradient(colors: [c.top, c.bottom], startPoint: .top, endPoint: .bottom)
                 RadialGradient(
-                    stops: [.init(color: c.sun, location: 0), .init(color: c.sun.opacity(0.55), location: 0.35), .init(color: c.sun.opacity(0), location: 1)],
+                    stops: [.init(color: c.sun, location: 0), .init(color: c.sun.opacity(0.55), location: 0.35),
+                            .init(color: c.sun.opacity(0), location: 1)],
                     center: UnitPoint(x: 0.5, y: 1.18 - 0.5 * progress),
                     startRadius: 0,
                     endRadius: radius
@@ -57,7 +58,8 @@ struct NightstandView: View {
                         .onSky(.time, ink: ink(.time, progress), night: Color.white.opacity(0.25), areas: $areas)
                     Text(subtitle(progress))
                         .font(Fonts.manrope(16, .semibold, relativeTo: .headline))
-                        .onSky(.subtitle, ink: ink(.subtitle, progress), muted: true, night: Color.white.opacity(0.2), areas: $areas)
+                        .onSky(.subtitle, ink: ink(.subtitle, progress), muted: true, night: Color.white.opacity(0.2),
+                               areas: $areas)
                     Spacer()
                     Button(L("nightstand_end")) { dismiss() }
                         .font(Fonts.manrope(16, .semibold, relativeTo: .headline))
@@ -119,10 +121,15 @@ struct NightstandView: View {
     private func updatePlan() {
         let next = model.alarms.filter { $0.sunrise != .off }
         let now = Date()
-        let found = WatchNight.shared.apply(AlarmSchedule.earliestPlan(next, now: now, doneUntil: model.doneUntil, calendar: .gregorianLocal,
+        let found = WatchNight.shared.apply(AlarmSchedule.earliestPlan(next, now: now, doneUntil: model.doneUntil,
+                                                                       calendar: .gregorianLocal,
                                                                        holidays: model.holidays.dates), now: now)
         // Ins Diagnose-Protokoll nur ein neuer oder geänderter Plan (ohne Wecker-Kennung), wie Android.
-        if let found, found != plan { DiagStore.shared.log(.scheduled, "phone sunrise \(Format.logTime(found.windowStart)) – \(Format.logTime(found.target))") }
+        if let found,
+           found != plan {
+            DiagStore.shared.log(.scheduled,
+                                 "phone sunrise \(Format.logTime(found.windowStart)) – \(Format.logTime(found.target))")
+        }
         plan = found
         sunrise = next.first { $0.id == plan?.alarmId }?.sunrise ?? .off
     }
@@ -240,10 +247,15 @@ struct NightstandButton: View {
     var body: some View {
         Button(action: action) {
             VStack(alignment: .leading, spacing: 4) {
-                Label(L("nightstand_start"), systemImage: "sunrise.fill").font(Fonts.manrope(16, .semibold, relativeTo: .headline))
-                Text(L("nightstand_hint")).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.secondaryText(scheme)).multilineTextAlignment(.leading)
+                Label(L("nightstand_start"), systemImage: "sunrise.fill")
+                    .font(Fonts.manrope(16, .semibold, relativeTo: .headline))
+                Text(L("nightstand_hint"))
+                    .font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.secondaryText(scheme))
+                    .multilineTextAlignment(.leading)
                 // Ehrlich: Der Bildschirm bleibt (dunkel) an, sonst sperrt iOS und der Sonnenaufgang käme nie.
-                Text(L("nightstand_screen_on_hint")).font(Fonts.manrope(14, .semibold, relativeTo: .subheadline)).foregroundStyle(Brand.secondaryText(scheme)).multilineTextAlignment(.leading)
+                Text(L("nightstand_screen_on_hint"))
+                    .font(Fonts.manrope(14, .semibold, relativeTo: .subheadline))
+                    .foregroundStyle(Brand.secondaryText(scheme)).multilineTextAlignment(.leading)
             }
         }
         .buttonStyle(.plain)

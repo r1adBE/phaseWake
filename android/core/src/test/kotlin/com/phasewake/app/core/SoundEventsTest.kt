@@ -16,7 +16,12 @@ class SoundEventsTest {
     private val night = LocalDate.of(2026, 10, 27)
 
     /** Speist Pegel ein: [quiet] dB, ausser in den lauten Bereichen (ms, Ende exklusiv). */
-    private fun run(totalMs: Long, loud: List<LongRange>, quiet: Double = -60.0, loudDb: Double = -30.0): List<Pair<Long, SoundEventDetector.Action>> {
+    private fun run(
+        totalMs: Long,
+        loud: List<LongRange>,
+        quiet: Double = -60.0,
+        loudDb: Double = -30.0,
+    ): List<Pair<Long, SoundEventDetector.Action>> {
         val detector = SoundEventDetector()
         val actions = mutableListOf<Pair<Long, SoundEventDetector.Action>>()
         var t = 0L
@@ -104,7 +109,10 @@ class SoundEventsTest {
         assertTrue(SoundEvents.mayAutoStart(at("2026-10-27T23:00"), target, 450, zone))
         assertTrue(SoundEvents.mayAutoStart(at("2026-10-28T02:00"), target, 450, zone))
         // Im Weckfenster nicht mehr automatisch.
-        assertEquals(false, SoundEvents.mayAutoStart(target.minusSeconds(600), target, 450, zone, target.minusSeconds(1800)))
+        assertEquals(
+            false,
+            SoundEvents.mayAutoStart(target.minusSeconds(600), target, 450, zone, target.minusSeconds(1800)),
+        )
         // Ab 21 Uhr gilt mit Wecker die Bettzeit, nicht 21 Uhr.
         assertEquals(false, SoundEvents.mayAutoStart(at("2026-10-27T21:30"), target, 450, zone))
         // Nach der Zielzeit zählt der nächste Wecker (hier am Abend darauf noch vor der Bettzeit).
@@ -132,7 +140,8 @@ class SoundEventsTest {
 
     @Test
     fun nightsWithoutRecordNewestFirst() {
-        fun clip(night: LocalDate, time: String, file: String) = SoundClip(night, at(time), SoundType.SNORE, 1_000, -30, file)
+        fun clip(night: LocalDate, time: String, file: String) =
+            SoundClip(night, at(time), SoundType.SNORE, 1_000, -30, file)
         val clips = listOf(
             clip(night, "2026-10-27T23:00", "a.m4a"),
             clip(night, "2026-10-28T03:00", "b.m4a"),
@@ -143,7 +152,10 @@ class SoundEventsTest {
             listOf(night to at("2026-10-28T03:00"), night.minusDays(2) to at("2026-10-26T02:00")),
             SoundEvents.nightsWithoutRecord(clips, listOf(night.minusDays(1))),
         )
-        assertEquals(emptyList(), SoundEvents.nightsWithoutRecord(clips, listOf(night, night.minusDays(1), night.minusDays(2))))
+        assertEquals(
+            emptyList(),
+            SoundEvents.nightsWithoutRecord(clips, listOf(night, night.minusDays(1), night.minusDays(2))),
+        )
     }
 
     @Test
@@ -158,9 +170,15 @@ class SoundEventsTest {
         assertEquals(SoundType.SNORE, SoundEvents.classify(mapOf("Snoring" to 0.6, "Speech" to 0.3, "Silence" to 0.1)))
         // Nur Ziel-Bezeichnungen zählen: Atmen schlägt Schnarchen nicht.
         assertEquals(SoundType.SNORE, SoundEvents.classify(mapOf("Snoring" to 0.2, "Breathing" to 0.5)))
-        assertEquals(SoundType.TALK, SoundEvents.classify(mapOf("Snoring" to 0.2, "Whispering" to 0.1, "Speech" to 0.3)))
+        assertEquals(
+            SoundType.TALK,
+            SoundEvents.classify(mapOf("Snoring" to 0.2, "Whispering" to 0.1, "Speech" to 0.3)),
+        )
         // Unter dem Mindestwert: anderes.
-        assertEquals(SoundType.OTHER, SoundEvents.classify(mapOf("Snoring" to 0.1, "Speech" to 0.149, "Silence" to 0.9)))
+        assertEquals(
+            SoundType.OTHER,
+            SoundEvents.classify(mapOf("Snoring" to 0.1, "Speech" to 0.149, "Silence" to 0.9)),
+        )
         assertEquals(SoundType.SNORE, SoundEvents.classify(mapOf("Snoring" to 0.15, "Speech" to 0.15)))
         assertEquals(SoundType.OTHER, SoundEvents.classify(emptyMap()))
     }
@@ -199,7 +217,13 @@ class SoundEventsTest {
         assertEquals(at("2026-10-28T22:30"), SoundEvents.recordingEnd(start, at("2026-10-28T22:00")))
     }
 
-    private fun clip(time: String, type: SoundType, duration: Long, peak: Int, file: String = "$time.m4a".replace(":", "-")) =
+    private fun clip(
+        time: String,
+        type: SoundType,
+        duration: Long,
+        peak: Int,
+        file: String = "$time.m4a".replace(":", "-"),
+    ) =
         SoundClip(SoundEvents.nightDate(at(time), zone), at(time), type, duration, peak, file)
 
     @Test
@@ -233,7 +257,10 @@ class SoundEventsTest {
         assertEquals(listOf("x.m4a", "b.m4a", "c.m4a"), louder.kept.map { it.file })
         val quieter = SoundEvents.add(existing, clip("2026-10-28T01:00", SoundType.SNORE, 1_000, -45, "d.m4a"), max = 2)
         assertEquals(listOf("d.m4a"), quieter.dropped.map { it.file })
-        assertEquals(0, SoundEvents.add(existing, clip("2026-10-28T01:00", SoundType.SNORE, 1_000, -45, "e.m4a")).dropped.size)
+        assertEquals(
+            0,
+            SoundEvents.add(existing, clip("2026-10-28T01:00", SoundType.SNORE, 1_000, -45, "e.m4a")).dropped.size,
+        )
     }
 
     @Test
@@ -265,7 +292,10 @@ class SoundEventsTest {
 
     @Test
     fun forNightFilters() {
-        val clips = listOf(clip("2026-10-28T01:00", SoundType.TALK, 1, -1, "b.m4a"), clip("2026-10-26T23:00", SoundType.SNORE, 1, -1, "a.m4a"))
+        val clips = listOf(
+            clip("2026-10-28T01:00", SoundType.TALK, 1, -1, "b.m4a"),
+            clip("2026-10-26T23:00", SoundType.SNORE, 1, -1, "a.m4a"),
+        )
         assertEquals(listOf("b.m4a"), SoundEvents.forNight(clips, night).map { it.file })
         assertNull(SoundEvents.forNight(clips, night.plusDays(5)).firstOrNull())
     }

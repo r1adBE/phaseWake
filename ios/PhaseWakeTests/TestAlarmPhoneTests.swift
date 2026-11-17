@@ -11,7 +11,8 @@ final class TestAlarmPhoneTests: XCTestCase {
     func testTestAlarmAsksOnlyOverWaitingNap() {
         let nap = Transient.nap(base: nil, now: now, calendar: .gregorianLocal, minutes: 20, uuid: "n1")
         XCTAssertTrue(TestAlarmButton.napWaiting(nap, now: now.addingTimeInterval(60)))
-        XCTAssertFalse(TestAlarmButton.napWaiting(nap, now: nap.plan.target.addingTimeInterval(Transient.activeAfterTarget + 60)))
+        let late = nap.plan.target.addingTimeInterval(Transient.activeAfterTarget + 60)
+        XCTAssertFalse(TestAlarmButton.napWaiting(nap, now: late))
         XCTAssertFalse(TestAlarmButton.napWaiting(nil, now: now))
     }
 }

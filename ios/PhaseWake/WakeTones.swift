@@ -32,7 +32,8 @@ final class WakeTonePreview {
         stop()
         // Läuft eine Aufnahme oder spielen Klänge, teilt sich das Probehören die Sitzung mit ihnen.
         AudioSessionUse.previewing = true
-        guard (try? AudioSessionUse.activate()) != nil, let url = tone.url, let player = try? AVAudioPlayer(contentsOf: url) else {
+        guard (try? AudioSessionUse.activate()) != nil, let url = tone.url,
+              let player = try? AVAudioPlayer(contentsOf: url) else {
             AudioSessionUse.previewing = false
             AudioSessionUse.release()
             return

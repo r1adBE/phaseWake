@@ -53,7 +53,9 @@ import java.time.Duration
 @Composable
 fun LearnNightsScreen(nights: List<LearnNights.Night>, onBack: () -> Unit, goodNight: Boolean = true) {
     SkyBarPage(bar = {
-        IconButton(onClick = onBack) { Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.onb_back)) }
+        IconButton(onClick = onBack) {
+            Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.onb_back))
+        }
         Text(
             stringResource(R.string.learn_consent_title),
             style = MaterialTheme.typography.titleLarge,
@@ -73,7 +75,9 @@ fun LearnNightsScreen(nights: List<LearnNights.Night>, onBack: () -> Unit, goodN
                 )
             }
             if (nights.isEmpty()) {
-                item(key = "empty") { Text(stringResource(R.string.learn_nights_empty), style = MaterialTheme.typography.bodyMedium) }
+                item(key = "empty") {
+                    Text(stringResource(R.string.learn_nights_empty), style = MaterialTheme.typography.bodyMedium)
+                }
             }
             items(nights, key = { it.date.toString() }) { NightRow(it, goodNight) }
         }
@@ -95,7 +99,8 @@ private fun NightRow(night: LearnNights.Night, goodNight: Boolean) {
         modifier = Modifier.fillMaxWidth(),
     ) {
         Row(
-            Modifier.fillMaxWidth().heightIn(min = MIN_TOUCH).semantics(mergeDescendants = true) {}.padding(horizontal = 16.dp, vertical = 12.dp),
+            Modifier.fillMaxWidth().heightIn(min = MIN_TOUCH).semantics(mergeDescendants = true) {}
+                .padding(horizontal = 16.dp, vertical = 12.dp),
         ) {
             Icon(
                 painterResource(if (ok) R.drawable.ic_check else R.drawable.ic_close),
@@ -111,7 +116,10 @@ private fun NightRow(night: LearnNights.Night, goodNight: Boolean) {
                 Text(Format.shortDay(night.date.plusDays(1), locale), style = MaterialTheme.typography.titleSmall)
                 Text(learnReasonText(context, night), style = MaterialTheme.typography.bodyMedium)
                 learnFactsText(context, night)?.let {
-                    Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(
+                        it, style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
                 }
                 learnTipText(context, night.reason, goodNight)?.let {
                     Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.primary)
@@ -133,12 +141,15 @@ internal fun learnReasonText(context: Context, night: LearnNights.Night): String
         Format.duration(context, Duration.ofMinutes((night.minutes ?: 0).toLong())),
         Format.duration(context, Duration.ofSeconds(Learning.MIN_SPAN_EPOCHS.toLong() * DetectorConfig.EPOCH_SECONDS)),
     )
-    Reason.TOO_FEW -> context.getString(R.string.learn_reason_too_few, night.measuredEpochs ?: 0, Learning.MIN_MEASURED_EPOCHS)
+    Reason.TOO_FEW -> context.getString(
+        R.string.learn_reason_too_few, night.measuredEpochs ?: 0, Learning.MIN_MEASURED_EPOCHS,
+    )
     Reason.ENDED_STOPPED -> context.getString(R.string.learn_reason_stopped)
     Reason.ENDED_BATTERY -> context.getString(R.string.learn_reason_ended_battery)
     Reason.ENDED_SERVICE -> context.getString(R.string.learn_reason_ended_system)
     Reason.NOT_WORN -> context.getString(R.string.learn_reason_not_worn)
-    Reason.BATTERY -> night.battery?.let { context.getString(R.string.learn_reason_battery, it) } ?: context.getString(R.string.learn_reason_battery_low)
+    Reason.BATTERY -> night.battery?.let { context.getString(R.string.learn_reason_battery, it) } ?:
+        context.getString(R.string.learn_reason_battery_low)
     Reason.SENSORS -> context.getString(R.string.learn_reason_sensors)
     Reason.MANUAL -> context.getString(R.string.learn_reason_manual)
     Reason.LATE -> context.getString(R.string.learn_reason_late)

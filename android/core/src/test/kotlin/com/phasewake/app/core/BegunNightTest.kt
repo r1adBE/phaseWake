@@ -26,7 +26,12 @@ class BegunNightTest {
     private fun alarm(hour: Int = 7, minute: Int = 0, window: Int = 30) =
         AlarmSpec(id = "a", hour = hour, minute = minute, windowMinutes = window)
 
-    private fun begun(spec: AlarmSpec = alarm(), now: Instant, zone: ZoneId? = zurich, suppressedUntil: Instant? = null) =
+    private fun begun(
+        spec: AlarmSpec = alarm(),
+        now: Instant,
+        zone: ZoneId? = zurich,
+        suppressedUntil: Instant? = null,
+    ) =
         AlarmSchedule.begunNight(spec, planned, zone, now, grace, suppressedUntil = suppressedUntil)
 
     @Test

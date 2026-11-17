@@ -66,7 +66,8 @@ extension BackupAlarm {
     func pinNotification(_ entry: PlannedBackup) async {
         let pending = await platform.pendingNotifications()
         guard pending.contains(where: { $0.id == entry.id.uuidString && $0.calendar }) else { return }
-        await scheduleNotification(id: entry.id, at: entry.slot.fireAt, tone: WakeTone(rawValue: entry.slot.sound), fixed: true)
+        await scheduleNotification(id: entry.id, at: entry.slot.fireAt, tone: WakeTone(rawValue: entry.slot.sound),
+                                   fixed: true)
     }
 }
 
@@ -81,10 +82,12 @@ final class SystemBackupPlatform: BackupPlatform {
         return false
     }
 
-    func place(id: UUID, at date: Date, fromWatch: Bool, snoozesLeft: Int, tone: WakeTone?, chain: Int) async -> BackupAlarm.Placement {
+    func place(id: UUID, at date: Date, fromWatch: Bool, snoozesLeft: Int, tone: WakeTone?,
+               chain: Int) async -> BackupAlarm.Placement {
         #if canImport(AlarmKit)
         if #available(iOS 26.0, *) {
-            return await scheduleAlarmKit(id: id, at: date, fromWatch: fromWatch, snoozesLeft: snoozesLeft, tone: tone, chain: chain)
+            return await scheduleAlarmKit(id: id, at: date, fromWatch: fromWatch, snoozesLeft: snoozesLeft, tone: tone,
+                                          chain: chain)
         }
         #endif
         return .notifications(await notify(id: id, at: date, tone: tone, fixed: false, count: chain, skip: []))
@@ -104,7 +107,8 @@ final class SystemBackupPlatform: BackupPlatform {
         }
         #endif
         // Vor iOS 26 (oder nach gescheitertem AlarmKit) samt der Kette (`NotificationChain`).
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: NotificationChain.ids(id.uuidString))
+        UNUserNotificationCenter.current()
+            .removePendingNotificationRequests(withIdentifiers: NotificationChain.ids(id.uuidString))
     }
 
     func cancelScheduled(_ id: UUID) {
@@ -128,10 +132,14 @@ final class SystemBackupPlatform: BackupPlatform {
                 do {
                     let alarms = try AlarmManager.shared.alarms
                     present.formUnion(alarms.map(\.id))
-                    if attempt > 1 { DiagStore.shared.log(.scheduled, ReadRetry.recoveredLine("alarmkit list", attempt: attempt)) }
+                    if attempt > 1 {
+                        DiagStore.shared.log(.scheduled, ReadRetry.recoveredLine("alarmkit list", attempt: attempt))
+                    }
                     break
                 } catch {
-                    DiagStore.shared.log(.error, ReadRetry.failureLine("alarmkit list", attempt: attempt, code: (error as NSError).code))
+                    DiagStore.shared.log(.error,
+                                         ReadRetry.failureLine("alarmkit list", attempt: attempt,
+                                                               code: (error as NSError).code))
                     guard ReadRetry.retries(after: attempt) else { break }
                     try? await Task.sleep(for: .seconds(ReadRetry.pause))
                     attempt += 1
@@ -177,7 +185,8 @@ final class SystemBackupPlatform: BackupPlatform {
     }
 
     func notify(id: UUID, at date: Date, tone: WakeTone?, fixed: Bool, count: Int, skip: Set<String>) async -> Int {
-        let members = Array(zip(NotificationChain.ids(id.uuidString), NotificationChain.dates(date)).prefix(max(0, count)))
+        let members =
+            Array(zip(NotificationChain.ids(id.uuidString), NotificationChain.dates(date)).prefix(max(0, count)))
         guard members.contains(where: { !skip.contains($0.0) }) else { return members.count }
         // «Zeitkritisch» kommt über die Berechtigung (Entitlement).
         await NotificationLog.requestPermission("backup")
@@ -190,7 +199,8 @@ final class SystemBackupPlatform: BackupPlatform {
         var placed = members.filter { skip.contains($0.0) }.count
         for (member, at) in members where !skip.contains(member) {
             let trigger = fixed ? LocalTrigger.fixed(at, now: now) : LocalTrigger.at(at, now: now)
-            if await NotificationLog.add(UNNotificationRequest(identifier: member, content: content, trigger: trigger), "backup") {
+            if await NotificationLog.add(UNNotificationRequest(identifier: member, content: content, trigger: trigger),
+                                         "backup") {
                 placed += 1
             }
         }
@@ -205,17 +215,22 @@ final class SystemBackupPlatform: BackupPlatform {
             if AlarmManager.shared.authorizationState != .authorized {
                 _ = try await AlarmManager.shared.requestAuthorization()
             }
-            let stop = AlarmButton(text: LocalizedStringResource(stringLiteral: L("ring_stop")), textColor: .white, systemImageName: "stop.fill")
+            let stop = AlarmButton(text: LocalizedStringResource(stringLiteral: L("ring_stop")), textColor: .white,
+                                   systemImageName: "stop.fill")
             // Schlummern nur, solange Runden übrig sind (beim Mitklingeln die der Uhr). Restanzahl wie auf der Uhr
             // «noch N» statt «N übrig».
-            let snoozeText = L("ring_snooze_button", Int64(Snooze.minutes)) + " · " + LP("ring_snoozes_left", snoozesLeft, Int64(snoozesLeft))
+            let snoozeText = L("ring_snooze_button", Int64(Snooze.minutes)) + " · "
+                + LP("ring_snoozes_left", snoozesLeft, Int64(snoozesLeft))
             let snooze = snoozesLeft > 0
-                ? AlarmButton(text: LocalizedStringResource(stringLiteral: snoozeText), textColor: .white, systemImageName: "zzz")
+                ? AlarmButton(text: LocalizedStringResource(stringLiteral: snoozeText), textColor: .white,
+                              systemImageName: "zzz")
                 : nil
             let behavior: AlarmPresentation.Alert.SecondaryButtonBehavior? = snooze == nil ? nil : .custom
-            let alert = AlarmPresentation.Alert(title: LocalizedStringResource(stringLiteral: L("ring_greeting")), stopButton: stop,
+            let alert = AlarmPresentation.Alert(title: LocalizedStringResource(stringLiteral: L("ring_greeting")),
+                                                stopButton: stop,
                                                 secondaryButton: snooze, secondaryButtonBehavior: behavior)
-            let attributes = AlarmAttributes<PhaseWakeAlarm>(presentation: AlarmPresentation(alert: alert), tintColor: Brand.accentLight)
+            let attributes = AlarmAttributes<PhaseWakeAlarm>(presentation: AlarmPresentation(alert: alert),
+                                                             tintColor: Brand.accentLight)
             // Beim Mitklingeln gehen Stopp und Schlummern an die Uhr. Eine Sicherung klingelt ohne Uhr: Ihr Stopp
             // beendet die Uhr nur für dieselbe Nacht (`BackupStopIntent`); sie schlummert auf dem iPhone selbst
             // (`BackupSnoozeIntent`).

@@ -30,7 +30,10 @@ class ScheduleRulesTest {
         val late = ScheduleRules.decide(plan, null, null, null, plan.windowStart.plusSeconds(60))
         assertEquals(plan.windowStart.plusSeconds(61), late.windowAt)
         // Kein Wecker: nichts stellen.
-        assertEquals(ScheduleRules.Decision(false, false, null, null, null), ScheduleRules.decide(null, null, null, null, now))
+        assertEquals(
+            ScheduleRules.Decision(false, false, null, null, null),
+            ScheduleRules.decide(null, null, null, null, now),
+        )
     }
 
     @Test
@@ -58,7 +61,10 @@ class ScheduleRulesTest {
         assertEquals(plan.target, d.deadlineAt)
         // Schon vorbei (während des Neustarts verpasst): gleich.
         val missed = snoozed.copy(at = now.minus(Duration.ofMinutes(1)))
-        assertEquals(now.plus(ScheduleRules.IMMEDIATE), ScheduleRules.decide(plan, null, null, missed, now).pendingRingAt)
+        assertEquals(
+            now.plus(ScheduleRules.IMMEDIATE),
+            ScheduleRules.decide(plan, null, null, missed, now).pendingRingAt,
+        )
         // Gehört zum Plan, der ohnehin gilt: kein eigener Alarm.
         assertNull(ScheduleRules.decide(other, null, null, snoozed.copy(plan = other), now).pendingRingAt)
     }
@@ -67,7 +73,10 @@ class ScheduleRulesTest {
     fun pendingRingOnlyWhenStillDue() {
         val snoozed = DirectBoot.Saved(other, Instant.parse("2026-11-03T05:05:00Z"), false, "")
         assertTrue(ScheduleRules.pendingRing(snoozed, now, catchesUp = true, doneUntil = null, exists = true))
-        assertFalse(ScheduleRules.pendingRing(snoozed, now, catchesUp = false, doneUntil = null, exists = true), "zu spät")
+        assertFalse(
+            ScheduleRules.pendingRing(snoozed, now, catchesUp = false, doneUntil = null, exists = true),
+            "zu spät",
+        )
         assertFalse(ScheduleRules.pendingRing(snoozed, now, true, doneUntil = other.target, exists = true), "erledigt")
         assertFalse(ScheduleRules.pendingRing(snoozed, now, true, null, exists = false), "Wecker gelöscht oder aus")
         // Noch vor der Zielzeit und nicht geschlummert: plant das normale Neuplanen.
@@ -96,13 +105,36 @@ class ScheduleRulesTest {
         // Gleiche Zone, ohne Zone, Fenster noch nicht begonnen, Nacht erledigt, Wecker gelöscht: wie bisher.
         assertNull(ScheduleRules.keptNight(planned, listOf(spec), zurich, at, emptySet(), emptyMap()))
         // Zürich → Berlin: Ortszeit gleich, ein früherer neuer Wecker unterbräche die Messung wie bisher.
-        assertNull(ScheduleRules.keptNight(planned, listOf(spec), ZoneId.of("Europe/Berlin"), at, emptySet(), emptyMap()))
+        assertNull(
+            ScheduleRules.keptNight(planned, listOf(spec), ZoneId.of("Europe/Berlin"), at, emptySet(), emptyMap()),
+        )
         assertNull(ScheduleRules.keptNight(planned.copy(zone = null), listOf(spec), tokyo, at, emptySet(), emptyMap()))
-        assertNull(ScheduleRules.keptNight(planned, listOf(spec), tokyo, target.minus(Duration.ofMinutes(40)), emptySet(), emptyMap()))
+        assertNull(
+            ScheduleRules.keptNight(
+                planned,
+                listOf(spec),
+                tokyo,
+                target.minus(Duration.ofMinutes(40)),
+                emptySet(),
+                emptyMap(),
+            ),
+        )
         assertNull(ScheduleRules.keptNight(planned, listOf(spec), tokyo, at, emptySet(), mapOf("a" to target)))
         assertNull(ScheduleRules.keptNight(planned, emptyList(), tokyo, at, emptySet(), emptyMap()))
         // Nachfrist: kurz nach der Zielzeit noch, danach nicht mehr.
-        assertEquals(kept, ScheduleRules.keptNight(planned, listOf(spec), tokyo, target.plusSeconds(30), emptySet(), emptyMap()))
-        assertNull(ScheduleRules.keptNight(planned, listOf(spec), tokyo, target.plus(ScheduleRules.KEEP_GRACE), emptySet(), emptyMap()))
+        assertEquals(
+            kept,
+            ScheduleRules.keptNight(planned, listOf(spec), tokyo, target.plusSeconds(30), emptySet(), emptyMap()),
+        )
+        assertNull(
+            ScheduleRules.keptNight(
+                planned,
+                listOf(spec),
+                tokyo,
+                target.plus(ScheduleRules.KEEP_GRACE),
+                emptySet(),
+                emptyMap(),
+            ),
+        )
     }
 }

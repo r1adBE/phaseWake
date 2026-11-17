@@ -147,7 +147,9 @@ class NoiseGenerator(
             SleepSound.BROWN -> brown() * 0.55
             SleepSound.FAN -> fan()
             // Einschlaf-Wellen: oben (zwei Kanäle). Aufnahmen werden nicht erzeugt (siehe init).
-            SleepSound.BINAURAL, SleepSound.RAIN, SleepSound.OCEAN, SleepSound.FOREST, SleepSound.FIRE, SleepSound.BROOK -> 0.0
+            SleepSound.BINAURAL, SleepSound.RAIN, SleepSound.OCEAN,
+            SleepSound.FOREST, SleepSound.FIRE, SleepSound.BROOK,
+            -> 0.0
         }
         // Gleichspannung entfernen, dann weich begrenzen: nie über PEAK, ohne harte Kanten.
         val y = raw - dcIn + dcPole * dcOut

@@ -46,11 +46,30 @@ public enum RecorderOnset {
     /// Rechnet die Messung ab `since` nach. `motions`: Bewegung je 30-s-Epoche ab `since` (leer = keine Werte);
     /// `threshold`: Leicht-Schwelle (Startwert oder kalibriert); `personalFloor`: gelerntes Grundrauschen; `latest`:
     /// eingestellte Weckzeit der Nacht; `extendCap`: späteste Verlängerung (`nil` = keine); `heartRates`: Puls je
-    /// Epoche aus Apple Health (``measure(motions:since:threshold:personalFloor:latest:extendCap:heartRates:)``).
+    /// Epoche aus Apple Health (``measure(motions:since:threshold:personalFloor:latest:extendCap:worn:)``).
     public static func find(motions: [Double?], since: Date, threshold: Double, personalFloor: Double?, latest: Date,
                             extendCap: Date?, heartRates: [Double?]? = nil) -> Result {
         measure(motions: motions, since: since, threshold: threshold, personalFloor: personalFloor, latest: latest,
-                extendCap: extendCap, heartRates: heartRates).result
+                extendCap: extendCap, worn: Worn(heartRates: heartRates)).result
+    }
+
+    /// Ob die Uhr getragen wurde, für ``measure(motions:since:threshold:personalFloor:latest:extendCap:worn:)``:
+    /// Puls je Epoche `heartRates` ab `heartLead` Epochen vor dem Beginn und je Epoche ab dem Beginn, ob die Uhr da
+    /// lud (`away`). Ohne Angaben gilt keine dieser Regeln.
+    public struct Worn: Equatable, Sendable {
+        /// Puls je Epoche ab `heartLead` Epochen vor dem Beginn; `nil` = keiner.
+        public var heartRates: [Double?]?
+        /// Epochen Puls vor dem Beginn in `heartRates`.
+        public var heartLead: Int
+        /// Je Epoche ab dem Beginn, ob die Uhr lud; `nil` = unbekannt.
+        public var away: [Bool]?
+
+        /// Angaben mit allen Feldern; ohne Angaben keine.
+        public init(heartRates: [Double?]? = nil, heartLead: Int = 0, away: [Bool]? = nil) {
+            self.heartRates = heartRates
+            self.heartLead = heartLead
+            self.away = away
+        }
     }
 
     /// Wie ``find(motions:since:threshold:personalFloor:latest:extendCap:heartRates:)``, dazu das Grundrauschen der
@@ -61,19 +80,19 @@ public enum RecorderOnset {
     /// `personalFloor`, vor der ersten Epoche keines. Reichen die Werte bis ins Weckfenster (``Result/open``), keines
     /// (`nil`).
     ///
-    /// `heartRates`: Puls je Epoche ab `heartLead` Epochen vor `since` (``RecorderEpochs/heartRates(_:start:count:)``).
-    /// Gibt es darin mindestens einen, beginnt eine ruhige Strecke nur, wo die Uhr getragen wurde (Puls höchstens 15
-    /// Min davor und einer in der Strecke, ``SleepOnset/find(_:threshold:heartRates:heartLead:)``):
-    /// Abgelegt oder auf dem Ladegerät misst die Uhr keinen Puls, und ihr Rauschen zählte sonst als Einschlafen; die
-    /// Messung wartet, bis sie wieder getragen wird. Ganz ohne Puls (keine Erlaubnis, keine Daten) gilt die Regel
-    /// nicht.
+    /// `worn.heartRates`: Puls je Epoche ab `worn.heartLead` Epochen vor `since`
+    /// (``RecorderEpochs/heartRates(_:start:count:)``). Gibt es darin mindestens einen, beginnt eine ruhige Strecke
+    /// nur, wo die Uhr getragen wurde (Puls höchstens 15 Min davor und einer in der Strecke,
+    /// ``SleepOnset/find(_:threshold:heartRates:heartLead:)``): Abgelegt oder auf dem Ladegerät misst die Uhr keinen
+    /// Puls, und ihr Rauschen zählte sonst als Einschlafen; die Messung wartet, bis sie wieder getragen wird. Ganz ohne
+    /// Puls (keine Erlaubnis, keine Daten) gilt die Regel nicht.
     ///
-    /// `away`: je Epoche ab `since`, ob die Uhr da lud (``awayEpochs(_:start:count:)``). Solche Epochen gelten als
+    /// `worn.away`: je Epoche ab `since`, ob die Uhr da lud (``awayEpochs(_:start:count:)``). Solche Epochen gelten als
     /// leer (wie am Ladegerät auf der Galaxy Watch). Sie und Epochen ohne Puls in den 15 Min davor (nur mit Puls in der
     /// Messung) verlängern die Zeitgrenze.
     public static func measure(motions: [Double?], since: Date, threshold: Double, personalFloor: Double?, latest: Date,
-                               extendCap: Date?, heartRates: [Double?]? = nil, heartLead: Int = 0,
-                               away: [Bool]? = nil) -> (result: Result, floor: Double?) {
+                               extendCap: Date?, worn: Worn = Worn()) -> (result: Result, floor: Double?) {
+        let (heartRates, heartLead, away) = (worn.heartRates, worn.heartLead, worn.away)
         let pulses = heartRates.flatMap { rates in rates.contains { $0 != nil } ? rates : nil }
         let latestGiveUp = latest.addingTimeInterval(-giveUpLead)
         let baseEnd = since.addingTimeInterval(maxDuration)
@@ -87,14 +106,18 @@ public enum RecorderOnset {
             // Watch.
             let now = since.addingTimeInterval(TimeInterval((index + 1) * DetectorConfig.epochSeconds))
             if now >= min(latestGiveUp, maxEnd) {
-                if let cap = extendCap, let until = awayUntil(baseEnd: baseEnd, awayEpochs: awayCount, latestGiveUp: latestGiveUp, cap: cap),
+                if let cap = extendCap, let until = awayUntil(baseEnd: baseEnd, awayEpochs: awayCount,
+                                                              latestGiveUp: latestGiveUp, cap: cap),
                    now < until {
                     maxEnd = max(maxEnd, until)
                 } else {
                     let busy = restless(seen, threshold: NoiseFloor.light(threshold: threshold, floor: floor))
                     guard let cap = extendCap,
-                          let until = extendUntil(at: now, maxEnd: maxEnd, latestGiveUp: latestGiveUp, cap: cap, restless: busy) else {
-                        return (.gaveUp(at: now, reason: giveUpReason(at: now, latestGiveUp: latestGiveUp, maxEnd: maxEnd) ?? "give up"), floor)
+                          let until = extendUntil(at: now, maxEnd: maxEnd, latestGiveUp: latestGiveUp, cap: cap,
+                                                  restless: busy) else {
+                        return (.gaveUp(at: now,
+                                        reason: giveUpReason(at: now, latestGiveUp: latestGiveUp,
+                                                             maxEnd: maxEnd) ?? "give up"), floor)
                     }
                     maxEnd = until
                 }
@@ -103,9 +126,11 @@ public enum RecorderOnset {
             if charging || unworn(index, pulses: pulses, heartLead: heartLead) { awayCount += 1 }
             seen.append(charging ? nil : recorded)
             floor = NoiseFloor.floor(seen, personal: personalFloor)
-            if let start = SleepOnset.find(seen, threshold: NoiseFloor.light(threshold: threshold, floor: floor), heartRates: pulses,
+            if let start = SleepOnset.find(seen, threshold: NoiseFloor.light(threshold: threshold, floor: floor),
+                                           heartRates: pulses,
                                            heartLead: heartLead) {
-                return (.asleep(at: since.addingTimeInterval(TimeInterval(start * DetectorConfig.epochSeconds)), index: start), floor)
+                return (.asleep(at: since.addingTimeInterval(TimeInterval(start * DetectorConfig.epochSeconds)),
+                                index: start), floor)
             }
         }
         return (.open, nil)
@@ -133,7 +158,8 @@ public enum RecorderOnset {
     /// konnte.
     public static func awayUntil(baseEnd: Date, awayEpochs: Int, latestGiveUp: Date, cap: Date) -> Date? {
         guard awayEpochs > 0, baseEnd <= latestGiveUp else { return nil }
-        return min(baseEnd.addingTimeInterval(TimeInterval(awayEpochs * DetectorConfig.epochSeconds)), cap, latestGiveUp)
+        return min(baseEnd.addingTimeInterval(TimeInterval(awayEpochs * DetectorConfig.epochSeconds)), cap,
+                   latestGiveUp)
     }
 
     /// Ob Epoche `index` als nicht getragen zählt: Mit Puls in der Messung (`pulses`, beginnend `heartLead` Epochen vor
@@ -234,7 +260,8 @@ public enum GoodNightEstimate {
     /// Zielzeit: geschätzte Einschlafzeit plus Schlafdauer, nie später als `latest`
     /// (``AlarmSchedule/sleepTarget(onset:sleepDurationMinutes:latest:)``).
     public static func target(tap: Date, latencyMinutes: Int?, sleepDurationMinutes: Int, latest: Date) -> Date {
-        AlarmSchedule.sleepTarget(onset: asleep(tap: tap, latencyMinutes: latencyMinutes), sleepDurationMinutes: sleepDurationMinutes,
+        AlarmSchedule.sleepTarget(onset: asleep(tap: tap, latencyMinutes: latencyMinutes),
+                                  sleepDurationMinutes: sleepDurationMinutes,
                                   latest: latest)
     }
 

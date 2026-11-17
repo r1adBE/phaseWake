@@ -34,7 +34,8 @@ class OnboardingRulesTest {
     fun createdHereNotTwice() = assertFalse(createsOnNext(createdHere = true, model(hasAlarm = true)))
 
     @Test
-    fun limitReachedCreatesNothing() = assertFalse(createsOnNext(createdHere = false, model(hasAlarm = false, canCreate = false)))
+    fun limitReachedCreatesNothing() =
+        assertFalse(createsOnNext(createdHere = false, model(hasAlarm = false, canCreate = false)))
 
     @Test
     fun glyphMoonWandersRightWithEachStep() {

@@ -42,7 +42,13 @@ class SoundStoreTest {
     }
 
     /** Ausschnitt [name] [ageHours] Std. vor [now], mit Datei. */
-    private fun clip(store: SoundStore, name: String, ageHours: Long = 2, peakDb: Int = -20, day: LocalDate = night): SoundClip {
+    private fun clip(
+        store: SoundStore,
+        name: String,
+        ageHours: Long = 2,
+        peakDb: Int = -20,
+        day: LocalDate = night,
+    ): SoundClip {
         store.newFile(name).writeText("m4a")
         return SoundClip(day, now.minus(Duration.ofHours(ageHours)), SoundType.SNORE, 4_000, peakDb, name)
     }
@@ -122,7 +128,8 @@ class SoundStoreTest {
     @Test
     fun tooManyClipsDropTheQuietest() = runBlocking {
         val store = SoundStore(context)
-        val clips = (0 until SoundEvents.MAX_CLIPS_PER_NIGHT).map { clip(store, "c$it.m4a", ageHours = 3, peakDb = if (it == 7) -40 else -20) }
+        val clips = (0 until SoundEvents.MAX_CLIPS_PER_NIGHT)
+            .map { clip(store, "c$it.m4a", ageHours = 3, peakDb = if (it == 7) -40 else -20) }
         clips.forEach { store.add(it) }
         val quietest = clips[7]
         store.add(clip(store, "loud.m4a", ageHours = 1, peakDb = -5))

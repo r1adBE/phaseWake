@@ -60,7 +60,9 @@ extension LearnRecorder {
         let model = WatchModel.shared
         guard let plan = model.realPlan, Transient.kindOf(plan.alarmId) == nil else { return [] }
         var needs: [Date] = []
-        if snapshot.active || model.goodNightActive { needs.append(plan.target.addingTimeInterval(AppleLearnRecord.afterTarget)) }
+        if snapshot.active || model.goodNightActive {
+            needs.append(plan.target.addingTimeInterval(AppleLearnRecord.afterTarget))
+        }
         if autoOnset { needs.append(plan.windowStart) }
         return needs
     }
@@ -72,7 +74,8 @@ extension LearnRecorder {
     /// ins Protokoll).
     func ensureRecorder(until need: Date) {
         let now = Date()
-        let decision = AppleNightRecorder.decide(now: now, need: need, others: nightNeeds(), runningUntil: recorderSpan?.until)
+        let decision = AppleNightRecorder.decide(now: now, need: need, others: nightNeeds(),
+                                                 runningUntil: recorderSpan?.until)
         // Er läuft (oder startet gleich): Eine Meldung «nicht gestartet» gilt nicht mehr.
         if decision != .nothing { WatchConnectivityBridge.shared.publish(recorderSkip: nil) }
         switch decision {
@@ -81,14 +84,20 @@ extension LearnRecorder {
         case .short(let until, let needed):
             guard loggedShortNeed != needed else { return }
             loggedShortNeed = needed
-            DiagStore.shared.log(.measureStart, "recorder until \(Format.logTime(until)), needed \(Format.logTime(needed)): kept, no second call")
+            DiagStore.shared.log(
+                .measureStart,
+                "recorder until \(Format.logTime(until)), needed \(Format.logTime(needed)): kept, no second call"
+            )
         case .start(let end):
             let status = CMSensorRecorder.authorizationStatus()
             CMSensorRecorder().recordAccelerometer(forDuration: end.timeIntervalSince(now))
             // Nur mit Erlaubnis merken: Fragt watchOS erst jetzt nach (oder ist sie aus), zeichnet dieser
             // Aufruf womöglich nichts auf; ungemerkt darf später in der Nacht ein weiterer Aufruf starten.
             guard Self.remembersSpan(status) else {
-                DiagStore.shared.log(.measureStart, "recorder call until \(Format.logTime(end)), motion not yet allowed: not remembered")
+                DiagStore.shared.log(
+                    .measureStart,
+                    "recorder call until \(Format.logTime(end)), motion not yet allowed: not remembered"
+                )
                 return
             }
             SettingsFile.watchSession.set(now.timeIntervalSince1970, forKey: Self.recorderFromKey)
@@ -97,7 +106,9 @@ extension LearnRecorder {
             let active = WKApplication.shared().applicationState == .active
             SettingsFile.watchSession.set(active, forKey: Self.recorderActiveKey)
             resetChargeSamples(from: now)
-            DiagStore.shared.log(.measureStart, "recorder start until \(Format.logTime(end))\(active ? " (app open)" : "")")
+            DiagStore.shared.log(
+                .measureStart, "recorder start until \(Format.logTime(end))\(active ? " (app open)" : "")"
+            )
         }
     }
 
@@ -165,11 +176,13 @@ extension LearnRecorder {
         current.stoppedAt = Date()
         current.stopReason = reason.rawValue
         save(current)
-        DiagStore.shared.log(reason == .battery ? .battery : .measureEnd, "record stop \(Self.reasonText(reason, battery: battery))")
+        DiagStore.shared.log(reason == .battery ? .battery : .measureEnd,
+                             "record stop \(Self.reasonText(reason, battery: battery))")
         // Läuft keine Weck-Nacht (weder Fenster noch «Gute Nacht»), gehört der Akku zu keiner Nacht im Verlauf (wie
         // Android).
         let phase = SmartAlarm.shared.phase
-        if reason != .wake, !(phase.isMeasuring || phase.isRinging || phase.isSnoozed), !WatchModel.shared.goodNightActive {
+        if reason != .wake, !(phase.isMeasuring || phase.isRinging || phase.isSnoozed),
+           !WatchModel.shared.goodNightActive {
             WatchBattery.drop("recording ended without alarm night")
         }
         plan()

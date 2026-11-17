@@ -40,7 +40,9 @@ object SunriseLight {
 
     fun createChannel(context: Context) {
         context.getSystemService(NotificationManager::class.java).createNotificationChannel(
-            NotificationChannel(CHANNEL, context.getString(R.string.channel_sunrise), NotificationManager.IMPORTANCE_HIGH).apply {
+            NotificationChannel(
+                CHANNEL, context.getString(R.string.channel_sunrise), NotificationManager.IMPORTANCE_HIGH,
+            ).apply {
                 description = context.getString(R.string.channel_sunrise_description)
                 setSound(null, null)
                 enableVibration(false)

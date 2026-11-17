@@ -83,7 +83,8 @@ class SoundStore(context: Context) {
         val known = kept.map { it.file }.toSet() + INDEX
         withContext(Dispatchers.IO) {
             val before = now.toEpochMilli() - ORPHAN_AGE_MS
-            dir.listFiles().orEmpty().filter { it.isFile && it.name !in known && it.lastModified() < before }.forEach { it.delete() }
+            dir.listFiles().orEmpty()
+                .filter { it.isFile && it.name !in known && it.lastModified() < before }.forEach { it.delete() }
         }
     }
 
@@ -153,7 +154,9 @@ class SoundStore(context: Context) {
         /** Plant das tägliche Aufräumen (ungenau, ohne Wecken); ein erneuter Aufruf ersetzt den Plan. */
         fun scheduleCleanup(context: Context) {
             val intent = Intent(context, CleanupReceiver::class.java).setAction(ACTION_CLEANUP)
-            val pending = PendingIntent.getBroadcast(context, REQUEST_CODE, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+            val pending = PendingIntent.getBroadcast(
+                context, REQUEST_CODE, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+            )
             context.getSystemService(AlarmManager::class.java).setInexactRepeating(
                 AlarmManager.RTC,
                 System.currentTimeMillis() + AlarmManager.INTERVAL_DAY,

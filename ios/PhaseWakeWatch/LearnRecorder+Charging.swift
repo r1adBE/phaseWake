@@ -8,7 +8,7 @@ import WatchKit
 /// Weck-Sitzung) und stellt die Hintergrund-Aktualisierung, solange die Messung vor dem Weckfenster läuft, auf
 /// höchstens ``chargeCheck``. Aus den Stichproben ergeben sich Zeiten am Ladegerät (``chargeSpans(until:)``); ihre
 /// Epochen gelten als leer und verlängern die Zeitgrenze
-/// (``RecorderOnset/measure(motions:since:threshold:personalFloor:latest:extendCap:heartRates:heartLead:away:)``).
+/// (``RecorderOnset/measure(motions:since:threshold:personalFloor:latest:extendCap:worn:)``).
 /// Zwischen zwei Stichproben weiss die Uhr nichts: Eine Zeit am Ladegerät reicht bis zur nächsten Stichprobe, die nicht
 /// lädt, ohne solche höchstens ``chargeCheck`` über die letzte hinaus. Was dazwischen fehlt, deckt die Puls-Regel ab
 /// (am Ladegerät misst die Uhr keinen Puls).
@@ -46,13 +46,15 @@ extension LearnRecorder {
 
     /// Zeiten am Ladegerät bis `until` aus den Stichproben (siehe oben).
     func chargeSpans(until: Date) -> [(from: Date, until: Date)] {
-        Self.chargeSpans(chargeSamples.compactMap { $0.count == 2 ? (at: Date(timeIntervalSince1970: $0[0]), charging: $0[1] != 0) : nil },
-                         until: until, gap: Self.chargeCheck)
+        Self.chargeSpans(chargeSamples.compactMap {
+            $0.count == 2 ? (at: Date(timeIntervalSince1970: $0[0]), charging: $0[1] != 0) : nil
+        }, until: until, gap: Self.chargeCheck)
     }
 
     /// Zeiten am Ladegerät aus `samples` (zeitlich geordnet oder nicht): ab einer ladenden Stichprobe bis zur nächsten,
     /// die nicht lädt; ohne solche bis höchstens `gap` nach der letzten ladenden, nie über `until`.
-    nonisolated static func chargeSpans(_ samples: [(at: Date, charging: Bool)], until: Date, gap: TimeInterval) -> [(from: Date, until: Date)] {
+    nonisolated static func chargeSpans(_ samples: [(at: Date, charging: Bool)], until: Date,
+                                        gap: TimeInterval) -> [(from: Date, until: Date)] {
         var spans: [(from: Date, until: Date)] = []
         var open: Date?
         var last: Date?
@@ -72,7 +74,8 @@ extension LearnRecorder {
     /// Hintergrund-Aktualisierung für die nächste Stichprobe: in ``chargeCheck``, solange der Rekorder für die
     /// Einschlaf-Messung läuft und das Weckfenster der Nacht nicht begonnen hat; sonst `nil`.
     func chargeRefresh(now: Date) -> Date? {
-        guard autoOnset, recorderRunning, let plan = WatchModel.shared.realPlan, now < plan.windowStart else { return nil }
+        guard autoOnset, recorderRunning, let plan = WatchModel.shared.realPlan,
+              now < plan.windowStart else { return nil }
         return min(now.addingTimeInterval(Self.chargeCheck), plan.windowStart)
     }
 }

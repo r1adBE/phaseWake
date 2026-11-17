@@ -99,7 +99,8 @@ object SleepNotes {
      * Nachtdatum einer Sitzung im Verlauf: wie oben, in der Zone der Aufzeichnung ([HealthSession.zoneOr], sonst
      * [zone]).
      */
-    fun nightDate(session: HealthSession, zone: ZoneId): LocalDate = nightDate(session.start, session.end, session.zoneOr(zone))
+    fun nightDate(session: HealthSession, zone: ZoneId): LocalDate =
+        nightDate(session.start, session.end, session.zoneOr(zone))
 
     /**
      * Ob die Startseite nach den Notizen für die kommende Nacht fragt: ab 17:00 des Abends bis zum

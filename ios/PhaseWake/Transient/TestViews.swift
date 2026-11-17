@@ -10,7 +10,9 @@ struct TestAlarmButton: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Button {
-                if Self.napWaiting(model.transient.nap, now: Date()) { confirmReplace = true } else { Task { await model.transient.startTest() } }
+                if Self.napWaiting(model.transient.nap, now: Date()) { confirmReplace = true } else {
+                    Task { await model.transient.startTest() }
+                }
             } label: {
                 Label(L("test_button"), systemImage: "alarm.waves.left.and.right")
             }
@@ -21,7 +23,8 @@ struct TestAlarmButton: View {
             }
             Text(L("test_hint")).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
             if let refusal = model.transient.refusal(.test) {
-                Label(refusal, systemImage: "exclamationmark.circle").font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
+                Label(refusal, systemImage: "exclamationmark.circle")
+                    .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
             }
         }
     }
@@ -74,7 +77,8 @@ struct TestResultSheet: View {
             List {
                 Group {
                     if TestStep.allCases.allSatisfy({ outcome($0) != .failed }) {
-                        Label(L("test_all_ok"), systemImage: "checkmark.seal").font(Fonts.manrope(16, .semibold, relativeTo: .headline))
+                        Label(L("test_all_ok"), systemImage: "checkmark.seal")
+                            .font(Fonts.manrope(16, .semibold, relativeTo: .headline))
                     }
                     ForEach(TestStep.allCases, id: \.self) { step in
                         row(step, outcome(step))

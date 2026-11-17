@@ -54,7 +54,8 @@ public enum SleepOnset {
         }
         func worn(_ start: Int, _ end: Int) -> Bool {
             guard heartRates != nil else { return true }
-            return (max(-heartLead, start - wornEpochs)...start).contains(where: pulse) && (start + 1...end).contains(where: pulse)
+            return (max(-heartLead,
+                        start - wornEpochs)...start).contains(where: pulse) && (start + 1...end).contains(where: pulse)
         }
         guard motions.count >= stillEpochs else { return nil }
         for start in 0...(motions.count - stillEpochs) {

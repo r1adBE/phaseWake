@@ -37,7 +37,10 @@ object WearClock {
 /**
  * Kurze Uhrzeit nach [is24] (12/24 h) mit den Ziffern der Sprache; [is24] = `null`: das Format der Sprache.
  */
-internal fun timeFormatter(locale: Locale = Locale.getDefault(), is24: Boolean? = WearClock.use24Hour): DateTimeFormatter {
+internal fun timeFormatter(
+    locale: Locale = Locale.getDefault(),
+    is24: Boolean? = WearClock.use24Hour,
+): DateTimeFormatter {
     val base = if (is24 == null) {
         DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).withLocale(locale)
     } else {

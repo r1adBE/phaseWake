@@ -116,7 +116,10 @@ open class PhaseWakeWear : Application() {
         com.phasewake.app.wear.ui.WearClock.update(this)
         Notifications.createChannels(this)
         com.phasewake.app.wear.record.LearnNotice.createChannel(this)
-        diag.log(if (DirectBoot.isUnlocked(this)) DiagKind.BOOT else DiagKind.DIRECT_BOOT, "app start battery ${batteryPercent()}")
+        diag.log(
+            if (DirectBoot.isUnlocked(this)) DiagKind.BOOT else DiagKind.DIRECT_BOOT,
+            "app start battery ${batteryPercent()}",
+        )
         BatteryNight.log = { diag.log(DiagKind.BATTERY, it) }
         // Wie und wann das System den Prozess zuletzt beendet hat, auch vor dem ersten Entsperren.
         appScope.launch(Dispatchers.IO) { com.phasewake.app.shared.ExitReasons.logTo(this@PhaseWakeWear, diag) }
@@ -132,7 +135,10 @@ open class PhaseWakeWear : Application() {
             this,
             object : BroadcastReceiver() {
                 override fun onReceive(context: Context, intent: Intent) {
-                    BatteryNight.charged(context, BatteryNight.read(context)?.copy(plugged = intent.action == Intent.ACTION_POWER_CONNECTED))
+                    BatteryNight.charged(
+                        context,
+                        BatteryNight.read(context)?.copy(plugged = intent.action == Intent.ACTION_POWER_CONNECTED),
+                    )
                     // Vor dem ersten Entsperren ist der Speicher nicht lesbar.
                     if (DirectBoot.isUnlocked(context)) appScope.launch { scheduler.publishStatus() }
                 }
@@ -167,7 +173,8 @@ open class PhaseWakeWear : Application() {
 
 /** Akkustand in Prozent für das Protokoll; -1, wenn unbekannt. */
 private fun Context.batteryPercent(): Int =
-    getSystemService(android.os.BatteryManager::class.java)?.getIntProperty(android.os.BatteryManager.BATTERY_PROPERTY_CAPACITY) ?: -1
+    getSystemService(android.os.BatteryManager::class.java)
+        ?.getIntProperty(android.os.BatteryManager.BATTERY_PROPERTY_CAPACITY) ?: -1
 
 /** Kurzer Zugriff auf die App aus Activities, Diensten und Empfängern. */
 val android.content.Context.wearApp: PhaseWakeWear get() = applicationContext as PhaseWakeWear

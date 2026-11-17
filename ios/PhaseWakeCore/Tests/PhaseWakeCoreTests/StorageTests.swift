@@ -11,7 +11,8 @@ final class StorageTests: XCTestCase {
     func testMutateSortsAndStampsStrictlyIncreasing() throws {
         let s = storage()
         let now = Date(timeIntervalSince1970: 1000)
-        let a = try XCTUnwrap(s.mutate({ _ in [try! AlarmSpec(id: "b", hour: 8, minute: 0), try! AlarmSpec(id: "a", hour: 6, minute: 0)] }, now: now))
+        let a = try XCTUnwrap(s.mutate({ _ in [try! AlarmSpec(id: "b", hour: 8, minute: 0),
+                                               try! AlarmSpec(id: "a", hour: 6, minute: 0)] }, now: now))
         XCTAssertEqual(a.alarms.map(\.id), ["a", "b"])
         let b = try XCTUnwrap(s.mutate({ $0 }, now: now))
         XCTAssertEqual(b.updatedAt, a.updatedAt + 1)
@@ -51,7 +52,8 @@ final class StorageTests: XCTestCase {
         let local = try XCTUnwrap(s.mutate({ _ in [try! AlarmSpec(id: "a", hour: 6, minute: 0)] }, now: now))
         // `now` wie beim Ändern: sonst fielen die Grabsteine von 1970 beim Aufräumen (90 Tage) gleich wieder weg.
         XCTAssertFalse(s.applyRemote(AlarmSnapshot(alarms: [], updatedAt: local.updatedAt, perAlarm: false), now: now))
-        XCTAssertTrue(s.applyRemote(AlarmSnapshot(alarms: [], updatedAt: local.updatedAt + 5, perAlarm: false), now: now))
+        XCTAssertTrue(s.applyRemote(AlarmSnapshot(alarms: [], updatedAt: local.updatedAt + 5, perAlarm: false),
+                                    now: now))
         XCTAssertEqual(s.snapshot().alarms, [])
         XCTAssertEqual(s.snapshot().deleted, ["a": local.updatedAt + 5], "der ersetzte Wecker gilt als gelöscht")
     }
@@ -59,7 +61,9 @@ final class StorageTests: XCTestCase {
     func testNightsRoundTripReplaceAndClear() {
         let s = storage()
         let start = Date(timeIntervalSince1970: 1_793_165_400)
-        let night = NightRecord(alarmId: "a", windowStart: start, target: start.addingTimeInterval(1800), wokeAt: start.addingTimeInterval(900), reason: .lightSleep, snoozes: 0, epochs: [Epoch(motion: 0.001, heartRate: 50)])
+        let night = NightRecord(alarmId: "a", windowStart: start, target: start.addingTimeInterval(1800),
+                                wokeAt: start.addingTimeInterval(900), reason: .lightSleep, snoozes: 0,
+                                epochs: [Epoch(motion: 0.001, heartRate: 50)])
         s.add(night)
         s.add(night)
         XCTAssertEqual(s.nights(), [night])
@@ -73,7 +77,8 @@ final class StorageTests: XCTestCase {
         let s = storage()
         let start = Date(timeIntervalSince1970: 1_793_165_400)
         func night(_ id: String) -> NightRecord {
-            NightRecord(alarmId: id, windowStart: start, target: start.addingTimeInterval(1800), wokeAt: start.addingTimeInterval(900), reason: .lightSleep, snoozes: 0, epochs: [])
+            NightRecord(alarmId: id, windowStart: start, target: start.addingTimeInterval(1800),
+                        wokeAt: start.addingTimeInterval(900), reason: .lightSleep, snoozes: 0, epochs: [])
         }
         s.add(night("a"))
         s.add(night("b"))
@@ -97,7 +102,8 @@ final class StorageTests: XCTestCase {
         let watch = [BatteryPoint(at: start, percent: 90, plugged: false, mark: .start),
                      BatteryPoint(at: start.addingTimeInterval(1800), percent: 80, plugged: false, mark: .end)]
         func night(watch: [BatteryPoint]? = nil, phone: [BatteryPoint]? = nil) -> NightRecord {
-            NightRecord(alarmId: "a", windowStart: start, target: start.addingTimeInterval(1800), wokeAt: start.addingTimeInterval(900),
+            NightRecord(alarmId: "a", windowStart: start, target: start.addingTimeInterval(1800),
+                        wokeAt: start.addingTimeInterval(900),
                         reason: .lightSleep, snoozes: 0, epochs: [], watchBattery: watch, phoneBattery: phone)
         }
         s.add(night(phone: phone))
@@ -117,7 +123,8 @@ final class StorageTests: XCTestCase {
         let start = Date(timeIntervalSince1970: 1_793_165_400)
         let bed = start.addingTimeInterval(-7 * 3600)
         let asleep = bed.addingTimeInterval(25 * 60)
-        let plain = NightRecord(alarmId: "a", windowStart: start, target: start.addingTimeInterval(1800), wokeAt: start.addingTimeInterval(900),
+        let plain = NightRecord(alarmId: "a", windowStart: start, target: start.addingTimeInterval(1800),
+                                wokeAt: start.addingTimeInterval(900),
                                 reason: .lightSleep, snoozes: 0, epochs: [])
         s.add(plain.with(bedAt: bed, asleepAt: asleep))
         s.add(plain)
@@ -134,7 +141,8 @@ final class StorageTests: XCTestCase {
     func testMinutesBeforeAndAfterTarget() {
         let target = Date(timeIntervalSince1970: 1_793_167_200)
         func night(_ offset: TimeInterval) -> NightRecord {
-            NightRecord(alarmId: "a", windowStart: target.addingTimeInterval(-1800), target: target, wokeAt: target.addingTimeInterval(offset), reason: .deadline, snoozes: 0, epochs: [])
+            NightRecord(alarmId: "a", windowStart: target.addingTimeInterval(-1800), target: target,
+                        wokeAt: target.addingTimeInterval(offset), reason: .deadline, snoozes: 0, epochs: [])
         }
         XCTAssertEqual(night(-12 * 60 - 30).minutesBeforeTarget, 12)
         XCTAssertEqual(night(-12 * 60 - 30).minutesAfterTarget, 0)
@@ -175,9 +183,11 @@ final class StorageTests: XCTestCase {
     func testReplaceForRestoreAndHolidays() {
         let s = storage()
         let start = Date(timeIntervalSince1970: 1_793_165_400)
-        let night = NightRecord(alarmId: "a", windowStart: start, target: start.addingTimeInterval(1800), wokeAt: start.addingTimeInterval(600),
+        let night = NightRecord(alarmId: "a", windowStart: start, target: start.addingTimeInterval(1800),
+                                wokeAt: start.addingTimeInterval(600),
                                 reason: .awake, snoozes: 0, epochs: [])
-        s.add(NightRecord(alarmId: "old", windowStart: start, target: start.addingTimeInterval(1800), wokeAt: start, reason: .deadline, snoozes: 0, epochs: []))
+        s.add(NightRecord(alarmId: "old", windowStart: start, target: start.addingTimeInterval(1800), wokeAt: start,
+                          reason: .deadline, snoozes: 0, epochs: []))
         s.replaceNights([night, night])
         XCTAssertEqual(s.nights(), [night])
         s.setNotes(["NAP"], nightDate: "2026-10-26")

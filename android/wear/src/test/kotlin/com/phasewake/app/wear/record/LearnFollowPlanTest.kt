@@ -44,7 +44,8 @@ class LearnFollowPlanTest {
     @Before
     fun setUp() {
         ShadowAlarmManager.setCanScheduleExactAlarms(true)
-        shadowOf(context.getSystemService(BatteryManager::class.java)).setIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY, 80)
+        shadowOf(context.getSystemService(BatteryManager::class.java))
+            .setIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY, 80)
     }
 
     @After
@@ -68,7 +69,9 @@ class LearnFollowPlanTest {
 
     /** Aufzeichnung der Lernphase bis [until], wie aus [RecordControl.startForLearning]. */
     private fun learning(until: Instant): RecordService {
-        val intent = Intent(context, RecordService::class.java).setAction(RecordService.ACTION_START_LEARN).putExtra(RecordService.EXTRA_UNTIL, until.toEpochMilli())
+        val intent = Intent(context, RecordService::class.java)
+            .setAction(RecordService.ACTION_START_LEARN)
+            .putExtra(RecordService.EXTRA_UNTIL, until.toEpochMilli())
         val built = Robolectric.buildService(RecordService::class.java, intent)
         controllers += built
         val service = built.create().startCommand(0, 1).get()
@@ -92,7 +95,10 @@ class LearnFollowPlanTest {
         assertEquals(old, RecordControl.learnUntilFor(old, null, now))
         // Übersprungen, der nächste erst morgen (über 12 Std.): alte Weckzeit; genau 12 Std.: noch dieselbe Nacht.
         assertEquals(old, RecordControl.learnUntilFor(old, plan(moved.plus(Duration.ofDays(1))), now))
-        assertEquals(now.plus(Duration.ofHours(12)), RecordControl.learnUntilFor(old, plan(now.plus(Duration.ofHours(12))), now))
+        assertEquals(
+            now.plus(Duration.ofHours(12)),
+            RecordControl.learnUntilFor(old, plan(now.plus(Duration.ofHours(12))), now),
+        )
         assertEquals(old, RecordControl.learnUntilFor(old, plan(now.plus(Duration.ofHours(12)).plusSeconds(1)), now))
         // Schon vorbei: alte Weckzeit.
         assertEquals(old, RecordControl.learnUntilFor(old, plan(now), now))
@@ -131,7 +137,10 @@ class LearnFollowPlanTest {
         val old = Instant.ofEpochMilli(System.currentTimeMillis()).plus(Duration.ofHours(8))
         val service = learning(old)
         // Übersprungen: Der nächste Wecker ist erst in der nächsten Nacht.
-        assertEquals(old, runBlocking { RecordControl.followPlan(context, plan(old.plus(Duration.ofDays(1))), Instant.now()) })
+        assertEquals(
+            old,
+            runBlocking { RecordControl.followPlan(context, plan(old.plus(Duration.ofDays(1))), Instant.now()) },
+        )
         assertEquals(old, runBlocking { app.learnMark.get() }?.until)
         assertEquals(old, service.active?.learnUntil)
         RecordService.clock = { old.plusSeconds(1) }

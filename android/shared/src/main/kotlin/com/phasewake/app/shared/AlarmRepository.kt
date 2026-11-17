@@ -47,7 +47,12 @@ class AlarmRepository(
         .map { prefs ->
             val list = decode(prefs[ALARMS]).orEmpty()
             val ids = list.map { it.id }.toSet()
-            AlarmSnapshot(list, prefs[UPDATED_AT] ?: 0L, AlarmStamps.decodeMap(prefs[STAMPS]).filterKeys { it in ids }, AlarmStamps.decodeMap(prefs[DELETED]))
+            AlarmSnapshot(
+                list,
+                prefs[UPDATED_AT] ?: 0L,
+                AlarmStamps.decodeMap(prefs[STAMPS]).filterKeys { it in ids },
+                AlarmStamps.decodeMap(prefs[DELETED]),
+            )
         }
         .distinctUntilChanged()
 
@@ -79,7 +84,12 @@ class AlarmRepository(
         store.edit { prefs ->
             val current = decode(prefs[ALARMS]) ?: return@edit
             val listStamp = prefs[UPDATED_AT] ?: 0L
-            val local = AlarmSnapshot(current, listStamp, fullStamps(prefs, current, listStamp), AlarmStamps.decodeMap(prefs[DELETED]))
+            val local = AlarmSnapshot(
+                current,
+                listStamp,
+                fullStamps(prefs, current, listStamp),
+                AlarmStamps.decodeMap(prefs[DELETED]),
+            )
             val off = AlarmStamps.autoOff(local, id, TimeBounds.next(clock(), prefs[UPDATED_AT]), rang) ?: return@edit
             result = save(prefs, off.alarms.sortedWith(ORDER), off.updatedAt, off.stamps, off.deleted)
         }
@@ -144,18 +154,39 @@ class AlarmRepository(
                     val before = localList.orEmpty()
                     val sorted = remote.alarms.distinctBy { it.id }.sortedWith(ORDER)
                     val stamps = sorted.associate { it.id to remote.stampOf(it.id) }
-                    val gone = before.map { it.id }.filter { id -> sorted.none { it.id == id } }.associateWith { remote.updatedAt }
-                    save(prefs, sorted, remote.updatedAt, stamps, AlarmStamps.decodeMap(prefs[DELETED]) + remote.deleted + gone)
+                    val gone =
+                        before.map { it.id }.filter { id ->
+                            sorted.none { it.id == id }
+                        }.associateWith { remote.updatedAt }
+                    save(
+                        prefs,
+                        sorted,
+                        remote.updatedAt,
+                        stamps,
+                        AlarmStamps.decodeMap(prefs[DELETED]) + remote.deleted + gone,
+                    )
                     applied = localList != sorted
                 }
                 return@edit
             }
             val now = clock()
-            val local = AlarmSnapshot(localList, localStamp, fullStamps(prefs, localList, localStamp), AlarmStamps.decodeMap(prefs[DELETED]))
+            val local = AlarmSnapshot(
+                localList,
+                localStamp,
+                fullStamps(prefs, localList, localStamp),
+                AlarmStamps.decodeMap(prefs[DELETED]),
+            )
             val merged = AlarmStamps.merge(local, remote, now)
             val sorted = merged.alarms.sortedWith(ORDER)
-            val same = sorted == localList && merged.stamps == local.stamps && merged.deleted == local.deleted && merged.updatedAt == localStamp
-            val result = if (same) merged.copy(alarms = sorted) else save(prefs, sorted, merged.updatedAt, merged.stamps, merged.deleted)
+            val same = sorted == localList && merged.stamps == local.stamps && merged.deleted == local.deleted &&
+                merged.updatedAt == localStamp
+            val result = if (same) merged.copy(alarms = sorted) else save(
+                prefs,
+                sorted,
+                merged.updatedAt,
+                merged.stamps,
+                merged.deleted,
+            )
             applied = !same && sorted != localList
             reply = result.takeIf { differs(it, remote, now) }
         }
@@ -166,12 +197,19 @@ class AlarmRepository(
         lateinit var result: AlarmSnapshot
         store.edit { prefs ->
             // Unlesbarer Stand (z. B. Format einer neueren Version): nicht mit einer leeren Liste überschreiben.
-            val current = decode(prefs[ALARMS]) ?: throw CodecException("Gespeicherte Wecker nicht lesbar, Änderung verworfen")
+            val current =
+                decode(prefs[ALARMS]) ?: throw CodecException("Gespeicherte Wecker nicht lesbar, Änderung verworfen")
             val updated = change(current).sortedWith(ORDER)
             // Streng steigend, damit zwei Änderungen in derselben Millisekunde unterscheidbar bleiben.
             val stamp = TimeBounds.next(clock(), prefs[UPDATED_AT])
             val old = current.associateBy { it.id }
-            result = write(prefs, updated, stamp, current, changed = updated.filter { old[it.id] != it }.map { it.id }.toSet())
+            result = write(
+                prefs,
+                updated,
+                stamp,
+                current,
+                changed = updated.filter { old[it.id] != it }.map { it.id }.toSet(),
+            )
         }
         return result
     }
@@ -181,7 +219,13 @@ class AlarmRepository(
      * die übrigen behalten ihren (ältere Daten ohne: der bisherige Listen-Zeitpunkt); Wecker aus [before], die fehlen,
      * gelten ab [stamp] als gelöscht.
      */
-    private fun write(prefs: MutablePreferences, alarms: List<AlarmSpec>, stamp: Long, before: List<AlarmSpec>, changed: Set<String>): AlarmSnapshot {
+    private fun write(
+        prefs: MutablePreferences,
+        alarms: List<AlarmSpec>,
+        stamp: Long,
+        before: List<AlarmSpec>,
+        changed: Set<String>,
+    ): AlarmSnapshot {
         val previous = fullStamps(prefs, before, prefs[UPDATED_AT] ?: 0L)
         val stamps = alarms.associate { it.id to (if (it.id in changed) stamp else previous[it.id] ?: stamp) }
         val ids = alarms.map { it.id }.toSet()
@@ -190,7 +234,13 @@ class AlarmRepository(
         return save(prefs, alarms, stamp, stamps, deleted)
     }
 
-    private fun save(prefs: MutablePreferences, alarms: List<AlarmSpec>, stamp: Long, stamps: Map<String, Long>, deleted: Map<String, Long>): AlarmSnapshot {
+    private fun save(
+        prefs: MutablePreferences,
+        alarms: List<AlarmSpec>,
+        stamp: Long,
+        stamps: Map<String, Long>,
+        deleted: Map<String, Long>,
+    ): AlarmSnapshot {
         val ids = alarms.map { it.id }.toSet()
         val kept = AlarmStamps.prune(deleted.filterKeys { it !in ids }, clock())
         val own = stamps.filterKeys { it in ids }
@@ -240,7 +290,10 @@ class AlarmRepository(
             if (own.alarms.sortedWith(ORDER) != theirs.values.sortedWith(ORDER)) return true
             if (own.alarms.any { own.stampOf(it.id) != remote.stampOf(it.id) }) return true
             val ids = own.alarms.map { it.id }.toSet()
-            return AlarmStamps.prune(own.deleted.filterKeys { it !in ids }, now) != AlarmStamps.prune(remote.deleted.filterKeys { it !in ids }, now)
+            return AlarmStamps.prune(own.deleted.filterKeys { it !in ids }, now) != AlarmStamps.prune(
+                remote.deleted.filterKeys { it !in ids },
+                now,
+            )
         }
     }
 }

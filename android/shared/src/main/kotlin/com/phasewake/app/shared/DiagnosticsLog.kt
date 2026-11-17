@@ -98,7 +98,10 @@ class DiagnosticsLog(
 
         /** Das Protokoll dieses Geräts im geräteverschlüsselten Speicher (auch vor dem ersten Entsperren lesbar). */
         fun forContext(context: Context, device: DiagDevice): DiagnosticsLog = instance ?: synchronized(this) {
-            instance ?: DiagnosticsLog(File(context.applicationContext.createDeviceProtectedStorageContext().filesDir, "diag.log"), device)
+            instance ?: DiagnosticsLog(
+                File(context.applicationContext.createDeviceProtectedStorageContext().filesDir, "diag.log"),
+                device,
+            )
                 .also { instance = it }
         }
     }

@@ -35,7 +35,8 @@ final class HealthSleep: @unchecked Sendable {
 
     /// Schlafphasen rund um die Nacht; leer ohne Daten oder Zugriff.
     func stages(for night: NightRecord) async -> [StageSpan] {
-        let samples = await query(from: night.windowStart.addingTimeInterval(-14 * 3600), to: night.wokeAt.addingTimeInterval(2 * 3600))
+        let samples = await query(from: night.windowStart.addingTimeInterval(-14 * 3600),
+                                  to: night.wokeAt.addingTimeInterval(2 * 3600))
         return samples.compactMap(Self.span).sorted { $0.start < $1.start }
     }
 
@@ -59,9 +60,11 @@ final class HealthSleep: @unchecked Sendable {
     /// bis `to` überschneiden, nur von Apple (Apple Watch, iPhone; ``appleSource``), damit «Im Bett» und Schlaf aus
     /// derselben Quelle stammen. Leer ohne Daten oder Zugriff.
     func onsetSamples(from: Date, to: Date) async -> (inBed: [Date], asleep: [Date]) {
-        let samples = await query(from: from, to: to).filter { $0.sourceRevision.source.bundleIdentifier.hasPrefix("com.apple.") }
+        let samples = await query(from: from, to: to)
+            .filter { $0.sourceRevision.source.bundleIdentifier.hasPrefix("com.apple.") }
         let inBed = samples.filter { $0.value == HKCategoryValueSleepAnalysis.inBed.rawValue }.map(\.startDate)
-        let asleep = samples.filter { sample in Self.stage(sample.value).map { $0 != .awake } ?? false }.map(\.startDate)
+        let asleep = samples.filter { sample in Self.stage(sample.value).map { $0 != .awake } ?? false }
+            .map(\.startDate)
         return (inBed: inBed, asleep: asleep)
     }
 
@@ -76,7 +79,8 @@ final class HealthSleep: @unchecked Sendable {
         let predicate = HKQuery.predicateForSamples(withStart: from, end: to)
         let answer = QueryAnswer()
         return await withCheckedContinuation { continuation in
-            let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { _, results, _ in
+            let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: HKObjectQueryNoLimit,
+                                      sortDescriptors: nil) { _, results, _ in
                 answer.give((results as? [HKCategorySample]) ?? [])
             }
             answer.wait(continuation, query: query)
@@ -96,7 +100,8 @@ final class HealthSleep: @unchecked Sendable {
     private static func sessions(_ samples: [HKCategorySample], source: String) -> [HealthSession] {
         var groups: [[HKCategorySample]] = []
         for sample in samples.sorted(by: { $0.startDate < $1.startDate }) {
-            if let group = groups.last, let end = group.map(\.endDate).max(), sample.startDate.timeIntervalSince(end) <= SleepSummary.newNightGap {
+            if let group = groups.last, let end = group.map(\.endDate).max(),
+               sample.startDate.timeIntervalSince(end) <= SleepSummary.newNightGap {
                 groups[groups.count - 1].append(sample)
             } else {
                 groups.append([sample])
@@ -106,7 +111,9 @@ final class HealthSleep: @unchecked Sendable {
             guard let start = group.map(\.startDate).min(), let end = group.map(\.endDate).max() else { return nil }
             let spans = group.compactMap(Self.span)
             let known = spans.filter { $0.stage != .unknown }
-            let kept = spans.filter { s in s.stage != .unknown || !known.contains { $0.start < s.end && $0.end > s.start } }
+            let kept = spans.filter { s in
+                s.stage != .unknown || !known.contains { $0.start < s.end && $0.end > s.start }
+            }
             return HealthSession(start: start, end: end, stages: kept.sorted { $0.start < $1.start }, source: source,
                                  timeZone: Self.timeZone(of: group))
         }

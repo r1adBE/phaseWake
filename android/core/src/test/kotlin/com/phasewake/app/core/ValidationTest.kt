@@ -25,11 +25,16 @@ class ValidationTest {
     }
 
     /** «Beginn-Ende:PHASE» mit Kommas, «-» = keine; Zeiten über [at]. */
-    private fun spans(text: String, at: (String) -> Instant): List<StageSpan> = if (text == "-") emptyList() else text.split(',').map {
-        val (range, stage) = it.split(':')
-        val (from, to) = range.split('-')
-        StageSpan(at(from), at(to), SleepStage.valueOf(stage))
-    }
+    private fun spans(text: String, at: (String) -> Instant): List<StageSpan> =
+        if (text == "-") {
+            emptyList()
+        } else {
+            text.split(',').map {
+                val (range, stage) = it.split(':')
+                val (from, to) = range.split('-')
+                StageSpan(at(from), at(to), SleepStage.valueOf(stage))
+            }
+        }
 
     private class Case(val name: String, val zone: ZoneId) {
         val nights = mutableListOf<NightRecord>()
@@ -59,30 +64,55 @@ class ValidationTest {
                 "case" -> cases += Case(f[1], ZoneId.of(f[2]))
                 "night" -> {
                     val (start, target, woke, reason) = f[1].split(' ')
-                    case!!.nights += NightRecord("a", minutes(start), minutes(target), minutes(woke), WakeReason.valueOf(reason), 0, epochs(f.getOrElse(2) { "" }))
+                    case!!.nights += NightRecord(
+                        "a",
+                        minutes(start),
+                        minutes(target),
+                        minutes(woke),
+                        WakeReason.valueOf(reason),
+                        0,
+                        epochs(f.getOrElse(2) { "" }),
+                    )
                 }
                 "record" -> case!!.records += Learning.Night(minutes(f[1]), epochs(f[2]))
                 "session" -> {
                     val (start, end, local) = f[1].split(' ')
-                    case!!.sessions += HealthSession(minutes(start), minutes(end), spans(f[2], ::minutes), timeZone = if (local == "-") null else ZoneId.of(local))
+                    case!!.sessions += HealthSession(
+                        minutes(start),
+                        minutes(end),
+                        spans(f[2], ::minutes),
+                        timeZone = if (local == "-") null else ZoneId.of(local),
+                    )
                 }
                 "learned" -> {
                     val (floor, resting) = f[1].split(' ')
-                    case!!.learned = Learning.Values(floor.toDoubleOrNull(), resting.toDoubleOrNull(), null, Learning.NIGHTS)
+                    case!!.learned =
+                        Learning.Values(floor.toDoubleOrNull(), resting.toDoubleOrNull(), null, Learning.NIGHTS)
                 }
                 "row" -> case!!.rows += f[1]
                 "sum" -> case!!.sums += f[1]
                 else -> error("unbekannte Zeile: $line")
             }
         }
-        for (case in cases) {
-            val entries = Validation.evaluate(case.nights, case.records, case.sessions, null, case.learned, case.zone)
-            assertEquals(case.rows, ValidationReport.exportCsv(entries).lines().drop(1).filter { it.isNotEmpty() }, case.name)
-            val sum = Regex("night \\d+: .*")
-            assertEquals(case.sums, ValidationReport.lines(entries).filter { it.startsWith("all:") || sum.matches(it) }, case.name)
-        }
+        cases.forEach(::verify)
         assertEquals(18, refs)
         assertEquals(8, cases.size)
+    }
+
+    /** Zeilen und Summen eines Falls wie erwartet. */
+    private fun verify(case: Case) {
+        val entries = Validation.evaluate(case.nights, case.records, case.sessions, null, case.learned, case.zone)
+        assertEquals(
+            case.rows,
+            ValidationReport.exportCsv(entries).lines().drop(1).filter { it.isNotEmpty() },
+            case.name,
+        )
+        val sum = Regex("night \\d+: .*")
+        assertEquals(
+            case.sums,
+            ValidationReport.lines(entries).filter { it.startsWith("all:") || sum.matches(it) },
+            case.name,
+        )
     }
 
     @Test
@@ -115,7 +145,8 @@ class ValidationTest {
     fun nightWithoutDecisionIsLeftOut() {
         // Nur Stichproben, keine eigene Nacht: kein Entscheid, keine Nacht, kein Abschnitt.
         val sampled = (0 until 12).flatMap { List(2) { Epoch(0.02, 55.0) } + List(8) { Epoch(null, null) } }
-        val entries = Validation.evaluate(emptyList(), listOf(Learning.Night(t0, sampled)), emptyList(), null, null, zone)
+        val entries =
+            Validation.evaluate(emptyList(), listOf(Learning.Night(t0, sampled)), emptyList(), null, null, zone)
         assertEquals(emptyList(), entries)
         assertEquals(emptyList(), ValidationReport.lines(entries))
         assertEquals("night,time,kind,reason,ref_stage\n", ValidationReport.exportCsv(entries))
@@ -123,20 +154,35 @@ class ValidationTest {
 
     @Test
     fun diagLines() {
-        val night = NightRecord("a", t0, t0.plus(Duration.ofMinutes(30)), t0.plus(Duration.ofMinutes(20)), WakeReason.LIGHT_SLEEP, 0, emptyList())
-        val session = HealthSession(t0.minus(Duration.ofHours(6)), t0.plus(Duration.ofHours(1)), listOf(StageSpan(t0.minus(Duration.ofHours(6)), t0.plus(Duration.ofHours(1)), SleepStage.DEEP)))
-        val lines = ValidationReport.lines(Validation.evaluate(listOf(night), emptyList(), listOf(session), null, null, zone))
+        val night = NightRecord(
+            "a",
+            t0,
+            t0.plus(Duration.ofMinutes(30)),
+            t0.plus(Duration.ofMinutes(20)),
+            WakeReason.LIGHT_SLEEP,
+            0,
+            emptyList(),
+        )
+        val session = HealthSession(
+            t0.minus(Duration.ofHours(6)),
+            t0.plus(Duration.ofHours(1)),
+            listOf(StageSpan(t0.minus(Duration.ofHours(6)), t0.plus(Duration.ofHours(1)), SleepStage.DEEP)),
+        )
+        val lines =
+            ValidationReport.lines(Validation.evaluate(listOf(night), emptyList(), listOf(session), null, null, zone))
         assertEquals(
             listOf(
                 ValidationReport.NOTE,
                 "night 1 23:20 real LIGHT_SLEEP deep",
                 "night 1: LIGHT_SLEEP real 0/1 shadow - · target real - shadow - · hits real 0/1",
-                "all: 1 nights, 1 with reference · LIGHT_SLEEP real 0/1 shadow - · target real - shadow - · hits real 0/1",
+                "all: 1 nights, 1 with reference · LIGHT_SLEEP real 0/1 shadow - · target real - shadow - · hits " +
+                    "real 0/1",
             ),
             lines,
         )
         // «Verlauf löschen» blendet die Sitzung aus: keine Referenz mehr.
-        val cleared = Validation.evaluate(listOf(night), emptyList(), listOf(session), t0.plus(Duration.ofHours(2)), null, zone)
+        val cleared =
+            Validation.evaluate(listOf(night), emptyList(), listOf(session), t0.plus(Duration.ofHours(2)), null, zone)
         assertEquals(listOf(Validation.Ref.NONE), cleared.map { it.ref })
     }
 }

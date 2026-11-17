@@ -62,11 +62,17 @@ internal fun NapCard(running: TransientPlan?, minutes: Int, onStart: (Int) -> Un
                 .padding(horizontal = 18.dp, vertical = 14.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Icon(painterResource(R.drawable.ic_nap), contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+            Icon(
+                painterResource(R.drawable.ic_nap), contentDescription = null, tint = MaterialTheme.colorScheme.primary,
+            )
             Column(Modifier.weight(1f).padding(start = 14.dp)) {
                 Text(stringResource(R.string.nap_title), style = MaterialTheme.typography.titleMedium)
                 Text(
-                    if (running != null) stringResource(R.string.nap_running, Format.time(running.plan.target)) else length,
+                    if (running != null) {
+                        stringResource(R.string.nap_running, Format.time(running.plan.target))
+                    } else {
+                        length
+                    },
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -83,7 +89,10 @@ internal fun NapCard(running: TransientPlan?, minutes: Int, onStart: (Int) -> Un
                     valueRange = Transient.NAP_MIN_MINUTES.toFloat()..Transient.NAP_MAX_MINUTES.toFloat(),
                     steps = (Transient.NAP_MAX_MINUTES - Transient.NAP_MIN_MINUTES) / Transient.NAP_STEP_MINUTES - 1,
                 )
-                Text(stringResource(R.string.nap_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(
+                    stringResource(R.string.nap_hint), style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
                 Button(
                     onClick = {
                         expanded = false

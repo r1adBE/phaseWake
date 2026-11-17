@@ -85,13 +85,25 @@ class HealthFeelingsTest {
     @Test
     fun countsInChartsAndTrends() {
         val three = health(3) { 4 }
-        assertEquals(listOf(4, 4, 4), ChartData.feelingSeries(emptyList(), emptyMap(), zone, d("2026-10-04"), health = three)?.points?.mapNotNull { it.feeling })
+        assertEquals(
+            listOf(4, 4, 4),
+            ChartData.feelingSeries(
+                emptyList(),
+                emptyMap(),
+                zone,
+                d("2026-10-04"),
+                health = three,
+            )?.points?.mapNotNull { it.feeling },
+        )
         assertNull(ChartData.feelingSeries(emptyList(), emptyMap(), zone, d("2026-10-04")))
         val now = t("2026-10-04T12:00:00Z")
         assertEquals(4.0, Trends.compute(emptyList(), emptyList(), now, zone, three).feelingThisWeek)
         assertNull(Trends.compute(emptyList(), emptyList(), now, zone).feelingThisWeek)
         // Woche bis Samstag, 3.10.
-        assertEquals(4.0, WeeklySummary.of(emptyList(), emptyList(), emptyMap(), zone, 450, d("2026-10-03"), three).feelingAverage)
+        assertEquals(
+            4.0,
+            WeeklySummary.of(emptyList(), emptyList(), emptyMap(), zone, 450, d("2026-10-03"), three).feelingAverage,
+        )
         // Notiz-Wirkung: drei Nächte mit Kaffee (Befinden 2), drei ohne (4).
         val six = health(6) { if (it < 3) 2 else 4 }
         val notes = (0L until 3L).associate { d("2026-10-01").plusDays(it) to listOf(SleepNotes.CAFFEINE) }

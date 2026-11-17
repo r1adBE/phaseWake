@@ -18,7 +18,8 @@ extension BackupAlarm {
         let snoozes = Transient.allowsSnooze(transient.plan.alarmId) ? Snooze.maxCount : 0
         await schedule(id: id, at: transient.plan.target.addingTimeInterval(currentGrace), snoozesLeft: snoozes,
                        tone: WakeTone(rawValue: transient.spec.sound))
-        DiagStore.shared.log(.scheduled, "phone backup \(transient.kind.rawValue) \(Format.logTime(transient.plan.target))")
+        DiagStore.shared.log(.scheduled,
+                             "phone backup \(transient.kind.rawValue) \(Format.logTime(transient.plan.target))")
         return id
     }
 

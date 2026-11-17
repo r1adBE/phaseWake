@@ -50,12 +50,16 @@ internal class PhoneRingSound(private val service: Service, private val handler:
     fun play(chosen: String) {
         val default = RingtoneManager.getActualDefaultRingtoneUri(service, RingtoneManager.TYPE_ALARM)
             ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-        val candidates = listOfNotNull(WakeTones.resolve(service, chosen), default, WakeTones.lastResort(service)).distinct()
+        val candidates =
+            listOfNotNull(WakeTones.resolve(service, chosen), default, WakeTones.lastResort(service)).distinct()
         for (uri in candidates) {
             // Erst nach erfolgreichem Start übernehmen; scheitert der Start, wird genau dieser Player freigegeben.
             val candidate = MediaPlayer()
             try {
-                candidate.setAudioAttributes(AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build())
+                candidate.setAudioAttributes(
+                    AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM)
+                        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build()
+                )
                 candidate.setDataSource(service, uri)
                 candidate.isLooping = true
                 candidate.setVolume(0f, 0f)

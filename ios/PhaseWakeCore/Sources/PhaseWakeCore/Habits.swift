@@ -11,7 +11,8 @@ public enum NightDate {
     /// Mitternacht UTC des Datums; `nil` bei ungültigem Text (auch «2026-02-30»).
     static func date(_ text: String) -> Date? {
         let parts = text.split(separator: "-", omittingEmptySubsequences: false)
-        guard text.count == 10, parts.count == 3, parts.allSatisfy({ $0.allSatisfy(\.isASCII) && $0.allSatisfy(\.isNumber) }),
+        guard text.count == 10, parts.count == 3,
+              parts.allSatisfy({ $0.allSatisfy(\.isASCII) && $0.allSatisfy(\.isNumber) }),
               let year = Int(parts[0]), let month = Int(parts[1]), let day = Int(parts[2]),
               let date = utc.date(from: DateComponents(year: year, month: month, day: day)),
               SleepNotes.dateString(date, calendar: utc) == text else { return nil }
@@ -33,7 +34,8 @@ public enum NightDate {
     }
 
     /// Kalenderdatum «heute» in der Ortszeit.
-    public static func today(_ now: Date, calendar: Calendar) -> String { SleepNotes.dateString(now, calendar: calendar) }
+    public static func today(_ now: Date,
+                             calendar: Calendar) -> String { SleepNotes.dateString(now, calendar: calendar) }
 }
 
 extension NoteEffect {
@@ -61,7 +63,8 @@ public enum Regularity {
 
     /// Bettzeiten als (Nachtdatum, Einschlafbeginn, Zone der Aufzeichnung) aus den Nächten der Gesundheits-App
     /// (``SleepSummary/timeZone``; `nil` = Zone des Geräts).
-    public static func bedtimes(of sleeps: [SleepSummary], calendar: Calendar) -> [(date: String, start: Date, timeZone: TimeZone?)] {
+    public static func bedtimes(of sleeps: [SleepSummary],
+                                calendar: Calendar) -> [(date: String, start: Date, timeZone: TimeZone?)] {
         sleeps.map { (date: SleepNotes.nightDate(of: $0, calendar: calendar), start: $0.start, timeZone: $0.timeZone) }
     }
 
@@ -69,16 +72,19 @@ public enum Regularity {
     /// 14 Nachtdaten bis `until`. Je Nachtdatum zählt die früheste Bettzeit. `until` `nil`: das jüngste
     /// Nachtdatum mit Daten. Ohne Daten (0, 0). Uhrzeiten in `calendar`.
     public static func count(_ bedtimes: [(date: String, start: Date)], calendar: Calendar,
-                             toleranceMinutes: Int = Regularity.toleranceMinutes, until: String? = nil) -> (regular: Int, total: Int) {
+                             toleranceMinutes: Int = Regularity.toleranceMinutes,
+                             until: String? = nil) -> (regular: Int, total: Int) {
         count(bedtimes.map { (date: $0.date, start: $0.start, timeZone: TimeZone?.none) }, calendar: calendar,
               toleranceMinutes: toleranceMinutes, until: until)
     }
 
     /// Wie oben, jede Bettzeit in ihrer eigenen Zone (``bedtimes(of:calendar:)``; ohne Zone `calendar`).
     public static func count(_ bedtimes: [(date: String, start: Date, timeZone: TimeZone?)], calendar: Calendar,
-                             toleranceMinutes: Int = Regularity.toleranceMinutes, until: String? = nil) -> (regular: Int, total: Int) {
+                             toleranceMinutes: Int = Regularity.toleranceMinutes,
+                             until: String? = nil) -> (regular: Int, total: Int) {
         var byDate: [String: (start: Date, timeZone: TimeZone?)] = [:]
-        for b in bedtimes where byDate[b.date].map({ b.start < $0.start }) ?? true { byDate[b.date] = (b.start, b.timeZone) }
+        for b in bedtimes where byDate[b.date].map({ b.start < $0.start }) ?? true { byDate[b.date] = (b.start,
+                                                                                                       b.timeZone) }
         guard let end = until ?? byDate.keys.max() else { return (0, 0) }
         let medianFrom = NightDate.adding(-medianNights, to: end)
         let medianDates = byDate.filter { $0.key <= end && $0.key > medianFrom }
@@ -144,8 +150,11 @@ public enum Streak {
     public static let longestDays = 90
 
     /// Schlafziel erreicht je Nachtdatum (aus der Gesundheits-App; mehrere Nächte am selben Datum → die längste).
-    public static func reachedByNight(_ sleeps: [SleepSummary], calendar: Calendar, goalMinutes: Int) -> [String: Bool] {
-        NoteEffect.asleepByNight(sleeps, calendar: calendar).mapValues { SleepGoal.reached(asleepMinutes: $0, goalMinutes: goalMinutes) }
+    public static func reachedByNight(_ sleeps: [SleepSummary], calendar: Calendar,
+                                      goalMinutes: Int) -> [String: Bool] {
+        NoteEffect.asleepByNight(sleeps,
+                                 calendar: calendar).mapValues { SleepGoal.reached(asleepMinutes: $0,
+                                                                                   goalMinutes: goalMinutes) }
     }
 
     /// Aktuelle Serie bis zur jüngsten Nacht. `today` = Nachtdatum von «jetzt» (`SleepNotes.nightDate`):
@@ -248,10 +257,13 @@ public struct WeeklySummary: Equatable, Sendable {
         func inWeek(_ date: String) -> Bool { date >= from && date <= weekEnd }
         let allAsleep = NoteEffect.asleepByNight(sleeps, calendar: calendar)
         let asleep = Array(allAsleep.filter { inWeek($0.key) }.values)
-        let regularity = Regularity.count(Regularity.bedtimes(of: sleeps, calendar: calendar), calendar: calendar, until: weekEnd)
+        let regularity = Regularity.count(Regularity.bedtimes(of: sleeps, calendar: calendar), calendar: calendar,
+                                          until: weekEnd)
         // Je Nachtdatum das Befinden der zuletzt geweckten Nacht (wie bei den Notizen), sonst das der Fremd-Nacht.
-        let feelings = Array(HealthFeelings.byDate(nights, health: health, calendar: calendar).filter { inWeek($0.key) }.values)
-        let strongest = NoteEffect.compute(nights: nights, notes: notes, asleepByNight: allAsleep, health: health, calendar: calendar)
+        let feelings = Array(HealthFeelings.byDate(nights, health: health,
+                                                   calendar: calendar).filter { inWeek($0.key) }.values)
+        let strongest = NoteEffect.compute(nights: nights, notes: notes, asleepByNight: allAsleep, health: health,
+                                           calendar: calendar)
             .first(where: \.isVisible)
         return WeeklySummary(
             from: from,
@@ -264,138 +276,5 @@ public struct WeeklySummary: Equatable, Sendable {
             feelingAverage: feelings.isEmpty ? nil : Double(feelings.reduce(0, +)) / Double(feelings.count),
             strongestNote: strongest
         )
-    }
-}
-
-/// Ein Punkt der Abendroutine. Vorgeschlagene Punkte haben einen leeren `text` (Anzeige übersetzt).
-public struct RoutineItem: Equatable, Sendable, Identifiable {
-    /// Kennung: `PHONE`, `LIGHT`, `WATER` oder «custom:» plus UUID.
-    public let id: String
-    /// Eigener Text; leer bei den Vorschlägen.
-    public let text: String
-
-    /// Erzeugt einen Punkt; Vorschläge ohne Text.
-    public init(id: String, text: String = "") {
-        self.id = id
-        self.text = text
-    }
-}
-
-/// Abendroutine: eine eigene Checkliste (höchstens 8 Punkte) für den Abend, sichtbar wie die Notizen ab
-/// 17:00 bis zum Weckfenster. Abgehakt wird je Nachtdatum; am nächsten Abend ist alles frei.
-/// Speicherformat: Punkte je Zeile «id|Text»; abgehakte Punkte je Nachtdatum «yyyy-MM-dd|id,id».
-/// Identisch zu `Routine` (Kotlin).
-public enum Routine {
-    /// Vorschlag «Handy weg».
-    public static let phone = "PHONE"
-    /// Vorschlag «Licht dimmen».
-    public static let light = "LIGHT"
-    /// Vorschlag «Wasser bereit».
-    public static let water = "WATER"
-
-    /// Die drei Vorschläge für den Anfang.
-    public static let defaults: [RoutineItem] = [RoutineItem(id: phone), RoutineItem(id: light), RoutineItem(id: water)]
-
-    /// Höchstzahl Punkte; mehr wäre keine Routine mehr.
-    public static let maxItems = 8
-    /// Höchstlänge eines eigenen Texts in Zeichen; passt auf eine Zeile.
-    public static let maxTextLength = 40
-    /// Vorsatz der Kennung eigener Punkte.
-    public static let customPrefix = "custom:"
-    /// Durchschnitt erst ab so vielen Abenden …
-    public static let minEvenings = 3
-    /// … über so viele Nachtdaten bis heute.
-    public static let averageNights = 30
-    /// Abgehakt bleibt so viele Nachtdaten (wie die Notizen).
-    public static let maxDates = NightHistory.maxNights
-
-    /// Ob die Kennung einer der drei Vorschläge ist.
-    public static func isBuiltIn(_ id: String) -> Bool { id == phone || id == light || id == water }
-
-    /// Kennung für einen eigenen Punkt aus einer UUID.
-    public static func customId(_ uuid: String) -> String { customPrefix + uuid }
-
-    /// Text ohne Zeilenumbrüche und «|» (Trennzeichen des Formats), ohne Rand-Leerzeichen, höchstens 40 Zeichen.
-    public static func cleanText(_ text: String) -> String {
-        let flat = text.replacingOccurrences(of: "\n", with: " ").replacingOccurrences(of: "\r", with: " ").replacingOccurrences(of: "|", with: " ")
-        return String(flat.trimmingCharacters(in: .whitespaces).prefix(maxTextLength)).trimmingCharacters(in: .whitespaces)
-    }
-
-    /// Schreibt die Punkte je Zeile «id|Text», höchstens 8.
-    public static func encodeItems(_ items: [RoutineItem]) -> String {
-        items.prefix(maxItems).map { "\($0.id)|\(cleanText($0.text))" }.joined(separator: "\n")
-    }
-
-    /// Liest `encodeItems`; nie gespeichert (`nil`): die Vorschläge. Eigene Punkte ohne Text fallen weg.
-    public static func decodeItems(_ text: String?) -> [RoutineItem] {
-        guard let text else { return defaults }
-        var out: [RoutineItem] = []
-        for line in text.components(separatedBy: "\n") where !line.trimmingCharacters(in: .whitespaces).isEmpty {
-            let parts = line.split(separator: "|", maxSplits: 1, omittingEmptySubsequences: false)
-            let id = String(parts[0]).trimmingCharacters(in: .whitespaces)
-            let label = cleanText(parts.count > 1 ? String(parts[1]) : "")
-            let item: RoutineItem?
-            if isBuiltIn(id) {
-                item = RoutineItem(id: id)
-            } else if id.hasPrefix(customPrefix), id.count > customPrefix.count, !label.isEmpty {
-                item = RoutineItem(id: id, text: label)
-            } else {
-                item = nil
-            }
-            if let item, !out.contains(where: { $0.id == item.id }) { out.append(item) }
-        }
-        return Array(out.prefix(maxItems))
-    }
-
-    /// Hakt einen Punkt für ein Nachtdatum ab oder wieder an; ein Datum ohne Haken fällt weg.
-    public static func toggle(_ ticks: [String: [String]], date: String, id: String) -> [String: [String]] {
-        let current = ticks[date] ?? []
-        let updated = current.contains(id) ? current.filter { $0 != id } : current + [id]
-        var result = ticks
-        result[date] = updated.isEmpty ? nil : updated
-        return trim(result)
-    }
-
-    /// Behält die jüngsten 90 Nachtdaten mit Haken.
-    public static func trim(_ ticks: [String: [String]]) -> [String: [String]] {
-        let kept = ticks.filter { !$0.value.isEmpty }.keys.sorted().suffix(maxDates)
-        return Dictionary(uniqueKeysWithValues: kept.map { ($0, ticks[$0] ?? []) })
-    }
-
-    /// Je Nachtdatum eine Zeile «yyyy-MM-dd|id,id», nach Datum sortiert.
-    public static func encodeTicks(_ ticks: [String: [String]]) -> String {
-        trim(ticks).sorted { $0.key < $1.key }.map { "\($0.key)|\(unique($0.value).joined(separator: ","))" }.joined(separator: "\n")
-    }
-
-    /// Liest `encodeTicks`; unlesbare Zeilen werden übersprungen.
-    public static func decodeTicks(_ text: String?) -> [String: [String]] {
-        var out: [String: [String]] = [:]
-        for line in (text ?? "").components(separatedBy: "\n") {
-            let parts = line.split(separator: "|", maxSplits: 1, omittingEmptySubsequences: false)
-            let date = String(parts.first ?? "")
-            guard NightDate.isValid(date) else { continue }
-            let ids = unique((parts.count > 1 ? String(parts[1]) : "").components(separatedBy: ",")
-                .map { $0.trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty })
-            if !ids.isEmpty { out[date] = ids }
-        }
-        return trim(out)
-    }
-
-    /// Durchschnittlich erledigte Punkte je Abend über die 30 Nachtdaten bis `today`; es zählen nur Abende
-    /// mit mindestens einem Haken und nur Punkte, die es noch gibt. `nil` unter 3 Abenden oder ohne Punkte.
-    public static func average(_ ticks: [String: [String]], items: [RoutineItem], today: String) -> Double? {
-        guard !items.isEmpty else { return nil }
-        let ids = Set(items.map(\.id))
-        let from = NightDate.adding(-(averageNights - 1), to: today)
-        let counts = ticks.filter { $0.key >= from && $0.key <= today }.values
-            .map { list in list.filter { ids.contains($0) }.count }
-            .filter { $0 > 0 }
-        guard counts.count >= minEvenings else { return nil }
-        return Double(counts.reduce(0, +)) / Double(counts.count)
-    }
-
-    private static func unique(_ ids: [String]) -> [String] {
-        var seen = Set<String>()
-        return ids.filter { seen.insert($0).inserted }
     }
 }

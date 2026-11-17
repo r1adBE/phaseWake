@@ -58,7 +58,9 @@ fun soundSummary(context: Context, clips: List<SoundClip>): String? {
             val minutes = Format.duration(context, Duration.ofMinutes(summary.snoreMinutes.toLong()))
             add(res.getQuantityString(R.plurals.sound_summary, summary.snoreClips, minutes, summary.snoreClips))
         }
-        if (summary.talkClips > 0) add(res.getQuantityString(R.plurals.sound_summary_talk, summary.talkClips, summary.talkClips))
+        if (summary.talkClips > 0) add(
+            res.getQuantityString(R.plurals.sound_summary_talk, summary.talkClips, summary.talkClips)
+        )
     }
     return parts.takeIf { it.isNotEmpty() }?.joinToString(" · ")
 }
@@ -91,7 +93,10 @@ fun SoundClipsSection(
         val file = fileOf(clip)?.takeIf { it.exists() } ?: return
         try {
             player.value = MediaPlayer().apply {
-                setAudioAttributes(AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_MEDIA).setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build())
+                setAudioAttributes(
+                    AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_MEDIA)
+                        .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build()
+                )
                 setDataSource(file.path)
                 setOnCompletionListener { stop() }
                 prepare()
@@ -107,7 +112,10 @@ fun SoundClipsSection(
     var confirmAll by remember { mutableStateOf(false) }
 
     Column(modifier.fillMaxWidth()) {
-        Text(stringResource(R.string.sound_clips_title), style = MaterialTheme.typography.labelLarge, modifier = Modifier.padding(top = 8.dp))
+        Text(
+            stringResource(R.string.sound_clips_title), style = MaterialTheme.typography.labelLarge,
+            modifier = Modifier.padding(top = 8.dp),
+        )
         soundSummary(context, clips)?.let {
             Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
@@ -123,12 +131,18 @@ fun SoundClipsSection(
                     )
                 }
                 Text(time, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(end = 10.dp))
-                Text(soundTypeName(context, clip.type), style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(1f))
+                Text(
+                    soundTypeName(context, clip.type), style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.weight(1f),
+                )
                 IconButton(onClick = {
                     if (active) stop()
                     onDelete(clip)
                 }) {
-                    Icon(painterResource(R.drawable.ic_delete), contentDescription = stringResource(R.string.sound_clip_delete, time))
+                    Icon(
+                        painterResource(R.drawable.ic_delete),
+                        contentDescription = stringResource(R.string.sound_clip_delete, time),
+                    )
                 }
             }
         }
@@ -147,7 +161,9 @@ fun SoundClipsSection(
                     onDeleteAll()
                 }) { Text(stringResource(R.string.sound_clips_delete_all), color = MaterialTheme.colorScheme.error) }
             },
-            dismissButton = { TextButton(onClick = { confirmAll = false }) { Text(stringResource(R.string.action_cancel)) } },
+            dismissButton = {
+                TextButton(onClick = { confirmAll = false }) { Text(stringResource(R.string.action_cancel)) }
+            },
         )
     }
 }
@@ -170,10 +186,13 @@ fun SoundRecordingCard(
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         Row(
-            Modifier.fillMaxWidth().toggleable(value = enabled, role = Role.Switch, onValueChange = onToggle).padding(horizontal = 18.dp, vertical = 14.dp),
+            Modifier.fillMaxWidth().toggleable(value = enabled, role = Role.Switch, onValueChange = onToggle)
+                .padding(horizontal = 18.dp, vertical = 14.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Icon(painterResource(R.drawable.ic_mic), contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+            Icon(
+                painterResource(R.drawable.ic_mic), contentDescription = null, tint = MaterialTheme.colorScheme.primary,
+            )
             Column(Modifier.weight(1f).padding(horizontal = 14.dp)) {
                 Text(stringResource(R.string.sound_rec_title), style = MaterialTheme.typography.titleMedium)
                 Text(

@@ -74,7 +74,9 @@ fun SoundsScreen(
 ) {
     val context = LocalContext.current
     SkyBarPage(bar = {
-        IconButton(onClick = onBack) { Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.action_cancel)) }
+        IconButton(onClick = onBack) {
+            Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.action_cancel))
+        }
         Text(stringResource(R.string.sounds_title), style = MaterialTheme.typography.titleLarge)
     }) {
         Column(
@@ -85,7 +87,9 @@ fun SoundsScreen(
             SleepSound.entries.chunked(2).forEach { row ->
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth()) {
                     row.forEach { sound ->
-                        SoundTile(sound, active = sound == (playing?.sound ?: selected), Modifier.weight(1f)) { onSelect(sound) }
+                        SoundTile(sound, active = sound == (playing?.sound ?: selected), Modifier.weight(1f)) {
+                            onSelect(sound)
+                        }
                     }
                     if (row.size == 1) Spacer(Modifier.weight(1f))
                 }
@@ -99,7 +103,10 @@ fun SoundsScreen(
                 )
             }
 
-            Text(stringResource(R.string.sounds_timer), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 8.dp))
+            Text(
+                stringResource(R.string.sounds_timer), style = MaterialTheme.typography.titleSmall,
+                modifier = Modifier.padding(top = 8.dp),
+            )
             SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().height(IntrinsicSize.Max)) {
                 SleepSounds.TIMER_CHOICES.forEachIndexed { index, minutes ->
                     SegmentedButton(
@@ -109,7 +116,9 @@ fun SoundsScreen(
                         modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight(),
                     ) {
                         Text(
-                            if (minutes == null) stringResource(R.string.sounds_timer_off) else stringResource(R.string.duration_minutes, minutes),
+                            if (minutes == null) stringResource(R.string.sounds_timer_off) else stringResource(
+                                R.string.duration_minutes, minutes,
+                            ),
                             maxLines = 1,
                         )
                     }
@@ -117,7 +126,9 @@ fun SoundsScreen(
             }
 
             if (playing != null) {
-                Button(onClick = onStop, modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) { Text(stringResource(R.string.sounds_stop)) }
+                Button(onClick = onStop, modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
+                    Text(stringResource(R.string.sounds_stop))
+                }
                 playing.endsAt?.let { endsAt ->
                     var now by remember { mutableStateOf(Instant.now()) }
                     LaunchedEffect(endsAt) {
@@ -129,13 +140,17 @@ fun SoundsScreen(
                     // Angefangene Minuten zählen voll: «noch 1 Min» bis zum Schluss.
                     val minutes = (Duration.between(now, endsAt).seconds.coerceAtLeast(0) + 59) / 60
                     Text(
-                        stringResource(R.string.sounds_remaining, Format.duration(context, Duration.ofMinutes(minutes))),
+                        stringResource(
+                            R.string.sounds_remaining, Format.duration(context, Duration.ofMinutes(minutes)),
+                        ),
                         style = MaterialTheme.typography.bodyMedium,
                         modifier = Modifier.align(Alignment.CenterHorizontally),
                     )
                 }
             } else {
-                Button(onClick = onPlay, enabled = canPlay, modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) { Text(stringResource(R.string.sounds_play)) }
+                Button(onClick = onPlay, enabled = canPlay, modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
+                    Text(stringResource(R.string.sounds_play))
+                }
             }
             Text(
                 stringResource(R.string.sounds_hint),
@@ -165,9 +180,14 @@ private fun SoundTile(sound: SleepSound, active: Boolean, modifier: Modifier, on
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(painterResource(R.drawable.ic_sound), contentDescription = null)
                 Spacer(Modifier.weight(1f))
-                if (active) Icon(painterResource(R.drawable.ic_check), contentDescription = null, modifier = Modifier.size(20.dp))
+                if (active) Icon(
+                    painterResource(R.drawable.ic_check), contentDescription = null, modifier = Modifier.size(20.dp),
+                )
             }
-            Text(stringResource(SleepSoundService.soundName(sound)), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 10.dp))
+            Text(
+                stringResource(SleepSoundService.soundName(sound)), style = MaterialTheme.typography.titleSmall,
+                modifier = Modifier.padding(top = 10.dp),
+            )
         }
     }
 }

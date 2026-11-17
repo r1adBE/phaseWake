@@ -48,7 +48,8 @@ class MathChallenge(private val random: Random = Random.Default, val steps: Int 
     /** Neue Aufgabe, nie gleich wie die vorige. */
     private fun newProblem(previous: Problem?): Problem {
         while (true) {
-            val next = Problem(random.nextInt(MIN_OPERAND, MAX_OPERAND + 1), random.nextInt(MIN_OPERAND, MAX_OPERAND + 1))
+            val next =
+                Problem(random.nextInt(MIN_OPERAND, MAX_OPERAND + 1), random.nextInt(MIN_OPERAND, MAX_OPERAND + 1))
             if (next != previous) return next
         }
     }

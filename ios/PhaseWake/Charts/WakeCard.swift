@@ -15,8 +15,10 @@ private struct WakeSymbol: View {
         switch kind {
         case .light: Circle().fill(palette.active).frame(width: size, height: size)
         case .awake: Triangle().fill(Color.secondary).frame(width: size * 1.1, height: size)
-        case .target: Rectangle().strokeBorder(Color.secondary, lineWidth: 2).frame(width: size * 0.85, height: size * 0.85)
-        case .late: Rectangle().fill(Color.red).frame(width: size * 0.75, height: size * 0.75).rotationEffect(.degrees(45))
+        case .target:
+            Rectangle().strokeBorder(Color.secondary, lineWidth: 2).frame(width: size * 0.85, height: size * 0.85)
+        case .late:
+            Rectangle().fill(Color.red).frame(width: size * 0.75, height: size * 0.75).rotationEffect(.degrees(45))
         }
     }
 }
@@ -65,9 +67,11 @@ struct WakeCard: View {
                 .chartFadeIn()
                 .sensoryFeedback(.selection, trigger: selectedIndex)
             let present = Set(wake.points.map(\.kind))
-            let all: [(WakeKind, String)] = [(.light, "reason_light"), (.awake, "reason_awake"), (.target, "chart_wake_target"), (.late, "chart_wake_late")]
-            ChartLegend(items: all.filter { present.contains($0.0) }.map { (symbol: AnyView(WakeSymbol(kind: $0.0, palette: palette, size: 8)), text: L($0.1)) }
-                + [(symbol: AnyView(AverageSymbol()), text: L("chart_week_average"))])
+            let all: [(WakeKind, String)] = [(.light, "reason_light"), (.awake, "reason_awake"),
+                                             (.target, "chart_wake_target"), (.late, "chart_wake_late")]
+            ChartLegend(items: all.filter { present.contains($0.0) }.map {
+                (symbol: AnyView(WakeSymbol(kind: $0.0, palette: palette, size: 8)), text: L($0.1))
+            } + [(symbol: AnyView(AverageSymbol()), text: L("chart_week_average"))])
         }
     }
 
@@ -99,12 +103,16 @@ struct WakeCard: View {
         .chartXAxis {
             AxisMarks(values: n > 1 ? [0, Double(n - 1)] : [0]) { value in
                 AxisValueLabel {
-                    if let v = value.as(Double.self), wake.points.indices.contains(Int(v.rounded())) { Text(shortDate(wake.points[Int(v.rounded())].date)) }
+                    if let v = value.as(Double.self),
+                       wake.points.indices.contains(Int(v.rounded())) {
+                        Text(shortDate(wake.points[Int(v.rounded())].date))
+                    }
                 }
             }
         }
         .chartYAxis {
-            AxisMarks(position: .leading, values: [0, Double(wake.scaleMinutes / 2), Double(wake.scaleMinutes)]) { value in
+            AxisMarks(position: .leading,
+                      values: [0, Double(wake.scaleMinutes / 2), Double(wake.scaleMinutes)]) { value in
                 AxisGridLine()
                 AxisValueLabel { if let m = value.as(Double.self) { Text(Format.duration(minutes: Int(m))) } }
             }

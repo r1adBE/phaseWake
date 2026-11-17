@@ -31,10 +31,13 @@ extension PhoneModel {
         let plan = nextPlan(now: now)
         let night = SleepNotes.nightDate(now, calendar: .gregorianLocal)
         if let choice = soundRecChoice, choice.night == night {
-            guard choice.on, SleepNotes.entryVisible(now: now, nextWindowStart: plan?.windowStart, calendar: .gregorianLocal) else { return }
+            guard choice.on,
+                  SleepNotes.entryVisible(now: now, nextWindowStart: plan?.windowStart,
+                                          calendar: .gregorianLocal) else { return }
         } else {
             guard soundRecDefault,
-                  SoundEvents.mayAutoStart(now: now, nextTarget: plan?.target, goalMinutes: sleepGoal, calendar: .gregorianLocal, windowStart: plan?.windowStart,
+                  SoundEvents.mayAutoStart(now: now, nextTarget: plan?.target, goalMinutes: sleepGoal,
+                                           calendar: .gregorianLocal, windowStart: plan?.windowStart,
                                            latencyMinutes: learnedLatency) else { return }
         }
         await recorder.start(nextAlarmTarget: plan?.target)

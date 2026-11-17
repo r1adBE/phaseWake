@@ -103,7 +103,8 @@ public enum Validation {
         while from + windowEpochs <= epochs.count {
             let part = epochs[from..<(from + windowEpochs)]
             if measured(part) {
-                let moment = window(start: start.addingTimeInterval(Double(from) * epochSeconds), epochs: part, config: config)
+                let moment = window(start: start.addingTimeInterval(Double(from) * epochSeconds), epochs: part,
+                                    config: config)
                 if !moments.contains(moment) { moments.append(moment) }
             }
             from += stepEpochs
@@ -119,7 +120,8 @@ public enum Validation {
         let known = spans.filter { $0.stage != .unknown && $0.end > $0.start }
         if let stage = StageCheck.stageAt(known, at) { return stage }
         // Nach Beginn, bei gleichem Beginn in der gelisteten Reihenfolge (wie das stabile Sortieren in Kotlin).
-        let sorted = known.enumerated().sorted { ($0.element.start, $0.offset) < ($1.element.start, $1.offset) }.map(\.element)
+        let sorted = known.enumerated().sorted { ($0.element.start, $0.offset) < ($1.element.start,
+                                                                                  $1.offset) }.map(\.element)
         var best: StageSpan?
         var bestGap = Int64.max
         for span in sorted {
@@ -144,16 +146,24 @@ public enum Validation {
     /// berührt; sonst `noReference`. Nächte ohne Entscheid fehlen. Identisch zu Kotlin.
     ///
     /// - Parameter recordings: abgeschlossene Aufzeichnungen (``Learning/Night``).
-    public static func evaluate(nights: [NightRecord], recordings: [Learning.Night], sessions: [HealthSession], clearedAt: Date?,
+    public static func evaluate(nights: [NightRecord], recordings: [Learning.Night], sessions: [HealthSession],
+                                clearedAt: Date?,
                                 learned: Learning.Values?, calendar: Calendar) -> [Entry] {
-        let spans = HealthHistory.stages(sessions, clearedAt: clearedAt, calendar: calendar).filter { $0.stage != .unknown }
+        let spans = HealthHistory.stages(sessions, clearedAt: clearedAt,
+                                         calendar: calendar).filter { $0.stage != .unknown }
         let counted = HealthHistory.countedNights(sessions, clearedAt: clearedAt, calendar: calendar)
         func config(before: Date) -> DetectorConfig {
-            let calibrated = Calibration.calibrate(nights: NightHistory.motionsForCalibration(nights.filter { $0.windowStart < before }))
+            let calibrated = Calibration.calibrate(
+                nights: NightHistory.motionsForCalibration(nights.filter { $0.windowStart < before })
+            )
             return Learning.withLearned(calibrated, learned)
         }
-        let own = Dictionary(grouping: sortedStable(nights, by: \.windowStart)) { SleepNotes.nightDate(of: $0, calendar: calendar) }
-        let recorded = Dictionary(grouping: sortedStable(recordings, by: \.start)) { SleepNotes.nightDate($0.start, calendar: calendar) }
+        let own = Dictionary(grouping: sortedStable(nights, by: \.windowStart)) {
+            SleepNotes.nightDate(of: $0, calendar: calendar)
+        }
+        let recorded = Dictionary(grouping: sortedStable(recordings, by: \.start)) {
+            SleepNotes.nightDate($0.start, calendar: calendar)
+        }
         var entries: [Entry] = []
         var number = 0
         for date in Set(own.keys).union(recorded.keys).sorted() {
@@ -179,7 +189,8 @@ public enum Validation {
             }.map(\.element)
             for (kind, moment) in ordered {
                 let ref: Ref = known.isEmpty ? .noReference : .of(reference(known, at: moment.at))
-                entries.append(Entry(night: number, at: moment.at, timeZone: zone, kind: kind, reason: moment.reason, ref: ref))
+                entries.append(Entry(night: number, at: moment.at, timeZone: zone, kind: kind, reason: moment.reason,
+                                     ref: ref))
             }
         }
         return entries

@@ -37,7 +37,8 @@ final class PhoneLearning {
     @ObservationIgnored private var pending: [String] = []
     /// Proben aus Apple Health fürs Nachtragen der Einschlafdauer (``HealthSleep/onsetSamples(from:to:)``). Tests
     /// setzen eine Quelle ohne HealthKit: Im Simulator ohne Signatur (CI) wartet eine Abfrage sonst auf HealthKit.
-    @ObservationIgnored var onsetSamples: @MainActor (Date, Date) async -> (inBed: [Date], asleep: [Date]) = PhoneLearning.healthOnsets
+    @ObservationIgnored var onsetSamples: @MainActor (Date, Date) async -> (inBed: [Date], asleep: [Date]) =
+        PhoneLearning.healthOnsets
 
     /// Quelle der App: Apple Health.
     static func healthOnsets(from: Date, to: Date) async -> (inBed: [Date], asleep: [Date]) {
@@ -64,7 +65,9 @@ final class PhoneLearning {
             let stateFile = ProtectedFile.read(stateURL), recordingsFile = ProtectedFile.read(recordingsURL)
             guard stateFile != .unreadable, recordingsFile != .unreadable else { return false }
             if case let .data(data) = stateFile {
-                if let stored = try? JSONDecoder().decode(LearningState.self, from: data) { state = stored } else { setAside() }
+                if let stored = try? JSONDecoder().decode(LearningState.self, from: data) { state = stored } else {
+                    setAside()
+                }
             }
             if case let .data(data) = recordingsFile, let texts = try? JSONDecoder().decode([String].self, from: data) {
                 recordings = texts.compactMap(NightRecording.decode).sorted { $0.start < $1.start }
@@ -127,7 +130,8 @@ final class PhoneLearning {
             DiagStore.shared.log(.error, "learn recording unreadable")
             return
         }
-        DiagStore.shared.log(.sync, "recording received epochs=\(recording.epochs.count) end=\(recording.endReason?.rawValue ?? "-")")
+        let endCode = recording.endReason?.rawValue ?? "-"
+        DiagStore.shared.log(.sync, "recording received epochs=\(recording.epochs.count) end=\(endCode)")
         // Endete vor «Verlauf löschen» (spät zugestellt): nicht zurückholen (wie Android).
         guard HistoryClear.keeps(end: recording.until, clearedAt: PhoneModel.shared.historyClearedAt) else {
             DiagStore.shared.log(.suppressed, "recording before history clear dropped")
@@ -160,8 +164,10 @@ final class PhoneLearning {
         for (index, recording) in list.enumerated() where recording.start >= since {
             let samples = await onsetSamples(recording.start, recording.until)
             // In Millisekunden verglichen wie im Dateiformat: sonst gälte jede gelesene Aufzeichnung als geändert.
-            guard let onset = Learning.healthOnset(start: recording.start, inBed: samples.inBed, asleep: samples.asleep),
-                  Self.ms(onset.bedAt) != recording.bedAt.map(Self.ms) || Self.ms(onset.asleepAt) != recording.asleepAt.map(Self.ms)
+            guard let onset = Learning.healthOnset(start: recording.start, inBed: samples.inBed,
+                                                   asleep: samples.asleep),
+                  Self.ms(onset.bedAt) != recording.bedAt.map(Self.ms)
+                      || Self.ms(onset.asleepAt) != recording.asleepAt.map(Self.ms)
             else { continue }
             list[index] = recording.with(bedAt: onset.bedAt, asleepAt: onset.asleepAt)
             changed = true
@@ -182,11 +188,13 @@ final class PhoneLearning {
             DiagStore.shared.log(.sync, "learn night \(result) \(counted.count)/\(Learning.nights)")
         }
         guard Learning.finished(counted.count) else { return }
-        let values = Learning.learn(Array(counted.suffix(Learning.nights)), minHeartRateEpochs: Learning.minHeartRateEpochsApple)
+        let values = Learning.learn(Array(counted.suffix(Learning.nights)),
+                                    minHeartRateEpochs: Learning.minHeartRateEpochsApple)
         var next = state
         guard next.finish(values, now: Date()) else { return }
         setState(next)
-        DiagStore.shared.log(.sync, "learn done \(state.snapshot.diagLine) lat=\(values.latencyMinutes.map { "\($0)" } ?? "-")")
+        let latencyText = values.latencyMinutes.map { "\($0)" } ?? "-"
+        DiagStore.shared.log(.sync, "learn done \(state.snapshot.diagLine) lat=\(latencyText)")
     }
 
     private static func ms(_ date: Date) -> Int64 { Int64((date.timeIntervalSince1970 * 1000).rounded()) }

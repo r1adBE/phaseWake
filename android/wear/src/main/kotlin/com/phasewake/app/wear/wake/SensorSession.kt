@@ -63,7 +63,8 @@ class SensorSession(
     private val heartRateSensor: Sensor? = if (lowPower) {
         null
     } else {
-        sensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE, true) ?: sensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE)
+        sensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE, true) ?:
+            sensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE)
     }
 
     /**
@@ -76,7 +77,11 @@ class SensorSession(
     private var listening = false
 
     /** Aufweckender Beschleunigungssensor (nur [lowPower] und [batch]), oder `null`. */
-    private val wakeUpSensor = if (lowPower || batch) sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER, true) else null
+    private val wakeUpSensor = if (lowPower || batch) {
+        sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER, true)
+    } else {
+        null
+    }
 
     /** Gewählter Beschleunigungssensor, oder `null`, wenn die Uhr keinen hat. */
     private val accelerometer: Sensor? = wakeUpSensor?.takeIf { it.fifoMaxEventCount >= MIN_WAKE_UP_FIFO }
@@ -237,7 +242,11 @@ class SensorSession(
             Log.w(TAG, "Pulssensor nicht angemeldet, versuche Health Services")
         }
         try {
-            measureClient.registerMeasureCallback(DataType.HEART_RATE_BPM, ContextCompat.getMainExecutor(context), heartRateCallback)
+            measureClient.registerMeasureCallback(
+                DataType.HEART_RATE_BPM,
+                ContextCompat.getMainExecutor(context),
+                heartRateCallback,
+            )
             heartRateRegistered = true
             heartRateSource = SOURCE_MEASURE
         } catch (e: SecurityException) {
@@ -299,7 +308,8 @@ class SensorSession(
          * Hautkontakt» (Uhr nicht am Handgelenk) oder kein positiver Wert (ohne Kontakt meldet die Uhr 0).
          */
         internal fun heartRateValue(accuracy: Int, bpm: Float?): Double? = when {
-            accuracy == SensorManager.SENSOR_STATUS_UNRELIABLE || accuracy == SensorManager.SENSOR_STATUS_NO_CONTACT -> null
+            accuracy == SensorManager.SENSOR_STATUS_UNRELIABLE ||
+                accuracy == SensorManager.SENSOR_STATUS_NO_CONTACT -> null
             bpm == null || bpm.isNaN() || bpm <= 0f -> null
             else -> bpm.toDouble()
         }

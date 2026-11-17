@@ -52,13 +52,15 @@ object BatteryTrack {
     fun used(track: List<BatteryPoint>?): Int? {
         if (track == null || track.size < 2 || track.size > MAX_POINTS) return null
         if (track.first().mark != BatteryMark.START || track.last().mark != BatteryMark.END) return null
-        if (track.subList(1, track.size - 1).any { it.mark == BatteryMark.START || it.mark == BatteryMark.END }) return null
+        val inner = track.subList(1, track.size - 1)
+        if (inner.any { it.mark == BatteryMark.START || it.mark == BatteryMark.END }) return null
         if (track.any { it.percent !in 0..100 || !consistent(it) }) return null
         var used = 0
         var unplugged = false
         for ((a, b) in track.zipWithNext()) {
             if (b.at.isBefore(a.at)) return null
-            if (a.plugged != b.plugged && b.mark != (if (b.plugged) BatteryMark.PLUG else BatteryMark.UNPLUG)) return null
+            val plugMark = if (b.plugged) BatteryMark.PLUG else BatteryMark.UNPLUG
+            if (a.plugged != b.plugged && b.mark != plugMark) return null
             if (!a.plugged) {
                 if (b.percent > a.percent) return null
                 used += a.percent - b.percent
@@ -71,7 +73,8 @@ object BatteryTrack {
     /** Ob [open] eine laufende Nacht ist (begonnen, nicht beendet, höchstens [MAX_SPAN] alt, [now] nicht davor). */
     fun isOpen(open: List<BatteryPoint>, now: Instant): Boolean {
         val first = open.firstOrNull() ?: return false
-        return first.mark == BatteryMark.START && open.last().mark != BatteryMark.END && !now.isBefore(open.last().at) &&
+        return first.mark == BatteryMark.START && open.last().mark != BatteryMark.END &&
+            !now.isBefore(open.last().at) &&
             Duration.between(first.at, now) <= MAX_SPAN
     }
 
@@ -80,7 +83,11 @@ object BatteryTrack {
      * Zwischenstand dazu; sonst beginnt eine neue (ersetzt eine verwaiste). Eine neue Nacht hat genau einen Punkt.
      */
     fun begin(open: List<BatteryPoint>, at: Instant, percent: Int, plugged: Boolean): List<BatteryPoint> =
-        if (isOpen(open, at)) sample(open, at, percent, plugged) else listOf(BatteryPoint(at, percent, plugged, BatteryMark.START))
+        if (isOpen(open, at)) {
+            sample(open, at, percent, plugged)
+        } else {
+            listOf(BatteryPoint(at, percent, plugged, BatteryMark.START))
+        }
 
     /** Zwischenstand in einer laufenden Nacht (höchstens [MAX_SAMPLES]); sonst unverändert. */
     fun sample(open: List<BatteryPoint>, at: Instant, percent: Int, plugged: Boolean): List<BatteryPoint> {

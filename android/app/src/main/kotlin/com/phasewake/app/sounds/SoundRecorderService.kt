@@ -66,7 +66,11 @@ class SoundRecorderService : Service() {
             ACTION_START -> start()
             ACTION_STOP -> {
                 // Vom Nutzer gestoppt (Mitteilung oder App): für diese Nacht nicht wieder von selbst starten.
-                phoneApp.appScope.launch { phoneApp.settings.setSoundRecChoice(SoundEvents.nightDate(Instant.now(), ZoneId.systemDefault()), false) }
+                phoneApp.appScope.launch {
+                    phoneApp.settings.setSoundRecChoice(
+                        SoundEvents.nightDate(Instant.now(), ZoneId.systemDefault()), false,
+                    )
+                }
                 if (running) running = false else finish()
             }
             else -> if (!running) finish()
@@ -86,7 +90,9 @@ class SoundRecorderService : Service() {
     private fun start() {
         // Zuerst in den Vordergrund (Pflicht nach startForegroundService), erst dann alles andere.
         try {
-            ServiceCompat.startForeground(this, NOTIFICATION_ID, notification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE)
+            ServiceCompat.startForeground(
+                this, NOTIFICATION_ID, notification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE,
+            )
         } catch (e: Exception) {
             // Ohne Mikrofon-Recht oder aus dem Hintergrund (ab Android 14 nicht erlaubt).
             Log.w(TAG, "Aufnahme durfte nicht starten", e)
@@ -115,7 +121,9 @@ class SoundRecorderService : Service() {
             if (System.currentTimeMillis() < endsAtMs - SoundEvents.AFTER_TARGET.toMillis()) {
                 phoneApp.appScope.launch {
                     val specs = phoneApp.alarms.current().alarms
-                    val end = SoundEvents.recordingEnd(start, AlarmSchedule.earliestPlan(specs, start, ZoneId.systemDefault(), phoneApp.holidays.store.current())?.target)
+                    val zone = ZoneId.systemDefault()
+                    val plan = AlarmSchedule.earliestPlan(specs, start, zone, phoneApp.holidays.store.current())
+                    val end = SoundEvents.recordingEnd(start, plan?.target)
                     handler.post {
                         if (!running) return@post
                         endsAtMs = end.toEpochMilli()
@@ -135,104 +143,127 @@ class SoundRecorderService : Service() {
             handler.post { finish() }
             return
         }
-        val worker = Executors.newSingleThreadExecutor()
-        val classifier = SoundClassifier(this)
-        val store = phoneApp.sounds
-        val zone = ZoneId.systemDefault()
-        val frame = ShortArray(FRAME_SAMPLES)
-        val ring = ShortArray(RING_SAMPLES)
-        var total = 0L
-        val detector = SoundEventDetector()
-        // Laufender Ausschnitt (Proben ab clipStartSample) und fertige Ausschnitte bis zum Ende ihres Geräuschs.
-        var clip: ShortArray? = null
-        var clipLength = 0
-        var clipStartSample = 0L
-        val results = HashMap<Long, Pair<String, SoundType>>()
-        var startWall = 0L
+        Session(record).run()
+    }
 
-        fun handle(action: SoundEventDetector.Action) {
+    /** Eine Aufnahme vom Start bis zum Ende: Ringpuffer, laufender Ausschnitt, Auswertung im Hintergrund. */
+    private inner class Session(private val record: AudioRecord) {
+        private val worker = Executors.newSingleThreadExecutor()
+        private val classifier = SoundClassifier(this@SoundRecorderService)
+        private val store = phoneApp.sounds
+        private val zone = ZoneId.systemDefault()
+        private val frame = ShortArray(FRAME_SAMPLES)
+        private val ring = ShortArray(RING_SAMPLES)
+        private var total = 0L
+        private val detector = SoundEventDetector()
+
+        // Laufender Ausschnitt (Proben ab clipStartSample) und fertige Ausschnitte bis zum Ende ihres Geräuschs.
+        private var clip: ShortArray? = null
+        private var clipLength = 0
+        private var clipStartSample = 0L
+        private val results = HashMap<Long, Pair<String, SoundType>>()
+        private var startWall = 0L
+
+        fun run() {
+            try {
+                worker.execute { runBlocking { store.cleanup() } }
+                record.startRecording()
+                startWall = System.currentTimeMillis()
+                while (running) {
+                    if (!readFrame()) break
+                    for (i in frame.indices) ring[((total + i) % RING_SAMPLES).toInt()] = frame[i]
+                    clip?.let { buffer ->
+                        val n = minOf(frame.size, buffer.size - clipLength)
+                        if (n > 0) System.arraycopy(frame, 0, buffer, clipLength, n)
+                        clipLength += n.coerceAtLeast(0)
+                    }
+                    val atMs = total * 1000 / SAMPLE_RATE
+                    total += frame.size
+                    // Der eigene Wecker klingelt: kein Geräusch der Nacht.
+                    if (PhoneRingService.ringState.value !is PhoneRingService.State.Ringing) {
+                        detector.onFrame(atMs, SoundEvents.levelDb(frame)).forEach(::handle)
+                    }
+                    if (System.currentTimeMillis() >= endsAtMs) break
+                }
+            } catch (e: Exception) {
+                Log.w(TAG, "Aufnahme abgebrochen", e)
+            } finally {
+                runCatching { record.stop() }
+                record.release()
+                detector.finish(total * 1000 / SAMPLE_RATE).forEach(::handle)
+                worker.execute { classifier.close() }
+                worker.shutdown()
+                runCatching { worker.awaitTermination(20, TimeUnit.SECONDS) }
+                running = false
+                handler.post { finish() }
+            }
+        }
+
+        /** Füllt [frame] ganz. @return `false`, wenn die Aufnahme vorher beendet wurde. */
+        private fun readFrame(): Boolean {
+            var read = 0
+            while (read < frame.size && running) {
+                val r = record.read(frame, read, frame.size - read)
+                if (r < 0) throw IllegalStateException("AudioRecord.read: $r")
+                read += r
+            }
+            return read >= frame.size
+        }
+
+        private fun handle(action: SoundEventDetector.Action) {
             when (action) {
-                is SoundEventDetector.Action.ClipStart -> {
-                    // Vorlauf aus dem Ringpuffer (höchstens so weit zurück, wie er reicht).
-                    val from = maxOf(action.clipStartMs * SAMPLE_RATE / 1000, total - RING_SAMPLES, 0L)
-                    val buffer = ShortArray(MAX_CLIP_SAMPLES)
-                    var n = 0
-                    var s = from
-                    while (s < total && n < buffer.size) {
-                        buffer[n++] = ring[(s % RING_SAMPLES).toInt()]
-                        s++
-                    }
-                    clip = buffer
-                    clipLength = n
-                    clipStartSample = from
-                }
-                is SoundEventDetector.Action.ClipEnd -> {
-                    val buffer = clip ?: return
-                    val end = (action.clipEndMs * SAMPLE_RATE / 1000 - clipStartSample).toInt().coerceIn(0, clipLength)
-                    clip = null
-                    val onset = action.onsetMs
-                    worker.execute {
-                        val name = "${UUID.randomUUID()}.m4a"
-                        val file = store.newFile(name)
-                        val type = classifier.classify(buffer, end)
-                        if (ClipEncoder.writeM4a(buffer, end, SAMPLE_RATE, file)) results[onset] = name to type
-                    }
-                }
+                is SoundEventDetector.Action.ClipStart -> startClip(action)
+                is SoundEventDetector.Action.ClipEnd -> endClip(action)
                 is SoundEventDetector.Action.EventEnd -> {
                     val at = Instant.ofEpochMilli(startWall + action.onsetMs)
                     worker.execute {
                         val (name, type) = results.remove(action.onsetMs) ?: return@execute
                         val peak = action.peakDb.takeIf { it.isFinite() }?.roundToInt() ?: 0
-                        runBlocking { store.add(SoundClip(SoundEvents.nightDate(at, zone), at, type, action.durationMs, peak, name)) }
+                        runBlocking {
+                            store.add(
+                                SoundClip(SoundEvents.nightDate(at, zone), at, type, action.durationMs, peak, name)
+                            )
+                        }
                     }
                 }
             }
         }
 
-        try {
-            worker.execute { runBlocking { store.cleanup() } }
-            record.startRecording()
-            startWall = System.currentTimeMillis()
-            while (running) {
-                var read = 0
-                while (read < frame.size && running) {
-                    val r = record.read(frame, read, frame.size - read)
-                    if (r < 0) throw IllegalStateException("AudioRecord.read: $r")
-                    read += r
-                }
-                if (read < frame.size) break
-                for (i in frame.indices) ring[((total + i) % RING_SAMPLES).toInt()] = frame[i]
-                clip?.let { buffer ->
-                    val n = minOf(frame.size, buffer.size - clipLength)
-                    if (n > 0) System.arraycopy(frame, 0, buffer, clipLength, n)
-                    clipLength += n.coerceAtLeast(0)
-                }
-                val atMs = total * 1000 / SAMPLE_RATE
-                total += frame.size
-                // Der eigene Wecker klingelt: kein Geräusch der Nacht.
-                if (PhoneRingService.ringState.value !is PhoneRingService.State.Ringing) {
-                    detector.onFrame(atMs, SoundEvents.levelDb(frame)).forEach(::handle)
-                }
-                if (System.currentTimeMillis() >= endsAtMs) break
+        private fun startClip(action: SoundEventDetector.Action.ClipStart) {
+            // Vorlauf aus dem Ringpuffer (höchstens so weit zurück, wie er reicht).
+            val from = maxOf(action.clipStartMs * SAMPLE_RATE / 1000, total - RING_SAMPLES, 0L)
+            val buffer = ShortArray(MAX_CLIP_SAMPLES)
+            var n = 0
+            var s = from
+            while (s < total && n < buffer.size) {
+                buffer[n++] = ring[(s % RING_SAMPLES).toInt()]
+                s++
             }
-        } catch (e: Exception) {
-            Log.w(TAG, "Aufnahme abgebrochen", e)
-        } finally {
-            runCatching { record.stop() }
-            record.release()
-            detector.finish(total * 1000 / SAMPLE_RATE).forEach(::handle)
-            worker.execute { classifier.close() }
-            worker.shutdown()
-            runCatching { worker.awaitTermination(20, TimeUnit.SECONDS) }
-            running = false
-            handler.post { finish() }
+            clip = buffer
+            clipLength = n
+            clipStartSample = from
+        }
+
+        private fun endClip(action: SoundEventDetector.Action.ClipEnd) {
+            val buffer = clip ?: return
+            val end = (action.clipEndMs * SAMPLE_RATE / 1000 - clipStartSample).toInt().coerceIn(0, clipLength)
+            clip = null
+            val onset = action.onsetMs
+            worker.execute {
+                val name = "${UUID.randomUUID()}.m4a"
+                val file = store.newFile(name)
+                val type = classifier.classify(buffer, end)
+                if (ClipEncoder.writeM4a(buffer, end, SAMPLE_RATE, file)) results[onset] = name to type
+            }
         }
     }
 
     private fun createRecord(): AudioRecord? {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) return null
+        val granted = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+        if (granted != PackageManager.PERMISSION_GRANTED) return null
         return try {
-            val min = AudioRecord.getMinBufferSize(SAMPLE_RATE, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT)
+            val min =
+                AudioRecord.getMinBufferSize(SAMPLE_RATE, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT)
             val record = AudioRecord(
                 MediaRecorder.AudioSource.MIC,
                 SAMPLE_RATE,
@@ -316,12 +347,16 @@ class SoundRecorderService : Service() {
 
         /** Beendet die Aufnahme; ohne laufende Aufnahme nichts. */
         fun stop(context: Context) {
-            if (state.value != null) context.startService(Intent(context, SoundRecorderService::class.java).setAction(ACTION_STOP))
+            if (state.value != null) context.startService(
+                Intent(context, SoundRecorderService::class.java).setAction(ACTION_STOP)
+            )
         }
 
         fun createChannel(context: Context) {
             context.getSystemService(NotificationManager::class.java).createNotificationChannel(
-                NotificationChannel(CHANNEL, context.getString(R.string.sound_rec_title), NotificationManager.IMPORTANCE_LOW),
+                NotificationChannel(
+                    CHANNEL, context.getString(R.string.sound_rec_title), NotificationManager.IMPORTANCE_LOW,
+                ),
             )
         }
     }

@@ -77,10 +77,12 @@ final class HealthContinuationTests: XCTestCase {
         XCTAssertEqual(goal.map { $0.date }, ["2026-11-11"])
         XCTAssertEqual(goal.map { $0.asleepMinutes }, [438])
         XCTAssertEqual(NoteEffect.asleepByNight(sleeps, calendar: calendar), ["2026-11-11": 438])
-        let bars = ChartData.sleepBars(sleeps, calendar: calendar, today: "2026-11-12", nextTarget: nil, goalMinutes: 480)
+        let bars = ChartData.sleepBars(sleeps, calendar: calendar, today: "2026-11-12", nextTarget: nil,
+                                       goalMinutes: 480)
         XCTAssertEqual(bars?.bars.last?.endMinute, Int(Regularity.minutesFromNoon(sleptOn.end, calendar: calendar)))
         // Phasen für eigene Nächte: beide Teile, das Nickerchen nicht.
-        XCTAssertEqual(HealthHistory.stages(sessions, clearedAt: nil, calendar: calendar), night.stages + sleptOn.stages)
+        XCTAssertEqual(HealthHistory.stages(sessions, clearedAt: nil, calendar: calendar),
+                       night.stages + sleptOn.stages)
     }
 
     func testOwnNightIncludesSleepingOn() {
@@ -102,7 +104,8 @@ final class HealthContinuationTests: XCTestCase {
         XCTAssertEqual(summaries([night, late]).map(\.asleepMinutes), [346])
         XCTAssertEqual(HealthHistory.stages([night, late], clearedAt: nil, calendar: calendar), night.stages)
         // Genau 60 Minuten: setzt die Nacht noch fort (einschliesslich).
-        let edge = HealthSession(start: night.end.addingTimeInterval(60 * 60), end: night.end.addingTimeInterval(90 * 60))
+        let edge = HealthSession(start: night.end.addingTimeInterval(60 * 60),
+                                 end: night.end.addingTimeInterval(90 * 60))
         XCTAssertEqual(merge([night, edge]).map(\.session?.end), [edge.end])
         XCTAssertEqual(HealthHistory.continuationGap, 60 * 60)
     }
@@ -136,7 +139,8 @@ final class HealthContinuationTests: XCTestCase {
         // Teile oft mit einer Sekunde Überlappung geschrieben – trotzdem Weiterschlafen.
         let from = night.end.addingTimeInterval(-1)
         let overlapping = HealthSession(start: from, end: sleptOn.end,
-                                        stages: [StageSpan(start: from, end: t("2026-11-12T09:24:00Z"), stage: .awake), span("09:24", "10:56", .light)],
+                                        stages: [StageSpan(start: from, end: t("2026-11-12T09:24:00Z"), stage: .awake),
+                                                 span("09:24", "10:56", .light)],
                                         source: samsung)
         let session = try XCTUnwrap(merge([night, overlapping]).first?.session)
         XCTAssertEqual(merge([night, overlapping]).count, 1)
@@ -162,9 +166,11 @@ final class HealthContinuationTests: XCTestCase {
         XCTAssertEqual(status.total, 1)
         XCTAssertEqual(merge([first, second]).map(\.session?.asleepMinutes), [240])
         // Genau 60 Min Lücke: eine Nacht (480); 60 Min + 1 s: zwei.
-        let close = HealthSession(start: first.end.addingTimeInterval(3600), end: first.end.addingTimeInterval(3600 + 4 * 3600))
+        let close = HealthSession(start: first.end.addingTimeInterval(3600),
+                                  end: first.end.addingTimeInterval(3600 + 4 * 3600))
         XCTAssertEqual(summaries([first, close]).map(\.asleepMinutes), [480])
-        let apart = HealthSession(start: first.end.addingTimeInterval(3601), end: first.end.addingTimeInterval(3601 + 4 * 3600))
+        let apart = HealthSession(start: first.end.addingTimeInterval(3601),
+                                  end: first.end.addingTimeInterval(3601 + 4 * 3600))
         XCTAssertEqual(summaries([first, apart]).map(\.asleepMinutes), [240, 240])
         XCTAssertEqual(SleepSummary.newNightGap, 60 * 60)
     }
@@ -183,16 +189,20 @@ final class HealthContinuationTests: XCTestCase {
         XCTAssertEqual(StageStats.forNight(stages, night: own)?.asleepMinutes, 480)
         // Bis 60 Min Lücke gehört der frühere Schlaf noch dazu.
         let near = light("2026-11-10T20:15:00Z", "2026-11-10T21:00:00Z")
-        XCTAssertEqual(ChartData.hypnogram(HealthHistory.stages([near, bed], clearedAt: nil, calendar: calendar), night: own)?.start, near.start)
+        XCTAssertEqual(ChartData.hypnogram(HealthHistory.stages([near, bed], clearedAt: nil, calendar: calendar),
+                                           night: own)?.start, near.start)
     }
 
     /// Erster Teil 01:36–09:57 nur «leicht» (501 Min), zweiter Teil `overlap` Sekunden vor dessen Ende, 120 Min
     /// «leicht».
     private func overlapCase(_ overlap: TimeInterval) -> (HealthSession, HealthSession) {
-        let first = HealthSession(start: night.start, end: night.end, stages: [StageSpan(start: night.start, end: night.end, stage: .light)], source: samsung)
+        let first = HealthSession(start: night.start, end: night.end,
+                                  stages: [StageSpan(start: night.start, end: night.end, stage: .light)],
+                                  source: samsung)
         let from = night.end.addingTimeInterval(-overlap)
         let second = HealthSession(start: from, end: from.addingTimeInterval(120 * 60),
-                                   stages: [StageSpan(start: from, end: from.addingTimeInterval(120 * 60), stage: .light)], source: samsung)
+                                   stages: [StageSpan(start: from, end: from.addingTimeInterval(120 * 60),
+                                                      stage: .light)], source: samsung)
         return (first, second)
     }
 
@@ -225,8 +235,11 @@ final class HealthContinuationTests: XCTestCase {
 
     func testOverlapWithoutStagesCountsOnce() {
         // Zweiter Teil ohne Phasen (ganze Dauer Schlaf), 3 Min Überlappung: 501 + 117; das Schlafprofil hat nur Phasen.
-        let first = HealthSession(start: night.start, end: night.end, stages: [StageSpan(start: night.start, end: night.end, stage: .light)], source: samsung)
-        let second = HealthSession(start: night.end.addingTimeInterval(-3 * 60), end: night.end.addingTimeInterval(117 * 60))
+        let first = HealthSession(start: night.start, end: night.end,
+                                  stages: [StageSpan(start: night.start, end: night.end, stage: .light)],
+                                  source: samsung)
+        let second = HealthSession(start: night.end.addingTimeInterval(-3 * 60),
+                                   end: night.end.addingTimeInterval(117 * 60))
         XCTAssertEqual(summaries([first, second]).map(\.asleepMinutes), [618])
         XCTAssertEqual(merge([first, second]).map(\.session?.asleepMinutes), [618])
         XCTAssertEqual(stages([first, second]), first.stages)

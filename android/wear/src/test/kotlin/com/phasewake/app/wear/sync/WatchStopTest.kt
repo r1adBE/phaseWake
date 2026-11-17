@@ -65,7 +65,10 @@ class WatchStopTest {
 
     /** Startet den Weckdienst für [plan] (Messen im Fenster). */
     private fun measuring(): WakeService {
-        val intent = AlarmReceiver.putPlan(Intent(context, WakeService::class.java).setAction(WakeService.ACTION_START), plan)
+        val intent = AlarmReceiver.putPlan(
+            Intent(context, WakeService::class.java).setAction(WakeService.ACTION_START),
+            plan,
+        )
         val built = Robolectric.buildService(WakeService::class.java, intent)
         controller = built
         return built.create().startCommand(0, 1).get().also { assertEquals(plan, WakeService.measuringPlan) }
@@ -95,7 +98,10 @@ class WatchStopTest {
     @Test
     fun stopForAnotherTargetKeepsMeasuring() {
         val service = measuring()
-        assertFalse(stopFromPhone(service, "a", plan.target.minusSeconds(86_400).toEpochMilli()), "andere Zielzeit: kein Befehl")
+        assertFalse(
+            stopFromPhone(service, "a", plan.target.minusSeconds(86_400).toEpochMilli()),
+            "andere Zielzeit: kein Befehl",
+        )
         assertEquals(WakeService.Phase.MEASURING, service.night?.phase)
         assertEquals(plan, WakeService.measuringPlan)
     }
@@ -106,7 +112,9 @@ class WatchStopTest {
         assertTrue(stopFromPhone(service, "a", plan.target.toEpochMilli()))
         assertNull(service.night)
         // Erledigt bis zur Zielzeit, sonst begänne das Neuplanen dieselbe Nacht gleich wieder.
-        awaitUntil("Nacht nicht als erledigt gespeichert") { runBlocking { context.wearApp.scheduler.doneUntil()["a"] } != null }
+        awaitUntil("Nacht nicht als erledigt gespeichert") {
+            runBlocking { context.wearApp.scheduler.doneUntil()["a"] } != null
+        }
         assertEquals(plan.target, runBlocking { context.wearApp.scheduler.doneUntil()["a"] })
     }
 
@@ -114,11 +122,26 @@ class WatchStopTest {
     fun stopWhileMeasuringMustMatchTheNight() {
         val measuring = plan
         val target = plan.target
-        assertFalse(WatchListenerService.ignoresStopWhileMeasuring(measuring, "a", target.toEpochMilli()), "genau diese Nacht")
-        assertTrue(WatchListenerService.ignoresStopWhileMeasuring(measuring, "a", target.minusSeconds(86_400).toEpochMilli()), "andere Zielzeit")
+        assertFalse(
+            WatchListenerService.ignoresStopWhileMeasuring(measuring, "a", target.toEpochMilli()),
+            "genau diese Nacht",
+        )
+        assertTrue(
+            WatchListenerService.ignoresStopWhileMeasuring(measuring, "a", target.minusSeconds(86_400).toEpochMilli()),
+            "andere Zielzeit",
+        )
         assertTrue(WatchListenerService.ignoresStopWhileMeasuring(measuring, "a", null), "ohne Zielzeit")
-        assertTrue(WatchListenerService.ignoresStopWhileMeasuring(measuring, null, target.toEpochMilli()), "ohne Kennung")
-        assertTrue(WatchListenerService.ignoresStopWhileMeasuring(measuring, "b", target.toEpochMilli()), "anderer Wecker")
-        assertFalse(WatchListenerService.ignoresStopWhileMeasuring(null, "a", null), "ohne Messung entscheidet der Weckdienst")
+        assertTrue(
+            WatchListenerService.ignoresStopWhileMeasuring(measuring, null, target.toEpochMilli()),
+            "ohne Kennung",
+        )
+        assertTrue(
+            WatchListenerService.ignoresStopWhileMeasuring(measuring, "b", target.toEpochMilli()),
+            "anderer Wecker",
+        )
+        assertFalse(
+            WatchListenerService.ignoresStopWhileMeasuring(null, "a", null),
+            "ohne Messung entscheidet der Weckdienst",
+        )
     }
 }

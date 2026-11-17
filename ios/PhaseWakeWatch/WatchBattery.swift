@@ -44,11 +44,14 @@ enum WatchBattery {
         let current = openTrack
         guard !current.isEmpty else { return nil }
         UserDefaults.standard.removeObject(forKey: openKey)
-        guard let r = read(), let track = BatteryTrack.end(current, at: r.at, percent: r.percent, plugged: r.plugged), let last = track.last else {
+        guard let r = read(),
+              let track = BatteryTrack.end(current, at: r.at, percent: r.percent, plugged: r.plugged),
+              let last = track.last else {
             DiagStore.shared.log(.battery, "night battery end unknown")
             return nil
         }
-        DiagStore.shared.log(.battery, "night battery \(BatteryTrack.describe(last)), used \(BatteryTrack.used(track).map { "\($0)%" } ?? "unknown")")
+        let used = BatteryTrack.used(track).map { "\($0)%" } ?? "unknown"
+        DiagStore.shared.log(.battery, "night battery \(BatteryTrack.describe(last)), used \(used)")
         return track
     }
 
@@ -59,7 +62,9 @@ enum WatchBattery {
         DiagStore.shared.log(.battery, "night battery dropped: \(why)")
     }
 
-    private static var openTrack: [BatteryPoint] { BatteryTrack.decode(UserDefaults.standard.string(forKey: openKey)) ?? [] }
+    private static var openTrack: [BatteryPoint] {
+        BatteryTrack.decode(UserDefaults.standard.string(forKey: openKey)) ?? []
+    }
 
     /// Ändert die laufende Nacht und protokolliert einen neuen Punkt.
     private static func update(_ change: ([BatteryPoint]) -> [BatteryPoint]) {

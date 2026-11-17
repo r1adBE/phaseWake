@@ -56,23 +56,13 @@ internal suspend fun BackupAlarm.planBackup() {
     // Zone und eingestellte Zielzeit, mit denen dieser Zweitwecker geplant wurde: Lief sein Fenster schon beim
     // Zonenwechsel, bleibt er (RingRules.keptBackup), auch mit früherer Zielzeit des Einschlaf-Modus.
     val planned = plannedBackup(prefs, plannedTarget, shift)
-    val unshifted = RingRules.backupPlan(
-        backups, transient, prefs[PLANNED_ID], plannedTarget, suppressed, current, grace, zone, holidays, planned,
-    )
+    val scope = RingRules.BackupScope(suppressed, grace, zone, holidays)
+    val unshifted = RingRules.backupPlan(backups, transient, prefs[PLANNED_ID], plannedTarget, current, scope, planned)
     if (unshifted == null) {
-        alarmManager.cancel(pending())
-        if (prefs[PLANNED_ID] != null) {
-            store.edit {
-                it.remove(PLANNED_ID)
-                it.remove(PLANNED_TARGET)
-                it.remove(PLANNED_ZONE)
-                it.remove(PLANNED_BASE)
-            }
-        }
-        BackupDirectBoot.clear(context)
+        clearPlanned(prefs)
         return
     }
-    val kept = RingRules.keptBackup(backups, planned, suppressed, current, grace, zone, holidays)
+    val kept = RingRules.keptBackup(backups, planned, current, scope)
     if (kept != null && kept == unshifted && kept != loggedKept) {
         loggedKept = kept
         app.diag.log(DiagKind.SCHEDULED, "phone zone change, keep night ${kept.target}")
@@ -85,14 +75,7 @@ internal suspend fun BackupAlarm.planBackup() {
     val changed = prefs[PLANNED_ID] != plan.alarmId || prefs[PLANNED_TARGET] != plan.target.toEpochMilli()
     // Kommt ein Probewecker oder Powernap vor einer behaltenen Nacht, bleibt deren Eintrag für danach stehen.
     val keepEntry = kept != null && unshifted != kept
-    if (!keepEntry && (newNight || changed || prefs[PLANNED_BASE] == null)) {
-        store.edit {
-            it[PLANNED_ID] = plan.alarmId
-            it[PLANNED_TARGET] = plan.target.toEpochMilli()
-            it[PLANNED_BASE] = unshifted.target.toEpochMilli()
-            if (newNight) it[PLANNED_ZONE] = zone.id
-        }
-    }
+    if (!keepEntry && (newNight || changed || prefs[PLANNED_BASE] == null)) savePlanned(plan, unshifted, newNight)
     // Nachgeholt (RingRules.catchUp): Zielzeit + Nachfrist schon vorbei, dann gleich.
     val at = RingRules.backupAt(plan, grace, current)
     if (newNight || changed) {
@@ -101,9 +84,35 @@ internal suspend fun BackupAlarm.planBackup() {
     setAlarm(at, showIntent(), pending(plan.alarmId, plan.target))
     // Für einen Neustart in der Nacht: auch vor dem ersten Entsperren lesbar ablegen, samt den folgenden Zweitweckern
     // (klingelt einer vor dem Entsperren, stellt BackupDirectBoot.advance den nächsten).
-    val following = RingRules.directBootPlans(unshifted, backups, transient, suppressed, grace, GRACE, zone, holidays, DIRECT_BOOT_PLANS)
+    val following = RingRules.directBootPlans(unshifted, backups, transient, scope, GRACE, DIRECT_BOOT_PLANS)
         .map { shift?.applyTo(it, current, grace) ?: it }
-    BackupDirectBoot.save(context, following.map { BackupDirectBoot.Entry(it.target.plus(grace), it.alarmId, it.target) })
+    BackupDirectBoot.save(
+        context, following.map { BackupDirectBoot.Entry(it.target.plus(grace), it.alarmId, it.target) },
+    )
+}
+
+/** Kein Zweitwecker gilt mehr: Alarm, gemerkte Nacht und das vor dem Entsperren Abgelegte aufheben. */
+private suspend fun BackupAlarm.clearPlanned(prefs: Preferences) {
+    alarmManager.cancel(pending())
+    if (prefs[PLANNED_ID] != null) {
+        store.edit {
+            it.remove(PLANNED_ID)
+            it.remove(PLANNED_TARGET)
+            it.remove(PLANNED_ZONE)
+            it.remove(PLANNED_BASE)
+        }
+    }
+    BackupDirectBoot.clear(context)
+}
+
+/** Merkt [plan] samt eingestellter Zielzeit von [unshifted]; die Zone nur bei einer neuen Nacht ([newNight]). */
+private suspend fun BackupAlarm.savePlanned(plan: WakePlan, unshifted: WakePlan, newNight: Boolean) {
+    store.edit {
+        it[PLANNED_ID] = plan.alarmId
+        it[PLANNED_TARGET] = plan.target.toEpochMilli()
+        it[PLANNED_BASE] = unshifted.target.toEpochMilli()
+        if (newNight) it[PLANNED_ZONE] = zone.id
+    }
 }
 
 /** Zone, in der der geplante Zweitwecker ([PLANNED_TARGET]) berechnet wurde; fehlt bei älteren Daten. */

@@ -65,7 +65,14 @@ class Outbox(
 ) {
 
     /** Ein wartender Eintrag: an Geräte mit [capability] unter [path], Inhalt [body] (Text). */
-    data class Entry(val id: String, val key: String, val path: String, val capability: String, val body: String, val createdAt: Long)
+    data class Entry(
+        val id: String,
+        val key: String,
+        val path: String,
+        val capability: String,
+        val body: String,
+        val createdAt: Long,
+    )
 
     /**
      * Ein Paket des früheren Weges im Data Layer ([migrateOnce]): [entry] wird vor dem Löschen eingereiht, falls da.
@@ -82,6 +89,9 @@ class Outbox(
     }
 
     private val lock = Mutex()
+
+    /** Ablage im Ordner [dir]; nur unter [lock] und auf [io]. */
+    private val store = OutboxFiles(dir)
 
     /**
      * Je Kennung ([Entry.id]): Zeitpunkt (ms) des letzten erfolgreichen Sendens in diesem Prozess. Nur unter [lock].
@@ -143,8 +153,12 @@ class Outbox(
         try {
             val nodes = mutableMapOf<String, List<String>>()
             for (entry in due) {
-                val targets = nodes.getOrPut(entry.capability) { guarded { transport.nodes(entry.capability) } ?: emptyList() }
-                for (node in targets) if (guarded { transport.send(node, entry.path, wrap(entry.id, entry.body)) } != null) sent += entry.id
+                val targets =
+                    nodes.getOrPut(entry.capability) { guarded { transport.nodes(entry.capability) } ?: emptyList() }
+                for (node in targets) {
+                    val delivered = guarded { transport.send(node, entry.path, wrap(entry.id, entry.body)) }
+                    if (delivered != null) sent += entry.id
+                }
             }
         } finally {
             withContext(NonCancellable) {
@@ -181,7 +195,7 @@ class Outbox(
 
     /** Die Gegenseite hat [id] empfangen: Eintrag entfernen (nur genau diesen Stand). */
     suspend fun acked(id: String): Boolean = lock.withLock {
-        val file = files().firstOrNull { read(it)?.id == id } ?: return@withLock false
+        val file = store.files().firstOrNull { store.read(it)?.id == id } ?: return@withLock false
         sentAt.remove(id)
         withContext(io) { file.delete() }
     }
@@ -192,31 +206,14 @@ class Outbox(
     /** Entfernt wartende Einträge, deren Schlüssel mit [prefix] beginnt und für die [matches] gilt. */
     suspend fun dropIf(prefix: String, matches: (Entry) -> Boolean) = lock.withLock {
         withContext(io) {
-            files().filter { read(it)?.let { e -> e.key.startsWith(prefix) && matches(e) } == true }.forEach { it.delete() }
+            store.files()
+                .filter { store.read(it)?.let { e -> e.key.startsWith(prefix) && matches(e) } == true }
+                .forEach { it.delete() }
         }
     }
 
-    /**
-     * Grenzen der Warteschlange, nur für Nächte und Aufzeichnungen ([expires]): Einträge älter als
-     * [MAX_AGE_MS] (oder aus der «Zukunft», Uhr verstellt, bleiben) entfernen, je Art ([kindOf]) nur die neuesten
-     * [MAX_PER_KIND] behalten. Zustände bleiben. Dazu Reste: «.tmp» (unter [lock] schreibt keiner, also
-     * liegengeblieben) und gelesene, aber unlesbare Einträge (leer oder halb nach einem Stromausfall; scheitert schon
-     * das Lesen, bleibt die Datei). Nur unter [lock].
-     */
-    private suspend fun prune() = withContext(io) {
-        dir.listFiles().orEmpty().filter { it.isFile && it.name.startsWith(PREFIX) && (it.name.endsWith(".tmp") || broken(it)) }
-            .forEach { Log.w(TAG, "Rest ${it.name} entfernt"); it.delete() }
-        val current = now()
-        val all = files().mapNotNull { file -> read(file)?.let { file to it } }.filter { expires(it.second.key) }
-        val drop = all.filter { (_, e) -> current - e.createdAt > MAX_AGE_MS }.toMutableList()
-        all.filterNot { it in drop }.groupBy { kindOf(it.second.key) }.values.forEach { group ->
-            if (group.size > MAX_PER_KIND) drop += group.sortedByDescending { it.second.createdAt }.drop(MAX_PER_KIND)
-        }
-        for ((file, entry) in drop) {
-            Log.w(TAG, "Eintrag ${entry.key} verworfen (zu alt oder zu viele)")
-            file.delete()
-        }
-    }
+    /** Grenzen der Warteschlange und Reste ([OutboxFiles.prune]) zur aktuellen Zeit. Nur unter [lock]. */
+    private suspend fun prune() = withContext(io) { store.prune(now()) }
 
     /**
      * Einmalige Umstellung vom früheren Weg (Pakete im Data Layer): Pakete von [legacy] mit Inhalt werden eingereiht,
@@ -225,8 +222,7 @@ class Outbox(
      * @return ob die Umstellung jetzt (vollständig) lief.
      */
     suspend fun migrateOnce(legacy: suspend () -> List<Legacy>, delete: suspend (Uri) -> Unit): Boolean {
-        val marker = File(dir, MIGRATED)
-        if (marker.exists()) return false
+        if (store.migrated()) return false
         val items = try {
             legacy()
         } catch (e: Exception) {
@@ -244,35 +240,14 @@ class Outbox(
                 return false
             }
         }
-        withContext(io) {
-            dir.mkdirs()
-            marker.writeText("2")
-        }
+        withContext(io) { store.markMigrated() }
         flush()
         return true
     }
 
-    private suspend fun write(entry: Entry) = withContext(io) {
-        dir.mkdirs()
-        val file = File(dir, name(entry.key))
-        val tmp = File(dir, file.name + ".tmp")
-        val text = listOf(VERSION, entry.id, entry.key, entry.path, entry.capability, entry.createdAt.toString(), entry.body).joinToString("\n")
-        // Erst auf der Platte (fsync), dann in einem Schritt ersetzen: Scheitert das Schreiben, bleibt der vorige
-        // Stand.
-        java.io.FileOutputStream(tmp).use { out -> out.write(text.encodeToByteArray()); out.fd.sync() }
-        if (!tmp.renameTo(file)) {
-            file.delete()
-            check(tmp.renameTo(file)) { "Eintrag nicht gespeichert" }
-        }
-    }
+    private suspend fun write(entry: Entry) = withContext(io) { store.write(entry) }
 
-    private suspend fun readAll(): List<Entry> = withContext(io) { files().mapNotNull(::read).sortedBy { it.createdAt } }
-
-    private fun files(): List<File> = dir.listFiles().orEmpty().filter { it.isFile && it.name.startsWith(PREFIX) && !it.name.endsWith(".tmp") }
-
-    private fun read(file: File): Entry? = try { parse(file.readText()) } catch (e: Exception) { Log.w(TAG, "Eintrag unlesbar", e); null }
-    private fun broken(file: File): Boolean = runCatching { file.readText() }.getOrNull()?.let { parse(it) == null } == true
-    private fun parse(text: String): Entry? = text.split("\n", limit = 7).let { p -> if (p.size < 7 || p[0] != VERSION) null else p[5].toLongOrNull()?.let { Entry(p[1], p[2], p[3], p[4], p[6], it) } }
+    private suspend fun readAll(): List<Entry> = withContext(io) { store.readAll() }
 
     /** Ein Schritt zur Gegenseite, höchstens [STEP_TIMEOUT_MS]: Hängt er, bleibt der Eintrag, die Sperre wird frei. */
     private suspend fun <T> guarded(block: suspend () -> T): T? = try {
@@ -291,7 +266,10 @@ class Outbox(
         private val app = context.applicationContext
 
         override suspend fun nodes(capability: String): List<String> =
-            Wearable.getCapabilityClient(app).getCapability(capability, CapabilityClient.FILTER_REACHABLE).await().nodes.map { it.id }
+            Wearable.getCapabilityClient(app).getCapability(
+                capability,
+                CapabilityClient.FILTER_REACHABLE,
+            ).await().nodes.map { it.id }
 
         override suspend fun send(node: String, path: String, data: ByteArray) {
             if (fitsMessage(data)) {
@@ -313,9 +291,6 @@ class Outbox(
 
     companion object {
         private const val TAG = "Outbox"
-        private const val VERSION = "v1"
-        private const val PREFIX = "e-"
-        private const val MIGRATED = "migrated"
 
         /**
          * Grösste Nachricht über MessageClient (Grenze der Wear-Dienste 100 KB, mit Reserve); grössere über einen
@@ -344,14 +319,17 @@ class Outbox(
          * Ob Einträge unter [key] verfallen dürfen ([MAX_AGE_MS], [MAX_PER_KIND]): nur Nächte und Aufzeichnungen.
          * Zustände (Wecker, Einstellungen, Lernphase …) verfallen nie.
          */
-        fun expires(key: String): Boolean = key.startsWith(QueueMessages.KEY_NIGHT) || key.startsWith(QueueMessages.KEY_RECORDING)
+        fun expires(key: String): Boolean =
+            key.startsWith(QueueMessages.KEY_NIGHT) || key.startsWith(QueueMessages.KEY_RECORDING)
 
         /**
          * Bereich für das Senden im Hintergrund: lebt so lange wie der Prozess; ein Fehler wird geloggt, nie
          * weitergereicht.
          */
         private fun processScope() = CoroutineScope(
-            SupervisorJob() + Dispatchers.IO + CoroutineExceptionHandler { _, e -> Log.w(TAG, "Senden im Hintergrund fehlgeschlagen", e) },
+            SupervisorJob() + Dispatchers.IO + CoroutineExceptionHandler { _, e ->
+                Log.w(TAG, "Senden im Hintergrund fehlgeschlagen", e)
+            },
         )
 
         /**
@@ -373,7 +351,9 @@ class Outbox(
          */
         suspend fun sendOnce(transport: Transport, capability: String, path: String, data: ByteArray): Int {
             val nodes = step("Geräte suchen ($path)") { transport.nodes(capability) } ?: return 0
-            return nodes.count { node -> step("Senden ($path, ${data.size} Bytes)") { transport.send(node, path, data) } != null }
+            return nodes.count { node ->
+                step("Senden ($path, ${data.size} Bytes)") { transport.send(node, path, data) } != null
+            }
         }
 
         /**
@@ -392,12 +372,19 @@ class Outbox(
 
         /** Die Warteschlange dieses Prozesses (Ordner «outbox» im privaten Speicher, nicht gesichert). */
         fun forContext(context: Context): Outbox = shared ?: synchronized(this) {
-            shared ?: Outbox(File(context.applicationContext.filesDir, "outbox"), WearTransport(context)).also { shared = it }
+            shared ?: Outbox(
+                File(context.applicationContext.filesDir, "outbox"),
+                WearTransport(context),
+            ).also { shared = it }
         }
 
         /** Fähigkeit der Gegenseite: auf der Uhr das Handy, sonst die Uhr. */
         fun peer(context: Context): String =
-            if (context.packageManager.hasSystemFeature(PackageManager.FEATURE_WATCH)) DataLayer.CAPABILITY_PHONE else DataLayer.CAPABILITY_WATCH
+            if (context.packageManager.hasSystemFeature(PackageManager.FEATURE_WATCH)) {
+                DataLayer.CAPABILITY_PHONE
+            } else {
+                DataLayer.CAPABILITY_WATCH
+            }
 
         /** Inhalt einer Nachricht: Kennung, Zeilenumbruch, Text. */
         fun wrap(id: String, body: String): ByteArray = "$id\n$body".encodeToByteArray()
@@ -409,8 +396,5 @@ class Outbox(
             if (cut <= 0) return null
             return text.substring(0, cut) to text.substring(cut + 1)
         }
-
-        /** Dateiname zum Schlüssel (hexadezimal, ohne Pfadzeichen). */
-        private fun name(key: String): String = PREFIX + key.encodeToByteArray().joinToString("") { (it.toInt() and 0xff).toString(16).padStart(2, '0') }
     }
 }

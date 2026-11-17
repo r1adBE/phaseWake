@@ -10,7 +10,8 @@ final class DiagLogTests: XCTestCase {
         let entry = DiagEntry(at: now, device: .watch, kind: .ring, detail: "light | sleep\nnow")
         let line = DiagLog.encode(entry)
         XCTAssertEqual(line, "\(ms)|W|RING|light   sleep now")
-        XCTAssertEqual(DiagLog.decode(line), DiagEntry(at: now, device: .watch, kind: .ring, detail: "light   sleep now"))
+        XCTAssertEqual(DiagLog.decode(line),
+                       DiagEntry(at: now, device: .watch, kind: .ring, detail: "light   sleep now"))
         XCTAssertEqual(DiagLog.decode("1|P|NEU|x")?.kind, .other)
         XCTAssertEqual(DiagLog.decode("1|P|BOOT")?.detail, "")
         XCTAssertEqual(DiagLog.decode("1|P|BOOT|a|b")?.detail, "a|b")
@@ -24,7 +25,8 @@ final class DiagLogTests: XCTestCase {
         let old = DiagEntry(at: now.addingTimeInterval(-DiagLog.maxAge - 1), device: .phone, kind: .boot, detail: "")
         let edge = DiagEntry(at: now.addingTimeInterval(-DiagLog.maxAge), device: .phone, kind: .boot, detail: "edge")
         XCTAssertEqual(DiagLog.trim([old, edge], now: now), [edge])
-        let many = (0..<(DiagLog.maxEntries + 20)).map { DiagEntry(at: now.addingTimeInterval(-Double($0)), device: .phone, kind: .sync, detail: "\($0)") }
+        let many = (0..<(DiagLog.maxEntries + 20)).map { DiagEntry(at: now.addingTimeInterval(-Double($0)),
+                                                                   device: .phone, kind: .sync, detail: "\($0)") }
         let kept = DiagLog.trim(many, now: now)
         XCTAssertEqual(kept.count, DiagLog.maxEntries)
         XCTAssertEqual(kept.last?.detail, "0")
@@ -53,7 +55,8 @@ final class DiagLogTests: XCTestCase {
         XCTAssertNil(DiagReports.decode(nil))
         XCTAssertNil(DiagReports.decode("anders"))
         // Ohne Trennlinie: nur Zustand.
-        XCTAssertEqual(DiagReports.decode("phasewake-diag 1\na=1\nkaputt"), DiagReport(status: [(key: "a", value: "1")], entries: []))
+        XCTAssertEqual(DiagReports.decode("phasewake-diag 1\na=1\nkaputt"),
+                       DiagReport(status: [(key: "a", value: "1")], entries: []))
     }
 
     func testUnlockAfterSevenTaps() {

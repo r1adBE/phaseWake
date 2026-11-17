@@ -16,6 +16,7 @@ final class SyncTimeWatchTests: XCTestCase {
         XCTAssertTrue(SyncTime.stale(nil, now: now))
         XCTAssertFalse(SyncTime.stale(TimeBounds.millis(now) - 1000, now: now))
         XCTAssertTrue(SyncTime.stale(TimeBounds.millis(now) - SyncKeys.maxRingAgeMs - 1, now: now))
-        XCTAssertNil(RingNight(alarmId: "d", target: Date(timeIntervalSince1970: 1e300)).targetMs.flatMap(TimeBounds.checked))
+        XCTAssertNil(RingNight(alarmId: "d", target: Date(timeIntervalSince1970: 1e300)).targetMs
+            .flatMap(TimeBounds.checked))
     }
 }

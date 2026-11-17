@@ -51,7 +51,9 @@ class NextAlarmNotice(private val context: Context, private val now: () -> Insta
         val current = now()
         val zone = ZoneId.systemDefault()
         val plan = if (app.settings.nextAlarmNotice.first()) {
-            AlarmSchedule.earliestPlan(app.alarms.current().alarms, current, zone, app.holidays.store.current(), app.backup.doneUntil())
+            AlarmSchedule.earliestPlan(
+                app.alarms.current().alarms, current, zone, app.holidays.store.current(), app.backup.doneUntil(),
+            )
         } else {
             null
         }
@@ -59,14 +61,19 @@ class NextAlarmNotice(private val context: Context, private val now: () -> Insta
             manager.cancel(NOTIFICATION_ID)
             return@withLock
         }
-        val from = showFrom(plan.target, zone, app.settings.sleepGoalNow(), app.settings.bedtimeReminder.first(), app.learning.current().values?.latencyMinutes)
+        val from = showFrom(
+            plan.target, zone, app.settings.sleepGoalNow(), app.settings.bedtimeReminder.first(),
+            app.learning.current().values?.latencyMinutes,
+        )
         if (from.isAfter(current)) {
             manager.cancel(NOTIFICATION_ID)
             alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, from.toEpochMilli(), pending())
         } else {
             show(plan, zone, current)
             // Danach aufräumen und die nächste Nacht planen, auch wenn sonst nichts neu plant.
-            alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, plan.target.plus(KEEP_AFTER).toEpochMilli(), pending())
+            alarmManager.setAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP, plan.target.plus(KEEP_AFTER).toEpochMilli(), pending(),
+            )
         }
     }
 
@@ -153,7 +160,13 @@ class NextAlarmNotice(private val context: Context, private val now: () -> Insta
          * zum früheren von ihr und 22:00 am Vorabend; nie früher als [MAX_AHEAD] vor der Zielzeit. [latencyMinutes]:
          * gelernte Einschlafdauer wie bei der Erinnerung (die eine Bettzeit).
          */
-        internal fun showFrom(target: Instant, zone: ZoneId, goalMinutes: Int, bedtimeReminder: Boolean, latencyMinutes: Int? = null): Instant {
+        internal fun showFrom(
+            target: Instant,
+            zone: ZoneId,
+            goalMinutes: Int,
+            bedtimeReminder: Boolean,
+            latencyMinutes: Int? = null,
+        ): Instant {
             val reminder = Bedtime.reminderAt(target, goalMinutes, latencyMinutes = latencyMinutes)
             val evening = target.atZone(zone).toLocalDate().minusDays(1).atTime(EVENING).atZone(zone).toInstant()
             val start = if (bedtimeReminder) reminder else minOf(reminder, evening)
@@ -172,7 +185,9 @@ class NextAlarmNotice(private val context: Context, private val now: () -> Insta
             val notifications = context.getSystemService(NotificationManager::class.java)
             OLD_CHANNELS.forEach(notifications::deleteNotificationChannel)
             notifications.createNotificationChannel(
-                NotificationChannel(CHANNEL, context.getString(R.string.widget_name), NotificationManager.IMPORTANCE_DEFAULT).apply {
+                NotificationChannel(
+                    CHANNEL, context.getString(R.string.widget_name), NotificationManager.IMPORTANCE_DEFAULT,
+                ).apply {
                     setSound(null, null)
                     enableVibration(false)
                     setShowBadge(false)

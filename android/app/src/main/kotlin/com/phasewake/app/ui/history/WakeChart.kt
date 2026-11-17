@@ -26,10 +26,12 @@ import java.time.LocalDate
 
 // --- 3. Weckmoment im Fenster ---
 
-fun wakeTakeaway(context: Context, w: WakeMoments): String = context.getString(R.string.history_average, w.averageBefore)
+fun wakeTakeaway(context: Context, w: WakeMoments): String =
+    context.getString(R.string.history_average, w.averageBefore)
 
 /** «12 Min vor der Zielzeit · Unruhig – wohl leichter Schlaf» für einen Weckmoment ([wakeTimingText]). */
-private fun wakeTiming(context: Context, p: WakeMoment): String = wakeTimingText(context, p.minutesBefore, p.minutesAfter, p.reason)
+private fun wakeTiming(context: Context, p: WakeMoment): String =
+    wakeTimingText(context, p.minutesBefore, p.minutesAfter, p.reason)
 
 private fun wakeDescription(context: Context, w: WakeMoments): String = buildList {
     add(context.getString(R.string.chart_wake_title))
@@ -41,7 +43,12 @@ private fun wakeDescription(context: Context, w: WakeMoments): String = buildLis
  * Form und Farbe je Weckart. Die Form allein unterscheidet schon (WCAG 1.4.1, auch bei Farbenblindheit):
  * Kreis = leichter Schlaf, Dreieck = wach, Quadrat = Zielzeit, Kreuz = zu spät.
  */
-private fun wakeStyle(kind: WakeKind, active: Color, muted: Color, error: Color): Pair<LegendMark, Color> = when (kind) {
+private fun wakeStyle(
+    kind: WakeKind,
+    active: Color,
+    muted: Color,
+    error: Color,
+): Pair<LegendMark, Color> = when (kind) {
     WakeKind.LIGHT -> LegendMark.DOT to active
     WakeKind.AWAKE -> LegendMark.TRIANGLE to muted
     WakeKind.TARGET -> LegendMark.SQUARE to muted
@@ -68,10 +75,15 @@ internal fun WakeCard(chart: WakeMoments?, nights: Int, opener: (LocalDate) -> (
             NoDataText()
             return@ChartCard
         }
-        Text(wakeTakeaway(context, w), style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(bottom = 10.dp))
+        Text(
+            wakeTakeaway(context, w), style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.padding(bottom = 10.dp),
+        )
         val description = remember(w) { wakeDescription(context, w) }
         val average = remember(w) { ChartData.weekAverage(w.points.map { it.minutesBefore.toDouble() }) }
-        val labels = remember(w, label) { listOf(0, w.scaleMinutes / 2, w.scaleMinutes).map { measurer.measure(res.getString(R.string.duration_minutes, it.toLong()), label) } }
+        val labels = remember(w, label) { listOf(0, w.scaleMinutes / 2, w.scaleMinutes).map {
+            measurer.measure(res.getString(R.string.duration_minutes, it.toLong()), label)
+        } }
         val left = labels.maxOf { it.size.width } + with(LocalDensity.current) { 6.dp.toPx() }
         val n = w.points.size
         val pick = ChartPick(
@@ -91,7 +103,10 @@ internal fun WakeCard(chart: WakeMoments?, nights: Int, opener: (LocalDate) -> (
             selected?.let { highlight(scheme.primary, left + slot * it, slot, size.height - axisHeight) }
             listOf(0, w.scaleMinutes / 2, w.scaleMinutes).forEachIndexed { i, m ->
                 val gy = y(m.toDouble())
-                drawLine(if (m == 0) scheme.outline else scheme.outlineVariant, Offset(left, gy), Offset(size.width, gy), strokeWidth = 1.dp.toPx())
+                drawLine(
+                    if (m == 0) scheme.outline else scheme.outlineVariant, Offset(left, gy), Offset(size.width, gy),
+                    strokeWidth = 1.dp.toPx(),
+                )
                 drawText(labels[i], topLeft = Offset(0f, gy - labels[i].size.height / 2f))
             }
             if (nights > ChartData.SHORT_NIGHTS) averageLine(average, scheme.onSurface.copy(alpha = 0.75f), ::x, ::y)
@@ -123,6 +138,9 @@ private fun WakeLegend(w: WakeMoments, styles: Map<WakeKind, Pair<LegendMark, Co
         val (shape, color) = styles.getValue(kind)
         LegendItem(stringResource(text), shape, color)
     }
-    val average = LegendItem(stringResource(R.string.chart_week_average), LegendMark.LINE, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f))
+    val average = LegendItem(
+        stringResource(R.string.chart_week_average), LegendMark.LINE,
+        MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f),
+    )
     Legend(if (withAverage) kinds + average else kinds)
 }

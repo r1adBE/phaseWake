@@ -13,7 +13,8 @@ struct NapCard: View {
         VStack(alignment: .leading, spacing: 8) {
             Button { withAnimation { expanded.toggle() } } label: {
                 HStack {
-                    Label(L("nap_title"), systemImage: "powersleep").font(Fonts.manrope(16, .semibold, relativeTo: .headline))
+                    Label(L("nap_title"), systemImage: "powersleep")
+                        .font(Fonts.manrope(16, .semibold, relativeTo: .headline))
                     Spacer()
                     Image(systemName: expanded ? "chevron.up" : "chevron.down").accessibilityHidden(true)
                 }
@@ -21,10 +22,12 @@ struct NapCard: View {
             .buttonStyle(.plain)
             .accessibilityAddTraits(.isButton)
             if expanded {
-                Stepper(value: $minutes, in: Transient.napMinMinutes...Transient.napMaxMinutes, step: Transient.napStepMinutes) {
+                Stepper(value: $minutes, in: Transient.napMinMinutes...Transient.napMaxMinutes,
+                        step: Transient.napStepMinutes) {
                     Text(LP("nap_minutes", minutes, Int64(minutes))).font(Fonts.manrope(15, relativeTo: .body))
                 }
-                Text(L("nap_hint")).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.tertiaryText(scheme))
+                Text(L("nap_hint"))
+                    .font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.tertiaryText(scheme))
                 Button(L("nap_start")) {
                     expanded = false
                     Task { await model.transient.startNap(minutes: minutes) }
@@ -34,7 +37,8 @@ struct NapCard: View {
                 .foregroundStyle(Brand.onAccent(scheme))
             }
             if let refusal = model.transient.refusal(.nap) {
-                Label(refusal, systemImage: "exclamationmark.circle").font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
+                Label(refusal, systemImage: "exclamationmark.circle")
+                    .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
             }
         }
         .card()

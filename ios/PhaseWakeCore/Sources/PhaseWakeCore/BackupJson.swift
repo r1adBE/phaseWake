@@ -36,7 +36,8 @@ public struct BackupSettings: Equatable, Sendable {
 
     /// Erzeugt Einstellungen; ohne Angaben die Vorgaben der App.
     public init(sleepGoal: Int = SleepGoal.defaultMinutes, bedtimeReminder: Bool = false, weeklyReview: Bool = false,
-                soundRecDefault: Bool = false, theme: String = "SYSTEM", holidayCountry: String = "", holidayRegion: String = "",
+                soundRecDefault: Bool = false, theme: String = "SYSTEM", holidayCountry: String = "",
+                holidayRegion: String = "",
                 historyClearedAt: Int64? = nil, nextAlarmNotice: Bool = true, autoOnset: Bool = true,
                 eveningDark: Bool = EveningDark.defaultEnabled, eveningDarkFrom: Int = EveningDark.defaultFromMinutes) {
         self.sleepGoal = sleepGoal
@@ -119,7 +120,8 @@ public struct BackupPayload: Equatable, Sendable {
             ] as [String: Any],
         ]
         // Nur Texte, Zahlen, Wahrheitswerte, Listen und `NSNull`: Schreiben kann nicht scheitern.
-        let data = (try? JSONSerialization.data(withJSONObject: root, options: [.sortedKeys, .withoutEscapingSlashes])) ?? Data()
+        let data = (try? JSONSerialization.data(withJSONObject: root,
+                                                options: [.sortedKeys, .withoutEscapingSlashes])) ?? Data()
         return String(decoding: data, as: UTF8.self)
     }
 
@@ -127,7 +129,8 @@ public struct BackupPayload: Equatable, Sendable {
     /// - Throws: ``CodecError`` bei kaputtem oder zu tief verschachteltem JSON, ohne Objekt, mit falschem «format» oder
     ///   ohne Wecker.
     public static func fromJson(_ text: String) throws -> BackupPayload {
-        guard depth(of: text) <= maxDepth else { throw CodecError(description: "Mehr als \(maxDepth) Stufen verschachtelt") }
+        guard depth(of: text) <= maxDepth
+        else { throw CodecError(description: "Mehr als \(maxDepth) Stufen verschachtelt") }
         let parsed: Any
         do {
             parsed = try JSONSerialization.jsonObject(with: Data(text.utf8))
@@ -159,7 +162,8 @@ public struct BackupPayload: Equatable, Sendable {
                 nextAlarmNotice: bool(s["nextAlarmNotice"]) ?? d.nextAlarmNotice,
                 autoOnset: bool(s["autoOnset"]) ?? d.autoOnset,
                 eveningDark: bool(s["eveningDark"]) ?? d.eveningDark,
-                eveningDarkFrom: EveningDark.checkedFrom(integer(s["eveningDarkFrom"]).flatMap { (0..<1440).contains($0) ? Int($0) : nil })
+                eveningDarkFrom: EveningDark.checkedFrom(integer(s["eveningDarkFrom"])
+                    .flatMap { (0..<1440).contains($0) ? Int($0) : nil })
             ),
             healthFeelings: root["healthFeelings"] as? String ?? ""
         )

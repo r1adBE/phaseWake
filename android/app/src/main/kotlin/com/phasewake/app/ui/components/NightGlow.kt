@@ -70,7 +70,8 @@ object Night {
  * Hintergrund wie ein Nachthimmel kurz vor der Dämmerung: Verlauf von Mitternachts-Indigo nach Fast-Schwarz,
  * darüber ein weicher Lichtschein, der langsam wandert ([drift] 0–1).
  */
-fun Modifier.nightGlow(drift: Float = 0f, mood: SkyMood = SkyMood.Plain): Modifier = drawBehind { drawNight(drift, mood) }
+fun Modifier.nightGlow(drift: Float = 0f, mood: SkyMood = SkyMood.Plain): Modifier =
+    drawBehind { drawNight(drift, mood) }
 
 private fun DrawScope.drawNight(drift: Float, mood: SkyMood) {
     drawRect(Brush.verticalGradient(listOf(mood.top, Night.Bottom)))
@@ -124,7 +125,10 @@ private fun DrawScope.drawStars(strength: Float) {
     val unit = 1.dp.toPx()
     STARS.forEach { (x, y, r) ->
         val a = (0.35f + 0.45f * r) * strength
-        drawCircle(Night.Moon.copy(alpha = a), radius = (0.6f + 0.9f * r) * unit, center = Offset(size.width * x, size.height * y))
+        drawCircle(
+            Night.Moon.copy(alpha = a), radius = (0.6f + 0.9f * r) * unit,
+            center = Offset(size.width * x, size.height * y),
+        )
     }
 }
 

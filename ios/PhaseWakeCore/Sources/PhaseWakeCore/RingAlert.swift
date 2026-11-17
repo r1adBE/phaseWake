@@ -23,7 +23,8 @@ public enum RingAlert {
 
     /// Erwarteter Weg für die Diagnose; `companion`: Zuordnung als Begleit-App einer Uhr; `interactive`: Display an
     /// (Always-on zählt als aus).
-    public static func route(appVisible: Bool, companion: Bool, interactive: Bool, locked: Bool, fullScreenAllowed: Bool) -> RingRoute {
+    public static func route(appVisible: Bool, companion: Bool, interactive: Bool, locked: Bool,
+                             fullScreenAllowed: Bool) -> RingRoute {
         if appVisible { return .direct }
         if companion { return .companion }
         if fullScreenAllowed && (!interactive || locked) { return .fullScreen }

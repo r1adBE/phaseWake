@@ -38,16 +38,28 @@ internal fun RecordCard(since: Instant?, onRecord: (Boolean) -> Unit) {
     ) {
         Column(Modifier.fillMaxWidth().padding(horizontal = 18.dp, vertical = 14.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(painterResource(R.drawable.ic_watch), contentDescription = null, tint = MaterialTheme.colorScheme.primary)
-                Text(stringResource(R.string.record_title), style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(start = 14.dp))
+                Icon(
+                    painterResource(R.drawable.ic_watch), contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                )
+                Text(
+                    stringResource(R.string.record_title), style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.padding(start = 14.dp),
+                )
             }
             Text(
-                if (since != null) stringResource(R.string.record_since, Format.time(since)) else stringResource(R.string.record_hint),
+                if (since != null) {
+                    stringResource(R.string.record_since, Format.time(since))
+                } else {
+                    stringResource(R.string.record_hint)
+                },
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 6.dp),
             )
-            FilledTonalButton(onClick = { onRecord(since == null) }, modifier = Modifier.align(Alignment.End).padding(top = 8.dp)) {
+            FilledTonalButton(
+                onClick = { onRecord(since == null) }, modifier = Modifier.align(Alignment.End).padding(top = 8.dp),
+            ) {
                 Text(stringResource(if (since != null) R.string.record_stop else R.string.record_start))
             }
         }

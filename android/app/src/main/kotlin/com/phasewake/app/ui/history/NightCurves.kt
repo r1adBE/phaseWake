@@ -92,7 +92,10 @@ internal fun PulseCard(curve: PulseCurve, fullNight: Boolean, modifier: Modifier
     val window = if (fullNight) null else stringResource(R.string.chart_window)
     val description = listOfNotNull(title, window, average, "$from – $to").joinToString(". ")
     ChartCard(title, window, modifier) {
-        Canvas(Modifier.fillMaxWidth().height(PULSE_HEIGHT).padding(top = 4.dp).fadeIn().clearAndSetSemantics { contentDescription = description }) {
+        Canvas(
+            Modifier.fillMaxWidth().height(PULSE_HEIGHT).padding(top = 4.dp).fadeIn()
+                .clearAndSetSemantics { contentDescription = description }
+        ) {
             val axis = 16.dp.toPx()
             val plot = size.height - axis - 4.dp.toPx()
             val lo = floor(curve.low) - 3
@@ -126,10 +129,18 @@ internal fun PulseCard(curve: PulseCurve, fullNight: Boolean, modifier: Modifier
                 area.lineTo(x(curve.buckets.lastIndex), base)
                 area.close()
             }
-            drawPath(area, Brush.verticalGradient(listOf(brand.stageAwake.copy(alpha = 0.28f), brand.stageAwake.copy(alpha = 0f)), startY = 0f, endY = base))
+            drawPath(
+                area,
+                Brush.verticalGradient(
+                    listOf(brand.stageAwake.copy(alpha = 0.28f), brand.stageAwake.copy(alpha = 0f)), startY = 0f,
+                    endY = base,
+                ),
+            )
             // Einzelne Stücke zwischen Lücken als Punkt, damit sie sichtbar bleiben.
             curve.buckets.forEachIndexed { i, v ->
-                if (v != null && curve.buckets.getOrNull(i - 1) == null && curve.buckets.getOrNull(i + 1) == null) drawCircle(brand.stageAwake, 2.dp.toPx(), Offset(x(i), y(v)))
+                if (v != null && curve.buckets.getOrNull(i - 1) == null && curve.buckets.getOrNull(i + 1) == null) {
+                    drawCircle(brand.stageAwake, 2.dp.toPx(), Offset(x(i), y(v)))
+                }
             }
             drawPath(path, brand.stageAwake, style = Stroke(2.dp.toPx(), cap = StrokeCap.Round))
             val avgY = y(curve.average.toDouble())
@@ -157,7 +168,10 @@ internal fun MotionCard(series: NightSeries, modifier: Modifier = Modifier) {
         series.epochs.chunked(PulseCurve.BUCKET_EPOCHS).map { chunk -> chunk.mapNotNull { it.motion }.maxOrNull() }
     }
     ChartCard(title, null, modifier) {
-        Canvas(Modifier.fillMaxWidth().height(MOTION_HEIGHT).fadeIn().clearAndSetSemantics { contentDescription = "$title. $from – $to" }) {
+        Canvas(
+            Modifier.fillMaxWidth().height(MOTION_HEIGHT).fadeIn()
+                .clearAndSetSemantics { contentDescription = "$title. $from – $to" }
+        ) {
             val n = buckets.size.coerceAtLeast(1)
             val gap = if (n > 60) 1.dp.toPx() else 2.dp.toPx()
             val w = ((size.width - gap * (n - 1)) / n).coerceAtLeast(1f)
@@ -174,7 +188,10 @@ internal fun MotionCard(series: NightSeries, modifier: Modifier = Modifier) {
             }
         }
         Row(Modifier.fillMaxWidth().padding(top = 4.dp).clearAndSetSemantics { }) {
-            Text(from, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.weight(1f))
+            Text(
+                from, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.weight(1f),
+            )
             Text(to, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
     }

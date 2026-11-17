@@ -88,7 +88,12 @@ class TransientTest {
     fun encodeAndDecode() {
         val t = Transient.test(base, now, zurich, "abc")
         val text = Transient.encode(t)
-        assertTrue(text.startsWith("phasewake-transient 1\nTEST|${now.plusSeconds(60).toEpochMilli()}|${now.plusSeconds(120).toEpochMilli()}\nphasewake-alarms 1\n"))
+        assertTrue(
+            text.startsWith(
+                "phasewake-transient 1\nTEST|${now.plusSeconds(60).toEpochMilli()}|" +
+                    "${now.plusSeconds(120).toEpochMilli()}\nphasewake-alarms 1\n",
+            ),
+        )
         assertEquals(t, Transient.decode(text))
         val nap = Transient.nap(null, now, zurich, 30, "n")
         assertEquals(nap, Transient.decode(Transient.encode(nap)))
@@ -103,7 +108,9 @@ class TransientTest {
         assertFailsWith<CodecException> { Transient.decode("phasewake-transient 1\nTEST|x|1\n") }
         assertFailsWith<CodecException> { Transient.decode("phasewake-transient 1\nTEST|1|x\n") }
         assertFailsWith<CodecException> { Transient.decode("phasewake-transient 1\nTEST|1|2\nphasewake-alarms 1\n") }
-        assertFailsWith<CodecException> { Transient.decode("phasewake-transient 1\nTEST|9|2\n" + Codec.encodeAlarms(listOf(base.copy(id = "test-1")))) }
+        assertFailsWith<CodecException> {
+            Transient.decode("phasewake-transient 1\nTEST|9|2\n" + Codec.encodeAlarms(listOf(base.copy(id = "test-1"))))
+        }
     }
 
     @Test
@@ -130,12 +137,24 @@ class TransientTest {
 
     @Test
     fun testRunCodec() {
-        val run = TestRun("test-1", now, PhoneAlert.VIBRATE, mapOf(TestStep.WATCH_RANG to now.plusSeconds(3), TestStep.RECEIVED to now))
+        val run = TestRun(
+            "test-1",
+            now,
+            PhoneAlert.VIBRATE,
+            mapOf(TestStep.WATCH_RANG to now.plusSeconds(3), TestStep.RECEIVED to now),
+        )
         val text = TestRuns.encode(run)
-        assertEquals("test-1|${now.toEpochMilli()}|VIBRATE|RECEIVED=${now.toEpochMilli()},WATCH_RANG=${now.plusSeconds(3).toEpochMilli()}", text)
+        assertEquals(
+            "test-1|${now.toEpochMilli()}|VIBRATE|RECEIVED=${now.toEpochMilli()},WATCH_RANG=" +
+                "${now.plusSeconds(3).toEpochMilli()}",
+            text,
+        )
         assertEquals(run, TestRuns.decode(text))
         assertEquals(TestRun("t", now, PhoneAlert.SOUND), TestRuns.decode("t|${now.toEpochMilli()}|NEU|"))
-        assertEquals(TestRun("t", now, PhoneAlert.SOUND), TestRuns.decode("t|${now.toEpochMilli()}|SOUND|LAMP=1,RECEIVED=x"))
+        assertEquals(
+            TestRun("t", now, PhoneAlert.SOUND),
+            TestRuns.decode("t|${now.toEpochMilli()}|SOUND|LAMP=1,RECEIVED=x"),
+        )
         assertNull(TestRuns.decode(null))
         assertNull(TestRuns.decode("t|1"))
         assertNull(TestRuns.decode("t|x|SOUND|"))

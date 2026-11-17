@@ -14,7 +14,8 @@ enum EffectivePlan {
     /// Wert zum Speichern, mit dem Versatz der Zone `zone` zur Zielzeit; `nil` ohne Plan.
     static func encode(_ plan: WakePlan?, zone: TimeZone = .current) -> [String: Any]? {
         guard let plan else { return nil }
-        return ["alarm": plan.alarmId, "window": plan.windowStart.timeIntervalSince1970, "target": plan.target.timeIntervalSince1970,
+        return ["alarm": plan.alarmId, "window": plan.windowStart.timeIntervalSince1970,
+                "target": plan.target.timeIntervalSince1970,
                 "exact": plan.exact, "offset": zone.secondsFromGMT(for: plan.target)]
     }
 
@@ -30,9 +31,13 @@ enum EffectivePlan {
     /// ausserhalb 2000–2100).
     static func decode(_ value: Any?) -> WakePlan? {
         guard let dict = value as? [String: Any], let alarm = dict["alarm"] as? String,
-              let window = (dict["window"] as? NSNumber)?.doubleValue, let target = (dict["target"] as? NSNumber)?.doubleValue,
-              window.isFinite, target.isFinite, window <= target, target > 946_684_800, target < 4_102_444_800 else { return nil }
-        return WakePlan(alarmId: alarm, windowStart: Date(timeIntervalSince1970: window), target: Date(timeIntervalSince1970: target),
+              let window = (dict["window"] as? NSNumber)?.doubleValue,
+              let target = (dict["target"] as? NSNumber)?.doubleValue,
+              window.isFinite, target.isFinite, window <= target, target > 946_684_800, target < 4_102_444_800 else {
+            return nil
+        }
+        return WakePlan(alarmId: alarm, windowStart: Date(timeIntervalSince1970: window),
+                        target: Date(timeIntervalSince1970: target),
                         exact: (dict["exact"] as? NSNumber)?.boolValue ?? false)
     }
 

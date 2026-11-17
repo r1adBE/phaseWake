@@ -71,7 +71,9 @@ class SunriseScreenTest {
         assertTrue(tree.shows(context.getString(R.string.sunrise_title)), "Titel fehlt: ${tree.texts()}")
         // Etwa halb hell: deutlich heller als zu Beginn, noch nicht voll.
         val brightness = activity.window.attributes.screenBrightness
-        assertTrue(brightness > Sunrise.brightness(0.4f) && brightness < Sunrise.brightness(0.6f), "Helligkeit $brightness")
+        assertTrue(
+            brightness > Sunrise.brightness(0.4f) && brightness < Sunrise.brightness(0.6f), "Helligkeit $brightness",
+        )
         tree.idle(3_000)
         assertFalse(activity.isFinishing)
         // «Licht aus»: Licht beendet, Bildschirm schliesst sich.

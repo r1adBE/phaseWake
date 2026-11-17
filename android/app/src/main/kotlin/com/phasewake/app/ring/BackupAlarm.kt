@@ -68,7 +68,9 @@ class BackupAlarm(
         sideWork("Bettzeit-Erinnerung nicht planbar") { app.bedtime.reschedule() }
         sideWork("Wochenrückblick nicht planbar") { app.weekly.reschedule() }
         sideWork("Mitteilung «Nächster Wecker» nicht planbar") { app.nextAlarm.reschedule() }
-        sideWork("Nächte mit Wecker nicht gemerkt") { app.learnLog.noteAlarms(alarms.current().alarms, app.holidays.store.current(), now()) }
+        sideWork("Nächte mit Wecker nicht gemerkt") {
+            app.learnLog.noteAlarms(alarms.current().alarms, app.holidays.store.current(), now())
+        }
     }
 
     /** Nebenarbeit nach dem Zweitwecker: ein Fehler ([what] ins Log) hält die übrigen nicht auf. */
@@ -108,11 +110,15 @@ class BackupAlarm(
             // Weckart «Aus» ohne Licht auf dem Handy: das Handy bleibt ganz still (kein Vollbild, kein Bildschirm).
             if (spec == null || spec.phone != PhoneAlert.OFF || spec.phoneSunrise != Sunrise.OFF) forwardRing(message)
         }
-        context.phoneApp.diag.log(DiagKind.RING, "watch rang${if (message.isStale(now().toEpochMilli())) " (stale)" else ""}")
+        context.phoneApp.diag.log(
+            DiagKind.RING, "watch rang${if (message.isStale(now().toEpochMilli())) " (stale)" else ""}",
+        )
         context.phoneApp.testRuns.record(message.alarmId, TestStep.WATCH_RANG, now())
         // Ein veraltetes «klingeln» setzt den Zweitwecker nicht aus: Ob die Uhr wirklich geweckt hat, ist
         // offen; der Zweitwecker dieser Nacht bleibt. Ein «stop» oder die Nacht der Uhr setzt ihn weiterhin aus.
-        if (RingRules.ringPausesBackup(message, now().toEpochMilli())) watchHandled(message.alarmId, message.target?.let(Instant::ofEpochMilli))
+        if (RingRules.ringPausesBackup(message, now().toEpochMilli())) {
+            watchHandled(message.alarmId, message.target?.let(Instant::ofEpochMilli))
+        }
     }
 
     /**
@@ -124,29 +130,8 @@ class BackupAlarm(
         val id = message.alarmId ?: return false
         val target = message.target?.let(Instant::ofEpochMilli) ?: return false
         val rang = decodeSuppressed(store.data.first()[BACKUP_RANG])[id] ?: return false
-        return !target.isAfter(rang) && !target.isBefore(rang.minus(Duration.ofMinutes(AlarmSpec.MAX_SLEEP_MINUTES.toLong())))
-    }
-
-    /**
-     * Die Meldung kommt im Hintergrund an; von dort darf ab Android 12 kein Vordergrund-Dienst
-     * starten. Ein Wecker-Alarm in einer Sekunde darf es: über ihn zum [Receiver].
-     */
-    private fun forwardRing(message: RingMessage) {
-        val intent = Intent(context, Receiver::class.java).setAction(ACTION_WATCH_RING)
-            .putExtra(PhoneRingService.EXTRA_ALARM_ID, message.alarmId)
-        message.target?.let { intent.putExtra(PhoneRingService.EXTRA_TARGET, it) }
-        message.snoozesLeft?.let { intent.putExtra(PhoneRingService.EXTRA_SNOOZES_LEFT, it) }
-        if (canScheduleExact(context)) {
-            val operation = PendingIntent.getBroadcast(context, 4, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
-            try {
-                alarmManager.setAlarmClock(AlarmManager.AlarmClockInfo(now().plus(FORWARD_DELAY).toEpochMilli(), showIntent()), operation)
-                return
-            } catch (e: SecurityException) {
-                Log.w(TAG, "Exakter Alarm nicht erlaubt", e)
-            }
-        }
-        // Ohne exakte Alarme: direkt versuchen (kann ab Android 12 im Hintergrund scheitern).
-        PhoneRingService.ring(context, message.alarmId, fromWatch = true, target = message.target, snoozesLeft = message.snoozesLeft)
+        return !target.isAfter(rang) &&
+            !target.isBefore(rang.minus(Duration.ofMinutes(AlarmSpec.MAX_SLEEP_MINUTES.toLong())))
     }
 
     /**
@@ -197,7 +182,9 @@ class BackupAlarm(
     suspend fun watchHandled(alarmId: String?, target: Instant? = null) {
         val current = now()
         val specs = alarms.current().alarms
-        val night = target?.takeIf { runCatching { com.phasewake.app.core.TimeBounds.contains(it.toEpochMilli()) }.getOrDefault(false) }
+        val night = target?.takeIf {
+            runCatching { com.phasewake.app.core.TimeBounds.contains(it.toEpochMilli()) }.getOrDefault(false)
+        }
         val until: Map<String, Instant> = if (alarmId != null) {
             mapOf(alarmId to nightTarget(specs.firstOrNull { it.id == alarmId }, night, current).plus(GRACE))
         } else {
@@ -220,10 +207,12 @@ class BackupAlarm(
     private fun nightTarget(spec: AlarmSpec?, target: Instant?, current: Instant): Instant {
         // Auch ein soeben ausgeschalteter Einmal-Wecker zählt für diese Nacht noch.
         val on = spec?.copy(enabled = true)
-        val configured = on?.let { AlarmSchedule.nextTarget(it, (target ?: current.minus(LOOKBACK)).minusMillis(1), zone) }
+        val configured =
+            on?.let { AlarmSchedule.nextTarget(it, (target ?: current.minus(LOOKBACK)).minusMillis(1), zone) }
         if (target == null) return configured ?: current.plus(Duration.ofMinutes(AlarmSpec.MAX_WINDOW_MINUTES.toLong()))
         // Nur die Weckzeit derselben Nacht (höchstens die längste Schlafdauer später).
-        val sameNight = configured?.takeIf { !it.isAfter(target.plus(Duration.ofMinutes(AlarmSpec.MAX_SLEEP_MINUTES.toLong()))) }
+        val sameNight =
+            configured?.takeIf { !it.isAfter(target.plus(Duration.ofMinutes(AlarmSpec.MAX_SLEEP_MINUTES.toLong()))) }
         return maxOf(target, sameNight ?: target)
     }
 
@@ -254,7 +243,8 @@ class BackupAlarm(
      * Nachfrist). Das Gegenstück zu `doneUntil` der Uhr: Überspringen, Startseite und Widget suchen für diesen Wecker
      * erst ab hier.
      */
-    val doneUntilFlow: Flow<Map<String, Instant>> = store.data.map { decodeSuppressed(it[SUPPRESSED]) }.distinctUntilChanged()
+    val doneUntilFlow: Flow<Map<String, Instant>> = store.data.map { decodeSuppressed(it[SUPPRESSED]) }
+        .distinctUntilChanged()
 
     /** Aktueller Stand von [doneUntilFlow]. */
     suspend fun doneUntil(): Map<String, Instant> = doneUntilFlow.first()
@@ -274,13 +264,15 @@ class BackupAlarm(
 
     internal fun showIntent(): PendingIntent = showPending(context)
 
-    internal fun pending(alarmId: String? = null, target: Instant? = null): PendingIntent = backupPending(context, alarmId, target)
+    internal fun pending(alarmId: String? = null, target: Instant? = null): PendingIntent =
+        backupPending(context, alarmId, target)
 
     /**
      * Exakt planen; mit [show] als Wecker (Sperrbildschirm zeigt ihn), sonst still. Ohne Recht für
      * exakte Alarme (Android 12/12L, entziehbar) ungenau statt gar nicht – siehe [setExact].
      */
-    internal fun setAlarm(at: Instant, show: PendingIntent?, operation: PendingIntent) = setExact(context, at, show, operation)
+    internal fun setAlarm(at: Instant, show: PendingIntent?, operation: PendingIntent) =
+        setExact(context, at, show, operation)
 
     /** Löst den Zweitwecker aus und plant den nächsten. Nicht exportiert: nur eigene Alarme. */
     class Receiver : BroadcastReceiver() {
@@ -293,7 +285,9 @@ class BackupAlarm(
      */
     class SystemReceiver : BroadcastReceiver() {
         // Aktionsprüfung hier, damit Lint die erlaubte Liste sieht.
-        override fun onReceive(context: Context, intent: Intent) { if (intent.action in SYSTEM_ACTIONS) onBackupSystemEvent(context, intent) }
+        override fun onReceive(context: Context, intent: Intent) {
+            if (intent.action in SYSTEM_ACTIONS) onBackupSystemEvent(context, intent)
+        }
     }
 
     companion object {
@@ -331,13 +325,15 @@ class BackupAlarm(
         internal val FORWARD_DELAY: Duration = Duration.ofSeconds(1)
 
         /** Ohne Zielzeit (ältere Uhr): so weit zurück kann die Nacht begonnen haben (Fenster, Schlummern, Klingeln). */
-        private val LOOKBACK: Duration = Duration.ofMinutes(AlarmSpec.MAX_WINDOW_MINUTES + Snooze.MAX_COUNT * Snooze.MINUTES + 10L)
+        private val LOOKBACK: Duration =
+            Duration.ofMinutes(AlarmSpec.MAX_WINDOW_MINUTES + Snooze.MAX_COUNT * Snooze.MINUTES + 10L)
 
         internal val MISSED_DURING_BOOT: Duration = Duration.ofMinutes(AlarmSpec.MAX_WINDOW_MINUTES.toLong())
 
         /** Ob exakte Alarme erlaubt sind; entziehbar nur auf Android 12/12L (ab 13 gilt USE_EXACT_ALARM). */
         fun canScheduleExact(context: Context): Boolean =
-            Build.VERSION.SDK_INT < Build.VERSION_CODES.S || context.getSystemService(AlarmManager::class.java).canScheduleExactAlarms()
+            Build.VERSION.SDK_INT < Build.VERSION_CODES.S ||
+                context.getSystemService(AlarmManager::class.java).canScheduleExactAlarms()
 
         /** Ob der Speicher entsperrt ist (nach einem Neustart erst nach dem ersten Entsperren). */
         fun isUnlocked(context: Context): Boolean = context.getSystemService(UserManager::class.java).isUserUnlocked
@@ -352,7 +348,9 @@ class BackupAlarm(
             val intent = Intent(context, Receiver::class.java).setAction(ACTION)
             if (alarmId != null) intent.putExtra(PhoneRingService.EXTRA_ALARM_ID, alarmId)
             if (target != null) intent.putExtra(PhoneRingService.EXTRA_TARGET, target.toEpochMilli())
-            return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+            return PendingIntent.getBroadcast(
+                context, 0, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+            )
         }
 
         /** Sicherung nach dem Schlummern: eigener Alarm neben dem Zweitwecker (eigener Request-Code, eigene Aktion). */
@@ -360,7 +358,9 @@ class BackupAlarm(
             val intent = Intent(context, Receiver::class.java).setAction(ACTION_SNOOZE_SAFETY)
                 .putExtra(PhoneRingService.EXTRA_SNOOZES_DONE, snoozesDone)
             if (alarmId != null) intent.putExtra(PhoneRingService.EXTRA_ALARM_ID, alarmId)
-            return PendingIntent.getBroadcast(context, 5, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+            return PendingIntent.getBroadcast(
+                context, 5, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+            )
         }
 
         internal fun setExact(context: Context, at: Instant, show: PendingIntent?, operation: PendingIntent) {

@@ -126,7 +126,9 @@ class LearningRepository(private val store: DataStore<Preferences>) {
      * @return der Stand danach.
      */
     suspend fun stampIfNever(now: Instant): LearningState {
-        store.edit { prefs -> if ((prefs[UPDATED_AT] ?: 0L) <= 0L && !PhaseWakeStore.wasReset(prefs)) stamp(prefs, now) }
+        store.edit { prefs ->
+            if ((prefs[UPDATED_AT] ?: 0L) <= 0L && !PhaseWakeStore.wasReset(prefs)) stamp(prefs, now)
+        }
         return current()
     }
 

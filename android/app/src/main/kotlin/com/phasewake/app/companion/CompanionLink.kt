@@ -33,7 +33,11 @@ object CompanionLink {
         if (!supported(context)) return false
         val manager = context.getSystemService(CompanionDeviceManager::class.java) ?: return false
         return try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) manager.myAssociations.isNotEmpty() else legacyAssociated(manager)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                manager.myAssociations.isNotEmpty()
+            } else {
+                legacyAssociated(manager)
+            }
         } catch (e: RuntimeException) {
             // Z. B. SecurityException auf angepassten Systemen: dann gilt «nicht zugeordnet», die Ersatzwege tragen.
             Log.w(TAG, "Zuordnungen nicht lesbar", e)
@@ -50,7 +54,9 @@ object CompanionLink {
      * (`BLUETOOTH_CONNECT`), davor mit `BLUETOOTH` (bei der Installation erteilt).
      */
     fun canReadPaired(context: Context): Boolean = Build.VERSION.SDK_INT < Build.VERSION_CODES.S ||
-        ContextCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED
+        ContextCompat.checkSelfPermission(
+            context, Manifest.permission.BLUETOOTH_CONNECT,
+        ) == PackageManager.PERMISSION_GRANTED
 
     /**
      * Gekoppelte Bluetooth-Geräte des Handys, nur um die Uhr für die Anfrage zu wählen (nichts wird gespeichert).
@@ -58,7 +64,8 @@ object CompanionLink {
      */
     fun paired(context: Context): List<PairedDevice> {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
-            ContextCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED
+            ContextCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) !=
+                PackageManager.PERMISSION_GRANTED
         ) {
             return emptyList()
         }

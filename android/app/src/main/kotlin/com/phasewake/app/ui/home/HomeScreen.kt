@@ -1,10 +1,8 @@
 package com.phasewake.app.ui.home
 
-import androidx.compose.foundation.BorderStroke
 import com.phasewake.app.core.Finding
 import com.phasewake.app.core.FindingKind
 import com.phasewake.app.core.MissHint
-import com.phasewake.app.shared.RecordSync
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -17,7 +15,6 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CardElevation
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,8 +24,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -38,7 +33,6 @@ import com.phasewake.app.core.CustomNote
 import com.phasewake.app.core.Learning
 import com.phasewake.app.core.WakePlan
 import com.phasewake.app.core.ShortNight
-import com.phasewake.app.core.SleepGoal
 import com.phasewake.app.core.SleepNotes
 import com.phasewake.app.sounds.SleepSoundService
 import com.phasewake.app.ui.notes.TonightNotesCard
@@ -50,13 +44,10 @@ import com.phasewake.app.ui.sounds.SoundRecordingCard
 import java.io.File
 import java.time.LocalDate
 import com.phasewake.app.core.AlarmSpec
-import com.phasewake.app.core.Transient
-import com.phasewake.app.core.TransientPlan
 import com.phasewake.app.ui.Format
 import androidx.compose.ui.platform.LocalConfiguration
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.ui.components.AnimatedNight
-import com.phasewake.app.ui.components.Night
 import com.phasewake.app.ui.components.SkyMood
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import java.time.Duration
@@ -120,7 +111,9 @@ fun HomeScreen(
     val zone = ZoneId.systemDefault()
     // Eine schon erledigte Nacht (früh geweckt, Zielzeit noch vorn) ist nicht mehr der nächste Wecker.
     val done = extras.doneUntil
-    val plan = remember(alarms, now, extras.holidays, done) { AlarmSchedule.earliestPlan(alarms, now, zone, extras.holidays, done) }
+    val plan = remember(alarms, now, extras.holidays, done) {
+        AlarmSchedule.earliestPlan(alarms, now, zone, extras.holidays, done)
+    }
     val locale = LocalConfiguration.current.locales[0]
     // Feiertag, an dem ein Wecker sonst als Nächstes geweckt hätte (nur bis zum nächsten Weckfenster).
     val holidayNote = remember(alarms, now, extras.holidays, done) {
@@ -131,8 +124,12 @@ fun HomeScreen(
     // Uhr bereit ist.
     val watchOk = check != null && check.watchChecked && check.failed.none { it in WATCH_PROBLEMS }
     // Akku der Uhr zu schwach: Sie misst das Einschlafen nicht, also keine Zeile dazu (der Check sagt es).
-    val autoOnset = plan?.takeIf { extras.autoOnset && watchOk && !NightCheckState.onsetSkipped(check) && now.isBefore(it.windowStart) }?.let { p ->
-        alarms.firstOrNull { it.id == p.alarmId }?.let { a -> Format.time(ShortNight.autoOnsetStart(p.target, extras.sleepGoal, a.sleepDurationMinutes), zone) }
+    val autoOnset = plan?.takeIf {
+        extras.autoOnset && watchOk && !NightCheckState.onsetSkipped(check) && now.isBefore(it.windowStart)
+    }?.let { p ->
+        alarms.firstOrNull { it.id == p.alarmId }?.let { a ->
+            Format.time(ShortNight.autoOnsetStart(p.target, extras.sleepGoal, a.sleepDurationMinutes), zone)
+        }
     }
     // Morgenbericht zuerst: vom Wecken heute bis 12 Uhr steht die letzte Nacht direkt unter dem Kopf.
     val morningFirst = lastNight != null && isMorningOf(lastNight, now, zone)
@@ -165,14 +162,17 @@ fun HomeScreen(
     val fab = alarms.isNotEmpty() && alarms.size < MAX_ALARMS
     LazyColumn(
         state = listState,
-        contentPadding = PaddingValues(bottom = contentPadding.calculateBottomPadding() + if (fab) FAB_CLEARANCE else 16.dp),
+        contentPadding = PaddingValues(
+            bottom = contentPadding.calculateBottomPadding() + if (fab) FAB_CLEARANCE else 16.dp
+        ),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = Modifier.fillMaxSize(),
     ) {
         item(key = "hero") {
             Header(
                 plan, plan?.let { p -> alarms.first { it.id == p.alarmId } }, now, zone, fullPage = dark,
-                onAdd = onAdd.takeIf { alarms.size < MAX_ALARMS }, onEdit = onEdit, holidayNote = holidayNote, autoOnset = autoOnset, mood = mood,
+                onAdd = onAdd.takeIf { alarms.size < MAX_ALARMS }, onEdit = onEdit, holidayNote = holidayNote,
+                autoOnset = autoOnset, mood = mood,
             )
         }
         if (morningFirst) item(key = "night") { nightCard() }
@@ -189,7 +189,8 @@ fun HomeScreen(
                     skipped = AlarmSchedule.skippedDate(alarm, now, zone)?.let { Format.shortDay(it, locale) },
                     onSkip = extras.onSkip?.let { skip -> { skip(alarm) } },
                     onUndoSkip = { extras.onUndoSkip(alarm) },
-                    skipDate = AlarmSchedule.nextSkipDate(alarm, now, zone, extras.holidays, done[alarm.id])?.let { Format.shortDay(it, locale) },
+                    skipDate = AlarmSchedule.nextSkipDate(alarm, now, zone, extras.holidays, done[alarm.id])
+                        ?.let { Format.shortDay(it, locale) },
                 )
             }
             if (alarms.size >= MAX_ALARMS) {
@@ -207,23 +208,32 @@ fun HomeScreen(
                 item(key = "bedtimeAdvice") { BedtimeAdviceCard(from, until) }
             }
             item(key = "notes") {
-                TonightNotesCard(notes[tonight].orEmpty(), customNotes, cardColor(), onToggle = { onToggleNote(tonight, it) })
+                TonightNotesCard(
+                    notes[tonight].orEmpty(), customNotes, cardColor(), onToggle = { onToggleNote(tonight, it) },
+                )
             }
             if (routineItems.isNotEmpty()) {
                 item(key = "routine") {
-                    RoutineCard(routineItems, routineTicks[tonight].orEmpty(), cardColor(), onToggle = { onToggleRoutine(tonight, it) })
+                    RoutineCard(
+                        routineItems, routineTicks[tonight].orEmpty(), cardColor(),
+                        onToggle = { onToggleRoutine(tonight, it) },
+                    )
                 }
             }
         }
         // Geräusche aufnehmen: am Abend, und solange die Aufnahme läuft auch danach (Stoppen, Restzeit), wie auf dem
         // iPhone.
         soundRec?.takeIf { evening || it.recording }?.let { rec ->
-            item(key = "soundRec") { SoundRecordingCard(rec.enabled, rec.recording, rec.permissionDenied, cardColor(), onSoundRec) }
+            item(key = "soundRec") {
+                SoundRecordingCard(rec.enabled, rec.recording, rec.permissionDenied, cardColor(), onSoundRec)
+            }
         }
         if (onSounds != null) {
             item(key = "sounds") { SoundsEntry(soundPlaying, now, onSounds) }
         }
-        extras.learning?.let { learning -> item(key = "learning") { LearningCard(learning, extras.record, extras.onRecord) } }
+        extras.learning?.let { learning ->
+            item(key = "learning") { LearningCard(learning, extras.record, extras.onRecord) }
+        }
         // Während der Lernphase steckt «Nacht aufzeichnen» in ihrer Karte, sonst eine eigene Karte. Solange
         // die Frage «Lernphase starten / Später» offen ist, auch keine – ausser es läuft schon eine Aufzeichnung
         // (Stopp).
@@ -233,60 +243,39 @@ fun HomeScreen(
         }?.let { record ->
             item(key = "record") { RecordCard(record.since, extras.onRecord) }
         }
-        (if (advice != null) bedtimeFinding else finding)?.let { f -> item(key = "finding") { FindingCard(f) { onHideFinding(f.kind) } } }
+        (if (advice != null) bedtimeFinding else finding)?.let { f ->
+            item(key = "finding") { FindingCard(f) { onHideFinding(f.kind) } }
+        }
         if (lastNight != null && !morningFirst) item(key = "night") { nightCard() }
         // Morgenbericht ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): nur die Geräusche.
         soundsMorningNight(soundClips, lastNight, soundRec, plan?.windowStart, now, zone)?.let { night ->
-            item(key = "soundsMorning") { SoundsMorningCard(SoundEvents.forNight(soundClips, night), soundFile, onDeleteClip) { onDeleteNightClips(night) } }
+            item(key = "soundsMorning") {
+                SoundsMorningCard(SoundEvents.forNight(soundClips, night), soundFile, onDeleteClip) {
+                    onDeleteNightClips(night)
+                }
+            }
         }
     }
     }
     if (dark) AnimatedNight(Modifier.fillMaxSize(), mood) { list() } else list()
 }
 
-/** Neues der Startseite; Vorgaben = nichts davon, wie in den Bildschirmfotos. */
-class HomeExtras(
-    /** Feiertage für Wecker mit «An Feiertagen nicht wecken». */
-    val holidays: Set<LocalDate> = emptySet(),
-    /** Pro Wecker erledigt bis (früh geweckt); dieser Wecker zählt erst danach wieder. */
-    val doneUntil: Map<String, Instant> = emptyMap(),
-    /** Laufender Powernap; `null` = keiner. */
-    val nap: TransientPlan? = null,
-    /** Vorschlag der Dauer in Minuten. */
-    val napMinutes: Int = Transient.NAP_DEFAULT_MINUTES,
-    /** Powernap starten (Minuten); `null` = keine Karte. */
-    val onNap: ((Int) -> Unit)? = null,
-    val onStopNap: (String) -> Unit = {},
-    /** «Nächstes Mal überspringen»; `null` = kein Menü (auch, solange die Uhr es nicht kennt). */
-    val onSkip: ((AlarmSpec) -> Unit)? = null,
-    val onUndoSkip: (AlarmSpec) -> Unit = {},
-    /** «In 2 Minuten testen» auf dem Nacht-Check; `null` = kein Knopf. */
-    val onTest: (() -> Unit)? = null,
-    /** Zielzeit eines laufenden Probeweckers; `null` = keiner. */
-    val testAt: Instant? = null,
-    /** Die Uhr misst das Einschlafen automatisch (Galaxy Watch): Zeile «ab 22:30» im Kopf. */
-    val autoOnset: Boolean = false,
-    /** Schlafziel in Minuten, für den Beginn der automatischen Messung. */
-    val sleepGoal: Int = SleepGoal.DEFAULT_MINUTES,
-    /** «Nacht aufzeichnen» auf der Galaxy Watch; `null` = Uhr kennt es nicht, keine Karte. */
-    val record: RecordSync.RecordStatus? = null,
-    /** Aufzeichnung starten (`true`) oder stoppen. */
-    val onRecord: (Boolean) -> Unit = {},
-    /** Lernphase: Fortschritt oder gelernte Werte; `null` = keine Karte. */
-    val learning: HomeLearning? = null,
-    /** Gelernte Werte nach der Lernphase für die Schlafenszeit am Abend; `null` = keine Empfehlung. */
-    val learned: Learning.Values? = null,
-)
-
 /**
  * Empfohlene Schlafenszeit ([Learning.bedtimeRange]) für den Wecker [plan] dieser Nacht, nur nach der Lernphase
  * ([HomeExtras.learned]) und bis zu ihrem Ende; Schlaf = Schlafdauer des Weckers, sonst das Schlafziel. Sonst `null`.
  */
-private fun bedtimeAdvice(plan: WakePlan?, alarms: List<AlarmSpec>, extras: HomeExtras, now: Instant, zone: ZoneId): Pair<Instant, Instant>? {
+private fun bedtimeAdvice(
+    plan: WakePlan?,
+    alarms: List<AlarmSpec>,
+    extras: HomeExtras,
+    now: Instant,
+    zone: ZoneId,
+): Pair<Instant, Instant>? {
     val values = extras.learned ?: return null
     if (plan == null || SleepNotes.nightDate(plan.windowStart, zone) != SleepNotes.nightDate(now, zone)) return null
     val alarm = alarms.firstOrNull { it.id == plan.alarmId } ?: return null
-    val range = Learning.bedtimeRange(plan.target, alarm.sleepDurationMinutes ?: extras.sleepGoal, values.latencyMinutes)
+    val range =
+        Learning.bedtimeRange(plan.target, alarm.sleepDurationMinutes ?: extras.sleepGoal, values.latencyMinutes)
     return range.takeIf { now.isBefore(it.second) }
 }
 
@@ -297,7 +286,8 @@ private val WATCH_PROBLEMS = setOf(Check.WATCH, Check.WATCH_APP, Check.WATCH_SET
 internal fun isMorningOf(night: NightRecord, now: Instant, zone: ZoneId): Boolean {
     val woke = night.wokeAt.atZone(zone)
     val local = now.atZone(zone)
-    return !now.isBefore(night.wokeAt) && woke.toLocalDate() == local.toLocalDate() && local.hour < MORNING_FIRST_UNTIL_HOUR
+    return !now.isBefore(night.wokeAt) &&
+        woke.toLocalDate() == local.toLocalDate() && local.hour < MORNING_FIRST_UNTIL_HOUR
 }
 
 /** Bis zu dieser Stunde (Ortszeit) steht der Morgenbericht zuerst. */
@@ -311,25 +301,6 @@ internal const val MAX_ALARMS = 8
  * Navigationsleiste 16 dp + 16 dp Luft.
  */
 internal val FAB_CLEARANCE: Dp = 88.dp
-
-/** Kartenfarbe: auf dem Nachthimmel Weiss mit 6 %, hell eine weisse Fläche. */
-@Composable
-internal fun cardColor(): Color = PhaseWakeTheme.brand.card
-
-/**
- * Rand der Karten: auf dem Nachthimmel eine Glaskante (oben hell mit Lavendel-Schimmer, nach unten auslaufend) für
- * Tiefe; hell ein Hauch Lavendel als Kante. Reine Zierde, kein Bedienrand (die Fläche selbst trägt keine Information).
- */
-@Composable
-internal fun cardEdge(): BorderStroke? = if (PhaseWakeTheme.isDark) {
-    BorderStroke(1.dp, Brush.verticalGradient(listOf(Color.White.copy(alpha = 0.30f), Night.Wave.copy(alpha = 0.10f), Color.White.copy(alpha = 0.02f))))
-} else {
-    BorderStroke(1.dp, Night.Glow.copy(alpha = 0.10f))
-}
-
-/** Tiefe der Karten: hell ein weicher Schatten, dunkel keiner (die Glaskante trägt die Tiefe). */
-@Composable
-internal fun cardLift(): CardElevation = CardDefaults.cardElevation(defaultElevation = if (PhaseWakeTheme.isDark) 0.dp else 3.dp)
 
 /** Schalter «Geräusche aufnehmen» für diese Nacht. */
 data class SoundRecState(val enabled: Boolean, val recording: Boolean, val permissionDenied: Boolean)
@@ -358,7 +329,12 @@ private fun soundsMorningNight(
 
 /** Morgenbericht nur mit den Geräuschen einer Nacht. */
 @Composable
-private fun SoundsMorningCard(clips: List<SoundClip>, soundFile: (SoundClip) -> File?, onDeleteClip: (SoundClip) -> Unit, onDeleteClips: () -> Unit) {
+private fun SoundsMorningCard(
+    clips: List<SoundClip>,
+    soundFile: (SoundClip) -> File?,
+    onDeleteClip: (SoundClip) -> Unit,
+    onDeleteClips: () -> Unit,
+) {
     Card(
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = cardColor()),

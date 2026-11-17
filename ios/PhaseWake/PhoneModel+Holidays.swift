@@ -16,7 +16,8 @@ extension PhoneModel {
     /// (Zielzeit noch vorn) trifft es den nächsten Termin, nicht den erledigten heutigen.
     func setSkipped(_ alarm: AlarmSpec, _ skipped: Bool) {
         let updated = skipped
-            ? AlarmSchedule.skipNext(alarm, now: Date(), doneUntil: doneUntil[alarm.id], calendar: .gregorianLocal, holidays: holidays.dates)
+            ? AlarmSchedule.skipNext(alarm, now: Date(), doneUntil: doneUntil[alarm.id], calendar: .gregorianLocal,
+                                     holidays: holidays.dates)
             : AlarmSchedule.undoSkip(alarm)
         upsert(updated)
     }

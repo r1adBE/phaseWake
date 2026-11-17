@@ -15,7 +15,8 @@ final class DetectionLimitsTests: XCTestCase {
 
     func testLatencyIsCappedAtSixtyMinutes() {
         func latency(_ minutes: Double) -> Int? {
-            Learning.nightLatencyMinutes(Learning.Night(start: start, epochs: [], bedAt: start, asleepAt: start.addingTimeInterval(minutes * 60)))
+            Learning.nightLatencyMinutes(Learning.Night(start: start, epochs: [], bedAt: start,
+                                                        asleepAt: start.addingTimeInterval(minutes * 60)))
         }
         XCTAssertEqual(latency(59), 59)
         XCTAssertEqual(latency(60), 60)

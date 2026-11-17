@@ -56,7 +56,10 @@ class RingStartTest {
 
     /** Startet den Dienst für [plan] und wartet, bis die Sensoren laufen (Messen im Fenster). */
     private fun startNight(): WakeService {
-        val intent = AlarmReceiver.putPlan(Intent(context, WakeService::class.java).setAction(WakeService.ACTION_START), plan)
+        val intent = AlarmReceiver.putPlan(
+            Intent(context, WakeService::class.java).setAction(WakeService.ACTION_START),
+            plan,
+        )
         val built = Robolectric.buildService(WakeService::class.java, intent)
         controller = built
         val service = built.create().startCommand(0, 1).get()

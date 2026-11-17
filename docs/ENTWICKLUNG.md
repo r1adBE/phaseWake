@@ -22,14 +22,17 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 | Regel | Grenze | Prüfung |
 |---|---|---|
 | Zeilen je Datei (Kotlin, Swift) | höchstens **400** | `.github/scripts/line_limit.py` |
-| Zeilen je Funktion | höchstens **60** (Compose-Bildschirme: 120) | Review |
-| Parameter je Funktion | höchstens **7** (sonst Datenklasse) | Review |
+| Zeichen je Zeile (Kotlin, Swift, auch Tests) | höchstens **120** | `.github/scripts/code_limits.py` |
+| Zeilen je Funktion | höchstens **60**; Oberflächen (`@Composable`, SwiftUI `body`, `-> some View`) höchstens **120** | `.github/scripts/code_limits.py` |
+| Parameter je Funktion | höchstens **7** (sonst Datenklasse bzw. Struct mit gleichem Namen in Kotlin und Swift); Konstruktoren ausgenommen | `.github/scripts/code_limits.py` |
 | Verschachtelung | höchstens **4** Ebenen | Review |
 | Build-Nummern im Produktivcode | **0** | `.github/scripts/no_build_numbers.py` |
 | `TODO`, `FIXME`, `XXX` im Produktivcode | **0** – offene Punkte gehören ins Issue bzw. in `docs/ENTSCHEIDE.md` | `.github/scripts/no_build_numbers.py` |
 | Auskommentierter Code | 0 | Review |
 | Warnungen (Kotlin, Swift, Lint, Xcode) | **0** | CI-Hinweise «Warnungen» |
 
+- **Massstab:** Die Grenzen entsprechen den Standardregeln von detekt (Kotlin) und SwiftLint (Swift); die CI prüft
+  sie bei jedem Lauf und kennt keine Ausnahmen.
 - **Altlasten:** Dateien, die beim Einführen der Grenze grösser waren, stehen in `.github/quality/line-limit-baseline.txt`
   mit ihrer damaligen Länge. Sie dürfen nur schrumpfen; die Liste wird nur kürzer. Neue Dateien halten die Grenze immer.
 - **Pakete nach Aufgabe**, nicht nach Technik: `ring/`, `schedule/`, `sync/`, `sounds/`, `ui/home/` … Eine Datei
@@ -81,7 +84,7 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 | `android/shared` (Formate, Nachrichten) | **70 %** | JaCoCo + `.github/scripts/coverage_check.py`, CI |
 | Zweitwecker am Handy (`android/app`, Paket `ring`), Wecken und Planen der Uhr (`android/wear`, Pakete `wake` und `schedule`) | **70 %** je Paket | JaCoCo + `.github/scripts/coverage_check.py --package`, CI |
 | übrige Handy-App `android/app`, Uhr-App `android/wear` | keine (nur Information) | JaCoCo + `.github/scripts/coverage_check.py`, CI |
-| Zweitwecker am iPhone (`ios/PhaseWake/BackupAlarm.swift`, `+Plan`, `+Snooze` ohne die Karte, `+Transient`) | je Datei **65 / 50 / 80 / 80 %** | `-enableCodeCoverage YES`, `xccov` + `.github/scripts/xccov_check.py`, Job «Apple-Apps», CI |
+| Zweitwecker am iPhone (`ios/PhaseWake/BackupAlarm.swift`, `+Reschedule`, `+Plan`, `+Snooze` ohne die Karte, `+Transient`) | je Datei **65 / 65 / 50 / 80 / 80 %** | `-enableCodeCoverage YES`, `xccov` + `.github/scripts/xccov_check.py`, Job «Apple-Apps», CI |
 | übrige iPhone- und Watch-App (`ios/PhaseWakeTests`, `ios/PhaseWakeWatchTests`, App als Testwirt) | keine (nur Tests) | `xcodebuild test` im Simulator, Job «Apple-Apps», CI |
 | Bildschirme | jeder Bildschirm mit Vorschau im Screenshot-Test (hell/dunkel, Uhr rund); jede Abweichung von der Referenz ist ein Fehler | `validateDebugScreenshotTest`, Job «Android», CI; Referenzen rendert der Workflow «Bildschirmfotos» (Artefakt `referenzbilder`) |
 
@@ -96,7 +99,7 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 - **Fehler zuerst als Test:** Wer einen Fehler behebt, schreibt zuerst den Test, der ihn zeigt.
 - **Tests sind schnell und deterministisch:** keine echte Uhrzeit, kein Zufall ohne festen Startwert, kein Netz.
 - Abdeckung darf nicht sinken; die Grenzen werden nur angehoben.
-- **iPhone-Zweitwecker je Datei:** Eine Summe über alle vier Dateien liesse den Wegfall der
+- **iPhone-Zweitwecker je Datei:** Eine Summe über alle fünf Dateien liesse den Wegfall der
   Tests einer kleinen Datei nicht auffallen. Die Schwellen liegen etwa 10 Punkte unter dem erwarteten Stand: Fällt
   eine Testgruppe weg (z. B. «Uhr hat übernommen» in `BackupAlarm.swift`, Schlummern oder Probewecker/Powernap),
   wird die CI rot. `+Plan` liegt tiefer, weil die Mitteilungs-Kette (vor iOS 26), `noteWatchState` (WCSession) und

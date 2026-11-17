@@ -148,7 +148,8 @@ public enum Learning {
     /// die Person ins Bett ging).
     public static func nightLatencyMinutes(_ night: Night) -> Int? {
         guard let bed = night.bedAt, let asleep = night.asleepAt, asleep >= bed else { return nil }
-        let millis = Int64((asleep.timeIntervalSince1970 * 1000).rounded()) - Int64((bed.timeIntervalSince1970 * 1000).rounded())
+        let millis = Int64((asleep.timeIntervalSince1970 * 1000).rounded())
+            - Int64((bed.timeIntervalSince1970 * 1000).rounded())
         return Int(min(millis / 60_000, Int64(maxLatencyMinutes)))
     }
 
@@ -163,7 +164,8 @@ public enum Learning {
             floor: median(floors),
             restingHeartRate: pulses.count >= minValueNights ? median(pulses) : nil,
             // Wie `Math.round` in Kotlin: halbe Minuten aufwärts.
-            latencyMinutes: latencies.count >= minValueNights ? median(latencies.map { Double($0) }).map { Int(($0 + 0.5).rounded(.down)) } : nil,
+            latencyMinutes: latencies.count >= minValueNights
+                ? median(latencies.map { Double($0) }).map { Int(($0 + 0.5).rounded(.down)) } : nil,
             nights: counted.count
         )
     }
@@ -192,7 +194,8 @@ public enum Learning {
     /// Gelernter Ruhepuls, falls gültig: endlich, ``minValidRestingHeartRate`` bis ``maxValidRestingHeartRate``; sonst
     /// `nil`.
     public static func validRestingHeartRate(_ value: Double?) -> Double? {
-        guard let value, value.isFinite, value >= minValidRestingHeartRate, value <= maxValidRestingHeartRate else { return nil }
+        guard let value, value.isFinite, value >= minValidRestingHeartRate, value <= maxValidRestingHeartRate
+        else { return nil }
         return value
     }
 
@@ -205,7 +208,8 @@ public enum Learning {
     /// Schlafdauer des Weckers) − Einschlafdauer `latencyMinutes` (ungelernt 0), abgerundet auf ``roundMinutes``;
     /// frühestens ``bedtimeRangeMinutes`` davor. Feste Dauern wie ``Bedtime``.
     /// - Returns: (frühestens, spätestens).
-    public static func bedtimeRange(target: Date, sleepMinutes: Int, latencyMinutes: Int?) -> (from: Date, until: Date) {
+    public static func bedtimeRange(target: Date, sleepMinutes: Int, latencyMinutes: Int?) -> (from: Date,
+                                                                                               until: Date) {
         // Spätestens = die eine Bettzeit (`Bedtime.bedtime`), abgerundet.
         let latest = Bedtime.bedtime(nextAlarmTarget: target, goalMinutes: sleepMinutes, latencyMinutes: latencyMinutes)
         let step = Int64(roundMinutes * 60_000)

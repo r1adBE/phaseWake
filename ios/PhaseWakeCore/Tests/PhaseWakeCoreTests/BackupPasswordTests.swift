@@ -32,7 +32,8 @@ final class BackupPasswordTests: XCTestCase {
     }
 
     func testSequences() {
-        for p in ["1234567890", "0123456789", "7890123456", "9876543210", "0987654321", "abcdefghij", "ABCDEFGHIJK", "jihgfedcba", "klmnopqrstuvwxyz"] {
+        for p in ["1234567890", "0123456789", "7890123456", "9876543210", "0987654321", "abcdefghij", "ABCDEFGHIJK",
+                  "jihgfedcba", "klmnopqrstuvwxyz"] {
             XCTAssertEqual(BackupPassword.problem(p), .trivial, p)
         }
         XCTAssertNil(BackupPassword.problem("1234567899"))
@@ -40,7 +41,8 @@ final class BackupPasswordTests: XCTestCase {
     }
 
     func testKeyboardRows() {
-        for p in ["qwertyuiop", "QWERTZUIOP", "azertyuiop", "poiuytrewq", "qwertyuiopasdf", "asdfghjklzx", "mnbvcxzlkj"] {
+        for p in ["qwertyuiop", "QWERTZUIOP", "azertyuiop", "poiuytrewq", "qwertyuiopasdf", "asdfghjklzx",
+                  "mnbvcxzlkj"] {
             XCTAssertEqual(BackupPassword.problem(p), .trivial, p)
         }
         XCTAssertNil(BackupPassword.problem("qwertyuiopx"))
@@ -63,7 +65,8 @@ final class BackupPasswordTests: XCTestCase {
     func testSharedVectors() throws {
         // Gemeinsame Fälle mit Kotlin (shared/testdata/backup-password.vectors). Kleinschreibung fest ohne Sprache
         // des Geräts (Türkisch: `testCaseFoldingIgnoresTurkish`).
-        let text = try String(contentsOf: NightFixtures.directory.appendingPathComponent("backup-password.vectors"), encoding: .utf8)
+        let text = try String(contentsOf: NightFixtures.directory.appendingPathComponent("backup-password.vectors"),
+                              encoding: .utf8)
         let lines = text.components(separatedBy: "\n").filter { !$0.isEmpty && !$0.hasPrefix("#") }
         XCTAssertTrue(lines.contains("TRIVIAL\tPASSWORD12"))
         for line in lines {
@@ -85,7 +88,8 @@ final class BackupPasswordTests: XCTestCase {
     /// Türkisch als Sprache: mit der Gerätesprache würde «I» zu «ı» – die Regel nimmt fest «en_US_POSIX» (wie Kotlin).
     func testCaseFoldingIgnoresTurkish() {
         let turkish = Locale(identifier: "tr_TR")
-        XCTAssertNotEqual("QWERTYUIOP".lowercased(with: turkish), "qwertyuiop", "Voraussetzung: Türkisch schreibt «I» anders klein")
+        XCTAssertNotEqual("QWERTYUIOP".lowercased(with: turkish), "qwertyuiop",
+                          "Voraussetzung: Türkisch schreibt «I» anders klein")
         XCTAssertEqual("QWERTYUIOP".lowercased(with: BackupPassword.caseLocale), "qwertyuiop")
         XCTAssertEqual(BackupPassword.problem("QWERTYUIOP"), .trivial)
     }

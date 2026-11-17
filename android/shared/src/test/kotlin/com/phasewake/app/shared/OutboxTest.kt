@@ -35,7 +35,8 @@ class OutboxTest {
         var failing = false
         val sent = mutableListOf<Triple<String, String, ByteArray>>()
 
-        override suspend fun nodes(capability: String): List<String> = if (reachable) listOf("node-$capability") else emptyList()
+        override suspend fun nodes(capability: String): List<String> =
+            if (reachable) listOf("node-$capability") else emptyList()
 
         override suspend fun send(node: String, path: String, data: ByteArray) {
             check(!failing) { "Verbindung weg" }
@@ -55,11 +56,23 @@ class OutboxTest {
      * [clock] (jeder Aufruf eine Millisekunde später) plus die Zeit des Zeitgebers (verzögertes Nachsenden).
      */
     private fun TestScope.outbox() =
-        Outbox(dir, transport, { clock++ + testScheduler.currentTime }, backgroundScope, StandardTestDispatcher(testScheduler))
+        Outbox(
+            dir,
+            transport,
+            { clock++ + testScheduler.currentTime },
+            backgroundScope,
+            StandardTestDispatcher(testScheduler),
+        )
 
     /** Einreihen und das Senden im Hintergrund gleich ablaufen lassen (ohne verzögertes Nachsenden). */
     @OptIn(ExperimentalCoroutinesApi::class)
-    private suspend fun TestScope.put(box: Outbox, key: String, path: String, capability: String, body: String): String =
+    private suspend fun TestScope.put(
+        box: Outbox,
+        key: String,
+        path: String,
+        capability: String,
+        body: String,
+    ): String =
         box.enqueue(key, path, capability, body).also { runCurrent() }
 
     /** Lässt die Wartezeit bis zum erneuten Senden verstreichen ([Outbox.RESEND_AFTER_MS]). */
@@ -179,7 +192,11 @@ class OutboxTest {
         put(box, "night/1-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n1")
         put(box, "night/2-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n2")
         put(box, "recording/3", DataLayer.PATH_MSG_RECORDING, DataLayer.CAPABILITY_PHONE, "r3")
-        assertEquals(listOf("n1", "n2", "r3"), transport.sent.map { Outbox.open(it.third)?.second }, "je Eintrag einmal")
+        assertEquals(
+            listOf("n1", "n2", "r3"),
+            transport.sent.map { Outbox.open(it.third)?.second },
+            "je Eintrag einmal",
+        )
         // Viele Anlässe kurz hintereinander (Nachrichten der Gegenseite): nichts doppelt.
         repeat(5) { box.flush() }
         assertEquals(3, transport.sent.size)
@@ -211,12 +228,22 @@ class OutboxTest {
         put(box, "alarms", DataLayer.PATH_MSG_ALARMS, DataLayer.CAPABILITY_PHONE, "wecker")
         clock += Outbox.MAX_AGE_MS + 1
         put(box, "night/new", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "neu")
-        assertEquals(listOf("alarms", "night/new"), box.pending().map { it.key }, "Nacht älter als 14 Tage: weg, Zustand bleibt")
-        repeat(Outbox.MAX_PER_KIND + 5) { put(box, "night/$it", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n$it") }
+        assertEquals(
+            listOf("alarms", "night/new"),
+            box.pending().map { it.key },
+            "Nacht älter als 14 Tage: weg, Zustand bleibt",
+        )
+        repeat(Outbox.MAX_PER_KIND + 5) {
+            put(box, "night/$it", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n$it")
+        }
         put(box, "recording/1", DataLayer.PATH_MSG_RECORDING, DataLayer.CAPABILITY_PHONE, "r")
         val pending = box.pending()
         assertEquals(Outbox.MAX_PER_KIND, pending.count { it.key.startsWith(QueueMessages.KEY_NIGHT) })
-        assertEquals("night/${Outbox.MAX_PER_KIND + 4}", pending.last { it.key.startsWith(QueueMessages.KEY_NIGHT) }.key, "die neuesten bleiben")
+        assertEquals(
+            "night/${Outbox.MAX_PER_KIND + 4}",
+            pending.last { it.key.startsWith(QueueMessages.KEY_NIGHT) }.key,
+            "die neuesten bleiben",
+        )
         assertTrue(pending.none { it.key == "night/new" || it.key == "night/0" })
         assertEquals(1, pending.count { it.key == "recording/1" }, "andere Art unberührt")
         assertEquals("night/", Outbox.kindOf("night/1-a"))
@@ -238,7 +265,10 @@ class OutboxTest {
         // Nach dem Inhalt (Ende bis zum Löschen), nicht nur nach dem Zeitpunkt des Einreihens.
         val cut = java.time.Instant.parse("2026-11-10T12:00:00Z")
         fun night(woke: String) = com.phasewake.app.core.NightRecord(
-            "a", java.time.Instant.parse(woke).minusSeconds(1_800), java.time.Instant.parse(woke), java.time.Instant.parse(woke),
+            "a",
+            java.time.Instant.parse(woke).minusSeconds(1_800),
+            java.time.Instant.parse(woke),
+            java.time.Instant.parse(woke),
             com.phasewake.app.core.WakeReason.DEADLINE, 0, emptyList(),
         )
         val before = com.phasewake.app.core.Codec.encodeNight(night("2026-11-10T06:00:00Z"))
@@ -249,8 +279,19 @@ class OutboxTest {
         val start = java.time.Instant.parse("2026-11-09T22:00:00Z")
         val done = NightRecording(start, emptyList(), start.plusSeconds(60), RecordEnd.WAKE)
         assertTrue(QueueMessages.recordingEndsBy(NightRecording.encode(done), cut.toEpochMilli()))
-        assertFalse(QueueMessages.recordingEndsBy(NightRecording.encode(done.copy(end = null, endReason = null)), cut.toEpochMilli()), "läuft noch")
-        assertFalse(QueueMessages.recordingEndsBy(NightRecording.encode(done.copy(end = cut.plusSeconds(1))), cut.toEpochMilli()))
+        assertFalse(
+            QueueMessages.recordingEndsBy(
+                NightRecording.encode(done.copy(end = null, endReason = null)),
+                cut.toEpochMilli(),
+            ),
+            "läuft noch",
+        )
+        assertFalse(
+            QueueMessages.recordingEndsBy(
+                NightRecording.encode(done.copy(end = cut.plusSeconds(1))),
+                cut.toEpochMilli(),
+            ),
+        )
         // In der Warteschlange: eingereiht nach dem Löschen, aber eine Nacht von davor (z. B. erneut eingereiht).
         transport.reachable = false
         clock = cut.toEpochMilli() + 1_000
@@ -268,7 +309,13 @@ class OutboxTest {
         assertEquals("id" to "a\nb", Outbox.open(Outbox.wrap("id", "a\nb")))
         assertNull(Outbox.open("ohne-kennung".encodeToByteArray()))
         assertNull(Outbox.open(null))
-        val snapshot = AlarmSnapshot(listOf(com.phasewake.app.core.AlarmSpec(id = "a", hour = 7, minute = 0), com.phasewake.app.core.AlarmSpec(id = "b", hour = 8, minute = 30)), 42L)
+        val snapshot = AlarmSnapshot(
+            listOf(
+                com.phasewake.app.core.AlarmSpec(id = "a", hour = 7, minute = 0),
+                com.phasewake.app.core.AlarmSpec(id = "b", hour = 8, minute = 30),
+            ),
+            42L,
+        )
         assertEquals(snapshot, QueueMessages.decodeAlarms(QueueMessages.encodeAlarms(snapshot)))
         // Mit Zeitpunkten je Wecker und gelöschten Weckern, auch mit Sonderzeichen in der Kennung.
         val stamped = snapshot.copy(stamps = mapOf("a" to 40L, "b" to 41L), deleted = mapOf("x=1\ny" to 39L))

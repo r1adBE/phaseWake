@@ -47,7 +47,8 @@ final class DiagStorePhoneTests: XCTestCase {
         let store = DiagStore(directory: dir)
         store.log(.stop, "new")
         XCTAssertEqual(store.entries().map(\.detail), ["old 1", "old 2", "new"])
-        XCTAssertEqual(try lines(), [DiagLog.encode(old[0]), DiagLog.encode(old[1]), DiagLog.encode(store.entries()[2]), ""])
+        XCTAssertEqual(try lines(),
+                       [DiagLog.encode(old[0]), DiagLog.encode(old[1]), DiagLog.encode(store.entries()[2]), ""])
         XCTAssertEqual(DiagStore(directory: dir).entries().map(\.detail), ["old 1", "old 2", "new"])
     }
 

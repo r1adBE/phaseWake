@@ -28,6 +28,7 @@ import com.phasewake.app.core.Streak
 import com.phasewake.app.core.Trends
 import com.phasewake.app.core.WeeklySummary
 import com.phasewake.app.health.HealthReadGate
+import com.phasewake.app.ui.history.ChartSource
 import com.phasewake.app.ui.history.HabitLines
 import com.phasewake.app.ui.history.HistoryCharts
 import com.phasewake.app.ui.settings.HealthState
@@ -108,14 +109,17 @@ internal fun rememberInsights(app: PhaseWakeApp, data: AppData, healthCheck: Int
     val computed by produceState<Derived?>(null, inputs) {
         value = withContext(Dispatchers.Default) { derive(inputs) }
     }
-    val derived = computed?.takeIf { it.inputs.nights != null || inputs.nights == null } ?: remember(inputs) { derive(inputs) }
+    val derived =
+        computed?.takeIf { it.inputs.nights != null || inputs.nights == null } ?: remember(inputs) { derive(inputs) }
     val sleeps = derived.sleeps
     val zone = inputs.zone
     // Text der nächsten Wochenrückblick-Mitteilung hier vorberechnen (App offen, neue Nacht, Befinden,
     // Notizen): Im Hintergrund liest Health Connect ohne eigene Berechtigung keine Schlafdaten.
     LaunchedEffect(data.weeklyReview, nights, sleeps, data.notes, data.sleepGoal, data.customNotes, derived.feelings) {
         val list = nights ?: return@LaunchedEffect
-        if (data.weeklyReview) app.weekly.prepare(list, sleeps, data.notes, data.sleepGoal, data.customNotes, derived.feelings)
+        if (data.weeklyReview) app.weekly.prepare(
+            list, sleeps, data.notes, data.sleepGoal, data.customNotes, derived.feelings,
+        )
     }
     // Widget «Details von heute»: Schlafdauer der jüngsten eigenen Nacht ablegen (wie Verlauf und Detailseite).
     // Nur mit geladenen Daten, damit die leere Anfangsliste den Wert nicht kurz löscht.
@@ -182,16 +186,25 @@ private fun derive(i: InsightInputs): Derived {
         noteEffects = NoteEffect.compute(nights, i.notes, zone, NoteEffect.asleepByNight(sleeps, zone), feelings),
         habits = habitLines(sleeps, i),
         // Diagramme im Verlauf: Schlaf aus Health Connect, Weckmomente und Befinden aus dem Verlauf.
-        charts = HistoryCharts.of(nights, sleeps, stages, i.notes, i.alarms, i.sleepGoal, now, zone, feelings, latencyMinutes = i.latency),
+        charts = HistoryCharts.of(
+            ChartSource(nights, sleeps, stages, i.notes, feelings), i.alarms, i.sleepGoal, now, zone,
+            latencyMinutes = i.latency,
+        ),
         weekly = weeklyCard(nights, sleeps, i, feelings),
     )
 }
 
 /** Wochenrückblick als Karte am Sonntag und Montag; an anderen Tagen oder ohne Daten `null`. */
-private fun weeklyCard(nights: List<NightRecord>, sleeps: List<SleepSummary>, i: InsightInputs, feelings: List<HealthFeeling>): WeeklySummary? {
+private fun weeklyCard(
+    nights: List<NightRecord>,
+    sleeps: List<SleepSummary>,
+    i: InsightInputs,
+    feelings: List<HealthFeeling>,
+): WeeklySummary? {
     val today = LocalDate.now(i.zone)
     if (!WeeklySummary.cardVisible(today)) return null
-    return WeeklySummary.of(nights, sleeps, i.notes, i.zone, i.sleepGoal, WeeklySummary.weekEnd(today), feelings).takeIf { it.hasData }
+    return WeeklySummary.of(nights, sleeps, i.notes, i.zone, i.sleepGoal, WeeklySummary.weekEnd(today), feelings)
+        .takeIf { it.hasData }
 }
 
 /** Gewohnheiten: Regelmässigkeit und Serien aus der Gesundheits-App, Abendroutine aus den Haken. */

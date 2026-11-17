@@ -36,7 +36,8 @@ struct FlowLayout: Layout {
         var rows: [Row] = [Row()]
         for index in subviews.indices {
             let size = subviews[index].sizeThatFits(.unspecified)
-            let needed = rows[rows.count - 1].indices.isEmpty ? size.width : rows[rows.count - 1].width + spacing + size.width
+            let needed = rows[rows.count - 1].indices.isEmpty
+                ? size.width : rows[rows.count - 1].width + spacing + size.width
             if needed > width && !rows[rows.count - 1].indices.isEmpty {
                 rows.append(Row())
             }
@@ -72,7 +73,9 @@ struct NoteChips: View {
                 Button { model.toggleNote(option.id, nightDate: nightDate) } label: {
                     HStack(spacing: 4) {
                         // «Differenzieren ohne Farbe»: gewählt zusätzlich mit Haken.
-                        if on && withoutColor { Image(systemName: "checkmark").font(.caption.bold()).accessibilityHidden(true) }
+                        if on && withoutColor {
+                            Image(systemName: "checkmark").font(.caption.bold()).accessibilityHidden(true)
+                        }
                         Text(option.name)
                     }
                         .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
@@ -80,8 +83,10 @@ struct NoteChips: View {
                         .padding(.horizontal, 12).padding(.vertical, 7)
                         // Farbwelt B: Rand Lavendel, gewählt gefüllt statt umrandet; Ecken 12 wie auf Android.
                         .foregroundStyle(on ? Color.primary : Brand.secondaryText(scheme))
-                        .background(on ? Brand.chipSelected(scheme) : Color.clear, in: RoundedRectangle(cornerRadius: 12))
-                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(on ? Color.clear : Brand.chipBorder(scheme), lineWidth: 1))
+                        .background(on ? Brand.chipSelected(scheme) : Color.clear,
+                                    in: RoundedRectangle(cornerRadius: 12))
+                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(on ? Color.clear : Brand.chipBorder(scheme),
+                                                                           lineWidth: 1))
                 }
                 .buttonStyle(.plain)
                 .accessibilityAddTraits(on ? .isSelected : [])
@@ -153,7 +158,8 @@ struct NoteEffectsCard: View {
             Text(L("notes_effects_title")).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
             if !visible.isEmpty {
                 ForEach(visible, id: \.noteId) { effect in
-                    Text(LP("notes_effect_line", effect.nightsWithout, model.noteName(effect.noteId) ?? "", signed(effect.delta), effect.nightsWith, effect.nightsWithout))
+                    Text(LP("notes_effect_line", effect.nightsWithout, model.noteName(effect.noteId) ?? "",
+                            signed(effect.delta), effect.nightsWith, effect.nightsWithout))
                         .font(Fonts.manrope(15, relativeTo: .body))
                 }
             } else if !known.isEmpty {
@@ -199,7 +205,9 @@ struct CustomNotesSection: View {
         .alert(L("notes_custom_add"), isPresented: $adding) {
             TextField("", text: $newName)
                 .onChange(of: newName) { _, value in
-                    if value.count > SleepNotes.maxNameLength { newName = String(value.prefix(SleepNotes.maxNameLength)) }
+                    if value.count > SleepNotes.maxNameLength {
+                        newName = String(value.prefix(SleepNotes.maxNameLength))
+                    }
                 }
             Button(L("notes_custom_add")) { model.addCustomNote(newName) }
             Button(L("action_cancel"), role: .cancel) {}

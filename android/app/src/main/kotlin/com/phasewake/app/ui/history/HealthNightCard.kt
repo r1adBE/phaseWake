@@ -47,7 +47,9 @@ import com.phasewake.app.ui.theme.outlinedBorder
 
 /** «Wach 20 Min · REM 1 Std. 20 Min · Leicht 3 Std. · Tief 1 Std.» (nur Phasen mit Zeit), wie unter dem Hypnogramm. */
 internal fun stageTotalsLine(context: Context, stats: NightStages): String = stats.totals.filter { it.minutes > 0 }
-    .joinToString(" · ") { stageName(context, it.stage) + " " + Format.duration(context, Duration.ofMinutes(it.minutes)) }
+    .joinToString(" · ") {
+        stageName(context, it.stage) + " " + Format.duration(context, Duration.ofMinutes(it.minutes))
+    }
 
 /** Karte im Verlauf antippbar: führt zur Detailseite; [label] für Bildschirmleser («Details anzeigen»). */
 internal fun Modifier.opensDetail(shape: Shape, label: String, onOpen: () -> Unit): Modifier =
@@ -74,9 +76,15 @@ internal fun MiniStages(model: HypnoModel, stats: NightStages) {
     val context = LocalContext.current
     val totals = stageTotalsLine(context, stats)
     val title = stringResource(R.string.chart_stages_title)
-    Column(Modifier.fillMaxWidth().padding(top = 10.dp).semantics(mergeDescendants = true) { contentDescription = "$title. $totals" }) {
+    Column(
+        Modifier.fillMaxWidth().padding(top = 10.dp)
+            .semantics(mergeDescendants = true) { contentDescription = "$title. $totals" }
+    ) {
         MiniHypnogram(model)
-        Text(totals, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 6.dp).clearAndSetSemantics { })
+        Text(
+            totals, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(top = 6.dp).clearAndSetSemantics { },
+        )
     }
 }
 
@@ -96,10 +104,17 @@ private fun sessionLines(context: Context, session: HealthSession, zone: ZoneId)
     fun dur(minutes: Long) = Format.duration(context, Duration.ofMinutes(minutes))
     val awake = session.awakeMinutes
     return if (awake != null) {
-        context.getString(R.string.history_health_times, Format.time(session.start, zone), Format.time(session.asleepAt, zone), Format.time(session.end, zone)) to
-            context.getString(R.string.history_health_amounts, dur(session.durationMinutes), dur(session.asleepMinutes), dur(awake))
+        context.getString(
+            R.string.history_health_times,
+            Format.time(session.start, zone), Format.time(session.asleepAt, zone), Format.time(session.end, zone),
+        ) to
+            context.getString(
+                R.string.history_health_amounts, dur(session.durationMinutes), dur(session.asleepMinutes), dur(awake),
+            )
     } else {
-        context.getString(R.string.history_health_times_simple, Format.time(session.start, zone), Format.time(session.end, zone)) to
+        context.getString(
+            R.string.history_health_times_simple, Format.time(session.start, zone), Format.time(session.end, zone),
+        ) to
             context.getString(R.string.history_health_amount_simple, dur(session.durationMinutes))
     }
 }
@@ -132,20 +147,39 @@ internal fun HealthNightCard(
         colors = skyCardColors(),
         border = skyCardEdge(),
         elevation = skyCardLift(),
-        modifier = modifier.fillMaxWidth().opensDetail(MaterialTheme.shapes.medium, stringResource(R.string.night_open), onOpen),
+        modifier = modifier.fillMaxWidth()
+            .opensDetail(MaterialTheme.shapes.medium, stringResource(R.string.night_open), onOpen),
     ) {
         Column(Modifier.padding(16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(Format.digits(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)).format(session.end.atZone(zone)), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
-                Text(Format.time(session.end, zone), style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(
+                    Format.digits(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
+                        .format(session.end.atZone(zone)),
+                    style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f),
+                )
+                Text(
+                    Format.time(session.end, zone), style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
             }
             Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 6.dp)) {
-                Icon(painterResource(R.drawable.ic_health), contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(16.dp))
-                Text(healthMark(context), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(start = 6.dp))
+                Icon(
+                    painterResource(R.drawable.ic_health), contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(16.dp),
+                )
+                Text(
+                    healthMark(context), style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(start = 6.dp),
+                )
             }
             score?.let { ScoreLine(it) }
-            Text(times, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 8.dp))
-            Text(amounts, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(
+                times, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = 8.dp),
+            )
+            Text(
+                amounts, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
             stats?.let { MiniStages(HypnoModel(session.start, session.end, it.blocks, zone = session.timeZone), it) }
             Text(
                 healthLiveHint(context, session),
@@ -163,7 +197,10 @@ internal fun HealthNightCard(
 /** Eine leise Zeile in der Karte (Befinden, Geräusche). */
 @Composable
 internal fun CompactLine(text: String) {
-    Text(text, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 6.dp))
+    Text(
+        text, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
+        modifier = Modifier.padding(top = 6.dp),
+    )
 }
 
 /**
@@ -211,8 +248,13 @@ internal fun HistoryEmptyCard(healthConnected: Boolean, canConnect: Boolean, onC
                 healthConnected -> EmptyText(stringResource(R.string.history_empty_no_data))
                 canConnect -> {
                     EmptyText(stringResource(R.string.history_empty_connect))
-                    OutlinedButton(onClick = onConnectHealth, border = outlinedBorder(), modifier = Modifier.padding(top = 12.dp)) {
-                        Icon(painterResource(R.drawable.ic_health), contentDescription = null, modifier = Modifier.size(18.dp))
+                    OutlinedButton(
+                        onClick = onConnectHealth, border = outlinedBorder(), modifier = Modifier.padding(top = 12.dp),
+                    ) {
+                        Icon(
+                            painterResource(R.drawable.ic_health), contentDescription = null,
+                            modifier = Modifier.size(18.dp),
+                        )
                         Text(stringResource(R.string.health_connect), modifier = Modifier.padding(start = 8.dp))
                     }
                 }
@@ -223,5 +265,8 @@ internal fun HistoryEmptyCard(healthConnected: Boolean, canConnect: Boolean, onC
 
 @Composable
 private fun EmptyText(text: String) {
-    Text(text, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 6.dp))
+    Text(
+        text, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant,
+        modifier = Modifier.padding(top = 6.dp),
+    )
 }

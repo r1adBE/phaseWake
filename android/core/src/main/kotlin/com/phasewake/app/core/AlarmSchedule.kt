@@ -228,7 +228,10 @@ object AlarmSchedule {
         val joined = previous?.takeIf { !windowStart.isAfter(it.until) }
         val from = joined?.let { minOf(it.from, windowStart) } ?: windowStart
         val to = joined?.let { maxOf(it.until, until) } ?: until
-        val due = specs.filter { spec -> nextTarget(spec, from, zone, holidays)?.let { !it.isAfter(to) } == true }.map { it.id }.toSet()
+        val due =
+            specs.filter { spec ->
+                nextTarget(spec, from, zone, holidays)?.let { !it.isAfter(to) } == true
+            }.map { it.id }.toSet()
         return CatchUpWindow(from, to, joined?.alarmIds.orEmpty() + due)
     }
 
@@ -336,7 +339,10 @@ object AlarmSchedule {
         holidays: Set<LocalDate>,
         doneUntil: Map<String, Instant> = emptyMap(),
     ): LocalDate? {
-        val day = specs.mapNotNull { skippedHoliday(it, searchFrom(now, doneUntil[it.id]), zone, holidays) }.minOrNull() ?: return null
+        val day =
+            specs.mapNotNull {
+                skippedHoliday(it, searchFrom(now, doneUntil[it.id]), zone, holidays)
+            }.minOrNull() ?: return null
         val plan = earliestPlan(specs, now, zone, holidays, doneUntil) ?: return day
         return day.takeIf { !it.isAfter(plan.target.atZone(zone).toLocalDate()) }
     }

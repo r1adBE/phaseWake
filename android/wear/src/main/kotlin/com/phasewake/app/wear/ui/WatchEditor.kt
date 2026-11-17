@@ -18,6 +18,7 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
+import androidx.wear.compose.foundation.lazy.ScalingLazyListScope
 import androidx.wear.compose.foundation.lazy.ScalingLazyListState
 import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
 import androidx.wear.compose.material3.AlertDialog
@@ -70,10 +71,22 @@ internal fun editorSave(existed: Boolean, stored: List<AlarmSpec>, draftId: Stri
 /** Weckton neuer Wecker wie am Handy («Morgenvögel», `WakeTones.DEFAULT`); die Uhr selbst spielt ihn nicht. */
 private const val DEFAULT_SOUND = "raw:wake_birds"
 
-private val WEEKDAYS = setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)
+private val WEEKDAYS = setOf(
+    DayOfWeek.MONDAY,
+    DayOfWeek.TUESDAY,
+    DayOfWeek.WEDNESDAY,
+    DayOfWeek.THURSDAY,
+    DayOfWeek.FRIDAY,
+)
 
 /** Neuer Wecker mit denselben Vorgaben wie im Editor am Handy: 7:00, Werktage, Fenster 20 Min. */
-internal fun newAlarm(): AlarmSpec = AlarmSpec(id = UUID.randomUUID().toString(), hour = 7, minute = 0, days = WEEKDAYS, sound = DEFAULT_SOUND)
+internal fun newAlarm(): AlarmSpec = AlarmSpec(
+    id = UUID.randomUUID().toString(),
+    hour = 7,
+    minute = 0,
+    days = WEEKDAYS,
+    sound = DEFAULT_SOUND,
+)
 
 /**
  * Übernimmt aus dem Entwurf nur, was die Uhr bearbeitet (Zeit, Fenster, Tage, Ein/Aus); alles andere (Sonnenaufgang,
@@ -86,7 +99,13 @@ internal fun mergeEdit(
     skip: (old: AlarmSpec, edited: AlarmSpec) -> Long = AlarmSchedule::keepSkip,
 ): AlarmSpec {
     stored ?: return draft
-    val edited = stored.copy(hour = draft.hour, minute = draft.minute, windowMinutes = draft.windowMinutes, days = draft.days, enabled = draft.enabled)
+    val edited = stored.copy(
+        hour = draft.hour,
+        minute = draft.minute,
+        windowMinutes = draft.windowMinutes,
+        days = draft.days,
+        enabled = draft.enabled,
+    )
     return edited.copy(skipUntil = skip(stored, edited))
 }
 
@@ -105,7 +124,9 @@ internal fun savedEdit(
     zone: ZoneId,
     holidays: Set<LocalDate>,
     doneUntil: Instant?,
-): AlarmSpec = mergeEdit(stored, draft) { old, edited -> AlarmSchedule.editedSkip(old, edited, requested, now, zone, holidays, doneUntil) }
+): AlarmSpec = mergeEdit(stored, draft) { old, edited ->
+    AlarmSchedule.editedSkip(old, edited, requested, now, zone, holidays, doneUntil)
+}
 
 /** Entwurf über das Format der Wecker sichern, damit er eine Drehung oder ein Ende des Prozesses übersteht. */
 internal val draftSaver = androidx.compose.runtime.saveable.Saver<AlarmSpec?, String>(
@@ -144,7 +165,11 @@ internal fun EditorContent(
             EdgeButton(onClick = onSave) { Text(stringResource(R.string.editor_save)) }
         },
     ) { contentPadding ->
-        ScalingLazyColumn(state = listState, contentPadding = contentPadding, modifier = Modifier.fillMaxSize().nightGlow(strength = PAGE_GLOW)) {
+        ScalingLazyColumn(
+            state = listState,
+            contentPadding = contentPadding,
+            modifier = Modifier.fillMaxSize().nightGlow(strength = PAGE_GLOW),
+        ) {
             item { ListHeader { Text(stringResource(if (isNew) R.string.editor_new else R.string.editor_edit)) } }
             item {
                 // Bei Schlafdauer ist die Uhrzeit die späteste Weckzeit.
@@ -153,60 +178,13 @@ internal fun EditorContent(
                     modifier = Modifier.fillMaxWidth(),
                     label = { Text(timeFormatter().format(time), style = MaterialTheme.typography.titleLarge) },
                     secondaryLabel = {
-                        Text(stringResource(if (draft.sleepDurationMinutes != null) R.string.editor_latest else R.string.editor_target))
+                        val latest = draft.sleepDurationMinutes != null
+                        Text(stringResource(if (latest) R.string.editor_latest else R.string.editor_target))
                     },
                 )
             }
-            item {
-                Text(
-                    windowLabel(draft),
-                    style = MaterialTheme.typography.labelMedium,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
-                )
-            }
-            item {
-                // «Genau · 10 · 20 · 30»; ältere Werte (15, 25) bleiben stehen, bis der Nutzer schiebt.
-                val label = windowLabel(draft)
-                Slider(
-                    value = draft.windowMinutes,
-                    onValueChange = { onChange(draft.copy(windowMinutes = it)) },
-                    valueProgression = AlarmSpec.EXACT_WINDOW..AlarmSpec.MAX_WINDOW_MINUTES step WINDOW_STEP,
-                    modifier = Modifier.fillMaxWidth().semantics { stateDescription = label },
-                )
-            }
-            if (draft.isExact) {
-                item {
-                    Text(
-                        stringResource(R.string.editor_window_exact_hint),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = Brand.Muted,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.fillMaxWidth(),
-                    )
-                }
-            }
-            item { ListHeader { Text(stringResource(R.string.editor_days)) } }
-            item {
-                // Ohne Tag gilt der Wecker einmal.
-                Text(
-                    DayFormat.format(draft.days, locale, stringResource(R.string.alarm_once), stringResource(R.string.alarm_every_day)),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = Brand.Muted,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth().padding(bottom = 4.dp),
-                )
-            }
-            weekOrder(locale).forEach { day ->
-                item(key = day.name) {
-                    CheckboxButton(
-                        checked = day in draft.days,
-                        onCheckedChange = { on -> onChange(draft.copy(days = if (on) draft.days + day else draft.days - day)) },
-                        modifier = Modifier.fillMaxWidth(),
-                        label = { Text(day.getDisplayName(TextStyle.FULL, locale).replaceFirstChar { it.titlecase(locale) }) },
-                    )
-                }
-            }
+            windowItems(draft, onChange)
+            dayItems(draft, locale, onChange)
             item {
                 SwitchButton(
                     checked = draft.enabled,
@@ -258,6 +236,69 @@ internal fun EditorContent(
     )
 }
 
+/** Weckfenster im Editor: Länge als Text, Schieber und bei «Genau» ein Hinweis. */
+private fun ScalingLazyListScope.windowItems(draft: AlarmSpec, onChange: (AlarmSpec) -> Unit) {
+    item {
+        Text(
+            windowLabel(draft),
+            style = MaterialTheme.typography.labelMedium,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+        )
+    }
+    item {
+        // «Genau · 10 · 20 · 30»; ältere Werte (15, 25) bleiben stehen, bis der Nutzer schiebt.
+        val label = windowLabel(draft)
+        Slider(
+            value = draft.windowMinutes,
+            onValueChange = { onChange(draft.copy(windowMinutes = it)) },
+            valueProgression = AlarmSpec.EXACT_WINDOW..AlarmSpec.MAX_WINDOW_MINUTES step WINDOW_STEP,
+            modifier = Modifier.fillMaxWidth().semantics { stateDescription = label },
+        )
+    }
+    if (draft.isExact) {
+        item {
+            Text(
+                stringResource(R.string.editor_window_exact_hint),
+                style = MaterialTheme.typography.bodySmall,
+                color = Brand.Muted,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth(),
+            )
+        }
+    }
+}
+
+/** Wochentage im Editor: Zusammenfassung und je Tag ein Kästchen (Reihenfolge nach [locale]). */
+private fun ScalingLazyListScope.dayItems(draft: AlarmSpec, locale: Locale, onChange: (AlarmSpec) -> Unit) {
+    item { ListHeader { Text(stringResource(R.string.editor_days)) } }
+    item {
+        // Ohne Tag gilt der Wecker einmal.
+        Text(
+            DayFormat.format(
+                draft.days,
+                locale,
+                stringResource(R.string.alarm_once),
+                stringResource(R.string.alarm_every_day),
+            ),
+            style = MaterialTheme.typography.bodySmall,
+            color = Brand.Muted,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth().padding(bottom = 4.dp),
+        )
+    }
+    weekOrder(locale).forEach { day ->
+        item(key = day.name) {
+            CheckboxButton(
+                checked = day in draft.days,
+                onCheckedChange = { on -> onChange(draft.copy(days = if (on) draft.days + day else draft.days - day)) },
+                modifier = Modifier.fillMaxWidth(),
+                label = { Text(day.getDisplayName(TextStyle.FULL, locale).replaceFirstChar { it.titlecase(locale) }) },
+            )
+        }
+    }
+}
+
 /** Uhrzeit wählen; die Krone bzw. der Drehrahmen verstellt die gewählte Spalte. */
 @Composable
 internal fun EditorTime(draft: AlarmSpec, onPicked: (LocalTime) -> Unit) {
@@ -270,4 +311,8 @@ private const val WINDOW_STEP = 10
 /** «Fenster: 20 Min» bzw. «Genau» bei [AlarmSpec.isExact]. */
 @Composable
 private fun windowLabel(draft: AlarmSpec): String =
-    if (draft.isExact) stringResource(R.string.editor_window_exact) else stringResource(R.string.editor_window, draft.windowMinutes)
+    if (draft.isExact) {
+        stringResource(R.string.editor_window_exact)
+    } else {
+        stringResource(R.string.editor_window, draft.windowMinutes)
+    }

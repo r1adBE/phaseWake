@@ -37,10 +37,12 @@ final class WeeklyReview {
         let health = await model.health.sessions()
         let sleeps = HealthHistory.summaries(health.sessions, clearedAt: model.historyClearedAt, calendar: calendar)
         // Befinden zu Nächten aus anderen Apps, die im Verlauf stehen.
-        let items = HealthHistory.merge(nights: model.nights, sessions: health.sessions, clearedAt: model.historyClearedAt, calendar: calendar)
+        let items = HealthHistory.merge(nights: model.nights, sessions: health.sessions,
+                                        clearedAt: model.historyClearedAt, calendar: calendar)
         let summary = WeeklySummary.of(
             nights: model.nights, sleeps: sleeps, notes: model.notes, calendar: calendar,
-            goalMinutes: model.sleepGoal, weekEnd: WeeklySummary.weekEnd(today: NightDate.today(at, calendar: calendar)),
+            goalMinutes: model.sleepGoal,
+            weekEnd: WeeklySummary.weekEnd(today: NightDate.today(at, calendar: calendar)),
             health: HealthFeelings.of(items, feelings: model.healthFeelings)
         )
         center.removePendingNotificationRequests(withIdentifiers: [Self.identifier])
@@ -48,12 +50,14 @@ final class WeeklyReview {
         guard summary.hasData else { return }
         let content = UNMutableNotificationContent()
         content.title = L("weekly_notification_title")
-        content.body = ([weeklyText(summary)] + [weeklyNoteLine(summary, model: model)].compactMap { $0 }).joined(separator: "\n")
+        content.body = ([weeklyText(summary)] + [weeklyNoteLine(summary, model: model)].compactMap { $0 })
+            .joined(separator: "\n")
         content.sound = .default
         // Auslöser im Kalender des Geräts: Er liest die Komponenten in diesem (ohne Angabe des Kalenders).
         let parts = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: at)
         let trigger = UNCalendarNotificationTrigger(dateMatching: parts, repeats: false)
-        await NotificationLog.add(UNNotificationRequest(identifier: Self.identifier, content: content, trigger: trigger), "weekly")
+        let request = UNNotificationRequest(identifier: Self.identifier, content: content, trigger: trigger)
+        await NotificationLog.add(request, "weekly")
     }
 }
 

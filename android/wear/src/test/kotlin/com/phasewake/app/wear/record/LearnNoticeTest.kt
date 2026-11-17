@@ -81,7 +81,9 @@ class LearnNoticeTest {
     }
 
     @Suppress("DEPRECATION") // ScheduledAlarm.operation: in Robolectric ohne Getter (wie GoodNightOnsetTest).
-    private fun warnAlarms() = alarms.scheduledAlarms.filter { alarm -> alarm.operation?.let { shadowOf(it).savedIntent.action } == LearnNotice.ACTION_WARN }
+    private fun warnAlarms() = alarms.scheduledAlarms.filter { alarm ->
+        alarm.operation?.let { shadowOf(it).savedIntent.action } == LearnNotice.ACTION_WARN
+    }
 
     private fun awaitUntil(what: String, done: () -> Boolean) {
         val until = System.nanoTime() + Duration.ofSeconds(10).toNanos()
@@ -132,14 +134,20 @@ class LearnNoticeTest {
         awaitUntil("Warnung gezeigt") { notifications.allNotifications.isNotEmpty() }
         val shown = notifications.allNotifications.single()
         assertEquals(LearnNotice.CHANNEL, shown.channelId)
-        assertTrue(shown.extras.getCharSequence(NotificationCompat.EXTRA_TEXT).toString().contains("${Learning.MIN_BATTERY - 5}"))
+        assertTrue(
+            shown.extras.getCharSequence(NotificationCompat.EXTRA_TEXT)
+                .toString()
+                .contains("${Learning.MIN_BATTERY - 5}"),
+        )
     }
 
     @Test
     fun skippedNightGoesToThePhoneAndShowsTheReason() {
         val target = Instant.ofEpochMilli(System.currentTimeMillis()).plus(Duration.ofHours(8))
         runBlocking { LearnNotice.skipped(app, LearnSkip(target, LearnSkip.Reason.BATTERY, 35)) }
-        val entry = runBlocking { Outbox.forContext(context).pending() }.single { it.key == QueueMessages.KEY_LEARN_SKIP + target.toEpochMilli() }
+        val entry = runBlocking { Outbox.forContext(context).pending() }.single {
+            it.key == QueueMessages.KEY_LEARN_SKIP + target.toEpochMilli()
+        }
         assertEquals(DataLayer.PATH_MSG_LEARN_SKIP, entry.path)
         assertEquals(LearnSkip(target, LearnSkip.Reason.BATTERY, 35), LearnSkip.decode(entry.body))
         assertEquals(1, notifications.allNotifications.size)
@@ -169,7 +177,10 @@ class LearnNoticeTest {
         LearnNotice.sensorsRefused(app, "w")
         val target = AlarmSchedule.nextTarget(spec, Instant.now(), zone)!!
         val pending = Outbox.forContext(context).pending()
-        assertEquals(LearnSkip(target, LearnSkip.Reason.SENSORS), pending.map { LearnSkip.decode(it.body) }.single { it?.reason == LearnSkip.Reason.SENSORS })
+        assertEquals(
+            LearnSkip(target, LearnSkip.Reason.SENSORS),
+            pending.map { LearnSkip.decode(it.body) }.single { it?.reason == LearnSkip.Reason.SENSORS },
+        )
         LearnNotice.sensorsRefused(app, "unbekannt")
         assertEquals(pending.size, Outbox.forContext(context).pending().size)
     }

@@ -66,7 +66,8 @@ public final class WakeDetector {
         // Puls. Regel S5: Statt 2 leichter Bewegungen genügt eine starke (≥ wirksame Wach-Schwelle)
         // in den letzten `strongWindow` Epochen, mit derselben Pulsbedingung und denselben Sperren.
         let moved = hits(window: Self.strongWindow, threshold: wakeThreshold) >= 1
-            || hits(window: config.lightWindow, threshold: NoiseFloor.light(config: config, floor: floor)) >= config.lightHits
+            || hits(window: config.lightWindow,
+                    threshold: NoiseFloor.light(config: config, floor: floor)) >= config.lightHits
         if floor != nil, moved, heartRateRisen(baseline) {
             return wake(.lightSleep)
         }

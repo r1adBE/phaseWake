@@ -32,13 +32,18 @@ def preceded_by_doc(lines, i, swift):
 def check_kotlin(f, out):
     lines = f.read_text(encoding="utf-8").splitlines()
     depth = 0
+    paren = 0
     for i, line in enumerate(lines):
         m = KT_DECL.match(line)
-        if m and not KT_SKIP.search(line.split("=")[0]) and depth <= 1 and not line.lstrip().startswith(("fun interface",)):
+        # Innerhalb einer Parameterliste (Felder einer Datenklasse je Zeile) keine eigene Deklaration: Die Felder
+        # beschreibt der Doku-Kommentar der Klasse (`@property`).
+        if m and paren == 0 and not KT_SKIP.search(line.split("=")[0]) and depth <= 1 \
+                and not line.lstrip().startswith(("fun interface",)):
             if not preceded_by_doc(lines, i, swift=False):
                 out.append(f"{f.relative_to(ROOT).as_posix()}:{i + 1}: {line.strip()[:80]}")
-        depth += line.count("{") - line.count("}")
-        depth = max(depth, 0)
+        code = line.split("//")[0]
+        depth = max(depth + code.count("{") - code.count("}"), 0)
+        paren = max(paren + code.count("(") - code.count(")"), 0)
 
 
 def check_swift(f, out):

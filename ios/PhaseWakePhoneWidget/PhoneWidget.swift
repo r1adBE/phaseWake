@@ -24,18 +24,22 @@ struct PhoneAlarmEntry: TimelineEntry {
 struct PhoneAlarmProvider: TimelineProvider {
     func placeholder(in context: Context) -> PhoneAlarmEntry {
         let target = Calendar.current.date(bySettingHour: 7, minute: 0, second: 0, of: Date()) ?? Date()
-        return PhoneAlarmEntry(date: Date(), plan: .init(windowStart: target.addingTimeInterval(-1800), target: target, label: ""), issue: "")
+        return PhoneAlarmEntry(date: Date(),
+                               plan: .init(windowStart: target.addingTimeInterval(-1800), target: target, label: ""),
+                               issue: "")
     }
 
     func getSnapshot(in context: Context, completion: @escaping (PhoneAlarmEntry) -> Void) {
-        completion(context.isPreview ? placeholder(in: context) : entry(at: Date(), snapshot: PhoneWidgetSnapshot.load()))
+        completion(context.isPreview ? placeholder(in: context) : entry(at: Date(),
+                                                                        snapshot: PhoneWidgetSnapshot.load()))
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<PhoneAlarmEntry>) -> Void) {
         let now = Date()
         let snapshot = PhoneWidgetSnapshot.load()
         let noon = snapshot?.morningEnd().map { [$0] } ?? []
-        let switches = ((snapshot?.plans ?? []).map { $0.target.addingTimeInterval(60) } + noon).filter { $0 > now }.sorted()
+        let switches = ((snapshot?.plans ?? []).map { $0.target.addingTimeInterval(60) } + noon)
+            .filter { $0 > now }.sorted()
         let entries = [entry(at: now, snapshot: snapshot)] + switches.map { entry(at: $0, snapshot: snapshot) }
         // Spätestens nach 30 Minuten neu lesen (wie Android); die App lädt bei Änderungen ohnehin neu.
         completion(Timeline(entries: entries, policy: .after(now.addingTimeInterval(30 * 60))))
@@ -82,6 +86,7 @@ private struct PhoneAlarmBackground: View {
     @Environment(\.colorScheme) private var scheme
 
     var body: some View {
-        LinearGradient(colors: [PhoneWidgetPalette.top(scheme), PhoneWidgetPalette.bottom(scheme)], startPoint: .top, endPoint: .bottom)
+        LinearGradient(colors: [PhoneWidgetPalette.top(scheme), PhoneWidgetPalette.bottom(scheme)], startPoint: .top,
+                       endPoint: .bottom)
     }
 }

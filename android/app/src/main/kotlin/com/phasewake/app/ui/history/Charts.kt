@@ -49,6 +49,18 @@ import java.util.Locale
 enum class TrendLine { ASLEEP, GOAL, REGULAR, FEELING }
 
 /**
+ * Verlauf, Gesundheitsdaten und Notizen, aus denen [HistoryCharts.of] rechnet. [health]: Befinden auch zu Nächten aus
+ * anderen Apps.
+ */
+data class ChartSource(
+    val nights: List<NightRecord>,
+    val sleeps: List<SleepSummary>,
+    val stages: List<StageSpan>,
+    val notes: Map<LocalDate, List<String>>,
+    val health: List<HealthFeeling> = emptyList(),
+)
+
+/**
  * Daten der Diagramme im Verlauf je Zeitraum in Nächten ([ChartData.PERIODS]); ganz ohne Daten = Diagramm verborgen,
  * ohne Daten nur im gewählten Zeitraum = Karte mit «Keine Daten».
  *
@@ -66,7 +78,8 @@ data class HistoryCharts(
     val overview: Map<OverviewUnit, SleepOverview> = emptyMap(),
 ) {
     /** Ob etwas vom Zeitraum abhängt (dann die Auswahl «Tage / Wochen / Monate» oben im Verlauf zeigen). */
-    val hasPeriods: Boolean get() = overview.isNotEmpty() || bars.isNotEmpty() || wake.isNotEmpty() || feeling.isNotEmpty()
+    val hasPeriods: Boolean get() =
+        overview.isNotEmpty() || bars.isNotEmpty() || wake.isNotEmpty() || feeling.isNotEmpty()
 
     /** Ob die Diagramme zum Blättern nichts zeigen (die Übersicht steht für sich). */
     val isEmpty: Boolean get() = bars.isEmpty() && wake.isEmpty() && hypnogram == null && feeling.isEmpty()
@@ -91,31 +104,34 @@ data class HistoryCharts(
          * ([health]).
          */
         fun of(
-            nights: List<NightRecord>,
-            sleeps: List<SleepSummary>,
-            stages: List<StageSpan>,
-            notes: Map<LocalDate, List<String>>,
+            source: ChartSource,
             alarms: List<AlarmSpec>,
             goalMinutes: Int,
             now: Instant,
             zone: ZoneId,
-            health: List<HealthFeeling> = emptyList(),
             /** Erster Tag der Woche für die Übersicht (Sprache des Geräts). */
             firstDay: DayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek,
             /** Gelernte Einschlafdauer für die Bettzeit-Linie (die eine Bettzeit); `null` = nicht gelernt. */
             latencyMinutes: Int? = null,
         ): HistoryCharts {
+            val (nights, sleeps, stages, notes, health) = source
             val today = SleepNotes.nightDate(now, zone)
             val nextTarget = AlarmSchedule.earliestPlan(alarms, now, zone)?.target
-            val hypnoNight = if (stages.isEmpty()) null else nights.sortedByDescending { it.wokeAt }.take(ChartData.NIGHTS).firstOrNull { ChartData.hypnogram(stages, it) != null }
+            val hypnoNight = if (stages.isEmpty()) null else nights.sortedByDescending {
+                it.wokeAt
+            }.take(ChartData.NIGHTS).firstOrNull { ChartData.hypnogram(stages, it) != null }
             return HistoryCharts(
-                bars = periods { ChartData.sleepBars(sleeps, zone, today, nextTarget, goalMinutes, it, latencyMinutes) },
+                bars = periods {
+                    ChartData.sleepBars(sleeps, zone, today, nextTarget, goalMinutes, it, latencyMinutes)
+                },
                 wake = periods { ChartData.wakeMoments(nights, zone, it) },
                 hypnogram = hypnoNight?.let { ChartData.hypnogram(stages, it) },
                 hypnogramNight = hypnoNight,
                 hypnogramStages = hypnoNight?.let { StageStats.forNight(stages, it) },
                 feeling = periods { ChartData.feelingSeries(nights, notes, zone, today, it, health) },
-                overview = OverviewUnit.entries.mapNotNull { unit -> SleepOverviews.of(sleeps, zone, today, goalMinutes, unit, firstDay, stages)?.let { unit to it } }.toMap(),
+                overview = OverviewUnit.entries.mapNotNull { unit ->
+                    SleepOverviews.of(sleeps, zone, today, goalMinutes, unit, firstDay, stages)?.let { unit to it }
+                }.toMap(),
             )
         }
 
@@ -146,7 +162,10 @@ fun HistoryChartsSection(
     val pages = chartPages(charts, customNotes, opener, nights)
     if (pages.isEmpty()) return
     Column(modifier.fillMaxWidth()) {
-        Text(stringResource(R.string.charts_title), style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(start = 4.dp, bottom = 8.dp))
+        Text(
+            stringResource(R.string.charts_title), style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.padding(start = 4.dp, bottom = 8.dp),
+        )
         val state = rememberPagerState { pages.size }
         HorizontalPager(
             state = state,
@@ -187,7 +206,9 @@ private fun chartPages(
         if (h != null && night != null && stats != null) {
             add { m -> HypnogramCard(h, stats, night, m, opener(SleepNotes.nightDate(night, ZoneId.systemDefault()))) }
         }
-        if (charts.feeling.isNotEmpty()) add { m -> FeelingCard(charts.feeling[nights], nights, customNotes, opener, m) }
+        if (charts.feeling.isNotEmpty()) add { m ->
+            FeelingCard(charts.feeling[nights], nights, customNotes, opener, m)
+        }
     }
 
 /** Alle Karten untereinander statt zum Blättern (Bildschirmfotos zeigen so jedes Diagramm). */

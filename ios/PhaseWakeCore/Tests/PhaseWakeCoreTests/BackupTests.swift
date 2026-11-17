@@ -14,9 +14,11 @@ final class BackupTests: XCTestCase {
     private var payload: BackupPayload {
         let alarm = try! AlarmSpec(id: "a", hour: 6, minute: 30, days: [.monday], label: "Früh \"zeitig\"\n")
         return BackupPayload(
-            createdAt: 1_793_260_800_000, alarms: Codec.encodeAlarms([alarm]), nights: ["phasewake-night 1\na|1|2|3|DEADLINE|0|\n\n"],
+            createdAt: 1_793_260_800_000, alarms: Codec.encodeAlarms([alarm]),
+            nights: ["phasewake-night 1\na|1|2|3|DEADLINE|0|\n\n"],
             notes: "2026-10-28|caffeine", customNotes: "custom:1|Tee\twarm\u{01}", routineItems: nil, routineTicks: "",
-            settings: BackupSettings(sleepGoal: 420, bedtimeReminder: true, theme: "LIGHT", holidayCountry: "DE", holidayRegion: "BY")
+            settings: BackupSettings(sleepGoal: 420, bedtimeReminder: true, theme: "LIGHT", holidayCountry: "DE",
+                                     holidayRegion: "BY")
         )
     }
 
@@ -36,7 +38,8 @@ final class BackupTests: XCTestCase {
         XCTAssertEqual(try Codec.decodeNight(try XCTUnwrap(p.nights.first)).reason, .lightSleep)
         XCTAssertEqual(SleepNotes.decodeCustom(p.customNotes).first?.name, "Spät gegessen «Pizza»")
         XCTAssertEqual(Routine.decodeItems(p.routineItems).first { $0.id == "custom:9a" }?.text, "Tee \"Kamille\"")
-        XCTAssertEqual(p.settings, BackupSettings(sleepGoal: 480, bedtimeReminder: true, weeklyReview: false, soundRecDefault: true,
+        XCTAssertEqual(p.settings,
+                       BackupSettings(sleepGoal: 480, bedtimeReminder: true, weeklyReview: false, soundRecDefault: true,
                                                   theme: "DARK", holidayCountry: "CH", holidayRegion: "BE"))
         // Geschrieben wird Formatversion 2: mit den Werten des Vektors genau die Datei backup-v2.
         let v2 = try XCTUnwrap(Data(base64Encoded: try testdata("backup-v2.pwbak.b64")))
@@ -50,7 +53,9 @@ final class BackupTests: XCTestCase {
         let v1 = try XCTUnwrap(Data(base64Encoded: try testdata("backup-v1.pwbak.b64")))
         XCTAssertEqual(v1.prefix(5), Data("PWBK1".utf8))
         let relabelled = BackupFile.magic + v1.dropFirst(BackupFile.magicV1.count)
-        XCTAssertThrowsError(try BackupFile.decrypt(relabelled, password: password)) { XCTAssertEqual(($0 as? BackupError)?.reason, .wrongPassword) }
+        XCTAssertThrowsError(try BackupFile.decrypt(relabelled,
+                                                    password: password)) { XCTAssertEqual(($0 as? BackupError)?.reason,
+                                                                                          .wrongPassword) }
         XCTAssertEqual(BackupFile.iterations, 600_000)
         XCTAssertEqual(BackupFile.iterationsV1, 210_000)
     }
@@ -63,9 +68,11 @@ final class BackupTests: XCTestCase {
         XCTAssertEqual(Array(nfd.unicodeScalars), Array("Mondlicht-a\u{0308}€-2026".unicodeScalars))
         let expected = try testdata("backup-v1.json")
         XCTAssertEqual(String(decoding: try BackupFile.decrypt(file, password: nfd), as: UTF8.self), expected)
-        XCTAssertEqual(String(decoding: try BackupFile.decrypt(file, password: "Mondlicht-\u{e4}€-2026"), as: UTF8.self), expected)
+        XCTAssertEqual(String(decoding: try BackupFile.decrypt(file, password: "Mondlicht-\u{e4}€-2026"),
+                              as: UTF8.self), expected)
         let v2 = try XCTUnwrap(Data(base64Encoded: try testdata("backup-v2-nfc.pwbak.b64")))
-        XCTAssertEqual(try BackupFile.encrypt(Data(expected.utf8), password: "Mondlicht-\u{e4}€-2026", salt: salt, nonce: nonce), v2)
+        XCTAssertEqual(try BackupFile.encrypt(Data(expected.utf8), password: "Mondlicht-\u{e4}€-2026", salt: salt,
+                                              nonce: nonce), v2)
         XCTAssertEqual(String(decoding: try BackupFile.decrypt(v2, password: nfd), as: UTF8.self), expected)
     }
 
@@ -82,7 +89,8 @@ final class BackupTests: XCTestCase {
     }
 
     func testRoundTrip() throws {
-        let sealed = try BackupFile.encrypt(Data(payload.toJson().utf8), password: "geheim-123", salt: salt, nonce: nonce)
+        let sealed = try BackupFile.encrypt(Data(payload.toJson().utf8), password: "geheim-123", salt: salt,
+                                            nonce: nonce)
         XCTAssertEqual(sealed.prefix(5), BackupFile.magic)
         let back = try BackupFile.decrypt(sealed, password: "geheim-123")
         XCTAssertEqual(try BackupPayload.fromJson(String(decoding: back, as: UTF8.self)), payload)
@@ -126,11 +134,13 @@ final class BackupTests: XCTestCase {
         XCTAssertEqual(try BackupPayload.fromJson(p.toJson()).settings, p.settings)
         // Unplausibler Beginn (manipuliert oder kaputt): 18:00.
         for raw in ["-5", "1440", #""20:00""#, "null", "true"] {
-            let json = payload.toJson().replacingOccurrences(of: #""eveningDarkFrom":1080"#, with: "\"eveningDarkFrom\":\(raw)")
+            let json = payload.toJson()
+                .replacingOccurrences(of: #""eveningDarkFrom":1080"#, with: "\"eveningDarkFrom\":\(raw)")
             XCTAssertEqual(try BackupPayload.fromJson(json).settings.eveningDarkFrom, 18 * 60, raw)
         }
         // Eine Sicherung von Android (Schlüssel in anderer Reihenfolge) liest sich gleich.
-        let android = #"{"format":"phasewake-backup","version":1,"alarms":"","settings":{"autoOnset":true,"eveningDark":false,"eveningDarkFrom":1290}}"#
+        let android = #"{"format":"phasewake-backup","version":1,"alarms":"","#
+            + #""settings":{"autoOnset":true,"eveningDark":false,"eveningDarkFrom":1290}}"#
         let s = try BackupPayload.fromJson(android).settings
         XCTAssertFalse(s.eveningDark)
         XCTAssertEqual(s.eveningDarkFrom, 21 * 60 + 30)
@@ -148,33 +158,47 @@ final class BackupTests: XCTestCase {
 
     func testWrongPasswordOrChangedFile() throws {
         let sealed = try BackupFile.encrypt(Data("{}".utf8), password: "richtig-12", salt: salt, nonce: nonce)
-        XCTAssertThrowsError(try BackupFile.decrypt(sealed, password: "falsch12")) { XCTAssertEqual(($0 as? BackupError)?.reason, .wrongPassword) }
+        XCTAssertThrowsError(try BackupFile.decrypt(sealed, password: "falsch12")) {
+            XCTAssertEqual(($0 as? BackupError)?.reason, .wrongPassword)
+        }
         var changed = sealed
         changed[changed.count - 1] = changed[changed.count - 1] &+ 1
-        XCTAssertThrowsError(try BackupFile.decrypt(changed, password: "richtig-12")) { XCTAssertEqual(($0 as? BackupError)?.reason, .wrongPassword) }
+        XCTAssertThrowsError(try BackupFile.decrypt(changed, password: "richtig-12")) {
+            XCTAssertEqual(($0 as? BackupError)?.reason, .wrongPassword)
+        }
     }
 
     func testShortPasswordStillOpensOldBackup() throws {
         // Vor der Regel (10.11.2026) reichten 8 Zeichen: Eine solche Sicherung («{}», Passwort «1234abcd», Salz und
         // Nonce wie oben, mit Python erzeugt) öffnet das Wiederherstellen weiter. Kotlin: gleicher Test.
-        let old = try XCTUnwrap(Data(base64Encoded: "UFdCSzIAAQIDBAUGBwgJCgsMDQ4PZGVmZ2hpamtsbW5vt4PzqnJ6aYzD2IdWUvOlrPj0"))
+        let old = try XCTUnwrap(Data(
+            base64Encoded: "UFdCSzIAAQIDBAUGBwgJCgsMDQ4PZGVmZ2hpamtsbW5vt4PzqnJ6aYzD2IdWUvOlrPj0"
+        ))
         XCTAssertFalse(BackupFile.passwordOk("1234abcd"))
         XCTAssertEqual(String(decoding: try BackupFile.decrypt(old, password: "1234abcd"), as: UTF8.self), "{}")
     }
 
     func testForeignFileIsRejected() {
-        XCTAssertThrowsError(try BackupFile.decrypt(Data("hallo".utf8), password: "x")) { XCTAssertEqual(($0 as? BackupError)?.reason, .notABackup) }
-        XCTAssertThrowsError(try BackupFile.decrypt(Data(repeating: 1, count: 60), password: "x")) { XCTAssertEqual(($0 as? BackupError)?.reason, .notABackup) }
+        XCTAssertThrowsError(try BackupFile.decrypt(Data("hallo".utf8),
+                                                    password: "x")) { XCTAssertEqual(($0 as? BackupError)?.reason,
+                                                                                     .notABackup) }
+        XCTAssertThrowsError(try BackupFile.decrypt(Data(repeating: 1, count: 60),
+                                                    password: "x")) { XCTAssertEqual(($0 as? BackupError)?.reason,
+                                                                                     .notABackup) }
         XCTAssertThrowsError(try BackupFile.encrypt(Data(), password: "x", salt: Data(count: 3), nonce: nonce))
     }
 
     func testJsonIsTolerant() throws {
-        let minimal = try BackupPayload.fromJson(#"{"format":"phasewake-backup","version":2,"alarms":"phasewake-alarms 1\n","neu":[1,2.5,{"x":null}]}"#)
+        let minimal = try BackupPayload.fromJson(
+            #"{"format":"phasewake-backup","version":2,"alarms":"phasewake-alarms 1\n","neu":[1,2.5,{"x":null}]}"#
+        )
         XCTAssertEqual(minimal.createdAt, 0)
         XCTAssertEqual(minimal.nights, [])
         XCTAssertNil(minimal.routineItems)
         XCTAssertEqual(minimal.settings, BackupSettings())
-        let escaped = try BackupPayload.fromJson(#" { "format" : "phasewake-backup", "alarms" : "aä\/\b\f\r\t" , "nights" : [ ] , "settings" : { } } "#)
+        let escaped = try BackupPayload.fromJson(
+            #" { "format" : "phasewake-backup", "alarms" : "aä\/\b\f\r\t" , "nights" : [ ] , "settings" : { } } "#
+        )
         XCTAssertEqual(escaped.alarms, "aä/\u{08}\u{0C}\r\t")
     }
 
@@ -200,7 +224,8 @@ final class BackupTests: XCTestCase {
         XCTAssertEqual(try BackupPayload.fromJson(nested(63)).alarms, "x")
         XCTAssertThrowsError(try BackupPayload.fromJson(nested(64)))
         // Klammern in Texten zählen nicht.
-        XCTAssertEqual(try BackupPayload.fromJson(#"{"format":"phasewake-backup","alarms":"[[[","n":[[]]}"#).alarms, "[[[")
+        XCTAssertEqual(try BackupPayload.fromJson(#"{"format":"phasewake-backup","alarms":"[[[","n":[[]]}"#).alarms,
+                       "[[[")
         // Sehr tief: Fehler statt Absturz.
         XCTAssertThrowsError(try BackupPayload.fromJson(String(repeating: "[", count: 100_000)))
     }

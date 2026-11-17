@@ -186,18 +186,25 @@ object SoundEvents {
         val all = clips + clip
         val night = all.filter { it.night == clip.night }
         if (night.size <= max) return Added(sorted(all), emptyList())
-        val dropped = night.sortedWith(compareBy<SoundClip> { it.peakDb }.thenByDescending { it.at }).take(night.size - max).toSet()
+        val dropped =
+            night.sortedWith(compareBy<SoundClip> { it.peakDb }.thenByDescending { it.at }).take(night.size - max)
+                .toSet()
         return Added(sorted(all.filterNot { it in dropped }), dropped.toList())
     }
 
     /** Teilt in (behalten, abgelaufen): abgelaufen ist, was vor [now] − [RETENTION_DAYS] Tagen begann. */
-    fun expire(clips: List<SoundClip>, now: Instant, days: Long = RETENTION_DAYS): Pair<List<SoundClip>, List<SoundClip>> {
+    fun expire(
+        clips: List<SoundClip>,
+        now: Instant,
+        days: Long = RETENTION_DAYS,
+    ): Pair<List<SoundClip>, List<SoundClip>> {
         val limit = now.minus(Duration.ofDays(days))
         return clips.partition { !it.at.isBefore(limit) }
     }
 
     /** Die Ausschnitte einer Nacht, älteste zuerst. */
-    fun forNight(clips: List<SoundClip>, night: LocalDate): List<SoundClip> = clips.filter { it.night == night }.sortedBy { it.at }
+    fun forNight(clips: List<SoundClip>, night: LocalDate): List<SoundClip> =
+        clips.filter { it.night == night }.sortedBy { it.at }
 
     /**
      * Nachtdaten mit Ausschnitten, zu denen es keine aufgezeichnete Nacht gibt (z. B. Uhr nicht getragen):
@@ -216,7 +223,14 @@ object SoundEvents {
 
     /** Je Ausschnitt eine Zeile im Speicherformat, nach Beginn und Dateiname sortiert. */
     fun encode(clips: List<SoundClip>): String = sorted(clips).joinToString("\n") {
-        listOf(it.night.toString(), it.at.toEpochMilli().toString(), it.type.name, it.durationMs.toString(), it.peakDb.toString(), it.file)
+        listOf(
+            it.night.toString(),
+            it.at.toEpochMilli().toString(),
+            it.type.name,
+            it.durationMs.toString(),
+            it.peakDb.toString(),
+            it.file,
+        )
             .joinToString("|")
     }
 

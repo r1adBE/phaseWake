@@ -74,7 +74,9 @@ final class WatchNight {
         PhoneConnectivity.shared.send(command: on ? SyncKeys.recordStart : SyncKeys.recordStop, extra: extra)
         Task {
             try? await Task.sleep(for: Self.pendingLimit)
-            guard Self.unanswered(pending: self.recordPending, request: request, current: self.recordRequest) else { return }
+            guard Self.unanswered(pending: self.recordPending, request: request, current: self.recordRequest) else {
+                return
+            }
             self.recordPending = false
             self.recordUnanswered = true
             DiagStore.shared.log(.sync, "record command unanswered")
@@ -126,7 +128,8 @@ final class WatchNight {
     /// Eingestellte Zielzeit der Nacht, die die Uhr zur früheren `target` gemeldet hat (für das Aussetzen des
     /// Zweitweckers, wenn die Uhr geweckt hat); sonst `nil`.
     func original(alarmId: String?, target: Date?) -> Date? {
-        guard let shift = shift(), let target, shift.alarmId == alarmId, shift.target == OnsetShift.millis(target) else { return nil }
+        guard let shift = shift(), let target, shift.alarmId == alarmId,
+              shift.target == OnsetShift.millis(target) else { return nil }
         return Date(timeIntervalSince1970: TimeInterval(shift.original) / 1000)
     }
 
@@ -134,7 +137,8 @@ final class WatchNight {
     /// ältere Meldung als die gemerkte oder dieselbe noch einmal ändert nichts.
     func received(_ shift: OnsetShift) async {
         guard !shift.expired(now: Date(), grace: BackupAlarm.grace) else { return }
-        if let current = OnsetShift.decode(SettingsFile.phone.string(forKey: Self.shiftKey)), shift == current || shift.at < current.at {
+        if let current = OnsetShift.decode(SettingsFile.phone.string(forKey: Self.shiftKey)),
+           shift == current || shift.at < current.at {
             return
         }
         SettingsFile.phone.set(shift.encode(), forKey: Self.shiftKey)

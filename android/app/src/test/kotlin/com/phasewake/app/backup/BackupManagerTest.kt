@@ -55,7 +55,10 @@ class BackupManagerTest {
 
     private fun night(id: String, start: String): NightRecord {
         val at = Instant.parse(start)
-        return NightRecord(id, at, at.plus(Duration.ofMinutes(30)), at.plus(Duration.ofMinutes(12)), WakeReason.LIGHT_SLEEP, 1, emptyList())
+        return NightRecord(
+            id, at, at.plus(Duration.ofMinutes(30)), at.plus(Duration.ofMinutes(12)), WakeReason.LIGHT_SLEEP, 1,
+            emptyList(),
+        )
     }
 
     private val alarm = AlarmSpec(id = "a", hour = 6, minute = 30, label = "Arbeit")
@@ -111,16 +114,21 @@ class BackupManagerTest {
         // übergeben); gesichert wird dieses Land statt «keine Feiertage». Die Länderdatei liegt unter Robolectric nicht
         // vor, darum die aufgelöste Wahl direkt.
         assertNull(app.settings.holidayChoice.first(), "nie gewählt")
-        assertEquals("", app.settings.backupSettings().holidayCountry, "ohne aufgelöste Wahl: gespeicherter Wert (leer)")
+        assertEquals(
+            "", app.settings.backupSettings().holidayCountry, "ohne aufgelöste Wahl: gespeicherter Wert (leer)",
+        )
         val settings = app.settings.backupSettings("CH" to "")
         assertEquals("CH", settings.holidayCountry)
         app.phaseWakeStore.edit { app.settings.restoreInto(it, settings) }
         assertEquals("CH" to "", app.settings.holidayChoice.first())
         // Gewählt: die Wahl, wie sie ist.
-        assertEquals("DE" to "BY", app.settings.backupSettings("DE" to "BY").let { it.holidayCountry to it.holidayRegion })
+        assertEquals(
+            "DE" to "BY", app.settings.backupSettings("DE" to "BY").let { it.holidayCountry to it.holidayRegion },
+        )
     }
 
-    private fun assertNotNullBytes(bytes: ByteArray?): ByteArray = kotlin.test.assertNotNull(bytes, "Sicherung nicht lesbar")
+    private fun assertNotNullBytes(bytes: ByteArray?): ByteArray =
+        kotlin.test.assertNotNull(bytes, "Sicherung nicht lesbar")
 
     @Test
     fun wrongPasswordOrForeignFileIsRefused() = runBlocking {
@@ -128,7 +136,8 @@ class BackupManagerTest {
         val bytes = assertNotNullBytes(BackupManager.read(context, uri))
         val wrong = assertFailsWith<BackupException> { BackupManager.open(bytes, "Sonnenaufgang-7") }
         assertEquals(BackupException.Reason.WRONG_PASSWORD, wrong.reason)
-        val foreign = assertFailsWith<BackupException> { BackupManager.open("kein Backup".encodeToByteArray(), password) }
+        val foreign =
+            assertFailsWith<BackupException> { BackupManager.open("kein Backup".encodeToByteArray(), password) }
         assertEquals(BackupException.Reason.NOT_A_BACKUP, foreign.reason)
     }
 

@@ -18,12 +18,15 @@ final class FakeBackupPlatform: BackupPlatform {
     var stopped: [UUID] = []
     var alerting: [UUID] = []
 
-    func place(id: UUID, at date: Date, fromWatch: Bool, snoozesLeft: Int, tone: WakeTone?, chain: Int) async -> BackupAlarm.Placement {
+    func place(id: UUID, at date: Date, fromWatch: Bool, snoozesLeft: Int, tone: WakeTone?,
+               chain: Int) async -> BackupAlarm.Placement {
         placed[id] = Placed(at: date, fromWatch: fromWatch, snoozesLeft: snoozesLeft, tone: tone?.rawValue)
         return .alarmKit
     }
 
-    func notify(id: UUID, at date: Date, tone: WakeTone?, fixed: Bool, count: Int, skip: Set<String>) async -> Int { count }
+    func notify(id: UUID, at date: Date, tone: WakeTone?, fixed: Bool, count: Int, skip: Set<String>) async -> Int {
+        count
+    }
 
     func cancel(_ id: UUID) {
         cancelled.append(id)
@@ -92,8 +95,10 @@ final class BackupAlarmPhoneTests: XCTestCase {
 
     /// Täglicher Wecker zur vollen Minute von «jetzt + `minutes`» (Ortszeit).
     private func daily(_ id: String, inMinutes minutes: Double, phone: PhoneAlert = .sound) throws -> AlarmSpec {
-        let parts = Calendar.gregorianLocal.dateComponents([.hour, .minute], from: Date().addingTimeInterval(minutes * 60))
-        return try AlarmSpec(id: id, hour: parts.hour!, minute: parts.minute!, days: Set(Weekday.allCases), phone: phone)
+        let parts = Calendar.gregorianLocal.dateComponents([.hour, .minute],
+                                                           from: Date().addingTimeInterval(minutes * 60))
+        return try AlarmSpec(id: id, hour: parts.hour!, minute: parts.minute!, days: Set(Weekday.allCases),
+                             phone: phone)
     }
 
     private func target(_ spec: AlarmSpec) throws -> Date {
@@ -183,9 +188,11 @@ final class BackupAlarmPhoneTests: XCTestCase {
         let parts = Calendar.gregorianLocal.dateComponents([.hour, .minute], from: minute)
         let spec = try AlarmSpec(id: "g", hour: parts.hour!, minute: parts.minute!, days: Set(Weekday.allCases))
         let id = UUID()
-        let slot = BackupSlot(alarmId: "g", target: minute, fireAt: minute.addingTimeInterval(120), sound: "", zone: TimeZone.current.identifier)
+        let slot = BackupSlot(alarmId: "g", target: minute, fireAt: minute.addingTimeInterval(120), sound: "",
+                              zone: TimeZone.current.identifier)
         backup.plannedBackups = [PlannedBackup(id: id, slot: slot)]
-        platform.placed[id] = FakeBackupPlatform.Placed(at: slot.fireAt, fromWatch: false, snoozesLeft: Snooze.maxCount, tone: nil)
+        platform.placed[id] = FakeBackupPlatform.Placed(at: slot.fireAt, fromWatch: false, snoozesLeft: Snooze.maxCount,
+                                                        tone: nil)
         await plan([spec])
         XCTAssertTrue(backup.plannedBackups.contains { $0.id == id })
         XCTAssertFalse(platform.cancelled.contains(id))
@@ -215,7 +222,8 @@ final class BackupAlarmPhoneTests: XCTestCase {
         let far = try daily("far", inMinutes: 360)
         let recent = try daily("recent", inMinutes: -20)
         let soonAt = try target(soon), farAt = try target(far)
-        let recentAt = try XCTUnwrap(AlarmSchedule.nextTarget(recent, now: Date().addingTimeInterval(-3600), calendar: .gregorianLocal))
+        let recentAt = try XCTUnwrap(AlarmSchedule.nextTarget(recent, now: Date().addingTimeInterval(-3600),
+                                                              calendar: .gregorianLocal))
         await plan([soon, far, recent])
         await backup.watchHandled(alarmId: nil, target: nil)
         // Ohne Kennung und Zielzeit (ältere Uhr): nur die Wecker, deren Nacht läuft (Zielzeit bis zum längsten
@@ -225,8 +233,12 @@ final class BackupAlarmPhoneTests: XCTestCase {
         XCTAssertEqual(try XCTUnwrap(suppressed["recent"]).timeIntervalSince(recentAt), 120, accuracy: 0.001)
         XCTAssertNil(suppressed["far"], "Nacht noch nicht im Fenster: nicht ausgesetzt")
         let planned = backup.plannedBackups.filter { $0.slot.fireAt > Date() }
-        XCTAssertFalse(planned.contains { $0.slot.alarmId == "a" && abs($0.slot.target.timeIntervalSince(soonAt)) < 0.001 })
-        XCTAssertTrue(planned.contains { $0.slot.alarmId == "far" && abs($0.slot.target.timeIntervalSince(farAt)) < 0.001 },
+        XCTAssertFalse(planned.contains {
+            $0.slot.alarmId == "a" && abs($0.slot.target.timeIntervalSince(soonAt)) < 0.001
+        })
+        XCTAssertTrue(planned.contains {
+            $0.slot.alarmId == "far" && abs($0.slot.target.timeIntervalSince(farAt)) < 0.001
+        },
                       "Nacht noch nicht im Fenster: bleibt")
     }
 

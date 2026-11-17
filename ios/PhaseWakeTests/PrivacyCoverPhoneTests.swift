@@ -7,7 +7,8 @@ import XCTest
 @MainActor
 final class PrivacyCoverPhoneTests: XCTestCase {
     func testCoverLiesOverTheAppUntilItIsActiveAgain() throws {
-        try XCTSkipIf(UIApplication.shared.connectedScenes.isEmpty, "ohne Fenster-Szene (Test ohne App) nichts abzudecken")
+        try XCTSkipIf(UIApplication.shared.connectedScenes.isEmpty,
+                      "ohne Fenster-Szene (Test ohne App) nichts abzudecken")
         defer { PrivacyCover.update(.active) }
         XCTAssertFalse(PrivacyCover.isShown)
         PrivacyCover.update(.inactive)

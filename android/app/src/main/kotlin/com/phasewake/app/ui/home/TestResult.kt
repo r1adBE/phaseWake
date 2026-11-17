@@ -42,7 +42,9 @@ private val STEP_TEXT = mapOf(
 private val STEP_FIXES = mapOf(
     TestStep.RECEIVED to listOf(Check.WATCH_APP, Check.WATCH),
     TestStep.WATCH_RANG to listOf(Check.WATCH_SETUP, Check.WATCH_BATTERY, Check.WATCH),
-    TestStep.PHONE_RANG to listOf(Check.NOTIFICATIONS, Check.FULL_SCREEN, Check.DND, Check.DND_UNKNOWN, Check.VOLUME, Check.EXACT_ALARMS),
+    TestStep.PHONE_RANG to listOf(
+        Check.NOTIFICATIONS, Check.FULL_SCREEN, Check.DND, Check.DND_UNKNOWN, Check.VOLUME, Check.EXACT_ALARMS,
+    ),
     TestStep.STOP_ARRIVED to listOf(Check.WATCH),
 )
 
@@ -75,27 +77,47 @@ private fun StepRow(step: TestStep, ok: Boolean?, check: NightCheckState?, onFix
         },
     )
     Column {
-        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.semantics(mergeDescendants = true) { stateDescription = state }) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.semantics(mergeDescendants = true) { stateDescription = state },
+        ) {
             when (ok) {
-                true -> Icon(painterResource(R.drawable.ic_check), contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
-                false -> Icon(painterResource(R.drawable.ic_close), contentDescription = null, tint = MaterialTheme.colorScheme.error, modifier = Modifier.size(20.dp))
-                null -> Text("–", style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(horizontal = 5.dp))
+                true -> Icon(
+                    painterResource(R.drawable.ic_check), contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp),
+                )
+                false -> Icon(
+                    painterResource(R.drawable.ic_close), contentDescription = null,
+                    tint = MaterialTheme.colorScheme.error, modifier = Modifier.size(20.dp),
+                )
+                null -> Text(
+                    "–", style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(horizontal = 5.dp),
+                )
             }
             Column(Modifier.padding(start = 10.dp)) {
                 Text(stringResource(STEP_TEXT.getValue(step)), style = MaterialTheme.typography.bodyLarge)
-                if (ok == null) Text(state, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                if (ok == null) Text(
+                    state, style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
             }
         }
         if (ok == false) {
             val fixes = STEP_FIXES.getValue(step)
             val fix = fixes.firstOrNull { it in check?.failed.orEmpty() } ?: fixes.first()
             Text(
-                if (fix == Check.WATCH_BATTERY) stringResource(fix.problem, NightCheckState.LOW_BATTERY_PERCENT) else stringResource(fix.problem),
+                if (fix == Check.WATCH_BATTERY) {
+                    stringResource(fix.problem, NightCheckState.LOW_BATTERY_PERCENT)
+                } else {
+                    stringResource(fix.problem)
+                },
                 style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.padding(start = 30.dp, top = 2.dp),
             )
             fix.action?.let { action ->
-                FilledTonalButton(onClick = { onFix(fix) }, modifier = Modifier.padding(start = 30.dp, top = 4.dp)) { Text(stringResource(action)) }
+                FilledTonalButton(onClick = { onFix(fix) }, modifier = Modifier.padding(start = 30.dp, top = 4.dp)) {
+                    Text(stringResource(action))
+                }
             }
         }
     }

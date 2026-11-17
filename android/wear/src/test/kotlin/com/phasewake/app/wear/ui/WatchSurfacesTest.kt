@@ -34,7 +34,9 @@ import kotlin.test.assertTrue
 class WatchSurfacesTest {
     private val zone = ZoneId.of("Europe/Zurich")
     private val de = Locale.forLanguageTag("de-CH")
-    private fun at(day: Int, hour: Int, minute: Int = 0) = LocalDateTime.of(2026, 11, day, hour, minute).atZone(zone).toInstant()
+    private fun at(day: Int, hour: Int, minute: Int = 0) = LocalDateTime.of(2026, 11, day, hour, minute)
+        .atZone(zone)
+        .toInstant()
 
     /** Fest 24 Std. (die Uhr liest die Einstellung, siehe `WearClock`): Erwartung «07:00». */
     @Before
@@ -44,17 +46,27 @@ class WatchSurfacesTest {
     }
 
     private fun context(locale: Locale): Context {
-        val config = Configuration(RuntimeEnvironment.getApplication().resources.configuration).apply { setLocale(locale) }
+        val config = Configuration(RuntimeEnvironment.getApplication().resources.configuration).apply {
+            setLocale(locale)
+        }
         return RuntimeEnvironment.getApplication().createConfigurationContext(config)
     }
 
     @Test
     fun complicationShowsTargetAndOpensApp() {
         val context = context(de)
-        val data = NextAlarmComplicationService.forPlan(context, WakePlan("a", at(18, 6, 40), at(18, 7)), zone, de) as ShortTextComplicationData
+        val data = NextAlarmComplicationService.forPlan(
+            context,
+            WakePlan("a", at(18, 6, 40), at(18, 7)),
+            zone,
+            de,
+        ) as ShortTextComplicationData
         val now = at(17, 22)
         assertEquals("07:00", data.text.getTextAt(context.resources, now).toString())
-        assertEquals(context.getString(R.string.tile_next) + " 07:00", data.contentDescription?.getTextAt(context.resources, now).toString())
+        assertEquals(
+            context.getString(R.string.tile_next) + " 07:00",
+            data.contentDescription?.getTextAt(context.resources, now).toString(),
+        )
         assertNotNull(data.tapAction, "Tippen auf dem Zifferblatt tut nichts")
     }
 
@@ -69,7 +81,13 @@ class WatchSurfacesTest {
         assertNull(far.line)
         assertTrue(far.title.contains("07:00"), far.title)
         // Morgen früh: kein Wochentag; mit Fenster die Zeile zum leichten Schlaf.
-        val tomorrow = NextAlarmTileService.tileTexts(context, WakePlan("a", at(18, 6, 40), at(18, 7)), zone, at(17, 22), de)
+        val tomorrow = NextAlarmTileService.tileTexts(
+            context,
+            WakePlan("a", at(18, 6, 40), at(18, 7)),
+            zone,
+            at(17, 22),
+            de,
+        )
         assertEquals(next, tomorrow.header)
         assertEquals(context.getString(R.string.tile_light_sleep), tomorrow.line)
         // Nach Mitternacht ist es heute: ebenfalls ohne Wochentag.
@@ -85,6 +103,9 @@ class WatchSurfacesTest {
         assertEquals(EditorSave.FULL, editorSave(existed = false, stored = eight, draftId = "new"))
         assertEquals(EditorSave.SAVE, editorSave(existed = false, stored = eight.take(7), draftId = "new"))
         // Zweites Speichern desselben neuen Weckers (schon gespeichert): bleibt ein Speichern, kein «voll».
-        assertEquals(EditorSave.SAVE, editorSave(existed = false, stored = eight.take(7) + alarm("new"), draftId = "new"))
+        assertEquals(
+            EditorSave.SAVE,
+            editorSave(existed = false, stored = eight.take(7) + alarm("new"), draftId = "new"),
+        )
     }
 }

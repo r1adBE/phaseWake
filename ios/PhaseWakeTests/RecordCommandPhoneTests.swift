@@ -18,6 +18,7 @@ final class RecordCommandPhoneTests: XCTestCase {
         XCTAssertTrue(RecordRetry.resend(unanswered: true, tapAt: tap, now: now))
         XCTAssertFalse(RecordRetry.resend(unanswered: false, tapAt: tap, now: now))
         XCTAssertFalse(RecordRetry.resend(unanswered: true, tapAt: nil, now: now))
-        XCTAssertFalse(RecordRetry.resend(unanswered: true, tapAt: now.addingTimeInterval(-RecordRetry.window - 1), now: now))
+        XCTAssertFalse(RecordRetry.resend(unanswered: true, tapAt: now.addingTimeInterval(-RecordRetry.window - 1),
+                                          now: now))
     }
 }

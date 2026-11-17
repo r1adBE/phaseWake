@@ -18,7 +18,8 @@ class SkipDoneTest {
     private val zurich = ZoneId.of("Europe/Zurich")
     private val newYork = ZoneId.of("America/New_York")
     private val tokyo = ZoneId.of("Asia/Tokyo")
-    private val weekdays = setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)
+    private val weekdays =
+        setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)
 
     private fun at(text: String, zone: ZoneId = zurich): Instant = LocalDateTime.parse(text).atZone(zone).toInstant()
 
@@ -38,10 +39,16 @@ class SkipDoneTest {
         assertEquals(LocalDate.of(2026, 10, 30), AlarmSchedule.skippedDate(skipped, now, zurich))
         assertEquals(at("2026-11-02T07:00"), AlarmSchedule.nextTarget(skipped, at("2026-10-29T07:30"), zurich))
         // Sperre des Zweitweckers am Handy: Zielzeit + 2 Min.
-        assertEquals(wall("2026-10-30T07:00"), AlarmSchedule.skipNext(alarm(), now, zurich, doneUntil = done.plusSeconds(120)).skipUntil)
+        assertEquals(
+            wall("2026-10-30T07:00"),
+            AlarmSchedule.skipNext(alarm(), now, zurich, doneUntil = done.plusSeconds(120)).skipUntil,
+        )
         // Ohne erledigte Nacht (oder erledigt in der Vergangenheit) gilt der heutige Termin.
         assertEquals(LocalDate.of(2026, 10, 29), AlarmSchedule.nextSkipDate(alarm(), now, zurich))
-        assertEquals(wall("2026-10-29T07:00"), AlarmSchedule.skipNext(alarm(), now, zurich, doneUntil = at("2026-10-28T07:00")).skipUntil)
+        assertEquals(
+            wall("2026-10-29T07:00"),
+            AlarmSchedule.skipNext(alarm(), now, zurich, doneUntil = at("2026-10-28T07:00")).skipUntil,
+        )
     }
 
     @Test
@@ -59,8 +66,14 @@ class SkipDoneTest {
         val b = alarm("b", hour = 8)
         assertEquals("a", AlarmSchedule.earliestPlan(listOf(a, b), now, zurich)?.alarmId)
         // Der zweite Wecker am selben Morgen bleibt.
-        assertEquals(at("2026-10-29T08:00"), AlarmSchedule.earliestPlan(listOf(a, b), now, zurich, doneUntil = done)?.target)
-        assertEquals(at("2026-10-30T07:00"), AlarmSchedule.earliestPlan(listOf(a), now, zurich, doneUntil = done)?.target)
+        assertEquals(
+            at("2026-10-29T08:00"),
+            AlarmSchedule.earliestPlan(listOf(a, b), now, zurich, doneUntil = done)?.target,
+        )
+        assertEquals(
+            at("2026-10-30T07:00"),
+            AlarmSchedule.earliestPlan(listOf(a), now, zurich, doneUntil = done)?.target,
+        )
     }
 
     @Test
@@ -100,7 +113,10 @@ class SkipDoneTest {
     @Test
     fun keepSkipOnlyForSameSchedule() {
         val old = alarm().copy(skipUntil = wall("2026-10-29T07:00"))
-        assertEquals(old.skipUntil, AlarmSchedule.keepSkip(old, old.copy(label = "Neu", windowMinutes = 20, enabled = false)))
+        assertEquals(
+            old.skipUntil,
+            AlarmSchedule.keepSkip(old, old.copy(label = "Neu", windowMinutes = 20, enabled = false)),
+        )
         assertEquals(0L, AlarmSchedule.keepSkip(old, old.copy(hour = 8)))
         assertEquals(0L, AlarmSchedule.keepSkip(old, old.copy(minute = 15)))
         assertEquals(0L, AlarmSchedule.keepSkip(old, old.copy(days = setOf(DayOfWeek.MONDAY))))
@@ -124,7 +140,14 @@ class SkipDoneTest {
         val early = at("2026-10-29T06:50")
         assertEquals(
             wall("2026-10-30T08:00"),
-            AlarmSchedule.editedSkip(plain, plain.copy(hour = 8), true, early, zurich, doneUntil = at("2026-10-29T08:00")),
+            AlarmSchedule.editedSkip(
+                plain,
+                plain.copy(hour = 8),
+                true,
+                early,
+                zurich,
+                doneUntil = at("2026-10-29T08:00"),
+            ),
         )
         // Nur die Tage geändert, derselbe Termin wie vorher (Do 7:00) bewusst wieder eingeschaltet: bleibt
         // übersprungen.
@@ -142,7 +165,11 @@ class SkipDoneTest {
         val now = at("2026-10-28T22:00")
         val old = alarm().copy(skipUntil = wall("2026-10-29T07:00"))
         fun shown(edited: AlarmSpec, requested: Boolean?) =
-            AlarmSchedule.skippedDate(edited.copy(skipUntil = AlarmSchedule.editedSkip(old, edited, requested, now, zurich)), now, zurich)
+            AlarmSchedule.skippedDate(
+                edited.copy(skipUntil = AlarmSchedule.editedSkip(old, edited, requested, now, zurich)),
+                now,
+                zurich,
+            )
         // Nicht angefasst, Zeit gleich: weiter «Übersprungen: Do».
         assertEquals(LocalDate.of(2026, 10, 29), shown(old.copy(windowMinutes = 20), null))
         // Nicht angefasst, Zeit oder Tage geändert: Schalter aus, wie beim Speichern.
@@ -163,13 +190,22 @@ class SkipDoneTest {
         // Dienstag: B weckt am Mittwoch zuerst, der Feiertag am Donnerstag ist noch kein Hinweis.
         assertNull(AlarmSchedule.holidayNote(listOf(a, b), at("2026-10-27T22:00"), zurich, holidays))
         // Mittwochabend: B weckt am Feiertag selbst (ohne Feiertagsregel) → Hinweis für A.
-        assertEquals(LocalDate.of(2026, 10, 29), AlarmSchedule.holidayNote(listOf(a, b), at("2026-10-28T22:00"), zurich, holidays))
-        assertEquals(LocalDate.of(2026, 10, 29), AlarmSchedule.holidayNote(listOf(a), at("2026-10-28T22:00"), zurich, holidays))
+        assertEquals(
+            LocalDate.of(2026, 10, 29),
+            AlarmSchedule.holidayNote(listOf(a, b), at("2026-10-28T22:00"), zurich, holidays),
+        )
+        assertEquals(
+            LocalDate.of(2026, 10, 29),
+            AlarmSchedule.holidayNote(listOf(a), at("2026-10-28T22:00"), zurich, holidays),
+        )
         assertNull(AlarmSchedule.holidayNote(listOf(b), at("2026-10-28T22:00"), zurich, holidays))
         assertNull(AlarmSchedule.holidayNote(emptyList(), at("2026-10-28T22:00"), zurich, holidays))
         // Jeder Tag Feiertag: kein Plan, der Hinweis gilt trotzdem.
         val all = (0L..AlarmSchedule.MAX_SEARCH_DAYS + 1).map { LocalDate.of(2026, 10, 28).plusDays(it) }.toSet()
-        assertEquals(LocalDate.of(2026, 10, 29), AlarmSchedule.holidayNote(listOf(a), at("2026-10-28T22:00"), zurich, all))
+        assertEquals(
+            LocalDate.of(2026, 10, 29),
+            AlarmSchedule.holidayNote(listOf(a), at("2026-10-28T22:00"), zurich, all),
+        )
     }
 
     @Test

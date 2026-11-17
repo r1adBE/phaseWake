@@ -8,7 +8,9 @@ import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.WakeReason
 import androidx.wear.compose.material3.AppScaffold
 import com.phasewake.app.wear.ui.EditorContent
+import com.phasewake.app.wear.ui.HomeActions
 import com.phasewake.app.wear.ui.HomeContent
+import com.phasewake.app.wear.ui.HomeState
 import com.phasewake.app.wear.ui.RingScreen
 import com.phasewake.app.wear.ui.WatchHomeExtras
 import com.phasewake.app.wear.ui.theme.PhaseWakeTheme
@@ -28,57 +30,114 @@ internal val alarms = listOf(
     AlarmSpec(id = "work", hour = 7, minute = 0, days = DayOfWeek.entries.toSet(), label = "Arbeit"),
     AlarmSpec(id = "weekend", hour = 9, minute = 30, days = setOf(DayOfWeek.SATURDAY), enabled = false),
 )
-private val sleepAlarms = listOf(AlarmSpec(id = "sleep", hour = 7, minute = 0, days = DayOfWeek.entries.toSet(), sleepDurationMinutes = 450))
+private val sleepAlarms = listOf(
+    AlarmSpec(id = "sleep", hour = 7, minute = 0, days = DayOfWeek.entries.toSet(), sleepDurationMinutes = 450),
+)
 
 @Composable
 private fun Home(list: List<AlarmSpec>, goodNight: Boolean = false) = Swiss {
     // In der App liegt der AppScaffold um alle Bildschirme (Uhrzeit oben).
     AppScaffold(timeText = { FixedTimeText() }) {
         HomeContent(
-            alarms = list,
-            plan = AlarmSchedule.earliestPlan(list, now, zone),
-            zone = zone,
-            goodNightActive = goodNight,
-            permissionsMissing = false,
-            dndBlocks = false,
-            onGoodNight = {},
-            onRequestPermissions = {},
-            onOpenDnd = {},
-            onToggle = { _, _ -> },
+            state = HomeState(
+                alarms = list,
+                plan = AlarmSchedule.earliestPlan(list, now, zone),
+                zone = zone,
+                goodNightActive = goodNight,
+                permissionsMissing = false,
+                dndBlocks = false,
+            ),
+            actions = HomeActions(onGoodNight = {}, onRequestPermissions = {}, onOpenDnd = {}, onToggle = { _, _ -> }),
             // Fester Zeiger «jetzt» (22:15) und Standard-Schlafziel: Einschlafpunkt 23:30, Bild bleibt gleich.
             extras = WatchHomeExtras(now = now),
         )
     }
 }
 
-@PreviewTest @Preview(locale = "de-rCH", name = "Uhr Start", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
+@PreviewTest
+@Preview(
+    locale = "de-rCH",
+    name = "Uhr Start",
+    device = WATCH,
+    showBackground = true,
+    backgroundColor = 0xFF000000,
+)
+@Composable
 fun WatchHome() = Home(alarms)
 
-@PreviewTest @Preview(locale = "de-rCH", name = "Uhr Gute Nacht", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
+@PreviewTest
+@Preview(
+    locale = "de-rCH",
+    name = "Uhr Gute Nacht",
+    device = WATCH,
+    showBackground = true,
+    backgroundColor = 0xFF000000,
+)
+@Composable
 fun WatchGoodNight() = Home(sleepAlarms)
 
-@PreviewTest @Preview(locale = "de-rCH", name = "Uhr ohne Wecker", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
+@PreviewTest
+@Preview(
+    locale = "de-rCH",
+    name = "Uhr ohne Wecker",
+    device = WATCH,
+    showBackground = true,
+    backgroundColor = 0xFF000000,
+)
+@Composable
 fun WatchEmpty() = Home(emptyList())
 
-@PreviewTest @Preview(locale = "de-rCH", name = "Uhr Wecker bearbeiten", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
+@PreviewTest
+@Preview(
+    locale = "de-rCH",
+    name = "Uhr Wecker bearbeiten",
+    device = WATCH,
+    showBackground = true,
+    backgroundColor = 0xFF000000,
+)
+@Composable
 fun WatchEditor() = Swiss {
     AppScaffold(timeText = { FixedTimeText() }) {
         EditorContent(draft = alarms.first(), isNew = false, onPickTime = {}, onChange = {}, onSave = {}, onDelete = {})
     }
 }
 
-@PreviewTest @Preview(locale = "de-rCH", name = "Uhr Wecken", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
+@PreviewTest
+@Preview(
+    locale = "de-rCH",
+    name = "Uhr Wecken",
+    device = WATCH,
+    showBackground = true,
+    backgroundColor = 0xFF000000,
+)
+@Composable
 fun WatchRing() = Swiss {
     RingScreen(RingUi.Ringing("", WakeReason.LIGHT_SLEEP, now, snoozesLeft = 3), onDismiss = {}, onSnooze = {})
 }
 
 /** Kleine runde Uhr (um 192 dp): «noch 3» unter «Schlummern 5 Min» muss ganz sichtbar bleiben. */
-@PreviewTest @Preview(locale = "de-rCH", name = "Uhr Wecken klein", device = WATCH_SMALL, showBackground = true, backgroundColor = 0xFF000000) @Composable
+@PreviewTest
+@Preview(
+    locale = "de-rCH",
+    name = "Uhr Wecken klein",
+    device = WATCH_SMALL,
+    showBackground = true,
+    backgroundColor = 0xFF000000,
+)
+@Composable
 fun WatchRingSmall() = Swiss {
     RingScreen(RingUi.Ringing("", WakeReason.LIGHT_SLEEP, now, snoozesLeft = 3), onDismiss = {}, onSnooze = {})
 }
 
-@PreviewTest @Preview(locale = "de-rCH", name = "Uhr Schlummern", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
+@PreviewTest
+@Preview(
+    locale = "de-rCH",
+    name = "Uhr Schlummern",
+    device = WATCH,
+    showBackground = true,
+    backgroundColor = 0xFF000000,
+)
+@Composable
 fun WatchSnoozed() = Swiss {
     RingScreen(RingUi.Snoozed("", now.plusSeconds(300), snoozesLeft = 2), onDismiss = {}, onSnooze = {})
 }

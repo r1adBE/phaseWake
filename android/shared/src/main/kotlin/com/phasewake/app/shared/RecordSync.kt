@@ -26,15 +26,31 @@ class RecordSync(context: Context) {
     suspend fun publishStatus(since: Instant?, unlessAcked: Boolean = false) = guarded("Aufzeichnungs-Stand senden") {
         val body = (since?.toEpochMilli() ?: 0L).toString()
         if (unlessAcked) {
-            outbox.enqueueIfChanged(acked, QueueMessages.KEY_RECORD_STATUS, DataLayer.PATH_MSG_RECORD_STATUS, DataLayer.CAPABILITY_PHONE, body)
+            outbox.enqueueIfChanged(
+                acked,
+                QueueMessages.KEY_RECORD_STATUS,
+                DataLayer.PATH_MSG_RECORD_STATUS,
+                DataLayer.CAPABILITY_PHONE,
+                body,
+            )
         } else {
-            outbox.enqueue(QueueMessages.KEY_RECORD_STATUS, DataLayer.PATH_MSG_RECORD_STATUS, DataLayer.CAPABILITY_PHONE, body)
+            outbox.enqueue(
+                QueueMessages.KEY_RECORD_STATUS,
+                DataLayer.PATH_MSG_RECORD_STATUS,
+                DataLayer.CAPABILITY_PHONE,
+                body,
+            )
         }
     }
 
     /** Uhr: abgeschlossene Aufzeichnung ans Handy (eigener Schlüssel je Beginn). */
     suspend fun publishRecording(recording: NightRecording) = guarded("Aufzeichnung senden") {
-        outbox.enqueue(QueueMessages.KEY_RECORDING + recording.start.toEpochMilli(), DataLayer.PATH_MSG_RECORDING, DataLayer.CAPABILITY_PHONE, NightRecording.encode(recording))
+        outbox.enqueue(
+            QueueMessages.KEY_RECORDING + recording.start.toEpochMilli(),
+            DataLayer.PATH_MSG_RECORDING,
+            DataLayer.CAPABILITY_PHONE,
+            NightRecording.encode(recording),
+        )
     }
 
     /**
@@ -42,7 +58,12 @@ class RecordSync(context: Context) {
      * Warteschlange (bestätigt, wiederholt; kommt auch an, wenn das Handy nachts aus ist). Eigener Schlüssel je Nacht.
      */
     suspend fun publishLearnSkip(skip: LearnSkip) = guarded("Meldung der Lernphase senden") {
-        outbox.enqueue(QueueMessages.KEY_LEARN_SKIP + skip.target.toEpochMilli(), DataLayer.PATH_MSG_LEARN_SKIP, DataLayer.CAPABILITY_PHONE, skip.encode())
+        outbox.enqueue(
+            QueueMessages.KEY_LEARN_SKIP + skip.target.toEpochMilli(),
+            DataLayer.PATH_MSG_LEARN_SKIP,
+            DataLayer.CAPABILITY_PHONE,
+            skip.encode(),
+        )
     }
 
     /**

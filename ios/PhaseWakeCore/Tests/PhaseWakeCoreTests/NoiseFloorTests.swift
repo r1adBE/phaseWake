@@ -51,7 +51,8 @@ final class NoiseFloorTests: XCTestCase {
 
     func testSummaryForDiagnosis() {
         let config = DetectorConfig.standard
-        XCTAssertEqual(NoiseFloor.summary(config: config, motions: [0.02, nil, 0.02, 0.02, 0.4]), "floor=0.0200 light=0.0500 wake=0.1000")
+        XCTAssertEqual(NoiseFloor.summary(config: config, motions: [0.02, nil, 0.02, 0.02, 0.4]),
+                       "floor=0.0200 light=0.0500 wake=0.1000")
         XCTAssertEqual(NoiseFloor.summary(config: config, motions: [0.02, nil]), "floor=- light=0.0020 wake=0.1000")
     }
 

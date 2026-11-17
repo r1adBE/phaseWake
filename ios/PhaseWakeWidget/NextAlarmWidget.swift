@@ -18,7 +18,8 @@ struct NextAlarmEntry: TimelineEntry {
 struct NextAlarmProvider: TimelineProvider {
     func placeholder(in context: Context) -> NextAlarmEntry {
         let target = Calendar.current.date(bySettingHour: 7, minute: 0, second: 0, of: Date()) ?? Date()
-        return NextAlarmEntry(date: Date(), plan: WakePlan(alarmId: "", windowStart: target.addingTimeInterval(-1800), target: target))
+        let plan = WakePlan(alarmId: "", windowStart: target.addingTimeInterval(-1800), target: target)
+        return NextAlarmEntry(date: Date(), plan: plan)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (NextAlarmEntry) -> Void) {
@@ -38,9 +39,12 @@ struct NextAlarmProvider: TimelineProvider {
     /// gerechnet wie bisher.
     private func entry(at date: Date) -> NextAlarmEntry {
         let storage = PhaseWakeStorage.watchShared
-        let computed = AlarmSchedule.earliestPlan(storage.snapshot().alarms, now: date, doneUntil: storage.doneUntil, calendar: .gregorianLocal,
+        let computed = AlarmSchedule.earliestPlan(storage.snapshot().alarms, now: date, doneUntil: storage.doneUntil,
+                                                  calendar: .gregorianLocal,
                                                   holidays: storage.holidays.dates)
-        let stored = Self.settings.flatMap { EffectivePlan.decode($0.object(forKey: EffectivePlan.key), zone: .current) }
+        let stored = Self.settings.flatMap {
+            EffectivePlan.decode($0.object(forKey: EffectivePlan.key), zone: .current)
+        }
         return NextAlarmEntry(date: date, plan: EffectivePlan.choose(stored: stored, computed: computed, now: date))
     }
 

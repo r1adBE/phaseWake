@@ -108,7 +108,8 @@ struct DiagView: View {
     /// Zeilen «Bezeichnung: Wert» für iPhone und Uhr.
     private var status: [(label: String, value: String)] {
         let session = WCSession.isSupported() ? WCSession.default : nil
-        let connected = session?.activationState == .activated && session?.isPaired == true && session?.isWatchAppInstalled == true
+        let connected = session?.activationState == .activated && session?.isPaired == true
+            && session?.isWatchAppInstalled == true
         let seen = UserDefaults.standard.double(forKey: PhoneConnectivity.watchSeenKey)
         let watch = Dictionary(watchReport?.status.map { ($0.key, $0.value) } ?? [], uniquingKeysWith: { $1 })
         let watchNext = watch["next"].flatMap { ISO8601DateFormatter().date(from: $0) }
@@ -120,13 +121,16 @@ struct DiagView: View {
             (L("diag_watch"), yesNo(connected)),
             (L("diag_watch_battery"), model.watchBattery().map { "\($0) %" } ?? L("diag_unknown")),
             (L("diag_watch_seen"), seen > 0 ? stamp(Date(timeIntervalSince1970: seen / 1000)) : L("diag_unknown")),
-            (L("diag_versions"), L("diag_phone") + " " + Self.version + " · " + L("diag_watch") + " " + (watch["version"] ?? L("diag_unknown"))),
+            (L("diag_versions"),
+             L("diag_phone") + " " + Self.version + " · " + L("diag_watch") + " "
+                 + (watch["version"] ?? L("diag_unknown"))),
         ]
     }
 
     private var shareText: String {
         let section = validation.isEmpty ? [] : [ValidationReport.title] + validation + [""]
-        return (status.map { "\($0.label): \($0.value)" } + [""] + section + [DiagLog.format(allEntries, timeZone: .current)]).joined(separator: "\n")
+        return (status.map { "\($0.label): \($0.value)" } + [""] + section
+                + [DiagLog.format(allEntries, timeZone: .current)]).joined(separator: "\n")
     }
 
     private func stamp(_ date: Date) -> String { date.formatted(date: .abbreviated, time: .shortened) }

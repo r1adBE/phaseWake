@@ -10,7 +10,9 @@ extension PhoneModel {
         let device = UIDevice.current
         device.isBatteryMonitoringEnabled = true
         DiagStore.shared.log(.boot, "app start")
-        if device.batteryLevel >= 0 { DiagStore.shared.log(.battery, "\(Int((device.batteryLevel * 100).rounded())) %") }
+        if device.batteryLevel >= 0 {
+            DiagStore.shared.log(.battery, "\(Int((device.batteryLevel * 100).rounded())) %")
+        }
         // Vor dem ersten Entsperren gestartet (etwa «Stopp» am Zweitwecker nach einem Neustart): nichts planen oder
         // verwerfen, bis der Stand lesbar ist; `catchUpState` holt dann alles nach.
         guard stateLoaded else {

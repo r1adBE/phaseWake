@@ -8,7 +8,8 @@ final class SunriseInkPhoneTests: XCTestCase {
         for step in 0...1000 {
             let p = Double(step) / 1000
             let c = SunriseSky.palette(p)
-            XCTAssertGreaterThanOrEqual(SunriseSky.contrast(c.content, c.bottom), SunriseSky.minContrast, "content at \(p)")
+            XCTAssertGreaterThanOrEqual(SunriseSky.contrast(c.content, c.bottom), SunriseSky.minContrast,
+                                        "content at \(p)")
             XCTAssertGreaterThanOrEqual(SunriseSky.contrast(c.muted, c.bottom), SunriseSky.minContrast, "muted at \(p)")
         }
     }
@@ -24,8 +25,10 @@ final class SunriseInkPhoneTests: XCTestCase {
     }
 
     func testContrastFormula() {
-        XCTAssertEqual(SunriseSky.contrast(SunriseSky.RGB(hex: 0xFFFFFF), SunriseSky.RGB(hex: 0x000000)), 21, accuracy: 0.01)
-        XCTAssertEqual(SunriseSky.contrast(SunriseSky.RGB(hex: 0x777777), SunriseSky.RGB(hex: 0x777777)), 1, accuracy: 0.0001)
+        XCTAssertEqual(SunriseSky.contrast(SunriseSky.RGB(hex: 0xFFFFFF), SunriseSky.RGB(hex: 0x000000)), 21,
+                       accuracy: 0.01)
+        XCTAssertEqual(SunriseSky.contrast(SunriseSky.RGB(hex: 0x777777), SunriseSky.RGB(hex: 0x777777)), 1,
+                       accuracy: 0.0001)
     }
 
     func testInkKeepsContrastOnEveryTextAreaWithPlaque() {
@@ -49,8 +52,10 @@ final class SunriseInkPhoneTests: XCTestCase {
                     let ink = SunriseSky.ink(p, area: area, aspect: aspect)
                     for background in SunriseSky.samples(p, area: area, aspect: aspect) {
                         let behind = SunriseSky.behindText(background, content: ink.content)
-                        XCTAssertGreaterThanOrEqual(SunriseSky.contrast(ink.content, behind), SunriseSky.minContrast, "\(p) \(area)")
-                        XCTAssertGreaterThanOrEqual(SunriseSky.contrast(ink.muted, behind), SunriseSky.minContrast, "muted \(p) \(area)")
+                        XCTAssertGreaterThanOrEqual(SunriseSky.contrast(ink.content, behind), SunriseSky.minContrast,
+                                                    "\(p) \(area)")
+                        XCTAssertGreaterThanOrEqual(SunriseSky.contrast(ink.muted, behind), SunriseSky.minContrast,
+                                                    "muted \(p) \(area)")
                     }
                 }
             }
@@ -63,7 +68,8 @@ final class SunriseInkPhoneTests: XCTestCase {
         let bottom = SunriseSky.Area(left: 0.3, top: 0.88, right: 0.7, bottom: 0.95)
         XCTAssertEqual(SunriseSky.ink(0.6, area: top).content, SunriseSky.light)
         XCTAssertEqual(SunriseSky.ink(0.6, area: bottom).content, SunriseSky.dark)
-        XCTAssertEqual(SunriseSky.Area.of(CGRect(x: 10, y: 20, width: 50, height: 10), in: CGRect(x: 0, y: 0, width: 100, height: 200)),
+        XCTAssertEqual(SunriseSky.Area.of(CGRect(x: 10, y: 20, width: 50, height: 10),
+                                          in: CGRect(x: 0, y: 0, width: 100, height: 200)),
                        SunriseSky.Area(left: 0.1, top: 0.1, right: 0.6, bottom: 0.15))
         XCTAssertEqual(SunriseSky.Area.of(.zero, in: .zero), .center)
     }

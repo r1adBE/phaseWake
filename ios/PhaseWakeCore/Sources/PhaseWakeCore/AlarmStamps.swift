@@ -16,7 +16,8 @@ public struct AlarmSnapshot: Equatable, Sendable {
     public let perAlarm: Bool
 
     /// Erzeugt einen Stand.
-    public init(alarms: [AlarmSpec], updatedAt: Int64, stamps: [String: Int64] = [:], deleted: [String: Int64] = [:], perAlarm: Bool = true) {
+    public init(alarms: [AlarmSpec], updatedAt: Int64, stamps: [String: Int64] = [:], deleted: [String: Int64] = [:],
+                perAlarm: Bool = true) {
         self.alarms = alarms
         self.updatedAt = updatedAt
         self.stamps = stamps
@@ -81,7 +82,8 @@ public enum AlarmStamps {
     public static func apply(_ snapshot: AlarmSnapshot, to context: inout [String: Any]) {
         context[SyncKeys.alarms] = Codec.encodeAlarms(snapshot.alarms)
         context[SyncKeys.updatedAt] = snapshot.updatedAt
-        context[SyncKeys.alarmStamps] = Dictionary(snapshot.alarms.map { ($0.id, snapshot.stampOf($0.id)) }, uniquingKeysWith: max)
+        context[SyncKeys.alarmStamps] = Dictionary(snapshot.alarms.map { ($0.id, snapshot.stampOf($0.id)) },
+                                                   uniquingKeysWith: max)
         context[SyncKeys.alarmsDeleted] = snapshot.deleted
     }
 
@@ -96,7 +98,8 @@ public enum AlarmStamps {
         guard let stamps = int64Map(context[SyncKeys.alarmStamps]) else {
             return AlarmSnapshot(alarms: alarms, updatedAt: updatedAt, perAlarm: false)
         }
-        return AlarmSnapshot(alarms: alarms, updatedAt: updatedAt, stamps: stamps, deleted: int64Map(context[SyncKeys.alarmsDeleted]) ?? [:])
+        return AlarmSnapshot(alarms: alarms, updatedAt: updatedAt, stamps: stamps,
+                             deleted: int64Map(context[SyncKeys.alarmsDeleted]) ?? [:])
     }
 
     /// Fingerabdruck eines empfangenen Stands (Wecker, Listen-Zeitpunkt, Zeitpunkte je Wecker, gelöschte Wecker), fest
@@ -105,7 +108,8 @@ public enum AlarmStamps {
         func map(_ values: [String: Int64]) -> String {
             values.sorted { $0.key < $1.key }.map { "\($0.key)=\($0.value)" }.joined(separator: ",")
         }
-        return [Codec.encodeAlarms(snapshot.alarms), String(snapshot.updatedAt), map(snapshot.stamps), map(snapshot.deleted),
+        return [Codec.encodeAlarms(snapshot.alarms), String(snapshot.updatedAt), map(snapshot.stamps),
+                map(snapshot.deleted),
                 snapshot.perAlarm ? "1" : "0"].joined(separator: "\n#\n")
     }
 
@@ -138,9 +142,11 @@ public enum AlarmStamps {
     /// `target`
     ///   sein (auf ms verglichen); bei einer früher geweckten Nacht (`shifted`, «Gute Nacht») höchstens
     ///   ``shiftMaxAheadMs`` danach. Wie Kotlin.
-    public static func rang(_ spec: AlarmSpec, rung: AlarmSpec?, target: Date, calendar: Calendar, shifted: Bool) -> Bool {
+    public static func rang(_ spec: AlarmSpec, rung: AlarmSpec?, target: Date, calendar: Calendar,
+                            shifted: Bool) -> Bool {
         if let rung { return rung.hour == spec.hour && rung.minute == spec.minute && rung.days == spec.days }
-        guard let nominal = AlarmSchedule.nextTarget(spec, now: target.addingTimeInterval(-0.001), calendar: calendar) else { return false }
+        guard let nominal = AlarmSchedule.nextTarget(spec, now: target.addingTimeInterval(-0.001),
+                                                     calendar: calendar) else { return false }
         let ahead = TimeBounds.millis(nominal) - TimeBounds.millis(target)
         if ahead == 0 { return true }
         return shifted && ahead > 0 && ahead <= shiftMaxAheadMs
@@ -152,8 +158,10 @@ public enum AlarmStamps {
     /// Fassung, die geklingelt hat. Eine neuere Änderung, die hier noch nicht angekommen ist (z. B. am iPhone
     /// verschoben, während die Uhr nicht erreichbar war), gewinnt beim Abgleich weiter. Ohne plausiblen bisherigen
     /// Zeitpunkt gilt `listStamp`. Listen-Zeitpunkt: `listStamp`. Wie Kotlin.
-    public static func autoOff(_ local: AlarmSnapshot, id: String, listStamp: Int64, rang: (AlarmSpec) -> Bool) -> AlarmSnapshot? {
-        guard let spec = local.alarms.first(where: { $0.id == id }), spec.isOneShot, spec.enabled, rang(spec) else { return nil }
+    public static func autoOff(_ local: AlarmSnapshot, id: String, listStamp: Int64,
+                               rang: (AlarmSpec) -> Bool) -> AlarmSnapshot? {
+        guard let spec = local.alarms.first(where: { $0.id == id }), spec.isOneShot, spec.enabled, rang(spec)
+        else { return nil }
         var stamps = Dictionary(local.alarms.map { ($0.id, local.stampOf($0.id)) }, uniquingKeysWith: max)
         let next = TimeBounds.checked(local.stampOf(id)).map { $0 + 1 }
         stamps[id] = next.flatMap { TimeBounds.checked($0) } ?? listStamp

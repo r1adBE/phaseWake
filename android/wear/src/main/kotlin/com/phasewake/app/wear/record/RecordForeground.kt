@@ -28,7 +28,12 @@ internal fun RecordService.goForeground(since: Instant): Boolean {
         Log.w(RecordService.TAG, "Aufzeichnen nicht erlaubt", e)
         refusal = SensorAccess.refusal(e, SensorAccess.of(this))
         try {
-            ServiceCompat.startForeground(this, Notifications.ID_RECORD, shown, ServiceInfo.FOREGROUND_SERVICE_TYPE_SHORT_SERVICE)
+            ServiceCompat.startForeground(
+                this,
+                Notifications.ID_RECORD,
+                shown,
+                ServiceInfo.FOREGROUND_SERVICE_TYPE_SHORT_SERVICE,
+            )
         } catch (e2: RuntimeException) {
             Log.e(RecordService.TAG, "Vordergrund nicht möglich", e2)
         }

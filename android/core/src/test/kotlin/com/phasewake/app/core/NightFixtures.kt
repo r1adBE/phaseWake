@@ -98,7 +98,10 @@ internal object NightFixtures {
             }
         }
         check(expectSeen) { "${file.name}: @expect fehlt" }
-        val config = DetectorConfig(personalFloor = personalFloor, restingHeartRate = restingHeartRate).withOnsetFloor(onsetFloor)
+        val config = DetectorConfig(
+            personalFloor = personalFloor,
+            restingHeartRate = restingHeartRate,
+        ).withOnsetFloor(onsetFloor)
         return NightFixture(file.nameWithoutExtension, expectedIndex, expectedReason, epochs, config, rearmUntil)
     }
 }

@@ -42,14 +42,26 @@ class AckedContentTest {
     private var clock = 1_000L
 
     private fun TestScope.outbox() =
-        Outbox(dir, peer, { clock++ + testScheduler.currentTime }, backgroundScope, StandardTestDispatcher(testScheduler))
+        Outbox(
+            dir,
+            peer,
+            { clock++ + testScheduler.currentTime },
+            backgroundScope,
+            StandardTestDispatcher(testScheduler),
+        )
 
     /** Datei der bestätigten Stände; eine neue Instanz entspricht einem neuen Prozess. */
     private fun acked() = AckedContent(File(dir, "acked"))
 
     /** Wie beim Start: einreihen, falls geändert, und das Senden im Hintergrund ablaufen lassen. */
     private suspend fun TestScope.start(box: Outbox, content: AckedContent, body: String): String? =
-        box.enqueueIfChanged(content, QueueMessages.KEY_ALARMS, DataLayer.PATH_MSG_ALARMS, DataLayer.CAPABILITY_WATCH, body).also { runCurrent() }
+        box.enqueueIfChanged(
+            content,
+            QueueMessages.KEY_ALARMS,
+            DataLayer.PATH_MSG_ALARMS,
+            DataLayer.CAPABILITY_WATCH,
+            body,
+        ).also { runCurrent() }
 
     @Test
     fun confirmedUnchangedStateIsNotSentAgain() = runTest {
@@ -83,7 +95,12 @@ class AckedContentTest {
         assertTrue(box.ackedAndRemember(content, assertNotNull(start(box, content, "wecker-a"))))
         // Geändert, noch nicht bestätigt; dann zurück auf den bestätigten Stand: Der wartende Eintrag darf nicht
         // bleiben.
-        box.enqueue(QueueMessages.KEY_ALARMS, DataLayer.PATH_MSG_ALARMS, DataLayer.CAPABILITY_WATCH, "wecker-b").also { runCurrent() }
+        box.enqueue(
+            QueueMessages.KEY_ALARMS,
+            DataLayer.PATH_MSG_ALARMS,
+            DataLayer.CAPABILITY_WATCH,
+            "wecker-b",
+        ).also { runCurrent() }
         assertNotNull(start(box, content, "wecker-a"))
         assertEquals(listOf("wecker-a"), box.pending().map { it.body })
     }
@@ -94,7 +111,12 @@ class AckedContentTest {
         val content = acked()
         val old = assertNotNull(start(box, content, "wecker-a"))
         // Ersetzt, bevor die Bestätigung kam: Die alte Bestätigung entfernt nichts und merkt nichts.
-        box.enqueue(QueueMessages.KEY_ALARMS, DataLayer.PATH_MSG_ALARMS, DataLayer.CAPABILITY_WATCH, "wecker-b").also { runCurrent() }
+        box.enqueue(
+            QueueMessages.KEY_ALARMS,
+            DataLayer.PATH_MSG_ALARMS,
+            DataLayer.CAPABILITY_WATCH,
+            "wecker-b",
+        ).also { runCurrent() }
         assertFalse(box.ackedAndRemember(content, old))
         assertFalse(content.matches(QueueMessages.KEY_ALARMS, "wecker-a"))
         assertFalse(content.matches(QueueMessages.KEY_ALARMS, "wecker-b"))
@@ -103,7 +125,16 @@ class AckedContentTest {
     @Test
     fun nightsAreNotRemembered() = runTest {
         val content = acked()
-        content.remember(Outbox.Entry("n1", QueueMessages.KEY_NIGHT + "1-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "nacht", 1L))
+        content.remember(
+            Outbox.Entry(
+                "n1",
+                QueueMessages.KEY_NIGHT + "1-a",
+                DataLayer.PATH_MSG_NIGHT,
+                DataLayer.CAPABILITY_PHONE,
+                "nacht",
+                1L,
+            ),
+        )
         assertFalse(content.matches(QueueMessages.KEY_NIGHT + "1-a", "nacht"))
         assertFalse(File(dir, "acked").exists())
     }

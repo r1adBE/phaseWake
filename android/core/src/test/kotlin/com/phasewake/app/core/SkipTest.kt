@@ -15,7 +15,8 @@ import kotlin.test.assertTrue
 /** «Nächstes Mal überspringen» und «An Feiertagen nicht wecken»; Gegenstück: `SkipTests` (Swift). */
 class SkipTest {
     private val zurich = ZoneId.of("Europe/Zurich")
-    private val weekdays = setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)
+    private val weekdays =
+        setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)
 
     private fun at(text: String): Instant = LocalDateTime.parse(text).atZone(zurich).toInstant()
 
@@ -132,7 +133,10 @@ class SkipTest {
         val bad = Codec.decodeAlarms("phasewake-alarms 1\na|7|0|MO|30|1|SOUND|0||||OFF|NONE|PHONE|x|ja|neu\n").single()
         assertEquals(0L, bad.skipUntil)
         assertFalse(bad.skipHolidays)
-        assertEquals(0L, Codec.decodeAlarms("phasewake-alarms 1\na|7|0|MO|30|1|SOUND|0||||OFF|NONE|PHONE|-5|0\n").single().skipUntil)
+        assertEquals(
+            0L,
+            Codec.decodeAlarms("phasewake-alarms 1\na|7|0|MO|30|1|SOUND|0||||OFF|NONE|PHONE|-5|0\n").single().skipUntil,
+        )
     }
 
     @Test

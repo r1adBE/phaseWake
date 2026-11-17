@@ -30,7 +30,8 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     /// die Uhr-App legt an; die Komplikation liest bloss.
     public static func watchGroupDirectory(create: Bool) -> URL? {
         #if canImport(Darwin)
-        guard let group = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: watchGroup) else { return nil }
+        guard let group = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: watchGroup)
+        else { return nil }
         let dir = group.appendingPathComponent("Private", isDirectory: true)
         if create {
             try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
@@ -57,8 +58,11 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     private static let watchSharedURL = watchGroupDirectory(create: false)?.appendingPathComponent(watchSettingsName)
     /// Pfad, den es nie gibt: ein nur lesender Speicher darauf ist immer leer.
     private static let noFile = URL(fileURLWithPath: "/dev/null/none")
-    private static let watchSharedFile = PhaseWakeStorage(defaults: SettingsFile(url: watchSharedURL ?? noFile, readOnly: true))
-    private static let watchSharedLegacy = PhaseWakeStorage(defaults: UserDefaults(suiteName: watchGroup) ?? UserDefaults.standard)
+    private static let watchSharedFile = PhaseWakeStorage(defaults: SettingsFile(url: watchSharedURL ?? noFile,
+                                                                                 readOnly: true))
+    private static let watchSharedLegacy = PhaseWakeStorage(
+        defaults: UserDefaults(suiteName: watchGroup) ?? UserDefaults.standard
+    )
     private static let watchSharedNone = PhaseWakeStorage(defaults: SettingsFile(url: noFile, readOnly: true))
 
     /// Erzeugt einen Speicher. `defaults` = Ort der Wecker und Einstellungen (iPhone und Uhr: eine ``SettingsFile``
@@ -142,16 +146,21 @@ public final class PhaseWakeStorage: @unchecked Sendable {
             guard remote.updatedAt > current.updatedAt else { return false }
             let list = Self.sorted(Array(AlarmStamps.byId(remote.alarms).values))
             let ids = Set(list.map(\.id))
-            let gone = Dictionary(current.alarms.filter { !ids.contains($0.id) }.map { ($0.id, remote.updatedAt) }, uniquingKeysWith: max)
-            let deleted = current.deleted.merging(remote.deleted, uniquingKeysWith: max).merging(gone, uniquingKeysWith: max)
-            saveLocked(list, updatedAt: remote.updatedAt, stamps: Dictionary(list.map { ($0.id, remote.stampOf($0.id)) }, uniquingKeysWith: max),
+            let gone = Dictionary(current.alarms.filter { !ids.contains($0.id) }.map { ($0.id, remote.updatedAt) },
+                                  uniquingKeysWith: max)
+            let deleted = current.deleted.merging(remote.deleted, uniquingKeysWith: max).merging(gone,
+                                                                                                 uniquingKeysWith: max)
+            saveLocked(list, updatedAt: remote.updatedAt,
+                       stamps: Dictionary(list.map { ($0.id, remote.stampOf($0.id)) }, uniquingKeysWith: max),
                        deleted: deleted, now: nowMs)
             return list != current.alarms
         }
-        let local = AlarmSnapshot(alarms: current.alarms, updatedAt: current.updatedAt, stamps: full, deleted: current.deleted)
+        let local = AlarmSnapshot(alarms: current.alarms, updatedAt: current.updatedAt, stamps: full,
+                                  deleted: current.deleted)
         let merged = AlarmStamps.merge(local: local, remote: remote, now: nowMs)
         let list = Self.sorted(merged.alarms)
-        if list == current.alarms && merged.stamps == full && merged.deleted == current.deleted && merged.updatedAt == current.updatedAt {
+        if list == current.alarms && merged.stamps == full && merged.deleted == current.deleted
+            && merged.updatedAt == current.updatedAt {
             return false
         }
         saveLocked(list, updatedAt: merged.updatedAt, stamps: merged.stamps, deleted: merged.deleted, now: nowMs)
@@ -209,7 +218,8 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         // (``TimeBounds``, z. B. aus einer kaputten Nachricht früherer Versionen) gilt als nie geändert.
         let updatedAt = TimeBounds.checked((defaults.object(forKey: Self.updatedKey) as? NSNumber)?.int64Value) ?? 0
         let ids = Set(alarms.map(\.id))
-        let stamps = (AlarmStamps.int64Map(defaults.object(forKey: Self.stampsKey)) ?? [:]).filter { ids.contains($0.key) }
+        let stamps = (AlarmStamps.int64Map(defaults.object(forKey: Self.stampsKey)) ?? [:])
+            .filter { ids.contains($0.key) }
         return AlarmSnapshot(alarms: alarms, updatedAt: updatedAt, stamps: stamps,
                              deleted: AlarmStamps.int64Map(defaults.object(forKey: Self.deletedKey)) ?? [:])
     }
@@ -230,18 +240,23 @@ public final class PhaseWakeStorage: @unchecked Sendable {
 
     /// Schreibt `alarms` mit einem streng steigenden Listen-Zeitpunkt: Wecker in `changed` bekommen ihn als eigenen,
     /// die übrigen behalten ihren; Wecker aus `before`, die fehlen, gelten ab dann als gelöscht.
-    private func writeLocked(_ alarms: [AlarmSpec], before: AlarmSnapshot, changed: Set<String>, now: Date) -> AlarmSnapshot {
+    private func writeLocked(_ alarms: [AlarmSpec], before: AlarmSnapshot, changed: Set<String>,
+                             now: Date) -> AlarmSnapshot {
         let nowMs = TimeBounds.millis(now)
         // Streng steigend, ohne Überlauf (``TimeBounds/next(now:previous:)``).
         let stamp = TimeBounds.next(now: nowMs, previous: before.updatedAt)
-        let stamps = Dictionary(alarms.map { ($0.id, changed.contains($0.id) ? stamp : before.stampOf($0.id)) }, uniquingKeysWith: max)
+        let stamps = Dictionary(alarms.map { ($0.id, changed.contains($0.id) ? stamp : before.stampOf($0.id)) },
+                                uniquingKeysWith: max)
         let ids = Set(alarms.map(\.id))
-        let gone = Dictionary(before.alarms.filter { !ids.contains($0.id) }.map { ($0.id, stamp) }, uniquingKeysWith: max)
-        return saveLocked(alarms, updatedAt: stamp, stamps: stamps, deleted: before.deleted.merging(gone) { $1 }, now: nowMs)
+        let gone = Dictionary(before.alarms.filter { !ids.contains($0.id) }.map { ($0.id, stamp) },
+                              uniquingKeysWith: max)
+        return saveLocked(alarms, updatedAt: stamp, stamps: stamps, deleted: before.deleted.merging(gone) { $1 },
+                          now: nowMs)
     }
 
     @discardableResult
-    private func saveLocked(_ alarms: [AlarmSpec], updatedAt: Int64, stamps: [String: Int64], deleted: [String: Int64], now: Int64) -> AlarmSnapshot {
+    private func saveLocked(_ alarms: [AlarmSpec], updatedAt: Int64, stamps: [String: Int64], deleted: [String: Int64],
+                            now: Int64) -> AlarmSnapshot {
         let ids = Set(alarms.map(\.id))
         let own = stamps.filter { ids.contains($0.key) }
         let kept = AlarmStamps.prune(deleted.filter { !ids.contains($0.key) }, now: now)
@@ -286,10 +301,14 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         // Befinden, Akku (z. B. des iPhones) und Einschlafen bleiben, wenn die Uhr dieselbe Nacht ohne sie noch einmal
         // schickt (wie Android); Beginn und Einschlafzeit nur zusammen (gehören zur selben Messung).
         let old = current.first { Self.sameNight($0, night) }
-        let merged = NightRecord(alarmId: night.alarmId, windowStart: night.windowStart, target: night.target, wokeAt: night.wokeAt,
-                                 reason: night.reason, snoozes: night.snoozes, epochs: night.epochs, feeling: night.feeling ?? old?.feeling,
-                                 watchBattery: night.watchBattery ?? old?.watchBattery, phoneBattery: night.phoneBattery ?? old?.phoneBattery,
-                                 bedAt: night.asleepAt != nil ? night.bedAt : old?.bedAt, asleepAt: night.asleepAt ?? old?.asleepAt)
+        let merged = NightRecord(alarmId: night.alarmId, windowStart: night.windowStart, target: night.target,
+                                 wokeAt: night.wokeAt,
+                                 reason: night.reason, snoozes: night.snoozes, epochs: night.epochs,
+                                 feeling: night.feeling ?? old?.feeling,
+                                 watchBattery: night.watchBattery ?? old?.watchBattery,
+                                 phoneBattery: night.phoneBattery ?? old?.phoneBattery,
+                                 bedAt: night.asleepAt != nil ? night.bedAt : old?.bedAt,
+                                 asleepAt: night.asleepAt ?? old?.asleepAt)
         return writeNightsLocked(NightHistory.trim(current.filter { !Self.sameNight($0, night) } + [merged]))
     }
 
@@ -297,7 +316,9 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     public func setFeeling(_ feeling: Int, alarmId: String, windowStart: Date) {
         lock.lock(); defer { lock.unlock() }
         guard let current = nightsLocked() else { return }
-        writeNightsLocked(current.map { $0.alarmId == alarmId && $0.windowStart == windowStart ? $0.with(feeling: feeling) : $0 })
+        writeNightsLocked(current.map {
+            $0.alarmId == alarmId && $0.windowStart == windowStart ? $0.with(feeling: feeling) : $0
+        })
     }
 
     /// Dieselbe Nacht: gleicher Wecker und gleicher Fensterbeginn. Zwei Wecker mit exakt gleichem

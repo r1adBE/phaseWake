@@ -102,7 +102,12 @@ object DiagLog {
 
     /** Eine Zeile; «|» und Zeilenumbrüche im Text werden zu Leerzeichen, zu lange Texte gekürzt. */
     fun encode(entry: DiagEntry): String =
-        listOf(entry.at.toEpochMilli().toString(), entry.device.code, entry.kind.name, clean(entry.detail)).joinToString(SEP)
+        listOf(
+            entry.at.toEpochMilli().toString(),
+            entry.device.code,
+            entry.kind.name,
+            clean(entry.detail),
+        ).joinToString(SEP)
 
     /** Liest [encode]; unbekannte Art wird [DiagKind.OTHER], eine kaputte Zeile `null`. */
     fun decode(line: String): DiagEntry? {
@@ -123,7 +128,8 @@ object DiagLog {
     /** Lesbarer Text zum Teilen: «2026-10-29 07:12:03 phone RING Text» je Zeile, älteste zuerst. */
     fun format(entries: List<DiagEntry>, zone: ZoneId): String =
         entries.sortedBy { it.at }.joinToString("\n") { e ->
-            listOf(TIME.format(e.at.atZone(zone)), e.device.name.lowercase(), e.kind.name, e.detail).filter { it.isNotEmpty() }.joinToString(" ")
+            listOf(TIME.format(e.at.atZone(zone)), e.device.name.lowercase(), e.kind.name, e.detail)
+                .filter { it.isNotEmpty() }.joinToString(" ")
         }
 
     /** Text ohne Trennzeichen und Zeilenumbrüche, höchstens [MAX_DETAIL] Zeichen. */
@@ -154,7 +160,8 @@ object DiagReports {
         val lines = text?.lines() ?: return null
         if (lines.firstOrNull() != HEADER) return null
         val divider = lines.indexOf(DIVIDER).takeIf { it > 0 } ?: lines.size
-        val status = lines.subList(1, divider).filter { '=' in it }.map { it.substringBefore('=') to it.substringAfter('=') }
+        val status =
+            lines.subList(1, divider).filter { '=' in it }.map { it.substringBefore('=') to it.substringAfter('=') }
         val entries = lines.drop(divider + 1).filter { it.isNotBlank() }.mapNotNull(DiagLog::decode)
         return DiagReport(status, entries)
     }

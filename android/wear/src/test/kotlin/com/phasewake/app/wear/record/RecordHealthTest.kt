@@ -59,7 +59,9 @@ class RecordHealthTest {
     class HealthShadow : ShadowService() {
         @Implementation
         override fun startForeground(id: Int, notification: Notification, foregroundServiceType: Int) {
-            if (refuse && foregroundServiceType == ServiceInfo.FOREGROUND_SERVICE_TYPE_HEALTH) throw SecurityException("health refused (test)")
+            if (refuse && foregroundServiceType == ServiceInfo.FOREGROUND_SERVICE_TYPE_HEALTH) {
+                throw SecurityException("health refused (test)")
+            }
             types += foregroundServiceType
             super.startForeground(id, notification, foregroundServiceType)
         }
@@ -82,7 +84,8 @@ class RecordHealthTest {
         StartLock.resetForTest()
         HealthShadow.refuse = false
         HealthShadow.types.clear()
-        shadowOf(context.getSystemService(BatteryManager::class.java)).setIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY, 80)
+        shadowOf(context.getSystemService(BatteryManager::class.java))
+            .setIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY, 80)
         shadowApp.clearStartedServices()
     }
 
@@ -117,7 +120,11 @@ class RecordHealthTest {
     }
 
     private fun stored(): List<NightRecording> =
-        File(context.filesDir, "recordings").listFiles().orEmpty().filter { !it.name.contains('.') }.mapNotNull { NightRecording.decode(it.readText()) }
+        File(context.filesDir, "recordings")
+            .listFiles()
+            .orEmpty()
+            .filter { !it.name.contains('.') }
+            .mapNotNull { NightRecording.decode(it.readText()) }
 
     private fun logged(prefix: String) = app.diag.entries().any { it.detail.startsWith(prefix) }
 
@@ -207,7 +214,11 @@ class RecordHealthTest {
         assertNotNull(service.active)
         assertTrue(HealthShadow.types.all { it == ServiceInfo.FOREGROUND_SERVICE_TYPE_HEALTH })
         assertNull(service.refusal)
-        service.onStartCommand(intent(RecordService.ACTION_STOP).putExtra(RecordService.EXTRA_REASON, RecordEnd.WATCH.code), 0, 3)
+        service.onStartCommand(
+            intent(RecordService.ACTION_STOP).putExtra(RecordService.EXTRA_REASON, RecordEnd.WATCH.code),
+            0,
+            3,
+        )
         awaitUntil("abgeschlossen") { stored().singleOrNull()?.finished == true }
         assertEquals(RecordEnd.WATCH, stored().single().endReason)
     }

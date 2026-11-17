@@ -76,8 +76,14 @@ class SleepSoundsTest {
     @Test
     fun soundsAndStoredNames() {
         // Ältere gespeicherte Werte bleiben gültig; Aufnahmen werden nicht erzeugt.
-        for (name in listOf("WHITE", "PINK", "BROWN", "RAIN", "OCEAN")) assertTrue(SleepSound.entries.any { it.name == name }, name)
-        assertEquals(listOf(SleepSound.RAIN, SleepSound.OCEAN, SleepSound.FOREST, SleepSound.FIRE, SleepSound.BROOK), SleepSound.entries.filter { it.recorded })
+        for (name in listOf("WHITE", "PINK", "BROWN", "RAIN", "OCEAN")) assertTrue(
+            SleepSound.entries.any { it.name == name },
+            name,
+        )
+        assertEquals(
+            listOf(SleepSound.RAIN, SleepSound.OCEAN, SleepSound.FOREST, SleepSound.FIRE, SleepSound.BROOK),
+            SleepSound.entries.filter { it.recorded },
+        )
         assertTrue(runCatching { NoiseGenerator(SleepSound.RAIN) }.isFailure)
     }
 

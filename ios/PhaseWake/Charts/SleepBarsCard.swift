@@ -39,7 +39,8 @@ struct SleepBarsCard: View {
                 .chartFadeIn()
                 .sensoryFeedback(.selection, trigger: selected)
             if let bedtime = bars.bedtimeMinute {
-                ChartLegend(items: [(symbol: AnyView(DashSymbol(color: .accentColor)), text: L("chart_bedtime", clock(bedtime)))])
+                ChartLegend(items: [(symbol: AnyView(DashSymbol(color: .accentColor)),
+                                     text: L("chart_bedtime", clock(bedtime)))])
             }
         }
     }
@@ -50,16 +51,20 @@ struct SleepBarsCard: View {
             ForEach(bars.bars.indices, id: \.self) { i in
                 let bar = bars.bars[i]
                 if let start = bar.startMinute, let end = bar.endMinute {
-                    BarMark(xStart: .value("start", max(start, bars.axisStart)), xEnd: .value("end", min(end, bars.axisEnd)),
-                            y: .value("night", bar.date), height: .fixed(selectedIndex == i ? barHeight + 4 : barHeight))
+                    BarMark(xStart: .value("start", max(start, bars.axisStart)),
+                            xEnd: .value("end", min(end, bars.axisEnd)),
+                            y: .value("night", bar.date),
+                            height: .fixed(selectedIndex == i ? barHeight + 4 : barHeight))
                         // Von der Nacht (tief) zum Morgen (hell), wie Android.
-                        .foregroundStyle(LinearGradient(colors: [StageColors.color(.deep, scheme), palette.active], startPoint: .leading, endPoint: .trailing)
+                        .foregroundStyle(LinearGradient(colors: [StageColors.color(.deep, scheme), palette.active],
+                                                        startPoint: .leading, endPoint: .trailing)
                             .opacity(selectedIndex != nil && selectedIndex != i ? 0.45 : 1))
                         .cornerRadius(4)
                         .accessibilityLabel(Text(verbatim: longDate(bar.date)))
                         .accessibilityValue(Text(verbatim: value(bar)))
                 } else {
-                    RuleMark(xStart: .value("start", bars.axisStart), xEnd: .value("end", bars.axisEnd), y: .value("night", bar.date))
+                    RuleMark(xStart: .value("start", bars.axisStart), xEnd: .value("end", bars.axisEnd),
+                             y: .value("night", bar.date))
                         .foregroundStyle(palette.track)
                         .lineStyle(StrokeStyle(lineWidth: 2, lineCap: .round))
                         .accessibilityLabel(Text(verbatim: longDate(bar.date)))

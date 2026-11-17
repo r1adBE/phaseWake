@@ -47,7 +47,11 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
 
     /** Ein Zustand an die Gegenseite; [unlessAcked] siehe [publishAlarms]. */
     private suspend fun put(key: String, path: String, body: String, unlessAcked: Boolean) {
-        if (unlessAcked) outbox.enqueueIfChanged(ackedContent, key, path, peer, body) else outbox.enqueue(key, path, peer, body)
+        if (unlessAcked) {
+            outbox.enqueueIfChanged(ackedContent, key, path, peer, body)
+        } else {
+            outbox.enqueue(key, path, peer, body)
+        }
     }
 
     /** Sendet die wartenden Einträge der Warteschlange erneut (Gegenseite erreichbar, App-Start). */
@@ -94,7 +98,9 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
             }
             received.add(id)
         }
-        guarded("Empfang bestätigen") { messageClient.sendMessage(node, DataLayer.PATH_ACK, id.encodeToByteArray()).await() }
+        guarded("Empfang bestätigen") {
+            messageClient.sendMessage(node, DataLayer.PATH_ACK, id.encodeToByteArray()).await()
+        }
         return true
     }
 
@@ -141,7 +147,11 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
      */
     suspend fun migrateTransport() = guarded("Umstellung auf Nachrichten") {
         val local = Wearable.getNodeClient(app).localNode.await().id
-        if (outbox.migrateOnce({ QueueMessages.legacyItems(dataClient, local, peer) }, { dataClient.deleteDataItems(it).await() })) Log.i(TAG, "Umstellung auf Nachrichten erledigt")
+        val migrated = outbox.migrateOnce(
+            { QueueMessages.legacyItems(dataClient, local, peer) },
+            { dataClient.deleteDataItems(it).await() },
+        )
+        if (migrated) Log.i(TAG, "Umstellung auf Nachrichten erledigt")
     }
 
     /** Uhr: eine Nacht ans Handy (Warteschlange, Schlüssel mit Fensterbeginn und Kennung). */
@@ -156,12 +166,24 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
      * @return ob das Paket abgelegt wurde (der Data Layer stellt es dann zu).
      */
     suspend fun publishWatchReady(
-        ready: Boolean, battery: Int? = null, pulse: WatchPulse? = null, recorderSkip: RecorderSkip.Reason? = null, charging: Boolean = false,
+        ready: Boolean,
+        battery: Int? = null,
+        pulse: WatchPulse? = null,
+        recorderSkip: RecorderSkip.Reason? = null,
+        charging: Boolean = false,
         build: Int? = null,
     ): Boolean {
         var stored = false
         guarded("Status senden") {
-            dataClient.putDataItem(statusRequest(ready, battery, System.currentTimeMillis(), pulse, recorderSkip, charging, build)).await()
+            dataClient.putDataItem(statusRequest(
+                ready,
+                battery,
+                System.currentTimeMillis(),
+                pulse,
+                recorderSkip,
+                charging,
+                build,
+            )).await()
             stored = true
         }
         return stored
@@ -204,7 +226,8 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
 
     /** Kennungen der Geräte, die ein Status-Paket ([DataLayer.PATH_WATCH_STATUS]) geschrieben haben. */
     private suspend fun statusNodes(): Set<String> {
-        val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_WATCH_STATUS).build()).await()
+        val items =
+            dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_WATCH_STATUS).build()).await()
         return try {
             items.mapNotNull { it.uri.host }.toSet()
         } finally {
@@ -214,7 +237,8 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
 
     /** Liest das Status-Paket der Uhr mit [read]; `null`, wenn keines da ist oder die Wear-Dienste fehlen. */
     internal suspend fun <T> readStatus(read: (DataMap) -> T?): T? = try {
-        val items = dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_WATCH_STATUS).build()).await()
+        val items =
+            dataClient.getDataItems(Uri.Builder().scheme("wear").path(DataLayer.PATH_WATCH_STATUS).build()).await()
         try {
             items.firstOrNull()?.let { read(DataMapItem.fromDataItem(it).dataMap) }
         } finally {
@@ -227,20 +251,38 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
 
     /** Handy: Feiertage an die Uhren (Warteschlange). */
     suspend fun publishHolidays(list: HolidayList, updatedAt: Long) = guarded("Feiertage senden") {
-        outbox.enqueue(QueueMessages.KEY_HOLIDAYS, DataLayer.PATH_MSG_HOLIDAYS, peer, "$updatedAt\n${Holidays.encode(list)}")
+        outbox.enqueue(
+            QueueMessages.KEY_HOLIDAYS,
+            DataLayer.PATH_MSG_HOLIDAYS,
+            peer,
+            "$updatedAt\n${Holidays.encode(list)}",
+        )
     }
 
     /**
      * Handy: Schlafziel ([minutes]) mit Zeitpunkt der Änderung an die Uhren, wie die Feiertage; [unlessAcked] wie bei
      * [publishAlarms].
      */
-    suspend fun publishSleepGoal(minutes: Int, updatedAt: Long, unlessAcked: Boolean = false) = guarded("Schlafziel senden") {
+    suspend fun publishSleepGoal(
+        minutes: Int,
+        updatedAt: Long,
+        unlessAcked: Boolean = false,
+    ) = guarded("Schlafziel senden") {
         put(QueueMessages.KEY_SLEEP_GOAL, DataLayer.PATH_MSG_SLEEP_GOAL, "$minutes|$updatedAt", unlessAcked)
     }
 
     /** Handy: Schalter der Einschlaf-Messung am Abend mit Zeitpunkt der Änderung an die Uhren, wie das Schlafziel. */
-    suspend fun publishAutoOnset(enabled: Boolean, updatedAt: Long, unlessAcked: Boolean = false) = guarded("Einschlaf-Messung senden") {
-        put(QueueMessages.KEY_AUTO_ONSET, DataLayer.PATH_MSG_AUTO_ONSET, "${if (enabled) 1 else 0}|$updatedAt", unlessAcked)
+    suspend fun publishAutoOnset(
+        enabled: Boolean,
+        updatedAt: Long,
+        unlessAcked: Boolean = false,
+    ) = guarded("Einschlaf-Messung senden") {
+        put(
+            QueueMessages.KEY_AUTO_ONSET,
+            DataLayer.PATH_MSG_AUTO_ONSET,
+            "${if (enabled) 1 else 0}|$updatedAt",
+            unlessAcked,
+        )
     }
 
     /**
@@ -249,7 +291,9 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
      */
     suspend fun publishTransientCancel(capability: String, alarmId: String) {
         message(capability, DataLayer.PATH_TRANSIENT_CANCEL, alarmId.encodeToByteArray())
-        guarded("Abbruch ablegen") { dataClient.putDataItem(transientCancelRequest(alarmId, System.currentTimeMillis())).await() }
+        guarded("Abbruch ablegen") {
+            dataClient.putDataItem(transientCancelRequest(alarmId, System.currentTimeMillis())).await()
+        }
     }
 
     /** Handy: Verlauf überall löschen – auch auf einer Uhr, die gerade nicht verbunden ist. */
@@ -291,7 +335,8 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
      */
     suspend fun nodesWithout(capability: String): List<String> = try {
         val connected = Wearable.getNodeClient(app).connectedNodes.await().map { it.id }
-        val withApp = capabilityClient.getCapability(capability, CapabilityClient.FILTER_ALL).await().nodes.map { it.id }.toSet()
+        val withApp =
+            capabilityClient.getCapability(capability, CapabilityClient.FILTER_ALL).await().nodes.map { it.id }.toSet()
         // Zweiter Beleg: Eine Uhr, die schon einen Status gemeldet hat, hat die App sicher – auch wenn ihre
         // Fähigkeit nach einer Neuinstallation (z. B. per adb) noch nicht bekannt gegeben ist.
         val reporting = statusNodes()

@@ -39,8 +39,12 @@ fun findingText(context: Context, finding: Finding): String {
             listOfNotNull(
                 context.getString(R.string.finding_low_deep, finding.value, typical.low, typical.high),
                 when (finding.link) {
-                    DeepLink.SHORT_NIGHTS -> context.getString(R.string.finding_deep_short, finding.withPercent, finding.withoutPercent)
-                    DeepLink.LATE_BEDTIME -> context.getString(R.string.finding_deep_late, finding.withPercent, finding.withoutPercent)
+                    DeepLink.SHORT_NIGHTS -> context.getString(
+                        R.string.finding_deep_short, finding.withPercent, finding.withoutPercent,
+                    )
+                    DeepLink.LATE_BEDTIME -> context.getString(
+                        R.string.finding_deep_late, finding.withPercent, finding.withoutPercent,
+                    )
                     null -> null
                 },
                 context.getString(R.string.finding_tip_deep),
@@ -66,14 +70,19 @@ internal fun FindingCard(finding: Finding, onHide: () -> Unit) {
     ) {
         Column(Modifier.fillMaxWidth().padding(start = 18.dp, end = 18.dp, top = 14.dp, bottom = 6.dp)) {
             Text(stringResource(R.string.finding_title), style = MaterialTheme.typography.titleMedium)
-            Text(findingText(context, finding), style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(top = 6.dp))
+            Text(
+                findingText(context, finding), style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.padding(top = 6.dp),
+            )
             Text(
                 stringResource(R.string.stages_not_medical),
                 style = MaterialTheme.typography.bodySmall,
                 color = PhaseWakeTheme.brand.mutedSoft,
                 modifier = Modifier.padding(top = 4.dp),
             )
-            TextButton(onClick = onHide, modifier = Modifier.align(Alignment.End)) { Text(stringResource(R.string.finding_hide)) }
+            TextButton(onClick = onHide, modifier = Modifier.align(Alignment.End)) {
+                Text(stringResource(R.string.finding_hide))
+            }
         }
     }
 }

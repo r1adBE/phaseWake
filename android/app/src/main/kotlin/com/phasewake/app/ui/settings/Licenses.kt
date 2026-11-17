@@ -31,12 +31,15 @@ internal object Licenses {
             ),
         ),
         LicenseEntry("NOTICE: Kotlin", "NOTICE-kotlin.txt", listOf("Kotlin, kotlinx.coroutines")),
-        LicenseEntry("NOTICE: MediaPipe, YAMNet", "NOTICE-mediapipe.txt", listOf("MediaPipe Tasks Audio, YAMNet model")),
+        LicenseEntry(
+            "NOTICE: MediaPipe, YAMNet", "NOTICE-mediapipe.txt", listOf("MediaPipe Tasks Audio, YAMNet model"),
+        ),
         LicenseEntry(
             "NOTICE: MediaPipe native libraries",
             "NOTICE-mediapipe-native.txt",
             listOf(
-                "Native parts of MediaPipe Tasks (libmediapipe_tasks_jni, libmediapipe_tasks_audio_jni): TensorFlow Lite, " +
+                "Native parts of MediaPipe Tasks (libmediapipe_tasks_jni, libmediapipe_tasks_audio_jni): " +
+                    "TensorFlow Lite, " +
                     "XNNPACK, Eigen, Abseil, ruy, pthreadpool, cpuinfo, FlatBuffers, Protocol Buffers and others",
             ),
         ),
@@ -47,8 +50,13 @@ internal object Licenses {
         ),
         LicenseEntry("BSD 3-Clause License", "BSD-3-protobuf.txt", listOf("Protocol Buffers © Google Inc.")),
         LicenseEntry("MIT License", "MIT-checker-framework.txt", listOf("Checker Framework annotations")),
-        LicenseEntry("MIT License", "MIT-holidays.txt", listOf("Holiday data: Python package “holidays” © Vacanza Team and contributors")),
-        LicenseEntry("SIL Open Font License 1.1", "Manrope-OFL.txt", listOf("Manrope font © The Manrope Project Authors")),
+        LicenseEntry(
+            "MIT License", "MIT-holidays.txt",
+            listOf("Holiday data: Python package “holidays” © Vacanza Team and contributors"),
+        ),
+        LicenseEntry(
+            "SIL Open Font License 1.1", "Manrope-OFL.txt", listOf("Manrope font © The Manrope Project Authors"),
+        ),
         LicenseEntry("CC0 1.0 Universal", "CC0-sounds.txt", listOf("Sounds from opengameart.org")),
     )
 

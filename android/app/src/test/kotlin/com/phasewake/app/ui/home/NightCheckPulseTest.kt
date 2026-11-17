@@ -21,7 +21,7 @@ class NightCheckPulseTest {
     private val context: Context get() = RuntimeEnvironment.getApplication()
 
     private fun failed(reachable: Boolean = true, ready: Boolean? = true, pulse: WatchPulse?) =
-        NightCheckState.collect(context, reachable, ready, watchPulse = pulse)
+        NightCheckState.collect(context, WatchFacts(reachable, ready, pulse = pulse))
 
     @Test
     fun missingBackgroundPulseWarnsAndBlocks() {
@@ -35,7 +35,10 @@ class NightCheckPulseTest {
     fun noWarningWithoutReportOrWhenAllowed() {
         assertFalse(Check.WATCH_PULSE in failed(pulse = null).failed, "ältere Uhr ohne Angabe")
         assertFalse(Check.WATCH_PULSE in failed(pulse = WatchPulse(heartRate = true, background = true)).failed)
-        assertFalse(Check.WATCH_PULSE in failed(reachable = false, pulse = WatchPulse(heartRate = true, background = false)).failed)
+        assertFalse(
+            Check.WATCH_PULSE in failed(reachable = false, pulse = WatchPulse(heartRate = true, background = false))
+                .failed
+        )
         // Fehlen der Uhr schon Rechte, sagt «Phase Wake auf der Uhr» das; nicht doppelt.
         val setup = failed(ready = false, pulse = WatchPulse(heartRate = false, background = false)).failed
         assertTrue(Check.WATCH_SETUP in setup)

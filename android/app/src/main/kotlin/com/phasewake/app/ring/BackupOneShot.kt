@@ -16,7 +16,8 @@ import java.time.Instant
 internal suspend fun BackupAlarm.disableOneShot(alarmId: String?, target: Instant? = null) {
     val spec = alarms.current().alarms.firstOrNull { it.id == alarmId } ?: return
     if (!spec.isOneShot || !spec.enabled) return
-    val shifted = target != null && onsetShift()?.let { it.alarmId == spec.id && it.target == target.toEpochMilli() } == true
+    val shifted =
+        target != null && onsetShift()?.let { it.alarmId == spec.id && it.target == target.toEpochMilli() } == true
     val rang: (AlarmSpec) -> Boolean = { target == null || AlarmStamps.rang(it, null, target, zone, shifted) }
     if (!rang(spec)) return
     context.phoneApp.afterAlarmsChanged { alarms.disableAfterRing(spec.id, rang) ?: alarms.current() }

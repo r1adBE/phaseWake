@@ -24,7 +24,9 @@ extension LearnRecorder {
         let freeBefore = freeMegabytes()
         var chunks = 0
         defer {
-            if chunks > 0 { DiagStore.shared.log(kind, "recorder read chunks=\(chunks) free=\(freeBefore)->\(freeMegabytes()) MB") }
+            if chunks > 0 {
+                DiagStore.shared.log(kind, "recorder read chunks=\(chunks) free=\(freeBefore)->\(freeMegabytes()) MB")
+            }
         }
         while chunkStart < stop, Date() < deadline {
             let chunkEnd = min(chunkStart.addingTimeInterval(chunk), stop)
@@ -33,7 +35,8 @@ extension LearnRecorder {
                     var iterator = NSFastEnumerationIterator(list)
                     while let item = iterator.next() {
                         guard let data = item as? CMRecordedAccelerometerData else { continue }
-                        epochs.add(at: data.startDate, x: data.acceleration.x, y: data.acceleration.y, z: data.acceleration.z)
+                        let a = data.acceleration
+                        epochs.add(at: data.startDate, x: a.x, y: a.y, z: a.z)
                     }
                 }
             }

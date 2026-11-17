@@ -164,13 +164,19 @@ class LearningFlowTest {
         val repo = LearningRepository(MemoryStore())
         repo.setConsent(true, since)
         repo.relearn(since.plusSeconds(60))
-        assertEquals(LearningState(since.plusSeconds(60), null, false, since.plusSeconds(60).toEpochMilli(), consent = true), repo.current())
+        assertEquals(
+            LearningState(since.plusSeconds(60), null, false, since.plusSeconds(60).toEpochMilli(), consent = true),
+            repo.current(),
+        )
         // «Verlauf löschen» nach «Neu lernen»: Werte und Neu-lernen-Stand weg.
         repo.finish(Learning.Values(0.02, null, 12, 7), since.plusSeconds(120))
         repo.relearn(since.plusSeconds(180))
         assertTrue(repo.current().relearning)
         repo.restart(since.plusSeconds(240))
-        assertEquals(LearningState(since.plusSeconds(240), null, false, since.plusSeconds(240).toEpochMilli(), consent = true), repo.current())
+        assertEquals(
+            LearningState(since.plusSeconds(240), null, false, since.plusSeconds(240).toEpochMilli(), consent = true),
+            repo.current(),
+        )
     }
 
     @Test
@@ -191,7 +197,10 @@ class LearningFlowTest {
         repo.setSeen()
         assertTrue(repo.current().seen)
         repo.restart(since.plusSeconds(240))
-        assertEquals(LearningState(since.plusSeconds(240), null, false, since.plusSeconds(240).toEpochMilli(), consent = true), repo.current())
+        assertEquals(
+            LearningState(since.plusSeconds(240), null, false, since.plusSeconds(240).toEpochMilli(), consent = true),
+            repo.current(),
+        )
     }
 
     @Test

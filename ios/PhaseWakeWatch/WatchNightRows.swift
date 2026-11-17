@@ -17,7 +17,8 @@ struct GoodNightRow: View {
             Button { if active { confirmCancel = true } else { model.toggleGoodNight() } } label: {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(L("home_good_night")).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
-                    Text(Self.secondary(target: active ? model.goodNight?.target : nil, busy: busy, tooFar: tooFar, minutes: minutes))
+                    Text(Self.secondary(target: active ? model.goodNight?.target : nil, busy: busy, tooFar: tooFar,
+                                        minutes: minutes))
                         .font(Fonts.manrope(12, relativeTo: .footnote))
                         .foregroundStyle(Brand.muted)
                 }
@@ -36,7 +37,9 @@ struct GoodNightRow: View {
     /// Nacht misst, klingelt oder schlummert (`busy`) der Grund, warum es nicht startet; sonst Hinweis oder
     /// Schlafdauer.
     static func secondary(target: Date?, busy: Bool, tooFar: Bool, minutes: Int) -> String {
-        if let target { return L("notification_window_text", Format.time(target)) + " · " + L("home_good_night_tap_cancel") }
+        if let target {
+            return L("notification_window_text", Format.time(target)) + " · " + L("home_good_night_tap_cancel")
+        }
         if busy { return L("transient_alarm_running") }
         if tooFar { return L("home_good_night_too_far") }
         return L("home_good_night_hint", Format.duration(minutes: minutes))

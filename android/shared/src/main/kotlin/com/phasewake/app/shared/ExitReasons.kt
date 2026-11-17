@@ -40,7 +40,10 @@ object ExitReasons {
             Log.w(TAG, "Prozessenden nicht lesbar", e)
             return emptyList()
         }
-        val prefs = context.applicationContext.createDeviceProtectedStorageContext().getSharedPreferences(FILE, Context.MODE_PRIVATE)
+        val prefs = context.applicationContext.createDeviceProtectedStorageContext().getSharedPreferences(
+            FILE,
+            Context.MODE_PRIVATE,
+        )
         val last = prefs.getLong(KEY_LAST, 0L)
         val fresh = infos.filter { it.timestamp > last }.sortedBy { it.timestamp }
         // Gleich geschrieben (Hintergrund): Endet der Prozess kurz danach, käme derselbe Eintrag sonst nochmals.
@@ -49,7 +52,8 @@ object ExitReasons {
     }
 
     /** Neue Prozessenden ([collect]) als Fehler ins Protokoll [diag]; beim App-Start, nicht auf dem Hauptthread. */
-    fun logTo(context: Context, diag: DiagnosticsLog, zone: ZoneId = ZoneId.systemDefault()) = collect(context, zone).forEach { diag.log(DiagKind.ERROR, it) }
+    fun logTo(context: Context, diag: DiagnosticsLog, zone: ZoneId = ZoneId.systemDefault()) =
+        collect(context, zone).forEach { diag.log(DiagKind.ERROR, it) }
 
     /**
      * Zeile für das Protokoll im Schema des iPhones («exit <art> at <Ortszeit> key=value …»), z. B.

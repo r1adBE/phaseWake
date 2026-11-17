@@ -70,7 +70,10 @@ internal fun CustomNotesGroup(
                 Text(note.name, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
                 TextButton(onClick = { editing = note }) { Text(stringResource(R.string.notes_custom_rename)) }
                 IconButton(onClick = { deleting = note }) {
-                    Icon(painterResource(R.drawable.ic_delete), contentDescription = stringResource(R.string.notes_custom_delete, note.name))
+                    Icon(
+                        painterResource(R.drawable.ic_delete),
+                        contentDescription = stringResource(R.string.notes_custom_delete, note.name),
+                    )
                 }
             }
         }
@@ -86,17 +89,24 @@ internal fun CustomNotesGroup(
             title = { Text(stringResource(R.string.notes_custom_delete, note.name)) },
             confirmButton = {
                 TextButton(onClick = { deleting = null; onDelete(note.id) }) {
-                    Text(stringResource(R.string.settings_clear_history_confirm), color = MaterialTheme.colorScheme.error)
+                    Text(
+                        stringResource(R.string.settings_clear_history_confirm),
+                        color = MaterialTheme.colorScheme.error,
+                    )
                 }
             },
-            dismissButton = { TextButton(onClick = { deleting = null }) { Text(stringResource(R.string.action_cancel)) } },
+            dismissButton = {
+                TextButton(onClick = { deleting = null }) { Text(stringResource(R.string.action_cancel)) }
+            },
         )
     }
     editing?.let { note ->
         var name by remember(note) { mutableStateOf(note.name) }
         AlertDialog(
             onDismissRequest = { editing = null },
-            title = { Text(stringResource(if (note.id.isEmpty()) R.string.notes_custom_add else R.string.notes_custom_rename)) },
+            title = {
+                Text(stringResource(if (note.id.isEmpty()) R.string.notes_custom_add else R.string.notes_custom_rename))
+            },
             text = {
                 OutlinedTextField(
                     value = name,
@@ -114,7 +124,9 @@ internal fun CustomNotesGroup(
                     },
                 ) { Text(stringResource(R.string.editor_save)) }
             },
-            dismissButton = { TextButton(onClick = { editing = null }) { Text(stringResource(R.string.action_cancel)) } },
+            dismissButton = {
+                TextButton(onClick = { editing = null }) { Text(stringResource(R.string.action_cancel)) }
+            },
         )
     }
 }
@@ -141,8 +153,13 @@ internal fun ListRow(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Column(Modifier.weight(1f).padding(end = 12.dp)) {
-            Text(title, style = MaterialTheme.typography.titleSmall, color = if (enabled) color else MaterialTheme.colorScheme.onSurfaceVariant)
-            hint?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
+            Text(
+                title, style = MaterialTheme.typography.titleSmall,
+                color = if (enabled) color else MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            hint?.let {
+                Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
         }
         Icon(
             painterResource(R.drawable.ic_chevron_end),
@@ -163,7 +180,8 @@ internal val MIN_TOUCH = 48.dp
 @Composable
 internal fun SwitchRow(title: String, text: String, checked: Boolean, onChange: (Boolean) -> Unit) {
     Row(
-        Modifier.fillMaxWidth().heightIn(min = MIN_TOUCH).toggleable(value = checked, role = Role.Switch, onValueChange = onChange).padding(top = 8.dp),
+        Modifier.fillMaxWidth().heightIn(min = MIN_TOUCH)
+            .toggleable(value = checked, role = Role.Switch, onValueChange = onChange).padding(top = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Column(Modifier.weight(1f).padding(end = 12.dp)) {
@@ -185,7 +203,10 @@ internal fun RoutineGroup(items: List<RoutineItem>, onAdd: (String) -> Unit, onR
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 Text(name, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
                 IconButton(onClick = { onRemove(item.id) }) {
-                    Icon(painterResource(R.drawable.ic_delete), contentDescription = stringResource(R.string.notes_custom_delete, name))
+                    Icon(
+                        painterResource(R.drawable.ic_delete),
+                        contentDescription = stringResource(R.string.notes_custom_delete, name),
+                    )
                 }
             }
         }
@@ -217,7 +238,9 @@ internal fun RoutineGroup(items: List<RoutineItem>, onAdd: (String) -> Unit, onR
                     },
                 ) { Text(stringResource(R.string.editor_save)) }
             },
-            dismissButton = { TextButton(onClick = { adding = false }) { Text(stringResource(R.string.action_cancel)) } },
+            dismissButton = {
+                TextButton(onClick = { adding = false }) { Text(stringResource(R.string.action_cancel)) }
+            },
         )
     }
 }
@@ -243,10 +266,15 @@ internal fun Group(title: String, content: @Composable ColumnScope.() -> Unit) {
 internal fun DataGroup(onExport: () -> Unit, canExport: Boolean, onClearHistory: () -> Unit, extras: SettingsExtras) {
     Group(stringResource(R.string.settings_data)) {
         Text(stringResource(R.string.settings_data_text), style = MaterialTheme.typography.bodyMedium)
-        ListRow(stringResource(R.string.settings_export), stringResource(R.string.settings_export_hint), enabled = canExport, onClick = onExport)
+        ListRow(
+            stringResource(R.string.settings_export), stringResource(R.string.settings_export_hint),
+            enabled = canExport, onClick = onExport,
+        )
         extras.backup(this)
         var confirm by remember { mutableStateOf(false) }
-        ListRow(stringResource(R.string.settings_clear_history), color = MaterialTheme.colorScheme.error) { confirm = true }
+        ListRow(stringResource(R.string.settings_clear_history), color = MaterialTheme.colorScheme.error) {
+            confirm = true
+        }
         if (confirm) {
             AlertDialog(
                 onDismissRequest = { confirm = false },
@@ -256,10 +284,15 @@ internal fun DataGroup(onExport: () -> Unit, canExport: Boolean, onClearHistory:
                 text = { Text(clearHistoryText()) },
                 confirmButton = {
                     TextButton(onClick = { confirm = false; onClearHistory() }) {
-                        Text(stringResource(R.string.settings_clear_history_confirm), color = MaterialTheme.colorScheme.error)
+                        Text(
+                            stringResource(R.string.settings_clear_history_confirm),
+                            color = MaterialTheme.colorScheme.error,
+                        )
                     }
                 },
-                dismissButton = { TextButton(onClick = { confirm = false }) { Text(stringResource(R.string.action_cancel)) } },
+                dismissButton = {
+                    TextButton(onClick = { confirm = false }) { Text(stringResource(R.string.action_cancel)) }
+                },
             )
         }
     }
@@ -281,8 +314,14 @@ internal fun AboutGroup(version: String, extras: SettingsExtras) {
         if (onLicenses != null) {
             ListRow(stringResource(R.string.settings_licenses), licenses, onClick = onLicenses)
         } else {
-            Text(stringResource(R.string.settings_licenses), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 4.dp))
-            Text(licenses, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(
+                stringResource(R.string.settings_licenses), style = MaterialTheme.typography.titleSmall,
+                modifier = Modifier.padding(top = 4.dp),
+            )
+            Text(
+                licenses, style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
         extras.onOnboarding?.let { ListRow(stringResource(R.string.settings_onboarding), onClick = it) }
         if (extras.diagnostics) ListRow(stringResource(R.string.diag_title), onClick = extras.onDiagnostics)

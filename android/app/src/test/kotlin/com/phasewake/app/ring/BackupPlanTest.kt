@@ -38,7 +38,8 @@ class BackupPlanTest {
     private val context: Context get() = RuntimeEnvironment.getApplication()
     private val alarms get() = shadowOf(context.getSystemService(AlarmManager::class.java))
     private val zone = ZoneId.systemDefault()
-    private val spec = AlarmSpec(id = "a", hour = 7, minute = 0, days = DayOfWeek.entries.toSet(), sleepDurationMinutes = 450)
+    private val spec =
+        AlarmSpec(id = "a", hour = 7, minute = 0, days = DayOfWeek.entries.toSet(), sleepDurationMinutes = 450)
     private val second = AlarmSpec(id = "b", hour = 7, minute = 30, days = DayOfWeek.entries.toSet())
 
     /** Zielzeit von «a» in der Nacht des Tests; «jetzt» sechs Stunden davor (in jeder Zeitzone). */
@@ -117,7 +118,9 @@ class BackupPlanTest {
         // Ohne Uhr (Nachfrist 0): «a» und «c» 07:00. Nach dem Klingeln von «a» kommt «c» gleich.
         seenAt = null
         var clock = now
-        val phone = BackupAlarm(context, repository, MemoryStore(), WearSync(context), now = { clock }, watchSeenAt = { seenAt })
+        val phone = BackupAlarm(
+            context, repository, MemoryStore(), WearSync(context), now = { clock }, watchSeenAt = { seenAt },
+        )
         repository.upsert(spec)
         repository.upsert(spec.copy(id = "c"))
         phone.planBackup()
@@ -165,7 +168,9 @@ class BackupPlanTest {
         assertEquals("a", PhoneSnooze.load(context)?.alarmId, "«stop» eines anderen Weckers lässt sie")
         // Auf der Uhr geschlummert: Wiederaufnahme weg, die Sicherung nach dem Schlummer-Ende übernimmt.
         val snoozeEnd = now.plus(Duration.ofMinutes(5)).toEpochMilli()
-        backup.watchStopped(RingMessage("a", target, now.toEpochMilli(), snoozesLeft = 1, snoozeUntil = snoozeEnd), null)
+        backup.watchStopped(
+            RingMessage("a", target, now.toEpochMilli(), snoozesLeft = 1, snoozeUntil = snoozeEnd), null,
+        )
         assertNull(PhoneSnooze.load(context))
         assertTrue(scheduled(3).isEmpty())
         assertEquals("a", SnoozeSafety.load(context)?.alarmId)

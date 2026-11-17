@@ -112,7 +112,9 @@ class BackupReplanTest {
         withTimeout(WATCH_SEEN_TIMEOUT_MS + 10_000L) { backup.planBackup() }
         assertEquals(configured.plus(BackupAlarm.GRACE).toEpochMilli(), backupAt())
         // Ohne je gelesenen Stand: wie ohne Uhr, pünktlich (lieber zu früh als gar nicht).
-        val fresh = BackupAlarm(context, repository, MemoryStore(), WearSync(context), now = { now }, watchSeenAt = { awaitCancellation() })
+        val fresh = BackupAlarm(
+            context, repository, MemoryStore(), WearSync(context), now = { now }, watchSeenAt = { awaitCancellation() },
+        )
         withTimeout(WATCH_SEEN_TIMEOUT_MS + 10_000L) { fresh.planBackup() }
         assertEquals(configured.toEpochMilli(), backupAt())
     }
@@ -128,7 +130,9 @@ class BackupReplanTest {
     }
 
     private fun boot() {
-        context.sendBroadcast(Intent(context, BackupAlarm.SystemReceiver::class.java).setAction(Intent.ACTION_BOOT_COMPLETED))
+        context.sendBroadcast(
+            Intent(context, BackupAlarm.SystemReceiver::class.java).setAction(Intent.ACTION_BOOT_COMPLETED)
+        )
         shadowOf(Looper.getMainLooper()).idle()
     }
 
@@ -159,7 +163,13 @@ class BackupReplanTest {
         val old = now.minus(BackupAlarm.MISSED_DURING_BOOT).minus(Duration.ofMinutes(5))
         val handled = now.minus(Duration.ofMinutes(4))
         runBlocking { app.backup.suppress(mapOf("h1" to handled.plus(BackupAlarm.GRACE))) }
-        BackupDirectBoot.save(context, listOf(BackupDirectBoot.Entry(old, "o1", old), BackupDirectBoot.Entry(handled.plus(BackupAlarm.GRACE), "h1", handled)))
+        BackupDirectBoot.save(
+            context,
+            listOf(
+                BackupDirectBoot.Entry(old, "o1", old),
+                BackupDirectBoot.Entry(handled.plus(BackupAlarm.GRACE), "h1", handled),
+            ),
+        )
         assertEquals("h1", BackupDirectBoot.missed(context, now)?.alarmId, "zu alt: nicht mehr nachholen")
         assertNull(runBlocking { app.backup.catchUpAfterBoot(now) }, "schon erledigt")
         assertTrue(scheduled(10).isEmpty())

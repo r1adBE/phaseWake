@@ -41,8 +41,12 @@ private val ringing = PhoneRingService.State.Ringing(fromWatch = true, snoozesLe
 private val ringingMath = PhoneRingService.State.Ringing(fromWatch = true, snoozesLeft = 3, wakeTask = WakeTask.MATH)
 
 @Composable
-private fun Ring(state: PhoneRingService.State, light: Float? = null, tag: String = "de-CH") = ThemedIn(tag, ThemeMode.DARK) {
-    RingScreen(state, onStop = {}, onSnooze = {}, light = light, clock = { FIXED_NOW }, random = kotlin.random.Random(7))
+private fun Ring(state: PhoneRingService.State, light: Float? = null, tag: String = "de-CH") = ThemedIn(
+    tag, ThemeMode.DARK,
+) {
+    RingScreen(
+        state, onStop = {}, onSnooze = {}, light = light, clock = { FIXED_NOW }, random = kotlin.random.Random(7),
+    )
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Rand Wecken quer", device = PHONE_LAND) @Composable
@@ -57,13 +61,15 @@ fun EdgeRingSmall() = Ring(ringing)
 @PreviewTest @Preview(locale = "de-rCH", name = "Rand Aufgabe klein", device = PHONE_SMALL) @Composable
 fun EdgeMathSmall() = Ring(ringingMath)
 
-@PreviewTest @Preview(locale = "de-rCH", name = "Rand Aufgabe klein Schrift 130", device = PHONE_SMALL, fontScale = 1.3f) @Composable
+@PreviewTest @Composable
+@Preview(locale = "de-rCH", name = "Rand Aufgabe klein Schrift 130", device = PHONE_SMALL, fontScale = 1.3f)
 fun EdgeMathSmallF13() = Ring(ringingMath)
 
 @PreviewTest @Preview(locale = "ru", name = "Rand Wecken ru Schrift 2", device = PHONE, fontScale = 2f) @Composable
 fun EdgeRingRuF2() = Ring(ringing, tag = "ru")
 
-@PreviewTest @Preview(locale = "fr", name = "Rand Aufgabe fr Schrift 130 quer", device = PHONE_LAND, fontScale = 1.3f) @Composable
+@PreviewTest @Composable
+@Preview(locale = "fr", name = "Rand Aufgabe fr Schrift 130 quer", device = PHONE_LAND, fontScale = 1.3f)
 fun EdgeMathFrLandF13() = Ring(ringingMath, tag = "fr")
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Rand Sonnenaufgang 62", device = PHONE) @Composable
@@ -77,14 +83,18 @@ fun EdgeSnoozedSun068() = Ring(PhoneRingService.State.Snoozed(snoozesLeft = 2, s
 
 @PreviewTest @Preview(locale = "fr", name = "Rand Editor fr klein", device = PHONE_SMALL_TALL) @Composable
 fun EdgeEditorFr() = ThemedIn("fr", ThemeMode.LIGHT) {
-    EditorScreen(AlarmSpec(id = "work", hour = 7, minute = 0, days = weekdays, label = "Travail"), advice = null, onBack = {}, onSave = {}, onDelete = {})
+    EditorScreen(
+        AlarmSpec(id = "work", hour = 7, minute = 0, days = weekdays, label = "Travail"), advice = null, onBack = {},
+        onSave = {}, onDelete = {},
+    )
 }
 
 @PreviewTest @Preview(locale = "ar", name = "Rand Start ar", device = PHONE) @Composable
 fun EdgeHomeAr() = ThemedIn("ar", ThemeMode.DARK) {
     HomeScreen(
         listOf(AlarmSpec(id = "work", hour = 7, minute = 0, days = weekdays, label = "Arbeit")), nights.last(),
-        check = NightCheckState(emptyList()), onFix = {}, contentPadding = androidx.compose.foundation.layout.PaddingValues(), onAdd = {},
+        check = NightCheckState(emptyList()), onFix = {},
+        contentPadding = androidx.compose.foundation.layout.PaddingValues(), onAdd = {},
         onEdit = {}, onToggle = { _, _ -> }, clock = { FIXED_NOW },
     )
 }

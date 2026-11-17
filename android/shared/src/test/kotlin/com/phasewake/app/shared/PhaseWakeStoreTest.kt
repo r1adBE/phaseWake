@@ -67,7 +67,11 @@ class PhaseWakeStoreTest {
         assertTrue(PhaseWakeStore.wasReset(prefs))
         assertEquals(1_234L, prefs[PhaseWakeStore.RESET_AT])
         assertNull(prefs[key])
-        assertContentEquals(garbage, File(dir, "phasewake.preferences_pb.broken").readBytes(), "Kopie der kaputten Datei")
+        assertContentEquals(
+            garbage,
+            File(dir, "phasewake.preferences_pb.broken").readBytes(),
+            "Kopie der kaputten Datei",
+        )
         // Die Marke bleibt beim nächsten Schreiben; ein heiler Stand trägt keine.
         store.edit { it[key] = "neu" }
         assertTrue(PhaseWakeStore.wasReset(store.data.first()))

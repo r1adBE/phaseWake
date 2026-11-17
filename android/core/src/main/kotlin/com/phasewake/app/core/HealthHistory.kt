@@ -63,7 +63,8 @@ data class HealthSession(
         val from = start.atZone(local).toLocalDateTime()
         val to = end.atZone(local).toLocalDateTime()
         return from.toLocalDate() == to.toLocalDate() &&
-            !from.toLocalTime().isBefore(HealthHistory.NAP_EARLIEST) && !to.toLocalTime().isAfter(HealthHistory.NAP_LATEST)
+            !from.toLocalTime().isBefore(HealthHistory.NAP_EARLIEST) &&
+                !to.toLocalTime().isAfter(HealthHistory.NAP_LATEST)
     }
 
     /** Minuten in [stage]. */
@@ -72,12 +73,17 @@ data class HealthSession(
     /** Bekannte Phasen (ohne [SleepStage.UNKNOWN]) nach Beginn, in Minuten ab [start] – für das Band in der Karte. */
     val steps: List<HypnoStep>
         get() = clipped().filter { ChartData.level(it.stage) != null }.map {
-            HypnoStep(Duration.between(start, it.start).toMillis() / MS_PER_MINUTE, Duration.between(start, it.end).toMillis() / MS_PER_MINUTE, it.stage)
+            HypnoStep(
+                Duration.between(start, it.start).toMillis() / MS_PER_MINUTE,
+                Duration.between(start, it.end).toMillis() / MS_PER_MINUTE,
+                it.stage,
+            )
         }
 
     private fun clipped(): List<StageSpan> = StageCheck.clip(stages, start, end)
 
-    private fun minutes(spans: List<StageSpan>): Long = spans.sumOf { Duration.between(it.start, it.end).toMillis() } / MS_PER_MINUTE.toLong()
+    private fun minutes(spans: List<StageSpan>): Long =
+        spans.sumOf { Duration.between(it.start, it.end).toMillis() } / MS_PER_MINUTE.toLong()
 
     private companion object {
         const val MS_PER_MINUTE = 60_000.0
@@ -173,10 +179,18 @@ object HealthHistory {
      * Vorliebe. Eigene Nächte bleiben alle. Gleichstand der Zeit: eigene Nacht zuerst, dann späterer Fensterbeginn,
      * dann [NightRecord.alarmId].
      */
-    fun merge(nights: List<NightRecord>, sessions: List<HealthSession>, clearedAt: Instant?, zone: ZoneId): List<HistoryItem> {
+    fun merge(
+        nights: List<NightRecord>,
+        sessions: List<HealthSession>,
+        clearedAt: Instant?,
+        zone: ZoneId,
+    ): List<HistoryItem> {
         val ownDates = nights.map { SleepNotes.nightDate(it, zone) }.toSet()
         val foreign = nights(sessions, clearedAt, zone)
-            .filter { s -> SleepNotes.nightDate(s, zone) !in ownDates && nights.none { s.start.isBefore(it.wokeAt) && s.end.isAfter(it.windowStart) } }
+            .filter { s ->
+                SleepNotes.nightDate(s, zone) !in ownDates &&
+                    nights.none { s.start.isBefore(it.wokeAt) && s.end.isAfter(it.windowStart) }
+            }
             .groupBy { SleepNotes.nightDate(it, zone) }
             .map { (date, list) -> HistoryItem(HistoryKind.HEALTH, date, session = list.sortedWith(preferred).first()) }
         val own = nights.map { HistoryItem(HistoryKind.PHASE_WAKE, SleepNotes.nightDate(it, zone), night = it) }
@@ -236,7 +250,13 @@ object HealthHistory {
      */
     private fun join(parts: List<HealthSession>): HealthSession {
         if (parts.size == 1) return parts.single()
-        return HealthSession(parts.first().start, parts.last().end, trimmed(parts), parts.first().source, parts.first().timeZone)
+        return HealthSession(
+            parts.first().start,
+            parts.last().end,
+            trimmed(parts),
+            parts.first().source,
+            parts.first().timeZone,
+        )
     }
 
     /**
@@ -249,12 +269,18 @@ object HealthHistory {
         parts.flatMapIndexed { i, p ->
             val from = if (i == 0) p.start else maxOf(p.start, parts[i - 1].end)
             val own = if (filler || p.stages.isNotEmpty()) spans(p) else emptyList()
-            own.mapNotNull { span -> if (span.end.isAfter(from)) StageSpan(maxOf(span.start, from), span.end, span.stage) else null }
+            own.mapNotNull { span ->
+                if (span.end.isAfter(from)) StageSpan(maxOf(span.start, from), span.end, span.stage) else null
+            }
         }
 
     /** Phasen der Sitzung, auf sie zugeschnitten; ohne Phasen eine «unbekannt»-Phase über die ganze Dauer. */
     private fun spans(s: HealthSession): List<StageSpan> =
-        if (s.stages.isEmpty()) listOf(StageSpan(s.start, s.end, SleepStage.UNKNOWN)) else StageCheck.clip(s.stages, s.start, s.end)
+        if (s.stages.isEmpty()) {
+            listOf(StageSpan(s.start, s.end, SleepStage.UNKNOWN))
+        } else {
+            StageCheck.clip(s.stages, s.start, s.end)
+        }
 
     /**
      * Eintrag zu einem Nachtdatum, z. B. beim Antippen eines Diagrammwerts: der erste in [items] (neueste zuerst,
@@ -279,7 +305,9 @@ object HealthHistory {
      */
     fun summaries(sessions: List<HealthSession>, clearedAt: Instant?, zone: ZoneId): List<SleepSummary> =
         // Je Teil zugeschnitten und ab dem Ende des vorigen wie in der Detailseite ([join], [trimmed]).
-        chains(sessions, clearedAt, zone).mapNotNull { chain -> SleepSummary.of(trimmed(chain))?.copy(timeZone = chain.first().timeZone) }
+        chains(sessions, clearedAt, zone).mapNotNull { chain ->
+            SleepSummary.of(trimmed(chain))?.copy(timeZone = chain.first().timeZone)
+        }
 
     private val preferred: Comparator<HealthSession> =
         compareByDescending<HealthSession> { it.hasStages }

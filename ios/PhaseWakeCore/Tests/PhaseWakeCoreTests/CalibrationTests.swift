@@ -12,7 +12,8 @@ final class CalibrationTests: XCTestCase {
     }
 
     func testEmptyNightsDoNotCount() {
-        let nights = Array(repeating: night(Array(repeating: 0.003, count: 40)), count: 2) + Array(repeating: night([nil, nil]), count: 2)
+        let nights = Array(repeating: night(Array(repeating: 0.003, count: 40)),
+                           count: 2) + Array(repeating: night([nil, nil]), count: 2)
         XCTAssertEqual(Calibration.calibrate(nights: nights), .standard)
     }
 
@@ -43,8 +44,10 @@ final class CalibrationTests: XCTestCase {
 
     func testRealNoisyNightsKeepTheDefaultWakeThreshold() throws {
         // Gemeinsame Fälle mit Kotlin (shared/testdata/calibration-real.vectors): 4 echte Nächte einer Galaxy Watch.
-        let text = try String(contentsOf: NightFixtures.directory.appendingPathComponent("calibration-real.vectors"), encoding: .utf8)
-        let lines = text.components(separatedBy: "\n").filter { !$0.trimmingCharacters(in: .whitespaces).isEmpty && !$0.hasPrefix("#") }
+        let text = try String(contentsOf: NightFixtures.directory.appendingPathComponent("calibration-real.vectors"),
+                              encoding: .utf8)
+        let lines = text.components(separatedBy: "\n")
+            .filter { !$0.trimmingCharacters(in: .whitespaces).isEmpty && !$0.hasPrefix("#") }
         let expectLine = try XCTUnwrap(lines.first { $0.hasPrefix("@expect ") })
         let expect = expectLine.dropFirst("@expect ".count).split(separator: " ").compactMap { Double(String($0)) }
         XCTAssertEqual(expect.count, 2)

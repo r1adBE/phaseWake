@@ -12,10 +12,12 @@ final class ChartBedtimePhoneTests: XCTestCase {
         let now = Date(timeIntervalSince1970: 1_793_000_000)
         let start = calendar.date(byAdding: .hour, value: -10, to: now)!
         let sleeps = [SleepSummary(start: start, end: start.addingTimeInterval(7 * 3600), asleepMinutes: 420)]
-        let target = calendar.nextDate(after: now, matching: DateComponents(hour: 7, minute: 0), matchingPolicy: .nextTime)!
+        let target = calendar.nextDate(after: now, matching: DateComponents(hour: 7, minute: 0),
+                                       matchingPolicy: .nextTime)!
         func bedtime(_ latency: Int?) throws -> Int {
-            let data = HistoryChartsData.of(nights: [], sleeps: sleeps, stages: [], notes: [:], nextTarget: target, goalMinutes: 450,
-                                            latencyMinutes: latency, now: now, calendar: calendar)
+            let input = HistoryChartsData.Input(sleeps: sleeps, nextTarget: target, goalMinutes: 450,
+                                                latencyMinutes: latency)
+            let data = HistoryChartsData.of(input, now: now, calendar: calendar)
             return try XCTUnwrap(data.period(ChartData.nights).bars?.bedtimeMinute)
         }
         // Minuten ab Mittag: 23:30 = 690, 23:15 = 675.

@@ -41,7 +41,12 @@ data class HabitLines(
  *
  * @param regularShown Regelmässigkeit steht schon im Schlaf-Streifen: hier weglassen.
  */
-fun habitLines(context: Context, habits: HabitLines, healthConnected: Boolean, regularShown: Boolean = false): List<String> {
+fun habitLines(
+    context: Context,
+    habits: HabitLines,
+    healthConnected: Boolean,
+    regularShown: Boolean = false,
+): List<String> {
     val res = context.resources
     return buildList {
         if (healthConnected) {
@@ -49,7 +54,9 @@ fun habitLines(context: Context, habits: HabitLines, healthConnected: Boolean, r
                 add(res.getQuantityString(R.plurals.habit_regular, total, regular, total))
             }
             if (habits.streak > 0) add(res.getQuantityString(R.plurals.habit_streak, habits.streak, habits.streak))
-            if (habits.bestStreak > 0) add(res.getQuantityString(R.plurals.habit_streak_best, habits.bestStreak, habits.bestStreak))
+            if (habits.bestStreak > 0) add(
+                res.getQuantityString(R.plurals.habit_streak_best, habits.bestStreak, habits.bestStreak)
+            )
         }
         habits.routineAverage?.let { add(res.getString(R.string.routine_avg, decimal(it), habits.routineItems)) }
     }

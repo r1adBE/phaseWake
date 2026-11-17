@@ -17,12 +17,15 @@ class SkyMoodTest {
 
     private val zone = ZoneId.of("Europe/Zurich")
 
-    private fun at(hour: Int, minute: Int = 0): Instant = LocalDateTime.of(2026, 11, 16, hour, minute).atZone(zone).toInstant()
+    private fun at(hour: Int, minute: Int = 0): Instant =
+        LocalDateTime.of(2026, 11, 16, hour, minute).atZone(zone).toInstant()
 
     @Test
     fun textStaysReadableInEveryMood() {
         val moods = buildList {
-            for (d in 0..10) for (w in 0..10) for (n in 0..2) add(SkyMood(dusk = d / 10f, dawn = w / 10f, night = n / 2f))
+            for (d in 0..10) for (w in 0..10) for (n in 0..2) {
+                add(SkyMood(dusk = d / 10f, dawn = w / 10f, night = n / 2f))
+            }
         }
         val inks = listOf(Night.Text, Night.Muted)
         for (mood in moods) for (step in 0..20) {
@@ -49,7 +52,9 @@ class SkyMoodTest {
         // Tageshimmel «Creme Caramel» (hell): dunkle Schrift, Nebentext und Lavendel-Textknopf ≥ 4.5:1, Welle, Bogen
         // und gefüllter Knopf ≥ 3:1 zum Himmel, Schrift im Knopf ≥ 4.5:1 – an jeder Höhe, in jeder Stimmung.
         val moods = buildList {
-            for (d in 0..10) for (w in 0..10) for (n in 0..2) add(SkyMood(dusk = d / 10f, dawn = w / 10f, night = n / 2f))
+            for (d in 0..10) for (w in 0..10) for (n in 0..2) {
+                add(SkyMood(dusk = d / 10f, dawn = w / 10f, night = n / 2f))
+            }
         }
         for (mood in moods) for (step in 0..20) {
             val sky = mood.daySkyAt(step / 20f)
@@ -65,7 +70,10 @@ class SkyMoodTest {
                 }
             }
         }
-        assertTrue(SunriseSky.contrast(SkyInk.OnDay.onButton, SkyInk.OnDay.button) >= SunriseSky.MIN_CONTRAST, "Knopf im Tageskopf")
+        assertTrue(
+            SunriseSky.contrast(SkyInk.OnDay.onButton, SkyInk.OnDay.button) >= SunriseSky.MIN_CONTRAST,
+            "Knopf im Tageskopf",
+        )
         assertEquals(Night.Text, SkyInk.OnNight.text)
         assertEquals(Night.Muted, SkyInk.OnNight.muted)
     }

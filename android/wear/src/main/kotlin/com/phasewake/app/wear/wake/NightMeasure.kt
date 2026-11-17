@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.phasewake.app.core.Calibration
 import com.phasewake.app.core.Decision
+import com.phasewake.app.core.DetectorConfig
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Epoch
 import com.phasewake.app.core.NightHistory
@@ -70,7 +71,10 @@ private fun WakeService.begin(plan: WakePlan) {
     // Vor dem ersten Entsperren sind Wecker, Nächte und Stand nicht lesbar: ohne Messung bis zur
     // Zielzeit warten und dort sicher wecken. Ebenso ohne Sensorrechte (dann nicht als «health»).
     val locked = !DirectBoot.isUnlocked(this)
-    val canMeasure = goForeground(Notifications.window(this, formatTime(plan.target), exact = plan.exact), measuring = !locked)
+    val canMeasure = goForeground(
+        Notifications.window(this, formatTime(plan.target), exact = plan.exact),
+        measuring = !locked,
+    )
     holdWakeLock(Duration.between(Instant.now(), plan.target).toMillis().coerceAtLeast(0) + WAKE_LOCK_MARGIN_MS)
 
     val current = Night(plan, spec = null, detector = WakeDetector(), locked = locked)
@@ -87,7 +91,10 @@ private fun WakeService.begin(plan: WakePlan) {
     if (plan.target.isAfter(Instant.now())) AlarmScheduler.setDeadline(this, plan)
     handler.postDelayed(deadline, Duration.between(Instant.now(), plan.target).toMillis().coerceAtLeast(0))
     // Hartes Zeitlimit: Klingeln und Schlummern sind lange vorher zu Ende.
-    handler.postDelayed(hardLimit, Duration.between(Instant.now(), plan.target.plus(NIGHT_HARD_LIMIT)).toMillis().coerceAtLeast(0))
+    handler.postDelayed(
+        hardLimit,
+        Duration.between(Instant.now(), plan.target.plus(NIGHT_HARD_LIMIT)).toMillis().coerceAtLeast(0),
+    )
     if (locked) return
     // Akku je Nacht: Messbeginn, oder Zwischenstand nach Einschlaf-Messung bzw. Aufzeichnung.
     nightBatteryBegin(this, plan.alarmId, plan.target)
@@ -100,7 +107,12 @@ private fun WakeService.begin(plan: WakePlan) {
  * ohne Sensoren gemessen wird ([WakeService.healthRefusal]), fürs Diagnose-Protokoll. [lostOnset]: Einschlaf-Messung,
  * die bei Fensterbeginn noch ohne Ergebnis lief ([endOnsetAtWindow]).
  */
-private fun WakeService.loadNight(current: Night, canMeasure: Boolean, refusal: String?, lostOnset: Pair<String, Instant>?) {
+private fun WakeService.loadNight(
+    current: Night,
+    canMeasure: Boolean,
+    refusal: String?,
+    lostOnset: Pair<String, Instant>?,
+) {
     val plan = current.plan
     lifecycleScope.launch {
         endOnsetAtWindow(plan, lostOnset)
@@ -109,7 +121,8 @@ private fun WakeService.loadNight(current: Night, canMeasure: Boolean, refusal: 
         val spec = app.specFor(plan.alarmId)
         // Dazu die gelernten Werte der Lernphase (eigenes Grundrauschen, Ruhepuls), falls es sie gibt.
         // Dazu das Grundrauschen der Einschlaf-Messung dieser Nacht als Vorwissen, falls es eines gibt.
-        val config = app.learning.current().applyTo(Calibration.calibrate(NightHistory.motionsForCalibration(app.nights.load())))
+        val config = app.learning.current()
+            .applyTo(Calibration.calibrate(NightHistory.motionsForCalibration(app.nights.load())))
             .withOnsetFloor(onsetFloorFor(plan))
         // Stand vor einem Neustart des Dienstes: erstes Klingeln, Grund und Schlummer-Runden.
         val saved = app.nightProgress.load(plan)
@@ -131,27 +144,7 @@ private fun WakeService.loadNight(current: Night, canMeasure: Boolean, refusal: 
             current.snoozes = maxOf(current.snoozes, saved.snoozes)
         }
         when (current.phase) {
-            Phase.MEASURING -> {
-                val mode = when {
-                    current.exact -> ", exact"
-                    asleepAt != null -> ", asleep $asleepAt"
-                    onsetMeasured -> ", onset unknown"
-                    else -> ""
-                }
-                current.detector = WakeDetector(config)
-                // Sensoren vor der Zeile starten: Sie nennt die Quelle des Pulses («hrsrc=sensor|measure|none»).
-                if (canMeasure) startSensors(current)
-                val detail = when {
-                    canMeasure -> "window ${plan.windowStart}$mode hrsrc=${current.sensors?.heartRateSource ?: SensorSession.SOURCE_NONE}"
-                    refusal != null -> "no sensors: $refusal"
-                    else -> "no sensors, wake at target"
-                }
-                app.diag.log(DiagKind.MEASURE_START, detail)
-                // Sonnenaufgang ab Fenster auf der Uhr; unabhängig von der Messung.
-                if (spec?.watchSunrise == Sunrise.WINDOW && plan.target.isAfter(Instant.now())) {
-                    WatchSunrise.start(this@loadNight, WatchSunrise.Active(plan.alarmId, plan.windowStart, plan.target), formatTime(plan.target))
-                }
-            }
+            Phase.MEASURING -> resumeMeasuring(current, config, canMeasure, refusal)
             Phase.RINGING -> {
                 checkTaskOnPhone(current)
                 publishRinging(current)
@@ -162,6 +155,40 @@ private fun WakeService.loadNight(current: Night, canMeasure: Boolean, refusal: 
             }
             Phase.SNOOZED -> Unit
         }
+    }
+}
+
+/**
+ * Setzt die Messung im Weckfenster von [current] fort (Wecker und Einschlafzeit schon geladen): Erkennung mit
+ * [config], Sensoren starten, falls [canMeasure] (sonst Grund [refusal] im Diagnose-Protokoll), Sonnenaufgang ab
+ * Fenster.
+ */
+private fun WakeService.resumeMeasuring(current: Night, config: DetectorConfig, canMeasure: Boolean, refusal: String?) {
+    val plan = current.plan
+    val asleepAt = current.asleepAt
+    val mode = when {
+        current.exact -> ", exact"
+        asleepAt != null -> ", asleep $asleepAt"
+        current.onsetMeasured -> ", onset unknown"
+        else -> ""
+    }
+    current.detector = WakeDetector(config)
+    // Sensoren vor der Zeile starten: Sie nennt die Quelle des Pulses («hrsrc=sensor|measure|none»).
+    if (canMeasure) startSensors(current)
+    val detail = when {
+        canMeasure -> "window ${plan.windowStart}$mode " +
+            "hrsrc=${current.sensors?.heartRateSource ?: SensorSession.SOURCE_NONE}"
+        refusal != null -> "no sensors: $refusal"
+        else -> "no sensors, wake at target"
+    }
+    app.diag.log(DiagKind.MEASURE_START, detail)
+    // Sonnenaufgang ab Fenster auf der Uhr; unabhängig von der Messung.
+    if (current.spec?.watchSunrise == Sunrise.WINDOW && plan.target.isAfter(Instant.now())) {
+        WatchSunrise.start(
+            this,
+            WatchSunrise.Active(plan.alarmId, plan.windowStart, plan.target),
+            formatTime(plan.target),
+        )
     }
 }
 
@@ -255,7 +282,10 @@ internal fun WakeService.onEpochs(n: Night, epochs: List<Epoch>) {
 internal fun WakeService.logMeasureEnd(n: Night, note: String = "") {
     if (n.phase != Phase.MEASURING || n.locked) return
     val summary = NoiseFloor.summary(n.detector.config, n.epochs.map { it.motion })
-    app.diag.log(DiagKind.MEASURE_END, "watch ${n.epochs.size} epochs hr=${n.epochs.count { it.heartRate != null }}, $summary$note")
+    app.diag.log(
+        DiagKind.MEASURE_END,
+        "watch ${n.epochs.size} epochs hr=${n.epochs.count { it.heartRate != null }}, $summary$note",
+    )
 }
 
 /**
@@ -265,7 +295,11 @@ internal fun WakeService.logMeasureEnd(n: Night, note: String = "") {
 internal fun WakeService.logStartDelay(intent: Intent) {
     val scheduledAt = intent.getLongExtra(WakeService.EXTRA_SCHEDULED_AT, 0L)
     if (scheduledAt <= 0L || !DirectBoot.isUnlocked(this)) return
-    val line = WakeRules.startDelayLine(scheduledAt, intent.getLongExtra(WakeService.EXTRA_RECEIVED_AT, 0L), System.currentTimeMillis())
+    val line = WakeRules.startDelayLine(
+        scheduledAt,
+        intent.getLongExtra(WakeService.EXTRA_RECEIVED_AT, 0L),
+        System.currentTimeMillis(),
+    )
     app.diag.log(DiagKind.WINDOW, line)
 }
 

@@ -50,7 +50,11 @@ object LearnNotice {
     /** Legt den Kanal an (beim Start der App, mit den übrigen Kanälen). */
     fun createChannel(context: Context) {
         context.getSystemService(NotificationManager::class.java).createNotificationChannel(
-            NotificationChannel(CHANNEL, context.getString(R.string.watch_learn_title), NotificationManager.IMPORTANCE_DEFAULT),
+            NotificationChannel(
+                CHANNEL,
+                context.getString(R.string.watch_learn_title),
+                NotificationManager.IMPORTANCE_DEFAULT,
+            ),
         )
     }
 
@@ -96,7 +100,11 @@ object LearnNotice {
     suspend fun skipped(app: PhaseWakeWear, skip: LearnSkip) {
         app.recordSync.publishLearnSkip(skip)
         val text = when (skip.reason) {
-            LearnSkip.Reason.BATTERY -> app.getString(R.string.watch_learn_skip_battery, skip.battery ?: 0, Learning.MIN_BATTERY)
+            LearnSkip.Reason.BATTERY -> app.getString(
+                R.string.watch_learn_skip_battery,
+                skip.battery ?: 0,
+                Learning.MIN_BATTERY,
+            )
             LearnSkip.Reason.SENSORS -> app.getString(R.string.watch_learn_skip_sensors)
             LearnSkip.Reason.MANUAL, LearnSkip.Reason.LATE -> return
         }

@@ -42,9 +42,14 @@ class PeerLimitTest {
     /** Die längste Aufzeichnung (12 Std., ungünstige Zahlen) liegt weit unter der Grenze. */
     @Test
     fun longestRecordingIsFarBelowTheLimit() {
-        val epochs = List(NightRecording.MAX_EPOCHS) { Epoch(motion = 1.2345678901234567E-5 + it, heartRate = 62.333333333333336) }
+        val epochs =
+            List(NightRecording.MAX_EPOCHS) {
+                Epoch(motion = 1.2345678901234567E-5 + it, heartRate = 62.333333333333336)
+            }
         val start = Instant.parse("2026-11-10T22:00:00Z")
-        val text = NightRecording.encode(NightRecording(start, epochs, start.plus(NightRecording.MAX_DURATION), null, null, null))
+        val text = NightRecording.encode(
+            NightRecording(start, epochs, start.plus(NightRecording.MAX_DURATION), null, null, null),
+        )
         val bytes = text.encodeToByteArray().size
         assertEquals(1440, NightRecording.MAX_EPOCHS)
         assertTrue(bytes < 100_000, "Grösse: $bytes")

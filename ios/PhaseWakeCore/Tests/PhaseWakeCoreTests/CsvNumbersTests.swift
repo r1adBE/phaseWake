@@ -25,7 +25,8 @@ final class CsvNumbersTests: XCTestCase {
 
     func testExportsUseTheSameRule() {
         let at = Date(timeIntervalSince1970: 1_790_829_000)
-        let night = NightRecord(alarmId: "a", windowStart: at, target: at.addingTimeInterval(1800), wokeAt: at.addingTimeInterval(1080),
+        let night = NightRecord(alarmId: "a", windowStart: at, target: at.addingTimeInterval(1800),
+                                wokeAt: at.addingTimeInterval(1080),
                                 reason: .lightSleep, snoozes: 0, epochs: [Epoch(motion: 0.0002465, heartRate: 56.25)])
         let line = NightHistory.exportCsv([night]).split(separator: "\n").map(String.init)[1]
         XCTAssertTrue(line.hasSuffix(",0.000246,56.3,"), line)

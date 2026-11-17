@@ -27,6 +27,7 @@ final class CompanionPickTests: XCTestCase {
         XCTAssertNil(CompanionPick.choose([], nodeNames: ["Galaxy Watch8 Classic (1A2B)"]))
         XCTAssertNil(CompanionPick.choose([buds, car], nodeNames: []))
         XCTAssertNil(CompanionPick.choose([watch, band], nodeNames: []))
-        XCTAssertNil(CompanionPick.choose([PairedDevice(address: "00:00:00:00:00:06", name: " ", wearable: false)], nodeNames: [" "]))
+        XCTAssertNil(CompanionPick.choose([PairedDevice(address: "00:00:00:00:00:06", name: " ", wearable: false)],
+                                          nodeNames: [" "]))
     }
 }

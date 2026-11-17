@@ -18,7 +18,8 @@ extension SmartAlarm {
     /// Der gemerkte Plan, oder `nil`, wenn keiner gemerkt ist.
     static var savedPlanZone: PlanZone? {
         guard let saved = SettingsFile.watchSession.dictionary(forKey: sessionZoneKey) else { return nil }
-        return PlanZone(zone: saved["zone"] as? String, target: (saved["target"] as? Double).map(Date.init(timeIntervalSince1970:)),
+        return PlanZone(zone: saved["zone"] as? String,
+                        target: (saved["target"] as? Double).map(Date.init(timeIntervalSince1970:)),
                         alarmId: saved["alarm"] as? String)
     }
 
@@ -41,14 +42,16 @@ extension SmartAlarm {
     func keptNight(_ night: WakePlan?, now: Date = Date()) -> WakePlan? {
         let model = WatchModel.shared
         guard let saved = Self.savedPlanZone, let alarmId = saved.alarmId, let target = saved.target,
-              Transient.kindOf(alarmId) == nil, night.map({ $0.alarmId == alarmId && Self.sameTime($0.target, target) }) ?? true,
+              Transient.kindOf(alarmId) == nil,
+              night.map({ $0.alarmId == alarmId && Self.sameTime($0.target, target) }) ?? true,
               WatchRules.zoneShifted(plannedZone: saved.zone, target: target, zone: .current),
               let zone = saved.zone.flatMap(TimeZone.init(identifier:)),
               let spec = model.alarms.first(where: { $0.id == alarmId }) else { return nil }
         var calendar = Calendar.gregorian(in: zone)
         calendar.locale = .autoupdatingCurrent
-        return AlarmSchedule.begunNight(spec, plannedTarget: target, plannedCalendar: calendar, now: now, grace: Self.ringLimit,
-                                        holidays: model.storage.holidays.dates, suppressedUntil: model.storage.doneUntil[alarmId])
+        return AlarmSchedule.begunNight(spec, plannedTarget: target, plannedCalendar: calendar, now: now,
+                                        grace: Self.ringLimit, holidays: model.storage.holidays.dates,
+                                        suppressedUntil: model.storage.doneUntil[alarmId])
     }
 
     /// Geplante oder wartende Nacht, die nach einer Reise statt `plan` bleibt (`keptNight`), sonst `nil`.

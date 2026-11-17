@@ -22,7 +22,12 @@ class OnsetOverride(private val store: DataStore<Preferences>) {
         val prefs = store.data.first()
         val id = prefs[ALARM] ?: return null
         val windowStart = Instant.ofEpochMilli(prefs[WINDOW_START] ?: return null)
-        return WakePlan(id, windowStart, Instant.ofEpochMilli(prefs[TARGET] ?: return null), exact = prefs[EXACT] == true)
+        return WakePlan(
+            id,
+            windowStart,
+            Instant.ofEpochMilli(prefs[TARGET] ?: return null),
+            exact = prefs[EXACT] == true,
+        )
     }
 
     suspend fun set(plan: WakePlan) {

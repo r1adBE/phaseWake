@@ -77,20 +77,15 @@ enum NightFixtures {
         var onsetFloor: Double?
         var rearmUntil: Int?
         var epochs: [Epoch] = []
-
         let lines = try String(contentsOf: file, encoding: .utf8).components(separatedBy: .newlines)
         for (lineNumber, raw) in lines.enumerated() {
             let line = raw.trimmingCharacters(in: .whitespaces)
             let position = "\(file.lastPathComponent):\(lineNumber + 1)"
             if line.isEmpty || line.hasPrefix("#") { continue }
             if line.hasPrefix("@expect") {
-                let parts = line.split(whereSeparator: \.isWhitespace).map(String.init)
-                if parts.count >= 2, parts[1] != "none" {
-                    guard parts.count == 3, let index = Int(parts[1]), let reason = WakeReason(rawValue: parts[2]) else {
-                        throw FormatError(description: "\(position): ungültiges @expect")
-                    }
-                    expectedIndex = index
-                    expectedReason = reason
+                if let expected = try expectation(line, position) {
+                    expectedIndex = expected.index
+                    expectedReason = expected.reason
                 }
                 expectSeen = true
                 continue
@@ -104,20 +99,18 @@ enum NightFixtures {
                 continue
             }
             if line.hasPrefix("@floor") || line.hasPrefix("@resting") || line.hasPrefix("@onset-floor") {
-                let parts = line.split(whereSeparator: \.isWhitespace).map(String.init)
-                guard parts.count == 2, let value = Double(parts[1]) else {
-                    throw FormatError(description: "\(position): ungültige Angabe \(parts.first ?? "")")
-                }
-                switch parts[0] {
+                let (key, value) = try setting(line, position)
+                switch key {
                 case "@floor": personalFloor = value
                 case "@onset-floor": onsetFloor = value
                 case "@resting": restingHeartRate = value
-                default: throw FormatError(description: "\(position): unbekannte Angabe \(parts[0])")
+                default: throw FormatError(description: "\(position): unbekannte Angabe \(key)")
                 }
                 continue
             }
             if !headerSeen {
-                guard line == "motion,hr" else { throw FormatError(description: "\(position): Kopfzeile 'motion,hr' erwartet") }
+                guard line == "motion,hr"
+                else { throw FormatError(description: "\(position): Kopfzeile 'motion,hr' erwartet") }
                 headerSeen = true
                 continue
             }
@@ -126,16 +119,37 @@ enum NightFixtures {
             epochs.append(Epoch(motion: try number(fields[0], position), heartRate: try number(fields[1], position)))
         }
         guard expectSeen else { throw FormatError(description: "\(file.lastPathComponent): @expect fehlt") }
-        let config = try DetectorConfig(personalFloor: personalFloor, restingHeartRate: restingHeartRate).withOnsetFloor(onsetFloor)
+        let config = try DetectorConfig(personalFloor: personalFloor,
+                                        restingHeartRate: restingHeartRate).withOnsetFloor(onsetFloor)
         return NightFixture(
             name: name, expectedIndex: expectedIndex, expectedReason: expectedReason, epochs: epochs, config: config,
             rearmUntil: rearmUntil
         )
     }
 
+    /// `@expect <Epoche> <Grund>` oder `@expect none`: erwartete weckende Epoche, `nil` = keine.
+    private static func expectation(_ line: String, _ position: String) throws -> (index: Int, reason: WakeReason)? {
+        let parts = line.split(whereSeparator: \.isWhitespace).map(String.init)
+        guard parts.count >= 2, parts[1] != "none" else { return nil }
+        guard parts.count == 3, let index = Int(parts[1]), let reason = WakeReason(rawValue: parts[2]) else {
+            throw FormatError(description: "\(position): ungültiges @expect")
+        }
+        return (index, reason)
+    }
+
+    /// Angabe `@name <Zahl>` (z. B. `@floor 0.02`) als Name und Wert.
+    private static func setting(_ line: String, _ position: String) throws -> (key: String, value: Double) {
+        let parts = line.split(whereSeparator: \.isWhitespace).map(String.init)
+        guard parts.count == 2, let value = Double(parts[1]) else {
+            throw FormatError(description: "\(position): ungültige Angabe \(parts.first ?? "")")
+        }
+        return (parts[0], value)
+    }
+
     private static func number(_ field: String, _ position: String) throws -> Double? {
         if field.isEmpty { return nil }
-        guard let value = Double(field) else { throw FormatError(description: "\(position): '\(field)' ist keine Zahl") }
+        guard let value = Double(field)
+        else { throw FormatError(description: "\(position): '\(field)' ist keine Zahl") }
         return value
     }
 }

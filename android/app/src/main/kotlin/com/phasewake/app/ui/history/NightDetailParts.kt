@@ -60,9 +60,20 @@ internal fun HypnoLegend(model: HypnoModel) {
     val zone = ZoneId.systemDefault()
     val items = stageOrder.map { LegendItem(stageName(context, it), LegendMark.SQUARE, colors.getValue(it)) } +
         listOfNotNull(
-            model.window?.takeUnless { it.exact }?.let { LegendItem(stringResource(R.string.chart_window), LegendMark.SHADE, scheme.primary.copy(alpha = 0.25f)) },
-            model.window?.let { LegendItem(stringResource(R.string.night_woke, Format.time(it.wokeAt, zone)), LegendMark.DOT, scheme.primary) },
-            model.window?.let { LegendItem(stringResource(R.string.night_target, Format.time(it.target, zone)), LegendMark.DASH, scheme.primary) },
+            model.window?.takeUnless { it.exact }?.let {
+                LegendItem(stringResource(R.string.chart_window), LegendMark.SHADE, scheme.primary.copy(alpha = 0.25f))
+            },
+            model.window?.let {
+                LegendItem(
+                    stringResource(R.string.night_woke, Format.time(it.wokeAt, zone)), LegendMark.DOT, scheme.primary,
+                )
+            },
+            model.window?.let {
+                LegendItem(
+                    stringResource(R.string.night_target, Format.time(it.target, zone)), LegendMark.DASH,
+                    scheme.primary,
+                )
+            },
         )
     Legend(items)
 }
@@ -82,9 +93,17 @@ internal fun StageTotals(stats: NightStages) {
     val scheme = MaterialTheme.colorScheme
     Column {
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) { stats.totals.forEach { StageTotalRow(it) } }
-        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 10.dp).clearAndSetSemantics { }) {
-            Canvas(Modifier.size(width = 22.dp, height = 10.dp)) { typicalBand(scheme.onSurfaceVariant, Offset.Zero, size) }
-            Text(stringResource(R.string.stages_typical), style = MaterialTheme.typography.labelSmall, color = scheme.onSurfaceVariant, modifier = Modifier.padding(start = 6.dp))
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(top = 10.dp).clearAndSetSemantics { },
+        ) {
+            Canvas(Modifier.size(width = 22.dp, height = 10.dp)) {
+                typicalBand(scheme.onSurfaceVariant, Offset.Zero, size)
+            }
+            Text(
+                stringResource(R.string.stages_typical), style = MaterialTheme.typography.labelSmall,
+                color = scheme.onSurfaceVariant, modifier = Modifier.padding(start = 6.dp),
+            )
         }
         Text(
             stringResource(R.string.stages_source) + " " + stringResource(R.string.stages_not_medical),
@@ -106,7 +125,9 @@ private fun androidx.compose.ui.graphics.drawscope.DrawScope.typicalBand(color: 
         topLeft,
         area,
         corner,
-        style = Stroke(width = 1.dp.toPx(), pathEffect = PathEffect.dashPathEffect(floatArrayOf(3.dp.toPx(), 2.dp.toPx()))),
+        style = Stroke(
+            width = 1.dp.toPx(), pathEffect = PathEffect.dashPathEffect(floatArrayOf(3.dp.toPx(), 2.dp.toPx())),
+        ),
     )
 }
 
@@ -123,21 +144,34 @@ private fun StageTotalRow(total: StageTotal) {
     val name = stageName(context, total.stage)
     val duration = Format.duration(context, Duration.ofMinutes(total.minutes))
     if (total.stage == SleepStage.AWAKE) {
-        Row(Modifier.fillMaxWidth().semantics(mergeDescendants = true) { contentDescription = "$name: $duration" }, verticalAlignment = Alignment.CenterVertically) {
+        Row(
+            Modifier.fillMaxWidth().semantics(mergeDescendants = true) { contentDescription = "$name: $duration" },
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
             Canvas(Modifier.size(10.dp)) { drawRoundRect(color, cornerRadius = CornerRadius(2.dp.toPx())) }
-            Text(name, style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(start = 8.dp).weight(1f))
+            Text(
+                name, style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(start = 8.dp).weight(1f),
+            )
             Text(duration, style = MaterialTheme.typography.titleSmall)
         }
         return
     }
     val share = stringResource(R.string.stages_share, total.percent)
     val typical = typicalText(context, total)
-    Column(Modifier.fillMaxWidth().semantics(mergeDescendants = true) { contentDescription = "$name: $share, $duration. $typical" }) {
+    Column(
+        Modifier.fillMaxWidth()
+            .semantics(mergeDescendants = true) { contentDescription = "$name: $share, $duration. $typical" }
+    ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Canvas(Modifier.size(10.dp)) { drawRoundRect(color, cornerRadius = CornerRadius(2.dp.toPx())) }
-            Text(name, style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(start = 8.dp).weight(1f))
+            Text(
+                name, style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(start = 8.dp).weight(1f),
+            )
             Text(share, style = MaterialTheme.typography.titleSmall)
-            Text(duration, style = MaterialTheme.typography.bodySmall, color = scheme.onSurfaceVariant, modifier = Modifier.padding(start = 10.dp))
+            Text(
+                duration, style = MaterialTheme.typography.bodySmall, color = scheme.onSurfaceVariant,
+                modifier = Modifier.padding(start = 10.dp),
+            )
         }
         Canvas(Modifier.fillMaxWidth().height(14.dp).padding(top = 4.dp)) {
             val corner = CornerRadius(size.height / 2)
@@ -149,9 +183,14 @@ private fun StageTotalRow(total: StageTotal) {
             // Balken schmaler als der Bereich, damit dieser oben und unten sichtbar bleibt.
             val w = size.width * total.percent / PERCENT
             val bar = size.height * 0.6f
-            if (w > 0f) drawRoundRect(color, Offset(0f, (size.height - bar) / 2), Size(w.coerceAtLeast(bar), bar), CornerRadius(bar / 2))
+            if (w > 0f) drawRoundRect(
+                color, Offset(0f, (size.height - bar) / 2), Size(w.coerceAtLeast(bar), bar), CornerRadius(bar / 2),
+            )
         }
-        Text(typical, style = MaterialTheme.typography.labelSmall, color = scheme.onSurfaceVariant, modifier = Modifier.padding(top = 2.dp))
+        Text(
+            typical, style = MaterialTheme.typography.labelSmall, color = scheme.onSurfaceVariant,
+            modifier = Modifier.padding(top = 2.dp),
+        )
     }
 }
 
@@ -165,10 +204,13 @@ private const val PERCENT = 100f
 internal fun NightTiles(stats: NightStages, withLatency: Boolean = true) {
     val context = LocalContext.current
     val tiles = listOfNotNull(
-        stats.latencyMinutes?.takeIf { withLatency }?.let { stringResource(R.string.night_latency) to Format.duration(context, Duration.ofMinutes(it)) },
+        stats.latencyMinutes?.takeIf { withLatency }
+            ?.let { stringResource(R.string.night_latency) to Format.duration(context, Duration.ofMinutes(it)) },
         stringResource(R.string.night_efficiency) to stringResource(R.string.stages_share, stats.efficiencyPercent),
         stringResource(R.string.night_awakenings) to NumberFormat.getIntegerInstance().format(stats.awakenings),
-        stringResource(R.string.night_longest_deep) to Format.duration(context, Duration.ofMinutes(stats.longestDeepMinutes)),
+        stringResource(R.string.night_longest_deep) to Format.duration(
+            context, Duration.ofMinutes(stats.longestDeepMinutes),
+        ),
     )
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
         tiles.chunked(2).forEach { row ->
@@ -215,13 +257,28 @@ internal fun NightExtras(item: HistoryItem, data: NightDetailData, actions: Nigh
                 SessionFeeling(NightFeeling(data.healthFeelings[date]) { actions.onHealthFeeling(date, it) })
             } else {
                 night.feeling?.let {
-                    Text(stringResource(R.string.feeling_value, feelingName(context, it)), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(
+                        stringResource(R.string.feeling_value, feelingName(context, it)),
+                        style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
                 }
-                batteryLine(context, night)?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
+                batteryLine(context, night)?.let {
+                    Text(
+                        it, style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
             }
-            NightNotes(data.notes[date].orEmpty(), data.customNotes, { actions.onToggleNote(date, it) }, Modifier.padding(top = 4.dp))
+            NightNotes(
+                data.notes[date].orEmpty(), data.customNotes, { actions.onToggleNote(date, it) },
+                Modifier.padding(top = 4.dp),
+            )
             // Mehrere eigene Nächte am selben Nachtdatum: die Geräusche nur bei der zuletzt geweckten (wie im Verlauf).
-            val clips = if (data.items.firstOrNull { it.date == date }?.key == item.key) SoundEvents.forNight(data.soundClips, date) else emptyList()
+            val clips = if (data.items.firstOrNull { it.date == date }?.key == item.key) {
+                SoundEvents.forNight(data.soundClips, date)
+            } else {
+                emptyList()
+            }
             SoundClipsSection(clips, actions.soundFile, actions.onDeleteClip, { actions.onDeleteNightClips(date) })
         }
     }

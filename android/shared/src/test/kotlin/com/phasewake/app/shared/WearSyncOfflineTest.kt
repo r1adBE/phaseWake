@@ -31,7 +31,17 @@ class WearSyncOfflineTest {
     fun publishingWithoutWatchDoesNotThrow() {
         tolerant { sync.publishAlarms(AlarmSnapshot(listOf(AlarmSpec(id = "a", hour = 7, minute = 0)), 1L)) }
         tolerant {
-            sync.publishNight(NightRecord("a", Instant.ofEpochMilli(1_000), Instant.ofEpochMilli(2_000), Instant.ofEpochMilli(1_500), WakeReason.DEADLINE, 0, emptyList()))
+            sync.publishNight(
+                NightRecord(
+                    "a",
+                    Instant.ofEpochMilli(1_000),
+                    Instant.ofEpochMilli(2_000),
+                    Instant.ofEpochMilli(1_500),
+                    WakeReason.DEADLINE,
+                    0,
+                    emptyList(),
+                ),
+            )
         }
         tolerant { sync.publishWatchReady(true, 50) }
         tolerant { sync.publishHolidays(HolidayList("CH", emptySet()), 1L) }

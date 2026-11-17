@@ -39,14 +39,25 @@ class NextAlarmComplicationService : SuspendingComplicationDataSourceService() {
 
     internal companion object {
         /** Daten zum Plan [plan]: Zielzeit, Ansage «Nächster Wecker 07:00», Tippen öffnet die App. */
-        fun forPlan(context: Context, plan: WakePlan, zone: ZoneId, locale: Locale = Locale.getDefault()): ComplicationData =
+        fun forPlan(
+            context: Context,
+            plan: WakePlan,
+            zone: ZoneId,
+            locale: Locale = Locale.getDefault(),
+        ): ComplicationData =
             data(context, shownText(plan.target, zone, locale), openApp(context))
 
-        private fun data(context: Context, text: String, tap: PendingIntent?): ComplicationData = ShortTextComplicationData.Builder(
+        private fun data(
+            context: Context,
+            text: String,
+            tap: PendingIntent?,
+        ): ComplicationData = ShortTextComplicationData.Builder(
             PlainComplicationText.Builder(text).build(),
             PlainComplicationText.Builder(context.getString(R.string.tile_next) + " " + text).build(),
         )
-            .setMonochromaticImage(MonochromaticImage.Builder(Icon.createWithResource(context, R.drawable.ic_moon)).build())
+            .setMonochromaticImage(
+                MonochromaticImage.Builder(Icon.createWithResource(context, R.drawable.ic_moon)).build(),
+            )
             .setTapAction(tap)
             .build()
 
@@ -56,7 +67,11 @@ class NextAlarmComplicationService : SuspendingComplicationDataSourceService() {
         )
 
         /** Gezeigte Zeit mit den Ziffern der Sprache ([shortTime]); [locale] nur für Tests. */
-        fun shownText(at: Instant, zone: ZoneId, locale: Locale = Locale.getDefault()): String = shortTime(at, zone, locale)
+        fun shownText(
+            at: Instant,
+            zone: ZoneId,
+            locale: Locale = Locale.getDefault(),
+        ): String = shortTime(at, zone, locale)
 
         /** Vorschau in der Zifferblatt-Auswahl: «06:30» wie bisher, aber mit den Ziffern der Sprache. */
         fun previewText(locale: Locale = Locale.getDefault()): String = String.format(locale, "%02d:%02d", 6, 30)

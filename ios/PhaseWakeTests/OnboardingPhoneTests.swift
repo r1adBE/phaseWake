@@ -7,19 +7,26 @@ import XCTest
 final class OnboardingPhoneTests: XCTestCase {
     @MainActor
     func testOnboardingNextCreatesTheShownAlarmOnce() {
-        XCTAssertTrue(OnboardingView.createsOnNext(step: OnboardingView.alarmStep, created: false, hasAlarms: false, canAdd: true))
+        XCTAssertTrue(OnboardingView.createsOnNext(step: OnboardingView.alarmStep, created: false, hasAlarms: false,
+                                                   canAdd: true))
         // Schon angelegt, kein Platz mehr oder ein anderer Schritt: nichts.
-        XCTAssertFalse(OnboardingView.createsOnNext(step: OnboardingView.alarmStep, created: true, hasAlarms: false, canAdd: true))
-        XCTAssertFalse(OnboardingView.createsOnNext(step: OnboardingView.alarmStep, created: false, hasAlarms: false, canAdd: false))
-        XCTAssertFalse(OnboardingView.createsOnNext(step: OnboardingView.alarmStep + 1, created: false, hasAlarms: false, canAdd: true))
-        XCTAssertFalse(OnboardingView.createsOnNext(step: OnboardingView.alarmStep - 1, created: false, hasAlarms: false, canAdd: true))
+        XCTAssertFalse(OnboardingView.createsOnNext(step: OnboardingView.alarmStep, created: true, hasAlarms: false,
+                                                    canAdd: true))
+        XCTAssertFalse(OnboardingView.createsOnNext(step: OnboardingView.alarmStep, created: false, hasAlarms: false,
+                                                    canAdd: false))
+        XCTAssertFalse(OnboardingView.createsOnNext(step: OnboardingView.alarmStep + 1, created: false,
+                                                    hasAlarms: false, canAdd: true))
+        XCTAssertFalse(OnboardingView.createsOnNext(step: OnboardingView.alarmStep - 1, created: false,
+                                                    hasAlarms: false, canAdd: true))
     }
 
     @MainActor
     func testOnboardingNextNeverCreatesASecondAlarm() {
-        XCTAssertTrue(OnboardingView.createsOnNext(step: OnboardingView.alarmStep, created: false, hasAlarms: false, canAdd: true))
+        XCTAssertTrue(OnboardingView.createsOnNext(step: OnboardingView.alarmStep, created: false, hasAlarms: false,
+                                                   canAdd: true))
         // «Einrichtung wiederholen» mit vorhandenen Weckern: «Weiter» legt keinen weiteren an.
-        XCTAssertFalse(OnboardingView.createsOnNext(step: OnboardingView.alarmStep, created: false, hasAlarms: true, canAdd: true))
+        XCTAssertFalse(OnboardingView.createsOnNext(step: OnboardingView.alarmStep, created: false, hasAlarms: true,
+                                                    canAdd: true))
     }
 
     /// Ein zweiter Tipp innerhalb der Sperre nach einem Seitenwechsel zählt nicht (sonst traf er «Später»).

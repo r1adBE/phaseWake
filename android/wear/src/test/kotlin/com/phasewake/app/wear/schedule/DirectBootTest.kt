@@ -41,7 +41,13 @@ class DirectBootTest {
 
     @Test
     fun savesPlanWithSoundAndLabel() {
-        DirectBoot.save(context, plan, AlarmSpec(id = "a", hour = 6, minute = 30, watchSound = true, label = "Früh"), next, null)
+        DirectBoot.save(
+            context,
+            plan,
+            AlarmSpec(id = "a", hour = 6, minute = 30, watchSound = true, label = "Früh"),
+            next,
+            null,
+        )
         assertEquals(DirectBoot.Saved(plan, target, true, "Früh"), DirectBoot.load(context))
         DirectBoot.clear(context)
         assertNull(DirectBoot.load(context))
@@ -59,7 +65,13 @@ class DirectBootTest {
 
     @Test
     fun ringAtKeepsSoundAndLabel() {
-        DirectBoot.save(context, plan, AlarmSpec(id = "a", hour = 6, minute = 30, watchSound = true, label = "Früh"), null, null)
+        DirectBoot.save(
+            context,
+            plan,
+            AlarmSpec(id = "a", hour = 6, minute = 30, watchSound = true, label = "Früh"),
+            null,
+            null,
+        )
         val at = target.plus(Duration.ofMinutes(10))
         DirectBoot.saveRingAt(context, plan, at)
         assertEquals(DirectBoot.Saved(plan, at, true, "Früh"), DirectBoot.load(context))

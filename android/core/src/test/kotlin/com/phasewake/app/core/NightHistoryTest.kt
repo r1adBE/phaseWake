@@ -48,9 +48,14 @@ class NightHistoryTest {
 
     @Test
     fun csvIsAnonymous() {
-        val csv = NightHistory.exportCsv(listOf(night(1, listOf(Epoch(0.0021, 52.34), Epoch(null, null))).copy(feeling = 4), night(0)))
+        val csv = NightHistory.exportCsv(
+            listOf(night(1, listOf(Epoch(0.0021, 52.34), Epoch(null, null))).copy(feeling = 4), night(0)),
+        )
         val lines = csv.trimEnd().lines()
-        assertEquals("night,window_minutes,reason,woke_minutes_before_target,snoozes,feeling,epoch,motion,hr,notes", lines[0])
+        assertEquals(
+            "night,window_minutes,reason,woke_minutes_before_target,snoozes,feeling,epoch,motion,hr,notes",
+            lines[0],
+        )
         assertEquals("1,30,LIGHT_SLEEP,12,1,,0,0.000000,52.0,", lines[1])
         assertEquals("2,30,LIGHT_SLEEP,12,1,4,0,0.002100,52.3,", lines[2])
         assertEquals("2,30,LIGHT_SLEEP,12,1,4,1,,,", lines[3])
@@ -66,12 +71,23 @@ class NightHistoryTest {
 
     @Test
     fun lightShareSkipsNightsWithoutEarlyWake() {
-        val reasons = listOf(WakeReason.LIGHT_SLEEP, WakeReason.DEADLINE, WakeReason.AWAKE, WakeReason.EXACT, WakeReason.SHORT_NIGHT)
+        val reasons = listOf(
+            WakeReason.LIGHT_SLEEP,
+            WakeReason.DEADLINE,
+            WakeReason.AWAKE,
+            WakeReason.EXACT,
+            WakeReason.SHORT_NIGHT,
+        )
         val nights = reasons.mapIndexed { i, reason -> night(i.toLong()).copy(reason = reason) }
         // 1 von 3 (ohne Genau und kurze Nacht) = 33 %, nicht 1 von 5.
         assertEquals(33, NightHistory.lightShare(nights))
         assertEquals(60, NightHistory.lightShare(nights + night(9) + night(10)))
-        assertEquals(null, NightHistory.lightShare(nights.filter { it.reason == WakeReason.EXACT || it.reason == WakeReason.SHORT_NIGHT }))
+        assertEquals(
+            null,
+            NightHistory.lightShare(
+                nights.filter { it.reason == WakeReason.EXACT || it.reason == WakeReason.SHORT_NIGHT },
+            ),
+        )
         assertEquals(null, NightHistory.lightShare(emptyList()))
     }
 }

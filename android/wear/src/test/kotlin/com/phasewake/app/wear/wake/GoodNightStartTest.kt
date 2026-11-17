@@ -16,47 +16,80 @@ class GoodNightStartTest {
     private val windowStart = latest.minus(Duration.ofMinutes(30))
     private val low = AutoOnset.MIN_BATTERY_PERCENT - 1
 
-    private fun decide(
+    /** Gelesene Nacht ab [since]; Weckfenster nur mit Weckzeit. */
+    private fun night(
         alarmFound: Boolean = true,
         hasDuration: Boolean = true,
         automatic: Boolean = false,
         latest: Instant? = this.latest,
         alreadyDone: Boolean = false,
+    ) = GoodNightStart.Request(
+        alarmFound, hasDuration, automatic, since, latest, windowStart.takeIf { latest != null }, alreadyDone,
+    )
+
+    private fun decide(
+        night: GoodNightStart.Request = night(),
         now: Instant = since,
         battery: Int? = 80,
         charging: Boolean = false,
-    ) = GoodNightStart.decide(alarmFound, hasDuration, automatic, since, latest, windowStart.takeIf { latest != null }, alreadyDone, now, battery, charging)
+    ) = GoodNightStart.decide(night, now, battery, charging)
 
     @Test
     fun gateRunningNightLockAndPending() {
-        assertEquals(GoodNightStart.Gate.NIGHT_RUNNING, GoodNightStart.gate(nightRunning = true, onsetRunning = false, pending = false, unlocked = true))
-        // Vor dem Entsperren: kein Protokoll, auch bei laufender Nacht.
-        assertEquals(GoodNightStart.Gate.BUSY, GoodNightStart.gate(nightRunning = true, onsetRunning = false, pending = false, unlocked = false))
-        assertEquals(GoodNightStart.Gate.BUSY, GoodNightStart.gate(nightRunning = false, onsetRunning = true, pending = false, unlocked = true))
-        assertEquals(GoodNightStart.Gate.BUSY, GoodNightStart.gate(nightRunning = false, onsetRunning = false, pending = true, unlocked = false))
-        assertEquals(GoodNightStart.Gate.LOCKED, GoodNightStart.gate(nightRunning = false, onsetRunning = false, pending = false, unlocked = false))
-        assertEquals(GoodNightStart.Gate.TRY, GoodNightStart.gate(nightRunning = false, onsetRunning = false, pending = false, unlocked = true))
-    }
-
-    @Test
-    fun measuresWithLimits() {
         assertEquals(
-            GoodNightStart.Decision.Measure(latest, latest.minus(WakeService.ONSET_GIVE_UP), since.plus(OnsetMonitor.MAX_DURATION)),
-            decide(),
+            GoodNightStart.Gate.NIGHT_RUNNING,
+            GoodNightStart.gate(nightRunning = true, onsetRunning = false, pending = false, unlocked = true),
+        )
+        // Vor dem Entsperren: kein Protokoll, auch bei laufender Nacht.
+        assertEquals(
+            GoodNightStart.Gate.BUSY,
+            GoodNightStart.gate(nightRunning = true, onsetRunning = false, pending = false, unlocked = false),
+        )
+        assertEquals(
+            GoodNightStart.Gate.BUSY,
+            GoodNightStart.gate(nightRunning = false, onsetRunning = true, pending = false, unlocked = true),
+        )
+        assertEquals(
+            GoodNightStart.Gate.BUSY,
+            GoodNightStart.gate(nightRunning = false, onsetRunning = false, pending = true, unlocked = false),
+        )
+        assertEquals(
+            GoodNightStart.Gate.LOCKED,
+            GoodNightStart.gate(nightRunning = false, onsetRunning = false, pending = false, unlocked = false),
+        )
+        assertEquals(
+            GoodNightStart.Gate.TRY,
+            GoodNightStart.gate(nightRunning = false, onsetRunning = false, pending = false, unlocked = true),
         )
     }
 
     @Test
+    fun measuresWithLimits() {
+        val limits = GoodNightStart.Decision.Measure(
+            latest,
+            latest.minus(WakeService.ONSET_GIVE_UP),
+            since.plus(OnsetMonitor.MAX_DURATION),
+        )
+        assertEquals(limits, decide())
+    }
+
+    @Test
     fun reasonsAgainstTheStart() {
-        assertEquals(GoodNightStart.Decision.NotStarted("no alarm"), decide(alarmFound = false, latest = null))
-        assertEquals(GoodNightStart.Decision.NotStarted("no sleep duration"), decide(hasDuration = false))
+        assertEquals(GoodNightStart.Decision.NotStarted("no alarm"), decide(night(alarmFound = false, latest = null)))
+        assertEquals(GoodNightStart.Decision.NotStarted("no sleep duration"), decide(night(hasDuration = false)))
         // Automatisch auch ohne Schlafdauer.
-        assertEquals(latest, (decide(hasDuration = false, automatic = true) as GoodNightStart.Decision.Measure).latest)
-        assertEquals(GoodNightStart.Decision.NotStarted("no alarm time"), decide(latest = null))
-        assertEquals(GoodNightStart.Decision.NotStarted("too far ahead"), decide(latest = since.plus(Duration.ofHours(17))))
+        val measured = decide(night(hasDuration = false, automatic = true)) as GoodNightStart.Decision.Measure
+        assertEquals(latest, measured.latest)
+        assertEquals(GoodNightStart.Decision.NotStarted("no alarm time"), decide(night(latest = null)))
+        assertEquals(
+            GoodNightStart.Decision.NotStarted("too far ahead"),
+            decide(night(latest = since.plus(Duration.ofHours(17)))),
+        )
         // Automatisch: nicht mehr im Weckfenster (Grund vor der Zeitgrenze) und nicht zweimal in derselben Nacht.
-        assertEquals(GoodNightStart.Decision.NotStarted("window begun"), decide(automatic = true, now = windowStart))
-        assertEquals(GoodNightStart.Decision.NotStarted("already done"), decide(automatic = true, alreadyDone = true))
+        val begun = decide(night(automatic = true), now = windowStart)
+        assertEquals(GoodNightStart.Decision.NotStarted("window begun"), begun)
+        val done = decide(night(automatic = true, alreadyDone = true))
+        assertEquals(GoodNightStart.Decision.NotStarted("already done"), done)
     }
 
     @Test
@@ -68,7 +101,12 @@ class GoodNightStartTest {
         val short = since.plus(Duration.ofHours(1))
         assertEquals(
             GoodNightStart.Decision.GiveUp("give up", short),
-            GoodNightStart.decide(true, true, false, since, short, null, false, short.minus(WakeService.ONSET_GIVE_UP), 80, false),
+            GoodNightStart.decide(
+                GoodNightStart.Request(true, true, false, since, short, null, false),
+                short.minus(WakeService.ONSET_GIVE_UP),
+                80,
+                false,
+            ),
         )
         // Kurz davor misst sie noch.
         assertEquals(GoodNightStart.Decision.Measure::class, decide(now = late.minusSeconds(1))::class)
@@ -76,14 +114,23 @@ class GoodNightStartTest {
 
     @Test
     fun batteryOnlyForTheAutomaticMeasurement() {
-        assertEquals(GoodNightStart.Decision.SkipBattery(latest), decide(automatic = true, battery = low))
+        assertEquals(GoodNightStart.Decision.SkipBattery(latest), decide(night(automatic = true), battery = low))
         // Am Ladegerät, unbekannter Akku oder von Hand: misst.
-        assertEquals(GoodNightStart.Decision.Measure::class, decide(automatic = true, battery = low, charging = true)::class)
-        assertEquals(GoodNightStart.Decision.Measure::class, decide(automatic = true, battery = null)::class)
+        assertEquals(
+            GoodNightStart.Decision.Measure::class,
+            decide(night(automatic = true), battery = low, charging = true)::class,
+        )
+        assertEquals(GoodNightStart.Decision.Measure::class, decide(night(automatic = true), battery = null)::class)
         assertEquals(GoodNightStart.Decision.Measure::class, decide(battery = low)::class)
         // Zuerst die Gründe gegen den Start, dann die Zeitgrenze, erst dann der Akku.
-        assertEquals(GoodNightStart.Decision.NotStarted::class, decide(automatic = true, alreadyDone = true, battery = low)::class)
-        assertEquals(GoodNightStart.Decision.GiveUp::class, decide(automatic = true, battery = low, now = since.plus(OnsetMonitor.MAX_DURATION))::class)
+        assertEquals(
+            GoodNightStart.Decision.NotStarted::class,
+            decide(night(automatic = true, alreadyDone = true), battery = low)::class,
+        )
+        assertEquals(
+            GoodNightStart.Decision.GiveUp::class,
+            decide(night(automatic = true), battery = low, now = since.plus(OnsetMonitor.MAX_DURATION))::class,
+        )
     }
 
     @Test

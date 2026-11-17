@@ -38,7 +38,13 @@ fun feelingTakeaway(context: Context, f: FeelingSeries): String? {
 }
 
 /** «28. Okt. · Befinden: Gut · Notizen: Koffein, Sport» */
-private fun feelingLine(context: Context, date: LocalDate, feeling: Int?, notes: List<String>, custom: List<CustomNote>): String {
+private fun feelingLine(
+    context: Context,
+    date: LocalDate,
+    feeling: Int?,
+    notes: List<String>,
+    custom: List<CustomNote>,
+): String {
     val names = notes.mapNotNull { noteName(context, it, custom) }
     return listOfNotNull(
         morning(date),
@@ -53,7 +59,13 @@ private fun feelingLine(context: Context, date: LocalDate, feeling: Int?, notes:
  * Antippen der Blase öffnet die Nacht ([opener]).
  */
 @Composable
-internal fun FeelingCard(chart: FeelingSeries?, nights: Int, custom: List<CustomNote>, opener: (LocalDate) -> (() -> Unit)?, modifier: Modifier) {
+internal fun FeelingCard(
+    chart: FeelingSeries?,
+    nights: Int,
+    custom: List<CustomNote>,
+    opener: (LocalDate) -> (() -> Unit)?,
+    modifier: Modifier,
+) {
     val context = LocalContext.current
     val res = LocalResources.current
     val brand = PhaseWakeTheme.brand
@@ -66,11 +78,13 @@ internal fun FeelingCard(chart: FeelingSeries?, nights: Int, custom: List<Custom
             NoDataText()
             return@ChartCard
         }
-        feelingTakeaway(context, f)?.let { Text(it, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(bottom = 10.dp)) }
+        feelingTakeaway(context, f)
+            ?.let { Text(it, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(bottom = 10.dp)) }
         val withNotes = f.points.any { p -> p.feeling != null && p.notes.any { noteName(context, it, custom) != null } }
         val description = remember(f, custom) {
             (listOfNotNull(res.getString(R.string.chart_feeling_title), feelingTakeaway(context, f)) +
-                f.points.filter { it.feeling != null }.map { feelingLine(context, it.date, it.feeling, it.notes, custom) }).joinToString(". ")
+                f.points.filter { it.feeling != null }
+                    .map { feelingLine(context, it.date, it.feeling, it.notes, custom) }).joinToString(". ")
         }
         val average = remember(f) { ChartData.weekAverage(f.points.map { it.feeling?.toDouble() }) }
         val left = with(LocalDensity.current) { 16.dp.toPx() }
@@ -89,7 +103,10 @@ internal fun FeelingCard(chart: FeelingSeries?, nights: Int, custom: List<Custom
             val plot = size.height - axisHeight - top - r * 2
             fun y(v: Double) = top + plot * (1f - ((v - 1) / 4).toFloat())
             for (v in 1..5) {
-                drawLine(if (v == 1) scheme.outline else scheme.outlineVariant, Offset(left, y(v.toDouble())), Offset(size.width, y(v.toDouble())), strokeWidth = 1.dp.toPx())
+                drawLine(
+                    if (v == 1) scheme.outline else scheme.outlineVariant, Offset(left, y(v.toDouble())),
+                    Offset(size.width, y(v.toDouble())), strokeWidth = 1.dp.toPx(),
+                )
             }
             val five = measurer.measure("5", label)
             val one = measurer.measure("1", label)
@@ -106,7 +123,9 @@ internal fun FeelingCard(chart: FeelingSeries?, nights: Int, custom: List<Custom
                 val c = Offset(x(i), y(v.toDouble()))
                 drawCircle(brand.chartActive, r, c)
                 // Nächte mit Notiz: kleiner Ring.
-                if (p.notes.any { noteName(context, it, custom) != null }) drawCircle(scheme.primary, r * 1.7f, c, style = Stroke(1.5.dp.toPx()))
+                if (p.notes.any { noteName(context, it, custom) != null }) drawCircle(
+                    scheme.primary, r * 1.7f, c, style = Stroke(1.5.dp.toPx()),
+                )
             }
             val first = measurer.measure(morning(f.points.first().date, "dM"), label)
             drawText(first, topLeft = Offset(left, size.height - first.size.height))
@@ -115,7 +134,13 @@ internal fun FeelingCard(chart: FeelingSeries?, nights: Int, custom: List<Custom
         }
         listOfNotNull(
             if (withNotes) LegendItem(stringResource(R.string.notes_label), LegendMark.RING, scheme.primary) else null,
-            if (nights > ChartData.SHORT_NIGHTS) LegendItem(stringResource(R.string.chart_week_average), LegendMark.LINE, scheme.onSurface.copy(alpha = 0.75f)) else null,
+            if (nights > ChartData.SHORT_NIGHTS) {
+                LegendItem(
+                    stringResource(R.string.chart_week_average), LegendMark.LINE, scheme.onSurface.copy(alpha = 0.75f),
+                )
+            } else {
+                null
+            },
         ).takeIf { it.isNotEmpty() }?.let { Legend(it) }
         if (withNotes) {
             Text(

@@ -65,7 +65,12 @@ data class FactorScore(val factor: ScoreFactor, val points: Int, val weight: Int
  * [ScoreFactor]. [provisional]: ohne Schlafphasen (weder Tief noch REM noch Wach) nur vorläufig, höchstens
  * [SleepScore.PROVISIONAL_MAX].
  */
-data class SleepScoreResult(val score: Int, val band: ScoreBand, val factors: List<FactorScore>, val provisional: Boolean = false) {
+data class SleepScoreResult(
+    val score: Int,
+    val band: ScoreBand,
+    val factors: List<FactorScore>,
+    val provisional: Boolean = false,
+) {
     /** Faktor [factor]; `null`, wenn er fehlt. */
     fun factor(factor: ScoreFactor): FactorScore? = factors.firstOrNull { it.factor == factor }
 }
@@ -112,7 +117,8 @@ object SleepScore {
             input.awakePercent?.let { ScoreFactor.AWAKE to awakePoints(it) },
             input.latencyMinutes?.let { ScoreFactor.LATENCY to latencyPoints(it) },
         )
-        val factors = raw.map { (factor, points) -> FactorScore(factor, points, WEIGHTS.getValue(factor), band(points)) }
+        val factors =
+            raw.map { (factor, points) -> FactorScore(factor, points, WEIGHTS.getValue(factor), band(points)) }
         val weighted = round(factors.sumOf { it.points * it.weight }.toDouble() / factors.sumOf { it.weight })
         val provisional = input.deepPercent == null && input.remPercent == null && input.awakePercent == null
         val score = if (provisional) minOf(weighted, PROVISIONAL_MAX) else weighted
@@ -176,7 +182,9 @@ object SleepScore {
         return ScoreInput(
             asleepMinutes = Duration.between(asleepAt, end).toMinutes(),
             goalMinutes = goalMinutes,
-            latencyMinutes = bedAt?.takeIf { !it.isAfter(asleepAt) }?.let { Duration.between(it, asleepAt).toMinutes() },
+            latencyMinutes = bedAt?.takeIf { !it.isAfter(asleepAt) }?.let {
+                Duration.between(it, asleepAt).toMinutes()
+            },
         )
     }
 

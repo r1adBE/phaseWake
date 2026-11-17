@@ -21,7 +21,8 @@ func soundSummaryText(_ clips: [SoundClip]) -> String? {
     let summary = SoundEvents.summary(clips)
     var parts: [String] = []
     if summary.snoreClips > 0 {
-        parts.append(LP("sound_summary", summary.snoreClips, Format.duration(minutes: summary.snoreMinutes), summary.snoreClips))
+        parts.append(LP("sound_summary", summary.snoreClips, Format.duration(minutes: summary.snoreMinutes),
+                        summary.snoreClips))
     }
     if summary.talkClips > 0 {
         parts.append(LP("sound_summary_talk", summary.talkClips, summary.talkClips))
@@ -43,7 +44,8 @@ struct SoundRecordingCard: View {
                 get: { recorder.running },
                 set: { on in Task { await model.setSoundRec(on, night: night) } }
             )) {
-                Label(L("sound_rec_title"), systemImage: "mic").font(Fonts.manrope(16, .semibold, relativeTo: .headline))
+                Label(L("sound_rec_title"), systemImage: "mic")
+                    .font(Fonts.manrope(16, .semibold, relativeTo: .headline))
             }
             Text(hint(recorder)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
             if recorder.permissionDenied && !recorder.running {
@@ -145,7 +147,9 @@ private struct NightSoundsSheet: View {
             }
             Spacer()
             Button {
-                if playing { player.stop() } else if let url = model.recorder.url(of: clip) { player.play(url, id: clip.file) }
+                if playing { player.stop() } else if let url = model.recorder.url(of: clip) {
+                    player.play(url, id: clip.file)
+                }
             } label: {
                 Image(systemName: playing ? "stop.fill" : "play.fill").frame(width: 44, height: 44)
             }
@@ -178,7 +182,8 @@ private final class ClipPlayer {
         stop()
         // Läuft noch eine Aufnahme oder spielen Klänge, teilt sich der Ausschnitt die Sitzung mit ihnen.
         AudioSessionUse.previewing = true
-        guard (try? AudioSessionUse.activate()) != nil, let player = try? AVAudioPlayer(contentsOf: url), player.play() else {
+        guard (try? AudioSessionUse.activate()) != nil, let player = try? AVAudioPlayer(contentsOf: url),
+              player.play() else {
             AudioSessionUse.previewing = false
             AudioSessionUse.release()
             return

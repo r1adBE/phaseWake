@@ -90,7 +90,9 @@ class OnsetMonitorTest {
         assertEquals(1, sensors.listeners.size, "Off-Body-Sensor angemeldet")
         fun send(value: Float) {
             sensors.sendSensorEventToListeners(
-                SensorEventBuilder.newBuilder(offBody, floatArrayOf(value)).setTimestamp(SystemClock.elapsedRealtimeNanos()).build(),
+                SensorEventBuilder.newBuilder(offBody, floatArrayOf(value))
+                    .setTimestamp(SystemClock.elapsedRealtimeNanos())
+                    .build(),
             )
             idle(10)
         }
@@ -168,7 +170,10 @@ class OnsetMonitorTest {
         val until = SystemClock.elapsedRealtime() + OnsetMonitor.SAMPLE_LEAD_MS + 60_000
         var sent = 0
         while (SystemClock.elapsedRealtime() < until) {
-            val event = SensorEventBuilder.newBuilder(accelerometer, floatArrayOf(if (sent % 2 == 0) 0.01f else 0f, 0f, 9.81f))
+            val event = SensorEventBuilder.newBuilder(
+                accelerometer,
+                floatArrayOf(if (sent % 2 == 0) 0.01f else 0f, 0f, 9.81f),
+            )
                 .setTimestamp(SystemClock.elapsedRealtimeNanos())
                 .build()
             sensors.sendSensorEventToListeners(event)
@@ -250,7 +255,10 @@ class OnsetMonitorTest {
         assertEquals(0, gaveUp)
         val first = clock.plus(OnsetMonitor.EXTEND_STEP)
         assertEquals(first, m.giveUpAt)
-        assertEquals(DiagKind.MEASURE_START to "auto onset extended until $first", logged.last { it.first == DiagKind.MEASURE_START })
+        assertEquals(
+            DiagKind.MEASURE_START to "auto onset extended until $first",
+            logged.last { it.first == DiagKind.MEASURE_START },
+        )
         // Zweite Verlängerung nur noch bis zur Grenze, dann aufgeben; das Ende behält seinen Grund.
         clock = first
         m.checkLimit()
@@ -271,7 +279,10 @@ class OnsetMonitorTest {
         clock = start.plus(OnsetMonitor.MAX_DURATION)
         m.tick()
         assertEquals(1, gaveUp)
-        assertEquals(DiagKind.BATTERY to "auto onset not extended: battery ${AutoOnset.MIN_BATTERY_PERCENT - 1}", logged.last())
+        assertEquals(
+            DiagKind.BATTERY to "auto onset not extended: battery ${AutoOnset.MIN_BATTERY_PERCENT - 1}",
+            logged.last(),
+        )
         assertTrue(logged.none { it.second.contains("extended until") })
 
         // Ruhig (keine Werte): aufgeben wie bisher, ohne Zeile zur Verlängerung.
@@ -314,13 +325,23 @@ class OnsetMonitorTest {
         // Höchstens bis zur Grenze der Verlängerungen.
         val base = start.plus(OnsetMonitor.MAX_DURATION)
         val late = start.plus(Duration.ofHours(8))
-        assertEquals(start.plus(Duration.ofMinutes(150)), OnsetRules.awayUntil(base, Duration.ofHours(1), late, start.plus(Duration.ofMinutes(150))))
+        assertEquals(
+            start.plus(Duration.ofMinutes(150)),
+            OnsetRules.awayUntil(base, Duration.ofHours(1), late, start.plus(Duration.ofMinutes(150))),
+        )
         assertNull(OnsetRules.awayUntil(base, Duration.ZERO, late, start.plus(OnsetMonitor.MAX_EXTENDED)))
         // Ladegerät und Off-Body überlappend zählen einmal; ein offenes Ende bis jetzt.
         assertEquals(30L, OnsetRules.awayNanos(listOf(0L to 20L, 10L to 30L), 0L, 100L))
         assertEquals(30L, OnsetRules.awayNanos(listOf(50L to null), 0L, 80L))
         // Gilt die Grenze vor der Weckzeit früher, verschiebt nichts.
-        assertNull(OnsetRules.awayUntil(base, Duration.ofHours(1), base.minusSeconds(1), start.plus(OnsetMonitor.MAX_EXTENDED)))
+        assertNull(
+            OnsetRules.awayUntil(
+                base,
+                Duration.ofHours(1),
+                base.minusSeconds(1),
+                start.plus(OnsetMonitor.MAX_EXTENDED),
+            ),
+        )
     }
 
     @Test
@@ -328,7 +349,8 @@ class OnsetMonitorTest {
         // Trotz wenig Akku begonnen, weil die Uhr lud; vom Ladegerät mit weiter zu wenig Akku: Ende (einmal).
         var low = 0
         val m = OnsetMonitor(
-            context, 0.002, clock.plus(Duration.ofHours(8)), clock.plus(OnsetMonitor.MAX_DURATION), "auto onset", { _, _ -> }, {},
+            context, 0.002, clock.plus(Duration.ofHours(8)), clock.plus(OnsetMonitor.MAX_DURATION), "auto onset",
+            { _, _ -> }, {},
             onLowBattery = { low++ }, now = { clock },
         ) {}.also { monitor = it }
         m.start()
@@ -343,7 +365,8 @@ class OnsetMonitorTest {
         m.stop("test end")
         var enough = 0
         val n = OnsetMonitor(
-            context, 0.002, clock.plus(Duration.ofHours(8)), clock.plus(OnsetMonitor.MAX_DURATION), "auto onset", { _, _ -> }, {},
+            context, 0.002, clock.plus(Duration.ofHours(8)), clock.plus(OnsetMonitor.MAX_DURATION), "auto onset",
+            { _, _ -> }, {},
             onLowBattery = { enough++ }, now = { clock },
         ) {}.also { monitor = it }
         n.start()
@@ -356,5 +379,6 @@ class OnsetMonitorTest {
     }
 
     private fun battery(percent: Int) =
-        shadowOf(context.getSystemService(BatteryManager::class.java)).setIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY, percent)
+        shadowOf(context.getSystemService(BatteryManager::class.java))
+            .setIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY, percent)
 }

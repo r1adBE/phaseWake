@@ -166,7 +166,8 @@ final class PrivateNotes: @unchecked Sendable {
             try Data(text.utf8).write(to: url(file), options: .atomic)
             return true
         } catch {
-            Self.logger.error("\(file.rawValue, privacy: .public) nicht gespeichert: \(error.localizedDescription, privacy: .public)")
+            let reason = error.localizedDescription
+            Self.logger.error("\(file.rawValue, privacy: .public) nicht gespeichert: \(reason, privacy: .public)")
             return false
         }
     }

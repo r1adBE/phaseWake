@@ -78,18 +78,23 @@ public enum Transient {
     public static func test(base: AlarmSpec?, now: Date, calendar: Calendar, uuid: String) -> TransientPlan {
         let plan = WakePlan(alarmId: testPrefix + uuid, windowStart: now.addingTimeInterval(testWindowStartSeconds),
                             target: now.addingTimeInterval(testTargetSeconds))
-        let spec = specFor(plan, base: base, calendar: calendar, sunrise: base?.sunrise ?? .off, sunriseDevice: base?.sunriseDevice ?? .phone)
+        let spec = specFor(plan, base: base, calendar: calendar, sunrise: base?.sunrise ?? .off,
+                           sunriseDevice: base?.sunriseDevice ?? .phone)
         return TransientPlan(kind: .test, spec: spec, plan: plan)
     }
 
     /// Powernap ab `now` mit `minutes` Dauer (auf `napMinMinutes`–`napMaxMinutes` begrenzt), Weckart wie `base`, ohne
     /// Licht.
-    public static func nap(base: AlarmSpec?, now: Date, calendar: Calendar, minutes: Int, uuid: String) -> TransientPlan {
+    public static func nap(base: AlarmSpec?, now: Date, calendar: Calendar, minutes: Int,
+                           uuid: String) -> TransientPlan {
         let length = min(napMaxMinutes, max(napMinMinutes, minutes))
         let target = now.addingTimeInterval(TimeInterval(length * 60))
-        let plan = WakePlan(alarmId: napPrefix + uuid, windowStart: target.addingTimeInterval(-TimeInterval(napWindowMinutes(length) * 60)),
+        let plan = WakePlan(alarmId: napPrefix + uuid,
+                            windowStart: target.addingTimeInterval(-TimeInterval(napWindowMinutes(length) * 60)),
                             target: target)
-        return TransientPlan(kind: .nap, spec: specFor(plan, base: base, calendar: calendar, sunrise: .off, sunriseDevice: .phone), plan: plan)
+        return TransientPlan(kind: .nap,
+                             spec: specFor(plan, base: base, calendar: calendar, sunrise: .off, sunriseDevice: .phone),
+                             plan: plan)
     }
 
     /// Fenster eines Powernaps in Minuten: bis `napShortLimitMinutes` kurz, sonst `napWindowMinutes`.
@@ -132,7 +137,8 @@ public enum Transient {
     ///   bräche der Plan die Messung des echten Weckers ab.
     /// - `alarmSoon`: Die Zielzeit von `transient` liegt nach dem Fensterbeginn von `next`; der Plan überdeckte das
     /// Fenster. Sonst `nil`.
-    public static func conflict(_ transient: TransientPlan, next: WakePlan?, nightActive: Bool, now: Date) -> TransientConflict? {
+    public static func conflict(_ transient: TransientPlan, next: WakePlan?, nightActive: Bool,
+                                now: Date) -> TransientConflict? {
         if nightActive { return .alarmRunning }
         guard let next else { return nil }
         if now >= next.windowStart && now < next.target { return .alarmRunning }
@@ -143,7 +149,8 @@ public enum Transient {
     /// `Codec.encodeAlarms`. Inhalt der Nachrichten an die Uhr und des Speichers.
     public static func encode(_ transient: TransientPlan) -> String {
         header + "\n"
-            + [transient.kind.rawValue, String(AlarmSchedule.millis(transient.plan.windowStart)), String(AlarmSchedule.millis(transient.plan.target))]
+            + [transient.kind.rawValue, String(AlarmSchedule.millis(transient.plan.windowStart)),
+               String(AlarmSchedule.millis(transient.plan.target))]
             .joined(separator: separator) + "\n"
             + Codec.encodeAlarms([transient.spec])
     }
@@ -152,24 +159,31 @@ public enum Transient {
     /// - Throws: ``CodecError`` bei fremdem oder kaputtem Format, oder wenn Art und Kennung nicht zusammenpassen.
     public static func decode(_ text: String) throws -> TransientPlan {
         let lines = text.components(separatedBy: "\n")
-        guard lines.first == header else { throw CodecError(description: "Unbekanntes Format des vorübergehenden Plans") }
+        guard lines.first == header
+        else { throw CodecError(description: "Unbekanntes Format des vorübergehenden Plans") }
         let fields = (lines.count > 1 ? lines[1] : "").components(separatedBy: separator)
         guard let kind = TransientKind(rawValue: fields[0]) else { throw CodecError(description: "Art fehlt") }
-        guard fields.count > 1, let start = Int64(fields[1]) else { throw CodecError(description: "Fensterbeginn fehlt") }
+        guard fields.count > 1, let start = Int64(fields[1])
+        else { throw CodecError(description: "Fensterbeginn fehlt") }
         guard fields.count > 2, let target = Int64(fields[2]) else { throw CodecError(description: "Zielzeit fehlt") }
-        guard let spec = try Codec.decodeAlarms(lines.dropFirst(2).joined(separator: "\n")).first else { throw CodecError(description: "Wecker fehlt") }
-        guard kindOf(spec.id) == kind, start <= target else { throw CodecError(description: "Plan passt nicht zur Kennung") }
-        return TransientPlan(kind: kind, spec: spec, plan: WakePlan(alarmId: spec.id, windowStart: date(start), target: date(target)))
+        guard let spec = try Codec.decodeAlarms(lines.dropFirst(2).joined(separator: "\n")).first
+        else { throw CodecError(description: "Wecker fehlt") }
+        guard kindOf(spec.id) == kind, start <= target
+        else { throw CodecError(description: "Plan passt nicht zur Kennung") }
+        return TransientPlan(kind: kind, spec: spec,
+                             plan: WakePlan(alarmId: spec.id, windowStart: date(start), target: date(target)))
     }
 
     private static func date(_ ms: Int64) -> Date { Date(timeIntervalSince1970: TimeInterval(ms) / 1000) }
 
     /// Wecker zum Plan: Weckart aus `base`, Zielzeit als Uhrzeit, einmalig, ohne Aufgabe und Namen.
-    private static func specFor(_ plan: WakePlan, base: AlarmSpec?, calendar: Calendar, sunrise: Sunrise, sunriseDevice: SunriseDevice) -> AlarmSpec {
+    private static func specFor(_ plan: WakePlan, base: AlarmSpec?, calendar: Calendar, sunrise: Sunrise,
+                                sunriseDevice: SunriseDevice) -> AlarmSpec {
         let local = calendar.dateComponents([.hour, .minute], from: plan.target)
         // Stunde 0–23 und Minute 0–59 aus dem Kalender, Mindestfenster: Die Prüfung kann nicht scheitern.
         return try! AlarmSpec(
-            id: plan.alarmId, hour: local.hour ?? 0, minute: local.minute ?? 0, windowMinutes: AlarmSpec.minWindowMinutes,
+            id: plan.alarmId, hour: local.hour ?? 0, minute: local.minute ?? 0,
+            windowMinutes: AlarmSpec.minWindowMinutes,
             phone: base?.phone ?? .sound, watchSound: base?.watchSound ?? false, sound: base?.sound ?? "",
             sunrise: sunrise, sunriseDevice: sunriseDevice
         )

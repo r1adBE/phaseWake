@@ -54,7 +54,10 @@ class UnlockStartTest {
     private val exportDir get() = File(context.cacheDir, "export")
 
     private fun night(id: String, start: Long) =
-        NightRecord(id, Instant.ofEpochMilli(start), Instant.ofEpochMilli(start + 1_800_000), Instant.ofEpochMilli(start + 900_000), WakeReason.DEADLINE, 0, emptyList())
+        NightRecord(
+            id, Instant.ofEpochMilli(start), Instant.ofEpochMilli(start + 1_800_000),
+            Instant.ofEpochMilli(start + 900_000), WakeReason.DEADLINE, 0, emptyList(),
+        )
 
     private val old = listOf(night("alt", 1_000_000))
     private val restored = listOf(night("neu", 2_000_000))
@@ -98,7 +101,10 @@ class UnlockStartTest {
 
         // BOOT_COMPLETED danach (gleicher Prozess): kein zweiter Durchlauf.
         markExport()
-        context.sendBroadcast(Intent(Intent.ACTION_BOOT_COMPLETED).setComponent(ComponentName(context, BackupAlarm.SystemReceiver::class.java)))
+        context.sendBroadcast(
+            Intent(Intent.ACTION_BOOT_COMPLETED)
+                .setComponent(ComponentName(context, BackupAlarm.SystemReceiver::class.java))
+        )
         shadowOf(Looper.getMainLooper()).idle()
         assertTrue(exportDir.exists(), "Start-Arbeiten nur einmal je Prozess")
         // Auch ein direkter weiterer Aufruf tut nichts.

@@ -12,7 +12,8 @@ final class AlarmAutoOffTests: XCTestCase {
                                 directory: FileManager.default.temporaryDirectory.appendingPathComponent(suite))
     }
 
-    private func alarm(_ hour: Int, _ minute: Int = 0, days: Set<Weekday> = [], enabled: Bool = true, label: String = "",
+    private func alarm(_ hour: Int, _ minute: Int = 0, days: Set<Weekday> = [], enabled: Bool = true,
+                       label: String = "",
                        id: String = "a") -> AlarmSpec {
         try! AlarmSpec(id: id, hour: hour, minute: minute, days: days, enabled: enabled, label: label)
     }
@@ -91,9 +92,12 @@ final class AlarmAutoOffTests: XCTestCase {
     func testRangRules() {
         let target = at(7)
         // Bekannte Fassung: Uhrzeit und Tage entscheiden.
-        XCTAssertTrue(AlarmStamps.rang(alarm(7, label: "neu"), rung: alarm(7), target: target, calendar: calendar, shifted: false))
-        XCTAssertFalse(AlarmStamps.rang(alarm(7, 1), rung: alarm(7), target: target, calendar: calendar, shifted: false))
-        XCTAssertFalse(AlarmStamps.rang(alarm(7, days: [.monday]), rung: alarm(7), target: target, calendar: calendar, shifted: false))
+        XCTAssertTrue(AlarmStamps.rang(alarm(7, label: "neu"), rung: alarm(7), target: target, calendar: calendar,
+                                       shifted: false))
+        XCTAssertFalse(AlarmStamps.rang(alarm(7, 1), rung: alarm(7), target: target, calendar: calendar,
+                                        shifted: false))
+        XCTAssertFalse(AlarmStamps.rang(alarm(7, days: [.monday]), rung: alarm(7), target: target, calendar: calendar,
+                                        shifted: false))
         // Unbekannt: eingestellte Weckzeit = Zielzeit.
         XCTAssertTrue(AlarmStamps.rang(alarm(7), rung: nil, target: target, calendar: calendar, shifted: false))
         XCTAssertFalse(AlarmStamps.rang(alarm(7, 1), rung: nil, target: target, calendar: calendar, shifted: false))
@@ -103,7 +107,8 @@ final class AlarmAutoOffTests: XCTestCase {
         XCTAssertFalse(AlarmStamps.rang(alarm(7), rung: nil, target: at(6, 20), calendar: calendar, shifted: false))
         let sixteen = target.addingTimeInterval(-16 * 3600)
         XCTAssertTrue(AlarmStamps.rang(alarm(7), rung: nil, target: sixteen, calendar: calendar, shifted: true))
-        XCTAssertFalse(AlarmStamps.rang(alarm(7), rung: nil, target: sixteen.addingTimeInterval(-0.001), calendar: calendar, shifted: true))
+        XCTAssertFalse(AlarmStamps.rang(alarm(7), rung: nil, target: sixteen.addingTimeInterval(-0.001),
+                                        calendar: calendar, shifted: true))
     }
 
     func testShiftLimitIsSixteenHours() {
@@ -130,10 +135,12 @@ final class AlarmAutoOffTests: XCTestCase {
     func testDeletionWinsATieWithTheAlarm() {
         let kept = AlarmSnapshot(alarms: [alarm(7)], updatedAt: 5_000, stamps: ["a": 5_000])
         let gone = AlarmSnapshot(alarms: [], updatedAt: 5_000, deleted: ["a": 5_000])
-        XCTAssertEqual(AlarmStamps.merge(local: kept, remote: gone, now: 5_000).alarms, [], "gleicher Zeitpunkt: gelöscht")
+        XCTAssertEqual(AlarmStamps.merge(local: kept, remote: gone, now: 5_000).alarms, [],
+                       "gleicher Zeitpunkt: gelöscht")
         XCTAssertEqual(AlarmStamps.merge(local: gone, remote: kept, now: 5_000).alarms, [])
         let newer = AlarmSnapshot(alarms: [alarm(7)], updatedAt: 5_001, stamps: ["a": 5_001])
-        XCTAssertEqual(AlarmStamps.merge(local: newer, remote: gone, now: 5_001).alarms, [alarm(7)], "1 ms neuer: bleibt")
+        XCTAssertEqual(AlarmStamps.merge(local: newer, remote: gone, now: 5_001).alarms, [alarm(7)],
+                       "1 ms neuer: bleibt")
     }
 
     // MARK: Anwendungskontext nicht zweimal
@@ -164,11 +171,13 @@ final class AlarmAutoOffTests: XCTestCase {
         let base = AlarmSnapshot(alarms: [alarm(7)], updatedAt: 1_000, stamps: ["a": 900], deleted: ["b": 800])
         XCTAssertEqual(AlarmStamps.fingerprint(base), AlarmStamps.fingerprint(base))
         let variants = [
-            AlarmSnapshot(alarms: [alarm(7, enabled: false)], updatedAt: 1_000, stamps: ["a": 900], deleted: ["b": 800]),
+            AlarmSnapshot(alarms: [alarm(7, enabled: false)], updatedAt: 1_000, stamps: ["a": 900],
+                          deleted: ["b": 800]),
             AlarmSnapshot(alarms: [alarm(7)], updatedAt: 1_001, stamps: ["a": 900], deleted: ["b": 800]),
             AlarmSnapshot(alarms: [alarm(7)], updatedAt: 1_000, stamps: ["a": 901], deleted: ["b": 800]),
             AlarmSnapshot(alarms: [alarm(7)], updatedAt: 1_000, stamps: ["a": 900], deleted: [:]),
-            AlarmSnapshot(alarms: [alarm(7)], updatedAt: 1_000, stamps: ["a": 900], deleted: ["b": 800], perAlarm: false),
+            AlarmSnapshot(alarms: [alarm(7)], updatedAt: 1_000, stamps: ["a": 900], deleted: ["b": 800],
+                          perAlarm: false),
         ]
         for variant in variants { XCTAssertNotEqual(AlarmStamps.fingerprint(variant), AlarmStamps.fingerprint(base)) }
     }
@@ -184,7 +193,8 @@ final class AlarmAutoOffTests: XCTestCase {
         XCTAssertEqual(state.updatedAtMs, TimeBounds.millis(at(8)))
         XCTAssertNil(state.consent)
         // Die Uhr mit dem Stand eines früheren iPhones übernimmt den frischen Stand.
-        let old = LearningSnapshot(active: true, floor: 0.02, restingHeartRate: nil, updatedAtMs: TimeBounds.millis(at(8, day: 13)))
+        let old = LearningSnapshot(active: true, floor: 0.02, restingHeartRate: nil,
+                                   updatedAtMs: TimeBounds.millis(at(8, day: 13)))
         XCTAssertTrue(state.snapshot.replaces(old))
     }
 }

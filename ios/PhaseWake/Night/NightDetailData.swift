@@ -41,7 +41,9 @@ struct NightDetailData {
         } else if let session = item.session {
             let stages = StageStats.forSession(session)
             timeline = session.hasStages
-                ? StageTimeline(start: session.start, totalMinutes: max(1, session.end.timeIntervalSince(session.start) / 60), steps: session.steps,
+                ? StageTimeline(start: session.start,
+                                totalMinutes: max(1, session.end.timeIntervalSince(session.start) / 60),
+                                steps: session.steps,
                                 timeZone: session.timeZone)
                 : nil
             self.stages = stages
@@ -98,9 +100,11 @@ private struct MetricTile: View {
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(StageColors.track(scheme).opacity(scheme == .dark ? 0.6 : 0.7), in: RoundedRectangle(cornerRadius: 16))
+        .background(StageColors.track(scheme).opacity(scheme == .dark ? 0.6 : 0.7),
+                    in: RoundedRectangle(cornerRadius: 16))
         // Hauch der Hauptfarbe oben (dunkel 18 %, hell 10 %, wie Android `tileTop`).
-        .background(LinearGradient(colors: [Brand.accent(scheme).opacity(scheme == .dark ? 0.18 : 0.10), .clear], startPoint: .top, endPoint: .bottom),
+        .background(LinearGradient(colors: [Brand.accent(scheme).opacity(scheme == .dark ? 0.18 : 0.10), .clear],
+                                   startPoint: .top, endPoint: .bottom),
                     in: RoundedRectangle(cornerRadius: 16))
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(title)

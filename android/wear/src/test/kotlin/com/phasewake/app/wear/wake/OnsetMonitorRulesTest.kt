@@ -85,8 +85,14 @@ class OnsetMonitorRulesTest {
         val lead = OnsetMonitor.SAMPLE_LEAD_MS * 1_000_000L
         for (now in listOf(start, start + 1, start + epoch / 2, start + 7 * epoch + 123)) {
             val tick = OnsetRules.nextTick(start, now)
-            assertTrue(tick >= now + OnsetMonitor.TICK_INTERVAL.toNanos() - epoch / 2 - lead, "5 Min, höchstens eine halbe Epoche früher")
-            assertTrue(tick <= now + OnsetMonitor.TICK_INTERVAL.toNanos() + epoch / 2, "höchstens eine halbe Epoche später")
+            assertTrue(
+                tick >= now + OnsetMonitor.TICK_INTERVAL.toNanos() - epoch / 2 - lead,
+                "5 Min, höchstens eine halbe Epoche früher",
+            )
+            assertTrue(
+                tick <= now + OnsetMonitor.TICK_INTERVAL.toNanos() + epoch / 2,
+                "höchstens eine halbe Epoche später",
+            )
             assertEquals(0L, (tick + lead - start) % epoch, "kurz vor einer Epochengrenze")
         }
         // Erster Alarm nach dem Start: Stichprobe ab Epoche 10, nicht 11.
@@ -130,11 +136,16 @@ class OnsetMonitorRulesTest {
 
     @Test
     fun statLineIsCompact() {
-        val line = OnsetRules.statLine("auto onset", false, 1500, 6, 1, 0.0234, 0.031, 0.05, 0.02, 186, 43)
-        assertEquals("auto onset stat wake=0 samples=1500 epochs=6 empty=1 motion=0.0234/0.0310 thr=0.0500 floor=0.0200 wl=186s bat=43", line)
+        val stat = OnsetRules.Stat("auto onset", false, 1500, 6, 1, 0.0234, 0.031, 0.05, 0.02, 186, 43)
+        val line = OnsetRules.statLine(stat)
+        assertEquals(
+            "auto onset stat wake=0 samples=1500 epochs=6 empty=1 motion=0.0234/0.0310 thr=0.0500 floor=0.0200 " +
+                "wl=186s bat=43",
+            line,
+        )
         assertEquals(
             "onset stat wake=1 samples=0 epochs=0 empty=0 motion=-/- thr=0.0020 floor=- wl=0s bat=-",
-            OnsetRules.statLine("onset", true, 0, 0, 0, null, null, 0.002, null, 0, null),
+            OnsetRules.statLine(OnsetRules.Stat("onset", true, 0, 0, 0, null, null, 0.002, null, 0, null)),
         )
     }
 
@@ -161,7 +172,9 @@ class OnsetMonitorRulesTest {
         assertFalse(OnsetRules.restless(quiet.mapIndexed { i, m -> if (i == 9) 0.2 else m }, List(40) { true }, 0.1))
         assertTrue(OnsetRules.restless(quiet.mapIndexed { i, m -> if (i == 10) 0.2 else m }, List(40) { true }, 0.1))
         // Ungemessen oder leer: nicht unruhig.
-        assertFalse(OnsetRules.restless(quiet.mapIndexed { i, m -> if (i == 39) 0.2 else m }, List(40) { it != 39 }, 0.1))
+        assertFalse(
+            OnsetRules.restless(quiet.mapIndexed { i, m -> if (i == 39) 0.2 else m }, List(40) { it != 39 }, 0.1),
+        )
         assertFalse(OnsetRules.restless(quiet.mapIndexed { i, m -> if (i == 39) null else m }, List(40) { true }, 0.1))
     }
 

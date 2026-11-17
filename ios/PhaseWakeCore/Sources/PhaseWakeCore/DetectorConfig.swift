@@ -33,7 +33,8 @@ public struct DetectorConfig: Equatable, Sendable {
 
     /// Startwerte.
     public static let standard = DetectorConfig(
-        unchecked: defaultLightThreshold, defaultWakeThreshold, defaultHeartRateRise, defaultWarmupEpochs, 3, 2, 4, 2, nil, nil, nil
+        unchecked: defaultLightThreshold, defaultWakeThreshold, defaultHeartRateRise, defaultWarmupEpochs, 3, 2, 4, 2,
+        nil, nil, nil
     )
 
     /// Bewegung (m/s²), ab der eine Epoche als leichte Bewegung zählt.
@@ -132,7 +133,8 @@ public struct DetectorConfig: Equatable, Sendable {
     /// als keiner. Identisch zu `DetectorConfig.withLearned` (Kotlin).
     func withLearned(floor: Double?, restingHeartRate: Double?) -> DetectorConfig {
         DetectorConfig(
-            unchecked: lightThreshold, wakeThreshold, heartRateRise, warmupEpochs, awakeWindow, awakeHits, lightWindow, lightHits,
+            unchecked: lightThreshold, wakeThreshold, heartRateRise, warmupEpochs, awakeWindow, awakeHits, lightWindow,
+            lightHits,
             Learning.validFloor(floor), Learning.validRestingHeartRate(restingHeartRate), onsetFloor
         )
     }

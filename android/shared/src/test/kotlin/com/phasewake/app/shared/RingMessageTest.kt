@@ -83,6 +83,9 @@ class RingMessageTest {
         val decoded = RingMessage.decode("a1|$max|$max|2|$max".encodeToByteArray())
         assertEquals(RingMessage(alarmId = "a1", snoozesLeft = 2), decoded)
         assertEquals(false, decoded.isCurrent())
-        assertEquals(RingMessage(alarmId = "a1", target = null, sentAt = null), RingMessage.decode("a1|-5|-1".encodeToByteArray()))
+        assertEquals(
+            RingMessage(alarmId = "a1", target = null, sentAt = null),
+            RingMessage.decode("a1|-5|-1".encodeToByteArray()),
+        )
     }
 }

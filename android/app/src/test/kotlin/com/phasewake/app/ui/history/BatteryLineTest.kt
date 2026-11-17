@@ -32,15 +32,27 @@ class BatteryLineTest {
     private fun at(minute: Long): Instant = t0.plus(Duration.ofMinutes(minute))
 
     private fun track(from: Int, to: Int, plugged: Boolean = false, start: Long = 0, end: Long = 600) =
-        listOf(BatteryPoint(at(start), from, plugged, BatteryMark.START), BatteryPoint(at(end), to, plugged, BatteryMark.END))
+        listOf(
+            BatteryPoint(at(start), from, plugged, BatteryMark.START),
+            BatteryPoint(at(end), to, plugged, BatteryMark.END),
+        )
 
     private fun night(watch: List<BatteryPoint>? = null, phone: List<BatteryPoint>? = null) =
-        NightRecord("a", at(570), at(600), at(590), WakeReason.LIGHT_SLEEP, 0, emptyList(), watchBattery = watch, phoneBattery = phone)
+        NightRecord(
+            "a", at(570), at(600), at(590), WakeReason.LIGHT_SLEEP, 0, emptyList(), watchBattery = watch,
+            phoneBattery = phone,
+        )
 
     @Test
     fun bothParts() {
         val text = batteryLine(context, night(track(80, 66), track(50, 47)))
-        assertEquals(context.getString(R.string.battery_night, context.getString(R.string.battery_watch, 14) + " · " + context.getString(R.string.battery_phone, 3)), text)
+        assertEquals(
+            context.getString(
+                R.string.battery_night,
+                context.getString(R.string.battery_watch, 14) + " · " + context.getString(R.string.battery_phone, 3),
+            ),
+            text,
+        )
         assertEquals("Battery: Watch −14 % · Phone −3 %", text)
     }
 

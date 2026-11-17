@@ -16,8 +16,10 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
     /// ganzen Stand, darum immer alles).
     /// `sleepGoal`, `autoOnset`: `nil` lässt den Schlüssel weg, die Uhr behält dann ihren Stand
     /// (``afterReset(_:key:in:)``).
-    func publish(_ snapshot: AlarmSnapshot, holidays: HolidayList, sleepGoal: Int?, autoOnset: Bool?, learning: LearningSnapshot) {
-        guard WCSession.default.activationState == .activated, WCSession.default.isPaired, WCSession.default.isWatchAppInstalled else { return }
+    func publish(_ snapshot: AlarmSnapshot, holidays: HolidayList, sleepGoal: Int?, autoOnset: Bool?,
+                 learning: LearningSnapshot) {
+        guard WCSession.default.activationState == .activated, WCSession.default.isPaired,
+              WCSession.default.isWatchAppInstalled else { return }
         var context: [String: Any] = [SyncKeys.holidays: Holidays.encode(holidays)]
         if let sleepGoal { context[SyncKeys.sleepGoal] = Int64(sleepGoal) }
         AlarmStamps.apply(snapshot, to: &context)
@@ -64,7 +66,9 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
 
     private func deliver(_ payload: [String: Any]) {
         if WCSession.default.isReachable {
-            WCSession.default.sendMessage(payload, replyHandler: nil) { _ in WCSession.default.transferUserInfo(payload) }
+            WCSession.default.sendMessage(payload, replyHandler: nil) { _ in
+                WCSession.default.transferUserInfo(payload)
+            }
         } else {
             WCSession.default.transferUserInfo(payload)
         }
@@ -182,37 +186,17 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
             let model = PhoneModel.shared
             switch command {
             case SyncKeys.ring:
-                if stale {
-                    // Verspätet zugestellt (iPhone war ausser Reichweite): nicht mehr klingeln – und die Sicherung
-                    // dieser Nacht bleibt: Ob die Uhr wirklich geweckt hat, zeigt erst ihre Nacht oder ihr «stop».
-                    DiagStore.shared.log(.suppressed, "late ring, backup kept")
-                } else {
-                    model.watchRang()
-                    DiagStore.shared.log(.ring, "watch rang, phone too")
-                    let ring = await model.backup.ringNow(alarmId: alarmId, alarm: model.ringSpec(alarmId), target: target,
-                                                          snoozesLeft: snoozesLeft)
-                    await model.transient.watchRang(alarmId, phoneRing: ring)
-                }
+                await Self.watchRing(model, alarmId: alarmId, target: target, snoozesLeft: snoozesLeft, stale: stale)
             case SyncKeys.stop:
-                let night = RingNight(alarmId: alarmId, target: target)
-                if stale {
-                    // Ein spätes «stop» träfe sonst ein Klingeln, das inzwischen zu einer anderen Nacht gehört.
-                    DiagStore.shared.log(.suppressed, "late stop")
-                } else {
-                    DiagStore.shared.log(.stop, snoozeUntil == nil ? "from watch" : "watch snoozed")
-                    // Nur das Klingeln dieser Nacht; ein zweiter Wecker klingelt weiter.
-                    await model.backup.stopRinging(night: night, snoozed: snoozeUntil != nil)
-                }
-                // Geschlummert: Sicherung kurz nach dem Schlummer-Ende, die Nacht läuft weiter.
-                if let snoozeUntil { await model.backup.watchSnoozed(night: night, until: snoozeUntil) }
-                await model.backup.watchHandled(alarmId: alarmId, target: target)
-                if snoozeUntil == nil { await model.transient.stopArrived(alarmId) }
-                // Endgültig und frisch: Ende der Nacht für den Akku des iPhones.
-                if snoozeUntil == nil, !stale { PhoneBattery.stopped() }
+                await Self.watchStop(model, alarmId: alarmId, target: target, snoozeUntil: snoozeUntil, stale: stale)
             case SyncKeys.nightBegin:
                 // Akku je Nacht: Die Uhr beginnt zu messen, das iPhone auch – nur frisch angekommen gilt «jetzt» als
                 // Beginn.
-                if sentAt != nil, !stale { PhoneBattery.begin() } else { DiagStore.shared.log(.battery, "night battery begin ignored (late)") }
+                if sentAt != nil, !stale {
+                    PhoneBattery.begin()
+                } else {
+                    DiagStore.shared.log(.battery, "night battery begin ignored (late)")
+                }
             case SyncKeys.testAck:
                 model.transient.received(id)
             case SyncKeys.nap:
@@ -228,6 +212,45 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         }
     }
 
+    /// «klingeln» der Uhr: mitklingeln, ausser verspätet zugestellt.
+    @MainActor
+    private static func watchRing(_ model: PhoneModel, alarmId: String?, target: Date?, snoozesLeft: Int,
+                                  stale: Bool) async {
+        if stale {
+            // Verspätet zugestellt (iPhone war ausser Reichweite): nicht mehr klingeln – und die Sicherung
+            // dieser Nacht bleibt: Ob die Uhr wirklich geweckt hat, zeigt erst ihre Nacht oder ihr «stop».
+            DiagStore.shared.log(.suppressed, "late ring, backup kept")
+        } else {
+            model.watchRang()
+            DiagStore.shared.log(.ring, "watch rang, phone too")
+            let ring = await model.backup.ringNow(alarmId: alarmId, alarm: model.ringSpec(alarmId),
+                                                  target: target,
+                                                  snoozesLeft: snoozesLeft)
+            await model.transient.watchRang(alarmId, phoneRing: ring)
+        }
+    }
+
+    /// «stop» der Uhr (`snoozeUntil` gesetzt, wenn sie nur schlummert).
+    @MainActor
+    private static func watchStop(_ model: PhoneModel, alarmId: String?, target: Date?, snoozeUntil: Date?,
+                                  stale: Bool) async {
+        let night = RingNight(alarmId: alarmId, target: target)
+        if stale {
+            // Ein spätes «stop» träfe sonst ein Klingeln, das inzwischen zu einer anderen Nacht gehört.
+            DiagStore.shared.log(.suppressed, "late stop")
+        } else {
+            DiagStore.shared.log(.stop, snoozeUntil == nil ? "from watch" : "watch snoozed")
+            // Nur das Klingeln dieser Nacht; ein zweiter Wecker klingelt weiter.
+            await model.backup.stopRinging(night: night, snoozed: snoozeUntil != nil)
+        }
+        // Geschlummert: Sicherung kurz nach dem Schlummer-Ende, die Nacht läuft weiter.
+        if let snoozeUntil { await model.backup.watchSnoozed(night: night, until: snoozeUntil) }
+        await model.backup.watchHandled(alarmId: alarmId, target: target)
+        if snoozeUntil == nil { await model.transient.stopArrived(alarmId) }
+        // Endgültig und frisch: Ende der Nacht für den Akku des iPhones.
+        if snoozeUntil == nil, !stale { PhoneBattery.stopped() }
+    }
+
     /// Holt den Diagnose-Bericht der Uhr: klein in der Antwort, voll als Datei (`DiagTransfer`, Antwort
     /// `SyncKeys.diagFile`). `nil`, wenn sie nicht erreichbar ist oder nicht antwortet; dann steht «watch report
     /// missing» im Protokoll.
@@ -241,12 +264,14 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
     /// ``requestWatchDiag()`` ohne Protokoll.
     @MainActor
     private func fetchWatchDiag() async -> DiagReport? {
-        guard WCSession.isSupported(), WCSession.default.activationState == .activated, WCSession.default.isReachable else { return nil }
+        guard WCSession.isSupported(), WCSession.default.activationState == .activated,
+              WCSession.default.isReachable else { return nil }
         // Eine Datei einer früheren Anfrage zählt nicht.
         diagFileReport = nil
         let reply: DiagReply = await withCheckedContinuation { continuation in
             WCSession.default.sendMessage([SyncKeys.command: SyncKeys.diagRequest], replyHandler: { reply in
-                continuation.resume(returning: reply[SyncKeys.diagFile] as? Bool == true ? .file : .text(reply[SyncKeys.payload] as? String))
+                continuation.resume(returning: reply[SyncKeys.diagFile] as? Bool == true
+                                    ? .file : .text(reply[SyncKeys.payload] as? String))
             }, errorHandler: { _ in
                 continuation.resume(returning: .text(nil))
             })
@@ -354,14 +379,16 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         // Erlaubnis der Mitteilungen auf der Uhr; fehlt sie (ältere Uhr, noch nicht gefragt), warnt der Nacht-Check
         // nicht. Mit dem Zeitpunkt der Prüfung auf der Uhr; ohne ihn (ältere Uhr) kein Hinweis «veraltet».
         let checkedAt = SyncTime.date(context[SyncKeys.watchNotificationsAt])
-        let notifications: (state: WatchNotifications, checkedAt: Date?)? = (context[SyncKeys.watchNotifications] as? Int64)
+        let notifications: (state: WatchNotifications, checkedAt: Date?)? =
+            (context[SyncKeys.watchNotifications] as? Int64)
             .flatMap(WatchNotifications.init(rawValue:)).map { (state: $0, checkedAt: checkedAt) }
         if !context.isEmpty {
             // Build-Nummer der Uhr (fehlt bei älteren Uhren und lokalem Build: kein Hinweis «verschiedene
             // Testversionen»).
             let build = BuildNumber.watchBuild(in: context)
             Task { @MainActor in
-                PhoneModel.shared.setWatchStatus(battery: level, version: version, notifications: notifications, charging: charging, build: build)
+                PhoneModel.shared.setWatchStatus(battery: level, version: version, notifications: notifications,
+                                                 charging: charging, build: build)
             }
         }
         guard let snapshot = AlarmStamps.snapshot(context: context) else { return }

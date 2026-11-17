@@ -73,7 +73,8 @@ class RecordServiceLearnTest {
     }
 
     private fun battery(percent: Int) =
-        shadowOf(context.getSystemService(BatteryManager::class.java)).setIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY, percent)
+        shadowOf(context.getSystemService(BatteryManager::class.java))
+            .setIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY, percent)
 
     private fun intent(action: String) = Intent(context, RecordService::class.java).setAction(action)
 
@@ -95,7 +96,9 @@ class RecordServiceLearnTest {
 
     /** Aufzeichnung der Lernphase bis [until] (eingestellte Weckzeit). */
     private fun learning(until: Instant): RecordService {
-        val service = launchWith(intent(RecordService.ACTION_START_LEARN).putExtra(RecordService.EXTRA_UNTIL, until.toEpochMilli()))
+        val service = launchWith(
+            intent(RecordService.ACTION_START_LEARN).putExtra(RecordService.EXTRA_UNTIL, until.toEpochMilli()),
+        )
         awaitUntil("Aufzeichnung der Lernphase läuft") { service.active != null }
         return service
     }
@@ -108,7 +111,11 @@ class RecordServiceLearnTest {
 
     /** Gespeicherte Aufzeichnungen direkt aus den Dateien, ohne den Speicher (Grund: [RecordServiceTest]). */
     private fun stored(): List<NightRecording> =
-        File(context.filesDir, "recordings").listFiles().orEmpty().filter { !it.name.contains('.') }.mapNotNull { NightRecording.decode(it.readText()) }
+        File(context.filesDir, "recordings")
+            .listFiles()
+            .orEmpty()
+            .filter { !it.name.contains('.') }
+            .mapNotNull { NightRecording.decode(it.readText()) }
 
     private fun finished(): List<NightRecording> = stored().filter { it.finished }
 
@@ -146,7 +153,9 @@ class RecordServiceLearnTest {
         shadowApp.clearStartedServices()
         RecordReceiver().onReceive(
             context,
-            Intent(context, RecordReceiver::class.java).setAction(RecordControl.ACTION_LEARN_START).putExtra(RecordService.EXTRA_UNTIL, until.toEpochMilli()),
+            Intent(context, RecordReceiver::class.java)
+                .setAction(RecordControl.ACTION_LEARN_START)
+                .putExtra(RecordService.EXTRA_UNTIL, until.toEpochMilli()),
         )
         val started = assertNotNull(shadowApp.nextStartedService)
         assertEquals(RecordService.ACTION_START_LEARN, started.action)
@@ -157,7 +166,11 @@ class RecordServiceLearnTest {
     fun wakeEndsEveryRecordingLearningOffOnlyTheLearningOne() {
         val manual = recording()
         // Lernphase am Handy aus: Eine von Hand begonnene läuft weiter.
-        manual.onStartCommand(intent(RecordService.ACTION_END_LEARN).putExtra(RecordService.EXTRA_REASON, RecordEnd.PHONE.code), 0, 2)
+        manual.onStartCommand(
+            intent(RecordService.ACTION_END_LEARN).putExtra(RecordService.EXTRA_REASON, RecordEnd.PHONE.code),
+            0,
+            2,
+        )
         shadowOf(Looper.getMainLooper()).idle()
         assertNotNull(manual.active, "von Hand begonnen: läuft weiter")
         // Geweckt: Sie endet spätestens jetzt.
@@ -188,7 +201,10 @@ class RecordServiceLearnTest {
         service.onTick()
         awaitFinished(RecordEnd.WAKE)
         assertTrue(RecordControl.endsAtTarget(until, until, nightRunning = false))
-        assertFalse(RecordControl.endsAtTarget(until, until, nightRunning = true), "klingelt noch: endet mit dem Wecken")
+        assertFalse(
+            RecordControl.endsAtTarget(until, until, nightRunning = true),
+            "klingelt noch: endet mit dem Wecken",
+        )
         assertFalse(RecordControl.endsAtTarget(until.minusMillis(1), until, nightRunning = false))
         assertEquals("wake", RecordService.reasonText(RecordEnd.WAKE, null))
     }

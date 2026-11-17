@@ -37,7 +37,13 @@ class SleepGoalTest {
         assertEquals(1 to 2, SleepGoal.weekStatus(listOf(day to 300L, day to 460L, day.minusDays(1) to 200L), 450))
     }
 
-    private fun alarm(id: String, hour: Int, minute: Int, days: Set<DayOfWeek> = DayOfWeek.entries.toSet(), sleep: Int? = null) =
+    private fun alarm(
+        id: String,
+        hour: Int,
+        minute: Int,
+        days: Set<DayOfWeek> = DayOfWeek.entries.toSet(),
+        sleep: Int? = null,
+    ) =
         AlarmSpec(id = id, hour = hour, minute = minute, days = days, sleepDurationMinutes = sleep)
 
     @Test
@@ -68,7 +74,10 @@ class SleepGoalTest {
         assertEquals(Bedtime.bedtime(target, 450, 15), Learning.bedtimeRange(target, 450, 15).second)
         // Diagramm: die Bettzeit-Linie (Minuten ab Mittag) liegt 15 Min früher.
         val sleeps = listOf(SleepSummary(at("2026-10-26T23:00"), at("2026-10-27T06:30"), 450))
-        assertEquals(10 * 60 + 15, ChartData.sleepBars(sleeps, zone, day, target, 450, latencyMinutes = 15)!!.bedtimeMinute)
+        assertEquals(
+            10 * 60 + 15,
+            ChartData.sleepBars(sleeps, zone, day, target, 450, latencyMinutes = 15)!!.bedtimeMinute,
+        )
         assertEquals(10 * 60 + 30, ChartData.sleepBars(sleeps, zone, day, target, 450)!!.bedtimeMinute)
     }
 

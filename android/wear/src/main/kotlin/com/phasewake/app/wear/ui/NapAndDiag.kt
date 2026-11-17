@@ -90,7 +90,11 @@ internal fun NapScreen(initial: Int, onStart: (Int) -> Unit) {
         scrollState = listState,
         edgeButton = { EdgeButton(onClick = { onStart(minutes) }) { Text(stringResource(R.string.nap_start)) } },
     ) { padding ->
-        ScalingLazyColumn(state = listState, contentPadding = padding, modifier = Modifier.fillMaxSize().nightGlow(strength = PAGE_GLOW)) {
+        ScalingLazyColumn(
+            state = listState,
+            contentPadding = padding,
+            modifier = Modifier.fillMaxSize().nightGlow(strength = PAGE_GLOW),
+        ) {
             item { ListHeader { Text(stringResource(R.string.nap_title)) } }
             item {
                 Text(
@@ -104,7 +108,8 @@ internal fun NapScreen(initial: Int, onStart: (Int) -> Unit) {
                 Slider(
                     value = minutes,
                     onValueChange = { minutes = it },
-                    valueProgression = Transient.NAP_MIN_MINUTES..Transient.NAP_MAX_MINUTES step Transient.NAP_STEP_MINUTES,
+                    valueProgression = Transient.NAP_MIN_MINUTES..Transient.NAP_MAX_MINUTES step
+                        Transient.NAP_STEP_MINUTES,
                     modifier = Modifier.fillMaxWidth(),
                 )
             }
@@ -114,18 +119,56 @@ internal fun NapScreen(initial: Int, onStart: (Int) -> Unit) {
 
 /** Diagnose der Uhr: nächster Wecker, Version, Ereignisse (neueste zuerst), Leeren, Ausblenden. */
 @Composable
-internal fun DiagScreen(next: String?, version: String, entries: List<DiagEntry>, onClear: () -> Unit, onHide: () -> Unit) {
+internal fun DiagScreen(
+    next: String?,
+    version: String,
+    entries: List<DiagEntry>,
+    onClear: () -> Unit,
+    onHide: () -> Unit,
+) {
     val listState = rememberScalingLazyListState()
     val zone = ZoneId.systemDefault()
     ScreenScaffold(scrollState = listState) { padding ->
-        ScalingLazyColumn(state = listState, contentPadding = padding, modifier = Modifier.fillMaxSize().nightGlow(strength = PAGE_GLOW)) {
+        ScalingLazyColumn(
+            state = listState,
+            contentPadding = padding,
+            modifier = Modifier.fillMaxSize().nightGlow(strength = PAGE_GLOW),
+        ) {
             item { ListHeader { Text(stringResource(R.string.diag_title)) } }
-            item { Text(stringResource(R.string.diag_next, next ?: "–"), style = MaterialTheme.typography.bodySmall, textAlign = TextAlign.Center) }
-            item { Text(stringResource(R.string.diag_version, version), style = MaterialTheme.typography.bodySmall, color = Brand.Muted) }
+            item {
+                Text(
+                    stringResource(R.string.diag_next, next ?: "–"),
+                    style = MaterialTheme.typography.bodySmall,
+                    textAlign = TextAlign.Center,
+                )
+            }
+            item {
+                Text(
+                    stringResource(R.string.diag_version, version),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Brand.Muted,
+                )
+            }
             // Ruhige Zeilen wie auf dem Start (getönt statt voll Lavendel).
-            item { Button(onClick = onClear, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.filledTonalButtonColors(), label = { Text(stringResource(R.string.diag_clear)) }) }
-            item { Button(onClick = onHide, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.filledTonalButtonColors(), label = { Text(stringResource(R.string.diag_hide)) }) }
-            if (entries.isEmpty()) item { Text(stringResource(R.string.diag_empty), style = MaterialTheme.typography.bodySmall) }
+            item {
+                Button(
+                    onClick = onClear,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.filledTonalButtonColors(),
+                    label = { Text(stringResource(R.string.diag_clear)) },
+                )
+            }
+            item {
+                Button(
+                    onClick = onHide,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.filledTonalButtonColors(),
+                    label = { Text(stringResource(R.string.diag_hide)) },
+                )
+            }
+            if (entries.isEmpty()) item {
+                Text(stringResource(R.string.diag_empty), style = MaterialTheme.typography.bodySmall)
+            }
             entries.sortedByDescending { it.at }.forEach { entry ->
                 item {
                     Text(

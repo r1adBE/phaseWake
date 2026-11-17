@@ -62,7 +62,11 @@ class EveningDarkTest {
             val next = EveningDark.nextChange(now, zone, true, 19 * 60 + 45)!!
             assertTrue(next.isAfter(now), "$now")
             assertEquals(!dark, EveningDark.isDark(next, zone, true, 19 * 60 + 45), "$now → $next")
-            assertEquals(dark, EveningDark.isDark(next.minusSeconds(60).coerceAtLeast(now), zone, true, 19 * 60 + 45), "$now → $next")
+            assertEquals(
+                dark,
+                EveningDark.isDark(next.minusSeconds(60).coerceAtLeast(now), zone, true, 19 * 60 + 45),
+                "$now → $next",
+            )
             now = now.plusSeconds(15 * 60L)
         }
         assertNull(EveningDark.nextChange(now, zone, false, 18 * 60))

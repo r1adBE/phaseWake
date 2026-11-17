@@ -73,7 +73,8 @@ public enum TestRuns {
     public static func encode(_ run: TestRun) -> String {
         [
             run.id, String(AlarmSchedule.millis(run.target)), run.phoneAlert.rawValue,
-            run.seen.sorted { $0.key < $1.key }.map { "\($0.key.rawValue)=\(AlarmSchedule.millis($0.value))" }.joined(separator: ","),
+            run.seen.sorted { $0.key < $1.key }.map { "\($0.key.rawValue)=\(AlarmSchedule.millis($0.value))" }
+                .joined(separator: ","),
         ].joined(separator: "|")
     }
 
@@ -87,6 +88,7 @@ public enum TestRuns {
             guard let step = TestStep(rawValue: parts[0]), parts.count == 2, let ms = Int64(parts[1]) else { continue }
             seen[step] = Date(timeIntervalSince1970: TimeInterval(ms) / 1000)
         }
-        return TestRun(id: f[0], target: Date(timeIntervalSince1970: TimeInterval(target) / 1000), phoneAlert: alert, seen: seen)
+        return TestRun(id: f[0], target: Date(timeIntervalSince1970: TimeInterval(target) / 1000), phoneAlert: alert,
+                       seen: seen)
     }
 }

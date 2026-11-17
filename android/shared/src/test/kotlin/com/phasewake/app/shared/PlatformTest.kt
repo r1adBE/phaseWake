@@ -47,7 +47,8 @@ class PlatformTest {
         manager.notificationPolicy = NotificationManager.Policy(0, 0, 0)
         assertEquals(DoNotDisturb.Alarms.BLOCKED, DoNotDisturb.alarms(app))
         assertTrue(DoNotDisturb.blocksAlarms(app))
-        manager.notificationPolicy = NotificationManager.Policy(NotificationManager.Policy.PRIORITY_CATEGORY_ALARMS, 0, 0)
+        manager.notificationPolicy =
+            NotificationManager.Policy(NotificationManager.Policy.PRIORITY_CATEGORY_ALARMS, 0, 0)
         assertEquals(DoNotDisturb.Alarms.ALLOWED, DoNotDisturb.alarms(app))
         assertFalse(DoNotDisturb.blocksAlarms(app))
     }
@@ -90,8 +91,19 @@ class PlatformTest {
     @Test
     fun readsLegacyNightForMigration() {
         // Früheres Nacht-Paket: liest nur noch die einmalige Umstellung der Uhr.
-        val night = NightRecord("a b", Instant.ofEpochMilli(1_000), Instant.ofEpochMilli(2_000), Instant.ofEpochMilli(1_500), WakeReason.DEADLINE, 0, emptyList())
-        assertEquals(night, WearSync.readNight(DataMap().apply { putString(DataLayer.KEY_TEXT, Codec.encodeNight(night)) }))
+        val night = NightRecord(
+            "a b",
+            Instant.ofEpochMilli(1_000),
+            Instant.ofEpochMilli(2_000),
+            Instant.ofEpochMilli(1_500),
+            WakeReason.DEADLINE,
+            0,
+            emptyList(),
+        )
+        assertEquals(
+            night,
+            WearSync.readNight(DataMap().apply { putString(DataLayer.KEY_TEXT, Codec.encodeNight(night)) }),
+        )
         assertNull(WearSync.readNight(DataMap().apply { putString(DataLayer.KEY_TEXT, "kaputt") }))
     }
 
@@ -123,7 +135,8 @@ class PlatformTest {
         // Nur der Grund geht ins Paket, keine Uhrzeit (Datenpakete tragen nur technische Angaben).
         assertNull(WearSync.readRecorderSkip(noBattery, 10_000L, 1_000L))
         assertNull(WearSync.readRecorderSkip(DataMap(), 10_000L, 1_000L))
-        val skipped = DataMap.fromByteArray(WearSync.statusRequest(true, 25, 10_000L, pulse, RecorderSkip.Reason.BATTERY).data!!)
+        val skipped =
+            DataMap.fromByteArray(WearSync.statusRequest(true, 25, 10_000L, pulse, RecorderSkip.Reason.BATTERY).data!!)
         assertEquals("battery", skipped.getString(DataLayer.KEY_RECORDER_SKIP))
         assertEquals(RecorderSkip.Reason.BATTERY, WearSync.readRecorderSkip(skipped, 10_500L, 1_000L))
         assertNull(WearSync.readRecorderSkip(skipped, 20_000L, 1_000L), "zu alt")
@@ -132,7 +145,13 @@ class PlatformTest {
         assertTrue(WearSync.readCharging(charging, 10_500L, 1_000L))
         assertFalse(WearSync.readCharging(charging, 20_000L, 1_000L))
         assertFalse(WearSync.readCharging(status, 10_500L, 1_000L))
-        assertFalse(WearSync.readCharging(DataMap.fromByteArray(WearSync.statusRequest(true, null, 10_000L, charging = true).data!!), 10_500L, 1_000L))
+        assertFalse(
+            WearSync.readCharging(
+                DataMap.fromByteArray(WearSync.statusRequest(true, null, 10_000L, charging = true).data!!),
+                10_500L,
+                1_000L,
+            ),
+        )
 
         val cancel = WearSync.transientCancelRequest("nap-1", 5L)
         assertEquals(DataLayer.PATH_TRANSIENT_CANCELLED, cancel.uri.path)

@@ -63,8 +63,11 @@ class HomeOrderTest {
         controller.get().setContent {
             PhaseWakeTheme(ThemeMode.LIGHT) {
                 HomeScreen(
-                    listOf(work), lastNight = null, check = NightCheckState(emptyList()), onFix = {}, contentPadding = PaddingValues(),
-                    onAdd = {}, onEdit = {}, onToggle = { _, _ -> }, finding = short, bedtimeFinding = deep, clock = { now },
+                    listOf(work), lastNight = null, check = NightCheckState(emptyList()), onFix = {},
+                    contentPadding = PaddingValues(),
+                    onAdd = {}, onEdit = {}, onToggle = { _, _ -> }, finding = short, bedtimeFinding = deep, clock = {
+                        now
+                    },
                     extras = HomeExtras(onNap = {}, learned = Learning.Values(null, null, 15, 7)),
                 )
             }
@@ -75,7 +78,8 @@ class HomeOrderTest {
 
     /** Stelle des Eintrags [key] in der Liste der Startseite; -1 = fehlt. */
     private fun ComposeTree.index(key: Any): Int {
-        val list = nodes().firstOrNull { it.config.getOrNull(SemanticsProperties.IndexForKey) != null } ?: fail("keine Liste")
+        val list =
+            nodes().firstOrNull { it.config.getOrNull(SemanticsProperties.IndexForKey) != null } ?: fail("keine Liste")
         return list.config[SemanticsProperties.IndexForKey](key)
     }
 

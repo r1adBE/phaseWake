@@ -113,7 +113,8 @@ data class Trends(
     val feelingLastWeek: Double?,
 ) {
     /** Differenz des Schlafs zur Vorwoche in Minuten; `null` ohne beide Wochen. */
-    val asleepChange: Long? get() = if (asleepThisWeek != null && asleepLastWeek != null) asleepThisWeek - asleepLastWeek else null
+    val asleepChange: Long? get() =
+        if (asleepThisWeek != null && asleepLastWeek != null) asleepThisWeek - asleepLastWeek else null
 
     companion object {
         /** Mindestanzahl Nächte je Woche für einen Durchschnitt; darunter `null`. */
@@ -150,7 +151,11 @@ data class Trends(
 
             // Einschlafzeit als Minuten ab Mittag, damit 23:30 und 00:30 nahe beieinander liegen; ohne Sprung um
             // Mittag ([Regularity.unwrap]).
-            val bedtimes = Regularity.unwrap(inRange(sleeps, { it.end }, twoWeeksAgo, now).map { Regularity.minutesFromNoon(it.start, it.zoneOr(zone)) })
+            val bedtimes = Regularity.unwrap(
+                inRange(sleeps, { it.end }, twoWeeksAgo, now).map {
+                    Regularity.minutesFromNoon(it.start, it.zoneOr(zone))
+                },
+            )
             val spread = bedtimes.takeIf { it.size >= MIN_NIGHTS_FOR_SPREAD }?.let { list ->
                 val mean = list.average()
                 list.map { kotlin.math.abs(it - mean) }.average().toLong()

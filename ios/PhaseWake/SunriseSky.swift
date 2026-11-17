@@ -40,7 +40,8 @@ enum SunriseSky {
         }
 
         init(hex: UInt32) {
-            self.init(r: Double((hex >> 16) & 0xFF) / 255, g: Double((hex >> 8) & 0xFF) / 255, b: Double(hex & 0xFF) / 255)
+            self.init(r: Double((hex >> 16) & 0xFF) / 255, g: Double((hex >> 8) & 0xFF) / 255,
+                      b: Double(hex & 0xFF) / 255)
         }
 
         var color: Color { Color(red: r, green: g, blue: b) }
@@ -88,7 +89,8 @@ enum SunriseSky {
 
     static func colors(_ progress: Double) -> Colors {
         let c = palette(progress)
-        return Colors(top: c.top.color, bottom: c.bottom.color, sun: c.sun.color, content: c.content.color, muted: c.muted.color)
+        return Colors(top: c.top.color, bottom: c.bottom.color, sun: c.sun.color, content: c.content.color,
+                      muted: c.muted.color)
     }
 
     /// Himmel an der Stelle (`x`, `y`) als Anteil der Fläche, `aspect` = Höhe / Breite. Rechnet wie `SunriseBackground`
@@ -99,7 +101,13 @@ enum SunriseSky {
         let c = gradient(p)
         let base = mix(c.top, c.bottom, min(1, max(0, y)))
         let d = hypot(x - 0.5, aspect * (y - (1.18 - 0.5 * p))) / (0.45 + 1.05 * p)
-        let alpha: Double = if d >= 1 { 0 } else if d <= 0.35 { 1 - 0.45 * d / 0.35 } else { 0.55 * (1 - (d - 0.35) / 0.65) }
+        let alpha: Double = if d >= 1 {
+            0
+        } else if d <= 0.35 {
+            1 - 0.45 * d / 0.35
+        } else {
+            0.55 * (1 - (d - 0.35) / 0.65)
+        }
         return mix(base, c.sun, alpha)
     }
 

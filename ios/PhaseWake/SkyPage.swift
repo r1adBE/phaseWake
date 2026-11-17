@@ -9,7 +9,9 @@ extension Brand {
     /// Karten der Seiten ausser der Startseite: dunkel die Diagrammkarte #161B3A mit 72 % als dichteres Glas – darauf
     /// behalten Phasenfarben und Ränder auch über dem Abendrot ≥ 3:1 und Schrift ≥ 4.5:1 (auf Android mit
     /// SkyPageContrastTest geprüft, gleiche Werte); hell warmes Weiss FFFCF7.
-    static func panel(_ scheme: ColorScheme) -> Color { scheme == .dark ? Color(hex: 0x161B3A, opacity: 0.72) : Color(hex: 0xFFFCF7) }
+    static func panel(_ scheme: ColorScheme) -> Color {
+        scheme == .dark ? Color(hex: 0x161B3A, opacity: 0.72) : Color(hex: 0xFFFCF7)
+    }
 
     /// Hauptfarbe, die sich nach dem Modus ihrer Umgebung richtet: dunkel Lavendel, hell ein tiefes Lavendel 4436A6,
     /// das auf dem Tageshimmel im Kopf (Navigationsleiste: Zurück, Knöpfe) und auf Creme und Karten ≥ 4.5:1 behält.
@@ -53,7 +55,9 @@ struct SkyPageStyle: ViewModifier {
             .scrollContentBackground(.hidden)
             .background {
                 if dark {
-                    TimelineView(.everyMinute) { c in NightSky(mood: .at(now: c.date, plan: model.nextPlan(now: c.date))) }
+                    TimelineView(.everyMinute) { c in
+                        NightSky(mood: .at(now: c.date, plan: model.nextPlan(now: c.date)))
+                    }
                 } else {
                     Brand.paper.ignoresSafeArea()
                 }
@@ -69,7 +73,8 @@ struct SkyPageStyle: ViewModifier {
     /// Hell: Tageshimmel im Kopf, mit der Stimmung jetzt (Verlauf von oben nach unten wie auf der Startseite).
     private var header: LinearGradient {
         let mood = SkyMood.at(now: Date(), plan: model.nextPlan())
-        return LinearGradient(colors: [mood.dayTop, Color(hex: DaySkyColors.bottom)], startPoint: .top, endPoint: .bottom)
+        return LinearGradient(colors: [mood.dayTop, Color(hex: DaySkyColors.bottom)], startPoint: .top,
+                              endPoint: .bottom)
     }
 }
 

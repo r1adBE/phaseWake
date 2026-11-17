@@ -91,8 +91,15 @@ object Transient {
      * echte Wecker) samt Sonnenaufgang; ohne [base] die Vorgaben. Beenden immer durch Halten.
      */
     fun test(base: AlarmSpec?, now: Instant, zone: ZoneId, uuid: String): TransientPlan {
-        val plan = WakePlan(TEST_PREFIX + uuid, now.plusSeconds(TEST_WINDOW_START_SECONDS), now.plusSeconds(TEST_TARGET_SECONDS))
-        val spec = specFor(plan, base, zone).copy(sunrise = base?.sunrise ?: Sunrise.OFF, sunriseDevice = base?.sunriseDevice ?: SunriseDevice.PHONE)
+        val plan = WakePlan(
+            TEST_PREFIX + uuid,
+            now.plusSeconds(TEST_WINDOW_START_SECONDS),
+            now.plusSeconds(TEST_TARGET_SECONDS),
+        )
+        val spec = specFor(plan, base, zone).copy(
+            sunrise = base?.sunrise ?: Sunrise.OFF,
+            sunriseDevice = base?.sunriseDevice ?: SunriseDevice.PHONE,
+        )
         return TransientPlan(TransientKind.TEST, spec, plan)
     }
 
@@ -103,7 +110,8 @@ object Transient {
     fun nap(base: AlarmSpec?, now: Instant, zone: ZoneId, minutes: Int, uuid: String): TransientPlan {
         val length = minutes.coerceIn(NAP_MIN_MINUTES, NAP_MAX_MINUTES)
         val target = now.plus(Duration.ofMinutes(length.toLong()))
-        val plan = WakePlan(NAP_PREFIX + uuid, target.minus(Duration.ofMinutes(napWindowMinutes(length).toLong())), target)
+        val plan =
+            WakePlan(NAP_PREFIX + uuid, target.minus(Duration.ofMinutes(napWindowMinutes(length).toLong())), target)
         return TransientPlan(TransientKind.NAP, specFor(plan, base, zone), plan)
     }
 
@@ -173,7 +181,11 @@ object Transient {
      */
     fun encode(t: TransientPlan): String = buildString {
         append(HEADER).append('\n')
-        append(listOf(t.kind.name, t.plan.windowStart.toEpochMilli(), t.plan.target.toEpochMilli()).joinToString(SEP)).append('\n')
+        append(listOf(
+            t.kind.name,
+            t.plan.windowStart.toEpochMilli(),
+            t.plan.target.toEpochMilli(),
+        ).joinToString(SEP)).append('\n')
         append(Codec.encodeAlarms(listOf(t.spec)))
     }
 
@@ -182,10 +194,12 @@ object Transient {
         val lines = text.lines()
         if (lines.firstOrNull() != HEADER) throw CodecException("Unbekanntes Format des vorübergehenden Plans")
         val fields = lines.getOrElse(1) { "" }.split(SEP)
-        val kind = TransientKind.entries.firstOrNull { it.name == fields.getOrNull(0) } ?: throw CodecException("Art fehlt")
+        val kind =
+            TransientKind.entries.firstOrNull { it.name == fields.getOrNull(0) } ?: throw CodecException("Art fehlt")
         val start = fields.getOrNull(1)?.toLongOrNull() ?: throw CodecException("Fensterbeginn fehlt")
         val target = fields.getOrNull(2)?.toLongOrNull() ?: throw CodecException("Zielzeit fehlt")
-        val spec = Codec.decodeAlarms(lines.drop(2).joinToString("\n")).firstOrNull() ?: throw CodecException("Wecker fehlt")
+        val spec =
+            Codec.decodeAlarms(lines.drop(2).joinToString("\n")).firstOrNull() ?: throw CodecException("Wecker fehlt")
         if (kindOf(spec.id) != kind || start > target) throw CodecException("Plan passt nicht zur Kennung")
         return TransientPlan(kind, spec, WakePlan(spec.id, Instant.ofEpochMilli(start), Instant.ofEpochMilli(target)))
     }
@@ -227,7 +241,12 @@ enum class TestStep {
  * @property phoneAlert Weckart des Handys; bei [PhoneAlert.OFF] wird «Handy hat mitgeklingelt» nicht geprüft.
  * @property seen Zeitpunkt, zu dem das Handy einen Schritt zuerst gesehen hat.
  */
-data class TestRun(val id: String, val target: Instant, val phoneAlert: PhoneAlert, val seen: Map<TestStep, Instant> = emptyMap())
+data class TestRun(
+    val id: String,
+    val target: Instant,
+    val phoneAlert: PhoneAlert,
+    val seen: Map<TestStep, Instant> = emptyMap(),
+)
 
 /** Auswertung und Format von [TestRun]. */
 object TestRuns {

@@ -48,13 +48,20 @@ import kotlin.math.roundToInt
  * Ob die Uhr «Gute Nacht» anbietet: nur, wenn der nächste Wecker im Einschlaf-Modus ist (wie die Startseite der Galaxy
  * Watch, `HomeContent`). Bei Uhrzeit-Weckern gibt es den Knopf nicht.
  */
-internal fun goodNightOffered(alarms: List<AlarmSpec>, now: Instant, zone: ZoneId, holidays: Set<LocalDate>, done: Map<String, Instant>): Boolean {
+internal fun goodNightOffered(
+    alarms: List<AlarmSpec>,
+    now: Instant,
+    zone: ZoneId,
+    holidays: Set<LocalDate>,
+    done: Map<String, Instant>,
+): Boolean {
     val plan = AlarmSchedule.earliestPlan(alarms, now, zone, holidays, done) ?: return false
     return alarms.firstOrNull { it.id == plan.alarmId }?.sleepDurationMinutes != null
 }
 
 /** Hinweis bei «Einschlafen automatisch erkennen» aus, je Weckerart ([goodNight]: «Gute Nacht» auf der Uhr möglich). */
-internal fun learnAutoHint(goodNight: Boolean): Int = if (goodNight) R.string.learn_auto_hint else R.string.learn_auto_hint_clock
+internal fun learnAutoHint(goodNight: Boolean): Int =
+    if (goodNight) R.string.learn_auto_hint else R.string.learn_auto_hint_clock
 
 class HomeLearning(
     val night: Int?,
@@ -80,7 +87,11 @@ class HomeLearning(
  * «Aufzeichnung läuft seit …» darüber und der Knopf stoppt sie.
  */
 @Composable
-internal fun LearningCard(learning: HomeLearning, record: RecordSync.RecordStatus? = null, onRecord: (Boolean) -> Unit = {}) {
+internal fun LearningCard(
+    learning: HomeLearning,
+    record: RecordSync.RecordStatus? = null,
+    onRecord: (Boolean) -> Unit = {},
+) {
     Card(
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = cardColor()),
@@ -92,7 +103,10 @@ internal fun LearningCard(learning: HomeLearning, record: RecordSync.RecordStatu
             val values = learning.values
             val onConsent = learning.onConsent
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(painterResource(R.drawable.ic_watch), contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                Icon(
+                    painterResource(R.drawable.ic_watch), contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                )
                 Text(
                     when {
                         onConsent != null -> stringResource(R.string.learn_consent_title)
@@ -107,7 +121,9 @@ internal fun LearningCard(learning: HomeLearning, record: RecordSync.RecordStatu
                 LearningConsent(onConsent, MaterialTheme.colorScheme.onSurfaceVariant, Modifier.padding(top = 6.dp))
             } else if (values != null) {
                 LearnedLines(values, MaterialTheme.colorScheme.onSurfaceVariant, Modifier.padding(top = 6.dp))
-                FilledTonalButton(onClick = learning.onSeen, modifier = Modifier.align(Alignment.End).padding(top = 8.dp)) {
+                FilledTonalButton(
+                    onClick = learning.onSeen, modifier = Modifier.align(Alignment.End).padding(top = 8.dp),
+                ) {
                     Text(stringResource(R.string.wake_task_check))
                 }
             } else {
@@ -142,7 +158,10 @@ internal fun LearningCard(learning: HomeLearning, record: RecordSync.RecordStatu
                         }
                     }
                     if (record != null) {
-                        OutlinedButton(onClick = { onRecord(since == null) }, border = outlinedBorder(), modifier = Modifier.padding(start = 8.dp)) {
+                        OutlinedButton(
+                            onClick = { onRecord(since == null) }, border = outlinedBorder(),
+                            modifier = Modifier.padding(start = 8.dp),
+                        ) {
                             Text(stringResource(if (since != null) R.string.record_stop else R.string.record_start))
                         }
                     }
@@ -163,7 +182,10 @@ private fun LastNightMiss(miss: LearnNights.Night) {
         )
         Column(Modifier.padding(start = 10.dp)) {
             Text(stringResource(R.string.learn_last_night), style = MaterialTheme.typography.titleSmall)
-            Text(learnReasonText(context, miss), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(
+                learnReasonText(context, miss), style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
     }
 }
@@ -175,7 +197,10 @@ private fun LastNightMiss(miss: LearnNights.Night) {
 @Composable
 internal fun LearningConsent(onConsent: (Boolean) -> Unit, color: Color, modifier: Modifier = Modifier) {
     Column(modifier) {
-        Text(stringResource(R.string.learn_consent_text, Learning.NIGHTS), style = MaterialTheme.typography.bodyMedium, color = color)
+        Text(
+            stringResource(R.string.learn_consent_text, Learning.NIGHTS), style = MaterialTheme.typography.bodyMedium,
+            color = color,
+        )
         Row(Modifier.align(Alignment.End).padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
             TextButton(onClick = { onConsent(false) }) { Text(stringResource(R.string.learn_consent_later)) }
             FilledTonalButton(onClick = { onConsent(true) }, modifier = Modifier.padding(start = 8.dp)) {
@@ -191,9 +216,18 @@ internal fun LearnedLines(values: Learning.Values, color: Color, modifier: Modif
     val context = LocalContext.current
     Column(modifier) {
         val lines = listOf(
-            stringResource(if (Learning.raisesThresholds(values.floor)) R.string.learned_motion_raised else R.string.learned_motion_default),
-            values.restingHeartRate?.let { stringResource(R.string.learned_pulse, it.roundToInt()) } ?: stringResource(R.string.learned_pulse_none),
-            values.latencyMinutes?.let { stringResource(R.string.learned_latency, Format.duration(context, Duration.ofMinutes(it.toLong()))) }
+            stringResource(
+                if (Learning.raisesThresholds(values.floor)) {
+                    R.string.learned_motion_raised
+                } else {
+                    R.string.learned_motion_default
+                },
+            ),
+            values.restingHeartRate?.let { stringResource(R.string.learned_pulse, it.roundToInt()) } ?:
+                stringResource(R.string.learned_pulse_none),
+            values.latencyMinutes?.let {
+                stringResource(R.string.learned_latency, Format.duration(context, Duration.ofMinutes(it.toLong())))
+            }
                 ?: stringResource(R.string.learned_latency_none),
         )
         for (line in lines) Text(line, style = MaterialTheme.typography.bodyMedium, color = color)
@@ -210,10 +244,19 @@ internal fun BedtimeAdviceCard(from: Instant, until: Instant) {
         elevation = cardLift(),
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
-        Row(Modifier.fillMaxWidth().padding(horizontal = 18.dp, vertical = 14.dp), verticalAlignment = Alignment.CenterVertically) {
-            Icon(painterResource(R.drawable.ic_stat_moon), contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+        Row(
+            Modifier.fillMaxWidth().padding(horizontal = 18.dp, vertical = 14.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Icon(
+                painterResource(R.drawable.ic_stat_moon), contentDescription = null,
+                tint = MaterialTheme.colorScheme.primary,
+            )
             Column(Modifier.padding(start = 14.dp)) {
-                Text(stringResource(R.string.bedtime_advice, Format.time(from), Format.time(until)), style = MaterialTheme.typography.titleMedium)
+                Text(
+                    stringResource(R.string.bedtime_advice, Format.time(from), Format.time(until)),
+                    style = MaterialTheme.typography.titleMedium,
+                )
                 Text(
                     stringResource(R.string.bedtime_advice_hint),
                     style = MaterialTheme.typography.bodySmall,

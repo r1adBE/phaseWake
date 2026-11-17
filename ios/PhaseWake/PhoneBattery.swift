@@ -29,7 +29,8 @@ enum PhoneBattery {
         guard observer == nil else { return }
         // Dauerhaft gehalten: Ohne Überwachung meldet iOS kein Laden (kostet praktisch nichts).
         BatteryMonitoring.shared.acquire()
-        observer = NotificationCenter.default.addObserver(forName: UIDevice.batteryStateDidChangeNotification, object: nil, queue: .main) { _ in
+        observer = NotificationCenter.default.addObserver(forName: UIDevice.batteryStateDidChangeNotification,
+                                                          object: nil, queue: .main) { _ in
             Task { @MainActor in charged() }
         }
     }
@@ -62,11 +63,13 @@ enum PhoneBattery {
     /// sie gleich nach ihrem Ende ankommt, ``BatteryTrack/arrivedFresh(_:now:)``) jetzt beendet.
     static func withPhone(_ night: NightRecord, now: Date = Date()) -> NightRecord {
         if night.phoneBattery != nil { return night }
-        if let done = BatteryTrack.decode(UserDefaults.standard.string(forKey: doneKey)), BatteryTrack.belongs(done, to: night) {
+        if let done = BatteryTrack.decode(UserDefaults.standard.string(forKey: doneKey)),
+           BatteryTrack.belongs(done, to: night) {
             UserDefaults.standard.removeObject(forKey: doneKey)
             return night.with(phoneBattery: done)
         }
-        guard BatteryTrack.arrivedFresh(night, now: now), let track = end(), BatteryTrack.belongs(track, to: night) else { return night }
+        guard BatteryTrack.arrivedFresh(night, now: now), let track = end(),
+              BatteryTrack.belongs(track, to: night) else { return night }
         return night.with(phoneBattery: track)
     }
 
@@ -75,11 +78,13 @@ enum PhoneBattery {
         let open = BatteryTrack.decode(UserDefaults.standard.string(forKey: openKey)) ?? []
         guard !open.isEmpty else { return nil }
         UserDefaults.standard.removeObject(forKey: openKey)
-        guard let r = read(), let track = BatteryTrack.end(open, at: r.at, percent: r.percent, plugged: r.plugged), let last = track.last else {
+        guard let r = read(), let track = BatteryTrack.end(open, at: r.at, percent: r.percent, plugged: r.plugged),
+              let last = track.last else {
             DiagStore.shared.log(.battery, "night battery end unknown")
             return nil
         }
-        DiagStore.shared.log(.battery, "night battery \(BatteryTrack.describe(last)), used \(BatteryTrack.used(track).map { "\($0)%" } ?? "unknown")")
+        let usedText = BatteryTrack.used(track).map { "\($0)%" } ?? "unknown"
+        DiagStore.shared.log(.battery, "night battery \(BatteryTrack.describe(last)), used \(usedText)")
         return track
     }
 

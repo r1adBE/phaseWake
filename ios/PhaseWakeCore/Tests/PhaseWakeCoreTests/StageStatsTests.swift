@@ -8,7 +8,8 @@ final class StageStatsTests: XCTestCase {
 
     private func at(_ minute: Int) -> Date { t0.addingTimeInterval(Double(minute * 60)) }
 
-    private func span(_ from: Int, _ to: Int, _ stage: SleepStage) -> StageSpan { StageSpan(start: at(from), end: at(to), stage: stage) }
+    private func span(_ from: Int, _ to: Int,
+                      _ stage: SleepStage) -> StageSpan { StageSpan(start: at(from), end: at(to), stage: stage) }
 
     /// Bereich von `from` bis `to` (ohne Angabe: bis zum spätesten Ende).
     private func of(_ spans: StageSpan..., from: Int = 0, to: Int? = nil) -> NightStages? {
@@ -49,7 +50,9 @@ final class StageStatsTests: XCTestCase {
 
     func testMergesTouchingBlocksOfTheSameStage() {
         let s = of(span(0, 30, .light), span(30, 50, .light), span(50, 80, .deep))!
-        XCTAssertEqual(s.blocks, [StageBlock(stage: .light, start: at(0), end: at(50)), StageBlock(stage: .deep, start: at(50), end: at(80))])
+        XCTAssertEqual(s.blocks,
+                       [StageBlock(stage: .light, start: at(0), end: at(50)),
+                        StageBlock(stage: .deep, start: at(50), end: at(80))])
         let gap = of(span(0, 30, .light), span(31, 40, .light))!
         XCTAssertEqual(gap.blocks.count, 2)
     }
@@ -63,7 +66,8 @@ final class StageStatsTests: XCTestCase {
         XCTAssertEqual(percents(of(span(0, 1, .deep), span(1, 4, .rem), span(4, 8, .light))!), [0, 38, 50, 13])
         // «Unbekannt» zählt als Schlaf: 30 tief von 60 Min Schlaf = 50 %.
         XCTAssertEqual(of(span(0, 30, .deep), span(30, 60, .unknown))!.total(.deep)?.percent, 50)
-        XCTAssertEqual(StageStats.sleepPercent(42, asleepMinutes: 432), Findings.deepPercent(deepMinutes: 42, asleepMinutes: 432))
+        XCTAssertEqual(StageStats.sleepPercent(42, asleepMinutes: 432),
+                       Findings.deepPercent(deepMinutes: 42, asleepMinutes: 432))
         XCTAssertNil(StageStats.sleepPercent(10, asleepMinutes: 0))
     }
 
@@ -131,7 +135,8 @@ final class StageStatsTests: XCTestCase {
     }
 
     func testForNightUsesTheHypnogramRange() {
-        let night = NightRecord(alarmId: "a", windowStart: at(420), target: at(450), wokeAt: at(440), reason: .lightSleep, snoozes: 0, epochs: [])
+        let night = NightRecord(alarmId: "a", windowStart: at(420), target: at(450), wokeAt: at(440),
+                                reason: .lightSleep, snoozes: 0, epochs: [])
         let stages = [span(0, 200, .light), span(200, 300, .deep), span(300, 445, .rem)]
         let s = StageStats.forNight(stages, night: night)!
         XCTAssertEqual(s.start, at(0))
@@ -153,7 +158,8 @@ final class StageStatsTests: XCTestCase {
     }
 
     func testHistoryKeysAndLookup() {
-        let night = NightRecord(alarmId: "a", windowStart: Date(timeIntervalSince1970: 1), target: Date(timeIntervalSince1970: 2),
+        let night = NightRecord(alarmId: "a", windowStart: Date(timeIntervalSince1970: 1),
+                                target: Date(timeIntervalSince1970: 2),
                                 wokeAt: Date(timeIntervalSince1970: 1.5), reason: .awake, snoozes: 0, epochs: [])
         let date = "2026-10-26"
         let own = HistoryItem(kind: .phaseWake, date: date, night: night)

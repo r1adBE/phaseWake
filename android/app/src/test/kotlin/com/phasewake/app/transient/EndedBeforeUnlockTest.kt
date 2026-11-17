@@ -51,11 +51,16 @@ class EndedBeforeUnlockTest {
         users.setUserUnlocked(false)
         Transients.endedHere(app, nap.plan.alarmId)
         Transients.endedHere(app, "3f2a")
-        assertEquals(listOf(nap.plan.alarmId), BackupDirectBoot.takeEnded(context).also { ids -> ids.forEach { BackupDirectBoot.markEnded(context, it) } })
+        assertEquals(
+            listOf(nap.plan.alarmId),
+            BackupDirectBoot.takeEnded(context).also { ids -> ids.forEach { BackupDirectBoot.markEnded(context, it) } },
+        )
         users.setUserUnlocked(true)
         assertNotNull(runBlocking { app.transient.stored.first() }, "gesperrt nicht angefasst")
         // Nach dem Entsperren (BOOT_COMPLETED an den Zweitwecker): aufgehoben, die Marke ist abgeholt.
-        context.sendBroadcast(Intent(context, BackupAlarm.SystemReceiver::class.java).setAction(Intent.ACTION_BOOT_COMPLETED))
+        context.sendBroadcast(
+            Intent(context, BackupAlarm.SystemReceiver::class.java).setAction(Intent.ACTION_BOOT_COMPLETED)
+        )
         val end = System.nanoTime() + 5_000_000_000L
         while (runBlocking { app.transient.stored.first() } != null) {
             if (System.nanoTime() > end) fail("Plan nicht aufgehoben")

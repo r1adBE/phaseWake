@@ -67,7 +67,13 @@ fun WindowRing(
         for (k in 0 until 4) {
             val f = k / 4f
             val length = if (k == 0) stroke * 1.4f else stroke * 0.9f
-            drawLine(Brand.Muted, at(f, r - stroke * 0.9f), at(f, r - stroke * 0.9f - length), strokeWidth = 1.5.dp.toPx(), cap = StrokeCap.Round)
+            drawLine(
+                Brand.Muted,
+                at(f, r - stroke * 0.9f),
+                at(f, r - stroke * 0.9f - length),
+                strokeWidth = 1.5.dp.toPx(),
+                cap = StrokeCap.Round,
+            )
         }
         val sweep = ((endFraction - startFraction + 1f) % 1f).coerceAtLeast(0.01f) * 360f
         val start = startFraction * 360f - 90f
@@ -78,7 +84,15 @@ fun WindowRing(
         }
         if (showArc) {
             // Leuchtendes Weckfenster: breiter weicher Schein, darauf der Bogen im Verlauf.
-            drawArc(Brand.Wave.copy(alpha = 0.22f), start, sweep * draw, false, topLeft, arcSize, style = Stroke(stroke * 2.2f, cap = StrokeCap.Round))
+            drawArc(
+                Brand.Wave.copy(alpha = 0.22f),
+                start,
+                sweep * draw,
+                false,
+                topLeft,
+                arcSize,
+                style = Stroke(stroke * 2.2f, cap = StrokeCap.Round),
+            )
             drawGlowArc(start, sweep * draw, topLeft, arcSize, stroke)
         }
         // Hohl, damit die Spur durchscheint; Mist hat auf Spur und Nachthimmel über 8 : 1 Kontrast.
@@ -86,12 +100,22 @@ fun WindowRing(
             drawCircle(Brand.Mist, radius = stroke * 0.6f, center = at(bed, r), style = Stroke(1.5.dp.toPx()))
         }
         nowFraction?.let { now ->
-            drawLine(Brand.Moon, at(now, r - stroke * 1.2f), at(now, r + stroke * 1.2f), strokeWidth = 2.5.dp.toPx(), cap = StrokeCap.Round)
+            drawLine(
+                Brand.Moon,
+                at(now, r - stroke * 1.2f),
+                at(now, r + stroke * 1.2f),
+                strokeWidth = 2.5.dp.toPx(),
+                cap = StrokeCap.Round,
+            )
         }
         // Weckpunkt mit ruhendem Schein und Ring (keine Dauerbewegung).
         val dot = at(endFraction, r)
         drawCircle(
-            Brush.radialGradient(listOf(Brand.Wave.copy(alpha = 0.6f), Brand.Wave.copy(alpha = 0f)), center = dot, radius = stroke * 2.4f),
+            Brush.radialGradient(
+                listOf(Brand.Wave.copy(alpha = 0.6f), Brand.Wave.copy(alpha = 0f)),
+                center = dot,
+                radius = stroke * 2.4f,
+            ),
             radius = stroke * 2.4f,
             center = dot,
         )
@@ -108,7 +132,12 @@ private fun DrawScope.drawLeadArc(start: Float, sweep: Float, topLeft: Offset, a
     for (k in 0 until pieces) {
         val t = (k + 0.5f) / pieces
         drawArc(
-            lerp(Brand.Deep, Brand.Echo, t), start + k * piece, piece + if (k < pieces - 1) 0.6f else 0f, false, topLeft, arcSize,
+            lerp(Brand.Deep, Brand.Echo, t),
+            start + k * piece,
+            piece + if (k < pieces - 1) 0.6f else 0f,
+            false,
+            topLeft,
+            arcSize,
             style = Stroke(stroke * 0.55f, cap = StrokeCap.Butt),
         )
     }
@@ -124,10 +153,22 @@ private fun DrawScope.drawGlowArc(start: Float, sweep: Float, topLeft: Offset, a
     val piece = sweep / pieces
     for (k in 0 until pieces) {
         val t = (k + 0.5f) / pieces
-        val color = if (t < 0.7f) lerp(Brand.Glow, Brand.Wave, t / 0.7f) else lerp(Brand.Wave, Brand.Moon, (t - 0.7f) / 0.3f)
+        val color = if (t < 0.7f) {
+            lerp(Brand.Glow, Brand.Wave, t / 0.7f)
+        } else {
+            lerp(Brand.Wave, Brand.Moon, (t - 0.7f) / 0.3f)
+        }
         val cap = if (k == 0 || k == pieces - 1) StrokeCap.Round else StrokeCap.Butt
         // Ein Hauch Überlappung, damit keine Fugen zwischen den Stücken sichtbar sind.
-        drawArc(color, start + k * piece, piece + if (k < pieces - 1) 0.6f else 0f, false, topLeft, arcSize, style = Stroke(stroke, cap = cap))
+        drawArc(
+            color,
+            start + k * piece,
+            piece + if (k < pieces - 1) 0.6f else 0f,
+            false,
+            topLeft,
+            arcSize,
+            style = Stroke(stroke, cap = cap),
+        )
     }
 }
 
@@ -165,7 +206,12 @@ private const val WAVE_PHASE = 0.6f
  * Dauerbewegung auf der Uhr.
  */
 @Composable
-fun PulsingDot(modifier: Modifier = Modifier, pulsing: Boolean = true, color: Color = Brand.Wave, dot: Color = Brand.Moon) {
+fun PulsingDot(
+    modifier: Modifier = Modifier,
+    pulsing: Boolean = true,
+    color: Color = Brand.Wave,
+    dot: Color = Brand.Moon,
+) {
     val t = if (pulsing && watchMotionAllowed()) {
         val v by rememberInfiniteTransition(label = "pulse").animateFloat(
             0f, 1f, infiniteRepeatable(tween(PULSE_MS, easing = LinearEasing)), label = "t",
@@ -200,7 +246,11 @@ internal fun watchMotionAllowed(): Boolean {
     val context = LocalContext.current
     val inspection = LocalInspectionMode.current
     return remember(inspection) {
-        !inspection && Settings.Global.getFloat(context.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f) > 0f
+        !inspection && Settings.Global.getFloat(
+            context.contentResolver,
+            Settings.Global.ANIMATOR_DURATION_SCALE,
+            1f,
+        ) > 0f
     }
 }
 

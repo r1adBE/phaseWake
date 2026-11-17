@@ -156,9 +156,15 @@ internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: Onboardi
     // Himmel wie auf der Startseite; Schrittzahl und «Überspringen» im Kopf (hell ein Stück Tageshimmel), in dessen
     // Farben.
     SkyPage {
-    Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom))) {
+    Column(
+        Modifier.fillMaxSize()
+            .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom))
+    ) {
         SkyHeader(statusBar = true) {
-            Row(Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp, top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+            Row(
+                Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp, top = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
                 Text(
                     if (page < STEPS) stringResource(R.string.onb_step, page + 1, STEPS) else "",
                     style = MaterialTheme.typography.labelLarge,
@@ -166,7 +172,9 @@ internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: Onboardi
                     modifier = Modifier.weight(1f),
                 )
                 if (page < STEPS) {
-                    TextButton(onClick = onDone, colors = ButtonDefaults.textButtonColors(contentColor = skyInk().accent)) { Text(stringResource(R.string.onb_skip)) }
+                    TextButton(
+                        onClick = onDone, colors = ButtonDefaults.textButtonColors(contentColor = skyInk().accent),
+                    ) { Text(stringResource(R.string.onb_skip)) }
                 }
             }
         }
@@ -174,7 +182,8 @@ internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: Onboardi
         // Inhalt senkrecht mittig; längere Schritte scrollen.
         BoxWithConstraints(Modifier.weight(1f)) {
         Column(
-            Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).heightIn(min = maxHeight).padding(vertical = 16.dp),
+            Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).heightIn(min = maxHeight)
+                .padding(vertical = 16.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp, Alignment.CenterVertically),
         ) {
             // Ab Schritt 2 die Welle mit dem Mond, der mit jedem Schritt weiter wandert (wie am iPhone).
@@ -199,7 +208,9 @@ internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: Onboardi
             ) { Text(stringResource(R.string.learn_consent_start)) }
         }
         Row(Modifier.fillMaxWidth().padding(bottom = 12.dp), verticalAlignment = Alignment.CenterVertically) {
-            if (page > 0) OutlinedButton(onClick = { tap { onPage(page - 1) } }, border = outlinedBorder()) { Text(stringResource(R.string.onb_back)) }
+            if (page > 0) OutlinedButton(onClick = { tap { onPage(page - 1) } }, border = outlinedBorder()) {
+                Text(stringResource(R.string.onb_back))
+            }
             Spacer(Modifier.weight(1f))
             when {
                 askLearning -> TextButton(onClick = { tap { model.onLearningConsent(false); onPage(page + 1) } }) {

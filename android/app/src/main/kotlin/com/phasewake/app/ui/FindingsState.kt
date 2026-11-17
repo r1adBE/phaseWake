@@ -52,9 +52,13 @@ internal fun rememberFindings(app: PhaseWakeApp, insights: Insights): FindingsSt
     val today = SleepNotes.nightDate(now, zone)
     val own = remember(recordings) { recordings.orEmpty().mapNotNull(NightRecording::ownOnset) }
     val watch = remember(nights) { nights.orEmpty().mapNotNull(OwnOnset::of) }
-    val facts = remember(insights.sessions, clearedAt, own, watch) { NightFacts.of(insights.sessions, clearedAt, zone, own, watch) }
+    val facts = remember(insights.sessions, clearedAt, own, watch) {
+        NightFacts.of(insights.sessions, clearedAt, zone, own, watch)
+    }
     val all = remember(facts, today) { Findings.of(facts, today, zone) }
     val weekEnd = WeeklySummary.weekEnd(LocalDate.now(zone))
     val weekDeep = remember(facts, weekEnd) { Findings.weekDeep(facts, weekEnd) }
-    return FindingsState(all, Findings.home(all, hidden, now), Findings.home(all, hidden, now, bedtimeAdvice = true), weekDeep) { kind -> app.appScope.launch { app.settings.hideFinding(kind) } }
+    return FindingsState(
+        all, Findings.home(all, hidden, now), Findings.home(all, hidden, now, bedtimeAdvice = true), weekDeep,
+    ) { kind -> app.appScope.launch { app.settings.hideFinding(kind) } }
 }

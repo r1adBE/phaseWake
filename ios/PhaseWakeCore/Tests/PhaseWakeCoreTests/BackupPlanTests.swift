@@ -15,14 +15,16 @@ final class BackupPlanTests: XCTestCase {
         zurich.date(from: DateComponents(year: 2026, month: 10, day: d, hour: h, minute: mi))!
     }
 
-    private func alarm(_ id: String, hour: Int = 7, minute: Int = 0, days: Set<Weekday> = Set(Weekday.allCases)) -> AlarmSpec {
+    private func alarm(_ id: String, hour: Int = 7, minute: Int = 0,
+                       days: Set<Weekday> = Set(Weekday.allCases)) -> AlarmSpec {
         try! AlarmSpec(id: id, hour: hour, minute: minute, days: days)
     }
 
     private func nights(_ specs: [AlarmSpec], now: Date, days: Int = 3, max: Int = 40, suppressed: [String: Date] = [:],
                         first: [String: Date] = [:], skip: Set<String> = []) -> [WakePlan] {
-        BackupPlan.nights(specs, now: now, until: now.addingTimeInterval(TimeInterval(days * 24 * 3600)), maxNights: max,
-                          suppressed: suppressed, firstTargets: first, skip: skip, calendar: zurich)
+        let input = BackupPlan.Input(specs, suppressed: suppressed, firstTargets: first, skip: skip)
+        return BackupPlan.nights(input, now: now, until: now.addingTimeInterval(TimeInterval(days * 24 * 3600)),
+                                 maxNights: max, calendar: zurich)
     }
 
     func testSameTargetGetsBothBackups() {
@@ -44,7 +46,8 @@ final class BackupPlanTests: XCTestCase {
         // Erstes Vorkommen schon vorbei (gemerkt): keine Sicherung für den nächsten Tag.
         XCTAssertTrue(nights([once], now: at(28, 8, 0), first: ["o": at(28, 7, 0)]).isEmpty)
         // Ausgesetzt (die Uhr hat die Nacht übernommen): auch keine.
-        XCTAssertTrue(nights([once], now: at(28, 6, 0), suppressed: ["o": at(28, 7, 2)], first: ["o": at(28, 7, 0)]).isEmpty)
+        XCTAssertTrue(nights([once], now: at(28, 6, 0), suppressed: ["o": at(28, 7, 2)],
+                             first: ["o": at(28, 7, 0)]).isEmpty)
         XCTAssertTrue(nights([once], now: at(28, 6, 0), first: ["o": at(28, 7, 0)], skip: ["o"]).isEmpty)
     }
 

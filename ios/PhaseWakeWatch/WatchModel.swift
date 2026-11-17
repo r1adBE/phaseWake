@@ -33,8 +33,10 @@ final class WatchModel {
         alarms = storage.snapshot().alarms
         sleepGoal = storage.sleepGoal
         transient = SettingsFile.watchSession.string(forKey: Self.transientKey).flatMap { try? Transient.decode($0) }
-        catchUp = SettingsFile.watchSession.data(forKey: Self.catchUpKey).flatMap { try? JSONDecoder().decode(CatchUpWindow.self, from: $0) }
-        goodNight = SettingsFile.watchSession.data(forKey: Self.goodNightKey).flatMap { try? JSONDecoder().decode(GoodNightState.self, from: $0) }
+        catchUp = SettingsFile.watchSession.data(forKey: Self.catchUpKey)
+            .flatMap { try? JSONDecoder().decode(CatchUpWindow.self, from: $0) }
+        goodNight = SettingsFile.watchSession.data(forKey: Self.goodNightKey)
+            .flatMap { try? JSONDecoder().decode(GoodNightState.self, from: $0) }
         recordSince = LearnRecorder.shared.since
         // Zeitzone oder Uhrzeit geändert (Reise): Sitzung und Rückfall hängen an festen Zeitpunkten, also neu planen.
         for name in [Notification.Name.NSSystemTimeZoneDidChange, .NSSystemClockDidChange] {
@@ -55,9 +57,11 @@ final class WatchModel {
     var realPlan: WakePlan? {
         let done = storage.doneUntil
         let holidays = storage.holidays.dates
-        let plan = AlarmSchedule.missedPlan(alarms, catchUp: catchUp, now: now, doneUntil: done, calendar: .gregorianLocal, holidays: holidays)
+        let plan = AlarmSchedule.missedPlan(alarms, catchUp: catchUp, now: now, doneUntil: done,
+                                            calendar: .gregorianLocal, holidays: holidays)
             ?? pendingNight
-            ?? AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: done, calendar: .gregorianLocal, holidays: holidays)
+            ?? AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: done, calendar: .gregorianLocal,
+                                          holidays: holidays)
         return goodNight?.apply(to: plan, spec: alarms.first { $0.id == plan?.alarmId }, now: now, doneUntil: done,
                                 ringLimit: SmartAlarm.ringLimit) ?? plan
     }
@@ -74,11 +78,13 @@ final class WatchModel {
         switch SmartAlarm.shared.phase {
         case .waiting(let plan), .scheduled(let plan):
             // Von «Gute Nacht» vorverlegt: kein Termin des Weckers selbst, darum eigens.
-            if let night = goodNight?.pending(plan, now: now, doneUntil: done[plan.alarmId], ringLimit: SmartAlarm.ringLimit) {
+            if let night = goodNight?.pending(plan, now: now, doneUntil: done[plan.alarmId],
+                                              ringLimit: SmartAlarm.ringLimit) {
                 return night
             }
-            return WatchRules.pendingNight(plan, specs: alarms, now: now, doneUntil: done, ringLimit: SmartAlarm.ringLimit,
-                                           calendar: .gregorianLocal, holidays: holidays)
+            return WatchRules.pendingNight(plan, specs: alarms, now: now, doneUntil: done,
+                                           ringLimit: SmartAlarm.ringLimit, calendar: .gregorianLocal,
+                                           holidays: holidays)
         case .idle:
             return WatchRules.unwokenNight(specs: alarms, now: now, doneUntil: done, delay: SmartAlarm.fallbackDelay,
                                            calendar: .gregorianLocal, holidays: holidays)
@@ -89,15 +95,16 @@ final class WatchModel {
 
     /// Nachzuholender Wecker (Zielzeit schon vorbei), sonst `nil`: Er klingelt gleich, ohne Messung.
     var missedPlan: WakePlan? {
-        AlarmSchedule.missedPlan(alarms, catchUp: catchUp, now: Date(), doneUntil: storage.doneUntil, calendar: .gregorianLocal,
-                                 holidays: storage.holidays.dates)
+        AlarmSchedule.missedPlan(alarms, catchUp: catchUp, now: Date(), doneUntil: storage.doneUntil,
+                                 calendar: .gregorianLocal, holidays: storage.holidays.dates)
     }
 
     /// Eine Nacht, die geweckt hat, ist zu Ende (vor dem Ausschalten eines Einmal-Weckers aufrufen): Zeitraum ab ihrem
     /// Fensterbeginn bis jetzt samt den Weckern merken, die darin fällig wurden – sie werden gleich nachgeholt.
     func noteNightEnded(windowStart: Date) {
-        let window = AlarmSchedule.catchUpAfter(catchUp, windowStart: windowStart, until: Date(), specs: storage.snapshot().alarms,
-                                                calendar: .gregorianLocal, holidays: storage.holidays.dates)
+        let window = AlarmSchedule.catchUpAfter(catchUp, windowStart: windowStart, until: Date(),
+                                                specs: storage.snapshot().alarms, calendar: .gregorianLocal,
+                                                holidays: storage.holidays.dates)
         catchUp = window
         SettingsFile.watchSession.set(try? JSONEncoder().encode(window), forKey: Self.catchUpKey)
     }
@@ -106,7 +113,8 @@ final class WatchModel {
     /// schlummert, oder er überdeckte das nächste Fenster (`Transient.conflict`).
     func conflict(_ candidate: TransientPlan) -> TransientConflict? {
         refresh()
-        let busy = SmartAlarm.shared.phase.isMeasuring || SmartAlarm.shared.phase.isRinging || SmartAlarm.shared.phase.isSnoozed
+        let busy = SmartAlarm.shared.phase.isMeasuring || SmartAlarm.shared.phase.isRinging
+            || SmartAlarm.shared.phase.isSnoozed
         return Transient.conflict(candidate, next: realPlan, nightActive: busy, now: now)
     }
 
@@ -133,7 +141,8 @@ final class WatchModel {
         // Abgelaufen (2 h nach der Zielzeit): verwerfen.
         if let transient, !Transient.isActive(transient, now: now) { setTransient(nil) }
         // «Gute Nacht» einer vorbeigegangenen oder erledigten Nacht verwerfen.
-        if let goodNight, goodNight.expired(now: now, doneUntil: storage.doneUntil[goodNight.alarmId], ringLimit: SmartAlarm.ringLimit) {
+        if let goodNight, goodNight.expired(now: now, doneUntil: storage.doneUntil[goodNight.alarmId],
+                                            ringLimit: SmartAlarm.ringLimit) {
             setGoodNight(nil)
         }
     }
@@ -194,7 +203,8 @@ final class WatchModel {
         guard let transient, transient.kind == .nap else { return }
         endTransient()
         DiagStore.shared.log(.nap, "cancelled")
-        WatchConnectivityBridge.shared.send(command: SyncKeys.transientCancel, extra: [SyncKeys.id: transient.plan.alarmId])
+        WatchConnectivityBridge.shared.send(command: SyncKeys.transientCancel,
+                                            extra: [SyncKeys.id: transient.plan.alarmId])
         transientEnded()
     }
 
@@ -219,7 +229,9 @@ final class WatchModel {
     /// Ein/Aus auf der Uhr; Änderung geht ans iPhone und plant neu.
     func setEnabled(_ alarm: AlarmSpec, _ enabled: Bool) {
         // Unlesbare gespeicherte Wecker: keine Änderung.
-        guard let snapshot = storage.mutate({ list in list.map { $0.id == alarm.id ? $0.with(enabled: enabled) : $0 } }) else { return }
+        guard let snapshot = storage.mutate({ list in
+            list.map { $0.id == alarm.id ? $0.with(enabled: enabled) : $0 }
+        }) else { return }
         alarms = snapshot.alarms
         WatchConnectivityBridge.shared.publish(snapshot)
         reschedule()
@@ -257,8 +269,9 @@ final class WatchModel {
             let old = list.first { $0.id == draft.id }
             var merged = old.map { $0.editedOnWatch(from: draft) } ?? draft
             if let old {
-                merged = merged.with(skipUntil: AlarmSchedule.editedSkip(old: old, edited: merged, requested: skip, now: now, doneUntil: done,
-                                                                         calendar: .gregorianLocal, holidays: holidays))
+                let skipUntil = AlarmSchedule.editedSkip(old: old, edited: merged, requested: skip, now: now,
+                                                         doneUntil: done, calendar: .gregorianLocal, holidays: holidays)
+                merged = merged.with(skipUntil: skipUntil)
             }
             if let i = list.firstIndex(where: { $0.id == draft.id }) {
                 list[i] = merged
@@ -286,7 +299,8 @@ final class WatchModel {
     private func publishEffectivePlan() {
         let current = plan
         // Mit der Zone: Nach einer Reise wird er mit dem neuen Versatz neu geschrieben.
-        guard EffectivePlan.decode(SettingsFile.watchAlarms.object(forKey: EffectivePlan.key), zone: .current) != current else { return }
+        let saved = EffectivePlan.decode(SettingsFile.watchAlarms.object(forKey: EffectivePlan.key), zone: .current)
+        guard saved != current else { return }
         SettingsFile.watchAlarms.set(EffectivePlan.encode(current), forKey: EffectivePlan.key)
     }
 

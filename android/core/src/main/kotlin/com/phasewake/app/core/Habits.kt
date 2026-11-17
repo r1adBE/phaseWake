@@ -55,7 +55,8 @@ object Regularity {
         if (medianDates.isEmpty()) return 0 to 0
         // Ohne Sprung um Mittag ([unwrap]): 11:30 und 12:30 liegen 60 Min auseinander, nicht 1380.
         val dates = medianDates.keys.toList()
-        val minutes = dates.zip(unwrap(dates.map { medianDates.getValue(it).let { b -> minutesFromNoon(b.second, b.third ?: zone) } })).toMap()
+        val noonMinutes = dates.map { medianDates.getValue(it).let { b -> minutesFromNoon(b.second, b.third ?: zone) } }
+        val minutes = dates.zip(unwrap(noonMinutes)).toMap()
         val median = SoundEventDetector.median(minutes.values)
         val week = minutes.filterKeys { it.isAfter(end.minusDays(WEEK_NIGHTS.toLong())) }
         return week.values.count { abs(it - median) <= toleranceMinutes + 1e-9 } to week.size
@@ -98,7 +99,8 @@ object Regularity {
      * Mittlere Uhrzeit der [minutes] (Minuten ab Mittag) ohne Sprung um Mittag ([unwrap]), gerundet (x.5 aufwärts) und
      * wieder in 0 ≤ m < [DAY_MINUTES]. [minutes] darf nicht leer sein.
      */
-    fun meanMinute(minutes: List<Double>): Int = Math.floorMod(Math.round(unwrap(minutes).average()).toInt(), DAY_MINUTES)
+    fun meanMinute(minutes: List<Double>): Int =
+        Math.floorMod(Math.round(unwrap(minutes).average()).toInt(), DAY_MINUTES)
 }
 
 /** Serien: Nächte in Folge mit erreichtem Schlafziel. Keine Punkte, keine Abzeichen. */
@@ -184,7 +186,8 @@ data class WeeklySummary(
         fun weekEnd(today: LocalDate): LocalDate = today.with(TemporalAdjusters.previous(DayOfWeek.SATURDAY))
 
         /** Die Karte im Verlauf erscheint am Sonntag und am Montag. */
-        fun cardVisible(today: LocalDate): Boolean = today.dayOfWeek == DayOfWeek.SUNDAY || today.dayOfWeek == DayOfWeek.MONDAY
+        fun cardVisible(today: LocalDate): Boolean =
+            today.dayOfWeek == DayOfWeek.SUNDAY || today.dayOfWeek == DayOfWeek.MONDAY
 
         /** Nächster Zeitpunkt der Mitteilung echt nach [after]: Sonntag 18:00 Ortszeit. */
         fun nextNotification(after: Instant, zone: ZoneId): Instant {
@@ -279,7 +282,8 @@ object Routine {
      * Bereinigt einen Text: ohne Zeilenumbrüche und «|» (Trennzeichen im Speicher), getrimmt, höchstens
      * [MAX_TEXT_LENGTH] Zeichen.
      */
-    fun cleanText(text: String): String = text.replace('\n', ' ').replace('\r', ' ').replace('|', ' ').trim().take(MAX_TEXT_LENGTH).trim()
+    fun cleanText(text: String): String =
+        text.replace('\n', ' ').replace('\r', ' ').replace('|', ' ').trim().take(MAX_TEXT_LENGTH).trim()
 
     /** Punkte je Zeile «id|Text», höchstens [MAX_ITEMS]; Vorschläge mit leerem Text. */
     fun encodeItems(items: List<RoutineItem>): String =
@@ -294,7 +298,8 @@ object Routine {
             val label = cleanText(line.substringAfter('|', ""))
             when {
                 isBuiltIn(id) -> RoutineItem(id)
-                id.startsWith(CUSTOM_PREFIX) && id.length > CUSTOM_PREFIX.length && label.isNotEmpty() -> RoutineItem(id, label)
+                id.startsWith(CUSTOM_PREFIX) && id.length > CUSTOM_PREFIX.length &&
+                    label.isNotEmpty() -> RoutineItem(id, label)
                 else -> null
             }
         }.distinctBy { it.id }.take(MAX_ITEMS)

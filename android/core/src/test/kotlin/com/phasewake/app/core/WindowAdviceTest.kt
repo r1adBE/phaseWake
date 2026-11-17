@@ -16,14 +16,20 @@ class WindowAdviceTest {
 
     @Test
     fun suggestsWiderWindowWhenMostlyDeadline() {
-        val history = listOf(night(0, WakeReason.DEADLINE), night(1, WakeReason.LIGHT_SLEEP), night(2, WakeReason.DEADLINE))
+        val history =
+            listOf(night(0, WakeReason.DEADLINE), night(1, WakeReason.LIGHT_SLEEP), night(2, WakeReason.DEADLINE))
         assertEquals(WindowAdvice.Suggestion(25, 2, 3), WindowAdvice.suggest(spec, history))
     }
 
     @Test
     fun noAdviceWhenFewNightsOrMostlyGood() {
         assertNull(WindowAdvice.suggest(spec, listOf(night(0, WakeReason.DEADLINE), night(1, WakeReason.DEADLINE))))
-        val mixed = listOf(night(0, WakeReason.DEADLINE), night(1, WakeReason.LIGHT_SLEEP), night(2, WakeReason.AWAKE), night(3, WakeReason.DEADLINE))
+        val mixed = listOf(
+            night(0, WakeReason.DEADLINE),
+            night(1, WakeReason.LIGHT_SLEEP),
+            night(2, WakeReason.AWAKE),
+            night(3, WakeReason.DEADLINE),
+        )
         assertNull(WindowAdvice.suggest(spec, mixed))
     }
 
@@ -42,7 +48,12 @@ class WindowAdviceTest {
     fun exactAndShortNightsDoNotCount() {
         // Nur zwei zählbare Nächte: zu wenig für einen Vorschlag, auch wenn «Genau» und kurze Nächte zur Zielzeit
         // endeten.
-        val history = listOf(night(0, WakeReason.DEADLINE), night(1, WakeReason.EXACT), night(2, WakeReason.SHORT_NIGHT), night(3, WakeReason.DEADLINE))
+        val history = listOf(
+            night(0, WakeReason.DEADLINE),
+            night(1, WakeReason.EXACT),
+            night(2, WakeReason.SHORT_NIGHT),
+            night(3, WakeReason.DEADLINE),
+        )
         assertNull(WindowAdvice.suggest(spec, history))
         assertEquals(3, WindowAdvice.suggest(spec, history + night(4, WakeReason.LIGHT_SLEEP))?.nights)
     }

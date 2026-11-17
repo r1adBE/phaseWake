@@ -36,16 +36,19 @@ final class GregorianCalendarTests: XCTestCase {
 
     func testHolidaysResolveWithBuddhistToday() {
         let today = NightDate.today(at("2026-10-29T08:00"), calendar: buddhist)
-        XCTAssertEqual(Holidays.resolve(national: ["2026-10-31", "2569-10-31"], regional: [], today: today, days: 10), ["2026-10-31"])
+        XCTAssertEqual(Holidays.resolve(national: ["2026-10-31", "2569-10-31"], regional: [], today: today, days: 10),
+                       ["2026-10-31"])
     }
 
     func testHolidaySkippedWithBuddhistCalendar() throws {
         let weekdays: Set<Weekday> = [.monday, .tuesday, .wednesday, .thursday, .friday]
         let alarm = try AlarmSpec(id: "a", hour: 7, minute: 0, days: weekdays, skipHolidays: true)
         // Donnerstag, 29. Oktober 2026, ist Feiertag: geweckt wird erst am Freitag.
-        let target = AlarmSchedule.nextTarget(alarm, now: at("2026-10-28T22:00"), calendar: buddhist, holidays: ["2026-10-29"])
+        let target = AlarmSchedule.nextTarget(alarm, now: at("2026-10-28T22:00"), calendar: buddhist,
+                                              holidays: ["2026-10-29"])
         XCTAssertEqual(target, at("2026-10-30T07:00"))
-        XCTAssertEqual(AlarmSchedule.skippedHoliday(alarm, now: at("2026-10-28T22:00"), calendar: buddhist, holidays: ["2026-10-29"]),
+        XCTAssertEqual(AlarmSchedule.skippedHoliday(alarm, now: at("2026-10-28T22:00"), calendar: buddhist,
+                                                    holidays: ["2026-10-29"]),
                        "2026-10-29")
     }
 

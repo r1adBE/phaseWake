@@ -53,7 +53,9 @@ class EditsElsewhereTest {
     private fun settle(tree: ComposeTree, what: String, check: () -> Boolean) {
         val end = System.nanoTime() + 20_000_000_000L
         while (!(try { check() } catch (e: AssertionError) { false })) {
-            if (System.nanoTime() > end) error("$what; Texte: ${try { tree.texts() } catch (e: AssertionError) { listOf(e.message) }}")
+            if (System.nanoTime() > end) error(
+                "$what; Texte: ${try { tree.texts() } catch (e: AssertionError) { listOf(e.message) }}"
+            )
             Thread.sleep(20)
             shadowOf(Looper.getMainLooper()).idle()
             tree.idle(200)
@@ -74,7 +76,8 @@ class EditsElsewhereTest {
         return tree
     }
 
-    private fun alarm(id: String, label: String = "") = AlarmSpec(id = id, hour = 7, minute = 0, days = setOf(DayOfWeek.MONDAY), label = label)
+    private fun alarm(id: String, label: String = "") =
+        AlarmSpec(id = id, hour = 7, minute = 0, days = setOf(DayOfWeek.MONDAY), label = label)
 
     /** Der bearbeitete Wecker wird anderswo gelöscht: Hinweis, Editor zu, kein neuer Wecker aus den Eingaben. */
     @Test
@@ -83,9 +86,11 @@ class EditsElsewhereTest {
         // Zur Zeile scrollen: Am Abend stehen mehr Karten über der Liste und schieben sie aus dem Bild.
         settle(tree, "Startseite zeigt den Wecker nicht") {
             tree.scrollToKey("work")
-            tree.nodes().any { it.config.getOrNull(SemanticsActions.OnClick) != null && tree.text(it).contains("Arbeit") }
+            tree.nodes()
+                .any { it.config.getOrNull(SemanticsActions.OnClick) != null && tree.text(it).contains("Arbeit") }
         }
-        val item = tree.nodes().first { it.config.getOrNull(SemanticsActions.OnClick) != null && tree.text(it).contains("Arbeit") }
+        val item = tree.nodes()
+            .first { it.config.getOrNull(SemanticsActions.OnClick) != null && tree.text(it).contains("Arbeit") }
         item.config[SemanticsActions.OnClick].action!!.invoke()
         tree.idle(1_000)
         val edit = context.getString(R.string.editor_edit)
@@ -93,7 +98,8 @@ class EditsElsewhereTest {
         tree.click(context.getString(R.string.editor_mode_sleep))
         runBlocking { context.phoneApp.alarms.remove("work") }
         settle(tree, "Editor bleibt offen, obwohl der Wecker gelöscht ist") {
-            !tree.shows(edit) && !tree.shows(context.getString(R.string.editor_new)) && tree.shows(context.getString(R.string.nav_history))
+            !tree.shows(edit) && !tree.shows(context.getString(R.string.editor_new)) &&
+                tree.shows(context.getString(R.string.nav_history))
         }
         tree.idle(1_000)
         assertEquals(context.getString(R.string.editor_alarm_gone), ShadowToast.getTextOfLatestToast())
@@ -159,7 +165,10 @@ class EditsElsewhereTest {
         openSettings(tree)
         tree.click(context.getString(R.string.test_button))
         tree.idle(1_000)
-        assertTrue(DialogNodes.texts().contains(context.getString(R.string.test_replaces_nap)), "Keine Rückfrage: ${DialogNodes.texts()}")
+        assertTrue(
+            DialogNodes.texts().contains(context.getString(R.string.test_replaces_nap)),
+            "Keine Rückfrage: ${DialogNodes.texts()}",
+        )
         assertEquals(TransientKind.NAP, runBlocking { context.phoneApp.transient.active() }?.kind)
         DialogNodes.click(context.getString(R.string.action_cancel))
         tree.idle(500)

@@ -29,9 +29,11 @@ class BatteryNightTest {
     private val t0 = Instant.parse("2026-11-13T21:00:00Z")
     private val logged = mutableListOf<String>()
 
-    private fun r(minute: Long, percent: Int, plugged: Boolean = false) = BatteryNight.Reading(t0.plus(Duration.ofMinutes(minute)), percent, plugged)
+    private fun r(minute: Long, percent: Int, plugged: Boolean = false) =
+        BatteryNight.Reading(t0.plus(Duration.ofMinutes(minute)), percent, plugged)
 
-    private fun pendingJob(): Boolean = context.getSystemService(JobScheduler::class.java).getPendingJob(BatteryNight.JOB_ID) != null
+    private fun pendingJob(): Boolean =
+        context.getSystemService(JobScheduler::class.java).getPendingJob(BatteryNight.JOB_ID) != null
 
     @After
     fun tearDown() {
@@ -50,7 +52,17 @@ class BatteryNightTest {
         BatteryNight.charged(context, r(240, 95))
         BatteryNight.sample(context, r(500, 92))
         val track = assertNotNull(BatteryNight.end(context, r(600, 90)))
-        assertEquals(listOf(BatteryMark.START, BatteryMark.SAMPLE, BatteryMark.PLUG, BatteryMark.UNPLUG, BatteryMark.SAMPLE, BatteryMark.END), track.map { it.mark })
+        assertEquals(
+            listOf(
+                BatteryMark.START,
+                BatteryMark.SAMPLE,
+                BatteryMark.PLUG,
+                BatteryMark.UNPLUG,
+                BatteryMark.SAMPLE,
+                BatteryMark.END,
+            ),
+            track.map { it.mark },
+        )
         assertEquals(15, BatteryTrack.used(track))
         assertFalse(pendingJob(), "nach dem Ende kein Auftrag mehr")
         assertEquals("night battery start 80% unplugged", logged.first())

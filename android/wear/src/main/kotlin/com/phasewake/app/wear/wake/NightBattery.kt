@@ -29,5 +29,7 @@ internal fun nightBatteryBegin(context: Context, alarmId: String?, target: Insta
  * Nacht im Verlauf und wird verworfen. Sonst endet er mit der Nacht ([WakeService.finishNight]).
  */
 internal fun nightBatteryRecordEnded(context: Context) {
-    if (WakeService.activePlan == null && !WakeService.goodNightActive) BatteryNight.drop(context, "recording ended without alarm night")
+    if (WakeService.activePlan == null && !WakeService.goodNightActive) {
+        BatteryNight.drop(context, "recording ended without alarm night")
+    }
 }

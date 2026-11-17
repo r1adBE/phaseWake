@@ -6,10 +6,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.hardware.Sensor
-import android.hardware.SensorEvent
-import android.hardware.SensorEventListener
-import android.hardware.SensorManager
 import android.os.BatteryManager
 import android.os.Handler
 import android.os.Looper
@@ -119,12 +115,13 @@ class OnsetMonitor(
      */
     private val chargingTimes = mutableListOf<Pair<Long, Long?>>()
     private val powerReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) = onPower(intent.action == Intent.ACTION_POWER_CONNECTED)
+        override fun onReceive(context: Context, intent: Intent) =
+            onPower(intent.action == Intent.ACTION_POWER_CONNECTED)
     }
 
     /** Netzteil an ([plugged]) oder ab: Zeit am Ladegerät beginnen bzw. beenden. */
     private fun onPower(plugged: Boolean) {
-        if (mark(chargingTimes, plugged, SystemClock.elapsedRealtimeNanos())) {
+        if (markAway(chargingTimes, plugged, SystemClock.elapsedRealtimeNanos())) {
             log(DiagKind.BATTERY, "$label ${if (plugged) "charging, waiting" else "charging ended"}")
         }
         // Die automatische Messung begann trotz wenig Akku, weil die Uhr lud; ist er nach dem Laden noch zu tief, endet
@@ -133,42 +130,11 @@ class OnsetMonitor(
         if (!plugged && !reported && AutoOnset.skipForBattery(battery())) { reported = true; stop() }
     }
 
-    /**
-     * Zeiten nicht am Handgelenk laut Off-Body-Sensor, wie [chargingTimes]. Ohne Sensor
-     * oder ohne Meldung leer: Dann gilt nur die Ladeerkennung.
-     */
-    private val offBodyTimes = mutableListOf<Pair<Long, Long?>>()
-    private val sensorManager by lazy { context.getSystemService(SensorManager::class.java) }
-
-    /** Aufweckender Off-Body-Sensor (stromsparend, meldet nur Wechsel), sonst der gewöhnliche; `null` ohne. */
-    private val offBodySensor: Sensor? by lazy {
-        sensorManager?.getDefaultSensor(Sensor.TYPE_LOW_LATENCY_OFFBODY_DETECT, true)
-            ?: sensorManager?.getDefaultSensor(Sensor.TYPE_LOW_LATENCY_OFFBODY_DETECT)
+    /** Nicht am Handgelenk laut Off-Body-Sensor; die Zeiten dazu in [OffBodyWatch.times]. */
+    private val offBody = OffBodyWatch(context) { off ->
+        log(DiagKind.BATTERY, "$label ${if (off) "not worn, waiting" else "worn again"}")
     }
-    private val offBodyListener = object : SensorEventListener {
-        override fun onSensorChanged(event: SensorEvent) {
-            if (event.sensor?.type?.let { it != Sensor.TYPE_LOW_LATENCY_OFFBODY_DETECT } == true) return
-            onOffBody(OnsetRules.offBody(event.values.firstOrNull()), event.timestamp)
-        }
-
-        override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) = Unit
-    }
-
-    /** Off-Body-Sensor: nicht am Handgelenk ([off]) ab [atNanos] bzw. wieder getragen. */
-    private fun onOffBody(off: Boolean?, atNanos: Long) {
-        if (off == null) return
-        if (mark(offBodyTimes, off, atNanos)) log(DiagKind.BATTERY, "$label ${if (off) "not worn, waiting" else "worn again"}")
-    }
-
-    /**
-     * Beginnt ([away]) oder beendet in [times] eine Zeit ohne Tragen bei [atNanos]; `true`, wenn sich etwas änderte.
-     */
-    private fun mark(times: MutableList<Pair<Long, Long?>>, away: Boolean, atNanos: Long): Boolean {
-        val open = times.lastOrNull()?.takeIf { it.second == null }
-        if (away && open == null) times += atNanos to null
-        if (!away && open != null) times[times.size - 1] = open.first to atNanos
-        return away == (open == null)
-    }
+    private val offBodyTimes get() = offBody.times
 
     private val endSample = Runnable { endSample() }
 
@@ -179,12 +145,23 @@ class OnsetMonitor(
         if (session != null || ended) return
         started = now()
         startNanos = SystemClock.elapsedRealtimeNanos()
-        val s = SensorSession(context, startNanos, SystemClock::elapsedRealtimeNanos, lowPower = true) { epochs -> onEpochs(epochs) }
+        val s = SensorSession(context, startNanos, SystemClock::elapsedRealtimeNanos, lowPower = true) { epochs ->
+            onEpochs(epochs)
+        }
         session = s
         period.reset(SystemClock.elapsedRealtime(), 0L)
-        log(DiagKind.MEASURE_START, "$label sensor wake=${if (s.continuous) 1 else 0} fifo=${s.wakeUpFifo} mode=${if (s.continuous) "continuous" else "sample"}")
+        log(
+            DiagKind.MEASURE_START,
+            "$label sensor wake=${if (s.continuous) 1 else 0} fifo=${s.wakeUpFifo} " +
+                "mode=${if (s.continuous) "continuous" else "sample"}",
+        )
         s.start(listen = s.continuous)
-        ContextCompat.registerReceiver(context, tickReceiver, IntentFilter(ACTION_TICK), ContextCompat.RECEIVER_NOT_EXPORTED)
+        ContextCompat.registerReceiver(
+            context,
+            tickReceiver,
+            IntentFilter(ACTION_TICK),
+            ContextCompat.RECEIVER_NOT_EXPORTED,
+        )
         // Uhr am Ladegerät: Stand jetzt, danach jede Änderung (Systemmeldungen erreichen auch nicht exportierte
         // Empfänger).
         val battery = context.registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
@@ -195,7 +172,7 @@ class OnsetMonitor(
         }
         ContextCompat.registerReceiver(context, powerReceiver, power, ContextCompat.RECEIVER_NOT_EXPORTED)
         // Nicht am Handgelenk: Der Sensor meldet den Stand bei der Anmeldung und danach jeden Wechsel.
-        offBodySensor?.let { sensorManager?.registerListener(offBodyListener, it, SensorManager.SENSOR_DELAY_NORMAL, handler) }
+        offBody.start(handler)
         scheduleTick()
     }
 
@@ -213,7 +190,7 @@ class OnsetMonitor(
         logStat()
         log(DiagKind.MEASURE_END, "$label $why")
         context.getSystemService(AlarmManager::class.java).cancel(tickIntent())
-        if (offBodySensor != null) sensorManager?.unregisterListener(offBodyListener)
+        offBody.stop()
         for (receiver in listOf(tickReceiver, powerReceiver)) {
             try {
                 context.unregisterReceiver(receiver)
@@ -242,7 +219,8 @@ class OnsetMonitor(
             val inSample = s.continuous || index in sampleFrom until sampleUntil
             // Am Ladegerät oder nicht am Handgelenk leer: unterbricht die ruhige Strecke, zählt nicht fürs
             // Grundrauschen.
-            val away = OnsetRules.charging(index, startNanos, chargingTimes) || OnsetRules.charging(index, startNanos, offBodyTimes)
+            val away = OnsetRules.charging(index, startNanos, chargingTimes) ||
+                OnsetRules.charging(index, startNanos, offBodyTimes)
             val motion = if (away) null else epoch.motion
             motions += motion
             measured += inSample
@@ -275,7 +253,9 @@ class OnsetMonitor(
         val at = now()
         // Zeit am Ladegerät oder nicht am Handgelenk verschiebt die Grenze; nicht unter der Akku-Grenze, ausser beim
         // Laden.
-        val away = Duration.ofNanos(OnsetRules.awayNanos(chargingTimes + offBodyTimes, startNanos, SystemClock.elapsedRealtimeNanos()))
+        val away = Duration.ofNanos(
+            OnsetRules.awayNanos(chargingTimes + offBodyTimes, startNanos, SystemClock.elapsedRealtimeNanos()),
+        )
         val awayEnd = cap?.let { OnsetRules.awayUntil(baseMaxEnd, away, latestGiveUp, it) }?.takeIf { at.isBefore(it) }
         val plugged = chargingTimes.lastOrNull()?.let { it.second == null } == true
         if (awayEnd != null && !AutoOnset.skipForBattery(battery(), plugged)) {
@@ -349,8 +329,11 @@ class OnsetMonitor(
         log(
             DiagKind.BATTERY,
             OnsetRules.statLine(
-                label, s.continuous, s.samples - period.samplesAtStart, period.epochs, period.empty, period.mean(), period.max,
-                NoiseFloor.light(threshold, floor), floor, (period.wakeLockMs + ongoing) / 1_000L, battery,
+                OnsetRules.Stat(
+                    label, s.continuous, s.samples - period.samplesAtStart, period.epochs, period.empty,
+                    period.mean(), period.max, NoiseFloor.light(threshold, floor), floor,
+                    (period.wakeLockMs + ongoing) / 1_000L, battery,
+                ),
             ),
         )
         if (sampling) wakeLockSince = SystemClock.elapsedRealtime()

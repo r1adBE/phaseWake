@@ -26,7 +26,8 @@ struct GoodNightState: Codable, Equatable {
 
     /// Plan des Weckers `spec` mit der Zielzeit `target`, wenn `plan` dieselbe Nacht ist (gleicher Wecker, Zielzeit
     /// `latest`), die Zielzeit früher liegt und die Nacht weder erledigt noch vorbei ist; sonst `plan`.
-    func apply(to plan: WakePlan?, spec: AlarmSpec?, now: Date, doneUntil: [String: Date], ringLimit: TimeInterval) -> WakePlan? {
+    func apply(to plan: WakePlan?, spec: AlarmSpec?, now: Date, doneUntil: [String: Date],
+               ringLimit: TimeInterval) -> WakePlan? {
         guard let plan, let spec, plan.alarmId == alarmId, spec.id == alarmId, plan.target == latest, target < latest,
               !expired(now: now, doneUntil: doneUntil[alarmId], ringLimit: ringLimit) else { return plan }
         return AlarmSchedule.plan(spec, target: target)
@@ -82,12 +83,14 @@ extension WatchModel {
             setGoodNight(nil)
             DiagStore.shared.log(.measureStart, "onset cancelled")
             if let spec = alarms.first(where: { $0.id == state.alarmId }) {
-                WatchConnectivityBridge.shared.send(onsetShift: .cancel(AlarmSchedule.plan(spec, target: state.latest), at: OnsetShift.millis(now)))
+                let cancelled = AlarmSchedule.plan(spec, target: state.latest)
+                WatchConnectivityBridge.shared.send(onsetShift: .cancel(cancelled, at: OnsetShift.millis(now)))
             }
             reschedule()
             return
         }
-        guard let spec = sleepAlarm, let duration = spec.sleepDurationMinutes, let plan = realPlan, plan.alarmId == spec.id else {
+        guard let spec = sleepAlarm, let duration = spec.sleepDurationMinutes, let plan = realPlan,
+              plan.alarmId == spec.id else {
             DiagStore.shared.log(.measureStart, "onset not started: no sleep duration")
             return
         }
@@ -100,14 +103,22 @@ extension WatchModel {
             return
         }
         let latency = LearnRecorder.shared.snapshot.latencyMinutes
-        let target = GoodNightEstimate.target(tap: now, latencyMinutes: latency, sleepDurationMinutes: duration, latest: plan.target)
+        let target = GoodNightEstimate.target(tap: now, latencyMinutes: latency, sleepDurationMinutes: duration,
+                                              latest: plan.target)
         let state = GoodNightState(alarmId: spec.id, latest: plan.target, since: now,
                                    asleep: GoodNightEstimate.asleep(tap: now, latencyMinutes: latency), target: target)
         setGoodNight(state)
-        DiagStore.shared.log(.measureStart, "onset start (estimate) lat=\(latency.map { "\($0)" } ?? "-") target \(Format.logTime(target)), alarm at \(Format.logTime(plan.target))")
+        let lat = latency.map { "\($0)" } ?? "-"
+        DiagStore.shared.log(
+            .measureStart,
+            "onset start (estimate) lat=\(lat) target \(Format.logTime(target)), "
+                + "alarm at \(Format.logTime(plan.target))"
+        )
         WatchBattery.begin(alarmId: spec.id, target: plan.target)
-        WatchConnectivityBridge.shared.send(onsetShift: OnsetShift(alarmId: spec.id, original: OnsetShift.millis(plan.target),
-                                                                   target: OnsetShift.millis(target), at: OnsetShift.millis(now)))
+        WatchConnectivityBridge.shared.send(onsetShift: OnsetShift(alarmId: spec.id,
+                                                                   original: OnsetShift.millis(plan.target),
+                                                                   target: OnsetShift.millis(target),
+                                                                   at: OnsetShift.millis(now)))
         // Rekorder für die Einschlafzeit am Morgen; ohne Erlaubnis gilt nur die Schätzung.
         if LearnRecorder.recorderAllowed {
             LearnRecorder.shared.ensureRecorder(until: plan.target.addingTimeInterval(AppleLearnRecord.afterTarget))

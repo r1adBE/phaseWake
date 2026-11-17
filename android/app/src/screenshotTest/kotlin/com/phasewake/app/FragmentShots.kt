@@ -31,8 +31,10 @@ private fun fragments(from: Instant, until: Instant): List<StageSpan> = buildLis
         seed = (seed * 1_103_515_245L + 12_345L) and 0x7fff_ffffL
         return ((seed shr 16) % n).toInt()
     }
-    val early = listOf(SleepStage.LIGHT, SleepStage.DEEP, SleepStage.LIGHT, SleepStage.DEEP, SleepStage.REM, SleepStage.AWAKE)
-    val late = listOf(SleepStage.LIGHT, SleepStage.REM, SleepStage.LIGHT, SleepStage.REM, SleepStage.AWAKE, SleepStage.DEEP)
+    val early =
+        listOf(SleepStage.LIGHT, SleepStage.DEEP, SleepStage.LIGHT, SleepStage.DEEP, SleepStage.REM, SleepStage.AWAKE)
+    val late =
+        listOf(SleepStage.LIGHT, SleepStage.REM, SleepStage.LIGHT, SleepStage.REM, SleepStage.AWAKE, SleepStage.DEEP)
     val half = from.plus(Duration.between(from, until).dividedBy(2))
     var t = from
     var last: SleepStage? = null
@@ -49,7 +51,8 @@ private fun fragments(from: Instant, until: Instant): List<StageSpan> = buildLis
 
 /** Eigene Nacht von heute Morgen ([nights] aus `Screens.kt`) mit zerstückelten Phasen ab 22:40. */
 private val ownNight = nights.last()
-private val ownStages = fragments(ownNight.windowStart.minus(Duration.ofMinutes(400)), ownNight.wokeAt.plus(Duration.ofMinutes(3)))
+private val ownStages =
+    fragments(ownNight.windowStart.minus(Duration.ofMinutes(400)), ownNight.wokeAt.plus(Duration.ofMinutes(3)))
 
 /** Samsung-Health-Nacht drei Nächte davor, ganz aus kurzen Blöcken. */
 private val samsung = run {
@@ -62,12 +65,18 @@ private val items = HealthHistory.merge(listOf(ownNight), listOf(samsung), null,
 
 @Composable
 private fun Overview(mode: ThemeMode) = Themed(mode) {
-    HistoryScreen(listOf(ownNight), PaddingValues(top = 24.dp, bottom = 96.dp), loadStages = { ownStages }, healthConnected = true, items = items)
+    HistoryScreen(
+        listOf(ownNight), PaddingValues(top = 24.dp, bottom = 96.dp), loadStages = { ownStages },
+        healthConnected = true, items = items,
+    )
 }
 
 @Composable
 private fun Detail(mode: ThemeMode) = Themed(mode) {
-    NightDetailScreen(NightDetailData(items = items, stages = ownStages), items.first { it.session != null }.key, NightDetailActions())
+    NightDetailScreen(
+        NightDetailData(items = items, stages = ownStages), items.first { it.session != null }.key,
+        NightDetailActions(),
+    )
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Fragmente Verlauf hell", device = PHONE_TALL) @Composable

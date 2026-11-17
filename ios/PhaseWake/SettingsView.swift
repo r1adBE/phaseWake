@@ -9,6 +9,7 @@ struct SettingsView: View {
     @AppStorage("healthRequested") private var healthRequested = false
     @AppStorage(OnboardingView.doneKey) private var onboardingDone = false
     @State private var diagUnlocked = DiagStore.shared.unlocked
+    private static let privacyURL = URL(string: "https://github.com/r1adBE/phaseWake/blob/main/docs/DATENSCHUTZ.md")!
 
     var body: some View {
         NavigationStack {
@@ -37,9 +38,11 @@ struct SettingsView: View {
                         Text(L("goal_hint")).font(.footnote).foregroundStyle(.secondary)
                     }
                     Section {
-                        Toggle(L("bedtime_title"), isOn: Binding(get: { model.bedtimeReminder }, set: { model.setBedtimeReminder($0) }))
+                        Toggle(L("bedtime_title"),
+                               isOn: Binding(get: { model.bedtimeReminder }, set: { model.setBedtimeReminder($0) }))
                         Text(L("bedtime_text", Bedtime.leadMinutes)).font(.footnote).foregroundStyle(.secondary)
-                        Toggle(L("weekly_title"), isOn: Binding(get: { model.weeklyReview }, set: { model.setWeeklyReview($0) }))
+                        Toggle(L("weekly_title"),
+                               isOn: Binding(get: { model.weeklyReview }, set: { model.setWeeklyReview($0) }))
                         Text(L("weekly_toggle")).font(.footnote).foregroundStyle(.secondary)
                     }
                     LearningSettingsSection()
@@ -47,7 +50,8 @@ struct SettingsView: View {
                     Section {
                         let night = WatchNight.shared
                         let _ = night.autoOnsetRevision
-                        Toggle(L("auto_onset_title"), isOn: Binding(get: { WatchNight.autoOnset }, set: { night.setAutoOnset($0) }))
+                        Toggle(L("auto_onset_title"),
+                               isOn: Binding(get: { WatchNight.autoOnset }, set: { night.setAutoOnset($0) }))
                         Text(L("auto_onset_hint_apple")).font(.footnote).foregroundStyle(.secondary)
                     }
                     Section(L("test_title")) { TestAlarmButton() }
@@ -55,7 +59,9 @@ struct SettingsView: View {
                     CustomNotesSection()
                     RoutineSection()
                     Section(L("sound_rec_title")) {
-                        Toggle(L("sound_rec_default"), isOn: Binding(get: { model.soundRecDefault }, set: { on in Task { await model.setSoundRecDefault(on) } }))
+                        Toggle(L("sound_rec_default"),
+                               isOn: Binding(get: { model.soundRecDefault },
+                                             set: { on in Task { await model.setSoundRecDefault(on) } }))
                         Text(L("sound_rec_default_hint")).font(.footnote).foregroundStyle(.secondary)
                     }
                     Section(L("settings_data")) {
@@ -66,8 +72,9 @@ struct SettingsView: View {
                     }
                     BackupSection()
                     Section(L("settings_about")) {
-                        Link(L("settings_open_source"), destination: URL(string: "https://github.com/r1adBE/phaseWake")!)
-                        Link(L("settings_privacy"), destination: URL(string: "https://github.com/r1adBE/phaseWake/blob/main/docs/DATENSCHUTZ.md")!)
+                        Link(L("settings_open_source"),
+                             destination: URL(string: "https://github.com/r1adBE/phaseWake")!)
+                        Link(L("settings_privacy"), destination: Self.privacyURL)
                         Button(L("settings_onboarding")) { onboardingDone = false }
                         // Lizenzen mit vollem Text je Bestandteil (`LicensesView`).
                         NavigationLink(L("settings_licenses")) { LicensesView() }
@@ -82,7 +89,8 @@ struct SettingsView: View {
             .skyPage()
             .navigationTitle(L("settings_title"))
             // Nennt alles, was gelöscht wird (gleicher Text wie Android).
-            .confirmationDialog([L("settings_clear_history_text"), L("settings_clear_history_also"), L("settings_clear_history_learn")].joined(separator: " "),
+            .confirmationDialog([L("settings_clear_history_text"), L("settings_clear_history_also"),
+                                 L("settings_clear_history_learn")].joined(separator: " "),
                                 isPresented: $confirmClear,
                                 titleVisibility: .visible) {
                 // Mit Gerätesperre zusätzlich Face ID, Touch ID oder Code; ohne Sperre genügt diese Rückfrage.

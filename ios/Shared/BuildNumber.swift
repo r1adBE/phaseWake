@@ -37,7 +37,8 @@ enum BuildNumber {
 
     /// Eigene Versionsbezeichnung mit Nummer, z. B. «16.2.2 (96)».
     static var ownLabel: String {
-        label(version: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "", build: own)
+        label(version: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "",
+              build: own)
     }
 
     /// Uhr: Stand der Verbindung (``WatchProtocol``) und Build-Nummer in den Anwendungskontext ans iPhone; ohne

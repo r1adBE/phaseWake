@@ -39,7 +39,9 @@ android {
             .associateWith { providers.environmentVariable("PHASEWAKE_UPLOAD_$it").orNull?.takeIf(String::isNotEmpty) }
         if (upload.values.any { it != null }) {
             val missing = upload.filterValues { it == null }.keys
-            if (missing.isNotEmpty()) throw GradleException("Upload-Schlüssel unvollständig, es fehlt: ${missing.joinToString { "PHASEWAKE_UPLOAD_$it" }}")
+            if (missing.isNotEmpty()) throw GradleException(
+                "Upload-Schlüssel unvollständig, es fehlt: ${missing.joinToString { "PHASEWAKE_UPLOAD_$it" }}"
+            )
             create("upload") {
                 storeFile = file(upload.getValue("KEYSTORE")!!)
                 storePassword = upload.getValue("STORE_PASSWORD")
@@ -113,7 +115,9 @@ val checkLicenseCopy = tasks.register("checkLicenseCopy") {
     inputs.files(original, copy)
     doLast {
         if (!copy.isFile || !original.readBytes().contentEquals(copy.readBytes())) {
-            throw GradleException("licenses/MIT-phasewake.txt weicht von LICENSE ab: LICENSE nach licenses/MIT-phasewake.txt kopieren.")
+            throw GradleException(
+                "licenses/MIT-phasewake.txt weicht von LICENSE ab: LICENSE nach licenses/MIT-phasewake.txt kopieren."
+            )
         }
     }
 }
@@ -150,8 +154,12 @@ dependencies {
     // Sicherheit (OSV): Guava 32.0.x und protobuf-javalite 4.26.1 kommen transitiv mit; nur die Version
     // anheben, nichts zusätzlich einbinden.
     constraints {
-        implementation("com.google.guava:guava:${libs.versions.guava.get()}") { because("OSV: Guava 32.0.x mit bekannten Schwachstellen") }
-        implementation("com.google.protobuf:protobuf-javalite:${libs.versions.protobufJavalite.get()}") { because("OSV: protobuf-javalite 4.26.1 (CVE-2024-7254)") }
+        implementation("com.google.guava:guava:${libs.versions.guava.get()}") {
+            because("OSV: Guava 32.0.x mit bekannten Schwachstellen")
+        }
+        implementation("com.google.protobuf:protobuf-javalite:${libs.versions.protobufJavalite.get()}") {
+            because("OSV: protobuf-javalite 4.26.1 (CVE-2024-7254)")
+        }
     }
 
     // Entscheidungen des Zweitweckers (Nachfrist, Ablösen, «stop», Schlummern) in Unit-Tests; Robolectric nur zum
@@ -182,7 +190,9 @@ val downloadYamnet = tasks.register("downloadYamnet") {
         target.parentFile.mkdirs()
         val temp = File(target.parentFile, "yamnet.tflite.part")
         val loaded = try {
-            val url = URI("https://storage.googleapis.com/mediapipe-models/audio_classifier/yamnet/float32/1/yamnet.tflite").toURL()
+            val url =
+                URI("https://storage.googleapis.com/mediapipe-models/audio_classifier/yamnet/float32/1/yamnet.tflite")
+                    .toURL()
             url.openStream().use { input -> temp.outputStream().use { output -> input.copyTo(output) } }
             true
         } catch (e: Exception) {
@@ -205,7 +215,9 @@ val downloadYamnet = tasks.register("downloadYamnet") {
             if (actual != expected) {
                 val size = temp.length()
                 temp.delete()
-                throw GradleException("yamnet.tflite: SHA-256 $actual statt $expected ($size Byte). Datei verworfen, Build abgebrochen.")
+                throw GradleException(
+                    "yamnet.tflite: SHA-256 $actual statt $expected ($size Byte). Datei verworfen, Build abgebrochen."
+                )
             }
             if (!temp.renameTo(target)) temp.delete()
         }
@@ -219,7 +231,10 @@ val checkYamnet = tasks.register("checkYamnet") {
     dependsOn(downloadYamnet)
     doLast {
         if (!target.isFile || target.length() == 0L) {
-            throw GradleException("yamnet.tflite fehlt in src/main/assets (Download fehlgeschlagen?). Release ohne Modell abgebrochen, siehe README.")
+            throw GradleException(
+                "yamnet.tflite fehlt in src/main/assets (Download fehlgeschlagen?). " +
+                    "Release ohne Modell abgebrochen, siehe README."
+            )
         }
         // Auch eine schon vorhandene Datei (lokal liegen geblieben) muss stimmen.
         val digest = MessageDigest.getInstance("SHA-256")
@@ -233,7 +248,9 @@ val checkYamnet = tasks.register("checkYamnet") {
         }
         val actual = digest.digest().joinToString("") { "%02x".format(it) }
         if (actual != expected) {
-            throw GradleException("yamnet.tflite: SHA-256 $actual statt $expected. Datei löschen und neu bauen (lädt neu), siehe README.")
+            throw GradleException(
+                "yamnet.tflite: SHA-256 $actual statt $expected. Datei löschen und neu bauen (lädt neu), siehe README."
+            )
         }
     }
 }

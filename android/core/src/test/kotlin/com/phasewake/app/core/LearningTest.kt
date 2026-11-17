@@ -16,7 +16,14 @@ class LearningTest {
     /** 23:00 Ortszeit am 1. + [day] November 2026. */
     private fun evening(day: Int): Instant = Instant.parse("2026-11-01T22:00:00Z").plus(Duration.ofDays(day.toLong()))
 
-    private fun night(day: Int, epochs: Int, motion: Double? = 0.02, hr: Double? = 55.0, bedAt: Instant? = null, asleepAt: Instant? = null) =
+    private fun night(
+        day: Int,
+        epochs: Int,
+        motion: Double? = 0.02,
+        hr: Double? = 55.0,
+        bedAt: Instant? = null,
+        asleepAt: Instant? = null,
+    ) =
         Learning.Night(evening(day), List(epochs) { Epoch(motion, hr) }, bedAt, asleepAt)
 
     @Test
@@ -92,15 +99,26 @@ class LearningTest {
         // n = 200: Position 20 → der 20. kleinste Wert ist 51.
         assertEquals(51.0, Learning.nightRestingHeartRate(Learning.Night(evening(0), pulses)))
         assertNull(Learning.nightRestingHeartRate(night(0, 400, hr = null)))
-        val few = Learning.Night(evening(0), List(400) { Epoch(0.02, if (it < Learning.MIN_HEART_RATE_EPOCHS - 1) 55.0 else null) })
+        val few = Learning.Night(
+            evening(0),
+            List(400) { Epoch(0.02, if (it < Learning.MIN_HEART_RATE_EPOCHS - 1) 55.0 else null) },
+        )
         assertNull(Learning.nightRestingHeartRate(few))
     }
 
     @Test
     fun latencyFromBedToAsleepCapped() {
         val bed = evening(0)
-        assertEquals(12, Learning.nightLatencyMinutes(night(0, 1, bedAt = bed, asleepAt = bed.plus(Duration.ofSeconds(12 * 60 + 59)))))
-        assertEquals(Learning.MAX_LATENCY_MINUTES, Learning.nightLatencyMinutes(night(0, 1, bedAt = bed, asleepAt = bed.plus(Duration.ofHours(2)))))
+        assertEquals(
+            12,
+            Learning.nightLatencyMinutes(
+                night(0, 1, bedAt = bed, asleepAt = bed.plus(Duration.ofSeconds(12 * 60 + 59))),
+            ),
+        )
+        assertEquals(
+            Learning.MAX_LATENCY_MINUTES,
+            Learning.nightLatencyMinutes(night(0, 1, bedAt = bed, asleepAt = bed.plus(Duration.ofHours(2)))),
+        )
         // Eingeschlafen vor der geplanten Bettzeit: wann ins Bett gegangen wurde, ist unbekannt.
         assertNull(Learning.nightLatencyMinutes(night(0, 1, bedAt = bed, asleepAt = bed.minusSeconds(60))))
         assertNull(Learning.nightLatencyMinutes(night(0, 1)))

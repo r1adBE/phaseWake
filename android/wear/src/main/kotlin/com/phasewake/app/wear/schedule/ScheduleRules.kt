@@ -41,7 +41,13 @@ internal object ScheduleRules {
      * [plan]: der Plan, der jetzt gilt; [measuring]/[active]: Plan der laufenden Messung bzw. Nacht
      * ([com.phasewake.app.wear.wake.WakeService]); [pending]: abgelegtes, noch ausstehendes Wecken ([pendingRing]).
      */
-    fun decide(plan: WakePlan?, measuring: WakePlan?, active: WakePlan?, pending: DirectBoot.Saved?, now: Instant): Decision {
+    fun decide(
+        plan: WakePlan?,
+        measuring: WakePlan?,
+        active: WakePlan?,
+        pending: DirectBoot.Saved?,
+        now: Instant,
+    ): Decision {
         val cancel = measuring != null && measuring != plan
         // Klingelt oder schlummert gerade eine Nacht: ihre Alarme nicht anfassen, keinen anderen Wecker starten.
         if (active != null && measuring == null) return Decision(cancel, keepRunning = true, null, null, null)
@@ -70,14 +76,28 @@ internal object ScheduleRules {
         val plannedZone = planned.zone ?: return null
         if (!AlarmSchedule.zoneShifted(planned.target, plannedZone, zone)) return null
         val spec = specs.firstOrNull { it.id == planned.alarmId } ?: return null
-        return AlarmSchedule.begunNight(spec, planned.target, plannedZone, now, KEEP_GRACE, holidays, doneUntil[spec.id])
+        return AlarmSchedule.begunNight(
+            spec,
+            planned.target,
+            plannedZone,
+            now,
+            KEEP_GRACE,
+            holidays,
+            doneUntil[spec.id],
+        )
     }
 
     /**
      * Ob ein abgelegtes Wecken [saved] noch aussteht: geschlummert (Ende nach der Zielzeit) oder Zielzeit vorbei, noch
      * nachzuholen ([catchesUp]), die Nacht nicht erledigt ([doneUntil]) und der Wecker noch da ([exists]).
      */
-    fun pendingRing(saved: DirectBoot.Saved, now: Instant, catchesUp: Boolean, doneUntil: Instant?, exists: Boolean): Boolean {
+    fun pendingRing(
+        saved: DirectBoot.Saved,
+        now: Instant,
+        catchesUp: Boolean,
+        doneUntil: Instant?,
+        exists: Boolean,
+    ): Boolean {
         val late = saved.at.isAfter(saved.plan.target) || !saved.plan.target.isAfter(now)
         if (!late || !catchesUp) return false
         if (doneUntil != null && !doneUntil.isBefore(saved.plan.target)) return false

@@ -10,7 +10,8 @@ final class LockedStartPhoneTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        dir = FileManager.default.temporaryDirectory.appendingPathComponent("locked-phone-\(UUID().uuidString)", isDirectory: true)
+        dir = FileManager.default.temporaryDirectory.appendingPathComponent("locked-phone-\(UUID().uuidString)",
+                                                                            isDirectory: true)
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
     }
 
@@ -87,7 +88,8 @@ final class LockedStartPhoneTests: XCTestCase {
         defer { defaults.removePersistentDomain(forName: suite) }
         let store = HolidayStore(defaults: defaults)
         let device = store.country
-        store.adopt(lastSent: HolidayList(region: Holidays.regionCode(country: device, region: ""), dates: ["2026-08-01"]))
+        store.adopt(lastSent: HolidayList(region: Holidays.regionCode(country: device, region: ""),
+                                          dates: ["2026-08-01"]))
         let chosen = device == "DE" ? "AT" : "DE"
         defaults.set(chosen, forKey: "holidayCountry")
         defaults.set("BY", forKey: "holidayRegion")

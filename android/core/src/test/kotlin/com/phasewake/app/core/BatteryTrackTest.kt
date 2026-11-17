@@ -14,11 +14,16 @@ class BatteryTrackTest {
 
     private fun at(minute: Long): Instant = t0.plus(Duration.ofMinutes(minute))
 
-    private fun p(minute: Long, percent: Int, plugged: Boolean, mark: BatteryMark) = BatteryPoint(at(minute), percent, plugged, mark)
+    private fun p(minute: Long, percent: Int, plugged: Boolean, mark: BatteryMark) =
+        BatteryPoint(at(minute), percent, plugged, mark)
 
     @Test
     fun usedWithoutCharging() {
-        val track = listOf(p(0, 80, false, BatteryMark.START), p(570, 71, false, BatteryMark.SAMPLE), p(600, 66, false, BatteryMark.END))
+        val track = listOf(
+            p(0, 80, false, BatteryMark.START),
+            p(570, 71, false, BatteryMark.SAMPLE),
+            p(600, 66, false, BatteryMark.END),
+        )
         assertEquals(14, BatteryTrack.used(track))
     }
 
@@ -33,8 +38,26 @@ class BatteryTrackTest {
         )
         assertEquals(15, BatteryTrack.used(track))
         // Am Ladegerät begonnen bzw. beendet: nur die Zeit ohne.
-        assertEquals(5, BatteryTrack.used(listOf(p(0, 60, true, BatteryMark.START), p(240, 95, false, BatteryMark.UNPLUG), p(600, 90, false, BatteryMark.END))))
-        assertEquals(10, BatteryTrack.used(listOf(p(0, 80, false, BatteryMark.START), p(120, 70, true, BatteryMark.PLUG), p(600, 100, true, BatteryMark.END))))
+        assertEquals(
+            5,
+            BatteryTrack.used(
+                listOf(
+                    p(0, 60, true, BatteryMark.START),
+                    p(240, 95, false, BatteryMark.UNPLUG),
+                    p(600, 90, false, BatteryMark.END),
+                ),
+            ),
+        )
+        assertEquals(
+            10,
+            BatteryTrack.used(
+                listOf(
+                    p(0, 80, false, BatteryMark.START),
+                    p(120, 70, true, BatteryMark.PLUG),
+                    p(600, 100, true, BatteryMark.END),
+                ),
+            ),
+        )
     }
 
     @Test
@@ -47,9 +70,25 @@ class BatteryTrackTest {
         assertNull(BatteryTrack.used(listOf(p(0, 80, false, BatteryMark.SAMPLE), p(10, 79, false, BatteryMark.END))))
         // Wechsel ans Ladegerät nicht beobachtet (erst am Ende bzw. bei einem Zwischenstand gesehen).
         assertNull(BatteryTrack.used(listOf(p(0, 80, false, BatteryMark.START), p(600, 90, true, BatteryMark.END))))
-        assertNull(BatteryTrack.used(listOf(p(0, 80, true, BatteryMark.START), p(300, 99, false, BatteryMark.SAMPLE), p(600, 90, false, BatteryMark.END))))
+        assertNull(
+            BatteryTrack.used(
+                listOf(
+                    p(0, 80, true, BatteryMark.START),
+                    p(300, 99, false, BatteryMark.SAMPLE),
+                    p(600, 90, false, BatteryMark.END),
+                ),
+            ),
+        )
         // Ladebeginn gesehen, Ladeende nicht.
-        assertNull(BatteryTrack.used(listOf(p(0, 80, false, BatteryMark.START), p(120, 70, true, BatteryMark.PLUG), p(600, 90, false, BatteryMark.END))))
+        assertNull(
+            BatteryTrack.used(
+                listOf(
+                    p(0, 80, false, BatteryMark.START),
+                    p(120, 70, true, BatteryMark.PLUG),
+                    p(600, 90, false, BatteryMark.END),
+                ),
+            ),
+        )
         // Anstieg ohne Ladegerät: unbemerkt geladen.
         assertNull(BatteryTrack.used(listOf(p(0, 50, false, BatteryMark.START), p(600, 55, false, BatteryMark.END))))
         // Die ganze Nacht am Ladegerät: kein Verbrauch messbar.
@@ -57,8 +96,24 @@ class BatteryTrackTest {
         // Zeit rückwärts, unmögliche Werte.
         assertNull(BatteryTrack.used(listOf(p(10, 80, false, BatteryMark.START), p(0, 79, false, BatteryMark.END))))
         assertNull(BatteryTrack.used(listOf(p(0, 180, false, BatteryMark.START), p(10, 79, false, BatteryMark.END))))
-        assertNull(BatteryTrack.used(listOf(p(0, 80, false, BatteryMark.START), p(5, 80, false, BatteryMark.PLUG), p(10, 79, false, BatteryMark.END))))
-        assertNull(BatteryTrack.used(listOf(p(0, 80, false, BatteryMark.START), p(5, 80, false, BatteryMark.START), p(10, 79, false, BatteryMark.END))))
+        assertNull(
+            BatteryTrack.used(
+                listOf(
+                    p(0, 80, false, BatteryMark.START),
+                    p(5, 80, false, BatteryMark.PLUG),
+                    p(10, 79, false, BatteryMark.END),
+                ),
+            ),
+        )
+        assertNull(
+            BatteryTrack.used(
+                listOf(
+                    p(0, 80, false, BatteryMark.START),
+                    p(5, 80, false, BatteryMark.START),
+                    p(10, 79, false, BatteryMark.END),
+                ),
+            ),
+        )
     }
 
     @Test
@@ -89,7 +144,10 @@ class BatteryTrackTest {
         val later = at(0).plus(BatteryTrack.MAX_SPAN).plusSeconds(1)
         assertFalse(BatteryTrack.isOpen(open, later))
         assertNull(BatteryTrack.end(open, later, 50, false))
-        assertEquals(listOf(BatteryPoint(later, 50, false, BatteryMark.START)), BatteryTrack.begin(open, later, 50, false))
+        assertEquals(
+            listOf(BatteryPoint(later, 50, false, BatteryMark.START)),
+            BatteryTrack.begin(open, later, 50, false),
+        )
         // Uhr zurückgestellt: neu beginnen.
         assertFalse(BatteryTrack.isOpen(open, at(-1)))
     }
@@ -105,7 +163,12 @@ class BatteryTrackTest {
 
     @Test
     fun formatRoundTrip() {
-        val track = listOf(p(0, 80, false, BatteryMark.START), p(120, 70, true, BatteryMark.PLUG), p(240, 95, false, BatteryMark.UNPLUG), p(600, 90, false, BatteryMark.END))
+        val track = listOf(
+            p(0, 80, false, BatteryMark.START),
+            p(120, 70, true, BatteryMark.PLUG),
+            p(240, 95, false, BatteryMark.UNPLUG),
+            p(600, 90, false, BatteryMark.END),
+        )
         val text = BatteryTrack.encode(track)
         // Byte-gleich mit Swift (BatteryTrackTests.testFormatRoundTrip).
         assertEquals("s,1794603600000,80,0;c,1794610800000,70,1;u,1794618000000,95,0;e,1794639600000,90,0", text)
@@ -126,13 +189,24 @@ class BatteryTrackTest {
         val night = NightRecord("a", at(570), at(600), at(590), WakeReason.LIGHT_SLEEP, 0, emptyList())
         val track = listOf(p(0, 80, false, BatteryMark.START), p(595, 70, false, BatteryMark.END))
         assertTrue(BatteryTrack.belongsTo(track, night))
-        assertFalse(BatteryTrack.belongsTo(listOf(p(591, 80, false, BatteryMark.START), p(595, 70, false, BatteryMark.END)), night))
-        assertFalse(BatteryTrack.belongsTo(listOf(p(0, 80, false, BatteryMark.START), p(589, 70, false, BatteryMark.END)), night))
+        assertFalse(
+            BatteryTrack.belongsTo(
+                listOf(p(591, 80, false, BatteryMark.START), p(595, 70, false, BatteryMark.END)),
+                night,
+            ),
+        )
+        assertFalse(
+            BatteryTrack.belongsTo(
+                listOf(p(0, 80, false, BatteryMark.START), p(589, 70, false, BatteryMark.END)),
+                night,
+            ),
+        )
         assertFalse(BatteryTrack.belongsTo(emptyList(), night))
         // Ende der Uhr-Messung, sonst das erste Wecken.
         assertTrue(BatteryTrack.arrivedFresh(night, at(594)))
         assertFalse(BatteryTrack.arrivedFresh(night, at(596)))
-        val withWatch = night.copy(watchBattery = listOf(p(0, 90, false, BatteryMark.START), p(610, 70, false, BatteryMark.END)))
+        val withWatch =
+            night.copy(watchBattery = listOf(p(0, 90, false, BatteryMark.START), p(610, 70, false, BatteryMark.END)))
         assertTrue(BatteryTrack.arrivedFresh(withWatch, at(614)))
         assertFalse(BatteryTrack.arrivedFresh(withWatch, at(616)))
     }
@@ -150,7 +224,15 @@ class BatteryTrackTest {
     fun nightCodecOldAndNew() {
         val watch = listOf(p(0, 80, false, BatteryMark.START), p(600, 66, false, BatteryMark.END))
         val phone = listOf(p(1, 50, false, BatteryMark.START), p(601, 47, false, BatteryMark.END))
-        val night = NightRecord("a", Instant.ofEpochMilli(0), Instant.ofEpochMilli(1_800_000), Instant.ofEpochMilli(1_080_000), WakeReason.AWAKE, 0, emptyList())
+        val night = NightRecord(
+            "a",
+            Instant.ofEpochMilli(0),
+            Instant.ofEpochMilli(1_800_000),
+            Instant.ofEpochMilli(1_080_000),
+            WakeReason.AWAKE,
+            0,
+            emptyList(),
+        )
         // Ohne Akku unverändert.
         assertEquals("phasewake-night 1\na|0|1800000|1080000|AWAKE|0|\n\n", Codec.encodeNight(night))
         // Mit Akku: Feld 8 leer (bekannter Grund), Feld 9 Uhr, Feld 10 Handy. Byte-gleich mit Swift.
@@ -164,7 +246,10 @@ class BatteryTrackTest {
         assertEquals(both, Codec.decodeNight(text))
         // Nur Handy: Feld 9 leer. Neuer Grund bleibt in Feld 8.
         val phoneOnly = night.copy(reason = WakeReason.EXACT, phoneBattery = phone)
-        assertEquals("phasewake-night 1\na|0|1800000|1080000|DEADLINE|0||EXACT||s,1794603660000,50,0;e,1794639660000,47,0\n\n", Codec.encodeNight(phoneOnly))
+        assertEquals(
+            "phasewake-night 1\na|0|1800000|1080000|DEADLINE|0||EXACT||s,1794603660000,50,0;e,1794639660000,47,0\n\n",
+            Codec.encodeNight(phoneOnly),
+        )
         assertEquals(phoneOnly, Codec.decodeNight(Codec.encodeNight(phoneOnly)))
         val watchOnly = night.copy(watchBattery = watch)
         assertEquals(watchOnly, Codec.decodeNight(Codec.encodeNight(watchOnly)))

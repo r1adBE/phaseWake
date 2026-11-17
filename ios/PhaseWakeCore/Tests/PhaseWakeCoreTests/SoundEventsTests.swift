@@ -98,32 +98,47 @@ final class SoundEventsTests: XCTestCase {
     func testAutoStartFromBedtimeOfTheComingNight() {
         let target = at("2026-10-28T06:30")
         // Schlafziel 7,5 Std.: Bettzeit 23:00.
-        XCTAssertFalse(SoundEvents.mayAutoStart(now: at("2026-10-27T22:59"), nextTarget: target, goalMinutes: 450, calendar: zurich))
-        XCTAssertTrue(SoundEvents.mayAutoStart(now: at("2026-10-27T23:00"), nextTarget: target, goalMinutes: 450, calendar: zurich))
-        XCTAssertTrue(SoundEvents.mayAutoStart(now: at("2026-10-28T02:00"), nextTarget: target, goalMinutes: 450, calendar: zurich))
+        XCTAssertFalse(SoundEvents.mayAutoStart(now: at("2026-10-27T22:59"), nextTarget: target, goalMinutes: 450,
+                                                calendar: zurich))
+        XCTAssertTrue(SoundEvents.mayAutoStart(now: at("2026-10-27T23:00"), nextTarget: target, goalMinutes: 450,
+                                               calendar: zurich))
+        XCTAssertTrue(SoundEvents.mayAutoStart(now: at("2026-10-28T02:00"), nextTarget: target, goalMinutes: 450,
+                                               calendar: zurich))
         // Im Weckfenster nicht mehr automatisch.
-        XCTAssertFalse(SoundEvents.mayAutoStart(now: target.addingTimeInterval(-600), nextTarget: target, goalMinutes: 450, calendar: zurich, windowStart: target.addingTimeInterval(-1800)))
+        XCTAssertFalse(SoundEvents.mayAutoStart(now: target.addingTimeInterval(-600), nextTarget: target,
+                                                goalMinutes: 450, calendar: zurich,
+                                                windowStart: target.addingTimeInterval(-1800)))
         // Ab 21 Uhr gilt mit Wecker die Bettzeit, nicht 21 Uhr.
-        XCTAssertFalse(SoundEvents.mayAutoStart(now: at("2026-10-27T21:30"), nextTarget: target, goalMinutes: 450, calendar: zurich))
+        XCTAssertFalse(SoundEvents.mayAutoStart(now: at("2026-10-27T21:30"), nextTarget: target, goalMinutes: 450,
+                                                calendar: zurich))
         // Nach der Zielzeit zählt der nächste Wecker (hier am Abend darauf noch vor der Bettzeit).
-        XCTAssertFalse(SoundEvents.mayAutoStart(now: at("2026-10-28T07:00"), nextTarget: at("2026-10-29T06:30"), goalMinutes: 450, calendar: zurich))
+        XCTAssertFalse(SoundEvents.mayAutoStart(now: at("2026-10-28T07:00"), nextTarget: at("2026-10-29T06:30"),
+                                                goalMinutes: 450, calendar: zurich))
     }
 
     func testAutoStartFromTheOneBedtimeWithLatency() {
         // Die eine Bettzeit: mit gelernter Einschlafdauer 20 Min ab 22:40 statt 23:00.
         let target = at("2026-10-28T06:30")
-        XCTAssertFalse(SoundEvents.mayAutoStart(now: at("2026-10-27T22:39"), nextTarget: target, goalMinutes: 450, calendar: zurich, latencyMinutes: 20))
-        XCTAssertTrue(SoundEvents.mayAutoStart(now: at("2026-10-27T22:40"), nextTarget: target, goalMinutes: 450, calendar: zurich, latencyMinutes: 20))
+        XCTAssertFalse(SoundEvents.mayAutoStart(now: at("2026-10-27T22:39"), nextTarget: target, goalMinutes: 450,
+                                                calendar: zurich, latencyMinutes: 20))
+        XCTAssertTrue(SoundEvents.mayAutoStart(now: at("2026-10-27T22:40"), nextTarget: target, goalMinutes: 450,
+                                               calendar: zurich, latencyMinutes: 20))
     }
 
     func testAutoStartWithoutAlarmFrom21() {
-        XCTAssertFalse(SoundEvents.mayAutoStart(now: at("2026-10-27T20:59"), nextTarget: nil, goalMinutes: 450, calendar: zurich))
-        XCTAssertTrue(SoundEvents.mayAutoStart(now: at("2026-10-27T21:00"), nextTarget: nil, goalMinutes: 450, calendar: zurich))
-        XCTAssertTrue(SoundEvents.mayAutoStart(now: at("2026-10-27T23:59"), nextTarget: nil, goalMinutes: 450, calendar: zurich))
-        XCTAssertFalse(SoundEvents.mayAutoStart(now: at("2026-10-28T00:30"), nextTarget: nil, goalMinutes: 450, calendar: zurich))
+        XCTAssertFalse(SoundEvents.mayAutoStart(now: at("2026-10-27T20:59"), nextTarget: nil, goalMinutes: 450,
+                                                calendar: zurich))
+        XCTAssertTrue(SoundEvents.mayAutoStart(now: at("2026-10-27T21:00"), nextTarget: nil, goalMinutes: 450,
+                                               calendar: zurich))
+        XCTAssertTrue(SoundEvents.mayAutoStart(now: at("2026-10-27T23:59"), nextTarget: nil, goalMinutes: 450,
+                                               calendar: zurich))
+        XCTAssertFalse(SoundEvents.mayAutoStart(now: at("2026-10-28T00:30"), nextTarget: nil, goalMinutes: 450,
+                                                calendar: zurich))
         // Wecker erst in mehr als 24 Std.: wie ohne Wecker.
-        XCTAssertTrue(SoundEvents.mayAutoStart(now: at("2026-10-27T21:30"), nextTarget: at("2026-10-29T06:30"), goalMinutes: 450, calendar: zurich))
-        XCTAssertFalse(SoundEvents.mayAutoStart(now: at("2026-10-27T20:00"), nextTarget: at("2026-10-29T06:30"), goalMinutes: 450, calendar: zurich))
+        XCTAssertTrue(SoundEvents.mayAutoStart(now: at("2026-10-27T21:30"), nextTarget: at("2026-10-29T06:30"),
+                                               goalMinutes: 450, calendar: zurich))
+        XCTAssertFalse(SoundEvents.mayAutoStart(now: at("2026-10-27T20:00"), nextTarget: at("2026-10-29T06:30"),
+                                                goalMinutes: 450, calendar: zurich))
     }
 
     func testNightsWithoutRecordNewestFirst() {
@@ -139,7 +154,8 @@ final class SoundEventsTests: XCTestCase {
         let result = SoundEvents.nightsWithoutRecord(clips, recorded: ["2026-10-26"])
         XCTAssertEqual(result.map { $0.night }, ["2026-10-27", "2026-10-25"])
         XCTAssertEqual(result.map { $0.last }, [at("2026-10-28T03:00"), at("2026-10-26T02:00")])
-        XCTAssertTrue(SoundEvents.nightsWithoutRecord(clips, recorded: ["2026-10-27", "2026-10-26", "2026-10-25"]).isEmpty)
+        XCTAssertTrue(SoundEvents.nightsWithoutRecord(clips,
+                                                      recorded: ["2026-10-27", "2026-10-26", "2026-10-25"]).isEmpty)
     }
 
     func testLabelsMapToTypes() {
@@ -174,25 +190,32 @@ final class SoundEventsTests: XCTestCase {
     }
 
     func testLevelOfSilenceAndFullScale() {
-        [Float](repeating: 0, count: 160).withUnsafeBufferPointer { XCTAssertEqual(SoundEvents.levelDb($0), SoundEvents.silenceDb) }
+        [Float](repeating: 0,
+                count: 160).withUnsafeBufferPointer { XCTAssertEqual(SoundEvents.levelDb($0), SoundEvents.silenceDb) }
         let square = (0..<160).map { $0 % 2 == 0 ? Float(1) : Float(-1) }
         square.withUnsafeBufferPointer { XCTAssertEqual(SoundEvents.levelDb($0), 0, accuracy: 0.01) }
     }
 
     func testRecordingEndsThirtyMinutesAfterTargetOrAfterTwelveHours() {
         let start = at("2026-10-27T22:00")
-        XCTAssertEqual(SoundEvents.recordingEnd(start: start, nextTarget: at("2026-10-28T06:30")), at("2026-10-28T07:00"))
+        XCTAssertEqual(SoundEvents.recordingEnd(start: start, nextTarget: at("2026-10-28T06:30")),
+                       at("2026-10-28T07:00"))
         XCTAssertEqual(SoundEvents.recordingEnd(start: start, nextTarget: nil), at("2026-10-28T10:00"))
         // Wecker mehr als 24 Std. entfernt: wie ohne Wecker.
-        XCTAssertEqual(SoundEvents.recordingEnd(start: start, nextTarget: at("2026-10-29T06:30")), at("2026-10-28T10:00"))
+        XCTAssertEqual(SoundEvents.recordingEnd(start: start, nextTarget: at("2026-10-29T06:30")),
+                       at("2026-10-28T10:00"))
         // Früh eingeschaltet (18:00), Wecker 07:00 (13 Std.): bis Zielzeit + 30 Min, nicht schon um 06:00.
-        XCTAssertEqual(SoundEvents.recordingEnd(start: at("2026-10-27T18:00"), nextTarget: at("2026-10-28T07:00")), at("2026-10-28T07:30"))
+        XCTAssertEqual(SoundEvents.recordingEnd(start: at("2026-10-27T18:00"), nextTarget: at("2026-10-28T07:00")),
+                       at("2026-10-28T07:30"))
         // Genau 24 Std. zählt noch.
-        XCTAssertEqual(SoundEvents.recordingEnd(start: start, nextTarget: at("2026-10-28T22:00")), at("2026-10-28T22:30"))
+        XCTAssertEqual(SoundEvents.recordingEnd(start: start, nextTarget: at("2026-10-28T22:00")),
+                       at("2026-10-28T22:30"))
     }
 
-    private func clip(_ time: String, _ type: SoundType, _ duration: Int64, _ peak: Int, file: String? = nil) -> SoundClip {
-        SoundClip(night: SoundEvents.nightDate(at(time), calendar: zurich), at: at(time), type: type, durationMs: duration, peakDb: peak,
+    private func clip(_ time: String, _ type: SoundType, _ duration: Int64, _ peak: Int,
+                      file: String? = nil) -> SoundClip {
+        SoundClip(night: SoundEvents.nightDate(at(time), calendar: zurich), at: at(time), type: type,
+                  durationMs: duration, peakDb: peak,
                   file: file ?? (time + ".m4a").replacingOccurrences(of: ":", with: "-"))
     }
 
@@ -225,7 +248,8 @@ final class SoundEventsTests: XCTestCase {
         XCTAssertEqual(louder.kept.map(\.file), ["x.m4a", "b.m4a", "c.m4a"])
         let quieter = SoundEvents.add(existing, clip("2026-10-28T01:00", .snore, 1_000, -45, file: "d.m4a"), max: 2)
         XCTAssertEqual(quieter.dropped.map(\.file), ["d.m4a"])
-        XCTAssertEqual(SoundEvents.add(existing, clip("2026-10-28T01:00", .snore, 1_000, -45, file: "e.m4a")).dropped.count, 0)
+        XCTAssertEqual(SoundEvents.add(existing,
+                                       clip("2026-10-28T01:00", .snore, 1_000, -45, file: "e.m4a")).dropped.count, 0)
     }
 
     func testExpireAfterSevenDays() {
@@ -243,7 +267,8 @@ final class SoundEventsTests: XCTestCase {
             clip("2026-10-27T23:00", .snore, 61_000, -33, file: "a.m4a"),
         ]
         let text = SoundEvents.encode(clips)
-        XCTAssertEqual(text.components(separatedBy: "\n").first, "2026-10-27|\(SoundEvents.millis(at("2026-10-27T23:00")))|SNORE|61000|-33|a.m4a")
+        XCTAssertEqual(text.components(separatedBy: "\n").first,
+                       "2026-10-27|\(SoundEvents.millis(at("2026-10-27T23:00")))|SNORE|61000|-33|a.m4a")
         XCTAssertEqual(SoundEvents.decode(text), clips.sorted { $0.at < $1.at })
         let broken = text + "\nkaputt\n2026-10-27|1|SNORE|1|-3|../etwas\n2026-10-27|2|LAUT|1|-3|z.m4a"
         let read = SoundEvents.decode(broken)
@@ -254,7 +279,8 @@ final class SoundEventsTests: XCTestCase {
     }
 
     func testForNightFilters() {
-        let clips = [clip("2026-10-28T01:00", .talk, 1, -1, file: "b.m4a"), clip("2026-10-26T23:00", .snore, 1, -1, file: "a.m4a")]
+        let clips = [clip("2026-10-28T01:00", .talk, 1, -1, file: "b.m4a"),
+                     clip("2026-10-26T23:00", .snore, 1, -1, file: "a.m4a")]
         XCTAssertEqual(SoundEvents.forNight(clips, night: night).map(\.file), ["b.m4a"])
         XCTAssertNil(SoundEvents.forNight(clips, night: NightDate.adding(5, to: night)).first)
     }

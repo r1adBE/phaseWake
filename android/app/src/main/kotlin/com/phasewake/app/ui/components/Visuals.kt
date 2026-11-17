@@ -41,7 +41,10 @@ fun HeroWave(modifier: Modifier = Modifier, windowFraction: Float = 0.3f, onNigh
     val dark = PhaseWakeTheme.isDark
     val ink = skyInk()
     val brand = if (onNight) {
-        themed.copy(heroWindow = if (dark) Night.Beam.copy(alpha = 0.16f) else Day.Wave.copy(alpha = 0.12f), wave = ink.wave, echo = ink.waveEcho, dot = ink.moon)
+        themed.copy(
+            heroWindow = if (dark) Night.Beam.copy(alpha = 0.16f) else Day.Wave.copy(alpha = 0.12f), wave = ink.wave,
+            echo = ink.waveEcho, dot = ink.moon,
+        )
     } else {
         themed
     }
@@ -56,7 +59,9 @@ fun HeroWave(modifier: Modifier = Modifier, windowFraction: Float = 0.3f, onNigh
         phaseState = transition.animateFloat(
             0f, (2 * PI).toFloat(), infiniteRepeatable(tween(7000, easing = LinearEasing)), label = "phase",
         )
-        pulseState = transition.animateFloat(0f, 1f, infiniteRepeatable(tween(2200, easing = LinearEasing)), label = "pulse")
+        pulseState = transition.animateFloat(
+            0f, 1f, infiniteRepeatable(tween(2200, easing = LinearEasing)), label = "pulse",
+        )
     } else {
         phaseState = remember { mutableFloatStateOf(0f) }
         pulseState = remember { mutableFloatStateOf(STILL_PULSE) }
@@ -101,11 +106,17 @@ fun HeroWave(modifier: Modifier = Modifier, windowFraction: Float = 0.3f, onNigh
         val dot = Offset(dotX, y(steps))
         // Leuchten um den Weckpunkt, darüber der Puls-Ring (ruhend: ein stiller Ring).
         drawCircle(
-            Brush.radialGradient(listOf(brand.wave.copy(alpha = 0.45f), brand.wave.copy(alpha = 0f)), center = dot, radius = 22.dp.toPx()),
+            Brush.radialGradient(
+                listOf(brand.wave.copy(alpha = 0.45f), brand.wave.copy(alpha = 0f)), center = dot,
+                radius = 22.dp.toPx(),
+            ),
             radius = 22.dp.toPx(),
             center = dot,
         )
-        drawCircle(brand.wave.copy(alpha = (1f - pulse) * 0.6f), radius = 6.dp.toPx() + 12.dp.toPx() * pulse, center = dot, style = Stroke(1.5.dp.toPx()))
+        drawCircle(
+            brand.wave.copy(alpha = (1f - pulse) * 0.6f), radius = 6.dp.toPx() + 12.dp.toPx() * pulse, center = dot,
+            style = Stroke(1.5.dp.toPx()),
+        )
         drawCircle(brand.dot, radius = 5.dp.toPx(), center = dot)
     }
 }
@@ -167,7 +178,11 @@ fun NightBars(
         val chartTop = 10.dp.toPx()
         epochs.forEachIndexed { i, e ->
             val m = e.motion
-            val h = if (m == null) minBar else (minBar + (size.height - chartTop - minBar) * (m / maxMotion).toFloat()) * grow
+            val h = if (m == null) {
+                minBar
+            } else {
+                (minBar + (size.height - chartTop - minBar) * (m / maxMotion).toFloat()) * grow
+            }
             val x = i * (barWidth + gap)
             val active = i >= epochs.size - 3
             drawRoundRect(
@@ -205,7 +220,9 @@ fun PulsingDot(modifier: Modifier = Modifier, color: Color, dot: Color) {
         val base = size.minDimension / 2
         for (k in 0 until 3) {
             val p = (t + k / 3f) % 1f
-            drawCircle(color.copy(alpha = (1f - p) * 0.7f), radius = base * (0.22f + 0.78f * p), style = Stroke(2.dp.toPx()))
+            drawCircle(
+                color.copy(alpha = (1f - p) * 0.7f), radius = base * (0.22f + 0.78f * p), style = Stroke(2.dp.toPx()),
+            )
         }
         drawCircle(dot, radius = base * 0.2f)
     }

@@ -53,7 +53,10 @@ import java.time.Instant
 @Composable
 internal fun Page(title: Int, content: @Composable ColumnScope.() -> Unit) {
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        Text(stringResource(title), style = MaterialTheme.typography.headlineMedium, modifier = Modifier.semantics { heading() })
+        Text(
+            stringResource(title), style = MaterialTheme.typography.headlineMedium,
+            modifier = Modifier.semantics { heading() },
+        )
         content()
     }
 }
@@ -69,7 +72,10 @@ internal fun Welcome() {
     LogoMark(64.dp, moon = MaterialTheme.colorScheme.onSurface)
     Page(R.string.onb_welcome_title) {
         Body(R.string.onb_welcome_text)
-        Text(stringResource(R.string.onb_privacy), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(
+            stringResource(R.string.onb_privacy), style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
     }
 }
 
@@ -84,7 +90,9 @@ internal fun WatchStep(model: OnboardingModel) {
         when {
             Check.WATCH_APP in failed -> {
                 Body(R.string.check_watch_app_problem)
-                FilledTonalButton(onClick = { model.onFix(Check.WATCH_APP) }) { Text(stringResource(R.string.check_watch_app_action)) }
+                FilledTonalButton(onClick = { model.onFix(Check.WATCH_APP) }) {
+                    Text(stringResource(R.string.check_watch_app_action))
+                }
             }
             Check.WATCH in failed -> Body(R.string.check_watch_problem)
             model.check != null -> Body(R.string.onb_watch_ok)
@@ -92,7 +100,9 @@ internal fun WatchStep(model: OnboardingModel) {
         when {
             Check.COMPANION in failed -> {
                 Body(R.string.companion_why)
-                FilledTonalButton(onClick = { model.onFix(Check.COMPANION) }) { Text(stringResource(R.string.companion_connect)) }
+                FilledTonalButton(onClick = { model.onFix(Check.COMPANION) }) {
+                    Text(stringResource(R.string.companion_connect))
+                }
             }
             model.companionLinked -> Text(
                 "✓ " + stringResource(R.string.companion_connected),
@@ -109,7 +119,14 @@ internal fun WatchStep(model: OnboardingModel) {
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun AlarmStep(model: OnboardingModel, time: TimePickerState, window: Int, onWindow: (Int) -> Unit, created: String?, onCreate: () -> Unit) {
+internal fun AlarmStep(
+    model: OnboardingModel,
+    time: TimePickerState,
+    window: Int,
+    onWindow: (Int) -> Unit,
+    created: String?,
+    onCreate: () -> Unit,
+) {
     Page(R.string.onb_alarm_title) {
         Body(R.string.onb_alarm_text)
         // Angelegt: Der Wähler ist gesperrt, eine Änderung legte sonst still nichts an.
@@ -125,7 +142,10 @@ internal fun AlarmStep(model: OnboardingModel, time: TimePickerState, window: In
         // Wie im Editor: «Genau · 10 · 20 · 30».
         val exact = window == AlarmSpec.EXACT_WINDOW
         val exactLabel = stringResource(R.string.editor_window_exact)
-        Text(if (exact) exactLabel else stringResource(R.string.editor_window, window), style = MaterialTheme.typography.titleSmall)
+        Text(
+            if (exact) exactLabel else stringResource(R.string.editor_window, window),
+            style = MaterialTheme.typography.titleSmall,
+        )
         SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().height(IntrinsicSize.Max)) {
             WINDOW_OPTIONS.forEachIndexed { index, value ->
                 SegmentedButton(
@@ -135,16 +155,26 @@ internal fun AlarmStep(model: OnboardingModel, time: TimePickerState, window: In
                     shape = SegmentedButtonDefaults.itemShape(index, WINDOW_OPTIONS.size),
                     modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight(),
                     // Wie im Editor: bei mehr als zwei Feldern ohne Haken.
-                    icon = { if (WINDOW_OPTIONS.size <= CHECK_ICON_MAX_SEGMENTS) SegmentedButtonDefaults.Icon(value == window) },
+                    icon = {
+                        if (WINDOW_OPTIONS.size <= CHECK_ICON_MAX_SEGMENTS) {
+                            SegmentedButtonDefaults.Icon(value == window)
+                        }
+                    },
                 ) { ChoiceLabel(if (value == AlarmSpec.EXACT_WINDOW) exactLabel else Format.number(value)) }
             }
         }
         if (exact) {
-            Text(stringResource(R.string.editor_window_exact_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(
+                stringResource(R.string.editor_window_exact_hint), style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
         val label = created
         if (label != null) {
-            Text(stringResource(R.string.onb_alarm_done, label), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
+            Text(
+                stringResource(R.string.onb_alarm_done, label), style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary,
+            )
         } else if (model.canCreateAlarm) {
             Button(onClick = onCreate) { Text(stringResource(R.string.onb_alarm_create)) }
         }
@@ -188,12 +218,18 @@ internal fun LearningStep(model: OnboardingModel) {
             stringResource(R.string.learn_point_private),
         ).forEach { point ->
             Row {
-                Text("•", style = MaterialTheme.typography.bodyLarge, modifier = Modifier.padding(end = 10.dp).clearAndSetSemantics { })
+                Text(
+                    "•", style = MaterialTheme.typography.bodyLarge,
+                    modifier = Modifier.padding(end = 10.dp).clearAndSetSemantics { },
+                )
                 Text(point, style = MaterialTheme.typography.bodyLarge)
             }
         }
         if (model.learningConsent == true) {
-            Text("✓ " + stringResource(R.string.onb_granted), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+            Text(
+                "✓ " + stringResource(R.string.onb_granted), style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.primary,
+            )
         }
     }
 }
@@ -204,7 +240,10 @@ internal fun TestPage(model: OnboardingModel) {
     Page(R.string.test_title) {
         Body(R.string.test_hint)
         if (running != null && running.isAfter(Instant.now())) {
-            Text(stringResource(R.string.test_running, Format.time(running)), style = MaterialTheme.typography.titleSmall)
+            Text(
+                stringResource(R.string.test_running, Format.time(running)),
+                style = MaterialTheme.typography.titleSmall,
+            )
         } else {
             FilledTonalButton(onClick = model.onStartTest) { Text(stringResource(R.string.test_button)) }
         }

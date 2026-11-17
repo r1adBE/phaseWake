@@ -115,7 +115,8 @@ public enum BatteryTrack {
 
     /// «s,ms,prozent,0|1» je Punkt, durch «;» getrennt (wie Kotlin).
     public static func encode(_ track: [BatteryPoint]) -> String {
-        track.map { "\($0.mark.rawValue),\(TimeBounds.millis($0.at)),\($0.percent),\($0.plugged ? 1 : 0)" }.joined(separator: ";")
+        track.map { "\($0.mark.rawValue),\(TimeBounds.millis($0.at)),\($0.percent),\($0.plugged ? 1 : 0)" }
+            .joined(separator: ";")
     }
 
     /// Liest ``encode(_:)``; leer, fremd oder kaputt: `nil`.
@@ -130,7 +131,8 @@ public enum BatteryTrack {
                   let ms = TimeBounds.checked(Int64(f[1])),
                   let percent = Int(f[2]), (0...100).contains(percent),
                   f[3] == "1" || f[3] == "0" else { return nil }
-            let point = BatteryPoint(at: Date(timeIntervalSince1970: TimeInterval(ms) / 1000), percent: percent, plugged: f[3] == "1", mark: mark)
+            let point = BatteryPoint(at: Date(timeIntervalSince1970: TimeInterval(ms) / 1000), percent: percent,
+                                     plugged: f[3] == "1", mark: mark)
             guard consistent(point) else { return nil }
             out.append(point)
         }

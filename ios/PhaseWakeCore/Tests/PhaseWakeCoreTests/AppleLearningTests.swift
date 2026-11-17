@@ -69,12 +69,16 @@ final class AppleLearningTests: XCTestCase {
         XCTAssertEqual(RecorderEpochs.heartRates(samples, start: start, count: 3), [52, nil, nil])
         XCTAssertEqual(RecorderEpochs.heartRates(samples, start: start, count: 0), [])
         let epochs = RecorderEpochs.epochs(motions: [0.02, nil, 0.03], heartRates: [52, 55])
-        XCTAssertEqual(epochs, [Epoch(motion: 0.02, heartRate: 52), Epoch(motion: nil, heartRate: 55), Epoch(motion: 0.03, heartRate: nil)])
+        XCTAssertEqual(epochs,
+                       [Epoch(motion: 0.02, heartRate: 52), Epoch(motion: nil, heartRate: 55),
+                        Epoch(motion: 0.03, heartRate: nil)])
     }
 
     func testRecordingRoundTripAndTolerantReading() {
         let recording = NightRecording(
-            start: start, epochs: [Epoch(motion: 0.0213, heartRate: 54.5), Epoch(motion: nil, heartRate: nil), Epoch(motion: 0.03, heartRate: nil)],
+            start: start,
+            epochs: [Epoch(motion: 0.0213, heartRate: 54.5), Epoch(motion: nil, heartRate: nil),
+                     Epoch(motion: 0.03, heartRate: nil)],
             end: start.addingTimeInterval(90), endReason: .wake, bedAt: start, asleepAt: start.addingTimeInterval(60)
         )
         let text = NightRecording.encode(recording)
@@ -82,7 +86,8 @@ final class AppleLearningTests: XCTestCase {
         XCTAssertEqual(NightRecording.decode(text), recording)
         XCTAssertEqual(recording.learnNight.asleepAt, start.addingTimeInterval(60))
         // Abgebrochene letzte Zeile, unlesbare Epoche, unbekannter Grund, zwei «onset»-Zeilen (die jüngste gilt).
-        let messy = "phasewake-recording 1\nstart=1793570400000\nx;1\n0.02;\nonset=1,2\nonset=3,4\n0.04;60\nend=1793570490000,later\n0.05;"
+        let messy = "phasewake-recording 1\nstart=1793570400000\nx;1\n0.02;\nonset=1,2\nonset=3,4\n"
+            + "0.04;60\nend=1793570490000,later\n0.05;"
         let read = NightRecording.decode(messy)
         XCTAssertEqual(read?.epochs, [Epoch(motion: 0.02, heartRate: nil), Epoch(motion: 0.04, heartRate: 60)])
         XCTAssertEqual(read?.endReason, .service)
@@ -104,9 +109,11 @@ final class AppleLearningTests: XCTestCase {
         let onset = start.addingTimeInterval(-30 * 60) // 22:30
         let end = target.addingTimeInterval(AppleLearnRecord.afterTarget)
         // 18:00 und 22:29: vor der Einschlaf-Messung nicht starten (kein Start 12 Std. im Voraus).
-        XCTAssertEqual(AppleLearnRecord.decide(now: start.addingTimeInterval(-5 * 3600), target: target, onsetStart: onset, battery: 90),
+        XCTAssertEqual(AppleLearnRecord.decide(now: start.addingTimeInterval(-5 * 3600), target: target,
+                                               onsetStart: onset, battery: 90),
                        .wait(until: onset))
-        XCTAssertEqual(AppleLearnRecord.decide(now: onset.addingTimeInterval(-60), target: target, onsetStart: onset, battery: 90),
+        XCTAssertEqual(AppleLearnRecord.decide(now: onset.addingTimeInterval(-60), target: target, onsetStart: onset,
+                                               battery: 90),
                        .wait(until: onset))
         // 22:30: starten, ausgewertet ab jetzt.
         XCTAssertEqual(AppleLearnRecord.decide(now: onset, target: target, onsetStart: onset, battery: 90),
@@ -117,13 +124,18 @@ final class AppleLearningTests: XCTestCase {
         XCTAssertEqual(AppleLearnRecord.decide(now: late, target: target, onsetStart: onset, battery: nil),
                        .start(from: late, until: end, duration: end.timeIntervalSince(late)))
         // 04:01: keine 3 Std. mehr; nach der Zielzeit vorbei; unter 40 % nicht.
-        XCTAssertEqual(AppleLearnRecord.decide(now: target.addingTimeInterval(-3 * 3600 + 60), target: target, onsetStart: onset, battery: 90),
+        XCTAssertEqual(AppleLearnRecord.decide(now: target.addingTimeInterval(-3 * 3600 + 60), target: target,
+                                               onsetStart: onset, battery: 90),
                        .skip(reason: "too late"))
-        XCTAssertEqual(AppleLearnRecord.decide(now: target, target: target, onsetStart: onset, battery: 90), .skip(reason: "past"))
-        XCTAssertEqual(AppleLearnRecord.decide(now: evening, target: target, onsetStart: onset, battery: 39), .skip(reason: "battery 39%"))
-        XCTAssertNotEqual(AppleLearnRecord.decide(now: evening, target: target, onsetStart: onset, battery: 40), .skip(reason: "battery 40%"))
+        XCTAssertEqual(AppleLearnRecord.decide(now: target, target: target, onsetStart: onset, battery: 90),
+                       .skip(reason: "past"))
+        XCTAssertEqual(AppleLearnRecord.decide(now: evening, target: target, onsetStart: onset, battery: 39),
+                       .skip(reason: "battery 39%"))
+        XCTAssertNotEqual(AppleLearnRecord.decide(now: evening, target: target, onsetStart: onset, battery: 40),
+                          .skip(reason: "battery 40%"))
         // Ende der Auswertung: Ende des Klingelns, höchstens Ende des Rekorders; ohne Klingeln die Zielzeit.
-        XCTAssertEqual(AppleLearnRecord.end(wokeAt: target.addingTimeInterval(-600), target: target, until: end), target.addingTimeInterval(-600))
+        XCTAssertEqual(AppleLearnRecord.end(wokeAt: target.addingTimeInterval(-600), target: target, until: end),
+                       target.addingTimeInterval(-600))
         XCTAssertEqual(AppleLearnRecord.end(wokeAt: end.addingTimeInterval(600), target: target, until: end), end)
         XCTAssertEqual(AppleLearnRecord.end(wokeAt: nil, target: target, until: end), target)
     }
@@ -148,7 +160,8 @@ final class AppleLearningTests: XCTestCase {
         XCTAssertTrue(state.finish(values, now: t0.addingTimeInterval(200)))
         XCTAssertFalse(state.active)
         XCTAssertFalse(state.seen)
-        XCTAssertFalse(state.finish(Learning.Values(floor: 0.01, restingHeartRate: nil, latencyMinutes: nil, nights: 7), now: t0))
+        XCTAssertFalse(state.finish(Learning.Values(floor: 0.01, restingHeartRate: nil, latencyMinutes: nil, nights: 7),
+                                    now: t0))
         XCTAssertEqual(state.values, values)
         state.setSeen()
         XCTAssertTrue(state.seen)
@@ -198,7 +211,8 @@ final class AppleLearningTests: XCTestCase {
         XCTAssertEqual(LearningSnapshot.empty.diagLine, "active=0 floor=- hr=-")
         XCTAssertTrue(snapshot.replaces(.empty))
         XCTAssertFalse(LearningSnapshot.empty.replaces(snapshot))
-        let config = LearningSnapshot(active: false, floor: 0.02, restingHeartRate: 50, updatedAtMs: 1).applied(to: .standard)
+        let config = LearningSnapshot(active: false, floor: 0.02, restingHeartRate: 50,
+                                      updatedAtMs: 1).applied(to: .standard)
         XCTAssertEqual(config.personalFloor, 0.02)
         XCTAssertEqual(config.restingHeartRate, 50)
         XCTAssertEqual(LearningSnapshot.empty.applied(to: .standard), .standard)
@@ -222,11 +236,14 @@ final class AppleLearningTests: XCTestCase {
         let max = "9223372036854775807"
         XCTAssertNil(NightRecording.decode("phasewake-recording 1\nstart=\(max)\n0.02;\n"))
         XCTAssertNil(NightRecording.decode("phasewake-recording 1\nstart=-1\n0.02;\n"))
-        let read = NightRecording.decode("phasewake-recording 1\nstart=1793570400000\n0.02;\nonset=\(max),1793570460000\nend=\(max),phone\n")
+        let read = NightRecording.decode("phasewake-recording 1\nstart=1793570400000\n0.02;\n"
+                                         + "onset=\(max),1793570460000\nend=\(max),phone\n")
         XCTAssertNotNil(read)
         XCTAssertNil(read?.bedAt)
         XCTAssertNil(read?.end)
-        if let read { XCTAssertTrue(NightRecording.encode(read).hasPrefix("phasewake-recording 1\nstart=1793570400000\n")) }
+        if let read {
+            XCTAssertTrue(NightRecording.encode(read).hasPrefix("phasewake-recording 1\nstart=1793570400000\n"))
+        }
     }
 
     /// Der Zeitpunkt der Lernphase steigt streng, auch bei zwei Änderungen in derselben Millisekunde oder nach
@@ -252,15 +269,19 @@ final class AppleLearningTests: XCTestCase {
         let old = now.addingTimeInterval(7 * 3600 + 40 * 60)
         let moved = old.addingTimeInterval(3600)
         XCTAssertEqual(AppleLearnRecord.followedTarget(current: old, planTarget: moved, now: now), moved)
-        XCTAssertEqual(AppleLearnRecord.followedTarget(current: old, planTarget: old.addingTimeInterval(-3600), now: now),
+        XCTAssertEqual(AppleLearnRecord.followedTarget(current: old, planTarget: old.addingTimeInterval(-3600),
+                                                       now: now),
                        old.addingTimeInterval(-3600))
         // Wecker aus oder gelöscht, übersprungen (nächster erst morgen), schon vorbei: alte Weckzeit.
         XCTAssertEqual(AppleLearnRecord.followedTarget(current: old, planTarget: nil, now: now), old)
-        XCTAssertEqual(AppleLearnRecord.followedTarget(current: old, planTarget: moved.addingTimeInterval(86_400), now: now), old)
+        XCTAssertEqual(AppleLearnRecord.followedTarget(current: old, planTarget: moved.addingTimeInterval(86_400),
+                                                       now: now), old)
         XCTAssertEqual(AppleLearnRecord.followedTarget(current: old, planTarget: now, now: now), old)
         // Genau 12 Std.: noch dieselbe Nacht; eine Sekunde mehr nicht.
-        XCTAssertEqual(AppleLearnRecord.followedTarget(current: old, planTarget: now.addingTimeInterval(12 * 3600), now: now),
+        XCTAssertEqual(AppleLearnRecord.followedTarget(current: old, planTarget: now.addingTimeInterval(12 * 3600),
+                                                       now: now),
                        now.addingTimeInterval(12 * 3600))
-        XCTAssertEqual(AppleLearnRecord.followedTarget(current: old, planTarget: now.addingTimeInterval(12 * 3600 + 1), now: now), old)
+        XCTAssertEqual(AppleLearnRecord.followedTarget(current: old, planTarget: now.addingTimeInterval(12 * 3600 + 1),
+                                                       now: now), old)
     }
 }

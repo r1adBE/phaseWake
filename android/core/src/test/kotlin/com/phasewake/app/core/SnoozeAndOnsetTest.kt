@@ -94,7 +94,9 @@ class SnoozeAndOnsetTest {
         assertEquals(30, SleepOnset.find(motions, threshold))
         // Eine Epoche früher (Strecke erst 29 Epochen) noch nicht.
         val early = motions.dropLast(1)
-        assertNull(SleepOnset.find(early, NoiseFloor.light(DetectorConfig.DEFAULT_LIGHT_THRESHOLD, NoiseFloor.floor(early))))
+        assertNull(
+            SleepOnset.find(early, NoiseFloor.light(DetectorConfig.DEFAULT_LIGHT_THRESHOLD, NoiseFloor.floor(early))),
+        )
     }
 
     @Test

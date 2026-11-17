@@ -12,7 +12,8 @@ final class HistoryClearWatchTests: XCTestCase {
         XCTAssertEqual(HistoryClear.clearUntil(sentAt: sent, applied: nil), sent)
         XCTAssertNil(HistoryClear.clearUntil(sentAt: sent, applied: sent))
         XCTAssertNil(HistoryClear.clearUntil(sentAt: sent, applied: sent.addingTimeInterval(1)))
-        XCTAssertEqual(HistoryClear.clearUntil(sentAt: sent.addingTimeInterval(1), applied: sent), sent.addingTimeInterval(1))
+        XCTAssertEqual(HistoryClear.clearUntil(sentAt: sent.addingTimeInterval(1), applied: sent),
+                       sent.addingTimeInterval(1))
     }
 
     func testClearHistoryKeepsOnlyWhatEndedLater() {

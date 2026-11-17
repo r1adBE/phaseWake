@@ -85,7 +85,9 @@ fun SkyHeader(
             Column(
                 Modifier.fillMaxWidth()
                     .then(if (statusBar) Modifier.statusBarsPadding() else Modifier)
-                    .padding(start = bleedSide, end = bleedSide, top = bleedTop, bottom = if (dark) 0.dp else HEADER_BOTTOM),
+                    .padding(
+                        start = bleedSide, end = bleedSide, top = bleedTop, bottom = if (dark) 0.dp else HEADER_BOTTOM,
+                    ),
                 content = content,
             )
         }
@@ -93,7 +95,9 @@ fun SkyHeader(
     if (dark) {
         Box(modifier.fillMaxWidth().bleed(bleedSide, bleedTop)) { inner() }
     } else {
-        AnimatedDay(modifier.fillMaxWidth().bleed(bleedSide, bleedTop).clip(HEADER_SHAPE), LocalSkyMood.current) { inner() }
+        AnimatedDay(modifier.fillMaxWidth().bleed(bleedSide, bleedTop).clip(HEADER_SHAPE), LocalSkyMood.current) {
+            inner()
+        }
     }
 }
 
@@ -104,9 +108,16 @@ fun SkyHeader(
 @Composable
 fun SkyBarPage(bar: @Composable RowScope.() -> Unit, content: @Composable ColumnScope.() -> Unit) {
     SkyPage {
-        Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom))) {
+        Column(
+            Modifier.fillMaxSize().windowInsetsPadding(
+                WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom)
+            )
+        ) {
             SkyHeader(statusBar = true) {
-                Row(Modifier.fillMaxWidth().padding(4.dp), verticalAlignment = Alignment.CenterVertically, content = bar)
+                Row(
+                    Modifier.fillMaxWidth().padding(4.dp), verticalAlignment = Alignment.CenterVertically,
+                    content = bar,
+                )
             }
             Spacer(Modifier.height(BAR_GAP))
             content()
@@ -119,7 +130,8 @@ fun SkyBarPage(bar: @Composable RowScope.() -> Unit, content: @Composable Column
  * weisser Schrift ([skyInk]).
  */
 @Composable
-fun skyButtonColors(): ButtonColors = skyInk().let { ButtonDefaults.buttonColors(containerColor = it.button, contentColor = it.onButton) }
+fun skyButtonColors(): ButtonColors =
+    skyInk().let { ButtonDefaults.buttonColors(containerColor = it.button, contentColor = it.onButton) }
 
 /** Abstand zwischen Kopfzeile und Inhalt. */
 private val BAR_GAP = 8.dp
@@ -130,7 +142,9 @@ val PAGE_SIDE: Dp = 16.dp
 /** Titel einer Seite (headlineMedium), im Kopf ([SkyHeader]) in dessen Schriftfarbe. */
 @Composable
 fun PageTitle(text: String, modifier: Modifier = Modifier) {
-    Text(text, style = MaterialTheme.typography.headlineMedium, modifier = modifier.padding(start = 4.dp, bottom = 4.dp))
+    Text(
+        text, style = MaterialTheme.typography.headlineMedium, modifier = modifier.padding(start = 4.dp, bottom = 4.dp),
+    )
 }
 
 /** Unten runde Ecken wie der Kopf der Startseite. */
@@ -143,7 +157,8 @@ private val HEADER_BOTTOM = 14.dp
  * Misst um [side] links und rechts breiter und setzt um [top] höher an, meldet aber nur den eigenen Platz: Der Kopf
  * ragt randlos in Rand und oberen Innenabstand der Liste.
  */
-private fun Modifier.bleed(side: Dp, top: Dp): Modifier = if (side == 0.dp && top == 0.dp) this else layout { measurable, constraints ->
+private fun Modifier.bleed(side: Dp, top: Dp): Modifier =
+    if (side == 0.dp && top == 0.dp) this else layout { measurable, constraints ->
     val s = side.roundToPx()
     val t = top.roundToPx()
     val width = if (constraints.hasBoundedWidth) constraints.maxWidth + 2 * s else constraints.maxWidth
@@ -170,11 +185,17 @@ fun skyCard(): Color = if (PhaseWakeTheme.isDark) Night.Panel else MaterialTheme
  */
 @Composable
 fun skyCardEdge(): BorderStroke = if (PhaseWakeTheme.isDark) {
-    BorderStroke(1.dp, Brush.verticalGradient(listOf(Color.White.copy(alpha = 0.30f), Night.Wave.copy(alpha = 0.10f), Color.White.copy(alpha = 0.02f))))
+    BorderStroke(
+        1.dp,
+        Brush.verticalGradient(
+            listOf(Color.White.copy(alpha = 0.30f), Night.Wave.copy(alpha = 0.10f), Color.White.copy(alpha = 0.02f))
+        ),
+    )
 } else {
     BorderStroke(1.dp, Night.Glow.copy(alpha = 0.10f))
 }
 
 /** Tiefe wie auf der Startseite: hell ein weicher Schatten, dunkel keiner (die Glaskante trägt die Tiefe). */
 @Composable
-fun skyCardLift(): CardElevation = CardDefaults.cardElevation(defaultElevation = if (PhaseWakeTheme.isDark) 0.dp else 3.dp)
+fun skyCardLift(): CardElevation =
+    CardDefaults.cardElevation(defaultElevation = if (PhaseWakeTheme.isDark) 0.dp else 3.dp)

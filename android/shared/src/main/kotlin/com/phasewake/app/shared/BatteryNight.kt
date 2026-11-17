@@ -52,7 +52,11 @@ object BatteryNight {
         val scale = status.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
         if (level < 0 || scale <= 0) return null
         val plugged = status.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) != 0
-        return Reading(Instant.ofEpochMilli(System.currentTimeMillis()), (level * 100 / scale).coerceIn(0, 100), plugged)
+        return Reading(
+            Instant.ofEpochMilli(System.currentTimeMillis()),
+            (level * 100 / scale).coerceIn(0, 100),
+            plugged,
+        )
     }
 
     /**
@@ -102,7 +106,10 @@ object BatteryNight {
             log("night battery end unknown")
             return null
         }
-        log("night battery ${BatteryTrack.describe(track.last())}, used ${BatteryTrack.used(track)?.let { "$it%" } ?: "unknown"}")
+        log(
+            "night battery ${BatteryTrack.describe(track.last())}, used " +
+                "${BatteryTrack.used(track)?.let { "$it%" } ?: "unknown"}",
+        )
         return track
     }
 
@@ -152,7 +159,10 @@ object BatteryNight {
     }
 
     /** Ändert die laufende Nacht und protokolliert einen neuen Punkt; `true`, wenn eine läuft. */
-    private fun change(context: Context, block: (List<BatteryPoint>) -> List<BatteryPoint>): Boolean = synchronized(lock) {
+    private fun change(
+        context: Context,
+        block: (List<BatteryPoint>) -> List<BatteryPoint>,
+    ): Boolean = synchronized(lock) {
         val before = open(context)
         val after = block(before)
         if (after != before) {
@@ -165,22 +175,31 @@ object BatteryNight {
     /** Auftrag fürs nächste Anschliessen ([BatteryChargeJob]); ersetzt einen geplanten. */
     private fun arm(context: Context) {
         val scheduler = context.getSystemService(JobScheduler::class.java) ?: return
-        val job = JobInfo.Builder(JOB_ID, ComponentName(context, BatteryChargeJob::class.java)).setRequiresCharging(true).build()
-        runCatching { scheduler.schedule(job) }.onFailure { log("night battery charge watch not planned: ${it.javaClass.simpleName}") }
+        val job = JobInfo.Builder(
+            JOB_ID,
+            ComponentName(context, BatteryChargeJob::class.java),
+        ).setRequiresCharging(true).build()
+        runCatching { scheduler.schedule(job) }.onFailure {
+            log("night battery charge watch not planned: ${it.javaClass.simpleName}")
+        }
     }
 
     private fun disarm(context: Context) {
         context.getSystemService(JobScheduler::class.java)?.cancel(JOB_ID)
     }
 
-    private fun unlocked(context: Context): Boolean = context.getSystemService(UserManager::class.java)?.isUserUnlocked != false
+    private fun unlocked(context: Context): Boolean =
+        context.getSystemService(UserManager::class.java)?.isUserUnlocked != false
 
     private fun prefs(context: Context) = context.applicationContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
 
-    private fun open(context: Context): List<BatteryPoint> = BatteryTrack.decode(prefs(context).getString(KEY_OPEN, null)).orEmpty()
+    private fun open(context: Context): List<BatteryPoint> =
+        BatteryTrack.decode(prefs(context).getString(KEY_OPEN, null)).orEmpty()
 
     private fun save(context: Context, key: String, track: List<BatteryPoint>?) {
-        prefs(context).edit(commit = true) { if (track.isNullOrEmpty()) remove(key) else putString(key, BatteryTrack.encode(track)) }
+        prefs(context).edit(commit = true) {
+            if (track.isNullOrEmpty()) remove(key) else putString(key, BatteryTrack.encode(track))
+        }
     }
 }
 

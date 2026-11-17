@@ -69,7 +69,8 @@ public final class SettingsFile: SettingsStore, @unchecked Sendable {
         self.url = url
         self.readOnly = readOnly
         if !readOnly {
-            try? FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
+            try? FileManager.default.createDirectory(at: url.deletingLastPathComponent(),
+                                                     withIntermediateDirectories: true)
         }
         lock.lock(); defer { lock.unlock() }
         loadLocked()
@@ -93,16 +94,22 @@ public final class SettingsFile: SettingsStore, @unchecked Sendable {
     public func integer(forKey defaultName: String) -> Int { Self.number(object(forKey: defaultName))?.intValue ?? 0 }
 
     /// Schalter; `false` ohne Wert.
-    public func bool(forKey defaultName: String) -> Bool { Self.number(object(forKey: defaultName))?.boolValue ?? false }
+    public func bool(forKey defaultName: String) -> Bool {
+        Self.number(object(forKey: defaultName))?.boolValue ?? false
+    }
 
     /// Kommazahl; 0 ohne Wert.
-    public func double(forKey defaultName: String) -> Double { Self.number(object(forKey: defaultName))?.doubleValue ?? 0 }
+    public func double(forKey defaultName: String) -> Double {
+        Self.number(object(forKey: defaultName))?.doubleValue ?? 0
+    }
 
     /// Bytes; `nil` ohne Wert oder bei anderem Typ.
     public func data(forKey defaultName: String) -> Data? { object(forKey: defaultName) as? Data }
 
     /// Wörterbuch; `nil` ohne Wert oder bei anderem Typ.
-    public func dictionary(forKey defaultName: String) -> [String: Any]? { object(forKey: defaultName) as? [String: Any] }
+    public func dictionary(forKey defaultName: String) -> [String: Any]? {
+        object(forKey: defaultName) as? [String: Any]
+    }
 
     /// Liste von Texten; `nil` ohne Wert oder bei anderem Typ.
     public func stringArray(forKey defaultName: String) -> [String]? { object(forKey: defaultName) as? [String] }

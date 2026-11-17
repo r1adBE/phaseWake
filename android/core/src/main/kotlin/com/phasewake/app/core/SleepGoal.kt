@@ -84,10 +84,19 @@ object Bedtime {
      * hinter den Weckpunkt.
      */
     fun onDial(nextAlarmTarget: Instant, goalMinutes: Int, latencyMinutes: Int? = null): Instant? =
-        if (goalMinutes + (latencyMinutes ?: 0).coerceAtLeast(0) in 1 until DIAL_MINUTES) bedtime(nextAlarmTarget, goalMinutes, latencyMinutes) else null
+        if (goalMinutes + (latencyMinutes ?: 0).coerceAtLeast(0) in 1 until DIAL_MINUTES) {
+            bedtime(nextAlarmTarget, goalMinutes, latencyMinutes)
+        } else {
+            null
+        }
 
     /** Zeitpunkt der Erinnerung: [bedtime] minus [leadMinutes]. */
-    fun reminderAt(nextAlarmTarget: Instant, goalMinutes: Int, leadMinutes: Int = LEAD_MINUTES, latencyMinutes: Int? = null): Instant =
+    fun reminderAt(
+        nextAlarmTarget: Instant,
+        goalMinutes: Int,
+        leadMinutes: Int = LEAD_MINUTES,
+        latencyMinutes: Int? = null,
+    ): Instant =
         bedtime(nextAlarmTarget, goalMinutes, latencyMinutes).minus(Duration.ofMinutes(leadMinutes.toLong()))
 
     /**

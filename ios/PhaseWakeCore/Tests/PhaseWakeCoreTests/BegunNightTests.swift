@@ -24,8 +24,10 @@ final class BegunNightTests: XCTestCase {
         try! AlarmSpec(id: "a", hour: hour, minute: minute, windowMinutes: window)
     }
 
-    private func begun(_ spec: AlarmSpec? = nil, now: Date, withCalendar: Bool = true, suppressedUntil: Date? = nil) -> WakePlan? {
-        AlarmSchedule.begunNight(spec ?? alarm(), plannedTarget: planned, plannedCalendar: withCalendar ? zurich : nil, now: now,
+    private func begun(_ spec: AlarmSpec? = nil, now: Date, withCalendar: Bool = true,
+                       suppressedUntil: Date? = nil) -> WakePlan? {
+        AlarmSchedule.begunNight(spec ?? alarm(), plannedTarget: planned, plannedCalendar: withCalendar ? zurich : nil,
+                                 now: now,
                                  grace: grace, suppressedUntil: suppressedUntil)
     }
 
@@ -59,7 +61,8 @@ final class BegunNightTests: XCTestCase {
         let now = at(6, 40)
         XCTAssertNil(begun(now: now, suppressedUntil: planned), "ausgesetzt")
         XCTAssertNil(begun(now: now, withCalendar: false), "ohne Kalender")
-        XCTAssertNil(AlarmSchedule.begunNight(alarm(), plannedTarget: nil, plannedCalendar: zurich, now: now, grace: grace), "ohne Zielzeit")
+        XCTAssertNil(AlarmSchedule.begunNight(alarm(), plannedTarget: nil, plannedCalendar: zurich, now: now,
+                                              grace: grace), "ohne Zielzeit")
     }
 
     func testSameZoneHarmless() {

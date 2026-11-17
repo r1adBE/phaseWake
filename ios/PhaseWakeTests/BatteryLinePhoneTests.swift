@@ -14,7 +14,8 @@ final class BatteryLinePhoneTests: XCTestCase {
 
     private func night(watch: [BatteryPoint]? = nil, phone: [BatteryPoint]? = nil) -> NightRecord {
         NightRecord(alarmId: "a", windowStart: t0.addingTimeInterval(34_200), target: t0.addingTimeInterval(36_000),
-                    wokeAt: t0.addingTimeInterval(35_400), reason: .lightSleep, snoozes: 0, epochs: [], watchBattery: watch, phoneBattery: phone)
+                    wokeAt: t0.addingTimeInterval(35_400), reason: .lightSleep, snoozes: 0, epochs: [],
+                    watchBattery: watch, phoneBattery: phone)
     }
 
     func testBothParts() {
@@ -25,7 +26,8 @@ final class BatteryLinePhoneTests: XCTestCase {
     func testOnlyKnownParts() {
         XCTAssertEqual(batteryLine(night(watch: track(80, 66))), L("battery_night", L("battery_watch", Int64(14))))
         // Handy die ganze Nacht am Ladegerät: kein Wert, nur die Uhr.
-        XCTAssertEqual(batteryLine(night(watch: track(80, 66), phone: track(50, 90, plugged: true))), L("battery_night", L("battery_watch", Int64(14))))
+        XCTAssertEqual(batteryLine(night(watch: track(80, 66), phone: track(50, 90, plugged: true))),
+                       L("battery_night", L("battery_watch", Int64(14))))
         XCTAssertEqual(batteryLine(night(phone: track(50, 47))), L("battery_night", L("battery_phone", Int64(3))))
     }
 

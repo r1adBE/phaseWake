@@ -30,8 +30,12 @@ class AlarmScheduleTest {
         assertEquals(at("2026-11-09T07:00"), AlarmSchedule.nextTarget(skipped, now, zurich))
         // Feiertag am 2.11. mit skipHolidays: ebenso 9.11.; dazu der 9.11. übersprungen: 16.11. (20 Tage).
         val holiday = setOf(java.time.LocalDate.of(2026, 11, 2))
-        assertEquals(at("2026-11-09T07:00"), AlarmSchedule.nextTarget(monday.copy(skipHolidays = true), now, zurich, holiday))
-        val both = monday.copy(skipHolidays = true, skipUntil = AlarmSchedule.wallMillis(at("2026-11-09T07:00"), zurich))
+        assertEquals(
+            at("2026-11-09T07:00"),
+            AlarmSchedule.nextTarget(monday.copy(skipHolidays = true), now, zurich, holiday),
+        )
+        val both =
+            monday.copy(skipHolidays = true, skipUntil = AlarmSchedule.wallMillis(at("2026-11-09T07:00"), zurich))
         assertEquals(at("2026-11-16T07:00"), AlarmSchedule.nextTarget(both, now, zurich, holiday))
         // Grenze der Suche: ein Jahr Feiertage → null statt endloser Suche; 370 Tage.
         assertEquals(370L, AlarmSchedule.MAX_SEARCH_DAYS)
@@ -58,15 +62,22 @@ class AlarmScheduleTest {
 
     @Test
     fun weekdaysSkipWeekend() {
-        val weekdays = setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)
+        val weekdays =
+            setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)
         // Freitag 30.10.2026 nach 7 Uhr → Montag 2.11.
-        assertEquals(at("2026-11-02T07:00"), AlarmSchedule.nextTarget(alarm(days = weekdays), at("2026-10-30T08:00"), zurich))
+        assertEquals(
+            at("2026-11-02T07:00"),
+            AlarmSchedule.nextTarget(alarm(days = weekdays), at("2026-10-30T08:00"), zurich),
+        )
     }
 
     @Test
     fun sameWeekdayNextWeek() {
         val wednesday = setOf(DayOfWeek.WEDNESDAY)
-        assertEquals(at("2026-11-04T07:00"), AlarmSchedule.nextTarget(alarm(days = wednesday), at("2026-10-28T07:30"), zurich))
+        assertEquals(
+            at("2026-11-04T07:00"),
+            AlarmSchedule.nextTarget(alarm(days = wednesday), at("2026-10-28T07:30"), zurich),
+        )
     }
 
     @Test
@@ -91,7 +102,8 @@ class AlarmScheduleTest {
     @Test
     fun earliestPlanAcrossAlarms() {
         val now = at("2026-10-28T01:00")
-        val plan = AlarmSchedule.earliestPlan(listOf(alarm(hour = 8, id = "b"), alarm(hour = 6, id = "c")), now, zurich)!!
+        val plan =
+            AlarmSchedule.earliestPlan(listOf(alarm(hour = 8, id = "b"), alarm(hour = 6, id = "c")), now, zurich)!!
         assertEquals("c", plan.alarmId)
         assertNull(AlarmSchedule.earliestPlan(emptyList(), now, zurich))
     }

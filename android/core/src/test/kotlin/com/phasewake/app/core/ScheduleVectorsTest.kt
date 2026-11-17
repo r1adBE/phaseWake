@@ -23,9 +23,16 @@ class ScheduleVectorsTest {
         val lines = ScheduleVectors.lines()
         for (line in lines) {
             val fields = line.split('\t')
-            assertEquals(fields.takeLast(2).map(ScheduleVectors::expected), ScheduleVectors.actual(fields).map { it.first }, line)
+            assertEquals(
+                fields.takeLast(2).map(ScheduleVectors::expected),
+                ScheduleVectors.actual(fields).map { it.first },
+                line,
+            )
         }
-        assertEquals(mapOf("next" to 29, "planned" to 20, "missed" to 12), lines.groupingBy { it.substringBefore('\t') }.eachCount())
+        assertEquals(
+            mapOf("next" to 29, "planned" to 20, "missed" to 12),
+            lines.groupingBy { it.substringBefore('\t') }.eachCount(),
+        )
     }
 }
 
@@ -35,7 +42,9 @@ class ScheduleVectorsTest {
  */
 internal object ScheduleVectors {
     fun lines(): List<String> =
-        NightFixtures.directory().resolve("schedule.vectors").readLines(Charsets.UTF_8).filter { it.isNotBlank() && !it.startsWith("#") }
+        NightFixtures.directory().resolve("schedule.vectors").readLines(Charsets.UTF_8).filter {
+            it.isNotBlank() && !it.startsWith("#")
+        }
 
     /** Die beiden erwarteten Felder der Zeile [f], so wie der Kern sie heute ergibt. */
     fun actual(f: List<String>): List<Pair<String, String>> {
@@ -48,7 +57,13 @@ internal object ScheduleVectors {
                 val done = f[4].takeIf { it != "-" }?.let(::instant)
                 val spec = alarm(f[5])
                 val next = AlarmSchedule.nextTarget(spec, maxOf(now, done ?: now), zone, holidays)
-                val earliest = AlarmSchedule.earliestPlan(listOf(spec), now, zone, holidays, done?.let { mapOf(spec.id to it) }.orEmpty())
+                val earliest = AlarmSchedule.earliestPlan(
+                    listOf(spec),
+                    now,
+                    zone,
+                    holidays,
+                    done?.let { mapOf(spec.id to it) }.orEmpty(),
+                )
                 check(earliest?.target == next) { "earliestPlan weicht von nextTarget ab" }
                 val skip = AlarmSchedule.skipNext(spec, now, zone, holidays, done).skipUntil
                 listOf(text(next, zone), wall(skip))
@@ -64,15 +79,24 @@ internal object ScheduleVectors {
                 val inGrace = AlarmSchedule.inGrace(spec, target, now, grace, zone, holidays, suppressed)
                 val begun = AlarmSchedule.begunNight(spec, target, plannedZone, now, grace, holidays, suppressed)
                 listOf(inGrace, begun).map { plan ->
-                    check(plan == null || plan == AlarmSchedule.planAt(spec, target!!)) { "Plan nicht zur geplanten Zielzeit" }
+                    check(plan == null || plan == AlarmSchedule.planAt(spec, target!!)) {
+                        "Plan nicht zur geplanten Zielzeit"
+                    }
                     if (plan == null) "-" to "-" else "+" to "+"
                 }
             }
             "missed" -> {
                 require(f.size == 9) { "missed: 9 Felder erwartet" }
                 val holidays = dates(f[3])
-                val done = if (f[4] == "-") emptyMap() else f[4].split(',').associate { it.substringBefore('=') to instant(it.substringAfter('=')) }
-                val catchUp = f[5].takeIf { it != "-" }?.split(' ')?.let { CatchUpWindow(instant(it[0]), instant(it[1]), it[2].split(',').toSet()) }
+                val done = if (f[4] == "-") {
+                    emptyMap()
+                } else {
+                    f[4].split(',').associate { it.substringBefore('=') to instant(it.substringAfter('=')) }
+                }
+                val catchUp =
+                    f[5].takeIf { it != "-" }?.split(' ')?.let {
+                        CatchUpWindow(instant(it[0]), instant(it[1]), it[2].split(',').toSet())
+                    }
                 val specs = f[6].split(';').map(::alarm)
                 val missed = AlarmSchedule.missedPlan(specs, catchUp, now, zone, holidays, done)
                 val earliest = AlarmSchedule.earliestPlan(specs, now, zone, holidays, done)
@@ -86,7 +110,8 @@ internal object ScheduleVectors {
     private fun alarm(line: String): AlarmSpec =
         Codec.decodeAlarms("phasewake-alarms 1\n$line\n").singleOrNull() ?: error("Weckerzeile unlesbar: $line")
 
-    private fun dates(text: String): Set<LocalDate> = if (text == "-") emptySet() else text.split(',').map(LocalDate::parse).toSet()
+    private fun dates(text: String): Set<LocalDate> =
+        if (text == "-") emptySet() else text.split(',').map(LocalDate::parse).toSet()
 
     private fun instant(text: String): Instant = OffsetDateTime.parse(text).toInstant()
 
@@ -98,7 +123,12 @@ internal object ScheduleVectors {
 
     /** `skipUntil` als Wandzeit «yyyy-MM-ddTHH:mm:ss» oder «0». */
     private fun wall(ms: Long): Pair<String, String> =
-        if (ms == 0L) "0" to "0" else ms.toString() to LocalDateTime.ofEpochSecond(ms / 1000, 0, ZoneOffset.UTC).toString().let { if (it.length == 16) "$it:00" else it }
+        if (ms == 0L) {
+            "0" to "0"
+        } else {
+            val text = LocalDateTime.ofEpochSecond(ms / 1000, 0, ZoneOffset.UTC).toString()
+            ms.toString() to if (text.length == 16) "$text:00" else text
+        }
 
     /** Plan als «Kennung@Zielzeit» oder «-». */
     private fun plan(plan: WakePlan?, zone: ZoneId): Pair<String, String> {

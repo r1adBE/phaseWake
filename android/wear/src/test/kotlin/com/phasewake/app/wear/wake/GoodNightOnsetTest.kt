@@ -66,7 +66,8 @@ class GoodNightOnsetTest {
     }
 
     private fun battery(percent: Int) =
-        shadowOf(context.getSystemService(BatteryManager::class.java)).setIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY, percent)
+        shadowOf(context.getSystemService(BatteryManager::class.java))
+            .setIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY, percent)
 
     private fun entries() = app.diag.entries().filter { !it.at.isBefore(now) }
 
@@ -312,7 +313,11 @@ class GoodNightOnsetTest {
 
     /** Wichtigkeit des eigenen Prozesses für `appVisible` (Robolectric liest sie aus der Prozessliste). */
     private fun appImportance(importance: Int) {
-        val info = android.app.ActivityManager.RunningAppProcessInfo(context.packageName, android.os.Process.myPid(), null)
+        val info = android.app.ActivityManager.RunningAppProcessInfo(
+            context.packageName,
+            android.os.Process.myPid(),
+            null,
+        )
         info.uid = android.os.Process.myUid()
         info.importance = importance
         shadowOf(context.getSystemService(android.app.ActivityManager::class.java)).setProcesses(listOf(info))
@@ -337,7 +342,10 @@ class GoodNightOnsetTest {
         assertEquals(Duration.ofSeconds(60), OnsetRules.LATE_START_TOLERANCE)
         // Spät bei sichtbarer App misst ab jetzt, spät im Hintergrund nicht gemessen.
         val late = bedAt.plus(Duration.ofMinutes(15))
-        assertEquals(OnsetRules.LateStart.ON_TIME, OnsetRules.lateStart(bedAt.minus(Duration.ofMinutes(40)), bedAt, foreground = false))
+        assertEquals(
+            OnsetRules.LateStart.ON_TIME,
+            OnsetRules.lateStart(bedAt.minus(Duration.ofMinutes(40)), bedAt, foreground = false),
+        )
         assertEquals(OnsetRules.LateStart.FOREGROUND, OnsetRules.lateStart(late, bedAt, foreground = true))
         assertEquals(OnsetRules.LateStart.BACKGROUND, OnsetRules.lateStart(late, bedAt, foreground = false))
     }
@@ -348,9 +356,15 @@ class GoodNightOnsetTest {
         // «Gute Nacht»: ab dem Drücken (im Bett).
         assertEquals(now, OnsetRules.bedAt(now, automatic = false, latest = latest, sleepMinutes = 480))
         // Automatisch: Beginn 60 Min vor der Bettzeit, die Einschlafdauer zählt ab der Bettzeit (Weckzeit − Schlaf).
-        assertEquals(now.plus(Duration.ofHours(1)), OnsetRules.bedAt(now, automatic = true, latest = latest, sleepMinutes = 480))
+        assertEquals(
+            now.plus(Duration.ofHours(1)),
+            OnsetRules.bedAt(now, automatic = true, latest = latest, sleepMinutes = 480),
+        )
         // Begann sie erst nach der Bettzeit: ab ihrem Beginn.
-        assertEquals(now, OnsetRules.bedAt(now, automatic = true, latest = now.plus(Duration.ofHours(7)), sleepMinutes = 480))
+        assertEquals(
+            now,
+            OnsetRules.bedAt(now, automatic = true, latest = now.plus(Duration.ofHours(7)), sleepMinutes = 480),
+        )
     }
 
     @Test
@@ -368,7 +382,10 @@ class GoodNightOnsetTest {
         assertEquals(later, OnsetRules.onsetAt(later, bed))
         // «Gute Nacht»: Beginn der Einschlafdauer ist das Drücken, die erkannte Zeit gilt unverändert.
         val tap = OnsetRules.bedAt(start, automatic = false, latest = latest, sleepMinutes = 480)
-        assertEquals(Instant.parse("2026-11-10T22:40:00Z"), OnsetRules.onsetAt(Instant.parse("2026-11-10T22:40:00Z"), tap))
+        assertEquals(
+            Instant.parse("2026-11-10T22:40:00Z"),
+            OnsetRules.onsetAt(Instant.parse("2026-11-10T22:40:00Z"), tap),
+        )
     }
 
     /** Aufträge der gestellten Alarme. */

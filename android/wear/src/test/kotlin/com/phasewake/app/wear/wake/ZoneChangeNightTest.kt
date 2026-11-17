@@ -83,7 +83,10 @@ class ZoneChangeNightTest {
         assertEquals(plan, runBlocking { app.scheduler.reschedule() })
 
         // Messung für diesen Plan starten, wie über den Alarm zum Fensterbeginn.
-        val start = AlarmReceiver.putPlan(Intent(context, WakeService::class.java).setAction(WakeService.ACTION_START), plan)
+        val start = AlarmReceiver.putPlan(
+            Intent(context, WakeService::class.java).setAction(WakeService.ACTION_START),
+            plan,
+        )
         val built = Robolectric.buildService(WakeService::class.java, start)
         controller = built
         val service = built.create().startCommand(0, 1).get()
@@ -102,7 +105,10 @@ class ZoneChangeNightTest {
         assertTrue(WakeService.ACTION_CANCEL !in commands, "Messung abgebrochen: $commands")
         assertEquals(WakeService.Phase.MEASURING, service.night?.phase)
         assertEquals(plan, WakeService.measuringPlan)
-        assertTrue(plan.target.toEpochMilli() in alarms.scheduledAlarms.map { it.triggerAtMs }, "Sicherung zur Zielzeit")
+        assertTrue(
+            plan.target.toEpochMilli() in alarms.scheduledAlarms.map { it.triggerAtMs },
+            "Sicherung zur Zielzeit",
+        )
         assertEquals(plan, runBlocking { app.scheduler.nextPlan() })
     }
 }

@@ -91,12 +91,18 @@ class PhoneListenerServiceTest {
     }
 
     private fun night(id: String, start: Instant) =
-        NightRecord(id, start, start.plus(Duration.ofMinutes(30)), start.plus(Duration.ofMinutes(20)), WakeReason.LIGHT_SLEEP, 0, emptyList())
+        NightRecord(
+            id, start, start.plus(Duration.ofMinutes(30)), start.plus(Duration.ofMinutes(20)), WakeReason.LIGHT_SLEEP,
+            0, emptyList(),
+        )
 
     @Test
     fun newerAlarmsFromTheWatchAreTakenOver() = runBlocking {
         val alarms = listOf(AlarmSpec(id = "w", hour = 6, minute = 45))
-        queued(DataLayer.PATH_MSG_ALARMS, QueueMessages.encodeAlarms(AlarmSnapshot(alarms, System.currentTimeMillis() + 60_000)))
+        queued(
+            DataLayer.PATH_MSG_ALARMS,
+            QueueMessages.encodeAlarms(AlarmSnapshot(alarms, System.currentTimeMillis() + 60_000)),
+        )
         assertEquals(alarms, app.alarms.current().alarms)
         awaitDiag { it == "from watch" }
         // Ein älterer Stand der Uhr (vor der letzten Änderung am Handy) ändert nichts; die Uhr kennt w aber nicht: Das
@@ -127,7 +133,10 @@ class PhoneListenerServiceTest {
     fun finishedRecordingIsStoredUnfinishedIsNot() = runBlocking {
         val start = Instant.parse("2026-11-08T22:00:00Z")
         val finished = NightRecording(start, List(4) { Epoch(0.02, 55.0) }, start.plusSeconds(120), RecordEnd.WAKE)
-        queued(DataLayer.PATH_MSG_RECORDING, NightRecording.encode(finished.copy(start = start.minusSeconds(3_600), end = null, endReason = null)))
+        queued(
+            DataLayer.PATH_MSG_RECORDING,
+            NightRecording.encode(finished.copy(start = start.minusSeconds(3_600), end = null, endReason = null)),
+        )
         queued(DataLayer.PATH_MSG_RECORDING, NightRecording.encode(finished))
         assertEquals(listOf(start), app.recordings.load().map { it.start })
         awaitDiag { it == "recording received epochs=4 end=${RecordEnd.WAKE.code}" }
@@ -146,7 +155,8 @@ class PhoneListenerServiceTest {
             assertEquals(listOf(after), app.nights.load())
             val start = Instant.parse("2026-11-09T22:00:00Z")
             val old = NightRecording(start, List(4) { Epoch(0.02, 55.0) }, start.plusSeconds(120), RecordEnd.WAKE)
-            val newer = old.copy(start = Instant.parse("2026-11-10T22:00:00Z"), end = Instant.parse("2026-11-10T22:02:00Z"))
+            val newer =
+                old.copy(start = Instant.parse("2026-11-10T22:00:00Z"), end = Instant.parse("2026-11-10T22:02:00Z"))
             queued(DataLayer.PATH_MSG_RECORDING, NightRecording.encode(old))
             queued(DataLayer.PATH_MSG_RECORDING, NightRecording.encode(newer))
             assertEquals(listOf(newer.start), app.recordings.load().map { it.start })

@@ -48,7 +48,8 @@ struct MiniHypnogram: View {
                     context.stroke(link, with: .color(StageColors.link(scheme)), lineWidth: pixel)
                 }
                 let radius: CGFloat = w >= Self.roundMin ? min(3, w / 4) : 0
-                context.fill(Path(roundedRect: rect, cornerRadius: radius), with: .color(StageColors.color(step.stage, scheme)))
+                context.fill(Path(roundedRect: rect, cornerRadius: radius),
+                             with: .color(StageColors.color(step.stage, scheme)))
                 previous = (snap(size.width * step.toMinute / total), level)
             }
             if let wokeAt {
@@ -59,7 +60,8 @@ struct MiniHypnogram: View {
                 line.move(to: CGPoint(x: cx, y: d / 2))
                 line.addLine(to: CGPoint(x: cx, y: size.height))
                 context.stroke(line, with: .color(StageColors.marker(scheme)), lineWidth: 1.5)
-                context.fill(Path(ellipseIn: CGRect(x: cx - d / 2, y: 0, width: d, height: d)), with: .color(StageColors.marker(scheme)))
+                context.fill(Path(ellipseIn: CGRect(x: cx - d / 2, y: 0, width: d, height: d)),
+                             with: .color(StageColors.marker(scheme)))
             }
         }
         .accessibilityHidden(true)

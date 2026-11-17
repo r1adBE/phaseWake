@@ -74,7 +74,9 @@ class SleepScoreTest {
 
     @Test
     fun allFactorsAreWeighted() {
-        val r = SleepScore.of(ScoreInput(405, 450, deepPercent = 10, remPercent = 20, awakePercent = 15, latencyMinutes = 40))!!
+        val r = SleepScore.of(
+            ScoreInput(405, 450, deepPercent = 10, remPercent = 20, awakePercent = 15, latencyMinutes = 40),
+        )!!
         assertEquals(listOf(80, 77, 100, 71, 50), r.factors.map { it.points })
         // (80·35 + 77·20 + 100·20 + 71·15 + 50·10) / 100 = 79.05.
         assertEquals(79, r.score)
@@ -119,7 +121,9 @@ class SleepScoreTest {
 
     @Test
     fun perfectNightIsHundred() {
-        val r = SleepScore.of(ScoreInput(480, 450, deepPercent = 18, remPercent = 22, awakePercent = 4, latencyMinutes = 12))!!
+        val r = SleepScore.of(
+            ScoreInput(480, 450, deepPercent = 18, remPercent = 22, awakePercent = 4, latencyMinutes = 12),
+        )!!
         assertEquals(100, r.score)
         assertEquals(ScoreBand.EXCELLENT, r.band)
         assertFalse(r.provisional)
@@ -138,7 +142,18 @@ class SleepScoreTest {
         val stats = StageStats.of(spans, at(0), at(120))!!
         val input = SleepScore.inputOf(stats, 450)
         // Tief und REM am Schlaf (30 und 20 von 100 Min), wach an allen vier Phasen (20 von 120, Restverfahren 17).
-        assertEquals(ScoreInput(100, 450, deepPercent = 30, remPercent = 20, awakePercent = 17, latencyMinutes = 10, awakeMinutes = 20), input)
+        assertEquals(
+            ScoreInput(
+                100,
+                450,
+                deepPercent = 30,
+                remPercent = 20,
+                awakePercent = 17,
+                latencyMinutes = 10,
+                awakeMinutes = 20,
+            ),
+            input,
+        )
     }
 
     @Test

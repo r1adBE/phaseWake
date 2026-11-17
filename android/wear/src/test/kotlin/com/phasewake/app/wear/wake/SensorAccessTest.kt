@@ -36,12 +36,16 @@ class SensorAccessTest {
             "SecurityException «Starting FGS with type health requires permissions» hr=yes bg=no act=yes sdk=36",
             SensorAccess.refusal(error, access),
         )
-        assertEquals("RuntimeException «» hr=yes bg=no act=yes sdk=36", SensorAccess.refusal(RuntimeException(), access))
+        assertEquals(
+            "RuntimeException «» hr=yes bg=no act=yes sdk=36",
+            SensorAccess.refusal(RuntimeException(), access),
+        )
     }
 
     @Test
     fun messageIsShortAndWithoutProcessIds() {
-        val raw = "Starting FGS callerApp=ProcessRecord{1a2b 4242:com.phasewake.app.test/u0a321} uid=10321 pid=4242\n«all» of"
+        val raw = "Starting FGS callerApp=ProcessRecord{1a2b 4242:com.phasewake.app.test/u0a321} " +
+            "uid=10321 pid=4242\n«all» of"
         assertEquals("Starting FGS callerApp=… uid=… pid=… \"all\" of", SensorAccess.shortMessage(raw))
         val long = SensorAccess.shortMessage("x ".repeat(200))
         assertEquals(SensorAccess.MAX_MESSAGE, long.length)
@@ -66,8 +70,15 @@ class SensorAccessTest {
     @Test
     fun readsGrantedPermissions() {
         val shadow = shadowOf(app)
-        shadow.denyPermissions(Manifest.permission.BODY_SENSORS, "android.permission.BODY_SENSORS_BACKGROUND", Manifest.permission.ACTIVITY_RECOGNITION)
-        assertEquals(SensorAccess(heartRate = false, background = false, activity = false, sdk = 35), SensorAccess.of(app))
+        shadow.denyPermissions(
+            Manifest.permission.BODY_SENSORS,
+            "android.permission.BODY_SENSORS_BACKGROUND",
+            Manifest.permission.ACTIVITY_RECOGNITION,
+        )
+        assertEquals(
+            SensorAccess(heartRate = false, background = false, activity = false, sdk = 35),
+            SensorAccess.of(app),
+        )
         shadow.grantPermissions(Manifest.permission.BODY_SENSORS, Manifest.permission.ACTIVITY_RECOGNITION)
         val foregroundOnly = SensorAccess.of(app)
         assertEquals(SensorAccess(heartRate = true, background = false, activity = true, sdk = 35), foregroundOnly)
@@ -97,6 +108,9 @@ class SensorAccessTest {
         assertEquals("too far ahead", reason(at = since.plus(Duration.ofHours(17))))
         assertEquals("window begun", reason(begun = true))
         assertEquals("already done", reason(done = true))
-        assertNull(reason(auto = false, begun = true, done = true), "«Gute Nacht» von Hand: Fenster und Erledigt zählen nicht")
+        assertNull(
+            reason(auto = false, begun = true, done = true),
+            "«Gute Nacht» von Hand: Fenster und Erledigt zählen nicht",
+        )
     }
 }

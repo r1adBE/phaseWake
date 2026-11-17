@@ -11,8 +11,11 @@ final class LearningTests: XCTestCase {
         Date(timeIntervalSince1970: 1_793_570_400 + TimeInterval(day) * 86_400)
     }
 
-    private func night(_ day: Int, _ epochs: Int, motion: Double? = 0.02, hr: Double? = 55, bedAt: Date? = nil, asleepAt: Date? = nil) -> Learning.Night {
-        Learning.Night(start: evening(day), epochs: Array(repeating: Epoch(motion: motion, heartRate: hr), count: epochs), bedAt: bedAt, asleepAt: asleepAt)
+    private func night(_ day: Int, _ epochs: Int, motion: Double? = 0.02, hr: Double? = 55, bedAt: Date? = nil,
+                       asleepAt: Date? = nil) -> Learning.Night {
+        Learning.Night(start: evening(day),
+                       epochs: Array(repeating: Epoch(motion: motion, heartRate: hr), count: epochs), bedAt: bedAt,
+                       asleepAt: asleepAt)
     }
 
     func testEveningIsElevenPmInZurich() {
@@ -25,7 +28,8 @@ final class LearningTests: XCTestCase {
         XCTAssertFalse(Learning.counts(night(0, Learning.minSpanEpochs - 1)), "durchgehend, aber unter 3 Std.")
         XCTAssertFalse(Learning.counts(night(0, 0)))
         // Epochen ohne Bewegung (Uhr abgelegt, Lücken) zählen nicht.
-        let gaps = Learning.Night(start: evening(0), epochs: (0..<400).map { Epoch(motion: $0 < 100 ? nil : 0.02, heartRate: 55) })
+        let gaps = Learning.Night(start: evening(0),
+                                  epochs: (0..<400).map { Epoch(motion: $0 < 100 ? nil : 0.02, heartRate: 55) })
         XCTAssertFalse(Learning.counts(gaps))
         XCTAssertEqual(Learning.measuredEpochs(gaps), 300)
     }
@@ -59,7 +63,9 @@ final class LearningTests: XCTestCase {
     func testCountsAtExactlyTheLimits() {
         func night(_ measured: Int, span: Int) -> Learning.Night {
             let at = Set((0..<measured).map { $0 == measured - 1 ? span - 1 : $0 })
-            return Learning.Night(start: evening(0), epochs: (0..<span).map { at.contains($0) ? Epoch(motion: 0.02, heartRate: 55) : Epoch(motion: nil, heartRate: nil) })
+            return Learning.Night(start: evening(0), epochs: (0..<span).map {
+                at.contains($0) ? Epoch(motion: 0.02, heartRate: 55) : Epoch(motion: nil, heartRate: nil)
+            })
         }
         XCTAssertEqual(Learning.minMeasuredEpochs, 72)
         XCTAssertEqual(Learning.minSpanEpochs, 360)
@@ -88,7 +94,8 @@ final class LearningTests: XCTestCase {
         XCTAssertTrue(Learning.finished(7))
         // Gleich viele Epochen: die erste bleibt.
         let twin = Learning.Night(start: later, epochs: night(1, 400).epochs)
-        XCTAssertEqual(Learning.counted([night(1, 400), twin], since: since, calendar: calendar).map(\.start), [evening(1)])
+        XCTAssertEqual(Learning.counted([night(1, 400), twin], since: since, calendar: calendar).map(\.start),
+                       [evening(1)])
     }
 
     func testRestingHeartRateIsTenthPercentileWithEnoughPulse() {
@@ -118,8 +125,11 @@ final class LearningTests: XCTestCase {
 
     func testLatencyFromBedToAsleepCapped() {
         let bed = evening(0)
-        XCTAssertEqual(Learning.nightLatencyMinutes(night(0, 1, bedAt: bed, asleepAt: bed.addingTimeInterval(12 * 60 + 59))), 12)
-        XCTAssertEqual(Learning.nightLatencyMinutes(night(0, 1, bedAt: bed, asleepAt: bed.addingTimeInterval(2 * 3600))), Learning.maxLatencyMinutes)
+        XCTAssertEqual(Learning.nightLatencyMinutes(night(0, 1, bedAt: bed,
+                                                          asleepAt: bed.addingTimeInterval(12 * 60 + 59))), 12)
+        XCTAssertEqual(Learning.nightLatencyMinutes(night(0, 1, bedAt: bed,
+                                                          asleepAt: bed.addingTimeInterval(2 * 3600))),
+                       Learning.maxLatencyMinutes)
         // Eingeschlafen vor der geplanten Bettzeit: wann ins Bett gegangen wurde, ist unbekannt.
         XCTAssertNil(Learning.nightLatencyMinutes(night(0, 1, bedAt: bed, asleepAt: bed.addingTimeInterval(-60))))
         XCTAssertNil(Learning.nightLatencyMinutes(night(0, 1)))
@@ -129,7 +139,8 @@ final class LearningTests: XCTestCase {
         let bed = evening(0)
         let nights = [0.010, 0.020, 0.030, 0.025].enumerated().map { i, floor in
             Learning.Night(
-                start: evening(i), epochs: Array(repeating: Epoch(motion: floor, heartRate: i < 2 ? nil : 50 + Double(i)), count: 400),
+                start: evening(i),
+                epochs: Array(repeating: Epoch(motion: floor, heartRate: i < 2 ? nil : 50 + Double(i)), count: 400),
                 bedAt: bed, asleepAt: i == 0 ? nil : bed.addingTimeInterval(TimeInterval(10 * 60 * i))
             )
         }
@@ -138,12 +149,18 @@ final class LearningTests: XCTestCase {
         XCTAssertNil(values.restingHeartRate, "nur 2 Nächte mit Puls")
         XCTAssertEqual(values.latencyMinutes, 20) // 10, 20, 30
         XCTAssertEqual(values.nights, 4)
-        let more = Learning.learn(nights + [Learning.Night(start: evening(5), epochs: Array(repeating: Epoch(motion: 0.02, heartRate: 60), count: 400))])
+        let more = Learning.learn(nights + [Learning.Night(start: evening(5),
+                                                           epochs: Array(repeating: Epoch(motion: 0.02, heartRate: 60),
+                                                                         count: 400))])
         XCTAssertEqual(more.restingHeartRate, 53) // Median von 52, 53, 60
         // Gerade Anzahl Einschlafdauern: Mittel der beiden mittleren, halbe Minuten aufgerundet (wie `Math.round`).
-        let even = [10, 20, 30, 40].map { Learning.Night(start: bed, epochs: [], bedAt: bed, asleepAt: bed.addingTimeInterval(TimeInterval($0 * 60))) }
+        let even = [10, 20, 30,
+                    40].map { Learning.Night(start: bed, epochs: [], bedAt: bed,
+                                             asleepAt: bed.addingTimeInterval(TimeInterval($0 * 60))) }
         XCTAssertEqual(Learning.learn(even).latencyMinutes, 25)
-        let half = [10, 20, 25, 30].map { Learning.Night(start: bed, epochs: [], bedAt: bed, asleepAt: bed.addingTimeInterval(TimeInterval($0 * 60))) }
+        let half = [10, 20, 25,
+                    30].map { Learning.Night(start: bed, epochs: [], bedAt: bed,
+                                             asleepAt: bed.addingTimeInterval(TimeInterval($0 * 60))) }
         XCTAssertEqual(Learning.learn(half).latencyMinutes, 23) // Median 22.5 → 23
     }
 
@@ -164,7 +181,8 @@ final class LearningTests: XCTestCase {
         XCTAssertFalse(Learning.raisesThresholds(0.0004))
         XCTAssertFalse(Learning.raisesThresholds(nil))
         // Ungültige Werte (nie aus der Lernphase) gelten als keine.
-        let odd = Learning.withLearned(.standard, Learning.Values(floor: -1, restingHeartRate: 0, latencyMinutes: nil, nights: 7))
+        let odd = Learning.withLearned(.standard,
+                                       Learning.Values(floor: -1, restingHeartRate: 0, latencyMinutes: nil, nights: 7))
         XCTAssertNil(odd.personalFloor)
         XCTAssertNil(odd.restingHeartRate)
     }
@@ -176,20 +194,23 @@ final class LearningTests: XCTestCase {
         XCTAssertEqual(range.until, Date(timeIntervalSince1970: 1_794_262_500)) // 2026-11-09T22:15:00Z
         XCTAssertEqual(range.from, Date(timeIntervalSince1970: 1_794_260_700)) // 2026-11-09T21:45:00Z
         // Ohne gelernte Einschlafdauer: die Bettzeit selbst (23:30).
-        XCTAssertEqual(Learning.bedtimeRange(target: target, sleepMinutes: 450, latencyMinutes: nil).until, Date(timeIntervalSince1970: 1_794_263_400))
+        XCTAssertEqual(Learning.bedtimeRange(target: target, sleepMinutes: 450, latencyMinutes: nil).until,
+                       Date(timeIntervalSince1970: 1_794_263_400))
     }
 
     func testHealthOnsetFromInBedAndFirstSleep() {
         let start = evening(0)
         // «Im Bett» 23:20, eingeschlafen 23:41 → 21 Min.
-        let onset = Learning.healthOnset(start: start, inBed: [start.addingTimeInterval(40 * 60), start.addingTimeInterval(20 * 60)],
+        let onset = Learning.healthOnset(start: start,
+                                         inBed: [start.addingTimeInterval(40 * 60), start.addingTimeInterval(20 * 60)],
                                          asleep: [start.addingTimeInterval(80 * 60), start.addingTimeInterval(41 * 60)])
         XCTAssertEqual(onset?.bedAt, start.addingTimeInterval(20 * 60))
         XCTAssertEqual(onset?.asleepAt, start.addingTimeInterval(41 * 60))
         let night = Learning.Night(start: start, epochs: [], bedAt: onset?.bedAt, asleepAt: onset?.asleepAt)
         XCTAssertEqual(Learning.nightLatencyMinutes(night), 21)
         // Im Bett vor dem Beginn der Messung: frühestens der Beginn.
-        XCTAssertEqual(Learning.healthOnset(start: start, inBed: [start.addingTimeInterval(-600)], asleep: [start])?.bedAt, start)
+        XCTAssertEqual(Learning.healthOnset(start: start, inBed: [start.addingTimeInterval(-600)],
+                                            asleep: [start])?.bedAt, start)
         // Ohne «Im Bett» oder ohne Schlaf: unbekannt.
         XCTAssertNil(Learning.healthOnset(start: start, inBed: [], asleep: [start]))
         XCTAssertNil(Learning.healthOnset(start: start, inBed: [start], asleep: []))

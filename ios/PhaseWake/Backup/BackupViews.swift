@@ -27,7 +27,8 @@ struct BackupSection: View {
                 exporting = true
             }
         }
-        .fileExporter(isPresented: $exporting, document: document, contentType: .data, defaultFilename: fileName) { result in
+        .fileExporter(isPresented: $exporting, document: document, contentType: .data,
+                      defaultFilename: fileName) { result in
             switch result {
             case .success: message = L("backup_done")
             case .failure(let error):
@@ -183,7 +184,8 @@ private struct RestoreSheet: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button(L("action_cancel")) { dismiss() } }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(L("restore_open")) { Task { await open() } }.disabled(password.isEmpty || busy || payload != nil)
+                    Button(L("restore_open")) { Task { await open() } }
+                        .disabled(password.isEmpty || busy || payload != nil)
                 }
             }
             .confirmationDialog(L("restore_confirm_title"), isPresented: $confirm, titleVisibility: .visible) {

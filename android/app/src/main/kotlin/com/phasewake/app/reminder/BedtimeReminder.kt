@@ -48,10 +48,15 @@ class BedtimeReminder(
         val holidays = context.phoneApp.holidays.store.current()
         // Die eine Bettzeit mit gelernter Einschlafdauer.
         val latency = context.phoneApp.learning.current().values?.latencyMinutes
-        val reminder = Bedtime.next(alarms.current().alarms, from, ZoneId.systemDefault(), settings.sleepGoalNow(), holidays = holidays, latencyMinutes = latency)
+        val reminder = Bedtime.next(
+            alarms.current().alarms, from, ZoneId.systemDefault(), settings.sleepGoalNow(), holidays = holidays,
+            latencyMinutes = latency,
+        )
             ?: return@withLock
         val start = maxOf(reminder.at.minus(TOLERANCE), current)
-        alarmManager.setWindow(AlarmManager.RTC_WAKEUP, start.toEpochMilli(), TOLERANCE.multipliedBy(2).toMillis(), pending(reminder))
+        alarmManager.setWindow(
+            AlarmManager.RTC_WAKEUP, start.toEpochMilli(), TOLERANCE.multipliedBy(2).toMillis(), pending(reminder),
+        )
     }
 
     /** Der Alarm ist da: merken, zeigen (wenn die Bettzeit nicht schon vorbei ist) und die nächste Nacht planen. */
@@ -99,7 +104,9 @@ class BedtimeReminder(
                 .putExtra(EXTRA_BEDTIME, reminder.bedtime.toEpochMilli())
                 .putExtra(EXTRA_TARGET, reminder.target.toEpochMilli())
         }
-        return PendingIntent.getBroadcast(context, REQUEST_CODE, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+        return PendingIntent.getBroadcast(
+            context, REQUEST_CODE, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+        )
     }
 
     /** Zeigt die Erinnerung. Nicht exportiert: nur der eigene Alarm. */
@@ -132,7 +139,9 @@ class BedtimeReminder(
 
         fun createChannel(context: Context) {
             context.getSystemService(NotificationManager::class.java).createNotificationChannel(
-                NotificationChannel(CHANNEL, context.getString(R.string.channel_reminders), NotificationManager.IMPORTANCE_DEFAULT),
+                NotificationChannel(
+                    CHANNEL, context.getString(R.string.channel_reminders), NotificationManager.IMPORTANCE_DEFAULT,
+                ),
             )
         }
     }

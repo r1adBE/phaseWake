@@ -8,7 +8,8 @@ import SwiftUI
 extension BackupAlarm {
     /// Ende des Schlummerns (dann klingelt die Sicherung wieder), solange es bevorsteht; sonst `nil`.
     func backupSnoozedUntil(now: Date = Date()) -> Date? {
-        Self.snoozedUntil(id: storedId(Self.backupSnoozeKey), until: settings.double(forKey: Self.backupSnoozeUntilKey), now: now)
+        Self.snoozedUntil(id: storedId(Self.backupSnoozeKey), until: settings.double(forKey: Self.backupSnoozeUntilKey),
+                          now: now)
     }
 
     /// Schlummert die Sicherung `id` bis `until` (Sekunden seit 1970, 0 = unbekannt) um `now`: das Ende, sonst `nil`.
@@ -58,7 +59,9 @@ struct BackupSnoozeCard: View {
                     .clipShape(Capsule())
                     .contentShape(Capsule())
                     .onLongPressGesture(minimumDuration: 1.2, perform: stop) { pressing in
-                        withAnimation(pressing ? .linear(duration: 1.2) : .easeOut(duration: 0.25)) { progress = pressing ? 1 : 0 }
+                        withAnimation(pressing ? .linear(duration: 1.2) : .easeOut(duration: 0.25)) {
+                            progress = pressing ? 1 : 0
+                        }
                     }
                     .accessibilityElement(children: .ignore)
                     .accessibilityLabel(L("ring_hold_to_stop"))

@@ -15,7 +15,10 @@ enum PrivacyCover {
             window = nil
             return
         }
-        guard window == nil, let scene = UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene }).first else { return }
+        guard window == nil,
+              let scene = UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene }).first else {
+            return
+        }
         let cover = UIWindow(windowScene: scene)
         cover.windowLevel = UIWindow.Level(rawValue: UIWindow.Level.alert.rawValue + 1)
         cover.rootViewController = UIHostingController(rootView: PrivacyCoverView())

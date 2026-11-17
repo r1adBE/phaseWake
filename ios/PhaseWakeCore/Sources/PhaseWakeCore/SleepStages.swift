@@ -1,7 +1,9 @@
 import Foundation
 
 /// Schlafphase aus einer Gesundheits-App, nachträglich gelesen. Identisch zu Kotlin.
-public enum SleepStage: String, Sendable { case awake = "AWAKE", light = "LIGHT", deep = "DEEP", rem = "REM", unknown = "UNKNOWN" }
+public enum SleepStage: String, Sendable {
+    case awake = "AWAKE", light = "LIGHT", deep = "DEEP", rem = "REM", unknown = "UNKNOWN"
+}
 
 /// Zeitspanne einer Schlafphase.
 public struct StageSpan: Equatable, Sendable {
@@ -30,7 +32,8 @@ public enum StageCheck {
 
     /// Phase beim Wecken. Gesundheits-Apps beenden die Schlafsitzung oft genau beim Aufwachen; darum zählt auch die
     /// Phase, die bis zu `toleranceSeconds` Sekunden (Standard 2 Min) vorher endete.
-    public static func stageAtWake(_ spans: [StageSpan], wokeAt: Date, toleranceSeconds: TimeInterval = 120) -> SleepStage? {
+    public static func stageAtWake(_ spans: [StageSpan], wokeAt: Date,
+                                   toleranceSeconds: TimeInterval = 120) -> SleepStage? {
         stageAt(spans, wokeAt) ?? stageAt(spans, wokeAt.addingTimeInterval(-toleranceSeconds))
     }
 
@@ -65,10 +68,12 @@ public enum WindowAdvice {
     /// Nächten und wenn mehr als die Hälfte der letzten 7 Nächte erst zur Zielzeit geweckt hat.
     public static func suggest(_ spec: AlarmSpec, history: [NightRecord]) -> Suggestion? {
         guard !spec.isExact, spec.windowMinutes < AlarmSpec.maxWindowMinutes else { return nil }
-        let recent = Array(history.filter { $0.alarmId == spec.id && $0.reason.earlyAllowed }.sorted { $0.windowStart < $1.windowStart }.suffix(nights))
+        let recent = Array(history.filter { $0.alarmId == spec.id && $0.reason.earlyAllowed }
+            .sorted { $0.windowStart < $1.windowStart }.suffix(nights))
         guard recent.count >= minNights else { return nil }
         let deadline = recent.filter { $0.reason == .deadline }.count
         guard deadline * 2 > recent.count else { return nil }
-        return Suggestion(windowMinutes: min(spec.windowMinutes + stepMinutes, AlarmSpec.maxWindowMinutes), deadlineNights: deadline, nights: recent.count)
+        return Suggestion(windowMinutes: min(spec.windowMinutes + stepMinutes, AlarmSpec.maxWindowMinutes),
+                          deadlineNights: deadline, nights: recent.count)
     }
 }

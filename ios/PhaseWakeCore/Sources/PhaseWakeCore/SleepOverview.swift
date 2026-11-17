@@ -94,7 +94,8 @@ public enum SleepOverviews {
     /// Wochen beginnen mit `firstDay` (Sprache des Geräts). `stages`: Phasen aus der Gesundheits-App
     /// (``HealthHistory/stages(_:clearedAt:calendar:)``) für die Aufteilung der Säulen; leer: keine.
     /// `nil`, wenn im ganzen Bereich keine Nacht Daten hat.
-    public static func of(_ sleeps: [SleepSummary], calendar: Calendar, today: String, goalMinutes: Int, unit: OverviewUnit,
+    public static func of(_ sleeps: [SleepSummary], calendar: Calendar, today: String, goalMinutes: Int,
+                          unit: OverviewUnit,
                           firstDay: Weekday = .monday, stages: [StageSpan] = []) -> SleepOverview? {
         var longest: [String: SleepSummary] = [:]
         for sleep in sleeps {
@@ -109,11 +110,13 @@ public enum SleepOverviews {
         let inRange = longest.filter { $0.key >= from && $0.key <= to }.sorted { $0.key < $1.key }.map(\.value)
         guard !inRange.isEmpty else { return nil }
         let bars = ranges.map { range -> OverviewBar in
-            let inBar = longest.filter { $0.key >= range.first && $0.key <= range.last }.sorted { $0.key < $1.key }.map(\.value)
+            let inBar = longest.filter { $0.key >= range.first && $0.key <= range.last }
+                .sorted { $0.key < $1.key }.map(\.value)
             let nights = inBar.map(\.asleepMinutes)
             let average = nights.isEmpty ? nil : nights.reduce(0, +) / nights.count
             let reached = average.map { SleepGoal.reached(asleepMinutes: $0, goalMinutes: goalMinutes) } ?? false
-            return OverviewBar(first: range.first, last: range.last, asleepMinutes: average, nights: nights.count, reached: reached,
+            return OverviewBar(first: range.first, last: range.last, asleepMinutes: average, nights: nights.count,
+                               reached: reached,
                                stageMinutes: stageAverage(inBar, stages: stages))
         }
         let minutes = inRange.map(\.asleepMinutes)
@@ -124,8 +127,12 @@ public enum SleepOverviews {
             averageMinutes: minutes.reduce(0, +) / minutes.count,
             // Ohne Sprung um Mittag: Aufwachen 11:56 und 12:50 ergibt 12:23, nicht 00:23.
             // Je Nacht in der Zone ihrer Aufzeichnung.
-            bedtimeMinute: Regularity.meanMinute(inRange.map { Regularity.minutesFromNoon($0.start, calendar: $0.localCalendar(calendar)) }),
-            wakeMinute: Regularity.meanMinute(inRange.map { Regularity.minutesFromNoon($0.end, calendar: $0.localCalendar(calendar)) }),
+            bedtimeMinute: Regularity.meanMinute(inRange.map {
+                Regularity.minutesFromNoon($0.start, calendar: $0.localCalendar(calendar))
+            }),
+            wakeMinute: Regularity.meanMinute(inRange.map {
+                Regularity.minutesFromNoon($0.end, calendar: $0.localCalendar(calendar))
+            }),
             counted: minutes.count,
             reachedNights: minutes.filter { SleepGoal.reached(asleepMinutes: $0, goalMinutes: goalMinutes) }.count,
             scaleMinutes: max(goalMinutes, bars.map { $0.asleepMinutes ?? 0 }.max() ?? 0)
@@ -141,7 +148,9 @@ public enum SleepOverviews {
             StageCheck.clip(stages, from: sleep.start, to: sleep.end).filter { ChartData.level($0.stage) != nil }
         }
         // Eine Nacht nur mit «wach» (Quelle ohne Phasendetail) hat keine Phasen wie in `StageStats.of`.
-        if perNight.isEmpty || perNight.contains(where: { spans in !spans.contains(where: { $0.stage != .awake }) }) { return [:] }
+        if perNight.isEmpty || perNight.contains(where: { spans in !spans.contains(where: { $0.stage != .awake }) }) {
+            return [:]
+        }
         var out: [SleepStage: Int] = [:]
         for stage in StageStats.order {
             let ms = perNight.reduce(Int64(0)) { sum, spans in
@@ -153,7 +162,8 @@ public enum SleepOverviews {
     }
 
     /// Bereiche der Säulen als Nachtdaten (erstes, letztes), älteste zuerst; der letzte enthält `last`.
-    public static func ranges(last: String, unit: OverviewUnit, firstDay: Weekday = .monday) -> [(first: String, last: String)] {
+    public static func ranges(last: String, unit: OverviewUnit,
+                              firstDay: Weekday = .monday) -> [(first: String, last: String)] {
         // Wochen und Monate über den Morgen: Nachtdatum + 1 Tag.
         let morning = NightDate.adding(1, to: last)
         return (0..<unit.count).reversed().map { back -> (first: String, last: String) in

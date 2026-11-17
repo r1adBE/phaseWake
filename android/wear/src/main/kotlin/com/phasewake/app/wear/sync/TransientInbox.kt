@@ -58,7 +58,9 @@ object TransientInbox {
     suspend fun startNap(app: PhaseWakeWear, minutes: Int): TransientConflict? {
         val now = Instant.now()
         val alarms = app.alarms.current().alarms
-        val base = app.scheduler.nextAlarmPlan()?.let { plan -> alarms.firstOrNull { it.id == plan.alarmId } } ?: alarms.firstOrNull()
+        val base = app.scheduler.nextAlarmPlan()?.let { plan ->
+            alarms.firstOrNull { it.id == plan.alarmId }
+        } ?: alarms.firstOrNull()
         val plan = Transient.nap(base, now, ZoneId.systemDefault(), minutes, UUID.randomUUID().toString())
         conflict(app, plan)?.let { return it }
         begin(app, plan)
@@ -86,7 +88,10 @@ object TransientInbox {
 
     private suspend fun begin(app: PhaseWakeWear, plan: TransientPlan) {
         app.transient.set(plan)
-        app.diag.log(if (plan.kind == TransientKind.TEST) DiagKind.TEST else DiagKind.NAP, "planned ${plan.plan.windowStart} – ${plan.plan.target}")
+        app.diag.log(
+            if (plan.kind == TransientKind.TEST) DiagKind.TEST else DiagKind.NAP,
+            "planned ${plan.plan.windowStart} – ${plan.plan.target}",
+        )
         app.scheduler.reschedule()
     }
 }

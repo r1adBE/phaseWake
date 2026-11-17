@@ -77,7 +77,8 @@ object NoiseFloor {
     }
 
     /** Wirksame Leicht-Schwelle: [threshold] (Startwert oder kalibriert), mindestens [LIGHT_FACTOR] × [floor]. */
-    fun light(threshold: Double, floor: Double?): Double = if (floor == null) threshold else maxOf(threshold, LIGHT_FACTOR * floor)
+    fun light(threshold: Double, floor: Double?): Double =
+        if (floor == null) threshold else maxOf(threshold, LIGHT_FACTOR * floor)
 
     /** Wirksame Leicht-Schwelle zu [config]. */
     fun light(config: DetectorConfig, floor: Double?): Double = light(config.lightThreshold, floor)

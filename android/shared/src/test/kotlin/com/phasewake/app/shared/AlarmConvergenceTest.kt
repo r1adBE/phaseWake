@@ -22,7 +22,8 @@ class AlarmConvergenceTest {
     private fun alarm(id: String, hour: Int = 7) = AlarmSpec(id = id, hour = hour, minute = 0)
 
     /** Stand über die Leitung: kodiert und wieder gelesen. */
-    private fun wire(snapshot: AlarmSnapshot): AlarmSnapshot = assertNotNull(QueueMessages.decodeAlarms(QueueMessages.encodeAlarms(snapshot)))
+    private fun wire(snapshot: AlarmSnapshot): AlarmSnapshot =
+        assertNotNull(QueueMessages.decodeAlarms(QueueMessages.encodeAlarms(snapshot)))
 
     @Test
     fun lostMessageConvergesWithTheNextExchange() = runTest {
@@ -87,19 +88,28 @@ class AlarmConvergenceTest {
         val many = (0 until 10).map { alarm("w$it", hour = 23 - it) }
         val restored = phone.replaceAll(many)
         assertEquals(AlarmSpec.MAX_ALARMS, restored.alarms.size)
-        assertEquals(many.take(AlarmSpec.MAX_ALARMS).map { it.id }.toSet(), restored.alarms.map { it.id }.toSet(), "die ersten der Sicherung")
+        assertEquals(
+            many.take(AlarmSpec.MAX_ALARMS).map { it.id }.toSet(),
+            restored.alarms.map { it.id }.toSet(),
+            "die ersten der Sicherung",
+        )
     }
 
     @Test
     fun implausibleTimesFromThePeerAndInStorage() = runTest {
         // Long.MAX_VALUE als Listen-Zeitpunkt verwirft die Nachricht; einzelne Zeitpunkte fallen weg.
         val max = Long.MAX_VALUE
-        val body = QueueMessages.encodeAlarms(AlarmSnapshot(listOf(alarm("a")), 10L, mapOf("a" to max), mapOf("x" to max)))
+        val body =
+            QueueMessages.encodeAlarms(AlarmSnapshot(listOf(alarm("a")), 10L, mapOf("a" to max), mapOf("x" to max)))
         assertEquals(AlarmSnapshot(listOf(alarm("a")), 10L), QueueMessages.decodeAlarms(body))
         assertNull(QueueMessages.decodeAlarms(QueueMessages.encodeAlarms(AlarmSnapshot(listOf(alarm("a")), max))))
         // Kaputter gespeicherter Listen-Zeitpunkt: + 1 läuft nicht über, der nächste Zeitpunkt ist jetzt.
         val store = MemoryStore()
-        store.updateData { it.toMutablePreferences().apply { set(androidx.datastore.preferences.core.longPreferencesKey("alarms_updated_at"), max) } }
+        store.updateData {
+            it.toMutablePreferences().apply {
+                set(androidx.datastore.preferences.core.longPreferencesKey("alarms_updated_at"), max)
+            }
+        }
         assertEquals(now, AlarmRepository(store) { now }.upsert(alarm("b")).updatedAt)
         // Lernphase ebenso.
         assertNull(LearningSnapshot.decode("1|0.02||$max"))

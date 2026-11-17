@@ -41,14 +41,30 @@ internal object PhoneStatus {
                 null -> res.getString(R.string.diag_none)
                 else -> dateTime(at)
             }),
-            StatusLine(res.getString(R.string.diag_next_watch), watch["next"]?.takeIf { it.isNotEmpty() }?.let(::watchWindow) ?: res.getString(if (report == null) R.string.diag_unknown else R.string.diag_none)),
+            StatusLine(
+                res.getString(R.string.diag_next_watch),
+                watch["next"]?.takeIf { it.isNotEmpty() }?.let(::watchWindow) ?:
+                    res.getString(if (report == null) R.string.diag_unknown else R.string.diag_none),
+            ),
             StatusLine(res.getString(R.string.check_exact_alarms), yesNo(BackupAlarm.canScheduleExact(context))),
-            StatusLine(res.getString(R.string.diag_battery_opt), yesNo(!power.isIgnoringBatteryOptimizations(context.packageName))),
-            StatusLine(res.getString(R.string.check_notifications), yesNo(NightCheckState.hasNotificationPermission(context))),
+            StatusLine(
+                res.getString(R.string.diag_battery_opt),
+                yesNo(!power.isIgnoringBatteryOptimizations(context.packageName)),
+            ),
+            StatusLine(
+                res.getString(R.string.check_notifications), yesNo(NightCheckState.hasNotificationPermission(context)),
+            ),
             StatusLine(res.getString(R.string.check_watch), yesNo(app.sync.isReachable(DataLayer.CAPABILITY_WATCH))),
-            StatusLine(res.getString(R.string.diag_watch_battery), battery?.let { "$it %" } ?: res.getString(R.string.diag_unknown)),
+            StatusLine(
+                res.getString(R.string.diag_watch_battery),
+                battery?.let { "$it %" } ?: res.getString(R.string.diag_unknown),
+            ),
             StatusLine(res.getString(R.string.check_watch_pulse), yesNo(app.sync.watchPulse()?.background)),
-            StatusLine(res.getString(R.string.diag_watch_seen), app.sync.watchSeenAt()?.let { dateTime(Instant.ofEpochMilli(it)) } ?: res.getString(R.string.diag_unknown)),
+            StatusLine(
+                res.getString(R.string.diag_watch_seen),
+                app.sync.watchSeenAt()
+                    ?.let { dateTime(Instant.ofEpochMilli(it)) } ?: res.getString(R.string.diag_unknown),
+            ),
             StatusLine(
                 res.getString(R.string.diag_versions),
                 res.getString(R.string.diag_phone) + " " + version + " · " + res.getString(R.string.diag_watch) + " " +

@@ -22,9 +22,18 @@ class WakeRulesTest {
     @Test
     fun windowEndsWithReasonAtTarget() {
         // «Genau» weckt zur Zielzeit, eine übergangene kurze Nacht ebenso; sonst entscheidet die Erkennung.
-        assertEquals(WakeReason.EXACT, WakeRules.deadlineReason(exact = true, earlyBlocked = true) { WakeReason.DEADLINE })
-        assertEquals(WakeReason.SHORT_NIGHT, WakeRules.deadlineReason(exact = false, earlyBlocked = true) { WakeReason.DEADLINE })
-        assertEquals(WakeReason.DEADLINE, WakeRules.deadlineReason(exact = false, earlyBlocked = false) { WakeReason.DEADLINE })
+        assertEquals(
+            WakeReason.EXACT,
+            WakeRules.deadlineReason(exact = true, earlyBlocked = true) { WakeReason.DEADLINE },
+        )
+        assertEquals(
+            WakeReason.SHORT_NIGHT,
+            WakeRules.deadlineReason(exact = false, earlyBlocked = true) { WakeReason.DEADLINE },
+        )
+        assertEquals(
+            WakeReason.DEADLINE,
+            WakeRules.deadlineReason(exact = false, earlyBlocked = false) { WakeReason.DEADLINE },
+        )
     }
 
     @Test
@@ -40,7 +49,10 @@ class WakeRulesTest {
         }
         assertEquals(List(Snooze.MAX_COUNT) { WakeRules.Timeout.SNOOZE } + WakeRules.Timeout.DISMISS, steps)
         // Der Probewecker schlummert nie: die erste Zeitgrenze beendet.
-        assertEquals(WakeRules.Timeout.DISMISS, WakeRules.timeout(WakeRules.snoozesLeft(Transient.TEST_PREFIX + "1", 0)))
+        assertEquals(
+            WakeRules.Timeout.DISMISS,
+            WakeRules.timeout(WakeRules.snoozesLeft(Transient.TEST_PREFIX + "1", 0)),
+        )
     }
 
     @Test
@@ -74,7 +86,10 @@ class WakeRulesTest {
     @Test
     fun startDelayLine() {
         // Verzögerung bis zum Start des Dienstes, dazu bis zum Empfang des Alarms.
-        assertEquals("watch start delay 47.0s (alarm 0.3s)", WakeRules.startDelayLine(1_000_000L, 1_000_300L, 1_047_000L))
+        assertEquals(
+            "watch start delay 47.0s (alarm 0.3s)",
+            WakeRules.startDelayLine(1_000_000L, 1_000_300L, 1_047_000L),
+        )
         assertEquals("watch start delay 1.2s", WakeRules.startDelayLine(1_000_000L, 0L, 1_001_249L))
     }
 

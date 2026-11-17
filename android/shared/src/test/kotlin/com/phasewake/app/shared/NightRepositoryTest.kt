@@ -69,7 +69,11 @@ class NightRepositoryTest {
 
     @Test
     fun unreadableNightIsSkipped() = runTest {
-        file.writeText(Codec.encodeNight(night("a", 1_000)) + "\n%%\nphasewake-night 1\nkaputt\n\n%%\n" + Codec.encodeNight(night("b", 2_000)))
+        file.writeText(
+            Codec.encodeNight(night("a", 1_000)) + "\n%%\nphasewake-night 1\nkaputt\n\n%%\n" + Codec.encodeNight(
+                night("b", 2_000),
+            ),
+        )
         assertEquals(listOf("a", "b"), NightRepository(file, Dispatchers.Unconfined).load().map { it.alarmId })
     }
 }

@@ -28,7 +28,10 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 /** Einstellungen, die nur das Handy betreffen. [now]: Uhr (ms), im Test fest. */
-class SettingsRepository(private val store: DataStore<Preferences>, private val now: () -> Long = System::currentTimeMillis) {
+class SettingsRepository(
+    private val store: DataStore<Preferences>,
+    private val now: () -> Long = System::currentTimeMillis,
+) {
 
     val themeMode: Flow<ThemeMode> = store.data.map { prefs ->
         prefs[THEME]?.let { name -> ThemeMode.entries.firstOrNull { it.name == name } } ?: ThemeMode.SYSTEM
@@ -40,7 +43,9 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
 
     /** «Abends dunkel ab» (Standard an, ab 18:00). */
     val eveningDark: Flow<EveningDarkSetting> = store.data.map { prefs ->
-        EveningDarkSetting(prefs[EVENING_DARK] ?: EveningDark.DEFAULT_ENABLED, EveningDark.checkedFrom(prefs[EVENING_DARK_FROM]))
+        EveningDarkSetting(
+            prefs[EVENING_DARK] ?: EveningDark.DEFAULT_ENABLED, EveningDark.checkedFrom(prefs[EVENING_DARK_FROM]),
+        )
     }.distinctUntilChanged()
 
     suspend fun setEveningDark(enabled: Boolean) {
@@ -234,7 +239,9 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
 
     /** Zuletzt gewählte Dauer des Powernaps in Minuten. */
     val napMinutes: Flow<Int> = store.data.map {
-        (it[NAP_MINUTES] ?: Transient.NAP_DEFAULT_MINUTES).coerceIn(Transient.NAP_MIN_MINUTES, Transient.NAP_MAX_MINUTES)
+        (it[NAP_MINUTES] ?: Transient.NAP_DEFAULT_MINUTES).coerceIn(
+            Transient.NAP_MIN_MINUTES, Transient.NAP_MAX_MINUTES,
+        )
     }
 
     suspend fun setNapMinutes(minutes: Int) {
@@ -246,7 +253,9 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
      * (sie lassen sich dort nicht löschen). `null` = nie gelöscht. Ein Zeitpunkt in der Zukunft gilt als jetzt, ein
      * unplausibler als nie gelöscht ([clearedAt]).
      */
-    val historyClearedAt: Flow<Instant?> = store.data.map { prefs -> clearedAt(prefs[HISTORY_CLEARED_AT], now())?.let(Instant::ofEpochMilli) }
+    val historyClearedAt: Flow<Instant?> = store.data.map { prefs ->
+        clearedAt(prefs[HISTORY_CLEARED_AT], now())?.let(Instant::ofEpochMilli)
+    }
 
     suspend fun setHistoryClearedAt(at: Instant) {
         store.edit { it[HISTORY_CLEARED_AT] = at.toEpochMilli() }
@@ -261,7 +270,9 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
     /** Blendet [kind] jetzt aus; erscheint frühestens nach [Findings.HIDE_FOR] wieder. */
     suspend fun hideFinding(kind: FindingKind) {
         store.edit { prefs ->
-            prefs[FINDINGS_HIDDEN] = Findings.encodeHidden(Findings.hide(Findings.decodeHidden(prefs[FINDINGS_HIDDEN]), kind, Instant.ofEpochMilli(now())))
+            prefs[FINDINGS_HIDDEN] = Findings.encodeHidden(
+                Findings.hide(Findings.decodeHidden(prefs[FINDINGS_HIDDEN]), kind, Instant.ofEpochMilli(now()))
+            )
         }
     }
 

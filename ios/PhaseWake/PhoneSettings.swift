@@ -78,7 +78,9 @@ struct PrivateSetting<Value>: DynamicProperty {
 
     /// Ganze Zahl unter `key`.
     init(wrappedValue defaultValue: Value, _ key: String) where Value == Int {
-        read = { SettingsFile.phone.object(forKey: key) == nil ? defaultValue : SettingsFile.phone.integer(forKey: key) }
+        read = {
+            SettingsFile.phone.object(forKey: key) == nil ? defaultValue : SettingsFile.phone.integer(forKey: key)
+        }
         write = { SettingsFile.phone.set($0, forKey: key) }
     }
 

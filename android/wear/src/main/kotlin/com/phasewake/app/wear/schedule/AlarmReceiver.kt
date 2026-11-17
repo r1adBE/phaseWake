@@ -70,7 +70,9 @@ class AlarmReceiver : BroadcastReceiver() {
         }
         // Zielzeit erreicht: Komplikation und Kachel zeigen den nächsten Wecker, auch wenn danach nichts neu plant
         // (das System fragt nicht mehr alle 30 Min. ab). Vor dem Entsperren ist der Speicher nicht lesbar.
-        if (action == WakeService.ACTION_DEADLINE && DirectBoot.isUnlocked(context)) AlarmScheduler.refreshSurfaces(context)
+        if (action == WakeService.ACTION_DEADLINE && DirectBoot.isUnlocked(context)) {
+            AlarmScheduler.refreshSurfaces(context)
+        }
     }
 
     companion object {
@@ -91,7 +93,13 @@ class AlarmReceiver : BroadcastReceiver() {
          * PendingIntent für [action]; mit `plan = null` nur zum Abbrechen (gleiche Identität). [at]: geplante Zeit des
          * Alarms, nur fürs Diagnose-Protokoll (Extras zählen nicht zur Identität).
          */
-        fun pending(context: Context, action: String, plan: WakePlan?, requestCode: Int, at: Instant? = null): PendingIntent {
+        fun pending(
+            context: Context,
+            action: String,
+            plan: WakePlan?,
+            requestCode: Int,
+            at: Instant? = null,
+        ): PendingIntent {
             val intent = Intent(context, AlarmReceiver::class.java).setAction(action)
             if (plan != null) putPlan(intent, plan)
             if (at != null) intent.putExtra(EXTRA_AT, at.toEpochMilli())

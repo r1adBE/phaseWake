@@ -104,7 +104,12 @@ object LearnLog {
      * heraus). Je Nachtdatum ([SleepNotes.nightDate] in [zone]) die früheste Zielzeit; höchstens die jüngsten
      * [LearnNights.MAX_NIGHTS] vergangenen Nächte.
      */
-    fun mergeAlarmNights(old: Map<LocalDate, Instant>, planned: List<Instant>, now: Instant, zone: ZoneId): Map<LocalDate, Instant> {
+    fun mergeAlarmNights(
+        old: Map<LocalDate, Instant>,
+        planned: List<Instant>,
+        now: Instant,
+        zone: ZoneId,
+    ): Map<LocalDate, Instant> {
         val past = old.filterValues { !it.isAfter(now) }.toSortedMap().entries.toList().takeLast(LearnNights.MAX_NIGHTS)
         val result = sortedMapOf<LocalDate, Instant>()
         for ((date, target) in past) result[date] = target

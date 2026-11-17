@@ -2,10 +2,8 @@ package com.phasewake.app.wear.schedule
 
 import android.app.AlarmManager
 import android.app.PendingIntent
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -13,8 +11,6 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
-import androidx.wear.tiles.TileService
-import androidx.wear.watchface.complications.datasource.ComplicationDataSourceUpdateRequester
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.CatchUpWindow
@@ -25,11 +21,8 @@ import com.phasewake.app.shared.AlarmRepository
 import com.phasewake.app.shared.HolidayStore
 import com.phasewake.app.shared.TransientStore
 import com.phasewake.app.shared.WearSync
-import com.phasewake.app.wear.complication.NextAlarmComplicationService
 import com.phasewake.app.wear.record.LearnNotice
 import com.phasewake.app.wear.record.RecordControl
-import com.phasewake.app.wear.tile.NextAlarmTileService
-import com.phasewake.app.wear.ui.MainActivity
 import com.phasewake.app.wear.wake.WakeService
 import com.phasewake.app.wear.wearApp
 import java.time.Clock
@@ -304,22 +297,9 @@ class AlarmScheduler(
     companion object {
         private const val TAG = "AlarmScheduler"
 
-        /**
-         * Kachel und Komplikation sofort aktualisieren: Das System fragt sie nicht von sich aus ab (Komplikation
-         * `UPDATE_PERIOD_SECONDS = 0`), nur nach dem Neuplanen und zur Zielzeit ([AlarmReceiver]).
-         */
-        internal fun refreshSurfaces(context: Context) {
-            runCatching { TileService.getUpdater(context).requestUpdate(NextAlarmTileService::class.java) }
-            runCatching {
-                ComplicationDataSourceUpdateRequester
-                    .create(context, ComponentName(context, NextAlarmComplicationService::class.java))
-                    .requestUpdateAll()
-            }
-        }
         internal const val REQUEST_WINDOW = 1
         internal const val REQUEST_DEADLINE = 2
         private const val REQUEST_SNOOZE = 3
-        private const val REQUEST_SHOW = 4
         private const val REQUEST_GOOD_NIGHT_CHECK = 5
         private val LEGACY_DONE_UNTIL = longPreferencesKey("night_done_until")
 
@@ -341,11 +321,19 @@ class AlarmScheduler(
 
         /** Sicherungs-Alarm für [plan] zu [at] (vor dem Entsperren: nach einem Neustart). */
         fun setDeadlineAt(context: Context, plan: WakePlan, at: Instant) =
-            setAlarmClock(context, at, AlarmReceiver.pending(context, AlarmReceiver.ACTION_DEADLINE, plan, REQUEST_DEADLINE))
+            setAlarmClock(
+                context,
+                at,
+                AlarmReceiver.pending(context, AlarmReceiver.ACTION_DEADLINE, plan, REQUEST_DEADLINE),
+            )
 
         /** Weckt nach dem Schlummern erneut. */
         fun setSnoozeEnd(context: Context, plan: WakePlan, at: Instant) =
-            setAlarmClock(context, at, AlarmReceiver.pending(context, AlarmReceiver.ACTION_SNOOZE_END, plan, REQUEST_SNOOZE))
+            setAlarmClock(
+                context,
+                at,
+                AlarmReceiver.pending(context, AlarmReceiver.ACTION_SNOOZE_END, plan, REQUEST_SNOOZE),
+            )
 
         fun cancelDeadlineAndSnooze(context: Context) {
             cancel(context, REQUEST_DEADLINE, AlarmReceiver.ACTION_DEADLINE)
@@ -359,7 +347,11 @@ class AlarmScheduler(
         fun armGoodNightCheck(context: Context, at: Instant = Instant.now().plus(GOOD_NIGHT_CHECK_INTERVAL)) {
             try {
                 context.getSystemService(AlarmManager::class.java)
-                    .setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, at.toEpochMilli(), goodNightCheckPending(context))
+                    .setExactAndAllowWhileIdle(
+                        AlarmManager.RTC_WAKEUP,
+                        at.toEpochMilli(),
+                        goodNightCheckPending(context),
+                    )
             } catch (e: SecurityException) {
                 Log.w(TAG, "Prüfung von «Gute Nacht» nicht planbar", e)
             }
@@ -375,29 +367,8 @@ class AlarmScheduler(
         )
 
         internal fun cancel(context: Context, requestCode: Int, action: String) =
-            context.getSystemService(AlarmManager::class.java).cancel(AlarmReceiver.pending(context, action, null, requestCode))
+            context.getSystemService(AlarmManager::class.java)
+                .cancel(AlarmReceiver.pending(context, action, null, requestCode))
 
-        /**
-         * `setAlarmClock` statt `setExact`: Das System behandelt es als Wecker (zeigt ihn an, weckt aus
-         * dem Ruhezustand und erlaubt den Start des Messdienstes aus dem Hintergrund). Ohne Recht für exakte Alarme
-         * (entziehbar auf Android 12/12L) oder bei einer [SecurityException] ungenau statt gar nicht, wie der
-         * Zweitwecker am Handy: Sonst bräche [reschedule] ab, und Fenster und Zielzeit wären beide weg.
-         */
-        internal fun setAlarmClock(context: Context, at: Instant, operation: PendingIntent) {
-            val manager = context.getSystemService(AlarmManager::class.java)
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S || manager.canScheduleExactAlarms()) {
-                val show = PendingIntent.getActivity(
-                    context, REQUEST_SHOW, Intent(context, MainActivity::class.java),
-                    PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
-                )
-                try {
-                    manager.setAlarmClock(AlarmManager.AlarmClockInfo(at.toEpochMilli(), show), operation)
-                    return
-                } catch (e: SecurityException) {
-                    Log.w(TAG, "Exakter Alarm nicht erlaubt", e)
-                }
-            }
-            manager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, at.toEpochMilli(), operation)
-        }
     }
 }

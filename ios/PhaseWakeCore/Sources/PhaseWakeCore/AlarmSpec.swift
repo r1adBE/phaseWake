@@ -146,10 +146,13 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
         skipUntil: Int64 = 0,
         skipHolidays: Bool = false
     ) throws {
-        guard !id.trimmingCharacters(in: .whitespaces).isEmpty else { throw DetectorConfigError(message: "id darf nicht leer sein") }
+        guard !id.trimmingCharacters(in: .whitespaces).isEmpty
+        else { throw DetectorConfigError(message: "id darf nicht leer sein") }
         guard (0...23).contains(hour) else { throw DetectorConfigError(message: "hour muss zwischen 0 und 23 liegen") }
-        guard (0...59).contains(minute) else { throw DetectorConfigError(message: "minute muss zwischen 0 und 59 liegen") }
-        guard windowMinutes == Self.exactWindow || (Self.minWindowMinutes...Self.maxWindowMinutes).contains(windowMinutes) else {
+        guard (0...59).contains(minute)
+        else { throw DetectorConfigError(message: "minute muss zwischen 0 und 59 liegen") }
+        guard windowMinutes == Self.exactWindow
+              || (Self.minWindowMinutes...Self.maxWindowMinutes).contains(windowMinutes) else {
             throw DetectorConfigError(message: "windowMinutes muss 0 oder zwischen 10 und 30 liegen")
         }
         if let sleep = sleepDurationMinutes, !(Self.minSleepMinutes...Self.maxSleepMinutes).contains(sleep) {
@@ -204,7 +207,8 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
         // Werte stammen aus einem gültigen Wecker; die Prüfung kann nicht scheitern.
         try! AlarmSpec(
             id: id, hour: hour, minute: minute, days: days, windowMinutes: windowMinutes,
-            enabled: enabled ?? self.enabled, phone: phone, watchSound: watchSound, sleepDurationMinutes: sleepDurationMinutes,
+            enabled: enabled ?? self.enabled, phone: phone, watchSound: watchSound,
+            sleepDurationMinutes: sleepDurationMinutes,
             sound: sound, label: label, sunrise: sunrise, wakeTask: wakeTask, sunriseDevice: sunriseDevice,
             skipUntil: skipUntil ?? self.skipUntil, skipHolidays: skipHolidays ?? self.skipHolidays
         )

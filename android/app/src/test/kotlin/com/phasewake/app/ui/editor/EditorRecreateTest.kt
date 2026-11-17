@@ -48,7 +48,9 @@ class EditorRecreateTest {
     private fun settle(tree: ComposeTree, what: String, check: () -> Boolean) {
         val end = System.nanoTime() + 20_000_000_000L
         while (!(try { check() } catch (e: AssertionError) { false })) {
-            if (System.nanoTime() > end) error("$what; Texte: ${try { tree.texts() } catch (e: AssertionError) { listOf(e.message) }}")
+            if (System.nanoTime() > end) error(
+                "$what; Texte: ${try { tree.texts() } catch (e: AssertionError) { listOf(e.message) }}"
+            )
             Thread.sleep(20)
             shadowOf(Looper.getMainLooper()).idle()
             tree.idle(200)
@@ -72,9 +74,11 @@ class EditorRecreateTest {
         // Zur Zeile scrollen: Am Abend stehen mehr Karten über der Liste und schieben sie aus dem Bild.
         settle(tree, "Startseite zeigt den Wecker nicht") {
             tree.scrollToKey("work")
-            tree.nodes().any { it.config.getOrNull(SemanticsActions.OnClick) != null && tree.text(it).contains("Arbeit") }
+            tree.nodes()
+                .any { it.config.getOrNull(SemanticsActions.OnClick) != null && tree.text(it).contains("Arbeit") }
         }
-        val item = tree.nodes().first { it.config.getOrNull(SemanticsActions.OnClick) != null && tree.text(it).contains("Arbeit") }
+        val item = tree.nodes()
+            .first { it.config.getOrNull(SemanticsActions.OnClick) != null && tree.text(it).contains("Arbeit") }
         item.config[SemanticsActions.OnClick].action!!.invoke()
         tree.idle(1_000)
         val edit = context.getString(R.string.editor_edit)
@@ -95,7 +99,9 @@ class EditorRecreateTest {
         tree.click(context.getString(R.string.editor_save))
         // Speichern läuft im Hintergrund.
         val end = System.nanoTime() + 5_000_000_000L
-        while (System.nanoTime() < end && runBlocking { app.alarms.current().alarms.none { it.sleepDurationMinutes != null } }) {
+        while (System.nanoTime() < end &&
+            runBlocking { app.alarms.current().alarms.none { it.sleepDurationMinutes != null } }
+        ) {
             Thread.sleep(20); shadowOf(Looper.getMainLooper()).idle()
         }
         val list = runBlocking { app.alarms.current().alarms }

@@ -29,7 +29,11 @@ class LearnSkipTest {
         assertEquals("1800000000000|sensors|", LearnSkip(target, LearnSkip.Reason.SENSORS).encode())
         assertEquals(LearnSkip(target, LearnSkip.Reason.MANUAL), LearnSkip.decode(" 1800000000000|manual\n"))
         assertEquals(LearnSkip(target, LearnSkip.Reason.LATE), LearnSkip.decode("1800000000000|late|"))
-        assertEquals(LearnSkip(target, LearnSkip.Reason.BATTERY), LearnSkip.decode("1800000000000|battery|140"), "Akku unplausibel: unbekannt")
+        assertEquals(
+            LearnSkip(target, LearnSkip.Reason.BATTERY),
+            LearnSkip.decode("1800000000000|battery|140"),
+            "Akku unplausibel: unbekannt",
+        )
     }
 
     @Test
@@ -60,7 +64,18 @@ class LearnSkipTest {
     @Test
     fun upcomingTargetsOfTheNextTwoWeeks() {
         val now = at(2, 12)
-        val weekdays = AlarmSpec(id = "w", hour = 7, minute = 0, days = setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY))
+        val weekdays = AlarmSpec(
+            id = "w",
+            hour = 7,
+            minute = 0,
+            days = setOf(
+                DayOfWeek.MONDAY,
+                DayOfWeek.TUESDAY,
+                DayOfWeek.WEDNESDAY,
+                DayOfWeek.THURSDAY,
+                DayOfWeek.FRIDAY,
+            ),
+        )
         val once = AlarmSpec(id = "o", hour = 6, minute = 30)
         val off = AlarmSpec(id = "x", hour = 5, minute = 0, days = setOf(DayOfWeek.SUNDAY), enabled = false)
         val targets = LearnLog.upcomingTargets(listOf(weekdays, once, off), now, zone, emptySet())
@@ -69,7 +84,12 @@ class LearnSkipTest {
         assertEquals(at(3, 6).plus(Duration.ofMinutes(30)), targets.first())
         assertTrue(targets.all { it.isAfter(now) && !it.isAfter(now.plus(Duration.ofDays(LearnLog.PLAN_DAYS))) })
         // Feiertag fällt mit skipHolidays weg.
-        val holiday = LearnLog.upcomingTargets(listOf(weekdays.copy(skipHolidays = true)), now, zone, setOf(LocalDate.of(2026, 11, 4)))
+        val holiday = LearnLog.upcomingTargets(
+            listOf(weekdays.copy(skipHolidays = true)),
+            now,
+            zone,
+            setOf(LocalDate.of(2026, 11, 4)),
+        )
         assertEquals(9, holiday.size)
     }
 
@@ -84,12 +104,19 @@ class LearnSkipTest {
         val merged = LearnLog.mergeAlarmNights(old, listOf(at(7, 6), at(3, 7)), now, zone)
         assertEquals(mapOf(LocalDate.of(2026, 11, 3) to at(4, 7), LocalDate.of(2026, 11, 6) to at(7, 6)), merged)
         // Zwei Wecker derselben Nacht: der frühere.
-        assertEquals(at(7, 5), LearnLog.mergeAlarmNights(emptyMap(), listOf(at(7, 6), at(7, 5)), now, zone)[LocalDate.of(2026, 11, 6)])
+        assertEquals(
+            at(7, 5),
+            LearnLog.mergeAlarmNights(emptyMap(), listOf(at(7, 6), at(7, 5)), now, zone)[LocalDate.of(2026, 11, 6)],
+        )
         // Höchstens 14 vergangene Nächte.
-        val many = (1..30).associate { LocalDate.of(2026, 10, it) to at(1, 7).minus(Duration.ofDays((31 - it).toLong())) }
+        val many =
+            (1..30).associate { LocalDate.of(2026, 10, it) to at(1, 7).minus(Duration.ofDays((31 - it).toLong())) }
         assertEquals(LearnNights.MAX_NIGHTS, LearnLog.mergeAlarmNights(many, emptyList(), now, zone).size)
         assertEquals(merged, LearnLog.decodeAlarmNights(LearnLog.encodeAlarmNights(merged)))
-        assertEquals("2026-11-03=${at(4, 7).toEpochMilli()}\n2026-11-06=${at(7, 6).toEpochMilli()}", LearnLog.encodeAlarmNights(merged))
+        assertEquals(
+            "2026-11-03=${at(4, 7).toEpochMilli()}\n2026-11-06=${at(7, 6).toEpochMilli()}",
+            LearnLog.encodeAlarmNights(merged),
+        )
         assertEquals(emptyMap(), LearnLog.decodeAlarmNights("2026-13-01=5\nx=1\n2026-11-01=abc"))
     }
 
@@ -97,7 +124,10 @@ class LearnSkipTest {
     fun alarmNightsKeepTheEarlierTargetAndTheBoundaryAtNow() {
         // Zwei Wecker derselben Nacht, der frühere zuerst geplant – er bleibt (der spätere ersetzt ihn nicht).
         val now = at(5, 12)
-        assertEquals(mapOf(LocalDate.of(2026, 11, 5) to at(6, 5)), LearnLog.mergeAlarmNights(emptyMap(), listOf(at(6, 5), at(6, 6)), now, zone))
+        assertEquals(
+            mapOf(LocalDate.of(2026, 11, 5) to at(6, 5)),
+            LearnLog.mergeAlarmNights(emptyMap(), listOf(at(6, 5), at(6, 6)), now, zone),
+        )
         // Ein Eintrag genau zur Zeit des Neuplanens ist vergangen und bleibt, auch wenn der Plan ihn nicht mehr hat.
         val old = mapOf(LocalDate.of(2026, 11, 4) to now)
         assertEquals(old, LearnLog.mergeAlarmNights(old, emptyList(), now, zone))

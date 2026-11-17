@@ -22,14 +22,15 @@ final class BedtimeOnsetWatchTests: XCTestCase {
         // beim Start.
         let late = bedAt.addingTimeInterval(4 * 3600)
         let quiet: [Double?] = Array(repeating: 0.0005, count: 40)
-        let found = RecorderOnset.find(motions: quiet, since: late, threshold: DetectorConfig.defaultLightThreshold, personalFloor: nil,
-                                       latest: latest, extendCap: nil)
+        let found = RecorderOnset.find(motions: quiet, since: late, threshold: DetectorConfig.defaultLightThreshold,
+                                       personalFloor: nil, latest: latest, extendCap: nil)
         XCTAssertEqual(found, .asleep(at: late, index: 0))
         XCTAssertTrue(RecorderOnset.startedLate(recorderFrom: late, bedAt: bedAt))
         // Vor der Bettzeit oder zur Bettzeit gestartet (auch Sekundenbruchteile nach «Gute Nacht»): Rechnung gilt.
         XCTAssertFalse(RecorderOnset.startedLate(recorderFrom: begin.addingTimeInterval(20 * 60), bedAt: bedAt))
-        XCTAssertFalse(RecorderOnset.startedLate(recorderFrom: bedAt.addingTimeInterval(RecorderOnset.lateStartTolerance), bedAt: bedAt))
-        XCTAssertTrue(RecorderOnset.startedLate(recorderFrom: bedAt.addingTimeInterval(RecorderOnset.lateStartTolerance + 1), bedAt: bedAt))
+        let tolerance = RecorderOnset.lateStartTolerance
+        XCTAssertFalse(RecorderOnset.startedLate(recorderFrom: bedAt.addingTimeInterval(tolerance), bedAt: bedAt))
+        XCTAssertTrue(RecorderOnset.startedLate(recorderFrom: bedAt.addingTimeInterval(tolerance + 1), bedAt: bedAt))
         let tap = minutes(60)
         let manualBed = RecorderOnset.bedAt(since: tap, automatic: false, latest: latest, sleepMinutes: 450)
         XCTAssertFalse(RecorderOnset.startedLate(recorderFrom: tap.addingTimeInterval(0.2), bedAt: manualBed))
@@ -52,12 +53,15 @@ final class BedtimeOnsetWatchTests: XCTestCase {
         let window = target.addingTimeInterval(-1800)
         let reminder = EveningReminder.reminderAt(target: target, sleepMinutes: 450, latencyMinutes: 20)
         let oldStart = ShortNight.autoOnsetStart(target: target, sleepGoalMinutes: 450, sleepDurationMinutes: nil)
-        XCTAssertEqual(AppleAutoOnset.decide(now: reminder, target: target, windowStart: window, onsetStart: oldStart, battery: 80),
+        XCTAssertEqual(AppleAutoOnset.decide(now: reminder, target: target, windowStart: window, onsetStart: oldStart,
+                                             battery: 80),
                        .wait(until: oldStart))
-        XCTAssertEqual(AppleAutoOnset.decide(now: reminder, target: target, windowStart: window, onsetStart: reminder, battery: 80),
+        XCTAssertEqual(AppleAutoOnset.decide(now: reminder, target: target, windowStart: window, onsetStart: reminder,
+                                             battery: 80),
                        .start(until: window))
+        let recordUntil = target.addingTimeInterval(AppleLearnRecord.afterTarget)
         XCTAssertEqual(AppleLearnRecord.decide(now: reminder, target: target, onsetStart: reminder, battery: 80),
-                       .start(from: reminder, until: target.addingTimeInterval(AppleLearnRecord.afterTarget),
-                              duration: target.addingTimeInterval(AppleLearnRecord.afterTarget).timeIntervalSince(reminder)))
+                       .start(from: reminder, until: recordUntil,
+                              duration: recordUntil.timeIntervalSince(reminder)))
     }
 }

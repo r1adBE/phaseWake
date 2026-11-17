@@ -1,17 +1,12 @@
 package com.phasewake.app.wear.record
 
 import android.app.AlarmManager
-import android.app.Notification
 import android.app.PendingIntent
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.BatteryManager
 import android.util.Log
-import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import androidx.wear.ongoing.OngoingActivity
-import androidx.wear.ongoing.Status
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Epoch
@@ -24,12 +19,8 @@ import com.phasewake.app.shared.NightRecording
 import com.phasewake.app.shared.RecordEnd
 import com.phasewake.app.shared.RecordSync
 import com.phasewake.app.wear.PhaseWakeWear
-import com.phasewake.app.wear.R
 import com.phasewake.app.wear.schedule.DirectBoot
 import com.phasewake.app.wear.system.StartLock
-import com.phasewake.app.wear.ui.MainActivity
-import com.phasewake.app.wear.ui.shortTime
-import com.phasewake.app.wear.wake.Notifications
 import com.phasewake.app.wear.wake.SensorAccess
 import com.phasewake.app.wear.wearApp
 import java.time.Duration
@@ -43,8 +34,6 @@ import kotlinx.coroutines.launch
 object RecordControl {
     private const val REQUEST_CHECK = 11
     private const val REQUEST_PHONE_START = 12
-    private const val REQUEST_STOP = 13
-    private const val REQUEST_OPEN = 14
     private const val REQUEST_LEARN_START = 15
     internal const val ACTION_CHECK = "com.phasewake.app.action.RECORD_CHECK"
     internal const val ACTION_PHONE_START = "com.phasewake.app.action.RECORD_PHONE_START"
@@ -81,8 +70,19 @@ object RecordControl {
             // Aus dem Hintergrund darf der Messdienst nicht in den Vordergrund; ein exakter Alarm darf es (gleich
             // jetzt).
             RecordSync.Command.START -> {
-                val intent = Intent(context, RecordReceiver::class.java).setAction(ACTION_PHONE_START).putExtra(RecordService.EXTRA_CONTINUOUS, continuous)
-                arm(context, Instant.now().plusSeconds(1), PendingIntent.getBroadcast(context, REQUEST_PHONE_START, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT))
+                val intent = Intent(context, RecordReceiver::class.java)
+                    .setAction(ACTION_PHONE_START)
+                    .putExtra(RecordService.EXTRA_CONTINUOUS, continuous)
+                arm(
+                    context,
+                    Instant.now().plusSeconds(1),
+                    PendingIntent.getBroadcast(
+                        context,
+                        REQUEST_PHONE_START,
+                        intent,
+                        PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+                    ),
+                )
             }
             RecordSync.Command.STOP -> stop(context, RecordEnd.PHONE)
         }
@@ -108,8 +108,19 @@ object RecordControl {
             app.appScope.launch { LearnNotice.skipped(app, LearnSkip(until, reason, battery?.takeIf { low })) }
             return false
         }
-        val intent = Intent(context, RecordReceiver::class.java).setAction(ACTION_LEARN_START).putExtra(RecordService.EXTRA_UNTIL, until.toEpochMilli())
-        arm(context, Instant.now().plusSeconds(1), PendingIntent.getBroadcast(context, REQUEST_LEARN_START, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT))
+        val intent = Intent(context, RecordReceiver::class.java)
+            .setAction(ACTION_LEARN_START)
+            .putExtra(RecordService.EXTRA_UNTIL, until.toEpochMilli())
+        arm(
+            context,
+            Instant.now().plusSeconds(1),
+            PendingIntent.getBroadcast(
+                context,
+                REQUEST_LEARN_START,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+            ),
+        )
         app.diag.log(DiagKind.MEASURE_START, "learn record start bat=${battery ?: "-"} mode=sample")
         return true
     }
@@ -128,7 +139,11 @@ object RecordControl {
      * Lernphase ohne Klingeln: Die Aufzeichnung endet zur eingestellten Weckzeit [until], sobald keine Nacht mehr läuft
      * ([nightRunning]: messen, klingeln, schlummern; deren Ende beendet sie selbst, siehe [endLearning]).
      */
-    internal fun endsAtTarget(now: Instant, until: Instant, nightRunning: Boolean): Boolean = !now.isBefore(until) && !nightRunning
+    internal fun endsAtTarget(
+        now: Instant,
+        until: Instant,
+        nightRunning: Boolean,
+    ): Boolean = !now.isBefore(until) && !nightRunning
 
     /**
      * Längste Schlafdauer: So weit nach jetzt darf die Zielzeit eines neuen Plans liegen, um zur selben Nacht zu
@@ -162,7 +177,8 @@ object RecordControl {
         if (RecordService.running) {
             context.startService(
                 Intent(context, RecordService::class.java).setAction(RecordService.ACTION_FOLLOW_PLAN)
-                    .putExtra(RecordService.EXTRA_START, mark.start.toEpochMilli()).putExtra(RecordService.EXTRA_UNTIL, until.toEpochMilli()),
+                    .putExtra(RecordService.EXTRA_START, mark.start.toEpochMilli())
+                    .putExtra(RecordService.EXTRA_UNTIL, until.toEpochMilli()),
             )
         }
         return until
@@ -177,7 +193,9 @@ object RecordControl {
     fun endLearning(context: Context, reason: RecordEnd = RecordEnd.WAKE) {
         if (RecordService.running) {
             context.startService(
-                Intent(context, RecordService::class.java).setAction(RecordService.ACTION_END_LEARN).putExtra(RecordService.EXTRA_REASON, reason.code),
+                Intent(context, RecordService::class.java)
+                    .setAction(RecordService.ACTION_END_LEARN)
+                    .putExtra(RecordService.EXTRA_REASON, reason.code),
             )
             return
         }
@@ -209,13 +227,22 @@ object RecordControl {
      */
     fun stop(context: Context, reason: RecordEnd) {
         if (RecordService.running) {
-            context.startService(Intent(context, RecordService::class.java).setAction(RecordService.ACTION_STOP).putExtra(RecordService.EXTRA_REASON, reason.code))
+            context.startService(
+                Intent(context, RecordService::class.java)
+                    .setAction(RecordService.ACTION_STOP)
+                    .putExtra(RecordService.EXTRA_REASON, reason.code),
+            )
             return
         }
         cancelCheck(context)
         val app = context.wearApp
         app.appScope.launch {
-            if (finishOrphan(app, reason)) app.diag.log(DiagKind.MEASURE_END, "record end ${RecordService.reasonText(reason, battery(app))} (not running)")
+            if (finishOrphan(app, reason)) {
+                app.diag.log(
+                    DiagKind.MEASURE_END,
+                    "record end ${RecordService.reasonText(reason, battery(app))} (not running)",
+                )
+            }
             app.recordSync.publishStatus(null)
         }
     }
@@ -238,12 +265,20 @@ object RecordControl {
             return false
         }
         return try {
-            ContextCompat.startForegroundService(context, Intent(context, RecordService::class.java).setAction(action).also(extras))
+            ContextCompat.startForegroundService(
+                context,
+                Intent(context, RecordService::class.java).setAction(action).also(extras),
+            )
             true
         } catch (e: IllegalStateException) {
             // ForegroundServiceStartNotAllowedException (ab Android 12) ist eine IllegalStateException.
             Log.e(RecordService.TAG, "Start verweigert: $action", e)
-            runCatching { context.wearApp.diag.log(DiagKind.ERROR, "record start refused ${action.substringAfterLast('.')} ${e.javaClass.simpleName}") }
+            runCatching {
+                context.wearApp.diag.log(
+                    DiagKind.ERROR,
+                    "record start refused ${action.substringAfterLast('.')} ${e.javaClass.simpleName}",
+                )
+            }
             StartLock.release()
             false
         }
@@ -300,7 +335,8 @@ object RecordControl {
     fun armCheck(context: Context, at: Instant = Instant.now().plus(CHECK_INTERVAL)) =
         arm(context, at, pending(context, ACTION_CHECK, REQUEST_CHECK))
 
-    fun cancelCheck(context: Context) = context.getSystemService(AlarmManager::class.java).cancel(pending(context, ACTION_CHECK, REQUEST_CHECK))
+    fun cancelCheck(context: Context) = context.getSystemService(AlarmManager::class.java)
+        .cancel(pending(context, ACTION_CHECK, REQUEST_CHECK))
 
     private fun arm(context: Context, at: Instant, operation: PendingIntent) {
         val alarms = context.getSystemService(AlarmManager::class.java)
@@ -320,7 +356,9 @@ object RecordControl {
 
     /** Akkustand in Prozent; `null`, wenn unbekannt. */
     fun battery(context: Context): Int? =
-        context.getSystemService(BatteryManager::class.java)?.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)?.takeIf { it in 0..100 }
+        context.getSystemService(BatteryManager::class.java)
+            ?.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
+            ?.takeIf { it in 0..100 }
 
     /**
      * Eine Zeile je Stunde fürs Diagnose-Protokoll: Epochen der Stunde ([period]), davon ohne Bewegung, mittlere und
@@ -331,64 +369,7 @@ object RecordControl {
         val f = NoiseFloor::format
         return "record stat epochs=${period.size} empty=${period.size - motions.size} " +
             "motion=${f(motions.takeIf { it.isNotEmpty() }?.average())}/${f(motions.maxOrNull())} " +
-            "floor=${f(NoiseFloor.floor(all.map { it.motion }))} hr=${period.count { it.heartRate != null }} bat=${battery ?: "-"}"
-    }
-
-    /** Daueranzeige «Nacht wird aufgezeichnet · Seit 23:10» mit «Aufzeichnung stoppen» und laufender Aktivität. */
-    fun notification(context: Context, since: Instant): Notification {
-        val open = PendingIntent.getActivity(
-            context, REQUEST_OPEN, Intent(context, MainActivity::class.java),
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
-        )
-        val stop = PendingIntent.getService(
-            context, REQUEST_STOP,
-            Intent(context, RecordService::class.java).setAction(RecordService.ACTION_STOP).putExtra(RecordService.EXTRA_REASON, RecordEnd.WATCH.code),
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
-        )
-        val time = shortTime(since)
-        val text = context.getString(R.string.record_since, time)
-        val builder = NotificationCompat.Builder(context, Notifications.CHANNEL_WINDOW)
-            .setSmallIcon(R.drawable.ic_moon)
-            .setContentTitle(context.getString(R.string.notification_record_title))
-            .setContentText(text)
-            .setOngoing(true)
-            .setSilent(true)
-            .setContentIntent(open)
-            .addAction(R.drawable.ic_moon, context.getString(R.string.record_stop), stop)
-        OngoingActivity.Builder(context, Notifications.ID_RECORD, builder)
-            .setStaticIcon(R.drawable.ic_moon)
-            .setTouchIntent(open)
-            .setStatus(Status.Builder().addTemplate(text).build())
-            .build()
-            .apply(context)
-        return builder.build()
-    }
-}
-
-/**
- * Prüf-Alarm der Aufzeichnung, Start vom Handy (über einen exakten Alarm, siehe [RecordControl.fromPhone]) und Start
- * der Lernphase ([RecordControl.startForLearning]).
- */
-class RecordReceiver : BroadcastReceiver() {
-    override fun onReceive(context: Context, intent: Intent) {
-        // Vor dem Entsperren ist die Aufzeichnung nicht lesbar.
-        if (!DirectBoot.isUnlocked(context)) return
-        if (intent.action == RecordControl.ACTION_CHECK && RecordService.running) return RecordControl.armCheck(context)
-        // Start-Wakelock bis zum eigenen des Dienstes; sonst schläft die Uhr nach `onReceive`.
-        StartLock.acquire(context)
-        when (intent.action) {
-            RecordControl.ACTION_CHECK -> RecordControl.resume(context)
-            RecordControl.ACTION_PHONE_START -> startFromPhone(context, intent)
-            RecordControl.ACTION_LEARN_START -> RecordControl.startService(context, RecordService.ACTION_START_LEARN) {
-                it.putExtra(RecordService.EXTRA_UNTIL, intent.getLongExtra(RecordService.EXTRA_UNTIL, 0L))
-            }
-            else -> StartLock.release()
-        }
-    }
-
-    private fun startFromPhone(context: Context, intent: Intent) {
-        RecordControl.startService(context, RecordService.ACTION_START_PHONE) {
-            it.putExtra(RecordService.EXTRA_CONTINUOUS, intent.getBooleanExtra(RecordService.EXTRA_CONTINUOUS, false))
-        }
+            "floor=${f(NoiseFloor.floor(all.map { it.motion }))} hr=${period.count { it.heartRate != null }} " +
+            "bat=${battery ?: "-"}"
     }
 }

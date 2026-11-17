@@ -29,7 +29,8 @@ struct SoundsButton: View {
     var body: some View {
         Button(action: action) {
             HStack {
-                Label(L("sounds_title"), systemImage: "moon.zzz").font(Fonts.manrope(16, .semibold, relativeTo: .headline))
+                Label(L("sounds_title"), systemImage: "moon.zzz")
+                    .font(Fonts.manrope(16, .semibold, relativeTo: .headline))
                 Spacer()
                 if let playing = model.sounds.playing {
                     Text(L(playing.textKey)).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
@@ -60,13 +61,15 @@ struct SoundsSheet: View {
                     }
                     // Einschlaf-Wellen: links und rechts ein anderer Ton, darum mit Kopfhörern hören.
                     if (player.playing ?? SleepSound(rawValue: choice)) == .binaural {
-                        Text(L("sound_binaural_hint")).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(.secondary)
+                        Text(L("sound_binaural_hint"))
+                            .font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(.secondary)
                     }
                     VStack(alignment: .leading, spacing: 8) {
                         Text(L("sounds_timer")).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
                         Picker(L("sounds_timer"), selection: $timer) {
                             ForEach(SleepSounds.timerOptions, id: \.self) { minutes in
-                                Text(minutes.map { Format.duration(minutes: $0) } ?? L("sounds_timer_off")).tag(minutes ?? 0)
+                                Text(minutes.map { Format.duration(minutes: $0) } ?? L("sounds_timer_off"))
+                                    .tag(minutes ?? 0)
                             }
                         }
                         .pickerStyle(.segmented)
@@ -82,7 +85,9 @@ struct SoundsSheet: View {
                         VStack(spacing: 10) {
                             let canPlay = windowStart(now: context.date).map { $0 > context.date } ?? true
                             Button {
-                                if player.playing != nil { player.stop() } else { start(SleepSound(rawValue: choice) ?? .pink) }
+                                if player.playing != nil { player.stop() } else {
+                                    start(SleepSound(rawValue: choice) ?? .pink)
+                                }
                             } label: {
                                 Label(L(player.playing != nil ? "sounds_stop" : "sounds_play"),
                                       systemImage: player.playing != nil ? "stop.fill" : "play.fill")
@@ -117,15 +122,18 @@ struct SoundsSheet: View {
         } label: {
             VStack(spacing: 8) {
                 Image(systemName: sound.symbol).font(.title2)
-                Text(L(sound.textKey)).font(Fonts.manrope(14, .semibold, relativeTo: .subheadline)).multilineTextAlignment(.center)
+                Text(L(sound.textKey))
+                    .font(Fonts.manrope(14, .semibold, relativeTo: .subheadline)).multilineTextAlignment(.center)
             }
             .frame(maxWidth: .infinity, minHeight: 88)
-            .background(selected ? Color.accentColor.opacity(0.22) : Color.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 16))
+            .background(selected ? Color.accentColor.opacity(0.22) : Color.secondary.opacity(0.1),
+                        in: RoundedRectangle(cornerRadius: 16))
             .overlay(RoundedRectangle(cornerRadius: 16).stroke(playing ? Color.accentColor : .clear, lineWidth: 2))
             // Gewählt: Haken oben rechts, damit die Wahl nicht nur an der Farbe hängt (WCAG 1.4.1).
             .overlay(alignment: .topTrailing) {
                 if selected {
-                    Image(systemName: "checkmark.circle.fill").foregroundStyle(Color.accentColor).padding(8).accessibilityHidden(true)
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundStyle(Color.accentColor).padding(8).accessibilityHidden(true)
                 }
             }
         }

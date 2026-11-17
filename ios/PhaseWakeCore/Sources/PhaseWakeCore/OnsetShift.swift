@@ -40,7 +40,8 @@ public struct OnsetShift: Equatable, Sendable, Codable {
         guard matches(plan), target < original else { return plan }
         let earlier = Self.date(target)
         guard earlier.addingTimeInterval(grace) > now else { return plan }
-        return WakePlan(alarmId: plan.alarmId, windowStart: min(plan.windowStart, earlier), target: earlier, exact: plan.exact)
+        return WakePlan(alarmId: plan.alarmId, windowStart: min(plan.windowStart, earlier), target: earlier,
+                        exact: plan.exact)
     }
 
     /// Ob die Nacht vorbei ist (eingestellte Zielzeit plus `grace` erreicht).
@@ -57,7 +58,8 @@ public struct OnsetShift: Equatable, Sendable, Codable {
     /// Liest ``encode()``; `nil`, wenn leer oder unlesbar.
     public static func decode(_ text: String?) -> OnsetShift? {
         guard let fields = text?.split(separator: "|", omittingEmptySubsequences: false), fields.count >= 4,
-              let original = Int64(fields[1]), let target = Int64(fields[2]), let at = Int64(fields[3]) else { return nil }
+              let original = Int64(fields[1]), let target = Int64(fields[2]), let at = Int64(fields[3])
+        else { return nil }
         let id = String(fields[0]).removingPercentEncoding ?? String(fields[0])
         guard !id.isEmpty else { return nil }
         return OnsetShift(alarmId: id, original: original, target: target, at: at)

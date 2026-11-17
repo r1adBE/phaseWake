@@ -56,7 +56,9 @@ class OnsetFloorStore(private val store: DataStore<Preferences>) {
         fun floorFor(alarmId: String?, latestMs: Long?, floor: Double?, plan: WakePlan): Double? {
             if (alarmId != plan.alarmId || latestMs == null) return null
             val latest = Instant.ofEpochMilli(latestMs)
-            if (latest.isBefore(plan.target) || latest.isAfter(plan.target.plus(WakeRules.GOOD_NIGHT_MAX_AHEAD))) return null
+            if (latest.isBefore(plan.target) || latest.isAfter(plan.target.plus(WakeRules.GOOD_NIGHT_MAX_AHEAD))) {
+                return null
+            }
             return Learning.validFloor(floor)
         }
     }

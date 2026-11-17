@@ -47,13 +47,18 @@ import java.time.Instant
  */
 
 /** Feste Testzeit: Mittwoch 28.10.2026, 07:20 in Zürich. Bilder hängen so nicht vom Tag des Laufs ab. */
-internal val FIXED_NOW: Instant = java.time.ZonedDateTime.of(2026, 10, 28, 7, 20, 0, 0, java.time.ZoneId.of("Europe/Zurich")).toInstant()
+internal val FIXED_NOW: Instant =
+    java.time.ZonedDateTime.of(2026, 10, 28, 7, 20, 0, 0, java.time.ZoneId.of("Europe/Zurich")).toInstant()
 
-internal val weekdays = setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)
+internal val weekdays =
+    setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)
 
 private val alarms = listOf(
     AlarmSpec(id = "work", hour = 7, minute = 0, days = weekdays, label = "Arbeit", sunrise = Sunrise.WINDOW),
-    AlarmSpec(id = "weekend", hour = 9, minute = 30, days = setOf(DayOfWeek.SATURDAY, DayOfWeek.SUNDAY), enabled = false, phone = PhoneAlert.VIBRATE, sleepDurationMinutes = 450),
+    AlarmSpec(
+        id = "weekend", hour = 9, minute = 30, days = setOf(DayOfWeek.SATURDAY, DayOfWeek.SUNDAY), enabled = false,
+        phone = PhoneAlert.VIBRATE, sleepDurationMinutes = 450,
+    ),
 )
 
 private fun night(daysAgo: Long, wokeMinute: Long, reason: WakeReason): NightRecord {
@@ -68,10 +73,14 @@ private fun night(daysAgo: Long, wokeMinute: Long, reason: WakeReason): NightRec
         Epoch(m, 52.0 + (i % 5))
     }
     val feeling = when (daysAgo) { 1L -> 3; 2L -> 4; else -> null }
-    return NightRecord("work", start, start.plus(Duration.ofMinutes(30)), start.plus(Duration.ofMinutes(wokeMinute)), reason, if (daysAgo == 2L) 1 else 0, epochs, feeling)
+    return NightRecord(
+        "work", start, start.plus(Duration.ofMinutes(30)), start.plus(Duration.ofMinutes(wokeMinute)), reason,
+        if (daysAgo == 2L) 1 else 0, epochs, feeling,
+    )
 }
 
-internal val nights = listOf(night(2, 30, WakeReason.DEADLINE), night(1, 22, WakeReason.AWAKE), night(0, 11, WakeReason.LIGHT_SLEEP))
+internal val nights =
+    listOf(night(2, 30, WakeReason.DEADLINE), night(1, 22, WakeReason.AWAKE), night(0, 11, WakeReason.LIGHT_SLEEP))
 
 private val stages = nights.last().let { n ->
     listOf(
@@ -94,8 +103,15 @@ internal fun Themed(mode: ThemeMode, content: @Composable () -> Unit) {
 internal val SHOT_MOOD: SkyMood = SkyMood.at(FIXED_NOW, java.time.ZoneId.of("Europe/Zurich"), null)
 
 @Composable
-private fun Home(mode: ThemeMode, list: List<AlarmSpec>, check: NightCheckState = NightCheckState(emptyList())) = Themed(mode) {
-    HomeScreen(list, nights.last(), check = check, onFix = {}, contentPadding = padding, onAdd = {}, onEdit = {}, onToggle = { _, _ -> }, clock = { FIXED_NOW })
+private fun Home(
+    mode: ThemeMode,
+    list: List<AlarmSpec>,
+    check: NightCheckState = NightCheckState(emptyList()),
+) = Themed(mode) {
+    HomeScreen(
+        list, nights.last(), check = check, onFix = {}, contentPadding = padding, onAdd = {}, onEdit = {},
+        onToggle = { _, _ -> }, clock = { FIXED_NOW },
+    )
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Startseite hell", device = PHONE) @Composable
@@ -111,15 +127,21 @@ fun HomeEmptyLight() = Home(ThemeMode.LIGHT, emptyList())
 fun HomeEmptyDark() = Home(ThemeMode.DARK, emptyList())
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Editor hell", device = PHONE_TALL) @Composable
-fun EditorLight() = Themed(ThemeMode.LIGHT) { EditorScreen(alarms.first(), advice = WindowAdvice.Suggestion(30, 4, 6), onBack = {}, onSave = {}, onDelete = {}) }
+fun EditorLight() = Themed(ThemeMode.LIGHT) {
+    EditorScreen(alarms.first(), advice = WindowAdvice.Suggestion(30, 4, 6), onBack = {}, onSave = {}, onDelete = {})
+}
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Editor dunkel", device = PHONE_TALL) @Composable
-fun EditorDark() = Themed(ThemeMode.DARK) { EditorScreen(alarms.first(), advice = WindowAdvice.Suggestion(30, 4, 6), onBack = {}, onSave = {}, onDelete = {}) }
+fun EditorDark() = Themed(ThemeMode.DARK) {
+    EditorScreen(alarms.first(), advice = WindowAdvice.Suggestion(30, 4, 6), onBack = {}, onSave = {}, onDelete = {})
+}
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Nacht-Check offen", device = PHONE) @Composable
 fun HomeCheck() = Home(ThemeMode.LIGHT, alarms, NightCheckState(listOf(Check.WATCH, Check.DND)))
 
-private val trends = Trends(asleepThisWeek = 432, asleepLastWeek = 401, bedtimeSpreadMinutes = 18, feelingThisWeek = 3.8, feelingLastWeek = 3.2)
+private val trends = Trends(
+    asleepThisWeek = 432, asleepLastWeek = 401, bedtimeSpreadMinutes = 18, feelingThisWeek = 3.8, feelingLastWeek = 3.2,
+)
 
 /** Diagramme: 14 Nächte mit Weckfenster 06:30–07:00, Schlaf aus der Gesundheits-App, Befinden und Notizen. */
 private val chartZone = java.time.ZoneId.systemDefault()
@@ -144,7 +166,10 @@ private val chartPlan = listOf(
 private val chartNights = chartPlan.mapIndexed { i, (wake, _) ->
     val start = chartAt(i.toLong(), 6, 30)
     val target = start.plus(Duration.ofMinutes(30))
-    NightRecord("work", start, target, target.minus(Duration.ofMinutes(wake.first.toLong())), wake.second, if (wake.first < 0) 1 else 0, emptyList(), wake.third)
+    NightRecord(
+        "work", start, target, target.minus(Duration.ofMinutes(wake.first.toLong())), wake.second,
+        if (wake.first < 0) 1 else 0, emptyList(), wake.third,
+    )
 }.reversed()
 
 private val chartSleeps = chartPlan.mapIndexedNotNull { i, (_, sleep) ->
@@ -157,13 +182,17 @@ private val chartSleeps = chartPlan.mapIndexedNotNull { i, (_, sleep) ->
 /** Schlafphasen der jüngsten Nacht: Zyklen von Leicht, Tief, Leicht und REM, am Morgen leicht. */
 private val chartStages = buildList {
     var t = chartAt(1, 23, 10)
-    val cycle = listOf(SleepStage.AWAKE to 10, SleepStage.LIGHT to 25, SleepStage.DEEP to 45, SleepStage.LIGHT to 20, SleepStage.REM to 20)
+    val cycle = listOf(
+        SleepStage.AWAKE to 10, SleepStage.LIGHT to 25, SleepStage.DEEP to 45, SleepStage.LIGHT to 20,
+        SleepStage.REM to 20,
+    )
     val end = chartAt(0, 6, 50)
     var k = 0
     while (t.isBefore(end)) {
         val (stage, minutes) = cycle[k % cycle.size]
         // Gegen Morgen weniger Tiefschlaf, mehr REM und leichter Schlaf.
-        val length = if (stage == SleepStage.DEEP) maxOf(10, minutes - k * 4) else minutes + (if (stage == SleepStage.REM) k * 2 else 0)
+        val length = if (stage == SleepStage.DEEP) maxOf(10, minutes - k * 4) else minutes +
+            (if (stage == SleepStage.REM) k * 2 else 0)
         val next = minOf(t.plus(Duration.ofMinutes(length.toLong())), end)
         // Wach nur beim Einschlafen und einmal kurz um 03 Uhr (fünfter Zyklus).
         add(StageSpan(t, next, if (stage == SleepStage.AWAKE && k != 0 && k != 20) SleepStage.LIGHT else stage))
@@ -174,52 +203,81 @@ private val chartStages = buildList {
 
 private val chartNotes = mapOf(
     chartMorning.minusDays(2) to listOf(com.phasewake.app.core.SleepNotes.CAFFEINE),
-    chartMorning.minusDays(5) to listOf(com.phasewake.app.core.SleepNotes.ALCOHOL, com.phasewake.app.core.SleepNotes.LATE_MEAL),
+    chartMorning.minusDays(5) to listOf(
+        com.phasewake.app.core.SleepNotes.ALCOHOL, com.phasewake.app.core.SleepNotes.LATE_MEAL,
+    ),
     chartMorning.minusDays(9) to listOf(com.phasewake.app.core.SleepNotes.EXERCISE),
 )
 
-private val charts = HistoryCharts.of(chartNights, chartSleeps, chartStages, chartNotes, alarms, 450, FIXED_NOW, chartZone)
+private val charts = HistoryCharts.of(
+    com.phasewake.app.ui.history.ChartSource(chartNights, chartSleeps, chartStages, chartNotes),
+    alarms, 450, FIXED_NOW, chartZone,
+)
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf hell", device = PHONE_TALL) @Composable
-fun HistoryLight() = Themed(ThemeMode.LIGHT) { HistoryScreen(nights, padding, loadStages = { stages }, trends = trends, healthConnected = true, charts = charts) }
+fun HistoryLight() = Themed(ThemeMode.LIGHT) {
+    HistoryScreen(nights, padding, loadStages = { stages }, trends = trends, healthConnected = true, charts = charts)
+}
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf dunkel", device = PHONE_TALL) @Composable
-fun HistoryDark() = Themed(ThemeMode.DARK) { HistoryScreen(nights, padding, loadStages = { stages }, trends = trends, healthConnected = false, charts = charts) }
+fun HistoryDark() = Themed(ThemeMode.DARK) {
+    HistoryScreen(nights, padding, loadStages = { stages }, trends = trends, healthConnected = false, charts = charts)
+}
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf Diagramme hell", device = PHONE_TALL) @Composable
-fun HistoryChartsLight() = Themed(ThemeMode.LIGHT) { SkyPage { HistoryChartsStacked(charts, emptyList(), Modifier.padding(16.dp)) } }
+fun HistoryChartsLight() =
+    Themed(ThemeMode.LIGHT) { SkyPage { HistoryChartsStacked(charts, emptyList(), Modifier.padding(16.dp)) } }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf Diagramme dunkel", device = PHONE_TALL) @Composable
-fun HistoryChartsDark() = Themed(ThemeMode.DARK) { SkyPage { HistoryChartsStacked(charts, emptyList(), Modifier.padding(16.dp)) } }
+fun HistoryChartsDark() =
+    Themed(ThemeMode.DARK) { SkyPage { HistoryChartsStacked(charts, emptyList(), Modifier.padding(16.dp)) } }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Einstellungen hell", device = PHONE) @Composable
 fun SettingsLight() = Themed(ThemeMode.LIGHT) {
-    SettingsScreen(ThemeMode.LIGHT, "1.0", padding, onThemeMode = {}, onExport = {}, onClearHistory = {}, health = HealthState.CONNECTED, onConnectHealth = {})
+    SettingsScreen(
+        ThemeMode.LIGHT, "1.0", padding, onThemeMode = {}, onExport = {}, onClearHistory = {},
+        health = HealthState.CONNECTED, onConnectHealth = {},
+    )
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Einstellungen dunkel", device = PHONE) @Composable
 fun SettingsDark() = Themed(ThemeMode.DARK) {
-    SettingsScreen(ThemeMode.DARK, "1.0", padding, onThemeMode = {}, onExport = {}, onClearHistory = {}, health = HealthState.AVAILABLE, onConnectHealth = {})
+    SettingsScreen(
+        ThemeMode.DARK, "1.0", padding, onThemeMode = {}, onExport = {}, onClearHistory = {},
+        health = HealthState.AVAILABLE, onConnectHealth = {},
+    )
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Wecken Handy", device = PHONE) @Composable
 fun RingPhone() = Themed(ThemeMode.DARK) {
-    RingScreen(PhoneRingService.State.Ringing(fromWatch = true, snoozesLeft = 3), onStop = {}, onSnooze = {}, clock = { FIXED_NOW })
+    RingScreen(
+        PhoneRingService.State.Ringing(fromWatch = true, snoozesLeft = 3), onStop = {}, onSnooze = {},
+        clock = { FIXED_NOW },
+    )
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Sonnenaufgang Anfang", device = PHONE) @Composable
 fun SunriseEarly() = Themed(ThemeMode.DARK) {
-    SunriseScreen(progress = 0.3f, now = java.time.LocalDate.now().atTime(6, 39).atZone(java.time.ZoneId.systemDefault()).toInstant(), onOff = {})
+    SunriseScreen(
+        progress = 0.3f,
+        now = java.time.LocalDate.now().atTime(6, 39).atZone(java.time.ZoneId.systemDefault()).toInstant(), onOff = {},
+    )
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Sonnenaufgang Mitte", device = PHONE) @Composable
 fun SunriseMiddle() = Themed(ThemeMode.DARK) {
-    SunriseScreen(progress = 0.55f, now = java.time.LocalDate.now().atTime(6, 46).atZone(java.time.ZoneId.systemDefault()).toInstant(), onOff = {})
+    SunriseScreen(
+        progress = 0.55f,
+        now = java.time.LocalDate.now().atTime(6, 46).atZone(java.time.ZoneId.systemDefault()).toInstant(), onOff = {},
+    )
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Wecken mit Sonnenaufgang", device = PHONE) @Composable
 fun RingSunrise() = Themed(ThemeMode.DARK) {
-    RingScreen(PhoneRingService.State.Ringing(fromWatch = true, snoozesLeft = 3, sunrise = Sunrise.WINDOW), onStop = {}, onSnooze = {}, light = 0.92f, clock = { FIXED_NOW })
+    RingScreen(
+        PhoneRingService.State.Ringing(fromWatch = true, snoozesLeft = 3, sunrise = Sunrise.WINDOW), onStop = {},
+        onSnooze = {}, light = 0.92f, clock = { FIXED_NOW },
+    )
 }
 
 internal const val PHONE = "spec:width=411dp,height=891dp"

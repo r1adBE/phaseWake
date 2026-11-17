@@ -54,7 +54,8 @@ func nightScore(stages: NightStages?, session: HealthSession?, goalMinutes: Int,
     } else if let night,
               let recording = recordingFor(from: night.windowStart, to: night.wokeAt, recordings: recordings),
               let asleep = recording.asleepAt,
-              let fromRecording = SleepScore.inputOf(bedAt: recording.bedAt, asleepAt: asleep, end: min(recording.until, night.wokeAt),
+              let fromRecording = SleepScore.inputOf(bedAt: recording.bedAt, asleepAt: asleep,
+                                                     end: min(recording.until, night.wokeAt),
                                                      goalMinutes: goalMinutes) {
         input = fromRecording
         source = .recording
@@ -163,12 +164,14 @@ private struct ScoreArc: View {
                 .trim(from: 0, to: arcSweep / 360 * fraction)
                 .stroke(gradient, style: StrokeStyle(lineWidth: stroke, lineCap: .round))
                 .rotationEffect(.degrees(arcStart))
-            ArcEnd(fraction: fraction, inset: stroke / 2 + dot / 2, radius: dot * 2.3).fill(palette.active.opacity(0.22))
+            ArcEnd(fraction: fraction, inset: stroke / 2 + dot / 2, radius: dot * 2.3)
+                .fill(palette.active.opacity(0.22))
             ArcEnd(fraction: fraction, inset: stroke / 2 + dot / 2, radius: dot + 2.5).fill(palette.active)
             ArcEnd(fraction: fraction, inset: stroke / 2 + dot / 2, radius: dot).fill(palette.dot)
             VStack(spacing: 0) {
                 Text(result.score.formatted()).font(Fonts.manrope(44, .heavy, relativeTo: .largeTitle))
-                Text(bandName(result.band)).font(Fonts.manrope(16, .semibold, relativeTo: .headline)).foregroundStyle(.tint)
+                Text(bandName(result.band))
+                    .font(Fonts.manrope(16, .semibold, relativeTo: .headline)).foregroundStyle(.tint)
             }
             .padding(.top, 8)
         }
@@ -178,7 +181,9 @@ private struct ScoreArc: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(scoreDescription(result))
         .onAppear {
-            if reduceMotion { fraction = target } else { withAnimation(.easeInOut(duration: 0.9)) { fraction = target } }
+            if reduceMotion { fraction = target } else {
+                withAnimation(.easeInOut(duration: 0.9)) { fraction = target }
+            }
         }
         .onChange(of: result.score) { _, value in fraction = Double(value) / 100 }
     }
@@ -201,7 +206,8 @@ private struct ArcEnd: Shape {
         let r = min(rect.width, rect.height) / 2 - inset
         let angle = Angle.degrees(arcStart + arcSweep * fraction).radians
         let center = CGPoint(x: rect.midX + r * CGFloat(cos(angle)), y: rect.midY + r * CGFloat(sin(angle)))
-        return Path(ellipseIn: CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2, height: radius * 2))
+        return Path(ellipseIn: CGRect(x: center.x - radius, y: center.y - radius,
+                                      width: radius * 2, height: radius * 2))
     }
 }
 
@@ -238,7 +244,9 @@ private struct FactorTile: View {
                 if let stage = view.stage {
                     RoundedRectangle(cornerRadius: 2).fill(StageColors.color(stage, scheme)).frame(width: 8, height: 8)
                 }
-                Text(view.label).font(Fonts.manrope(12, .semibold, relativeTo: .caption)).foregroundStyle(Brand.secondaryText(scheme))
+                Text(view.label)
+                    .font(Fonts.manrope(12, .semibold, relativeTo: .caption))
+                    .foregroundStyle(Brand.secondaryText(scheme))
             }
             Text(view.value).font(Fonts.manrope(24, .heavy, relativeTo: .title2))
             if let extra = view.extra {
@@ -248,7 +256,9 @@ private struct FactorTile: View {
             GeometryReader { geo in
                 ZStack(alignment: .leading) {
                     Capsule().fill(palette.track)
-                    Capsule().fill(LinearGradient(colors: [StageColors.color(.deep, scheme), palette.active], startPoint: .leading, endPoint: .trailing))
+                    Capsule()
+                        .fill(LinearGradient(colors: [StageColors.color(.deep, scheme), palette.active],
+                                             startPoint: .leading, endPoint: .trailing))
                         .frame(width: max(8, geo.size.width * Double(factor.points) / 100 * (grown ? 1 : 0)))
                         .opacity(factor.points > 0 ? 1 : 0)
                 }
@@ -259,13 +269,16 @@ private struct FactorTile: View {
         }
         .padding(12)
         .frame(maxWidth: .infinity, alignment: .topLeading)
-        .background(StageColors.track(scheme).opacity(scheme == .dark ? 0.6 : 0.7), in: RoundedRectangle(cornerRadius: 16))
+        .background(StageColors.track(scheme).opacity(scheme == .dark ? 0.6 : 0.7),
+                    in: RoundedRectangle(cornerRadius: 16))
         // Hauch der Phasenfarbe oben (dunkel 18 %, hell 10 %, wie Android `tileTop`), nach unten auslaufend.
-        .background(LinearGradient(colors: [(view.stage.map { StageColors.color($0, scheme) } ?? palette.active).opacity(scheme == .dark ? 0.18 : 0.10), .clear],
+        .background(LinearGradient(colors: [(view.stage.map { StageColors.color($0, scheme) } ?? palette.active)
+                                                .opacity(scheme == .dark ? 0.18 : 0.10), .clear],
                                    startPoint: .top, endPoint: .bottom), in: RoundedRectangle(cornerRadius: 16))
         .onAppear { if reduceMotion { grown = true } else { withAnimation(.easeOut(duration: 1.1)) { grown = true } } }
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(([view.label + ": " + view.value, view.extra, band] as [String?]).compactMap { $0 }.joined(separator: ". "))
+        .accessibilityLabel(([view.label + ": " + view.value, view.extra, band] as [String?]).compactMap { $0 }
+            .joined(separator: ". "))
     }
 }
 
@@ -291,7 +304,9 @@ struct ScoreLine: View {
             }
             .frame(width: 40, height: 40)
             VStack(alignment: .leading, spacing: 0) {
-                Text(L("score_title")).font(Fonts.manrope(12, .semibold, relativeTo: .caption)).foregroundStyle(Brand.secondaryText(scheme))
+                Text(L("score_title"))
+                    .font(Fonts.manrope(12, .semibold, relativeTo: .caption))
+                    .foregroundStyle(Brand.secondaryText(scheme))
                 Text(bandName(result.band)).font(Fonts.manrope(15, .semibold, relativeTo: .subheadline))
             }
         }

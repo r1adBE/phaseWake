@@ -66,14 +66,18 @@ class SleepSoundService : Service() {
             val app = phoneApp
             app.appScope.launch {
                 val now = Instant.now()
-                val window = AlarmSchedule.earliestPlan(app.alarms.current().alarms, now, ZoneId.systemDefault(), app.holidays.store.current())?.windowStart ?: return@launch
+                val window = AlarmSchedule.earliestPlan(
+                    app.alarms.current().alarms, now, ZoneId.systemDefault(), app.holidays.store.current(),
+                )
+                    ?.windowStart ?: return@launch
                 val end = maxOf(window, now).toEpochMilli()
                 handler.post {
                     val playing = state.value ?: return@post
                     if (end >= endsAtMs) return@post
                     endsAtMs = end
                     state.value = playing.copy(endsAt = Instant.ofEpochMilli(end))
-                    getSystemService(NotificationManager::class.java).notify(NOTIFICATION_ID, notification(playing.sound, end))
+                    getSystemService(NotificationManager::class.java)
+                        .notify(NOTIFICATION_ID, notification(playing.sound, end))
                 }
             }
             handler.postDelayed(this, RECHECK_MS)
@@ -85,7 +89,8 @@ class SleepSoundService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         when (intent?.action) {
             ACTION_PLAY -> {
-                val sound = intent.getStringExtra(EXTRA_SOUND)?.let { name -> SleepSound.entries.firstOrNull { it.name == name } } ?: SleepSound.PINK
+                val sound = intent.getStringExtra(EXTRA_SOUND)
+                    ?.let { name -> SleepSound.entries.firstOrNull { it.name == name } } ?: SleepSound.PINK
                 val endsAt = if (intent.hasExtra(EXTRA_ENDS_AT)) intent.getLongExtra(EXTRA_ENDS_AT, NO_END) else NO_END
                 play(sound, endsAt)
             }
@@ -106,7 +111,9 @@ class SleepSoundService : Service() {
     }
 
     private fun play(sound: SleepSound, endsAt: Long) {
-        ServiceCompat.startForeground(this, NOTIFICATION_ID, notification(sound, endsAt), ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK)
+        ServiceCompat.startForeground(
+            this, NOTIFICATION_ID, notification(sound, endsAt), ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK,
+        )
         endsAtMs = endsAt
         stopRequested = false
         state.value = Playing(sound, endsAt.takeIf { it != NO_END }?.let(Instant::ofEpochMilli))
@@ -130,31 +137,21 @@ class SleepSoundService : Service() {
 
     /** Audio-Thread: spielt Blöcke von 50 ms, Lautstärke je Block weich übergeblendet. */
     private fun loop(initial: SleepSound) {
-        var source = openSource(initial) ?: run {
+        val out = openOutput(initial) ?: run {
             running = false
             handler.post { finish() }
             return
         }
-        var track = try {
-            buildTrack(source)
-        } catch (e: Exception) {
-            Log.w(TAG, "AudioTrack nicht verfügbar", e)
-            running = false
-            handler.post { finish() }
-            return
-        }
-        var block = FloatArray(source.sampleRate / 20 * source.channels)
+        var block = FloatArray(out.source.sampleRate / 20 * out.source.channels)
         var startedAt = System.currentTimeMillis()
         var lastGain = 0f
         // Kurzes Ausblenden beim Stoppen oder Wechseln (1 = voll, 0 = aus).
         var quick = 1f
         try {
-            track.play()
+            out.track.play()
             while (running) {
                 if (paused) {
-                    track.pause()
-                    while (running && paused && !stopRequested) Thread.sleep(100)
-                    if (running) track.play()
+                    waitWhilePaused(out.track)
                     lastGain = 0f
                     continue
                 }
@@ -163,31 +160,16 @@ class SleepSoundService : Service() {
                 if (stopRequested || switching) quick = (quick - BLOCK_MS / QUICK_FADE_MS).coerceAtLeast(0f)
                 val untilEnd = endsAtMs.takeIf { it != NO_END }?.let { it - now }
                 val target = SleepSounds.gain(now - startedAt, untilEnd) * quick
-                source.fill(block)
-                // Je Abtastzeitpunkt (alle Kanäle gleich) weich von der alten zur neuen Lautstärke.
-                val channels = source.channels
-                val frames = block.size / channels
-                for (f in 0 until frames) {
-                    val gain = lastGain + (target - lastGain) * (f + 1) / frames
-                    for (c in 0 until channels) block[f * channels + c] *= gain
-                }
+                out.source.fill(block)
+                rampGain(block, out.source.channels, lastGain, target)
                 lastGain = target
-                track.write(block, 0, block.size, AudioTrack.WRITE_BLOCKING)
+                out.track.write(block, 0, block.size, AudioTrack.WRITE_BLOCKING)
                 when {
                     quick <= 0f && switching && !stopRequested -> {
-                        val next = pendingSound ?: source.sound
+                        val next = pendingSound ?: out.source.sound
                         pendingSound = null
-                        val opened = openSource(next) ?: break
-                        // Andere Abtastrate oder Kanalzahl (Aufnahme oder Einschlaf-Wellen statt Rauschen): neuer
-                        // AudioTrack.
-                        if (opened.sampleRate != source.sampleRate || opened.channels != source.channels) {
-                            runCatching { track.stop() }
-                            track.release()
-                            track = buildTrack(opened)
-                            track.play()
-                        }
-                        source = opened
-                        block = FloatArray(source.sampleRate / 20 * source.channels)
+                        if (!switchSource(out, next)) break
+                        block = FloatArray(out.source.sampleRate / 20 * out.source.channels)
                         startedAt = System.currentTimeMillis()
                         lastGain = 0f
                         quick = 1f
@@ -200,11 +182,48 @@ class SleepSoundService : Service() {
         } catch (e: Exception) {
             Log.w(TAG, "Einschlafklänge abgebrochen", e)
         } finally {
-            runCatching { track.stop() }
-            track.release()
+            runCatching { out.track.stop() }
+            out.track.release()
             running = false
             handler.post { finish() }
         }
+    }
+
+    /** Quelle und Wiedergabe des Audio-Threads; beide wechseln beim Klangwechsel. */
+    private class Output(var source: SoundSource, var track: AudioTrack)
+
+    /** Quelle für [sound] samt AudioTrack; `null`, wenn eins davon nicht verfügbar ist. */
+    private fun openOutput(sound: SleepSound): Output? {
+        val source = openSource(sound) ?: return null
+        return try {
+            Output(source, buildTrack(source))
+        } catch (e: Exception) {
+            Log.w(TAG, "AudioTrack nicht verfügbar", e)
+            null
+        }
+    }
+
+    /** Hält die Wiedergabe an, solange pausiert ist; danach (falls nicht beendet) weiter. */
+    private fun waitWhilePaused(track: AudioTrack) {
+        track.pause()
+        while (running && paused && !stopRequested) Thread.sleep(100)
+        if (running) track.play()
+    }
+
+    /**
+     * Wechselt [out] auf [next]. Andere Abtastrate oder Kanalzahl (Aufnahme oder Einschlaf-Wellen statt Rauschen):
+     * neuer AudioTrack. @return `false`, wenn der neue Klang nicht lesbar ist.
+     */
+    private fun switchSource(out: Output, next: SleepSound): Boolean {
+        val opened = openSource(next) ?: return false
+        if (opened.sampleRate != out.source.sampleRate || opened.channels != out.source.channels) {
+            runCatching { out.track.stop() }
+            out.track.release()
+            out.track = buildTrack(opened)
+            out.track.play()
+        }
+        out.source = opened
+        return true
     }
 
     /**
@@ -212,7 +231,8 @@ class SleepSoundService : Service() {
      * nahtlos in Schleife. `null`, wenn die Aufnahme nicht lesbar ist oder der Dienst inzwischen endet.
      */
     private fun openSource(sound: SleepSound): SoundSource? {
-        val raw = rawRecording(sound) ?: return GeneratedSound(NoiseGenerator(sound, SAMPLE_RATE, System.nanoTime()), SAMPLE_RATE)
+        val raw = rawRecording(sound) ?:
+            return GeneratedSound(NoiseGenerator(sound, SAMPLE_RATE, System.nanoTime()), SAMPLE_RATE)
         return try {
             LoopedSound(sound, LoopedRecording.decode(this, raw) { !running })
         } catch (_: InterruptedException) {
@@ -289,7 +309,9 @@ class SleepSoundService : Service() {
             .setContentIntent(open)
             .addAction(0, getString(R.string.sounds_stop), stop)
         // Restzeit läuft in der Mitteilung rückwärts.
-        if (endsAt != NO_END) builder.setWhen(endsAt).setShowWhen(true).setUsesChronometer(true).setChronometerCountDown(true)
+        if (endsAt != NO_END) {
+            builder.setWhen(endsAt).setShowWhen(true).setUsesChronometer(true).setChronometerCountDown(true)
+        }
         return builder.build()
     }
 
@@ -334,19 +356,10 @@ class SleepSoundService : Service() {
             SleepSound.BROOK -> R.string.sound_brook
         }
 
-        /** Datei der Aufnahme in `res/raw`; `null` = im Code erzeugt. */
-        private fun rawRecording(sound: SleepSound): Int? = when (sound) {
-            SleepSound.WHITE, SleepSound.PINK, SleepSound.BROWN, SleepSound.FAN, SleepSound.BINAURAL -> null
-            SleepSound.RAIN -> R.raw.sound_rain
-            SleepSound.OCEAN -> R.raw.sound_ocean
-            SleepSound.FOREST -> R.raw.sound_forest
-            SleepSound.FIRE -> R.raw.sound_fire
-            SleepSound.BROOK -> R.raw.sound_brook
-        }
-
         /** Startet oder wechselt den Klang; [endsAt] `null` = ohne Ende. Nur aus der sichtbaren App. */
         fun play(context: Context, sound: SleepSound, endsAt: Instant?) {
-            val intent = Intent(context, SleepSoundService::class.java).setAction(ACTION_PLAY).putExtra(EXTRA_SOUND, sound.name)
+            val intent =
+                Intent(context, SleepSoundService::class.java).setAction(ACTION_PLAY).putExtra(EXTRA_SOUND, sound.name)
             if (endsAt != null) intent.putExtra(EXTRA_ENDS_AT, endsAt.toEpochMilli())
             try {
                 ContextCompat.startForegroundService(context, intent)
@@ -357,12 +370,16 @@ class SleepSoundService : Service() {
 
         /** Blendet kurz aus und beendet; ohne laufenden Klang nichts. */
         fun stop(context: Context) {
-            if (state.value != null) context.startService(Intent(context, SleepSoundService::class.java).setAction(ACTION_STOP))
+            if (state.value != null) context.startService(
+                Intent(context, SleepSoundService::class.java).setAction(ACTION_STOP)
+            )
         }
 
         fun createChannel(context: Context) {
             context.getSystemService(NotificationManager::class.java).createNotificationChannel(
-                NotificationChannel(CHANNEL, context.getString(R.string.sounds_title), NotificationManager.IMPORTANCE_LOW),
+                NotificationChannel(
+                    CHANNEL, context.getString(R.string.sounds_title), NotificationManager.IMPORTANCE_LOW,
+                ),
             )
         }
     }

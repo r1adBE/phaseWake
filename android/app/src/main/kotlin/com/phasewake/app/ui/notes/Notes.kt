@@ -61,7 +61,12 @@ fun noteName(context: Context, id: String, custom: List<CustomNote>): String? = 
 /** Alle wählbaren Notizen als umschaltbare Chips: die festen, dann die eigenen. */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun NoteChips(selected: List<String>, custom: List<CustomNote>, onToggle: (String) -> Unit, modifier: Modifier = Modifier) {
+fun NoteChips(
+    selected: List<String>,
+    custom: List<CustomNote>,
+    onToggle: (String) -> Unit,
+    modifier: Modifier = Modifier,
+) {
     val context = LocalContext.current
     val ids = SleepNotes.FIXED + custom.map { it.id }
     val brand = PhaseWakeTheme.brand
@@ -76,7 +81,12 @@ fun NoteChips(selected: List<String>, custom: List<CustomNote>, onToggle: (Strin
                 label = { Text(name) },
                 // Gewählt zusätzlich mit Haken, nicht nur mit Fläche und Farbe (WCAG 1.4.1).
                 leadingIcon = if (on) {
-                    { Icon(painterResource(R.drawable.ic_check), contentDescription = null, modifier = Modifier.size(FilterChipDefaults.IconSize)) }
+                    {
+                        Icon(
+                            painterResource(R.drawable.ic_check), contentDescription = null,
+                            modifier = Modifier.size(FilterChipDefaults.IconSize),
+                        )
+                    }
                 } else {
                     null
                 },
@@ -98,7 +108,12 @@ fun NoteChips(selected: List<String>, custom: List<CustomNote>, onToggle: (Strin
 
 /** Startseite am Abend: «Notizen für heute Nacht». */
 @Composable
-fun TonightNotesCard(selected: List<String>, custom: List<CustomNote>, containerColor: Color, onToggle: (String) -> Unit) {
+fun TonightNotesCard(
+    selected: List<String>,
+    custom: List<CustomNote>,
+    containerColor: Color,
+    onToggle: (String) -> Unit,
+) {
     Card(
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = containerColor),
@@ -130,11 +145,14 @@ fun NightNotes(
     Column(modifier.fillMaxWidth()) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
-                if (names.isEmpty()) stringResource(R.string.notes_label) else stringResource(R.string.notes_value, names.joinToString(", ")),
+                if (names.isEmpty()) stringResource(R.string.notes_label) else stringResource(
+                    R.string.notes_value, names.joinToString(", "),
+                ),
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.primary,
                 // Mindestens 48 dp hoch (Tippziel).
-                modifier = Modifier.weight(1f).heightIn(min = 48.dp).clickable(role = Role.Button) { open = !open }.padding(vertical = 8.dp)
+                modifier = Modifier.weight(1f).heightIn(min = 48.dp).clickable(role = Role.Button) { open = !open }
+                    .padding(vertical = 8.dp)
                     .wrapContentHeight(Alignment.CenterVertically),
             )
             trailing?.let { Box(Modifier.padding(start = 12.dp)) { it() } }
@@ -163,11 +181,16 @@ fun NoteEffectsCard(effects: List<NoteEffect>, custom: List<CustomNote>) {
             when {
                 notable.isNotEmpty() -> notable.forEach { (effect, name) ->
                     Text(
-                        res.getQuantityString(R.plurals.notes_effect_line, effect.nightsWithout, name, signed(effect.delta), effect.nightsWith, effect.nightsWithout),
+                        res.getQuantityString(
+                            R.plurals.notes_effect_line, effect.nightsWithout, name, signed(effect.delta),
+                            effect.nightsWith, effect.nightsWithout,
+                        ),
                         style = MaterialTheme.typography.bodyMedium,
                     )
                 }
-                known.isNotEmpty() -> Text(stringResource(R.string.notes_effect_none), style = MaterialTheme.typography.bodyMedium)
+                known.isNotEmpty() -> Text(
+                    stringResource(R.string.notes_effect_none), style = MaterialTheme.typography.bodyMedium,
+                )
                 else -> Text(
                     stringResource(R.string.notes_effect_hint),
                     style = MaterialTheme.typography.bodySmall,
@@ -185,5 +208,8 @@ private fun signed(value: Double): String =
 /** Eine Zeile «Nach ‹Alkohol› Befinden −0,8 (3 vs. 7 Nächte)»; `null` für eine gelöschte eigene Notiz. */
 fun noteEffectLine(context: Context, effect: NoteEffect, custom: List<CustomNote>): String? {
     val name = noteName(context, effect.noteId, custom) ?: return null
-    return context.resources.getQuantityString(R.plurals.notes_effect_line, effect.nightsWithout, name, signed(effect.delta), effect.nightsWith, effect.nightsWithout)
+    return context.resources.getQuantityString(
+        R.plurals.notes_effect_line, effect.nightsWithout, name, signed(effect.delta), effect.nightsWith,
+        effect.nightsWithout,
+    )
 }

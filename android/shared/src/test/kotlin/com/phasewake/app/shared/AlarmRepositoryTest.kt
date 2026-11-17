@@ -125,7 +125,8 @@ class AlarmRepositoryTest {
         // neuen Zeitpunkt; «a» behält 7 und verliert darum gegen eine neuere Fassung der Gegenseite.
         val old = MemoryStore(
             emptyPreferences().toMutablePreferences().apply {
-                this[stringPreferencesKey("alarms")] = com.phasewake.app.core.Codec.encodeAlarms(listOf(alarm("a"), alarm("b", 8)))
+                this[stringPreferencesKey("alarms")] =
+                    com.phasewake.app.core.Codec.encodeAlarms(listOf(alarm("a"), alarm("b", 8)))
                 this[longPreferencesKey("alarms_updated_at")] = 7L
             },
         )
@@ -138,7 +139,8 @@ class AlarmRepositoryTest {
 
     @Test
     fun mergeIsTheSameOnBothSidesAndPrunesOldTombstones() {
-        val left = AlarmSnapshot(listOf(alarm("a", 6), alarm("b")), 10L, mapOf("a" to 10L, "b" to 4L), mapOf("old" to 1L))
+        val left =
+            AlarmSnapshot(listOf(alarm("a", 6), alarm("b")), 10L, mapOf("a" to 10L, "b" to 4L), mapOf("old" to 1L))
         val right = AlarmSnapshot(listOf(alarm("a", 5), alarm("c")), 9L, mapOf("a" to 10L, "c" to 9L), mapOf("b" to 5L))
         val now = AlarmStamps.TOMBSTONE_MAX_AGE_MS + 2L
         val one = AlarmStamps.merge(left, right, now)

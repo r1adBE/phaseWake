@@ -10,7 +10,8 @@ final class PhoneLearningTests: XCTestCase {
     /// Aufzeichnung ab `start` mit `epochs` Epochen mit Bewegung und Puls, abgeschlossen beim Wecken.
     private func recording(start: Date, epochs: Int) -> NightRecording {
         NightRecording(start: start, epochs: Array(repeating: Epoch(motion: 0.02, heartRate: 54), count: epochs),
-                       end: start.addingTimeInterval(TimeInterval(epochs * DetectorConfig.epochSeconds)), endReason: .wake)
+                       end: start.addingTimeInterval(TimeInterval(epochs * DetectorConfig.epochSeconds)),
+                       endReason: .wake)
     }
 
     override func setUp() async throws {
@@ -65,7 +66,8 @@ final class PhoneLearningTests: XCTestCase {
     func testShortRecordingIsKeptButNotCounted() async {
         let learning = PhoneLearning.shared
         learning.setConsent(true)
-        await learning.receive(NightRecording.encode(recording(start: Date().addingTimeInterval(60), epochs: Learning.minSpanEpochs - 1)))
+        await learning.receive(NightRecording.encode(recording(start: Date().addingTimeInterval(60),
+                                                               epochs: Learning.minSpanEpochs - 1)))
         XCTAssertEqual(learning.recordings.count, 1)
         XCTAssertEqual(learning.countedNights, 0)
     }

@@ -26,7 +26,10 @@ internal object WakeRules {
     /**
      * Verbleibende Schlummer-Runden nach [snoozes] Runden; beim Probewecker keine (er prüft genau einen Weckvorgang).
      */
-    fun snoozesLeft(alarmId: String, snoozes: Int): Int = if (Transient.allowsSnooze(alarmId)) Snooze.MAX_COUNT - snoozes else 0
+    fun snoozesLeft(
+        alarmId: String,
+        snoozes: Int,
+    ): Int = if (Transient.allowsSnooze(alarmId)) Snooze.MAX_COUNT - snoozes else 0
 
     /** Was die Zeitgrenze einer Klingel-Runde auslöst. */
     enum class Timeout {
@@ -60,7 +63,11 @@ internal object WakeRules {
      * Ob ein Wecker-Alarm für [plan] die laufende Nacht [current] übernimmt: Läuft keine, dieselbe oder erst eine
      * Messung ([measuring]), ja. Klingelt oder schlummert eine andere Nacht, wartet [plan], bis sie beendet ist.
      */
-    fun adopts(current: WakePlan?, measuring: Boolean, plan: WakePlan): Boolean = current == null || current == plan || measuring
+    fun adopts(
+        current: WakePlan?,
+        measuring: Boolean,
+        plan: WakePlan,
+    ): Boolean = current == null || current == plan || measuring
 
     /**
      * Bis wann die Nacht mit Zielzeit [target] erledigt ist: die eingestellte Weckzeit [nominal] derselben Nacht, auch
@@ -68,7 +75,11 @@ internal object WakeRules {
      * dieselbe Nacht noch einmal.
      */
     fun doneUntil(target: Instant, nominal: Instant?): Instant =
-        if (nominal != null && nominal.isAfter(target) && Duration.between(target, nominal) <= GOOD_NIGHT_MAX_AHEAD) nominal else target
+        if (nominal != null && nominal.isAfter(target) && Duration.between(target, nominal) <= GOOD_NIGHT_MAX_AHEAD) {
+            nominal
+        } else {
+            target
+        }
 
     /**
      * Zeile fürs Diagnose-Protokoll: Verzögerung vom geplanten Fensteralarm [scheduledAt] bis zum Start des Dienstes
@@ -86,7 +97,9 @@ internal object WakeRules {
      * `unmeasured` der Apple Watch (`SmartAlarm+Measuring.swift`): ganze 30-s-Epochen seit Fensterbeginn, nie negativ.
      */
     fun unmeasuredEpochs(windowStart: Instant, now: Instant): Int =
-        (Duration.between(windowStart, now).seconds / DetectorConfig.EPOCH_SECONDS).coerceIn(0L, Int.MAX_VALUE.toLong()).toInt()
+        (Duration.between(windowStart, now).seconds / DetectorConfig.EPOCH_SECONDS)
+            .coerceIn(0L, Int.MAX_VALUE.toLong())
+            .toInt()
 
     private fun seconds(millis: Long): String = String.format(Locale.ROOT, "%.1fs", millis / 1000.0)
 }

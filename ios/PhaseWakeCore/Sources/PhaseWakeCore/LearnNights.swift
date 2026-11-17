@@ -104,7 +104,8 @@ public enum LearnNights {
     public static func reason(_ f: Facts) -> Reason {
         if f.recorded {
             let counts = f.measuredEpochs >= Learning.minMeasuredEpochs && f.spanEpochs >= Learning.minSpanEpochs
-            let notWorn = f.measuredEpochs >= minWornEpochs && f.heartRateEpochs * 100 < f.measuredEpochs * minPulsePercent
+            let notWorn = f.measuredEpochs >= minWornEpochs
+                && f.heartRateEpochs * 100 < f.measuredEpochs * minPulsePercent
             if counts { return notWorn ? .countedNoPulse : .counted }
             if notWorn { return .notWorn }
             if let end = f.endCode, stopped.contains(end) { return .endedStopped }
@@ -176,7 +177,8 @@ public enum LearnNights {
         public var id: String { date }
 
         /// Zeile für `date` mit Grund `reason`, ohne Angaben.
-        public init(date: String, reason: Reason, minutes: Int? = nil, measuredEpochs: Int? = nil, pulsePercent: Int? = nil, battery: Int? = nil) {
+        public init(date: String, reason: Reason, minutes: Int? = nil, measuredEpochs: Int? = nil,
+                    pulsePercent: Int? = nil, battery: Int? = nil) {
             self.date = date
             self.reason = reason
             self.minutes = minutes
@@ -186,17 +188,49 @@ public enum LearnNights {
         }
     }
 
-    /// Die Nächte seit dem Beginn der Lernphase `since` bis jetzt, höchstens ``maxNights``, jüngste zuerst; Regel wie
-    /// `LearnNights.nights` (Kotlin). Wecker: `alarmNights`; ab `alarmsKnownFrom` gilt ein fehlendes Datum als «kein
-    /// Wecker», davor als unbekannt.
-    public static func nights(_ recordings: [Recorded], skips: [LearnSkip], alarmNights: Set<String>, alarmsKnownFrom: String?,
-                              since: Date, consent: Bool, autoOnset: Bool, now: Date, calendar: Calendar) -> [Night] {
+    /// Eingaben der Übersicht ``nights(_:now:calendar:)``: Aufzeichnungen, Meldungen der Uhr, Nächte mit Wecker
+    /// (`alarmNights`; ab `alarmsKnownFrom` gilt ein fehlendes Datum als «kein Wecker», davor als unbekannt), Beginn
+    /// der Lernphase `since`, Einwilligung und automatischer Beginn. Wie `LearnNights.Input` (Kotlin).
+    public struct Input: Equatable, Sendable {
+        /// Aufzeichnungen der Uhr.
+        public var recordings: [Recorded]
+        /// Meldungen der Uhr (Nacht nicht aufgezeichnet).
+        public var skips: [LearnSkip]
+        /// Nächte mit Wecker («yyyy-MM-dd»), gemerkt oder belegt.
+        public var alarmNights: Set<String>
+        /// Ab diesem Nachtdatum sind die Wecker bekannt; `nil` = nie.
+        public var alarmsKnownFrom: String?
+        /// Beginn der Lernphase.
+        public var since: Date
+        /// Einwilligung zum Lernen.
+        public var consent: Bool
+        /// Automatischer Beginn der Aufzeichnung.
+        public var autoOnset: Bool
+
+        /// Eingaben mit allen Feldern.
+        public init(_ recordings: [Recorded], skips: [LearnSkip], alarmNights: Set<String>, alarmsKnownFrom: String?,
+                    since: Date, consent: Bool, autoOnset: Bool) {
+            self.recordings = recordings
+            self.skips = skips
+            self.alarmNights = alarmNights
+            self.alarmsKnownFrom = alarmsKnownFrom
+            self.since = since
+            self.consent = consent
+            self.autoOnset = autoOnset
+        }
+    }
+
+    /// Die Nächte seit dem Beginn der Lernphase (`input.since`) bis jetzt, höchstens ``maxNights``, jüngste zuerst;
+    /// Regel wie `LearnNights.nights` (Kotlin). Wecker: `input.alarmNights`; ab `input.alarmsKnownFrom` gilt ein
+    /// fehlendes Datum als «kein Wecker», davor als unbekannt.
+    public static func nights(_ input: Input, now: Date, calendar: Calendar) -> [Night] {
+        let since = input.since
         let today = SleepNotes.nightDate(now, calendar: calendar)
         let first = SleepNotes.nightDate(since, calendar: calendar)
         let localToday = SleepNotes.dateString(now, calendar: calendar)
-        let byDate = Dictionary(grouping: recordings) { SleepNotes.nightDate($0.night.start, calendar: calendar) }
+        let byDate = Dictionary(grouping: input.recordings) { SleepNotes.nightDate($0.night.start, calendar: calendar) }
         var skipByDate: [String: LearnSkip] = [:]
-        for skip in skips { skipByDate[SleepNotes.nightDate(skip.target, calendar: calendar)] = skip }
+        for skip in input.skips { skipByDate[SleepNotes.nightDate(skip.target, calendar: calendar)] = skip }
         var result: [Night] = []
         var date = today
         while date >= first && result.count < maxNights {
@@ -207,9 +241,9 @@ public enum LearnNights {
             let afterMidnight = localToday == NightDate.adding(1, to: date)
             let current = date == today
             if !current || best != nil || skip != nil || !all.isEmpty || afterMidnight {
-                result.append(night(date, best: best, beforeStart: !all.isEmpty && own.isEmpty, skip: skip, consent: consent,
-                                    alarm: alarmOf(date, nights: alarmNights, knownFrom: alarmsKnownFrom), autoOnset: autoOnset,
-                                    pending: current))
+                let alarm = alarmOf(date, nights: input.alarmNights, knownFrom: input.alarmsKnownFrom)
+                result.append(night(date, best: best, beforeStart: !all.isEmpty && own.isEmpty, skip: skip,
+                                    alarm: alarm, pending: current, input: input))
             }
             let previous = NightDate.adding(-1, to: date)
             guard previous != date else { break }
@@ -232,8 +266,8 @@ public enum LearnNights {
         return nil
     }
 
-    private static func night(_ date: String, best: Recorded?, beforeStart: Bool, skip: LearnSkip?, consent: Bool, alarm: Bool?,
-                              autoOnset: Bool, pending: Bool) -> Night {
+    private static func night(_ date: String, best: Recorded?, beforeStart: Bool, skip: LearnSkip?, alarm: Bool?,
+                              pending: Bool, input: Input) -> Night {
         let measured = best.map { Learning.measuredEpochs($0.night) } ?? 0
         let span = best.map { spanEpochs($0.night) } ?? 0
         let pulse = best?.night.epochs.filter { $0.heartRate != nil }.count ?? 0
@@ -245,9 +279,9 @@ public enum LearnNights {
         facts.endCode = best?.endCode
         facts.beforeStart = beforeStart
         facts.skip = skip?.reason
-        facts.consent = consent
+        facts.consent = input.consent
         facts.alarm = alarm ?? (skip != nil ? true : nil)
-        facts.autoOnset = autoOnset
+        facts.autoOnset = input.autoOnset
         facts.pending = pending
         let recorded = best != nil
         return Night(date: date, reason: reason(facts),

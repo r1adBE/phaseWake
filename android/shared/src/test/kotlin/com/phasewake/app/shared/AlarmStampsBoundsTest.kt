@@ -15,7 +15,12 @@ class AlarmStampsBoundsTest {
         assertNull(AlarmStamps.checked(AlarmSnapshot(listOf(alarm), Long.MAX_VALUE)))
         assertNull(AlarmStamps.checked(AlarmSnapshot(listOf(alarm), -1L)))
         val read = AlarmStamps.checked(
-            AlarmSnapshot(listOf(alarm), 9L, stamps = mapOf("a" to Long.MAX_VALUE), deleted = mapOf("z" to Long.MIN_VALUE, "y" to 4L)),
+            AlarmSnapshot(
+                listOf(alarm),
+                9L,
+                stamps = mapOf("a" to Long.MAX_VALUE),
+                deleted = mapOf("z" to Long.MIN_VALUE, "y" to 4L),
+            ),
         )!!
         assertEquals(emptyMap(), read.stamps)
         assertEquals(9L, read.stampOf("a"))

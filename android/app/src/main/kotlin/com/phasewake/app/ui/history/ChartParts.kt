@@ -80,7 +80,10 @@ internal fun ChartCard(
                 trailing()
             }
             takeaway?.let {
-                Text(it, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(top = 2.dp, bottom = 10.dp))
+                Text(
+                    it, style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.padding(top = 2.dp, bottom = 10.dp),
+                )
             }
             content()
         }
@@ -111,11 +114,15 @@ internal fun Modifier.fadeIn(): Modifier {
 /** Nachtdatum als Datum des Morgens (wie die Nächte im Verlauf), z. B. «28. Okt.». */
 internal fun morning(date: LocalDate, skeleton: String = "dMMM"): String {
     val locale = Locale.getDefault()
-    return Format.digits(DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, skeleton), locale), locale).format(date.plusDays(1))
+    return Format.digits(
+        DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, skeleton), locale),
+        locale,
+    ).format(date.plusDays(1))
 }
 
 /** Minuten ab Mittag als Uhrzeit. */
-internal fun clock(minutesFromNoon: Int): String = Format.time(LocalTime.of(12, 0).plusMinutes(minutesFromNoon.toLong()))
+internal fun clock(minutesFromNoon: Int): String =
+    Format.time(LocalTime.of(12, 0).plusMinutes(minutesFromNoon.toLong()))
 
 /**
  * Wochendurchschnitt als durchgezogene Linie durch die Mitte der Felder ([ChartData.weekAverage]); `null`-Stellen
@@ -134,10 +141,14 @@ internal fun DrawScope.highlight(color: Color, x0: Float, width: Float, bottom: 
     drawRoundRect(color.copy(alpha = 0.14f), Offset(x0, 0f), Size(width, bottom), CornerRadius(4.dp.toPx()))
 
 internal fun DrawScope.dashed(color: Color, from: Offset, to: Offset) =
-    drawLine(color, from, to, strokeWidth = 1.5.dp.toPx(), pathEffect = PathEffect.dashPathEffect(floatArrayOf(4.dp.toPx(), 3.dp.toPx())))
+    drawLine(
+        color, from, to, strokeWidth = 1.5.dp.toPx(),
+        pathEffect = PathEffect.dashPathEffect(floatArrayOf(4.dp.toPx(), 3.dp.toPx())),
+    )
 
 @Composable
-internal fun labelStyle(): TextStyle = MaterialTheme.typography.labelSmall.copy(color = MaterialTheme.colorScheme.onSurfaceVariant)
+internal fun labelStyle(): TextStyle =
+    MaterialTheme.typography.labelSmall.copy(color = MaterialTheme.colorScheme.onSurfaceVariant)
 
 internal enum class LegendMark { DOT, TRIANGLE, SQUARE, RING, CROSS, CHECK, DASH, LINE, SHADE, STRIPES, NONE }
 
@@ -155,12 +166,20 @@ internal fun DrawScope.mark(mark: LegendMark, color: Color, center: Offset, r: F
             },
             color,
         )
-        LegendMark.SQUARE -> drawRect(color, Offset(center.x - r * 0.85f, center.y - r * 0.85f), Size(r * 1.7f, r * 1.7f))
+        LegendMark.SQUARE -> drawRect(
+            color, Offset(center.x - r * 0.85f, center.y - r * 0.85f), Size(r * 1.7f, r * 1.7f),
+        )
         LegendMark.RING -> drawCircle(color, r * 0.85f, center, style = Stroke(r * 0.45f))
         LegendMark.CROSS -> {
             val s = r * 0.9f
-            drawLine(color, Offset(center.x - s, center.y - s), Offset(center.x + s, center.y + s), strokeWidth = r * 0.5f, cap = StrokeCap.Round)
-            drawLine(color, Offset(center.x - s, center.y + s), Offset(center.x + s, center.y - s), strokeWidth = r * 0.5f, cap = StrokeCap.Round)
+            drawLine(
+                color, Offset(center.x - s, center.y - s), Offset(center.x + s, center.y + s), strokeWidth = r * 0.5f,
+                cap = StrokeCap.Round,
+            )
+            drawLine(
+                color, Offset(center.x - s, center.y + s), Offset(center.x + s, center.y - s), strokeWidth = r * 0.5f,
+                cap = StrokeCap.Round,
+            )
         }
         LegendMark.CHECK -> drawPath(
             Path().apply {
@@ -172,12 +191,19 @@ internal fun DrawScope.mark(mark: LegendMark, color: Color, center: Offset, r: F
             style = Stroke(r * 0.45f, cap = StrokeCap.Round),
         )
         LegendMark.DASH -> dashed(color, Offset(center.x - r * 2, center.y), Offset(center.x + r * 2, center.y))
-        LegendMark.LINE -> drawLine(color, Offset(center.x - r * 2, center.y), Offset(center.x + r * 2, center.y), strokeWidth = r * 0.55f, cap = StrokeCap.Round)
-        LegendMark.SHADE -> drawRoundRect(color, Offset(center.x - r * 2, center.y - r), Size(r * 4, r * 2), CornerRadius(r / 2))
+        LegendMark.LINE -> drawLine(
+            color, Offset(center.x - r * 2, center.y), Offset(center.x + r * 2, center.y), strokeWidth = r * 0.55f,
+            cap = StrokeCap.Round,
+        )
+        LegendMark.SHADE -> drawRoundRect(
+            color, Offset(center.x - r * 2, center.y - r), Size(r * 4, r * 2), CornerRadius(r / 2),
+        )
         LegendMark.STRIPES -> {
             val topLeft = Offset(center.x - r * 0.85f, center.y - r * 0.85f)
             val square = Size(r * 1.7f, r * 1.7f)
-            clipRect(topLeft.x, topLeft.y, topLeft.x + square.width, topLeft.y + square.height) { stripes(color, topLeft, square, r * 0.9f) }
+            clipRect(topLeft.x, topLeft.y, topLeft.x + square.width, topLeft.y + square.height) {
+                stripes(color, topLeft, square, r * 0.9f)
+            }
         }
         // Ohne Marke: Das Zeichen steht schon im Text (z. B. «✓ Ziel erreicht»).
         LegendMark.NONE -> Unit
@@ -193,7 +219,10 @@ internal fun DrawScope.stripes(color: Color, topLeft: Offset, size: Size, gap: F
     val line = gap * 0.45f
     var x = topLeft.x - size.height
     while (x < topLeft.x + size.width) {
-        drawLine(color.copy(alpha = 0.55f), Offset(x, topLeft.y + size.height), Offset(x + size.height, topLeft.y), strokeWidth = line)
+        drawLine(
+            color.copy(alpha = 0.55f), Offset(x, topLeft.y + size.height), Offset(x + size.height, topLeft.y),
+            strokeWidth = line,
+        )
         x += gap
     }
 }
@@ -209,8 +238,13 @@ internal fun Legend(items: List<LegendItem>) {
     ) {
         items.forEach { item ->
             Row(verticalAlignment = Alignment.CenterVertically) {
-                if (item.mark != LegendMark.NONE) Canvas(Modifier.size(width = 16.dp, height = 12.dp)) { mark(item.mark, item.color, center, 3.5.dp.toPx()) }
-                Text(item.text, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(start = 4.dp))
+                if (item.mark != LegendMark.NONE) Canvas(Modifier.size(width = 16.dp, height = 12.dp)) {
+                    mark(item.mark, item.color, center, 3.5.dp.toPx())
+                }
+                Text(
+                    item.text, style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(start = 4.dp),
+                )
             }
         }
     }

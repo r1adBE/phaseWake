@@ -115,6 +115,9 @@ internal fun HoldToStopButton(
             },
     ) {
         Box(Modifier.fillMaxHeight().fillMaxWidth(progress.value).align(Alignment.CenterStart).background(fill))
-        Text(label, style = MaterialTheme.typography.titleMedium, color = content, textAlign = TextAlign.Center, modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp))
+        Text(
+            label, style = MaterialTheme.typography.titleMedium, color = content, textAlign = TextAlign.Center,
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+        )
     }
 }

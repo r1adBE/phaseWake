@@ -12,7 +12,9 @@ import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Transient
 import com.phasewake.app.wear.ui.DiagScreen
 import com.phasewake.app.wear.ui.EditorContent
+import com.phasewake.app.wear.ui.HomeActions
 import com.phasewake.app.wear.ui.HomeContent
+import com.phasewake.app.wear.ui.HomeState
 import com.phasewake.app.wear.ui.NapScreen
 import com.phasewake.app.wear.ui.WatchHomeExtras
 import java.time.Duration
@@ -24,31 +26,58 @@ import java.time.Duration
 private fun NapHome(extras: WatchHomeExtras) = Swiss {
     AppScaffold(timeText = { FixedTimeText() }) {
         HomeContent(
-            alarms = alarms,
-            plan = AlarmSchedule.earliestPlan(alarms, now, zone),
-            zone = zone,
-            goodNightActive = false,
-            permissionsMissing = false,
-            dndBlocks = false,
-            onGoodNight = {},
-            onRequestPermissions = {},
-            onOpenDnd = {},
-            onToggle = { _, _ -> },
+            state = HomeState(
+                alarms = alarms,
+                plan = AlarmSchedule.earliestPlan(alarms, now, zone),
+                zone = zone,
+                goodNightActive = false,
+                permissionsMissing = false,
+                dndBlocks = false,
+            ),
+            actions = HomeActions(onGoodNight = {}, onRequestPermissions = {}, onOpenDnd = {}, onToggle = { _, _ -> }),
             extras = extras,
         )
     }
 }
 
-@PreviewTest @Preview(locale = "de-rCH", name = "Uhr Powernap", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
+@PreviewTest
+@Preview(
+    locale = "de-rCH",
+    name = "Uhr Powernap",
+    device = WATCH,
+    showBackground = true,
+    backgroundColor = 0xFF000000,
+)
+@Composable
 fun WatchNap() = NapHome(WatchHomeExtras(onNap = {}, now = now))
 
 /** Powernap vor 5 Minuten gestartet, 20 Minuten lang: Chip «Beenden» mit der Weckzeit. */
-@PreviewTest @Preview(locale = "de-rCH", name = "Uhr Powernap läuft", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
+@PreviewTest
+@Preview(
+    locale = "de-rCH",
+    name = "Uhr Powernap läuft",
+    device = WATCH,
+    showBackground = true,
+    backgroundColor = 0xFF000000,
+)
+@Composable
 fun WatchNapRunning() = NapHome(
-    WatchHomeExtras(nap = Transient.nap(alarms.first(), now.minus(Duration.ofMinutes(5)), zone, 20, "preview"), onNap = {}, now = now),
+    WatchHomeExtras(
+        nap = Transient.nap(alarms.first(), now.minus(Duration.ofMinutes(5)), zone, 20, "preview"),
+        onNap = {},
+        now = now,
+    ),
 )
 
-@PreviewTest @Preview(locale = "de-rCH", name = "Uhr Powernap Dauer", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
+@PreviewTest
+@Preview(
+    locale = "de-rCH",
+    name = "Uhr Powernap Dauer",
+    device = WATCH,
+    showBackground = true,
+    backgroundColor = 0xFF000000,
+)
+@Composable
 fun WatchNapPicker() = Swiss {
     AppScaffold(timeText = { FixedTimeText() }) { NapScreen(Transient.NAP_DEFAULT_MINUTES, onStart = {}) }
 }
@@ -64,16 +93,40 @@ private val watchEntries = listOf(
     watchEntry(95, DiagKind.BOOT, "watch BOOT_COMPLETED"),
 )
 
-@PreviewTest @Preview(locale = "de-rCH", name = "Uhr Diagnose", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
+@PreviewTest
+@Preview(
+    locale = "de-rCH",
+    name = "Uhr Diagnose",
+    device = WATCH,
+    showBackground = true,
+    backgroundColor = 0xFF000000,
+)
+@Composable
 fun WatchDiagnostics() = Swiss {
-    AppScaffold(timeText = { FixedTimeText() }) { DiagScreen(next = "Mi., 28.10., 06:30 – 07:00", version = "1.0", entries = watchEntries, onClear = {}, onHide = {}) }
+    AppScaffold(timeText = { FixedTimeText() }) {
+        DiagScreen(
+            next = "Mi., 28.10., 06:30 – 07:00",
+            version = "1.0",
+            entries = watchEntries,
+            onClear = {},
+            onHide = {},
+        )
+    }
 }
 
 /**
  * Editor, gescrollt bis zum Schalter «Nächstes Mal überspringen» (eingeschaltet, mit Datum). Eintrag 14: Titel, Zeit,
  * Fenster (2), Tage-Titel und -Text, sieben Wochentage, «Ein» – dann der Schalter.
  */
-@PreviewTest @Preview(locale = "de-rCH", name = "Uhr Wecker überspringen", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
+@PreviewTest
+@Preview(
+    locale = "de-rCH",
+    name = "Uhr Wecker überspringen",
+    device = WATCH,
+    showBackground = true,
+    backgroundColor = 0xFF000000,
+)
+@Composable
 fun WatchEditorSkip() = Swiss {
     AppScaffold(timeText = { FixedTimeText() }) {
         EditorContent(

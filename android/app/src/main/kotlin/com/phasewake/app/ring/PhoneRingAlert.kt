@@ -38,10 +38,16 @@ internal class PhoneRingAlert(private val service: Service, private val handler:
      */
     fun post(newRound: Boolean) {
         val current = id
-        val next = if (!newRound && current != null) current else RingAlert.nextId(current, RingNotifications.ID_RING, RingNotifications.ID_RING_ALT)
+        val next = if (!newRound && current != null) current else RingAlert.nextId(
+            current, RingNotifications.ID_RING, RingNotifications.ID_RING_ALT,
+        )
         ServiceCompat.startForeground(
             service, next, RingNotifications.ringing(service),
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) ServiceInfo.FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED else 0,
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                ServiceInfo.FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED
+            } else {
+                0
+            },
         )
         // Das System entfernt die alte Vordergrund-Meldung beim Wechsel der Kennung; zur Sicherheit auch hier.
         if (current != null && current != next) NotificationManagerCompat.from(service).cancel(current)
@@ -82,7 +88,10 @@ internal class PhoneRingAlert(private val service: Service, private val handler:
         // dann tragen Mitteilung und Alarm.
         service.startActivity(
             Intent(service, PhoneRingActivity::class.java)
-                .putExtra(PhoneRingActivity.EXTRA_VIA, if (companion) PhoneRingActivity.VIA_COMPANION else PhoneRingActivity.VIA_DIRECT)
+                .putExtra(
+                    PhoneRingActivity.EXTRA_VIA,
+                    if (companion) PhoneRingActivity.VIA_COMPANION else PhoneRingActivity.VIA_DIRECT,
+                )
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
         )
         scheduleAlarm()

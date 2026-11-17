@@ -41,7 +41,8 @@ import java.util.Locale
 import kotlin.math.abs
 import com.phasewake.app.ui.theme.outlinedBorder
 
-private val feelingNames = listOf(R.string.feeling_1, R.string.feeling_2, R.string.feeling_3, R.string.feeling_4, R.string.feeling_5)
+private val feelingNames =
+    listOf(R.string.feeling_1, R.string.feeling_2, R.string.feeling_3, R.string.feeling_4, R.string.feeling_5)
 
 fun feelingName(context: Context, feeling: Int): String = context.getString(feelingNames[(feeling - 1).coerceIn(0, 4)])
 
@@ -69,7 +70,9 @@ fun FeelingPicker(onPick: (Int) -> Unit, modifier: Modifier = Modifier) {
     val res = LocalResources.current
     Column(modifier) {
         Text(stringResource(R.string.feeling_question), style = MaterialTheme.typography.titleSmall)
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+        ) {
             for (value in NightRecord.FEELING_MIN..NightRecord.FEELING_MAX) {
                 val label = res.getString(R.string.feeling_rate, value, feelingName(context, value))
                 OutlinedButton(
@@ -78,14 +81,21 @@ fun FeelingPicker(onPick: (Int) -> Unit, modifier: Modifier = Modifier) {
                     border = outlinedBorder(),
                     contentPadding = PaddingValues(0.dp),
                     // Mindestens 48 dp: gut zu treffen, auch auf schmalen Bildschirmen.
-                    modifier = Modifier.weight(1f).heightIn(min = 48.dp).aspectRatio(1f).semantics { contentDescription = label },
+                    modifier = Modifier.weight(1f).heightIn(min = 48.dp).aspectRatio(1f)
+                        .semantics { contentDescription = label },
                     // Ziffern wie in den übrigen Texten der Sprache (Arabisch: ٠–٩).
                 ) { Text(Format.number(value), style = MaterialTheme.typography.titleMedium) }
             }
         }
         Row(Modifier.fillMaxWidth().padding(top = 4.dp)) {
-            Text(stringResource(R.string.feeling_1), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.weight(1f))
-            Text(stringResource(R.string.feeling_5), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(
+                stringResource(R.string.feeling_1), style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.weight(1f),
+            )
+            Text(
+                stringResource(R.string.feeling_5), style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
     }
 }
@@ -108,13 +118,19 @@ fun TrendsCard(
     val res = LocalResources.current
     val lines = buildList {
         trends.asleepThisWeek?.let { minutes ->
-            if (TrendLine.ASLEEP !in covered) add(res.getString(R.string.trends_asleep, Format.duration(context, Duration.ofMinutes(minutes))))
+            if (TrendLine.ASLEEP !in covered) add(
+                res.getString(R.string.trends_asleep, Format.duration(context, Duration.ofMinutes(minutes)))
+            )
             trends.asleepChange?.let { change ->
                 add(
                     when {
                         abs(change) < 5 -> res.getString(R.string.trends_asleep_change_same)
-                        change > 0 -> res.getString(R.string.trends_asleep_change_more, Format.duration(context, Duration.ofMinutes(change)))
-                        else -> res.getString(R.string.trends_asleep_change_less, Format.duration(context, Duration.ofMinutes(-change)))
+                        change > 0 -> res.getString(
+                            R.string.trends_asleep_change_more, Format.duration(context, Duration.ofMinutes(change)),
+                        )
+                        else -> res.getString(
+                            R.string.trends_asleep_change_less, Format.duration(context, Duration.ofMinutes(-change)),
+                        )
                     },
                 )
             }
@@ -128,13 +144,17 @@ fun TrendsCard(
             if (spread > IRREGULAR_MINUTES) add(res.getString(R.string.trends_bedtime_hint))
         }
         trends.feelingThisWeek?.takeIf { TrendLine.FEELING !in covered }?.let { feeling ->
-            val last = trends.feelingLastWeek?.let { " · " + res.getString(R.string.trends_feeling_change, decimal(it)) }.orEmpty()
+            val last =
+                trends.feelingLastWeek?.let { " · " + res.getString(R.string.trends_feeling_change, decimal(it)) }
+                    .orEmpty()
             add(res.getString(R.string.trends_feeling, decimal(feeling)) + last)
         }
         habits?.let { addAll(habitLines(context, it, healthConnected, regularShown = TrendLine.REGULAR in covered)) }
         // Steht der Hinweis auf regelmässige Schlafzeiten schon da, nicht noch einmal die schwankende Bettzeit.
         val regularHint = (trends.bedtimeSpreadMinutes ?: 0) > IRREGULAR_MINUTES
-        findings.filterNot { regularHint && it.kind == FindingKind.BEDTIME_VARIES }.forEach { add(findingText(context, it)) }
+        findings.filterNot {
+            regularHint && it.kind == FindingKind.BEDTIME_VARIES
+        }.forEach { add(findingText(context, it)) }
     }
     // Alles steht schon in den Diagrammen: keine leere Karte.
     if (lines.isEmpty() && covered.isNotEmpty() && healthConnected) return
@@ -148,7 +168,10 @@ fun TrendsCard(
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Text(stringResource(R.string.trends_title), style = MaterialTheme.typography.titleSmall)
             if (lines.isEmpty()) {
-                Text(stringResource(R.string.trends_not_enough), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(
+                    stringResource(R.string.trends_not_enough), style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
             }
             lines.forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
             if (!healthConnected) {
@@ -159,7 +182,9 @@ fun TrendsCard(
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(top = 4.dp),
                 )
-                TextButton(onClick = onConnectHealth, contentPadding = PaddingValues(0.dp)) { Text(stringResource(R.string.health_connect)) }
+                TextButton(onClick = onConnectHealth, contentPadding = PaddingValues(0.dp)) {
+                    Text(stringResource(R.string.health_connect))
+                }
             }
         }
     }

@@ -65,7 +65,8 @@ public enum HealthFeelings {
     /// (oder ausgeblendet), zählt ihr Befinden nicht mehr mit.
     public static func of(_ items: [HistoryItem], feelings: [String: Int]) -> [HealthFeeling] {
         items.compactMap { item in
-            guard item.kind == .health, let session = item.session, let feeling = feelings[item.date] else { return nil }
+            guard item.kind == .health, let session = item.session, let feeling = feelings[item.date]
+            else { return nil }
             return HealthFeeling(date: item.date, at: session.end, feeling: feeling)
         }
     }

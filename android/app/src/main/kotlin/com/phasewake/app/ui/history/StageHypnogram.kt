@@ -18,11 +18,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.clipRect
 import androidx.compose.ui.layout.onSizeChanged
@@ -42,7 +39,6 @@ import com.phasewake.app.core.ChartData
 import com.phasewake.app.core.SleepStage
 import com.phasewake.app.core.StageBlock
 import com.phasewake.app.ui.Format
-import com.phasewake.app.ui.components.mixColor
 import com.phasewake.app.ui.components.rememberReveal
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import java.time.Duration
@@ -57,7 +53,12 @@ import kotlin.math.roundToInt
  * Weckfenster einer Phase-Wake-Nacht im Hypnogramm: Band, Zielzeit-Linie und Weckpunkt. Bei [exact] («Genau») ist die
  * Messzeit davor kein Weckfenster: dann ohne Band, nur Zielzeit-Linie und Weckpunkt.
  */
-internal data class HypnoWindow(val start: Instant, val target: Instant, val wokeAt: Instant, val exact: Boolean = false)
+internal data class HypnoWindow(
+    val start: Instant,
+    val target: Instant,
+    val wokeAt: Instant,
+    val exact: Boolean = false,
+)
 
 /**
  * Was das Hypnogramm zeigt: Zeitachse [from] bis [to], Blöcke ([StageBlock]) und das Weckfenster (nur eigene Nächte).
@@ -75,7 +76,8 @@ internal data class HypnoModel(
 
     /** Lage von [at] auf der Achse, 0 bis 1. */
     fun fraction(at: Instant): Float =
-        (Duration.between(from, at).toMillis().toFloat() / Duration.between(from, to).toMillis().coerceAtLeast(1)).coerceIn(0f, 1f)
+        (Duration.between(from, at).toMillis().toFloat() / Duration.between(from, to).toMillis().coerceAtLeast(1))
+            .coerceIn(0f, 1f)
 
     /** Block zur Minute [minute] ab [from]; `null` in einer Lücke. */
     fun blockAt(minute: Int): StageBlock? {
@@ -85,7 +87,8 @@ internal data class HypnoModel(
 }
 
 internal val stageOrder = listOf(SleepStage.AWAKE, SleepStage.REM, SleepStage.LIGHT, SleepStage.DEEP)
-internal val stageNames = listOf(R.string.chart_stage_awake, R.string.chart_stage_rem, R.string.chart_stage_light, R.string.chart_stage_deep)
+internal val stageNames =
+    listOf(R.string.chart_stage_awake, R.string.chart_stage_rem, R.string.chart_stage_light, R.string.chart_stage_deep)
 
 /** Name einer Phase («REM», «Leicht» …); unbekannt: leer. */
 internal fun stageName(context: Context, stage: SleepStage): String =
@@ -94,8 +97,12 @@ internal fun stageName(context: Context, stage: SleepStage): String =
 /** Blase: «05:42 · REM · seit 18 Min»; in einer Lücke «05:42 · keine Daten». */
 internal fun hypnoBubble(context: Context, model: HypnoModel, minute: Int, zone: ZoneId): String {
     val at = model.from.plusSeconds(minute * 60L)
-    val block = model.blockAt(minute) ?: return Format.time(at, zone) + " · " + context.getString(R.string.chart_no_data)
-    return context.getString(R.string.hypno_bubble, Format.time(at, zone), stageName(context, block.stage), Format.duration(context, Duration.between(block.start, at)))
+    val block =
+        model.blockAt(minute) ?: return Format.time(at, zone) + " · " + context.getString(R.string.chart_no_data)
+    return context.getString(
+        R.string.hypno_bubble, Format.time(at, zone), stageName(context, block.stage),
+        Format.duration(context, Duration.between(block.start, at)),
+    )
 }
 
 /** Höhe der Zeitachse unter dem grossen Hypnogramm. */
@@ -132,16 +139,28 @@ internal fun StageHypnogram(
     val left = names.maxOf { it.size.width } + with(density) { 8.dp.toPx() }
     var selected by remember(model) { mutableStateOf(initialMinute) }
     val tick = rememberTick()
-    val summary = res.getString(R.string.chart_stages_title) + ". " + Format.time(model.from, zone) + " – " + Format.time(model.to, zone)
+    val summary = res.getString(R.string.chart_stages_title) +
+        ". " + Format.time(model.from, zone) + " – " + Format.time(model.to, zone)
     var width by remember { mutableFloatStateOf(0f) }
     val reveal = rememberReveal(model)
     Box(modifier.fillMaxWidth().height(height).onSizeChanged { width = it.width.toFloat() }) {
         Canvas(
             Modifier.fillMaxSize().fadeIn().semantics { contentDescription = summary }.chartTouch(
                 key = model,
-                indexAt = { p, size -> if (size.width <= left) null else (((p.x - left) / (size.width - left)) * model.totalMinutes).toInt().coerceIn(0, model.totalMinutes - 1) },
+                indexAt = { p, size ->
+                    if (size.width <= left) {
+                        null
+                    } else {
+                        (((p.x - left) / (size.width - left)) * model.totalMinutes).toInt()
+                            .coerceIn(0, model.totalMinutes - 1)
+                    }
+                },
                 // Antippen in derselben Phase hebt die Auswahl auf (eine Minute genau zu treffen wäre zu schwer).
-                onTap = { minute -> selected = if (minute == null || (selected != null && model.blockAt(minute) == selected?.let(model::blockAt))) null else minute },
+                onTap = { minute ->
+                    val same = minute != null && selected != null &&
+                        model.blockAt(minute) == selected?.let(model::blockAt)
+                    selected = if (minute == null || same) null else minute
+                },
                 onMove = { minute ->
                     if (model.blockAt(minute) != selected?.let(model::blockAt)) tick()
                     selected = minute
@@ -152,7 +171,9 @@ internal fun StageHypnogram(
             val plot = size.height - top - AXIS.toPx()
             val lane = plot / stageOrder.size
             fun x(at: Instant) = left + (size.width - left) * model.fraction(at)
-            model.window?.takeUnless { it.exact }?.let { w -> drawWindowBand(scheme.primary, Offset(x(w.start), top), Size(x(w.target) - x(w.start), plot)) }
+            model.window?.takeUnless { it.exact }?.let { w ->
+                drawWindowBand(scheme.primary, Offset(x(w.start), top), Size(x(w.target) - x(w.start), plot))
+            }
             names.forEachIndexed { i, text ->
                 val cy = top + lane * (i + 0.5f)
                 drawText(text, topLeft = Offset(0f, cy - text.size.height / 2f))
@@ -160,11 +181,15 @@ internal fun StageHypnogram(
             }
             // Phasen zeichnen sich beim Erscheinen einmal von links nach rechts ein.
             clipRect(right = left + (size.width - left) * reveal) {
-                drawBlocks(model, colors, Offset(left, top), Size(size.width - left, plot), scheme.outline, 6.dp.toPx(), dark)
+                drawBlocks(
+                    model, BlockStyle(colors, scheme.outline, 6.dp.toPx(), dark), Offset(left, top),
+                    Size(size.width - left, plot),
+                )
             }
             model.window?.let { w ->
                 dashed(scheme.primary, Offset(x(w.target), top), Offset(x(w.target), top + plot))
-                val level = model.blocks.lastOrNull { !w.wokeAt.isBefore(it.start) && w.wokeAt.isBefore(it.end) }?.let { ChartData.level(it.stage) } ?: 0
+                val level = model.blocks.lastOrNull { !w.wokeAt.isBefore(it.start) && w.wokeAt.isBefore(it.end) }
+                    ?.let { ChartData.level(it.stage) } ?: 0
                 val c = Offset(x(w.wokeAt), top + lane * (level + 0.5f))
                 // Weckpunkt wie im Logo: gefüllter Kreis, mit Rand in Kartenfarbe, damit er sich vom Block abhebt.
                 drawCircle(scheme.surfaceContainer, 7.dp.toPx(), c)
@@ -172,7 +197,10 @@ internal fun StageHypnogram(
             }
             selected?.let { minute ->
                 val sx = left + (size.width - left) * (minute.toFloat() / model.totalMinutes)
-                drawLine(scheme.onSurface, Offset(sx, top - 4.dp.toPx()), Offset(sx, top + plot), strokeWidth = 1.5.dp.toPx())
+                drawLine(
+                    scheme.onSurface, Offset(sx, top - 4.dp.toPx()), Offset(sx, top + plot),
+                    strokeWidth = 1.5.dp.toPx(),
+                )
             }
             drawTimeAxis(axisTicks(model).map { measurer.measure(Format.time(it, zone), label) to x(it) })
         }
@@ -183,109 +211,6 @@ internal fun StageHypnogram(
         }
     }
 }
-
-/**
- * Weckfenster als leuchtendes Band: in der Mitte am kräftigsten, oben und unten weich auslaufend, mit feinem Rand am
- * Beginn des Fensters.
- */
-internal fun DrawScope.drawWindowBand(color: Color, topLeft: Offset, area: Size) {
-    if (area.width <= 0f) return
-    drawRect(
-        Brush.verticalGradient(
-            0f to color.copy(alpha = 0.05f),
-            0.5f to color.copy(alpha = 0.18f),
-            1f to color.copy(alpha = 0.05f),
-            startY = topLeft.y,
-            endY = topLeft.y + area.height,
-        ),
-        topLeft, area,
-    )
-    drawLine(color.copy(alpha = 0.35f), topLeft, Offset(topLeft.x, topLeft.y + area.height), strokeWidth = 1.dp.toPx())
-}
-
-/**
- * Blöcke je Zeile, auf ganze Pixel gesetzt (keine weichen Kanten), mindestens 1 px breit und nie aufgeblasen; Ecken
- * nur gerundet, wo ein Block mindestens [ROUND_MIN] breit ist, sonst eckig.
- *
- * Beide Hypnogramme schlicht, ohne Schein – [glow] bleibt nur als Option.
- * [glow]: kräftige Phasenfarbe im Verlauf (dunkel oben aufgehellt, hell unten vertieft – so
- * entfernt sich die Farbe nie Richtung Karte und behält ihren Kontrast), oben eine feine Glanzkante; nur breite Blöcke
- * (ab [GLOW_MIN]) bekommen einen schwachen, schmalen Schein und einen leisen Farbschleier bis zum Boden. Stufenlinien
- * im Verlauf von der einen zur anderen Phasenfarbe.
- *
- * Ohne [glow] (kleines Hypnogramm der Nachtkarte): flache, kräftige Phasenfarbe ohne Schein, Schleier und Glanz; die
- * Stufenlinien sind 1 px dünn in [connector]. Viele kurze Blöcke (z. B. aus Samsung Health) bleiben so scharf.
- */
-internal fun DrawScope.drawBlocks(
-    model: HypnoModel,
-    colors: Map<SleepStage, Color>,
-    origin: Offset,
-    area: Size,
-    connector: Color,
-    corner: Float,
-    dark: Boolean,
-    glow: Boolean = false,
-) {
-    val lane = area.height / stageOrder.size
-    val barHeight = (lane * 0.76f).roundToInt().toFloat()
-    val floor = origin.y + area.height
-    fun x(at: Instant) = (origin.x + area.width * model.fraction(at)).roundToInt().toFloat()
-    var previous: StageBlock? = null
-    model.blocks.forEach { block ->
-        val level = ChartData.level(block.stage) ?: return@forEach
-        val cy = origin.y + lane * (level + 0.5f)
-        val color = colors[block.stage] ?: connector
-        val x0 = x(block.start)
-        val w = (x(block.end) - x0).coerceAtLeast(1f)
-        val top = (cy - barHeight / 2).roundToInt().toFloat()
-        val wide = w >= GLOW_MIN.toPx()
-        // Schleier bis zum Boden (nur breite Blöcke im grossen Hypnogramm): Das Profil wirkt wie eine farbige
-        // Landschaft.
-        if (glow && wide) {
-            drawRect(
-                Brush.verticalGradient(listOf(color.copy(alpha = 0.16f), color.copy(alpha = 0f)), startY = cy, endY = floor),
-                Offset(x0, cy), Size(w, (floor - cy).coerceAtLeast(0f)),
-            )
-        }
-        previous?.let { p ->
-            val pl = ChartData.level(p.stage)
-            if (pl != null && !block.start.isAfter(p.end.plusSeconds(60))) {
-                val from = Offset(x0, origin.y + lane * (pl + 0.5f))
-                val to = Offset(x0, cy)
-                if (glow) {
-                    val fromColor = colors[p.stage] ?: connector
-                    drawLine(Brush.linearGradient(listOf(fromColor, color), start = from, end = to), from, to, strokeWidth = 1.dp.toPx())
-                } else {
-                    // Haarlinie auf der Pixelmitte, damit sie nicht über zwei Pixel verschwimmt.
-                    val px = Offset(0.5f, 0f)
-                    drawLine(connector, from + px, to + px, strokeWidth = 1f)
-                }
-            }
-        }
-        val r = if (w >= ROUND_MIN.toPx()) minOf(corner, w / 4) else 0f
-        if (glow && wide) {
-            val halo = 1.5.dp.toPx()
-            drawRoundRect(color.copy(alpha = 0.14f), Offset(x0 - halo, top - halo), Size(w + 2 * halo, barHeight + 2 * halo), CornerRadius(r + halo))
-        }
-        if (glow) {
-            val (upper, lower) = if (dark) mixColor(color, Color.White, 0.35f) to color else color to mixColor(color, Color.Black, 0.25f)
-            drawRoundRect(Brush.verticalGradient(listOf(upper, lower), startY = top, endY = top + barHeight), Offset(x0, top), Size(w, barHeight), CornerRadius(r))
-            // Glanzkante oben (nur wo der Block breit genug ist).
-            if (w > 2 * r + 2.dp.toPx()) {
-                drawLine(Color.White.copy(alpha = if (dark) 0.45f else 0.35f), Offset(x0 + r, top + 1.dp.toPx()), Offset(x0 + w - r, top + 1.dp.toPx()), strokeWidth = 1.dp.toPx())
-            }
-        } else {
-            drawRoundRect(color, Offset(x0, top), Size(w, barHeight), CornerRadius(r))
-        }
-        previous = block
-    }
-}
-
-/** Mindestbreite eines Blocks für Schein und Schleier im grossen Hypnogramm. */
-private val GLOW_MIN = 8.dp
-
-/** Mindestbreite eines Blocks für gerundete Ecken; schmalere Blöcke bleiben eckig. */
-private val ROUND_MIN = 6.dp
 
 /** Beginn, zwei Zwischenzeiten (auf volle Stunden, wenn möglich) und Ende. */
 private fun axisTicks(model: HypnoModel): List<Instant> {
@@ -316,8 +241,16 @@ private fun BlockSemantics(model: HypnoModel, left: Dp, top: Dp, context: Contex
         model.blocks.forEach { block ->
             val gap = Duration.between(cursor, block.start).toMillis()
             if (gap > 0) Spacer(Modifier.weight(gap / total).fillMaxHeight())
-            val text = res.getString(R.string.hypno_block, stageName(context, block.stage), Format.time(block.start, zone), Format.time(block.end, zone))
-            Box(Modifier.weight((Duration.between(maxOf(cursor, block.start), block.end).toMillis() / total).coerceAtLeast(MIN_WEIGHT)).fillMaxHeight().semantics { contentDescription = text })
+            val text = res.getString(
+                R.string.hypno_block, stageName(context, block.stage), Format.time(block.start, zone),
+                Format.time(block.end, zone),
+            )
+            Box(
+                Modifier.weight(
+                    (Duration.between(maxOf(cursor, block.start), block.end).toMillis() / total)
+                        .coerceAtLeast(MIN_WEIGHT)
+                ).fillMaxHeight().semantics { contentDescription = text }
+            )
             cursor = maxOf(cursor, block.end)
         }
         val rest = Duration.between(cursor, model.to).toMillis()
@@ -340,12 +273,21 @@ internal fun MiniHypnogram(model: HypnoModel, modifier: Modifier = Modifier) {
     val scheme = MaterialTheme.colorScheme
     Canvas(modifier.fillMaxWidth().height(64.dp).clearAndSetSemantics { }) {
         val lane = size.height / stageOrder.size
-        for (i in 0..stageOrder.size) drawLine(scheme.outlineVariant, Offset(0f, lane * i), Offset(size.width, lane * i), strokeWidth = 0.5.dp.toPx())
+        for (i in 0..stageOrder.size) drawLine(
+            scheme.outlineVariant, Offset(0f, lane * i), Offset(size.width, lane * i), strokeWidth = 0.5.dp.toPx(),
+        )
         model.window?.takeUnless { it.exact }?.let { w ->
             val x0 = size.width * model.fraction(w.start)
-            drawWindowBand(scheme.primary, Offset(x0, 0f), Size(size.width * model.fraction(w.target) - x0, size.height))
+            drawWindowBand(
+                scheme.primary, Offset(x0, 0f), Size(size.width * model.fraction(w.target) - x0, size.height),
+            )
         }
-        clipRect(right = size.width * reveal) { drawBlocks(model, colors, Offset.Zero, size, scheme.outlineVariant, 3.dp.toPx(), dark, glow = false) }
-        model.window?.let { w -> drawCircle(scheme.primary, 3.5.dp.toPx(), Offset(size.width * model.fraction(w.wokeAt), 3.5.dp.toPx())) }
+        clipRect(right = size.width * reveal) {
+            val style = BlockStyle(colors, scheme.outlineVariant, 3.dp.toPx(), dark, glow = false)
+            drawBlocks(model, style, Offset.Zero, size)
+        }
+        model.window?.let { w ->
+            drawCircle(scheme.primary, 3.5.dp.toPx(), Offset(size.width * model.fraction(w.wokeAt), 3.5.dp.toPx()))
+        }
     }
 }

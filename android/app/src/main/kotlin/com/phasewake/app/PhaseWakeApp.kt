@@ -194,7 +194,9 @@ open class PhaseWakeApp : Application() {
             }
         }
         // Systemmeldung: kommt auch bei einem nicht exportierten Empfänger an.
-        ContextCompat.registerReceiver(this, receiver, IntentFilter(Intent.ACTION_USER_UNLOCKED), ContextCompat.RECEIVER_NOT_EXPORTED)
+        ContextCompat.registerReceiver(
+            this, receiver, IntentFilter(Intent.ACTION_USER_UNLOCKED), ContextCompat.RECEIVER_NOT_EXPORTED,
+        )
         initUnlocked()
     }
 
@@ -250,13 +252,17 @@ open class PhaseWakeApp : Application() {
         val counted = Learning.counted(recordings.load().map { it.toLearnNight() }, since, ZoneId.systemDefault())
         if (received != null && !received.start.isBefore(since)) {
             val night = received.toLearnNight()
-            val result = if (Learning.counts(night)) "counted" else "not counted epochs=${Learning.measuredEpochs(night)}"
+            val result =
+                if (Learning.counts(night)) "counted" else "not counted epochs=${Learning.measuredEpochs(night)}"
             diag.log(DiagKind.SYNC, "learn night $result ${counted.size}/${Learning.NIGHTS}")
         }
         if (!Learning.finished(counted.size)) return
         val values = Learning.learn(counted.takeLast(Learning.NIGHTS))
         if (learning.finish(values, Instant.now())) {
-            diag.log(DiagKind.SYNC, "learn done ${learning.current().snapshot().diagLine()} lat=${values.latencyMinutes ?: "-"}")
+            diag.log(
+                DiagKind.SYNC,
+                "learn done ${learning.current().snapshot().diagLine()} lat=${values.latencyMinutes ?: "-"}",
+            )
             publishLearning()
             // Bettzeit mit der gelernten Einschlafdauer: Erinnerung und Mitteilung neu planen.
             bedtime.reschedule()

@@ -3,15 +3,9 @@ package com.phasewake.app.ui.editor
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.IntrinsicSize
-import android.content.Intent
-import android.media.RingtoneManager
-import androidx.activity.compose.ManagedActivityResultLauncher
-import androidx.activity.result.ActivityResult
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -24,7 +18,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
@@ -36,19 +29,14 @@ import androidx.compose.material3.TimePickerDefaults
 import androidx.compose.material3.TimePickerLayoutType
 import androidx.compose.material3.TimePickerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
-import androidx.core.net.toUri
 import com.phasewake.app.R
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.PhoneAlert
@@ -56,8 +44,6 @@ import com.phasewake.app.core.Sunrise
 import com.phasewake.app.core.SunriseDevice
 import com.phasewake.app.core.WakeTask
 import com.phasewake.app.core.WindowAdvice
-import com.phasewake.app.ring.WakeTonePreview
-import com.phasewake.app.ring.WakeTones
 import com.phasewake.app.ui.Format
 import java.time.DayOfWeek
 import java.time.Duration
@@ -69,7 +55,8 @@ import kotlin.math.roundToInt
 // Abschnitte des Wecker-Editors; jeder liest und ändert den gemeinsamen [EditorState].
 
 /** Montag bis Freitag. */
-internal val WEEKDAYS = setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)
+internal val WEEKDAYS =
+    setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)
 private val WEEKEND = setOf(DayOfWeek.SATURDAY, DayOfWeek.SUNDAY)
 
 /** Uhrzeit: Zielzeit oder (Einschlaf-Modus) späteste Weckzeit. */
@@ -103,7 +90,10 @@ internal fun SleepSection(state: EditorState) {
     val context = LocalContext.current
     Section {
         Text(
-            stringResource(R.string.editor_sleep_duration, Format.duration(context, Duration.ofMinutes(state.sleepMinutes.roundToInt().toLong()))),
+            stringResource(
+                R.string.editor_sleep_duration,
+                Format.duration(context, Duration.ofMinutes(state.sleepMinutes.roundToInt().toLong())),
+            ),
             style = MaterialTheme.typography.titleMedium,
         )
         Slider(
@@ -112,7 +102,10 @@ internal fun SleepSection(state: EditorState) {
             valueRange = SLEEP_MIN..SLEEP_MAX,
             steps = ((SLEEP_MAX - SLEEP_MIN) / 15f).roundToInt() - 1,
         )
-        Text(stringResource(R.string.editor_sleep_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(
+            stringResource(R.string.editor_sleep_hint), style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
     }
 }
 
@@ -128,7 +121,10 @@ internal fun AdviceCard(state: EditorState, advice: WindowAdvice.Suggestion) {
         Column(Modifier.padding(16.dp)) {
             Text(stringResource(R.string.editor_advice_title), style = MaterialTheme.typography.titleSmall)
             Text(
-                res.getQuantityString(R.plurals.editor_advice_text, advice.nights, advice.deadlineNights, advice.nights, advice.windowMinutes),
+                res.getQuantityString(
+                    R.plurals.editor_advice_text, advice.nights, advice.deadlineNights, advice.nights,
+                    advice.windowMinutes,
+                ),
                 style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.padding(top = 4.dp),
             )
@@ -150,7 +146,10 @@ internal fun WindowSection(state: EditorState, time: TimePickerState) {
         val minutes = state.window.roundToInt()
         val exact = minutes == AlarmSpec.EXACT_WINDOW
         val exactLabel = stringResource(R.string.editor_window_exact)
-        Text(if (exact) exactLabel else stringResource(R.string.editor_window, minutes), style = MaterialTheme.typography.titleMedium)
+        Text(
+            if (exact) exactLabel else stringResource(R.string.editor_window, minutes),
+            style = MaterialTheme.typography.titleMedium,
+        )
         val options = (WINDOW_OPTIONS + minutes).distinct().sorted()
         SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(top = 8.dp).height(IntrinsicSize.Max)) {
             options.forEachIndexed { index, value ->
@@ -159,7 +158,9 @@ internal fun WindowSection(state: EditorState, time: TimePickerState) {
                     onClick = { state.window = value.toFloat() },
                     shape = SegmentedButtonDefaults.itemShape(index, options.size),
                     modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight(),
-                    icon = { if (options.size <= CHECK_ICON_MAX_SEGMENTS) SegmentedButtonDefaults.Icon(value == minutes) },
+                    icon = {
+                        if (options.size <= CHECK_ICON_MAX_SEGMENTS) SegmentedButtonDefaults.Icon(value == minutes)
+                    },
                 ) { ChoiceLabel(if (value == AlarmSpec.EXACT_WINDOW) exactLabel else Format.number(value)) }
             }
         }
@@ -167,11 +168,17 @@ internal fun WindowSection(state: EditorState, time: TimePickerState) {
             exact -> stringResource(R.string.editor_window_exact_hint)
             state.sleepMode -> null
             else -> LocalTime.of(time.hour, time.minute).let { target ->
-                stringResource(R.string.editor_window_hint, Format.time(target.minusMinutes(minutes.toLong())), Format.time(target))
+                stringResource(
+                    R.string.editor_window_hint, Format.time(target.minusMinutes(minutes.toLong())),
+                    Format.time(target),
+                )
             }
         }
         hint?.let {
-            Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 8.dp))
+            Text(
+                it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = 8.dp),
+            )
         }
     }
 }
@@ -200,7 +207,9 @@ internal fun DaysSection(state: EditorState) {
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             TextButton(onClick = { state.days = WEEKDAYS }) { Text(stringResource(R.string.editor_weekdays)) }
             TextButton(onClick = { state.days = WEEKEND }) { Text(stringResource(R.string.editor_weekend)) }
-            TextButton(onClick = { state.days = DayOfWeek.entries.toSet() }) { Text(stringResource(R.string.alarm_every_day)) }
+            TextButton(onClick = { state.days = DayOfWeek.entries.toSet() }) {
+                Text(stringResource(R.string.alarm_every_day))
+            }
         }
     }
 }
@@ -212,12 +221,17 @@ internal fun DaysSection(state: EditorState) {
 internal fun HolidaySection(state: EditorState) {
     Section {
         Row(
-            Modifier.fillMaxWidth().heightIn(min = 48.dp).toggleable(value = state.skipHolidays, role = Role.Switch, onValueChange = { state.skipHolidays = it }),
+            Modifier.fillMaxWidth().heightIn(min = 48.dp).toggleable(
+                value = state.skipHolidays, role = Role.Switch, onValueChange = { state.skipHolidays = it },
+            ),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Column(Modifier.weight(1f).padding(end = 12.dp)) {
                 Text(stringResource(R.string.editor_skip_holidays), style = MaterialTheme.typography.titleSmall)
-                Text(stringResource(R.string.editor_skip_holidays_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(
+                    stringResource(R.string.editor_skip_holidays_hint), style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
             }
             Switch(checked = state.skipHolidays, onCheckedChange = null)
         }
@@ -229,7 +243,10 @@ internal fun HolidaySection(state: EditorState) {
 internal fun AlertSection(state: EditorState) {
     Section {
         Text(stringResource(R.string.editor_alert), style = MaterialTheme.typography.titleMedium)
-        Text(stringResource(R.string.editor_alert_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(
+            stringResource(R.string.editor_alert_hint), style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
 
         AlertLabel(R.drawable.ic_watch, R.string.editor_alert_watch)
         Choice(
@@ -240,12 +257,18 @@ internal fun AlertSection(state: EditorState) {
 
         AlertLabel(R.drawable.ic_phone, R.string.editor_alert_phone)
         Choice(
-            options = listOf(PhoneAlert.OFF to R.string.alert_off, PhoneAlert.VIBRATE to R.string.alert_vibrate, PhoneAlert.SOUND to R.string.alert_sound),
+            options = listOf(
+                PhoneAlert.OFF to R.string.alert_off, PhoneAlert.VIBRATE to R.string.alert_vibrate,
+                PhoneAlert.SOUND to R.string.alert_sound,
+            ),
             selected = state.phone,
             onSelect = { state.phone = it },
         )
         if (state.phone != PhoneAlert.OFF) {
-            Text(stringResource(R.string.editor_phone_backup_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 6.dp))
+            Text(
+                stringResource(R.string.editor_phone_backup_hint), style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 6.dp),
+            )
         }
     }
 }
@@ -257,7 +280,10 @@ internal fun AlertSection(state: EditorState) {
 @Composable
 internal fun WakeTaskSection(state: EditorState) {
     Section {
-        Text(stringResource(R.string.wake_task_title), style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(bottom = 6.dp))
+        Text(
+            stringResource(R.string.wake_task_title), style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.padding(bottom = 6.dp),
+        )
         Choice(
             options = listOf(WakeTask.NONE to R.string.wake_task_hold, WakeTask.MATH to R.string.wake_task_math),
             selected = state.wakeTask,
@@ -280,9 +306,15 @@ internal fun SunriseSection(state: EditorState) {
     val res = LocalResources.current
     Section {
         Text(stringResource(R.string.sunrise_title), style = MaterialTheme.typography.titleMedium)
-        Text(stringResource(R.string.editor_sunrise_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(bottom = 10.dp))
+        Text(
+            stringResource(R.string.editor_sunrise_hint), style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(bottom = 10.dp),
+        )
         Choice(
-            options = listOf(Sunrise.OFF to R.string.alert_off, Sunrise.RING to R.string.sunrise_ring, Sunrise.WINDOW to R.string.sunrise_window),
+            options = listOf(
+                Sunrise.OFF to R.string.alert_off, Sunrise.RING to R.string.sunrise_ring,
+                Sunrise.WINDOW to R.string.sunrise_window,
+            ),
             selected = state.sunrise,
             onSelect = { state.sunrise = it },
         )
@@ -290,12 +322,17 @@ internal fun SunriseSection(state: EditorState) {
             Column {
                 Text(
                     if (state.sunrise == Sunrise.WINDOW) stringResource(R.string.editor_sunrise_window_hint)
-                    else res.getQuantityString(R.plurals.editor_sunrise_ring_hint, Sunrise.RING_SECONDS / 60, Sunrise.RING_SECONDS / 60),
+                    else res.getQuantityString(
+                        R.plurals.editor_sunrise_ring_hint, Sunrise.RING_SECONDS / 60, Sunrise.RING_SECONDS / 60,
+                    ),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(top = 6.dp),
                 )
-                Text(stringResource(R.string.sunrise_device_title), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 14.dp, bottom = 6.dp))
+                Text(
+                    stringResource(R.string.sunrise_device_title), style = MaterialTheme.typography.titleSmall,
+                    modifier = Modifier.padding(top = 14.dp, bottom = 6.dp),
+                )
                 Choice(
                     options = listOf(
                         SunriseDevice.PHONE to R.string.sunrise_device_phone,
@@ -315,90 +352,6 @@ internal fun SunriseSection(state: EditorState) {
                     )
                 }
             }
-        }
-    }
-}
-
-/**
- * Selten gebrauchte Optionen zugeklappt unter «Mehr»: Zum Beenden, Sonnenaufgang, Feiertage, Weckton und
- * Name. Sichtbar bleiben Zeit, Fenster, Wiederholen und Weckart; kürzerer Editor auf kleinen Handys.
- */
-@Composable
-internal fun ColumnScope.MoreSection(
-    state: EditorState,
-    preview: WakeTonePreview,
-    soundPicker: ManagedActivityResultLauncher<Intent, ActivityResult>,
-) {
-    Row(
-        Modifier
-            .fillMaxWidth()
-            .heightIn(min = 48.dp)
-            .clip(MaterialTheme.shapes.small)
-            .clickable(role = Role.Button) { state.more = !state.more }
-            .padding(horizontal = 4.dp, vertical = 10.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Text(stringResource(R.string.editor_more), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
-        Icon(
-            painterResource(R.drawable.ic_expand),
-            contentDescription = null,
-            modifier = Modifier.size(20.dp).rotate(if (state.more) 180f else 0f),
-        )
-    }
-    AnimatedVisibility(state.more) {
-        Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
-            AnimatedVisibility(state.phone != PhoneAlert.OFF) { WakeTaskSection(state) }
-            SunriseSection(state)
-            AnimatedVisibility(state.days.isNotEmpty()) { HolidaySection(state) }
-            AnimatedVisibility(state.phone == PhoneAlert.SOUND) { ToneSection(state, preview, soundPicker) }
-            OutlinedTextField(
-                value = state.label,
-                onValueChange = { state.label = it.take(LABEL_MAX_LENGTH) },
-                label = { Text(stringResource(R.string.editor_label)) },
-                placeholder = { Text(stringResource(R.string.editor_label_hint)) },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
-            )
-        }
-    }
-}
-
-/** Höchstlänge des Namens eines Weckers in Zeichen. */
-private const val LABEL_MAX_LENGTH = 40
-
-/** Weckton des Handys: eigene Töne (Antippen spielt kurz an) oder ein Systemton aus der Auswahl. */
-@Composable
-private fun ToneSection(
-    state: EditorState,
-    preview: WakeTonePreview,
-    soundPicker: ManagedActivityResultLauncher<Intent, ActivityResult>,
-) {
-    val context = LocalContext.current
-    Section {
-        // Zugeklappt oder ausgeblendet: Probehören endet.
-        DisposableEffect(Unit) { onDispose { preview.stop() } }
-        Text(stringResource(R.string.editor_sound), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(bottom = 4.dp))
-        WakeTones.ALL.forEach { tone ->
-            ToneRow(stringResource(tone.label), selected = state.sound == tone.key) {
-                state.sound = tone.key
-                preview.play(tone)
-            }
-        }
-        // Systemton: leer (Standard) oder eine URI aus der Auswahl des Systems.
-        val system = WakeTones.find(state.sound) == null
-        ToneRow(
-            stringResource(R.string.wake_tone_system),
-            selected = system,
-            detail = if (system) soundTitle(context, state.sound) else null,
-        ) {
-            preview.stop()
-            soundPicker.launch(
-                Intent(RingtoneManager.ACTION_RINGTONE_PICKER)
-                    .putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_ALARM)
-                    .putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false)
-                    .putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true)
-                    .putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, state.sound.takeIf { system }?.ifEmpty { null }?.toUri()),
-            )
         }
     }
 }

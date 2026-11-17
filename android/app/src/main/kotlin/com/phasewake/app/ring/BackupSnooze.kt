@@ -18,7 +18,8 @@ import java.time.Instant
  */
 internal suspend fun BackupAlarm.snoozeSafety(alarmId: String?, at: Instant, snoozesDone: Int) {
     // Vor dem ersten Entsperren sind die Wecker nicht lesbar: dann ohne Weckart, also mit Sicherung.
-    val spec = alarmId?.takeIf { BackupAlarm.isUnlocked(context) }?.let { id -> alarms.current().alarms.firstOrNull { it.id == id } }
+    val spec = alarmId?.takeIf { BackupAlarm.isUnlocked(context) }
+        ?.let { id -> alarms.current().alarms.firstOrNull { it.id == id } }
     if (spec != null && !spec.phoneBackup) {
         cancelSnoozeSafety(alarmId)
         return
@@ -64,5 +65,7 @@ internal fun snoozePending(context: Context, alarmId: String?, snoozes: Int): Pe
     val intent = Intent(context, BackupAlarm.Receiver::class.java).setAction(ACTION)
         .putExtra(PhoneRingService.EXTRA_SNOOZES_DONE, snoozes)
     if (alarmId != null) intent.putExtra(PhoneRingService.EXTRA_ALARM_ID, alarmId)
-    return PendingIntent.getBroadcast(context, 3, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+    return PendingIntent.getBroadcast(
+        context, 3, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+    )
 }

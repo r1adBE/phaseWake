@@ -51,9 +51,12 @@ final class TransientTests: XCTestCase {
         XCTAssertEqual(nap.plan.windowStart, now.addingTimeInterval(minutes(15)))
         XCTAssertEqual(nap.spec.sunrise, .off)
         XCTAssertEqual(nap.spec.phone, .vibrate)
-        XCTAssertEqual(Transient.nap(base: nil, now: now, calendar: zurich, minutes: 15, uuid: "n2").plan.windowStart, now.addingTimeInterval(minutes(12)))
-        XCTAssertEqual(Transient.nap(base: nil, now: now, calendar: zurich, minutes: 1, uuid: "n3").plan.target, now.addingTimeInterval(minutes(10)))
-        XCTAssertEqual(Transient.nap(base: nil, now: now, calendar: zurich, minutes: 500, uuid: "n4").plan.target, now.addingTimeInterval(minutes(90)))
+        XCTAssertEqual(Transient.nap(base: nil, now: now, calendar: zurich, minutes: 15, uuid: "n2").plan.windowStart,
+                       now.addingTimeInterval(minutes(12)))
+        XCTAssertEqual(Transient.nap(base: nil, now: now, calendar: zurich, minutes: 1, uuid: "n3").plan.target,
+                       now.addingTimeInterval(minutes(10)))
+        XCTAssertEqual(Transient.nap(base: nil, now: now, calendar: zurich, minutes: 500, uuid: "n4").plan.target,
+                       now.addingTimeInterval(minutes(90)))
         XCTAssertEqual(Transient.napWindowMinutes(10), 3)
         XCTAssertEqual(Transient.napWindowMinutes(16), 5)
     }
@@ -79,7 +82,8 @@ final class TransientTests: XCTestCase {
     func testEncodeAndDecode() throws {
         let t = Transient.test(base: base, now: now, calendar: zurich, uuid: "abc")
         let text = Transient.encode(t)
-        let start = AlarmSchedule.millis(now.addingTimeInterval(60)), target = AlarmSchedule.millis(now.addingTimeInterval(120))
+        let start = AlarmSchedule.millis(now.addingTimeInterval(60))
+        let target = AlarmSchedule.millis(now.addingTimeInterval(120))
         XCTAssertTrue(text.hasPrefix("phasewake-transient 1\nTEST|\(start)|\(target)\nphasewake-alarms 1\n"))
         XCTAssertEqual(try Transient.decode(text), t)
         let nap = Transient.nap(base: nil, now: now, calendar: zurich, minutes: 30, uuid: "n")
@@ -90,8 +94,10 @@ final class TransientTests: XCTestCase {
         let good = Transient.encode(Transient.test(base: base, now: now, calendar: zurich, uuid: "abc"))
         let other = try AlarmSpec(id: "test-1", hour: 7, minute: 0)
         for text in [
-            "phasewake-alarms 1\n", good.replacingOccurrences(of: "TEST|", with: "LAMP|"), good.replacingOccurrences(of: "TEST|", with: "NAP|"),
-            "phasewake-transient 1\nTEST|x|1\n", "phasewake-transient 1\nTEST|1|x\n", "phasewake-transient 1\nTEST|1|2\nphasewake-alarms 1\n",
+            "phasewake-alarms 1\n", good.replacingOccurrences(of: "TEST|", with: "LAMP|"),
+            good.replacingOccurrences(of: "TEST|", with: "NAP|"),
+            "phasewake-transient 1\nTEST|x|1\n", "phasewake-transient 1\nTEST|1|x\n",
+            "phasewake-transient 1\nTEST|1|2\nphasewake-alarms 1\n",
             "phasewake-transient 1\nTEST|9|2\n" + Codec.encodeAlarms([other]),
         ] {
             XCTAssertThrowsError(try Transient.decode(text), text)
@@ -120,12 +126,14 @@ final class TransientTests: XCTestCase {
 
     func testTestRunCodec() {
         let ms = AlarmSchedule.millis(now)
-        let run = TestRun(id: "test-1", target: now, phoneAlert: .vibrate, seen: [.watchRang: now.addingTimeInterval(3), .received: now])
+        let run = TestRun(id: "test-1", target: now, phoneAlert: .vibrate,
+                          seen: [.watchRang: now.addingTimeInterval(3), .received: now])
         let text = TestRuns.encode(run)
         XCTAssertEqual(text, "test-1|\(ms)|VIBRATE|RECEIVED=\(ms),WATCH_RANG=\(ms + 3000)")
         XCTAssertEqual(TestRuns.decode(text), run)
         XCTAssertEqual(TestRuns.decode("t|\(ms)|NEU|"), TestRun(id: "t", target: now, phoneAlert: .sound))
-        XCTAssertEqual(TestRuns.decode("t|\(ms)|SOUND|LAMP=1,RECEIVED=x"), TestRun(id: "t", target: now, phoneAlert: .sound))
+        XCTAssertEqual(TestRuns.decode("t|\(ms)|SOUND|LAMP=1,RECEIVED=x"),
+                       TestRun(id: "t", target: now, phoneAlert: .sound))
         XCTAssertNil(TestRuns.decode(nil))
         XCTAssertNil(TestRuns.decode("t|1"))
         XCTAssertNil(TestRuns.decode("t|x|SOUND|"))

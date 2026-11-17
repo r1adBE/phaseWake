@@ -34,8 +34,15 @@ class NextAlarmTileService : TileService() {
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
-    override fun onTileRequest(requestParams: RequestBuilders.TileRequest): ListenableFuture<TileBuilders.Tile> = scope.future {
-        val texts = tileTexts(this@NextAlarmTileService, wearApp.scheduler.nextPlan(), ZoneId.systemDefault(), Instant.now())
+    override fun onTileRequest(
+        requestParams: RequestBuilders.TileRequest,
+    ): ListenableFuture<TileBuilders.Tile> = scope.future {
+        val texts = tileTexts(
+            this@NextAlarmTileService,
+            wearApp.scheduler.nextPlan(),
+            ZoneId.systemDefault(),
+            Instant.now(),
+        )
         TileBuilders.Tile.Builder()
             .setResourcesVersion(RESOURCES_VERSION)
             // Neu zeichnen, sobald sich das Fenster ändern kann (spätestens nach einer Stunde).
@@ -44,7 +51,9 @@ class NextAlarmTileService : TileService() {
             .build()
     }
 
-    override fun onTileResourcesRequest(requestParams: RequestBuilders.ResourcesRequest): ListenableFuture<ResourceBuilders.Resources> =
+    override fun onTileResourcesRequest(
+        requestParams: RequestBuilders.ResourcesRequest,
+    ): ListenableFuture<ResourceBuilders.Resources> =
         scope.future { ResourceBuilders.Resources.Builder().setVersion(RESOURCES_VERSION).build() }
 
     override fun onDestroy() {
@@ -91,7 +100,9 @@ class NextAlarmTileService : TileService() {
                 LayoutElementBuilders.FontStyle.Builder()
                     .setSize(sp(size))
                     .setColor(argb(color))
-                    .setWeight(if (bold) LayoutElementBuilders.FONT_WEIGHT_BOLD else LayoutElementBuilders.FONT_WEIGHT_NORMAL)
+                    .setWeight(
+                        if (bold) LayoutElementBuilders.FONT_WEIGHT_BOLD else LayoutElementBuilders.FONT_WEIGHT_NORMAL,
+                    )
                     .build(),
             )
             .build()
@@ -106,18 +117,36 @@ class NextAlarmTileService : TileService() {
          * morgen; bei «Genau» keine Zeile darunter statt «Nächster Wecker» ein zweites Mal. [locale]
          * nur für Tests, sonst die der Uhr.
          */
-        fun tileTexts(context: Context, plan: WakePlan?, zone: ZoneId, now: Instant, locale: Locale = Locale.getDefault()): TileTexts {
+        fun tileTexts(
+            context: Context,
+            plan: WakePlan?,
+            zone: ZoneId,
+            now: Instant,
+            locale: Locale = Locale.getDefault(),
+        ): TileTexts {
             fun time(at: Instant) = shortTime(at, zone, locale)
             val next = context.getString(R.string.tile_next)
-            if (plan == null) return TileTexts(next, context.getString(R.string.home_no_alarm), context.getString(R.string.home_no_alarm_hint))
+            if (plan == null) return TileTexts(
+                next,
+                context.getString(R.string.home_no_alarm),
+                context.getString(R.string.home_no_alarm_hint),
+            )
             val day = plan.target.atZone(zone).toLocalDate()
             val today = now.atZone(zone).toLocalDate()
-            val header = if (day == today || day == today.plusDays(1)) next else "$next · " + DateTimeFormatter.ofPattern("EEE", locale).format(day)
+            val header = if (day == today || day == today.plusDays(1)) {
+                next
+            } else {
+                "$next · " + DateTimeFormatter.ofPattern("EEE", locale).format(day)
+            }
             return if (plan.exact) {
                 // «Genau»: kein Fenster, kein Versprechen zum leichten Schlaf.
                 TileTexts(header, context.getString(R.string.window_exact_line, time(plan.target)), null)
             } else {
-                TileTexts(header, context.getString(R.string.home_window, time(plan.windowStart), time(plan.target)), context.getString(R.string.tile_light_sleep))
+                TileTexts(
+                    header,
+                    context.getString(R.string.home_window, time(plan.windowStart), time(plan.target)),
+                    context.getString(R.string.tile_light_sleep),
+                )
             }
         }
 

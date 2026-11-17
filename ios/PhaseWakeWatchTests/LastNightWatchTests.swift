@@ -15,8 +15,9 @@ final class LastNightWatchTests: XCTestCase {
 
     private func night(_ day: Int, id: String = "a") -> NightRecord {
         let window = start.addingTimeInterval(TimeInterval(day) * 86400)
-        return NightRecord(alarmId: id, windowStart: window, target: window.addingTimeInterval(1800), wokeAt: window.addingTimeInterval(1200),
-                           reason: .lightSleep, snoozes: 0, epochs: [Epoch(motion: 0.01, heartRate: 52)])
+        return NightRecord(alarmId: id, windowStart: window, target: window.addingTimeInterval(1800),
+                           wokeAt: window.addingTimeInterval(1200), reason: .lightSleep, snoozes: 0,
+                           epochs: [Epoch(motion: 0.01, heartRate: 52)])
     }
 
     @MainActor

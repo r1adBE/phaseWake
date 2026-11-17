@@ -66,7 +66,8 @@ public enum BackupFile {
     /// - Throws: ``BackupError`` (`unreadable`) bei zu kurzem oder trivialem Passwort (`passwordOk`), falscher Länge
     ///   von Salz oder Nonce oder einem Fehler der Verschlüsselung.
     public static func encrypt(_ plain: Data, password: String, salt: Data, nonce: Data) throws -> Data {
-        guard salt.count == saltBytes, nonce.count == nonceBytes else { throw BackupError(.unreadable, "Salz oder Nonce mit falscher Länge") }
+        guard salt.count == saltBytes, nonce.count == nonceBytes
+        else { throw BackupError(.unreadable, "Salz oder Nonce mit falscher Länge") }
         guard passwordOk(password) else { throw BackupError(.unreadable, "Passwort zu kurz oder trivial") }
         do {
             let key = try deriveKey(password, salt: salt, iterations: iterations)
@@ -126,7 +127,8 @@ public enum BackupFile {
                 )
             }
         }
-        guard status == Int32(kCCSuccess) else { throw BackupError(.unreadable, "Schlüssel nicht ableitbar (\(status))") }
+        guard status == Int32(kCCSuccess) else { throw BackupError(.unreadable,
+                                                                   "Schlüssel nicht ableitbar (\(status))") }
         return SymmetricKey(data: key)
     }
 }

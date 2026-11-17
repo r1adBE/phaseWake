@@ -27,7 +27,8 @@ final class PhoneWidgetSnapshotTests: XCTestCase {
     }
 
     func testLastNightUntilNoonOfTheWakeMorning() {
-        let night = PhoneWidgetSnapshot.LastNight(wokeAt: at(10, 6, 40), reason: "Unruhig", feeling: nil, asleepMinutes: 432)
+        let night = PhoneWidgetSnapshot.LastNight(wokeAt: at(10, 6, 40), reason: "Unruhig", feeling: nil,
+                                                  asleepMinutes: 432)
         let snapshot = PhoneWidgetSnapshot(plans: [plan(11, 6)], issue: nil, lastNight: night)
         XCTAssertNil(snapshot.morningNight(at: at(10, 6, 30), calendar: zurich), "vor dem Wecken")
         XCTAssertEqual(snapshot.morningNight(at: at(10, 6, 40), calendar: zurich), night)
@@ -40,7 +41,8 @@ final class PhoneWidgetSnapshotTests: XCTestCase {
 
     func testOlderStateStaysReadable() throws {
         // Ohne «exact», «issue», «lastNight» und «asleepMinutes» (frühere Versionen).
-        let json = #"{"plans":[{"windowStart":0,"target":1800,"label":"Arbeit"}],"lastNight":{"wokeAt":900,"reason":"x"}}"#
+        let json = #"{"plans":[{"windowStart":0,"target":1800,"label":"Arbeit"}],"#
+            + #""lastNight":{"wokeAt":900,"reason":"x"}}"#
         let snapshot = try JSONDecoder().decode(PhoneWidgetSnapshot.self, from: Data(json.utf8))
         XCTAssertEqual(snapshot.plans.first?.label, "Arbeit")
         XCTAssertNil(snapshot.plans.first?.exact)

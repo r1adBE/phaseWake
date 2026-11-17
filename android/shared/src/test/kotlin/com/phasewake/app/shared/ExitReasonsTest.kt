@@ -57,8 +57,10 @@ class ExitReasonsTest {
         assertEquals(listOf(DiagKind.ERROR, DiagKind.ERROR), first.map { it.kind })
         assertEquals(
             listOf(
-                "exit low_memory at 2026-11-17 02:10 status=9 importance=${ActivityManager.RunningAppProcessInfo.IMPORTANCE_SERVICE} pss=51200",
-                "exit anr at 2026-11-17 02:20 status=9 importance=${ActivityManager.RunningAppProcessInfo.IMPORTANCE_SERVICE} pss=51200",
+                "exit low_memory at 2026-11-17 02:10 status=9 importance=" +
+                    "${ActivityManager.RunningAppProcessInfo.IMPORTANCE_SERVICE} pss=51200",
+                "exit anr at 2026-11-17 02:20 status=9 importance=" +
+                    "${ActivityManager.RunningAppProcessInfo.IMPORTANCE_SERVICE} pss=51200",
             ),
             first.map { it.detail },
         )

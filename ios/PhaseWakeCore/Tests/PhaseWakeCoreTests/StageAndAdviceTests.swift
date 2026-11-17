@@ -7,7 +7,8 @@ final class StageAndAdviceTests: XCTestCase {
     private let t0 = Date(timeIntervalSince1970: 1_793_163_600)
     private func at(_ min: Double) -> Date { t0.addingTimeInterval(min * 60) }
     private var spans: [StageSpan] {
-        [StageSpan(start: at(0), end: at(20), stage: .deep), StageSpan(start: at(20), end: at(35), stage: .light), StageSpan(start: at(35), end: at(50), stage: .rem)]
+        [StageSpan(start: at(0), end: at(20), stage: .deep), StageSpan(start: at(20), end: at(35), stage: .light),
+         StageSpan(start: at(35), end: at(50), stage: .rem)]
     }
 
     func testStageAtBoundaries() {
@@ -22,7 +23,8 @@ final class StageAndAdviceTests: XCTestCase {
         // Sitzung endete 1 Min vorher.
         XCTAssertEqual(StageCheck.stageAtWake(spans, wokeAt: at(51)), .rem)
         XCTAssertNil(StageCheck.stageAtWake(spans, wokeAt: at(60)))
-        XCTAssertEqual(StageCheck.stageAtWake([StageSpan(start: at(0), end: at(10), stage: .unknown)], wokeAt: at(5)), .unknown)
+        XCTAssertEqual(StageCheck.stageAtWake([StageSpan(start: at(0), end: at(10), stage: .unknown)], wokeAt: at(5)),
+                       .unknown)
     }
 
     func testClipToWindow() {
@@ -34,15 +36,19 @@ final class StageAndAdviceTests: XCTestCase {
 
     // MARK: Fenster-Vorschlag
 
-    private func spec(window: Int = 15) -> AlarmSpec { try! AlarmSpec(id: "a", hour: 7, minute: 0, windowMinutes: window) }
+    private func spec(window: Int = 15) -> AlarmSpec { try! AlarmSpec(id: "a", hour: 7, minute: 0,
+                                                                      windowMinutes: window) }
 
     private func night(_ day: Double, _ reason: WakeReason, _ id: String = "a") -> NightRecord {
         let s = t0.addingTimeInterval(day * 86_400)
-        return NightRecord(alarmId: id, windowStart: s, target: s.addingTimeInterval(900), wokeAt: s.addingTimeInterval(900), reason: reason, snoozes: 0, epochs: [])
+        return NightRecord(alarmId: id, windowStart: s, target: s.addingTimeInterval(900),
+                           wokeAt: s.addingTimeInterval(900), reason: reason, snoozes: 0, epochs: [])
     }
 
     func testSuggestsWiderWindowWhenMostlyDeadline() {
-        let suggestion = WindowAdvice.suggest(spec(), history: [night(0, .deadline), night(1, .lightSleep), night(2, .deadline)])
+        let suggestion = WindowAdvice.suggest(spec(),
+                                              history: [night(0, .deadline), night(1, .lightSleep),
+                                                        night(2, .deadline)])
         XCTAssertEqual(suggestion?.windowMinutes, 25)
         XCTAssertEqual(suggestion?.deadlineNights, 2)
         XCTAssertEqual(suggestion?.nights, 3)

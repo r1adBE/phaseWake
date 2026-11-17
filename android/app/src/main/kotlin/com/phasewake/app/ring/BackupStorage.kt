@@ -40,7 +40,8 @@ internal object BackupDirectBoot {
 
     /** Legt [entries] ab (früheste zuerst), Zeile «at|target|kennung». */
     fun save(context: Context, entries: List<Entry>) {
-        val text = entries.sortedBy { it.at }.joinToString("\n") { "${it.at.toEpochMilli()}|${it.target.toEpochMilli()}|${it.alarmId}" }
+        val text = entries.sortedBy { it.at }
+            .joinToString("\n") { "${it.at.toEpochMilli()}|${it.target.toEpochMilli()}|${it.alarmId}" }
         prefs(context).edit { putString(KEY_PLANS, text); remove(KEY_AT); remove(KEY_ID); remove(KEY_TARGET) }
     }
 
@@ -50,7 +51,12 @@ internal object BackupDirectBoot {
         val text = prefs.getString(KEY_PLANS, null)
         if (text == null) {
             val id = prefs.getString(KEY_ID, null) ?: return emptyList()
-            return listOf(Entry(Instant.ofEpochMilli(prefs.getLong(KEY_AT, 0L)), id, Instant.ofEpochMilli(prefs.getLong(KEY_TARGET, 0L))))
+            return listOf(
+                Entry(
+                    Instant.ofEpochMilli(prefs.getLong(KEY_AT, 0L)), id,
+                    Instant.ofEpochMilli(prefs.getLong(KEY_TARGET, 0L)),
+                )
+            )
         }
         return text.lines().mapNotNull { line ->
             val parts = line.split('|', limit = 3)
@@ -68,7 +74,8 @@ internal object BackupDirectBoot {
     /** Vor dem Entsperren geklungen: Kennung und Zielzeit für [takeRang] merken (mehrere, falls es länger dauert). */
     fun markRang(context: Context, alarmId: String, target: Long) {
         val prefs = prefs(context)
-        val rang = BackupAlarm.decodeSuppressed(prefs.getString(KEY_RANG, null)) + (alarmId to Instant.ofEpochMilli(target))
+        val rang =
+            BackupAlarm.decodeSuppressed(prefs.getString(KEY_RANG, null)) + (alarmId to Instant.ofEpochMilli(target))
         prefs.edit { putString(KEY_RANG, BackupAlarm.encodeSuppressed(rang)) }
     }
 
@@ -76,7 +83,8 @@ internal object BackupDirectBoot {
     fun takeRang(context: Context): List<Pair<String, Instant>> {
         val prefs = prefs(context)
         val rang = BackupAlarm.decodeSuppressed(prefs.getString(KEY_RANG, null)).toList().toMutableList()
-        prefs.getString(KEY_RANG_ID, null)?.let { rang += it to Instant.ofEpochMilli(prefs.getLong(KEY_RANG_TARGET, 0L)) }
+        prefs.getString(KEY_RANG_ID, null)
+            ?.let { rang += it to Instant.ofEpochMilli(prefs.getLong(KEY_RANG_TARGET, 0L)) }
         if (rang.isNotEmpty()) prefs.edit { remove(KEY_RANG); remove(KEY_RANG_ID); remove(KEY_RANG_TARGET) }
         return rang
     }
@@ -115,7 +123,9 @@ internal object BackupDirectBoot {
      * `null`, wenn keiner.
      */
     fun missed(context: Context, now: Instant): Entry? =
-        load(context).firstOrNull { !it.at.isAfter(now) && Transient.catchesUpAfterBoot(it.alarmId, it.at, now, MISSED_DURING_BOOT) }
+        load(context).firstOrNull {
+            !it.at.isAfter(now) && Transient.catchesUpAfterBoot(it.alarmId, it.at, now, MISSED_DURING_BOOT)
+        }
 
     /** Entfernt [entry] aus der Liste (nachgeholt oder erledigt), damit er nicht zweimal klingelt. */
     fun remove(context: Context, entry: Entry) = save(context, load(context).filterNot { it == entry })
@@ -129,7 +139,10 @@ internal object BackupDirectBoot {
         val due = entries.filter { Transient.catchesUpAfterBoot(it.alarmId, it.at, now, MISSED_DURING_BOOT) }
         if (due.size != entries.size) save(context, due)
         val next = due.firstOrNull() ?: return
-        setExact(context, maxOf(next.at, now.plus(FORWARD_DELAY)), showPending(context), backupPending(context, next.alarmId, next.target))
+        setExact(
+            context, maxOf(next.at, now.plus(FORWARD_DELAY)), showPending(context),
+            backupPending(context, next.alarmId, next.target),
+        )
     }
 }
 
@@ -149,13 +162,19 @@ internal object SnoozeSafety {
         context.createDeviceProtectedStorageContext().getSharedPreferences(FILE, Context.MODE_PRIVATE)
 
     fun save(context: Context, saved: Saved) {
-        prefs(context).edit { putLong(KEY_AT, saved.at.toEpochMilli()); putString(KEY_ID, saved.alarmId); putInt(KEY_DONE, saved.snoozesDone) }
+        prefs(context).edit {
+            putLong(KEY_AT, saved.at.toEpochMilli())
+            putString(KEY_ID, saved.alarmId)
+            putInt(KEY_DONE, saved.snoozesDone)
+        }
     }
 
     fun load(context: Context): Saved? {
         val prefs = prefs(context)
         if (!prefs.contains(KEY_AT)) return null
-        return Saved(Instant.ofEpochMilli(prefs.getLong(KEY_AT, 0L)), prefs.getString(KEY_ID, null), prefs.getInt(KEY_DONE, 0))
+        return Saved(
+            Instant.ofEpochMilli(prefs.getLong(KEY_AT, 0L)), prefs.getString(KEY_ID, null), prefs.getInt(KEY_DONE, 0),
+        )
     }
 
     fun clear(context: Context) {
@@ -174,7 +193,10 @@ internal object SnoozeSafety {
             clear(context)
             return
         }
-        setExact(context, maxOf(saved.at, current.plus(FORWARD_DELAY)), showPending(context), safetyPending(context, saved.alarmId, saved.snoozesDone))
+        setExact(
+            context, maxOf(saved.at, current.plus(FORWARD_DELAY)), showPending(context),
+            safetyPending(context, saved.alarmId, saved.snoozesDone),
+        )
     }
 }
 
@@ -216,7 +238,10 @@ internal object PhoneSnooze {
         val prefs = prefs(context)
         if (!prefs.contains(KEY_AT)) return null
         val target = if (prefs.contains(KEY_TARGET)) prefs.getLong(KEY_TARGET, 0L) else null
-        return Saved(Instant.ofEpochMilli(prefs.getLong(KEY_AT, 0L)), prefs.getString(KEY_ID, null), prefs.getInt(KEY_DONE, 0), target)
+        return Saved(
+            Instant.ofEpochMilli(prefs.getLong(KEY_AT, 0L)), prefs.getString(KEY_ID, null), prefs.getInt(KEY_DONE, 0),
+            target,
+        )
     }
 
     fun clear(context: Context) {
@@ -233,6 +258,9 @@ internal object PhoneSnooze {
             clear(context)
             return
         }
-        setExact(context, maxOf(saved.at, now.plus(FORWARD_DELAY)), showPending(context), snoozePending(context, saved.alarmId, saved.snoozesDone))
+        setExact(
+            context, maxOf(saved.at, now.plus(FORWARD_DELAY)), showPending(context),
+            snoozePending(context, saved.alarmId, saved.snoozesDone),
+        )
     }
 }

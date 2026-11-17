@@ -31,7 +31,8 @@ final class SkipTests: XCTestCase {
 
     private func alarm(id: String = "a", hour: Int = 7, days: Set<Weekday>? = nil, enabled: Bool = true,
                        skipUntil: Int64 = 0, skipHolidays: Bool = false) -> AlarmSpec {
-        try! AlarmSpec(id: id, hour: hour, minute: 0, days: days ?? weekdays, enabled: enabled, skipUntil: skipUntil, skipHolidays: skipHolidays)
+        try! AlarmSpec(id: id, hour: hour, minute: 0, days: days ?? weekdays, enabled: enabled, skipUntil: skipUntil,
+                       skipHolidays: skipHolidays)
     }
 
     /// Mittwoch, 28. Oktober 2026, 22:00.
@@ -44,20 +45,23 @@ final class SkipTests: XCTestCase {
         XCTAssertEqual(AlarmSchedule.skippedDate(skipped, now: evening, calendar: zurich), "2026-10-29")
         // Nach dem übersprungenen Termin gilt alles wieder normal.
         XCTAssertNil(AlarmSchedule.skippedDate(skipped, now: at("2026-10-29T07:00"), calendar: zurich))
-        XCTAssertEqual(AlarmSchedule.nextTarget(skipped, now: at("2026-10-29T08:00"), calendar: zurich), at("2026-10-30T07:00"))
+        XCTAssertEqual(AlarmSchedule.nextTarget(skipped, now: at("2026-10-29T08:00"), calendar: zurich),
+                       at("2026-10-30T07:00"))
         XCTAssertTrue(skipped.enabled)
     }
 
     func testSkipDuringRunningWindowSkipsThisMorning() {
         let skipped = AlarmSchedule.skipNext(alarm(), now: at("2026-10-29T06:45"), calendar: zurich)
-        XCTAssertEqual(AlarmSchedule.nextPlan(skipped, now: at("2026-10-29T06:45"), calendar: zurich)?.target, at("2026-10-30T07:00"))
+        XCTAssertEqual(AlarmSchedule.nextPlan(skipped, now: at("2026-10-29T06:45"), calendar: zurich)?.target,
+                       at("2026-10-30T07:00"))
     }
 
     func testSkipOverWeekend() {
         let skipped = AlarmSchedule.skipNext(alarm(), now: at("2026-10-30T07:30"), calendar: zurich)
         // Nächster Termin wäre Montag 2.11.; übersprungen → Dienstag.
         XCTAssertEqual(skipped.skipUntil, wall("2026-11-02T07:00"))
-        XCTAssertEqual(AlarmSchedule.nextTarget(skipped, now: at("2026-10-30T20:00"), calendar: zurich), at("2026-11-03T07:00"))
+        XCTAssertEqual(AlarmSchedule.nextTarget(skipped, now: at("2026-10-30T20:00"), calendar: zurich),
+                       at("2026-11-03T07:00"))
     }
 
     func testUndoSkipRestoresNextOccurrence() {
@@ -72,7 +76,8 @@ final class SkipTests: XCTestCase {
         XCTAssertEqual(AlarmSchedule.skipNext(once, now: evening, calendar: zurich), once)
         let forced = alarm(days: [], skipUntil: wall("2026-10-29T07:00"), skipHolidays: true)
         let holidays: Set<String> = ["2026-10-29"]
-        XCTAssertEqual(AlarmSchedule.nextTarget(forced, now: evening, calendar: zurich, holidays: holidays), at("2026-10-29T07:00"))
+        XCTAssertEqual(AlarmSchedule.nextTarget(forced, now: evening, calendar: zurich, holidays: holidays),
+                       at("2026-10-29T07:00"))
         XCTAssertNil(AlarmSchedule.skippedDate(forced, now: evening, calendar: zurich))
         XCTAssertNil(AlarmSchedule.skippedHoliday(forced, now: evening, calendar: zurich, holidays: holidays))
     }
@@ -84,21 +89,27 @@ final class SkipTests: XCTestCase {
 
     func testHolidaysAreSkippedOnlyWhenWanted() {
         let holidays: Set<String> = ["2026-10-29", "2026-10-30"]
-        XCTAssertEqual(AlarmSchedule.nextTarget(alarm(), now: evening, calendar: zurich, holidays: holidays), at("2026-10-29T07:00"))
+        XCTAssertEqual(AlarmSchedule.nextTarget(alarm(), now: evening, calendar: zurich, holidays: holidays),
+                       at("2026-10-29T07:00"))
         let wanted = alarm(skipHolidays: true)
-        XCTAssertEqual(AlarmSchedule.nextTarget(wanted, now: evening, calendar: zurich, holidays: holidays), at("2026-11-02T07:00"))
-        XCTAssertEqual(AlarmSchedule.skippedHoliday(wanted, now: evening, calendar: zurich, holidays: holidays), "2026-10-29")
+        XCTAssertEqual(AlarmSchedule.nextTarget(wanted, now: evening, calendar: zurich, holidays: holidays),
+                       at("2026-11-02T07:00"))
+        XCTAssertEqual(AlarmSchedule.skippedHoliday(wanted, now: evening, calendar: zurich, holidays: holidays),
+                       "2026-10-29")
         XCTAssertNil(AlarmSchedule.skippedHoliday(alarm(), now: evening, calendar: zurich, holidays: holidays))
         XCTAssertNil(AlarmSchedule.skippedHoliday(wanted, now: evening, calendar: zurich, holidays: []))
         // Kein Feiertag als nächster Termin: nichts anzuzeigen.
-        XCTAssertNil(AlarmSchedule.skippedHoliday(wanted, now: at("2026-10-30T08:00"), calendar: zurich, holidays: holidays))
+        XCTAssertNil(AlarmSchedule.skippedHoliday(wanted, now: at("2026-10-30T08:00"), calendar: zurich,
+                                                  holidays: holidays))
     }
 
     func testSkipNextJumpsOverHolidays() {
         let holidays: Set<String> = ["2026-10-29"]
-        let skipped = AlarmSchedule.skipNext(alarm(skipHolidays: true), now: evening, calendar: zurich, holidays: holidays)
+        let skipped = AlarmSchedule.skipNext(alarm(skipHolidays: true), now: evening, calendar: zurich,
+                                             holidays: holidays)
         XCTAssertEqual(skipped.skipUntil, wall("2026-10-30T07:00"))
-        XCTAssertEqual(AlarmSchedule.nextTarget(skipped, now: evening, calendar: zurich, holidays: holidays), at("2026-11-02T07:00"))
+        XCTAssertEqual(AlarmSchedule.nextTarget(skipped, now: evening, calendar: zurich, holidays: holidays),
+                       at("2026-11-02T07:00"))
     }
 
     func testEveryDayHolidayEndsWithoutTarget() {
@@ -110,7 +121,8 @@ final class SkipTests: XCTestCase {
         let holidays: Set<String> = ["2026-10-29"]
         let a = alarm(id: "a", skipHolidays: true)
         let b = alarm(id: "b", hour: 9)
-        XCTAssertEqual(AlarmSchedule.earliestPlan([a, b], now: evening, calendar: zurich, holidays: holidays)?.alarmId, "b")
+        XCTAssertEqual(AlarmSchedule.earliestPlan([a, b], now: evening, calendar: zurich, holidays: holidays)?.alarmId,
+                       "b")
         let reminder = Bedtime.next([a], from: evening, calendar: zurich, goalMinutes: 480, holidays: holidays)
         XCTAssertEqual(reminder?.target, at("2026-10-30T07:00"))
     }
@@ -121,14 +133,19 @@ final class SkipTests: XCTestCase {
         XCTAssertTrue(text.hasSuffix("|1793000000000|1\n"))
         XCTAssertEqual(try Codec.decodeAlarms(text), [a])
         // 14 Felder (vor dieser Version): nichts überspringen.
-        let old = try XCTUnwrap(Codec.decodeAlarms("phasewake-alarms 1\na|7|0|MO|30|1|SOUND|0||||OFF|NONE|PHONE\n").first)
+        let old = try XCTUnwrap(
+            Codec.decodeAlarms("phasewake-alarms 1\na|7|0|MO|30|1|SOUND|0||||OFF|NONE|PHONE\n").first
+        )
         XCTAssertEqual(old.skipUntil, 0)
         XCTAssertFalse(old.skipHolidays)
         // Unlesbare oder negative Werte: tolerant.
-        let bad = try XCTUnwrap(Codec.decodeAlarms("phasewake-alarms 1\na|7|0|MO|30|1|SOUND|0||||OFF|NONE|PHONE|x|ja|neu\n").first)
+        let bad = try XCTUnwrap(
+            Codec.decodeAlarms("phasewake-alarms 1\na|7|0|MO|30|1|SOUND|0||||OFF|NONE|PHONE|x|ja|neu\n").first
+        )
         XCTAssertEqual(bad.skipUntil, 0)
         XCTAssertFalse(bad.skipHolidays)
-        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\na|7|0|MO|30|1|SOUND|0||||OFF|NONE|PHONE|-5|0\n").first?.skipUntil, 0)
+        XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\na|7|0|MO|30|1|SOUND|0||||OFF|NONE|PHONE|-5|0\n")
+            .first?.skipUntil, 0)
         // Kopien behalten die Felder.
         XCTAssertEqual(a.with(enabled: false).skipUntil, 1_793_000_000_000)
         XCTAssertFalse(a.with(skipHolidays: false).skipHolidays)

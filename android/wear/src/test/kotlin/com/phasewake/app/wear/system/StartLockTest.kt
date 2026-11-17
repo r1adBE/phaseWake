@@ -52,7 +52,8 @@ class StartLockTest {
 
     /** Kontext, der jeden Vordergrund-Start ablehnt wie Android 12+ aus dem Hintergrund. */
     private class Refusing(base: Context) : ContextWrapper(base) {
-        override fun startForegroundService(service: Intent): ComponentName? = throw ForegroundServiceStartNotAllowedException("test")
+        override fun startForegroundService(service: Intent): ComponentName? =
+            throw ForegroundServiceStartNotAllowedException("test")
     }
 
     @Before
@@ -71,7 +72,10 @@ class StartLockTest {
     }
 
     private fun window(): Intent =
-        AlarmReceiver.putPlan(Intent(context, AlarmReceiver::class.java).setAction(AlarmReceiver.ACTION_WINDOW_START), plan)
+        AlarmReceiver.putPlan(
+            Intent(context, AlarmReceiver::class.java).setAction(AlarmReceiver.ACTION_WINDOW_START),
+            plan,
+        )
 
     @Test
     fun receiverHoldsItWithTimeoutAndWithoutCounting() {
@@ -106,19 +110,34 @@ class StartLockTest {
 
     @Test
     fun otherAlarmsAndRecordingAlsoTakeIt() {
-        val deadline = AlarmReceiver.putPlan(Intent(context, AlarmReceiver::class.java).setAction(AlarmReceiver.ACTION_DEADLINE), plan)
+        val deadline = AlarmReceiver.putPlan(
+            Intent(context, AlarmReceiver::class.java).setAction(AlarmReceiver.ACTION_DEADLINE),
+            plan,
+        )
         AlarmReceiver().onReceive(context, deadline)
         assertTrue(StartLock.held)
         StartLock.release()
-        AlarmReceiver().onReceive(context, Intent(context, AlarmReceiver::class.java).setAction(AlarmReceiver.ACTION_GOOD_NIGHT_CHECK))
+        AlarmReceiver().onReceive(
+            context,
+            Intent(context, AlarmReceiver::class.java).setAction(AlarmReceiver.ACTION_GOOD_NIGHT_CHECK),
+        )
         assertTrue(StartLock.held)
         StartLock.release()
-        RecordReceiver().onReceive(context, Intent(context, RecordReceiver::class.java).setAction(RecordControl.ACTION_CHECK))
+        RecordReceiver().onReceive(
+            context,
+            Intent(context, RecordReceiver::class.java).setAction(RecordControl.ACTION_CHECK),
+        )
         assertTrue(StartLock.held)
         StartLock.release()
         // Ohne Plan (veralteter Alarm) und fremde Aktion: kein Start, kein Wakelock.
-        AlarmReceiver().onReceive(context, Intent(context, AlarmReceiver::class.java).setAction(AlarmReceiver.ACTION_DEADLINE))
-        RecordReceiver().onReceive(context, Intent(context, RecordReceiver::class.java).setAction("com.phasewake.app.record.UNKNOWN"))
+        AlarmReceiver().onReceive(
+            context,
+            Intent(context, AlarmReceiver::class.java).setAction(AlarmReceiver.ACTION_DEADLINE),
+        )
+        RecordReceiver().onReceive(
+            context,
+            Intent(context, RecordReceiver::class.java).setAction("com.phasewake.app.record.UNKNOWN"),
+        )
         assertFalse(StartLock.held)
     }
 

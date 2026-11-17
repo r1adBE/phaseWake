@@ -50,11 +50,14 @@ struct HealthNightCard: View {
     private var lines: (times: String, amounts: String) {
         let s = session
         if let awake = s.awakeMinutes {
-            return (L("history_health_times", Format.time(s.start, in: s.timeZone), Format.time(s.asleepAt, in: s.timeZone), Format.time(s.end, in: s.timeZone)),
-                    L("history_health_amounts", Format.duration(minutes: s.durationMinutes), Format.duration(minutes: s.asleepMinutes),
+            return (L("history_health_times", Format.time(s.start, in: s.timeZone),
+                      Format.time(s.asleepAt, in: s.timeZone), Format.time(s.end, in: s.timeZone)),
+                    L("history_health_amounts", Format.duration(minutes: s.durationMinutes),
+                      Format.duration(minutes: s.asleepMinutes),
                       Format.duration(minutes: awake)))
         }
-        return (L("history_health_times_simple", Format.time(s.start, in: s.timeZone), Format.time(s.end, in: s.timeZone)),
+        return (L("history_health_times_simple", Format.time(s.start, in: s.timeZone),
+                  Format.time(s.end, in: s.timeZone)),
                 L("history_health_amount_simple", Format.duration(minutes: s.durationMinutes)))
     }
 
@@ -64,7 +67,8 @@ struct HealthNightCard: View {
                 .buttonStyle(.plain)
                 .accessibilityHint(L("night_open"))
             if let feeling {
-                Text(L("feeling_value", feelingName(feeling))).font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
+                Text(L("feeling_value", feelingName(feeling)))
+                    .font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(.secondary)
             }
             NightActionsRow(nightDate: nightDate, title: title, onOpen: onOpen)
             NightSoundsButton(night: nightDate, title: title)
@@ -79,7 +83,8 @@ struct HealthNightCard: View {
             HStack {
                 Text(title).font(Fonts.manrope(15, .semibold, relativeTo: .headline))
                 Spacer()
-                Text(Format.time(session.end, in: session.timeZone)).font(Fonts.manrope(16, .bold, relativeTo: .headline)).foregroundStyle(.secondary)
+                Text(Format.time(session.end, in: session.timeZone))
+                    .font(Fonts.manrope(16, .bold, relativeTo: .headline)).foregroundStyle(.secondary)
             }
             Label(L("history_health_mark"), systemImage: "heart.text.square")
                 .font(Fonts.manrope(12, .semibold, relativeTo: .caption))
@@ -91,11 +96,13 @@ struct HealthNightCard: View {
             }
             .font(Fonts.manrope(12, relativeTo: .caption))
             .foregroundStyle(.secondary)
-            Text(healthLive(sourceName: sourceName)).font(Fonts.manrope(11, relativeTo: .caption2)).foregroundStyle(.secondary)
+            Text(healthLive(sourceName: sourceName))
+                .font(Fonts.manrope(11, relativeTo: .caption2)).foregroundStyle(.secondary)
             if session.hasStages {
                 MiniHypnogram(steps: session.steps, totalMinutes: session.end.timeIntervalSince(session.start) / 60)
                     .frame(height: miniHypnogramHeight)
-                Text(sessionStageTotals(session)).font(Fonts.manrope(12, .semibold, relativeTo: .caption)).foregroundStyle(.secondary)
+                Text(sessionStageTotals(session))
+                    .font(Fonts.manrope(12, .semibold, relativeTo: .caption)).foregroundStyle(.secondary)
             }
         }
         .contentShape(Rectangle())

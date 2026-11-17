@@ -32,16 +32,20 @@ struct HypnogramCard: View {
     private var legendItems: [(symbol: AnyView, text: String)] {
         var items: [(symbol: AnyView, text: String)] = []
         if !night.wasExact {
-            items.append((symbol: AnyView(RoundedRectangle(cornerRadius: 2).fill(StageColors.marker(scheme).opacity(0.25)).frame(width: 14, height: 8)),
-                          text: L("chart_window")))
+            let windowSymbol = RoundedRectangle(cornerRadius: 2)
+                .fill(StageColors.marker(scheme).opacity(0.25))
+                .frame(width: 14, height: 8)
+            items.append((symbol: AnyView(windowSymbol), text: L("chart_window")))
         }
-        items.append((symbol: AnyView(Circle().fill(StageColors.marker(scheme)).frame(width: 8, height: 8)), text: Format.time(night.wokeAt)))
+        items.append((symbol: AnyView(Circle().fill(StageColors.marker(scheme)).frame(width: 8, height: 8)),
+                      text: Format.time(night.wokeAt)))
         return items
     }
 
     var body: some View {
         ChartCard(title: L("chart_stages_title"), takeaway: nil, trailing: {
-            Text(longDate(nightDate)).font(Fonts.manrope(12, .semibold, relativeTo: .caption)).foregroundStyle(.secondary)
+            Text(longDate(nightDate))
+                .font(Fonts.manrope(12, .semibold, relativeTo: .caption)).foregroundStyle(.secondary)
         }) {
             StageChart(timeline: timeline, height: chartHeight)
             ChartLegend(items: legendItems)

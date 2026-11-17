@@ -85,9 +85,15 @@ class WatchReportTest {
         val start = Instant.now().minus(Duration.ofDays(6)).toEpochMilli()
         val entries = List(DiagLog.MAX_ENTRIES) { i ->
             val detail = ("$i record ä–ö phase light sleep window ").repeat(10).take(DiagLog.MAX_DETAIL).trim()
-            DiagEntry(Instant.ofEpochMilli(start + i * 60_000L), DiagDevice.WATCH, DiagKind.entries[i % DiagKind.entries.size], detail)
+            DiagEntry(
+                Instant.ofEpochMilli(start + i * 60_000L), DiagDevice.WATCH,
+                DiagKind.entries[i % DiagKind.entries.size], detail,
+            )
         }
-        val status = listOf("version" to "16.2.2 (82)", "next" to "2026-11-12T05:30:00Z – 2026-11-12T06:00:00Z", "battery" to "64", "exact" to "true", "notifications" to "true")
+        val status = listOf(
+            "version" to "16.2.2 (82)", "next" to "2026-11-12T05:30:00Z – 2026-11-12T06:00:00Z", "battery" to "64",
+            "exact" to "true", "notifications" to "true",
+        )
         return DiagReport(status, entries)
     }
 
@@ -109,7 +115,13 @@ class WatchReportTest {
     fun smallReportArrivesAsMessage() = runBlocking {
         val report = DiagReport(listOf("version" to "16.2.2 (83)"), fullReport().entries.take(3))
         val phone = PhoneSide()
-        assertEquals(1, Outbox.sendOnce(phone, DataLayer.CAPABILITY_PHONE, DataLayer.PATH_DIAG_LOG, DiagReports.encode(report).encodeToByteArray()))
+        assertEquals(
+            1,
+            Outbox.sendOnce(
+                phone, DataLayer.CAPABILITY_PHONE, DataLayer.PATH_DIAG_LOG,
+                DiagReports.encode(report).encodeToByteArray(),
+            ),
+        )
         assertEquals(1, phone.messages)
         assertEquals(0, phone.channels)
         assertEquals(report, WatchReport.report.value)
@@ -138,7 +150,11 @@ class WatchReportTest {
         // Keine Uhr antwortet (Wear-Dienste unter Robolectric): nach der Frist `null` und eine Zeile im Protokoll.
         assertNull(WatchReport.fetch(app, timeoutMs = 300))
         val until = System.nanoTime() + Duration.ofSeconds(10).toNanos()
-        while (app.diag.entries().none { !it.at.isBefore(since.minusSeconds(1)) && it.kind == DiagKind.SYNC && it.detail == "watch report missing" }) {
+        while (app.diag.entries().none {
+                !it.at.isBefore(since.minusSeconds(1)) && it.kind == DiagKind.SYNC &&
+                    it.detail == "watch report missing"
+            }
+        ) {
             check(System.nanoTime() < until) { "nicht im Protokoll: ${app.diag.entries().takeLast(5)}" }
             Thread.sleep(5)
         }

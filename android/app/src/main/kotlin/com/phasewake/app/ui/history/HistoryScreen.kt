@@ -97,8 +97,11 @@ fun wakeTimingText(context: Context, minutesBefore: Int, minutesAfter: Int, reas
 
 /** «12 Min vor der Zielzeit · Unruhig – wohl leichter Schlaf · ohne Schlummern» */
 fun nightSummary(context: Context, night: NightRecord): String {
-    val timing = wakeTimingText(context, night.minutesBeforeTarget.toInt(), night.minutesAfterTarget.toInt(), night.reason)
-    val snooze = if (night.snoozes == 0) context.getString(R.string.no_snooze) else context.getString(R.string.snoozed_times, night.snoozes)
+    val timing =
+        wakeTimingText(context, night.minutesBeforeTarget.toInt(), night.minutesAfterTarget.toInt(), night.reason)
+    val snooze = if (night.snoozes == 0) context.getString(R.string.no_snooze) else context.getString(
+        R.string.snoozed_times, night.snoozes,
+    )
     return "$timing · $snooze"
 }
 
@@ -146,14 +149,18 @@ fun HistoryScreen(
     /** Schlafziel in Minuten für den Schlafwert der Nächte. */
     goalMinutes: Int = SleepGoal.DEFAULT_MINUTES,
 ) {
-    val history = remember(items, nights) { items ?: HealthHistory.merge(nights, emptyList(), null, ZoneId.systemDefault()) }
+    val history =
+        remember(items, nights) { items ?: HealthHistory.merge(nights, emptyList(), null, ZoneId.systemDefault()) }
     val latestByDate = remember(nights) {
-        nights.groupBy { SleepNotes.nightDate(it, ZoneId.systemDefault()) }.mapValues { (_, list) -> list.maxBy { it.wokeAt } }
+        nights.groupBy { SleepNotes.nightDate(it, ZoneId.systemDefault()) }
+            .mapValues { (_, list) -> list.maxBy { it.wokeAt } }
     }
     val healthDates = remember(history) { history.filter { it.kind == HistoryKind.HEALTH }.map { it.date }.toSet() }
     // Geräusche ohne Nacht (z. B. Uhr nicht getragen, keine Gesundheitsdaten): eigene Karte, nach Zeit zwischen die
     // Nächte.
-    val soundsOnly = remember(soundClips, latestByDate, healthDates) { SoundEvents.nightsWithoutRecord(soundClips, latestByDate.keys + healthDates) }
+    val soundsOnly = remember(soundClips, latestByDate, healthDates) {
+        SoundEvents.nightsWithoutRecord(soundClips, latestByDate.keys + healthDates)
+    }
     val entries = remember(history, soundsOnly, recordings) {
         val nightly = buildList<HistoryEntry> {
             val pending = ArrayDeque(soundsOnly.map { HistoryEntry.Sounds(it.first, it.second) })
@@ -188,31 +195,44 @@ fun HistoryScreen(
         }
         // Diagramme zuoberst, auch ohne Uhr-Nächte (Schlaf aus der Gesundheits-App).
         // Blase in einem Diagramm antippen: die Nacht dieses Nachtdatums, falls sie im Verlauf steht.
-        val opener: (LocalDate) -> (() -> Unit)? = { date -> HealthHistory.itemFor(history, date)?.let { item -> { onOpenNight(item.key) } } }
+        val opener: (LocalDate) -> (() -> Unit)? =
+            { date -> HealthHistory.itemFor(history, date)?.let { item -> { onOpenNight(item.key) } } }
         // Oben die eine Auswahl des Zeitraums, darunter die Übersicht und die Diagramme zum Blättern.
         charts?.takeIf { it.hasPeriods }?.let { item(key = "period") { OverviewSwitch(unit, { unit = it }) } }
         charts?.overview?.takeIf { it.isNotEmpty() }?.let { item(key = "overview") { OverviewCard(it, unit, opener) } }
-        charts?.takeIf { !it.isEmpty }?.let { item(key = "charts") { HistoryChartsSection(it, customNotes, opener = opener, nights = periodNights(unit)) } }
+        charts?.takeIf { !it.isEmpty }?.let {
+            item(key = "charts") { HistoryChartsSection(it, customNotes, opener = opener, nights = periodNights(unit)) }
+        }
         if (history.isEmpty() && recordings.isEmpty()) {
             item(key = "empty") { HistoryEmptyCard(healthConnected, canConnectHealth, onConnectHealth) }
             soundsOnly.forEach { (night, last) ->
-                item(key = "sounds@$night") { SoundsOnlyCard(HistoryEntry.Sounds(night, last), soundClips, soundFile, onDeleteClip, onDeleteNightClips) }
+                item(key = "sounds@$night") {
+                    SoundsOnlyCard(
+                        HistoryEntry.Sounds(night, last), soundClips, soundFile, onDeleteClip, onDeleteNightClips,
+                    )
+                }
             }
             return@LazyColumn
         }
         if (nights.isNotEmpty()) item(key = "stats") { Stats(nights) }
         weekly?.let { item(key = "weekly") { WeeklyCard(it, customNotes, weeklyDeep) } }
-        trends?.let { item(key = "trends") { TrendsCard(it, healthConnected, onConnectHealth, goalWeek, habits, charts?.covered.orEmpty(), findings) } }
+        trends?.let { item(key = "trends") {
+            TrendsCard(it, healthConnected, onConnectHealth, goalWeek, habits, charts?.covered.orEmpty(), findings)
+        } }
         noteEffects?.let { item(key = "effects") { NoteEffectsCard(it, customNotes) } }
         items(entries, key = { it.key }) { entry ->
             when (entry) {
-                is HistoryEntry.Sounds -> SoundsOnlyCard(entry, soundClips, soundFile, onDeleteClip, onDeleteNightClips, Modifier.animateItem())
+                is HistoryEntry.Sounds -> SoundsOnlyCard(
+                    entry, soundClips, soundFile, onDeleteClip, onDeleteNightClips, Modifier.animateItem(),
+                )
                 is HistoryEntry.Recording -> RecordingCard(entry.recording, Modifier.animateItem())
                 is HistoryEntry.Health -> {
                     val date = entry.item.date
                     HealthNightCard(
                         entry.item.session ?: return@items,
-                        score = remember(entry.item, recordings, goalMinutes) { nightScore(nightView(entry.item, emptyList()), recordings, goalMinutes)?.result },
+                        score = remember(entry.item, recordings, goalMinutes) {
+                            nightScore(nightView(entry.item, emptyList()), recordings, goalMinutes)?.result
+                        },
                         feeling = healthFeelings[date],
                         notes = notes[date].orEmpty(),
                         customNotes = customNotes,
@@ -229,7 +249,8 @@ fun HistoryScreen(
                         night, loadStages, Modifier.animateItem(), notes[date].orEmpty(), customNotes,
                         onToggleNote = { onToggleNote(date, it) },
                         // Mehrere Nächte am selben Nachtdatum: die Geräusche nur bei der zuletzt geweckten.
-                        clips = if (latestByDate[date] === night) SoundEvents.forNight(soundClips, date) else emptyList(),
+                        clips =
+                            if (latestByDate[date] === night) SoundEvents.forNight(soundClips, date) else emptyList(),
                         onOpen = { onOpenNight(entry.item.key) },
                         recordings = recordings,
                         goalMinutes = goalMinutes,
@@ -262,7 +283,10 @@ private fun StatTile(text: String, modifier: Modifier) {
         elevation = skyCardLift(),
         modifier = modifier,
     ) {
-        Text(text, style = MaterialTheme.typography.titleMedium, modifier = Modifier.background(tileTint(MaterialTheme.colorScheme.primary)).padding(16.dp))
+        Text(
+            text, style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.background(tileTint(MaterialTheme.colorScheme.primary)).padding(16.dp),
+        )
     }
 }
 
@@ -284,22 +308,30 @@ private fun NightCard(
     goalMinutes: Int,
 ) {
     val context = LocalContext.current
-    val stages by produceState(emptyList<StageSpan>(), night, loadStages) { value = loadStages?.invoke(night).orEmpty() }
+    val stages by produceState(emptyList<StageSpan>(), night, loadStages) {
+        value = loadStages?.invoke(night).orEmpty()
+    }
     val zone = ZoneId.systemDefault()
     val date = Format.digits(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)).format(night.wokeAt.atZone(zone))
-    val view = remember(night, stages) { nightView(HistoryItem(HistoryKind.PHASE_WAKE, SleepNotes.nightDate(night, zone), night = night), stages) }
+    val view = remember(night, stages) {
+        nightView(HistoryItem(HistoryKind.PHASE_WAKE, SleepNotes.nightDate(night, zone), night = night), stages)
+    }
     val score = remember(view, recordings, goalMinutes) { nightScore(view, recordings, goalMinutes)?.result }
     Card(
         shape = MaterialTheme.shapes.medium,
         colors = skyCardColors(),
         border = skyCardEdge(),
         elevation = skyCardLift(),
-        modifier = modifier.fillMaxWidth().opensDetail(MaterialTheme.shapes.medium, stringResource(R.string.night_open), onOpen),
+        modifier = modifier.fillMaxWidth()
+            .opensDetail(MaterialTheme.shapes.medium, stringResource(R.string.night_open), onOpen),
     ) {
         Column(Modifier.padding(16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(date, style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
-                Text(Format.time(night.wokeAt, zone), style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary)
+                Text(
+                    Format.time(night.wokeAt, zone), style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.primary,
+                )
             }
             score?.let { ScoreLine(it) }
             val model = view.hypno
@@ -319,7 +351,10 @@ private fun NightCard(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 8.dp),
             )
-            Text(nightDetails(context, night), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(
+                nightDetails(context, night), style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
             soundSummary(context, clips)?.let { CompactLine(it) }
             NightNotes(notes, customNotes, onToggleNote, Modifier.padding(top = 4.dp)) { DetailsLink() }
         }
@@ -349,10 +384,13 @@ private fun SoundsOnlyCard(
     ) {
         Column(Modifier.padding(16.dp)) {
             Text(
-                Format.digits(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)).format(entry.last.atZone(ZoneId.systemDefault())),
+                Format.digits(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
+                    .format(entry.last.atZone(ZoneId.systemDefault())),
                 style = MaterialTheme.typography.titleSmall,
             )
-            SoundClipsSection(SoundEvents.forNight(soundClips, night), soundFile, onDeleteClip, { onDeleteNightClips(night) })
+            SoundClipsSection(
+                SoundEvents.forNight(soundClips, night), soundFile, onDeleteClip, { onDeleteNightClips(night) },
+            )
         }
     }
 }

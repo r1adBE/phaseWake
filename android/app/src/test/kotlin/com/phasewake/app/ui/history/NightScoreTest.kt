@@ -40,11 +40,14 @@ class NightScoreTest {
     private fun at(minute: Long): Instant = t0.plus(Duration.ofMinutes(minute))
 
     /** Fenster 06:30–07:00 (Minute 570–600 ab 21:00 UTC), geweckt Minute 590. */
-    private val night = NightRecord("a", at(570), at(600), at(590), WakeReason.LIGHT_SLEEP, 0, List(40) { Epoch(0.01, 60.0) })
+    private val night =
+        NightRecord("a", at(570), at(600), at(590), WakeReason.LIGHT_SLEEP, 0, List(40) { Epoch(0.01, 60.0) })
     private val item = HistoryItem(HistoryKind.PHASE_WAKE, LocalDate.of(2026, 11, 8), night = night)
 
     private fun recording(asleepAt: Instant? = at(20), from: Long = 0) =
-        NightRecording(at(from), List(1180) { Epoch(0.01, 55.0) }, at(590), RecordEnd.WAKE, bedAt = at(from), asleepAt = asleepAt)
+        NightRecording(
+            at(from), List(1180) { Epoch(0.01, 55.0) }, at(590), RecordEnd.WAKE, bedAt = at(from), asleepAt = asleepAt,
+        )
 
     @Test
     fun stagesComeFirst() {
@@ -65,7 +68,9 @@ class NightScoreTest {
         assertEquals(84, score.result.score)
         assertTrue(score.result.provisional)
         assertTrue(scoreDescription(context, score.result).endsWith(context.getString(R.string.score_provisional)))
-        assertEquals(context.getString(R.string.score_source_recording), scoreSourceText(context, item, score, emptyList()))
+        assertEquals(
+            context.getString(R.string.score_source_recording), scoreSourceText(context, item, score, emptyList()),
+        )
     }
 
     @Test
@@ -101,7 +106,9 @@ class NightScoreTest {
     fun ownNightNamesTheHealthSource() {
         val stages = listOf(StageSpan(at(0), at(590), SleepStage.LIGHT))
         val score = nightScore(nightView(item, stages), emptyList(), 450)!!
-        assertEquals(context.getString(R.string.score_source_health), scoreSourceText(context, item, score, emptyList()))
+        assertEquals(
+            context.getString(R.string.score_source_health), scoreSourceText(context, item, score, emptyList()),
+        )
         val samsung = HealthSession(at(0), at(595), stages, source = "com.sec.android.app.shealth")
         assertEquals(
             context.getString(R.string.score_source, context.getString(R.string.health_samsung)),

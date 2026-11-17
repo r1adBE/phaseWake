@@ -87,7 +87,8 @@ data class Hypnogram(
     val totalMinutes: Double get() = Duration.between(start, end).toMillis() / 60_000.0
 
     /** Minuten je Phase (ohne [SleepStage.UNKNOWN]), ganze Minuten abgerundet. */
-    fun minutesOf(stage: SleepStage): Long = steps.filter { it.stage == stage }.sumOf { it.toMinute - it.fromMinute }.toLong()
+    fun minutesOf(stage: SleepStage): Long =
+        steps.filter { it.stage == stage }.sumOf { it.toMinute - it.fromMinute }.toLong()
 }
 
 /** Befinden eines Nachtdatums (1–5 oder `null`) und die Notizen dieser Nacht (Kennungen). */
@@ -148,7 +149,8 @@ object ChartData {
         values.subList(maxOf(0, i - SHORT_NIGHTS + 1), i + 1).filterNotNull().takeIf { it.isNotEmpty() }?.average()
     }
 
-    private fun range(last: LocalDate, nights: Int): List<LocalDate> = (nights - 1 downTo 0).map { last.minusDays(it.toLong()) }
+    private fun range(last: LocalDate, nights: Int): List<LocalDate> =
+        (nights - 1 downTo 0).map { last.minusDays(it.toLong()) }
 
     /**
      * Schlaf-Streifen der [nights] Nachtdaten bis [lastDate]. Je Nachtdatum die längste Nacht der
@@ -167,7 +169,8 @@ object ChartData {
         nights: Int = NIGHTS,
         latencyMinutes: Int? = null,
     ): SleepBars? {
-        val longest = sleeps.groupBy { SleepNotes.nightDate(it, zone) }.mapValues { (_, list) -> list.maxBy { it.asleepMinutes } }
+        val longest =
+            sleeps.groupBy { SleepNotes.nightDate(it, zone) }.mapValues { (_, list) -> list.maxBy { it.asleepMinutes } }
         val last = lastDate(longest.keys, today)
         val bars = range(last, nights).map { date ->
             val sleep = longest[date] ?: return@map SleepBar(date, null, null)
@@ -178,7 +181,10 @@ object ChartData {
             SleepBar(date, start, if (end <= start) end + 24 * 60 else end)
         }
         if (bars.none { it.hasData }) return null
-        val bedtime = nextTarget?.let { Regularity.minutesFromNoon(Bedtime.bedtime(it, goalMinutes, latencyMinutes), zone).toInt() }
+        val bedtime =
+            nextTarget?.let {
+                Regularity.minutesFromNoon(Bedtime.bedtime(it, goalMinutes, latencyMinutes), zone).toInt()
+            }
         val starts = bars.mapNotNull { it.startMinute } + listOfNotNull(bedtime)
         val ends = bars.mapNotNull { it.endMinute } + listOfNotNull(bedtime)
         val axisStart = minOf(AXIS_START, starts.min() / 60 * 60)
@@ -211,7 +217,11 @@ object ChartData {
         }
         // «Genau» und kurze Nächte durften nicht früher wecken: nicht im Durchschnitt.
         val counted = points.filter { it.reason.earlyAllowed }
-        val average = if (counted.isEmpty()) 0 else Math.round(counted.sumOf { it.minutesBefore }.toDouble() / counted.size).toInt()
+        val average = if (counted.isEmpty()) {
+            0
+        } else {
+            Math.round(counted.sumOf { it.minutesBefore }.toDouble() / counted.size).toInt()
+        }
         return WakeMoments(points, maxOf(1, points.maxOf { it.windowMinutes }), average)
     }
 
@@ -224,11 +234,17 @@ object ChartData {
         val groups = mutableListOf<MutableList<StageSpan>>()
         for (span in stages.sortedBy { it.start }) {
             val group = groups.lastOrNull()
-            if (group != null && Duration.between(group.maxOf { it.end }, span.start) <= SleepSummary.NEW_NIGHT_GAP) group += span
-            else groups += mutableListOf(span)
+            if (group != null && Duration.between(group.maxOf { it.end }, span.start) <= SleepSummary.NEW_NIGHT_GAP) {
+                group += span
+            } else {
+                groups += mutableListOf(span)
+            }
         }
         val until = maxOf(night.wokeAt, night.target)
-        val group = groups.lastOrNull { g -> g.minOf { it.start } <= until && g.maxOf { it.end } >= night.windowStart } ?: return null
+        val group =
+            groups.lastOrNull { g ->
+                g.minOf { it.start } <= until && g.maxOf { it.end } >= night.windowStart
+            } ?: return null
         val known = group.filter { level(it.stage) != null }
         if (known.isEmpty()) return null
         val start = minOf(group.minOf { it.start }, night.windowStart)

@@ -58,7 +58,8 @@ public struct NightRecording: Equatable, Sendable {
     private static let onsetPrefix = "onset="
 
     /// Aufzeichnung wie angegeben.
-    public init(start: Date, epochs: [Epoch], end: Date? = nil, endReason: RecordEnd? = nil, bedAt: Date? = nil, asleepAt: Date? = nil) {
+    public init(start: Date, epochs: [Epoch], end: Date? = nil, endReason: RecordEnd? = nil, bedAt: Date? = nil,
+                asleepAt: Date? = nil) {
         self.start = start
         self.epochs = epochs
         self.end = end
@@ -72,7 +73,8 @@ public struct NightRecording: Equatable, Sendable {
 
     /// Dauer: bis zum Ende, laufend bis zur letzten Epoche.
     public var duration: TimeInterval {
-        (end ?? start.addingTimeInterval(TimeInterval(epochs.count * DetectorConfig.epochSeconds))).timeIntervalSince(start)
+        (end ?? start.addingTimeInterval(TimeInterval(epochs.count * DetectorConfig.epochSeconds)))
+            .timeIntervalSince(start)
     }
 
     /// Ende, laufend die letzte Epoche (für den Vergleich mit einer Nacht im Verlauf).
@@ -154,7 +156,8 @@ public struct NightRecording: Equatable, Sendable {
         for line in lines.dropFirst(2) {
             if line.hasPrefix(onsetPrefix) {
                 let fields = line.dropFirst(onsetPrefix.count).split(separator: ",", omittingEmptySubsequences: false)
-                if fields.count >= 2, let b = TimeBounds.checked(Int64(fields[0])), let a = TimeBounds.checked(Int64(fields[1])) {
+                if fields.count >= 2, let b = TimeBounds.checked(Int64(fields[0])),
+                   let a = TimeBounds.checked(Int64(fields[1])) {
                     bed = date(b)
                     asleep = date(a)
                 }
@@ -169,7 +172,8 @@ public struct NightRecording: Equatable, Sendable {
             }
             if let epoch = epoch(line) { epochs.append(epoch) }
         }
-        return NightRecording(start: date(start), epochs: epochs, end: end, endReason: reason, bedAt: bed, asleepAt: asleep)
+        return NightRecording(start: date(start), epochs: epochs, end: end, endReason: reason, bedAt: bed,
+                              asleepAt: asleep)
     }
 
     private static func epoch(_ line: String) -> Epoch? {

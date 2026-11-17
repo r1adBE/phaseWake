@@ -299,7 +299,9 @@ fun PhaseWakeTheme(mode: ThemeMode, eveningDark: Boolean = false, content: @Comp
             }
         }
     }
-    androidx.compose.runtime.CompositionLocalProvider(LocalBrand provides (if (dark) DarkBrand else LightBrand), LocalDark provides dark) {
+    androidx.compose.runtime.CompositionLocalProvider(
+        LocalBrand provides (if (dark) DarkBrand else LightBrand), LocalDark provides dark,
+    ) {
         MaterialTheme(colorScheme = scheme, typography = AppTypography, shapes = AppShapes, content = content)
     }
 }

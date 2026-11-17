@@ -51,7 +51,9 @@ class DetectionLimitsTest {
     fun exactWindowIsZeroAndSleepAtLeastSixtyMinutes() {
         assertTrue(AlarmSpec(id = "a", hour = 7, minute = 0, windowMinutes = 0).isExact)
         assertFalse(AlarmSpec(id = "a", hour = 7, minute = 0, windowMinutes = 10).isExact)
-        assertFailsWith<IllegalArgumentException> { AlarmSpec(id = "a", hour = 7, minute = 0, sleepDurationMinutes = 59) }
+        assertFailsWith<IllegalArgumentException> {
+            AlarmSpec(id = "a", hour = 7, minute = 0, sleepDurationMinutes = 59)
+        }
         assertEquals(60, AlarmSpec(id = "a", hour = 7, minute = 0, sleepDurationMinutes = 60).sleepDurationMinutes)
     }
 

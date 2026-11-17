@@ -116,27 +116,8 @@ extension BackupAlarm {
         await cancelLegacyBackups()
         cancelOrphans()
         let pending = await pendingState()
-        var unused = plannedBackups
-        var result: [PlannedBackup] = []
-        var matched: [PlannedBackup] = []
-        var missing: [BackupSlot] = []
-        for slot in wanted {
-            if let i = unused.firstIndex(where: { $0.slot == slot && pending.present.contains($0.id) }) {
-                let kept = unused.remove(at: i)
-                matched.append(kept.slot.zone == nil ? PlannedBackup(id: kept.id, slot: kept.slot.with(zone: slot.zone)) : kept)
-            } else {
-                missing.append(slot)
-            }
-        }
-        for entry in unused {
-            if entry.slot.fireAt > now {
-                cancelAlarm(entry.id)
-            } else if now.timeIntervalSince(entry.slot.fireAt) < Self.ringMemory {
-                result.append(entry)
-            }
-        }
-        result += matched
-        plannedBackups = result
+        let (matched, missing) = match(wanted, present: pending.present, now: now)
+        var result = plannedBackups
         var budget = NotificationBudget(otherPending: pending.otherNotes)
         var notes = (slots: 0, chained: 0, dropped: 0)
         var order: [(slot: BackupSlot, kept: PlannedBackup?)] = matched.map { (slot: $0.slot, kept: Optional($0)) }
@@ -149,7 +130,8 @@ extension BackupAlarm {
                 guard let have = pending.notes[kept.id] else { continue }
                 count = budget.grant(slot.fireAt, now: now, have: have.count)
                 if count > have.count {
-                    count = await scheduleNotification(id: kept.id, at: slot.fireAt, tone: WakeTone(rawValue: slot.sound),
+                    count = await scheduleNotification(id: kept.id, at: slot.fireAt,
+                                                       tone: WakeTone(rawValue: slot.sound),
                                                        count: count, skip: have)
                 }
             } else {
@@ -157,7 +139,8 @@ extension BackupAlarm {
                 // Erst merken, dann stellen: Endet die App dazwischen, geht die Kennung nicht verloren.
                 result.append(PlannedBackup(id: id, slot: slot))
                 plannedBackups = result
-                let placed = await schedule(id: id, at: slot.fireAt, snoozesLeft: Snooze.maxCount, tone: WakeTone(rawValue: slot.sound),
+                let placed = await schedule(id: id, at: slot.fireAt, snoozesLeft: Snooze.maxCount,
+                                            tone: WakeTone(rawValue: slot.sound),
                                             chain: budget.grant(slot.fireAt, now: now))
                 guard case .notifications(let placedCount) = placed else { continue }
                 count = placedCount
@@ -180,6 +163,36 @@ extension BackupAlarm {
                              + "\(notes.dropped) without room, pending \(total)")
     }
 
+    /// Erster Teil von `apply`: Gleiche, noch vorhandene Sicherungen bleiben (`matched`, eine ältere ohne Zone bekommt
+    /// die von `wanted`), fehlende kommen in `missing`. Überholte, noch nicht geklingelte werden verworfen; gemerkt
+    /// bleiben die geklingelten der letzten Stunde und `matched`.
+    private func match(_ wanted: [BackupSlot], present: Set<UUID>,
+                       now: Date) -> (matched: [PlannedBackup], missing: [BackupSlot]) {
+        var unused = plannedBackups
+        var result: [PlannedBackup] = []
+        var matched: [PlannedBackup] = []
+        var missing: [BackupSlot] = []
+        for slot in wanted {
+            if let i = unused.firstIndex(where: { $0.slot == slot && present.contains($0.id) }) {
+                let kept = unused.remove(at: i)
+                matched.append(kept.slot.zone == nil
+                               ? PlannedBackup(id: kept.id, slot: kept.slot.with(zone: slot.zone)) : kept)
+            } else {
+                missing.append(slot)
+            }
+        }
+        for entry in unused {
+            if entry.slot.fireAt > now {
+                cancelAlarm(entry.id)
+            } else if now.timeIntervalSince(entry.slot.fireAt) < Self.ringMemory {
+                result.append(entry)
+            }
+        }
+        result += matched
+        plannedBackups = result
+        return (matched, missing)
+    }
+
     // MARK: Nacht-Check
 
     /// So knapp darf die Sicherung werden, bevor der Nacht-Check warnt.
@@ -195,12 +208,16 @@ extension BackupAlarm {
         let holidays = host.holidayDates
         let suppressed = suppressedUntil()
         func hasPlan(_ specs: [AlarmSpec], after from: Date) -> Bool {
-            AlarmSchedule.earliestPlan(specs, now: from, doneUntil: suppressed, calendar: .gregorianLocal, holidays: holidays) != nil
+            AlarmSchedule.earliestPlan(specs, now: from, doneUntil: suppressed, calendar: .gregorianLocal,
+                                       holidays: holidays) != nil
         }
         let planned = plannedBackups
         guard let last = planned.filter({ $0.slot.fireAt > now }).max(by: { $0.slot.fireAt < $1.slot.fireAt }) else {
             // Ein einmaliger Wecker, dessen Sicherung schon geklingelt hat, schaltet sich gleich aus: zählt nicht.
-            return hasPlan(eligible.filter { spec in !spec.isOneShot || !planned.contains { $0.slot.alarmId == spec.id } }, after: now)
+            let remaining = eligible.filter { spec in
+                !spec.isOneShot || !planned.contains { $0.slot.alarmId == spec.id }
+            }
+            return hasPlan(remaining, after: now)
         }
         guard last.slot.fireAt.timeIntervalSince(now) < Self.shortHorizon else { return false }
         return hasPlan(eligible.filter { !$0.isOneShot }, after: last.slot.target)
@@ -261,7 +278,8 @@ extension BackupAlarm {
     /// Beim Start der App (auch im Hintergrund): Seit dem letzten Planen die Zeitzone gewechselt (Reise, App nicht
     /// offen), dann neu planen. AlarmKit-Alarme stehen auf festen Zeitpunkten und folgen der Ortszeit sonst nicht.
     func replanIfZoneChanged(_ alarms: [AlarmSpec]) async {
-        guard let planned = settings.string(forKey: Self.zoneKey), planned != TimeZone.current.identifier else { return }
+        guard let planned = settings.string(forKey: Self.zoneKey),
+              planned != TimeZone.current.identifier else { return }
         DiagStore.shared.log(.scheduled, "time zone changed since planning")
         await reschedule(alarms)
     }

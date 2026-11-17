@@ -13,8 +13,9 @@ extension SmartAlarm {
         guard let nightPlan, let firstRing else { return }
         // Einschlafzeit samt Beginn mit (Felder 11 und 12), damit sie nach einem Neustart mit der Nacht ans iPhone
         // geht.
-        let night = NightRecord(alarmId: nightPlan.alarmId, windowStart: nightPlan.windowStart, target: nightPlan.target,
-                                wokeAt: firstRing, reason: reason, snoozes: snoozes, epochs: epochs,
+        let night = NightRecord(alarmId: nightPlan.alarmId, windowStart: nightPlan.windowStart,
+                                target: nightPlan.target, wokeAt: firstRing, reason: reason, snoozes: snoozes,
+                                epochs: epochs,
                                 bedAt: asleepAt == nil ? nil : onsetBedAt, asleepAt: asleepAt)
         var state: [String: Any] = ["night": Codec.encodeNight(night)]
         if case .snoozed(let until, _) = phase { state["snoozedUntil"] = until.timeIntervalSince1970 }
@@ -69,8 +70,8 @@ extension SmartAlarm {
         // Nach einem Neustart der App gibt es keine Sitzung mehr, also auch keine Vibration: abschliessen, ausser die
         // Schlummer-Sitzung startet noch. Älter als `ringStateMaxAge`: ohne Wecken (früher verworfen, mit
         // Nacht und Epochen). Erst nach dem Aufbau von `shared` (plant über WatchModel neu).
-        switch NightRules.restored(target: night.target, snoozedUntil: snoozed, now: Date(), staleAfter: Self.ringStateMaxAge,
-                                   tolerance: Self.startTolerance) {
+        switch NightRules.restored(target: night.target, snoozedUntil: snoozed, now: Date(),
+                                   staleAfter: Self.ringStateMaxAge, tolerance: Self.startTolerance) {
         case .resume: break
         case .finishWaking: Task { @MainActor in self.finishInterrupted() }
         case .finishSilently: Task { @MainActor in self.finishSilently() }

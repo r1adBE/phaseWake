@@ -13,7 +13,13 @@ class SleepOverviewTest {
     private val zone: ZoneId = ZoneId.of("Europe/Zurich")
 
     /** Schlaf am Abend von [night] (Nachtdatum) um [bedHour]:[bedMinute] bis am Morgen danach um 06:30. */
-    private fun sleep(night: LocalDate, bedHour: Int, bedMinute: Int, wakeHour: Int = 6, wakeMinute: Int = 30): SleepSummary {
+    private fun sleep(
+        night: LocalDate,
+        bedHour: Int,
+        bedMinute: Int,
+        wakeHour: Int = 6,
+        wakeMinute: Int = 30,
+    ): SleepSummary {
         val start = night.atTime(bedHour, bedMinute).atZone(zone).toInstant()
         val end = night.plusDays(1).atTime(wakeHour, wakeMinute).atZone(zone).toInstant()
         return SleepSummary(start, end, java.time.Duration.between(start, end).toMinutes())
@@ -47,7 +53,10 @@ class SleepOverviewTest {
     @Test
     fun averageTimesDoNotJumpAtNoon() {
         // Aufwachen 11:56 und 12:50 → Ø 12:23 (23 Min ab Mittag), nicht 00:23 (743).
-        val late = listOf(sleep(today, 23, 0, wakeHour = 11, wakeMinute = 56), sleep(today.minusDays(1), 23, 0, wakeHour = 12, wakeMinute = 50))
+        val late = listOf(
+            sleep(today, 23, 0, wakeHour = 11, wakeMinute = 56),
+            sleep(today.minusDays(1), 23, 0, wakeHour = 12, wakeMinute = 50),
+        )
         val o = SleepOverviews.of(late, zone, today, 450, OverviewUnit.DAYS)!!
         assertEquals(23, o.wakeMinute)
         assertEquals(11 * 60, o.bedtimeMinute)
@@ -66,7 +75,10 @@ class SleepOverviewTest {
         assertEquals(LocalDate.of(2026, 11, 8) to LocalDate.of(2026, 11, 14), ranges.last())
         assertEquals(LocalDate.of(2026, 11, 1) to LocalDate.of(2026, 11, 7), ranges[6])
         // Woche ab Sonntag: Morgen 9.11. gehört zur Woche ab 8.11.
-        assertEquals(LocalDate.of(2026, 11, 7) to LocalDate.of(2026, 11, 13), SleepOverviews.ranges(today, OverviewUnit.WEEKS, DayOfWeek.SUNDAY).last())
+        assertEquals(
+            LocalDate.of(2026, 11, 7) to LocalDate.of(2026, 11, 13),
+            SleepOverviews.ranges(today, OverviewUnit.WEEKS, DayOfWeek.SUNDAY).last(),
+        )
     }
 
     @Test
@@ -137,7 +149,10 @@ class SleepOverviewTest {
         // Quelle ohne Phasendetail (nur «wach» bekannt) gibt eine neutrale Säule, keine Säule «ganz wach».
         val night = sleep(today, 23, 0)
         val t = night.start
-        val stages = listOf(StageSpan(t, t.plusSeconds(200 * 60), SleepStage.UNKNOWN), StageSpan(t.plusSeconds(200 * 60), t.plusSeconds(230 * 60), SleepStage.AWAKE))
+        val stages = listOf(
+            StageSpan(t, t.plusSeconds(200 * 60), SleepStage.UNKNOWN),
+            StageSpan(t.plusSeconds(200 * 60), t.plusSeconds(230 * 60), SleepStage.AWAKE),
+        )
         assertEquals(emptyMap(), SleepOverviews.stageAverage(listOf(night), stages))
         val withLight = stages + StageSpan(t.plusSeconds(230 * 60), t.plusSeconds(300 * 60), SleepStage.LIGHT)
         assertEquals(70L, SleepOverviews.stageAverage(listOf(night), withLight)[SleepStage.LIGHT])
@@ -155,14 +170,19 @@ class SleepOverviewTest {
             // Ausserhalb der Nacht: zählt nicht.
             StageSpan(t.minusSeconds(3 * 3600), t.minusSeconds(2 * 3600), SleepStage.DEEP),
         )
-        val o = SleepOverviews.of(listOf(other, night), zone, today, 450, OverviewUnit.WEEKS, DayOfWeek.MONDAY, stages)!!
+        val o =
+            SleepOverviews.of(listOf(other, night), zone, today, 450, OverviewUnit.WEEKS, DayOfWeek.MONDAY, stages)!!
         // Beide Nächte in der Woche ab Montag 9.11. bzw. 2.11.: die heutige allein in der letzten Säule.
         val bar = o.bars.last()
-        assertEquals(mapOf(SleepStage.AWAKE to 0L, SleepStage.REM to 150L, SleepStage.LIGHT to 240L, SleepStage.DEEP to 60L), bar.stageMinutes)
+        assertEquals(
+            mapOf(SleepStage.AWAKE to 0L, SleepStage.REM to 150L, SleepStage.LIGHT to 240L, SleepStage.DEEP to 60L),
+            bar.stageMinutes,
+        )
         assertEquals(emptyMap(), o.bars[6].stageMinutes)
         assertEquals(emptyMap(), SleepOverviews.stageAverage(emptyList(), stages))
         // Monat: beide Nächte in einer Säule, nur eine mit Phasen → die Säule zeigt nur die Dauer (neutral).
-        val month = SleepOverviews.of(listOf(other, night), zone, today, 450, OverviewUnit.MONTHS, DayOfWeek.MONDAY, stages)!!
+        val month =
+            SleepOverviews.of(listOf(other, night), zone, today, 450, OverviewUnit.MONTHS, DayOfWeek.MONDAY, stages)!!
         assertEquals(2, month.bars.last().nights)
         assertEquals(emptyMap(), month.bars.last().stageMinutes)
         // Beide Nächte mit Phasen: Durchschnitt über beide.
@@ -171,8 +191,12 @@ class SleepOverviewTest {
             StageSpan(o2, o2.plusSeconds(90 * 60), SleepStage.DEEP),
             StageSpan(o2.plusSeconds(90 * 60), o2.plusSeconds(450 * 60), SleepStage.LIGHT),
         )
-        val all = SleepOverviews.of(listOf(other, night), zone, today, 450, OverviewUnit.MONTHS, DayOfWeek.MONDAY, both)!!
+        val all =
+            SleepOverviews.of(listOf(other, night), zone, today, 450, OverviewUnit.MONTHS, DayOfWeek.MONDAY, both)!!
         // Tief (60 + 90) / 2 = 75, leicht (240 + 360) / 2 = 300, REM 150 / 2 = 75.
-        assertEquals(mapOf(SleepStage.AWAKE to 0L, SleepStage.REM to 75L, SleepStage.LIGHT to 300L, SleepStage.DEEP to 75L), all.bars.last().stageMinutes)
+        assertEquals(
+            mapOf(SleepStage.AWAKE to 0L, SleepStage.REM to 75L, SleepStage.LIGHT to 300L, SleepStage.DEEP to 75L),
+            all.bars.last().stageMinutes,
+        )
     }
 }

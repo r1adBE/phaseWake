@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 /** Zweitwecker, Schlummer-Sicherung, Weiterleitung der Uhr und Sonnenaufgang ([BackupAlarm.Receiver]). */
 internal fun BroadcastReceiver.onBackupAlarm(context: Context, intent: Intent) {
     val alarmId = intent.getStringExtra(PhoneRingService.EXTRA_ALARM_ID)
-    val target = if (intent.hasExtra(PhoneRingService.EXTRA_TARGET)) intent.getLongExtra(PhoneRingService.EXTRA_TARGET, 0L) else null
+    val target = intent.longExtraOrNull(PhoneRingService.EXTRA_TARGET)
     val done = intent.getIntExtra(PhoneRingService.EXTRA_SNOOZES_DONE, 0)
     // Ob dieses Wecken klingelt (neu oder als Ablösung eines laufenden); nur dann gilt die Nacht als geweckt.
     val rings = when (intent.action) {
@@ -35,7 +35,7 @@ internal fun BroadcastReceiver.onBackupAlarm(context: Context, intent: Intent) {
             started
         }
         ACTION_WATCH_RING -> {
-            val left = if (intent.hasExtra(PhoneRingService.EXTRA_SNOOZES_LEFT)) intent.getIntExtra(PhoneRingService.EXTRA_SNOOZES_LEFT, 0) else null
+            val left = intent.intExtraOrNull(PhoneRingService.EXTRA_SNOOZES_LEFT)
             PhoneRingService.ring(context, alarmId, fromWatch = true, target = target, snoozesLeft = left)
             return
         }
@@ -47,7 +47,9 @@ internal fun BroadcastReceiver.onBackupAlarm(context: Context, intent: Intent) {
         // Ende des Schlummerns am Handy (ohne Zielzeit): der abgelegte Zweitwecker bleibt, wie er ist.
         if (intent.action == ACTION && target == null) return
         // Nach dem Entsperren nachholen: Nacht aussetzen, Einmal-Wecker ausschalten.
-        if (intent.action == ACTION && alarmId != null && target != null && rings) BackupDirectBoot.markRang(context, alarmId, target)
+        if (intent.action == ACTION && alarmId != null && target != null && rings) {
+            BackupDirectBoot.markRang(context, alarmId, target)
+        }
         // Den nächsten abgelegten Zweitwecker stellen (zweiter Wecker am Morgen, nächste Nacht).
         if (intent.action == ACTION) BackupDirectBoot.advance(context, alarmId, target)
         return
@@ -60,7 +62,9 @@ internal fun BroadcastReceiver.onBackupAlarm(context: Context, intent: Intent) {
             com.phasewake.app.transient.Transients.catchUpEnded(app)
             if (intent.action == ACTION_SUNRISE) app.backup.startSunrise(intent)
             // Nur der Zweitwecker selbst trägt die Zielzeit, nicht das Ende des Schlummerns; und nur, wenn er klingelt.
-            if (intent.action == ACTION && target != null && rings) app.backup.backupRang(alarmId, Instant.ofEpochMilli(target))
+            if (intent.action == ACTION && target != null && rings) {
+                app.backup.backupRang(alarmId, Instant.ofEpochMilli(target))
+            }
             if (intent.action == ACTION && !rings) app.diag.log(DiagKind.RING, "phone backup not started")
             // Die Uhr hat diese Nacht nicht beendet: einen Einmal-Wecker schaltet dann das Handy aus.
             if (intent.action == ACTION_SNOOZE_SAFETY && rings) app.backup.disableOneShot(alarmId)
@@ -70,6 +74,12 @@ internal fun BroadcastReceiver.onBackupAlarm(context: Context, intent: Intent) {
         }
     }
 }
+
+/** Wert von [key], oder `null`, wenn er fehlt. */
+private fun Intent.longExtraOrNull(key: String): Long? = if (hasExtra(key)) getLongExtra(key, 0L) else null
+
+/** Wert von [key], oder `null`, wenn er fehlt. */
+private fun Intent.intExtraOrNull(key: String): Int? = if (hasExtra(key)) getIntExtra(key, 0) else null
 
 /** Systemereignisse ([BackupAlarm.SystemReceiver]): neu planen; vor dem ersten Entsperren nur das Abgelegte. */
 internal fun BroadcastReceiver.onBackupSystemEvent(context: Context, intent: Intent) {
@@ -115,7 +125,10 @@ internal suspend fun BackupAlarm.catchUpAfterBoot(current: Instant = now()): Bac
     BackupDirectBoot.remove(context, entry)
     val done = doneUntil()[entry.alarmId]
     if (done != null && !done.isBefore(entry.target)) return null
-    BackupAlarm.setExact(context, current.plus(BackupAlarm.FORWARD_DELAY), showIntent(), catchUpPending(context, entry.alarmId, entry.target))
+    BackupAlarm.setExact(
+        context, current.plus(BackupAlarm.FORWARD_DELAY), showIntent(),
+        catchUpPending(context, entry.alarmId, entry.target),
+    )
     // Diese Nacht gilt ab jetzt als übernommen: Das folgende Planen holt sie nicht ein zweites Mal nach
     // (RingRules.catchUp).
     suppress(mapOf(entry.alarmId to entry.target))
@@ -131,7 +144,9 @@ internal fun catchUpPending(context: Context, alarmId: String, target: Instant):
     val intent = Intent(context, BackupAlarm.Receiver::class.java).setAction(ACTION)
         .putExtra(PhoneRingService.EXTRA_ALARM_ID, alarmId)
         .putExtra(PhoneRingService.EXTRA_TARGET, target.toEpochMilli())
-    return PendingIntent.getBroadcast(context, REQUEST_CATCH_UP, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+    return PendingIntent.getBroadcast(
+        context, REQUEST_CATCH_UP, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+    )
 }
 
 /** Request-Code von [catchUpPending] (0: Zweitwecker, 3: Schlummern am Handy, 4: Weiterleitung, 5: Sicherung). */

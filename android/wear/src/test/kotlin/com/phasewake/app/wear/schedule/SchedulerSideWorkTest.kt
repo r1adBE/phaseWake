@@ -60,7 +60,16 @@ class SchedulerSideWorkTest {
 
     private fun scheduler(publish: suspend () -> Unit): AlarmScheduler {
         val app = context.wearApp
-        return AlarmScheduler(context, app.alarms, app.onsetOverride, app.phaseWakeStore, app.sync, app.holidays, app.transient, statusPublisher = publish)
+        return AlarmScheduler(
+            context,
+            app.alarms,
+            app.onsetOverride,
+            app.phaseWakeStore,
+            app.sync,
+            app.holidays,
+            app.transient,
+            statusPublisher = publish,
+        )
     }
 
     /** Wecker in gut drei Stunden; sein Plan. */
@@ -92,7 +101,11 @@ class SchedulerSideWorkTest {
         // Reihenfolge festhalten – beim Start der ersten Nebenarbeit mit den Wear-Diensten stehen die Alarme.
         val plan = alarm()
         var atSideWork: List<Long>? = null
-        runBlocking { withTimeout(30_000L) { scheduler { atSideWork = alarms.scheduledAlarms.map { it.triggerAtMs } }.reschedule() } }
+        runBlocking {
+            withTimeout(30_000L) {
+                scheduler { atSideWork = alarms.scheduledAlarms.map { it.triggerAtMs } }.reschedule()
+            }
+        }
         val seen = assertNotNull(atSideWork, "Nebenarbeit lief")
         assertTrue(plan.target.toEpochMilli() in seen, "Zielzeit vor der Nebenarbeit gestellt: $seen")
         assertTrue(plan.windowStart.toEpochMilli() in seen, "Fensterbeginn vor der Nebenarbeit gestellt: $seen")

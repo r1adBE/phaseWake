@@ -33,7 +33,10 @@ object BuildNumber {
 
     /** Eigene Versionsbezeichnung mit Nummer, z. B. «16.2.2 (96)». */
     fun ownLabel(context: Context, watch: Boolean): String {
-        val version = runCatching { context.packageManager.getPackageInfo(context.packageName, 0).versionName }.getOrNull().orEmpty()
+        val version =
+            runCatching {
+                context.packageManager.getPackageInfo(context.packageName, 0).versionName
+            }.getOrNull().orEmpty()
         return label(version, own(context, watch))
     }
 }

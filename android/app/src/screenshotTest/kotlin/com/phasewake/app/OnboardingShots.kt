@@ -31,7 +31,11 @@ private fun model(check: NightCheckState?) = OnboardingModel(
  * Seite [page] (0 = Willkommen … 6 = Fertig) der Einrichtung; Vorgabe: Mitteilungen fehlen noch, Vollbild ist erlaubt.
  */
 @Composable
-private fun Onboarding(mode: ThemeMode, page: Int, check: NightCheckState? = NightCheckState(listOf(Check.NOTIFICATIONS))) = Themed(mode) {
+private fun Onboarding(
+    mode: ThemeMode,
+    page: Int,
+    check: NightCheckState? = NightCheckState(listOf(Check.NOTIFICATIONS)),
+) = Themed(mode) {
     OnboardingContent(page, onPage = {}, model(check), onDone = {})
 }
 

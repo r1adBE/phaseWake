@@ -113,7 +113,11 @@ class NextAlarmWidget : AppWidgetProvider() {
         fun saveAsleep(context: Context, night: LocalDate, minutes: Long?) {
             val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
             val text = night.toString()
-            if (prefs.getString(KEY_ASLEEP_NIGHT, null) == text && prefs.getLong(KEY_ASLEEP_MINUTES, -1L) == (minutes ?: -1L)) return
+            if (prefs.getString(KEY_ASLEEP_NIGHT, null) == text &&
+                prefs.getLong(KEY_ASLEEP_MINUTES, -1L) == (minutes ?: -1L)
+            ) {
+                return
+            }
             prefs.edit {
                 putString(KEY_ASLEEP_NIGHT, text)
                 if (minutes == null) remove(KEY_ASLEEP_MINUTES) else putLong(KEY_ASLEEP_MINUTES, minutes)
@@ -170,14 +174,18 @@ class NextAlarmWidget : AppWidgetProvider() {
             val app = context.phoneApp
             val alarms = app.alarms.current().alarms
             // Ohne die schon erledigte Nacht (früh geweckt): sonst stünde bis zur Zielzeit noch der heutige Wecker da.
-            val plan = AlarmSchedule.earliestPlan(alarms, now, zone, app.holidays.store.current(), app.backup.doneUntil())
+            val plan =
+                AlarmSchedule.earliestPlan(alarms, now, zone, app.holidays.store.current(), app.backup.doneUntil())
             if (plan == null) {
                 views.setTextViewText(R.id.widget_window, context.getString(R.string.widget_no_alarm))
                 views.setViewVisibility(R.id.widget_day, View.GONE)
             } else {
                 views.setTextViewText(R.id.widget_window, windowText(context, plan, zone))
                 val label = alarms.firstOrNull { it.id == plan.alarmId }?.label.orEmpty()
-                views.setTextViewText(R.id.widget_day, listOf(day(context, plan.target, zone), label).filter { it.isNotBlank() }.joinToString(" · "))
+                views.setTextViewText(
+                    R.id.widget_day,
+                    listOf(day(context, plan.target, zone), label).filter { it.isNotBlank() }.joinToString(" · "),
+                )
                 views.setViewVisibility(R.id.widget_day, View.VISIBLE)
             }
             val check = checkText(context)
@@ -193,11 +201,14 @@ class NextAlarmWidget : AppWidgetProvider() {
         private fun showNight(context: Context, views: RemoteViews, night: NightRecord, asleep: Long?) {
             views.setTextViewText(R.id.widget_title, context.getString(R.string.home_last_night))
             views.setTextViewText(R.id.widget_window, context.getString(R.string.night_woke, Format.time(night.wokeAt)))
-            val timing = wakeTimingText(context, night.minutesBeforeTarget.toInt(), night.minutesAfterTarget.toInt(), night.reason)
+            val timing = wakeTimingText(
+                context, night.minutesBeforeTarget.toInt(), night.minutesAfterTarget.toInt(), night.reason,
+            )
             views.setTextViewText(R.id.widget_day, timing)
             views.setViewVisibility(R.id.widget_day, View.VISIBLE)
             val feeling = night.feeling?.let { context.getString(R.string.feeling_value, feelingName(context, it)) }
-            val line = listOfNotNull(asleep?.let { Format.duration(context, Duration.ofMinutes(it)) }, feeling).joinToString(" · ")
+            val line = listOfNotNull(asleep?.let { Format.duration(context, Duration.ofMinutes(it)) }, feeling)
+                .joinToString(" · ")
             views.setTextViewText(R.id.widget_check, line)
             views.setViewVisibility(R.id.widget_check, if (line.isEmpty()) View.GONE else View.VISIBLE)
         }
@@ -207,10 +218,15 @@ class NextAlarmWidget : AppWidgetProvider() {
          * mit kurzem Fenster (ohne Berechtigung für genaue Wecker); ein neuer Auftrag ersetzt den alten.
          */
         private fun scheduleNoon(context: Context, night: NightRecord, zone: ZoneId) {
-            val noon = night.wokeAt.atZone(zone).toLocalDate().atTime(MORNING_FIRST_UNTIL_HOUR, 0).atZone(zone).toInstant()
-            val intent = Intent(context, NextAlarmWidget::class.java).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE)
-            val pending = PendingIntent.getBroadcast(context, REQUEST_NOON, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
-            context.getSystemService(AlarmManager::class.java)?.setWindow(AlarmManager.RTC, noon.toEpochMilli(), NOON_WINDOW_MS, pending)
+            val noon =
+                night.wokeAt.atZone(zone).toLocalDate().atTime(MORNING_FIRST_UNTIL_HOUR, 0).atZone(zone).toInstant()
+            val intent =
+                Intent(context, NextAlarmWidget::class.java).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE)
+            val pending = PendingIntent.getBroadcast(
+                context, REQUEST_NOON, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+            )
+            context.getSystemService(AlarmManager::class.java)
+                ?.setWindow(AlarmManager.RTC, noon.toEpochMilli(), NOON_WINDOW_MS, pending)
         }
 
         /** Weckfenster «6:30 – 7:00», bei «Genau» «Genau um 7:00» (auch für die Mitteilung [NextAlarmNotice]). */
@@ -222,9 +238,11 @@ class NextAlarmWidget : AppWidgetProvider() {
 
         /** «✓ Bereit für die Nacht» oder «! » mit der ersten offenen Prüfung; `null`, solange kein Check lief. */
         internal fun checkText(context: Context): String? {
-            val stored = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString(KEY_CHECK, null) ?: return null
+            val stored =
+                context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString(KEY_CHECK, null) ?: return null
             val first = stored.split(",").firstNotNullOfOrNull { name -> Check.entries.firstOrNull { it.name == name } }
-            return if (first == null) "✓ " + context.getString(R.string.check_ready) else "! " + context.getString(first.problemTitle)
+            return if (first == null) "✓ " +
+                context.getString(R.string.check_ready) else "! " + context.getString(first.problemTitle)
         }
 
         /** «Heute», «Morgen» oder der Wochentag. */

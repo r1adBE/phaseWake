@@ -56,7 +56,8 @@ class RecordWakeLockTest {
     fun setUp() {
         ShadowAlarmManager.setCanScheduleExactAlarms(true)
         ShadowPowerManager.clearWakeLocks()
-        shadowOf(context.getSystemService(BatteryManager::class.java)).setIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY, 80)
+        shadowOf(context.getSystemService(BatteryManager::class.java))
+            .setIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY, 80)
     }
 
     @After
@@ -79,7 +80,10 @@ class RecordWakeLockTest {
     /** Von Hand auf der Uhr begonnen; [diagnostics]: Diagnose freigeschaltet, also durchgehend. */
     private fun recording(diagnostics: Boolean = true): RecordService {
         runBlocking { WatchDiag.setShown(context, diagnostics) }
-        val built = Robolectric.buildService(RecordService::class.java, Intent(context, RecordService::class.java).setAction(RecordService.ACTION_START))
+        val built = Robolectric.buildService(
+            RecordService::class.java,
+            Intent(context, RecordService::class.java).setAction(RecordService.ACTION_START),
+        )
         controllers += built
         val service = built.create().startCommand(0, 1).get()
         awaitUntil("Aufzeichnung läuft") { service.active != null }
@@ -87,12 +91,18 @@ class RecordWakeLockTest {
     }
 
     private fun startLine(): String {
-        awaitUntil("Startzeile") { app.diag.entries().any { !it.at.isBefore(since) && it.detail.startsWith("record start by watch") } }
+        awaitUntil("Startzeile") {
+            app.diag.entries().any { !it.at.isBefore(since) && it.detail.startsWith("record start by watch") }
+        }
         return app.diag.entries().last { it.detail.startsWith("record start by watch") }.detail
     }
 
     private fun stored(): List<NightRecording> =
-        File(context.filesDir, "recordings").listFiles().orEmpty().filter { !it.name.contains('.') }.mapNotNull { NightRecording.decode(it.readText()) }
+        File(context.filesDir, "recordings")
+            .listFiles()
+            .orEmpty()
+            .filter { !it.name.contains('.') }
+            .mapNotNull { NightRecording.decode(it.readText()) }
 
     @Test
     fun withoutWakeUpSensorHoldsTheWakeLockAsBefore() {
@@ -102,7 +112,13 @@ class RecordWakeLockTest {
         assertTrue(service.wakeLocks.holding)
         assertTrue(startLine().endsWith("wl=hold mode=continuous"))
         assertTrue(ShadowPowerManager.getLatestWakeLock()?.isHeld == true)
-        service.onStartCommand(Intent(context, RecordService::class.java).setAction(RecordService.ACTION_STOP).putExtra(RecordService.EXTRA_REASON, RecordEnd.WATCH.code), 0, 2)
+        service.onStartCommand(
+            Intent(context, RecordService::class.java)
+                .setAction(RecordService.ACTION_STOP)
+                .putExtra(RecordService.EXTRA_REASON, RecordEnd.WATCH.code),
+            0,
+            2,
+        )
         shadowOf(Looper.getMainLooper()).idle()
         assertFalse(service.wakeLocks.holding, "beim Ende gelöst")
     }
@@ -140,7 +156,13 @@ class RecordWakeLockTest {
     }
 
     private fun stop(service: RecordService, reason: RecordEnd) {
-        service.onStartCommand(Intent(context, RecordService::class.java).setAction(RecordService.ACTION_STOP).putExtra(RecordService.EXTRA_REASON, reason.code), 0, 2)
+        service.onStartCommand(
+            Intent(context, RecordService::class.java)
+                .setAction(RecordService.ACTION_STOP)
+                .putExtra(RecordService.EXTRA_REASON, reason.code),
+            0,
+            2,
+        )
         awaitUntil("abgeschlossen") { stored().singleOrNull()?.endReason == reason }
         File(context.filesDir, "recordings").deleteRecursively()
     }
@@ -156,7 +178,11 @@ class RecordWakeLockTest {
     @Test
     fun phoneDiagnosticsMeasureContinuouslyAlsoAfterAProcessEnd() {
         // Vom Handy mit Diagnose dort: durchgehend; die Marke übersteht ein Prozessende.
-        val phone = launch(Intent(context, RecordService::class.java).setAction(RecordService.ACTION_START_PHONE).putExtra(RecordService.EXTRA_CONTINUOUS, true))
+        val phone = launch(
+            Intent(context, RecordService::class.java)
+                .setAction(RecordService.ACTION_START_PHONE)
+                .putExtra(RecordService.EXTRA_CONTINUOUS, true),
+        )
         val start = assertNotNull(phone.active).start
         assertFalse(assertNotNull(phone.active).sampled)
         awaitUntil("Marke gespeichert") { runBlocking { app.learnMark.isContinuous(start) } }
@@ -197,7 +223,8 @@ class RecordWakeLockTest {
         assertFalse(service.wakeLocks.holding, "kein langer Wakelock")
         assertFalse(service.batched)
         awaitUntil("Startzeile") { app.diag.entries().any { it.detail.startsWith("record start by learn") } }
-        assertTrue(app.diag.entries().last { it.detail.startsWith("record start by learn") }.detail.endsWith("wl=sample mode=sample"))
+        val startLine = app.diag.entries().last { it.detail.startsWith("record start by learn") }
+        assertTrue(startLine.detail.endsWith("wl=sample mode=sample"))
         assertTrue(sensors.listeners.isEmpty(), "zwischen den Stichproben keine Sensoren")
     }
 

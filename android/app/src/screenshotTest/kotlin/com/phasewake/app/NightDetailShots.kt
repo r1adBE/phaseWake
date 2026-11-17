@@ -56,7 +56,8 @@ private fun cycles(from: Instant, until: Instant): List<StageSpan> = buildList {
 
 /** Eigene Nacht von heute Morgen ([nights] aus `Screens.kt`) mit Phasen über die ganze Nacht ab 22:40. */
 private val ownNight = nights.last()
-private val ownStages = cycles(ownNight.windowStart.minus(Duration.ofMinutes(400)), ownNight.wokeAt.plus(Duration.ofMinutes(3)))
+private val ownStages =
+    cycles(ownNight.windowStart.minus(Duration.ofMinutes(400)), ownNight.wokeAt.plus(Duration.ofMinutes(3)))
 
 /** Samsung-Health-Nacht zwei Nächte davor (ohne eigene Nacht an dem Datum). */
 private val samsung = run {
@@ -108,7 +109,10 @@ fun HypnogramBubbleDark() = Selected(ThemeMode.DARK)
 
 @Composable
 private fun ListWithStages(mode: ThemeMode) = Themed(mode) {
-    HistoryScreen(listOf(ownNight), PaddingValues(top = 24.dp, bottom = 96.dp), loadStages = { ownStages }, healthConnected = true, items = items)
+    HistoryScreen(
+        listOf(ownNight), PaddingValues(top = 24.dp, bottom = 96.dp), loadStages = { ownStages },
+        healthConnected = true, items = items,
+    )
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf Liste Phasen hell", device = PHONE_TALL) @Composable

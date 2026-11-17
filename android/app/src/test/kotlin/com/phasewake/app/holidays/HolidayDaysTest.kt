@@ -22,7 +22,9 @@ class HolidayDaysTest {
         )
         val days = HolidayDays.of(national, emptyList(), today)
         assertEquals(setOf(LocalDate.of(2026, 1, 1)), days.sure)
-        assertEquals(setOf(LocalDate.of(2026, 3, 20), LocalDate.of(2026, 5, 27), LocalDate.of(2026, 5, 28)), days.estimated)
+        assertEquals(
+            setOf(LocalDate.of(2026, 3, 20), LocalDate.of(2026, 5, 27), LocalDate.of(2026, 5, 28)), days.estimated,
+        )
     }
 
     @Test

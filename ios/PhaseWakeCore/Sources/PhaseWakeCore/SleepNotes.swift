@@ -47,7 +47,8 @@ public enum SleepNotes {
 
     /// Name ohne Zeilenumbrüche und Trenner, höchstens 30 Zeichen.
     public static func cleanName(_ name: String) -> String {
-        let flat = name.replacingOccurrences(of: "\n", with: " ").replacingOccurrences(of: "\r", with: " ").replacingOccurrences(of: "|", with: " ")
+        let flat = name.replacingOccurrences(of: "\n", with: " ").replacingOccurrences(of: "\r", with: " ")
+            .replacingOccurrences(of: "|", with: " ")
         return String(flat.trimmingCharacters(in: .whitespaces).prefix(maxNameLength))
     }
 
@@ -107,7 +108,8 @@ public enum SleepNotes {
         if hour >= eveningHour { return true }
         // Vormittag: nur solange ein Weckfenster noch am selben Vormittag beginnt.
         guard hour < 12, let start = nextWindowStart,
-              let noon = calendar.date(byAdding: .hour, value: 12, to: calendar.startOfDay(for: now)) else { return false }
+              let noon = calendar.date(byAdding: .hour, value: 12,
+                                       to: calendar.startOfDay(for: now)) else { return false }
         return start < noon
     }
 
@@ -131,7 +133,9 @@ public enum SleepNotes {
     /// Eine Zeile je Nachtdatum «yyyy-MM-dd|id,id,…», nach Datum sortiert, höchstens 90 Daten;
     /// Nächte ohne Notiz fallen weg.
     public static func encode(_ notes: [String: [String]]) -> String {
-        trim(notes).sorted { $0.key < $1.key }.map { "\($0.key)|\($0.value.joined(separator: ","))" }.joined(separator: "\n")
+        trim(notes).sorted { $0.key < $1.key }
+            .map { "\($0.key)|\($0.value.joined(separator: ","))" }
+            .joined(separator: "\n")
     }
 
     /// Liest das Format von `encode`; unlesbare Zeilen werden übersprungen.
@@ -162,7 +166,8 @@ public enum SleepNotes {
         var out: [CustomNote] = []
         for line in text.split(whereSeparator: \.isNewline) {
             let parts = line.split(separator: "|", maxSplits: 1, omittingEmptySubsequences: false)
-            guard parts.count == 2, isCustom(String(parts[0])), !out.contains(where: { $0.id == String(parts[0]) }) else { continue }
+            guard parts.count == 2, isCustom(String(parts[0])), !out.contains(where: { $0.id == String(parts[0]) })
+            else { continue }
             let note = CustomNote(id: String(parts[0]), name: String(parts[1]))
             if !note.name.isEmpty { out.append(note) }
         }
@@ -242,7 +247,8 @@ public struct NoteEffect: Equatable, Sendable {
             return NoteEffect(
                 noteId: id, nightsWith: with.count, nightsWithout: without.count,
                 avgFeelingWith: average(with.map(\.feeling)), avgFeelingWithout: average(without.map(\.feeling)),
-                avgAsleepWith: asleepKnown ? average(asleepWith) : nil, avgAsleepWithout: asleepKnown ? average(asleepWithout) : nil
+                avgAsleepWith: asleepKnown ? average(asleepWith) : nil,
+                avgAsleepWithout: asleepKnown ? average(asleepWithout) : nil
             )
         }
         return effects.sorted { abs($0.delta) != abs($1.delta) ? abs($0.delta) > abs($1.delta) : $0.noteId < $1.noteId }

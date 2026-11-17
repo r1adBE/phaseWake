@@ -8,7 +8,8 @@ final class LockedStartTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        dir = FileManager.default.temporaryDirectory.appendingPathComponent("locked-\(UUID().uuidString)", isDirectory: true)
+        dir = FileManager.default.temporaryDirectory.appendingPathComponent("locked-\(UUID().uuidString)",
+                                                                            isDirectory: true)
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
     }
 
@@ -30,7 +31,8 @@ final class LockedStartTests: XCTestCase {
 
     private func night(_ alarmId: String, at seconds: TimeInterval) -> NightRecord {
         let start = Date(timeIntervalSince1970: seconds)
-        return NightRecord(alarmId: alarmId, windowStart: start, target: start.addingTimeInterval(1800), wokeAt: start.addingTimeInterval(900),
+        return NightRecord(alarmId: alarmId, windowStart: start, target: start.addingTimeInterval(1800),
+                           wokeAt: start.addingTimeInterval(900),
                            reason: .lightSleep, snoozes: 0, epochs: [Epoch(motion: 0.001, heartRate: 50)])
     }
 
@@ -66,7 +68,8 @@ final class LockedStartTests: XCTestCase {
         try restore()
 
         XCTAssertTrue(locked.isReadable)
-        XCTAssertEqual(locked.dictionary(forKey: "backupSuppressedByAlarm") as? [String: Double], ["A": 1000, "B": 3000, "C": 2000])
+        XCTAssertEqual(locked.dictionary(forKey: "backupSuppressedByAlarm") as? [String: Double],
+                       ["A": 1000, "B": 3000, "C": 2000])
         XCTAssertEqual(locked.string(forKey: "text"), "y", "andere Typen: der neuere Wert gilt")
         XCTAssertEqual(SettingsFile(url: url).dictionary(forKey: "backupSuppressedByAlarm") as? [String: Double],
                        ["A": 1000, "B": 3000, "C": 2000])
@@ -84,7 +87,8 @@ final class LockedStartTests: XCTestCase {
         let restore = try lock(url)
 
         let locked = PhaseWakeStorage(defaults: SettingsFile(url: url), directory: dir)
-        XCTAssertNil(locked.mutate({ $0 + [try! AlarmSpec(id: "x", hour: 5, minute: 0)] }, now: now), "leerer Stand ist nicht «nichts gespeichert»")
+        XCTAssertNil(locked.mutate({ $0 + [try! AlarmSpec(id: "x", hour: 5, minute: 0)] }, now: now),
+                     "leerer Stand ist nicht «nichts gespeichert»")
         let b = try AlarmSpec(id: "b", hour: 7, minute: 0)
         let remote = AlarmSnapshot(alarms: [b], updatedAt: saved.updatedAt + 10, stamps: ["b": saved.updatedAt + 10])
         XCTAssertFalse(locked.applyRemoteContext(remote, now: now))
@@ -101,7 +105,8 @@ final class LockedStartTests: XCTestCase {
     /// Ein ungültiges Byte im Verlauf kostet nicht alle Nächte (wie `decodeToString` auf Android), und die nächste
     /// Nacht überschreibt sie nicht.
     func testInvalidByteKeepsOtherNights() throws {
-        let storage = PhaseWakeStorage(defaults: UserDefaults(suiteName: "locked-\(UUID().uuidString)")!, directory: dir)
+        let storage = PhaseWakeStorage(defaults: UserDefaults(suiteName: "locked-\(UUID().uuidString)")!,
+                                       directory: dir)
         let first = night("a", at: 1_793_165_400), second = night("a", at: 1_793_251_800)
         storage.add(first)
         storage.add(second)
@@ -119,7 +124,8 @@ final class LockedStartTests: XCTestCase {
 
     /// Verlauf nicht lesbar: keine Nacht schreibt ihn leer; danach ist er unverändert da.
     func testUnreadableHistoryIsNeverOverwritten() throws {
-        let storage = PhaseWakeStorage(defaults: UserDefaults(suiteName: "locked-\(UUID().uuidString)")!, directory: dir)
+        let storage = PhaseWakeStorage(defaults: UserDefaults(suiteName: "locked-\(UUID().uuidString)")!,
+                                       directory: dir)
         let first = night("a", at: 1_793_165_400), second = night("a", at: 1_793_251_800)
         storage.add(first)
         let restore = try lock(dir.appendingPathComponent("nights.v1"))

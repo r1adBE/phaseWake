@@ -22,6 +22,7 @@ import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.Transient
 import com.phasewake.app.core.TransientConflict
+import com.phasewake.app.wear.PhaseWakeWear
 import com.phasewake.app.wear.R
 import com.phasewake.app.wear.diag.WatchDiag
 import com.phasewake.app.wear.sync.TransientInbox
@@ -93,11 +94,7 @@ private fun WatchApp() {
             }
             composable(ROUTE_NAP) {
                 NapScreen(Transient.NAP_DEFAULT_MINUTES) { minutes ->
-                    app.appScope.launch {
-                        // Abgelehnt (Wecker läuft oder beginnt vorher): Hinweis, nichts geändert.
-                        val refused = TransientInbox.startNap(app, minutes) ?: return@launch
-                        withContext(Dispatchers.Main) { Toast.makeText(app, conflictText(refused), Toast.LENGTH_LONG).show() }
-                    }
+                    startNap(app, minutes)
                     back(ROUTE_NAP)
                 }
             }
@@ -123,44 +120,25 @@ private fun WatchApp() {
                         onChange = { draft = it },
                         onSave = save@{
                             if (nav.currentDestination?.route != ROUTE_EDITOR) return@save
-                            // Höchstens MAX_ALARMS Wecker, wie am Handy: dann Hinweis, der Editor bleibt.
-                            when (editorSave(editingExisting, alarms, current.id)) {
-                                EditorSave.FULL -> {
-                                    Toast.makeText(app, app.getString(R.string.home_max_alarms, MAX_ALARMS), Toast.LENGTH_LONG).show()
-                                    return@save
-                                }
-                                EditorSave.GONE -> {
-                                    Toast.makeText(app, R.string.editor_alarm_gone, Toast.LENGTH_LONG).show()
-                                    back(ROUTE_EDITOR)
-                                    return@save
-                                }
-                                EditorSave.SAVE -> Unit
+                            if (!editorMaySave(app, editingExisting, alarms, current.id) { back(ROUTE_EDITOR) }) {
+                                return@save
                             }
-                            val request = skipRequest
-                            val existed = editingExisting
-                            // Im Prozess-Bereich: Speichern läuft weiter, auch wenn der Bildschirm schon zu ist.
-                            app.appScope.launch {
-                                val list = app.alarms.current().alarms
-                                // Gespeicherter Stand zählt (Handy gleichzeitig): nichts wieder anlegen, keinen
-                                // neunten.
-                                if (editorSave(existed, list, current.id) == EditorSave.SAVE) {
-                                    val zone = ZoneId.systemDefault()
-                                    val doneAt = app.scheduler.doneUntil()[current.id]
-                                    val holidays = app.holidays.current()
-                                    val merged = savedEdit(list.firstOrNull { it.id == current.id }, current, request, Instant.now(), zone, holidays, doneAt)
-                                    app.sync.publishAlarms(app.alarms.upsert(merged))
-                                    app.scheduler.reschedule()
-                                }
-                            }
+                            saveDraft(app, current, skipRequest, editingExisting)
                             back(ROUTE_EDITOR)
                         },
                         // Anzeige aus dem Stand, der gespeichert würde (gleiche Kernregel wie beim Speichern).
-                        skipped = AlarmSchedule.skippedDate(
-                            savedEdit(alarms.firstOrNull { it.id == current.id }, current, skipRequest, Instant.now(), ZoneId.systemDefault(), holidays, done[current.id]),
-                            Instant.now(),
-                            ZoneId.systemDefault(),
-                        )?.let { shortDay(it) },
-                        onSkip = if (current.isOneShot || alarms.none { it.id == current.id }) null else { on -> skipRequest = on },
+                        skipped = skippedDay(
+                            alarms.firstOrNull { it.id == current.id },
+                            current,
+                            skipRequest,
+                            holidays,
+                            done[current.id],
+                        ),
+                        onSkip = if (current.isOneShot || alarms.none { it.id == current.id }) {
+                            null
+                        } else {
+                            { on -> skipRequest = on }
+                        },
                         onDelete = {
                             app.appScope.launch {
                                 app.sync.publishAlarms(app.alarms.remove(current.id))
@@ -187,6 +165,82 @@ private fun WatchApp() {
     }
 }
 
+/** Powernap über [minutes] beginnen; abgelehnt (Wecker läuft oder beginnt vorher): Hinweis, nichts geändert. */
+private fun startNap(app: PhaseWakeWear, minutes: Int) {
+    app.appScope.launch {
+        val refused = TransientInbox.startNap(app, minutes) ?: return@launch
+        withContext(Dispatchers.Main) {
+            Toast.makeText(app, conflictText(refused), Toast.LENGTH_LONG).show()
+        }
+    }
+}
+
+/**
+ * Ob der Editor den Wecker [id] speichern darf ([editorSave], [existed]: war beim Öffnen gespeichert). Höchstens
+ * MAX_ALARMS Wecker, wie am Handy: dann Hinweis, der Editor bleibt. Anderswo gelöscht: Hinweis und [onGone].
+ */
+private fun editorMaySave(
+    app: PhaseWakeWear,
+    existed: Boolean,
+    alarms: List<AlarmSpec>,
+    id: String,
+    onGone: () -> Unit,
+): Boolean = when (editorSave(existed, alarms, id)) {
+    EditorSave.FULL -> {
+        Toast.makeText(app, app.getString(R.string.home_max_alarms, MAX_ALARMS), Toast.LENGTH_LONG).show()
+        false
+    }
+    EditorSave.GONE -> {
+        Toast.makeText(app, R.string.editor_alarm_gone, Toast.LENGTH_LONG).show()
+        onGone()
+        false
+    }
+    EditorSave.SAVE -> true
+}
+
+/**
+ * Speichert den Entwurf [current] mit dem Wunsch [request] für «Nächstes Mal überspringen» ([existed]: war beim
+ * Öffnen gespeichert). Im Prozess-Bereich: Speichern läuft weiter, auch wenn der Bildschirm schon zu ist.
+ */
+private fun saveDraft(app: PhaseWakeWear, current: AlarmSpec, request: Boolean?, existed: Boolean) {
+    app.appScope.launch {
+        val list = app.alarms.current().alarms
+        // Gespeicherter Stand zählt (Handy gleichzeitig): nichts wieder anlegen, keinen neunten.
+        if (editorSave(existed, list, current.id) == EditorSave.SAVE) {
+            val zone = ZoneId.systemDefault()
+            val doneAt = app.scheduler.doneUntil()[current.id]
+            val holidays = app.holidays.current()
+            val merged = savedEdit(
+                list.firstOrNull { it.id == current.id },
+                current,
+                request,
+                Instant.now(),
+                zone,
+                holidays,
+                doneAt,
+            )
+            app.sync.publishAlarms(app.alarms.upsert(merged))
+            app.scheduler.reschedule()
+        }
+    }
+}
+
+/**
+ * Übersprungener Tag, wie ihn der Editor anzeigt: aus dem Stand, der beim Speichern von [current] (gespeichert:
+ * [stored], Wunsch [request]) entstünde; [doneUntil]: erledigte Nacht des Weckers.
+ */
+private fun skippedDay(
+    stored: AlarmSpec?,
+    current: AlarmSpec,
+    request: Boolean?,
+    holidays: Set<java.time.LocalDate>,
+    doneUntil: Instant?,
+): String? {
+    val zone = ZoneId.systemDefault()
+    val edited = savedEdit(stored, current, request, Instant.now(), zone, holidays, doneUntil)
+    return AlarmSchedule.skippedDate(edited, Instant.now(), zone)?.let { shortDay(it) }
+}
+
 /** Diagnose der Uhr mit Zustand: nächster Plan, Version, Protokoll. */
 @Composable
 private fun DiagRoute(onHide: () -> Unit) {
@@ -197,7 +251,9 @@ private fun DiagRoute(onHide: () -> Unit) {
     var next by remember { mutableStateOf<String?>(null) }
     LaunchedEffect(changes) {
         entries = withContext(Dispatchers.IO) { app.diag.entries() }
-        next = app.scheduler.nextPlan()?.let { shortDay(it.target.atZone(ZoneId.systemDefault()).toLocalDate()) + " " + shortTime(it.target) }
+        next = app.scheduler.nextPlan()?.let {
+            shortDay(it.target.atZone(ZoneId.systemDefault()).toLocalDate()) + " " + shortTime(it.target)
+        }
     }
     // Mit Build-Nummer der Testversion, z. B. «16.2.2 (96)».
     val version = remember { com.phasewake.app.shared.BuildNumber.ownLabel(context, watch = true) }
@@ -222,7 +278,13 @@ private fun conflictText(conflict: TransientConflict): Int = when (conflict) {
 /** Kurzes Datum mit Wochentag (z. B. «Do., 30.10.»). */
 private fun shortDay(date: java.time.LocalDate): String {
     val locale = java.util.Locale.getDefault()
-    return localizedDigits(java.time.format.DateTimeFormatter.ofPattern(android.text.format.DateFormat.getBestDateTimePattern(locale, "EEEdM"), locale), locale).format(date)
+    return localizedDigits(
+        java.time.format.DateTimeFormatter.ofPattern(
+            android.text.format.DateFormat.getBestDateTimePattern(locale, "EEEdM"),
+            locale,
+        ),
+        locale,
+    ).format(date)
 }
 
 private fun shortTime(at: Instant): String =

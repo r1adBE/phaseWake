@@ -39,7 +39,13 @@ object RingAlert {
      * Begleit-App einer Uhr (nur Handy); [interactive]: Display an (Always-on/Ambient zählt als aus); [locked]:
      * Sperrbildschirm; [fullScreenAllowed]: Recht für Vollbild (Android 14+).
      */
-    fun route(appVisible: Boolean, companion: Boolean, interactive: Boolean, locked: Boolean, fullScreenAllowed: Boolean): RingRoute = when {
+    fun route(
+        appVisible: Boolean,
+        companion: Boolean,
+        interactive: Boolean,
+        locked: Boolean,
+        fullScreenAllowed: Boolean,
+    ): RingRoute = when {
         appVisible -> RingRoute.DIRECT
         companion -> RingRoute.COMPANION
         fullScreenAllowed && (!interactive || locked) -> RingRoute.FULL_SCREEN

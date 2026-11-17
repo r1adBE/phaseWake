@@ -33,12 +33,16 @@ class RecordedZoneTest {
     @Test
     fun tokyoNightSeenInZurichKeepsItsClock() {
         val sleeps = HealthHistory.summaries(listOf(tokyoNight(1)), null, zurich)
-        val bar = ChartData.sleepBars(sleeps, zurich, oct1.plusDays(1), nextTarget = null, goalMinutes = 480)!!.bars.last()
+        val bar =
+            ChartData.sleepBars(sleeps, zurich, oct1.plusDays(1), nextTarget = null, goalMinutes = 480)!!.bars.last()
         assertEquals(SleepBar(oct1, 11 * 60, 19 * 60), bar)
         val overview = SleepOverviews.of(sleeps, zurich, oct1.plusDays(1), 480, OverviewUnit.DAYS)!!
         assertEquals(11 * 60, overview.bedtimeMinute)
         assertEquals(19 * 60, overview.wakeMinute)
-        assertEquals(listOf(oct1), HealthHistory.merge(emptyList(), listOf(tokyoNight(1)), null, zurich).map { it.date })
+        assertEquals(
+            listOf(oct1),
+            HealthHistory.merge(emptyList(), listOf(tokyoNight(1)), null, zurich).map { it.date },
+        )
     }
 
     @Test
@@ -61,7 +65,8 @@ class RecordedZoneTest {
         assertEquals(5 to 5, Regularity.count(Regularity.bedtimesOf(sleeps, zurich), zurich))
         val trends = Trends.compute(emptyList(), sleeps, t("2026-10-06T12:00:00Z"), zurich)
         assertEquals(0L, trends.bedtimeSpreadMinutes)
-        val bars = ChartData.sleepBars(sleeps, zurich, LocalDate.of(2026, 10, 6), null, 480)!!.bars.filter { it.hasData }
+        val bars =
+            ChartData.sleepBars(sleeps, zurich, LocalDate.of(2026, 10, 6), null, 480)!!.bars.filter { it.hasData }
         assertEquals(List(5) { 11 * 60 }, bars.map { it.startMinute })
         val week = WeeklySummary.of(emptyList(), sleeps, emptyMap(), zurich, 480, LocalDate.of(2026, 10, 5))
         assertEquals(5 to 5, week.regular to week.regularCounted)
@@ -75,7 +80,10 @@ class RecordedZoneTest {
         for ((session, device) in listOf(recorded to tokyo, recorded.copy(timeZone = null) to zurich)) {
             val sleeps = HealthHistory.summaries(listOf(session), null, device)
             assertEquals(540L, sleeps.single().asleepMinutes)
-            assertEquals(SleepBar(oct24, 11 * 60, 19 * 60), ChartData.sleepBars(sleeps, device, oct24.plusDays(1), null, 480)!!.bars.last())
+            assertEquals(
+                SleepBar(oct24, 11 * 60, 19 * 60),
+                ChartData.sleepBars(sleeps, device, oct24.plusDays(1), null, 480)!!.bars.last(),
+            )
             val overview = SleepOverviews.of(sleeps, device, oct24.plusDays(1), 480, OverviewUnit.DAYS)!!
             assertEquals(11 * 60 to 19 * 60, overview.bedtimeMinute to overview.wakeMinute)
             assertEquals(listOf(oct24), HealthHistory.merge(emptyList(), listOf(session), null, device).map { it.date })
@@ -87,7 +95,10 @@ class RecordedZoneTest {
         val plain = tokyoNight(1).copy(timeZone = null)
         val sleeps = HealthHistory.summaries(listOf(plain), null, zurich)
         // 14:00–22:00 UTC sind in Zürich 16:00–00:00.
-        assertEquals(SleepBar(oct1, 4 * 60, 12 * 60), ChartData.sleepBars(sleeps, zurich, oct1.plusDays(1), null, 480)!!.bars.last())
+        assertEquals(
+            SleepBar(oct1, 4 * 60, 12 * 60),
+            ChartData.sleepBars(sleeps, zurich, oct1.plusDays(1), null, 480)!!.bars.last(),
+        )
         assertEquals(zurich, sleeps.single().zoneOr(zurich))
         assertEquals(tokyo, HealthHistory.summaries(listOf(tokyoNight(1)), null, zurich).single().zoneOr(zurich))
     }

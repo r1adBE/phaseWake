@@ -14,10 +14,12 @@ public enum WatchRules {
     /// Powernap nie: Sie haben einen eigenen Rückfall und laufen selbst ab. Sonst `nil`.
     /// - Returns: `current` unverändert, damit der Vergleich mit dem Zustand der Uhr gilt.
     public static func pendingNight(_ current: WakePlan?, specs: [AlarmSpec], now: Date, doneUntil: [String: Date],
-                                    ringLimit: TimeInterval, calendar: Calendar, holidays: Set<String> = []) -> WakePlan? {
+                                    ringLimit: TimeInterval, calendar: Calendar,
+                                    holidays: Set<String> = []) -> WakePlan? {
         guard let current, Transient.kindOf(current.alarmId) == nil,
               let spec = specs.first(where: { $0.id == current.alarmId }) else { return nil }
-        let valid = AlarmSchedule.inGrace(spec, plannedTarget: current.target, now: now, grace: ringLimit, calendar: calendar,
+        let valid = AlarmSchedule.inGrace(spec, plannedTarget: current.target, now: now, grace: ringLimit,
+                                          calendar: calendar,
                                           holidays: holidays, suppressedUntil: doneUntil[spec.id])
         return valid == nil ? nil : current
     }
@@ -30,9 +32,11 @@ public enum WatchRules {
     public static func unwokenNight(specs: [AlarmSpec], now: Date, doneUntil: [String: Date], delay: TimeInterval,
                                     calendar: Calendar, holidays: Set<String> = []) -> WakePlan? {
         specs.filter { Transient.kindOf($0.id) == nil }.compactMap { spec -> WakePlan? in
-            guard let target = AlarmSchedule.nextTarget(spec, now: now.addingTimeInterval(-delay), calendar: calendar, holidays: holidays),
+            guard let target = AlarmSchedule.nextTarget(spec, now: now.addingTimeInterval(-delay), calendar: calendar,
+                                                        holidays: holidays),
                   target <= now else { return nil }
-            return AlarmSchedule.inGrace(spec, plannedTarget: target, now: now, grace: delay, calendar: calendar, holidays: holidays,
+            return AlarmSchedule.inGrace(spec, plannedTarget: target, now: now, grace: delay, calendar: calendar,
+                                         holidays: holidays,
                                          suppressedUntil: doneUntil[spec.id])
         }.min { ($0.target, $0.alarmId) < ($1.target, $1.alarmId) }
     }

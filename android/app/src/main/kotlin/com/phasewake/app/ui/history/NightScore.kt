@@ -33,8 +33,6 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
-import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
@@ -43,9 +41,7 @@ import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
@@ -53,7 +49,6 @@ import com.phasewake.app.core.Epoch
 import com.phasewake.app.core.FactorScore
 import com.phasewake.app.core.HealthSession
 import com.phasewake.app.core.HistoryItem
-import com.phasewake.app.core.PulseCurve
 import com.phasewake.app.core.ScoreBand
 import com.phasewake.app.core.ScoreFactor
 import com.phasewake.app.core.ScoreInput
@@ -66,9 +61,7 @@ import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import java.time.Duration
 import java.time.Instant
-import kotlin.math.ceil
 import kotlin.math.cos
-import kotlin.math.floor
 import kotlin.math.sin
 
 // Schlafwert einer Nacht (Bogen mit Faktoren), Kurzzeile in der Liste, Puls- und Bewegungsverlauf der Detailseite.
@@ -113,7 +106,9 @@ internal fun nightScore(view: NightView, recordings: List<NightRecording>, goalM
         night != null -> {
             val rec = recordingFor(view.item, recordings) ?: return null
             val asleep = rec.asleepAt ?: return null
-            (SleepScore.inputOf(rec.bedAt, asleep, minOf(rec.until, night.wokeAt), goalMinutes) ?: return null) to ScoreSource.RECORDING
+            val input =
+                SleepScore.inputOf(rec.bedAt, asleep, minOf(rec.until, night.wokeAt), goalMinutes) ?: return null
+            input to ScoreSource.RECORDING
         }
         else -> return null
     }
@@ -132,10 +127,17 @@ internal fun nightSeries(item: HistoryItem, recordings: List<NightRecording>): N
  * eigene Nacht überdeckt; unbekannt: «Aus deinen Gesundheitsdaten.»). Bei einer Sitzung `null`: Der Kopf nennt die
  * Quelle schon.
  */
-internal fun scoreSourceText(context: Context, item: HistoryItem, score: NightScore, sessions: List<HealthSession>): String? {
+internal fun scoreSourceText(
+    context: Context,
+    item: HistoryItem,
+    score: NightScore,
+    sessions: List<HealthSession>,
+): String? {
     if (score.source == ScoreSource.RECORDING) return context.getString(R.string.score_source_recording)
     val night = item.night ?: return null
-    val session = sessions.filter { it.hasStages && it.start.isBefore(night.wokeAt) && it.end.isAfter(night.windowStart) }.maxByOrNull { it.durationMinutes }
+    val session = sessions.filter {
+        it.hasStages && it.start.isBefore(night.wokeAt) && it.end.isAfter(night.windowStart)
+    }.maxByOrNull { it.durationMinutes }
     return HealthSource.name(context, session?.source)?.let { context.getString(R.string.score_source, it) }
         ?: context.getString(R.string.score_source_health)
 }
@@ -167,7 +169,8 @@ private fun animationsOn(): Boolean {
     val context = LocalContext.current
     val inspection = LocalInspectionMode.current
     return remember {
-        !inspection && Settings.Global.getFloat(context.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f) != 0f
+        !inspection &&
+            Settings.Global.getFloat(context.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f) != 0f
     }
 }
 
@@ -195,7 +198,10 @@ internal fun ScoreCard(score: NightScore, source: String?, goalMinutes: Int, mod
         Column(verticalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.padding(top = 12.dp)) {
             result.factors.chunked(2).forEach { row ->
                 // Gleich hohe Kacheln je Zeile (die Schlafdauer hat eine Zeile mehr).
-                Row(horizontalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Min)) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Min),
+                ) {
                     row.forEach { FactorTile(it, score.input, goalMinutes, Modifier.weight(1f).fillMaxHeight()) }
                     if (row.size == 1) Spacer(Modifier.weight(1f))
                 }
@@ -227,7 +233,9 @@ private fun ScoreArc(result: SleepScoreResult, modifier: Modifier = Modifier) {
     val animate = animationsOn()
     val sweep = remember(result) { Animatable(if (animate) 0f else result.score / 100f) }
     // Ein einziger Moment Bewegung auf der Seite: Der Bogen läuft beim Öffnen bis zum Wert.
-    LaunchedEffect(result) { if (animate) sweep.animateTo(result.score / 100f, tween(900, easing = FastOutSlowInEasing)) }
+    LaunchedEffect(result) {
+        if (animate) sweep.animateTo(result.score / 100f, tween(900, easing = FastOutSlowInEasing))
+    }
     val description = scoreDescription(context, result)
     Box(modifier.size(width = 200.dp, height = 172.dp).clearAndSetSemantics { contentDescription = description }) {
         Canvas(Modifier.fillMaxSize()) {
@@ -236,19 +244,30 @@ private fun ScoreArc(result: SleepScoreResult, modifier: Modifier = Modifier) {
             val diameter = minOf(size.width, size.height / 0.86f) - stroke - dot
             val topLeft = Offset((size.width - diameter) / 2, stroke / 2 + dot / 2)
             val arcSize = Size(diameter, diameter)
-            drawArc(brand.chartTrack, ARC_START, ARC_SWEEP, false, topLeft, arcSize, style = Stroke(stroke, cap = StrokeCap.Round))
+            drawArc(
+                brand.chartTrack, ARC_START, ARC_SWEEP, false, topLeft, arcSize,
+                style = Stroke(stroke, cap = StrokeCap.Round),
+            )
             val f = sweep.value
             val r = diameter / 2
             val center = Offset(topLeft.x + r, topLeft.y + r)
-            if (f > 0f) drawArc(arcBrush(center, brand.stageDeep, brand.chartActive, dawn), ARC_START, ARC_SWEEP * f, false, topLeft, arcSize, style = Stroke(stroke, cap = StrokeCap.Round))
+            if (f > 0f) drawArc(
+                arcBrush(center, brand.stageDeep, brand.chartActive, dawn), ARC_START, ARC_SWEEP * f, false, topLeft,
+                arcSize, style = Stroke(stroke, cap = StrokeCap.Round),
+            )
             val angle = Math.toRadians((ARC_START + ARC_SWEEP * f).toDouble())
             val end = Offset(center.x + r * cos(angle).toFloat(), center.y + r * sin(angle).toFloat())
             drawCircle(brand.chartActive.copy(alpha = 0.22f), dot * 2.3f, end)
             drawCircle(scheme.surfaceContainer, dot + 3.dp.toPx(), end)
             drawCircle(brand.dot, dot, end)
         }
-        Column(Modifier.align(Alignment.Center).padding(top = 8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(Format.number(result.score), style = MaterialTheme.typography.displayMedium.copy(fontWeight = FontWeight.ExtraBold))
+        Column(
+            Modifier.align(Alignment.Center).padding(top = 8.dp), horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Text(
+                Format.number(result.score),
+                style = MaterialTheme.typography.displayMedium.copy(fontWeight = FontWeight.ExtraBold),
+            )
             Text(bandName(context, result.band), style = MaterialTheme.typography.titleMedium, color = scheme.primary)
         }
     }
@@ -289,11 +308,17 @@ private fun factorView(factor: FactorScore, input: ScoreInput, goalMinutes: Int)
             res.getString(R.string.chart_goal, duration(goalMinutes.toLong())),
             null,
         )
-        ScoreFactor.DEEP -> FactorView(stageName(context, SleepStage.DEEP), share(input.deepPercent), null, brand.stageDeep)
+        ScoreFactor.DEEP -> FactorView(
+            stageName(context, SleepStage.DEEP), share(input.deepPercent), null, brand.stageDeep,
+        )
         ScoreFactor.REM -> FactorView(stageName(context, SleepStage.REM), share(input.remPercent), null, brand.stageRem)
         // Wach in Minuten wie in den Phasen-Summen; die Punkte rechnen mit dem Anteil.
-        ScoreFactor.AWAKE -> FactorView(stageName(context, SleepStage.AWAKE), duration(input.awakeMinutes), null, brand.stageAwake)
-        ScoreFactor.LATENCY -> FactorView(res.getString(R.string.night_latency), duration(input.latencyMinutes), null, null)
+        ScoreFactor.AWAKE -> FactorView(
+            stageName(context, SleepStage.AWAKE), duration(input.awakeMinutes), null, brand.stageAwake,
+        )
+        ScoreFactor.LATENCY -> FactorView(
+            res.getString(R.string.night_latency), duration(input.latencyMinutes), null, null,
+        )
     }
 }
 
@@ -311,17 +336,29 @@ private fun FactorTile(factor: FactorScore, input: ScoreInput, goalMinutes: Int,
     Column(
         modifier
             .clip(MaterialTheme.shapes.small)
-            .background(Brush.verticalGradient(listOf(tileTop(accent, scheme.surfaceContainerHigh, PhaseWakeTheme.isDark), scheme.surfaceContainerHigh)))
+            .background(
+                Brush.verticalGradient(
+                    listOf(
+                        tileTop(accent, scheme.surfaceContainerHigh, PhaseWakeTheme.isDark),
+                        scheme.surfaceContainerHigh,
+                    )
+                )
+            )
             .padding(12.dp)
             .clearAndSetSemantics { contentDescription = spoken },
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             // Farbmarke der Phase wie in Legende und Phasen-Summen; der Balken selbst zeigt die Punkte (immer gleiche
             // Farbe).
-            view.stage?.let { color -> Canvas(Modifier.padding(end = 6.dp).size(8.dp)) { drawRoundRect(color, cornerRadius = CornerRadius(2.dp.toPx())) } }
+            view.stage?.let { color -> Canvas(Modifier.padding(end = 6.dp).size(8.dp)) {
+                drawRoundRect(color, cornerRadius = CornerRadius(2.dp.toPx()))
+            } }
             Text(view.label, style = MaterialTheme.typography.labelMedium, color = scheme.onSurfaceVariant)
         }
-        Text(view.value, style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.ExtraBold), modifier = Modifier.padding(top = 2.dp))
+        Text(
+            view.value, style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.ExtraBold),
+            modifier = Modifier.padding(top = 2.dp),
+        )
         view.extra?.let { Text(it, style = MaterialTheme.typography.labelSmall, color = scheme.onSurfaceVariant) }
         // Balken und Bewertung unten bündig, auch neben der höheren Kachel der Schlafdauer. Wächst beim Erscheinen.
         Spacer(Modifier.weight(1f))
@@ -337,41 +374,5 @@ private fun FactorTile(factor: FactorScore, input: ScoreInput, goalMinutes: Int,
             }
         }
         Text(band, style = MaterialTheme.typography.labelLarge, modifier = Modifier.padding(top = 6.dp))
-    }
-}
-
-/**
- * Kurzzeile in der Karte des Verlaufs: kleiner Ring mit dem Wert, daneben «Schlafwert» und die Bewertung. Vorläufiger
- * Wert (ohne Schlafphasen): Ring gestrichelt und hohl statt voll.
- */
-@Composable
-internal fun ScoreLine(result: SleepScoreResult, modifier: Modifier = Modifier) {
-    val context = LocalContext.current
-    val brand = PhaseWakeTheme.brand
-    val scheme = MaterialTheme.colorScheme
-    val description = scoreDescription(context, result)
-    Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier.padding(top = 10.dp).clearAndSetSemantics { contentDescription = description }) {
-        Box(Modifier.size(40.dp), contentAlignment = Alignment.Center) {
-            Canvas(Modifier.fillMaxSize()) {
-                val stroke = 4.dp.toPx()
-                val inset = stroke / 2
-                val arc = Size(size.width - stroke, size.height - stroke)
-                drawArc(brand.chartTrack, 0f, 360f, false, Offset(inset, inset), arc, style = Stroke(stroke))
-                val sweep = 360f * result.score / 100f
-                if (result.provisional) {
-                    // Gestrichelt in halber Stärke: «noch nicht ganz gemessen», ohne neue Farbe.
-                    val dash = 3.dp.toPx()
-                    val thin = Stroke(stroke / 2, cap = StrokeCap.Butt, pathEffect = PathEffect.dashPathEffect(floatArrayOf(dash, dash * 0.8f)))
-                    drawArc(brand.chartActive, -90f, sweep, false, Offset(inset, inset), arc, style = thin)
-                } else {
-                    drawArc(brand.chartActive, -90f, sweep, false, Offset(inset, inset), arc, style = Stroke(stroke, cap = StrokeCap.Round))
-                }
-            }
-            Text(Format.number(result.score), style = MaterialTheme.typography.labelLarge)
-        }
-        Column(Modifier.padding(start = 10.dp)) {
-            Text(stringResource(R.string.score_title), style = MaterialTheme.typography.labelMedium, color = scheme.onSurfaceVariant)
-            Text(bandName(context, result.band), style = MaterialTheme.typography.titleSmall)
-        }
     }
 }

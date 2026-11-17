@@ -34,7 +34,8 @@ struct PulseCard: View {
         }
         .card()
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel([L("pulse_title"), window, average, from + " – " + to].compactMap { $0 }.joined(separator: ". "))
+        .accessibilityLabel([L("pulse_title"), window, average, from + " – " + to].compactMap { $0 }
+            .joined(separator: ". "))
     }
 }
 
@@ -46,7 +47,8 @@ struct MotionCard: View {
 
     var body: some View {
         let from = Format.time(series.start)
-        let to = Format.time(series.start.addingTimeInterval(TimeInterval(series.epochs.count * DetectorConfig.epochSeconds)))
+        let seconds = TimeInterval(series.epochs.count * DetectorConfig.epochSeconds)
+        let to = Format.time(series.start.addingTimeInterval(seconds))
         let buckets: [Double?] = stride(from: 0, to: series.epochs.count, by: PulseCurve.bucketEpochs).map { i in
             series.epochs[i..<min(i + PulseCurve.bucketEpochs, series.epochs.count)].compactMap(\.motion).max()
         }
@@ -87,7 +89,8 @@ private struct MotionBars: View {
                 let share = CGFloat(min(max((motion ?? 0) / top, 0), 1))
                 let height = motion == nil ? minimum : minimum + (size.height - minimum) * share
                 let rect = CGRect(x: CGFloat(i) * (width + gap), y: size.height - height, width: width, height: height)
-                context.fill(Path(roundedRect: rect, cornerRadius: width / 2), with: .color(motion == nil ? track : active))
+                context.fill(Path(roundedRect: rect, cornerRadius: width / 2),
+                             with: .color(motion == nil ? track : active))
             }
         }
     }
@@ -123,7 +126,8 @@ private struct PulseLine: View {
                 guard let first = run.first, let last = run.last else { continue }
                 if run.count == 1 {
                     // Einzelnes Stück zwischen Lücken als Punkt, damit es sichtbar bleibt.
-                    context.fill(Path(ellipseIn: CGRect(x: x(first.0) - 2, y: y(first.1) - 2, width: 4, height: 4)), with: .color(line))
+                    context.fill(Path(ellipseIn: CGRect(x: x(first.0) - 2, y: y(first.1) - 2, width: 4, height: 4)),
+                                 with: .color(line))
                     continue
                 }
                 var path = Path()
@@ -133,8 +137,10 @@ private struct PulseLine: View {
                 area.addLine(to: CGPoint(x: x(last.0), y: size.height))
                 area.addLine(to: CGPoint(x: x(first.0), y: size.height))
                 area.closeSubpath()
-                context.fill(area, with: .linearGradient(shade, startPoint: .zero, endPoint: CGPoint(x: 0, y: size.height)))
-                context.stroke(path, with: .color(line), style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+                context.fill(area,
+                             with: .linearGradient(shade, startPoint: .zero, endPoint: CGPoint(x: 0, y: size.height)))
+                context.stroke(path, with: .color(line),
+                               style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
             }
             var avg = Path()
             let avgY = y(Double(curve.average))

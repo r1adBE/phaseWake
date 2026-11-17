@@ -21,13 +21,32 @@ class ChartDataTest {
         val d = date(night)
         val start = LocalTime.parse(from)
         val startDay = if (start.hour < 12) d.plusDays(1) else d
-        return SleepSummary(startDay.atTime(start).atZone(zone).toInstant(), d.plusDays(1).atTime(LocalTime.parse(to)).atZone(zone).toInstant(), asleep)
+        return SleepSummary(
+            startDay.atTime(start).atZone(zone).toInstant(),
+            d.plusDays(1).atTime(LocalTime.parse(to)).atZone(zone).toInstant(),
+            asleep,
+        )
     }
 
     /** Uhr-Nacht am Abend [night]: Fenster 06:30–07:00 am Folgetag, geweckt [offset] Minuten nach Fensterbeginn. */
-    private fun watchNight(night: String, offset: Long, reason: WakeReason, feeling: Int? = null, snoozes: Int = 0): NightRecord {
+    private fun watchNight(
+        night: String,
+        offset: Long,
+        reason: WakeReason,
+        feeling: Int? = null,
+        snoozes: Int = 0,
+    ): NightRecord {
         val start = date(night).plusDays(1).atTime(6, 30).atZone(zone).toInstant()
-        return NightRecord("a", start, start.plusSeconds(1800), start.plusSeconds(offset * 60), reason, snoozes, emptyList(), feeling)
+        return NightRecord(
+            "a",
+            start,
+            start.plusSeconds(1800),
+            start.plusSeconds(offset * 60),
+            reason,
+            snoozes,
+            emptyList(),
+            feeling,
+        )
     }
 
     private val sleeps = listOf(
@@ -75,7 +94,13 @@ class ChartDataTest {
         val split = listOf(sleep("2026-10-27", "22:00", "02:00", 200), sleep("2026-10-27", "23:00", "07:00", 450))
         assertEquals(11 * 60, ChartData.sleepBars(split, zone, evening, null, 450)!!.bars.last().startMinute)
         // Zeitumstellung (25.10.): Balken nach Uhrzeit, 23:00–07:00.
-        val dst = ChartData.sleepBars(listOf(sleep("2026-10-24", "23:00", "07:00", 480)), zone, date("2026-10-24"), null, 450)!!
+        val dst = ChartData.sleepBars(
+            listOf(sleep("2026-10-24", "23:00", "07:00", 480)),
+            zone,
+            date("2026-10-24"),
+            null,
+            450,
+        )!!
         assertEquals(SleepBar(date("2026-10-24"), 660, 1140), dst.bars.last())
         assertNull(ChartData.sleepBars(emptyList(), zone, evening, null, 450))
         assertNull(ChartData.sleepBars(listOf(sleep("2026-09-01", "23:00", "07:00", 480)), zone, evening, null, 450))
@@ -93,13 +118,19 @@ class ChartDataTest {
         val moments = ChartData.wakeMoments(nights.shuffled(kotlin.random.Random(3)), zone)!!
         assertEquals(listOf(12, 0, 5, 0), moments.points.map { it.minutesBefore })
         assertEquals(listOf(0, 0, 0, 3), moments.points.map { it.minutesAfter })
-        assertEquals(listOf(WakeKind.LIGHT, WakeKind.TARGET, WakeKind.AWAKE, WakeKind.LATE), moments.points.map { it.kind })
+        assertEquals(
+            listOf(WakeKind.LIGHT, WakeKind.TARGET, WakeKind.AWAKE, WakeKind.LATE),
+            moments.points.map { it.kind },
+        )
         assertEquals(date("2026-10-27"), moments.points.last().date)
         assertEquals(30, moments.scaleMinutes)
         // (12 + 0 + 5 + 0) / 4 = 4,25 → 4.
         assertEquals(4, moments.averageBefore)
         // Höchstens 14 Nächte, die jüngsten.
-        val many = (1..20).map { watchNight(LocalDate.of(2026, 10, 1).plusDays(it.toLong()).toString(), 20, WakeReason.LIGHT_SLEEP) }
+        val many =
+            (1..20).map {
+                watchNight(LocalDate.of(2026, 10, 1).plusDays(it.toLong()).toString(), 20, WakeReason.LIGHT_SLEEP)
+            }
         val last = ChartData.wakeMoments(many, zone)!!
         assertEquals(14, last.points.size)
         assertEquals(date("2026-10-21"), last.points.last().date)
@@ -108,7 +139,15 @@ class ChartDataTest {
 
     @Test
     fun hypnogramOfTheNight() {
-        val night = NightRecord("a", at("2026-10-28T06:30"), at("2026-10-28T07:00"), at("2026-10-28T06:42"), WakeReason.LIGHT_SLEEP, 0, emptyList())
+        val night = NightRecord(
+            "a",
+            at("2026-10-28T06:30"),
+            at("2026-10-28T07:00"),
+            at("2026-10-28T06:42"),
+            WakeReason.LIGHT_SLEEP,
+            0,
+            emptyList(),
+        )
         val stages = listOf(
             // Nacht davor: eigene Gruppe, gehört nicht dazu.
             StageSpan(at("2026-10-26T23:00"), at("2026-10-27T06:00"), SleepStage.LIGHT),
@@ -133,9 +172,23 @@ class ChartDataTest {
         assertEquals(SleepStage.LIGHT, h.stageAtWake)
         assertEquals(130L, h.minutesOf(SleepStage.LIGHT))
         assertEquals(60L, h.minutesOf(SleepStage.DEEP))
-        assertEquals(listOf(0, 1, 2, 3, null), listOf(SleepStage.AWAKE, SleepStage.REM, SleepStage.LIGHT, SleepStage.DEEP, SleepStage.UNKNOWN).map(ChartData::level))
+        assertEquals(
+            listOf(0, 1, 2, 3, null),
+            listOf(
+                SleepStage.AWAKE,
+                SleepStage.REM,
+                SleepStage.LIGHT,
+                SleepStage.DEEP,
+                SleepStage.UNKNOWN,
+            ).map(ChartData::level),
+        )
         // Ohne bekannte Phasen oder ohne Daten zur Nacht: nichts.
-        assertNull(ChartData.hypnogram(listOf(StageSpan(at("2026-10-28T00:00"), at("2026-10-28T07:00"), SleepStage.UNKNOWN)), night))
+        assertNull(
+            ChartData.hypnogram(
+                listOf(StageSpan(at("2026-10-28T00:00"), at("2026-10-28T07:00"), SleepStage.UNKNOWN)),
+                night,
+            ),
+        )
         assertNull(ChartData.hypnogram(stages.take(1), night))
         assertNull(ChartData.hypnogram(emptyList(), night))
     }
@@ -152,7 +205,8 @@ class ChartDataTest {
             watchNight("2026-10-15", 20, WakeReason.LIGHT_SLEEP, feeling = 1),
             watchNight("2026-10-01", 20, WakeReason.LIGHT_SLEEP, feeling = 5),
         )
-        val notes = mapOf(date("2026-10-26") to listOf(SleepNotes.CAFFEINE), date("2026-10-28") to listOf(SleepNotes.STRESS))
+        val notes =
+            mapOf(date("2026-10-26") to listOf(SleepNotes.CAFFEINE), date("2026-10-28") to listOf(SleepNotes.STRESS))
         // Morgen des 28.10.: Nachtdatum 27.10. hat ein Befinden.
         val series = ChartData.feelingSeries(nights, notes, zone, SleepNotes.nightDate(at("2026-10-28T07:20"), zone))!!
         assertEquals(14, series.points.size)

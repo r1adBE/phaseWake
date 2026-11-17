@@ -17,7 +17,9 @@ private struct ScrolledPast: ViewModifier {
 
     func body(content: Content) -> some View {
         if #available(iOS 18.0, *) {
-            content.onScrollGeometryChange(for: Bool.self) { $0.contentOffset.y + $0.contentInsets.top > threshold } action: { _, scrolled in
+            content.onScrollGeometryChange(for: Bool.self) {
+                $0.contentOffset.y + $0.contentInsets.top > threshold
+            } action: { _, scrolled in
                 action(scrolled)
             }
         } else {

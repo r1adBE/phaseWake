@@ -22,7 +22,8 @@ final class NotificationChainTests: XCTestCase {
     func testBaseIdOfEveryMember() {
         let uuid = "6F9619FF-8B86-D011-B42D-00CF4FC964FF"
         for id in NotificationChain.ids(uuid) { XCTAssertEqual(NotificationChain.baseId(id), uuid) }
-        for id in NotificationChain.ids("phasewake.fallback") { XCTAssertEqual(NotificationChain.baseId(id), "phasewake.fallback") }
+        for id in NotificationChain.ids("phasewake.fallback") { XCTAssertEqual(NotificationChain.baseId(id),
+                                                                               "phasewake.fallback") }
         for id in NotificationChain.ids("phasewake.fallback.interrupted") {
             XCTAssertEqual(NotificationChain.baseId(id), "phasewake.fallback.interrupted")
         }

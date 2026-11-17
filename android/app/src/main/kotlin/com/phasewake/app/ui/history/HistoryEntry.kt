@@ -13,7 +13,8 @@ internal sealed interface HistoryEntry {
 
     // Schlüssel wie bisher: Wecker und Fensterbeginn (zwei Wecker können gleich starten).
     data class Night(val item: HistoryItem) : HistoryEntry {
-        override val key: String get() = item.night?.let { "${it.alarmId}@${it.windowStart.toEpochMilli()}" } ?: item.key
+        override val key: String get() =
+            item.night?.let { "${it.alarmId}@${it.windowStart.toEpochMilli()}" } ?: item.key
     }
 
     /** Nacht aus Health Connect ohne Phase-Wake-Wecker; höchstens eine je Nachtdatum. */

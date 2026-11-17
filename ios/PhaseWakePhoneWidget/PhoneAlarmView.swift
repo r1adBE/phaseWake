@@ -60,10 +60,13 @@ struct PhoneAlarmView: View {
                 .minimumScaleFactor(0.6)
                 .lineLimit(1)
                 .foregroundStyle(PhoneWidgetPalette.text(scheme))
-            Text(night.reason).font(.system(size: 13)).foregroundStyle(PhoneWidgetPalette.secondary(scheme)).lineLimit(2)
+            Text(night.reason)
+                .font(.system(size: 13)).foregroundStyle(PhoneWidgetPalette.secondary(scheme)).lineLimit(2)
             let details = [night.asleepMinutes.map { Format.duration(minutes: $0) }, night.feeling].compactMap { $0 }
             if !details.isEmpty {
-                Text(details.joined(separator: " · ")).font(.system(size: 12, weight: .medium)).foregroundStyle(PhoneWidgetPalette.secondary(scheme)).lineLimit(1)
+                Text(details.joined(separator: " · "))
+                    .font(.system(size: 12, weight: .medium)).foregroundStyle(PhoneWidgetPalette.secondary(scheme))
+                    .lineLimit(1)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
@@ -90,7 +93,8 @@ struct PhoneAlarmView: View {
             .padding(4)
         }
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(entry.plan == nil ? L("widget_no_alarm") : [L("widget_name"), window].joined(separator: ", "))
+        .accessibilityLabel(entry.plan == nil
+                            ? L("widget_no_alarm") : [L("widget_name"), window].joined(separator: ", "))
     }
 
     /// Home-Bildschirm (klein und mittel).
@@ -109,7 +113,9 @@ struct PhoneAlarmView: View {
                 Text(dayLine).font(.system(size: 13)).foregroundStyle(PhoneWidgetPalette.secondary(scheme)).lineLimit(1)
             }
             if let checkLine {
-                Text(checkLine).font(.system(size: 12, weight: .medium)).foregroundStyle(PhoneWidgetPalette.secondary(scheme)).lineLimit(2)
+                Text(checkLine)
+                    .font(.system(size: 12, weight: .medium)).foregroundStyle(PhoneWidgetPalette.secondary(scheme))
+                    .lineLimit(2)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)

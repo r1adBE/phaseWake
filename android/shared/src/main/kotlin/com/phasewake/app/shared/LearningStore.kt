@@ -43,7 +43,8 @@ data class LearningSnapshot(
 
     /** Kurz fürs Diagnose-Protokoll: «active=1 floor=0.0200 hr=set» (kein Pulswert). */
     fun diagLine(): String =
-        "active=${if (active) 1 else 0} floor=${NoiseFloor.format(floor)} hr=${if (restingHeartRate != null) "set" else "-"}"
+        "active=${if (active) 1 else 0} floor=${NoiseFloor.format(floor)} hr=" +
+            "${if (restingHeartRate != null) "set" else "-"}"
 
     companion object {
         /** Aus den gelernten Werten [values] (fertig, `null` = noch keine) und ob die Lernphase läuft. */
@@ -56,14 +57,20 @@ data class LearningSnapshot(
          * Stand. Die Einschlafdauer geht getrennt ([encodeLatency], [DataLayer.PATH_MSG_LEARN_LATENCY]).
          */
         fun encode(snapshot: LearningSnapshot): String =
-            listOf(if (snapshot.active) "1" else "0", snapshot.floor?.toString().orEmpty(), snapshot.restingHeartRate?.toString().orEmpty(), snapshot.updatedAt.toString())
+            listOf(
+                if (snapshot.active) "1" else "0",
+                snapshot.floor?.toString().orEmpty(),
+                snapshot.restingHeartRate?.toString().orEmpty(),
+                snapshot.updatedAt.toString(),
+            )
                 .joinToString("|")
 
         /**
          * Inhalt der Nachricht [DataLayer.PATH_MSG_LEARN_LATENCY]: «einschlafdauer|updatedAt», ohne Dauer
          * «-1|updatedAt».
          */
-        fun encodeLatency(snapshot: LearningSnapshot): String = "${snapshot.latencyMinutes ?: NO_LATENCY}|${snapshot.updatedAt}"
+        fun encodeLatency(snapshot: LearningSnapshot): String =
+            "${snapshot.latencyMinutes ?: NO_LATENCY}|${snapshot.updatedAt}"
 
         /**
          * Liest [encodeLatency]: (Einschlafdauer oder `null` = keine bzw. unplausibel, Zeitpunkt); `null`, wenn
@@ -115,11 +122,19 @@ class LearningSync(context: Context) {
      */
     suspend fun publish(snapshot: LearningSnapshot, unlessAcked: Boolean = false) {
         suspend fun put(key: String, path: String, body: String) {
-            if (unlessAcked) outbox.enqueueIfChanged(acked, key, path, DataLayer.CAPABILITY_WATCH, body) else outbox.enqueue(key, path, DataLayer.CAPABILITY_WATCH, body)
+            if (unlessAcked) {
+                outbox.enqueueIfChanged(acked, key, path, DataLayer.CAPABILITY_WATCH, body)
+            } else {
+                outbox.enqueue(key, path, DataLayer.CAPABILITY_WATCH, body)
+            }
         }
         try {
             put(QueueMessages.KEY_LEARNING, DataLayer.PATH_MSG_LEARNING, LearningSnapshot.encode(snapshot))
-            put(QueueMessages.KEY_LEARN_LATENCY, DataLayer.PATH_MSG_LEARN_LATENCY, LearningSnapshot.encodeLatency(snapshot))
+            put(
+                QueueMessages.KEY_LEARN_LATENCY,
+                DataLayer.PATH_MSG_LEARN_LATENCY,
+                LearningSnapshot.encodeLatency(snapshot),
+            )
         } catch (e: Exception) {
             if (e is kotlinx.coroutines.CancellationException) throw e
             Log.i(TAG, "Lernphase senden nicht möglich", e)
@@ -140,11 +155,18 @@ class LearningStore(private val store: DataStore<Preferences>) {
     /** Aktueller Stand; ohne Daten inaktiv und ohne Werte. */
     suspend fun current(): LearningSnapshot {
         val prefs = store.data.first()
-        return LearningSnapshot(prefs[ACTIVE] ?: false, prefs[FLOOR], prefs[RESTING_HR], prefs[UPDATED_AT] ?: 0L, LearningSnapshot.validLatency(prefs[LATENCY]))
+        return LearningSnapshot(
+            prefs[ACTIVE] ?: false,
+            prefs[FLOOR],
+            prefs[RESTING_HR],
+            prefs[UPDATED_AT] ?: 0L,
+            LearningSnapshot.validLatency(prefs[LATENCY]),
+        )
     }
 
     /** Gelernte Einschlafdauer vom Handy (Bettzeit auf dem Ring); `null` = keine. */
-    val latencyMinutes: Flow<Int?> = store.data.map { LearningSnapshot.validLatency(it[LATENCY]) }.distinctUntilChanged()
+    val latencyMinutes: Flow<Int?> =
+        store.data.map { LearningSnapshot.validLatency(it[LATENCY]) }.distinctUntilChanged()
 
     /**
      * Speichert [snapshot] ohne die Einschlafdauer (die kommt getrennt, [setLatencyIfNewer]), nur wenn sein Zeitpunkt

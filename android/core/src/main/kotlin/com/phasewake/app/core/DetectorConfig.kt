@@ -62,7 +62,10 @@ data class DetectorConfig(
      * Fensters an [require] zu scheitern. Identisch zu `DetectorConfig.withLearned` (Swift).
      */
     fun withLearned(floor: Double?, restingHeartRate: Double?): DetectorConfig =
-        copy(personalFloor = Learning.validFloor(floor), restingHeartRate = Learning.validRestingHeartRate(restingHeartRate))
+        copy(
+            personalFloor = Learning.validFloor(floor),
+            restingHeartRate = Learning.validRestingHeartRate(restingHeartRate),
+        )
 
     /** Kopie mit dem Grundrauschen der Einschlaf-Messung dieser Nacht ([onsetFloor]); ungültig gilt als keines. */
     fun withOnsetFloor(floor: Double?): DetectorConfig = copy(onsetFloor = Learning.validFloor(floor))

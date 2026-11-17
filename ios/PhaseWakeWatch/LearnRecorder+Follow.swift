@@ -18,7 +18,9 @@ extension LearnRecorder {
               now < Self.end(of: current) else { return false }
         let target = AppleLearnRecord.followedTarget(current: current.target, planTarget: plan.target, now: now)
         guard target != current.target else { return false }
-        DiagStore.shared.log(.scheduled, "learn record until \(Format.logTime(target)) (was \(Format.logTime(current.target)))")
+        DiagStore.shared.log(
+            .scheduled, "learn record until \(Format.logTime(target)) (was \(Format.logTime(current.target)))"
+        )
         current.alarmId = plan.alarmId
         current.target = target
         current.until = target.addingTimeInterval(AppleLearnRecord.afterTarget)

@@ -46,16 +46,19 @@ public struct NightFacts: Equatable, Hashable, Sendable {
     /// Fakten einer Nacht; Nachtdatum in der Zone der Aufzeichnung, ohne sie in `calendar`. Einschlafdauer aus der
     /// Gesundheits-App, ohne sie aus der eigenen Messung: zuerst die Nächte der Uhr `watch` (``OwnOnset/of(_:)``),
     /// sonst die Aufzeichnungen `own` (``Findings/ownLatency(start:end:own:watch:)``).
-    public static func of(_ session: HealthSession, calendar: Calendar, own: [OwnOnset] = [], watch: [OwnOnset] = []) -> NightFacts {
+    public static func of(_ session: HealthSession, calendar: Calendar, own: [OwnOnset] = [],
+                          watch: [OwnOnset] = []) -> NightFacts {
         let stats = StageStats.forSession(session)
         let latency = stats?.latencyMinutes
         return NightFacts(
-            date: SleepNotes.nightDate(from: session.asleepAt, to: session.end, calendar: session.localCalendar(calendar)),
+            date: SleepNotes.nightDate(from: session.asleepAt, to: session.end,
+                                       calendar: session.localCalendar(calendar)),
             asleepAt: session.asleepAt,
             end: session.end,
             timeZone: session.timeZone,
             asleepMinutes: session.asleepMinutes,
-            latencyMinutes: latency ?? Findings.ownLatency(start: session.start, end: session.end, own: own, watch: watch),
+            latencyMinutes: latency ?? Findings.ownLatency(start: session.start, end: session.end, own: own,
+                                                           watch: watch),
             deepMinutes: stats?.total(.deep)?.minutes,
             // Nur die Einschlafdauer der Gesundheits-App liegt in deren Wachphasen.
             awakeMinutes: stats.map { max(0, ($0.total(.awake)?.minutes ?? 0) - (latency ?? 0)) }
@@ -65,7 +68,8 @@ public struct NightFacts: Equatable, Hashable, Sendable {
     /// Fakten aller Nächte aus `sessions` (dieselben wie im Verlauf), nach Beginn; `own`, `watch` siehe oben.
     public static func of(_ sessions: [HealthSession], clearedAt: Date?, calendar: Calendar, own: [OwnOnset] = [],
                           watch: [OwnOnset] = []) -> [NightFacts] {
-        HealthHistory.countedNights(sessions, clearedAt: clearedAt, calendar: calendar).map { of($0, calendar: calendar, own: own, watch: watch) }
+        HealthHistory.countedNights(sessions, clearedAt: clearedAt,
+                                    calendar: calendar).map { of($0, calendar: calendar, own: own, watch: watch) }
     }
 }
 
@@ -190,7 +194,9 @@ public enum Findings {
         let short = list.filter(isShort).count
         if list.count >= minNights && short >= shortNights { out.append(Finding(kind: .shortNights, value: short)) }
         if staged.count >= minNights {
-            if let share = deepShare(staged), share < deepPercent { out.append(lowDeep(share, staged: staged, nights: list, calendar: calendar)) }
+            if let share = deepShare(staged), share < deepPercent { out.append(lowDeep(share, staged: staged,
+                                                                                       nights: list,
+                                                                                       calendar: calendar)) }
             let awake = staged.reduce(0) { $0 + ($1.awakeMinutes ?? 0) }
             if let share = percent(awake, staged.reduce(0) { $0 + $1.asleepMinutes } + awake), share > awakePercent {
                 out.append(Finding(kind: .muchAwake, value: share))
@@ -210,9 +216,11 @@ public enum Findings {
     /// Die wichtigste Auffälligkeit, die nicht ausgeblendet ist (ausgeblendet um `hidden`, seit weniger als
     /// ``hideFor``). `bedtimeAdvice`: Die Startseite zeigt schon die Bettzeit-Karte; dann treten die Auffälligkeiten
     /// mit demselben Tipp (``bedtimeTip``) zurück, damit er nicht zweimal steht. Im Verlauf bleiben sie.
-    public static func home(_ findings: [Finding], hidden: [FindingKind: Date], now: Date, bedtimeAdvice: Bool = false) -> Finding? {
+    public static func home(_ findings: [Finding], hidden: [FindingKind: Date], now: Date,
+                            bedtimeAdvice: Bool = false) -> Finding? {
         findings.first { finding in
-            hidden[finding.kind].map { now < $0.addingTimeInterval(hideFor) } != true && !(bedtimeAdvice && bedtimeTip.contains(finding.kind))
+            hidden[finding.kind].map { now < $0.addingTimeInterval(hideFor) } != true
+                && !(bedtimeAdvice && bedtimeTip.contains(finding.kind))
         }
     }
 
@@ -238,7 +246,8 @@ public enum Findings {
         var out: [FindingKind: Date] = [:]
         for line in (text ?? "").components(separatedBy: "\n") {
             let parts = line.split(separator: "|", maxSplits: 1, omittingEmptySubsequences: false).map(String.init)
-            guard parts.count == 2, let kind = FindingKind(rawValue: parts[0]), let ms = Int64(parts[1]) else { continue }
+            guard parts.count == 2, let kind = FindingKind(rawValue: parts[0]), let ms = Int64(parts[1])
+            else { continue }
             out[kind] = Date(timeIntervalSince1970: Double(ms) / 1000)
         }
         return out
@@ -248,7 +257,8 @@ public enum Findings {
     /// ``weekNights`` Nächten mit Phasen; sonst `nil`.
     public static func weekDeep(_ facts: [NightFacts], weekEnd: String) -> (week: Int, before: Int)? {
         func week(_ end: String) -> Int? {
-            let staged = byDate(facts, from: NightDate.adding(-(nights - 1), to: end), to: end).filter { $0.deepMinutes != nil }
+            let staged = byDate(facts, from: NightDate.adding(-(nights - 1), to: end),
+                                to: end).filter { $0.deepMinutes != nil }
             return staged.count >= weekNights ? deepShare(staged) : nil
         }
         guard let now = week(weekEnd), let before = week(NightDate.adding(-nights, to: weekEnd)) else { return nil }
@@ -279,23 +289,29 @@ public enum Findings {
         StageStats.sleepPercent(deepMinutes, asleepMinutes: asleepMinutes)
     }
 
-    private static func lowDeep(_ share: Int, staged: [NightFacts], nights list: [NightFacts], calendar: Calendar) -> Finding {
+    private static func lowDeep(_ share: Int, staged: [NightFacts], nights list: [NightFacts],
+                                calendar: Calendar) -> Finding {
         let minutes = bedtimes(list, calendar: calendar)
         let median = SoundEventDetector.median(minutes)
         let late = Set(zip(list, minutes).filter { $0.1 > median + Double(lateMinutes) }.map(\.0))
-        let links = [link(.shortNights, staged, isShort), link(.lateBedtime, staged) { late.contains($0) }].compactMap { $0 }
+        let links = [link(.shortNights, staged, isShort),
+                     link(.lateBedtime, staged) { late.contains($0) }].compactMap { $0 }
         // Der grössere Unterschied; gleich: kurze Nächte (Reihenfolge von DeepLink, erster bleibt).
         var best: Finding?
-        for candidate in links where best.map({ candidate.withoutPercent - candidate.withPercent > $0.withoutPercent - $0.withPercent }) ?? true {
+        for candidate in links where best.map({
+            candidate.withoutPercent - candidate.withPercent > $0.withoutPercent - $0.withPercent
+        }) ?? true {
             best = candidate
         }
         guard let best else { return Finding(kind: .lowDeep, value: share) }
-        return Finding(kind: .lowDeep, value: share, link: best.link, withPercent: best.withPercent, withoutPercent: best.withoutPercent)
+        return Finding(kind: .lowDeep, value: share, link: best.link, withPercent: best.withPercent,
+                       withoutPercent: best.withoutPercent)
     }
 
     private static func link(_ link: DeepLink, _ staged: [NightFacts], _ test: (NightFacts) -> Bool) -> Finding? {
         let with = staged.filter(test), without = staged.filter { !test($0) }
-        guard with.count >= linkNights, without.count >= linkNights, let a = deepShare(with), let b = deepShare(without), b - a >= linkPoints else { return nil }
+        guard with.count >= linkNights, without.count >= linkNights,
+              let a = deepShare(with), let b = deepShare(without), b - a >= linkPoints else { return nil }
         return Finding(kind: .lowDeep, value: 0, link: link, withPercent: a, withoutPercent: b)
     }
 
@@ -303,8 +319,10 @@ public enum Findings {
     /// wenig Nächten.
     private static func jetlag(_ list: [NightFacts], calendar: Calendar) -> Int? {
         let mids = Regularity.unwrap(list.map { night in
-            Regularity.minutesFromNoon(night.asleepAt.addingTimeInterval(night.end.timeIntervalSince(night.asleepAt) / 2),
-                                       calendar: night.localCalendar(calendar))
+            Regularity.minutesFromNoon(
+                night.asleepAt.addingTimeInterval(night.end.timeIntervalSince(night.asleepAt) / 2),
+                calendar: night.localCalendar(calendar)
+            )
         })
         let weekend = list.indices.filter { index in
             let day = NightDate.weekday(list[index].date)
@@ -326,7 +344,8 @@ public enum Findings {
     private static func byDate(_ facts: [NightFacts], from: String, to: String) -> [NightFacts] {
         var best: [String: NightFacts] = [:]
         // Je Nachtdatum die mit dem meisten Schlaf; gleich: die erste (wie `maxBy` in Kotlin).
-        for night in facts where night.date >= from && night.date <= to && (best[night.date].map { night.asleepMinutes > $0.asleepMinutes } ?? true) {
+        for night in facts where night.date >= from && night.date <= to
+            && (best[night.date].map { night.asleepMinutes > $0.asleepMinutes } ?? true) {
             best[night.date] = night
         }
         return best.values.sorted { $0.date < $1.date }
@@ -337,7 +356,8 @@ public enum Findings {
         percent(list.reduce(0) { $0 + ($1.deepMinutes ?? 0) }, list.reduce(0) { $0 + $1.asleepMinutes })
     }
 
-    private static func percent(_ part: Int, _ whole: Int) -> Int? { whole <= 0 ? nil : round(Double(part) * 100 / Double(whole)) }
+    private static func percent(_ part: Int,
+                                _ whole: Int) -> Int? { whole <= 0 ? nil : round(Double(part) * 100 / Double(whole)) }
 
     /// Halbe aufwärts (wie `floor(x + 0.5)` in Kotlin).
     private static func round(_ value: Double) -> Int { Int((value + 0.5).rounded(.down)) }

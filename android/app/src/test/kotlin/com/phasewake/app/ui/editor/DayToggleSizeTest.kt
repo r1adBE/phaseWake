@@ -43,7 +43,9 @@ class DayToggleSizeTest {
         // Wie im Editor: 16 dp Rand der Seite um die Karte.
         controller.get().setContent {
             PhaseWakeTheme(ThemeMode.LIGHT) {
-                Column(Modifier.fillMaxWidth().padding(horizontal = 16.dp)) { DaysSection(EditorState(AlarmSpec(id = "d", hour = 7, minute = 0))) }
+                Column(Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
+                    DaysSection(EditorState(AlarmSpec(id = "d", hour = 7, minute = 0)))
+                }
             }
         }
         val tree = ComposeTree(controller.get()).also { it.idle(500) }
@@ -61,7 +63,10 @@ class DayToggleSizeTest {
         }
         // Lückenlos: Jede Fläche beginnt, wo die vorige endet (ein Tipp zwischen zwei Kreisen trifft einen Tag).
         days.zipWithNext().forEach { (a, b) ->
-            assertTrue(abs(a.boundsInRoot.right - b.boundsInRoot.left) <= 1f, "Lücke zwischen ${a.boundsInRoot} und ${b.boundsInRoot}")
+            assertTrue(
+                abs(a.boundsInRoot.right - b.boundsInRoot.left) <= 1f,
+                "Lücke zwischen ${a.boundsInRoot} und ${b.boundsInRoot}",
+            )
         }
         controller.pause().stop().destroy()
         ComposeTree.drain()

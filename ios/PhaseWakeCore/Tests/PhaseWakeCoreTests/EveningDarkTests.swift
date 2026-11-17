@@ -18,7 +18,8 @@ final class EveningDarkTests: XCTestCase {
     }
 
     func testSharedVectors() throws {
-        let text = try String(contentsOf: NightFixtures.directory.appendingPathComponent("evening-dark.vectors"), encoding: .utf8)
+        let text = try String(contentsOf: NightFixtures.directory.appendingPathComponent("evening-dark.vectors"),
+                              encoding: .utf8)
         let lines = text.components(separatedBy: "\n").filter { !$0.isEmpty && !$0.hasPrefix("#") }
         for line in lines {
             let p = line.components(separatedBy: "\t")
@@ -29,8 +30,10 @@ final class EveningDarkTests: XCTestCase {
             let enabled = p[2] == "1"
             let hm = p[3].components(separatedBy: ":").compactMap { Int($0) }
             let from = hm[0] * 60 + hm[1]
-            XCTAssertEqual(EveningDark.isDark(now: now, calendar: cal, enabled: enabled, fromMinutes: from), p[4] == "1", "dunkel: \(line)")
-            XCTAssertEqual(self.text(EveningDark.nextChange(now: now, calendar: cal, enabled: enabled, fromMinutes: from)), p[5], "Wechsel: \(line)")
+            XCTAssertEqual(EveningDark.isDark(now: now, calendar: cal, enabled: enabled, fromMinutes: from),
+                           p[4] == "1", "dunkel: \(line)")
+            XCTAssertEqual(self.text(EveningDark.nextChange(now: now, calendar: cal, enabled: enabled,
+                                                            fromMinutes: from)), p[5], "Wechsel: \(line)")
         }
         XCTAssertEqual(lines.count, 24)
     }
@@ -67,8 +70,10 @@ final class EveningDarkTests: XCTestCase {
                 XCTFail("\(now)"); return
             }
             XCTAssertGreaterThan(next, now)
-            XCTAssertEqual(EveningDark.isDark(now: next, calendar: cal, enabled: true, fromMinutes: from), !dark, "\(now)")
-            XCTAssertEqual(EveningDark.isDark(now: max(now, next.addingTimeInterval(-60)), calendar: cal, enabled: true, fromMinutes: from), dark, "\(now)")
+            XCTAssertEqual(EveningDark.isDark(now: next, calendar: cal, enabled: true, fromMinutes: from), !dark,
+                           "\(now)")
+            XCTAssertEqual(EveningDark.isDark(now: max(now, next.addingTimeInterval(-60)), calendar: cal, enabled: true,
+                                              fromMinutes: from), dark, "\(now)")
             now = now.addingTimeInterval(15 * 60)
         }
         XCTAssertNil(EveningDark.nextChange(now: now, calendar: cal, enabled: false, fromMinutes: 18 * 60))

@@ -50,7 +50,10 @@ object AutoOnset {
      * Ob die automatische Messung bei Akkustand [percent] ausfällt; unbekannt (`null`) hindert nicht, Laden
      * ([charging]) auch nicht (wer die Uhr am Abend lädt, hat sie zur Bettzeit voll).
      */
-    fun skipForBattery(percent: Int?, charging: Boolean = false): Boolean = !charging && percent != null && percent < MIN_BATTERY_PERCENT
+    fun skipForBattery(
+        percent: Int?,
+        charging: Boolean = false,
+    ): Boolean = !charging && percent != null && percent < MIN_BATTERY_PERCENT
 
     /**
      * Beginn der Messung für [plan] (Plan des Weckers [spec] ohne Einschlaf-Ausnahme), oder `null`: kein gespeicherter
@@ -60,8 +63,16 @@ object AutoOnset {
      * [AlarmScheduler.lastNightEnded]): zweiter Wecker am selben Morgen, der Schlaf dieser Nacht ist vorbei. Eine
      * Messung gleich nach dem Wecken fände kein Einschlafen und sperrte das frühe Wecken (fail-closed).
      */
-    fun startAt(plan: WakePlan?, spec: AlarmSpec?, goalMinutes: Int, now: Instant, done: Boolean, lastNightEnded: Instant? = null): Instant? {
-        if (plan == null || spec == null || spec.id != plan.alarmId || done || Transient.kindOf(plan.alarmId) != null) return null
+    fun startAt(
+        plan: WakePlan?,
+        spec: AlarmSpec?,
+        goalMinutes: Int,
+        now: Instant,
+        done: Boolean,
+        lastNightEnded: Instant? = null,
+    ): Instant? {
+        if (plan == null || spec == null || spec.id != plan.alarmId || done) return null
+        if (Transient.kindOf(plan.alarmId) != null) return null
         val start = ShortNight.autoOnsetStart(plan.target, goalMinutes, spec.sleepDurationMinutes)
         if (lastNightEnded != null && !lastNightEnded.isBefore(start)) return null
         val at = maxOf(start, now.plus(IMMEDIATE))
@@ -78,7 +89,11 @@ object AutoOnset {
         val done = plan != null && app.onsets.isDone(plan.alarmId, plan.target)
         val goal = app.sleepGoal.minutes.first()
         // Schalter am Handy aus: kein Alarm, ein gestellter wird aufgehoben.
-        val at = if (app.autoOnset.enabled.first()) startAt(plan, spec, goal, now, done, app.scheduler.lastNightEnded()) else null
+        val at = if (app.autoOnset.enabled.first()) {
+            startAt(plan, spec, goal, now, done, app.scheduler.lastNightEnded())
+        } else {
+            null
+        }
         if (plan == null || at == null) {
             context.getSystemService(AlarmManager::class.java).cancel(pending(context, null))
             return
@@ -98,7 +113,12 @@ object AutoOnset {
     private fun pending(context: Context, alarmId: String?): PendingIntent {
         val intent = Intent(context, AlarmReceiver::class.java).setAction(ACTION)
         if (alarmId != null) intent.putExtra(EXTRA_ALARM_ID, alarmId)
-        return PendingIntent.getBroadcast(context, REQUEST, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+        return PendingIntent.getBroadcast(
+            context,
+            REQUEST,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+        )
     }
 }
 
@@ -121,7 +141,13 @@ class OnsetStore(private val store: DataStore<Preferences>) {
      * ([knownOnset]). [bedAt]: Beginn der Einschlafdauer dieser Messung (für die Nacht im Verlauf, [bedFor]); `null` =
      * unbekannt.
      */
-    suspend fun set(alarmId: String, latest: Instant, onset: Instant?, measured: Boolean = false, bedAt: Instant? = null) {
+    suspend fun set(
+        alarmId: String,
+        latest: Instant,
+        onset: Instant?,
+        measured: Boolean = false,
+        bedAt: Instant? = null,
+    ) {
         store.edit {
             if (onset == null && knownOnset(it, alarmId, latest)) return@edit
             it.remove(ONSET)
@@ -148,7 +174,8 @@ class OnsetStore(private val store: DataStore<Preferences>) {
      */
     private fun knownOnset(prefs: Preferences, alarmId: String, latest: Instant): Boolean {
         val onset = prefs[ONSET]?.let(Instant::ofEpochMilli) ?: return false
-        return prefs[ALARM] == alarmId && onset.isBefore(latest) && Duration.between(onset, latest) <= WakeService.GOOD_NIGHT_MAX_AHEAD
+        return prefs[ALARM] == alarmId && onset.isBefore(latest) &&
+            Duration.between(onset, latest) <= WakeService.GOOD_NIGHT_MAX_AHEAD
     }
 
     /**

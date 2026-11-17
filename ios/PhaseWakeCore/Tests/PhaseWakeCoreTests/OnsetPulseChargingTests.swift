@@ -19,9 +19,11 @@ final class OnsetPulseChargingTests: XCTestCase {
         XCTAssertNil(SleepOnset.find(motions, threshold: 0.002, heartRates: (0..<100).map { $0 == 40 ? 58.0 : nil }))
         // Getragen, Puls nur alle 12 Min, still ab 36: bei 36, nicht erst beim nächsten Puls (48).
         let sleeper: [Double?] = (0..<120).map { $0 < 36 ? busy : quiet }
-        XCTAssertEqual(SleepOnset.find(sleeper, threshold: 0.002, heartRates: (0..<120).map { $0 % 24 == 0 ? 58.0 : nil }), 36)
+        XCTAssertEqual(SleepOnset.find(sleeper, threshold: 0.002,
+                                       heartRates: (0..<120).map { $0 % 24 == 0 ? 58.0 : nil }), 36)
         // Puls alle 15 Min (grösster üblicher Abstand der Apple Watch): ebenso.
-        XCTAssertEqual(SleepOnset.find(sleeper, threshold: 0.002, heartRates: (0..<120).map { $0 % 30 == 0 ? 58.0 : nil }), 36)
+        XCTAssertEqual(SleepOnset.find(sleeper, threshold: 0.002,
+                                       heartRates: (0..<120).map { $0 % 30 == 0 ? 58.0 : nil }), 36)
     }
 
     /// Ein Puls vor dem Beginn der Messung zählt für die erste Strecke (`heartLead`).
@@ -50,14 +52,20 @@ final class OnsetPulseChargingTests: XCTestCase {
         let away = (0..<count).map { $0 < 120 }
         let cap = RecorderOnset.extendCap(since: since, windowStart: since.addingTimeInterval(8 * 3600))
         let rates: [Double?] = (0..<count).map { $0 >= 230 && $0 % 10 == 0 ? 58.0 : nil }
-        let result = RecorderOnset.measure(motions: motions, since: since, threshold: DetectorConfig.defaultLightThreshold,
-                                           personalFloor: nil, latest: since.addingTimeInterval(9 * 3600), extendCap: cap,
-                                           heartRates: rates, away: away).result
+        let result = RecorderOnset.measure(motions: motions, since: since,
+                                           threshold: DetectorConfig.defaultLightThreshold,
+                                           personalFloor: nil, latest: since.addingTimeInterval(9 * 3600),
+                                           extendCap: cap,
+                                           worn: RecorderOnset.Worn(heartRates: rates, away: away)).result
         XCTAssertEqual(result, .asleep(at: minutes(115), index: 230))
-        XCTAssertEqual(RecorderOnset.awayUntil(baseEnd: minutes(120), awayEpochs: 120, latestGiveUp: minutes(500), cap: cap), minutes(180))
-        XCTAssertEqual(RecorderOnset.awayUntil(baseEnd: minutes(120), awayEpochs: 600, latestGiveUp: minutes(500), cap: cap), cap)
-        XCTAssertNil(RecorderOnset.awayUntil(baseEnd: minutes(120), awayEpochs: 0, latestGiveUp: minutes(500), cap: cap))
-        XCTAssertNil(RecorderOnset.awayUntil(baseEnd: minutes(120), awayEpochs: 60, latestGiveUp: minutes(100), cap: cap))
+        XCTAssertEqual(RecorderOnset.awayUntil(baseEnd: minutes(120), awayEpochs: 120, latestGiveUp: minutes(500),
+                                               cap: cap), minutes(180))
+        XCTAssertEqual(RecorderOnset.awayUntil(baseEnd: minutes(120), awayEpochs: 600, latestGiveUp: minutes(500),
+                                               cap: cap), cap)
+        XCTAssertNil(RecorderOnset.awayUntil(baseEnd: minutes(120), awayEpochs: 0, latestGiveUp: minutes(500),
+                                             cap: cap))
+        XCTAssertNil(RecorderOnset.awayUntil(baseEnd: minutes(120), awayEpochs: 60, latestGiveUp: minutes(100),
+                                             cap: cap))
     }
 
     // MARK: Später Start
@@ -68,7 +76,8 @@ final class OnsetPulseChargingTests: XCTestCase {
         XCTAssertEqual(RecorderOnset.lateStart(recorderFrom: minutes(0), bedAt: bedAt, foreground: false), .onTime)
         XCTAssertEqual(RecorderOnset.lateStart(recorderFrom: minutes(45), bedAt: bedAt, foreground: true), .foreground)
         XCTAssertEqual(RecorderOnset.lateStart(recorderFrom: minutes(45), bedAt: bedAt, foreground: false), .background)
-        XCTAssertEqual(RecorderOnset.lateStart(recorderFrom: bedAt.addingTimeInterval(RecorderOnset.lateStartTolerance), bedAt: bedAt,
+        XCTAssertEqual(RecorderOnset.lateStart(recorderFrom: bedAt.addingTimeInterval(RecorderOnset.lateStartTolerance),
+                                               bedAt: bedAt,
                                                foreground: false), .onTime)
     }
 
@@ -78,12 +87,16 @@ final class OnsetPulseChargingTests: XCTestCase {
     func testChargingIgnoresTheBatteryLimit() {
         let target = minutes(8 * 60)
         let window = target.addingTimeInterval(-1800)
-        XCTAssertEqual(AppleAutoOnset.decide(now: since, target: target, windowStart: window, onsetStart: since, battery: 25),
+        XCTAssertEqual(AppleAutoOnset.decide(now: since, target: target, windowStart: window, onsetStart: since,
+                                             battery: 25),
                        .skip(reason: "battery 25%"))
-        XCTAssertEqual(AppleAutoOnset.decide(now: since, target: target, windowStart: window, onsetStart: since, battery: 25, charging: true),
+        XCTAssertEqual(AppleAutoOnset.decide(now: since, target: target, windowStart: window, onsetStart: since,
+                                             battery: 25, charging: true),
                        .start(until: window))
-        XCTAssertEqual(AppleLearnRecord.decide(now: since, target: target, onsetStart: since, battery: 35), .skip(reason: "battery 35%"))
-        if case .start = AppleLearnRecord.decide(now: since, target: target, onsetStart: since, battery: 35, charging: true) {} else {
+        XCTAssertEqual(AppleLearnRecord.decide(now: since, target: target, onsetStart: since, battery: 35),
+                       .skip(reason: "battery 35%"))
+        if case .start = AppleLearnRecord.decide(now: since, target: target, onsetStart: since, battery: 35,
+                                                 charging: true) {} else {
             XCTFail("am Ladegerät zeichnet die Lernphase auf")
         }
     }

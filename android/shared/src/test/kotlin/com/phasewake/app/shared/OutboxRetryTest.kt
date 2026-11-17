@@ -46,7 +46,13 @@ class OutboxRetryTest {
     private var calls = 0L
 
     private fun TestScope.outbox() =
-        Outbox(dir, transport, { 1_000L + calls++ + testScheduler.currentTime }, backgroundScope, StandardTestDispatcher(testScheduler))
+        Outbox(
+            dir,
+            transport,
+            { 1_000L + calls++ + testScheduler.currentTime },
+            backgroundScope,
+            StandardTestDispatcher(testScheduler),
+        )
 
     private suspend fun TestScope.put(box: Outbox, key: String, body: String): String =
         box.enqueue(key, DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, body).also { runCurrent() }
@@ -58,7 +64,13 @@ class OutboxRetryTest {
             override suspend fun nodes(capability: String): List<String> = emptyList()
             override suspend fun send(node: String, path: String, data: ByteArray) = Unit
         }, { 1_000L + calls++ + testScheduler.currentTime }, backgroundScope, StandardTestDispatcher(testScheduler))
-        for (key in listOf("night/alt", "recording/alt", QueueMessages.KEY_ALARMS, QueueMessages.KEY_LEARNING, QueueMessages.KEY_SLEEP_GOAL)) put(box, key, key)
+        for (key in listOf(
+            "night/alt",
+            "recording/alt",
+            QueueMessages.KEY_ALARMS,
+            QueueMessages.KEY_LEARNING,
+            QueueMessages.KEY_SLEEP_GOAL,
+        )) put(box, key, key)
         calls += Outbox.MAX_AGE_MS + 1
         put(box, "night/neu", "neu")
         assertEquals(
@@ -66,7 +78,11 @@ class OutboxRetryTest {
             box.pending().map { it.key },
         )
         assertTrue(Outbox.expires("night/1-a") && Outbox.expires("recording/5"))
-        assertFalse(Outbox.expires(QueueMessages.KEY_ALARMS) || Outbox.expires(QueueMessages.KEY_HOLIDAYS) || Outbox.expires(QueueMessages.KEY_ONSET_SHIFT))
+        assertFalse(
+            Outbox.expires(QueueMessages.KEY_ALARMS) || Outbox.expires(QueueMessages.KEY_HOLIDAYS) || Outbox.expires(
+                QueueMessages.KEY_ONSET_SHIFT,
+            ),
+        )
     }
 
     @Test

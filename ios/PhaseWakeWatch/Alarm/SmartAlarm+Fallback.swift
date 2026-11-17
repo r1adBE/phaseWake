@@ -32,13 +32,15 @@ extension SmartAlarm {
 
     /// Entfernt die wartenden Rückfälle `ids`, je samt ihrer Kette (`NotificationChain`).
     func removeFallback(_ ids: [String] = [SmartAlarm.fallbackId]) {
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: NotificationChain.allIds(ids))
+        UNUserNotificationCenter.current()
+            .removePendingNotificationRequests(withIdentifiers: NotificationChain.allIds(ids))
     }
 
     /// Klingelt die Sitzung selbst, braucht es die noch folgenden Mitteilungen der Kette von `id` nicht mehr. Die
     /// erste bleibt wie bisher stehen, bis beendet wird: Endet die Sitzung, weckt sie trotzdem.
     func removeFollowingFallback(_ id: String) {
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: NotificationChain.followingIds(id))
+        UNUserNotificationCenter.current()
+            .removePendingNotificationRequests(withIdentifiers: NotificationChain.followingIds(id))
     }
 
     /// Nach dem Stopp: auch schon zugestellte Rückfälle `ids` samt Kette aus der Mitteilungszentrale nehmen.

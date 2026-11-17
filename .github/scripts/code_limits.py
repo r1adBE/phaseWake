@@ -80,27 +80,25 @@ def strip_code(lines, swift):
 
 
 def count_params(code, start, col):
-    """Parameter der Liste, die in Zeile `start` an Spalte `col` mit «(» beginnt."""
-    depth, commas, content = 0, 0, False
+    """Parameter der Liste, die in Zeile `start` an Spalte `col` mit «(» beginnt (Komma am Ende zählt nicht)."""
+    depth, commas, content, trailing = 0, 0, False, False
     for n in range(start, min(start + 60, len(code))):
         text = code[n][col:] if n == start else code[n]
         for ch in text:
             if ch in "([{<":
                 depth += 1
                 if depth > 1:
-                    content = True
+                    content, trailing = True, False
                 continue
             if ch in ")]}>":
                 depth -= 1
                 if depth == 0:
-                    return commas + 1 if content else 0
+                    return (commas - (1 if trailing else 0) + 1) if content else 0
                 continue
             if depth == 1 and ch == ",":
-                commas += 1
+                commas, trailing = commas + 1, True
             elif depth >= 1 and not ch.isspace():
-                content = True
-        if depth == 1 and code[n].rstrip().endswith(","):
-            pass
+                content, trailing = True, False
     return 0
 
 

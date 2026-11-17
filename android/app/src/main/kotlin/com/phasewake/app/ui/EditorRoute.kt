@@ -34,7 +34,13 @@ internal fun NavHostController.isTop(entry: NavBackStackEntry): Boolean = curren
  * er mit dem Hinweis auf die Höchstzahl offen, statt still zu verwerfen.
  */
 @Composable
-internal fun EditorRoute(app: PhaseWakeApp, state: NavState, id: String?, actions: NavActions, entry: NavBackStackEntry) {
+internal fun EditorRoute(
+    app: PhaseWakeApp,
+    state: NavState,
+    id: String?,
+    actions: NavActions,
+    entry: NavBackStackEntry,
+) {
     val context = LocalContext.current
     val maxAlarmsText = stringResource(R.string.home_max_alarms, MAX_ALARMS)
     val data = state.data
@@ -69,7 +75,11 @@ internal fun EditorRoute(app: PhaseWakeApp, state: NavState, id: String?, action
                 // neunten.
                 val current = app.alarms.current()
                 val stored = current.alarms.any { it.id == spec.id }
-                if (stored == (existing != null) && (stored || current.alarms.size < MAX_ALARMS)) app.alarms.upsert(spec) else current
+                if (stored == (existing != null) && (stored || current.alarms.size < MAX_ALARMS)) {
+                    app.alarms.upsert(spec)
+                } else {
+                    current
+                }
             }
             actions.nav.backFrom(entry)
         },

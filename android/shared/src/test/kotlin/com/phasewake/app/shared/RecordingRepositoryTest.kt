@@ -35,7 +35,10 @@ class RecordingRepositoryTest {
         repo.begin(start)
         repo.append(start, listOf(Epoch(0.01, 55.0)))
         repo.append(start, listOf(Epoch(null, null), Epoch(0.2, null)))
-        assertEquals(NightRecording(start, listOf(Epoch(0.01, 55.0), Epoch(null, null), Epoch(0.2, null))), repo.active())
+        assertEquals(
+            NightRecording(start, listOf(Epoch(0.01, 55.0), Epoch(null, null), Epoch(0.2, null))),
+            repo.active(),
+        )
         assertTrue(repo.load().isEmpty(), "laufende zählt nicht als abgeschlossen")
         repo.finish(start, start.plusSeconds(90), RecordEnd.CAP)
         assertNull(repo.active())
@@ -76,9 +79,17 @@ class RecordingRepositoryTest {
     fun dataLayerStatusRecordingAndCommands() {
         // Früheres Aufzeichnungs-Paket: liest nur noch die einmalige Umstellung der Uhr.
         val recording = finished(start, RecordEnd.BATTERY)
-        assertEquals(recording, RecordSync.readRecording(DataMap().apply { putString(DataLayer.KEY_TEXT, NightRecording.encode(recording)) }))
+        assertEquals(
+            recording,
+            RecordSync.readRecording(
+                DataMap().apply { putString(DataLayer.KEY_TEXT, NightRecording.encode(recording)) },
+            ),
+        )
         assertNull(RecordSync.readRecording(DataMap()), "ohne Inhalt")
-        val running = DataMap().apply { putString(DataLayer.KEY_TEXT, NightRecording.encode(recording.copy(end = null, endReason = null))) }
+        val running =
+            DataMap().apply {
+                putString(DataLayer.KEY_TEXT, NightRecording.encode(recording.copy(end = null, endReason = null)))
+            }
         assertNull(RecordSync.readRecording(running), "nur abgeschlossene")
 
         assertEquals(RecordSync.Command.START, RecordSync.commandOf(RecordSync.commandPath(start = true)))

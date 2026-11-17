@@ -14,6 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
@@ -83,7 +84,9 @@ fun EditorScreen(
     draft: SavedStateHandle? = null,
 ) {
     val context = LocalContext.current
-    val newId = rememberSaveable { draft?.get<String>(DRAFT_NEW_ID) ?: UUID.randomUUID().toString().also { draft?.set(DRAFT_NEW_ID, it) } }
+    val newId = rememberSaveable {
+        draft?.get<String>(DRAFT_NEW_ID) ?: UUID.randomUUID().toString().also { draft?.set(DRAFT_NEW_ID, it) }
+    }
     // Neue Wecker wecken mit «Morgenvögel»; bestehende behalten ihren Ton (leer = Standard des Systems).
     val base = existing ?: AlarmSpec(id = newId, hour = 7, minute = 0, days = WEEKDAYS, sound = WakeTones.DEFAULT)
     // Entwurf je Wecker: die Eingaben gehören immer zum gezeigten Wecker.
@@ -102,7 +105,9 @@ fun EditorScreen(
             .collect { draft?.set(draftKey, it) }
     }
     val soundPicker = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        val uri = result.data?.let { IntentCompat.getParcelableExtra(it, RingtoneManager.EXTRA_RINGTONE_PICKED_URI, Uri::class.java) }
+        val uri = result.data?.let {
+            IntentCompat.getParcelableExtra(it, RingtoneManager.EXTRA_RINGTONE_PICKED_URI, Uri::class.java)
+        }
         if (result.resultCode == Activity.RESULT_OK) state.sound = uri?.toString().orEmpty()
     }
     // Probehören der eigenen Wecktöne; endet beim Verlassen des Editors und wenn die App in den Hintergrund geht.
@@ -127,14 +132,19 @@ fun EditorScreen(
 
     // Randlos: Statusleiste oben, Navigationsleiste unten und Tastatur freihalten.
     SkyBarPage(bar = {
-        IconButton(onClick = back) { Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.action_cancel)) }
+        IconButton(onClick = back) {
+            Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.action_cancel))
+        }
         Text(
             stringResource(if (existing == null) R.string.editor_new else R.string.editor_edit),
             style = MaterialTheme.typography.titleLarge,
             modifier = Modifier.weight(1f),
         )
         // Im Himmel-Kopf immer der helle Knopf der Nacht (dunkel ohnehin die Hauptfarbe).
-        Button(onClick = { onSave(state.result(time)) }, colors = skyButtonColors(), modifier = Modifier.padding(end = 12.dp)) {
+        Button(
+            onClick = { onSave(state.result(time)) }, colors = skyButtonColors(),
+            modifier = Modifier.padding(end = 12.dp),
+        ) {
             Text(stringResource(R.string.editor_save))
         }
     }) {
@@ -142,41 +152,59 @@ fun EditorScreen(
             Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp),
         ) {
-            SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().height(IntrinsicSize.Max)) {
-                SegmentedButton(
-                    selected = !state.sleepMode,
-                    onClick = { state.sleepMode = false },
-                    shape = SegmentedButtonDefaults.itemShape(0, 2),
-                    modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight(),
-                ) {
-                    Text(stringResource(R.string.editor_mode_clock))
-                }
-                SegmentedButton(
-                    selected = state.sleepMode,
-                    onClick = { state.sleepMode = true },
-                    shape = SegmentedButtonDefaults.itemShape(1, 2),
-                    modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight(),
-                ) {
-                    Text(stringResource(R.string.editor_mode_sleep))
-                }
-            }
+            ModeSwitch(state)
             TimeSection(state, time)
             AnimatedVisibility(state.sleepMode) { SleepSection(state) }
             // «Genau» ist bewusst ohne Fenster: dann kein Vorschlag.
             val chosen = state.window.roundToInt()
-            if (advice != null && chosen != AlarmSpec.EXACT_WINDOW && chosen < advice.windowMinutes) AdviceCard(state, advice)
+            if (advice != null && chosen != AlarmSpec.EXACT_WINDOW && chosen < advice.windowMinutes) {
+                AdviceCard(state, advice)
+            }
             WindowSection(state, time)
             DaysSection(state)
             AlertSection(state)
             MoreSection(state, preview, soundPicker)
-            if (existing != null) {
-                TextButton(onClick = { confirmDelete = true }, modifier = Modifier.align(Alignment.CenterHorizontally)) {
-                    Icon(painterResource(R.drawable.ic_delete), contentDescription = null, tint = MaterialTheme.colorScheme.error, modifier = Modifier.size(18.dp))
-                    Text(stringResource(R.string.editor_delete), color = MaterialTheme.colorScheme.error, modifier = Modifier.padding(start = 8.dp))
-                }
-            }
+            if (existing != null) DeleteButton(onClick = { confirmDelete = true })
             Spacer(Modifier.height(32.dp))
         }
+    }
+}
+
+/** Umschalter «Uhrzeit» / «Schlafdauer» oben im Editor. */
+@Composable
+private fun ModeSwitch(state: EditorState) {
+    SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().height(IntrinsicSize.Max)) {
+        SegmentedButton(
+            selected = !state.sleepMode,
+            onClick = { state.sleepMode = false },
+            shape = SegmentedButtonDefaults.itemShape(0, 2),
+            modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight(),
+        ) {
+            Text(stringResource(R.string.editor_mode_clock))
+        }
+        SegmentedButton(
+            selected = state.sleepMode,
+            onClick = { state.sleepMode = true },
+            shape = SegmentedButtonDefaults.itemShape(1, 2),
+            modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight(),
+        ) {
+            Text(stringResource(R.string.editor_mode_sleep))
+        }
+    }
+}
+
+/** «Wecker löschen» unten im Editor (nur bei einem bestehenden Wecker). */
+@Composable
+private fun ColumnScope.DeleteButton(onClick: () -> Unit) {
+    TextButton(onClick = onClick, modifier = Modifier.align(Alignment.CenterHorizontally)) {
+        Icon(
+            painterResource(R.drawable.ic_delete), contentDescription = null,
+            tint = MaterialTheme.colorScheme.error, modifier = Modifier.size(18.dp),
+        )
+        Text(
+            stringResource(R.string.editor_delete), color = MaterialTheme.colorScheme.error,
+            modifier = Modifier.padding(start = 8.dp),
+        )
     }
 }
 
@@ -195,7 +223,9 @@ private fun EditorDialogs(
             onDismissRequest = onKeepEditing,
             title = { Text(stringResource(R.string.editor_discard_title)) },
             confirmButton = { TextButton(onClick = onDiscard) { Text(stringResource(R.string.editor_discard)) } },
-            dismissButton = { TextButton(onClick = onKeepEditing) { Text(stringResource(R.string.editor_keep_editing)) } },
+            dismissButton = {
+                TextButton(onClick = onKeepEditing) { Text(stringResource(R.string.editor_keep_editing)) }
+            },
         )
     }
     if (deleting != null) {

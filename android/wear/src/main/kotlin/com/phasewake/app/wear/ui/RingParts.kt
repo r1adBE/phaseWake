@@ -82,7 +82,14 @@ internal fun FitColumn(heightShare: Float, modifier: Modifier = Modifier, conten
  * von links eine helle Füllung darüber. Dunkle Schrift auf Lavendel und auf der Füllung: Kontrast ≥ 4.5:1.
  */
 @Composable
-internal fun HoldToStop(label: String, progress: Float, compact: Boolean, onDismiss: () -> Unit, modifier: Modifier = Modifier, maxLines: Int = 2) {
+internal fun HoldToStop(
+    label: String,
+    progress: Float,
+    compact: Boolean,
+    onDismiss: () -> Unit,
+    modifier: Modifier = Modifier,
+    maxLines: Int = 2,
+) {
     Box(
         contentAlignment = Alignment.Center,
         // [modifier]: das Halten (vor dem Innenabstand, damit der ganze Knopf zählt).
@@ -154,7 +161,11 @@ internal fun SnoozeButton(snoozesLeft: Int, onSnooze: () -> Unit, compact: Boole
     Button(
         onClick = onSnooze,
         modifier = modifier.heightIn(min = SNOOZE_MIN_HEIGHT),
-        colors = ButtonDefaults.buttonColors(containerColor = Brand.Deep, contentColor = Brand.Moon, secondaryContentColor = Brand.Mist),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Brand.Deep,
+            contentColor = Brand.Moon,
+            secondaryContentColor = Brand.Mist,
+        ),
         contentPadding = PaddingValues(horizontal = if (compact) 10.dp else 16.dp, vertical = 2.dp),
         secondaryLabel = {
             Text(

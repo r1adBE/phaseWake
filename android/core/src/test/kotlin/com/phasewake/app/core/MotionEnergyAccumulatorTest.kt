@@ -9,7 +9,11 @@ class MotionEnergyAccumulatorTest {
     private val stepNanos = 40_000_000L // 25 Hz
 
     /** Füllt eine Epoche mit [count] Werten; [value] liefert den Vektor je Index. */
-    private fun MotionEnergyAccumulator.fill(count: Int, start: Long = 0L, value: (Int) -> Triple<Double, Double, Double>) {
+    private fun MotionEnergyAccumulator.fill(
+        count: Int,
+        start: Long = 0L,
+        value: (Int) -> Triple<Double, Double, Double>,
+    ) {
         for (i in 0 until count) {
             val (x, y, z) = value(i)
             add(start + i * stepNanos, x, y, z)

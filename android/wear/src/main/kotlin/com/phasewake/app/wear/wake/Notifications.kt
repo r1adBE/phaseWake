@@ -46,9 +46,17 @@ object Notifications {
     fun createChannels(context: Context) {
         val manager = context.getSystemService(NotificationManager::class.java)
         manager.createNotificationChannels(listOf(
-            NotificationChannel(CHANNEL_WINDOW, context.getString(R.string.channel_window), NotificationManager.IMPORTANCE_LOW)
+            NotificationChannel(
+                CHANNEL_WINDOW,
+                context.getString(R.string.channel_window),
+                NotificationManager.IMPORTANCE_LOW,
+            )
                 .apply { description = context.getString(R.string.channel_window_description) },
-            NotificationChannel(CHANNEL_ALARM, context.getString(R.string.channel_alarm), NotificationManager.IMPORTANCE_HIGH)
+            NotificationChannel(
+                CHANNEL_ALARM,
+                context.getString(R.string.channel_alarm),
+                NotificationManager.IMPORTANCE_HIGH,
+            )
                 .apply {
                     description = context.getString(R.string.channel_alarm_description)
                     // Die Vibration steuert der Dienst selbst (Steigerung in drei Stufen).
@@ -66,8 +74,16 @@ object Notifications {
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
         )
         // «Genau»: kein Versprechen zum leichten Schlaf, nur die Zielzeit.
-        val text = if (exact) context.getString(R.string.editor_window_exact_hint) else context.getString(R.string.notification_window_text, targetText)
-        val title = if (exact) context.getString(R.string.window_exact_line, targetText) else context.getString(R.string.notification_window_title)
+        val text = if (exact) {
+            context.getString(R.string.editor_window_exact_hint)
+        } else {
+            context.getString(R.string.notification_window_text, targetText)
+        }
+        val title = if (exact) {
+            context.getString(R.string.window_exact_line, targetText)
+        } else {
+            context.getString(R.string.notification_window_title)
+        }
         val builder = NotificationCompat.Builder(context, CHANNEL_WINDOW)
             .setSmallIcon(R.drawable.ic_moon)
             .setContentTitle(title)
@@ -149,7 +165,12 @@ object Notifications {
                 context, 3, Intent(context, WakeService::class.java).setAction(WakeService.ACTION_SNOOZE),
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
             )
-            val label = context.resources.getQuantityString(R.plurals.ring_snooze, snoozesLeft, Snooze.MINUTES, snoozesLeft)
+            val label = context.resources.getQuantityString(
+                R.plurals.ring_snooze,
+                snoozesLeft,
+                Snooze.MINUTES,
+                snoozesLeft,
+            )
             builder.addAction(R.drawable.ic_moon, label, snooze)
         }
         return builder.build()
@@ -180,7 +201,11 @@ object Notifications {
     /**
      * Weckbildschirm über einen Wecker-Alarm des Systems (siehe `RingScreenAlert.kt`); gleiche Identität zum Abbrechen.
      */
-    fun ringScreenByAlarm(context: Context): PendingIntent = ringScreen(context, RingActivity.VIA_ALARM, REQUEST_RING_ALARM)
+    fun ringScreenByAlarm(context: Context): PendingIntent = ringScreen(
+        context,
+        RingActivity.VIA_ALARM,
+        REQUEST_RING_ALARM,
+    )
 
     /** Entfernt alle Mitteilungen des Weckdienstes (Daueranzeige und beide Weck-Kennungen). */
     fun cancelService(context: Context) {
@@ -188,7 +213,11 @@ object Notifications {
         listOf(ID_SERVICE, ID_RING, ID_RING_ALT).forEach(manager::cancel)
     }
 
-    private fun ringScreen(context: Context, via: String = RingActivity.VIA_TAP, requestCode: Int = REQUEST_RING_TAP): PendingIntent =
+    private fun ringScreen(
+        context: Context,
+        via: String = RingActivity.VIA_TAP,
+        requestCode: Int = REQUEST_RING_TAP,
+    ): PendingIntent =
         PendingIntent.getActivity(
             context, requestCode, Intent(context, RingActivity::class.java).putExtra(RingActivity.EXTRA_VIA, via),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,

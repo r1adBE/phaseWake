@@ -70,7 +70,9 @@ object BackupPassword {
      * angeschnitten sein): «aaaaaaaaaa», «1212121212», «abcabcabca».
      */
     private fun isRepeatedBlock(points: IntArray): Boolean =
-        (1..MAX_BLOCK).any { block -> block < points.size && (block until points.size).all { points[it] == points[it - block] } }
+        (1..MAX_BLOCK).any { block ->
+            block < points.size && (block until points.size).all { points[it] == points[it - block] }
+        }
 
     /** Längster Block, dessen Wiederholung als trivial gilt. */
     private const val MAX_BLOCK = 5

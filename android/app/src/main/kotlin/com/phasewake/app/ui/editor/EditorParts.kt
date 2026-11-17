@@ -62,7 +62,10 @@ import kotlin.math.roundToInt
 internal fun AlertLabel(icon: Int, label: Int) {
     Row(Modifier.padding(top = 14.dp, bottom = 6.dp), verticalAlignment = Alignment.CenterVertically) {
         Icon(painterResource(icon), contentDescription = null, modifier = Modifier.size(18.dp))
-        Text(stringResource(label), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(start = 8.dp))
+        Text(
+            stringResource(label), style = MaterialTheme.typography.titleSmall,
+            modifier = Modifier.padding(start = 8.dp),
+        )
     }
 }
 
@@ -98,7 +101,10 @@ internal fun ChoiceLabel(text: String) {
         text,
         style = style,
         maxLines = 2,
-        autoSize = TextAutoSize.StepBased(minFontSize = 12.sp, maxFontSize = if (style.fontSize.isSpecified) style.fontSize else 14.sp, stepSize = 0.5.sp),
+        autoSize = TextAutoSize.StepBased(
+            minFontSize = 12.sp, maxFontSize = if (style.fontSize.isSpecified) style.fontSize else 14.sp,
+            stepSize = 0.5.sp,
+        ),
     )
 }
 
@@ -116,7 +122,10 @@ internal fun ToneRow(label: String, selected: Boolean, detail: String? = null, o
         RadioButton(selected = selected, onClick = null)
         Text(label, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.padding(start = 12.dp).weight(1f))
         if (detail != null) {
-            Text(detail, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.primary, maxLines = 1, modifier = Modifier.padding(start = 8.dp))
+            Text(
+                detail, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.primary,
+                maxLines = 1, modifier = Modifier.padding(start = 8.dp),
+            )
         }
     }
 }
@@ -156,7 +165,13 @@ internal val DAY_GAP = 6.dp
  * mindestens [DAY_TOUCH_MIN] hoch), der sichtbare Kreis darin bleibt kleiner.
  */
 @Composable
-internal fun DayToggle(label: String, description: String, selected: Boolean, onToggle: () -> Unit, modifier: Modifier) {
+internal fun DayToggle(
+    label: String,
+    description: String,
+    selected: Boolean,
+    onToggle: () -> Unit,
+    modifier: Modifier,
+) {
     val colors = MaterialTheme.colorScheme
     // Rückmeldung beim Antippen nur auf dem Kreis (wie bisher), nicht auf dem ganzen Feld.
     val touch = remember { MutableInteractionSource() }
@@ -164,7 +179,10 @@ internal fun DayToggle(label: String, description: String, selected: Boolean, on
         contentAlignment = Alignment.Center,
         modifier = modifier
             .heightIn(min = DAY_TOUCH_MIN)
-            .toggleable(value = selected, interactionSource = touch, indication = null, role = Role.Checkbox, onValueChange = { onToggle() })
+            .toggleable(
+                value = selected, interactionSource = touch, indication = null, role = Role.Checkbox,
+                onValueChange = { onToggle() },
+            )
             .semantics { contentDescription = description },
     ) {
         Box(
@@ -210,7 +228,8 @@ internal fun Modifier.scaled(factor: Float): Modifier = layout { measurable, con
         minWidth = 0,
         minHeight = 0,
         maxWidth = if (constraints.hasBoundedWidth) (constraints.maxWidth / factor).toInt() else constraints.maxWidth,
-        maxHeight = if (constraints.hasBoundedHeight) (constraints.maxHeight / factor).toInt() else constraints.maxHeight,
+        maxHeight =
+            if (constraints.hasBoundedHeight) (constraints.maxHeight / factor).toInt() else constraints.maxHeight,
     )
     val placeable = measurable.measure(inner)
     val width = (placeable.width * factor).roundToInt()

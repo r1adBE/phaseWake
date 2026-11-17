@@ -33,7 +33,10 @@ class AlarmGraceTest {
         assertEquals(at("2026-10-28T06:40"), plan.windowStart)
         assertEquals("a", plan.alarmId)
         // Genau zur Zielzeit zählt schon, das Ende der Nachfrist nicht mehr.
-        assertEquals(plan, AlarmSchedule.inGrace(alarm(), at("2026-10-28T07:00"), at("2026-10-28T07:00"), grace, zurich))
+        assertEquals(
+            plan,
+            AlarmSchedule.inGrace(alarm(), at("2026-10-28T07:00"), at("2026-10-28T07:00"), grace, zurich),
+        )
         assertNull(AlarmSchedule.inGrace(alarm(), at("2026-10-28T07:00"), at("2026-10-28T07:02"), grace, zurich))
     }
 
@@ -42,7 +45,9 @@ class AlarmGraceTest {
         assertNull(AlarmSchedule.inGrace(alarm(), at("2026-10-28T07:00"), at("2026-10-28T06:59"), grace, zurich))
         assertNull(AlarmSchedule.inGrace(alarm(), null, at("2026-10-28T07:01"), grace, zurich))
         // Ohne Uhr (Nachfrist null) klingelt das Handy pünktlich; es gibt keine Nachfrist zu behalten.
-        assertNull(AlarmSchedule.inGrace(alarm(), at("2026-10-28T07:00"), at("2026-10-28T07:00"), Duration.ZERO, zurich))
+        assertNull(
+            AlarmSchedule.inGrace(alarm(), at("2026-10-28T07:00"), at("2026-10-28T07:00"), Duration.ZERO, zurich),
+        )
     }
 
     @Test
@@ -56,9 +61,15 @@ class AlarmGraceTest {
         val skipped = daily.copy(skipUntil = AlarmSchedule.wallMillis(planned, zurich))
         assertNull(AlarmSchedule.inGrace(skipped, planned, now, grace, zurich), "übersprungen")
         val holiday = daily.copy(skipHolidays = true)
-        assertNull(AlarmSchedule.inGrace(holiday, planned, now, grace, zurich, setOf(LocalDate.of(2026, 10, 28))), "Feiertag")
+        assertNull(
+            AlarmSchedule.inGrace(holiday, planned, now, grace, zurich, setOf(LocalDate.of(2026, 10, 28))),
+            "Feiertag",
+        )
         // Mittwoch 28.10.: ein Wecker nur am Donnerstag hatte heute keinen Termin.
-        assertNull(AlarmSchedule.inGrace(alarm(days = setOf(DayOfWeek.THURSDAY)), planned, now, grace, zurich), "kein Termin")
+        assertNull(
+            AlarmSchedule.inGrace(alarm(days = setOf(DayOfWeek.THURSDAY)), planned, now, grace, zurich),
+            "kein Termin",
+        )
     }
 
     @Test
@@ -67,19 +78,38 @@ class AlarmGraceTest {
         val now = at("2026-10-28T07:01")
         assertNull(AlarmSchedule.inGrace(alarm(), planned, now, grace, zurich, suppressedUntil = planned.plus(grace)))
         assertNull(AlarmSchedule.inGrace(alarm(), planned, now, grace, zurich, suppressedUntil = planned))
-        assertTrue(AlarmSchedule.inGrace(alarm(), planned, now, grace, zurich, suppressedUntil = at("2026-10-27T07:02")) != null)
+        assertTrue(
+            AlarmSchedule.inGrace(
+                alarm(),
+                planned,
+                now,
+                grace,
+                zurich,
+                suppressedUntil = at("2026-10-27T07:02"),
+            ) != null,
+        )
     }
 
     /** Wecker a 06:40 führt die Nacht (Fenster ab 06:20, beendet 07:10); b 07:00 wurde dabei fällig. */
     private val a = alarm(hour = 6, minute = 40, id = "a")
     private val b = alarm(id = "b")
-    private val window get() = AlarmSchedule.catchUpAfter(null, at("2026-10-28T06:20"), at("2026-10-28T07:10"), listOf(a, b), zurich)
+    private val window get() =
+        AlarmSchedule.catchUpAfter(null, at("2026-10-28T06:20"), at("2026-10-28T07:10"), listOf(a, b), zurich)
 
     @Test
     fun catchUpCollectsDueAlarms() {
         assertEquals(CatchUpWindow(at("2026-10-28T06:20"), at("2026-10-28T07:10"), setOf("a", "b")), window)
         val later = alarm(hour = 7, minute = 30, id = "c")
-        assertEquals(setOf("a"), AlarmSchedule.catchUpAfter(null, at("2026-10-28T06:20"), at("2026-10-28T06:50"), listOf(a, b, later), zurich).alarmIds)
+        assertEquals(
+            setOf("a"),
+            AlarmSchedule.catchUpAfter(
+                null,
+                at("2026-10-28T06:20"),
+                at("2026-10-28T06:50"),
+                listOf(a, b, later),
+                zurich,
+            ).alarmIds,
+        )
     }
 
     @Test
@@ -96,15 +126,21 @@ class AlarmGraceTest {
     @Test
     fun missedOnlyWhileValidAndKnown() {
         val done = mapOf("a" to at("2026-10-28T06:40"))
-        assertTrue(AlarmSchedule.missedPlan(listOf(a, b), window, at("2026-10-28T07:20"), zurich, doneUntil = done) != null)
-        assertNull(AlarmSchedule.missedPlan(listOf(a, b), window, at("2026-10-28T07:21"), zurich, doneUntil = done), "zu spät")
+        assertTrue(
+            AlarmSchedule.missedPlan(listOf(a, b), window, at("2026-10-28T07:20"), zurich, doneUntil = done) != null,
+        )
+        assertNull(
+            AlarmSchedule.missedPlan(listOf(a, b), window, at("2026-10-28T07:21"), zurich, doneUntil = done),
+            "zu spät",
+        )
         assertFalse(window.isValid(at("2026-10-28T07:21")))
         assertNull(AlarmSchedule.missedPlan(listOf(a, b), null, at("2026-10-28T07:10"), zurich))
         // Erst nach dem Ende der Nacht angelegt: klingelt nicht nachträglich.
         val fresh = alarm(hour = 6, minute = 50, id = "d")
         assertNull(AlarmSchedule.missedPlan(listOf(a, fresh), window, at("2026-10-28T07:10"), zurich, doneUntil = done))
         // Zielzeit nach dem Ende der Nacht: gewohnter Plan, kein Nachholen.
-        val narrow = AlarmSchedule.catchUpAfter(null, at("2026-10-28T06:20"), at("2026-10-28T06:50"), listOf(a, b), zurich)
+        val narrow =
+            AlarmSchedule.catchUpAfter(null, at("2026-10-28T06:20"), at("2026-10-28T06:50"), listOf(a, b), zurich)
         assertNull(AlarmSchedule.missedPlan(listOf(a, b), narrow, at("2026-10-28T06:55"), zurich, doneUntil = done))
     }
 
@@ -112,7 +148,10 @@ class AlarmGraceTest {
     fun missedNeedsTargetWithinNightAndNotAhead() {
         // Zielzeit genau am Ende der Nacht und genau jetzt: wird nachgeholt (beide Grenzen eingeschlossen).
         val edge = CatchUpWindow(at("2026-10-28T06:20"), at("2026-10-28T07:00"), setOf("b"))
-        assertEquals(at("2026-10-28T07:00"), AlarmSchedule.missedPlan(listOf(b), edge, at("2026-10-28T07:00"), zurich)!!.target)
+        assertEquals(
+            at("2026-10-28T07:00"),
+            AlarmSchedule.missedPlan(listOf(b), edge, at("2026-10-28T07:00"), zurich)!!.target,
+        )
         // Nach dem Ende der Nacht fällig, auch wenn schon vorbei: kein Nachholen (gewohnter Plan).
         val early = CatchUpWindow(at("2026-10-28T06:20"), at("2026-10-28T06:59"), setOf("b"))
         assertNull(AlarmSchedule.missedPlan(listOf(b), early, at("2026-10-28T07:00"), zurich))
@@ -120,17 +159,37 @@ class AlarmGraceTest {
         val long = CatchUpWindow(at("2026-10-28T06:20"), at("2026-10-28T07:10"), setOf("b"))
         assertNull(AlarmSchedule.missedPlan(listOf(b), long, at("2026-10-28T06:59"), zurich))
         // Zielzeit genau am Ende der Nacht zählt als fällig geworden.
-        assertEquals(setOf("a", "b"), AlarmSchedule.catchUpAfter(null, at("2026-10-28T06:20"), at("2026-10-28T07:00"), listOf(a, b), zurich).alarmIds)
-        assertEquals(setOf("a"), AlarmSchedule.catchUpAfter(null, at("2026-10-28T06:20"), at("2026-10-28T06:59"), listOf(a, b), zurich).alarmIds)
+        assertEquals(
+            setOf("a", "b"),
+            AlarmSchedule.catchUpAfter(
+                null,
+                at("2026-10-28T06:20"),
+                at("2026-10-28T07:00"),
+                listOf(a, b),
+                zurich,
+            ).alarmIds,
+        )
+        assertEquals(
+            setOf("a"),
+            AlarmSchedule.catchUpAfter(
+                null,
+                at("2026-10-28T06:20"),
+                at("2026-10-28T06:59"),
+                listOf(a, b),
+                zurich,
+            ).alarmIds,
+        )
         assertEquals(Duration.ofMinutes(10), CatchUpWindow.VALID)
     }
 
     @Test
     fun catchUpExtendsAdjoiningNight() {
         val c = alarm(hour = 7, minute = 15, id = "c")
-        val next = AlarmSchedule.catchUpAfter(window, at("2026-10-28T07:10"), at("2026-10-28T07:20"), listOf(a, b, c), zurich)
+        val next =
+            AlarmSchedule.catchUpAfter(window, at("2026-10-28T07:10"), at("2026-10-28T07:20"), listOf(a, b, c), zurich)
         assertEquals(CatchUpWindow(at("2026-10-28T06:20"), at("2026-10-28T07:20"), setOf("a", "b", "c")), next)
-        val apart = AlarmSchedule.catchUpAfter(window, at("2026-10-28T08:00"), at("2026-10-28T08:30"), listOf(a, b, c), zurich)
+        val apart =
+            AlarmSchedule.catchUpAfter(window, at("2026-10-28T08:00"), at("2026-10-28T08:30"), listOf(a, b, c), zurich)
         assertEquals(CatchUpWindow(at("2026-10-28T08:00"), at("2026-10-28T08:30"), emptySet()), apart)
     }
 }

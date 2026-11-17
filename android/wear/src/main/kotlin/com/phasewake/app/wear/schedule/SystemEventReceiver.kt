@@ -46,13 +46,17 @@ class SystemEventReceiver : BroadcastReceiver() {
             // er nach dem Entsperren noch einmal).
             try {
                 val rang = DirectBoot.takeRang(context)
-                rang?.takeIf { Transient.kindOf(it.first) != null }?.let { (alarmId, _) -> app.transient.clear(alarmId) }
+                rang?.takeIf { Transient.kindOf(it.first) != null }?.let { (alarmId, _) ->
+                    app.transient.clear(alarmId)
+                }
                 rang?.takeIf { Transient.kindOf(it.first) == null }?.let { (alarmId, target) ->
                     app.scheduler.markDone(alarmId, target)
                     app.scheduler.saveDone()
                     // Nur die Fassung, die geklingelt hat; früher geweckt: Ausnahme dieser Nacht.
                     val shifted = app.onsetOverride.get()?.let { it.alarmId == alarmId && it.target == target } == true
-                    changed = app.alarms.disableAfterRing(alarmId) { AlarmStamps.rang(it, null, target, ZoneId.systemDefault(), shifted) }
+                    changed = app.alarms.disableAfterRing(alarmId) {
+                        AlarmStamps.rang(it, null, target, ZoneId.systemDefault(), shifted)
+                    }
                 }
             } catch (e: Exception) {
                 if (e is CancellationException) throw e
@@ -67,7 +71,9 @@ class SystemEventReceiver : BroadcastReceiver() {
             // Danach die Nebenarbeiten, jede abgesichert und mit Frist: Protokoll, ausgeschalteten Einmal-Wecker ans
             // Handy, Stand des Handys anfragen und ein verpasstes «Verlauf löschen» anwenden (PhoneCatchUp, eigene
             // Frist).
-            sideWork(TAG, "Protokoll") { app.diag.log(DiagKind.BOOT, "watch ${intent.action?.substringAfterLast('.')}") }
+            sideWork(TAG, "Protokoll") {
+                app.diag.log(DiagKind.BOOT, "watch ${intent.action?.substringAfterLast('.')}")
+            }
             changed?.let { snapshot -> sideWork(TAG, "Wecker ans Handy") { app.sync.publishAlarms(snapshot) } }
             sideWork(TAG, "Abgleich mit dem Handy", CATCH_UP_TIMEOUT_MS) { PhoneCatchUp.run(app) }
         }
@@ -100,7 +106,12 @@ class SystemEventReceiver : BroadcastReceiver() {
  * (das Ende eines `goAsync`) kommt genau einmal: sobald [first] fertig ist oder scheitert, spätestens aber nach
  * [budgetMs] – [then] läuft dann unabhängig davon weiter.
  */
-internal fun CoroutineScope.launchWithin(budgetMs: Long, finish: () -> Unit, first: suspend () -> Unit, then: suspend () -> Unit): Job {
+internal fun CoroutineScope.launchWithin(
+    budgetMs: Long,
+    finish: () -> Unit,
+    first: suspend () -> Unit,
+    then: suspend () -> Unit,
+): Job {
     val released = AtomicBoolean(false)
     val release = { if (released.compareAndSet(false, true)) finish() }
     val deadline = launch {

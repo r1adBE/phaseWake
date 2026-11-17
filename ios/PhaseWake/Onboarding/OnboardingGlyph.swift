@@ -21,7 +21,8 @@ struct OnboardingGlyph: View {
                 let y = mid + amplitude * sin(Double(i) / 60 * 3 * .pi)
                 if i == 0 { wave.move(to: CGPoint(x: x, y: y)) } else { wave.addLine(to: CGPoint(x: x, y: y)) }
             }
-            context.stroke(wave, with: .color(Brand.accent(scheme).opacity(0.85)), style: StrokeStyle(lineWidth: 3, lineCap: .round))
+            context.stroke(wave, with: .color(Brand.accent(scheme).opacity(0.85)),
+                           style: StrokeStyle(lineWidth: 3, lineCap: .round))
             // Mond auf der Welle; hell mit dunklem Rand, damit er auch auf Weiss sichtbar ist.
             let x = size.width * fraction
             let y = mid + amplitude * sin(Double(fraction) * 3 * .pi)

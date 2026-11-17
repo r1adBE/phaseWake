@@ -27,7 +27,8 @@ public struct LearningState: Equatable, Sendable, Codable {
     }
 
     /// Stand wie angegeben (Tests, Lesen).
-    public init(since: Date?, values: Learning.Values?, seen: Bool, updatedAtMs: Int64, relearnPending: Bool = false, consent: Bool? = nil) {
+    public init(since: Date?, values: Learning.Values?, seen: Bool, updatedAtMs: Int64, relearnPending: Bool = false,
+                consent: Bool? = nil) {
         self.since = since
         self.values = values
         self.seen = seen
@@ -48,7 +49,8 @@ public struct LearningState: Equatable, Sendable, Codable {
 
     /// Paket für die Uhr.
     public var snapshot: LearningSnapshot {
-        LearningSnapshot(active: active, floor: values?.floor, restingHeartRate: values?.restingHeartRate, updatedAtMs: updatedAtMs,
+        LearningSnapshot(active: active, floor: values?.floor, restingHeartRate: values?.restingHeartRate,
+                         updatedAtMs: updatedAtMs,
                          latencyMinutes: values?.latencyMinutes)
     }
 
@@ -146,7 +148,8 @@ public struct LearningSnapshot: Equatable, Sendable, Codable {
     public static let empty = LearningSnapshot(active: false, floor: nil, restingHeartRate: nil, updatedAtMs: 0)
 
     /// Stand wie angegeben.
-    public init(active: Bool, floor: Double?, restingHeartRate: Double?, updatedAtMs: Int64, latencyMinutes: Int? = nil) {
+    public init(active: Bool, floor: Double?, restingHeartRate: Double?, updatedAtMs: Int64,
+                latencyMinutes: Int? = nil) {
         self.active = active
         self.floor = floor
         self.restingHeartRate = restingHeartRate

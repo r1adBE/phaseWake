@@ -41,7 +41,8 @@ data class OnsetShift(val alarmId: String, val original: Long, val target: Long,
          * Meldung ohne frühere Zielzeit: Die Uhr hat ihre Ausnahme [plan] gelöscht. Neuer als die gemerkte,
          * ersetzt sie diese am Handy; [applyTo] lässt sie aus (nicht früher), es gilt wieder die eingestellte Zeit.
          */
-        fun cancel(plan: WakePlan, at: Long): OnsetShift = plan.target.toEpochMilli().let { OnsetShift(plan.alarmId, it, it, at) }
+        fun cancel(plan: WakePlan, at: Long): OnsetShift =
+            plan.target.toEpochMilli().let { OnsetShift(plan.alarmId, it, it, at) }
 
         /** Liest [encode]; `null`, wenn leer, unlesbar oder ein Zeitpunkt unplausibel ist ([TimeBounds]). */
         fun decode(text: String?): OnsetShift? {
@@ -56,7 +57,12 @@ data class OnsetShift(val alarmId: String, val original: Long, val target: Long,
         fun read(map: DataMap): OnsetShift? {
             val id = map.getString(DataLayer.KEY_TEXT)?.takeIf { it.isNotEmpty() } ?: return null
             if (!map.containsKey(DataLayer.KEY_ORIGINAL_TARGET) || !map.containsKey(DataLayer.KEY_TARGET)) return null
-            return OnsetShift(id, map.getLong(DataLayer.KEY_ORIGINAL_TARGET), map.getLong(DataLayer.KEY_TARGET), map.getLong(DataLayer.KEY_UPDATED_AT))
+            return OnsetShift(
+                id,
+                map.getLong(DataLayer.KEY_ORIGINAL_TARGET),
+                map.getLong(DataLayer.KEY_TARGET),
+                map.getLong(DataLayer.KEY_UPDATED_AT),
+            )
         }
     }
 }

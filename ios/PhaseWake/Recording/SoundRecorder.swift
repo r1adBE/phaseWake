@@ -45,13 +45,15 @@ final class SoundRecorder {
         clips = SoundEvents.decode(try? String(contentsOf: Self.indexURL, encoding: .utf8))
         expire()
         let center = NotificationCenter.default
-        observers.append(center.addObserver(forName: AVAudioSession.interruptionNotification, object: nil, queue: .main) { [weak self] note in
+        observers.append(center.addObserver(forName: AVAudioSession.interruptionNotification, object: nil,
+                                            queue: .main) { [weak self] note in
             let raw = note.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt
             guard raw.flatMap(AVAudioSession.InterruptionType.init(rawValue:)) == .ended else { return }
             // Nach einem Anruf oder Wecker weiter aufnehmen, falls die Nacht noch läuft.
             Task { @MainActor in self?.restartIfNeeded() }
         })
-        observers.append(center.addObserver(forName: .AVAudioEngineConfigurationChange, object: nil, queue: .main) { [weak self] _ in
+        observers.append(center.addObserver(forName: .AVAudioEngineConfigurationChange, object: nil,
+                                            queue: .main) { [weak self] _ in
             Task { @MainActor in self?.restartIfNeeded() }
         })
     }
@@ -130,7 +132,8 @@ final class SoundRecorder {
         let engine = AVAudioEngine()
         let format = engine.inputNode.outputFormat(forBus: 0)
         guard format.sampleRate > 0, format.channelCount > 0 else { return false }
-        let processor = ClipProcessor(directory: Self.directory, sampleRate: format.sampleRate, startedAt: Date()) { [weak self] result in
+        let processor = ClipProcessor(directory: Self.directory, sampleRate: format.sampleRate,
+                                      startedAt: Date()) { [weak self] result in
             Task { @MainActor in self?.store(result) }
         }
         Self.installTap(on: engine.inputNode, format: format, processor: processor)
@@ -167,7 +170,8 @@ final class SoundRecorder {
     }
 
     /// Ausserhalb des Main Actors: Der Block läuft auf dem Audio-Thread.
-    nonisolated private static func installTap(on input: AVAudioInputNode, format: AVAudioFormat, processor: ClipProcessor) {
+    nonisolated private static func installTap(on input: AVAudioInputNode, format: AVAudioFormat,
+                                               processor: ClipProcessor) {
         input.installTap(onBus: 0, bufferSize: 4096, format: format) { buffer, _ in
             processor.append(buffer)
         }
@@ -217,10 +221,13 @@ final class SoundRecorder {
     private func removeOrphans(now: Date) {
         let known = Set(clips.map(\.file) + [Self.indexURL.lastPathComponent])
         let keys: [URLResourceKey] = [.contentModificationDateKey, .isRegularFileKey]
-        guard let files = try? FileManager.default.contentsOfDirectory(at: Self.directory, includingPropertiesForKeys: keys) else { return }
+        guard let files = try? FileManager.default.contentsOfDirectory(at: Self.directory,
+                                                                       includingPropertiesForKeys: keys) else { return }
         for url in files where !known.contains(url.lastPathComponent) {
             guard let values = try? url.resourceValues(forKeys: Set(keys)), values.isRegularFile == true,
-                  let modified = values.contentModificationDate, now.timeIntervalSince(modified) > Self.orphanAge else { continue }
+                  let modified = values.contentModificationDate, now.timeIntervalSince(modified) > Self.orphanAge else {
+                continue
+            }
             try? FileManager.default.removeItem(at: url)
         }
     }

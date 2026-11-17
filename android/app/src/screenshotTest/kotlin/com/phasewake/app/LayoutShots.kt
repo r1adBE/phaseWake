@@ -30,13 +30,15 @@ import com.phasewake.app.ui.settings.HealthState
 import com.phasewake.app.ui.theme.ThemeMode
 
 /**
- * Randfälle: Weckfenster einzeilig mit kleinem AM/PM, Schild hinter der Schrift
- * auf dem Sonnenaufgang, Einrichtung mit Bild je Schritt und arabische Ziffern im
+ * Layout bei Sprache, Schriftgrösse und Bildschirmgrösse: Weckfenster einzeilig mit kleinem AM/PM, Schild
+ * hinter der Schrift auf dem Sonnenaufgang, Einrichtung mit Bild je Schritt und arabische Ziffern im
  * Uhrzeit-Wähler. Beispieldaten.
  */
 
 @Composable
-private fun Home(tag: String, mode: ThemeMode = ThemeMode.DARK, hour: Int = 7, label: String = "Arbeit") = ThemedIn(tag, mode) {
+private fun Home(tag: String, mode: ThemeMode = ThemeMode.DARK, hour: Int = 7, label: String = "Arbeit") = ThemedIn(
+    tag, mode,
+) {
     HomeScreen(
         listOf(AlarmSpec(id = "work", hour = hour, minute = 0, days = weekdays, label = label)), nights.last(),
         check = NightCheckState(emptyList()), onFix = {}, contentPadding = PaddingValues(), onAdd = {},
@@ -44,36 +46,40 @@ private fun Home(tag: String, mode: ThemeMode = ThemeMode.DARK, hour: Int = 7, l
     )
 }
 
-@PreviewTest @Preview(locale = "sq", name = "Fix Start sq", device = PHONE) @Composable
-fun FixHomeSq() = Home("sq", label = "Puna")
+@PreviewTest @Preview(locale = "sq", name = "Layout Start sq", device = PHONE) @Composable
+fun LayoutHomeSq() = Home("sq", label = "Puna")
 
-@PreviewTest @Preview(locale = "en-rUS", name = "Fix Start en klein Schrift 130", device = PHONE_SMALL, fontScale = 1.3f) @Composable
-fun FixHomeEnSmallF13() = Home("en-US", ThemeMode.LIGHT, hour = 11, label = "Work")
+@PreviewTest @Composable
+@Preview(locale = "en-rUS", name = "Layout Start en klein Schrift 130", device = PHONE_SMALL, fontScale = 1.3f)
+fun LayoutHomeEnSmallF13() = Home("en-US", ThemeMode.LIGHT, hour = 11, label = "Work")
 
-@PreviewTest @Preview(locale = "ar", name = "Fix Start ar klein Schrift 130", device = PHONE_SMALL, fontScale = 1.3f) @Composable
-fun FixHomeArSmallF13() = Home("ar", label = "عمل")
+@PreviewTest @Composable
+@Preview(locale = "ar", name = "Layout Start ar klein Schrift 130", device = PHONE_SMALL, fontScale = 1.3f)
+fun LayoutHomeArSmallF13() = Home("ar", label = "عمل")
 
 @Composable
 private fun Ring(state: PhoneRingService.State, light: Float, tag: String = "de-CH") = ThemedIn(tag, ThemeMode.DARK) {
-    RingScreen(state, onStop = {}, onSnooze = {}, light = light, clock = { FIXED_NOW }, random = kotlin.random.Random(7))
+    RingScreen(
+        state, onStop = {}, onSnooze = {}, light = light, clock = { FIXED_NOW }, random = kotlin.random.Random(7),
+    )
 }
 
 private val ringing = PhoneRingService.State.Ringing(fromWatch = true, snoozesLeft = 3, sunrise = Sunrise.WINDOW)
 
-@PreviewTest @Preview(locale = "de-rCH", name = "Fix Sonnenaufgang 30", device = PHONE) @Composable
-fun FixRingSun030() = Ring(ringing, 0.30f)
+@PreviewTest @Preview(locale = "de-rCH", name = "Layout Sonnenaufgang 30", device = PHONE) @Composable
+fun LayoutRingSun030() = Ring(ringing, 0.30f)
 
-@PreviewTest @Preview(locale = "de-rCH", name = "Fix Sonnenaufgang 50", device = PHONE) @Composable
-fun FixRingSun050() = Ring(ringing, 0.50f)
+@PreviewTest @Preview(locale = "de-rCH", name = "Layout Sonnenaufgang 50", device = PHONE) @Composable
+fun LayoutRingSun050() = Ring(ringing, 0.50f)
 
-@PreviewTest @Preview(locale = "de-rCH", name = "Fix Sonnenaufgang 64", device = PHONE) @Composable
-fun FixRingSun064() = Ring(ringing, 0.64f)
+@PreviewTest @Preview(locale = "de-rCH", name = "Layout Sonnenaufgang 64", device = PHONE) @Composable
+fun LayoutRingSun064() = Ring(ringing, 0.64f)
 
-@PreviewTest @Preview(locale = "de-rCH", name = "Fix Sonnenaufgang 90", device = PHONE) @Composable
-fun FixRingSun090() = Ring(ringing, 0.90f)
+@PreviewTest @Preview(locale = "de-rCH", name = "Layout Sonnenaufgang 90", device = PHONE) @Composable
+fun LayoutRingSun090() = Ring(ringing, 0.90f)
 
-@PreviewTest @Preview(locale = "de-rCH", name = "Fix Licht 62", device = PHONE) @Composable
-fun FixSunrise062() = ThemedIn("de-CH", ThemeMode.DARK) {
+@PreviewTest @Preview(locale = "de-rCH", name = "Layout Licht 62", device = PHONE) @Composable
+fun LayoutSunrise062() = ThemedIn("de-CH", ThemeMode.DARK) {
     SunriseScreen(progress = 0.62f, now = FIXED_NOW, onOff = {})
 }
 
@@ -88,8 +94,9 @@ private fun model() = OnboardingModel(
     onStartTest = {},
 )
 
-@PreviewTest @Preview(locale = "de-rCH", name = "Fix Einrichtung Bilder hell", widthDp = 2400, heightDp = 900) @Composable
-fun FixOnboardingArtLight() = ThemedIn("de-CH", ThemeMode.LIGHT) {
+@PreviewTest @Composable
+@Preview(locale = "de-rCH", name = "Layout Einrichtung Bilder hell", widthDp = 2400, heightDp = 900)
+fun LayoutOnboardingArtLight() = ThemedIn("de-CH", ThemeMode.LIGHT) {
     androidx.compose.foundation.layout.Row {
         for (page in listOf(0, 1, 2, 4, 5, 6)) {
             Box(Modifier.size(400.dp, 900.dp)) { OnboardingContent(page, onPage = {}, model(), onDone = {}) }
@@ -97,16 +104,20 @@ fun FixOnboardingArtLight() = ThemedIn("de-CH", ThemeMode.LIGHT) {
     }
 }
 
-@PreviewTest @Preview(locale = "de-rCH", name = "Fix Einrichtung Willkommen dunkel klein", device = PHONE_SMALL) @Composable
-fun FixOnboardingWelcomeDarkSmall() = ThemedIn("de-CH", ThemeMode.DARK) {
+@PreviewTest @Composable
+@Preview(locale = "de-rCH", name = "Layout Einrichtung Willkommen dunkel klein", device = PHONE_SMALL)
+fun LayoutOnboardingWelcomeDarkSmall() = ThemedIn("de-CH", ThemeMode.DARK) {
     OnboardingContent(0, onPage = {}, model(), onDone = {})
 }
 
 /** Uhrzeit-Wähler von Material auf Arabisch neben derselben Zahl als einfacher Text gleicher Grösse. */
 @OptIn(ExperimentalMaterial3Api::class)
-@PreviewTest @Preview(locale = "ar", name = "Fix Zeitwaehler ar", device = PHONE) @Composable
-fun FixTimePickerAr() = ThemedIn("ar", ThemeMode.LIGHT) {
-    Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+@PreviewTest @Preview(locale = "ar", name = "Layout Zeitwaehler ar", device = PHONE) @Composable
+fun LayoutTimePickerAr() = ThemedIn("ar", ThemeMode.LIGHT) {
+    Column(
+        Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
         Text("٠٧:٠٠ · 07:00", style = MaterialTheme.typography.displayLarge)
         Text("٠٧ ٠٠", style = MaterialTheme.typography.displayMedium)
         TimePicker(rememberTimePickerState(7, 0, is24Hour = false))
@@ -114,8 +125,9 @@ fun FixTimePickerAr() = ThemedIn("ar", ThemeMode.LIGHT) {
 }
 
 /** «Daten» und «Über» als Listenzeilen mit Pfeil, mindestens 56 dp hoch. */
-@PreviewTest @Preview(locale = "de-rCH", name = "Fix Einstellungen lang", device = "spec:width=411dp,height=3000dp") @Composable
-fun FixSettingsTall() = ThemedIn("de-CH", ThemeMode.LIGHT) {
+@PreviewTest @Composable
+@Preview(locale = "de-rCH", name = "Layout Einstellungen lang", device = "spec:width=411dp,height=3000dp")
+fun LayoutSettingsTall() = ThemedIn("de-CH", ThemeMode.LIGHT) {
     com.phasewake.app.ui.settings.SettingsScreen(
         ThemeMode.LIGHT, "16.2.2", PaddingValues(), onThemeMode = {}, onExport = {}, onClearHistory = {},
         health = HealthState.CONNECTED, onConnectHealth = {},

@@ -14,7 +14,11 @@ class StageStatsTest {
 
     private fun span(from: Int, to: Int, stage: SleepStage) = StageSpan(at(from), at(to), stage)
 
-    private fun of(vararg spans: StageSpan, from: Int = 0, to: Int = spans.maxOf { (it.end.epochSecond - t0.epochSecond).toInt() } / 60) =
+    private fun of(
+        vararg spans: StageSpan,
+        from: Int = 0,
+        to: Int = spans.maxOf { (it.end.epochSecond - t0.epochSecond).toInt() } / 60,
+    ) =
         StageStats.of(spans.toList(), at(from), at(to))
 
     private fun percents(s: NightStages) = s.totals.map { it.percent }
@@ -30,7 +34,11 @@ class StageStatsTest {
     fun sourceWithoutStageDetailHasNoStages() {
         // Schlaf «unbekannt» 23:00–07:00 mit 30 Min wach (Health Connect STAGE_TYPE_SLEEPING, HealthKit
         // asleepUnspecified): keine Phasen statt «Wach 100 %».
-        val unknownWithAwake = listOf(span(0, 200, SleepStage.UNKNOWN), span(200, 230, SleepStage.AWAKE), span(230, 480, SleepStage.UNKNOWN))
+        val unknownWithAwake = listOf(
+            span(0, 200, SleepStage.UNKNOWN),
+            span(200, 230, SleepStage.AWAKE),
+            span(230, 480, SleepStage.UNKNOWN),
+        )
         assertNull(StageStats.of(unknownWithAwake, at(0), at(480)))
         assertNull(of(span(0, 30, SleepStage.AWAKE)))
         val session = HealthSession(at(0), at(480), unknownWithAwake)
@@ -43,13 +51,19 @@ class StageStatsTest {
         assertEquals(84, score.score)
         assertEquals(ScoreBand.GOOD, score.band)
         // Eine einzige Schlafphase genügt für eine Auswertung (leicht = aller Schlaf; wach an allen vier Phasen).
-        assertEquals(listOf(50, 0, 100, 0), percents(of(span(0, 30, SleepStage.AWAKE), span(30, 60, SleepStage.LIGHT))!!))
+        assertEquals(
+            listOf(50, 0, 100, 0),
+            percents(of(span(0, 30, SleepStage.AWAKE), span(30, 60, SleepStage.LIGHT))!!),
+        )
     }
 
     @Test
     fun mergesTouchingBlocksOfTheSameStage() {
         val s = of(span(0, 30, SleepStage.LIGHT), span(30, 50, SleepStage.LIGHT), span(50, 80, SleepStage.DEEP))!!
-        assertEquals(listOf(StageBlock(SleepStage.LIGHT, at(0), at(50)), StageBlock(SleepStage.DEEP, at(50), at(80))), s.blocks)
+        assertEquals(
+            listOf(StageBlock(SleepStage.LIGHT, at(0), at(50)), StageBlock(SleepStage.DEEP, at(50), at(80))),
+            s.blocks,
+        )
         val gap = of(span(0, 30, SleepStage.LIGHT), span(31, 40, SleepStage.LIGHT))!!
         assertEquals(2, gap.blocks.size)
     }
@@ -64,7 +78,10 @@ class StageStatsTest {
         val half = of(span(0, 1, SleepStage.DEEP), span(1, 4, SleepStage.REM), span(4, 8, SleepStage.LIGHT))!!
         assertEquals(listOf(0, 38, 50, 13), percents(half))
         // Unbekannt zählt als Schlaf: 30 tief von 60 Min Schlaf = 50 %.
-        assertEquals(50, of(span(0, 30, SleepStage.DEEP), span(30, 60, SleepStage.UNKNOWN))!!.total(SleepStage.DEEP)?.percent)
+        assertEquals(
+            50,
+            of(span(0, 30, SleepStage.DEEP), span(30, 60, SleepStage.UNKNOWN))!!.total(SleepStage.DEEP)?.percent,
+        )
         assertEquals(Findings.deepPercent(42, 432), StageStats.sleepPercent(42, 432))
         assertNull(StageStats.sleepPercent(10, 0))
     }
@@ -78,7 +95,10 @@ class StageStatsTest {
         assertEquals(listOf(30L, 120L, 240L, 90L), s.totals.map { it.minutes })
         // Am Schlaf von 450 Min: REM 120 → 27 %, leicht 240 → 53 %, tief 90 → 20 %; wach 30 von 480 → 6 %.
         assertEquals(listOf(6, 27, 53, 20), percents(s))
-        assertEquals(listOf(StageRating.TYPICAL, StageRating.ABOVE, StageRating.TYPICAL, StageRating.TYPICAL), s.totals.map { it.rating })
+        assertEquals(
+            listOf(StageRating.TYPICAL, StageRating.ABOVE, StageRating.TYPICAL, StageRating.TYPICAL),
+            s.totals.map { it.rating },
+        )
         assertEquals(30L, s.latencyMinutes)
         assertEquals(0, s.awakenings)
         assertEquals(90L, s.longestDeepMinutes)
@@ -101,13 +121,20 @@ class StageStatsTest {
 
     @Test
     fun ratingsMarkTheTypicalRange() {
-        val deepAbove = of(span(0, 200, SleepStage.LIGHT), span(200, 320, SleepStage.DEEP), span(320, 400, SleepStage.REM))!!
+        val deepAbove =
+            of(span(0, 200, SleepStage.LIGHT), span(200, 320, SleepStage.DEEP), span(320, 400, SleepStage.REM))!!
         assertEquals(listOf(0, 20, 50, 30), percents(deepAbove))
         assertEquals(StageRating.ABOVE, deepAbove.total(SleepStage.DEEP)?.rating)
-        val awakeAndLowDeep = of(span(0, 100, SleepStage.AWAKE), span(100, 400, SleepStage.LIGHT), span(400, 420, SleepStage.DEEP))!!
+        val awakeAndLowDeep =
+            of(span(0, 100, SleepStage.AWAKE), span(100, 400, SleepStage.LIGHT), span(400, 420, SleepStage.DEEP))!!
         assertEquals(StageRating.ABOVE, awakeAndLowDeep.total(SleepStage.AWAKE)?.rating)
         assertEquals(StageRating.BELOW, awakeAndLowDeep.total(SleepStage.DEEP)?.rating)
-        val lowRem = of(span(0, 260, SleepStage.LIGHT), span(260, 340, SleepStage.DEEP), span(340, 380, SleepStage.REM), span(380, 400, SleepStage.AWAKE))!!
+        val lowRem = of(
+            span(0, 260, SleepStage.LIGHT),
+            span(260, 340, SleepStage.DEEP),
+            span(340, 380, SleepStage.REM),
+            span(380, 400, SleepStage.AWAKE),
+        )!!
         // Schlaf 380 Min: REM 40 → 11 %, leicht 260 → 68 %, tief 80 → 21 %; wach 20 von 400 → 5 %.
         assertEquals(listOf(5, 11, 68, 21), percents(lowRem))
         assertEquals(StageRating.BELOW, lowRem.total(SleepStage.REM)?.rating)
@@ -121,7 +148,12 @@ class StageStatsTest {
 
     @Test
     fun efficiencyCountsUnknownAsSleepAndGapsAsRange() {
-        val s = of(span(0, 40, SleepStage.LIGHT), span(40, 60, SleepStage.UNKNOWN), span(80, 100, SleepStage.AWAKE), to = 100)!!
+        val s = of(
+            span(0, 40, SleepStage.LIGHT),
+            span(40, 60, SleepStage.UNKNOWN),
+            span(80, 100, SleepStage.AWAKE),
+            to = 100,
+        )!!
         assertEquals(60, s.efficiencyPercent)
         assertEquals(60L, s.asleepMinutes)
         assertNull(s.latencyMinutes)
@@ -146,7 +178,8 @@ class StageStatsTest {
     @Test
     fun forNightUsesTheHypnogramRange() {
         val night = NightRecord("a", at(420), at(450), at(440), WakeReason.LIGHT_SLEEP, 0, emptyList())
-        val stages = listOf(span(0, 200, SleepStage.LIGHT), span(200, 300, SleepStage.DEEP), span(300, 445, SleepStage.REM))
+        val stages =
+            listOf(span(0, 200, SleepStage.LIGHT), span(200, 300, SleepStage.DEEP), span(300, 445, SleepStage.REM))
         val s = StageStats.forNight(stages, night)!!
         assertEquals(at(0), s.start)
         assertEquals(at(445), s.end)
@@ -173,7 +206,15 @@ class StageStatsTest {
 
     @Test
     fun historyKeysAndLookup() {
-        val night = NightRecord("a", Instant.ofEpochMilli(1000), Instant.ofEpochMilli(2000), Instant.ofEpochMilli(1500), WakeReason.AWAKE, 0, emptyList())
+        val night = NightRecord(
+            "a",
+            Instant.ofEpochMilli(1000),
+            Instant.ofEpochMilli(2000),
+            Instant.ofEpochMilli(1500),
+            WakeReason.AWAKE,
+            0,
+            emptyList(),
+        )
         val date = LocalDate.of(2026, 10, 26)
         val own = HistoryItem(HistoryKind.PHASE_WAKE, date, night = night)
         val health = HistoryItem(HistoryKind.HEALTH, date, session = HealthSession(at(0), at(60)))

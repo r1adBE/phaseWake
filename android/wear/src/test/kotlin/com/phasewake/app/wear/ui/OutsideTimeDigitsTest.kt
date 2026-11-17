@@ -7,6 +7,7 @@ import com.phasewake.app.core.WakePlan
 import com.phasewake.app.wear.QuietWear
 import com.phasewake.app.wear.complication.NextAlarmComplicationService
 import com.phasewake.app.wear.record.RecordControl
+import com.phasewake.app.wear.record.notification
 import com.phasewake.app.wear.tile.NextAlarmTileService
 import java.time.Instant
 import java.time.LocalDateTime
@@ -48,7 +49,9 @@ class OutsideTimeDigitsTest {
     fun restoreLocale() = Locale.setDefault(before)
 
     private fun context(locale: Locale): Context {
-        val config = Configuration(RuntimeEnvironment.getApplication().resources.configuration).apply { setLocale(locale) }
+        val config = Configuration(RuntimeEnvironment.getApplication().resources.configuration).apply {
+            setLocale(locale)
+        }
         return RuntimeEnvironment.getApplication().createConfigurationContext(config)
     }
 
@@ -67,7 +70,10 @@ class OutsideTimeDigitsTest {
         val arabic = shortTime(start, zone, ar)
         assertArabic(arabic)
         // Dieselben Ziffern wie Zahlen in Texten der Sprache (`getString` mit %d).
-        assertTrue(arabic.contains(String.format(ar, "%d", 6)) && arabic.contains(String.format(ar, "%02d", 30)), arabic)
+        assertTrue(
+            arabic.contains(String.format(ar, "%d", 6)) && arabic.contains(String.format(ar, "%02d", 30)),
+            arabic,
+        )
         assertEquals("06:30", shortTime(start, zone, de))
     }
 
@@ -97,5 +103,6 @@ class OutsideTimeDigitsTest {
         assertLatin(text(RecordControl.notification(context(de), Instant.now())))
     }
 
-    private fun text(notification: Notification): String = notification.extras.getCharSequence(Notification.EXTRA_TEXT).toString()
+    private fun text(notification: Notification): String =
+        notification.extras.getCharSequence(Notification.EXTRA_TEXT).toString()
 }

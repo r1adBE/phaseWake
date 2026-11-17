@@ -72,7 +72,11 @@ internal fun WakeService.stopRingScreenAlert() {
 internal fun cancelRingScreenAlarm(context: Context) =
     context.getSystemService(AlarmManager::class.java).cancel(Notifications.ringScreenByAlarm(context))
 
-private fun WakeService.nextRingId(): Int = RingAlert.nextId(notificationId, Notifications.ID_RING, Notifications.ID_RING_ALT)
+private fun WakeService.nextRingId(): Int = RingAlert.nextId(
+    notificationId,
+    Notifications.ID_RING,
+    Notifications.ID_RING_ALT,
+)
 
 /** Stösst Weg 2 und 3 an (Weg 1 ist die Mitteilung). */
 private fun WakeService.bringRingScreen() {
@@ -110,7 +114,13 @@ private fun probe(context: Context): String {
     val fullScreen = notifications.canUseFullScreenIntent()
     val visible = appVisible()
     // Die Uhr ist nie Begleit-App (die Zuordnung hält das Handy).
-    val route = RingAlert.route(visible, companion = false, interactive = interactive, locked = locked, fullScreenAllowed = fullScreen)
+    val route = RingAlert.route(
+        visible,
+        companion = false,
+        interactive = interactive,
+        locked = locked,
+        fullScreenAllowed = fullScreen,
+    )
     return "${route.name} screen=${if (interactive) "on" else "off"} locked=$locked fsi=$fullScreen " +
         "notifications=${notifications.areNotificationsEnabled()} app=$visible"
 }

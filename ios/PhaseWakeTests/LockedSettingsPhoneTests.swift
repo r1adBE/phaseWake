@@ -9,7 +9,8 @@ final class LockedSettingsPhoneTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        dir = FileManager.default.temporaryDirectory.appendingPathComponent("locked-settings-\(UUID().uuidString)", isDirectory: true)
+        dir = FileManager.default.temporaryDirectory.appendingPathComponent("locked-settings-\(UUID().uuidString)",
+                                                                            isDirectory: true)
     }
 
     override func tearDown() {

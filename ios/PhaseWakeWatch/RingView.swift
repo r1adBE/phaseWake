@@ -132,7 +132,9 @@ private extension View {
     func holdToStop(progress: Binding<Double>, holding: Binding<Bool>, perform: @escaping () -> Void) -> some View {
         onLongPressGesture(minimumDuration: 1.2, pressing: { pressing in
             holding.wrappedValue = pressing
-            withAnimation(pressing ? .linear(duration: 1.2) : .easeOut(duration: 0.25)) { progress.wrappedValue = pressing ? 1 : 0 }
+            withAnimation(pressing ? .linear(duration: 1.2) : .easeOut(duration: 0.25)) {
+                progress.wrappedValue = pressing ? 1 : 0
+            }
         }, perform: perform)
     }
 }

@@ -22,13 +22,15 @@ final class RecordedZoneTests: XCTestCase {
 
     /// Nacht in Tokio am Nachtdatum `day` (Oktober 2026), 23:00–07:00 Ortszeit (+09:00).
     private func tokyoNight(_ day: Int, zone: TimeZone? = TimeZone(identifier: "Asia/Tokyo")!) -> HealthSession {
-        HealthSession(start: t(String(format: "2026-10-%02dT14:00:00Z", day)), end: t(String(format: "2026-10-%02dT22:00:00Z", day)),
+        HealthSession(start: t(String(format: "2026-10-%02dT14:00:00Z", day)),
+                      end: t(String(format: "2026-10-%02dT22:00:00Z", day)),
                       timeZone: zone)
     }
 
     /// Nacht in Zürich am Nachtdatum `day` (Oktober 2026, Sommerzeit), 23:00–07:00 Ortszeit (+02:00).
     private func zurichNight(_ day: Int) -> HealthSession {
-        HealthSession(start: t(String(format: "2026-10-%02dT21:00:00Z", day)), end: t(String(format: "2026-10-%02dT05:00:00Z", day + 1)),
+        HealthSession(start: t(String(format: "2026-10-%02dT21:00:00Z", day)),
+                      end: t(String(format: "2026-10-%02dT05:00:00Z", day + 1)),
                       timeZone: zurichZone)
     }
 
@@ -42,7 +44,8 @@ final class RecordedZoneTests: XCTestCase {
 
     func testTokyoNightSeenInZurichKeepsItsClock() {
         let sleeps = summaries([tokyoNight(1)], zurich)
-        let bars = ChartData.sleepBars(sleeps, calendar: zurich, today: "2026-10-02", nextTarget: nil, goalMinutes: 480)!
+        let bars = ChartData.sleepBars(sleeps, calendar: zurich, today: "2026-10-02", nextTarget: nil,
+                                       goalMinutes: 480)!
         XCTAssertEqual(bars.bars.last, SleepBar(date: "2026-10-01", startMinute: 11 * 60, endMinute: 19 * 60))
         let overview = SleepOverviews.of(sleeps, calendar: zurich, today: "2026-10-02", goalMinutes: 480, unit: .days)!
         XCTAssertEqual(overview.bedtimeMinute, 11 * 60)
@@ -70,23 +73,28 @@ final class RecordedZoneTests: XCTestCase {
         XCTAssertEqual(regular.total, 5)
         let trends = Trends.compute(nights: [], sleeps: sleeps, now: t("2026-10-06T12:00:00Z"), calendar: zurich)
         XCTAssertEqual(trends.bedtimeSpreadMinutes, 0)
-        let bars = ChartData.sleepBars(sleeps, calendar: zurich, today: "2026-10-06", nextTarget: nil, goalMinutes: 480)!
+        let bars = ChartData.sleepBars(sleeps, calendar: zurich, today: "2026-10-06", nextTarget: nil,
+                                       goalMinutes: 480)!
         XCTAssertEqual(bars.bars.filter(\.hasData).map(\.startMinute), Array(repeating: 11 * 60, count: 5))
-        let week = WeeklySummary.of(nights: [], sleeps: sleeps, notes: [:], calendar: zurich, goalMinutes: 480, weekEnd: "2026-10-05")
+        let week = WeeklySummary.of(nights: [], sleeps: sleeps, notes: [:], calendar: zurich, goalMinutes: 480,
+                                    weekEnd: "2026-10-05")
         XCTAssertEqual(week.regular, 5)
         XCTAssertEqual(week.regularCounted, 5)
     }
 
     func testNightOverTheClockChangeKeepsLocalTimes() {
         // 24./25. Oktober 2026: Zürich stellt um 03:00 auf 02:00 zurück. 23:00 (+02:00) bis 07:00 (+01:00), 9 Stunden.
-        let recorded = HealthSession(start: t("2026-10-24T21:00:00Z"), end: t("2026-10-25T06:00:00Z"), timeZone: zurichZone)
+        let recorded = HealthSession(start: t("2026-10-24T21:00:00Z"), end: t("2026-10-25T06:00:00Z"),
+                                     timeZone: zurichZone)
         let plain = HealthSession(start: recorded.start, end: recorded.end)
         for (session, device) in [(recorded, tokyo), (plain, zurich)] {
             let sleeps = summaries([session], device)
             XCTAssertEqual(sleeps.map(\.asleepMinutes), [540])
-            let bars = ChartData.sleepBars(sleeps, calendar: device, today: "2026-10-25", nextTarget: nil, goalMinutes: 480)!
+            let bars = ChartData.sleepBars(sleeps, calendar: device, today: "2026-10-25", nextTarget: nil,
+                                           goalMinutes: 480)!
             XCTAssertEqual(bars.bars.last, SleepBar(date: "2026-10-24", startMinute: 11 * 60, endMinute: 19 * 60))
-            let overview = SleepOverviews.of(sleeps, calendar: device, today: "2026-10-25", goalMinutes: 480, unit: .days)!
+            let overview = SleepOverviews.of(sleeps, calendar: device, today: "2026-10-25", goalMinutes: 480,
+                                             unit: .days)!
             XCTAssertEqual(overview.bedtimeMinute, 11 * 60)
             XCTAssertEqual(overview.wakeMinute, 19 * 60)
             XCTAssertEqual(dates([session], device), ["2026-10-24"])
@@ -96,7 +104,8 @@ final class RecordedZoneTests: XCTestCase {
     func testWithoutZoneTheDeviceCounts() {
         let sleeps = summaries([tokyoNight(1, zone: nil)], zurich)
         // 14:00–22:00 UTC sind in Zürich 16:00–00:00.
-        let bars = ChartData.sleepBars(sleeps, calendar: zurich, today: "2026-10-02", nextTarget: nil, goalMinutes: 480)!
+        let bars = ChartData.sleepBars(sleeps, calendar: zurich, today: "2026-10-02", nextTarget: nil,
+                                       goalMinutes: 480)!
         XCTAssertEqual(bars.bars.last, SleepBar(date: "2026-10-01", startMinute: 4 * 60, endMinute: 12 * 60))
         XCTAssertNil(sleeps.first?.timeZone)
         XCTAssertEqual(sleeps.first?.localCalendar(zurich).timeZone, zurichZone)

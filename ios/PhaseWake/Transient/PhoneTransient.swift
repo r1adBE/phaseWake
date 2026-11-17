@@ -52,7 +52,8 @@ final class PhoneTransient {
     func startTest() async {
         let model = PhoneModel.shared
         let base = model.nextPlan().flatMap { plan in model.alarms.first { $0.id == plan.alarmId } }
-        let plan = Transient.test(base: base, now: Date(), calendar: .gregorianLocal, uuid: UUID().uuidString.lowercased())
+        let plan = Transient.test(base: base, now: Date(), calendar: .gregorianLocal,
+                                  uuid: UUID().uuidString.lowercased())
         guard allowed(plan) else { return }
         begin(test: plan)
         PhoneConnectivity.shared.send(command: SyncKeys.test, extra: [SyncKeys.payload: Transient.encode(plan)])
@@ -111,7 +112,8 @@ final class PhoneTransient {
     func startNap(minutes: Int) async {
         let model = PhoneModel.shared
         let base = model.nextPlan().flatMap { plan in model.alarms.first { $0.id == plan.alarmId } }
-        let plan = Transient.nap(base: base, now: Date(), calendar: .gregorianLocal, minutes: minutes, uuid: UUID().uuidString.lowercased())
+        let plan = Transient.nap(base: base, now: Date(), calendar: .gregorianLocal, minutes: minutes,
+                                 uuid: UUID().uuidString.lowercased())
         guard allowed(plan) else { return }
         begin(nap: plan, waiting: !(WCSession.isSupported() && WCSession.default.isReachable))
         PhoneConnectivity.shared.send(command: SyncKeys.nap, extra: [SyncKeys.payload: Transient.encode(plan)])
@@ -136,10 +138,12 @@ final class PhoneTransient {
     private func allowed(_ plan: TransientPlan) -> Bool {
         let model = PhoneModel.shared
         let now = Date()
-        let ringing = model.backup.ringActive && (model.lastRing.map { now.timeIntervalSince($0) < Self.ringLimit } ?? false)
+        let ringing = model.backup.ringActive
+            && (model.lastRing.map { now.timeIntervalSince($0) < Self.ringLimit } ?? false)
         // Wie `Transients.conflict` auf Android: Ein vorübergehender Plan in seinem Fenster zählt als laufende Nacht.
         let running = [test, nap].compactMap { $0 }.contains { now >= $0.plan.windowStart && now < $0.plan.target }
-        if let reason = Transient.conflict(plan, next: model.nextPlan(now: now), nightActive: ringing || running, now: now) {
+        if let reason = Transient.conflict(plan, next: model.nextPlan(now: now), nightActive: ringing || running,
+                                           now: now) {
             refused = (plan.kind, reason)
             DiagStore.shared.log(plan.kind == .test ? .test : .nap, "refused \(reason.rawValue)")
             return false
@@ -210,10 +214,12 @@ final class PhoneTransient {
     func restore() async {
         let defaults = SettingsFile.phone
         let now = Date()
-        test = defaults.string(forKey: Self.testKey).flatMap { try? Transient.decode($0) }.flatMap { Transient.isActive($0, now: now) ? $0 : nil }
+        test = defaults.string(forKey: Self.testKey)
+            .flatMap { try? Transient.decode($0) }.flatMap { Transient.isActive($0, now: now) ? $0 : nil }
         run = test == nil ? nil : TestRuns.decode(defaults.string(forKey: Self.runKey))
         ringIds = run == nil ? [] : Set(defaults.stringArray(forKey: Self.ringIdsKey) ?? [])
-        nap = defaults.string(forKey: Self.napKey).flatMap { try? Transient.decode($0) }.flatMap { $0.plan.target > now ? $0 : nil }
+        nap = defaults.string(forKey: Self.napKey)
+            .flatMap { try? Transient.decode($0) }.flatMap { $0.plan.target > now ? $0 : nil }
         save()
         if run != nil { waitForResult() }
     }
@@ -271,15 +277,18 @@ final class PhoneTransient {
         defer { concluding = false }
         if current.seen[.phoneRang] == nil {
             // Vor iOS 26 eine Kette aus Mitteilungen («id», «id.1» …): zählt über die Kennung der ersten.
-            let delivered = await UNUserNotificationCenter.current().deliveredNotifications().map { NotificationChain.baseId($0.request.identifier) }
+            let delivered = await UNUserNotificationCenter.current()
+                .deliveredNotifications().map { NotificationChain.baseId($0.request.identifier) }
             if let id = delivered.first(where: { ringIds.contains($0) }) { phoneAlerted(id) }
         }
         let missing = await NightCheck.collect()
         guard let run, run.id == current.id else { return }
-        phoneRingUnobserved = TestRuns.result(run, .phoneRang) == false && !missing.contains(.alarms) && !missing.contains(.notifications)
+        phoneRingUnobserved = TestRuns.result(run, .phoneRang) == false && !missing.contains(.alarms)
+            && !missing.contains(.notifications)
         alertTask?.cancel()
         showResult = true
-        DiagStore.shared.log(.test, "result \(TestStep.allCases.map { TestRuns.result(run, $0).map { $0 ? "1" : "0" } ?? "-" }.joined())")
+        let steps = TestStep.allCases.map { TestRuns.result(run, $0).map { $0 ? "1" : "0" } ?? "-" }.joined()
+        DiagStore.shared.log(.test, "result \(steps)")
     }
 
     private func save() {

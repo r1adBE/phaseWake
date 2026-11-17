@@ -57,7 +57,9 @@ public enum BackupPassword {
         if isSequence(points, step: 1) || isSequence(points, step: -1) { return true }
         // Vergleich der Unicode-Skalare (wie Kotlin), nicht der Graphem-Gruppen.
         let scalars = Array(lower.unicodeScalars)
-        if keyboard.contains(where: { row in occurs(scalars, in: row) || occurs(scalars, in: String(row.reversed())) }) { return true }
+        if keyboard.contains(where: { row in
+            occurs(scalars, in: row) || occurs(scalars, in: String(row.reversed()))
+        }) { return true }
         return common.contains(lower)
     }
 
@@ -65,7 +67,9 @@ public enum BackupPassword {
     private static func occurs(_ needle: [Unicode.Scalar], in row: String) -> Bool {
         let hay = Array(row.unicodeScalars)
         guard needle.count <= hay.count else { return false }
-        return (0...(hay.count - needle.count)).contains { start in Array(hay[start..<(start + needle.count)]) == needle }
+        return (0...(hay.count - needle.count)).contains { start in
+            Array(hay[start..<(start + needle.count)]) == needle
+        }
     }
 
     /// Längster Block, dessen Wiederholung als trivial gilt.

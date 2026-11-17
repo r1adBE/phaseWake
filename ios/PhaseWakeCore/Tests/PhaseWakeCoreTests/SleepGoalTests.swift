@@ -18,7 +18,8 @@ final class SleepGoalTests: XCTestCase {
         return f.date(from: text)!
     }
 
-    private func alarm(_ id: String, _ hour: Int, _ minute: Int, days: Set<Weekday> = Set(Weekday.allCases), sleep: Int? = nil) -> AlarmSpec {
+    private func alarm(_ id: String, _ hour: Int, _ minute: Int, days: Set<Weekday> = Set(Weekday.allCases),
+                       sleep: Int? = nil) -> AlarmSpec {
         try! AlarmSpec(id: id, hour: hour, minute: minute, days: days, sleepDurationMinutes: sleep)
     }
 
@@ -44,7 +45,8 @@ final class SleepGoalTests: XCTestCase {
         XCTAssertEqual(empty.reached, 0)
         XCTAssertEqual(empty.total, 0)
         // Doppeltes Datum zählt einmal, der längere Eintrag gilt.
-        let double = SleepGoal.weekStatus([("2026-10-27", 300), ("2026-10-27", 460), ("2026-10-26", 200)], goalMinutes: 450)
+        let double = SleepGoal.weekStatus([("2026-10-27", 300), ("2026-10-27", 460), ("2026-10-26", 200)],
+                                          goalMinutes: 450)
         XCTAssertEqual(double.reached, 1)
         XCTAssertEqual(double.total, 2)
     }
@@ -52,16 +54,23 @@ final class SleepGoalTests: XCTestCase {
     func testOneBedtimeIncludesLearnedLatency() throws {
         // Bettzeit = Weckzeit − Schlafziel − gelernte Einschlafdauer, überall gleich.
         let target = at("2026-10-28T06:00")
-        XCTAssertEqual(Bedtime.bedtime(nextAlarmTarget: target, goalMinutes: 450, latencyMinutes: 15), at("2026-10-27T22:15"))
+        XCTAssertEqual(Bedtime.bedtime(nextAlarmTarget: target, goalMinutes: 450, latencyMinutes: 15),
+                       at("2026-10-27T22:15"))
         // Nicht gelernt: wie bisher; negative Werte zählen 0.
-        XCTAssertEqual(Bedtime.bedtime(nextAlarmTarget: target, goalMinutes: 450, latencyMinutes: nil), at("2026-10-27T22:30"))
-        XCTAssertEqual(Bedtime.bedtime(nextAlarmTarget: target, goalMinutes: 450, latencyMinutes: -5), at("2026-10-27T22:30"))
-        XCTAssertEqual(Bedtime.reminderAt(nextAlarmTarget: target, goalMinutes: 450, latencyMinutes: 15), at("2026-10-27T21:45"))
-        XCTAssertEqual(Bedtime.onDial(nextAlarmTarget: target, goalMinutes: 450, latencyMinutes: 15), at("2026-10-27T22:15"))
+        XCTAssertEqual(Bedtime.bedtime(nextAlarmTarget: target, goalMinutes: 450, latencyMinutes: nil),
+                       at("2026-10-27T22:30"))
+        XCTAssertEqual(Bedtime.bedtime(nextAlarmTarget: target, goalMinutes: 450, latencyMinutes: -5),
+                       at("2026-10-27T22:30"))
+        XCTAssertEqual(Bedtime.reminderAt(nextAlarmTarget: target, goalMinutes: 450, latencyMinutes: 15),
+                       at("2026-10-27T21:45"))
+        XCTAssertEqual(Bedtime.onDial(nextAlarmTarget: target, goalMinutes: 450, latencyMinutes: 15),
+                       at("2026-10-27T22:15"))
         // Auf dem Ring zählt die ganze Strecke: 700 + 19 passt noch, 700 + 20 nicht mehr.
-        XCTAssertEqual(Bedtime.onDial(nextAlarmTarget: target, goalMinutes: 700, latencyMinutes: 19), at("2026-10-27T18:01"))
+        XCTAssertEqual(Bedtime.onDial(nextAlarmTarget: target, goalMinutes: 700, latencyMinutes: 19),
+                       at("2026-10-27T18:01"))
         XCTAssertNil(Bedtime.onDial(nextAlarmTarget: target, goalMinutes: 700, latencyMinutes: 20))
-        let reminder = try XCTUnwrap(Bedtime.next([alarm("a", 6, 0)], from: at("2026-10-27T20:00"), calendar: zurich, goalMinutes: 450,
+        let reminder = try XCTUnwrap(Bedtime.next([alarm("a", 6, 0)], from: at("2026-10-27T20:00"), calendar: zurich,
+                                                  goalMinutes: 450,
                                                   latencyMinutes: 15))
         XCTAssertEqual(reminder.at, at("2026-10-27T21:45"))
         XCTAssertEqual(reminder.bedtime, at("2026-10-27T22:15"))
@@ -70,9 +79,11 @@ final class SleepGoalTests: XCTestCase {
                        Bedtime.bedtime(nextAlarmTarget: target, goalMinutes: 450, latencyMinutes: 15))
         // Diagramm: die Bettzeit-Linie (Minuten ab Mittag) liegt 15 Min früher.
         let sleeps = [SleepSummary(start: at("2026-10-26T23:00"), end: at("2026-10-27T06:30"), asleepMinutes: 450)]
-        XCTAssertEqual(ChartData.sleepBars(sleeps, calendar: zurich, today: "2026-10-27", nextTarget: target, goalMinutes: 450,
+        XCTAssertEqual(ChartData.sleepBars(sleeps, calendar: zurich, today: "2026-10-27", nextTarget: target,
+                                           goalMinutes: 450,
                                            latencyMinutes: 15)?.bedtimeMinute, 10 * 60 + 15)
-        XCTAssertEqual(ChartData.sleepBars(sleeps, calendar: zurich, today: "2026-10-27", nextTarget: target, goalMinutes: 450)?.bedtimeMinute,
+        XCTAssertEqual(ChartData.sleepBars(sleeps, calendar: zurich, today: "2026-10-27", nextTarget: target,
+                                           goalMinutes: 450)?.bedtimeMinute,
                        10 * 60 + 30)
     }
 
@@ -80,13 +91,15 @@ final class SleepGoalTests: XCTestCase {
         let target = at("2026-10-28T06:00")
         XCTAssertEqual(Bedtime.bedtime(nextAlarmTarget: target, goalMinutes: 450), at("2026-10-27T22:30"))
         XCTAssertEqual(Bedtime.reminderAt(nextAlarmTarget: target, goalMinutes: 450), at("2026-10-27T22:00"))
-        XCTAssertEqual(Bedtime.reminderAt(nextAlarmTarget: target, goalMinutes: 450, leadMinutes: 10), at("2026-10-27T22:20"))
+        XCTAssertEqual(Bedtime.reminderAt(nextAlarmTarget: target, goalMinutes: 450, leadMinutes: 10),
+                       at("2026-10-27T22:20"))
     }
 
     func testBedtimeOnDialOnlyWithinTwelveHours() {
         let target = at("2026-10-28T06:00")
         XCTAssertEqual(Bedtime.onDial(nextAlarmTarget: target, goalMinutes: 450), at("2026-10-27T22:30"))
-        XCTAssertEqual(Bedtime.onDial(nextAlarmTarget: target, goalMinutes: SleepGoal.maxMinutes), at("2026-10-27T20:00"))
+        XCTAssertEqual(Bedtime.onDial(nextAlarmTarget: target, goalMinutes: SleepGoal.maxMinutes),
+                       at("2026-10-27T20:00"))
         XCTAssertEqual(Bedtime.onDial(nextAlarmTarget: target, goalMinutes: 719), at("2026-10-27T18:01"))
         XCTAssertNil(Bedtime.onDial(nextAlarmTarget: target, goalMinutes: Bedtime.dialMinutes))
         XCTAssertNil(Bedtime.onDial(nextAlarmTarget: target, goalMinutes: 0))
@@ -95,7 +108,8 @@ final class SleepGoalTests: XCTestCase {
     func testNextReminderSkipsPastNightsAndSecondAlarms() throws {
         let alarms = [alarm("a", 6, 0), alarm("b", 6, 30)]
         // Vor der Erinnerung: die für 06:00.
-        let evening = try XCTUnwrap(Bedtime.next(alarms, from: at("2026-10-27T20:00"), calendar: zurich, goalMinutes: 450))
+        let evening = try XCTUnwrap(Bedtime.next(alarms, from: at("2026-10-27T20:00"), calendar: zurich,
+                                                 goalMinutes: 450))
         XCTAssertEqual(evening.at, at("2026-10-27T22:00"))
         XCTAssertEqual(evening.bedtime, at("2026-10-27T22:30"))
         XCTAssertEqual(evening.target, at("2026-10-28T06:00"))
@@ -103,11 +117,14 @@ final class SleepGoalTests: XCTestCase {
         let late = try XCTUnwrap(Bedtime.next(alarms, from: at("2026-10-27T22:10"), calendar: zurich, goalMinutes: 450))
         XCTAssertEqual(late.at, at("2026-10-28T22:00"))
         // Nach dem Zeigen (ab dem Zeitpunkt der Erinnerung) dasselbe.
-        XCTAssertEqual(Bedtime.next(alarms, from: at("2026-10-27T22:00"), calendar: zurich, goalMinutes: 450)?.at, at("2026-10-28T22:00"))
+        XCTAssertEqual(Bedtime.next(alarms, from: at("2026-10-27T22:00"), calendar: zurich, goalMinutes: 450)?.at,
+                       at("2026-10-28T22:00"))
         // Einschlaf-Modus: es gilt die späteste Weckzeit.
-        let sleepMode = Bedtime.next([alarm("s", 7, 0, sleep: 420)], from: at("2026-10-27T20:00"), calendar: zurich, goalMinutes: 480)
+        let sleepMode = Bedtime.next([alarm("s", 7, 0, sleep: 420)], from: at("2026-10-27T20:00"), calendar: zurich,
+                                     goalMinutes: 480)
         XCTAssertEqual(sleepMode?.at, at("2026-10-27T22:30"))
-        XCTAssertNil(Bedtime.next([alarm("off", 6, 0).with(enabled: false)], from: at("2026-10-27T20:00"), calendar: zurich, goalMinutes: 450))
+        XCTAssertNil(Bedtime.next([alarm("off", 6, 0).with(enabled: false)], from: at("2026-10-27T20:00"),
+                                  calendar: zurich, goalMinutes: 450))
         XCTAssertNil(Bedtime.next([], from: at("2026-10-27T20:00"), calendar: zurich, goalMinutes: 450))
     }
 

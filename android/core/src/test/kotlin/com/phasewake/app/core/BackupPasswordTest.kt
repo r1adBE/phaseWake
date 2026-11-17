@@ -42,7 +42,17 @@ class BackupPasswordTest {
 
     @Test
     fun sequences() {
-        for (p in listOf("1234567890", "0123456789", "7890123456", "9876543210", "0987654321", "abcdefghij", "ABCDEFGHIJK", "jihgfedcba", "klmnopqrstuvwxyz")) {
+        for (p in listOf(
+            "1234567890",
+            "0123456789",
+            "7890123456",
+            "9876543210",
+            "0987654321",
+            "abcdefghij",
+            "ABCDEFGHIJK",
+            "jihgfedcba",
+            "klmnopqrstuvwxyz",
+        )) {
             assertEquals(Problem.TRIVIAL, BackupPassword.problem(p), p)
         }
         assertNull(BackupPassword.problem("1234567899"))
@@ -51,7 +61,15 @@ class BackupPasswordTest {
 
     @Test
     fun keyboardRows() {
-        for (p in listOf("qwertyuiop", "QWERTZUIOP", "azertyuiop", "poiuytrewq", "qwertyuiopasdf", "asdfghjklzx", "mnbvcxzlkj")) {
+        for (p in listOf(
+            "qwertyuiop",
+            "QWERTZUIOP",
+            "azertyuiop",
+            "poiuytrewq",
+            "qwertyuiopasdf",
+            "asdfghjklzx",
+            "mnbvcxzlkj",
+        )) {
             assertEquals(Problem.TRIVIAL, BackupPassword.problem(p), p)
         }
         assertNull(BackupPassword.problem("qwertyuiopx"))
@@ -86,7 +104,11 @@ class BackupPasswordTest {
                 for (line in lines) {
                     val (expected, password) = line.split("\t", limit = 2)
                     val problem = BackupPassword.problem(password)
-                    assertEquals(if (expected == "OK") null else Problem.valueOf(expected), problem, "$locale: $password")
+                    assertEquals(
+                        if (expected == "OK") null else Problem.valueOf(expected),
+                        problem,
+                        "$locale: $password",
+                    )
                 }
             }
         } finally {

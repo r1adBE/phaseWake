@@ -101,7 +101,8 @@ struct WatchEditorView: View {
                     Toggle(L("editor_enabled"), isOn: $enabled).tint(Brand.echo)
                     // Nur für gespeicherte, wiederholte Wecker (wie auf der Galaxy Watch).
                     if !isNew, !days.isEmpty {
-                        Toggle(L("alarm_skip"), isOn: Binding(get: { skipDate != nil }, set: { skipRequest = $0 })).tint(Brand.echo)
+                        Toggle(L("alarm_skip"), isOn: Binding(get: { skipDate != nil }, set: { skipRequest = $0 }))
+                            .tint(Brand.echo)
                         if let date = skipDate {
                             Text(L("alarm_skipped", Format.shortDay(date)))
                                 .font(Fonts.manrope(12, relativeTo: .footnote))

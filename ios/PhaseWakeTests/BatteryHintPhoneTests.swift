@@ -5,8 +5,10 @@ import XCTest
 /// Akku-Hinweise der Uhr im Nacht-Check, iPhone: Einschlaf-Messung und Lernphase brauchen mehr Akku, am Ladegerät
 /// keine Warnung.
 final class BatteryHintPhoneTests: XCTestCase {
-    private func watch(battery: Int?, autoOnset: Bool, learning: Bool, skip: RecorderSkip? = nil) -> NightCheck.WatchState {
-        NightCheck.WatchState(paired: true, appInstalled: true, plan: nil, armedTarget: nil, reminder: nil, battery: battery,
+    private func watch(battery: Int?, autoOnset: Bool, learning: Bool,
+                       skip: RecorderSkip? = nil) -> NightCheck.WatchState {
+        NightCheck.WatchState(paired: true, appInstalled: true, plan: nil, armedTarget: nil, reminder: nil,
+                              battery: battery,
                               recorderSkip: skip, notifications: nil, watchProtocol: WatchProtocol.current,
                               autoOnset: autoOnset, learning: learning)
     }
@@ -19,16 +21,21 @@ final class BatteryHintPhoneTests: XCTestCase {
         let now = Date(timeIntervalSince1970: 1_793_000_000)
         let onset = NightCheck.watchOnsetBatteryPercent
         XCTAssertEqual(onset, 30)
-        XCTAssertEqual(NightCheck.watchChecks(watch(battery: 25, autoOnset: true, learning: true), now: now), [.watchOnsetBattery])
-        XCTAssertEqual(NightCheck.watchChecks(watch(battery: 35, autoOnset: true, learning: true), now: now), [.watchLearnBattery])
+        XCTAssertEqual(NightCheck.watchChecks(watch(battery: 25, autoOnset: true, learning: true), now: now),
+                       [.watchOnsetBattery])
+        XCTAssertEqual(NightCheck.watchChecks(watch(battery: 35, autoOnset: true, learning: true), now: now),
+                       [.watchLearnBattery])
         XCTAssertEqual(NightCheck.watchChecks(watch(battery: 35, autoOnset: true, learning: false), now: now), [])
         XCTAssertEqual(NightCheck.watchChecks(watch(battery: 25, autoOnset: false, learning: false), now: now), [])
-        XCTAssertEqual(NightCheck.watchChecks(watch(battery: Learning.minBattery, autoOnset: true, learning: true), now: now), [])
-        XCTAssertEqual(NightCheck.watchChecks(watch(battery: 19, autoOnset: true, learning: true), now: now), [.watchBattery])
+        XCTAssertEqual(NightCheck.watchChecks(watch(battery: Learning.minBattery, autoOnset: true, learning: true),
+                                              now: now), [])
+        XCTAssertEqual(NightCheck.watchChecks(watch(battery: 19, autoOnset: true, learning: true), now: now),
+                       [.watchBattery])
         XCTAssertEqual(NightCheck.watchChecks(watch(battery: nil, autoOnset: true, learning: true), now: now), [])
         // Schon gemeldet, dass der Rekorder wegen des Akkus nicht startete: nicht noch einmal.
         let skip = RecorderSkip(target: now.addingTimeInterval(8 * 3600), reason: .battery)
-        XCTAssertEqual(NightCheck.watchChecks(watch(battery: 25, autoOnset: true, learning: true, skip: skip), now: now), [.watchRecorderBattery])
+        XCTAssertEqual(NightCheck.watchChecks(watch(battery: 25, autoOnset: true, learning: true, skip: skip),
+                                              now: now), [.watchRecorderBattery])
         // Nur Hinweise: Die Karte bleibt «bereit».
         XCTAssertTrue(PhoneCheck.watchOnsetBattery.isAdvisory)
         XCTAssertTrue(PhoneCheck.watchLearnBattery.isAdvisory)
@@ -44,6 +51,7 @@ final class BatteryHintPhoneTests: XCTestCase {
         XCTAssertEqual(NightCheck.watchChecks(charging, now: now), [])
         charging.battery = 15
         XCTAssertEqual(NightCheck.watchChecks(charging, now: now), [])
-        XCTAssertEqual(NightCheck.watchChecks(watch(battery: 15, autoOnset: true, learning: true), now: now), [.watchBattery])
+        XCTAssertEqual(NightCheck.watchChecks(watch(battery: 15, autoOnset: true, learning: true), now: now),
+                       [.watchBattery])
     }
 }

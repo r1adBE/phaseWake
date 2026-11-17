@@ -24,7 +24,9 @@ object WindowAdvice {
      */
     fun suggest(spec: AlarmSpec, history: List<NightRecord>): Suggestion? {
         if (spec.isExact || spec.windowMinutes >= AlarmSpec.MAX_WINDOW_MINUTES) return null
-        val recent = history.filter { it.alarmId == spec.id && it.reason.earlyAllowed }.sortedBy { it.windowStart }.takeLast(NIGHTS)
+        val recent = history.filter { it.alarmId == spec.id && it.reason.earlyAllowed }
+            .sortedBy { it.windowStart }
+            .takeLast(NIGHTS)
         if (recent.size < MIN_NIGHTS) return null
         val deadline = recent.count { it.reason == WakeReason.DEADLINE }
         // Mehr als die Hälfte der Nächte ohne passenden Moment.

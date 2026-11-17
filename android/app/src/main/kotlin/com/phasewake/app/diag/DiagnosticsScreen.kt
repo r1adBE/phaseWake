@@ -111,39 +111,77 @@ internal fun DiagnosticsContent(
     validation: List<String> = emptyList(),
 ) {
     SkyBarPage(bar = {
-        IconButton(onClick = actions.onBack) { Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.onb_back)) }
+        IconButton(onClick = actions.onBack) {
+            Icon(painterResource(R.drawable.ic_back), contentDescription = stringResource(R.string.onb_back))
+        }
         Text(stringResource(R.string.diag_title), style = MaterialTheme.typography.titleLarge)
     }) {
-        LazyColumn(Modifier.fillMaxSize().padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-            item { Text(stringResource(R.string.diag_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
+        LazyColumn(
+            Modifier.fillMaxSize().padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(6.dp),
+        ) {
+            item {
+                Text(
+                    stringResource(R.string.diag_hint), style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
             item {
                 Row(
-                    Modifier.fillMaxWidth().heightIn(min = 48.dp).toggleable(value = true, role = Role.Switch, onValueChange = { actions.onHide() }).padding(vertical = 8.dp),
+                    Modifier.fillMaxWidth().heightIn(min = 48.dp).toggleable(
+                        value = true, role = Role.Switch, onValueChange = { actions.onHide() },
+                    ).padding(vertical = 8.dp),
                 ) {
-                    Text(stringResource(R.string.diag_show), style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
+                    Text(
+                        stringResource(R.string.diag_show), style = MaterialTheme.typography.titleSmall,
+                        modifier = Modifier.weight(1f),
+                    )
                     Switch(checked = true, onCheckedChange = null)
                 }
             }
             item {
                 Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     FilledTonalButton(onClick = actions.onShare) { Text(stringResource(R.string.diag_share)) }
-                    OutlinedButton(onClick = actions.onFetchWatch, border = outlinedBorder()) { Text(stringResource(R.string.diag_fetch_watch)) }
-                    OutlinedButton(onClick = actions.onClear, border = outlinedBorder()) { Text(stringResource(R.string.diag_clear)) }
+                    OutlinedButton(onClick = actions.onFetchWatch, border = outlinedBorder()) {
+                        Text(stringResource(R.string.diag_fetch_watch))
+                    }
+                    OutlinedButton(onClick = actions.onClear, border = outlinedBorder()) {
+                        Text(stringResource(R.string.diag_clear))
+                    }
                 }
             }
             if (noAnswer) {
-                item { Text(stringResource(R.string.diag_watch_no_answer), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error) }
+                item {
+                    Text(
+                        stringResource(R.string.diag_watch_no_answer), style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.error,
+                    )
+                }
             }
-            item { Text(stringResource(R.string.diag_status), style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(top = 8.dp)) }
+            item {
+                Text(
+                    stringResource(R.string.diag_status), style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.padding(top = 8.dp),
+                )
+            }
             items(status) { line ->
                 Text("${line.label}: ${line.value}", style = MaterialTheme.typography.bodyMedium)
             }
             if (validation.isNotEmpty()) {
                 // Technischer Abschnitt wie die Zeilen des Protokolls, darum ohne übersetzten Titel.
-                item { Text(ValidationReport.TITLE, style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(top = 8.dp)) }
+                item {
+                    Text(
+                        ValidationReport.TITLE, style = MaterialTheme.typography.titleMedium,
+                        modifier = Modifier.padding(top = 8.dp),
+                    )
+                }
                 items(validation) { line -> Text(line, style = MaterialTheme.typography.bodySmall) }
             }
-            item { Text(stringResource(R.string.diag_events), style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(top = 8.dp)) }
+            item {
+                Text(
+                    stringResource(R.string.diag_events), style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.padding(top = 8.dp),
+                )
+            }
             if (entries.isEmpty()) {
                 item { Text(stringResource(R.string.diag_empty), style = MaterialTheme.typography.bodyMedium) }
             }
@@ -157,8 +195,10 @@ internal fun DiagnosticsContent(
 
 /** Teilt Zustand, Validierung (falls vorhanden) und Protokoll als Text über das Teilen-Menü. */
 private fun share(context: Context, status: List<StatusLine>, validation: List<String>, entries: List<DiagEntry>) {
-    val section = if (validation.isEmpty()) "" else (listOf(ValidationReport.TITLE) + validation).joinToString("\n") + "\n\n"
-    val text = status.joinToString("\n") { "${it.label}: ${it.value}" } + "\n\n" + section + DiagLog.format(entries, ZoneId.systemDefault())
+    val section =
+        if (validation.isEmpty()) "" else (listOf(ValidationReport.TITLE) + validation).joinToString("\n") + "\n\n"
+    val text = status.joinToString("\n") { "${it.label}: ${it.value}" } +
+        "\n\n" + section + DiagLog.format(entries, ZoneId.systemDefault())
     val send = Intent(Intent.ACTION_SEND).setType("text/plain").putExtra(Intent.EXTRA_TEXT, text)
         .putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.diag_title))
     context.startActivity(Intent.createChooser(send, null).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))

@@ -33,7 +33,15 @@ class CsvNumbersTest {
     @Test
     fun exportUsesTheSameRule() {
         val at = java.time.Instant.parse("2026-10-01T04:30:00Z")
-        val night = NightRecord("a", at, at.plusSeconds(1800), at.plusSeconds(1080), WakeReason.LIGHT_SLEEP, 0, listOf(Epoch(0.0002465, 56.25)))
+        val night = NightRecord(
+            "a",
+            at,
+            at.plusSeconds(1800),
+            at.plusSeconds(1080),
+            WakeReason.LIGHT_SLEEP,
+            0,
+            listOf(Epoch(0.0002465, 56.25)),
+        )
         val line = NightHistory.exportCsv(listOf(night)).trimEnd().lines()[1]
         assertEquals("0.000246,56.3,", line.split(',').takeLast(3).joinToString(","))
     }

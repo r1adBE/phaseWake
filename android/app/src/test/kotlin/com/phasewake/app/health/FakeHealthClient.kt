@@ -47,12 +47,23 @@ internal class FakeHealthClient(
 
     override suspend fun insertRecords(records: List<Record>): InsertRecordsResponse = unused()
     override suspend fun updateRecords(records: List<Record>) = unused()
-    override suspend fun deleteRecords(recordType: KClass<out Record>, recordIdsList: List<String>, clientRecordIdsList: List<String>) = unused()
+    override suspend fun deleteRecords(
+        recordType: KClass<out Record>,
+        recordIdsList: List<String>,
+        clientRecordIdsList: List<String>,
+    ) = unused()
     override suspend fun deleteRecords(recordType: KClass<out Record>, timeRangeFilter: TimeRangeFilter) = unused()
-    override suspend fun <T : Record> readRecord(recordType: KClass<T>, recordId: String): ReadRecordResponse<T> = unused()
+    override suspend fun <T : Record> readRecord(
+        recordType: KClass<T>,
+        recordId: String,
+    ): ReadRecordResponse<T> = unused()
     override suspend fun aggregate(request: AggregateRequest): AggregationResult = unused()
-    override suspend fun aggregateGroupByDuration(request: AggregateGroupByDurationRequest): List<AggregationResultGroupedByDuration> = unused()
-    override suspend fun aggregateGroupByPeriod(request: AggregateGroupByPeriodRequest): List<AggregationResultGroupedByPeriod> = unused()
+    override suspend fun aggregateGroupByDuration(
+        request: AggregateGroupByDurationRequest,
+    ): List<AggregationResultGroupedByDuration> = unused()
+    override suspend fun aggregateGroupByPeriod(
+        request: AggregateGroupByPeriodRequest,
+    ): List<AggregationResultGroupedByPeriod> = unused()
     override suspend fun getChangesToken(request: ChangesTokenRequest): String = unused()
     override suspend fun getChanges(changesToken: String): ChangesResponse = unused()
 

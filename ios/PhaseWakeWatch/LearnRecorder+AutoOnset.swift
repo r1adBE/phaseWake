@@ -71,8 +71,8 @@ extension LearnRecorder {
         let spec = model.alarms.first { $0.id == plan.alarmId }
         let onsetStart = Self.nightStart(plan: plan, spec: spec, sleepGoal: model.sleepGoal)
         // Am Ladegerät nicht wegen des Akkus auslassen: Die Uhr ist zur Bettzeit geladen.
-        switch AppleAutoOnset.decide(now: Date(), target: plan.target, windowStart: plan.windowStart, onsetStart: onsetStart, battery: battery,
-                                     charging: Self.charging()) {
+        switch AppleAutoOnset.decide(now: Date(), target: plan.target, windowStart: plan.windowStart,
+                                     onsetStart: onsetStart, battery: battery, charging: Self.charging()) {
         case .wait(let until):
             autoNextTry = until
         case .skip(let reason):
@@ -80,11 +80,14 @@ extension LearnRecorder {
             guard autoDecided == nil, reason != "window begun" else { return }
             autoDecided = plan.target
             autoSkipped = true
-            DiagStore.shared.log(reason.hasPrefix("battery") ? .battery : .measureStart, "auto onset not started: \(reason)")
+            DiagStore.shared.log(reason.hasPrefix("battery") ? .battery : .measureStart,
+                                 "auto onset not started: \(reason)")
             if reason.hasPrefix("battery") { noteRecorderSkip(.battery, target: plan.target) }
         case .start(let until):
             guard Self.recorderAllowed else {
-                if autoDecided == nil { DiagStore.shared.log(.measureStart, "auto onset not started: motion not allowed") }
+                if autoDecided == nil {
+                    DiagStore.shared.log(.measureStart, "auto onset not started: motion not allowed")
+                }
                 autoDecided = plan.target
                 noteRecorderSkip(.motion, target: plan.target)
                 return
@@ -93,7 +96,11 @@ extension LearnRecorder {
             ensureRecorder(until: until)
             guard autoDecided == nil else { return }
             autoDecided = plan.target
-            DiagStore.shared.log(.measureStart, "auto onset recorder bat=\(battery.map { "\($0)" } ?? "-") until \(Format.logTime(until))\(running ? " (running)" : "")")
+            let bat = battery.map { "\($0)" } ?? "-"
+            DiagStore.shared.log(
+                .measureStart,
+                "auto onset recorder bat=\(bat) until \(Format.logTime(until))\(running ? " (running)" : "")"
+            )
             WatchBattery.begin(alarmId: plan.alarmId, target: plan.target)
         }
     }

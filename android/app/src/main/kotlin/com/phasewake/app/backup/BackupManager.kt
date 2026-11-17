@@ -61,7 +61,8 @@ object BackupManager {
             BackupFile.encrypt(payload.toJson().encodeToByteArray(), password, salt, nonce)
         }
         withContext(Dispatchers.IO) {
-            context.contentResolver.openOutputStream(uri, "wt")?.use { it.write(sealed) } ?: throw IOException("Ziel nicht beschreibbar")
+            context.contentResolver.openOutputStream(uri, "wt")
+                ?.use { it.write(sealed) } ?: throw IOException("Ziel nicht beschreibbar")
         }
         app.diag.log(DiagKind.OTHER, "backup saved")
         true

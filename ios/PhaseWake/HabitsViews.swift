@@ -10,7 +10,8 @@ struct RoutineCard: View {
         if !model.routineItems.isEmpty {
             let done = Set(model.routineDone(night: night))
             VStack(alignment: .leading, spacing: 4) {
-                Label(L("routine_title"), systemImage: "checklist").font(Fonts.manrope(16, .semibold, relativeTo: .headline))
+                Label(L("routine_title"), systemImage: "checklist")
+                    .font(Fonts.manrope(16, .semibold, relativeTo: .headline))
                     .padding(.bottom, 4)
                 ForEach(model.routineItems) { item in
                     let checked = done.contains(item.id)
@@ -69,7 +70,8 @@ struct RoutineSection: View {
 /// Daten aus Apple Health, die Abendroutine ab 3 Abenden. `regularShown`: Regelmässigkeit steht schon im
 /// Schlaf-Streifen, hier weglassen.
 @MainActor
-func habitLines(model: PhoneModel, sleeps: [SleepSummary], healthConnected: Bool, regularShown: Bool = false, now: Date = Date()) -> [String] {
+func habitLines(model: PhoneModel, sleeps: [SleepSummary], healthConnected: Bool, regularShown: Bool = false,
+                now: Date = Date()) -> [String] {
     let calendar = Calendar.gregorianLocal
     let today = SleepNotes.nightDate(now, calendar: calendar)
     var lines: [String] = []

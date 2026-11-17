@@ -48,7 +48,8 @@ private fun LearnHome(mode: ThemeMode, extras: HomeExtras) = Themed(mode) {
 private val during = HomeExtras(learning = learning(), record = RecordSync.RecordStatus(null))
 
 /** Lernphase läuft, eine Aufzeichnung seit einer Stunde. */
-private val duringRecording = HomeExtras(learning = learning(), record = RecordSync.RecordStatus(FIXED_NOW.minus(Duration.ofHours(1))))
+private val duringRecording =
+    HomeExtras(learning = learning(), record = RecordSync.RecordStatus(FIXED_NOW.minus(Duration.ofHours(1))))
 
 /** Nach der Lernphase (Karte «Angepasst an dich» schon bestätigt): eigene Karte «Nacht-Aufzeichnung». */
 private val after = HomeExtras(record = RecordSync.RecordStatus(null))

@@ -20,8 +20,10 @@ extension PhoneModel {
         }
         let file = SettingsFile.phone
         PhoneConnectivity.shared.publish(snapshot ?? storage.snapshot(), holidays: holidays.list,
-                                         sleepGoal: PhoneConnectivity.afterReset(sleepGoal, key: Self.sleepGoalKey, in: file),
-                                         autoOnset: PhoneConnectivity.afterReset(WatchNight.autoOnset, key: BackupIO.autoOnsetKey, in: file),
+                                         sleepGoal: PhoneConnectivity.afterReset(sleepGoal, key: Self.sleepGoalKey,
+                                                                                 in: file),
+                                         autoOnset: PhoneConnectivity.afterReset(WatchNight.autoOnset,
+                                                                                 key: BackupIO.autoOnsetKey, in: file),
                                          learning: PhoneLearning.shared.watchSnapshot())
     }
 }

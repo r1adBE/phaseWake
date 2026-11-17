@@ -10,7 +10,8 @@ final class ResetPhoneTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        dir = FileManager.default.temporaryDirectory.appendingPathComponent("reset-phone-\(UUID().uuidString)", isDirectory: true)
+        dir = FileManager.default.temporaryDirectory.appendingPathComponent("reset-phone-\(UUID().uuidString)",
+                                                                            isDirectory: true)
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
     }
 
@@ -75,7 +76,8 @@ final class ResetPhoneTests: XCTestCase {
     func testTestReplacesWaitingNap() {
         let transient = PhoneTransient()
         let now = Date()
-        let nap = Transient.nap(base: nil, now: now, calendar: .gregorianLocal, minutes: 20, uuid: UUID().uuidString.lowercased())
+        let nap = Transient.nap(base: nil, now: now, calendar: .gregorianLocal, minutes: 20,
+                                uuid: UUID().uuidString.lowercased())
         transient.begin(nap: nap, waiting: false)
         XCTAssertNotNil(transient.nap)
 
@@ -96,7 +98,8 @@ final class ResetPhoneTests: XCTestCase {
         transient.begin(test: test)
         XCTAssertNotNil(transient.run)
 
-        let nap = Transient.nap(base: nil, now: now, calendar: .gregorianLocal, minutes: 20, uuid: UUID().uuidString.lowercased())
+        let nap = Transient.nap(base: nil, now: now, calendar: .gregorianLocal, minutes: 20,
+                                uuid: UUID().uuidString.lowercased())
         transient.begin(nap: nap, waiting: true)
         XCTAssertNil(transient.test)
         XCTAssertNil(transient.run)

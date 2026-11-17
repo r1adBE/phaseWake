@@ -46,7 +46,8 @@ class OneShotAutoOffTest {
     @Before
     fun setUp() {
         ShadowAlarmManager.setCanScheduleExactAlarms(true)
-        shadowOf(context.getSystemService(BatteryManager::class.java)).setIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY, 80)
+        shadowOf(context.getSystemService(BatteryManager::class.java))
+            .setIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY, 80)
         StartLock.resetForTest()
     }
 
@@ -103,7 +104,9 @@ class OneShotAutoOffTest {
 
     @Test
     fun oneShotMovedDuringSnoozeStaysEnabled() {
-        val stored = ringSnoozeDismiss { target -> runBlocking { app.alarms.upsert(specAt(target.plus(Duration.ofMinutes(30)))) } }
+        val stored = ringSnoozeDismiss { target ->
+            runBlocking { app.alarms.upsert(specAt(target.plus(Duration.ofMinutes(30)))) }
+        }
         assertTrue(stored.enabled, "der verschobene Einmal-Wecker bleibt eingeschaltet")
         assertNotNull(runBlocking { app.scheduler.nextPlan() }, "und ist für die neue Zeit geplant")
     }

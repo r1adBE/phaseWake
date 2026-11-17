@@ -52,11 +52,16 @@ internal object StartRefused {
         Log.e(WakeService.TAG, "Vordergrund-Start verweigert: $action", error)
         val ringing = if (plan != null && action != null && action in RINGING) action to plan else null
         runCatching {
-            context.wearApp.diag.log(DiagKind.ERROR, "watch start refused ${action?.substringAfterLast('.')} ${error.javaClass.simpleName}" + if (ringing != null) ", ring notification" else "")
+            context.wearApp.diag.log(
+                DiagKind.ERROR,
+                "watch start refused ${action?.substringAfterLast('.')} ${error.javaClass.simpleName}" +
+                    if (ringing != null) ", ring notification" else "",
+            )
         }
         if (ringing != null) {
             try {
-                NotificationManagerCompat.from(context).notify(Notifications.ID_RING, notification(context, ringing.first, ringing.second))
+                NotificationManagerCompat.from(context)
+                    .notify(Notifications.ID_RING, notification(context, ringing.first, ringing.second))
             } catch (e: SecurityException) {
                 // Mitteilungen nicht erlaubt: Der Zweitwecker am Handy bleibt.
                 Log.e(WakeService.TAG, "Weck-Mitteilung nicht erlaubt", e)
@@ -71,7 +76,12 @@ internal object StartRefused {
         val screen = AlarmReceiver.putPlan(Intent(context, RingActivity::class.java), plan)
             .putExtra(RingActivity.EXTRA_VIA, RingActivity.VIA_RESCUE)
             .putExtra(EXTRA_ACTION, action)
-        val open = PendingIntent.getActivity(context, REQUEST_RESCUE, screen, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+        val open = PendingIntent.getActivity(
+            context,
+            REQUEST_RESCUE,
+            screen,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+        )
         return NotificationCompat.Builder(context, Notifications.CHANNEL_ALARM)
             .setSmallIcon(R.drawable.ic_moon)
             .setContentTitle(context.getString(R.string.notification_ring_title))
@@ -90,10 +100,14 @@ internal object StartRefused {
      * er den Dienst jetzt (sichtbar, also erlaubt). `true`, wenn nachgeholt wird.
      */
     fun resume(context: Context, intent: Intent?): Boolean {
-        if (intent?.getStringExtra(RingActivity.EXTRA_VIA) != RingActivity.VIA_RESCUE || WakeService.running) return false
+        if (intent?.getStringExtra(RingActivity.EXTRA_VIA) != RingActivity.VIA_RESCUE || WakeService.running) {
+            return false
+        }
         val plan = AlarmReceiver.planFrom(intent) ?: return false
         val action = intent.getStringExtra(EXTRA_ACTION)?.takeIf { it in RINGING } ?: return false
-        runCatching { context.wearApp.diag.log(DiagKind.RING_SCREEN, "watch rescue start ${action.substringAfterLast('.')}") }
+        runCatching {
+            context.wearApp.diag.log(DiagKind.RING_SCREEN, "watch rescue start ${action.substringAfterLast('.')}")
+        }
         WakeService.command(context, action, plan)
         return true
     }

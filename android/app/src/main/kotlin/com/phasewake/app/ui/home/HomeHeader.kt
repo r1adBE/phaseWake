@@ -59,6 +59,7 @@ import androidx.compose.ui.graphics.Color
 import com.phasewake.app.ui.components.AnimatedDay
 import com.phasewake.app.ui.components.HeroWave
 import com.phasewake.app.ui.components.LogoMark
+import com.phasewake.app.ui.components.SkyInk
 import com.phasewake.app.ui.components.SkyMood
 import com.phasewake.app.ui.components.skyInk
 import java.time.Duration
@@ -115,15 +116,22 @@ internal fun Header(
             }
             AnimatedVisibility(appeared, enter = fadeIn(tween(500)) + slideInVertically(tween(500)) { it / 4 }) {
                 Column(Modifier.padding(top = 28.dp).semantics(mergeDescendants = true) { heading() }) {
-                    Text(stringResource(greeting(now, zone)), style = MaterialTheme.typography.titleMedium, color = ink.muted)
+                    Text(
+                        stringResource(greeting(now, zone)), style = MaterialTheme.typography.titleMedium,
+                        color = ink.muted,
+                    )
                     if (plan != null && alarm != null) {
                         val dayText = dayLabel(plan.target, now, zone)
                         // Grosser Countdown-Bogen; darin das Weckfenster gross, darunter wann und welcher, dann wie
                         // lange noch.
                         BoxWithConstraints(Modifier.fillMaxWidth().padding(top = 6.dp)) {
-                            WakeArc(now, plan.windowStart, plan.target, plan.exact, Modifier.fillMaxWidth().aspectRatio(ARC_ASPECT), ink)
+                            WakeArc(
+                                now, plan.windowStart, plan.target, plan.exact,
+                                Modifier.fillMaxWidth().aspectRatio(ARC_ASPECT), ink,
+                            )
                             Column(
-                                Modifier.fillMaxWidth().padding(horizontal = maxWidth * ARC_TEXT_SIDE, vertical = 0.dp).padding(top = maxWidth * ARC_TEXT_TOP),
+                                Modifier.fillMaxWidth().padding(horizontal = maxWidth * ARC_TEXT_SIDE, vertical = 0.dp)
+                                    .padding(top = maxWidth * ARC_TEXT_TOP),
                                 horizontalAlignment = Alignment.CenterHorizontally,
                             ) {
                                 HeroTime(plan, zone, ink.text)
@@ -138,7 +146,10 @@ internal fun Header(
                                 if (!plan.exact) {
                                     Text(
                                         if (now.isBefore(plan.windowStart)) {
-                                            stringResource(R.string.home_next_in, Format.duration(context, Duration.between(now, plan.windowStart)))
+                                            stringResource(
+                                                R.string.home_next_in,
+                                                Format.duration(context, Duration.between(now, plan.windowStart)),
+                                            )
                                         } else {
                                             stringResource(R.string.home_window_running)
                                         },
@@ -151,32 +162,49 @@ internal fun Header(
                             }
                         }
                         autoOnset?.let {
-                            Text(stringResource(R.string.home_auto_onset, it), style = MaterialTheme.typography.bodySmall, color = ink.muted)
+                            Text(
+                                stringResource(R.string.home_auto_onset, it),
+                                style = MaterialTheme.typography.bodySmall, color = ink.muted,
+                            )
                         }
                         holidayNote?.let { HolidayNote(it, ink.muted) }
                     } else {
-                        Text(
-                            stringResource(R.string.home_no_alarm_title),
-                            style = MaterialTheme.typography.headlineMedium,
-                            color = ink.text,
-                            modifier = Modifier.padding(top = 2.dp),
-                        )
-                        Text(stringResource(R.string.home_no_alarm_text), style = MaterialTheme.typography.bodyMedium, color = ink.muted)
-                        holidayNote?.let { HolidayNote(it, ink.muted) }
-                        HeroWave(Modifier.fillMaxWidth().height(64.dp).padding(vertical = 14.dp), onNight = true)
-                        if (onAdd != null) {
-                            Button(
-                                onClick = onAdd,
-                                colors = ButtonDefaults.buttonColors(containerColor = ink.button, contentColor = ink.onButton),
-                            ) {
-                                Icon(painterResource(R.drawable.ic_add), contentDescription = null, modifier = Modifier.size(18.dp))
-                                Spacer(Modifier.width(8.dp))
-                                Text(stringResource(R.string.home_add_alarm))
-                            }
-                        }
+                        NoAlarm(holidayNote, onAdd, ink)
                     }
                 }
             }
+        }
+    }
+}
+
+/** Ohne Wecker: Einladung, den ersten zu stellen ([onAdd] `null`: Limit erreicht, kein Knopf). */
+@Composable
+private fun NoAlarm(holidayNote: String?, onAdd: (() -> Unit)?, ink: SkyInk) {
+    Text(
+        stringResource(R.string.home_no_alarm_title),
+        style = MaterialTheme.typography.headlineMedium,
+        color = ink.text,
+        modifier = Modifier.padding(top = 2.dp),
+    )
+    Text(
+        stringResource(R.string.home_no_alarm_text), style = MaterialTheme.typography.bodyMedium,
+        color = ink.muted,
+    )
+    holidayNote?.let { HolidayNote(it, ink.muted) }
+    HeroWave(Modifier.fillMaxWidth().height(64.dp).padding(vertical = 14.dp), onNight = true)
+    if (onAdd != null) {
+        Button(
+            onClick = onAdd,
+            colors = ButtonDefaults.buttonColors(
+                containerColor = ink.button, contentColor = ink.onButton,
+            ),
+        ) {
+            Icon(
+                painterResource(R.drawable.ic_add), contentDescription = null,
+                modifier = Modifier.size(18.dp),
+            )
+            Spacer(Modifier.width(8.dp))
+            Text(stringResource(R.string.home_add_alarm))
         }
     }
 }
@@ -222,7 +250,11 @@ private const val PERIOD_SCALE = 0.42f
  * [line] mit kleinem Tageszeit-Zusatz: [times] sind die Zeiten in der Reihenfolge, in der sie in [line] stehen,
  * die erste ab [from]. Nicht gefundene Zeiten bleiben unverändert.
  */
-internal fun heroText(line: String, times: List<Pair<String, IntRange?>>, from: Int): AnnotatedString = buildAnnotatedString {
+internal fun heroText(
+    line: String,
+    times: List<Pair<String, IntRange?>>,
+    from: Int,
+): AnnotatedString = buildAnnotatedString {
     append(line)
     var cursor = from.coerceAtLeast(0)
     for ((time, period) in times) {
@@ -248,7 +280,9 @@ private fun dayLabel(target: Instant, now: Instant, zone: ZoneId): String {
     return when (day) {
         today -> stringResource(R.string.home_next_today)
         today.plusDays(1) -> stringResource(R.string.home_next_tomorrow)
-        else -> day.dayOfWeek.getDisplayName(java.time.format.TextStyle.FULL, locale).replaceFirstChar { it.titlecase(locale) }
+        else -> day.dayOfWeek.getDisplayName(java.time.format.TextStyle.FULL, locale).replaceFirstChar {
+            it.titlecase(locale)
+        }
     }
 }
 

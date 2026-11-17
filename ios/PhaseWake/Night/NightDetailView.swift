@@ -31,7 +31,8 @@ struct NightDetailView: View {
         TabView(selection: $key) {
             // Älteste links, neueste rechts: nach rechts wischen = vorherige Nacht.
             ForEach(items.reversed(), id: \.key) { item in
-                NightDetailPage(data: NightDetailData(item: item, stages: stages), sourceName: item.session.flatMap(sourceName),
+                NightDetailPage(data: NightDetailData(item: item, stages: stages),
+                                sourceName: item.session.flatMap(sourceName),
                                 scoreSource: scoreSource(item))
                     .tag(item.key)
             }

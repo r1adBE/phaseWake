@@ -28,7 +28,9 @@ struct SkyMood: Equatable {
         var planDawn = 0.0
         if let plan {
             let minutes = plan.windowStart.timeIntervalSince(now) / 60
-            if now >= plan.windowStart && now < plan.target { planDawn = 1 } else if minutes >= 0 { planDawn = min(1, max(0, 1 - minutes / 180)) }
+            if now >= plan.windowStart && now < plan.target { planDawn = 1 } else if minutes >= 0 {
+                planDawn = min(1, max(0, 1 - minutes / 180))
+            }
         }
         let c = calendar.dateComponents([.hour, .minute], from: now)
         let hour = Double(c.hour ?? 0) + Double(c.minute ?? 0) / 60
@@ -58,17 +60,20 @@ struct SkyMood: Equatable {
     var horizon: (color: Color, alpha: Double) {
         guard tint > 0 else { return (.clear, 0) }
         let w = morningShare
-        return (SkyMood.mix(SkyMood.duskLow, SkyMood.dawnLow, w), (SkyMood.duskAlpha + (SkyMood.dawnAlpha - SkyMood.duskAlpha) * w) * tint)
+        return (SkyMood.mix(SkyMood.duskLow, SkyMood.dawnLow, w),
+                (SkyMood.duskAlpha + (SkyMood.dawnAlpha - SkyMood.duskAlpha) * w) * tint)
     }
     /// Schein über dem Horizont (violett am Abend, golden am Morgen) und seine Deckkraft in der Mitte.
     var sun: (color: Color, alpha: Double) {
         guard tint > 0 else { return (.clear, 0) }
         let w = morningShare
-        return (SkyMood.mix(SkyMood.duskHigh, SkyMood.dawnHigh, w), (SkyMood.duskSun + (SkyMood.dawnSun - SkyMood.duskSun) * w) * tint)
+        return (SkyMood.mix(SkyMood.duskHigh, SkyMood.dawnHigh, w),
+                (SkyMood.duskSun + (SkyMood.dawnSun - SkyMood.duskSun) * w) * tint)
     }
     /// Lichtschein oben rechts: Lavendel, am Abend zum Violett hin; Deckkraft in seiner Mitte.
     var glow: (color: Color, alpha: Double) {
-        (SkyMood.mix(0x7B6CF6, SkyMood.duskHigh, min(1, max(0, dusk))), SkyMood.glowAlpha - SkyMood.nightGlowDim * min(1, max(0, night)))
+        (SkyMood.mix(0x7B6CF6, SkyMood.duskHigh, min(1, max(0, dusk))),
+         SkyMood.glowAlpha - SkyMood.nightGlowDim * min(1, max(0, night)))
     }
 }
 
@@ -115,11 +120,14 @@ struct SkyInk {
     let text: Color, muted: Color, accent: Color, wave: Color, waveEcho: Color, moon: Color
     let button: Color, onButton: Color, dawn: Color, band: Color
 
-    static let onNight = SkyInk(text: Brand.moon, muted: Brand.muted, accent: Brand.wave, wave: Brand.wave, waveEcho: Brand.waveEcho,
-                                moon: Brand.moon, button: Brand.wave, onButton: Brand.nightTop, dawn: Color(hex: 0xFFB27A), band: Brand.beam)
+    static let onNight = SkyInk(text: Brand.moon, muted: Brand.muted, accent: Brand.wave, wave: Brand.wave,
+                                waveEcho: Brand.waveEcho,
+                                moon: Brand.moon, button: Brand.wave, onButton: Brand.nightTop,
+                                dawn: Color(hex: 0xFFB27A), band: Brand.beam)
     /// Schrift 2A2340 (≥ 7.8:1), Nebentext 4A4058 (≥ 5:1), Textknopf 4436A6 (≥ 4.7:1), Welle/Knopf 5546C8 (≥ 3:1, Weiss
     /// darauf 6.8:1), Mond 3B3486, Morgenlicht Caramel B86B25.
-    static let onDay = SkyInk(text: Brand.ink, muted: Color(hex: 0x4A4058), accent: Color(hex: 0x4436A6), wave: Brand.lavenderDeep,
+    static let onDay = SkyInk(text: Brand.ink, muted: Color(hex: 0x4A4058), accent: Color(hex: 0x4436A6),
+                              wave: Brand.lavenderDeep,
                               waveEcho: Brand.glow, moon: Brand.deep, button: Brand.lavenderDeep, onButton: .white,
                               dawn: Brand.caramel, band: Brand.lavenderDeep.opacity(0.75))
 
@@ -135,21 +143,26 @@ struct DaySky: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                LinearGradient(colors: [mood.dayTop, Color(hex: DaySkyColors.bottom)], startPoint: .top, endPoint: .bottom)
+                LinearGradient(colors: [mood.dayTop, Color(hex: DaySkyColors.bottom)], startPoint: .top,
+                               endPoint: .bottom)
                 let horizon = mood.dayHorizon
                 if horizon.alpha > 0 {
                     LinearGradient(
-                        stops: [.init(color: horizon.color.opacity(0), location: SkyMood.horizonStart), .init(color: horizon.color.opacity(horizon.alpha), location: 1)],
+                        stops: [.init(color: horizon.color.opacity(0), location: SkyMood.horizonStart),
+                                .init(color: horizon.color.opacity(horizon.alpha), location: 1)],
                         startPoint: .top, endPoint: .bottom
                     )
                     let sun = mood.daySun
                     RadialGradient(
-                        colors: [sun.color.opacity(sun.alpha), sun.color.opacity(sun.alpha * 0.45), sun.color.opacity(0)],
-                        center: UnitPoint(x: 0.5, y: 1), startRadius: 0, endRadius: geo.size.height * (1 - SkyMood.horizonStart)
+                        colors: [sun.color.opacity(sun.alpha), sun.color.opacity(sun.alpha * 0.45),
+                                 sun.color.opacity(0)],
+                        center: UnitPoint(x: 0.5, y: 1), startRadius: 0,
+                        endRadius: geo.size.height * (1 - SkyMood.horizonStart)
                     )
                 }
                 RadialGradient(colors: [.white.opacity(DaySkyColors.glowAlpha), .white.opacity(0)],
-                               center: UnitPoint(x: 0.82, y: 0.08), startRadius: 0, endRadius: max(geo.size.width, geo.size.height) * 0.6)
+                               center: UnitPoint(x: 0.82, y: 0.08), startRadius: 0,
+                               endRadius: max(geo.size.width, geo.size.height) * 0.6)
             }
             .animation(reduceMotion ? nil : .easeInOut(duration: 1.5), value: mood)
         }
@@ -175,18 +188,21 @@ struct NightSky: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                LinearGradient(colors: [mood.top.opacity(strength), Brand.nightBottom.opacity(strength), .black.opacity(1 - strength)], startPoint: .top, endPoint: .bottom)
+                LinearGradient(colors: [mood.top.opacity(strength), Brand.nightBottom.opacity(strength),
+                                        .black.opacity(1 - strength)], startPoint: .top, endPoint: .bottom)
                 if !dimmed {
                     if mood.night > 0 { Stars().opacity(min(1, mood.night)) }
                     let horizon = mood.horizon
                     if horizon.alpha > 0 {
                         LinearGradient(
-                            stops: [.init(color: horizon.color.opacity(0), location: SkyMood.horizonStart), .init(color: horizon.color.opacity(horizon.alpha), location: 1)],
+                            stops: [.init(color: horizon.color.opacity(0), location: SkyMood.horizonStart),
+                                    .init(color: horizon.color.opacity(horizon.alpha), location: 1)],
                             startPoint: .top, endPoint: .bottom
                         )
                         let sun = mood.sun
                         RadialGradient(
-                            colors: [sun.color.opacity(sun.alpha), sun.color.opacity(sun.alpha * 0.45), sun.color.opacity(0)],
+                            colors: [sun.color.opacity(sun.alpha), sun.color.opacity(sun.alpha * 0.45),
+                                     sun.color.opacity(0)],
                             center: UnitPoint(x: 0.5, y: 1),
                             startRadius: 0,
                             endRadius: geo.size.height * (1 - SkyMood.horizonStart)
@@ -194,7 +210,8 @@ struct NightSky: View {
                     }
                     let glow = mood.glow
                     RadialGradient(
-                        colors: [glow.color.opacity(glow.alpha * strength), glow.color.opacity(0.12 * strength), .clear],
+                        colors: [glow.color.opacity(glow.alpha * strength), glow.color.opacity(0.12 * strength),
+                                 .clear],
                         center: UnitPoint(x: drift ? 0.86 : 0.78, y: drift ? 0.14 : 0.08),
                         startRadius: 0,
                         endRadius: max(geo.size.width, geo.size.height) * 0.7
@@ -237,7 +254,8 @@ struct Stars: View {
             for p in Stars.points {
                 let r = 0.6 + 0.9 * p.size
                 let c = CGPoint(x: size.width * p.x, y: size.height * p.y)
-                context.fill(Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: 2 * r, height: 2 * r)), with: .color(Brand.moon.opacity(0.35 + 0.45 * p.size)))
+                context.fill(Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: 2 * r, height: 2 * r)),
+                             with: .color(Brand.moon.opacity(0.35 + 0.45 * p.size)))
             }
         }
         .accessibilityHidden(true)

@@ -1,6 +1,5 @@
 package com.phasewake.app.ui.home
 
-import androidx.compose.foundation.layout.heightIn
 import android.Manifest
 import android.app.NotificationManager
 import android.content.Context
@@ -9,44 +8,15 @@ import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.os.BatteryManager
 import android.os.Build
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.FilledTonalButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.stateDescription
-import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.phasewake.app.R
 import com.phasewake.app.companion.CompanionLink
 import com.phasewake.app.core.Learning
 import com.phasewake.app.core.RecorderSkip
-import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ring.BackupAlarm
 import com.phasewake.app.shared.BuildNumber
 import com.phasewake.app.shared.DoNotDisturb
 import com.phasewake.app.shared.WatchPulse
-import com.phasewake.app.ui.theme.outlinedBorder
 
 /**
  * Nacht-Check: Was muss stimmen, damit morgen sicher geweckt wird? Jede Prüfung hat einen Text
@@ -67,7 +37,10 @@ enum class Check(
     WATCH(R.string.check_watch, R.string.check_watch_problem, null),
 
     /** Uhr verbunden, aber Phase Wake fehlt dort: Knopf öffnet den Play Store auf der Uhr. */
-    WATCH_APP(R.string.check_watch_app, R.string.check_watch_app_problem, R.string.check_watch_app_action, inReadyList = false),
+    WATCH_APP(
+        R.string.check_watch_app, R.string.check_watch_app_problem, R.string.check_watch_app_action,
+        inReadyList = false,
+    ),
     WATCH_SETUP(R.string.check_watch_setup, R.string.check_watch_setup_problem, null),
 
     /**
@@ -102,20 +75,27 @@ enum class Check(
      * klingelt (auf dem iPhone bleibt es rot). Die Uhr meldet es bis zur Zielzeit; nicht in der
      * Bereit-Liste (meist gibt es nichts zu melden).
      */
-    WATCH_RECORDER(R.string.check_watch_recorder, R.string.check_watch_recorder_battery, null, inReadyList = false, advisory = true),
+    WATCH_RECORDER(
+        R.string.check_watch_recorder, R.string.check_watch_recorder_battery, null, inReadyList = false,
+        advisory = true,
+    ),
 
     /**
      * Vorab: Akku der Uhr unter [NightCheckState.WATCH_ONSET_BATTERY_PERCENT] bei «Einschlafen automatisch
      * erkennen»: Die Uhr beginnt die Einschlaf-Messung nicht (und damit auch keine Aufzeichnung der Lernphase). Nur ein
      * Hinweis, der Wecker klingelt trotzdem; nicht in der Bereit-Liste.
      */
-    WATCH_ONSET_BATTERY(R.string.check_watch_recorder, R.string.check_watch_onset_battery, null, inReadyList = false, advisory = true),
+    WATCH_ONSET_BATTERY(
+        R.string.check_watch_recorder, R.string.check_watch_onset_battery, null, inReadyList = false, advisory = true,
+    ),
 
     /**
      * Vorab: Lernphase läuft, Akku der Uhr unter [Learning.MIN_BATTERY]: Die Uhr zeichnet diese Nacht nicht
      * für die Lernphase auf. Nur ein Hinweis; nicht in der Bereit-Liste.
      */
-    WATCH_LEARN_BATTERY(R.string.check_watch_recorder, R.string.check_watch_learn_battery, null, inReadyList = false, advisory = true),
+    WATCH_LEARN_BATTERY(
+        R.string.check_watch_recorder, R.string.check_watch_learn_battery, null, inReadyList = false, advisory = true,
+    ),
     NOTIFICATIONS(R.string.check_notifications, R.string.check_notifications_problem, R.string.check_allow),
     FULL_SCREEN(R.string.check_full_screen, R.string.check_full_screen_problem, R.string.check_allow),
 
@@ -124,11 +104,17 @@ enum class Check(
      * Weckbildschirm sonst nur als Mitteilung oben. Nicht in der Bereit-Liste: ohne Uhr oder ohne Unterstützung
      * des Systems gibt es nichts zu prüfen.
      */
-    COMPANION(R.string.check_companion, R.string.check_companion_problem, R.string.companion_connect, inReadyList = false, advisory = true),
+    COMPANION(
+        R.string.check_companion, R.string.check_companion_problem, R.string.companion_connect, inReadyList = false,
+        advisory = true,
+    ),
     DND(R.string.check_dnd, R.string.dnd_text, R.string.dnd_action, problemTitle = R.string.check_dnd_blocked),
 
     /** «Nicht stören» ist an, aber ohne Sonderrecht nicht lesbar, ob Wecker durchkommen: ehrlich sagen. */
-    DND_UNKNOWN(R.string.check_dnd, R.string.check_dnd_unknown_problem, R.string.dnd_action, problemTitle = R.string.check_dnd_unknown, inReadyList = false),
+    DND_UNKNOWN(
+        R.string.check_dnd, R.string.check_dnd_unknown_problem, R.string.dnd_action,
+        problemTitle = R.string.check_dnd_unknown, inReadyList = false,
+    ),
     BATTERY(R.string.check_battery, R.string.check_battery_problem, null),
 
     /** Wecker-Lautstärke auf 0: Der Zweitwecker klingelt dann lautlos. */
@@ -142,10 +128,33 @@ enum class Check(
 }
 
 /**
+ * Was die Uhr für den Nacht-Check meldet: [reachable], [ready] (Rechte; `null` = unbekannt), [battery] (Prozent,
+ * `null` = unbekannt oder zu alt), [appMissing] (Uhr ohne Phase Wake), [outdated] (Version der Uhr), [pulse]
+ * (Pulsrechte; `null` = ältere Uhr, keine Warnung), [recorderSkip] (Grund, warum die Messung vor dem Schlafen dieser
+ * Nacht nicht startete; `null` = keiner), [charging] (lud beim gemeldeten Akkustand: dann misst sie trotz wenig Akku,
+ * keine Warnung dazu, wie iPhone) und [build] (Build-Nummer, `null` = unbekannt).
+ */
+data class WatchFacts(
+    val reachable: Boolean,
+    val ready: Boolean?,
+    val battery: Int? = null,
+    val appMissing: Boolean = false,
+    val outdated: Boolean = false,
+    val pulse: WatchPulse? = null,
+    val recorderSkip: RecorderSkip.Reason? = null,
+    val charging: Boolean = false,
+    val build: Int? = null,
+)
+
+/**
  * Ergebnis aller Prüfungen; ohne offene Prüfung (Hinweise zählen nicht) heisst: bereit für die Nacht. [builds]: Build-
  * Nummern von Handy und Uhr für [Check.BUILD_MISMATCH].
  */
-data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = true, val builds: Pair<Int, Int>? = null) {
+data class NightCheckState(
+    val failed: List<Check>,
+    val watchChecked: Boolean = true,
+    val builds: Pair<Int, Int>? = null,
+) {
     val ready: Boolean get() = failed.none { !it.advisory }
 
     companion object {
@@ -158,54 +167,44 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
         const val WATCH_ONSET_BATTERY_PERCENT = 30
 
         /**
-         * Prüft alles, was ohne Uhr geht; die Uhr kommt aus [watchReachable], [watchReady],
-         * [watchBattery] (Prozent, `null` = unbekannt oder zu alt) und [watchOutdated] (Version der Uhr)
-         * sowie [watchPulse] (Pulsrechte; `null` = ältere Uhr, keine Warnung) und [recorderSkip] (Grund, warum die
-         * Messung vor dem Schlafen dieser Nacht nicht startete; `null` = keiner). Fehlen der Uhr schon allgemein Rechte
-         * ([Check.WATCH_SETUP]), steht der Puls nicht noch einmal da. [autoOnset]: «Einschlafen automatisch erkennen»
-         * an, [learning]: Lernphase läuft; beides für die Hinweise vorab zum Akku der Uhr ([batteryHints]).
-         * [watchCharging]: Die Uhr lud beim gemeldeten Akkustand; dann misst sie trotz wenig Akku, keine Warnung dazu
-         * (wie iPhone). [phoneBuild], [watchBuild]: Build-Nummern (`null` = unbekannt) für [buildHint].
+         * Prüft alles, was ohne Uhr geht; die Uhr kommt aus [watch] ([WatchFacts]). Fehlen der Uhr schon allgemein
+         * Rechte ([Check.WATCH_SETUP]), steht der Puls nicht noch einmal da. [autoOnset]: «Einschlafen automatisch
+         * erkennen» an, [learning]: Lernphase läuft; beides für die Hinweise vorab zum Akku der Uhr ([batteryHints]).
+         * [phoneBuild]: Build-Nummer des Handys (`null` = unbekannt) für [buildHint].
          */
         fun collect(
             context: Context,
-            watchReachable: Boolean,
-            watchReady: Boolean?,
-            watchBattery: Int? = null,
-            watchAppMissing: Boolean = false,
-            watchOutdated: Boolean = false,
-            watchPulse: WatchPulse? = null,
-            recorderSkip: RecorderSkip.Reason? = null,
+            watch: WatchFacts,
             autoOnset: Boolean = false,
             learning: Boolean = false,
-            watchCharging: Boolean = false,
             phoneBuild: Int? = null,
-            watchBuild: Int? = null,
         ): NightCheckState {
-            val builds = buildHint(phoneBuild, watchBuild, watchOutdated)
+            val builds = buildHint(phoneBuild, watch.build, watch.outdated)
             return NightCheckState(buildList {
                 when {
-                    watchAppMissing && !watchReachable -> add(Check.WATCH_APP)
-                    !watchReachable -> add(Check.WATCH)
-                    watchReady == false -> add(Check.WATCH_SETUP)
+                    watch.appMissing && !watch.reachable -> add(Check.WATCH_APP)
+                    !watch.reachable -> add(Check.WATCH)
+                    watch.ready == false -> add(Check.WATCH_SETUP)
                 }
-                if (watchReachable && watchReady != false && WatchPulse.warns(watchPulse)) add(Check.WATCH_PULSE)
+                if (watch.reachable && watch.ready != false && WatchPulse.warns(watch.pulse)) add(Check.WATCH_PULSE)
                 // Am Ladegerät keine Warnung zum Akku der Uhr: Sie misst trotzdem und ist zur Bettzeit geladen.
-                val battery = watchBattery.takeUnless { watchCharging }
-                if (watchReachable && battery != null && battery < LOW_BATTERY_PERCENT) add(Check.WATCH_BATTERY)
-                if (recorderSkip == RecorderSkip.Reason.BATTERY) {
+                val battery = watch.battery.takeUnless { watch.charging }
+                if (watch.reachable && battery != null && battery < LOW_BATTERY_PERCENT) add(Check.WATCH_BATTERY)
+                if (watch.recorderSkip == RecorderSkip.Reason.BATTERY) {
                     add(Check.WATCH_RECORDER)
-                } else if (watchReachable) {
+                } else if (watch.reachable) {
                     batteryHints(battery, autoOnset, learning)?.let(::add)
                 }
-                if (watchOutdated) add(Check.WATCH_OUTDATED)
+                if (watch.outdated) add(Check.WATCH_OUTDATED)
                 if (builds != null) add(Check.BUILD_MISMATCH)
                 if (!hasNotificationPermission(context)) add(Check.NOTIFICATIONS)
                 if (!BackupAlarm.canScheduleExact(context)) add(Check.EXACT_ALARMS)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE &&
                     !context.getSystemService(NotificationManager::class.java).canUseFullScreenIntent()
                 ) add(Check.FULL_SCREEN)
-                if (watchReachable && CompanionLink.supported(context) && !CompanionLink.isAssociated(context)) add(Check.COMPANION)
+                if (watch.reachable && CompanionLink.supported(context) && !CompanionLink.isAssociated(context)) {
+                    add(Check.COMPANION)
+                }
                 when (DoNotDisturb.alarms(context)) {
                     DoNotDisturb.Alarms.BLOCKED -> add(Check.DND)
                     DoNotDisturb.Alarms.UNKNOWN -> add(Check.DND_UNKNOWN)
@@ -222,7 +221,13 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
          * sind und nicht schon «Uhr-App veraltet» ([watchOutdated]) dasteht; sonst `null`.
          */
         fun buildHint(phoneBuild: Int?, watchBuild: Int?, watchOutdated: Boolean): Pair<Int, Int>? =
-            if (!watchOutdated && phoneBuild != null && watchBuild != null && BuildNumber.differs(phoneBuild, watchBuild)) phoneBuild to watchBuild else null
+            if (!watchOutdated && phoneBuild != null && watchBuild != null &&
+                BuildNumber.differs(phoneBuild, watchBuild)
+            ) {
+                phoneBuild to watchBuild
+            } else {
+                null
+            }
 
         /**
          * Hinweis vorab zum Akku der Uhr, höchstens einer: unter [WATCH_ONSET_BATTERY_PERCENT] mit
@@ -239,11 +244,15 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
 
         /** Ob die Uhr heute Abend ihre automatische Einschlaf-Messung auslässt (Akku); dann keine Kopfzeile dazu. */
         fun onsetSkipped(state: NightCheckState?): Boolean =
-            state != null && state.failed.any { it == Check.WATCH_ONSET_BATTERY || it == Check.WATCH_BATTERY || it == Check.WATCH_RECORDER }
+            state != null && state.failed.any {
+                it == Check.WATCH_ONSET_BATTERY || it == Check.WATCH_BATTERY || it == Check.WATCH_RECORDER
+            }
 
         fun hasNotificationPermission(context: Context) =
             Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
-                ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
+                ContextCompat.checkSelfPermission(
+                    context, Manifest.permission.POST_NOTIFICATIONS,
+                ) == PackageManager.PERMISSION_GRANTED
 
         private fun lowBattery(context: Context): Boolean {
             val status = context.registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED)) ?: return false
@@ -252,102 +261,5 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
             val scale = status.getIntExtra(BatteryManager.EXTRA_SCALE, 100)
             return !plugged && level >= 0 && level * 100 / scale < LOW_BATTERY_PERCENT
         }
-    }
-}
-
-/** Karte auf der Startseite: grün und knapp, wenn alles stimmt; sonst jede offene Prüfung mit Knopf. */
-@Composable
-internal fun NightCheckCard(
-    state: NightCheckState,
-    containerColor: androidx.compose.ui.graphics.Color,
-    onFix: (Check) -> Unit,
-    /** «In 2 Minuten testen»; `null` = kein Knopf. */
-    onTest: (() -> Unit)? = null,
-    /** Zielzeit eines laufenden Probeweckers. */
-    testAt: java.time.Instant? = null,
-) {
-    var expanded by rememberSaveable { mutableStateOf(false) }
-    val ready = state.ready
-    val readyText = stringResource(R.string.check_ready)
-    Card(
-        shape = MaterialTheme.shapes.medium,
-        colors = CardDefaults.cardColors(
-            containerColor = if (ready) containerColor else MaterialTheme.colorScheme.errorContainer,
-        ),
-        border = cardEdge(),
-        elevation = cardLift(),
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
-    ) {
-        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .heightIn(min = 48.dp)
-                    .then(if (ready) Modifier.clickable(role = Role.Button) { expanded = !expanded } else Modifier)
-                    .semantics { if (ready) stateDescription = readyText },
-            ) {
-                // Nicht bereit: Warndreieck (kein ✕, das wie ein Schliessen-Knopf aussieht), immer mit Text, nie nur
-                // Farbe.
-                Icon(
-                    painterResource(if (ready) R.drawable.ic_check else R.drawable.ic_warning),
-                    contentDescription = if (ready) null else stringResource(R.string.check_not_ready_icon),
-                    tint = if (ready) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error,
-                    modifier = Modifier.size(20.dp),
-                )
-                Column(Modifier.padding(start = 12.dp).weight(1f)) {
-                    Text(
-                        stringResource(if (ready) R.string.check_ready else R.string.check_not_ready),
-                        style = MaterialTheme.typography.titleMedium,
-                    )
-                    if (ready) {
-                        Text(stringResource(R.string.check_ready_text), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                    }
-                }
-            }
-            AnimatedVisibility(ready && expanded) {
-                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                    Check.entries.filter { it.inReadyList }.forEach { check ->
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Icon(painterResource(R.drawable.ic_check), contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(16.dp))
-                            Text(stringResource(check.title), style = MaterialTheme.typography.bodySmall, color = PhaseWakeTheme.brand.mutedSoft, modifier = Modifier.padding(start = 8.dp))
-                        }
-                    }
-                }
-            }
-            TestButton(onTest, testAt)
-            state.failed.forEach { check ->
-                // Text über die ganze Breite, Knopf darunter rechts: lange Texte bleiben lesbar.
-                Column(Modifier.fillMaxWidth()) {
-                    Text(stringResource(check.problemTitle), style = MaterialTheme.typography.titleSmall)
-                    val problem = when (check) {
-                        Check.BATTERY, Check.WATCH_BATTERY -> stringResource(check.problem, NightCheckState.LOW_BATTERY_PERCENT)
-                        Check.WATCH_ONSET_BATTERY -> stringResource(check.problem, NightCheckState.WATCH_ONSET_BATTERY_PERCENT)
-                        Check.WATCH_LEARN_BATTERY -> stringResource(check.problem, Learning.MIN_BATTERY)
-                        Check.BUILD_MISMATCH -> stringResource(check.problem, state.builds?.first ?: 0, state.builds?.second ?: 0)
-                        else -> stringResource(check.problem)
-                    }
-                    Text(problem, style = MaterialTheme.typography.bodyMedium)
-                    check.action?.let { action ->
-                        FilledTonalButton(onClick = { onFix(check) }, modifier = Modifier.align(Alignment.End).padding(top = 6.dp)) {
-                            Text(stringResource(action))
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-/** Probewecker: Knopf, oder während er läuft seine Zeit. */
-@Composable
-private fun TestButton(onTest: (() -> Unit)?, testAt: java.time.Instant?) {
-    when {
-        testAt != null -> Text(
-            stringResource(R.string.test_running, com.phasewake.app.ui.Format.time(testAt)),
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-        onTest != null -> androidx.compose.material3.OutlinedButton(onClick = onTest, border = outlinedBorder()) { Text(stringResource(R.string.test_button)) }
     }
 }
