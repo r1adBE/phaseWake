@@ -48,7 +48,7 @@
     <string name="dnd_title">နှိုးစက်များ ပိတ်ဆို့ခံရ</string>
     <string name="dnd_text">မနှောင့်ယှက်ရ တွင် နှိုးစက်များကို ခွင့်ပြုပါ။</string>
     <string name="duration_hours">%1$d နာရီ</string>
-    <string name="duration_hours_minutes">%1$d နာရီ %2$d မိနစ်</string>
+    <string name="duration_hours_minutes">%1$d နာရီ %2$d မိနစ်</string>
     <string name="home_last_night">မနေ့ညက</string>
     <string name="notification_open">ဖွင့်ရန်</string>
     <string name="home_good_night_too_far">နှိုးစက်မတိုင်မီ 16 နာရီမှစ၍ ရနိုင်</string>

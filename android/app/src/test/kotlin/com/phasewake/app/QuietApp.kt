@@ -16,7 +16,7 @@ open class QuietApp : PhaseWakeApp() {
     /** Gesendete Stände der Lernphase in der Reihenfolge des Sendens. */
     val learningSent: MutableList<LearningSnapshot> = Collections.synchronizedList(mutableListOf())
 
-    override suspend fun publishLearning() {
+    override suspend fun publishLearning(unlessAcked: Boolean) {
         learningSent += learningForWatch()
     }
 }

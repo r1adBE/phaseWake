@@ -50,7 +50,7 @@
     <string name="dnd_title">അലാറങ്ങൾ തടഞ്ഞു</string>
     <string name="dnd_text">ശല്യപ്പെടുത്തരുത് മോഡിൽ അലാറങ്ങൾ അനുവദിക്കുക.</string>
     <string name="duration_hours">%1$d മ.</string>
-    <string name="duration_hours_minutes">%1$d മ. %2$d മി.</string>
+    <string name="duration_hours_minutes">%1$d മ. %2$d മി.</string>
     <string name="home_last_night">കഴിഞ്ഞ രാത്രി</string>
     <string name="notification_open">തുറക്കുക</string>
     <string name="home_good_night_too_far">അലാറത്തിന് 16 മ. മുമ്പ് മുതൽ ലഭ്യം</string>

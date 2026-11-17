@@ -69,26 +69,35 @@ import java.time.ZoneId
 // Kopfbereich der Startseite: Gruss, nächstes Weckfenster, Tag.
 
 /**
+ * Was der Kopf der Startseite ([Header]) zum nächsten Wecker zeigt.
+ *
+ * @property holidayNote Datum eines Feiertags, an dem ein Wecker nicht weckt (schon formatiert); `null` = keiner.
+ * @property autoOnset Beginn der automatischen Einschlaf-Messung der Uhr (schon formatiert); `null` = keine Zeile.
+ * @property mood Stimmung des Himmels nach Tageszeit (nur hell sichtbar; dunkel trägt sie die ganze Seite).
+ */
+internal data class HeroState(
+    val plan: WakePlan?,
+    val alarm: AlarmSpec?,
+    val holidayNote: String? = null,
+    val autoOnset: String? = null,
+    val mood: SkyMood = SkyMood.Plain,
+)
+
+/**
  * Kopfbereich im Himmel (dunkel Nacht, hell Tag «Creme Caramel»), randlos bis unter die Statusleiste: Logo, Begrüssung
  * und das nächste Weckfenster gross; ohne Wecker eine Einladung, den ersten zu stellen.
  */
 @Composable
 internal fun Header(
-    plan: WakePlan?,
-    alarm: AlarmSpec?,
+    hero: HeroState,
     now: Instant,
     zone: ZoneId,
     fullPage: Boolean,
     /** `null`: Limit erreicht, kein Knopf «Neuer Wecker». */
     onAdd: (() -> Unit)?,
     onEdit: (String) -> Unit,
-    /** Datum eines Feiertags, an dem ein Wecker nicht weckt (schon formatiert); `null` = keiner. */
-    holidayNote: String? = null,
-    /** Beginn der automatischen Einschlaf-Messung der Uhr (schon formatiert); `null` = keine Zeile. */
-    autoOnset: String? = null,
-    /** Stimmung des Himmels nach Tageszeit (nur hell sichtbar; dunkel trägt sie die ganze Seite). */
-    mood: SkyMood = SkyMood.Plain,
 ) {
+    val (plan, alarm, holidayNote, autoOnset, mood) = hero
     val context = LocalContext.current
     // In Vorschau und Bildschirmfotos gibt es keinen zweiten Frame: dort gleich sichtbar.
     val inspection = LocalInspectionMode.current

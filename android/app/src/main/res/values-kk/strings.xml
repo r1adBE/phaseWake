@@ -81,6 +81,7 @@
     <string name="settings_evening_dark">Кешке қараңғы</string>
     <string name="settings_evening_dark_text">Қараңғы: %1$s – %2$s, Жүйелік не Ашық таңдалса да.</string>
     <string name="settings_evening_dark_from">Қараңғы басталуы</string>
+    <string name="settings_evening_dark_now">Қазір қосулы – %1$s бастап ашық</string>
     <string name="settings_data">Деректерің</string>
     <string name="settings_data_text">Бәрі телефоныңда және сағатыңда қалады. Аккаунт жоқ, сервер жоқ, бақылау жоқ. Google-дың сағат байланысы арқылы тек сағаттың техникалық мәліметтері өтеді, денсаулық деректерінсіз.</string>
     <string name="settings_export">Түндерді есімсіз экспорттау</string>
@@ -93,7 +94,7 @@
     <string name="duration_minutes">%1$d мин</string>
     <string name="duration_hours">%1$d сағ</string>
     <string name="duration_hours_half">%1$d½ сағ</string>
-    <string name="duration_hours_minutes">%1$d сағ %2$d мин</string>
+    <string name="duration_hours_minutes">%1$d сағ %2$d мин</string>
     <string name="health_title">Health Connect-тен ұйқы фазалары</string>
     <string name="health_rationale">Phase Wake денсаулық қолданбаң (мысалы, Samsung Health) сақтайтын ұйқы деректерін оқи алады. Олар тарихыңда көрсетіледі, сондай-ақ Phase Wake сені оятқан түндермен салыстыру үшін. Phase Wake тек оқиды, ешқашан жазбайды, ешнәрсе телефоныңнан шықпайды.</string>
     <string name="health_connect">Денсаулық деректерімен салыстыру</string>

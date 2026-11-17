@@ -88,6 +88,7 @@
     <string name="settings_evening_dark">Akşam koyu</string>
     <string name="settings_evening_dark_text">Koyu: %1$s – %2$s, Sistem veya Açık seçiliyken de.</string>
     <string name="settings_evening_dark_from">Koyu başlangıcı</string>
+    <string name="settings_evening_dark_now">Şu an geçerli – %1$s itibarıyla açık</string>
     <string name="settings_data">Verilerin</string>
     <string name="settings_data_text">Her şey telefonunda ve saatinde kalır. Hesap yok, sunucu yok, takip yok. Google’ın saat bağlantısından yalnızca saatle ilgili teknik bilgiler geçer, sağlık verileri olmadan.</string>
     <string name="settings_export">Geceleri isimsiz dışa aktar</string>
@@ -101,7 +102,7 @@
     <string name="duration_minutes">%1$d dk</string>
     <string name="duration_hours">%1$d sa</string>
     <string name="duration_hours_half">%1$d½ sa</string>
-    <string name="duration_hours_minutes">%1$d sa %2$d dk</string>
+    <string name="duration_hours_minutes">%1$d sa %2$d dk</string>
     <string name="health_title">Health Connect\'ten uyku evreleri</string>
     <string name="health_rationale">Phase Wake, sağlık uygulamanın (örneğin Samsung Health) kaydettiği uyku verilerini okuyabilir. Bunlar geçmişinde gösterilir, Phase Wake\'in seni uyandırdığı gecelerle karşılaştırma için de. Phase Wake yalnızca okur, asla yazmaz ve hiçbir şey telefonundan çıkmaz.</string>
     <string name="health_connect">Sağlık verileriyle karşılaştır</string>

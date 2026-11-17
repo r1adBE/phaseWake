@@ -108,51 +108,15 @@ internal fun HomeScreen(
         return Duration.between(at, latest) > WakeService.GOOD_NIGHT_MAX_AHEAD
     }
 
-    fun granted(permission: String) =
-        ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
-    fun missing() = requiredPermissions().filterNot(::granted)
-    // Puls im Hintergrund (ab Wear OS 4): getrennt und erst, wenn das Pulsrecht erteilt ist (sonst lehnt das System es
-    // ab).
-    fun missingBackground() = SensorAccess.backgroundPermission()?.takeIf {
-        granted(SensorAccess.heartRatePermission()) && !granted(it)
-    }
-    var missingPermissions by remember { mutableStateOf(missing()) }
-    var backgroundMissing by remember { mutableStateOf(missingBackground()) }
-    fun fullScreenMissing() = !NotificationManagerCompat.from(context).canUseFullScreenIntent()
-    var fullScreenBlocked by remember { mutableStateOf(fullScreenMissing()) }
-    // Nach einer Ablehnung fragt das System oft nicht mehr: dann die App-Einstellungen öffnen. «Gefragt» übersteht das
-    // Prozessende ([PermissionAsks]), sonst tat der erste Tipp nach jedem Start sichtbar nichts.
-    fun blocked(permissions: List<String>) = permissions.isNotEmpty() && permissions.none {
-        PermissionAsks.canAsk(context, it)
-    }
-    var dndBlocks by remember { mutableStateOf(DoNotDisturb.blocksAlarms(context)) }
-    LifecycleResumeEffect(Unit) {
-        fullScreenBlocked = fullScreenMissing()
-        dndBlocks = DoNotDisturb.blocksAlarms(context)
-        missingPermissions = missing()
-        backgroundMissing = missingBackground()
-        // Stand des Handys anfragen (kommt über die Warteschlange, falls eine Änderung verpasst wurde), Wartendes
-        // senden, dann neu planen; das meldet auch den Status (Rechte) ans Handy, für dessen Nacht-Check.
+    val permissions = rememberWatchPermissions {
+        // Stand des Handys anfragen (kommt über die Warteschlange, falls eine Änderung verpasst wurde; höchstens alle
+        // 30 Min und nur Unbestätigtes, frisch installiert alles), Wartendes senden, dann neu planen; das meldet auch
+        // den Status (Rechte) ans Handy, für dessen Nacht-Check.
         app.appScope.launch {
-            app.sync.requestSync()
+            app.sync.requestSyncOnResume()
             app.sync.flush()
             app.scheduler.reschedule()
         }
-        onPauseOrDispose { }
-    }
-    val backgroundLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {
-        backgroundMissing = missingBackground()
-    }
-    fun askBackground(permission: String) {
-        PermissionAsks.markAsked(context, listOf(permission))
-        backgroundLauncher.launch(permission)
-    }
-    val launcher = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
-        missingPermissions = missing()
-        backgroundMissing = missingBackground()
-        // Gleich danach das Hintergrundrecht: Es lässt sich nur getrennt anfragen.
-        backgroundMissing?.takeIf { PermissionAsks.canAsk(context, it) }?.let { askBackground(it) }
-        app.appScope.launch { app.scheduler.reschedule() }
     }
     // Klingelt es, ohne dass der Weckbildschirm erscheinen durfte (Mitteilungen oder Vollbild nicht erlaubt): beim
     // Öffnen zeigen.
@@ -171,8 +135,8 @@ internal fun HomeScreen(
             zone = zone,
             goodNightActive = goodNightSince != null,
             goodNightTooFar = goodNightTooFar(now),
-            permissionsMissing = missingPermissions.isNotEmpty() || backgroundMissing != null || fullScreenBlocked,
-            dndBlocks = dndBlocks,
+            permissionsMissing = permissions.anyMissing,
+            dndBlocks = permissions.dndBlocks,
         ),
         actions = HomeActions(
             onGoodNight = {
@@ -183,19 +147,7 @@ internal fun HomeScreen(
                     GoodNightTap.NONE -> Unit
                 }
             },
-            onRequestPermissions = {
-                val background = backgroundMissing
-                when {
-                    missingPermissions.isNotEmpty() && blocked(missingPermissions) -> openAppSettings(context)
-                    missingPermissions.isNotEmpty() -> {
-                        PermissionAsks.markAsked(context, missingPermissions)
-                        launcher.launch(missingPermissions.toTypedArray())
-                    }
-                    background != null && blocked(listOf(background)) -> openAppSettings(context)
-                    background != null -> askBackground(background)
-                    fullScreenBlocked -> openFullScreenSettings(context)
-                }
-            },
+            onRequestPermissions = permissions.request,
             onOpenDnd = { DoNotDisturb.openSettings(context) },
             onToggle = { alarm, enabled ->
                 scope.launch {
@@ -219,6 +171,80 @@ internal fun HomeScreen(
         },
         title = { Text(stringResource(R.string.good_night_cancel)) },
     )
+}
+
+/**
+ * Rechte der Uhr für die Startseite: fehlende Laufzeitrechte ([missing]), Puls im Hintergrund ([background]), Vollbild
+ * ([fullScreenBlocked]) und «Nicht stören» ([dndBlocks]). [request] fragt das Nächste an oder öffnet die Einstellungen.
+ */
+private data class WatchPermissions(
+    val missing: List<String>,
+    val background: String?,
+    val fullScreenBlocked: Boolean,
+    val dndBlocks: Boolean,
+    val request: () -> Unit,
+) {
+    val anyMissing: Boolean get() = missing.isNotEmpty() || background != null || fullScreenBlocked
+}
+
+/** Prüft die Rechte bei jedem Zurückkehren neu und ruft danach [onResume] auf. */
+@Composable
+private fun rememberWatchPermissions(onResume: () -> Unit): WatchPermissions {
+    val context = LocalContext.current
+    val app = context.wearApp
+    fun granted(permission: String) =
+        ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
+    fun missing() = requiredPermissions().filterNot(::granted)
+    // Puls im Hintergrund (ab Wear OS 4): getrennt und erst, wenn das Pulsrecht erteilt ist (sonst lehnt das System es
+    // ab).
+    fun missingBackground() = SensorAccess.backgroundPermission()?.takeIf {
+        granted(SensorAccess.heartRatePermission()) && !granted(it)
+    }
+    var missingPermissions by remember { mutableStateOf(missing()) }
+    var backgroundMissing by remember { mutableStateOf(missingBackground()) }
+    fun fullScreenMissing() = !NotificationManagerCompat.from(context).canUseFullScreenIntent()
+    var fullScreenBlocked by remember { mutableStateOf(fullScreenMissing()) }
+    // Nach einer Ablehnung fragt das System oft nicht mehr: dann die App-Einstellungen öffnen. «Gefragt» übersteht das
+    // Prozessende ([PermissionAsks]), sonst tat der erste Tipp nach jedem Start sichtbar nichts.
+    fun blocked(permissions: List<String>) = permissions.isNotEmpty() && permissions.none {
+        PermissionAsks.canAsk(context, it)
+    }
+    var dndBlocks by remember { mutableStateOf(DoNotDisturb.blocksAlarms(context)) }
+    LifecycleResumeEffect(Unit) {
+        fullScreenBlocked = fullScreenMissing()
+        dndBlocks = DoNotDisturb.blocksAlarms(context)
+        missingPermissions = missing()
+        backgroundMissing = missingBackground()
+        onResume()
+        onPauseOrDispose { }
+    }
+    val backgroundLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {
+        backgroundMissing = missingBackground()
+    }
+    fun askBackground(permission: String) {
+        PermissionAsks.markAsked(context, listOf(permission))
+        backgroundLauncher.launch(permission)
+    }
+    val launcher = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
+        missingPermissions = missing()
+        backgroundMissing = missingBackground()
+        // Gleich danach das Hintergrundrecht: Es lässt sich nur getrennt anfragen.
+        backgroundMissing?.takeIf { PermissionAsks.canAsk(context, it) }?.let { askBackground(it) }
+        app.appScope.launch { app.scheduler.reschedule() }
+    }
+    return WatchPermissions(missingPermissions, backgroundMissing, fullScreenBlocked, dndBlocks) {
+        val background = backgroundMissing
+        when {
+            missingPermissions.isNotEmpty() && blocked(missingPermissions) -> openAppSettings(context)
+            missingPermissions.isNotEmpty() -> {
+                PermissionAsks.markAsked(context, missingPermissions)
+                launcher.launch(missingPermissions.toTypedArray())
+            }
+            background != null && blocked(listOf(background)) -> openAppSettings(context)
+            background != null -> askBackground(background)
+            fullScreenBlocked -> openFullScreenSettings(context)
+        }
+    }
 }
 
 /** Powernap, Aufzeichnen, Überspringen und Diagnose (7× auf das Weckfenster, ab dem 4. Mal «Noch N Mal»). */

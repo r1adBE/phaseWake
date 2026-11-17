@@ -90,6 +90,7 @@
     <string name="settings_evening_dark">Saans donker</string>
     <string name="settings_evening_dark_text">Donker van %1$s tot %2$s, ook met Stelsel of Lig.</string>
     <string name="settings_evening_dark_from">Donker vanaf</string>
+    <string name="settings_evening_dark_now">Nou aktief – lig vanaf %1$s</string>
     <string name="settings_data">Jou data</string>
     <string name="settings_data_text">Alles bly op jou foon en horlosie. Geen rekening, geen bediener, geen nasporing nie. Net tegniese horlosie-inligting gaan deur Google se horlosieverbinding, sonder gesondheidsdata.</string>
     <string name="settings_export">Voer nagte sonder naam uit</string>
@@ -103,7 +104,7 @@
     <string name="duration_minutes">%1$d min</string>
     <string name="duration_hours">%1$d h</string>
     <string name="duration_hours_half">%1$d½ h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Slaapfases uit Health Connect</string>
     <string name="health_rationale">Phase Wake kan die slaapdata lees wat jou gesondheidsapp (byvoorbeeld Samsung Health) stoor. Dit word in jou geskiedenis gewys, ook om te vergelyk met die nagte waarin Phase Wake jou wakker gemaak het. Phase Wake lees net, skryf nooit, en niks verlaat jou foon nie.</string>
     <string name="health_connect">Vergelyk met gesondheidsdata</string>

@@ -30,10 +30,11 @@ class EveningDarkTickerTest {
 
     @Test
     fun switchesExactlyAtTheBoundary() = runBlocking {
-        // 17:59:59.9 Ortszeit: zuerst hell, dann (nach ~100 ms, nicht nach einer Minute Abfrage) zur Grenze dunkel.
+        // Fester Beginn 18:00, 17:59:59.9 Ortszeit: zuerst hell, dann (nach ~100 ms, nicht nach einer Minute Abfrage)
+        // zur Grenze dunkel.
         val times = ArrayDeque(listOf(Instant.parse("2026-11-16T16:59:59.900Z"), Instant.parse("2026-11-16T17:00:00Z")))
         val flow = EveningDarkTicker.flow(
-            flowOf(EveningDarkSetting()),
+            flowOf(EveningDarkSetting(fromMinutes = 18 * 60)),
             now = { times.removeFirstOrNull() ?: Instant.parse("2026-11-16T17:00:01Z") },
             zone = { zone },
         )

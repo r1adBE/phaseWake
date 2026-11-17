@@ -23,6 +23,9 @@ class ReceivedIds(private val file: File) {
     /** Ob [id] schon verarbeitet wurde. */
     suspend fun contains(id: String): Boolean = lock.withLock { load().contains(id) }
 
+    /** Ob je ein Eintrag der Gegenseite verarbeitet wurde (sonst: frisch installiert oder Daten gelöscht). */
+    suspend fun any(): Boolean = lock.withLock { load().isNotEmpty() }
+
     /** Merkt [id] als verarbeitet; die ältesten über [MAX] fallen weg. */
     suspend fun add(id: String) = lock.withLock {
         val list = load()

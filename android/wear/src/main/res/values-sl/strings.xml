@@ -54,7 +54,7 @@
     <string name="dnd_title">Budilke blokirane</string>
     <string name="dnd_text">Dovoli budilke v načinu »Ne moti«.</string>
     <string name="duration_hours">%1$d h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="home_last_night">Pretekla noč</string>
     <string name="notification_open">Odpri</string>
     <string name="home_good_night_too_far">Na voljo od 16 h pred budilko</string>

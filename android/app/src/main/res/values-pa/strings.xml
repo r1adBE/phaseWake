@@ -90,6 +90,7 @@
     <string name="settings_evening_dark">ਸ਼ਾਮ ਨੂੰ ਗੂੜ੍ਹਾ</string>
     <string name="settings_evening_dark_text">%1$s – %2$s ਗੂੜ੍ਹਾ, ਸਿਸਟਮ ਜਾਂ ਹਲਕਾ ਚੁਣਨ \'ਤੇ ਵੀ।</string>
     <string name="settings_evening_dark_from">ਗੂੜ੍ਹਾ ਸ਼ੁਰੂ</string>
+    <string name="settings_evening_dark_now">ਹੁਣ ਲਾਗੂ – %1$s ਤੋਂ ਹਲਕਾ</string>
     <string name="settings_data">ਤੁਹਾਡਾ ਡਾਟਾ</string>
     <string name="settings_data_text">ਸਭ ਕੁਝ ਤੁਹਾਡੇ ਫ਼ੋਨ ਅਤੇ ਘੜੀ ’ਤੇ ਹੀ ਰਹਿੰਦਾ ਹੈ। ਕੋਈ ਖਾਤਾ ਨਹੀਂ, ਕੋਈ ਸਰਵਰ ਨਹੀਂ, ਕੋਈ ਟਰੈਕਿੰਗ ਨਹੀਂ। Google ਦੇ ਘੜੀ ਕਨੈਕਸ਼ਨ ਰਾਹੀਂ ਸਿਰਫ਼ ਘੜੀ ਦੀ ਤਕਨੀਕੀ ਜਾਣਕਾਰੀ ਜਾਂਦੀ ਹੈ, ਸਿਹਤ ਡਾਟੇ ਤੋਂ ਬਿਨਾਂ।</string>
     <string name="settings_export">ਰਾਤਾਂ ਨਾਮ ਤੋਂ ਬਿਨਾਂ ਐਕਸਪੋਰਟ ਕਰੋ</string>
@@ -103,7 +104,7 @@
     <string name="duration_minutes">%1$d ਮਿੰ.</string>
     <string name="duration_hours">%1$d ਘੰ.</string>
     <string name="duration_hours_half">%1$d½ ਘੰ.</string>
-    <string name="duration_hours_minutes">%1$d ਘੰ. %2$d ਮਿੰ.</string>
+    <string name="duration_hours_minutes">%1$d ਘੰ. %2$d ਮਿੰ.</string>
     <string name="health_title">Health Connect ਤੋਂ ਨੀਂਦ ਦੇ ਪੜਾਅ</string>
     <string name="health_rationale">ਤੁਹਾਡੀ ਸਿਹਤ ਐਪ (ਜਿਵੇਂ Samsung Health) ਨੀਂਦ ਦਾ ਜੋ ਡਾਟਾ ਸੰਭਾਲਦੀ ਹੈ, Phase Wake ਉਹ ਪੜ੍ਹ ਸਕਦਾ ਹੈ। ਇਹ ਤੁਹਾਡੇ ਇਤਿਹਾਸ ਵਿੱਚ ਦਿਖਾਇਆ ਜਾਂਦਾ ਹੈ, ਉਨ੍ਹਾਂ ਰਾਤਾਂ ਨਾਲ ਤੁਲਨਾ ਲਈ ਵੀ ਜਦੋਂ Phase Wake ਨੇ ਤੁਹਾਨੂੰ ਜਗਾਇਆ। Phase Wake ਸਿਰਫ਼ ਪੜ੍ਹਦਾ ਹੈ, ਕਦੇ ਲਿਖਦਾ ਨਹੀਂ, ਅਤੇ ਕੁਝ ਵੀ ਤੁਹਾਡੇ ਫ਼ੋਨ ਤੋਂ ਬਾਹਰ ਨਹੀਂ ਜਾਂਦਾ।</string>
     <string name="health_connect">ਸਿਹਤ ਡਾਟੇ ਨਾਲ ਤੁਲਨਾ ਕਰੋ</string>

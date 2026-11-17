@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.lazy.items
@@ -53,47 +54,15 @@ import com.phasewake.app.ui.theme.PhaseWakeTheme
 import java.time.Duration
 import java.time.Instant
 import java.time.ZoneId
+import java.util.Locale
 import kotlinx.coroutines.delay
 
 /** Startseite: nächstes Weckfenster gross, letzte Nacht, alle Wecker. */
 @Composable
 fun HomeScreen(
-    alarms: List<AlarmSpec>,
-    lastNight: NightRecord?,
-    check: NightCheckState?,
-    onFix: (Check) -> Unit,
+    state: HomeState,
+    actions: HomeActions,
     contentPadding: PaddingValues,
-    onAdd: () -> Unit,
-    onEdit: (String) -> Unit,
-    onToggle: (AlarmSpec, Boolean) -> Unit,
-    onFeeling: (NightRecord, Int) -> Unit = { _, _ -> },
-    missHint: MissHint? = null,
-    /**
-     * Die wichtigste Auffälligkeit der letzten 7 Nächte ([com.phasewake.app.core.Findings.home]); `null`: keine Karte.
-     */
-    finding: Finding? = null,
-    /** Auffälligkeit, solange die Bettzeit-Karte steht: ohne Bettzeit-Tipp (Findings.home mit `bedtimeAdvice`). */
-    bedtimeFinding: Finding? = finding,
-    onHideFinding: (FindingKind) -> Unit = {},
-    /** Schlafnotizen je Nachtdatum und die eigenen Notizen. */
-    notes: Map<LocalDate, List<String>> = emptyMap(),
-    customNotes: List<CustomNote> = emptyList(),
-    onToggleNote: (LocalDate, String) -> Unit = { _, _ -> },
-    /** Laufende Einschlafklänge; [onSounds] `null`: kein Einstieg (Bildschirmfotos). */
-    soundPlaying: SleepSoundService.Playing? = null,
-    onSounds: (() -> Unit)? = null,
-    /** «Geräusche aufnehmen» für diese Nacht; `null`: kein Schalter (Bildschirmfotos). */
-    soundRec: SoundRecState? = null,
-    onSoundRec: (Boolean) -> Unit = {},
-    /** Aufgenommene Geräusche (alle Nächte) für den Morgenbericht. */
-    soundClips: List<SoundClip> = emptyList(),
-    soundFile: (SoundClip) -> File? = { null },
-    onDeleteClip: (SoundClip) -> Unit = {},
-    onDeleteNightClips: (LocalDate) -> Unit = {},
-    /** Abendroutine: Punkte und Haken je Nachtdatum. */
-    routineItems: List<RoutineItem> = emptyList(),
-    routineTicks: Map<LocalDate, List<String>> = emptyMap(),
-    onToggleRoutine: (LocalDate, String) -> Unit = { _, _ -> },
     /** Uhrzeit-Quelle; Bildschirmfotos setzen eine feste Zeit, damit sie nicht vom Tag abhängen. */
     clock: () -> Instant = Instant::now,
     /** Scrollstand der Liste; die App liest ihn, um «Neuer Wecker» beim Scrollen einzuklappen. */
@@ -108,55 +77,23 @@ fun HomeScreen(
             now = clock()
         }
     }
-    val zone = ZoneId.systemDefault()
-    // Eine schon erledigte Nacht (früh geweckt, Zielzeit noch vorn) ist nicht mehr der nächste Wecker.
-    val done = extras.doneUntil
-    val plan = remember(alarms, now, extras.holidays, done) {
-        AlarmSchedule.earliestPlan(alarms, now, zone, extras.holidays, done)
-    }
-    val locale = LocalConfiguration.current.locales[0]
-    // Feiertag, an dem ein Wecker sonst als Nächstes geweckt hätte (nur bis zum nächsten Weckfenster).
-    val holidayNote = remember(alarms, now, extras.holidays, done) {
-        AlarmSchedule.holidayNote(alarms, now, zone, extras.holidays, done)?.let { Format.shortDay(it, locale) }
-    }
+    val view = rememberHomeView(state, extras, now)
+    val list = @Composable { HomeList(state, actions, view, contentPadding, listState, extras) }
+    if (view.dark) AnimatedNight(Modifier.fillMaxSize(), view.mood) { list() } else list()
+}
 
-    // Automatische Einschlaf-Messung der Uhr (nur Galaxy Watch), solange das Fenster noch nicht begonnen hat und die
-    // Uhr bereit ist.
-    val watchOk = check != null && check.watchChecked && check.failed.none { it in WATCH_PROBLEMS }
-    // Akku der Uhr zu schwach: Sie misst das Einschlafen nicht, also keine Zeile dazu (der Check sagt es).
-    val autoOnset = plan?.takeIf {
-        extras.autoOnset && watchOk && !NightCheckState.onsetSkipped(check) && now.isBefore(it.windowStart)
-    }?.let { p ->
-        alarms.firstOrNull { it.id == p.alarmId }?.let { a ->
-            Format.time(ShortNight.autoOnsetStart(p.target, extras.sleepGoal, a.sleepDurationMinutes), zone)
-        }
-    }
-    // Morgenbericht zuerst: vom Wecken heute bis 12 Uhr steht die letzte Nacht direkt unter dem Kopf.
-    val morningFirst = lastNight != null && isMorningOf(lastNight, now, zone)
-    val evening = SleepNotes.entryVisible(now, zone, plan?.windowStart)
-    val advice = if (evening) bedtimeAdvice(plan, alarms, extras, now, zone) else null
-    val nightCard = @Composable {
-        if (lastNight != null) {
-            val date = SleepNotes.nightDate(lastNight, zone)
-            LastNightCard(
-                lastNight, now, missHint,
-                onFeeling = { onFeeling(lastNight, it) },
-                notes = notes[date].orEmpty(),
-                customNotes = customNotes,
-                onToggleNote = { onToggleNote(date, it) },
-                clips = SoundEvents.forNight(soundClips, date),
-                soundFile = soundFile,
-                onDeleteClip = onDeleteClip,
-                onDeleteClips = { onDeleteNightClips(date) },
-            )
-        }
-    }
-
-    // Dunkel: die ganze Seite ist Nachthimmel. Hell: nur der Kopfbereich, darunter helle Karten.
-    val dark = PhaseWakeTheme.isDark
-    // Himmel nach Tageszeit: Abendrot, Nacht, Morgendämmerung auf das Weckfenster zu.
-    val mood = SkyMood.at(now, zone, plan?.windowStart, plan?.target)
-    val list = @Composable {
+/** Die Liste der Startseite: Kopf, Nacht-Check, Wecker, Abendkarten, Hinweise und letzte Nacht. */
+@Composable
+private fun HomeList(
+    state: HomeState,
+    actions: HomeActions,
+    view: HomeView,
+    contentPadding: PaddingValues,
+    listState: LazyListState,
+    extras: HomeExtras,
+) {
+    val alarms = state.alarms
+    val plan = view.plan
     // Unten Platz für Navigationsleiste (in [contentPadding]) und den Knopf «Neuer Wecker»: Die letzte
     // Karte bleibt ganz sichtbar und liegt am Ende nie unter dem Knopf.
     val fab = alarms.isNotEmpty() && alarms.size < MAX_ALARMS
@@ -170,117 +107,137 @@ fun HomeScreen(
     ) {
         item(key = "hero") {
             Header(
-                plan, plan?.let { p -> alarms.first { it.id == p.alarmId } }, now, zone, fullPage = dark,
-                onAdd = onAdd.takeIf { alarms.size < MAX_ALARMS }, onEdit = onEdit, holidayNote = holidayNote,
-                autoOnset = autoOnset, mood = mood,
+                HeroState(
+                    plan, plan?.let { p -> alarms.first { it.id == p.alarmId } }, view.holidayNote, view.autoOnset,
+                    view.mood,
+                ),
+                view.now, view.zone, fullPage = view.dark,
+                onAdd = actions.onAdd.takeIf { alarms.size < MAX_ALARMS }, onEdit = actions.onEdit,
             )
         }
-        if (morningFirst) item(key = "night") { nightCard() }
+        if (view.morningFirst) item(key = "night") { NightSection(state, actions, view) }
         // Nacht-Check nur, wenn ein Wecker ansteht – sonst gibt es nichts abzusichern.
-        if (check != null && plan != null) {
-            item(key = "check") { NightCheckCard(check, cardColor(), onFix, extras.onTest, extras.testAt) }
+        if (state.check != null && plan != null) {
+            item(key = "check") {
+                NightCheckCard(state.check, cardColor(), actions.onFix, extras.onTest, extras.testAt)
+            }
         }
         // «Deine Wecker» gleich nach dem Nacht-Check, vor den Abendkarten; Reihenfolge wie iPhone.
-        if (alarms.isNotEmpty()) {
-            item(key = "header") { AlarmsTitle() }
-            items(alarms, key = { it.id }) { alarm ->
-                AlarmRow(
-                    alarm, Modifier.animateItem(), onClick = { onEdit(alarm.id) }, onToggle = { onToggle(alarm, it) },
-                    skipped = AlarmSchedule.skippedDate(alarm, now, zone)?.let { Format.shortDay(it, locale) },
-                    onSkip = extras.onSkip?.let { skip -> { skip(alarm) } },
-                    onUndoSkip = { extras.onUndoSkip(alarm) },
-                    skipDate = AlarmSchedule.nextSkipDate(alarm, now, zone, extras.holidays, done[alarm.id])
-                        ?.let { Format.shortDay(it, locale) },
-                )
-            }
-            if (alarms.size >= MAX_ALARMS) {
-                item(key = "limit") { AlarmLimitHint() }
-            }
-        }
+        alarmItems(state, actions, view, extras)
         extras.onNap?.let { onNap ->
             item(key = "nap") { NapCard(extras.nap, extras.napMinutes, onNap, extras.onStopNap) }
         }
         // Am Abend bis zum Weckfenster: Notizen für die kommende Nacht.
-        if (evening) {
-            val tonight = SleepNotes.nightDate(now, zone)
-            // Nach der Lernphase: empfohlene Schlafenszeit für den Wecker dieser Nacht.
-            advice?.let { (from, until) ->
-                item(key = "bedtimeAdvice") { BedtimeAdviceCard(from, until) }
-            }
-            item(key = "notes") {
-                TonightNotesCard(
-                    notes[tonight].orEmpty(), customNotes, cardColor(), onToggle = { onToggleNote(tonight, it) },
-                )
-            }
-            if (routineItems.isNotEmpty()) {
-                item(key = "routine") {
-                    RoutineCard(
-                        routineItems, routineTicks[tonight].orEmpty(), cardColor(),
-                        onToggle = { onToggleRoutine(tonight, it) },
-                    )
-                }
-            }
-        }
+        if (view.evening) eveningItems(state, actions, view)
         // Geräusche aufnehmen: am Abend, und solange die Aufnahme läuft auch danach (Stoppen, Restzeit), wie auf dem
         // iPhone.
-        soundRec?.takeIf { evening || it.recording }?.let { rec ->
+        state.soundRec?.takeIf { view.evening || it.recording }?.let { rec ->
             item(key = "soundRec") {
-                SoundRecordingCard(rec.enabled, rec.recording, rec.permissionDenied, cardColor(), onSoundRec)
+                SoundRecordingCard(rec.enabled, rec.recording, rec.permissionDenied, cardColor(), actions.onSoundRec)
             }
         }
-        if (onSounds != null) {
-            item(key = "sounds") { SoundsEntry(soundPlaying, now, onSounds) }
+        actions.onSounds?.let { onSounds ->
+            item(key = "sounds") { SoundsEntry(state.soundPlaying, view.now, onSounds) }
         }
-        extras.learning?.let { learning ->
-            item(key = "learning") { LearningCard(learning, extras.record, extras.onRecord) }
+        learningItems(extras)
+        (if (view.advice != null) state.bedtimeFinding else state.finding)?.let { f ->
+            item(key = "finding") { FindingCard(f) { actions.onHideFinding(f.kind) } }
         }
-        // Während der Lernphase steckt «Nacht aufzeichnen» in ihrer Karte, sonst eine eigene Karte. Solange
-        // die Frage «Lernphase starten / Später» offen ist, auch keine – ausser es läuft schon eine Aufzeichnung
-        // (Stopp).
-        extras.record?.takeIf { record ->
-            val learning = extras.learning
-            learning?.inProgress != true && (learning?.onConsent == null || record.since != null)
-        }?.let { record ->
-            item(key = "record") { RecordCard(record.since, extras.onRecord) }
-        }
-        (if (advice != null) bedtimeFinding else finding)?.let { f ->
-            item(key = "finding") { FindingCard(f) { onHideFinding(f.kind) } }
-        }
-        if (lastNight != null && !morningFirst) item(key = "night") { nightCard() }
+        if (state.lastNight != null && !view.morningFirst) item(key = "night") { NightSection(state, actions, view) }
         // Morgenbericht ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): nur die Geräusche.
-        soundsMorningNight(soundClips, lastNight, soundRec, plan?.windowStart, now, zone)?.let { night ->
-            item(key = "soundsMorning") {
-                SoundsMorningCard(SoundEvents.forNight(soundClips, night), soundFile, onDeleteClip) {
-                    onDeleteNightClips(night)
+        soundsMorningNight(state.soundClips, state.lastNight, state.soundRec, plan?.windowStart, view.now, view.zone)
+            ?.let { night ->
+                item(key = "soundsMorning") {
+                    SoundsMorningCard(
+                        SoundEvents.forNight(state.soundClips, night), state.soundFile, actions.onDeleteClip,
+                    ) { actions.onDeleteNightClips(night) }
                 }
             }
+    }
+}
+
+/** Letzte Nacht bzw. Morgenbericht ([LastNightCard]); ohne Nacht nichts. */
+@Composable
+private fun NightSection(state: HomeState, actions: HomeActions, view: HomeView) {
+    val lastNight = state.lastNight ?: return
+    val date = SleepNotes.nightDate(lastNight, view.zone)
+    LastNightCard(
+        lastNight, view.now, state.missHint,
+        onFeeling = { actions.onFeeling(lastNight, it) },
+        extras = MorningExtras(
+            notes = state.notes[date].orEmpty(),
+            customNotes = state.customNotes,
+            onToggleNote = { actions.onToggleNote(date, it) },
+            clips = SoundEvents.forNight(state.soundClips, date),
+            soundFile = state.soundFile,
+            onDeleteClip = actions.onDeleteClip,
+            onDeleteClips = { actions.onDeleteNightClips(date) },
+        ),
+    )
+}
+
+/** «Deine Wecker»: Überschrift, je Wecker eine Zeile und am Limit der Hinweis. */
+private fun LazyListScope.alarmItems(state: HomeState, actions: HomeActions, view: HomeView, extras: HomeExtras) {
+    val alarms = state.alarms
+    if (alarms.isEmpty()) return
+    val (now, zone, locale) = view
+    item(key = "header") { AlarmsTitle() }
+    items(alarms, key = { it.id }) { alarm ->
+        AlarmRow(
+            alarm, Modifier.animateItem(), onClick = { actions.onEdit(alarm.id) },
+            onToggle = { actions.onToggle(alarm, it) },
+            skip = AlarmSkip(
+                skipped = AlarmSchedule.skippedDate(alarm, now, zone)?.let { Format.shortDay(it, locale) },
+                onSkip = extras.onSkip?.let { skip -> { skip(alarm) } },
+                onUndoSkip = { extras.onUndoSkip(alarm) },
+                skipDate = AlarmSchedule.nextSkipDate(alarm, now, zone, extras.holidays, extras.doneUntil[alarm.id])
+                    ?.let { Format.shortDay(it, locale) },
+            ),
+        )
+    }
+    if (alarms.size >= MAX_ALARMS) {
+        item(key = "limit") { AlarmLimitHint() }
+    }
+}
+
+/** Am Abend: empfohlene Schlafenszeit, Notizen und Abendroutine für die kommende Nacht. */
+private fun LazyListScope.eveningItems(state: HomeState, actions: HomeActions, view: HomeView) {
+    val tonight = SleepNotes.nightDate(view.now, view.zone)
+    // Nach der Lernphase: empfohlene Schlafenszeit für den Wecker dieser Nacht.
+    view.advice?.let { (from, until) ->
+        item(key = "bedtimeAdvice") { BedtimeAdviceCard(from, until) }
+    }
+    item(key = "notes") {
+        TonightNotesCard(
+            state.notes[tonight].orEmpty(), state.customNotes, cardColor(),
+            onToggle = { actions.onToggleNote(tonight, it) },
+        )
+    }
+    if (state.routineItems.isNotEmpty()) {
+        item(key = "routine") {
+            RoutineCard(
+                state.routineItems, state.routineTicks[tonight].orEmpty(), cardColor(),
+                onToggle = { actions.onToggleRoutine(tonight, it) },
+            )
         }
     }
+}
+
+/** Lernphase und «Nacht aufzeichnen». */
+private fun LazyListScope.learningItems(extras: HomeExtras) {
+    extras.learning?.let { learning ->
+        item(key = "learning") { LearningCard(learning, extras.record, extras.onRecord) }
     }
-    if (dark) AnimatedNight(Modifier.fillMaxSize(), mood) { list() } else list()
+    // Während der Lernphase steckt «Nacht aufzeichnen» in ihrer Karte, sonst eine eigene Karte. Solange
+    // die Frage «Lernphase starten / Später» offen ist, auch keine – ausser es läuft schon eine Aufzeichnung
+    // (Stopp).
+    extras.record?.takeIf { record ->
+        val learning = extras.learning
+        learning?.inProgress != true && (learning?.onConsent == null || record.since != null)
+    }?.let { record ->
+        item(key = "record") { RecordCard(record.since, extras.onRecord) }
+    }
 }
-
-/**
- * Empfohlene Schlafenszeit ([Learning.bedtimeRange]) für den Wecker [plan] dieser Nacht, nur nach der Lernphase
- * ([HomeExtras.learned]) und bis zu ihrem Ende; Schlaf = Schlafdauer des Weckers, sonst das Schlafziel. Sonst `null`.
- */
-private fun bedtimeAdvice(
-    plan: WakePlan?,
-    alarms: List<AlarmSpec>,
-    extras: HomeExtras,
-    now: Instant,
-    zone: ZoneId,
-): Pair<Instant, Instant>? {
-    val values = extras.learned ?: return null
-    if (plan == null || SleepNotes.nightDate(plan.windowStart, zone) != SleepNotes.nightDate(now, zone)) return null
-    val alarm = alarms.firstOrNull { it.id == plan.alarmId } ?: return null
-    val range =
-        Learning.bedtimeRange(plan.target, alarm.sleepDurationMinutes ?: extras.sleepGoal, values.latencyMinutes)
-    return range.takeIf { now.isBefore(it.second) }
-}
-
-/** Nacht-Check-Punkte, bei denen die Uhr nicht messen kann (dann keine Zeile zur automatischen Messung). */
-private val WATCH_PROBLEMS = setOf(Check.WATCH, Check.WATCH_APP, Check.WATCH_SETUP)
 
 /** Morgen nach [night]: geweckt heute (in [zone]), jetzt danach und vor 12 Uhr. */
 internal fun isMorningOf(night: NightRecord, now: Instant, zone: ZoneId): Boolean {

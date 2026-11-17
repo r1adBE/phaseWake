@@ -51,7 +51,7 @@
     <string name="dnd_title">Alarmet janë bllokuar</string>
     <string name="dnd_text">Lejo alarmet te „Mos shqetëso“.</string>
     <string name="duration_hours">%1$d orë</string>
-    <string name="duration_hours_minutes">%1$d orë %2$d min</string>
+    <string name="duration_hours_minutes">%1$d orë %2$d min</string>
     <string name="home_last_night">Nata e kaluar</string>
     <string name="notification_open">Hap</string>
     <string name="home_good_night_too_far">E mundur nga 16 orë para alarmit</string>

@@ -51,7 +51,7 @@
     <string name="dnd_title">Wekkers geblokkeer</string>
     <string name="dnd_text">Laat wekkers in Moenie Steur Nie toe.</string>
     <string name="duration_hours">%1$d h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="home_last_night">Gisteraand</string>
     <string name="notification_open">Maak oop</string>
     <string name="home_good_night_too_far">Beskikbaar vanaf 16 h voor die wekker</string>

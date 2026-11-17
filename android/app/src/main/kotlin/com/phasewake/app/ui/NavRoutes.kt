@@ -28,18 +28,26 @@ import com.phasewake.app.core.MissHint
 import com.phasewake.app.core.SleepSound
 import com.phasewake.app.core.SleepSounds
 import com.phasewake.app.sounds.SleepSoundService
+import com.phasewake.app.ui.history.HistoryActions
 import com.phasewake.app.ui.history.HistoryScreen
+import com.phasewake.app.ui.history.HistoryState
 import com.phasewake.app.ui.history.NightDetailActions
 import com.phasewake.app.ui.history.NightDetailData
 import com.phasewake.app.ui.history.NightDetailScreen
 import com.phasewake.app.ui.home.Check
+import com.phasewake.app.ui.home.HomeActions
 import com.phasewake.app.ui.home.HomeScreen
+import com.phasewake.app.ui.home.HomeState
 import com.phasewake.app.ui.home.LearnNightsScreen
 import com.phasewake.app.ui.home.goodNightOffered
 import com.phasewake.app.ui.settings.HealthState
 import com.phasewake.app.ui.settings.LicensesScreen
+import com.phasewake.app.ui.settings.SettingsActions
 import com.phasewake.app.ui.settings.SettingsScreen
+import com.phasewake.app.ui.settings.SettingsState
+import com.phasewake.app.ui.sounds.SoundsActions
 import com.phasewake.app.ui.sounds.SoundsScreen
+import com.phasewake.app.ui.sounds.SoundsState
 import com.phasewake.app.ui.theme.EveningDarkSetting
 import com.phasewake.app.ui.theme.ThemeMode
 import java.time.Instant
@@ -145,37 +153,41 @@ private fun AlarmsRoute(
     val nights = data.nights
     val findings = rememberFindings(app, state.insights)
     HomeScreen(
+        state = HomeState(
+            alarms = data.alarms,
+            lastNight = nights?.lastOrNull(),
+            missHint = nights?.lastOrNull()
+                ?.let { last -> MissHint.of(data.alarms.firstOrNull { it.id == last.alarmId }, nights.orEmpty()) },
+            finding = findings.home,
+            bedtimeFinding = findings.homeBedtime,
+            check = state.nightCheck.check,
+            notes = data.notes,
+            customNotes = data.customNotes,
+            soundPlaying = data.soundPlaying,
+            soundRec = state.soundRec.state,
+            soundClips = data.soundClips.orEmpty(),
+            soundFile = { app.sounds.file(it) },
+            routineItems = data.routineItems,
+            routineTicks = data.routineTicks,
+        ),
+        actions = HomeActions(
+            onHideFinding = findings.onHide,
+            onFix = actions.onFix,
+            onAdd = { actions.nav.navigate(Routes.editor(null)) },
+            onEdit = { actions.nav.navigate(Routes.editor(it)) },
+            onToggle = { alarm, enabled -> app.afterAlarmsChanged { app.alarms.setEnabled(alarm.id, enabled) } },
+            onFeeling = { night, feeling ->
+                app.appScope.launch { app.nights.setFeeling(night.alarmId, night.windowStart, feeling) }
+            },
+            onToggleNote = { date, id -> app.appScope.launch { app.notes.toggle(date, id) } },
+            onSounds = { actions.nav.navigate(Routes.SOUNDS) },
+            onSoundRec = state.soundRec.onSoundRec,
+            onDeleteClip = { clip -> app.appScope.launch { app.sounds.delete(clip) } },
+            onDeleteNightClips = { date -> app.appScope.launch { app.sounds.deleteNight(date) } },
+            onToggleRoutine = { date, id -> app.appScope.launch { app.routine.toggle(date, id) } },
+        ),
         listState = homeList,
-        alarms = data.alarms,
-        lastNight = nights?.lastOrNull(),
-        missHint = nights?.lastOrNull()
-            ?.let { last -> MissHint.of(data.alarms.firstOrNull { it.id == last.alarmId }, nights.orEmpty()) },
-        finding = findings.home,
-        bedtimeFinding = findings.homeBedtime,
-        onHideFinding = findings.onHide,
-        check = state.nightCheck.check,
-        onFix = actions.onFix,
         contentPadding = content,
-        onAdd = { actions.nav.navigate(Routes.editor(null)) },
-        onEdit = { actions.nav.navigate(Routes.editor(it)) },
-        onToggle = { alarm, enabled -> app.afterAlarmsChanged { app.alarms.setEnabled(alarm.id, enabled) } },
-        onFeeling = { night, feeling ->
-            app.appScope.launch { app.nights.setFeeling(night.alarmId, night.windowStart, feeling) }
-        },
-        notes = data.notes,
-        customNotes = data.customNotes,
-        onToggleNote = { date, id -> app.appScope.launch { app.notes.toggle(date, id) } },
-        soundPlaying = data.soundPlaying,
-        onSounds = { actions.nav.navigate(Routes.SOUNDS) },
-        soundRec = state.soundRec.state,
-        onSoundRec = state.soundRec.onSoundRec,
-        soundClips = data.soundClips.orEmpty(),
-        soundFile = { app.sounds.file(it) },
-        onDeleteClip = { clip -> app.appScope.launch { app.sounds.delete(clip) } },
-        onDeleteNightClips = { date -> app.appScope.launch { app.sounds.deleteNight(date) } },
-        routineItems = data.routineItems,
-        routineTicks = data.routineTicks,
-        onToggleRoutine = { date, id -> app.appScope.launch { app.routine.toggle(date, id) } },
         extras = homeExtras(
             app, data, record = recordStatus, onLearnDetails = { actions.nav.navigate(ExtraRoutes.LEARN_NIGHTS) },
             onTest = actions.onTest,
@@ -191,39 +203,43 @@ private fun HistoryRoute(app: PhaseWakeApp, state: NavState, actions: NavActions
     val recordings by app.recordings.recordings.collectAsStateWithLifecycle()
     LaunchedEffect(Unit) { app.recordings.load() }
     HistoryScreen(
-        data.nights.orEmpty(),
-        content,
-        loadStages = if (insights.health == HealthState.CONNECTED) {
-            { night -> insights.stages.filter {
-                it.end.isAfter(night.windowStart.minus(STAGES_BEFORE)) &&
-                    it.start.isBefore(night.wokeAt.plus(STAGES_AFTER))
-            } }
-        } else {
-            null
-        },
-        trends = insights.trends,
-        healthConnected = insights.health == HealthState.CONNECTED,
-        onConnectHealth = actions.connectHealth,
-        goalWeek = insights.goalWeek,
-        notes = data.notes,
-        customNotes = data.customNotes,
-        onToggleNote = { date, id -> app.appScope.launch { app.notes.toggle(date, id) } },
-        noteEffects = insights.noteEffects,
-        habits = insights.habits,
-        weekly = insights.weekly,
-        weeklyDeep = findings.weekDeep,
-        findings = findings.all,
-        soundClips = data.soundClips.orEmpty(),
-        soundFile = { app.sounds.file(it) },
-        onDeleteClip = { clip -> app.appScope.launch { app.sounds.delete(clip) } },
-        onDeleteNightClips = { date -> app.appScope.launch { app.sounds.deleteNight(date) } },
-        charts = insights.charts,
-        items = insights.history,
-        canConnectHealth = insights.health == HealthState.AVAILABLE,
-        healthFeelings = data.healthFeelings,
-        onOpenNight = { key -> actions.nav.navigate(ExtraRoutes.night(key)) },
-        recordings = recordings.orEmpty(),
-        goalMinutes = data.sleepGoal,
+        state = HistoryState(
+            nights = data.nights.orEmpty(),
+            loadStages = if (insights.health == HealthState.CONNECTED) {
+                { night -> insights.stages.filter {
+                    it.end.isAfter(night.windowStart.minus(STAGES_BEFORE)) &&
+                        it.start.isBefore(night.wokeAt.plus(STAGES_AFTER))
+                } }
+            } else {
+                null
+            },
+            trends = insights.trends,
+            healthConnected = insights.health == HealthState.CONNECTED,
+            goalWeek = insights.goalWeek,
+            notes = data.notes,
+            customNotes = data.customNotes,
+            noteEffects = insights.noteEffects,
+            habits = insights.habits,
+            weekly = insights.weekly,
+            weeklyDeep = findings.weekDeep,
+            findings = findings.all,
+            soundClips = data.soundClips.orEmpty(),
+            soundFile = { app.sounds.file(it) },
+            charts = insights.charts,
+            items = insights.history,
+            canConnectHealth = insights.health == HealthState.AVAILABLE,
+            healthFeelings = data.healthFeelings,
+            recordings = recordings.orEmpty(),
+            goalMinutes = data.sleepGoal,
+        ),
+        contentPadding = content,
+        actions = HistoryActions(
+            onConnectHealth = actions.connectHealth,
+            onToggleNote = { date, id -> app.appScope.launch { app.notes.toggle(date, id) } },
+            onDeleteClip = { clip -> app.appScope.launch { app.sounds.delete(clip) } },
+            onDeleteNightClips = { date -> app.appScope.launch { app.sounds.deleteNight(date) } },
+            onOpenNight = { key -> actions.nav.navigate(ExtraRoutes.night(key)) },
+        ),
     )
 }
 
@@ -270,74 +286,78 @@ private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavAction
     val recordings by app.recordings.recordings.collectAsStateWithLifecycle()
     LaunchedEffect(Unit) { app.recordings.load() }
     SettingsScreen(
-        themeMode = state.themeMode,
-        version = version,
+        state = SettingsState(
+            themeMode = state.themeMode,
+            version = version,
+            eveningDark = eveningDark,
+            canExport = !data.nights.isNullOrEmpty() || !recordings.isNullOrEmpty(),
+            health = state.insights.health,
+            goalMinutes = data.sleepGoal,
+            bedtimeReminder = data.bedtimeReminder,
+            customNotes = data.customNotes,
+            weeklyReview = data.weeklyReview,
+            nextAlarmNotice = nextAlarmNotice,
+            autoOnset = data.autoOnset,
+            soundRecDefault = state.soundRec.default,
+            routineItems = data.routineItems,
+        ),
+        actions = SettingsActions(
+            onThemeMode = { app.appScope.launch { app.settings.setThemeMode(it) } },
+            onEveningDark = { app.appScope.launch { app.settings.setEveningDark(it) } },
+            onEveningDarkFrom = { app.appScope.launch { app.settings.setEveningDarkFrom(it) } },
+            onExport = actions.onExport,
+            onClearHistory = {
+                // Nach der Rückfrage noch die Gerätesperre (falls eingerichtet); Abbruch löscht nichts.
+                DeviceAuth.confirm(context, res.getString(R.string.auth_clear_history)) {
+                    app.appScope.launch { app.clearHistory() }
+                }
+            },
+            onConnectHealth = actions.connectHealth,
+            onGoal = { minutes ->
+                app.appScope.launch {
+                    app.settings.setSleepGoal(minutes)
+                    app.publishSleepGoal()
+                    app.bedtime.reschedule()
+                    app.nextAlarm.reschedule()
+                }
+            },
+            onBedtimeReminder = { enabled ->
+                // Ohne Mitteilungen keine Erinnerung: beim Einschalten einmal fragen.
+                if (enabled) actions.askNotificationsIfMissing()
+                app.appScope.launch {
+                    app.settings.setBedtimeReminder(enabled)
+                    app.bedtime.reschedule()
+                    app.nextAlarm.reschedule()
+                }
+            },
+            onAddCustomNote = { name -> app.appScope.launch { app.notes.addCustom(name) } },
+            onRenameCustomNote = { id, name -> app.appScope.launch { app.notes.renameCustom(id, name) } },
+            onDeleteCustomNote = { id -> app.appScope.launch { app.notes.deleteCustom(id) } },
+            onWeeklyReview = { enabled ->
+                if (enabled) actions.askNotificationsIfMissing()
+                app.appScope.launch {
+                    app.settings.setWeeklyReview(enabled)
+                    app.weekly.reschedule()
+                }
+            },
+            onNextAlarmNotice = { enabled ->
+                if (enabled) actions.askNotificationsIfMissing()
+                app.appScope.launch {
+                    app.settings.setNextAlarmNotice(enabled)
+                    app.nextAlarm.reschedule()
+                }
+            },
+            onAutoOnset = { enabled ->
+                app.appScope.launch {
+                    app.settings.setAutoOnset(enabled)
+                    app.publishAutoOnset()
+                }
+            },
+            onSoundRecDefault = state.soundRec.onDefault,
+            onAddRoutineItem = { text -> app.appScope.launch { app.routine.add(text) } },
+            onRemoveRoutineItem = { id -> app.appScope.launch { app.routine.remove(id) } },
+        ),
         contentPadding = content,
-        onThemeMode = { app.appScope.launch { app.settings.setThemeMode(it) } },
-        eveningDark = eveningDark,
-        onEveningDark = { app.appScope.launch { app.settings.setEveningDark(it) } },
-        onEveningDarkFrom = { app.appScope.launch { app.settings.setEveningDarkFrom(it) } },
-        onExport = actions.onExport,
-        canExport = !data.nights.isNullOrEmpty() || !recordings.isNullOrEmpty(),
-        onClearHistory = {
-            // Nach der Rückfrage noch die Gerätesperre (falls eingerichtet); Abbruch löscht nichts.
-            DeviceAuth.confirm(context, res.getString(R.string.auth_clear_history)) {
-                app.appScope.launch { app.clearHistory() }
-            }
-        },
-        health = state.insights.health,
-        onConnectHealth = actions.connectHealth,
-        goalMinutes = data.sleepGoal,
-        onGoal = { minutes ->
-            app.appScope.launch {
-                app.settings.setSleepGoal(minutes)
-                app.publishSleepGoal()
-                app.bedtime.reschedule()
-                app.nextAlarm.reschedule()
-            }
-        },
-        bedtimeReminder = data.bedtimeReminder,
-        onBedtimeReminder = { enabled ->
-            // Ohne Mitteilungen keine Erinnerung: beim Einschalten einmal fragen.
-            if (enabled) actions.askNotificationsIfMissing()
-            app.appScope.launch {
-                app.settings.setBedtimeReminder(enabled)
-                app.bedtime.reschedule()
-                app.nextAlarm.reschedule()
-            }
-        },
-        customNotes = data.customNotes,
-        onAddCustomNote = { name -> app.appScope.launch { app.notes.addCustom(name) } },
-        onRenameCustomNote = { id, name -> app.appScope.launch { app.notes.renameCustom(id, name) } },
-        onDeleteCustomNote = { id -> app.appScope.launch { app.notes.deleteCustom(id) } },
-        weeklyReview = data.weeklyReview,
-        onWeeklyReview = { enabled ->
-            if (enabled) actions.askNotificationsIfMissing()
-            app.appScope.launch {
-                app.settings.setWeeklyReview(enabled)
-                app.weekly.reschedule()
-            }
-        },
-        nextAlarmNotice = nextAlarmNotice,
-        onNextAlarmNotice = { enabled ->
-            if (enabled) actions.askNotificationsIfMissing()
-            app.appScope.launch {
-                app.settings.setNextAlarmNotice(enabled)
-                app.nextAlarm.reschedule()
-            }
-        },
-        autoOnset = data.autoOnset,
-        onAutoOnset = { enabled ->
-            app.appScope.launch {
-                app.settings.setAutoOnset(enabled)
-                app.publishAutoOnset()
-            }
-        },
-        soundRecDefault = state.soundRec.default,
-        onSoundRecDefault = state.soundRec.onDefault,
-        routineItems = data.routineItems,
-        onAddRoutineItem = { text -> app.appScope.launch { app.routine.add(text) } },
-        onRemoveRoutineItem = { id -> app.appScope.launch { app.routine.remove(id) } },
         extras = settingsExtras(app, data, actions),
     )
 }
@@ -358,22 +378,21 @@ private fun SoundsRoute(app: PhaseWakeApp, data: AppData, onBack: () -> Unit) {
     val now = Instant.now()
     val windowStart = AlarmSchedule.earliestPlan(data.alarms, now, ZoneId.systemDefault(), data.holidays)?.windowStart
     SoundsScreen(
-        playing = data.soundPlaying,
-        selected = data.sound,
-        timer = data.soundTimer,
-        canPlay = windowStart == null || windowStart.isAfter(now),
-        onBack = onBack,
-        onSelect = { chosen ->
-            app.appScope.launch { app.settings.setSound(chosen) }
-            // Läuft schon ein Klang: gleich wechseln.
-            if (data.soundPlaying != null) startSounds(chosen, data.soundTimer)
-        },
-        onTimer = { minutes ->
-            app.appScope.launch { app.settings.setSoundTimer(minutes) }
-            // Läuft schon ein Klang: Timer ab jetzt neu.
-            data.soundPlaying?.let { startSounds(it.sound, minutes) }
-        },
-        onPlay = { startSounds(data.sound, data.soundTimer) },
-        onStop = { SleepSoundService.stop(context) },
+        SoundsState(data.soundPlaying, data.sound, data.soundTimer, canPlay = windowStart?.isAfter(now) ?: true),
+        SoundsActions(
+            onBack = onBack,
+            onSelect = { chosen ->
+                app.appScope.launch { app.settings.setSound(chosen) }
+                // Läuft schon ein Klang: gleich wechseln.
+                if (data.soundPlaying != null) startSounds(chosen, data.soundTimer)
+            },
+            onTimer = { minutes ->
+                app.appScope.launch { app.settings.setSoundTimer(minutes) }
+                // Läuft schon ein Klang: Timer ab jetzt neu.
+                data.soundPlaying?.let { startSounds(it.sound, minutes) }
+            },
+            onPlay = { startSounds(data.sound, data.soundTimer) },
+            onStop = { SleepSoundService.stop(context) },
+        ),
     )
 }

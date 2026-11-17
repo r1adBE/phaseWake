@@ -88,6 +88,7 @@
     <string name="settings_evening_dark">ມືດຕອນແລງ</string>
     <string name="settings_evening_dark_text">ມືດແຕ່ %1$s ຫາ %2$s, ເຖິງຈະເລືອກ ລະບົບ ຫຼື ແຈ້ງ.</string>
     <string name="settings_evening_dark_from">ມືດແຕ່</string>
+    <string name="settings_evening_dark_now">ໃຊ້ຢູ່ຕອນນີ້ – ແຈ້ງແຕ່ %1$s</string>
     <string name="settings_data">ຂໍ້ມູນຂອງເຈົ້າ</string>
     <string name="settings_data_text">ທຸກຢ່າງຢູ່ໃນໂທລະສັບ ແລະ ໂມງຂອງເຈົ້າ ບໍ່ມີບັນຊີ ບໍ່ມີເຊີບເວີ ບໍ່ມີການຕິດຕາມ ມີແຕ່ຂໍ້ມູນທາງເຕັກນິກຂອງໂມງເທົ່ານັ້ນທີ່ຜ່ານການເຊື່ອມຕໍ່ໂມງຂອງ Google, ບໍ່ມີຂໍ້ມູນສຸຂະພາບ.</string>
     <string name="settings_export">ສົ່ງອອກຄືນໂດຍບໍ່ມີຊື່</string>
@@ -101,7 +102,7 @@
     <string name="duration_minutes">%1$d ນາທີ</string>
     <string name="duration_hours">%1$d ຊມ</string>
     <string name="duration_hours_half">%1$d½ ຊມ</string>
-    <string name="duration_hours_minutes">%1$d ຊມ %2$d ນາທີ</string>
+    <string name="duration_hours_minutes">%1$d ຊມ %2$d ນາທີ</string>
     <string name="health_title">ໄລຍະການນອນຈາກ Health Connect</string>
     <string name="health_rationale">Phase Wake ສາມາດອ່ານຂໍ້ມູນການນອນທີ່ແອັບສຸຂະພາບຂອງເຈົ້າ (ເຊັ່ນ Samsung Health) ບັນທຶກໄວ້ ຂໍ້ມູນນີ້ສະແດງໃນປະຫວັດຂອງເຈົ້າ ລວມທັງເພື່ອປຽບທຽບກັບຄືນທີ່ Phase Wake ປຸກເຈົ້າ Phase Wake ອ່ານຢ່າງດຽວ ບໍ່ເຄີຍຂຽນ ແລະ ບໍ່ມີຫຍັງອອກຈາກໂທລະສັບຂອງເຈົ້າ</string>
     <string name="health_connect">ປຽບທຽບກັບຂໍ້ມູນສຸຂະພາບ</string>

@@ -1,7 +1,7 @@
 Phase Wake weckt dich in deinem Weckfenster, sobald du unruhig wirst – dann schläfst du wohl leicht. Spätestens pünktlich zur Zielzeit. Dafür misst deine Smartwatch in den letzten Minuten vor dem Wecker Bewegung und Puls; in der freiwilligen Lernphase auch über die Nacht.
 
 So funktioniert's
-• Weckzeit und Weckfenster (bis 30 Min) wählen, Uhr anziehen, schlafen.
+• Zielzeit und Weckfenster (bis 30 Min) wählen, Uhr anziehen, schlafen.
 • Die Uhr misst im Weckfenster und abends ab etwa 1 Std. vor der Bettzeit bis zum Einschlafen (höchstens 4 Std.) – das schont den Akku.
 • Freiwillig: Lernphase – deine Uhr misst 7 Nächte lang Bewegung und Puls über die Nacht (kostet etwas Akku) und passt den Wecker an dich an.
 • Vibration am Handgelenk, auf Wunsch mit Ton – das Handy klingelt als Zweitwecker mit, falls etwas schiefgeht.

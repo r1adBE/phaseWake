@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
@@ -108,70 +109,12 @@ fun nightSummary(context: Context, night: NightRecord): String {
 /** Verlauf: Kennzahlen und jede Nacht mit ihrer Bewegungskurve, neueste zuerst. */
 @Composable
 fun HistoryScreen(
-    nights: List<NightRecord>,
+    state: HistoryState,
     contentPadding: PaddingValues,
-    loadStages: (suspend (NightRecord) -> List<StageSpan>)?,
-    trends: Trends? = null,
-    healthConnected: Boolean = false,
-    onConnectHealth: () -> Unit = {},
-    /** Schlafziel erreicht (Nächte, gezählt) aus der Gesundheits-App; `null` ohne Daten. */
-    goalWeek: Pair<Int, Int>? = null,
-    notes: Map<LocalDate, List<String>> = emptyMap(),
-    customNotes: List<CustomNote> = emptyList(),
-    onToggleNote: (LocalDate, String) -> Unit = { _, _ -> },
-    /** Wirkung der Notizen; `null`: Karte nicht zeigen (Bildschirmfotos). */
-    noteEffects: List<NoteEffect>? = null,
-    /** Gewohnheiten in der Trends-Karte. */
-    habits: HabitLines? = null,
-    /** Wochenrückblick (Sonntag und Montag); `null`: keine Karte. */
-    weekly: WeeklySummary? = null,
-    /** Tiefschlaf-Anteil (%) der Woche des Rückblicks und der Vorwoche; `null`: keine Zeile. */
-    weeklyDeep: Pair<Int, Int>? = null,
-    /** Auffälligkeiten der letzten 7 Nächte für die Trends ([com.phasewake.app.core.Findings.of]). */
-    findings: List<Finding> = emptyList(),
-    /** Aufgenommene Geräusche (alle Nächte). */
-    soundClips: List<SoundClip> = emptyList(),
-    soundFile: (SoundClip) -> File? = { null },
-    onDeleteClip: (SoundClip) -> Unit = {},
-    onDeleteNightClips: (LocalDate) -> Unit = {},
-    /** Diagramme oben im Verlauf; `null` oder leer: keine. */
-    charts: HistoryCharts? = null,
-    /** Verlauf mit Nächten aus Health Connect ([HealthHistory.merge]); `null`: nur [nights]. */
-    items: List<HistoryItem>? = null,
-    /** Health Connect ist nutzbar, die Freigabe fehlt noch (Knopf im leeren Verlauf). */
-    canConnectHealth: Boolean = false,
-    /** Befinden zu Nächten aus anderen Apps je Nachtdatum und wie es gesetzt wird (nur bei Phase Wake gespeichert). */
-    healthFeelings: Map<LocalDate, Int> = emptyMap(),
-    /** Detailseite einer Nacht öffnen ([HistoryItem.key]); auch aus den Blasen der Diagramme. */
-    onOpenNight: (String) -> Unit = {},
-    /** Abgeschlossene Aufzeichnungen («Nacht aufzeichnen»), älteste zuerst; nach ihrem Ende zwischen die Nächte. */
-    recordings: List<NightRecording> = emptyList(),
-    /** Schlafziel in Minuten für den Schlafwert der Nächte. */
-    goalMinutes: Int = SleepGoal.DEFAULT_MINUTES,
+    actions: HistoryActions = HistoryActions(),
 ) {
-    val history =
-        remember(items, nights) { items ?: HealthHistory.merge(nights, emptyList(), null, ZoneId.systemDefault()) }
-    val latestByDate = remember(nights) {
-        nights.groupBy { SleepNotes.nightDate(it, ZoneId.systemDefault()) }
-            .mapValues { (_, list) -> list.maxBy { it.wokeAt } }
-    }
-    val healthDates = remember(history) { history.filter { it.kind == HistoryKind.HEALTH }.map { it.date }.toSet() }
-    // Geräusche ohne Nacht (z. B. Uhr nicht getragen, keine Gesundheitsdaten): eigene Karte, nach Zeit zwischen die
-    // Nächte.
-    val soundsOnly = remember(soundClips, latestByDate, healthDates) {
-        SoundEvents.nightsWithoutRecord(soundClips, latestByDate.keys + healthDates)
-    }
-    val entries = remember(history, soundsOnly, recordings) {
-        val nightly = buildList<HistoryEntry> {
-            val pending = ArrayDeque(soundsOnly.map { HistoryEntry.Sounds(it.first, it.second) })
-            for (item in history) {
-                while (pending.isNotEmpty() && pending.first().last.isAfter(item.at)) add(pending.removeFirst())
-                add(if (item.night != null) HistoryEntry.Night(item) else HistoryEntry.Health(item))
-            }
-            addAll(pending)
-        }
-        withRecordings(nightly, recordings)
-    }
+    val model = rememberHistoryModel(state)
+    val history = model.history
     // Eine Auswahl «Tage / Wochen / Monate» für Übersicht und Diagramme; gemerkt über Drehen und Zurückkehren.
     var unit by rememberSaveable { mutableStateOf(OverviewUnit.DAYS) }
     // Himmel wie auf der Startseite; der Rand liegt im Innenabstand, damit der Kopf randlos sein kann.
@@ -182,6 +125,7 @@ fun HistoryScreen(
         end = contentPadding.calculateEndPadding(direction) + PAGE_SIDE,
         bottom = contentPadding.calculateBottomPadding(),
     )
+    val charts = state.charts
     SkyPage {
     LazyColumn(
         contentPadding = padding,
@@ -196,69 +140,102 @@ fun HistoryScreen(
         // Diagramme zuoberst, auch ohne Uhr-Nächte (Schlaf aus der Gesundheits-App).
         // Blase in einem Diagramm antippen: die Nacht dieses Nachtdatums, falls sie im Verlauf steht.
         val opener: (LocalDate) -> (() -> Unit)? =
-            { date -> HealthHistory.itemFor(history, date)?.let { item -> { onOpenNight(item.key) } } }
+            { date -> HealthHistory.itemFor(history, date)?.let { item -> { actions.onOpenNight(item.key) } } }
         // Oben die eine Auswahl des Zeitraums, darunter die Übersicht und die Diagramme zum Blättern.
         charts?.takeIf { it.hasPeriods }?.let { item(key = "period") { OverviewSwitch(unit, { unit = it }) } }
         charts?.overview?.takeIf { it.isNotEmpty() }?.let { item(key = "overview") { OverviewCard(it, unit, opener) } }
         charts?.takeIf { !it.isEmpty }?.let {
-            item(key = "charts") { HistoryChartsSection(it, customNotes, opener = opener, nights = periodNights(unit)) }
-        }
-        if (history.isEmpty() && recordings.isEmpty()) {
-            item(key = "empty") { HistoryEmptyCard(healthConnected, canConnectHealth, onConnectHealth) }
-            soundsOnly.forEach { (night, last) ->
-                item(key = "sounds@$night") {
-                    SoundsOnlyCard(
-                        HistoryEntry.Sounds(night, last), soundClips, soundFile, onDeleteClip, onDeleteNightClips,
-                    )
-                }
+            item(key = "charts") {
+                HistoryChartsSection(it, state.customNotes, opener = opener, nights = periodNights(unit))
             }
+        }
+        if (history.isEmpty() && state.recordings.isEmpty()) {
+            emptyItems(state, actions, model)
             return@LazyColumn
         }
-        if (nights.isNotEmpty()) item(key = "stats") { Stats(nights) }
-        weekly?.let { item(key = "weekly") { WeeklyCard(it, customNotes, weeklyDeep) } }
-        trends?.let { item(key = "trends") {
-            TrendsCard(it, healthConnected, onConnectHealth, goalWeek, habits, charts?.covered.orEmpty(), findings)
-        } }
-        noteEffects?.let { item(key = "effects") { NoteEffectsCard(it, customNotes) } }
-        items(entries, key = { it.key }) { entry ->
-            when (entry) {
-                is HistoryEntry.Sounds -> SoundsOnlyCard(
-                    entry, soundClips, soundFile, onDeleteClip, onDeleteNightClips, Modifier.animateItem(),
-                )
-                is HistoryEntry.Recording -> RecordingCard(entry.recording, Modifier.animateItem())
-                is HistoryEntry.Health -> {
-                    val date = entry.item.date
-                    HealthNightCard(
-                        entry.item.session ?: return@items,
-                        score = remember(entry.item, recordings, goalMinutes) {
-                            nightScore(nightView(entry.item, emptyList()), recordings, goalMinutes)?.result
-                        },
-                        feeling = healthFeelings[date],
-                        notes = notes[date].orEmpty(),
-                        customNotes = customNotes,
-                        onToggleNote = { onToggleNote(date, it) },
-                        clips = SoundEvents.forNight(soundClips, date),
-                        onOpen = { onOpenNight(entry.item.key) },
-                        modifier = Modifier.animateItem(),
-                    )
-                }
-                is HistoryEntry.Night -> {
-                    val night = entry.item.night ?: return@items
-                    val date = entry.item.date
-                    NightCard(
-                        night, loadStages, Modifier.animateItem(), notes[date].orEmpty(), customNotes,
-                        onToggleNote = { onToggleNote(date, it) },
-                        // Mehrere Nächte am selben Nachtdatum: die Geräusche nur bei der zuletzt geweckten.
-                        clips =
-                            if (latestByDate[date] === night) SoundEvents.forNight(soundClips, date) else emptyList(),
-                        onOpen = { onOpenNight(entry.item.key) },
-                        recordings = recordings,
-                        goalMinutes = goalMinutes,
-                    )
-                }
-            }
+        summaryItems(state, actions)
+        items(model.entries, key = { it.key }) { entry ->
+            EntrySection(entry, state, actions, model, Modifier.animateItem())
         }
     }
+    }
+}
+
+/** Leerer Verlauf: Hinweis (mit Health Connect) und Geräusche ohne Nacht. */
+private fun LazyListScope.emptyItems(state: HistoryState, actions: HistoryActions, model: HistoryModel) {
+    item(key = "empty") {
+        HistoryEmptyCard(state.healthConnected, state.canConnectHealth, actions.onConnectHealth)
+    }
+    model.soundsOnly.forEach { (night, last) ->
+        item(key = "sounds@$night") {
+            SoundsOnlyCard(
+                HistoryEntry.Sounds(night, last), state.soundClips, state.soundFile, actions.onDeleteClip,
+                actions.onDeleteNightClips,
+            )
+        }
+    }
+}
+
+/** Kennzahlen, Wochenrückblick, Trends und Wirkung der Notizen über den Nächten. */
+private fun LazyListScope.summaryItems(state: HistoryState, actions: HistoryActions) {
+    val customNotes = state.customNotes
+    if (state.nights.isNotEmpty()) item(key = "stats") { Stats(state.nights) }
+    state.weekly?.let { item(key = "weekly") { WeeklyCard(it, customNotes, state.weeklyDeep) } }
+    state.trends?.let { item(key = "trends") {
+        TrendsCard(
+            it, state.healthConnected, actions.onConnectHealth, state.goalWeek, state.habits,
+            state.charts?.covered.orEmpty(), state.findings,
+        )
+    } }
+    state.noteEffects?.let { item(key = "effects") { NoteEffectsCard(it, customNotes) } }
+}
+
+/** Ein Eintrag der Liste: Geräusche ohne Nacht, Aufzeichnung, Nacht aus Health Connect oder eigene Nacht. */
+@Composable
+private fun EntrySection(
+    entry: HistoryEntry,
+    state: HistoryState,
+    actions: HistoryActions,
+    model: HistoryModel,
+    modifier: Modifier,
+) {
+    val soundClips = state.soundClips
+    when (entry) {
+        is HistoryEntry.Sounds -> SoundsOnlyCard(
+            entry, soundClips, state.soundFile, actions.onDeleteClip, actions.onDeleteNightClips, modifier,
+        )
+        is HistoryEntry.Recording -> RecordingCard(entry.recording, modifier)
+        is HistoryEntry.Health -> {
+            val date = entry.item.date
+            HealthNightCard(
+                entry.item.session ?: return,
+                score = remember(entry.item, state.recordings, state.goalMinutes) {
+                    nightScore(nightView(entry.item, emptyList()), state.recordings, state.goalMinutes)?.result
+                },
+                feeling = state.healthFeelings[date],
+                extras = NightCardNotes(
+                    state.notes[date].orEmpty(), state.customNotes, { actions.onToggleNote(date, it) },
+                    SoundEvents.forNight(soundClips, date),
+                ),
+                onOpen = { actions.onOpenNight(entry.item.key) },
+                modifier = modifier,
+            )
+        }
+        is HistoryEntry.Night -> {
+            val night = entry.item.night ?: return
+            val date = entry.item.date
+            NightCard(
+                night, state.loadStages, modifier,
+                NightCardNotes(
+                    state.notes[date].orEmpty(), state.customNotes, { actions.onToggleNote(date, it) },
+                    // Mehrere Nächte am selben Nachtdatum: die Geräusche nur bei der zuletzt geweckten.
+                    if (model.latestByDate[date] === night) SoundEvents.forNight(soundClips, date) else emptyList(),
+                ),
+                onOpen = { actions.onOpenNight(entry.item.key) },
+                recordings = state.recordings,
+                goalMinutes = state.goalMinutes,
+            )
+        }
     }
 }
 
@@ -299,10 +276,7 @@ private fun NightCard(
     night: NightRecord,
     loadStages: (suspend (NightRecord) -> List<StageSpan>)?,
     modifier: Modifier,
-    notes: List<String>,
-    customNotes: List<CustomNote>,
-    onToggleNote: (String) -> Unit,
-    clips: List<SoundClip>,
+    extras: NightCardNotes,
     onOpen: () -> Unit,
     recordings: List<NightRecording>,
     goalMinutes: Int,
@@ -355,8 +329,10 @@ private fun NightCard(
                 nightDetails(context, night), style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
-            soundSummary(context, clips)?.let { CompactLine(it) }
-            NightNotes(notes, customNotes, onToggleNote, Modifier.padding(top = 4.dp)) { DetailsLink() }
+            soundSummary(context, extras.clips)?.let { CompactLine(it) }
+            NightNotes(extras.notes, extras.customNotes, extras.onToggleNote, Modifier.padding(top = 4.dp)) {
+                DetailsLink()
+            }
         }
     }
 }

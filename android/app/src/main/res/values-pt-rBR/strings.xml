@@ -89,6 +89,7 @@
     <string name="settings_evening_dark">Escuro à noite</string>
     <string name="settings_evening_dark_text">Escuro de %1$s a %2$s, mesmo com Sistema ou Claro.</string>
     <string name="settings_evening_dark_from">Escuro a partir de</string>
+    <string name="settings_evening_dark_now">Ativo agora – claro a partir de %1$s</string>
     <string name="settings_data">Seus dados</string>
     <string name="settings_data_text">Tudo fica no seu celular e no relógio. Sem conta, sem servidor, sem rastreamento. Pela conexão do relógio do Google passam só informações técnicas do relógio, sem dados de saúde.</string>
     <string name="settings_export">Exportar noites sem nome</string>
@@ -102,7 +103,7 @@
     <string name="duration_minutes">%1$d min</string>
     <string name="duration_hours">%1$d h</string>
     <string name="duration_hours_half">%1$d½ h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fases do sono do Health Connect</string>
     <string name="health_rationale">O Phase Wake pode ler os dados de sono que seu app de saúde (por exemplo, o Samsung Health) salva. Eles aparecem no seu histórico, também para comparar com as noites em que o Phase Wake acordou você. O Phase Wake só lê, nunca grava, e nada sai do seu celular.</string>
     <string name="health_connect">Comparar com dados de saúde</string>

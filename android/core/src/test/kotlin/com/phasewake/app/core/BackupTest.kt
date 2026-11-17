@@ -149,18 +149,18 @@ class BackupTest {
 
     @Test
     fun backupKeepsEveningDark() {
-        // Fehlt der Schlüssel (ältere Sicherung, Testvektor): an, ab 18:00.
+        // Fehlt der Schlüssel (ältere Sicherung, Testvektor): an, ab 20:00.
         val old = BackupPayload.fromJson(File(testdata, "backup-v1.json").readText().trim()).settings
         assertTrue(old.eveningDark)
-        assertEquals(18 * 60, old.eveningDarkFrom)
-        assertTrue("\"eveningDark\":true,\"eveningDarkFrom\":1080" in payload.toJson())
+        assertEquals(20 * 60, old.eveningDarkFrom)
+        assertTrue("\"eveningDark\":true,\"eveningDarkFrom\":1200" in payload.toJson())
         val changed =
             payload.copy(settings = payload.settings.copy(eveningDark = false, eveningDarkFrom = 21 * 60 + 30))
         assertEquals(changed.settings, BackupPayload.fromJson(changed.toJson()).settings)
-        // Unplausibler Beginn (manipuliert oder kaputt): 18:00.
+        // Unplausibler Beginn (manipuliert oder kaputt): 20:00.
         for (raw in listOf("-5", "1440", "\"20:00\"", "null")) {
-            val json = payload.toJson().replace("\"eveningDarkFrom\":1080", "\"eveningDarkFrom\":$raw")
-            assertEquals(18 * 60, BackupPayload.fromJson(json).settings.eveningDarkFrom, raw)
+            val json = payload.toJson().replace("\"eveningDarkFrom\":1200", "\"eveningDarkFrom\":$raw")
+            assertEquals(20 * 60, BackupPayload.fromJson(json).settings.eveningDarkFrom, raw)
         }
     }
 

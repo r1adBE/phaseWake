@@ -51,7 +51,7 @@
     <string name="dnd_title">Budilniklar toʻsilgan</string>
     <string name="dnd_text">«Bezovta qilinmasin»da budilniklarga ruxsat ber.</string>
     <string name="duration_hours">%1$d soat</string>
-    <string name="duration_hours_minutes">%1$d soat %2$d daq</string>
+    <string name="duration_hours_minutes">%1$d soat %2$d daq</string>
     <string name="home_last_night">Oʻtgan tun</string>
     <string name="notification_open">Ochish</string>
     <string name="home_good_night_too_far">Budilnikdan 16 soat oldin mavjud</string>

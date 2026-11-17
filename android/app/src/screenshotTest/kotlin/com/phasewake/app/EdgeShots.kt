@@ -13,7 +13,9 @@ import com.phasewake.app.ring.PhoneRingService
 import com.phasewake.app.ring.RingScreen
 import com.phasewake.app.ui.editor.EditorScreen
 import com.phasewake.app.ui.home.Check
+import com.phasewake.app.ui.home.HomeActions
 import com.phasewake.app.ui.home.HomeScreen
+import com.phasewake.app.ui.home.HomeState
 import com.phasewake.app.ui.home.NightCheckState
 import com.phasewake.app.ui.onboarding.OnboardingContent
 import com.phasewake.app.ui.onboarding.OnboardingModel
@@ -92,10 +94,12 @@ fun EdgeEditorFr() = ThemedIn("fr", ThemeMode.LIGHT) {
 @PreviewTest @Preview(locale = "ar", name = "Rand Start ar", device = PHONE) @Composable
 fun EdgeHomeAr() = ThemedIn("ar", ThemeMode.DARK) {
     HomeScreen(
-        listOf(AlarmSpec(id = "work", hour = 7, minute = 0, days = weekdays, label = "Arbeit")), nights.last(),
-        check = NightCheckState(emptyList()), onFix = {},
-        contentPadding = androidx.compose.foundation.layout.PaddingValues(), onAdd = {},
-        onEdit = {}, onToggle = { _, _ -> }, clock = { FIXED_NOW },
+        HomeState(
+            listOf(AlarmSpec(id = "work", hour = 7, minute = 0, days = weekdays, label = "Arbeit")), nights.last(),
+            check = NightCheckState(emptyList()),
+        ),
+        HomeActions(onFix = {}, onAdd = {}, onEdit = {}, onToggle = { _, _ -> }),
+        contentPadding = androidx.compose.foundation.layout.PaddingValues(), clock = { FIXED_NOW },
     )
 }
 

@@ -48,7 +48,7 @@
     <string name="dnd_title">Siqnallar bloklanıb</string>
     <string name="dnd_text">“Narahat etməyin” rejimində siqnallara icazə ver.</string>
     <string name="duration_hours">%1$d st</string>
-    <string name="duration_hours_minutes">%1$d st %2$d dəq</string>
+    <string name="duration_hours_minutes">%1$d st %2$d dəq</string>
     <string name="home_last_night">Ötən gecə</string>
     <string name="notification_open">Aç</string>
     <string name="home_good_night_too_far">Siqnaldan 16 st əvvəldən mövcuddur</string>

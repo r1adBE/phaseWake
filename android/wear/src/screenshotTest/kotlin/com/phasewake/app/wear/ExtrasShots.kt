@@ -11,7 +11,9 @@ import com.phasewake.app.core.DiagEntry
 import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Transient
 import com.phasewake.app.wear.ui.DiagScreen
+import com.phasewake.app.wear.ui.EditorActions
 import com.phasewake.app.wear.ui.EditorContent
+import com.phasewake.app.wear.ui.EditorState
 import com.phasewake.app.wear.ui.HomeActions
 import com.phasewake.app.wear.ui.HomeContent
 import com.phasewake.app.wear.ui.HomeState
@@ -130,14 +132,8 @@ fun WatchDiagnostics() = Swiss {
 fun WatchEditorSkip() = Swiss {
     AppScaffold(timeText = { FixedTimeText() }) {
         EditorContent(
-            draft = alarms.first(),
-            isNew = false,
-            onPickTime = {},
-            onChange = {},
-            onSave = {},
-            onDelete = {},
-            skipped = "Mi., 28.10.",
-            onSkip = {},
+            EditorState(draft = alarms.first(), isNew = false, skipped = "Mi., 28.10."),
+            EditorActions(onPickTime = {}, onChange = {}, onSave = {}, onDelete = {}, onSkip = {}),
             listState = rememberScalingLazyListState(initialCenterItemIndex = SKIP_ITEM),
         )
     }

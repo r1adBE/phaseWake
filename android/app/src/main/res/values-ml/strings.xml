@@ -89,6 +89,7 @@
     <string name="settings_evening_dark">വൈകുന്നേരം ഡാർക്ക്</string>
     <string name="settings_evening_dark_text">%1$s – %2$s ഡാർക്ക്, സിസ്റ്റം അല്ലെങ്കിൽ ലൈറ്റ് ആണെങ്കിലും.</string>
     <string name="settings_evening_dark_from">ഡാർക്ക് തുടങ്ങുന്നത്</string>
+    <string name="settings_evening_dark_now">ഇപ്പോൾ ബാധകം – %1$s മുതൽ ലൈറ്റ്</string>
     <string name="settings_data">നിങ്ങളുടെ ഡാറ്റ</string>
     <string name="settings_data_text">എല്ലാം നിങ്ങളുടെ ഫോണിലും വാച്ചിലും തന്നെ. അക്കൗണ്ടില്ല, സെർവറില്ല, ട്രാക്കിങ്ങില്ല. Google-ന്റെ വാച്ച് കണക്ഷനിലൂടെ വാച്ചിന്റെ സാങ്കേതിക വിവരങ്ങൾ മാത്രമേ പോകൂ, ആരോഗ്യ ഡാറ്റ ഇല്ലാതെ.</string>
     <string name="settings_export">രാത്രികൾ പേരില്ലാതെ എക്‌സ്‌പോർട്ട് ചെയ്യുക</string>
@@ -102,7 +103,7 @@
     <string name="duration_minutes">%1$d മി.</string>
     <string name="duration_hours">%1$d മ.</string>
     <string name="duration_hours_half">%1$d½ മ.</string>
-    <string name="duration_hours_minutes">%1$d മ. %2$d മി.</string>
+    <string name="duration_hours_minutes">%1$d മ. %2$d മി.</string>
     <string name="health_title">Health Connect-ൽ നിന്നുള്ള ഉറക്ക ഘട്ടങ്ങൾ</string>
     <string name="health_rationale">നിങ്ങളുടെ ആരോഗ്യ ആപ്പ് (ഉദാഹരണത്തിന് Samsung Health) സൂക്ഷിക്കുന്ന ഉറക്ക ഡാറ്റ Phase Wake-ന് വായിക്കാം. അത് നിങ്ങളുടെ ചരിത്രത്തിൽ കാണിക്കുന്നു, Phase Wake നിങ്ങളെ ഉണർത്തിയ രാത്രികളുമായി താരതമ്യം ചെയ്യാനും. Phase Wake വായിക്കുക മാത്രം ചെയ്യും, ഒരിക്കലും എഴുതില്ല, ഒന്നും ഫോണിൽ നിന്ന് പുറത്തുപോകില്ല.</string>
     <string name="health_connect">ആരോഗ്യ ഡാറ്റയുമായി താരതമ്യം ചെയ്യുക</string>

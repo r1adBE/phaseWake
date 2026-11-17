@@ -90,6 +90,7 @@
     <string name="settings_evening_dark">Kechqurun qorongʻi</string>
     <string name="settings_evening_dark_text">Qorongʻi: %1$s – %2$s, Tizim yoki Yorugʻ tanlanganda ham.</string>
     <string name="settings_evening_dark_from">Qorongʻi boshlanishi</string>
+    <string name="settings_evening_dark_now">Hozir amalda – %1$s dan yorugʻ</string>
     <string name="settings_data">Maʼlumotlaring</string>
     <string name="settings_data_text">Hammasi telefoning va soatingda qoladi. Hisob yoʻq, server yoʻq, kuzatuv yoʻq. Google soat ulanishi orqali faqat soatning texnik maʼlumotlari oʻtadi, sogʻliq maʼlumotlarisiz.</string>
     <string name="settings_export">Tunlarni ismsiz eksport qilish</string>
@@ -103,7 +104,7 @@
     <string name="duration_minutes">%1$d daq</string>
     <string name="duration_hours">%1$d soat</string>
     <string name="duration_hours_half">%1$d½ soat</string>
-    <string name="duration_hours_minutes">%1$d soat %2$d daq</string>
+    <string name="duration_hours_minutes">%1$d soat %2$d daq</string>
     <string name="health_title">Health Connectʼdagi uyqu bosqichlari</string>
     <string name="health_rationale">Phase Wake sogʻliq ilovang (masalan, Samsung Health) saqlaydigan uyqu maʼlumotlarini oʻqiy oladi. Ular tarixingda koʻrsatiladi, Phase Wake seni uygʻotgan tunlar bilan solishtirish uchun ham. Phase Wake faqat oʻqiydi, hech narsa yozmaydi va hech narsa telefoningdan chiqmaydi.</string>
     <string name="health_connect">Sogʻliq maʼlumotlari bilan solishtirish</string>

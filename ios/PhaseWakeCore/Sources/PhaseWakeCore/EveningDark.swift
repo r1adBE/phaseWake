@@ -1,14 +1,15 @@
 import Foundation
 
 /// Einstellung «Abends dunkel ab», identisch zu Kotlin (`EveningDark.kt`): Steht das Design
-/// auf «System» oder «Hell», zeigt die App ab der gewählten Uhrzeit (Standard 18:00) bis zum Morgen (``untilMinutes``,
+/// auf «System» oder «Hell», zeigt die App ab der gewählten Uhrzeit (Standard 20:00) bis zum Morgen (``untilMinutes``,
 /// 06:00) das dunkle Design; «Dunkel» bleibt dunkel. Gerechnet wird mit der Ortszeit (Wanduhr) in Minuten des Tages,
 /// über Mitternacht hinweg. Gemeinsame Fälle in shared/testdata/evening-dark.vectors.
 public enum EveningDark {
     /// Standard: an.
     public static let defaultEnabled = true
-    /// Standard-Beginn 18:00 (Minuten des Tages).
-    public static let defaultFromMinutes = 18 * 60
+    /// Standard-Beginn 20:00 (Minuten des Tages): im Sommer nicht schon bei hellem Tag dunkel. Ein gespeicherter Beginn
+    /// bleibt, wie er ist.
+    public static let defaultFromMinutes = 20 * 60
     /// Ende am Morgen: fest 06:00. Nicht die Zielzeit des nächsten Weckers – die fehlt an freien Tagen oder liegt Tage
     /// entfernt, und das Ende spränge mit jedem Wecker; der Weckbildschirm ist ohnehin immer dunkel.
     public static let untilMinutes = 6 * 60

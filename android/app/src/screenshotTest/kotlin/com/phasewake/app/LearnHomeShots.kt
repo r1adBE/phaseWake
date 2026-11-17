@@ -14,7 +14,9 @@ import com.phasewake.app.core.LearnNights.Reason
 import com.phasewake.app.shared.RecordSync
 import com.phasewake.app.ui.home.HomeExtras
 import com.phasewake.app.ui.home.HomeLearning
+import com.phasewake.app.ui.home.HomeActions
 import com.phasewake.app.ui.home.HomeScreen
+import com.phasewake.app.ui.home.HomeState
 import com.phasewake.app.ui.settings.LearningGroup
 import com.phasewake.app.ui.settings.LearningSettings
 import com.phasewake.app.ui.theme.ThemeMode
@@ -39,8 +41,9 @@ private fun learning() = HomeLearning(4, null, autoHint = false, miss = missed, 
 @Composable
 private fun LearnHome(mode: ThemeMode, extras: HomeExtras) = Themed(mode) {
     HomeScreen(
-        listOf(work), lastNight = null, check = null, onFix = {}, contentPadding = learnPadding,
-        onAdd = {}, onEdit = {}, onToggle = { _, _ -> }, clock = { FIXED_NOW }, extras = extras,
+        HomeState(listOf(work), lastNight = null, check = null),
+        HomeActions(onFix = {}, onAdd = {}, onEdit = {}, onToggle = { _, _ -> }), contentPadding = learnPadding,
+        clock = { FIXED_NOW }, extras = extras,
     )
 }
 

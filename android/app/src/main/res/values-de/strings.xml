@@ -88,6 +88,7 @@
     <string name="settings_evening_dark">Abends dunkel</string>
     <string name="settings_evening_dark_text">Von %1$s bis %2$s dunkel, auch bei System oder Hell.</string>
     <string name="settings_evening_dark_from">Dunkel ab</string>
+    <string name="settings_evening_dark_now">Gilt jetzt – hell ab %1$s</string>
     <string name="settings_data">Deine Daten</string>
     <string name="settings_data_text">Alles bleibt auf Handy und Uhr. Kein Konto, kein Server, keine Auswertung. Nur technische Angaben zur Uhr laufen über Googles Uhr-Verbindung, ohne Gesundheitsdaten.</string>
     <string name="settings_export">Nächte ohne Namen exportieren</string>
@@ -101,7 +102,7 @@
     <string name="duration_minutes">%1$d Min</string>
     <string name="duration_hours">%1$d Std.</string>
     <string name="duration_hours_half">%1$d½ Std.</string>
-    <string name="duration_hours_minutes">%1$d Std. %2$d Min</string>
+    <string name="duration_hours_minutes">%1$d Std. %2$d Min</string>
     <string name="health_title">Schlafphasen aus Health Connect</string>
     <string name="health_rationale">Phase Wake kann die Schlafdaten lesen, die deine Gesundheits-App (zum Beispiel Samsung Health) ablegt. Sie erscheinen in deinem Verlauf, auch zum Vergleich mit den Nächten, in denen Phase Wake geweckt hat. Phase Wake liest nur, schreibt nie, und nichts verlässt dein Handy.</string>
     <string name="health_connect">Mit Gesundheitsdaten abgleichen</string>

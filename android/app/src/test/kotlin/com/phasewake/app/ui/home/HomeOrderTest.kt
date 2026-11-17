@@ -63,11 +63,13 @@ class HomeOrderTest {
         controller.get().setContent {
             PhaseWakeTheme(ThemeMode.LIGHT) {
                 HomeScreen(
-                    listOf(work), lastNight = null, check = NightCheckState(emptyList()), onFix = {},
+                    HomeState(
+                        listOf(work), lastNight = null, check = NightCheckState(emptyList()), finding = short,
+                        bedtimeFinding = deep,
+                    ),
+                    HomeActions(onFix = {}, onAdd = {}, onEdit = {}, onToggle = { _, _ -> }),
                     contentPadding = PaddingValues(),
-                    onAdd = {}, onEdit = {}, onToggle = { _, _ -> }, finding = short, bedtimeFinding = deep, clock = {
-                        now
-                    },
+                    clock = { now },
                     extras = HomeExtras(onNap = {}, learned = Learning.Values(null, null, 15, 7)),
                 )
             }

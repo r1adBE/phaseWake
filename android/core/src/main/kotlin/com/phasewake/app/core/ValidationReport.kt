@@ -47,6 +47,7 @@ object ValidationReport {
                 .filter { it.second > 0 }.joinToString(" ") { "${it.first} ${it.second}" }.ifEmpty { "-" }
 
         companion object {
+            /** Zählt die Referenzphasen von [entries] ([Validation.Ref.NONE] zählt nicht). */
             fun of(entries: List<Validation.Entry>): Tally = Tally(
                 awake = entries.count { it.ref == Validation.Ref.AWAKE },
                 light = entries.count { it.ref == Validation.Ref.LIGHT },

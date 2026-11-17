@@ -272,6 +272,7 @@ private val AppShapes = Shapes(
 
 val LocalBrand = staticCompositionLocalOf { DarkBrand }
 private val LocalDark = staticCompositionLocalOf { true }
+private val LocalEvening = staticCompositionLocalOf { false }
 
 /** Zugriff auf die Markenfarben und den aufgelösten Modus. */
 object PhaseWakeTheme {
@@ -279,6 +280,9 @@ object PhaseWakeTheme {
 
     /** `true`, wenn gerade das dunkle Design gilt (gewählt oder vom System). */
     val isDark: Boolean @Composable get() = LocalDark.current
+
+    /** `true`, wenn «Abends dunkel ab» gerade gilt (Hinweis in den Einstellungen). */
+    val isEvening: Boolean @Composable get() = LocalEvening.current
 }
 
 /**
@@ -301,6 +305,7 @@ fun PhaseWakeTheme(mode: ThemeMode, eveningDark: Boolean = false, content: @Comp
     }
     androidx.compose.runtime.CompositionLocalProvider(
         LocalBrand provides (if (dark) DarkBrand else LightBrand), LocalDark provides dark,
+        LocalEvening provides eveningDark,
     ) {
         MaterialTheme(colorScheme = scheme, typography = AppTypography, shapes = AppShapes, content = content)
     }

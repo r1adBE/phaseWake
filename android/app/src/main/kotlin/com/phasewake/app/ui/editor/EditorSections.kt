@@ -25,7 +25,6 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TimePicker
-import androidx.compose.material3.TimePickerDefaults
 import androidx.compose.material3.TimePickerLayoutType
 import androidx.compose.material3.TimePickerState
 import androidx.compose.runtime.Composable
@@ -77,7 +76,7 @@ internal fun TimeSection(state: EditorState, time: TimePickerState) {
                 state = time,
                 // Senkrecht: Im 12-h-Format bricht so «vorm./nachm.» in langen Sprachen nicht um.
                 layoutType = TimePickerLayoutType.Vertical,
-                colors = TimePickerDefaults.colors(clockDialColor = MaterialTheme.colorScheme.surfaceContainerHighest),
+                colors = timePickerColors(),
                 modifier = Modifier.padding(top = 8.dp).scaled(TIME_PICKER_SCALE),
             )
         }

@@ -87,6 +87,7 @@
     <string name="settings_evening_dark">晚间深色</string>
     <string name="settings_evening_dark_text">%1$s – %2$s 使用深色，即使选择了“跟随系统”或“浅色”。</string>
     <string name="settings_evening_dark_from">深色开始时间</string>
+    <string name="settings_evening_dark_now">当前生效 – %1$s 起恢复浅色</string>
     <string name="settings_data">你的数据</string>
     <string name="settings_data_text">所有数据都只保存在手机和手表上。无需账号，没有服务器，不做跟踪。只有手表的技术信息会经过 Google 的手表连接，不含健康数据。</string>
     <string name="settings_export">不含姓名导出睡眠记录</string>
@@ -100,7 +101,7 @@
     <string name="duration_minutes">%1$d 分钟</string>
     <string name="duration_hours">%1$d 小时</string>
     <string name="duration_hours_half">%1$d½ 小时</string>
-    <string name="duration_hours_minutes">%1$d 小时 %2$d 分钟</string>
+    <string name="duration_hours_minutes">%1$d 小时 %2$d 分钟</string>
     <string name="health_title">来自 Health Connect 的睡眠阶段</string>
     <string name="health_rationale">Phase Wake 可以读取你的健康应用（例如 Samsung Health）保存的睡眠数据。这些数据会显示在你的记录中，也可与 Phase Wake 叫醒你的那些夜晚进行对比。Phase Wake 只读取、从不写入，数据也不会离开你的手机。</string>
     <string name="health_connect">与健康数据对比</string>

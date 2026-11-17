@@ -114,38 +114,44 @@ private fun WatchApp() {
                         }
                     }
                     EditorContent(
-                        draft = current,
-                        isNew = !editingExisting,
-                        onPickTime = { if (nav.currentDestination?.route == ROUTE_EDITOR) nav.navigate(ROUTE_TIME) },
-                        onChange = { draft = it },
-                        onSave = save@{
-                            if (nav.currentDestination?.route != ROUTE_EDITOR) return@save
-                            if (!editorMaySave(app, editingExisting, alarms, current.id) { back(ROUTE_EDITOR) }) {
-                                return@save
-                            }
-                            saveDraft(app, current, skipRequest, editingExisting)
-                            back(ROUTE_EDITOR)
-                        },
-                        // Anzeige aus dem Stand, der gespeichert würde (gleiche Kernregel wie beim Speichern).
-                        skipped = skippedDay(
-                            alarms.firstOrNull { it.id == current.id },
-                            current,
-                            skipRequest,
-                            holidays,
-                            done[current.id],
+                        state = EditorState(
+                            draft = current,
+                            isNew = !editingExisting,
+                            // Anzeige aus dem Stand, der gespeichert würde (gleiche Kernregel wie beim Speichern).
+                            skipped = skippedDay(
+                                alarms.firstOrNull { it.id == current.id },
+                                current,
+                                skipRequest,
+                                holidays,
+                                done[current.id],
+                            ),
                         ),
-                        onSkip = if (current.isOneShot || alarms.none { it.id == current.id }) {
-                            null
-                        } else {
-                            { on -> skipRequest = on }
-                        },
-                        onDelete = {
-                            app.appScope.launch {
-                                app.sync.publishAlarms(app.alarms.remove(current.id))
-                                app.scheduler.reschedule()
-                            }
-                            back(ROUTE_EDITOR)
-                        },
+                        actions = EditorActions(
+                            onPickTime = {
+                                if (nav.currentDestination?.route == ROUTE_EDITOR) nav.navigate(ROUTE_TIME)
+                            },
+                            onChange = { draft = it },
+                            onSave = save@{
+                                if (nav.currentDestination?.route != ROUTE_EDITOR) return@save
+                                if (!editorMaySave(app, editingExisting, alarms, current.id) { back(ROUTE_EDITOR) }) {
+                                    return@save
+                                }
+                                saveDraft(app, current, skipRequest, editingExisting)
+                                back(ROUTE_EDITOR)
+                            },
+                            onSkip = if (current.isOneShot || alarms.none { it.id == current.id }) {
+                                null
+                            } else {
+                                { on -> skipRequest = on }
+                            },
+                            onDelete = {
+                                app.appScope.launch {
+                                    app.sync.publishAlarms(app.alarms.remove(current.id))
+                                    app.scheduler.reschedule()
+                                }
+                                back(ROUTE_EDITOR)
+                            },
+                        ),
                     )
                 }
             }

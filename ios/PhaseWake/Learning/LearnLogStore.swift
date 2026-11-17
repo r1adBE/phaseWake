@@ -108,6 +108,11 @@ final class LearnLogStore {
         guard loaded else { return }
         let stored = Stored(skips: LearnLog.encodeSkips(skips), alarmNights: LearnLog.encodeAlarmNights(alarmNights),
                             alarmsSince: alarmsSince?.timeIntervalSince1970)
-        if let data = try? JSONEncoder().encode(stored) { try? data.write(to: url, options: .atomic) }
+        // Atomar: Scheitert es, bleibt der vorige Stand; protokolliert.
+        do {
+            try JSONEncoder().encode(stored).write(to: url, options: .atomic)
+        } catch {
+            DiagStore.shared.log(.error, "learn log not saved \((error as NSError).code)")
+        }
     }
 }

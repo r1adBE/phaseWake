@@ -90,6 +90,7 @@
     <string name="settings_evening_dark">Wieczorem ciemny</string>
     <string name="settings_evening_dark_text">Ciemny od %1$s do %2$s, także przy Systemowy lub Jasny.</string>
     <string name="settings_evening_dark_from">Ciemny od</string>
+    <string name="settings_evening_dark_now">Działa teraz – jasny od %1$s</string>
     <string name="settings_data">Twoje dane</string>
     <string name="settings_data_text">Wszystko zostaje na telefonie i zegarku. Bez konta, serwera i śledzenia. Przez połączenie zegarka Google przechodzą tylko dane techniczne zegarka, bez danych o zdrowiu.</string>
     <string name="settings_export">Eksportuj noce bez imienia</string>
@@ -103,7 +104,7 @@
     <string name="duration_minutes">%1$d min</string>
     <string name="duration_hours">%1$d godz.</string>
     <string name="duration_hours_half">%1$d½ godz.</string>
-    <string name="duration_hours_minutes">%1$d godz. %2$d min</string>
+    <string name="duration_hours_minutes">%1$d godz. %2$d min</string>
     <string name="health_title">Fazy snu z Health Connect</string>
     <string name="health_rationale">Phase Wake może odczytywać dane o śnie, które zapisuje aplikacja zdrowotna (na przykład Samsung Health). Są wyświetlane w twojej historii, także do porównania z nocami, w których obudził cię Phase Wake. Phase Wake tylko czyta, nigdy nie zapisuje, a nic nie opuszcza twojego telefonu.</string>
     <string name="health_connect">Porównaj z danymi zdrowotnymi</string>

@@ -51,7 +51,7 @@
     <string name="dnd_title">Lokað á vekjara</string>
     <string name="dnd_text">Leyfðu vekjara í „Ónáðið ekki“.</string>
     <string name="duration_hours">%1$d klst</string>
-    <string name="duration_hours_minutes">%1$d klst %2$d mín</string>
+    <string name="duration_hours_minutes">%1$d klst %2$d mín</string>
     <string name="home_last_night">Síðasta nótt</string>
     <string name="notification_open">Opna</string>
     <string name="home_good_night_too_far">Í boði frá 16 klst fyrir vekjarann</string>

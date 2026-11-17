@@ -91,6 +91,7 @@
     <string name="settings_evening_dark">Večer tmavý</string>
     <string name="settings_evening_dark_text">Tmavý od %1$s do %2$s, aj pri Systém alebo Svetlý.</string>
     <string name="settings_evening_dark_from">Tmavý od</string>
+    <string name="settings_evening_dark_now">Platí teraz – svetlý od %1$s</string>
     <string name="settings_data">Tvoje údaje</string>
     <string name="settings_data_text">Všetko zostáva v telefóne a hodinkách. Žiadny účet, žiadny server, žiadne sledovanie. Cez pripojenie hodiniek od Googlu idú iba technické údaje o hodinkách, bez zdravotných údajov.</string>
     <string name="settings_export">Exportovať noci bez mena</string>
@@ -104,7 +105,7 @@
     <string name="duration_minutes">%1$d min</string>
     <string name="duration_hours">%1$d h</string>
     <string name="duration_hours_half">%1$d½ h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fázy spánku z Health Connect</string>
     <string name="health_rationale">Phase Wake vie čítať údaje o spánku, ktoré ukladá tvoja zdravotná aplikácia (napríklad Samsung Health). Zobrazujú sa v tvojej histórii, aj na porovnanie s nocami, keď ťa zobudil Phase Wake. Phase Wake iba číta, nikdy nezapisuje a nič neopustí tvoj telefón.</string>
     <string name="health_connect">Porovnať so zdravotnými údajmi</string>

@@ -90,6 +90,7 @@
     <string name="settings_evening_dark">संध्याकाळी गडद</string>
     <string name="settings_evening_dark_text">%1$s – %2$s गडद, सिस्टम किंवा फिकट निवडले तरी.</string>
     <string name="settings_evening_dark_from">गडद सुरू</string>
+    <string name="settings_evening_dark_now">आता लागू – %1$s पासून फिकट</string>
     <string name="settings_data">तुमचा डेटा</string>
     <string name="settings_data_text">सगळं तुमच्या फोनवर आणि घड्याळावरच राहतं. खातं नाही, सर्व्हर नाही, ट्रॅकिंग नाही. Google च्या घड्याळ जोडणीतून फक्त घड्याळाची तांत्रिक माहिती जाते, आरोग्य डेटाशिवाय.</string>
     <string name="settings_export">रात्री नावाशिवाय एक्सपोर्ट करा</string>
@@ -103,7 +104,7 @@
     <string name="duration_minutes">%1$d मि.</string>
     <string name="duration_hours">%1$d ता.</string>
     <string name="duration_hours_half">%1$d½ ता.</string>
-    <string name="duration_hours_minutes">%1$d ता. %2$d मि.</string>
+    <string name="duration_hours_minutes">%1$d ता. %2$d मि.</string>
     <string name="health_title">Health Connect मधील झोपेचे टप्पे</string>
     <string name="health_rationale">तुमचे हेल्थ ॲप (उदा. Samsung Health) जो झोपेचा डेटा साठवते, तो Phase Wake वाचू शकते. तो तुमच्या इतिहासात दिसतो, Phase Wake ने तुम्हाला उठवलेल्या रात्रींशी तुलना करण्यासाठीही. Phase Wake फक्त वाचते, कधीच लिहीत नाही, आणि काहीही तुमच्या फोनबाहेर जात नाही.</string>
     <string name="health_connect">हेल्थ डेटाशी तुलना करा</string>

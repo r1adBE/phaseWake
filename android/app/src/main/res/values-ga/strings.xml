@@ -93,6 +93,7 @@
     <string name="settings_evening_dark">Dorcha tráthnóna</string>
     <string name="settings_evening_dark_text">Dorcha ó %1$s go %2$s, fiú le Córas nó Geal.</string>
     <string name="settings_evening_dark_from">Dorcha ó</string>
+    <string name="settings_evening_dark_now">I bhfeidhm anois – geal ó %1$s</string>
     <string name="settings_data">Do chuid sonraí</string>
     <string name="settings_data_text">Fanann gach rud ar do fhón agus ar d’uaireadóir. Gan chuntas, gan fhreastalaí, gan rianú. Ní théann ach faisnéis theicniúil faoin uaireadóir trí cheangal uaireadóra Google, gan sonraí sláinte.</string>
     <string name="settings_export">Easpórtáil oícheanta gan ainm</string>
@@ -106,7 +107,7 @@
     <string name="duration_minutes">%1$d nóim</string>
     <string name="duration_hours">%1$d u</string>
     <string name="duration_hours_half">%1$d½ u</string>
-    <string name="duration_hours_minutes">%1$d u %2$d nóim</string>
+    <string name="duration_hours_minutes">%1$d u %2$d nóim</string>
     <string name="health_title">Céimeanna codlata ó Health Connect</string>
     <string name="health_rationale">Is féidir le Phase Wake na sonraí codlata a shábhálann d’aip sláinte (mar shampla Samsung Health) a léamh. Taispeántar iad i do stair, freisin chun comparáid a dhéanamh leis na hoícheanta ar dhúisigh Phase Wake thú. Ní dhéanann Phase Wake ach léamh, ní scríobhann sé riamh, agus ní fhágann aon rud do fhón.</string>
     <string name="health_connect">Cuir i gcomparáid le sonraí sláinte</string>

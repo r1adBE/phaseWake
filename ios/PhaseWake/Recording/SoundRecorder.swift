@@ -104,7 +104,10 @@ final class SoundRecorder {
         switch AVAudioApplication.shared.recordPermission {
         case .granted: return true
         case .denied: return false
-        default: return await AVAudioApplication.requestRecordPermission()
+        default:
+            PermissionPrompt.begin()
+            defer { PermissionPrompt.end() }
+            return await AVAudioApplication.requestRecordPermission()
         }
     }
 
@@ -240,6 +243,11 @@ final class SoundRecorder {
 
     private func save(_ list: [SoundClip]) {
         clips = SoundEvents.decode(SoundEvents.encode(list))
-        try? Data(SoundEvents.encode(list).utf8).write(to: Self.indexURL, options: .atomic)
+        // Atomar: Scheitert es, bleibt die vorige Liste auf der Platte (im Speicher gilt die neue); protokolliert.
+        do {
+            try Data(SoundEvents.encode(list).utf8).write(to: Self.indexURL, options: .atomic)
+        } catch {
+            DiagStore.shared.log(.error, "sound list not saved \((error as NSError).code)")
+        }
     }
 }

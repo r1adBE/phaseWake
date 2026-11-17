@@ -39,7 +39,7 @@ object EveningDarkTicker {
         }
     }.distinctUntilChanged()
 
-    /** Zustand jetzt mit den Vorgaben (an, ab 18:00): erster Wert, bevor die Einstellungen gelesen sind. */
+    /** Zustand jetzt mit den Vorgaben (an, ab 20:00): erster Wert, bevor die Einstellungen gelesen sind. */
     fun initial(now: Instant = Instant.now(), zone: ZoneId = ZoneId.systemDefault()): Boolean =
         EveningDark.isDark(now, zone, EveningDark.DEFAULT_ENABLED, EveningDark.DEFAULT_FROM_MINUTES)
 }

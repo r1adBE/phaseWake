@@ -51,7 +51,7 @@
     <string name="dnd_title">अलार्म रोकिएको छ</string>
     <string name="dnd_text">“बाधा नपुर्‍याउनुहोस्” मा अलार्मलाई अनुमति देऊ।</string>
     <string name="duration_hours">%1$d घ.</string>
-    <string name="duration_hours_minutes">%1$d घ. %2$d मि.</string>
+    <string name="duration_hours_minutes">%1$d घ. %2$d मि.</string>
     <string name="home_last_night">हिजो राति</string>
     <string name="notification_open">खोल</string>
     <string name="home_good_night_too_far">अलार्मभन्दा १६ घ. अघिदेखि उपलब्ध</string>

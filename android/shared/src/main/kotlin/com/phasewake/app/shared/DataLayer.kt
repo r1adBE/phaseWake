@@ -74,11 +74,28 @@ object DataLayer {
     const val PATH_ACK = "/phasewake/ack"
 
     /**
-     * Nachricht in beide Richtungen (ohne Inhalt): Die Gegenseite soll ihren aktuellen Stand einreihen (Wecker; vom
+     * Nachricht in beide Richtungen: Die Gegenseite soll ihren aktuellen Stand einreihen (Wecker; vom
      * Handy auch Lernphase, Schlafziel, Schalter, Feiertage; von der Uhr auch den Stand der Aufzeichnung). Ersetzt das
-     * frühere Abholen aus dem Data Layer, etwa für eine frisch installierte Seite.
+     * frühere Abholen aus dem Data Layer, etwa für eine frisch installierte Seite. Ohne Inhalt: der volle Stand;
+     * Inhalt [SYNC_CHANGED_ONLY]: nur, was die Gegenseite noch nicht bestätigt hat ([wantsFullSync]).
      */
     const val PATH_SYNC_REQUEST = "/phasewake/sync-request"
+
+    /**
+     * Inhalt von [PATH_SYNC_REQUEST] beim Fortsetzen der Uhr-App: nur Ungeprüftes. Ein voller Stand ist der Normalfall
+     * (leerer Inhalt), so bekommt auch eine Uhr mit älterer Version oder frisch installiert immer alles.
+     */
+    const val SYNC_CHANGED_ONLY = "changed"
+
+    /** Ob eine Anfrage [PATH_SYNC_REQUEST] mit [data] den vollen Stand verlangt (alles ausser [SYNC_CHANGED_ONLY]). */
+    fun wantsFullSync(data: ByteArray?): Boolean = text(data) != SYNC_CHANGED_ONLY
+
+    /**
+     * Inhalt der Anfrage beim Fortsetzen: Hat diese Seite noch nie einen Eintrag der Gegenseite verarbeitet
+     * ([receivedAny] falsch: frisch installiert oder zurückgesetzt), den vollen Stand, sonst nur Ungeprüftes.
+     */
+    fun resumeSyncPayload(receivedAny: Boolean): ByteArray =
+        if (receivedAny) SYNC_CHANGED_ONLY.encodeToByteArray() else ByteArray(0)
 
     /** Nachricht Uhr → Handy: Weckvorgang hat begonnen; Inhalt = [RingMessage]. */
     const val PATH_RING = "/phasewake/ring"

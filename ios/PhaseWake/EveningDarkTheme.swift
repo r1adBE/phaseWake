@@ -8,6 +8,18 @@ enum EveningDarkKeys {
     static let from = "evening_dark_from"
 }
 
+/// Ob «Abends dunkel ab» gerade gilt; gesetzt von ``EveningDarkModifier`` für den Hinweis in den Einstellungen.
+private struct EveningDarkActiveKey: EnvironmentKey {
+    static let defaultValue = false
+}
+
+extension EnvironmentValues {
+    var eveningDarkActive: Bool {
+        get { self[EveningDarkActiveKey.self] }
+        set { self[EveningDarkActiveKey.self] = newValue }
+    }
+}
+
 extension ThemeMode {
     /// Design mit «Abends dunkel ab», wie `resolveDark` auf Android: «Dunkel» bleibt dunkel; abends werden «Hell» und
     /// «System» dunkel; sonst gilt die Wahl (`nil` = wie das System).
@@ -35,6 +47,7 @@ struct EveningDarkModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .preferredColorScheme(themeMode.colorScheme(evening: evening))
+            .environment(\.eveningDarkActive, evening)
             .task(id: Key(enabled: enabled, from: from, clock: clockChanges)) {
                 while !Task.isCancelled {
                     let now = Date()
@@ -58,10 +71,13 @@ struct EveningDarkModifier: ViewModifier {
     }
 }
 
-/// Abschnitt «Abends dunkel ab» in den Einstellungen: Schalter und Beginn (Ende fest 06:00), wie Android.
+/// Abschnitt «Abends dunkel ab» in den Einstellungen: Schalter und Beginn (Ende fest 06:00), wie Android. Gilt die
+/// Regel gerade, ein Hinweis «Gilt jetzt – hell ab …» unter dem Schalter.
 struct EveningDarkSettingsSection: View {
     @PrivateSetting(EveningDarkKeys.enabled) private var enabled = EveningDark.defaultEnabled
     @PrivateSetting(EveningDarkKeys.from) private var from = EveningDark.defaultFromMinutes
+    @Environment(\.eveningDarkActive) private var active
+    @Environment(\.colorScheme) private var scheme
 
     private var fromDate: Binding<Date> {
         Binding(
@@ -78,12 +94,16 @@ struct EveningDarkSettingsSection: View {
 
     var body: some View {
         let m = EveningDark.checkedFrom(from)
+        let until = Format.time(hour: EveningDark.untilMinutes / 60, minute: EveningDark.untilMinutes % 60)
         Toggle(L("settings_evening_dark"), isOn: $enabled)
         if enabled {
+            // Gilt die Regel gerade, bleibt die App auch bei «Hell» dunkel: sagen, warum und bis wann.
+            if active {
+                Text(L("settings_evening_dark_now", until)).font(.footnote).foregroundStyle(Brand.accent(scheme))
+            }
             DatePicker(L("settings_evening_dark_from"), selection: fromDate, displayedComponents: .hourAndMinute)
         }
-        Text(L("settings_evening_dark_text", Format.time(hour: m / 60, minute: m % 60),
-               Format.time(hour: EveningDark.untilMinutes / 60, minute: EveningDark.untilMinutes % 60)))
+        Text(L("settings_evening_dark_text", Format.time(hour: m / 60, minute: m % 60), until))
             .font(.footnote).foregroundStyle(.secondary)
     }
 }

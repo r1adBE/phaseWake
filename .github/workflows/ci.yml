@@ -19,15 +19,38 @@ jobs:
   # gelaufen. Dann überspringt main die schweren Jobs (übersprungene Jobs gelten bei verlangten Prüfungen als
   # erfüllt), und die Testversion übernimmt die APKs jenes Laufs. Gezählt werden nur Push-Läufe: Sie prüfen genau
   # diesen Commit (ein PR-Lauf prüft den Merge mit main).
+  # Ändert ein Pull Request nur android/** oder die Python-Anforderungen der Workflows (meist Dependabot), prüfen
+  # die Apple-Jobs nichts Neues: «apple=false» überspringt sie (ebenfalls als erfüllt gewertet).
   vorab:
     name: Schon geprüft?
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
       actions: read
+      pull-requests: read
     outputs:
       done: ${{ steps.check.outputs.done }}
+      apple: ${{ steps.apple.outputs.apple }}
     steps:
+      - name: Betrifft der Pull Request die Apple-Apps?
+        id: apple
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          set -uo pipefail
+          # Im Zweifel (kein PR, Abfrage gescheitert, keine Dateien) laufen die Apple-Jobs.
+          apple=true
+          if [ "$GITHUB_EVENT_NAME" = pull_request ] && [ -n "$PR" ] \
+             && files=$(gh api --paginate "repos/$REPO/pulls/$PR/files?per_page=100" --jq '.[].filename') \
+             && [ -n "$files" ] \
+             && ! printf '%s\n' "$files" | grep -qvE '^(android/|\.github/scripts/[^/]*requirements[^/]*$)'; then
+            apple=false
+            echo "::notice title=CI::Nur Android oder Python-Anforderungen geändert: Apple-Jobs übersprungen"
+          fi
+          echo "apple=$apple" >> "$GITHUB_OUTPUT"
       - name: Grüner Lauf für diesen Commit?
         id: check
         shell: bash
@@ -66,6 +89,7 @@ jobs:
       - uses: gradle/actions/setup-gradle@8da46b539cd8fe6ab27ca75128919a18d757604c # v6.4.1
       - name: Regeln (Dateigrösse, Zeilenbreite, Funktionslänge, Parameter, Build-Nummern, TODO)
         run: |
+          python3 -B -m unittest discover -s ../.github/scripts -p 'test_*.py'
           python3 ../.github/scripts/line_limit.py --ci
           python3 ../.github/scripts/code_limits.py --ci
           python3 ../.github/scripts/no_build_numbers.py --ci
@@ -88,7 +112,9 @@ jobs:
         run: |
           set -o pipefail
           ./gradlew --stacktrace --continue --no-parallel :app:validateDebugScreenshotTest :wear:validateDebugScreenshotTest 2>&1 | tee -a build.log
+      # Nur bei Push: Nur dann werden die APKs abgelegt (unten).
       - name: Testversion-APKs bauen
+        if: github.event_name == 'push'
         shell: bash
         env:
           # Build-Nummer wie in «Testversion» (übernimmt die APKs). Eigener Aufruf: Die Nummer steht im
@@ -99,6 +125,15 @@ jobs:
           ./gradlew --stacktrace :app:assembleDebug :wear:assembleDebug 2>&1 | tee -a build.log
       - name: Store-Build prüfen
         run: python3 ../.github/scripts/release_check.py
+      # Dieselbe Positivliste für die Testversion (ohne Vorschau-Activity); ohne APKs nur das Manifest erzeugen.
+      - name: Testversion prüfen
+        shell: bash
+        run: |
+          set -o pipefail
+          if [ "$GITHUB_EVENT_NAME" != push ]; then
+            ./gradlew --stacktrace :app:processDebugMainManifest :wear:processDebugMainManifest 2>&1 | tee -a build.log
+          fi
+          python3 ../.github/scripts/release_check.py --debug
       - name: Schwachstellen der Abhängigkeiten (OSV)
         run: python3 ../.github/scripts/osv_check.py
       - name: Abdeckung
@@ -206,7 +241,7 @@ jobs:
   apple-core:
     name: Apple-Kern (Swift)
     needs: vorab
-    if: needs.vorab.outputs.done != 'true'
+    if: needs.vorab.outputs.done != 'true' && needs.vorab.outputs.apple != 'false'
     runs-on: macos-latest
     # Wie die übrigen Jobs mit Frist.
     timeout-minutes: 30
@@ -241,7 +276,7 @@ jobs:
   apple-app:
     name: Apple-Apps (iPhone, Watch)
     needs: vorab
-    if: needs.vorab.outputs.done != 'true'
+    if: needs.vorab.outputs.done != 'true' && needs.vorab.outputs.apple != 'false'
     runs-on: macos-latest
     # Ein hängender Build bricht ab statt den Lauf bis zu 6 Std. zu blockieren.
     timeout-minutes: 45

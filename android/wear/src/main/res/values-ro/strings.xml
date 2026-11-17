@@ -52,7 +52,7 @@
     <string name="dnd_title">Alarme blocate</string>
     <string name="dnd_text">Permite alarmele în modul Nu deranja.</string>
     <string name="duration_hours">%1$d h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="home_last_night">Noaptea trecută</string>
     <string name="notification_open">Deschide</string>
     <string name="home_good_night_too_far">Disponibil cu 16 h înainte de alarmă</string>

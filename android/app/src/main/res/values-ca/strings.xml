@@ -90,6 +90,7 @@
     <string name="settings_evening_dark">Fosc al vespre</string>
     <string name="settings_evening_dark_text">Fosc de %1$s a %2$s, també amb Sistema o Clar.</string>
     <string name="settings_evening_dark_from">Fosc a partir de</string>
+    <string name="settings_evening_dark_now">Actiu ara – clar a partir de les %1$s</string>
     <string name="settings_data">Les teves dades</string>
     <string name="settings_data_text">Tot es queda al telèfon i al rellotge. Sense compte, sense servidor, sense seguiment. Per la connexió del rellotge de Google només passa informació tècnica del rellotge, sense dades de salut.</string>
     <string name="settings_export">Exporta les nits sense nom</string>
@@ -103,7 +104,7 @@
     <string name="duration_minutes">%1$d min</string>
     <string name="duration_hours">%1$d h</string>
     <string name="duration_hours_half">%1$d½ h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fases del son de Health Connect</string>
     <string name="health_rationale">Phase Wake pot llegir les dades de son que la teva app de salut (per exemple, Samsung Health) desa. Es mostren al teu historial, també per comparar-les amb les nits en què Phase Wake t’ha despertat. Phase Wake només llegeix, mai no escriu, i res no surt del teu telèfon.</string>
     <string name="health_connect">Compara amb les dades de salut</string>

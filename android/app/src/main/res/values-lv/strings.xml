@@ -91,6 +91,7 @@
     <string name="settings_evening_dark">Vakarā tumšs</string>
     <string name="settings_evening_dark_text">Tumšs no %1$s līdz %2$s, arī ar Sistēma vai Gaišs.</string>
     <string name="settings_evening_dark_from">Tumšs no</string>
+    <string name="settings_evening_dark_now">Darbojas tagad – gaišs no %1$s</string>
     <string name="settings_data">Tavi dati</string>
     <string name="settings_data_text">Viss paliek tavā tālrunī un pulkstenī. Bez konta, bez servera, bez izsekošanas. Caur Google pulksteņa savienojumu iet tikai tehniska informācija par pulksteni, bez veselības datiem.</string>
     <string name="settings_export">Eksportēt naktis bez vārda</string>
@@ -104,7 +105,7 @@
     <string name="duration_minutes">%1$d min</string>
     <string name="duration_hours">%1$d st.</string>
     <string name="duration_hours_half">%1$d½ st.</string>
-    <string name="duration_hours_minutes">%1$d st. %2$d min</string>
+    <string name="duration_hours_minutes">%1$d st. %2$d min</string>
     <string name="health_title">Miega fāzes no Health Connect</string>
     <string name="health_rationale">Phase Wake var nolasīt miega datus, ko tava veselības lietotne (piemēram, Samsung Health) saglabā. Tie tiek rādīti tavā vēsturē, arī salīdzināšanai ar naktīm, kad tevi pamodināja Phase Wake. Phase Wake tikai lasa, nekad neraksta, un nekas neatstāj tavu tālruni.</string>
     <string name="health_connect">Salīdzināt ar veselības datiem</string>

@@ -81,6 +81,7 @@
     <string name="settings_evening_dark">Երեկոյան մուգ</string>
     <string name="settings_evening_dark_text">Մուգ՝ %1$s – %2$s, նաև Համակարգային կամ Բաց ընտրության դեպքում։</string>
     <string name="settings_evening_dark_from">Մուգի սկիզբ</string>
+    <string name="settings_evening_dark_now">Գործում է հիմա – բաց՝ %1$s-ից</string>
     <string name="settings_data">Քո տվյալները</string>
     <string name="settings_data_text">Ամեն ինչ մնում է հեռախոսիդ ու ժամացույցիդ վրա։ Ո՛չ հաշիվ, ո՛չ սերվեր, ո՛չ հետևում։ Google-ի ժամացույցի կապով անցնում են միայն ժամացույցի տեխնիկական տվյալներ՝ առանց առողջության տվյալների։</string>
     <string name="settings_export">Արտահանել գիշերները առանց անվան</string>
@@ -93,7 +94,7 @@
     <string name="duration_minutes">%1$d ր</string>
     <string name="duration_hours">%1$d ժ</string>
     <string name="duration_hours_half">%1$d½ ժ</string>
-    <string name="duration_hours_minutes">%1$d ժ %2$d ր</string>
+    <string name="duration_hours_minutes">%1$d ժ %2$d ր</string>
     <string name="health_title">Քնի փուլերը Health Connect-ից</string>
     <string name="health_rationale">Phase Wake-ը կարող է կարդալ քնի տվյալները, որոնք առողջության հավելվածդ (օրինակ՝ Samsung Health) պահում է։ Դրանք ցուցադրվում են քո պատմության մեջ, նաև համեմատելու համար այն գիշերների հետ, երբ քեզ արթնացրել է Phase Wake-ը։ Phase Wake-ը միայն կարդում է, երբեք չի գրում, և ոչինչ դուրս չի գալիս հեռախոսիցդ։</string>
     <string name="health_connect">Համեմատել առողջության տվյալների հետ</string>

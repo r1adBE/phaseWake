@@ -43,6 +43,9 @@ import com.phasewake.app.ui.editor.TIME_PICKER_SCALE
 import com.phasewake.app.ui.editor.CHECK_ICON_MAX_SEGMENTS
 import com.phasewake.app.ui.editor.WINDOW_OPTIONS
 import com.phasewake.app.ui.editor.scaled
+import com.phasewake.app.ui.editor.timePickerColors
+import com.phasewake.app.ui.theme.PhaseWakeTheme
+import com.phasewake.app.ui.theme.Creme
 import com.phasewake.app.ui.home.Check
 import com.phasewake.app.ui.settings.HealthState
 import java.time.Instant
@@ -68,8 +71,13 @@ internal fun Body(text: Int) {
 
 @Composable
 internal fun Welcome() {
-    // Mond in der Schriftfarbe: auf dem hellen Grund dunkel, im dunklen Modus hell.
-    LogoMark(64.dp, moon = MaterialTheme.colorScheme.onSurface)
+    // Mond in der Schriftfarbe: auf dem hellen Grund dunkel, im dunklen Modus hell. Hell die Welle in Lavendel
+    // #5546C8 wie im Kopf der Startseite (die Vorgabe wäre auf Creme zu blass).
+    if (PhaseWakeTheme.isDark) {
+        LogoMark(64.dp, moon = MaterialTheme.colorScheme.onSurface)
+    } else {
+        LogoMark(64.dp, moon = MaterialTheme.colorScheme.onSurface, wave = Creme.LavenderDeep)
+    }
     Page(R.string.onb_welcome_title) {
         Body(R.string.onb_welcome_text)
         Text(
@@ -134,6 +142,7 @@ internal fun AlarmStep(
         val lockedText = created?.let { stringResource(R.string.onb_alarm_done, it) }
         TimePicker(
             time,
+            colors = timePickerColors(),
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .scaled(TIME_PICKER_SCALE)

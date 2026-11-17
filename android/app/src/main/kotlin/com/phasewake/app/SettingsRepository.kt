@@ -41,7 +41,7 @@ class SettingsRepository(
         store.edit { it[THEME] = mode.name }
     }
 
-    /** «Abends dunkel ab» (Standard an, ab 18:00). */
+    /** «Abends dunkel ab» (Standard an, ab 20:00). */
     val eveningDark: Flow<EveningDarkSetting> = store.data.map { prefs ->
         EveningDarkSetting(
             prefs[EVENING_DARK] ?: EveningDark.DEFAULT_ENABLED, EveningDark.checkedFrom(prefs[EVENING_DARK_FROM]),

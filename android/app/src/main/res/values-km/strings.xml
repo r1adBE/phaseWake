@@ -88,6 +88,7 @@
     <string name="settings_evening_dark">ងងឹតពេលល្ងាច</string>
     <string name="settings_evening_dark_text">ងងឹតពី %1$s ដល់ %2$s ទោះជ្រើស ប្រព័ន្ធ ឬ ភ្លឺ ក៏ដោយ។</string>
     <string name="settings_evening_dark_from">ងងឹតចាប់ពី</string>
+    <string name="settings_evening_dark_now">កំពុងអនុវត្ត – ភ្លឺចាប់ពី %1$s</string>
     <string name="settings_data">ទិន្នន័យរបស់អ្នក</string>
     <string name="settings_data_text">អ្វីៗទាំងអស់នៅលើទូរសព្ទ និងនាឡិការបស់អ្នក។ គ្មានគណនី គ្មានម៉ាស៊ីនមេ គ្មានការតាមដាន។ មានតែព័ត៌មានបច្ចេកទេសអំពីនាឡិកាប៉ុណ្ណោះ ដែលឆ្លងកាត់ការតភ្ជាប់នាឡិការបស់ Google ដោយគ្មានទិន្នន័យសុខភាព។</string>
     <string name="settings_export">នាំចេញយប់ដោយគ្មានឈ្មោះ</string>
@@ -101,7 +102,7 @@
     <string name="duration_minutes">%1$d នាទី</string>
     <string name="duration_hours">%1$d ម៉ោង</string>
     <string name="duration_hours_half">%1$d½ ម៉ោង</string>
-    <string name="duration_hours_minutes">%1$d ម៉ោង %2$d នាទី</string>
+    <string name="duration_hours_minutes">%1$d ម៉ោង %2$d នាទី</string>
     <string name="health_title">ដំណាក់កាលដំណេកពី Health Connect</string>
     <string name="health_rationale">Phase Wake អាចអានទិន្នន័យដំណេក ដែលកម្មវិធីសុខភាពរបស់អ្នក (ឧទាហរណ៍ Samsung Health) រក្សាទុក។ វាបង្ហាញក្នុងប្រវត្តិរបស់អ្នក ក៏ដូចជាសម្រាប់ប្រៀបធៀបជាមួយយប់ដែល Phase Wake បានដាស់អ្នក។ Phase Wake គ្រាន់តែអាន មិនដែលសរសេរ ហើយគ្មានអ្វីចេញពីទូរសព្ទរបស់អ្នកទេ។</string>
     <string name="health_connect">ប្រៀបធៀបជាមួយទិន្នន័យសុខភាព</string>

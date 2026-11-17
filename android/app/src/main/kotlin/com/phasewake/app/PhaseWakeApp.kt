@@ -203,14 +203,16 @@ open class PhaseWakeApp : Application() {
     /**
      * Aktuellen Stand an die Uhr einreihen (Wunsch der Uhr, [com.phasewake.app.shared.DataLayer.PATH_SYNC_REQUEST]):
      * Wecker, Schlafziel, Schalter der Einschlaf-Messung, Feiertage und Lernphase. Gleiche Schlüssel ersetzen ältere
-     * Einträge; die Uhr übernimmt nur Neueres.
+     * Einträge; die Uhr übernimmt nur Neueres. Ohne [full] (Uhr-App fortgesetzt, die Uhr hat schon Einträge vom Handy)
+     * nur, was die Uhr noch nicht bestätigt hat; mit [full] (Prozessstart, frisch installiert, ältere Version) alles.
      */
-    suspend fun publishToWatch() {
-        sync.publishAlarms(alarms.current())
-        publishSleepGoal()
-        publishAutoOnset()
-        holidays.republish()
-        publishLearning()
+    suspend fun publishToWatch(full: Boolean = true) {
+        val unlessAcked = !full
+        sync.publishAlarms(alarms.current(), unlessAcked)
+        publishSleepGoal(unlessAcked)
+        publishAutoOnset(unlessAcked)
+        holidays.republish(unlessAcked)
+        publishLearning(unlessAcked)
         // Auch alles andere Wartende: Die Uhr ist ja gerade erreichbar.
         sync.flush()
     }
@@ -271,11 +273,11 @@ open class PhaseWakeApp : Application() {
     }
 
     /**
-     * Schickt den Stand der Lernphase an die Uhr (beim Start, fertig, neu begonnen). Offen nur für Robolectric-Tests,
-     * die die Meldung prüfen (dort gibt es keinen Data Layer).
+     * Schickt den Stand der Lernphase an die Uhr (beim Start, fertig, neu begonnen); [unlessAcked] wie bei
+     * [publishSleepGoal]. Offen nur für Robolectric-Tests, die die Meldung prüfen (dort gibt es keinen Data Layer).
      */
-    internal open suspend fun publishLearning() {
-        learningSync.publish(learningForWatch())
+    internal open suspend fun publishLearning(unlessAcked: Boolean = false) {
+        learningSync.publish(learningForWatch(), unlessAcked)
     }
 
     /** Stand der Lernphase für die Uhr; ohne Zeitpunkt (Handy neu installiert) mit «jetzt». */

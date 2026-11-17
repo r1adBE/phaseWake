@@ -90,6 +90,7 @@
     <string name="settings_evening_dark">E errët në mbrëmje</string>
     <string name="settings_evening_dark_text">E errët nga %1$s deri në %2$s, edhe me Sistemi ose E çelët.</string>
     <string name="settings_evening_dark_from">E errët nga</string>
+    <string name="settings_evening_dark_now">Aktive tani – e çelët nga %1$s</string>
     <string name="settings_data">Të dhënat e tua</string>
     <string name="settings_data_text">Gjithçka mbetet në telefon dhe në orë. Pa llogari, pa server, pa gjurmim. Përmes lidhjes së orës së Google kalojnë vetëm të dhëna teknike për orën, pa të dhëna shëndetësore.</string>
     <string name="settings_export">Eksporto netët pa emër</string>
@@ -103,7 +104,7 @@
     <string name="duration_minutes">%1$d min</string>
     <string name="duration_hours">%1$d orë</string>
     <string name="duration_hours_half">%1$d½ orë</string>
-    <string name="duration_hours_minutes">%1$d orë %2$d min</string>
+    <string name="duration_hours_minutes">%1$d orë %2$d min</string>
     <string name="health_title">Fazat e gjumit nga Health Connect</string>
     <string name="health_rationale">Phase Wake mund të lexojë të dhënat e gjumit që ruan aplikacioni yt i shëndetit (për shembull Samsung Health). Ato shfaqen në historikun tënd, edhe për krahasim me netët kur të zgjoi Phase Wake. Phase Wake vetëm lexon, nuk shkruan kurrë dhe asgjë nuk del nga telefoni yt.</string>
     <string name="health_connect">Krahaso me të dhënat e shëndetit</string>

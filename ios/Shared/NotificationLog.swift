@@ -14,6 +14,8 @@ enum NotificationLog {
     /// immer im Protokoll, eine Ablehnung einmal je Start. - Returns: ob Mitteilungen erlaubt sind.
     @discardableResult
     static func requestPermission(_ source: String) async -> Bool {
+        PermissionPrompt.begin()
+        defer { PermissionPrompt.end() }
         do {
             let granted = try await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound])
             if !granted, !deniedLogged {

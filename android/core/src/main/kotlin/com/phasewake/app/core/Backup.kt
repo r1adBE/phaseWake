@@ -197,7 +197,7 @@ data class BackupSettings(
      */
     val eveningDark: Boolean = EveningDark.DEFAULT_ENABLED,
     /**
-     * Beginn von «Abends dunkel ab» in Minuten des Tages; fehlt oder unplausibel: 18:00 ([EveningDark.checkedFrom]).
+     * Beginn von «Abends dunkel ab» in Minuten des Tages; fehlt oder unplausibel: 20:00 ([EveningDark.checkedFrom]).
      */
     val eveningDarkFrom: Int = EveningDark.DEFAULT_FROM_MINUTES,
 )

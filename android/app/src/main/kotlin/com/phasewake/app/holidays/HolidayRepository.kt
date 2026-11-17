@@ -103,9 +103,10 @@ class HolidayRepository(
         return days
     }
 
-    /** Erneut an die Uhr (z. B. eine neu gekoppelte), ohne neu zu rechnen. */
-    suspend fun republish() {
-        sync.publishHolidays(store.list.first(), store.updatedAt().takeIf { it > 0 } ?: Instant.now().toEpochMilli())
+    /** Erneut an die Uhr (z. B. eine neu gekoppelte), ohne neu zu rechnen; [unlessAcked]: nur, wenn nicht bestätigt. */
+    suspend fun republish(unlessAcked: Boolean = false) {
+        val updatedAt = store.updatedAt().takeIf { it > 0 } ?: Instant.now().toEpochMilli()
+        sync.publishHolidays(store.list.first(), updatedAt, unlessAcked)
     }
 
     private fun open(): JsonReader =

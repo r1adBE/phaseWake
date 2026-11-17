@@ -89,6 +89,7 @@
     <string name="settings_evening_dark">மாலையில் இருள்</string>
     <string name="settings_evening_dark_text">%1$s – %2$s இருள், சிஸ்டம் அல்லது வெளிர் தேர்ந்தாலும்.</string>
     <string name="settings_evening_dark_from">இருள் தொடக்கம்</string>
+    <string name="settings_evening_dark_now">இப்போது செயலில் – %1$s முதல் வெளிர்</string>
     <string name="settings_data">உங்கள் தரவு</string>
     <string name="settings_data_text">எல்லாம் உங்கள் ஃபோனிலும் வாட்ச்சிலும் மட்டுமே இருக்கும். கணக்கு இல்லை, சர்வர் இல்லை, கண்காணிப்பு இல்லை. Google கடிகார இணைப்பின் வழியே கடிகாரத்தின் தொழில்நுட்பத் தகவல்கள் மட்டுமே செல்லும், சுகாதாரத் தரவு இல்லாமல்.</string>
     <string name="settings_export">இரவுகளைப் பெயர் இல்லாமல் ஏற்றுமதி செய்</string>
@@ -102,7 +103,7 @@
     <string name="duration_minutes">%1$d நிமி.</string>
     <string name="duration_hours">%1$d மணி</string>
     <string name="duration_hours_half">%1$d½ மணி</string>
-    <string name="duration_hours_minutes">%1$d மணி %2$d நிமி.</string>
+    <string name="duration_hours_minutes">%1$d மணி %2$d நிமி.</string>
     <string name="health_title">Health Connect இலிருந்து தூக்க நிலைகள்</string>
     <string name="health_rationale">உங்கள் ஆரோக்கிய ஆப்ஸ் (உதாரணமாக Samsung Health) சேமிக்கும் தூக்கத் தரவை Phase Wake படிக்க முடியும். அது உங்கள் வரலாற்றில் காட்டப்படும், Phase Wake உங்களை எழுப்பிய இரவுகளுடன் ஒப்பிடவும் பயன்படும். Phase Wake படிக்க மட்டுமே செய்யும், ஒருபோதும் எழுதாது, எதுவும் உங்கள் ஃபோனை விட்டு வெளியேறாது.</string>
     <string name="health_connect">ஆரோக்கியத் தரவுடன் ஒப்பிடு</string>

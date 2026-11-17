@@ -90,6 +90,7 @@
     <string name="settings_evening_dark">Тёмная вечером</string>
     <string name="settings_evening_dark_text">Тёмная с %1$s до %2$s, даже при Системная или Светлая.</string>
     <string name="settings_evening_dark_from">Тёмная с</string>
+    <string name="settings_evening_dark_now">Действует сейчас – светлая с %1$s</string>
     <string name="settings_data">Твои данные</string>
     <string name="settings_data_text">Всё остаётся на телефоне и часах. Без аккаунта, сервера и слежки. Через подключение часов Google проходят только технические данные часов, без данных о здоровье.</string>
     <string name="settings_export">Экспорт ночей без имени</string>
@@ -103,7 +104,7 @@
     <string name="duration_minutes">%1$d мин</string>
     <string name="duration_hours">%1$d ч</string>
     <string name="duration_hours_half">%1$d½ ч</string>
-    <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
+    <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
     <string name="health_title">Фазы сна из Health Connect</string>
     <string name="health_rationale">Phase Wake может читать данные о сне, которые сохраняет твоё приложение для здоровья (например, Samsung Health). Они показываются в твоей истории, в том числе для сравнения с ночами, когда тебя будил Phase Wake. Phase Wake только читает, ничего не записывает, и данные не покидают твой телефон.</string>
     <string name="health_connect">Сверять с данными о здоровье</string>

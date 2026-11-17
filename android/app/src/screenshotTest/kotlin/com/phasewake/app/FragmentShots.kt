@@ -11,6 +11,7 @@ import com.phasewake.app.core.SleepStage
 import com.phasewake.app.core.StageSpan
 import com.phasewake.app.health.HealthSource
 import com.phasewake.app.ui.history.HistoryScreen
+import com.phasewake.app.ui.history.HistoryState
 import com.phasewake.app.ui.history.NightDetailActions
 import com.phasewake.app.ui.history.NightDetailData
 import com.phasewake.app.ui.history.NightDetailScreen
@@ -66,8 +67,8 @@ private val items = HealthHistory.merge(listOf(ownNight), listOf(samsung), null,
 @Composable
 private fun Overview(mode: ThemeMode) = Themed(mode) {
     HistoryScreen(
-        listOf(ownNight), PaddingValues(top = 24.dp, bottom = 96.dp), loadStages = { ownStages },
-        healthConnected = true, items = items,
+        HistoryState(listOf(ownNight), loadStages = { ownStages }, healthConnected = true, items = items),
+        PaddingValues(top = 24.dp, bottom = 96.dp),
     )
 }
 

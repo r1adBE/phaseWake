@@ -357,7 +357,7 @@ private fun FactorTile(factor: FactorScore, input: ScoreInput, goalMinutes: Int,
         }
         Text(
             view.value, style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.ExtraBold),
-            modifier = Modifier.padding(top = 2.dp),
+            modifier = Modifier.padding(top = 2.dp), maxLines = 2, softWrap = true,
         )
         view.extra?.let { Text(it, style = MaterialTheme.typography.labelSmall, color = scheme.onSurfaceVariant) }
         // Balken und Bewertung unten bündig, auch neben der höheren Kachel der Schlafdauer. Wächst beim Erscheinen.

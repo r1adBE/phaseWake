@@ -90,6 +90,7 @@
     <string name="settings_evening_dark">Оройд бараан</string>
     <string name="settings_evening_dark_text">Бараан: %1$s – %2$s, Систем эсвэл Цайвар сонгосон ч.</string>
     <string name="settings_evening_dark_from">Бараан эхлэх</string>
+    <string name="settings_evening_dark_now">Одоо идэвхтэй – %1$s-аас цайвар</string>
     <string name="settings_data">Чиний өгөгдөл</string>
     <string name="settings_data_text">Бүх зүйл утас, цаган дээр чинь үлдэнэ. Бүртгэлгүй, сервергүй, хянахгүй. Google-ийн цагны холболтоор зөвхөн цагны техникийн мэдээлэл дамжина, эрүүл мэндийн өгөгдөлгүй.</string>
     <string name="settings_export">Шөнүүдийг нэргүйгээр экспортлох</string>
@@ -103,7 +104,7 @@
     <string name="duration_minutes">%1$d мин</string>
     <string name="duration_hours">%1$d ц</string>
     <string name="duration_hours_half">%1$d½ ц</string>
-    <string name="duration_hours_minutes">%1$d ц %2$d мин</string>
+    <string name="duration_hours_minutes">%1$d ц %2$d мин</string>
     <string name="health_title">Health Connect-ийн нойрны үе шат</string>
     <string name="health_rationale">Phase Wake нь эрүүл мэндийн апп чинь (жишээ нь Samsung Health) хадгалсан нойрны өгөгдлийг уншиж чадна. Энэ нь түүхэнд чинь харагдах бөгөөд Phase Wake чамайг сэрээсэн шөнүүдтэй харьцуулахад ч ашиглагдана. Phase Wake зөвхөн уншина, юу ч бичихгүй, утаснаас чинь юу ч гарахгүй.</string>
     <string name="health_connect">Эрүүл мэндийн өгөгдөлтэй харьцуулах</string>

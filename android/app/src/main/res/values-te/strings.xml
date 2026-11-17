@@ -90,6 +90,7 @@
     <string name="settings_evening_dark">సాయంత్రం ముదురు</string>
     <string name="settings_evening_dark_text">%1$s – %2$s ముదురు, సిస్టమ్ లేదా లేత ఎంచుకున్నా.</string>
     <string name="settings_evening_dark_from">ముదురు ప్రారంభం</string>
+    <string name="settings_evening_dark_now">ఇప్పుడు అమలులో – %1$s నుండి లేత</string>
     <string name="settings_data">మీ డేటా</string>
     <string name="settings_data_text">అంతా మీ ఫోన్‌లో, వాచ్‌లోనే ఉంటుంది. ఖాతా లేదు, సర్వర్ లేదు, ట్రాకింగ్ లేదు. Google వాచ్ కనెక్షన్ ద్వారా వాచ్ సాంకేతిక సమాచారం మాత్రమే వెళ్తుంది, ఆరోగ్య డేటా లేకుండా.</string>
     <string name="settings_export">రాత్రులను పేరు లేకుండా ఎగుమతి చేయండి</string>
@@ -103,7 +104,7 @@
     <string name="duration_minutes">%1$d ని.</string>
     <string name="duration_hours">%1$d గం.</string>
     <string name="duration_hours_half">%1$d½ గం.</string>
-    <string name="duration_hours_minutes">%1$d గం. %2$d ని.</string>
+    <string name="duration_hours_minutes">%1$d గం. %2$d ని.</string>
     <string name="health_title">Health Connect నుంచి నిద్ర దశలు</string>
     <string name="health_rationale">మీ హెల్త్ యాప్ (ఉదా. Samsung Health) భద్రపరిచే నిద్ర డేటాను Phase Wake చదవగలదు. అది మీ చరిత్రలో కనిపిస్తుంది, Phase Wake మిమ్మల్ని లేపిన రాత్రులతో పోల్చడానికి కూడా. Phase Wake చదువుతుంది మాత్రమే, ఎప్పుడూ రాయదు, ఏదీ మీ ఫోన్ దాటి వెళ్లదు.</string>
     <string name="health_connect">హెల్త్ డేటాతో పోల్చండి</string>

@@ -89,6 +89,7 @@
     <string name="settings_evening_dark">כהה בערב</string>
     <string name="settings_evening_dark_text">כהה מ-%1$s עד %2$s, גם עם מערכת או בהיר.</string>
     <string name="settings_evening_dark_from">כהה מהשעה</string>
+    <string name="settings_evening_dark_now">פעיל עכשיו – בהיר מ-%1$s</string>
     <string name="settings_data">הנתונים שלכם</string>
     <string name="settings_data_text">הכול נשאר בטלפון ובשעון. בלי חשבון, בלי שרת, בלי מעקב. דרך חיבור השעון של Google עובר רק מידע טכני על השעון, בלי נתוני בריאות.</string>
     <string name="settings_export">ייצוא לילות ללא שם</string>
@@ -102,7 +103,7 @@
     <string name="duration_minutes">%1$d דק׳</string>
     <string name="duration_hours">%1$d ש׳</string>
     <string name="duration_hours_half">%1$d½ ש׳</string>
-    <string name="duration_hours_minutes">%1$d ש׳ %2$d דק׳</string>
+    <string name="duration_hours_minutes">%1$d ש׳ %2$d דק׳</string>
     <string name="health_title">שלבי שינה מ-Health Connect</string>
     <string name="health_rationale">ניתן לאפשר ל-Phase Wake לקרוא את נתוני השינה שאפליקציית הבריאות שלכם (למשל Samsung Health) שומרת. הם מוצגים בהיסטוריה שלכם, גם להשוואה עם הלילות שבהם Phase Wake העיר אתכם. הגישה היא לקריאה בלבד, ושום דבר לא יוצא מהטלפון.</string>
     <string name="health_connect">השוואה לנתוני בריאות</string>

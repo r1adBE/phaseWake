@@ -55,6 +55,8 @@ class WearSyncOfflineTest {
         tolerant { sync.migrateTransport() }
         tolerant { sync.flush() }
         tolerant { sync.requestSync() }
+        tolerant { sync.requestSyncOnResume() }
+        tolerant { sync.publishHolidays(HolidayList("CH", emptySet()), 1L, unlessAcked = true) }
     }
 
     @Test

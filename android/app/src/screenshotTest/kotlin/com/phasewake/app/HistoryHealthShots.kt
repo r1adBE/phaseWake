@@ -11,6 +11,7 @@ import com.phasewake.app.core.SleepStage
 import com.phasewake.app.core.StageSpan
 import com.phasewake.app.health.HealthSource
 import com.phasewake.app.ui.history.HistoryScreen
+import com.phasewake.app.ui.history.HistoryState
 import com.phasewake.app.ui.theme.ThemeMode
 import java.time.Duration
 import java.time.Instant
@@ -64,8 +65,11 @@ private val mixed = HealthHistory.merge(ownNights, listOf(samsung, unknown, nap)
 private fun Mixed(mode: ThemeMode) = Themed(mode) {
     // Samsung-Nacht mit Befinden, die unbekannte App noch ohne (Auswahl sichtbar).
     HistoryScreen(
-        ownNights, padding, loadStages = { emptyList() }, healthConnected = true, items = mixed,
-        healthFeelings = mapOf(LocalDate.of(2026, 10, 26) to 4),
+        HistoryState(
+            ownNights, loadStages = { emptyList() }, healthConnected = true, items = mixed,
+            healthFeelings = mapOf(LocalDate.of(2026, 10, 26) to 4),
+        ),
+        padding,
     )
 }
 
@@ -77,10 +81,10 @@ fun HistoryMixedDark() = Mixed(ThemeMode.DARK)
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf leer ohne Freigabe hell", device = PHONE) @Composable
 fun HistoryEmptyConnectLight() = Themed(ThemeMode.LIGHT) {
-    HistoryScreen(emptyList(), padding, loadStages = null, healthConnected = false, canConnectHealth = true)
+    HistoryScreen(HistoryState(emptyList(), loadStages = null, canConnectHealth = true), padding)
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf leer ohne Daten dunkel", device = PHONE) @Composable
 fun HistoryEmptyNoDataDark() = Themed(ThemeMode.DARK) {
-    HistoryScreen(emptyList(), padding, loadStages = null, healthConnected = true)
+    HistoryScreen(HistoryState(emptyList(), loadStages = null, healthConnected = true), padding)
 }

@@ -22,7 +22,9 @@ import com.phasewake.app.core.Sunrise
 import com.phasewake.app.ring.PhoneRingService
 import com.phasewake.app.ring.RingScreen
 import com.phasewake.app.ring.SunriseScreen
+import com.phasewake.app.ui.home.HomeActions
 import com.phasewake.app.ui.home.HomeScreen
+import com.phasewake.app.ui.home.HomeState
 import com.phasewake.app.ui.home.NightCheckState
 import com.phasewake.app.ui.onboarding.OnboardingContent
 import com.phasewake.app.ui.onboarding.OnboardingModel
@@ -40,9 +42,12 @@ private fun Home(tag: String, mode: ThemeMode = ThemeMode.DARK, hour: Int = 7, l
     tag, mode,
 ) {
     HomeScreen(
-        listOf(AlarmSpec(id = "work", hour = hour, minute = 0, days = weekdays, label = label)), nights.last(),
-        check = NightCheckState(emptyList()), onFix = {}, contentPadding = PaddingValues(), onAdd = {},
-        onEdit = {}, onToggle = { _, _ -> }, clock = { FIXED_NOW },
+        HomeState(
+            listOf(AlarmSpec(id = "work", hour = hour, minute = 0, days = weekdays, label = label)), nights.last(),
+            check = NightCheckState(emptyList()),
+        ),
+        HomeActions(onFix = {}, onAdd = {}, onEdit = {}, onToggle = { _, _ -> }), contentPadding = PaddingValues(),
+        clock = { FIXED_NOW },
     )
 }
 
@@ -129,8 +134,27 @@ fun LayoutTimePickerAr() = ThemedIn("ar", ThemeMode.LIGHT) {
 @Preview(locale = "de-rCH", name = "Layout Einstellungen lang", device = "spec:width=411dp,height=3000dp")
 fun LayoutSettingsTall() = ThemedIn("de-CH", ThemeMode.LIGHT) {
     com.phasewake.app.ui.settings.SettingsScreen(
-        ThemeMode.LIGHT, "16.2.2", PaddingValues(), onThemeMode = {}, onExport = {}, onClearHistory = {},
-        health = HealthState.CONNECTED, onConnectHealth = {},
+        com.phasewake.app.ui.settings.SettingsState(ThemeMode.LIGHT, "16.2.2", HealthState.CONNECTED),
+        com.phasewake.app.ui.settings.SettingsActions(
+            onThemeMode = {}, onExport = {}, onClearHistory = {}, onConnectHealth = {},
+        ),
+        PaddingValues(),
         extras = com.phasewake.app.ui.settings.SettingsExtras(onOnboarding = {}, onLicenses = {}, diagnostics = true),
     )
+}
+
+/** «Abends dunkel» gilt gerade (hier bei «Hell»): Hinweis «Gilt jetzt – hell ab …» unter dem Schalter. */
+@PreviewTest @Composable
+@Preview(locale = "de-rCH", name = "Layout Abends dunkel gilt", device = "spec:width=411dp,height=320dp")
+fun LayoutEveningDarkNow() {
+    java.util.Locale.setDefault(java.util.Locale.forLanguageTag("de-CH"))
+    com.phasewake.app.ui.theme.PhaseWakeTheme(ThemeMode.LIGHT, eveningDark = true) {
+        androidx.compose.material3.Surface {
+            Column(Modifier.padding(16.dp)) {
+                com.phasewake.app.ui.settings.EveningDarkRows(
+                    com.phasewake.app.ui.theme.EveningDarkSetting(), onEnabled = {}, onFrom = {},
+                )
+            }
+        }
+    }
 }

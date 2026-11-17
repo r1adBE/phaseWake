@@ -213,6 +213,8 @@ final class SystemBackupPlatform: BackupPlatform {
                                   chain: Int) async -> BackupAlarm.Placement {
         do {
             if AlarmManager.shared.authorizationState != .authorized {
+                PermissionPrompt.begin()
+                defer { PermissionPrompt.end() }
                 _ = try await AlarmManager.shared.requestAuthorization()
             }
             let stop = AlarmButton(text: LocalizedStringResource(stringLiteral: L("ring_stop")), textColor: .white,

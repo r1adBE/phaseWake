@@ -87,6 +87,7 @@
     <string name="settings_evening_dark">Tối vào buổi tối</string>
     <string name="settings_evening_dark_text">Tối từ %1$s đến %2$s, kể cả khi chọn Hệ thống hoặc Sáng.</string>
     <string name="settings_evening_dark_from">Tối từ</string>
+    <string name="settings_evening_dark_now">Đang áp dụng – sáng từ %1$s</string>
     <string name="settings_data">Dữ liệu của bạn</string>
     <string name="settings_data_text">Mọi thứ chỉ nằm trên điện thoại và đồng hồ của bạn. Không tài khoản, không máy chủ, không theo dõi. Chỉ thông tin kỹ thuật về đồng hồ đi qua kết nối đồng hồ của Google, không có dữ liệu sức khỏe.</string>
     <string name="settings_export">Xuất các đêm ngủ không kèm tên</string>
@@ -100,7 +101,7 @@
     <string name="duration_minutes">%1$d phút</string>
     <string name="duration_hours">%1$d giờ</string>
     <string name="duration_hours_half">%1$d½ giờ</string>
-    <string name="duration_hours_minutes">%1$d giờ %2$d phút</string>
+    <string name="duration_hours_minutes">%1$d giờ %2$d phút</string>
     <string name="health_title">Các giai đoạn ngủ từ Health Connect</string>
     <string name="health_rationale">Phase Wake có thể đọc dữ liệu giấc ngủ mà ứng dụng sức khỏe của bạn (ví dụ Samsung Health) lưu. Dữ liệu được hiển thị trong lịch sử của bạn, cũng để so sánh với những đêm Phase Wake đã đánh thức bạn. Phase Wake chỉ đọc, không bao giờ ghi, và không có gì rời khỏi điện thoại của bạn.</string>
     <string name="health_connect">So sánh với dữ liệu sức khỏe</string>

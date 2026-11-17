@@ -60,8 +60,10 @@ struct OnboardingView: View {
     @ViewBuilder private var content: some View {
         switch step {
         case 0:
-            // Mond in der Schriftfarbe: auf dem hellen Grund dunkel, im dunklen Modus hell, wie Android.
-            LogoMark(moon: scheme == .dark ? Brand.moon : Brand.ink)
+            // Mond in der Schriftfarbe: auf dem hellen Grund dunkel, im dunklen Modus hell, wie Android. Hell die Welle
+            // in Lavendel #5546C8 wie im Kopf der Startseite (die Vorgabe wäre auf Creme zu blass).
+            LogoMark(moon: scheme == .dark ? Brand.moon : Brand.ink,
+                     wave: scheme == .dark ? Brand.wave : Brand.lavenderDeep)
                 .frame(width: 64, height: 64)
             title("onb_welcome_title")
             Text(L("onb_welcome_text"))

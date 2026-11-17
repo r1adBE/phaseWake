@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
-"""Prüft den Store-Build (Release) von Handy und Uhr auf Testreste.
+"""Prüft den Store-Build (Release) von Handy und Uhr auf Testreste, mit --debug die Testversion.
 
-Aufruf aus android/ nach `assembleRelease`: release_check.py
-Gelesen wird das zusammengeführte Release-Manifest jeder App. Fehler, wenn
-- die App als debuggable markiert ist,
-- eine Vorschau- oder Test-Activity enthalten ist (z. B. PreviewActivity aus ui-tooling),
+Aufruf aus android/ nach `assembleRelease`: release_check.py; nach `assembleDebug`: release_check.py --debug
+Gelesen wird das zusammengeführte Manifest jeder App. Fehler, wenn
+- der Release als debuggable markiert ist (die Testversion ist es absichtlich),
+- eine Vorschau- oder Test-Activity enthalten ist (z. B. PreviewActivity aus ui-tooling, auch in der Testversion),
 - die App Netzzugriff anfordert (INTERNET oder ACCESS_NETWORK_STATE, z. B. über eine Bibliothek eingeschleppt),
-- die Kennung nicht com.phasewake.app ist (nur Testversionen tragen «.test»),
-- die exportierten Komponenten oder die angeforderten Rechte von der Positivliste abweichen,
-- für eine App kein Release-Manifest gefunden wird (Build fehlte).
+- die Kennung nicht com.phasewake.app (Testversion: com.phasewake.app.test) ist,
+- die exportierten Komponenten oder die angeforderten Rechte von der Positivliste abweichen (gilt für beide),
+- für eine App kein Manifest gefunden wird (Build fehlte).
 """
 import glob
+import os
 import sys
 import xml.etree.ElementTree as ET
 
@@ -21,6 +22,8 @@ FORBIDDEN = ("PreviewActivity", "ComponentActivity", "TestActivity")
 NETWORK = ("android.permission.INTERNET", "android.permission.ACCESS_NETWORK_STATE")
 # Kennung der Store-Version von Handy und Uhr (Data Layer: beide gleich).
 APP_ID = "com.phasewake.app"
+# Testversion (Build-Typ debug): eigene Kennung, sonst dieselbe Positivliste.
+TEST_ID = APP_ID + ".test"
 COMPONENTS = ("activity", "activity-alias", "service", "receiver", "provider")
 
 # Positivliste (Stand 17.11.2026, aus dem zusammengeführten Release-Manifest). Bringt eine Bibliothek eine neue
@@ -85,9 +88,10 @@ PERMISSIONS = {
 }
 
 
-def manifest(app):
+def manifest(app, variant="release"):
+    # Nur der Ordner der Variante selbst (nicht debugUnitTest, screenshotTestDebug …).
     hits = [p for p in glob.glob(f"{app}/build/intermediates/merged_manifest*/**/AndroidManifest.xml", recursive=True)
-            if "release" in p.lower()]
+            if f"/{variant}/" in p.replace(os.sep, "/")]
     return sorted(hits)[0] if hits else None
 
 
@@ -112,37 +116,48 @@ def compare(app, what, actual, expected):
     return errors
 
 
-def check(app, path=None):
-    path = path or manifest(app)
+def expected_permissions(app, app_id):
+    """Positivliste der Rechte; das Recht für dynamische Empfänger trägt die Kennung der Variante."""
+    return {(name.replace(f"{APP_ID}.", f"{app_id}.", 1) if name.startswith(f"{APP_ID}.") else name, sdk)
+            for name, sdk in PERMISSIONS[app]}
+
+
+def check(app, path=None, debug=False):
+    kind, app_id = ("Testversion", TEST_ID) if debug else ("Release", APP_ID)
+    path = path or manifest(app, "debug" if debug else "release")
     if path is None:
-        return [f"{app}: kein Release-Manifest gefunden (assembleRelease gelaufen?)"]
+        task = "assembleDebug" if debug else "assembleRelease"
+        return [f"{app}: kein {kind}-Manifest gefunden ({task} gelaufen?)"]
     errors = []
     root = ET.parse(path).getroot()
-    if root.get("package") != APP_ID:
-        errors.append(f"{app}: Release-Kennung {root.get('package')} statt {APP_ID}")
+    if root.get("package") != app_id:
+        errors.append(f"{app}: {kind}-Kennung {root.get('package')} statt {app_id}")
     requested = permissions(root)
     for name, _ in sorted(requested):
         if name in NETWORK:
-            errors.append(f"{app}: Release fordert {name} an")
+            errors.append(f"{app}: {kind} fordert {name} an")
     application = root.find("application")
-    if application is not None and application.get(NS + "debuggable") == "true":
+    if not debug and application is not None and application.get(NS + "debuggable") == "true":
         errors.append(f"{app}: Release-Build ist debuggable")
     for activity in application.findall("activity") if application is not None else []:
         name = activity.get(NS + "name", "")
         if name.rsplit(".", 1)[-1] in FORBIDDEN:
-            errors.append(f"{app}: Release enthält {name}")
+            errors.append(f"{app}: {kind} enthält {name}")
     errors += compare(app, "exportiert", exported(application), EXPORTED[app])
-    errors += compare(app, "Recht", {p for p in requested if p[0] not in NETWORK}, PERMISSIONS[app])
+    errors += compare(app, "Recht", {p for p in requested if p[0] not in NETWORK}, expected_permissions(app, app_id))
     return errors
 
 
-def main():
-    errors = [e for app in APPS for e in check(app)]
+def main(argv=None):
+    debug = "--debug" in (sys.argv[1:] if argv is None else argv)
+    title, app_id = ("Testversion", TEST_ID) if debug else ("Store-Build", APP_ID)
+    errors = [e for app in APPS for e in check(app, debug=debug)]
     for e in errors:
-        print(f"::error title=Store-Build::{e}")
+        print(f"::error title={title}::{e}")
     if not errors:
-        print(f"::notice title=Store-Build::Handy und Uhr: Release als {APP_ID}, ohne debuggable, ohne Vorschau-Activity, "
-              "ohne Netzzugriff, exportierte Komponenten und Rechte wie in der Positivliste")
+        state = "debuggable (Testversion)" if debug else "ohne debuggable"
+        print(f"::notice title={title}::Handy und Uhr: {'Debug' if debug else 'Release'} als {app_id}, {state}, "
+              "ohne Vorschau-Activity, ohne Netzzugriff, exportierte Komponenten und Rechte wie in der Positivliste")
     return 1 if errors else 0
 
 

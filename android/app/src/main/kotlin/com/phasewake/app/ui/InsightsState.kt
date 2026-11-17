@@ -37,6 +37,7 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.withContext
 
 // Auswertungen für Verlauf und Einstellungen (aus AppData.kt): Health Connect lesen, dann im Hintergrund rechnen.
@@ -68,7 +69,8 @@ internal class Insights(
  * Gerechnet wird auf [Dispatchers.Default], nicht beim Zusammensetzen auf dem Hauptthread; bis das neue
  * Ergebnis da ist, bleibt das vorige stehen. Nur das erste Ergebnis und das erste mit gelesenem Verlauf (vorher `null`)
  * entstehen gleich beim Zusammensetzen: Sonst zeigten Verlauf und Detailseite kurz «keine Nächte» (die Detailseite
- * kehrte dann sogar zurück).
+ * kehrte dann sogar zurück). Dieses Ergebnis übernimmt der Hintergrund, statt dieselben Eingaben noch einmal zu
+ * rechnen. Ändern sich die Eingaben, bricht die laufende Rechnung beim nächsten Teilschritt ab.
  */
 @Composable
 internal fun rememberInsights(app: PhaseWakeApp, data: AppData, healthCheck: Int, healthGrant: Int = 0): Insights {
@@ -106,11 +108,12 @@ internal fun rememberInsights(app: PhaseWakeApp, data: AppData, healthCheck: Int
         nights, sessions, clearedAt, data.healthFeelings, data.notes, data.sleepGoal, data.alarms, data.routineItems,
         data.routineTicks, data.learning?.values?.latencyMinutes, ZoneId.systemDefault(),
     )
+    val eager = remember { EagerDerived() }
     val computed by produceState<Derived?>(null, inputs) {
-        value = withContext(Dispatchers.Default) { derive(inputs) }
+        value = eager.takeFor(inputs) ?: withContext(Dispatchers.Default) { derive(inputs) { ensureActive() } }
     }
-    val derived =
-        computed?.takeIf { it.inputs.nights != null || inputs.nights == null } ?: remember(inputs) { derive(inputs) }
+    val derived = computed?.takeIf { it.inputs.nights != null || inputs.nights == null }
+        ?: remember(inputs) { derive(inputs).also { eager.last = it } }
     val sleeps = derived.sleeps
     val zone = inputs.zone
     // Text der nächsten Wochenrückblick-Mitteilung hier vorberechnen (App offen, neue Nacht, Befinden,
@@ -136,7 +139,7 @@ internal fun rememberInsights(app: PhaseWakeApp, data: AppData, healthCheck: Int
 }
 
 /** Alles, wovon die Auswertungen abhängen; gleich: nichts neu zu rechnen. */
-private data class InsightInputs(
+internal data class InsightInputs(
     val nights: List<NightRecord>?,
     val sessions: List<HealthSession>,
     val clearedAt: Instant?,
@@ -151,7 +154,7 @@ private data class InsightInputs(
 )
 
 /** Ergebnis von [derive] zu [inputs]. */
-private class Derived(
+internal class Derived(
     val inputs: InsightInputs,
     val sleeps: List<SleepSummary>,
     val stages: List<StageSpan>,
@@ -165,8 +168,18 @@ private class Derived(
     val weekly: WeeklySummary?,
 )
 
-/** Rechnet alle Auswertungen (reine Rechnung, auf jedem Thread). */
-private fun derive(i: InsightInputs): Derived {
+/** Das beim Zusammensetzen gerechnete Ergebnis, damit der Hintergrund dieselben Eingaben nicht nochmals rechnet. */
+internal class EagerDerived {
+    var last: Derived? = null
+
+    fun takeFor(inputs: InsightInputs): Derived? = last?.takeIf { it.inputs == inputs }
+}
+
+/**
+ * Rechnet alle Auswertungen (reine Rechnung, auf jedem Thread). [checkpoint] läuft zwischen den Teilschritten; im
+ * Hintergrund bricht es eine überholte Rechnung ab (wirft dann).
+ */
+internal fun derive(i: InsightInputs, checkpoint: () -> Unit = {}): Derived {
     val zone = i.zone
     val nights = i.nights.orEmpty()
     val sleeps = HealthHistory.summaries(i.sessions, i.clearedAt, zone)
@@ -175,21 +188,22 @@ private fun derive(i: InsightInputs): Derived {
     // Befinden zu Nächten aus anderen Apps, die im Verlauf stehen: zählt in Diagrammen und Trends wie das eigene.
     val feelings = HealthFeelings.of(history, i.healthFeelings)
     val now = Instant.now()
+    checkpoint()
+    val trends = Trends.compute(nights, sleeps, now, zone, feelings)
+    val goalWeek = SleepGoal.weekStatus(SleepGoal.nightsOf(sleeps, zone), i.sleepGoal)
+    checkpoint()
+    val noteEffects = NoteEffect.compute(nights, i.notes, zone, NoteEffect.asleepByNight(sleeps, zone), feelings)
+    val habits = habitLines(sleeps, i)
+    checkpoint()
+    // Diagramme im Verlauf: Schlaf aus Health Connect, Weckmomente und Befinden aus dem Verlauf.
+    val charts = HistoryCharts.of(
+        ChartSource(nights, sleeps, stages, i.notes, feelings), i.alarms, i.sleepGoal, now, zone,
+        latencyMinutes = i.latency,
+    )
+    checkpoint()
     return Derived(
-        inputs = i,
-        sleeps = sleeps,
-        stages = stages,
-        history = history,
-        feelings = feelings,
-        trends = Trends.compute(nights, sleeps, now, zone, feelings),
-        goalWeek = SleepGoal.weekStatus(SleepGoal.nightsOf(sleeps, zone), i.sleepGoal),
-        noteEffects = NoteEffect.compute(nights, i.notes, zone, NoteEffect.asleepByNight(sleeps, zone), feelings),
-        habits = habitLines(sleeps, i),
-        // Diagramme im Verlauf: Schlaf aus Health Connect, Weckmomente und Befinden aus dem Verlauf.
-        charts = HistoryCharts.of(
-            ChartSource(nights, sleeps, stages, i.notes, feelings), i.alarms, i.sleepGoal, now, zone,
-            latencyMinutes = i.latency,
-        ),
+        inputs = i, sleeps = sleeps, stages = stages, history = history, feelings = feelings, trends = trends,
+        goalWeek = goalWeek, noteEffects = noteEffects, habits = habits, charts = charts,
         weekly = weeklyCard(nights, sleeps, i, feelings),
     )
 }

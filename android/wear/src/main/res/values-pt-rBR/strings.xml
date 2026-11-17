@@ -52,7 +52,7 @@
     <string name="dnd_title">Alarmes bloqueados</string>
     <string name="dnd_text">Permita alarmes no Não perturbe.</string>
     <string name="duration_hours">%1$d h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="home_last_night">Ontem à noite</string>
     <string name="notification_open">Abrir</string>
     <string name="home_good_night_too_far">Disponível a partir de 16 h antes do alarme</string>

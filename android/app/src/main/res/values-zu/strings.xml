@@ -90,6 +90,7 @@
     <string name="settings_evening_dark">Okumnyama kusihlwa</string>
     <string name="settings_evening_dark_text">Okumnyama %1$s – %2$s, noma kukhethwe Isistimu noma Okukhanyayo.</string>
     <string name="settings_evening_dark_from">Okumnyama kusukela</string>
+    <string name="settings_evening_dark_now">Kuyasebenza manje – okukhanyayo kusukela ku-%1$s</string>
     <string name="settings_data">Idatha yakho</string>
     <string name="settings_data_text">Konke kuhlala efonini nasewashini lakho. Ayikho i-akhawunti, ayikho iseva, akukho ukulandelwa. Kudlula kuphela ulwazi lobuchwepheshe ngewashi oxhumanweni lwewashi lwe-Google, ngaphandle kwedatha yezempilo.</string>
     <string name="settings_export">Thumela ubusuku ngaphandle kwegama</string>
@@ -103,7 +104,7 @@
     <string name="duration_minutes">%1$d min</string>
     <string name="duration_hours">%1$d h</string>
     <string name="duration_hours_half">%1$d½ h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Izigaba zokulala ezivela ku-Health Connect</string>
     <string name="health_rationale">I-Phase Wake ingafunda idatha yokulala egcinwa yi-app yakho yezempilo (isibonelo i-Samsung Health). Iboniswa emlandweni wakho, futhi ukuze iqhathaniswe nobusuku i-Phase Wake ekuvuse ngabo. I-Phase Wake iyafunda kuphela, ayibhali neze, futhi akukho okuphuma efonini yakho.</string>
     <string name="health_connect">Qhathanisa nedatha yezempilo</string>

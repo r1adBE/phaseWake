@@ -128,10 +128,7 @@ private fun sessionLines(context: Context, session: HealthSession, zone: ZoneId)
 internal fun HealthNightCard(
     session: HealthSession,
     feeling: Int?,
-    notes: List<String>,
-    customNotes: List<CustomNote>,
-    onToggleNote: (String) -> Unit,
-    clips: List<SoundClip>,
+    extras: NightCardNotes,
     onOpen: () -> Unit,
     modifier: Modifier = Modifier,
     /** Schlafwert der Nacht ([nightScore]); `null`: keine Zeile. */
@@ -188,8 +185,10 @@ internal fun HealthNightCard(
                 modifier = Modifier.padding(top = 6.dp),
             )
             feeling?.let { CompactLine(stringResource(R.string.feeling_value, feelingName(context, it))) }
-            soundSummary(context, clips)?.let { CompactLine(it) }
-            NightNotes(notes, customNotes, onToggleNote, Modifier.padding(top = 4.dp)) { DetailsLink() }
+            soundSummary(context, extras.clips)?.let { CompactLine(it) }
+            NightNotes(extras.notes, extras.customNotes, extras.onToggleNote, Modifier.padding(top = 4.dp)) {
+                DetailsLink()
+            }
         }
     }
 }

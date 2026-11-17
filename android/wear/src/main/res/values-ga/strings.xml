@@ -57,7 +57,7 @@
     <string name="dnd_title">Aláraim faoi bhac</string>
     <string name="dnd_text">Ceadaigh aláraim in “Ná Cuir Isteach Orm”.</string>
     <string name="duration_hours">%1$d u</string>
-    <string name="duration_hours_minutes">%1$d u %2$d nóim</string>
+    <string name="duration_hours_minutes">%1$d u %2$d nóim</string>
     <string name="home_last_night">Aréir</string>
     <string name="notification_open">Oscail</string>
     <string name="home_good_night_too_far">Ar fáil ó 16 u roimh an aláram</string>

@@ -25,7 +25,7 @@ class EveningDarkTest {
             assertEquals(p[4] == "1", EveningDark.isDark(now, zone, enabled, from), "dunkel: $line")
             assertEquals(p[5], EveningDark.nextChange(now, zone, enabled, from)?.toString() ?: "-", "Wechsel: $line")
         }
-        assertEquals(24, lines.size)
+        assertEquals(25, lines.size)
     }
 
     @Test
@@ -43,9 +43,12 @@ class EveningDarkTest {
 
     @Test
     fun storedStartIsChecked() {
-        assertEquals(18 * 60, EveningDark.checkedFrom(null))
-        assertEquals(18 * 60, EveningDark.checkedFrom(-1))
-        assertEquals(18 * 60, EveningDark.checkedFrom(24 * 60))
+        assertEquals(20 * 60, EveningDark.DEFAULT_FROM_MINUTES)
+        assertEquals(20 * 60, EveningDark.checkedFrom(null))
+        assertEquals(20 * 60, EveningDark.checkedFrom(-1))
+        assertEquals(20 * 60, EveningDark.checkedFrom(24 * 60))
+        // Ein gespeicherter Beginn (z. B. der frühere Standard 18:00) bleibt.
+        assertEquals(18 * 60, EveningDark.checkedFrom(18 * 60))
         assertEquals(0, EveningDark.checkedFrom(0))
         assertEquals(23 * 60 + 59, EveningDark.checkedFrom(23 * 60 + 59))
         assertTrue(EveningDark.DEFAULT_ENABLED)

@@ -35,7 +35,7 @@ final class EveningDarkTests: XCTestCase {
             XCTAssertEqual(self.text(EveningDark.nextChange(now: now, calendar: cal, enabled: enabled,
                                                             fromMinutes: from)), p[5], "Wechsel: \(line)")
         }
-        XCTAssertEqual(lines.count, 24)
+        XCTAssertEqual(lines.count, 25)
     }
 
     func testCoversAcrossMidnight() {
@@ -51,9 +51,12 @@ final class EveningDarkTests: XCTestCase {
     }
 
     func testStoredStartIsChecked() {
-        XCTAssertEqual(EveningDark.checkedFrom(nil), 18 * 60)
-        XCTAssertEqual(EveningDark.checkedFrom(-1), 18 * 60)
-        XCTAssertEqual(EveningDark.checkedFrom(24 * 60), 18 * 60)
+        XCTAssertEqual(EveningDark.defaultFromMinutes, 20 * 60)
+        XCTAssertEqual(EveningDark.checkedFrom(nil), 20 * 60)
+        XCTAssertEqual(EveningDark.checkedFrom(-1), 20 * 60)
+        XCTAssertEqual(EveningDark.checkedFrom(24 * 60), 20 * 60)
+        // Ein gespeicherter Beginn (z. B. der frühere Standard 18:00) bleibt.
+        XCTAssertEqual(EveningDark.checkedFrom(18 * 60), 18 * 60)
         XCTAssertEqual(EveningDark.checkedFrom(0), 0)
         XCTAssertEqual(EveningDark.checkedFrom(23 * 60 + 59), 23 * 60 + 59)
         XCTAssertTrue(EveningDark.defaultEnabled)

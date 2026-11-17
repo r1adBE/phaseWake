@@ -89,6 +89,7 @@
     <string name="settings_evening_dark">Întunecat seara</string>
     <string name="settings_evening_dark_text">Întunecat de la %1$s până la %2$s, și cu Sistem sau Luminos.</string>
     <string name="settings_evening_dark_from">Întunecat de la</string>
+    <string name="settings_evening_dark_now">Activ acum – luminos de la %1$s</string>
     <string name="settings_data">Datele tale</string>
     <string name="settings_data_text">Totul rămâne pe telefon și pe ceas. Fără cont, fără server, fără urmărire. Prin conexiunea ceasului de la Google trec doar date tehnice despre ceas, fără date de sănătate.</string>
     <string name="settings_export">Exportă nopțile fără nume</string>
@@ -102,7 +103,7 @@
     <string name="duration_minutes">%1$d min</string>
     <string name="duration_hours">%1$d h</string>
     <string name="duration_hours_half">%1$d½ h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fazele somnului din Health Connect</string>
     <string name="health_rationale">Phase Wake poate citi datele de somn pe care aplicația ta de sănătate (de exemplu Samsung Health) le salvează. Sunt afișate în istoricul tău, și pentru comparație cu nopțile în care te-a trezit Phase Wake. Phase Wake doar citește, nu scrie niciodată, iar nimic nu părăsește telefonul tău.</string>
     <string name="health_connect">Compară cu datele de sănătate</string>

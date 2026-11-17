@@ -88,6 +88,7 @@
     <string name="settings_evening_dark">Mørk om kvelden</string>
     <string name="settings_evening_dark_text">Mørk fra %1$s til %2$s, også med System eller Lys.</string>
     <string name="settings_evening_dark_from">Mørk fra</string>
+    <string name="settings_evening_dark_now">Gjelder nå – lys fra %1$s</string>
     <string name="settings_data">Dine data</string>
     <string name="settings_data_text">Alt blir på telefonen og klokka. Ingen konto, ingen server, ingen sporing. Bare teknisk informasjon om klokken går via Googles klokketilkobling, uten helsedata.</string>
     <string name="settings_export">Eksporter netter uten navn</string>
@@ -101,7 +102,7 @@
     <string name="duration_minutes">%1$d min</string>
     <string name="duration_hours">%1$d t</string>
     <string name="duration_hours_half">%1$d½ t</string>
-    <string name="duration_hours_minutes">%1$d t %2$d min</string>
+    <string name="duration_hours_minutes">%1$d t %2$d min</string>
     <string name="health_title">Søvnfaser fra Health Connect</string>
     <string name="health_rationale">Phase Wake kan lese søvndataene som helse-appen din (for eksempel Samsung Health) lagrer. De vises i historikken din, også til sammenligning med nettene Phase Wake vekket deg. Phase Wake leser bare, skriver aldri, og ingenting forlater telefonen din.</string>
     <string name="health_connect">Sammenlign med helsedata</string>

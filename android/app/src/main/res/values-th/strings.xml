@@ -87,6 +87,7 @@
     <string name="settings_evening_dark">มืดตอนเย็น</string>
     <string name="settings_evening_dark_text">มืดตั้งแต่ %1$s ถึง %2$s แม้เลือก ตามระบบ หรือ สว่าง</string>
     <string name="settings_evening_dark_from">มืดตั้งแต่</string>
+    <string name="settings_evening_dark_now">ใช้อยู่ตอนนี้ – สว่างตั้งแต่ %1$s</string>
     <string name="settings_data">ข้อมูลของคุณ</string>
     <string name="settings_data_text">ทุกอย่างอยู่บนโทรศัพท์และนาฬิกาของคุณเท่านั้น ไม่มีบัญชี ไม่มีเซิร์ฟเวอร์ ไม่มีการติดตาม ผ่านการเชื่อมต่อนาฬิกาของ Google มีเพียงข้อมูลทางเทคนิคของนาฬิกา ไม่มีข้อมูลสุขภาพ</string>
     <string name="settings_export">ส่งออกบันทึกการนอนโดยไม่มีชื่อ</string>
@@ -100,7 +101,7 @@
     <string name="duration_minutes">%1$d นาที</string>
     <string name="duration_hours">%1$d ชม.</string>
     <string name="duration_hours_half">%1$d½ ชม.</string>
-    <string name="duration_hours_minutes">%1$d ชม. %2$d นาที</string>
+    <string name="duration_hours_minutes">%1$d ชม. %2$d นาที</string>
     <string name="health_title">ระยะการนอนหลับจาก Health Connect</string>
     <string name="health_rationale">Phase Wake อ่านข้อมูลการนอนที่แอปสุขภาพของคุณ (เช่น Samsung Health) บันทึกไว้ได้ ข้อมูลจะแสดงในประวัติของคุณ รวมถึงใช้เปรียบเทียบกับคืนที่ Phase Wake ปลุกคุณ Phase Wake อ่านอย่างเดียว ไม่เขียนข้อมูล และไม่มีข้อมูลใดออกจากโทรศัพท์ของคุณ</string>
     <string name="health_connect">เปรียบเทียบกับข้อมูลสุขภาพ</string>

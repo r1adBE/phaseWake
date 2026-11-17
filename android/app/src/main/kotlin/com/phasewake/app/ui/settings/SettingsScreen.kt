@@ -63,47 +63,59 @@ import kotlin.math.roundToInt
 import com.phasewake.app.ui.theme.EveningDarkSetting
 import com.phasewake.app.ui.theme.ThemeMode
 
+/**
+ * Was die Einstellungen ([SettingsScreen]) zeigen.
+ *
+ * @property eveningDark «Abends dunkel ab»: an/aus und Beginn.
+ * @property canExport Ohne Nächte gibt es nichts zu exportieren (nur eine Kopfzeile): dann ausgegraut.
+ * @property nextAlarmNotice Leise Mitteilung «Nächster Wecker» auf dem Sperrbildschirm (Standard an).
+ * @property autoOnset Einschlaf-Messung am Abend auf der Galaxy Watch (Standard an).
+ */
+data class SettingsState(
+    val themeMode: ThemeMode,
+    val version: String,
+    val health: HealthState,
+    val eveningDark: EveningDarkSetting = EveningDarkSetting(),
+    val canExport: Boolean = true,
+    val goalMinutes: Int = SleepGoal.DEFAULT_MINUTES,
+    val bedtimeReminder: Boolean = false,
+    val customNotes: List<CustomNote> = emptyList(),
+    val weeklyReview: Boolean = false,
+    val nextAlarmNotice: Boolean = true,
+    val autoOnset: Boolean = true,
+    val soundRecDefault: Boolean = false,
+    val routineItems: List<RoutineItem> = emptyList(),
+)
+
+/** Aktionen der Einstellungen ([SettingsScreen]). */
+data class SettingsActions(
+    val onThemeMode: (ThemeMode) -> Unit,
+    val onExport: () -> Unit,
+    val onClearHistory: () -> Unit,
+    val onConnectHealth: () -> Unit,
+    val onEveningDark: (Boolean) -> Unit = {},
+    val onEveningDarkFrom: (Int) -> Unit = {},
+    val onGoal: (Int) -> Unit = {},
+    val onBedtimeReminder: (Boolean) -> Unit = {},
+    val onAddCustomNote: (String) -> Unit = {},
+    val onRenameCustomNote: (String, String) -> Unit = { _, _ -> },
+    val onDeleteCustomNote: (String) -> Unit = {},
+    val onWeeklyReview: (Boolean) -> Unit = {},
+    val onNextAlarmNotice: (Boolean) -> Unit = {},
+    val onAutoOnset: (Boolean) -> Unit = {},
+    val onSoundRecDefault: (Boolean) -> Unit = {},
+    val onAddRoutineItem: (String) -> Unit = {},
+    val onRemoveRoutineItem: (String) -> Unit = {},
+)
+
 /** Einstellungen: Darstellung, Schlafziel und Bettzeit-Erinnerung, eigene Notizen, Daten, Über. */
 @Composable
 fun SettingsScreen(
-    themeMode: ThemeMode,
-    version: String,
+    state: SettingsState,
+    actions: SettingsActions,
     contentPadding: PaddingValues,
-    onThemeMode: (ThemeMode) -> Unit,
-    /** «Abends dunkel ab» (Standard an, ab 18:00). */
-    eveningDark: EveningDarkSetting = EveningDarkSetting(),
-    onEveningDark: (Boolean) -> Unit = {},
-    onEveningDarkFrom: (Int) -> Unit = {},
-    onExport: () -> Unit,
-    /** Ohne Nächte gibt es nichts zu exportieren (nur eine Kopfzeile): dann ausgegraut. */
-    canExport: Boolean = true,
-    onClearHistory: () -> Unit,
-    health: HealthState,
-    onConnectHealth: () -> Unit,
-    goalMinutes: Int = SleepGoal.DEFAULT_MINUTES,
-    onGoal: (Int) -> Unit = {},
-    bedtimeReminder: Boolean = false,
-    onBedtimeReminder: (Boolean) -> Unit = {},
-    customNotes: List<CustomNote> = emptyList(),
-    onAddCustomNote: (String) -> Unit = {},
-    onRenameCustomNote: (String, String) -> Unit = { _, _ -> },
-    onDeleteCustomNote: (String) -> Unit = {},
-    weeklyReview: Boolean = false,
-    onWeeklyReview: (Boolean) -> Unit = {},
-    /** Leise Mitteilung «Nächster Wecker» auf dem Sperrbildschirm (Standard an). */
-    nextAlarmNotice: Boolean = true,
-    onNextAlarmNotice: (Boolean) -> Unit = {},
-    /** Einschlaf-Messung am Abend auf der Galaxy Watch (Standard an). */
-    autoOnset: Boolean = true,
-    onAutoOnset: (Boolean) -> Unit = {},
-    soundRecDefault: Boolean = false,
-    onSoundRecDefault: (Boolean) -> Unit = {},
-    routineItems: List<RoutineItem> = emptyList(),
-    onAddRoutineItem: (String) -> Unit = {},
-    onRemoveRoutineItem: (String) -> Unit = {},
     extras: SettingsExtras = SettingsExtras(),
 ) {
-    val uri = LocalUriHandler.current
     // Himmel wie auf der Startseite; der Titel steht im Kopf, hell randlos im Himmel.
     SkyPage {
     Column(
@@ -115,80 +127,19 @@ fun SettingsScreen(
             PageTitle(stringResource(R.string.settings_title))
         }
 
-        Group(stringResource(R.string.settings_theme)) {
-            val modes = listOf(
-                ThemeMode.SYSTEM to R.string.settings_theme_system,
-                ThemeMode.LIGHT to R.string.settings_theme_light,
-                ThemeMode.DARK to R.string.settings_theme_dark,
-            )
-            SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().height(IntrinsicSize.Max)) {
-                modes.forEachIndexed { index, (mode, label) ->
-                    SegmentedButton(
-                        selected = themeMode == mode,
-                        onClick = { onThemeMode(mode) },
-                        shape = SegmentedButtonDefaults.itemShape(index, modes.size),
-                        modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight(),
-                    ) { Text(stringResource(label)) }
-                }
-            }
-            // Abends dunkel: nur bei «System» und «Hell» wirksam (Dunkel bleibt dunkel).
-            if (themeMode != ThemeMode.DARK) EveningDarkRows(eveningDark, onEveningDark, onEveningDarkFrom)
-        }
+        ThemeSection(state.themeMode, state.eveningDark, actions)
 
-        Group(stringResource(R.string.goal_title)) {
-            val context = LocalContext.current
-            // Beim Ziehen nur anzeigen, gespeichert (und die Erinnerung neu geplant) beim Loslassen.
-            var dragging by remember(goalMinutes) { mutableFloatStateOf(goalMinutes.toFloat()) }
-            Text(
-                stringResource(
-                    R.string.goal_value, Format.duration(context, Duration.ofMinutes(dragging.roundToInt().toLong())),
-                ),
-                style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.primary,
-            )
-            Slider(
-                value = dragging,
-                onValueChange = { dragging = SleepGoal.clamp(it.roundToInt()).toFloat() },
-                onValueChangeFinished = { onGoal(dragging.roundToInt()) },
-                valueRange = SleepGoal.MIN_MINUTES.toFloat()..SleepGoal.MAX_MINUTES.toFloat(),
-                steps = (SleepGoal.MAX_MINUTES - SleepGoal.MIN_MINUTES) / SleepGoal.STEP_MINUTES - 1,
-            )
-            Text(
-                stringResource(R.string.goal_hint), style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-            Row(
-                Modifier.fillMaxWidth().heightIn(min = MIN_TOUCH).toggleable(
-                    value = bedtimeReminder, role = Role.Switch, onValueChange = onBedtimeReminder,
-                ).padding(top = 8.dp),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Column(Modifier.weight(1f).padding(end = 12.dp)) {
-                    Text(stringResource(R.string.bedtime_title), style = MaterialTheme.typography.titleSmall)
-                    Text(
-                        stringResource(R.string.bedtime_text, Bedtime.LEAD_MINUTES),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
-                // Die ganze Zeile schaltet; der Schalter zeigt nur den Zustand.
-                Switch(checked = bedtimeReminder, onCheckedChange = null)
-            }
-            SwitchRow(
-                stringResource(R.string.weekly_title), stringResource(R.string.weekly_toggle), weeklyReview,
-                onWeeklyReview,
-            )
-        }
+        GoalSection(state, actions)
 
         // Sperrbildschirm und Einschlaferkennung gehören zum Wecker, nicht zum Schlafziel.
         Group(stringResource(R.string.nav_alarms)) {
             SwitchRow(
                 stringResource(R.string.next_alarm_notif_title), stringResource(R.string.next_alarm_notif_hint),
-                nextAlarmNotice, onNextAlarmNotice,
+                state.nextAlarmNotice, actions.onNextAlarmNotice,
             )
             SwitchRow(
-                stringResource(R.string.auto_onset_title), stringResource(R.string.auto_onset_hint), autoOnset,
-                onAutoOnset,
+                stringResource(R.string.auto_onset_title), stringResource(R.string.auto_onset_hint), state.autoOnset,
+                actions.onAutoOnset,
             )
         }
 
@@ -198,43 +149,125 @@ fun SettingsScreen(
 
         extras.holidays?.let { HolidaysGroup(it) }
 
-        CustomNotesGroup(customNotes, onAddCustomNote, onRenameCustomNote, onDeleteCustomNote)
+        CustomNotesGroup(
+            state.customNotes, actions.onAddCustomNote, actions.onRenameCustomNote, actions.onDeleteCustomNote,
+        )
 
-        RoutineGroup(routineItems, onAddRoutineItem, onRemoveRoutineItem)
+        RoutineGroup(state.routineItems, actions.onAddRoutineItem, actions.onRemoveRoutineItem)
 
         Group(stringResource(R.string.sound_rec_title)) {
             SwitchRow(
                 stringResource(R.string.sound_rec_default), stringResource(R.string.sound_rec_default_hint),
-                soundRecDefault, onSoundRecDefault,
+                state.soundRecDefault, actions.onSoundRecDefault,
             )
         }
 
-        DataGroup(onExport, canExport, onClearHistory, extras)
+        DataGroup(actions.onExport, state.canExport, actions.onClearHistory, extras)
 
-        Group(stringResource(R.string.health_connect)) {
-            Text(stringResource(R.string.health_connect_hint), style = MaterialTheme.typography.bodyMedium)
-            when (health) {
-                HealthState.UNAVAILABLE -> Text(
-                    stringResource(R.string.health_unavailable),
+        HealthSection(state.health, actions.onConnectHealth)
+
+        AboutGroup(state.version, extras)
+    }
+    }
+}
+
+/** Darstellung: System, Hell oder Dunkel, dazu «Abends dunkel ab». */
+@Composable
+private fun ThemeSection(themeMode: ThemeMode, eveningDark: EveningDarkSetting, actions: SettingsActions) {
+    Group(stringResource(R.string.settings_theme)) {
+        val modes = listOf(
+            ThemeMode.SYSTEM to R.string.settings_theme_system,
+            ThemeMode.LIGHT to R.string.settings_theme_light,
+            ThemeMode.DARK to R.string.settings_theme_dark,
+        )
+        SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().height(IntrinsicSize.Max)) {
+            modes.forEachIndexed { index, (mode, label) ->
+                SegmentedButton(
+                    selected = themeMode == mode,
+                    onClick = { actions.onThemeMode(mode) },
+                    shape = SegmentedButtonDefaults.itemShape(index, modes.size),
+                    modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight(),
+                ) { Text(stringResource(label)) }
+            }
+        }
+        // Abends dunkel: nur bei «System» und «Hell» wirksam (Dunkel bleibt dunkel).
+        if (themeMode != ThemeMode.DARK) EveningDarkRows(eveningDark, actions.onEveningDark, actions.onEveningDarkFrom)
+    }
+}
+
+/** Schlafziel, Bettzeit-Erinnerung und Wochenrückblick. */
+@Composable
+private fun GoalSection(state: SettingsState, actions: SettingsActions) {
+    Group(stringResource(R.string.goal_title)) {
+        val context = LocalContext.current
+        // Beim Ziehen nur anzeigen, gespeichert (und die Erinnerung neu geplant) beim Loslassen.
+        var dragging by remember(state.goalMinutes) { mutableFloatStateOf(state.goalMinutes.toFloat()) }
+        Text(
+            stringResource(
+                R.string.goal_value, Format.duration(context, Duration.ofMinutes(dragging.roundToInt().toLong())),
+            ),
+            style = MaterialTheme.typography.titleSmall,
+            color = MaterialTheme.colorScheme.primary,
+        )
+        Slider(
+            value = dragging,
+            onValueChange = { dragging = SleepGoal.clamp(it.roundToInt()).toFloat() },
+            onValueChangeFinished = { actions.onGoal(dragging.roundToInt()) },
+            valueRange = SleepGoal.MIN_MINUTES.toFloat()..SleepGoal.MAX_MINUTES.toFloat(),
+            steps = (SleepGoal.MAX_MINUTES - SleepGoal.MIN_MINUTES) / SleepGoal.STEP_MINUTES - 1,
+        )
+        Text(
+            stringResource(R.string.goal_hint), style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        Row(
+            Modifier.fillMaxWidth().heightIn(min = MIN_TOUCH).toggleable(
+                value = state.bedtimeReminder, role = Role.Switch, onValueChange = actions.onBedtimeReminder,
+            ).padding(top = 8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Column(Modifier.weight(1f).padding(end = 12.dp)) {
+                Text(stringResource(R.string.bedtime_title), style = MaterialTheme.typography.titleSmall)
+                Text(
+                    stringResource(R.string.bedtime_text, Bedtime.LEAD_MINUTES),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
-                HealthState.CONNECTED -> Text(
-                    stringResource(R.string.health_connected),
-                    style = MaterialTheme.typography.titleSmall,
-                    color = MaterialTheme.colorScheme.primary,
-                )
-                HealthState.AVAILABLE -> Button(onClick = onConnectHealth) {
-                    Text(stringResource(R.string.health_connect))
-                }
-                HealthState.UPDATE_REQUIRED -> Button(onClick = { uri.openUri(HEALTH_CONNECT_STORE) }) {
-                    Text(stringResource(R.string.health_update))
-                }
+            }
+            // Die ganze Zeile schaltet; der Schalter zeigt nur den Zustand.
+            Switch(checked = state.bedtimeReminder, onCheckedChange = null)
+        }
+        SwitchRow(
+            stringResource(R.string.weekly_title), stringResource(R.string.weekly_toggle), state.weeklyReview,
+            actions.onWeeklyReview,
+        )
+    }
+}
+
+/** Health Connect: Hinweis und je nach Stand Verbinden, Aktualisieren oder «Verbunden». */
+@Composable
+private fun HealthSection(health: HealthState, onConnectHealth: () -> Unit) {
+    val uri = LocalUriHandler.current
+    Group(stringResource(R.string.health_connect)) {
+        Text(stringResource(R.string.health_connect_hint), style = MaterialTheme.typography.bodyMedium)
+        when (health) {
+            HealthState.UNAVAILABLE -> Text(
+                stringResource(R.string.health_unavailable),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            HealthState.CONNECTED -> Text(
+                stringResource(R.string.health_connected),
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary,
+            )
+            HealthState.AVAILABLE -> Button(onClick = onConnectHealth) {
+                Text(stringResource(R.string.health_connect))
+            }
+            HealthState.UPDATE_REQUIRED -> Button(onClick = { uri.openUri(HEALTH_CONNECT_STORE) }) {
+                Text(stringResource(R.string.health_update))
             }
         }
-
-        AboutGroup(version, extras)
-    }
     }
 }
 

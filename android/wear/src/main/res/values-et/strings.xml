@@ -51,7 +51,7 @@
     <string name="dnd_title">Äratused blokeeritud</string>
     <string name="dnd_text">Luba äratused režiimis „Mitte segada“.</string>
     <string name="duration_hours">%1$d h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="home_last_night">Eelmine öö</string>
     <string name="notification_open">Ava</string>
     <string name="home_good_night_too_far">Saadaval alates 16 h enne äratust</string>

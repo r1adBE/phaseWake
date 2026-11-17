@@ -89,6 +89,7 @@
     <string name="settings_evening_dark">شام کو گہرا</string>
     <string name="settings_evening_dark_text">%1$s – %2$s گہرا، سسٹم یا روشن چننے پر بھی۔</string>
     <string name="settings_evening_dark_from">گہرا شروع</string>
+    <string name="settings_evening_dark_now">ابھی لاگو – %1$s سے روشن</string>
     <string name="settings_data">تمہارا ڈیٹا</string>
     <string name="settings_data_text">سب کچھ تمہارے فون اور گھڑی پر رہتا ہے۔ نہ اکاؤنٹ، نہ سرور، نہ ٹریکنگ۔ Google کے گھڑی کنکشن سے صرف گھڑی کی تکنیکی معلومات جاتی ہیں، صحت کے ڈیٹا کے بغیر۔</string>
     <string name="settings_export">راتیں نام کے بغیر ایکسپورٹ کرو</string>
@@ -102,7 +103,7 @@
     <string name="duration_minutes">%1$d منٹ</string>
     <string name="duration_hours">%1$d گھنٹے</string>
     <string name="duration_hours_half">%1$d½ گھنٹے</string>
-    <string name="duration_hours_minutes">%1$d گھنٹے %2$d منٹ</string>
+    <string name="duration_hours_minutes">%1$d گھنٹے %2$d منٹ</string>
     <string name="health_title">Health Connect سے نیند کے مراحل</string>
     <string name="health_rationale">Phase Wake نیند کا وہ ڈیٹا پڑھ سکتا ہے جو تمہاری صحت کی ایپ (مثلاً Samsung Health) محفوظ کرتی ہے۔ یہ تمہارے تاریخچے میں دکھایا جاتا ہے، ان راتوں سے موازنے کے لیے بھی جب Phase Wake نے تمہیں جگایا۔ Phase Wake صرف پڑھتا ہے، کبھی لکھتا نہیں، اور کچھ بھی تمہارے فون سے باہر نہیں جاتا۔</string>
     <string name="health_connect">صحت کے ڈیٹا سے موازنہ کرو</string>

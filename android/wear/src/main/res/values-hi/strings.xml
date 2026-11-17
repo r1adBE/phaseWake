@@ -50,7 +50,7 @@
     <string name="dnd_title">अलार्म रुके हैं</string>
     <string name="dnd_text">डू नॉट डिस्टर्ब में अलार्म की अनुमति दो।</string>
     <string name="duration_hours">%1$d घं.</string>
-    <string name="duration_hours_minutes">%1$d घं. %2$d मि.</string>
+    <string name="duration_hours_minutes">%1$d घं. %2$d मि.</string>
     <string name="home_last_night">बीती रात</string>
     <string name="notification_open">खोलें</string>
     <string name="home_good_night_too_far">अलार्म से 16 घंटे पहले से उपलब्ध</string>

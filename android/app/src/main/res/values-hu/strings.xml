@@ -88,6 +88,7 @@
     <string name="settings_evening_dark">Este sötét</string>
     <string name="settings_evening_dark_text">Sötét: %1$s – %2$s, Rendszer vagy Világos beállításnál is.</string>
     <string name="settings_evening_dark_from">Sötét kezdete</string>
+    <string name="settings_evening_dark_now">Most érvényes – %1$s-tól világos</string>
     <string name="settings_data">Adataid</string>
     <string name="settings_data_text">Minden a telefonodon és az órádon marad. Nincs fiók, nincs szerver, nincs követés. A Google óra-kapcsolatán csak az óra műszaki adatai mennek át, egészségügyi adatok nélkül.</string>
     <string name="settings_export">Éjszakák exportja név nélkül</string>
@@ -101,7 +102,7 @@
     <string name="duration_minutes">%1$d p</string>
     <string name="duration_hours">%1$d ó</string>
     <string name="duration_hours_half">%1$d½ ó</string>
-    <string name="duration_hours_minutes">%1$d ó %2$d p</string>
+    <string name="duration_hours_minutes">%1$d ó %2$d p</string>
     <string name="health_title">Alvási fázisok a Health Connectből</string>
     <string name="health_rationale">A Phase Wake el tudja olvasni az alvási adatokat, amelyeket az egészségügyi appod (például a Samsung Health) eltárol. Ezek megjelennek az előzményeidben, összehasonlításként azokkal az éjszakákkal is, amikor a Phase Wake ébresztett. A Phase Wake csak olvas, soha nem ír, és semmi sem hagyja el a telefonodat.</string>
     <string name="health_connect">Összevetés egészségügyi adatokkal</string>

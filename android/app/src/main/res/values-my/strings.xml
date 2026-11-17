@@ -88,6 +88,7 @@
     <string name="settings_evening_dark">ညနေတွင် အမှောင်</string>
     <string name="settings_evening_dark_text">%1$s – %2$s အမှောင်၊ စနစ် သို့မဟုတ် အလင်း ရွေးထားလည်း။</string>
     <string name="settings_evening_dark_from">အမှောင် စတင်ချိန်</string>
+    <string name="settings_evening_dark_now">ယခု အသက်ဝင် – %1$s မှ အလင်း</string>
     <string name="settings_data">သင့်ဒေတာ</string>
     <string name="settings_data_text">အားလုံး သင့်ဖုန်းနှင့် နာရီပေါ်တွင်သာ ရှိသည်။ အကောင့်မလို၊ ဆာဗာမရှိ၊ ခြေရာခံခြင်းမရှိ။ Google ၏ နာရီချိတ်ဆက်မှုမှတစ်ဆင့် နာရီ၏ နည်းပညာဆိုင်ရာ အချက်အလက်များသာ သွားပြီး ကျန်းမာရေးဒေတာ မပါပါ။</string>
     <string name="settings_export">ညများကို အမည်မပါဘဲ ထုတ်ယူရန်</string>
@@ -101,7 +102,7 @@
     <string name="duration_minutes">%1$d မိနစ်</string>
     <string name="duration_hours">%1$d နာရီ</string>
     <string name="duration_hours_half">%1$d½ နာရီ</string>
-    <string name="duration_hours_minutes">%1$d နာရီ %2$d မိနစ်</string>
+    <string name="duration_hours_minutes">%1$d နာရီ %2$d မိနစ်</string>
     <string name="health_title">Health Connect မှ အိပ်စက်မှုအဆင့်များ</string>
     <string name="health_rationale">သင့်ကျန်းမာရေးအက်ပ် (ဥပမာ Samsung Health) သိမ်းထားသော အိပ်စက်မှုဒေတာကို Phase Wake ဖတ်နိုင်သည်။ ၎င်းကို သင့်မှတ်တမ်းတွင် ပြပြီး Phase Wake က သင့်ကို နှိုးခဲ့သည့် ညများနှင့် နှိုင်းယှဉ်ရန်လည်း အသုံးပြုသည်။ Phase Wake သည် ဖတ်ရုံသာဖတ်ပြီး ဘယ်တော့မှ မရေးပါ၊ ဘာမှလည်း သင့်ဖုန်းမှ အပြင်မထွက်ပါ။</string>
     <string name="health_connect">ကျန်းမာရေးဒေတာနှင့် နှိုင်းယှဉ်ရန်</string>

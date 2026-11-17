@@ -87,6 +87,7 @@
     <string name="settings_evening_dark">夜はダーク</string>
     <string name="settings_evening_dark_text">%1$s～%2$s はダーク（システム・ライト選択時も）。</string>
     <string name="settings_evening_dark_from">ダーク開始</string>
+    <string name="settings_evening_dark_now">現在適用中 – %1$s からライト</string>
     <string name="settings_data">あなたのデータ</string>
     <string name="settings_data_text">すべてスマートフォンとウォッチ内に保存されます。アカウントもサーバーもトラッキングもありません。Google のウォッチ接続を通るのはウォッチの技術情報のみで、健康データは含みません。</string>
     <string name="settings_export">睡眠記録を名前なしでエクスポート</string>

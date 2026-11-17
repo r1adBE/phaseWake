@@ -87,6 +87,7 @@
     <string name="settings_evening_dark">Gelap di malam hari</string>
     <string name="settings_evening_dark_text">Gelap dari %1$s sampai %2$s, juga dengan Sistem atau Terang.</string>
     <string name="settings_evening_dark_from">Gelap mulai</string>
+    <string name="settings_evening_dark_now">Aktif sekarang – terang mulai %1$s</string>
     <string name="settings_data">Datamu</string>
     <string name="settings_data_text">Semua tetap di ponsel dan jam tanganmu. Tanpa akun, tanpa server, tanpa pelacakan. Hanya info teknis jam yang lewat koneksi jam Google, tanpa data kesehatan.</string>
     <string name="settings_export">Ekspor malam tanpa nama</string>
@@ -100,7 +101,7 @@
     <string name="duration_minutes">%1$d mnt</string>
     <string name="duration_hours">%1$d j</string>
     <string name="duration_hours_half">%1$d½ j</string>
-    <string name="duration_hours_minutes">%1$d j %2$d mnt</string>
+    <string name="duration_hours_minutes">%1$d j %2$d mnt</string>
     <string name="health_title">Fase tidur dari Health Connect</string>
     <string name="health_rationale">Phase Wake dapat membaca data tidur yang disimpan aplikasi kesehatanmu (misalnya Samsung Health). Data ini ditampilkan di riwayatmu, juga untuk dibandingkan dengan malam-malam saat Phase Wake membangunkanmu. Phase Wake hanya membaca, tidak pernah menulis, dan tidak ada yang keluar dari ponselmu.</string>
     <string name="health_connect">Cocokkan dengan data kesehatan</string>

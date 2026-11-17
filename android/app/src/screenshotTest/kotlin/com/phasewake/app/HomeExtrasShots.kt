@@ -13,7 +13,9 @@ import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.Transient
 import com.phasewake.app.ui.home.HomeExtras
+import com.phasewake.app.ui.home.HomeActions
 import com.phasewake.app.ui.home.HomeScreen
+import com.phasewake.app.ui.home.HomeState
 import com.phasewake.app.ui.settings.HolidaysGroup
 import com.phasewake.app.ui.settings.HolidaysUi
 import com.phasewake.app.ui.settings.TestGroup
@@ -46,8 +48,9 @@ private val holidays: Set<LocalDate> = setOfNotNull(
 @Composable
 private fun HomeWith(mode: ThemeMode, alarms: List<AlarmSpec>, extras: HomeExtras) = Themed(mode) {
     HomeScreen(
-        alarms, lastNight = null, check = null, onFix = {}, contentPadding = extrasPadding,
-        onAdd = {}, onEdit = {}, onToggle = { _, _ -> }, clock = { FIXED_NOW }, extras = extras,
+        HomeState(alarms, lastNight = null, check = null),
+        HomeActions(onFix = {}, onAdd = {}, onEdit = {}, onToggle = { _, _ -> }), contentPadding = extrasPadding,
+        clock = { FIXED_NOW }, extras = extras,
     )
 }
 

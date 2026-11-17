@@ -1,0 +1,10 @@
+Lcom/phasewake/app/PhaseWakeApp;
+Lcom/phasewake/app/ui/MainActivity;
+HSPLcom/phasewake/app/PhaseWakeApp**->**(**)**
+HSPLcom/phasewake/app/SettingsRepository**->**(**)**
+HSPLcom/phasewake/app/ui/*->**(**)**
+HSPLcom/phasewake/app/ui/home/**->**(**)**
+HSPLcom/phasewake/app/ui/theme/**->**(**)**
+HSPLcom/phasewake/app/ui/components/**->**(**)**
+HSPLcom/phasewake/app/core/**->**(**)**
+HSPLcom/phasewake/app/shared/**->**(**)**

@@ -165,27 +165,11 @@ struct EditorView: View {
     @ViewBuilder
     private var daysSection: some View {
         Section(L("editor_days")) {
-            HStack {
+            // Ohne Abstand: Jeder Kreis hat seinen eigenen Rand, die Tippflächen grenzen lückenlos aneinander.
+            HStack(spacing: 0) {
                 ForEach(weekOrder, id: \.self) { day in
                     let on = days.contains(day)
-                    Button { if on { days.remove(day) } else { days.insert(day) } } label: {
-                        VStack(spacing: 2) {
-                            Text(dayName(day))
-                            // Punkt unter dem gewählten Tag: Form zusätzlich zur Füllung (Farbe nie
-                            // allein).
-                            Circle()
-                                .frame(width: 4, height: 4).opacity(on ? 1 : 0).accessibilityHidden(true)
-                        }
-                        // Mindestens 44 pt hoch, und die ganze Fläche ist Tippziel (nicht nur der
-                        // Buchstabe).
-                        .frame(maxWidth: .infinity, minHeight: 44)
-                        .contentShape(Capsule())
-                    }
-                        .font(Fonts.manrope(13, .semibold, relativeTo: .footnote))
-                        .background(on ? Brand.accentLight : Color.secondary.opacity(0.12), in: Capsule())
-                        .foregroundStyle(on ? .white : .primary)
-                        .buttonStyle(.plain)
-                        .accessibilityAddTraits(on ? .isSelected : [])
+                    DayToggle(label: dayName(day), on: on) { if on { days.remove(day) } else { days.insert(day) } }
                 }
             }
             HStack {

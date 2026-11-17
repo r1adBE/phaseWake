@@ -90,6 +90,7 @@
     <string name="settings_evening_dark">સાંજે ઘેરો</string>
     <string name="settings_evening_dark_text">%1$s – %2$s ઘેરો, સિસ્ટમ કે આછો પસંદ હોય તો પણ.</string>
     <string name="settings_evening_dark_from">ઘેરો શરૂ</string>
+    <string name="settings_evening_dark_now">હમણાં લાગુ – %1$s થી આછો</string>
     <string name="settings_data">તમારો ડેટા</string>
     <string name="settings_data_text">બધું તમારા ફોન અને ઘડિયાળ પર જ રહે છે. કોઈ એકાઉન્ટ નહીં, કોઈ સર્વર નહીં, કોઈ ટ્રેકિંગ નહીં. Google ના ઘડિયાળ જોડાણ દ્વારા માત્ર ઘડિયાળની તકનીકી માહિતી જાય છે, આરોગ્ય ડેટા વિના.</string>
     <string name="settings_export">રાતો નામ વગર એક્સપોર્ટ કરો</string>
@@ -103,7 +104,7 @@
     <string name="duration_minutes">%1$d મિ.</string>
     <string name="duration_hours">%1$d ક.</string>
     <string name="duration_hours_half">%1$d½ ક.</string>
-    <string name="duration_hours_minutes">%1$d ક. %2$d મિ.</string>
+    <string name="duration_hours_minutes">%1$d ક. %2$d મિ.</string>
     <string name="health_title">Health Connect પરથી ઊંઘના તબક્કા</string>
     <string name="health_rationale">તમારી હેલ્થ ઍપ (દા.ત. Samsung Health) જે ઊંઘનો ડેટા સાચવે છે, તે Phase Wake વાંચી શકે છે. તે તમારા ઇતિહાસમાં બતાવાય છે, જે રાતોમાં Phase Wake એ તમને જગાડ્યા તેની સાથે સરખામણી માટે પણ. Phase Wake ફક્ત વાંચે છે, ક્યારેય લખતું નથી, અને કંઈ પણ તમારા ફોનની બહાર જતું નથી.</string>
     <string name="health_connect">હેલ્થ ડેટા સાથે સરખાવો</string>

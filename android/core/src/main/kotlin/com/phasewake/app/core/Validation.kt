@@ -42,6 +42,7 @@ object Validation {
         AWAKE("awake"), LIGHT("light"), REM("rem"), DEEP("deep"), UNKNOWN("unknown"), NONE("none");
 
         companion object {
+            /** Aus einer Phase der Gesundheits-App; `null` und [SleepStage.UNKNOWN] ergeben [UNKNOWN]. */
             fun of(stage: SleepStage?): Ref = when (stage) {
                 SleepStage.AWAKE -> AWAKE
                 SleepStage.LIGHT -> LIGHT

@@ -81,6 +81,7 @@
     <string name="settings_evening_dark">საღამოს მუქი</string>
     <string name="settings_evening_dark_text">მუქი: %1$s – %2$s, სისტემური ან ღია რეჟიმშიც.</string>
     <string name="settings_evening_dark_from">მუქის დაწყება</string>
+    <string name="settings_evening_dark_now">ახლა მოქმედებს – ღია %1$s-დან</string>
     <string name="settings_data">შენი მონაცემები</string>
     <string name="settings_data_text">ყველაფერი რჩება შენს ტელეფონსა და საათზე. არც ანგარიში, არც სერვერი, არც თვალთვალი. Google-ის საათის კავშირით მხოლოდ საათის ტექნიკური მონაცემები გადის, ჯანმრთელობის მონაცემების გარეშე.</string>
     <string name="settings_export">ღამეების ექსპორტი სახელის გარეშე</string>
@@ -93,7 +94,7 @@
     <string name="duration_minutes">%1$d წთ</string>
     <string name="duration_hours">%1$d სთ</string>
     <string name="duration_hours_half">%1$d½ სთ</string>
-    <string name="duration_hours_minutes">%1$d სთ %2$d წთ</string>
+    <string name="duration_hours_minutes">%1$d სთ %2$d წთ</string>
     <string name="health_title">ძილის ფაზები Health Connect-დან</string>
     <string name="health_rationale">Phase Wake-ს შეუძლია წაიკითხოს ძილის მონაცემები, რომლებსაც შენი ჯანმრთელობის აპი (მაგალითად, Samsung Health) ინახავს. ისინი ჩანს შენს ისტორიაში, მათ შორის იმ ღამეებთან შესადარებლად, როცა Phase Wake-მა გაგაღვიძა. Phase Wake მხოლოდ კითხულობს, არასოდეს წერს და არაფერი ტოვებს შენს ტელეფონს.</string>
     <string name="health_connect">შედარება ჯანმრთელობის მონაცემებთან</string>

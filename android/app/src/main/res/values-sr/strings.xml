@@ -91,6 +91,7 @@
     <string name="settings_evening_dark">Тамно увече</string>
     <string name="settings_evening_dark_text">Тамно од %1$s до %2$s, и уз Систем или Светло.</string>
     <string name="settings_evening_dark_from">Тамно од</string>
+    <string name="settings_evening_dark_now">Сада активно – светло од %1$s</string>
     <string name="settings_data">Твоји подаци</string>
     <string name="settings_data_text">Све остаје на твом телефону и сату. Без налога, без сервера, без праћења. Преко Google-ове везе са сатом иду само технички подаци о сату, без здравствених података.</string>
     <string name="settings_export">Извези ноћи без имена</string>
@@ -104,7 +105,7 @@
     <string name="duration_minutes">%1$d мин</string>
     <string name="duration_hours">%1$d ч</string>
     <string name="duration_hours_half">%1$d½ ч</string>
-    <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
+    <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
     <string name="health_title">Фазе сна из Health Connect-а</string>
     <string name="health_rationale">Phase Wake може да чита податке о сну које твоја здравствена апликација (на пример Samsung Health) чува. Приказују се у твојој историји, и за поређење са ноћима у којима те је пробудио Phase Wake. Phase Wake само чита, никад не уписује и ништа не напушта твој телефон.</string>
     <string name="health_connect">Упореди са здравственим подацима</string>

@@ -7,17 +7,20 @@ import java.time.temporal.ChronoUnit
 
 /**
  * Einstellung «Abends dunkel ab»: Steht das Design auf «System» oder «Hell», zeigt die App
- * ab der gewählten Uhrzeit ([fromMinutes], Standard 18:00) bis zum Morgen ([UNTIL_MINUTES], 06:00) das dunkle Design;
+ * ab der gewählten Uhrzeit ([fromMinutes], Standard 20:00) bis zum Morgen ([UNTIL_MINUTES], 06:00) das dunkle Design;
  * «Dunkel» bleibt dunkel. Gerechnet wird mit der Ortszeit (Wanduhr) in Minuten des Tages, über Mitternacht hinweg; so
- * gilt auch an Tagen mit Sommerzeit-Wechsel «ab 18:00 bis 06:00» nach der Uhr an der Wand. Gleich auf Apple
+ * gilt auch an Tagen mit Sommerzeit-Wechsel «ab 20:00 bis 06:00» nach der Uhr an der Wand. Gleich auf Apple
  * (`EveningDark.swift`), gemeinsame Fälle in shared/testdata/evening-dark.vectors.
  */
 object EveningDark {
     /** Standard: an. */
     const val DEFAULT_ENABLED: Boolean = true
 
-    /** Standard-Beginn 18:00 (Minuten des Tages). */
-    const val DEFAULT_FROM_MINUTES: Int = 18 * 60
+    /**
+     * Standard-Beginn 20:00 (Minuten des Tages): im Sommer nicht schon bei hellem Tag dunkel. Ein gespeicherter Beginn
+     * bleibt, wie er ist.
+     */
+    const val DEFAULT_FROM_MINUTES: Int = 20 * 60
 
     /**
      * Ende am Morgen: fest 06:00. Nicht die Zielzeit des nächsten Weckers – die fehlt an freien Tagen oder liegt Tage

@@ -1,6 +1,7 @@
 package com.phasewake.app.ui.editor
 
 import com.phasewake.app.ui.components.skyCardColors
+import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ui.components.skyCardEdge
 import com.phasewake.app.ui.components.skyCardLift
 import androidx.compose.foundation.layout.height
@@ -38,6 +39,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
+import androidx.compose.material3.TimePickerColors
+import androidx.compose.material3.TimePickerDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -218,6 +221,21 @@ internal fun DayToggle(
 
 /** Uhrzeit-Wähler etwas kleiner als die Vorgabe von Material: Er soll die Seite nicht beherrschen. */
 internal const val TIME_PICKER_SCALE = 0.82f
+
+/**
+ * Farben der Uhrzeit-Wähler. Hell sind das nicht gewählte Feld und das Zifferblatt neutral Creme: Caramel heisst
+ * überall sonst «gewählt» (Segmente, Chips, AM/PM). Dunkel bleibt es bei der Vorgabe.
+ */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+internal fun timePickerColors(): TimePickerColors {
+    val neutral = if (PhaseWakeTheme.isDark) {
+        MaterialTheme.colorScheme.surfaceContainerHighest
+    } else {
+        MaterialTheme.colorScheme.surfaceContainerLow
+    }
+    return TimePickerDefaults.colors(clockDialColor = neutral, timeSelectorUnselectedContainerColor = neutral)
+}
 
 /**
  * Verkleinert den Inhalt samt Platzbedarf (anders als `scale`, das nur zeichnet). Antippen und

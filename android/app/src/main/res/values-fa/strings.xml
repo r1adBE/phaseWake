@@ -88,6 +88,7 @@
     <string name="settings_evening_dark">تیره در شب‌ها</string>
     <string name="settings_evening_dark_text">تیره از %1$s تا %2$s، حتی با سیستم یا روشن.</string>
     <string name="settings_evening_dark_from">تیره از</string>
+    <string name="settings_evening_dark_now">اکنون فعال است – روشن از %1$s</string>
     <string name="settings_data">داده‌های تو</string>
     <string name="settings_data_text">همه‌چیز روی گوشی و ساعتت می‌ماند. بدون حساب، بدون سرور، بدون ردیابی. از اتصال ساعت Google فقط اطلاعات فنی ساعت می‌گذرد، بدون داده‌های سلامت.</string>
     <string name="settings_export">خروجی شب‌ها بدون نام</string>
@@ -101,7 +102,7 @@
     <string name="duration_minutes">%1$d دق</string>
     <string name="duration_hours">%1$d س</string>
     <string name="duration_hours_half">%1$d½ س</string>
-    <string name="duration_hours_minutes">%1$d س %2$d دق</string>
+    <string name="duration_hours_minutes">%1$d س %2$d دق</string>
     <string name="health_title">مراحل خواب از Health Connect</string>
     <string name="health_rationale">Phase Wake می‌تواند داده‌های خوابی را که برنامهٔ سلامتت (مثلاً Samsung Health) ذخیره می‌کند بخواند. این داده‌ها در تاریخچه‌ات نمایش داده می‌شوند، از جمله برای مقایسه با شب‌هایی که Phase Wake بیدارت کرده است. Phase Wake فقط می‌خواند، هیچ‌وقت چیزی نمی‌نویسد و هیچ چیز از گوشی‌ات بیرون نمی‌رود.</string>
     <string name="health_connect">مقایسه با داده‌های سلامت</string>

@@ -12,7 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TimePicker
-import androidx.compose.material3.TimePickerDefaults
+import com.phasewake.app.ui.editor.timePickerColors
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -29,11 +29,13 @@ import com.phasewake.app.R
 import com.phasewake.app.core.EveningDark
 import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.theme.EveningDarkSetting
+import com.phasewake.app.ui.theme.PhaseWakeTheme
 import java.time.LocalTime
 
 /**
  * «Abends dunkel ab» unter der Wahl des Designs: Schalter mit Erklärung (von – bis), darunter
- * die Uhrzeit des Beginns; antippen öffnet den Zeitwähler. Gleich auf dem iPhone (`SettingsView`).
+ * die Uhrzeit des Beginns; antippen öffnet den Zeitwähler. Gilt die Regel gerade, ein Hinweis «Gilt jetzt – hell ab …».
+ * Gleich auf dem iPhone (`EveningDarkSettingsSection`).
  */
 @Composable
 internal fun EveningDarkRows(setting: EveningDarkSetting, onEnabled: (Boolean) -> Unit, onFrom: (Int) -> Unit) {
@@ -46,6 +48,13 @@ internal fun EveningDarkRows(setting: EveningDarkSetting, onEnabled: (Boolean) -
         onEnabled,
     )
     if (!setting.enabled) return
+    // Gilt die Regel gerade, bleibt die App auch bei «Hell» dunkel: sagen, warum und bis wann.
+    if (PhaseWakeTheme.isEvening) {
+        Text(
+            stringResource(R.string.settings_evening_dark_now, until), style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.primary, modifier = Modifier.padding(top = 4.dp),
+        )
+    }
     var picking by remember { mutableStateOf(false) }
     Row(
         // Mindestens 48 dp hoch (Tippziel).
@@ -78,7 +87,7 @@ private fun EveningTimeDialog(minutes: Int, onPick: (Int) -> Unit, onDismiss: ()
         text = {
             TimePicker(
                 state = time,
-                colors = TimePickerDefaults.colors(clockDialColor = MaterialTheme.colorScheme.surfaceContainerHighest),
+                colors = timePickerColors(),
             )
         },
         confirmButton = { TextButton(onClick = { onPick(time.hour * 60 + time.minute) }) {

@@ -24,7 +24,8 @@ struct SettingsView: View {
                         .pickerStyle(.segmented)
                         // Grosse Segmente: Tippziel nahe 44 pt.
                         .controlSize(.large)
-                        EveningDarkSettingsSection()
+                        // Bei «Dunkel» wirkungslos: ausgeblendet wie auf Android.
+                        if themeMode != .dark { EveningDarkSettingsSection() }
                     }
                     Section(L("health_connect")) {
                         Text(L("health_rationale_apple")).font(.footnote)

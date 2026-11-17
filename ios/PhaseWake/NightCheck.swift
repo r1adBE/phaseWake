@@ -281,6 +281,8 @@ enum NightCheck {
             #if canImport(AlarmKit)
             if #available(iOS 26.0, *) {
                 if AlarmManager.shared.authorizationState == .notDetermined {
+                    PermissionPrompt.begin()
+                    defer { PermissionPrompt.end() }
                     do {
                         _ = try await AlarmManager.shared.requestAuthorization()
                     } catch {

@@ -57,19 +57,27 @@ import java.time.Instant
 
 // Karten der Startseite: letzte Nacht, Einschlafklänge, Wecker-Zeile.
 
+/**
+ * Was der Morgenbericht ([LastNightCard]) unten zeigt: Notizen des Abends ([notes], [customNotes]) und die Geräusche
+ * der Nacht ([clips], Datei über [soundFile]).
+ */
+internal data class MorningExtras(
+    val notes: List<String>,
+    val customNotes: List<CustomNote>,
+    val onToggleNote: (String) -> Unit,
+    val clips: List<SoundClip> = emptyList(),
+    val soundFile: (SoundClip) -> File? = { null },
+    val onDeleteClip: (SoundClip) -> Unit = {},
+    val onDeleteClips: () -> Unit = {},
+)
+
 @Composable
 internal fun LastNightCard(
     night: NightRecord,
     now: Instant,
     missHint: MissHint?,
     onFeeling: (Int) -> Unit,
-    notes: List<String>,
-    customNotes: List<CustomNote>,
-    onToggleNote: (String) -> Unit,
-    clips: List<SoundClip> = emptyList(),
-    soundFile: (SoundClip) -> File? = { null },
-    onDeleteClip: (SoundClip) -> Unit = {},
-    onDeleteClips: () -> Unit = {},
+    extras: MorningExtras,
 ) {
     // Morgenbericht: am Morgen nach dem Wecken fragt die Karte nach dem Befinden.
     val morning = Duration.between(night.wokeAt, now) < MORNING
@@ -159,9 +167,9 @@ internal fun LastNightCard(
                 }
             }
             // Morgenbericht: Notizen des Abends nachtragen oder ändern.
-            if (morning) NightNotes(notes, customNotes, onToggleNote, Modifier.padding(top = 6.dp))
+            if (morning) NightNotes(extras.notes, extras.customNotes, extras.onToggleNote, Modifier.padding(top = 6.dp))
             // Morgenbericht: Geräusche der Nacht (sonst im Verlauf).
-            if (morning) SoundClipsSection(clips, soundFile, onDeleteClip, onDeleteClips)
+            if (morning) SoundClipsSection(extras.clips, extras.soundFile, extras.onDeleteClip, extras.onDeleteClips)
         }
     }
 }
@@ -206,6 +214,20 @@ internal fun SoundsEntry(playing: SleepSoundService.Playing?, now: Instant, onCl
 }
 
 /**
+ * «Überspringen» einer Wecker-Zeile ([AlarmRow]).
+ *
+ * @property skipped Datum des übersprungenen Termins, schon formatiert; `null` = nichts übersprungen.
+ * @property onSkip «Nächstes Mal überspringen»; `null` = kein Menü.
+ * @property skipDate Datum, das «Überspringen» treffen würde, schon formatiert (im Menü genannt); `null` = ohne Datum.
+ */
+internal data class AlarmSkip(
+    val skipped: String? = null,
+    val onSkip: (() -> Unit)? = null,
+    val onUndoSkip: () -> Unit = {},
+    val skipDate: String? = null,
+)
+
+/**
  * Zeile eines Weckers: antippen öffnet den Editor, der Schalter schaltet. Das Menü daneben bietet
  * «Nächstes Mal überspringen» (nur wiederholte, eingeschaltete Wecker); übersprungen steht das Datum da,
  * mit «Rückgängig».
@@ -216,13 +238,9 @@ internal fun AlarmRow(
     modifier: Modifier,
     onClick: () -> Unit,
     onToggle: (Boolean) -> Unit,
-    /** Datum des übersprungenen Termins, schon formatiert; `null` = nichts übersprungen. */
-    skipped: String? = null,
-    onSkip: (() -> Unit)? = null,
-    onUndoSkip: () -> Unit = {},
-    /** Datum, das «Überspringen» treffen würde, schon formatiert (im Menü genannt); `null` = ohne Datum. */
-    skipDate: String? = null,
+    skip: AlarmSkip = AlarmSkip(),
 ) {
+    val (skipped, onSkip, onUndoSkip, skipDate) = skip
     val context = LocalContext.current
     val res = LocalResources.current
     val muted = MaterialTheme.colorScheme.onSurfaceVariant

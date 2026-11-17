@@ -77,6 +77,9 @@ struct RootView: View {
         .fullScreenCover(isPresented: Binding(get: { !onboardingDone }, set: { onboardingDone = !$0 })) {
             OnboardingView().environment(model)
         }
+        // Start im Hintergrund (z. B. Hintergrundaufgabe): gleich abgedeckt, auch ohne Wechsel der Phase. Beim
+        // normalen Start nicht (dort ist die Phase kurz «inaktiv», das Logo blitzte sonst auf).
+        .onAppear { if scenePhase == .background { PrivacyCover.update(.background) } }
         .onChange(of: scenePhase) { _, phase in
             // Nicht aktiv (App-Umschalter, Hintergrund): Abdeckung über allem, damit das Vorschaubild keine Schlafdaten
             // zeigt.

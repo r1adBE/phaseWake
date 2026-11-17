@@ -23,7 +23,7 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 |---|---|---|
 | Zeilen je Datei (Kotlin, Swift) | höchstens **400** | `.github/scripts/line_limit.py` |
 | Zeichen je Zeile (Kotlin, Swift, auch Tests) | höchstens **120** | `.github/scripts/code_limits.py` |
-| Zeilen je Funktion | höchstens **60**; Oberflächen (`@Composable`, SwiftUI `body`, `-> some View`) höchstens **120** | `.github/scripts/code_limits.py` |
+| Zeilen je Funktion | höchstens **60**; Oberflächen (`@Composable`, `@ViewBuilder`, `some View`) höchstens **120**; auch Ausdruckskörper (`= run { … }`), `init`, Getter und berechnete Eigenschaften | `.github/scripts/code_limits.py` |
 | Parameter je Funktion | höchstens **7** (sonst Datenklasse bzw. Struct mit gleichem Namen in Kotlin und Swift); Konstruktoren ausgenommen | `.github/scripts/code_limits.py` |
 | Verschachtelung | höchstens **4** Ebenen | Review |
 | Build-Nummern im Produktivcode | **0** | `.github/scripts/no_build_numbers.py` |
@@ -32,7 +32,8 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 | Warnungen (Kotlin, Swift, Lint, Xcode) | **0** | CI-Hinweise «Warnungen» |
 
 - **Massstab:** Die Grenzen entsprechen den Standardregeln von detekt (Kotlin) und SwiftLint (Swift); die CI prüft
-  sie bei jedem Lauf und kennt keine Ausnahmen.
+  sie bei jedem Lauf und kennt keine Ausnahmen. Die Prüfskripte haben Selbsttests (`.github/scripts/test_*.py`,
+  Musterfälle); wer ein Skript ändert, ergänzt dort den Fall.
 - **Altlasten:** Dateien, die beim Einführen der Grenze grösser waren, stehen in `.github/quality/line-limit-baseline.txt`
   mit ihrer damaligen Länge. Sie dürfen nur schrumpfen; die Liste wird nur kürzer. Neue Dateien halten die Grenze immer.
 - **Pakete nach Aufgabe**, nicht nach Technik: `ring/`, `schedule/`, `sync/`, `sounds/`, `ui/home/` … Eine Datei
@@ -60,7 +61,9 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 - **Exportierte Komponenten und Rechte:** `release_check.py` führt je App eine Positivliste
   (`EXPORTED`, `PERMISSIONS`) für das zusammengeführte Release-Manifest. Jede Abweichung (neu oder weggefallen,
   auch eingeschleppt von einer Bibliothek) macht die CI rot. Neues erst prüfen (sonst `tools:node="remove"`), dann
-  die Liste und die Play-Erklärung (docs/PLAY.md) nachführen.
+  die Liste und die Play-Erklärung (docs/PLAY.md) nachführen. Dieselbe Liste gilt für die Testversion
+  (`release_check.py --debug`, CI nach dem Debug-Build): `src/debug/AndroidManifest.xml` entfernt dort die
+  exportierte `PreviewActivity` aus ui-tooling.
 - **Prüfsummen der Abhängigkeiten:** `android/gradle/verification-metadata.xml` hält die sha256
   jedes Artefakts (Bibliotheken, Plugins, Lint, AAPT2, Robolectric-Abbilder, Werkzeuge der Bildschirmfotos); Gradle
   bricht bei einem unbekannten oder veränderten Artefakt ab. Nach jedem Update in `libs.versions.toml` (auch aus einem
@@ -86,11 +89,12 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 | übrige Handy-App `android/app`, Uhr-App `android/wear` | keine (nur Information) | JaCoCo + `.github/scripts/coverage_check.py`, CI |
 | Zweitwecker am iPhone (`ios/PhaseWake/BackupAlarm.swift`, `+Reschedule`, `+Plan`, `+Snooze` ohne die Karte, `+Transient`) | je Datei **65 / 65 / 50 / 80 / 80 %** | `-enableCodeCoverage YES`, `xccov` + `.github/scripts/xccov_check.py`, Job «Apple-Apps», CI |
 | übrige iPhone- und Watch-App (`ios/PhaseWakeTests`, `ios/PhaseWakeWatchTests`, App als Testwirt) | keine (nur Tests) | `xcodebuild test` im Simulator, Job «Apple-Apps», CI |
-| Bildschirme | jeder Bildschirm mit Vorschau im Screenshot-Test (hell/dunkel, Uhr rund); jede Abweichung von der Referenz ist ein Fehler | `validateDebugScreenshotTest`, Job «Android», CI; Referenzen rendert der Workflow «Bildschirmfotos» (Artefakt `referenzbilder`) |
+| Bildschirme | jeder Bildschirm mit Vorschau im Screenshot-Test (hell/dunkel, Uhr rund); jede Abweichung von der Referenz ist ein Fehler | `validateDebugScreenshotTest`, Job «Android», CI; Referenzen rendert der Workflow «Bildschirmfotos» von Hand gestartet (Artefakt `referenzbilder`) |
 
-- **Referenzbilder erneuern:** Workflow «Bildschirmfotos» auf dem Arbeitszweig starten, Artefakt `referenzbilder`
-  herunterladen und nach `android/{app,wear}/src/screenshotTestDebug/reference/` übernehmen (alte Dateien vorher
-  löschen). Lokal gerenderte Bilder weichen in der Kantenglättung ab und taugen nicht als Referenz. Vorschauen
+- **Referenzbilder erneuern:** Workflow «Bildschirmfotos» auf dem Arbeitszweig von Hand starten (nur dann wird
+  gerendert), Artefakt `referenzbilder` herunterladen und nach `android/{app,wear}/src/screenshotTestDebug/reference/`
+  übernehmen (alte Dateien vorher löschen). Nach einem Push auf main legt der Workflow ohne Gradle die eingecheckten
+  Referenzbilder in den Zweig «screenshots» (die CI hat sie gerade geprüft). Lokal gerenderte Bilder weichen in der Kantenglättung ab und taugen nicht als Referenz. Vorschauen
   zeigen feste Zeiten und feste Zufallswerte (Uhrzeit am Rand der Uhr, Rechenaufgabe), sonst weichen sie bei jedem
   Lauf ab.
 
@@ -118,7 +122,8 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 - **Sprache:** Kommentare und Dokumentation auf Deutsch (Schweizer Schreibung, kein «ß»), Bezeichner auf Englisch.
 - **Jede öffentliche Deklaration im Kern** (Klasse, Funktion, Eigenschaft) hat einen KDoc- bzw. DocC-Kommentar:
   was sie tut, Einheiten (Minuten, Millisekunden, dBFS), Grenzwerte und Sonderfälle (`null`, leer, Zeitumstellung).
-  Prüfung: `.github/scripts/doc_check.py` (Altlast als Zahl in `.github/quality/doc-baseline.txt`, darf nur sinken).
+  Prüfung: `.github/scripts/doc_check.py` (Altlast als Zahl in `.github/quality/doc-baseline.txt`, darf nur sinken);
+  zählt auch Mitglieder von `companion object` und `public extension`, nur `/**` bzw. `///` gilt als Doku.
 - **Kommentare erklären das Warum**, nicht das Was: Plattformgrenzen, Entscheide, Zahlen mit Herkunft
   («30 Min: Höchstdauer der Smart-Alarm-Sitzung von watchOS»). Ein Kommentar, der nur den Code wiederholt, fällt weg.
 - **Konstanten statt Zahlen:** Jede fachliche Zahl hat einen Namen und einen Kommentar zur Herkunft.

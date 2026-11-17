@@ -50,7 +50,7 @@
     <string name="dnd_title">அலாரங்கள் தடுக்கப்பட்டன</string>
     <string name="dnd_text">“தொந்தரவு செய்ய வேண்டாம்” இல் அலாரங்களை அனுமதியுங்கள்.</string>
     <string name="duration_hours">%1$d மணி</string>
-    <string name="duration_hours_minutes">%1$d மணி %2$d நிமி.</string>
+    <string name="duration_hours_minutes">%1$d மணி %2$d நிமி.</string>
     <string name="home_last_night">நேற்றிரவு</string>
     <string name="notification_open">திற</string>
     <string name="home_good_night_too_far">அலாரத்துக்கு 16 மணி முன்பிருந்து கிடைக்கும்</string>

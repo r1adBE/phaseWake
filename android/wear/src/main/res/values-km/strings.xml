@@ -48,7 +48,7 @@
     <string name="dnd_title">ម៉ោងរោទ៍ត្រូវបានរារាំង</string>
     <string name="dnd_text">អនុញ្ញាតម៉ោងរោទ៍ក្នុង «កុំរំខាន»។</string>
     <string name="duration_hours">%1$d ម៉ោង</string>
-    <string name="duration_hours_minutes">%1$d ម៉ោង %2$d នាទី</string>
+    <string name="duration_hours_minutes">%1$d ម៉ោង %2$d នាទី</string>
     <string name="home_last_night">យប់មិញ</string>
     <string name="notification_open">បើក</string>
     <string name="home_good_night_too_far">អាចប្រើបានចាប់ពី 16 ម៉ោងមុនម៉ោងរោទ៍</string>

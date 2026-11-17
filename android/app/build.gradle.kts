@@ -139,6 +139,8 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.navigation.compose)
+    // Startprofil (src/main/baseline-prof.txt) nach der Installation anwenden; kam bisher schon über Compose mit.
+    implementation(libs.androidx.profileinstaller)
     implementation(libs.health.connect)
     // Play Store auf der Uhr öffnen, wenn dort Phase Wake fehlt.
     implementation(libs.wear.remote.interactions)

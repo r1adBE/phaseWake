@@ -48,7 +48,7 @@
     <string name="dnd_title">알람이 차단됨</string>
     <string name="dnd_text">방해 금지 모드에서 알람을 허용하세요.</string>
     <string name="duration_hours">%1$d시간</string>
-    <string name="duration_hours_minutes">%1$d시간 %2$d분</string>
+    <string name="duration_hours_minutes">%1$d시간 %2$d분</string>
     <string name="home_last_night">어젯밤</string>
     <string name="notification_open">열기</string>
     <string name="home_good_night_too_far">알람 16시간 전부터 사용 가능</string>

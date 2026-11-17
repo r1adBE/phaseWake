@@ -24,6 +24,8 @@ final class HealthSleep: @unchecked Sendable {
 
     func requestAccess() async -> Bool {
         guard isAvailable else { return false }
+        PermissionPrompt.begin()
+        defer { PermissionPrompt.end() }
         do {
             try await store.requestAuthorization(toShare: [], read: [type])
             return true

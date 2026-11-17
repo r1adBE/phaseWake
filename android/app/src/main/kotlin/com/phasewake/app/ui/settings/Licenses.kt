@@ -19,8 +19,8 @@ internal object Licenses {
             "Apache-2.0.txt",
             listOf(
                 "AndroidX / Jetpack (Compose, Core, Activity, Lifecycle, Navigation, DataStore, Health Connect, " +
-                    "Health Services, Wear Compose, Tiles, ProtoLayout, Complications, Ongoing, Remote Interactions) " +
-                    "© The Android Open Source Project",
+                    "Health Services, Wear Compose, Tiles, ProtoLayout, Complications, Ongoing, Remote Interactions, " +
+                    "ProfileInstaller) © The Android Open Source Project",
                 "Kotlin, kotlinx.coroutines, kotlinx.serialization, atomicfu © JetBrains s.r.o.",
                 "MediaPipe Tasks Audio © The MediaPipe Authors",
                 "YAMNet model © The TensorFlow Authors, Google LLC",

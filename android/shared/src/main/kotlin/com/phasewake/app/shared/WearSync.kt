@@ -73,6 +73,17 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
     }
 
     /**
+     * Uhr-App fortgesetzt: Stand der Gegenseite anfragen, wie beim Prozessstart höchstens alle 30 Min (dasselbe
+     * [SyncGate]). Hat diese Seite schon Einträge der Gegenseite verarbeitet, nur Ungeprüftes
+     * ([DataLayer.SYNC_CHANGED_ONLY]); frisch installiert oder zurückgesetzt den vollen Stand.
+     */
+    suspend fun requestSyncOnResume(gate: SyncGate = SyncGate.forContext(app)) {
+        if (!gate.due()) return
+        val payload = DataLayer.resumeSyncPayload(receivedAny = received.any())
+        if (sendMessage(peer, DataLayer.PATH_SYNC_REQUEST, payload) > 0) gate.mark()
+    }
+
+    /**
      * Empfangene Nachricht der Warteschlange von [node]: [handle] verarbeitet den Text; gelingt das (kein Fehler),
      * wird die Kennung gemerkt ([ReceivedIds]) und der Empfang bestätigt ([DataLayer.PATH_ACK]). Derselbe Eintrag noch
      * einmal: nur erneut bestätigen, nicht noch einmal verarbeiten. Ohne Kennung (unlesbar) nichts.
@@ -249,15 +260,12 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
         null
     }
 
-    /** Handy: Feiertage an die Uhren (Warteschlange). */
-    suspend fun publishHolidays(list: HolidayList, updatedAt: Long) = guarded("Feiertage senden") {
-        outbox.enqueue(
-            QueueMessages.KEY_HOLIDAYS,
-            DataLayer.PATH_MSG_HOLIDAYS,
-            peer,
-            "$updatedAt\n${Holidays.encode(list)}",
-        )
-    }
+    /** Handy: Feiertage an die Uhren (Warteschlange); [unlessAcked] wie bei [publishAlarms]. */
+    suspend fun publishHolidays(list: HolidayList, updatedAt: Long, unlessAcked: Boolean = false) =
+        guarded("Feiertage senden") {
+            val body = "$updatedAt\n${Holidays.encode(list)}"
+            put(QueueMessages.KEY_HOLIDAYS, DataLayer.PATH_MSG_HOLIDAYS, body, unlessAcked)
+        }
 
     /**
      * Handy: Schlafziel ([minutes]) mit Zeitpunkt der Änderung an die Uhren, wie die Feiertage; [unlessAcked] wie bei

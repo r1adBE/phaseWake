@@ -51,7 +51,7 @@
     <string name="dnd_title">अलार्म अडवले</string>
     <string name="dnd_text">“व्यत्यय आणू नका” मध्ये अलार्मना परवानगी द्या.</string>
     <string name="duration_hours">%1$d ता.</string>
-    <string name="duration_hours_minutes">%1$d ता. %2$d मि.</string>
+    <string name="duration_hours_minutes">%1$d ता. %2$d मि.</string>
     <string name="home_last_night">काल रात्री</string>
     <string name="notification_open">उघडा</string>
     <string name="home_good_night_too_far">अलार्मच्या १६ ता. आधीपासून उपलब्ध</string>

@@ -50,7 +50,7 @@
     <string name="dnd_title">الارم بند ہیں</string>
     <string name="dnd_text">“ڈسٹرب نہ کریں” میں الارم کی اجازت دو۔</string>
     <string name="duration_hours">%1$d گھنٹے</string>
-    <string name="duration_hours_minutes">%1$d گھنٹے %2$d منٹ</string>
+    <string name="duration_hours_minutes">%1$d گھنٹے %2$d منٹ</string>
     <string name="home_last_night">پچھلی رات</string>
     <string name="notification_open">کھولو</string>
     <string name="home_good_night_too_far">الارم سے 16 گھنٹے پہلے سے دستیاب</string>

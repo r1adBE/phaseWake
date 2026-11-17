@@ -51,7 +51,7 @@
     <string name="dnd_title">Алармите се блокирани</string>
     <string name="dnd_text">Дозволи аларми при „Не вознемирувај“.</string>
     <string name="duration_hours">%1$d ч</string>
-    <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
+    <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
     <string name="home_last_night">Минатата ноќ</string>
     <string name="notification_open">Отвори</string>
     <string name="home_good_night_too_far">Достапно од 16 ч пред алармот</string>

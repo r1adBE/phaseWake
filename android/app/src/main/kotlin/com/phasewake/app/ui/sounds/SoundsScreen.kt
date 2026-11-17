@@ -55,23 +55,34 @@ import java.time.Instant
 import kotlinx.coroutines.delay
 
 /**
+ * Was die Einschlafklänge ([SoundsScreen]) zeigen: laufender Klang, Auswahl und Timer.
+ *
+ * @property canPlay `false`, solange ein Weckfenster läuft (Klänge überdecken nie das Wecken).
+ */
+data class SoundsState(
+    val playing: SleepSoundService.Playing?,
+    val selected: SleepSound,
+    val timer: Int?,
+    val canPlay: Boolean,
+)
+
+/** Aktionen der Einschlafklänge ([SoundsScreen]). */
+data class SoundsActions(
+    val onBack: () -> Unit,
+    val onSelect: (SleepSound) -> Unit,
+    val onTimer: (Int?) -> Unit,
+    val onPlay: () -> Unit,
+    val onStop: () -> Unit,
+)
+
+/**
  * Einschlafklänge: zehn Klänge (Rauschen, Ventilator, Einschlaf-Wellen, Aufnahmen), Timer, Abspielen/Stoppen und
  * Restzeit.
- *
- * @param canPlay `false`, solange ein Weckfenster läuft (Klänge überdecken nie das Wecken).
  */
 @Composable
-fun SoundsScreen(
-    playing: SleepSoundService.Playing?,
-    selected: SleepSound,
-    timer: Int?,
-    canPlay: Boolean,
-    onBack: () -> Unit,
-    onSelect: (SleepSound) -> Unit,
-    onTimer: (Int?) -> Unit,
-    onPlay: () -> Unit,
-    onStop: () -> Unit,
-) {
+fun SoundsScreen(state: SoundsState, actions: SoundsActions) {
+    val (playing, selected, timer, canPlay) = state
+    val (onBack, onSelect, onTimer, onPlay, onStop) = actions
     val context = LocalContext.current
     SkyBarPage(bar = {
         IconButton(onClick = onBack) {

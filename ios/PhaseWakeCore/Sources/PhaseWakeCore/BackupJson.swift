@@ -30,7 +30,7 @@ public struct BackupSettings: Equatable, Sendable {
     /// «Abends dunkel ab» an (``EveningDark``). Fehlt der Schlüssel (ältere Sicherung), gilt
     /// die Vorgabe `true`.
     public var eveningDark: Bool
-    /// Beginn von «Abends dunkel ab» in Minuten des Tages; fehlt oder unplausibel: 18:00
+    /// Beginn von «Abends dunkel ab» in Minuten des Tages; fehlt oder unplausibel: 20:00
     /// (``EveningDark/checkedFrom(_:)``).
     public var eveningDarkFrom: Int
 

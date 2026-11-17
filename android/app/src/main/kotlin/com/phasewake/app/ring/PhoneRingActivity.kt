@@ -233,7 +233,7 @@ internal fun RingScreen(
             }
             val header: @Composable () -> Unit = { RingHeader(now, light, math, size) }
             val actions: @Composable () -> Unit = {
-                RingActions(state, light, math, size, challenge, onStop, onSnooze, onTyping)
+                RingActions(state, light, math, size, challenge, RingHandlers(onStop, onSnooze, onTyping))
             }
             if (landscape) {
                 Row(
@@ -312,6 +312,9 @@ private fun RingHeader(now: Instant, light: Float?, math: Boolean, size: RingSiz
     )
 }
 
+/** Rückrufe der Knöpfe beim Wecken ([RingActions]): Stopp, Schlummern und Tippen in der Weckaufgabe. */
+private data class RingHandlers(val onStop: () -> Unit, val onSnooze: () -> Unit, val onTyping: () -> Unit)
+
 /** Stopp (Halten oder Aufgabe) und Schlummern; beim Schlummern der Hinweis und Stopp. */
 @Composable
 private fun RingActions(
@@ -320,10 +323,9 @@ private fun RingActions(
     math: Boolean,
     size: RingSize,
     challenge: MathChallenge,
-    onStop: () -> Unit,
-    onSnooze: () -> Unit,
-    onTyping: () -> Unit,
+    handlers: RingHandlers,
 ) {
+    val (onStop, onSnooze, onTyping) = handlers
     val keyHeight = when (size) {
         RingSize.TALL -> KEY_TALL
         RingSize.SHORT -> KEY_SHORT

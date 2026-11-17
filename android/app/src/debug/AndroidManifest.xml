@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Testversion: Die Vorschau-Activity aus ui-tooling wäre exportiert und liesse jede andere App eine beliebige
+     @Composable-Funktion im Prozess der App starten. Die Bildschirmfoto-Tests (Layoutlib) brauchen sie nicht. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <application>
+        <activity
+            android:name="androidx.compose.ui.tooling.PreviewActivity"
+            tools:node="remove" />
+    </application>
+</manifest>

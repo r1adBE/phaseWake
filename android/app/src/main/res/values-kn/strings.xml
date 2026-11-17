@@ -89,6 +89,7 @@
     <string name="settings_evening_dark">ಸಂಜೆ ಗಾಢ</string>
     <string name="settings_evening_dark_text">%1$s – %2$s ಗಾಢ, ಸಿಸ್ಟಮ್ ಅಥವಾ ತಿಳಿ ಆಯ್ಕೆಯಲ್ಲೂ.</string>
     <string name="settings_evening_dark_from">ಗಾಢ ಆರಂಭ</string>
+    <string name="settings_evening_dark_now">ಈಗ ಜಾರಿಯಲ್ಲಿದೆ – %1$s ರಿಂದ ತಿಳಿ</string>
     <string name="settings_data">ನಿಮ್ಮ ಡೇಟಾ</string>
     <string name="settings_data_text">ಎಲ್ಲವೂ ನಿಮ್ಮ ಫೋನ್ ಮತ್ತು ವಾಚ್‌ನಲ್ಲೇ ಇರುತ್ತದೆ. ಖಾತೆ ಇಲ್ಲ, ಸರ್ವರ್ ಇಲ್ಲ, ಟ್ರ್ಯಾಕಿಂಗ್ ಇಲ್ಲ. Google ನ ವಾಚ್ ಸಂಪರ್ಕದ ಮೂಲಕ ವಾಚ್‌ನ ತಾಂತ್ರಿಕ ಮಾಹಿತಿ ಮಾತ್ರ ಹೋಗುತ್ತದೆ, ಆರೋಗ್ಯ ಡೇಟಾ ಇಲ್ಲದೆ.</string>
     <string name="settings_export">ರಾತ್ರಿಗಳನ್ನು ಹೆಸರಿಲ್ಲದೆ ರಫ್ತು ಮಾಡಿ</string>
@@ -102,7 +103,7 @@
     <string name="duration_minutes">%1$d ನಿಮಿ.</string>
     <string name="duration_hours">%1$d ಗಂ.</string>
     <string name="duration_hours_half">%1$d½ ಗಂ.</string>
-    <string name="duration_hours_minutes">%1$d ಗಂ. %2$d ನಿಮಿ.</string>
+    <string name="duration_hours_minutes">%1$d ಗಂ. %2$d ನಿಮಿ.</string>
     <string name="health_title">Health Connect ನಿಂದ ನಿದ್ರೆಯ ಹಂತಗಳು</string>
     <string name="health_rationale">ನಿಮ್ಮ ಆರೋಗ್ಯ ಆ್ಯಪ್ (ಉದಾಹರಣೆಗೆ Samsung Health) ಉಳಿಸುವ ನಿದ್ರೆಯ ಡೇಟಾವನ್ನು Phase Wake ಓದಬಹುದು. ಅದು ನಿಮ್ಮ ಇತಿಹಾಸದಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ, Phase Wake ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸಿದ ರಾತ್ರಿಗಳೊಂದಿಗೆ ಹೋಲಿಸಲೂ ಸಹ. Phase Wake ಓದುತ್ತದೆ ಮಾತ್ರ, ಎಂದಿಗೂ ಬರೆಯುವುದಿಲ್ಲ, ಮತ್ತು ಏನೂ ನಿಮ್ಮ ಫೋನ್‌ನಿಂದ ಹೊರಹೋಗುವುದಿಲ್ಲ.</string>
     <string name="health_connect">ಆರೋಗ್ಯ ಡೇಟಾದೊಂದಿಗೆ ಹೋಲಿಸಿ</string>

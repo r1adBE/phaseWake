@@ -28,12 +28,17 @@ import com.phasewake.app.ui.editor.EditorScreen
 import com.phasewake.app.ui.history.HistoryCharts
 import com.phasewake.app.ui.history.HistoryChartsStacked
 import com.phasewake.app.ui.history.HistoryScreen
+import com.phasewake.app.ui.history.HistoryState
 import com.phasewake.app.ui.home.Check
+import com.phasewake.app.ui.home.HomeActions
 import com.phasewake.app.ui.home.HomeScreen
+import com.phasewake.app.ui.home.HomeState
 import com.phasewake.app.ui.home.NightCheckState
 import com.phasewake.app.core.Trends
 import com.phasewake.app.ui.settings.HealthState
+import com.phasewake.app.ui.settings.SettingsActions
 import com.phasewake.app.ui.settings.SettingsScreen
+import com.phasewake.app.ui.settings.SettingsState
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ui.theme.ThemeMode
 import java.time.DayOfWeek
@@ -109,8 +114,9 @@ private fun Home(
     check: NightCheckState = NightCheckState(emptyList()),
 ) = Themed(mode) {
     HomeScreen(
-        list, nights.last(), check = check, onFix = {}, contentPadding = padding, onAdd = {}, onEdit = {},
-        onToggle = { _, _ -> }, clock = { FIXED_NOW },
+        HomeState(list, nights.last(), check = check),
+        HomeActions(onFix = {}, onAdd = {}, onEdit = {}, onToggle = { _, _ -> }), contentPadding = padding,
+        clock = { FIXED_NOW },
     )
 }
 
@@ -216,12 +222,15 @@ private val charts = HistoryCharts.of(
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf hell", device = PHONE_TALL) @Composable
 fun HistoryLight() = Themed(ThemeMode.LIGHT) {
-    HistoryScreen(nights, padding, loadStages = { stages }, trends = trends, healthConnected = true, charts = charts)
+    HistoryScreen(
+        HistoryState(nights, loadStages = { stages }, trends = trends, healthConnected = true, charts = charts),
+        padding,
+    )
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf dunkel", device = PHONE_TALL) @Composable
 fun HistoryDark() = Themed(ThemeMode.DARK) {
-    HistoryScreen(nights, padding, loadStages = { stages }, trends = trends, healthConnected = false, charts = charts)
+    HistoryScreen(HistoryState(nights, loadStages = { stages }, trends = trends, charts = charts), padding)
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf Diagramme hell", device = PHONE_TALL) @Composable
@@ -235,16 +244,18 @@ fun HistoryChartsDark() =
 @PreviewTest @Preview(locale = "de-rCH", name = "Einstellungen hell", device = PHONE) @Composable
 fun SettingsLight() = Themed(ThemeMode.LIGHT) {
     SettingsScreen(
-        ThemeMode.LIGHT, "1.0", padding, onThemeMode = {}, onExport = {}, onClearHistory = {},
-        health = HealthState.CONNECTED, onConnectHealth = {},
+        SettingsState(ThemeMode.LIGHT, "1.0", HealthState.CONNECTED),
+        SettingsActions(onThemeMode = {}, onExport = {}, onClearHistory = {}, onConnectHealth = {}),
+        padding,
     )
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Einstellungen dunkel", device = PHONE) @Composable
 fun SettingsDark() = Themed(ThemeMode.DARK) {
     SettingsScreen(
-        ThemeMode.DARK, "1.0", padding, onThemeMode = {}, onExport = {}, onClearHistory = {},
-        health = HealthState.AVAILABLE, onConnectHealth = {},
+        SettingsState(ThemeMode.DARK, "1.0", HealthState.AVAILABLE),
+        SettingsActions(onThemeMode = {}, onExport = {}, onClearHistory = {}, onConnectHealth = {}),
+        padding,
     )
 }
 

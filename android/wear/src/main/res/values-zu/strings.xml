@@ -51,7 +51,7 @@
     <string name="dnd_title">Ama-alamu avinjiwe</string>
     <string name="dnd_text">Vumela ama-alamu ku-Ungaphazamisi.</string>
     <string name="duration_hours">%1$d h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="home_last_night">Izolo ebusuku</string>
     <string name="notification_open">Vula</string>
     <string name="home_good_night_too_far">Kuyatholakala kusukela emahoreni ayi-16 ngaphambi kwe-alamu</string>

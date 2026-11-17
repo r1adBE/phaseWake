@@ -1,6 +1,8 @@
 name: Bildschirmfotos
 
-# Rendert alle Vorschauen (Handy hell/dunkel, Uhr) und legt die Bilder in den Zweig «screenshots».
+# Legt die Bilder aller Vorschauen (Handy hell/dunkel, Uhr) in den Zweig «screenshots».
+# Auf main sind es die eingecheckten Referenzbilder, ohne Gradle: Die CI hat sie gerade verbindlich geprüft.
+# Gerendert wird nur von Hand (workflow_dispatch), für neue Referenzbilder (Artefakt «referenzbilder»).
 # Zwei Jobs (wie «Einschlafklänge»): «render» führt Gradle nur mit Leserecht und ohne
 # gespeichertes Token aus, «publish» schreibt den Zweig und führt keinen Code aus dem Repo aus.
 on:
@@ -19,25 +21,31 @@ concurrency:
 jobs:
   render:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     permissions:
       contents: read
+    env:
+      RENDER: ${{ github.event_name == 'workflow_dispatch' }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880 # v6.3.0
+      - if: env.RENDER == 'true'
+        uses: actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880 # v6.3.0
         with:
           distribution: temurin
           java-version: 21
-      - uses: gradle/actions/setup-gradle@8da46b539cd8fe6ab27ca75128919a18d757604c # v6.4.1
+      - if: env.RENDER == 'true'
+        uses: gradle/actions/setup-gradle@8da46b539cd8fe6ab27ca75128919a18d757604c # v6.4.1
       - name: Rendern
+        if: env.RENDER == 'true'
         shell: bash
         working-directory: android
         run: |
           set -o pipefail
           ./gradlew --stacktrace :app:updateDebugScreenshotTest :wear:updateDebugScreenshotTest 2>&1 | tee build.log
       - name: Fehler als Annotation
-        if: failure()
+        if: failure() && env.RENDER == 'true'
         shell: bash
         working-directory: android
         run: |
@@ -68,7 +76,8 @@ jobs:
           if-no-files-found: error
       # Referenzbilder, wie die CI sie rendert: Sie werden ins Repo übernommen, und die CI prüft gegen sie.
       # Lokal gerenderte Bilder weichen in der Kantenglättung ab und eignen sich darum nicht als Referenz.
-      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+      - if: env.RENDER == 'true'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: referenzbilder
           path: |
@@ -83,6 +92,7 @@ jobs:
     # Nur main: Ein Lauf auf einem Arbeitszweig liefert nur das Artefakt «referenzbilder».
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     permissions:
       contents: write
     steps:

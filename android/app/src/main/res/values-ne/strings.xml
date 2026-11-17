@@ -90,6 +90,7 @@
     <string name="settings_evening_dark">साँझ अँध्यारो</string>
     <string name="settings_evening_dark_text">%1$s – %2$s अँध्यारो, सिस्टम वा उज्यालो छानेमा पनि।</string>
     <string name="settings_evening_dark_from">अँध्यारो सुरु</string>
+    <string name="settings_evening_dark_now">अहिले लागू – %1$s देखि उज्यालो</string>
     <string name="settings_data">तिम्रो डेटा</string>
     <string name="settings_data_text">सबै कुरा तिम्रो फोन र घडीमै रहन्छ। न खाता, न सर्भर, न ट्र्याकिङ। Google को घडी जडानबाट घडीको प्राविधिक जानकारी मात्र जान्छ, स्वास्थ्य डेटाबिना।</string>
     <string name="settings_export">रातहरू नाम बिना निर्यात गर</string>
@@ -103,7 +104,7 @@
     <string name="duration_minutes">%1$d मि.</string>
     <string name="duration_hours">%1$d घ.</string>
     <string name="duration_hours_half">%1$d½ घ.</string>
-    <string name="duration_hours_minutes">%1$d घ. %2$d मि.</string>
+    <string name="duration_hours_minutes">%1$d घ. %2$d मि.</string>
     <string name="health_title">Health Connect बाट निद्राका चरण</string>
     <string name="health_rationale">तिम्रो स्वास्थ्य एप (जस्तै Samsung Health) ले राख्ने निद्राको डेटा Phase Wake ले पढ्न सक्छ। यो तिम्रो इतिहासमा देखाइन्छ, Phase Wake ले तिमीलाई ब्युँझाएका रातहरूसँग तुलना गर्न पनि। Phase Wake ले पढ्छ मात्र, कहिल्यै लेख्दैन, र केही पनि तिम्रो फोनबाट बाहिर जाँदैन।</string>
     <string name="health_connect">स्वास्थ्य डेटासँग तुलना गर</string>

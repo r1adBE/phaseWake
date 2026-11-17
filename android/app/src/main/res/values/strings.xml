@@ -92,6 +92,7 @@
     <string name="settings_evening_dark">Dark in the evening</string>
     <string name="settings_evening_dark_text">Dark from %1$s to %2$s, even with System or Light.</string>
     <string name="settings_evening_dark_from">Dark from</string>
+    <string name="settings_evening_dark_now">Active now – light from %1$s</string>
     <string name="settings_data">Your data</string>
     <string name="settings_data_text">Everything stays on your phone and watch. No account, no server, no tracking. Only technical watch information goes through Google’s watch connection, without health data.</string>
     <string name="settings_export">Export nights without name</string>
@@ -105,7 +106,7 @@
     <string name="duration_minutes">%1$d min</string>
     <string name="duration_hours">%1$d h</string>
     <string name="duration_hours_half">%1$d½ h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Sleep stages from Health Connect</string>
     <string name="health_rationale">Phase Wake can read the sleep data that your health app (for example Samsung Health) stores. It is shown in your history, also for comparison with the nights Phase Wake woke you. Phase Wake only reads, never writes, and nothing leaves your phone.</string>
     <string name="health_connect">Compare with health data</string>

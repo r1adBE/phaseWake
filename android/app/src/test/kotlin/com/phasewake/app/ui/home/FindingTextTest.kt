@@ -1,6 +1,7 @@
 package com.phasewake.app.ui.home
 
 import android.content.Context
+import android.content.res.Configuration
 import com.phasewake.app.MemoryStore
 import com.phasewake.app.QuietApp
 import com.phasewake.app.SettingsRepository
@@ -8,8 +9,12 @@ import com.phasewake.app.core.DeepLink
 import com.phasewake.app.core.Finding
 import com.phasewake.app.core.FindingKind
 import com.phasewake.app.phoneApp
+import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.history.weeklyDeepLine
+import java.io.File
+import java.time.Duration
 import java.time.Instant
+import java.util.Locale
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -20,6 +25,7 @@ import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 /** Texte der Auffälligkeiten, Tiefschlaf im Wochenrückblick und «Ausblenden» für 7 Tage. */
 @RunWith(RobolectricTestRunner::class)
@@ -33,7 +39,7 @@ class FindingTextTest {
     @Test
     fun everyKindHasItsText() {
         assertEquals(
-            "On average you took 1\u00a0h\u00a08\u00a0min to fall asleep. " +
+            "On average you took 1\u00a0h 8\u00a0min to fall asleep. " +
                 "Tip: if you’re still awake after 20 minutes, " +
                 "get up and go back to bed only " +
                 "when you feel sleepy. If this lasts for weeks, talk to your doctor.",
@@ -68,16 +74,39 @@ class FindingTextTest {
             findingText(context, Finding(FindingKind.MUCH_AWAKE, 21)),
         )
         assertEquals(
-            "Your bedtime varied by up to 2\u00a0h\u00a054\u00a0min. " +
+            "Your bedtime varied by up to 2\u00a0h 54\u00a0min. " +
                 "Tip: go to bed at about the same time every day, weekends included.",
             findingText(context, Finding(FindingKind.BEDTIME_VARIES, 174)),
         )
         assertEquals(
-            "On weekends your sleep was shifted by 1\u00a0h\u00a031\u00a0min compared with weekdays. " +
+            "On weekends your sleep was shifted by 1\u00a0h 31\u00a0min compared with weekdays. " +
                 "Tip: keep the same sleep times on weekends too.",
             findingText(context, Finding(FindingKind.SOCIAL_JETLAG, 91)),
         )
         assertEquals("Deep sleep 11 % of your sleep · week before 13 %", weeklyDeepLine(context, 11 to 13))
+    }
+
+    /**
+     * Stunden und Minuten bleiben je mit ihrer Einheit zusammen, umbrechen darf nur zwischen den beiden
+     * Teilen («6 Std.⏎17 Min», nicht «6 Std. 17 Mi⏎n»). Gilt für alle Sprachen von App und Uhr.
+     */
+    @Test
+    fun durationBreaksOnlyBetweenHoursAndMinutes() {
+        val german = context.createConfigurationContext(
+            Configuration(context.resources.configuration).apply { setLocale(Locale.GERMAN) },
+        )
+        assertEquals("6\u00a0Std. 17\u00a0Min", Format.duration(german, Duration.ofMinutes(377)))
+        val entry = Regex("<string name=\"duration_hours_minutes\">(.*?)</string>")
+        val values = listOf("src/main/res", "../wear/src/main/res").flatMap { dir ->
+            File(dir).listFiles().orEmpty().map { File(it, "strings.xml") }.filter { it.exists() }
+        }.mapNotNull { file -> entry.find(file.readText())?.let { file.path to it.groupValues[1] } }
+        assertEquals(148, values.size)
+        for ((path, value) in values) {
+            if (value.none { it == ' ' || it == '\u00a0' }) continue // z. B. Japanisch ganz ohne Abstand
+            val parts = value.split(' ')
+            assertEquals(2, parts.size, "$path: $value")
+            assertTrue("%1\$d" in parts[0] && "%2\$d" in parts[1], "$path: $value")
+        }
     }
 
     @Test

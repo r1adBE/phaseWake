@@ -88,6 +88,7 @@
     <string name="settings_evening_dark">Illalla tumma</string>
     <string name="settings_evening_dark_text">Tumma %1$s – %2$s, myös valinnalla Järjestelmä tai Vaalea.</string>
     <string name="settings_evening_dark_from">Tumma alkaen</string>
+    <string name="settings_evening_dark_now">Käytössä nyt – vaalea klo %1$s alkaen</string>
     <string name="settings_data">Tietosi</string>
     <string name="settings_data_text">Kaikki pysyy puhelimessa ja kellossa. Ei tiliä, ei palvelinta, ei seurantaa. Googlen kelloyhteyden kautta kulkee vain kellon teknisiä tietoja, ei terveystietoja.</string>
     <string name="settings_export">Vie yöt ilman nimeä</string>
@@ -101,7 +102,7 @@
     <string name="duration_minutes">%1$d min</string>
     <string name="duration_hours">%1$d t</string>
     <string name="duration_hours_half">%1$d½ t</string>
-    <string name="duration_hours_minutes">%1$d t %2$d min</string>
+    <string name="duration_hours_minutes">%1$d t %2$d min</string>
     <string name="health_title">Univaiheet Health Connectista</string>
     <string name="health_rationale">Phase Wake voi lukea unitiedot, jotka terveyssovelluksesi (esimerkiksi Samsung Health) tallentaa. Ne näytetään historiassasi, myös vertailuun öihin, joina Phase Wake herätti sinut. Phase Wake vain lukee, ei koskaan kirjoita, eikä mikään poistu puhelimestasi.</string>
     <string name="health_connect">Vertaa terveystietoihin</string>

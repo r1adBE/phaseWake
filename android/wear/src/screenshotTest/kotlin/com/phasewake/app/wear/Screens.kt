@@ -7,7 +7,9 @@ import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.WakeReason
 import androidx.wear.compose.material3.AppScaffold
+import com.phasewake.app.wear.ui.EditorActions
 import com.phasewake.app.wear.ui.EditorContent
+import com.phasewake.app.wear.ui.EditorState
 import com.phasewake.app.wear.ui.HomeActions
 import com.phasewake.app.wear.ui.HomeContent
 import com.phasewake.app.wear.ui.HomeState
@@ -98,7 +100,10 @@ fun WatchEmpty() = Home(emptyList())
 @Composable
 fun WatchEditor() = Swiss {
     AppScaffold(timeText = { FixedTimeText() }) {
-        EditorContent(draft = alarms.first(), isNew = false, onPickTime = {}, onChange = {}, onSave = {}, onDelete = {})
+        EditorContent(
+            EditorState(draft = alarms.first(), isNew = false),
+            EditorActions(onPickTime = {}, onChange = {}, onSave = {}, onDelete = {}),
+        )
     }
 }
 

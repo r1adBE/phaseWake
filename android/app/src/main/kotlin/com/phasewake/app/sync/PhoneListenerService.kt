@@ -178,10 +178,12 @@ class PhoneListenerService : WearableListenerService() {
                 app.appScope.launch { app.sync.acked(event.data) }
                 return
             }
-            // Die Uhr will den Stand des Handys (frisch installiert, neu gestartet): einreihen und senden.
+            // Die Uhr will den Stand des Handys (frisch installiert, neu gestartet, App fortgesetzt): einreihen und
+            // senden; beim Fortsetzen nur Unbestätigtes ([DataLayer.wantsFullSync]).
             path == DataLayer.PATH_SYNC_REQUEST -> {
                 // Im App-Bereich; danach auch alles andere Wartende ([PhaseWakeApp.publishToWatch]).
-                app.appScope.launch { app.publishToWatch() }
+                val full = DataLayer.wantsFullSync(event.data)
+                app.appScope.launch { app.publishToWatch(full) }
                 return
             }
             // Verarbeiten (Speichern, Neuplanen) im App-Bereich. Endet der Prozess vorher, fehlt nur die

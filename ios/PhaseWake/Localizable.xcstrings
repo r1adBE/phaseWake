@@ -73172,187 +73172,187 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ሰ %2$lld ደቂቃ"
+            "value": "%1$lld ሰ %2$lld ደቂቃ"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld س %2$lld د"
+            "value": "%1$lld س %2$lld د"
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld st %2$lld dəq"
+            "value": "%1$lld st %2$lld dəq"
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ч %2$lld мин"
+            "value": "%1$lld ч %2$lld мин"
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ঘ. %2$lld মি."
+            "value": "%1$lld ঘ. %2$lld মি."
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld t %2$lld min"
+            "value": "%1$lld t %2$lld min"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld Std. %2$lld Min"
+            "value": "%1$lld Std. %2$lld Min"
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ώ. %2$lld λ."
+            "value": "%1$lld ώ. %2$lld λ."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld س %2$lld دق"
+            "value": "%1$lld س %2$lld دق"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld t %2$lld min"
+            "value": "%1$lld t %2$lld min"
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld u %2$lld nóim"
+            "value": "%1$lld u %2$lld nóim"
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ક. %2$lld મિ."
+            "value": "%1$lld ક. %2$lld મિ."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ש׳ %2$lld דק׳"
+            "value": "%1$lld ש׳ %2$lld דק׳"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld घं. %2$lld मि."
+            "value": "%1$lld घं. %2$lld मि."
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ó %2$lld p"
+            "value": "%1$lld ó %2$lld p"
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ժ %2$lld ր"
+            "value": "%1$lld ժ %2$lld ր"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld j %2$lld mnt"
+            "value": "%1$lld j %2$lld mnt"
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld klst %2$lld mín"
+            "value": "%1$lld klst %2$lld mín"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "ja": {
@@ -73364,253 +73364,253 @@
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld სთ %2$lld წთ"
+            "value": "%1$lld სთ %2$lld წთ"
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld сағ %2$lld мин"
+            "value": "%1$lld сағ %2$lld мин"
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ម៉ោង %2$lld នាទី"
+            "value": "%1$lld ម៉ោង %2$lld នាទី"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ಗಂ. %2$lld ನಿಮಿ."
+            "value": "%1$lld ಗಂ. %2$lld ನಿಮಿ."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld시간 %2$lld분"
+            "value": "%1$lld시간 %2$lld분"
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ຊມ %2$lld ນາທີ"
+            "value": "%1$lld ຊມ %2$lld ນາທີ"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld val. %2$lld min"
+            "value": "%1$lld val. %2$lld min"
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld st. %2$lld min"
+            "value": "%1$lld st. %2$lld min"
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ч %2$lld мин"
+            "value": "%1$lld ч %2$lld мин"
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld മ. %2$lld മി."
+            "value": "%1$lld മ. %2$lld മി."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ц %2$lld мин"
+            "value": "%1$lld ц %2$lld мин"
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ता. %2$lld मि."
+            "value": "%1$lld ता. %2$lld मि."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld j %2$lld min"
+            "value": "%1$lld j %2$lld min"
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld နာရီ %2$lld မိနစ်"
+            "value": "%1$lld နာရီ %2$lld မိနစ်"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld t %2$lld min"
+            "value": "%1$lld t %2$lld min"
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld घ. %2$lld मि."
+            "value": "%1$lld घ. %2$lld मि."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld u %2$lld min"
+            "value": "%1$lld u %2$lld min"
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ਘੰ. %2$lld ਮਿੰ."
+            "value": "%1$lld ਘੰ. %2$lld ਮਿੰ."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld godz. %2$lld min"
+            "value": "%1$lld godz. %2$lld min"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ч %2$lld мин"
+            "value": "%1$lld ч %2$lld мин"
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "පැය %1$lld මිනි. %2$lld"
+            "value": "පැය %1$lld මිනි. %2$lld"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld orë %2$lld min"
+            "value": "%1$lld orë %2$lld min"
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ч %2$lld мин"
+            "value": "%1$lld ч %2$lld мин"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "saa %1$lld dak %2$lld"
+            "value": "saa %1$lld dak %2$lld"
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld மணி %2$lld நிமி."
+            "value": "%1$lld மணி %2$lld நிமி."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld గం. %2$lld ని."
+            "value": "%1$lld గం. %2$lld ని."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ชม. %2$lld นาที"
+            "value": "%1$lld ชม. %2$lld นาที"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld sa %2$lld dk"
+            "value": "%1$lld sa %2$lld dk"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld год %2$lld хв"
+            "value": "%1$lld год %2$lld хв"
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld گھنٹے %2$lld منٹ"
+            "value": "%1$lld گھنٹے %2$lld منٹ"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld soat %2$lld daq"
+            "value": "%1$lld soat %2$lld daq"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld giờ %2$lld phút"
+            "value": "%1$lld giờ %2$lld phút"
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld 小時 %2$lld 分鐘"
+            "value": "%1$lld 小時 %2$lld 分鐘"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld 小时 %2$lld 分钟"
+            "value": "%1$lld 小时 %2$lld 分钟"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld 小時 %2$lld 分鐘"
+            "value": "%1$lld 小時 %2$lld 分鐘"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         }
       }
@@ -242725,6 +242725,454 @@
           "stringUnit": {
             "state": "translated",
             "value": "Okumnyama kusukela"
+          }
+        }
+      }
+    },
+    "settings_evening_dark_now": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nou aktief – lig vanaf %1$@"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "አሁን ይሠራል – ከ%1$@ ጀምሮ ብሩህ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مفعّل الآن – فاتح من %1$@"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İndi qüvvədədir – %1$@-dən açıq"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Важи сега – светъл от %1$@"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "এখন চালু – %1$@ থেকে হালকা"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sada aktivno – svijetlo od %1$@"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actiu ara – clar a partir de les %1$@"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Platí teď – světlý od %1$@"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gælder nu – lys fra %1$@"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gilt jetzt – hell ab %1$@"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ισχύει τώρα – φωτεινή από %1$@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active now – light from %1$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activo ahora – claro desde las %1$@"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kehtib praegu – hele alates %1$@"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orain aktibo – argia %1$@(e)tik aurrera"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اکنون فعال است – روشن از %1$@"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Käytössä nyt – vaalea klo %1$@ alkaen"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktibo ngayon – light mula %1$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actif maintenant – clair dès %1$@"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I bhfeidhm anois – geal ó %1$@"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activo agora – claro desde as %1$@"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "હમણાં લાગુ – %1$@ થી આછો"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פעיל עכשיו – בהיר מ-%1$@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अभी लागू – %1$@ से लाइट"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sada aktivno – svijetlo od %1$@"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Most érvényes – %1$@-tól világos"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Գործում է հիմա – բաց՝ %1$@-ից"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktif sekarang – terang mulai %1$@"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gildir núna – ljóst frá %1$@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attivo ora – chiaro dalle %1$@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "現在適用中 – %1$@ からライト"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ახლა მოქმედებს – ღია %1$@-დან"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қазір қосулы – %1$@ бастап ашық"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "កំពុងអនុវត្ត – ភ្លឺចាប់ពី %1$@"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಈಗ ಜಾರಿಯಲ್ಲಿದೆ – %1$@ ರಿಂದ ತಿಳಿ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지금 적용 중 – %1$@부터 라이트"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ໃຊ້ຢູ່ຕອນນີ້ – ແຈ້ງແຕ່ %1$@"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Galioja dabar – šviesi nuo %1$@"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Darbojas tagad – gaišs no %1$@"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Важи сега – светла од %1$@"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഇപ്പോൾ ബാധകം – %1$@ മുതൽ ലൈറ്റ്"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Одоо идэвхтэй – %1$@-аас цайвар"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आता लागू – %1$@ पासून फिकट"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktif sekarang – cerah mulai %1$@"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ယခု အသက်ဝင် – %1$@ မှ အလင်း"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gjelder nå – lys fra %1$@"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अहिले लागू – %1$@ देखि उज्यालो"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nu actief – licht vanaf %1$@"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਹੁਣ ਲਾਗੂ – %1$@ ਤੋਂ ਹਲਕਾ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Działa teraz – jasny od %1$@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ativo agora – claro a partir de %1$@"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ativo agora – claro a partir das %1$@"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activ acum – luminos de la %1$@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Действует сейчас – светлая с %1$@"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "දැන් ක්‍රියාත්මකයි – %1$@ සිට ආලෝකමත්"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Platí teraz – svetlý od %1$@"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Velja zdaj – svetlo od %1$@"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktive tani – e çelët nga %1$@"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сада активно – светло од %1$@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gäller nu – ljust från %1$@"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inatumika sasa – mwangaza kuanzia %1$@"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "இப்போது செயலில் – %1$@ முதல் வெளிர்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఇప్పుడు అమలులో – %1$@ నుండి లేత"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ใช้อยู่ตอนนี้ – สว่างตั้งแต่ %1$@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Şu an geçerli – %1$@ itibarıyla açık"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Діє зараз – світла з %1$@"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ابھی لاگو – %1$@ سے روشن"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hozir amalda – %1$@ dan yorugʻ"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đang áp dụng – sáng từ %1$@"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目前生效 – %1$@ 起恢復淺色"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前生效 – %1$@ 起恢复浅色"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目前生效 – %1$@ 起恢復淺色"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kuyasebenza manje – okukhanyayo kusukela ku-%1$@"
           }
         }
       }

@@ -51,7 +51,7 @@
     <string name="dnd_title">Сэрүүлэг хаагдсан</string>
     <string name="dnd_text">«Бүү саад бол»-д сэрүүлгийг зөвшөөр.</string>
     <string name="duration_hours">%1$d ц</string>
-    <string name="duration_hours_minutes">%1$d ц %2$d мин</string>
+    <string name="duration_hours_minutes">%1$d ц %2$d мин</string>
     <string name="home_last_night">Өнгөрсөн шөнө</string>
     <string name="notification_open">Нээх</string>
     <string name="home_good_night_too_far">Сэрүүлгээс 16 ц өмнөөс боломжтой</string>

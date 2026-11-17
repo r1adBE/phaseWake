@@ -54,7 +54,7 @@
     <string name="dnd_title">Budíky blokované</string>
     <string name="dnd_text">Povoľ budíky v režime Nerušiť.</string>
     <string name="duration_hours">%1$d h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="home_last_night">Minulá noc</string>
     <string name="notification_open">Otvoriť</string>
     <string name="home_good_night_too_far">Dostupné od 16 h pred budíkom</string>

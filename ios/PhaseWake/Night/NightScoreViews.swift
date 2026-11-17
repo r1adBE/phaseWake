@@ -248,7 +248,9 @@ private struct FactorTile: View {
                     .font(Fonts.manrope(12, .semibold, relativeTo: .caption))
                     .foregroundStyle(Brand.secondaryText(scheme))
             }
+            // Höchstens zwei Zeilen («6 Std.⏎17 Min»), bei Bedarf etwas kleiner statt mitten im Wort umbrochen.
             Text(view.value).font(Fonts.manrope(24, .heavy, relativeTo: .title2))
+                .lineLimit(2).minimumScaleFactor(0.8)
             if let extra = view.extra {
                 Text(extra).font(Fonts.manrope(11, relativeTo: .caption2)).foregroundStyle(Brand.secondaryText(scheme))
             }

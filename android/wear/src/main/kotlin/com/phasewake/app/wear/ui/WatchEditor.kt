@@ -140,22 +140,40 @@ private fun weekOrder(locale: Locale): List<DayOfWeek> {
     return (0L..6L).map { first.plus(it) }
 }
 
+/**
+ * Was der Editor ([EditorContent]) zeigt: den Entwurf [draft], neu oder bestehend.
+ *
+ * @property skipped Datum des übersprungenen Termins (formatiert), `null` = keiner.
+ */
+internal data class EditorState(
+    val draft: AlarmSpec,
+    val isNew: Boolean,
+    val skipped: String? = null,
+)
+
+/**
+ * Aktionen des Editors ([EditorContent]).
+ *
+ * @property onSkip «Nächstes Mal überspringen» ein/aus; `null` = kein Schalter (neuer oder einmaliger Wecker).
+ */
+internal data class EditorActions(
+    val onPickTime: () -> Unit,
+    val onChange: (AlarmSpec) -> Unit,
+    val onSave: () -> Unit,
+    val onDelete: () -> Unit,
+    val onSkip: ((Boolean) -> Unit)? = null,
+)
+
 /** Editor ohne eigenen Zustand; so auch für Vorschau und Bildschirmfotos nutzbar. */
 @Composable
 internal fun EditorContent(
-    draft: AlarmSpec,
-    isNew: Boolean,
-    onPickTime: () -> Unit,
-    onChange: (AlarmSpec) -> Unit,
-    onSave: () -> Unit,
-    onDelete: () -> Unit,
-    /** Datum des übersprungenen Termins (formatiert), `null` = keiner. */
-    skipped: String? = null,
-    /** «Nächstes Mal überspringen» ein/aus; `null` = kein Schalter (neuer oder einmaliger Wecker). */
-    onSkip: ((Boolean) -> Unit)? = null,
+    state: EditorState,
+    actions: EditorActions,
     /** Scrollstand; Bildschirmfotos setzen ihn, um weiter unten liegende Schalter zu zeigen. */
     listState: ScalingLazyListState = rememberScalingLazyListState(),
 ) {
+    val (draft, isNew, skipped) = state
+    val (onPickTime, onChange, onSave, onDelete, onSkip) = actions
     val locale = LocalConfiguration.current.locales[0]
     var confirmDelete by rememberSaveable { mutableStateOf(false) }
     val time = LocalTime.of(draft.hour, draft.minute)
