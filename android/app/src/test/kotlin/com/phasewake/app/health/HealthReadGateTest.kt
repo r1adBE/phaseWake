@@ -7,7 +7,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * Health Connect höchstens alle 5 Min neu lesen (Audit PERF-05), ausser nach einer Erteilung der Berechtigung, ohne
+ * Health Connect höchstens alle 5 Min neu lesen, ausser nach einer Erteilung der Berechtigung, ohne
  * Zugriff dazwischen oder für einen längeren Zeitraum. Feste Zeiten.
  */
 class HealthReadGateTest {

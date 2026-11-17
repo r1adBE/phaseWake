@@ -29,7 +29,7 @@ data class LearningSnapshot(
     val updatedAt: Long,
     /**
      * Gelernte Einschlafdauer in Minuten (0 bis [Learning.MAX_LATENCY_MINUTES]) für die Bettzeit auf dem Ring
-     * (`Bedtime.onDial`, Entscheid O-03); `null` = nicht gelernt oder Handy einer früheren Version.
+     * (`Bedtime.onDial`); `null` = nicht gelernt oder Handy einer früheren Version.
      */
     val latencyMinutes: Int? = null,
 ) {
@@ -50,8 +50,8 @@ data class LearningSnapshot(
 
         /**
          * Inhalt der Nachricht [DataLayer.PATH_MSG_LEARNING]: «aktiv|grundrauschen|ruhepuls|updatedAt» (leer = kein Wert),
-         * immer genau 4 Felder: Uhren früherer Versionen lesen nur so viele und verwürfen sonst den ganzen Stand (Audit
-         * F-4/SP-6). Die Einschlafdauer geht getrennt ([encodeLatency], [DataLayer.PATH_MSG_LEARN_LATENCY]).
+         * immer genau 4 Felder: Uhren früherer Versionen lesen nur so viele und verwürfen sonst den ganzen Stand.
+         * Die Einschlafdauer geht getrennt ([encodeLatency], [DataLayer.PATH_MSG_LEARN_LATENCY]).
          */
         fun encode(snapshot: LearningSnapshot): String =
             listOf(if (snapshot.active) "1" else "0", snapshot.floor?.toString().orEmpty(), snapshot.restingHeartRate?.toString().orEmpty(), snapshot.updatedAt.toString())
@@ -78,10 +78,10 @@ data class LearningSnapshot(
          * gelten als keine, wie `LearningSnapshot(context:)` (Swift).
          */
         fun decode(body: String): LearningSnapshot? {
-            // 4 Felder; 5 (mit Einschlafdauer) schickten nur Zwischenstände vor Audit F-4 – weiter lesbar, die Uhr nimmt die
+            // 4 Felder; 5 (mit Einschlafdauer) schickten nur frühere Zwischenstände – weiter lesbar, die Uhr nimmt die
             // Dauer aber nur aus [DataLayer.PATH_MSG_LEARN_LATENCY] ([LearningStore.setIfNewer]).
             val f = body.split("|").takeIf { it.size == 4 || it.size == 5 } ?: return null
-            // Unplausibler Zeitpunkt (Audit AN-5/KN-4): unlesbar, sonst gewänne er gegen jeden späteren Stand.
+            // Unplausibler Zeitpunkt: unlesbar, sonst gewänne er gegen jeden späteren Stand.
             val updatedAt = TimeBounds.checked(f[3].toLongOrNull()) ?: return null
             return LearningSnapshot(
                 f[0] == "1",
@@ -96,7 +96,7 @@ data class LearningSnapshot(
 
 /**
  * Lernphase vom Handy an die Uhr: über die Warteschlange [Outbox] (erreicht auch eine gerade getrennte Uhr, sobald sie
- * wieder da ist; Ruhepuls und Grundrauschen nicht als Datenpaket in der Cloud, Audit C2). Fehler (keine Uhr, keine
+ * wieder da ist; Ruhepuls und Grundrauschen nicht als Datenpaket in der Cloud). Fehler (keine Uhr, keine
  * Wear-Dienste) werden geloggt, nicht weitergereicht.
  */
 class LearningSync(context: Context) {
@@ -105,8 +105,8 @@ class LearningSync(context: Context) {
     private val acked by lazy { AckedContent.forContext(app) }
 
     /**
-     * Handy: Stand an die Uhren, die Einschlafdauer als eigene Nachricht (Audit F-4/SP-6). [unlessAcked]: beim
-     * Prozessstart nur, was nicht schon bestätigt ist (Audit PERF-06, [enqueueIfChanged]).
+     * Handy: Stand an die Uhren, die Einschlafdauer als eigene Nachricht. [unlessAcked]: beim
+     * Prozessstart nur, was nicht schon bestätigt ist ([enqueueIfChanged]).
      */
     suspend fun publish(snapshot: LearningSnapshot, unlessAcked: Boolean = false) {
         suspend fun put(key: String, path: String, body: String) {
@@ -138,7 +138,7 @@ class LearningStore(private val store: DataStore<Preferences>) {
         return LearningSnapshot(prefs[ACTIVE] ?: false, prefs[FLOOR], prefs[RESTING_HR], prefs[UPDATED_AT] ?: 0L, LearningSnapshot.validLatency(prefs[LATENCY]))
     }
 
-    /** Gelernte Einschlafdauer vom Handy (O-03, Bettzeit auf dem Ring); `null` = keine. */
+    /** Gelernte Einschlafdauer vom Handy (Bettzeit auf dem Ring); `null` = keine. */
     val latencyMinutes: Flow<Int?> = store.data.map { LearningSnapshot.validLatency(it[LATENCY]) }.distinctUntilChanged()
 
     /**

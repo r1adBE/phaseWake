@@ -35,7 +35,7 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 /**
- * Audit G-2: Zwei Wecker am selben Morgen. Nach dem Wecken des ersten beginnt für den zweiten keine automatische
+ * Zwei Wecker am selben Morgen. Nach dem Wecken des ersten beginnt für den zweiten keine automatische
  * Einschlaf-Messung (sie fände kein Einschlafen und sperrte danach das frühe Wecken, fail-closed).
  */
 @RunWith(RobolectricTestRunner::class)

@@ -233,7 +233,7 @@ final class LearnNightsTests: XCTestCase {
     }
 
     func testAlarmNightsKeepTheEarlierTargetAndTheBoundaryAtNow() {
-        // Audit BE-4: zwei Wecker derselben Nacht, der frühere zuerst geplant – er bleibt (der spätere ersetzt ihn nicht).
+        // Zwei Wecker derselben Nacht, der frühere zuerst geplant – er bleibt (der spätere ersetzt ihn nicht).
         let now = at(5, 12)
         XCTAssertEqual(LearnLog.mergeAlarmNights([:], planned: [at(6, 5), at(6, 6)], now: now, calendar: calendar), ["2026-11-05": at(6, 5)])
         // Ein Eintrag genau zur Zeit des Neuplanens ist vergangen und bleibt, auch wenn der Plan ihn nicht mehr hat.

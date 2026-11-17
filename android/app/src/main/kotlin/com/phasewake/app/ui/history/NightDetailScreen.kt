@@ -85,7 +85,7 @@ internal fun nightView(item: HistoryItem, stages: List<StageSpan>): NightView {
 
 /**
  * Datum der Nacht als Morgen mit Wochentag, z. B. «Dienstag, 28. Oktober»; eine Nacht aus der Gesundheits-App in der
- * Zone ihrer Aufzeichnung (Audit F-3).
+ * Zone ihrer Aufzeichnung.
  */
 internal fun nightTitle(item: HistoryItem, zone: ZoneId = item.session?.zoneOr(ZoneId.systemDefault()) ?: ZoneId.systemDefault()): String {
     val locale = Locale.getDefault()
@@ -200,7 +200,7 @@ private fun NightHeader(view: NightView) {
     val context = LocalContext.current
     val scheme = MaterialTheme.colorScheme
     val session = view.item.session
-    // Nacht aus der Gesundheits-App: Uhrzeiten in der Zone ihrer Aufzeichnung (Audit F-3).
+    // Nacht aus der Gesundheits-App: Uhrzeiten in der Zone ihrer Aufzeichnung.
     val zone = session?.zoneOr(ZoneId.systemDefault()) ?: ZoneId.systemDefault()
     val asleep = view.stats?.asleepMinutes ?: session?.asleepMinutes
     Column(Modifier.fillMaxWidth().padding(top = 4.dp)) {

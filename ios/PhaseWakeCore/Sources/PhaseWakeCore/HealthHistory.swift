@@ -17,7 +17,7 @@ public struct HealthSession: Equatable, Sendable {
     /// Zeitzone, in der die Sitzung aufgezeichnet wurde (Apple `HKMetadataKeyTimeZone`, Health Connect `startZoneOffset`);
     /// `nil` = unbekannt, dann gilt die Zone des Geräts. Nickerchen-Regel (``isNap(calendar:)``), Nachtdatum
     /// (`SleepNotes.nightDate(of:)`), angezeigte Uhrzeiten und alle Auswertungen (`HealthHistory.summaries`) rechnen in
-    /// dieser Zone (Audit F-3, Entscheid r1AD 14.11.2026): Ein Nickerchen in New York bleibt eines, auch in Zürich angeschaut.
+    /// dieser Zone: Ein Nickerchen in New York bleibt eines, auch in Zürich angeschaut.
     public let timeZone: TimeZone?
 
     /// Erzeugt eine Sitzung; `start` liegt vor `end` (sonst übergeht ``HealthHistory/merge(nights:sessions:clearedAt:calendar:)`` sie).
@@ -153,7 +153,7 @@ public enum HealthHistory {
     /// ``summaries(_:clearedAt:calendar:)``, ``stages(_:clearedAt:calendar:)``).
     public static let continuationGap: TimeInterval = 60 * 60
 
-    /// Kleine Überlappung, die noch als Anschluss gilt, nicht als Doppel (Audit 2c82e15): Health-Daten schreiben die Teile
+    /// Kleine Überlappung, die noch als Anschluss gilt, nicht als Doppel: Health-Daten schreiben die Teile
     /// einer getrennten Nacht oft mit einer Sekunde Überlappung. Erst wer sich länger überschneidet, ist ein Doppel.
     public static let overlapTolerance: TimeInterval = 5 * 60
 
@@ -222,8 +222,8 @@ public enum HealthHistory {
     /// dieselbe Regel wie der Verlauf (Sitzungen, die als Nacht zählen: sichtbar, kein Nickerchen, ohne Doppel – nichts
     /// zählt zweimal; Weiterschlafen nach ``continuationGap`` zählt zur Nacht, die Lücke nicht als Schlaf); eine Sitzung
     /// ohne Phasen zählt als eine «unbekannt»-Phase über die ganze Dauer. Zwei Ketten mit mehr als ``continuationGap``
-    /// Lücke sind zwei Nächte, auch am selben Nachtdatum (Entscheid r1AD 14.11.2026, Audit W-2). Jede Nacht trägt die Zone
-    /// ihres ersten Teils (``SleepSummary/timeZone``, wie `join`; Audit F-3). Nach Beginn.
+    /// Lücke sind zwei Nächte, auch am selben Nachtdatum. Jede Nacht trägt die Zone
+    /// ihres ersten Teils (``SleepSummary/timeZone``, wie `join`). Nach Beginn.
     public static func summaries(_ sessions: [HealthSession], clearedAt: Date?, calendar: Calendar) -> [SleepSummary] {
         // Je Teil zugeschnitten und ab dem Ende des vorigen wie in der Detailseite (`join`, `trimmed`).
         chains(sessions, clearedAt: clearedAt, calendar: calendar).compactMap { chain in
@@ -272,8 +272,8 @@ public enum HealthHistory {
 
     /// Phasen der Teile einer Kette (``spans(_:)``), jeder Teil erst ab dem Ende des vorigen: Eine kurze Überlappung
     /// (≤ ``overlapTolerance``) zählt nicht doppelt – gleich in Verlauf, Detailseite (``join(_:)``), Diagrammen und Trends
-    /// (``summaries(_:clearedAt:calendar:)``) und im Schlafprofil eigener Nächte (``stages(_:clearedAt:calendar:)``);
-    /// Audit BE-2. `filler` `false`: Teile ohne Phasen liefern nichts statt einer «unbekannt»-Phase. Wie Kotlin.
+    /// (``summaries(_:clearedAt:calendar:)``) und im Schlafprofil eigener Nächte (``stages(_:clearedAt:calendar:)``).
+    /// `filler` `false`: Teile ohne Phasen liefern nichts statt einer «unbekannt»-Phase. Wie Kotlin.
     private static func trimmed(_ parts: [HealthSession], filler: Bool = true) -> [StageSpan] {
         var stages: [StageSpan] = []
         for (i, part) in parts.enumerated() {

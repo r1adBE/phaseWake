@@ -1,6 +1,6 @@
 import Foundation
 
-/// Lernphase (Entscheid r1AD 09.11.2026, Apple seit 10.11.2026): Die Uhr zeichnet ``nights`` Nächte auf, danach passt
+/// Lernphase (Apple seit 10.11.2026): Die Uhr zeichnet ``nights`` Nächte auf, danach passt
 /// Phase Wake den Wecker an: eigenes Grundrauschen (``NoiseFloor``, ``DetectorConfig/personalFloor``), eigener Ruhepuls
 /// (``DetectorConfig/restingHeartRate``) und die Einschlafdauer für die Empfehlung der Schlafenszeit (``bedtimeRange``).
 /// Regel siehe `docs/PHASENERKENNUNG.md`, Abschnitt 10. Reine Logik; identisch zu `Learning` (Kotlin).
@@ -9,7 +9,7 @@ public enum Learning {
     public static let nights = 7
 
     /// Eine Nacht zählt ab so vielen Epochen mit Bewegung (36 Min): 3 Std. in Stichproben (60 s alle 5 Min) ergeben
-    /// 36 Stichproben = 72 Epochen (Entscheid r1AD 10.11.2026).
+    /// 36 Stichproben = 72 Epochen.
     public static let minMeasuredEpochs = 72
 
     /// … und die Epochen mit Bewegung müssen mindestens so viele Epochen der Nacht überspannen (3 Std., erste bis letzte).
@@ -202,7 +202,7 @@ public enum Learning {
     /// frühestens ``bedtimeRangeMinutes`` davor. Feste Dauern wie ``Bedtime``.
     /// - Returns: (frühestens, spätestens).
     public static func bedtimeRange(target: Date, sleepMinutes: Int, latencyMinutes: Int?) -> (from: Date, until: Date) {
-        // Spätestens = die eine Bettzeit (`Bedtime.bedtime`, Audit O-03), abgerundet.
+        // Spätestens = die eine Bettzeit (`Bedtime.bedtime`), abgerundet.
         let latest = Bedtime.bedtime(nextAlarmTarget: target, goalMinutes: sleepMinutes, latencyMinutes: latencyMinutes)
         let step = Int64(roundMinutes * 60_000)
         let millis = Int64((latest.timeIntervalSince1970 * 1000).rounded(.down))

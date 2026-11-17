@@ -73,7 +73,7 @@
     <string name="editor_delete_title">Eliminar esta alarma?</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Ata %1$d alarmas – elimina unha para engadir outra nova.</string>
     <string name="editor_enabled">Alarma activada</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Omitir a próxima</string>
     <string name="alarm_skipped">Omitida: %1$s</string>
     <string name="nap_title">Sesta curta</string>
@@ -103,7 +103,7 @@
     <string name="record_since">Desde as %1$s</string>
     <string name="notification_record_title">Gravando a noite</string>
     <string name="record_battery_low">Batería demasiado baixa para gravar</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Fase de aprendizaxe</string>
     <string name="watch_learn_warn">Carga o reloxo ou esta noite non contará para a fase de aprendizaxe (batería %1$d %%, precísase %2$d %%).</string>
     <string name="watch_learn_skip_battery">Esta noite non conta para a fase de aprendizaxe: batería ao %1$d %%, precísase %2$d %%.</string>

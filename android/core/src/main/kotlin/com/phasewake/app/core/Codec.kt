@@ -124,7 +124,7 @@ object Codec {
      * Ein Grund, den ältere Versionen nicht kennen ([WakeReason.EXACT], [WakeReason.SHORT_NIGHT]), steht in Feld 5
      * als [WakeReason.DEADLINE] (so lesen ältere Versionen die Nacht weiter) und genau in einem angehängten Feld 8.
      * Akku der Uhr und des Handys ([BatteryTrack.encode]) in den Feldern 9 und 10, Beginn der Einschlafdauer und
-     * Einschlafzeit der Uhr (ms) in den Feldern 11 und 12 (Entscheid r1AD 15.11.2026), je nur wenn vorhanden; davor
+     * Einschlafzeit der Uhr (ms) in den Feldern 11 und 12, je nur wenn vorhanden; davor
      * fehlende Felder bleiben leer, leere am Ende fallen weg.
      */
     fun encodeNight(night: NightRecord): String = buildString {
@@ -139,7 +139,7 @@ object Codec {
             night.snoozes.toString(),
             night.feeling?.toString().orEmpty(),
         )
-        // Akku (Felder 9 und 10, r1AD 14.11.2026) und Einschlafen (11 und 12, r1AD 15.11.2026): nur wenn vorhanden; Feld 8
+        // Akku (Felder 9 und 10) und Einschlafen (11 und 12): nur wenn vorhanden; Feld 8
         // und davor fehlende dann leer (ältere Versionen lesen ein leeres Feld 8 wie ein fehlendes, einen leeren Akku als
         // keinen und übergehen Felder, die sie nicht kennen).
         val tail = listOf(

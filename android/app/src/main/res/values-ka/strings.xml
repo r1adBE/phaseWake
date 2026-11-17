@@ -587,7 +587,7 @@
     <string name="learn_switch_hint">შენი საათი ღამით ზომავს მოძრაობას და პულსს (%1$d %% ბატარეიდან). გამორთული: ავტომატური ჩაწერა არ არის, ნასწავლი მნიშვნელობები რჩება.</string>
     <string name="learn_switch_title">აქტიური</string>
     <string name="watch_open_app_hint">გახსენი Phase Wake საათზე, რომ ბრძანება მიიღოს.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">ყოველი ღამე სწავლის ფაზის დაწყებიდან – ჩაითვალა თუ არა, და თუ არა, რატომ და რა დაგეხმარება. Phase Wake-ს %1$d ჩათვლილი ღამე სჭირდება.</string>
     <string name="learn_nights_empty">ჯერ ღამე არ არის. პირველი აქ მეორე დილით გამოჩნდება.</string>
     <string name="learn_night_facts">გაზომილია %1$s · %2$d მნიშვნელობა · პულსი %3$d %%-ში</string>

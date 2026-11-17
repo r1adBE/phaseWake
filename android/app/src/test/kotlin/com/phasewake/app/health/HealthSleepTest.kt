@@ -25,7 +25,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Lesen aus Health Connect ([HealthSleep], Audit F-02) mit [FakeHealthClient]: nur verfügbar und mit Zugriff, alle Seiten,
+ * Lesen aus Health Connect ([HealthSleep]) mit [FakeHealthClient]: nur verfügbar und mit Zugriff, alle Seiten,
  * Phasen und Herkunft richtig übernommen, sortiert; ein Fehler beim Lesen gibt eine leere Liste statt eines Absturzes.
  */
 @RunWith(RobolectricTestRunner::class)
@@ -130,7 +130,7 @@ class HealthSleepTest {
             SleepSessionRecord.STAGE_TYPE_REM to SleepStage.REM,
             // «Schläft» ohne Phase: Schlaf ohne bekannte Phase.
             SleepSessionRecord.STAGE_TYPE_SLEEPING to SleepStage.UNKNOWN,
-            // «Phase unbekannt» ist kein Schlaf (Audit F-9, wie Apple «Im Bett»): fällt weg.
+            // «Phase unbekannt» ist kein Schlaf (wie Apple «Im Bett»): fällt weg.
             SleepSessionRecord.STAGE_TYPE_UNKNOWN to null,
         )
         val stages = types.mapIndexed { i, (type, _) -> Triple(type, i * 10L, i * 10L + 10) }.toTypedArray()
@@ -165,7 +165,7 @@ class HealthSleepTest {
 
     @Test
     fun readLineOnlyWhenCountOrSourcesChange() = runBlocking {
-        // Audit PERF-05: Jedes Fortsetzen schrieb «health read …» ins Protokoll; jetzt nur bei einer Änderung.
+        // Jedes Fortsetzen schrieb «health read …» ins Protokoll; jetzt nur bei einer Änderung.
         grant()
         client.pages = listOf(listOf(session(0, 60, HealthSource.SAMSUNG_HEALTH)))
         health.sessions(t0, at(600))

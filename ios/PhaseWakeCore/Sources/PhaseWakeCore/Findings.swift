@@ -14,7 +14,7 @@ public struct NightFacts: Equatable, Hashable, Sendable {
     /// Schlaf in Minuten (``HealthSession/asleepMinutes``).
     public let asleepMinutes: Int
     /// Einschlafdauer: aus der Gesundheits-App wie auf der Detailseite (``NightStages/latencyMinutes``), sonst aus der
-    /// eigenen Messung der Uhr (``Findings/ownLatency(start:end:own:watch:)``, Entscheid r1AD 15.11.2026); `nil` = unbekannt.
+    /// eigenen Messung der Uhr (``Findings/ownLatency(start:end:own:watch:)``); `nil` = unbekannt.
     public let latencyMinutes: Int?
     /// Tiefschlaf in Minuten; `nil` ohne Phasen (``StageStats/of(_:from:to:)`` ergibt `nil`).
     public let deepMinutes: Int?
@@ -206,7 +206,7 @@ public enum Findings {
 
     /// Die wichtigste Auffälligkeit, die nicht ausgeblendet ist (ausgeblendet um `hidden`, seit weniger als ``hideFor``).
     /// `bedtimeAdvice`: Die Startseite zeigt schon die Bettzeit-Karte; dann treten die Auffälligkeiten mit demselben Tipp
-    /// (``bedtimeTip``) zurück, damit er nicht zweimal steht (Audit UX-04). Im Verlauf bleiben sie.
+    /// (``bedtimeTip``) zurück, damit er nicht zweimal steht. Im Verlauf bleiben sie.
     public static func home(_ findings: [Finding], hidden: [FindingKind: Date], now: Date, bedtimeAdvice: Bool = false) -> Finding? {
         findings.first { finding in
             hidden[finding.kind].map { now < $0.addingTimeInterval(hideFor) } != true && !(bedtimeAdvice && bedtimeTip.contains(finding.kind))
@@ -253,7 +253,7 @@ public enum Findings {
     }
 
     /// Einschlafdauer aus der eigenen Messung für eine Nacht der Gesundheits-App von `start` bis `end` (nur, wenn diese
-    /// keine liefert; Entscheid r1AD 15.11.2026): zuerst aus den Nächten der Uhr `watch`, sonst aus den Aufzeichnungen
+    /// keine liefert): zuerst aus den Nächten der Uhr `watch`, sonst aus den Aufzeichnungen
     /// `own`. Je die Messung, die sich am längsten mit der Nacht überschneidet (gleich: die erste; wie die Aufzeichnung zur
     /// Nacht auf der Detailseite), in ganzen Minuten von `bedAt` bis `asleepAt` (abgerundet). `nil` ohne Überschneidung
     /// oder wenn die Einschlafzeit vor dem Beginn liegt. Wie Kotlin.

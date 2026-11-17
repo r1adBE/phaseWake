@@ -1,6 +1,6 @@
 import Foundation
 
-/// Regel für das Passwort einer neuen Sicherung (Entscheid r1AD 10.11.2026): mindestens `minLength` Zeichen
+/// Regel für das Passwort einer neuen Sicherung: mindestens `minLength` Zeichen
 /// (Unicode-Codepunkte nach NFC, nicht Graphem-Gruppen) und kein triviales Muster. Gilt nur beim Anlegen
 /// (`BackupFile.encrypt`); ältere Sicherungen mit kürzerem Passwort lassen sich weiter öffnen (`BackupFile.decrypt`
 /// prüft nichts davon). Identisch zu `BackupPassword` (Kotlin), mit denselben Tests.

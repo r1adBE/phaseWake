@@ -1,10 +1,10 @@
 import PhaseWakeCore
 import SwiftUI
 
-/// Karte der Lernphase auf der Startseite (wie `LearningCard` auf Android), nur mit Zustimmung (Audit F-02): noch nicht
+/// Karte der Lernphase auf der Startseite (wie `LearningCard` auf Android), nur mit Zustimmung: noch nicht
 /// gefragt und die Uhr kann aufzeichnen – einmal «Lernphase starten» / «Später»; solange sie läuft «Lernphase: Nacht N
 /// von 7» mit kurzer Erklärung, einer unerwartet nicht gezählten letzten Nacht mit Grund, «Details» zur Lern-Übersicht
-/// und «Nacht aufzeichnen» (r1AD 13.11.2026); danach einmal «Angepasst an dich» mit den gelernten Werten und «OK».
+/// und «Nacht aufzeichnen»; danach einmal «Angepasst an dich» mit den gelernten Werten und «OK».
 /// Sonst nichts.
 struct LearningHomeCard: View {
     @Environment(PhoneModel.self) private var model
@@ -27,7 +27,7 @@ struct LearningHomeCard: View {
                 if let miss = LearnNights.lastNightMiss(LearnNightsView.nights(model: model, now: now), now: now, calendar: .gregorianLocal) {
                     LastNightMissLine(miss: miss)
                 }
-                // «Nacht aufzeichnen» steckt während der Lernphase in dieser Karte (r1AD 13.11.2026), siehe `RecordCard`.
+                // «Nacht aufzeichnen» steckt während der Lernphase in dieser Karte, siehe `RecordCard`.
                 let record = WatchNight.shared
                 let canRecord = record.watchCanRecord(model)
                 if canRecord, let since = record.recordSince {
@@ -162,7 +162,7 @@ struct BedtimeAdviceCard: View {
 
 /// Lernphase in den Einstellungen (wie `LearningGroup` auf Android): Titel «Lernphase: Nacht N von 7» bzw. «Angepasst an
 /// dich» mit den gelernten Werten, Schalter «Aktiv» (Zustimmung), «Details» zur Lern-Übersicht und «Neu lernen» mit
-/// Rückfrage; ohne die Erklärung der Startseite (r1AD 13.11.2026). Nur mit einer Uhr, die aufzeichnen kann, oder wenn
+/// Rückfrage; ohne die Erklärung der Startseite. Nur mit einer Uhr, die aufzeichnen kann, oder wenn
 /// schon gelernt.
 struct LearningSettingsSection: View {
     @Environment(PhoneModel.self) private var model
@@ -199,7 +199,7 @@ struct LearningSettingsSection: View {
 }
 
 /// Einrichtungsschritt «Lernphase» (zwischen erstem Wecker und Probewecker, wie Android): kurze Einleitung und drei
-/// Punkte (Audit U-2); «Später» / «Lernphase starten» stehen unten in der Navigation statt «Weiter». Nach dem Start
+/// Punkte; «Später» / «Lernphase starten» stehen unten in der Navigation statt «Weiter». Nach dem Start
 /// «✓ Erlaubt».
 struct LearningOnboardingStep: View {
     var body: some View {

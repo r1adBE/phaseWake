@@ -22,7 +22,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Warteschlange statt Datenpaketen (Audit C2): Einträge bleiben lokal, bis die Gegenseite bestätigt; ohne Verbindung
+ * Warteschlange statt Datenpaketen: Einträge bleiben lokal, bis die Gegenseite bestätigt; ohne Verbindung
  * oder bei einem Fehler wird später erneut gesendet; gleicher Schlüssel ersetzt; einmalige Umstellung vom Data Layer.
  */
 @RunWith(RobolectricTestRunner::class)
@@ -52,7 +52,7 @@ class OutboxTest {
 
     /**
      * Warteschlange im Takt des Tests: Dateizugriffe und Senden im Hintergrund auf dessen Zeitgeber, die Uhr ist [clock]
-     * (jeder Aufruf eine Millisekunde später) plus die Zeit des Zeitgebers (verzögertes Nachsenden, Audit AN-3).
+     * (jeder Aufruf eine Millisekunde später) plus die Zeit des Zeitgebers (verzögertes Nachsenden).
      */
     private fun TestScope.outbox() =
         Outbox(dir, transport, { clock++ + testScheduler.currentTime }, backgroundScope, StandardTestDispatcher(testScheduler))
@@ -76,7 +76,7 @@ class OutboxTest {
         assertEquals("node-${DataLayer.CAPABILITY_PHONE}", node)
         assertEquals(DataLayer.PATH_MSG_NIGHT, path)
         assertEquals("nacht", Outbox.open(data)?.second)
-        // Ohne Bestätigung bleibt er; ein Anlass gleich danach sendet ihn nicht noch einmal (Audit A-1) ...
+        // Ohne Bestätigung bleibt er; ein Anlass gleich danach sendet ihn nicht noch einmal ...
         assertEquals(1, box.flush())
         assertEquals(1, transport.sent.size)
         // ... erst nach der Wartezeit.
@@ -174,7 +174,7 @@ class OutboxTest {
 
     @Test
     fun enqueueSendsOnlyTheNewEntryAndFlushWaitsPerEntry() = runTest {
-        // Audit A-1 (Doppelte am Gerät): Jeder Anlass schickte alles Unbestätigte erneut.
+        // Jeder Anlass schickte alles Unbestätigte erneut.
         val box = outbox()
         put(box, "night/1-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n1")
         put(box, "night/2-a", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n2")
@@ -204,14 +204,14 @@ class OutboxTest {
 
     @Test
     fun queueIsBoundedByAgeAndCountPerKind() = runTest {
-        // Audit A-8: Ohne Gegenseite wuchs die Warteschlange ohne Grenze.
+        // Ohne Gegenseite wuchs die Warteschlange ohne Grenze.
         transport.reachable = false
         val box = outbox()
         put(box, "night/old", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "alt")
         put(box, "alarms", DataLayer.PATH_MSG_ALARMS, DataLayer.CAPABILITY_PHONE, "wecker")
         clock += Outbox.MAX_AGE_MS + 1
         put(box, "night/new", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "neu")
-        assertEquals(listOf("alarms", "night/new"), box.pending().map { it.key }, "Nacht älter als 14 Tage: weg, Zustand bleibt (AN-2)")
+        assertEquals(listOf("alarms", "night/new"), box.pending().map { it.key }, "Nacht älter als 14 Tage: weg, Zustand bleibt")
         repeat(Outbox.MAX_PER_KIND + 5) { put(box, "night/$it", DataLayer.PATH_MSG_NIGHT, DataLayer.CAPABILITY_PHONE, "n$it") }
         put(box, "recording/1", DataLayer.PATH_MSG_RECORDING, DataLayer.CAPABILITY_PHONE, "r")
         val pending = box.pending()
@@ -235,7 +235,7 @@ class OutboxTest {
 
     @Test
     fun historyClearDropsQueuedNightsAndRecordingsByTheirEnd() = runTest {
-        // Audit D-02: nach dem Inhalt (Ende bis zum Löschen), nicht nur nach dem Zeitpunkt des Einreihens.
+        // Nach dem Inhalt (Ende bis zum Löschen), nicht nur nach dem Zeitpunkt des Einreihens.
         val cut = java.time.Instant.parse("2026-11-10T12:00:00Z")
         fun night(woke: String) = com.phasewake.app.core.NightRecord(
             "a", java.time.Instant.parse(woke).minusSeconds(1_800), java.time.Instant.parse(woke), java.time.Instant.parse(woke),
@@ -270,7 +270,7 @@ class OutboxTest {
         assertNull(Outbox.open(null))
         val snapshot = AlarmSnapshot(listOf(com.phasewake.app.core.AlarmSpec(id = "a", hour = 7, minute = 0), com.phasewake.app.core.AlarmSpec(id = "b", hour = 8, minute = 30)), 42L)
         assertEquals(snapshot, QueueMessages.decodeAlarms(QueueMessages.encodeAlarms(snapshot)))
-        // Mit Zeitpunkten je Wecker und gelöschten Weckern (Audit A-4), auch mit Sonderzeichen in der Kennung.
+        // Mit Zeitpunkten je Wecker und gelöschten Weckern, auch mit Sonderzeichen in der Kennung.
         val stamped = snapshot.copy(stamps = mapOf("a" to 40L, "b" to 41L), deleted = mapOf("x=1\ny" to 39L))
         assertEquals(stamped, QueueMessages.decodeAlarms(QueueMessages.encodeAlarms(stamped)))
         // Format einer früheren Version (ohne Zeitpunkte je Wecker): «neuere Liste gewinnt».
@@ -296,7 +296,7 @@ class OutboxTest {
         val first = "id-1-" + java.util.UUID.randomUUID()
         withTimeoutOrNull(2_000L) { sync.receive("node", Outbox.wrap(first, "inhalt")) { got = it } }
         assertEquals("inhalt", got)
-        // Derselbe Eintrag noch einmal (Audit A-1): nur bestätigen, nicht noch einmal verarbeiten.
+        // Derselbe Eintrag noch einmal: nur bestätigen, nicht noch einmal verarbeiten.
         var again = 0
         withTimeoutOrNull(2_000L) { sync.receive("node", Outbox.wrap(first, "inhalt")) { again++ } }
         assertEquals(0, again)

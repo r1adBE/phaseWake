@@ -72,7 +72,7 @@
     <string name="editor_delete_title">Διαγραφή αυτού του ξυπνητηριού;</string>
     <string name="home_max_alarms">Έως %1$d ξυπνητήρια – διάγραψε ένα για να προσθέσεις νέο.</string>
     <string name="editor_enabled">Ξυπνητήρι ενεργό</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Παράλειψη την επόμενη φορά</string>
     <string name="alarm_skipped">Παραλείφθηκε: %1$s</string>
     <string name="nap_title">Υπνάκος</string>
@@ -102,7 +102,7 @@
     <string name="record_since">Από τις %1$s</string>
     <string name="notification_record_title">Καταγράφεται η νύχτα</string>
     <string name="record_battery_low">Πολύ χαμηλή μπαταρία για καταγραφή</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Φάση εκμάθησης</string>
     <string name="watch_learn_warn">Φόρτισε το ρολόι, αλλιώς απόψε δεν θα μετρήσει για τη φάση εκμάθησης (μπαταρία %1$d %%, χρειάζεται %2$d %%).</string>
     <string name="watch_learn_skip_battery">Απόψε δεν μετράει για τη φάση εκμάθησης: μπαταρία στο %1$d %%, χρειάζεται %2$d %%.</string>

@@ -3,7 +3,7 @@ import XCTest
 @testable import PhaseWakeWatch
 
 /// Plan der Komplikation auf der Apple Watch: der Plan, nach dem die Uhr weckt, unplausible gemerkte Pläne, Plan aus
-/// einer anderen Zeitzone (Herkunft: Vollaudit 11.11.2026 AP-9; Vollaudit 071597f AP2-7).
+/// einer anderen Zeitzone.
 final class ComplicationWatchTests: XCTestCase {
     private let now = Date(timeIntervalSince1970: 1_793_000_000)
 

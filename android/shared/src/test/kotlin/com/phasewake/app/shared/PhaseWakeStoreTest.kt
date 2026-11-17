@@ -27,8 +27,8 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Der DataStore der App: vor dem ersten Entsperren kein Zugriff (Audit SP-4), eine kaputte Datei bleibt als Kopie und
- * der leere Stand ist als solcher markiert (Audit SP-7).
+ * Der DataStore der App: vor dem ersten Entsperren kein Zugriff, eine kaputte Datei bleibt als Kopie und
+ * der leere Stand ist als solcher markiert.
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35])

@@ -2,9 +2,9 @@ import Foundation
 import PhaseWakeCore
 
 /// Plan, nach dem die Uhr wirklich weckt (`WatchModel.plan`: nächster Wecker, «Gute Nacht», Probewecker, Powernap), für
-/// die Komplikation (Audit AP-9). Die Uhr-App legt ihn bei jedem Neuplanen in ihre Einstellungsdatei in der App-Gruppe
+/// die Komplikation. Die Uhr-App legt ihn bei jedem Neuplanen in ihre Einstellungsdatei in der App-Gruppe
 /// (`key`); die Komplikation zeigt ihn, solange seine Zielzeit nicht vorbei ist, sonst rechnet sie selbst aus den
-/// Weckern (wie bisher). Mit dem Versatz zu UTC, den die Zielzeit beim Speichern hatte (`offset`, Vollaudit AP2-7): Gilt
+/// Weckern (wie bisher). Mit dem Versatz zu UTC, den die Zielzeit beim Speichern hatte (`offset`): Gilt
 /// jetzt ein anderer (Reise), plant die Uhr ohnehin neu, und bis dahin zeigt die Komplikation den gerechneten Plan.
 /// Rein bis auf das Lesen und Schreiben (testbar).
 enum EffectivePlan {

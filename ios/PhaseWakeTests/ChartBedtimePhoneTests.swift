@@ -2,7 +2,7 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWake
 
-/// Bettzeit-Linie im Diagramm des Verlaufs, iPhone (Herkunft: Tiefenaudit c3b8b01 O-03).
+/// Bettzeit-Linie im Diagramm des Verlaufs, iPhone.
 final class ChartBedtimePhoneTests: XCTestCase {
     /// Die Bettzeit-Linie im Diagramm rechnet die gelernte Einschlafdauer mit (die eine Bettzeit, wie Karte und Erinnerung):
     /// Wecker 07:00, Ziel 7½ Std., gelernt 15 Min → 23:15 statt 23:30.

@@ -49,7 +49,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-// Neues aus Runde 3 für die Bildschirme: Startseite (Powernap, Überspringen, Probewecker) und Einstellungen.
+// Neues für die Bildschirme: Startseite (Powernap, Überspringen, Probewecker) und Einstellungen.
 
 /**
  * Stimmung des Himmels für Verlauf, Einstellungen und die übrigen Seiten, wie auf der Startseite: aus der Tageszeit und
@@ -93,11 +93,11 @@ internal object ExtraRoutes {
 /** Startet den Probewecker (im Hintergrund, übersteht das Verlassen des Bildschirms). */
 internal fun startTest(app: PhaseWakeApp) = launchTransient(app) { Transients.startTest(app) }
 
-/** Ob ein Powernap wartet, den «In 2 Minuten testen» ersetzen würde (B-12). */
+/** Ob ein Powernap wartet, den «In 2 Minuten testen» ersetzen würde. */
 internal fun napWaiting(transient: TransientPlan?, now: Instant = Instant.now()): Boolean =
     transient != null && transient.kind == TransientKind.NAP && Transient.isActive(transient, now)
 
-/** Rückfrage, bevor der Probewecker einen wartenden Powernap ersetzt (B-12). */
+/** Rückfrage, bevor der Probewecker einen wartenden Powernap ersetzt. */
 @Composable
 internal fun TestOverNapDialog(onConfirm: () -> Unit, onDismiss: () -> Unit) {
     AlertDialog(
@@ -125,7 +125,7 @@ private fun launchTransient(app: PhaseWakeApp, start: suspend () -> TransientCon
 
 /**
  * Probewecker, Powernap, Überspringen und Feiertage für die Startseite. [record]: Stand von «Nacht aufzeichnen» der
- * Uhr; `null` (Uhr kennt es nicht): keine Karte. [onLearnDetails]: öffnet die Lern-Übersicht. [onTest]: Probewecker (B-12).
+ * Uhr; `null` (Uhr kennt es nicht): keine Karte. [onLearnDetails]: öffnet die Lern-Übersicht. [onTest]: Probewecker.
  */
 internal fun homeExtras(
     app: PhaseWakeApp,
@@ -163,7 +163,7 @@ internal fun homeExtras(
 }
 
 /**
- * Karte der Lernphase, nur mit Zustimmung (Audit F-02): solange sie läuft und die Uhr aufzeichnen kann ([watchRecords])
+ * Karte der Lernphase, nur mit Zustimmung: solange sie läuft und die Uhr aufzeichnen kann ([watchRecords])
  * «Nacht N von 7» aus den gezählten Aufzeichnungen, dazu eine unerwartet nicht gezählte letzte Nacht und «Details»
  * ([onDetails], Lern-Übersicht); danach «Angepasst an dich», bis bestätigt. Noch nicht gefragt und die Uhr kann
  * aufzeichnen: einmal die Frage «Lernphase starten» / «Später». Sonst `null`.
@@ -213,7 +213,7 @@ private fun sendRecord(app: PhaseWakeApp, start: Boolean) {
         val battery = if (start) app.sync.watchBattery() else null
         val text = when {
             battery != null && battery < NightRecording.MIN_BATTERY -> R.string.record_end_battery
-            // Diagnose am Handy freigeschaltet: Die Uhr misst durchgehend statt in Stichproben (Audit F-01).
+            // Diagnose am Handy freigeschaltet: Die Uhr misst durchgehend statt in Stichproben.
             !app.recordSync.command(start, continuous = start && app.settings.diagnostics.first()) -> R.string.check_watch_problem
             else -> null
         }
@@ -229,7 +229,7 @@ internal fun settingsExtras(app: PhaseWakeApp, data: AppData, actions: NavAction
     val countries by produceState(emptyList<HolidayCountry>()) { value = app.holidays.countries() }
     // Nach jeder Wahl ändern sich die Feiertage: dann die Wahl neu lesen.
     val choice by produceState("" to "", data.holidays) { value = app.holidays.choice() }
-    // Geschätzte Feiertage gelten nicht als frei (Audit F-2); der nächste steht mit «geschätzt» da.
+    // Geschätzte Feiertage gelten nicht als frei; der nächste steht mit «geschätzt» da.
     val estimated by produceState(emptySet<LocalDate>(), data.holidays, choice) { value = app.holidays.estimated() }
     val today = LocalDate.now()
     val holidays = HolidaysUi(
@@ -246,7 +246,7 @@ internal fun settingsExtras(app: PhaseWakeApp, data: AppData, actions: NavAction
         },
         nextEstimated = estimated.filter { !it.isBefore(today) }.minOrNull(),
     )
-    // Lernphase: nur mit einer Uhr, die aufzeichnen kann, oder wenn schon gelernt. Schalter = Zustimmung (Audit F-02).
+    // Lernphase: nur mit einer Uhr, die aufzeichnen kann, oder wenn schon gelernt. Schalter = Zustimmung.
     val record by app.recordStatus.collectAsStateWithLifecycle()
     val learningState = data.learning
     val since = learningState?.since

@@ -105,7 +105,7 @@ object SunriseSky {
      */
     fun ink(progress: Float, area: Area = Area.CENTER, aspect: Float = ASPECT): Ink = pick(samples(progress, area, aspect))
 
-    /** Schild hinter einem Text (Gestaltung 5): [color] ist der Gegenpol der Schrift, [alpha] ihre Deckkraft. */
+    /** Schild hinter einem Text: [color] ist der Gegenpol der Schrift, [alpha] ihre Deckkraft. */
     data class Plaque(val color: Color, val alpha: Float)
 
     /**
@@ -184,11 +184,11 @@ object SunriseSky {
 
 /**
  * Schrift für einen Text auf dem Sonnenaufgang [progress] (`null` = Nachthimmel, dann [night]): Der Text misst
- * seine Lage mit dem zurückgegebenen Modifier, die Farbe passt dann zur Stelle des Himmels (Audit UI-6).
+ * seine Lage mit dem zurückgegebenen Modifier, die Farbe passt dann zur Stelle des Himmels.
  *
  * Bis die Lage bekannt ist (erstes Bild), bleibt der Text unsichtbar statt kurz in der Schrift für die Mitte zu
- * erscheinen (Audit N-4). Mit [plaque] liegt ein halbdurchsichtiges Schild in Pillenform hinter dem Text
- * ([SunriseSky.plaque], Gestaltung 5), [padding] ragt es über den Text hinaus (Knöpfe: 0, sie haben die Form schon).
+ * erscheinen. Mit [plaque] liegt ein halbdurchsichtiges Schild in Pillenform hinter dem Text
+ * ([SunriseSky.plaque]), [padding] ragt es über den Text hinaus (Knöpfe: 0, sie haben die Form schon).
  */
 @Composable
 fun rememberSkyInk(

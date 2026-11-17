@@ -386,7 +386,7 @@
     <string name="chart_window">నిద్రలేపే వ్యవధి</string>
     <string name="chart_no_data">డేటా లేదు</string>
     <string name="chart_feeling_hint">ఆ రాత్రి గమనికలు చూడటానికి చుక్కను నొక్కండి.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">పరీక్ష అలారం</string>
     <string name="test_button">2 నిమిషాల్లో పరీక్ష</string>
     <string name="test_hint">మీ తదుపరి అలారం సెట్టింగ్‌లతో 2 నిమిషాల్లో మోగుతుంది, స్నూజ్ లేకుండా. రాత్రిగా లెక్కించబడదు.</string>
@@ -602,7 +602,7 @@
     <string name="learn_switch_hint">మీ వాచ్ రాత్రి కదలిక మరియు నాడిని కొలుస్తుంది (కనీసం %1$d %% బ్యాటరీతో). ఆఫ్: ఆటోమేటిక్ రికార్డింగ్ లేదు, నేర్చుకున్న విలువలు ఉంటాయి.</string>
     <string name="learn_switch_title">యాక్టివ్</string>
     <string name="watch_open_app_hint">ఆదేశం అందేలా వాచ్‌లో Phase Wake తెరవండి.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">నేర్చుకునే దశ మొదలైనప్పటి నుంచి ప్రతి రాత్రి – అది లెక్కలోకి వచ్చిందా, రాకపోతే ఎందుకు, ఏది సహాయపడుతుంది. Phase Wake‌కు లెక్కలోకి వచ్చిన %1$d రాత్రులు కావాలి.</string>
     <string name="learn_nights_empty">ఇంకా రాత్రి ఏదీ లేదు. మొదటిది మరుసటి రోజు ఉదయం ఇక్కడ కనిపిస్తుంది.</string>
     <string name="learn_night_facts">%1$s కొలిచింది · %2$d విలువలు · %3$d %%లో నాడి</string>

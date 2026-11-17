@@ -35,7 +35,7 @@ final class HolidaysTests: XCTestCase {
         XCTAssertEqual(Holidays.regionCode(country: "CH", region: "BE"), "CH-BE")
     }
 
-    /// Gleich wie `estimatedHolidays` (Kotlin, Audit F-2).
+    /// Gleich wie `estimatedHolidays` (Kotlin).
     func testEstimatedHolidays() {
         XCTAssertTrue(Holidays.isEstimated("Eid al-Fitr (estimated)"))
         XCTAssertTrue(Holidays.isEstimated("Eid al-Adha (observed, estimated)"))

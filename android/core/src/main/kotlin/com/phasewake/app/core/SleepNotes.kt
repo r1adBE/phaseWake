@@ -91,7 +91,7 @@ object SleepNotes {
 
     /**
      * Nachtdatum einer Nacht für Diagramme und Trends: über ihre Mitte ([nightDate] mit Beginn und Ende), in der Zone der
-     * Aufzeichnung ([SleepSummary.zoneOr], sonst [zone]; Audit F-3).
+     * Aufzeichnung ([SleepSummary.zoneOr], sonst [zone]).
      */
     fun nightDate(sleep: SleepSummary, zone: ZoneId): LocalDate = nightDate(sleep.start, sleep.end, sleep.zoneOr(zone))
 

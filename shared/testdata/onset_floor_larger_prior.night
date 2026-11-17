@@ -1,4 +1,4 @@
-# Fix KN-2: Einschlaf-Messung dieser Nacht 0.012, gelernt 0.03: Vorwissen ist das grössere (0.03), Obergrenze
+# Einschlaf-Messung dieser Nacht 0.012, gelernt 0.03: Vorwissen ist das grössere (0.03), Obergrenze
 # 0.045 -> 0.04 (MAX_FLOOR), Wach-Schwelle 0.2. Epoche 10/11 zweimal 0.12: still (früher galt die Einschlaf-Messung
 # zuerst: 0.018 -> Schwelle 0.1, wach). Epoche 18/19 zweimal 0.21: wach.
 @floor 0.03

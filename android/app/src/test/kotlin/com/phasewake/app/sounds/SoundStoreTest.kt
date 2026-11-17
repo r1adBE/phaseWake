@@ -22,7 +22,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Ablage der Geräusch-Ausschnitte ([SoundStore], Audit F-02): Liste übersteht einen Neustart, Löschen entfernt auch die
+ * Ablage der Geräusch-Ausschnitte ([SoundStore]): Liste übersteht einen Neustart, Löschen entfernt auch die
  * Dateien, nach 7 Tagen ist alles weg, Dateien ohne Eintrag verschwinden erst nach einer Stunde (eine laufende Aufnahme
  * bleibt), zu viele Ausschnitte einer Nacht kosten die leisesten.
  */

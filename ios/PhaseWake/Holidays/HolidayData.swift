@@ -11,7 +11,7 @@ struct HolidayDatabase: Sendable {
         let regions: [String: String]
         /// "" (landesweit) bzw. Region → Daten «yyyy-MM-dd», die als frei gelten.
         let days: [String: [String]]
-        /// Wie `days`, aber nur geschätzte Tage (``Holidays/isEstimated(_:)``, Audit F-2): gelten nicht als frei.
+        /// Wie `days`, aber nur geschätzte Tage (``Holidays/isEstimated(_:)``): gelten nicht als frei.
         var estimatedDays: [String: [String]] = [:]
     }
 
@@ -28,7 +28,7 @@ struct HolidayDatabase: Sendable {
         for (code, value) in all where code.count == 2 {
             guard let entry = value as? [String: Any] else { continue }
             let rawDays = entry["days"] as? [String: Any] ?? [:]
-            // Einträge [Datum, Name]; geschätzte (Name mit «estimated») getrennt, sie gelten nicht als frei (Audit F-2).
+            // Einträge [Datum, Name]; geschätzte (Name mit «estimated») getrennt, sie gelten nicht als frei.
             let entries = rawDays.mapValues { list in
                 ((list as? [Any]) ?? []).compactMap { item -> (date: String, estimated: Bool)? in
                     guard let pair = item as? [Any], let date = pair.first as? String else { return nil }
@@ -48,7 +48,7 @@ struct HolidayDatabase: Sendable {
         return Holidays.resolve(national: entry.days[""] ?? [], regional: region.isEmpty ? [] : entry.days[region] ?? [], today: today)
     }
 
-    /// Nur geschätzte Feiertage im selben Zeitraum (Audit F-2), ohne Tage, die auch sicher Feiertag sind.
+    /// Nur geschätzte Feiertage im selben Zeitraum, ohne Tage, die auch sicher Feiertag sind.
     func estimatedDates(country: String, region: String, today: String) -> Set<String> {
         guard let entry = countries[country] else { return [] }
         let estimated = Holidays.resolve(national: entry.estimatedDays[""] ?? [],
@@ -97,7 +97,7 @@ final class HolidayStore {
     private(set) var region: String
     /// Feiertage «yyyy-MM-dd» der nächsten 400 Tage; bis die Daten geladen sind, der zuletzt gesendete Stand.
     private(set) var dates: Set<String>
-    /// Nur geschätzte Feiertage im selben Zeitraum (Audit F-2): gelten nicht als frei; die Einstellungen zeigen den nächsten.
+    /// Nur geschätzte Feiertage im selben Zeitraum: gelten nicht als frei; die Einstellungen zeigen den nächsten.
     private(set) var estimated: Set<String> = []
 
     init(defaults: any SettingsStore = SettingsFile.phone) {
@@ -112,7 +112,7 @@ final class HolidayStore {
         (defaults.string(forKey: countryKey) ?? Locale.current.region?.identifier ?? "", defaults.string(forKey: regionKey) ?? "")
     }
 
-    /// Wahl neu lesen (Prüfrunde 2 SP-2): Vor dem ersten Entsperren gestartet, galt das Land des Geräts; danach Region
+    /// Wahl neu lesen: Vor dem ersten Entsperren gestartet, galt das Land des Geräts; danach Region
     /// prüfen und neu auflösen (mit geladenen Daten). - Returns: ob sich die Feiertage geändert haben.
     @discardableResult
     func reloadChoice(_ defaults: any SettingsStore = SettingsFile.phone) -> Bool {

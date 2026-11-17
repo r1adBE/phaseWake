@@ -3,7 +3,7 @@ package com.phasewake.app.wear.ui.components
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
-/** Schrift auf dem Sonnenaufgang der Uhr (Audit UI-6): an jeder Stelle des Zifferblatts ≥ 4.5:1. */
+/** Schrift auf dem Sonnenaufgang der Uhr: an jeder Stelle des Zifferblatts ≥ 4.5:1. */
 class SunriseSkyTest {
 
     @Test
@@ -41,7 +41,7 @@ class SunriseSkyTest {
     }
 
     /**
-     * Audit N-4 / Gestaltung 5: Über ganze Textflächen (nicht nur Punkte) erreicht die Schrift mit dem Schild dahinter
+     * Über ganze Textflächen (nicht nur Punkte) erreicht die Schrift mit dem Schild dahinter
      * überall ≥ 4.5:1 – geprüft dichter (9 × 9 Punkte) als das Schild rechnet ([SunriseSky.GRID]).
      */
     @Test

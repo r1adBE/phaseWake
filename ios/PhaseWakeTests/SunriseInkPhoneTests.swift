@@ -2,8 +2,7 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWake
 
-/// Schrift auf dem Sonnenaufgang, iPhone: Kontrast über den ganzen Verlauf und je Textfläche samt Fläche dahinter
-/// (Herkunft: Vollaudit 11.11.2026 UI-6; Vollaudit 071597f N-3, Design 5).
+/// Schrift auf dem Sonnenaufgang, iPhone: Kontrast über den ganzen Verlauf und je Textfläche samt Fläche dahinter.
 final class SunriseInkPhoneTests: XCTestCase {
     func testSunriseTextKeepsContrastOverTheWholeProgress() {
         for step in 0...1000 {

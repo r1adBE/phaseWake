@@ -2,7 +2,7 @@ import Foundation
 import PhaseWakeCore
 import WatchKit
 
-/// Akku je Nacht auf der Apple Watch (r1AD 14.11.2026), wie `BatteryNight` auf der Galaxy Watch; Rechnung in
+/// Akku je Nacht auf der Apple Watch, wie `BatteryNight` auf der Galaxy Watch; Rechnung in
 /// ``BatteryTrack``. Die laufende Nacht steht in `UserDefaults` und übersteht so ein Ende der App.
 /// watchOS meldet das Laden nicht: Solange gemessen wird, prüft der Takt der Messung den Ladestand (``poll()``). Läuft die
 /// App nicht (Einschlaf-Messung und Aufzeichnung laufen über den Bewegungsrekorder des Systems), sieht sie ein Laden erst

@@ -48,7 +48,7 @@ class HabitsTest {
 
     @Test
     fun regularityAroundNoon() {
-        // Audit W-1: Bettzeiten 11:30 und 12:30 liegen 60 Min auseinander → Median 12:00, beide regelmässig (vorher 0 von 2).
+        // Bettzeiten 11:30 und 12:30 liegen 60 Min auseinander → Median 12:00, beide regelmässig (vorher 0 von 2).
         val until = LocalDate.of(2026, 10, 27)
         val noon = listOf(until to until.atTime(12, 30).atZone(zone).toInstant(), until.minusDays(1) to until.atTime(11, 30).atZone(zone).toInstant())
         assertEquals(2 to 2, Regularity.count(noon, zone))

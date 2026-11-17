@@ -386,7 +386,7 @@
     <string name="chart_window">ਜਗਾਉਣ ਦੀ ਮਿਆਦ</string>
     <string name="chart_no_data">ਕੋਈ ਡਾਟਾ ਨਹੀਂ</string>
     <string name="chart_feeling_hint">ਉਸ ਰਾਤ ਦੇ ਨੋਟ ਦੇਖਣ ਲਈ ਬਿੰਦੂ ’ਤੇ ਟੈਪ ਕਰੋ।</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">ਟੈਸਟ ਅਲਾਰਮ</string>
     <string name="test_button">2 ਮਿੰਟਾਂ ਵਿੱਚ ਟੈਸਟ</string>
     <string name="test_hint">ਤੁਹਾਡੇ ਅਗਲੇ ਅਲਾਰਮ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਨਾਲ 2 ਮਿੰਟਾਂ ਵਿੱਚ ਵੱਜਦਾ ਹੈ, ਬਿਨਾਂ ਸਨੂਜ਼। ਰਾਤ ਵਜੋਂ ਨਹੀਂ ਗਿਣਿਆ ਜਾਂਦਾ।</string>
@@ -602,7 +602,7 @@
     <string name="learn_switch_hint">ਤੁਹਾਡੀ ਘੜੀ ਰਾਤ ਨੂੰ ਹਿਲਜੁਲ ਅਤੇ ਨਬਜ਼ ਮਾਪਦੀ ਹੈ (ਘੱਟੋ-ਘੱਟ %1$d %% ਬੈਟਰੀ ਨਾਲ)। ਬੰਦ: ਕੋਈ ਆਪਣੇ-ਆਪ ਰਿਕਾਰਡਿੰਗ ਨਹੀਂ, ਸਿੱਖੇ ਮੁੱਲ ਰਹਿੰਦੇ ਹਨ।</string>
     <string name="learn_switch_title">ਚਾਲੂ</string>
     <string name="watch_open_app_hint">ਘੜੀ ’ਤੇ Phase Wake ਖੋਲ੍ਹੋ, ਤਾਂ ਜੋ ਇਸਨੂੰ ਹੁਕਮ ਮਿਲੇ।</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">ਸਿੱਖਣ ਦਾ ਪੜਾਅ ਸ਼ੁਰੂ ਹੋਣ ਤੋਂ ਬਾਅਦ ਹਰ ਰਾਤ – ਕੀ ਉਹ ਗਿਣੀ ਗਈ, ਅਤੇ ਜੇ ਨਹੀਂ ਤਾਂ ਕਿਉਂ ਅਤੇ ਕੀ ਮਦਦ ਕਰੇਗਾ। Phase Wake ਨੂੰ %1$d ਗਿਣੀਆਂ ਰਾਤਾਂ ਚਾਹੀਦੀਆਂ ਹਨ।</string>
     <string name="learn_nights_empty">ਹਾਲੇ ਕੋਈ ਰਾਤ ਨਹੀਂ। ਪਹਿਲੀ ਰਾਤ ਅਗਲੀ ਸਵੇਰ ਇੱਥੇ ਦਿਖੇਗੀ।</string>
     <string name="learn_night_facts">%1$s ਮਾਪਿਆ · %2$d ਮੁੱਲ · %3$d %% ਵਿੱਚ ਨਬਜ਼</string>

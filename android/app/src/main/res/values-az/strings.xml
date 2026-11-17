@@ -587,7 +587,7 @@
     <string name="learn_switch_hint">Saatın gecələr hərəkəti və nəbzi ölçür (%1$d %% batareyadan). Sönülü: avtomatik qeyd yoxdur, öyrənilmiş dəyərlər qalır.</string>
     <string name="learn_switch_title">Aktiv</string>
     <string name="watch_open_app_hint">Əmri alması üçün Phase Wake-i saatında aç.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Öyrənmə mərhələsi başlayandan bəri hər gecə – sayılıb, ya yox; sayılmayıbsa, niyə və nə kömək edər. Phase Wake-ə %1$d sayılmış gecə lazımdır.</string>
     <string name="learn_nights_empty">Hələ gecə yoxdur. Birincisi səhəri gün burada görünəcək.</string>
     <string name="learn_night_facts">%1$s ölçülüb · %2$d ölçü · nəbz %3$d %% hissədə</string>

@@ -75,7 +75,7 @@
     <string name="editor_delete_title">Dzēst šo modinātāju?</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Līdz %1$d modinātājiem – izdzēs vienu, lai pievienotu jaunu.</string>
     <string name="editor_enabled">Modinātājs ieslēgts</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Izlaist nākamreiz</string>
     <string name="alarm_skipped">Izlaists: %1$s</string>
     <string name="nap_title">Diendusa</string>
@@ -107,7 +107,7 @@
     <string name="record_since">Kopš %1$s</string>
     <string name="notification_record_title">Tiek ierakstīta nakts</string>
     <string name="record_battery_low">Akumulators ir pārāk izlādējies ierakstam</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Mācīšanās posms</string>
     <string name="watch_learn_warn">Uzlādē pulksteni, citādi šī nakts netiks ieskaitīta mācīšanās posmā (akumulators %1$d %%, vajag %2$d %%).</string>
     <string name="watch_learn_skip_battery">Šī nakts netiek ieskaitīta mācīšanās posmā: akumulators %1$d %%, vajag %2$d %%.</string>

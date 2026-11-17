@@ -32,8 +32,8 @@ struct NextAlarmProvider: TimelineProvider {
         completion(Timeline(entries: [current], policy: .after(refresh)))
     }
 
-    /// Plan der Uhr-App (`EffectivePlan`), solange er gilt: mit «Gute Nacht», Probewecker und Powernap wie die Sitzung
-    /// (Audit AP-9). Sonst, auch nach einem Wechsel der Zeitzone seit dem Speichern (Vollaudit AP2-7), aus den Weckern
+    /// Plan der Uhr-App (`EffectivePlan`), solange er gilt: mit «Gute Nacht», Probewecker und Powernap wie die Sitzung.
+    /// Sonst, auch nach einem Wechsel der Zeitzone seit dem Speichern, aus den Weckern
     /// gerechnet wie bisher.
     private func entry(at date: Date) -> NextAlarmEntry {
         let storage = PhaseWakeStorage.watchShared

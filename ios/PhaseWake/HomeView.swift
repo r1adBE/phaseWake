@@ -39,7 +39,7 @@ struct HomeView: View {
                                 }
                                 BackupSnoozeCard(now: context.date)
                                 TransientStatusCard()
-                                // «Deine Wecker» gleich nach dem Nacht-Check, vor den Abendkarten (Audit UX-01, r1AD 17.11.2026); wie Android.
+                                // «Deine Wecker» gleich nach dem Nacht-Check, vor den Abendkarten; wie Android.
                                 if !model.alarms.isEmpty {
                                     Text(L("home_alarms"))
                                         .font(Fonts.manrope(16, .semibold, relativeTo: .headline))
@@ -77,7 +77,7 @@ struct HomeView: View {
                                 SoundsButton { sounds = true }
                                 LearningHomeCard()
                                 RecordCard()
-                                // Höchstens eine Auffälligkeit, die wichtigste; neben der Bettzeit-Karte ohne denselben Tipp (UX-04, wie Android).
+                                // Höchstens eine Auffälligkeit, die wichtigste; neben der Bettzeit-Karte ohne denselben Tipp (wie Android).
                                 FindingHomeCard(bedtimeAdvice: evening && BedtimeAdviceCard.range(model: model, values: PhoneLearning.shared.state.values, now: context.date) != nil)
                                 if !morningFirst { lastNight(now: context.date, morningFirst: false) }
                                 // Morgenbericht ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): nur die Geräusche – nicht während der Aufnahme und nicht für die Nacht, die gerade läuft.
@@ -350,7 +350,7 @@ private struct AlarmRow: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .contentShape(Rectangle())
             .onTapGesture(perform: onTap)
-            .accessibilityElement(children: .combine) // VoiceOver wie Android (B-15): Zeile öffnet, Schalter getrennt.
+            .accessibilityElement(children: .combine) // VoiceOver wie Android: Zeile öffnet, Schalter getrennt.
             .accessibilityAddTraits(.isButton)
             .accessibilityHint(L("editor_edit"))
             .accessibilityAction(.default, onTap)

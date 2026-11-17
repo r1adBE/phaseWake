@@ -8,14 +8,14 @@ import com.phasewake.app.ring.BackupAlarm.Companion.GRACE
 import com.phasewake.app.shared.OnsetShift
 import kotlinx.coroutines.flow.first
 
-// Einschlaf-Modus der Galaxy Watch (Review K-07): Die frühere Zielzeit einer Nacht gilt auch für den Zweitwecker.
+// Einschlaf-Modus der Galaxy Watch: Die frühere Zielzeit einer Nacht gilt auch für den Zweitwecker.
 
 /** Zuletzt gemeldete frühere Zielzeit der Uhr ([OnsetShift.encode]). */
 private val ONSET_SHIFT = stringPreferencesKey("backup_onset_shift")
 
 /**
  * Die Uhr meldet eine frühere Zielzeit ([OnsetShift]): merken (eine neuere ersetzt eine ältere) und neu planen. Eine
- * Meldung ohne frühere Zielzeit (Zielzeit = eingestellte, Review H-1) hebt eine gemerkte auf. Eine schon
+ * Meldung ohne frühere Zielzeit (Zielzeit = eingestellte) hebt eine gemerkte auf. Eine schon
  * vorbeigegangene Nacht, eine ältere Meldung als die gemerkte oder dieselbe noch einmal (erneut zugestellt) ändert nichts.
  */
 internal suspend fun BackupAlarm.onsetShiftReceived(shift: OnsetShift) {

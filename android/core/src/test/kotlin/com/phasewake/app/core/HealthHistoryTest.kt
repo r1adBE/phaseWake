@@ -251,7 +251,7 @@ class HealthHistoryTest {
 
     @Test
     fun foreignSessionOnTheDateOfAnOwnNight() {
-        // Audit BE-4: Phase-Wake-Nacht 06:30–07:00 (2.10., Nachtdatum 1.10.).
+        // Phase-Wake-Nacht 06:30–07:00 (2.10., Nachtdatum 1.10.).
         val own = night("2026-10-02T04:30:00Z", "2026-10-02T05:00:00Z")
         // Fremde Sitzung am selben Nachtdatum ohne Überschneidung (Nachmittag 1.10.): fällt weg.
         val sameDate = HealthSession(t("2026-10-01T14:00:00Z"), t("2026-10-01T18:00:00Z"))
@@ -270,7 +270,7 @@ class HealthHistoryTest {
 
     @Test
     fun documentedNumbersAsLiterals() {
-        // Audit BE-3: Zahlen der Regeln für Nächte, Trends und Bettzeit als Wert.
+        // Zahlen der Regeln für Nächte, Trends und Bettzeit als Wert.
         assertEquals(180L, HealthHistory.MIN_NIGHT_MINUTES)
         assertEquals(java.time.LocalTime.of(9, 0), HealthHistory.NAP_EARLIEST)
         assertEquals(java.time.LocalTime.of(19, 0), HealthHistory.NAP_LATEST)
@@ -288,7 +288,7 @@ class HealthHistoryTest {
 
     @Test
     fun napRuleUsesTheZoneOfTheRecording() {
-        // Nickerchen in New York 13:00–15:30 (EDT), angeschaut in Zürich (19:00–21:30): bleibt ein Nickerchen (Audit F-3).
+        // Nickerchen in New York 13:00–15:30 (EDT), angeschaut in Zürich (19:00–21:30): bleibt ein Nickerchen.
         val newYork = HealthSession(t("2026-10-02T17:00:00Z"), t("2026-10-02T19:30:00Z"), timeZone = ZoneId.of("America/New_York"))
         assertTrue(newYork.isNap(zone))
         assertFalse(newYork.copy(timeZone = null).isNap(zone), "ohne Zone wie bisher in der Zone des Geräts")

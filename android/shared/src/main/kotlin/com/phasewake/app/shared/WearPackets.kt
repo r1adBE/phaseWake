@@ -18,7 +18,7 @@ abstract class WearPackets {
 
     /**
      * Status-Paket der Uhr mit dem Verbindungs-Stand ([DataLayer.PROTOCOL]) dieser Version; [battery] und [pulse]
-     * fehlen, wenn unbekannt; [recorderSkip] ist leer ohne Meldung; [charging]: Die Uhr lädt (F-6); [build]: Build-Nummer
+     * fehlen, wenn unbekannt; [recorderSkip] ist leer ohne Meldung; [charging]: Die Uhr lädt; [build]: Build-Nummer
      * der Uhr-App (`BuildNumber`), fehlt, wenn unbekannt.
      */
     fun statusRequest(
@@ -59,7 +59,7 @@ abstract class WearPackets {
         map.takeIf { it.containsKey(DataLayer.KEY_BATTERY) && nowMs - it.getLong(DataLayer.KEY_UPDATED_AT) <= maxAgeMs }
             ?.getInt(DataLayer.KEY_BATTERY)
 
-    /** Ob die Uhr beim Akkustand aus [readBattery] lud (F-6); ältere Uhr oder ohne gültigen Akkustand: nein. */
+    /** Ob die Uhr beim Akkustand aus [readBattery] lud; ältere Uhr oder ohne gültigen Akkustand: nein. */
     fun readCharging(map: DataMap, nowMs: Long, maxAgeMs: Long): Boolean =
         readBattery(map, nowMs, maxAgeMs) != null && map.getBoolean(DataLayer.KEY_BATTERY_CHARGING)
 
@@ -78,7 +78,7 @@ abstract class WearPackets {
     fun readBuild(map: DataMap): Int? = map.takeIf { it.containsKey(DataLayer.KEY_BUILD) }?.getInt(DataLayer.KEY_BUILD)?.takeIf { it > BuildNumber.LOCAL }
 
     /**
-     * Ob die Uhr-App älter ist als die Handy-App (Review O-04): ihr Verbindungs-Stand [watchProtocol] ist kleiner als
+     * Ob die Uhr-App älter ist als die Handy-App: ihr Verbindungs-Stand [watchProtocol] ist kleiner als
      * [own]. `null` (keine Uhr bekannt) warnt nicht; ein Status ohne Angabe stammt von einer älteren Uhr.
      */
     fun watchOutdated(watchProtocol: Int?, own: Int = DataLayer.PROTOCOL): Boolean = watchProtocol != null && watchProtocol < own

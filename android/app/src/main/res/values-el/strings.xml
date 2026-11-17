@@ -383,7 +383,7 @@
     <string name="chart_window">Παράθυρο αφύπνισης</string>
     <string name="chart_no_data">χωρίς δεδομένα</string>
     <string name="chart_feeling_hint">Πάτησε ένα σημείο για τις σημειώσεις εκείνης της νύχτας.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Δοκιμή αφύπνισης</string>
     <string name="test_button">Δοκιμή σε 2 λεπτά</string>
     <string name="test_hint">Χτυπά σε 2 λεπτά με τις ρυθμίσεις της επόμενης αφύπνισής σου, χωρίς αναβολή. Δεν μετράει ως νύχτα.</string>
@@ -599,7 +599,7 @@
     <string name="learn_switch_hint">Το ρολόι σου μετρά κίνηση και παλμούς τη νύχτα (από %1$d %% μπαταρία). Ανενεργό: καμία αυτόματη καταγραφή, οι τιμές που έμαθε μένουν.</string>
     <string name="learn_switch_title">Ενεργή</string>
     <string name="watch_open_app_hint">Άνοιξε το Phase Wake στο ρολόι σου για να λάβει την εντολή.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Κάθε νύχτα από την αρχή της φάσης εκμάθησης – αν μέτρησε και, αν όχι, γιατί και τι βοηθά. Το Phase Wake χρειάζεται %1$d νύχτες που μετράνε.</string>
     <string name="learn_nights_empty">Δεν υπάρχει ακόμη νύχτα. Η πρώτη εμφανίζεται εδώ το επόμενο πρωί.</string>
     <string name="learn_night_facts">%1$s μετρήθηκαν · %2$d τιμές · σφυγμός στο %3$d %%</string>

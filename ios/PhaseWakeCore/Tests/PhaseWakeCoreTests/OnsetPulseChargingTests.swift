@@ -3,7 +3,7 @@ import PhaseWakeCore
 
 /// Einschlaf-Erkennung mit Puls und Ladegerät (gleiche Fälle wie Kotlin `SnoozeAndOnsetTest`, `OnsetMonitorTest`,
 /// `GoodNightOnsetTest`): Puls in der ruhigen Strecke, Zeit am Ladegerät verschiebt die Zeitgrenze, später Start, Laden
-/// statt Akkugrenze (Herkunft: Prüfrunde 2 F-1, HG-3, HG-2, F-6).
+/// statt Akkugrenze.
 final class OnsetPulseChargingTests: XCTestCase {
     private let since = Date(timeIntervalSince1970: 1_793_570_400) // 2026-11-01 23:00 Zürich
     private let quiet = 0.0005
@@ -11,7 +11,7 @@ final class OnsetPulseChargingTests: XCTestCase {
 
     private func minutes(_ m: Double) -> Date { since.addingTimeInterval(m * 60) }
 
-    // MARK: F-1
+    // MARK: Puls in der ruhigen Strecke
 
     /// Puls in Epoche 40, ab 44 liegt die Uhr still und misst keinen mehr: vorher «eingeschlafen beim Ablegen» (44).
     func testAStretchNeedsAPulseInsideIt() {
@@ -39,7 +39,7 @@ final class OnsetPulseChargingTests: XCTestCase {
         XCTAssertEqual(RecorderOnset.awayEpochs([], start: since, count: 0), [])
     }
 
-    // MARK: HG-3
+    // MARK: Ladegerät verschiebt die Zeitgrenze
 
     /// Messung ab 23:00, Uhr bis 00:00 am Ladegerät, danach still ohne Puls bis 00:55, ab dann getragen (Puls je 5 Min):
     /// Die ruhige Strecke ab 00:55 ist erst um 01:10 vollständig. Vorher gab die Messung um 01:00 auf (2 Std., ruhig, also
@@ -60,9 +60,9 @@ final class OnsetPulseChargingTests: XCTestCase {
         XCTAssertNil(RecorderOnset.awayUntil(baseEnd: minutes(120), awayEpochs: 60, latestGiveUp: minutes(100), cap: cap))
     }
 
-    // MARK: HG-2
+    // MARK: Später Start
 
-    /// Entscheid r1AD 14.11.2026: spät bei offener App gestartet, misst ab dem Start; spät im Hintergrund nicht gemessen.
+    /// Spät bei offener App gestartet, misst ab dem Start; spät im Hintergrund nicht gemessen.
     func testLateStartForegroundOrBackground() {
         let bedAt = minutes(30)
         XCTAssertEqual(RecorderOnset.lateStart(recorderFrom: minutes(0), bedAt: bedAt, foreground: false), .onTime)
@@ -72,7 +72,7 @@ final class OnsetPulseChargingTests: XCTestCase {
                                                foreground: false), .onTime)
     }
 
-    // MARK: F-6
+    // MARK: Laden statt Akkugrenze
 
     /// Am Ladegerät nicht wegen des Akkus auslassen (Einschlaf-Messung und Lernphase).
     func testChargingIgnoresTheBatteryLimit() {

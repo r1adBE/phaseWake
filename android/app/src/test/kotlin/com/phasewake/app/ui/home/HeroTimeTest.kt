@@ -10,7 +10,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Gestaltung 1 / Audit N-2: Im Weckfenster der Startseite steht AM/PM (Arabisch «ص»/«م») klein; im 24-h-Format gibt
+ * Im Weckfenster der Startseite steht AM/PM (Arabisch «ص»/«م») klein; im 24-h-Format gibt
  * es keinen Zusatz. Vorher brach das arabische Fenster um und «ص» stand riesig auf einer eigenen Zeile.
  */
 class HeroTimeTest {

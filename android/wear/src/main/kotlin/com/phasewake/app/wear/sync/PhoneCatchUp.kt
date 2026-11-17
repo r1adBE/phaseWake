@@ -36,7 +36,7 @@ object PhoneCatchUp {
 
     private suspend fun catchUp(app: PhaseWakeWear) {
         app.sync.migrateTransport()
-        // Zuerst ein verpasstes «Verlauf löschen» anwenden, dann senden (Audit D-02): Sonst gingen gelöschte Nächte aus
+        // Zuerst ein verpasstes «Verlauf löschen» anwenden, dann senden: Sonst gingen gelöschte Nächte aus
         // der Warteschlange noch einmal ans Handy.
         try {
             latestClear(app)?.let { applyClear(app, it) }
@@ -45,7 +45,7 @@ object PhoneCatchUp {
             Log.w(TAG, "«Verlauf löschen» nachholen fehlgeschlagen", e)
         }
         app.sync.flush()
-        // Höchstens alle 30 Min (Audit PERF-06): Startet der Prozess nachts mehrmals, fragt er nicht jedes Mal.
+        // Höchstens alle 30 Min: Startet der Prozess nachts mehrmals, fragt er nicht jedes Mal.
         app.sync.requestSyncOnStart()
     }
 
@@ -65,7 +65,7 @@ object PhoneCatchUp {
         }
         // Aufzeichnungen ebenso: bis dahin beendete löschen, eine laufende bleibt.
         app.recordings.clear(before = cut)
-        // Noch nicht ans Handy Gesendetes, das bis dahin endet, ebenso (Audit D-02).
+        // Noch nicht ans Handy Gesendetes, das bis dahin endet, ebenso.
         app.sync.dropHistory(clearedAt)
         store.edit { it[CLEAR_APPLIED_AT] = clearedAt }
     }

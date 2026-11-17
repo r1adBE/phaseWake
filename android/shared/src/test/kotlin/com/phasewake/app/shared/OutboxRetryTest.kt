@@ -18,8 +18,8 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * Warteschlange, Fixes aus dem Audit 071597f: Zustände verfallen nie (AN-2), ein wegen der Wartezeit übergangener Eintrag
- * geht von selbst, sobald sie um ist (AN-3), und gesendet wird ohne die Sperre (AN-4). Die Uhr ist die des Zeitgebers
+ * Warteschlange: Zustände verfallen nie, ein wegen der Wartezeit übergangener Eintrag
+ * geht von selbst, sobald sie um ist, und gesendet wird ohne die Sperre. Die Uhr ist die des Zeitgebers
  * des Tests, das verzögerte Nachsenden läuft also mit ihm.
  */
 @RunWith(RobolectricTestRunner::class)
@@ -53,7 +53,7 @@ class OutboxRetryTest {
 
     @Test
     fun stateKeysNeverExpire() = runTest {
-        // Audit AN-2: Nach zwei Wochen ohne Gegenseite fiel auch der Stand der Wecker weg; die Änderung ging nie an.
+        // Nach zwei Wochen ohne Gegenseite fiel auch der Stand der Wecker weg; die Änderung ging nie an.
         val box = Outbox(dir, object : Outbox.Transport {
             override suspend fun nodes(capability: String): List<String> = emptyList()
             override suspend fun send(node: String, path: String, data: ByteArray) = Unit
@@ -71,7 +71,7 @@ class OutboxRetryTest {
 
     @Test
     fun skippedEntryIsSentWhenTheWaitIsOver() = runTest {
-        // Audit AN-3: Übergangen wegen der Wartezeit blieb ein Eintrag liegen, bis zufällig ein neuer Anlass kam.
+        // Übergangen wegen der Wartezeit blieb ein Eintrag liegen, bis zufällig ein neuer Anlass kam.
         val box = outbox()
         put(box, "night/1-a", "n1")
         assertEquals(listOf("n1"), transport.sent)
@@ -92,7 +92,7 @@ class OutboxRetryTest {
 
     @Test
     fun sendingDoesNotHoldTheLock() = runTest {
-        // Audit AN-4: Ein hängendes Senden hielt die Sperre; Bestätigungen und Einreihen warteten bis zu 15 s je Schritt.
+        // Ein hängendes Senden hielt die Sperre; Bestätigungen und Einreihen warteten bis zu 15 s je Schritt.
         val box = outbox()
         val gate = CompletableDeferred<Unit>()
         transport.gate = gate
@@ -113,7 +113,7 @@ class OutboxRetryTest {
 
     @Test
     fun leftoversAreRemoved() = runTest {
-        // Audit SP-8: Ein nach einem Stromausfall leerer Eintrag und ein liegengebliebenes «.tmp» blieben für immer liegen.
+        // Ein nach einem Stromausfall leerer Eintrag und ein liegengebliebenes «.tmp» blieben für immer liegen.
         val box = outbox()
         put(box, "night/1-a", "n1")
         val empty = File(dir, "e-6e696768742f32").apply { writeText("") }

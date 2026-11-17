@@ -431,7 +431,7 @@
     <string name="chart_window">نافذة الإيقاظ</string>
     <string name="chart_no_data">لا بيانات</string>
     <string name="chart_feeling_hint">انقر على نقطة لترى ملاحظات تلك الليلة.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">اختبار المنبّه</string>
     <string name="test_button">اختبار بعد دقيقتين</string>
     <string name="test_hint">يرنّ بعد دقيقتين بإعدادات منبّهك التالي، دون غفوة. لا يُحتسب ليلة.</string>
@@ -655,7 +655,7 @@
     <string name="learn_switch_hint">تقيس ساعتك الحركة والنبض ليلًا (من %1$d %% بطارية فأكثر). متوقفة: لا تسجيل تلقائي، وتبقى القيم المتعلَّمة.</string>
     <string name="learn_switch_title">مفعّلة</string>
     <string name="watch_open_app_hint">افتح Phase Wake على ساعتك حتى تستلم الأمر.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">كل ليلة منذ بدء مرحلة التعلّم – هل احتُسبت، وإن لم تُحتسب فلماذا وما الذي يساعد. يحتاج Phase Wake إلى %1$d ليالٍ محتسبة.</string>
     <string name="learn_nights_empty">لا توجد ليلة بعد. تظهر الأولى هنا في الصباح التالي.</string>
     <string name="learn_night_facts">قِيس %1$s · %2$d قراءة · النبض في %3$d %%</string>

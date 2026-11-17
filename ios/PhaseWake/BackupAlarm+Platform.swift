@@ -206,7 +206,7 @@ final class SystemBackupPlatform: BackupPlatform {
             }
             let stop = AlarmButton(text: LocalizedStringResource(stringLiteral: L("ring_stop")), textColor: .white, systemImageName: "stop.fill")
             // Schlummern nur, solange Runden übrig sind (beim Mitklingeln die der Uhr). Restanzahl wie auf der Uhr «noch N»
-            // statt «N übrig» (Audit UI-10).
+            // statt «N übrig».
             let snoozeText = L("ring_snooze_button", Int64(Snooze.minutes)) + " · " + LP("ring_snoozes_left", snoozesLeft, Int64(snoozesLeft))
             let snooze = snoozesLeft > 0
                 ? AlarmButton(text: LocalizedStringResource(stringLiteral: snoozeText), textColor: .white, systemImageName: "zzz")

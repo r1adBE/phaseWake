@@ -32,7 +32,7 @@ final class CalibrationTests: XCTestCase {
     }
 
     func testNoiseFloorOfEachNightIsSubtracted() {
-        // Audit c3b8b01 E-2: Uhr mit Rauschen 0.02 (Werte 0.02000 … 0.02095). Grundrauschen je Nacht 0.02015 (Rang 4 von
+        // Uhr mit Rauschen 0.02 (Werte 0.02000 … 0.02095). Grundrauschen je Nacht 0.02015 (Rang 4 von
         // 20) abgezogen: 80. Perzentil 0.0006 → untere Grenze 0.001, Wach 0.05. Ohne Abzug: 0.004 und 0.2.
         let nights = Array(repeating: night((0..<20).map { Optional(0.02 + Double($0) * 0.00005) }), count: 3)
         let config = Calibration.calibrate(nights: nights)
@@ -61,7 +61,7 @@ final class CalibrationTests: XCTestCase {
         XCTAssertEqual(Calibration.calibrate(nights: quiet).lightThreshold, 0.001)
         let restless = Array(repeating: night(Array(repeating: 0.5, count: 20)), count: 3)
         XCTAssertEqual(Calibration.calibrate(nights: restless).lightThreshold, 0.004)
-        // Wach höchstens beim Startwert 0.1 (E-2, r1AD 14.11.2026), nicht 0.004 × 50 = 0.2; ruhig 0.001 × 50 = 0.05.
+        // Wach höchstens beim Startwert 0.1, nicht 0.004 × 50 = 0.2; ruhig 0.001 × 50 = 0.05.
         XCTAssertEqual(Calibration.calibrate(nights: restless).wakeThreshold, 0.1)
         XCTAssertEqual(Calibration.calibrate(nights: quiet).wakeThreshold, 0.05)
     }

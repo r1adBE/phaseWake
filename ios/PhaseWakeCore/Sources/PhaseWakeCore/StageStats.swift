@@ -55,7 +55,7 @@ public struct StageTotal: Equatable, Sendable {
     public let stage: SleepStage
     /// Minuten der Phase: Millisekunden summiert, dann abgerundet.
     public let minutes: Int
-    /// Anteil in ganzen Prozent (Entscheid r1AD 15.11.2026). REM, leicht, tief: am Schlaf (``NightStages/asleepMinutes``,
+    /// Anteil in ganzen Prozent. REM, leicht, tief: am Schlaf (``NightStages/asleepMinutes``,
     /// «unbekannt» zählt als Schlaf), aus den ganzen Minuten, halbe aufwärts, wie ``Findings/deepPercent(deepMinutes:asleepMinutes:)``;
     /// die drei ergeben darum nicht immer genau 100. Wach: an allen vier Phasen (Restverfahren wie bisher), nur für
     /// Einordnung und Schlafwert; angezeigt wird Wach in Minuten. 0 ohne Zeit.
@@ -96,7 +96,7 @@ public struct NightStages: Equatable, Sendable {
 
 /// Phasen-Summen, Anteile mit üblichem Bereich und Kennzahlen einer Nacht: reine Rechnung. Identisch zu `StageStats` (Kotlin).
 public enum StageStats {
-    /// Übliche Anteile für Erwachsene in Prozent (Richtwerte laut Auftrag r1AD vom 29.10.2026): wach «unter 10 %».
+    /// Übliche Anteile für Erwachsene in Prozent (Richtwerte): wach «unter 10 %».
     public static let typical: [SleepStage: StageRange] = [
         .awake: StageRange(low: 0, high: 9),
         .rem: StageRange(low: 20, high: 25),
@@ -109,7 +109,7 @@ public enum StageStats {
 
     /// Auswertung von `spans`, zugeschnitten auf `from`–`to` (``StageCheck/clip(_:from:to:)``).
     /// `nil`, wenn `to` nicht nach `from` liegt oder keine Schlafphase (REM, leicht, tief) im Bereich ist: Eine Quelle
-    /// ohne Phasendetail (Schlaf «unbekannt» und «wach») hat keine Phasen, sonst stünde dort «Wach 100 %» (Audit W-5).
+    /// ohne Phasendetail (Schlaf «unbekannt» und «wach») hat keine Phasen, sonst stünde dort «Wach 100 %».
     public static func of(_ spans: [StageSpan], from: Date, to: Date) -> NightStages? {
         guard to > from else { return nil }
         let clipped = StageCheck.clip(spans, from: from, to: to)

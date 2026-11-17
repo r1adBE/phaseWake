@@ -101,8 +101,8 @@ data class AlarmSpec(
         const val MAX_SLEEP_MINUTES: Int = 12 * 60
 
         /**
-         * Höchstens so viele Wecker (Entscheid r1AD): Editor und Liste lassen nicht mehr zu, und auch Wiederherstellen und
-         * Ersetzen (`AlarmRepository.replaceAll`) übernehmen höchstens so viele (Fix DA-8, wie
+         * Höchstens so viele Wecker: Editor und Liste lassen nicht mehr zu, und auch Wiederherstellen und
+         * Ersetzen (`AlarmRepository.replaceAll`) übernehmen höchstens so viele (wie
          * `BackupIO` am iPhone). Identisch zu `AlarmSpec.maxAlarms` (Swift).
          */
         const val MAX_ALARMS: Int = 8

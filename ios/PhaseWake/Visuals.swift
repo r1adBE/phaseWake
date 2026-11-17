@@ -13,7 +13,7 @@ struct HeroWave: View {
     @State private var appeared = Date()
 
     var body: some View {
-        // Höchstens 30 Bilder/s, im Hintergrund still (Audit 17.11. PERF-08).
+        // Höchstens 30 Bilder/s, im Hintergrund still.
         TimelineView(.animation(minimumInterval: 1.0 / 30, paused: reduceMotion || scenePhase != .active)) { timeline in
             Canvas { context, size in
                 let ink = SkyInk.of(scheme)

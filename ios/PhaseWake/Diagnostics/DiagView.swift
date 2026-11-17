@@ -37,7 +37,7 @@ struct DiagVersionRow: View {
 /// Diagnose am iPhone: Zustand von iPhone und Uhr, Ereignisse beider Geräte, Teilen, Uhr-Protokoll holen,
 /// Leeren, Ausblenden. Nur lokal; geteilt wird nur, was der Nutzer selbst teilt.
 struct DiagView: View {
-    /// Mit Build-Nummer der Testversion, z. B. «16.2.2 (96)» (r1AD 14.11.2026).
+    /// Mit Build-Nummer der Testversion, z. B. «16.2.2 (96)».
     static var version: String { BuildNumber.ownLabel }
 
     @Environment(PhoneModel.self) private var model
@@ -95,7 +95,7 @@ struct DiagView: View {
         .task {
             entries = DiagStore.shared.entries()
             failed = await NightCheck.collect()
-            // Validierungs-Modus (Entscheid r1AD 16.11.2026): nur gerechnet, ändert nichts am Wecken.
+            // Validierungs-Modus: nur gerechnet, ändert nichts am Wecken.
             let decisions = await ValidationData.entries(model: model)
             validation = ValidationReport.lines(decisions)
         }

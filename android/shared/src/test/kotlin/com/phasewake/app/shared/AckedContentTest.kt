@@ -18,7 +18,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Abgleich beim Prozessstart entprellt (Audit PERF-06): Ein bestätigter, unveränderter Zustand wird nicht erneut
+ * Abgleich beim Prozessstart entprellt: Ein bestätigter, unveränderter Zustand wird nicht erneut
  * eingereiht und gesendet; ein geänderter immer, ebenso einer, solange unter seinem Schlüssel noch etwas wartet. Die
  * Bestätigung übersteht das Prozessende. Dazu die Anfrage nach dem Stand der Gegenseite höchstens alle 30 Min.
  */

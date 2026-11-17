@@ -38,7 +38,7 @@ import java.time.ZoneId
 
 // Powernap und Diagnose auf der Uhr.
 
-/** Neues des Startbildschirms (Runde 3); Vorgaben = nichts davon (Bildschirmfotos). */
+/** Neues des Startbildschirms; Vorgaben = nichts davon (Bildschirmfotos). */
 internal class WatchHomeExtras(
     /** Laufender Powernap; `null` = keiner. */
     val nap: TransientPlan? = null,
@@ -56,7 +56,7 @@ internal class WatchHomeExtras(
     val now: Instant? = null,
     /** Schlafziel vom Handy in Minuten (ohne Handy der Standard); setzt den Einschlafpunkt auf dem Ring. */
     val sleepGoalMinutes: Int = SleepGoal.DEFAULT_MINUTES,
-    /** Gelernte Einschlafdauer vom Handy in Minuten (O-03); verschiebt den Einschlafpunkt früher. `null` = keine. */
+    /** Gelernte Einschlafdauer vom Handy in Minuten; verschiebt den Einschlafpunkt früher. `null` = keine. */
     val latencyMinutes: Int? = null,
     /** Beginn der laufenden Aufzeichnung («Nacht aufzeichnen»); `null` = keine. */
     val recordSince: Instant? = null,

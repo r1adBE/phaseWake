@@ -7,7 +7,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
-/** Einschlafpunkt auf dem Ring der Galaxy Watch mit gelernter Einschlafdauer (O-03, wie am Handy und auf der Apple Watch). */
+/** Einschlafpunkt auf dem Ring der Galaxy Watch mit gelernter Einschlafdauer (wie am Handy und auf der Apple Watch). */
 class RingBedtimeTest {
     private val alarm = AlarmSpec(id = "a", hour = 7, minute = 0)
     private val target = Instant.parse("2026-11-15T06:00:00Z")

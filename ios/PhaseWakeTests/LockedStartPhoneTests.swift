@@ -2,7 +2,7 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWake
 
-/// Prüfrunde 2, iPhone-Start vor dem ersten Entsperren (HG-1/SP-1, SP-2): Lernphase und Lern-Übersicht weder aus dem
+/// iPhone-Start vor dem ersten Entsperren: Lernphase und Lern-Übersicht weder aus dem
 /// leeren Stand stempeln noch schreiben, gemerkte Meldungen danach aufnehmen; Feiertagswahl nachlesen. Eine Datei mit
 /// einem Ordner an ihrer Stelle steht für die geschützte Datei (wie `LockedSettingsPhoneTests`).
 final class LockedStartPhoneTests: XCTestCase {
@@ -30,7 +30,7 @@ final class LockedStartPhoneTests: XCTestCase {
         }
     }
 
-    /// HG-1/SP-1: Stand nicht lesbar → kein Stempel «jetzt» (die Uhr übernähme sonst «Lernphase aus, keine Werte»),
+    /// Stand nicht lesbar → kein Stempel «jetzt» (die Uhr übernähme sonst «Lernphase aus, keine Werte»),
     /// keine Änderung; danach gilt der gespeicherte Stand unverändert.
     @MainActor
     func testUnreadableLearningIsNotStamped() throws {
@@ -52,7 +52,7 @@ final class LockedStartPhoneTests: XCTestCase {
         XCTAssertEqual(learning.watchSnapshot(), real.snapshot)
     }
 
-    /// Datei fehlt (neue Installation): leerer Stand gilt als gelesen und wird wie bisher gestempelt (Fix S-3).
+    /// Datei fehlt (neue Installation): leerer Stand gilt als gelesen und wird wie bisher gestempelt.
     @MainActor
     func testMissingLearningIsStamped() {
         let learning = PhoneLearning(directory: dir)
@@ -60,7 +60,7 @@ final class LockedStartPhoneTests: XCTestCase {
         XCTAssertGreaterThan(learning.watchSnapshot().updatedAtMs, 0)
     }
 
-    /// SP-1: Meldung der Uhr vor dem Lesen der Lern-Übersicht ersetzt die gespeicherten nicht; danach sind beide da.
+    /// Meldung der Uhr vor dem Lesen der Lern-Übersicht ersetzt die gespeicherten nicht; danach sind beide da.
     @MainActor
     func testLearnLogKeepsSkipsReceivedBeforeRead() throws {
         let first = LearnSkip(target: Date(timeIntervalSince1970: 1_800_000_000), reason: .sensors)
@@ -79,7 +79,7 @@ final class LockedStartPhoneTests: XCTestCase {
         XCTAssertEqual(LearnLogStore(directory: dir).skips, [first, second])
     }
 
-    /// SP-2: Beim Start galt das Land des Geräts; nach dem Lesen die gespeicherte Wahl, alte Feiertage verworfen.
+    /// Beim Start galt das Land des Geräts; nach dem Lesen die gespeicherte Wahl, alte Feiertage verworfen.
     @MainActor
     func testHolidayChoiceReloadedAfterUnlock() throws {
         let suite = "locked-holidays-\(UUID().uuidString)"

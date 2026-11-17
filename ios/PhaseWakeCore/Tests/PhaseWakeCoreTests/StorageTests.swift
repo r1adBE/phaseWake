@@ -110,7 +110,7 @@ final class StorageTests: XCTestCase {
     }
 
     /// Einschlafzeit samt Beginn bleibt, wenn dieselbe Nacht ohne sie noch einmal kommt (wie Android
-    /// `NightKeyTest.storedOnsetIsKeptTogether`, Entscheid r1AD 15.11.2026).
+    /// `NightKeyTest.storedOnsetIsKeptTogether`).
     func testStoredOnsetIsKeptTogether() {
         let s = storage()
         let start = Date(timeIntervalSince1970: 1_793_165_400)

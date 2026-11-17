@@ -3,8 +3,8 @@ import XCTest
 @testable import PhaseWakeWatch
 
 /// Oberfläche der Apple Watch: «Gute Nacht» mit «Tippen zum Abbrechen» und Grund, wenn eine Nacht läuft, übersprungener
-/// Termin in der Wecker-Zeile, Stopp-Knopf 44 pt (Herkunft: Prüfrunde 2 B-7, B-8, B-16), Räder 12/24 Std. (Vollaudit
-/// 071597f N-10). Gegenstücke auf der Galaxy Watch: `WatchSurfacesTest`, `GoodNightButton`.
+/// Termin in der Wecker-Zeile, Stopp-Knopf 44 pt, Räder 12/24 Std.
+/// Gegenstücke auf der Galaxy Watch: `WatchSurfacesTest`, `GoodNightButton`.
 @MainActor
 final class SurfacesWatchTests: XCTestCase {
     private var zurich: Calendar {

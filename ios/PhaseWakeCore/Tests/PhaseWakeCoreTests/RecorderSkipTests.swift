@@ -1,7 +1,7 @@
 import XCTest
 @testable import PhaseWakeCore
 
-/// Meldung «Messung vor dem Schlafen nicht gestartet» (Audit F-06); Gegenstück zu `RecorderSkipTest` (Kotlin).
+/// Meldung «Messung vor dem Schlafen nicht gestartet»; Gegenstück zu `RecorderSkipTest` (Kotlin).
 final class RecorderSkipTests: XCTestCase {
     private let target = Date(timeIntervalSince1970: 1_800_000_000)
 

@@ -8,7 +8,7 @@ import java.time.ZoneId
 import kotlinx.coroutines.flow.first
 
 /**
- * Daten des Validierungs-Modus ([Validation], Entscheid r1AD 16.11.2026) für Diagnose-Bericht und Export: eigene Nächte,
+ * Daten des Validierungs-Modus ([Validation]) für Diagnose-Bericht und Export: eigene Nächte,
  * abgeschlossene Aufzeichnungen, gelernte Werte und die Schlafphasen aus Health Connect (nur gelesen, nur im Speicher;
  * ohne Zugriff keine, dann hat keine Nacht Referenz). Rechnet nur, ändert nichts am Wecken.
  */

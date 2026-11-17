@@ -61,7 +61,7 @@ internal data class HypnoWindow(val start: Instant, val target: Instant, val wok
 
 /**
  * Was das Hypnogramm zeigt: Zeitachse [from] bis [to], Blöcke ([StageBlock]) und das Weckfenster (nur eigene Nächte).
- * [zone]: Uhrzeiten in dieser Zone (Nacht aus der Gesundheits-App: Zone der Aufzeichnung, Audit F-3); `null` = Gerät.
+ * [zone]: Uhrzeiten in dieser Zone (Nacht aus der Gesundheits-App: Zone der Aufzeichnung); `null` = Gerät.
  */
 internal data class HypnoModel(
     val from: Instant,
@@ -207,7 +207,7 @@ internal fun DrawScope.drawWindowBand(color: Color, topLeft: Offset, area: Size)
  * Blöcke je Zeile, auf ganze Pixel gesetzt (keine weichen Kanten), mindestens 1 px breit und nie aufgeblasen; Ecken
  * nur gerundet, wo ein Block mindestens [ROUND_MIN] breit ist, sonst eckig.
  *
- * Entscheid r1AD 15.11.: beide Hypnogramme schlicht, ohne Schein – [glow] bleibt nur als Option.
+ * Beide Hypnogramme schlicht, ohne Schein – [glow] bleibt nur als Option.
  * [glow]: kräftige Phasenfarbe im Verlauf (dunkel oben aufgehellt, hell unten vertieft – so
  * entfernt sich die Farbe nie Richtung Karte und behält ihren Kontrast), oben eine feine Glanzkante; nur breite Blöcke
  * (ab [GLOW_MIN]) bekommen einen schwachen, schmalen Schein und einen leisen Farbschleier bis zum Boden. Stufenlinien

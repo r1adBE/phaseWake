@@ -409,7 +409,7 @@
     <string name="chart_window">Okno bujenja</string>
     <string name="chart_no_data">ni podatkov</string>
     <string name="chart_feeling_hint">Tapni piko za opombe te noči.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Preizkusna budilka</string>
     <string name="test_button">Preizkusi čez 2 minuti</string>
     <string name="test_hint">Zazvoni čez 2 minuti z nastavitvami tvoje naslednje budilke, brez dremeža. Ne šteje kot noč.</string>
@@ -629,7 +629,7 @@
     <string name="learn_switch_hint">Ura ponoči meri gibanje in utrip (od %1$d %% baterije). Izklopljeno: brez samodejnega beleženja, naučene vrednosti ostanejo.</string>
     <string name="learn_switch_title">Aktivna</string>
     <string name="watch_open_app_hint">Odpri Phase Wake na uri, da prejme ukaz.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Vsaka noč od začetka faze učenja – ali je štela in, če ni, zakaj in kaj pomaga. Phase Wake potrebuje %1$d štetih noči.</string>
     <string name="learn_nights_empty">Še ni nobene noči. Prva se tukaj prikaže naslednje jutro.</string>
     <string name="learn_night_facts">Izmerjeno %1$s · %2$d vrednosti · utrip v %3$d %%</string>

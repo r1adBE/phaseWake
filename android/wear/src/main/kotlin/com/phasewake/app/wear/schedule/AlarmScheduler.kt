@@ -167,7 +167,7 @@ class AlarmScheduler(
     /**
      * Plant neu nach dem aktuellen Stand der Wecker ([ScheduleRules.decide]). @return der geplante Plan oder `null`.
      *
-     * Reihenfolge (Audit A-3): zuerst alles lesen und berechnen, dann die System-Alarme ohne Unterbrechung stellen
+     * Reihenfolge: zuerst alles lesen und berechnen, dann die System-Alarme ohne Unterbrechung stellen
      * (ein neuer Alarm ersetzt den alten mit demselben PendingIntent; aufgehoben wird nur, wenn kein Plan mehr gilt), erst
      * danach die Nebenarbeiten ([afterAlarms]: Kachel, Status ans Handy, Einschlaf-Messung, geplante Nacht), jede für sich
      * abgesichert und mit Frist. So bleibt kein Wecker weg, wenn eine Nebenarbeit hängt oder scheitert.
@@ -207,7 +207,7 @@ class AlarmScheduler(
     }
 
     /**
-     * Nebenarbeiten nach dem Stellen der Alarme (Audit A-3): Protokoll des geplanten [scheduled], Kachel und Komplikation, Uhr-Status ans Handy (Wear-Dienste),
+     * Nebenarbeiten nach dem Stellen der Alarme: Protokoll des geplanten [scheduled], Kachel und Komplikation, Uhr-Status ans Handy (Wear-Dienste),
      * Einschlaf-Messung, die geplante Nacht für einen Zonenwechsel, die Weckzeit einer laufenden Aufzeichnung der
      * Lernphase ([RecordControl.followPlan]: Wecker verschoben) und ihre Akku-Warnung am Abend ([LearnNotice.update]). Jede für sich mit Frist ([sideWork]) und
      * abgefangenem Fehler: Eine hängende oder scheiternde stört weder die anderen noch die schon gestellten Alarme.
@@ -301,7 +301,7 @@ class AlarmScheduler(
 
         /**
          * Kachel und Komplikation sofort aktualisieren: Das System fragt sie nicht von sich aus ab (Komplikation
-         * `UPDATE_PERIOD_SECONDS = 0`, Audit PERF-07), nur nach dem Neuplanen und zur Zielzeit ([AlarmReceiver]).
+         * `UPDATE_PERIOD_SECONDS = 0`), nur nach dem Neuplanen und zur Zielzeit ([AlarmReceiver]).
          */
         internal fun refreshSurfaces(context: Context) {
             runCatching { TileService.getUpdater(context).requestUpdate(NextAlarmTileService::class.java) }

@@ -111,12 +111,12 @@ class WakeDetectorTest {
 
     @Test
     fun zeroWarmupHasNoBaselineUntilTwoPulses() {
-        // Gelerntes Grundrauschen 0.001 (Leicht-Schwelle 0.0025): Ohne Grundrauschen wartete die Leicht-Regel (E-1).
+        // Gelerntes Grundrauschen 0.001 (Leicht-Schwelle 0.0025): Ohne Grundrauschen wartete die Leicht-Regel.
         val detector = WakeDetector(DetectorConfig(warmupEpochs = 0, personalFloor = 0.001))
         detector.onEpoch(Epoch(0.003, 52.0))
         // Erst ein Puls davor: kein Basispuls, die Pulsbedingung ist nicht erfüllt.
         assertEquals(Decision.Wait, detector.onEpoch(Epoch(0.003, 60.0)))
-        // Ab zwei Pulsen (Vollaudit K-3): Median 56 → 58.8; 60 reicht.
+        // Ab zwei Pulsen: Median 56 → 58.8; 60 reicht.
         assertEquals(Decision.Wake(WakeReason.LIGHT_SLEEP), detector.onEpoch(Epoch(0.003, 60.0)))
     }
 
@@ -167,7 +167,7 @@ class WakeDetectorTest {
 
     @Test
     fun restingHeartRateFallbackOnlyWithoutPulseAtTheStart() {
-        // Die ersten 6 Epochen ohne Puls: Ersatz-Basispuls = Ruhepuls 50 × 1.10 = 55 → nötig 57.75 (Vollaudit K-2).
+        // Die ersten 6 Epochen ohne Puls: Ersatz-Basispuls = Ruhepuls 50 × 1.10 = 55 → nötig 57.75.
         val noPulse = Array(6) { Epoch(0.0, null) }
         val learned = WakeDetector(DetectorConfig(restingHeartRate = 50.0))
         learned.feed(*noPulse, Epoch(0.003, 58.0))
@@ -184,7 +184,7 @@ class WakeDetectorTest {
 
     @Test
     fun morningPulseNearRestingIsNoRise() {
-        // Vollaudit K-2: Ruhepuls 50 (10. Perzentil), morgens 56 bei leichter Bewegung, Fensterbeginn ohne Puls.
+        // Ruhepuls 50 (10. Perzentil), morgens 56 bei leichter Bewegung, Fensterbeginn ohne Puls.
         // Früher Basispuls 50 → 52.5: Die Bewegung allein weckte. Jetzt 55 → 57.75: kein Anstieg.
         val detector = WakeDetector(DetectorConfig(restingHeartRate = 50.0))
         val decisions = detector.feed(*Array(6) { Epoch(0.0, null) }, *Array(20) { Epoch(0.003, 56.0) })
@@ -193,7 +193,7 @@ class WakeDetectorTest {
 
     @Test
     fun baselineIsTheMedianOfTheFirstEpochs() {
-        // Vollaudit K-3: Aufwärmphase erhöht (64), danach 60. Früher Basispuls 64 → 67.2, der Anstieg auf 63–64 blieb
+        // Aufwärmphase erhöht (64), danach 60. Früher Basispuls 64 → 67.2, der Anstieg auf 63–64 blieb
         // unerkannt. Jetzt Median der ersten 6 Epochen (64, 64, 60, 60, 60, 60) = 60 → 63.
         val detector = WakeDetector()
         val calm = Epoch(0.0, 60.0)
@@ -216,7 +216,7 @@ class WakeDetectorTest {
 
     @Test
     fun restlessStartIsCappedByTheLearnedFloor() {
-        // Vollaudit K-1: Gelernt 0.018. Das Fenster beginnt unruhig (0.07–0.09): Ohne Obergrenze Rauschen 0.04 → Wach 0.2,
+        // Gelernt 0.018. Das Fenster beginnt unruhig (0.07–0.09): Ohne Obergrenze Rauschen 0.04 → Wach 0.2,
         // zweimal 0.14 bliebe still. Mit 1.5 × 0.018 = 0.027 → Wach 0.135: wach.
         val restless = listOf(0.07, 0.09, 0.08, 0.075, 0.085, 0.07, 0.09, 0.08).map { Epoch(it, 60.0) }
         val learned = WakeDetector(DetectorConfig(personalFloor = 0.018))
@@ -230,7 +230,7 @@ class WakeDetectorTest {
 
     @Test
     fun priorIsTheLargerOfOnsetAndLearnedFloor() {
-        // Fix KN-2: Vorwissen = das grössere von Einschlaf-Messung (0.012) und gelernt (0.03): 1.5 × 0.03 = 0.045 → 0.04.
+        // Vorwissen = das grössere von Einschlaf-Messung (0.012) und gelernt (0.03): 1.5 × 0.03 = 0.045 → 0.04.
         val restless = Array(8) { Epoch(0.08, 60.0) }
         val config = DetectorConfig(personalFloor = 0.03).withOnsetFloor(0.012)
         assertEquals(0.03, NoiseFloor.priorFloor(config))
@@ -252,8 +252,8 @@ class WakeDetectorTest {
 
     @Test
     fun plausibilityIsMeasuredAgainstTheCappedWindowFloor() {
-        // Audit 2c82e15: Die Latte 0.25 × F rechnet mit F wie immer höchstens 0.04 (nicht mit dem rohen 0.08), also
-        // höchstens 0.01. Ein ruhiger Vorwert 0.012 begrenzt ein unruhiges Fenster damit auf 1.5 × 0.012 = 0.018 (K-1).
+        // Die Latte 0.25 × F rechnet mit F wie immer höchstens 0.04 (nicht mit dem rohen 0.08), also
+        // höchstens 0.01. Ein ruhiger Vorwert 0.012 begrenzt ein unruhiges Fenster damit auf 1.5 × 0.012 = 0.018.
         val restless = List(8) { 0.08 }
         assertEquals(0.018, NoiseFloor.windowFloor(restless, DetectorConfig(personalFloor = 0.012))!!, 1e-12)
         // Knapp darunter (0.0099 < 0.01) gilt die Grenze nicht: es bleibt 0.04.
@@ -262,7 +262,7 @@ class WakeDetectorTest {
 
     @Test
     fun implausiblyLowPriorDoesNotCap() {
-        // Fix KN-2: Uhr mit Rauschen 0.02, Vorwissen 0.004 < 0.25 × 0.02 = 0.005: keine Obergrenze, es bleibt 0.02
+        // Uhr mit Rauschen 0.02, Vorwissen 0.004 < 0.25 × 0.02 = 0.005: keine Obergrenze, es bleibt 0.02
         // (sonst Leicht-Schwelle 2.5 × 0.006 = 0.015, und das Rauschen zählte als Bewegung).
         val noisy = List(8) { 0.02 }
         assertEquals(0.02, NoiseFloor.windowFloor(noisy, DetectorConfig(personalFloor = 0.004))!!, 1e-12)
@@ -280,7 +280,7 @@ class WakeDetectorTest {
 
     @Test
     fun onsetFloorKnownAfterTheWindowBegan() {
-        // Apple Watch: Das Grundrauschen der Einschlaf-Messung kommt erst nach Fensterbeginn; ab dann gilt es (K-1).
+        // Apple Watch: Das Grundrauschen der Einschlaf-Messung kommt erst nach Fensterbeginn; ab dann gilt es.
         val restless = Array(8) { Epoch(0.08, 60.0) }
         val detector = WakeDetector()
         detector.feed(*restless, Epoch(0.12, 60.0))
@@ -296,7 +296,7 @@ class WakeDetectorTest {
 
     @Test
     fun rearmNeedsNewHitsAfterTheBoundary() {
-        // Vollaudit K-5: Der übergangene Moment (zweimal 0.5) liegt nach rearm() noch im Fenster der Wach-Regel. Früher
+        // Der übergangene Moment (zweimal 0.5) liegt nach rearm() noch im Fenster der Wach-Regel. Früher
         // weckte er wieder, sobald die Sperre endete (bei Zielzeit − 10 Min); jetzt zählen nur neue Treffer.
         val detector = WakeDetector()
         detector.feed(still, still, Epoch(0.5, 52.0))
@@ -309,7 +309,7 @@ class WakeDetectorTest {
 
     @Test
     fun invalidLearnedValuesCountAsNone() {
-        // Vollaudit K-6: kaputte Werte aus einer Nachricht dürfen den Start des Fensters nicht abbrechen.
+        // Kaputte Werte aus einer Nachricht dürfen den Start des Fensters nicht abbrechen.
         for (floor in listOf(Double.NaN, -0.01, Double.POSITIVE_INFINITY, 5.0)) {
             assertNull(DetectorConfig().withLearned(floor, null).personalFloor, "$floor")
         }
@@ -328,7 +328,7 @@ class WakeDetectorTest {
 
     @Test
     fun personalFloorAppliesBeforeTheWindowHasItsOwn() {
-        // Sensor liefert anfangs keine Bewegung: Ohne Grundrauschen wartet die Leicht-Regel (Audit c3b8b01 E-1; früher
+        // Sensor liefert anfangs keine Bewegung: Ohne Grundrauschen wartet die Leicht-Regel (früher
         // galt 0.002, und 0.03 war leichte Bewegung).
         val gap = Epoch(null, 52.0)
         val plain = WakeDetector()

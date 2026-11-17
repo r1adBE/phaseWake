@@ -25,7 +25,7 @@ enum BackupRefresh {
     }
 
     /// Läuft im Hintergrund: nächste Aktualisierung anmelden, die Sicherung neu planen und abgelaufene Geräusch-Ausschnitte
-    /// löschen (7 Tage, auch ohne Öffnen der App; Audit D2).
+    /// löschen (7 Tage, auch ohne Öffnen der App).
     static func run() async {
         submit()
         DiagStore.shared.log(.scheduled, "background refresh")

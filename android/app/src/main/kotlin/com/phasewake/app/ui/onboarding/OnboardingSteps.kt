@@ -65,7 +65,7 @@ internal fun Body(text: Int) {
 
 @Composable
 internal fun Welcome() {
-    // Mond in der Schriftfarbe: auf dem hellen Grund dunkel, im dunklen Modus hell (Audit N-8).
+    // Mond in der Schriftfarbe: auf dem hellen Grund dunkel, im dunklen Modus hell.
     LogoMark(64.dp, moon = MaterialTheme.colorScheme.onSurface)
     Page(R.string.onb_welcome_title) {
         Body(R.string.onb_welcome_text)
@@ -112,7 +112,7 @@ internal fun WatchStep(model: OnboardingModel) {
 internal fun AlarmStep(model: OnboardingModel, time: TimePickerState, window: Int, onWindow: (Int) -> Unit, created: String?, onCreate: () -> Unit) {
     Page(R.string.onb_alarm_title) {
         Body(R.string.onb_alarm_text)
-        // Angelegt: Der Wähler ist gesperrt, eine Änderung legte sonst still nichts an (Audit N-11).
+        // Angelegt: Der Wähler ist gesperrt, eine Änderung legte sonst still nichts an.
         val locked = created != null
         val lockedText = created?.let { stringResource(R.string.onb_alarm_done, it) }
         TimePicker(
@@ -134,7 +134,7 @@ internal fun AlarmStep(model: OnboardingModel, time: TimePickerState, window: In
                     enabled = !locked,
                     shape = SegmentedButtonDefaults.itemShape(index, WINDOW_OPTIONS.size),
                     modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight(),
-                    // Wie im Editor: bei mehr als zwei Feldern ohne Haken (Audit UI-7).
+                    // Wie im Editor: bei mehr als zwei Feldern ohne Haken.
                     icon = { if (WINDOW_OPTIONS.size <= CHECK_ICON_MAX_SEGMENTS) SegmentedButtonDefaults.Icon(value == window) },
                 ) { ChoiceLabel(if (value == AlarmSpec.EXACT_WINDOW) exactLabel else Format.number(value)) }
             }
@@ -172,7 +172,7 @@ private fun Modifier.locked(description: String): Modifier = this
 private const val LOCKED_ALPHA = 0.38f
 
 /**
- * Lernphase: kurze Einleitung und drei Punkte (Audit U-2); die Knöpfe «Später» / «Lernphase starten» stehen unten
+ * Lernphase: kurze Einleitung und drei Punkte; die Knöpfe «Später» / «Lernphase starten» stehen unten
  * statt «Weiter». Nach dem Start «✓ Erlaubt».
  */
 @Composable
@@ -218,7 +218,7 @@ internal fun RightsStep(model: OnboardingModel) {
             Check.FULL_SCREEN,
             Check.EXACT_ALARMS,
         ).filter { it.inReadyList || it in failed }.forEach { check ->
-            // Erlaubt: «✓ Mitteilungen erlaubt»; fehlt es: was ohne das Recht passiert, dazu «Erlauben» (Audit UI-10).
+            // Erlaubt: «✓ Mitteilungen erlaubt»; fehlt es: was ohne das Recht passiert, dazu «Erlauben».
             val granted = check !in failed
             RightRow(stringResource(if (granted) check.title else check.problem), granted) { model.onFix(check) }
         }

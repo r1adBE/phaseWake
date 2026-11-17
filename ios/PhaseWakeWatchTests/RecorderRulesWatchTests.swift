@@ -5,7 +5,7 @@ import XCTest
 @testable import PhaseWakeWatch
 
 /// Regeln des Rekorders auf der Apple Watch: Zeitspanne nur mit Erlaubnis gemerkt, Pausen beim Lesen, Laden abtasten,
-/// nachgereichter Start (Herkunft: Vollaudit 11.11.2026 AP-7; Vollaudit 071597f AP2-3, AP2-10; Prüfrunde 2 F-1).
+/// nachgereichter Start.
 final class RecorderRulesWatchTests: XCTestCase {
     private let now = Date(timeIntervalSince1970: 1_793_000_000)
 

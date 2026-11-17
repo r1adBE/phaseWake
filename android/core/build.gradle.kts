@@ -5,7 +5,7 @@ plugins {
 
 kotlin {
     jvmToolchain(17)
-    // Kotlin-Warnungen brechen den Build ab, im App- wie im Testcode (Review K-14).
+    // Kotlin-Warnungen brechen den Build ab, im App- wie im Testcode.
     compilerOptions {
         allWarningsAsErrors = true
     }

@@ -386,7 +386,7 @@
     <string name="chart_window">જગાડવાનો સમયગાળો</string>
     <string name="chart_no_data">ડેટા નથી</string>
     <string name="chart_feeling_hint">તે રાતની નોંધો જોવા માટે બિંદુ પર ટૅપ કરો.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">ટેસ્ટ એલાર્મ</string>
     <string name="test_button">2 મિનિટમાં ટેસ્ટ</string>
     <string name="test_hint">તમારા આગલા એલાર્મના સેટિંગ સાથે 2 મિનિટમાં વાગે છે, સ્નૂઝ વગર. રાત તરીકે ગણાતું નથી.</string>
@@ -602,7 +602,7 @@
     <string name="learn_switch_hint">તમારી ઘડિયાળ રાત્રે હલનચલન અને પલ્સ માપે છે (ઓછામાં ઓછી %1$d %% બેટરીએ). બંધ: આપોઆપ નોંધ નહીં, શીખેલાં મૂલ્યો રહે છે.</string>
     <string name="learn_switch_title">સક્રિય</string>
     <string name="watch_open_app_hint">ઘડિયાળ પર Phase Wake ખોલો, જેથી તેને આદેશ મળે.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">શીખવાનો તબક્કો શરૂ થયો ત્યારથી દરેક રાત – તે ગણાઈ કે નહીં, અને ન ગણાઈ તો શા માટે અને શું મદદ કરે. Phase Wake ને %1$d ગણાયેલી રાતો જોઈએ.</string>
     <string name="learn_nights_empty">હજુ કોઈ રાત નથી. પહેલી રાત બીજા દિવસે સવારે અહીં દેખાશે.</string>
     <string name="learn_night_facts">%1$s માપ્યું · %2$d માપ · %3$d %%માં નાડી</string>

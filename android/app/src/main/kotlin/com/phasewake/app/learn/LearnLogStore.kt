@@ -26,7 +26,7 @@ data class LearnLogState(
 )
 
 /**
- * Lern-Übersicht am Handy (Entscheid r1AD 13.11.2026), privat im DataStore der App wie die Lernphase (keine Sicherung):
+ * Lern-Übersicht am Handy, privat im DataStore der App wie die Lernphase (keine Sicherung):
  * die Meldungen der Uhr ([addSkip]) und die Nächte mit Wecker ([noteAlarms], bei jedem Neuplanen des Zweitweckers).
  * Höchstens 14 Nächte je Art; «Verlauf löschen» leert beides ([clear]). Keine neuen Rechte.
  */

@@ -26,7 +26,7 @@ import kotlin.test.assertNull
 import kotlin.test.fail
 
 /**
- * Audit SP-4: Probewecker oder Powernap am Handy vor dem ersten Entsperren beendet. Der Speicher der App ist dann nicht
+ * Probewecker oder Powernap am Handy vor dem ersten Entsperren beendet. Der Speicher der App ist dann nicht
  * lesbar; das Ende wird im geräteverschlüsselten Speicher gemerkt und nach dem Entsperren nachgeholt, ohne dass der
  * Speicher gesperrt gelesen wird (sonst behielte DataStore einen leeren Stand: keine Wecker, kein Zweitwecker).
  */

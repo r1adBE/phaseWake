@@ -39,7 +39,7 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 /**
- * Wakelock von «Nacht aufzeichnen» (Audit F-01): ohne freigeschaltete Diagnose in Stichproben mit kurzem Wakelock je
+ * Wakelock von «Nacht aufzeichnen»: ohne freigeschaltete Diagnose in Stichproben mit kurzem Wakelock je
  * Stichprobe («wl=sample»); durchgehend mit aufweckendem Beschleunigungssensor mit grossem Puffer nur kurz je Bündel
  * («wl=batch»), sonst über die ganze Aufzeichnung («wl=hold»).
  */

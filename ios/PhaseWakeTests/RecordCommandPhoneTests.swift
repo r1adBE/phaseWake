@@ -2,8 +2,7 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWake
 
-/// Befehl «Aufzeichnen» an die Uhr, iPhone: Hinweis ohne Antwort der Uhr, nachgereichter Start (Herkunft: Vollaudit
-/// 11.11.2026 AP-8; Vollaudit 071597f AP2-10).
+/// Befehl «Aufzeichnen» an die Uhr, iPhone: Hinweis ohne Antwort der Uhr, nachgereichter Start.
 final class RecordCommandPhoneTests: XCTestCase {
     private let now = Date(timeIntervalSince1970: 1_793_000_000)
 

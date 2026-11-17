@@ -84,7 +84,7 @@ final class FindingsTests: XCTestCase {
         XCTAssertEqual(facts.map(\.asleepMinutes), [434, 432, 284, 474, 438, 479, 353])
         let findings = Findings.of(facts, today: "2026-11-14", calendar: calendar)
         XCTAssertEqual(describe(findings), "LONG_LATENCY=68,LOW_DEEP=11/SHORT_NIGHTS/5/13,BEDTIME_VARIES=174")
-        // Startseite: die wichtigste – lange Einschlafdauer; ausgeblendet die nächstwichtige (Entscheid r1AD 15.11.2026).
+        // Startseite: die wichtigste – lange Einschlafdauer; ausgeblendet die nächstwichtige.
         XCTAssertEqual(Findings.home(findings, hidden: [:], now: at(15, 9))?.kind, .longLatency)
         let hidden = Findings.hide([:], kind: .longLatency, now: at(15, 9))
         XCTAssertEqual(Findings.home(findings, hidden: hidden, now: at(15, 9, 1))?.kind, .lowDeep)
@@ -177,7 +177,7 @@ final class FindingsTests: XCTestCase {
     func testBedtimeCardDefersFindingsWithTheSameTip() {
         let findings = [Finding(kind: .shortNights, value: 3), Finding(kind: .lowDeep, value: 11), Finding(kind: .bedtimeVaries, value: 120)]
         let now = at(15, 21)
-        // Ohne Bettzeit-Karte wie bisher die wichtigste; mit ihr tritt der gleiche Tipp zurück (Audit UX-04).
+        // Ohne Bettzeit-Karte wie bisher die wichtigste; mit ihr tritt der gleiche Tipp zurück.
         XCTAssertEqual(Findings.home(findings, hidden: [:], now: now)?.kind, .shortNights)
         XCTAssertEqual(Findings.home(findings, hidden: [:], now: now, bedtimeAdvice: true)?.kind, .lowDeep)
         XCTAssertNil(Findings.home([findings[0], findings[2]], hidden: [:], now: now, bedtimeAdvice: true))

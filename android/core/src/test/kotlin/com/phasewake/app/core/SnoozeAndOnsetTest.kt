@@ -22,7 +22,7 @@ class SnoozeAndOnsetTest {
 
     @Test
     fun singleTwitchesDoNotBreakTheStretch() {
-        // Audit c3b8b01 E-4: Zucker im Schlaf (eine Epoche, Nachbarn ruhig) brechen die Strecke nicht, höchstens zwei.
+        // Zucker im Schlaf (eine Epoche, Nachbarn ruhig) brechen die Strecke nicht, höchstens zwei.
         fun night(vararg moved: Int): List<Double?> = List(45) { if (it in moved) 0.2 else 0.001 }
         assertEquals(0, SleepOnset.find(night(10), 0.002))
         assertEquals(0, SleepOnset.find(night(10, 20), 0.002))
@@ -38,7 +38,7 @@ class SnoozeAndOnsetTest {
 
     @Test
     fun withHeartRatesAStretchNeedsAPulse() {
-        // Audit c3b8b01 E-5 (wie Swift `AppleOnsetTests`): 30 Min auf dem Ladegerät (still, kein Puls), danach getragen
+        // 30 Min auf dem Ladegerät (still, kein Puls), danach getragen
         // (Puls je 5 Min, ab Epoche 60): Die Strecke beginnt erst mit dem ersten Puls.
         val motions = List(100) { 0.001 }
         val rates = List(100) { if (it >= 60 && it % 10 == 0) 58.0 else null }
@@ -51,7 +51,7 @@ class SnoozeAndOnsetTest {
 
     @Test
     fun aStretchNeedsAPulseInsideIt() {
-        // Prüfrunde 2 F-1 (wie Swift `AppleOnsetTests`): Puls in Epoche 40, ab 44 liegt die Uhr still auf dem Tisch und misst
+        // Puls in Epoche 40, ab 44 liegt die Uhr still auf dem Tisch und misst
         // keinen mehr. Vorher galt «eingeschlafen beim Ablegen» (44); jetzt fehlt der Puls in der Strecke.
         val motions = List(100) { if (it < 44) 0.5 else 0.001 }
         assertNull(SleepOnset.find(motions, 0.002, List(100) { if (it == 40) 58.0 else null }))
@@ -64,7 +64,7 @@ class SnoozeAndOnsetTest {
 
     @Test
     fun aPulseBeforeTheMeasurementCounts() {
-        // F-1: Puls 5 Min vor dem Beginn der Messung (heartLead), der nächste in der Strecke: Beginn gleich bei Epoche 0.
+        // Puls 5 Min vor dem Beginn der Messung (heartLead), der nächste in der Strecke: Beginn gleich bei Epoche 0.
         val motions = List(60) { 0.001 }
         val rates = List(70) { if (it == 0 || it == 25 || it == 50) 58.0 else null }
         assertEquals(0, SleepOnset.find(motions, 0.002, rates, heartLead = 10))

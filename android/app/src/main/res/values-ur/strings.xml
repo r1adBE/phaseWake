@@ -385,7 +385,7 @@
     <string name="chart_window">جاگنے کی ونڈو</string>
     <string name="chart_no_data">کوئی ڈیٹا نہیں</string>
     <string name="chart_feeling_hint">اس رات کے نوٹس دیکھنے کے لیے کسی نقطے پر ٹیپ کرو۔</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">آزمائشی الارم</string>
     <string name="test_button">2 منٹ میں آزماؤ</string>
     <string name="test_hint">تمہارے اگلے الارم کی ترتیبات کے ساتھ 2 منٹ میں بجتا ہے، بغیر اسنوز کے۔ رات میں شمار نہیں ہوتا۔</string>
@@ -601,7 +601,7 @@
     <string name="learn_switch_hint">آپ کی گھڑی رات کو حرکت اور نبض ناپتی ہے (کم از کم %1$d %% بیٹری پر)۔ بند: کوئی خودکار ریکارڈنگ نہیں، سیکھی گئی قدریں برقرار رہتی ہیں۔</string>
     <string name="learn_switch_title">فعال</string>
     <string name="watch_open_app_hint">گھڑی پر Phase Wake کھولیں تاکہ اسے حکم مل جائے۔</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">سیکھنے کا مرحلہ شروع ہونے کے بعد سے ہر رات – کیا وہ گنی گئی، اور اگر نہیں تو کیوں اور کیا مدد کرے گا۔ Phase Wake کو %1$d گنی ہوئی راتیں چاہییں۔</string>
     <string name="learn_nights_empty">ابھی کوئی رات نہیں۔ پہلی رات اگلی صبح یہاں نظر آئے گی۔</string>
     <string name="learn_night_facts">%1$s ناپا گیا · %2$d قدریں · %3$d %% میں نبض</string>

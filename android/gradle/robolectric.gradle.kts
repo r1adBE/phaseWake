@@ -30,7 +30,7 @@ val syncRobolectricSdks = tasks.register("syncRobolectricSdks", Sync::class.java
 }
 tasks.withType(Test::class.java).configureEach {
     dependsOn(syncRobolectricSdks)
-    // Zeitzone mit Sommer-/Winterzeit statt UTC der CI (Audit CODE-10): Planen und Wecken über die Umstellung zeigt
+    // Zeitzone mit Sommer-/Winterzeit statt UTC der CI: Planen und Wecken über die Umstellung zeigt
     // sich so auch im Zusammenspiel mit AlarmManager und Speicher, nicht nur im Kern.
     systemProperty("user.timezone", "Europe/Zurich")
     systemProperty("robolectric.offline", "true")

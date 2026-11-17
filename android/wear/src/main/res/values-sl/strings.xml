@@ -76,7 +76,7 @@
     <string name="editor_delete_title">Izbriši to budilko?</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Največ %1$d budilk – izbriši eno, da dodaš novo.</string>
     <string name="editor_enabled">Budilka vklopljena</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Naslednjič preskoči</string>
     <string name="alarm_skipped">Preskočeno: %1$s</string>
     <string name="nap_title">Kratek spanec</string>
@@ -110,7 +110,7 @@
     <string name="record_since">Od %1$s</string>
     <string name="notification_record_title">Noč se snema</string>
     <string name="record_battery_low">Baterija je prešibka za snemanje</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Faza učenja</string>
     <string name="watch_learn_warn">Napolni uro, sicer nocoj ne bo štelo za fazo učenja (baterija %1$d %%, potrebno %2$d %%).</string>
     <string name="watch_learn_skip_battery">Nocoj ne šteje za fazo učenja: baterija na %1$d %%, potrebno %2$d %%.</string>

@@ -31,8 +31,8 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Einschlaf-Messung (Akku-Befund 03.11.2026): Stichprobe mit kurzem Wakelock, Zeitgrenze (höchstens 2 Std., bei Unruhe
- * verlängert bis höchstens 4 Std., Befund 09.11.2026) und Zeilen im Diagnose-Protokoll. Die reinen Regeln (Stichproben,
+ * Einschlaf-Messung: Stichprobe mit kurzem Wakelock, Zeitgrenze (höchstens 2 Std., bei Unruhe
+ * verlängert bis höchstens 4 Std.) und Zeilen im Diagnose-Protokoll. Die reinen Regeln (Stichproben,
  * Takt, Verlängerung) prüft [OnsetMonitorRulesTest].
  */
 @RunWith(RobolectricTestRunner::class)
@@ -78,7 +78,7 @@ class OnsetMonitorTest {
 
     @Test
     fun offBodySensorMarksTheWatchAsNotWorn() {
-        // Entscheid r1AD 14.11.2026 (E-5): Off-Body-Sensor 0 = nicht am Handgelenk, 1 = getragen; Zeiten wie am Ladegerät.
+        // Off-Body-Sensor 0 = nicht am Handgelenk, 1 = getragen; Zeiten wie am Ladegerät.
         assertEquals(true, OnsetRules.offBody(0f))
         assertEquals(false, OnsetRules.offBody(1f))
         assertNull(OnsetRules.offBody(null))
@@ -134,7 +134,7 @@ class OnsetMonitorTest {
         m.start()
         assertFalse(m.continuous)
         assertEquals(DiagKind.MEASURE_START to "auto onset sensor wake=0 fifo=-1 mode=sample", logged.single())
-        // Kein Sensor und kein Wakelock bis zum ersten Alarm, der steht kurz vor Epoche 10 (5 Min, E-3).
+        // Kein Sensor und kein Wakelock bis zum ersten Alarm, der steht kurz vor Epoche 10 (5 Min).
         assertTrue(sensors.listeners.isEmpty(), "Sensor erst in der Stichprobe")
         assertFalse(wakeLockHeld())
         val first = ticks().single()
@@ -216,7 +216,7 @@ class OnsetMonitorTest {
         assertEquals(1, gaveUp, "nach dem Ende nichts mehr")
     }
 
-    // --- Verlängerung bei spätem Einschlafen (Befund 09.11.2026) ---
+    // --- Verlängerung bei spätem Einschlafen ---
 
     /** Durchgehende Messung (aufweckender Sensor mit grossem Puffer) mit [epochs] unruhigen Epochen ab dem Beginn. */
     private fun restlessMonitor(epochs: Int, extendCap: Instant, onGiveUp: () -> Unit): OnsetMonitor {
@@ -290,7 +290,7 @@ class OnsetMonitorTest {
 
     @Test
     fun timeOnTheChargerMovesTheLimit() {
-        // Prüfrunde 2 HG-3: 60 Min am Ladegerät verschieben die Grenze von 2 Std. um 60 Min (höchstens bis zur Grenze der
+        // 60 Min am Ladegerät verschieben die Grenze von 2 Std. um 60 Min (höchstens bis zur Grenze der
         // Verlängerungen), auch ohne Unruhe. Vorher gab die Messung nach 2 Std. auf.
         battery(80)
         var gaveUp = 0
@@ -325,7 +325,7 @@ class OnsetMonitorTest {
 
     @Test
     fun unpluggedWithLowBatteryEndsTheAutomaticMeasurement() {
-        // F-6: Trotz wenig Akku begonnen, weil die Uhr lud; vom Ladegerät mit weiter zu wenig Akku: Ende (einmal).
+        // Trotz wenig Akku begonnen, weil die Uhr lud; vom Ladegerät mit weiter zu wenig Akku: Ende (einmal).
         var low = 0
         val m = OnsetMonitor(
             context, 0.002, clock.plus(Duration.ofHours(8)), clock.plus(OnsetMonitor.MAX_DURATION), "auto onset", { _, _ -> }, {},

@@ -75,7 +75,7 @@
     <string name="editor_delete_title">Избрисати овај аларм?</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Највише %1$d аларма – избриши један да додаш нови.</string>
     <string name="editor_enabled">Аларм укључен</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Прескочи следећи пут</string>
     <string name="alarm_skipped">Прескочено: %1$s</string>
     <string name="nap_title">Кратка дремка</string>
@@ -107,7 +107,7 @@
     <string name="record_since">Од %1$s</string>
     <string name="notification_record_title">Ноћ се снима</string>
     <string name="record_battery_low">Батерија је преслаба за снимање</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Фаза учења</string>
     <string name="watch_learn_warn">Напуни сат, иначе се ова ноћ неће урачунати у фазу учења (батерија %1$d %%, потребно %2$d %%).</string>
     <string name="watch_learn_skip_battery">Ова ноћ се не рачуна у фазу учења: батерија %1$d %%, потребно %2$d %%.</string>

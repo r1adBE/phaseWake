@@ -2,7 +2,7 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWake
 
-/// Diagnose-Protokoll hängt an statt neu zu schreiben (Audit 17.11. PERF-10, wie `DiagnosticsLog` auf Android): je
+/// Diagnose-Protokoll hängt an statt neu zu schreiben (wie `DiagnosticsLog` auf Android): je
 /// Eintrag eine Zeile mit Umbruch, gekürzt erst über `DiagLog.maxEntries` + ``DiagStore/slack``; Dateien früherer
 /// Versionen (ohne Umbruch am Ende) bleiben lesbar.
 final class DiagStorePhoneTests: XCTestCase {

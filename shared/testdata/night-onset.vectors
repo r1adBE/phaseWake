@@ -1,5 +1,5 @@
 # Nachtformat «phasewake-night 1» mit Einschlafen der Uhr (Codec.encodeNight, Felder 11 und 12: Beginn der
-# Einschlafdauer und Einschlafzeit in ms, Entscheid r1AD 15.11.2026): je Zeile erwartet «Grund Akku Bett Eingeschlafen»
+# Einschlafdauer und Einschlafzeit in ms): je Zeile erwartet «Grund Akku Bett Eingeschlafen»
 # («-» = keiner; Akku «B» = Akku der Uhr gelesen), Tabulator, «=» (Schreiben ergibt genau diese Zeile wieder) oder «~»
 # (nur lesen), Tabulator, Datenzeile der Nacht (Zeile 2; Epochen leer).
 # alt: 6 bzw. 7 Felder, unbekannter Grund in Feld 8

@@ -52,7 +52,7 @@ import java.util.UUID
 /** Höchstens so viele Wecker, wie am Handy (Handy und iPhone verhindern mehr). */
 internal const val MAX_ALARMS = 8
 
-/** Was «Speichern» im Editor der Uhr tut (Prüfrunde 2, B-3 und B-11). */
+/** Was «Speichern» im Editor der Uhr tut. */
 internal enum class EditorSave { SAVE, GONE, FULL }
 
 /**

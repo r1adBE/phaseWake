@@ -72,7 +72,7 @@
     <string name="editor_delete_title">Изтриване на този будилник?</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">До %1$d будилника – изтрий един, за да добавиш нов.</string>
     <string name="editor_enabled">Будилникът е вкл.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Пропусни следващия път</string>
     <string name="alarm_skipped">Пропуснато: %1$s</string>
     <string name="nap_title">Кратка дрямка</string>
@@ -102,7 +102,7 @@
     <string name="record_since">От %1$s</string>
     <string name="notification_record_title">Нощта се записва</string>
     <string name="record_battery_low">Батерията е твърде слаба за запис</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Фаза на учене</string>
     <string name="watch_learn_warn">Зареди часовника, иначе тази нощ няма да се отчете за фазата на учене (батерия %1$d %%, нужни %2$d %%).</string>
     <string name="watch_learn_skip_battery">Тази нощ не се отчита за фазата на учене: батерия %1$d %%, нужни %2$d %%.</string>

@@ -2,8 +2,8 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWake
 
-/// Start vor dem ersten Entsperren, iPhone: Einstellungsdatei erst lesen, wenn sie lesbar ist (Herkunft: Tiefenaudit
-/// c3b8b01 AP3-1). Verwaiste AlarmKit-Alarme prüft `BackupAlarmPhoneTests`.
+/// Start vor dem ersten Entsperren, iPhone: Einstellungsdatei erst lesen, wenn sie lesbar ist.
+/// Verwaiste AlarmKit-Alarme prüft `BackupAlarmPhoneTests`.
 final class LockedSettingsPhoneTests: XCTestCase {
     private var dir: URL!
 

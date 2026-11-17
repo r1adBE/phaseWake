@@ -37,7 +37,7 @@ object Format {
 
     /**
      * Ziffern der Sprache wie bei Zahlen in Texten (`String.format`, `getString`): Auf Arabisch erschienen Zeiten
-     * sonst mit 0–9, Dauern mit ٠–٩ (Audit UI-9).
+     * sonst mit 0–9, Dauern mit ٠–٩.
      */
     fun digits(formatter: DateTimeFormatter, locale: Locale = Locale.getDefault()): DateTimeFormatter =
         formatter.withDecimalStyle(DecimalStyle.of(locale))
@@ -51,7 +51,7 @@ object Format {
 
     /**
      * Uhrzeit wie [time] und die Lage des Tageszeit-Zusatzes darin (AM/PM, auf Arabisch «ص»/«م»), damit ihn die
-     * Startseite klein setzen kann (Audit N-2); `null`, wenn die Zeit keinen hat (24 h).
+     * Startseite klein setzen kann; `null`, wenn die Zeit keinen hat (24 h).
      */
     fun timeWithPeriod(instant: Instant, zone: ZoneId = ZoneId.systemDefault()): Pair<String, IntRange?> {
         val at = instant.atZone(zone)

@@ -371,7 +371,7 @@
     <string name="chart_window">Khoảng đánh thức</string>
     <string name="chart_no_data">không có dữ liệu</string>
     <string name="chart_feeling_hint">Chạm vào một điểm để xem ghi chú của đêm đó.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Thử báo thức</string>
     <string name="test_button">Thử sau 2 phút</string>
     <string name="test_hint">Reo sau 2 phút với cài đặt của báo thức tiếp theo, không báo lại. Không tính là một đêm.</string>
@@ -585,7 +585,7 @@
     <string name="learn_switch_hint">Đồng hồ của bạn đo chuyển động và nhịp tim vào ban đêm (từ %1$d %% pin). Tắt: không tự động ghi, các giá trị đã học vẫn giữ.</string>
     <string name="learn_switch_title">Hoạt động</string>
     <string name="watch_open_app_hint">Mở Phase Wake trên đồng hồ để đồng hồ nhận lệnh.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Mỗi đêm kể từ khi giai đoạn học bắt đầu – đêm đó có được tính không, và nếu không thì vì sao và điều gì giúp ích. Phase Wake cần %1$d đêm được tính.</string>
     <string name="learn_nights_empty">Chưa có đêm nào. Đêm đầu tiên sẽ hiện ở đây vào sáng hôm sau.</string>
     <string name="learn_night_facts">Đã đo %1$s · %2$d giá trị · có nhịp tim ở %3$d %%</string>

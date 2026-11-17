@@ -26,7 +26,7 @@ import com.phasewake.app.ui.theme.PhaseWakeTheme
 import java.time.Duration
 
 /**
- * Text einer Auffälligkeit (Entscheid r1AD 15.11.2026): was auffiel, bei wenig Tiefschlaf der belegte Zusammenhang, und
+ * Text einer Auffälligkeit: was auffiel, bei wenig Tiefschlaf der belegte Zusammenhang, und
  * ein Tipp. Gleich auf der Startseite ([FindingCard]) und in den Trends des Verlaufs.
  */
 fun findingText(context: Context, finding: Finding): String {

@@ -102,7 +102,7 @@ private val DarkBrand = BrandColors(
 )
 
 /**
- * Hell: «Creme Caramel» (Variante Caramel + Lavendel, Entscheid r1AD 17.11.2026). Fläche Creme #FBF3E6, Karten warmes
+ * Hell: «Creme Caramel» (Variante Caramel + Lavendel). Fläche Creme #FBF3E6, Karten warmes
  * Weiss, Lavendel #7B6CF6 bleibt der Hauptakzent (Welle, Diagramme, Ränder), Caramel der sparsame Zweitakzent (gewählte
  * Chips, Tertiär, Sonnenaufgang). Kontraste: SkyPageContrastTest.
  */
@@ -167,7 +167,7 @@ private val DarkScheme = darkColorScheme(
     onSecondary = Color(0xFF141A3D),
     secondaryContainer = Color(0xFF2A2760),
     onSecondaryContainer = Color(0xFFFBF7F0),
-    // Tertiär in Lavendel statt dem Material-Rosa (z. B. AM/PM im Zeitwähler, Audit UI-8).
+    // Tertiär in Lavendel statt dem Material-Rosa (z. B. AM/PM im Zeitwähler).
     tertiary = Lavender,
     onTertiary = Color(0xFF141A3D),
     tertiaryContainer = Color(0xFF3B3486),
@@ -200,7 +200,7 @@ internal val LightScheme = lightColorScheme(
     // Zweitakzent Caramel: gewählte Chips und die Markierung der Navigationsleiste.
     secondaryContainer = Creme.CaramelLight,
     onSecondaryContainer = Creme.Ink,
-    // Tertiär in Caramel statt dem Material-Rosa (z. B. AM/PM im Zeitwähler, Audit UI-8).
+    // Tertiär in Caramel statt dem Material-Rosa (z. B. AM/PM im Zeitwähler).
     tertiary = Creme.CaramelText,
     onTertiary = Color.White,
     tertiaryContainer = Creme.CaramelLight,
@@ -225,7 +225,7 @@ internal val LightScheme = lightColorScheme(
 
 /**
  * Rand der OutlinedButtons in «outline» (≥ 3:1 zu Karte und Hintergrund, WCAG 1.4.11). Material 3 nimmt sonst das
- * blasse «outlineVariant», das auch Trennlinien und Raster zeichnet (Audit UI-8).
+ * blasse «outlineVariant», das auch Trennlinien und Raster zeichnet.
  */
 @Composable
 fun outlinedBorder(enabled: Boolean = true): BorderStroke = BorderStroke(
@@ -282,7 +282,7 @@ object PhaseWakeTheme {
 
 /**
  * Design der App. [eveningDark]: «Abends dunkel ab» gilt gerade ([EveningDarkTicker]); dann ist auch «System» und «Hell»
- * dunkel (Entscheid r1AD 17.11.2026).
+ * dunkel.
  */
 @Composable
 fun PhaseWakeTheme(mode: ThemeMode, eveningDark: Boolean = false, content: @Composable () -> Unit) {

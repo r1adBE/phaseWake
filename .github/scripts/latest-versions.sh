@@ -41,7 +41,7 @@ latest $central org.jetbrains.kotlinx:kotlinx-coroutines-play-services
 latest $central org.jetbrains.kotlinx:kotlinx-coroutines-test
 latest $central org.jetbrains.kotlinx:kover-gradle-plugin
 latest $central org.robolectric:robolectric
-# Nur Constraints (Review K-01): Versionen mit -android bzw. ohne Endung.
+# Nur Constraints: Versionen mit -android bzw. ohne Endung.
 latest $central com.google.guava:guava '-android$'
 latest $central com.google.protobuf:protobuf-javalite
 latest $central junit:junit

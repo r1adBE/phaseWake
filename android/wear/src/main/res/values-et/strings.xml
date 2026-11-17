@@ -73,7 +73,7 @@
     <string name="editor_delete_title">Kas kustutada see äratus?</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Kuni %1$d äratust – uue lisamiseks kustuta üks.</string>
     <string name="editor_enabled">Äratus sees</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Jäta järgmine kord vahele</string>
     <string name="alarm_skipped">Vahele jäetud: %1$s</string>
     <string name="nap_title">Uinak</string>
@@ -103,7 +103,7 @@
     <string name="record_since">Alates %1$s</string>
     <string name="notification_record_title">Öö salvestamine</string>
     <string name="record_battery_low">Aku on salvestamiseks liiga tühi</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Õppefaas</string>
     <string name="watch_learn_warn">Lae kella, muidu ei lähe tänane öö õppefaasis arvesse (aku %1$d %%, vaja %2$d %%).</string>
     <string name="watch_learn_skip_battery">Tänane öö õppefaasis arvesse ei lähe: aku %1$d %%, vaja %2$d %%.</string>

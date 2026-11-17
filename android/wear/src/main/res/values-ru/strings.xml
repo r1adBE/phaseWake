@@ -76,7 +76,7 @@
     <string name="editor_delete_title">Удалить этот будильник?</string>
     <string name="home_max_alarms">Не больше %1$d будильников – удали один, чтобы добавить новый.</string>
     <string name="editor_enabled">Будильник включён</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Пропустить в следующий раз</string>
     <string name="alarm_skipped">Пропущено: %1$s</string>
     <string name="nap_title">Короткий сон</string>
@@ -110,7 +110,7 @@
     <string name="record_since">С %1$s</string>
     <string name="notification_record_title">Идёт запись ночи</string>
     <string name="record_battery_low">Слишком низкий заряд для записи</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Этап обучения</string>
     <string name="watch_learn_warn">Заряди часы, иначе эта ночь не будет засчитана для этапа обучения (заряд %1$d %%, нужно %2$d %%).</string>
     <string name="watch_learn_skip_battery">Эта ночь не засчитывается для этапа обучения: заряд %1$d %%, нужно %2$d %%.</string>

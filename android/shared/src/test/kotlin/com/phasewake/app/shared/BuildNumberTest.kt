@@ -13,7 +13,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
-/** Build-Nummer der Testversion in «Über», Diagnose und Status-Paket der Uhr (Entscheid r1AD 14.11.2026). */
+/** Build-Nummer der Testversion in «Über», Diagnose und Status-Paket der Uhr. */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35])
 class BuildNumberTest {

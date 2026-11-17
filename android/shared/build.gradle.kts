@@ -32,7 +32,7 @@ android {
     }
 }
 
-// Kotlin-Warnungen brechen den Build ab, im App- wie im Testcode (Review K-14).
+// Kotlin-Warnungen brechen den Build ab, im App- wie im Testcode.
 kotlin {
     compilerOptions {
         allWarningsAsErrors = true
@@ -47,7 +47,7 @@ dependencies {
     api(libs.androidx.datastore.preferences)
     implementation(libs.androidx.core.ktx)
 
-    // Sicherheit (Review K-01, Audit 17.11. CODE-05): wie in app und wear; hebt Guava in den Test-Classpaths an
+    // Sicherheit: wie in app und wear; hebt Guava in den Test-Classpaths an
     // (Robolectric bringt 33.6.0-jre mit), bindet nichts zusätzlich ein.
     constraints {
         implementation("com.google.guava:guava:${libs.versions.guava.get()}") { because("OSV: GHSA-xxph-c9ww-hj94") }

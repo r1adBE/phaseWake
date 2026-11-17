@@ -23,7 +23,7 @@ public enum DiagTransfer {
         return url
     }
 
-    /// Liest den Bericht aus einer empfangenen Datei; `nil`, wenn sie unlesbar, grösser als `max` (Audit S-2) oder kein
+    /// Liest den Bericht aus einer empfangenen Datei; `nil`, wenn sie unlesbar, grösser als `max` oder kein
     /// Bericht ist.
     public static func read(fileAt url: URL, max: Int = SyncKeys.maxPeerBytes) -> DiagReport? {
         guard let handle = try? FileHandle(forReadingFrom: url) else { return nil }

@@ -1,4 +1,4 @@
-# Abends dunkel (EveningDark, Entscheid r1AD 17.11.2026): ab Uhrzeit bis 06:00 Ortszeit, über Mitternacht.
+# Abends dunkel (EveningDark): ab Uhrzeit bis 06:00 Ortszeit, über Mitternacht.
 # Je Zeile, Tabulator-getrennt: Zone, jetzt (UTC), an (1/0), ab (HH:MM Ortszeit), dunkel (1/0),
 # nächster Wechsel (UTC, erste volle Minute mit anderem Zustand; - = nie), Beschreibung.
 Europe/Zurich	2026-11-16T16:59:00Z	1	18:00	0	2026-11-16T17:00:00Z	kurz vor 18:00

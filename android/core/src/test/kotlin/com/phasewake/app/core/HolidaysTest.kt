@@ -45,7 +45,7 @@ class HolidaysTest {
 
     @Test
     fun estimatedHolidays() {
-        // Audit F-2: Feiertage nach Mondkalender stehen in der Datendatei mit «estimated».
+        // Feiertage nach Mondkalender stehen in der Datendatei mit «estimated».
         kotlin.test.assertTrue(Holidays.isEstimated("Eid al-Fitr (estimated)"))
         kotlin.test.assertTrue(Holidays.isEstimated("Eid al-Adha (observed, estimated)"))
         kotlin.test.assertTrue(Holidays.isEstimated("Eid al-Fitr (estimated); Laylat al-Qadr (estimated)"))

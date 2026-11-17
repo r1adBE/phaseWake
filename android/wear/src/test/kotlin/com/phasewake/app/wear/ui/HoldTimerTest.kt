@@ -8,7 +8,7 @@ import kotlin.test.assertTrue
 import kotlinx.coroutines.runBlocking
 
 /**
- * «Halten zum Stoppen» und der 5-s-Notausgang bei der Weckaufgabe messen an der Uhr (Audit UI-1): Mit «Animationen
+ * «Halten zum Stoppen» und der 5-s-Notausgang bei der Weckaufgabe messen an der Uhr: Mit «Animationen
  * entfernen» lief die Füllung sofort durch, und ein Tipp beendete den Wecker. Die Zeit ist hier eine Testuhr.
  */
 class HoldTimerTest {

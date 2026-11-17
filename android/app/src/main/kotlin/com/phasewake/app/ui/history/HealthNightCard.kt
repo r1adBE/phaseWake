@@ -54,7 +54,7 @@ internal fun Modifier.opensDetail(shape: Shape, label: String, onOpen: () -> Uni
     clip(shape).clickable(onClickLabel = label, onClick = onOpen)
 
 /**
- * Sichtbarer Hinweis «Details ›» rechts in der Zeile der Notizen (Gestaltung 4: eine Zeile statt zwei). Die ganze
+ * Sichtbarer Hinweis «Details ›» rechts in der Zeile der Notizen (eine Zeile statt zwei). Die ganze
  * Karte öffnet die Details; für Bildschirmleser sagt das schon die Karte.
  */
 @Composable
@@ -123,7 +123,7 @@ internal fun HealthNightCard(
     score: SleepScoreResult? = null,
 ) {
     val context = LocalContext.current
-    // Datum und Uhrzeiten in der Zone der Aufzeichnung (Audit F-3), ohne sie in der des Geräts.
+    // Datum und Uhrzeiten in der Zone der Aufzeichnung, ohne sie in der des Geräts.
     val zone = session.zoneOr(ZoneId.systemDefault())
     val (times, amounts) = sessionLines(context, session, zone)
     val stats = remember(session) { StageStats.forSession(session) }

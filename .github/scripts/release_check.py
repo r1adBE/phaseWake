@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Prüft den Store-Build (Release) von Handy und Uhr auf Testreste (Audit PW-02).
+"""Prüft den Store-Build (Release) von Handy und Uhr auf Testreste.
 
 Aufruf aus android/ nach `assembleRelease`: release_check.py
 Gelesen wird das zusammengeführte Release-Manifest jeder App. Fehler, wenn
 - die App als debuggable markiert ist,
 - eine Vorschau- oder Test-Activity enthalten ist (z. B. PreviewActivity aus ui-tooling),
 - die App Netzzugriff anfordert (INTERNET oder ACCESS_NETWORK_STATE, z. B. über eine Bibliothek eingeschleppt),
-- die Kennung nicht com.phasewake.app ist (nur Testversionen tragen «.test», Audit M-04),
-- die exportierten Komponenten oder die angeforderten Rechte von der Positivliste abweichen (Audit 17.11., SEC-02),
+- die Kennung nicht com.phasewake.app ist (nur Testversionen tragen «.test»),
+- die exportierten Komponenten oder die angeforderten Rechte von der Positivliste abweichen,
 - für eine App kein Release-Manifest gefunden wird (Build fehlte).
 """
 import glob

@@ -1,4 +1,4 @@
-# Lern-Übersicht (LearnNights.reason, Entscheid r1AD 13.11.2026): erwarteter Grund, ein Tabulator, die Fakten der Nacht
+# Lern-Übersicht (LearnNights.reason): erwarteter Grund, ein Tabulator, die Fakten der Nacht
 # als «Schlüssel=Wert», mit Leerzeichen getrennt («-» = keine; fehlende Schlüssel = Vorgabe). Schlüssel: recorded (0/1),
 # measured, span, hr (Epochen mit Bewegung, Spanne, Epochen mit Puls), end (Kennung von RecordEnd), before (0/1),
 # skip (Kennung von LearnSkip), consent (0/1, Vorgabe 1), alarm (1/0/-, Vorgabe -), auto (0/1, Vorgabe 1), pending (0/1).

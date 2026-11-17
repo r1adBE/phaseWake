@@ -106,13 +106,13 @@ open class PhaseWakeApp : Application() {
         com.phasewake.app.widget.NextAlarmNotice.createChannel(this)
         com.phasewake.app.sounds.SleepSoundService.createChannel(this)
         com.phasewake.app.sounds.SoundRecorderService.createChannel(this)
-        // Akku je Nacht: Ladebeginn und -ende, solange der Prozess lebt (r1AD 14.11.2026).
+        // Akku je Nacht: Ladebeginn und -ende, solange der Prozess lebt.
         com.phasewake.app.shared.BatteryNight.log = { diag.log(DiagKind.BATTERY, it) }
         com.phasewake.app.shared.BatteryNight.listen(this)
-        // Wie und wann das System den Prozess zuletzt beendet hat (Audit PERF-03), auch vor dem ersten Entsperren.
+        // Wie und wann das System den Prozess zuletzt beendet hat, auch vor dem ersten Entsperren.
         appScope.launch(Dispatchers.IO) { com.phasewake.app.shared.ExitReasons.logTo(this@PhaseWakeApp, diag) }
         // Vor dem ersten Entsperren nach einem Neustart (nur der Zweitwecker läuft) ist der Speicher
-        // nicht lesbar. Der Prozess lebt nach dem Entsperren weiter: dann [initUnlocked] nachholen (Review M-1).
+        // nicht lesbar. Der Prozess lebt nach dem Entsperren weiter: dann [initUnlocked] nachholen.
         if (!BackupAlarm.isUnlocked(this)) {
             diag.log(DiagKind.DIRECT_BOOT, "app start locked")
             awaitUnlock()
@@ -136,7 +136,7 @@ open class PhaseWakeApp : Application() {
         // Datensparsamkeit: ein früher geteilter Export bleibt nicht im Cache liegen.
         java.io.File(cacheDir, "export").deleteRecursively()
         appScope.launch {
-            // Ein Wiederherstellen, das ein Prozessende unterbrochen hat, abschliessen oder zurücksetzen (Review K-03).
+            // Ein Wiederherstellen, das ein Prozessende unterbrochen hat, abschliessen oder zurücksetzen.
             // Ein Fehler dabei hält das Planen unten nicht auf.
             try {
                 com.phasewake.app.backup.BackupManager.recover(this@PhaseWakeApp)
@@ -147,12 +147,12 @@ open class PhaseWakeApp : Application() {
             // Warteschlange: einmalig eigene Pakete der früheren Wege löschen, Wartendes senden, Stand der Uhr anfragen
             // (Wecker und Aufzeichnungs-Stand; Nächte und Aufzeichnungen kommen aus ihrer Warteschlange).
             sync.migrateTransport()
-            // Eigener Stand der Wecker einmal je Prozess (Audit AN-1): Ging eine frühere Nachricht verloren, gleicht die
-            // Uhr so ab. Ein schon bestätigter Stand geht nicht noch einmal (Audit PERF-06; wie unten Schlafziel,
+            // Eigener Stand der Wecker einmal je Prozess: Ging eine frühere Nachricht verloren, gleicht die
+            // Uhr so ab. Ein schon bestätigter Stand geht nicht noch einmal (wie unten Schlafziel,
             // Schalter und Lernphase). Eigene Arbeit: hält das Planen nie auf.
             appScope.launch { sync.publishAlarms(alarms.current(), unlessAcked = true) }
             sync.flush()
-            // Höchstens alle 30 Min (Audit PERF-06): Startet der Prozess nachts mehrmals, fragt er nicht jedes Mal.
+            // Höchstens alle 30 Min: Startet der Prozess nachts mehrmals, fragt er nicht jedes Mal.
             sync.requestSyncOnStart()
             backup.reschedule()
             // Feiertage nachführen (Fenster der nächsten 400 Tage); bei einer Änderung neu planen.
@@ -208,13 +208,13 @@ open class PhaseWakeApp : Application() {
         publishAutoOnset()
         holidays.republish()
         publishLearning()
-        // Auch alles andere Wartende (Audit AN-3): Die Uhr ist ja gerade erreichbar.
+        // Auch alles andere Wartende: Die Uhr ist ja gerade erreichbar.
         sync.flush()
     }
 
     /**
      * Schickt das Schlafziel an die Uhr (nach einer Änderung, beim Start, nach dem Wiederherstellen); [unlessAcked]: beim
-     * Start nur, wenn nicht schon bestätigt (Audit PERF-06).
+     * Start nur, wenn nicht schon bestätigt.
      */
     suspend fun publishSleepGoal(unlessAcked: Boolean = false) {
         sync.publishSleepGoal(settings.sleepGoalNow(), settings.sleepGoalStamp(), unlessAcked)
@@ -256,7 +256,7 @@ open class PhaseWakeApp : Application() {
         if (learning.finish(values, Instant.now())) {
             diag.log(DiagKind.SYNC, "learn done ${learning.current().snapshot().diagLine()} lat=${values.latencyMinutes ?: "-"}")
             publishLearning()
-            // Bettzeit mit der gelernten Einschlafdauer (Audit O-03): Erinnerung und Mitteilung neu planen.
+            // Bettzeit mit der gelernten Einschlafdauer: Erinnerung und Mitteilung neu planen.
             bedtime.reschedule()
             nextAlarm.reschedule()
         }
@@ -270,7 +270,7 @@ open class PhaseWakeApp : Application() {
         learningSync.publish(learningForWatch())
     }
 
-    /** Stand der Lernphase für die Uhr; ohne Zeitpunkt (Handy neu installiert) mit «jetzt» (Fix S-3). */
+    /** Stand der Lernphase für die Uhr; ohne Zeitpunkt (Handy neu installiert) mit «jetzt». */
     internal suspend fun learningForWatch(): com.phasewake.app.shared.LearningSnapshot =
         learning.stampIfNever(Instant.now()).snapshot()
 
@@ -305,8 +305,8 @@ open class PhaseWakeApp : Application() {
     }
 
     /**
-     * Speichert eine Änderung an den Weckern, reiht sie für die Uhr ein und plant den Zweitwecker neu. Einreihen zuerst
-     * (Audit AN-1): Es speichert nur lokal und ist schnell, gesendet wird im Hintergrund. Endete der Prozess während des
+     * Speichert eine Änderung an den Weckern, reiht sie für die Uhr ein und plant den Zweitwecker neu. Einreihen zuerst:
+     * Es speichert nur lokal und ist schnell, gesendet wird im Hintergrund. Endete der Prozess während des
      * Neuplanens, ginge die Änderung sonst nie an die Uhr.
      */
     fun afterAlarmsChanged(change: suspend () -> com.phasewake.app.shared.AlarmSnapshot) {
@@ -320,7 +320,7 @@ open class PhaseWakeApp : Application() {
     }
 
     /**
-     * «Verlauf löschen»: Nächte, Notizen, Häkchen, Geräusche, Aufzeichnungen und geteilte Exporte (Audit DA-5) weg,
+     * «Verlauf löschen»: Nächte, Notizen, Häkchen, Geräusche, Aufzeichnungen und geteilte Exporte weg,
      * Nächte aus Health Connect bis jetzt ausgeblendet, auf der Uhr ebenso; die Lernphase beginnt von vorn.
      */
     suspend fun clearHistory() {

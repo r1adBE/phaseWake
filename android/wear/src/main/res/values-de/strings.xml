@@ -72,7 +72,7 @@
     <string name="editor_delete_title">Diesen Wecker löschen?</string>
     <string name="home_max_alarms">Höchstens %1$d Wecker – lösche einen, um einen neuen anzulegen.</string>
     <string name="editor_enabled">Wecker an</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Nächstes Mal überspringen</string>
     <string name="alarm_skipped">Übersprungen: %1$s</string>
     <string name="nap_title">Powernap</string>
@@ -102,7 +102,7 @@
     <string name="record_since">Seit %1$s</string>
     <string name="notification_record_title">Nacht wird aufgezeichnet</string>
     <string name="record_battery_low">Akku zu schwach zum Aufzeichnen</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Lernphase</string>
     <string name="watch_learn_warn">Lade die Uhr, sonst zählt die Lernnacht nicht (Akku %1$d %%, nötig %2$d %%).</string>
     <string name="watch_learn_skip_battery">Diese Nacht zählt nicht für die Lernphase: Akku bei %1$d %%, nötig sind %2$d %%.</string>

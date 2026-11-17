@@ -10,7 +10,7 @@ extension SyncKeys {
     static let retryTapAt = "retryTapAt"
 }
 
-/// Zeiten in Nachrichten zwischen iPhone und Uhr (ms seit 1970) ohne Abbruch lesen (Vollaudit AP2-8): Ein Wert
+/// Zeiten in Nachrichten zwischen iPhone und Uhr (ms seit 1970) ohne Abbruch lesen: Ein Wert
 /// ausserhalb von ``TimeBounds`` (kaputt oder fremd, z. B. `Int64.max`) gilt als fehlend, und das Alter einer Nachricht
 /// rechnet nie über `Int64` hinaus.
 enum SyncTime {

@@ -26,7 +26,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Verweigerter Vordergrund-Start des Weckdienstes (Audit N-05): Zur Zielzeit und am Ende des Schlummerns erscheint die
+ * Verweigerter Vordergrund-Start des Weckdienstes: Zur Zielzeit und am Ende des Schlummerns erscheint die
  * Weck-Mitteilung mit Vollbild direkt; beim Fensterbeginn und bei «Gute Nacht» bleibt es bei der Diagnose. Der
  * Weckbildschirm holt den Dienst über die Mitteilung nach.
  */

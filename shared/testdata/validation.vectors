@@ -1,4 +1,4 @@
-# Validierungs-Modus (Validation, Entscheid r1AD 16.11.2026): Schattenfenster, Referenzphase, Zeitzone, Summen.
+# Validierungs-Modus (Validation): Schattenfenster, Referenzphase, Zeitzone, Summen.
 # Felder mit Tabulator getrennt. Zeilen «ref»: erwartete Referenzphase, Zeitpunkt, Phasen «Beginn-Ende:PHASE» mit
 # Kommas («-» = keine), alles in Sekunden ab 2026-11-08 22:00 UTC (Validation.reference, ±60 s).
 # Fälle ab «case Name Gerätezone» bis zum nächsten, Zeiten in Minuten ab 2026-11-08 22:00 UTC:

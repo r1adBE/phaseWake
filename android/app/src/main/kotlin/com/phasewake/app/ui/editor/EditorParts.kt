@@ -77,7 +77,7 @@ internal fun <T> Choice(options: List<Pair<T, Int>>, selected: T, onSelect: (T) 
                 shape = SegmentedButtonDefaults.itemShape(index, options.size),
                 // Mindestens 48 dp hoch: gut zu treffen, auch mit Bildschirmleser.
                 modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight(),
-                // Ab drei Feldern ohne Haken: Der Platz gehört dem Text (Audit UI-7); gewählt zeigt die Füllung.
+                // Ab drei Feldern ohne Haken: Der Platz gehört dem Text; gewählt zeigt die Füllung.
                 icon = { if (options.size <= CHECK_ICON_MAX_SEGMENTS) SegmentedButtonDefaults.Icon(value == selected) },
             ) { ChoiceLabel(stringResource(label)) }
         }
@@ -89,7 +89,7 @@ internal const val CHECK_ICON_MAX_SEGMENTS = 2
 
 /**
  * Beschriftung eines Auswahl-Felds: bei Platzmangel (drei Felder, lange Sprachen) zuerst zweizeilig, dann
- * schrittweise kleiner, aber nicht unter 12 sp (Audit UI-7: 10 sp war auf 360 dp in Französisch zu klein).
+ * schrittweise kleiner, aber nicht unter 12 sp (10 sp war auf 360 dp in Französisch zu klein).
  */
 @Composable
 internal fun ChoiceLabel(text: String) {
@@ -145,7 +145,7 @@ internal fun Section(content: @Composable androidx.compose.foundation.layout.Col
 internal const val SLEEP_MIN = 180f
 internal const val SLEEP_MAX = 720f
 
-/** Mindesthöhe der Tippfläche eines Tag-Schalters (Entscheid UI-8: 48 dp). */
+/** Mindesthöhe der Tippfläche eines Tag-Schalters (48 dp). */
 internal val DAY_TOUCH_MIN = 48.dp
 
 /** Abstand zwischen den sichtbaren Kreisen der Tag-Schalter (je Hälfte links und rechts im Feld). */
@@ -153,7 +153,7 @@ internal val DAY_GAP = 6.dp
 
 /**
  * Runder Tag-Schalter; alle sieben passen in eine Zeile. Die Tippfläche ist das ganze Feld (ohne Lücke zum Nachbarn,
- * mindestens [DAY_TOUCH_MIN] hoch, Audit UX-02), der sichtbare Kreis darin bleibt kleiner.
+ * mindestens [DAY_TOUCH_MIN] hoch), der sichtbare Kreis darin bleibt kleiner.
  */
 @Composable
 internal fun DayToggle(label: String, description: String, selected: Boolean, onToggle: () -> Unit, modifier: Modifier) {

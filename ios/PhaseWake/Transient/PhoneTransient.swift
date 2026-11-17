@@ -62,7 +62,7 @@ final class PhoneTransient {
     }
 
     /// Stand für den neuen Probewecker `plan`. Ersetzt einen wartenden Powernap wie die Uhr (ein Platz für
-    /// vorübergehende Pläne) und Android (Prüfrunde 2 B-12): Die Powernap-Karte verschwindet; dessen Sicherung ersetzt
+    /// vorübergehende Pläne) und Android: Die Powernap-Karte verschwindet; dessen Sicherung ersetzt
     /// `scheduleTransient` (ein Platz).
     func begin(test plan: TransientPlan) {
         if nap != nil { DiagStore.shared.log(.nap, "replaced by test") }

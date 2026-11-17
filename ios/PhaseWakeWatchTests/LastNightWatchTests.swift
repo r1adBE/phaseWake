@@ -2,7 +2,7 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWakeWatch
 
-/// Startseite der Uhr (Audit 17.11. PERF-04): Die letzte Nacht ist gemerkt (``WatchLastNight``), statt bei jedem
+/// Startseite der Uhr: Die letzte Nacht ist gemerkt (``WatchLastNight``), statt bei jedem
 /// Neuzeichnen den Verlauf zu lesen, und folgt jeder Änderung der Nächte sofort.
 final class LastNightWatchTests: XCTestCase {
     private let start = Date(timeIntervalSince1970: 1_793_000_000)

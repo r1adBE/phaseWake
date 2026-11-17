@@ -407,7 +407,7 @@
     <string name="chart_window">Okno budzenia</string>
     <string name="chart_no_data">brak danych</string>
     <string name="chart_feeling_hint">Stuknij punkt, aby zobaczyć notatki z tej nocy.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Testuj budzik</string>
     <string name="test_button">Testuj za 2 minuty</string>
     <string name="test_hint">Zadzwoni za 2 minuty z ustawieniami Twojego następnego budzika, bez drzemki. Nie liczy się jako noc.</string>
@@ -627,7 +627,7 @@
     <string name="learn_switch_hint">Zegarek mierzy w nocy ruch i tętno (od %1$d %% baterii). Wył.: brak automatycznego zapisu, wyuczone wartości zostają.</string>
     <string name="learn_switch_title">Aktywna</string>
     <string name="watch_open_app_hint">Otwórz Phase Wake na zegarku, aby odebrał polecenie.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Każda noc od początku fazy nauki – czy została zaliczona, a jeśli nie, to dlaczego i co pomoże. Phase Wake potrzebuje %1$d zaliczonych nocy.</string>
     <string name="learn_nights_empty">Nie ma jeszcze żadnej nocy. Pierwsza pojawi się tu następnego ranka.</string>
     <string name="learn_night_facts">Zmierzono %1$s · %2$d wartości · tętno w %3$d %%</string>

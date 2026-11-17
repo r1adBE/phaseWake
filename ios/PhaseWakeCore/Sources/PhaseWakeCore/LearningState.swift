@@ -4,7 +4,7 @@ import Foundation
 /// (`since`, `nil` = nie begonnen), die gelernten Werte (`values`, `nil` = noch nicht fertig) und ob die Karte
 /// «Angepasst an dich» schon bestätigt ist (`seen`). `relearnPending`: «Neu lernen» läuft – die bisherigen `values`
 /// gelten weiter, bis die neuen Nächte gezählt sind. `updatedAtMs`: letzte Änderung (ms), für den Abgleich mit der Uhr.
-/// `consent`: Zustimmung (Audit F-02, Schalter «Lernphase»): `true` = an, `false` = aus bzw. «Später», `nil` = noch
+/// `consent`: Zustimmung (Schalter «Lernphase»): `true` = an, `false` = aus bzw. «Später», `nil` = noch
 /// nicht gefragt. Sie beginnt nie von selbst; «Verlauf löschen» (``restart(now:)``) und «Neu lernen»
 /// (``relearn(now:)``) lassen die Zustimmung, wie sie ist.
 public struct LearningState: Equatable, Sendable, Codable {
@@ -97,7 +97,7 @@ public struct LearningState: Equatable, Sendable, Codable {
         return true
     }
 
-    /// Stand für die Uhr (Fix S-3): Ein Stand ohne Zeitpunkt (nie geändert, z. B. iPhone-App neu installiert) bekommt
+    /// Stand für die Uhr: Ein Stand ohne Zeitpunkt (nie geändert, z. B. iPhone-App neu installiert) bekommt
     /// `now`. Die Uhr übernimmt nur einen neueren Stand; mit 0 bliebe sie beim Stand eines früheren iPhones (Lernphase
     /// an, alte Werte), obwohl hier nie zugestimmt wurde. Wie `LearningRepository.stampIfNever` (Kotlin).
     /// - Returns: ob gestempelt wurde.
@@ -118,7 +118,7 @@ public struct LearningState: Equatable, Sendable, Codable {
         relearnPending = false
     }
 
-    /// Zeitpunkt einer Änderung: `now` in ms, mindestens `previous` + 1 (Fix KN-7): Die Uhr übernimmt nur einen neueren
+    /// Zeitpunkt einer Änderung: `now` in ms, mindestens `previous` + 1: Die Uhr übernimmt nur einen neueren
     /// Stand (``LearningSnapshot/replaces(_:)``); zwei Änderungen in derselben Millisekunde oder nach einer zurückgestellten
     /// Uhrzeit gingen sonst verloren. Wie `LearningRepository` (Kotlin).
     private static func stamp(_ now: Date, after previous: Int64) -> Int64 {

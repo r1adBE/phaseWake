@@ -14,7 +14,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
-/** Fix S-3: Ein neu installiertes Handy schickt der Uhr seinen Stand mit Zeitpunkt, nicht mit 0. */
+/** Ein neu installiertes Handy schickt der Uhr seinen Stand mit Zeitpunkt, nicht mit 0. */
 class LearningStampTest {
     private val now = Instant.parse("2026-11-14T08:00:00Z")
 
@@ -42,7 +42,7 @@ class LearningStampTest {
 
     @Test
     fun resetAfterBrokenFileIsNotStamped() = runBlocking {
-        // Audit SP-7: Nach einer kaputten Datei beginnt der Speicher leer; dieser Stand ist nicht neuer als der der Uhr.
+        // Nach einer kaputten Datei beginnt der Speicher leer; dieser Stand ist nicht neuer als der der Uhr.
         val reset = MemoryStore(emptyPreferences().toMutablePreferences().apply { this[PhaseWakeStore.RESET_AT] = 1L })
         val watch = LearningStore(MemoryStore())
         val learned = LearningSnapshot(false, 0.02, 52.0, now.minusSeconds(86_400).toEpochMilli())

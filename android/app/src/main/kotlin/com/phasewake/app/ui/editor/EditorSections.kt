@@ -314,7 +314,7 @@ internal fun SunriseSection(state: EditorState) {
 }
 
 /**
- * Selten gebrauchte Optionen zugeklappt unter «Mehr» (Audit U-3): Zum Beenden, Sonnenaufgang, Feiertage, Weckton und
+ * Selten gebrauchte Optionen zugeklappt unter «Mehr»: Zum Beenden, Sonnenaufgang, Feiertage, Weckton und
  * Name. Sichtbar bleiben Zeit, Fenster, Wiederholen und Weckart; kürzerer Editor auf kleinen Handys.
  */
 @Composable

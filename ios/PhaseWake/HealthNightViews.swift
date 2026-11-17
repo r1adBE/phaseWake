@@ -42,7 +42,7 @@ struct HealthNightCard: View {
     /// Schlafwert der Nacht (``nightScore(stages:session:goalMinutes:)``); `nil`: keine Zeile.
     var score: SleepScoreResult?
 
-    /// Datum und Uhrzeiten in der Zone der Aufzeichnung (Audit F-3), ohne sie in der des Geräts.
+    /// Datum und Uhrzeiten in der Zone der Aufzeichnung, ohne sie in der des Geräts.
     private var title: String { Format.day(session.end, in: session.timeZone) }
 
     /// «Im Bett 23:10 · eingeschlafen 23:24 · auf 06:52» und «8 Std. im Bett · …»; ohne Phasen die kurzen Fassungen.
@@ -122,7 +122,7 @@ struct DetailsRow: View {
     }
 }
 
-/// Notizen links und «Details ›» rechts in einer Zeile unten auf einer Nachtkarte (Vollaudit Design 4, wie Android).
+/// Notizen links und «Details ›» rechts in einer Zeile unten auf einer Nachtkarte (wie Android).
 /// «Details» öffnet wie die Karte die Detailseite; für VoiceOver trägt die Karte selbst diesen Hinweis.
 struct NightActionsRow: View {
     let nightDate: String

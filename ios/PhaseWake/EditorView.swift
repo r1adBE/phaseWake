@@ -26,7 +26,7 @@ struct EditorView: View {
     /// Einschlaf-Modus («nach 7½ Std.»): Schlafdauer statt fester Zielzeit; die Uhrzeit ist dann die späteste Weckzeit.
     @State private var sleepMode = false
     @State private var sleepMinutes = Double(EditorView.defaultSleepMinutes)
-    /// Anderswo gelöscht bzw. kein Platz mehr (B-3, B-11, `EditorSave`): Hinweis.
+    /// Anderswo gelöscht bzw. kein Platz mehr (`EditorSave`): Hinweis.
     @State private var gone = false
     @State private var full = false
     /// Selbst gelöscht: Das Verschwinden aus der Liste ist dann kein Löschen anderswo.
@@ -140,7 +140,7 @@ struct EditorView: View {
                         Text(L("editor_alert"))
                     }
 
-                    // Selten gebraucht, zugeklappt unter «Mehr» (Audit U-3, wie Android): Sonnenaufgang, Feiertage, Weckton
+                    // Selten gebraucht, zugeklappt unter «Mehr» (wie Android): Sonnenaufgang, Feiertage, Weckton
                     // und Name. Sichtbar bleiben Zeit, Fenster, Wiederholen und Weckart.
                     Section {
                         DisclosureGroup(isExpanded: $showMore) {
@@ -221,7 +221,7 @@ struct EditorView: View {
             .onAppear(perform: load)
             .onDisappear { preview.stop() }
             .interactiveDismissDisabled(dirty)
-            // Wecker anderswo gelöscht (Uhr), während er hier offen ist: Hinweis und zu, statt ihn neu anzulegen (B-3).
+            // Wecker anderswo gelöscht (Uhr), während er hier offen ist: Hinweis und zu, statt ihn neu anzulegen.
             .onChange(of: model.alarms.map(\.id)) { _, ids in
                 if check(ids) == .gone, !deleting { gone = true }
             }
@@ -305,7 +305,7 @@ struct EditorView: View {
         )
     }
 
-    /// Entscheid fürs Speichern aus den gespeicherten Weckern `ids` (B-3, B-11).
+    /// Entscheid fürs Speichern aus den gespeicherten Weckern `ids`.
     private func check(_ ids: [String]) -> EditorSave {
         EditorSave.check(existed: existing != nil, storedIds: ids, draftId: existing?.id ?? newId, maxAlarms: PhoneModel.maxAlarms)
     }

@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
 internal fun WakeService.ring() {
     val n = night ?: return
     if (n.phase == Phase.RINGING) return
-    // Zuerst wecken (Befund 13.11.2026): Wakelock, Vibration und Ton, Weck-Mitteilung mit Vollbild und Weckbildschirm.
+    // Zuerst wecken: Wakelock, Vibration und Ton, Weck-Mitteilung mit Vollbild und Weckbildschirm.
     // Sensoren und Sonnenaufgang erst danach ([finishRingStart]); der Ablauf ist sonst derselbe.
     val steps = RingSteps()
     holdWakeLock(RING_TIMEOUT_MS + WAKE_LOCK_MARGIN_MS)
@@ -213,7 +213,7 @@ internal fun WakeService.snooze(notifyPhone: Boolean, fromPhone: Boolean = false
 
 /**
  * Beendet die Nacht; der Dienst endet, sobald [finishNight] gespeichert und neu geplant hat. [fromPhone]: am Handy
- * beendet (Kennung genannt). Misst die Uhr dann noch, gilt die Nacht trotzdem als erledigt (Audit AN-7): Sonst plante
+ * beendet (Kennung genannt). Misst die Uhr dann noch, gilt die Nacht trotzdem als erledigt: Sonst plante
  * das Neuplanen dieselbe Nacht gleich wieder, und die Messung begänne von vorn.
  */
 internal fun WakeService.dismiss(notifyPhone: Boolean, fromPhone: Boolean = false) {

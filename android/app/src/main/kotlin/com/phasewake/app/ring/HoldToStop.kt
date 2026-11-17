@@ -41,7 +41,7 @@ private const val HOLD_TICK_MILLIS = 16L
 
 /**
  * Misst das Halten an der Uhr ([now], Millisekunden), nicht an einer Animation: Mit «Animationen entfernen»
- * (Animationsdauer 0) liefe eine Animation sofort durch, und ein Tipp würde den Wecker beenden (Audit UI-1).
+ * (Animationsdauer 0) liefe eine Animation sofort durch, und ein Tipp würde den Wecker beenden.
  * Meldet den Fortschritt 0–1 an [onProgress] und kehrt erst zurück, wenn [holdMillis] vergangen sind; wird die
  * Coroutine vorher abgebrochen (Loslassen), kehrt sie nie normal zurück. [pause] wartet (Tests: ohne echte Zeit).
  */
@@ -64,7 +64,7 @@ internal suspend fun awaitHold(
  * «Halten zum Stoppen»: Ein Tipp im Halbschlaf stoppt den Wecker nicht. Der Knopf füllt sich beim
  * Halten; loslassen vor dem Ende setzt ihn zurück. Mit Bildschirmleser genügt ein Doppeltipp.
  *
- * Gefüllter Hauptknopf in Lavendel (Audit U-4), beim Halten läuft von links eine helle Füllung [fill] darüber.
+ * Gefüllter Hauptknopf in Lavendel, beim Halten läuft von links eine helle Füllung [fill] darüber.
  * Die dunkle Schrift [content] hat auf beiden Farben Kontrast ≥ 4.5:1 (auf Lavendel etwa 10:1).
  */
 @Composable

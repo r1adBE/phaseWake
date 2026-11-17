@@ -3,7 +3,7 @@ name: Aufräumen
 # Hält das Repo sauber: löscht abgeschlossene Workflow-Läufe, die älter als 30 Tage sind, nicht grüne Läufe (rot,
 # abgebrochen, übersprungen) schon nach 7 Tagen, und Arbeitszweige, die vollständig in main stecken. Grüne Läufe für
 # den aktuellen Stand von main und für den Stand der Testversion (Tag «test») bleiben immer: Der Store-Build verlangt
-# einen grünen CI-Lauf genau dieses Commits (Audit 5314d25 D-08).
+# einen grünen CI-Lauf genau dieses Commits.
 # Datenzweige der Workflows (feiertage, klaenge, screenshots) und main bleiben immer.
 # Von Hand zusätzlich: weitere Zweige zum Löschen angeben – nur, wenn sie in main stecken oder ihr letzter Commit älter als
 # 7 Tage ist (z. B. alte Zwischenstände); andere bleiben und werden gemeldet.

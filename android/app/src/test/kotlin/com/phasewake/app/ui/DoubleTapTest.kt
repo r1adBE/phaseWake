@@ -37,7 +37,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Prüfrunde 2, B-1 und B-2: Zwei schnelle Tipps (echte Berührungen) dürfen nicht durch zwei Bildschirme gehen. Im
+ * Zwei schnelle Tipps (echte Berührungen) dürfen nicht durch zwei Bildschirme gehen. Im
  * Editor nahm der zweite Tipp auf «Speichern» bzw. den Zurück-Pfeil auch die Startseite vom Stapel (leerer Bildschirm);
  * in der Einrichtung traf der zweite Tipp auf «Weiter» das «Später» der Lernseite.
  */

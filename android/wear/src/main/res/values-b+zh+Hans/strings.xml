@@ -70,7 +70,7 @@
     <string name="editor_delete_title">删除这个闹钟？</string>
     <string name="home_max_alarms">最多 %1$d 个闹钟 – 删除一个后才能新建。</string>
     <string name="editor_enabled">闹钟开启</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">跳过下一次</string>
     <string name="alarm_skipped">已跳过：%1$s</string>
     <string name="nap_title">小睡</string>
@@ -98,7 +98,7 @@
     <string name="record_since">自 %1$s 起</string>
     <string name="notification_record_title">正在记录夜间数据</string>
     <string name="record_battery_low">电量过低，无法记录</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">学习阶段</string>
     <string name="watch_learn_warn">请给手表充电，否则今晚不计入学习阶段（电量 %1$d %%，需要 %2$d %%）。</string>
     <string name="watch_learn_skip_battery">今晚不计入学习阶段：电量 %1$d %%，需要 %2$d %%。</string>

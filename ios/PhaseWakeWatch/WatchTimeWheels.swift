@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Uhrzeit-Räder im Editor der Uhr (Vollaudit N-10): folgen der 12/24-Std.-Einstellung (bei 12 Std. ein drittes Rad
+/// Uhrzeit-Räder im Editor der Uhr: folgen der 12/24-Std.-Einstellung (bei 12 Std. ein drittes Rad
 /// für AM/PM, Texte des Systems) und haben für VoiceOver je einen eigenen Namen (Stunden, Minuten – Einheitennamen des
 /// Systems, keine eigenen Texte) samt der ganzen Uhrzeit als Wert. Gespeichert wird immer 0–23.
 struct WatchTimeWheels: View {

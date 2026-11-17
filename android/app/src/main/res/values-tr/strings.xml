@@ -383,7 +383,7 @@
     <string name="chart_window">Uyandırma aralığı</string>
     <string name="chart_no_data">veri yok</string>
     <string name="chart_feeling_hint">O gecenin notları için bir noktaya dokun.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Alarmı test et</string>
     <string name="test_button">2 dakika sonra test et</string>
     <string name="test_hint">Sonraki alarmının ayarlarıyla 2 dakika sonra çalar, ertelemesiz. Gece sayılmaz.</string>
@@ -599,7 +599,7 @@
     <string name="learn_switch_hint">Saatin gece hareketi ve nabzı ölçer (%1$d %% pilden itibaren). Kapalı: otomatik kayıt yok, öğrenilen değerler kalır.</string>
     <string name="learn_switch_title">Etkin</string>
     <string name="watch_open_app_hint">Komutu alması için saatinde Phase Wake’i aç.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Öğrenme aşaması başladığından beri her gece – sayıldı mı, sayılmadıysa neden ve ne yardımcı olur. Phase Wake\'in %1$d sayılmış geceye ihtiyacı var.</string>
     <string name="learn_nights_empty">Henüz gece yok. İlki ertesi sabah burada görünür.</string>
     <string name="learn_night_facts">%1$s ölçüldü · %2$d değer · %3$d %% oranında nabız</string>

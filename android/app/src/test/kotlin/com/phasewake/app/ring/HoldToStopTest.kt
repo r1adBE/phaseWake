@@ -8,7 +8,7 @@ import kotlin.test.assertTrue
 import kotlinx.coroutines.runBlocking
 
 /**
- * «Halten zum Stoppen» misst an der Uhr (Audit UI-1): Mit «Animationen entfernen» lief die Füllung sofort durch,
+ * «Halten zum Stoppen» misst an der Uhr: Mit «Animationen entfernen» lief die Füllung sofort durch,
  * und ein Tipp beendete den Wecker. [awaitHold] hängt von keiner Animation ab; die Zeit ist hier eine Testuhr.
  */
 class HoldToStopTest {

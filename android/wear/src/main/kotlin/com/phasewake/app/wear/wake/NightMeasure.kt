@@ -108,7 +108,7 @@ private fun WakeService.loadNight(current: Night, canMeasure: Boolean, refusal: 
         // Zielzeit), braucht der Weckvorgang den Wecker: Name, Uhr-Ton, einmalig.
         val spec = app.specFor(plan.alarmId)
         // Dazu die gelernten Werte der Lernphase (eigenes Grundrauschen, Ruhepuls), falls es sie gibt.
-        // Dazu das Grundrauschen der Einschlaf-Messung dieser Nacht als Vorwissen (Vollaudit K-1), falls es eines gibt.
+        // Dazu das Grundrauschen der Einschlaf-Messung dieser Nacht als Vorwissen, falls es eines gibt.
         val config = app.learning.current().applyTo(Calibration.calibrate(NightHistory.motionsForCalibration(app.nights.load())))
             .withOnsetFloor(onsetFloorFor(plan))
         // Stand vor einem Neustart des Dienstes: erstes Klingeln, Grund und Schlummer-Runden.
@@ -190,7 +190,7 @@ private fun WakeService.abandonMeasuring(n: Night) {
 /**
  * Am Wecker wurde etwas geändert (aus, gelöscht, verschoben): Messung ohne Aufzeichnung beenden. Den Zielzeit-Alarm
  * nicht aufheben: [AlarmScheduler.reschedule] hat ihn schon für den neuen Plan gestellt (oder ohne Plan aufgehoben),
- * bevor dieser Auftrag ankommt; ein Schlummer-Alarm besteht beim Messen nicht (Review 04.11. b, P2).
+ * bevor dieser Auftrag ankommt; ein Schlummer-Alarm besteht beim Messen nicht.
  */
 internal fun WakeService.cancelMeasuring() {
     val n = night ?: return
@@ -224,14 +224,14 @@ internal fun WakeService.onEpochs(n: Night, epochs: List<Epoch>) {
     for (epoch in epochs) {
         n.epochs += epoch
         // Vor dem Start der Sensoren gab es keine Werte: Diese Epochen zählen nicht fürs Aufwärmen der Erkennung (wie die
-        // Apple Watch, Audit c3b8b01 E-1).
+        // Apple Watch).
         if (n.epochs.size <= n.unmeasured) continue
         // «Genau»: nur für den Verlauf messen, geweckt wird zur Zielzeit.
         if (n.exact) continue
         val decision = n.detector.onEpoch(epoch)
         if (decision is Decision.Wake) {
             // Kurze Nacht: Moment übergehen (nicht nachholen), weiter erkennen; in den letzten
-            // [ShortNight.LATE_MINUTES] vor der Zielzeit weckt ein neuer Moment (Entscheid r1AD 10.11.2026).
+            // [ShortNight.LATE_MINUTES] vor der Zielzeit weckt ein neuer Moment.
             if (ShortNight.blocksEarly(n.asleepAt, Instant.now(), n.goalMinutes, n.plan.target, n.onsetMeasured)) {
                 n.detector.rearm()
                 val why = if (n.asleepAt == null) "short night unknown" else "short night"
@@ -259,8 +259,8 @@ internal fun WakeService.logMeasureEnd(n: Night, note: String = "") {
 }
 
 /**
- * Eine Zeile ins Diagnose-Protokoll: wie lange nach dem geplanten Fensteralarm der Dienst startet ([WakeRules.startDelayLine],
- * Befund 13.11.2026). Ohne geplante Zeit im Auftrag (ältere Alarme) und vor dem ersten Entsperren nichts.
+ * Eine Zeile ins Diagnose-Protokoll: wie lange nach dem geplanten Fensteralarm der Dienst startet ([WakeRules.startDelayLine]).
+ * Ohne geplante Zeit im Auftrag (ältere Alarme) und vor dem ersten Entsperren nichts.
  */
 internal fun WakeService.logStartDelay(intent: Intent) {
     val scheduledAt = intent.getLongExtra(WakeService.EXTRA_SCHEDULED_AT, 0L)

@@ -27,7 +27,7 @@ final class AppleOnsetTests: XCTestCase {
         XCTAssertEqual(find(motions), .asleep(at: minutes(10), index: 20))
     }
 
-    /// Audit c3b8b01 E-5: Die Uhr liegt 30 Min auf dem Ladegerät (still, kein Puls), danach getragen (Puls je 5 Min): Die
+    /// Die Uhr liegt 30 Min auf dem Ladegerät (still, kein Puls), danach getragen (Puls je 5 Min): Die
     /// Messung wartet, die Einschlafzeit liegt nach dem Ladegerät. Ganz ohne Puls (keine Erlaubnis) gilt die Regel nicht.
     func testWithoutPulseTheWatchIsNotWornAndTheMeasurementWaits() {
         let motions: [Double?] = Array(repeating: quiet, count: 100)
@@ -83,7 +83,7 @@ final class AppleOnsetTests: XCTestCase {
         XCTAssertEqual(RecorderOnset.extendCap(since: since, windowStart: minutes(150)), minutes(150))
     }
 
-    /// Fix KN-3: Grundrauschen der Einschlaf-Messung nur aus den Epochen bis zum erkannten Einschlafen bzw. bis zum
+    /// Grundrauschen der Einschlaf-Messung nur aus den Epochen bis zum erkannten Einschlafen bzw. bis zum
     /// Aufgeben (wie `OnsetMonitor`); lief die Messung ins Weckfenster, keines.
     func testOnsetFloorUpToDetectionOnly() throws {
         func measure(_ motions: [Double?]) -> (result: RecorderOnset.Result, floor: Double?) {
@@ -141,7 +141,7 @@ final class AppleOnsetTests: XCTestCase {
         let target = minutes(8 * 60) // 07:00
         let window = minutes(8 * 60 - 30)
         let onset = minutes(-30) // 22:30 (Bettzeit 23:30 minus 60 Min)
-        // Vor dem Beginn der Einschlaf-Messung: warten (kein Start mehr bis 12 Std. im Voraus, Entscheid r1AD 10.11.2026).
+        // Vor dem Beginn der Einschlaf-Messung: warten (kein Start mehr bis 12 Std. im Voraus).
         XCTAssertEqual(AppleAutoOnset.decide(now: minutes(-6 * 60), target: target, windowStart: window, onsetStart: onset, battery: 80),
                        .wait(until: onset))
         XCTAssertEqual(AppleAutoOnset.decide(now: minutes(-31), target: target, windowStart: window, onsetStart: onset, battery: 80),
@@ -235,7 +235,7 @@ final class AppleOnsetTests: XCTestCase {
     }
 
     func testAutomaticOnsetNeverBeforeBedtime() {
-        // Vollaudit K-4 (wie `OnsetRules.onsetAt`, Kotlin): Weckzeit 07:30, Schlaf 8 Std. → Bettzeit 23:30, Messung ab
+        // Wie `OnsetRules.onsetAt` (Kotlin): Weckzeit 07:30, Schlaf 8 Std. → Bettzeit 23:30, Messung ab
         // 22:30. Still ab 22:30: eingeschlafen frühestens 23:30.
         let start = since.addingTimeInterval(-30 * 60)
         let latest = since.addingTimeInterval(8.5 * 3600)

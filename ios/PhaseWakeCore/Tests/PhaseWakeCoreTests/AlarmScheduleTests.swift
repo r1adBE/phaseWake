@@ -18,7 +18,7 @@ final class AlarmScheduleTests: XCTestCase {
     }
 
     func testSkippedWeeklyAlarmFindsTheTermAfterNextWeek() {
-        // Audit BE-4 (mayDrop): Wecker nur montags, Montag 2.11. übersprungen, heute Dienstag 27.10. → Montag 9.11.,
+        // Grenzfall (mayDrop): Wecker nur montags, Montag 2.11. übersprungen, heute Dienstag 27.10. → Montag 9.11.,
         // 13 Tage voraus, hinter der gewohnten Suche von 8 Tagen.
         let monday = alarm(days: [.monday])
         let now = at(2026, 10, 27, 8, 0)
@@ -100,7 +100,7 @@ final class AlarmScheduleTests: XCTestCase {
         XCTAssertNil(SleepOnset.find([Double?](repeating: 0.002, count: 60)))
     }
 
-    /// Audit c3b8b01 E-4: Zucker im Schlaf (eine Epoche, Nachbarn ruhig) brechen die Strecke nicht, höchstens zwei (wie Kotlin).
+    /// Zucker im Schlaf (eine Epoche, Nachbarn ruhig) brechen die Strecke nicht, höchstens zwei (wie Kotlin).
     func testSingleTwitchesDoNotBreakTheStretch() {
         func night(_ moved: Int...) -> [Double?] { (0..<45).map { moved.contains($0) ? 0.2 : 0.001 } }
         XCTAssertEqual(SleepOnset.find(night(10), threshold: 0.002), 0)

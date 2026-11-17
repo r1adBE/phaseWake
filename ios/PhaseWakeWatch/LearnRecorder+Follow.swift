@@ -4,7 +4,7 @@ import PhaseWakeCore
 extension LearnRecorder {
     /// Wecker derselben Nacht verschoben (Neuplanen, `plan` = `WatchModel.realPlan`): Eine laufende Aufzeichnung der
     /// Lernphase, die noch nicht geweckt hat, folgt seiner Zielzeit (``AppleLearnRecord/followedTarget(current:planTarget:now:)``,
-    /// Entscheid r1AD 13.11.2026, wie `RecordControl.followPlan` auf der Galaxy Watch): Wecker, Zielzeit und Ende der
+    /// wie `RecordControl.followPlan` auf der Galaxy Watch): Wecker, Zielzeit und Ende der
     /// Auswertung (Zielzeit plus ``AppleLearnRecord/afterTarget``) gehen mit. Wecker aus oder übersprungen: Sie endet zur
     /// bisherigen Zielzeit.
     ///

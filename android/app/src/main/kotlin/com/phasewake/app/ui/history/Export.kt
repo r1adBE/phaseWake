@@ -28,7 +28,7 @@ import kotlinx.coroutines.withContext
  * aber mit Bewegungs- und Pulsreihen je Nacht, also nicht anonym im engeren Sinn ([ExportDialog] sagt das vorher).
  * Gibt es Aufzeichnungen («Nacht aufzeichnen»), kommt eine zweite Datei im selben Format dazu ([NightRecording.exportCsv]).
  * Hat mindestens eine Nacht Schlafphasen aus Health Connect, kommt die Datei des Validierungs-Modus dazu
- * («phasewake-validation.csv», [ValidationReport.exportCsv], Entscheid r1AD 16.11.2026: Uhrzeit ohne Datum je Entscheid).
+ * («phasewake-validation.csv», [ValidationReport.exportCsv]; Uhrzeit ohne Datum je Entscheid).
  * Die Datei liegt nur kurz im Cache: Die empfangende App liest sie oft erst später (z. B. beim Senden einer Mail), darum
  * wird sie nicht sofort gelöscht, sondern nach [KEEP] ([cleanup]: nach dem Teilen, im täglichen Aufräumen und beim
  * nächsten Start der App).
@@ -40,7 +40,7 @@ object Export {
     private const val DIR = "export"
 
     /**
-     * Schreibt die Datei im Hintergrund (Review K-09: Text bauen und Schreiben nicht auf dem Hauptthread) und öffnet
+     * Schreibt die Datei im Hintergrund (Text bauen und Schreiben nicht auf dem Hauptthread) und öffnet
      * danach die Teilen-Auswahl. Hält die Activity nicht fest: nur die App und der schon gelesene Betreff.
      */
     fun share(context: Context, nights: List<NightRecord>, notes: Map<java.time.LocalDate, List<String>> = emptyMap()) {
@@ -91,7 +91,7 @@ object Export {
 
 /**
  * Vor dem Teilen ein Satz dazu, was die Datei enthält: Bewegungs- und Pulsreihen je Nacht, mit Schlafphasen auch
- * Weckzeiten und Phasen der Validierungs-Datei (Entscheid r1AD 16.11.2026). Ohne Namen
+ * Weckzeiten und Phasen der Validierungs-Datei. Ohne Namen
  * und Datumsangaben, aber nicht anonym im engeren Sinn – das soll man vor dem Weitergeben wissen.
  */
 @Composable

@@ -36,7 +36,7 @@ public enum Holidays {
     /// Tag erst kurz vorher feststeht, im Namen mit «estimated» (z. B. «Eid al-Fitr (estimated)», «… (observed, estimated)»).
     /// Mehrere Feiertage am selben Tag stehen mit «; » getrennt; der Tag ist nur geschätzt, wenn alle es sind.
     ///
-    /// Geschätzte Tage gelten nicht als frei (Entscheid r1AD 14.11.2026, Audit F-2): Der Wecker klingelt, die Einstellungen
+    /// Geschätzte Tage gelten nicht als frei: Der Wecker klingelt, die Einstellungen
     /// zeigen den nächsten als «geschätzt», man kann den Tag selbst überspringen. Identisch zu Kotlin.
     public static func isEstimated(_ name: String) -> Bool {
         name.components(separatedBy: "; ").allSatisfy { $0.contains("estimated") }

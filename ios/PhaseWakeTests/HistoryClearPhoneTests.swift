@@ -2,8 +2,7 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWake
 
-/// «Verlauf löschen», iPhone: spät zugestellte Nächte fallen weg, der Zeitpunkt liegt nie in der Zukunft (Herkunft:
-/// Vollaudit 11.11.2026 D-02/AP-6; Vollaudit 071597f DA-1).
+/// «Verlauf löschen», iPhone: spät zugestellte Nächte fallen weg, der Zeitpunkt liegt nie in der Zukunft.
 final class HistoryClearPhoneTests: XCTestCase {
     private let now = Date(timeIntervalSince1970: 1_793_000_000)
 

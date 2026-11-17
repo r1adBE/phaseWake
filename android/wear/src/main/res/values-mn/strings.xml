@@ -73,7 +73,7 @@
     <string name="editor_delete_title">Энэ сэрүүлгийг устгах уу?</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Дээд тал нь %1$d сэрүүлэг – шинийг нэмэхийн тулд нэгийг устга.</string>
     <string name="editor_enabled">Сэрүүлэг асаалттай</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Дараагийнхыг алгасах</string>
     <string name="alarm_skipped">Алгассан: %1$s</string>
     <string name="nap_title">Богино нойр</string>
@@ -103,7 +103,7 @@
     <string name="record_since">%1$s-с хойш</string>
     <string name="notification_record_title">Шөнийг бичиж байна</string>
     <string name="record_battery_low">Бичихэд батерей хэт сул байна</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Суралцах үе</string>
     <string name="watch_learn_warn">Цагаа цэнэглээрэй, эс бөгөөс өнөө шөнө суралцах үед тоологдохгүй (батерей %1$d %%, хэрэгтэй %2$d %%).</string>
     <string name="watch_learn_skip_battery">Өнөө шөнө суралцах үед тоологдохгүй: батерей %1$d %%, хэрэгтэй %2$d %%.</string>

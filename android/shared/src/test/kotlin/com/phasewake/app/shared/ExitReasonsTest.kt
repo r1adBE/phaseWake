@@ -20,7 +20,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 /**
- * Prozessenden im Diagnose-Protokoll (Audit PERF-03): beim Start nur neue Einträge (nach dem gemerkten Zeitpunkt),
+ * Prozessenden im Diagnose-Protokoll: beim Start nur neue Einträge (nach dem gemerkten Zeitpunkt),
  * älteste zuerst, als Fehler mit Grund, Status, Wichtigkeit, Zeit und Speicher – ohne Beschreibung.
  */
 @RunWith(RobolectricTestRunner::class)

@@ -15,7 +15,7 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import com.phasewake.app.ui.theme.Creme
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 
-// Himmel am Tag «Creme Caramel» (hell, Entscheid r1AD 17.11.2026): Kopfbereiche der Seiten und der Startseite. Dunkel
+// Himmel am Tag «Creme Caramel» (hell): Kopfbereiche der Seiten und der Startseite. Dunkel
 // bleibt der Nachthimmel ([Night], [AnimatedNight]). Gleich auf dem iPhone (`DaySky` in Sky.swift).
 
 /**

@@ -27,7 +27,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Lernphase am Handy: Beginn nur mit Zustimmung (Audit F-02), Zählen der Aufzeichnungen der Uhr, nach 7 Nächten die gelernten
+ * Lernphase am Handy: Beginn nur mit Zustimmung, Zählen der Aufzeichnungen der Uhr, nach 7 Nächten die gelernten
  * Werte an die Uhr, «Verlauf löschen» von vorn, «Neu lernen» mit den bisherigen Werten bis zum Ende ([LearningRepository], [com.phasewake.app.PhaseWakeApp.updateLearning]).
  */
 @RunWith(RobolectricTestRunner::class)
@@ -238,7 +238,7 @@ class LearningFlowTest {
     }
 
     /**
-     * Fix KN-7: Der Zeitpunkt der Lernphase steigt streng, auch bei zwei Änderungen in derselben Millisekunde oder nach
+     * Der Zeitpunkt der Lernphase steigt streng, auch bei zwei Änderungen in derselben Millisekunde oder nach
      * einer zurückgestellten Uhrzeit (die Uhr übernimmt nur einen neueren Stand); ein kaputter alter zählt nicht.
      */
     @Test

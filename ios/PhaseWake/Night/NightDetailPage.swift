@@ -139,7 +139,7 @@ struct NightDetailPage: View {
     }
 }
 
-/// Akku je Nacht (r1AD 14.11.2026): «Akku: Uhr −14 % · Handy −3 %», nur die bekannten Teile (``BatteryTrack/used(_:)``);
+/// Akku je Nacht: «Akku: Uhr −14 % · Handy −3 %», nur die bekannten Teile (``BatteryTrack/used(_:)``);
 /// ohne Wert `nil` (keine Zeile). Wie `batteryLine` (Android).
 func batteryLine(_ night: NightRecord) -> String? {
     let parts = [

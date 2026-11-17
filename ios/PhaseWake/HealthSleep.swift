@@ -111,7 +111,7 @@ final class HealthSleep: @unchecked Sendable {
         }
     }
 
-    /// Zone der Aufzeichnung (Audit F-3): die erste Probe mit `HKMetadataKeyTimeZone` (Name wie «Europe/Zurich», auch
+    /// Zone der Aufzeichnung: die erste Probe mit `HKMetadataKeyTimeZone` (Name wie «Europe/Zurich», auch
     /// Kürzel); `nil` ohne Angabe, dann gilt die Zone des Geräts.
     private static func timeZone(of samples: [HKCategorySample]) -> TimeZone? {
         for sample in samples {

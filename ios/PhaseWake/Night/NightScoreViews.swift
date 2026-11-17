@@ -220,7 +220,7 @@ private struct FactorTile: View {
                     L("chart_goal", Format.duration(minutes: goalMinutes)), nil)
         case .deep: return (stageName(.deep), share(input.deepPercent), nil, .deep)
         case .rem: return (stageName(.rem), share(input.remPercent), nil, .rem)
-        // Wach in Minuten wie in den Phasen-Summen (Entscheid r1AD 15.11.2026); die Punkte rechnen mit dem Anteil.
+        // Wach in Minuten wie in den Phasen-Summen; die Punkte rechnen mit dem Anteil.
         case .awake: return (stageName(.awake), Format.duration(minutes: input.awakeMinutes ?? 0), nil, .awake)
         case .latency: return (L("night_latency"), Format.duration(minutes: input.latencyMinutes ?? 0), nil, nil)
         }

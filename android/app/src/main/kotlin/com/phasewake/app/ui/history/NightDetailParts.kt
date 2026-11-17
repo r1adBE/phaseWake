@@ -109,7 +109,7 @@ private fun androidx.compose.ui.graphics.drawscope.DrawScope.typicalBand(color: 
 
 /**
  * Eine Phase: Name mit Farbmarke, Anteil am Schlaf und Dauer, Balken mit üblichem Bereich, darunter der Bereich als Text.
- * Wach nur mit Dauer (Entscheid r1AD 15.11.2026): kein Anteil am Schlaf, darum ohne Balken und Bereich.
+ * Wach nur mit Dauer: kein Anteil am Schlaf, darum ohne Balken und Bereich.
  */
 @Composable
 private fun StageTotalRow(total: StageTotal) {
@@ -225,7 +225,7 @@ internal fun NightExtras(item: HistoryItem, data: NightDetailData, actions: Nigh
 }
 
 /**
- * Akku je Nacht (r1AD 14.11.2026): «Akku: Uhr −14 % · Handy −3 %», nur die bekannten Teile ([BatteryTrack.used]); ohne
+ * Akku je Nacht: «Akku: Uhr −14 % · Handy −3 %», nur die bekannten Teile ([BatteryTrack.used]); ohne
  * Wert `null` (keine Zeile).
  */
 internal fun batteryLine(context: Context, night: NightRecord): String? {

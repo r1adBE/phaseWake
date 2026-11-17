@@ -2,7 +2,7 @@ name: Feiertage
 
 # Erzeugt die Feiertagsdaten (alle Länder und Regionen, 2026–2036) aus dem Paket «holidays» (MIT) und legt
 # sie in den Zweig «feiertage». Nur von Hand gestartet; danach per Merge ins Repo.
-# Zwei Jobs (Audit 17.11., CODE-04, wie «Einschlafklänge»): «feiertage» führt das Paket nur mit Leserecht und ohne
+# Zwei Jobs (wie «Einschlafklänge»): «feiertage» führt das Paket nur mit Leserecht und ohne
 # gespeichertes Token aus, «ablegen» schreibt den Zweig und führt keinen fremden Code aus.
 on:
   workflow_dispatch:
@@ -24,7 +24,7 @@ jobs:
           python-version: "3.12"
       - name: Daten erzeugen
         run: |
-          # Fest gewählte Version mit Prüfsummen (Audit 5314d25 D-08): gleiche Daten bei jedem Lauf, kein fremdes Paket.
+          # Fest gewählte Version mit Prüfsummen: gleiche Daten bei jedem Lauf, kein fremdes Paket.
           pip install --quiet --require-hashes --only-binary :all: -r .github/scripts/holidays-requirements.txt
           python -c "import holidays; print('holidays', holidays.__version__)"
           python .github/scripts/make-holidays.py holidays.json 2> skipped.txt

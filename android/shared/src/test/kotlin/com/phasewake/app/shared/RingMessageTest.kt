@@ -78,7 +78,7 @@ class RingMessageTest {
 
     @Test
     fun implausibleTimesCountAsMissing() {
-        // Audit AN-5: Long.MAX_VALUE als Sende- oder Zielzeit lief beim Rechnen über; jetzt wie fehlend, «stop» verworfen.
+        // Long.MAX_VALUE als Sende- oder Zielzeit lief beim Rechnen über; jetzt wie fehlend, «stop» verworfen.
         val max = Long.MAX_VALUE
         val decoded = RingMessage.decode("a1|$max|$max|2|$max".encodeToByteArray())
         assertEquals(RingMessage(alarmId = "a1", snoozesLeft = 2), decoded)

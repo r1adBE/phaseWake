@@ -44,7 +44,7 @@ import com.phasewake.app.ui.settings.MIN_TOUCH
 import java.time.Duration
 
 /**
- * Lern-Übersicht (Entscheid r1AD 13.11.2026, aus «Details» der Karte der Lernphase auf der Startseite und in den
+ * Lern-Übersicht (aus «Details» der Karte der Lernphase auf der Startseite und in den
  * Einstellungen): je Nacht seit dem Beginn eine Zeile mit Datum (Morgen der Nacht, wie im Verlauf), ✓ gezählt bzw. ✗ mit
  * Grund, kurzen Angaben zur Aufzeichnung und einem Tipp. [nights]: jüngste zuerst ([LearnNights.nights]). [goodNight]: Die
  * Uhr bietet «Gute Nacht» an ([goodNightOffered]); der Tipp bei «Einschlafen automatisch erkennen» aus richtet sich danach.

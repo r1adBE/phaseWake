@@ -1,4 +1,4 @@
-# Fix KN-2: Rauschen rund 0.02 (Grundrauschen 0.0199), gelernt 0.0055 >= 0.25 × 0.0199 = 0.004975: Obergrenze
+# Rauschen rund 0.02 (Grundrauschen 0.0199), gelernt 0.0055 >= 0.25 × 0.0199 = 0.004975: Obergrenze
 # 1.5 × 0.0055 = 0.00825 -> Leicht-Schwelle 0.020625. Epoche 12/13 Bewegung 0.03 mit Puls 57: Epoche 13 LIGHT_SLEEP
 # (mit Anteil 0.3 statt 0.25 gälte keine Obergrenze: kein Wecken).
 @floor 0.0055

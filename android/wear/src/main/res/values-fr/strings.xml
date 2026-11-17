@@ -74,7 +74,7 @@
     <string name="editor_delete_title">Supprimer ce réveil ?</string>
     <string name="home_max_alarms">%1$d réveils au maximum – supprime-en un pour en ajouter un nouveau.</string>
     <string name="editor_enabled">Réveil activé</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Sauter la prochaine fois</string>
     <string name="alarm_skipped">Sauté : %1$s</string>
     <string name="nap_title">Sieste</string>
@@ -106,7 +106,7 @@
     <string name="record_since">Depuis %1$s</string>
     <string name="notification_record_title">Enregistrement de la nuit</string>
     <string name="record_battery_low">Batterie trop faible pour enregistrer</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Phase d’apprentissage</string>
     <string name="watch_learn_warn">Recharge ta montre, sinon cette nuit ne comptera pas pour la phase d’apprentissage (batterie %1$d %%, il faut %2$d %%).</string>
     <string name="watch_learn_skip_battery">Cette nuit ne compte pas pour la phase d’apprentissage : batterie à %1$d %%, il faut %2$d %%.</string>

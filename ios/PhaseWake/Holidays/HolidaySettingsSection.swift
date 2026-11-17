@@ -30,7 +30,7 @@ struct HolidaySettingsSection: View {
             if let next = store.dates.min() {
                 Text(L("holidays_next", Format.shortDay(next))).font(.footnote)
             }
-            // Geschätzte Feiertage gelten nicht als frei (Audit F-2); der nächste steht mit «geschätzt» da.
+            // Geschätzte Feiertage gelten nicht als frei; der nächste steht mit «geschätzt» da.
             if let estimated = store.estimated.min() {
                 Text(L("holidays_next_estimated", Format.shortDay(estimated))).font(.footnote)
             }

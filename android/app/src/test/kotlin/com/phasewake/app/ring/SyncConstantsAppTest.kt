@@ -5,7 +5,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 /**
- * Dokumentierte Zahlen des Zweitweckers mit Literalen (Audit BE-3): Nachfrist 2 Min, «keine Uhr mehr» nach 7 Tagen ohne
+ * Dokumentierte Zahlen des Zweitweckers mit Literalen: Nachfrist 2 Min, «keine Uhr mehr» nach 7 Tagen ohne
  * Meldung. Je Grenze Wert und Wert + 1: Eine geänderte Zahl macht einen Test rot.
  */
 class SyncConstantsAppTest {

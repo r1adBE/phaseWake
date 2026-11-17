@@ -9,7 +9,7 @@ class SharedNightsTest {
     @Test
     fun allNightsMatchExpectation() {
         val nights = NightFixtures.all()
-        // Genau die Nächte laut MANIFEST (Vollaudit K-8): Eine fehlende Datei fiele sonst nicht auf.
+        // Genau die Nächte laut MANIFEST: Eine fehlende Datei fiele sonst nicht auf.
         assertEquals(NightFixtures.manifest().count { it.endsWith(".night") }, nights.size, "Testnächte in ${NightFixtures.directory().absolutePath}")
 
         for (night in nights) {
@@ -34,13 +34,13 @@ class SharedNightsTest {
             val detector = WakeDetector()
             return night.epochs.indexOfFirst { detector.onEpoch(it) is Decision.Wake }.takeIf { it >= 0 }
         }
-        // Seit E-1 (Audit c3b8b01) wartet die Leicht-Regel ohne Grundrauschen: Ohne gelernten Wert zählt das Rauschen zu
+        // Die Leicht-Regel wartet ohne Grundrauschen: Ohne gelernten Wert zählt das Rauschen zu
         // Beginn nicht mehr (früher Epoche 5), es weckt wie mit gelerntem Wert erst die echte Bewegung.
         assertEquals(32, firstWake(byName.getValue("learned_floor_sensor_start")))
         assertEquals(null, firstWake(byName.getValue("learned_resting_hr")))
-        // Ohne Obergrenze aus dem gelernten Grundrauschen bleibt der unruhige Beginn still (Vollaudit K-1).
+        // Ohne Obergrenze aus dem gelernten Grundrauschen bleibt der unruhige Beginn still.
         assertEquals(null, firstWake(byName.getValue("restless_start_learned_floor")))
-        // Ohne Übergehen weckt der erste Moment (Vollaudit K-5).
+        // Ohne Übergehen weckt der erste Moment.
         assertEquals(39, firstWake(byName.getValue("rearm_new_hits")))
     }
 }

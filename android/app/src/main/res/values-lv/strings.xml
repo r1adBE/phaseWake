@@ -398,7 +398,7 @@
     <string name="chart_window">Modināšanas logs</string>
     <string name="chart_no_data">nav datu</string>
     <string name="chart_feeling_hint">Pieskaries punktam, lai redzētu tās nakts piezīmes.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Testa modinātājs</string>
     <string name="test_button">Testēt pēc 2 minūtēm</string>
     <string name="test_hint">Zvana pēc 2 minūtēm ar nākamā modinātāja iestatījumiem, bez atlikšanas. Netiek skaitīts kā nakts.</string>
@@ -616,7 +616,7 @@
     <string name="learn_switch_hint">Tavs pulkstenis naktī mēra kustību un pulsu (no %1$d %% akumulatora). Izslēgts: nav automātiskas ierakstīšanas, apgūtās vērtības paliek.</string>
     <string name="learn_switch_title">Aktīva</string>
     <string name="watch_open_app_hint">Atver Phase Wake pulkstenī, lai tas saņemtu komandu.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Katra nakts kopš mācīšanās posma sākuma – vai tā ieskaitīta un, ja nē, kāpēc un kas palīdz. Phase Wake vajag %1$d ieskaitītas naktis.</string>
     <string name="learn_nights_empty">Vēl nav nevienas nakts. Pirmā šeit parādīsies nākamajā rītā.</string>
     <string name="learn_night_facts">Izmērīts %1$s · %2$d vērtības · pulss %3$d %%</string>

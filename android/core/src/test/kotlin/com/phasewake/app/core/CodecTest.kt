@@ -179,7 +179,7 @@ class CodecTest {
 
     @Test
     fun implausibleTimesAreRejected() {
-        // Vollaudit K-7: manipulierte Sicherung mit 9223372036854775807 (Swift bräche beim Zurückrechnen ab).
+        // Manipulierte Sicherung mit 9223372036854775807 (Swift bräche beim Zurückrechnen ab).
         val max = Long.MAX_VALUE.toString()
         assertFailsWith<CodecException> { Codec.decodeNight("phasewake-night 1\na|$max|1800000|1080000|DEADLINE|0\n\n") }
         assertFailsWith<CodecException> { Codec.decodeNight("phasewake-night 1\na|0|$max|1080000|DEADLINE|0\n\n") }

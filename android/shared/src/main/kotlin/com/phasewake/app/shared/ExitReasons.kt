@@ -12,8 +12,8 @@ import java.util.Locale
 import com.phasewake.app.core.DiagKind
 
 /**
- * Prozessenden der App, wie das System sie festhält (`ApplicationExitInfo`, ab API 30), für das Diagnose-Protokoll
- * (Audit PERF-03): Ob das System den Prozess nachts wegen Speicher, Freezer, zu hohem Verbrauch, Absturz oder ANR
+ * Prozessenden der App, wie das System sie festhält (`ApplicationExitInfo`, ab API 30), für das Diagnose-Protokoll:
+ * Ob das System den Prozess nachts wegen Speicher, Freezer, zu hohem Verbrauch, Absturz oder ANR
  * beendet hat, steht sonst nirgends – Android Vitals gibt es nur für Store-Installationen.
  *
  * Nur Kennzahlen (Grund, Status, Wichtigkeit, Zeit, Speicher), keine Beschreibung und keine Spur; nichts verlässt das

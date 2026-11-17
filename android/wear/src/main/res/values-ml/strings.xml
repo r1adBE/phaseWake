@@ -72,7 +72,7 @@
     <string name="editor_delete_title">ഈ അലാറം ഇല്ലാതാക്കണോ?</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">പരമാവധി %1$d അലാറങ്ങൾ – പുതിയത് ചേർക്കാൻ ഒന്ന് ഇല്ലാതാക്കുക.</string>
     <string name="editor_enabled">അലാറം ഓൺ</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">അടുത്ത തവണ ഒഴിവാക്കുക</string>
     <string name="alarm_skipped">ഒഴിവാക്കി: %1$s</string>
     <string name="nap_title">പവർ നാപ്പ്</string>
@@ -102,7 +102,7 @@
     <string name="record_since">%1$s മുതൽ</string>
     <string name="notification_record_title">രാത്രി റെക്കോർഡ് ചെയ്യുന്നു</string>
     <string name="record_battery_low">റെക്കോർഡ് ചെയ്യാൻ ബാറ്ററി വളരെ കുറവാണ്</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">പഠന ഘട്ടം</string>
     <string name="watch_learn_warn">വാച്ച് ചാർജ് ചെയ്യുക, അല്ലെങ്കിൽ ഇന്ന് രാത്രി പഠന ഘട്ടത്തിൽ എണ്ണപ്പെടില്ല (ബാറ്ററി %1$d %%, വേണ്ടത് %2$d %%).</string>
     <string name="watch_learn_skip_battery">ഇന്ന് രാത്രി പഠന ഘട്ടത്തിൽ എണ്ണപ്പെടില്ല: ബാറ്ററി %1$d %%, വേണ്ടത് %2$d %%.</string>

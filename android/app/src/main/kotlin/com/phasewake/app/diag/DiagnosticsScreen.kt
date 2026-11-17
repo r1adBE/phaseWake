@@ -67,7 +67,7 @@ fun DiagnosticsScreen(onBack: () -> Unit, onHide: () -> Unit) {
         status = PhoneStatus.lines(context, app, report)
         phoneEntries = withContext(Dispatchers.IO) { app.diag.entries() }
     }
-    // Validierungs-Modus (Entscheid r1AD 16.11.2026): einmal beim Öffnen, nur gerechnet, ändert nichts am Wecken. Nicht
+    // Validierungs-Modus: einmal beim Öffnen, nur gerechnet, ändert nichts am Wecken. Nicht
     // an [changes] gebunden: Das Lesen von Health Connect schreibt selbst eine Zeile ins Protokoll.
     LaunchedEffect(Unit) {
         validation = withContext(Dispatchers.IO) { ValidationReport.lines(ValidationData.entries(app)) }

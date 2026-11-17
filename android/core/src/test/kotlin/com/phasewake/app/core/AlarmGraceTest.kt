@@ -107,7 +107,7 @@ class AlarmGraceTest {
 
     @Test
     fun missedNeedsTargetWithinNightAndNotAhead() {
-        // Audit BE-4: Zielzeit genau am Ende der Nacht und genau jetzt: wird nachgeholt (beide Grenzen eingeschlossen).
+        // Zielzeit genau am Ende der Nacht und genau jetzt: wird nachgeholt (beide Grenzen eingeschlossen).
         val edge = CatchUpWindow(at("2026-10-28T06:20"), at("2026-10-28T07:00"), setOf("b"))
         assertEquals(at("2026-10-28T07:00"), AlarmSchedule.missedPlan(listOf(b), edge, at("2026-10-28T07:00"), zurich)!!.target)
         // Nach dem Ende der Nacht fällig, auch wenn schon vorbei: kein Nachholen (gewohnter Plan).

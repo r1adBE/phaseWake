@@ -74,7 +74,7 @@ extension SmartAlarm {
 
     /// Gleiche Zeit auf die Millisekunde (gespeicherte Zeiten sind gerundet).
     static func sameTime(_ lhs: Date, _ rhs: Date) -> Bool {
-        // Ohne Abbruch bei kaputten Zeiten aus der Sitzungsdatei (Vollaudit K-7, ``TimeBounds/millis(_:)``).
+        // Ohne Abbruch bei kaputten Zeiten aus der Sitzungsdatei (``TimeBounds/millis(_:)``).
         TimeBounds.millis(lhs) == TimeBounds.millis(rhs)
     }
 }

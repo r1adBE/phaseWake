@@ -284,7 +284,7 @@ private fun factorView(factor: FactorScore, input: ScoreInput, goalMinutes: Int)
         )
         ScoreFactor.DEEP -> FactorView(stageName(context, SleepStage.DEEP), share(input.deepPercent), null, brand.stageDeep)
         ScoreFactor.REM -> FactorView(stageName(context, SleepStage.REM), share(input.remPercent), null, brand.stageRem)
-        // Wach in Minuten wie in den Phasen-Summen (Entscheid r1AD 15.11.2026); die Punkte rechnen mit dem Anteil.
+        // Wach in Minuten wie in den Phasen-Summen; die Punkte rechnen mit dem Anteil.
         ScoreFactor.AWAKE -> FactorView(stageName(context, SleepStage.AWAKE), duration(input.awakeMinutes), null, brand.stageAwake)
         ScoreFactor.LATENCY -> FactorView(res.getString(R.string.night_latency), duration(input.latencyMinutes), null, null)
     }

@@ -383,7 +383,7 @@
     <string name="chart_window">Weckfenster</string>
     <string name="chart_no_data">keine Daten</string>
     <string name="chart_feeling_hint">Tippe auf einen Punkt für die Notizen dieser Nacht.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Wecker testen</string>
     <string name="test_button">In 2 Minuten testen</string>
     <string name="test_hint">Klingelt in 2 Minuten mit den Einstellungen deines nächsten Weckers, ohne Schlummern. Zählt nicht als Nacht.</string>
@@ -599,7 +599,7 @@
     <string name="learn_switch_hint">Die Uhr misst nachts Bewegung und Puls (ab %1$d %% Akku). Aus: keine automatische Aufzeichnung, gelernte Werte bleiben.</string>
     <string name="learn_switch_title">Aktiv</string>
     <string name="watch_open_app_hint">Öffne Phase Wake auf der Uhr, damit sie den Befehl erhält.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Jede Nacht seit dem Beginn der Lernphase – ob sie gezählt hat und, wenn nicht, warum und was hilft. Phase Wake braucht %1$d gezählte Nächte.</string>
     <string name="learn_nights_empty">Noch keine Nacht. Die erste erscheint hier am Morgen danach.</string>
     <string name="learn_night_facts">%1$s gemessen · %2$d Messwerte · Puls in %3$d %%</string>

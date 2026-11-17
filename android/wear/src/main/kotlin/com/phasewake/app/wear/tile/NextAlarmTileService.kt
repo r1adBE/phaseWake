@@ -101,9 +101,9 @@ class NextAlarmTileService : TileService() {
 
     internal companion object {
         /**
-         * Texte der Kachel; Zeiten mit den Ziffern der Sprache ([shortTime], Audit UI-9). Liegt der Wecker weder heute
+         * Texte der Kachel; Zeiten mit den Ziffern der Sprache ([shortTime]). Liegt der Wecker weder heute
          * noch morgen, steht sein Wochentag in der Kopfzeile, sonst sähe ein Wecker am Freitag am Dienstag aus wie
-         * morgen; bei «Genau» keine Zeile darunter statt «Nächster Wecker» ein zweites Mal (Prüfrunde 2, B-5). [locale]
+         * morgen; bei «Genau» keine Zeile darunter statt «Nächster Wecker» ein zweites Mal. [locale]
          * nur für Tests, sonst die der Uhr.
          */
         fun tileTexts(context: Context, plan: WakePlan?, zone: ZoneId, now: Instant, locale: Locale = Locale.getDefault()): TileTexts {

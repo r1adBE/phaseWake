@@ -42,7 +42,7 @@ import java.time.LocalDate
 import java.util.Locale
 import com.phasewake.app.ui.theme.outlinedBorder
 
-/** Neues der Einstellungen (Runde 3); Vorgaben = nichts davon (Bildschirmfotos). */
+/** Neues der Einstellungen; Vorgaben = nichts davon (Bildschirmfotos). */
 class SettingsExtras(
     /** «In 2 Minuten testen»; `null` = keine Gruppe. */
     val onTest: (() -> Unit)? = null,
@@ -79,7 +79,7 @@ class LearningSettings(
 
 /**
  * Gruppe der Lernphase: Stand im Titel, Schalter, gelernte Werte, «Details» und «Neu lernen» mit Rückfrage. Ohne die
- * Erklärung der Startseite und mit «Details» und «Neu lernen» als Liste direkt untereinander (r1AD 13.11.2026).
+ * Erklärung der Startseite und mit «Details» und «Neu lernen» als Liste direkt untereinander.
  */
 @Composable
 internal fun LearningGroup(ui: LearningSettings) {
@@ -127,7 +127,7 @@ class HolidaysUi(
     val region: String,
     val next: LocalDate?,
     val onChoose: (country: String, region: String) -> Unit,
-    /** Nächster nur geschätzter Feiertag (Audit F-2): gilt nicht als frei, steht mit «geschätzt» da; `null` = keiner. */
+    /** Nächster nur geschätzter Feiertag: gilt nicht als frei, steht mit «geschätzt» da; `null` = keiner. */
     val nextEstimated: LocalDate? = null,
 )
 
@@ -182,7 +182,7 @@ internal fun HolidaysGroup(ui: HolidaysUi) {
 @Composable
 private fun ChoiceRow(label: String, value: String, onClick: () -> Unit) {
     Row(
-        // Mindestens 48 dp hoch (Tippziel, Audit UI-8).
+        // Mindestens 48 dp hoch (Tippziel).
         Modifier.fillMaxWidth().heightIn(min = 48.dp).clickable(role = Role.Button, onClick = onClick).padding(vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {

@@ -386,7 +386,7 @@
     <string name="chart_window">Wekvenster</string>
     <string name="chart_no_data">geen data</string>
     <string name="chart_feeling_hint">Tik op ’n kolletjie om daardie nag se notas te sien.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Toetswekker</string>
     <string name="test_button">Toets oor 2 minute</string>
     <string name="test_hint">Lui oor 2 minute met die instellings van jou volgende wekker, sonder sluimer. Tel nie as ’n nag nie.</string>
@@ -602,7 +602,7 @@
     <string name="learn_switch_hint">Jou horlosie meet snags beweging en polsslag (vanaf %1$d %% battery). Af: geen outomatiese opname nie, geleerde waardes bly.</string>
     <string name="learn_switch_title">Aktief</string>
     <string name="watch_open_app_hint">Maak Phase Wake op jou horlosie oop sodat dit die opdrag ontvang.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Elke nag sedert die leerfase begin het – of dit getel het en, indien nie, hoekom en wat help. Phase Wake het %1$d getelde nagte nodig.</string>
     <string name="learn_nights_empty">Nog geen nag nie. Die eerste verskyn hier die oggend daarna.</string>
     <string name="learn_night_facts">%1$s gemeet · %2$d lesings · polsslag in %3$d %%</string>

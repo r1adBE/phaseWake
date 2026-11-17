@@ -1,7 +1,7 @@
 import Foundation
 
-/// Was «Speichern» in einem Wecker-Editor tut, wenn sich die Wecker anderswo geändert haben (Prüfrunde 2, B-3 und B-11;
-/// wie `editorSave` der Galaxy Watch und `EditorRoute` am Handy). Rein, ohne Plattform (testbar).
+/// Was «Speichern» in einem Wecker-Editor tut, wenn sich die Wecker anderswo geändert haben
+/// (wie `editorSave` der Galaxy Watch und `EditorRoute` am Handy). Rein, ohne Plattform (testbar).
 enum EditorSave: Equatable {
     /// Speichern wie gewohnt.
     case save

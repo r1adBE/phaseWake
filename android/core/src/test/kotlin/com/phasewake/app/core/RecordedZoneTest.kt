@@ -7,7 +7,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 /**
- * Fremde Nächte überall in der Zone ihrer Aufzeichnung (Audit F-3, Entscheid r1AD 14.11.2026): Nachtdatum, Diagramme,
+ * Fremde Nächte überall in der Zone ihrer Aufzeichnung: Nachtdatum, Diagramme,
  * Übersicht, Trends und Regelmässigkeit; ohne Zone die des Geräts. Gegenstück: `RecordedZoneTests` (Swift), gleiche Fälle.
  */
 class RecordedZoneTest {

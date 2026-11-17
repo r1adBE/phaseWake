@@ -25,7 +25,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * Audit UI-9, Nachtrag: Zeiten ausserhalb der Bildschirme der App (Mitteilungen, Kachel, Komplikation) mit den Ziffern
+ * Zeiten ausserhalb der Bildschirme der App (Mitteilungen, Kachel, Komplikation) mit den Ziffern
  * der Sprache – Arabisch mit ٠–٩, Deutsch mit 0–9.
  */
 @RunWith(RobolectricTestRunner::class)
@@ -38,7 +38,7 @@ class OutsideTimeDigitsTest {
     private val start = LocalDateTime.of(2026, 11, 12, 6, 30).atZone(zone).toInstant()
     private val target = LocalDateTime.of(2026, 11, 12, 7, 0).atZone(zone).toInstant()
 
-    /** Die App liest seit N-10 beim Start die 12/24-Std.-Einstellung; hier fest 24 Std. (Erwartung «06:30»). */
+    /** Die App liest beim Start die 12/24-Std.-Einstellung; hier fest 24 Std. (Erwartung «06:30»). */
     @Before
     fun use24Hour() {
         Settings.System.putString(RuntimeEnvironment.getApplication().contentResolver, Settings.System.TIME_12_24, "24")

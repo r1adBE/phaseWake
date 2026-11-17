@@ -17,7 +17,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 
 /**
- * Wiederherstellen gegen Prozessende ([RestoreJournal], Review K-03): Endet der Prozess zwischen Nächten und DataStore,
+ * Wiederherstellen gegen Prozessende ([RestoreJournal]): Endet der Prozess zwischen Nächten und DataStore,
  * gilt beim nächsten Start wieder der alte Stand (alte Nächte zurück) oder, wenn der DataStore schon geschrieben war,
  * der neue. Ein «neuer Prozess» ist hier ein neues [RestoreJournal] und ein neues [NightRepository] auf denselben Dateien.
  */
@@ -60,7 +60,7 @@ class RestoreJournalTest {
         // Das `edit` hatte die Kennung schon geschrieben: der neue Stand ist vollständig.
         assertEquals(RestoreJournal.Outcome.FINISHED, journal.recover("t2", NightRepository(nightsFile)))
         assertEquals(restored, NightRepository(nightsFile).load())
-        // Die Marke bleibt bis nach dem Abgleich mit der Uhr (Review N-3): Endet der Prozess vorher, wieder FINISHED.
+        // Die Marke bleibt bis nach dem Abgleich mit der Uhr: Endet der Prozess vorher, wieder FINISHED.
         assertEquals("t2", journal.pendingToken())
         assertEquals(RestoreJournal.Outcome.FINISHED, RestoreJournal(dir).recover("t2", NightRepository(nightsFile)))
         assertEquals(restored, NightRepository(nightsFile).load())

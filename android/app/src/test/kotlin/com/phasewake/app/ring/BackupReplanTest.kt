@@ -35,7 +35,7 @@ import kotlin.test.assertTrue
 import kotlin.test.fail
 
 /**
- * Neuplanen des Zweitweckers (Audit A-2) und Nachholen nach einem Neustart mit entsperrtem Speicher (Audit A-5):
+ * Neuplanen des Zweitweckers und Nachholen nach einem Neustart mit entsperrtem Speicher:
  * - Der bisherige Zweitwecker bleibt stehen, während das Handy rechnet (früher zuerst aufgehoben), und wird nur
  *   aufgehoben, wenn keiner mehr gilt.
  * - «Zuletzt gesehen» der Uhr hat eine Frist: Hängen die Wear-Dienste, plant das Handy trotzdem.

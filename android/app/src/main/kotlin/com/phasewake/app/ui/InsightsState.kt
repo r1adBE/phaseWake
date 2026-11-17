@@ -61,10 +61,10 @@ internal class Insights(
 
 /**
  * Rechnet die [Insights]. [healthCheck] zählt bei jedem Fortsetzen und beim Öffnen des Verlaufs hoch: Dann wird Health
- * Connect neu geprüft und höchstens alle 5 Min neu gelesen ([HealthReadGate], Audit PERF-05); [healthGrant] zählt jede
+ * Connect neu geprüft und höchstens alle 5 Min neu gelesen ([HealthReadGate]); [healthGrant] zählt jede
  * Erteilung der Berechtigung, danach wird gleich gelesen.
  *
- * Gerechnet wird auf [Dispatchers.Default] (Audit PERF-12), nicht beim Zusammensetzen auf dem Hauptthread; bis das neue
+ * Gerechnet wird auf [Dispatchers.Default], nicht beim Zusammensetzen auf dem Hauptthread; bis das neue
  * Ergebnis da ist, bleibt das vorige stehen. Nur das erste Ergebnis und das erste mit gelesenem Verlauf (vorher `null`)
  * entstehen gleich beim Zusammensetzen: Sonst zeigten Verlauf und Detailseite kurz «keine Nächte» (die Detailseite
  * kehrte dann sogar zurück).

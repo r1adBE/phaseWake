@@ -7,7 +7,7 @@ on:
 
 permissions:
   contents: read
-  # Prüfung, ob die CI für genau diesen Stand grün ist (Audit F-05).
+  # Prüfung, ob die CI für genau diesen Stand grün ist.
   actions: read
 
 concurrency:
@@ -18,7 +18,7 @@ jobs:
   bundle:
     name: App Bundles (Handy, Uhr)
     runs-on: ubuntu-latest
-    # Secrets des Upload-Schlüssels liegen in der GitHub-Umgebung «store» (nur main, docs/PLAY.md, Audit 5314d25 D-06).
+    # Secrets des Upload-Schlüssels liegen in der GitHub-Umgebung «store» (nur main, docs/PLAY.md).
     environment: store
     defaults:
       run:
@@ -68,7 +68,7 @@ jobs:
         run: |
           set -euo pipefail
           # Nur prüfen, ob alles da ist (früh scheitern statt nach dem Build). Der Schlüssel wird erst beim
-          # Signieren als Datei abgelegt (Audit 071597f DA-2).
+          # Signieren als Datei abgelegt.
           missing=""
           [ -n "$KEYSTORE_BASE64" ] || missing="$missing PLAY_UPLOAD_KEYSTORE_BASE64"
           [ -n "$STORE_PASSWORD" ] || missing="$missing PLAY_UPLOAD_STORE_PASSWORD"
@@ -91,8 +91,8 @@ jobs:
         run: |
           set -o pipefail
           # Wie die CI: Release-Manifeste für release_check.py, dazu die Bundles. Ohne Schlüssel und Passwörter:
-          # Gradle und alle Bibliotheken des Builds sehen weder die Secrets noch die Schlüsseldatei (Audit 5314d25
-          # D-06, 071597f DA-2); signiert wird erst nach dem Beenden des Gradle-Daemons.
+          # Gradle und alle Bibliotheken des Builds sehen weder die Secrets noch die Schlüsseldatei;
+          # signiert wird erst nach dem Beenden des Gradle-Daemons.
           ./gradlew --stacktrace :app:assembleRelease :wear:assembleRelease :app:bundleRelease :wear:bundleRelease 2>&1 | tee -a build.log
       - name: Store-Build prüfen
         run: python3 ../.github/scripts/release_check.py
@@ -106,7 +106,7 @@ jobs:
         run: |
           set -euo pipefail
           # Erst den Gradle-Daemon (samt Plugins und Bibliotheken des Builds) beenden: er läuft sonst weiter und
-          # könnte die Schlüsseldatei lesen, die erst jetzt entsteht (Audit 071597f DA-2).
+          # könnte die Schlüsseldatei lesen, die erst jetzt entsteht.
           ./gradlew --stop
           printf '%s' "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/upload.jks"
           [ -s "$RUNNER_TEMP/upload.jks" ] || { echo "::error title=Store-Build::PLAY_UPLOAD_KEYSTORE_BASE64 ergibt keine Datei"; exit 1; }

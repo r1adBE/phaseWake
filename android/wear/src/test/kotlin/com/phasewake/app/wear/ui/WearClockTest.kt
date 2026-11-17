@@ -15,7 +15,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * Audit N-10: Die Galaxy Watch zeigte Zeiten immer im Format der Sprache (Deutsch 24 h, Englisch 12 h), auch wenn die
+ * Die Galaxy Watch zeigte Zeiten immer im Format der Sprache (Deutsch 24 h, Englisch 12 h), auch wenn die
  * Uhr auf das andere Format gestellt war. Jetzt folgen sie der 12/24-h-Einstellung ([WearClock]).
  */
 @RunWith(RobolectricTestRunner::class)

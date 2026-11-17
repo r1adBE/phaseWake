@@ -22,7 +22,7 @@ import java.time.Duration
 import java.time.LocalDate
 
 /**
- * Bildschirmfotos ohne doppelte Texte (r1AD 13.11.2026): Startseite während der Lernphase mit nur einer Karte (Lernphase
+ * Bildschirmfotos ohne doppelte Texte: Startseite während der Lernphase mit nur einer Karte (Lernphase
  * samt «Nacht aufzeichnen»), nach der Lernphase die eigene Karte «Nacht-Aufzeichnung» mit kurzem Hinweis, und die Gruppe
  * der Lernphase in den Einstellungen (Titel, Schalter «Aktiv», «Details» und «Neu lernen» direkt untereinander).
  */

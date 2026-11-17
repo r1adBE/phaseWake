@@ -42,11 +42,11 @@ import java.time.Instant
  * Epochen ([NoiseFloor]; solange es zu wenige sind, das gelernte [personalFloor]); bei jeder neuen Epoche neu berechnet
  * und auf die ganze Strecke angewendet.
  *
- * Spätes Einschlafen (Befund 09.11.2026): Ist [maxEnd] erreicht und war in den letzten 15 Min eine gemessene Epoche
+ * Spätes Einschlafen: Ist [maxEnd] erreicht und war in den letzten 15 Min eine gemessene Epoche
  * unruhig ([OnsetRules.restless]), verlängert sich die Messung um je [EXTEND_STEP] statt aufzugeben, bis höchstens
  * [extendCap], nicht unter [com.phasewake.app.wear.schedule.AutoOnset.MIN_BATTERY_PERCENT] Akku
  * ([OnsetRules.extendUntil]); Zeile «… extended until …». Zuvor verschiebt die Zeit ohne Tragen (Ladegerät, Off-Body)
- * die Grenze um ihre Dauer, ebenso höchstens bis [extendCap] (HG-3, [OnsetRules.awayUntil]; «… (not worn)»).
+ * die Grenze um ihre Dauer, ebenso höchstens bis [extendCap] ([OnsetRules.awayUntil]; «… (not worn)»).
  *
  * @param threshold Leicht-Schwelle (Startwert oder kalibriert).
  * @param latestGiveUp 15 Min vor der eingestellten Weckzeit.
@@ -65,7 +65,7 @@ class OnsetMonitor(
     private val extendCap: Instant? = null,
     /** Gelerntes Grundrauschen der Lernphase ([com.phasewake.app.core.DetectorConfig.personalFloor]); `null` = keines. */
     private val personalFloor: Double? = null,
-    /** F-6: Vom Ladegerät genommen und Akku unter der Grenze der automatischen Messung: aufhören; `null` = weiter messen. */
+    /** Vom Ladegerät genommen und Akku unter der Grenze der automatischen Messung: aufhören; `null` = weiter messen. */
     private val onLowBattery: (() -> Unit)? = null,
     private val now: () -> Instant = Instant::now,
     private val onOnset: (Instant) -> Unit,
@@ -87,8 +87,8 @@ class OnsetMonitor(
 
     /**
      * Grundrauschen der bisher gemessenen Epochen ([NoiseFloor.floor]; solange es zu wenige sind, [personalFloor]), nach
-     * dem Einschlafen bis zur erkennenden Epoche ([OnsetRules.scan], Fix KN-3). Nach dem Einschlafen oder Aufgeben gilt es
-     * als Vorwissen im Weckfenster derselben Nacht ([OnsetFloorStore], Vollaudit K-1); lief die Messung ins Fenster, nicht.
+     * dem Einschlafen bis zur erkennenden Epoche ([OnsetRules.scan]). Nach dem Einschlafen oder Aufgeben gilt es
+     * als Vorwissen im Weckfenster derselben Nacht ([OnsetFloorStore]); lief die Messung ins Fenster, nicht.
      */
     var floor: Double? = null
         private set
@@ -112,18 +112,18 @@ class OnsetMonitor(
         override fun onReceive(context: Context, intent: Intent) = onPower(intent.action == Intent.ACTION_POWER_CONNECTED)
     }
 
-    /** Netzteil an ([plugged]) oder ab: Zeit am Ladegerät beginnen bzw. beenden (E-5). */
+    /** Netzteil an ([plugged]) oder ab: Zeit am Ladegerät beginnen bzw. beenden. */
     private fun onPower(plugged: Boolean) {
         if (mark(chargingTimes, plugged, SystemClock.elapsedRealtimeNanos())) {
             log(DiagKind.BATTERY, "$label ${if (plugged) "charging, waiting" else "charging ended"}")
         }
-        // F-6: Die automatische Messung begann trotz wenig Akku, weil die Uhr lud; ist er nach dem Laden noch zu tief, endet sie.
+        // Die automatische Messung begann trotz wenig Akku, weil die Uhr lud; ist er nach dem Laden noch zu tief, endet sie.
         val stop = onLowBattery ?: return
         if (!plugged && !reported && AutoOnset.skipForBattery(battery())) { reported = true; stop() }
     }
 
     /**
-     * Zeiten nicht am Handgelenk laut Off-Body-Sensor (E-5, Entscheid r1AD 14.11.2026), wie [chargingTimes]. Ohne Sensor
+     * Zeiten nicht am Handgelenk laut Off-Body-Sensor, wie [chargingTimes]. Ohne Sensor
      * oder ohne Meldung leer: Dann gilt nur die Ladeerkennung.
      */
     private val offBodyTimes = mutableListOf<Pair<Long, Long?>>()
@@ -143,7 +143,7 @@ class OnsetMonitor(
         override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) = Unit
     }
 
-    /** Off-Body-Sensor: nicht am Handgelenk ([off]) ab [atNanos] bzw. wieder getragen (E-5). */
+    /** Off-Body-Sensor: nicht am Handgelenk ([off]) ab [atNanos] bzw. wieder getragen. */
     private fun onOffBody(off: Boolean?, atNanos: Long) {
         if (off == null) return
         if (mark(offBodyTimes, off, atNanos)) log(DiagKind.BATTERY, "$label ${if (off) "not worn, waiting" else "worn again"}")
@@ -172,7 +172,7 @@ class OnsetMonitor(
         log(DiagKind.MEASURE_START, "$label sensor wake=${if (s.continuous) 1 else 0} fifo=${s.wakeUpFifo} mode=${if (s.continuous) "continuous" else "sample"}")
         s.start(listen = s.continuous)
         ContextCompat.registerReceiver(context, tickReceiver, IntentFilter(ACTION_TICK), ContextCompat.RECEIVER_NOT_EXPORTED)
-        // Uhr am Ladegerät (E-5): Stand jetzt, danach jede Änderung (Systemmeldungen erreichen auch nicht exportierte Empfänger).
+        // Uhr am Ladegerät: Stand jetzt, danach jede Änderung (Systemmeldungen erreichen auch nicht exportierte Empfänger).
         val battery = context.registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
         if ((battery?.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) ?: 0) != 0) chargingTimes += startNanos to null
         val power = IntentFilter().apply {
@@ -180,7 +180,7 @@ class OnsetMonitor(
             addAction(Intent.ACTION_POWER_DISCONNECTED)
         }
         ContextCompat.registerReceiver(context, powerReceiver, power, ContextCompat.RECEIVER_NOT_EXPORTED)
-        // Nicht am Handgelenk (E-5): Der Sensor meldet den Stand bei der Anmeldung und danach jeden Wechsel.
+        // Nicht am Handgelenk: Der Sensor meldet den Stand bei der Anmeldung und danach jeden Wechsel.
         offBodySensor?.let { sensorManager?.registerListener(offBodyListener, it, SensorManager.SENSOR_DELAY_NORMAL, handler) }
         scheduleTick()
     }
@@ -226,14 +226,14 @@ class OnsetMonitor(
         epochs.forEachIndexed { i, epoch ->
             val index = first + i
             val inSample = s.continuous || index in sampleFrom until sampleUntil
-            // Am Ladegerät oder nicht am Handgelenk leer (E-5): unterbricht die ruhige Strecke, zählt nicht fürs Grundrauschen.
+            // Am Ladegerät oder nicht am Handgelenk leer: unterbricht die ruhige Strecke, zählt nicht fürs Grundrauschen.
             val away = OnsetRules.charging(index, startNanos, chargingTimes) || OnsetRules.charging(index, startNanos, offBodyTimes)
             val motion = if (away) null else epoch.motion
             motions += motion
             measured += inSample
             if (inSample) period.add(motion)
         }
-        // Epoche für Epoche: Grundrauschen und Regel nur bis zur Epoche, in der das Einschlafen erkannt ist (Fix KN-3).
+        // Epoche für Epoche: Grundrauschen und Regel nur bis zur Epoche, in der das Einschlafen erkannt ist.
         val (index, noise) = OnsetRules.scan(motions, measured, from, threshold, personalFloor, s.continuous, floor)
         floor = noise
         if (index == null) return
@@ -258,7 +258,7 @@ class OnsetMonitor(
         if (reported) return
         val cap = extendCap
         val at = now()
-        // Zeit am Ladegerät oder nicht am Handgelenk verschiebt die Grenze (HG-3); nicht unter der Akku-Grenze, ausser beim Laden.
+        // Zeit am Ladegerät oder nicht am Handgelenk verschiebt die Grenze; nicht unter der Akku-Grenze, ausser beim Laden.
         val away = Duration.ofNanos(OnsetRules.awayNanos(chargingTimes + offBodyTimes, startNanos, SystemClock.elapsedRealtimeNanos()))
         val awayEnd = cap?.let { OnsetRules.awayUntil(baseMaxEnd, away, latestGiveUp, it) }?.takeIf { at.isBefore(it) }
         val plugged = chargingTimes.lastOrNull()?.let { it.second == null } == true

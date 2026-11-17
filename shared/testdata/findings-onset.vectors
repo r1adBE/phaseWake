@@ -1,4 +1,4 @@
-# Einschlafdauer aus der eigenen Messung der Uhr (Findings.ownLatency, Entscheid r1AD 15.11.2026), nur für Nächte, in
+# Einschlafdauer aus der eigenen Messung der Uhr (Findings.ownLatency), nur für Nächte, in
 # denen die Gesundheits-App keine liefert: je Zeile erwartete Minuten («-» = keine), Tabulator, Nacht der
 # Gesundheits-App «Beginn Ende», Tabulator, Aufzeichnungen mit erkanntem Einschlafen mit «;» getrennt
 # «Beginn Ende Bett Eingeschlafen» (leer = keine), optional Tabulator und Nächte der Uhr mit «;» getrennt

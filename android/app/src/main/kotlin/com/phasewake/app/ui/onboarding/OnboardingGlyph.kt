@@ -17,7 +17,7 @@ import kotlin.math.PI
 import kotlin.math.sin
 
 /**
- * Kleines Bild über dem Titel eines Einrichtungsschritts (Gestaltung 2, gleich wie `OnboardingGlyph` am iPhone): die
+ * Kleines Bild über dem Titel eines Einrichtungsschritts (gleich wie `OnboardingGlyph` am iPhone): die
  * Welle aus dem Logo mit dem Mond als Weckpunkt, der mit jedem Schritt weiter nach rechts wandert – so zeigt das Bild
  * zugleich, wie weit die Einrichtung ist. Nur Schmuck (für Bildschirmleser verborgen; «Schritt x von y» steht darüber).
  * [step]: aktueller Schritt ab 0, [steps]: Anzahl Schritte vor «Fertig».
@@ -25,7 +25,7 @@ import kotlin.math.sin
 @Composable
 internal fun OnboardingGlyph(step: Int, steps: Int, modifier: Modifier = Modifier) {
     val accent = MaterialTheme.colorScheme.primary
-    // Mond hell mit Rand im dunklen Modus, dunkel auf hellem Grund (wie das Logo, Audit N-8).
+    // Mond hell mit Rand im dunklen Modus, dunkel auf hellem Grund (wie das Logo).
     val dark = MaterialTheme.colorScheme.surface.luminance() < 0.5f
     val moon = if (dark) Night.Moon else Night.Top
     Canvas(modifier.size(96.dp, 36.dp).clearAndSetSemantics { }) {

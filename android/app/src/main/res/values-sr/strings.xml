@@ -398,7 +398,7 @@
     <string name="chart_window">Интервал буђења</string>
     <string name="chart_no_data">нема података</string>
     <string name="chart_feeling_hint">Додирни тачку за белешке те ноћи.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Пробни аларм</string>
     <string name="test_button">Тестирај за 2 минута</string>
     <string name="test_hint">Звони за 2 минута са подешавањима твог следећег аларма, без одлагања. Не рачуна се као ноћ.</string>
@@ -616,7 +616,7 @@
     <string name="learn_switch_hint">Твој сат ноћу мери покрете и пулс (од %1$d %% батерије). Искључено: нема аутоматског снимања, научене вредности остају.</string>
     <string name="learn_switch_title">Активно</string>
     <string name="watch_open_app_hint">Отвори Phase Wake на сату да прими наредбу.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Свака ноћ од почетка фазе учења – да ли је урачуната и, ако није, зашто и шта помаже. Phase Wake треба %1$d урачунатих ноћи.</string>
     <string name="learn_nights_empty">Још нема ноћи. Прва се овде појављује следећег јутра.</string>
     <string name="learn_night_facts">Измерено %1$s · %2$d вредности · пулс у %3$d %%</string>

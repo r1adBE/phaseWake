@@ -1,5 +1,5 @@
 # Bis 15.11.2026: Beide Regeln greifen in Epoche 16; Wach hat Vorrang (16 AWAKE).
-# Seit Regel S5 (Entscheid r1AD 15.11.2026): Epoche 15 ist eine starke Bewegung (0.15 >= Wach-Schwelle 0.1) mit
+# Seit Regel S5: Epoche 15 ist eine starke Bewegung (0.15 >= Wach-Schwelle 0.1) mit
 # Pulsanstieg (Mittel 50/60 = 55 >= 52.5) -> sanft wecken, eine Epoche vor der Wach-Regel. Vorrang bei gleicher
 # Epoche: strong_awake_same_epoch.
 @expect 15 LIGHT_SLEEP

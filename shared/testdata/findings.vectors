@@ -1,4 +1,4 @@
-# Auffälligkeiten (Findings, Entscheid r1AD 15.11.2026): je Zeile erwartete Auffälligkeiten, Tabulator, Nachtdatum
+# Auffälligkeiten (Findings): je Zeile erwartete Auffälligkeiten, Tabulator, Nachtdatum
 # «heute», Tabulator, Nächte mit «;» getrennt. Erwartet: «-» = keine, sonst nach Priorität mit «,» getrennt
 # «ART=Wert» bzw. bei wenig Tiefschlaf mit Zusammenhang «LOW_DEEP=Wert/URSACHE/mit/ohne» (Prozent).
 # Nacht: Nachtdatum, Einschlafbeginn, Ende (Ortszeit; vor 12:00 = Tag nach dem Nachtdatum), Schlaf, Einschlafdauer,

@@ -10,7 +10,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Abgleich der Wecker kommt zur Ruhe, auch wenn eine Nachricht verloren geht (Audit AN-1): Weicht der zusammengeführte
+ * Abgleich der Wecker kommt zur Ruhe, auch wenn eine Nachricht verloren geht: Weicht der zusammengeführte
  * Stand vom empfangenen ab, antwortet der Empfänger mit seinem Stand ([AlarmRepository.Received.reply]); stimmt er
  * überein, antwortet niemand. Über das Format der Nachricht ([QueueMessages]) wie zwischen Handy und Uhr.
  */
@@ -83,7 +83,7 @@ class AlarmConvergenceTest {
 
     @Test
     fun replaceAllKeepsAtMostEightAlarms() = runTest {
-        // Audit DA-8: Eine Sicherung mit mehr Weckern (fremd oder manipuliert) ergab mehr als die erlaubten 8.
+        // Eine Sicherung mit mehr Weckern (fremd oder manipuliert) ergab mehr als die erlaubten 8.
         val many = (0 until 10).map { alarm("w$it", hour = 23 - it) }
         val restored = phone.replaceAll(many)
         assertEquals(AlarmSpec.MAX_ALARMS, restored.alarms.size)
@@ -92,7 +92,7 @@ class AlarmConvergenceTest {
 
     @Test
     fun implausibleTimesFromThePeerAndInStorage() = runTest {
-        // Audit KN-4/AN-5: Long.MAX_VALUE als Listen-Zeitpunkt verwirft die Nachricht; einzelne Zeitpunkte fallen weg.
+        // Long.MAX_VALUE als Listen-Zeitpunkt verwirft die Nachricht; einzelne Zeitpunkte fallen weg.
         val max = Long.MAX_VALUE
         val body = QueueMessages.encodeAlarms(AlarmSnapshot(listOf(alarm("a")), 10L, mapOf("a" to max), mapOf("x" to max)))
         assertEquals(AlarmSnapshot(listOf(alarm("a")), 10L), QueueMessages.decodeAlarms(body))

@@ -54,7 +54,7 @@ public final class SettingsFile: SettingsStore, @unchecked Sendable {
     /// Schlüssel mit den Namen, die schon aus `UserDefaults` übernommen sind (``adopt(_:from:)``).
     static let adoptedKey = "settingsFile.adopted"
 
-    /// Zeitpunkt (ms), zu dem eine kaputte Datei durch einen leeren Stand ersetzt wurde (Prüfrunde 2 SP-7, wie
+    /// Zeitpunkt (ms), zu dem eine kaputte Datei durch einen leeren Stand ersetzt wurde (wie
     /// `PhaseWakeStore.RESET_AT` auf Android); sonst fehlt er.
     public static let resetAtKey = "settingsFile.resetAt"
 
@@ -139,7 +139,7 @@ public final class SettingsFile: SettingsStore, @unchecked Sendable {
     }
 
     /// Ob der Stand der Datei gelesen ist (oder es keine Datei gibt); ist er es noch nicht, versucht es jetzt nochmals.
-    /// Vor dem ersten Entsperren falsch: Wer aus diesem Stand Wecker plant oder löscht, wartet damit (Tiefenaudit AP3-1).
+    /// Vor dem ersten Entsperren falsch: Wer aus diesem Stand Wecker plant oder löscht, wartet damit.
     public var isReadable: Bool {
         lock.lock(); defer { lock.unlock() }
         if readOnly { loaded = false }
@@ -175,7 +175,7 @@ public final class SettingsFile: SettingsStore, @unchecked Sendable {
     /// Liest die Datei, falls noch nicht geschehen, legt die Änderungen dieser Sitzung darüber und schreibt sie dann.
     /// Fehlt die Datei, gilt ein leerer Stand. Ist sie da, aber nicht lesbar, bleibt `loaded` falsch (der nächste
     /// Zugriff versucht es wieder). Eine kaputte Datei wird als «.broken» beiseitegelegt (die jüngste bleibt), dann gilt
-    /// ein leerer Stand mit ``resetAtKey`` (SP-7).
+    /// ein leerer Stand mit ``resetAtKey``.
     /// Nur lesend: Nicht lesbar lässt den zuletzt gelesenen Stand stehen; eine kaputte Datei bleibt liegen (leerer Stand).
     private func loadLocked() {
         guard !loaded else { return }
@@ -233,7 +233,7 @@ public final class SettingsFile: SettingsStore, @unchecked Sendable {
 
     /// Wert für die Datei aus `disk` (Datei) und `early` (vor dem ersten Lesen gesetzt). Ein Wörterbuch entstand dann aus
     /// dem leeren Stand (lesen, ändern, schreiben), darum je Eintrag darübergelegt: Die übrigen Einträge der Datei bleiben
-    /// (Prüfrunde 2 SP-3, z. B. `backupSuppressedByAlarm`). Alles andere ersetzt den Wert der Datei, `nil` entfernt ihn.
+    /// (z. B. `backupSuppressedByAlarm`). Alles andere ersetzt den Wert der Datei, `nil` entfernt ihn.
     static func merged(disk: Any?, early: Any?) -> Any? {
         guard let early = early as? [String: Any], let disk = disk as? [String: Any] else { return early }
         return disk.merging(early) { $1 }

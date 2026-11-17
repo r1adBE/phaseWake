@@ -2,7 +2,7 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWake
 
-/// Akku je Nacht in der Detailseite (r1AD 14.11.2026): eine Zeile mit den bekannten Teilen, ohne Wert keine Zeile.
+/// Akku je Nacht in der Detailseite: eine Zeile mit den bekannten Teilen, ohne Wert keine Zeile.
 /// Wie `BatteryLineTest` (Android).
 final class BatteryLinePhoneTests: XCTestCase {
     private let t0 = Date(timeIntervalSince1970: 1_794_603_600)

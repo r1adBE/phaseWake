@@ -78,7 +78,7 @@ internal fun FitColumn(heightShare: Float, modifier: Modifier = Modifier, conten
 }
 
 /**
- * «Halten zum Stoppen» als gefüllter Hauptknopf in Lavendel (Audit U-4), wie auf dem Handy: beim Halten läuft
+ * «Halten zum Stoppen» als gefüllter Hauptknopf in Lavendel, wie auf dem Handy: beim Halten läuft
  * von links eine helle Füllung darüber. Dunkle Schrift auf Lavendel und auf der Füllung: Kontrast ≥ 4.5:1.
  */
 @Composable
@@ -142,7 +142,7 @@ internal fun Ringing(ui: RingUi.Ringing, reason: String, fit: ReasonFit, light: 
 }
 
 /**
- * «Schlummern 5 Min» (Audit F-10), darunter klein «noch N» (r1AD 10.11.2026), beide Zeilen mittig; auch auf kleinen
+ * «Schlummern 5 Min», darunter klein «noch N», beide Zeilen mittig; auch auf kleinen
  * Uhren mindestens 48 dp hoch (Ziel für den Finger). «Schlummern 5 Min» bricht bei Bedarf auf zwei Zeilen um, «noch N»
  * bleibt einzeilig; dass der Knopf mit grosser Schrift ganz sichtbar bleibt, sichern [MAX_FONT_SCALE] und [FitColumn].
  */

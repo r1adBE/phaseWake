@@ -18,7 +18,7 @@ import com.phasewake.app.core.BatteryTrack
 import java.time.Instant
 
 /**
- * Akkustand je Nacht auf diesem Gerät (Handy oder Uhr, r1AD 14.11.2026); die Rechnung steht in [BatteryTrack]. Die
+ * Akkustand je Nacht auf diesem Gerät (Handy oder Uhr); die Rechnung steht in [BatteryTrack]. Die
  * laufende Nacht liegt in einer kleinen Datei (SharedPreferences) und übersteht so ein Prozessende.
  *
  * Ladegerät: Solange der Prozess lebt, meldet [listen] Anschliessen und Trennen sofort. Läuft er nicht, startet der Auftrag

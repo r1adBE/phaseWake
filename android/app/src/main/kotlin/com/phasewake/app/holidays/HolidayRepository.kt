@@ -85,7 +85,7 @@ class HolidayRepository(
     }
 
     /**
-     * Geschätzte Feiertage der nächsten [Holidays.SYNC_DAYS] Tage der gewählten Region (Audit F-2): gelten nicht als frei,
+     * Geschätzte Feiertage der nächsten [Holidays.SYNC_DAYS] Tage der gewählten Region: gelten nicht als frei,
      * die Einstellungen zeigen den nächsten mit «geschätzt». Liest die Datei höchstens einmal je Region und Tag.
      */
     suspend fun estimated(): Set<LocalDate> {
@@ -165,7 +165,7 @@ class HolidayRepository(
 
         /**
          * Stand der Regeln für die gespeicherten Feiertage ([SettingsRepository.holidayRules]); steigt, wenn sich ändert,
-         * welche Tage als frei gelten. 1: geschätzte Tage nicht mehr (Audit F-2, 14.11.2026).
+         * welche Tage als frei gelten. 1: geschätzte Tage nicht mehr.
          */
         const val RULES = 1
 
@@ -176,7 +176,7 @@ class HolidayRepository(
 
 /**
  * Feiertage der nächsten [Holidays.SYNC_DAYS] Tage: [sure] gelten als frei, [estimated] nur geschätzt
- * ([Holidays.isEstimated], Audit F-2; ein Tag, der auch sicher ein Feiertag ist, steht nur in [sure]).
+ * ([Holidays.isEstimated]; ein Tag, der auch sicher ein Feiertag ist, steht nur in [sure]).
  */
 internal data class HolidayDays(val sure: Set<LocalDate>, val estimated: Set<LocalDate>) {
     companion object {

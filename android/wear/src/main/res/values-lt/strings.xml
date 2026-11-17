@@ -77,7 +77,7 @@
     <string name="editor_delete_title">Ištrinti šį žadintuvą?</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Iki %1$d žadintuvų – ištrink vieną, kad pridėtum naują.</string>
     <string name="editor_enabled">Žadintuvas įjungtas</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Praleisti kitą kartą</string>
     <string name="alarm_skipped">Praleista: %1$s</string>
     <string name="nap_title">Pogulis</string>
@@ -111,7 +111,7 @@
     <string name="record_since">Nuo %1$s</string>
     <string name="notification_record_title">Naktis įrašoma</string>
     <string name="record_battery_low">Per mažai baterijos įrašymui</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Mokymosi etapas</string>
     <string name="watch_learn_warn">Įkrauk laikrodį, kitaip ši naktis nebus įskaityta mokymosi etapui (baterija %1$d %%, reikia %2$d %%).</string>
     <string name="watch_learn_skip_battery">Ši naktis neįskaitoma mokymosi etapui: baterija %1$d %%, reikia %2$d %%.</string>

@@ -4,8 +4,7 @@ import SwiftUI
 /// «Nacht aufzeichnen» auf der Startseite (wie `RecordCard` auf Android), nur mit einer Apple Watch, die es kennt
 /// (`WatchNight.watchCanRecord`): gemessen wird auf der Uhr, das iPhone schickt nur Start und Stopp. Symbol und Titel in
 /// einer Zeile, darunter der Hinweis bzw. «Aufzeichnung läuft seit …», dann der Knopf rechts. Nur, solange die Lernphase
-/// nicht läuft (fertig oder aus), mit kurzem Hinweis; während der Lernphase steckt der Knopf in `LearningHomeCard`
-/// (r1AD 13.11.2026).
+/// nicht läuft (fertig oder aus), mit kurzem Hinweis; während der Lernphase steckt der Knopf in `LearningHomeCard`.
 struct RecordCard: View {
     @Environment(PhoneModel.self) private var model
     @Environment(\.colorScheme) private var scheme
@@ -15,7 +14,7 @@ struct RecordCard: View {
         let learning = PhoneLearning.shared
         let inLearningCard = learning.watchCanLearn(model) && learning.progress != nil
         // Solange die Frage «Lernphase starten / Später» offen ist, keine eigene Karte – ausser es läuft schon eine
-        // Aufzeichnung (Stopp erreichbar), wie Android (r1AD 13.11.2026).
+        // Aufzeichnung (Stopp erreichbar), wie Android.
         let asking = learning.state.askConsent && learning.watchCanLearn(model) && night.recordSince == nil
         if night.watchCanRecord(model) && !inLearningCard && !asking {
             let since = night.recordSince
@@ -46,7 +45,7 @@ struct RecordButton: View {
     }
 }
 
-/// Keine Antwort der Uhr (App dort wohl zu): ehrlich sagen statt still wieder freigeben (Audit AP-8).
+/// Keine Antwort der Uhr (App dort wohl zu): ehrlich sagen statt still wieder freigeben.
 struct RecordUnansweredHint: View {
     @Environment(\.colorScheme) private var scheme
 

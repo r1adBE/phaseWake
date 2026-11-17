@@ -56,9 +56,9 @@ class WakeDetector(config: DetectorConfig = DetectorConfig()) {
         if (hits(config.awakeWindow, wakeThreshold) >= config.awakeHits) {
             return wake(WakeReason.AWAKE)
         }
-        // Leicht-Regel erst mit Grundrauschen (4 Werte oder Vorwert, Audit c3b8b01 E-1): Ohne zählte das Rauschen einer
+        // Leicht-Regel erst mit Grundrauschen (4 Werte oder Vorwert): Ohne zählte das Rauschen einer
         // Uhr wie der Galaxy Watch (ruhig 0.02) gegen die Startschwelle 0.002 als Bewegung, und es entschied allein der Puls.
-        // Regel S5 (Entscheid r1AD 15.11.2026): Statt 2 leichter Bewegungen genügt eine starke (≥ wirksame Wach-Schwelle)
+        // Regel S5: Statt 2 leichter Bewegungen genügt eine starke (≥ wirksame Wach-Schwelle)
         // in den letzten [STRONG_WINDOW] Epochen, mit derselben Pulsbedingung und denselben Sperren.
         val moved = hits(STRONG_WINDOW, wakeThreshold) >= 1 ||
             hits(config.lightWindow, NoiseFloor.light(config, floor)) >= config.lightHits

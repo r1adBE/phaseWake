@@ -17,7 +17,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import kotlin.test.assertNull
 
-/** Nacht aus der Gesundheits-App in der Zone ihrer Aufzeichnung anzeigen (Audit F-3): Titel und Hypnogramm. */
+/** Nacht aus der Gesundheits-App in der Zone ihrer Aufzeichnung anzeigen: Titel und Hypnogramm. */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35], application = QuietApp::class)
 class NightZoneTest {

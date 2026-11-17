@@ -13,7 +13,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Nacht-Check: Hinweis, wenn Handy und Uhr verschiedene Testversionen haben (Entscheid r1AD 14.11.2026). Nur ein
+ * Nacht-Check: Hinweis, wenn Handy und Uhr verschiedene Testversionen haben. Nur ein
  * Hinweis, nur mit beiden Nummern und nicht zusätzlich zu «Uhr-App veraltet».
  */
 @RunWith(RobolectricTestRunner::class)

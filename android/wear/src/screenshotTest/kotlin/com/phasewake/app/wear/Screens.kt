@@ -72,7 +72,7 @@ fun WatchRing() = Swiss {
     RingScreen(RingUi.Ringing("", WakeReason.LIGHT_SLEEP, now, snoozesLeft = 3), onDismiss = {}, onSnooze = {})
 }
 
-/** Kleine runde Uhr (um 192 dp): «noch 3» unter «Schlummern 5 Min» muss ganz sichtbar bleiben (Audit U-1). */
+/** Kleine runde Uhr (um 192 dp): «noch 3» unter «Schlummern 5 Min» muss ganz sichtbar bleiben. */
 @PreviewTest @Preview(locale = "de-rCH", name = "Uhr Wecken klein", device = WATCH_SMALL, showBackground = true, backgroundColor = 0xFF000000) @Composable
 fun WatchRingSmall() = Swiss {
     RingScreen(RingUi.Ringing("", WakeReason.LIGHT_SLEEP, now, snoozesLeft = 3), onDismiss = {}, onSnooze = {})

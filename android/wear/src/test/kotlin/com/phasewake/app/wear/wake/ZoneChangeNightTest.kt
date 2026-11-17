@@ -31,7 +31,7 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 /**
- * Zeitzonenwechsel im laufenden Weckfenster (Review 04.11. b, P1): Die Uhr misst weiter, und die Sicherung bleibt zur
+ * Zeitzonenwechsel im laufenden Weckfenster: Die Uhr misst weiter, und die Sicherung bleibt zur
  * geplanten absoluten Zielzeit – auch beim zweiten Neuplanen nach dem Wechsel (die Zone der Planung bleibt gespeichert).
  */
 @RunWith(RobolectricTestRunner::class)

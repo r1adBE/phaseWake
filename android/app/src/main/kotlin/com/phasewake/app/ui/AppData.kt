@@ -174,7 +174,7 @@ internal fun rememberSoundRec(app: PhaseWakeApp, data: AppData, checkRun: Int): 
     val soundRecChoice by app.settings.soundRecChoice.collectAsStateWithLifecycle(initialValue = null)
     fun tonight() = SleepNotes.nightDate(Instant.now(), ZoneId.systemDefault())
     val soundRecChosen = soundRecChoice?.takeIf { it.first == tonight() }?.second
-    // Ab der einen Bettzeit (mit gelernter Einschlafdauer, Audit O-03).
+    // Ab der einen Bettzeit (mit gelernter Einschlafdauer).
     val latency = data.learning?.values?.latencyMinutes
     val soundRecAuto = remember(soundRecDefault, data.alarms, data.sleepGoal, data.holidays, checkRun, latency) {
         val now = Instant.now()

@@ -200,7 +200,7 @@ final class SoundRecorder {
 
     /// Ausschnitte älter als 7 Tage weg, dazu Dateien ohne Eintrag in der Liste (z. B. nach einem Absturz; erst nach
     /// ``orphanAge``, damit ein gerade entstehender Ausschnitt bleibt) – wie Android (`SoundStore.cleanup`). Beim Start der
-    /// App, bei jeder Aufnahme, beim Öffnen und in der Hintergrund-Aktualisierung (`BackupRefresh`, Audit D2), damit die
+    /// App, bei jeder Aufnahme, beim Öffnen und in der Hintergrund-Aktualisierung (`BackupRefresh`), damit die
     /// 7 Tage auch gelten, wenn die App lange nicht geöffnet wird.
     func expire(now: Date = Date()) {
         let result = SoundEvents.expire(clips, now: now)

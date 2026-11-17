@@ -6,10 +6,10 @@ public enum SyncKeys {
     public static let alarms = "alarms"
     /// Zeitpunkt der letzten Änderung der Wecker in ms.
     public static let updatedAt = "updatedAt"
-    /// Anwendungskontext in beide Richtungen: Zeitpunkt der letzten Änderung je Wecker (Kennung → ms), Audit A-4
+    /// Anwendungskontext in beide Richtungen: Zeitpunkt der letzten Änderung je Wecker (Kennung → ms)
     /// (``AlarmStamps``). Fehlt bei älteren Versionen; dann gilt «neuere Liste gewinnt».
     public static let alarmStamps = "alarmStamps"
-    /// Anwendungskontext in beide Richtungen: gelöschte Wecker mit Zeitpunkt des Löschens (Kennung → ms), Audit A-4.
+    /// Anwendungskontext in beide Richtungen: gelöschte Wecker mit Zeitpunkt des Löschens (Kennung → ms).
     public static let alarmsDeleted = "alarmsDeleted"
     /// Eine Nacht im Format «phasewake-night 1», Uhr → iPhone.
     public static let night = "night"
@@ -20,7 +20,7 @@ public enum SyncKeys {
     /// Befehl: Wecken beendet (in beide Richtungen).
     public static let stop = "stop"
     /// Befehl Uhr → iPhone (mit `sentAt`): Die Uhr beginnt eine Nacht zu messen; das iPhone hält ab jetzt seinen Akkustand
-    /// fest (Akku je Nacht, r1AD 14.11.2026). Wie `DataLayer.PATH_NIGHT_BEGIN`. Ältere iPhone-Apps übergehen den Befehl.
+    /// fest (Akku je Nacht). Wie `DataLayer.PATH_NIGHT_BEGIN`. Ältere iPhone-Apps übergehen den Befehl.
     public static let nightBegin = "nightBegin"
     /// Befehl iPhone → Uhr: Schlummern.
     public static let snooze = "snooze"
@@ -35,7 +35,7 @@ public enum SyncKeys {
     public static let snoozesLeft = "snoozesLeft"
     /// Höchstalter eines «ring» (und eines «stop»/«snooze» vom iPhone) in Millisekunden; ein später zugestelltes wird verworfen.
     public static let maxRingAgeMs: Int64 = 2 * 60_000
-    /// Obergrenze für Inhalte der Uhr in Bytes (Audit S-2, wie Android `PeerLimit.MAX_BYTES`): Grösseres wird nicht
+    /// Obergrenze für Inhalte der Uhr in Bytes (wie Android `PeerLimit.MAX_BYTES`): Grösseres wird nicht
     /// verarbeitet. Die längste Aufzeichnung (12 Std., 1440 Epochen à höchstens etwa 45 Zeichen) hat rund 65 KB.
     public static let maxPeerBytes = 8 * 1024 * 1024
     /// Uhr → iPhone im Anwendungskontext: Zielzeit (ms), für die die Uhr scharf ist; 0 = nicht scharf.
@@ -45,7 +45,7 @@ public enum SyncKeys {
     public static let battery = "battery"
     /// Zeitpunkt der Akkumessung in ms seit 1970 (siehe `battery`).
     public static let batteryAt = "batteryAt"
-    /// Ob die Uhr bei der Akkumessung lud (Bool, Prüfrunde 2 F-6): Dann misst sie trotz wenig Akku, der Nacht-Check warnt
+    /// Ob die Uhr bei der Akkumessung lud (Bool): Dann misst sie trotz wenig Akku, der Nacht-Check warnt
     /// nicht. Ältere Uhr-Versionen schicken beim Laden gar keinen Akkustand.
     public static let batteryCharging = "batteryCharging"
     /// Älter als das gilt der gemeldete Akkustand als unbekannt (wie `WearSync.watchBattery()` auf Android).
@@ -91,8 +91,8 @@ public enum SyncKeys {
     /// Benutzerdaten Uhr → iPhone: eine Aufzeichnung der Lernphase oder von «Nacht aufzeichnen» im Format
     /// «phasewake-recording 1» (`NightRecording`).
     public static let learnRecording = "learnRecording"
-    /// Benutzerdaten Uhr → iPhone: Die Lernphase zeichnet eine Nacht nicht auf (``LearnSkip/encode()``, Lern-Übersicht,
-    /// r1AD 13.11.2026). Ältere iPhone-Versionen übergehen den Schlüssel.
+    /// Benutzerdaten Uhr → iPhone: Die Lernphase zeichnet eine Nacht nicht auf (``LearnSkip/encode()``,
+    /// Lern-Übersicht). Ältere iPhone-Versionen übergehen den Schlüssel.
     public static let learnSkip = "learnSkip"
     /// Befehl iPhone → Uhr: «Nacht aufzeichnen» starten.
     public static let recordStart = "recordStart"
@@ -101,7 +101,7 @@ public enum SyncKeys {
     /// Uhr → iPhone im Anwendungskontext: Beginn der laufenden Aufzeichnung (ms seit 1970), 0 = keine. Fehlt bei älteren
     /// Uhr-Versionen.
     public static let recordSince = "recordSince"
-    /// Uhr → iPhone im Anwendungskontext: Rekorder für eine Nacht nicht gestartet (``RecorderSkip/encode()``, Audit F-06),
+    /// Uhr → iPhone im Anwendungskontext: Rekorder für eine Nacht nicht gestartet (``RecorderSkip/encode()``),
     /// leer = keine Meldung. Fehlt bei älteren Uhr-Versionen; der Nacht-Check ist dann rot bis zur Zielzeit.
     public static let recorderSkip = "recorderSkip"
     /// Anwendungskontext iPhone → Uhr: Schalter «Einschlafen automatisch erkennen» (Bool). Fehlt er (älteres iPhone),

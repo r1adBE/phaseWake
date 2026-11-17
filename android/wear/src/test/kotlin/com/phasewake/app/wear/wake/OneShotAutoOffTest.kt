@@ -33,7 +33,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
-/** Auto-Aus des Einmal-Weckers am Nachtende (Fix G-1): nur die Fassung, die geklingelt hat. */
+/** Auto-Aus des Einmal-Weckers am Nachtende: nur die Fassung, die geklingelt hat. */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35], application = QuietWear::class)
 class OneShotAutoOffTest {

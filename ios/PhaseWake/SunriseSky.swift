@@ -2,10 +2,10 @@ import SwiftUI
 
 /// Farben eines Sonnenaufgangs, Verlauf identisch zu `SunriseSky` (Android).
 ///
-/// Schrift (Audit UI-6, Vollaudit N-3): je Text nach seiner Fläche auf dem Himmel (``ink(_:area:aspect:)``, wie
+/// Schrift: je Text nach seiner Fläche auf dem Himmel (``ink(_:area:aspect:)``, wie
 /// `SunriseSky.ink(area)` auf Android) – hell oder fast schwarz, je nachdem, welche über die Fläche (Ecken, Kanten, Mitte)
 /// den grösseren kleinsten Kontrast hat. Dahinter liegt eine halbdurchsichtige Fläche in der Gegenfarbe
-/// (``plaque(for:)``, Design 5): Mit ihr erreicht die Schrift überall mindestens 4.5:1, auch dort, wo die Sonne den Himmel
+/// (``plaque(for:)``): Mit ihr erreicht die Schrift überall mindestens 4.5:1, auch dort, wo die Sonne den Himmel
 /// unter einer breiten Zeile hell und dunkel zugleich macht. Der gedämpfte Ton nur, wenn auch er das erreicht.
 /// ``palette(_:)`` bleibt für die Mitte des unteren Rands (Fortschritt allein).
 enum SunriseSky {
@@ -21,7 +21,7 @@ enum SunriseSky {
 
     /// Mindestkontrast der Schrift (WCAG AA).
     static let minContrast = 4.5
-    /// Deckkraft der Fläche hinter der Schrift (Design 5). Gerechnet über alle Fortschritte und Zeilen: ab 0.2 überall
+    /// Deckkraft der Fläche hinter der Schrift. Gerechnet über alle Fortschritte und Zeilen: ab 0.2 überall
     /// ≥ 4.5:1, mit 0.3 Reserve (≥ 6:1).
     static let plaqueAlpha = 0.3
     /// Seitenverhältnis (Höhe / Breite) eines üblichen iPhones im Hochformat, bis die Fläche gemessen ist.

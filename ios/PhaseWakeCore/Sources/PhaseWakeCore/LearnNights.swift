@@ -1,6 +1,6 @@
 import Foundation
 
-/// Lern-Übersicht (Entscheid r1AD 13.11.2026): je Nacht seit dem Beginn der Lernphase, ob sie gezählt hat, und wenn
+/// Lern-Übersicht: je Nacht seit dem Beginn der Lernphase, ob sie gezählt hat, und wenn
 /// nicht, warum. Grundlage sind nur Angaben, die das iPhone wirklich hat: die Aufzeichnungen der Uhr, ihre Meldungen
 /// (``LearnSkip``), die gemerkten Nächte mit Wecker (``LearnLog``), Zustimmung und Schalter. Dazu die Regel der Warnung
 /// am Abend (``shouldWarn(active:battery:charging:now:recordStart:)``). Reine Logik; identisch zu `LearnNights` (Kotlin),

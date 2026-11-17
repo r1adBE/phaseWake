@@ -47,7 +47,7 @@ fun HeroWave(modifier: Modifier = Modifier, windowFraction: Float = 0.3f, onNigh
     }
     val moving = motionAllowed()
     val reveal = rememberReveal(Unit)
-    // Die laufenden Werte erst beim Zeichnen lesen (Audit PERF-08): Dann zeichnet nur der Canvas je Bild neu, statt
+    // Die laufenden Werte erst beim Zeichnen lesen: Dann zeichnet nur der Canvas je Bild neu, statt
     // dass sich die Welle je Bild neu zusammensetzt.
     val phaseState: State<Float>
     val pulseState: State<Float>
@@ -192,7 +192,7 @@ fun NightBars(
 /** Pulsierende Ringe um den Weckpunkt (Logo-Motiv), für den Weckbildschirm; mit «Animationen entfernen» ruhend. */
 @Composable
 fun PulsingDot(modifier: Modifier = Modifier, color: Color, dot: Color) {
-    // Erst beim Zeichnen gelesen (Audit PERF-08), wie bei [HeroWave].
+    // Erst beim Zeichnen gelesen, wie bei [HeroWave].
     val progress: State<Float> = if (motionAllowed()) {
         rememberInfiniteTransition(label = "pulse").animateFloat(
             0f, 1f, infiniteRepeatable(tween(2000, easing = LinearEasing)), label = "t",

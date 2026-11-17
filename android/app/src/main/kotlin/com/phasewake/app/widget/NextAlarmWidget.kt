@@ -144,7 +144,7 @@ class NextAlarmWidget : AppWidgetProvider() {
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
             )
             // Auf dem Sperrbildschirm (Widget-Kategorie «keyguard», Tablets) keine «Letzte Nacht»: Weckzeit, Grund,
-            // Schlafdauer und Befinden sind Gesundheitsdaten (Audit D1, wie `privacySensitive` auf dem iPhone).
+            // Schlafdauer und Befinden sind Gesundheitsdaten (wie `privacySensitive` auf dem iPhone).
             val (lockScreen, home) = ids.partition { onKeyguard(manager, it) }
             for ((group, withNight) in listOf(lockScreen to false, home to (night != null))) {
                 if (group.isEmpty()) continue

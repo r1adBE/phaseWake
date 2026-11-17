@@ -27,7 +27,7 @@ import java.time.ZoneId
 import kotlinx.coroutines.flow.first
 
 /**
- * Hinweise der Lernphase auf der Galaxy Watch (Lern-Übersicht, Entscheid r1AD 13.11.2026), damit niemand nach 7 Tagen
+ * Hinweise der Lernphase auf der Galaxy Watch (Lern-Übersicht), damit niemand nach 7 Tagen
  * ohne gezählte Nacht dasteht, ohne den Grund zu kennen:
  * - Warnung am Abend: [LearnNights.WARN_LEAD] vor dem Beginn der Aufzeichnung (Beginn der Einschlaf-Messung) prüft ein
  *   ungenauer Alarm den Akku; liegt er unter [Learning.MIN_BATTERY] und lädt die Uhr nicht, kommt «Lade die Uhr …».

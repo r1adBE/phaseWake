@@ -20,7 +20,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
 /**
- * Akku je Nacht (r1AD 14.11.2026): die Zeile der Detailseite (nur bekannte Teile, ohne Wert keine Zeile) und wie das Handy
+ * Akku je Nacht: die Zeile der Detailseite (nur bekannte Teile, ohne Wert keine Zeile) und wie das Handy
  * seinen Akku der Nacht der Uhr zuordnet. Wie `BatteryLinePhoneTests` (iPhone).
  */
 @RunWith(RobolectricTestRunner::class)

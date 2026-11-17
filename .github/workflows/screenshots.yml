@@ -1,7 +1,7 @@
 name: Bildschirmfotos
 
 # Rendert alle Vorschauen (Handy hell/dunkel, Uhr) und legt die Bilder in den Zweig «screenshots».
-# Zwei Jobs (Audit 17.11., CODE-04, wie «Einschlafklänge»): «render» führt Gradle nur mit Leserecht und ohne
+# Zwei Jobs (wie «Einschlafklänge»): «render» führt Gradle nur mit Leserecht und ohne
 # gespeichertes Token aus, «publish» schreibt den Zweig und führt keinen Code aus dem Repo aus.
 on:
   push:
@@ -66,7 +66,7 @@ jobs:
           path: shots/
           retention-days: 1
           if-no-files-found: error
-      # Referenzbilder, wie die CI sie rendert (UX-08): Sie werden ins Repo übernommen, und die CI prüft gegen sie.
+      # Referenzbilder, wie die CI sie rendert: Sie werden ins Repo übernommen, und die CI prüft gegen sie.
       # Lokal gerenderte Bilder weichen in der Kantenglättung ab und eignen sich darum nicht als Referenz.
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:

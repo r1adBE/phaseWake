@@ -169,7 +169,7 @@ fun SettingsScreen(
             SwitchRow(stringResource(R.string.weekly_title), stringResource(R.string.weekly_toggle), weeklyReview, onWeeklyReview)
         }
 
-        // Sperrbildschirm und Einschlaferkennung gehören zum Wecker, nicht zum Schlafziel (Audit UI-10).
+        // Sperrbildschirm und Einschlaferkennung gehören zum Wecker, nicht zum Schlafziel.
         Group(stringResource(R.string.nav_alarms)) {
             SwitchRow(stringResource(R.string.next_alarm_notif_title), stringResource(R.string.next_alarm_notif_hint), nextAlarmNotice, onNextAlarmNotice)
             SwitchRow(stringResource(R.string.auto_onset_title), stringResource(R.string.auto_onset_hint), autoOnset, onAutoOnset)

@@ -6,7 +6,7 @@ import java.time.ZoneOffset
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-/** Mitteilung «Nächster Wecker» ab der Bettzeit-Erinnerung, mit der einen Bettzeit (Audit O-03). */
+/** Mitteilung «Nächster Wecker» ab der Bettzeit-Erinnerung, mit der einen Bettzeit. */
 class NextAlarmShowFromTest {
     private val target = Instant.parse("2026-11-15T06:30:00Z")
 

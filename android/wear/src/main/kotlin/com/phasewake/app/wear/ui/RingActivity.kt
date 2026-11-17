@@ -89,10 +89,10 @@ class RingActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Zeiten nach der 12/24-h-Einstellung der Uhr (Audit N-10).
+        // Zeiten nach der 12/24-h-Einstellung der Uhr.
         WearClock.update(this)
         val ringState = wearApp.ringState
-        // Über die Weck-Mitteilung ohne laufenden Dienst (Start verweigert, Audit N-05): Dienst jetzt nachholen.
+        // Über die Weck-Mitteilung ohne laufenden Dienst (Start verweigert): Dienst jetzt nachholen.
         val rescue = savedInstanceState == null && StartRefused.resume(this, intent)
         setContent {
             PhaseWakeTheme {
@@ -197,7 +197,7 @@ internal const val EMERGENCY_HOLD_MILLIS = 5000
 private const val COMPACT_HEIGHT_DP = 210
 
 /**
- * Grösste Schriftskalierung auf dem Weckbildschirm (Audit UI-3): Mit grosser Systemschrift wurde der Schlummer-Knopf
+ * Grösste Schriftskalierung auf dem Weckbildschirm: Mit grosser Systemschrift wurde der Schlummer-Knopf
  * abgeschnitten. Darüber bleibt die Schrift so gross; reicht der Platz trotzdem nicht, fallen Punkt und Grund weg.
  */
 private const val MAX_FONT_SCALE = 1.15f
@@ -237,13 +237,13 @@ private fun RingContent(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit,
     // Mit Sonnenaufgang: Licht statt Nachthimmel, jeder Text mit der Schrift, die an seiner Stelle lesbar ist.
     val background = if (light != null) Modifier.sunriseSky(light) else Modifier.wakeSky()
     val sidePadding = if (compact) 12 else 18
-    // Mit Aufgabe am Handy braucht der Hinweis «… oder 5 s halten» den Platz: kein Grund (Audit UI-4).
+    // Mit Aufgabe am Handy braucht der Hinweis «… oder 5 s halten» den Platz: kein Grund.
     val reason = (ui as? RingUi.Ringing)?.takeIf { !taskOnPhone }?.let { stringResource(ringReasonRes(it.reason)) }.orEmpty()
     val reasonFit = rememberReasonFit(reason, MaterialTheme.typography.bodySmall, configuration.screenWidthDp - 2 * sidePadding)
     // Zweizeiliger Grund: Punkt kleiner und kein Abstand darunter, damit der Schlummer-Knopf nicht in den Rand rutscht.
     val twoLines = reason.isNotEmpty() && reasonFit.lines > 1
     // Punkt und Stopp-Knopf teilen sich dasselbe Halten und denselben Fortschritt. Gemessen wird an der Uhr,
-    // die Füllung zeigt den Fortschritt nur an (Audit UI-1: ohne Animationen beendete sonst ein Tipp).
+    // die Füllung zeigt den Fortschritt nur an (ohne Animationen beendete sonst ein Tipp).
     val hold = Modifier
         .pointerInput(holdMillis) {
             detectTapGestures(onPress = {
@@ -279,9 +279,9 @@ private fun RingContent(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit,
                 style = Stroke(stroke, cap = StrokeCap.Round),
             )
         }
-        // Inhalt etwas über der Mitte und mit Abstand zum runden Rand unten (Audit U-1): «noch N» unter
+        // Inhalt etwas über der Mitte und mit Abstand zum runden Rand unten: «noch N» unter
         // «Schlummern 5 Min» bleibt auch auf kleinen runden Uhren ganz sichtbar. Passt nicht alles, fallen
-        // zuerst der Punkt, dann der Grund weg (Audit UI-3).
+        // zuerst der Punkt, dann der Grund weg.
         val share = when {
             !configuration.isScreenRound -> 1f
             LocalDensity.current.fontScale >= LARGE_FONT_SCALE -> ROUND_HEIGHT_SHARE_LARGE_FONT
@@ -314,7 +314,7 @@ private fun RingContent(ui: RingUi, onDismiss: () -> Unit, onSnooze: () -> Unit,
                 RingUi.Idle -> Unit
             }
             if (ui != RingUi.Idle) {
-                // Mit Aufgabe darf der Hinweis drei Zeilen haben, der Grund fällt dafür weg (Audit UI-4).
+                // Mit Aufgabe darf der Hinweis drei Zeilen haben, der Grund fällt dafür weg.
                 HoldToStop(
                     holdLabel, progress.value, compact, onDismiss,
                     maxLines = if (taskOnPhone) 3 else 2,

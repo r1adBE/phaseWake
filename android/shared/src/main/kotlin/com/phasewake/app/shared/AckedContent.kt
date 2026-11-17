@@ -10,10 +10,10 @@ import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 
 /**
- * Zuletzt von der Gegenseite bestätigter Inhalt je Schlüssel der Warteschlange (Audit PERF-06), als Prüfsumme (SHA-256)
+ * Zuletzt von der Gegenseite bestätigter Inhalt je Schlüssel der Warteschlange, als Prüfsumme (SHA-256)
  * in einer Datei [file]: Beim Start eines Prozesses reiht [enqueueIfChanged] einen Zustand (Wecker, Schlafziel …) nur
  * ein, wenn er sich seit der letzten Bestätigung geändert hat oder noch ein Eintrag desselben Schlüssels wartet. So
- * wecken sich Handy und Uhr nachts nicht bei jedem Prozessstart gegenseitig; die Zusage von AN-1 (Ging eine Nachricht
+ * wecken sich Handy und Uhr nachts nicht bei jedem Prozessstart gegenseitig; die Zusage des Abgleichs beim Prozessstart (Ging eine Nachricht
  * verloren, gleicht der Start ab) bleibt: Verloren ist nur, was nie bestätigt wurde.
  *
  * Nur Zustände ([Outbox.expires] falsch): Nächte und Aufzeichnungen haben je einen eigenen Schlüssel und würden die
@@ -78,7 +78,7 @@ class AckedContent(private val file: File) {
 
 /**
  * Reiht [body] unter [key] ein wie [Outbox.enqueue], ausser der Inhalt ist schon bestätigt ([AckedContent.matches]) und
- * unter [key] wartet nichts (Audit PERF-06: Abgleich beim Prozessstart). Wartet ein anderer Stand, wird [body] immer
+ * unter [key] wartet nichts (Abgleich beim Prozessstart). Wartet ein anderer Stand, wird [body] immer
  * eingereiht, sonst bliebe der wartende (z. B. nach dem Zurückändern auf den bestätigten Stand).
  * @return die Kennung des Eintrags oder `null`, wenn nichts eingereiht wurde.
  */

@@ -2,8 +2,7 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWakeWatch
 
-/// «Verlauf löschen» auf der Apple Watch: nur mit Sendezeit, einmal angewandt, behält nur später Beendetes (Herkunft:
-/// Vollaudit 11.11.2026 AP-6).
+/// «Verlauf löschen» auf der Apple Watch: nur mit Sendezeit, einmal angewandt, behält nur später Beendetes.
 final class HistoryClearWatchTests: XCTestCase {
     private let now = Date(timeIntervalSince1970: 1_793_000_000)
 

@@ -12,14 +12,14 @@ import PhaseWakeCore
 ///
 /// Ergebnis (``Result``): Ohne Rekorder in dieser Nacht (nicht gestartet, keine Erlaubnis) ist die Einschlafzeit
 /// unbekannt, und die Untergrenze kurzer Nächte gilt nicht (`notMeasured`, wie Android ohne Messung); ebenso, wenn er erst
-/// nach dem Beginn der Einschlafdauer im Hintergrund startete (``RecorderOnset/lateStart(recorderFrom:bedAt:foreground:)``,
-/// Entscheid r1AD 14.11.2026 zu HG-2). Startete er spät bei offener App, gilt die Rechnung ab seinem Start. Lief er, aber
+/// nach dem Beginn der Einschlafdauer im Hintergrund startete (``RecorderOnset/lateStart(recorderFrom:bedAt:foreground:)``).
+/// Startete er spät bei offener App, gilt die Rechnung ab seinem Start. Lief er, aber
 /// die Rechnung bringt keine Einschlafzeit (aufgegeben, Weckfenster begonnen, zu wenige Werte, zu spät gerechnet), gilt die
-/// Untergrenze bis 10 Min vor der Zielzeit (`failed`, fail-closed, Entscheid r1AD 10.11.2026, wie die Galaxy Watch nach
-/// einer begonnenen Messung ohne Ergebnis). Puls ab 15 Min vor dem Beginn und Zeiten am Ladegerät siehe F-1
-/// (`LearnRecorder+Charging`). Neue Werte liefert der Rekorder erst nach bis zu 3 Min; die letzten Minuten
+/// Untergrenze bis 10 Min vor der Zielzeit (`failed`, fail-closed, wie die Galaxy Watch nach
+/// einer begonnenen Messung ohne Ergebnis). Puls ab 15 Min vor dem Beginn und Zeiten am Ladegerät siehe
+/// `LearnRecorder+Charging`. Neue Werte liefert der Rekorder erst nach bis zu 3 Min; die letzten Minuten
 /// vor der Sitzung fehlen darum. Die Einschlafzeit geht in die laufende Aufzeichnung (`LearnRecorder.noteOnset`), samt
-/// Beginn mit der Nacht ans iPhone (`NightRecord.bedAt`, `asleepAt`, r1AD 15.11.2026) und
+/// Beginn mit der Nacht ans iPhone (`NightRecord.bedAt`, `asleepAt`) und
 /// ins Diagnose-Protokoll, nach «Gute Nacht» samt Vergleich mit der Schätzung.
 enum WatchOnset {
     /// Rechenzeit für das Lesen des Rekorders (bis 4 Std. Werte, rund 720 000).
@@ -29,7 +29,7 @@ enum WatchOnset {
 
     /// Ergebnis der Rechnung.
     enum Result: Equatable {
-        /// Eingeschlafen um `at`, Beginn der Einschlafdauer `bedAt` (für die Nacht im Verlauf, r1AD 15.11.2026).
+        /// Eingeschlafen um `at`, Beginn der Einschlafdauer `bedAt` (für die Nacht im Verlauf).
         case asleep(Date, bedAt: Date)
         /// Kein Rekorder in dieser Nacht (oder Schalter aus, Powernap, Probewecker): unbekannt, keine Untergrenze.
         case notMeasured
@@ -40,7 +40,7 @@ enum WatchOnset {
     /// Ergebnis und Grundrauschen der nachgerechneten Messung (``RecorderOnset/measure(motions:since:threshold:personalFloor:latest:extendCap:heartRates:)``:
     /// Epochen bis zum erkannten Einschlafen bzw. Aufgeben; `nil` ohne Rechnung oder wenn sie ins Weckfenster lief).
     /// Das Grundrauschen gilt im Weckfenster derselben Nacht als Vorwissen
-    /// (``WakeDetector/useOnsetFloor(_:)``, Vollaudit K-1), wie auf der Galaxy Watch (`OnsetFloorStore`).
+    /// (``WakeDetector/useOnsetFloor(_:)``), wie auf der Galaxy Watch (`OnsetFloorStore`).
     typealias Outcome = (result: Result, floor: Double?)
 
     /// Rechnet die Einschlafzeit für die Nacht `plan` (Wecker `spec`, Schwellen `config`) nach.
@@ -67,8 +67,8 @@ enum WatchOnset {
             DiagStore.shared.log(.measureStart, "\(label) not computed: no recorder")
             return (.notMeasured, nil)
         }
-        // Rekorder erst nach dem Beginn der Einschlafdauer gestartet (Tiefenaudit AP3-2, Entscheid r1AD 14.11.2026 zu HG-2,
-        // wie die Galaxy Watch): bei offener App ab seinem Start gemessen (die Person war wach), im Hintergrund nicht gemessen.
+        // Rekorder erst nach dem Beginn der Einschlafdauer gestartet (wie die Galaxy Watch):
+        // bei offener App ab seinem Start gemessen (die Person war wach), im Hintergrund nicht gemessen.
         let plannedBed = RecorderOnset.bedAt(since: begin, automatic: manual == nil, latest: latest, sleepMinutes: sleepMinutes)
         let late = RecorderOnset.lateStart(recorderFrom: span.from, bedAt: plannedBed, foreground: LearnRecorder.shared.recorderStartedActive)
         let after = "\(label) recorder from \(Format.logTime(span.from)), after bedtime \(Format.logTime(plannedBed))"
@@ -90,23 +90,23 @@ enum WatchOnset {
             return (.failed, nil)
         }
         let deadline = now.addingTimeInterval(budget)
-        // Niedrige Priorität mit Pausen zwischen den Abschnitten (AP2-3): begrenzte Rechenlast, 40-s-Grenze bleibt.
+        // Niedrige Priorität mit Pausen zwischen den Abschnitten: begrenzte Rechenlast, 40-s-Grenze bleibt.
         let motions = await Task.detached(priority: .utility) {
             LearnRecorder.recordedMotions(start: since, done: [], until: stop, deadline: deadline, pause: LearnRecorder.onsetPause,
                                           kind: .measureStart)
         }.value
-        // Puls aus Apple Health dazu (E-5, F-1): Eine ruhige Strecke zählt nur, wenn die Uhr davor und darin getragen wurde;
+        // Puls aus Apple Health dazu: Eine ruhige Strecke zählt nur, wenn die Uhr davor und darin getragen wurde;
         // ein Puls bis ``SleepOnset/wornEpochs`` vor dem Beginn zählt für die erste (sonst zählte einer kurz vor «Gute Nacht» nie).
         let lead = SleepOnset.wornEpochs
         let pulseStart = since.addingTimeInterval(-TimeInterval(lead * DetectorConfig.epochSeconds))
         let pulses = await LearnRecorder.shared.heartRates(from: pulseStart, to: stop)
         let rates = RecorderEpochs.heartRates(pulses, start: pulseStart, count: motions.count + lead)
-        // Zeiten am Ladegerät (abgetastet, F-1): leer, und sie verschieben die Zeitgrenze (HG-3).
+        // Zeiten am Ladegerät (abgetastet): leer, und sie verschieben die Zeitgrenze.
         LearnRecorder.shared.noteCharging()
         let away = RecorderOnset.awayEpochs(LearnRecorder.shared.chargeSpans(until: stop), start: since, count: motions.count)
         let windowStart = AlarmSchedule.plan(spec, target: latest).windowStart
         // Grundrauschen nur bis zur Epoche, in der das Einschlafen erkannt ist bzw. bis zum Aufgeben; lief die Messung ins
-        // Weckfenster, keines (Fix KN-3, wie `OnsetMonitor` auf der Galaxy Watch).
+        // Weckfenster, keines (wie `OnsetMonitor` auf der Galaxy Watch).
         let (result, floor) = RecorderOnset.measure(motions: motions, since: since, threshold: config.lightThreshold,
                                                     personalFloor: config.personalFloor, latest: latest,
                                                     extendCap: RecorderOnset.extendCap(since: since, windowStart: windowStart),
@@ -116,7 +116,7 @@ enum WatchOnset {
             + "floor=\(NoiseFloor.format(floor)) thr=\(NoiseFloor.format(NoiseFloor.light(threshold: config.lightThreshold, floor: floor)))"
         switch result {
         case .asleep(let found, _):
-            // Automatisch nie vor der Bettzeit eingeschlafen (Vollaudit K-4); nach «Gute Nacht» unverändert.
+            // Automatisch nie vor der Bettzeit eingeschlafen; nach «Gute Nacht» unverändert.
             let at = RecorderOnset.onsetAt(found: found, bedAt: bedAt)
             DiagStore.shared.log(.phase, "\(stat), asleep \(Format.logTime(at))" + (at != found ? " (still since \(Format.logTime(found)))" : ""))
             if let manual {

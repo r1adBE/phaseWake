@@ -2,7 +2,7 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWakeWatch
 
-/// Aufzeichnung auf der Apple Watch ([LearnRecorder], Audit F-03): Ende der Auswertung (von Hand gestoppt, «Nacht
+/// Aufzeichnung auf der Apple Watch ([LearnRecorder]): Ende der Auswertung (von Hand gestoppt, «Nacht
 /// aufzeichnen» nach 12 Std., Lernphase beim Wecken, ohne Wecken die Zielzeit; nie nach dem Ende des Rekorders), Grund
 /// des Endes und sein Text im Diagnose-Protokoll (wie Android).
 final class LearnRecorderTests: XCTestCase {

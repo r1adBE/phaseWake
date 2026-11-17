@@ -96,12 +96,12 @@ final class WakeDetectorTests: XCTestCase {
     }
 
     func testZeroWarmupHasNoBaselineUntilTwoPulses() throws {
-        // Gelerntes Grundrauschen 0.001 (Leicht-Schwelle 0.0025): Ohne Grundrauschen wartete die Leicht-Regel (E-1).
+        // Gelerntes Grundrauschen 0.001 (Leicht-Schwelle 0.0025): Ohne Grundrauschen wartete die Leicht-Regel.
         let detector = WakeDetector(config: try DetectorConfig(warmupEpochs: 0, personalFloor: 0.001))
         _ = detector.onEpoch(Epoch(motion: 0.003, heartRate: 52.0))
         // Erst ein Puls davor: kein Basispuls, die Pulsbedingung ist nicht erfüllt.
         XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.003, heartRate: 60.0)), .wait)
-        // Ab zwei Pulsen (Vollaudit K-3): Median 56 → 58.8; 60 reicht.
+        // Ab zwei Pulsen: Median 56 → 58.8; 60 reicht.
         XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.003, heartRate: 60.0)), .wake(.lightSleep))
     }
 
@@ -154,7 +154,7 @@ final class WakeDetectorTests: XCTestCase {
     private let noPulse = Array(repeating: Epoch(motion: 0.0, heartRate: nil), count: 6)
 
     func testRestingHeartRateFallbackOnlyWithoutPulseAtTheStart() throws {
-        // Die ersten 6 Epochen ohne Puls: Ersatz-Basispuls = Ruhepuls 50 × 1.10 = 55 → nötig 57.75 (Vollaudit K-2).
+        // Die ersten 6 Epochen ohne Puls: Ersatz-Basispuls = Ruhepuls 50 × 1.10 = 55 → nötig 57.75.
         let learned = WakeDetector(config: try DetectorConfig(restingHeartRate: 50.0))
         _ = run(learned, noPulse + [Epoch(motion: 0.003, heartRate: 58.0)])
         XCTAssertEqual(learned.onEpoch(Epoch(motion: 0.003, heartRate: 58.0)), .wake(.lightSleep))
@@ -169,7 +169,7 @@ final class WakeDetectorTests: XCTestCase {
     }
 
     func testMorningPulseNearRestingIsNoRise() throws {
-        // Vollaudit K-2: Ruhepuls 50, morgens 56 bei leichter Bewegung, Fensterbeginn ohne Puls. Früher Basispuls 50 → 52.5:
+        // Ruhepuls 50, morgens 56 bei leichter Bewegung, Fensterbeginn ohne Puls. Früher Basispuls 50 → 52.5:
         // Die Bewegung allein weckte. Jetzt 55 → 57.75: kein Anstieg.
         let detector = WakeDetector(config: try DetectorConfig(restingHeartRate: 50.0))
         let decisions = run(detector, noPulse + Array(repeating: Epoch(motion: 0.003, heartRate: 56.0), count: 20))
@@ -177,7 +177,7 @@ final class WakeDetectorTests: XCTestCase {
     }
 
     func testBaselineIsTheMedianOfTheFirstEpochs() {
-        // Vollaudit K-3: Aufwärmphase erhöht (64), danach 60. Früher Basispuls 64 → 67.2; jetzt Median der ersten 6 Epochen
+        // Aufwärmphase erhöht (64), danach 60. Früher Basispuls 64 → 67.2; jetzt Median der ersten 6 Epochen
         // (64, 64, 60, 60, 60, 60) = 60 → 63.
         let detector = WakeDetector()
         let calm = Epoch(motion: 0.0, heartRate: 60.0)
@@ -198,7 +198,7 @@ final class WakeDetectorTests: XCTestCase {
     }
 
     func testRestlessStartIsCappedByTheLearnedFloor() throws {
-        // Vollaudit K-1: Gelernt 0.018, das Fenster beginnt unruhig (0.07–0.09). Ohne Obergrenze Wach-Schwelle 0.2; mit
+        // Gelernt 0.018, das Fenster beginnt unruhig (0.07–0.09). Ohne Obergrenze Wach-Schwelle 0.2; mit
         // 1.5 × 0.018 = 0.027 → 0.135: zweimal 0.14 weckt.
         let restless = [0.07, 0.09, 0.08, 0.075, 0.085, 0.07, 0.09, 0.08].map { Epoch(motion: $0, heartRate: 60.0) }
         let learned = WakeDetector(config: try DetectorConfig(personalFloor: 0.018))
@@ -211,7 +211,7 @@ final class WakeDetectorTests: XCTestCase {
     }
 
     func testPriorIsTheLargerOfOnsetAndLearnedFloor() throws {
-        // Fix KN-2: Vorwissen = das grössere von Einschlaf-Messung (0.012) und gelernt (0.03): 1.5 × 0.03 = 0.045 → 0.04.
+        // Vorwissen = das grössere von Einschlaf-Messung (0.012) und gelernt (0.03): 1.5 × 0.03 = 0.045 → 0.04.
         let restless = Array(repeating: Epoch(motion: 0.08, heartRate: 60.0), count: 8)
         let config = try DetectorConfig(personalFloor: 0.03).withOnsetFloor(0.012)
         XCTAssertEqual(NoiseFloor.priorFloor(config), 0.03)
@@ -231,14 +231,14 @@ final class WakeDetectorTests: XCTestCase {
     }
 
     func testPlausibilityIsMeasuredAgainstTheCappedWindowFloor() throws {
-        // Audit 2c82e15: Die Latte 0.25 × F rechnet mit F höchstens 0.04 (nicht mit dem rohen 0.08), also höchstens 0.01.
+        // Die Latte 0.25 × F rechnet mit F höchstens 0.04 (nicht mit dem rohen 0.08), also höchstens 0.01.
         let restless: [Double?] = Array(repeating: 0.08, count: 8)
         XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(restless, config: try DetectorConfig(personalFloor: 0.012))), 0.018, accuracy: 1e-12)
         XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(restless, config: try DetectorConfig(personalFloor: 0.0099))), 0.04, accuracy: 1e-12)
     }
 
     func testImplausiblyLowPriorDoesNotCap() throws {
-        // Fix KN-2: Uhr mit Rauschen 0.02, Vorwissen 0.004 < 0.25 × 0.02 = 0.005: keine Obergrenze, es bleibt 0.02.
+        // Uhr mit Rauschen 0.02, Vorwissen 0.004 < 0.25 × 0.02 = 0.005: keine Obergrenze, es bleibt 0.02.
         let noisy: [Double?] = Array(repeating: 0.02, count: 8)
         XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(noisy, config: try DetectorConfig(personalFloor: 0.004))), 0.02, accuracy: 1e-12)
         XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(noisy, config: DetectorConfig.standard.withOnsetFloor(0.002))), 0.02, accuracy: 1e-12)
@@ -256,7 +256,7 @@ final class WakeDetectorTests: XCTestCase {
 
     func testOnsetFloorKnownAfterTheWindowBegan() throws {
         // Apple Watch: Das Grundrauschen der Einschlaf-Messung kommt erst nach Fensterbeginn (`WatchOnset`); ab dann gilt
-        // es (Vollaudit K-1). Wie Kotlin.
+        // es. Wie Kotlin.
         let restless = Array(repeating: Epoch(motion: 0.08, heartRate: 60.0), count: 8)
         let detector = WakeDetector()
         _ = run(detector, restless + [Epoch(motion: 0.12, heartRate: 60.0)])
@@ -270,7 +270,7 @@ final class WakeDetectorTests: XCTestCase {
     }
 
     func testRearmNeedsNewHitsAfterTheBoundary() {
-        // Vollaudit K-5: Der übergangene Moment liegt nach rearm() noch im Fenster der Wach-Regel; früher weckte er wieder,
+        // Der übergangene Moment liegt nach rearm() noch im Fenster der Wach-Regel; früher weckte er wieder,
         // sobald die Sperre endete. Jetzt zählen nur neue Treffer.
         let detector = WakeDetector()
         _ = feed(detector, still, still, Epoch(motion: 0.5, heartRate: 52.0))
@@ -282,7 +282,7 @@ final class WakeDetectorTests: XCTestCase {
     }
 
     func testInvalidLearnedValuesCountAsNone() {
-        // Vollaudit K-6: wie Kotlin; kaputte Werte gelten als keine.
+        // Wie Kotlin: kaputte Werte gelten als keine.
         for floor in [Double.nan, -0.01, .infinity, 5.0] {
             XCTAssertNil(DetectorConfig.standard.withLearned(floor: floor, restingHeartRate: nil).personalFloor, "\(floor)")
         }
@@ -303,7 +303,7 @@ final class WakeDetectorTests: XCTestCase {
     }
 
     func testPersonalFloorAppliesBeforeTheWindowHasItsOwn() throws {
-        // Sensor liefert anfangs keine Bewegung: Ohne Grundrauschen wartet die Leicht-Regel (Audit c3b8b01 E-1; früher
+        // Sensor liefert anfangs keine Bewegung: Ohne Grundrauschen wartet die Leicht-Regel (früher
         // galt 0.002, und 0.03 war leichte Bewegung).
         let gap = Epoch(motion: nil, heartRate: 52.0)
         let plain = WakeDetector()

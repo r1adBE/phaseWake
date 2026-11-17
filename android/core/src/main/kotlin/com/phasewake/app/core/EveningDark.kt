@@ -6,7 +6,7 @@ import java.time.ZoneId
 import java.time.temporal.ChronoUnit
 
 /**
- * Einstellung «Abends dunkel ab» (Entscheid r1AD 17.11.2026): Steht das Design auf «System» oder «Hell», zeigt die App
+ * Einstellung «Abends dunkel ab»: Steht das Design auf «System» oder «Hell», zeigt die App
  * ab der gewählten Uhrzeit ([fromMinutes], Standard 18:00) bis zum Morgen ([UNTIL_MINUTES], 06:00) das dunkle Design;
  * «Dunkel» bleibt dunkel. Gerechnet wird mit der Ortszeit (Wanduhr) in Minuten des Tages, über Mitternacht hinweg; so
  * gilt auch an Tagen mit Sommerzeit-Wechsel «ab 18:00 bis 06:00» nach der Uhr an der Wand. Gleich auf Apple

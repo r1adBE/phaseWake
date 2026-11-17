@@ -82,14 +82,14 @@ internal fun BroadcastReceiver.onBackupSystemEvent(context: Context, intent: Int
     }
     val pending = goAsync()
     val app = context.phoneApp
-    // Startete der Prozess vor dem Entsperren, holt er hier dessen Start-Arbeiten nach (Review M-1; sonst nichts).
+    // Startete der Prozess vor dem Entsperren, holt er hier dessen Start-Arbeiten nach (sonst nichts).
     app.initUnlocked()
     app.appScope.launch {
         try {
             BackupDirectBoot.takeRang(context).forEach { (id, at) -> app.backup.backupRang(id, at) }
             com.phasewake.app.transient.Transients.catchUpEnded(app)
             // Neustart, bei dem der Speicher gleich entsperrt war (ohne Sperre oder schnell entsperrt): ein Zweitwecker,
-            // der währenddessen fällig wurde, wird hier nachgeholt (Audit A-5), wie vor dem Entsperren in restore.
+            // der währenddessen fällig wurde, wird hier nachgeholt, wie vor dem Entsperren in restore.
             if (intent.action in BOOT_ACTIONS) app.backup.catchUpAfterBoot()
             app.backup.reschedule()
         } finally {
@@ -104,7 +104,7 @@ private val BOOT_ACTIONS = setOf(Intent.ACTION_LOCKED_BOOT_COMPLETED, Intent.ACT
 
 /**
  * Holt nach einem Neustart mit entsperrtem Speicher den abgelegten Zweitwecker nach, der während des Neustarts fällig
- * wurde ([BackupDirectBoot.missed], Audit A-5): gleich danach über einen eigenen Alarm (nur ein Wecker-Alarm darf den
+ * wurde ([BackupDirectBoot.missed]): gleich danach über einen eigenen Alarm (nur ein Wecker-Alarm darf den
  * Weckdienst aus dem Hintergrund starten). Nicht, wenn die Nacht schon erledigt ist (die Uhr hat sie übernommen oder der
  * Zweitwecker hat geklungen, [BackupAlarm.doneUntil]). Der Eintrag wird entfernt und die Nacht bis zu ihrer Zielzeit
  * ausgesetzt, damit sie nicht zweimal klingelt.
@@ -123,7 +123,7 @@ internal suspend fun BackupAlarm.catchUpAfterBoot(current: Instant = now()): Bac
 }
 
 /**
- * Nachgeholter Zweitwecker nach einem Neustart mit entsperrtem Speicher (Audit A-5): wie der Zweitwecker ([ACTION], mit
+ * Nachgeholter Zweitwecker nach einem Neustart mit entsperrtem Speicher: wie der Zweitwecker ([ACTION], mit
  * Kennung und Zielzeit), aber eigener Request-Code, damit das folgende Planen ihn nicht ersetzt.
  */
 internal fun catchUpPending(context: Context, alarmId: String, target: Instant): PendingIntent {

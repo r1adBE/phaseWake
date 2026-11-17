@@ -385,7 +385,7 @@
     <string name="chart_window">Прозорец за събуждане</string>
     <string name="chart_no_data">няма данни</string>
     <string name="chart_feeling_hint">Докосни точка, за да видиш бележките от тази нощ.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Пробен будилник</string>
     <string name="test_button">Пробвай след 2 минути</string>
     <string name="test_hint">Звъни след 2 минути с настройките на следващия ти будилник, без отлагане. Не се брои за нощ.</string>
@@ -601,7 +601,7 @@
     <string name="learn_switch_hint">Часовникът ти измерва движение и пулс през нощта (от %1$d %% батерия). Изкл.: без автоматичен запис, научените стойности остават.</string>
     <string name="learn_switch_title">Активна</string>
     <string name="watch_open_app_hint">Отвори Phase Wake на часовника, за да получи командата.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Всяка нощ от началото на фазата на учене – дали е отчетена и ако не, защо и какво помага. Phase Wake се нуждае от %1$d отчетени нощи.</string>
     <string name="learn_nights_empty">Още няма нощ. Първата ще се появи тук на следващата сутрин.</string>
     <string name="learn_night_facts">%1$s измерени · %2$d стойности · пулс в %3$d %%</string>

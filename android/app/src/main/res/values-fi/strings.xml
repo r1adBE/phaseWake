@@ -383,7 +383,7 @@
     <string name="chart_window">Herätysikkuna</string>
     <string name="chart_no_data">ei tietoja</string>
     <string name="chart_feeling_hint">Napauta pistettä nähdäksesi yön muistiinpanot.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Testaa herätys</string>
     <string name="test_button">Testaa 2 minuutin päästä</string>
     <string name="test_hint">Soi 2 minuutin päästä seuraavan herätyksesi asetuksilla, ilman torkkua. Ei lasketa yöksi.</string>
@@ -599,7 +599,7 @@
     <string name="learn_switch_hint">Kellosi mittaa yöllä liikettä ja sykettä (kun akkua on vähintään %1$d %%). Pois: ei automaattista tallennusta, opitut arvot säilyvät.</string>
     <string name="learn_switch_title">Käytössä</string>
     <string name="watch_open_app_hint">Avaa Phase Wake kellossa, jotta se saa komennon.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Jokainen yö oppimisvaiheen alusta – laskettiinko se ja jos ei, miksi ja mikä auttaa. Phase Wake tarvitsee %1$d laskettua yötä.</string>
     <string name="learn_nights_empty">Ei vielä yhtään yötä. Ensimmäinen näkyy täällä seuraavana aamuna.</string>
     <string name="learn_night_facts">%1$s mitattu · %2$d arvoa · syke %3$d %%:ssa</string>

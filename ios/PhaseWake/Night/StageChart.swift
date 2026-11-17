@@ -17,7 +17,7 @@ struct StageTimeline: Equatable {
     var wokeAt: Double?
     /// Phase beim Wecken für die Höhe des Weckpunkts; `nil` = unbekannt (Punkt auf der Zeile «Wach»).
     var stageAtWake: SleepStage?
-    /// Uhrzeiten in dieser Zone (Nacht aus der Gesundheits-App: Zone der Aufzeichnung, Audit F-3); `nil` = Gerät.
+    /// Uhrzeiten in dieser Zone (Nacht aus der Gesundheits-App: Zone der Aufzeichnung); `nil` = Gerät.
     var timeZone: TimeZone?
 
     /// Uhrzeit `minute` Minuten nach `start`.
@@ -164,7 +164,7 @@ struct StageChart: View {
         let step = timeline.steps[i]
         let name = stageName(step.stage)
         let color = StageColors.color(step.stage, scheme)
-        // Schlicht wie Android (Entscheid r1AD 15.11.): flache Phasenfarbe, kein Verlauf, kein Schein.
+        // Schlicht wie Android: flache Phasenfarbe, kein Verlauf, kein Schein.
         let width = blockWidth(step.toMinute - step.fromMinute)
         RectangleMark(xStart: .value("from", step.fromMinute), xEnd: .value("to", max(step.toMinute, step.fromMinute + 0.5)),
                       y: .value("stage", name), height: .ratio(0.76))

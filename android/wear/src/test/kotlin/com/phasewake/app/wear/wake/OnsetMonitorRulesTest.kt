@@ -28,7 +28,7 @@ class OnsetMonitorRulesTest {
 
     @Test
     fun allMeasuredNeedsTheLongerSampledStretch() {
-        // Audit c3b8b01 E-4: Stichproben verlangen 25 Min (30 + 20 Epochen) statt 15; auch wenn alle Epochen gemessen sind.
+        // Stichproben verlangen 25 Min (30 + 20 Epochen) statt 15; auch wenn alle Epochen gemessen sind.
         val still = List(50) { 0.001 }
         assertEquals(0, OnsetRules.find(still, List(50) { true }, 0.002))
         assertNull(OnsetRules.find(still.take(49), List(49) { true }, 0.002))
@@ -44,7 +44,7 @@ class OnsetMonitorRulesTest {
 
     @Test
     fun samplesSpanningTwentyFiveMinutesAreAsleep() {
-        // Sechs ruhige Stichproben: von der ersten (Epoche 3) bis zur letzten (Epoche 54) über 50 Epochen (E-4).
+        // Sechs ruhige Stichproben: von der ersten (Epoche 3) bis zur letzten (Epoche 54) über 50 Epochen.
         val (motions, measured) = sampled({ 0.001 }, samples = 6)
         assertEquals(3, OnsetRules.find(motions, measured, 0.002))
         // Fünf reichen nicht mehr (nur 42 Epochen; früher genügten vier über 30).
@@ -54,7 +54,7 @@ class OnsetMonitorRulesTest {
 
     @Test
     fun oneSingleTwitchIsTolerated() {
-        // E-4: Ein Zucker in einer Epoche der zweiten Stichprobe (Epoche 14, Epoche 13 ruhig) unterbricht nicht.
+        // Ein Zucker in einer Epoche der zweiten Stichprobe (Epoche 14, Epoche 13 ruhig) unterbricht nicht.
         val (twitch, m1) = sampled({ if (it == 14) 0.01 else 0.001 }, samples = 6)
         assertEquals(3, OnsetRules.find(twitch, m1, 0.002))
         // Ein zweiter Zucker (Epoche 34) beginnt von vorn: ab der Stichprobe nach dem ersten (Epoche 23).
@@ -98,7 +98,7 @@ class OnsetMonitorRulesTest {
 
     @Test
     fun lateAlarmsKeepTenEpochsBetweenSamples() {
-        // Audit c3b8b01 E-3: Jeder Alarm kommt etwas zu spät (0 bis 1,9 s): Die Stichproben liegen trotzdem genau
+        // Jeder Alarm kommt etwas zu spät (0 bis 1,9 s): Die Stichproben liegen trotzdem genau
         // 10 Epochen auseinander (früher 11, also alle 5½ Min, und 3 Std. ergaben 65 statt 72 gemessene Epochen).
         val start = 1_000_000_000L
         val epoch = OnsetMonitor.EPOCH_NANOS
@@ -115,7 +115,7 @@ class OnsetMonitorRulesTest {
 
     @Test
     fun epochsOnTheChargerAreEmpty() {
-        // Audit c3b8b01 E-5: Netzteil an bei 95 s, ab bei 200 s (Beginn 1 s): Epochen 3 bis 6 berühren die Zeit am Ladegerät.
+        // Netzteil an bei 95 s, ab bei 200 s (Beginn 1 s): Epochen 3 bis 6 berühren die Zeit am Ladegerät.
         val start = 1_000_000_000L
         val second = 1_000_000_000L
         val times: List<Pair<Long, Long?>> = listOf(Pair(start + 95 * second, start + 200 * second))
@@ -151,7 +151,7 @@ class OnsetMonitorRulesTest {
         assertEquals("give up", OnsetRules.giveUpReason(near, near, max))
     }
 
-    // --- Verlängerung bei spätem Einschlafen (Befund 09.11.2026) ---
+    // --- Verlängerung bei spätem Einschlafen ---
 
     @Test
     fun restlessLooksAtTheLastFifteenMinutesOnly() {

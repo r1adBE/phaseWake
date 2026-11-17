@@ -72,7 +72,7 @@
     <string name="editor_delete_title">Slette denne alarmen?</string>
     <string name="home_max_alarms">Maks %1$d alarmer – slett en for å legge til en ny.</string>
     <string name="editor_enabled">Alarm på</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Hopp over neste gang</string>
     <string name="alarm_skipped">Hoppet over: %1$s</string>
     <string name="nap_title">Hvil</string>
@@ -102,7 +102,7 @@
     <string name="record_since">Siden %1$s</string>
     <string name="notification_record_title">Tar opp natten</string>
     <string name="record_battery_low">For lite batteri til opptak</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Læringsfase</string>
     <string name="watch_learn_warn">Lad klokken, ellers teller ikke i natt med i læringsfasen (batteri %1$d %%, trenger %2$d %%).</string>
     <string name="watch_learn_skip_battery">I natt teller ikke med i læringsfasen: batteri på %1$d %%, trenger %2$d %%.</string>

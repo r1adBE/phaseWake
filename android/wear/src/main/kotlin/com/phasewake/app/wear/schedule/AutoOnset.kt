@@ -27,7 +27,7 @@ import kotlinx.coroutines.flow.first
  * Sie endet beim erkannten Einschlafen, spätestens 2 Std. nach ihrem Beginn
  * ([com.phasewake.app.wear.wake.OnsetMonitor.MAX_DURATION]; bei Unruhe verlängert bis 4 Std., nie ins Weckfenster) und
  * 15 Min vor der Zielzeit; unter [MIN_BATTERY_PERCENT] Akku beginnt sie nicht und verlängert sich nicht
- * ([skipForBattery], Akku-Befund 03.11.2026) – ausser die Uhr lädt (Prüfrunde 2 F-6): Dann beginnt sie und wartet am
+ * ([skipForBattery]) – ausser die Uhr lädt: Dann beginnt sie und wartet am
  * Ladegerät; ist der Akku beim Abnehmen noch zu tief, endet sie ohne Untergrenze. Im Einschlaf-Modus legt sie die Zielzeit fest
  * (wie «Gute Nacht»), sonst merkt sie nur die Einschlafzeit für die Untergrenze kurzer Nächte ([OnsetStore]).
  *
@@ -47,7 +47,7 @@ object AutoOnset {
 
     /**
      * Ob die automatische Messung bei Akkustand [percent] ausfällt; unbekannt (`null`) hindert nicht, Laden ([charging])
-     * auch nicht (F-6: Wer die Uhr am Abend lädt, hat sie zur Bettzeit voll).
+     * auch nicht (wer die Uhr am Abend lädt, hat sie zur Bettzeit voll).
      */
     fun skipForBattery(percent: Int?, charging: Boolean = false): Boolean = !charging && percent != null && percent < MIN_BATTERY_PERCENT
 
@@ -57,7 +57,7 @@ object AutoOnset {
      * läge nicht vor dem Fenster und 15 Min vor der Zielzeit oder mehr als 16 Std. davor. Liegt die Bettzeit schon
      * zurück, beginnt sie gleich – ausser es endete seit dem Beginn schon eine Nacht mit Wecken ([lastNightEnded],
      * [AlarmScheduler.lastNightEnded]): zweiter Wecker am selben Morgen, der Schlaf dieser Nacht ist vorbei. Eine Messung
-     * gleich nach dem Wecken fände kein Einschlafen und sperrte das frühe Wecken (fail-closed, Audit G-2).
+     * gleich nach dem Wecken fände kein Einschlafen und sperrte das frühe Wecken (fail-closed).
      */
     fun startAt(plan: WakePlan?, spec: AlarmSpec?, goalMinutes: Int, now: Instant, done: Boolean, lastNightEnded: Instant? = null): Instant? {
         if (plan == null || spec == null || spec.id != plan.alarmId || done || Transient.kindOf(plan.alarmId) != null) return null
@@ -105,10 +105,10 @@ object AutoOnset {
  * Einschlafzeit der kommenden Nacht, je Wecker und eingestellter Weckzeit ([latest]); nur die jüngste Nacht. Grundlage
  * der Untergrenze für kurze Nächte ([com.phasewake.app.core.ShortNight.blocksEarly]). Ein Eintrag ohne Einschlafzeit
  * heisst: Messung vorbei, für diese Nacht nicht noch einmal starten – mit [measuredFor] `true`, wenn sie begonnen hatte
- * und ohne Ergebnis endete (aufgegeben, vom Weckfenster oder einem Prozessende beendet; fail-closed, Entscheid r1AD
- * 10.11.2026), sonst (abgebrochen, nicht begonnen) ohne Untergrenze.
+ * und ohne Ergebnis endete (aufgegeben, vom Weckfenster oder einem Prozessende beendet; fail-closed),
+ * sonst (abgebrochen, nicht begonnen) ohne Untergrenze.
  *
- * Eine schon gefundene Einschlafzeit der laufenden Nacht bleibt (Audit HG-5): Wird der Wecker in der Nacht verschoben
+ * Eine schon gefundene Einschlafzeit der laufenden Nacht bleibt: Wird der Wecker in der Nacht verschoben
  * (andere Weckzeit, gleiche Kennung), misst die Uhr nicht neu ([isDone]), und eine Messung ohne Ergebnis überschreibt
  * sie nicht ([set]).
  */

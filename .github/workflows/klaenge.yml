@@ -2,7 +2,7 @@ name: Einschlafklänge
 
 # Lädt freie Aufnahmen (CC0) für Regen und Meer, macht daraus nahtlose Schleifen und legt sie in den
 # Zweig «klaenge». Nur von Hand gestartet; die Dateien kommen danach per Merge ins Repo.
-# Zwei Jobs (Audit 071597f DA-3): «bauen» lädt und rechnet nur mit Leserechten, «ablegen» schreibt den Zweig
+# Zwei Jobs: «bauen» lädt und rechnet nur mit Leserechten, «ablegen» schreibt den Zweig
 # und führt keinen fremden Code aus.
 on:
   workflow_dispatch:

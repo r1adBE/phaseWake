@@ -3,7 +3,7 @@ import PhaseWakeCore
 import UserNotifications
 
 extension SmartAlarm {
-    // MARK: Gemerkte Sitzung (Vollaudit AP2-1)
+    // MARK: Gemerkte Sitzung
 
     /// Schlüssel der gemerkten geplanten Sitzung in `SettingsFile.watchSession` (``NightRules/ScheduledSession``).
     static let scheduledKey = "scheduledSession"
@@ -38,7 +38,7 @@ extension SmartAlarm {
         return true
     }
 
-    // MARK: «stop» vom iPhone (Vollaudit AP2-5)
+    // MARK: «stop» vom iPhone
 
     /// «stop» vom iPhone (schon auf dieselbe Nacht geprüft, `isThisNight`). Klingelt oder schlummert die Uhr: beenden wie
     /// bisher. Sonst hat der Zweitwecker des iPhones geweckt: Gehört der Stopp zur geplanten, wartenden, messenden oder
@@ -92,7 +92,7 @@ extension SmartAlarm {
         model.storage.markDone(alarmId: night.alarmId, until: GoodNightEstimate.doneUntil(target: night.target, nominal: nominal))
     }
 
-    // MARK: Alter Klingel-Zustand (Vollaudit AP2-9)
+    // MARK: Alter Klingel-Zustand
 
     /// Klingel-Zustand älter als ``ringStateMaxAge`` nach der Zielzeit (z. B. App lange nicht gestartet): nicht mehr
     /// wecken, die Nacht aber abschliessen – Epochen in den Verlauf, erledigt, Einmal-Wecker aus. Ohne Nachholen anderer

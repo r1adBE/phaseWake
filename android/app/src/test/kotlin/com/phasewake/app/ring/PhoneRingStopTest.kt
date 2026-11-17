@@ -28,7 +28,7 @@ import kotlin.test.assertTrue
 import kotlin.test.fail
 
 /**
- * Beenden des Klingelns am Handy ([PhoneRingService], Audit M-06): «Stopp» am Handy hebt Wiederaufnahme und Sicherung
+ * Beenden des Klingelns am Handy ([PhoneRingService]): «Stopp» am Handy hebt Wiederaufnahme und Sicherung
  * auf, der stille Stopp ebenso die Wiederaufnahme; führt die Uhr, stellt die Zeitgrenze die Sicherung nach ihrem
  * Schlummer-Ende. Dazu Weckton mit Einblenden und leiser beim Tippen, und Befehle nur an einen laufenden Dienst.
  */

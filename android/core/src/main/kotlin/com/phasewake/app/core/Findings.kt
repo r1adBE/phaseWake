@@ -23,7 +23,7 @@ data class NightFacts(
     val asleepMinutes: Long,
     /**
      * Einschlafdauer: aus der Gesundheits-App wie auf der Detailseite ([NightStages.latencyMinutes]), sonst aus der
-     * eigenen Messung der Uhr ([Findings.ownLatency], Entscheid r1AD 15.11.2026); `null` = unbekannt.
+     * eigenen Messung der Uhr ([Findings.ownLatency]); `null` = unbekannt.
      */
     val latencyMinutes: Long? = null,
     /** Tiefschlaf in Minuten; `null` ohne Phasen ([StageStats.of] ergibt `null`). */
@@ -191,7 +191,7 @@ object Findings {
     /**
      * Die wichtigste Auffälligkeit, die nicht ausgeblendet ist (ausgeblendet um [hidden], seit weniger als [HIDE_FOR]).
      * [bedtimeAdvice]: Die Startseite zeigt schon die Bettzeit-Karte; dann treten die Auffälligkeiten mit demselben Tipp
-     * ([BEDTIME_TIP]) zurück, damit er nicht zweimal steht (Audit UX-04). Im Verlauf bleiben sie.
+     * ([BEDTIME_TIP]) zurück, damit er nicht zweimal steht. Im Verlauf bleiben sie.
      */
     fun home(findings: List<Finding>, hidden: Map<FindingKind, Instant>, now: Instant, bedtimeAdvice: Boolean = false): Finding? =
         findings.firstOrNull { f ->
@@ -229,7 +229,7 @@ object Findings {
 
     /**
      * Einschlafdauer aus der eigenen Messung für eine Nacht der Gesundheits-App von [start] bis [end] (nur, wenn diese
-     * keine liefert; Entscheid r1AD 15.11.2026): zuerst aus den Nächten der Uhr [watch], sonst aus den Aufzeichnungen [own].
+     * keine liefert): zuerst aus den Nächten der Uhr [watch], sonst aus den Aufzeichnungen [own].
      * Je die Messung, die sich am längsten mit der Nacht überschneidet (gleich: die erste; wie die Aufzeichnung zur Nacht
      * auf der Detailseite), in ganzen Minuten von [OwnOnset.bedAt] bis [OwnOnset.asleepAt] (abgerundet). `null` ohne
      * Überschneidung oder wenn die Einschlafzeit vor dem Beginn liegt.

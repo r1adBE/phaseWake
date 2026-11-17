@@ -27,9 +27,9 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Zusammenspiel beim Planen des Zweitweckers ([planBackup], Review M-2): Nachfrist je nach Uhr (Review N-5), frühere
- * Zielzeit des Einschlaf-Modus und ihre Aufhebung (Review H-1), Liste für vor dem ersten Entsperren, Schlummern am
- * Handy daneben ([PhoneSnooze.restore]), ein veraltetes «klingeln» (Review LATE) und «stop» bzw. Nacht der Uhr, die
+ * Zusammenspiel beim Planen des Zweitweckers ([planBackup]): Nachfrist je nach Uhr, frühere
+ * Zielzeit des Einschlaf-Modus und ihre Aufhebung, Liste für vor dem ersten Entsperren, Schlummern am
+ * Handy daneben ([PhoneSnooze.restore]), ein veraltetes «klingeln» und «stop» bzw. Nacht der Uhr, die
  * die Wiederaufnahme am Handy aufheben. Feste Uhrzeit, [QuietApp].
  */
 @RunWith(RobolectricTestRunner::class)
@@ -91,7 +91,7 @@ class BackupPlanTest {
         backup.onsetShiftReceived(OnsetShift("a", configured.toEpochMilli(), earlier.toEpochMilli(), 1L))
         assertEquals(earlier.plus(grace).toEpochMilli(), backupAt())
         assertEquals(earlier, BackupDirectBoot.load(context).first().target)
-        // Wieder wach, zweites «Gute Nacht», Zielzeit auf der eingestellten (Review H-1): das Handy folgt.
+        // Wieder wach, zweites «Gute Nacht», Zielzeit auf der eingestellten: das Handy folgt.
         backup.onsetShiftReceived(OnsetShift("a", configured.toEpochMilli(), configured.toEpochMilli(), 2L))
         assertEquals(configured.plus(grace).toEpochMilli(), backupAt())
         assertEquals(configured, BackupDirectBoot.load(context).first().target)
@@ -114,7 +114,7 @@ class BackupPlanTest {
 
     @Test
     fun sameMinuteAlarmRingsRightAfterTheFirst() = runBlocking {
-        // Ohne Uhr (Nachfrist 0): «a» und «c» 07:00. Nach dem Klingeln von «a» kommt «c» gleich (Review 04.11. e).
+        // Ohne Uhr (Nachfrist 0): «a» und «c» 07:00. Nach dem Klingeln von «a» kommt «c» gleich.
         seenAt = null
         var clock = now
         val phone = BackupAlarm(context, repository, MemoryStore(), WearSync(context), now = { clock }, watchSeenAt = { seenAt })
@@ -159,7 +159,7 @@ class BackupPlanTest {
         repository.upsert(spec)
         val target = configured.toEpochMilli()
         val resumeAt = now.plus(Duration.ofMinutes(10))
-        // Prozess des Handys beendet, während die Uhr führte: Nur die abgelegte Wiederaufnahme ist da (04.11.2026).
+        // Prozess des Handys beendet, während die Uhr führte: Nur die abgelegte Wiederaufnahme ist da.
         backup.snoozeUntil(resumeAt, "a", 1, target)
         backup.watchStopped(RingMessage("b", target + 1_800_000, now.toEpochMilli()), null)
         assertEquals("a", PhoneSnooze.load(context)?.alarmId, "«stop» eines anderen Weckers lässt sie")

@@ -32,15 +32,15 @@ import kotlinx.coroutines.launch
  * 25 Hz, Puls über den Pulssensor der Uhr, Rückfall Health Services) und speichert sie fortlaufend ([com.phasewake.app.shared.RecordingRepository]).
  *
  * Eigener Vordergrunddienst («health»), unabhängig vom [com.phasewake.app.wear.wake.WakeService]: Wecker, Einschlaf- und
- * Fenstermessung laufen unverändert weiter, beide dürfen zugleich die Sensoren lesen. Wakelock (Audit F-01): Hat die Uhr
+ * Fenstermessung laufen unverändert weiter, beide dürfen zugleich die Sensoren lesen. Wakelock: Hat die Uhr
  * einen aufweckenden Beschleunigungssensor mit grossem Puffer ([SensorSession.continuous]), bündelt er bis 5 Minuten und
  * weckt die Uhr selbst; dann hält der Dienst nur je Bündel kurz einen Wakelock ([RecordWakeLocks.BATCH_MS]) und prüft dabei die
  * Grenzen ([onTick]). Sonst hält er einen eigenen Wakelock, solange er aufzeichnet (der gewöhnliche Sensor bündelt nur
- * 10 s). Gemessen wird in Stichproben ([LearnSampler], 60 s alle 5 Min, Entscheid r1AD 10.11.2026) mit kurzem Wakelock
+ * 10 s). Gemessen wird in Stichproben ([LearnSampler], 60 s alle 5 Min) mit kurzem Wakelock
  * je Stichprobe – in der Lernphase und von Hand; durchgehend nur mit freigeschalteter Diagnose auf Uhr oder Handy
- * (Audit F-01, [LearnMarkStore.setContinuous]). Diagnose: «wl=hold|batch|sample mode=continuous|sample».
+ * ([LearnMarkStore.setContinuous]). Diagnose: «wl=hold|batch|sample mode=continuous|sample».
  *
- * Endet beim Wecken ([RecordEnd.WAKE], von Hand begonnene spätestens dann, Audit F-01), von Hand (Uhr, Mitteilung,
+ * Endet beim Wecken ([RecordEnd.WAKE], von Hand begonnene spätestens dann), von Hand (Uhr, Mitteilung,
  * Handy), nach [NightRecording.MAX_DURATION] oder unter [NightRecording.MIN_BATTERY] Akku; der Grund steht im
  * Diagnose-Protokoll und in der Aufzeichnung. Lernphase ([RecordControl.startForLearning], [LearnMark]): ohne Klingeln
  * zur eingestellten Weckzeit. Alle [FLUSH_INTERVAL] werden die neuen Epochen angehängt. Endet der Prozess, nimmt der
@@ -236,7 +236,7 @@ class RecordService : LifecycleService() {
         wakeLocks.startDone()
         val mode = if (sampled) "wl=sample mode=sample" else "wl=${if (wakeUp) "batch" else "hold"} mode=continuous"
         app.diag.log(DiagKind.MEASURE_START, "$startLine hrsrc=${session.heartRateSource} $mode")
-        com.phasewake.app.wear.wake.nightBatteryBegin(this, null, null) // Akku je Nacht: Messbeginn (r1AD 14.11.2026).
+        com.phasewake.app.wear.wake.nightBatteryBegin(this, null, null) // Akku je Nacht: Messbeginn.
         RecordControl.armCheck(this)
         handler.postDelayed(tick, TICK_MS)
         write { app.recordSync.publishStatus(recording.start) }

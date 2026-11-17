@@ -136,7 +136,7 @@ enum BackupIO {
         defaults.set(s.autoOnset, forKey: autoOnsetKey)
         defaults.set(s.eveningDark, forKey: EveningDarkKeys.enabled)
         defaults.set(EveningDark.checkedFrom(s.eveningDarkFrom), forKey: EveningDarkKeys.from)
-        // Unplausibel → keiner, in der Zukunft → jetzt (Vollaudit DA-1).
+        // Unplausibel → keiner, in der Zukunft → jetzt.
         if let cleared = HistoryClear.clamped(ms: s.historyClearedAt, now: Date()) {
             defaults.set(NSNumber(value: cleared), forKey: PhoneModel.historyClearedKey)
         } else {

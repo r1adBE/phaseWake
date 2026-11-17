@@ -3,7 +3,7 @@ import UIKit
 import XCTest
 @testable import PhaseWake
 
-/// Audit SEC-03: Abdeckung über der App, solange sie nicht aktiv ist (Vorschaubild im App-Umschalter ohne Schlafdaten).
+/// Abdeckung über der App, solange sie nicht aktiv ist (Vorschaubild im App-Umschalter ohne Schlafdaten).
 @MainActor
 final class PrivacyCoverPhoneTests: XCTestCase {
     func testCoverLiesOverTheAppUntilItIsActiveAgain() throws {

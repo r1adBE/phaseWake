@@ -9,8 +9,8 @@ import Foundation
 ///   mit dem Grundrauschen der Epochen bis dahin, solange es zu wenige sind dem gelernten); 15 Min Ruhe am Stück
 ///   (``SleepOnset``), Einschlafzeit = Beginn der Strecke.
 /// - Zeitgrenze: ``maxDuration`` nach dem Beginn bzw. ``giveUpLead`` vor der eingestellten Weckzeit. An der Höchstdauer
-///   verlängert sich die Messung um die Zeit, in der die Uhr nicht getragen wurde (``awayUntil(baseEnd:awayEpochs:latestGiveUp:cap:)``,
-///   Prüfrunde 2 HG-3), und bei Unruhe in den letzten 15 Min (``restless(_:threshold:)``) um je ``extendStep``, beides
+///   verlängert sich die Messung um die Zeit, in der die Uhr nicht getragen wurde (``awayUntil(baseEnd:awayEpochs:latestGiveUp:cap:)``),
+///   und bei Unruhe in den letzten 15 Min (``restless(_:threshold:)``) um je ``extendStep``, beides
 ///   höchstens bis ``extendCap(since:windowStart:)``. Den Akku dieser Zeit kennt die Uhr nicht: Er hindert hier nicht
 ///   (wie ein unbekannter Akku auf der Galaxy Watch).
 ///
@@ -53,7 +53,7 @@ public enum RecorderOnset {
     }
 
     /// Wie ``find(motions:since:threshold:personalFloor:latest:extendCap:heartRates:)``, dazu das Grundrauschen der Messung für das
-    /// Weckfenster derselben Nacht (``WakeDetector/useOnsetFloor(_:)``, Fix KN-3, gleiche Regel wie `OnsetMonitor.floor`
+    /// Weckfenster derselben Nacht (``WakeDetector/useOnsetFloor(_:)``, gleiche Regel wie `OnsetMonitor.floor`
     /// auf der Galaxy Watch): ``NoiseFloor/floor(_:personal:)`` der Epochen vom Beginn bis zu der, in der das Einschlafen
     /// erkannt ist (``Result/asleep(at:index:)``), bzw. bis vor der Zeitgrenze (``Result/gaveUp(at:reason:)``); solange
     /// es weniger als ``NoiseFloor/minFloorEpochs`` Werte sind, `personalFloor`, vor der ersten Epoche keines. Reichen die
@@ -61,13 +61,13 @@ public enum RecorderOnset {
     ///
     /// `heartRates`: Puls je Epoche ab `heartLead` Epochen vor `since` (``RecorderEpochs/heartRates(_:start:count:)``).
     /// Gibt es darin mindestens einen, beginnt eine ruhige Strecke nur, wo die Uhr getragen wurde (Puls höchstens 15 Min
-    /// davor und einer in der Strecke, Audit c3b8b01 E-5, Prüfrunde 2 F-1, ``SleepOnset/find(_:threshold:heartRates:heartLead:)``):
+    /// davor und einer in der Strecke, ``SleepOnset/find(_:threshold:heartRates:heartLead:)``):
     /// Abgelegt oder auf dem Ladegerät misst die Uhr keinen Puls, und ihr Rauschen zählte sonst als Einschlafen; die
     /// Messung wartet, bis sie wieder getragen wird. Ganz ohne Puls (keine Erlaubnis, keine Daten) gilt die Regel nicht.
     ///
-    /// `away`: je Epoche ab `since`, ob die Uhr da lud (``awayEpochs(_:start:count:)``, F-1). Solche Epochen gelten als
+    /// `away`: je Epoche ab `since`, ob die Uhr da lud (``awayEpochs(_:start:count:)``). Solche Epochen gelten als
     /// leer (wie am Ladegerät auf der Galaxy Watch). Sie und Epochen ohne Puls in den 15 Min davor (nur mit Puls in der
-    /// Messung) verlängern die Zeitgrenze (HG-3).
+    /// Messung) verlängern die Zeitgrenze.
     public static func measure(motions: [Double?], since: Date, threshold: Double, personalFloor: Double?, latest: Date,
                                extendCap: Date?, heartRates: [Double?]? = nil, heartLead: Int = 0,
                                away: [Bool]? = nil) -> (result: Result, floor: Double?) {
@@ -122,7 +122,7 @@ public enum RecorderOnset {
         return until > at ? until : nil
     }
 
-    /// Zeitgrenze, verschoben um die Zeit ohne Tragen (Prüfrunde 2 HG-3, wie `OnsetRules.awayUntil`): `baseEnd` (Beginn
+    /// Zeitgrenze, verschoben um die Zeit ohne Tragen (wie `OnsetRules.awayUntil`): `baseEnd` (Beginn
     /// plus ``maxDuration``) plus `awayEpochs` Epochen, höchstens `cap` und `latestGiveUp`; `nil` ohne solche Epochen oder
     /// wenn die Grenze vor der Weckzeit (`latestGiveUp`) schon früher gilt. Am Ladegerät oder abgelegt kann niemand
     /// einschlafen; ohne Verschiebung gab die Messung nach dem Laden auf, bevor eine Strecke vollständig sein konnte.
@@ -132,7 +132,7 @@ public enum RecorderOnset {
     }
 
     /// Ob Epoche `index` als nicht getragen zählt: Mit Puls in der Messung (`pulses`, beginnend `heartLead` Epochen vor
-    /// `since`) lag in den ``SleepOnset/wornEpochs`` Epochen bis zu ihr keiner (F-1, HG-3).
+    /// `since`) lag in den ``SleepOnset/wornEpochs`` Epochen bis zu ihr keiner.
     static func unworn(_ index: Int, pulses: [Double?]?, heartLead: Int) -> Bool {
         guard let pulses else { return false }
         let from = max(0, index + heartLead - SleepOnset.wornEpochs)
@@ -141,7 +141,7 @@ public enum RecorderOnset {
         return !(from...to).contains { pulses[$0] != nil }
     }
 
-    /// Epochen ab `start` (`count` Stück), die eine Zeit am Ladegerät berühren (`spans`: von–bis, F-1); wie
+    /// Epochen ab `start` (`count` Stück), die eine Zeit am Ladegerät berühren (`spans`: von–bis); wie
     /// `OnsetRules.charging` auf der Galaxy Watch.
     public static func awayEpochs(_ spans: [(from: Date, until: Date)], start: Date, count: Int) -> [Bool] {
         guard count > 0 else { return [] }
@@ -180,12 +180,12 @@ public enum RecorderOnset {
     public static let lateStartTolerance: TimeInterval = 60
 
     /// Ob der Rekorder erst nach dem Beginn der Einschlafdauer `bedAt` (``bedAt(since:automatic:latest:sleepMinutes:)``)
-    /// startete, um mehr als ``lateStartTolerance`` (Tiefenaudit AP3-2). Was dann gilt, sagt ``lateStart(recorderFrom:bedAt:foreground:)``.
+    /// startete, um mehr als ``lateStartTolerance``. Was dann gilt, sagt ``lateStart(recorderFrom:bedAt:foreground:)``.
     public static func startedLate(recorderFrom: Date, bedAt: Date) -> Bool {
         recorderFrom > bedAt.addingTimeInterval(lateStartTolerance)
     }
 
-    /// Beginn der Messung gegenüber dem Beginn der Einschlafdauer (Entscheid r1AD 14.11.2026, Prüfrunde 2 HG-2; wie
+    /// Beginn der Messung gegenüber dem Beginn der Einschlafdauer (wie
     /// `OnsetRules.LateStart`, Kotlin).
     public enum LateStart: Equatable, Sendable {
         /// Rechtzeitig: Die Rechnung gilt; ein früheres Einschlafen zählt erst ab `bedAt` (``onsetAt(found:bedAt:)``).
@@ -209,7 +209,7 @@ public enum RecorderOnset {
 
 /// Apple Watch, Einschlaf-Modus («nach 7½ Std.»): «Gute Nacht» legt die Zielzeit sofort fest, aus der Zeit des Tippens,
 /// der gelernten Einschlafdauer (sonst ``defaultLatencyMinutes``) und der Schlafdauer, nie später als die eingestellte
-/// Weckzeit (Näherung, freigegeben von r1AD 10.11.2026). Die Galaxy Watch misst das Einschlafen stattdessen und legt die
+/// Weckzeit (Näherung). Die Galaxy Watch misst das Einschlafen stattdessen und legt die
 /// Zielzeit danach fest (`GoodNight`, Kotlin). Am Morgen vergleicht die Uhr die Schätzung mit der Einschlafzeit aus dem
 /// Rekorder (``RecorderOnset``) im Diagnose-Protokoll.
 public enum GoodNightEstimate {

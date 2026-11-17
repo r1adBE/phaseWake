@@ -2,7 +2,7 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWakeWatch
 
-/// Zeiten in Nachrichten zwischen iPhone und Uhr, Apple Watch (Herkunft: Vollaudit 071597f AP2-8).
+/// Zeiten in Nachrichten zwischen iPhone und Uhr, Apple Watch.
 final class SyncTimeWatchTests: XCTestCase {
     private let now = Date(timeIntervalSince1970: 1_793_000_000)
 

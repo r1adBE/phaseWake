@@ -21,7 +21,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Puls im Weckfenster und in «Nacht aufzeichnen» (Befund 08./09.11.2026: Health Services lieferten bei dunklem
+ * Puls im Weckfenster und in «Nacht aufzeichnen» (Health Services lieferten bei dunklem
  * Bildschirm nur etwa alle 10 Min): zuerst der Pulssensor der Uhr, untaugliche Werte verworfen, Rückfall auf die
  * Health Services ohne Sensor oder wenn er sich nicht anmelden lässt.
  */

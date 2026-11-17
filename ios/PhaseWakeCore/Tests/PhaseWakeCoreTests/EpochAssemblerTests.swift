@@ -47,7 +47,7 @@ final class EpochAssemblerTests: XCTestCase {
         XCTAssertEqual(a.currentIndex, 1)
     }
 
-    /// Audit c3b8b01 BE-1b: Nicht nur «nichts geschlossen» – der Wert darf auch in keiner Epoche landen (wie Kotlin).
+    /// Nicht nur «nichts geschlossen» – der Wert darf auch in keiner Epoche landen (wie Kotlin).
     func testValuesBeforeStartDoNotCount() {
         let a = EpochAssembler(startNanos: start)
         XCTAssertTrue(a.addHeartRate(timestampNanos: start - s, bpm: 90).isEmpty)

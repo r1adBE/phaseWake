@@ -371,7 +371,7 @@
     <string name="chart_window">唤醒时间窗</string>
     <string name="chart_no_data">无数据</string>
     <string name="chart_feeling_hint">轻点一个点即可查看那晚的备注。</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">测试闹钟</string>
     <string name="test_button">2 分钟后测试</string>
     <string name="test_hint">2 分钟后按你下一个闹钟的设置响铃，不能稍后提醒。不计为一晚。</string>
@@ -585,7 +585,7 @@
     <string name="learn_switch_hint">你的手表会在夜间测量动作和脉搏（电量至少 %1$d %%）。 关闭：不再自动记录，已学到的数值保留。</string>
     <string name="learn_switch_title">启用</string>
     <string name="watch_open_app_hint">请在手表上打开 Phase Wake，以便它接收指令。</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">学习阶段开始以来的每一晚——是否已计入；如果没有，原因是什么、怎样改善。Phase Wake 需要 %1$d 个计入的夜晚。</string>
     <string name="learn_nights_empty">还没有夜晚。第一晚会在第二天早上显示在这里。</string>
     <string name="learn_night_facts">测量 %1$s · %2$d 个读数 · %3$d %% 有心率</string>

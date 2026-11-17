@@ -22,7 +22,7 @@ enum PhoneCheck: CaseIterable, Hashable {
     case watchArmTonight
     /// Uhr-App älter als die iPhone-App (`WatchProtocol`).
     case watchOutdated
-    /// iPhone und Uhr haben verschiedene Testversionen (Build-Nummern, ``BuildNumber``, r1AD 14.11.2026). Nur ein
+    /// iPhone und Uhr haben verschiedene Testversionen (Build-Nummern, ``BuildNumber``). Nur ein
     /// Hinweis; fehlt, wenn schon ``watchOutdated`` dasteht.
     case buildMismatch(phone: Int, watch: Int)
     /// Zweitwecker bald aufgebraucht: iOS hat die App zu lange nicht geweckt (`BackupAlarm.horizonShort`).
@@ -34,9 +34,9 @@ enum PhoneCheck: CaseIterable, Hashable {
     /// Stand der Mitteilungen auf der Uhr älter als 3 Tage (`WatchNotifications.isOutdated`). Nur ein Hinweis.
     case watchStateOld
     /// Die Uhr-App lief, der Rekorder startete für diese Nacht aber nicht, obwohl Einschlaf-Messung oder Lernphase ihn
-    /// wollten (``RecorderSkip``, Audit F-06, wie Android): Akku zu schwach bzw. keine Erlaubnis für Bewegungsdaten.
+    /// wollten (``RecorderSkip``, wie Android): Akku zu schwach bzw. keine Erlaubnis für Bewegungsdaten.
     case watchRecorderBattery, watchRecorderMotion
-    /// Vorab (Audit O-05, wie Android): Akku der Uhr unter ``NightCheck/watchOnsetBatteryPercent`` mit «Einschlafen
+    /// Vorab (wie Android): Akku der Uhr unter ``NightCheck/watchOnsetBatteryPercent`` mit «Einschlafen
     /// automatisch erkennen» – die Uhr startet die Einschlaf-Messung nicht; sonst in der Lernphase unter
     /// ``Learning/minBattery`` – sie zeichnet nicht auf. Nur ein Hinweis, der Wecker klingelt trotzdem.
     case watchOnsetBattery, watchLearnBattery
@@ -160,7 +160,7 @@ enum NightCheck {
         var autoOnset = false
         /// Lernphase läuft.
         var learning = false
-        /// Die Uhr lud beim gemeldeten Akkustand (Prüfrunde 2 F-6): Sie misst dann trotz wenig Akku, keine Warnung dazu.
+        /// Die Uhr lud beim gemeldeten Akkustand: Sie misst dann trotz wenig Akku, keine Warnung dazu.
         var charging = false
         /// Build-Nummern von iPhone- und Uhr-App (``BuildNumber``); `nil`, wenn unbekannt.
         var phoneBuild: Int?
@@ -179,7 +179,7 @@ enum NightCheck {
         if let plan = watch.plan, plan.windowStart.timeIntervalSince(now) < armLeadTime, watch.armedTarget != plan.target {
             failed.append(watch.reminder.map { now >= $0 } == true ? .watchArmTonight : .watchArm)
         }
-        // Am Ladegerät warnt der Akku nicht (F-6): Die Uhr ist zur Bettzeit geladen und misst trotzdem.
+        // Am Ladegerät warnt der Akku nicht: Die Uhr ist zur Bettzeit geladen und misst trotzdem.
         let battery = watch.charging ? nil : watch.battery
         if let percent = battery, percent < lowBatteryPercent {
             failed.append(.watchBattery)
@@ -189,7 +189,7 @@ enum NightCheck {
         if let skip {
             failed.append(skip.reason == .battery ? .watchRecorderBattery : .watchRecorderMotion)
         }
-        // Vorab zum Akku (O-05): nicht, wenn die Uhr schon gemeldet hat, dass sie wegen des Akkus nicht startete.
+        // Vorab zum Akku: nicht, wenn die Uhr schon gemeldet hat, dass sie wegen des Akkus nicht startete.
         if skip?.reason != .battery, let hint = batteryHint(battery, autoOnset: watch.autoOnset, learning: watch.learning) {
             failed.append(hint)
         }
@@ -213,7 +213,7 @@ enum NightCheck {
         return .buildMismatch(phone: phone, watch: watch)
     }
 
-    /// Hinweis vorab zum Akku der Uhr (Audit O-05, wie `NightCheckState.batteryHints` auf Android), höchstens einer:
+    /// Hinweis vorab zum Akku der Uhr (wie `NightCheckState.batteryHints` auf Android), höchstens einer:
     /// unter ``watchOnsetBatteryPercent`` mit automatischer Einschlaf-Messung, sonst in der Lernphase unter
     /// ``Learning/minBattery``. Keiner unter ``lowBatteryPercent`` (dort sagt ``PhoneCheck/watchBattery`` schon «lade die
     /// Uhr») und bei unbekanntem Akku.
@@ -231,7 +231,7 @@ enum NightCheck {
     }
 
     /// Erinnerung am Abend der Uhr für `plan`: 60 Min vor der einen Bettzeit (Zielzeit minus Schlafdauer bzw. Schlafziel
-    /// minus gelernte Einschlafdauer, Audit O-03), wie `EveningReminder.reminderAt` auf der Uhr.
+    /// minus gelernte Einschlafdauer), wie `EveningReminder.reminderAt` auf der Uhr.
     private static func reminderTime(_ plan: WakePlan, model: PhoneModel) -> Date {
         let spec = model.alarms.first { $0.id == plan.alarmId }
         return Bedtime.bedtime(nextAlarmTarget: plan.target, goalMinutes: spec?.sleepDurationMinutes ?? model.sleepGoal,

@@ -66,7 +66,7 @@ internal class NavActions(
     val askNotificationsIfMissing: () -> Unit,
     val connectHealth: () -> Unit,
     val onFix: (Check) -> Unit,
-    /** «In 2 Minuten testen»; ersetzt er einen wartenden Powernap, fragt er zuerst (B-12). */
+    /** «In 2 Minuten testen»; ersetzt er einen wartenden Powernap, fragt er zuerst. */
     val onTest: () -> Unit,
 )
 
@@ -83,7 +83,7 @@ internal fun AppNavHost(app: PhaseWakeApp, state: NavState, actions: NavActions,
         composable(Routes.ALARMS) { AlarmsRoute(app, state, actions, content, homeList) }
         composable(Routes.HISTORY) { HistoryRoute(app, state, actions, content) }
         composable(Routes.SETTINGS) { SettingsRoute(app, state, actions, content) }
-        // Zurück immer über backFrom (B-1): Ein zweiter schneller Tipp nimmt sonst den Bildschirm darunter mit.
+        // Zurück immer über backFrom: Ein zweiter schneller Tipp nimmt sonst den Bildschirm darunter mit.
         composable(Routes.SOUNDS) { entry -> SoundsRoute(app, state.data, onBack = { actions.nav.backFrom(entry) }) }
         composable(ExtraRoutes.DIAGNOSTICS) { entry ->
             DiagnosticsScreen(
@@ -236,7 +236,7 @@ private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavAction
     val context = LocalContext.current
     val res = LocalResources.current
     val data = state.data
-    // Mit Build-Nummer der Testversion, z. B. «16.2.2 (96)» (r1AD 14.11.2026).
+    // Mit Build-Nummer der Testversion, z. B. «16.2.2 (96)».
     val version = remember { com.phasewake.app.shared.BuildNumber.ownLabel(context, watch = false) }
     val nextAlarmNotice by app.settings.nextAlarmNotice.collectAsStateWithLifecycle(initialValue = true)
     val eveningDark by app.settings.eveningDark.collectAsStateWithLifecycle(initialValue = EveningDarkSetting())

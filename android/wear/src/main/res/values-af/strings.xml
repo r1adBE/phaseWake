@@ -73,7 +73,7 @@
     <string name="editor_delete_title">Vee hierdie wekker uit?</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Tot %1$d wekkers – vee een uit om ’n nuwe by te voeg.</string>
     <string name="editor_enabled">Wekker aan</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Slaan volgende keer oor</string>
     <string name="alarm_skipped">Oorgeslaan: %1$s</string>
     <string name="nap_title">Kraguiltjie</string>
@@ -103,7 +103,7 @@
     <string name="record_since">Sedert %1$s</string>
     <string name="notification_record_title">Nag word opgeneem</string>
     <string name="record_battery_low">Battery te laag om op te neem</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Leerfase</string>
     <string name="watch_learn_warn">Laai jou horlosie, anders tel vannag nie vir die leerfase nie (battery %1$d %%, nodig %2$d %%).</string>
     <string name="watch_learn_skip_battery">Vannag tel nie vir die leerfase nie: battery op %1$d %%, nodig %2$d %%.</string>

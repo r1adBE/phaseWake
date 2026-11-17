@@ -59,7 +59,7 @@ class PhoneListenerService : WearableListenerService() {
      */
     private suspend fun storeNight(night: NightRecord) {
         val app = phoneApp
-        // Nach «Verlauf löschen» nachgeliefert (Audit D-02): eine Nacht, die bis dahin endete, nicht wieder aufnehmen.
+        // Nach «Verlauf löschen» nachgeliefert: eine Nacht, die bis dahin endete, nicht wieder aufnehmen.
         if (endedBeforeClear(night.wokeAt)) {
             app.diag.log(DiagKind.SYNC, "night before history clear dropped")
         } else {
@@ -73,7 +73,7 @@ class PhoneListenerService : WearableListenerService() {
     /** Abgeschlossene Aufzeichnung speichern; Lernphase: zählen, nach 7 Nächten anpassen. */
     private suspend fun storeRecording(recording: NightRecording) {
         val app = phoneApp
-        // Wie bei den Nächten (Audit D-02): vor «Verlauf löschen» beendet, nicht wieder aufnehmen (und nicht lernen).
+        // Wie bei den Nächten: vor «Verlauf löschen» beendet, nicht wieder aufnehmen (und nicht lernen).
         val end = recording.end
         if (end != null && endedBeforeClear(end)) {
             app.diag.log(DiagKind.SYNC, "recording before history clear dropped")
@@ -100,15 +100,15 @@ class PhoneListenerService : WearableListenerService() {
             DataLayer.PATH_MSG_ALARMS -> QueueMessages.decodeAlarms(body)?.let { snapshot ->
                 val result = app.alarms.receive(snapshot)
                 // Der Stand hier weicht ab (z. B. eine Änderung, deren Nachricht verloren ging): zurück an die Uhr, damit
-                // beide gleich werden (Audit AN-1). Einreihen ist lokal und schnell, gesendet wird im Hintergrund.
+                // beide gleich werden. Einreihen ist lokal und schnell, gesendet wird im Hintergrund.
                 result.reply?.let { app.sync.publishAlarms(it) }
                 if (result.changed) {
                     app.diag.log(DiagKind.ALARMS_RECEIVED, "from watch")
                     app.backup.reschedule()
                 }
             }
-            // Unlesbar (z. B. Versionen von Handy und Uhr gemischt): bestätigt und verworfen, aber mit Zeile im Protokoll
-            // (Audit CODE-02), damit der Verlust im Diagnose-Bericht zu finden ist. Nur die Länge, kein Inhalt.
+            // Unlesbar (z. B. Versionen von Handy und Uhr gemischt): bestätigt und verworfen, aber mit Zeile im Protokoll,
+            // damit der Verlust im Diagnose-Bericht zu finden ist. Nur die Länge, kein Inhalt.
             DataLayer.PATH_MSG_NIGHT -> runCatching { Codec.decodeNight(body) }.getOrNull()
                 ?.let { storeNight(it) } ?: app.diag.log(DiagKind.SYNC, "night unreadable, dropped (len=${body.length})")
             DataLayer.PATH_MSG_RECORDING -> when (val recording = NightRecording.decode(body)) {
@@ -121,7 +121,7 @@ class PhoneListenerService : WearableListenerService() {
                 app.learnLog.addSkip(skip)
                 app.diag.log(DiagKind.SYNC, "learn skip ${skip.reason.code}${skip.battery?.let { " $it%" }.orEmpty()}")
             }
-            // Einschlaf-Modus der Galaxy Watch: frühere Zielzeit auch für den Zweitwecker dieser Nacht (Review K-07).
+            // Einschlaf-Modus der Galaxy Watch: frühere Zielzeit auch für den Zweitwecker dieser Nacht.
             DataLayer.PATH_MSG_ONSET_SHIFT -> OnsetShift.decode(body)?.let { app.backup.onsetShiftReceived(it) }
         }
     }
@@ -132,7 +132,7 @@ class PhoneListenerService : WearableListenerService() {
      */
     override fun onChannelOpened(channel: ChannelClient.Channel) {
         val app = phoneApp
-        // Im App-Bereich, nicht im Thread des Empfangs (Audit AN-4): Lesen und Verarbeiten halten keine Nachricht auf.
+        // Im App-Bereich, nicht im Thread des Empfangs: Lesen und Verarbeiten halten keine Nachricht auf.
         app.appScope.launch { app.sync.readChannel(channel)?.let { data -> handleChannel(channel.nodeId, channel.path, data) } }
     }
 
@@ -150,7 +150,7 @@ class PhoneListenerService : WearableListenerService() {
     }
 
     /**
-     * Eigene wartende Einträge senden: Die Uhr ist ja da. Im App-Bereich, nicht im Thread des Empfangs (Audit A-8), damit
+     * Eigene wartende Einträge senden: Die Uhr ist ja da. Im App-Bereich, nicht im Thread des Empfangs, damit
      * ein hängender Schritt zur Uhr keine weiteren Nachrichten aufhält.
      */
     private fun flushLater() {
@@ -167,18 +167,18 @@ class PhoneListenerService : WearableListenerService() {
         val app = phoneApp
         val path = event.path
         when {
-            // Im App-Bereich (Audit AN-4): Die Warteschlange kann gerade beschäftigt sein, der Empfang wartet nicht darauf.
+            // Im App-Bereich: Die Warteschlange kann gerade beschäftigt sein, der Empfang wartet nicht darauf.
             path == DataLayer.PATH_ACK -> {
                 app.appScope.launch { app.sync.acked(event.data) }
                 return
             }
             // Die Uhr will den Stand des Handys (frisch installiert, neu gestartet): einreihen und senden.
             path == DataLayer.PATH_SYNC_REQUEST -> {
-                // Im App-Bereich (Audit A-8); danach auch alles andere Wartende ([PhaseWakeApp.publishToWatch], Audit AN-3).
+                // Im App-Bereich; danach auch alles andere Wartende ([PhaseWakeApp.publishToWatch]).
                 app.appScope.launch { app.publishToWatch() }
                 return
             }
-            // Verarbeiten (Speichern, Neuplanen) im App-Bereich (Audit AN-4). Endet der Prozess vorher, fehlt nur die
+            // Verarbeiten (Speichern, Neuplanen) im App-Bereich. Endet der Prozess vorher, fehlt nur die
             // Bestätigung: Die Uhr sendet den Eintrag dann später erneut.
             path.startsWith(QUEUE_PREFIX) -> {
                 val data = event.data

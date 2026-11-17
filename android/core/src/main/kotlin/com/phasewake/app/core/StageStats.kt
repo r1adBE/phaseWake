@@ -43,7 +43,7 @@ data class StageTotal(
     /** Minuten der Phase: Millisekunden summiert, dann abgerundet. */
     val minutes: Long,
     /**
-     * Anteil in ganzen Prozent (Entscheid r1AD 15.11.2026). REM, leicht, tief: am Schlaf ([NightStages.asleepMinutes],
+     * Anteil in ganzen Prozent. REM, leicht, tief: am Schlaf ([NightStages.asleepMinutes],
      * unbekannt zählt als Schlaf), aus den ganzen Minuten, halbe aufwärts, wie [Findings.deepPercent]; die drei ergeben
      * darum nicht immer genau 100. Wach: an allen vier Phasen (Restverfahren wie bisher), nur für Einordnung und
      * Schlafwert; angezeigt wird Wach in Minuten.
@@ -89,7 +89,7 @@ data class NightStages(
  */
 object StageStats {
     /**
-     * Übliche Anteile für Erwachsene in Prozent (Richtwerte laut Auftrag vom 29.10.2026: wach unter 10 %,
+     * Übliche Anteile für Erwachsene in Prozent (Richtwerte: wach unter 10 %,
      * REM 20–25 %, leicht 50–60 %, tief 13–23 %). Nur zur Orientierung, keine medizinische Bewertung.
      */
     val TYPICAL: Map<SleepStage, StageRange> = mapOf(
@@ -109,7 +109,7 @@ object StageStats {
     /**
      * Auswertung der [spans] im Bereich [from] bis [to] (Spannen werden darauf zugeschnitten, [StageCheck.clip]).
      * `null`, wenn [to] nicht nach [from] liegt oder keine Schlafphase (REM, leicht, tief) im Bereich liegt: Eine Quelle
-     * ohne Phasendetail (Schlaf «unbekannt» und «wach») hat keine Phasen, sonst stünde dort «Wach 100 %» (Audit W-5).
+     * ohne Phasendetail (Schlaf «unbekannt» und «wach») hat keine Phasen, sonst stünde dort «Wach 100 %».
      */
     fun of(spans: List<StageSpan>, from: Instant, to: Instant): NightStages? {
         if (!to.isAfter(from)) return null

@@ -36,7 +36,7 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 /**
- * Start-Wakelock zwischen Alarm und Dienst ([StartLock], Befund 13.11.2026): Die Empfänger nehmen ihn vor dem Start,
+ * Start-Wakelock zwischen Alarm und Dienst ([StartLock]): Die Empfänger nehmen ihn vor dem Start,
  * mit Zeitlimit und ohne Zählung; der Weckdienst löst ihn, sobald er seinen eigenen Wakelock hält; ein verweigerter
  * Start löst ihn sofort.
  */
@@ -59,7 +59,7 @@ class StartLockTest {
     fun setUp() {
         StartLock.resetForTest()
         ShadowAlarmManager.setCanScheduleExactAlarms(true)
-        // Voraussetzung für «health» (RecordControl startet sonst nicht, OFFEN 4a).
+        // Voraussetzung für «health» (RecordControl startet sonst nicht).
         shadowOf(context as Application).grantPermissions(Manifest.permission.ACTIVITY_RECOGNITION)
     }
 

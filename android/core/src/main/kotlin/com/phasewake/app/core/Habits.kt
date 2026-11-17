@@ -24,7 +24,7 @@ object Regularity {
 
     /**
      * Bettzeiten als (Nachtdatum, Einschlafbeginn, Zone der Aufzeichnung) aus den Nächten der Gesundheits-App
-     * ([SleepSummary.timeZone]; `null` = Zone des Geräts, Audit F-3).
+     * ([SleepSummary.timeZone]; `null` = Zone des Geräts).
      */
     fun bedtimesOf(sleeps: List<SleepSummary>, zone: ZoneId): List<Triple<LocalDate, Instant, ZoneId?>> =
         sleeps.map { Triple(SleepNotes.nightDate(it, zone), it.start, it.timeZone) }
@@ -71,7 +71,7 @@ object Regularity {
     const val DAY_MINUTES: Int = 24 * 60
 
     /**
-     * Uhrzeiten in Minuten ab Mittag ([minutesFromNoon], 0 ≤ m < [DAY_MINUTES]) ohne Sprung (Audit W-1): Die Uhr wird in
+     * Uhrzeiten in Minuten ab Mittag ([minutesFromNoon], 0 ≤ m < [DAY_MINUTES]) ohne Sprung: Die Uhr wird in
      * der grössten Lücke zwischen den Zeiten aufgeschnitten, damit auch Zeiten um Mittag (11:56 und 12:50) nahe
      * beieinander liegen. Ist die Lücke um Mittag die grösste (bei Gleichstand bevorzugt), bleiben die Werte wie sie
      * sind; sonst bekommen die Zeiten bis zur grössten Lücke [DAY_MINUTES] dazu. Reihenfolge wie [minutes]. Gleich in Swift.

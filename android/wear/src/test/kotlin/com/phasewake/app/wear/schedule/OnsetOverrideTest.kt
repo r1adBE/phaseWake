@@ -9,7 +9,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
 /**
- * Plan aus dem Einschlaf-Modus ([OnsetOverride], Audit A-6): gilt nur für die Nacht, zu der er gehört. Wurde der Wecker
+ * Plan aus dem Einschlaf-Modus ([OnsetOverride]): gilt nur für die Nacht, zu der er gehört. Wurde der Wecker
  * übersprungen oder verschoben (nächster Plan desselben Weckers weiter weg als die längste Schlafdauer), wird er
  * verworfen, statt in der übersprungenen Nacht zu wecken.
  */

@@ -70,7 +70,7 @@ class WakeService : LifecycleService() {
          * mit [onsetMeasured].
          */
         var asleepAt: Instant? = null,
-        /** Beginn der Einschlafdauer zu [asleepAt] (für die Nacht im Verlauf, r1AD 15.11.2026); `null` = unbekannt. */
+        /** Beginn der Einschlafdauer zu [asleepAt] (für die Nacht im Verlauf); `null` = unbekannt. */
         var bedAt: Instant? = null,
         /** Gemessen, aber ohne Einschlafzeit: Untergrenze bis 10 Min vor der Zielzeit (fail-closed, `ShortNight`). */
         var onsetMeasured: Boolean = false,
@@ -81,7 +81,7 @@ class WakeService : LifecycleService() {
          * neuer Moment kommt in den letzten [com.phasewake.app.core.ShortNight.LATE_MINUTES] davor.
          */
         var earlyBlocked: Boolean = false,
-        /** Epochen vor dem Start der Sensoren ([WakeRules.unmeasuredEpochs]): leer, nicht an die Erkennung (E-1). */
+        /** Epochen vor dem Start der Sensoren ([WakeRules.unmeasuredEpochs]): leer, nicht an die Erkennung. */
         var unmeasured: Int = 0,
     ) {
         /** «Genau»: nur messen, zur Zielzeit wecken; aus dem Plan oder (ältere Alarme ohne Angabe) dem Wecker. */
@@ -254,7 +254,7 @@ class WakeService : LifecycleService() {
 
     /**
      * Hält die Uhr höchstens [millis] wach. Zuerst den neuen Wakelock nehmen, dann den alten lösen ([swapHeld]): keine
-     * Lücke, in der die Uhr einschlafen könnte (Befund 13.11.2026). Danach braucht es den Start-Wakelock nicht mehr.
+     * Lücke, in der die Uhr einschlafen könnte. Danach braucht es den Start-Wakelock nicht mehr.
      */
     internal fun holdWakeLock(millis: Long) {
         wakeLock = swapHeld(wakeLock, {

@@ -73,7 +73,7 @@
     <string name="editor_delete_title">यो अलार्म मेटाउने?</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">बढीमा %1$d अलार्म – नयाँ थप्न एउटा मेटाऊ।</string>
     <string name="editor_enabled">अलार्म अन</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">अर्को पटक छोड</string>
     <string name="alarm_skipped">छोडियो: %1$s</string>
     <string name="nap_title">छोटो निद्रा</string>
@@ -103,7 +103,7 @@
     <string name="record_since">%1$s देखि</string>
     <string name="notification_record_title">रात रेकर्ड हुँदैछ</string>
     <string name="record_battery_low">रेकर्ड गर्न ब्याट्री धेरै कम छ</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">सिक्ने चरण</string>
     <string name="watch_learn_warn">घडी चार्ज गर्नुहोस्, नत्र आजको रात सिक्ने चरणमा गनिँदैन (ब्याट्री %1$d %%, चाहिन्छ %2$d %%)।</string>
     <string name="watch_learn_skip_battery">आजको रात सिक्ने चरणमा गनिँदैन: ब्याट्री %1$d %%, चाहिन्छ %2$d %%।</string>

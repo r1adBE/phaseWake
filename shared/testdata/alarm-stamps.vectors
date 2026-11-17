@@ -1,9 +1,9 @@
-# Abgleich der Wecker je Wecker (AlarmStamps.merge, Audit A-4; Audit 17.11.2026 CODE-03): je Zeile Stand A, Stand B,
+# Abgleich der Wecker je Wecker (AlarmStamps.merge): je Zeile Stand A, Stand B,
 # now (ms) und das erwartete Ergebnis, mit Tabulator getrennt. Beide Kerne prüfen jede Zeile in beiden Richtungen
 # (A lokal und B lokal). Ein Stand: «Listen-Zeitpunkt Wecker Zeitpunkte Gelöschte», mit Leerzeichen getrennt; Wecker im
 # Codec-Format (16 Felder) mit «;», Zeitpunkte je Wecker und gelöschte Wecker «id=ms» mit Kommas, «-» = keine.
 # Ergebnis: Wecker nach Kennung, Zeitpunkte und Gelöschte nach Kennung geordnet.
-# Regeln (Entscheid r1AD 17.11.2026): bei gleichem Zeitpunkt gilt die grössere Codec-Zeile, bei doppelter Kennung in
+# Regeln: bei gleichem Zeitpunkt gilt die grössere Codec-Zeile, bei doppelter Kennung in
 # einem Stand der letzte Eintrag.
 # Je Wecker gilt die neuere Fassung; Listen-Zeitpunkt = der spätere
 1794200002000 a|8|0||20|1|SOUND|0||||OFF|NONE|PHONE|0|0;b|6|30||20|1|SOUND|0||||OFF|NONE|PHONE|0|0 a=1794200002000,b=1794200000000 -	1794200003000 a|7|0||20|1|SOUND|0||||OFF|NONE|PHONE|0|0;b|6|45||20|1|SOUND|0||||OFF|NONE|PHONE|0|0 a=1794200001000,b=1794200003000 -	1794300000000	1794200003000 a|8|0||20|1|SOUND|0||||OFF|NONE|PHONE|0|0;b|6|45||20|1|SOUND|0||||OFF|NONE|PHONE|0|0 a=1794200002000,b=1794200003000 -
@@ -30,10 +30,10 @@
 0 - - -	0 - - -	1794300000000	0 - - -
 # Ein Gerät mit älterem Listen-Zeitpunkt, aber neuerem Wecker (Auto-Aus nach dem Klingeln: Fassung + 1 ms)
 1794200010000 a|7|0||20|1|SOUND|0||||OFF|NONE|PHONE|0|0;b|9|0||20|1|SOUND|0||||OFF|NONE|PHONE|0|0 a=1794200001000,b=1794200010000 -	1794200001001 a|7|0||20|0|SOUND|0||||OFF|NONE|PHONE|0|0;b|8|0||20|1|SOUND|0||||OFF|NONE|PHONE|0|0 a=1794200001001,b=1794200001000 -	1794300000000	1794200010000 a|7|0||20|0|SOUND|0||||OFF|NONE|PHONE|0|0;b|9|0||20|1|SOUND|0||||OFF|NONE|PHONE|0|0 a=1794200001001,b=1794200010000 -
-# Gleicher Zeitpunkt: Vergleich der Codec-Zeile (Entscheid r1AD 17.11.2026) – Minute 5 vor 50, Stunde 1 vor 10, Name «Zz» vor «Zürich» (kodiert Z%C3%BCrich), Ton «aa» vor «a|b» (kodiert a%7Cb)
+# Gleicher Zeitpunkt: Vergleich der Codec-Zeile – Minute 5 vor 50, Stunde 1 vor 10, Name «Zz» vor «Zürich» (kodiert Z%C3%BCrich), Ton «aa» vor «a|b» (kodiert a%7Cb)
 1794200002000 a|7|5||20|1|SOUND|0||||OFF|NONE|PHONE|0|0 a=1794200002000 -	1794200002000 a|7|50||20|1|SOUND|0||||OFF|NONE|PHONE|0|0 a=1794200002000 -	1794300000000	1794200002000 a|7|5||20|1|SOUND|0||||OFF|NONE|PHONE|0|0 a=1794200002000 -
 1794200002000 a|1|0||20|1|SOUND|0||||OFF|NONE|PHONE|0|0 a=1794200002000 -	1794200002000 a|10|0||20|1|SOUND|0||||OFF|NONE|PHONE|0|0 a=1794200002000 -	1794300000000	1794200002000 a|1|0||20|1|SOUND|0||||OFF|NONE|PHONE|0|0 a=1794200002000 -
 1794200002000 a|7|0||20|1|SOUND|0|||Z%C3%BCrich|OFF|NONE|PHONE|0|0 a=1794200002000 -	1794200002000 a|7|0||20|1|SOUND|0|||Zz|OFF|NONE|PHONE|0|0 a=1794200002000 -	1794300000000	1794200002000 a|7|0||20|1|SOUND|0|||Zz|OFF|NONE|PHONE|0|0 a=1794200002000 -
 1794200002000 a|7|0||20|1|SOUND|0||a%7Cb||OFF|NONE|PHONE|0|0 a=1794200002000 -	1794200002000 a|7|0||20|1|SOUND|0||aa||OFF|NONE|PHONE|0|0 a=1794200002000 -	1794300000000	1794200002000 a|7|0||20|1|SOUND|0||aa||OFF|NONE|PHONE|0|0 a=1794200002000 -
-# Doppelte Kennung in einem Stand: der letzte Eintrag gilt (Entscheid r1AD 17.11.2026)
+# Doppelte Kennung in einem Stand: der letzte Eintrag gilt
 1794200005000 a|7|0||20|1|SOUND|0||||OFF|NONE|PHONE|0|0;a|8|0||20|1|SOUND|0||||OFF|NONE|PHONE|0|0 a=1794200005000 -	1794200001000 - - -	1794300000000	1794200005000 a|8|0||20|1|SOUND|0||||OFF|NONE|PHONE|0|0 a=1794200005000 -

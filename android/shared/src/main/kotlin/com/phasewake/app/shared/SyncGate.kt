@@ -5,7 +5,7 @@ import java.io.File
 
 /**
  * Anfrage nach dem Stand der Gegenseite beim Prozessstart ([WearSync.requestSyncOnStart]) höchstens alle
- * [MIN_INTERVAL_MS] (Audit PERF-06): Startet ein Prozess nachts mehrmals neu, fragt er nicht jedes Mal. Der Zeitpunkt
+ * [MIN_INTERVAL_MS]: Startet ein Prozess nachts mehrmals neu, fragt er nicht jedes Mal. Der Zeitpunkt
  * der letzten gesendeten Anfrage liegt in [file] (übersteht das Prozessende). Was sich ändert, kommt ohnehin über die
  * Warteschlange; die Anfrage holt nur einen verpassten Stand nach.
  */

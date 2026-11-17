@@ -386,7 +386,7 @@
     <string name="chart_window">Äratusaken</string>
     <string name="chart_no_data">andmed puuduvad</string>
     <string name="chart_feeling_hint">Puuduta punkti, et näha selle öö märkmeid.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Prooviäratus</string>
     <string name="test_button">Proovi 2 minuti pärast</string>
     <string name="test_hint">Heliseb 2 minuti pärast järgmise äratuse seadetega, ilma edasilükkamiseta. Ei loeta ööks.</string>
@@ -602,7 +602,7 @@
     <string name="learn_switch_hint">Su kell mõõdab öösel liikumist ja pulssi (alates %1$d %% akust). Väljas: automaatset salvestamist pole, õpitud väärtused jäävad.</string>
     <string name="learn_switch_title">Aktiivne</string>
     <string name="watch_open_app_hint">Ava kellas Phase Wake, et see käsu kätte saaks.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Iga öö õppefaasi algusest – kas see läks arvesse ja kui ei, siis miks ja mis aitab. Phase Wake vajab %1$d arvesse läinud ööd.</string>
     <string name="learn_nights_empty">Veel pole ühtegi ööd. Esimene ilmub siia järgmisel hommikul.</string>
     <string name="learn_night_facts">%1$s mõõdetud · %2$d väärtust · pulss %3$d %% ajast</string>

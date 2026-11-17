@@ -386,7 +386,7 @@
     <string name="chart_window">Uygʻotish oraligʻi</string>
     <string name="chart_no_data">maʼlumot yoʻq</string>
     <string name="chart_feeling_hint">Oʻsha tunning qaydlarini koʻrish uchun nuqtani bos.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Sinov budilnigi</string>
     <string name="test_button">2 daqiqada sinash</string>
     <string name="test_hint">Keyingi budilnigingning sozlamalari bilan 2 daqiqada, kechiktirishsiz jiringlaydi. Tun sifatida hisoblanmaydi.</string>
@@ -602,7 +602,7 @@
     <string name="learn_switch_hint">Soating tunda harakat va pulsni o‘lchaydi (%1$d %% batareyadan boshlab). O‘chiq: avtomatik yozuv yo‘q, o‘rganilgan qiymatlar qoladi.</string>
     <string name="learn_switch_title">Faol</string>
     <string name="watch_open_app_hint">Buyruqni olishi uchun soatda Phase Wake’ni och.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">O‘rganish bosqichi boshlanganidan beri har bir tun – hisobga olindimi, olinmagan bo‘lsa, nega va nima yordam beradi. Phase Wake uchun %1$d ta hisobga olingan tun kerak.</string>
     <string name="learn_nights_empty">Hali tun yo‘q. Birinchisi ertasi kuni ertalab shu yerda ko‘rinadi.</string>
     <string name="learn_night_facts">%1$s o‘lchandi · %2$d ta qiymat · %3$d %%da puls</string>

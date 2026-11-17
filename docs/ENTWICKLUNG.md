@@ -13,7 +13,7 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 3. **Gleiches Verhalten auf Android und Apple.** Regeln (Erkennung, Planung, Formate, Auswertungen) liegen im
    Kern: `android/core` (Kotlin) und `ios/PhaseWakeCore` (Swift), mit gleichen Namen, gleicher Bedeutung und
    gleichen Testfällen. Plattform-Code zeigt an und ruft auf, entscheidet aber nichts, was der Kern entscheiden kann.
-   Neues kommt auf beiden Plattformen im selben Zug, nie «erst Android, Apple folgt» (r1AD 10.11.2026); was eine
+   Neues kommt auf beiden Plattformen im selben Zug, nie «erst Android, Apple folgt»; was eine
    Plattform nicht kann, steht als Grenze in den Dokumenten.
 4. **Einfach vor schlau.** Lieber eine klare Funktion mehr als eine Abstraktion, die nur einmal gebraucht wird.
 
@@ -54,11 +54,11 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
   ältere Testversion mit der Store-Kennung einmal deinstallieren (Daten vorher als `.pwbak` sichern). Im Code nie die
   Kennung ausschreiben, sondern `${applicationId}` bzw. `context.packageName`; `release_check.py` prüft die Kennung
   des Release-Builds. Namespace bleibt `com.phasewake.app`.
-- **Exportierte Komponenten und Rechte** (Audit 17.11., SEC-02): `release_check.py` führt je App eine Positivliste
+- **Exportierte Komponenten und Rechte:** `release_check.py` führt je App eine Positivliste
   (`EXPORTED`, `PERMISSIONS`) für das zusammengeführte Release-Manifest. Jede Abweichung (neu oder weggefallen,
   auch eingeschleppt von einer Bibliothek) macht die CI rot. Neues erst prüfen (sonst `tools:node="remove"`), dann
   die Liste und die Play-Erklärung (docs/PLAY.md) nachführen.
-- **Prüfsummen der Abhängigkeiten** (Audit 5314d25 D-06): `android/gradle/verification-metadata.xml` hält die sha256
+- **Prüfsummen der Abhängigkeiten:** `android/gradle/verification-metadata.xml` hält die sha256
   jedes Artefakts (Bibliotheken, Plugins, Lint, AAPT2, Robolectric-Abbilder, Werkzeuge der Bildschirmfotos); Gradle
   bricht bei einem unbekannten oder veränderten Artefakt ab. Nach jedem Update in `libs.versions.toml` (auch aus einem
   Dependabot-PR) die Datei im Ordner `android` neu erzeugen, mit allen Aufgaben der Workflows:
@@ -96,7 +96,7 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 - **Fehler zuerst als Test:** Wer einen Fehler behebt, schreibt zuerst den Test, der ihn zeigt.
 - **Tests sind schnell und deterministisch:** keine echte Uhrzeit, kein Zufall ohne festen Startwert, kein Netz.
 - Abdeckung darf nicht sinken; die Grenzen werden nur angehoben.
-- **iPhone-Zweitwecker je Datei** (Audit 17.11., CODE-01): Eine Summe über alle vier Dateien liesse den Wegfall der
+- **iPhone-Zweitwecker je Datei:** Eine Summe über alle vier Dateien liesse den Wegfall der
   Tests einer kleinen Datei nicht auffallen. Die Schwellen liegen etwa 10 Punkte unter dem erwarteten Stand: Fällt
   eine Testgruppe weg (z. B. «Uhr hat übernommen» in `BackupAlarm.swift`, Schlummern oder Probewecker/Powernap),
   wird die CI rot. `+Plan` liegt tiefer, weil die Mitteilungs-Kette (vor iOS 26), `noteWatchState` (WCSession) und
@@ -143,7 +143,7 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 - Nichts Langsames auf dem Hauptthread (Datei, Datenbank, Audio-Dekodierung, Modell laden).
 - Kotlin: Coroutines mit klarem Scope; Swift: `@MainActor` für UI-Zustand, `Sendable` korrekt, keine erzwungenen
   Entpackungen (`!`) ausser bei Konstanten, die der Compiler nicht prüfen kann (mit Kommentar).
-- **Datenweg Handy ↔ Uhr (Android, Audit C2, 10.11.2026):** Inhalte mit persönlichen Daten nie als Datenpaket
+- **Datenweg Handy ↔ Uhr (Android):** Inhalte mit persönlichen Daten nie als Datenpaket
   (`DataClient.putDataItem` – Google sichert Datenpakete zusätzlich in der Cloud), sondern über die Warteschlange
   `android/shared/…/Outbox.kt`: `enqueue(schlüssel, pfad, fähigkeit, text)` legt den Eintrag im privaten Ordner
   `outbox` ab (gleicher Schlüssel ersetzt) und sendet ihn als Nachricht (`DataLayer.PATH_MSG_…`, über 90 KB über
@@ -152,14 +152,14 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
   App-Start, `onCapabilityChanged`, jede empfangene Nachricht). Den Stand der Gegenseite holt `requestSync`
   (`PATH_SYNC_REQUEST`) statt `getDataItems`; beim Prozessstart `requestSyncOnStart` (höchstens alle 30 Min,
   `SyncGate`), und eigene Zustände reiht der Start mit `enqueueIfChanged` nur ein, wenn sie nicht schon bestätigt sind
-  (`AckedContent`, Audit PERF-06). Datenpakete nur noch für Uhr-Status, «Verlauf löschen» und Abbruch von
+  (`AckedContent`). Datenpakete nur noch für Uhr-Status, «Verlauf löschen» und Abbruch von
   Probewecker/Powernap. Keinen früheren Weg für ältere Versionen (seit 10.11.2026): weder Pakete schreiben noch die
   einer älteren Gegenseite lesen; eine Uhr mit `DataLayer.PROTOCOL` < 2 meldet nur der Nacht-Check («Uhr-App veraltet»).
   Einmalige Umstellung beim ersten Start (`WearSync.migrateTransport`, auf Handy und Uhr): eigene alte Pakete löschen,
   Nächte und Aufzeichnungen der Uhr vorher einreihen; die Lese-Funktionen der alten Formate (`WearSync.readNight`,
   `RecordSync.readRecording`, `OnsetShift.read`) dienen nur ihr. Tests: `OutboxTest` (Robolectric, Senden, Bestätigen,
   Wiederholen, Ersetzen, Umstellung).
-- **Grenze für Inhalte der Gegenseite (Audit S-2, 11.11.2026):** Ein Kanal wird nie ohne Grenze gelesen
+- **Grenze für Inhalte der Gegenseite:** Ein Kanal wird nie ohne Grenze gelesen
   (`PeerLimit.read`, höchstens `PeerLimit.MAX_BYTES` = 8 MB, sonst Abbruch mit Log); grössere Nachrichten verarbeitet
   `WearSync.receive` nicht. Die längste Aufzeichnung (12 Std., 1440 Epochen) hat rund 65 KB. Apple gleich:
   `SyncKeys.maxPeerBytes` in `PhoneConnectivity` (Texte der Uhr). Tests: `PeerLimitTest`, `PeerLimitTests`.
@@ -169,12 +169,12 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
   Antwort auf `diagRequest`, sonst `transferFile` (`DiagTransfer`, Antwort `SyncKeys.diagFile`). Ohne Bericht nach 15 s
   protokolliert das Handy «watch report missing», die Uhr ein gescheitertes Senden mit «diag report not sent». Tests:
   `WatchReportTest`, `WatchDiagTest`, `DiagTransferTests`.
-- **Absturzberichte (Audit P-1, 11.11.2026):** kein Absturz-SDK in der App (Grundsatz 2). Nach dem Release kommen
+- **Absturzberichte:** kein Absturz-SDK in der App (Grundsatz 2). Nach dem Release kommen
   Abstürze und ANRs über die Systeme der Stores: Android in der Play Console unter «Android Vitals» (Abstürze und ANRs,
   Handy und Uhr getrennt), Apple in App Store Connect bzw. im Xcode Organizer (Abstürze, Energie, Hänger; nur von
   Nutzern, die das Teilen mit Entwicklern erlaubt haben). Dazu das lokale Diagnose-Protokoll der App, das Nutzer selbst
   freischalten und teilen (Einstellungen bzw. Uhr). Vorgehen siehe `docs/PLAY.md`, Abschnitt «Nach dem Release».
-  Seit 17.11.2026 (Audit PERF-03) stehen Prozessenden auch im Diagnose-Protokoll, als `ERROR`-Zeilen
+  Prozessenden stehen auch im Diagnose-Protokoll, als `ERROR`-Zeilen
   `exit <art> at … key=value` ohne Stacks: iPhone über MetricKit (`ExitReports`: crash mit Signal/Exception-Typ/Code,
   hang, cpu, disk; je Art höchstens 5 je Bericht, keiner doppelt), Android und Galaxy Watch über `ApplicationExitInfo`.
   Die Apple Watch hat kein MetricKit.
@@ -192,8 +192,8 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
   (`aenderung/<thema>`), die CI läuft dort beim Push von selbst; erst mit grüner CI geht genau dieser
   Stand auf `main` (die Regel für `main` verlangt grüne Prüfungen, verbietet Löschen und Force-Push). Grössere Runden
   bekommen vor dem Merge ein unabhängiges Review (Mensch oder frischer Agent ohne Vorwissen). Die Datenzweige
-  `feiertage`, `klaenge` und `screenshots` füllen Workflows. Workflows, die schreiben, haben zwei Jobs (Audit
-  17.11., CODE-04): Der erste baut mit Leserecht und `persist-credentials: false` und legt das Ergebnis als Artefakt
+  `feiertage`, `klaenge` und `screenshots` füllen Workflows. Workflows, die schreiben, haben zwei Jobs:
+  Der erste baut mit Leserecht und `persist-credentials: false` und legt das Ergebnis als Artefakt
   ab, der zweite schreibt mit `contents: write` und führt keinen Code aus dem Repo oder aus Paketen aus.
 - **Aufräumen:** Der Workflow «Aufräumen» (montags und von Hand) löscht Arbeitszweige, die vollständig in `main`
   stecken, abgeschlossene Workflow-Läufe, die älter als 30 Tage sind, und nicht grüne Läufe (rot, abgebrochen,

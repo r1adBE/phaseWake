@@ -92,7 +92,7 @@ class LearnSkipTest {
 
     @Test
     fun alarmNightsKeepTheEarlierTargetAndTheBoundaryAtNow() {
-        // Audit BE-4: zwei Wecker derselben Nacht, der frühere zuerst geplant – er bleibt (der spätere ersetzt ihn nicht).
+        // Zwei Wecker derselben Nacht, der frühere zuerst geplant – er bleibt (der spätere ersetzt ihn nicht).
         val now = at(5, 12)
         assertEquals(mapOf(LocalDate.of(2026, 11, 5) to at(6, 5)), LearnLog.mergeAlarmNights(emptyMap(), listOf(at(6, 5), at(6, 6)), now, zone))
         // Ein Eintrag genau zur Zeit des Neuplanens ist vergangen und bleibt, auch wenn der Plan ihn nicht mehr hat.

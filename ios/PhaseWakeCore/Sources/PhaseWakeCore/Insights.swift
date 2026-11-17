@@ -33,7 +33,7 @@ public struct SleepSummary: Equatable, Sendable {
     /// Geschlafene Minuten (alle Phasen ausser «wach»; Millisekunden summiert, dann auf ganze Minuten abgerundet).
     public let asleepMinutes: Int
     /// Zone der Aufzeichnung (``HealthSession/timeZone``); `nil` = unbekannt, dann die des Geräts. Nachtdatum und Uhrzeiten
-    /// (Diagramme, Ø-Bett-/Aufwachzeit, Trends, Regelmässigkeit, Schlafziel) rechnen in ihr (``localCalendar(_:)``; Audit F-3).
+    /// (Diagramme, Ø-Bett-/Aufwachzeit, Trends, Regelmässigkeit, Schlafziel) rechnen in ihr (``localCalendar(_:)``).
     public let timeZone: TimeZone?
 
     /// Erzeugt eine Nacht; `start` liegt vor `end`.
@@ -58,8 +58,8 @@ public struct SleepSummary: Equatable, Sendable {
     }
 
     /// Lücke zwischen zwei Phasen, die noch zur selben Nacht gehört (einschliesslich); darüber beginnt eine neue. Eine
-    /// Regel für «eine Nacht» überall: gleich wie ``HealthHistory/continuationGap`` (60 Min; Entscheid r1AD 14.11.2026,
-    /// Audit W-2 – vorher 3 Std.).
+    /// Regel für «eine Nacht» überall: gleich wie ``HealthHistory/continuationGap`` (60 Min;
+    /// vorher 3 Std.).
     public static let newNightGap: TimeInterval = HealthHistory.continuationGap
     /// Fasst Phasen zu Nächten zusammen (Lücke höchstens ``newNightGap``), älteste zuerst; Strecken ganz ohne Schlaf
     /// fallen weg. Ohne Mindestdauer: Welche Sitzung eine Nacht ist (Nickerchen nur am Tag), entscheidet vorher
@@ -130,7 +130,7 @@ public struct Trends: Equatable, Sendable {
             return Double(list.reduce(0, +)) / Double(list.count)
         }
         // Einschlafzeit als Minuten ab Mittag, damit 23:30 und 00:30 nahe beieinander liegen; ohne Sprung um Mittag
-        // (`Regularity.unwrap`, Audit W-1).
+        // (`Regularity.unwrap`).
         let bedtimes = Regularity.unwrap(sleeps.filter { $0.end > twoWeeksAgo && $0.end <= now }.map {
             Regularity.minutesFromNoon($0.start, calendar: $0.localCalendar(calendar))
         })

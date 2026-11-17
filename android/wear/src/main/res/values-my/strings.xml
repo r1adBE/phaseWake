@@ -70,7 +70,7 @@
     <string name="editor_delete_title">ဤနှိုးစက်ကို ဖျက်မလား။</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">အများဆုံး နှိုးစက် %1$d ခု – အသစ်ထည့်ရန် တစ်ခု ဖျက်ပါ။</string>
     <string name="editor_enabled">နှိုးစက် ဖွင့်</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">နောက်တစ်ကြိမ် ကျော်ရန်</string>
     <string name="alarm_skipped">ကျော်ထားသည်- %1$s</string>
     <string name="nap_title">ခဏအိပ်</string>
@@ -98,7 +98,7 @@
     <string name="record_since">%1$s မှစ၍</string>
     <string name="notification_record_title">ညကို မှတ်တမ်းတင်နေသည်</string>
     <string name="record_battery_low">မှတ်တမ်းတင်ရန် ဘက်ထရီ နည်းလွန်းသည်</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">သင်ယူမှုအဆင့်</string>
     <string name="watch_learn_warn">နာရီကို အားသွင်းပါ၊ မဟုတ်ပါက ဒီည သင်ယူမှုအဆင့်အတွက် မရေတွက်ပါ (ဘက်ထရီ %1$d %%၊ လိုအပ်ချက် %2$d %%)။</string>
     <string name="watch_learn_skip_battery">ဒီည သင်ယူမှုအဆင့်အတွက် မရေတွက်ပါ- ဘက်ထရီ %1$d %%၊ လိုအပ်ချက် %2$d %%။</string>

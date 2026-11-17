@@ -314,7 +314,7 @@ class PhoneRingService : Service() {
          * hinweg im Prozess gezählt; nach einer halben Stunde ohne Schlummern gilt ein neuer Weckvorgang.
          */
 
-        /** Uhrzeit für Schlummern und Wiederaufnahme (ms); in Tests fest (Review M-2). */
+        /** Uhrzeit für Schlummern und Wiederaufnahme (ms); in Tests fest. */
         @Volatile
         internal var clock: () -> Long = System::currentTimeMillis
 

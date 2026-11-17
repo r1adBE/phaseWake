@@ -3,7 +3,7 @@ package com.phasewake.app.wear.ui
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-/** Prüfrunde 2 B-7, Galaxy Watch wie Apple Watch: «Gute Nacht» aufheben fragt zuerst; starten wie bisher. */
+/** Galaxy Watch wie Apple Watch: «Gute Nacht» aufheben fragt zuerst; starten wie bisher. */
 class GoodNightTapTest {
     @Test
     fun cancelAsksFirst() {

@@ -1,8 +1,8 @@
 # Kalibrierung (Abschnitt 4) an 4 echten, ohne Namen aufgezeichneten Fensternächten einer Galaxy Watch (Grundrauschen
-# je Nacht 0.019-0.022, Audit c3b8b01 E-2). Je Zeile eine Nacht (älteste zuerst): Bewegung je Epoche inkl. der zwei
+# je Nacht 0.019-0.022). Je Zeile eine Nacht (älteste zuerst): Bewegung je Epoche inkl. der zwei
 # Aufwärm-Epochen, Komma-getrennt, leer = keine Bewegung. `@expect <leicht> <wach>`: erwartete Schwellen.
 # Nach Abzug des Grundrauschens je Nacht ist das 80. Perzentil 0.0528 -> Leicht-Schwelle 0.004 (obere Grenze); die
-# Wach-Schwelle bleibt beim Startwert 0.1 (früher 0.004 x 50 = 0.2, Entscheid r1AD 14.11.2026).
+# Wach-Schwelle bleibt beim Startwert 0.1 (früher 0.004 x 50 = 0.2).
 @expect 0.004 0.1
 0.038649,0.023419,0.023906,0.026465,0.02408,0.022677,0.02954,0.025248,0.023967,0.697338,0.642109,0.028025,0.02688,0.098621,0.024938,0.025371,0.028142,0.262003,0.016649,0.016274,0.018303,0.019239,0.021004,0.018496,0.018348,0.019606,0.019009,0.018899,0.01812,0.018482,0.018388,0.01854,0.019351,0.050452,0.287779,0.407939,0.107233,0.094674,0.070259,0.074063,0.07176,0.076608,0.07202,0.075207,0.072281,0.071582,0.072301,0.075089,0.071564,0.071558,0.066875,0.065558,0.072732,0.072197,0.071255,0.072239,0.075024,0.239783,0.362189
 0.025165,0.023715,0.022511,0.024729,0.025521,0.024207,0.021186,0.141291,0.021186,0.023164,0.022474,0.023147,0.023992,0.436541,0.170013

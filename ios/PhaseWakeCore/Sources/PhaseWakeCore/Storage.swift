@@ -13,7 +13,7 @@ public final class PhaseWakeStorage: @unchecked Sendable {
 
     private static let alarmsKey = "alarms"
     private static let updatedKey = "alarmsUpdatedAt"
-    /// Zeitpunkt je Wecker und gelöschte Wecker (Kennung → ms), Audit A-4.
+    /// Zeitpunkt je Wecker und gelöschte Wecker (Kennung → ms).
     private static let stampsKey = "alarmsStamps"
     private static let deletedKey = "alarmsDeleted"
     private static let separator = "\n%%\n"
@@ -80,7 +80,7 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     /// Ändert die Wecker und setzt einen streng steigenden Zeitstempel; geänderte Wecker bekommen ihn als eigenen
     /// Zeitpunkt, fehlende gelten ab dann als gelöscht. Lesen und Schreiben unter einer Sperre: Zwei gleichzeitige
     /// Änderungen gehen nicht verloren. Sind die gespeicherten Wecker unlesbar (z. B. Format einer neueren Version),
-    /// wird nichts geschrieben: Die leere Liste darf sie nicht überschreiben (Fix KN-5, wie `AlarmRepository` auf
+    /// wird nichts geschrieben: Die leere Liste darf sie nicht überschreiben (wie `AlarmRepository` auf
     /// Android). - Returns: neuer Stand, `nil` = verweigert.
     @discardableResult
     public func mutate(_ change: ([AlarmSpec]) -> [AlarmSpec], now: Date = Date()) -> AlarmSnapshot? {
@@ -96,7 +96,7 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         return writeLocked(updated, before: current, changed: changed, now: now)
     }
 
-    /// Auto-Aus eines Einmal-Weckers nach dem Klingeln (``AlarmStamps/autoOff(_:id:listStamp:rang:)``, Fix G-1/S-1):
+    /// Auto-Aus eines Einmal-Weckers nach dem Klingeln (``AlarmStamps/autoOff(_:id:listStamp:rang:)``):
     /// nur, wenn `rang` den gespeicherten Wecker `id` als die geklingelte Fassung erkennt
     /// (``AlarmStamps/rang(_:rung:target:calendar:shifted:)``); sein Zeitpunkt wird der seiner bisherigen Fassung + 1 ms,
     /// damit eine neuere Änderung der Gegenseite gewinnt. Lesen und Schreiben unter einer Sperre (wie Android
@@ -121,14 +121,14 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         return writeLocked(unique, before: snapshotLocked(), changed: Set(unique.map(\.id)), now: now)
     }
 
-    /// Übernimmt den Stand der Gegenseite je Wecker (``AlarmStamps/merge(local:remote:now:)``, Audit A-4). Ein Stand
+    /// Übernimmt den Stand der Gegenseite je Wecker (``AlarmStamps/merge(local:remote:now:)``). Ein Stand
     /// einer früheren Version (``AlarmSnapshot/perAlarm`` `false`) oder ein unlesbarer eigener gilt wie bisher nur,
     /// wenn er neuer ist, und ersetzt dann die Liste. - Returns: ob sich die Wecker geändert haben.
     @discardableResult
     public func applyRemote(_ remote: AlarmSnapshot, now: Date = Date()) -> Bool {
         lock.lock(); defer { lock.unlock() }
         // Eigener Stand noch nicht gelesen (vor dem ersten Entsperren): nicht gegen den leeren zusammenführen, sonst
-        // ersetzte die Gegenseite beim Lesen die ganze Liste (Prüfrunde 2 SP-3). Der Kontext kommt wieder.
+        // ersetzte die Gegenseite beim Lesen die ganze Liste. Der Kontext kommt wieder.
         guard settingsReadableLocked() else {
             Self.log("Einstellungen nicht lesbar, Stand der Gegenseite nicht übernommen")
             return false
@@ -156,7 +156,7 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         return list != current.alarms
     }
 
-    /// Wie ``applyRemote(_:now:)`` für einen Anwendungskontext (Fix S-5): WatchConnectivity liefert den zuletzt
+    /// Wie ``applyRemote(_:now:)`` für einen Anwendungskontext: WatchConnectivity liefert den zuletzt
     /// empfangenen Kontext bei jedem Start erneut (`receivedApplicationContext`). Ein Stand, der genau so schon übernommen
     /// wurde (``AlarmStamps/fingerprint(_:)``), wird nicht nochmals angewendet: Sonst brächte ein alter Kontext einen
     /// hier gelöschten Wecker zurück, sobald dessen Grabstein nach ``AlarmStamps/tombstoneMaxAgeMs`` verfallen ist.
@@ -165,7 +165,7 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     public func applyRemoteContext(_ remote: AlarmSnapshot, now: Date = Date()) -> Bool {
         let key = AlarmStamps.fingerprint(remote)
         lock.lock()
-        // Nicht lesbar: nicht als übernommen merken, der nächste Empfang wendet ihn an (Prüfrunde 2 SP-3).
+        // Nicht lesbar: nicht als übernommen merken, der nächste Empfang wendet ihn an.
         let readable = settingsReadableLocked()
         let seen = defaults.string(forKey: Self.appliedContextKey) == key
         lock.unlock()
@@ -203,7 +203,7 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         let text = defaults.string(forKey: Self.alarmsKey) ?? ""
         let alarms = (try? Codec.decodeAlarms(text)) ?? []
         // Als NSNumber lesen: Millisekunden passen nicht in Int auf 32-Bit-Uhren (arm64_32). Unplausibel (``TimeBounds``,
-        // z. B. aus einer kaputten Nachricht früherer Versionen) gilt als nie geändert (Fix KN-4).
+        // z. B. aus einer kaputten Nachricht früherer Versionen) gilt als nie geändert.
         let updatedAt = TimeBounds.checked((defaults.object(forKey: Self.updatedKey) as? NSNumber)?.int64Value) ?? 0
         let ids = Set(alarms.map(\.id))
         let stamps = (AlarmStamps.int64Map(defaults.object(forKey: Self.stampsKey)) ?? [:]).filter { ids.contains($0.key) }
@@ -212,8 +212,7 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     }
 
     /// Ob die gespeicherten Wecker lesbar sind (nichts gespeichert zählt als lesbar). Eine ``SettingsFile``, die noch
-    /// nicht gelesen ist (vor dem ersten Entsperren), ist es nicht: Ihr leerer Stand ist nicht «nichts gespeichert»
-    /// (Prüfrunde 2 SP-3).
+    /// nicht gelesen ist (vor dem ersten Entsperren), ist es nicht: Ihr leerer Stand ist nicht «nichts gespeichert».
     private func alarmsReadableLocked() -> Bool {
         guard settingsReadableLocked() else { return false }
         let text = defaults.string(forKey: Self.alarmsKey) ?? ""
@@ -229,7 +228,7 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     /// die übrigen behalten ihren; Wecker aus `before`, die fehlen, gelten ab dann als gelöscht.
     private func writeLocked(_ alarms: [AlarmSpec], before: AlarmSnapshot, changed: Set<String>, now: Date) -> AlarmSnapshot {
         let nowMs = TimeBounds.millis(now)
-        // Streng steigend, ohne Überlauf (``TimeBounds/next(now:previous:)``, Fix KN-4).
+        // Streng steigend, ohne Überlauf (``TimeBounds/next(now:previous:)``).
         let stamp = TimeBounds.next(now: nowMs, previous: before.updatedAt)
         let stamps = Dictionary(alarms.map { ($0.id, changed.contains($0.id) ? stamp : before.stampOf($0.id)) }, uniquingKeysWith: max)
         let ids = Set(alarms.map(\.id))
@@ -272,7 +271,7 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     /// Fügt eine Nacht hinzu (gleicher Wecker und Fensterbeginn ersetzt) und kürzt auf 90 Nächte.
     /// Ein schon angegebenes Befinden und ein gespeicherter Akkustand bleiben, falls die Uhr dieselbe Nacht noch einmal schickt.
     /// Alte Dateien brauchen keine Umstellung: Jede Nacht trägt ihren Wecker schon. Verlauf nicht lesbar (vor dem
-    /// ersten Entsperren): nichts geschrieben (Prüfrunde 2 SP-5). - Returns: ob die Nacht gespeichert ist.
+    /// ersten Entsperren): nichts geschrieben. - Returns: ob die Nacht gespeichert ist.
     @discardableResult
     public func add(_ night: NightRecord) -> Bool {
         lock.lock(); defer { lock.unlock() }
@@ -304,7 +303,7 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     }
 
     /// Gespeicherte Nächte; `nil` = Datei da, aber nicht lesbar (dann nie überschreiben). Verlustbehaftet dekodiert wie
-    /// `decodeToString` auf Android: Ein ungültiges Byte kostet nur die betroffene Nacht, nicht den Verlauf (SP-5).
+    /// `decodeToString` auf Android: Ein ungültiges Byte kostet nur die betroffene Nacht, nicht den Verlauf.
     private func nightsLocked() -> [NightRecord]? {
         let text: String
         switch ProtectedFile.read(nightsURL) {

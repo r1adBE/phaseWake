@@ -371,7 +371,7 @@
     <string name="chart_window">起床時間幅</string>
     <string name="chart_no_data">データなし</string>
     <string name="chart_feeling_hint">点をタップするとその夜のメモが表示されます。</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">アラームをテスト</string>
     <string name="test_button">2分後にテスト</string>
     <string name="test_hint">次のアラームの設定で2分後に鳴ります。スヌーズなし。夜としては記録されません。</string>
@@ -585,7 +585,7 @@
     <string name="learn_switch_hint">時計が夜間に体の動きと脈拍を計測します（バッテリー %1$d %% 以上）。 オフ：自動記録なし、学習した値は残ります。</string>
     <string name="learn_switch_title">有効</string>
     <string name="watch_open_app_hint">コマンドを受け取れるよう、ウォッチで Phase Wake を開いてください。</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">学習期間が始まってからの各夜――カウントされたか、されなかった場合はその理由と対策。Phase Wake にはカウントされた夜が %1$d 夜必要です。</string>
     <string name="learn_nights_empty">まだ夜がありません。最初の夜は翌朝ここに表示されます。</string>
     <string name="learn_night_facts">%1$s 測定 · 測定値 %2$d 件 · 脈拍あり %3$d %%</string>

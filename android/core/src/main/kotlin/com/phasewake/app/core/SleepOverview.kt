@@ -128,8 +128,8 @@ object SleepOverviews {
             bars = bars,
             goalMinutes = goalMinutes,
             averageMinutes = minutes.sum() / minutes.size,
-            // Ohne Sprung um Mittag (Audit W-1): Aufwachen 11:56 und 12:50 ergibt 12:23, nicht 00:23.
-            // Je Nacht in der Zone ihrer Aufzeichnung (Audit F-3).
+            // Ohne Sprung um Mittag: Aufwachen 11:56 und 12:50 ergibt 12:23, nicht 00:23.
+            // Je Nacht in der Zone ihrer Aufzeichnung.
             bedtimeMinute = Regularity.meanMinute(inRange.map { Regularity.minutesFromNoon(it.start, it.zoneOr(zone)) }),
             wakeMinute = Regularity.meanMinute(inRange.map { Regularity.minutesFromNoon(it.end, it.zoneOr(zone)) }),
             counted = minutes.size,
@@ -147,7 +147,7 @@ object SleepOverviews {
         val perNight = sleeps.map { sleep ->
             StageCheck.clip(stages, sleep.start, sleep.end).filter { ChartData.level(it.stage) != null }
         }
-        // Eine Nacht nur mit «wach» (Quelle ohne Phasendetail) hat keine Phasen wie in [StageStats.of] (Audit W-5).
+        // Eine Nacht nur mit «wach» (Quelle ohne Phasendetail) hat keine Phasen wie in [StageStats.of].
         if (perNight.isEmpty() || perNight.any { spans -> spans.none { it.stage != SleepStage.AWAKE } }) return emptyMap()
         return StageStats.ORDER.associateWith { stage ->
             perNight.sumOf { spans -> spans.filter { it.stage == stage }.sumOf { Duration.between(it.start, it.end).toMillis() } } /

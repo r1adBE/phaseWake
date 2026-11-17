@@ -2,7 +2,7 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWake
 
-/// Nacht-Check am iPhone (``NightCheck/watchChecks(_:now:)``, Audit F-03): Uhr gekoppelt und App installiert, scharf
+/// Nacht-Check am iPhone (``NightCheck/watchChecks(_:now:)``): Uhr gekoppelt und App installiert, scharf
 /// geschaltet (ab der Erinnerung am Abend deutlicher), Akku der Uhr, Rekorder nicht gestartet (bis zur Zielzeit),
 /// Mitteilungen der Uhr und ihr Alter, ältere Uhr-App. Dazu der iPhone-Akku und welche Prüfungen nur Hinweise sind.
 final class NightCheckTests: XCTestCase {

@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Audit 17.11., PERF-01: Nach einem Fast-Forward auf main ist der Stand meist schon auf seinem Arbeitszweig grün
+  # Nach einem Fast-Forward auf main ist der Stand meist schon auf seinem Arbeitszweig grün
   # gelaufen. Dann überspringt main die schweren Jobs (übersprungene Jobs gelten bei verlangten Prüfungen als
   # erfüllt), und die Testversion übernimmt die APKs jenes Laufs. Gezählt werden nur Push-Läufe: Sie prüfen genau
   # diesen Commit (ein PR-Lauf prüft den Merge mit main).
@@ -52,7 +52,7 @@ jobs:
     needs: vorab
     if: needs.vorab.outputs.done != 'true'
     runs-on: ubuntu-latest
-    # Ein hängender Build bricht ab statt den Lauf bis zu 6 Std. zu blockieren (Audit 17.11., PERF-02).
+    # Ein hängender Build bricht ab statt den Lauf bis zu 6 Std. zu blockieren.
     timeout-minutes: 45
     defaults:
       run:
@@ -80,7 +80,7 @@ jobs:
           set -o pipefail
           ./gradlew --stacktrace --continue :core:test :core:jacocoTestReport :shared:testDebugUnitTest :shared:createDebugUnitTestCoverageReport :app:testDebugUnitTest :app:createDebugUnitTestCoverageReport :wear:testDebugUnitTest :wear:createDebugUnitTestCoverageReport :app:assembleRelease :wear:assembleRelease :app:lintDebug :wear:lintDebug 2>&1 | tee build.log
       - name: Bildschirmfotos prüfen
-        # Eigener Aufruf ohne parallele Tests und Lint (UX-08): Im gemeinsamen Aufruf brach das Rendern der Handy-
+        # Eigener Aufruf ohne parallele Tests und Lint: Im gemeinsamen Aufruf brach das Rendern der Handy-
         # Vorschauen auf dem Runner ab (ScreenshotRenderException bei allen 102 Bildern), allein läuft es durch.
         if: ${{ !cancelled() }}
         shell: bash
@@ -90,7 +90,7 @@ jobs:
       - name: Testversion-APKs bauen
         shell: bash
         env:
-          # Build-Nummer wie in «Testversion» (übernimmt die APKs, PERF-01). Eigener Aufruf: Die Nummer steht im
+          # Build-Nummer wie in «Testversion» (übernimmt die APKs). Eigener Aufruf: Die Nummer steht im
           # Manifest, die Unit-Tests oben behalten so ihre Einträge im Build-Cache.
           PHASEWAKE_BUILD: ${{ github.run_number }}
         run: |
@@ -105,7 +105,7 @@ jobs:
         run: |
           python3 ../.github/scripts/coverage_check.py "Kotlin-Kern" 90 core/build/reports/jacoco/test/jacocoTestReport.xml
           python3 ../.github/scripts/coverage_check.py "Android shared" 70 $(find shared/build/reports/coverage -name "*.xml" | head -1)
-          # Handy und Uhr gesamt: nur zur Information (Review K-10). Wecken und Planen je Paket mit Mindestwert (Audit M-06).
+          # Handy und Uhr gesamt: nur zur Information. Wecken und Planen je Paket mit Mindestwert.
           app_report=$(find app/build/reports/coverage -name "*.xml" | head -1)
           wear_report=$(find wear/build/reports/coverage -name "*.xml" | head -1)
           python3 ../.github/scripts/coverage_check.py "Android Handy" 0 "$app_report"
@@ -149,7 +149,7 @@ jobs:
           kw=$(grep -E "^w: " build.log | sed -E 's#file://[^ ]*/android/##' | sort -u)
           n=$(printf '%s\n' "$kw" | grep -c .)
           echo "::notice title=Kotlin-Warnungen ($n)::$(printf '%s\n' "$kw" | cut -c1-220 | sed ':a;N;$!ba;s/\n/%0A/g')"
-          # XML-Parsermeldungen ohne Datei (Review K-05) mit der Gradle-Aufgabe davor, damit die Quelle sichtbar wird.
+          # XML-Parsermeldungen ohne Datei mit der Gradle-Aufgabe davor, damit die Quelle sichtbar wird.
           xp=$(awk '/^> Task /{t=$3} /\[(Fatal Error|Error|Warning)\] *:|not allowed in prolog|Premature end of file|XML document structures/{print t " " $0}' build.log | sort -u)
           n=$(printf '%s\n' "$xp" | grep -c .)
           # Seit der Ursache (Watch-Face-Prüfungen auf res/raw, siehe wear/lint.xml) bricht eine solche Meldung den Lauf ab.
@@ -168,7 +168,7 @@ jobs:
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: android-reports
-          # Mit den Abweichungsbildern der Bildschirmfoto-Prüfung (UX-08).
+          # Mit den Abweichungsbildern der Bildschirmfoto-Prüfung.
           path: |
             android/**/build/reports/
             android/**/build/outputs/screenshotTest-results/
@@ -207,7 +207,7 @@ jobs:
     needs: vorab
     if: needs.vorab.outputs.done != 'true'
     runs-on: macos-latest
-    # Wie die übrigen Jobs mit Frist (Audit 17.11., PERF-02).
+    # Wie die übrigen Jobs mit Frist.
     timeout-minutes: 30
     defaults:
       run:
@@ -242,7 +242,7 @@ jobs:
     needs: vorab
     if: needs.vorab.outputs.done != 'true'
     runs-on: macos-latest
-    # Ein hängender Build bricht ab statt den Lauf bis zu 6 Std. zu blockieren (Audit 17.11., PERF-02).
+    # Ein hängender Build bricht ab statt den Lauf bis zu 6 Std. zu blockieren.
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -295,13 +295,13 @@ jobs:
           fi
           echo "PHONE_SIM=$phone" >> "$GITHUB_ENV"
           echo "WATCH_SIM=$watch" >> "$GITHUB_ENV"
-      # Je Schema einmal für den gewählten Simulator bauen (Audit 17.11., PERF-02): das iPhone-Schema baut die eingebettete
+      # Je Schema einmal für den gewählten Simulator bauen: das iPhone-Schema baut die eingebettete
       # Watch-App mit, das Watch-Schema die Watch-App einzeln. Die Tests laufen danach ohne neuen Build.
       - name: iPhone-App (mit eingebetteter Watch-App) bauen
         shell: bash
         run: |
           set -o pipefail
-          # Mit Abdeckung (Audit 17.11., CODE-01): Schwelle für den iPhone-Zweitwecker nach den Tests.
+          # Mit Abdeckung: Schwelle für den iPhone-Zweitwecker nach den Tests.
           xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWake -destination "id=$PHONE_SIM" \
             -derivedDataPath build/DerivedData -enableCodeCoverage YES \
             CODE_SIGNING_ALLOWED=NO build-for-testing > build.log 2>&1
@@ -312,11 +312,11 @@ jobs:
           xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWakeWatch -destination "id=$WATCH_SIM" \
             -derivedDataPath build/DerivedData \
             CODE_SIGNING_ALLOWED=NO build-for-testing >> build.log 2>&1
-      # Unit-Tests der Apps (Audit F-03), in der App als Testwirt: Lernphase, Export, Nacht-Check, Widget-Stand (iPhone);
+      # Unit-Tests der Apps, in der App als Testwirt: Lernphase, Export, Nacht-Check, Widget-Stand (iPhone);
       # Aufzeichnung, Erinnerung am Abend, Smart Alarm, Einschlafzeit (Uhr).
       - name: Tests iPhone-App
         shell: bash
-        # Ein hängender Test bricht ab statt den Lauf stundenlang zu blockieren (Audit 93: Lauf hing über 78 Minuten).
+        # Ein hängender Test bricht ab statt den Lauf stundenlang zu blockieren (ein Lauf hing schon über 78 Minuten).
         timeout-minutes: 30
         run: |
           set -o pipefail
@@ -339,7 +339,7 @@ jobs:
             ios/PhaseWake/BackupAlarm+Snooze.swift=80 ios/PhaseWake/BackupAlarm+Transient.swift=80
       - name: Tests Watch-App
         shell: bash
-        # Ein hängender Test bricht ab statt den Lauf stundenlang zu blockieren (Audit 93: Lauf hing über 78 Minuten).
+        # Ein hängender Test bricht ab statt den Lauf stundenlang zu blockieren (ein Lauf hing schon über 78 Minuten).
         timeout-minutes: 30
         run: |
           set -o pipefail

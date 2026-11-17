@@ -385,7 +385,7 @@
     <string name="chart_window">எழுப்பும் வரம்பு</string>
     <string name="chart_no_data">தரவு இல்லை</string>
     <string name="chart_feeling_hint">அந்த இரவின் குறிப்புகளைப் பார்க்க ஒரு புள்ளியைத் தட்டுங்கள்.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">சோதனை அலாரம்</string>
     <string name="test_button">2 நிமிடத்தில் சோதி</string>
     <string name="test_hint">உங்கள் அடுத்த அலாரத்தின் அமைப்புகளுடன் 2 நிமிடத்தில் ஒலிக்கும், ஸ்னூஸ் இல்லாமல். இரவாகக் கணக்கிடப்படாது.</string>
@@ -601,7 +601,7 @@
     <string name="learn_switch_hint">உங்கள் கடிகாரம் இரவில் அசைவையும் நாடியையும் அளக்கிறது (குறைந்தது %1$d %% பேட்டரியில்). முடக்கம்: தானியங்கு பதிவு இல்லை, கற்ற மதிப்புகள் இருக்கும்.</string>
     <string name="learn_switch_title">செயலில்</string>
     <string name="watch_open_app_hint">கட்டளையைப் பெற வாட்சில் Phase Wake-ஐத் திறக்கவும்.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">கற்றல் நிலை தொடங்கியதிலிருந்து ஒவ்வொரு இரவும் – அது கணக்கிடப்பட்டதா, இல்லையெனில் ஏன், எது உதவும். Phase Wake-க்கு கணக்கிடப்பட்ட %1$d இரவுகள் தேவை.</string>
     <string name="learn_nights_empty">இன்னும் இரவு இல்லை. முதல் இரவு மறுநாள் காலை இங்கே தோன்றும்.</string>
     <string name="learn_night_facts">%1$s அளக்கப்பட்டது · %2$d மதிப்புகள் · %3$d %% இல் நாடித்துடிப்பு</string>

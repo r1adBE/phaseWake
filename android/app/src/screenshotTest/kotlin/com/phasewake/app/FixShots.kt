@@ -30,9 +30,9 @@ import com.phasewake.app.ui.settings.HealthState
 import com.phasewake.app.ui.theme.ThemeMode
 
 /**
- * Randfälle der Korrekturen vom 12.11.2026: Weckfenster einzeilig mit kleinem AM/PM (N-2), Schild hinter der Schrift
- * auf dem Sonnenaufgang (Gestaltung 5), Einrichtung mit Bild je Schritt (Gestaltung 2) und arabische Ziffern im
- * Uhrzeit-Wähler (N-5). Beispieldaten.
+ * Randfälle: Weckfenster einzeilig mit kleinem AM/PM, Schild hinter der Schrift
+ * auf dem Sonnenaufgang, Einrichtung mit Bild je Schritt und arabische Ziffern im
+ * Uhrzeit-Wähler. Beispieldaten.
  */
 
 @Composable
@@ -102,7 +102,7 @@ fun FixOnboardingWelcomeDarkSmall() = ThemedIn("de-CH", ThemeMode.DARK) {
     OnboardingContent(0, onPage = {}, model(), onDone = {})
 }
 
-/** N-5: Uhrzeit-Wähler von Material auf Arabisch neben derselben Zahl als einfacher Text gleicher Grösse. */
+/** Uhrzeit-Wähler von Material auf Arabisch neben derselben Zahl als einfacher Text gleicher Grösse. */
 @OptIn(ExperimentalMaterial3Api::class)
 @PreviewTest @Preview(locale = "ar", name = "Fix Zeitwaehler ar", device = PHONE) @Composable
 fun FixTimePickerAr() = ThemedIn("ar", ThemeMode.LIGHT) {
@@ -113,7 +113,7 @@ fun FixTimePickerAr() = ThemedIn("ar", ThemeMode.LIGHT) {
     }
 }
 
-/** Gestaltung 3 / N-7: «Daten» und «Über» als Listenzeilen mit Pfeil, mindestens 56 dp hoch. */
+/** «Daten» und «Über» als Listenzeilen mit Pfeil, mindestens 56 dp hoch. */
 @PreviewTest @Preview(locale = "de-rCH", name = "Fix Einstellungen lang", device = "spec:width=411dp,height=3000dp") @Composable
 fun FixSettingsTall() = ThemedIn("de-CH", ThemeMode.LIGHT) {
     com.phasewake.app.ui.settings.SettingsScreen(

@@ -1,4 +1,4 @@
-# Fix KN-2: wie noisy_watch_hr_rise (Rauschen rund 0.02, Pulsanstieg, kleine Regung 0.0412), dazu gelernt 0.002.
+# wie noisy_watch_hr_rise (Rauschen rund 0.02, Pulsanstieg, kleine Regung 0.0412), dazu gelernt 0.002.
 # 0.002 < 0.25 × Grundrauschen: keine Obergrenze, Ergebnis unverändert (mit Obergrenze 0.003 -> Epoche 21 LIGHT_SLEEP).
 @floor 0.002
 @expect none

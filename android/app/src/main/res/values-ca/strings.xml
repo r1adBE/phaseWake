@@ -397,7 +397,7 @@
     <string name="chart_window">Finestra de despertar</string>
     <string name="chart_no_data">sense dades</string>
     <string name="chart_feeling_hint">Toca un punt per veure les notes d’aquella nit.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Alarma de prova</string>
     <string name="test_button">Prova d’aquí a 2 minuts</string>
     <string name="test_hint">Sona d’aquí a 2 minuts amb la configuració de la teva alarma següent, sense posposar. No compta com a nit.</string>
@@ -615,7 +615,7 @@
     <string name="learn_switch_hint">El rellotge mesura moviment i pols a la nit (a partir del %1$d %% de bateria). Desactivat: cap enregistrament automàtic, els valors apresos es mantenen.</string>
     <string name="learn_switch_title">Activa</string>
     <string name="watch_open_app_hint">Obre Phase Wake al rellotge perquè rebi l’ordre.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Cada nit des que va començar la fase d’aprenentatge: si ha comptat i, si no, per què i què hi ajuda. Phase Wake necessita %1$d nits comptades.</string>
     <string name="learn_nights_empty">Encara no hi ha cap nit. La primera apareixerà aquí l’endemà al matí.</string>
     <string name="learn_night_facts">%1$s mesurades · %2$d valors · pols en un %3$d %%</string>

@@ -8,7 +8,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 /**
- * Audit UI-9: Auf Arabisch erschienen Zeiten mit 0–9, Zahlen aus Texten (`getString` mit %d) mit ٠–٩.
+ * Auf Arabisch erschienen Zeiten mit 0–9, Zahlen aus Texten (`getString` mit %d) mit ٠–٩.
  * [Format.digits] und [Format.number] nehmen dieselben Ziffern wie `String.format` der Sprache.
  */
 class FormatDigitsTest {
@@ -34,7 +34,7 @@ class FormatDigitsTest {
     }
 
     /**
-     * Nachtrag: Mitteilungen (Erinnerung vor dem Schlafen, nächster Wecker) und Widget nehmen [Format.time]; Arabisch
+     * Mitteilungen (Erinnerung vor dem Schlafen, nächster Wecker) und Widget nehmen [Format.time]; Arabisch
      * mit ٠–٩, Deutsch mit 0–9.
      */
     @Test

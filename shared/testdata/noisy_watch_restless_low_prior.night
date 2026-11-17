@@ -1,4 +1,4 @@
-# Fix KN-2: wie noisy_watch_restless, dazu Grundrauschen der Einschlaf-Messung 0.004 (z. B. Uhr lag still auf dem
+# wie noisy_watch_restless, dazu Grundrauschen der Einschlaf-Messung 0.004 (z. B. Uhr lag still auf dem
 # Tisch). 0.004 < 0.25 × Grundrauschen: keine Obergrenze, Ergebnis unverändert (mit Obergrenze 0.006 -> Epoche 19
 # LIGHT_SLEEP).
 @onset-floor 0.004

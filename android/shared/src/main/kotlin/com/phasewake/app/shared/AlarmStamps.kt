@@ -10,7 +10,7 @@ import java.time.Instant
 import java.time.ZoneId
 
 /**
- * Abgleich der Wecker je Wecker (Audit A-4, Entscheid «per-alarm updatedAt merge»): Früher gewann die neuere ganze Liste;
+ * Abgleich der Wecker je Wecker (Zusammenführen nach `updatedAt` je Wecker): Früher gewann die neuere ganze Liste;
  * änderte ein Gerät automatisch einen Wecker (Einmal-Wecker nach dem Klingeln aus, Zweitwecker am Handy), während auf dem
  * anderen der Nutzer einen Wecker bearbeitete, ging eine der beiden Änderungen verloren. Jetzt trägt jeder Wecker den
  * Zeitpunkt seiner letzten Änderung, und ein gelöschter Wecker bleibt als Eintrag mit dem Zeitpunkt des Löschens
@@ -29,7 +29,7 @@ object AlarmStamps {
      * Zeitpunkt und verschiedenem Inhalt entscheidet ein fester Vergleich. Ein Löschen gewinnt, wenn es nicht älter als
      * diese Fassung ist; ein Wecker, den eine Seite nie kannte und nirgends gelöscht ist, bleibt. Listen-Zeitpunkt: der
      * spätere beider Seiten. Gelöschte Wecker älter als [TOMBSTONE_MAX_AGE_MS] vor [now] fallen weg. Doppelte Kennung in
-     * einem Stand: der letzte Eintrag gilt, wie Swift (Entscheid r1AD 17.11.2026).
+     * einem Stand: der letzte Eintrag gilt, wie Swift.
      */
     fun merge(local: AlarmSnapshot, remote: AlarmSnapshot, now: Long): AlarmSnapshot {
         val mine = local.alarms.associateBy { it.id }
@@ -58,7 +58,7 @@ object AlarmStamps {
     const val SHIFT_MAX_AHEAD_MS = 16 * 3_600_000L
 
     /**
-     * Ob [spec] noch die Fassung des Einmal-Weckers ist, die zur Zielzeit [target] geklingelt hat (Fix G-1/S-1). Nur sie
+     * Ob [spec] noch die Fassung des Einmal-Weckers ist, die zur Zielzeit [target] geklingelt hat. Nur sie
      * darf das Auto-Aus nach dem Klingeln treffen; eine danach verschobene oder geänderte Uhrzeit nicht.
      * - [rung]: der Wecker, wie er zu Beginn der Nacht geladen wurde (`null`, wenn unbekannt, z. B. nach einem Neustart
      *   der App). Bekannt: Uhrzeit und Tage müssen gleich sein.
@@ -74,7 +74,7 @@ object AlarmStamps {
     }
 
     /**
-     * Auto-Aus eines Einmal-Weckers nach dem Klingeln (Fix G-1/S-1): Schaltet [id] in [local] aus, wenn er ein
+     * Auto-Aus eines Einmal-Weckers nach dem Klingeln: Schaltet [id] in [local] aus, wenn er ein
      * eingeschalteter Einmal-Wecker ist und [rang] ihn als die geklingelte Fassung erkennt; sonst `null` (nichts tun).
      * Der Wecker bekommt als Zeitpunkt den seiner bisherigen Fassung + 1 ms, nicht «jetzt»: Er ersetzt so genau die
      * Fassung, die geklingelt hat. Eine neuere Änderung, die hier noch nicht angekommen ist (z. B. am Handy verschoben,
@@ -92,7 +92,7 @@ object AlarmStamps {
 
     /**
      * Die neuere von zwei Fassungen (Wecker, Zeitpunkt); bei Gleichstand fest nach Inhalt: die grössere Zeile im
-     * [Codec]-Format, wie Swift (Entscheid r1AD 17.11.2026; vorher `toString()`, das z. B. Minute 5/50 anders ordnete).
+     * [Codec]-Format, wie Swift (vorher `toString()`, das z. B. Minute 5/50 anders ordnete).
      */
     private fun newer(a: Pair<AlarmSpec, Long>?, b: Pair<AlarmSpec, Long>?): Pair<AlarmSpec, Long>? = when {
         a == null -> b
@@ -103,7 +103,7 @@ object AlarmStamps {
 
     /**
      * Gelöschte Wecker ohne zu alte ([TOMBSTONE_MAX_AGE_MS] vor [now]) und ohne unplausible Zeitpunkte ([TimeBounds],
-     * sonst liefe `now − Zeitpunkt` über, Fix KN-4), höchstens [MAX_TOMBSTONES], die neuesten.
+     * sonst liefe `now − Zeitpunkt` über), höchstens [MAX_TOMBSTONES], die neuesten.
      */
     fun prune(deleted: Map<String, Long>, now: Long): Map<String, Long> =
         deleted.filterValues { TimeBounds.contains(it) && now - it <= TOMBSTONE_MAX_AGE_MS }
@@ -111,7 +111,7 @@ object AlarmStamps {
             .associate { it.key to it.value }
 
     /**
-     * Stand der Gegenseite nach [TimeBounds] geprüft (Fix KN-4, wie `AlarmStamps.snapshot(context:)` in Swift):
+     * Stand der Gegenseite nach [TimeBounds] geprüft (wie `AlarmStamps.snapshot(context:)` in Swift):
      * unplausibler Listen-Zeitpunkt → `null` (Nachricht verwerfen); unplausible Zeitpunkte je Wecker oder gelöschter
      * Wecker fallen weg (der Wecker gilt dann mit dem Listen-Zeitpunkt, das Löschen ist vergessen). Für jeden Leser
      * empfangener Stände (`QueueMessages.decodeAlarms`).
@@ -133,7 +133,7 @@ object AlarmStamps {
     /** Speicherformat: je Zeile «kennung=ms» (Kennung URL-kodiert). */
     fun encodeMap(map: Map<String, Long>): String = map.entries.joinToString("\n") { "${escape(it.key)}=${it.value}" }
 
-    /** Liest [encodeMap]; unlesbare Zeilen und unplausible Zeitpunkte ([TimeBounds], Fix KN-4) fallen weg. */
+    /** Liest [encodeMap]; unlesbare Zeilen und unplausible Zeitpunkte ([TimeBounds]) fallen weg. */
     fun decodeMap(text: String?): Map<String, Long> = text.orEmpty().lines().mapNotNull { line ->
         val eq = line.lastIndexOf('=')
         if (eq <= 0) return@mapNotNull null

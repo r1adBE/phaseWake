@@ -30,7 +30,7 @@ import kotlin.test.assertNotSame
 import kotlin.test.assertTrue
 
 /**
- * Beginn des Klingelns auf der Uhr (Befund 13.11.2026): Der neue Wakelock steht, bevor der alte gelöst wird; zuerst
+ * Beginn des Klingelns auf der Uhr: Der neue Wakelock steht, bevor der alte gelöst wird; zuerst
  * Wakelock, Vibration, Weck-Mitteilung und Weckbildschirm, Sensoren und Sonnenaufgang erst im nächsten Durchlauf.
  */
 @RunWith(RobolectricTestRunner::class)
@@ -66,7 +66,7 @@ class RingStartTest {
             shadowOf(Looper.getMainLooper()).idle()
             Thread.sleep(5)
         }
-        // Die Tests liefern Epochen ab dem Start der Sensoren, nicht die leeren davor (E-1, `WakeServiceTest`).
+        // Die Tests liefern Epochen ab dem Start der Sensoren, nicht die leeren davor (`WakeServiceTest`).
         service.night?.unmeasured = 0
         return service
     }

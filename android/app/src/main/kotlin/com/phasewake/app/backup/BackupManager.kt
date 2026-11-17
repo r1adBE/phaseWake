@@ -156,7 +156,7 @@ object BackupManager {
     }
 
     /**
-     * Beim Start der App (Review K-03): Endete der Prozess während eines Wiederherstellens, gilt danach der neue Stand
+     * Beim Start der App: Endete der Prozess während eines Wiederherstellens, gilt danach der neue Stand
      * (DataStore schon geschrieben: Abgleich mit der Uhr nachholen) oder wieder der alte (alte Nächte zurück).
      * [resync] wie bei [restore].
      */
@@ -184,7 +184,7 @@ object BackupManager {
     }
 
     /**
-     * Neuer Stand vollständig und Abgleich mit der Uhr angestossen: Marke und Kopie weg (Review N-3: erst jetzt, sonst
+     * Neuer Stand vollständig und Abgleich mit der Uhr angestossen: Marke und Kopie weg (erst jetzt, sonst
      * fehlte nach einem Prozessende während [afterRestore] der Abgleich). Scheitert das Löschen, holt der nächste Start
      * den Abgleich nach, ohne zurückzusetzen.
      */

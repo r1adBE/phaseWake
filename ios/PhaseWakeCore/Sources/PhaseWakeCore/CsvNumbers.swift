@@ -1,6 +1,6 @@
 import Foundation
 
-/// Zahlen im CSV-Export (Bewegung, Puls), auf Swift und Kotlin Zeichen für Zeichen gleich (Audit F-7): `String(format:)`
+/// Zahlen im CSV-Export (Bewegung, Puls), auf Swift und Kotlin Zeichen für Zeichen gleich: `String(format:)`
 /// rundet wie C den genauen Binärwert halb auf gerade, `String.format` (Java) die kürzeste Dezimaldarstellung halb auf –
 /// 56.25 wurde so zu 56.2 bzw. 56.3. Hier zählt nur Gleitkomma-Rechnung, die IEEE 754 auf beiden gleich festlegt
 /// (Betrag × Zehnerpotenz + 0.5, abrunden), der Rest ist Ganzzahl (`Int64`, auch auf der Apple Watch mit 32-Bit-`Int`).

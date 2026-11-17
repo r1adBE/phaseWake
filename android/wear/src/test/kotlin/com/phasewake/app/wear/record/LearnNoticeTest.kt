@@ -43,7 +43,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 /**
- * Hinweise der Lernphase auf der Galaxy Watch ([LearnNotice], Lern-Übersicht r1AD 13.11.2026): Warnung am Abend (Alarm
+ * Hinweise der Lernphase auf der Galaxy Watch ([LearnNotice], Lern-Übersicht): Warnung am Abend (Alarm
  * stellen, beim Auslösen den Akku prüfen) und die Meldung «nicht aufgezeichnet» ans Handy über die Warteschlange.
  */
 @RunWith(RobolectricTestRunner::class)
@@ -67,7 +67,7 @@ class LearnNoticeTest {
     /**
      * Hintergrundarbeit dieses Tests beenden und abwarten: Ein `cancel` allein liesse den Rest einer Arbeit ohne
      * Haltepunkt weiterlaufen (z. B. die Mitteilung nach der Meldung in [LearnNotice.skipped]). Die Mitteilungen der
-     * Robolectric-Schatten sind prozessweit; eine verspätete landete sonst im nächsten Test (CI 14.11.2026:
+     * Robolectric-Schatten sind prozessweit; eine verspätete landete sonst im nächsten Test (in der CI:
      * «genug Akku» in [warningShowsOnlyWithLowBatteryWhileNotCharging] nach [learningStartBelowTheThresholdReportsTheNight]).
      */
     @After
@@ -175,7 +175,7 @@ class LearnNoticeTest {
 
     @Test
     fun sensorsRefusedReportsNothingWhenLearningIsOff() = runBlocking {
-        // Audit BE-1c: Lernphase aus → keine Meldung «keine Sensoren», auch für einen bekannten Wecker.
+        // Lernphase aus → keine Meldung «keine Sensoren», auch für einen bekannten Wecker.
         val spec = AlarmSpec(id = "w", hour = 7, minute = 0, days = everyDay)
         app.alarms.replaceAll(listOf(spec))
         app.learning.setIfNewer(LearningSnapshot(false, null, null, System.currentTimeMillis() + 1))

@@ -407,7 +407,7 @@
     <string name="chart_window">Вікно пробудження</string>
     <string name="chart_no_data">немає даних</string>
     <string name="chart_feeling_hint">Торкнися точки, щоб побачити нотатки цієї ночі.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Перевірити будильник</string>
     <string name="test_button">Перевірити за 2 хвилини</string>
     <string name="test_hint">Задзвонить за 2 хвилини з налаштуваннями твого наступного будильника, без відкладення. Не вважається ніччю.</string>
@@ -627,7 +627,7 @@
     <string name="learn_switch_hint">Годинник вимірює вночі рух і пульс (від %1$d %% заряду). Вимк.: без автоматичного запису, вивчені значення зберігаються.</string>
     <string name="learn_switch_title">Активна</string>
     <string name="watch_open_app_hint">Відкрий Phase Wake на годиннику, щоб він отримав команду.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Кожна ніч від початку етапу навчання – чи її зараховано, а якщо ні, то чому і що допоможе. Phase Wake потребує %1$d зарахованих ночей.</string>
     <string name="learn_nights_empty">Поки немає жодної ночі. Перша з’явиться тут наступного ранку.</string>
     <string name="learn_night_facts">Виміряно %1$s · %2$d значень · пульс у %3$d %%</string>

@@ -6,7 +6,7 @@ final class SharedNightsTests: XCTestCase {
 
     func testAllNightsMatchExpectation() throws {
         let nights = try NightFixtures.all()
-        // Genau die Nächte laut MANIFEST (Vollaudit K-8): Eine fehlende Datei fiele sonst nicht auf.
+        // Genau die Nächte laut MANIFEST: Eine fehlende Datei fiele sonst nicht auf.
         XCTAssertEqual(nights.count, try NightFixtures.manifest().filter { $0.hasSuffix(".night") }.count,
                        "Testnächte in \(NightFixtures.directory.path)")
 
@@ -33,15 +33,15 @@ final class SharedNightsTests: XCTestCase {
             }
             return nil
         }
-        // Seit E-1 (Audit c3b8b01) wartet die Leicht-Regel ohne Grundrauschen: Ohne gelernten Wert zählt das Rauschen zu
+        // Die Leicht-Regel wartet ohne Grundrauschen: Ohne gelernten Wert zählt das Rauschen zu
         // Beginn nicht mehr (früher Epoche 5), es weckt wie mit gelerntem Wert erst die echte Bewegung.
         XCTAssertEqual(firstWake(byName["learned_floor_sensor_start"]), 32)
         XCTAssertNil(firstWake(byName["learned_resting_hr"]))
         XCTAssertNotNil(byName["learned_resting_hr"])
-        // Ohne Obergrenze aus dem gelernten Grundrauschen bleibt der unruhige Beginn still (Vollaudit K-1).
+        // Ohne Obergrenze aus dem gelernten Grundrauschen bleibt der unruhige Beginn still.
         XCTAssertNil(firstWake(byName["restless_start_learned_floor"]))
         XCTAssertNotNil(byName["restless_start_learned_floor"])
-        // Ohne Übergehen weckt der erste Moment (Vollaudit K-5).
+        // Ohne Übergehen weckt der erste Moment.
         XCTAssertEqual(firstWake(byName["rearm_new_hits"]), 39)
     }
 }

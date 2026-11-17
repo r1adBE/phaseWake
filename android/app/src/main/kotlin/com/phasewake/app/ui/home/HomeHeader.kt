@@ -184,7 +184,7 @@ private const val ARC_TEXT_TOP = 0.25f
 private const val ARC_TEXT_SIDE = 0.11f
 
 /**
- * Das Weckfenster gross in einer Zeile (Gestaltung 1, Audit N-2): AM/PM klein hinter der Zeit, und reicht die Breite
+ * Das Weckfenster gross in einer Zeile: AM/PM klein hinter der Zeit, und reicht die Breite
  * nicht (lange Sprachen, Arabisch, grosse Schrift), wird die Schrift schrittweise kleiner statt umzubrechen.
  */
 @Composable

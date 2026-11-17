@@ -73,7 +73,7 @@
     <string name="editor_delete_title">Të fshihet ky alarm?</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Deri në %1$d alarme – fshi një për të shtuar një të ri.</string>
     <string name="editor_enabled">Alarmi aktiv</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Kapërce herën tjetër</string>
     <string name="alarm_skipped">U kapërcye: %1$s</string>
     <string name="nap_title">Dremitje</string>
@@ -103,7 +103,7 @@
     <string name="record_since">Që nga %1$s</string>
     <string name="notification_record_title">Po regjistrohet nata</string>
     <string name="record_battery_low">Bateria shumë e ulët për regjistrim</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Faza e të mësuarit</string>
     <string name="watch_learn_warn">Karikoje orën, përndryshe sonte nuk do të numërohet për fazën e të mësuarit (bateria %1$d %%, duhen %2$d %%).</string>
     <string name="watch_learn_skip_battery">Sonte nuk numërohet për fazën e të mësuarit: bateria në %1$d %%, duhen %2$d %%.</string>

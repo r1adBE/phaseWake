@@ -8,7 +8,7 @@ import java.time.Duration
 import java.time.Instant
 
 /**
- * Frühere Zielzeit einer Nacht aus dem Einschlaf-Modus der Galaxy Watch (Review K-07): Wecker [alarmId], eingestellte
+ * Frühere Zielzeit einer Nacht aus dem Einschlaf-Modus der Galaxy Watch: Wecker [alarmId], eingestellte
  * Zielzeit [original], neue Zielzeit [target] (Einschlafzeit + Schlafdauer), festgelegt um [at] (alles in ms).
  *
  * Die Uhr schickt sie über die Warteschlange ([DataLayer.PATH_MSG_ONSET_SHIFT]): So kommt sie auch an, wenn das Handy
@@ -38,12 +38,12 @@ data class OnsetShift(val alarmId: String, val original: Long, val target: Long,
 
     companion object {
         /**
-         * Meldung ohne frühere Zielzeit (Review H-1): Die Uhr hat ihre Ausnahme [plan] gelöscht. Neuer als die gemerkte,
+         * Meldung ohne frühere Zielzeit: Die Uhr hat ihre Ausnahme [plan] gelöscht. Neuer als die gemerkte,
          * ersetzt sie diese am Handy; [applyTo] lässt sie aus (nicht früher), es gilt wieder die eingestellte Zeit.
          */
         fun cancel(plan: WakePlan, at: Long): OnsetShift = plan.target.toEpochMilli().let { OnsetShift(plan.alarmId, it, it, at) }
 
-        /** Liest [encode]; `null`, wenn leer, unlesbar oder ein Zeitpunkt unplausibel ist ([TimeBounds], Audit AN-5). */
+        /** Liest [encode]; `null`, wenn leer, unlesbar oder ein Zeitpunkt unplausibel ist ([TimeBounds]). */
         fun decode(text: String?): OnsetShift? {
             val f = text?.split("|")?.takeIf { it.size >= 4 } ?: return null
             val original = TimeBounds.checked(f[1].toLongOrNull()) ?: return null

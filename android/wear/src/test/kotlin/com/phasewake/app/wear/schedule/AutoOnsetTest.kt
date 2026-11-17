@@ -46,7 +46,7 @@ class AutoOnsetTest {
 
     @Test
     fun noStartWhenANightEndedSinceItsStart() {
-        // Audit G-2: zweiter Wecker am selben Morgen; der erste hat um 05:00 geweckt, Beginn wäre 22:00 gewesen.
+        // Zweiter Wecker am selben Morgen; der erste hat um 05:00 geweckt, Beginn wäre 22:00 gewesen.
         val now = Instant.parse("2026-11-03T05:01:00Z")
         assertNull(AutoOnset.startAt(plan, spec, goal, now, done = false, lastNightEnded = Instant.parse("2026-11-03T05:00:00Z")))
         // Grenze: genau zum Beginn geendet zählt schon, 1 ms davor nicht.
@@ -101,7 +101,7 @@ class AutoOnsetTest {
 
     @Test
     fun bedtimeTravelsWithTheOnset() = runTest {
-        // Entscheid r1AD 15.11.2026: Beginn der Einschlafdauer geht mit der Nacht ans Handy, nur mit Einschlafzeit.
+        // Beginn der Einschlafdauer geht mit der Nacht ans Handy, nur mit Einschlafzeit.
         val store = OnsetStore(MemoryStore())
         val bed = Instant.parse("2026-11-02T22:40:00Z")
         val onset = Instant.parse("2026-11-02T23:10:00Z")
@@ -121,7 +121,7 @@ class AutoOnsetTest {
 
     @Test
     fun knownOnsetOfThisNightIsKeptWhenTheAlarmMoves() = runTest {
-        // Audit HG-5: Wecker 06:30 → 06:15, die Änderung kommt erst nachts an. Die Einschlafzeit 23:50 bleibt; keine
+        // Wecker 06:30 → 06:15, die Änderung kommt erst nachts an. Die Einschlafzeit 23:50 bleibt; keine
         // neue Messung, und eine ohne Ergebnis (später Start, fail-closed) überschreibt sie nicht.
         val store = OnsetStore(MemoryStore())
         val onset = Instant.parse("2026-11-02T23:50:00Z")
@@ -143,7 +143,7 @@ class AutoOnsetTest {
 
     @Test
     fun measuredWithoutOnsetIsKeptForThisNightOnly() = runTest {
-        // Fail-closed (Entscheid r1AD 10.11.2026): gemessen, aber ohne Einschlafzeit.
+        // Fail-closed: gemessen, aber ohne Einschlafzeit.
         val store = OnsetStore(MemoryStore())
         assertFalse(store.measuredFor(plan))
         store.set("a", target, null, measured = true)

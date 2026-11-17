@@ -35,7 +35,7 @@ class SystemEventReceiver : BroadcastReceiver() {
         val pending = goAsync()
         val app = context.wearApp
         var changed: AlarmSnapshot? = null
-        // Gesamtfrist für den Empfänger (Audit HG-6): Stehen die Alarme, ist er fertig (finish); die Nebenarbeiten laufen
+        // Gesamtfrist für den Empfänger: Stehen die Alarme, ist er fertig (finish); die Nebenarbeiten laufen
         // danach weiter. Hängt schon das Planen (Nebenarbeiten in reschedule, je 3 s), endet er spätestens nach
         // [RECEIVER_BUDGET_MS], weit vor der Frist des Systems (10 s) – ein ANR beendete den Prozess samt Weckdienst.
         app.appScope.launchWithin(RECEIVER_BUDGET_MS, pending::finish, first = {
@@ -49,7 +49,7 @@ class SystemEventReceiver : BroadcastReceiver() {
                 rang?.takeIf { Transient.kindOf(it.first) == null }?.let { (alarmId, target) ->
                     app.scheduler.markDone(alarmId, target)
                     app.scheduler.saveDone()
-                    // Nur die Fassung, die geklingelt hat (Fix G-1/S-1); früher geweckt: Ausnahme dieser Nacht.
+                    // Nur die Fassung, die geklingelt hat; früher geweckt: Ausnahme dieser Nacht.
                     val shifted = app.onsetOverride.get()?.let { it.alarmId == alarmId && it.target == target } == true
                     changed = app.alarms.disableAfterRing(alarmId) { AlarmStamps.rang(it, null, target, ZoneId.systemDefault(), shifted) }
                 }
@@ -57,7 +57,7 @@ class SystemEventReceiver : BroadcastReceiver() {
                 if (e is CancellationException) throw e
                 Log.e(TAG, "Nachtrag nach dem Entsperren fehlgeschlagen", e)
             }
-            // Zuerst die Alarme (Audit A-3): Nichts, was die Wear-Dienste braucht, steht davor.
+            // Zuerst die Alarme: Nichts, was die Wear-Dienste braucht, steht davor.
             app.scheduler.reschedule()
             // Lief «Gute Nacht» vor dem Neustart, gleich wieder aufnehmen (über den Prüf-Alarm, der den Vordergrund erlaubt).
             if (app.goodNight.load() != null) AlarmScheduler.armGoodNightCheck(context, Instant.now().plusSeconds(5))
@@ -73,7 +73,7 @@ class SystemEventReceiver : BroadcastReceiver() {
     private companion object {
         const val TAG = "SystemEventReceiver"
 
-        /** Höchstdauer, bis der Empfänger fertig meldet (Audit HG-6); die Frist des Systems ist 10 s. */
+        /** Höchstdauer, bis der Empfänger fertig meldet; die Frist des Systems ist 10 s. */
         const val RECEIVER_BUDGET_MS = 8_000L
 
         /** Höchstdauer des Abgleichs mit dem Handy; PhoneCatchUp begrenzt sich selbst auf 5 s. */
@@ -95,7 +95,7 @@ class SystemEventReceiver : BroadcastReceiver() {
 /**
  * Startet [first] (das Wichtige, z. B. Alarme stellen) und danach [then] (Nebenarbeiten) in diesem Bereich. [finish] (das
  * Ende eines `goAsync`) kommt genau einmal: sobald [first] fertig ist oder scheitert, spätestens aber nach [budgetMs] –
- * [then] läuft dann unabhängig davon weiter (Audit HG-6).
+ * [then] läuft dann unabhängig davon weiter.
  */
 internal fun CoroutineScope.launchWithin(budgetMs: Long, finish: () -> Unit, first: suspend () -> Unit, then: suspend () -> Unit): Job {
     val released = AtomicBoolean(false)

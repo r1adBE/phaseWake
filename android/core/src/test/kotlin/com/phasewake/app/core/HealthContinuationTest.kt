@@ -138,7 +138,7 @@ class HealthContinuationTest {
 
     @Test
     fun shortOverlapIsStillAContinuation() {
-        // Audit 2c82e15: Health Connect schreibt die Teile oft mit einer Sekunde Überlappung – trotzdem Weiterschlafen.
+        // Health Connect schreibt die Teile oft mit einer Sekunde Überlappung – trotzdem Weiterschlafen.
         val overlapping = sleptOn.copy(
             start = night.end.minusSeconds(1),
             stages = listOf(StageSpan(night.end.minusSeconds(1), t("2026-11-12T09:24:00Z"), SleepStage.AWAKE), span("09:24", "10:56", SleepStage.LIGHT)),
@@ -155,7 +155,7 @@ class HealthContinuationTest {
 
     @Test
     fun oneRuleForOneNightEverywhere() {
-        // Entscheid r1AD 14.11. (Audit W-2): eine Nacht = Kette mit Lücken bis 60 Min – im Verlauf wie in Diagrammen,
+        // Eine Nacht = Kette mit Lücken bis 60 Min – im Verlauf wie in Diagrammen,
         // Ø, Schlafziel und Trends. 22:00–02:00 und 03:30–07:30 (90 Min Lücke) sind zwei Nächte am selben Nachtdatum.
         val first = HealthSession(t("2026-11-10T21:00:00Z"), t("2026-11-11T01:00:00Z"))
         val second = HealthSession(t("2026-11-11T02:30:00Z"), t("2026-11-11T06:30:00Z"))
@@ -175,7 +175,7 @@ class HealthContinuationTest {
 
     @Test
     fun profileOfOwnNightLeavesOutEarlierSofaSleep() {
-        // Audit W-2: Sofa 20:30–21:15, Nacht 23:00–07:00, Phase Wake weckt um 07:00: Profil ab 23:00, nicht ab 20:30.
+        // Sofa 20:30–21:15, Nacht 23:00–07:00, Phase Wake weckt um 07:00: Profil ab 23:00, nicht ab 20:30.
         val sofa = HealthSession(t("2026-11-10T19:30:00Z"), t("2026-11-10T20:15:00Z"), listOf(StageSpan(t("2026-11-10T19:30:00Z"), t("2026-11-10T20:15:00Z"), SleepStage.LIGHT)))
         val bed = HealthSession(t("2026-11-10T22:00:00Z"), t("2026-11-11T06:00:00Z"), listOf(StageSpan(t("2026-11-10T22:00:00Z"), t("2026-11-11T06:00:00Z"), SleepStage.LIGHT)))
         val own = NightRecord("a", t("2026-11-11T05:30:00Z"), t("2026-11-11T06:00:00Z"), t("2026-11-11T06:00:00Z"), WakeReason.LIGHT_SLEEP, 0, emptyList())
@@ -199,7 +199,7 @@ class HealthContinuationTest {
 
     @Test
     fun overlapWithSleepCountsOnceEverywhere() {
-        // Audit BE-2: 4 Min Schlaf in der Überlappung zählen in Verlauf, Diagrammen, Trends und Schlafprofil nur einmal.
+        // 4 Min Schlaf in der Überlappung zählen in Verlauf, Diagrammen, Trends und Schlafprofil nur einmal.
         val (first, second) = overlapCase(4 * 60)
         val sessions = listOf(first, second)
         assertEquals(617L, HealthHistory.merge(emptyList(), sessions, null, zone).single().session!!.asleepMinutes)

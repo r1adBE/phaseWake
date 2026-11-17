@@ -17,8 +17,8 @@ import WatchKit
 /// Auslöser (watchOS bietet keinen festen Zeitpunkt am Abend): jedes Neuplanen (`WatchModel.reschedule`: App geöffnet,
 /// etwa über die Erinnerung am Abend (`EveningReminder`), Wecker oder Lernphase vom iPhone, Ende einer Nacht) und eine
 /// Hintergrund-Aktualisierung, die die Uhr auf den frühesten Start bzw. das Ende der Nacht stellt (`PhaseWakeWatchApp`).
-/// Gestartet wird frühestens 60 Min vor der Bettzeit (``AppleLearnRecord``, wie die Galaxy Watch; Entscheid r1AD
-/// 10.11.2026), und nur, wenn die App dann läuft; sonst zeichnet die Uhr diese Nacht nicht auf. Je Nacht ein Aufruf des
+/// Gestartet wird frühestens 60 Min vor der Bettzeit (``AppleLearnRecord``, wie die Galaxy Watch),
+/// und nur, wenn die App dann läuft; sonst zeichnet die Uhr diese Nacht nicht auf. Je Nacht ein Aufruf des
 /// Rekorders (``AppleNightRecorder``). Während eine Nacht misst, klingelt oder schlummert, rechnet sie nicht (der Wecker
 /// hat Vorrang).
 ///
@@ -47,7 +47,7 @@ final class LearnRecorder {
     static let retry: TimeInterval = 15 * 60
     /// So oft prüft die Uhr während «Nacht aufzeichnen» den Akku (Hintergrund-Aktualisierung; watchOS kann sie verzögern).
     static let batteryCheck: TimeInterval = 30 * 60
-    /// Mit Wecker spätestens nach dieser Zeit eine Hintergrund-Aktualisierung (Neuplanen, Audit AP-2).
+    /// Mit Wecker spätestens nach dieser Zeit eine Hintergrund-Aktualisierung (Neuplanen).
     static let replanRefresh: TimeInterval = 12 * 3600
 
     /// Aufzeichnung einer Nacht: Wecker und Zielzeit, Beginn der Auswertung (`from`, Epoche 0), Ende des Rekorders
@@ -129,7 +129,7 @@ final class LearnRecorder {
     /// Die Nacht `alarmId` mit Zielzeit `target` hat geweckt (Klingeln beendet): Die Auswertung endet jetzt, höchstens
     /// beim Ende des Rekorders. Hat «Gute Nacht» die Zielzeit vorverlegt, nachdem die Aufzeichnung begann, gilt dieselbe
     /// Nacht (Zielzeiten höchstens 16 Std. auseinander). «Nacht aufzeichnen» endet spätestens jetzt (Grund ``RecordEnd/wake``,
-    /// wie die Galaxy Watch, Audit F-01).
+    /// wie die Galaxy Watch).
     func noteWake(alarmId: String, target: Date) {
         if mark?.manual == true {
             stop(.wake)
@@ -194,7 +194,7 @@ final class LearnRecorder {
             return
         }
         let spec = model.alarms.first { $0.id == plan.alarmId }
-        // Ab der Erinnerung am Abend (Entscheid r1AD 14.11.2026, `nightStart`).
+        // Ab der Erinnerung am Abend (`nightStart`).
         let onset = Self.nightStart(plan: plan, spec: spec, sleepGoal: model.sleepGoal)
         let battery = Self.battery()
         nextTry = nil
@@ -323,7 +323,7 @@ final class LearnRecorder {
         save(nil)
     }
 
-    /// Pulswerte (Zeitpunkt, Schläge pro Minute) der Apple Watch aus Apple Health im Zeitraum (F-8, ``WatchPulseSource``);
+    /// Pulswerte (Zeitpunkt, Schläge pro Minute) der Apple Watch aus Apple Health im Zeitraum (``WatchPulseSource``);
     /// leer ohne Daten oder Erlaubnis.
     func heartRates(from: Date, to: Date) async -> [(at: Date, bpm: Double)] {
         guard HKHealthStore.isHealthDataAvailable(), let type = HKQuantityType.quantityType(forIdentifier: .heartRate) else { return [] }
@@ -344,8 +344,7 @@ final class LearnRecorder {
     func save(_ new: Mark?) {
         mark = new
         if let new, let data = try? JSONEncoder().encode(new) {
-            // Atomar: Scheitert das Schreiben, bleibt der vorige Stand (höchstens ein Durchgang geht verloren); protokolliert
-            // (Audit 17.11. CODE-02).
+            // Atomar: Scheitert das Schreiben, bleibt der vorige Stand (höchstens ein Durchgang geht verloren); protokolliert.
             do { try data.write(to: fileURL, options: .atomic) } catch {
                 DiagStore.shared.log(.error, "recorder state not saved \((error as NSError).code)")
             }
@@ -374,8 +373,8 @@ final class LearnRecorder {
         if let auto = autoNextTry, auto > now { date = date.map { min($0, auto) } ?? auto }
         if snapshot.active, let warn = Self.learnWarnAt(), warn > now { date = date.map { min($0, warn) } ?? warn }
         // Mit Wecker spätestens nach `replanRefresh` wieder, auch ohne Lernphase und Einschlaf-Messung: Die
-        // Aktualisierung plant dann neu und führt die Rückfälle der nächsten Nächte nach (Audit AP-2).
-        // Laden während der Einschlaf-Messung abtasten (F-1, `LearnRecorder+Charging`).
+        // Aktualisierung plant dann neu und führt die Rückfälle der nächsten Nächte nach.
+        // Laden während der Einschlaf-Messung abtasten (`LearnRecorder+Charging`).
         if let charge = chargeRefresh(now: now) { date = date.map { min($0, charge) } ?? charge }
         if WatchModel.shared.realPlan != nil {
             let replan = now.addingTimeInterval(Self.replanRefresh)

@@ -73,7 +73,7 @@ public enum SleepNotes {
     }
 
     /// Nachtdatum einer Nacht für Diagramme und Trends: über ihre Mitte (``nightDate(from:to:calendar:)``), in der Zone der
-    /// Aufzeichnung (``SleepSummary/localCalendar(_:)``, sonst `calendar`; Audit F-3).
+    /// Aufzeichnung (``SleepSummary/localCalendar(_:)``, sonst `calendar`).
     public static func nightDate(of sleep: SleepSummary, calendar: Calendar) -> String {
         nightDate(from: sleep.start, to: sleep.end, calendar: sleep.localCalendar(calendar))
     }

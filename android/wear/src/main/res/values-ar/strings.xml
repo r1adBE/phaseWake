@@ -80,7 +80,7 @@
     <string name="editor_delete_title">حذف هذا المنبّه؟</string>
     <string name="home_max_alarms">%1$d منبّهات كحد أقصى – احذف منبّهًا لإضافة منبّه جديد.</string>
     <string name="editor_enabled">المنبّه مفعّل</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">تخطَّ المرة القادمة</string>
     <string name="alarm_skipped">تم التخطي: %1$s</string>
     <string name="nap_title">قيلولة</string>
@@ -118,7 +118,7 @@
     <string name="record_since">منذ %1$s</string>
     <string name="notification_record_title">جارٍ تسجيل الليلة</string>
     <string name="record_battery_low">البطارية منخفضة جدًا للتسجيل</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">مرحلة التعلّم</string>
     <string name="watch_learn_warn">اشحن ساعتك، وإلا فلن تُحتسب هذه الليلة لمرحلة التعلّم (البطارية %1$d %%، والمطلوب %2$d %%).</string>
     <string name="watch_learn_skip_battery">هذه الليلة لا تُحتسب لمرحلة التعلّم: البطارية عند %1$d %%، والمطلوب %2$d %%.</string>

@@ -1,4 +1,4 @@
-# Planung der Wecker (AlarmSchedule, Audit 17.11.2026 CODE-03): je Zeile eine Art, Felder mit Tabulator getrennt, die
+# Planung der Wecker (AlarmSchedule): je Zeile eine Art, Felder mit Tabulator getrennt, die
 # letzten zwei Felder sind die Erwartung («-» = keine/kein Plan). Zeitpunkte ISO mit Abstand zu UTC, Wecker als
 # Zeile im Codec-Format (16 Felder, skipUntil in ms Wandzeit), Feiertage «yyyy-MM-dd» mit Kommas.
 #   next    now  Zone  Feiertage  doneUntil  Wecker  | nextTarget  skipNext

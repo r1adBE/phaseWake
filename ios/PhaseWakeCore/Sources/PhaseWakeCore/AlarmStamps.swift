@@ -1,6 +1,6 @@
 import Foundation
 
-/// Wecker samt Zeitpunkt der letzten Änderung der Liste (`updatedAt`) für den Abgleich iPhone ↔ Uhr. Seit Audit A-4 dazu
+/// Wecker samt Zeitpunkt der letzten Änderung der Liste (`updatedAt`) für den Abgleich iPhone ↔ Uhr. Dazu
 /// je Wecker der Zeitpunkt seiner letzten Änderung (`stamps`; fehlt einer, gilt `updatedAt`, siehe ``stampOf(_:)``) und
 /// die gelöschten Wecker mit dem Zeitpunkt des Löschens (`deleted`), siehe ``AlarmStamps``.
 public struct AlarmSnapshot: Equatable, Sendable {
@@ -28,7 +28,7 @@ public struct AlarmSnapshot: Equatable, Sendable {
     public func stampOf(_ id: String) -> Int64 { stamps[id] ?? updatedAt }
 }
 
-/// Abgleich der Wecker je Wecker (Audit A-4, Entscheid «per-alarm updatedAt merge», wie `AlarmStamps` auf Android):
+/// Abgleich der Wecker je Wecker (Entscheid «per-alarm updatedAt merge», wie `AlarmStamps` auf Android):
 /// Früher gewann die neuere ganze Liste; änderte ein Gerät automatisch einen Wecker (Einmal-Wecker nach dem Klingeln
 /// aus), während auf dem anderen der Nutzer einen Wecker bearbeitete, ging eine der beiden Änderungen verloren. Jetzt
 /// trägt jeder Wecker den Zeitpunkt seiner letzten Änderung, und ein gelöschter Wecker bleibt als Eintrag mit dem
@@ -46,7 +46,7 @@ public enum AlarmStamps {
     /// nicht älter als diese Fassung ist; ein Wecker, den eine Seite nie kannte und nirgends gelöscht ist, bleibt.
     /// Listen-Zeitpunkt: der spätere beider Seiten. Gelöschte Wecker älter als ``tombstoneMaxAgeMs`` vor `now` (ms)
     /// fallen weg. Die Wecker des Ergebnisses sind nach Kennung geordnet. Doppelte Kennung in einem Stand: der letzte
-    /// Eintrag gilt, wie Kotlin (`associateBy`, Entscheid r1AD 17.11.2026).
+    /// Eintrag gilt, wie Kotlin (`associateBy`).
     public static func merge(local: AlarmSnapshot, remote: AlarmSnapshot, now: Int64) -> AlarmSnapshot {
         let mine = lastById(local.alarms), theirs = lastById(remote.alarms)
         let ids = Set(mine.keys).union(theirs.keys).union(local.deleted.keys).union(remote.deleted.keys).sorted()
@@ -68,7 +68,7 @@ public enum AlarmStamps {
     }
 
     /// Gelöschte Wecker ohne zu alte (``tombstoneMaxAgeMs`` vor `now`, ms) und ohne unplausible Zeitpunkte
-    /// (``TimeBounds``, sonst bräche `now − Zeitpunkt` die App ab, Fix KN-4), höchstens ``maxTombstones``, die neuesten.
+    /// (``TimeBounds``, sonst bräche `now − Zeitpunkt` die App ab), höchstens ``maxTombstones``, die neuesten.
     public static func prune(_ deleted: [String: Int64], now: Int64) -> [String: Int64] {
         let kept = deleted.filter { TimeBounds.contains($0.value) && now - $0.value <= tombstoneMaxAgeMs }
             .sorted { ($0.value, $1.key) > ($1.value, $0.key) }
@@ -86,7 +86,7 @@ public enum AlarmStamps {
     }
 
     /// Liest den Stand der Gegenseite aus dem Anwendungskontext; `nil` ohne oder mit unlesbaren Weckern oder mit
-    /// unplausiblem Listen-Zeitpunkt (``TimeBounds``, Fix KN-4: Nachricht verworfen). Fehlen die Zeitpunkte je Wecker
+    /// unplausiblem Listen-Zeitpunkt (``TimeBounds``: Nachricht verworfen). Fehlen die Zeitpunkte je Wecker
     /// (ältere Version), ist ``AlarmSnapshot/perAlarm`` `false`; unplausible Zeitpunkte je Wecker oder gelöschter Wecker
     /// fallen weg (``int64Map(_:)``), wie `AlarmStamps.checked` (Kotlin).
     public static func snapshot(context: [String: Any]) -> AlarmSnapshot? {
@@ -100,7 +100,7 @@ public enum AlarmStamps {
     }
 
     /// Fingerabdruck eines empfangenen Stands (Wecker, Listen-Zeitpunkt, Zeitpunkte je Wecker, gelöschte Wecker), fest
-    /// geordnet: gleich genau dann, wenn derselbe Stand nochmals kommt (Fix S-5, `PhaseWakeStorage.applyRemoteContext`).
+    /// geordnet: gleich genau dann, wenn derselbe Stand nochmals kommt (`PhaseWakeStorage.applyRemoteContext`).
     public static func fingerprint(_ snapshot: AlarmSnapshot) -> String {
         func map(_ values: [String: Int64]) -> String {
             values.sorted { $0.key < $1.key }.map { "\($0.key)=\($0.value)" }.joined(separator: ",")
@@ -110,7 +110,7 @@ public enum AlarmStamps {
     }
 
     /// Wörterbuch Kennung → ms aus einer Property List (Werte `Int64` oder `NSNumber`); `nil`, wenn es keines ist.
-    /// Unlesbare Werte und unplausible Zeitpunkte (``TimeBounds``, Fix KN-4) fallen weg.
+    /// Unlesbare Werte und unplausible Zeitpunkte (``TimeBounds``) fallen weg.
     static func int64Map(_ value: Any?) -> [String: Int64]? {
         guard let raw = value as? [String: Any] else { return nil }
         return raw.compactMapValues { TimeBounds.checked(($0 as? Int64) ?? ($0 as? NSNumber)?.int64Value) }
@@ -130,7 +130,7 @@ public enum AlarmStamps {
     /// gleich ``GoodNightEstimate/maxAhead``): 16 Std. in ms (wie `AlarmStamps.SHIFT_MAX_AHEAD_MS`, Kotlin).
     public static let shiftMaxAheadMs: Int64 = 16 * 3_600_000
 
-    /// Ob `spec` noch die Fassung des Einmal-Weckers ist, die zur Zielzeit `target` geklingelt hat (Fix G-1/S-1). Nur sie
+    /// Ob `spec` noch die Fassung des Einmal-Weckers ist, die zur Zielzeit `target` geklingelt hat. Nur sie
     /// darf das Auto-Aus nach dem Klingeln treffen; eine danach verschobene oder geänderte Uhrzeit nicht.
     /// - `rung`: der Wecker, wie er zu Beginn der Nacht geladen wurde (`nil`, wenn unbekannt, z. B. nach einem Neustart
     ///   der App). Bekannt: Uhrzeit und Tage müssen gleich sein.
@@ -145,7 +145,7 @@ public enum AlarmStamps {
         return shifted && ahead > 0 && ahead <= shiftMaxAheadMs
     }
 
-    /// Auto-Aus eines Einmal-Weckers nach dem Klingeln (Fix G-1/S-1): Schaltet `id` in `local` aus, wenn er ein
+    /// Auto-Aus eines Einmal-Weckers nach dem Klingeln: Schaltet `id` in `local` aus, wenn er ein
     /// eingeschalteter Einmal-Wecker ist und `rang` ihn als die geklingelte Fassung erkennt; sonst `nil` (nichts tun).
     /// Der Wecker bekommt als Zeitpunkt den seiner bisherigen Fassung + 1 ms, nicht «jetzt»: Er ersetzt so genau die
     /// Fassung, die geklingelt hat. Eine neuere Änderung, die hier noch nicht angekommen ist (z. B. am iPhone verschoben,

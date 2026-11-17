@@ -2,7 +2,7 @@ import Foundation
 import PhaseWakeCore
 import UIKit
 
-/// Akku je Nacht am iPhone (r1AD 14.11.2026), wie `BatteryNight` und `PhoneBattery` (Android); Rechnung in ``BatteryTrack``.
+/// Akku je Nacht am iPhone, wie `BatteryNight` und `PhoneBattery` (Android); Rechnung in ``BatteryTrack``.
 /// Das iPhone läuft nachts oft nicht; es misst darum bei Ereignissen, die es ohnehin bekommt: Beginn, wenn die Uhr eine Nacht
 /// zu messen beginnt (Befehl ``SyncKeys/nightBegin``), Ende beim endgültigen «stop» der Uhr oder, falls das fehlt, wenn ihre
 /// Nacht gleich nach dem Ende ankommt. Verspätet zugestellt: kein Beginn bzw. Ende, also kein Wert statt eines falschen.

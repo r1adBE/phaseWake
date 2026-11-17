@@ -5,7 +5,7 @@ import java.time.Instant
 import java.time.ZoneId
 
 /**
- * Validierungs-Modus (Entscheid r1AD 16.11.2026): Wie oft liegt der Weck-Entscheid wirklich im leichten Schlaf? Rechnet
+ * Validierungs-Modus: Wie oft liegt der Weck-Entscheid wirklich im leichten Schlaf? Rechnet
  * nachträglich auf dem Handy, weckt nie und ändert nichts am Wecken. Regel siehe `docs/PHASENERKENNUNG.md`, Abschnitt 12.
  *
  * - **Echte Entscheide**: je Nacht ([NightRecord]) Weckzeit und Grund.
@@ -75,7 +75,7 @@ object Validation {
     /**
      * Schattenentscheide einer Aufzeichnung ab [start]: Fenster ab Epoche 0, [STEP_EPOCHS], 2 · [STEP_EPOCHS] …, solange ein
      * ganzes Fenster ([WINDOW_EPOCHS]) Platz hat; nur durchgehend gemessene ([measured]). Je Fenster ein neuer Detektor.
-     * Entscheiden zwei überlappende Fenster im selben Moment gleich, zählt der Moment einmal (r1AD 17.11.2026).
+     * Entscheiden zwei überlappende Fenster im selben Moment gleich, zählt der Moment einmal.
      */
     fun shadows(start: Instant, epochs: List<Epoch>, config: DetectorConfig): List<Moment> {
         val moments = mutableListOf<Moment>()

@@ -21,7 +21,7 @@ import kotlinx.coroutines.withTimeoutOrNull
  * Schickt Wecker, Nächte und Weck-Ereignisse an die Gegenseite ([peer]: auf der Uhr das Handy, sonst die Uhr).
  *
  * Inhalte mit persönlichen Daten gehen über die Warteschlange [Outbox] als Nachricht direkt an das verbundene Gerät
- * (bestätigt, bis dahin wiederholt), nicht als Datenpaket, das Google in der Cloud sichert (Audit C2). Als Datenpaket
+ * (bestätigt, bis dahin wiederholt), nicht als Datenpaket, das Google in der Cloud sichert. Als Datenpaket
  * bleiben nur der Uhr-Status, «Verlauf löschen» und der Abbruch von Probewecker oder Powernap (siehe [DataLayer]); eine
  * Uhr-App vor der Warteschlange erhält nichts mehr, der Nacht-Check meldet sie als veraltet.
  *
@@ -38,7 +38,7 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
     private val ackedContent by lazy { AckedContent.forContext(app) }
 
     /**
-     * Wecker an die Gegenseite (Warteschlange). [unlessAcked]: beim Prozessstart (Audit AN-1, PERF-06) nur, wenn der Stand
+     * Wecker an die Gegenseite (Warteschlange). [unlessAcked]: beim Prozessstart nur, wenn der Stand
      * nicht schon bestätigt ist ([enqueueIfChanged]).
      */
     suspend fun publishAlarms(snapshot: AlarmSnapshot, unlessAcked: Boolean = false) = guarded("Wecker senden") {
@@ -57,7 +57,7 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
     suspend fun requestSync() = message(peer, DataLayer.PATH_SYNC_REQUEST)
 
     /**
-     * Wie [requestSync], beim Prozessstart aber höchstens alle 30 Min ([SyncGate], Audit PERF-06); gemerkt wird nur
+     * Wie [requestSync], beim Prozessstart aber höchstens alle 30 Min ([SyncGate]); gemerkt wird nur
      * eine Anfrage, die ein Gerät erreicht hat.
      */
     suspend fun requestSyncOnStart(gate: SyncGate = SyncGate.forContext(app)) {
@@ -71,12 +71,12 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
     /**
      * Empfangene Nachricht der Warteschlange von [node]: [handle] verarbeitet den Text; gelingt das (kein Fehler),
      * wird die Kennung gemerkt ([ReceivedIds]) und der Empfang bestätigt ([DataLayer.PATH_ACK]). Derselbe Eintrag noch
-     * einmal (Audit A-1): nur erneut bestätigen, nicht noch einmal verarbeiten. Ohne Kennung (unlesbar) nichts.
-     * Eigene wartende Einträge sendet der Aufrufer danach ausserhalb des Empfangs ([flush] im App-Bereich, Audit A-8).
+     * einmal: nur erneut bestätigen, nicht noch einmal verarbeiten. Ohne Kennung (unlesbar) nichts.
+     * Eigene wartende Einträge sendet der Aufrufer danach ausserhalb des Empfangs ([flush] im App-Bereich).
      * @return ob der Eintrag gültig war (verarbeitet oder schon verarbeitet); dann lohnt sich ein [flush].
      */
     suspend fun receive(node: String, data: ByteArray?, handle: suspend (String) -> Unit): Boolean {
-        // Über der Grenze (Audit S-2): nicht entschlüsseln und nicht bestätigen.
+        // Über der Grenze: nicht entschlüsseln und nicht bestätigen.
         if (!PeerLimit.fits(data)) {
             Log.w(TAG, "Empfangener Eintrag zu gross (${data?.size} Bytes), verworfen")
             return false
@@ -100,7 +100,7 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
 
     /**
      * Kanal der Gegenseite (grosser Eintrag der Warteschlange) ganz lesen und schliessen; `null`, wenn das scheitert
-     * oder der Inhalt grösser als [PeerLimit.MAX_BYTES] ist (Audit S-2: nie ohne Grenze in den Speicher).
+     * oder der Inhalt grösser als [PeerLimit.MAX_BYTES] ist (nie ohne Grenze in den Speicher).
      */
     suspend fun readChannel(channel: ChannelClient.Channel): ByteArray? {
         val client = Wearable.getChannelClient(app)
@@ -127,7 +127,7 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
 
     /**
      * Uhr: Einträge der Warteschlange von «Verlauf löschen» ([before], ms) verwerfen: Nächte und Aufzeichnungen, die bis
-     * dahin enden (Audit D-02, nach ihrem Inhalt, nicht nach dem Zeitpunkt des Einreihens), dazu wie bisher alles, was
+     * dahin enden (nach ihrem Inhalt, nicht nach dem Zeitpunkt des Einreihens), dazu wie bisher alles, was
      * vorher eingereiht wurde.
      */
     suspend fun dropHistory(before: Long) {
@@ -151,7 +151,7 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
 
     /**
      * Uhr: meldet, ob sie für die Nacht bereit ist (Sensoren, Mitteilungen und Weckbildschirm erlaubt), mit Pulsrechten
-     * und dem Grund einer nicht gestarteten Messung vor dem Schlafen dieser Nacht ([recorderSkip], Audit F-06) sowie ihrer
+     * und dem Grund einer nicht gestarteten Messung vor dem Schlafen dieser Nacht ([recorderSkip]) sowie ihrer
      * Build-Nummer ([build], `BuildNumber`).
      * @return ob das Paket abgelegt wurde (der Data Layer stellt es dann zu).
      */
@@ -167,7 +167,7 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
         return stored
     }
 
-    /** Uhr: frühere Zielzeit aus dem Einschlaf-Modus ans Handy ([OnsetShift], Review K-07), über die Warteschlange. */
+    /** Uhr: frühere Zielzeit aus dem Einschlaf-Modus ans Handy ([OnsetShift]), über die Warteschlange. */
     suspend fun publishOnsetShift(shift: OnsetShift) = guarded("Einschlaf-Zielzeit senden") {
         outbox.enqueue(QueueMessages.KEY_ONSET_SHIFT, DataLayer.PATH_MSG_ONSET_SHIFT, peer, shift.encode())
     }
@@ -179,7 +179,7 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
     suspend fun watchBattery(maxAgeMs: Long = 6 * 3_600_000L): Int? =
         readStatus { readBattery(it, System.currentTimeMillis(), maxAgeMs) }
 
-    /** Handy: ob die Uhr beim Akkustand aus [watchBattery] lud (Prüfrunde 2 F-6); unbekannt: nein. */
+    /** Handy: ob die Uhr beim Akkustand aus [watchBattery] lud; unbekannt: nein. */
     suspend fun watchBatteryCharging(maxAgeMs: Long = 6 * 3_600_000L): Boolean =
         readStatus { readCharging(it, System.currentTimeMillis(), maxAgeMs) } == true
 
@@ -256,7 +256,7 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
 
     /**
      * Sendet eine Nachricht an alle erreichbaren Geräte mit der Fähigkeit [capability]. Die Suche nach den Geräten hat eine
-     * Frist ([CAPABILITY_TIMEOUT_MS], Befund 13.11.2026): Antworten die Wear-Dienste nicht, wird nicht gesendet und
+     * Frist ([CAPABILITY_TIMEOUT_MS]): Antworten die Wear-Dienste nicht, wird nicht gesendet und
      * protokolliert, statt dass der Aufrufer (z. B. «klingeln» ans Handy) unbegrenzt wartet.
      */
     suspend fun message(capability: String, path: String, payload: ByteArray = ByteArray(0)) {

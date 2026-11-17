@@ -34,8 +34,8 @@ import kotlin.test.assertTrue
 import kotlin.test.fail
 
 /**
- * Reihenfolge der Startseite (Audit UX-01/UX-05, r1AD 17.11.2026): «Deine Wecker» gleich nach dem Nacht-Check, dann
- * Powernap, dann die Abendkarten – wie am iPhone. Neben der Bettzeit-Karte keine Auffälligkeit mit demselben Tipp (UX-04).
+ * Reihenfolge der Startseite: «Deine Wecker» gleich nach dem Nacht-Check, dann
+ * Powernap, dann die Abendkarten – wie am iPhone. Neben der Bettzeit-Karte keine Auffälligkeit mit demselben Tipp.
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35], application = OfflineApp::class)

@@ -4,7 +4,7 @@ import os
 import PhaseWakeCore
 
 extension LearnRecorder {
-    /// Pause nach jedem Abschnitt beim Nachrechnen der Einschlafzeit (`WatchOnset`, Vollaudit AP2-3): Das Lesen von bis zu
+    /// Pause nach jedem Abschnitt beim Nachrechnen der Einschlafzeit (`WatchOnset`): Das Lesen von bis zu
     /// 4 Std. Werten am Beginn der Smart-Alarm-Sitzung belegt die Uhr sonst ohne Unterbruch. Mit 24 Abschnitten höchstens
     /// rund 5 s mehr, innerhalb der Rechenzeit (`WatchOnset.budget`); die Frist bis fail-closed bleibt.
     nonisolated static let onsetPause: TimeInterval = 0.2
@@ -13,7 +13,7 @@ extension LearnRecorder {
     /// (Epochengrenze), Abschnitt für Abschnitt (``chunk``), bis `deadline`. Läuft abseits des Main-Threads (auch
     /// `WatchOnset`). `pause`: Ruhe nach jedem Abschnitt (``pauseLength(_:now:deadline:)``), damit die Rechnung die Uhr
     /// nicht am Stück belegt; die Lernphase (kurze Rechenzeit im Hintergrund) pausiert nicht. Jeder Abschnitt liest in
-    /// einem eigenen `autoreleasepool` (Audit 17.11. PF-1): Die Werte eines Abschnitts (10 Min., 30 000) werden gleich
+    /// einem eigenen `autoreleasepool`: Die Werte eines Abschnitts (10 Min., 30 000) werden gleich
     /// freigegeben, statt sich über 8–12 Std. bis zum Ende anzusammeln (Jetsam). Freier Speicher vorher und nachher
     /// (`os_proc_available_memory`, MB) als Diagnose-Zeile der Art `kind`.
     nonisolated static func recordedMotions(start: Date, done: [Double?], until stop: Date, deadline: Date,

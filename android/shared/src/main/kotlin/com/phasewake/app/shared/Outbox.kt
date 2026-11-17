@@ -25,7 +25,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 
 /**
- * Zuverlässige Zustellung an die Gegenseite ohne Ablage im Data Layer (Audit C2, Entscheid r1AD 10.11.2026):
+ * Zuverlässige Zustellung an die Gegenseite ohne Ablage im Data Layer:
  * Datenpakete des Data Layers sichert Google zusätzlich in der Cloud. Nächte, Aufzeichnungen, Wecker (ihre Namen sind
  * eigener Text), Lernwerte, frühere Zielzeit, Schlafziel, Feiertage, Schalter der Einschlaf-Messung und der Stand von
  * «Nacht aufzeichnen» gehen darum als Nachricht ([Transport]: MessageClient, grosse Inhalte über ChannelClient) direkt an
@@ -34,19 +34,19 @@ import kotlinx.coroutines.withTimeoutOrNull
  * Nachrichten werden nicht nachgeliefert. Damit nichts verloren geht, wenn die Gegenseite gerade weg ist, liegt jeder
  * Eintrag lokal im Ordner [dir], bis sie den Empfang bestätigt ([DataLayer.PATH_ACK], [acked]); bis dahin sendet [flush]
  * ihn bei einem späteren Anlass erneut (Start der App, Gegenseite erreichbar, Nachricht von ihr), aber frühestens
- * [RESEND_AFTER_MS] nach dem letzten erfolgreichen Senden (Audit A-1: sonst kam derselbe Eintrag mehrfach an, weil jede
+ * [RESEND_AFTER_MS] nach dem letzten erfolgreichen Senden (sonst kam derselbe Eintrag mehrfach an, weil jede
  * Nachricht der Gegenseite alles Unbestätigte erneut schickte). Übergeht [flush] deshalb einen Eintrag, sendet es ihn
- * von selbst, sobald die Wartezeit um ist (Audit AN-3, ein einziger Zeitgeber für alle). [enqueue] speichert nur lokal
+ * von selbst, sobald die Wartezeit um ist (ein einziger Zeitgeber für alle). [enqueue] speichert nur lokal
  * (schnell) und sendet den neuen Eintrag danach im Hintergrund ([scope]). Ein Eintrag mit gleichem Schlüssel
  * ([Entry.key], z. B. «alarms») ersetzt den älteren: Für Zustände zählt nur der neueste. Nächte und Aufzeichnungen
  * haben je einen eigenen Schlüssel. Die Bestätigung nennt die Kennung des gesendeten Standes ([Entry.id]): Ein
  * inzwischen ersetzter Eintrag bleibt. Der Empfänger verarbeitet idempotent (dieselbe Nacht zweimal ändert nichts),
  * merkt sich die zuletzt verarbeiteten Kennungen ([ReceivedIds]) und bestätigt erst danach ([WearSync.receive]).
  *
- * Die Sperre gilt nur für den Ordner und die gemerkten Zeiten, nie während des Sendens (Audit AN-4): Ein hängender
+ * Die Sperre gilt nur für den Ordner und die gemerkten Zeiten, nie während des Sendens: Ein hängender
  * Schritt zur Gegenseite hält weder [enqueue] noch [acked] auf.
  *
- * Begrenzt (Audit A-8, AN-2): Nur Nächte und Aufzeichnungen ([expires]) fallen nach [MAX_AGE_MS] weg, und je Art
+ * Begrenzt: Nur Nächte und Aufzeichnungen ([expires]) fallen nach [MAX_AGE_MS] weg, und je Art
  * ([kindOf]) bleiben höchstens [MAX_PER_KIND], die neuesten. Zustände (Wecker, Einstellungen, Lernphase …) haben je
  * einen Schlüssel, also höchstens einen Eintrag, und verfallen nie: Sonst ginge eine Änderung nach zwei Wochen ohne
  * Gegenseite verloren.
@@ -94,7 +94,7 @@ class Outbox(
 
     /**
      * Reiht [body] unter [key] ein (ersetzt einen älteren Eintrag mit gleichem Schlüssel) und kehrt zurück, sobald er
-     * lokal gespeichert ist (Audit AN-1: schnell, z. B. vor dem Neuplanen). Gesendet wird nur dieser Eintrag (Audit A-1)
+     * lokal gespeichert ist (schnell, z. B. vor dem Neuplanen). Gesendet wird nur dieser Eintrag
      * im Hintergrund ([scope]). @return seine Kennung.
      */
     suspend fun enqueue(key: String, path: String, capability: String, body: String): String {
@@ -112,8 +112,8 @@ class Outbox(
 
     /**
      * Sendet die wartenden Einträge an die erreichbaren Geräte ihrer Fähigkeit; einen schon gesendeten erst wieder
-     * [RESEND_AFTER_MS] danach (Audit A-1), dann von selbst ([scheduleRetry], Audit AN-3). Ohne Gerät oder bei einem
-     * Fehler bleibt der Eintrag für den nächsten Anlass. Gesendet wird ausserhalb der Sperre (Audit AN-4): Unter der
+     * [RESEND_AFTER_MS] danach, dann von selbst ([scheduleRetry]). Ohne Gerät oder bei einem
+     * Fehler bleibt der Eintrag für den nächsten Anlass. Gesendet wird ausserhalb der Sperre: Unter der
      * Sperre nur auswählen und danach die Zeiten nachführen. [only]: nur den Eintrag mit dieser Kennung ([enqueue]).
      * @return Zahl der wartenden Einträge beim Auswählen.
      */
@@ -192,9 +192,9 @@ class Outbox(
     }
 
     /**
-     * Grenzen der Warteschlange (Audit A-8, AN-2), nur für Nächte und Aufzeichnungen ([expires]): Einträge älter als
+     * Grenzen der Warteschlange, nur für Nächte und Aufzeichnungen ([expires]): Einträge älter als
      * [MAX_AGE_MS] (oder aus der «Zukunft», Uhr verstellt, bleiben) entfernen, je Art ([kindOf]) nur die neuesten
-     * [MAX_PER_KIND] behalten. Zustände bleiben. Dazu Reste (Audit SP-8): «.tmp» (unter [lock] schreibt keiner, also
+     * [MAX_PER_KIND] behalten. Zustände bleiben. Dazu Reste: «.tmp» (unter [lock] schreibt keiner, also
      * liegengeblieben) und gelesene, aber unlesbare Einträge (leer oder halb nach einem Stromausfall; scheitert schon das
      * Lesen, bleibt die Datei). Nur unter [lock].
      */
@@ -251,7 +251,7 @@ class Outbox(
         val file = File(dir, name(entry.key))
         val tmp = File(dir, file.name + ".tmp")
         val text = listOf(VERSION, entry.id, entry.key, entry.path, entry.capability, entry.createdAt.toString(), entry.body).joinToString("\n")
-        // Erst auf der Platte (fsync, Audit SP-8), dann in einem Schritt ersetzen: Scheitert das Schreiben, bleibt der vorige Stand.
+        // Erst auf der Platte (fsync), dann in einem Schritt ersetzen: Scheitert das Schreiben, bleibt der vorige Stand.
         java.io.FileOutputStream(tmp).use { out -> out.write(text.encodeToByteArray()); out.fd.sync() }
         if (!tmp.renameTo(file)) {
             file.delete()
@@ -312,10 +312,10 @@ class Outbox(
         /** Höchstdauer eines Schritts zur Gegenseite (Geräte suchen, senden). */
         private const val STEP_TIMEOUT_MS = 15_000L
 
-        /** Ein gesendeter, noch nicht bestätigter Eintrag geht frühestens so lange danach erneut (Audit A-1). */
+        /** Ein gesendeter, noch nicht bestätigter Eintrag geht frühestens so lange danach erneut. */
         const val RESEND_AFTER_MS = 45_000L
 
-        /** Älter als 14 Tage: verworfen (Audit A-8; die Uhr behält ihren eigenen Verlauf). */
+        /** Älter als 14 Tage: verworfen (die Uhr behält ihren eigenen Verlauf). */
         const val MAX_AGE_MS = 14 * 24 * 3_600_000L
 
         /** Höchstens so viele wartende Einträge je Art ([kindOf]); ältere fallen weg. */
@@ -325,8 +325,8 @@ class Outbox(
         fun kindOf(key: String): String = key.indexOf('/').let { if (it < 0) key else key.substring(0, it + 1) }
 
         /**
-         * Ob Einträge unter [key] verfallen dürfen ([MAX_AGE_MS], [MAX_PER_KIND]): nur Nächte und Aufzeichnungen
-         * (Audit AN-2). Zustände (Wecker, Einstellungen, Lernphase …) verfallen nie.
+         * Ob Einträge unter [key] verfallen dürfen ([MAX_AGE_MS], [MAX_PER_KIND]): nur Nächte und Aufzeichnungen.
+         * Zustände (Wecker, Einstellungen, Lernphase …) verfallen nie.
          */
         fun expires(key: String): Boolean = key.startsWith(QueueMessages.KEY_NIGHT) || key.startsWith(QueueMessages.KEY_RECORDING)
 

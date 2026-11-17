@@ -192,7 +192,7 @@ data class BackupSettings(
      */
     val autoOnset: Boolean = true,
     /**
-     * «Abends dunkel ab» an ([EveningDark], Entscheid r1AD 17.11.2026). Fehlt der Schlüssel (ältere Sicherung), gilt die
+     * «Abends dunkel ab» an ([EveningDark]). Fehlt der Schlüssel (ältere Sicherung), gilt die
      * Vorgabe `true`.
      */
     val eveningDark: Boolean = EveningDark.DEFAULT_ENABLED,

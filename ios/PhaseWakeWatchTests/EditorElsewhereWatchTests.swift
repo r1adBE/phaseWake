@@ -2,7 +2,7 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWakeWatch
 
-/// Wecker-Editor der Apple Watch nach Änderungen am iPhone (Herkunft: Prüfrunde 2 B-3, B-11).
+/// Wecker-Editor der Apple Watch nach Änderungen am iPhone.
 @MainActor
 final class EditorElsewhereWatchTests: XCTestCase {
     func testEditorSaveAfterChangesOnPhone() {

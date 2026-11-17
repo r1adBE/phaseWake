@@ -22,7 +22,7 @@ import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ui.theme.ThemeMode
 
 /**
- * Randfälle aus dem UI-Audit (11.11.2026): Querformat, kleines Handy (360 × 640), grosse Schrift, lange Sprachen,
+ * Randfälle: Querformat, kleines Handy (360 × 640), grosse Schrift, lange Sprachen,
  * Arabisch und der Sonnenaufgang mitten im Farbwechsel. Beispieldaten.
  */
 

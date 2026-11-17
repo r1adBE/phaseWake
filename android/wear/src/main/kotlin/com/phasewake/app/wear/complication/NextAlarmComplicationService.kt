@@ -22,7 +22,7 @@ import java.time.ZoneId
 import java.util.Locale
 
 /**
- * Komplikation fürs Zifferblatt: Mond plus Zielzeit des nächsten Weckers, also spätestens geweckt (Prüfrunde 2, B-4: wie
+ * Komplikation fürs Zifferblatt: Mond plus Zielzeit des nächsten Weckers, also spätestens geweckt (wie
  * die Apple-Komplikation, nicht der Beginn des Fensters). Tippen öffnet die App, wie die Kachel.
  */
 class NextAlarmComplicationService : SuspendingComplicationDataSourceService() {
@@ -55,7 +55,7 @@ class NextAlarmComplicationService : SuspendingComplicationDataSourceService() {
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
         )
 
-        /** Gezeigte Zeit mit den Ziffern der Sprache ([shortTime], Audit UI-9); [locale] nur für Tests. */
+        /** Gezeigte Zeit mit den Ziffern der Sprache ([shortTime]); [locale] nur für Tests. */
         fun shownText(at: Instant, zone: ZoneId, locale: Locale = Locale.getDefault()): String = shortTime(at, zone, locale)
 
         /** Vorschau in der Zifferblatt-Auswahl: «06:30» wie bisher, aber mit den Ziffern der Sprache. */

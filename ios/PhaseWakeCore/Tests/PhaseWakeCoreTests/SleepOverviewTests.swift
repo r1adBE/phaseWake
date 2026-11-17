@@ -49,7 +49,7 @@ final class SleepOverviewTests: XCTestCase {
     }
 
     func testAverageTimesDoNotJumpAtNoon() {
-        // Audit W-1: Aufwachen 11:56 und 12:50 → Ø 12:23 (23 Min ab Mittag), nicht 00:23 (743).
+        // Aufwachen 11:56 und 12:50 → Ø 12:23 (23 Min ab Mittag), nicht 00:23 (743).
         let late = [sleep(today, 23, 0, wakeHour: 11, wakeMinute: 56), sleep(day(1), 23, 0, wakeHour: 12, wakeMinute: 50)]
         let o = SleepOverviews.of(late, calendar: zurich, today: today, goalMinutes: 450, unit: .days)!
         XCTAssertEqual(o.wakeMinute, 23)
@@ -143,7 +143,7 @@ final class SleepOverviewTests: XCTestCase {
     }
 
     func testNightWithOnlyAwakeHasNoStageSplit() {
-        // Audit W-5: Quelle ohne Phasendetail (nur «wach» bekannt) gibt eine neutrale Säule, keine Säule «ganz wach».
+        // Quelle ohne Phasendetail (nur «wach» bekannt) gibt eine neutrale Säule, keine Säule «ganz wach».
         let night = sleep(today, 23, 0)
         let t = night.start
         let stages = [StageSpan(start: t, end: t.addingTimeInterval(200 * 60), stage: .unknown),

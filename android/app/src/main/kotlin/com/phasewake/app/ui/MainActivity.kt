@@ -76,7 +76,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-        // Audit SEC-03: Die App-Übersicht zeigt kein Vorschaubild mit Schlafdaten (ab Android 13). Kein FLAG_SECURE:
+        // Die App-Übersicht zeigt kein Vorschaubild mit Schlafdaten (ab Android 13). Kein FLAG_SECURE:
         // Bildschirmfotos und Bildschirmleser bleiben möglich.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) setRecentsScreenshotEnabled(false)
         val app = phoneApp
@@ -136,20 +136,20 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
         healthCheck++
         onPauseOrDispose { }
     }
-    // Nächte aus Health Connect sind ein Spiegel der Quelle: auch beim Öffnen des Verlaufs neu prüfen (Audit PERF-05:
-    // gelesen wird höchstens alle 5 Min).
+    // Nächte aus Health Connect sind ein Spiegel der Quelle: auch beim Öffnen des Verlaufs neu prüfen
+    // (gelesen wird höchstens alle 5 Min).
     LaunchedEffect(route) { if (route == Routes.HISTORY) healthCheck++ }
     val insights = rememberInsights(app, data, healthCheck, healthGrant)
     val soundRec = rememberSoundRec(app, data, checkRun)
     val nightCheck = rememberNightCheck(app, checkRun)
 
     val notificationPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { checkRun++ }
-    // Vor jeder Anfrage gemerkt, über das Prozessende hinaus (B-6): Danach öffnet «Erlauben» gleich die Einstellungen.
+    // Vor jeder Anfrage gemerkt, über das Prozessende hinaus: Danach öffnet «Erlauben» gleich die Einstellungen.
     fun askNotifications() {
         PermissionAsks.markAsked(context, listOf(Manifest.permission.POST_NOTIFICATIONS))
         notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
     }
-    // Probewecker über einem wartenden Powernap: zuerst fragen (B-12).
+    // Probewecker über einem wartenden Powernap: zuerst fragen.
     var confirmTest by rememberSaveable { mutableStateOf(false) }
     val healthPermission = rememberLauncherForActivityResult(PermissionController.createRequestPermissionResultContract()) {
         healthGrant++

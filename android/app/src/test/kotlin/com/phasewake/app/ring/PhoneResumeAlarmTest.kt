@@ -27,7 +27,7 @@ import kotlin.test.assertTrue
 /**
  * Alarme des Klingelns am Handy über [BackupAlarm]: Wiederaufnahme-Alarm beim Klingeln gestellt (übersteht ein
  * Prozessende), beim Schlummern ersetzt und beim Beenden aufgehoben; dazu das Aussetzen nach einem Zweitwecker zur
- * früheren Zielzeit des Einschlaf-Modus (Review K-07). Feste Uhrzeit, schlichte [Application].
+ * früheren Zielzeit des Einschlaf-Modus. Feste Uhrzeit, schlichte [Application].
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35], application = Application::class)

@@ -2,8 +2,8 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWake
 
-/// Prüfrunde 2 SP-7 (wie `LearningStampTest`/`PhaseWakeStoreTest` auf Android): Nach einer kaputten Datei beginnt der
-/// Stand leer, die Kopie bleibt, und der leere Stand wird nicht als neuer an die Uhr geschickt. Dazu B-12: Probewecker
+/// Wie `LearningStampTest`/`PhaseWakeStoreTest` auf Android): Nach einer kaputten Datei beginnt der
+/// Stand leer, die Kopie bleibt, und der leere Stand wird nicht als neuer an die Uhr geschickt. Dazu: Probewecker
 /// und Powernap ersetzen einander auch am iPhone.
 final class ResetPhoneTests: XCTestCase {
     private var dir: URL!
@@ -42,7 +42,7 @@ final class ResetPhoneTests: XCTestCase {
         XCTAssertGreaterThan(again.watchSnapshot().updatedAtMs, 0, "eine Änderung gilt wie sonst")
     }
 
-    /// Ohne kaputte Datei bleibt es beim Stempel (Fix S-3).
+    /// Ohne kaputte Datei bleibt es beim Stempel.
     @MainActor
     func testNewLearningIsStillStamped() {
         let learning = PhoneLearning(directory: dir)
@@ -67,10 +67,10 @@ final class ResetPhoneTests: XCTestCase {
         XCTAssertEqual(PhoneConnectivity.afterReset(true, key: "backupAutoOnset", in: fresh), true)
     }
 
-    /// B-12: «In 2 Minuten testen» ersetzt einen wartenden Powernap; die Powernap-Karte verschwindet wie auf der Uhr.
+    /// «In 2 Minuten testen» ersetzt einen wartenden Powernap; die Powernap-Karte verschwindet wie auf der Uhr.
     /// Den Powernap nur als Stand anlegen (`begin(nap:)`, wie `napFromWatch` ohne Sicherung): `napFromWatch` stellt die
     /// Sicherung über AlarmKit, und dessen `requestAuthorization()` wartet im Simulator ohne Antwort auf die Rückfrage –
-    /// der Testlauf hing daran (CI, Audit 93).
+    /// der Testlauf hing daran (CI).
     @MainActor
     func testTestReplacesWaitingNap() {
         let transient = PhoneTransient()

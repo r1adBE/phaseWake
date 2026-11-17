@@ -37,7 +37,7 @@ import kotlinx.coroutines.withContext
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Zeiten nach der 12/24-h-Einstellung der Uhr (Audit N-10).
+        // Zeiten nach der 12/24-h-Einstellung der Uhr.
         WearClock.update(this)
         setContent { PhaseWakeTheme { WatchApp() } }
     }
@@ -57,7 +57,7 @@ private const val ROUTE_DIAG = "diag"
 private fun WatchApp() {
     val app = LocalContext.current.wearApp
     val nav = rememberSwipeDismissableNavController()
-    // `null`, bis die Wecker gelesen sind: Erst dann zählt ein fehlender Wecker als anderswo gelöscht (B-3).
+    // `null`, bis die Wecker gelesen sind: Erst dann zählt ein fehlender Wecker als anderswo gelöscht.
     val stored by app.alarms.alarms.collectAsStateWithLifecycle(initialValue = null)
     val alarms = stored.orEmpty()
     var draft by rememberSaveable(stateSaver = draftSaver) { mutableStateOf<AlarmSpec?>(null) }
@@ -108,7 +108,7 @@ private fun WatchApp() {
                     // Kein Entwurf (sollte nicht vorkommen): zurück zum Start, nie unter den Start hinaus.
                     LaunchedEffect(Unit) { nav.popBackStack(ROUTE_HOME, inclusive = false) }
                 } else {
-                    // Anderswo gelöscht (Handy), während der Editor offen ist: Hinweis und zu, statt ihn neu anzulegen (B-3).
+                    // Anderswo gelöscht (Handy), während der Editor offen ist: Hinweis und zu, statt ihn neu anzulegen.
                     val gone = stored?.let { editorSave(editingExisting, it, current.id) } == EditorSave.GONE
                     LaunchedEffect(gone, top?.destination?.route) {
                         if (gone && top?.destination?.route == ROUTE_EDITOR) {
@@ -123,7 +123,7 @@ private fun WatchApp() {
                         onChange = { draft = it },
                         onSave = save@{
                             if (nav.currentDestination?.route != ROUTE_EDITOR) return@save
-                            // Höchstens MAX_ALARMS Wecker, wie am Handy: dann Hinweis, der Editor bleibt (B-11).
+                            // Höchstens MAX_ALARMS Wecker, wie am Handy: dann Hinweis, der Editor bleibt.
                             when (editorSave(editingExisting, alarms, current.id)) {
                                 EditorSave.FULL -> {
                                     Toast.makeText(app, app.getString(R.string.home_max_alarms, MAX_ALARMS), Toast.LENGTH_LONG).show()
@@ -198,7 +198,7 @@ private fun DiagRoute(onHide: () -> Unit) {
         entries = withContext(Dispatchers.IO) { app.diag.entries() }
         next = app.scheduler.nextPlan()?.let { shortDay(it.target.atZone(ZoneId.systemDefault()).toLocalDate()) + " " + shortTime(it.target) }
     }
-    // Mit Build-Nummer der Testversion, z. B. «16.2.2 (96)» (r1AD 14.11.2026).
+    // Mit Build-Nummer der Testversion, z. B. «16.2.2 (96)».
     val version = remember { com.phasewake.app.shared.BuildNumber.ownLabel(context, watch = true) }
     DiagScreen(
         next = next,

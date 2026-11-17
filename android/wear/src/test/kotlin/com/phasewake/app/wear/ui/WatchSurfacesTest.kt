@@ -26,8 +26,8 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Prüfrunde 2, Galaxy Watch: Komplikation mit Zielzeit und Tipp-Aktion (B-4), Kachel ohne doppeltes «Nächster Wecker»
- * und mit Wochentag, wenn der Wecker nicht morgen ist (B-5), Speichern im Editor nach Änderungen am Handy (B-3, B-11).
+ * Galaxy Watch: Komplikation mit Zielzeit und Tipp-Aktion, Kachel ohne doppeltes «Nächster Wecker»
+ * und mit Wochentag, wenn der Wecker nicht morgen ist, Speichern im Editor nach Änderungen am Handy.
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35], application = QuietWear::class)

@@ -4,7 +4,7 @@ import com.phasewake.app.wear.schedule.AutoOnset
 import java.time.Instant
 
 /**
- * Startentscheid von «Gute Nacht» ([startGoodNight]) als reine Regeln ohne Android (Audit CODE-08, wie [OnsetRules]):
+ * Startentscheid von «Gute Nacht» ([startGoodNight]) als reine Regeln ohne Android (wie [OnsetRules]):
  * zuerst ob überhaupt gestartet wird ([gate]: laufende Nacht oder Messung, Sperre), nach dem Lesen des Weckers, ob und
  * wie gemessen wird ([decide]: Wecker, Weckfenster, Zeitgrenze, Akku). Der späte Start ([OnsetRules.lateStart]) folgt
  * danach, weil er das Schlafziel braucht. Fehlende Sensorrechte zeigt erst der Vordergrund-Dienst.

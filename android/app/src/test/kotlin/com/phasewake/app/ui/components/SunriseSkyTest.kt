@@ -4,7 +4,7 @@ import kotlin.test.Test
 import kotlin.test.assertTrue
 
 /**
- * Schrift auf dem Sonnenaufgang (Audit UI-6): Mit einem festen Wechsel bei 0.635 hatte der Text bei 0.62 nur etwa
+ * Schrift auf dem Sonnenaufgang: Mit einem festen Wechsel bei 0.635 hatte der Text bei 0.62 nur etwa
  * 2.5:1. [SunriseSky.ink] wählt die Schrift nach der Stelle des Texts; überall ≥ 4.5:1, im Hoch- und Querformat und
  * auf der runden Uhr (Seitenverhältnis 1).
  */
@@ -30,8 +30,8 @@ class SunriseSkyTest {
     }
 
     @Test
-    fun auditCaseLowerScreenAt062() {
-        // Fall aus dem Audit: Fortschritt 0.62, Schlummer-Knopf unten im Hochformat.
+    fun snoozeButtonLowInPortraitAt062KeepsContrast() {
+        // Grenzfall: Fortschritt 0.62, Schlummer-Knopf unten im Hochformat.
         val area = SunriseSky.Area(0.2f, 0.84f, 0.8f, 0.9f)
         val ink = SunriseSky.ink(0.62f, area)
         for (x in listOf(0.2f, 0.5f, 0.8f)) for (y in listOf(0.84f, 0.87f, 0.9f)) {
@@ -61,7 +61,7 @@ class SunriseSkyTest {
     }
 
     /**
-     * Audit N-4 / Gestaltung 5: Über ganze Textflächen (nicht nur Punkte) erreicht die Schrift mit dem Schild dahinter
+     * Über ganze Textflächen (nicht nur Punkte) erreicht die Schrift mit dem Schild dahinter
      * überall ≥ 4.5:1 – geprüft dichter (9 × 9 Punkte) als das Schild rechnet ([SunriseSky.GRID]).
      */
     @Test

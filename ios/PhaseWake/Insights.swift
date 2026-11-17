@@ -98,7 +98,7 @@ struct TrendsCard: View {
     var habits: [String] = []
     /// Zeilen, die ein Diagramm oben schon zeigt: hier weggelassen.
     var covered: Set<TrendLine> = []
-    /// Auffälligkeiten der letzten 7 Nächte, wichtigste zuerst; hier alle an einer Stelle (Entscheid r1AD 15.11.2026).
+    /// Auffälligkeiten der letzten 7 Nächte, wichtigste zuerst; hier alle an einer Stelle.
     var findings: [Finding] = []
 
     /// Ab dieser Schwankung der Einschlafzeit gibt es den Hinweis auf regelmässige Schlafzeiten.
@@ -162,7 +162,7 @@ struct TrendsCard: View {
 /// («phasewake-nights.csv», ``NightHistory/exportCsv(_:notes:calendar:)``) und, falls es Aufzeichnungen der Uhr gibt
 /// («Nacht aufzeichnen», Lernphase), diese als zweite Datei («phasewake-recordings.csv», ``NightRecording/exportCsv(_:)``),
 /// wie Android. Hat mindestens eine Nacht Schlafphasen aus Apple Health, kommt die Datei des Validierungs-Modus dazu
-/// («phasewake-validation.csv», ``ValidationReport/exportCsv(_:)``, Entscheid r1AD 16.11.2026: Uhrzeit ohne Datum je
+/// («phasewake-validation.csv», ``ValidationReport/exportCsv(_:)``: Uhrzeit ohne Datum je
 /// Entscheid). Die Dateien mit Bewegungs- und Pulsreihen entstehen erst, wenn wirklich geteilt wird – im Hintergrund,
 /// nicht bei jedem Neuzeichnen der Ansicht –, je in einem eigenen Ordner der temporären Dateien. Ältere Exporte werden
 /// beim nächsten Teilen und beim nächsten Start der App entfernt (`cleanUp`), damit die Daten nicht liegen bleiben.

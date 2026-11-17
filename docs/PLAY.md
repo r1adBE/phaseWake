@@ -2,7 +2,7 @@
 
 Entwürfe für die Formulare der Play Console (App-Inhalte, Berechtigungen, Gesundheits-Apps), abgeleitet aus
 `android/app/src/main/AndroidManifest.xml` (Handy) und `android/wear/src/main/AndroidManifest.xml` (Galaxy Watch).
-Stand 12.11.2026 (zuerst Review W-07). Vor dem Einreichen gegen die aktuellen Manifeste und die Formularfelder prüfen; die
+Stand 12.11.2026. Vor dem Einreichen gegen die aktuellen Manifeste und die Formularfelder prüfen; die
 Play Console verlangt meist englischen Text, die deutsche Fassung dient zur Kontrolle.
 
 Ohne Erklärung: `VIBRATE`, `WAKE_LOCK`, `RECEIVE_BOOT_COMPLETED`, `FOREGROUND_SERVICE`, `USE_BIOMETRIC`. Kein
@@ -158,7 +158,7 @@ is stored or sent.
 
 ## Datensicherheit (Formular «Data safety»)
 
-Entwurf (Audit 071597f DA-7) für Play Console → App-Inhalte → Datensicherheit, Handy- und Uhr-App gemeinsam. Grundlage:
+Entwurf für Play Console → App-Inhalte → Datensicherheit, Handy- und Uhr-App gemeinsam. Grundlage:
 Google zählt als «erhoben» nur Daten, die von deinem Gerät weg übertragen werden; Verarbeitung nur auf dem Gerät gehört
 nicht dazu. Vor dem Einreichen gegen die aktuellen Manifeste, DATENSCHUTZ.md und die Formularfragen prüfen.
 
@@ -273,7 +273,7 @@ Upload-Schlüssel. Google signiert die Apps danach mit dem eigenen App-Signaturs
    Console zurücksetzen; die App bleibt dieselbe.
 2. **Als Base64 umwandeln:** macOS `base64 -i phasewake-upload.jks -o upload.b64`, Linux `base64 -w 0 phasewake-upload.jks > upload.b64`,
    Windows (PowerShell) `[Convert]::ToBase64String([IO.File]::ReadAllBytes("phasewake-upload.jks")) | Set-Content upload.b64`.
-3. **Umgebung «store» und vier Secrets anlegen** (Audit 5314d25 D-06): auf GitHub unter Settings → Environments → New
+3. **Umgebung «store» und vier Secrets anlegen**: auf GitHub unter Settings → Environments → New
    environment den Namen `store` eingeben. Darin unter «Deployment branches and tags» → «Selected branches and tags» nur
    `main` zulassen; wer jeden Store-Build bestätigen will, setzt sich unter «Required reviewers» selbst ein. Dann in der
    Umgebung unter «Environment secrets» → «Add environment secret» die vier Secrets anlegen (nicht als Repository-Secrets;
@@ -290,10 +290,10 @@ Upload-Schlüssel. Google signiert die Apps danach mit dem eigenen App-Signaturs
 4. **Bauen:** Actions → «Store-Build» → Run workflow (von `main`). Fehlt ein Secret, bricht der Lauf mit einer Meldung ab.
    Vor dem Signieren prüft der Lauf, dass der Workflow «CI» für genau diesen Commit erfolgreich abgeschlossen ist (sonst
    Abbruch mit Meldung; ein Commit mit `[skip ci]` hat keinen CI-Lauf, dann erst einen geprüften Stand auf `main` bringen),
-   und führt die Unit-Tests noch einmal aus (Audit F-05). Gradle baut die Bundles ohne Schlüssel und Passwörter,
+   und führt die Unit-Tests noch einmal aus. Gradle baut die Bundles ohne Schlüssel und Passwörter,
    `release_check.py` prüft den Release-Build; erst danach beendet ein eigener Schritt den Gradle-Daemon, legt den
-   Keystore ab und signiert die Bundles mit `jarsigner` (nur dieser Schritt sieht Schlüssel und Passwörter, Audit 5314d25
-   D-06, 071597f DA-2), und der Lauf prüft, dass beide Bundles mit dem Upload-Schlüssel signiert sind. Der Keystore wird
+   Keystore ab und signiert die Bundles mit `jarsigner` (nur dieser Schritt sieht Schlüssel und Passwörter),
+   und der Lauf prüft, dass beide Bundles mit dem Upload-Schlüssel signiert sind. Der Keystore wird
    am Ende gelöscht.
 5. **Herunterladen:** im Lauf unter Artifacts `phasewake-store-<Nummer>` (7 Tage aufbewahrt), darin
    `PhaseWake-Handy-<Nummer>.aab` und `PhaseWake-Uhr-<Nummer>.aab`.
@@ -313,7 +313,7 @@ Teil davon bricht den Build ab.
 
 ## Nach dem Release: Absturzberichte
 
-Phase Wake enthält kein Absturz-SDK und hat keine Internet-Berechtigung (Audit P-1). Abstürze kommen über die Stores:
+Phase Wake enthält kein Absturz-SDK und hat keine Internet-Berechtigung. Abstürze kommen über die Stores:
 
 - **Android:** Play Console → App → «Android Vitals» → «Abstürze und ANRs». Handy und Uhr (Formfaktor Wear OS) stehen
   getrennt; die Berichte kommen von Nutzern, die das Senden von Diagnosedaten an Google erlaubt haben. Nach jedem

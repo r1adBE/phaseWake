@@ -109,7 +109,7 @@ class BackupAlarm(
         }
         context.phoneApp.diag.log(DiagKind.RING, "watch rang${if (message.isStale(now().toEpochMilli())) " (stale)" else ""}")
         context.phoneApp.testRuns.record(message.alarmId, TestStep.WATCH_RANG, now())
-        // Ein veraltetes «klingeln» setzt den Zweitwecker nicht aus (Review LATE): Ob die Uhr wirklich geweckt hat, ist
+        // Ein veraltetes «klingeln» setzt den Zweitwecker nicht aus: Ob die Uhr wirklich geweckt hat, ist
         // offen; der Zweitwecker dieser Nacht bleibt. Ein «stop» oder die Nacht der Uhr setzt ihn weiterhin aus.
         if (RingRules.ringPausesBackup(message, now().toEpochMilli())) watchHandled(message.alarmId, message.target?.let(Instant::ofEpochMilli))
     }
@@ -190,7 +190,7 @@ class BackupAlarm(
      * Die Uhr hat diese Nacht übernommen (klingelt, gestoppt oder Nacht gemeldet): Zweitwecker dieses
      * Weckers bis kurz nach der Zielzeit dieser Nacht aussetzen – nicht länger, sonst fiele ein
      * zweiter Wecker am selben Morgen weg. Ohne Kennung (ältere Uhr): jeder Wecker, dessen Nacht läuft. Eine
-     * unplausible [target] gilt wie keine (Audit AN-5: sonst liefe das Speichern in Millisekunden über, Absturz).
+     * unplausible [target] gilt wie keine (sonst liefe das Speichern in Millisekunden über, Absturz).
      */
     suspend fun watchHandled(alarmId: String?, target: Instant? = null) {
         val current = now()
@@ -232,7 +232,7 @@ class BackupAlarm(
     internal suspend fun backupRang(alarmId: String?, target: Instant?) {
         if (alarmId == null) return
         if (target != null) {
-            // Zur früheren Zielzeit des Einschlaf-Modus geklingelt (Review K-07): die eingestellte Zeit derselben Nacht
+            // Zur früheren Zielzeit des Einschlaf-Modus geklingelt: die eingestellte Zeit derselben Nacht
             // gilt ebenfalls als erledigt, sonst klingelte der Zweitwecker dann noch einmal.
             val spec = alarms.current().alarms.firstOrNull { it.id == alarmId }
             suppress(mapOf(alarmId to nightTarget(spec, target, now()).plus(GRACE)))
@@ -372,7 +372,7 @@ class BackupAlarm(
                     Log.w(TAG, "Exakter Alarm nicht erlaubt", e)
                 }
             }
-            // Nur ein Notbehelf (Review N-4): Ein ungenauer Alarm kommt womöglich später und darf den Weckdienst nicht
+            // Nur ein Notbehelf: Ein ungenauer Alarm kommt womöglich später und darf den Weckdienst nicht
             // sicher in den Vordergrund starten (dann REJECTED, es klingelt nichts). Darum warnt der Nacht-Check rot
             // (Check.EXACT_ALARMS): Ohne dieses Recht klingelt der Zweitwecker womöglich nicht.
             alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, at.toEpochMilli(), operation)

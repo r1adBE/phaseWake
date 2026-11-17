@@ -2,7 +2,7 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWake
 
-/// Lernphase am iPhone (``PhoneLearning``, Audit F-03, wie `LearningFlowTest` auf Android): Beginn nur mit Zustimmung,
+/// Lernphase am iPhone (``PhoneLearning``, wie `LearningFlowTest` auf Android): Beginn nur mit Zustimmung,
 /// Aufzeichnungen der Uhr speichern (dieselbe zweimal nur einmal, unlesbare nicht) und zählen, «Verlauf löschen» von
 /// vorn. Läuft in der App (Testwirt); ohne Apple Health (leere Quelle statt HealthKit) bleibt die Einschlafdauer leer.
 final class PhoneLearningTests: XCTestCase {

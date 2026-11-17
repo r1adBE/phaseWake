@@ -4,7 +4,7 @@ import PhaseWakeCore
 import WatchKit
 
 /// «Nacht aufzeichnen» auf der Apple Watch – Gegenstück zu `RecordControl`/`RecordService` der Galaxy Watch, gleiche Texte
-/// und Regeln: Start auf der Uhr oder vom iPhone, Ende spätestens beim Wecken (``noteWake(alarmId:target:)``, Audit F-01),
+/// und Regeln: Start auf der Uhr oder vom iPhone, Ende spätestens beim Wecken (``noteWake(alarmId:target:)``),
 /// von Hand (Uhr oder iPhone), nach 12 Std. oder unter 15 % Akku (``NightRecording/endNow(start:now:battery:)``). Gemessen wird mit dem Bewegungs-Rekorder von watchOS über die ganze
 /// Zeit (50 Hz, auch bei geschlossener App); den Puls je Epoche liefert danach Apple Health. Die fertige Aufzeichnung geht
 /// wie eine der Lernphase ans iPhone (``NightRecording``, dort die letzten 14, im Verlauf und im Export, zählt für die
@@ -39,7 +39,7 @@ extension LearnRecorder {
     /// Ob der Rekorder laut dem zuletzt gestarteten Zeitraum gerade aufzeichnet.
     var recorderRunning: Bool { recorderSpan.map { Date() < $0.until } ?? false }
 
-    /// Ob der zuletzt gestartete Rekorder bei offener App startete (Prüfrunde 2 HG-2); ältere Stände: nein.
+    /// Ob der zuletzt gestartete Rekorder bei offener App startete; ältere Stände: nein.
     var recorderStartedActive: Bool { SettingsFile.watchSession.bool(forKey: Self.recorderActiveKey) }
     private static let recorderActiveKey = "recorderActive"
 
@@ -65,14 +65,14 @@ extension LearnRecorder {
         return needs
     }
 
-    /// Stellt sicher, dass der Rekorder bis `need` aufzeichnet – mit genau einem Aufruf je Nacht (``AppleNightRecorder``,
-    /// Entscheid r1AD 10.11.2026): Beim ersten Start gilt das späteste schon bekannte Bedürfnis der Nacht
+    /// Stellt sicher, dass der Rekorder bis `need` aufzeichnet – mit genau einem Aufruf je Nacht (``AppleNightRecorder``):
+    /// Beim ersten Start gilt das späteste schon bekannte Bedürfnis der Nacht
     /// (`nightNeeds`), höchstens 12 Std. Läuft er schon, kein zweiter Aufruf (Apple dokumentiert nicht, was einer während
     /// einer Aufzeichnung tut; er könnte sie verkürzen). Reicht er nicht bis `need`, bleibt es dabei (einmal ins Protokoll).
     func ensureRecorder(until need: Date) {
         let now = Date()
         let decision = AppleNightRecorder.decide(now: now, need: need, others: nightNeeds(), runningUntil: recorderSpan?.until)
-        // Er läuft (oder startet gleich): Eine Meldung «nicht gestartet» gilt nicht mehr (Audit F-06).
+        // Er läuft (oder startet gleich): Eine Meldung «nicht gestartet» gilt nicht mehr.
         if decision != .nothing { WatchConnectivityBridge.shared.publish(recorderSkip: nil) }
         switch decision {
         case .running, .nothing:
@@ -84,7 +84,7 @@ extension LearnRecorder {
         case .start(let end):
             let status = CMSensorRecorder.authorizationStatus()
             CMSensorRecorder().recordAccelerometer(forDuration: end.timeIntervalSince(now))
-            // Nur mit Erlaubnis merken (Audit AP-7): Fragt watchOS erst jetzt nach (oder ist sie aus), zeichnet dieser
+            // Nur mit Erlaubnis merken: Fragt watchOS erst jetzt nach (oder ist sie aus), zeichnet dieser
             // Aufruf womöglich nichts auf; ungemerkt darf später in der Nacht ein weiterer Aufruf starten.
             guard Self.remembersSpan(status) else {
                 DiagStore.shared.log(.measureStart, "recorder call until \(Format.logTime(end)), motion not yet allowed: not remembered")
@@ -92,7 +92,7 @@ extension LearnRecorder {
             }
             SettingsFile.watchSession.set(now.timeIntervalSince1970, forKey: Self.recorderFromKey)
             SettingsFile.watchSession.set(end.timeIntervalSince1970, forKey: Self.recorderUntilKey)
-            // Bei offener App gestartet: Die Person war da wach (HG-2, `WatchOnset`).
+            // Bei offener App gestartet: Die Person war da wach (`WatchOnset`).
             let active = WKApplication.shared().applicationState == .active
             SettingsFile.watchSession.set(active, forKey: Self.recorderActiveKey)
             resetChargeSamples(from: now)
@@ -109,8 +109,8 @@ extension LearnRecorder {
     // MARK: Verlauf löschen
 
     /// «Verlauf löschen» vom iPhone, gesendet um `clearedAt`: Eine Aufzeichnung, die bis dahin endete und noch nicht
-    /// fertig ausgewertet ist, verfällt; eine, die danach endet (läuft noch), bleibt – wie auf Android (`HistoryClear`,
-    /// Audit AP-6). Das iPhone verwirft ebenso nur, was bis zum Löschen endete.
+    /// fertig ausgewertet ist, verfällt; eine, die danach endet (läuft noch), bleibt – wie auf Android (`HistoryClear`).
+    /// Das iPhone verwirft ebenso nur, was bis zum Löschen endete.
     func clearHistory(until clearedAt: Date) {
         guard let mark, !HistoryClear.keeps(end: Self.end(of: mark), clearedAt: clearedAt) else { return }
         DiagStore.shared.log(.measureEnd, "record end phone (history cleared)")

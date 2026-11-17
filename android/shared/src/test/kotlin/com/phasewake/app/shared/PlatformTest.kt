@@ -102,13 +102,13 @@ class PlatformTest {
         assertEquals(55, WearSync.readBattery(status, 10_500L, 1_000L))
         assertNull(WearSync.readBattery(status, 20_000L, 1_000L))
         assertEquals(10_000L, WearSync.readSeenAt(status))
-        // Keine Felder je Weckerzeile mehr (kein Rückfall für ältere Uhren, 10.11.2026).
+        // Keine Felder je Weckerzeile mehr (kein Rückfall für ältere Uhren).
         assertFalse(status.containsKey("alarmFields"))
         val noBattery = DataMap.fromByteArray(WearSync.statusRequest(false, null, 10_000L).data!!)
         assertFalse(WearSync.readReady(noBattery))
         assertNull(WearSync.readBattery(noBattery, 10_000L, 1_000L))
         assertNull(WearSync.readSeenAt(DataMap()))
-        // Verbindungs-Stand der Uhr (Review O-04): immer mitgeschickt, ohne Angabe 0 (ältere Uhr).
+        // Verbindungs-Stand der Uhr: immer mitgeschickt, ohne Angabe 0 (ältere Uhr).
         assertEquals(DataLayer.PROTOCOL, WearSync.readProtocol(noBattery))
         assertEquals(0, WearSync.readProtocol(DataMap().apply { putBoolean(DataLayer.KEY_READY, true) }))
         // Pulsrechte der Uhr: nur mitgeschickt, wenn bekannt; ohne Angabe (ältere Uhr) keine Warnung.
@@ -119,7 +119,7 @@ class PlatformTest {
         assertEquals(pulse, WatchPulse.read(withPulse))
         assertTrue(WatchPulse.warns(WatchPulse.read(withPulse)))
         assertFalse(WatchPulse.warns(WatchPulse(heartRate = true, background = true)))
-        // Messung vor dem Schlafen nicht gestartet (Audit F-06): leer ohne Meldung, ohne Angabe (ältere Uhr) keine.
+        // Messung vor dem Schlafen nicht gestartet: leer ohne Meldung, ohne Angabe (ältere Uhr) keine.
         // Nur der Grund geht ins Paket, keine Uhrzeit (Datenpakete tragen nur technische Angaben).
         assertNull(WearSync.readRecorderSkip(noBattery, 10_000L, 1_000L))
         assertNull(WearSync.readRecorderSkip(DataMap(), 10_000L, 1_000L))
@@ -127,7 +127,7 @@ class PlatformTest {
         assertEquals("battery", skipped.getString(DataLayer.KEY_RECORDER_SKIP))
         assertEquals(RecorderSkip.Reason.BATTERY, WearSync.readRecorderSkip(skipped, 10_500L, 1_000L))
         assertNull(WearSync.readRecorderSkip(skipped, 20_000L, 1_000L), "zu alt")
-        // Prüfrunde 2 F-6: Ladezustand zum Akkustand; ohne Angabe (ältere Uhr), ohne Akku oder zu alt: lädt nicht.
+        // Ladezustand zum Akkustand; ohne Angabe (ältere Uhr), ohne Akku oder zu alt: lädt nicht.
         val charging = DataMap.fromByteArray(WearSync.statusRequest(true, 25, 10_000L, charging = true).data!!)
         assertTrue(WearSync.readCharging(charging, 10_500L, 1_000L))
         assertFalse(WearSync.readCharging(charging, 20_000L, 1_000L))

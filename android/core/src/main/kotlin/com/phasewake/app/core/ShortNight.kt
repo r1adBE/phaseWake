@@ -13,7 +13,7 @@ object ShortNight {
     const val MARGIN_MINUTES: Int = 60
 
     /**
-     * In den letzten so vielen Minuten vor der Zielzeit gilt die Untergrenze nicht mehr (Entscheid r1AD 10.11.2026): Ein
+     * In den letzten so vielen Minuten vor der Zielzeit gilt die Untergrenze nicht mehr: Ein
      * neuer früher Moment weckt dann; ein vorher übergangener wird nicht nachgeholt.
      */
     const val LATE_MINUTES: Int = 10
@@ -25,7 +25,7 @@ object ShortNight {
      * Ob frühes Wecken gesperrt ist: Einschlafzeit [onset] bekannt und seit dann weniger als Schlafziel minus
      * [MARGIN_MINUTES] vergangen (bei 7½ h also unter 6½ h Schlaf). Ohne bekannte Einschlafzeit gesperrt, wenn sie
      * gemessen wurde, die Messung aber kein Ergebnis brachte ([measured]: begonnen, dann aufgegeben, vom System
-     * beendet, gescheitert oder ohne Werte – fail-closed, Entscheid r1AD 10.11.2026); ohne Messung nie. In den letzten
+     * beendet, gescheitert oder ohne Werte – fail-closed); ohne Messung nie. In den letzten
      * [LATE_MINUTES] vor der Zielzeit [target] nie mehr (ohne [target]: bis zum Schluss gesperrt).
      */
     fun blocksEarly(onset: Instant?, now: Instant, sleepGoalMinutes: Int, target: Instant? = null, measured: Boolean = false): Boolean {

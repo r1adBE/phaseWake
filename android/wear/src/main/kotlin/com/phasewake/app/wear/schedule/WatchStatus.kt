@@ -49,7 +49,7 @@ internal class WatchStatus(
     suspend fun publish(): Unit = lock.withLock {
         val ready = isReady()
         val battery = batteryPercent()
-        // Lädt die Uhr, misst sie trotz wenig Akku (F-6); das Handy warnt dann nicht.
+        // Lädt die Uhr, misst sie trotz wenig Akku; das Handy warnt dann nicht.
         val charging = context.getSystemService(BatteryManager::class.java)?.isCharging == true
         val pulse = SensorAccess.of(context).pulse()
         val build = BuildNumber.own(context, watch = true)
@@ -67,7 +67,7 @@ internal class WatchStatus(
             lastAt == null || now - lastAt >= MAX_AGE.toMillis() || now < lastAt
         if (!due) return@withLock
         // Mit Akkustand der Uhr: Der Nacht-Check am Handy warnt, wenn er für die Nacht knapp ist. Das Paket trägt auch den
-        // Verbindungs-Stand, damit das Handy eine ältere Uhr-App erkennt (Review O-04), und die Pulsrechte: Ohne Puls im
+        // Verbindungs-Stand, damit das Handy eine ältere Uhr-App erkennt, und die Pulsrechte: Ohne Puls im
         // Hintergrund misst die Uhr nachts nicht, der Nacht-Check warnt dann.
         if (!sync.publishWatchReady(ready, battery, pulse, skip, charging, build)) return@withLock
         store.edit {
@@ -84,7 +84,7 @@ internal class WatchStatus(
     }
 
     /**
-     * Messung vor dem Schlafen für die Nacht von [skip] nicht gestartet (Audit F-06): merken und gleich melden; der
+     * Messung vor dem Schlafen für die Nacht von [skip] nicht gestartet: merken und gleich melden; der
      * Nacht-Check am Handy zeigt einen Hinweis, bis die Uhr nach ihrer Zielzeit wieder meldet (beim Neuplanen nach dem
      * Wecken).
      */

@@ -3,8 +3,8 @@ package com.phasewake.app.shared
 import android.content.Context
 
 /**
- * Build-Nummer der Testversion (Laufnummer der CI, `github.run_number`) für «Über», Diagnose und Nacht-Check
- * (Entscheid r1AD 14.11.2026). Einzige Stelle der Android-Apps, die sie liest (docs/ENTWICKLUNG.md, Abschnitt 3).
+ * Build-Nummer der Testversion (Laufnummer der CI, `github.run_number`) für «Über», Diagnose und Nacht-Check.
+ * Einzige Stelle der Android-Apps, die sie liest (docs/ENTWICKLUNG.md, Abschnitt 3).
  * Die Uhr-App trägt [WATCH_OFFSET] dazu (Google Play verlangt verschiedene Nummern); angezeigt wird die reine Nummer.
  */
 object BuildNumber {

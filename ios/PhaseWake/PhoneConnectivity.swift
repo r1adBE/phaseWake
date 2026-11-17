@@ -31,7 +31,7 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
     }
 
     /// Wert einer Einstellung für die Uhr oder `nil` (weglassen): Nach einer kaputten Einstellungsdatei
-    /// (``SettingsFile/wasReset``, Prüfrunde 2 SP-7) nur, was seither hier gesetzt wurde; der Standard des leeren Stands
+    /// (``SettingsFile/wasReset``) nur, was seither hier gesetzt wurde; der Standard des leeren Stands
     /// ersetzte sonst den Stand der Uhr. Wie `sleepGoalStamp`/`autoOnsetStamped` auf Android (Zeitpunkt 0). Feiertage
     /// gehen wie auf Android weiter mit (das iPhone plant mit ihnen; sonst wichen iPhone und Uhr voneinander ab).
     static func afterReset<T>(_ value: T, key: String, in settings: SettingsFile) -> T? {
@@ -92,7 +92,7 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
     }
 
     /// Uhr gekoppelt oder entkoppelt, App auf der Uhr installiert oder entfernt: Nachfrist des Zweitweckers anpassen.
-    /// Uhr-App erst jetzt installiert (Fix S-4): den Stand gleich senden; `publish` bricht ohne installierte Uhr-App ab,
+    /// Uhr-App erst jetzt installiert: den Stand gleich senden; `publish` bricht ohne installierte Uhr-App ab,
     /// sonst käme er erst mit der nächsten Änderung oder dem nächsten Start.
     func sessionWatchStateDidChange(_ session: WCSession) {
         BackupAlarm.noteWatchState(session)
@@ -101,7 +101,7 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
     }
 
     /// Uhr wieder erreichbar (App dort offen): einen unbeantworteten Start von «Nacht aufzeichnen» nachreichen
-    /// (``WatchNight/retryRecordStart(now:)``, Vollaudit AP2-10).
+    /// (``WatchNight/retryRecordStart(now:)``).
     func sessionReachabilityDidChange(_ session: WCSession) {
         guard session.isReachable else { return }
         Task { @MainActor in WatchNight.shared.retryRecordStart() }
@@ -118,7 +118,7 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
             return
         }
         seenWatch()
-        // Über der Grenze nicht verarbeiten (Audit S-2, wie Android).
+        // Über der Grenze nicht verarbeiten (wie Android).
         for key in [SyncKeys.learnRecording, SyncKeys.night, SyncKeys.learnSkip] {
             if let text = userInfo[key] as? String, text.utf8.count > SyncKeys.maxPeerBytes {
                 DiagStore.shared.log(.suppressed, "\(key) too large (\(text.utf8.count) bytes)")
@@ -136,13 +136,13 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
             return
         }
         guard let text = userInfo[SyncKeys.night] as? String else { return }
-        // Unlesbar (z. B. Format einer anderen Version): verworfen wie bisher, aber protokolliert (Audit 17.11. CODE-02).
+        // Unlesbar (z. B. Format einer anderen Version): verworfen wie bisher, aber protokolliert.
         guard let night = try? Codec.decodeNight(text) else {
             DiagStore.shared.log(.sync, "night unreadable, dropped (len=\(text.utf8.count))")
             return
         }
         Task { @MainActor in
-            // Endete vor «Verlauf löschen» (spät zugestellt): nicht zurückholen (Audit D-02/AP-6, wie Android). Die
+            // Endete vor «Verlauf löschen» (spät zugestellt): nicht zurückholen (wie Android). Die
             // Sicherung dieser Nacht bleibt trotzdem ausgesetzt – die Uhr hat geweckt.
             if HistoryClear.keeps(end: night.wokeAt, clearedAt: PhoneModel.shared.historyClearedAt) {
                 PhoneModel.shared.add(night: PhoneBattery.withPhone(night))
@@ -159,7 +159,7 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         guard let command = message[SyncKeys.command] as? String else { return }
         let alarmId = (message[SyncKeys.alarms] as? String).flatMap { $0.isEmpty ? nil : $0 }
         // Zielzeit der Nacht (fehlt, wenn die Uhr keine Nacht kennt) und Sendezeit; unplausible Zeiten gelten als fehlend
-        // (Vollaudit AP2-8, ``SyncTime``).
+        // (``SyncTime``).
         let target = SyncTime.date(message[SyncKeys.target])
         let sentAt = message[SyncKeys.sentAt] as? Int64
         // «klingeln» und «stop» ohne Sendezeit (bzw. «klingeln» ohne Kennung oder Schlummer-Runden) stammen von einer
@@ -183,7 +183,7 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
             case SyncKeys.ring:
                 if stale {
                     // Verspätet zugestellt (iPhone war ausser Reichweite): nicht mehr klingeln – und die Sicherung dieser
-                    // Nacht bleibt (Entscheid r1AD): Ob die Uhr wirklich geweckt hat, zeigt erst ihre Nacht oder ihr «stop».
+                    // Nacht bleibt: Ob die Uhr wirklich geweckt hat, zeigt erst ihre Nacht oder ihr «stop».
                     DiagStore.shared.log(.suppressed, "late ring, backup kept")
                 } else {
                     model.watchRang()
@@ -329,7 +329,7 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
             let date = since > 0 ? SyncTime.date(since) : nil
             Task { @MainActor in WatchNight.shared.noteRecording(since: date) }
         }
-        // Rekorder für eine Nacht nicht gestartet (Audit F-06); fehlt bei älteren Uhren (dann keine Warnung).
+        // Rekorder für eine Nacht nicht gestartet; fehlt bei älteren Uhren (dann keine Warnung).
         if let text = context[SyncKeys.recorderSkip] as? String {
             let skip = RecorderSkip.decode(text)
             Task { @MainActor in NightCheck.watchRecorderSkip = skip }
@@ -340,7 +340,7 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
             battery = (percent: Int(clamping: percent), at: at)
         }
         let level = battery
-        // Uhr lädt (F-6; ältere Uhren melden beim Laden keinen Akkustand).
+        // Uhr lädt (ältere Uhren melden beim Laden keinen Akkustand).
         let charging = context[SyncKeys.batteryCharging] as? Bool ?? false
         // Stand der Verbindung; fehlt er in einem Kontext der Uhr (sehr alte Uhr-App), zählt er als 0: Der Nacht-Check
         // meldet «Uhr-App veraltet» (wie Android, Status ohne Angabe).

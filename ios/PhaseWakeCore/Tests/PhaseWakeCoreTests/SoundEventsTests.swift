@@ -110,7 +110,7 @@ final class SoundEventsTests: XCTestCase {
     }
 
     func testAutoStartFromTheOneBedtimeWithLatency() {
-        // Audit O-03: mit gelernter Einschlafdauer 20 Min ab 22:40 statt 23:00.
+        // Die eine Bettzeit: mit gelernter Einschlafdauer 20 Min ab 22:40 statt 23:00.
         let target = at("2026-10-28T06:30")
         XCTAssertFalse(SoundEvents.mayAutoStart(now: at("2026-10-27T22:39"), nextTarget: target, goalMinutes: 450, calendar: zurich, latencyMinutes: 20))
         XCTAssertTrue(SoundEvents.mayAutoStart(now: at("2026-10-27T22:40"), nextTarget: target, goalMinutes: 450, calendar: zurich, latencyMinutes: 20))

@@ -383,7 +383,7 @@
     <string name="chart_window">Ébresztési ablak</string>
     <string name="chart_no_data">nincs adat</string>
     <string name="chart_feeling_hint">Koppints egy pontra az aznapi jegyzetekért.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Ébresztő tesztelése</string>
     <string name="test_button">Teszt 2 perc múlva</string>
     <string name="test_hint">2 perc múlva szól a következő ébresztőd beállításaival, szundi nélkül. Nem számít éjszakának.</string>
@@ -599,7 +599,7 @@
     <string name="learn_switch_hint">Az órád éjjel méri a mozgást és a pulzust (legalább %1$d %% akkumulátornál). Ki: nincs automatikus rögzítés, a tanult értékek megmaradnak.</string>
     <string name="learn_switch_title">Aktív</string>
     <string name="watch_open_app_hint">Nyisd meg a Phase Wake-et az órán, hogy megkapja a parancsot.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Minden éjszaka a tanulási szakasz kezdete óta – beszámított-e, és ha nem, miért, és mi segít. A Phase Wake-nek %1$d beszámított éjszakára van szüksége.</string>
     <string name="learn_nights_empty">Még nincs éjszaka. Az első másnap reggel jelenik meg itt.</string>
     <string name="learn_night_facts">%1$s mérve · %2$d érték · pulzus %3$d %%-ban</string>

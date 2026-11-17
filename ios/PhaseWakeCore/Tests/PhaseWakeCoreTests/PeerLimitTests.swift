@@ -1,7 +1,7 @@
 import XCTest
 import PhaseWakeCore
 
-/// Obergrenze für Inhalte der Uhr (Audit S-2, wie Android `PeerLimitTest`).
+/// Obergrenze für Inhalte der Uhr (wie Android `PeerLimitTest`).
 final class PeerLimitTests: XCTestCase {
 
     /// Die längste Aufzeichnung (12 Std., ungünstige Zahlen) liegt weit unter der Grenze.

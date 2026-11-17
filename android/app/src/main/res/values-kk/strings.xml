@@ -587,7 +587,7 @@
     <string name="learn_switch_hint">Сағатың түнде қозғалыс пен пульсті өлшейді (%1$d %% батареядан бастап). Өшірулі: автоматты жазу жоқ, үйренген мәндер сақталады.</string>
     <string name="learn_switch_title">Белсенді</string>
     <string name="watch_open_app_hint">Пәрменді алуы үшін сағатта Phase Wake қолданбасын аш.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Үйрену кезеңі басталғаннан бергі әр түн – есепке алынды ма, алынбаса, неге және не көмектеседі. Phase Wake-ке есепке алынған %1$d түн керек.</string>
     <string name="learn_nights_empty">Әзірге түн жоқ. Біріншісі келесі күні таңертең осында көрінеді.</string>
     <string name="learn_night_facts">%1$s өлшенді · %2$d мән · пульс %3$d %%-да</string>

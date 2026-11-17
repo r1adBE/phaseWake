@@ -18,7 +18,7 @@ final class WatchNight {
     /// Befehl an die Uhr gesendet, ihre Antwort steht aus (Knopf kurz gesperrt).
     private(set) var recordPending = false
     /// Die Uhr hat auf den letzten Befehl nicht geantwortet (App auf der Uhr wohl zu): Hinweis «Öffne Phase Wake auf der
-    /// Uhr …» statt den Knopf still wieder freizugeben (Audit AP-8). Weg mit der nächsten Antwort oder dem nächsten Tipp.
+    /// Uhr …» statt den Knopf still wieder freizugeben. Weg mit der nächsten Antwort oder dem nächsten Tipp.
     private(set) var recordUnanswered = false
     /// Zählt die Befehle; die Wartezeit eines überholten gilt nicht.
     private var recordRequest = 0
@@ -55,7 +55,7 @@ final class WatchNight {
     }
 
     /// Uhr wieder erreichbar (`PhoneConnectivity`): Ist der Start unbeantwortet und höchstens ``RecordRetry/window`` alt,
-    /// geht er nochmals hin, mit der Zeit des Tippens (Vollaudit AP2-10).
+    /// geht er nochmals hin, mit der Zeit des Tippens.
     func retryRecordStart(now: Date = Date()) {
         guard recordSince == nil, let tapAt = recordTapAt,
               RecordRetry.resend(unanswered: recordUnanswered, tapAt: tapAt, now: now) else { return }

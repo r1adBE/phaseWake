@@ -3,7 +3,7 @@ import MetricKit
 import PhaseWakeCore
 
 /// Abstürze, Hänger und Ausnahmen (Rechenzeit, Schreiben) der iPhone-App aus MetricKit, zusammengefasst ins
-/// Diagnose-Protokoll (Audit 17.11. PERF-03, wie die Prozessenden auf Android): je Ereignis eine Zeile mit Art, Zeit,
+/// Diagnose-Protokoll (wie die Prozessenden auf Android): je Ereignis eine Zeile mit Art, Zeit,
 /// Typ und Codes, ohne Stacks. Nichts verlässt das Gerät. Die Apple Watch hat kein MetricKit.
 final class ExitReports: NSObject, MXMetricManagerSubscriber, @unchecked Sendable {
     static let shared = ExitReports()

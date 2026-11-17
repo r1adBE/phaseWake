@@ -24,8 +24,8 @@ data class HealthSession(
     /**
      * Zeitzone, in der die Sitzung aufgezeichnet wurde (Health Connect `startZoneOffset`, Apple `HKMetadataKeyTimeZone`);
      * `null` = unbekannt, dann gilt die Zone des Geräts. Nickerchen-Regel ([isNap]), Nachtdatum ([SleepNotes.nightDate]),
-     * angezeigte Uhrzeiten und alle Auswertungen ([HealthHistory.summaries]) rechnen in dieser Zone (Audit F-3, Entscheid
-     * r1AD 14.11.2026): Ein Nickerchen in New York bleibt eines, auch wenn man es in Zürich anschaut.
+     * angezeigte Uhrzeiten und alle Auswertungen ([HealthHistory.summaries]) rechnen in dieser Zone:
+     * Ein Nickerchen in New York bleibt eines, auch wenn man es in Zürich anschaut.
      */
     val timeZone: ZoneId? = null,
 ) {
@@ -137,7 +137,7 @@ object HealthHistory {
     val CONTINUATION_GAP: Duration = Duration.ofMinutes(60)
 
     /**
-     * Kleine Überlappung, die noch als Anschluss gilt, nicht als Doppel (Audit 2c82e15): Health Connect schreibt die Teile
+     * Kleine Überlappung, die noch als Anschluss gilt, nicht als Doppel: Health Connect schreibt die Teile
      * einer getrennten Nacht oft mit einer Sekunde Überlappung. Erst wer sich länger überschneidet, ist ein Doppel.
      */
     val OVERLAP_TOLERANCE: Duration = Duration.ofMinutes(5)
@@ -237,7 +237,7 @@ object HealthHistory {
     /**
      * Phasen der Teile einer Kette ([spans]), jeder Teil erst ab dem Ende des vorigen: Eine kurze Überlappung
      * (≤ [OVERLAP_TOLERANCE]) zählt nicht doppelt – gleich in Verlauf, Detailseite ([join]), Diagrammen und Trends
-     * ([summaries]) und im Schlafprofil eigener Nächte ([stages]); Audit BE-2. [filler] `false`: Teile ohne Phasen
+     * ([summaries]) und im Schlafprofil eigener Nächte ([stages]). [filler] `false`: Teile ohne Phasen
      * liefern nichts statt einer «unbekannt»-Phase.
      */
     private fun trimmed(parts: List<HealthSession>, filler: Boolean = true): List<StageSpan> =
@@ -269,8 +269,8 @@ object HealthHistory {
      * dieselbe Regel wie der Verlauf (Sitzungen, die als Nacht zählen: sichtbar, kein Nickerchen, ohne Doppel – nichts
      * zählt zweimal; Weiterschlafen nach [CONTINUATION_GAP] zählt zur Nacht, die Lücke nicht als Schlaf). Eine Sitzung
      * ohne Phasen zählt als Schlaf über ihre ganze Dauer. Zwei Ketten mit mehr als [CONTINUATION_GAP] Lücke sind zwei
-     * Nächte, auch am selben Nachtdatum (Entscheid r1AD 14.11.2026, Audit W-2). Jede Nacht trägt die Zone ihres ersten
-     * Teils ([SleepSummary.timeZone], wie [join]; Audit F-3). Nach Beginn.
+     * Nächte, auch am selben Nachtdatum. Jede Nacht trägt die Zone ihres ersten
+     * Teils ([SleepSummary.timeZone], wie [join]). Nach Beginn.
      */
     fun summaries(sessions: List<HealthSession>, clearedAt: Instant?, zone: ZoneId): List<SleepSummary> =
         // Je Teil zugeschnitten und ab dem Ende des vorigen wie in der Detailseite ([join], [trimmed]).

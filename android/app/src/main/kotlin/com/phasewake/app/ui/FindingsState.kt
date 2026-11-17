@@ -20,9 +20,9 @@ import java.time.ZoneId
 import kotlinx.coroutines.launch
 
 /**
- * Auffälligkeiten der letzten 7 Nächte (Entscheid r1AD 15.11.2026): [all] für die Trends im Verlauf, [home] die eine
- * für die Startseite (nicht ausgeblendet), [homeBedtime] dieselbe, solange dort die Bettzeit-Karte steht (ohne Bettzeit-Tipp,
- * Audit UX-04), [weekDeep] Tiefschlaf-Anteil dieser Woche und der Vorwoche für den Wochenrückblick.
+ * Auffälligkeiten der letzten 7 Nächte: [all] für die Trends im Verlauf, [home] die eine
+ * für die Startseite (nicht ausgeblendet), [homeBedtime] dieselbe, solange dort die Bettzeit-Karte steht (ohne Bettzeit-Tipp),
+ * [weekDeep] Tiefschlaf-Anteil dieser Woche und der Vorwoche für den Wochenrückblick.
  */
 internal class FindingsState(
     val all: List<Finding>,

@@ -14,7 +14,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
-/** Grundrauschen der Einschlaf-Messung je Nacht als Vorwissen im Weckfenster (Vollaudit K-1). */
+/** Grundrauschen der Einschlaf-Messung je Nacht als Vorwissen im Weckfenster. */
 class OnsetFloorStoreTest {
     private val latest = Instant.parse("2026-11-11T06:30:00Z")
     private val plan = WakePlan("a", latest.minus(Duration.ofMinutes(30)), latest)
@@ -42,7 +42,7 @@ class OnsetFloorStoreTest {
     @Test
     fun storedFloorCapsTheWindow() = runTest {
         // Gemessen 0.012 beim Einschlafen, nichts gelernt; das Fenster beginnt unruhig (0.08): Obergrenze 0.018 → Wach 0.1.
-        // (Mit einem höheren gelernten Wert gälte das grössere, Fix KN-2: `NoiseFloor.priorFloor`.)
+        // (Mit einem höheren gelernten Wert gälte das grössere: `NoiseFloor.priorFloor`.)
         val store = OnsetFloorStore(MemoryStore())
         store.set("a", latest, 0.012)
         val restless = Array(8) { Epoch(0.08, 60.0) }

@@ -29,7 +29,7 @@ class NightRecordingTest {
 
     @Test
     fun implausibleTimesAreRejected() {
-        // Audit K-7: kaputte oder manipulierte Zeitpunkte (z. B. Long.MAX_VALUE) laufen später in Rechnungen über.
+        // Kaputte oder manipulierte Zeitpunkte (z. B. Long.MAX_VALUE) laufen später in Rechnungen über.
         val huge = Long.MAX_VALUE
         val done = NightRecording(start, epochs, start.plusSeconds(120), RecordEnd.PHONE, start.plusSeconds(30), start.plusSeconds(60))
         val text = NightRecording.encode(done)

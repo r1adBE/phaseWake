@@ -30,7 +30,7 @@ final class ShortNightTests: XCTestCase {
     }
 
     func testLastTenMinutesBeforeTheTargetAreNotBlocked() {
-        // Fall r1AD 10.11.2026: eingeschlafen 01:51, Zielzeit 07:57, Ziel 7½ h (Grenze 08:21).
+        // Eingeschlafen 01:51, Zielzeit 07:57, Ziel 7½ h (Grenze 08:21).
         let nov: (Int, Int) -> Date = { h, mi in
             self.zurich.date(from: DateComponents(year: 2026, month: 11, day: 10, hour: h, minute: mi))!
         }
@@ -47,7 +47,7 @@ final class ShortNightTests: XCTestCase {
     }
 
     func testMeasuredButUnknownOnsetBlocksUntilTheLastTenMinutes() {
-        // Fail-closed (Entscheid r1AD 10.11.2026): gemessen, aber ohne Einschlafzeit (aufgegeben, gescheitert, ohne Werte).
+        // Fail-closed: gemessen, aber ohne Einschlafzeit (aufgegeben, gescheitert, ohne Werte).
         let nov: (Int, Int, Int) -> Date = { d, h, mi in
             self.zurich.date(from: DateComponents(year: 2026, month: 11, day: d, hour: h, minute: mi))!
         }

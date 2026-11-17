@@ -32,7 +32,7 @@ import com.phasewake.app.ui.theme.EveningDarkSetting
 import java.time.LocalTime
 
 /**
- * «Abends dunkel ab» unter der Wahl des Designs (Entscheid r1AD 17.11.2026): Schalter mit Erklärung (von – bis), darunter
+ * «Abends dunkel ab» unter der Wahl des Designs: Schalter mit Erklärung (von – bis), darunter
  * die Uhrzeit des Beginns; antippen öffnet den Zeitwähler. Gleich auf dem iPhone (`SettingsView`).
  */
 @Composable
@@ -48,7 +48,7 @@ internal fun EveningDarkRows(setting: EveningDarkSetting, onEnabled: (Boolean) -
     if (!setting.enabled) return
     var picking by remember { mutableStateOf(false) }
     Row(
-        // Mindestens 48 dp hoch (Tippziel, Audit UI-8).
+        // Mindestens 48 dp hoch (Tippziel).
         Modifier.fillMaxWidth().heightIn(min = MIN_TOUCH).clickable(role = Role.Button) { picking = true }.padding(vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {

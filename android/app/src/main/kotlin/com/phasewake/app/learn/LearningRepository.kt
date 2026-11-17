@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.map
  * Stand der Lernphase am Handy: seit wann sie läuft ([since], `null` = nie begonnen), die gelernten Werte ([values],
  * `null` = noch nicht fertig) und ob die Karte «Angepasst an dich» schon bestätigt ist ([seen]). [relearning]: «Neu
  * lernen» läuft – die bisherigen [values] gelten weiter, bis die neuen Nächte gezählt sind. [updatedAt]: Zeitpunkt der
- * letzten Änderung (ms), für den Abgleich mit der Uhr. [consent]: Zustimmung (Audit F-02, Schalter «Lernphase»):
+ * letzten Änderung (ms), für den Abgleich mit der Uhr. [consent]: Zustimmung (Schalter «Lernphase»):
  * `true` = an, `false` = aus bzw. «Später», `null` = noch nicht gefragt.
  */
 data class LearningState(
@@ -119,10 +119,10 @@ class LearningRepository(private val store: DataStore<Preferences>) {
     }
 
     /**
-     * Stand für die Uhr (Fix S-3): Ein Stand ohne Zeitpunkt (nie geändert, z. B. Handy neu installiert) bekommt [now].
+     * Stand für die Uhr: Ein Stand ohne Zeitpunkt (nie geändert, z. B. Handy neu installiert) bekommt [now].
      * Die Uhr übernimmt nur einen neueren Stand; mit 0 bliebe sie beim Stand eines früheren Handys (Lernphase an, alte
      * Werte), obwohl hier nie zugestimmt wurde. Wie `LearningState.stampIfNever` (Swift). Nicht nach einer kaputten
-     * Datei ([PhaseWakeStore.wasReset], Audit SP-7): Der leere Stand ist kein neuer, die Uhr behält ihre gelernten Werte.
+     * Datei ([PhaseWakeStore.wasReset]): Der leere Stand ist kein neuer, die Uhr behält ihre gelernten Werte.
      * @return der Stand danach.
      */
     suspend fun stampIfNever(now: Instant): LearningState {
@@ -136,7 +136,7 @@ class LearningRepository(private val store: DataStore<Preferences>) {
     }
 
     /**
-     * Zeitpunkt der Änderung: [now], mindestens der bisherige + 1 ([TimeBounds.next], Fix KN-7): Die Uhr übernimmt nur
+     * Zeitpunkt der Änderung: [now], mindestens der bisherige + 1 ([TimeBounds.next]): Die Uhr übernimmt nur
      * einen neueren Stand; zwei Änderungen in derselben Millisekunde oder nach einer zurückgestellten Uhrzeit gingen sonst
      * verloren. Wie `LearningState` (Swift).
      */

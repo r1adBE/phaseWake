@@ -4,7 +4,7 @@ import SwiftUI
 
 /// Schlummern einer Sicherung, die ohne Uhr klingelt (AlarmKit, «Schlummern» stellt einen neuen Alarm in 5 Minuten):
 /// AlarmKit zeigt dazwischen nichts an. Die App zeigt es darum selbst und lässt es beenden, wie Android-Handy und beide
-/// Uhren mit «Halten zum Stoppen» (Prüfrunde 2, B-9).
+/// Uhren mit «Halten zum Stoppen».
 extension BackupAlarm {
     /// Ende des Schlummerns (dann klingelt die Sicherung wieder), solange es bevorsteht; sonst `nil`.
     func backupSnoozedUntil(now: Date = Date()) -> Date? {

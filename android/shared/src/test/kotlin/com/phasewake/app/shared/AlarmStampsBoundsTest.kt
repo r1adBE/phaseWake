@@ -6,7 +6,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
-/** Fix KN-4: unplausible Zeitpunkte ([TimeBounds]) im Abgleich der Wecker, wie `AlarmStampsTests` (Swift). */
+/** Unplausible Zeitpunkte ([TimeBounds]) im Abgleich der Wecker, wie `AlarmStampsTests` (Swift). */
 class AlarmStampsBoundsTest {
     private val alarm = AlarmSpec(id = "a", hour = 7, minute = 0)
 

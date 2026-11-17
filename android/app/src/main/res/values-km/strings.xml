@@ -373,7 +373,7 @@
     <string name="chart_window">ចន្លោះពេលដាស់</string>
     <string name="chart_no_data">គ្មានទិន្នន័យ</string>
     <string name="chart_feeling_hint">ចុចលើចំណុចមួយ ដើម្បីមើលកំណត់ចំណាំនៃយប់នោះ។</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">ម៉ោងរោទ៍សាកល្បង</string>
     <string name="test_button">សាកល្បងក្នុង 2 នាទី</string>
     <string name="test_hint">រោទ៍ក្នុង 2 នាទី ជាមួយការកំណត់នៃម៉ោងរោទ៍បន្ទាប់ ដោយគ្មានការផ្អាក។ មិនរាប់ជាយប់ទេ។</string>
@@ -587,7 +587,7 @@
     <string name="learn_switch_hint">នាឡិការបស់អ្នកវាស់ចលនា និងជីពចរពេលយប់ (ថ្មចាប់ពី %1$d %%)។ បិទ៖ គ្មានការកត់ត្រាស្វ័យប្រវត្តិ តម្លៃដែលបានរៀននៅដដែល។</string>
     <string name="learn_switch_title">សកម្ម</string>
     <string name="watch_open_app_hint">បើក Phase Wake នៅលើនាឡិការបស់អ្នក ដើម្បីឱ្យវាទទួលបានពាក្យបញ្ជា។</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">យប់នីមួយៗ តាំងពីដំណាក់កាលរៀនចាប់ផ្ដើម – តើវាត្រូវបានរាប់ឬអត់ ហើយបើមិនរាប់ ហេតុអ្វី និងអ្វីអាចជួយបាន។ Phase Wake ត្រូវការ %1$d យប់ដែលបានរាប់។</string>
     <string name="learn_nights_empty">មិនទាន់មានយប់ណាមួយទេ។ យប់ដំបូងនឹងបង្ហាញនៅទីនេះនៅព្រឹកបន្ទាប់។</string>
     <string name="learn_night_facts">បានវាស់ %1$s · តម្លៃ %2$d · ជីពចរក្នុង %3$d %%</string>

@@ -10,7 +10,7 @@ struct PhaseWakeApp: App {
     init() {
         Fonts.register()
         PhoneConnectivity.shared.activate()
-        // Abstürze und Hänger aus MetricKit ins Diagnose-Protokoll (PERF-03; auch beim Start im Hintergrund).
+        // Abstürze und Hänger aus MetricKit ins Diagnose-Protokoll (auch beim Start im Hintergrund).
         ExitReports.shared.start()
         // Exportierte CSV-Datei vom letzten Teilen (Bewegungs- und Pulsreihen) nicht liegen lassen.
         NightsExport.cleanUp()
@@ -78,7 +78,7 @@ struct RootView: View {
             OnboardingView().environment(model)
         }
         .onChange(of: scenePhase) { _, phase in
-            // Nicht aktiv (App-Umschalter, Hintergrund): Abdeckung über allem, damit das Vorschaubild keine Schlafdaten zeigt (SEC-03).
+            // Nicht aktiv (App-Umschalter, Hintergrund): Abdeckung über allem, damit das Vorschaubild keine Schlafdaten zeigt.
             PrivacyCover.update(phase)
             guard phase == .active else { return }
             // Beim Öffnen: alte Ausschnitte weg, Wochenrückblick mit dem neuesten Stand.

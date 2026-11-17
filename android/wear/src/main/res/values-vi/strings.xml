@@ -70,7 +70,7 @@
     <string name="editor_delete_title">Xóa báo thức này?</string>
     <string name="home_max_alarms">Tối đa %1$d báo thức – hãy xóa một báo thức để thêm báo thức mới.</string>
     <string name="editor_enabled">Báo thức bật</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Bỏ qua lần tới</string>
     <string name="alarm_skipped">Đã bỏ qua: %1$s</string>
     <string name="nap_title">Ngủ trưa</string>
@@ -98,7 +98,7 @@
     <string name="record_since">Từ %1$s</string>
     <string name="notification_record_title">Đang ghi lại đêm</string>
     <string name="record_battery_low">Pin quá yếu để ghi</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Giai đoạn học</string>
     <string name="watch_learn_warn">Hãy sạc đồng hồ, nếu không đêm nay sẽ không được tính cho giai đoạn học (pin %1$d %%, cần %2$d %%).</string>
     <string name="watch_learn_skip_battery">Đêm nay không được tính cho giai đoạn học: pin %1$d %%, cần %2$d %%.</string>

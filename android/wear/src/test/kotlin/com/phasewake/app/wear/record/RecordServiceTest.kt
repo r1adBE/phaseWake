@@ -57,7 +57,7 @@ class RecordServiceTest {
     fun setUp() {
         ShadowAlarmManager.setCanScheduleExactAlarms(true)
         battery(80)
-        // Voraussetzung für «health» (RecordControl startet sonst nicht, OFFEN 4a).
+        // Voraussetzung für «health» (RecordControl startet sonst nicht).
         shadowOf(context as Application).grantPermissions(Manifest.permission.ACTIVITY_RECOGNITION)
     }
 
@@ -207,7 +207,7 @@ class RecordServiceTest {
         assertEquals(start.plusSeconds(30), done.end, "Ende nach der letzten gespeicherten Epoche, nicht erfunden")
         // Das Abschliessen läuft auf dem Hauptthread des Dienstes weiter (ans Handy über die prozessweite Warteschlange,
         // deren Sperre es dabei hält) und endet mit stopSelf. Abwarten: Sonst verwirft Robolectric die Fortsetzung beim
-        // Testende, die Sperre bliebe für alle späteren Tests im Prozess belegt (CI 14.11.2026: «Marke gelöscht» in
+        // Testende, die Sperre bliebe für alle späteren Tests im Prozess belegt (in der CI: «Marke gelöscht» in
         // [RecordServiceLearnTest.wakeEndsEveryRecordingLearningOffOnlyTheLearningOne] hing an Outbox.enqueue).
         awaitUntil("Dienst beendet sich") { shadowOf(service).isStoppedBySelf }
     }

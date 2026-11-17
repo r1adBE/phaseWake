@@ -77,7 +77,7 @@ internal object WakeRules {
 
     /**
      * Epochen ab Fensterbeginn [windowStart], die beim Start der Sensoren ([now]) schon vorbei sind: Sie bleiben leer und
-     * zählen nicht für die Erkennung (Aufwärmphase, Basispuls), nur für den Verlauf (Audit c3b8b01 E-1). Identisch zu
+     * zählen nicht für die Erkennung (Aufwärmphase, Basispuls), nur für den Verlauf. Identisch zu
      * `unmeasured` der Apple Watch (`SmartAlarm+Measuring.swift`): ganze 30-s-Epochen seit Fensterbeginn, nie negativ.
      */
     fun unmeasuredEpochs(windowStart: Instant, now: Instant): Int =

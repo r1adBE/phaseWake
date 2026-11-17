@@ -39,7 +39,7 @@ internal fun fixCheck(context: Context, item: Check, missingOn: List<String>) {
 
 /**
  * Ob das System nach dem Mitteilungsrecht noch fragt: ab Android 13, beim ersten Mal oder solange es eine Begründung
- * zeigen will ([PermissionAsks], «gefragt» übersteht das Prozessende, B-6). Sonst ist es dauerhaft abgelehnt.
+ * zeigen will ([PermissionAsks], «gefragt» übersteht das Prozessende). Sonst ist es dauerhaft abgelehnt.
  */
 internal fun canAskNotifications(context: Context): Boolean =
     Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && PermissionAsks.canAsk(context, Manifest.permission.POST_NOTIFICATIONS)

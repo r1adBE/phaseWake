@@ -55,7 +55,7 @@ class EpochAssemblerTest {
 
     @Test
     fun valuesBeforeStartDoNotCount() {
-        // Audit c3b8b01 BE-1b: Nicht nur «nichts geschlossen» – der Wert darf auch in keiner Epoche landen.
+        // Nicht nur «nichts geschlossen» – der Wert darf auch in keiner Epoche landen.
         val a = EpochAssembler(start)
         assertTrue(a.addHeartRate(start - s, 90.0).isEmpty())
         a.addHeartRate(start + 5 * s, 60.0)

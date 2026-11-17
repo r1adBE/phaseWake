@@ -386,7 +386,7 @@
     <string name="chart_window">ब्युँझाउने अवधि</string>
     <string name="chart_no_data">डेटा छैन</string>
     <string name="chart_feeling_hint">त्यो रातका नोट हेर्न थोप्लोमा थिच।</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">परीक्षण अलार्म</string>
     <string name="test_button">२ मिनेटमा परीक्षण</string>
     <string name="test_hint">तिम्रो अर्को अलार्मको सेटिङसहित २ मिनेटमा, स्नुज बिना बज्छ। रातको रूपमा गनिँदैन।</string>
@@ -602,7 +602,7 @@
     <string name="learn_switch_hint">तिम्रो घडीले रातमा चाल र नाडी नाप्छ (कम्तीमा %1$d %% ब्याट्रीमा)। बन्द: स्वचालित रेकर्डिङ छैन, सिकेका मानहरू रहन्छन्।</string>
     <string name="learn_switch_title">सक्रिय</string>
     <string name="watch_open_app_hint">आदेश पाउन घडीमा Phase Wake खोल।</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">सिक्ने चरण सुरु भएदेखि हरेक रात – गनियो कि गनिएन, र गनिएन भने किन र के ले मद्दत गर्छ। Phase Wake लाई %1$d गनिएका रात चाहिन्छ।</string>
     <string name="learn_nights_empty">अहिलेसम्म कुनै रात छैन। पहिलो रात भोलिपल्ट बिहान यहाँ देखिन्छ।</string>
     <string name="learn_night_facts">%1$s नापियो · %2$d मान · %3$d %% मा नाडी</string>

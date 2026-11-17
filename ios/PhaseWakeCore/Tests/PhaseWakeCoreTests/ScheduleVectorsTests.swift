@@ -1,7 +1,7 @@
 import XCTest
 @testable import PhaseWakeCore
 
-/// Gemeinsame Fälle mit Kotlin (`shared/testdata/schedule.vectors`, Audit 17.11.2026 CODE-03): ``AlarmSchedule`` mit
+/// Gemeinsame Fälle mit Kotlin (`shared/testdata/schedule.vectors`): ``AlarmSchedule`` mit
 /// Wochentagen, Feiertagen, Überspringen, erledigten Nächten, Nachfrist, begonnener Nacht über einen Zonenwechsel und
 /// Nachholen, auch über die Sommer- und Winterzeit in Zürich. Gegenstück zu `ScheduleVectorsTest` (Kotlin); Format im
 /// Kopf der Datei.

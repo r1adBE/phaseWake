@@ -74,7 +74,7 @@
     <string name="editor_delete_title">Vols suprimir aquesta alarma?</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Com a màxim %1$d alarmes – suprimeix-ne una per afegir-ne una de nova.</string>
     <string name="editor_enabled">Alarma activada</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Omet la propera vegada</string>
     <string name="alarm_skipped">Omesa: %1$s</string>
     <string name="nap_title">Becaina</string>
@@ -106,7 +106,7 @@
     <string name="record_since">Des de les %1$s</string>
     <string name="notification_record_title">S’enregistra la nit</string>
     <string name="record_battery_low">Bateria massa baixa per enregistrar</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Fase d’aprenentatge</string>
     <string name="watch_learn_warn">Carrega el rellotge; si no, aquesta nit no comptarà per a la fase d’aprenentatge (bateria %1$d %%, cal %2$d %%).</string>
     <string name="watch_learn_skip_battery">Aquesta nit no compta per a la fase d’aprenentatge: bateria al %1$d %%, cal %2$d %%.</string>

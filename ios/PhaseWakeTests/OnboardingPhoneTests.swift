@@ -2,9 +2,8 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWake
 
-/// Ersteinrichtung, iPhone: «Weiter» legt den gezeigten Wecker einmal an und nie einen zweiten (Herkunft: Vollaudit
-/// 11.11.2026 UI-5; Vollaudit 071597f N-1), Doppeltipp nach einem Seitenwechsel (Prüfrunde 2 B-2, Gegenstück auf
-/// Android: `DoubleTapTest`), Bild je Schritt (Vollaudit 071597f Design 2).
+/// Ersteinrichtung, iPhone: «Weiter» legt den gezeigten Wecker einmal an und nie einen zweiten, Doppeltipp nach einem
+/// Seitenwechsel (Gegenstück auf Android: `DoubleTapTest`), Bild je Schritt.
 final class OnboardingPhoneTests: XCTestCase {
     @MainActor
     func testOnboardingNextCreatesTheShownAlarmOnce() {
@@ -23,7 +22,7 @@ final class OnboardingPhoneTests: XCTestCase {
         XCTAssertFalse(OnboardingView.createsOnNext(step: OnboardingView.alarmStep, created: false, hasAlarms: true, canAdd: true))
     }
 
-    /// B-2: Ein zweiter Tipp innerhalb der Sperre nach einem Seitenwechsel zählt nicht (sonst traf er «Später»).
+    /// Ein zweiter Tipp innerhalb der Sperre nach einem Seitenwechsel zählt nicht (sonst traf er «Später»).
     @MainActor
     func testOnboardingIgnoresSecondTapRightAfterPageChange() {
         let tapped: TimeInterval = 100

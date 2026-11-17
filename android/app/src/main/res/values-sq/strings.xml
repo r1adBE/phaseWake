@@ -386,7 +386,7 @@
     <string name="chart_window">Intervali i zgjimit</string>
     <string name="chart_no_data">pa të dhëna</string>
     <string name="chart_feeling_hint">Prek një pikë për të parë shënimet e asaj nate.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Alarm prove</string>
     <string name="test_button">Provo pas 2 minutash</string>
     <string name="test_hint">Bie pas 2 minutash me cilësimet e alarmit tënd të radhës, pa shtyrje. Nuk llogaritet si natë.</string>
@@ -602,7 +602,7 @@
     <string name="learn_switch_hint">Ora jote mat lëvizjen dhe pulsin natën (nga %1$d %% bateri). Joaktive: pa regjistrim automatik, vlerat e mësuara mbeten.</string>
     <string name="learn_switch_title">Aktive</string>
     <string name="watch_open_app_hint">Hap Phase Wake në orë që të marrë komandën.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Çdo natë që nga fillimi i fazës së të mësuarit – nëse u numërua dhe, nëse jo, pse dhe çfarë ndihmon. Phase Wake ka nevojë për %1$d net të numëruara.</string>
     <string name="learn_nights_empty">Ende asnjë natë. E para shfaqet këtu mëngjesin pas.</string>
     <string name="learn_night_facts">%1$s matur · %2$d vlera · pulsi në %3$d %%</string>

@@ -66,7 +66,7 @@ class WatchListenerService : WearableListenerService() {
             DataLayer.PATH_MSG_ALARMS -> QueueMessages.decodeAlarms(body)?.let { remote ->
                 val result = app.alarms.receive(remote)
                 // Der Stand hier weicht ab (eine Änderung auf der Uhr, deren Nachricht verloren ging): zurück ans Handy,
-                // damit beide gleich werden (Audit AN-1). Einreihen ist lokal, gesendet wird im Hintergrund.
+                // damit beide gleich werden. Einreihen ist lokal, gesendet wird im Hintergrund.
                 result.reply?.let { app.sync.publishAlarms(it) }
                 if (result.changed) {
                     app.diag.log(DiagKind.ALARMS_RECEIVED, "from phone ${remote.alarms.size}")
@@ -99,7 +99,7 @@ class WatchListenerService : WearableListenerService() {
                     RecordControl.onLearningChanged(this, learning)
                 }
             }
-            // Einschlafdauer getrennt (Audit F-4/SP-6): nur für die Bettzeit auf dem Ring, kein Neuplanen nötig.
+            // Einschlafdauer getrennt: nur für die Bettzeit auf dem Ring, kein Neuplanen nötig.
             DataLayer.PATH_MSG_LEARN_LATENCY -> LearningSnapshot.decodeLatency(body)?.let { (minutes, at) ->
                 if (app.learning.setLatencyIfNewer(minutes, at)) app.diag.log(DiagKind.SYNC, "learn latency ${if (minutes != null) "set" else "-"}")
             }
@@ -113,7 +113,7 @@ class WatchListenerService : WearableListenerService() {
     }
 
     /**
-     * Eigene wartende Einträge senden, im App-Bereich statt im Thread des Empfangs (Audit A-8): Ein hängender Schritt
+     * Eigene wartende Einträge senden, im App-Bereich statt im Thread des Empfangs: Ein hängender Schritt
      * zum Handy hält dann keine weiteren Nachrichten (z. B. «stop») auf.
      */
     private fun flushLater() {
@@ -122,7 +122,7 @@ class WatchListenerService : WearableListenerService() {
     }
 
     /**
-     * Kanal des Handys (Audit A-8): Ein Eintrag der Warteschlange über 90 KB kommt nicht als Nachricht, sondern über einen
+     * Kanal des Handys: Ein Eintrag der Warteschlange über 90 KB kommt nicht als Nachricht, sondern über einen
      * Kanal (`Outbox.WearTransport`). Heute bleiben alle Inhalte des Handys darunter (höchstens 8 Wecker, Feiertage,
      * Einstellungen); ein langer Name oder eine spätere Version könnte die Grenze aber überschreiten. Darum wie am Handy:
      * ganz lesen (höchstens `PeerLimit.MAX_BYTES`), schliessen und wie eine Nachricht verarbeiten. Vor dem ersten
@@ -131,7 +131,7 @@ class WatchListenerService : WearableListenerService() {
     override fun onChannelOpened(channel: ChannelClient.Channel) {
         val app = wearApp
         val unlocked = DirectBoot.isUnlocked(this)
-        // Im App-Bereich, nicht im Thread des Empfangs (Audit AN-4).
+        // Im App-Bereich, nicht im Thread des Empfangs.
         app.appScope.launch {
             val data = app.sync.readChannel(channel) ?: return@launch
             if (!unlocked || !channel.path.startsWith(QUEUE_PREFIX)) return@launch
@@ -142,14 +142,14 @@ class WatchListenerService : WearableListenerService() {
     override fun onMessageReceived(event: MessageEvent) {
         val path = event.path
         when {
-            // Im App-Bereich (Audit AN-4): Die Warteschlange kann gerade beschäftigt sein, der Empfang wartet nicht darauf.
+            // Im App-Bereich: Die Warteschlange kann gerade beschäftigt sein, der Empfang wartet nicht darauf.
             path == DataLayer.PATH_ACK -> {
                 val app = wearApp
                 app.appScope.launch { app.sync.acked(event.data) }
                 return
             }
             // Das Handy will den Stand der Uhr (frisch installiert, neu gestartet): Wecker und Aufzeichnungs-Stand einreihen,
-            // danach auch alles andere Wartende senden (Audit AN-3). Im App-Bereich (Audit A-8).
+            // danach auch alles andere Wartende senden. Im App-Bereich.
             path == DataLayer.PATH_SYNC_REQUEST -> {
                 val app = wearApp
                 if (DirectBoot.isUnlocked(this)) app.appScope.launch {
@@ -158,7 +158,7 @@ class WatchListenerService : WearableListenerService() {
                 }
                 return
             }
-            // Verarbeiten (Speichern, Neuplanen) im App-Bereich (Audit AN-4). Endet der Prozess vorher, fehlt nur die
+            // Verarbeiten (Speichern, Neuplanen) im App-Bereich. Endet der Prozess vorher, fehlt nur die
             // Bestätigung: Das Handy sendet den Eintrag später erneut.
             path.startsWith(QUEUE_PREFIX) -> {
                 if (!DirectBoot.isUnlocked(this)) return
@@ -186,11 +186,11 @@ class WatchListenerService : WearableListenerService() {
                     // Am Handy beendet, aber nicht die Nacht, die die Uhr gerade führt (z. B. der Zweitwecker
                     // eines zweiten Weckers, während die Uhr den ersten schlummert): nur diese Nacht als
                     // erledigt merken, damit die Uhr sie danach nicht nachholt. Die laufende bleibt.
-                    // Im App-Bereich (Audit AN-4): Speichern und Neuplanen halten den Empfang nicht auf.
+                    // Im App-Bereich: Speichern und Neuplanen halten den Empfang nicht auf.
                     val app = wearApp
                     app.appScope.launch { app.scheduler.markDoneFromPhone(alarmId, message.target?.let(Instant::ofEpochMilli)) }
                 } else if (ignoresStopWhileMeasuring(WakeService.measuringPlan, alarmId, message.target)) {
-                    // Misst die Uhr noch (Audit A-7): Ein «stop» beendet die Nacht nur, wenn es genau sie meint (Wecker
+                    // Misst die Uhr noch: Ein «stop» beendet die Nacht nur, wenn es genau sie meint (Wecker
                     // und Zielzeit); sonst (andere Zielzeit, ältere Handy-App ohne Kennung) läuft die Messung weiter.
                     Log.i(TAG, "«stop» vom Handy während der Messung verworfen")
                     if (DirectBoot.isUnlocked(this)) {
@@ -227,7 +227,7 @@ class WatchListenerService : WearableListenerService() {
 
         /**
          * Ob ein «stop» des Handys für Wecker [alarmId] mit Zielzeit [target] (ms) verworfen wird, weil die Uhr gerade für
-         * [measuring] misst (Audit A-7): nur, wenn es nicht genau diese Nacht meint (gleicher Wecker und gleiche
+         * [measuring] misst: nur, wenn es nicht genau diese Nacht meint (gleicher Wecker und gleiche
          * Zielzeit). Ohne laufende Messung nie (Klingeln und Schlummern prüft der Weckdienst wie bisher).
          */
         fun ignoresStopWhileMeasuring(measuring: WakePlan?, alarmId: String?, target: Long?): Boolean {

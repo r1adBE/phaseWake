@@ -81,7 +81,7 @@ struct SettingsView: View {
             }
             .skyPage()
             .navigationTitle(L("settings_title"))
-            // Nennt alles, was gelöscht wird (Prüfrunde 2, B-13, gleicher Text wie Android).
+            // Nennt alles, was gelöscht wird (gleicher Text wie Android).
             .confirmationDialog([L("settings_clear_history_text"), L("settings_clear_history_also"), L("settings_clear_history_learn")].joined(separator: " "),
                                 isPresented: $confirmClear,
                                 titleVisibility: .visible) {

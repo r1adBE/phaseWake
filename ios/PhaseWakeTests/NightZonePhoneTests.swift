@@ -2,7 +2,7 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWake
 
-/// Nacht aus Apple Health in der Zone ihrer Aufzeichnung anzeigen (Audit F-3), wie `NightZoneTest` (Android).
+/// Nacht aus Apple Health in der Zone ihrer Aufzeichnung anzeigen, wie `NightZoneTest` (Android).
 final class NightZonePhoneTests: XCTestCase {
     private let tokyo = TimeZone(secondsFromGMT: 9 * 3600)!
 

@@ -2,7 +2,7 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWake
 
-/// Geschätzte Feiertage gelten nicht als frei (Entscheid r1AD 14.11.2026, Audit F-2), wie `HolidayDaysTest` (Android).
+/// Geschätzte Feiertage gelten nicht als frei, wie `HolidayDaysTest` (Android).
 final class HolidayEstimatedPhoneTests: XCTestCase {
     func testEstimatedDaysAreNotFree() {
         let database = HolidayDatabase(countries: [

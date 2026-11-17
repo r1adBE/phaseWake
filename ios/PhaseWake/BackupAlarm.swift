@@ -25,7 +25,7 @@ final class BackupAlarm {
     private static let snoozedAtKey = "backupSnoozedAt"
     /// Schlummern an einer Sicherung: der nächste Alarm in 5 Minuten und sein Weckton.
     static let backupSnoozeKey = "backupSnoozeId"
-    /// Ende dieses Schlummerns (Sekunden seit 1970): Anzeige und Stopp in der App (`BackupAlarm+Snooze`, B-9).
+    /// Ende dieses Schlummerns (Sekunden seit 1970): Anzeige und Stopp in der App (`BackupAlarm+Snooze`).
     static let backupSnoozeUntilKey = "backupSnoozeUntil"
     private static let backupSnoozeToneKey = "backupSnoozeTone"
     /// Sicherung des laufenden Probeweckers oder Powernaps.
@@ -42,7 +42,7 @@ final class BackupAlarm {
     private static let maxSlots = 40
     /// Ort der gemerkten Kennungen, Nächte und Sperren (in der App ``SettingsFile/phone``).
     let settings: SettingsFile
-    /// AlarmKit bzw. Mitteilungen (Audit 17.11. CODE-01: in Tests ein Ersatz).
+    /// AlarmKit bzw. Mitteilungen (in Tests ein Ersatz).
     let platform: any BackupPlatform
     /// Wecker, Feiertage und «Gute Nacht» der App.
     let host: any BackupHost
@@ -71,7 +71,7 @@ final class BackupAlarm {
     /// (``LearnLogStore/noteAlarms(_:holidays:now:)``, hängt an denselben Ereignissen wie auf Android).
     func reschedule(_ alarms: [AlarmSpec]) async {
         // Stand vor dem ersten Entsperren nicht lesbar: `alarms` und die gemerkten Sicherungen wären leer, das Neuplanen
-        // verwürfe alle Zweitwecker oder liesse sie verwaist stehen (Tiefenaudit AP3-1). Nichts tun; ist er inzwischen
+        // verwürfe alle Zweitwecker oder liesse sie verwaist stehen. Nichts tun; ist er inzwischen
         // lesbar, liest `catchUpState` ihn und plant mit dem echten Stand neu (nie mit dem leeren `alarms` von hier).
         guard host.stateLoaded else {
             if !host.catchUpState() { DiagStore.shared.log(.scheduled, "phone backup not planned: settings not readable yet") }
@@ -207,7 +207,7 @@ final class BackupAlarm {
 
     /// Die Uhr hat diese Nacht übernommen (klingelt, gestoppt oder Nacht gemeldet): Sicherung bis kurz
     /// nach der Zielzeit dieser Nacht aussetzen – nicht länger, sonst fiele ein zweiter Wecker weg. Ohne Kennung (ältere
-    /// Uhr): jeder Wecker, dessen Nacht gerade läuft, wie Android `BackupAlarm.watchHandled` (Entscheid r1AD 17.11.2026).
+    /// Uhr): jeder Wecker, dessen Nacht gerade läuft, wie Android `BackupAlarm.watchHandled`.
     func watchHandled(alarmId: String?, target: Date?) async {
         let now = Date()
         let alarms = host.alarms

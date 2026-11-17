@@ -1,8 +1,8 @@
 import Foundation
 import PhaseWakeCore
 
-/// Was der Zweitwecker vom System braucht (AlarmKit ab iOS 26, sonst Mitteilungen), hinter einem Protokoll (Audit 17.11.
-/// CODE-01): In der App ``SystemBackupPlatform``, in Tests ein Ersatz, der nur festhält. Die Entscheidungen (was gestellt,
+/// Was der Zweitwecker vom System braucht (AlarmKit ab iOS 26, sonst Mitteilungen), hinter einem Protokoll:
+/// In der App ``SystemBackupPlatform``, in Tests ein Ersatz, der nur festhält. Die Entscheidungen (was gestellt,
 /// behalten, verworfen, gestoppt wird) bleiben in ``BackupAlarm``.
 @MainActor
 protocol BackupPlatform: AnyObject {
@@ -33,7 +33,7 @@ protocol BackupPlatform: AnyObject {
     func removeNotifications(_ ids: [String])
 }
 
-/// Was der Zweitwecker von der übrigen App braucht (Audit 17.11. CODE-01): in der App ``AppBackupHost``, in Tests ein Ersatz.
+/// Was der Zweitwecker von der übrigen App braucht: in der App ``AppBackupHost``, in Tests ein Ersatz.
 @MainActor
 protocol BackupHost: AnyObject {
     /// Ob der gespeicherte Stand gelesen ist (`PhoneModel.stateLoaded`).

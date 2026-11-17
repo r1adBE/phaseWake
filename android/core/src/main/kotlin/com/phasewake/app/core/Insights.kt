@@ -51,7 +51,7 @@ object NightQuality {
  * @property start Beginn der ersten Schlafphase (ungefähr die Einschlafzeit).
  * @property asleepMinutes Summe aller Phasen ausser «wach» (Millisekunden summiert, dann auf ganze Minuten abgerundet).
  * @property timeZone Zone der Aufzeichnung ([HealthSession.timeZone]); `null` = unbekannt, dann die des Geräts. Nachtdatum
- *   und Uhrzeiten (Diagramme, Ø-Bett-/Aufwachzeit, Trends, Regelmässigkeit, Schlafziel) rechnen in ihr ([zoneOr]; Audit F-3).
+ *   und Uhrzeiten (Diagramme, Ø-Bett-/Aufwachzeit, Trends, Regelmässigkeit, Schlafziel) rechnen in ihr ([zoneOr]).
  */
 data class SleepSummary(val start: Instant, val end: Instant, val asleepMinutes: Long, val timeZone: ZoneId? = null) {
     /** Zone für Nachtdatum und Uhrzeiten dieser Nacht: die der Aufzeichnung ([timeZone]), sonst [fallback] (Gerät). */
@@ -60,8 +60,8 @@ data class SleepSummary(val start: Instant, val end: Instant, val asleepMinutes:
     companion object {
         /**
          * Lücke zwischen zwei Phasen, die noch zur selben Nacht gehört (einschliesslich); darüber beginnt eine neue.
-         * Eine Regel für «eine Nacht» überall: gleich wie [HealthHistory.CONTINUATION_GAP] (60 Min; Entscheid r1AD
-         * 14.11.2026, Audit W-2 – vorher 3 Std.).
+         * Eine Regel für «eine Nacht» überall: gleich wie [HealthHistory.CONTINUATION_GAP] (60 Min;
+         * vorher 3 Std.).
          */
         val NEW_NIGHT_GAP: Duration = HealthHistory.CONTINUATION_GAP
 
@@ -148,7 +148,7 @@ data class Trends(
             }
 
             // Einschlafzeit als Minuten ab Mittag, damit 23:30 und 00:30 nahe beieinander liegen; ohne Sprung um
-            // Mittag ([Regularity.unwrap], Audit W-1).
+            // Mittag ([Regularity.unwrap]).
             val bedtimes = Regularity.unwrap(inRange(sleeps, { it.end }, twoWeeksAgo, now).map { Regularity.minutesFromNoon(it.start, it.zoneOr(zone)) })
             val spread = bedtimes.takeIf { it.size >= MIN_NIGHTS_FOR_SPREAD }?.let { list ->
                 val mean = list.average()

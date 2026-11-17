@@ -16,7 +16,7 @@ extension SmartAlarm {
         hapticStart = Date()
         // Steigerung wie auf Android: sanft, deutlich, anhaltend – je eine Minute (`SessionRules.hapticStep`). Klingelt
         // diese Sitzung nicht mehr (gestoppt, geschlummert, ersetzt), endet die Wiederholung hier – auch wenn
-        // `invalidate()` im Hintergrund nicht greift (Audit AP-3).
+        // `invalidate()` im Hintergrund nicht greift.
         let ringing = session
         ringing?.notifyUser(hapticType: .notification) { [weak self] haptic in
             let current = self.map { $0.phase.isRinging && $0.session === ringing } ?? false
@@ -196,8 +196,8 @@ extension SmartAlarm {
                 reason: reason,
                 snoozes: snoozes,
                 epochs: epochs,
-                // Akku je Nacht (r1AD 14.11.2026): Ende jetzt, die Punkte reisen mit der Nacht zum iPhone; ebenso die
-                // Einschlafzeit samt Beginn (r1AD 15.11.2026), nur zusammen.
+                // Akku je Nacht: Ende jetzt, die Punkte reisen mit der Nacht zum iPhone; ebenso die
+                // Einschlafzeit samt Beginn, nur zusammen.
                 watchBattery: WatchBattery.end(),
                 bedAt: asleepAt == nil ? nil : onsetBedAt,
                 asleepAt: asleepAt
@@ -208,14 +208,14 @@ extension SmartAlarm {
             // Wecker, die während dieser Nacht fällig wurden, gleich nachholen (wie Wear OS).
             if catchUp { model.noteNightEnded(windowStart: nightPlan.windowStart) }
             WatchConnectivityBridge.shared.send(night: night)
-            // Die Aufzeichnung dieser Nacht (Lernphase oder von Hand, Audit F-01) endet mit dem Klingeln.
+            // Die Aufzeichnung dieser Nacht (Lernphase oder von Hand) endet mit dem Klingeln.
             LearnRecorder.shared.noteWake(alarmId: nightPlan.alarmId, target: nightPlan.target)
         }
         // Ohne Nacht im Verlauf (nicht geweckt) gehört der Akku zu nichts; Probewecker und Powernap haben keinen begonnen.
         if firstRing == nil, !transient { WatchBattery.drop("night ended without ring") }
         if notifyPhone { WatchConnectivityBridge.shared.send(command: SyncKeys.stop, alarmId: nightPlan?.alarmId ?? "", target: nightPlan?.target) }
         // Aus dem Speicher statt aus der Nacht: nach einem Neustart der App fehlt `spec`. Nur die Fassung, die geklingelt
-        // hat (Fix G-1/S-1): Im Schlummern verschoben, oder eine neuere Änderung vom iPhone, bleibt eingeschaltet.
+        // hat: Im Schlummern verschoben, oder eine neuere Änderung vom iPhone, bleibt eingeschaltet.
         if let nightPlan, !transient, let alarm = model.alarms.first(where: { $0.id == nightPlan.alarmId }), alarm.isOneShot, alarm.enabled {
             model.disableAfterRing(alarm.id, rung: spec, target: nightPlan.target, shifted: shifted)
         }

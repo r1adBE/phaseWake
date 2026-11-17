@@ -61,7 +61,7 @@ final class HabitsTests: XCTestCase {
     }
 
     func testRegularityAroundNoon() {
-        // Audit W-1: Bettzeiten 11:30 und 12:30 liegen 60 Min auseinander → Median 12:00, beide regelmässig (vorher 0 von 2).
+        // Bettzeiten 11:30 und 12:30 liegen 60 Min auseinander → Median 12:00, beide regelmässig (vorher 0 von 2).
         let until = "2026-10-27"
         assertCount(Regularity.count([(date: until, start: at(until + "T12:30")), (date: minus(1, until), start: at(until + "T11:30"))],
                                      calendar: zurich), 2, 2)

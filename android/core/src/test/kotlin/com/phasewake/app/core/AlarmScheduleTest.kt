@@ -21,7 +21,7 @@ class AlarmScheduleTest {
 
     @Test
     fun skippedWeeklyAlarmFindsTheTermAfterNextWeek() {
-        // Audit BE-4 (mayDrop): Wecker nur montags, Montag 2.11. übersprungen, heute Dienstag 27.10. → Montag 9.11.,
+        // Wecker nur montags, Montag 2.11. übersprungen, heute Dienstag 27.10. → Montag 9.11.,
         // 13 Tage voraus, hinter der gewohnten Suche von 8 Tagen.
         val monday = alarm(days = setOf(DayOfWeek.MONDAY))
         val now = at("2026-10-27T08:00")

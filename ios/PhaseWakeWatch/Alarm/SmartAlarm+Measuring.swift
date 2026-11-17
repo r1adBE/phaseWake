@@ -22,7 +22,7 @@ extension SmartAlarm {
         guard let current = matching,
               now >= Self.sessionStart(current).addingTimeInterval(-Self.startTolerance),
               missed || now < current.target.addingTimeInterval(Self.fallbackDelay) else {
-            // Verwaist: gleich beenden, ohne zu vibrieren (Audit AP-3; im Hintergrund bis zum Aktivwerden gemerkt).
+            // Verwaist: gleich beenden, ohne zu vibrieren (im Hintergrund bis zum Aktivwerden gemerkt).
             DiagStore.shared.log(.error, "session without matching plan, ended")
             invalidateSession()
             phase = .idle
@@ -119,7 +119,7 @@ extension SmartAlarm {
         }
     }
 
-    /// Sitzung mitten in der Messung abgebrochen (Audit AP-4). Vor der Zielzeit nicht sofort wecken: Es weckt der feste
+    /// Sitzung mitten in der Messung abgebrochen. Vor der Zielzeit nicht sofort wecken: Es weckt der feste
     /// Rückfall kurz nach der Zielzeit (in `beginMeasuring` gestellt), die Nacht wartet auf ihn (`waiting`), und die
     /// bisher gemessenen Epochen bleiben als Nacht auf der Uhr (Wecken zur Zielzeit, bis die Nacht regulär endet und sie
     /// ersetzt; nicht ans iPhone, das sonst seinen Zweitwecker aussetzte). Ab der Zielzeit sofort per Mitteilung.
@@ -140,7 +140,7 @@ extension SmartAlarm {
     }
 
     /// Messung endet ohne Wecken (Wecker geändert, aus- oder abgeschaltet). Bei offener App bestätigt eine kurze Vibration
-    /// der laufenden Sitzung das Ende (HG-4: Eine Smart-Alarm-Sitzung ohne Vibration lässt watchOS warnen und anbieten,
+    /// der laufenden Sitzung das Ende (eine Smart-Alarm-Sitzung ohne Vibration lässt watchOS warnen und anbieten,
     /// künftige abzuschalten; die Person ist da wach). Im Hintergrund nicht: `notifyUser` zeigte dann den Weckhinweis des
     /// Systems mitten in der Nacht (bleibt offen, am Gerät zu prüfen, `docs/ENTSCHEIDE.md`).
     func cancelMeasuring() {
@@ -158,7 +158,7 @@ extension SmartAlarm {
 
     func startHeartRate(assembler: EpochAssembler) {
         guard HKHealthStore.isHealthDataAvailable(), let type = HKQuantityType.quantityType(forIdentifier: .heartRate) else { return }
-        // Nur Puls der Apple Watch (F-8): Ring oder Brustgurt in Apple Health zählen nicht.
+        // Nur Puls der Apple Watch: Ring oder Brustgurt in Apple Health zählen nicht.
         let predicate = WatchPulseSource.predicate(start: Date(), end: nil)
         let unit = HKUnit.count().unitDivided(by: .minute())
         let queue = assemblerQueue
@@ -236,7 +236,7 @@ extension SmartAlarm {
 
     /// Rechnung der Einschlafzeit fertig (oder abgelaufen, `WatchOnset.timeout`): Stand übernehmen und einen
     /// gemerkten frühen Moment jetzt entscheiden. Ein überholtes Ergebnis (`run`) oder eine andere Nacht gilt nicht.
-    /// `floor`: Grundrauschen der nachgerechneten Messung; gilt ab jetzt als Vorwissen im Fenster (Vollaudit K-1).
+    /// `floor`: Grundrauschen der nachgerechneten Messung; gilt ab jetzt als Vorwissen im Fenster.
     func onsetDone(_ result: WatchOnset.Result, run: Int, plan: WakePlan, floor: Double? = nil) {
         guard onsetPending, onsetRun == run, phase == .measuring(plan) else { return }
         onsetPending = false

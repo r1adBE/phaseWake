@@ -1,4 +1,4 @@
-# Alle Dateien in shared/testdata (ausser README.md und MANIFEST). Beide Kerne prüfen, dass genau diese da sind (Vollaudit K-8).
+# Alle Dateien in shared/testdata (ausser README.md und MANIFEST). Beide Kerne prüfen, dass genau diese da sind.
 alarm-stamps.vectors
 awake.night
 awake_precedes_light.night

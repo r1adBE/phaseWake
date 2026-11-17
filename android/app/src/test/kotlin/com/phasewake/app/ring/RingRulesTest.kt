@@ -60,7 +60,7 @@ class RingRulesTest {
 
     @Test
     fun secondAlarmInGraceIsCaughtUp() {
-        // Review 04.11. e: «a» 07:00 klingelt um 07:02 (Nachfrist 2 min); «b» 07:01 klingelt gleich danach, nicht morgen.
+        // «a» 07:00 klingelt um 07:02 (Nachfrist 2 min); «b» 07:01 klingelt gleich danach, nicht morgen.
         val specs = listOf(alarm("a"), alarm("b", minute = 1))
         val rang = mapOf("a" to at("2026-10-28T07:02"))
         val next = plan(specs, at("2026-10-28T07:02"), "a", at("2026-10-28T07:00"), rang)!!
@@ -137,7 +137,7 @@ class RingRulesTest {
 
     @Test
     fun watchEndsPhoneSnoozeOnlyOfItsNight() {
-        // «stop» oder Nacht der Uhr hebt Schlummern bzw. Wiederaufnahme am Handy derselben Nacht auf (04.11.2026).
+        // «stop» oder Nacht der Uhr hebt Schlummern bzw. Wiederaufnahme am Handy derselben Nacht auf.
         assertTrue(RingRules.watchEndsPhoneSnooze("a", 1L, savedId = "a", savedTarget = 1L))
         assertFalse(RingRules.watchEndsPhoneSnooze("b", 2L, savedId = "a", savedTarget = 1L), "anderer Wecker")
         assertFalse(RingRules.watchEndsPhoneSnooze("a", 2L, savedId = "a", savedTarget = 1L), "gleicher Wecker, andere Nacht")
@@ -160,7 +160,7 @@ class RingRulesTest {
         // Der Einmal-Wecker kommt nach seinem Klingeln nicht wieder; ohne weitere Wecker endet die Liste.
         val onlyOnce = RingRules.directBootPlans(plan(listOf(once), at("2026-10-28T01:00"))!!, listOf(once), null, emptyMap(), grace, grace, zurich, emptySet(), 4)
         assertEquals(listOf(at("2026-10-28T07:00")), onlyOnce.map { it.target })
-        // Zwei Wecker auf derselben Minute: beide in der Liste, bei Gleichstand nach Kennung (Review 04.11. e).
+        // Zwei Wecker auf derselben Minute: beide in der Liste, bei Gleichstand nach Kennung.
         val same = listOf(alarm("b").copy(days = daily.days), alarm("a").copy(days = daily.days))
         val sameList = RingRules.directBootPlans(plan(same, at("2026-10-28T01:00"))!!, same, null, emptyMap(), grace, grace, zurich, emptySet(), 4)
         assertEquals(listOf("a", "b", "a", "b"), sameList.map { it.alarmId })
@@ -169,7 +169,7 @@ class RingRulesTest {
 
     @Test
     fun directBootListIsOrderedIncludingFirst() {
-        // Powernap mit Zielzeit vor dem ersten Zweitwecker (Nachfrist läuft noch über ihn hinaus): steht vorne (Audit I-05).
+        // Powernap mit Zielzeit vor dem ersten Zweitwecker (Nachfrist läuft noch über ihn hinaus): steht vorne.
         val daily = alarm("d", 6, 30).copy(days = java.time.DayOfWeek.entries.toSet())
         val first = plan(listOf(daily), at("2026-10-28T01:00"))!!
         val nap = WakePlan("nap", at("2026-10-28T06:24"), at("2026-10-28T06:29"), exact = true)

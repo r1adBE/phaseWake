@@ -169,7 +169,7 @@ class BackupTest {
 
     @Test
     fun shortPasswordStillOpensOldBackup() {
-        // Vor der Regel (10.11.2026) reichten 8 Zeichen: Eine solche Sicherung («{}», Passwort «1234abcd», Salz und
+        // Vor der Regel reichten 8 Zeichen: Eine solche Sicherung («{}», Passwort «1234abcd», Salz und
         // Nonce wie oben, mit Python erzeugt) öffnet das Wiederherstellen weiter. Swift: gleicher Test.
         val old = Base64.getDecoder().decode("UFdCSzIAAQIDBAUGBwgJCgsMDQ4PZGVmZ2hpamtsbW5vt4PzqnJ6aYzD2IdWUvOlrPj0")
         assertFalse(BackupFile.passwordOk("1234abcd"))

@@ -144,7 +144,7 @@ data class NightRecording(
             val complete = if (text.endsWith('\n')) text else text.substring(0, text.lastIndexOf('\n') + 1)
             val lines = complete.lines().dropLastWhile { it.isEmpty() }
             if (lines.firstOrNull() != HEADER) return null
-            // Zeitpunkte ausserhalb von TimeBounds (kaputt oder manipuliert, Audit K-7): Beginn unlesbar, sonst übergangen.
+            // Zeitpunkte ausserhalb von TimeBounds (kaputt oder manipuliert): Beginn unlesbar, sonst übergangen.
             val start = TimeBounds.checked(lines.getOrNull(1)?.takeIf { it.startsWith(START) }?.removePrefix(START)?.toLongOrNull()) ?: return null
             val epochs = ArrayList<Epoch>()
             var end: Instant? = null

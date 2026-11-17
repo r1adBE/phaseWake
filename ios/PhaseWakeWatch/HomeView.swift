@@ -8,7 +8,7 @@ struct HomeView: View {
     @Environment(\.scenePhase) private var scenePhase
     /// Wecker im Editor: ein bestehender oder ein neuer (dann noch nicht in der Liste).
     @State private var editing: AlarmSpec?
-    /// Ob der Wecker im Editor beim Öffnen neu war; fest, damit ein anderswo gelöschter nicht als neuer gilt (B-3).
+    /// Ob der Wecker im Editor beim Öffnen neu war; fest, damit ein anderswo gelöschter nicht als neuer gilt.
     @State private var editingNew = false
     @State private var choosingNap = false
     @State private var diagUnlocked = DiagStore.shared.unlocked
@@ -119,7 +119,7 @@ private struct NextWindow: View {
     let alarm: AlarmSpec?
     /// Schlafziel in Minuten für den Einschlafpunkt.
     let sleepGoal: Int
-    /// Gelernte Einschlafdauer (Lernphase) für die eine Bettzeit (Audit O-03); `nil` = nicht gelernt.
+    /// Gelernte Einschlafdauer (Lernphase) für die eine Bettzeit; `nil` = nicht gelernt.
     let latencyMinutes: Int?
 
     /// Einschlafpunkt nur zu einem gespeicherten Wecker, nicht zu Powernap oder Probewecker.
@@ -266,7 +266,7 @@ private struct WindowRing: View {
 }
 
 /// Zweite Zeile einer Wecker-Zeile: Tage, Name und ein übersprungener nächster Termin («Übersprungen: Do 30.10.»), wie
-/// Galaxy Watch, Handy und iPhone (Prüfrunde 2, B-8).
+/// Galaxy Watch, Handy und iPhone.
 func alarmDetails(_ alarm: AlarmSpec, now: Date, calendar: Calendar = .gregorianLocal) -> String {
     let skipped = AlarmSchedule.skippedDate(alarm, now: now, calendar: calendar).map { L("alarm_skipped", Format.shortDay($0)) }
     return [Format.days(alarm), alarm.label, skipped ?? ""].filter { !$0.isEmpty }.joined(separator: " · ")

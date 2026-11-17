@@ -383,7 +383,7 @@
     <string name="chart_window">Väckningsfönster</string>
     <string name="chart_no_data">inga data</string>
     <string name="chart_feeling_hint">Tryck på en punkt för att se nattens anteckningar.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Testa väckarklockan</string>
     <string name="test_button">Testa om 2 minuter</string>
     <string name="test_hint">Ringer om 2 minuter med inställningarna för ditt nästa alarm, utan snooze. Räknas inte som en natt.</string>
@@ -599,7 +599,7 @@
     <string name="learn_switch_hint">Din klocka mäter rörelse och puls på natten (från %1$d %% batteri). Av: ingen automatisk registrering, inlärda värden finns kvar.</string>
     <string name="learn_switch_title">Aktiv</string>
     <string name="watch_open_app_hint">Öppna Phase Wake på klockan så att den tar emot kommandot.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Varje natt sedan inlärningsfasen började – om den räknades och, om inte, varför och vad som hjälper. Phase Wake behöver %1$d räknade nätter.</string>
     <string name="learn_nights_empty">Ingen natt än. Den första visas här morgonen efter.</string>
     <string name="learn_night_facts">%1$s mätt · %2$d mätvärden · puls i %3$d %%</string>

@@ -3,7 +3,7 @@ import WatchKit
 import XCTest
 @testable import PhaseWakeWatch
 
-/// Puls nur der Apple Watch (Herkunft: Prüfrunde 2 F-8).
+/// Puls nur der Apple Watch.
 final class PulseSourceWatchTests: XCTestCase {
     private let now = Date(timeIntervalSince1970: 1_793_000_000)
 

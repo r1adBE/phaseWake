@@ -1,7 +1,7 @@
 import XCTest
 import PhaseWakeCore
 
-/// Gleiche Fälle wie `CsvNumbersTest` (Kotlin): Zahlen im CSV-Export auf beiden Plattformen gleich (Audit F-7).
+/// Gleiche Fälle wie `CsvNumbersTest` (Kotlin): Zahlen im CSV-Export auf beiden Plattformen gleich.
 final class CsvNumbersTests: XCTestCase {
     func testHalfRoundsAwayFromZeroOnScaledValue() {
         // Exakt halbe Werte: `String(format:)` gab 56.2, Java 56.3 – jetzt beide 56.3.

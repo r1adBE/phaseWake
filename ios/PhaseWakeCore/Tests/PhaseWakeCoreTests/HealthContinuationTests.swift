@@ -133,7 +133,7 @@ final class HealthContinuationTests: XCTestCase {
     }
 
     func testShortOverlapIsStillAContinuation() throws {
-        // Audit 2c82e15: Teile oft mit einer Sekunde Überlappung geschrieben – trotzdem Weiterschlafen.
+        // Teile oft mit einer Sekunde Überlappung geschrieben – trotzdem Weiterschlafen.
         let from = night.end.addingTimeInterval(-1)
         let overlapping = HealthSession(start: from, end: sleptOn.end,
                                         stages: [StageSpan(start: from, end: t("2026-11-12T09:24:00Z"), stage: .awake), span("09:24", "10:56", .light)],
@@ -149,7 +149,7 @@ final class HealthContinuationTests: XCTestCase {
     }
 
     func testOneRuleForOneNightEverywhere() {
-        // Entscheid r1AD 14.11. (Audit W-2): eine Nacht = Kette mit Lücken bis 60 Min – im Verlauf wie in Diagrammen,
+        // Eine Nacht = Kette mit Lücken bis 60 Min – im Verlauf wie in Diagrammen,
         // Ø, Schlafziel und Trends. 22:00–02:00 und 03:30–07:30 (90 Min Lücke) sind zwei Nächte am selben Nachtdatum.
         let first = HealthSession(start: t("2026-11-10T21:00:00Z"), end: t("2026-11-11T01:00:00Z"))
         let second = HealthSession(start: t("2026-11-11T02:30:00Z"), end: t("2026-11-11T06:30:00Z"))
@@ -170,7 +170,7 @@ final class HealthContinuationTests: XCTestCase {
     }
 
     func testProfileOfOwnNightLeavesOutEarlierSofaSleep() {
-        // Audit W-2: Sofa 20:30–21:15, Nacht 23:00–07:00, Phase Wake weckt um 07:00: Profil ab 23:00, nicht ab 20:30.
+        // Sofa 20:30–21:15, Nacht 23:00–07:00, Phase Wake weckt um 07:00: Profil ab 23:00, nicht ab 20:30.
         func light(_ from: String, _ to: String) -> HealthSession {
             HealthSession(start: t(from), end: t(to), stages: [StageSpan(start: t(from), end: t(to), stage: .light)])
         }
@@ -204,7 +204,7 @@ final class HealthContinuationTests: XCTestCase {
     }
 
     func testOverlapWithSleepCountsOnceEverywhere() {
-        // Audit BE-2: 4 Min Schlaf in der Überlappung zählen in Verlauf, Diagrammen, Trends und Schlafprofil nur einmal.
+        // 4 Min Schlaf in der Überlappung zählen in Verlauf, Diagrammen, Trends und Schlafprofil nur einmal.
         let (first, second) = overlapCase(4 * 60)
         XCTAssertEqual(merge([first, second]).map(\.session?.asleepMinutes), [617])
         XCTAssertEqual(summaries([first, second]).map(\.asleepMinutes), [617])

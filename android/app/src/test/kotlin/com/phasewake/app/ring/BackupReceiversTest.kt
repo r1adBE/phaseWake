@@ -30,7 +30,7 @@ import kotlin.test.assertTrue
 import kotlin.test.fail
 
 /**
- * Empfänger des Zweitweckers ([onBackupAlarm], [onBackupSystemEvent], Audit M-06): Zweitwecker, Sicherung nach dem
+ * Empfänger des Zweitweckers ([onBackupAlarm], [onBackupSystemEvent]): Zweitwecker, Sicherung nach dem
  * Schlummern, Weiterleitung der Uhr und Sonnenaufgang, entsperrt und vor dem ersten Entsperren; Neustart und andere
  * Systemereignisse. Zustellung wie vom System über [Context.sendBroadcast]; die Arbeit im Hintergrund wird abgewartet.
  */
@@ -91,7 +91,7 @@ class BackupReceiversTest {
 
     @Test
     fun backupRingsMarksTheNightAndTurnsOffAOneShot() {
-        // Der Einmal-Wecker zur Zielzeit des Zweitweckers (Fix G-1/S-1: nur die Fassung, die geklingelt hat).
+        // Der Einmal-Wecker zur Zielzeit des Zweitweckers (nur die Fassung, die geklingelt hat).
         val local = target.atZone(java.time.ZoneId.systemDefault())
         add(AlarmSpec(id = "r1", hour = local.hour, minute = local.minute))
         send(BackupAlarm.ACTION, "r1", target)
@@ -104,14 +104,14 @@ class BackupReceiversTest {
 
     @Test
     fun backupOfAMovedOneShotLeavesTheNewTimeOn() {
-        // Fix G-1/S-1: Inzwischen (z. B. auf der Uhr) auf 30 Min später verschoben – das Klingeln der alten Zeit schaltet
+        // Inzwischen (z. B. auf der Uhr) auf 30 Min später verschoben – das Klingeln der alten Zeit schaltet
         // die neue nicht aus.
         val moved = target.plus(Duration.ofMinutes(30)).atZone(java.time.ZoneId.systemDefault())
         add(AlarmSpec(id = "r5", hour = moved.hour, minute = moved.minute))
         send(BackupAlarm.ACTION, "r5", target)
         startedRing()
         until("Nacht ausgesetzt") { app.backup.doneUntil()["r5"] != null }
-        // Erst prüfen, wenn die Arbeit des Empfängers ganz fertig ist (Audit CODE-10: nicht nach fester Wartezeit).
+        // Erst prüfen, wenn die Arbeit des Empfängers ganz fertig ist (nicht nach fester Wartezeit).
         until("Arbeit im Hintergrund fertig") { app.appScope.coroutineContext.job.children.none { it.isActive } }
         assertTrue(runBlocking { enabled("r5") }, "der verschobene Einmal-Wecker bleibt eingeschaltet")
     }

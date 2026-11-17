@@ -79,7 +79,7 @@ fun FeelingPicker(onPick: (Int) -> Unit, modifier: Modifier = Modifier) {
                     contentPadding = PaddingValues(0.dp),
                     // Mindestens 48 dp: gut zu treffen, auch auf schmalen Bildschirmen.
                     modifier = Modifier.weight(1f).heightIn(min = 48.dp).aspectRatio(1f).semantics { contentDescription = label },
-                    // Ziffern wie in den übrigen Texten der Sprache (Arabisch: ٠–٩, Audit UI-9).
+                    // Ziffern wie in den übrigen Texten der Sprache (Arabisch: ٠–٩).
                 ) { Text(Format.number(value), style = MaterialTheme.typography.titleMedium) }
             }
         }
@@ -101,7 +101,7 @@ fun TrendsCard(
     habits: HabitLines? = null,
     /** Zeilen, die ein Diagramm oben schon zeigt: hier weggelassen. */
     covered: Set<TrendLine> = emptySet(),
-    /** Auffälligkeiten der letzten 7 Nächte, wichtigste zuerst; hier alle an einer Stelle (Entscheid r1AD 15.11.2026). */
+    /** Auffälligkeiten der letzten 7 Nächte, wichtigste zuerst; hier alle an einer Stelle. */
     findings: List<Finding> = emptyList(),
 ) {
     val context = LocalContext.current

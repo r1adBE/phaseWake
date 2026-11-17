@@ -69,7 +69,7 @@ final class PhoneModel {
 
     /// Ob `loadState` den gespeicherten Stand lesen konnte. Vor dem ersten Entsperren nach einem Neustart nicht (Datei
     /// geschützt): Dann sind Wecker und Einstellungen hier leer, und die App plant und löscht nichts daraus, bis
-    /// `catchUpState` sie gelesen hat (Tiefenaudit AP3-1).
+    /// `catchUpState` sie gelesen hat.
     private(set) var stateLoaded = false
 
     /// Höchstens so viele Wecker (wie Android): Die Uhr führt ohnehin nur die nächste Nacht.
@@ -89,13 +89,13 @@ final class PhoneModel {
                 }
             }
         }
-        // Erstes Entsperren nach einem Neustart: Stand nachlesen und alles planen (Tiefenaudit AP3-1). Läuft die App
+        // Erstes Entsperren nach einem Neustart: Stand nachlesen und alles planen. Läuft die App
         // dann nicht, holt es das nächste Öffnen bzw. Neuplanen nach (`catchUpState`).
         _ = NotificationCenter.default.addObserver(forName: UIApplication.protectedDataDidBecomeAvailableNotification, object: nil,
                                                    queue: .main) { _ in
             Task { @MainActor in PhoneModel.shared.catchUpState() }
         }
-        // Akku je Nacht: Ladebeginn und -ende, solange die App läuft (r1AD 14.11.2026).
+        // Akku je Nacht: Ladebeginn und -ende, solange die App läuft.
         PhoneBattery.listen()
         // Einschlafklänge prüfen ihr Ende jede Minute gegen den aktuellen Plan.
         sounds.currentWindowStart = { [weak self] in
@@ -106,7 +106,7 @@ final class PhoneModel {
 
     /// Liest den ganzen Stand aus dem Speicher (beim Start und nach dem Wiederherstellen einer Sicherung).
     func loadState() {
-        // Zuerst: Ist die Datei nicht lesbar, ist alles Folgende leer (AP3-1).
+        // Zuerst: Ist die Datei nicht lesbar, ist alles Folgende leer.
         stateLoaded = SettingsFile.phone.isReadable
         alarms = storage.snapshot().alarms
         nights = storage.nights()
@@ -126,7 +126,7 @@ final class PhoneModel {
         routineItems = Routine.decodeItems(privateNotes.routineItemsText())
         routineTicks = privateNotes.routineTicks()
         weeklyReview = defaults.bool(forKey: Self.weeklyKey)
-        // Höchstens jetzt (Vollaudit DA-1), gleich so gespeichert, damit ein späterer Wert nicht mitwandert.
+        // Höchstens jetzt, gleich so gespeichert, damit ein späterer Wert nicht mitwandert.
         let stored = (defaults.object(forKey: Self.historyClearedKey) as? NSNumber)?.int64Value, cleared = HistoryClear.clamped(ms: stored, now: Date())
         if cleared != stored { defaults.set(cleared.map { NSNumber(value: $0) }, forKey: Self.historyClearedKey) }
         historyClearedAt = cleared.map { Date(timeIntervalSince1970: Double($0) / 1000) }
@@ -152,14 +152,14 @@ final class PhoneModel {
     }
 
     func applyRemote(_ snapshot: AlarmSnapshot) {
-        // Stand noch nicht gelesen (vor dem ersten Entsperren, AP3-1): nicht auf den leeren Stand anwenden, sondern
+        // Stand noch nicht gelesen (vor dem ersten Entsperren): nicht auf den leeren Stand anwenden, sondern
         // merken; `catchUpState` wendet es danach an (`applyPendingRemote`).
         guard stateLoaded || catchUpState() else {
             pendingRemote.append(snapshot)
             DiagStore.shared.log(.alarmsReceived, "alarms from watch kept until settings readable")
             return
         }
-        // Derselbe Kontext nicht zweimal (Fix S-5): Er kommt bei jedem Start erneut.
+        // Derselbe Kontext nicht zweimal: Er kommt bei jedem Start erneut.
         guard storage.applyRemoteContext(snapshot) else { return }
         alarms = storage.snapshot().alarms
         DiagStore.shared.log(.alarmsReceived, "\(alarms.count) alarms from watch")
@@ -167,7 +167,7 @@ final class PhoneModel {
         Task { await replanBedtime() }
     }
 
-    /// Von der Uhr empfangene Wecker, solange der Stand nicht gelesen ist (AP3-1); in der Reihenfolge des Empfangs.
+    /// Von der Uhr empfangene Wecker, solange der Stand nicht gelesen ist; in der Reihenfolge des Empfangs.
     @ObservationIgnored private var pendingRemote: [AlarmSnapshot] = []
 
     /// Nach dem Lesen des Stands (`catchUpState`): gemerkte Wecker der Uhr anwenden.
@@ -179,7 +179,7 @@ final class PhoneModel {
     }
 
     /// Von der Uhr gemeldete Nächte, solange Stand oder Verlauf nicht lesbar sind (vor dem ersten Entsperren); in der
-    /// Reihenfolge des Empfangs. `catchUpState` schreibt sie danach (Prüfrunde 2, `applyPendingNights`).
+    /// Reihenfolge des Empfangs. `catchUpState` schreibt sie danach (`applyPendingNights`).
     @ObservationIgnored private var pendingNights: [NightRecord] = []
 
     /// Nach dem Lesen des Stands: gemerkte Nächte speichern, erst jetzt gegen «Verlauf löschen» geprüft (der Zeitpunkt
@@ -192,7 +192,7 @@ final class PhoneModel {
     }
 
     func add(night: NightRecord) {
-        // Vor dem ersten Entsperren: nicht verlieren, sondern merken (Prüfrunde 2, `add(night:)` wie die Wecker der Uhr).
+        // Vor dem ersten Entsperren: nicht verlieren, sondern merken (`add(night:)` wie die Wecker der Uhr).
         guard stateLoaded || catchUpState(), storage.nightsReadable else {
             pendingNights.append(night)
             DiagStore.shared.log(.suppressed, "night kept until history readable")
@@ -255,7 +255,7 @@ final class PhoneModel {
         watchBuild = build
     }
 
-    /// Ob die Uhr beim gemeldeten Akkustand lud (Prüfrunde 2 F-6): Dann misst sie trotz wenig Akku (Nacht-Check O-05).
+    /// Ob die Uhr beim gemeldeten Akkustand lud: Dann misst sie trotz wenig Akku (Nacht-Check).
     private(set) var watchBatteryCharging = false
 
     /// Akkustand der Uhr; `nil`, wenn unbekannt oder älter als 6 Stunden.
@@ -281,12 +281,12 @@ final class PhoneModel {
         let now = Date()
         historyClearedAt = now
         SettingsFile.phone.set(NSNumber(value: TimeBounds.millis(now)), forKey: Self.historyClearedKey)
-        // Geteilte CSV-Dateien in den temporären Dateien gleich mit (Vollaudit DA-5).
+        // Geteilte CSV-Dateien in den temporären Dateien gleich mit.
         NightsExport.cleanUp()
         PhoneConnectivity.shared.send(command: SyncKeys.clearHistory)
     }
 
-    /// Auto-Aus eines Einmal-Weckers nach seiner Nacht (Fix G-1/S-1): nur, wenn der gespeicherte Wecker noch dieselbe
+    /// Auto-Aus eines Einmal-Weckers nach seiner Nacht: nur, wenn der gespeicherte Wecker noch dieselbe
     /// Uhrzeit wie die geklingelte Fassung `rung` hat (``AlarmStamps/rang(_:rung:target:calendar:shifted:)``; die Zielzeit
     /// zählt dann nicht). Zeitpunkt der bisherigen Fassung + 1 ms: Eine neuere Änderung auf der Uhr gewinnt beim Abgleich.
     func disableAfterRing(_ rung: AlarmSpec) {
@@ -300,7 +300,7 @@ final class PhoneModel {
     }
 
     private func change(_ edit: ([AlarmSpec]) -> [AlarmSpec]) {
-        // Unlesbare gespeicherte Wecker: keine Änderung, nichts an die Uhr (Fix KN-5).
+        // Unlesbare gespeicherte Wecker: keine Änderung, nichts an die Uhr.
         guard let snapshot = storage.mutate(edit) else { return }
         alarms = snapshot.alarms
         publishToWatch(snapshot)
@@ -367,12 +367,12 @@ final class PhoneModel {
 
     /// Plant die Bettzeit-Erinnerung neu (Wecker, Ziel, Einstellung, Zeitzone oder neue Nacht geändert).
     func replanBedtime() async {
-        // Stand noch nicht gelesen: nichts verwerfen; `catchUpState` plant danach neu (AP3-1).
+        // Stand noch nicht gelesen: nichts verwerfen; `catchUpState` plant danach neu.
         guard stateLoaded || catchUpState() else { return }
         await bedtime.reschedule(alarms: alarms, goalMinutes: sleepGoal, enabled: bedtimeReminder, holidays: holidays.dates,
                                  latencyMinutes: learnedLatency)
     }
 
-    /// Gelernte Einschlafdauer (Lernphase) für die eine Bettzeit (`Bedtime.bedtime`, Audit O-03); `nil` = nicht gelernt.
+    /// Gelernte Einschlafdauer (Lernphase) für die eine Bettzeit (`Bedtime.bedtime`); `nil` = nicht gelernt.
     var learnedLatency: Int? { PhoneLearning.shared.state.values?.latencyMinutes }
 }

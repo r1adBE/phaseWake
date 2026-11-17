@@ -2,8 +2,8 @@ import PhaseWakeCore
 import SwiftUI
 
 /// «Gute Nacht» auf dem Startbildschirm (wie `GoodNightButton` der Galaxy Watch), nur für einen Wecker mit Schlafdauer:
-/// «Schlaf 7 h 30 min ab jetzt»; danach die festgelegte Zielzeit mit «Tippen zum Abbrechen», das Aufheben fragt zuerst
-/// (Prüfrunde 2, B-7). Mehr als 16 Std. vor der Weckzeit oder während eine Nacht läuft nur der Hinweis. Siehe
+/// «Schlaf 7 h 30 min ab jetzt»; danach die festgelegte Zielzeit mit «Tippen zum Abbrechen», das Aufheben fragt zuerst.
+/// Mehr als 16 Std. vor der Weckzeit oder während eine Nacht läuft nur der Hinweis. Siehe
 /// `GoodNightState`.
 struct GoodNightRow: View {
     @Environment(WatchModel.self) private var model

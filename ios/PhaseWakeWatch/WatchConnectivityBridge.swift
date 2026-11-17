@@ -15,7 +15,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         WCSession.default.activate()
     }
 
-    /// Letzter Stand, der als Anwendungskontext geht (Wecker und Scharf-Status gemeinsam); nur Main-Thread (CODE-06).
+    /// Letzter Stand, der als Anwendungskontext geht (Wecker und Scharf-Status gemeinsam); nur Main-Thread.
     @MainActor private var context: [String: Any] = [:]
 
     @MainActor func publish(_ snapshot: AlarmSnapshot) {
@@ -43,7 +43,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         sendContext()
     }
 
-    /// Rekorder für eine Nacht nicht gestartet (``RecorderSkip``, Audit F-06) bzw. `nil`, wenn er doch läuft: gespeichert
+    /// Rekorder für eine Nacht nicht gestartet (``RecorderSkip``) bzw. `nil`, wenn er doch läuft: gespeichert
     /// (geht mit jedem Anwendungskontext ans iPhone, auch nach einem Neustart der App) und nur bei einer Änderung gesendet.
     @MainActor func publish(recorderSkip skip: RecorderSkip?) {
         let text = skip?.encode() ?? ""
@@ -80,8 +80,8 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         context[SyncKeys.recorderSkip] = Self.recorderSkip
         let device = WKInterfaceDevice.current()
         device.isBatteryMonitoringEnabled = true
-        // Auch am Laden, mit Ladezustand (Prüfrunde 2 F-6): Dann misst die Uhr trotz wenig Akku, und das iPhone warnt
-        // nicht (Nacht-Check O-05). Unbekannt: nichts melden.
+        // Auch am Laden, mit Ladezustand: Dann misst die Uhr trotz wenig Akku, und das iPhone warnt
+        // nicht (Nacht-Check). Unbekannt: nichts melden.
         if device.batteryState != .unknown, device.batteryLevel >= 0 {
             context[SyncKeys.battery] = Int64((device.batteryLevel * 100).rounded())
             context[SyncKeys.batteryAt] = Int64(Date().timeIntervalSince1970 * 1000)
@@ -89,7 +89,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         } else {
             for key in [SyncKeys.battery, SyncKeys.batteryAt, SyncKeys.batteryCharging] { context[key] = nil }
         }
-        // Gescheitert: protokolliert wie am iPhone (Audit 17.11. CODE-02); der nächste Kontext ersetzt ihn ohnehin.
+        // Gescheitert: protokolliert wie am iPhone; der nächste Kontext ersetzt ihn ohnehin.
         do { try WCSession.default.updateApplicationContext(context) } catch {
             DiagStore.shared.log(.error, "context not sent: \(error.localizedDescription)")
         }
@@ -296,7 +296,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         if command == SyncKeys.stop || command == SyncKeys.snooze {
             // Ohne Sendezeit: veraltete iPhone-App, verwerfen (kein Rückfall). Verspätet zugestellt träfe es sonst eine
             // spätere Nacht.
-            // Unplausible Sendezeit (Vollaudit AP2-8): ebenso verwerfen, ohne über `Int64` hinaus zu rechnen.
+            // Unplausible Sendezeit: ebenso verwerfen, ohne über `Int64` hinaus zu rechnen.
             guard !SyncTime.stale(message[SyncKeys.sentAt] as? Int64, now: Date()) else { return }
         }
         // Nacht des iPhone-Alarms (fehlt, wenn das iPhone keine kennt): Stopp oder Schlummern nur für dieselbe Nacht.

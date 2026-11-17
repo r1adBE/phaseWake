@@ -72,14 +72,14 @@ internal const val ALARM_PAGE = 3
 internal const val LEARNING_PAGE = 4
 
 /**
- * So lange nach einem Tipp auf die Knöpfe unten zählt kein weiterer (Prüfrunde 2, B-2): «Später» der Lernseite liegt
+ * So lange nach einem Tipp auf die Knöpfe unten zählt kein weiterer: «Später» der Lernseite liegt
  * dort, wo eben «Weiter» war; ein Doppeltipp lehnte sonst die Lernphase ab, ohne dass die Seite zu sehen war.
  */
 internal const val PAGE_TAP_LOCK_MS = 400L
 
 /**
  * Ersteinrichtung in sechs Schritten (jederzeit überspringbar): Willkommen, Uhr verbinden, Rechte, erster Wecker,
- * Lernphase (Zustimmung, Audit F-02), Probewecker – dann «Fertig». Zustand der Uhr und Rechte kommen aus dem Nacht-Check ([NavState.nightCheck]).
+ * Lernphase (Zustimmung), Probewecker – dann «Fertig». Zustand der Uhr und Rechte kommen aus dem Nacht-Check ([NavState.nightCheck]).
  */
 @Composable
 internal fun OnboardingScreen(app: PhaseWakeApp, state: NavState, actions: NavActions, onDone: () -> Unit) {
@@ -112,7 +112,7 @@ internal class OnboardingModel(
     val health: HealthState,
     /** Ob noch ein Wecker angelegt werden darf ([MAX_ALARMS]). */
     val canCreateAlarm: Boolean,
-    /** Ob schon ein Wecker besteht (Einrichtung wiederholt): Dann legt «Weiter» keinen weiteren an (Audit N-1). */
+    /** Ob schon ein Wecker besteht (Einrichtung wiederholt): Dann legt «Weiter» keinen weiteren an. */
     val hasAlarm: Boolean = false,
     /** Zielzeit eines laufenden Probeweckers; `null` = keiner. */
     val testTarget: Instant?,
@@ -131,7 +131,7 @@ internal class OnboardingModel(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: OnboardingModel, onDone: () -> Unit) {
-    // Zustand des Schritts «Erster Wecker» hier, damit «Weiter» den gezeigten Wecker anlegen kann (Audit UI-5).
+    // Zustand des Schritts «Erster Wecker» hier, damit «Weiter» den gezeigten Wecker anlegen kann.
     val context = LocalContext.current
     val alarmTime = rememberTimePickerState(7, 0, is24Hour = DateFormat.is24HourFormat(context))
     var alarmWindow by rememberSaveable { mutableIntStateOf(AlarmSpec.DEFAULT_WINDOW_MINUTES) }
@@ -144,7 +144,7 @@ internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: Onboardi
         model.onCreateAlarm(spec)
         alarmCreated = Format.window(context, spec)
     }
-    // Knöpfe unten: nach jedem Tipp kurz gesperrt (B-2), auch «Fertig».
+    // Knöpfe unten: nach jedem Tipp kurz gesperrt, auch «Fertig».
     var lockedUntil by remember { mutableLongStateOf(0L) }
     fun tap(action: () -> Unit) {
         val now = SystemClock.uptimeMillis()
@@ -169,13 +169,13 @@ internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: Onboardi
             }
         }
     Column(Modifier.weight(1f).padding(horizontal = 20.dp)) {
-        // Inhalt senkrecht mittig (Gestaltung 2); längere Schritte scrollen.
+        // Inhalt senkrecht mittig; längere Schritte scrollen.
         BoxWithConstraints(Modifier.weight(1f)) {
         Column(
             Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).heightIn(min = maxHeight).padding(vertical = 16.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp, Alignment.CenterVertically),
         ) {
-            // Ab Schritt 2 die Welle mit dem Mond, der mit jedem Schritt weiter wandert (Gestaltung 2, wie am iPhone).
+            // Ab Schritt 2 die Welle mit dem Mond, der mit jedem Schritt weiter wandert (wie am iPhone).
             if (page > 0) OnboardingGlyph(page, STEPS)
             when (page) {
                 0 -> Welcome()
@@ -188,7 +188,7 @@ internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: Onboardi
             }
         }
         }
-        // Lernphase noch nicht gestartet: nur «Später» und «Lernphase starten», beide gehen weiter (Audit U-2).
+        // Lernphase noch nicht gestartet: nur «Später» und «Lernphase starten», beide gehen weiter.
         val askLearning = page == LEARNING_PAGE && model.learningConsent != true
         if (askLearning) {
             Button(
@@ -206,7 +206,7 @@ internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: Onboardi
                 page < STEPS -> Button(onClick = {
                     tap {
                         // «Weiter» ohne «Wecker anlegen»: den gezeigten Wecker trotzdem anlegen, sonst fehlte er still –
-                        // aber nur, wenn noch keiner besteht (wiederholte Einrichtung, Audit N-1).
+                        // aber nur, wenn noch keiner besteht (wiederholte Einrichtung).
                         if (page == ALARM_PAGE && createsOnNext(alarmCreated != null, model)) createAlarm()
                         onPage(page + 1)
                     }

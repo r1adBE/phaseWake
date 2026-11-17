@@ -1,6 +1,6 @@
 import Foundation
 
-/// Einstellung «Abends dunkel ab» (Entscheid r1AD 17.11.2026), identisch zu Kotlin (`EveningDark.kt`): Steht das Design
+/// Einstellung «Abends dunkel ab», identisch zu Kotlin (`EveningDark.kt`): Steht das Design
 /// auf «System» oder «Hell», zeigt die App ab der gewählten Uhrzeit (Standard 18:00) bis zum Morgen (``untilMinutes``,
 /// 06:00) das dunkle Design; «Dunkel» bleibt dunkel. Gerechnet wird mit der Ortszeit (Wanduhr) in Minuten des Tages,
 /// über Mitternacht hinweg. Gemeinsame Fälle in shared/testdata/evening-dark.vectors.

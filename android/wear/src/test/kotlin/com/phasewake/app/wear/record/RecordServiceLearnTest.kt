@@ -56,7 +56,7 @@ class RecordServiceLearnTest {
     fun setUp() {
         ShadowAlarmManager.setCanScheduleExactAlarms(true)
         battery(80)
-        // Voraussetzung für «health» (RecordControl startet sonst nicht, OFFEN 4a).
+        // Voraussetzung für «health» (RecordControl startet sonst nicht).
         shadowOf(context as Application).grantPermissions(Manifest.permission.ACTIVITY_RECOGNITION)
     }
 
@@ -129,7 +129,7 @@ class RecordServiceLearnTest {
         assertEquals("recording runs", RecordControl.learnSkipReason(recording = true, battery = 80))
         assertNull(RecordControl.learnSkipReason(recording = false, battery = null), "unbekannter Akku hindert nicht")
         assertNull(RecordControl.learnSkipReason(recording = false, battery = Learning.MIN_BATTERY))
-        // Prüfrunde 2 F-6: Am Ladegerät nicht wegen des Akkus auslassen.
+        // Am Ladegerät nicht wegen des Akkus auslassen.
         assertNull(RecordControl.learnSkipReason(recording = false, battery = 38, charging = true))
         val power = shadowOf(context.getSystemService(BatteryManager::class.java))
         power.setIsCharging(true)
@@ -159,7 +159,7 @@ class RecordServiceLearnTest {
         manual.onStartCommand(intent(RecordService.ACTION_END_LEARN).putExtra(RecordService.EXTRA_REASON, RecordEnd.PHONE.code), 0, 2)
         shadowOf(Looper.getMainLooper()).idle()
         assertNotNull(manual.active, "von Hand begonnen: läuft weiter")
-        // Geweckt: Sie endet spätestens jetzt (Audit F-01).
+        // Geweckt: Sie endet spätestens jetzt.
         manual.onStartCommand(intent(RecordService.ACTION_END_LEARN), 0, 3)
         awaitFinished(RecordEnd.WAKE)
         File(context.filesDir, "recordings").deleteRecursively()
@@ -200,7 +200,7 @@ class RecordServiceLearnTest {
         RecordControl.onLearningChanged(context, LearningSnapshot(true, null, null, 1L))
         shadowOf(Looper.getMainLooper()).idle()
         assertNotNull(service.active)
-        // Aus (Audit F-02): Der Befehl an den laufenden Dienst beendet sie als «am Handy gestoppt».
+        // Aus: Der Befehl an den laufenden Dienst beendet sie als «am Handy gestoppt».
         val shadowApp = shadowOf(RuntimeEnvironment.getApplication())
         shadowApp.clearStartedServices()
         RecordControl.onLearningChanged(context, LearningSnapshot(false, null, null, 2L))
@@ -223,7 +223,7 @@ class RecordServiceLearnTest {
         RecordControl.endLearning(context, RecordEnd.PHONE)
         awaitUntil("Marke gelöscht") { runBlocking { app.learnMark.get() } == null }
         assertNotNull(active())
-        // Geweckt: auch ohne Marke abgeschlossen (von Hand begonnen, Audit F-01).
+        // Geweckt: auch ohne Marke abgeschlossen (von Hand begonnen).
         RecordControl.endLearning(context)
         val done = awaitFinished(RecordEnd.WAKE)
         assertEquals(start.plusSeconds(4 * 30L), done.end)

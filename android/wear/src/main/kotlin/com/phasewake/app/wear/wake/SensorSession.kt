@@ -26,19 +26,19 @@ import com.phasewake.app.core.EpochAssembler
  *
  * Puls ([heartRateSource]): zuerst der Pulssensor der Uhr über den [SensorManager] (etwa jede Sekunde, gebündelt wie
  * die Bewegung), sonst die Health Services ([MeasureClient][androidx.health.services.client.MeasureClient]). Diese
- * liefern bei dunklem Bildschirm nur etwa alle 10 Minuten (Galaxy Watch, Befund 08./09.11.2026): Sie sind für die
+ * liefern bei dunklem Bildschirm nur etwa alle 10 Minuten (Galaxy Watch): Sie sind für die
  * Messung in der sichtbaren App gedacht. Den Sensor hält der Vordergrunddienst («health») mit seinem Wakelock wach,
- * im Modus [batch] mit aufweckendem Sensor die Bündelung selbst (Audit F-01).
+ * im Modus [batch] mit aufweckendem Sensor die Bündelung selbst.
  *
  * @param startNanos Fensterbeginn auf der Uhr `SystemClock.elapsedRealtimeNanos()`.
  * @param lowPower Für die Einschlaf-Messung ([OnsetMonitor]): nur Bewegung. Mit aufweckendem Sensor, dessen Puffer
  *   mindestens [MIN_WAKE_UP_FIFO] Werte fasst ([continuous]), bündelt er bis 5 Minuten und weckt die Uhr nur bei
  *   vollem Puffer. Sonst misst [OnsetMonitor] in Stichproben ([pause], [resume]) und hält dafür selbst einen kurzen
- *   Wakelock: Die Sitzung hält nie einen Wakelock (früher bis 16 Std., Akku-Befund 03.11.2026).
+ *   Wakelock: Die Sitzung hält nie einen Wakelock (früher bis 16 Std.).
  * @param batch Für «Nacht aufzeichnen» ([com.phasewake.app.wear.record.RecordService]): Bewegung und Puls wie sonst,
  *   aber mit aufweckendem Sensor mit grossem Puffer ([continuous]) bis 5 Minuten gebündelt (Puls ebenso); dann braucht
  *   der Dienst keinen langen Wakelock. Ohne solchen Sensor wie ohne [batch] (10 s).
- * @param sampled Für die Lernphase ([com.phasewake.app.wear.record.LearnSampler], Entscheid r1AD 10.11.2026): Bewegung
+ * @param sampled Für die Lernphase ([com.phasewake.app.wear.record.LearnSampler]): Bewegung
  *   und Puls nur in Stichproben – beide Sensoren erst mit [resume] an und mit [pause] wieder ab, ohne Bündelung (sonst
  *   kämen Werte erst nach dem Ende der Stichprobe). Die Stichproben steuert der Aufrufer samt kurzem Wakelock.
  * @param onEpochs Erhält abgeschlossene Epochen in zeitlicher Reihenfolge.

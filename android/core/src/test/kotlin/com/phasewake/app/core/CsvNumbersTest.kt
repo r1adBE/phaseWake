@@ -3,7 +3,7 @@ package com.phasewake.app.core
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-/** Zahlen im CSV-Export gleich auf beiden Plattformen (Audit F-7); Gegenstück: `CsvNumbersTests` (Swift). */
+/** Zahlen im CSV-Export gleich auf beiden Plattformen; Gegenstück: `CsvNumbersTests` (Swift). */
 class CsvNumbersTest {
 
     @Test

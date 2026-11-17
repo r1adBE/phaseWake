@@ -34,7 +34,7 @@ enum RestoreJournal {
     /// Merker «Tausch gescheitert»: beim nächsten Start den alten Stand zurückholen.
     private static var rollingBackFile: URL { work.appendingPathComponent("rolling-back.json") }
     /// Wecker und Einstellungen aus der Sicherung (für ``BackupIO/applySettings(_:to:)`` nach dem Tausch), ohne Nächte und
-    /// Notizen (``settingsOnly(_:)``, Vollaudit DA-5): Die liegen schon in `staging`.
+    /// Notizen (``settingsOnly(_:)``): Die liegen schon in `staging`.
     private static var payloadFile: URL { work.appendingPathComponent("payload.json") }
 
     /// Legt den Arbeitsordner frisch an; Reste eines Abbruchs vor dem Merker (bisheriger Stand unberührt) gehen weg.
@@ -100,7 +100,7 @@ enum RestoreJournal {
     @discardableResult
     static func rollBack(_ marker: Marker, model: PhoneModel) -> Bool {
         let manager = FileManager.default
-        // Wecker und Einstellungen der Sicherung braucht das Zurückholen nicht (Vollaudit DA-5).
+        // Wecker und Einstellungen der Sicherung braucht das Zurückholen nicht.
         try? manager.removeItem(at: payloadFile)
         if manager.fileExists(atPath: swappingFile.path) {
             // Nur Umbenennen (braucht keinen Platz): Ein Abbruch ab hier holt beim nächsten Start zurück.

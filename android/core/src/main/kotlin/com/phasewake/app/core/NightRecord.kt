@@ -26,8 +26,8 @@ data class NightRecord(
     /** Akkustand des Handys in dieser Nacht ([BatteryTrack]), nur auf dem Handy; `null` = nicht gemessen. */
     val phoneBattery: List<BatteryPoint>? = null,
     /**
-     * Beginn der Einschlafdauer dieser Nacht (Bettzeit der automatischen Messung bzw. «Gute Nacht»), von der Uhr gemessen
-     * (Entscheid r1AD 15.11.2026); `null` = unbekannt (nicht gemessen, ältere Uhr-App).
+     * Beginn der Einschlafdauer dieser Nacht (Bettzeit der automatischen Messung bzw. «Gute Nacht»), von der Uhr gemessen;
+     * `null` = unbekannt (nicht gemessen, ältere Uhr-App).
      */
     val bedAt: Instant? = null,
     /** Einschlafzeit dieser Nacht aus der Einschlaf-Messung der Uhr; `null` = unbekannt. */

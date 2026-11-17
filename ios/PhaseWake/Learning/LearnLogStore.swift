@@ -2,7 +2,7 @@ import Foundation
 import Observation
 import PhaseWakeCore
 
-/// Lern-Übersicht am iPhone (Entscheid r1AD 13.11.2026; wie `LearnLogStore` auf Android): die Meldungen der Apple Watch,
+/// Lern-Übersicht am iPhone (wie `LearnLogStore` auf Android): die Meldungen der Apple Watch,
 /// warum die Lernphase eine Nacht nicht aufzeichnet (``LearnSkip``, Benutzerdaten), und die Nächte mit Wecker (bei jedem
 /// Neuplanen der Sicherung gemerkt, ``LearnLog/mergeAlarmNights(_:planned:now:calendar:)``). Höchstens 14 Nächte je
 /// Art; privat im von der Sicherung ausgenommenen Ordner (`PrivateFiles`), weder in der iCloud-Sicherung noch in
@@ -27,7 +27,7 @@ final class LearnLogStore {
     }
 
     @ObservationIgnored private let url: URL
-    /// Ob die Datei gelesen ist (oder fehlt); vor dem ersten Entsperren nicht: dann nie schreiben (Prüfrunde 2 SP-1).
+    /// Ob die Datei gelesen ist (oder fehlt); vor dem ersten Entsperren nicht: dann nie schreiben.
     @ObservationIgnored private(set) var loaded = false
     /// Meldungen der Uhr, die vor dem Lesen kamen; ``load()`` nimmt sie danach auf.
     @ObservationIgnored private var pending: [String] = []

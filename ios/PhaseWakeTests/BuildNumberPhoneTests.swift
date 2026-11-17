@@ -2,7 +2,7 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWake
 
-/// Build-Nummer der Testversion in «Über», Diagnose und Nacht-Check (Entscheid r1AD 14.11.2026), wie
+/// Build-Nummer der Testversion in «Über», Diagnose und Nacht-Check, wie
 /// `BuildNumberTest` und `NightCheckBuildTest` auf Android.
 final class BuildNumberPhoneTests: XCTestCase {
     private let now = Date(timeIntervalSince1970: 1_793_000_000)

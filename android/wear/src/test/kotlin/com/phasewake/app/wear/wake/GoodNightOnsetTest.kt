@@ -35,7 +35,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Automatische Einschlaf-Messung und «Gute Nacht» im [WakeService] (Akku-Befund 03.11.2026): Akku-Grenze, höchstens
+ * Automatische Einschlaf-Messung und «Gute Nacht» im [WakeService]: Akku-Grenze, höchstens
  * 2 Std. auch nach dem Wiederaufnehmen, Ende immer im Diagnose-Protokoll, Nacht danach erledigt.
  */
 @RunWith(RobolectricTestRunner::class)
@@ -46,7 +46,7 @@ class GoodNightOnsetTest {
     private var controller: ServiceController<WakeService>? = null
     private val now = Instant.ofEpochMilli(System.currentTimeMillis())
     private val zone = ZoneId.systemDefault()
-    // 9 Std. vor der Weckzeit, 8 Std. Schlaf: Bettzeit in 1 Std., die automatische Messung beginnt planmässig (AP3-2).
+    // 9 Std. vor der Weckzeit, 8 Std. Schlaf: Bettzeit in 1 Std., die automatische Messung beginnt planmässig.
     private val at = now.plus(Duration.ofHours(9)).atZone(zone)
     // Speicher und Protokoll bleiben zwischen Tests derselben JVM: eigene Kennung, nur Zeilen ab Teststart.
     private val id = "onset-${System.nanoTime()}"
@@ -100,13 +100,13 @@ class GoodNightOnsetTest {
         awaitDone(latest)
         assertNull(service.onset)
         assertTrue(entries().none { it.kind == DiagKind.MEASURE_START })
-        // Nacht-Check am Handy (Audit F-06): Die Meldung geht mit dem Uhr-Status.
+        // Nacht-Check am Handy: Die Meldung geht mit dem Uhr-Status.
         awaitSkip(RecorderSkip(latest, RecorderSkip.Reason.BATTERY))
     }
 
     @Test
     fun chargingWithLowBatteryStillMeasures() {
-        // Prüfrunde 2 F-6: 25 % am Ladegerät um 21:30 – die Uhr ist zur Bettzeit voll. Vorher fiel die Messung samt
+        // 25 % am Ladegerät um 21:30 – die Uhr ist zur Bettzeit voll. Vorher fiel die Messung samt
         // Lernnacht für die ganze Nacht aus; jetzt beginnt sie und wartet am Ladegerät.
         battery(25)
         shadowOf(context.getSystemService(BatteryManager::class.java)).setIsCharging(true)
@@ -222,7 +222,7 @@ class GoodNightOnsetTest {
         val at = System.currentTimeMillis()
         runBlocking {
             app.learning.setIfNewer(LearningSnapshot(true, null, null, at))
-            // Schalter «Lernphase» am Handy aus (Audit F-02): neuerer Stand ohne Lernphase.
+            // Schalter «Lernphase» am Handy aus: neuerer Stand ohne Lernphase.
             assertTrue(app.learning.setIfNewer(LearningSnapshot(false, null, null, at + 1)))
         }
         val service = service()
@@ -236,7 +236,7 @@ class GoodNightOnsetTest {
 
     @Test
     fun windowBeginningDuringTheMeasurementCountsAsMeasured() {
-        // Fail-closed (Entscheid r1AD 10.11.2026): Fenster beginnt, die Messung lief noch ohne Einschlafzeit.
+        // Fail-closed: Fenster beginnt, die Messung lief noch ohne Einschlafzeit.
         battery(80)
         val service = service()
         service.startGoodNight(id, auto = true)
@@ -270,9 +270,9 @@ class GoodNightOnsetTest {
 
     @Test
     fun automaticStartAfterBedtimeLeavesOnsetUnknown() {
-        // Tiefenaudit AP3-2: Weckzeit in 3 Std., 8 Std. Schlaf: Die Bettzeit ist 5 Std. vorbei. Ruhe ab jetzt hiesse nur
+        // Weckzeit in 3 Std., 8 Std. Schlaf: Die Bettzeit ist 5 Std. vorbei. Ruhe ab jetzt hiesse nur
         // «schlief schon»: keine Messung, Einschlafzeit unbekannt. Im Hintergrund gestartet gilt die Nacht als nicht
-        // gemessen, ohne Untergrenze kurzer Nächte (Entscheid r1AD 14.11.2026 zu HG-2; vorher fail-closed).
+        // gemessen, ohne Untergrenze kurzer Nächte (vorher fail-closed).
         battery(80)
         // Nur der Vordergrunddienst läuft, kein Fenster der App ist sichtbar.
         appImportance(android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND_SERVICE)
@@ -294,7 +294,7 @@ class GoodNightOnsetTest {
 
     @Test
     fun lateStartWithTheAppOpenMeasuresFromNow() {
-        // HG-2: Bettzeit 5 Std. vorbei, aber ein Fenster der App ist sichtbar (Person wach): Die Messung läuft ab jetzt.
+        // Bettzeit 5 Std. vorbei, aber ein Fenster der App ist sichtbar (Person wach): Die Messung läuft ab jetzt.
         battery(80)
         appImportance(android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND)
         val soon = now.plus(Duration.ofHours(3)).atZone(zone)
@@ -334,7 +334,7 @@ class GoodNightOnsetTest {
         assertTrue(!OnsetRules.startedLate(tap.plusMillis(200), tap))
         assertTrue(OnsetRules.startedLate(tap.plus(Duration.ofMinutes(20)), tap))
         assertEquals(Duration.ofSeconds(60), OnsetRules.LATE_START_TOLERANCE)
-        // HG-2 (wie `RecorderOnset.lateStart`): spät bei sichtbarer App misst ab jetzt, spät im Hintergrund nicht gemessen.
+        // Spät bei sichtbarer App misst ab jetzt, spät im Hintergrund nicht gemessen.
         val late = bedAt.plus(Duration.ofMinutes(15))
         assertEquals(OnsetRules.LateStart.ON_TIME, OnsetRules.lateStart(bedAt.minus(Duration.ofMinutes(40)), bedAt, foreground = false))
         assertEquals(OnsetRules.LateStart.FOREGROUND, OnsetRules.lateStart(late, bedAt, foreground = true))
@@ -354,7 +354,7 @@ class GoodNightOnsetTest {
 
     @Test
     fun automaticOnsetNeverBeforeBedtime() {
-        // Vollaudit K-4: Weckzeit 07:30, Schlafziel 8 Std. → Bettzeit 23:30, Messung ab 22:30. Still ab 22:30 (Sofa):
+        // Weckzeit 07:30, Schlafziel 8 Std. → Bettzeit 23:30, Messung ab 22:30. Still ab 22:30 (Sofa):
         // eingeschlafen frühestens 23:30, nicht 22:30 (sonst Zielzeit 06:30 und keine Untergrenze kurzer Nächte).
         val start = Instant.parse("2026-11-10T22:30:00Z")
         val latest = Instant.parse("2026-11-11T07:30:00Z")

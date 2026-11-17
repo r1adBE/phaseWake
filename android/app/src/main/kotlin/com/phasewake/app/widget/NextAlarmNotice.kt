@@ -151,7 +151,7 @@ class NextAlarmNotice(private val context: Context, private val now: () -> Insta
         /**
          * Ab wann die Mitteilung zur Zielzeit [target] erscheint: zur Bettzeit-Erinnerung, ist diese aus
          * zum früheren von ihr und 22:00 am Vorabend; nie früher als [MAX_AHEAD] vor der Zielzeit. [latencyMinutes]: gelernte
-         * Einschlafdauer wie bei der Erinnerung (die eine Bettzeit, Audit O-03).
+         * Einschlafdauer wie bei der Erinnerung (die eine Bettzeit).
          */
         internal fun showFrom(target: Instant, zone: ZoneId, goalMinutes: Int, bedtimeReminder: Boolean, latencyMinutes: Int? = null): Instant {
             val reminder = Bedtime.reminderAt(target, goalMinutes, latencyMinutes = latencyMinutes)

@@ -72,7 +72,7 @@
     <string name="editor_delete_title">این زنگ حذف شود؟</string>
     <string name="home_max_alarms">حداکثر %1$d زنگ – برای افزودن زنگ جدید، یکی را حذف کن.</string>
     <string name="editor_enabled">زنگ روشن</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">دفعهٔ بعد رد شود</string>
     <string name="alarm_skipped">رد شد: %1$s</string>
     <string name="nap_title">چرت کوتاه</string>
@@ -102,7 +102,7 @@
     <string name="record_since">از %1$s</string>
     <string name="notification_record_title">در حال ضبط شب</string>
     <string name="record_battery_low">باتری برای ضبط خیلی کم است</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">مرحلهٔ یادگیری</string>
     <string name="watch_learn_warn">ساعتت را شارژ کن، وگرنه امشب برای مرحلهٔ یادگیری حساب نمی‌شود (باتری %1$d %%، لازم %2$d %%).</string>
     <string name="watch_learn_skip_battery">امشب برای مرحلهٔ یادگیری حساب نمی‌شود: باتری %1$d %%، لازم %2$d %%.</string>

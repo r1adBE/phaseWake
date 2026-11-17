@@ -62,7 +62,7 @@ class PhoneRingFlowTest {
         // Kurz nach der Zeitgrenze: Der Ablauf im Prozess (Schlummern oder Ende) kommt immer zuerst.
         assertEquals(now + RingRules.TIMEOUT_MS + RingRules.RESUME_MARGIN_MS, RingRules.resumeAt(now))
         assertTrue(RingRules.resumeAt(now) > now + RingRules.TIMEOUT_MS)
-        // Führt das Handy, zählen seine Runden; führt die Uhr, ihre Restzahl (04.11.2026).
+        // Führt das Handy, zählen seine Runden; führt die Uhr, ihre Restzahl.
         assertEquals(2, RingRules.resumeSnoozesDone(fromWatch = false, snoozesLeft = 0, snoozesDone = 2))
         assertEquals(Snooze.MAX_COUNT - 1, RingRules.resumeSnoozesDone(fromWatch = true, snoozesLeft = 1, snoozesDone = 0))
         assertEquals(0, RingRules.resumeSnoozesDone(fromWatch = true, snoozesLeft = 9, snoozesDone = 0))

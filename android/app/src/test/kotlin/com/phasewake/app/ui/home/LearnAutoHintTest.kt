@@ -9,7 +9,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-/** Hinweis der Lernphase je Weckerart (Audit O-02): «Gute Nacht» nur, wo die Uhr den Knopf zeigt. */
+/** Hinweis der Lernphase je Weckerart: «Gute Nacht» nur, wo die Uhr den Knopf zeigt. */
 class LearnAutoHintTest {
     private val zone = ZoneOffset.UTC
     private val now = Instant.parse("2026-11-14T20:00:00Z")

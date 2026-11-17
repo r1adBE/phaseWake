@@ -31,8 +31,8 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * Prüfrunde 2, Handy: Änderungen anderswo, während ein Bildschirm offen ist (B-3, B-11), und Rückfragen vor dem
- * Löschen einer eigenen Notiz (B-10) und bevor der Probewecker einen wartenden Powernap ersetzt (B-12).
+ * Handy: Änderungen anderswo, während ein Bildschirm offen ist, und Rückfragen vor dem
+ * Löschen einer eigenen Notiz und bevor der Probewecker einen wartenden Powernap ersetzt.
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35], application = OfflineApp::class, qualifiers = "w411dp-h891dp-port")
@@ -76,7 +76,7 @@ class EditsElsewhereTest {
 
     private fun alarm(id: String, label: String = "") = AlarmSpec(id = id, hour = 7, minute = 0, days = setOf(DayOfWeek.MONDAY), label = label)
 
-    /** B-3: Der bearbeitete Wecker wird anderswo gelöscht: Hinweis, Editor zu, kein neuer Wecker aus den Eingaben. */
+    /** Der bearbeitete Wecker wird anderswo gelöscht: Hinweis, Editor zu, kein neuer Wecker aus den Eingaben. */
     @Test
     fun alarmDeletedWhileEditingClosesEditor() {
         val tree = start(listOf(alarm("work", "Arbeit")))
@@ -100,7 +100,7 @@ class EditsElsewhereTest {
         assertTrue(runBlocking { context.phoneApp.alarms.current().alarms }.isEmpty())
     }
 
-    /** B-11: Während des Anlegens sind anderswo alle acht Plätze belegt worden: Hinweis, der Editor bleibt mit den Eingaben offen. */
+    /** Während des Anlegens sind anderswo alle acht Plätze belegt worden: Hinweis, der Editor bleibt mit den Eingaben offen. */
     @Test
     fun ninthAlarmShowsHintAndKeepsEditor() {
         // Ohne Wecker: «Neuer Wecker» steht auf der Startseite (mit Weckern ist es der schwebende Knopf).
@@ -126,7 +126,7 @@ class EditsElsewhereTest {
         settle(tree, "Einstellungen nicht offen") { tree.shows(context.getString(R.string.settings_data)) }
     }
 
-    /** B-10: Löschen einer eigenen Notiz fragt zuerst; erst «Löschen» entfernt sie. */
+    /** Löschen einer eigenen Notiz fragt zuerst; erst «Löschen» entfernt sie. */
     @Test
     fun deletingCustomNoteAsksFirst() {
         runBlocking { context.phoneApp.notes.addCustom("Meditation") }
@@ -147,7 +147,7 @@ class EditsElsewhereTest {
         assertTrue(runBlocking { context.phoneApp.notes.custom.first() }.isEmpty())
     }
 
-    /** B-12: «In 2 Minuten testen» mit wartendem Powernap fragt zuerst; der Powernap bleibt bis zur Bestätigung. */
+    /** «In 2 Minuten testen» mit wartendem Powernap fragt zuerst; der Powernap bleibt bis zur Bestätigung. */
     @Test
     fun testAlarmAsksBeforeReplacingNap() {
         val nap = Transient.nap(null, Instant.now(), ZoneId.systemDefault(), 20, "nap1")
@@ -164,7 +164,7 @@ class EditsElsewhereTest {
         assertEquals(TransientKind.NAP, runBlocking { context.phoneApp.transient.active() }?.kind)
     }
 
-    /** B-13: Die Rückfrage «Verlauf löschen» nennt auch Notizen, Befinden, Haken und Geräusche (wie das Löschen). */
+    /** Die Rückfrage «Verlauf löschen» nennt auch Notizen, Befinden, Haken und Geräusche (wie das Löschen). */
     @Test
     fun clearHistoryNamesEverything() {
         val tree = start(emptyList())

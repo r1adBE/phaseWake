@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Keine Build-Nummern und keine TODO-Marken im Produktivcode (docs/ENTWICKLUNG.md, Abschnitte 2 und 3).
 
-Durchsucht android/*/src/main und die Swift-Quellen der Apps und des Kerns (ohne Tests). Dazu Kommentare (Audit N-06):
+Durchsucht android/*/src/main und die Swift-Quellen der Apps und des Kerns (ohne Tests). Dazu Kommentare:
 «Build 54», «build #54», «Build-Nummer 54» in Kommentaren aller Kotlin-, Gradle-, Swift- und YAML-Dateien (auch Tests
 und Workflows). Obergrenze: 0.
 
-Ausnahme (Entscheid r1AD 14.11.2026, Build-Nummer in «Über», Diagnose und Nacht-Check): Je eine Datei pro Plattform
+Ausnahme (Build-Nummer in «Über», Diagnose und Nacht-Check, siehe docs/ENTSCHEIDE.md): Je eine Datei pro Plattform
 (`BuildNumber`) darf die Build-Nummer lesen; Literale, Texte und TODO-Marken sind auch dort verboten.
 """
 import re

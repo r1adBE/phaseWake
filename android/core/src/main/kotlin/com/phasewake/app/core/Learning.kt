@@ -5,7 +5,7 @@ import java.time.Instant
 import java.time.ZoneId
 
 /**
- * Lernphase (Entscheid r1AD 09.11.2026): Die Galaxy Watch zeichnet [NIGHTS] Nächte auf, danach passt Phase Wake den Wecker
+ * Lernphase: Die Galaxy Watch zeichnet [NIGHTS] Nächte auf, danach passt Phase Wake den Wecker
  * an: eigenes Grundrauschen ([NoiseFloor], [DetectorConfig.personalFloor]), eigener Ruhepuls
  * ([DetectorConfig.restingHeartRate]) und die Einschlafdauer für die Empfehlung der Schlafenszeit ([bedtimeRange]).
  * Regel siehe `docs/PHASENERKENNUNG.md`, Abschnitt 10. Reine Logik; identisch zu `Learning` im Swift-Kern (dort zusätzlich die
@@ -17,7 +17,7 @@ object Learning {
 
     /**
      * Eine Nacht zählt ab so vielen Epochen mit Bewegung (36 Min). Die Uhr misst in der Lernphase in Stichproben (60 s alle
-     * 5 Min, Entscheid r1AD 10.11.2026): 3 Std. ergeben 36 Stichproben = 72 Epochen.
+     * 5 Min): 3 Std. ergeben 36 Stichproben = 72 Epochen.
      */
     const val MIN_MEASURED_EPOCHS: Int = 72
 
@@ -177,7 +177,7 @@ object Learning {
     /**
      * Empfohlene Schlafenszeit vor der Zielzeit [target]: spätestens Zielzeit − Schlaf [sleepMinutes] (Schlafziel bzw.
      * Schlafdauer des Weckers) − Einschlafdauer [latencyMinutes] (ungelernt 0), abgerundet auf [ROUND_MINUTES]; frühestens
-     * [BEDTIME_RANGE_MINUTES] davor. Spätestens = [Bedtime.bedtime] (die eine Bettzeit, Audit O-03), abgerundet.
+     * [BEDTIME_RANGE_MINUTES] davor. Spätestens = [Bedtime.bedtime] (die eine Bettzeit), abgerundet.
      * @return (frühestens, spätestens).
      */
     fun bedtimeRange(target: Instant, sleepMinutes: Int, latencyMinutes: Int?): Pair<Instant, Instant> {

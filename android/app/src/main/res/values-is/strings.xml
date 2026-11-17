@@ -386,7 +386,7 @@
     <string name="chart_window">Vakningargluggi</string>
     <string name="chart_no_data">engin gögn</string>
     <string name="chart_feeling_hint">Ýttu á punkt til að sjá athugasemdir þeirrar nætur.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Prufuvekjari</string>
     <string name="test_button">Prófa eftir 2 mínútur</string>
     <string name="test_hint">Hringir eftir 2 mínútur með stillingum næsta vekjara, án blunds. Telst ekki sem nótt.</string>
@@ -602,7 +602,7 @@
     <string name="learn_switch_hint">Úrið mælir hreyfingu og púls á nóttunni (frá %1$d %% rafhlöðu). Slökkt: engin sjálfvirk skráning, lærð gildi haldast.</string>
     <string name="learn_switch_title">Virkt</string>
     <string name="watch_open_app_hint">Opnaðu Phase Wake á úrinu svo það fái skipunina.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Hver nótt frá upphafi námsfasans – hvort hún taldist með og, ef ekki, hvers vegna og hvað hjálpar. Phase Wake þarf %1$d nætur sem teljast með.</string>
     <string name="learn_nights_empty">Engin nótt enn. Sú fyrsta birtist hér morguninn eftir.</string>
     <string name="learn_night_facts">%1$s mælt · %2$d gildi · púls í %3$d %%</string>

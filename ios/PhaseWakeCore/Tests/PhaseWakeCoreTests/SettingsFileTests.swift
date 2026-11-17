@@ -138,7 +138,7 @@ final class SettingsFileTests: XCTestCase {
         XCTAssertEqual(SettingsFile(url: url).string(forKey: "k"), "a")
     }
 
-    /// Prüfrunde 2 SP-7 (wie Android): Der leere Stand nach einer kaputten Datei ist markiert und bleibt es; die Kopie
+    /// Wie Android: Der leere Stand nach einer kaputten Datei ist markiert und bleibt es; die Kopie
     /// enthält die kaputte Datei. Ein heiler oder neuer Stand ist nicht markiert.
     func testResetAfterBrokenFileIsMarked() throws {
         try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)

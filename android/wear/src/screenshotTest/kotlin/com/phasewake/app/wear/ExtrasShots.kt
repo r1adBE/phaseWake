@@ -17,7 +17,7 @@ import com.phasewake.app.wear.ui.NapScreen
 import com.phasewake.app.wear.ui.WatchHomeExtras
 import java.time.Duration
 
-/** Bildschirmfotos der Uhr aus Runde 3: Powernap, Diagnose und «Nächstes Mal überspringen». Beispieldaten, keine echten. */
+/** Bildschirmfotos der Uhr: Powernap, Diagnose und «Nächstes Mal überspringen». Beispieldaten, keine echten. */
 
 /** Startbildschirm mit dem Chip «Powernap» (zentriert unter dem Weckfenster). */
 @Composable

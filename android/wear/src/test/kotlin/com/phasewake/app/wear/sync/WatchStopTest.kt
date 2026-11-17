@@ -32,7 +32,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * «stop» vom Handy, während die Uhr noch misst (Audit A-7, AN-7, AN-8), auf dem echten Weg: Nachricht an den
+ * «stop» vom Handy, während die Uhr noch misst, auf dem echten Weg: Nachricht an den
  * [WatchListenerService], Befehl an den laufenden [WakeService]. Es beendet die Nacht nur, wenn es genau sie meint
  * (Wecker und Zielzeit); dann gilt sie als erledigt und wird nicht gleich wieder geplant. Sonst läuft die Messung weiter.
  */
@@ -104,7 +104,7 @@ class WatchStopTest {
         val service = measuring()
         assertTrue(stopFromPhone(service, "a", plan.target.toEpochMilli()))
         assertNull(service.night)
-        // Audit AN-7: erledigt bis zur Zielzeit, sonst begänne das Neuplanen dieselbe Nacht gleich wieder.
+        // Erledigt bis zur Zielzeit, sonst begänne das Neuplanen dieselbe Nacht gleich wieder.
         awaitUntil("Nacht nicht als erledigt gespeichert") { runBlocking { context.wearApp.scheduler.doneUntil()["a"] } != null }
         assertEquals(plan.target, runBlocking { context.wearApp.scheduler.doneUntil()["a"] })
     }

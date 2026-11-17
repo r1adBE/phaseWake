@@ -1,7 +1,7 @@
 import XCTest
 @testable import PhaseWakeCore
 
-/// Prüfrunde 2 (SP-3, SP-5): Start vor dem ersten Entsperren. Eine Datei an ihrem Platz, die (noch) nicht lesbar ist,
+/// Start vor dem ersten Entsperren. Eine Datei an ihrem Platz, die (noch) nicht lesbar ist,
 /// steht hier für die geschützte Datei auf dem Gerät (ein Ordner an ihrer Stelle, wie in `LockedSettingsPhoneTests`).
 final class LockedStartTests: XCTestCase {
     private var dir: URL!
@@ -47,7 +47,7 @@ final class LockedStartTests: XCTestCase {
         XCTAssertEqual(ProtectedFile.read(url), .data(Data("x".utf8)))
     }
 
-    // MARK: SP-3
+    // MARK: Einstellungen vor dem ersten Lesen
 
     /// Wörterbuch vor dem ersten Lesen geändert (lesen, ändern, schreiben gegen den leeren Stand, etwa
     /// `backupSuppressedByAlarm`): Beim Lesen kommt der Eintrag dazu, die übrigen der Datei bleiben.
@@ -96,7 +96,7 @@ final class LockedStartTests: XCTestCase {
         XCTAssertEqual(locked.doneUntil, ["a": now, "b": now])
     }
 
-    // MARK: SP-5
+    // MARK: Verlauf
 
     /// Ein ungültiges Byte im Verlauf kostet nicht alle Nächte (wie `decodeToString` auf Android), und die nächste
     /// Nacht überschreibt sie nicht.

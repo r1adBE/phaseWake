@@ -373,7 +373,7 @@
     <string name="chart_window">နှိုးချိန်အပိုင်း</string>
     <string name="chart_no_data">ဒေတာ မရှိ</string>
     <string name="chart_feeling_hint">ထိုည၏ မှတ်စုများကို ကြည့်ရန် အစက်ကို တို့ပါ။</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">စမ်းသပ်နှိုးစက်</string>
     <string name="test_button">2 မိနစ်အတွင်း စမ်းရန်</string>
     <string name="test_hint">နောက်နှိုးစက်၏ ဆက်တင်များဖြင့် 2 မိနစ်အတွင်း မြည်မည်၊ ခဏဆိုင်းခြင်းမပါ။ ညအဖြစ် မရေတွက်ပါ။</string>
@@ -587,7 +587,7 @@
     <string name="learn_switch_hint">သင့်နာရီသည် ညအချိန်တွင် လှုပ်ရှားမှုနှင့် သွေးခုန်နှုန်းကို တိုင်းတာသည် (ဘက်ထရီ အနည်းဆုံး %1$d %%)။ ပိတ်: အလိုအလျောက် မှတ်တမ်းမတင်၊ သင်ယူထားသော တန်ဖိုးများ ကျန်ရှိသည်။</string>
     <string name="learn_switch_title">ဖွင့်ထားသည်</string>
     <string name="watch_open_app_hint">အမိန့်ကို လက်ခံရရှိရန် နာရီပေါ်တွင် Phase Wake ကို ဖွင့်ပါ။</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">သင်ယူမှုအဆင့် စတင်ကတည်းက ည တစ်ညစီ – ရေတွက်ခဲ့သလား၊ မရေတွက်ရင် ဘာကြောင့်လဲ၊ ဘာက ကူညီနိုင်လဲ။ Phase Wake အတွက် ရေတွက်ထားသော ည %1$d ည လိုအပ်သည်။</string>
     <string name="learn_nights_empty">ည မရှိသေးပါ။ ပထမညကို နောက်တစ်နေ့ မနက် ဒီမှာ ပြပါမည်။</string>
     <string name="learn_night_facts">%1$s တိုင်းထားသည် · တန်ဖိုး %2$d ခု · %3$d %% တွင် သွေးခုန်နှုန်း</string>

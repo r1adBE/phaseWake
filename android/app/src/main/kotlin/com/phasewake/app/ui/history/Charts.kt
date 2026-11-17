@@ -100,7 +100,7 @@ data class HistoryCharts(
             health: List<HealthFeeling> = emptyList(),
             /** Erster Tag der Woche für die Übersicht (Sprache des Geräts). */
             firstDay: DayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek,
-            /** Gelernte Einschlafdauer für die Bettzeit-Linie (die eine Bettzeit, Audit O-03); `null` = nicht gelernt. */
+            /** Gelernte Einschlafdauer für die Bettzeit-Linie (die eine Bettzeit); `null` = nicht gelernt. */
             latencyMinutes: Int? = null,
         ): HistoryCharts {
             val today = SleepNotes.nightDate(now, zone)

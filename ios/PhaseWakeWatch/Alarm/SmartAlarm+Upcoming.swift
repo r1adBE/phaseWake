@@ -2,7 +2,7 @@ import Foundation
 import PhaseWakeCore
 import UserNotifications
 
-/// Rückfälle der Nächte nach der nächsten (Audit AP-2): watchOS plant die Smart-Alarm-Sitzung nur bei offener App und
+/// Rückfälle der Nächte nach der nächsten: watchOS plant die Smart-Alarm-Sitzung nur bei offener App und
 /// weckt die App nicht verlässlich. Läuft die App tagelang nicht, stand bisher nur der Rückfall der nächsten Nacht. Jetzt
 /// bekommt jede weitere Nacht bis 14 Tage voraus eine eigene Weck-Mitteilung (wie der Zweitwecker am iPhone), im Rahmen
 /// von `NotificationBudget`: innerhalb von 48 h die ganze Kette (`NotificationChain`), danach nur die erste, und nur,
@@ -42,7 +42,7 @@ enum UpcomingFallbacks {
     /// gesucht (`BackupPlan.nights`): eingeschaltet, nicht übersprungen, keine Feiertage, nicht erledigt (`doneUntil`).
     /// Ein einmaliger Wecker nur mit seinem ersten Vorkommen. Hat «Gute Nacht» die Zielzeit von `first` vorverlegt
     /// (`nominalFirst` = eingestellte Weckzeit derselben Nacht), kommt diese Nacht nicht nochmals zur eingestellten Zeit.
-    /// Gesucht ab dem späteren von `first.target` und `now` (Vollaudit AP2-2): Liegt `first` schon zurück (ausstehende
+    /// Gesucht ab dem späteren von `first.target` und `now`: Liegt `first` schon zurück (ausstehende
     /// Nacht, nachgeholter Wecker), bekäme sonst jede Nacht dazwischen einen Rückfall in der Vergangenheit, der sofort weckt.
     static func nights(after first: WakePlan?, specs: [AlarmSpec], now: Date, doneUntil: [String: Date], nominalFirst: Date?,
                        calendar: Calendar, holidays: Set<String>) -> [WakePlan] {
@@ -62,7 +62,7 @@ enum UpcomingFallbacks {
     /// Mitteilungen je Nacht `nights` (nach Zielzeit sortiert), Rückfall `delay` nach der Zielzeit. `otherPending` =
     /// wartende Mitteilungen der Uhr ohne diese (`otherPending(_:)`). Innerhalb von 48 h die ganze Kette, sonst eine;
     /// ohne Platz weniger, die Liste endet bei der ersten Nacht ohne Platz. Eine Nacht, deren Rückfall nicht nach `now`
-    /// liegt, fällt weg (Vollaudit AP2-2).
+    /// liegt, fällt weg.
     static func plan(_ nights: [WakePlan], now: Date, otherPending: Int, delay: TimeInterval) -> [Entry] {
         var left = max(0, NotificationBudget.limit - NotificationBudget.margin - otherPending)
         var result: [Entry] = []

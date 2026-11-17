@@ -15,7 +15,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Auto-Aus des Einmal-Weckers nach dem Klingeln (Fix G-1/S-1): trifft nur die Fassung, die geklingelt hat, und
+ * Auto-Aus des Einmal-Weckers nach dem Klingeln: trifft nur die Fassung, die geklingelt hat, und
  * überschreibt nie eine neuere Änderung der Gegenseite. Wie `AlarmStampsTests` (Swift).
  */
 class AlarmAutoOffTest {

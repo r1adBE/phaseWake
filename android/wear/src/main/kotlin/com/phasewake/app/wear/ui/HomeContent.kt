@@ -164,12 +164,12 @@ internal fun HomeContent(
 
 /**
  * Warnknopf «Wecker blockiert» (Nicht stören): Fläche und Schrift beider Zeilen aus [scheme], Fehlerfläche mit ihrer
- * Schriftfarbe (≥ 4.5:1, Audit O-04; vorher Schrift des Standardknopfs, 1.8:1).
+ * Schriftfarbe (≥ 4.5:1; vorher Schrift des Standardknopfs, 1.8:1).
  */
 internal fun warningColors(scheme: ColorScheme): Pair<Color, Color> = scheme.errorContainer to scheme.onErrorContainer
 
 /**
- * Einschlafpunkt auf dem Ring: Zielzeit minus Schlafziel und gelernte Einschlafdauer [latencyMinutes] (O-03, wie am Handy
+ * Einschlafpunkt auf dem Ring: Zielzeit minus Schlafziel und gelernte Einschlafdauer [latencyMinutes] (wie am Handy
  * und auf der Apple Watch, `Bedtime.onDial`). Nur zu einem gespeicherten Wecker ([alarm]), nicht zu Powernap oder
  * Probewecker; `null`, wenn er nicht auf das Zifferblatt passt.
  */
@@ -179,7 +179,7 @@ internal fun ringBedtime(plan: WakePlan?, alarm: AlarmSpec?, goalMinutes: Int, l
 @Composable
 private fun NextWindow(plan: WakePlan?, alarm: AlarmSpec?, zone: ZoneId, loading: Boolean, extras: WatchHomeExtras) {
     // Etwas kleiner als das Display, damit darunter «Gute Nacht» schon beim Öffnen zu sehen ist; oben Platz für die
-    // Uhrzeit des Systems, damit sie den Ring nicht überdeckt (Audit U-5).
+    // Uhrzeit des Systems, damit sie den Ring nicht überdeckt.
     // Tippen zählt nur für das Freischalten der Diagnose (7×), ohne Rolle für Bildschirmleser.
     val onTap = extras.onWindowTap
     Box(
@@ -341,7 +341,7 @@ private fun dialFraction(instant: Instant, zone: ZoneId): Float {
     return ((t.hour % 12) * 60 + t.minute) / 720f
 }
 
-/** Kurze Uhrzeit nach 12/24-h-Einstellung der Uhr (Audit N-10). */
+/** Kurze Uhrzeit nach 12/24-h-Einstellung der Uhr. */
 private val shortTime: DateTimeFormatter get() = timeFormatter()
 
 private fun formatTime(instant: Instant, zone: ZoneId): String = shortTime.format(instant.atZone(zone))

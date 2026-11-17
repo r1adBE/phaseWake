@@ -63,8 +63,8 @@ private fun requiredPermissions(): List<String> = buildList {
 internal enum class GoodNightTap { START, CONFIRM_CANCEL, NONE }
 
 /**
- * Tipp auf «Gute Nacht»: läuft sie, fragt das Aufheben zuerst ([GoodNightTap.CONFIRM_CANCEL], wie auf der Apple Watch,
- * Prüfrunde 2 B-7); sonst starten, ausser die Weckzeit ist noch zu weit weg.
+ * Tipp auf «Gute Nacht»: läuft sie, fragt das Aufheben zuerst ([GoodNightTap.CONFIRM_CANCEL], wie auf der Apple Watch);
+ * sonst starten, ausser die Weckzeit ist noch zu weit weg.
  */
 internal fun goodNightTap(active: Boolean, tooFar: Boolean): GoodNightTap = when {
     active -> GoodNightTap.CONFIRM_CANCEL
@@ -112,7 +112,7 @@ internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit, onNap: (
     fun fullScreenMissing() = !NotificationManagerCompat.from(context).canUseFullScreenIntent()
     var fullScreenBlocked by remember { mutableStateOf(fullScreenMissing()) }
     // Nach einer Ablehnung fragt das System oft nicht mehr: dann die App-Einstellungen öffnen. «Gefragt» übersteht das
-    // Prozessende ([PermissionAsks], B-6), sonst tat der erste Tipp nach jedem Start sichtbar nichts.
+    // Prozessende ([PermissionAsks]), sonst tat der erste Tipp nach jedem Start sichtbar nichts.
     fun blocked(permissions: List<String>) = permissions.isNotEmpty() && permissions.none { PermissionAsks.canAsk(context, it) }
     var dndBlocks by remember { mutableStateOf(DoNotDisturb.blocksAlarms(context)) }
     LifecycleResumeEffect(Unit) {
@@ -215,7 +215,7 @@ private fun homeExtras(now: Instant, zone: ZoneId, onNap: () -> Unit, onDiagnost
     val diagFlow = remember { WatchDiag.shown(context) }
     val diagnostics by diagFlow.collectAsStateWithLifecycle(initialValue = false)
     val sleepGoal by app.sleepGoal.minutes.collectAsStateWithLifecycle(initialValue = SleepGoal.DEFAULT_MINUTES)
-    // Gelernte Einschlafdauer vom Handy (O-03): Bettzeit auf dem Ring wie am Handy und auf der Apple Watch.
+    // Gelernte Einschlafdauer vom Handy: Bettzeit auf dem Ring wie am Handy und auf der Apple Watch.
     val latency by app.learning.latencyMinutes.collectAsStateWithLifecycle(initialValue = null)
     var taps by remember { mutableIntStateOf(0) }
     val locale = LocalConfiguration.current.locales[0]

@@ -12,7 +12,7 @@ public enum ShortNight {
     /// So viele Minuten unter dem Schlafziel gilt eine Nacht noch nicht als kurz.
     public static let marginMinutes = 60
 
-    /// In den letzten so vielen Minuten vor der Zielzeit gilt die Untergrenze nicht mehr (Entscheid r1AD 10.11.2026):
+    /// In den letzten so vielen Minuten vor der Zielzeit gilt die Untergrenze nicht mehr:
     /// Ein neuer früher Moment weckt dann; ein vorher übergangener wird nicht nachgeholt.
     public static let lateMinutes = 10
 
@@ -22,7 +22,7 @@ public enum ShortNight {
     /// Ob frühes Wecken gesperrt ist: Einschlafzeit `onset` bekannt und seit dann weniger als Schlafziel minus
     /// `marginMinutes` vergangen (bei 7½ h also unter 6½ h Schlaf). Ohne bekannte Einschlafzeit gesperrt, wenn sie
     /// gemessen wurde, die Messung aber kein Ergebnis brachte (`measured`: begonnen, dann aufgegeben, vom System
-    /// beendet, gescheitert oder ohne Werte – fail-closed, Entscheid r1AD 10.11.2026); ohne Messung nie. In den letzten
+    /// beendet, gescheitert oder ohne Werte – fail-closed); ohne Messung nie. In den letzten
     /// `lateMinutes` vor der Zielzeit `target` nie mehr (ohne `target`: bis zum Schluss gesperrt).
     public static func blocksEarly(onset: Date?, now: Date, sleepGoalMinutes: Int, target: Date? = nil, measured: Bool = false) -> Bool {
         if let target, now >= target.addingTimeInterval(-TimeInterval(lateMinutes * 60)) { return false }

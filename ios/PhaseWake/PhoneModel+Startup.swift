@@ -12,7 +12,7 @@ extension PhoneModel {
         DiagStore.shared.log(.boot, "app start")
         if device.batteryLevel >= 0 { DiagStore.shared.log(.battery, "\(Int((device.batteryLevel * 100).rounded())) %") }
         // Vor dem ersten Entsperren gestartet (etwa «Stopp» am Zweitwecker nach einem Neustart): nichts planen oder
-        // verwerfen, bis der Stand lesbar ist; `catchUpState` holt dann alles nach (Tiefenaudit AP3-1).
+        // verwerfen, bis der Stand lesbar ist; `catchUpState` holt dann alles nach.
         guard stateLoaded else {
             // Inzwischen lesbar: `catchUpState` liest und plant alles.
             if !catchUpState() { DiagStore.shared.log(.boot, "settings not readable yet, planning after unlock") }
@@ -22,7 +22,7 @@ extension PhoneModel {
     }
 
     /// Stand nachlesen, falls er beim Start nicht lesbar war (vor dem ersten Entsperren), und dann alles planen wie beim
-    /// Start (AP3-1). Aufgerufen beim ersten Entsperren, beim Öffnen und von jedem Neuplanen, das den Stand braucht.
+    /// Start. Aufgerufen beim ersten Entsperren, beim Öffnen und von jedem Neuplanen, das den Stand braucht.
     /// - Returns: ob der Stand gelesen ist (schon vorher oder jetzt).
     @discardableResult
     func catchUpState() -> Bool {
@@ -34,7 +34,7 @@ extension PhoneModel {
         guard SettingsFile.phone.isReadable else { return false }
         loadState()
         guard stateLoaded else { return false }
-        // Feiertagswahl: beim Start galt das Land des Geräts (Prüfrunde 2 SP-2).
+        // Feiertagswahl: beim Start galt das Land des Geräts.
         let holidaysMoved = holidays.reloadChoice()
         holidays.adopt(lastSent: storage.holidays)
         DiagStore.shared.log(.boot, "settings readable, state loaded")
@@ -49,8 +49,8 @@ extension PhoneModel {
         return true
     }
 
-    /// Lernphase und Lern-Übersicht nachlesen und gemerkte Nächte speichern, sobald ihre Dateien lesbar sind (Prüfrunde 2
-    /// HG-1/SP-1). - Returns: ob die Lernphase eben erst gelesen wurde.
+    /// Lernphase und Lern-Übersicht nachlesen und gemerkte Nächte speichern, sobald ihre Dateien lesbar sind.
+    /// - Returns: ob die Lernphase eben erst gelesen wurde.
     @discardableResult
     private func catchUpFiles() -> Bool {
         LearnLogStore.shared.load()
@@ -77,7 +77,7 @@ extension PhoneModel {
     /// Beim Öffnen: neuer Tag → Feiertage neu auflösen (plant dabei alles neu); sonst die Sicherung nachziehen, damit
     /// sie wieder `BackupAlarm.horizon` weit reicht (der Abgleich lässt Unverändertes stehen).
     func becameActive() {
-        // Stand vor dem ersten Entsperren gelesen (Prozess lief seither weiter): jetzt nachlesen (AP3-1).
+        // Stand vor dem ersten Entsperren gelesen (Prozess lief seither weiter): jetzt nachlesen.
         catchUpState()
         // Nachholen, falls es beim Start nicht ging (Merker vor dem ersten Entsperren nicht lesbar).
         RestoreJournal.recover(model: self)

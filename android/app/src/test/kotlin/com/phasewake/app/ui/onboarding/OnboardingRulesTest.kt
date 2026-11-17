@@ -7,8 +7,8 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * Audit N-1: «Weiter» auf der Seite «Erster Wecker» legte bei wiederholter Einrichtung jedes Mal einen weiteren Wecker
- * an. Jetzt nur, wenn noch keiner besteht und hier noch keiner angelegt wurde. Dazu das Bild je Schritt (Gestaltung 2).
+ * «Weiter» auf der Seite «Erster Wecker» legte bei wiederholter Einrichtung jedes Mal einen weiteren Wecker
+ * an. Jetzt nur, wenn noch keiner besteht und hier noch keiner angelegt wurde. Dazu das Bild je Schritt.
  */
 class OnboardingRulesTest {
 

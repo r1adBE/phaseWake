@@ -21,7 +21,7 @@ import org.robolectric.annotation.Config
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-/** Texte der Auffälligkeiten (Entscheid r1AD 15.11.2026), Tiefschlaf im Wochenrückblick und «Ausblenden» für 7 Tage. */
+/** Texte der Auffälligkeiten, Tiefschlaf im Wochenrückblick und «Ausblenden» für 7 Tage. */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35], application = QuietApp::class)
 class FindingTextTest {

@@ -6,7 +6,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
 /**
- * Fix KN-3: Die Einschlaf-Messung wertet Epoche für Epoche aus ([OnsetRules.scan]); ihr Grundrauschen (Vorwissen im
+ * Die Einschlaf-Messung wertet Epoche für Epoche aus ([OnsetRules.scan]); ihr Grundrauschen (Vorwissen im
  * Weckfenster) stammt nur aus den Epochen bis zum erkannten Einschlafen, wie `RecorderOnset.measure` auf der Apple Watch.
  */
 class OnsetScanTest {

@@ -30,7 +30,7 @@ final class PhoneLearning {
     /// Nachtragen der Einschlafdauer läuft (nicht doppelt).
     @ObservationIgnored private var filling = false
     /// Ob beide Dateien gelesen sind (oder fehlen). Vor dem ersten Entsperren nach einem Neustart nicht: Dann ist der
-    /// Stand hier leer und wird weder gestempelt, gespeichert noch gesendet (Prüfrunde 2 HG-1/SP-1); ``load()`` liest nach.
+    /// Stand hier leer und wird weder gestempelt, gespeichert noch gesendet; ``load()`` liest nach.
     @ObservationIgnored private(set) var loaded = false
     /// Aufzeichnungen der Uhr, die vor dem Lesen kamen; ``load()`` speichert sie danach.
     @ObservationIgnored private var pending: [String] = []
@@ -79,7 +79,7 @@ final class PhoneLearning {
         return true
     }
 
-    /// Ob der Stand nach einem kaputten `learning.v1` leer begann (Prüfrunde 2 SP-7, wie `PhaseWakeStore.wasReset` auf
+    /// Ob der Stand nach einem kaputten `learning.v1` leer begann (wie `PhaseWakeStore.wasReset` auf
     /// Android): Er ist kein neuer Stand und wird nicht gestempelt; die Uhr behält ihre Lernphase, bis hier etwas
     /// geändert wird.
     var wasReset: Bool { FileManager.default.fileExists(atPath: brokenURL.path) }
@@ -127,7 +127,7 @@ final class PhoneLearning {
             return
         }
         DiagStore.shared.log(.sync, "recording received epochs=\(recording.epochs.count) end=\(recording.endReason?.rawValue ?? "-")")
-        // Endete vor «Verlauf löschen» (spät zugestellt): nicht zurückholen (Audit D-02/AP-6, wie Android).
+        // Endete vor «Verlauf löschen» (spät zugestellt): nicht zurückholen (wie Android).
         guard HistoryClear.keeps(end: recording.until, clearedAt: PhoneModel.shared.historyClearedAt) else {
             DiagStore.shared.log(.suppressed, "recording before history clear dropped")
             return
@@ -236,10 +236,10 @@ final class PhoneLearning {
     // MARK: Speichern
 
     /// Stand für die Uhr (`PhoneModel.publishToWatch`); ohne Zeitpunkt (iPhone-App neu installiert) mit «jetzt» und
-    /// gespeichert (Fix S-3, ``LearningState/stampIfNever(now:)``). Nach einem kaputten Stand (``wasReset``) nicht: ohne
-    /// Zeitpunkt behält die Uhr ihren (SP-7).
+    /// gespeichert (``LearningState/stampIfNever(now:)``). Nach einem kaputten Stand (``wasReset``) nicht: ohne
+    /// Zeitpunkt behält die Uhr ihren.
     func watchSnapshot() -> LearningSnapshot {
-        // Nur einen gelesenen Stand stempeln (Datei fehlt oder gelesen), nie den leeren vor dem ersten Entsperren (HG-1/SP-1).
+        // Nur einen gelesenen Stand stempeln (Datei fehlt oder gelesen), nie den leeren vor dem ersten Entsperren.
         guard load(), !wasReset else { return state.snapshot }
         var next = state
         if next.stampIfNever(now: Date()) {
@@ -251,7 +251,7 @@ final class PhoneLearning {
 
     /// Speichert `next` und schickt den Stand an die Uhr, wenn er sich für sie geändert hat.
     private func setState(_ next: LearningState) {
-        // Nie den leeren Stand vor dem ersten Entsperren speichern (Prüfrunde 2 SP-1). Nur `loaded`, nicht `load()`: `next`
+        // Nie den leeren Stand vor dem ersten Entsperren speichern. Nur `loaded`, nicht `load()`: `next`
         // beruht auf dem Stand vor dem Aufruf; jetzt erst gelesen, ersetzte er den gelesenen.
         guard loaded else {
             DiagStore.shared.log(.error, "learning not readable, change dropped")
@@ -262,12 +262,11 @@ final class PhoneLearning {
         state = next
         write(next)
         if sendToWatch { PhoneModel.shared.publishToWatch() }
-        // Gelernte Einschlafdauer geändert: Die Bettzeit-Erinnerung folgt der einen Bettzeit (Audit O-03).
+        // Gelernte Einschlafdauer geändert: Die Bettzeit-Erinnerung folgt der einen Bettzeit.
         if latencyChanged { Task { await PhoneModel.shared.replanBedtime() } }
     }
 
-    /// Schreibt den Stand atomar; scheitert es (Speicher voll), bleibt der vorige, und die Diagnose hält es fest
-    /// (Audit 17.11. CODE-02).
+    /// Schreibt den Stand atomar; scheitert es (Speicher voll), bleibt der vorige, und die Diagnose hält es fest.
     private func write(_ next: LearningState) {
         write("learning", to: stateURL) { try JSONEncoder().encode(next) }
     }

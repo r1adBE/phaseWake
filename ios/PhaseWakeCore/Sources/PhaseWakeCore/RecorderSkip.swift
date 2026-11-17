@@ -1,6 +1,6 @@
 import Foundation
 
-/// Nacht-Check (Audit F-06): Die Uhr hat die Messung vor dem Schlafen für die Nacht mit Zielzeit `target` nicht
+/// Nacht-Check: Die Uhr hat die Messung vor dem Schlafen für die Nacht mit Zielzeit `target` nicht
 /// gestartet, obwohl sie gewünscht war (Einschlaf-Messung oder Lernphase), aus `reason`. Die Uhr meldet es ans iPhone;
 /// dort zeigt der Nacht-Check es, bis die Zielzeit vorbei ist (``applies(at:)``; iPhone rot, Android-Handy als Hinweis).
 /// Gleich in Kotlin (`RecorderSkip`).

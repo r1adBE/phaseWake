@@ -74,7 +74,7 @@
     <string name="editor_delete_title">Eliminare questa sveglia?</string>
     <string name="home_max_alarms">Massimo %1$d sveglie: eliminane una per aggiungerne una nuova.</string>
     <string name="editor_enabled">Sveglia attiva</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Salta la prossima volta</string>
     <string name="alarm_skipped">Saltata: %1$s</string>
     <string name="nap_title">Pisolino</string>
@@ -106,7 +106,7 @@
     <string name="record_since">Dalle %1$s</string>
     <string name="notification_record_title">Registrazione della notte</string>
     <string name="record_battery_low">Batteria troppo scarica per registrare</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Fase di apprendimento</string>
     <string name="watch_learn_warn">Ricarica l’orologio, altrimenti stanotte non conterà per la fase di apprendimento (batteria %1$d %%, serve %2$d %%).</string>
     <string name="watch_learn_skip_battery">Stanotte non conta per la fase di apprendimento: batteria al %1$d %%, serve %2$d %%.</string>

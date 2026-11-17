@@ -12,7 +12,7 @@ import java.time.Instant
 import kotlinx.coroutines.flow.first
 
 /**
- * Grundrauschen der Einschlaf-Messung je Nacht (Vollaudit K-1): Die Messung ([OnsetMonitor.floor]) merkt es sich beim
+ * Grundrauschen der Einschlaf-Messung je Nacht: Die Messung ([OnsetMonitor.floor]) merkt es sich beim
  * Einschlafen oder Aufgeben; zu Beginn des Weckfensters derselben Nacht hebt es als Vorwissen
  * ([com.phasewake.app.core.DetectorConfig.withOnsetFloor]) die Schwellen höchstens auf das 1.5-Fache an. Nur die letzte
  * Nacht; dieselbe Zuordnung wie die Einschlafzeit (gleicher Wecker, eingestellte Weckzeit nicht vor der Zielzeit).

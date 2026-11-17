@@ -114,7 +114,7 @@ object RecordControl {
 
     /**
      * Warum die Lernphase heute Nacht nicht aufzeichnet ([startForLearning]), oder `null`. Unbekannter Akku hindert nicht,
-     * Laden ([charging]) auch nicht (Prüfrunde 2 F-6: Die Uhr ist zur Bettzeit geladen).
+     * Laden ([charging]) auch nicht (die Uhr ist zur Bettzeit geladen).
      */
     internal fun learnSkipReason(recording: Boolean, battery: Int?, charging: Boolean = false): String? = when {
         recording -> "recording runs"
@@ -132,8 +132,8 @@ object RecordControl {
     private val MAX_SLEEP: Duration = Duration.ofMinutes(AlarmSpec.MAX_SLEEP_MINUTES.toLong())
 
     /**
-     * Lernphase: Weckzeit der laufenden Aufzeichnung nach einem neuen Plan [plan] (Wecker verschoben, Entscheid r1AD
-     * 13.11.2026): dessen Zielzeit, wenn sie nach [now] liegt und höchstens die längste Schlafdauer
+     * Lernphase: Weckzeit der laufenden Aufzeichnung nach einem neuen Plan [plan] (Wecker verschoben):
+     * dessen Zielzeit, wenn sie nach [now] liegt und höchstens die längste Schlafdauer
      * ([AlarmSpec.MAX_SLEEP_MINUTES]) entfernt ist, also zur selben Nacht gehört. Sonst (Wecker aus, gelöscht,
      * übersprungen, der nächste erst in einer späteren Nacht) bleibt die bisherige [current].
      */
@@ -165,7 +165,7 @@ object RecordControl {
 
     /**
      * Geweckt (Klingeln beendet, aus dem Weckdienst): Die laufende Aufzeichnung endet jetzt ([RecordEnd.WAKE]), auch eine
-     * von Hand begonnene (spätestens beim Wecken, Audit F-01). Wurde die Lernphase am Handy ausgeschaltet
+     * von Hand begonnene (spätestens beim Wecken). Wurde die Lernphase am Handy ausgeschaltet
      * ([onLearningChanged], [reason] = [RecordEnd.PHONE]), endet nur die der Lernphase. Läuft der Dienst nicht
      * (Prozessende), wird die gespeicherte abgeschlossen.
      */
@@ -191,7 +191,7 @@ object RecordControl {
     }
 
     /**
-     * Neuer Stand der Lernphase vom Handy ([learning]): Läuft sie nicht mehr (ausgeschaltet, Audit F-02, oder fertig),
+     * Neuer Stand der Lernphase vom Handy ([learning]): Läuft sie nicht mehr (ausgeschaltet, oder fertig),
      * endet eine laufende Aufzeichnung der Lernphase jetzt; eine von Hand begonnene läuft weiter (bis zum Wecken).
      */
     fun onLearningChanged(context: Context, learning: LearningSnapshot) {
@@ -221,8 +221,8 @@ object RecordControl {
     /**
      * Startet den Dienst im Vordergrund ([extras] ergänzt den Auftrag); `false`, wenn das System es verweigert (dann steht
      * es im Protokoll). Fehlen die Rechte für den Typ «health» ([SensorAccess.allowsHealth]; nur der Knopf auf der Uhr
-     * startet bei sichtbarer App, alles andere aus dem Hintergrund), startet der Dienst gar nicht (OFFEN 4a, r1AD
-     * 16.11.2026): Grund im Protokoll wie im Dienst, eine liegengebliebene Aufzeichnung wird beim Wiederaufnehmen
+     * startet bei sichtbarer App, alles andere aus dem Hintergrund), startet der Dienst gar nicht:
+     * Grund im Protokoll wie im Dienst, eine liegengebliebene Aufzeichnung wird beim Wiederaufnehmen
      * abgeschlossen.
      */
     internal fun startService(context: Context, action: String, extras: (Intent) -> Unit = {}): Boolean {
@@ -281,7 +281,7 @@ object RecordControl {
     }
 
     /**
-     * Beim Start der App (nach dem Entsperren): Stand ans Handy, falls nicht schon bestätigt (Audit PERF-06). Liegt eine
+     * Beim Start der App (nach dem Entsperren): Stand ans Handy, falls nicht schon bestätigt. Liegt eine
      * laufende Aufzeichnung ohne Dienst da (z. B. nach einem Neustart der Uhr, der die Alarme löscht), wird sie gleich
      * wieder aufgenommen.
      */
@@ -369,7 +369,7 @@ class RecordReceiver : BroadcastReceiver() {
         // Vor dem Entsperren ist die Aufzeichnung nicht lesbar.
         if (!DirectBoot.isUnlocked(context)) return
         if (intent.action == RecordControl.ACTION_CHECK && RecordService.running) return RecordControl.armCheck(context)
-        // Start-Wakelock bis zum eigenen des Dienstes; sonst schläft die Uhr nach `onReceive` (Befund 13.11.2026).
+        // Start-Wakelock bis zum eigenen des Dienstes; sonst schläft die Uhr nach `onReceive`.
         StartLock.acquire(context)
         when (intent.action) {
             RecordControl.ACTION_CHECK -> RecordControl.resume(context)

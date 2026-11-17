@@ -26,7 +26,7 @@ import kotlinx.coroutines.withTimeoutOrNull
  * «An Feiertagen nicht wecken» überspringen die Feiertage wie auf der Uhr; ein Probewecker oder Powernap
  * mit Handy-Wecker bekommt ebenfalls eine Sicherung.
  *
- * Erst rechnen, dann stellen (Audit A-2): Der bisherige Zweitwecker bleibt stehen, bis der neue ihn ersetzt (gleicher
+ * Erst rechnen, dann stellen: Der bisherige Zweitwecker bleibt stehen, bis der neue ihn ersetzt (gleicher
  * PendingIntent); aufgehoben wird er nur, wenn keiner mehr gilt. «Zuletzt gesehen» der Uhr kommt mit Frist
  * ([watchSeenAtBounded]): Hängen die Wear-Dienste, plant das Handy trotzdem.
  */
@@ -43,13 +43,13 @@ internal suspend fun BackupAlarm.planBackup() {
     // Hat die Uhr eine Nacht übernommen oder klingelte der Zweitwecker schon, gilt für diesen
     // Wecker erst die nächste Nacht danach. Andere Wecker bleiben unberührt.
     val suppressed = decodeSuppressed(prefs[SUPPRESSED])
-    // Ohne Uhr (nie oder seit einer Woche keine gemeldet, Review N-5): das Handy ist der Wecker und klingelt pünktlich.
+    // Ohne Uhr (nie oder seit einer Woche keine gemeldet): das Handy ist der Wecker und klingelt pünktlich.
     val grace = RingRules.backupGrace(watchSeenAtBounded(), current.toEpochMilli(), GRACE)
     // Probewecker oder Powernap: eigener Plan, auch in der Nachfrist (er kommt nicht wieder).
     val transient = app.transient.active()?.takeIf { it.spec.phoneBackup }?.plan
     // In der Nachfrist eines schon geplanten Zweitweckers (z. B. beim Prozessstart) bleibt er bestehen.
     val plannedTarget = prefs[PLANNED_TARGET]?.let(Instant::ofEpochMilli)
-    // Einschlaf-Modus der Galaxy Watch (Review K-07): Hat sie für diese Nacht eine frühere Zielzeit festgelegt, klingelt
+    // Einschlaf-Modus der Galaxy Watch: Hat sie für diese Nacht eine frühere Zielzeit festgelegt, klingelt
     // auch der Zweitwecker dann (samt Nachfrist); die eingestellte Zeit dieser Nacht gilt danach als erledigt.
     val shift = onsetShift()
     // Zone und eingestellte Zielzeit, mit denen dieser Zweitwecker geplant wurde: Lief sein Fenster schon beim
@@ -135,14 +135,14 @@ private const val DIRECT_BOOT_PLANS = 6
 internal suspend fun BackupAlarm.plannedTarget(): Instant? =
     store.data.first()[PLANNED_TARGET]?.let(Instant::ofEpochMilli)
 
-/** Höchstdauer für «zuletzt gesehen» der Uhr beim Planen ([watchSeenAtBounded], Audit A-2). */
+/** Höchstdauer für «zuletzt gesehen» der Uhr beim Planen ([watchSeenAtBounded]). */
 internal const val WATCH_SEEN_TIMEOUT_MS = 3_000L
 
 /** Je Zweitwecker-Instanz das zuletzt erfolgreich gelesene «zuletzt gesehen» der Uhr (für [watchSeenAtBounded]). */
 private val lastSeenAt: MutableMap<BackupAlarm, Long?> = java.util.Collections.synchronizedMap(java.util.WeakHashMap())
 
 /**
- * «Zuletzt gesehen» der Uhr ([BackupAlarm.watchSeenAt]) mit Frist [WATCH_SEEN_TIMEOUT_MS] (Audit A-2): Das Planen läuft
+ * «Zuletzt gesehen» der Uhr ([BackupAlarm.watchSeenAt]) mit Frist [WATCH_SEEN_TIMEOUT_MS]: Das Planen läuft
  * unter der Sperre und darf nicht an den Wear-Diensten hängen. Ohne Antwort gilt der zuletzt gelesene Wert dieses
  * Prozesses (sonst `null`: keine Uhr bekannt, der Zweitwecker klingelt pünktlich – lieber zu früh als gar nicht).
  */

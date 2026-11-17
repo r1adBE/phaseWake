@@ -53,7 +53,7 @@ data class ScoreInput(
     val awakePercent: Int? = null,
     /** Einschlafdauer in Minuten. */
     val latencyMinutes: Long? = null,
-    /** Wachzeit in Minuten: nur zur Anzeige des Faktors «Wach» (Entscheid r1AD 15.11.2026), zählt nicht in den Wert. */
+    /** Wachzeit in Minuten: nur zur Anzeige des Faktors «Wach», zählt nicht in den Wert. */
     val awakeMinutes: Long? = null,
 )
 

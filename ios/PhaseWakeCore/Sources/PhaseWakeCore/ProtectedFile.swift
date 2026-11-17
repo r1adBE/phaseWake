@@ -2,7 +2,7 @@ import Foundation
 
 /// Lesen einer Datei, die vor dem ersten Entsperren nach einem Neustart geschützt ist (iPhone, Apple Watch). «Fehlt»
 /// heisst leerer Stand (neue Installation), «nicht lesbar» nicht: Wer aus einem nicht lesbaren Stand schreibt, stempelt
-/// oder sendet, überschreibt den echten (Prüfrunde 2 HG-1/SP-1/SP-5). Wie auf Android, wo die Dateien erst nach dem
+/// oder sendet, überschreibt den echten. Wie auf Android, wo die Dateien erst nach dem
 /// Entsperren gelesen werden.
 public enum ProtectedFile {
     /// Ergebnis des Lesens.

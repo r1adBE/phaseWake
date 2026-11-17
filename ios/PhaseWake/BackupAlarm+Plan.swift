@@ -238,7 +238,7 @@ extension BackupAlarm {
     }
 
     /// Verwirft geplante AlarmKit-Alarme ohne gemerkte Kennung (``orphans(scheduled:known:)``). Sie entstanden, wenn ein
-    /// Neuplanen vor dem ersten Entsperren den gemerkten Stand überschrieb (Tiefenaudit AP3-1), und klängen sonst
+    /// Neuplanen vor dem ersten Entsperren den gemerkten Stand überschrieb, und klängen sonst
     /// doppelt oder nach dem Ausschalten des Weckers. Jede eigene Kennung wird gemerkt, bevor ihr Alarm gestellt wird;
     /// `apply` läuft nur mit gelesenem Stand (`reschedule`). Ein klingelnder oder laufender Alarm bleibt.
     private func cancelOrphans() {

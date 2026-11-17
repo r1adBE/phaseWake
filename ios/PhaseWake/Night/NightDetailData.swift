@@ -17,7 +17,7 @@ struct NightDetailData {
     /// Nachtdatum des Eintrags («yyyy-MM-dd»).
     var nightDate: String { item.date }
 
-    /// Zone für Datum und Uhrzeiten: bei einer Nacht aus der Gesundheits-App die ihrer Aufzeichnung (Audit F-3), sonst `nil` (Gerät).
+    /// Zone für Datum und Uhrzeiten: bei einer Nacht aus der Gesundheits-App die ihrer Aufzeichnung, sonst `nil` (Gerät).
     var timeZone: TimeZone? { item.session?.timeZone }
 
     /// Datum wie auf der Karte: Tag des Weckens bzw. des Sitzungsendes.

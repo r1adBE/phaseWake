@@ -1,7 +1,7 @@
 import XCTest
 @testable import PhaseWakeCore
 
-/// Gemeinsame Fälle mit Kotlin (`shared/testdata/alarm-stamps.vectors`, Audit 17.11.2026 CODE-03): ``AlarmStamps/merge(local:remote:now:)``
+/// Gemeinsame Fälle mit Kotlin (`shared/testdata/alarm-stamps.vectors`): ``AlarmStamps/merge(local:remote:now:)``
 /// je Wecker – neuere Fassung, fehlender Zeitpunkt, gleicher Zeitpunkt, Löschen gegen Bearbeiten, alte und unplausible
 /// gelöschte Wecker. Jede Zeile auch mit vertauschten Seiten (beide Geräte kommen zum selben Stand). Gegenstück zu
 /// `AlarmStampsVectorsTest` (Kotlin); Format im Kopf der Datei.

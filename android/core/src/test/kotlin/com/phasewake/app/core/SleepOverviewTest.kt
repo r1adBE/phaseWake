@@ -46,7 +46,7 @@ class SleepOverviewTest {
 
     @Test
     fun averageTimesDoNotJumpAtNoon() {
-        // Audit W-1: Aufwachen 11:56 und 12:50 → Ø 12:23 (23 Min ab Mittag), nicht 00:23 (743).
+        // Aufwachen 11:56 und 12:50 → Ø 12:23 (23 Min ab Mittag), nicht 00:23 (743).
         val late = listOf(sleep(today, 23, 0, wakeHour = 11, wakeMinute = 56), sleep(today.minusDays(1), 23, 0, wakeHour = 12, wakeMinute = 50))
         val o = SleepOverviews.of(late, zone, today, 450, OverviewUnit.DAYS)!!
         assertEquals(23, o.wakeMinute)
@@ -134,7 +134,7 @@ class SleepOverviewTest {
 
     @Test
     fun nightWithOnlyAwakeHasNoStageSplit() {
-        // Audit W-5: Quelle ohne Phasendetail (nur «wach» bekannt) gibt eine neutrale Säule, keine Säule «ganz wach».
+        // Quelle ohne Phasendetail (nur «wach» bekannt) gibt eine neutrale Säule, keine Säule «ganz wach».
         val night = sleep(today, 23, 0)
         val t = night.start
         val stages = listOf(StageSpan(t, t.plusSeconds(200 * 60), SleepStage.UNKNOWN), StageSpan(t.plusSeconds(200 * 60), t.plusSeconds(230 * 60), SleepStage.AWAKE))

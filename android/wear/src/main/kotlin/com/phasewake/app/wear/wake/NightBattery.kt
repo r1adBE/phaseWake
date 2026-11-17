@@ -9,7 +9,7 @@ import com.phasewake.app.wear.wearApp
 import java.time.Instant
 import kotlinx.coroutines.launch
 
-// Akku je Nacht auf der Galaxy Watch (r1AD 14.11.2026): Messbeginn, Ende und Verwerfen; Rechnung in BatteryTrack.
+// Akku je Nacht auf der Galaxy Watch: Messbeginn, Ende und Verwerfen; Rechnung in BatteryTrack.
 
 /**
  * Die Uhr beginnt zu messen (Einschlaf-Messung, Aufzeichnung oder Weckfenster): Akkustand festhalten. Beginnt damit eine

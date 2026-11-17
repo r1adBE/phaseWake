@@ -4,7 +4,7 @@ import java.time.Duration
 import java.time.Instant
 
 /**
- * Wann der Verlauf aus Health Connect neu gelesen wird (Audit PERF-05): beim ersten Mal, höchstens alle [MIN_INTERVAL]
+ * Wann der Verlauf aus Health Connect neu gelesen wird: beim ersten Mal, höchstens alle [MIN_INTERVAL]
  * (Fortsetzen der App, Öffnen des Verlaufs), sofort nach einer Erteilung der Berechtigung ([due] mit neuem `grant`) und
  * wenn der Zeitraum weiter zurück reicht als beim letzten Lesen (z. B. ältere eigene Nächte nach dem Wiederherstellen).
  * Lebt so lange wie die Oberfläche, die das Gelesene hält; [reset], wenn kein Zugriff mehr besteht.

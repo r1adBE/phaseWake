@@ -8,7 +8,7 @@ extension SyncKeys {
 }
 
 /// Build-Nummer der Testversion (`CURRENT_PROJECT_VERSION`, aus der CI die Laufnummer) für «Über», Diagnose und
-/// Nacht-Check, wie `BuildNumber` auf Android (Entscheid r1AD 14.11.2026). Einzige Stelle der Apple-Apps, die sie liest
+/// Nacht-Check, wie `BuildNumber` auf Android. Einzige Stelle der Apple-Apps, die sie liest
 /// (docs/ENTWICKLUNG.md, Abschnitt 3). Lokal gebaut ist sie 1 und gilt als unbekannt.
 enum BuildNumber {
     /// Nummer eines Builds ohne Laufnummer der CI.

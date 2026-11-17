@@ -6,7 +6,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 /**
- * Geschätzte Feiertage gelten nicht als frei (Entscheid r1AD 14.11.2026, Audit F-2): Beispiel Kosovo, «Eid al-Fitr
+ * Geschätzte Feiertage gelten nicht als frei: Beispiel Kosovo, «Eid al-Fitr
  * (estimated)» am 20.03.2026 – der Wecker klingelt, die Einstellungen zeigen den Tag als «geschätzt».
  */
 class HolidayDaysTest {
@@ -39,7 +39,7 @@ class HolidayDaysTest {
 
     @Test
     fun rulesStateForcesOneRecalculation() {
-        // Gespeicherte Feiertage vor F-2 (Regeln 0) enthalten geschätzte Tage: `refresh` rechnet einmal neu.
+        // Gespeicherte Feiertage nach Regeln 0 enthalten geschätzte Tage: `refresh` rechnet einmal neu.
         assertTrue(HolidayRepository.RULES >= 1)
     }
 }

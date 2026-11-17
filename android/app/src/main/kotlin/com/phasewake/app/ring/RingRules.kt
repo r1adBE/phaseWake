@@ -136,20 +136,20 @@ internal object RingRules {
         active && !message.isStale(nowMs) && message.sameNight(currentId, currentTarget)
 
     /**
-     * Ohne Meldung der Uhr so lange (Review N-5): keine Uhr mehr gekoppelt oder getragen. Eine Uhr in Gebrauch meldet
+     * Ohne Meldung der Uhr so lange: keine Uhr mehr gekoppelt oder getragen. Eine Uhr in Gebrauch meldet
      * ihren Status mindestens stündlich, sobald sie neu plant.
      */
     val WATCH_GONE: Duration = Duration.ofDays(7)
 
     /**
      * Nachfrist des Zweitweckers: [grace], solange eine Uhr da ist; 0 (pünktlich zur Zielzeit, das Handy ist der Wecker),
-     * wenn ihr Status ([watchSeenAtMs], «zuletzt gesehen») fehlt oder älter als [WATCH_GONE] ist (Review N-5, wie das
+     * wenn ihr Status ([watchSeenAtMs], «zuletzt gesehen») fehlt oder älter als [WATCH_GONE] ist (wie das
      * iPhone ohne gekoppelte Uhr). Eine Meldung aus der «Zukunft» (Uhrzeit zurückgestellt) gilt als da.
      */
     fun backupGrace(watchSeenAtMs: Long?, nowMs: Long, grace: Duration): Duration =
         if (watchSeenAtMs == null || nowMs - watchSeenAtMs > WATCH_GONE.toMillis()) Duration.ZERO else grace
 
-    /** Ob ein «klingeln» der Uhr den Zweitwecker dieser Nacht aussetzt: nur, wenn es nicht veraltet ist (Review LATE). */
+    /** Ob ein «klingeln» der Uhr den Zweitwecker dieser Nacht aussetzt: nur, wenn es nicht veraltet ist. */
     fun ringPausesBackup(message: RingMessage, nowMs: Long): Boolean = !message.isStale(nowMs)
 
     /**
@@ -200,7 +200,7 @@ internal object RingRules {
     private val CATCH_UP_DELAY: Duration = Duration.ofSeconds(1)
 
     /**
-     * Nachholen in der Nachfrist (Review 04.11. e): Ein Termin von [spec] in [now] − ([grace] + [CATCH_UP]) bis [now],
+     * Nachholen in der Nachfrist: Ein Termin von [spec] in [now] − ([grace] + [CATCH_UP]) bis [now],
      * der noch gilt (`nextTarget` ab Fensterbeginn − 1 ms, in [zone] mit [holidays]) und nicht ausgesetzt ist
      * ([suppressed] vor der Zielzeit: nicht geklungen, die Uhr hat ihn nicht übernommen), klingelt gleich – statt erst
      * am nächsten Termin (zweiter Wecker eine Minute nach dem ersten, beide auf derselben Minute). Nur Termine ab der
@@ -277,7 +277,7 @@ internal object RingRules {
      * derselben Minute), nicht ausgesetzte ([suppressed]); jede Nacht gilt als geklungen – bis Zielzeit + [pause]
      * ausgesetzt (wie `BackupAlarm.backupRang`), ein Einmal-Wecker danach aus. Dazu der Probewecker oder Powernap
      * [transient], solange seine Nachfrist [grace] nach [first] läuft. Höchstens [count] Einträge; [first] ist immer
-     * dabei, und die ganze Liste ist nach Zielzeit geordnet (ein Powernap mit Zielzeit vor [first] steht vorne, Audit I-05).
+     * dabei, und die ganze Liste ist nach Zielzeit geordnet (ein Powernap mit Zielzeit vor [first] steht vorne).
      */
     fun directBootPlans(
         first: WakePlan,

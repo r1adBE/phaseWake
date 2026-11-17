@@ -27,8 +27,8 @@ object Calibration {
         val measured = nights.map { it.drop(defaults.warmupEpochs).filterNotNull() }.filter { it.isNotEmpty() }
         if (measured.size < MIN_NIGHTS) return defaults
 
-        // Je Nacht ihr Grundrauschen ([NoiseFloor.floor], ab 4 Werten, höchstens 0.04) abziehen (Audit c3b8b01 E-2,
-        // Entscheid r1AD 14.11.2026): Sonst hob das Rauschen einer Uhr wie der Galaxy Watch (ruhig 0.02) das Perzentil.
+        // Je Nacht ihr Grundrauschen ([NoiseFloor.floor], ab 4 Werten, höchstens 0.04) abziehen:
+        // Sonst hob das Rauschen einer Uhr wie der Galaxy Watch (ruhig 0.02) das Perzentil.
         val values = measured
             .takeLast(MAX_NIGHTS)
             .flatMap { night ->
@@ -46,7 +46,7 @@ object Calibration {
             DetectorConfig.DEFAULT_LIGHT_THRESHOLD * 0.5,
             DetectorConfig.DEFAULT_LIGHT_THRESHOLD * 2.0,
         )
-        // Wach-Schwelle höchstens beim Startwert (E-2, r1AD 14.11.2026): Sie passt sich nur nach unten an und verdoppelt sich
+        // Wach-Schwelle höchstens beim Startwert: Sie passt sich nur nach unten an und verdoppelt sich
         // nicht mehr mit der oberen Grenze der Leicht-Schwelle (0.004 × 50 = 0.2).
         val wake = minOf(light * WAKE_TO_LIGHT_RATIO, DetectorConfig.DEFAULT_WAKE_THRESHOLD)
         return defaults.copy(lightThreshold = light, wakeThreshold = wake)

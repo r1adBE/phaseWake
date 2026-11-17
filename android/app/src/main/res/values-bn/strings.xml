@@ -385,7 +385,7 @@
     <string name="chart_window">জাগানোর সময়সীমা</string>
     <string name="chart_no_data">ডেটা নেই</string>
     <string name="chart_feeling_hint">সেই রাতের নোট দেখতে একটা বিন্দুতে ট্যাপ করো।</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">পরীক্ষামূলক অ্যালার্ম</string>
     <string name="test_button">২ মিনিটে পরীক্ষা করো</string>
     <string name="test_hint">তোমার পরের অ্যালার্মের সেটিংস দিয়ে ২ মিনিটে বাজে, স্নুজ ছাড়া। রাত হিসেবে গোনা হয় না।</string>
@@ -601,7 +601,7 @@
     <string name="learn_switch_hint">তোমার ঘড়ি রাতে নড়াচড়া ও পালস মাপে (অন্তত %1$d %% ব্যাটারিতে)। বন্ধ: স্বয়ংক্রিয় রেকর্ডিং নেই, শেখা মানগুলো থাকে।</string>
     <string name="learn_switch_title">চালু</string>
     <string name="watch_open_app_hint">ঘড়িতে Phase Wake খোলো, যাতে এটি নির্দেশটি পায়।</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">শেখার পর্ব শুরু হওয়ার পর থেকে প্রতিটি রাত – গণনা হয়েছে কি না, আর না হলে কেন এবং কী সাহায্য করবে। Phase Wake-এর %1$dটি গণনা করা রাত দরকার।</string>
     <string name="learn_nights_empty">এখনো কোনো রাত নেই। প্রথমটি পরের দিন সকালে এখানে দেখা যাবে।</string>
     <string name="learn_night_facts">%1$s মাপা হয়েছে · %2$dটি মান · %3$d %%-এ নাড়ি</string>

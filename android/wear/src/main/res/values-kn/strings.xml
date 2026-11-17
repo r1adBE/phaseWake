@@ -72,7 +72,7 @@
     <string name="editor_delete_title">ಈ ಅಲಾರಾಂ ಅಳಿಸಬೇಕೇ?</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">ಗರಿಷ್ಠ %1$d ಅಲಾರಾಂಗಳು – ಹೊಸದನ್ನು ಸೇರಿಸಲು ಒಂದನ್ನು ಅಳಿಸಿ.</string>
     <string name="editor_enabled">ಅಲಾರಾಂ ಆನ್</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">ಮುಂದಿನ ಬಾರಿ ಬಿಟ್ಟುಬಿಡಿ</string>
     <string name="alarm_skipped">ಬಿಡಲಾಗಿದೆ: %1$s</string>
     <string name="nap_title">ಪವರ್ ನ್ಯಾಪ್</string>
@@ -102,7 +102,7 @@
     <string name="record_since">%1$s ರಿಂದ</string>
     <string name="notification_record_title">ರಾತ್ರಿ ರೆಕಾರ್ಡ್ ಆಗುತ್ತಿದೆ</string>
     <string name="record_battery_low">ರೆಕಾರ್ಡ್ ಮಾಡಲು ಬ್ಯಾಟರಿ ತುಂಬಾ ಕಡಿಮೆ</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">ಕಲಿಕೆಯ ಹಂತ</string>
     <string name="watch_learn_warn">ವಾಚ್ ಚಾರ್ಜ್ ಮಾಡಿ, ಇಲ್ಲದಿದ್ದರೆ ಇಂದಿನ ರಾತ್ರಿ ಕಲಿಕೆಯ ಹಂತಕ್ಕೆ ಎಣಿಕೆಯಾಗುವುದಿಲ್ಲ (ಬ್ಯಾಟರಿ %1$d %%, ಬೇಕು %2$d %%).</string>
     <string name="watch_learn_skip_battery">ಇಂದಿನ ರಾತ್ರಿ ಕಲಿಕೆಯ ಹಂತಕ್ಕೆ ಎಣಿಕೆಯಾಗುವುದಿಲ್ಲ: ಬ್ಯಾಟರಿ %1$d %%, ಬೇಕು %2$d %%.</string>

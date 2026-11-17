@@ -46,7 +46,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Vordergrund-Typ «health» der Aufzeichnung (OFFEN 4a, r1AD 16.11.2026): [RecordControl] startet den Dienst ohne die
+ * Vordergrund-Typ «health» der Aufzeichnung: [RecordControl] startet den Dienst ohne die
  * Rechte dafür gar nicht; verweigert Android «health» trotzdem, geht der Dienst nur kurz als «shortService» in den
  * Vordergrund und endet (kein «systemExempted», kein START_STICKY), eine laufende Aufzeichnung endet sauber.
  */

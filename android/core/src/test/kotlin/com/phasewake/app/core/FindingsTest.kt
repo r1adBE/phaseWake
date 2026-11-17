@@ -84,7 +84,7 @@ class FindingsTest {
         assertEquals(listOf(434L, 432, 284, 474, 438, 479, 353), facts.map { it.asleepMinutes })
         val findings = Findings.of(facts, LocalDate.of(2026, 11, 14), zone)
         assertEquals("LONG_LATENCY=68,LOW_DEEP=11/SHORT_NIGHTS/5/13,BEDTIME_VARIES=174", text(findings))
-        // Startseite: die wichtigste – lange Einschlafdauer; ausgeblendet die nächstwichtige (Entscheid r1AD 15.11.2026).
+        // Startseite: die wichtigste – lange Einschlafdauer; ausgeblendet die nächstwichtige.
         assertEquals(FindingKind.LONG_LATENCY, Findings.home(findings, emptyMap(), at(15, 9))?.kind)
         val hidden = Findings.hide(emptyMap(), FindingKind.LONG_LATENCY, at(15, 9))
         assertEquals(FindingKind.LOW_DEEP, Findings.home(findings, hidden, at(15, 9, 1))?.kind)
@@ -170,7 +170,7 @@ class FindingsTest {
     fun bedtimeCardDefersFindingsWithTheSameTip() {
         val findings = listOf(Finding(FindingKind.SHORT_NIGHTS, 3), Finding(FindingKind.LOW_DEEP, 11), Finding(FindingKind.BEDTIME_VARIES, 120))
         val now = at(15, 21)
-        // Ohne Bettzeit-Karte wie bisher die wichtigste; mit ihr tritt der gleiche Tipp zurück (Audit UX-04).
+        // Ohne Bettzeit-Karte wie bisher die wichtigste; mit ihr tritt der gleiche Tipp zurück.
         assertEquals(FindingKind.SHORT_NIGHTS, Findings.home(findings, emptyMap(), now)?.kind)
         assertEquals(FindingKind.LOW_DEEP, Findings.home(findings, emptyMap(), now, bedtimeAdvice = true)?.kind)
         assertNull(Findings.home(listOf(findings[0], findings[2]), emptyMap(), now, bedtimeAdvice = true))

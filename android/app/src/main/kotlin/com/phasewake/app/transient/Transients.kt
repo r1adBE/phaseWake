@@ -97,7 +97,7 @@ object Transients {
 
     /**
      * Am Handy beendet (Stopp beim Handy-Klingeln): ein Probewecker oder Powernap ist damit vorbei. Vor dem ersten
-     * Entsperren ist der Speicher nicht lesbar (Audit SP-4): dann im geräteverschlüsselten Speicher merken
+     * Entsperren ist der Speicher nicht lesbar: dann im geräteverschlüsselten Speicher merken
      * ([BackupDirectBoot.markEnded]); nach dem Entsperren holt [catchUpEnded] es nach.
      */
     fun endedHere(app: PhaseWakeApp, alarmId: String?) {

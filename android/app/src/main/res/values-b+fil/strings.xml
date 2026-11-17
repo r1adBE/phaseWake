@@ -386,7 +386,7 @@
     <string name="chart_window">Window ng paggising</string>
     <string name="chart_no_data">walang data</string>
     <string name="chart_feeling_hint">I-tap ang isang tuldok para makita ang mga tala ng gabing iyon.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Test na alarm</string>
     <string name="test_button">I-test sa loob ng 2 minuto</string>
     <string name="test_hint">Tutunog sa loob ng 2 minuto gamit ang mga setting ng susunod mong alarm, nang walang snooze. Hindi binibilang bilang gabi.</string>
@@ -602,7 +602,7 @@
     <string name="learn_switch_hint">Sinusukat ng relo mo ang galaw at pulso sa gabi (simula %1$d %% na baterya). Naka-off: walang awtomatikong pagtatala, nananatili ang natutunang value.</string>
     <string name="learn_switch_title">Aktibo</string>
     <string name="watch_open_app_hint">Buksan ang Phase Wake sa relo mo para matanggap nito ang utos.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Bawat gabi mula nang magsimula ang yugto ng pagkatuto – kung nabilang ito at, kung hindi, bakit at ano ang makakatulong. Kailangan ng Phase Wake ng %1$d nabilang na gabi.</string>
     <string name="learn_nights_empty">Wala pang gabi. Lalabas dito ang una kinaumagahan.</string>
     <string name="learn_night_facts">%1$s nasukat · %2$d sukat · pulso sa %3$d %%</string>

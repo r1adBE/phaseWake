@@ -2,7 +2,7 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWakeWatch
 
-/// Entscheidungen der Uhr ohne Sensoren (Audit F-03): Erinnerung am Abend ([EveningReminder]), Beginn der
+/// Entscheidungen der Uhr ohne Sensoren: Erinnerung am Abend ([EveningReminder]), Beginn der
 /// Smart-Alarm-Sitzung und Kennung des Rückfalls ([SmartAlarm]), Einschlafzeit ohne Rekorder ([WatchOnset]).
 final class WatchDecisionTests: XCTestCase {
     private let now = Date(timeIntervalSince1970: 1_793_000_000)
@@ -69,7 +69,7 @@ final class WatchDecisionTests: XCTestCase {
         XCTAssertNil(napResult.floor)
     }
 
-    /// Audit UI-9, Nachtrag: Räder im Editor der Uhr mit den Ziffern der Sprache (Arabisch ٠–٩, Deutsch 0–9).
+    /// Räder im Editor der Uhr mit den Ziffern der Sprache (Arabisch ٠–٩, Deutsch 0–9).
     func testTwoDigitsUseDigitsOfLanguage() {
         XCTAssertEqual(Format.twoDigits(7, locale: Locale(identifier: "de_CH")), "07")
         XCTAssertEqual(Format.twoDigits(30, locale: Locale(identifier: "de_CH")), "30")

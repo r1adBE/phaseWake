@@ -66,7 +66,7 @@ enum SessionRules {
     }
 
     /// Startet das System eine Sitzung, die nicht die eigene ist (`SmartAlarm.adopt`), etwa eine aus der Zeit vor einem
-    /// Neustart der App: Ob die eigene im Zustand `own` gilt (Tiefenaudit AP3-4). Geplant oder laufend: ja, die
+    /// Neustart der App: Ob die eigene im Zustand `own` gilt. Geplant oder laufend: ja, die
     /// ankommende wird bei ihrem Start beendet. Ohne eigene oder schon beendet: nein, die ankommende wird übernommen.
     static func keepsOwn(_ own: WKExtendedRuntimeSessionState?) -> Bool {
         switch own {
@@ -75,8 +75,8 @@ enum SessionRules {
         }
     }
 
-    /// Startet eine gemerkte, nicht mehr gültige Sitzung (verwaist nach einem Neustart der App, AP3-4, oder ersetzt, als
-    /// die App sie nicht beenden durfte), ob sie die Nacht übernimmt statt ohne Vibration zu enden (Prüfrunde 2 HG-4):
+    /// Startet eine gemerkte, nicht mehr gültige Sitzung (verwaist nach einem Neustart der App oder ersetzt, als
+    /// die App sie nicht beenden durfte), ob sie die Nacht übernimmt statt ohne Vibration zu enden:
     /// Apple warnt nach einer Smart-Alarm-Sitzung ohne Vibration und bietet an, künftige Sitzungen abzuschalten. Sie
     /// übernimmt, wenn sie die aktuelle Nacht bedienen kann (`serves`, gleiche Prüfung wie `SmartAlarm.startNight`), keine
     /// Nacht schon misst, klingelt oder schlummert (`busy`) und die eigene Sitzung im Zustand `own` nicht schon läuft.

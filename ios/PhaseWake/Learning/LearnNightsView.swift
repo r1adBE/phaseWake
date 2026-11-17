@@ -1,7 +1,7 @@
 import PhaseWakeCore
 import SwiftUI
 
-/// Lern-Übersicht am iPhone (Entscheid r1AD 13.11.2026, wie `LearnNightsScreen` auf Android; aus «Details» der Karte der
+/// Lern-Übersicht am iPhone (wie `LearnNightsScreen` auf Android; aus «Details» der Karte der
 /// Lernphase auf der Startseite und in den Einstellungen): je Nacht seit dem Beginn eine Zeile mit Datum (Morgen der
 /// Nacht), ✓ gezählt bzw. ✗ mit Grund, kurzen Angaben zur Aufzeichnung und einem Tipp. Für VoiceOver eine Einheit je Zeile.
 struct LearnNightsView: View {

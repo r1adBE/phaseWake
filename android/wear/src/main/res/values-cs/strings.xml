@@ -76,7 +76,7 @@
     <string name="editor_delete_title">Smazat tento budík?</string>
     <string name="home_max_alarms">Nejvýše %1$d budíků – pro nový nejdřív jeden smaž.</string>
     <string name="editor_enabled">Budík zapnutý</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Příště přeskočit</string>
     <string name="alarm_skipped">Přeskočeno: %1$s</string>
     <string name="nap_title">Šlofík</string>
@@ -110,7 +110,7 @@
     <string name="record_since">Od %1$s</string>
     <string name="notification_record_title">Noc se zaznamenává</string>
     <string name="record_battery_low">Baterie je na záznam příliš slabá</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Fáze učení</string>
     <string name="watch_learn_warn">Nabij hodinky, jinak se dnešní noc do fáze učení nezapočítá (baterie %1$d %%, potřeba %2$d %%).</string>
     <string name="watch_learn_skip_battery">Dnešní noc se do fáze učení nezapočítá: baterie %1$d %%, potřeba %2$d %%.</string>

@@ -6,7 +6,7 @@ Liest mit Gradle die aufgelösten Bibliotheken von `releaseRuntimeClasspath` bei
 gesammelt bei https://api.osv.dev ab (Ökosystem Maven). Fehler, wenn eine Bibliothek eine bekannte
 Schwachstelle hat, wenn Gradle Bibliotheken nicht auflösen kann («FAILED») oder wenn die Abfrage nach drei
 Versuchen scheitert: Eine Prüfung, die still durchlässt, wäre keine Prüfung.
-Zusätzlich (Audit 17.11., CODE-05) Build-Umgebung (Plugins), Kotlin-Compiler-Plugins und Test-Classpaths: Sie kommen
+Zusätzlich Build-Umgebung (Plugins), Kotlin-Compiler-Plugins und Test-Classpaths: Sie kommen
 nicht in die Apps, darum dort nur Warnungen, auch wenn diese Zusatzprüfung nicht vollständig läuft.
 """
 import json

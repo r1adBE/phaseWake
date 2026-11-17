@@ -28,7 +28,7 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 /**
- * Neuplanen der Uhr (Audit A-3): Die System-Alarme stehen, bevor Nebenarbeiten mit den Wear-Diensten laufen. Hängt oder
+ * Neuplanen der Uhr: Die System-Alarme stehen, bevor Nebenarbeiten mit den Wear-Diensten laufen. Hängt oder
  * scheitert der Status ans Handy, sind Fensterbeginn und Zielzeit trotzdem gestellt, und [AlarmScheduler.reschedule]
  * kehrt nach der Frist zurück.
  */
@@ -89,7 +89,7 @@ class SchedulerSideWorkTest {
 
     @Test
     fun alarmsAreSetBeforeSideWorkStarts() {
-        // Audit AN-8: Reihenfolge festhalten – beim Start der ersten Nebenarbeit mit den Wear-Diensten stehen die Alarme.
+        // Reihenfolge festhalten – beim Start der ersten Nebenarbeit mit den Wear-Diensten stehen die Alarme.
         val plan = alarm()
         var atSideWork: List<Long>? = null
         runBlocking { withTimeout(30_000L) { scheduler { atSideWork = alarms.scheduledAlarms.map { it.triggerAtMs } }.reschedule() } }

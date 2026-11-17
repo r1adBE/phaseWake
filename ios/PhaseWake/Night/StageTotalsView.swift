@@ -34,7 +34,7 @@ func typicalText(_ range: StageRange) -> String {
 }
 
 /// Eine Zeile: Name und Anteil am Schlaf links, Dauer rechts, darunter der Balken mit dem üblichen Bereich und dessen
-/// Text. Wach nur mit Dauer (Entscheid r1AD 15.11.2026): kein Anteil am Schlaf, darum ohne Balken und Bereich. Wie Android.
+/// Text. Wach nur mit Dauer: kein Anteil am Schlaf, darum ohne Balken und Bereich. Wie Android.
 private struct StageTotalRow: View {
     let total: StageTotal
     @Environment(\.colorScheme) private var scheme

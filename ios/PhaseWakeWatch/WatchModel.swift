@@ -10,7 +10,7 @@ final class WatchModel {
     static let shared = WatchModel()
 
     let storage = PhaseWakeStorage.watch
-    /// Letzte Nacht für die Startseite, gemerkt (PERF-04); Nächte auf der Uhr nur darüber ändern.
+    /// Letzte Nacht für die Startseite, gemerkt; Nächte auf der Uhr nur darüber ändern.
     let lastNight: WatchLastNight
     private(set) var alarms: [AlarmSpec] = []
     private(set) var now = Date()
@@ -217,14 +217,14 @@ final class WatchModel {
 
     /// Ein/Aus auf der Uhr; Änderung geht ans iPhone und plant neu.
     func setEnabled(_ alarm: AlarmSpec, _ enabled: Bool) {
-        // Unlesbare gespeicherte Wecker: keine Änderung (Fix KN-5).
+        // Unlesbare gespeicherte Wecker: keine Änderung.
         guard let snapshot = storage.mutate({ list in list.map { $0.id == alarm.id ? $0.with(enabled: enabled) : $0 } }) else { return }
         alarms = snapshot.alarms
         WatchConnectivityBridge.shared.publish(snapshot)
         reschedule()
     }
 
-    /// Auto-Aus nach dem Klingeln (Fix G-1/S-1): schaltet den Einmal-Wecker `alarmId` nur aus, wenn er noch die Fassung
+    /// Auto-Aus nach dem Klingeln: schaltet den Einmal-Wecker `alarmId` nur aus, wenn er noch die Fassung
     /// ist, die zur Zielzeit `target` geklingelt hat (``AlarmStamps/rang(_:rung:target:calendar:shifted:)``; `rung` =
     /// Wecker zu Beginn der Nacht, `shifted` = «Gute Nacht» hat diese Nacht vorverlegt). Zeitpunkt der bisherigen
     /// Fassung + 1 ms: Eine neuere Änderung am iPhone gewinnt beim Abgleich. Wie `NightFinish` (Wear OS).
@@ -250,7 +250,7 @@ final class WatchModel {
         let now = Date()
         let done = storage.doneUntil[draft.id]
         let holidays = storage.holidays.dates
-        // Unlesbare gespeicherte Wecker: keine Änderung (Fix KN-5).
+        // Unlesbare gespeicherte Wecker: keine Änderung.
         guard let snapshot = storage.mutate({ list in
             var list = list
             let old = list.first { $0.id == draft.id }
@@ -273,18 +273,18 @@ final class WatchModel {
 
     /// Wecker auf der Uhr löschen; geht ans iPhone und plant neu.
     func remove(_ id: String) {
-        // Unlesbare gespeicherte Wecker: keine Änderung (Fix KN-5).
+        // Unlesbare gespeicherte Wecker: keine Änderung.
         guard let snapshot = storage.mutate({ list in list.filter { $0.id != id } }) else { return }
         alarms = snapshot.alarms
         WatchConnectivityBridge.shared.publish(snapshot)
         reschedule()
     }
 
-    /// Plan, nach dem die Uhr weckt, für die Komplikation (`EffectivePlan`, Audit AP-9): mit «Gute Nacht», Probewecker
+    /// Plan, nach dem die Uhr weckt, für die Komplikation (`EffectivePlan`): mit «Gute Nacht», Probewecker
     /// und Powernap wie die Sitzung. Nur bei einer Änderung geschrieben.
     private func publishEffectivePlan() {
         let current = plan
-        // Mit der Zone: Nach einer Reise wird er mit dem neuen Versatz neu geschrieben (Vollaudit AP2-7).
+        // Mit der Zone: Nach einer Reise wird er mit dem neuen Versatz neu geschrieben.
         guard EffectivePlan.decode(SettingsFile.watchAlarms.object(forKey: EffectivePlan.key), zone: .current) != current else { return }
         SettingsFile.watchAlarms.set(EffectivePlan.encode(current), forKey: EffectivePlan.key)
     }
@@ -292,7 +292,7 @@ final class WatchModel {
     /// Schlüssel des zuletzt angewandten «Verlauf löschen» (Sendezeit, s) in `SettingsFile.watchSession`.
     private static let historyClearedKey = "historyClearedAt"
 
-    /// «Verlauf löschen» vom iPhone mit Sendezeit `sentAt` (Audit AP-6, wie Android): nur Nächte und Aufzeichnungen, die
+    /// «Verlauf löschen» vom iPhone mit Sendezeit `sentAt` (wie Android): nur Nächte und Aufzeichnungen, die
     /// bis dahin endeten – auch die noch nicht gesendeten. Ohne Sendezeit (ältere iPhone-App) oder schon angewandt
     /// (doppelt zugestellt) nichts.
     func clearHistory(sentAt: Date?) {
@@ -315,9 +315,9 @@ final class WatchModel {
         DiagStore.shared.log(.sync, "history cleared \(nights.count - kept.count)/\(nights.count)")
     }
 
-    /// Vom iPhone empfangene Wecker je Wecker übernehmen (Audit A-4, ``AlarmStamps``).
+    /// Vom iPhone empfangene Wecker je Wecker übernehmen (``AlarmStamps``).
     func applyRemote(_ snapshot: AlarmSnapshot) {
-        // Derselbe Kontext nicht zweimal (Fix S-5): Er kommt bei jedem Start erneut.
+        // Derselbe Kontext nicht zweimal: Er kommt bei jedem Start erneut.
         guard storage.applyRemoteContext(snapshot) else { return }
         alarms = storage.snapshot().alarms
         DiagStore.shared.log(.alarmsReceived, "\(alarms.count) alarms")

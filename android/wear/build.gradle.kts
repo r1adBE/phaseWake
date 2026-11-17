@@ -56,7 +56,7 @@ android {
             // Testversion mit eigener Kennung (com.phasewake.app.test), neben der Store-Version installierbar. Handy
             // und Uhr brauchen dieselbe (Data Layer): darum in beiden Apps gleich (android/testing/README.md).
             applicationIdSuffix = ".test"
-            // Testversion nur für ARM-Uhren (Audit F-13, alle Wear-OS-Uhren); der Store-Build (AAB) bleibt unverändert.
+            // Testversion nur für ARM-Uhren (alle Wear-OS-Uhren); der Store-Build (AAB) bleibt unverändert.
             ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a") }
         }
         release {
@@ -91,7 +91,7 @@ android {
     }
 }
 
-// Kotlin-Warnungen brechen den Build ab, im App- wie im Testcode (Review K-14).
+// Kotlin-Warnungen brechen den Build ab, im App- wie im Testcode.
 kotlin {
     compilerOptions {
         allWarningsAsErrors = true
@@ -135,7 +135,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines.guava)
     implementation(libs.kotlinx.coroutines.play.services)
 
-    // Sicherheit (Review K-01, OSV): Guava 32.0.x und protobuf-javalite 4.26.1 kommen transitiv mit; nur die Version
+    // Sicherheit (OSV): Guava 32.0.x und protobuf-javalite 4.26.1 kommen transitiv mit; nur die Version
     // anheben, nichts zusätzlich einbinden.
     constraints {
         implementation("com.google.guava:guava:${libs.versions.guava.get()}") { because("OSV: Guava 32.0.x mit bekannten Schwachstellen") }

@@ -14,7 +14,7 @@ import java.util.UUID
 import kotlinx.coroutines.tasks.await
 
 /**
- * Schlüssel und Inhalte der Warteschlange [Outbox] zwischen Handy und Uhr (Audit C2): Textformate der Nachrichten
+ * Schlüssel und Inhalte der Warteschlange [Outbox] zwischen Handy und Uhr: Textformate der Nachrichten
  * (`DataLayer.PATH_MSG_…`) und die eigenen Pakete der früheren Wege für die einmalige Umstellung.
  */
 object QueueMessages {
@@ -41,7 +41,7 @@ object QueueMessages {
     fun nightKey(night: NightRecord): String = KEY_NIGHT + night.windowStart.toEpochMilli() + "-" + Uri.encode(night.alarmId)
 
     /**
-     * Inhalt der Nachricht [DataLayer.PATH_MSG_ALARMS]: «updatedAt», Zeilenumbruch, Wecker, danach (Audit A-4) die
+     * Inhalt der Nachricht [DataLayer.PATH_MSG_ALARMS]: «updatedAt», Zeilenumbruch, Wecker, danach die
      * Zeitpunkte je Wecker und die gelöschten Wecker: Zeile [STAMPS_HEADER], dann je eine Zeile «t=kennung=ms» bzw.
      * «d=kennung=ms» (Kennung URL-kodiert). Ältere Versionen lesen diese Zeilen als unlesbare Wecker-Zeilen und
      * überspringen sie (zu wenige Felder).
@@ -82,7 +82,7 @@ object QueueMessages {
                 target[AlarmStamps.unescape(text.substring(0, eq)) ?: continue] = at
             }
         }
-        // Zeitpunkte nach [TimeBounds] geprüft (Audit KN-4): unplausibler Listen-Zeitpunkt → Nachricht verworfen.
+        // Zeitpunkte nach [TimeBounds] geprüft: unplausibler Listen-Zeitpunkt → Nachricht verworfen.
         AlarmStamps.checked(AlarmSnapshot(Codec.decodeAlarms(alarmsText), updatedAt, stamps, deleted, perAlarm = marker >= 0))
     }.onFailure { Log.w(TAG, "Wecker-Nachricht unlesbar", it) }.getOrNull()
 
@@ -92,7 +92,7 @@ object QueueMessages {
     private const val DELETED = "d="
 
     /**
-     * Ob «Verlauf löschen» um [cutMs] den wartenden Eintrag [entry] verwirft (Audit D-02): eine Nacht oder Aufzeichnung,
+     * Ob «Verlauf löschen» um [cutMs] den wartenden Eintrag [entry] verwirft: eine Nacht oder Aufzeichnung,
      * die bis dahin endet oder vorher eingereiht wurde; andere Einträge nie.
      */
     fun droppedByClear(entry: Outbox.Entry, cutMs: Long): Boolean = when {
@@ -101,7 +101,7 @@ object QueueMessages {
         else -> false
     }
 
-    /** Ob der Eintrag einer Nacht ([Codec.encodeNight]) bis [cutMs] endet (geweckt); unlesbar: nein (Audit D-02). */
+    /** Ob der Eintrag einer Nacht ([Codec.encodeNight]) bis [cutMs] endet (geweckt); unlesbar: nein. */
     fun nightEndsBy(body: String, cutMs: Long): Boolean =
         runCatching { Codec.decodeNight(body) }.getOrNull()?.let { it.wokeAt.toEpochMilli() <= cutMs } ?: false
 
@@ -111,7 +111,7 @@ object QueueMessages {
 
     /**
      * Liest den Inhalt von [DataLayer.PATH_MSG_HOLIDAYS]: Liste und Zeitpunkt; `null`, wenn unlesbar oder der Zeitpunkt
-     * unplausibel ist ([TimeBounds], Audit AN-5: sonst gewänne ein Stand «aus der Zukunft» für immer).
+     * unplausibel ist ([TimeBounds]; sonst gewänne ein Stand «aus der Zukunft» für immer).
      */
     fun decodeHolidays(body: String): Pair<HolidayList, Long>? {
         val cut = body.indexOf('\n').takeIf { it > 0 } ?: return null

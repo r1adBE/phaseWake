@@ -6,7 +6,7 @@ import java.time.LocalDate
 import java.time.ZoneId
 
 /**
- * Lern-Übersicht (Entscheid r1AD 13.11.2026): je Nacht seit dem Beginn der Lernphase, ob sie gezählt hat, und wenn
+ * Lern-Übersicht: je Nacht seit dem Beginn der Lernphase, ob sie gezählt hat, und wenn
  * nicht, warum. Grundlage sind nur Angaben, die das Handy wirklich hat: die Aufzeichnungen der Uhr, ihre Meldungen
  * ([LearnSkip]), die gemerkten Nächte mit Wecker ([LearnLog]), Zustimmung und Schalter. Dazu die Regel der Warnung am
  * Abend ([shouldWarn]). Reine Logik; identisch zu `LearnNights` (Swift), gemeinsame Fälle in
@@ -20,7 +20,7 @@ object LearnNights {
      * Unter diesem Anteil (Prozent) Epochen mit Puls an den Epochen mit Bewegung gilt eine Nacht als «vermutlich nicht
      * getragen». Getragen liegt er höher: Galaxy Watch in Stichproben rund 20 %, Apple Watch (Puls aus Apple Health, etwa
      * alle 5 Min) rund 10 %. Bewegung allein unterscheidet nicht: Das Rauschen der Uhr ist am Handgelenk und auf dem Tisch
-     * gleich (Befund 07.11.2026). Fehlt die Pulserlaubnis, sieht es gleich aus; der Tipp nennt beides.
+     * gleich. Fehlt die Pulserlaubnis, sieht es gleich aus; der Tipp nennt beides.
      */
     const val MIN_PULSE_PERCENT = 2
 

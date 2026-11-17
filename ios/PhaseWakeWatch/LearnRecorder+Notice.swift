@@ -3,7 +3,7 @@ import PhaseWakeCore
 import UserNotifications
 import WatchKit
 
-/// Hinweise der Lernphase auf der Apple Watch (Lern-Übersicht, Entscheid r1AD 13.11.2026; wie `LearnNotice` der Galaxy
+/// Hinweise der Lernphase auf der Apple Watch (Lern-Übersicht; wie `LearnNotice` der Galaxy
 /// Watch), damit niemand nach 7 Tagen ohne gezählte Nacht dasteht, ohne den Grund zu kennen:
 /// - Warnung am Abend: Eine Hintergrund-Aktualisierung (`scheduleRefresh`) bzw. das Öffnen der App 60 Min vor dem
 ///   frühesten Start des Rekorders prüft den Akku; liegt er unter ``Learning/minBattery`` und lädt die Uhr nicht, kommt

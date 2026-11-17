@@ -12,7 +12,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * Prüfrunde 2, B-6: «Schon gefragt» galt nur im laufenden Prozess. Nach «Nicht mehr fragen» bewirkte darum der erste
+ * «Schon gefragt» galt nur im laufenden Prozess. Nach «Nicht mehr fragen» bewirkte darum der erste
  * Tipp auf «Erlauben» nach jedem Start sichtbar nichts (das System lehnt still ab). Jetzt übersteht der Merker das
  * Prozessende; ohne gewünschte Begründung öffnet schon der erste Tipp die Einstellungen.
  */

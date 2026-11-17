@@ -19,7 +19,7 @@ final class AlarmSpecTests: XCTestCase {
     }
 
     func testDocumentedNumbersAsLiterals() throws {
-        // Audit BE-3: Zahlen aus der Doku als Wert, nicht nur symbolisch (Wert − 1 / Wert / Wert + 1).
+        // Zahlen aus der Doku als Wert, nicht nur symbolisch (Wert − 1 / Wert / Wert + 1).
         XCTAssertEqual(AlarmSpec.maxAlarms, 8)
         XCTAssertEqual(AlarmSpec.exactWindow, 0)
         XCTAssertTrue(try AlarmSpec(id: "a", hour: 7, minute: 0, windowMinutes: 0).isExact)

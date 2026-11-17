@@ -70,7 +70,7 @@
     <string name="editor_delete_title">លុបម៉ោងរោទ៍នេះ?</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">ច្រើនបំផុត %1$d ម៉ោងរោទ៍ – លុបមួយដើម្បីបន្ថែមថ្មី។</string>
     <string name="editor_enabled">ម៉ោងរោទ៍បើក</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">រំលងលើកក្រោយ</string>
     <string name="alarm_skipped">បានរំលង៖ %1$s</string>
     <string name="nap_title">ដេកខ្លី</string>
@@ -98,7 +98,7 @@
     <string name="record_since">តាំងពី %1$s</string>
     <string name="notification_record_title">កំពុងថតពេលយប់</string>
     <string name="record_battery_low">ថ្មខ្សោយពេកសម្រាប់ថត</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">ដំណាក់កាលរៀន</string>
     <string name="watch_learn_warn">សាកថ្មនាឡិកា បើមិនដូច្នោះទេ យប់នេះមិនរាប់សម្រាប់ដំណាក់កាលរៀនទេ (ថ្ម %1$d %% ត្រូវការ %2$d %%)។</string>
     <string name="watch_learn_skip_battery">យប់នេះមិនរាប់សម្រាប់ដំណាក់កាលរៀនទេ៖ ថ្ម %1$d %% ត្រូវការ %2$d %%។</string>

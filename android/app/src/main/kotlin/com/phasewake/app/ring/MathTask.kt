@@ -72,7 +72,7 @@ internal fun MathTaskPanel(
         if (challenge.done) onSolved()
     }
 
-    // Jeder Text und jede Taste nimmt die Schrift, die an ihrer Stelle des Himmels lesbar ist (Audit UI-6).
+    // Jeder Text und jede Taste nimmt die Schrift, die an ihrer Stelle des Himmels lesbar ist.
     Column(modifier, horizontalAlignment = Alignment.CenterHorizontally) {
         val (stepInk, stepPlace) = rememberSkyInk(light, NIGHT_INK)
         Text(

@@ -3,7 +3,7 @@ import PhaseWakeCore
 import SwiftUI
 
 /// Markenfarben aus dem Logo, identisch zu Android: dunkel «Mitternacht & Lavendel», hell «Creme Caramel» (Variante
-/// Caramel + Lavendel, Entscheid r1AD 17.11.2026: Fläche Creme, Lavendel Hauptakzent, Caramel sparsamer Zweitakzent).
+/// Caramel + Lavendel: Fläche Creme, Lavendel Hauptakzent, Caramel sparsamer Zweitakzent).
 enum Brand {
     static let nightTop = Color(hex: 0x141A3D)
     static let nightBottom = Color(hex: 0x070914)
@@ -198,7 +198,7 @@ struct PulsingDot: View {
 enum Format {
     static func time(_ date: Date) -> String { date.formatted(date: .omitted, time: .shortened) }
 
-    /// Uhrzeit in `zone` (Nacht aus der Gesundheits-App: Zone der Aufzeichnung, Audit F-3); `nil` = Zone des Geräts.
+    /// Uhrzeit in `zone` (Nacht aus der Gesundheits-App: Zone der Aufzeichnung); `nil` = Zone des Geräts.
     static func time(_ date: Date, in zone: TimeZone?) -> String {
         var style = Date.FormatStyle(date: .omitted, time: .shortened)
         if let zone { style.timeZone = zone }
@@ -226,7 +226,7 @@ enum Format {
         return String(format: "%02d:%02d", locale: Locale(identifier: "en_US_POSIX"), parts.hour ?? 0, parts.minute ?? 0)
     }
 
-    /// Zweistellige Zahl («07») mit den Ziffern der Sprache wie bei den Uhrzeiten (Arabisch: ٠–٩, Audit UI-9);
+    /// Zweistellige Zahl («07») mit den Ziffern der Sprache wie bei den Uhrzeiten (Arabisch: ٠–٩);
     /// `String(format: "%02d")` gäbe immer 0–9.
     static func twoDigits(_ value: Int, locale: Locale = .current) -> String {
         value.formatted(.number.precision(.integerLength(2)).grouping(.never).locale(locale))

@@ -73,7 +73,7 @@
     <string name="editor_delete_title">આ એલાર્મ કાઢી નાખવો છે?</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">વધુમાં વધુ %1$d એલાર્મ – નવો ઉમેરવા માટે એક કાઢી નાખો.</string>
     <string name="editor_enabled">એલાર્મ ચાલુ</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">આગલી વાર છોડો</string>
     <string name="alarm_skipped">છોડ્યો: %1$s</string>
     <string name="nap_title">પાવર નેપ</string>
@@ -103,7 +103,7 @@
     <string name="record_since">%1$s થી</string>
     <string name="notification_record_title">રાત રેકોર્ડ થઈ રહી છે</string>
     <string name="record_battery_low">રેકોર્ડ કરવા માટે બેટરી બહુ ઓછી છે</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">શીખવાનો તબક્કો</string>
     <string name="watch_learn_warn">ઘડિયાળ ચાર્જ કરો, નહીં તો આજની રાત શીખવાના તબક્કામાં ગણાશે નહીં (બેટરી %1$d %%, જોઈએ %2$d %%).</string>
     <string name="watch_learn_skip_battery">આજની રાત શીખવાના તબક્કામાં ગણાશે નહીં: બેટરી %1$d %%, જોઈએ %2$d %%.</string>

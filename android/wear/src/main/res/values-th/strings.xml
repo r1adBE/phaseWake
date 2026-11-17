@@ -70,7 +70,7 @@
     <string name="editor_delete_title">ลบนาฬิกาปลุกนี้ไหม</string>
     <string name="home_max_alarms">ตั้งได้สูงสุด %1$d รายการ – ลบหนึ่งรายการเพื่อเพิ่มใหม่</string>
     <string name="editor_enabled">นาฬิกาปลุกเปิดอยู่</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">ข้ามครั้งถัดไป</string>
     <string name="alarm_skipped">ข้ามแล้ว: %1$s</string>
     <string name="nap_title">งีบหลับ</string>
@@ -98,7 +98,7 @@
     <string name="record_since">ตั้งแต่ %1$s</string>
     <string name="notification_record_title">กำลังบันทึกกลางคืน</string>
     <string name="record_battery_low">แบตเตอรี่น้อยเกินกว่าจะบันทึก</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">ช่วงเรียนรู้</string>
     <string name="watch_learn_warn">ชาร์จนาฬิกา ไม่เช่นนั้นคืนนี้จะไม่นับในช่วงเรียนรู้ (แบตเตอรี่ %1$d %% ต้องการ %2$d %%)</string>
     <string name="watch_learn_skip_battery">คืนนี้ไม่นับในช่วงเรียนรู้: แบตเตอรี่ %1$d %% ต้องการ %2$d %%</string>

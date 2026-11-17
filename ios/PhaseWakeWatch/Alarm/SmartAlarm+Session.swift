@@ -43,7 +43,7 @@ extension SmartAlarm {
 
     /// Gemerkte Sitzung `started` ist gestartet: Übernimmt sie die aktuelle Nacht (``SessionRules/usesOrphan(own:busy:serves:)``),
     /// wird sie die Sitzung dieser Nacht, die eigene (nur geplante) gilt als ersetzt, und die Nacht misst und weckt mit
-    /// Vibration (HG-4). - Returns: ob übernommen.
+    /// Vibration. - Returns: ob übernommen.
     func usesStale(_ started: WKExtendedRuntimeSession) -> Bool {
         let model = WatchModel.shared
         model.refresh()
@@ -81,8 +81,8 @@ extension SmartAlarm {
 
     nonisolated func extendedRuntimeSessionDidStart(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
         Task { @MainActor in
-            // Verwaiste Sitzung (ersetzt, als die App sie nicht beenden durfte): Kann sie die Nacht übernehmen, weckt sie
-            // (HG-4); sonst gleich beenden, ohne zu vibrieren (keine Nacht zu wecken; Apple kann dann warnen).
+            // Verwaiste Sitzung (ersetzt, als die App sie nicht beenden durfte): Kann sie die Nacht übernehmen, weckt sie;
+            // sonst gleich beenden, ohne zu vibrieren (keine Nacht zu wecken; Apple kann dann warnen).
             if self.isStale(extendedRuntimeSession), self.usesStale(extendedRuntimeSession) { return }
             if self.isStale(extendedRuntimeSession) {
                 DiagStore.shared.log(.error, "stale session started, ended")
@@ -155,7 +155,7 @@ extension SmartAlarm {
             guard extendedRuntimeSession === self.session else { return }
             self.session = nil
             self.stopSensors()
-            // Grund und Fehlercode ins Protokoll (Audit AP-1).
+            // Grund und Fehlercode ins Protokoll.
             let ending = SessionRules.ending(reason, ringing: self.phase.isRinging)
             DiagStore.shared.log(ending == .dismissed ? .stop : .error, "session invalidated \(SessionRules.reasonName(reason))\(code)")
             switch self.phase {

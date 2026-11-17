@@ -64,7 +64,7 @@ final class FakeBackupHost: BackupHost {
     func sendStop(_ night: RingNight) { stops.append(night) }
 }
 
-/// iPhone-Zweitwecker (Audit 17.11. CODE-01), gespiegelt aus Android `BackupPlanTest`, `BackupWatchTest` und
+/// iPhone-Zweitwecker, gespiegelt aus Android `BackupPlanTest`, `BackupWatchTest` und
 /// `BackupReplanTest`: Nachfrist je nach Uhr, Neuplanen lässt Gleiches stehen, Nachfrist behält eine fällige Sicherung,
 /// «Uhr hat übernommen» mit und ohne Kennung, Mitklingeln, Sicherung nach dem Schlummern, Schlummern an einer Sicherung.
 /// Eigene Einstellungsdatei und ``FakeBackupPlatform``: nichts wird wirklich gestellt.
@@ -219,7 +219,7 @@ final class BackupAlarmPhoneTests: XCTestCase {
         await plan([soon, far, recent])
         await backup.watchHandled(alarmId: nil, target: nil)
         // Ohne Kennung und Zielzeit (ältere Uhr): nur die Wecker, deren Nacht läuft (Zielzeit bis zum längsten Weckfenster
-        // voraus oder eben vorbei), je bis zu ihrer Zielzeit plus Nachfrist – wie Android (Entscheid r1AD 17.11.2026).
+        // voraus oder eben vorbei), je bis zu ihrer Zielzeit plus Nachfrist – wie Android.
         let suppressed = backup.suppressedUntil()
         XCTAssertEqual(try XCTUnwrap(suppressed["a"]).timeIntervalSince(soonAt), 120, accuracy: 0.001)
         XCTAssertEqual(try XCTUnwrap(suppressed["recent"]).timeIntervalSince(recentAt), 120, accuracy: 0.001)
@@ -345,7 +345,7 @@ final class BackupAlarmPhoneTests: XCTestCase {
         XCTAssertEqual(host.stops.count, 1)
     }
 
-    /// Verwaiste AlarmKit-Alarme: nur geplante, deren Kennung die App nicht kennt (Herkunft: Tiefenaudit c3b8b01 AP3-1).
+    /// Verwaiste AlarmKit-Alarme: nur geplante, deren Kennung die App nicht kennt.
     func testOnlyUnknownScheduledAlarmsAreOrphans() {
         let known = UUID(), orphan = UUID(), other = UUID()
         XCTAssertEqual(BackupAlarm.orphans(scheduled: [known, orphan], known: [known, other]), [orphan])

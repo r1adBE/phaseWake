@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application>
-        <!-- Akku je Nacht (r1AD 14.11.2026): hält den Ladebeginn fest, auch wenn die App gerade nicht läuft. -->
+        <!-- Akku je Nacht: hält den Ladebeginn fest, auch wenn die App gerade nicht läuft. -->
         <service
             android:name="com.phasewake.app.shared.BatteryChargeJob"
             android:exported="false"

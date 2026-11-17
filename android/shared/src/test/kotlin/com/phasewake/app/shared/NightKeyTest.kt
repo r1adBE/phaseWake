@@ -59,7 +59,7 @@ class NightKeyTest {
 
     @Test
     fun storedOnsetIsKeptTogether() {
-        // Entscheid r1AD 15.11.2026: Einschlafzeit samt Beginn bleibt, wenn dieselbe Nacht ohne sie noch einmal kommt.
+        // Einschlafzeit samt Beginn bleibt, wenn dieselbe Nacht ohne sie noch einmal kommt.
         val bed = start.minus(Duration.ofHours(7))
         val asleep = bed.plus(Duration.ofMinutes(25))
         val measured = night("a").copy(bedAt = bed, asleepAt = asleep)

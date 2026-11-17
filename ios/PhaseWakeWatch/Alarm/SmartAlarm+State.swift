@@ -66,7 +66,7 @@ extension SmartAlarm {
             phase = .ringing(reason, snoozesLeft: snoozesLeft)
         }
         // Nach einem Neustart der App gibt es keine Sitzung mehr, also auch keine Vibration: abschliessen, ausser die
-        // Schlummer-Sitzung startet noch. Älter als `ringStateMaxAge`: ohne Wecken (Vollaudit AP2-9; früher verworfen, mit
+        // Schlummer-Sitzung startet noch. Älter als `ringStateMaxAge`: ohne Wecken (früher verworfen, mit
         // Nacht und Epochen). Erst nach dem Aufbau von `shared` (plant über WatchModel neu).
         switch NightRules.restored(target: night.target, snoozedUntil: snoozed, now: Date(), staleAfter: Self.ringStateMaxAge,
                                    tolerance: Self.startTolerance) {

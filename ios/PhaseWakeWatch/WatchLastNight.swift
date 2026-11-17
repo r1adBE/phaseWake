@@ -1,7 +1,7 @@
 import Observation
 import PhaseWakeCore
 
-/// Letzte Nacht des Verlaufs für die Startseite der Uhr (Audit 17.11. PERF-04): gemerkt und beobachtet, statt bei
+/// Letzte Nacht des Verlaufs für die Startseite der Uhr: gemerkt und beobachtet, statt bei
 /// jedem Neuzeichnen den ganzen Verlauf zu lesen und zu zerlegen. Alle Änderungen der Nächte auf der Uhr laufen über
 /// ``add(_:)``, ``replace(_:)`` und ``clear()``; so zeigt die Startseite eine neue Nacht sofort.
 @MainActor

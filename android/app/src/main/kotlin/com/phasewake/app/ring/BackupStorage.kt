@@ -81,7 +81,7 @@ internal object BackupDirectBoot {
         return rang
     }
 
-    /** Vor dem Entsperren am Handy beendeter Probewecker oder Powernap [alarmId] (Audit SP-4), für [takeEnded]. */
+    /** Vor dem Entsperren am Handy beendeter Probewecker oder Powernap [alarmId], für [takeEnded]. */
     fun markEnded(context: Context, alarmId: String) {
         val prefs = prefs(context)
         val ended = prefs.getString(KEY_ENDED, null)?.lines().orEmpty().filter { it.isNotEmpty() } - alarmId + alarmId
@@ -110,7 +110,7 @@ internal object BackupDirectBoot {
     }
 
     /**
-     * Abgelegter Zweitwecker, der während eines Neustarts fällig wurde und nachzuholen ist (Audit A-5): Zeitpunkt bis
+     * Abgelegter Zweitwecker, der während eines Neustarts fällig wurde und nachzuholen ist: Zeitpunkt bis
      * [now] und noch in der Frist von [restore] ([Transient.catchesUpAfterBoot], 30 Min. bzw. 60 s). Der früheste;
      * `null`, wenn keiner.
      */

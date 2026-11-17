@@ -15,7 +15,7 @@ import kotlin.test.assertSame
 import kotlin.test.assertTrue
 
 /**
- * Frühere Zielzeit aus dem Einschlaf-Modus für den Zweitwecker am Handy ([OnsetShift], Review K-07): Datenpaket der
+ * Frühere Zielzeit aus dem Einschlaf-Modus für den Zweitwecker am Handy ([OnsetShift]): Datenpaket der
  * Uhr, eigener Speicher des Handys und nur dieselbe Nacht desselben Weckers. Robolectric für DataMap und Uri.
  */
 @RunWith(RobolectricTestRunner::class)
@@ -60,7 +60,7 @@ class OnsetShiftTest {
 
     @Test
     fun messageWithoutEarlierTargetLeavesThePlan() {
-        // Zweites Einschlafen, Zielzeit auf der eingestellten (Review H-1), oder Ausnahme gelöscht ([OnsetShift.cancel]).
+        // Zweites Einschlafen, Zielzeit auf der eingestellten, oder Ausnahme gelöscht ([OnsetShift.cancel]).
         val night = Instant.parse("2026-11-03T01:00:00Z")
         assertSame(plan, shift.copy(target = configured.toEpochMilli(), at = 2_000L).applyTo(plan, night, grace))
         val cancel = OnsetShift.cancel(WakePlan("a|b", earlier.minus(Duration.ofMinutes(30)), earlier), 3_000L)
@@ -82,7 +82,7 @@ class OnsetShiftTest {
 
     @Test
     fun implausibleTimesAreUnreadable() {
-        // Audit AN-5: ein Zeitpunkt ausserhalb von TimeBounds (z. B. Long.MAX_VALUE) macht die Meldung unlesbar.
+        // Ein Zeitpunkt ausserhalb von TimeBounds (z. B. Long.MAX_VALUE) macht die Meldung unlesbar.
         assertNull(OnsetShift.decode("a|${Long.MAX_VALUE}|1|1"))
         assertNull(OnsetShift.decode("a|1|-1|1"))
         assertNull(OnsetShift.decode("a|1|1|${Long.MAX_VALUE}"))

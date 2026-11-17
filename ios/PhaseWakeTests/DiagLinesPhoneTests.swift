@@ -3,13 +3,13 @@ import WatchConnectivity
 import XCTest
 @testable import PhaseWake
 
-/// Audit 17.11.: Zeilen aus MetricKit (PERF-03, ``ExitLines``) und Diagnose-Zeilen für verworfene Nächte und
-/// gescheitertes Speichern (CODE-02).
+/// Zeilen aus MetricKit (``ExitLines``) und Diagnose-Zeilen für verworfene Nächte und
+/// gescheitertes Speichern.
 final class DiagLinesPhoneTests: XCTestCase {
     private let utc = TimeZone(identifier: "UTC")!
     private let at = Date(timeIntervalSince1970: 1_794_000_000) // 2026-11-06 21:20 UTC
 
-    // MARK: PERF-03
+    // MARK: MetricKit
 
     func testCrashLineHasKindTimeAndCodesOnly() {
         let line = ExitLines.line("crash", at: at, fields: [
@@ -39,7 +39,7 @@ final class DiagLinesPhoneTests: XCTestCase {
         XCTAssertFalse(ExitLines.isNew(end: 99, seenUntil: 100))
     }
 
-    // MARK: CODE-02
+    // MARK: Verworfene Nächte, gescheitertes Speichern
 
     func testUnreadableNightIsLogged() {
         let seen = UserDefaults.standard.object(forKey: PhoneConnectivity.watchSeenKey)

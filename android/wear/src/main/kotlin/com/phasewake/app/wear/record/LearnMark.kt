@@ -16,7 +16,7 @@ internal data class LearnMark(val start: Instant, val until: Instant)
 
 /**
  * Marken der laufenden Aufzeichnung, gespeichert (überstehen ein Prozessende wie die Aufzeichnung selbst): die [LearnMark]
- * und, ob eine von Hand begonnene durchgehend misst ([setContinuous], nur mit freigeschalteter Diagnose, Audit F-01).
+ * und, ob eine von Hand begonnene durchgehend misst ([setContinuous], nur mit freigeschalteter Diagnose).
  */
 class LearnMarkStore internal constructor(private val store: DataStore<Preferences>) {
 

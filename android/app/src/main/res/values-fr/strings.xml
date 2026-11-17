@@ -395,7 +395,7 @@
     <string name="chart_window">Plage de réveil</string>
     <string name="chart_no_data">aucune donnée</string>
     <string name="chart_feeling_hint">Touche un point pour voir les notes de cette nuit.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Tester le réveil</string>
     <string name="test_button">Tester dans 2 minutes</string>
     <string name="test_hint">Sonne dans 2 minutes avec les réglages de ton prochain réveil, sans répétition. Ne compte pas comme une nuit.</string>
@@ -613,7 +613,7 @@
     <string name="learn_switch_hint">Ta montre mesure mouvements et pouls la nuit (à partir de %1$d %% de batterie). Désactivé : aucun enregistrement automatique, les valeurs apprises restent.</string>
     <string name="learn_switch_title">Active</string>
     <string name="watch_open_app_hint">Ouvre Phase Wake sur ta montre pour qu’elle reçoive la commande.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Chaque nuit depuis le début de la phase d’apprentissage : si elle a compté et, sinon, pourquoi et ce qui aide. Phase Wake a besoin de %1$d nuits comptées.</string>
     <string name="learn_nights_empty">Aucune nuit pour l’instant. La première apparaîtra ici le lendemain matin.</string>
     <string name="learn_night_facts">%1$s mesurées · %2$d valeurs · pouls dans %3$d %%</string>

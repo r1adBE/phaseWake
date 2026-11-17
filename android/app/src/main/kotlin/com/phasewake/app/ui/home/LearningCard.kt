@@ -41,12 +41,12 @@ import kotlin.math.roundToInt
  * Lernphase auf der Startseite: solange sie läuft «Lernphase: Nacht N von 7» ([night]) mit kurzer Erklärung, danach
  * einmal «Angepasst an dich» mit den gelernten Werten ([values]) und «OK» ([onSeen]). [autoHint]: «Einschlafen automatisch
  * erkennen» ist aus – dann der Hinweis, wie die Nächte trotzdem zählen. [onConsent] gesetzt: noch nicht gefragt, die Karte
- * fragt einmal «Lernphase starten» / «Später» (Audit F-02). Lern-Übersicht (r1AD 13.11.2026): [miss] = letzte Nacht hat
+ * fragt einmal «Lernphase starten» / «Später». Lern-Übersicht: [miss] = letzte Nacht hat
  * unerwartet nicht gezählt ([LearnNights.lastNightMiss]), mit Grund; [onDetails] öffnet die Übersicht aller Nächte.
  */
 /**
  * Ob die Uhr «Gute Nacht» anbietet: nur, wenn der nächste Wecker im Einschlaf-Modus ist (wie die Startseite der Galaxy
- * Watch, `HomeContent`). Audit O-02: Bei Uhrzeit-Weckern gibt es den Knopf nicht.
+ * Watch, `HomeContent`). Bei Uhrzeit-Weckern gibt es den Knopf nicht.
  */
 internal fun goodNightOffered(alarms: List<AlarmSpec>, now: Instant, zone: ZoneId, holidays: Set<LocalDate>, done: Map<String, Instant>): Boolean {
     val plan = AlarmSchedule.earliestPlan(alarms, now, zone, holidays, done) ?: return false
@@ -60,7 +60,7 @@ class HomeLearning(
     val night: Int?,
     val values: Learning.Values?,
     val autoHint: Boolean = false,
-    /** Die Uhr bietet «Gute Nacht» an ([goodNightOffered]); sonst nennt der Hinweis nur den Schalter (Audit O-02). */
+    /** Die Uhr bietet «Gute Nacht» an ([goodNightOffered]); sonst nennt der Hinweis nur den Schalter. */
     val goodNight: Boolean = true,
     val onSeen: () -> Unit = {},
     val onConsent: ((Boolean) -> Unit)? = null,
@@ -73,7 +73,7 @@ class HomeLearning(
 
 /**
  * Karte der Lernphase, siehe [HomeLearning]. Solange sie läuft, trägt sie auch «Nacht aufzeichnen» ([record], [onRecord])
- * als kleinen zweiten Knopf neben «Details» statt einer eigenen Karte (r1AD 13.11.2026); läuft eine Aufzeichnung, steht
+ * als kleinen zweiten Knopf neben «Details» statt einer eigenen Karte; läuft eine Aufzeichnung, steht
  * «Aufzeichnung läuft seit …» darüber und der Knopf stoppt sie.
  */
 @Composable

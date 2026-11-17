@@ -5,8 +5,8 @@ import java.util.Locale
 /**
  * Schwelle relativ zum Rauschen der Uhr. Regel siehe `docs/PHASENERKENNUNG.md`, Abschnitt 3.
  *
- * Manche Uhren messen auch beim Stillliegen deutlich mehr Bewegung als die Startwerte annehmen (Galaxy Watch,
- * Befund 07.11.2026: ruhig rund 0.02 m/s², Leicht-Schwelle 0.002). Dann zählte jede Epoche als leichte Bewegung.
+ * Manche Uhren messen auch beim Stillliegen deutlich mehr Bewegung als die Startwerte annehmen (Galaxy Watch:
+ * ruhig rund 0.02 m/s², Leicht-Schwelle 0.002). Dann zählte jede Epoche als leichte Bewegung.
  * Darum gilt je Messung eine Untergrenze aus dem Grundrauschen dieser Nacht; sie hebt die Schwellen nur an.
  *
  * Die Swift-Umsetzung (`ios/PhaseWakeCore`) muss sich identisch verhalten.
@@ -23,7 +23,7 @@ object NoiseFloor {
 
     /**
      * Obergrenze des Grundrauschens (m/s²): Beginnt eine Messung unruhig, darf mässige Bewegung nicht als ruhig gelten.
-     * Rund das Doppelte des stillen Mittels der Galaxy Watch (07.11.2026); so bleibt Leicht ≤ 0.1 und Wach ≤ 0.2.
+     * Rund das Doppelte des stillen Mittels der Galaxy Watch; so bleibt Leicht ≤ 0.1 und Wach ≤ 0.2.
      */
     const val MAX_FLOOR: Double = 0.04
 
@@ -49,7 +49,7 @@ object NoiseFloor {
     }
 
     /**
-     * Plausibilität des Vorwissens (Fix KN-2, vorsichtig, r1AD): Die Obergrenze [PRIOR_FACTOR] × Vorwissen gilt nur, wenn
+     * Plausibilität des Vorwissens (vorsichtig): Die Obergrenze [PRIOR_FACTOR] × Vorwissen gilt nur, wenn
      * das Vorwissen ([priorFloor]) mindestens dieser Anteil des Grundrauschens des Fensters ohne Obergrenze ist. Ein
      * unplausibel tiefes Vorwissen (z. B. 0.002 bei einer Uhr, die ruhig 0.02 misst) senkte die Schwellen sonst fast auf
      * die Startwerte, und das Rauschen der Uhr zählte wieder als Bewegung.
@@ -58,7 +58,7 @@ object NoiseFloor {
 
     /**
      * Vorwissen für die Obergrenze im Weckfenster: das grössere von Grundrauschen der Einschlaf-Messung dieser Nacht
-     * ([DetectorConfig.onsetFloor]) und gelerntem ([DetectorConfig.personalFloor]); `null` ohne beide (Fix KN-2).
+     * ([DetectorConfig.onsetFloor]) und gelerntem ([DetectorConfig.personalFloor]); `null` ohne beide.
      */
     fun priorFloor(config: DetectorConfig): Double? = listOfNotNull(config.onsetFloor, config.personalFloor).maxOrNull()
 

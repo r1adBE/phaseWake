@@ -28,7 +28,7 @@ class StageStatsTest {
 
     @Test
     fun sourceWithoutStageDetailHasNoStages() {
-        // Audit W-5: Schlaf «unbekannt» 23:00–07:00 mit 30 Min wach (Health Connect STAGE_TYPE_SLEEPING, HealthKit
+        // Schlaf «unbekannt» 23:00–07:00 mit 30 Min wach (Health Connect STAGE_TYPE_SLEEPING, HealthKit
         // asleepUnspecified): keine Phasen statt «Wach 100 %».
         val unknownWithAwake = listOf(span(0, 200, SleepStage.UNKNOWN), span(200, 230, SleepStage.AWAKE), span(230, 480, SleepStage.UNKNOWN))
         assertNull(StageStats.of(unknownWithAwake, at(0), at(480)))
@@ -56,7 +56,7 @@ class StageStatsTest {
 
     @Test
     fun sleepStagesAreShareOfSleep() {
-        // Entscheid r1AD 15.11.2026: REM, leicht, tief am Schlaf (wie Findings.deepPercent); wach an allen vier Phasen
+        // REM, leicht, tief am Schlaf (wie Findings.deepPercent); wach an allen vier Phasen
         // nach dem Restverfahren (34 statt 33).
         val s = of(span(0, 10, SleepStage.AWAKE), span(10, 20, SleepStage.REM), span(20, 30, SleepStage.LIGHT))!!
         assertEquals(listOf(34, 50, 50, 0), percents(s))

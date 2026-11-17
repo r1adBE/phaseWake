@@ -386,7 +386,7 @@
     <string name="chart_window">Xanela de espertar</string>
     <string name="chart_no_data">sen datos</string>
     <string name="chart_feeling_hint">Toca un punto para ver as notas desa noite.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Alarma de proba</string>
     <string name="test_button">Probar en 2 minutos</string>
     <string name="test_hint">Soa en 2 minutos cos axustes da túa próxima alarma, sen adiar. Non conta como noite.</string>
@@ -602,7 +602,7 @@
     <string name="learn_switch_hint">O teu reloxo mide movemento e pulso pola noite (desde un %1$d %% de batería). Desactivado: sen rexistro automático, os valores aprendidos mantéñense.</string>
     <string name="learn_switch_title">Activa</string>
     <string name="watch_open_app_hint">Abre Phase Wake no reloxo para que reciba a orde.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Cada noite desde que comezou a fase de aprendizaxe: se contou e, se non, por que e que axuda. Phase Wake necesita %1$d noites contadas.</string>
     <string name="learn_nights_empty">Aínda non hai ningunha noite. A primeira aparecerá aquí á mañá seguinte.</string>
     <string name="learn_night_facts">%1$s medidas · %2$d valores · pulso nun %3$d %%</string>

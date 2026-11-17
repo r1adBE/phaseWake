@@ -29,8 +29,8 @@ import kotlinx.coroutines.withContext
 // Abschluss einer Nacht: aufräumen, speichern, Einmal-Wecker aus, neu planen, ans Handy senden.
 
 /**
- * Schliesst die Nacht ab. [done]: Die Nacht gilt auch ohne Klingeln als erledigt (am Handy während der Messung beendet,
- * Audit AN-7), damit sie nicht gleich wieder geplant wird.
+ * Schliesst die Nacht ab. [done]: Die Nacht gilt auch ohne Klingeln als erledigt (am Handy während der Messung
+ * beendet), damit sie nicht gleich wieder geplant wird.
  */
 internal fun WakeService.finishNight(notifyPhone: Boolean = true, done: Boolean = false) {
     val n = night ?: return
@@ -50,8 +50,8 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true, done: Boolean 
     val transient = Transient.kindOf(n.plan.alarmId) != null
     app.diag.log(DiagKind.STOP, if (n.firstRing == null) "watch ended without ring" else "watch")
     val record = n.firstRing?.takeIf { !transient }?.let { wokeAt ->
-        // Akku je Nacht (r1AD 14.11.2026): Ende jetzt, die Punkte reisen mit der Nacht zum Handy; ebenso die Einschlafzeit
-        // samt Beginn (r1AD 15.11.2026), nur zusammen.
+        // Akku je Nacht: Ende jetzt, die Punkte reisen mit der Nacht zum Handy; ebenso die Einschlafzeit
+        // samt Beginn, nur zusammen.
         NightRecord(
             n.plan.alarmId, n.plan.windowStart, n.plan.target, wokeAt, n.reason ?: WakeReason.DEADLINE, n.snoozes, n.epochs.toList(),
             watchBattery = BatteryNight.end(this),
@@ -72,7 +72,7 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true, done: Boolean 
     // Als Erstes und sofort: Die Nacht gilt als erledigt, auch für ein gleichzeitiges Neuplanen
     // (z. B. die Startseite, die nach dem Weckbildschirm wieder erscheint).
     if (record != null || done) app.scheduler.markDone(n.plan.alarmId, doneUntil(n.plan, n.spec))
-    // Geweckt: Die Aufzeichnung dieser Nacht endet (Lernphase wie von Hand begonnen, Audit F-01).
+    // Geweckt: Die Aufzeichnung dieser Nacht endet (Lernphase wie von Hand begonnen).
     if (record != null) RecordControl.endLearning(this)
     if (notifyPhone) app.appScope.launch { app.sync.message(DataLayer.CAPABILITY_PHONE, DataLayer.PATH_STOP, stopMessage(n.plan)) }
 
@@ -99,18 +99,18 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true, done: Boolean 
             }
             runStep("Stand löschen") { app.nightProgress.clear(n.plan) }
             if (record != null) runStep("Nacht speichern") { app.nights.add(record) }
-            // Nur die Fassung, die geklingelt hat (Fix G-1/S-1): Im Schlummern verschoben, oder eine neuere Änderung vom
+            // Nur die Fassung, die geklingelt hat: Im Schlummern verschoben, oder eine neuere Änderung vom
             // Handy, bleibt eingeschaltet. Früher geweckt (Einschlaf-Modus): die Ausnahme dieser Nacht ([cleared]).
             if (!transient && spec?.isOneShot == true && spec.enabled) disabled = runStep("Einmal-Wecker ausschalten") {
                 val shifted = cleared == n.plan
                 app.alarms.disableAfterRing(spec.id) { AlarmStamps.rang(it, n.spec, n.plan.target, ZoneId.systemDefault(), shifted) }
             }
             runStep("Neu planen") { app.scheduler.reschedule() }
-            // Einreihen fürs Handy, solange der Dienst noch läuft (Audit AN-6): Es speichert nur lokal (schnell), gesendet
+            // Einreihen fürs Handy, solange der Dienst noch läuft: Es speichert nur lokal (schnell), gesendet
             // wird im Hintergrund. Endete der Prozess mit dem Dienst, ginge die Nacht sonst nie ans Handy.
             if (record != null) runStep("Nacht einreihen") { app.sync.publishNight(record) }
             disabled?.let { runStep("Einmal-Wecker einreihen") { app.sync.publishAlarms(it) } }
-            // Ausnahme weg: Auch das Handy plant wieder ohne frühere Zielzeit (Review H-1; Meldung ohne frühere Zielzeit).
+            // Ausnahme weg: Auch das Handy plant wieder ohne frühere Zielzeit (Meldung ohne frühere Zielzeit).
             cleared?.let { runStep("Einschlaf-Ausnahme einreihen") { app.publishOnsetShift(OnsetShift.cancel(it, System.currentTimeMillis())) } }
         } finally {
             withContext(Dispatchers.Main) {

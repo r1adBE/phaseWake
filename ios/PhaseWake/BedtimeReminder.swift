@@ -4,7 +4,7 @@ import UserNotifications
 
 /// Bettzeit-Erinnerung: gewöhnliche Mitteilung (nicht zeitkritisch) 30 Minuten vor der Bettzeit,
 /// Bettzeit = Zielzeit des nächsten Weckers minus Schlafziel minus gelernte Einschlafdauer (die eine Bettzeit,
-/// `Bedtime.bedtime`, Audit O-03). iOS weckt die App nach der Mitteilung
+/// `Bedtime.bedtime`). iOS weckt die App nach der Mitteilung
 /// nicht auf, darum stehen die Erinnerungen für die nächsten Nächte im Voraus.
 @MainActor
 final class BedtimeReminder {

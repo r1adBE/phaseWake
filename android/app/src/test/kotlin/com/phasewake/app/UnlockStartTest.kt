@@ -39,7 +39,7 @@ class LockedStartApp : PhaseWakeApp() {
 }
 
 /**
- * Start nach dem Entsperren (Review K-10): Startet der Prozess gesperrt, holt erst ACTION_USER_UNLOCKED die
+ * Start nach dem Entsperren: Startet der Prozess gesperrt, holt erst ACTION_USER_UNLOCKED die
  * Start-Arbeiten ([PhaseWakeApp.initUnlocked]) nach, genau einmal; ein späteres BOOT_COMPLETED tut nichts mehr. Dabei
  * wird ein unterbrochenes Wiederherstellen ([RestoreJournal]) zurückgesetzt. Ob die Start-Arbeiten liefen, zeigt der
  * Export-Ordner im Cache: Sie löschen ihn als Erstes.

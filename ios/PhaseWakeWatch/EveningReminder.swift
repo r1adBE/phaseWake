@@ -2,10 +2,10 @@ import Foundation
 import PhaseWakeCore
 import UserNotifications
 
-/// Erinnerung am Abend auf der Apple Watch (Entscheid r1AD 10.11.2026): watchOS plant die Smart-Alarm-Sitzung nur bei
+/// Erinnerung am Abend auf der Apple Watch: watchOS plant die Smart-Alarm-Sitzung nur bei
 /// offener App. 60 Min vor der einen Bettzeit (Zielzeit minus Schlafziel bzw. Schlafdauer minus gelernte
-/// Einschlafdauer, Audit O-03) bittet eine lokale Mitteilung, die App zu öffnen; ab dann darf auch der Bewegungs-Rekorder
-/// starten (Entscheid r1AD 14.11.2026, `LearnRecorder.nightStart`). Wer sie
+/// Einschlafdauer) bittet eine lokale Mitteilung, die App zu öffnen; ab dann darf auch der Bewegungs-Rekorder
+/// starten (`LearnRecorder.nightStart`). Wer sie
 /// antippt (oder die App sonst öffnet), stellt den Wecker scharf (`SmartAlarm.schedule` bei offener App) und startet den
 /// Rekorder ab dann (`LearnRecorder`). Ohne Öffnen und ohne Hintergrund-Aktualisierung zeichnet die Uhr diese Nacht
 /// nicht auf; die Einschlafzeit bleibt unbekannt, und ohne geplante Sitzung weckt nur die Mitteilung zur Zielzeit
@@ -23,9 +23,9 @@ enum EveningReminder {
     static var time: Date? { LearnRecorder.nightStart() }
 
     /// 60 Min vor der einen Bettzeit (`Bedtime.bedtime`: Zielzeit − Schlafdauer bzw. Schlafziel − gelernte
-    /// Einschlafdauer; Audit O-03, Entscheid r1AD 14.11.2026). Ohne gelernte Einschlafdauer wie bisher der Beginn der
+    /// Einschlafdauer). Ohne gelernte Einschlafdauer wie bisher der Beginn der
     /// Einschlaf-Messung (``ShortNight/autoOnsetStart(target:sleepGoalMinutes:sleepDurationMinutes:)``); mit ihr um sie
-    /// früher. Ab hier darf auch der Rekorder starten (`LearnRecorder.nightStart`, Entscheid r1AD 14.11.2026).
+    /// früher. Ab hier darf auch der Rekorder starten (`LearnRecorder.nightStart`).
     nonisolated static func reminderAt(target: Date, sleepMinutes: Int, latencyMinutes: Int?) -> Date {
         Bedtime.bedtime(nextAlarmTarget: target, goalMinutes: sleepMinutes, latencyMinutes: latencyMinutes)
             .addingTimeInterval(-TimeInterval(ShortNight.autoLeadMinutes * 60))

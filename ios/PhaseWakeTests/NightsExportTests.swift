@@ -2,7 +2,7 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWake
 
-/// Export des Verlaufs ([NightsExport], Audit F-03, wie `Export.kt` auf Android): immer die Datei der Nächte, ausser es
+/// Export des Verlaufs ([NightsExport], wie `Export.kt` auf Android): immer die Datei der Nächte, ausser es
 /// gibt nur Aufzeichnungen; die Aufzeichnungen der Uhr nur abgeschlossen und in eigener Datei; Aufräumen der temporären
 /// Dateien.
 final class NightsExportTests: XCTestCase {

@@ -28,7 +28,7 @@ class QuietWear : PhaseWakeWear() {
     /** Gesendete [OnsetShift] in der Reihenfolge des Sendens (aus dem Hintergrund geschrieben). */
     val onsetShifts: MutableList<OnsetShift> = Collections.synchronizedList(mutableListOf())
 
-    /** Je gesendete [OnsetShift]: die Zeitpunkte der in diesem Moment gestellten System-Alarme (Reihenfolge, Audit AN-6). */
+    /** Je gesendete [OnsetShift]: die Zeitpunkte der in diesem Moment gestellten System-Alarme (Reihenfolge). */
     val alarmsAtShift: MutableList<List<Long>> = Collections.synchronizedList(mutableListOf())
 
     override suspend fun publishOnsetShift(shift: OnsetShift) {

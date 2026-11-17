@@ -11,7 +11,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
-/** Grenze für Inhalte der Gegenseite (Audit S-2). */
+/** Grenze für Inhalte der Gegenseite. */
 class PeerLimitTest {
     @Test
     fun readsUpToTheLimit() {

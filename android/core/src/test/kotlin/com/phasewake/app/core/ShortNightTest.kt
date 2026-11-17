@@ -33,7 +33,7 @@ class ShortNightTest {
 
     @Test
     fun lastTenMinutesBeforeTheTargetAreNotBlocked() {
-        // Fall r1AD 10.11.2026: eingeschlafen 01:51, Zielzeit 07:57, Ziel 7½ h (Grenze 08:21).
+        // Echter Fall: eingeschlafen 01:51, Zielzeit 07:57, Ziel 7½ h (Grenze 08:21).
         val onset = at("2026-11-10T01:51")
         val target = at("2026-11-10T07:57")
         assertEquals(10, ShortNight.LATE_MINUTES)
@@ -48,7 +48,7 @@ class ShortNightTest {
 
     @Test
     fun measuredButUnknownOnsetBlocksUntilTheLastTenMinutes() {
-        // Fail-closed (Entscheid r1AD 10.11.2026): gemessen, aber ohne Einschlafzeit (aufgegeben, gescheitert, ohne Werte).
+        // Fail-closed: gemessen, aber ohne Einschlafzeit (aufgegeben, gescheitert, ohne Werte).
         val target = at("2026-11-10T07:00")
         assertTrue(ShortNight.blocksEarly(null, at("2026-11-10T06:35"), 450, target, measured = true))
         assertTrue(ShortNight.blocksEarly(null, at("2026-11-10T06:49"), 450, target, measured = true))

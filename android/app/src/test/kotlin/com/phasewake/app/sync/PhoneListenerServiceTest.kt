@@ -40,7 +40,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * Empfang am Handy ([PhoneListenerService], Audit F-02): Einträge der Warteschlange der Uhr ([PhoneListenerService.handleQueued])
+ * Empfang am Handy ([PhoneListenerService]): Einträge der Warteschlange der Uhr ([PhoneListenerService.handleQueued])
  * übernehmen Wecker, Nächte, Aufzeichnungen, den Stand von «Nacht aufzeichnen» und die frühere Zielzeit; dieselbe Nacht
  * zweimal ändert nichts, Unlesbares wird übergangen, ein Eintrag ohne Kennung gar nicht verarbeitet. Die Bestätigung der
  * Uhr entfernt genau den gesendeten Eintrag; ein verspätetes «stop» ändert nichts.
@@ -100,7 +100,7 @@ class PhoneListenerServiceTest {
         assertEquals(alarms, app.alarms.current().alarms)
         awaitDiag { it == "from watch" }
         // Ein älterer Stand der Uhr (vor der letzten Änderung am Handy) ändert nichts; die Uhr kennt w aber nicht: Das Handy
-        // reiht seinen Stand für sie ein (Audit AN-1), damit beide gleich werden.
+        // reiht seinen Stand für sie ein, damit beide gleich werden.
         outbox.drop("")
         queued(DataLayer.PATH_MSG_ALARMS, QueueMessages.encodeAlarms(AlarmSnapshot(emptyList(), 1L)))
         assertEquals(alarms, app.alarms.current().alarms)
@@ -135,7 +135,7 @@ class PhoneListenerServiceTest {
 
     @Test
     fun nightsAndRecordingsBeforeHistoryClearAreDropped() = runBlocking {
-        // Audit D-02: Die Uhr sendete nach «Verlauf löschen» noch Wartendes; das Handy nahm es wieder auf.
+        // Die Uhr sendete nach «Verlauf löschen» noch Wartendes; das Handy nahm es wieder auf.
         val cleared = Instant.parse("2026-11-10T12:00:00Z")
         app.settings.setHistoryClearedAt(cleared)
         try {
@@ -192,7 +192,7 @@ class PhoneListenerServiceTest {
         assertTrue(app.nights.load().isEmpty())
         assertTrue(app.recordings.load().isEmpty())
         assertTrue(app.alarms.current().alarms.isEmpty())
-        // Audit CODE-02: Verworfene Nacht und Aufzeichnung stehen im Protokoll (nur die Länge, kein Inhalt).
+        // Verworfene Nacht und Aufzeichnung stehen im Protokoll (nur die Länge, kein Inhalt).
         awaitDiag { it == "night unreadable, dropped (len=11)" }
         awaitDiag { it == "recording unreadable, dropped (len=18)" }
     }
@@ -207,7 +207,7 @@ class PhoneListenerServiceTest {
         service.onMessageReceived(Event(DataLayer.PATH_ACK, "veraltet".encodeToByteArray()))
         service.onMessageReceived(Event(DataLayer.PATH_ACK))
         assertEquals(listOf(sent.id), outbox.pending().map { it.id })
-        // Im App-Bereich (Audit AN-4), nicht im Thread des Empfangs: kurz warten.
+        // Im App-Bereich, nicht im Thread des Empfangs: kurz warten.
         service.onMessageReceived(Event(DataLayer.PATH_ACK, sent.id.encodeToByteArray()))
         val until = System.nanoTime() + Duration.ofSeconds(10).toNanos()
         while (outbox.pending().isNotEmpty()) {
@@ -218,7 +218,7 @@ class PhoneListenerServiceTest {
 
     @Test
     fun implausibleTimesInStopAndRingDoNotCrash() {
-        // Audit AN-5: Long.MAX_VALUE als Zeit lief beim Aussetzen des Zweitweckers über (Absturz des Dienstes).
+        // Long.MAX_VALUE als Zeit lief beim Aussetzen des Zweitweckers über (Absturz des Dienstes).
         val max = Long.MAX_VALUE
         service.onMessageReceived(Event(DataLayer.PATH_STOP, "a|$max|$max".encodeToByteArray()))
         awaitDiag { it == "from watch (incomplete, ignored)" }
@@ -235,7 +235,7 @@ class PhoneListenerServiceTest {
 
     @Test
     fun staleStopChangesNothing() {
-        // Audit BE-1a: Zustand prüfen, nicht nur die Zeile im Protokoll.
+        // Zustand prüfen, nicht nur die Zeile im Protokoll.
         val old = System.currentTimeMillis() - Duration.ofMinutes(10).toMillis()
         service.onMessageReceived(Event(DataLayer.PATH_STOP, RingMessage("s", old, old).encode()))
         awaitDiag { it == "from watch (stale, ignored)" }
@@ -248,8 +248,8 @@ class PhoneListenerServiceTest {
 
     @Test
     fun outdatedWatchMessagesAreIgnored() {
-        // Veraltete Uhr-App: nur die Kennung, ohne Sendezeit bzw. ohne Schlummer-Runden – kein Rückfall (Audit BE-1a:
-        // Zustand prüfen, nicht nur die Zeile im Protokoll).
+        // Veraltete Uhr-App: nur die Kennung, ohne Sendezeit bzw. ohne Schlummer-Runden – kein Rückfall
+        // (Zustand prüfen, nicht nur die Zeile im Protokoll).
         service.onMessageReceived(Event(DataLayer.PATH_STOP, "o1".encodeToByteArray()))
         awaitDiag { it == "from watch (incomplete, ignored)" }
         assertFalse(paused("o1"), "«stop» ohne Sendezeit setzt den Zweitwecker nicht aus")

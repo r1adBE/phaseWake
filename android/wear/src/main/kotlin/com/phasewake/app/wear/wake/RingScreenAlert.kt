@@ -114,7 +114,7 @@ private fun probe(context: Context): String {
 
 /**
  * Ob ein Fenster der App sichtbar ist (nur dann erlaubt Android den direkten Start aus dem Dienst). Auch für den späten
- * Beginn der Einschlaf-Messung (HG-2, [OnsetRules.lateStart]): sichtbar heisst, die Person ist wach.
+ * Beginn der Einschlaf-Messung ([OnsetRules.lateStart]): sichtbar heisst, die Person ist wach.
  */
 internal fun appVisible(): Boolean {
     val info = ActivityManager.RunningAppProcessInfo()

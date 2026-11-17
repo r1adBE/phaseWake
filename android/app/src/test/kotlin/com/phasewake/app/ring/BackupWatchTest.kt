@@ -34,7 +34,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Weckmeldungen der Uhr am Handy ([BackupAlarm.watchRang], Audit M-06): Weiterleitung über einen Wecker-Alarm, ohne
+ * Weckmeldungen der Uhr am Handy ([BackupAlarm.watchRang]): Weiterleitung über einen Wecker-Alarm, ohne
  * exakte Alarme direkt; keine zweite Runde, wenn der Zweitwecker die Nacht schon geweckt hat; Weckart «Aus» bleibt
  * still. Dazu «Uhr hat übernommen» ohne Kennung, Sicherung nach dem Schlummern, Neuplanen und der Sonnenaufgang ab
  * Weckfenster. Feste Uhrzeit, [QuietApp].

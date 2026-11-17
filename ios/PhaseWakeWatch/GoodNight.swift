@@ -1,7 +1,7 @@
 import Foundation
 import PhaseWakeCore
 
-/// «Gute Nacht» auf der Apple Watch (Einschlaf-Modus «nach 7½ Std.», Näherung, freigegeben von r1AD 10.11.2026): Die
+/// «Gute Nacht» auf der Apple Watch (Einschlaf-Modus «nach 7½ Std.», Näherung): Die
 /// Galaxy Watch misst nach dem Tippen das Einschlafen und legt die Zielzeit danach fest. Eine App auf der Apple Watch
 /// kann nachts nicht laufend messen; darum legt das Tippen die Zielzeit gleich fest (``GoodNightEstimate``: Tippen plus
 /// gelernte Einschlafdauer, sonst 15 Min, plus Schlafdauer, höchstens die eingestellte Weckzeit) und startet den
@@ -60,7 +60,7 @@ extension WatchModel {
     }
 
     /// Ob gerade eine Nacht misst, klingelt oder schlummert: Dann startet «Gute Nacht» nicht; der Knopf ist aus und sagt
-    /// warum (Prüfrunde 2, B-7), statt dass das Tippen still nichts tut.
+    /// warum, statt dass das Tippen still nichts tut.
     var goodNightBusy: Bool {
         let phase = SmartAlarm.shared.phase
         return phase.isMeasuring || phase.isRinging || phase.isSnoozed

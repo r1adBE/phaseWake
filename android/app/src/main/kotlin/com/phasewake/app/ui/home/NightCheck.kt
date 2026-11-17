@@ -83,35 +83,35 @@ enum class Check(
     WATCH_PULSE(R.string.check_watch_pulse, R.string.check_watch_pulse_problem, null, inReadyList = false),
 
     /**
-     * Phase Wake auf der Uhr hat einen älteren Verbindungs-Stand als das Handy (Review O-04, `WearSync.watchOutdated`):
+     * Phase Wake auf der Uhr hat einen älteren Verbindungs-Stand als das Handy (`WearSync.watchOutdated`):
      * Eine ältere Uhr bekommt keine Wecker mehr (kein Datenweg für ältere Uhr-Apps); nicht in der Bereit-Liste: ohne
      * bekannte Uhr gibt es nichts zu prüfen.
      */
     WATCH_OUTDATED(R.string.check_watch_outdated_title, R.string.check_watch_outdated_text, null, inReadyList = false),
 
     /**
-     * Handy und Uhr haben verschiedene Testversionen (Build-Nummern, [BuildNumber.differs], r1AD 14.11.2026). Nur ein
+     * Handy und Uhr haben verschiedene Testversionen (Build-Nummern, [BuildNumber.differs]). Nur ein
      * Hinweis; fehlt, wenn schon [WATCH_OUTDATED] dasteht. Text mit beiden Nummern ([NightCheckState.builds]).
      */
     BUILD_MISMATCH(R.string.diag_versions, R.string.check_build_mismatch, null, inReadyList = false, advisory = true),
 
     /**
      * Die Uhr hat die Messung vor dem Schlafen für diese Nacht nicht gestartet, weil ihr Akku zu schwach war
-     * ([RecorderSkip], Audit F-06): Einschlafzeit und Lernphase fehlen dann. Nur ein Hinweis, weil der Wecker trotzdem
-     * klingelt (r1AD 10.11.2026; auf dem iPhone bleibt es rot). Die Uhr meldet es bis zur Zielzeit; nicht in der
+     * ([RecorderSkip]): Einschlafzeit und Lernphase fehlen dann. Nur ein Hinweis, weil der Wecker trotzdem
+     * klingelt (auf dem iPhone bleibt es rot). Die Uhr meldet es bis zur Zielzeit; nicht in der
      * Bereit-Liste (meist gibt es nichts zu melden).
      */
     WATCH_RECORDER(R.string.check_watch_recorder, R.string.check_watch_recorder_battery, null, inReadyList = false, advisory = true),
 
     /**
-     * Vorab (Audit O-05): Akku der Uhr unter [NightCheckState.WATCH_ONSET_BATTERY_PERCENT] bei «Einschlafen automatisch
+     * Vorab: Akku der Uhr unter [NightCheckState.WATCH_ONSET_BATTERY_PERCENT] bei «Einschlafen automatisch
      * erkennen»: Die Uhr beginnt die Einschlaf-Messung nicht (und damit auch keine Aufzeichnung der Lernphase). Nur ein
      * Hinweis, der Wecker klingelt trotzdem; nicht in der Bereit-Liste.
      */
     WATCH_ONSET_BATTERY(R.string.check_watch_recorder, R.string.check_watch_onset_battery, null, inReadyList = false, advisory = true),
 
     /**
-     * Vorab (Audit O-05): Lernphase läuft, Akku der Uhr unter [Learning.MIN_BATTERY]: Die Uhr zeichnet diese Nacht nicht
+     * Vorab: Lernphase läuft, Akku der Uhr unter [Learning.MIN_BATTERY]: Die Uhr zeichnet diese Nacht nicht
      * für die Lernphase auf. Nur ein Hinweis; nicht in der Bereit-Liste.
      */
     WATCH_LEARN_BATTERY(R.string.check_watch_recorder, R.string.check_watch_learn_battery, null, inReadyList = false, advisory = true),
@@ -161,7 +161,7 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
          * vor dem Schlafen dieser Nacht nicht startete; `null` = keiner). Fehlen der Uhr schon allgemein Rechte
          * ([Check.WATCH_SETUP]), steht der Puls nicht noch einmal da. [autoOnset]: «Einschlafen automatisch erkennen» an,
          * [learning]: Lernphase läuft; beides für die Hinweise vorab zum Akku der Uhr ([batteryHints]). [watchCharging]: Die
-         * Uhr lud beim gemeldeten Akkustand; dann misst sie trotz wenig Akku, keine Warnung dazu (Prüfrunde 2 F-6, wie iPhone).
+         * Uhr lud beim gemeldeten Akkustand; dann misst sie trotz wenig Akku, keine Warnung dazu (wie iPhone).
          * [phoneBuild], [watchBuild]: Build-Nummern (`null` = unbekannt) für [buildHint].
          */
         fun collect(
@@ -187,7 +187,7 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
                     watchReady == false -> add(Check.WATCH_SETUP)
                 }
                 if (watchReachable && watchReady != false && WatchPulse.warns(watchPulse)) add(Check.WATCH_PULSE)
-                // Am Ladegerät keine Warnung zum Akku der Uhr (F-6): Sie misst trotzdem und ist zur Bettzeit geladen.
+                // Am Ladegerät keine Warnung zum Akku der Uhr: Sie misst trotzdem und ist zur Bettzeit geladen.
                 val battery = watchBattery.takeUnless { watchCharging }
                 if (watchReachable && battery != null && battery < LOW_BATTERY_PERCENT) add(Check.WATCH_BATTERY)
                 if (recorderSkip == RecorderSkip.Reason.BATTERY) {
@@ -222,7 +222,7 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
             if (!watchOutdated && phoneBuild != null && watchBuild != null && BuildNumber.differs(phoneBuild, watchBuild)) phoneBuild to watchBuild else null
 
         /**
-         * Hinweis vorab zum Akku der Uhr (Audit O-05), höchstens einer: unter [WATCH_ONSET_BATTERY_PERCENT] mit
+         * Hinweis vorab zum Akku der Uhr, höchstens einer: unter [WATCH_ONSET_BATTERY_PERCENT] mit
          * automatischer Einschlaf-Messung [Check.WATCH_ONSET_BATTERY], sonst in der Lernphase unter [Learning.MIN_BATTERY]
          * [Check.WATCH_LEARN_BATTERY]. Keiner unter [LOW_BATTERY_PERCENT] (dort sagt [Check.WATCH_BATTERY] schon «lade die
          * Uhr») und bei unbekanntem Akku.

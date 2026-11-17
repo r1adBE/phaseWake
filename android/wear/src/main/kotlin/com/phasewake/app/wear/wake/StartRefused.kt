@@ -18,7 +18,7 @@ import com.phasewake.app.wear.ui.RingActivity
 import com.phasewake.app.wear.wearApp
 
 /**
- * Start des [WakeService] im Vordergrund, abgesichert (Audit N-05): Verweigert das System den Start
+ * Start des [WakeService] im Vordergrund, abgesichert: Verweigert das System den Start
  * (ForegroundServiceStartNotAllowedException, IllegalStateException), steht eine Zeile in der Diagnose. Sollte der
  * Start wecken (Zielzeit, Ende des Schlummerns), erscheint die Weck-Mitteilung direkt: Ihr Vollbild öffnet den
  * Weckbildschirm, und der holt den Dienst aus dem Vordergrund nach ([RingActivity]).

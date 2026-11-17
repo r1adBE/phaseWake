@@ -2,11 +2,11 @@ import Foundation
 import PhaseWakeCore
 
 /// «Einschlafen automatisch erkennen» auf der Apple Watch (wie `AutoOnset` der Galaxy Watch; Standard ein, Schalter am
-/// iPhone, freigegeben von r1AD 10.11.2026): Für jede Nacht eines gespeicherten Weckers startet die Uhr den
+/// iPhone): Für jede Nacht eines gespeicherten Weckers startet die Uhr den
 /// Bewegungs-Rekorder bis zum Beginn des Weckfensters (``AppleAutoOnset``), damit sie zu Beginn der Weck-Sitzung die
 /// Einschlafzeit nachrechnen kann (`WatchOnset`) und die Untergrenze kurzer Nächte gilt. Unter 30 % Akku startet sie
-/// für diese Nacht nicht (wie Android, auch nicht später), ausser die Uhr lädt (Prüfrunde 2 F-6). Gestartet wird frühestens ab der Erinnerung am Abend, 60 Min
-/// vor der einen Bettzeit mit gelernter Einschlafdauer (``nightStart()``; Entscheid r1AD 14.11.2026, vorher 60 Min vor
+/// für diese Nacht nicht (wie Android, auch nicht später), ausser die Uhr lädt. Gestartet wird frühestens ab der Erinnerung am Abend, 60 Min
+/// vor der einen Bettzeit mit gelernter Einschlafdauer (``nightStart()``; vorher 60 Min vor
 /// der Bettzeit ohne sie), beim ersten Durchgang ab dann (App geöffnet, etwa über die Erinnerung, oder
 /// Hintergrund-Aktualisierung). Gerechnet wird die Einschlafzeit weiter ab 60 Min vor der Bettzeit (`WatchOnset`). Läuft die App bis zum Fensterbeginn nicht, zeichnet die Uhr diese Nacht nicht auf;
 /// die Einschlafzeit bleibt dann unbekannt.
@@ -14,8 +14,8 @@ extension LearnRecorder {
     private static let autoOnsetKey = "autoOnset"
 
     /// Beginn der kommenden Nacht für den Rekorder (Einschlaf-Messung und Lernphase): die Erinnerung am Abend, 60 Min vor
-    /// der einen Bettzeit des nächsten echten Weckers (``EveningReminder/reminderAt(target:sleepMinutes:latencyMinutes:)``,
-    /// Entscheid r1AD 14.11.2026): Wer die App bei der Erinnerung öffnet, startet ihn sicher. `nil` ohne Wecker.
+    /// der einen Bettzeit des nächsten echten Weckers (``EveningReminder/reminderAt(target:sleepMinutes:latencyMinutes:)``):
+    /// Wer die App bei der Erinnerung öffnet, startet ihn sicher. `nil` ohne Wecker.
     static func nightStart() -> Date? {
         let model = WatchModel.shared
         guard let plan = model.realPlan, Transient.kindOf(plan.alarmId) == nil,
@@ -41,7 +41,7 @@ extension LearnRecorder {
         plan()
     }
 
-    /// Nacht-Check am iPhone (Audit F-06, wie die Galaxy Watch): Einschlaf-Messung oder Lernphase wollten den Rekorder
+    /// Nacht-Check am iPhone (wie die Galaxy Watch): Einschlaf-Messung oder Lernphase wollten den Rekorder
     /// für die Nacht mit Zielzeit `target`, er startet aber nicht (`reason`). Nur, wenn er nicht schon läuft; startet er
     /// später doch, hebt `ensureRecorder` die Meldung auf.
     func noteRecorderSkip(_ reason: RecorderSkip.Reason, target: Date) {
@@ -68,7 +68,7 @@ extension LearnRecorder {
         let battery = Self.battery()
         let spec = model.alarms.first { $0.id == plan.alarmId }
         let onsetStart = Self.nightStart(plan: plan, spec: spec, sleepGoal: model.sleepGoal)
-        // Am Ladegerät nicht wegen des Akkus auslassen (F-6): Die Uhr ist zur Bettzeit geladen.
+        // Am Ladegerät nicht wegen des Akkus auslassen: Die Uhr ist zur Bettzeit geladen.
         switch AppleAutoOnset.decide(now: Date(), target: plan.target, windowStart: plan.windowStart, onsetStart: onsetStart, battery: battery,
                                      charging: Self.charging()) {
         case .wait(let until):

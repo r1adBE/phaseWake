@@ -386,7 +386,7 @@
     <string name="chart_window">Esnatze-leihoa</string>
     <string name="chart_no_data">daturik ez</string>
     <string name="chart_feeling_hint">Sakatu puntu bat gau horretako oharrak ikusteko.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Proba-alarma</string>
     <string name="test_button">Probatu 2 minutu barru</string>
     <string name="test_hint">2 minutu barru jotzen du hurrengo alarmaren ezarpenekin, atzeratu gabe. Ez da gau gisa zenbatzen.</string>
@@ -602,7 +602,7 @@
     <string name="learn_switch_hint">Erlojuak mugimendua eta pultsua neurtzen ditu gauez (%1$d %% bateriatik aurrera). Desaktibatuta: ez dago grabaketa automatikorik, ikasitako balioak geratzen dira.</string>
     <string name="learn_switch_title">Aktibo</string>
     <string name="watch_open_app_hint">Ireki Phase Wake erlojuan agindua jaso dezan.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Ikasketa-fasea hasi zenetik gau bakoitza: zenbatu den ala ez, eta ez bada, zergatik eta zerk laguntzen duen. Phase Wake-k %1$d gau zenbatu behar ditu.</string>
     <string name="learn_nights_empty">Oraindik ez dago gaurik. Lehena biharamun goizean agertuko da hemen.</string>
     <string name="learn_night_facts">%1$s neurtuta · %2$d balio · pultsua %3$d %%-ean</string>

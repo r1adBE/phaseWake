@@ -26,7 +26,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Empfänger der Uhr ([AlarmReceiver], [SystemEventReceiver], Audit M-06): Fensterbeginn, Zielzeit und Schlummer-Ende
+ * Empfänger der Uhr ([AlarmReceiver], [SystemEventReceiver]): Fensterbeginn, Zielzeit und Schlummer-Ende
  * gehen mit ihrem Plan an den Weckdienst; der Prüf-Alarm von «Gute Nacht» und die automatische Einschlaf-Messung nur
  * nach dem Entsperren; vor dem Entsperren stellt ein Neustart nur den abgelegten Wecker.
  */
@@ -101,7 +101,7 @@ class ScheduleReceiversTest {
 
     @Test
     fun complicationIsPushedAtTheTargetNotPolled() {
-        // Audit PERF-07: kein Abruf alle 30 Min. durch das System ...
+        // Kein Abruf alle 30 Min. durch das System ...
         val info = context.packageManager.getServiceInfo(
             ComponentName(context, NextAlarmComplicationService::class.java), PackageManager.ComponentInfoFlags.of(PackageManager.GET_META_DATA.toLong()),
         )

@@ -2,7 +2,7 @@ import SwiftUI
 import XCTest
 @testable import PhaseWake
 
-/// Nachttisch-Modus (Audit 17.11. PERF-09): vor dem Sonnenaufgang Minutentakt, ab seinem Beginn jede Sekunde.
+/// Nachttisch-Modus: vor dem Sonnenaufgang Minutentakt, ab seinem Beginn jede Sekunde.
 final class NightstandSchedulePhoneTests: XCTestCase {
     /// Volle Minute.
     private let t0 = Date(timeIntervalSince1970: 1_794_000_000)

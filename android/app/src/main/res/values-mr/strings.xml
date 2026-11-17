@@ -386,7 +386,7 @@
     <string name="chart_window">उठवण्याचा कालावधी</string>
     <string name="chart_no_data">डेटा नाही</string>
     <string name="chart_feeling_hint">त्या रात्रीच्या नोंदी पाहण्यासाठी बिंदूवर टॅप करा.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">चाचणी अलार्म</string>
     <string name="test_button">२ मिनिटांत चाचणी</string>
     <string name="test_hint">तुमच्या पुढच्या अलार्मच्या सेटिंग्जसह २ मिनिटांत वाजतो, स्नूझशिवाय. रात्र म्हणून मोजला जात नाही.</string>
@@ -602,7 +602,7 @@
     <string name="learn_switch_hint">तुमचे घड्याळ रात्री हालचाल आणि नाडी मोजते (किमान %1$d %% बॅटरीवर). बंद: आपोआप नोंद नाही, शिकलेली मूल्ये राहतात.</string>
     <string name="learn_switch_title">सक्रिय</string>
     <string name="watch_open_app_hint">घड्याळावर Phase Wake उघडा, म्हणजे त्याला आदेश मिळेल.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">शिकण्याचा टप्पा सुरू झाल्यापासून प्रत्येक रात्र – ती मोजली गेली का, आणि नसेल तर का आणि काय मदत करेल. Phase Wake ला %1$d मोजलेल्या रात्री लागतात.</string>
     <string name="learn_nights_empty">अजून एकही रात्र नाही. पहिली रात्र दुसऱ्या दिवशी सकाळी इथे दिसेल.</string>
     <string name="learn_night_facts">%1$s मोजले · %2$d मूल्ये · %3$d %% मध्ये नाडी</string>

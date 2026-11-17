@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 /**
- * Wecker samt Zeitpunkt der letzten Änderung der Liste ([updatedAt]) für den Abgleich Handy ↔ Uhr. Seit Audit A-4 dazu
+ * Wecker samt Zeitpunkt der letzten Änderung der Liste ([updatedAt]) für den Abgleich Handy ↔ Uhr, dazu
  * je Wecker der Zeitpunkt seiner letzten Änderung ([stamps]; fehlt einer, gilt [updatedAt], siehe [stampOf]) und die
  * gelöschten Wecker mit dem Zeitpunkt des Löschens ([deleted]). [perAlarm] `false`: Stand einer früheren Version ohne
  * diese Angaben; beim Übernehmen gilt dann «neuere Liste gewinnt».
@@ -35,7 +35,7 @@ data class AlarmSnapshot(
 
 /**
  * Speichert die Wecker lokal. Handy und Uhr haben je eine eigene Kopie; [applyRemote] führt die Kopie der Gegenseite
- * je Wecker zusammen (Audit A-4, [AlarmStamps.merge]): Die neuere Änderung jedes Weckers gewinnt, ein Löschen gilt mit
+ * je Wecker zusammen ([AlarmStamps.merge]): Die neuere Änderung jedes Weckers gewinnt, ein Löschen gilt mit
  * seinem Zeitpunkt. So gehen bei gleichzeitigen Änderungen auf beiden Geräten (z. B. Einmal-Wecker nach dem Klingeln
  * auf der Uhr ausgeschaltet, am Handy ein anderer Wecker bearbeitet) keine Wecker oder Änderungen verloren.
  */
@@ -68,7 +68,7 @@ class AlarmRepository(
     }
 
     /**
-     * Auto-Aus eines Einmal-Weckers nach dem Klingeln ([AlarmStamps.autoOff], Fix G-1/S-1): nur, wenn [rang] den
+     * Auto-Aus eines Einmal-Weckers nach dem Klingeln ([AlarmStamps.autoOff]): nur, wenn [rang] den
      * gespeicherten Wecker [id] als die geklingelte Fassung erkennt ([AlarmStamps.rang]); sein Zeitpunkt wird der seiner
      * bisherigen Fassung + 1 ms, damit eine neuere Änderung der Gegenseite gewinnt. Lesen und Schreiben in einem Schritt.
      * @return neuer Stand, oder `null`, wenn nichts ausgeschaltet wurde.
@@ -105,7 +105,7 @@ class AlarmRepository(
      * Wecker, Notizen und Einstellungen in einem Schritt (alles oder nichts). @return neuer Stand.
      */
     fun replaceAllIn(prefs: MutablePreferences, alarms: List<AlarmSpec>): AlarmSnapshot {
-        // Höchstens [AlarmSpec.MAX_ALARMS], die ersten der Sicherung (Audit DA-8, wie `BackupIO` am iPhone).
+        // Höchstens [AlarmSpec.MAX_ALARMS], die ersten der Sicherung (wie `BackupIO` am iPhone).
         val sorted = alarms.distinctBy { it.id }.take(AlarmSpec.MAX_ALARMS).sortedWith(ORDER)
         val stamp = TimeBounds.next(clock(), prefs[UPDATED_AT])
         // Alle Wecker der Sicherung gelten als jetzt geändert; die bisherigen, die fehlen, als jetzt gelöscht.
@@ -123,13 +123,13 @@ class AlarmRepository(
     suspend fun applyRemote(remote: AlarmSnapshot): Boolean = receive(remote).changed
 
     /**
-     * Übernimmt den Stand der Gegenseite je Wecker ([AlarmStamps.merge], Audit A-4). Ein Stand einer früheren Version
+     * Übernimmt den Stand der Gegenseite je Wecker ([AlarmStamps.merge]). Ein Stand einer früheren Version
      * ohne Zeitpunkte je Wecker ([AlarmSnapshot.perAlarm] `false`) gilt wie bisher nur, wenn er neuer ist, und ersetzt
      * dann die Liste.
      *
      * Weicht der zusammengeführte Stand vom empfangenen ab ([differs]), kennt die Gegenseite eine Änderung von hier nicht
-     * (z. B. ihre Nachricht ging verloren): [Received.reply] ist dann der eigene Stand, den der Aufrufer zurückschickt
-     * (Audit AN-1). So kommen beide Geräte zum selben Stand; stimmt er überein, antwortet keine Seite mehr.
+     * (z. B. ihre Nachricht ging verloren): [Received.reply] ist dann der eigene Stand, den der Aufrufer zurückschickt.
+     * So kommen beide Geräte zum selben Stand; stimmt er überein, antwortet keine Seite mehr.
      */
     suspend fun receive(remote: AlarmSnapshot): Received {
         var applied = false
@@ -222,7 +222,7 @@ class AlarmRepository(
         private val ALARMS = stringPreferencesKey("alarms")
         private val UPDATED_AT = longPreferencesKey("alarms_updated_at")
 
-        /** Zeitpunkt je Wecker und gelöschte Wecker ([AlarmStamps.encodeMap]), Audit A-4. */
+        /** Zeitpunkt je Wecker und gelöschte Wecker ([AlarmStamps.encodeMap]). */
         private val STAMPS = stringPreferencesKey("alarms_stamps")
         private val DELETED = stringPreferencesKey("alarms_deleted")
 
@@ -230,7 +230,7 @@ class AlarmRepository(
         private val ORDER = compareBy<AlarmSpec>({ it.hour }, { it.minute }, { it.id })
 
         /**
-         * Ob der eigene Stand [own] nach dem Zusammenführen vom empfangenen [remote] abweicht (Audit AN-1): andere Wecker,
+         * Ob der eigene Stand [own] nach dem Zusammenführen vom empfangenen [remote] abweicht: andere Wecker,
          * ein anderer Zeitpunkt je Wecker oder andere gelöschte Wecker (beide wie beim Speichern um [now] gekürzt). Der
          * Listen-Zeitpunkt zählt nicht: Er allein ändert beim Zusammenführen nichts.
          */

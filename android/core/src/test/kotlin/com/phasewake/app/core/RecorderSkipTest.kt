@@ -7,7 +7,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
-/** Meldung «Messung vor dem Schlafen nicht gestartet» (Audit F-06), gleich wie `RecorderSkipTests` (Swift). */
+/** Meldung «Messung vor dem Schlafen nicht gestartet», gleich wie `RecorderSkipTests` (Swift). */
 class RecorderSkipTest {
     private val target = Instant.ofEpochMilli(1_800_000_000_000L)
 

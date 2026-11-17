@@ -6,7 +6,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-/** Warnknopf «Wecker blockiert» auf der Uhr (Audit O-04): Schrift auf der Fehlerfläche ≥ 4.5:1, Farben aus dem Schema. */
+/** Warnknopf «Wecker blockiert» auf der Uhr: Schrift auf der Fehlerfläche ≥ 4.5:1, Farben aus dem Schema. */
 class WarningColorsTest {
 
     @Test

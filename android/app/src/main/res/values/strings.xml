@@ -413,7 +413,7 @@
     <string name="chart_window">Wake window</string>
     <string name="chart_no_data">no data</string>
     <string name="chart_feeling_hint">Tap a dot to see that night’s notes.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Test alarm</string>
     <string name="test_button">Test in 2 minutes</string>
     <string name="test_hint">Rings in 2 minutes with the settings of your next alarm, without snoozing. Doesn’t count as a night.</string>
@@ -605,7 +605,7 @@
     <string name="learn_switch_title">Active</string>
     <!-- Nur Apple (iPhone → Uhr, wenn die Uhr-App nicht läuft). -->
     <string name="watch_open_app_hint" tools:ignore="UnusedResources">Open Phase Wake on your watch so it receives the command.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro" tools:ignore="PluralsCandidate">Every night since the learning phase started – whether it counted and, if not, why and what helps. Phase Wake needs %1$d counted nights.</string>
     <string name="learn_nights_empty">No night yet. The first one shows up here the morning after.</string>
     <string name="learn_night_facts" tools:ignore="PluralsCandidate">%1$s measured · %2$d readings · pulse in %3$d %%</string>

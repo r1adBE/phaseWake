@@ -383,7 +383,7 @@
     <string name="chart_window">Wekvenster</string>
     <string name="chart_no_data">geen gegevens</string>
     <string name="chart_feeling_hint">Tik op een punt voor de notities van die nacht.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Wekker testen</string>
     <string name="test_button">Testen over 2 minuten</string>
     <string name="test_hint">Gaat over 2 minuten af met de instellingen van je volgende wekker, zonder snoozen. Telt niet als nacht.</string>
@@ -599,7 +599,7 @@
     <string name="learn_switch_hint">Je horloge meet ’s nachts beweging en hartslag (vanaf %1$d %% batterij). Uit: geen automatische registratie, geleerde waarden blijven.</string>
     <string name="learn_switch_title">Actief</string>
     <string name="watch_open_app_hint">Open Phase Wake op je horloge zodat het de opdracht ontvangt.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Elke nacht sinds de leerfase begon – of hij meetelde en, zo niet, waarom en wat helpt. Phase Wake heeft %1$d getelde nachten nodig.</string>
     <string name="learn_nights_empty">Nog geen nacht. De eerste verschijnt hier de ochtend erna.</string>
     <string name="learn_night_facts">%1$s gemeten · %2$d meetwaarden · hartslag in %3$d %%</string>

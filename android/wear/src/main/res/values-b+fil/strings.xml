@@ -73,7 +73,7 @@
     <string name="editor_delete_title">I-delete ang alarm na ito?</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Hanggang %1$d alarm – mag-delete ng isa para magdagdag ng bago.</string>
     <string name="editor_enabled">Naka-on ang alarm</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Laktawan sa susunod</string>
     <string name="alarm_skipped">Nilaktawan: %1$s</string>
     <string name="nap_title">Power nap</string>
@@ -103,7 +103,7 @@
     <string name="record_since">Mula %1$s</string>
     <string name="notification_record_title">Nire-record ang gabi</string>
     <string name="record_battery_low">Masyadong mahina ang baterya para mag-record</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Yugto ng pagkatuto</string>
     <string name="watch_learn_warn">I-charge ang relo mo, kung hindi ay hindi mabibilang ang gabing ito sa yugto ng pagkatuto (baterya %1$d %%, kailangan %2$d %%).</string>
     <string name="watch_learn_skip_battery">Hindi mabibilang ang gabing ito sa yugto ng pagkatuto: baterya %1$d %%, kailangan %2$d %%.</string>

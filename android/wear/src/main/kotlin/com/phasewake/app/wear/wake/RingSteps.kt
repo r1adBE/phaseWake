@@ -3,7 +3,7 @@ package com.phasewake.app.wear.wake
 import android.os.SystemClock
 
 /**
- * Dauer der Schritte beim Klingeln ([ring]) fürs Diagnose-Protokoll, eine Zeile am Ende (Befund 13.11.2026):
+ * Dauer der Schritte beim Klingeln ([ring]) fürs Diagnose-Protokoll, eine Zeile am Ende:
  * «ring steps lock=3ms vib=5ms notif=40ms activity=12ms rest=8ms queue=1ms sensors=2ms». [clock] in ms, für Tests ersetzbar.
  */
 internal class RingSteps(private val clock: () -> Long = SystemClock::elapsedRealtime) {

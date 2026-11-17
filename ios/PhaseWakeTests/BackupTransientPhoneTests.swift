@@ -2,7 +2,7 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWake
 
-/// Sicherung von Probewecker und Powernap am iPhone (`BackupAlarm+Transient.swift`, Audit 17.11. CODE-01): klingelt nach
+/// Sicherung von Probewecker und Powernap am iPhone (`BackupAlarm+Transient.swift`): klingelt nach
 /// der Nachfrist, ohne iPhone-Wecker keine, eine neue ersetzt die alte, Verwerfen räumt auf. Mit den Ersatzobjekten aus
 /// `BackupAlarmPhoneTests.swift`: nichts wird wirklich gestellt.
 @MainActor

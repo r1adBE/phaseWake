@@ -1,6 +1,6 @@
 import Foundation
 
-/// Meldung der Uhr ans iPhone (Lern-Übersicht, Entscheid r1AD 13.11.2026): Die Lernphase zeichnet die Nacht mit Zielzeit
+/// Meldung der Uhr ans iPhone (Lern-Übersicht): Die Lernphase zeichnet die Nacht mit Zielzeit
 /// `target` nicht auf, aus `reason`; bei ``Reason/battery`` mit dem Akkustand `battery` in Prozent. Die Apple Watch
 /// schickt sie als Benutzerdaten (`transferUserInfo`, zugestellt, sobald das iPhone erreichbar ist), die Galaxy Watch über
 /// die Warteschlange. Technische Angabe ohne Messwerte, nur am iPhone gespeichert (``LearnLog``). Gleich in Kotlin
@@ -49,7 +49,7 @@ public struct LearnSkip: Equatable, Sendable {
     }
 }
 
-/// Was das iPhone für die Lern-Übersicht festhält (nur lokal, keine Sicherung, Entscheid r1AD 13.11.2026): die Meldungen
+/// Was das iPhone für die Lern-Übersicht festhält (nur lokal, keine Sicherung): die Meldungen
 /// der Uhr (``LearnSkip``) und die Nächte mit Wecker (Nachtdatum → Zielzeit), je höchstens ``LearnNights/maxNights``.
 /// Reine Regeln und das Textformat; gespeichert wird am iPhone. Gleich in Kotlin (`LearnLog`).
 public enum LearnLog {

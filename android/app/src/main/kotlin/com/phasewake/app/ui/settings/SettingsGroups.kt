@@ -57,7 +57,7 @@ internal fun CustomNotesGroup(
 ) {
     // Bearbeitete Notiz: `null` = keine, leere Kennung = neue Notiz.
     var editing by remember { mutableStateOf<CustomNote?>(null) }
-    // Zu löschende Notiz (B-10): Sie verschwindet auch aus den vergangenen Nächten, darum zuerst fragen.
+    // Zu löschende Notiz: Sie verschwindet auch aus den vergangenen Nächten, darum zuerst fragen.
     var deleting by remember { mutableStateOf<CustomNote?>(null) }
     Group(stringResource(R.string.notes_custom_title)) {
         Text(
@@ -120,7 +120,7 @@ internal fun CustomNotesGroup(
 }
 
 /**
- * Zeile einer Liste (Gestaltung 3, Audit N-7): Titel, optional Erklärung, Pfeil am Ende; mindestens [LIST_ROW_HEIGHT]
+ * Zeile einer Liste: Titel, optional Erklärung, Pfeil am Ende; mindestens [LIST_ROW_HEIGHT]
  * hoch, die ganze Zeile ist das Tippziel. [color]: Farbe des Titels (Vorgabe: Akzent; «Verlauf löschen»: Fehlerfarbe).
  */
 @Composable
@@ -251,7 +251,7 @@ internal fun DataGroup(onExport: () -> Unit, canExport: Boolean, onClearHistory:
             AlertDialog(
                 onDismissRequest = { confirm = false },
                 title = { Text(stringResource(R.string.settings_clear_history)) },
-                // Was alles gelöscht wird (B-13), wie am iPhone: Nächte, dazu Notizen, Befinden, Haken und Geräusche, die Lernphase.
+                // Was alles gelöscht wird, wie am iPhone: Nächte, dazu Notizen, Befinden, Haken und Geräusche, die Lernphase.
                 text = { Text(clearHistoryText()) },
                 confirmButton = {
                     TextButton(onClick = { confirm = false; onClearHistory() }) {
@@ -289,7 +289,7 @@ internal fun AboutGroup(version: String, extras: SettingsExtras) {
     }
 }
 
-/** Rückfrage «Verlauf löschen»: nennt alles, was gelöscht wird (B-13, gleicher Text am iPhone). */
+/** Rückfrage «Verlauf löschen»: nennt alles, was gelöscht wird (gleicher Text am iPhone). */
 @Composable
 internal fun clearHistoryText(): String = listOf(
     stringResource(R.string.settings_clear_history_text),

@@ -5,7 +5,7 @@ import android.os.PowerManager
 import com.phasewake.app.wear.system.StartLock
 
 /**
- * Wakelocks von «Nacht aufzeichnen» ([RecordService], Audit F-01): ohne aufweckenden Sensor ein langer über die ganze
+ * Wakelocks von «Nacht aufzeichnen» ([RecordService]): ohne aufweckenden Sensor ein langer über die ganze
  * Aufzeichnung ([hold]), mit ihm nur ein kurzer je Bündel ([batch]); in der Lernphase nur je Stichprobe ([short],
  * [LearnSampler]).
  */

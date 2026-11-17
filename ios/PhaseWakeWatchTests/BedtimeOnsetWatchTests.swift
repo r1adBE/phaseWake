@@ -4,14 +4,14 @@ import XCTest
 @testable import PhaseWakeWatch
 
 /// Bettzeit und Einschlafen auf der Apple Watch: spät gestarteter Rekorder, Erinnerung am Abend zur einen Bettzeit,
-/// Rekorder startet beim Öffnen zur Erinnerung (Herkunft: Tiefenaudit c3b8b01 AP3-2, O-03).
+/// Rekorder startet beim Öffnen zur Erinnerung.
 final class BedtimeOnsetWatchTests: XCTestCase {
     private let now = Date(timeIntervalSince1970: 1_793_000_000)
 
     private func minutes(_ value: Double) -> Date { now.addingTimeInterval(value * 60) }
 
     /// Ruhe ab dem Start eines spät gestarteten Rekorders ergab bisher eine Einschlafzeit genau bei seinem Start
-    /// (Beweis des Audits: Start nach 4 Std. → «eingeschlafen» nach 4 Std.). Nach dem Beginn der Einschlafdauer gestartet,
+    /// (Beispiel: Start nach 4 Std. → «eingeschlafen» nach 4 Std.). Nach dem Beginn der Einschlafdauer gestartet,
     /// gilt die Einschlafzeit darum als unbekannt.
     func testRecorderStartedAfterBedtimeLeavesOnsetUnknown() {
         let latest = minutes(9 * 60)
@@ -44,7 +44,7 @@ final class BedtimeOnsetWatchTests: XCTestCase {
         XCTAssertEqual(EveningReminder.reminderAt(target: target, sleepMinutes: 450, latencyMinutes: 15), minutes(-105))
     }
 
-    /// Entscheid r1AD 14.11.2026: Wer die App bei der Erinnerung öffnet, startet den Rekorder sicher (Einschlaf-Messung und
+    /// Wer die App bei der Erinnerung öffnet, startet den Rekorder sicher (Einschlaf-Messung und
     /// Lernphase). Mit dem bisherigen Beginn (60 Min vor der Bettzeit ohne Einschlafdauer) hätte er dann noch gewartet.
     func testRecorderStartsWhenAppIsOpenedAtTheReminder() {
         let target = minutes(9 * 60)

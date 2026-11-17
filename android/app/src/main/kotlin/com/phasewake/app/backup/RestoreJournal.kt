@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 /**
- * Wiederherstellen gegen ein Prozessende absichern (Review K-03). Die Nächte liegen in einer eigenen Datei, alles andere
+ * Wiederherstellen gegen ein Prozessende absichern. Die Nächte liegen in einer eigenen Datei, alles andere
  * im DataStore; beides wird nacheinander geschrieben. Endet der Prozess dazwischen, bliebe eine Mischung.
  *
  * Darum vor dem Tauschen: zuerst eine Kopie der alten Nächte ([copy]), dann eine Marke mit einer Kennung ([begin]),
@@ -72,7 +72,7 @@ internal class RestoreJournal(dir: File) {
      * Beim Start nach einem Prozessende: [committedToken] ist die Kennung, die das letzte `edit` des DataStore
      * geschrieben hat. Stimmt sie mit der Marke überein, ist der neue Stand vollständig; sonst kommen die alten Nächte
      * aus der Kopie zurück nach [nights] (der DataStore hat den alten Stand noch). Danach ist aufgeräumt, ausser bei
-     * [Outcome.FINISHED]: Dort ruft der Aufrufer [finish] erst nach dem Abgleich mit der Uhr auf (Review N-3).
+     * [Outcome.FINISHED]: Dort ruft der Aufrufer [finish] erst nach dem Abgleich mit der Uhr auf.
      */
     suspend fun recover(committedToken: String?, nights: NightRepository): Outcome {
         val token = pendingToken()

@@ -7,7 +7,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 /**
- * Gemeinsame Fälle mit Swift (`shared/testdata/alarm-stamps.vectors`, Audit 17.11.2026 CODE-03): [AlarmStamps.merge] je
+ * Gemeinsame Fälle mit Swift (`shared/testdata/alarm-stamps.vectors`): [AlarmStamps.merge] je
  * Wecker – neuere Fassung, fehlender Zeitpunkt, gleicher Zeitpunkt, Löschen gegen Bearbeiten, alte und unplausible
  * gelöschte Wecker. Jede Zeile auch mit vertauschten Seiten (beide Geräte kommen zum selben Stand). Gegenstück:
  * `AlarmStampsVectorsTests` (Swift).

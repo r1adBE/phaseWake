@@ -72,7 +72,7 @@ struct SkyMood: Equatable {
     }
 }
 
-/// Tageshimmel «Creme Caramel» (hell, Entscheid r1AD 17.11.2026), wie `Day` und `DaySky.kt` auf Android: Verlauf von
+/// Tageshimmel «Creme Caramel» (hell), wie `Day` und `DaySky.kt` auf Android: Verlauf von
 /// hellem Caramel F4E4CC nach Caramel E9C9A0, am Abend ein Hauch Lavendel am Horizont, vor dem Weckfenster Caramel als
 /// Sonnenaufgang, oben rechts ein weisser Schein. Dunkle Schrift (``SkyInk/onDay``) bleibt in jeder Stimmung ≥ 4.5:1
 /// (auf Android mit SkyMoodTest geprüft, gleiche Werte).

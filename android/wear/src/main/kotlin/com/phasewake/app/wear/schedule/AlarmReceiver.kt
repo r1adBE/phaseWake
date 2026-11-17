@@ -58,7 +58,7 @@ class AlarmReceiver : BroadcastReceiver() {
             ACTION_SNOOZE_END -> WakeService.ACTION_SNOOZE_END
             else -> return
         }
-        // Bis der Dienst seinen eigenen Wakelock hält; sonst schläft die Uhr nach `onReceive` (Befund 13.11.2026).
+        // Bis der Dienst seinen eigenen Wakelock hält; sonst schläft die Uhr nach `onReceive`.
         StartLock.acquire(context)
         if (action == WakeService.ACTION_START) {
             // Geplante Zeit und Empfang für die Verzögerung bis zum Start im Diagnose-Protokoll.
@@ -66,8 +66,8 @@ class AlarmReceiver : BroadcastReceiver() {
         } else {
             WakeService.command(context, action, plan)
         }
-        // Zielzeit erreicht: Komplikation und Kachel zeigen den nächsten Wecker, auch wenn danach nichts neu plant (Audit
-        // PERF-07, das System fragt nicht mehr alle 30 Min. ab). Vor dem Entsperren ist der Speicher nicht lesbar.
+        // Zielzeit erreicht: Komplikation und Kachel zeigen den nächsten Wecker, auch wenn danach nichts neu plant
+        // (das System fragt nicht mehr alle 30 Min. ab). Vor dem Entsperren ist der Speicher nicht lesbar.
         if (action == WakeService.ACTION_DEADLINE && DirectBoot.isUnlocked(context)) AlarmScheduler.refreshSurfaces(context)
     }
 

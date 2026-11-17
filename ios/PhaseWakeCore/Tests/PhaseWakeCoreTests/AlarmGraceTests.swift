@@ -111,7 +111,7 @@ final class AlarmGraceTests: XCTestCase {
     }
 
     func testMissedNeedsTargetWithinNightAndNotAhead() {
-        // Audit BE-4: Zielzeit genau am Ende der Nacht und genau jetzt: wird nachgeholt (beide Grenzen eingeschlossen).
+        // Grenzfall: Zielzeit genau am Ende der Nacht und genau jetzt: wird nachgeholt (beide Grenzen eingeschlossen).
         let edge = CatchUpWindow(from: at(2026, 10, 28, 6, 20), until: at(2026, 10, 28, 7, 0), alarmIds: ["b"])
         XCTAssertEqual(AlarmSchedule.missedPlan([b], catchUp: edge, now: at(2026, 10, 28, 7, 0), calendar: zurich)?.target, at(2026, 10, 28, 7, 0))
         // Nach dem Ende der Nacht fällig, auch wenn schon vorbei: kein Nachholen (gewohnter Plan).

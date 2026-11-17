@@ -159,7 +159,7 @@ class StoresTest {
 
     @Test
     fun learningMessageKeepsFourFieldsAndLatencyTravelsApart() = runTest {
-        // Audit F-4/SP-6: Eine frühere Uhr liest nur genau 4 Felder; die Einschlafdauer (O-03) geht als eigene Nachricht.
+        // Eine frühere Uhr liest nur genau 4 Felder; die Einschlafdauer geht als eigene Nachricht.
         val with = LearningSnapshot(true, 0.02, 52.0, 7L, latencyMinutes = 14)
         assertEquals("1|0.02|52.0|7", LearningSnapshot.encode(with))
         assertEquals(4, LearningSnapshot.encode(with).split("|").size)
@@ -170,7 +170,7 @@ class StoresTest {
         assertEquals(null to 7L, LearningSnapshot.decodeLatency("61|7"), "unplausibel: keine Dauer")
         assertNull(LearningSnapshot.decodeLatency("14"))
         assertNull(LearningSnapshot.decodeLatency("x|7"))
-        // Lesen bleibt tolerant: 4 Felder; 5 (Zwischenstand vor F-4) noch lesbar; 6 Felder: unlesbar.
+        // Lesen bleibt tolerant: 4 Felder; 5 (Zwischenstand einer früheren Version) noch lesbar; 6 Felder: unlesbar.
         assertEquals(LearningSnapshot(true, 0.02, 52.0, 7L), LearningSnapshot.decode("1|0.02|52.0|7"))
         assertEquals(14, LearningSnapshot.decode("1|0.02|52.0|7|14")?.latencyMinutes)
         assertNull(assertNotNull(LearningSnapshot.decode("1|||7|61")).latencyMinutes)
@@ -192,7 +192,7 @@ class StoresTest {
 
     @Test
     fun invalidLearnedValuesCountAsNone() {
-        // Audit K-6: NaN, negative oder absurde Werte aus einer Nachricht dürfen den Start des Fensters nicht abbrechen.
+        // NaN, negative oder absurde Werte aus einer Nachricht dürfen den Start des Fensters nicht abbrechen.
         val decoded = assertNotNull(LearningSnapshot.decode("1|NaN|NaN|7"))
         assertEquals(LearningSnapshot(true, null, null, 7L), decoded)
         assertEquals(LearningSnapshot(false, null, null, 8L), LearningSnapshot.decode("0|-0.5|1e9|8"))

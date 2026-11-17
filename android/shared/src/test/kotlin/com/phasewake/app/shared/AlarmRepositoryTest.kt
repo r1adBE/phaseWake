@@ -67,7 +67,7 @@ class AlarmRepositoryTest {
 
     @Test
     fun automaticChangeAndUserEditOnTheOtherDeviceBothSurvive() = runTest {
-        // Audit A-4: Uhr schaltet den Einmal-Wecker «once» nach dem Klingeln aus, gleichzeitig legt der Nutzer am Handy
+        // Uhr schaltet den Einmal-Wecker «once» nach dem Klingeln aus, gleichzeitig legt der Nutzer am Handy
         // «new» an und ändert «daily». Früher gewann die neuere Liste, und eine der Änderungen ging verloren.
         val phone = repo
         var watchNow = 1_000L

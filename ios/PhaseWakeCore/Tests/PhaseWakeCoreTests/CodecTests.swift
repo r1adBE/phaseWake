@@ -190,7 +190,7 @@ final class CodecTests: XCTestCase {
     }
 
     func testImplausibleTimesAreRejected() throws {
-        // Vollaudit K-7: manipulierte Sicherung mit 9223372036854775807 – früher brach das Zurückrechnen in ms ab.
+        // Manipulierte Sicherung mit 9223372036854775807 – früher brach das Zurückrechnen in ms ab.
         let max = "9223372036854775807"
         XCTAssertThrowsError(try Codec.decodeNight("phasewake-night 1\na|\(max)|1800000|1080000|DEADLINE|0\n\n"))
         XCTAssertThrowsError(try Codec.decodeNight("phasewake-night 1\na|0|\(max)|1080000|DEADLINE|0\n\n"))

@@ -4,7 +4,7 @@ import PhaseWakeCore
 /// Diagnose-Protokoll dieses Geräts (iPhone oder Apple Watch): Ringpuffer nach `DiagLog` in einer Datei,
 /// nur lokal, nichts wird gesendet (ausser der Nutzer teilt es oder holt es aufs iPhone).
 /// Schreiben läuft auf einer eigenen seriellen Warteschlange, nie auf dem Hauptthread. Jeder Eintrag wird an die Datei
-/// angehängt; erst ab `DiagLog.maxEntries` plus ``slack`` Zeilen wird sie gekürzt und neu geschrieben (PERF-10, wie
+/// angehängt; erst ab `DiagLog.maxEntries` plus ``slack`` Zeilen wird sie gekürzt und neu geschrieben (wie
 /// `DiagnosticsLog` auf Android).
 final class DiagStore: @unchecked Sendable {
     static let shared = DiagStore()
@@ -104,7 +104,7 @@ final class DiagStore: @unchecked Sendable {
     }
 
     /// Einträge der Datei (gemerkt); `nil` = Datei da, aber nicht lesbar (dann nie überschreiben). Liest beide Formate:
-    /// Zeilen mit Umbruch am Ende (ab PERF-10) und nur getrennte Zeilen (frühere Versionen).
+    /// Zeilen mit Umbruch am Ende (seit dem Anhängen) und nur getrennte Zeilen (frühere Versionen).
     private func loadOnQueue() -> [DiagEntry]? {
         if let cache { return cache }
         let text: String

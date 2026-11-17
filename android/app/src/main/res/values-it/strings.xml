@@ -395,7 +395,7 @@
     <string name="chart_window">Finestra di risveglio</string>
     <string name="chart_no_data">nessun dato</string>
     <string name="chart_feeling_hint">Tocca un punto per vedere le note di quella notte.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Prova la sveglia</string>
     <string name="test_button">Prova tra 2 minuti</string>
     <string name="test_hint">Suona tra 2 minuti con le impostazioni della tua prossima sveglia, senza posticipo. Non conta come notte.</string>
@@ -613,7 +613,7 @@
     <string name="learn_switch_hint">Il tuo orologio misura movimento e battito di notte (da %1$d %% di batteria). Disattivato: nessuna registrazione automatica, i valori appresi restano.</string>
     <string name="learn_switch_title">Attiva</string>
     <string name="watch_open_app_hint">Apri Phase Wake sull’orologio perché riceva il comando.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Ogni notte dall’inizio della fase di apprendimento: se è stata conteggiata e, se no, perché e cosa aiuta. Phase Wake ha bisogno di %1$d notti conteggiate.</string>
     <string name="learn_nights_empty">Ancora nessuna notte. La prima apparirà qui la mattina dopo.</string>
     <string name="learn_night_facts">%1$s misurate · %2$d valori · polso nel %3$d %%</string>

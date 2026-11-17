@@ -5,8 +5,8 @@ import Foundation
 /// lang Bewegung auf, auch wenn die App nicht läuft; die Uhr holt die Werte am Morgen ab (``RecorderEpochs``). Diese
 /// Regel entscheidet, wann die Uhr den Rekorder für eine Nacht startet: frühestens ab dem Beginn der Einschlaf-Messung
 /// (``ShortNight/autoOnsetStart(target:sleepGoalMinutes:sleepDurationMinutes:)``, 60 Min vor der Bettzeit) und nur, wenn
-/// die App dann läuft (geöffnet, etwa über die Erinnerung am Abend, oder Hintergrund-Aktualisierung; Entscheid r1AD
-/// 10.11.2026). Ausgewertet wird wie auf der Galaxy Watch ab dann bis zum Wecken.
+/// die App dann läuft (geöffnet, etwa über die Erinnerung am Abend, oder Hintergrund-Aktualisierung).
+/// Ausgewertet wird wie auf der Galaxy Watch ab dann bis zum Wecken.
 public enum AppleLearnRecord {
     /// Nach der Zielzeit zeichnet der Rekorder noch so lange auf (Schlummern); ausgewertet wird bis zum Ende des Klingelns.
     public static let afterTarget: TimeInterval = 30 * 60
@@ -25,7 +25,7 @@ public enum AppleLearnRecord {
     /// `now` bei Akku `battery` (Prozent, `nil` = unbekannt). Gestartet wird ab `onsetStart` bis ``afterTarget`` nach
     /// der Zielzeit (höchstens 12 Std.). Zu spät, wenn ab dann keine 3 Std. (``Learning/minSpanEpochs``) mehr bis zur
     /// Zielzeit bleiben: Die Nacht könnte nicht zählen. Unter ``Learning/minBattery`` nicht (der Wecker hat Vorrang),
-    /// ausser die Uhr lädt (`charging`, Prüfrunde 2 F-6: zur Bettzeit ist sie geladen; wie `RecordControl` auf Android).
+    /// ausser die Uhr lädt (`charging`: zur Bettzeit ist sie geladen; wie `RecordControl` auf Android).
     public static func decide(now: Date, target: Date, onsetStart: Date, battery: Int?, charging: Bool = false) -> Decision {
         if now >= target { return .skip(reason: "past") }
         let end = target.addingTimeInterval(afterTarget)
@@ -37,7 +37,7 @@ public enum AppleLearnRecord {
         return .start(from: from, until: end, duration: end.timeIntervalSince(now))
     }
 
-    /// Meldung ans iPhone (Lern-Übersicht, r1AD 13.11.2026) zum Grund `reason` aus dem Diagnose-Protokoll der Uhr für die
+    /// Meldung ans iPhone (Lern-Übersicht) zum Grund `reason` aus dem Diagnose-Protokoll der Uhr für die
     /// Nacht mit Zielzeit `target`: «battery 38%» → Akku mit Stand, «too late» → zu spät, «recorder unavailable» und
     /// «motion not allowed» → keine Sensoren, «recording runs» → Aufzeichnung von Hand; sonst (z. B. «past») `nil`.
     public static func learnSkip(reason: String, target: Date) -> LearnSkip? {
@@ -60,7 +60,7 @@ public enum AppleLearnRecord {
     }
 
     /// Zielzeit einer laufenden Aufzeichnung der Lernphase (bisher `current`) nach einem neuen Plan mit Zielzeit
-    /// `planTarget` (Wecker verschoben, Entscheid r1AD 13.11.2026): diese, wenn sie nach `now` liegt und höchstens die
+    /// `planTarget` (Wecker verschoben): diese, wenn sie nach `now` liegt und höchstens die
     /// längste Schlafdauer (``AlarmSpec/maxSleepMinutes``) entfernt ist, also zur selben Nacht gehört; sonst (Wecker aus,
     /// gelöscht, übersprungen, der nächste erst in einer späteren Nacht) bleibt `current`. Wie `RecordControl.learnUntilFor`
     /// (Galaxy Watch).
@@ -71,11 +71,11 @@ public enum AppleLearnRecord {
     }
 }
 
-/// Apple Watch, automatische Einschlaf-Messung (Schalter «Einschlafen automatisch erkennen», Standard ein, wie Android;
-/// freigegeben von r1AD 10.11.2026): Damit die Uhr zu Beginn der Weck-Sitzung die Einschlafzeit nachrechnen kann
+/// Apple Watch, automatische Einschlaf-Messung (Schalter «Einschlafen automatisch erkennen», Standard ein, wie Android):
+/// Damit die Uhr zu Beginn der Weck-Sitzung die Einschlafzeit nachrechnen kann
 /// (``RecorderOnset``), startet sie für jede Nacht eines gespeicherten Weckers den Bewegungs-Rekorder bis zum Beginn des
 /// Weckfensters – frühestens ab dem Beginn der Einschlaf-Messung (60 Min vor der Bettzeit, wie Android) und nur, wenn
-/// die App dann läuft (Entscheid r1AD 10.11.2026: kein Start mehr bis 12 Std. im Voraus); nicht unter ``minBattery``
+/// die App dann läuft (kein Start mehr bis 12 Std. im Voraus); nicht unter ``minBattery``
 /// Akku (wie `AutoOnset.MIN_BATTERY_PERCENT`), nicht mehr ab dem Fensterbeginn und nicht, wenn ab dann keine
 /// Einschlaf-Messung mehr möglich ist (15 Min vor der Zielzeit).
 public enum AppleAutoOnset {
@@ -94,7 +94,7 @@ public enum AppleAutoOnset {
 
     /// Entscheidet für die Nacht mit Zielzeit `target`, Fensterbeginn `windowStart` und Beginn der Einschlaf-Messung
     /// `onsetStart` zum Zeitpunkt `now` bei Akku `battery` (Prozent, `nil` = unbekannt, hindert nicht). Lädt die Uhr
-    /// (`charging`), hindert auch wenig Akku nicht (Prüfrunde 2 F-6, wie `AutoOnset.skipForBattery` auf Android): Der
+    /// (`charging`), hindert auch wenig Akku nicht (wie `AutoOnset.skipForBattery` auf Android): Der
     /// Rekorder startet, die Zeit am Ladegerät zählt nicht (`LearnRecorder+Charging`).
     public static func decide(now: Date, target: Date, windowStart: Date, onsetStart: Date, battery: Int?,
                               charging: Bool = false) -> Decision {
@@ -106,8 +106,8 @@ public enum AppleAutoOnset {
     }
 }
 
-/// Apple Watch: genau ein Aufruf des Bewegungs-Rekorders je Nacht (`CMSensorRecorder.recordAccelerometer`, Entscheid
-/// r1AD 10.11.2026). Apple dokumentiert nicht, was ein zweiter Aufruf während einer laufenden Aufzeichnung tut (er
+/// Apple Watch: genau ein Aufruf des Bewegungs-Rekorders je Nacht (`CMSensorRecorder.recordAccelerometer`).
+/// Apple dokumentiert nicht, was ein zweiter Aufruf während einer laufenden Aufzeichnung tut (er
 /// könnte sie verkürzen); darum rechnet die Uhr beim ersten Start das nötige Ende aller Bedürfnisse dieser Nacht aus
 /// (Lernphase, Einschlaf-Messung, «Gute Nacht», «Nacht aufzeichnen») und verlängert danach nie.
 public enum AppleNightRecorder {

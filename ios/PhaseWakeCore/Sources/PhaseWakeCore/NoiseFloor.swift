@@ -20,7 +20,7 @@ public enum NoiseFloor {
     /// Im Weckfenster höchstens dieses Vielfache des bekannten Grundrauschens (``priorFloor(_:)``,
     /// ``windowFloor(_:config:)``): Beginnt das Fenster unruhig, hebt die Unruhe die Schwellen nicht bis ``maxFloor`` an.
     public static let priorFactor = 1.5
-    /// Plausibilität des Vorwissens (Fix KN-2, vorsichtig, r1AD): Die Obergrenze ``priorFactor`` × Vorwissen gilt nur,
+    /// Plausibilität des Vorwissens (vorsichtig): Die Obergrenze ``priorFactor`` × Vorwissen gilt nur,
     /// wenn das Vorwissen (``priorFloor(_:)``) mindestens dieser Anteil des Grundrauschens des Fensters ohne Obergrenze
     /// ist. Ein unplausibel tiefes Vorwissen (z. B. 0.002 bei einer Uhr, die ruhig 0.02 misst) senkte die Schwellen sonst
     /// fast auf die Startwerte, und das Rauschen der Uhr zählte wieder als Bewegung.
@@ -40,7 +40,7 @@ public enum NoiseFloor {
     }
 
     /// Vorwissen für die Obergrenze im Weckfenster: das grössere von Grundrauschen der Einschlaf-Messung dieser Nacht
-    /// (``DetectorConfig/onsetFloor``) und gelerntem (``DetectorConfig/personalFloor``); `nil` ohne beide (Fix KN-2).
+    /// (``DetectorConfig/onsetFloor``) und gelerntem (``DetectorConfig/personalFloor``); `nil` ohne beide.
     public static func priorFloor(_ config: DetectorConfig) -> Double? {
         [config.onsetFloor, config.personalFloor].compactMap { $0 }.max()
     }

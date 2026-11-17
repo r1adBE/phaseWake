@@ -3,7 +3,7 @@ import SwiftUI
 
 /// Weckbildschirm: Weckpunkt oder Stopp-Knopf gedrückt halten zum Stoppen, Schlummern mit Restanzahl.
 struct RingView: View {
-    /// Mindesthöhe von «Halten zum Stoppen»: Tippziel nach Apple-Vorgabe (44 pt, Prüfrunde 2, B-16; vorher 40).
+    /// Mindesthöhe von «Halten zum Stoppen»: Tippziel nach Apple-Vorgabe (44 pt; vorher 40).
     static let stopMinHeight: CGFloat = 44
     @State private var progress: Double = 0
     @State private var holding = false
@@ -20,8 +20,8 @@ struct RingView: View {
                 .rotationEffect(.degrees(-90))
                 .padding(3)
                 .ignoresSafeArea()
-            // Kleiner Punkt und knappe Abstände (Audit U-1): «noch N» unter «Schlummern 5 Min» bleibt auch auf
-            // kleinen Uhren ganz sichtbar. Mit grosser Systemschrift (Audit UI-3, wie Wear OS): Schrift auf diesem
+            // Kleiner Punkt und knappe Abstände: «noch N» unter «Schlummern 5 Min» bleibt auch auf
+            // kleinen Uhren ganz sichtbar. Mit grosser Systemschrift (wie Wear OS): Schrift auf diesem
             // Bildschirm gedeckelt, und reicht die Höhe nicht, fallen zuerst der Punkt, dann die Zeile mit dem Grund weg –
             // Stopp und Schlummern bleiben ganz sichtbar.
             ViewThatFits(in: .vertical) {
@@ -60,7 +60,7 @@ struct RingView: View {
             if showReason { reasonText(L(ringReasonKey(reason))) }
             stopButton
             if snoozesLeft > 0 {
-                // «Schlummern 5 Min» wie auf Wear OS (Audit F-10), darunter klein «noch N» (r1AD 10.11.2026); mindestens
+                // «Schlummern 5 Min» wie auf Wear OS, darunter klein «noch N»; mindestens
                 // 48 pt hoch als Tippziel, mit grosser Schrift höher. Zu lang bricht um statt abgeschnitten zu werden.
                 Button { alarm.snooze() } label: {
                     VStack(spacing: 0) {
@@ -98,7 +98,7 @@ struct RingView: View {
         .foregroundStyle(Brand.muted)
     }
 
-    /// «Halten zum Stoppen» als gefüllter Hauptknopf in Lavendel (Audit U-4), wie auf dem Handy und Wear OS: beim
+    /// «Halten zum Stoppen» als gefüllter Hauptknopf in Lavendel, wie auf dem Handy und Wear OS: beim
     /// Halten läuft von links eine helle Füllung darüber. Dunkle Schrift auf beiden Farben: Kontrast ≥ 4.5:1.
     private var stopButton: some View {
         Text(L("ring_hold_to_stop"))

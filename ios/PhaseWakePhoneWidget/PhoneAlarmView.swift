@@ -68,7 +68,7 @@ struct PhoneAlarmView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         .accessibilityElement(children: .combine)
         // Weckzeit, Grund, Schlafdauer und Befinden sind Gesundheitsdaten: auf dem gesperrten Gerät ganz verdeckt
-        // (Audit D1; Android zeigt im Widget keine «Letzte Nacht»).
+        // (Android zeigt im Widget keine «Letzte Nacht»).
         .privacySensitive()
     }
 

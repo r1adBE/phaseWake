@@ -38,7 +38,7 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
         store.edit { it[THEME] = mode.name }
     }
 
-    /** «Abends dunkel ab» (Standard an, ab 18:00; Entscheid r1AD 17.11.2026). */
+    /** «Abends dunkel ab» (Standard an, ab 18:00). */
     val eveningDark: Flow<EveningDarkSetting> = store.data.map { prefs ->
         EveningDarkSetting(prefs[EVENING_DARK] ?: EveningDark.DEFAULT_ENABLED, EveningDark.checkedFrom(prefs[EVENING_DARK_FROM]))
     }.distinctUntilChanged()
@@ -66,7 +66,7 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
     /**
      * Zeitpunkt der letzten Änderung des Schlafziels (ms), für den Abgleich mit der Uhr. Fehlt er (Ziel vor dieser
      * Version gesetzt oder nie geändert), wird jetzt einer gesetzt: So übernimmt die Uhr auch ein älteres Ziel einmal.
-     * Nach einer kaputten Datei nicht ([PhaseWakeStore.wasReset], Audit SP-7): 0, die Uhr behält ihr Ziel.
+     * Nach einer kaputten Datei nicht ([PhaseWakeStore.wasReset]): 0, die Uhr behält ihr Ziel.
      */
     suspend fun sleepGoalStamp(): Long {
         var stamp = 0L
@@ -74,7 +74,7 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
         return stamp
     }
 
-    /** Zeitpunkt für einen fehlenden Stempel, gesetzt über [put]; nach einer kaputten Datei 0 und nichts gesetzt (Audit SP-7). */
+    /** Zeitpunkt für einen fehlenden Stempel, gesetzt über [put]; nach einer kaputten Datei 0 und nichts gesetzt. */
     private fun stampOnce(prefs: Preferences, put: (Long) -> Unit): Long =
         if (PhaseWakeStore.wasReset(prefs)) 0L else Instant.now().toEpochMilli().also(put)
 
@@ -213,8 +213,8 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
     }
 
     /**
-     * Stand der Regeln, nach denen die gespeicherten Feiertage gerechnet sind (`HolidayRepository.RULES`); 0 = vor Audit
-     * F-2 (geschätzte Tage galten noch als frei). Ein kleinerer Stand rechnet die Feiertage einmal neu.
+     * Stand der Regeln, nach denen die gespeicherten Feiertage gerechnet sind (`HolidayRepository.RULES`); 0 = ältere
+     * Regeln (geschätzte Tage galten noch als frei). Ein kleinerer Stand rechnet die Feiertage einmal neu.
      */
     suspend fun holidayRules(): Int = store.data.first()[HOLIDAY_RULES] ?: 0
 
@@ -241,7 +241,7 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
     /**
      * Zeitpunkt von «Verlauf löschen»; Nächte aus Health Connect, die bis dahin enden, bleiben ausgeblendet
      * (sie lassen sich dort nicht löschen). `null` = nie gelöscht. Ein Zeitpunkt in der Zukunft gilt als jetzt, ein
-     * unplausibler als nie gelöscht ([clearedAt], Audit DA-1).
+     * unplausibler als nie gelöscht ([clearedAt]).
      */
     val historyClearedAt: Flow<Instant?> = store.data.map { prefs -> clearedAt(prefs[HISTORY_CLEARED_AT], now())?.let(Instant::ofEpochMilli) }
 
@@ -260,7 +260,7 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
     }
 
     /**
-     * Alle Einstellungen für die Sicherung. [holiday]: aufgelöste Feiertagswahl (`HolidayRepository.choice`, Fix S-2):
+     * Alle Einstellungen für die Sicherung. [holiday]: aufgelöste Feiertagswahl (`HolidayRepository.choice`):
      * Nie gewählt heisst «Land des Geräts», nicht «keine Feiertage»; gesichert wird darum das Land, das gilt (wie das
      * iPhone). Ohne: der gespeicherte Wert.
      */
@@ -295,7 +295,7 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
         prefs[THEME] = (ThemeMode.entries.firstOrNull { mode -> mode.name == settings.theme } ?: ThemeMode.SYSTEM).name
         prefs[HOLIDAY_COUNTRY] = settings.holidayCountry
         prefs[HOLIDAY_REGION] = settings.holidayRegion
-        // Aus einer fremden oder manipulierten Sicherung: nie später als jetzt (Audit DA-1), sonst blieben auch alle
+        // Aus einer fremden oder manipulierten Sicherung: nie später als jetzt, sonst blieben auch alle
         // künftigen Nächte aus Health Connect ausgeblendet.
         val cleared = clearedAt(settings.historyClearedAt, now())
         if (cleared == null) prefs.remove(HISTORY_CLEARED_AT) else prefs[HISTORY_CLEARED_AT] = cleared
@@ -308,7 +308,7 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
 
     companion object {
         /**
-         * Zeitpunkt von «Verlauf löschen» zur Verwendung (Audit DA-1): höchstens [nowMs] (eine verstellte Uhr oder eine
+         * Zeitpunkt von «Verlauf löschen» zur Verwendung: höchstens [nowMs] (eine verstellte Uhr oder eine
          * Sicherung «aus der Zukunft» blendete sonst auch alle künftigen Nächte aus), ausserhalb von [TimeBounds] `null`.
          */
         fun clearedAt(raw: Long?, nowMs: Long): Long? = TimeBounds.checked(raw)?.let { minOf(it, nowMs) }

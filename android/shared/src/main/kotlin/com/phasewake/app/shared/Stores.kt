@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.flow
 /**
  * Einziger DataStore der App (eine Instanz pro Prozess, wie von DataStore verlangt), [PhaseWakeStore].
  *
- * Erst nach dem ersten Entsperren (Audit SP-4): Vorher ist die Datei nicht lesbar, DataStore liefert dann einen leeren
+ * Erst nach dem ersten Entsperren: Vorher ist die Datei nicht lesbar, DataStore liefert dann einen leeren
  * Stand und behält ihn im Speicher, auch nachdem sie lesbar ist (bis zum nächsten Schreiben). Darum scheitert jeder
  * Zugriff davor sofort ([IllegalStateException]), statt mit dem leeren Stand weiterzuarbeiten. Was vor dem Entsperren
  * nötig ist, liegt im geräteverschlüsselten Speicher (Zweitwecker des Handys, `DirectBoot` der Uhr).
@@ -30,7 +30,7 @@ val Context.phaseWakeStore: DataStore<Preferences>
     get() = UnlockedOnly(applicationContext ?: this, PhaseWakeStore.of(this))
 
 /**
- * Der DataStore «phasewake». Ist die Datei beschädigt (Audit SP-7), beginnt er leer statt bei jedem Lesen zu scheitern:
+ * Der DataStore «phasewake». Ist die Datei beschädigt, beginnt er leer statt bei jedem Lesen zu scheitern:
  * Wecker kommen mit dem nächsten Abgleich von der Gegenseite zurück (deren Stand ist neuer); Notizen, Abhaken, Befinden,
  * Zustimmungen, Feiertagswahl, Einstellungen und die Lernphase sind weg. Die kaputte Datei bleibt als Kopie
  * «phasewake.preferences_pb.broken» (die jüngste, wie `.broken` von `SettingsFile` auf iOS; nicht in der Sicherung).
@@ -87,6 +87,6 @@ internal class UnlockedOnly(private val context: Context, private val store: Dat
     }
 
     private fun checkUnlocked() = check(context.getSystemService(UserManager::class.java)?.isUserUnlocked != false) {
-        "Speicher vor dem ersten Entsperren nicht lesbar (Audit SP-4)"
+        "Speicher vor dem ersten Entsperren nicht lesbar"
     }
 }

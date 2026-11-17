@@ -72,7 +72,7 @@
     <string name="editor_delete_title">Slet dette alarm?</string>
     <string name="home_max_alarms">Højst %1$d alarmer – slet en for at tilføje en ny.</string>
     <string name="editor_enabled">Alarm til</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Spring over næste gang</string>
     <string name="alarm_skipped">Sprunget over: %1$s</string>
     <string name="nap_title">Lur</string>
@@ -102,7 +102,7 @@
     <string name="record_since">Siden %1$s</string>
     <string name="notification_record_title">Optager natten</string>
     <string name="record_battery_low">Batteriet er for lavt til optagelse</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Læringsfase</string>
     <string name="watch_learn_warn">Oplad dit ur, ellers tæller i nat ikke med i læringsfasen (batteri %1$d %%, kræver %2$d %%).</string>
     <string name="watch_learn_skip_battery">I nat tæller ikke med i læringsfasen: batteri på %1$d %%, kræver %2$d %%.</string>

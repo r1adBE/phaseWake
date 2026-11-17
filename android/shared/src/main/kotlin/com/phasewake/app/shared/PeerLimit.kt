@@ -4,7 +4,7 @@ import java.io.ByteArrayOutputStream
 import java.io.InputStream
 
 /**
- * Obergrenze für Inhalte der Gegenseite (Audit S-2): Ein Kanal ([WearSync.readChannel]) wird nie ohne Grenze in den
+ * Obergrenze für Inhalte der Gegenseite: Ein Kanal ([WearSync.readChannel]) wird nie ohne Grenze in den
  * Speicher gelesen, und eine Nachricht der Warteschlange über der Grenze wird nicht verarbeitet.
  *
  * Grösse des grössten echten Inhalts, einer Aufzeichnung von 12 Std. ([NightRecording.MAX_DURATION]): 1440 Epochen à

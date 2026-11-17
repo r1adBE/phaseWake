@@ -386,7 +386,7 @@
     <string name="chart_window">Сэрээх хугацаа</string>
     <string name="chart_no_data">өгөгдөл алга</string>
     <string name="chart_feeling_hint">Тухайн шөнийн тэмдэглэлийг харахын тулд цэг дээр дар.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Туршилтын сэрүүлэг</string>
     <string name="test_button">2 минутын дараа турших</string>
     <string name="test_hint">Дараагийн сэрүүлгийн чинь тохиргоогоор 2 минутын дараа, хойшлуулахгүйгээр дуугарна. Шөнөд тооцохгүй.</string>
@@ -602,7 +602,7 @@
     <string name="learn_switch_hint">Цаг чинь шөнө хөдөлгөөн ба судасны цохилтыг хэмжинэ (%1$d %% батерейгаас дээш). Унтраасан: автомат бичлэг байхгүй, сурсан утгууд хадгалагдана.</string>
     <string name="learn_switch_title">Идэвхтэй</string>
     <string name="watch_open_app_hint">Тушаалыг хүлээн авахын тулд цаг дээрээ Phase Wake-г нээ.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Суралцах үе эхэлснээс хойших шөнө бүр – тоологдсон эсэх, тоологдоогүй бол яагаад, юу туслах вэ. Phase Wake-д тоологдсон %1$d шөнө хэрэгтэй.</string>
     <string name="learn_nights_empty">Одоогоор шөнө алга. Эхнийх нь дараагийн өглөө энд харагдана.</string>
     <string name="learn_night_facts">%1$s хэмжсэн · %2$d утга · %3$d %%-д судасны цохилт</string>

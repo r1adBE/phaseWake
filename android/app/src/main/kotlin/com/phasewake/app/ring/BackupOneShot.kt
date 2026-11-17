@@ -9,7 +9,7 @@ import java.time.Instant
 
 /**
  * Schaltet einen noch eingeschalteten Einmal-Wecker aus (über die Uhr-Synchronisation). Nur die Fassung, die
- * geklingelt hat (Fix G-1/S-1, [AlarmStamps.rang]): Mit Zielzeit [target] muss sie dessen Weckzeit dieser Nacht sein
+ * geklingelt hat ([AlarmStamps.rang]): Mit Zielzeit [target] muss sie dessen Weckzeit dieser Nacht sein
  * (früher geweckt: gemeldete Ausnahme [onsetShift]); ohne (Ende des Schlummerns) gilt der gespeicherte Wecker. Der
  * Zeitpunkt wird der der bisherigen Fassung + 1 ms: Eine neuere Änderung auf der Uhr gewinnt beim Abgleich.
  */

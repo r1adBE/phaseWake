@@ -17,7 +17,7 @@ internal object OnsetRules {
 
     /**
      * Stichproben: Die ruhige Strecke muss so viele Epochen über [SleepOnset.STILL_EPOCHS] hinaus umfassen (10 Min, zwei
-     * Stichproben mehr; Audit c3b8b01 E-4). Die Stichproben sehen nur 2 von 10 Epochen; ohne diese Bestätigung meldete je nach
+     * Stichproben mehr). Die Stichproben sehen nur 2 von 10 Epochen; ohne diese Bestätigung meldete je nach
      * Lage der Stichproben schon eine zufällig ruhige Viertelstunde das Einschlafen (an einer echten Nacht bis 1 Std. zu früh,
      * obwohl die Person danach wieder aktiv war).
      */
@@ -61,7 +61,7 @@ internal object OnsetRules {
     }
 
     /**
-     * Wertet die neuen Epochen ab Index [from] einzeln aus, als kämen sie eine nach der anderen (Fix KN-3, wie
+     * Wertet die neuen Epochen ab Index [from] einzeln aus, als kämen sie eine nach der anderen (wie
      * `RecorderOnset.measure` auf der Apple Watch): je Epoche das Grundrauschen der gemessenen ([measured]) bis dahin
      * ([NoiseFloor.floor], solange zu wenige: [personalFloor]) und die Regel mit der wirksamen Leicht-Schwelle
      * ([SleepOnset.find] bei [continuous], sonst [find]). So zählen Epochen nach der erkennenden nicht, auch wenn sie im
@@ -97,7 +97,7 @@ internal object OnsetRules {
     /**
      * Nächster Alarm (elapsedRealtime in ns): [OnsetMonitor.SAMPLE_LEAD_MS] vor der Epochengrenze, die [TICK_EPOCHS]
      * Epochen nach der Grenze liegt, die [nowNanos] (plus Vorlauf) am nächsten ist. So bleibt der Takt bei genau
-     * 10 Epochen, auch wenn ein Alarm einige Sekunden zu spät kommt (Audit c3b8b01 E-3: «jetzt + 5 Min» aufgerundet ergab
+     * 10 Epochen, auch wenn ein Alarm einige Sekunden zu spät kommt («jetzt + 5 Min» aufgerundet ergab
      * bei jeder Verspätung 11 Epochen, Stichproben alle 5½ Min). Abstand zu [nowNanos]: 5 Min ± eine halbe Epoche.
      */
     fun nextTick(startNanos: Long, nowNanos: Long): Long {
@@ -176,7 +176,7 @@ internal object OnsetRules {
 
     /**
      * Ob Epoche [index] (ab [startNanos], Länge [OnsetMonitor.EPOCH_NANOS]) eine Zeit berührt, in der die Uhr nicht getragen
-     * wird (Audit c3b8b01 E-5, Entscheide r1AD 14.11.2026): am Ladegerät (Netzteil an bis ab) oder laut Off-Body-Sensor nicht
+     * wird: am Ladegerät (Netzteil an bis ab) oder laut Off-Body-Sensor nicht
      * am Handgelenk. [charging]: diese Zeiten (elapsedRealtime in ns; Ende `null` = dauert an). Solche Epochen gelten als
      * leer: Die abgelegte Uhr misst nur Rauschen, das sonst als Einschlafen zählte; die Messung wartet, bis sie wieder
      * getragen wird.
@@ -210,13 +210,13 @@ internal object OnsetRules {
 
     /**
      * Ob die Messung erst nach dem Beginn der Einschlafdauer [bedAt] ([plannedBedAt]) beginnt, um mehr als
-     * [LATE_START_TOLERANCE] (Tiefenaudit AP3-2, wie `RecorderOnset.startedLate` auf der Apple Watch): automatisch nach
+     * [LATE_START_TOLERANCE] (wie `RecorderOnset.startedLate` auf der Apple Watch): automatisch nach
      * der Bettzeit (Neustart der Uhr, späte Änderung, Schalter spät ein), nach «Gute Nacht» beim Wiederaufnehmen nach einem
      * Prozessende. Was dann gilt, sagt [lateStart].
      */
     fun startedLate(measureFrom: Instant, bedAt: Instant): Boolean = measureFrom.isAfter(bedAt.plus(LATE_START_TOLERANCE))
 
-    /** Beginn der Messung gegenüber dem Beginn der Einschlafdauer (Entscheid r1AD 14.11.2026, Prüfrunde 2 HG-2). */
+    /** Beginn der Messung gegenüber dem Beginn der Einschlafdauer. */
     enum class LateStart {
         /** Rechtzeitig: Die Messung gilt; ein früheres Einschlafen zählt erst ab der Bettzeit ([onsetAt]). */
         ON_TIME,
@@ -242,7 +242,7 @@ internal object OnsetRules {
     }
 
     /**
-     * Zeitgrenze, verschoben um die Zeit ohne Tragen [away] (am Ladegerät oder abgelegt, Prüfrunde 2 HG-3, wie
+     * Zeitgrenze, verschoben um die Zeit ohne Tragen [away] (am Ladegerät oder abgelegt, wie
      * `RecorderOnset.awayUntil`): [baseEnd] (Beginn plus [OnsetMonitor.MAX_DURATION]) plus [away], höchstens [cap] und
      * [latestGiveUp]; `null` ohne solche Zeit oder wenn die Grenze vor der Weckzeit ohnehin früher gilt. Ohne Verschiebung
      * gab die Messung nach dem Laden auf, bevor eine ruhige Strecke vollständig sein konnte.
@@ -275,7 +275,7 @@ internal object OnsetRules {
     }
 
     /**
-     * Eine Zeile je 15 Min fürs Diagnose-Protokoll (Ursachensuche, Akku-Befund 03.11.2026): aufweckender Sensor (1/0),
+     * Eine Zeile je 15 Min fürs Diagnose-Protokoll (Ursachensuche): aufweckender Sensor (1/0),
      * erhaltene Werte, gemessene Epochen, davon leer, mittlere/grösste Bewegung, wirksame Schwelle, Grundrauschen
      * ([NoiseFloor]), Wakelock in Sekunden, Akku.
      */

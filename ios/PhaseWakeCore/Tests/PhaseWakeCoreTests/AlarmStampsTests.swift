@@ -1,7 +1,7 @@
 import XCTest
 @testable import PhaseWakeCore
 
-/// Abgleich der Wecker je Wecker (Audit A-4), wie `AlarmRepositoryTest` auf Android.
+/// Abgleich der Wecker je Wecker, wie `AlarmRepositoryTest` auf Android.
 final class AlarmStampsTests: XCTestCase {
     private func storage() -> (PhaseWakeStorage, UserDefaults) {
         let suite = "test-\(UUID().uuidString)"
@@ -117,7 +117,7 @@ final class AlarmStampsTests: XCTestCase {
         XCTAssertNil(AlarmStamps.snapshot(context: [SyncKeys.alarms: "kaputt", SyncKeys.updatedAt: Int64(1)]))
     }
 
-    /// Fix KN-4: unplausible Zeitpunkte der Gegenseite (z. B. `Int64.max`): Listen-Zeitpunkt → Nachricht verworfen,
+    /// Unplausible Zeitpunkte der Gegenseite (z. B. `Int64.max`): Listen-Zeitpunkt → Nachricht verworfen,
     /// Zeitpunkte je Wecker und Grabsteine fallen weg; nichts bricht ab (`now − Zeitpunkt`, `+ 1`).
     func testImplausibleTimesFromThePeer() throws {
         var context: [String: Any] = [:]
@@ -136,7 +136,7 @@ final class AlarmStampsTests: XCTestCase {
         XCTAssertEqual(AlarmStamps.prune(["z": Int64.min, "y": 4], now: 10), ["y": 4])
     }
 
-    /// Fix KN-4: Ein früher gespeicherter kaputter Listen-Zeitpunkt (`Int64.max`) bricht die nächste Änderung nicht ab
+    /// Ein früher gespeicherter kaputter Listen-Zeitpunkt (`Int64.max`) bricht die nächste Änderung nicht ab
     /// (`updatedAt + 1`); er gilt als nie geändert, der neue Zeitpunkt ist «jetzt».
     func testStoredImplausibleStampDoesNotTrap() throws {
         let (s, defaults) = storage()
@@ -152,7 +152,7 @@ final class AlarmStampsTests: XCTestCase {
         XCTAssertEqual(TimeBounds.next(now: 5, previous: nil), 5)
     }
 
-    /// Fix KN-5: Unlesbare gespeicherte Wecker (Format einer neueren Version) werden nie mit einer Änderung
+    /// Unlesbare gespeicherte Wecker (Format einer neueren Version) werden nie mit einer Änderung
     /// überschrieben; `mutate` verweigert (wie `AlarmRepository` auf Android).
     func testUnreadableAlarmsAreNotOverwritten() {
         let (s, defaults) = storage()

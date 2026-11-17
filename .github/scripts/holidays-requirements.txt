@@ -1,4 +1,4 @@
-# Paket «holidays» für den Workflow «Feiertage», fest gewählte Version samt Prüfsummen (Audit 5314d25 D-08).
+# Paket «holidays» für den Workflow «Feiertage», fest gewählte Version samt Prüfsummen.
 # Aktualisieren: Version und sha256 von pypi.org (Wheel und Quellpaket) hier nachführen, dann den Workflow starten.
 holidays==0.108 \
     --hash=sha256:5a08fdccd0b8737093d483ba0d0d9696560396d99d3fa6ef9264fd2ac48749c7 \

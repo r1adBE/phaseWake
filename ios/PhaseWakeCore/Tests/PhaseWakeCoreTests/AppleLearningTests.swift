@@ -103,7 +103,7 @@ final class AppleLearningTests: XCTestCase {
         let target = start.addingTimeInterval(8 * 3600) // 07:00
         let onset = start.addingTimeInterval(-30 * 60) // 22:30
         let end = target.addingTimeInterval(AppleLearnRecord.afterTarget)
-        // 18:00 und 22:29: vor der Einschlaf-Messung nicht starten (Entscheid r1AD 10.11.2026, kein Start 12 Std. im Voraus).
+        // 18:00 und 22:29: vor der Einschlaf-Messung nicht starten (kein Start 12 Std. im Voraus).
         XCTAssertEqual(AppleLearnRecord.decide(now: start.addingTimeInterval(-5 * 3600), target: target, onsetStart: onset, battery: 90),
                        .wait(until: onset))
         XCTAssertEqual(AppleLearnRecord.decide(now: onset.addingTimeInterval(-60), target: target, onsetStart: onset, battery: 90),
@@ -218,7 +218,7 @@ final class AppleLearningTests: XCTestCase {
     }
 
     func testRecordingWithImplausibleTimes() {
-        // Vollaudit K-7: Zeiten ausserhalb 1970–2100 gelten als unlesbar (Beginn → nil, «onset»/«end» fallen weg).
+        // Zeiten ausserhalb 1970–2100 gelten als unlesbar (Beginn → nil, «onset»/«end» fallen weg).
         let max = "9223372036854775807"
         XCTAssertNil(NightRecording.decode("phasewake-recording 1\nstart=\(max)\n0.02;\n"))
         XCTAssertNil(NightRecording.decode("phasewake-recording 1\nstart=-1\n0.02;\n"))
@@ -229,7 +229,7 @@ final class AppleLearningTests: XCTestCase {
         if let read { XCTAssertTrue(NightRecording.encode(read).hasPrefix("phasewake-recording 1\nstart=1793570400000\n")) }
     }
 
-    /// Fix KN-7: Der Zeitpunkt der Lernphase steigt streng, auch bei zwei Änderungen in derselben Millisekunde oder nach
+    /// Der Zeitpunkt der Lernphase steigt streng, auch bei zwei Änderungen in derselben Millisekunde oder nach
     /// einer zurückgestellten Uhrzeit (die Uhr übernimmt nur einen neueren Stand); ein kaputter alter zählt nicht.
     func testLearningStampRisesStrictly() {
         let at = Date(timeIntervalSince1970: 5)

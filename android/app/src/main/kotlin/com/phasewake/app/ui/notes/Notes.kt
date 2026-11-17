@@ -113,8 +113,8 @@ fun TonightNotesCard(selected: List<String>, custom: List<CustomNote>, container
 
 /**
  * Notizen einer vergangenen Nacht (Morgenbericht, Verlauf): eine Zeile mit den gesetzten Notizen,
- * antippen klappt die Chips zum Ändern auf. [trailing]: rechts in derselben Zeile (Verlauf: «Details ›»,
- * Gestaltung 4); die Chips klappen darunter über die ganze Breite auf.
+ * antippen klappt die Chips zum Ändern auf. [trailing]: rechts in derselben Zeile (Verlauf: «Details ›»);
+ * die Chips klappen darunter über die ganze Breite auf.
  */
 @Composable
 fun NightNotes(
@@ -133,7 +133,7 @@ fun NightNotes(
                 if (names.isEmpty()) stringResource(R.string.notes_label) else stringResource(R.string.notes_value, names.joinToString(", ")),
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.primary,
-                // Mindestens 48 dp hoch (Tippziel, Audit UI-8).
+                // Mindestens 48 dp hoch (Tippziel).
                 modifier = Modifier.weight(1f).heightIn(min = 48.dp).clickable(role = Role.Button) { open = !open }.padding(vertical = 8.dp)
                     .wrapContentHeight(Alignment.CenterVertically),
             )

@@ -21,7 +21,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
 /**
- * Ablauf im [PhoneRingService] mit fester Uhrzeit (Review M-2): Beim Klingeln steht der Wiederaufnahme-Alarm
+ * Ablauf im [PhoneRingService] mit fester Uhrzeit: Beim Klingeln steht der Wiederaufnahme-Alarm
  * ([PhoneSnooze]), ein zweiter Wecker löst ab und stellt ihn für sich neu, die Zeitgrenze schlummert, solange Runden
  * bleiben; führt die Uhr, steht er ebenso und Schlummern am Handy hebt ihn auf. Android 13: dort fragt der
  * Weckbildschirm das Vollbild-Recht über die Berechtigung ab.
@@ -60,7 +60,7 @@ class PhoneRingServiceTest {
         assertEquals(PhoneRingService.State.Ringing(fromWatch = false, snoozesLeft = Snooze.MAX_COUNT), plain())
         assertEquals(PhoneSnooze.Saved(resumeAt, "a", 0, now.toEpochMilli()), PhoneSnooze.load(context))
         // Zweiter Wecker «b» löst ab: aufgehoben und für «b» neu gestellt, wieder alle Runden.
-        // Zweiter Start desselben Dienstes mit neuem Auftrag (ohne das veraltete `withIntent`, Review K-14).
+        // Zweiter Start desselben Dienstes mit neuem Auftrag (ohne das veraltete `withIntent`).
         service.get().onStartCommand(ringIntent("b", now.plus(Duration.ofMinutes(30))), 0, 2)
         shadowOf(Looper.getMainLooper()).idle()
         assertEquals(PhoneRingService.State.Ringing(fromWatch = false, snoozesLeft = Snooze.MAX_COUNT), plain())
@@ -76,7 +76,7 @@ class PhoneRingServiceTest {
     @Test
     fun watchLedRingArmsResumeSnoozeOnPhoneCancelsIt() {
         val resumeAt = Instant.ofEpochMilli(RingRules.resumeAt(now.toEpochMilli()))
-        // Die Uhr führt (noch 2 Runden): Wiederaufnahme-Alarm steht auch hier, mit den Runden der Uhr (04.11.2026).
+        // Die Uhr führt (noch 2 Runden): Wiederaufnahme-Alarm steht auch hier, mit den Runden der Uhr.
         val intent = ringIntent("a", now).putExtra("fromWatch", true).putExtra(PhoneRingService.EXTRA_SNOOZES_LEFT, 2)
         val service = Robolectric.buildService(PhoneRingService::class.java, intent).create().startCommand(0, 1)
         controller = service

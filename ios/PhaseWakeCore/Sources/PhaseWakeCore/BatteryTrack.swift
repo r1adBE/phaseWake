@@ -35,7 +35,7 @@ public struct BatteryPoint: Equatable, Sendable {
     }
 }
 
-/// Akkuverbrauch eines Geräts in einer Nacht (Entscheid r1AD 14.11.2026): Messpunkte vom Messbeginn bis zum Ende der Nacht.
+/// Akkuverbrauch eines Geräts in einer Nacht: Messpunkte vom Messbeginn bis zum Ende der Nacht.
 /// Gemessen wird der Akkustand des ganzen Geräts. Zeit am Ladegerät zählt nicht: Summiert werden nur die Teilstrecken ohne
 /// Laden. Ist etwas unbekannt, gibt es keinen Wert statt eines falschen. Identisch zu `BatteryTrack` (Kotlin).
 public enum BatteryTrack {

@@ -2,12 +2,12 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWake
 
-/// Wecker-Editor nach Änderungen anderswo, iPhone (Herkunft: Prüfrunde 2 B-3, B-11). Gegenstück auf Android:
+/// Wecker-Editor nach Änderungen anderswo, iPhone. Gegenstück auf Android:
 /// `EditsElsewhereTest`.
 @MainActor
 final class EditorElsewherePhoneTests: XCTestCase {
-    /// B-3: Ein beim Öffnen gespeicherter Wecker, der fehlt, wurde anderswo gelöscht; Speichern legte ihn sonst neu an.
-    /// B-11: Neuer Wecker bei acht gespeicherten: Hinweis statt still verwerfen.
+    /// Ein beim Öffnen gespeicherter Wecker, der fehlt, wurde anderswo gelöscht; Speichern legte ihn sonst neu an.
+    /// Neuer Wecker bei acht gespeicherten: Hinweis statt still verwerfen.
     func testEditorSaveAfterChangesElsewhere() {
         let eight = (1...8).map { "a\($0)" }
         XCTAssertEqual(EditorSave.check(existed: true, storedIds: eight, draftId: "a3", maxAlarms: 8), .save)

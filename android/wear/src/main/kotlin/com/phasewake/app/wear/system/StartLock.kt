@@ -5,7 +5,7 @@ import android.os.PowerManager
 import android.util.Log
 
 /**
- * Kurzer Wakelock zwischen einem System-Alarm und dem Dienst, den er startet (Befund 13.11.2026): Sobald `onReceive`
+ * Kurzer Wakelock zwischen einem System-Alarm und dem Dienst, den er startet: Sobald `onReceive`
  * zurückkehrt, löst das System den Wakelock des Alarms; ohne eigenen schlief die Uhr bis zu 2 Min, bevor der Dienst lief.
  *
  * Die Empfänger nehmen ihn vor dem Start ([acquire]), der Dienst löst ihn, sobald er seinen eigenen Wakelock hält oder

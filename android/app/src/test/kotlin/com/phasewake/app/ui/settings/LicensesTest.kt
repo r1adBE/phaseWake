@@ -12,7 +12,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 /**
- * Lizenzen (Audit M-05): Jede Datei in `licenses/` steht in der Liste und umgekehrt, die Texte liegen als Assets in
+ * Lizenzen: Jede Datei in `licenses/` steht in der Liste und umgekehrt, die Texte liegen als Assets in
  * der App, und lange Texte werden in Absätze geteilt.
  */
 @RunWith(RobolectricTestRunner::class)

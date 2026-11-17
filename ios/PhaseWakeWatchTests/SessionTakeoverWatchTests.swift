@@ -4,8 +4,7 @@ import XCTest
 @testable import PhaseWakeWatch
 
 /// Welche Sitzung die Nacht übernimmt, Apple Watch: gemerkte Sitzung nach einem Neustart der App, Wecker am iPhone
-/// geändert, fremde und verwaiste Sitzungen (Herkunft: Vollaudit 071597f AP2-1; Tiefenaudit c3b8b01 AP3-3, AP3-4;
-/// Prüfrunde 2 HG-4).
+/// geändert, fremde und verwaiste Sitzungen.
 final class SessionTakeoverWatchTests: XCTestCase {
     private let now = Date(timeIntervalSince1970: 1_793_000_000)
 

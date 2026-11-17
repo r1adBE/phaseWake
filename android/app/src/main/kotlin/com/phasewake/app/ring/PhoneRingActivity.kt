@@ -181,7 +181,7 @@ internal fun RingScreen(
     light: Float? = null,
     clock: () -> Instant = Instant::now,
     onTyping: () -> Unit = {},
-    // Zufallsquelle der Weckaufgabe; nur die Bildschirmfotos geben einen festen Startwert (Audit 17.11.2026, UX-08).
+    // Zufallsquelle der Weckaufgabe; nur die Bildschirmfotos geben einen festen Startwert.
     random: kotlin.random.Random = kotlin.random.Random.Default,
 ) {
     var now by remember { mutableStateOf(clock()) }
@@ -205,7 +205,7 @@ internal fun RingScreen(
     val challenge = remember { MathChallenge(random) }
     val math = task == WakeTask.MATH
     background {
-        // Höhe und Breite bestimmen die Anordnung (Audit UI-2): Querformat zweispaltig, knappe Höhe kleiner;
+        // Höhe und Breite bestimmen die Anordnung: Querformat zweispaltig, knappe Höhe kleiner;
         // alles scrollt, damit Stopp, Schlummern und die Tastatur immer erreichbar bleiben. Keine feste Ausrichtung.
         BoxWithConstraints(Modifier.fillMaxSize().safeDrawingPadding()) {
             val landscape = maxWidth > maxHeight

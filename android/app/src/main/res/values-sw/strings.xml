@@ -385,7 +385,7 @@
     <string name="chart_window">Kipindi cha kuamka</string>
     <string name="chart_no_data">hakuna data</string>
     <string name="chart_feeling_hint">Gusa nukta uone madokezo ya usiku huo.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Kengele ya majaribio</string>
     <string name="test_button">Jaribu baada ya dakika 2</string>
     <string name="test_hint">Inalia baada ya dakika 2 kwa mipangilio ya kengele yako inayofuata, bila kuahirisha. Haihesabiwi kama usiku.</string>
@@ -601,7 +601,7 @@
     <string name="learn_switch_hint">Saa yako hupima mwendo na mapigo ya moyo usiku (kuanzia betri %1$d %%). Imezimwa: hakuna kurekodi kiotomatiki, thamani zilizojifunzwa zinabaki.</string>
     <string name="learn_switch_title">Inatumika</string>
     <string name="watch_open_app_hint">Fungua Phase Wake kwenye saa yako ili ipokee amri.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Kila usiku tangu hatua ya kujifunza ilipoanza – kama ulihesabiwa na, kama sivyo, kwa nini na nini kinasaidia. Phase Wake inahitaji usiku %1$d uliohesabiwa.</string>
     <string name="learn_nights_empty">Bado hakuna usiku. Wa kwanza utaonekana hapa asubuhi inayofuata.</string>
     <string name="learn_night_facts">%1$s zimepimwa · thamani %2$d · mapigo katika %3$d %%</string>

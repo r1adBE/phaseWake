@@ -395,7 +395,7 @@
     <string name="chart_window">Interval de trezire</string>
     <string name="chart_no_data">fără date</string>
     <string name="chart_feeling_hint">Atinge un punct pentru notițele din acea noapte.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Testează alarma</string>
     <string name="test_button">Testează în 2 minute</string>
     <string name="test_hint">Sună în 2 minute cu setările următoarei tale alarme, fără amânare. Nu contează ca noapte.</string>
@@ -613,7 +613,7 @@
     <string name="learn_switch_hint">Ceasul tău măsoară noaptea mișcarea și pulsul (de la %1$d %% baterie). Dezactivat: fără înregistrare automată, valorile învățate rămân.</string>
     <string name="learn_switch_title">Activă</string>
     <string name="watch_open_app_hint">Deschide Phase Wake pe ceas ca să primească comanda.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Fiecare noapte de la începutul fazei de învățare – dacă a contat și, dacă nu, de ce și ce ajută. Phase Wake are nevoie de %1$d nopți numărate.</string>
     <string name="learn_nights_empty">Încă nicio noapte. Prima apare aici în dimineața următoare.</string>
     <string name="learn_night_facts">%1$s măsurate · %2$d valori · puls în %3$d %%</string>

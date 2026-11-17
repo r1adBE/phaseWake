@@ -383,7 +383,7 @@
     <string name="chart_window">Vekkevindu</string>
     <string name="chart_no_data">ingen data</string>
     <string name="chart_feeling_hint">Trykk på et punkt for å se notatene for den natten.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Test vekkerklokken</string>
     <string name="test_button">Test om 2 minutter</string>
     <string name="test_hint">Ringer om 2 minutter med innstillingene for den neste alarmen din, uten slumring. Teller ikke som en natt.</string>
@@ -599,7 +599,7 @@
     <string name="learn_switch_hint">Klokken din måler bevegelse og puls om natten (fra %1$d %% batteri). Av: ingen automatisk registrering, lærte verdier beholdes.</string>
     <string name="learn_switch_title">Aktiv</string>
     <string name="watch_open_app_hint">Åpne Phase Wake på klokken så den mottar kommandoen.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Hver natt siden læringsfasen startet – om den telte med, og hvis ikke, hvorfor og hva som hjelper. Phase Wake trenger %1$d netter som teller.</string>
     <string name="learn_nights_empty">Ingen natt ennå. Den første vises her morgenen etter.</string>
     <string name="learn_night_facts">%1$s målt · %2$d målinger · puls i %3$d %%</string>

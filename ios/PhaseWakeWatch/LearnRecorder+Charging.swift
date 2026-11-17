@@ -2,7 +2,7 @@ import Foundation
 import PhaseWakeCore
 import WatchKit
 
-/// Laden der Apple Watch während der Einschlaf-Messung (Prüfrunde 2 F-1, HG-3): Die Galaxy Watch meldet Netzteil an/ab
+/// Laden der Apple Watch während der Einschlaf-Messung: Die Galaxy Watch meldet Netzteil an/ab
 /// sofort; eine App auf der Apple Watch läuft nachts nur zeitweise. Darum tastet die Uhr den Ladezustand
 /// (`WKInterfaceDevice.batteryState`) bei jedem Durchgang ab (Öffnen, Hintergrund-Aktualisierung, Beginn der Weck-Sitzung)
 /// und stellt die Hintergrund-Aktualisierung, solange die Messung vor dem Weckfenster läuft, auf höchstens

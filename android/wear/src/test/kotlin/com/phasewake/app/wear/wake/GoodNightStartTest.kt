@@ -7,7 +7,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 /**
- * Startentscheid von «Gute Nacht» ohne Android ([GoodNightStart], Audit CODE-08): laufende Nacht, Sperre, Wecker,
+ * Startentscheid von «Gute Nacht» ohne Android ([GoodNightStart]): laufende Nacht, Sperre, Wecker,
  * Weckfenster, Zeitgrenze und Akku in der Reihenfolge von [startGoodNight]. Feste Zeiten.
  */
 class GoodNightStartTest {

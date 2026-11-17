@@ -11,13 +11,13 @@ import java.util.Locale
 
 /**
  * Ziffern der Sprache wie bei Zahlen in Texten (`getString` mit %d) und in der Systemuhr: Auf Arabisch erschienen
- * Zeiten sonst mit 0–9, Dauern und die Uhr oben mit ٠–٩ (Audit UI-9).
+ * Zeiten sonst mit 0–9, Dauern und die Uhr oben mit ٠–٩.
  */
 internal fun localizedDigits(formatter: DateTimeFormatter, locale: Locale = Locale.getDefault()): DateTimeFormatter =
     formatter.withDecimalStyle(DecimalStyle.of(locale))
 
 /**
- * 12/24-Stunden-Einstellung der Uhr (Audit N-10): Zeiten folgen ihr wie die Systemuhr oben, nicht nur der Sprache.
+ * 12/24-Stunden-Einstellung der Uhr: Zeiten folgen ihr wie die Systemuhr oben, nicht nur der Sprache.
  * Die Bildschirme rufen [update] beim Öffnen; danach liest [use24Hour] die Einstellung bei jedem Aufruf neu.
  */
 object WearClock {
@@ -48,7 +48,7 @@ internal fun timeFormatter(locale: Locale = Locale.getDefault(), is24: Boolean? 
 
 /**
  * Kurze Uhrzeit nach Sprache mit deren Ziffern ([localizedDigits]) und der 12/24-h-Einstellung ([WearClock]) für
- * Texte ausserhalb der Bildschirme der App: Mitteilungen, Kachel und Komplikation (Audit UI-9, Nachtrag; N-10).
+ * Texte ausserhalb der Bildschirme der App: Mitteilungen, Kachel und Komplikation.
  */
 internal fun shortTime(
     at: Instant,

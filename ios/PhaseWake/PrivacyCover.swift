@@ -1,7 +1,7 @@
 import SwiftUI
 import UIKit
 
-/// Audit SEC-03: Solange die App nicht aktiv ist (App-Umschalter, Wechsel in den Hintergrund), liegt über allem – auch
+/// Solange die App nicht aktiv ist (App-Umschalter, Wechsel in den Hintergrund), liegt über allem – auch
 /// über Sheets und Vollbild-Ansichten – eine Abdeckung mit Nachthimmel und Logo. So zeigt das Vorschaubild des Systems
 /// keine Schlafdaten. Eigenes Fenster über der App, weil eine Überlagerung in SwiftUI Sheets nicht abdeckt.
 @MainActor

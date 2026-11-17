@@ -55,7 +55,7 @@ final class LearningTests: XCTestCase {
         XCTAssertEqual(Learning.nightFloor(sampled(37)), 0.02)
     }
 
-    /// Audit c3b8b01 BE-1d: genau 72 gemessene Epochen über genau 360 zählt; eine weniger von beidem nicht (wie Kotlin).
+    /// Genau 72 gemessene Epochen über genau 360 zählt; eine weniger von beidem nicht (wie Kotlin).
     func testCountsAtExactlyTheLimits() {
         func night(_ measured: Int, span: Int) -> Learning.Night {
             let at = Set((0..<measured).map { $0 == measured - 1 ? span - 1 : $0 })

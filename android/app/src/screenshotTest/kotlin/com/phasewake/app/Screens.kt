@@ -41,7 +41,7 @@ import java.time.Duration
 import java.time.Instant
 
 /**
- * Bildschirmfotos der Handy-Bildschirme, hell und dunkel. Beispieldaten, keine echten. Die Bildschirme aus Runde 3
+ * Bildschirmfotos der Handy-Bildschirme, hell und dunkel. Beispieldaten, keine echten. Weitere Bildschirme
  * stehen in `OnboardingShots.kt`, `DataShots.kt` und `HomeExtrasShots.kt`; die gemeinsamen Helfer hier sind darum `internal`.
  */
 

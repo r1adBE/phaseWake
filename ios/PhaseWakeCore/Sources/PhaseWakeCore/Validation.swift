@@ -1,6 +1,6 @@
 import Foundation
 
-/// Validierungs-Modus (Entscheid r1AD 16.11.2026): Wie oft liegt der Weck-Entscheid wirklich im leichten Schlaf? Rechnet
+/// Validierungs-Modus: Wie oft liegt der Weck-Entscheid wirklich im leichten Schlaf? Rechnet
 /// nachträglich auf dem iPhone, weckt nie und ändert nichts am Wecken. Regel siehe `docs/PHASENERKENNUNG.md`, Abschnitt 12.
 ///
 /// - **Echte Entscheide**: je Nacht (``NightRecord``) Weckzeit und Grund.
@@ -91,7 +91,7 @@ public enum Validation {
 
     /// Schattenentscheide einer Aufzeichnung ab `start`: Fenster ab Epoche 0, ``stepEpochs``, 2 · ``stepEpochs`` …,
     /// solange ein ganzes Fenster (``windowEpochs``) Platz hat; nur durchgehend gemessene (``measured(_:)``). Entscheiden
-    /// zwei überlappende Fenster im selben Moment gleich, zählt der Moment einmal (r1AD 17.11.2026). Identisch zu Kotlin.
+    /// zwei überlappende Fenster im selben Moment gleich, zählt der Moment einmal. Identisch zu Kotlin.
     public static func shadows(start: Date, epochs: [Epoch], config: DetectorConfig) -> [Moment] {
         var moments: [Moment] = []
         var from = 0

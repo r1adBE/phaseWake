@@ -3,7 +3,7 @@ import XCTest
 @testable import PhaseWake
 
 /// Akku-Hinweise der Uhr im Nacht-Check, iPhone: Einschlaf-Messung und Lernphase brauchen mehr Akku, am Ladegerät
-/// keine Warnung (Herkunft: Tiefenaudit c3b8b01 O-05, Prüfrunde 2 F-6).
+/// keine Warnung.
 final class BatteryHintPhoneTests: XCTestCase {
     private func watch(battery: Int?, autoOnset: Bool, learning: Bool, skip: RecorderSkip? = nil) -> NightCheck.WatchState {
         NightCheck.WatchState(paired: true, appInstalled: true, plan: nil, armedTarget: nil, reminder: nil, battery: battery,
@@ -33,7 +33,7 @@ final class BatteryHintPhoneTests: XCTestCase {
         XCTAssertTrue(PhoneCheck.watchLearnBattery.isAdvisory)
     }
 
-    /// Prüfrunde 2 F-6: Die Uhr meldet den Akku jetzt auch am Ladegerät, mit Ladezustand. Dann misst sie trotz 25 % bzw.
+    /// Die Uhr meldet den Akku jetzt auch am Ladegerät, mit Ladezustand. Dann misst sie trotz 25 % bzw.
     /// 15 % (sie wartet am Ladegerät): kein Hinweis und keine Warnung (wie Android `NightCheckState.collect`).
     @MainActor
     func testNoBatteryWarningWhileTheWatchCharges() {

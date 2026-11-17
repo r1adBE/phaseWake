@@ -102,7 +102,7 @@ public enum SoundEvents {
     public static func mayAutoStart(now: Date, nextTarget: Date?, goalMinutes: Int, calendar: Calendar, windowStart: Date? = nil,
                                     latencyMinutes: Int? = nil) -> Bool {
         if let nextTarget, nextTarget > now, nextTarget <= now.addingTimeInterval(autoStartLookahead) {
-            // Im Weckfenster nicht mehr: Wer dann öffnet, ist meist schon wach (entschieden mit r1AD).
+            // Im Weckfenster nicht mehr: Wer dann öffnet, ist meist schon wach.
             if let windowStart, now >= windowStart { return false }
             return now >= Bedtime.bedtime(nextAlarmTarget: nextTarget, goalMinutes: goalMinutes, latencyMinutes: latencyMinutes)
         }

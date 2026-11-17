@@ -1,7 +1,7 @@
 import Foundation
 import PhaseWakeCore
 
-/// «Nacht aufzeichnen» nachreichen (Vollaudit AP2-10): Antwortet die Uhr nicht auf den Start (App dort zu), zeigt das
+/// «Nacht aufzeichnen» nachreichen: Antwortet die Uhr nicht auf den Start (App dort zu), zeigt das
 /// iPhone den Hinweis, die App auf der Uhr zu öffnen. Wird die Uhr danach innerhalb von ``window`` nach dem Tippen
 /// erreichbar, schickt das iPhone den Start nochmals, mit der Zeit des Tippens (``SyncKeys/retryTapAt``). Die Uhr nimmt
 /// einen Start sonst nur frisch an (höchstens ``SyncKeys/maxRingAgeMs`` alt), einen nachgereichten bis ``window`` nach

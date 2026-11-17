@@ -373,7 +373,7 @@
     <string name="chart_window">ຊ່ວງເວລາປຸກ</string>
     <string name="chart_no_data">ບໍ່ມີຂໍ້ມູນ</string>
     <string name="chart_feeling_hint">ແຕະຈຸດເພື່ອເບິ່ງບັນທຶກຂອງຄືນນັ້ນ</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">ທົດສອບໂມງປຸກ</string>
     <string name="test_button">ທົດສອບໃນ 2 ນາທີ</string>
     <string name="test_hint">ດັງໃນ 2 ນາທີ ດ້ວຍການຕັ້ງຄ່າຂອງໂມງປຸກຖັດໄປ ໂດຍບໍ່ມີການເລື່ອນປຸກ ບໍ່ນັບເປັນຄືນ</string>
@@ -587,7 +587,7 @@
     <string name="learn_switch_hint">ໂມງຂອງເຈົ້າວັດການເຄື່ອນໄຫວ ແລະ ຊີບພະຈອນໃນຕອນກາງຄືນ (ແບັດເຕີຣີແຕ່ %1$d %% ຂຶ້ນໄປ). ປິດ: ບໍ່ບັນທຶກອັດຕະໂນມັດ, ຄ່າທີ່ຮຽນຮູ້ແລ້ວຍັງຢູ່.</string>
     <string name="learn_switch_title">ເປີດໃຊ້</string>
     <string name="watch_open_app_hint">ເປີດ Phase Wake ໃນໂມງຂອງເຈົ້າ ເພື່ອໃຫ້ມັນໄດ້ຮັບຄຳສັ່ງ.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">ທຸກຄືນນັບແຕ່ໄລຍະຮຽນຮູ້ເລີ່ມຕົ້ນ – ນັບແລ້ວບໍ່ ແລະ ຖ້າບໍ່ ເປັນຫຍັງ ແລະ ຫຍັງຊ່ວຍໄດ້. Phase Wake ຕ້ອງການ %1$d ຄືນທີ່ນັບແລ້ວ.</string>
     <string name="learn_nights_empty">ຍັງບໍ່ມີຄືນໃດ. ຄືນທຳອິດຈະສະແດງຢູ່ນີ້ໃນຕອນເຊົ້າມື້ຕໍ່ມາ.</string>
     <string name="learn_night_facts">ວັດແລ້ວ %1$s · %2$d ຄ່າ · ຊີບພະຈອນໃນ %3$d %%</string>

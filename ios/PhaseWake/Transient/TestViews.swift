@@ -4,7 +4,7 @@ import SwiftUI
 /// Knopf «In 2 Minuten testen» mit Erklärung (Nacht-Check-Karte, Einstellungen, Einrichtung).
 struct TestAlarmButton: View {
     @Environment(PhoneModel.self) private var model
-    /// Ein Powernap wartet: Der Probewecker ersetzt ihn, darum zuerst fragen (Prüfrunde 2, B-12, wie Android).
+    /// Ein Powernap wartet: Der Probewecker ersetzt ihn, darum zuerst fragen (wie Android).
     @State private var confirmReplace = false
 
     var body: some View {

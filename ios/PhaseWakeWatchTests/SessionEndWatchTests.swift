@@ -4,8 +4,7 @@ import XCTest
 @testable import PhaseWakeWatch
 
 /// Ende der Sitzung auf der Apple Watch: Ende durch das System beim Klingeln, Beenden geplanter Sitzungen und Vibration,
-/// Abbruch beim Messen, alter Klingel-Zustand nach einem Neustart, «stop» vom iPhone ohne Klingeln (Herkunft: Vollaudit
-/// 11.11.2026 AP-1, AP-3, AP-4; Vollaudit 071597f AP2-5, AP2-9).
+/// Abbruch beim Messen, alter Klingel-Zustand nach einem Neustart, «stop» vom iPhone ohne Klingeln.
 final class SessionEndWatchTests: XCTestCase {
     private let now = Date(timeIntervalSince1970: 1_793_000_000)
 

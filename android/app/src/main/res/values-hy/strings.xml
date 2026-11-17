@@ -587,7 +587,7 @@
     <string name="learn_switch_hint">Ժամացույցդ գիշերը չափում է շարժումն ու զարկերակը (%1$d %% լիցքից սկսած)։ Անջատված է՝ ավտոմատ գրանցում չկա, սովորած արժեքները մնում են։</string>
     <string name="learn_switch_title">Ակտիվ</string>
     <string name="watch_open_app_hint">Բացիր Phase Wake-ը ժամացույցում, որպեսզի այն ստանա հրամանը։</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Ամեն գիշեր ուսուցման փուլի սկզբից – հաշվվե՞լ է, և եթե ոչ, ինչու և ինչն է օգնում։ Phase Wake-ին պետք է %1$d հաշվված գիշեր։</string>
     <string name="learn_nights_empty">Դեռ գիշեր չկա։ Առաջինը կհայտնվի այստեղ հաջորդ առավոտ։</string>
     <string name="learn_night_facts">Չափվել է %1$s · %2$d արժեք · զարկերակ %3$d %%-ում</string>

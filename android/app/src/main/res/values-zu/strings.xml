@@ -386,7 +386,7 @@
     <string name="chart_window">Isikhala sokuvuka</string>
     <string name="chart_no_data">ayikho idatha</string>
     <string name="chart_feeling_hint">Thepha ichashaza ukuze ubone amanothi alobo busuku.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">I-alamu yokuhlola</string>
     <string name="test_button">Hlola emizuzwini emi-2</string>
     <string name="test_hint">Ikhala emizuzwini emi-2 ngezilungiselelo ze-alamu yakho elandelayo, ngaphandle kokusnuza. Ayibalwa njengobusuku.</string>
@@ -602,7 +602,7 @@
     <string name="learn_switch_hint">Iwashi lakho lilinganisa ukunyakaza nokushaya kwenhliziyo ebusuku (kusukela ku-%1$d %% webhethri). Kuvaliwe: akukho ukuqopha okuzenzakalelayo, amanani afundiwe ayahlala.</string>
     <string name="learn_switch_title">Kuvuliwe</string>
     <string name="watch_open_app_hint">Vula i-Phase Wake ewashini lakho ukuze ithole umyalo.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Ubusuku ngabunye kusukela isigaba sokufunda saqala – ukuthi babalwa yini futhi, uma kungenjalo, kungani nokuthi yini esizayo. I-Phase Wake idinga ubusuku obubaliwe obungu-%1$d.</string>
     <string name="learn_nights_empty">Abukho ubusuku okwamanje. Obokuqala buzovela lapha ekuseni okulandelayo.</string>
     <string name="learn_night_facts">Kukalwe %1$s · amanani angu-%2$d · ukushaya kwenhliziyo ku-%3$d %%</string>

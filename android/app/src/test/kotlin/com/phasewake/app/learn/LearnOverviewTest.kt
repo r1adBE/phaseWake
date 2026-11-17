@@ -43,7 +43,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Lern-Übersicht am Handy (r1AD 13.11.2026): Meldung der Uhr über die Warteschlange gespeichert, Nächte mit Wecker
+ * Lern-Übersicht am Handy: Meldung der Uhr über die Warteschlange gespeichert, Nächte mit Wecker
  * gemerkt und bei «Verlauf löschen» geleert, Texte je Grund und die Liste auf dem Bildschirm.
  */
 @RunWith(RobolectricTestRunner::class)

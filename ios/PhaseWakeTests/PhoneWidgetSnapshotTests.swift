@@ -1,7 +1,7 @@
 import XCTest
 @testable import PhaseWake
 
-/// Stand des iPhone-Widgets ([PhoneWidgetSnapshot], Audit F-03): nächstes Fenster nach einer Zielzeit, am Weckmorgen bis
+/// Stand des iPhone-Widgets ([PhoneWidgetSnapshot]): nächstes Fenster nach einer Zielzeit, am Weckmorgen bis
 /// 12 Uhr die letzte Nacht, danach wieder der nächste Wecker; ein Stand älterer Versionen bleibt lesbar.
 final class PhoneWidgetSnapshotTests: XCTestCase {
     private let zurich: Calendar = {

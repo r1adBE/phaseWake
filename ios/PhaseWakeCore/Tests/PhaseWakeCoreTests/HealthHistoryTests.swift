@@ -223,7 +223,7 @@ final class HealthHistoryTests: XCTestCase {
     }
 
     func testForeignSessionOnTheDateOfAnOwnNight() {
-        // Audit BE-4: Phase-Wake-Nacht 06:30–07:00 (2.10., Nachtdatum 1.10.).
+        // Phase-Wake-Nacht 06:30–07:00 (2.10., Nachtdatum 1.10.).
         let own = night("2026-10-02T04:30:00Z", "2026-10-02T05:00:00Z")
         // Fremde Sitzung am selben Nachtdatum ohne Überschneidung (Nachmittag 1.10.): fällt weg.
         let sameDate = HealthSession(start: t("2026-10-01T14:00:00Z"), end: t("2026-10-01T18:00:00Z"))
@@ -239,7 +239,7 @@ final class HealthHistoryTests: XCTestCase {
     }
 
     func testDocumentedNumbersAsLiterals() {
-        // Audit BE-3: Zahlen der Regeln für Nächte, Trends und Bettzeit als Wert.
+        // Zahlen der Regeln für Nächte, Trends und Bettzeit als Wert.
         XCTAssertEqual(HealthHistory.minNightMinutes, 180)
         XCTAssertEqual(HealthHistory.napEarliestHour, 9)
         XCTAssertEqual(HealthHistory.napLatestHour, 19)
@@ -255,7 +255,7 @@ final class HealthHistoryTests: XCTestCase {
         XCTAssertEqual(Bedtime.dialMinutes, 720)
     }
 
-    /// Gleich wie `napRuleUsesTheZoneOfTheRecording` (Kotlin, Audit F-3).
+    /// Gleich wie `napRuleUsesTheZoneOfTheRecording` (Kotlin).
     func testNapRuleUsesTheZoneOfTheRecording() {
         // Nickerchen in New York 13:00–15:30 (EDT), angeschaut in Zürich (19:00–21:30): bleibt ein Nickerchen.
         let newYorkZone = TimeZone(identifier: "America/New_York")!

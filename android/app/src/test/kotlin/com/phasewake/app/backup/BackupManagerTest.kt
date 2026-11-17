@@ -32,7 +32,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Sichern und Wiederherstellen am Handy ([BackupManager], Audit F-02): Sicherung schreiben, lesen, mit Passwort öffnen
+ * Sichern und Wiederherstellen am Handy ([BackupManager]): Sicherung schreiben, lesen, mit Passwort öffnen
  * und alles ersetzen (Wecker, Nächte, Schlafziel); falsches Passwort oder fremde Datei ändern nichts, eine unlesbare
  * Sicherung ebenso; ein nach dem Schreiben unterbrochenes Wiederherstellen wird beim Start abgeschlossen ([RestoreJournal]).
  * Der Abgleich mit der Uhr danach ist ersetzt ([synced]): Unter Robolectric antworten die Wear-Dienste nie.
@@ -105,7 +105,7 @@ class BackupManagerTest {
 
     @Test
     fun neverChosenHolidayCountryIsBackedUpAsTheDeviceCountry() = runBlocking {
-        // Fix S-2: Feiertage nie angefasst = Land des Geräts (`HolidayRepository.choice`, von `BackupManager.create`
+        // Feiertage nie angefasst = Land des Geräts (`HolidayRepository.choice`, von `BackupManager.create`
         // übergeben); gesichert wird dieses Land statt «keine Feiertage». Die Länderdatei liegt unter Robolectric nicht
         // vor, darum die aufgelöste Wahl direkt.
         assertNull(app.settings.holidayChoice.first(), "nie gewählt")

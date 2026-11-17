@@ -12,8 +12,8 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * Nacht-Check (Audit F-06): Hat die Uhr die Messung vor dem Schlafen wegen zu schwachen Akkus nicht gestartet, steht
- * ein Hinweis da; die Karte bleibt «Bereit», weil der Wecker trotzdem klingelt (r1AD 10.11.2026; das iPhone bleibt
+ * Nacht-Check: Hat die Uhr die Messung vor dem Schlafen wegen zu schwachen Akkus nicht gestartet, steht
+ * ein Hinweis da; die Karte bleibt «Bereit», weil der Wecker trotzdem klingelt (das iPhone bleibt
  * rot). Ohne Meldung und mit einem Grund, den es nur auf der Apple Watch gibt, nicht.
  */
 @RunWith(RobolectricTestRunner::class)

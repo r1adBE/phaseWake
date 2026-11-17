@@ -155,7 +155,7 @@ fun AnimatedNight(modifier: Modifier = Modifier, mood: SkyMood = SkyMood.Plain, 
         val drift by rememberInfiniteTransition(label = "night").animateFloat(
             0f, 1f, infiniteRepeatable(tween(9000, easing = FastOutSlowInEasing), RepeatMode.Reverse), label = "drift",
         )
-        // Der Himmel in einer eigenen Ebene hinter dem Inhalt (Audit PERF-08): Der Drift zeichnet je Bild nur diese neu,
+        // Der Himmel in einer eigenen Ebene hinter dem Inhalt: Der Drift zeichnet je Bild nur diese neu,
         // nicht den Inhalt darüber.
         Box(modifier) {
             Canvas(Modifier.matchParentSize().graphicsLayer {}) { drawNight(drift, shown) }
@@ -171,7 +171,7 @@ private const val MOOD_MS = 1500
 
 /**
  * Das Logo als Zeichnung: Mondsichel, Welle der Schlafzyklen, Weckpunkt. Ohne Hintergrund. [moon]: Farbe von Mond und
- * Weckpunkt; auf hellem Grund dunkel, sonst verschwände der Mond (Audit N-8). [wave]: Farbe der Welle (auf dem
+ * Weckpunkt; auf hellem Grund dunkel, sonst verschwände der Mond. [wave]: Farbe der Welle (auf dem
  * Tageshimmel kräftiger).
  */
 @Composable

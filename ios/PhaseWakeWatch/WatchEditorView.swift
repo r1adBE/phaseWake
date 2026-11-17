@@ -45,7 +45,7 @@ struct WatchEditorView: View {
     @State private var skipRequest: Bool?
     @State private var loaded = false
     @State private var confirmDelete = false
-    /// Anderswo gelöscht bzw. kein Platz mehr (B-3, B-11, `EditorSave`): Hinweis.
+    /// Anderswo gelöscht bzw. kein Platz mehr (`EditorSave`): Hinweis.
     @State private var gone = false
     @State private var full = false
     /// Selbst gelöscht: Das Verschwinden aus der Liste ist dann kein Löschen anderswo.
@@ -58,7 +58,7 @@ struct WatchEditorView: View {
                 // des normalen Fensters. Die Krone dreht das gewählte Rad.
                 // Einschlaf-Modus (am iPhone eingestellt): Die Uhrzeit ist die späteste Weckzeit (wie Wear OS).
                 Section(L(start.sleepDurationMinutes != nil ? "editor_latest" : "editor_target")) {
-                    // Räder nach 12/24 Std., je mit eigenem Namen für VoiceOver (Vollaudit N-10).
+                    // Räder nach 12/24 Std., je mit eigenem Namen für VoiceOver.
                     WatchTimeWheels(hour: $hour, minute: $minute)
                     .pickerStyle(.wheel)
                     .labelsHidden()
@@ -134,7 +134,7 @@ struct WatchEditorView: View {
                 Button(L("action_cancel"), role: .cancel) {}
             }
             .onAppear(perform: load)
-            // Am iPhone gelöscht, während der Editor offen ist: Hinweis und zu, statt ihn neu anzulegen (B-3).
+            // Am iPhone gelöscht, während der Editor offen ist: Hinweis und zu, statt ihn neu anzulegen.
             .onChange(of: model.alarms.map(\.id)) { _, ids in
                 if check(ids) == .gone, !deleting { gone = true }
             }
@@ -179,7 +179,7 @@ struct WatchEditorView: View {
         return AlarmSchedule.skippedDate(draft.with(skipUntil: saved), now: now, calendar: .gregorianLocal)
     }
 
-    /// Entscheid fürs Speichern aus den gespeicherten Weckern `ids` (B-3, B-11).
+    /// Entscheid fürs Speichern aus den gespeicherten Weckern `ids`.
     private func check(_ ids: [String]) -> EditorSave {
         EditorSave.check(existed: !isNew, storedIds: ids, draftId: start.id, maxAlarms: WatchModel.maxAlarms)
     }

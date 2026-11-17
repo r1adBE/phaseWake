@@ -65,8 +65,8 @@ public enum Bedtime {
         }
     }
 
-    /// Die eine Bettzeit überall (Karte, Erinnerung, Ring der Uhr, Diagramm, Start der Geräusch-Aufnahme; Entscheid
-    /// r1AD 14.11.2026, Audit O-03): Zielzeit des nächsten eingeschalteten Weckers minus Schlafziel minus gelernte
+    /// Die eine Bettzeit überall (Karte, Erinnerung, Ring der Uhr, Diagramm, Start der Geräusch-Aufnahme):
+    /// Zielzeit des nächsten eingeschalteten Weckers minus Schlafziel minus gelernte
     /// Einschlafdauer `latencyMinutes` (`nil` = nicht gelernt, zählt 0 – wie bisher), als feste Dauer (bei einer
     /// Zeitumstellung in der Nacht bleibt die Schlafdauer gleich, die Uhrzeit verschiebt sich). Negative Einschlafdauern
     /// zählen 0. Identisch zu Kotlin.

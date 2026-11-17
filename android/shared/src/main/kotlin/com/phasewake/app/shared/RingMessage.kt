@@ -5,7 +5,7 @@ import com.phasewake.app.core.TimeBounds
 /**
  * Inhalt der Nachrichten [DataLayer.PATH_RING], [DataLayer.PATH_STOP], [DataLayer.PATH_TASK_SHOWN] und [DataLayer.PATH_TASK_GONE]:
  * «kennung|zielzeitMs|sendezeitMs|schlummerÜbrig|schlummerBisMs». Jede Meldung trägt die Sendezeit; eine ohne
- * ([isCurrent]) stammt von einer veralteten App und wird verworfen (kein Rückfall für ältere Versionen, 10.11.2026). Die
+ * ([isCurrent]) stammt von einer veralteten App und wird verworfen (kein Rückfall für ältere Versionen). Die
  * übrigen Felder fehlen, wo sie nicht passen (`null`), z. B. die Zielzeit nach dem Schlummern am Handy.
  *
  * @property target Zielzeit der laufenden Nacht (für das Aussetzen des Zweitweckers, nicht «jetzt»).
@@ -58,7 +58,7 @@ data class RingMessage(
         const val SNOOZE_SAFETY_MS = 90_000L
 
         /**
-         * Liest [encode]. Zeitpunkte ausserhalb von [TimeBounds] (Audit AN-5, z. B. `Long.MAX_VALUE`) gelten als fehlend:
+         * Liest [encode]. Zeitpunkte ausserhalb von [TimeBounds] (z. B. `Long.MAX_VALUE`) gelten als fehlend:
          * Ohne Sendezeit wird die Meldung verworfen ([isCurrent]), und keine Rechnung mit ihnen läuft über.
          */
         fun decode(data: ByteArray?): RingMessage {

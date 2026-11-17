@@ -16,11 +16,11 @@ public enum SleepOnset {
     /// 30 Epochen = 15 Minuten Ruhe.
     public static let stillEpochs = 30
 
-    /// Höchstens so viele einzelne Zucker in einer ruhigen Strecke (Audit c3b8b01 E-4): eine Epoche mit Bewegung an oder
+    /// Höchstens so viele einzelne Zucker in einer ruhigen Strecke: eine Epoche mit Bewegung an oder
     /// über der Schwelle, deren beide Nachbarn ruhig sind (wie `SleepOnset.MAX_TWITCHES`, Kotlin).
     public static let maxTwitches = 2
 
-    /// Getragen heisst (E-5, Prüfrunde 2 F-1): ein Puls höchstens so viele Epochen (15 Min) vor dem Beginn der Strecke oder
+    /// Getragen heisst: ein Puls höchstens so viele Epochen (15 Min) vor dem Beginn der Strecke oder
     /// in ihm, und mindestens einer in der Strecke nach ihrer ersten Epoche (wie `SleepOnset.WORN_EPOCHS`, Kotlin). Die
     /// Apple Watch misst den Puls ruhend von selbst, Apple nennt keinen festen Abstand; üblich sind 5 bis 15 Min (neuere
     /// Modelle öfter). 15 Min deckt den grössten üblichen Abstand; eine abgelegte Uhr misst ab dem Ablegen keinen mehr.
@@ -33,7 +33,7 @@ public enum SleepOnset {
     ///   - threshold: Leicht-Schwelle in m/s²; ruhig heisst Bewegung vorhanden und darunter.
     ///   - heartRates: Puls je Epoche oder `nil` (keiner bekannt): Dann beginnt eine Strecke nur, wenn die Uhr getragen
     ///     wurde, also höchstens `wornEpochs` Epochen davor oder in ihrer ersten Epoche ein Puls gemessen ist und mindestens
-    ///     einer in der Strecke danach (Audit c3b8b01 E-5, Prüfrunde 2 F-1).
+    ///     einer in der Strecke danach.
     ///   - heartLead: So viele Epochen vor `motions` beginnt `heartRates` (Puls vor dem Beginn der Messung zählt für die
     ///     erste Strecke); 0 = gleich gezählt.
     /// - Returns: Index der ersten Epoche der ersten ruhigen Strecke, oder `nil`, solange es keine gibt.

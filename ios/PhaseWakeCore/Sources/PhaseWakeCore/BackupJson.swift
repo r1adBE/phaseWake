@@ -27,7 +27,7 @@ public struct BackupSettings: Equatable, Sendable {
     /// diese Messung nicht, behält den Wert aber für eine spätere Sicherung. Fehlt der Schlüssel (ältere Sicherung),
     /// gilt die Vorgabe `true`.
     public var autoOnset: Bool
-    /// «Abends dunkel ab» an (``EveningDark``, Entscheid r1AD 17.11.2026). Fehlt der Schlüssel (ältere Sicherung), gilt
+    /// «Abends dunkel ab» an (``EveningDark``). Fehlt der Schlüssel (ältere Sicherung), gilt
     /// die Vorgabe `true`.
     public var eveningDark: Bool
     /// Beginn von «Abends dunkel ab» in Minuten des Tages; fehlt oder unplausibel: 18:00 (``EveningDark/checkedFrom(_:)``).

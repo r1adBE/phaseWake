@@ -30,7 +30,7 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
 /**
- * Aufzeichnung der Lernphase folgt einem verschobenen Wecker ([RecordControl.followPlan], Entscheid r1AD 13.11.2026).
+ * Aufzeichnung der Lernphase folgt einem verschobenen Wecker ([RecordControl.followPlan]).
  * Echte Nacht vom 12.11.2026: Start 00:27 mit Weckzeit 08:57, um 01:17 auf 09:57 verschoben – die Aufzeichnung endete
  * trotzdem um 08:57. Jetzt endet sie zur neuen Weckzeit derselben Nacht; ohne Wecker (aus, übersprungen) zur alten.
  */

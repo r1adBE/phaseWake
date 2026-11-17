@@ -3,7 +3,7 @@ import XCTest
 @testable import PhaseWakeWatch
 
 /// Rückfälle der nächsten Nächte auf der Apple Watch: zwei Wochen nach der nächsten Nacht, Ketten und Budget der
-/// Mitteilungen, Kennungen, nur in der Zukunft (Herkunft: Vollaudit 11.11.2026 AP-2; Vollaudit 071597f AP2-2).
+/// Mitteilungen, Kennungen, nur in der Zukunft.
 final class UpcomingFallbacksWatchTests: XCTestCase {
     private let utc = Calendar.gregorian(in: TimeZone(identifier: "UTC")!)
     private let now = Date(timeIntervalSince1970: 1_793_000_000)

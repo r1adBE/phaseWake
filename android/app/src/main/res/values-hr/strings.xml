@@ -398,7 +398,7 @@
     <string name="chart_window">Interval buđenja</string>
     <string name="chart_no_data">nema podataka</string>
     <string name="chart_feeling_hint">Dodirni točku za bilješke te noći.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Probni alarm</string>
     <string name="test_button">Testiraj za 2 minute</string>
     <string name="test_hint">Zvoni za 2 minute s postavkama tvog sljedećeg alarma, bez odgode. Ne računa se kao noć.</string>
@@ -616,7 +616,7 @@
     <string name="learn_switch_hint">Tvoj sat noću mjeri pokrete i puls (od %1$d %% baterije). Isključeno: nema automatskog snimanja, naučene vrijednosti ostaju.</string>
     <string name="learn_switch_title">Aktivno</string>
     <string name="watch_open_app_hint">Otvori Phase Wake na satu kako bi primio naredbu.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Svaka noć od početka faze učenja – je li uračunata i, ako nije, zašto i što pomaže. Phase Wake treba %1$d uračunatih noći.</string>
     <string name="learn_nights_empty">Još nema noći. Prva se ovdje pojavljuje sljedećeg jutra.</string>
     <string name="learn_night_facts">%1$s izmjereno · %2$d vrijednosti · puls u %3$d %%</string>

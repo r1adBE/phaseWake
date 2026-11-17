@@ -9,7 +9,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * Dokumentierte Zahlen des Handys als Literale (Audit BE-3): Die übrigen Tests rechnen mit der Konstante selbst
+ * Dokumentierte Zahlen des Handys als Literale: Die übrigen Tests rechnen mit der Konstante selbst
  * (`X.CONST ± 1`); hier fällt eine Änderung des Werts auf.
  */
 class DocumentedValuesTest {

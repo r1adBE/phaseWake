@@ -61,8 +61,8 @@ object Bedtime {
     data class Reminder(val at: Instant, val bedtime: Instant, val target: Instant)
 
     /**
-     * Die eine Bettzeit überall (Karte, Erinnerung, Ring der Uhr, Diagramm, Start der Geräusch-Aufnahme; Entscheid
-     * r1AD 14.11.2026, Audit O-03): [nextAlarmTarget] minus [goalMinutes] minus gelernte Einschlafdauer
+     * Die eine Bettzeit überall (Karte, Erinnerung, Ring der Uhr, Diagramm, Start der Geräusch-Aufnahme):
+     * [nextAlarmTarget] minus [goalMinutes] minus gelernte Einschlafdauer
      * [latencyMinutes] ([Learning.Values.latencyMinutes]; `null` = nicht gelernt, zählt 0 – wie bisher), als feste
      * Dauer (bei einer Zeitumstellung in der Nacht bleibt die Schlafdauer gleich, die Uhrzeit verschiebt sich).
      * Negative Einschlafdauern zählen 0.

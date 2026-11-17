@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Kleines Bild über dem Titel eines Einrichtungsschritts (Vollaudit Design 2, wie Android): die Welle aus dem Logo mit
+/// Kleines Bild über dem Titel eines Einrichtungsschritts (wie Android): die Welle aus dem Logo mit
 /// dem Mond als Weckpunkt, der mit jedem Schritt weiter nach rechts wandert – so zeigt das Bild zugleich, wie weit die
 /// Einrichtung ist. Nur Schmuck (für VoiceOver verborgen; «Schritt x von y» steht als Text darüber).
 struct OnboardingGlyph: View {

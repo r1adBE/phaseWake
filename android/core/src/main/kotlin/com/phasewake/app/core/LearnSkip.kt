@@ -6,7 +6,7 @@ import java.time.LocalDate
 import java.time.ZoneId
 
 /**
- * Meldung der Uhr ans Handy (Lern-Übersicht, Entscheid r1AD 13.11.2026): Die Lernphase zeichnet die Nacht mit Zielzeit
+ * Meldung der Uhr ans Handy (Lern-Übersicht): Die Lernphase zeichnet die Nacht mit Zielzeit
  * [target] nicht auf, aus [reason]; bei [Reason.BATTERY] mit dem Akkustand [battery] in Prozent. Die Galaxy Watch
  * schickt sie über die Warteschlange (bestätigt, wiederholt), die Apple Watch als Benutzerdaten: So kommt sie auch an,
  * wenn das Handy nachts aus ist. Technische Angabe ohne Messwerte, nur am Handy gespeichert ([LearnLog]). Gleich in
@@ -48,7 +48,7 @@ data class LearnSkip(val target: Instant, val reason: Reason, val battery: Int? 
 }
 
 /**
- * Was das Handy für die Lern-Übersicht festhält (nur lokal, keine Sicherung, Entscheid r1AD 13.11.2026): die Meldungen
+ * Was das Handy für die Lern-Übersicht festhält (nur lokal, keine Sicherung): die Meldungen
  * der Uhr ([LearnSkip]) und die Nächte mit Wecker (Nachtdatum → Zielzeit), je höchstens [LearnNights.MAX_NIGHTS].
  * Reine Regeln und das Textformat; gespeichert wird am Handy. Gleich in Swift (`LearnLog`).
  */

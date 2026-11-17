@@ -385,7 +385,7 @@
     <string name="chart_window">ഉണർത്തൽ സമയപരിധി</string>
     <string name="chart_no_data">ഡാറ്റയില്ല</string>
     <string name="chart_feeling_hint">ആ രാത്രിയിലെ കുറിപ്പുകൾ കാണാൻ ഒരു പുള്ളിയിൽ ടാപ്പ് ചെയ്യുക.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">ടെസ്റ്റ് അലാറം</string>
     <string name="test_button">2 മിനിറ്റിൽ ടെസ്റ്റ് ചെയ്യുക</string>
     <string name="test_hint">അടുത്ത അലാറത്തിന്റെ ക്രമീകരണങ്ങളോടെ 2 മിനിറ്റിൽ റിങ് ചെയ്യും, സ്‌നൂസില്ലാതെ. ഒരു രാത്രിയായി കണക്കാക്കില്ല.</string>
@@ -601,7 +601,7 @@
     <string name="learn_switch_hint">നിങ്ങളുടെ വാച്ച് രാത്രിയിൽ ചലനവും പൾസും അളക്കുന്നു (കുറഞ്ഞത് %1$d %% ബാറ്ററിയിൽ). ഓഫ്: സ്വയമേവ രേഖപ്പെടുത്തലില്ല, പഠിച്ച മൂല്യങ്ങൾ നിലനിൽക്കും.</string>
     <string name="learn_switch_title">സജീവം</string>
     <string name="watch_open_app_hint">കമാൻഡ് ലഭിക്കാൻ വാച്ചിൽ Phase Wake തുറക്കുക.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">പഠന ഘട്ടം തുടങ്ങിയതുമുതൽ ഓരോ രാത്രിയും – അത് എണ്ണപ്പെട്ടോ, ഇല്ലെങ്കിൽ എന്തുകൊണ്ട്, എന്ത് സഹായിക്കും. Phase Wake-ന് എണ്ണപ്പെട്ട %1$d രാത്രികൾ വേണം.</string>
     <string name="learn_nights_empty">ഇതുവരെ രാത്രിയൊന്നുമില്ല. ആദ്യത്തേത് പിറ്റേന്ന് രാവിലെ ഇവിടെ കാണാം.</string>
     <string name="learn_night_facts">%1$s അളന്നു · %2$d മൂല്യങ്ങൾ · %3$d %%-ൽ നാഡി</string>

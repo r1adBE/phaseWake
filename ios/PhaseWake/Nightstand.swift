@@ -43,7 +43,7 @@ struct NightstandView: View {
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
-        // Bis zum Beginn des Sonnenaufgangs jede Minute (nur die Uhrzeit auf Schwarz), danach jede Sekunde (PERF-09).
+        // Bis zum Beginn des Sonnenaufgangs jede Minute (nur die Uhrzeit auf Schwarz), danach jede Sekunde.
         TimelineView(NightstandSchedule(light: lightStart)) { context in
             let progress = progress(at: context.date)
             ZStack {
@@ -114,7 +114,7 @@ struct NightstandView: View {
         return SunriseSky.ink(progress, area: area, aspect: aspect)
     }
 
-    /// Nächste Nacht mit Sonnenaufgang wie der Plan der App (Vollaudit AP2-6): früh geweckte bzw. von der Uhr übernommene
+    /// Nächste Nacht mit Sonnenaufgang wie der Plan der App: früh geweckte bzw. von der Uhr übernommene
     /// Nächte übersprungen (`doneUntil`), «Gute Nacht» der Uhr verlegt die Zielzeit vor (`WatchNight.apply`).
     private func updatePlan() {
         let next = model.alarms.filter { $0.sunrise != .off }
@@ -184,7 +184,7 @@ struct NightstandView: View {
     }
 }
 
-/// Takt des Nachttisch-Modus (Audit 17.11. PERF-09): vor dem Sonnenaufgang zu jeder vollen Minute (die Uhrzeit zeigt
+/// Takt des Nachttisch-Modus: vor dem Sonnenaufgang zu jeder vollen Minute (die Uhrzeit zeigt
 /// Stunde und Minute), ab seinem Beginn `light` jede Sekunde; ohne Sonnenaufgang (`nil`) immer jede Minute.
 struct NightstandSchedule: TimelineSchedule {
     let light: Date?
@@ -242,7 +242,7 @@ struct NightstandButton: View {
             VStack(alignment: .leading, spacing: 4) {
                 Label(L("nightstand_start"), systemImage: "sunrise.fill").font(Fonts.manrope(16, .semibold, relativeTo: .headline))
                 Text(L("nightstand_hint")).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.secondaryText(scheme)).multilineTextAlignment(.leading)
-                // Ehrlich (Audit D3, r1AD 10.11.2026): Der Bildschirm bleibt (dunkel) an, sonst sperrt iOS und der Sonnenaufgang käme nie.
+                // Ehrlich: Der Bildschirm bleibt (dunkel) an, sonst sperrt iOS und der Sonnenaufgang käme nie.
                 Text(L("nightstand_screen_on_hint")).font(Fonts.manrope(14, .semibold, relativeTo: .subheadline)).foregroundStyle(Brand.secondaryText(scheme)).multilineTextAlignment(.leading)
             }
         }

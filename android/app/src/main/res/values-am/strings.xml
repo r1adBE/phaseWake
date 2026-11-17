@@ -386,7 +386,7 @@
     <string name="chart_window">የመቀስቀሻ ክልል</string>
     <string name="chart_no_data">ውሂብ የለም</string>
     <string name="chart_feeling_hint">የዚያን ሌሊት ማስታወሻዎች ለማየት አንድ ነጥብ ይንኩ።</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">የሙከራ ማንቂያ</string>
     <string name="test_button">በ2 ደቂቃ ውስጥ ሞክር</string>
     <string name="test_hint">በሚቀጥለው ማንቂያዎ ቅንብሮች በ2 ደቂቃ ውስጥ ይደውላል፣ ያለ ማሸለብ። እንደ ሌሊት አይቆጠርም።</string>
@@ -602,7 +602,7 @@
     <string name="learn_switch_hint">ሰዓትህ በሌሊት እንቅስቃሴና የልብ ምት ይለካል (ከ%1$d %% ባትሪ ጀምሮ)። ጠፍቷል፦ ራስ-ሰር ቀረጻ የለም፣ የተማሩ እሴቶች ይቆያሉ።</string>
     <string name="learn_switch_title">ንቁ</string>
     <string name="watch_open_app_hint">ትዕዛዙን እንዲቀበል Phase Wakeን በሰዓትህ ላይ ክፈት።</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">የመማሪያ ጊዜው ከጀመረ ጀምሮ እያንዳንዱ ሌሊት – ተቆጥሮ እንደሆነ፣ ካልሆነ ደግሞ ለምን እና ምን እንደሚረዳ። Phase Wake %1$d የተቆጠሩ ሌሊቶች ያስፈልጉታል።</string>
     <string name="learn_nights_empty">እስካሁን ምንም ሌሊት የለም። የመጀመሪያው በማግስቱ ጠዋት እዚህ ይታያል።</string>
     <string name="learn_night_facts">%1$s ተለክቷል · %2$d ልኬቶች · ምት በ%3$d %%</string>

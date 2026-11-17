@@ -41,7 +41,7 @@ public struct ScoreInput: Equatable, Sendable {
     public let awakePercent: Int?
     /// Einschlafdauer in Minuten.
     public let latencyMinutes: Int?
-    /// Wachzeit in Minuten: nur zur Anzeige des Faktors «Wach» (Entscheid r1AD 15.11.2026), zählt nicht in den Wert.
+    /// Wachzeit in Minuten: nur zur Anzeige des Faktors «Wach», zählt nicht in den Wert.
     public let awakeMinutes: Int?
 
     /// Erzeugt die Eingabe; fehlende Werte `nil`.

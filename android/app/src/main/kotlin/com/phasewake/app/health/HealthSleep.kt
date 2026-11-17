@@ -21,7 +21,7 @@ import java.time.ZoneId
  * Liest Schlafphasen, die eine Gesundheits-App (z. B. Samsung Health) nach dem Aufwachen in
  * Health Connect ablegt. Nur Lesen, nur auf Wunsch, nichts verlässt das Handy.
  *
- * [sdkStatus], [clientFactory] und [diagLog] sind nur für Tests ersetzbar (Health Connect im Speicher, Audit F-02).
+ * [sdkStatus], [clientFactory] und [diagLog] sind nur für Tests ersetzbar (Health Connect im Speicher).
  */
 class HealthSleep internal constructor(
     private val context: Context,
@@ -43,7 +43,7 @@ class HealthSleep internal constructor(
 
     private val client by lazy(clientFactory)
 
-    /** Zuletzt protokollierte Zeile von [sessions]; eine gleiche wird nicht wiederholt (Audit PERF-05). */
+    /** Zuletzt protokollierte Zeile von [sessions]; eine gleiche wird nicht wiederholt. */
     @Volatile
     private var lastReadLine: String? = null
 
@@ -75,7 +75,7 @@ class HealthSleep internal constructor(
             } while (pageToken != null)
             // Für die Diagnose: wie viele Sitzungen aus wie vielen Apps, davon von Phase Wake – ohne Zeiten, Werte oder
             // Namen der Apps (DATENSCHUTZ.md: der Name der Quell-App wird nicht gespeichert). Nur bei einer Änderung
-            // (Audit PERF-05: sonst füllte jedes Öffnen den Ringpuffer).
+            // (sonst füllte jedes Öffnen den Ringpuffer).
             val origins = records.map { it.metadata.dataOrigin.packageName }
             val line = "health read ${records.size} sessions, ${origins.toSet().size} sources, ${origins.count { it == context.packageName }} own"
             if (line != lastReadLine) {
@@ -88,7 +88,7 @@ class HealthSleep internal constructor(
                     end = session.endTime,
                     stages = stagesOf(session),
                     source = session.metadata.dataOrigin.packageName.ifEmpty { null },
-                    // Zone der Aufzeichnung (Audit F-3): Nickerchen-Regel und Uhrzeiten wie dort, nicht wie hier.
+                    // Zone der Aufzeichnung: Nickerchen-Regel und Uhrzeiten wie dort, nicht wie hier.
                     timeZone = session.startZoneOffset ?: session.endZoneOffset,
                 )
             }.sortedBy { it.start }
@@ -130,7 +130,7 @@ class HealthSleep internal constructor(
     }
 
     /**
-     * Phasen einer Sitzung nach Beginn, Regel wie auf Apple (`HealthSleep.sessions`, Audit F-9): «Schläft» ohne Phase
+     * Phasen einer Sitzung nach Beginn, Regel wie auf Apple (`HealthSleep.sessions`): «Schläft» ohne Phase
      * ([SleepSessionRecord.STAGE_TYPE_SLEEPING], wie Apple «Schlaf ohne Phase») wird [SleepStage.UNKNOWN] und zählt als
      * Schlaf. [SleepSessionRecord.STAGE_TYPE_UNKNOWN] («Phase unbekannt», nicht «schläft»; wie Apple «Im Bett») ist keine
      * Phase und zählt nicht als Schlaf. Apples Wegfall von «ohne Phase» bei Überschneidung braucht es hier nicht: Health

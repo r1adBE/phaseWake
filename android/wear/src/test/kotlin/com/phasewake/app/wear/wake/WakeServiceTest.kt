@@ -39,7 +39,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Ablauf im [WakeService] der Uhr (Review K-10): Start für einen Plan → Messen im Fenster mit Zielzeit-Alarm; Klingeln
+ * Ablauf im [WakeService] der Uhr: Start für einen Plan → Messen im Fenster mit Zielzeit-Alarm; Klingeln
  * → Wiederaufnahme-Alarm; Schlummern → Schlummer-Ende ersetzt ihn; Beenden → beide Alarme weg. Die Zeiten kommen aus
  * der Systemuhr: geprüft wird gegen die Grenzen vor und nach jedem Schritt, damit der Test nie vom Takt abhängt.
  */
@@ -88,7 +88,7 @@ class WakeServiceTest {
         controller = built
         val service = built.create().startCommand(0, 1).get()
         awaitLoaded(service)
-        // Die Tests liefern Epochen ab dem Start der Sensoren, nicht die leeren davor (E-1, eigener Test unten).
+        // Die Tests liefern Epochen ab dem Start der Sensoren, nicht die leeren davor (eigener Test unten).
         if (fromSensorStart) service.night?.unmeasured = 0
         return service
     }
@@ -170,7 +170,7 @@ class WakeServiceTest {
         assertNull(WakeService.activePlan)
         assertFalse(plan.target.toEpochMilli() in triggers(), "Zielzeit-Alarm aufgehoben")
         assertEquals(emptyList(), between(snoozeFrom, snoozeTo), "Schlummer-Ende aufgehoben")
-        // Audit AN-6: Sobald der Abschluss fertig ist (der Dienst darf enden), liegt die Nacht schon fürs Handy bereit.
+        // Sobald der Abschluss fertig ist (der Dienst darf enden), liegt die Nacht schon fürs Handy bereit.
         awaitUntil("Abschluss nicht fertig") { service.finishing == 0 }
         val key = QueueMessages.KEY_NIGHT + plan.windowStart.toEpochMilli() + "-a"
         assertTrue(runBlocking { Outbox.forContext(context).pending() }.any { it.key == key }, "Nacht eingereiht")
@@ -257,7 +257,7 @@ class WakeServiceTest {
         assertEquals(asleep, runBlocking { app.onsets.onsetFor(expected) })
         val shift = app.onsetShifts.single()
         assertEquals(OnsetShift("a", latest.toEpochMilli(), expected.target.toEpochMilli(), shift.at), shift)
-        // Audit AN-6: Die eigenen Alarme stehen schon auf der früheren Zielzeit, bevor die Meldung ans Handy geht.
+        // Die eigenen Alarme stehen schon auf der früheren Zielzeit, bevor die Meldung ans Handy geht.
         assertTrue(expected.target.toEpochMilli() in app.alarmsAtShift.single(), "erst neu geplant, dann gesendet")
         // Sicherung zur früheren Zielzeit, nicht zur eingestellten Weckzeit; die Startseite zeigt denselben Plan.
         assertFalse(latest.toEpochMilli() in triggers(), "eingestellte Weckzeit")
@@ -284,7 +284,7 @@ class WakeServiceTest {
 
     @Test
     fun epochsBeforeTheSensorsStartDoNotReachTheDetector() {
-        // Audit c3b8b01 E-1: Fensterbeginn vor 1 Min: Die ersten 2 Epochen sind vorbei, bevor die Sensoren laufen, und bleiben
+        // Fensterbeginn vor 1 Min: Die ersten 2 Epochen sind vorbei, bevor die Sensoren laufen, und bleiben
         // leer. Sie gehen in den Verlauf, aber nicht an die Erkennung (Aufwärmphase und Basispuls zählen ab dem Start).
         val service = startNight(fromSensorStart = false)
         val n = assertNotNull(service.night)
@@ -345,7 +345,7 @@ class WakeServiceTest {
 
     @Test
     fun measuredWithoutOnsetBlocksEarly() {
-        // Einschlaf-Messung lief, aber ohne Ergebnis: fail-closed bis 10 Min vor der Zielzeit (Entscheid r1AD 10.11.2026).
+        // Einschlaf-Messung lief, aber ohne Ergebnis: fail-closed bis 10 Min vor der Zielzeit.
         runBlocking { context.wearApp.onsets.set("a", plan.target, null, measured = true) }
         val service = startNight()
         val n = assertNotNull(service.night)
@@ -372,7 +372,7 @@ class WakeServiceTest {
 
     @Test
     fun shortNightWakesForANewMomentInTheLastTenMinutes() {
-        // Zielzeit in 5 Min (innerhalb von ShortNight.LATE_MINUTES), vor einer Stunde eingeschlafen (Entscheid 10.11.2026).
+        // Zielzeit in 5 Min (innerhalb von ShortNight.LATE_MINUTES), vor einer Stunde eingeschlafen.
         val late = WakePlan("a", now.minus(Duration.ofMinutes(25)), now.plus(Duration.ofMinutes(5)))
         runBlocking { context.wearApp.onsets.set("a", late.target, now.minus(Duration.ofHours(1))) }
         val service = startNight(late)

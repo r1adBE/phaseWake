@@ -76,7 +76,7 @@ fun EditorScreen(
     onSave: (AlarmSpec) -> Unit,
     onDelete: (AlarmSpec) -> Unit,
     /**
-     * Entwurf im Zustand des Navigationseintrags (Audit O-01): Alle Eingaben, Uhrzeit und die Kennung eines neuen Weckers
+     * Entwurf im Zustand des Navigationseintrags: Alle Eingaben, Uhrzeit und die Kennung eines neuen Weckers
      * überstehen so Drehen, Neuaufbau und Prozessende, unabhängig von der Stelle im Baum (rememberSaveable allein ging
      * nach dem Neuaufbau verloren). `null`: nur rememberSaveable (Vorschauen).
      */
@@ -212,6 +212,6 @@ private fun EditorDialogs(
     }
 }
 
-/** Schlüssel des Entwurfs im Navigationseintrag ([EditorScreen], Audit O-01). */
+/** Schlüssel des Entwurfs im Navigationseintrag ([EditorScreen]). */
 private const val DRAFT_NEW_ID = "editor_new_id"
 private const val DRAFT_PREFIX = "editor_draft_"

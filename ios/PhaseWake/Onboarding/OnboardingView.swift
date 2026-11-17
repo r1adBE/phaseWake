@@ -11,7 +11,7 @@ struct OnboardingView: View {
     private static let learningStep = 4
     /// Schritt «Erster Wecker».
     static let alarmStep = 3
-    /// So lange nach einem Tipp auf die Knöpfe unten zählt kein weiterer (Prüfrunde 2, B-2, wie Android
+    /// So lange nach einem Tipp auf die Knöpfe unten zählt kein weiterer (wie Android
     /// `PAGE_TAP_LOCK_MS`): «Später» der Lernseite liegt dort, wo eben «Weiter» war.
     static let tapLock: TimeInterval = 0.4
 
@@ -60,7 +60,7 @@ struct OnboardingView: View {
     @ViewBuilder private var content: some View {
         switch step {
         case 0:
-            // Mond in der Schriftfarbe: auf dem hellen Grund dunkel, im dunklen Modus hell (Vollaudit N-8), wie Android.
+            // Mond in der Schriftfarbe: auf dem hellen Grund dunkel, im dunklen Modus hell, wie Android.
             LogoMark(moon: scheme == .dark ? Brand.moon : Brand.ink)
                 .frame(width: 64, height: 64)
             title("onb_welcome_title")
@@ -119,7 +119,7 @@ struct OnboardingView: View {
                 }
             }
         }
-        // Zustand wie Android «✓ Verbunden» (B-16), sobald der Zugriff angefragt ist.
+        // Zustand wie Android «✓ Verbunden», sobald der Zugriff angefragt ist.
         HStack {
             Text(L("onb_optional", L("health_connect")))
             Spacer()
@@ -134,7 +134,7 @@ struct OnboardingView: View {
     /// Zielzeit und Fenster; legt einen Wecker für die Werktage an (wie der Editor).
     @ViewBuilder private var firstAlarm: some View {
         Text(L("onb_alarm_text"))
-        // Nach «Wecker anlegen» gesperrt (Vollaudit N-11): Eine spätere Wahl änderte den angelegten Wecker nicht.
+        // Nach «Wecker anlegen» gesperrt: Eine spätere Wahl änderte den angelegten Wecker nicht.
         DatePicker("", selection: $time, displayedComponents: .hourAndMinute)
             .datePickerStyle(.wheel)
             .labelsHidden()
@@ -166,7 +166,7 @@ struct OnboardingView: View {
     }
 
     private var navigation: some View {
-        // Lernphase noch nicht gestartet: nur «Später» und «Lernphase starten», beide gehen weiter (Audit U-2).
+        // Lernphase noch nicht gestartet: nur «Später» und «Lernphase starten», beide gehen weiter.
         let askLearning = step == Self.learningStep && PhoneLearning.shared.state.consent != true
         return VStack(spacing: 8) {
             if askLearning {
@@ -194,7 +194,7 @@ struct OnboardingView: View {
         .background(.bar)
     }
 
-    /// Knöpfe unten: nach jedem Tipp `tapLock` gesperrt (B-2); ein Doppeltipp trifft sonst die nächste Seite.
+    /// Knöpfe unten: nach jedem Tipp `tapLock` gesperrt; ein Doppeltipp trifft sonst die nächste Seite.
     private func tap(_ action: () -> Void) {
         let now = ProcessInfo.processInfo.systemUptime
         guard Self.tapAllowed(now: now, lockedUntil: lockedUntil) else { return }
@@ -206,7 +206,7 @@ struct OnboardingView: View {
     static func tapAllowed(now: TimeInterval, lockedUntil: TimeInterval) -> Bool { now >= lockedUntil }
 
     /// «Weiter»: Auf dem Schritt «Erster Wecker» legt es den gezeigten Wecker an, falls noch keiner angelegt ist (wie
-    /// «Wecker anlegen», Audit UI-5) – wer nur «Weiter» tippt, hätte sonst keinen Wecker.
+    /// «Wecker anlegen») – wer nur «Weiter» tippt, hätte sonst keinen Wecker.
     private func next() {
         if Self.createsOnNext(step: step, created: created != nil, hasAlarms: !model.alarms.isEmpty, canAdd: model.canAddAlarm) {
             createAlarm()
@@ -215,7 +215,7 @@ struct OnboardingView: View {
     }
 
     /// Ob «Weiter» auf `step` den gezeigten Wecker anlegt: nur auf dem Schritt «Erster Wecker», wenn hier noch keiner
-    /// angelegt ist, es überhaupt noch keinen gibt (`hasAlarms`, «Einrichtung wiederholen», Vollaudit N-1) und noch einer
+    /// angelegt ist, es überhaupt noch keinen gibt (`hasAlarms`, «Einrichtung wiederholen») und noch einer
     /// Platz hat.
     static func createsOnNext(step: Int, created: Bool, hasAlarms: Bool, canAdd: Bool) -> Bool {
         step == alarmStep && !created && !hasAlarms && canAdd

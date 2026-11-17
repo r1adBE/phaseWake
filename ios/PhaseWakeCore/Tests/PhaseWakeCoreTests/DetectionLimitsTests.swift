@@ -1,7 +1,7 @@
 import XCTest
 import PhaseWakeCore
 
-/// Audit c3b8b01 BE-3: Dokumentierte Grenzen der Erkennung mit festen Zahlen (Wert − 1 / Wert / Wert + 1), nicht nur über
+/// Dokumentierte Grenzen der Erkennung mit festen Zahlen (Wert − 1 / Wert / Wert + 1), nicht nur über
 /// die Konstante selbst. Gleiche Fälle wie `DetectionLimitsTest` (Kotlin).
 final class DetectionLimitsTests: XCTestCase {
     private let start = Date(timeIntervalSince1970: 1_793_570_400)
@@ -23,7 +23,7 @@ final class DetectionLimitsTests: XCTestCase {
     }
 
     func testLearnedValuesAreValidOnlyInTheirRanges() {
-        // Grundrauschen 0 bis 1 m/s², Ruhepuls 25 bis 150 (K-6).
+        // Grundrauschen 0 bis 1 m/s², Ruhepuls 25 bis 150.
         XCTAssertNil(Learning.validFloor(-0.0001))
         XCTAssertEqual(Learning.validFloor(0.0), 0.0)
         XCTAssertEqual(Learning.validFloor(1.0), 1.0)

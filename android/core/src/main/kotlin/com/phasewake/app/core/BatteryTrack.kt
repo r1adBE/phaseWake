@@ -25,7 +25,7 @@ enum class BatteryMark(val code: String) {
 data class BatteryPoint(val at: Instant, val percent: Int, val plugged: Boolean, val mark: BatteryMark)
 
 /**
- * Akkuverbrauch eines Geräts in einer Nacht (Entscheid r1AD 14.11.2026): Messpunkte vom Messbeginn bis zum Ende der Nacht.
+ * Akkuverbrauch eines Geräts in einer Nacht: Messpunkte vom Messbeginn bis zum Ende der Nacht.
  * Gemessen wird der Akkustand des ganzen Geräts (den Verbrauch nur dieser App liefert kein System). Zeit am Ladegerät zählt
  * nicht: Summiert werden nur die Teilstrecken ohne Laden. Ist etwas unbekannt (Laden ohne beobachteten Beginn oder Ende,
  * Anstieg ohne Laden, Zeit rückwärts), gibt es keinen Wert statt eines falschen. Identisch zu `BatteryTrack` (Swift).

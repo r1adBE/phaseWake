@@ -2,8 +2,7 @@ import PhaseWakeCore
 import XCTest
 @testable import PhaseWake
 
-/// Wiederherstellung, iPhone: Im Arbeitsordner bleiben nur Wecker, Abendroutine und Einstellungen, keine Nächte
-/// (Herkunft: Vollaudit 071597f DA-5).
+/// Wiederherstellung, iPhone: Im Arbeitsordner bleiben nur Wecker, Abendroutine und Einstellungen, keine Nächte.
 final class RestorePayloadPhoneTests: XCTestCase {
     @MainActor
     func testRestorePayloadKeepsOnlyAlarmsAndSettings() {

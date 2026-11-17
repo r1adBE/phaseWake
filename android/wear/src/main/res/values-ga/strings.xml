@@ -79,7 +79,7 @@
     <string name="editor_delete_title">An t-aláram seo a scriosadh?</string>
     <string name="home_max_alarms" tools:ignore="PluralsCandidate">Suas le %1$d aláram – scrios ceann chun ceann nua a chur leis.</string>
     <string name="editor_enabled">Aláram ar siúl</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="alarm_skip">Scipeáil an chéad cheann eile</string>
     <string name="alarm_skipped">Scipeáilte: %1$s</string>
     <string name="nap_title">Néal cumhachta</string>
@@ -115,7 +115,7 @@
     <string name="record_since">Ó %1$s</string>
     <string name="notification_record_title">Ag taifeadadh na hoíche</string>
     <string name="record_battery_low">Ceallra ró-íseal le taifeadadh</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="watch_learn_title">Céim foghlama</string>
     <string name="watch_learn_warn">Luchtaigh d’uaireadóir, nó ní chomhairfear anocht don chéim foghlama (ceallra %1$d %%, ag teastáil %2$d %%).</string>
     <string name="watch_learn_skip_battery">Ní chomhairtear anocht don chéim foghlama: ceallra ag %1$d %%, ag teastáil %2$d %%.</string>

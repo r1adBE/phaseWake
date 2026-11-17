@@ -56,7 +56,7 @@ android {
             // Testversion mit eigener Kennung (com.phasewake.app.test), neben der Store-Version installierbar. Handy
             // und Uhr brauchen dieselbe (Data Layer): darum in beiden Apps gleich (android/testing/README.md).
             applicationIdSuffix = ".test"
-            // Testversion nur für ARM-Handys (Audit F-13): Die nativen Bibliotheken von MediaPipe für x86/x86_64
+            // Testversion nur für ARM-Handys: Die nativen Bibliotheken von MediaPipe für x86/x86_64
             // (Emulatoren) machen sonst gut die Hälfte des APK aus. Der Store-Build (AAB) bleibt unverändert, Play teilt ihn ohnehin.
             ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a") }
         }
@@ -92,7 +92,7 @@ android {
     }
 }
 
-// Kotlin-Warnungen brechen den Build ab, im App- wie im Testcode (Review K-14).
+// Kotlin-Warnungen brechen den Build ab, im App- wie im Testcode.
 kotlin {
     compilerOptions {
         allWarningsAsErrors = true
@@ -146,7 +146,7 @@ dependencies {
     implementation(libs.compose.ui.tooling.preview)
     debugImplementation(libs.compose.ui.tooling)
 
-    // Sicherheit (Review K-01, OSV): Guava 32.0.x und protobuf-javalite 4.26.1 kommen transitiv mit; nur die Version
+    // Sicherheit (OSV): Guava 32.0.x und protobuf-javalite 4.26.1 kommen transitiv mit; nur die Version
     // anheben, nichts zusätzlich einbinden.
     constraints {
         implementation("com.google.guava:guava:${libs.versions.guava.get()}") { because("OSV: Guava 32.0.x mit bekannten Schwachstellen") }
@@ -164,8 +164,8 @@ dependencies {
 // Geräusch-Modell YAMNet (Apache-2.0) beim ersten Bauen laden; liegt nicht im Repo.
 // Ohne Netz baut die Debug-App trotzdem (nur Warnung): Geräusche gelten dann als «Anderes Geräusch».
 // Ein Release bricht ohne Modell ab (checkYamnet), damit keine App ohne Einordnung ausgeliefert wird.
-// Prüfsumme (Review K-02): Eine frisch geladene Datei mit anderem SHA-256 bricht jeden Build ab. Eine schon
-// vorhandene Datei prüft nur der Release-Build (checkYamnet); Debug-Builds nehmen sie ungeprüft (Audit 071597f DA-7).
+// Prüfsumme: Eine frisch geladene Datei mit anderem SHA-256 bricht jeden Build ab. Eine schon
+// vorhandene Datei prüft nur der Release-Build (checkYamnet); Debug-Builds nehmen sie ungeprüft.
 val yamnetModel: File = layout.projectDirectory.file("src/main/assets/yamnet.tflite").asFile
 
 // SHA-256 von yamnet.tflite (float32/1, 4 126 810 Byte), aus den bisherigen CI-Builds (assets/yamnet.tflite im APK).

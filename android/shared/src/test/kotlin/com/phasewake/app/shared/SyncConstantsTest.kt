@@ -7,7 +7,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * Dokumentierte Zahlen des Abgleichs mit Literalen (Audit BE-3): Grabstein 90 Tage (DATENSCHUTZ), Warteschlange 45 s und
+ * Dokumentierte Zahlen des Abgleichs mit Literalen: Grabstein 90 Tage (DATENSCHUTZ), Warteschlange 45 s und
  * 14 Tage, «klingeln» veraltet nach 2 Min, Gleichstand Wecker/Grabstein. Je Grenze Wert und Wert + 1, nicht nur
  * `KONSTANTE ± 1`: Eine geänderte Zahl macht einen Test rot.
  */

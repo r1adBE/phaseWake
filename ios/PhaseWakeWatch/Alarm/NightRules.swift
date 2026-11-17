@@ -2,10 +2,10 @@ import Foundation
 import PhaseWakeCore
 
 /// Entscheide der Uhr rund um eine Nacht ohne Sitzung und Sensoren (testbar): gemerkte geplante Sitzung nach einem
-/// Neustart der App (Vollaudit AP2-1), «stop» vom iPhone, während die Uhr nicht klingelt (AP2-5), und ein alter
-/// Klingel-Zustand beim Start (AP2-9).
+/// Neustart der App, «stop» vom iPhone, während die Uhr nicht klingelt, und ein alter
+/// Klingel-Zustand beim Start.
 enum NightRules {
-    // MARK: Gemerkte Sitzung (AP2-1)
+    // MARK: Gemerkte Sitzung
 
     /// Mit `start(at:)` geplante Smart-Alarm-Sitzung: Wecker, Zielzeit und Start. Gemerkt in `SettingsFile.watchSession`
     /// (``SmartAlarm/scheduledKey``), weil das System die Sitzung über einen Neustart der App hinweg behält, die App
@@ -46,7 +46,7 @@ enum NightRules {
         return now < saved.start.addingTimeInterval(tolerance)
     }
 
-    // MARK: Wecker geändert, Uhr-App nicht offen (Tiefenaudit AP3-3)
+    // MARK: Wecker geändert, Uhr-App nicht offen
 
     /// Ob eine schon geplante Sitzung mit Start `start` die Nacht `plan` übernehmen kann: Sie beginnt frühestens
     /// `tolerance` vor dem Sitzungsstart von `plan` (`sessionStart`) und vor der Zielzeit plus `delay` – dieselbe
@@ -57,7 +57,7 @@ enum NightRules {
         start >= sessionStart.addingTimeInterval(-tolerance) && start < plan.target.addingTimeInterval(delay)
     }
 
-    // MARK: «stop» vom iPhone (AP2-5)
+    // MARK: «stop» vom iPhone
 
     /// Die Nacht, die ein «stop» vom iPhone (Wecker `alarmId`, Zielzeit `target`) beendet, obwohl die Uhr nicht klingelt:
     /// die erste aus `candidates` (geplante, wartende, messende oder ausstehende Nacht) mit gleichem Wecker und gleicher
@@ -72,7 +72,7 @@ enum NightRules {
         }
     }
 
-    // MARK: Klingel-Zustand beim Start (AP2-9)
+    // MARK: Klingel-Zustand beim Start
 
     /// Was mit einem gesicherten Klingel- oder Schlummer-Zustand beim Start der App geschieht.
     enum Restored: Equatable {

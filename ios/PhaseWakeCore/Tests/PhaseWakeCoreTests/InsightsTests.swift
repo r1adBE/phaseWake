@@ -92,7 +92,7 @@ final class InsightsTests: XCTestCase {
     }
 
     func testBedtimeAroundNoonIsNotSplit() {
-        // Audit W-1: Einschlafen abwechselnd 11:50 und 12:10 (Tagschläfer): Abweichung um 10 Min, nicht um 12 Stunden.
+        // Einschlafen abwechselnd 11:50 und 12:10 (Tagschläfer): Abweichung um 10 Min, nicht um 12 Stunden.
         let now = ISO8601DateFormatter().date(from: "2026-10-28T20:00:00Z")!
         let base = ISO8601DateFormatter().date(from: "2026-10-28T11:50:00Z")!
         let sleeps = (0..<5).map { d -> SleepSummary in

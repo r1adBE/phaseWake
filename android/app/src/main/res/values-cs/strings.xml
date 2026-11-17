@@ -407,7 +407,7 @@
     <string name="chart_window">Okno buzení</string>
     <string name="chart_no_data">žádná data</string>
     <string name="chart_feeling_hint">Klepni na bod a uvidíš poznámky z té noci.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Vyzkoušet budík</string>
     <string name="test_button">Vyzkoušet za 2 minuty</string>
     <string name="test_hint">Zazvoní za 2 minuty s nastavením tvého dalšího budíku, bez odložení. Nepočítá se jako noc.</string>
@@ -627,7 +627,7 @@
     <string name="learn_switch_hint">Hodinky v noci měří pohyb a tep (od %1$d %% baterie). Vypnuto: žádný automatický záznam, naučené hodnoty zůstávají.</string>
     <string name="learn_switch_title">Aktivní</string>
     <string name="watch_open_app_hint">Otevři Phase Wake na hodinkách, aby příkaz přijaly.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Každá noc od začátku fáze učení – zda se započítala, a pokud ne, proč a co pomůže. Phase Wake potřebuje %1$d započítaných nocí.</string>
     <string name="learn_nights_empty">Zatím žádná noc. První se tu objeví ráno po ní.</string>
     <string name="learn_night_facts">%1$s změřeno · %2$d hodnot · tep v %3$d %%</string>

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Mindestabdeckung (Zeilen) je Datei aus einem Xcode-Ergebnisbündel (Audit 17.11., CODE-01).
+"""Mindestabdeckung (Zeilen) je Datei aus einem Xcode-Ergebnisbündel.
 
 Aufruf: xccov_check.py NAME BERICHT.json [--exclude TYP …] DATEI=MINDEST_PROZENT [DATEI=MINDEST_PROZENT …]
 BERICHT.json: Ausgabe von `xcrun xccov view --report --json <bündel>.xcresult`. DATEI ist der Pfad ab dem Repo

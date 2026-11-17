@@ -29,7 +29,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 /**
- * Tag-Schalter im Editor (Audit UX-02, Entscheid UI-8): Auch auf einem kleinen Handy (360 dp breit) ist jede Tippfläche
+ * Tag-Schalter im Editor: Auch auf einem kleinen Handy (360 dp breit) ist jede Tippfläche
  * mindestens 48 dp hoch, und die sieben Flächen liegen lückenlos nebeneinander (die Breite reicht für 7 × 48 dp nicht).
  */
 @RunWith(RobolectricTestRunner::class)

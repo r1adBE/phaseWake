@@ -118,8 +118,8 @@ public enum SleepOverviews {
             bars: bars,
             goalMinutes: goalMinutes,
             averageMinutes: minutes.reduce(0, +) / minutes.count,
-            // Ohne Sprung um Mittag (Audit W-1): Aufwachen 11:56 und 12:50 ergibt 12:23, nicht 00:23.
-            // Je Nacht in der Zone ihrer Aufzeichnung (Audit F-3).
+            // Ohne Sprung um Mittag: Aufwachen 11:56 und 12:50 ergibt 12:23, nicht 00:23.
+            // Je Nacht in der Zone ihrer Aufzeichnung.
             bedtimeMinute: Regularity.meanMinute(inRange.map { Regularity.minutesFromNoon($0.start, calendar: $0.localCalendar(calendar)) }),
             wakeMinute: Regularity.meanMinute(inRange.map { Regularity.minutesFromNoon($0.end, calendar: $0.localCalendar(calendar)) }),
             counted: minutes.count,
@@ -135,7 +135,7 @@ public enum SleepOverviews {
         let perNight = sleeps.map { sleep in
             StageCheck.clip(stages, from: sleep.start, to: sleep.end).filter { ChartData.level($0.stage) != nil }
         }
-        // Eine Nacht nur mit «wach» (Quelle ohne Phasendetail) hat keine Phasen wie in `StageStats.of` (Audit W-5).
+        // Eine Nacht nur mit «wach» (Quelle ohne Phasendetail) hat keine Phasen wie in `StageStats.of`.
         if perNight.isEmpty || perNight.contains(where: { spans in !spans.contains(where: { $0.stage != .awake }) }) { return [:] }
         var out: [SleepStage: Int] = [:]
         for stage in StageStats.order {

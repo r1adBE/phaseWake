@@ -9,7 +9,7 @@ import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 
 /**
- * Zuletzt verarbeitete Kennungen der Warteschlange der Gegenseite ([Outbox.Entry.id], Audit A-1): Kommt derselbe Eintrag
+ * Zuletzt verarbeitete Kennungen der Warteschlange der Gegenseite ([Outbox.Entry.id]): Kommt derselbe Eintrag
  * noch einmal (Bestätigung verloren, erneut gesendet), bestätigt [WearSync.receive] ihn nur erneut, ohne ihn ein zweites
  * Mal zu verarbeiten. Gespeichert in [file] (eine Kennung je Zeile, höchstens [MAX] – die neuesten), damit es auch nach
  * einem Prozessende gilt. Eine Instanz je Prozess ([forContext]).

@@ -12,7 +12,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 /**
- * Gemeinsame Fälle mit Swift (`shared/testdata/schedule.vectors`, Audit 17.11.2026 CODE-03): [AlarmSchedule] mit
+ * Gemeinsame Fälle mit Swift (`shared/testdata/schedule.vectors`): [AlarmSchedule] mit
  * Wochentagen, Feiertagen, Überspringen, erledigten Nächten, Nachfrist, begonnener Nacht über einen Zonenwechsel und
  * Nachholen, auch über die Sommer- und Winterzeit in Zürich. Gegenstück: `ScheduleVectorsTests` (Swift).
  */

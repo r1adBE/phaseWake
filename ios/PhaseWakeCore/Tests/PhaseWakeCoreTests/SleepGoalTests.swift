@@ -50,7 +50,7 @@ final class SleepGoalTests: XCTestCase {
     }
 
     func testOneBedtimeIncludesLearnedLatency() throws {
-        // Entscheid r1AD 14.11. (Audit O-03): Bettzeit = Weckzeit − Schlafziel − gelernte Einschlafdauer, überall gleich.
+        // Bettzeit = Weckzeit − Schlafziel − gelernte Einschlafdauer, überall gleich.
         let target = at("2026-10-28T06:00")
         XCTAssertEqual(Bedtime.bedtime(nextAlarmTarget: target, goalMinutes: 450, latencyMinutes: 15), at("2026-10-27T22:15"))
         // Nicht gelernt: wie bisher; negative Werte zählen 0.

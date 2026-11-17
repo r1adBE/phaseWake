@@ -10,7 +10,7 @@ import com.phasewake.app.wear.ui.theme.PhaseWakeTheme
 import com.phasewake.app.wear.wake.RingUi
 
 /**
- * Randfälle aus dem UI-Audit (11.11.2026): grosse Systemschrift auf kleiner und grosser runder Uhr, Hinweis der
+ * Randfälle: grosse Systemschrift auf kleiner und grosser runder Uhr, Hinweis der
  * Weckaufgabe in langen Sprachen, Arabisch und der Sonnenaufgang im Farbwechsel. Beispieldaten.
  */
 

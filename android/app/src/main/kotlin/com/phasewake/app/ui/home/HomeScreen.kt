@@ -79,7 +79,7 @@ fun HomeScreen(
     missHint: MissHint? = null,
     /** Die wichtigste Auffälligkeit der letzten 7 Nächte ([com.phasewake.app.core.Findings.home]); `null`: keine Karte. */
     finding: Finding? = null,
-    /** Auffälligkeit, solange die Bettzeit-Karte steht: ohne Bettzeit-Tipp (Findings.home mit `bedtimeAdvice`, Audit UX-04). */
+    /** Auffälligkeit, solange die Bettzeit-Karte steht: ohne Bettzeit-Tipp (Findings.home mit `bedtimeAdvice`). */
     bedtimeFinding: Finding? = finding,
     onHideFinding: (FindingKind) -> Unit = {},
     /** Schlafnotizen je Nachtdatum und die eigenen Notizen. */
@@ -127,7 +127,7 @@ fun HomeScreen(
 
     // Automatische Einschlaf-Messung der Uhr (nur Galaxy Watch), solange das Fenster noch nicht begonnen hat und die Uhr bereit ist.
     val watchOk = check != null && check.watchChecked && check.failed.none { it in WATCH_PROBLEMS }
-    // Akku der Uhr zu schwach: Sie misst das Einschlafen nicht, also keine Zeile dazu (Audit O-05; der Check sagt es).
+    // Akku der Uhr zu schwach: Sie misst das Einschlafen nicht, also keine Zeile dazu (der Check sagt es).
     val autoOnset = plan?.takeIf { extras.autoOnset && watchOk && !NightCheckState.onsetSkipped(check) && now.isBefore(it.windowStart) }?.let { p ->
         alarms.firstOrNull { it.id == p.alarmId }?.let { a -> Format.time(ShortNight.autoOnsetStart(p.target, extras.sleepGoal, a.sleepDurationMinutes), zone) }
     }
@@ -177,7 +177,7 @@ fun HomeScreen(
         if (check != null && plan != null) {
             item(key = "check") { NightCheckCard(check, cardColor(), onFix, extras.onTest, extras.testAt) }
         }
-        // «Deine Wecker» gleich nach dem Nacht-Check, vor den Abendkarten (Audit UX-01, r1AD 17.11.2026); Reihenfolge wie iPhone.
+        // «Deine Wecker» gleich nach dem Nacht-Check, vor den Abendkarten; Reihenfolge wie iPhone.
         if (alarms.isNotEmpty()) {
             item(key = "header") { AlarmsTitle() }
             items(alarms, key = { it.id }) { alarm ->
@@ -220,7 +220,7 @@ fun HomeScreen(
             item(key = "sounds") { SoundsEntry(soundPlaying, now, onSounds) }
         }
         extras.learning?.let { learning -> item(key = "learning") { LearningCard(learning, extras.record, extras.onRecord) } }
-        // Während der Lernphase steckt «Nacht aufzeichnen» in ihrer Karte, sonst eine eigene Karte (r1AD 13.11.2026). Solange
+        // Während der Lernphase steckt «Nacht aufzeichnen» in ihrer Karte, sonst eine eigene Karte. Solange
         // die Frage «Lernphase starten / Später» offen ist, auch keine – ausser es läuft schon eine Aufzeichnung (Stopp).
         extras.record?.takeIf { record ->
             val learning = extras.learning
@@ -239,7 +239,7 @@ fun HomeScreen(
     if (dark) AnimatedNight(Modifier.fillMaxSize(), mood) { list() } else list()
 }
 
-/** Neues der Startseite (Runde 3); Vorgaben = nichts davon, wie in den Bildschirmfotos. */
+/** Neues der Startseite; Vorgaben = nichts davon, wie in den Bildschirmfotos. */
 class HomeExtras(
     /** Feiertage für Wecker mit «An Feiertagen nicht wecken». */
     val holidays: Set<LocalDate> = emptySet(),

@@ -23,7 +23,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * «Verlauf löschen» (Audit DA-1, DA-5): Der Zeitpunkt gilt höchstens bis jetzt und nur innerhalb von [TimeBounds], beim
+ * «Verlauf löschen»: Der Zeitpunkt gilt höchstens bis jetzt und nur innerhalb von [TimeBounds], beim
  * Verwenden wie beim Wiederherstellen; geteilte Exporte verschwinden mit.
  */
 @RunWith(RobolectricTestRunner::class)

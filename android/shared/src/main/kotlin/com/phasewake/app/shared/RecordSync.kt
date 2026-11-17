@@ -12,7 +12,7 @@ import kotlinx.coroutines.tasks.await
 /**
  * «Nacht aufzeichnen» zwischen Uhr und Handy: Start und Stopp vom Handy (Nachrichten), Stand der Uhr und abgeschlossene
  * Aufzeichnungen über die Warteschlange [Outbox] (bestätigt, bis dahin wiederholt; grosse Aufzeichnungen über einen
- * Kanal), nicht als Datenpaket (Audit C2). Fehler werden geloggt, nicht weitergereicht.
+ * Kanal), nicht als Datenpaket. Fehler werden geloggt, nicht weitergereicht.
  */
 class RecordSync(context: Context) {
     private val app = context.applicationContext
@@ -21,7 +21,7 @@ class RecordSync(context: Context) {
 
     /**
      * Uhr: Stand ans Handy; [since] = Beginn der laufenden Aufzeichnung, `null` = keine. [unlessAcked]: beim Prozessstart
-     * nur, wenn nicht schon bestätigt (Audit PERF-06, [enqueueIfChanged]).
+     * nur, wenn nicht schon bestätigt ([enqueueIfChanged]).
      */
     suspend fun publishStatus(since: Instant?, unlessAcked: Boolean = false) = guarded("Aufzeichnungs-Stand senden") {
         val body = (since?.toEpochMilli() ?: 0L).toString()
@@ -38,7 +38,7 @@ class RecordSync(context: Context) {
     }
 
     /**
-     * Uhr: Die Lernphase zeichnet eine Nacht nicht auf ([skip], Lern-Übersicht r1AD 13.11.2026) – ans Handy über die
+     * Uhr: Die Lernphase zeichnet eine Nacht nicht auf ([skip], Lern-Übersicht) – ans Handy über die
      * Warteschlange (bestätigt, wiederholt; kommt auch an, wenn das Handy nachts aus ist). Eigener Schlüssel je Nacht.
      */
     suspend fun publishLearnSkip(skip: LearnSkip) = guarded("Meldung der Lernphase senden") {
@@ -47,7 +47,7 @@ class RecordSync(context: Context) {
 
     /**
      * Handy: Start ([start] `true`) oder Stopp an die erreichbaren Uhren. [continuous]: Diagnose am Handy freigeschaltet,
-     * der Start misst dann durchgehend statt in Stichproben (Audit F-01; ältere Uhren lesen den Inhalt nicht).
+     * der Start misst dann durchgehend statt in Stichproben (ältere Uhren lesen den Inhalt nicht).
      * @return ob mindestens eine Uhr erreichbar war (sonst Hinweis am Handy).
      */
     suspend fun command(start: Boolean, continuous: Boolean = false): Boolean = try {

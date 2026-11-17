@@ -386,7 +386,7 @@
     <string name="chart_window">අවදි පරාසය</string>
     <string name="chart_no_data">දත්ත නැත</string>
     <string name="chart_feeling_hint">එම රාත්‍රියේ සටහන් බැලීමට තිතක් තට්ටු කරන්න.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">පරීක්ෂණ එලාමය</string>
     <string name="test_button">මිනිත්තු 2 කින් පරීක්ෂා කරන්න</string>
     <string name="test_hint">ඔබේ ඊළඟ එලාමයේ සැකසීම් සමඟ මිනිත්තු 2 කින්, ස්නූස් නොමැතිව නාද වේ. රාත්‍රියක් ලෙස ගණන් නොගැනේ.</string>
@@ -602,7 +602,7 @@
     <string name="learn_switch_hint">ඔබේ ඔරලෝසුව රාත්‍රියේ චලනය සහ නාඩිය මනියි (අවම %1$d %% බැටරියකින්). අක්‍රියයි: ස්වයංක්‍රීය වාර්තා කිරීමක් නැත, ඉගෙනගත් අගයන් පවතී.</string>
     <string name="learn_switch_title">සක්‍රියයි</string>
     <string name="watch_open_app_hint">විධානය ලැබීමට ඔරලෝසුවේ Phase Wake විවෘත කරන්න.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">ඉගෙනීමේ අදියර ආරම්භ වූ දා සිට සෑම රාත්‍රියක්ම – එය ගණන් ගත්තාද, නැතිනම් ඇයි සහ උදව් වන්නේ කුමක්ද. Phase Wake ට ගණන් ගත් රාත්‍රී %1$d ක් අවශ්‍යයි.</string>
     <string name="learn_nights_empty">තවම රාත්‍රියක් නැත. පළමු රාත්‍රිය පසුදා උදෑසන මෙහි පෙන්වයි.</string>
     <string name="learn_night_facts">%1$s මැනුණි · අගයන් %2$d · %3$d %% තුළ නාඩිය</string>

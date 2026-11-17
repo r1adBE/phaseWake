@@ -1,8 +1,8 @@
 import XCTest
 @testable import PhaseWakeCore
 
-/// Auto-Aus des Einmal-Weckers nach dem Klingeln (Fix G-1/S-1), erneut angewendeter Anwendungskontext (Fix S-5) und
-/// Stand der Lernphase ohne Zeitpunkt (Fix S-3). Wie `AlarmAutoOffTest` und `LearningStampTest` (Kotlin).
+/// Auto-Aus des Einmal-Weckers nach dem Klingeln, erneut angewendeter Anwendungskontext und
+/// Stand der Lernphase ohne Zeitpunkt. Wie `AlarmAutoOffTest` und `LearningStampTest` (Kotlin).
 final class AlarmAutoOffTests: XCTestCase {
     private let calendar = Calendar.gregorian(in: TimeZone(identifier: "UTC")!)
 
@@ -118,7 +118,7 @@ final class AlarmAutoOffTests: XCTestCase {
         XCTAssertEqual(off.alarms.map(\.enabled), [false])
     }
 
-    // MARK: Audit BE-3 (wie `SyncConstantsTest`, Kotlin)
+    // MARK: Zahlen der Löschmarken (wie `SyncConstantsTest`, Kotlin)
 
     func testTombstoneIsKeptNinetyDaysInclusive() {
         XCTAssertEqual(AlarmStamps.tombstoneMaxAgeMs, 7_776_000_000)
@@ -136,7 +136,7 @@ final class AlarmAutoOffTests: XCTestCase {
         XCTAssertEqual(AlarmStamps.merge(local: newer, remote: gone, now: 5_001).alarms, [alarm(7)], "1 ms neuer: bleibt")
     }
 
-    // MARK: Fix S-5
+    // MARK: Anwendungskontext nicht zweimal
 
     func testSameContextIsNotAppliedTwiceAfterTheTombstoneExpired() throws {
         let phone = storage(), watch = storage()
@@ -173,7 +173,7 @@ final class AlarmAutoOffTests: XCTestCase {
         for variant in variants { XCTAssertNotEqual(AlarmStamps.fingerprint(variant), AlarmStamps.fingerprint(base)) }
     }
 
-    // MARK: Fix S-3
+    // MARK: Stand der Lernphase ohne Zeitpunkt
 
     func testFreshPhoneStampsItsLearningStateOnce() {
         var state = LearningState()

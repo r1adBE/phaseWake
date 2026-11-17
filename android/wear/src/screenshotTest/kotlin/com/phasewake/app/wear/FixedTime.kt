@@ -7,7 +7,7 @@ import androidx.wear.compose.material3.timeTextCurvedText
 
 /**
  * Feste Uhrzeit oben am Rand für die Bildschirmfotos: Der AppScaffold zeigt sonst die echte Uhrzeit des Rechners, und
- * jedes Bild wich bei der Prüfung ab (Audit 17.11.2026, UX-08).
+ * jedes Bild wich bei der Prüfung ab.
  */
 private object FixedTimeSource : TimeSource {
     @Composable

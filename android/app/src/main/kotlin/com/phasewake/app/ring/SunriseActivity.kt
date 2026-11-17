@@ -88,7 +88,7 @@ class SunriseActivity : ComponentActivity() {
 
 @Composable
 internal fun SunriseScreen(progress: Float, now: Instant, onOff: () -> Unit) {
-    // Jeder Text mit der Schrift, die an seiner Stelle des Himmels lesbar ist (Audit UI-6).
+    // Jeder Text mit der Schrift, die an seiner Stelle des Himmels lesbar ist.
     val (timeInk, timePlace) = rememberSkyInk(progress, SunriseSky.ink(progress))
     val (titleInk, titlePlace) = rememberSkyInk(progress, SunriseSky.ink(progress))
     val (offInk, offPlace) = rememberSkyInk(progress, SunriseSky.ink(progress), padding = 0.dp)

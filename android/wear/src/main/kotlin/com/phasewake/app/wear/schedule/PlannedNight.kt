@@ -13,7 +13,7 @@ import java.time.ZoneId
 import kotlinx.coroutines.flow.first
 
 /**
- * Zuletzt geplante Nacht eines echten Weckers samt der Zeitzone, in der sie berechnet wurde (Review 04.11. b, P1).
+ * Zuletzt geplante Nacht eines echten Weckers samt der Zeitzone, in der sie berechnet wurde.
  * Wechselt die Zone, während ihr Weckfenster schon läuft, bleibt diese Nacht zur geplanten absoluten Zeit
  * ([ScheduleRules.keptNight]). Die Zone bleibt, solange derselbe Plan gilt – auch ein zweites Neuplanen nach dem
  * Wechsel prüft in der alten Zone; erst ein neuer Plan speichert die aktuelle. Ältere Daten ohne Zone: wie bisher.

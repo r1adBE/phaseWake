@@ -10,7 +10,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Audit c3b8b01 BE-3: Dokumentierte Grenzen der Erkennung mit festen Zahlen (Wert − 1 / Wert / Wert + 1), nicht nur über
+ * Dokumentierte Grenzen der Erkennung mit festen Zahlen (Wert − 1 / Wert / Wert + 1), nicht nur über
  * die Konstante selbst: Ändert sich eine Zahl, wird ein Test rot. Gleiche Fälle in Swift (`DetectionLimitsTests`).
  */
 class DetectionLimitsTest {
@@ -36,7 +36,7 @@ class DetectionLimitsTest {
 
     @Test
     fun learnedValuesAreValidOnlyInTheirRanges() {
-        // Grundrauschen 0 bis 1 m/s², Ruhepuls 25 bis 150 (K-6).
+        // Grundrauschen 0 bis 1 m/s², Ruhepuls 25 bis 150.
         assertNull(Learning.validFloor(-0.0001))
         assertEquals(0.0, Learning.validFloor(0.0))
         assertEquals(1.0, Learning.validFloor(1.0))

@@ -385,7 +385,7 @@
     <string name="chart_window">ಎಚ್ಚರಿಸುವ ಅವಧಿ</string>
     <string name="chart_no_data">ಡೇಟಾ ಇಲ್ಲ</string>
     <string name="chart_feeling_hint">ಆ ರಾತ್ರಿಯ ಟಿಪ್ಪಣಿಗಳನ್ನು ನೋಡಲು ಚುಕ್ಕೆಯನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">ಪರೀಕ್ಷಾ ಅಲಾರಾಂ</string>
     <string name="test_button">2 ನಿಮಿಷದಲ್ಲಿ ಪರೀಕ್ಷಿಸಿ</string>
     <string name="test_hint">ನಿಮ್ಮ ಮುಂದಿನ ಅಲಾರಾಂನ ಸೆಟ್ಟಿಂಗ್‌ಗಳೊಂದಿಗೆ 2 ನಿಮಿಷದಲ್ಲಿ ರಿಂಗ್ ಆಗುತ್ತದೆ, ಸ್ನೂಜ್ ಇಲ್ಲದೆ. ರಾತ್ರಿ ಎಂದು ಎಣಿಸುವುದಿಲ್ಲ.</string>
@@ -601,7 +601,7 @@
     <string name="learn_switch_hint">ನಿಮ್ಮ ವಾಚ್ ರಾತ್ರಿ ಚಲನೆ ಮತ್ತು ನಾಡಿಯನ್ನು ಅಳೆಯುತ್ತದೆ (ಕನಿಷ್ಠ %1$d %% ಬ್ಯಾಟರಿಯಲ್ಲಿ). ಆಫ್: ಸ್ವಯಂ ದಾಖಲೆ ಇಲ್ಲ, ಕಲಿತ ಮೌಲ್ಯಗಳು ಉಳಿಯುತ್ತವೆ.</string>
     <string name="learn_switch_title">ಸಕ್ರಿಯ</string>
     <string name="watch_open_app_hint">ಆಜ್ಞೆ ಸಿಗುವಂತೆ ವಾಚ್‌ನಲ್ಲಿ Phase Wake ತೆರೆಯಿರಿ.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">ಕಲಿಕೆಯ ಹಂತ ಆರಂಭವಾದಾಗಿನಿಂದ ಪ್ರತಿ ರಾತ್ರಿ – ಅದು ಎಣಿಕೆಯಾಯಿತೇ, ಇಲ್ಲದಿದ್ದರೆ ಏಕೆ ಮತ್ತು ಏನು ಸಹಾಯ ಮಾಡುತ್ತದೆ. Phase Wake ಗೆ %1$d ಎಣಿಕೆಯಾದ ರಾತ್ರಿಗಳು ಬೇಕು.</string>
     <string name="learn_nights_empty">ಇನ್ನೂ ಯಾವುದೇ ರಾತ್ರಿ ಇಲ್ಲ. ಮೊದಲನೆಯದು ಮರುದಿನ ಬೆಳಿಗ್ಗೆ ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ.</string>
     <string name="learn_night_facts">%1$s ಅಳೆಯಲಾಗಿದೆ · %2$d ಮೌಲ್ಯಗಳು · %3$d %% ರಲ್ಲಿ ನಾಡಿ</string>

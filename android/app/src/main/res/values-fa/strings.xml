@@ -383,7 +383,7 @@
     <string name="chart_window">بازهٔ بیداری</string>
     <string name="chart_no_data">بدون داده</string>
     <string name="chart_feeling_hint">روی یک نقطه بزن تا یادداشت‌های آن شب را ببینی.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">آزمایش زنگ</string>
     <string name="test_button">آزمایش در ۲ دقیقه</string>
     <string name="test_hint">۲ دقیقه دیگر با تنظیمات زنگ بعدی‌ات زنگ می‌زند، بدون چرت. شب حساب نمی‌شود.</string>
@@ -599,7 +599,7 @@
     <string name="learn_switch_hint">ساعتت شب‌ها حرکت و نبض را اندازه می‌گیرد (از %1$d %% باتری به بالا). خاموش: بدون ثبت خودکار، مقادیر یادگرفته‌شده می‌مانند.</string>
     <string name="learn_switch_title">فعال</string>
     <string name="watch_open_app_hint">Phase Wake را روی ساعتت باز کن تا فرمان را دریافت کند.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">هر شب از آغاز مرحلهٔ یادگیری – آیا حساب شد و اگر نه، چرا و چه چیزی کمک می‌کند. Phase Wake به %1$d شبِ حساب‌شده نیاز دارد.</string>
     <string name="learn_nights_empty">هنوز شبی نیست. اولین شب صبح روز بعد اینجا نشان داده می‌شود.</string>
     <string name="learn_night_facts">%1$s اندازه‌گیری شد · %2$d مقدار · نبض در %3$d %%</string>

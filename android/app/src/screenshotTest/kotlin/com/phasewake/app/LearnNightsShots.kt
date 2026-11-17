@@ -16,7 +16,7 @@ import com.phasewake.app.ui.home.LearningCard
 import com.phasewake.app.ui.theme.ThemeMode
 import java.time.LocalDate
 
-/** Bildschirmfotos der Lern-Übersicht (r1AD 13.11.2026) und der Karte der Lernphase mit «Letzte Nacht zählte nicht». */
+/** Bildschirmfotos der Lern-Übersicht und der Karte der Lernphase mit «Letzte Nacht zählte nicht». */
 
 private fun day(d: Int): LocalDate = LocalDate.of(2026, 10, d)
 

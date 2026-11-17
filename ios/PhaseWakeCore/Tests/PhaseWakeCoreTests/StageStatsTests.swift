@@ -29,7 +29,7 @@ final class StageStatsTests: XCTestCase {
     }
 
     func testSourceWithoutStageDetailHasNoStages() {
-        // Audit W-5: Schlaf «unbekannt» 23:00–07:00 mit 30 Min wach (Health Connect STAGE_TYPE_SLEEPING, HealthKit
+        // Schlaf «unbekannt» 23:00–07:00 mit 30 Min wach (Health Connect STAGE_TYPE_SLEEPING, HealthKit
         // asleepUnspecified): keine Phasen statt «Wach 100 %».
         let unknownWithAwake = [span(0, 200, .unknown), span(200, 230, .awake), span(230, 480, .unknown)]
         XCTAssertNil(StageStats.of(unknownWithAwake, from: at(0), to: at(480)))
@@ -55,7 +55,7 @@ final class StageStatsTests: XCTestCase {
     }
 
     func testSleepStagesAreShareOfSleep() {
-        // Entscheid r1AD 15.11.2026: REM, leicht, tief am Schlaf (wie Findings.deepPercent); wach an allen vier Phasen
+        // REM, leicht, tief am Schlaf (wie Findings.deepPercent); wach an allen vier Phasen
         // nach dem Restverfahren (34 statt 33).
         let s = of(span(0, 10, .awake), span(10, 20, .rem), span(20, 30, .light))!
         XCTAssertEqual(percents(s), [34, 50, 50, 0])

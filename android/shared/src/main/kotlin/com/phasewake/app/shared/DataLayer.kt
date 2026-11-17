@@ -3,11 +3,11 @@ package com.phasewake.app.shared
 /**
  * Pfade und Schlüssel der Verbindung Handy ↔ Uhr (Wearable Data Layer). Beide Apps nutzen genau diese.
  *
- * Seit [PROTOCOL] 2 (Audit C2, Entscheid r1AD 10.11.2026) gehen alle Inhalte mit persönlichen Daten als Nachricht über
+ * Seit [PROTOCOL] 2 gehen alle Inhalte mit persönlichen Daten als Nachricht über
  * die Warteschlange [Outbox] (Pfade `PATH_MSG_…`, Bestätigung [PATH_ACK]), nicht mehr als Datenpaket, das Google in der
  * Cloud sichert. Als Datenpaket bleiben nur der Gerätestatus der Uhr ([PATH_WATCH_STATUS]), «Verlauf löschen»
  * ([PATH_CLEAR_HISTORY], nur ein Zeitpunkt) und der Abbruch eines Probeweckers oder Powernaps ([PATH_TRANSIENT_CANCELLED],
- * nur eine Kennung). Den früheren Weg für ältere Uhr-Apps gibt es nicht mehr (Entscheid r1AD 10.11.2026): Die Pfade der
+ * nur eine Kennung). Den früheren Weg für ältere Uhr-Apps gibt es nicht mehr: Die Pfade der
  * früheren Datenpakete (Wecker, Nächte, Aufzeichnungen, Lernphase, …) dienen nur noch der einmaligen Umstellung, die die
  * eigenen alten Pakete löscht ([QueueMessages.legacyItems]).
  */
@@ -38,7 +38,7 @@ object DataLayer {
 
     /**
      * Nachricht Uhr → Handy (Warteschlange): Die Lernphase zeichnet eine Nacht nicht auf, Inhalt `LearnSkip.encode`
-     * (Lern-Übersicht, r1AD 13.11.2026). Ältere Handys übergehen den Pfad.
+     * (Lern-Übersicht). Ältere Handys übergehen den Pfad.
      */
     const val PATH_MSG_LEARN_SKIP = "/phasewake/m/learn-skip"
 
@@ -46,8 +46,8 @@ object DataLayer {
     const val PATH_MSG_LEARNING = "/phasewake/m/learning"
 
     /**
-     * Nachricht Handy → Uhr (Warteschlange): gelernte Einschlafdauer (O-03, Bettzeit auf dem Ring), Inhalt
-     * `LearningSnapshot.encodeLatency` «minuten|updatedAt» (−1 = keine). Eigener Pfad (Audit F-4/SP-6): Uhren früherer
+     * Nachricht Handy → Uhr (Warteschlange): gelernte Einschlafdauer (Bettzeit auf dem Ring), Inhalt
+     * `LearningSnapshot.encodeLatency` «minuten|updatedAt» (−1 = keine). Eigener Pfad: Uhren früherer
      * Versionen lesen [PATH_MSG_LEARNING] nur mit genau 4 Feldern, übergehen diesen Pfad und behalten so ihren Lernstand.
      */
     const val PATH_MSG_LEARN_LATENCY = "/phasewake/m/learn-latency"
@@ -79,7 +79,7 @@ object DataLayer {
 
     /**
      * Nachricht Uhr → Handy: Die Uhr beginnt eine Nacht zu messen (Einschlaf-Messung, Aufzeichnung oder Weckfenster); das
-     * Handy hält ab jetzt seinen eigenen Akkustand fest (`BatteryNight`, r1AD 14.11.2026). Inhalt = [RingMessage] (Kennung,
+     * Handy hält ab jetzt seinen eigenen Akkustand fest (`BatteryNight`). Inhalt = [RingMessage] (Kennung,
      * Zielzeit, Sendezeit); nur frisch angekommen ([RingMessage.isStale]) gilt «jetzt» als Beginn. Ältere Handys übergehen den Pfad.
      */
     const val PATH_NIGHT_BEGIN = "/phasewake/night-begin"
@@ -129,13 +129,13 @@ object DataLayer {
     const val KEY_BATTERY = "battery"
 
     /**
-     * Die Uhr lud beim Akkustand [KEY_BATTERY] (Prüfrunde 2 F-6, wie `SyncKeys.batteryCharging`): Dann misst sie trotz
+     * Die Uhr lud beim Akkustand [KEY_BATTERY] (wie `SyncKeys.batteryCharging`): Dann misst sie trotz
      * wenig Akku, der Nacht-Check warnt nicht. Fehlt bei älteren Versionen (gilt als nicht geladen).
      */
     const val KEY_BATTERY_CHARGING = "batteryCharging"
 
     /**
-     * Stand der Verbindung Handy ↔ Uhr (Review O-04), wie eine Formatversion: steigt, wenn eine ältere Uhr etwas, das das
+     * Stand der Verbindung Handy ↔ Uhr, wie eine Formatversion: steigt, wenn eine ältere Uhr etwas, das das
      * Handy schickt, nicht mehr wie eingestellt umsetzt (z. B. die Weckart «Genau»). Die Uhr meldet ihren Stand im
      * Status-Paket ([KEY_PROTOCOL]); ist er kleiner als der des Handys, warnt der Nacht-Check (`WearSync.watchOutdated`).
      */
@@ -145,7 +145,7 @@ object DataLayer {
     const val KEY_PROTOCOL = "protocol"
 
     /**
-     * Build-Nummer der Uhr-App ohne Abstand (`BuildNumber`, Entscheid r1AD 14.11.2026) im selben Paket wie [KEY_READY];
+     * Build-Nummer der Uhr-App ohne Abstand (`BuildNumber`) im selben Paket wie [KEY_READY];
      * fehlt bei lokalem Build und bei älteren Uhren (dann kein Hinweis «verschiedene Testversionen»).
      */
     const val KEY_BUILD = "build"
@@ -158,7 +158,7 @@ object DataLayer {
     const val KEY_PULSE_BACKGROUND = "pulseBackground"
 
     /**
-     * Messung vor dem Schlafen dieser Nacht nicht gestartet: nur der Grund (`RecorderSkip.Reason.code`, Audit F-06, ohne
+     * Messung vor dem Schlafen dieser Nacht nicht gestartet: nur der Grund (`RecorderSkip.Reason.code`, ohne
      * Uhrzeit – technische Angabe wie der Akku) im selben Paket wie [KEY_READY]; leer ohne Meldung oder wenn die Nacht
      * vorbei ist, fehlt bei älteren Uhren. Der Nacht-Check am Handy zeigt dann einen Hinweis.
      */
@@ -196,7 +196,7 @@ object DataLayer {
     const val PATH_AUTO_ONSET = "/phasewake/auto-onset"
 
     /**
-     * Früheres Datenpaket Uhr → Handy mit der früheren Zielzeit (`OnsetShift`, Review K-07); Schlüssel [KEY_TEXT]
+     * Früheres Datenpaket Uhr → Handy mit der früheren Zielzeit (`OnsetShift`); Schlüssel [KEY_TEXT]
      * (Kennung), [KEY_ORIGINAL_TARGET], [KEY_TARGET] (ms) und [KEY_UPDATED_AT]. Nur noch für die Umstellung der Uhr.
      */
     const val PATH_ONSET_SHIFT = "/phasewake/onset-shift"

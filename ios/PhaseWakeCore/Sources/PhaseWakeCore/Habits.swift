@@ -59,7 +59,7 @@ public enum Regularity {
     public static let medianNights = 14
 
     /// Bettzeiten als (Nachtdatum, Einschlafbeginn, Zone der Aufzeichnung) aus den Nächten der Gesundheits-App
-    /// (``SleepSummary/timeZone``; `nil` = Zone des Geräts, Audit F-3).
+    /// (``SleepSummary/timeZone``; `nil` = Zone des Geräts).
     public static func bedtimes(of sleeps: [SleepSummary], calendar: Calendar) -> [(date: String, start: Date, timeZone: TimeZone?)] {
         sleeps.map { (date: SleepNotes.nightDate(of: $0, calendar: calendar), start: $0.start, timeZone: $0.timeZone) }
     }
@@ -107,7 +107,7 @@ public enum Regularity {
     /// Minuten eines Tages: Umfang der Uhr in ``minutesFromNoon(_:calendar:)``.
     public static let dayMinutes = 24 * 60
 
-    /// Uhrzeiten in Minuten ab Mittag (0 ≤ m < ``dayMinutes``) ohne Sprung (Audit W-1): Die Uhr wird in der grössten
+    /// Uhrzeiten in Minuten ab Mittag (0 ≤ m < ``dayMinutes``) ohne Sprung: Die Uhr wird in der grössten
     /// Lücke zwischen den Zeiten aufgeschnitten, damit auch Zeiten um Mittag (11:56 und 12:50) nahe beieinander liegen.
     /// Ist die Lücke um Mittag die grösste (bei Gleichstand bevorzugt), bleiben die Werte wie sie sind; sonst bekommen
     /// die Zeiten bis zur grössten Lücke ``dayMinutes`` dazu. Reihenfolge wie `minutes`. Identisch zu Kotlin.

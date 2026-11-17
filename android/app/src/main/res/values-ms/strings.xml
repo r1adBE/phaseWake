@@ -371,7 +371,7 @@
     <string name="chart_window">Tetingkap bangun</string>
     <string name="chart_no_data">tiada data</string>
     <string name="chart_feeling_hint">Ketik satu titik untuk melihat nota malam itu.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Uji penggera</string>
     <string name="test_button">Uji dalam 2 minit</string>
     <string name="test_hint">Berbunyi dalam 2 minit dengan tetapan penggera seterusnya, tanpa tunda. Tidak dikira sebagai malam.</string>
@@ -585,7 +585,7 @@
     <string name="learn_switch_hint">Jam tangan anda mengukur pergerakan dan nadi pada waktu malam (mulai %1$d %% bateri). Mati: tiada rakaman automatik, nilai yang dipelajari kekal.</string>
     <string name="learn_switch_title">Aktif</string>
     <string name="watch_open_app_hint">Buka Phase Wake pada jam tangan anda supaya ia menerima arahan.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Setiap malam sejak fasa pembelajaran bermula – sama ada dikira dan, jika tidak, sebabnya dan apa yang membantu. Phase Wake memerlukan %1$d malam yang dikira.</string>
     <string name="learn_nights_empty">Belum ada malam lagi. Malam pertama dipaparkan di sini pada pagi berikutnya.</string>
     <string name="learn_night_facts">%1$s diukur · %2$d nilai · nadi dalam %3$d %%</string>

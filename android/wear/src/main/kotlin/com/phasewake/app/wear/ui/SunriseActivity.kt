@@ -42,7 +42,7 @@ import kotlinx.coroutines.delay
 class SunriseActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Zeiten nach der 12/24-h-Einstellung der Uhr (Audit N-10).
+        // Zeiten nach der 12/24-h-Einstellung der Uhr.
         WearClock.update(this)
         setShowWhenLocked(true)
         setTurnScreenOn(true)
@@ -87,7 +87,7 @@ class SunriseActivity : ComponentActivity() {
 /** Nur Himmel und Uhrzeit, ohne Text: Tippen irgendwo schliesst. */
 @Composable
 internal fun SunriseScreen(progress: Float, now: Instant, onOff: () -> Unit) {
-    // Schrift nach der Stelle der Uhrzeit auf dem Himmel (Audit UI-6).
+    // Schrift nach der Stelle der Uhrzeit auf dem Himmel.
     val (ink, place) = rememberSkyInk(progress, SunriseSky.ink(progress))
     Box(
         Modifier

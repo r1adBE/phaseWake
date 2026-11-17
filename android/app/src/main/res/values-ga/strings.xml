@@ -422,7 +422,7 @@
     <string name="chart_window">Fuinneog dhúisithe</string>
     <string name="chart_no_data">gan sonraí</string>
     <string name="chart_feeling_hint">Tapáil ponc chun nótaí na hoíche sin a fheiceáil.</string>
-    <!-- Runde 3: Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
+    <!-- Probewecker, Einrichtung, Überspringen, Feiertage, Powernap, Widget, Sichern, Diagnose -->
     <string name="test_title">Aláram tástála</string>
     <string name="test_button">Tástáil i gceann 2 nóiméad</string>
     <string name="test_hint">Buaileann sé i gceann 2 nóiméad le socruithe d’aláraim eile, gan cur siar. Ní áirítear é mar oíche.</string>
@@ -644,7 +644,7 @@
     <string name="learn_switch_hint">Tomhaiseann d’uaireadóir gluaiseacht agus cuisle san oíche (ó %1$d %% ceallra). As: gan taifeadadh uathoibríoch, fanann na luachanna foghlamtha.</string>
     <string name="learn_switch_title">Gníomhach</string>
     <string name="watch_open_app_hint">Oscail Phase Wake ar d’uaireadóir ionas go bhfaighidh sé an t-ordú.</string>
-    <!-- Lern-Übersicht (r1AD 13.11.2026) -->
+    <!-- Lern-Übersicht -->
     <string name="learn_nights_intro">Gach oíche ó thosaigh an chéim foghlama – ar comhaireadh í agus, mura ndearnadh, cén fáth agus cad a chabhródh. Tá %1$d oíche chomhairthe de dhíth ar Phase Wake.</string>
     <string name="learn_nights_empty">Níl oíche ar bith ann fós. Taispeánfar an chéad cheann anseo an mhaidin dar gcionn.</string>
     <string name="learn_night_facts">%1$s tomhaiste · %2$d luach · cuisle i %3$d %%</string>

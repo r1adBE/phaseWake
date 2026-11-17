@@ -15,7 +15,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 /**
- * Audit HG-6: Der Empfänger der Systemereignisse ([SystemEventReceiver]) hielt `goAsync` über alle Nebenarbeiten offen
+ * Der Empfänger der Systemereignisse ([SystemEventReceiver]) hielt `goAsync` über alle Nebenarbeiten offen
  * (bis rund 33 s); jenseits der Frist des Systems droht ein ANR, der den Prozess samt Weckdienst beendet. Jetzt meldet
  * er fertig, sobald die Alarme stehen, spätestens nach 8 s ([launchWithin]); die Nebenarbeiten laufen danach weiter.
  */

@@ -101,7 +101,7 @@ object SoundEvents {
         latencyMinutes: Int? = null,
     ): Boolean {
         if (nextTarget != null && nextTarget.isAfter(now) && !nextTarget.isAfter(now.plus(AUTO_START_LOOKAHEAD))) {
-            // Im Weckfenster nicht mehr: Wer dann öffnet, ist meist schon wach (entschieden mit r1AD).
+            // Im Weckfenster nicht mehr: Wer dann öffnet, ist meist schon wach.
             if (windowStart != null && !now.isBefore(windowStart)) return false
             return !now.isBefore(Bedtime.bedtime(nextTarget, goalMinutes, latencyMinutes))
         }

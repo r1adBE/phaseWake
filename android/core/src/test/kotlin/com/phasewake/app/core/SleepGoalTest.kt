@@ -50,7 +50,7 @@ class SleepGoalTest {
 
     @Test
     fun oneBedtimeIncludesLearnedLatency() {
-        // Entscheid r1AD 14.11. (Audit O-03): Bettzeit = Weckzeit − Schlafziel − gelernte Einschlafdauer, überall gleich.
+        // Bettzeit = Weckzeit − Schlafziel − gelernte Einschlafdauer, überall gleich.
         val target = at("2026-10-28T06:00")
         assertEquals(at("2026-10-27T22:15"), Bedtime.bedtime(target, 450, latencyMinutes = 15))
         // Nicht gelernt: wie bisher; negative Werte zählen 0.

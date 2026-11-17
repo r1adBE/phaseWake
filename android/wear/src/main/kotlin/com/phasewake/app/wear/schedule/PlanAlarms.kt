@@ -12,13 +12,13 @@ import com.phasewake.app.wear.schedule.AlarmScheduler.Companion.setDeadlineAt
 import com.phasewake.app.wear.schedule.AlarmScheduler.Companion.setSnoozeEnd
 import kotlinx.coroutines.withTimeoutOrNull
 
-// Stellen der Alarme und Nebenarbeiten beim Neuplanen der Uhr (Audit A-3), ausgelagert aus [AlarmScheduler].
+// Stellen der Alarme und Nebenarbeiten beim Neuplanen der Uhr, ausgelagert aus [AlarmScheduler].
 
 private const val TAG = "AlarmScheduler"
 
 /**
  * Stellt die System-Alarme von [AlarmScheduler.reschedule] und den Eintrag für Direct Boot; ohne Unterbrechung (nicht
- * `suspend`, Audit A-3): Ein neuer Alarm ersetzt den alten mit demselben PendingIntent, aufgehoben wird nur ohne Plan.
+ * `suspend`): Ein neuer Alarm ersetzt den alten mit demselben PendingIntent, aufgehoben wird nur ohne Plan.
  * @return der geplante Plan oder `null`.
  */
 internal fun setPlanAlarms(
@@ -42,7 +42,7 @@ internal fun setPlanAlarms(
         Log.i(TAG, "Kein aktiver Wecker")
         return null
     }
-    // Zielzeit aus der Entscheidung (Review M-2: dieselbe Regel, die ScheduleRulesTest prüft). Ersetzt den bisherigen
+    // Zielzeit aus der Entscheidung (dieselbe Regel, die ScheduleRulesTest prüft). Ersetzt den bisherigen
     // Alarm (gleicher PendingIntent), ein vorheriges Aufheben ist nicht nötig.
     setDeadlineAt(context, plan, decision.deadlineAt ?: plan.target)
     // Auch ein schon begonnenes Fenster startet über einen Alarm: Nur so darf der Messdienst
@@ -60,7 +60,7 @@ internal fun setPlanAlarms(
     return plan
 }
 
-/** Höchstdauer je Nebenarbeit nach dem Stellen der Alarme ([sideWork], Audit A-3). */
+/** Höchstdauer je Nebenarbeit nach dem Stellen der Alarme ([sideWork]). */
 internal const val SIDE_WORK_TIMEOUT_MS = 3_000L
 
 /**

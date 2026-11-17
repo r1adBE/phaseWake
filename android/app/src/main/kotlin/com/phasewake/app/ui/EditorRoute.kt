@@ -18,7 +18,7 @@ import com.phasewake.app.ui.editor.EditorScreen
 import com.phasewake.app.ui.home.MAX_ALARMS
 
 /**
- * Zurück, nur solange [entry] oben auf dem Stapel liegt (Prüfrunde 2, B-1): Ein zweiter schneller Tipp auf «Speichern»
+ * Zurück, nur solange [entry] oben auf dem Stapel liegt: Ein zweiter schneller Tipp auf «Speichern»
  * oder den Zurück-Pfeil nähme sonst auch die Startseite vom Stapel (leerer Bildschirm). Wie `back(from)` auf der Uhr.
  */
 internal fun NavHostController.backFrom(entry: NavBackStackEntry) {
@@ -30,8 +30,8 @@ internal fun NavHostController.isTop(entry: NavBackStackEntry): Boolean = curren
 
 /**
  * Editor eines Weckers ([id] `null`: neuer Wecker). Wird der Wecker anderswo gelöscht (Uhr), schliesst der Editor mit
- * einem Hinweis, statt still einen neuen anzulegen (B-3). Kam beim Anlegen anderswo der letzte freie Platz weg, bleibt
- * er mit dem Hinweis auf die Höchstzahl offen, statt still zu verwerfen (B-11).
+ * einem Hinweis, statt still einen neuen anzulegen. Kam beim Anlegen anderswo der letzte freie Platz weg, bleibt
+ * er mit dem Hinweis auf die Höchstzahl offen, statt still zu verwerfen.
  */
 @Composable
 internal fun EditorRoute(app: PhaseWakeApp, state: NavState, id: String?, actions: NavActions, entry: NavBackStackEntry) {
