@@ -42,7 +42,7 @@ private val ringingMath = PhoneRingService.State.Ringing(fromWatch = true, snooz
 
 @Composable
 private fun Ring(state: PhoneRingService.State, light: Float? = null, tag: String = "de-CH") = ThemedIn(tag, ThemeMode.DARK) {
-    RingScreen(state, onStop = {}, onSnooze = {}, light = light, clock = { FIXED_NOW })
+    RingScreen(state, onStop = {}, onSnooze = {}, light = light, clock = { FIXED_NOW }, random = kotlin.random.Random(7))
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Rand Wecken quer", device = PHONE_LAND) @Composable

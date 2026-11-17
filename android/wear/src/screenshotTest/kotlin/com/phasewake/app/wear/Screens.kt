@@ -33,7 +33,7 @@ private val sleepAlarms = listOf(AlarmSpec(id = "sleep", hour = 7, minute = 0, d
 @Composable
 private fun Home(list: List<AlarmSpec>, goodNight: Boolean = false) = Swiss {
     // In der App liegt der AppScaffold um alle Bildschirme (Uhrzeit oben).
-    AppScaffold {
+    AppScaffold(timeText = { FixedTimeText() }) {
         HomeContent(
             alarms = list,
             plan = AlarmSchedule.earliestPlan(list, now, zone),
@@ -62,7 +62,7 @@ fun WatchEmpty() = Home(emptyList())
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Uhr Wecker bearbeiten", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
 fun WatchEditor() = Swiss {
-    AppScaffold {
+    AppScaffold(timeText = { FixedTimeText() }) {
         EditorContent(draft = alarms.first(), isNew = false, onPickTime = {}, onChange = {}, onSave = {}, onDelete = {})
     }
 }

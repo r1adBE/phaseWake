@@ -181,6 +181,8 @@ internal fun RingScreen(
     light: Float? = null,
     clock: () -> Instant = Instant::now,
     onTyping: () -> Unit = {},
+    // Zufallsquelle der Weckaufgabe; nur die Bildschirmfotos geben einen festen Startwert (Audit 17.11.2026, UX-08).
+    random: kotlin.random.Random = kotlin.random.Random.Default,
 ) {
     var now by remember { mutableStateOf(clock()) }
     LaunchedEffect(Unit) {
@@ -200,7 +202,7 @@ internal fun RingScreen(
         PhoneRingService.State.Idle -> WakeTask.NONE
     }
     // Über Schlummern hinweg dieselbe Aufgabe: gelöste Schritte bleiben gelöst.
-    val challenge = remember { MathChallenge() }
+    val challenge = remember { MathChallenge(random) }
     val math = task == WakeTask.MATH
     background {
         // Höhe und Breite bestimmen die Anordnung (Audit UI-2): Querformat zweispaltig, knappe Höhe kleiner;

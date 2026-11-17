@@ -55,7 +55,7 @@ fun FixHomeArSmallF13() = Home("ar", label = "عمل")
 
 @Composable
 private fun Ring(state: PhoneRingService.State, light: Float, tag: String = "de-CH") = ThemedIn(tag, ThemeMode.DARK) {
-    RingScreen(state, onStop = {}, onSnooze = {}, light = light, clock = { FIXED_NOW })
+    RingScreen(state, onStop = {}, onSnooze = {}, light = light, clock = { FIXED_NOW }, random = kotlin.random.Random(7))
 }
 
 private val ringing = PhoneRingService.State.Ringing(fromWatch = true, snoozesLeft = 3, sunrise = Sunrise.WINDOW)

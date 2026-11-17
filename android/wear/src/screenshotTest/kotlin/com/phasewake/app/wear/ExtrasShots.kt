@@ -22,7 +22,7 @@ import java.time.Duration
 /** Startbildschirm mit dem Chip «Powernap» (zentriert unter dem Weckfenster). */
 @Composable
 private fun NapHome(extras: WatchHomeExtras) = Swiss {
-    AppScaffold {
+    AppScaffold(timeText = { FixedTimeText() }) {
         HomeContent(
             alarms = alarms,
             plan = AlarmSchedule.earliestPlan(alarms, now, zone),
@@ -50,7 +50,7 @@ fun WatchNapRunning() = NapHome(
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Uhr Powernap Dauer", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
 fun WatchNapPicker() = Swiss {
-    AppScaffold { NapScreen(Transient.NAP_DEFAULT_MINUTES, onStart = {}) }
+    AppScaffold(timeText = { FixedTimeText() }) { NapScreen(Transient.NAP_DEFAULT_MINUTES, onStart = {}) }
 }
 
 /** Ereignisse der Uhr, minutengenau vor der festen Testzeit. */
@@ -66,7 +66,7 @@ private val watchEntries = listOf(
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Uhr Diagnose", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
 fun WatchDiagnostics() = Swiss {
-    AppScaffold { DiagScreen(next = "Mi., 28.10., 06:30 – 07:00", version = "1.0", entries = watchEntries, onClear = {}, onHide = {}) }
+    AppScaffold(timeText = { FixedTimeText() }) { DiagScreen(next = "Mi., 28.10., 06:30 – 07:00", version = "1.0", entries = watchEntries, onClear = {}, onHide = {}) }
 }
 
 /**
@@ -75,7 +75,7 @@ fun WatchDiagnostics() = Swiss {
  */
 @PreviewTest @Preview(locale = "de-rCH", name = "Uhr Wecker überspringen", device = WATCH, showBackground = true, backgroundColor = 0xFF000000) @Composable
 fun WatchEditorSkip() = Swiss {
-    AppScaffold {
+    AppScaffold(timeText = { FixedTimeText() }) {
         EditorContent(
             draft = alarms.first(),
             isNew = false,
