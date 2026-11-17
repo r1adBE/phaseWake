@@ -17,8 +17,8 @@ public enum BackupPassword {
         case trivial
     }
 
-    /// Buchstabenreihen der Tastatur (QWERTY, QWERTZ, AZERTY) am Stück, Reihe an Reihe; ein Passwort, das ein Ausschnitt
-    /// davon ist (auch rückwärts), gilt als trivial. Die Ziffernreihe deckt `isSequence` ab.
+    /// Buchstabenreihen der Tastatur (QWERTY, QWERTZ, AZERTY) am Stück, Reihe an Reihe; ein Passwort, das ein
+    /// Ausschnitt davon ist (auch rückwärts), gilt als trivial. Die Ziffernreihe deckt `isSequence` ab.
     private static let keyboard = [
         "qwertyuiopasdfghjklzxcvbnm",
         "qwertzuiopasdfghjklyxcvbnm",
@@ -71,15 +71,16 @@ public enum BackupPassword {
     /// Längster Block, dessen Wiederholung als trivial gilt.
     private static let maxBlock = 5
 
-    /// Ob das Passwort ein Block aus 1 bis `maxBlock` Zeichen ist, wiederholt bis zum Ende (der letzte darf angeschnitten
-    /// sein): «aaaaaaaaaa», «1212121212», «abcabcabca».
+    /// Ob das Passwort ein Block aus 1 bis `maxBlock` Zeichen ist, wiederholt bis zum Ende (der letzte darf
+    /// angeschnitten sein): «aaaaaaaaaa», «1212121212», «abcabcabca».
     private static func isRepeatedBlock(_ points: [Int]) -> Bool {
         (1...maxBlock).contains { block in
             block < points.count && (block..<points.count).allSatisfy { points[$0] == points[$0 - block] }
         }
     }
 
-    /// Ob jeder Codepunkt um `step` auf den vorigen folgt (1234…, abcd…, dcba…); Ziffern laufen im Kreis (…8, 9, 0, 1…).
+    /// Ob jeder Codepunkt um `step` auf den vorigen folgt (1234…, abcd…, dcba…); Ziffern laufen im Kreis (…8, 9, 0,
+    /// 1…).
     private static func isSequence(_ points: [Int], step: Int) -> Bool {
         (1..<points.count).allSatisfy { next(points[$0 - 1], step: step) == points[$0] }
     }

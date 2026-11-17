@@ -41,8 +41,8 @@ struct HeroPlan: View {
     @State private var width: CGFloat = 340
 }
 
-/// Countdown zum nächsten Wecker als grosser Bogen (wie eine Sonnenbahn), wie `WakeArc` auf Android: Der Bogen steht für
-/// die letzten 12 Stunden vor der Zielzeit; links füllt er sich bis «jetzt» (heller Punkt), rechts leuchtet das
+/// Countdown zum nächsten Wecker als grosser Bogen (wie eine Sonnenbahn), wie `WakeArc` auf Android: Der Bogen steht
+/// für die letzten 12 Stunden vor der Zielzeit; links füllt er sich bis «jetzt» (heller Punkt), rechts leuchtet das
 /// Weckfenster als warmes Segment und endet im Weckpunkt. Zeichnet sich beim Erscheinen einmal ein (nicht mit «Bewegung
 /// reduzieren»), danach ruht er. Reine Zierde.
 struct WakeArc: View {
@@ -70,7 +70,8 @@ struct WakeArc: View {
     static let hours: Double = 12
     static let windowShare: Double = 0.16
 
-    /// Lage auf dem Bogen wie `arcPosition` (Android): das Weckfenster immer mit `windowShare`, die Zeit davor gleichmässig.
+    /// Lage auf dem Bogen wie `arcPosition` (Android): das Weckfenster immer mit `windowShare`, die Zeit davor
+    /// gleichmässig.
     static func position(_ at: Date, windowStart: Date, target: Date) -> Double {
         let window = target.timeIntervalSince(windowStart) / 60
         let share = window > 0 ? windowShare : 0

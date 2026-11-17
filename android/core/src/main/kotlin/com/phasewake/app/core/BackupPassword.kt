@@ -6,8 +6,8 @@ import java.util.Locale
 /**
  * Regel für das Passwort einer neuen Sicherung: mindestens [MIN_LENGTH] Zeichen
  * (Unicode-Codepunkte nach NFC, nicht Graphem-Gruppen) und kein triviales Muster. Gilt nur beim Anlegen
- * ([BackupFile.encrypt]); ältere Sicherungen mit kürzerem Passwort lassen sich weiter öffnen ([BackupFile.decrypt] prüft
- * nichts davon). Swift (`BackupPassword.swift`) gleich, mit denselben Tests.
+ * ([BackupFile.encrypt]); ältere Sicherungen mit kürzerem Passwort lassen sich weiter öffnen ([BackupFile.decrypt]
+ * prüft nichts davon). Swift (`BackupPassword.swift`) gleich, mit denselben Tests.
  */
 object BackupPassword {
     /** Kürzestes erlaubtes Passwort in Zeichen. */
@@ -66,8 +66,8 @@ object BackupPassword {
     }
 
     /**
-     * Ob das Passwort ein Block aus 1 bis [MAX_BLOCK] Zeichen ist, wiederholt bis zum Ende (der letzte darf angeschnitten
-     * sein): «aaaaaaaaaa», «1212121212», «abcabcabca».
+     * Ob das Passwort ein Block aus 1 bis [MAX_BLOCK] Zeichen ist, wiederholt bis zum Ende (der letzte darf
+     * angeschnitten sein): «aaaaaaaaaa», «1212121212», «abcabcabca».
      */
     private fun isRepeatedBlock(points: IntArray): Boolean =
         (1..MAX_BLOCK).any { block -> block < points.size && (block until points.size).all { points[it] == points[it - block] } }
@@ -75,7 +75,9 @@ object BackupPassword {
     /** Längster Block, dessen Wiederholung als trivial gilt. */
     private const val MAX_BLOCK = 5
 
-    /** Ob jeder Codepunkt um [step] auf den vorigen folgt (1234…, abcd…, dcba…); Ziffern laufen im Kreis (…8, 9, 0, 1…). */
+    /**
+     * Ob jeder Codepunkt um [step] auf den vorigen folgt (1234…, abcd…, dcba…); Ziffern laufen im Kreis (…8, 9, 0, 1…).
+     */
     private fun isSequence(points: IntArray, step: Int): Boolean =
         (1 until points.size).all { next(points[it - 1], step) == points[it] }
 

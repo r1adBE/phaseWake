@@ -31,7 +31,8 @@ public final class EpochAssembler: @unchecked Sendable {
         self.heartRate = heartRate
     }
 
-    /// Nimmt einen Beschleunigungswert (m/s²) auf. Werte vor Fensterbeginn, in schon abgeschlossenen Epochen oder nach einem Zeitsprung fallen weg.
+    /// Nimmt einen Beschleunigungswert (m/s²) auf. Werte vor Fensterbeginn, in schon abgeschlossenen Epochen oder nach
+    /// einem Zeitsprung fallen weg.
     /// - Returns: Die Epochen, die dieser Wert abschliesst (meist leer, nach einer Lücke mehrere).
     public func addMotion(timestampNanos: Int64, x: Double, y: Double, z: Double) -> [Epoch] {
         guard let index = indexOf(timestampNanos), index >= currentIndex else { return [] }
@@ -49,7 +50,8 @@ public final class EpochAssembler: @unchecked Sendable {
         return closed
     }
 
-    /// Schliesst alle Epochen ab, die vor `nowNanos` − `graceNanos` enden. Für den Fall, dass der Sensor länger nichts liefert; die Nachfrist deckt die Bündelungs-Verzögerung ab.
+    /// Schliesst alle Epochen ab, die vor `nowNanos` − `graceNanos` enden. Für den Fall, dass der Sensor länger nichts
+    /// liefert; die Nachfrist deckt die Bündelungs-Verzögerung ab.
     public func advance(nowNanos: Int64, graceNanos: Int64) -> [Epoch] {
         guard let index = indexOf(nowNanos - graceNanos) else { return [] }
         return closeUntil(index)

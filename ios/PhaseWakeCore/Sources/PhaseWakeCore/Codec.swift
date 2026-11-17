@@ -20,7 +20,8 @@ public enum Codec {
     /// So viele Felder je Weckerzeile schreibt diese Version.
     public static let alarmFields = 16
 
-    /// Schreibt Wecker im Format «phasewake-alarms 1»: Kopfzeile, dann je Wecker eine Zeile mit 16 Feldern, getrennt durch «|». Texte URL-kodiert wie in Kotlin, damit beide Seiten byte-gleich schreiben.
+    /// Schreibt Wecker im Format «phasewake-alarms 1»: Kopfzeile, dann je Wecker eine Zeile mit 16 Feldern, getrennt
+    /// durch «|». Texte URL-kodiert wie in Kotlin, damit beide Seiten byte-gleich schreiben.
     public static func encodeAlarms(_ alarms: [AlarmSpec]) -> String {
         var out = alarmsHeader + "\n"
         for a in alarms {
@@ -52,8 +53,8 @@ public enum Codec {
         let wakeTask: WakeTask = f.count >= 13 ? WakeTask(rawValue: f[12]) ?? WakeTask.none : WakeTask.none
         // 14. Feld (Sonnenaufgang-Gerät): fehlt bei älteren Ständen, unbekannt bei neueren → Handy.
         let sunriseDevice: SunriseDevice = f.count >= 14 ? SunriseDevice(rawValue: f[13]) ?? .phone : .phone
-        // Felder 15 und 16 fehlen bei älteren Ständen (bis 14 Felder): nichts überspringen; unlesbar oder ausserhalb von
-        // ``TimeBounds`` (z. B. aus einer manipulierten Sicherung) → 0, wie Kotlin.
+        // Felder 15 und 16 fehlen bei älteren Ständen (bis 14 Felder): nichts überspringen; unlesbar oder ausserhalb
+        // von ``TimeBounds`` (z. B. aus einer manipulierten Sicherung) → 0, wie Kotlin.
         let skipUntil = f.count >= 15 ? TimeBounds.checked(Int64(f[14])) ?? 0 : 0
         let skipHolidays = f.count >= 16 && f[15] == "1"
         let phone = PhoneAlert(rawValue: f[6]) ?? .sound
@@ -76,12 +77,12 @@ public enum Codec {
     /// Weckgründe, die jede Version lesen kann; neuere stehen zusätzlich in Feld 8 (`encodeNight`).
     private static let legacyReasons: Set<WakeReason> = [.awake, .lightSleep, .deadline]
 
-    /// Schreibt eine Nacht im Format «phasewake-night 1»: Kopfzeile, Zeile mit 7 Feldern (Zeiten in Millisekunden seit 1970), Zeile mit den Epochen «Bewegung;Puls», getrennt durch Kommas (leere Werte leer).
-    /// Ein Grund, den ältere Versionen nicht kennen (`exact`, `shortNight`), steht in Feld 5 als `deadline` (so lesen
-    /// ältere Versionen die Nacht weiter) und genau in einem angehängten Feld 8. Akku der Uhr und des iPhones
-    /// (``BatteryTrack/encode(_:)``) in den Feldern 9 und 10, Beginn der Einschlafdauer und Einschlafzeit der Uhr (ms) in den
-    /// Feldern 11 und 12, je nur wenn vorhanden; davor fehlende Felder bleiben leer, leere am
-    /// Ende fallen weg. Identisch zu Kotlin.
+    /// Schreibt eine Nacht im Format «phasewake-night 1»: Kopfzeile, Zeile mit 7 Feldern (Zeiten in Millisekunden seit
+    /// 1970), Zeile mit den Epochen «Bewegung;Puls», getrennt durch Kommas (leere Werte leer). Ein Grund, den ältere
+    /// Versionen nicht kennen (`exact`, `shortNight`), steht in Feld 5 als `deadline` (so lesen ältere Versionen die
+    /// Nacht weiter) und genau in einem angehängten Feld 8. Akku der Uhr und des iPhones (``BatteryTrack/encode(_:)``)
+    /// in den Feldern 9 und 10, Beginn der Einschlafdauer und Einschlafzeit der Uhr (ms) in den Feldern 11 und 12, je
+    /// nur wenn vorhanden; davor fehlende Felder bleiben leer, leere am Ende fallen weg. Identisch zu Kotlin.
     public static func encodeNight(_ night: NightRecord) -> String {
         var out = nightHeader + "\n"
         let legacy = legacyReasons.contains(night.reason)
@@ -110,7 +111,8 @@ public enum Codec {
     /// Liest `encodeNight`. Ältere Stände ohne Befinden (6 Felder) werden gelesen, weitere neuere Felder ignoriert.
     /// Akku in den Feldern 9 und 10 (``BatteryTrack/decode(_:)``), Einschlafen in 11 und 12; fehlend, unlesbar oder
     /// ausserhalb von ``TimeBounds`` heisst nur ohne.
-    /// Grund: Feld 8, wenn bekannt, sonst Feld 5; ein unbekannter Grund (aus einer neueren Version) gilt als `deadline`.
+    /// Grund: Feld 8, wenn bekannt, sonst Feld 5; ein unbekannter Grund (aus einer neueren Version) gilt als
+    /// `deadline`.
     /// - Throws: ``CodecError`` bei fremdem Format, fehlenden Feldern, Befinden ausserhalb 1–5, unlesbaren Zahlen oder
     ///   Zeiten ausserhalb von ``TimeBounds``.
     public static func decodeNight(_ text: String) throws -> NightRecord {
@@ -189,7 +191,8 @@ public enum Codec {
 
 /// Kurzschreibweise der Wochentage, z. B. «Mo–Fr». Identisch zu `DayFormat` (Kotlin).
 public enum DayFormat {
-    /// Formatiert Wochentage kurz in der Sprache von `locale`, ab dem Wochenbeginn der Region; drei und mehr Tage in Folge als Spanne («Mo–Fr»), eine Spanne über das Wochenende bleibt zusammen («Sa–Mo»).
+    /// Formatiert Wochentage kurz in der Sprache von `locale`, ab dem Wochenbeginn der Region; drei und mehr Tage in
+    /// Folge als Spanne («Mo–Fr»), eine Spanne über das Wochenende bleibt zusammen («Sa–Mo»).
     /// - Parameters:
     ///   - once: Text für einen einmaligen Wecker (keine Tage).
     ///   - daily: Text für alle sieben Tage.

@@ -10,16 +10,17 @@ import java.time.Instant
 /** Reine Regeln der Einschlaf-Messung in Stichproben, ohne Android (Tests: `OnsetRulesTest`). */
 internal object OnsetRules {
     /**
-     * Längste Lücke ungemessener Epochen (10 Min), die eine ruhige Strecke nicht unterbricht. Regulär liegen 8 dazwischen
-     * (Takt 10 Epochen, [nextTick]); so übersteht eine Strecke einen verspäteten Alarm, nicht aber eine längere Pause.
+     * Längste Lücke ungemessener Epochen (10 Min), die eine ruhige Strecke nicht unterbricht. Regulär liegen 8
+     * dazwischen (Takt 10 Epochen, [nextTick]); so übersteht eine Strecke einen verspäteten Alarm, nicht aber eine
+     * längere Pause.
      */
     const val MAX_GAP_EPOCHS = 20
 
     /**
-     * Stichproben: Die ruhige Strecke muss so viele Epochen über [SleepOnset.STILL_EPOCHS] hinaus umfassen (10 Min, zwei
-     * Stichproben mehr). Die Stichproben sehen nur 2 von 10 Epochen; ohne diese Bestätigung meldete je nach
-     * Lage der Stichproben schon eine zufällig ruhige Viertelstunde das Einschlafen (an einer echten Nacht bis 1 Std. zu früh,
-     * obwohl die Person danach wieder aktiv war).
+     * Stichproben: Die ruhige Strecke muss so viele Epochen über [SleepOnset.STILL_EPOCHS] hinaus umfassen (10 Min,
+     * zwei Stichproben mehr). Die Stichproben sehen nur 2 von 10 Epochen; ohne diese Bestätigung meldete je nach
+     * Lage der Stichproben schon eine zufällig ruhige Viertelstunde das Einschlafen (an einer echten Nacht bis 1 Std.
+     * zu früh, obwohl die Person danach wieder aktiv war).
      */
     const val SAMPLED_CONFIRM_EPOCHS = 20
 
@@ -64,8 +65,8 @@ internal object OnsetRules {
      * Wertet die neuen Epochen ab Index [from] einzeln aus, als kämen sie eine nach der anderen (wie
      * `RecorderOnset.measure` auf der Apple Watch): je Epoche das Grundrauschen der gemessenen ([measured]) bis dahin
      * ([NoiseFloor.floor], solange zu wenige: [personalFloor]) und die Regel mit der wirksamen Leicht-Schwelle
-     * ([SleepOnset.find] bei [continuous], sonst [find]). So zählen Epochen nach der erkennenden nicht, auch wenn sie im
-     * selben Bündel kamen.
+     * ([SleepOnset.find] bei [continuous], sonst [find]). So zählen Epochen nach der erkennenden nicht, auch wenn sie
+     * im selben Bündel kamen.
      * @param floor Grundrauschen vor diesen Epochen (bleibt ohne neue).
      * @return Beginn der ruhigen Strecke (oder `null`) und das Grundrauschen bis zur erkennenden bzw. letzten Epoche.
      */
@@ -145,9 +146,9 @@ internal object OnsetRules {
     }
 
     /**
-     * Neues Ende der Einschlaf-Messung bei spätem Einschlafen, oder `null` (aufgeben): nur, wenn bei [at] die Höchstdauer
-     * [maxEnd] erreicht ist (nicht die Grenze [latestGiveUp] vor der Weckzeit), die letzten 15 Min unruhig waren
-     * ([restless]) und der Akku nicht unter [AutoOnset.MIN_BATTERY_PERCENT] liegt (unbekannt hindert nicht). Dann
+     * Neues Ende der Einschlaf-Messung bei spätem Einschlafen, oder `null` (aufgeben): nur, wenn bei [at] die
+     * Höchstdauer [maxEnd] erreicht ist (nicht die Grenze [latestGiveUp] vor der Weckzeit), die letzten 15 Min unruhig
+     * waren ([restless]) und der Akku nicht unter [AutoOnset.MIN_BATTERY_PERCENT] liegt (unbekannt hindert nicht). Dann
      * [at] + [OnsetMonitor.EXTEND_STEP], höchstens [cap] und [latestGiveUp].
      */
     fun extendUntil(at: Instant, maxEnd: Instant, latestGiveUp: Instant, cap: Instant, restless: Boolean, battery: Int?): Instant? {
@@ -158,28 +159,28 @@ internal object OnsetRules {
     }
 
     /**
-     * Lernphase: Beginn der Einschlafdauer. Nach «Gute Nacht» ([automatic] `false`) der Beginn [since] (die Person liegt
-     * im Bett). Die automatische Messung beginnt 60 Min vor der Bettzeit: dann die Bettzeit (Weckzeit [latest] minus
-     * Schlaf [sleepMinutes], wie [com.phasewake.app.core.Bedtime.bedtime]), frühestens [since].
+     * Lernphase: Beginn der Einschlafdauer. Nach «Gute Nacht» ([automatic] `false`) der Beginn [since] (die Person
+     * liegt im Bett). Die automatische Messung beginnt 60 Min vor der Bettzeit: dann die Bettzeit (Weckzeit [latest]
+     * minus Schlaf [sleepMinutes], wie [com.phasewake.app.core.Bedtime.bedtime]), frühestens [since].
      */
     fun bedAt(since: Instant, automatic: Boolean, latest: Instant, sleepMinutes: Int): Instant =
         if (automatic) maxOf(since, latest.minus(Duration.ofMinutes(sleepMinutes.toLong()))) else since
 
     /**
-     * Einschlafzeit aus der erkannten ruhigen Strecke ab [found]: nie vor dem Beginn der Einschlafdauer [bedAt] (Ergebnis
-     * von `bedAt(…)`, automatisch die Bettzeit). Die automatische Messung beginnt 60 Min vor der Bettzeit; wer dann schon
-     * still liegt (Sofa, Lesen), ist nicht vor der Bettzeit eingeschlafen – sonst rückte die Zielzeit vor und die
-     * Untergrenze kurzer Nächte fiele zu früh weg. Nach «Gute Nacht» ist [bedAt] der Beginn der Messung; dann gilt [found] unverändert. Identisch zu
-     * `RecorderOnset.onsetAt` (Swift).
+     * Einschlafzeit aus der erkannten ruhigen Strecke ab [found]: nie vor dem Beginn der Einschlafdauer [bedAt]
+     * (Ergebnis von `bedAt(…)`, automatisch die Bettzeit). Die automatische Messung beginnt 60 Min vor der Bettzeit;
+     * wer dann schon still liegt (Sofa, Lesen), ist nicht vor der Bettzeit eingeschlafen – sonst rückte die Zielzeit
+     * vor und die Untergrenze kurzer Nächte fiele zu früh weg. Nach «Gute Nacht» ist [bedAt] der Beginn der Messung;
+     * dann gilt [found] unverändert. Identisch zu `RecorderOnset.onsetAt` (Swift).
      */
     fun onsetAt(found: Instant, bedAt: Instant): Instant = maxOf(found, bedAt)
 
     /**
-     * Ob Epoche [index] (ab [startNanos], Länge [OnsetMonitor.EPOCH_NANOS]) eine Zeit berührt, in der die Uhr nicht getragen
-     * wird: am Ladegerät (Netzteil an bis ab) oder laut Off-Body-Sensor nicht
-     * am Handgelenk. [charging]: diese Zeiten (elapsedRealtime in ns; Ende `null` = dauert an). Solche Epochen gelten als
-     * leer: Die abgelegte Uhr misst nur Rauschen, das sonst als Einschlafen zählte; die Messung wartet, bis sie wieder
-     * getragen wird.
+     * Ob Epoche [index] (ab [startNanos], Länge [OnsetMonitor.EPOCH_NANOS]) eine Zeit berührt, in der die Uhr nicht
+     * getragen wird: am Ladegerät (Netzteil an bis ab) oder laut Off-Body-Sensor nicht
+     * am Handgelenk. [charging]: diese Zeiten (elapsedRealtime in ns; Ende `null` = dauert an). Solche Epochen gelten
+     * als leer: Die abgelegte Uhr misst nur Rauschen, das sonst als Einschlafen zählte; die Messung wartet, bis sie
+     * wieder getragen wird.
      */
     fun charging(index: Long, startNanos: Long, charging: List<Pair<Long, Long?>>): Boolean {
         val from = startNanos + index * OnsetMonitor.EPOCH_NANOS
@@ -188,8 +189,8 @@ internal object OnsetRules {
     }
 
     /**
-     * Wert des Off-Body-Sensors (`Sensor.TYPE_LOW_LATENCY_OFFBODY_DETECT`): 0 = nicht am Handgelenk (`true`), 1 = getragen
-     * (`false`), sonst unbekannt (`null`, ändert nichts).
+     * Wert des Off-Body-Sensors (`Sensor.TYPE_LOW_LATENCY_OFFBODY_DETECT`): 0 = nicht am Handgelenk (`true`), 1 =
+     * getragen (`false`), sonst unbekannt (`null`, ändert nichts).
      */
     fun offBody(value: Float?): Boolean? = when (value) {
         0f -> true
@@ -211,8 +212,8 @@ internal object OnsetRules {
     /**
      * Ob die Messung erst nach dem Beginn der Einschlafdauer [bedAt] ([plannedBedAt]) beginnt, um mehr als
      * [LATE_START_TOLERANCE] (wie `RecorderOnset.startedLate` auf der Apple Watch): automatisch nach
-     * der Bettzeit (Neustart der Uhr, späte Änderung, Schalter spät ein), nach «Gute Nacht» beim Wiederaufnehmen nach einem
-     * Prozessende. Was dann gilt, sagt [lateStart].
+     * der Bettzeit (Neustart der Uhr, späte Änderung, Schalter spät ein), nach «Gute Nacht» beim Wiederaufnehmen nach
+     * einem Prozessende. Was dann gilt, sagt [lateStart].
      */
     fun startedLate(measureFrom: Instant, bedAt: Instant): Boolean = measureFrom.isAfter(bedAt.plus(LATE_START_TOLERANCE))
 
@@ -222,8 +223,8 @@ internal object OnsetRules {
         ON_TIME,
 
         /**
-         * Zu spät, aber bei sichtbarer App gestartet: Die Person war da wach. Gemessen wird ab jetzt, und jetzt ist auch der
-         * Beginn der Einschlafdauer.
+         * Zu spät, aber bei sichtbarer App gestartet: Die Person war da wach. Gemessen wird ab jetzt, und jetzt ist
+         * auch der Beginn der Einschlafdauer.
          */
         FOREGROUND,
 
@@ -234,7 +235,10 @@ internal object OnsetRules {
         BACKGROUND,
     }
 
-    /** Ob die Messung ab [measureFrom] rechtzeitig zu [bedAt] beginnt, sonst ob bei sichtbarer App ([foreground]). Wie `RecorderOnset.lateStart`. */
+    /**
+     * Ob die Messung ab [measureFrom] rechtzeitig zu [bedAt] beginnt, sonst ob bei sichtbarer App ([foreground]). Wie
+     * `RecorderOnset.lateStart`.
+     */
     fun lateStart(measureFrom: Instant, bedAt: Instant, foreground: Boolean): LateStart = when {
         !startedLate(measureFrom, bedAt) -> LateStart.ON_TIME
         foreground -> LateStart.FOREGROUND
@@ -244,15 +248,18 @@ internal object OnsetRules {
     /**
      * Zeitgrenze, verschoben um die Zeit ohne Tragen [away] (am Ladegerät oder abgelegt, wie
      * `RecorderOnset.awayUntil`): [baseEnd] (Beginn plus [OnsetMonitor.MAX_DURATION]) plus [away], höchstens [cap] und
-     * [latestGiveUp]; `null` ohne solche Zeit oder wenn die Grenze vor der Weckzeit ohnehin früher gilt. Ohne Verschiebung
-     * gab die Messung nach dem Laden auf, bevor eine ruhige Strecke vollständig sein konnte.
+     * [latestGiveUp]; `null` ohne solche Zeit oder wenn die Grenze vor der Weckzeit ohnehin früher gilt. Ohne
+     * Verschiebung gab die Messung nach dem Laden auf, bevor eine ruhige Strecke vollständig sein konnte.
      */
     fun awayUntil(baseEnd: Instant, away: Duration, latestGiveUp: Instant, cap: Instant): Instant? {
         if (away <= Duration.ZERO || baseEnd.isAfter(latestGiveUp)) return null
         return minOf(baseEnd.plus(away), cap, latestGiveUp)
     }
 
-    /** Dauer in ns, die die Zeiten [times] (wie bei [charging], Ende `null` = dauert an) zwischen [from] und [until] abdecken, Überlappungen einmal. */
+    /**
+     * Dauer in ns, die die Zeiten [times] (wie bei [charging], Ende `null` = dauert an) zwischen [from] und [until]
+     * abdecken, Überlappungen einmal.
+     */
     fun awayNanos(times: List<Pair<Long, Long?>>, from: Long, until: Long): Long {
         var total = 0L
         var reached = from

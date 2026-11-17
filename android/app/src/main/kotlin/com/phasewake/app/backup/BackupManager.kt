@@ -75,7 +75,8 @@ object BackupManager {
 
     /**
      * Liest die gewählte Datei [uri], höchstens [BackupFile.MAX_FILE_BYTES] ([BackupFile.readLimited]).
-     * @return Inhalt, oder `null`, wenn sie nicht lesbar oder zu gross ist (Meldung `restore_unreadable`, nichts geändert).
+     * @return Inhalt, oder `null`, wenn sie nicht lesbar oder zu gross ist (Meldung `restore_unreadable`, nichts
+     * geändert).
      */
     suspend fun read(context: Context, uri: Uri): ByteArray? = try {
         withContext(Dispatchers.IO) { context.contentResolver.openInputStream(uri)?.use { BackupFile.readLimited(it) } }
@@ -90,7 +91,8 @@ object BackupManager {
 
     /**
      * Entfernt die Datei [uri], die das System beim Speichern schon angelegt hat, wenn doch nichts hineinkommt
-     * (Passwort-Abfrage abgebrochen): Sonst bliebe eine leere `.pwbak` liegen. Kann der Anbieter nicht löschen, bleibt sie.
+     * (Passwort-Abfrage abgebrochen): Sonst bliebe eine leere `.pwbak` liegen. Kann der Anbieter nicht löschen, bleibt
+     * sie.
      */
     suspend fun discard(context: Context, uri: Uri) {
         withContext(Dispatchers.IO) {
@@ -128,8 +130,8 @@ object BackupManager {
     }
 
     /**
-     * Ersetzt alle Daten durch [payload] in einem Schritt und gleicht danach mit der Uhr ab. Unlesbare Nächte fallen weg.
-     * Erst wird alles gelesen; dann die Nächte (eigene Datei, atomar) und Wecker, Notizen, Abendroutine und
+     * Ersetzt alle Daten durch [payload] in einem Schritt und gleicht danach mit der Uhr ab. Unlesbare Nächte fallen
+     * weg. Erst wird alles gelesen; dann die Nächte (eigene Datei, atomar) und Wecker, Notizen, Abendroutine und
      * Einstellungen in einem einzigen `edit` des DataStore (atomar). Scheitert dieses, kommen die alten Nächte zurück:
      * Es bleibt der alte oder der neue Stand, nie eine Mischung. Endet der Prozess mittendrin, entscheidet [recover]
      * beim nächsten Start ([RestoreJournal]).
@@ -197,8 +199,8 @@ object BackupManager {
     }
 
     /**
-     * Schreibt [payload]; bei einem Fehler sind die Nächte zurückgesetzt und der DataStore unverändert. Die Marke bleibt
-     * liegen ([finishJournal] nach dem Abgleich mit der Uhr).
+     * Schreibt [payload]; bei einem Fehler sind die Nächte zurückgesetzt und der DataStore unverändert. Die Marke
+     * bleibt liegen ([finishJournal] nach dem Abgleich mit der Uhr).
      */
     private suspend fun swap(app: PhaseWakeApp, payload: BackupPayload): AlarmSnapshot {
         val alarms = Codec.decodeAlarms(payload.alarms)

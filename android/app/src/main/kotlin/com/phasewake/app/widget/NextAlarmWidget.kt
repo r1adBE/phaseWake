@@ -105,9 +105,10 @@ class NextAlarmWidget : AppWidgetProvider() {
 
         /**
          * Merkt die Schlafdauer der jüngsten eigenen Nacht für das Widget: [night] ist ihr Nachtdatum
-         * ([SleepNotes.nightDate]), [minutes] der Wert aus [NoteEffect.asleepByNight][com.phasewake.app.core.NoteEffect.asleepByNight]
-         * wie in Verlauf und Detailseite; `null` = keine Daten (dann ohne Dauer). Health Connect liest Schlafdaten
-         * nur bei offener App, darum legt die App den Wert nach jedem Laden hier ab; das Widget liest nur.
+         * ([SleepNotes.nightDate]), [minutes] der Wert aus
+         * [NoteEffect.asleepByNight][com.phasewake.app.core.NoteEffect.asleepByNight] wie in Verlauf und Detailseite;
+         * `null` = keine Daten (dann ohne Dauer). Health Connect liest Schlafdaten nur bei offener App, darum legt die
+         * App den Wert nach jedem Laden hier ab; das Widget liest nur.
          */
         fun saveAsleep(context: Context, night: LocalDate, minutes: Long?) {
             val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)

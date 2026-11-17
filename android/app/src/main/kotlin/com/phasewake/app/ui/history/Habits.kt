@@ -72,7 +72,10 @@ fun weeklyDeepLine(context: Context, deep: Pair<Int, Int>): String =
     context.getString(R.string.weekly_deep, context.getString(R.string.stages_share, deep.first)) + " · " +
         context.getString(R.string.trends_feeling_change, context.getString(R.string.stages_share, deep.second))
 
-/** Karte im Verlauf am Sonntag und Montag: der Rückblick auf die zuletzt abgeschlossene Woche; [deep] Tiefschlaf-Anteil ([weeklyDeepLine]). */
+/**
+ * Karte im Verlauf am Sonntag und Montag: der Rückblick auf die zuletzt abgeschlossene Woche; [deep] Tiefschlaf-Anteil
+ * ([weeklyDeepLine]).
+ */
 @Composable
 fun WeeklyCard(summary: WeeklySummary, custom: List<CustomNote>, deep: Pair<Int, Int>? = null) {
     val context = LocalContext.current

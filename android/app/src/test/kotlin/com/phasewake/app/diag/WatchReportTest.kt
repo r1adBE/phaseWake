@@ -33,9 +33,9 @@ import kotlin.test.assertTrue
 
 /**
  * Diagnose-Bericht der Uhr am Handy (Fehler beim Gerätetest: keine Zeilen der Uhr, Version und nächster Wecker
- * «unbekannt»): Ein voller Bericht (500 Einträge à 200 Zeichen) ist grösser als eine Nachricht der Wear-Dienste und ging
- * verloren. Er geht jetzt über einen Kanal ([Outbox.sendOnce]) und kommt vollständig an; ein kleiner Bericht weiterhin als
- * Nachricht. Ohne Antwort der Uhr steht «watch report missing» im Protokoll des Handys.
+ * «unbekannt»): Ein voller Bericht (500 Einträge à 200 Zeichen) ist grösser als eine Nachricht der Wear-Dienste und
+ * ging verloren. Er geht jetzt über einen Kanal ([Outbox.sendOnce]) und kommt vollständig an; ein kleiner Bericht
+ * weiterhin als Nachricht. Ohne Antwort der Uhr steht «watch report missing» im Protokoll des Handys.
  *
  * Die Wear-Dienste antworten unter Robolectric nie; die Gegenseite ist darum ein [Outbox.Transport], der wie
  * [Outbox.WearTransport] nach Grösse wählt und den Weg des Handys nimmt: Nachricht an

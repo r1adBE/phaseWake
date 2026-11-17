@@ -63,8 +63,8 @@ final class NotificationRouter: NSObject, UNUserNotificationCenterDelegate, @unc
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
         let raw = response.notification.request.identifier
-        // Zweitwecker vor iOS 26 (Kennung = UUID samt Kette «.1» … «.3», siehe `BackupAlarm`): Der Probewecker zählt das
-        // Klingeln. Ein Tipp heisst wach: Die noch folgenden Mitteilungen der Kette fallen weg.
+        // Zweitwecker vor iOS 26 (Kennung = UUID samt Kette «.1» … «.3», siehe `BackupAlarm`): Der Probewecker zählt
+        // das Klingeln. Ein Tipp heisst wach: Die noch folgenden Mitteilungen der Kette fallen weg.
         let id = NotificationChain.baseId(raw)
         if UUID(uuidString: id) != nil {
             center.removePendingNotificationRequests(withIdentifiers: NotificationChain.followingIds(id))

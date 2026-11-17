@@ -37,9 +37,9 @@ import kotlinx.coroutines.flow.asStateFlow
 /**
  * Einschlafklänge: erzeugt das Rauschen fortlaufend ([NoiseGenerator]) oder spielt eine Aufnahme nahtlos
  * in Schleife ([LoopedRecording]), beides über einen AudioTrack auf dem Medien-Kanal (Medienlautstärke,
- * nie der Wecker-Kanal). Vordergrund-Dienst «mediaPlayback» mit Mitteilung zum Stoppen. Endet nach dem Timer oder spätestens zu Beginn des
- * nächsten Weckfensters, mit 30 s Ausblenden; verliert er den Audio-Fokus, pausiert oder stoppt er.
- * Das Ende wird jede Minute mit dem aktuellen Plan verglichen (geänderte Wecker); klingelt die Uhr, endet
+ * nie der Wecker-Kanal). Vordergrund-Dienst «mediaPlayback» mit Mitteilung zum Stoppen. Endet nach dem Timer oder
+ * spätestens zu Beginn des nächsten Weckfensters, mit 30 s Ausblenden; verliert er den Audio-Fokus, pausiert oder
+ * stoppt er. Das Ende wird jede Minute mit dem aktuellen Plan verglichen (geänderte Wecker); klingelt die Uhr, endet
  * er sofort (siehe [BackupAlarm.watchRang][com.phasewake.app.ring.BackupAlarm.watchRang]).
  */
 class SleepSoundService : Service() {
@@ -178,7 +178,8 @@ class SleepSoundService : Service() {
                         val next = pendingSound ?: source.sound
                         pendingSound = null
                         val opened = openSource(next) ?: break
-                        // Andere Abtastrate oder Kanalzahl (Aufnahme oder Einschlaf-Wellen statt Rauschen): neuer AudioTrack.
+                        // Andere Abtastrate oder Kanalzahl (Aufnahme oder Einschlaf-Wellen statt Rauschen): neuer
+                        // AudioTrack.
                         if (opened.sampleRate != source.sampleRate || opened.channels != source.channels) {
                             runCatching { track.stop() }
                             track.release()
@@ -207,8 +208,8 @@ class SleepSoundService : Service() {
     }
 
     /**
-     * Quelle für [sound]: erzeugt (Rauschen, Ventilator, Einschlaf-Wellen) oder als Aufnahme einmal dekodiert und nahtlos
-     * in Schleife. `null`, wenn die Aufnahme nicht lesbar ist oder der Dienst inzwischen endet.
+     * Quelle für [sound]: erzeugt (Rauschen, Ventilator, Einschlaf-Wellen) oder als Aufnahme einmal dekodiert und
+     * nahtlos in Schleife. `null`, wenn die Aufnahme nicht lesbar ist oder der Dienst inzwischen endet.
      */
     private fun openSource(sound: SleepSound): SoundSource? {
         val raw = rawRecording(sound) ?: return GeneratedSound(NoiseGenerator(sound, SAMPLE_RATE, System.nanoTime()), SAMPLE_RATE)

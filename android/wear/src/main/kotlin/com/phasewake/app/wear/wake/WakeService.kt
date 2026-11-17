@@ -66,8 +66,8 @@ class WakeService : LifecycleService() {
         /** Bis hierhin (elapsedRealtime) schaltet eine erste Bestätigung auf «Aufgabe am Handy». */
         var taskAcceptUntil: Long = 0L,
         /**
-         * Einschlafzeit dieser Nacht ([com.phasewake.app.wear.schedule.OnsetStore]); `null` = unbekannt, dann Untergrenze nur
-         * mit [onsetMeasured].
+         * Einschlafzeit dieser Nacht ([com.phasewake.app.wear.schedule.OnsetStore]); `null` = unbekannt, dann
+         * Untergrenze nur mit [onsetMeasured].
          */
         var asleepAt: Instant? = null,
         /** Beginn der Einschlafdauer zu [asleepAt] (für die Nacht im Verlauf); `null` = unbekannt. */
@@ -77,8 +77,8 @@ class WakeService : LifecycleService() {
         /** Schlafziel für die Untergrenze: Schlafdauer im Einschlaf-Modus, sonst das Schlafziel. */
         var goalMinutes: Int = SleepGoal.DEFAULT_MINUTES,
         /**
-         * Kurze Nacht: ein früher Moment wurde übergangen; geweckt wird zur Zielzeit ([WakeReason.SHORT_NIGHT]), ausser ein
-         * neuer Moment kommt in den letzten [com.phasewake.app.core.ShortNight.LATE_MINUTES] davor.
+         * Kurze Nacht: ein früher Moment wurde übergangen; geweckt wird zur Zielzeit ([WakeReason.SHORT_NIGHT]), ausser
+         * ein neuer Moment kommt in den letzten [com.phasewake.app.core.ShortNight.LATE_MINUTES] davor.
          */
         var earlyBlocked: Boolean = false,
         /** Epochen vor dem Start der Sensoren ([WakeRules.unmeasuredEpochs]): leer, nicht an die Erkennung. */
@@ -286,7 +286,10 @@ class WakeService : LifecycleService() {
         const val ACTION_GOOD_NIGHT = "com.phasewake.app.wake.GOOD_NIGHT"
         const val ACTION_GOOD_NIGHT_CANCEL = "com.phasewake.app.wake.GOOD_NIGHT_CANCEL"
 
-        /** Vom Handy: Weckaufgabe ist zu sehen ([DataLayer.PATH_TASK_SHOWN]) bzw. ungelöst beendet ([DataLayer.PATH_TASK_GONE]). */
+        /**
+         * Vom Handy: Weckaufgabe ist zu sehen ([DataLayer.PATH_TASK_SHOWN]) bzw. ungelöst beendet
+         * ([DataLayer.PATH_TASK_GONE]).
+         */
         const val ACTION_TASK_SHOWN = "com.phasewake.app.wake.TASK_SHOWN"
         const val ACTION_TASK_GONE = "com.phasewake.app.wake.TASK_GONE"
         private const val ACTION_GOOD_NIGHT_RESUME = "com.phasewake.app.wake.GOOD_NIGHT_RESUME"
@@ -304,7 +307,10 @@ class WakeService : LifecycleService() {
         /** «Gute Nacht» nur, wenn die eingestellte Weckzeit höchstens so weit entfernt ist. */
         val GOOD_NIGHT_MAX_AHEAD: Duration = WakeRules.GOOD_NIGHT_MAX_AHEAD
 
-        /** Spätestens so lange nach der Zielzeit endet eine Nacht (4 × 10 Min Klingeln + 3 × 5 Min Schlummern passen gut hinein). */
+        /**
+         * Spätestens so lange nach der Zielzeit endet eine Nacht (4 × 10 Min Klingeln + 3 × 5 Min Schlummern passen gut
+         * hinein).
+         */
         internal val NIGHT_HARD_LIMIT: Duration = Duration.ofHours(2)
 
         /** Höchstens so lange klingelt es ohne Reaktion am Stück. */
@@ -333,7 +339,8 @@ class WakeService : LifecycleService() {
 
         /**
          * Startet die Messung für [plan] als Vordergrunddienst. [scheduledAt] und [receivedAt] (ms): geplante Zeit und
-         * Empfang des Fensteralarms, für die Verzögerung bis zum Start im Diagnose-Protokoll ([logStartDelay]); 0 = unbekannt.
+         * Empfang des Fensteralarms, für die Verzögerung bis zum Start im Diagnose-Protokoll ([logStartDelay]); 0 =
+         * unbekannt.
          */
         fun start(context: Context, plan: WakePlan, scheduledAt: Long = 0L, receivedAt: Long = 0L) {
             Log.i(TAG, "Fenster beginnt: $plan")
@@ -348,7 +355,10 @@ class WakeService : LifecycleService() {
             StartRefused.start(context, Intent(context, WakeService::class.java).setAction(ACTION_GOOD_NIGHT).putExtra(EXTRA_ALARM_ID, alarmId), null)
         }
 
-        /** Startet die automatische Einschlaf-Messung für den Wecker [alarmId] (aus [com.phasewake.app.wear.schedule.AutoOnset]). */
+        /**
+         * Startet die automatische Einschlaf-Messung für den Wecker [alarmId] (aus
+         * [com.phasewake.app.wear.schedule.AutoOnset]).
+         */
         fun autoOnset(context: Context, alarmId: String) {
             StartRefused.start(context, Intent(context, WakeService::class.java).setAction(ACTION_AUTO_ONSET).putExtra(EXTRA_ALARM_ID, alarmId), null)
         }
@@ -377,7 +387,8 @@ class WakeService : LifecycleService() {
             if (remoteTarget != null) intent.putExtra(EXTRA_REMOTE_TARGET, remoteTarget)
             if (plan != null) {
                 AlarmReceiver.putPlan(intent, plan)
-                // Verweigert das System den Start, erscheint bei Zielzeit und Schlummer-Ende die Weck-Mitteilung direkt.
+                // Verweigert das System den Start, erscheint bei Zielzeit und Schlummer-Ende die Weck-Mitteilung
+                // direkt.
                 StartRefused.start(context, intent, plan)
             } else if (running) {
                 // Nur an einen laufenden Dienst: Ein Start aus dem Hintergrund wäre verboten und unnötig.

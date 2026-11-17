@@ -11,7 +11,9 @@ import kotlin.test.assertTrue
 import kotlin.test.assertNotEquals
 import kotlin.test.assertNull
 
-/** Begonnene Nacht über einen Zeitzonenwechsel ([AlarmSchedule.begunNight]); gleiche Fälle wie `BegunNightTests.swift`. */
+/**
+ * Begonnene Nacht über einen Zeitzonenwechsel ([AlarmSchedule.begunNight]); gleiche Fälle wie `BegunNightTests.swift`.
+ */
 class BegunNightTest {
 
     private val zurich = ZoneId.of("Europe/Zurich")

@@ -34,7 +34,10 @@ class EditorRecreateTest {
     private val context: Context get() = RuntimeEnvironment.getApplication()
     private var open: ActivityController<MainActivity>? = null
 
-    /** Bildschirm zerstören und offene Arbeit von Compose erledigen, sonst zeichnen spätere Tests nicht mehr ([ComposeTree.drain]). */
+    /**
+     * Bildschirm zerstören und offene Arbeit von Compose erledigen, sonst zeichnen spätere Tests nicht mehr
+     * ([ComposeTree.drain]).
+     */
     @After
     fun cleanUp() {
         open?.pause()?.stop()?.destroy()

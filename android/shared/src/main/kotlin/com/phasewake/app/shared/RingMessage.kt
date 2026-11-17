@@ -3,10 +3,10 @@ package com.phasewake.app.shared
 import com.phasewake.app.core.TimeBounds
 
 /**
- * Inhalt der Nachrichten [DataLayer.PATH_RING], [DataLayer.PATH_STOP], [DataLayer.PATH_TASK_SHOWN] und [DataLayer.PATH_TASK_GONE]:
- * «kennung|zielzeitMs|sendezeitMs|schlummerÜbrig|schlummerBisMs». Jede Meldung trägt die Sendezeit; eine ohne
- * ([isCurrent]) stammt von einer veralteten App und wird verworfen (kein Rückfall für ältere Versionen). Die
- * übrigen Felder fehlen, wo sie nicht passen (`null`), z. B. die Zielzeit nach dem Schlummern am Handy.
+ * Inhalt der Nachrichten [DataLayer.PATH_RING], [DataLayer.PATH_STOP], [DataLayer.PATH_TASK_SHOWN] und
+ * [DataLayer.PATH_TASK_GONE]: «kennung|zielzeitMs|sendezeitMs|schlummerÜbrig|schlummerBisMs». Jede Meldung trägt die
+ * Sendezeit; eine ohne ([isCurrent]) stammt von einer veralteten App und wird verworfen (kein Rückfall für ältere
+ * Versionen). Die übrigen Felder fehlen, wo sie nicht passen (`null`), z. B. die Zielzeit nach dem Schlummern am Handy.
  *
  * @property target Zielzeit der laufenden Nacht (für das Aussetzen des Zweitweckers, nicht «jetzt»).
  * @property sentAt Sendezeit; ein verspätet zugestelltes «klingeln» wird verworfen.

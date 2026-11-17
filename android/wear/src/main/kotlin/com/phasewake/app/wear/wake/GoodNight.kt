@@ -111,8 +111,8 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
         val plan = spec?.let { s -> nightTarget?.let { AlarmSchedule.planAt(s, it) } }
         val alreadyDone = automatic && nightTarget != null && app.onsets.isDone(alarmId, nightTarget)
         val label = if (automatic) "auto onset" else "onset"
-        // Wenig Akku: automatisch nicht messen (die Messung ist eine Zugabe, der Wecker hat Vorrang). Lädt die Uhr, doch: Sie
-        // wartet am Ladegerät (die Zeit dort zählt nicht und verschiebt die Grenze).
+        // Wenig Akku: automatisch nicht messen (die Messung ist eine Zugabe, der Wecker hat Vorrang). Lädt die Uhr,
+        // doch: Sie wartet am Ladegerät (die Zeit dort zählt nicht und verschiebt die Grenze).
         val batteryManager = getSystemService(android.os.BatteryManager::class.java)
         val battery = batteryManager?.getIntProperty(android.os.BatteryManager.BATTERY_PROPERTY_CAPACITY)?.takeIf { it in 0..100 }
         val charging = batteryManager?.isCharging == true
@@ -128,8 +128,9 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
                 }
                 return@launch
             }
-            // Zeitgrenze schon vorbei (z. B. nach dem Wiederaufnehmen): Ende protokollieren, Nacht erledigt, Weckzeit gilt.
-            // Nach dem Wiederaufnehmen hatte sie gemessen: ohne Ergebnis gilt die Untergrenze kurzer Nächte (fail-closed).
+            // Zeitgrenze schon vorbei (z. B. nach dem Wiederaufnehmen): Ende protokollieren, Nacht erledigt, Weckzeit
+            // gilt. Nach dem Wiederaufnehmen hatte sie gemessen: ohne Ergebnis gilt die Untergrenze kurzer Nächte
+            // (fail-closed).
             is GoodNightStart.Decision.GiveUp -> {
                 if (stillWanted()) endBeforeMeasuring(alarmId, decision.latest, "$label ${decision.reason}", DiagKind.MEASURE_END, measured = resumed != null)
                 return@launch
@@ -152,7 +153,8 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
         if (!stillWanted()) return@launch
         // Erst nach dem Beginn der Einschlafdauer gestartet (oder wieder aufgenommen;
         // wie die Apple Watch): Bei sichtbarer App ist die Person wach, gemessen wird ab jetzt. Im
-        // Hintergrund ist die Einschlafzeit unbekannt: nicht gemessen, ohne Untergrenze. Die Lernphase zeichnet trotzdem auf.
+        // Hintergrund ist die Einschlafzeit unbekannt: nicht gemessen, ohne Untergrenze. Die Lernphase zeichnet
+        // trotzdem auf.
         val now = Instant.now()
         val plannedBed = OnsetRules.plannedBedAt(since, automatic, latest, sleepMinutes)
         val late = OnsetRules.lateStart(now, plannedBed, foreground = appVisible())
@@ -178,7 +180,8 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
                 stopGoodNight(measured = true)
             },
             extendCap = extendCap, personalFloor = config.personalFloor,
-            // Wegen des Ladens trotz wenig Akku begonnen, abgenommen noch zu tief: nicht gemessen, Nacht-Check wie beim Auslassen.
+            // Wegen des Ladens trotz wenig Akku begonnen, abgenommen noch zu tief: nicht gemessen, Nacht-Check wie beim
+            // Auslassen.
             onLowBattery = {
                 app.diag.log(DiagKind.BATTERY, "$label battery low after charging, not measured")
                 app.appScope.launch { app.scheduler.noteRecorderSkip(RecorderSkip(latest, RecorderSkip.Reason.BATTERY)) }
@@ -199,8 +202,8 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
         // Misst doch (z. B. «Gute Nacht» von Hand nach dem Laden): Meldung dieser Nacht aufheben.
         app.appScope.launch { app.scheduler.clearRecorderSkip(latest) }
         goodNightPending = false
-        // Lernphase: Die Uhr zeichnet ab jetzt die Nacht auf (nicht beim Wiederaufnehmen: dort läuft sie schon oder wurde
-        // von Hand gestoppt).
+        // Lernphase: Die Uhr zeichnet ab jetzt die Nacht auf (nicht beim Wiederaufnehmen: dort läuft sie schon oder
+        // wurde von Hand gestoppt).
         if (learning.active && resumed == null) RecordControl.startForLearning(this@startGoodNight, latest)
         // Zusätzlich, solange die Uhr wach ist: Dann gilt die eingestellte Weckzeit.
         handler.postDelayed(onsetTimeout, Duration.between(Instant.now(), monitor.giveUpAt).toMillis().coerceAtLeast(0))
@@ -214,8 +217,8 @@ private fun WakeService.refuseGoodNight() {
 }
 
 /**
- * Automatisch mit zu wenig Akku ([GoodNightStart.Decision.SkipBattery]): Nacht für [alarmId] mit Weckzeit [latest] erledigt,
- * Nacht-Check am Handy rot bis zur Weckzeit (wie die Apple Watch), Meldung der Lernphase.
+ * Automatisch mit zu wenig Akku ([GoodNightStart.Decision.SkipBattery]): Nacht für [alarmId] mit Weckzeit [latest]
+ * erledigt, Nacht-Check am Handy rot bis zur Weckzeit (wie die Apple Watch), Meldung der Lernphase.
  */
 private fun WakeService.skipForBattery(alarmId: String, latest: Instant, battery: Int?) {
     endBeforeMeasuring(alarmId, latest, "auto onset skipped battery $battery", DiagKind.BATTERY)
@@ -227,9 +230,9 @@ private fun WakeService.skipForBattery(alarmId: String, latest: Instant, battery
 }
 
 /**
- * Grundrauschen [floor] der Einschlaf-Messung für die Nacht von [alarmId] mit Weckzeit [latest] merken ([OnsetFloorStore]);
- * zu Beginn des Weckfensters hebt es die Schwellen höchstens auf das 1.5-Fache an. Eigene Arbeit: Ein
- * Fehler dabei hält das Einschlafen nicht auf.
+ * Grundrauschen [floor] der Einschlaf-Messung für die Nacht von [alarmId] mit Weckzeit [latest] merken
+ * ([OnsetFloorStore]); zu Beginn des Weckfensters hebt es die Schwellen höchstens auf das 1.5-Fache an. Eigene Arbeit:
+ * Ein Fehler dabei hält das Einschlafen nicht auf.
  */
 private fun WakeService.saveOnsetFloor(alarmId: String, latest: Instant, floor: Double?) {
     app.appScope.launch {
@@ -243,8 +246,8 @@ private fun WakeService.saveOnsetFloor(alarmId: String, latest: Instant, floor: 
 }
 
 /**
- * Zeitgeber der Zeitgrenze ([WakeService.onsetTimeout], solange die Uhr wach ist): Die Messung verlängert sich oder gibt
- * auf ([OnsetMonitor.checkLimit]); läuft sie weiter, gilt ihre neue Grenze.
+ * Zeitgeber der Zeitgrenze ([WakeService.onsetTimeout], solange die Uhr wach ist): Die Messung verlängert sich oder
+ * gibt auf ([OnsetMonitor.checkLimit]); läuft sie weiter, gilt ihre neue Grenze.
  */
 internal fun WakeService.onOnsetTimeout() {
     val monitor = onset ?: return stopGoodNight()
@@ -274,8 +277,8 @@ internal fun WakeService.onAsleep(spec: AlarmSpec, latest: Instant, asleep: Inst
     onsetNight = null
     goodNightActive = false
     forgetGoodNight()
-    // Lernphase: Einschlafdauer in der laufenden Aufzeichnung (auch einer von Hand begonnenen) festhalten. Eigene Arbeit:
-    // Ein Fehler dabei hält das Festlegen der Zielzeit unten nicht auf.
+    // Lernphase: Einschlafdauer in der laufenden Aufzeichnung (auch einer von Hand begonnenen) festhalten. Eigene
+    // Arbeit: Ein Fehler dabei hält das Festlegen der Zielzeit unten nicht auf.
     if (bedAt != null) {
         app.appScope.launch { (RecordService.since.value ?: app.recordings.active()?.start)?.let { app.recordings.appendOnset(it, bedAt, asleep) } }
     }
@@ -295,10 +298,11 @@ internal fun WakeService.onAsleep(spec: AlarmSpec, latest: Instant, asleep: Inst
 }
 
 /**
- * Wartet nicht mehr auf das Einschlafen (aufgegeben, abgebrochen): Für diese Nacht startet keine automatische Messung mehr.
- * Ins Diagnose-Protokoll: «give up» (auch «(max duration)»), wenn die Zeitgrenze erreicht ist, sonst «cancelled».
+ * Wartet nicht mehr auf das Einschlafen (aufgegeben, abgebrochen): Für diese Nacht startet keine automatische Messung
+ * mehr. Ins Diagnose-Protokoll: «give up» (auch «(max duration)»), wenn die Zeitgrenze erreicht ist, sonst «cancelled».
  * [measured]: Die Messung lief und gab ohne Einschlafzeit auf; dann gilt die Untergrenze kurzer Nächte (fail-closed,
- * [com.phasewake.app.wear.schedule.OnsetStore.measuredFor]). Von Hand abgebrochen nicht: Wer «Gute Nacht» aufhebt, will die eingestellte Weckzeit.
+ * [com.phasewake.app.wear.schedule.OnsetStore.measuredFor]). Von Hand abgebrochen nicht: Wer «Gute Nacht» aufhebt, will
+ * die eingestellte Weckzeit.
  */
 internal fun WakeService.stopGoodNight(measured: Boolean = false) {
     onsetNight?.let { (alarmId, latest) ->
@@ -317,8 +321,8 @@ internal fun WakeService.stopGoodNight(measured: Boolean = false) {
 }
 
 /**
- * Endet vor dem Messen ([detail] ins Diagnose-Protokoll als [kind]): Nacht für [alarmId] mit Weckzeit [latest] erledigt,
- * damit die automatische Messung nicht gleich wieder startet; die eingestellte Weckzeit gilt.
+ * Endet vor dem Messen ([detail] ins Diagnose-Protokoll als [kind]): Nacht für [alarmId] mit Weckzeit [latest]
+ * erledigt, damit die automatische Messung nicht gleich wieder startet; die eingestellte Weckzeit gilt.
  */
 private fun WakeService.endBeforeMeasuring(alarmId: String, latest: Instant, detail: String, kind: DiagKind, measured: Boolean = false) {
     app.diag.log(kind, detail)
@@ -329,8 +333,8 @@ private fun WakeService.endBeforeMeasuring(alarmId: String, latest: Instant, det
 /**
  * Das Weckfenster von [plan] beginnt, während die Einschlaf-Messung dieser Nacht noch ohne Ergebnis lief ([running]:
  * Wecker und eingestellte Weckzeit) oder nach einem Prozessende noch gespeichert war: Die Nacht gilt als gemessen ohne
- * Einschlafzeit (fail-closed, [com.phasewake.app.wear.schedule.OnsetStore.measuredFor]). Danach ist «Gute Nacht» vorbei (Stand gelöscht, wie
- * [forgetGoodNight]). Nur nach dem ersten Entsperren aufrufen.
+ * Einschlafzeit (fail-closed, [com.phasewake.app.wear.schedule.OnsetStore.measuredFor]). Danach ist «Gute Nacht» vorbei
+ * (Stand gelöscht, wie [forgetGoodNight]). Nur nach dem ersten Entsperren aufrufen.
  */
 internal suspend fun WakeService.endOnsetAtWindow(plan: WakePlan, running: Pair<String, Instant>?) {
     val saved = app.goodNight.load()

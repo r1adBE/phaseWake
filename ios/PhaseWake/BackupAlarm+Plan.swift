@@ -7,7 +7,8 @@ import AlarmKit
 #endif
 
 /// Eine Nacht mit Zweitwecker: Wecker, Zielzeit, Klingelzeit (Zielzeit plus Nachfrist), Weckton und Zeitzone der
-/// Planung. Gleich heisst: gleiche Kennung, gleicher Ton und gleiche Zeiten auf die Millisekunde (die Zone zählt nicht).
+/// Planung. Gleich heisst: gleiche Kennung, gleicher Ton und gleiche Zeiten auf die Millisekunde (die Zone zählt
+/// nicht).
 struct BackupSlot: Codable, Equatable, Sendable {
     /// Kennung des Weckers.
     let alarmId: String
@@ -106,11 +107,11 @@ extension BackupAlarm {
     }
 
     /// Gleicht die gestellten Sicherungen mit `wanted` ab: Gleiche, noch vorhandene bleiben (samt ihrer Zone; eine
-    /// ältere ohne Zone bekommt die von `wanted`); überholte, die noch nicht geklingelt haben, werden verworfen; fehlende
-    /// werden gestellt und sofort einzeln gemerkt. Eine Sicherung, deren Klingelzeit schon da ist, wird nie abgebrochen
-    /// (sie klingelt womöglich gerade). Als Mitteilung (vor iOS 26, AlarmKit gescheitert) nach Klingelzeit im Rahmen von
-    /// `NotificationBudget`: Eine bleibende, die näher gerückt ist, bekommt ihre Kette ergänzt; eine fehlende ohne Platz
-    /// wird nicht gestellt und nicht gemerkt (der Nacht-Check sieht dann den kürzeren Vorlauf).
+    /// ältere ohne Zone bekommt die von `wanted`); überholte, die noch nicht geklingelt haben, werden verworfen;
+    /// fehlende werden gestellt und sofort einzeln gemerkt. Eine Sicherung, deren Klingelzeit schon da ist, wird nie
+    /// abgebrochen (sie klingelt womöglich gerade). Als Mitteilung (vor iOS 26, AlarmKit gescheitert) nach Klingelzeit
+    /// im Rahmen von `NotificationBudget`: Eine bleibende, die näher gerückt ist, bekommt ihre Kette ergänzt; eine
+    /// fehlende ohne Platz wird nicht gestellt und nicht gemerkt (der Nacht-Check sieht dann den kürzeren Vorlauf).
     func apply(_ wanted: [BackupSlot], now: Date) async {
         await cancelLegacyBackups()
         cancelOrphans()
@@ -186,8 +187,8 @@ extension BackupAlarm {
 
     /// Ob die Sicherung bald aufgebraucht ist (Nacht-Check, rot): Ein eingeschalteter Wecker mit Zweitwecker hat noch
     /// einen Termin, aber es ist keine Sicherung gestellt, oder die letzte klingelt in weniger als `shortHorizon` und
-    /// danach folgt noch ein Termin eines wiederholten Weckers (einmalige haben nach ihrem ersten keinen mehr). Dann hat
-    /// iOS die App zu lange nicht geweckt; Öffnen plant wieder `horizon` weit. Wartet die laufende Neuplanung ab.
+    /// danach folgt noch ein Termin eines wiederholten Weckers (einmalige haben nach ihrem ersten keinen mehr). Dann
+    /// hat iOS die App zu lange nicht geweckt; Öffnen plant wieder `horizon` weit. Wartet die laufende Neuplanung ab.
     func horizonShort(_ alarms: [AlarmSpec], now: Date = Date()) async -> Bool {
         await settled()
         let eligible = alarms.filter(\.phoneBackup)
@@ -237,8 +238,8 @@ extension BackupAlarm {
         scheduled.filter { !known.contains($0) }
     }
 
-    /// Verwirft geplante AlarmKit-Alarme ohne gemerkte Kennung (``orphans(scheduled:known:)``). Sie entstanden, wenn ein
-    /// Neuplanen vor dem ersten Entsperren den gemerkten Stand überschrieb, und klängen sonst
+    /// Verwirft geplante AlarmKit-Alarme ohne gemerkte Kennung (``orphans(scheduled:known:)``). Sie entstanden, wenn
+    /// ein Neuplanen vor dem ersten Entsperren den gemerkten Stand überschrieb, und klängen sonst
     /// doppelt oder nach dem Ausschalten des Weckers. Jede eigene Kennung wird gemerkt, bevor ihr Alarm gestellt wird;
     /// `apply` läuft nur mit gelesenem Stand (`reschedule`). Ein klingelnder oder laufender Alarm bleibt.
     private func cancelOrphans() {

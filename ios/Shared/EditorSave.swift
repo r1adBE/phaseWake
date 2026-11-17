@@ -10,7 +10,8 @@ enum EditorSave: Equatable {
     /// Neuer Wecker, aber alle Plätze sind inzwischen belegt: Hinweis auf die Höchstzahl, der Editor bleibt offen.
     case full
 
-    /// Entscheid für den Entwurf `draftId`; `existed`: beim Öffnen ein gespeicherter Wecker, `storedIds`: gespeicherte Wecker.
+    /// Entscheid für den Entwurf `draftId`; `existed`: beim Öffnen ein gespeicherter Wecker, `storedIds`: gespeicherte
+    /// Wecker.
     static func check(existed: Bool, storedIds: [String], draftId: String, maxAlarms: Int) -> EditorSave {
         if storedIds.contains(draftId) { return .save }
         if existed { return .gone }

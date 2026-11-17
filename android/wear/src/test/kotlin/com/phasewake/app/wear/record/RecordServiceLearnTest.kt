@@ -66,7 +66,8 @@ class RecordServiceLearnTest {
         controllers.forEach { it.destroy() }
         runBlocking { WatchDiag.setShown(context, false) }
         RecordService.clock = Instant::now
-        // Beenden und abwarten (z. B. die Mitteilung von [LearnNotice.skipped]); sonst käme sie verspätet im nächsten Test an.
+        // Beenden und abwarten (z. B. die Mitteilung von [LearnNotice.skipped]); sonst käme sie verspätet im nächsten
+        // Test an.
         runBlocking { withTimeout(10_000) { context.wearApp.appScope.coroutineContext.job.cancelAndJoin() } }
         File(context.filesDir, "recordings").deleteRecursively()
     }

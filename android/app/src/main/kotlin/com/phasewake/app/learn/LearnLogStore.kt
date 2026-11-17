@@ -47,7 +47,8 @@ class LearnLogStore(private val store: DataStore<Preferences>, private val zone:
 
     /**
      * Neuplanen um [now]: die Nächte mit Wecker der nächsten Tage aus [alarms] (mit [holidays]) merken
-     * ([LearnLog.mergeAlarmNights]); vergangene bleiben. Beim ersten Mal beginnt das Wissen über Wecker (davor unbekannt).
+     * ([LearnLog.mergeAlarmNights]); vergangene bleiben. Beim ersten Mal beginnt das Wissen über Wecker (davor
+     * unbekannt).
      */
     suspend fun noteAlarms(alarms: List<AlarmSpec>, holidays: Set<LocalDate>, now: Instant) {
         val planned = LearnLog.upcomingTargets(alarms, now, zone(), holidays)

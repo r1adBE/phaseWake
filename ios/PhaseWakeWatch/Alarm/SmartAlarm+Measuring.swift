@@ -72,8 +72,8 @@ extension SmartAlarm {
             self.onsetDone(.failed, run: run, plan: plan)
         }
         // Ab Fensterbeginn gilt die geplante Zeit (`AlarmSchedule.begunNight`): Rückfall jetzt zum festen Zeitpunkt.
-        // Als Kalenderzeit ohne Zone läge er nach einer Reise nach Osten schon zurück (iOS stellte ihn womöglich sofort zu,
-        // dann weckte die Sitzung zur geplanten Zeit ein zweites Mal) oder rutschte auf morgen.
+        // Als Kalenderzeit ohne Zone läge er nach einer Reise nach Osten schon zurück (iOS stellte ihn womöglich sofort
+        // zu, dann weckte die Sitzung zur geplanten Zeit ein zweites Mal) oder rutschte auf morgen.
         let pending = plan == model.pendingNight
         if let at = WatchRules.fallbackDate(plan, pending: pending, now: Date(), delay: Self.fallbackDelay) {
             scheduleFallback(at: at, id: Self.fallbackKey(for: plan.alarmId), fixed: true)
@@ -121,8 +121,8 @@ extension SmartAlarm {
 
     /// Sitzung mitten in der Messung abgebrochen. Vor der Zielzeit nicht sofort wecken: Es weckt der feste
     /// Rückfall kurz nach der Zielzeit (in `beginMeasuring` gestellt), die Nacht wartet auf ihn (`waiting`), und die
-    /// bisher gemessenen Epochen bleiben als Nacht auf der Uhr (Wecken zur Zielzeit, bis die Nacht regulär endet und sie
-    /// ersetzt; nicht ans iPhone, das sonst seinen Zweitwecker aussetzte). Ab der Zielzeit sofort per Mitteilung.
+    /// bisher gemessenen Epochen bleiben als Nacht auf der Uhr (Wecken zur Zielzeit, bis die Nacht regulär endet und
+    /// sie ersetzt; nicht ans iPhone, das sonst seinen Zweitwecker aussetzte). Ab der Zielzeit sofort per Mitteilung.
     func measuringInterrupted(_ plan: WakePlan) {
         logMeasureEnd(" interrupted")
         guard let at = SessionRules.interruptedWake(now: Date(), target: plan.target) else {
@@ -139,10 +139,10 @@ extension SmartAlarm {
         phase = .idle
     }
 
-    /// Messung endet ohne Wecken (Wecker geändert, aus- oder abgeschaltet). Bei offener App bestätigt eine kurze Vibration
-    /// der laufenden Sitzung das Ende (eine Smart-Alarm-Sitzung ohne Vibration lässt watchOS warnen und anbieten,
-    /// künftige abzuschalten; die Person ist da wach). Im Hintergrund nicht: `notifyUser` zeigte dann den Weckhinweis des
-    /// Systems mitten in der Nacht (bleibt offen, am Gerät zu prüfen, `docs/ENTSCHEIDE.md`).
+    /// Messung endet ohne Wecken (Wecker geändert, aus- oder abgeschaltet). Bei offener App bestätigt eine kurze
+    /// Vibration der laufenden Sitzung das Ende (eine Smart-Alarm-Sitzung ohne Vibration lässt watchOS warnen und
+    /// anbieten, künftige abzuschalten; die Person ist da wach). Im Hintergrund nicht: `notifyUser` zeigte dann den
+    /// Weckhinweis des Systems mitten in der Nacht (bleibt offen, am Gerät zu prüfen, `docs/ENTSCHEIDE.md`).
     func cancelMeasuring() {
         logMeasureEnd(" cancelled")
         stopSensors()
@@ -262,8 +262,8 @@ extension SmartAlarm {
         ring(held)
     }
 
-    /// Zusammenfassung am Ende einer Messung, einmal je Nacht: Epochen gesamt und davon mit Puls («hr epochs N/M») sowie
-    /// die Kennzahlen der Schwellen (``NoiseFloor/summary(config:motions:)``: Grundrauschen, wirksame Leicht- und
+    /// Zusammenfassung am Ende einer Messung, einmal je Nacht: Epochen gesamt und davon mit Puls («hr epochs N/M»)
+    /// sowie die Kennzahlen der Schwellen (``NoiseFloor/summary(config:motions:)``: Grundrauschen, wirksame Leicht- und
     /// Wach-Schwelle am Ende), ohne einzelne Messwerte. Nur während der Messung (`measuring`); `note` ergänzt den Grund
     /// (z. B. abgebrochen).
     func logMeasureEnd(_ note: String = "") {

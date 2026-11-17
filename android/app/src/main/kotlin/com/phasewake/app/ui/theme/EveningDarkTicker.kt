@@ -16,8 +16,8 @@ data class EveningDarkSetting(val enabled: Boolean = EveningDark.DEFAULT_ENABLED
 /**
  * Ob «Abends dunkel ab» gerade gilt, als Flow: sofort der Zustand jetzt, danach genau an jeder Grenze
  * ([EveningDark.nextChange]) der neue – kein Abfragen in festen Abständen. Eine geänderte Einstellung beginnt neu. Wer
- * sammelt, sammelt nur im Vordergrund (`collectAsStateWithLifecycle`): Nach dem Zurückkehren (auch nach einer verstellten
- * Uhr oder Zeitzone) wird wieder ab jetzt gerechnet.
+ * sammelt, sammelt nur im Vordergrund (`collectAsStateWithLifecycle`): Nach dem Zurückkehren (auch nach einer
+ * verstellten Uhr oder Zeitzone) wird wieder ab jetzt gerechnet.
  */
 object EveningDarkTicker {
     fun flow(

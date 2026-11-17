@@ -39,9 +39,9 @@ import kotlin.math.roundToInt
 
 /**
  * Lernphase auf der Startseite: solange sie läuft «Lernphase: Nacht N von 7» ([night]) mit kurzer Erklärung, danach
- * einmal «Angepasst an dich» mit den gelernten Werten ([values]) und «OK» ([onSeen]). [autoHint]: «Einschlafen automatisch
- * erkennen» ist aus – dann der Hinweis, wie die Nächte trotzdem zählen. [onConsent] gesetzt: noch nicht gefragt, die Karte
- * fragt einmal «Lernphase starten» / «Später». Lern-Übersicht: [miss] = letzte Nacht hat
+ * einmal «Angepasst an dich» mit den gelernten Werten ([values]) und «OK» ([onSeen]). [autoHint]: «Einschlafen
+ * automatisch erkennen» ist aus – dann der Hinweis, wie die Nächte trotzdem zählen. [onConsent] gesetzt: noch nicht
+ * gefragt, die Karte fragt einmal «Lernphase starten» / «Später». Lern-Übersicht: [miss] = letzte Nacht hat
  * unerwartet nicht gezählt ([LearnNights.lastNightMiss]), mit Grund; [onDetails] öffnet die Übersicht aller Nächte.
  */
 /**
@@ -67,13 +67,16 @@ class HomeLearning(
     val miss: LearnNights.Night? = null,
     val onDetails: (() -> Unit)? = null,
 ) {
-    /** Die Lernphase läuft (nicht die Frage, nicht «Angepasst an dich»): Dann steckt «Nacht aufzeichnen» in dieser Karte. */
+    /**
+     * Die Lernphase läuft (nicht die Frage, nicht «Angepasst an dich»): Dann steckt «Nacht aufzeichnen» in dieser
+     * Karte.
+     */
     val inProgress: Boolean get() = values == null && onConsent == null
 }
 
 /**
- * Karte der Lernphase, siehe [HomeLearning]. Solange sie läuft, trägt sie auch «Nacht aufzeichnen» ([record], [onRecord])
- * als kleinen zweiten Knopf neben «Details» statt einer eigenen Karte; läuft eine Aufzeichnung, steht
+ * Karte der Lernphase, siehe [HomeLearning]. Solange sie läuft, trägt sie auch «Nacht aufzeichnen» ([record],
+ * [onRecord]) als kleinen zweiten Knopf neben «Details» statt einer eigenen Karte; läuft eine Aufzeichnung, steht
  * «Aufzeichnung läuft seit …» darüber und der Knopf stoppt sie.
  */
 @Composable

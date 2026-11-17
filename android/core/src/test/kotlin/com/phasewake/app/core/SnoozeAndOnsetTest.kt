@@ -55,7 +55,8 @@ class SnoozeAndOnsetTest {
         // keinen mehr. Vorher galt «eingeschlafen beim Ablegen» (44); jetzt fehlt der Puls in der Strecke.
         val motions = List(100) { if (it < 44) 0.5 else 0.001 }
         assertNull(SleepOnset.find(motions, 0.002, List(100) { if (it == 40) 58.0 else null }))
-        // Getragen, Puls nur alle 12 Min (0, 24, 48, 72), still ab 36: Einschlafen bei 36, nicht erst beim nächsten Puls (48).
+        // Getragen, Puls nur alle 12 Min (0, 24, 48, 72), still ab 36: Einschlafen bei 36, nicht erst beim nächsten
+        // Puls (48).
         val sleeper = List(120) { if (it < 36) 0.5 else 0.001 }
         assertEquals(36, SleepOnset.find(sleeper, 0.002, List(120) { if (it % 24 == 0) 58.0 else null }))
         // Puls alle 15 Min (grösster üblicher Abstand der Apple Watch): ebenso gefunden.
@@ -86,7 +87,8 @@ class SnoozeAndOnsetTest {
         val motions: List<Double?> = restless + quiet
         // Mit der festen Leicht-Schwelle 0.002 nie ruhig.
         assertNull(SleepOnset.find(motions, DetectorConfig.DEFAULT_LIGHT_THRESHOLD))
-        // Grundrauschen 0.0217 (20. Perzentil, Rang 12 von 60), wirksame Schwelle 0.05425: eingeschlafen zu Beginn der Ruhe.
+        // Grundrauschen 0.0217 (20. Perzentil, Rang 12 von 60), wirksame Schwelle 0.05425: eingeschlafen zu Beginn der
+        // Ruhe.
         val threshold = NoiseFloor.light(DetectorConfig.DEFAULT_LIGHT_THRESHOLD, NoiseFloor.floor(motions))
         assertEquals(0.05425, threshold, 1e-12)
         assertEquals(30, SleepOnset.find(motions, threshold))

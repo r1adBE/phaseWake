@@ -42,7 +42,9 @@ internal object GoodNightStart {
         /** Nicht gestartet ([reason] ins Protokoll, z. B. «no alarm», «window begun»). */
         data class NotStarted(val reason: String) : Decision
 
-        /** Zeitgrenze schon vorbei ([reason]: «give up» bzw. «give up (max duration)»): Nacht erledigt, Weckzeit gilt. */
+        /**
+         * Zeitgrenze schon vorbei ([reason]: «give up» bzw. «give up (max duration)»): Nacht erledigt, Weckzeit gilt.
+         */
         data class GiveUp(val reason: String, val latest: Instant) : Decision
 
         /** Automatisch mit zu wenig Akku (und nicht am Laden): diese Nacht nicht messen. */
@@ -57,9 +59,9 @@ internal object GoodNightStart {
 
     /**
      * Nach dem Lesen: Wecker gefunden ([alarmFound]) mit Schlafdauer ([hasDuration]), automatisch ([automatic]), Beginn
-     * von «Gute Nacht» [since], eingestellte Weckzeit der Nacht [latest] mit Beginn des Weckfensters [windowStart], Nacht
-     * schon erledigt ([alreadyDone], nur automatisch), jetzt [now], Akku [battery] (Prozent, `null` unbekannt) und
-     * [charging]. Reihenfolge wie bisher: Gründe gegen den Start, dann die Zeitgrenze, dann der Akku.
+     * von «Gute Nacht» [since], eingestellte Weckzeit der Nacht [latest] mit Beginn des Weckfensters [windowStart],
+     * Nacht schon erledigt ([alreadyDone], nur automatisch), jetzt [now], Akku [battery] (Prozent, `null` unbekannt)
+     * und [charging]. Reihenfolge wie bisher: Gründe gegen den Start, dann die Zeitgrenze, dann der Akku.
      */
     fun decide(
         alarmFound: Boolean,
@@ -83,6 +85,8 @@ internal object GoodNightStart {
         return Decision.Measure(latest, latestGiveUp, maxEnd)
     }
 
-    /** Grenze der Verlängerung bei spätem Einschlafen: [OnsetMonitor.MAX_EXTENDED] nach [since], nie über [windowStart]. */
+    /**
+     * Grenze der Verlängerung bei spätem Einschlafen: [OnsetMonitor.MAX_EXTENDED] nach [since], nie über [windowStart].
+     */
     fun extendCap(since: Instant, windowStart: Instant?): Instant? = windowStart?.let { minOf(since.plus(OnsetMonitor.MAX_EXTENDED), it) }
 }

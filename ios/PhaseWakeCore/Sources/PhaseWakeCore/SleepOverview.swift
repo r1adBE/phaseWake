@@ -1,6 +1,7 @@
 import Foundation
 
-/// Einteilung der Übersicht im Verlauf: je Säule eine Nacht, eine Woche oder ein Monat. Identisch zu `OverviewUnit` (Kotlin).
+/// Einteilung der Übersicht im Verlauf: je Säule eine Nacht, eine Woche oder ein Monat. Identisch zu `OverviewUnit`
+/// (Kotlin).
 public enum OverviewUnit: String, CaseIterable, Sendable {
     case days = "DAYS"
     case weeks = "WEEKS"
@@ -16,9 +17,9 @@ public enum OverviewUnit: String, CaseIterable, Sendable {
     }
 }
 
-/// Eine Säule der Übersicht über die Nachtdaten `first` bis `last` («yyyy-MM-dd», eingeschlossen; bei ``OverviewUnit/days``
-/// gleich). Wochen und Monate richten sich nach dem Morgen (Nachtdatum + 1 Tag), wie die Daten im Verlauf.
-/// Identisch zu `OverviewBar` (Kotlin).
+/// Eine Säule der Übersicht über die Nachtdaten `first` bis `last` («yyyy-MM-dd», eingeschlossen; bei
+/// ``OverviewUnit/days`` gleich). Wochen und Monate richten sich nach dem Morgen (Nachtdatum + 1 Tag), wie die Daten im
+/// Verlauf. Identisch zu `OverviewBar` (Kotlin).
 public struct OverviewBar: Equatable, Sendable {
     /// Erstes Nachtdatum der Säule.
     public let first: String
@@ -31,12 +32,14 @@ public struct OverviewBar: Equatable, Sendable {
     /// Ob `asleepMinutes` das Schlafziel erreicht (``SleepGoal/reached(asleepMinutes:goalMinutes:)``).
     public let reached: Bool
     /// Durchschnittliche Minuten je bekannter Phase (wach, REM, leicht, tief) über die Nächte dieser Säule; leer, wenn
-    /// eine Nacht der Säule keine Phasen hat (dann zeigt die Säule nur die Dauer, neutral). Für die Aufteilung der Säule.
+    /// eine Nacht der Säule keine Phasen hat (dann zeigt die Säule nur die Dauer, neutral). Für die Aufteilung der
+    /// Säule.
     public let stageMinutes: [SleepStage: Int]
 }
 
 /// Übersicht «Tage / Wochen / Monate»: Säulen, älteste zuerst, und die Durchschnitte aller Nächte im gezeigten Bereich.
-/// Uhrzeiten als Minuten ab Mittag (``Regularity/minutesFromNoon(_:calendar:)``). Identisch zu `SleepOverview` (Kotlin).
+/// Uhrzeiten als Minuten ab Mittag (``Regularity/minutesFromNoon(_:calendar:)``). Identisch zu `SleepOverview`
+/// (Kotlin).
 public struct SleepOverview: Equatable, Sendable {
     /// Einteilung der Säulen.
     public let unit: OverviewUnit
@@ -78,7 +81,8 @@ public struct PulseCurve: Equatable, Sendable {
     public static let bucketEpochs = 10
     /// Mindestens so viele Epochen mit Puls, sonst keine Kurve.
     public static let minValues = 10
-    /// Mindestens so viele Stücke mit Puls (6 × 5 Min), sonst keine Kurve: Wenige Punkte gäben eine fast flache, nichtssagende Linie.
+    /// Mindestens so viele Stücke mit Puls (6 × 5 Min), sonst keine Kurve: Wenige Punkte gäben eine fast flache,
+    /// nichtssagende Linie.
     public static let minBuckets = 6
 }
 
@@ -130,7 +134,8 @@ public enum SleepOverviews {
 
     /// Durchschnittliche Minuten je bekannter Phase über die Nächte in `sleeps` (Phasen auf die Nacht zugeschnitten,
     /// Millisekunden summiert, dann abgerundet). Leer, wenn `sleeps` leer ist oder eine Nacht keine Schlafphase
-    /// (REM, leicht, tief) hat: Ein Durchschnitt nur über einen Teil der Nächte passte nicht zur Höhe der Säule (Durchschnitt aller Nächte).
+    /// (REM, leicht, tief) hat: Ein Durchschnitt nur über einen Teil der Nächte passte nicht zur Höhe der Säule
+    /// (Durchschnitt aller Nächte).
     public static func stageAverage(_ sleeps: [SleepSummary], stages: [StageSpan]) -> [SleepStage: Int] {
         let perNight = sleeps.map { sleep in
             StageCheck.clip(stages, from: sleep.start, to: sleep.end).filter { ChartData.level($0.stage) != nil }

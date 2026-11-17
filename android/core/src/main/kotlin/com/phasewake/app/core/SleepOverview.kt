@@ -34,7 +34,8 @@ data class OverviewBar(
     val reached: Boolean,
     /**
      * Durchschnittliche Minuten je bekannter Phase (wach, REM, leicht, tief) über die Nächte dieser Säule; leer, wenn
-     * eine Nacht der Säule keine Phasen hat (dann zeigt die Säule nur die Dauer, neutral). Für die Aufteilung der Säule.
+     * eine Nacht der Säule keine Phasen hat (dann zeigt die Säule nur die Dauer, neutral). Für die Aufteilung der
+     * Säule.
      */
     val stageMinutes: Map<SleepStage, Long> = emptyMap(),
 )
@@ -70,7 +71,9 @@ data class PulseCurve(
     val start: Instant,
     /** Ende der letzten Epoche. */
     val end: Instant,
-    /** Mittel je Stück in Schlägen pro Minute; `null` ohne Werte im Stück. Stück `i` beginnt bei `start + i · 5 Min`. */
+    /**
+     * Mittel je Stück in Schlägen pro Minute; `null` ohne Werte im Stück. Stück `i` beginnt bei `start + i · 5 Min`.
+     */
     val buckets: List<Double?>,
     /** Mittel aller Epochen mit Puls, gerundet. */
     val average: Int,
@@ -86,7 +89,10 @@ data class PulseCurve(
         /** Mindestens so viele Epochen mit Puls, sonst keine Kurve. */
         const val MIN_VALUES: Int = 10
 
-        /** Mindestens so viele Stücke mit Puls (6 × 5 Min), sonst keine Kurve: Wenige Punkte gäben eine fast flache, nichtssagende Linie. */
+        /**
+         * Mindestens so viele Stücke mit Puls (6 × 5 Min), sonst keine Kurve: Wenige Punkte gäben eine fast flache,
+         * nichtssagende Linie.
+         */
         const val MIN_BUCKETS: Int = 6
     }
 }
@@ -141,7 +147,8 @@ object SleepOverviews {
     /**
      * Durchschnittliche Minuten je bekannter Phase über die Nächte in [sleeps] (Phasen auf die Nacht zugeschnitten,
      * Millisekunden summiert, dann abgerundet). Leer, wenn [sleeps] leer ist oder eine Nacht keine Schlafphase (REM,
-     * leicht, tief) hat: Ein Durchschnitt nur über einen Teil der Nächte passte nicht zur Höhe der Säule (Durchschnitt aller Nächte).
+     * leicht, tief) hat: Ein Durchschnitt nur über einen Teil der Nächte passte nicht zur Höhe der Säule (Durchschnitt
+     * aller Nächte).
      */
     fun stageAverage(sleeps: Collection<SleepSummary>, stages: List<StageSpan>): Map<SleepStage, Long> {
         val perNight = sleeps.map { sleep ->

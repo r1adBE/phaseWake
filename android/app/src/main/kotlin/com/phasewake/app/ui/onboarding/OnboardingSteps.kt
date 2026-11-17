@@ -151,7 +151,10 @@ internal fun AlarmStep(model: OnboardingModel, time: TimePickerState, window: In
     }
 }
 
-/** Ob «Weiter» auf der Seite «Erster Wecker» den gezeigten Wecker anlegt: nur, wenn hier noch keiner angelegt wurde und noch keiner besteht. */
+/**
+ * Ob «Weiter» auf der Seite «Erster Wecker» den gezeigten Wecker anlegt: nur, wenn hier noch keiner angelegt wurde und
+ * noch keiner besteht.
+ */
 internal fun createsOnNext(createdHere: Boolean, model: OnboardingModel): Boolean =
     !createdHere && !model.hasAlarm && model.canCreateAlarm
 

@@ -246,7 +246,8 @@ final class AppleLearningTests: XCTestCase {
     }
 
     func testRecordingFollowsAMovedAlarmOfTheSameNight() {
-        // Echte Nacht vom 12.11.2026 (wie `LearnFollowPlanTest`, Android): Weckzeit 08:57, um 01:17 auf 09:57 verschoben.
+        // Echte Nacht vom 12.11.2026 (wie `LearnFollowPlanTest`, Android): Weckzeit 08:57, um 01:17 auf 09:57
+        // verschoben.
         let now = Date(timeIntervalSince1970: 1_794_442_620) // 2026-11-12 01:17 Zürich
         let old = now.addingTimeInterval(7 * 3600 + 40 * 60)
         let moved = old.addingTimeInterval(3600)

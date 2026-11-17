@@ -11,8 +11,9 @@ final class BatteryHintPhoneTests: XCTestCase {
                               autoOnset: autoOnset, learning: learning)
     }
 
-    /// Uhr bei 25 %: Bisher «Bereit», obwohl sie weder Einschlafen misst (unter 30 %) noch für die Lernphase aufzeichnet
-    /// (unter 40 %). Jetzt ein Hinweis (wie Android), höchstens einer, nicht unter 20 % (dort «lade die Uhr»).
+    /// Uhr bei 25 %: Bisher «Bereit», obwohl sie weder Einschlafen misst (unter 30 %) noch für die Lernphase
+    /// aufzeichnet (unter 40 %). Jetzt ein Hinweis (wie Android), höchstens einer, nicht unter 20 % (dort «lade die
+    /// Uhr»).
     @MainActor
     func testWatchBatteryHintsBeforeTheNight() {
         let now = Date(timeIntervalSince1970: 1_793_000_000)

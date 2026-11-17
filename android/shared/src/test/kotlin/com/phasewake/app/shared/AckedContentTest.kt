@@ -81,7 +81,8 @@ class AckedContentTest {
         val box = outbox()
         val content = acked()
         assertTrue(box.ackedAndRemember(content, assertNotNull(start(box, content, "wecker-a"))))
-        // Geändert, noch nicht bestätigt; dann zurück auf den bestätigten Stand: Der wartende Eintrag darf nicht bleiben.
+        // Geändert, noch nicht bestätigt; dann zurück auf den bestätigten Stand: Der wartende Eintrag darf nicht
+        // bleiben.
         box.enqueue(QueueMessages.KEY_ALARMS, DataLayer.PATH_MSG_ALARMS, DataLayer.CAPABILITY_WATCH, "wecker-b").also { runCurrent() }
         assertNotNull(start(box, content, "wecker-a"))
         assertEquals(listOf("wecker-a"), box.pending().map { it.body })

@@ -57,7 +57,10 @@ internal object PhoneStatus {
         )
     }
 
-    /** «2026-10-30T06:00:00Z – 2026-10-30T06:30:00Z» der Uhr als Ortszeit «30.10.26, 07:00 – 07:30»; unlesbar: wie geliefert. */
+    /**
+     * «2026-10-30T06:00:00Z – 2026-10-30T06:30:00Z» der Uhr als Ortszeit «30.10.26, 07:00 – 07:30»; unlesbar: wie
+     * geliefert.
+     */
     private fun watchWindow(text: String): String {
         val parts = text.split(" – ").mapNotNull { runCatching { Instant.parse(it.trim()) }.getOrNull() }
         if (parts.size != 2) return text

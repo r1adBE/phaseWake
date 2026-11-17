@@ -24,9 +24,9 @@ import kotlin.math.sin
 /**
  * Countdown zum nächsten Wecker als grosser Bogen über dem Weckfenster (wie eine Sonnenbahn): Der Bogen steht für die
  * letzten [ARC_HOURS] Stunden vor der Zielzeit ([arcPosition]). Links beginnend füllt er sich bis «jetzt» (heller
- * Punkt), rechts leuchtet das Weckfenster als warmes Segment und endet im Weckpunkt. Farben aus [SkyInk] (Nacht- oder Tageshimmel). Feine Marken als Skala. Zeichnet
- * sich beim Erscheinen einmal ein, danach ruht er (bewegt sich nur mit der Zeit). Reine Zierde: Die Texte im Bogen sagen
- * dasselbe.
+ * Punkt), rechts leuchtet das Weckfenster als warmes Segment und endet im Weckpunkt. Farben aus [SkyInk] (Nacht- oder
+ * Tageshimmel). Feine Marken als Skala. Zeichnet sich beim Erscheinen einmal ein, danach ruht er (bewegt sich nur mit
+ * der Zeit). Reine Zierde: Die Texte im Bogen sagen dasselbe.
  */
 @Composable
 internal fun WakeArc(now: Instant, windowStart: Instant, target: Instant, exact: Boolean, modifier: Modifier = Modifier, ink: SkyInk = SkyInk.OnNight) {
@@ -95,8 +95,8 @@ private fun DrawScope.gradientArc(from: Float, to: Float, start: Color, end: Col
 
 /**
  * Lage von [at] auf dem Bogen (0 = [ARC_HOURS] vor der Zielzeit, 1 = [target]). Das Weckfenster ([windowStart] bis
- * [target]) bekommt immer [WINDOW_SHARE] des Bogens, damit es auch bei 20 Minuten sichtbar leuchtet; die Zeit davor teilt
- * sich den Rest gleichmässig. Ohne Fenster («Genau») gehört der ganze Bogen der Zeit davor.
+ * [target]) bekommt immer [WINDOW_SHARE] des Bogens, damit es auch bei 20 Minuten sichtbar leuchtet; die Zeit davor
+ * teilt sich den Rest gleichmässig. Ohne Fenster («Genau») gehört der ganze Bogen der Zeit davor.
  */
 internal fun arcPosition(at: Instant, windowStart: Instant, target: Instant): Float {
     val windowMinutes = Duration.between(windowStart, target).toMinutes().toFloat()

@@ -16,7 +16,8 @@ object RingNotifications {
 
     /**
      * Zweite Kennung der Weck-Mitteilung, abwechselnd mit [ID_RING] ([com.phasewake.app.core.RingAlert.nextId]):
-     * Android startet das Vollbild nur bei einer neuen Mitteilung, nie bei einer Aktualisierung (z. B. nach dem Schlummern).
+     * Android startet das Vollbild nur bei einer neuen Mitteilung, nie bei einer Aktualisierung (z. B. nach dem
+     * Schlummern).
      */
     const val ID_RING_ALT = 7
 

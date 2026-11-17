@@ -15,7 +15,8 @@ final class SleepOverviewTests: XCTestCase {
         return zurich.date(from: DateComponents(year: parts[0], month: parts[1], day: parts[2], hour: hour, minute: minute))!
     }
 
-    /// Schlaf am Abend von `night` (Nachtdatum) um `bedHour`:`bedMinute` bis am Morgen danach um `wakeHour`:`wakeMinute`.
+    /// Schlaf am Abend von `night` (Nachtdatum) um `bedHour`:`bedMinute` bis am Morgen danach um
+    /// `wakeHour`:`wakeMinute`.
     private func sleep(_ night: String, _ bedHour: Int, _ bedMinute: Int, wakeHour: Int = 6, wakeMinute: Int = 30) -> SleepSummary {
         let start = at(night, bedHour, bedMinute)
         let end = at(NightDate.adding(1, to: night), wakeHour, wakeMinute)

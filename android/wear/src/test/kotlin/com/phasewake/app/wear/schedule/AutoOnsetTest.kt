@@ -16,8 +16,9 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Beginn der automatischen Einschlaf-Messung ([AutoOnset.startAt]) und Einschlafzeit der kommenden Nacht ([OnsetStore]).
- * Robolectric, weil die Grenzen beim Weckdienst liegen; schlichte [Application], damit der Start der App nichts plant.
+ * Beginn der automatischen Einschlaf-Messung ([AutoOnset.startAt]) und Einschlafzeit der kommenden Nacht
+ * ([OnsetStore]). Robolectric, weil die Grenzen beim Weckdienst liegen; schlichte [Application], damit der Start der
+ * App nichts plant.
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35], application = Application::class)

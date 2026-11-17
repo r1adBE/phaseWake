@@ -31,7 +31,10 @@ object WatchDiag {
         context.phaseWakeStore.edit { it[SHOWN] = shown }
     }
 
-    /** Zustand und Protokoll der Uhr; Schlüssel wie in `DiagReports` beschrieben (version, next, battery, exact, notifications). */
+    /**
+     * Zustand und Protokoll der Uhr; Schlüssel wie in `DiagReports` beschrieben (version, next, battery, exact,
+     * notifications).
+     */
     suspend fun report(app: PhaseWakeWear): DiagReport {
         val plan = app.scheduler.nextPlan()
         // Mit Build-Nummer, z. B. «16.2.2 (96)»: Das Handy zeigt sie so unter «Versionen».
@@ -50,8 +53,8 @@ object WatchDiag {
 
     /**
      * Antwort auf [DataLayer.PATH_DIAG_REQUEST] des Handys über [transport]: klein als Nachricht, ein voller Bericht
-     * (500 Einträge, über der Grenze einer Nachricht) über einen Kanal ([Outbox.sendOnce]). Erreicht er kein Handy, steht
-     * das im Protokoll der Uhr.
+     * (500 Einträge, über der Grenze einer Nachricht) über einen Kanal ([Outbox.sendOnce]). Erreicht er kein Handy,
+     * steht das im Protokoll der Uhr.
      */
     suspend fun sendReport(app: PhaseWakeWear, transport: Outbox.Transport = Outbox.WearTransport(app)) {
         val data = DiagReports.encode(report(app)).encodeToByteArray()

@@ -171,7 +171,8 @@ class BackupWatchTest {
             .putExtra(SunriseLight.EXTRA_END, now.minus(Duration.ofMinutes(10)).toEpochMilli())
         backup.startSunrise(past)
         assertNull(SunriseLight.active.value)
-        // Nach einem Neustart des Prozesses: ein laufendes Licht aus der Mitteilung wieder aufnehmen, nur wenn keins läuft.
+        // Nach einem Neustart des Prozesses: ein laufendes Licht aus der Mitteilung wieder aufnehmen, nur wenn keins
+        // läuft.
         val running = SunriseLight.Active("a", now, now.plus(Duration.ofMinutes(5)))
         SunriseLight.resume(running)
         SunriseLight.resume(running.copy(alarmId = "b"))

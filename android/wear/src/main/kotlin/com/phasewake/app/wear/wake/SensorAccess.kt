@@ -18,9 +18,9 @@ internal data class SensorAccess(val heartRate: Boolean, val background: Boolean
     fun line(): String = "hr=${yesNo(heartRate)} bg=${yesNo(background)} act=${yesNo(activity)} sdk=$sdk"
 
     /**
-     * Voraussetzung des Vordergrund-Dienstes «health» (ab Android 14): Bewegung oder Puls; beim Start aus dem Hintergrund
-     * ([fromBackground]) zählt der Puls nur mit dem Hintergrundrecht ([background]), weil Android das Pulsrecht «während
-     * der Nutzung» dann nicht gelten lässt. Vor Android 14 prüft Android den Typ nicht.
+     * Voraussetzung des Vordergrund-Dienstes «health» (ab Android 14): Bewegung oder Puls; beim Start aus dem
+     * Hintergrund ([fromBackground]) zählt der Puls nur mit dem Hintergrundrecht ([background]), weil Android das
+     * Pulsrecht «während der Nutzung» dann nicht gelten lässt. Vor Android 14 prüft Android den Typ nicht.
      */
     fun allowsHealth(fromBackground: Boolean): Boolean =
         sdk < Build.VERSION_CODES.UPSIDE_DOWN_CAKE || activity || (heartRate && (!fromBackground || background))

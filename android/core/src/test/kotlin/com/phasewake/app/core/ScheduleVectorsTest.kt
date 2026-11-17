@@ -30,8 +30,8 @@ class ScheduleVectorsTest {
 }
 
 /**
- * Leser von `schedule.vectors` (Format im Kopf der Datei). [actual] rechnet die beiden letzten Felder einer Zeile mit dem
- * heutigen Kern aus: je Paar der Vergleichswert (Zeitpunkte als ms) und der Text, wie er in der Datei steht.
+ * Leser von `schedule.vectors` (Format im Kopf der Datei). [actual] rechnet die beiden letzten Felder einer Zeile mit
+ * dem heutigen Kern aus: je Paar der Vergleichswert (Zeitpunkte als ms) und der Text, wie er in der Datei steht.
  */
 internal object ScheduleVectors {
     fun lines(): List<String> =

@@ -10,9 +10,9 @@ extension PhoneModel {
     }
 
     /// Wecker, Feiertage, Schlafziel und Lernphase an die Uhr; der Anwendungskontext ersetzt jeweils den ganzen Stand.
-    /// Erst wenn Stand und Lernphase gelesen sind (nach dem ersten Entsperren): Ein Kontext aus dem leeren Stand gälte auf
-    /// der Uhr als neuer und löschte Lernwerte, Schlafziel, Feiertage und den Schalter für das automatische Einschlafen.
-    /// `catchUpState` sendet nach dem Lesen.
+    /// Erst wenn Stand und Lernphase gelesen sind (nach dem ersten Entsperren): Ein Kontext aus dem leeren Stand gälte
+    /// auf der Uhr als neuer und löschte Lernwerte, Schlafziel, Feiertage und den Schalter für das automatische
+    /// Einschlafen. `catchUpState` sendet nach dem Lesen.
     func publishToWatch(_ snapshot: AlarmSnapshot? = nil) {
         guard stateLoaded, PhoneLearning.shared.load() else {
             DiagStore.shared.log(.sync, "context not sent: state not readable yet")

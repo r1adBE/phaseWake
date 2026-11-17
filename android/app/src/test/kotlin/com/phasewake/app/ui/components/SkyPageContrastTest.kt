@@ -6,10 +6,10 @@ import kotlin.test.Test
 import kotlin.test.assertTrue
 
 /**
- * Seiten im Stil der Startseite (Verlauf, Einstellungen, Editor, Einrichtung, Diagnose): auf dem Himmel jeder Stimmung und
- * Höhe bleibt auf den Karten der Seiten ([Night.Panel]) Schrift ≥ 4.5:1, Phasenfarben und Ränder von Bedienelementen
- * ≥ 3:1 (WCAG 1.4.11); ebenso auf der getönten Oberkante der Kennzahl-Kacheln, im Nachthimmel-Kopf und hell («Creme
- * Caramel») auf Fläche und Karten.
+ * Seiten im Stil der Startseite (Verlauf, Einstellungen, Editor, Einrichtung, Diagnose): auf dem Himmel jeder Stimmung
+ * und Höhe bleibt auf den Karten der Seiten ([Night.Panel]) Schrift ≥ 4.5:1, Phasenfarben und Ränder von
+ * Bedienelementen ≥ 3:1 (WCAG 1.4.11); ebenso auf der getönten Oberkante der Kennzahl-Kacheln, im Nachthimmel-Kopf und
+ * hell («Creme Caramel») auf Fläche und Karten.
  */
 class SkyPageContrastTest {
 
@@ -64,7 +64,10 @@ class SkyPageContrastTest {
         }
     }
 
-    /** Nachthimmel-Kopf: Titel, Schrittzahl und Textknopf (Lavendel) auf dem Himmel, Schrift im gefüllten Knopf (hell: SkyMoodTest). */
+    /**
+     * Nachthimmel-Kopf: Titel, Schrittzahl und Textknopf (Lavendel) auf dem Himmel, Schrift im gefüllten Knopf (hell:
+     * SkyMoodTest).
+     */
     @Test
     fun headerReadable() {
         for (sky in skies) for (ink in listOf(Night.Text, Night.Muted, Night.Wave)) {

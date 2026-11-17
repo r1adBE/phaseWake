@@ -33,9 +33,9 @@ import kotlinx.coroutines.runBlocking
 /**
  * Empfängt von der Uhr: geänderte Wecker, aufgezeichnete Nächte und Aufzeichnungen, Status, Weck- und Stopp-Meldungen.
  *
- * Inhalte mit persönlichen Daten kommen über die Warteschlange ([com.phasewake.app.shared.Outbox]): als Nachricht (grosse
- * Aufzeichnungen über einen Kanal), bestätigt nach dem Speichern ([WearSync.receive]). Als Datenpaket ([onDataChanged])
- * nur der Status der Uhr und der Abbruch eines Probeweckers oder Powernaps.
+ * Inhalte mit persönlichen Daten kommen über die Warteschlange ([com.phasewake.app.shared.Outbox]): als Nachricht
+ * (grosse Aufzeichnungen über einen Kanal), bestätigt nach dem Speichern ([WearSync.receive]). Als Datenpaket
+ * ([onDataChanged]) nur der Status der Uhr und der Abbruch eines Probeweckers oder Powernaps.
  */
 class PhoneListenerService : WearableListenerService() {
 
@@ -91,24 +91,24 @@ class PhoneListenerService : WearableListenerService() {
     }
 
     /**
-     * Eintrag der Warteschlange der Uhr ([path], Text [body]); unlesbare Inhalte werden übergangen (und bestätigt, sonst
-     * käme derselbe Fehler immer wieder). Intern für Tests (ohne die Bestätigung über die Wear-Dienste).
+     * Eintrag der Warteschlange der Uhr ([path], Text [body]); unlesbare Inhalte werden übergangen (und bestätigt,
+     * sonst käme derselbe Fehler immer wieder). Intern für Tests (ohne die Bestätigung über die Wear-Dienste).
      */
     internal suspend fun handleQueued(path: String, body: String) {
         val app = phoneApp
         when (path) {
             DataLayer.PATH_MSG_ALARMS -> QueueMessages.decodeAlarms(body)?.let { snapshot ->
                 val result = app.alarms.receive(snapshot)
-                // Der Stand hier weicht ab (z. B. eine Änderung, deren Nachricht verloren ging): zurück an die Uhr, damit
-                // beide gleich werden. Einreihen ist lokal und schnell, gesendet wird im Hintergrund.
+                // Der Stand hier weicht ab (z. B. eine Änderung, deren Nachricht verloren ging): zurück an die Uhr,
+                // damit beide gleich werden. Einreihen ist lokal und schnell, gesendet wird im Hintergrund.
                 result.reply?.let { app.sync.publishAlarms(it) }
                 if (result.changed) {
                     app.diag.log(DiagKind.ALARMS_RECEIVED, "from watch")
                     app.backup.reschedule()
                 }
             }
-            // Unlesbar (z. B. Versionen von Handy und Uhr gemischt): bestätigt und verworfen, aber mit Zeile im Protokoll,
-            // damit der Verlust im Diagnose-Bericht zu finden ist. Nur die Länge, kein Inhalt.
+            // Unlesbar (z. B. Versionen von Handy und Uhr gemischt): bestätigt und verworfen, aber mit Zeile im
+            // Protokoll, damit der Verlust im Diagnose-Bericht zu finden ist. Nur die Länge, kein Inhalt.
             DataLayer.PATH_MSG_NIGHT -> runCatching { Codec.decodeNight(body) }.getOrNull()
                 ?.let { storeNight(it) } ?: app.diag.log(DiagKind.SYNC, "night unreadable, dropped (len=${body.length})")
             DataLayer.PATH_MSG_RECORDING -> when (val recording = NightRecording.decode(body)) {
@@ -191,7 +191,8 @@ class PhoneListenerService : WearableListenerService() {
             // Nicht direkt den Weckdienst starten: aus dem Hintergrund ab Android 12 nicht erlaubt.
             DataLayer.PATH_RING -> {
                 val message = RingMessage.decode(event.data)
-                // Ohne Sendezeit, Kennung oder Schlummer-Runden: veraltete Uhr-App, kein Rückfall (Nacht-Check meldet sie).
+                // Ohne Sendezeit, Kennung oder Schlummer-Runden: veraltete Uhr-App, kein Rückfall (Nacht-Check meldet
+                // sie).
                 if (!message.isCompleteRing()) {
                     runBlocking { app.diag.log(DiagKind.RING, "watch rang (incomplete, ignored)") }
                     return
@@ -228,7 +229,8 @@ class PhoneListenerService : WearableListenerService() {
                 // Restzahl vor dem Verstummen: für die Sicherung, falls die Uhr nach dem Schlummern ausfällt.
                 val left = (PhoneRingService.ringState.value as? PhoneRingService.State.Ringing)?.snoozesLeft?.takeIf { own }
                 if (own) PhoneRingService.command(this, PhoneRingService.ACTION_STOP_SILENT)
-                // Die Uhr schickt «stop» auch beim Schlummern (mit Schlummer-Ende); einen Einmal-Wecker schaltet sie selbst aus.
+                // Die Uhr schickt «stop» auch beim Schlummern (mit Schlummer-Ende); einen Einmal-Wecker schaltet sie
+                // selbst aus.
                 runBlocking { app.backup.watchStopped(message, left) }
                 // Endgültig (nicht geschlummert): Ende der Nacht für den Akku des Handys.
                 if (message.snoozeUntil == null) runBlocking { PhoneBattery.stopped(app) }

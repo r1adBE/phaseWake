@@ -13,7 +13,8 @@ struct LicensesView: View {
         var id: String { file }
     }
 
-    /// Was die iPhone-App enthält. Die Geräuscherkennung (SoundAnalysis) gehört zu iOS und bringt keinen eigenen Text mit.
+    /// Was die iPhone-App enthält. Die Geräuscherkennung (SoundAnalysis) gehört zu iOS und bringt keinen eigenen Text
+    /// mit.
     static let components = [
         Component(name: "Phase Wake", license: "MIT License", file: "MIT-phasewake"),
         Component(name: "Manrope", license: "SIL Open Font License 1.1", file: "Manrope-OFL"),

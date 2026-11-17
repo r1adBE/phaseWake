@@ -143,7 +143,10 @@ internal fun PulseCard(curve: PulseCurve, fullNight: Boolean, modifier: Modifier
     }
 }
 
-/** Bewegung über die ganze Aufzeichnung: je 5 Min die stärkste Bewegung als runde Säule; ohne Messwert ein flacher Strich. */
+/**
+ * Bewegung über die ganze Aufzeichnung: je 5 Min die stärkste Bewegung als runde Säule; ohne Messwert ein flacher
+ * Strich.
+ */
 @Composable
 internal fun MotionCard(series: NightSeries, modifier: Modifier = Modifier) {
     val brand = PhaseWakeTheme.brand

@@ -69,8 +69,8 @@ public enum ValidationReport {
         return "LIGHT_SLEEP real \(lightReal) shadow \(lightShadow) · target real \(targetReal) shadow \(targetShadow) · hits real \(hits)"
     }
 
-    /// Zeilen des Abschnitts: ``note``, je Nacht ihre Entscheide «night N HH:mm kind REASON ref» und «night N: …» mit den
-    /// Summen (``summary(_:)``) bzw. «night N: no reference», zuletzt «all: N nights, M with reference · …». Ohne
+    /// Zeilen des Abschnitts: ``note``, je Nacht ihre Entscheide «night N HH:mm kind REASON ref» und «night N: …» mit
+    /// den Summen (``summary(_:)``) bzw. «night N: no reference», zuletzt «all: N nights, M with reference · …». Ohne
     /// Entscheide leer.
     public static func lines(_ entries: [Validation.Entry]) -> [String] {
         if entries.isEmpty { return [] }

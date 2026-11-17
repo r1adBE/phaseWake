@@ -21,8 +21,8 @@ import kotlinx.coroutines.launch
 
 /**
  * Auffälligkeiten der letzten 7 Nächte: [all] für die Trends im Verlauf, [home] die eine
- * für die Startseite (nicht ausgeblendet), [homeBedtime] dieselbe, solange dort die Bettzeit-Karte steht (ohne Bettzeit-Tipp),
- * [weekDeep] Tiefschlaf-Anteil dieser Woche und der Vorwoche für den Wochenrückblick.
+ * für die Startseite (nicht ausgeblendet), [homeBedtime] dieselbe, solange dort die Bettzeit-Karte steht (ohne
+ * Bettzeit-Tipp), [weekDeep] Tiefschlaf-Anteil dieser Woche und der Vorwoche für den Wochenrückblick.
  */
 internal class FindingsState(
     val all: List<Finding>,

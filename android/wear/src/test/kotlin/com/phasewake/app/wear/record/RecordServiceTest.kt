@@ -67,7 +67,8 @@ class RecordServiceTest {
         controllers.forEach { it.destroy() }
         runBlocking { WatchDiag.setShown(context, false) }
         RecordService.clock = Instant::now
-        // Beenden und abwarten (z. B. die Mitteilung von [LearnNotice.skipped]); sonst käme sie verspätet im nächsten Test an.
+        // Beenden und abwarten (z. B. die Mitteilung von [LearnNotice.skipped]); sonst käme sie verspätet im nächsten
+        // Test an.
         runBlocking { withTimeout(10_000) { context.wearApp.appScope.coroutineContext.job.cancelAndJoin() } }
         File(context.filesDir, "recordings").deleteRecursively()
     }
@@ -205,17 +206,18 @@ class RecordServiceTest {
         val done = awaitFinished(RecordEnd.CAP)
         assertNull(service.active)
         assertEquals(start.plusSeconds(30), done.end, "Ende nach der letzten gespeicherten Epoche, nicht erfunden")
-        // Das Abschliessen läuft auf dem Hauptthread des Dienstes weiter (ans Handy über die prozessweite Warteschlange,
-        // deren Sperre es dabei hält) und endet mit stopSelf. Abwarten: Sonst verwirft Robolectric die Fortsetzung beim
-        // Testende, die Sperre bliebe für alle späteren Tests im Prozess belegt (in der CI: «Marke gelöscht» in
-        // [RecordServiceLearnTest.wakeEndsEveryRecordingLearningOffOnlyTheLearningOne] hing an Outbox.enqueue).
+        // Das Abschliessen läuft auf dem Hauptthread des Dienstes weiter (ans Handy über die prozessweite
+        // Warteschlange, deren Sperre es dabei hält) und endet mit stopSelf. Abwarten: Sonst verwirft Robolectric die
+        // Fortsetzung beim Testende, die Sperre bliebe für alle späteren Tests im Prozess belegt (in der CI: «Marke
+        // gelöscht» in [RecordServiceLearnTest.wakeEndsEveryRecordingLearningOffOnlyTheLearningOne] hing an
+        // Outbox.enqueue).
         awaitUntil("Dienst beendet sich") { shadowOf(service).isStoppedBySelf }
     }
 
     @Test
     fun orphanFinishedOnResumeReachesThePhoneEvenIfTheServiceEnds() {
-        // Das System beendet den Dienst, während er eine liegengebliebene Aufzeichnung abschliesst: Sie geht trotzdem in
-        // die Warteschlange ans Handy (Arbeit im Bereich der App, nicht des Dienstes).
+        // Das System beendet den Dienst, während er eine liegengebliebene Aufzeichnung abschliesst: Sie geht trotzdem
+        // in die Warteschlange ans Handy (Arbeit im Bereich der App, nicht des Dienstes).
         val start = Instant.ofEpochMilli(System.currentTimeMillis()).minus(Duration.ofHours(13))
         // Die Warteschlange ist prozessweit (auch frühere Tests): nur ein neuer Eintrag zählt.
         val before = runBlocking { Outbox.forContext(context).pending() }.map { it.id }.toSet()

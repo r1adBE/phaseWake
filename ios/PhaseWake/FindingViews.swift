@@ -2,7 +2,8 @@ import PhaseWakeCore
 import SwiftUI
 
 /// Text einer Auffälligkeit: was auffiel, bei wenig Tiefschlaf der belegte Zusammenhang, und
-/// ein Tipp. Gleich auf der Startseite (``FindingHomeCard``) und in den Trends des Verlaufs; wie `findingText` (Android).
+/// ein Tipp. Gleich auf der Startseite (``FindingHomeCard``) und in den Trends des Verlaufs; wie `findingText`
+/// (Android).
 func findingText(_ finding: Finding) -> String {
     switch finding.kind {
     case .longLatency: return L("finding_latency", Format.duration(minutes: finding.value))
@@ -32,7 +33,8 @@ func weeklyDeepLine(_ deep: (week: Int, before: Int)) -> String {
 /// verbirgt sie 7 Tage (Zeitpunkt in ``SettingsFile/phone``, nicht in der iCloud-Sicherung). Liest Apple Health selbst
 /// (nur mit Freigabe, nur im Speicher) beim Öffnen und bei jeder Rückkehr in den Vordergrund.
 struct FindingHomeCard: View {
-    /// Die Startseite zeigt die Bettzeit-Karte: Auffälligkeiten mit demselben Tipp treten zurück (``Findings/bedtimeTip``).
+    /// Die Startseite zeigt die Bettzeit-Karte: Auffälligkeiten mit demselben Tipp treten zurück
+    /// (``Findings/bedtimeTip``).
     var bedtimeAdvice = false
     @Environment(PhoneModel.self) private var model
     @Environment(\.colorScheme) private var scheme

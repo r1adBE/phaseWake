@@ -186,7 +186,8 @@ final class HealthContinuationTests: XCTestCase {
         XCTAssertEqual(ChartData.hypnogram(HealthHistory.stages([near, bed], clearedAt: nil, calendar: calendar), night: own)?.start, near.start)
     }
 
-    /// Erster Teil 01:36–09:57 nur «leicht» (501 Min), zweiter Teil `overlap` Sekunden vor dessen Ende, 120 Min «leicht».
+    /// Erster Teil 01:36–09:57 nur «leicht» (501 Min), zweiter Teil `overlap` Sekunden vor dessen Ende, 120 Min
+    /// «leicht».
     private func overlapCase(_ overlap: TimeInterval) -> (HealthSession, HealthSession) {
         let first = HealthSession(start: night.start, end: night.end, stages: [StageSpan(start: night.start, end: night.end, stage: .light)], source: samsung)
         let from = night.end.addingTimeInterval(-overlap)

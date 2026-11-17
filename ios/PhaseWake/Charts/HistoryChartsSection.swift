@@ -4,8 +4,8 @@ import SwiftUI
 // MARK: Bereich
 
 /// Oben im Verlauf: Auswahl «Tage / Wochen / Monate» (gilt für alles darunter), die Übersicht «Dein Schlaf» und die
-/// «Diagramme» als Karten zum seitlichen Blättern (Zeitraum 7, 14 bzw. 30 Nächte, ``HistoryChartsData/nights(_:)``), die
-/// nächste schaut am Rand hervor. Antippen eines Werts zeigt eine Blase; ihr Antippen öffnet die Nacht (`onOpen`).
+/// «Diagramme» als Karten zum seitlichen Blättern (Zeitraum 7, 14 bzw. 30 Nächte, ``HistoryChartsData/nights(_:)``),
+/// die nächste schaut am Rand hervor. Antippen eines Werts zeigt eine Blase; ihr Antippen öffnet die Nacht (`onOpen`).
 /// Wie Android (11k).
 struct HistoryChartsSection: View {
     let data: HistoryChartsData

@@ -44,7 +44,10 @@ internal fun WakeService.postRinging(n: Night, why: String, steps: RingSteps? = 
     handler.post { app.diag.log(DiagKind.RING_SCREEN, "watch $why: ${probe(this)}") }
 }
 
-/** Erinnerung: Ist der Weckbildschirm nicht zu sehen, erscheint die Weck-Mitteilung neu (Vollbild, falls das Display inzwischen aus ist). */
+/**
+ * Erinnerung: Ist der Weckbildschirm nicht zu sehen, erscheint die Weck-Mitteilung neu (Vollbild, falls das Display
+ * inzwischen aus ist).
+ */
 internal fun WakeService.onRealert() {
     val n = night ?: return
     if (n.phase != Phase.RINGING) return

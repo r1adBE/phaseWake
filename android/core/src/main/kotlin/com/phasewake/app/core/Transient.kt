@@ -17,7 +17,8 @@ enum class TransientKind {
  * Ein einmaliger Plan, der kein gespeicherter Wecker ist: Probewecker oder Powernap. Die Uhr führt ihn wie
  * eine Nacht (Messen, Klingeln, Stopp), aber ohne Eintrag im Verlauf und ohne Einfluss auf die Wecker.
  *
- * @property spec Weckart (Handy, Uhr-Ton, Weckton, Sonnenaufgang); Kennung mit [Transient.TEST_PREFIX] bzw. [Transient.NAP_PREFIX].
+ * @property spec Weckart (Handy, Uhr-Ton, Weckton, Sonnenaufgang); Kennung mit [Transient.TEST_PREFIX] bzw.
+ * [Transient.NAP_PREFIX].
  * @property plan Fenster und Zielzeit; gilt statt des Fensters von [spec].
  */
 data class TransientPlan(val kind: TransientKind, val spec: AlarmSpec, val plan: WakePlan)
@@ -27,7 +28,9 @@ enum class TransientConflict {
     /** Ein Weckfenster läuft, oder eine Nacht klingelt bzw. schlummert: «Gerade läuft dein Wecker.» */
     ALARM_RUNNING,
 
-    /** Das Weckfenster des nächsten Weckers beginnt vor der Zielzeit des Plans: «Dein Weckfenster beginnt schon vorher.» */
+    /**
+     * Das Weckfenster des nächsten Weckers beginnt vor der Zielzeit des Plans: «Dein Weckfenster beginnt schon vorher.»
+     */
     ALARM_SOON,
 }
 
@@ -93,7 +96,10 @@ object Transient {
         return TransientPlan(TransientKind.TEST, spec, plan)
     }
 
-    /** Powernap ab [now] mit [minutes] Dauer (auf [NAP_MIN_MINUTES]–[NAP_MAX_MINUTES] begrenzt), Weckart wie [base], ohne Licht. */
+    /**
+     * Powernap ab [now] mit [minutes] Dauer (auf [NAP_MIN_MINUTES]–[NAP_MAX_MINUTES] begrenzt), Weckart wie [base],
+     * ohne Licht.
+     */
     fun nap(base: AlarmSpec?, now: Instant, zone: ZoneId, minutes: Int, uuid: String): TransientPlan {
         val length = minutes.coerceIn(NAP_MIN_MINUTES, NAP_MAX_MINUTES)
         val target = now.plus(Duration.ofMinutes(length.toLong()))

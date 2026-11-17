@@ -8,20 +8,23 @@ import java.time.ZoneId
  * Lernphase: Die Galaxy Watch zeichnet [NIGHTS] Nächte auf, danach passt Phase Wake den Wecker
  * an: eigenes Grundrauschen ([NoiseFloor], [DetectorConfig.personalFloor]), eigener Ruhepuls
  * ([DetectorConfig.restingHeartRate]) und die Einschlafdauer für die Empfehlung der Schlafenszeit ([bedtimeRange]).
- * Regel siehe `docs/PHASENERKENNUNG.md`, Abschnitt 10. Reine Logik; identisch zu `Learning` im Swift-Kern (dort zusätzlich die
- * Apple-Fälle: Puls aus Apple Health, Einschlafdauer aus «Im Bett»).
+ * Regel siehe `docs/PHASENERKENNUNG.md`, Abschnitt 10. Reine Logik; identisch zu `Learning` im Swift-Kern (dort
+ * zusätzlich die Apple-Fälle: Puls aus Apple Health, Einschlafdauer aus «Im Bett»).
  */
 object Learning {
     /** So viele gezählte Nächte braucht die Lernphase (keine Kalendertage). */
     const val NIGHTS: Int = 7
 
     /**
-     * Eine Nacht zählt ab so vielen Epochen mit Bewegung (36 Min). Die Uhr misst in der Lernphase in Stichproben (60 s alle
-     * 5 Min): 3 Std. ergeben 36 Stichproben = 72 Epochen.
+     * Eine Nacht zählt ab so vielen Epochen mit Bewegung (36 Min). Die Uhr misst in der Lernphase in Stichproben (60 s
+     * alle 5 Min): 3 Std. ergeben 36 Stichproben = 72 Epochen.
      */
     const val MIN_MEASURED_EPOCHS: Int = 72
 
-    /** … und die Epochen mit Bewegung müssen mindestens so viele Epochen der Nacht überspannen (3 Std., erste bis letzte). */
+    /**
+     * … und die Epochen mit Bewegung müssen mindestens so viele Epochen der Nacht überspannen (3 Std., erste bis
+     * letzte).
+     */
     const val MIN_SPAN_EPOCHS: Int = 360
 
     /** Die Uhr zeichnet in der Lernphase nur ab diesem Akkustand (Prozent) automatisch auf; der Wecker hat Vorrang. */
@@ -36,10 +39,16 @@ object Learning {
     /** Ruhepuls und Einschlafdauer erst aus so vielen Nächten mit Werten; sonst bleiben sie ungelernt. */
     const val MIN_VALUE_NIGHTS: Int = 3
 
-    /** Einschlafdauer einer Nacht höchstens so lang (Minuten): ein spätes Zubettgehen soll die Empfehlung nicht verschieben. */
+    /**
+     * Einschlafdauer einer Nacht höchstens so lang (Minuten): ein spätes Zubettgehen soll die Empfehlung nicht
+     * verschieben.
+     */
     const val MAX_LATENCY_MINUTES: Int = 60
 
-    /** Grösstes gültiges Grundrauschen (m/s²) beim Übernehmen gelernter Werte ([validFloor]); darüber ist der Wert kaputt. */
+    /**
+     * Grösstes gültiges Grundrauschen (m/s²) beim Übernehmen gelernter Werte ([validFloor]); darüber ist der Wert
+     * kaputt.
+     */
     const val MAX_VALID_FLOOR: Double = 1.0
 
     /** Gültiger Ruhepuls beim Übernehmen gelernter Werte ([validRestingHeartRate]), Schläge pro Minute. */
@@ -55,8 +64,8 @@ object Learning {
     const val ROUND_MINUTES: Int = 5
 
     /**
-     * Eine aufgezeichnete Nacht: ab [start] je 30-s-Epoche, dazu, falls die Einschlaf-Messung dieser Nacht das Einschlafen
-     * erkannt hat, Beginn der Einschlafdauer [bedAt] und Einschlafzeit [asleepAt].
+     * Eine aufgezeichnete Nacht: ab [start] je 30-s-Epoche, dazu, falls die Einschlaf-Messung dieser Nacht das
+     * Einschlafen erkannt hat, Beginn der Einschlafdauer [bedAt] und Einschlafzeit [asleepAt].
      */
     data class Night(
         val start: Instant,
@@ -80,8 +89,8 @@ object Learning {
     fun measuredEpochs(night: Night): Int = night.epochs.count { it.motion != null }
 
     /**
-     * Ob [night] zählt: mindestens [MIN_MEASURED_EPOCHS] Epochen mit Bewegung, und von der ersten bis zur letzten von ihnen
-     * mindestens [MIN_SPAN_EPOCHS] Epochen (gilt für Stichproben wie für durchgehende Aufzeichnungen).
+     * Ob [night] zählt: mindestens [MIN_MEASURED_EPOCHS] Epochen mit Bewegung, und von der ersten bis zur letzten von
+     * ihnen mindestens [MIN_SPAN_EPOCHS] Epochen (gilt für Stichproben wie für durchgehende Aufzeichnungen).
      */
     fun counts(night: Night): Boolean {
         val first = night.epochs.indexOfFirst { it.motion != null }
@@ -91,8 +100,8 @@ object Learning {
     }
 
     /**
-     * Gezählte Nächte der Lernphase ab [since]: Beginn nicht vor [since], [counts], je Nachtdatum ([SleepNotes.nightDate]
-     * des Beginns) nur eine, die mit den meisten Epochen mit Bewegung. Älteste zuerst.
+     * Gezählte Nächte der Lernphase ab [since]: Beginn nicht vor [since], [counts], je Nachtdatum
+     * ([SleepNotes.nightDate] des Beginns) nur eine, die mit den meisten Epochen mit Bewegung. Älteste zuerst.
      */
     fun counted(nights: List<Night>, since: Instant, zone: ZoneId): List<Night> =
         nights.filter { !it.start.isBefore(since) && counts(it) }
@@ -161,8 +170,8 @@ object Learning {
         if (values == null) config else config.withLearned(values.floor, values.restingHeartRate)
 
     /**
-     * Gelerntes Grundrauschen, falls gültig: endlich, 0 bis [MAX_VALID_FLOOR]; sonst `null` (z. B. aus einer kaputten oder
-     * fremden Nachricht). Identisch zu `Learning.validFloor` (Swift).
+     * Gelerntes Grundrauschen, falls gültig: endlich, 0 bis [MAX_VALID_FLOOR]; sonst `null` (z. B. aus einer kaputten
+     * oder fremden Nachricht). Identisch zu `Learning.validFloor` (Swift).
      */
     fun validFloor(value: Double?): Double? = value?.takeIf { it.isFinite() && it >= 0.0 && it <= MAX_VALID_FLOOR }
 
@@ -176,8 +185,8 @@ object Learning {
 
     /**
      * Empfohlene Schlafenszeit vor der Zielzeit [target]: spätestens Zielzeit − Schlaf [sleepMinutes] (Schlafziel bzw.
-     * Schlafdauer des Weckers) − Einschlafdauer [latencyMinutes] (ungelernt 0), abgerundet auf [ROUND_MINUTES]; frühestens
-     * [BEDTIME_RANGE_MINUTES] davor. Spätestens = [Bedtime.bedtime] (die eine Bettzeit), abgerundet.
+     * Schlafdauer des Weckers) − Einschlafdauer [latencyMinutes] (ungelernt 0), abgerundet auf [ROUND_MINUTES];
+     * frühestens [BEDTIME_RANGE_MINUTES] davor. Spätestens = [Bedtime.bedtime] (die eine Bettzeit), abgerundet.
      * @return (frühestens, spätestens).
      */
     fun bedtimeRange(target: Instant, sleepMinutes: Int, latencyMinutes: Int?): Pair<Instant, Instant> {

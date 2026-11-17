@@ -7,14 +7,16 @@ import kotlin.test.assertNull
 
 /**
  * Die Einschlaf-Messung wertet Epoche für Epoche aus ([OnsetRules.scan]); ihr Grundrauschen (Vorwissen im
- * Weckfenster) stammt nur aus den Epochen bis zum erkannten Einschlafen, wie `RecorderOnset.measure` auf der Apple Watch.
+ * Weckfenster) stammt nur aus den Epochen bis zum erkannten Einschlafen, wie `RecorderOnset.measure` auf der Apple
+ * Watch.
  */
 class OnsetScanTest {
     private val threshold = 0.002
 
     @Test
     fun floorStopsAtTheDetectingEpochEvenInOneBundle() {
-        // 30 × 0.01, dann 30 sehr ruhige (0.001) im selben Bündel: erkannt in Epoche 29, Grundrauschen 0.01 (über alle 0.001).
+        // 30 × 0.01, dann 30 sehr ruhige (0.001) im selben Bündel: erkannt in Epoche 29, Grundrauschen 0.01 (über alle
+        // 0.001).
         val motions = List(30) { 0.01 } + List(30) { 0.001 }
         val (index, floor) = OnsetRules.scan(motions, List(60) { true }, 0, threshold, null, continuous = true, floor = null)
         assertEquals(0, index)
@@ -43,8 +45,8 @@ class OnsetScanTest {
     @Test
     fun laterEpochsInTheBundleDoNotChangeTheDecision() {
         // Erst 3 × 0.03 (Schwelle 0.002 bzw. ab Epoche 3 2.5 × 0.0015: unruhig), dann 30 × 0.0015, danach 200 × 0.2 im
-        // selben Bündel. Epoche für Epoche: erkannt in Epoche 32, Beginn 3. Mit dem Grundrauschen des ganzen Bündels (0.04
-        // → Schwelle 0.1) begänne die Strecke schon bei 0: Das Bündel änderte die Einschlafzeit.
+        // selben Bündel. Epoche für Epoche: erkannt in Epoche 32, Beginn 3. Mit dem Grundrauschen des ganzen Bündels
+        // (0.04 → Schwelle 0.1) begänne die Strecke schon bei 0: Das Bündel änderte die Einschlafzeit.
         val motions = List(3) { 0.03 } + List(30) { 0.0015 } + List(200) { 0.2 }
         val (index, _) = OnsetRules.scan(motions, List(motions.size) { true }, 0, threshold, null, continuous = true, floor = null)
         assertEquals(3, index)

@@ -48,9 +48,9 @@ private fun feelingLine(context: Context, date: LocalDate, feeling: Int?, notes:
 }
 
 /**
- * Befinden je Nacht (1–5) über den gewählten Zeitraum ([nights]; `null`: «Keine Daten»), Nächte mit Notiz mit Ring; ab 14 Nächten
- * der Wochendurchschnitt als Linie. Antippen oder Ziehen zeigt Datum, Befinden und Notizen in der Blase; Antippen der
- * Blase öffnet die Nacht ([opener]).
+ * Befinden je Nacht (1–5) über den gewählten Zeitraum ([nights]; `null`: «Keine Daten»), Nächte mit Notiz mit Ring; ab
+ * 14 Nächten der Wochendurchschnitt als Linie. Antippen oder Ziehen zeigt Datum, Befinden und Notizen in der Blase;
+ * Antippen der Blase öffnet die Nacht ([opener]).
  */
 @Composable
 internal fun FeelingCard(chart: FeelingSeries?, nights: Int, custom: List<CustomNote>, opener: (LocalDate) -> (() -> Unit)?, modifier: Modifier) {

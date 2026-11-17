@@ -15,7 +15,8 @@ final class PhoneLearningTests: XCTestCase {
 
     override func setUp() async throws {
         await MainActor.run {
-            // Ohne HealthKit: Im Simulator ohne Signatur (CI) wartet eine Abfrage auf HealthKit; der Test hing dort (> 60 s).
+            // Ohne HealthKit: Im Simulator ohne Signatur (CI) wartet eine Abfrage auf HealthKit; der Test hing dort (>
+            // 60 s).
             PhoneLearning.shared.onsetSamples = { _, _ in (inBed: [], asleep: []) }
             PhoneLearning.shared.restart()
         }

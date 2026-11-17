@@ -2,7 +2,8 @@ import SwiftUI
 import WidgetKit
 
 /// Inhalt des iPhone-Widgets je Grösse. Der Nacht-Check zeigt Zeichen und Text, nie nur Farbe.
-/// Am Weckmorgen bis 12 Uhr zeigt der Home-Bildschirm die letzte Nacht; der Sperrbildschirm bleibt beim nächsten Wecker.
+/// Am Weckmorgen bis 12 Uhr zeigt der Home-Bildschirm die letzte Nacht; der Sperrbildschirm bleibt beim nächsten
+/// Wecker.
 struct PhoneAlarmView: View {
     @Environment(\.widgetFamily) private var family
     @Environment(\.colorScheme) private var scheme

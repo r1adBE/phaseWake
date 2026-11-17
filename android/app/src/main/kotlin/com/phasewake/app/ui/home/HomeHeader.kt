@@ -68,8 +68,8 @@ import java.time.ZoneId
 // Kopfbereich der Startseite: Gruss, nächstes Weckfenster, Tag.
 
 /**
- * Kopfbereich im Himmel (dunkel Nacht, hell Tag «Creme Caramel»), randlos bis unter die Statusleiste: Logo, Begrüssung und
- * das nächste Weckfenster gross; ohne Wecker eine Einladung, den ersten zu stellen.
+ * Kopfbereich im Himmel (dunkel Nacht, hell Tag «Creme Caramel»), randlos bis unter die Statusleiste: Logo, Begrüssung
+ * und das nächste Weckfenster gross; ohne Wecker eine Einladung, den ersten zu stellen.
  */
 @Composable
 internal fun Header(
@@ -118,7 +118,8 @@ internal fun Header(
                     Text(stringResource(greeting(now, zone)), style = MaterialTheme.typography.titleMedium, color = ink.muted)
                     if (plan != null && alarm != null) {
                         val dayText = dayLabel(plan.target, now, zone)
-                        // Grosser Countdown-Bogen; darin das Weckfenster gross, darunter wann und welcher, dann wie lange noch.
+                        // Grosser Countdown-Bogen; darin das Weckfenster gross, darunter wann und welcher, dann wie
+                        // lange noch.
                         BoxWithConstraints(Modifier.fillMaxWidth().padding(top = 6.dp)) {
                             WakeArc(now, plan.windowStart, plan.target, plan.exact, Modifier.fillMaxWidth().aspectRatio(ARC_ASPECT), ink)
                             Column(
@@ -132,7 +133,8 @@ internal fun Header(
                                     color = ink.text,
                                     textAlign = TextAlign.Center,
                                 )
-                                // «Genau»: kein «Weckt im leichten Schlaf» und kein «Weckfenster läuft»; die Zeile oben sagt schon alles.
+                                // «Genau»: kein «Weckt im leichten Schlaf» und kein «Weckfenster läuft»; die Zeile oben
+                                // sagt schon alles.
                                 if (!plan.exact) {
                                     Text(
                                         if (now.isBefore(plan.windowStart)) {

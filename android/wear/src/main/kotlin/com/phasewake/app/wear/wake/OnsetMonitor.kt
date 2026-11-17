@@ -63,7 +63,9 @@ class OnsetMonitor(
     private val log: (DiagKind, String) -> Unit,
     private val onGiveUp: () -> Unit,
     private val extendCap: Instant? = null,
-    /** Gelerntes Grundrauschen der Lernphase ([com.phasewake.app.core.DetectorConfig.personalFloor]); `null` = keines. */
+    /**
+     * Gelerntes Grundrauschen der Lernphase ([com.phasewake.app.core.DetectorConfig.personalFloor]); `null` = keines.
+     */
     private val personalFloor: Double? = null,
     /** Vom Ladegerät genommen und Akku unter der Grenze der automatischen Messung: aufhören; `null` = weiter messen. */
     private val onLowBattery: (() -> Unit)? = null,
@@ -73,7 +75,10 @@ class OnsetMonitor(
     /** Ab dann wird nicht mehr gewartet (ausser die Messung verlängert sich, siehe [extendCap]). */
     val giveUpAt: Instant get() = minOf(latestGiveUp, maxEnd)
 
-    /** Grenze ohne Verlängerungen (Beginn + [MAX_DURATION]); die Zeit ohne Tragen verschiebt sie ([OnsetRules.awayUntil]). */
+    /**
+     * Grenze ohne Verlängerungen (Beginn + [MAX_DURATION]); die Zeit ohne Tragen verschiebt sie
+     * ([OnsetRules.awayUntil]).
+     */
     private val baseMaxEnd = maxEnd
 
     private val handler = Handler(Looper.getMainLooper())
@@ -86,14 +91,16 @@ class OnsetMonitor(
     private var ended = false
 
     /**
-     * Grundrauschen der bisher gemessenen Epochen ([NoiseFloor.floor]; solange es zu wenige sind, [personalFloor]), nach
-     * dem Einschlafen bis zur erkennenden Epoche ([OnsetRules.scan]). Nach dem Einschlafen oder Aufgeben gilt es
+     * Grundrauschen der bisher gemessenen Epochen ([NoiseFloor.floor]; solange es zu wenige sind, [personalFloor]),
+     * nach dem Einschlafen bis zur erkennenden Epoche ([OnsetRules.scan]). Nach dem Einschlafen oder Aufgeben gilt es
      * als Vorwissen im Weckfenster derselben Nacht ([OnsetFloorStore]); lief die Messung ins Fenster, nicht.
      */
     var floor: Double? = null
         private set
 
-    /** Epochen der laufenden bzw. letzten Stichprobe: [sampleFrom] einschliesslich bis [sampleUntil] ausschliesslich. */
+    /**
+     * Epochen der laufenden bzw. letzten Stichprobe: [sampleFrom] einschliesslich bis [sampleUntil] ausschliesslich.
+     */
     private var sampleFrom = 0L
     private var sampleUntil = 0L
     private var sampling = false
@@ -106,7 +113,10 @@ class OnsetMonitor(
         override fun onReceive(context: Context, intent: Intent) = tick()
     }
 
-    /** Zeiten am Ladegerät seit dem Beginn (elapsedRealtime in ns, Ende `null` = noch angeschlossen), [OnsetRules.charging]. */
+    /**
+     * Zeiten am Ladegerät seit dem Beginn (elapsedRealtime in ns, Ende `null` = noch angeschlossen),
+     * [OnsetRules.charging].
+     */
     private val chargingTimes = mutableListOf<Pair<Long, Long?>>()
     private val powerReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) = onPower(intent.action == Intent.ACTION_POWER_CONNECTED)
@@ -117,7 +127,8 @@ class OnsetMonitor(
         if (mark(chargingTimes, plugged, SystemClock.elapsedRealtimeNanos())) {
             log(DiagKind.BATTERY, "$label ${if (plugged) "charging, waiting" else "charging ended"}")
         }
-        // Die automatische Messung begann trotz wenig Akku, weil die Uhr lud; ist er nach dem Laden noch zu tief, endet sie.
+        // Die automatische Messung begann trotz wenig Akku, weil die Uhr lud; ist er nach dem Laden noch zu tief, endet
+        // sie.
         val stop = onLowBattery ?: return
         if (!plugged && !reported && AutoOnset.skipForBattery(battery())) { reported = true; stop() }
     }
@@ -149,7 +160,9 @@ class OnsetMonitor(
         if (mark(offBodyTimes, off, atNanos)) log(DiagKind.BATTERY, "$label ${if (off) "not worn, waiting" else "worn again"}")
     }
 
-    /** Beginnt ([away]) oder beendet in [times] eine Zeit ohne Tragen bei [atNanos]; `true`, wenn sich etwas änderte. */
+    /**
+     * Beginnt ([away]) oder beendet in [times] eine Zeit ohne Tragen bei [atNanos]; `true`, wenn sich etwas änderte.
+     */
     private fun mark(times: MutableList<Pair<Long, Long?>>, away: Boolean, atNanos: Long): Boolean {
         val open = times.lastOrNull()?.takeIf { it.second == null }
         if (away && open == null) times += atNanos to null
@@ -172,7 +185,8 @@ class OnsetMonitor(
         log(DiagKind.MEASURE_START, "$label sensor wake=${if (s.continuous) 1 else 0} fifo=${s.wakeUpFifo} mode=${if (s.continuous) "continuous" else "sample"}")
         s.start(listen = s.continuous)
         ContextCompat.registerReceiver(context, tickReceiver, IntentFilter(ACTION_TICK), ContextCompat.RECEIVER_NOT_EXPORTED)
-        // Uhr am Ladegerät: Stand jetzt, danach jede Änderung (Systemmeldungen erreichen auch nicht exportierte Empfänger).
+        // Uhr am Ladegerät: Stand jetzt, danach jede Änderung (Systemmeldungen erreichen auch nicht exportierte
+        // Empfänger).
         val battery = context.registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
         if ((battery?.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) ?: 0) != 0) chargingTimes += startNanos to null
         val power = IntentFilter().apply {
@@ -186,8 +200,8 @@ class OnsetMonitor(
     }
 
     /**
-     * Beendet die Messung und schreibt ihr Ende ins Diagnose-Protokoll: [reason], sonst «give up» (Zeitgrenze erreicht),
-     * «window began» (der Weckdienst läuft weiter, das Fenster hat begonnen) oder «service ended».
+     * Beendet die Messung und schreibt ihr Ende ins Diagnose-Protokoll: [reason], sonst «give up» (Zeitgrenze
+     * erreicht), «window began» (der Weckdienst läuft weiter, das Fenster hat begonnen) oder «service ended».
      */
     fun stop(reason: String? = null) {
         if (ended) return
@@ -226,7 +240,8 @@ class OnsetMonitor(
         epochs.forEachIndexed { i, epoch ->
             val index = first + i
             val inSample = s.continuous || index in sampleFrom until sampleUntil
-            // Am Ladegerät oder nicht am Handgelenk leer: unterbricht die ruhige Strecke, zählt nicht fürs Grundrauschen.
+            // Am Ladegerät oder nicht am Handgelenk leer: unterbricht die ruhige Strecke, zählt nicht fürs
+            // Grundrauschen.
             val away = OnsetRules.charging(index, startNanos, chargingTimes) || OnsetRules.charging(index, startNanos, offBodyTimes)
             val motion = if (away) null else epoch.motion
             motions += motion
@@ -258,7 +273,8 @@ class OnsetMonitor(
         if (reported) return
         val cap = extendCap
         val at = now()
-        // Zeit am Ladegerät oder nicht am Handgelenk verschiebt die Grenze; nicht unter der Akku-Grenze, ausser beim Laden.
+        // Zeit am Ladegerät oder nicht am Handgelenk verschiebt die Grenze; nicht unter der Akku-Grenze, ausser beim
+        // Laden.
         val away = Duration.ofNanos(OnsetRules.awayNanos(chargingTimes + offBodyTimes, startNanos, SystemClock.elapsedRealtimeNanos()))
         val awayEnd = cap?.let { OnsetRules.awayUntil(baseMaxEnd, away, latestGiveUp, it) }?.takeIf { at.isBefore(it) }
         val plugged = chargingTimes.lastOrNull()?.let { it.second == null } == true

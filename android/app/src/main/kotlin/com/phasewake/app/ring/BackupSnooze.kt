@@ -56,8 +56,9 @@ internal fun BackupAlarm.cancelSnoozeOf(alarmId: String?, target: Long?) {
 }
 
 /**
- * Alarm zum Schlummer-Ende am Handy: Aktion des Zweitweckers ohne Zielzeit (nicht noch einmal [BackupAlarm.backupRang]),
- * eigener Request-Code 3. Gleiche Absicht beim Stellen, Wiederherstellen ([PhoneSnooze.restore]) und Aufheben.
+ * Alarm zum Schlummer-Ende am Handy: Aktion des Zweitweckers ohne Zielzeit (nicht noch einmal
+ * [BackupAlarm.backupRang]), eigener Request-Code 3. Gleiche Absicht beim Stellen, Wiederherstellen
+ * ([PhoneSnooze.restore]) und Aufheben.
  */
 internal fun snoozePending(context: Context, alarmId: String?, snoozes: Int): PendingIntent {
     val intent = Intent(context, BackupAlarm.Receiver::class.java).setAction(ACTION)

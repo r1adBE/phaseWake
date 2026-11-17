@@ -12,7 +12,8 @@ public enum ReadRetry {
     /// Ob nach dem gescheiterten Versuch `attempt` (ab 1 gezählt) noch einer folgt.
     public static func retries(after attempt: Int) -> Bool { attempt < attempts }
 
-    /// Zeile im Protokoll zum gescheiterten Versuch `attempt` mit Fehlercode `code`, für `what` (z. B. «alarmkit list»).
+    /// Zeile im Protokoll zum gescheiterten Versuch `attempt` mit Fehlercode `code`, für `what` (z. B. «alarmkit
+    /// list»).
     public static func failureLine(_ what: String, attempt: Int, code: Int) -> String {
         retries(after: attempt)
             ? "\(what) failed \(code), attempt \(attempt), retry in \(Int(pause)) s"

@@ -13,8 +13,8 @@ package com.phasewake.app.core
 class WakeDetector(config: DetectorConfig = DetectorConfig()) {
 
     /**
-     * Startwerte oder kalibrierte Schwellen; das Grundrauschen ([NoiseFloor]) hebt sie je Epoche höchstens an. Ändert sich
-     * nur über [useOnsetFloor].
+     * Startwerte oder kalibrierte Schwellen; das Grundrauschen ([NoiseFloor]) hebt sie je Epoche höchstens an. Ändert
+     * sich nur über [useOnsetFloor].
      */
     var config: DetectorConfig = config
         private set
@@ -49,16 +49,16 @@ class WakeDetector(config: DetectorConfig = DetectorConfig()) {
         recent.addLast(epoch)
 
         // Schwellen nach dem Grundrauschen bis und mit dieser Epoche; sie gelten für alle Epochen im Fenster der Regel.
-        // Solange die Messung zu wenige Werte hat, gilt das bekannte (Einschlaf-Messung, sonst gelernt); es begrenzt auch
-        // das des Fensters ([NoiseFloor.windowFloor]).
+        // Solange die Messung zu wenige Werte hat, gilt das bekannte (Einschlaf-Messung, sonst gelernt); es begrenzt
+        // auch das des Fensters ([NoiseFloor.windowFloor]).
         val floor = NoiseFloor.windowFloor(motions, config)
         val wakeThreshold = NoiseFloor.wake(config, floor)
         if (hits(config.awakeWindow, wakeThreshold) >= config.awakeHits) {
             return wake(WakeReason.AWAKE)
         }
         // Leicht-Regel erst mit Grundrauschen (4 Werte oder Vorwert): Ohne zählte das Rauschen einer
-        // Uhr wie der Galaxy Watch (ruhig 0.02) gegen die Startschwelle 0.002 als Bewegung, und es entschied allein der Puls.
-        // Regel S5: Statt 2 leichter Bewegungen genügt eine starke (≥ wirksame Wach-Schwelle)
+        // Uhr wie der Galaxy Watch (ruhig 0.02) gegen die Startschwelle 0.002 als Bewegung, und es entschied allein der
+        // Puls. Regel S5: Statt 2 leichter Bewegungen genügt eine starke (≥ wirksame Wach-Schwelle)
         // in den letzten [STRONG_WINDOW] Epochen, mit derselben Pulsbedingung und denselben Sperren.
         val moved = hits(STRONG_WINDOW, wakeThreshold) >= 1 ||
             hits(config.lightWindow, NoiseFloor.light(config, floor)) >= config.lightHits
@@ -83,9 +83,9 @@ class WakeDetector(config: DetectorConfig = DetectorConfig()) {
 
     /**
      * Basispuls: Median der Pulse aus den ersten [DetectorConfig.BASELINE_EPOCHS] Epochen des Fensters, sobald es
-     * mindestens [DetectorConfig.MIN_BASELINE_HEART_RATES] sind; mit gelerntem Ruhepuls ([DetectorConfig.restingHeartRate])
-     * begrenzt auf Ruhepuls bis [DetectorConfig.RESTING_CLAMP_FACTOR] × Ruhepuls. Sonst Ruhepuls ×
-     * [DetectorConfig.RESTING_FALLBACK_FACTOR], ohne Ruhepuls `null`.
+     * mindestens [DetectorConfig.MIN_BASELINE_HEART_RATES] sind; mit gelerntem Ruhepuls
+     * ([DetectorConfig.restingHeartRate]) begrenzt auf Ruhepuls bis [DetectorConfig.RESTING_CLAMP_FACTOR] × Ruhepuls.
+     * Sonst Ruhepuls × [DetectorConfig.RESTING_FALLBACK_FACTOR], ohne Ruhepuls `null`.
      */
     private fun baselineHeartRate(): Double? {
         val resting = config.restingHeartRate
@@ -119,9 +119,9 @@ class WakeDetector(config: DetectorConfig = DetectorConfig()) {
 
     /**
      * Übergangener Moment (kurze Nacht, [ShortNight.blocksEarly]): Die Entscheidung wird verworfen, die Erkennung läuft
-     * weiter und kann einen neuen Moment melden. Die Treffer des übergangenen Moments zählen nicht mehr: Die Regeln sehen
-     * nur Epochen nach dieser Grenze, ein neuer Moment braucht neue Treffer (sonst weckte der alte, sobald die Sperre
-     * endet). Grundrauschen und Basispuls bleiben. Identisch zu `WakeDetector.rearm` (Swift).
+     * weiter und kann einen neuen Moment melden. Die Treffer des übergangenen Moments zählen nicht mehr: Die Regeln
+     * sehen nur Epochen nach dieser Grenze, ein neuer Moment braucht neue Treffer (sonst weckte der alte, sobald die
+     * Sperre endet). Grundrauschen und Basispuls bleiben. Identisch zu `WakeDetector.rearm` (Swift).
      */
     fun rearm() {
         result = null
@@ -129,8 +129,9 @@ class WakeDetector(config: DetectorConfig = DetectorConfig()) {
     }
 
     /**
-     * Grundrauschen der Einschlaf-Messung dieser Nacht, das erst nach Fensterbeginn bekannt wird (Apple Watch rechnet es
-     * zu Beginn der Sitzung nach): gilt ab der nächsten Epoche wie [DetectorConfig.withOnsetFloor]. Identisch zu Swift.
+     * Grundrauschen der Einschlaf-Messung dieser Nacht, das erst nach Fensterbeginn bekannt wird (Apple Watch rechnet
+     * es zu Beginn der Sitzung nach): gilt ab der nächsten Epoche wie [DetectorConfig.withOnsetFloor]. Identisch zu
+     * Swift.
      */
     fun useOnsetFloor(floor: Double?) {
         config = config.withOnsetFloor(floor)

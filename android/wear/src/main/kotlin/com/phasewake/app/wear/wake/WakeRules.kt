@@ -15,13 +15,17 @@ internal object WakeRules {
     /** Höchstens so lange klingelt es ohne Reaktion am Stück. */
     const val RING_TIMEOUT_MS = 10 * 60_000L
 
-    /** Abstand des Wiederaufnahme-Alarms nach der Zeitgrenze des Klingelns: Der Ablauf im Prozess kommt immer zuerst. */
+    /**
+     * Abstand des Wiederaufnahme-Alarms nach der Zeitgrenze des Klingelns: Der Ablauf im Prozess kommt immer zuerst.
+     */
     val RESUME_MARGIN: Duration = Duration.ofSeconds(30)
 
     /** «Gute Nacht» nur, wenn die eingestellte Weckzeit höchstens so weit entfernt ist. */
     val GOOD_NIGHT_MAX_AHEAD: Duration = Duration.ofHours(16)
 
-    /** Verbleibende Schlummer-Runden nach [snoozes] Runden; beim Probewecker keine (er prüft genau einen Weckvorgang). */
+    /**
+     * Verbleibende Schlummer-Runden nach [snoozes] Runden; beim Probewecker keine (er prüft genau einen Weckvorgang).
+     */
     fun snoozesLeft(alarmId: String, snoozes: Int): Int = if (Transient.allowsSnooze(alarmId)) Snooze.MAX_COUNT - snoozes else 0
 
     /** Was die Zeitgrenze einer Klingel-Runde auslöst. */
@@ -37,8 +41,8 @@ internal object WakeRules {
     fun timeout(snoozesLeft: Int): Timeout = if (snoozesLeft > 0) Timeout.SNOOZE else Timeout.DISMISS
 
     /**
-     * Wiederaufnahme-Alarm einer Klingel-Runde ab [now]: kurz nach der Zeitgrenze. Stirbt der Prozess mitten im Klingeln,
-     * klingelt es damit wieder; Schlummern ersetzt ihn, das Ende der Nacht hebt ihn auf.
+     * Wiederaufnahme-Alarm einer Klingel-Runde ab [now]: kurz nach der Zeitgrenze. Stirbt der Prozess mitten im
+     * Klingeln, klingelt es damit wieder; Schlummern ersetzt ihn, das Ende der Nacht hebt ihn auf.
      */
     fun resumeAt(now: Instant): Instant = now.plusMillis(RING_TIMEOUT_MS).plus(RESUME_MARGIN)
 
@@ -68,7 +72,8 @@ internal object WakeRules {
 
     /**
      * Zeile fürs Diagnose-Protokoll: Verzögerung vom geplanten Fensteralarm [scheduledAt] bis zum Start des Dienstes
-     * [now], dazu bis zum Empfang [receivedAt] (0 = unbekannt), z. B. «watch start delay 47.0s (alarm 0.3s)» (alle in ms).
+     * [now], dazu bis zum Empfang [receivedAt] (0 = unbekannt), z. B. «watch start delay 47.0s (alarm 0.3s)» (alle in
+     * ms).
      */
     fun startDelayLine(scheduledAt: Long, receivedAt: Long, now: Long): String {
         val alarm = if (receivedAt > 0L) " (alarm ${seconds(receivedAt - scheduledAt)})" else ""
@@ -76,8 +81,8 @@ internal object WakeRules {
     }
 
     /**
-     * Epochen ab Fensterbeginn [windowStart], die beim Start der Sensoren ([now]) schon vorbei sind: Sie bleiben leer und
-     * zählen nicht für die Erkennung (Aufwärmphase, Basispuls), nur für den Verlauf. Identisch zu
+     * Epochen ab Fensterbeginn [windowStart], die beim Start der Sensoren ([now]) schon vorbei sind: Sie bleiben leer
+     * und zählen nicht für die Erkennung (Aufwärmphase, Basispuls), nur für den Verlauf. Identisch zu
      * `unmeasured` der Apple Watch (`SmartAlarm+Measuring.swift`): ganze 30-s-Epochen seit Fensterbeginn, nie negativ.
      */
     fun unmeasuredEpochs(windowStart: Instant, now: Instant): Int =

@@ -15,11 +15,11 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withTimeoutOrNull
 
 /**
- * Holt nach, was die Uhr verpasst haben könnte (Prozess neu, Neustart, Update): einmalig auf die Warteschlange umstellen
- * ([WearSync.migrateTransport]), wartende Nächte und Aufzeichnungen senden, das Handy um seinen Stand bitten (Wecker und
- * Einstellungen kommen über die Warteschlange, [WearSync.requestSyncOnStart]) und ein verpasstes «Verlauf löschen» anwenden.
- * Nur nach dem ersten Entsperren aufrufen. Fehler (keine Wear-Dienste, kein Handy) werden geloggt, die Uhr arbeitet dann
- * allein weiter.
+ * Holt nach, was die Uhr verpasst haben könnte (Prozess neu, Neustart, Update): einmalig auf die Warteschlange
+ * umstellen ([WearSync.migrateTransport]), wartende Nächte und Aufzeichnungen senden, das Handy um seinen Stand bitten
+ * (Wecker und Einstellungen kommen über die Warteschlange, [WearSync.requestSyncOnStart]) und ein verpasstes «Verlauf
+ * löschen» anwenden. Nur nach dem ersten Entsperren aufrufen. Fehler (keine Wear-Dienste, kein Handy) werden geloggt,
+ * die Uhr arbeitet dann allein weiter.
  */
 object PhoneCatchUp {
     private const val TAG = "PhoneCatchUp"
@@ -50,8 +50,8 @@ object PhoneCatchUp {
     }
 
     /**
-     * Löscht die Nächte und Aufzeichnungen, die vor dem «Verlauf löschen» am Handy ([clearedAt], ms) liegen; spätere bleiben.
-     * Ein schon angewendetes Löschen (gleicher oder älterer Zeitpunkt) wird übersprungen.
+     * Löscht die Nächte und Aufzeichnungen, die vor dem «Verlauf löschen» am Handy ([clearedAt], ms) liegen; spätere
+     * bleiben. Ein schon angewendetes Löschen (gleicher oder älterer Zeitpunkt) wird übersprungen.
      */
     suspend fun applyClear(app: PhaseWakeWear, clearedAt: Long) {
         val store = app.phaseWakeStore

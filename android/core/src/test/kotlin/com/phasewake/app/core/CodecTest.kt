@@ -198,7 +198,8 @@ class CodecTest {
     @Test
     fun newReasonsStayReadableForOlderVersions() {
         val night = NightRecord("a", Instant.ofEpochMilli(0), Instant.ofEpochMilli(1_800_000), Instant.ofEpochMilli(1_800_000), WakeReason.EXACT, 0, emptyList())
-        // Byte-gleich mit Apple (CodecTests.testNewReasonsStayReadableForOlderVersions): Feld 5 DEADLINE, Feld 8 der neue Grund.
+        // Byte-gleich mit Apple (CodecTests.testNewReasonsStayReadableForOlderVersions): Feld 5 DEADLINE, Feld 8 der
+        // neue Grund.
         assertEquals("phasewake-night 1\na|0|1800000|1800000|DEADLINE|0||EXACT\n\n", Codec.encodeNight(night))
         assertEquals(night, Codec.decodeNight(Codec.encodeNight(night)))
         val short = night.copy(reason = WakeReason.SHORT_NIGHT, feeling = 3)

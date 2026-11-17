@@ -7,8 +7,8 @@ import Foundation
 /// `start + (k+1) · 30 s` (ausschliesslich). Die Werte tragen die Wanduhr (`startDate`); sie kommen sortiert.
 ///
 /// Die Uhr holt die Werte in Abschnitten (``add(at:x:y:z:)``, dann ``close(until:)`` an einer Epochengrenze) und
-/// speichert dazwischen die fertigen Epochen. Fährt sie nach einem Neustart der App fort (`motions`), beginnt der Zähler
-/// neu: Die erste Differenz nach der Grenze fehlt dann (1 von rund 750 je Epoche).
+/// speichert dazwischen die fertigen Epochen. Fährt sie nach einem Neustart der App fort (`motions`), beginnt der
+/// Zähler neu: Die erste Differenz nach der Grenze fehlt dann (1 von rund 750 je Epoche).
 ///
 /// Nicht threadsicher; nur aus einer Warteschlange benutzen.
 public final class RecorderEpochs {

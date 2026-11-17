@@ -6,9 +6,9 @@ extension SmartAlarm {
     // MARK: Wecken
 
     func ring(_ reason: WakeReason) {
-        // Zuerst wecken (wie Android, 13.11.2026): Zustand setzen und vibrieren, erst danach Sensoren, Rückfall, Protokoll
-        // und Speichern – sonst verzögert deren Arbeit die erste Vibration. Nur die Zeile zum Messende kommt vorher, denn
-        // sie gilt nur in der Phase «messen».
+        // Zuerst wecken (wie Android, 13.11.2026): Zustand setzen und vibrieren, erst danach Sensoren, Rückfall,
+        // Protokoll und Speichern – sonst verzögert deren Arbeit die erste Vibration. Nur die Zeile zum Messende kommt
+        // vorher, denn sie gilt nur in der Phase «messen».
         logMeasureEnd()
         self.reason = reason
         if firstRing == nil { firstRing = Date() }
@@ -25,8 +25,8 @@ extension SmartAlarm {
             return step.interval
         }
         stopSensors()
-        // Der Rückfall bleibt stehen, bis beendet wird: Endet die Sitzung, weckt er trotzdem. Klingelt die Sitzung, fallen
-        // nur die noch folgenden Mitteilungen seiner Kette weg (`NotificationChain`).
+        // Der Rückfall bleibt stehen, bis beendet wird: Endet die Sitzung, weckt er trotzdem. Klingelt die Sitzung,
+        // fallen nur die noch folgenden Mitteilungen seiner Kette weg (`NotificationChain`).
         if session?.state == .running { removeFollowingFallback(Self.fallbackKey(for: nightPlan?.alarmId ?? plan?.alarmId)) }
         DiagStore.shared.log(.ring, "watch \(reason.rawValue)")
         save()
@@ -70,7 +70,8 @@ extension SmartAlarm {
             if !phase.isRinging { WKInterfaceDevice.current().play(.notification) }
             return
         }
-        // Ohne laufende Sitzung vibriert `notifyUser` nicht: solange die App offen ist und es klingelt, selbst vibrieren.
+        // Ohne laufende Sitzung vibriert `notifyUser` nicht: solange die App offen ist und es klingelt, selbst
+        // vibrieren.
         fallbackHaptic?.invalidate()
         WKInterfaceDevice.current().play(.notification)
         fallbackHaptic = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { [weak self] _ in
@@ -137,7 +138,8 @@ extension SmartAlarm {
     /// Wecker beenden, Nacht speichern, nächste Nacht planen.
     func dismiss(notifyPhone: Bool = true) {
         guard phase.isRinging || phase.isSnoozed else {
-            // Nach einer abgebrochenen Sitzung ist die Nacht schon abgeschlossen: Ein Stopp (vom iPhone) beendet die Kette.
+            // Nach einer abgebrochenen Sitzung ist die Nacht schon abgeschlossen: Ein Stopp (vom iPhone) beendet die
+            // Kette.
             removeInterrupted()
             return
         }
@@ -154,8 +156,8 @@ extension SmartAlarm {
         finish(notifyPhone: notifyPhone)
     }
 
-    /// Kette nach abgebrochener Sitzung (`interruptedId`) beenden, wartend und zugestellt: Stopp vom iPhone oder Tipp auf
-    /// eine ihrer Mitteilungen (die Nacht ist dann schon abgeschlossen, es gibt keinen Weckbildschirm mehr).
+    /// Kette nach abgebrochener Sitzung (`interruptedId`) beenden, wartend und zugestellt: Stopp vom iPhone oder Tipp
+    /// auf eine ihrer Mitteilungen (die Nacht ist dann schon abgeschlossen, es gibt keinen Weckbildschirm mehr).
     func removeInterrupted() {
         removeFallback([Self.interruptedId])
         removeDeliveredFallback([Self.interruptedId])
@@ -175,15 +177,16 @@ extension SmartAlarm {
         finish(notifyPhone: false)
     }
 
-    /// Nacht speichern, einmaligen Wecker ausschalten, nächste Nacht planen. `catchUp`: Wecker, die während dieser Nacht
-    /// fällig wurden, nachholen (nicht bei einem alten Zustand, ``finishSilently()``).
+    /// Nacht speichern, einmaligen Wecker ausschalten, nächste Nacht planen. `catchUp`: Wecker, die während dieser
+    /// Nacht fällig wurden, nachholen (nicht bei einem alten Zustand, ``finishSilently()``).
     func finish(notifyPhone: Bool, catchUp: Bool = true) {
         invalidateSession()
         stopSensors()
         let model = WatchModel.shared
         // Probewecker und Powernap: kein Verlauf, kein «erledigt», kein Ausschalten (`Transient`).
         let transient = Transient.kindOf(nightPlan?.alarmId) != nil
-        // «Gute Nacht» hat diese Nacht vorverlegt (vor `markNightDone` gelesen, das sie verfallen lässt): für das Auto-Aus.
+        // «Gute Nacht» hat diese Nacht vorverlegt (vor `markNightDone` gelesen, das sie verfallen lässt): für das
+        // Auto-Aus.
         let shifted = nightPlan.map { night in
             model.goodNight.map { $0.alarmId == night.alarmId && TimeBounds.millis($0.target) == TimeBounds.millis(night.target) } ?? false
         } ?? false
@@ -211,11 +214,12 @@ extension SmartAlarm {
             // Die Aufzeichnung dieser Nacht (Lernphase oder von Hand) endet mit dem Klingeln.
             LearnRecorder.shared.noteWake(alarmId: nightPlan.alarmId, target: nightPlan.target)
         }
-        // Ohne Nacht im Verlauf (nicht geweckt) gehört der Akku zu nichts; Probewecker und Powernap haben keinen begonnen.
+        // Ohne Nacht im Verlauf (nicht geweckt) gehört der Akku zu nichts; Probewecker und Powernap haben keinen
+        // begonnen.
         if firstRing == nil, !transient { WatchBattery.drop("night ended without ring") }
         if notifyPhone { WatchConnectivityBridge.shared.send(command: SyncKeys.stop, alarmId: nightPlan?.alarmId ?? "", target: nightPlan?.target) }
-        // Aus dem Speicher statt aus der Nacht: nach einem Neustart der App fehlt `spec`. Nur die Fassung, die geklingelt
-        // hat: Im Schlummern verschoben, oder eine neuere Änderung vom iPhone, bleibt eingeschaltet.
+        // Aus dem Speicher statt aus der Nacht: nach einem Neustart der App fehlt `spec`. Nur die Fassung, die
+        // geklingelt hat: Im Schlummern verschoben, oder eine neuere Änderung vom iPhone, bleibt eingeschaltet.
         if let nightPlan, !transient, let alarm = model.alarms.first(where: { $0.id == nightPlan.alarmId }), alarm.isOneShot, alarm.enabled {
             model.disableAfterRing(alarm.id, rung: spec, target: nightPlan.target, shifted: shifted)
         }

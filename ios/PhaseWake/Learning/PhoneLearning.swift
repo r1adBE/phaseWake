@@ -6,13 +6,13 @@ import PhaseWakeCore
 /// Android): Stand und Zustimmung (``LearningState``), die Aufzeichnungen der Apple Watch (``NightRecording``, die
 /// letzten 14, aus der Lernphase und von «Nacht aufzeichnen»; Verlauf, Export und Schlafwert lesen sie hier), Zählen
 /// der Nächte und Lernen der Werte nach 7 gezählten Nächten. Der Puls kommt auf der Apple Watch aus
-/// Apple Health, darum gilt dort ``Learning/minHeartRateEpochsApple``; die Einschlafdauer trägt das iPhone aus Apple Health
-/// nach («Im Bett» bis zum ersten Schlaf, nur Daten von Apple; ``HealthSleep/onsetSamples(from:to:)``), sobald sie dort
-/// liegt.
+/// Apple Health, darum gilt dort ``Learning/minHeartRateEpochsApple``; die Einschlafdauer trägt das iPhone aus Apple
+/// Health nach («Im Bett» bis zum ersten Schlaf, nur Daten von Apple; ``HealthSleep/onsetSamples(from:to:)``), sobald
+/// sie dort liegt.
 ///
 /// Alles privat im von der Sicherung ausgenommenen Ordner (`PrivateFiles`), weder in der iCloud-Sicherung noch in
-/// `.pwbak` – wie die Aufzeichnungen, auf denen es beruht. Stand und gelernte Werte gehen im Anwendungskontext an die Uhr
-/// (`PhoneModel.publishToWatch`).
+/// `.pwbak` – wie die Aufzeichnungen, auf denen es beruht. Stand und gelernte Werte gehen im Anwendungskontext an die
+/// Uhr (`PhoneModel.publishToWatch`).
 @MainActor
 @Observable
 final class PhoneLearning {
@@ -25,7 +25,8 @@ final class PhoneLearning {
 
     @ObservationIgnored private let stateURL: URL
     @ObservationIgnored private let recordingsURL: URL
-    /// Kopie eines kaputten Stands (``setAside()``); solange sie liegt, gilt der Stand als nach einem Fehler leer begonnen.
+    /// Kopie eines kaputten Stands (``setAside()``); solange sie liegt, gilt der Stand als nach einem Fehler leer
+    /// begonnen.
     @ObservationIgnored private let brokenURL: URL
     /// Nachtragen der Einschlafdauer läuft (nicht doppelt).
     @ObservationIgnored private var filling = false
@@ -34,8 +35,8 @@ final class PhoneLearning {
     @ObservationIgnored private(set) var loaded = false
     /// Aufzeichnungen der Uhr, die vor dem Lesen kamen; ``load()`` speichert sie danach.
     @ObservationIgnored private var pending: [String] = []
-    /// Proben aus Apple Health fürs Nachtragen der Einschlafdauer (``HealthSleep/onsetSamples(from:to:)``). Tests setzen
-    /// eine Quelle ohne HealthKit: Im Simulator ohne Signatur (CI) wartet eine Abfrage sonst auf HealthKit.
+    /// Proben aus Apple Health fürs Nachtragen der Einschlafdauer (``HealthSleep/onsetSamples(from:to:)``). Tests
+    /// setzen eine Quelle ohne HealthKit: Im Simulator ohne Signatur (CI) wartet eine Abfrage sonst auf HealthKit.
     @ObservationIgnored var onsetSamples: @MainActor (Date, Date) async -> (inBed: [Date], asleep: [Date]) = PhoneLearning.healthOnsets
 
     /// Quelle der App: Apple Health.
@@ -169,9 +170,9 @@ final class PhoneLearning {
         if changed, recordings.map(\.start) == list.map(\.start) { setRecordings(list) }
     }
 
-    /// Zählt die Aufzeichnungen seit dem Beginn (``Learning/counted(_:since:calendar:)``); nach 7 gezählten Nächten werden die Werte gelernt,
-    /// gespeichert und an die Uhr geschickt. `received`: eben angekommene Aufzeichnung, fürs Diagnose-Protokoll
-    /// («learn night counted 3/7» bzw. «… not counted epochs=210»).
+    /// Zählt die Aufzeichnungen seit dem Beginn (``Learning/counted(_:since:calendar:)``); nach 7 gezählten Nächten
+    /// werden die Werte gelernt, gespeichert und an die Uhr geschickt. `received`: eben angekommene Aufzeichnung, fürs
+    /// Diagnose-Protokoll («learn night counted 3/7» bzw. «… not counted epochs=210»).
     private func update(received: NightRecording?) {
         guard let since = state.since, state.active else { return }
         let counted = Learning.counted(recordings.map(\.learnNight), since: since, calendar: .gregorianLocal)

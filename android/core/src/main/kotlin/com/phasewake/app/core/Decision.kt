@@ -23,7 +23,9 @@ enum class WakeReason {
     /** Zielzeit erreicht, ohne dass vorher ein guter Moment kam. */
     DEADLINE,
 
-    /** Wecker «Genau» ([AlarmSpec.isExact]): zur Zielzeit geweckt, nie früher; die Uhr hat nur für den Verlauf gemessen. */
+    /**
+     * Wecker «Genau» ([AlarmSpec.isExact]): zur Zielzeit geweckt, nie früher; die Uhr hat nur für den Verlauf gemessen.
+     */
     EXACT,
 
     /** Kurze Nacht ([ShortNight.blocksEarly]): frühe Momente wurden übergangen, geweckt zur Zielzeit. */

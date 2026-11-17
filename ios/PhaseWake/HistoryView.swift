@@ -8,7 +8,8 @@ struct HistoryView: View {
     @AppStorage("healthRequested") private var healthRequested = false
     @Environment(\.scenePhase) private var scenePhase
     /// Sitzungen aus Apple Health: ein Spiegel der Quelle, beim Öffnen und bei jeder Rückkehr in den Vordergrund neu
-    /// gelesen, nur im Speicher (nie gespeichert oder gesichert) – was dort geändert oder gelöscht wird, ist es hier auch.
+    /// gelesen, nur im Speicher (nie gespeichert oder gesichert) – was dort geändert oder gelöscht wird, ist es hier
+    /// auch.
     @State private var health = HealthNights()
     /// Daraus: Nächte für Diagramme und Trends sowie die Phasen für die eigenen Nächte (ohne ausgeblendete).
     @State private var sleeps: [SleepSummary] = []
@@ -19,7 +20,8 @@ struct HistoryView: View {
     @State private var path: [String] = []
 
     /// Phasen für die Karte einer eigenen Nacht: so lange nach dem Wecken (Sekunden), samt Weiterschlafen – Beginn bis
-    /// `HealthHistory.continuationGap` nach dem Wecken, kürzer als `HealthHistory.minNightMinutes`. Wie `STAGES_AFTER` (Android).
+    /// `HealthHistory.continuationGap` nach dem Wecken, kürzer als `HealthHistory.minNightMinutes`. Wie `STAGES_AFTER`
+    /// (Android).
     private static let stagesAfter: TimeInterval = HealthHistory.continuationGap + TimeInterval(HealthHistory.minNightMinutes * 60)
 
     var body: some View {
@@ -246,7 +248,8 @@ private enum HistoryEntry: Identifiable {
         }
     }
 
-    /// Zeitpunkt für die Reihenfolge (neueste zuerst): Wecken, Ende der Sitzung, jüngster Ausschnitt, Ende der Aufzeichnung.
+    /// Zeitpunkt für die Reihenfolge (neueste zuerst): Wecken, Ende der Sitzung, jüngster Ausschnitt, Ende der
+    /// Aufzeichnung.
     var at: Date {
         switch self {
         case .night(let night): night.wokeAt

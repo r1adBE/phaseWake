@@ -1,7 +1,8 @@
 import XCTest
 import PhaseWakeCore
 
-/// Nachfrist (`AlarmSchedule.inGrace`) und Nachholen (`AlarmSchedule.missedPlan`); gleiche Fälle wie `AlarmGraceTest` (Kotlin).
+/// Nachfrist (`AlarmSchedule.inGrace`) und Nachholen (`AlarmSchedule.missedPlan`); gleiche Fälle wie `AlarmGraceTest`
+/// (Kotlin).
 final class AlarmGraceTests: XCTestCase {
 
     private var zurich: Calendar = {

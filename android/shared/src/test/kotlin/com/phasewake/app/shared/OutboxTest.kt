@@ -51,8 +51,8 @@ class OutboxTest {
     private var clock = 1_000L
 
     /**
-     * Warteschlange im Takt des Tests: Dateizugriffe und Senden im Hintergrund auf dessen Zeitgeber, die Uhr ist [clock]
-     * (jeder Aufruf eine Millisekunde später) plus die Zeit des Zeitgebers (verzögertes Nachsenden).
+     * Warteschlange im Takt des Tests: Dateizugriffe und Senden im Hintergrund auf dessen Zeitgeber, die Uhr ist
+     * [clock] (jeder Aufruf eine Millisekunde später) plus die Zeit des Zeitgebers (verzögertes Nachsenden).
      */
     private fun TestScope.outbox() =
         Outbox(dir, transport, { clock++ + testScheduler.currentTime }, backgroundScope, StandardTestDispatcher(testScheduler))

@@ -158,7 +158,8 @@ object DirectBoot {
     fun restore(context: Context) {
         var saved = load(context) ?: return
         val now = Instant.now()
-        // Längst vorbei (Probewecker und Powernap: schon 60 s nach dem Wecken): dann gilt der Plan danach, falls einer abgelegt ist.
+        // Längst vorbei (Probewecker und Powernap: schon 60 s nach dem Wecken): dann gilt der Plan danach, falls einer
+        // abgelegt ist.
         if (!catchesUp(saved, now)) saved = promoteNext(context) ?: return
         if (!catchesUp(saved, now)) return
         setDeadlineAt(context, saved)

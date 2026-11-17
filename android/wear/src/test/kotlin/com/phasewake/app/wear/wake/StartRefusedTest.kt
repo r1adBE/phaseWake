@@ -88,7 +88,8 @@ class StartRefusedTest {
         val rescue = shadowOf(StartRefused.notification(app, WakeService.ACTION_DEADLINE, plan).fullScreenIntent).savedIntent
         val context = Refusing(app)
         assertTrue(StartRefused.resume(context, rescue))
-        // Der Weckbildschirm startet den Dienst mit demselben Auftrag (hier wieder abgelehnt, also erneut die Mitteilung).
+        // Der Weckbildschirm startet den Dienst mit demselben Auftrag (hier wieder abgelehnt, also erneut die
+        // Mitteilung).
         assertEquals(1, context.attempts)
         assertFalse(StartRefused.resume(context, Intent(app, RingActivity::class.java).putExtra(RingActivity.EXTRA_VIA, RingActivity.VIA_TAP)))
         assertFalse(StartRefused.resume(context, null))

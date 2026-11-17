@@ -26,7 +26,8 @@ public enum Sunrise: String, CaseIterable, Sendable {
 
     /// Dauer des Sonnenaufgangs beim Modus `ring` in Sekunden.
     public static let ringSeconds = 120
-    /// Aufholzeit in Sekunden, wenn die Uhr beim Modus `window` vor der Zielzeit weckt: das Licht wird dann in dieser Zeit voll hell.
+    /// Aufholzeit in Sekunden, wenn die Uhr beim Modus `window` vor der Zielzeit weckt: das Licht wird dann in dieser
+    /// Zeit voll hell.
     public static let catchUpSeconds = 60
 
     /// Fortschritt 0–1 eines Lichts von `start` bis `end`.
@@ -78,7 +79,8 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
     public static let exactWindow = 0
     /// Bei «Genau» misst die Uhr so viele Minuten vor der Zielzeit, nur für den Verlauf.
     public static let measureMinutes = 30
-    /// Kürzestes Weckfenster in Minuten (ausser `exactWindow`); darunter bleibt nach der Aufwärmphase kaum Zeit zum Erkennen.
+    /// Kürzestes Weckfenster in Minuten (ausser `exactWindow`); darunter bleibt nach der Aufwärmphase kaum Zeit zum
+    /// Erkennen.
     public static let minWindowMinutes = 10
     /// Grenze der Smart-Alarm-Sitzung von watchOS, auf beiden Plattformen gleich.
     public static let maxWindowMinutes = 30

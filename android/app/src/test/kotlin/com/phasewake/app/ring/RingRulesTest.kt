@@ -199,7 +199,8 @@ class RingRulesTest {
 
     @Test
     fun zoneChangeInWindowKeepsPlannedBackup() {
-        // 07:00 Zürich, Fenster 30 min; um 06:40 wechselt die Zone nach Tokio (14:40): Der Zweitwecker bleibt 07:00 Zürich.
+        // 07:00 Zürich, Fenster 30 min; um 06:40 wechselt die Zone nach Tokio (14:40): Der Zweitwecker bleibt 07:00
+        // Zürich.
         val planned = zurichSeven
         val spec = windowed
         assertEquals(planned, inTokyo(at("2026-11-04T06:40"))?.target)

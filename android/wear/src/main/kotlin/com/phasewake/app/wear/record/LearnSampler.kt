@@ -18,10 +18,11 @@ import com.phasewake.app.wear.wake.SensorSession
 
 /**
  * Aufzeichnung in Stichproben (Lernphase; von Hand ohne Diagnose), wie die
- * Stichproben der Einschlaf-Messung ([OnsetMonitor]): Alle 5 Minuten weckt ein exakter Alarm die Uhr; sie misst [OnsetMonitor.SAMPLE_EPOCHS] volle Epochen
- * (60 s) Bewegung und Puls unter einem kurzen Wakelock ([RecordWakeLocks.short]) und schläft wieder. Dazwischen sind die
- * Sensoren ab; die Epochen dort werden leer gespeichert ([filter]), das Format bleibt gleich. Derselbe Alarm ruft
- * [onTick] (Grenzen, Anhängen, Protokoll), denn ein Zeitgeber steht im Tiefschlaf still.
+ * Stichproben der Einschlaf-Messung ([OnsetMonitor]): Alle 5 Minuten weckt ein exakter Alarm die Uhr; sie misst
+ * [OnsetMonitor.SAMPLE_EPOCHS] volle Epochen (60 s) Bewegung und Puls unter einem kurzen Wakelock
+ * ([RecordWakeLocks.short]) und schläft wieder. Dazwischen sind die Sensoren ab; die Epochen dort werden leer
+ * gespeichert ([filter]), das Format bleibt gleich. Derselbe Alarm ruft [onTick] (Grenzen, Anhängen, Protokoll), denn
+ * ein Zeitgeber steht im Tiefschlaf still.
  *
  * @param session Sitzung mit `sampled = true`, gestartet ohne Sensoren.
  * @param startNanos Beginn der [session] (`SystemClock.elapsedRealtimeNanos()`), Epoche 0.
@@ -34,7 +35,9 @@ internal class LearnSampler(
     private val onTick: () -> Unit,
 ) {
     private val handler = Handler(Looper.getMainLooper())
-    /** Epochen der laufenden bzw. letzten Stichprobe: [sampleFrom] einschliesslich bis [sampleUntil] ausschliesslich. */
+    /**
+     * Epochen der laufenden bzw. letzten Stichprobe: [sampleFrom] einschliesslich bis [sampleUntil] ausschliesslich.
+     */
     internal var sampleFrom = 0L
         private set
     internal var sampleUntil = 0L

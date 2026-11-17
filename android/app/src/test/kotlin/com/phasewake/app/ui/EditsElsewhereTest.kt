@@ -100,7 +100,10 @@ class EditsElsewhereTest {
         assertTrue(runBlocking { context.phoneApp.alarms.current().alarms }.isEmpty())
     }
 
-    /** Während des Anlegens sind anderswo alle acht Plätze belegt worden: Hinweis, der Editor bleibt mit den Eingaben offen. */
+    /**
+     * Während des Anlegens sind anderswo alle acht Plätze belegt worden: Hinweis, der Editor bleibt mit den Eingaben
+     * offen.
+     */
     @Test
     fun ninthAlarmShowsHintAndKeepsEditor() {
         // Ohne Wecker: «Neuer Wecker» steht auf der Startseite (mit Weckern ist es der schwebende Knopf).

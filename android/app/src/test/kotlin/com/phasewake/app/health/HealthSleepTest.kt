@@ -41,8 +41,9 @@ class HealthSleepTest {
     private fun at(minutes: Long): Instant = t0.plus(Duration.ofMinutes(minutes))
 
     /**
-     * Sitzung von [from] bis [to] Minuten nach [t0] mit [stages] (Art, von, bis). [origin]: schreibende App; Health Connect
-     * setzt sie selbst, darum hier über Reflexion (ohne Angabe bleibt sie leer wie bei einer unbekannten Herkunft).
+     * Sitzung von [from] bis [to] Minuten nach [t0] mit [stages] (Art, von, bis). [origin]: schreibende App; Health
+     * Connect setzt sie selbst, darum hier über Reflexion (ohne Angabe bleibt sie leer wie bei einer unbekannten
+     * Herkunft).
      */
     private fun session(from: Long, to: Long, origin: String? = null, vararg stages: Triple<Int, Long, Long>): SleepSessionRecord {
         val metadata = Metadata.manualEntry()

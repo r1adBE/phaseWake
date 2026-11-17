@@ -191,8 +191,8 @@ internal fun RingScreen(
             now = clock()
         }
     }
-    // Ohne Sonnenaufgang: kräftiger, ruhender Weckhimmel (WakeSky). Mit Sonnenaufgang: Licht statt Nachthimmel; jeder Text
-    // nimmt die Schrift, die an seiner Stelle lesbar ist.
+    // Ohne Sonnenaufgang: kräftiger, ruhender Weckhimmel (WakeSky). Mit Sonnenaufgang: Licht statt Nachthimmel; jeder
+    // Text nimmt die Schrift, die an seiner Stelle lesbar ist.
     val background: @Composable (@Composable () -> Unit) -> Unit = { inner ->
         if (light != null) SunriseBackground(light, Modifier.fillMaxSize(), inner) else Box(Modifier.fillMaxSize().wakeSky()) { inner() }
     }

@@ -79,7 +79,10 @@ internal enum class ScoreSource { HEALTH, RECORDING }
 /** Schlafwert einer Nacht samt den Messwerten, aus denen er gerechnet ist. */
 internal data class NightScore(val result: SleepScoreResult, val input: ScoreInput, val source: ScoreSource)
 
-/** Messreihe einer Nacht (Bewegung und Puls je 30-s-Epoche ab [start]); [fullNight]: ganze Aufzeichnung statt Weckfenster. */
+/**
+ * Messreihe einer Nacht (Bewegung und Puls je 30-s-Epoche ab [start]); [fullNight]: ganze Aufzeichnung statt
+ * Weckfenster.
+ */
 internal data class NightSeries(val epochs: List<Epoch>, val start: Instant, val fullNight: Boolean)
 
 /** Ende einer Aufzeichnung (laufend: bis zur letzten Epoche). */
@@ -117,14 +120,17 @@ internal fun nightScore(view: NightView, recordings: List<NightRecording>, goalM
     return SleepScore.of(input)?.let { NightScore(it, input, source) }
 }
 
-/** Messreihe für Puls und Bewegung: überschneidende Aufzeichnung (ganze Nacht), sonst bei eigener Nacht das Weckfenster. */
+/**
+ * Messreihe für Puls und Bewegung: überschneidende Aufzeichnung (ganze Nacht), sonst bei eigener Nacht das Weckfenster.
+ */
 internal fun nightSeries(item: HistoryItem, recordings: List<NightRecording>): NightSeries? =
     recordingFor(item, recordings)?.let { NightSeries(it.epochs, it.start, fullNight = true) }
         ?: item.night?.let { NightSeries(it.epochs, it.windowStart, fullNight = false) }
 
 /**
  * Quelle unter dem Schlafwert: «Aus deiner Aufzeichnung der Galaxy Watch.» bzw. «Aus Samsung Health.» (Sitzung, die die
- * eigene Nacht überdeckt; unbekannt: «Aus deinen Gesundheitsdaten.»). Bei einer Sitzung `null`: Der Kopf nennt die Quelle schon.
+ * eigene Nacht überdeckt; unbekannt: «Aus deinen Gesundheitsdaten.»). Bei einer Sitzung `null`: Der Kopf nennt die
+ * Quelle schon.
  */
 internal fun scoreSourceText(context: Context, item: HistoryItem, score: NightScore, sessions: List<HealthSession>): String? {
     if (score.source == ScoreSource.RECORDING) return context.getString(R.string.score_source_recording)
@@ -167,7 +173,8 @@ private fun animationsOn(): Boolean {
 
 /**
  * Schlafwert der Detailseite: Bogen mit dem Wert, der in einem Weckpunkt endet (Logo-Motiv), darunter die Bewertung
- * (ohne Schlafphasen mit dem Hinweis «vorläufig»); je Faktor eine Kachel mit Wert, Bewertung und Balken der Punkte. Fehlende Faktoren fehlen. Unten Quelle und Gewichtung.
+ * (ohne Schlafphasen mit dem Hinweis «vorläufig»); je Faktor eine Kachel mit Wert, Bewertung und Balken der Punkte.
+ * Fehlende Faktoren fehlen. Unten Quelle und Gewichtung.
  */
 @Composable
 internal fun ScoreCard(score: NightScore, source: String?, goalMinutes: Int, modifier: Modifier = Modifier) {
@@ -248,8 +255,8 @@ private fun ScoreArc(result: SleepScoreResult, modifier: Modifier = Modifier) {
 }
 
 /**
- * Verlauf entlang des Bogens (Winkel ab 3 Uhr im Uhrzeigersinn): Beginn bei 150° tief, oben (270°) Lavendel, Ende bei 30°
- * Morgenrot. Die Lücke unten (30°–150°) ist unsichtbar; dort nur der Übergang für die runden Enden.
+ * Verlauf entlang des Bogens (Winkel ab 3 Uhr im Uhrzeigersinn): Beginn bei 150° tief, oben (270°) Lavendel, Ende bei
+ * 30° Morgenrot. Die Lücke unten (30°–150°) ist unsichtbar; dort nur der Übergang für die runden Enden.
  */
 private fun arcBrush(center: Offset, deep: Color, mid: Color, dawn: Color): Brush {
     val atZero = lerp(mid, dawn, 0.75f)
@@ -309,7 +316,8 @@ private fun FactorTile(factor: FactorScore, input: ScoreInput, goalMinutes: Int,
             .clearAndSetSemantics { contentDescription = spoken },
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            // Farbmarke der Phase wie in Legende und Phasen-Summen; der Balken selbst zeigt die Punkte (immer gleiche Farbe).
+            // Farbmarke der Phase wie in Legende und Phasen-Summen; der Balken selbst zeigt die Punkte (immer gleiche
+            // Farbe).
             view.stage?.let { color -> Canvas(Modifier.padding(end = 6.dp).size(8.dp)) { drawRoundRect(color, cornerRadius = CornerRadius(2.dp.toPx())) } }
             Text(view.label, style = MaterialTheme.typography.labelMedium, color = scheme.onSurfaceVariant)
         }

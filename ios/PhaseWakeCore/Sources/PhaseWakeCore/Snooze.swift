@@ -22,19 +22,23 @@ public enum SleepOnset {
 
     /// Getragen heisst: ein Puls höchstens so viele Epochen (15 Min) vor dem Beginn der Strecke oder
     /// in ihm, und mindestens einer in der Strecke nach ihrer ersten Epoche (wie `SleepOnset.WORN_EPOCHS`, Kotlin). Die
-    /// Apple Watch misst den Puls ruhend von selbst, Apple nennt keinen festen Abstand; üblich sind 5 bis 15 Min (neuere
-    /// Modelle öfter). 15 Min deckt den grössten üblichen Abstand; eine abgelegte Uhr misst ab dem Ablegen keinen mehr.
+    /// Apple Watch misst den Puls ruhend von selbst, Apple nennt keinen festen Abstand; üblich sind 5 bis 15 Min
+    /// (neuere Modelle öfter). 15 Min deckt den grössten üblichen Abstand; eine abgelegte Uhr misst ab dem Ablegen
+    /// keinen mehr.
     public static let wornEpochs = 30
 
     /// Sucht die erste ruhige Strecke: `stillEpochs` Epochen, die erste und die letzte ruhig, dazwischen höchstens
     /// `maxTwitches` einzelne Zucker; eine leere Epoche oder zwei bewegte nacheinander unterbrechen sie.
     /// - Parameters:
-    ///   - motions: Bewegung je Epoche seit «Gute Nacht», in zeitlicher Reihenfolge; `nil` (leere Epoche) unterbricht die Strecke.
+    ///   - motions: Bewegung je Epoche seit «Gute Nacht», in zeitlicher Reihenfolge; `nil` (leere Epoche) unterbricht
+    /// die Strecke.
     ///   - threshold: Leicht-Schwelle in m/s²; ruhig heisst Bewegung vorhanden und darunter.
     ///   - heartRates: Puls je Epoche oder `nil` (keiner bekannt): Dann beginnt eine Strecke nur, wenn die Uhr getragen
-    ///     wurde, also höchstens `wornEpochs` Epochen davor oder in ihrer ersten Epoche ein Puls gemessen ist und mindestens
+    ///     wurde, also höchstens `wornEpochs` Epochen davor oder in ihrer ersten Epoche ein Puls gemessen ist und
+    /// mindestens
     ///     einer in der Strecke danach.
-    ///   - heartLead: So viele Epochen vor `motions` beginnt `heartRates` (Puls vor dem Beginn der Messung zählt für die
+    ///   - heartLead: So viele Epochen vor `motions` beginnt `heartRates` (Puls vor dem Beginn der Messung zählt für
+    /// die
     ///     erste Strecke); 0 = gleich gezählt.
     /// - Returns: Index der ersten Epoche der ersten ruhigen Strecke, oder `nil`, solange es keine gibt.
     public static func find(_ motions: [Double?], threshold: Double = DetectorConfig.defaultLightThreshold,

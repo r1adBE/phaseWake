@@ -79,7 +79,8 @@ internal const val PAGE_TAP_LOCK_MS = 400L
 
 /**
  * Ersteinrichtung in sechs Schritten (jederzeit überspringbar): Willkommen, Uhr verbinden, Rechte, erster Wecker,
- * Lernphase (Zustimmung), Probewecker – dann «Fertig». Zustand der Uhr und Rechte kommen aus dem Nacht-Check ([NavState.nightCheck]).
+ * Lernphase (Zustimmung), Probewecker – dann «Fertig». Zustand der Uhr und Rechte kommen aus dem Nacht-Check
+ * ([NavState.nightCheck]).
  */
 @Composable
 internal fun OnboardingScreen(app: PhaseWakeApp, state: NavState, actions: NavActions, onDone: () -> Unit) {
@@ -152,7 +153,8 @@ internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: Onboardi
         lockedUntil = now + PAGE_TAP_LOCK_MS
         action()
     }
-    // Himmel wie auf der Startseite; Schrittzahl und «Überspringen» im Kopf (hell ein Stück Tageshimmel), in dessen Farben.
+    // Himmel wie auf der Startseite; Schrittzahl und «Überspringen» im Kopf (hell ein Stück Tageshimmel), in dessen
+    // Farben.
     SkyPage {
     Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom))) {
         SkyHeader(statusBar = true) {
@@ -205,8 +207,8 @@ internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: Onboardi
                 }
                 page < STEPS -> Button(onClick = {
                     tap {
-                        // «Weiter» ohne «Wecker anlegen»: den gezeigten Wecker trotzdem anlegen, sonst fehlte er still –
-                        // aber nur, wenn noch keiner besteht (wiederholte Einrichtung).
+                        // «Weiter» ohne «Wecker anlegen»: den gezeigten Wecker trotzdem anlegen, sonst fehlte er still
+                        // – aber nur, wenn noch keiner besteht (wiederholte Einrichtung).
                         if (page == ALARM_PAGE && createsOnNext(alarmCreated != null, model)) createAlarm()
                         onPage(page + 1)
                     }

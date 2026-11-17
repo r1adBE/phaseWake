@@ -21,8 +21,8 @@ extension PhoneModel {
         await planAll()
     }
 
-    /// Stand nachlesen, falls er beim Start nicht lesbar war (vor dem ersten Entsperren), und dann alles planen wie beim
-    /// Start. Aufgerufen beim ersten Entsperren, beim Öffnen und von jedem Neuplanen, das den Stand braucht.
+    /// Stand nachlesen, falls er beim Start nicht lesbar war (vor dem ersten Entsperren), und dann alles planen wie
+    /// beim Start. Aufgerufen beim ersten Entsperren, beim Öffnen und von jedem Neuplanen, das den Stand braucht.
     /// - Returns: ob der Stand gelesen ist (schon vorher oder jetzt).
     @discardableResult
     func catchUpState() -> Bool {

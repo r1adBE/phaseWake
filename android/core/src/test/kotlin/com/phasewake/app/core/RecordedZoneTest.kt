@@ -8,7 +8,8 @@ import kotlin.test.assertEquals
 
 /**
  * Fremde Nächte überall in der Zone ihrer Aufzeichnung: Nachtdatum, Diagramme,
- * Übersicht, Trends und Regelmässigkeit; ohne Zone die des Geräts. Gegenstück: `RecordedZoneTests` (Swift), gleiche Fälle.
+ * Übersicht, Trends und Regelmässigkeit; ohne Zone die des Geräts. Gegenstück: `RecordedZoneTests` (Swift), gleiche
+ * Fälle.
  */
 class RecordedZoneTest {
     private val zurich = ZoneId.of("Europe/Zurich")

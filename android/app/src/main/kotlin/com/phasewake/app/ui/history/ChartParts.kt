@@ -53,7 +53,10 @@ import java.util.Locale
 
 // Gemeinsame Bausteine der Diagramme im Verlauf: Karte, Einblenden, Beschriftung, Legende und Marken.
 
-/** Erscheinen der Diagramme (einblenden und von unten wachsen); mit «Animationen entfernen» und in Bildschirmfotos keins. */
+/**
+ * Erscheinen der Diagramme (einblenden und von unten wachsen); mit «Animationen entfernen» und in Bildschirmfotos
+ * keins.
+ */
 private const val GROW_MS = 700
 
 @Composable
@@ -214,8 +217,9 @@ internal fun Legend(items: List<LegendItem>) {
 }
 
 /**
- * Farbe je Schlafphase aus dem Theme ([com.phasewake.app.ui.theme.BrandColors.stageAwake] usw.), in allen Diagrammen gleich;
- * jede mindestens 3:1 zur Karte (WCAG 1.4.11). Unterschieden wird zusätzlich über die Höhe (Zeile) und die Beschriftung.
+ * Farbe je Schlafphase aus dem Theme ([com.phasewake.app.ui.theme.BrandColors.stageAwake] usw.), in allen Diagrammen
+ * gleich; jede mindestens 3:1 zur Karte (WCAG 1.4.11). Unterschieden wird zusätzlich über die Höhe (Zeile) und die
+ * Beschriftung.
  */
 @Composable
 internal fun stageColors(): Map<SleepStage, Color> {
@@ -229,8 +233,9 @@ internal fun stageColors(): Map<SleepStage, Color> {
 }
 
 /**
- * Getönte Oberkante einer Kennzahl-Kachel auf der Karte der Seiten: [accent] mit [TILE_TINT_DARK] bzw. [TILE_TINT_LIGHT]
- * oben, nach unten auslaufend. Auf hell gleich wie [tileTop] auf Weiss; dunkel scheint das Glas darunter durch.
+ * Getönte Oberkante einer Kennzahl-Kachel auf der Karte der Seiten: [accent] mit [TILE_TINT_DARK] bzw.
+ * [TILE_TINT_LIGHT] oben, nach unten auslaufend. Auf hell gleich wie [tileTop] auf Weiss; dunkel scheint das Glas
+ * darunter durch.
  */
 @Composable
 internal fun tileTint(accent: Color): Brush {

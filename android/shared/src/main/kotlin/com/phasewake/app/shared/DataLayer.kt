@@ -6,10 +6,10 @@ package com.phasewake.app.shared
  * Seit [PROTOCOL] 2 gehen alle Inhalte mit persönlichen Daten als Nachricht über
  * die Warteschlange [Outbox] (Pfade `PATH_MSG_…`, Bestätigung [PATH_ACK]), nicht mehr als Datenpaket, das Google in der
  * Cloud sichert. Als Datenpaket bleiben nur der Gerätestatus der Uhr ([PATH_WATCH_STATUS]), «Verlauf löschen»
- * ([PATH_CLEAR_HISTORY], nur ein Zeitpunkt) und der Abbruch eines Probeweckers oder Powernaps ([PATH_TRANSIENT_CANCELLED],
- * nur eine Kennung). Den früheren Weg für ältere Uhr-Apps gibt es nicht mehr: Die Pfade der
- * früheren Datenpakete (Wecker, Nächte, Aufzeichnungen, Lernphase, …) dienen nur noch der einmaligen Umstellung, die die
- * eigenen alten Pakete löscht ([QueueMessages.legacyItems]).
+ * ([PATH_CLEAR_HISTORY], nur ein Zeitpunkt) und der Abbruch eines Probeweckers oder Powernaps
+ * ([PATH_TRANSIENT_CANCELLED], nur eine Kennung). Den früheren Weg für ältere Uhr-Apps gibt es nicht mehr: Die Pfade
+ * der früheren Datenpakete (Wecker, Nächte, Aufzeichnungen, Lernphase, …) dienen nur noch der einmaligen Umstellung,
+ * die die eigenen alten Pakete löscht ([QueueMessages.legacyItems]).
  */
 object DataLayer {
     /** Früheres Datenpaket mit allen Weckern; nur noch für die Umstellung (löschen). */
@@ -21,13 +21,19 @@ object DataLayer {
      */
     const val PATH_NIGHT_PREFIX = "/phasewake/night/"
 
-    /** Nachricht in beide Richtungen (Warteschlange): alle Wecker, Inhalt «updatedAt», Zeilenumbruch, `Codec.encodeAlarms`. */
+    /**
+     * Nachricht in beide Richtungen (Warteschlange): alle Wecker, Inhalt «updatedAt», Zeilenumbruch,
+     * `Codec.encodeAlarms`.
+     */
     const val PATH_MSG_ALARMS = "/phasewake/m/alarms"
 
     /** Nachricht Uhr → Handy (Warteschlange): eine Nacht, Inhalt `Codec.encodeNight`. */
     const val PATH_MSG_NIGHT = "/phasewake/m/night"
 
-    /** Nachricht Uhr → Handy (Warteschlange, gross über einen Kanal): abgeschlossene Aufzeichnung, `NightRecording.encode`. */
+    /**
+     * Nachricht Uhr → Handy (Warteschlange, gross über einen Kanal): abgeschlossene Aufzeichnung,
+     * `NightRecording.encode`.
+     */
     const val PATH_MSG_RECORDING = "/phasewake/m/recording"
 
     /** Nachricht Uhr → Handy (Warteschlange): Stand von «Nacht aufzeichnen», Inhalt Beginn in ms (0 = keine läuft). */
@@ -48,14 +54,17 @@ object DataLayer {
     /**
      * Nachricht Handy → Uhr (Warteschlange): gelernte Einschlafdauer (Bettzeit auf dem Ring), Inhalt
      * `LearningSnapshot.encodeLatency` «minuten|updatedAt» (−1 = keine). Eigener Pfad: Uhren früherer
-     * Versionen lesen [PATH_MSG_LEARNING] nur mit genau 4 Feldern, übergehen diesen Pfad und behalten so ihren Lernstand.
+     * Versionen lesen [PATH_MSG_LEARNING] nur mit genau 4 Feldern, übergehen diesen Pfad und behalten so ihren
+     * Lernstand.
      */
     const val PATH_MSG_LEARN_LATENCY = "/phasewake/m/learn-latency"
 
     /** Nachricht Handy → Uhr (Warteschlange): Schlafziel, Inhalt «minuten|updatedAt». */
     const val PATH_MSG_SLEEP_GOAL = "/phasewake/m/sleep-goal"
 
-    /** Nachricht Handy → Uhr (Warteschlange): Schalter der Einschlaf-Messung, Inhalt «1|updatedAt» bzw. «0|updatedAt». */
+    /**
+     * Nachricht Handy → Uhr (Warteschlange): Schalter der Einschlaf-Messung, Inhalt «1|updatedAt» bzw. «0|updatedAt».
+     */
     const val PATH_MSG_AUTO_ONSET = "/phasewake/m/auto-onset"
 
     /** Nachricht Handy → Uhr (Warteschlange): Feiertage, Inhalt «updatedAt», Zeilenumbruch, `Holidays.encode`. */
@@ -65,22 +74,26 @@ object DataLayer {
     const val PATH_ACK = "/phasewake/ack"
 
     /**
-     * Nachricht in beide Richtungen (ohne Inhalt): Die Gegenseite soll ihren aktuellen Stand einreihen (Wecker; vom Handy
-     * auch Lernphase, Schlafziel, Schalter, Feiertage; von der Uhr auch den Stand der Aufzeichnung). Ersetzt das frühere
-     * Abholen aus dem Data Layer, etwa für eine frisch installierte Seite.
+     * Nachricht in beide Richtungen (ohne Inhalt): Die Gegenseite soll ihren aktuellen Stand einreihen (Wecker; vom
+     * Handy auch Lernphase, Schlafziel, Schalter, Feiertage; von der Uhr auch den Stand der Aufzeichnung). Ersetzt das
+     * frühere Abholen aus dem Data Layer, etwa für eine frisch installierte Seite.
      */
     const val PATH_SYNC_REQUEST = "/phasewake/sync-request"
 
     /** Nachricht Uhr → Handy: Weckvorgang hat begonnen; Inhalt = [RingMessage]. */
     const val PATH_RING = "/phasewake/ring"
 
-    /** Nachricht Uhr → Handy oder Handy → Uhr: Weckvorgang beendet oder auf der Uhr geschlummert; Inhalt = [RingMessage] ohne Schlummer-Runden. */
+    /**
+     * Nachricht Uhr → Handy oder Handy → Uhr: Weckvorgang beendet oder auf der Uhr geschlummert; Inhalt = [RingMessage]
+     * ohne Schlummer-Runden.
+     */
     const val PATH_STOP = "/phasewake/stop"
 
     /**
-     * Nachricht Uhr → Handy: Die Uhr beginnt eine Nacht zu messen (Einschlaf-Messung, Aufzeichnung oder Weckfenster); das
-     * Handy hält ab jetzt seinen eigenen Akkustand fest (`BatteryNight`). Inhalt = [RingMessage] (Kennung,
-     * Zielzeit, Sendezeit); nur frisch angekommen ([RingMessage.isStale]) gilt «jetzt» als Beginn. Ältere Handys übergehen den Pfad.
+     * Nachricht Uhr → Handy: Die Uhr beginnt eine Nacht zu messen (Einschlaf-Messung, Aufzeichnung oder Weckfenster);
+     * das Handy hält ab jetzt seinen eigenen Akkustand fest (`BatteryNight`). Inhalt = [RingMessage] (Kennung,
+     * Zielzeit, Sendezeit); nur frisch angekommen ([RingMessage.isStale]) gilt «jetzt» als Beginn. Ältere Handys
+     * übergehen den Pfad.
      */
     const val PATH_NIGHT_BEGIN = "/phasewake/night-begin"
 
@@ -137,7 +150,8 @@ object DataLayer {
     /**
      * Stand der Verbindung Handy ↔ Uhr, wie eine Formatversion: steigt, wenn eine ältere Uhr etwas, das das
      * Handy schickt, nicht mehr wie eingestellt umsetzt (z. B. die Weckart «Genau»). Die Uhr meldet ihren Stand im
-     * Status-Paket ([KEY_PROTOCOL]); ist er kleiner als der des Handys, warnt der Nacht-Check (`WearSync.watchOutdated`).
+     * Status-Paket ([KEY_PROTOCOL]); ist er kleiner als der des Handys, warnt der Nacht-Check
+     * (`WearSync.watchOutdated`).
      */
     const val PROTOCOL = 2
 
@@ -192,7 +206,9 @@ object DataLayer {
     /** Früheres Datenpaket Handy → Uhr mit dem Schlafziel; nur noch für die Umstellung (löschen). */
     const val PATH_SLEEP_GOAL = "/phasewake/sleep-goal"
 
-    /** Früheres Datenpaket Handy → Uhr mit dem Schalter der Einschlaf-Messung; nur noch für die Umstellung (löschen). */
+    /**
+     * Früheres Datenpaket Handy → Uhr mit dem Schalter der Einschlaf-Messung; nur noch für die Umstellung (löschen).
+     */
     const val PATH_AUTO_ONSET = "/phasewake/auto-onset"
 
     /**
@@ -206,7 +222,10 @@ object DataLayer {
     /** Nachricht Handy → Uhr: Diagnose-Bericht anfordern (ohne Inhalt); Antwort [PATH_DIAG_LOG]. */
     const val PATH_DIAG_REQUEST = "/phasewake/diag-request"
 
-    /** Uhr → Handy: Diagnose-Bericht, Inhalt = `DiagReports.encode`; bis 90 KB als Nachricht, grösser über einen Kanal ([Outbox.sendOnce]). */
+    /**
+     * Uhr → Handy: Diagnose-Bericht, Inhalt = `DiagReports.encode`; bis 90 KB als Nachricht, grösser über einen Kanal
+     * ([Outbox.sendOnce]).
+     */
     const val PATH_DIAG_LOG = "/phasewake/diag-log"
 
     /** Nachricht Handy → Uhr: «Nacht aufzeichnen» starten (ohne Inhalt). Nur Galaxy Watch. */
@@ -216,8 +235,8 @@ object DataLayer {
     const val PATH_RECORD_STOP = "/phasewake/record-stop"
 
     /**
-     * Früheres Datenpaket Uhr → Handy mit dem Stand von «Nacht aufzeichnen»; Schlüssel [KEY_RECORD_SINCE] (Beginn in ms,
-     * 0 = keine läuft). Nur noch für die Umstellung der Uhr.
+     * Früheres Datenpaket Uhr → Handy mit dem Stand von «Nacht aufzeichnen»; Schlüssel [KEY_RECORD_SINCE] (Beginn in
+     * ms, 0 = keine läuft). Nur noch für die Umstellung der Uhr.
      */
     const val PATH_RECORD_STATUS = "/phasewake/record-status"
     const val KEY_RECORD_SINCE = "since"

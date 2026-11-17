@@ -27,8 +27,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 /**
- * Empfängt Wecker, Feiertage, Schlafziel und Lernphase vom Handy, den Stopp-Befehl, wenn am Handy abgestellt wurde, die Meldungen zur
- * Weckaufgabe und Start und Stopp von «Nacht aufzeichnen».
+ * Empfängt Wecker, Feiertage, Schlafziel und Lernphase vom Handy, den Stopp-Befehl, wenn am Handy abgestellt wurde, die
+ * Meldungen zur Weckaufgabe und Start und Stopp von «Nacht aufzeichnen».
  *
  * Wecker und Einstellungen kommen über die Warteschlange ([com.phasewake.app.shared.Outbox]), bestätigt nach dem
  * Übernehmen ([WearSync.receive]). Als Datenpaket ([onDataChanged]) nur «Verlauf löschen» und der Abbruch eines
@@ -65,8 +65,8 @@ class WatchListenerService : WearableListenerService() {
         when (path) {
             DataLayer.PATH_MSG_ALARMS -> QueueMessages.decodeAlarms(body)?.let { remote ->
                 val result = app.alarms.receive(remote)
-                // Der Stand hier weicht ab (eine Änderung auf der Uhr, deren Nachricht verloren ging): zurück ans Handy,
-                // damit beide gleich werden. Einreihen ist lokal, gesendet wird im Hintergrund.
+                // Der Stand hier weicht ab (eine Änderung auf der Uhr, deren Nachricht verloren ging): zurück ans
+                // Handy, damit beide gleich werden. Einreihen ist lokal, gesendet wird im Hintergrund.
                 result.reply?.let { app.sync.publishAlarms(it) }
                 if (result.changed) {
                     app.diag.log(DiagKind.ALARMS_RECEIVED, "from phone ${remote.alarms.size}")
@@ -124,9 +124,9 @@ class WatchListenerService : WearableListenerService() {
     /**
      * Kanal des Handys: Ein Eintrag der Warteschlange über 90 KB kommt nicht als Nachricht, sondern über einen
      * Kanal (`Outbox.WearTransport`). Heute bleiben alle Inhalte des Handys darunter (höchstens 8 Wecker, Feiertage,
-     * Einstellungen); ein langer Name oder eine spätere Version könnte die Grenze aber überschreiten. Darum wie am Handy:
-     * ganz lesen (höchstens `PeerLimit.MAX_BYTES`), schliessen und wie eine Nachricht verarbeiten. Vor dem ersten
-     * Entsperren nur schliessen (nicht bestätigt, das Handy sendet später erneut).
+     * Einstellungen); ein langer Name oder eine spätere Version könnte die Grenze aber überschreiten. Darum wie am
+     * Handy: ganz lesen (höchstens `PeerLimit.MAX_BYTES`), schliessen und wie eine Nachricht verarbeiten. Vor dem
+     * ersten Entsperren nur schliessen (nicht bestätigt, das Handy sendet später erneut).
      */
     override fun onChannelOpened(channel: ChannelClient.Channel) {
         val app = wearApp
@@ -148,8 +148,8 @@ class WatchListenerService : WearableListenerService() {
                 app.appScope.launch { app.sync.acked(event.data) }
                 return
             }
-            // Das Handy will den Stand der Uhr (frisch installiert, neu gestartet): Wecker und Aufzeichnungs-Stand einreihen,
-            // danach auch alles andere Wartende senden. Im App-Bereich.
+            // Das Handy will den Stand der Uhr (frisch installiert, neu gestartet): Wecker und Aufzeichnungs-Stand
+            // einreihen, danach auch alles andere Wartende senden. Im App-Bereich.
             path == DataLayer.PATH_SYNC_REQUEST -> {
                 val app = wearApp
                 if (DirectBoot.isUnlocked(this)) app.appScope.launch {
@@ -203,7 +203,8 @@ class WatchListenerService : WearableListenerService() {
             }
             // Hat die Uhr keine Schlummer-Runde mehr, antwortet der Dienst mit «klingeln».
             DataLayer.PATH_SNOOZE -> WakeService.command(this, WakeService.ACTION_PHONE_SNOOZE, remoteAlarmId = alarmId)
-            // Weckaufgabe: Das Handy zeigt sie (wiederholt) oder hat sie ungelöst beendet. Nur an einen laufenden Dienst.
+            // Weckaufgabe: Das Handy zeigt sie (wiederholt) oder hat sie ungelöst beendet. Nur an einen laufenden
+            // Dienst.
             DataLayer.PATH_TASK_SHOWN -> WakeService.command(this, WakeService.ACTION_TASK_SHOWN, remoteAlarmId = alarmId, remoteTarget = message.target)
             DataLayer.PATH_TEST, DataLayer.PATH_NAP -> runBlocking { TransientInbox.received(wearApp, event.path, event.data) }
             DataLayer.PATH_TRANSIENT_CANCEL -> runBlocking { TransientInbox.cancelled(wearApp, DataLayer.text(event.data)) }
@@ -226,8 +227,8 @@ class WatchListenerService : WearableListenerService() {
         const val QUEUE_PREFIX = "/phasewake/m/"
 
         /**
-         * Ob ein «stop» des Handys für Wecker [alarmId] mit Zielzeit [target] (ms) verworfen wird, weil die Uhr gerade für
-         * [measuring] misst: nur, wenn es nicht genau diese Nacht meint (gleicher Wecker und gleiche
+         * Ob ein «stop» des Handys für Wecker [alarmId] mit Zielzeit [target] (ms) verworfen wird, weil die Uhr gerade
+         * für [measuring] misst: nur, wenn es nicht genau diese Nacht meint (gleicher Wecker und gleiche
          * Zielzeit). Ohne laufende Messung nie (Klingeln und Schlummern prüft der Weckdienst wie bisher).
          */
         fun ignoresStopWhileMeasuring(measuring: WakePlan?, alarmId: String?, target: Long?): Boolean {

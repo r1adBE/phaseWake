@@ -1,9 +1,10 @@
 import Foundation
 
-/// Was die Auffälligkeiten (``Findings``) von einer Nacht der Gesundheits-App brauchen. Identisch zu `NightFacts` (Kotlin).
-/// Aus einer Sitzung, die als Nacht zählt (``HealthHistory/countedNights(_:clearedAt:calendar:)``).
+/// Was die Auffälligkeiten (``Findings``) von einer Nacht der Gesundheits-App brauchen. Identisch zu `NightFacts`
+/// (Kotlin). Aus einer Sitzung, die als Nacht zählt (``HealthHistory/countedNights(_:clearedAt:calendar:)``).
 public struct NightFacts: Equatable, Hashable, Sendable {
-    /// Nachtdatum «yyyy-MM-dd» über die Mitte von ``asleepAt`` bis ``end`` in der Zone der Aufzeichnung (wie bei `SleepSummary`).
+    /// Nachtdatum «yyyy-MM-dd» über die Mitte von ``asleepAt`` bis ``end`` in der Zone der Aufzeichnung (wie bei
+    /// `SleepSummary`).
     public let date: String
     /// Einschlafbeginn (``HealthSession/asleepAt``): die «Bettzeit» wie in Regelmässigkeit und Trends.
     public let asleepAt: Date
@@ -43,8 +44,8 @@ public struct NightFacts: Equatable, Hashable, Sendable {
     }
 
     /// Fakten einer Nacht; Nachtdatum in der Zone der Aufzeichnung, ohne sie in `calendar`. Einschlafdauer aus der
-    /// Gesundheits-App, ohne sie aus der eigenen Messung: zuerst die Nächte der Uhr `watch` (``OwnOnset/of(_:)``), sonst
-    /// die Aufzeichnungen `own` (``Findings/ownLatency(start:end:own:watch:)``).
+    /// Gesundheits-App, ohne sie aus der eigenen Messung: zuerst die Nächte der Uhr `watch` (``OwnOnset/of(_:)``),
+    /// sonst die Aufzeichnungen `own` (``Findings/ownLatency(start:end:own:watch:)``).
     public static func of(_ session: HealthSession, calendar: Calendar, own: [OwnOnset] = [], watch: [OwnOnset] = []) -> NightFacts {
         let stats = StageStats.forSession(session)
         let latency = stats?.latencyMinutes
@@ -111,7 +112,8 @@ public enum DeepLink: String, CaseIterable, Sendable {
     case shortNights = "SHORT_NIGHTS", lateBedtime = "LATE_BEDTIME"
 }
 
-/// Eine Auffälligkeit der letzten 7 Nächte; ``value`` und Anteile als ganze Zahlen wie angezeigt. Identisch zu `Finding` (Kotlin).
+/// Eine Auffälligkeit der letzten 7 Nächte; ``value`` und Anteile als ganze Zahlen wie angezeigt. Identisch zu
+/// `Finding` (Kotlin).
 public struct Finding: Equatable, Sendable {
     /// Art.
     public let kind: FindingKind
@@ -174,7 +176,8 @@ public enum Findings {
         byDate(facts, from: NightDate.adding(-(nights - 1), to: today), to: today)
     }
 
-    /// Alle Auffälligkeiten bis `today` (Nachtdatum von «jetzt»), wichtigste zuerst; Uhrzeiten in der Zone der Aufzeichnung, sonst `calendar`.
+    /// Alle Auffälligkeiten bis `today` (Nachtdatum von «jetzt»), wichtigste zuerst; Uhrzeiten in der Zone der
+    /// Aufzeichnung, sonst `calendar`.
     public static func of(_ facts: [NightFacts], today: String, calendar: Calendar) -> [Finding] {
         let list = recent(facts, today: today)
         let staged = list.filter { $0.deepMinutes != nil && $0.awakeMinutes != nil }
@@ -204,9 +207,9 @@ public enum Findings {
         return out.sorted { $0.kind.rank < $1.kind.rank }
     }
 
-    /// Die wichtigste Auffälligkeit, die nicht ausgeblendet ist (ausgeblendet um `hidden`, seit weniger als ``hideFor``).
-    /// `bedtimeAdvice`: Die Startseite zeigt schon die Bettzeit-Karte; dann treten die Auffälligkeiten mit demselben Tipp
-    /// (``bedtimeTip``) zurück, damit er nicht zweimal steht. Im Verlauf bleiben sie.
+    /// Die wichtigste Auffälligkeit, die nicht ausgeblendet ist (ausgeblendet um `hidden`, seit weniger als
+    /// ``hideFor``). `bedtimeAdvice`: Die Startseite zeigt schon die Bettzeit-Karte; dann treten die Auffälligkeiten
+    /// mit demselben Tipp (``bedtimeTip``) zurück, damit er nicht zweimal steht. Im Verlauf bleiben sie.
     public static func home(_ findings: [Finding], hidden: [FindingKind: Date], now: Date, bedtimeAdvice: Bool = false) -> Finding? {
         findings.first { finding in
             hidden[finding.kind].map { now < $0.addingTimeInterval(hideFor) } != true && !(bedtimeAdvice && bedtimeTip.contains(finding.kind))
@@ -254,9 +257,9 @@ public enum Findings {
 
     /// Einschlafdauer aus der eigenen Messung für eine Nacht der Gesundheits-App von `start` bis `end` (nur, wenn diese
     /// keine liefert): zuerst aus den Nächten der Uhr `watch`, sonst aus den Aufzeichnungen
-    /// `own`. Je die Messung, die sich am längsten mit der Nacht überschneidet (gleich: die erste; wie die Aufzeichnung zur
-    /// Nacht auf der Detailseite), in ganzen Minuten von `bedAt` bis `asleepAt` (abgerundet). `nil` ohne Überschneidung
-    /// oder wenn die Einschlafzeit vor dem Beginn liegt. Wie Kotlin.
+    /// `own`. Je die Messung, die sich am längsten mit der Nacht überschneidet (gleich: die erste; wie die Aufzeichnung
+    /// zur Nacht auf der Detailseite), in ganzen Minuten von `bedAt` bis `asleepAt` (abgerundet). `nil` ohne
+    /// Überschneidung oder wenn die Einschlafzeit vor dem Beginn liegt. Wie Kotlin.
     public static func ownLatency(start: Date, end: Date, own: [OwnOnset], watch: [OwnOnset] = []) -> Int? {
         latencyOf(start: start, end: end, watch) ?? latencyOf(start: start, end: end, own)
     }
@@ -296,7 +299,8 @@ public enum Findings {
         return Finding(kind: .lowDeep, value: 0, link: link, withPercent: a, withoutPercent: b)
     }
 
-    /// Mitte des Schlafs am Wochenende (Nachtdatum Freitag, Samstag) gegenüber unter der Woche in Minuten; `nil` mit zu wenig Nächten.
+    /// Mitte des Schlafs am Wochenende (Nachtdatum Freitag, Samstag) gegenüber unter der Woche in Minuten; `nil` mit zu
+    /// wenig Nächten.
     private static func jetlag(_ list: [NightFacts], calendar: Calendar) -> Int? {
         let mids = Regularity.unwrap(list.map { night in
             Regularity.minutesFromNoon(night.asleepAt.addingTimeInterval(night.end.timeIntervalSince(night.asleepAt) / 2),

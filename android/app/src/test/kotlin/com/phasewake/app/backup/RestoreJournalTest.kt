@@ -19,7 +19,8 @@ import kotlin.test.assertNull
 /**
  * Wiederherstellen gegen Prozessende ([RestoreJournal]): Endet der Prozess zwischen Nächten und DataStore,
  * gilt beim nächsten Start wieder der alte Stand (alte Nächte zurück) oder, wenn der DataStore schon geschrieben war,
- * der neue. Ein «neuer Prozess» ist hier ein neues [RestoreJournal] und ein neues [NightRepository] auf denselben Dateien.
+ * der neue. Ein «neuer Prozess» ist hier ein neues [RestoreJournal] und ein neues [NightRepository] auf denselben
+ * Dateien.
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35], application = Application::class)

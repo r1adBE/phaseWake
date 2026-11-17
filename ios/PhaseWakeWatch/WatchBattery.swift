@@ -4,9 +4,10 @@ import WatchKit
 
 /// Akku je Nacht auf der Apple Watch, wie `BatteryNight` auf der Galaxy Watch; Rechnung in
 /// ``BatteryTrack``. Die laufende Nacht steht in `UserDefaults` und übersteht so ein Ende der App.
-/// watchOS meldet das Laden nicht: Solange gemessen wird, prüft der Takt der Messung den Ladestand (``poll()``). Läuft die
-/// App nicht (Einschlaf-Messung und Aufzeichnung laufen über den Bewegungsrekorder des Systems), sieht sie ein Laden erst
-/// beim nächsten Messpunkt; ein solcher Wechsel oder ein Anstieg ohne Ladegerät ergibt keinen Wert statt eines falschen.
+/// watchOS meldet das Laden nicht: Solange gemessen wird, prüft der Takt der Messung den Ladestand (``poll()``). Läuft
+/// die App nicht (Einschlaf-Messung und Aufzeichnung laufen über den Bewegungsrekorder des Systems), sieht sie ein
+/// Laden erst beim nächsten Messpunkt; ein solcher Wechsel oder ein Anstieg ohne Ladegerät ergibt keinen Wert statt
+/// eines falschen.
 @MainActor
 enum WatchBattery {
     private static let openKey = "batteryNight.open"
@@ -19,9 +20,9 @@ enum WatchBattery {
         return (Date(), min(100, max(0, Int((device.batteryLevel * 100).rounded()))), device.batteryState != .unplugged)
     }
 
-    /// Die Uhr beginnt zu messen («Gute Nacht», Einschlaf-Messung, Aufzeichnung oder Weckfenster): Akkustand festhalten.
-    /// Beginnt damit eine neue Nacht, erfährt es das iPhone (``SyncKeys/nightBegin``, nur sofort zugestellt sinnvoll) und
-    /// misst ab dann seinen eigenen Akku. Probewecker und Powernap zählen nicht.
+    /// Die Uhr beginnt zu messen («Gute Nacht», Einschlaf-Messung, Aufzeichnung oder Weckfenster): Akkustand
+    /// festhalten. Beginnt damit eine neue Nacht, erfährt es das iPhone (``SyncKeys/nightBegin``, nur sofort zugestellt
+    /// sinnvoll) und misst ab dann seinen eigenen Akku. Probewecker und Powernap zählen nicht.
     static func begin(alarmId: String?, target: Date?) {
         if let alarmId, Transient.kindOf(alarmId) != nil { return }
         guard let r = read() else { return }

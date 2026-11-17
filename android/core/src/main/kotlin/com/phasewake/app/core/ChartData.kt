@@ -217,8 +217,8 @@ object ChartData {
 
     /**
      * Schlafprofil der Nacht von [night]: die Phasen der Gesundheits-App, die mit Lücken bis
-     * [SleepSummary.NEW_NIGHT_GAP] (60 Min, wie der Verlauf) zusammenhängen und das Weckfenster bis zum Wecken berühren. Der
-     * Bereich reicht mindestens über Weckfenster und Weckmoment. `null` ohne bekannte Phasen.
+     * [SleepSummary.NEW_NIGHT_GAP] (60 Min, wie der Verlauf) zusammenhängen und das Weckfenster bis zum Wecken
+     * berühren. Der Bereich reicht mindestens über Weckfenster und Weckmoment. `null` ohne bekannte Phasen.
      */
     fun hypnogram(stages: List<StageSpan>, night: NightRecord): Hypnogram? {
         val groups = mutableListOf<MutableList<StageSpan>>()

@@ -5,9 +5,10 @@ import android.content.Context
 
 /**
  * Ob Phase Wake ein Recht schon einmal angefragt hat, über das Ende des Prozesses hinaus. Android
- * meldet «dauerhaft abgelehnt» nicht direkt: Schon gefragt und keine Begründung erwünscht heisst, das System zeigt keine
- * Anfrage mehr. Galt «gefragt» nur im laufenden Prozess, tat der erste Tipp auf «Erlauben» nach jedem Start sichtbar
- * nichts; erst der zweite öffnete die Einstellungen. Handy und Galaxy Watch gleich; das iPhone liest den Status direkt.
+ * meldet «dauerhaft abgelehnt» nicht direkt: Schon gefragt und keine Begründung erwünscht heisst, das System zeigt
+ * keine Anfrage mehr. Galt «gefragt» nur im laufenden Prozess, tat der erste Tipp auf «Erlauben» nach jedem Start
+ * sichtbar nichts; erst der zweite öffnete die Einstellungen. Handy und Galaxy Watch gleich; das iPhone liest den
+ * Status direkt.
  */
 object PermissionAsks {
     private const val FILE = "permission_asks"

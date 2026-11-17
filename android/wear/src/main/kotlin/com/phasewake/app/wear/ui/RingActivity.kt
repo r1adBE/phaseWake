@@ -84,7 +84,10 @@ import java.time.format.FormatStyle
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-/** Weckbildschirm: erscheint über dem Sperrbildschirm, solange es klingelt; beim Schlummern schliesst er sich, ausser er wurde über die Schlummer-Mitteilung geöffnet. */
+/**
+ * Weckbildschirm: erscheint über dem Sperrbildschirm, solange es klingelt; beim Schlummern schliesst er sich, ausser er
+ * wurde über die Schlummer-Mitteilung geöffnet.
+ */
 class RingActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -111,7 +114,8 @@ class RingActivity : ComponentActivity() {
                         }
                         // Beim Schlummern geht das Display aus. Wurde hier geschlummert, schliesst sich der
                         // Bildschirm; beim nächsten Klingeln öffnet ihn die Weck-Mitteilung wieder. Über die
-                        // Schlummer-Mitteilung geöffnet, bleibt er (Beenden durch Halten), ohne das Display wach zu halten.
+                        // Schlummer-Mitteilung geöffnet, bleibt er (Beenden durch Halten), ohne das Display wach zu
+                        // halten.
                         is RingUi.Snoozed -> {
                             window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
                             if (rang) finish()
@@ -181,7 +185,10 @@ class RingActivity : ComponentActivity() {
         /** So lange wartet der nachgeholte Weckbildschirm auf das Klingeln des Dienstes. */
         private const val RESCUE_WAIT_MS = 10_000L
 
-        /** Ob der Weckbildschirm gerade zu sehen ist; sonst erinnert der Dienst ([com.phasewake.app.wear.wake.onRealert]). */
+        /**
+         * Ob der Weckbildschirm gerade zu sehen ist; sonst erinnert der Dienst
+         * ([com.phasewake.app.wear.wake.onRealert]).
+         */
         @Volatile
         var shown: Boolean = false
             private set

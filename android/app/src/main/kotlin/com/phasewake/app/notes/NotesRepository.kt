@@ -17,7 +17,8 @@ import kotlinx.coroutines.flow.map
 
 /**
  * Schlafnotizen je Nachtdatum, die eigenen Notizen und das Befinden zu Nächten aus anderen Apps. Nur auf dem
- * Handy, nicht mit der Uhr abgeglichen, nie in Health Connect geschrieben. Formate siehe [SleepNotes], [HealthFeelings].
+ * Handy, nicht mit der Uhr abgeglichen, nie in Health Connect geschrieben. Formate siehe [SleepNotes],
+ * [HealthFeelings].
  */
 class NotesRepository(private val store: DataStore<Preferences>) {
 

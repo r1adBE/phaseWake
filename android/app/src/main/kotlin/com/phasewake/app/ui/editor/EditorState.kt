@@ -42,7 +42,9 @@ internal class EditorState(val base: AlarmSpec) {
     /** An Feiertagen nicht wecken (nur wiederholte Wecker). */
     var skipHolidays by mutableStateOf(base.skipHolidays)
 
-    /** «Mehr» aufgeklappt; offen, wenn dort schon etwas gesetzt ist (wie auf dem iPhone: Gesetztes nicht verstecken). */
+    /**
+     * «Mehr» aufgeklappt; offen, wenn dort schon etwas gesetzt ist (wie auf dem iPhone: Gesetztes nicht verstecken).
+     */
     var more by mutableStateOf(
         base.label.isNotBlank() || base.sunrise != Sunrise.OFF || base.skipHolidays || base.wakeTask != WakeTask.NONE,
     )

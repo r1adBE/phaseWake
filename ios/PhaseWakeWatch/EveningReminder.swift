@@ -6,13 +6,13 @@ import UserNotifications
 /// offener App. 60 Min vor der einen Bettzeit (Zielzeit minus Schlafziel bzw. Schlafdauer minus gelernte
 /// Einschlafdauer) bittet eine lokale Mitteilung, die App zu öffnen; ab dann darf auch der Bewegungs-Rekorder
 /// starten (`LearnRecorder.nightStart`). Wer sie
-/// antippt (oder die App sonst öffnet), stellt den Wecker scharf (`SmartAlarm.schedule` bei offener App) und startet den
-/// Rekorder ab dann (`LearnRecorder`). Ohne Öffnen und ohne Hintergrund-Aktualisierung zeichnet die Uhr diese Nacht
+/// antippt (oder die App sonst öffnet), stellt den Wecker scharf (`SmartAlarm.schedule` bei offener App) und startet
+/// den Rekorder ab dann (`LearnRecorder`). Ohne Öffnen und ohne Hintergrund-Aktualisierung zeichnet die Uhr diese Nacht
 /// nicht auf; die Einschlafzeit bleibt unbekannt, und ohne geplante Sitzung weckt nur die Mitteilung zur Zielzeit
 /// (Nacht-Check rot).
 ///
-/// Gestellt bei jedem Neuplanen (`WatchModel.reschedule`), nur für einen echten Wecker und nur, wenn es etwas zu tun gibt:
-/// Sitzung noch nicht geplant, oder Rekorder nötig (Einschlaf-Messung, Lernphase). Nach «Gute Nacht» und ab dem
+/// Gestellt bei jedem Neuplanen (`WatchModel.reschedule`), nur für einen echten Wecker und nur, wenn es etwas zu tun
+/// gibt: Sitzung noch nicht geplant, oder Rekorder nötig (Einschlaf-Messung, Lernphase). Nach «Gute Nacht» und ab dem
 /// Zeitpunkt selbst nicht mehr (die App läuft dann ja).
 @MainActor
 enum EveningReminder {
@@ -57,15 +57,16 @@ enum EveningReminder {
         }
     }
 
-    /// Ob die Erinnerung um `at` (für einen echten Wecker) zum Zeitpunkt `now` gestellt wird: noch nicht vorbei, nicht nach
-    /// «Gute Nacht» (`goodNight`), und es gibt etwas zu tun: Sitzung noch nicht geplant (`armed`) oder Rekorder nötig
-    /// (`recorder`: Einschlaf-Messung oder Lernphase). Ohne Zeitpunkt (kein Wecker) nie.
+    /// Ob die Erinnerung um `at` (für einen echten Wecker) zum Zeitpunkt `now` gestellt wird: noch nicht vorbei, nicht
+    /// nach «Gute Nacht» (`goodNight`), und es gibt etwas zu tun: Sitzung noch nicht geplant (`armed`) oder Rekorder
+    /// nötig (`recorder`: Einschlaf-Messung oder Lernphase). Ohne Zeitpunkt (kein Wecker) nie.
     static func needed(at: Date?, now: Date, goodNight: Bool, armed: Bool, recorder: Bool) -> Bool {
         guard let at, at > now, !goodNight else { return false }
         return !armed || recorder
     }
 
-    /// Ob die Erinnerungszeit der kommenden Nacht erreicht ist (Startseite: dann deutlicher Hinweis, wenn nicht scharf).
+    /// Ob die Erinnerungszeit der kommenden Nacht erreicht ist (Startseite: dann deutlicher Hinweis, wenn nicht
+    /// scharf).
     static func due(now: Date = Date()) -> Bool {
         guard let at = time else { return false }
         return now >= at

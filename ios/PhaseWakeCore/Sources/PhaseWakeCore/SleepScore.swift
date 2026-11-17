@@ -1,6 +1,7 @@
 import Foundation
 
-/// Ein Faktor des Schlafwerts (``SleepScore``); Reihenfolge = Reihenfolge der Kacheln. Identisch zu `ScoreFactor` (Kotlin).
+/// Ein Faktor des Schlafwerts (``SleepScore``); Reihenfolge = Reihenfolge der Kacheln. Identisch zu `ScoreFactor`
+/// (Kotlin).
 public enum ScoreFactor: String, CaseIterable, Sendable {
     /// Schlaf (ohne Wachphasen) gegen das Schlafziel.
     case duration = "DURATION"
@@ -27,7 +28,8 @@ public enum ScoreBand: String, Sendable {
 }
 
 /// Messwerte einer Nacht für den Schlafwert; fehlende Werte `nil` (der Faktor fällt dann weg).
-/// Prozente wie in ``StageTotal/percent``: Tief und REM am Schlaf, Wach an allen vier Phasen. Identisch zu `ScoreInput` (Kotlin).
+/// Prozente wie in ``StageTotal/percent``: Tief und REM am Schlaf, Wach an allen vier Phasen. Identisch zu `ScoreInput`
+/// (Kotlin).
 public struct ScoreInput: Equatable, Sendable {
     /// Schlaf ohne Wachphasen in Minuten.
     public let asleepMinutes: Int?
@@ -162,7 +164,8 @@ public enum SleepScore {
         return round(clamp(full * Double(latencyZeroMinutes - minutes) / span))
     }
 
-    /// Eingabe aus den Phasen einer Nacht (``StageStats``): Schlaf, Anteile Tief, REM und Wach, Einschlafdauer (falls bekannt), Wachzeit.
+    /// Eingabe aus den Phasen einer Nacht (``StageStats``): Schlaf, Anteile Tief, REM und Wach, Einschlafdauer (falls
+    /// bekannt), Wachzeit.
     public static func inputOf(_ stats: NightStages, goalMinutes: Int) -> ScoreInput {
         ScoreInput(
             asleepMinutes: stats.asleepMinutes,

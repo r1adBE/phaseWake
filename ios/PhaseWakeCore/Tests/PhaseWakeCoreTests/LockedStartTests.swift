@@ -72,8 +72,8 @@ final class LockedStartTests: XCTestCase {
                        ["A": 1000, "B": 3000, "C": 2000])
     }
 
-    /// Wecker und erledigte Nächte, solange die Einstellungen nicht gelesen sind: nichts ändern, den Stand der Gegenseite
-    /// nicht als übernommen merken; nach dem Lesen gilt er, und kein Eintrag geht verloren.
+    /// Wecker und erledigte Nächte, solange die Einstellungen nicht gelesen sind: nichts ändern, den Stand der
+    /// Gegenseite nicht als übernommen merken; nach dem Lesen gilt er, und kein Eintrag geht verloren.
     func testStorageWaitsForUnreadSettings() throws {
         let url = dir.appendingPathComponent("settings.v1")
         let now = Date(timeIntervalSince1970: 1_793_173_963)

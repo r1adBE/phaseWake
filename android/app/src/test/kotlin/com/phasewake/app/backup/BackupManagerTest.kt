@@ -34,8 +34,9 @@ import kotlin.test.assertTrue
 /**
  * Sichern und Wiederherstellen am Handy ([BackupManager]): Sicherung schreiben, lesen, mit Passwort öffnen
  * und alles ersetzen (Wecker, Nächte, Schlafziel); falsches Passwort oder fremde Datei ändern nichts, eine unlesbare
- * Sicherung ebenso; ein nach dem Schreiben unterbrochenes Wiederherstellen wird beim Start abgeschlossen ([RestoreJournal]).
- * Der Abgleich mit der Uhr danach ist ersetzt ([synced]): Unter Robolectric antworten die Wear-Dienste nie.
+ * Sicherung ebenso; ein nach dem Schreiben unterbrochenes Wiederherstellen wird beim Start abgeschlossen
+ * ([RestoreJournal]). Der Abgleich mit der Uhr danach ist ersetzt ([synced]): Unter Robolectric antworten die
+ * Wear-Dienste nie.
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35], application = QuietApp::class)
@@ -97,7 +98,8 @@ class BackupManagerTest {
         assertEquals("Arbeit", app.alarms.current().alarms.single().label)
         assertEquals(listOf(kept), app.nights.load())
         assertEquals(450, app.settings.sleepGoalNow())
-        // Abgleich mit der Uhr mit dem neuen Stand, danach abgeschlossen: keine Marke, beim nächsten Start nichts zu tun.
+        // Abgleich mit der Uhr mit dem neuen Stand, danach abgeschlossen: keine Marke, beim nächsten Start nichts zu
+        // tun.
         assertEquals(listOf(listOf("a")), synced.map { s -> s.alarms.map { it.id } })
         // Abgeschlossen: keine Marke, beim nächsten Start nichts zu tun.
         assertNull(RestoreJournal(context.filesDir).pendingToken())

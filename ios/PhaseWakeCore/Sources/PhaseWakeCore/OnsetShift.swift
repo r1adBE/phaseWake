@@ -2,9 +2,9 @@ import Foundation
 
 /// Frühere Zielzeit einer Nacht aus dem Einschlaf-Modus der Apple Watch («Gute Nacht»): Wecker `alarmId`, eingestellte
 /// Zielzeit `original`, neue Zielzeit `target`, festgelegt um `at` (alles in ms). Wie `OnsetShift` (Kotlin): Das iPhone
-/// merkt sie sich und stellt den Zweitwecker dieser Nacht auf die frühere Zielzeit (``applyTo(_:now:grace:)``); nach der
-/// Nacht fällt sie weg (``expired(now:grace:)``). Eine neuere Meldung ohne frühere Zielzeit (``cancel(_:at:)``) hebt sie
-/// auf. Geht als Befehl ``SyncKeys/onsetShift`` mit ``encode()`` als Inhalt.
+/// merkt sie sich und stellt den Zweitwecker dieser Nacht auf die frühere Zielzeit (``applyTo(_:now:grace:)``); nach
+/// der Nacht fällt sie weg (``expired(now:grace:)``). Eine neuere Meldung ohne frühere Zielzeit (``cancel(_:at:)``)
+/// hebt sie auf. Geht als Befehl ``SyncKeys/onsetShift`` mit ``encode()`` als Inhalt.
 public struct OnsetShift: Equatable, Sendable, Codable {
     /// Kennung des Weckers.
     public let alarmId: String
@@ -34,8 +34,8 @@ public struct OnsetShift: Equatable, Sendable, Codable {
         plan.alarmId == alarmId && Self.millis(plan.target) == original
     }
 
-    /// Plan mit der früheren Zielzeit: nur für dieselbe Nacht desselben Weckers, nur früher und nur, solange die frühere
-    /// Zielzeit samt Nachfrist `grace` noch nicht vorbei ist. Sonst `plan` unverändert.
+    /// Plan mit der früheren Zielzeit: nur für dieselbe Nacht desselben Weckers, nur früher und nur, solange die
+    /// frühere Zielzeit samt Nachfrist `grace` noch nicht vorbei ist. Sonst `plan` unverändert.
     public func applyTo(_ plan: WakePlan, now: Date, grace: TimeInterval) -> WakePlan {
         guard matches(plan), target < original else { return plan }
         let earlier = Self.date(target)

@@ -34,7 +34,8 @@ extension SettingsFile {
     ]
 }
 
-/// Meldet Änderungen an ``SettingsFile/phone`` an die Ansichten mit ``PrivateSetting`` (etwa nach dem Wiederherstellen).
+/// Meldet Änderungen an ``SettingsFile/phone`` an die Ansichten mit ``PrivateSetting`` (etwa nach dem
+/// Wiederherstellen).
 @Observable
 final class PrivateSettingChanges: @unchecked Sendable {
     static let shared = PrivateSettingChanges()

@@ -8,15 +8,15 @@ import java.time.Instant
 import kotlinx.coroutines.flow.first
 
 /**
- * Lernphase: Die Aufzeichnung ab [start] hat die Lernphase begonnen; sie endet beim Wecken, ohne Klingeln spätestens zur
- * eingestellten Weckzeit [until] ([RecordControl.endsAtTarget]). Eine von Hand begonnene Aufzeichnung hat keine Marke und
- * läuft wie bisher.
+ * Lernphase: Die Aufzeichnung ab [start] hat die Lernphase begonnen; sie endet beim Wecken, ohne Klingeln spätestens
+ * zur eingestellten Weckzeit [until] ([RecordControl.endsAtTarget]). Eine von Hand begonnene Aufzeichnung hat keine
+ * Marke und läuft wie bisher.
  */
 internal data class LearnMark(val start: Instant, val until: Instant)
 
 /**
- * Marken der laufenden Aufzeichnung, gespeichert (überstehen ein Prozessende wie die Aufzeichnung selbst): die [LearnMark]
- * und, ob eine von Hand begonnene durchgehend misst ([setContinuous], nur mit freigeschalteter Diagnose).
+ * Marken der laufenden Aufzeichnung, gespeichert (überstehen ein Prozessende wie die Aufzeichnung selbst): die
+ * [LearnMark] und, ob eine von Hand begonnene durchgehend misst ([setContinuous], nur mit freigeschalteter Diagnose).
  */
 class LearnMarkStore internal constructor(private val store: DataStore<Preferences>) {
 

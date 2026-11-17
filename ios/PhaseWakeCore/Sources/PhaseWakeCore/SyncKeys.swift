@@ -19,21 +19,23 @@ public enum SyncKeys {
     public static let ring = "ring"
     /// Befehl: Wecken beendet (in beide Richtungen).
     public static let stop = "stop"
-    /// Befehl Uhr → iPhone (mit `sentAt`): Die Uhr beginnt eine Nacht zu messen; das iPhone hält ab jetzt seinen Akkustand
-    /// fest (Akku je Nacht). Wie `DataLayer.PATH_NIGHT_BEGIN`. Ältere iPhone-Apps übergehen den Befehl.
+    /// Befehl Uhr → iPhone (mit `sentAt`): Die Uhr beginnt eine Nacht zu messen; das iPhone hält ab jetzt seinen
+    /// Akkustand fest (Akku je Nacht). Wie `DataLayer.PATH_NIGHT_BEGIN`. Ältere iPhone-Apps übergehen den Befehl.
     public static let nightBegin = "nightBegin"
     /// Befehl iPhone → Uhr: Schlummern.
     public static let snooze = "snooze"
     /// Befehl iPhone → Uhr: Verlauf auf der Uhr löschen.
     public static let clearHistory = "clearHistory"
     /// Uhr → iPhone bei «ring» und «stop»: Zielzeit der Nacht und Sendezeit (ms seit 1970), bei «ring»
-    /// auch die verbleibenden Schlummer-Runden. iPhone → Uhr: nur die Sendezeit. Ältere Versionen schicken nichts davon.
+    /// auch die verbleibenden Schlummer-Runden. iPhone → Uhr: nur die Sendezeit. Ältere Versionen schicken nichts
+    /// davon.
     public static let target = "target"
     /// Sendezeit in ms seit 1970 (siehe `target`).
     public static let sentAt = "sentAt"
     /// Verbleibende Schlummer-Runden bei «ring» (siehe `target`).
     public static let snoozesLeft = "snoozesLeft"
-    /// Höchstalter eines «ring» (und eines «stop»/«snooze» vom iPhone) in Millisekunden; ein später zugestelltes wird verworfen.
+    /// Höchstalter eines «ring» (und eines «stop»/«snooze» vom iPhone) in Millisekunden; ein später zugestelltes wird
+    /// verworfen.
     public static let maxRingAgeMs: Int64 = 2 * 60_000
     /// Obergrenze für Inhalte der Uhr in Bytes (wie Android `PeerLimit.MAX_BYTES`): Grösseres wird nicht
     /// verarbeitet. Die längste Aufzeichnung (12 Std., 1440 Epochen à höchstens etwa 45 Zeichen) hat rund 65 KB.
@@ -51,7 +53,8 @@ public enum SyncKeys {
     /// Älter als das gilt der gemeldete Akkustand als unbekannt (wie `WearSync.watchBattery()` auf Android).
     public static let maxBatteryAgeMs: Int64 = 6 * 3600_000
 
-    // MARK: Feiertage, Probewecker, Powernap, Diagnose, Lernphase (gleiche Bedeutung wie die Pfade des Data Layer auf Android)
+    // MARK: Feiertage, Probewecker, Powernap, Diagnose, Lernphase (gleiche Bedeutung wie die Pfade des Data Layer auf
+    // Android)
 
     /// Anwendungskontext iPhone → Uhr: Feiertage im Format von `Holidays.encode`.
     public static let holidays = "holidays"
@@ -66,8 +69,8 @@ public enum SyncKeys {
     public static let nap = "nap"
     /// Befehl in beide Richtungen: vorübergehenden Plan (Probewecker, Powernap) verwerfen, mit `id`.
     public static let transientCancel = "transientCancel"
-    /// Befehl iPhone → Uhr: Diagnose-Bericht anfordern; die Antwort trägt `payload` = `DiagReports.encode` oder, wenn der
-    /// Bericht dafür zu gross ist (`DiagTransfer`), `diagFile` = `true`: Er folgt als Datei.
+    /// Befehl iPhone → Uhr: Diagnose-Bericht anfordern; die Antwort trägt `payload` = `DiagReports.encode` oder, wenn
+    /// der Bericht dafür zu gross ist (`DiagTransfer`), `diagFile` = `true`: Er folgt als Datei.
     public static let diagRequest = "diagRequest"
     /// Antwort auf `diagRequest`: Der Bericht folgt als Datei (`transferFile`, Metadaten `command` = `diagReport`).
     public static let diagFile = "diagFile"
@@ -86,7 +89,8 @@ public enum SyncKeys {
     public static let learnRestingHr = "learnRestingHr"
     /// Anwendungskontext iPhone → Uhr: Zeitpunkt des Stands der Lernphase (ms seit 1970).
     public static let learnUpdatedAt = "learnUpdatedAt"
-    /// Anwendungskontext iPhone → Uhr: gelernte Einschlafdauer in Minuten (Schätzung bei «Gute Nacht»); fehlt ohne Wert.
+    /// Anwendungskontext iPhone → Uhr: gelernte Einschlafdauer in Minuten (Schätzung bei «Gute Nacht»); fehlt ohne
+    /// Wert.
     public static let learnLatency = "learnLatency"
     /// Benutzerdaten Uhr → iPhone: eine Aufzeichnung der Lernphase oder von «Nacht aufzeichnen» im Format
     /// «phasewake-recording 1» (`NightRecording`).
@@ -98,8 +102,8 @@ public enum SyncKeys {
     public static let recordStart = "recordStart"
     /// Befehl iPhone → Uhr: «Nacht aufzeichnen» stoppen.
     public static let recordStop = "recordStop"
-    /// Uhr → iPhone im Anwendungskontext: Beginn der laufenden Aufzeichnung (ms seit 1970), 0 = keine. Fehlt bei älteren
-    /// Uhr-Versionen.
+    /// Uhr → iPhone im Anwendungskontext: Beginn der laufenden Aufzeichnung (ms seit 1970), 0 = keine. Fehlt bei
+    /// älteren Uhr-Versionen.
     public static let recordSince = "recordSince"
     /// Uhr → iPhone im Anwendungskontext: Rekorder für eine Nacht nicht gestartet (``RecorderSkip/encode()``),
     /// leer = keine Meldung. Fehlt bei älteren Uhr-Versionen; der Nacht-Check ist dann rot bis zur Zielzeit.
@@ -110,10 +114,11 @@ public enum SyncKeys {
     /// Befehl Uhr → iPhone: frühere Zielzeit aus «Gute Nacht» (`OnsetShift.encode()` in ``payload``).
     public static let onsetShift = "onsetShift"
     /// Uhr → iPhone im Anwendungskontext: Erlaubnis für Mitteilungen auf der Uhr (`WatchNotifications.rawValue`), für
-    /// den Rückfall-Wecker. Fehlt bei älteren Uhr-Versionen und solange die Uhr noch nicht gefragt hat (dann keine Warnung).
+    /// den Rückfall-Wecker. Fehlt bei älteren Uhr-Versionen und solange die Uhr noch nicht gefragt hat (dann keine
+    /// Warnung).
     public static let watchNotifications = "watchNotifications"
-    /// Uhr → iPhone im Anwendungskontext, zusammen mit `watchNotifications`: Zeitpunkt (ms seit 1970), zu dem die Uhr die
-    /// Erlaubnis geprüft hat. Fehlt bei älteren Uhr-Versionen (dann kein Hinweis «veraltet»).
+    /// Uhr → iPhone im Anwendungskontext, zusammen mit `watchNotifications`: Zeitpunkt (ms seit 1970), zu dem die Uhr
+    /// die Erlaubnis geprüft hat. Fehlt bei älteren Uhr-Versionen (dann kein Hinweis «veraltet»).
     public static let watchNotificationsAt = "watchNotificationsAt"
 }
 

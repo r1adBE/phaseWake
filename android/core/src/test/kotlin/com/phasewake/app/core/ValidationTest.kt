@@ -7,7 +7,10 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-/** Validierungs-Modus ([Validation], [ValidationReport]); gemeinsame Fälle mit Swift in `shared/testdata/validation.vectors`. */
+/**
+ * Validierungs-Modus ([Validation], [ValidationReport]); gemeinsame Fälle mit Swift in
+ * `shared/testdata/validation.vectors`.
+ */
 class ValidationTest {
     private val t0 = Instant.parse("2026-11-08T22:00:00Z")
     private val zone = ZoneId.of("Europe/Zurich")

@@ -1,13 +1,16 @@
 import Foundation
 
 /// Validierungs-Modus: Wie oft liegt der Weck-Entscheid wirklich im leichten Schlaf? Rechnet
-/// nachträglich auf dem iPhone, weckt nie und ändert nichts am Wecken. Regel siehe `docs/PHASENERKENNUNG.md`, Abschnitt 12.
+/// nachträglich auf dem iPhone, weckt nie und ändert nichts am Wecken. Regel siehe `docs/PHASENERKENNUNG.md`, Abschnitt
+/// 12.
 ///
 /// - **Echte Entscheide**: je Nacht (``NightRecord``) Weckzeit und Grund.
-/// - **Schattenentscheide**: Der ``WakeDetector`` läuft über rollende Fenster von ``windowEpochs`` Epochen (30 Min), alle
+/// - **Schattenentscheide**: Der ``WakeDetector`` läuft über rollende Fenster von ``windowEpochs`` Epochen (30 Min),
+/// alle
 ///   ``stepEpochs`` Epochen (15 Min) eines, über die Epochen einer Aufzeichnung («Nacht aufzeichnen», Lernphase). Ein
 ///   Fenster zählt nur, wenn es durchgehend gemessen ist (``measured(_:)``); Stichproben liefern darum keine.
-/// - **Referenz**: Phase der Gesundheits-App zum Entscheid (``reference(_:at:)``, ±``tolerance``). Sie ist eine Schätzung
+/// - **Referenz**: Phase der Gesundheits-App zum Entscheid (``reference(_:at:)``, ±``tolerance``). Sie ist eine
+/// Schätzung
 ///   der Uhr, kein Schlaflabor.
 ///
 /// Reine Rechnung; identisch zu `Validation` (Kotlin), gemeinsame Fälle in `shared/testdata/validation.vectors`.
@@ -55,8 +58,9 @@ public enum Validation {
         public let reason: WakeReason
     }
 
-    /// Ein ausgewerteter Entscheid: Nacht `night` (1 = älteste mit Entscheiden), Zeitpunkt `at`, angezeigt in `timeZone`
-    /// (Zone der Aufzeichnung der Gesundheits-App dieser Nacht, sonst des Geräts), Art, Grund und Referenzphase.
+    /// Ein ausgewerteter Entscheid: Nacht `night` (1 = älteste mit Entscheiden), Zeitpunkt `at`, angezeigt in
+    /// `timeZone` (Zone der Aufzeichnung der Gesundheits-App dieser Nacht, sonst des Geräts), Art, Grund und
+    /// Referenzphase.
     public struct Entry: Equatable, Sendable {
         /// Nummer der Nacht (1 = älteste mit Entscheiden).
         public let night: Int
@@ -78,7 +82,8 @@ public enum Validation {
     }
 
     /// Ein Fenster ab `start`: erster Entscheid des ``WakeDetector`` mit `config`, Zeitpunkt am Ende der entscheidenden
-    /// Epoche (Epoche `i` endet bei `start` + (i + 1) · 30 s); ohne Entscheid ``WakeReason/deadline`` am Ende des Fensters.
+    /// Epoche (Epoche `i` endet bei `start` + (i + 1) · 30 s); ohne Entscheid ``WakeReason/deadline`` am Ende des
+    /// Fensters.
     public static func window(start: Date, epochs: ArraySlice<Epoch>, config: DetectorConfig) -> Moment {
         let detector = WakeDetector(config: config)
         for (i, epoch) in epochs.enumerated() {
@@ -90,8 +95,8 @@ public enum Validation {
     }
 
     /// Schattenentscheide einer Aufzeichnung ab `start`: Fenster ab Epoche 0, ``stepEpochs``, 2 · ``stepEpochs`` …,
-    /// solange ein ganzes Fenster (``windowEpochs``) Platz hat; nur durchgehend gemessene (``measured(_:)``). Entscheiden
-    /// zwei überlappende Fenster im selben Moment gleich, zählt der Moment einmal. Identisch zu Kotlin.
+    /// solange ein ganzes Fenster (``windowEpochs``) Platz hat; nur durchgehend gemessene (``measured(_:)``).
+    /// Entscheiden zwei überlappende Fenster im selben Moment gleich, zählt der Moment einmal. Identisch zu Kotlin.
     public static func shadows(start: Date, epochs: [Epoch], config: DetectorConfig) -> [Moment] {
         var moments: [Moment] = []
         var from = 0
@@ -108,8 +113,8 @@ public enum Validation {
 
     /// Referenzphase zum Zeitpunkt `at`: die bekannte Phase (ohne ``SleepStage/unknown``), die `at` abdeckt (Beginn
     /// einschliesslich, Ende ausschliesslich; bei Überlappung die zuletzt gelistete wie ``StageCheck/stageAt(_:_:)``);
-    /// sonst die nächste bis ``tolerance`` davor (Abstand zum Ende) oder danach (Abstand zum Beginn), bei gleichem Abstand
-    /// die frühere. `nil`: keine. Identisch zu Kotlin.
+    /// sonst die nächste bis ``tolerance`` davor (Abstand zum Ende) oder danach (Abstand zum Beginn), bei gleichem
+    /// Abstand die frühere. `nil`: keine. Identisch zu Kotlin.
     public static func reference(_ spans: [StageSpan], at: Date) -> SleepStage? {
         let known = spans.filter { $0.stage != .unknown && $0.end > $0.start }
         if let stage = StageCheck.stageAt(known, at) { return stage }
@@ -130,12 +135,13 @@ public enum Validation {
     /// Alle Entscheide, nach Nacht (Nachtdatum in `calendar`, ``SleepNotes/nightDate(of:calendar:)``: eigene Nacht über
     /// den Fensterbeginn, Aufzeichnung über ihren Beginn) und Zeit; echte vor Schattenentscheiden zur selben Zeit.
     ///
-    /// Schattenentscheide rechnen mit derselben Konfiguration wie das echte Fenster: Kalibrierung aus den eigenen Nächten
-    /// vor der Aufzeichnung (``Calibration/calibrate(nights:defaults:)``) und den gelernten Werten `learned` (aktueller
-    /// Stand). Das Grundrauschen der Einschlaf-Messung kennt das iPhone nicht; ab 4 Werten gilt ohnehin das des Fensters.
-    /// Referenz: Phasen der Sitzungen, die als Nacht zählen (``HealthHistory/stages(_:clearedAt:calendar:)``). Eine Nacht
-    /// hat Referenz, wenn eine bekannte Phase ihre Zeit (Fensterbeginn bzw. Beginn der Aufzeichnung bis spätestes Wecken,
-    /// Zielzeit bzw. Ende, je ±``tolerance``) berührt; sonst `noReference`. Nächte ohne Entscheid fehlen. Identisch zu Kotlin.
+    /// Schattenentscheide rechnen mit derselben Konfiguration wie das echte Fenster: Kalibrierung aus den eigenen
+    /// Nächten vor der Aufzeichnung (``Calibration/calibrate(nights:defaults:)``) und den gelernten Werten `learned`
+    /// (aktueller Stand). Das Grundrauschen der Einschlaf-Messung kennt das iPhone nicht; ab 4 Werten gilt ohnehin das
+    /// des Fensters. Referenz: Phasen der Sitzungen, die als Nacht zählen
+    /// (``HealthHistory/stages(_:clearedAt:calendar:)``). Eine Nacht hat Referenz, wenn eine bekannte Phase ihre Zeit
+    /// (Fensterbeginn bzw. Beginn der Aufzeichnung bis spätestes Wecken, Zielzeit bzw. Ende, je ±``tolerance``)
+    /// berührt; sonst `noReference`. Nächte ohne Entscheid fehlen. Identisch zu Kotlin.
     ///
     /// - Parameter recordings: abgeschlossene Aufzeichnungen (``Learning/Night``).
     public static func evaluate(nights: [NightRecord], recordings: [Learning.Night], sessions: [HealthSession], clearedAt: Date?,

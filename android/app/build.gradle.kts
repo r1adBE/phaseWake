@@ -57,7 +57,8 @@ android {
             // und Uhr brauchen dieselbe (Data Layer): darum in beiden Apps gleich (android/testing/README.md).
             applicationIdSuffix = ".test"
             // Testversion nur für ARM-Handys: Die nativen Bibliotheken von MediaPipe für x86/x86_64
-            // (Emulatoren) machen sonst gut die Hälfte des APK aus. Der Store-Build (AAB) bleibt unverändert, Play teilt ihn ohnehin.
+            // (Emulatoren) machen sonst gut die Hälfte des APK aus. Der Store-Build (AAB) bleibt unverändert, Play
+            // teilt ihn ohnehin.
             ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a") }
         }
         release {
@@ -153,7 +154,8 @@ dependencies {
         implementation("com.google.protobuf:protobuf-javalite:${libs.versions.protobufJavalite.get()}") { because("OSV: protobuf-javalite 4.26.1 (CVE-2024-7254)") }
     }
 
-    // Entscheidungen des Zweitweckers (Nachfrist, Ablösen, «stop», Schlummern) in Unit-Tests; Robolectric nur zum Testen.
+    // Entscheidungen des Zweitweckers (Nachfrist, Ablösen, «stop», Schlummern) in Unit-Tests; Robolectric nur zum
+    // Testen.
     testImplementation(kotlin("test-junit"))
     testImplementation(libs.robolectric)
 

@@ -13,8 +13,8 @@ object BackupJson {
     const val VERSION: Int = 1
 
     /**
-     * Tiefste erlaubte Verschachtelung von Objekten und Listen (die Sicherung selbst braucht 2). Tiefer: [CodecException]
-     * statt eines Stapelüberlaufs bei einer manipulierten Datei. Swift (`BackupJson.swift`) gleich.
+     * Tiefste erlaubte Verschachtelung von Objekten und Listen (die Sicherung selbst braucht 2). Tiefer:
+     * [CodecException] statt eines Stapelüberlaufs bei einer manipulierten Datei. Swift (`BackupJson.swift`) gleich.
      */
     const val MAX_DEPTH: Int = 64
 

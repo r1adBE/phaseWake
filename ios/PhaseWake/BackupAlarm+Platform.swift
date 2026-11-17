@@ -70,7 +70,8 @@ extension BackupAlarm {
     }
 }
 
-/// Das System als ``BackupPlatform``: AlarmKit ab iOS 26, sonst (oder wenn AlarmKit scheitert) zeitkritische Mitteilungen.
+/// Das System als ``BackupPlatform``: AlarmKit ab iOS 26, sonst (oder wenn AlarmKit scheitert) zeitkritische
+/// Mitteilungen.
 @MainActor
 final class SystemBackupPlatform: BackupPlatform {
     var alarmKit: Bool {
@@ -205,8 +206,8 @@ final class SystemBackupPlatform: BackupPlatform {
                 _ = try await AlarmManager.shared.requestAuthorization()
             }
             let stop = AlarmButton(text: LocalizedStringResource(stringLiteral: L("ring_stop")), textColor: .white, systemImageName: "stop.fill")
-            // Schlummern nur, solange Runden übrig sind (beim Mitklingeln die der Uhr). Restanzahl wie auf der Uhr «noch N»
-            // statt «N übrig».
+            // Schlummern nur, solange Runden übrig sind (beim Mitklingeln die der Uhr). Restanzahl wie auf der Uhr
+            // «noch N» statt «N übrig».
             let snoozeText = L("ring_snooze_button", Int64(Snooze.minutes)) + " · " + LP("ring_snoozes_left", snoozesLeft, Int64(snoozesLeft))
             let snooze = snoozesLeft > 0
                 ? AlarmButton(text: LocalizedStringResource(stringLiteral: snoozeText), textColor: .white, systemImageName: "zzz")
@@ -215,8 +216,9 @@ final class SystemBackupPlatform: BackupPlatform {
             let alert = AlarmPresentation.Alert(title: LocalizedStringResource(stringLiteral: L("ring_greeting")), stopButton: stop,
                                                 secondaryButton: snooze, secondaryButtonBehavior: behavior)
             let attributes = AlarmAttributes<PhaseWakeAlarm>(presentation: AlarmPresentation(alert: alert), tintColor: Brand.accentLight)
-            // Beim Mitklingeln gehen Stopp und Schlummern an die Uhr. Eine Sicherung klingelt ohne Uhr: Ihr Stopp beendet
-            // die Uhr nur für dieselbe Nacht (`BackupStopIntent`); sie schlummert auf dem iPhone selbst (`BackupSnoozeIntent`).
+            // Beim Mitklingeln gehen Stopp und Schlummern an die Uhr. Eine Sicherung klingelt ohne Uhr: Ihr Stopp
+            // beendet die Uhr nur für dieselbe Nacht (`BackupStopIntent`); sie schlummert auf dem iPhone selbst
+            // (`BackupSnoozeIntent`).
             let stopIntent: any LiveActivityIntent = fromWatch
                 ? StopRingIntent(alarmId: id.uuidString)
                 : BackupStopIntent(alarmId: id.uuidString)
@@ -275,7 +277,8 @@ struct StopRingIntent: LiveActivityIntent {
     }
 }
 
-/// «Stopp» an einer Sicherung (klingelt ohne Uhr): Die Uhr hört für dieselbe Nacht auch auf (`BackupAlarm.backupStopped`).
+/// «Stopp» an einer Sicherung (klingelt ohne Uhr): Die Uhr hört für dieselbe Nacht auch auf
+/// (`BackupAlarm.backupStopped`).
 @available(iOS 26.0, *)
 struct BackupStopIntent: LiveActivityIntent {
     static let title: LocalizedStringResource = "ring_stop"

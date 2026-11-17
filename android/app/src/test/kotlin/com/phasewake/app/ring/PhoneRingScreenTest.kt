@@ -34,8 +34,8 @@ import kotlin.test.fail
 /**
  * Weckbildschirm des Handys ([PhoneRingActivity]) mit echtem Weckdienst: Der Wecker klingelt über [PhoneRingService]
  * (Weckart, Aufgabe und Licht aus dem gespeicherten Wecker), der Bildschirm zeigt das an, und was er antippt, geht als
- * Befehl an den Dienst zurück. Hochformat, Querformat, kleines Handy mit grosser Schrift, Weckaufgabe und Sonnenaufgang.
- * Solange es klingelt, bleibt der Bildschirm offen; ist der Wecker aus, schliesst er sich.
+ * Befehl an den Dienst zurück. Hochformat, Querformat, kleines Handy mit grosser Schrift, Weckaufgabe und
+ * Sonnenaufgang. Solange es klingelt, bleibt der Bildschirm offen; ist der Wecker aus, schliesst er sich.
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35], application = QuietApp::class)

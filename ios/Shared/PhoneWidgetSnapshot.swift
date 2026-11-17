@@ -6,8 +6,8 @@ import PhaseWakeCore
 ///
 /// Die iPhone-App schreibt den Stand bei jedem Öffnen und alle 30 Sekunden, solange sie offen ist, als Datei in die
 /// gemeinsame App-Gruppe, in einen von der iCloud-Sicherung ausgenommenen Ordner (die letzte Nacht mit Schlafdauer und
-/// Befinden gehört nicht in die Sicherung); das Widget liest nur. Mehrere Fenster, damit das Widget nach einer Zielzeit von
-/// selbst den nächsten Wecker zeigt, ohne dass die App läuft (wie der Nacht-Check auf Android).
+/// Befinden gehört nicht in die Sicherung); das Widget liest nur. Mehrere Fenster, damit das Widget nach einer Zielzeit
+/// von selbst den nächsten Wecker zeigt, ohne dass die App läuft (wie der Nacht-Check auf Android).
 struct PhoneWidgetSnapshot: Codable, Equatable {
     /// Ein geplantes Weckfenster.
     struct Plan: Codable, Equatable {

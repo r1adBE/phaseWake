@@ -1,9 +1,9 @@
 import PhaseWakeCore
 import SwiftUI
 
-/// Welle der Schlafzyklen, die im Weckfenster ausläuft und im pulsierenden Weckpunkt endet. Das Weckfenster leuchtet als
-/// weiches Band, die Welle wird zum Weckpunkt hin heller und zeichnet sich beim Erscheinen einmal von links her (wie
-/// Android). Mit «Bewegung reduzieren» ruht sie ganz.
+/// Welle der Schlafzyklen, die im Weckfenster ausläuft und im pulsierenden Weckpunkt endet. Das Weckfenster leuchtet
+/// als weiches Band, die Welle wird zum Weckpunkt hin heller und zeichnet sich beim Erscheinen einmal von links her
+/// (wie Android). Mit «Bewegung reduzieren» ruht sie ganz.
 struct HeroWave: View {
     var windowFraction: Double = 0.32
     /// Steht im Kopf der Startseite: dunkel im Nachthimmel, hell im Tageshimmel (``SkyInk``), wie Android `onNight`.
@@ -64,8 +64,8 @@ struct HeroWave: View {
     }
 }
 
-/// Glaskante der Karten wie Android (`cardEdge`): dunkel oben hell mit Lavendel-Schimmer, nach unten auslaufend; hell ein
-/// Hauch Lavendel. Reine Zierde.
+/// Glaskante der Karten wie Android (`cardEdge`): dunkel oben hell mit Lavendel-Schimmer, nach unten auslaufend; hell
+/// ein Hauch Lavendel. Reine Zierde.
 struct CardEdge: View {
     @Environment(\.colorScheme) private var scheme
 

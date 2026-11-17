@@ -28,7 +28,8 @@ import java.time.Duration
 import java.time.Instant
 import java.time.ZoneId
 
-// Detailseite einer Nacht (eigene und aus Samsung Health), die Liste mit Mini-Hypnogrammen und das Hypnogramm mit Blase.
+// Detailseite einer Nacht (eigene und aus Samsung Health), die Liste mit Mini-Hypnogrammen und das Hypnogramm mit
+// Blase.
 
 private val zone = ZoneId.of("Europe/Zurich")
 

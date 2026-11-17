@@ -17,9 +17,11 @@ class AlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action == ACTION_GOOD_NIGHT_CHECK) {
-            // Vor dem Entsperren ist «Gute Nacht» nicht lesbar; nach dem Entsperren plant der Neustart-Empfänger die Prüfung neu.
+            // Vor dem Entsperren ist «Gute Nacht» nicht lesbar; nach dem Entsperren plant der Neustart-Empfänger die
+            // Prüfung neu.
             if (!DirectBoot.isUnlocked(context)) return
-            // Misst «Gute Nacht» noch, nur die nächste Prüfung stellen; sonst den Dienst neu starten (er liest den Stand).
+            // Misst «Gute Nacht» noch, nur die nächste Prüfung stellen; sonst den Dienst neu starten (er liest den
+            // Stand).
             if (WakeService.goodNightActive) {
                 AlarmScheduler.armGoodNightCheck(context)
             } else {

@@ -30,9 +30,9 @@ data class DetectorConfig(
      */
     val personalFloor: Double? = null,
     /**
-     * Eigener Ruhepuls aus der Lernphase ([Learning]). Ohne Basispuls des Fensters gilt [RESTING_FALLBACK_FACTOR] × Ruhepuls
-     * als Basispuls; sonst begrenzt er den Basispuls auf [restingHeartRate] bis [RESTING_CLAMP_FACTOR] × [restingHeartRate]
-     * ([WakeDetector]). `null` = keiner.
+     * Eigener Ruhepuls aus der Lernphase ([Learning]). Ohne Basispuls des Fensters gilt [RESTING_FALLBACK_FACTOR] ×
+     * Ruhepuls als Basispuls; sonst begrenzt er den Basispuls auf [restingHeartRate] bis [RESTING_CLAMP_FACTOR] ×
+     * [restingHeartRate] ([WakeDetector]). `null` = keiner.
      */
     val restingHeartRate: Double? = null,
     /**
@@ -83,15 +83,18 @@ data class DetectorConfig(
         /** Aufwärm-Epochen zu Fensterbeginn (2 × 30 s): Bewegung beim Einschalten der Messung zählt nicht. */
         const val DEFAULT_WARMUP_EPOCHS: Int = 2
 
-        /** Der Basispuls ist der Median der Pulse aus so vielen ersten Epochen des Fensters (mindestens der Aufwärmphase). */
+        /**
+         * Der Basispuls ist der Median der Pulse aus so vielen ersten Epochen des Fensters (mindestens der
+         * Aufwärmphase).
+         */
         const val BASELINE_EPOCHS: Int = 6
 
         /** … sobald es mindestens so viele Pulse darunter gibt; vorher gilt der Ersatz aus dem Ruhepuls oder keiner. */
         const val MIN_BASELINE_HEART_RATES: Int = 2
 
         /**
-         * Ersatz-Basispuls ohne Puls zu Fensterbeginn: gelernter Ruhepuls (10. Perzentil der Nacht) mal diesem Faktor. Der
-         * Ruhepuls selbst liegt unter dem morgendlichen Puls; als Basispuls wäre der Anstieg fast immer erfüllt.
+         * Ersatz-Basispuls ohne Puls zu Fensterbeginn: gelernter Ruhepuls (10. Perzentil der Nacht) mal diesem Faktor.
+         * Der Ruhepuls selbst liegt unter dem morgendlichen Puls; als Basispuls wäre der Anstieg fast immer erfüllt.
          */
         const val RESTING_FALLBACK_FACTOR: Double = 1.10
 

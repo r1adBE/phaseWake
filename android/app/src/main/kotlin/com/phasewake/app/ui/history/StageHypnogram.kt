@@ -239,7 +239,8 @@ internal fun DrawScope.drawBlocks(
         val w = (x(block.end) - x0).coerceAtLeast(1f)
         val top = (cy - barHeight / 2).roundToInt().toFloat()
         val wide = w >= GLOW_MIN.toPx()
-        // Schleier bis zum Boden (nur breite Blöcke im grossen Hypnogramm): Das Profil wirkt wie eine farbige Landschaft.
+        // Schleier bis zum Boden (nur breite Blöcke im grossen Hypnogramm): Das Profil wirkt wie eine farbige
+        // Landschaft.
         if (glow && wide) {
             drawRect(
                 Brush.verticalGradient(listOf(color.copy(alpha = 0.16f), color.copy(alpha = 0f)), startY = cy, endY = floor),

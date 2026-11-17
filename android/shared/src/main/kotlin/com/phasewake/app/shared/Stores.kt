@@ -31,8 +31,8 @@ val Context.phaseWakeStore: DataStore<Preferences>
 
 /**
  * Der DataStore «phasewake». Ist die Datei beschädigt, beginnt er leer statt bei jedem Lesen zu scheitern:
- * Wecker kommen mit dem nächsten Abgleich von der Gegenseite zurück (deren Stand ist neuer); Notizen, Abhaken, Befinden,
- * Zustimmungen, Feiertagswahl, Einstellungen und die Lernphase sind weg. Die kaputte Datei bleibt als Kopie
+ * Wecker kommen mit dem nächsten Abgleich von der Gegenseite zurück (deren Stand ist neuer); Notizen, Abhaken,
+ * Befinden, Zustimmungen, Feiertagswahl, Einstellungen und die Lernphase sind weg. Die kaputte Datei bleibt als Kopie
  * «phasewake.preferences_pb.broken» (die jüngste, wie `.broken` von `SettingsFile` auf iOS; nicht in der Sicherung).
  * Der leere Stand trägt [RESET_AT]: Er wird nicht als neuer Stand gestempelt und so nicht der Gegenseite aufgedrängt
  * (Lernphase, Schlafziel, Schalter der Einschlaf-Messung; diese behält ihren Stand, bis hier etwas geändert wird).

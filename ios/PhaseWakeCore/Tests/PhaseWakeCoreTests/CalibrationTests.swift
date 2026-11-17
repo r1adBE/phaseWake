@@ -22,8 +22,9 @@ final class CalibrationTests: XCTestCase {
     }
 
     func testUsesEightiethPercentile() {
-        // 3 Nächte × (2 × 0.0 + 8 Werte) = 30; je Nacht Grundrauschen 0.0 (Rang 2 von 10), abgezogen bleibt alles gleich.
-        // Werte 0.0005, 0.00055, … : sortiert 6 × 0.0, dann diese; Rang ⌈0.8 · 30⌉ = 24 → der 18. Wert (0.00135).
+        // 3 Nächte × (2 × 0.0 + 8 Werte) = 30; je Nacht Grundrauschen 0.0 (Rang 2 von 10), abgezogen bleibt alles
+        // gleich. Werte 0.0005, 0.00055, … : sortiert 6 × 0.0, dann diese; Rang ⌈0.8 · 30⌉ = 24 → der 18. Wert
+        // (0.00135).
         let all = (0..<24).map { 0.0005 + Double($0) * 0.00005 }
         let nights = stride(from: 0, to: 24, by: 8).map { night([0.0, 0.0] + all[$0..<$0 + 8].map { Optional($0) }) }
         let config = Calibration.calibrate(nights: nights)

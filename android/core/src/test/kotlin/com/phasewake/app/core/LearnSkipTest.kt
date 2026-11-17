@@ -11,7 +11,10 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
-/** Meldung der Uhr ([LearnSkip]) und was das Handy für die Lern-Übersicht merkt ([LearnLog]); gleich wie `LearnSkipTests` (Swift). */
+/**
+ * Meldung der Uhr ([LearnSkip]) und was das Handy für die Lern-Übersicht merkt ([LearnLog]); gleich wie
+ * `LearnSkipTests` (Swift).
+ */
 class LearnSkipTest {
     private val zone = ZoneId.of("Europe/Zurich")
     private val target = Instant.ofEpochMilli(1_800_000_000_000L)

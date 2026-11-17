@@ -205,8 +205,9 @@ internal fun countedNights(data: AppData, since: Instant): Int =
     Learning.counted(data.recordings.orEmpty().map { it.toLearnNight() }, since, ZoneId.systemDefault()).size
 
 /**
- * Start ([start]) oder Stopp von «Nacht aufzeichnen» an die Uhr (mit freigeschalteter Diagnose durchgehend gemessen). Hinweis, wenn sie nicht erreichbar ist oder ihr Akku
- * unter [NightRecording.MIN_BATTERY] liegt (dann startet sie nicht). Den neuen Stand meldet die Uhr selbst.
+ * Start ([start]) oder Stopp von «Nacht aufzeichnen» an die Uhr (mit freigeschalteter Diagnose durchgehend gemessen).
+ * Hinweis, wenn sie nicht erreichbar ist oder ihr Akku unter [NightRecording.MIN_BATTERY] liegt (dann startet sie
+ * nicht). Den neuen Stand meldet die Uhr selbst.
  */
 private fun sendRecord(app: PhaseWakeApp, start: Boolean) {
     app.appScope.launch {

@@ -22,8 +22,8 @@ public struct NightRecord: Equatable, Sendable {
     public let watchBattery: [BatteryPoint]?
     /// Akkustand des iPhones in dieser Nacht (``BatteryTrack``), nur auf dem iPhone; `nil` = nicht gemessen.
     public let phoneBattery: [BatteryPoint]?
-    /// Beginn der Einschlafdauer dieser Nacht (Bettzeit der automatischen Messung bzw. «Gute Nacht»), von der Uhr gemessen;
-    /// `nil` = unbekannt (nicht gemessen, ältere Uhr-App).
+    /// Beginn der Einschlafdauer dieser Nacht (Bettzeit der automatischen Messung bzw. «Gute Nacht»), von der Uhr
+    /// gemessen; `nil` = unbekannt (nicht gemessen, ältere Uhr-App).
     public let bedAt: Date?
     /// Einschlafzeit dieser Nacht aus der Einschlaf-Messung der Uhr; `nil` = unbekannt.
     public let asleepAt: Date?

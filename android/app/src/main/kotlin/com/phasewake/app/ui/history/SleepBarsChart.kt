@@ -47,7 +47,8 @@ private fun barLine(context: Context, bar: SleepBar): String =
 
 /**
  * Schlafzeiten je Abend über den gewählten Zeitraum (`null`: «Keine Daten»), eine Zeile je Nacht, Bettzeit gestrichelt.
- * Antippen oder Ziehen (senkrecht über die Zeilen) zeigt die Nacht in der Blase; Antippen der Blase öffnet sie ([opener]).
+ * Antippen oder Ziehen (senkrecht über die Zeilen) zeigt die Nacht in der Blase; Antippen der Blase öffnet sie
+ * ([opener]).
  */
 @Composable
 internal fun SleepBarsCard(chart: SleepBars?, opener: (LocalDate) -> (() -> Unit)?, modifier: Modifier) {
@@ -98,7 +99,8 @@ internal fun SleepBarsCard(chart: SleepBars?, opener: (LocalDate) -> (() -> Unit
                 if (bar.hasData) {
                     val x0 = x(bar.startMinute!!).coerceAtLeast(0f)
                     val x1 = x(bar.endMinute!!).coerceAtMost(size.width)
-                    // Von der Nacht (tief) zum Morgen (hell); wächst beim Erscheinen Zeile für Zeile vom Einschlafen her.
+                    // Von der Nacht (tief) zum Morgen (hell); wächst beim Erscheinen Zeile für Zeile vom Einschlafen
+                    // her.
                     val grow = ((reveal * (1f + STAGGER)) - STAGGER * i / rows).coerceIn(0f, 1f)
                     val w = ((x1 - x0) * grow).coerceAtLeast(barHeight)
                     val night = Brush.horizontalGradient(listOf(brand.stageDeep, brand.chartActive), startX = x0, endX = x0 + (x1 - x0).coerceAtLeast(barHeight))

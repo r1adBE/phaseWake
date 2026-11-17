@@ -53,8 +53,8 @@ fun findingText(context: Context, finding: Finding): String {
 }
 
 /**
- * Höchstens eine Auffälligkeit auf der Startseite, die wichtigste ([com.phasewake.app.core.Findings.home]); «Ausblenden»
- * verbirgt sie 7 Tage. Darunter leise «Keine medizinische Bewertung.».
+ * Höchstens eine Auffälligkeit auf der Startseite, die wichtigste ([com.phasewake.app.core.Findings.home]);
+ * «Ausblenden» verbirgt sie 7 Tage. Darunter leise «Keine medizinische Bewertung.».
  */
 @Composable
 internal fun FindingCard(finding: Finding, onHide: () -> Unit) {

@@ -255,8 +255,8 @@ final class WakeDetectorTests: XCTestCase {
     }
 
     func testOnsetFloorKnownAfterTheWindowBegan() throws {
-        // Apple Watch: Das Grundrauschen der Einschlaf-Messung kommt erst nach Fensterbeginn (`WatchOnset`); ab dann gilt
-        // es. Wie Kotlin.
+        // Apple Watch: Das Grundrauschen der Einschlaf-Messung kommt erst nach Fensterbeginn (`WatchOnset`); ab dann
+        // gilt es. Wie Kotlin.
         let restless = Array(repeating: Epoch(motion: 0.08, heartRate: 60.0), count: 8)
         let detector = WakeDetector()
         _ = run(detector, restless + [Epoch(motion: 0.12, heartRate: 60.0)])

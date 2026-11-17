@@ -2,8 +2,8 @@ import Foundation
 import PhaseWakeCore
 import UserNotifications
 
-/// Mitteilungen der Uhr-App. Ohne diesen Delegate zeigt watchOS eine Mitteilung bei offener App gar nicht – ausgerechnet
-/// der Rückfall-Wecker (`phasewake.fallback…`) bliebe dann stumm, wenn die Sitzung nicht geweckt hat.
+/// Mitteilungen der Uhr-App. Ohne diesen Delegate zeigt watchOS eine Mitteilung bei offener App gar nicht –
+/// ausgerechnet der Rückfall-Wecker (`phasewake.fallback…`) bliebe dann stumm, wenn die Sitzung nicht geweckt hat.
 final class WatchNotificationRouter: NSObject, UNUserNotificationCenterDelegate, @unchecked Sendable {
     static let shared = WatchNotificationRouter()
 

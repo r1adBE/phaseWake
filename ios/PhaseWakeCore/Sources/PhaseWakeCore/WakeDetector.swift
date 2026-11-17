@@ -12,8 +12,8 @@ public final class WakeDetector {
     /// Regel S5: Fenster (letzte Epochen inkl. aktueller), in dem eine Bewegung ≥ wirksame Wach-Schwelle genügt.
     private static let strongWindow = 2
 
-    /// Startwerte oder kalibrierte Schwellen; das Grundrauschen (``NoiseFloor``) hebt sie je Epoche höchstens an. Ändert
-    /// sich nur über ``useOnsetFloor(_:)``.
+    /// Startwerte oder kalibrierte Schwellen; das Grundrauschen (``NoiseFloor``) hebt sie je Epoche höchstens an.
+    /// Ändert sich nur über ``useOnsetFloor(_:)``.
     public private(set) var config: DetectorConfig
 
     /// Alle Bewegungen dieses Fensters inkl. Aufwärmphase, fürs Grundrauschen (``NoiseFloor/windowFloor(_:config:)``).
@@ -54,16 +54,16 @@ public final class WakeDetector {
         recent.append(epoch)
 
         // Schwellen nach dem Grundrauschen bis und mit dieser Epoche; sie gelten für alle Epochen im Fenster der Regel.
-        // Solange die Messung zu wenige Werte hat, gilt das bekannte (Einschlaf-Messung, sonst gelernt); es begrenzt auch
-        // das des Fensters (``NoiseFloor/windowFloor(_:config:)``).
+        // Solange die Messung zu wenige Werte hat, gilt das bekannte (Einschlaf-Messung, sonst gelernt); es begrenzt
+        // auch das des Fensters (``NoiseFloor/windowFloor(_:config:)``).
         let floor = NoiseFloor.windowFloor(motions, config: config)
         let wakeThreshold = NoiseFloor.wake(config: config, floor: floor)
         if hits(window: config.awakeWindow, threshold: wakeThreshold) >= config.awakeHits {
             return wake(.awake)
         }
         // Leicht-Regel erst mit Grundrauschen (4 Werte oder Vorwert): Ohne zählte das Rauschen einer
-        // Uhr wie der Galaxy Watch (ruhig 0.02) gegen die Startschwelle 0.002 als Bewegung, und es entschied allein der Puls.
-        // Regel S5: Statt 2 leichter Bewegungen genügt eine starke (≥ wirksame Wach-Schwelle)
+        // Uhr wie der Galaxy Watch (ruhig 0.02) gegen die Startschwelle 0.002 als Bewegung, und es entschied allein der
+        // Puls. Regel S5: Statt 2 leichter Bewegungen genügt eine starke (≥ wirksame Wach-Schwelle)
         // in den letzten `strongWindow` Epochen, mit derselben Pulsbedingung und denselben Sperren.
         let moved = hits(window: Self.strongWindow, threshold: wakeThreshold) >= 1
             || hits(window: config.lightWindow, threshold: NoiseFloor.light(config: config, floor: floor)) >= config.lightHits
@@ -91,9 +91,9 @@ public final class WakeDetector {
     }
 
     /// Basispuls: Median der Pulse aus den ersten ``DetectorConfig/baselineEpochs`` Epochen des Fensters, sobald es
-    /// mindestens ``DetectorConfig/minBaselineHeartRates`` sind; mit gelerntem Ruhepuls (``DetectorConfig/restingHeartRate``)
-    /// begrenzt auf Ruhepuls bis ``DetectorConfig/restingClampFactor`` × Ruhepuls. Sonst Ruhepuls ×
-    /// ``DetectorConfig/restingFallbackFactor``, ohne Ruhepuls `nil`. Identisch zu Kotlin.
+    /// mindestens ``DetectorConfig/minBaselineHeartRates`` sind; mit gelerntem Ruhepuls
+    /// (``DetectorConfig/restingHeartRate``) begrenzt auf Ruhepuls bis ``DetectorConfig/restingClampFactor`` ×
+    /// Ruhepuls. Sonst Ruhepuls × ``DetectorConfig/restingFallbackFactor``, ohne Ruhepuls `nil`. Identisch zu Kotlin.
     private func baselineHeartRate() -> Double? {
         let resting = config.restingHeartRate
         if baselineHeartRates.count < DetectorConfig.minBaselineHeartRates {
@@ -107,8 +107,8 @@ public final class WakeDetector {
     }
 
     /// Pulsbedingung: aktueller Puls (Mittel der letzten zwei Epochen) liegt mindestens um
-    /// `heartRateRise` über dem Basispuls `baseline` (``baselineHeartRate()``). Fehlt einer der beiden Werte, ist sie nicht
-    /// erfüllt: Bewegung allein reicht für ``WakeReason/lightSleep`` nicht («Phase nicht behaupten»).
+    /// `heartRateRise` über dem Basispuls `baseline` (``baselineHeartRate()``). Fehlt einer der beiden Werte, ist sie
+    /// nicht erfüllt: Bewegung allein reicht für ``WakeReason/lightSleep`` nicht («Phase nicht behaupten»).
     private func heartRateRisen(_ baseline: Double?) -> Bool {
         guard let baseline else { return false }
         var sum = 0.0
@@ -125,16 +125,16 @@ public final class WakeDetector {
 
     /// Übergangener Moment (kurze Nacht, ``ShortNight/blocksEarly(onset:now:sleepGoalMinutes:target:measured:)``): Die
     /// Entscheidung wird verworfen, die Erkennung läuft weiter und kann einen neuen Moment melden. Die Treffer des
-    /// übergangenen Moments zählen nicht mehr: Die Regeln sehen nur Epochen nach dieser Grenze, ein neuer Moment braucht
-    /// neue Treffer (sonst weckte der alte, sobald die Sperre endet). Grundrauschen und Basispuls bleiben. Identisch zu
-    /// `WakeDetector.rearm` (Kotlin).
+    /// übergangenen Moments zählen nicht mehr: Die Regeln sehen nur Epochen nach dieser Grenze, ein neuer Moment
+    /// braucht neue Treffer (sonst weckte der alte, sobald die Sperre endet). Grundrauschen und Basispuls bleiben.
+    /// Identisch zu `WakeDetector.rearm` (Kotlin).
     public func rearm() {
         result = nil
         recent.removeAll(keepingCapacity: true)
     }
 
-    /// Grundrauschen der Einschlaf-Messung dieser Nacht, das erst nach Fensterbeginn bekannt wird (die Apple Watch rechnet
-    /// es zu Beginn der Sitzung nach, ``RecorderOnset``): gilt ab der nächsten Epoche wie
+    /// Grundrauschen der Einschlaf-Messung dieser Nacht, das erst nach Fensterbeginn bekannt wird (die Apple Watch
+    /// rechnet es zu Beginn der Sitzung nach, ``RecorderOnset``): gilt ab der nächsten Epoche wie
     /// ``DetectorConfig/withOnsetFloor(_:)``. Identisch zu Kotlin.
     public func useOnsetFloor(_ floor: Double?) {
         config = config.withOnsetFloor(floor)

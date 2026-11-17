@@ -6,7 +6,8 @@ import android.util.Log
 
 /**
  * Kurzer Wakelock zwischen einem System-Alarm und dem Dienst, den er startet: Sobald `onReceive`
- * zurückkehrt, löst das System den Wakelock des Alarms; ohne eigenen schlief die Uhr bis zu 2 Min, bevor der Dienst lief.
+ * zurückkehrt, löst das System den Wakelock des Alarms; ohne eigenen schlief die Uhr bis zu 2 Min, bevor der Dienst
+ * lief.
  *
  * Die Empfänger nehmen ihn vor dem Start ([acquire]), der Dienst löst ihn, sobald er seinen eigenen Wakelock hält oder
  * nichts mehr zu tun ist ([release]); ebenso ein verweigerter Start. Ein einziger Wakelock ohne Zählung: Ein zweiter

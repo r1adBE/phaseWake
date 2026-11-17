@@ -51,8 +51,8 @@ object ValidationReport {
     }
 
     /**
-     * Summen über [entries] mit Referenz: LIGHT_SLEEP echt und Schatten, Phase zur Zielzeit ([WakeReason.atTarget]) echt
-     * und Schatten, Trefferquote aller echten Entscheide.
+     * Summen über [entries] mit Referenz: LIGHT_SLEEP echt und Schatten, Phase zur Zielzeit ([WakeReason.atTarget])
+     * echt und Schatten, Trefferquote aller echten Entscheide.
      */
     fun summary(entries: List<Validation.Entry>): String {
         val counted = entries.filter { it.ref != Validation.Ref.NONE }
@@ -66,7 +66,8 @@ object ValidationReport {
 
     /**
      * Zeilen des Abschnitts: [NOTE], je Nacht ihre Entscheide «night N HH:mm kind REASON ref» und «night N: …» mit den
-     * Summen ([summary]) bzw. «night N: no reference», zuletzt «all: N nights, M with reference · …». Ohne Entscheide leer.
+     * Summen ([summary]) bzw. «night N: no reference», zuletzt «all: N nights, M with reference · …». Ohne Entscheide
+     * leer.
      */
     fun lines(entries: List<Validation.Entry>): List<String> {
         if (entries.isEmpty()) return emptyList()

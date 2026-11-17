@@ -60,8 +60,8 @@ object Day {
 }
 
 /**
- * Farben für Schrift und Zeichen auf dem Himmel der Kopfbereiche: auf dem Nachthimmel hell ([OnNight], bisherige Werte),
- * auf dem Tageshimmel dunkel ([OnDay]). [button]/[onButton]: gefüllter Knopf im Kopf. [dawn]: Morgenlicht des
+ * Farben für Schrift und Zeichen auf dem Himmel der Kopfbereiche: auf dem Nachthimmel hell ([OnNight], bisherige
+ * Werte), auf dem Tageshimmel dunkel ([OnDay]). [button]/[onButton]: gefüllter Knopf im Kopf. [dawn]: Morgenlicht des
  * Weckfensters im Bogen der Startseite (nachts warmes Orange, am Tag Caramel als Sonnenaufgang).
  */
 data class SkyInk(
@@ -108,9 +108,9 @@ val SkyMood.daySun: Color
     }
 
 /**
- * Farbe des Tageshimmels bei Höhe [y] (0 oben, 1 unten), ohne den hellen Lichtschein und ungünstig gerechnet (der Schein
- * über dem Horizont ab [SkyMood.HORIZON_START] überall voll), wie [SkyMood.skyAt]. Für die Kontrast-Tests; gezeichnet wird
- * mit denselben Werten in [drawDay].
+ * Farbe des Tageshimmels bei Höhe [y] (0 oben, 1 unten), ohne den hellen Lichtschein und ungünstig gerechnet (der
+ * Schein über dem Horizont ab [SkyMood.HORIZON_START] überall voll), wie [SkyMood.skyAt]. Für die Kontrast-Tests;
+ * gezeichnet wird mit denselben Werten in [drawDay].
  */
 fun SkyMood.daySkyAt(y: Float): Color {
     val yy = y.coerceIn(0f, 1f)
@@ -146,8 +146,8 @@ private fun DrawScope.drawDay(mood: SkyMood) {
 }
 
 /**
- * Tageshimmel mit der Stimmung [mood] als Hintergrund (Kopfbereiche im hellen Design). Ruhig, ohne wandernden Schein; die
- * Stimmung wechselt sanft (mit «Animationen entfernen» sofort).
+ * Tageshimmel mit der Stimmung [mood] als Hintergrund (Kopfbereiche im hellen Design). Ruhig, ohne wandernden Schein;
+ * die Stimmung wechselt sanft (mit «Animationen entfernen» sofort).
  */
 @Composable
 fun AnimatedDay(modifier: Modifier = Modifier, mood: SkyMood = SkyMood.Plain, content: @Composable () -> Unit = {}) {

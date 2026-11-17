@@ -11,7 +11,8 @@ object HealthSource {
 
     /**
      * Anzeigename zu [packageName]: «Samsung Health», sonst der App-Name aus dem PackageManager (sichtbar über
-     * `<queries>` im Manifest). `null`, wenn unbekannt oder nicht auflösbar – dann zeigt der Verlauf «aus Gesundheitsdaten».
+     * `<queries>` im Manifest). `null`, wenn unbekannt oder nicht auflösbar – dann zeigt der Verlauf «aus
+     * Gesundheitsdaten».
      */
     fun name(context: Context, packageName: String?): String? {
         if (packageName.isNullOrEmpty()) return null

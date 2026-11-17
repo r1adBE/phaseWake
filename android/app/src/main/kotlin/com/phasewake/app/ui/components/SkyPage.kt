@@ -45,14 +45,14 @@ import com.phasewake.app.ui.theme.PhaseWakeTheme
 // Karten. Gleich auf dem iPhone (SkyPage.swift).
 
 /**
- * Stimmung des Himmels für alle Seiten ausser der Startseite (die rechnet sie selbst). Die App setzt sie aus dem nächsten
- * Weckfenster ([SkyMood.at]); ohne Angabe ruhig ([SkyMood.Plain]).
+ * Stimmung des Himmels für alle Seiten ausser der Startseite (die rechnet sie selbst). Die App setzt sie aus dem
+ * nächsten Weckfenster ([SkyMood.at]); ohne Angabe ruhig ([SkyMood.Plain]).
  */
 val LocalSkyMood = compositionLocalOf { SkyMood.Plain }
 
 /**
- * Hintergrund einer Seite: dunkel ganzflächig der Nachthimmel mit der Stimmung [LocalSkyMood] (wie die Startseite), hell
- * die Creme-Fläche; den Tageshimmel trägt dort der Kopf ([SkyHeader]).
+ * Hintergrund einer Seite: dunkel ganzflächig der Nachthimmel mit der Stimmung [LocalSkyMood] (wie die Startseite),
+ * hell die Creme-Fläche; den Tageshimmel trägt dort der Kopf ([SkyHeader]).
  */
 @Composable
 fun SkyPage(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
@@ -64,10 +64,11 @@ fun SkyPage(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
 }
 
 /**
- * Kopfbereich einer Seite wie der Kopf der Startseite: hell ein Stück Tageshimmel ([AnimatedDay]) mit unten runden Ecken,
- * dunkel durchsichtig (der Nachthimmel liegt schon dahinter). Schrift und Symbole darin in [skyInk] (≥ 4.5:1 auf dem
- * Himmel, SkyMoodTest). [statusBar]: reicht bis unter die Statusleiste. [bleedSide]/[bleedTop]: ragt so weit über den Platz in
- * einer Liste hinaus (seitlicher Rand und oberer Innenabstand), damit der Himmel randlos ist; der Inhalt bleibt, wo er war.
+ * Kopfbereich einer Seite wie der Kopf der Startseite: hell ein Stück Tageshimmel ([AnimatedDay]) mit unten runden
+ * Ecken, dunkel durchsichtig (der Nachthimmel liegt schon dahinter). Schrift und Symbole darin in [skyInk] (≥ 4.5:1 auf
+ * dem Himmel, SkyMoodTest). [statusBar]: reicht bis unter die Statusleiste. [bleedSide]/[bleedTop]: ragt so weit über
+ * den Platz in einer Liste hinaus (seitlicher Rand und oberer Innenabstand), damit der Himmel randlos ist; der Inhalt
+ * bleibt, wo er war.
  */
 @Composable
 fun SkyHeader(
@@ -139,8 +140,8 @@ private val HEADER_SHAPE = RoundedCornerShape(bottomStart = 32.dp, bottomEnd = 3
 private val HEADER_BOTTOM = 14.dp
 
 /**
- * Misst um [side] links und rechts breiter und setzt um [top] höher an, meldet aber nur den eigenen Platz: Der Kopf ragt
- * randlos in Rand und oberen Innenabstand der Liste.
+ * Misst um [side] links und rechts breiter und setzt um [top] höher an, meldet aber nur den eigenen Platz: Der Kopf
+ * ragt randlos in Rand und oberen Innenabstand der Liste.
  */
 private fun Modifier.bleed(side: Dp, top: Dp): Modifier = if (side == 0.dp && top == 0.dp) this else layout { measurable, constraints ->
     val s = side.roundToPx()
@@ -152,9 +153,9 @@ private fun Modifier.bleed(side: Dp, top: Dp): Modifier = if (side == 0.dp && to
 }
 
 /**
- * Karten der Seiten: dunkel Glas auf dem Himmel, dichter als die Karten der Startseite ([Night.Panel]), damit Diagramme,
- * Phasenfarben und Ränder von Bedienelementen auch über dem Abendrot ≥ 3:1 behalten (SkyPageContrastTest); hell warmes
- * Weiss.
+ * Karten der Seiten: dunkel Glas auf dem Himmel, dichter als die Karten der Startseite ([Night.Panel]), damit
+ * Diagramme, Phasenfarben und Ränder von Bedienelementen auch über dem Abendrot ≥ 3:1 behalten (SkyPageContrastTest);
+ * hell warmes Weiss.
  */
 @Composable
 fun skyCardColors(): CardColors = CardDefaults.cardColors(containerColor = skyCard())
@@ -164,8 +165,8 @@ fun skyCardColors(): CardColors = CardDefaults.cardColors(containerColor = skyCa
 fun skyCard(): Color = if (PhaseWakeTheme.isDark) Night.Panel else MaterialTheme.colorScheme.surfaceContainer
 
 /**
- * Glaskante wie auf der Startseite: dunkel oben hell mit Lavendel-Schimmer, nach unten auslaufend; hell ein Hauch Lavendel.
- * Reine Zierde, kein Bedienrand.
+ * Glaskante wie auf der Startseite: dunkel oben hell mit Lavendel-Schimmer, nach unten auslaufend; hell ein Hauch
+ * Lavendel. Reine Zierde, kein Bedienrand.
  */
 @Composable
 fun skyCardEdge(): BorderStroke = if (PhaseWakeTheme.isDark) {

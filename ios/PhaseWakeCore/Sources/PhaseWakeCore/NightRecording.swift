@@ -25,8 +25,8 @@ public enum RecordEnd: String, Sendable {
 /// Eine aufgezeichnete Nacht: ab `start` je 30-s-Epoche Bewegung und Puls. Epoche `i` deckt `start + i · 30 s` ab;
 /// Lücken sind leere Epochen. Auf der Apple Watch aus der Lernphase (``Learning``) und von «Nacht aufzeichnen»: Die Uhr
 /// rechnet die Epochen aus den Werten des Bewegungs-Rekorders und dem Puls aus Apple Health (``RecorderEpochs``) und
-/// schickt die fertige Aufzeichnung ans iPhone. Ist der Beginn der Einschlafdauer bekannt, stehen `bedAt` und `asleepAt`
-/// dabei. Gleiches Textformat wie `NightRecording` (Kotlin), «phasewake-recording 1».
+/// schickt die fertige Aufzeichnung ans iPhone. Ist der Beginn der Einschlafdauer bekannt, stehen `bedAt` und
+/// `asleepAt` dabei. Gleiches Textformat wie `NightRecording` (Kotlin), «phasewake-recording 1».
 public struct NightRecording: Equatable, Sendable {
     /// Beginn (Epoche 0).
     public let start: Date
@@ -78,16 +78,17 @@ public struct NightRecording: Equatable, Sendable {
     /// Ende, laufend die letzte Epoche (für den Vergleich mit einer Nacht im Verlauf).
     public var until: Date { start.addingTimeInterval(duration) }
 
-    /// Grund für ein Ende jetzt (`now`, Akku `battery` in Prozent, `nil` = unbekannt), sonst `nil`: ``RecordEnd/cap`` ab
-    /// ``maxDuration`` nach `start`, ``RecordEnd/battery`` unter ``minBattery`` (wie `NightRecording.endNow`, Kotlin).
+    /// Grund für ein Ende jetzt (`now`, Akku `battery` in Prozent, `nil` = unbekannt), sonst `nil`: ``RecordEnd/cap``
+    /// ab ``maxDuration`` nach `start`, ``RecordEnd/battery`` unter ``minBattery`` (wie `NightRecording.endNow`,
+    /// Kotlin).
     public static func endNow(start: Date, now: Date, battery: Int?) -> RecordEnd? {
         if now >= start.addingTimeInterval(maxDuration) { return .cap }
         if let battery, battery < minBattery { return .battery }
         return nil
     }
 
-    /// CSV-Export der abgeschlossenen Aufzeichnungen wie ``NightHistory/exportCsv(_:notes:calendar:)``: ohne Datums- oder
-    /// Uhrzeitangaben, nummeriert ab 1 (älteste zuerst), je Epoche Bewegung und Puls; dieselben Spalten wie
+    /// CSV-Export der abgeschlossenen Aufzeichnungen wie ``NightHistory/exportCsv(_:notes:calendar:)``: ohne Datums-
+    /// oder Uhrzeitangaben, nummeriert ab 1 (älteste zuerst), je Epoche Bewegung und Puls; dieselben Spalten wie
     /// `NightRecording.exportCsv` (Kotlin), Datei «phasewake-recordings.csv».
     public static func exportCsv(_ recordings: [NightRecording]) -> String {
         var out = "recording,end_reason,epoch,motion,hr\n"
@@ -120,7 +121,8 @@ public struct NightRecording: Equatable, Sendable {
     }
 
     /// Ganze Aufzeichnung als Text (Datei am iPhone, Paket ans iPhone): Kopfzeile, «start=ms», je Epoche
-    /// «bewegung;puls» (leer = keine Werte), «onset=bettMs,eingeschlafenMs» falls bekannt, «end=ms,grund» falls beendet.
+    /// «bewegung;puls» (leer = keine Werte), «onset=bettMs,eingeschlafenMs» falls bekannt, «end=ms,grund» falls
+    /// beendet.
     public static func encode(_ recording: NightRecording) -> String {
         var text = "\(header)\n\(startPrefix)\(millis(recording.start))\n"
         for epoch in recording.epochs {

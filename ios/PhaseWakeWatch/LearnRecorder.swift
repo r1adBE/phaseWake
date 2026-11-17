@@ -7,24 +7,25 @@ import WatchKit
 /// Lernphase auf der Apple Watch (`docs/PHASENERKENNUNG.md`, Abschnitt 10, Apple) – Gegenstück zur automatischen
 /// Aufzeichnung der Galaxy Watch (`RecordControl`, `LearnSampler`).
 ///
-/// watchOS lässt eine App nicht die ganze Nacht selbst messen. Darum startet die Uhr am Abend den Bewegungs-Rekorder des
-/// Systems (`CMSensorRecorder`, 50 Hz, bis 12 Std., läuft auch bei geschlossener App) und holt die Werte nach dem Wecken
-/// ab: in Abschnitten von 10 Min, mit begrenzter Rechenzeit je Durchgang, gespeichert nach jedem Durchgang. Daraus
-/// rechnet ``RecorderEpochs`` die Bewegung je 30-s-Epoche mit derselben Regel wie im Weckfenster; den Puls je Epoche
-/// liefert Apple Health (Werte, die die Uhr in Ruhe selbst misst). Die fertige Aufzeichnung (Grund `wake`) geht als
-/// Benutzerdaten ans iPhone, das die Nächte zählt und lernt; die Uhr behält sie nicht.
+/// watchOS lässt eine App nicht die ganze Nacht selbst messen. Darum startet die Uhr am Abend den Bewegungs-Rekorder
+/// des Systems (`CMSensorRecorder`, 50 Hz, bis 12 Std., läuft auch bei geschlossener App) und holt die Werte nach dem
+/// Wecken ab: in Abschnitten von 10 Min, mit begrenzter Rechenzeit je Durchgang, gespeichert nach jedem Durchgang.
+/// Daraus rechnet ``RecorderEpochs`` die Bewegung je 30-s-Epoche mit derselben Regel wie im Weckfenster; den Puls je
+/// Epoche liefert Apple Health (Werte, die die Uhr in Ruhe selbst misst). Die fertige Aufzeichnung (Grund `wake`) geht
+/// als Benutzerdaten ans iPhone, das die Nächte zählt und lernt; die Uhr behält sie nicht.
 ///
 /// Auslöser (watchOS bietet keinen festen Zeitpunkt am Abend): jedes Neuplanen (`WatchModel.reschedule`: App geöffnet,
 /// etwa über die Erinnerung am Abend (`EveningReminder`), Wecker oder Lernphase vom iPhone, Ende einer Nacht) und eine
-/// Hintergrund-Aktualisierung, die die Uhr auf den frühesten Start bzw. das Ende der Nacht stellt (`PhaseWakeWatchApp`).
-/// Gestartet wird frühestens 60 Min vor der Bettzeit (``AppleLearnRecord``, wie die Galaxy Watch),
-/// und nur, wenn die App dann läuft; sonst zeichnet die Uhr diese Nacht nicht auf. Je Nacht ein Aufruf des
-/// Rekorders (``AppleNightRecorder``). Während eine Nacht misst, klingelt oder schlummert, rechnet sie nicht (der Wecker
-/// hat Vorrang).
+/// Hintergrund-Aktualisierung, die die Uhr auf den frühesten Start bzw. das Ende der Nacht stellt
+/// (`PhaseWakeWatchApp`). Gestartet wird frühestens 60 Min vor der Bettzeit (``AppleLearnRecord``, wie die Galaxy
+/// Watch), und nur, wenn die App dann läuft; sonst zeichnet die Uhr diese Nacht nicht auf. Je Nacht ein Aufruf des
+/// Rekorders (``AppleNightRecorder``). Während eine Nacht misst, klingelt oder schlummert, rechnet sie nicht (der
+/// Wecker hat Vorrang).
 ///
 /// «Nacht aufzeichnen» (von Hand, auf der Uhr oder vom iPhone) nutzt denselben Weg (`LearnRecorder+Manual`): Rekorder
-/// bis 12 Std., Ende beim Wecken, von Hand, nach 12 Std. oder bei tiefem Akku; ausgewertet und ans iPhone geschickt wie eine Nacht der
-/// Lernphase. Läuft sie, startet die Lernphase keine eigene Aufzeichnung (sie zählt dann wie auf Android).
+/// bis 12 Std., Ende beim Wecken, von Hand, nach 12 Std. oder bei tiefem Akku; ausgewertet und ans iPhone geschickt wie
+/// eine Nacht der Lernphase. Läuft sie, startet die Lernphase keine eigene Aufzeichnung (sie zählt dann wie auf
+/// Android).
 ///
 /// Stand der Lernphase vom iPhone (``LearningSnapshot``) und die laufende Aufzeichnung liegen im von der Sicherung
 /// ausgenommenen Ordner (`PrivateFiles`).
@@ -45,7 +46,8 @@ final class LearnRecorder {
     static let giveUpAfter: TimeInterval = 60 * 3600
     /// Spätestens so lange nach dem Ende der Nacht versucht die Hintergrund-Aktualisierung das Auswerten erneut.
     static let retry: TimeInterval = 15 * 60
-    /// So oft prüft die Uhr während «Nacht aufzeichnen» den Akku (Hintergrund-Aktualisierung; watchOS kann sie verzögern).
+    /// So oft prüft die Uhr während «Nacht aufzeichnen» den Akku (Hintergrund-Aktualisierung; watchOS kann sie
+    /// verzögern).
     static let batteryCheck: TimeInterval = 30 * 60
     /// Mit Wecker spätestens nach dieser Zeit eine Hintergrund-Aktualisierung (Neuplanen).
     static let replanRefresh: TimeInterval = 12 * 3600
@@ -95,7 +97,8 @@ final class LearnRecorder {
         mark = (try? Data(contentsOf: fileURL)).flatMap { try? JSONDecoder().decode(Mark.self, from: $0) }
     }
 
-    /// Beginn der laufenden Aufzeichnung (Lernphase ab dem Beginn ihrer Auswertung, oder von Hand); `nil`, wenn keine läuft.
+    /// Beginn der laufenden Aufzeichnung (Lernphase ab dem Beginn ihrer Auswertung, oder von Hand); `nil`, wenn keine
+    /// läuft.
     var since: Date? {
         let now = Date()
         guard let mark, mark.from <= now, now < Self.end(of: mark) else { return nil }
@@ -127,9 +130,9 @@ final class LearnRecorder {
     }
 
     /// Die Nacht `alarmId` mit Zielzeit `target` hat geweckt (Klingeln beendet): Die Auswertung endet jetzt, höchstens
-    /// beim Ende des Rekorders. Hat «Gute Nacht» die Zielzeit vorverlegt, nachdem die Aufzeichnung begann, gilt dieselbe
-    /// Nacht (Zielzeiten höchstens 16 Std. auseinander). «Nacht aufzeichnen» endet spätestens jetzt (Grund ``RecordEnd/wake``,
-    /// wie die Galaxy Watch).
+    /// beim Ende des Rekorders. Hat «Gute Nacht» die Zielzeit vorverlegt, nachdem die Aufzeichnung begann, gilt
+    /// dieselbe Nacht (Zielzeiten höchstens 16 Std. auseinander). «Nacht aufzeichnen» endet spätestens jetzt (Grund
+    /// ``RecordEnd/wake``, wie die Galaxy Watch).
     func noteWake(alarmId: String, target: Date) {
         if mark?.manual == true {
             stop(.wake)
@@ -141,7 +144,8 @@ final class LearnRecorder {
         save(current)
     }
 
-    /// Plant und wertet aus (nicht während eine Nacht misst, klingelt oder schlummert). Rechenzeit nach Zustand der App.
+    /// Plant und wertet aus (nicht während eine Nacht misst, klingelt oder schlummert). Rechenzeit nach Zustand der
+    /// App.
     func plan() {
         let budget = WKApplication.shared().applicationState == .active ? Self.foregroundBudget : Self.backgroundBudget
         Task { await run(budget: budget) }
@@ -243,7 +247,8 @@ final class LearnRecorder {
         guard loggedSkip != target, reason != "past" else { return }
         loggedSkip = target
         DiagStore.shared.log(battery ? .battery : .measureStart, "learn record skipped: \(reason)")
-        // Lern-Übersicht: Grund ans iPhone, bei Akku, Sensoren und «zu spät» auch als Mitteilung (`LearnRecorder+Notice`).
+        // Lern-Übersicht: Grund ans iPhone, bei Akku, Sensoren und «zu spät» auch als Mitteilung
+        // (`LearnRecorder+Notice`).
         if snapshot.active, let skip = AppleLearnRecord.learnSkip(reason: reason, target: target) { noteLearnSkip(skip) }
     }
 
@@ -256,9 +261,9 @@ final class LearnRecorder {
 
     // MARK: Auswerten
 
-    /// Ende der Auswertung: von Hand gestoppt dann (höchstens Ende des Rekorders); sonst bei «Nacht aufzeichnen» das Ende
-    /// des Rekorders (12 Std.), in der Lernphase das Ende des Klingelns (höchstens Ende des Rekorders), ohne Klingeln die
-    /// Zielzeit.
+    /// Ende der Auswertung: von Hand gestoppt dann (höchstens Ende des Rekorders); sonst bei «Nacht aufzeichnen» das
+    /// Ende des Rekorders (12 Std.), in der Lernphase das Ende des Klingelns (höchstens Ende des Rekorders), ohne
+    /// Klingeln die Zielzeit.
     nonisolated static func end(of mark: Mark) -> Date {
         if let stopped = mark.stoppedAt { return min(stopped, mark.until) }
         if mark.manual == true { return mark.until }
@@ -344,7 +349,8 @@ final class LearnRecorder {
     func save(_ new: Mark?) {
         mark = new
         if let new, let data = try? JSONEncoder().encode(new) {
-            // Atomar: Scheitert das Schreiben, bleibt der vorige Stand (höchstens ein Durchgang geht verloren); protokolliert.
+            // Atomar: Scheitert das Schreiben, bleibt der vorige Stand (höchstens ein Durchgang geht verloren);
+            // protokolliert.
             do { try data.write(to: fileURL, options: .atomic) } catch {
                 DiagStore.shared.log(.error, "recorder state not saved \((error as NSError).code)")
             }

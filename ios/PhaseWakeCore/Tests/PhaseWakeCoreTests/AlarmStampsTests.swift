@@ -69,8 +69,8 @@ final class AlarmStampsTests: XCTestCase {
         XCTAssertEqual(s.snapshot(), snap)
     }
 
-    /// Gespeichert von einer früheren Version: nur der Listen-Zeitpunkt (7). Eine Änderung an «b» gibt nur «b» den neuen
-    /// Zeitpunkt; «a» behält 7 und verliert darum gegen eine neuere Fassung der Gegenseite.
+    /// Gespeichert von einer früheren Version: nur der Listen-Zeitpunkt (7). Eine Änderung an «b» gibt nur «b» den
+    /// neuen Zeitpunkt; «a» behält 7 und verliert darum gegen eine neuere Fassung der Gegenseite.
     func testOlderDataWithoutStampsKeepsItsListStamp() throws {
         let (s, defaults) = storage()
         defaults.set(Codec.encodeAlarms([alarm("a"), alarm("b", 8)]), forKey: "alarms")

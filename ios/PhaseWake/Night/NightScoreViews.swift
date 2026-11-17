@@ -1,8 +1,8 @@
 import PhaseWakeCore
 import SwiftUI
 
-// Schlafwert einer Nacht (Bogen mit Faktoren), Kurzzeile in der Liste und Messreihe der Detailseite. Wie `NightScore.kt`
-// (Android).
+// Schlafwert einer Nacht (Bogen mit Faktoren), Kurzzeile in der Liste und Messreihe der Detailseite. Wie
+// `NightScore.kt` (Android).
 
 /// Woher die Werte des Schlafwerts stammen: Phasen aus Apple Health bzw. Sitzung, oder Aufzeichnung der Uhr.
 enum ScoreSource { case health, recording }
@@ -14,14 +14,16 @@ struct NightScore {
     var source: ScoreSource = .health
 }
 
-/// Messreihe einer Nacht (Bewegung und Puls je 30-s-Epoche ab `start`); `fullNight`: ganze Aufzeichnung statt Weckfenster.
+/// Messreihe einer Nacht (Bewegung und Puls je 30-s-Epoche ab `start`); `fullNight`: ganze Aufzeichnung statt
+/// Weckfenster.
 struct NightSeries {
     let epochs: [Epoch]
     let start: Date
     let fullNight: Bool
 }
 
-/// Abgeschlossene Aufzeichnung, die sich mit `from`–`to` am längsten überschneidet; keine: `nil` (wie `recordingFor`, Android).
+/// Abgeschlossene Aufzeichnung, die sich mit `from`–`to` am längsten überschneidet; keine: `nil` (wie `recordingFor`,
+/// Android).
 func recordingFor(from: Date, to: Date, recordings: [NightRecording]) -> NightRecording? {
     recordings.filter { $0.finished && $0.start < to && $0.until > from }
         .max { overlap($0, from, to) < overlap($1, from, to) }
@@ -62,7 +64,8 @@ func nightScore(stages: NightStages?, session: HealthSession?, goalMinutes: Int,
     return SleepScore.of(input).map { NightScore(result: $0, input: input, source: source) }
 }
 
-/// Messreihe für Puls und Bewegung: überschneidende Aufzeichnung (ganze Nacht), sonst bei eigener Nacht das Weckfenster.
+/// Messreihe für Puls und Bewegung: überschneidende Aufzeichnung (ganze Nacht), sonst bei eigener Nacht das
+/// Weckfenster.
 func nightSeries(_ item: HistoryItem, recordings: [NightRecording]) -> NightSeries? {
     if let span = itemRange(item), let recording = recordingFor(from: span.from, to: span.to, recordings: recordings) {
         return NightSeries(epochs: recording.epochs, start: recording.start, fullNight: true)

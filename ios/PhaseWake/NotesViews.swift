@@ -184,7 +184,8 @@ struct CustomNotesSection: View {
                 CustomNoteRow(note: note)
             }
             .onDelete { offsets in
-                // Erst die Kennungen sammeln: Jedes Löschen verschiebt die Liste, die Positionen stimmten danach nicht mehr.
+                // Erst die Kennungen sammeln: Jedes Löschen verschiebt die Liste, die Positionen stimmten danach nicht
+                // mehr.
                 let ids = offsets.map { model.customNotes[$0].id }
                 for id in ids { model.deleteCustomNote(id) }
             }

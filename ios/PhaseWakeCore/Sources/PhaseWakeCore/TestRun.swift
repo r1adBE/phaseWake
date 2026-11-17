@@ -46,7 +46,8 @@ public struct TestRun: Equatable, Sendable {
 
 /// Auswertung und Format von `TestRun`. Identisch zu `TestRuns` (Kotlin).
 public enum TestRuns {
-    /// So lange nach der Zielzeit (Sekunden, 3 Minuten) wird auf Ereignisse gewartet, bevor das Ergebnis ohne «stop» gilt.
+    /// So lange nach der Zielzeit (Sekunden, 3 Minuten) wird auf Ereignisse gewartet, bevor das Ergebnis ohne «stop»
+    /// gilt.
     public static let resultAfterTarget: TimeInterval = 3 * 60
 
     /// Merkt `step` zum Zeitpunkt `at`; das erste Auftreten zählt.

@@ -181,9 +181,9 @@ object AlarmSchedule {
     }
 
     /**
-     * Ob sich die Ortszeit seit der Planung verschoben hat: Abstand zu UTC zur Zielzeit [target] in der Zone der Planung
-     * [plannedZone] und in der aktuellen [zone] verschieden (Zürich → Tokio ja, Zürich → Berlin nein). Nur dann gilt
-     * [begunNight]; sonst bleibt alles wie bisher (z. B. unterbricht ein früherer neuer Wecker die Messung). Wie
+     * Ob sich die Ortszeit seit der Planung verschoben hat: Abstand zu UTC zur Zielzeit [target] in der Zone der
+     * Planung [plannedZone] und in der aktuellen [zone] verschieden (Zürich → Tokio ja, Zürich → Berlin nein). Nur dann
+     * gilt [begunNight]; sonst bleibt alles wie bisher (z. B. unterbricht ein früherer neuer Wecker die Messung). Wie
      * `WatchRules.zoneShifted` (Swift).
      */
     fun zoneShifted(target: Instant, plannedZone: ZoneId, zone: ZoneId): Boolean =

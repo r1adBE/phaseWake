@@ -63,7 +63,8 @@ public final class SettingsFile: SettingsStore, @unchecked Sendable {
     public var wasReset: Bool { object(forKey: Self.resetAtKey) != nil }
 
     /// Erzeugt den Speicher für die Datei `url`; ihr Ordner wird bei Bedarf angelegt. `readOnly`: nur lesen, bei jedem
-    /// Zugriff frisch aus der Datei (ein anderer Prozess schreibt sie); Schreiben und ``adopt(_:from:)`` tun dann nichts.
+    /// Zugriff frisch aus der Datei (ein anderer Prozess schreibt sie); Schreiben und ``adopt(_:from:)`` tun dann
+    /// nichts.
     public init(url: URL, readOnly: Bool = false) {
         self.url = url
         self.readOnly = readOnly
@@ -174,9 +175,10 @@ public final class SettingsFile: SettingsStore, @unchecked Sendable {
 
     /// Liest die Datei, falls noch nicht geschehen, legt die Änderungen dieser Sitzung darüber und schreibt sie dann.
     /// Fehlt die Datei, gilt ein leerer Stand. Ist sie da, aber nicht lesbar, bleibt `loaded` falsch (der nächste
-    /// Zugriff versucht es wieder). Eine kaputte Datei wird als «.broken» beiseitegelegt (die jüngste bleibt), dann gilt
-    /// ein leerer Stand mit ``resetAtKey``.
-    /// Nur lesend: Nicht lesbar lässt den zuletzt gelesenen Stand stehen; eine kaputte Datei bleibt liegen (leerer Stand).
+    /// Zugriff versucht es wieder). Eine kaputte Datei wird als «.broken» beiseitegelegt (die jüngste bleibt), dann
+    /// gilt ein leerer Stand mit ``resetAtKey``.
+    /// Nur lesend: Nicht lesbar lässt den zuletzt gelesenen Stand stehen; eine kaputte Datei bleibt liegen (leerer
+    /// Stand).
     private func loadLocked() {
         guard !loaded else { return }
         var disk: [String: Any] = [:]
@@ -231,9 +233,9 @@ public final class SettingsFile: SettingsStore, @unchecked Sendable {
         }
     }
 
-    /// Wert für die Datei aus `disk` (Datei) und `early` (vor dem ersten Lesen gesetzt). Ein Wörterbuch entstand dann aus
-    /// dem leeren Stand (lesen, ändern, schreiben), darum je Eintrag darübergelegt: Die übrigen Einträge der Datei bleiben
-    /// (z. B. `backupSuppressedByAlarm`). Alles andere ersetzt den Wert der Datei, `nil` entfernt ihn.
+    /// Wert für die Datei aus `disk` (Datei) und `early` (vor dem ersten Lesen gesetzt). Ein Wörterbuch entstand dann
+    /// aus dem leeren Stand (lesen, ändern, schreiben), darum je Eintrag darübergelegt: Die übrigen Einträge der Datei
+    /// bleiben (z. B. `backupSuppressedByAlarm`). Alles andere ersetzt den Wert der Datei, `nil` entfernt ihn.
     static func merged(disk: Any?, early: Any?) -> Any? {
         guard let early = early as? [String: Any], let disk = disk as? [String: Any] else { return early }
         return disk.merging(early) { $1 }

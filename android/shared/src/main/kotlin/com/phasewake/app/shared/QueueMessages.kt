@@ -105,7 +105,9 @@ object QueueMessages {
     fun nightEndsBy(body: String, cutMs: Long): Boolean =
         runCatching { Codec.decodeNight(body) }.getOrNull()?.let { it.wokeAt.toEpochMilli() <= cutMs } ?: false
 
-    /** Ob der Eintrag einer Aufzeichnung ([NightRecording.encode]) bis [cutMs] beendet war; laufend oder unlesbar: nein. */
+    /**
+     * Ob der Eintrag einer Aufzeichnung ([NightRecording.encode]) bis [cutMs] beendet war; laufend oder unlesbar: nein.
+     */
     fun recordingEndsBy(body: String, cutMs: Long): Boolean =
         NightRecording.decode(body)?.end?.let { it.toEpochMilli() <= cutMs } ?: false
 
@@ -119,7 +121,10 @@ object QueueMessages {
         return Holidays.decode(body.substring(cut + 1)) to at
     }
 
-    /** Liest «wert|updatedAt» (Schlafziel, Schalter); `null`, wenn unlesbar oder der Zeitpunkt unplausibel ([TimeBounds]). */
+    /**
+     * Liest «wert|updatedAt» (Schlafziel, Schalter); `null`, wenn unlesbar oder der Zeitpunkt unplausibel
+     * ([TimeBounds]).
+     */
     fun decodeStamped(body: String): Pair<Int, Long>? {
         val f = body.split("|").takeIf { it.size == 2 } ?: return null
         return (f[0].toIntOrNull() ?: return null) to (TimeBounds.checked(f[1].toLongOrNull()) ?: return null)

@@ -29,7 +29,8 @@ import kotlin.test.assertTrue
 
 /**
  * Dokumentierte Zahlen der Galaxy Watch als Literale: Die übrigen Tests rechnen mit der Konstante selbst
- * (`X.CONST ± 1`); hier fällt eine Änderung des Werts auf. Grenzen je Wert − 1 / Wert / Wert + 1, wo eine Regel sie prüft.
+ * (`X.CONST ± 1`); hier fällt eine Änderung des Werts auf. Grenzen je Wert − 1 / Wert / Wert + 1, wo eine Regel sie
+ * prüft.
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35], application = Application::class)

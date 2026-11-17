@@ -15,7 +15,9 @@ import kotlinx.coroutines.flow.first
 
 // Sonnenaufgang ab Weckfenster auf dem Handy: planen und starten.
 
-/** Zuletzt ins Diagnose-Protokoll geschriebener Plan («Beginn – Zielzeit»), damit jedes Neuplanen nicht erneut schreibt. */
+/**
+ * Zuletzt ins Diagnose-Protokoll geschriebener Plan («Beginn – Zielzeit»), damit jedes Neuplanen nicht erneut schreibt.
+ */
 private val SUNRISE_LOGGED = stringPreferencesKey("sunrise_logged")
 
 /** Sonnenaufgang ab Weckfenster: beginnt mit dem Fenster des nächsten Weckers, der ihn auf dem Handy will. */

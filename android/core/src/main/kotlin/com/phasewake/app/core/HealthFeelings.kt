@@ -28,7 +28,9 @@ object HealthFeelings {
     /** Höchstens so viele Nachtdaten bleiben gespeichert (wie der Verlauf). */
     const val MAX_DATES: Int = NightHistory.MAX_NIGHTS
 
-    /** Setzt das Befinden [feeling] für [date]; ein Wert ausserhalb 1–5 ändert nichts. Höchstens [MAX_DATES] bleiben. */
+    /**
+     * Setzt das Befinden [feeling] für [date]; ein Wert ausserhalb 1–5 ändert nichts. Höchstens [MAX_DATES] bleiben.
+     */
     fun set(feelings: Map<LocalDate, Int>, date: LocalDate, feeling: Int): Map<LocalDate, Int> =
         if (!valid(feeling)) trim(feelings) else trim(feelings + (date to feeling))
 

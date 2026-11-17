@@ -41,8 +41,8 @@ class OnsetFloorStoreTest {
 
     @Test
     fun storedFloorCapsTheWindow() = runTest {
-        // Gemessen 0.012 beim Einschlafen, nichts gelernt; das Fenster beginnt unruhig (0.08): Obergrenze 0.018 → Wach 0.1.
-        // (Mit einem höheren gelernten Wert gälte das grössere: `NoiseFloor.priorFloor`.)
+        // Gemessen 0.012 beim Einschlafen, nichts gelernt; das Fenster beginnt unruhig (0.08): Obergrenze 0.018 → Wach
+        // 0.1. (Mit einem höheren gelernten Wert gälte das grössere: `NoiseFloor.priorFloor`.)
         val store = OnsetFloorStore(MemoryStore())
         store.set("a", latest, 0.012)
         val restless = Array(8) { Epoch(0.08, 60.0) }

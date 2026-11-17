@@ -13,7 +13,8 @@ class CsvNumbersTest {
         assertEquals("72.8", CsvNumbers.fixed(72.75, 1))
         assertEquals("52.3", CsvNumbers.fixed(52.34, 1))
         assertEquals("60.0", CsvNumbers.fixed(60.0, 1))
-        // Java rundete hier die Dezimaldarstellung (0.000247), C den Binärwert; die Regel am skalierten Wert ergibt 0.000246.
+        // Java rundete hier die Dezimaldarstellung (0.000247), C den Binärwert; die Regel am skalierten Wert ergibt
+        // 0.000246.
         assertEquals("0.000246", CsvNumbers.fixed(0.0002465, 6))
         assertEquals("0.002100", CsvNumbers.fixed(0.0021, 6))
         assertEquals("0.000000", CsvNumbers.fixed(0.0, 6))

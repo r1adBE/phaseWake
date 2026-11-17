@@ -49,9 +49,9 @@ private fun wakeStyle(kind: WakeKind, active: Color, muted: Color, error: Color)
 }
 
 /**
- * Weckmoment je Uhr-Nacht über den gewählten Zeitraum ([nights]; `null`: «Keine Daten»): Minuten vor der Zielzeit als Marke
- * (Form je Weckart), ab 14 Nächten der Wochendurchschnitt als Linie. Antippen oder Ziehen zeigt die Nacht in der Blase,
- * Antippen der Blase öffnet sie ([opener]).
+ * Weckmoment je Uhr-Nacht über den gewählten Zeitraum ([nights]; `null`: «Keine Daten»): Minuten vor der Zielzeit als
+ * Marke (Form je Weckart), ab 14 Nächten der Wochendurchschnitt als Linie. Antippen oder Ziehen zeigt die Nacht in der
+ * Blase, Antippen der Blase öffnet sie ([opener]).
  */
 @Composable
 internal fun WakeCard(chart: WakeMoments?, nights: Int, opener: (LocalDate) -> (() -> Unit)?, modifier: Modifier) {

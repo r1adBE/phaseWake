@@ -70,8 +70,8 @@ final class BackupAlarm {
     /// Plant die Sicherung für die nächsten Nächte mit Zweitwecker; danach die Nächte mit Wecker der Lern-Übersicht
     /// (``LearnLogStore/noteAlarms(_:holidays:now:)``, hängt an denselben Ereignissen wie auf Android).
     func reschedule(_ alarms: [AlarmSpec]) async {
-        // Stand vor dem ersten Entsperren nicht lesbar: `alarms` und die gemerkten Sicherungen wären leer, das Neuplanen
-        // verwürfe alle Zweitwecker oder liesse sie verwaist stehen. Nichts tun; ist er inzwischen
+        // Stand vor dem ersten Entsperren nicht lesbar: `alarms` und die gemerkten Sicherungen wären leer, das
+        // Neuplanen verwürfe alle Zweitwecker oder liesse sie verwaist stehen. Nichts tun; ist er inzwischen
         // lesbar, liest `catchUpState` ihn und plant mit dem echten Stand neu (nie mit dem leeren `alarms` von hier).
         guard host.stateLoaded else {
             if !host.catchUpState() { DiagStore.shared.log(.scheduled, "phone backup not planned: settings not readable yet") }
@@ -93,8 +93,8 @@ final class BackupAlarm {
     /// Bestimmt die gewünschten Sicherungen und gleicht sie mit den gestellten ab (`apply`), statt alles zu löschen:
     /// Eine Sicherung, deren Zielzeit vorbei ist, deren Nachfrist aber noch läuft, bleibt (`AlarmSchedule.inGrace`) –
     /// startet die App genau dann neu, ist das iPhone womöglich der einzige Wecker. Ebenso eine Sicherung, deren
-    /// Weckfenster vor einem Zeitzonenwechsel schon begonnen hat (`AlarmSchedule.begunNight` in der Zone ihrer Planung):
-    /// Sie klingelt zur geplanten absoluten Zeit (07:00 Zürich = 15:00 Tokio), nicht erst zur neuen Ortszeit.
+    /// Weckfenster vor einem Zeitzonenwechsel schon begonnen hat (`AlarmSchedule.begunNight` in der Zone ihrer
+    /// Planung): Sie klingelt zur geplanten absoluten Zeit (07:00 Zürich = 15:00 Tokio), nicht erst zur neuen Ortszeit.
     private func rescheduleNow(_ alarms: [AlarmSpec]) async {
         let now = Date()
         let grace = currentGrace
@@ -103,7 +103,8 @@ final class BackupAlarm {
         let suppressed = suppressedUntil()
         let eligible = alarms.filter(\.phoneBackup)
         // Begonnene Nächte nach einer Reise zuerst: Ein einmaliger Wecker behält damit sein erstes Vorkommen
-        // (`oneShotTargets`). Ohne verschobene Ortszeit seit der Planung (`WatchRules.zoneShifted`) bleibt alles wie bisher.
+        // (`oneShotTargets`). Ohne verschobene Ortszeit seit der Planung (`WatchRules.zoneShifted`) bleibt alles wie
+        // bisher.
         var begun: [String: PlannedBackup] = [:]
         for entry in planned where entry.slot.fireAt > now {
             guard WatchRules.zoneShifted(plannedZone: entry.slot.zone, target: entry.slot.target, zone: .current),
@@ -135,8 +136,8 @@ final class BackupAlarm {
                 kept.append(entry)
             }
         }
-        // Je Wecker gesucht (`BackupPlan.nights`): Zwei Wecker mit derselben Zielzeit bekommen beide eine Sicherung. Eine
-        // behaltene Nacht nie doppelt, auch falls die Suche dieselbe Zielzeit nochmals liefert.
+        // Je Wecker gesucht (`BackupPlan.nights`): Zwei Wecker mit derselben Zielzeit bekommen beide eine Sicherung.
+        // Eine behaltene Nacht nie doppelt, auch falls die Suche dieselbe Zielzeit nochmals liefert.
         // «Gute Nacht» auf der Uhr: diese Nacht zur früheren Zielzeit (`WatchNight`, wie `OnsetShift` auf Android).
         let nightPlans = BackupPlan.nights(eligible, now: now, until: now.addingTimeInterval(Self.horizon), maxNights: Self.maxSlots,
                                            suppressed: suppressed, firstTargets: firstTargets, skip: skip,
@@ -206,8 +207,8 @@ final class BackupAlarm {
     }
 
     /// Die Uhr hat diese Nacht übernommen (klingelt, gestoppt oder Nacht gemeldet): Sicherung bis kurz
-    /// nach der Zielzeit dieser Nacht aussetzen – nicht länger, sonst fiele ein zweiter Wecker weg. Ohne Kennung (ältere
-    /// Uhr): jeder Wecker, dessen Nacht gerade läuft, wie Android `BackupAlarm.watchHandled`.
+    /// nach der Zielzeit dieser Nacht aussetzen – nicht länger, sonst fiele ein zweiter Wecker weg. Ohne Kennung
+    /// (ältere Uhr): jeder Wecker, dessen Nacht gerade läuft, wie Android `BackupAlarm.watchHandled`.
     func watchHandled(alarmId: String?, target: Date?) async {
         let now = Date()
         let alarms = host.alarms
@@ -248,9 +249,9 @@ final class BackupAlarm {
     }
 
     /// Stoppt, was klingelt. `night` = «stop» der Uhr: nur Alarme dieser Nacht (der Mitklingel-Alarm auch, wenn seine
-    /// Nacht unbekannt ist); ein «stop» zu einer anderen Nacht lässt das iPhone weiterklingeln. `nil` = Stopp am iPhone:
-    /// der Mitklingel-Alarm und jeder gerade klingelnde Alarm. `snoozed`: Die Uhr schlummert nur (Schlummer-Ende
-    /// bekannt), ihre Sicherung bleibt.
+    /// Nacht unbekannt ist); ein «stop» zu einer anderen Nacht lässt das iPhone weiterklingeln. `nil` = Stopp am
+    /// iPhone: der Mitklingel-Alarm und jeder gerade klingelnde Alarm. `snoozed`: Die Uhr schlummert nur
+    /// (Schlummer-Ende bekannt), ihre Sicherung bleibt.
     func stopRinging(night: RingNight? = nil, snoozed: Bool = false) async {
         let id = ringingId
         let ownsRing = id.map { ring in night.map { stop in self.night(for: ring).map(stop.same) ?? true } ?? true } ?? false
@@ -289,7 +290,8 @@ final class BackupAlarm {
         return self.night(for: id).map(night.same) ?? unknown
     }
 
-    /// Ob das iPhone gerade mit der Uhr klingelt oder nach dem Schlummern auf sie wartet (Probewecker/Powernap sperren).
+    /// Ob das iPhone gerade mit der Uhr klingelt oder nach dem Schlummern auf sie wartet (Probewecker/Powernap
+    /// sperren).
     var ringActive: Bool { ringingId != nil || storedId(Self.snoozeSafetyKey) != nil }
 
     /// Ob die Kennung zum gerade mitklingelnden Wecker gehört (nicht zu einem schon per Code gestoppten).

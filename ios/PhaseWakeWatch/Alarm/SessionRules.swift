@@ -19,9 +19,9 @@ enum SessionRules {
         case interrupted
     }
 
-    /// Bedeutung des Endes mit Grund `reason`. Nur beim Klingeln (`ringing`) gilt ein reguläres Ende als Stopp; in jedem
-    /// anderen Zustand und bei jedem anderen Grund (auch einem künftigen) bleibt es ein Abbruch (fail-safe: lieber
-    /// nochmals wecken als gar nicht).
+    /// Bedeutung des Endes mit Grund `reason`. Nur beim Klingeln (`ringing`) gilt ein reguläres Ende als Stopp; in
+    /// jedem anderen Zustand und bei jedem anderen Grund (auch einem künftigen) bleibt es ein Abbruch (fail-safe:
+    /// lieber nochmals wecken als gar nicht).
     static func ending(_ reason: WKExtendedRuntimeSessionInvalidationReason, ringing: Bool) -> Ending {
         guard ringing, reason == .none else { return .interrupted }
         return .dismissed
@@ -78,15 +78,16 @@ enum SessionRules {
     /// Startet eine gemerkte, nicht mehr gültige Sitzung (verwaist nach einem Neustart der App oder ersetzt, als
     /// die App sie nicht beenden durfte), ob sie die Nacht übernimmt statt ohne Vibration zu enden:
     /// Apple warnt nach einer Smart-Alarm-Sitzung ohne Vibration und bietet an, künftige Sitzungen abzuschalten. Sie
-    /// übernimmt, wenn sie die aktuelle Nacht bedienen kann (`serves`, gleiche Prüfung wie `SmartAlarm.startNight`), keine
-    /// Nacht schon misst, klingelt oder schlummert (`busy`) und die eigene Sitzung im Zustand `own` nicht schon läuft.
+    /// übernimmt, wenn sie die aktuelle Nacht bedienen kann (`serves`, gleiche Prüfung wie `SmartAlarm.startNight`),
+    /// keine Nacht schon misst, klingelt oder schlummert (`busy`) und die eigene Sitzung im Zustand `own` nicht schon
+    /// läuft.
     static func usesOrphan(own: WKExtendedRuntimeSessionState?, busy: Bool, serves: Bool) -> Bool {
         guard serves, !busy else { return false }
         return own != .running
     }
 
-    /// Vibration beim Klingeln nach `elapsed` Sekunden: Steigerung wie auf Android (sanft, deutlich, anhaltend – je eine
-    /// Minute) und Abstand bis zur nächsten. Klingelt diese Sitzung nicht mehr (`ringing` falsch: gestoppt,
+    /// Vibration beim Klingeln nach `elapsed` Sekunden: Steigerung wie auf Android (sanft, deutlich, anhaltend – je
+    /// eine Minute) und Abstand bis zur nächsten. Klingelt diese Sitzung nicht mehr (`ringing` falsch: gestoppt,
     /// geschlummert, Sitzung ersetzt), Abstand 0: Das beendet die Wiederholung, auch wenn `invalidate()` im Hintergrund
     /// nicht greift.
     static func hapticStep(elapsed: TimeInterval, ringing: Bool) -> (type: WKHapticType, interval: TimeInterval) {

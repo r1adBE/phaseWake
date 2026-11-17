@@ -95,10 +95,10 @@ private fun WakeService.begin(plan: WakePlan) {
 }
 
 /**
- * Lädt Wecker, kalibrierte Schwellen (mit den gelernten Werten) und den Stand vor einem Neustart des Dienstes in [current] und
- * setzt je nach Phase fort (Sensoren starten oder das Klingeln wieder aufnehmen). [refusal]: Grund, warum ohne
- * Sensoren gemessen wird ([WakeService.healthRefusal]), fürs Diagnose-Protokoll. [lostOnset]: Einschlaf-Messung, die bei
- * Fensterbeginn noch ohne Ergebnis lief ([endOnsetAtWindow]).
+ * Lädt Wecker, kalibrierte Schwellen (mit den gelernten Werten) und den Stand vor einem Neustart des Dienstes in
+ * [current] und setzt je nach Phase fort (Sensoren starten oder das Klingeln wieder aufnehmen). [refusal]: Grund, warum
+ * ohne Sensoren gemessen wird ([WakeService.healthRefusal]), fürs Diagnose-Protokoll. [lostOnset]: Einschlaf-Messung,
+ * die bei Fensterbeginn noch ohne Ergebnis lief ([endOnsetAtWindow]).
  */
 private fun WakeService.loadNight(current: Night, canMeasure: Boolean, refusal: String?, lostOnset: Pair<String, Instant>?) {
     val plan = current.plan
@@ -113,8 +113,8 @@ private fun WakeService.loadNight(current: Night, canMeasure: Boolean, refusal: 
             .withOnsetFloor(onsetFloorFor(plan))
         // Stand vor einem Neustart des Dienstes: erstes Klingeln, Grund und Schlummer-Runden.
         val saved = app.nightProgress.load(plan)
-        // Untergrenze kurzer Nächte: Einschlafzeit (automatische Messung oder «Gute Nacht») und Ziel; ohne Einschlafzeit
-        // nach einer Messung ohne Ergebnis fail-closed.
+        // Untergrenze kurzer Nächte: Einschlafzeit (automatische Messung oder «Gute Nacht») und Ziel; ohne
+        // Einschlafzeit nach einer Messung ohne Ergebnis fail-closed.
         val asleepAt = app.onsets.onsetFor(plan)
         val onsetMeasured = asleepAt == null && app.onsets.measuredFor(plan)
         val bedAt = app.onsets.bedFor(plan)
@@ -223,8 +223,8 @@ internal fun WakeService.onEpochs(n: Night, epochs: List<Epoch>) {
     if (night !== n || n.phase != Phase.MEASURING) return
     for (epoch in epochs) {
         n.epochs += epoch
-        // Vor dem Start der Sensoren gab es keine Werte: Diese Epochen zählen nicht fürs Aufwärmen der Erkennung (wie die
-        // Apple Watch).
+        // Vor dem Start der Sensoren gab es keine Werte: Diese Epochen zählen nicht fürs Aufwärmen der Erkennung (wie
+        // die Apple Watch).
         if (n.epochs.size <= n.unmeasured) continue
         // «Genau»: nur für den Verlauf messen, geweckt wird zur Zielzeit.
         if (n.exact) continue
@@ -248,9 +248,9 @@ internal fun WakeService.onEpochs(n: Night, epochs: List<Epoch>) {
 }
 
 /**
- * Ende der Messung im Diagnose-Protokoll, einmal je Nacht (nur während [Phase.MEASURING], nicht vor dem ersten Entsperren):
- * Epochen, davon mit Puls (`hr=`), und Kennzahlen der Schwellen ([NoiseFloor.summary]: Grundrauschen, wirksame Leicht-
- * und Wach-Schwelle am Ende), ohne einzelne Messwerte. [note] ergänzt den Grund (z. B. abgebrochen).
+ * Ende der Messung im Diagnose-Protokoll, einmal je Nacht (nur während [Phase.MEASURING], nicht vor dem ersten
+ * Entsperren): Epochen, davon mit Puls (`hr=`), und Kennzahlen der Schwellen ([NoiseFloor.summary]: Grundrauschen,
+ * wirksame Leicht- und Wach-Schwelle am Ende), ohne einzelne Messwerte. [note] ergänzt den Grund (z. B. abgebrochen).
  */
 internal fun WakeService.logMeasureEnd(n: Night, note: String = "") {
     if (n.phase != Phase.MEASURING || n.locked) return
@@ -259,8 +259,8 @@ internal fun WakeService.logMeasureEnd(n: Night, note: String = "") {
 }
 
 /**
- * Eine Zeile ins Diagnose-Protokoll: wie lange nach dem geplanten Fensteralarm der Dienst startet ([WakeRules.startDelayLine]).
- * Ohne geplante Zeit im Auftrag (ältere Alarme) und vor dem ersten Entsperren nichts.
+ * Eine Zeile ins Diagnose-Protokoll: wie lange nach dem geplanten Fensteralarm der Dienst startet
+ * ([WakeRules.startDelayLine]). Ohne geplante Zeit im Auftrag (ältere Alarme) und vor dem ersten Entsperren nichts.
  */
 internal fun WakeService.logStartDelay(intent: Intent) {
     val scheduledAt = intent.getLongExtra(WakeService.EXTRA_SCHEDULED_AT, 0L)

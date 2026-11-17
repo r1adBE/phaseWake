@@ -19,7 +19,8 @@ enum RecordRetry {
     }
 
     /// Uhr: ob ein Start mit Sendezeit `sentAtMs` (und, nachgereicht, Zeit des Tippens `retryTapMs`) um `now` gilt:
-    /// frisch wie bisher, oder nachgereicht mit einem Tippen höchstens ``window`` zurück. Unplausible Zeiten gelten nicht.
+    /// frisch wie bisher, oder nachgereicht mit einem Tippen höchstens ``window`` zurück. Unplausible Zeiten gelten
+    /// nicht.
     static func accepts(sentAtMs: Int64?, retryTapMs: Int64?, now: Date) -> Bool {
         if let age = SyncTime.ageMs(sentAtMs, now: now), age <= SyncKeys.maxRingAgeMs { return true }
         guard retryTapMs != nil, SyncTime.ageMs(sentAtMs, now: now) != nil,

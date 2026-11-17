@@ -42,7 +42,8 @@ import java.time.Instant
 
 /**
  * Bildschirmfotos der Handy-Bildschirme, hell und dunkel. Beispieldaten, keine echten. Weitere Bildschirme
- * stehen in `OnboardingShots.kt`, `DataShots.kt` und `HomeExtrasShots.kt`; die gemeinsamen Helfer hier sind darum `internal`.
+ * stehen in `OnboardingShots.kt`, `DataShots.kt` und `HomeExtrasShots.kt`; die gemeinsamen Helfer hier sind darum
+ * `internal`.
  */
 
 /** Feste Testzeit: Mittwoch 28.10.2026, 07:20 in Zürich. Bilder hängen so nicht vom Tag des Laufs ab. */
@@ -126,7 +127,10 @@ private val chartMorning = java.time.LocalDate.of(2026, 10, 28)
 private fun chartAt(daysAgo: Long, hour: Int, minute: Int): Instant =
     chartMorning.minusDays(daysAgo).atTime(hour, minute).atZone(chartZone).toInstant()
 
-/** Je Nacht (0 = heute Morgen): Minuten vor der Zielzeit, Grund, Befinden, Einschlafen (Minuten nach 22:00), Schlaf in Minuten. */
+/**
+ * Je Nacht (0 = heute Morgen): Minuten vor der Zielzeit, Grund, Befinden, Einschlafen (Minuten nach 22:00), Schlaf in
+ * Minuten.
+ */
 private val chartPlan = listOf(
     Triple(12, WakeReason.LIGHT_SLEEP, 4) to (70 to 448), Triple(0, WakeReason.DEADLINE, 3) to (95 to 405),
     Triple(18, WakeReason.LIGHT_SLEEP, 5) to (55 to 470), Triple(6, WakeReason.AWAKE, 4) to (80 to 452),

@@ -43,8 +43,8 @@ final class SessionTakeoverWatchTests: XCTestCase {
         XCTAssertNil(NightRules.ScheduledSession.decode(["target": 1_800_000_000.0, "start": 1_800_000_000.0] as [String: Any]))
     }
 
-    /// Wecker 07:00 (Fenster 30 Min, Sitzung ab 06:35) am iPhone auf 06:50 verschoben: Die geplante Sitzung übernimmt die
-    /// Nacht (wie `startNight` prüft) statt verworfen zu werden. Eine spätere Zielzeit deckt sie nicht.
+    /// Wecker 07:00 (Fenster 30 Min, Sitzung ab 06:35) am iPhone auf 06:50 verschoben: Die geplante Sitzung übernimmt
+    /// die Nacht (wie `startNight` prüft) statt verworfen zu werden. Eine spätere Zielzeit deckt sie nicht.
     func testScheduledSessionServesEarlierChangedTarget() {
         func plan(target: Date) -> WakePlan { WakePlan(alarmId: "d", windowStart: target.addingTimeInterval(-1800), target: target) }
         func sessionStart(_ plan: WakePlan) -> Date { max(plan.windowStart, plan.target.addingTimeInterval(-1500)) }
@@ -73,9 +73,9 @@ final class SessionTakeoverWatchTests: XCTestCase {
         XCTAssertFalse(SessionRules.keepsOwn(nil))
     }
 
-    /// Startet eine verwaiste Sitzung, die die Nacht bedienen kann, und läuft keine eigene: Sie übernimmt (misst und weckt
-    /// mit Vibration), statt ohne Vibration zu enden. Läuft die eigene schon, misst oder klingelt eine Nacht oder gibt es
-    /// keine passende: wie bisher beenden.
+    /// Startet eine verwaiste Sitzung, die die Nacht bedienen kann, und läuft keine eigene: Sie übernimmt (misst und
+    /// weckt mit Vibration), statt ohne Vibration zu enden. Läuft die eigene schon, misst oder klingelt eine Nacht oder
+    /// gibt es keine passende: wie bisher beenden.
     func testOrphanSessionTakesOverTheNight() {
         XCTAssertTrue(SessionRules.usesOrphan(own: nil, busy: false, serves: true))
         XCTAssertTrue(SessionRules.usesOrphan(own: .scheduled, busy: false, serves: true))

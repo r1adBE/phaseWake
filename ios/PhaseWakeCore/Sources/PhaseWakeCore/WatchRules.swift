@@ -39,8 +39,8 @@ public enum WatchRules {
 
     /// Zeitpunkt des Rückfalls für `plan`. Eine ausstehende Nacht (`pending`) behält ihren Rückfall `delay` nach der
     /// Zielzeit; ist der schon vorbei (er hat gewarnt), `nil`: nicht neu stellen, sonst warnte er bei jedem Neuplanen
-    /// nochmals. Jeder andere Plan: `delay` nach dem späteren von Zielzeit und `now` (ein nachgeholter Wecker bekommt die
-    /// Frist ab jetzt, damit seine Sitzung zuerst weckt).
+    /// nochmals. Jeder andere Plan: `delay` nach dem späteren von Zielzeit und `now` (ein nachgeholter Wecker bekommt
+    /// die Frist ab jetzt, damit seine Sitzung zuerst weckt).
     public static func fallbackDate(_ plan: WakePlan, pending: Bool, now: Date, delay: TimeInterval) -> Date? {
         guard pending else { return max(plan.target, now).addingTimeInterval(delay) }
         let at = plan.target.addingTimeInterval(delay)
@@ -48,8 +48,8 @@ public enum WatchRules {
     }
 
     /// Ob für `plan` jetzt eine Sitzung geplant werden darf. Eine ausstehende Nacht nur, bis ihr Rückfall fällig ist:
-    /// Davor weckt die Sitzung gleich (nachgeholt). Danach hat der Rückfall gewarnt – die Uhr wartet nur noch, damit ein
-    /// Tipp auf ihn den Weckbildschirm öffnet, statt beim blossen Öffnen der App nochmals zu klingeln.
+    /// Davor weckt die Sitzung gleich (nachgeholt). Danach hat der Rückfall gewarnt – die Uhr wartet nur noch, damit
+    /// ein Tipp auf ihn den Weckbildschirm öffnet, statt beim blossen Öffnen der App nochmals zu klingeln.
     public static func startsSession(_ plan: WakePlan, pending: Bool, now: Date, delay: TimeInterval) -> Bool {
         !pending || now < plan.target.addingTimeInterval(delay)
     }

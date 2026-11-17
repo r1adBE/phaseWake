@@ -7,9 +7,10 @@ import PhaseWakeCore
 enum NightRules {
     // MARK: Gemerkte Sitzung
 
-    /// Mit `start(at:)` geplante Smart-Alarm-Sitzung: Wecker, Zielzeit und Start. Gemerkt in `SettingsFile.watchSession`
-    /// (``SmartAlarm/scheduledKey``), weil das System die Sitzung über einen Neustart der App hinweg behält, die App
-    /// ihren Stand aber nicht: So bleibt die Uhr nach dem Neustart scharf und plant keine zweite Sitzung.
+    /// Mit `start(at:)` geplante Smart-Alarm-Sitzung: Wecker, Zielzeit und Start. Gemerkt in
+    /// `SettingsFile.watchSession` (``SmartAlarm/scheduledKey``), weil das System die Sitzung über einen Neustart der
+    /// App hinweg behält, die App ihren Stand aber nicht: So bleibt die Uhr nach dem Neustart scharf und plant keine
+    /// zweite Sitzung.
     struct ScheduledSession: Equatable {
         /// Kennung des Weckers.
         let alarmId: String
@@ -59,10 +60,10 @@ enum NightRules {
 
     // MARK: «stop» vom iPhone
 
-    /// Die Nacht, die ein «stop» vom iPhone (Wecker `alarmId`, Zielzeit `target`) beendet, obwohl die Uhr nicht klingelt:
-    /// die erste aus `candidates` (geplante, wartende, messende oder ausstehende Nacht) mit gleichem Wecker und gleicher
-    /// Zielzeit (auf 1 s), deren Weckfenster um `now` begonnen hat (bis `tolerance` früher). Ohne Kennung oder Zielzeit
-    /// (ältere iPhone-App) keine: Dann bleibt es beim Beenden der Kette nach einer abgebrochenen Sitzung.
+    /// Die Nacht, die ein «stop» vom iPhone (Wecker `alarmId`, Zielzeit `target`) beendet, obwohl die Uhr nicht
+    /// klingelt: die erste aus `candidates` (geplante, wartende, messende oder ausstehende Nacht) mit gleichem Wecker
+    /// und gleicher Zielzeit (auf 1 s), deren Weckfenster um `now` begonnen hat (bis `tolerance` früher). Ohne Kennung
+    /// oder Zielzeit (ältere iPhone-App) keine: Dann bleibt es beim Beenden der Kette nach einer abgebrochenen Sitzung.
     static func phoneStoppedNight(_ candidates: [WakePlan?], alarmId: String?, target: Date?, now: Date,
                                   tolerance: TimeInterval) -> WakePlan? {
         guard let alarmId, let target else { return nil }
@@ -84,8 +85,8 @@ enum NightRules {
         case finishSilently
     }
 
-    /// Entscheid für einen Zustand der Nacht mit Zielzeit `target` (geschlummert bis `snoozedUntil`) um `now`: älter als
-    /// `staleAfter` nach der Zielzeit → ohne Wecken abschliessen (früher verworfen, dabei gingen Nacht und Epochen
+    /// Entscheid für einen Zustand der Nacht mit Zielzeit `target` (geschlummert bis `snoozedUntil`) um `now`: älter
+    /// als `staleAfter` nach der Zielzeit → ohne Wecken abschliessen (früher verworfen, dabei gingen Nacht und Epochen
     /// verloren); Schlummer-Ende plus `tolerance` noch nicht vorbei → weiter; sonst weiterwecken und abschliessen.
     static func restored(target: Date, snoozedUntil: Date?, now: Date, staleAfter: TimeInterval, tolerance: TimeInterval) -> Restored {
         if now.timeIntervalSince(target) > staleAfter { return .finishSilently }

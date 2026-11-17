@@ -44,7 +44,8 @@ internal class PhoneRingSound(private val service: Service, private val handler:
 
     /**
      * Gewählter Weckton [chosen] zuerst (eigener aus res/raw oder Systemton); ist er nicht abspielbar (gelöscht, kein
-     * Zugriff), der Standard-Weckton; spielt auch der nicht, als letzte Rückfallebene der eigene Ton «Vögel» aus der App.
+     * Zugriff), der Standard-Weckton; spielt auch der nicht, als letzte Rückfallebene der eigene Ton «Vögel» aus der
+     * App.
      */
     fun play(chosen: String) {
         val default = RingtoneManager.getActualDefaultRingtoneUri(service, RingtoneManager.TYPE_ALARM)

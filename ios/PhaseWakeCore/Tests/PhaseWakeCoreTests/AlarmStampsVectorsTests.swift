@@ -23,8 +23,8 @@ final class AlarmStampsVectorsTests: XCTestCase {
         XCTAssertEqual(lines.count, 21)
     }
 
-    /// Ergebnis von ``AlarmStamps/merge(local:remote:now:)`` der Stände `local` und `remote` zu `now` (ms), als Text wie
-    /// in der Datei.
+    /// Ergebnis von ``AlarmStamps/merge(local:remote:now:)`` der Stände `local` und `remote` zu `now` (ms), als Text
+    /// wie in der Datei.
     private func merged(_ local: String, _ remote: String, _ now: String) throws -> String {
         guard let ms = Int64(now) else { throw FormatError(description: "now '\(now)'") }
         let mine = try snapshot(local), theirs = try snapshot(remote)

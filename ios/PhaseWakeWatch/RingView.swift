@@ -22,8 +22,8 @@ struct RingView: View {
                 .ignoresSafeArea()
             // Kleiner Punkt und knappe Abstände: «noch N» unter «Schlummern 5 Min» bleibt auch auf
             // kleinen Uhren ganz sichtbar. Mit grosser Systemschrift (wie Wear OS): Schrift auf diesem
-            // Bildschirm gedeckelt, und reicht die Höhe nicht, fallen zuerst der Punkt, dann die Zeile mit dem Grund weg –
-            // Stopp und Schlummern bleiben ganz sichtbar.
+            // Bildschirm gedeckelt, und reicht die Höhe nicht, fallen zuerst der Punkt, dann die Zeile mit dem Grund
+            // weg – Stopp und Schlummern bleiben ganz sichtbar.
             ViewThatFits(in: .vertical) {
                 column(dot: true, reason: true)
                 column(dot: false, reason: true)

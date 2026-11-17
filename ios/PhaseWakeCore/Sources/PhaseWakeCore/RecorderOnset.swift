@@ -9,7 +9,8 @@ import Foundation
 ///   mit dem Grundrauschen der Epochen bis dahin, solange es zu wenige sind dem gelernten); 15 Min Ruhe am Stück
 ///   (``SleepOnset``), Einschlafzeit = Beginn der Strecke.
 /// - Zeitgrenze: ``maxDuration`` nach dem Beginn bzw. ``giveUpLead`` vor der eingestellten Weckzeit. An der Höchstdauer
-///   verlängert sich die Messung um die Zeit, in der die Uhr nicht getragen wurde (``awayUntil(baseEnd:awayEpochs:latestGiveUp:cap:)``),
+///   verlängert sich die Messung um die Zeit, in der die Uhr nicht getragen wurde
+/// (``awayUntil(baseEnd:awayEpochs:latestGiveUp:cap:)``),
 ///   und bei Unruhe in den letzten 15 Min (``restless(_:threshold:)``) um je ``extendStep``, beides
 ///   höchstens bis ``extendCap(since:windowStart:)``. Den Akku dieser Zeit kennt die Uhr nicht: Er hindert hier nicht
 ///   (wie ein unbekannter Akku auf der Galaxy Watch).
@@ -44,26 +45,28 @@ public enum RecorderOnset {
 
     /// Rechnet die Messung ab `since` nach. `motions`: Bewegung je 30-s-Epoche ab `since` (leer = keine Werte);
     /// `threshold`: Leicht-Schwelle (Startwert oder kalibriert); `personalFloor`: gelerntes Grundrauschen; `latest`:
-    /// eingestellte Weckzeit der Nacht; `extendCap`: späteste Verlängerung (`nil` = keine); `heartRates`: Puls je Epoche
-    /// aus Apple Health (``measure(motions:since:threshold:personalFloor:latest:extendCap:heartRates:)``).
+    /// eingestellte Weckzeit der Nacht; `extendCap`: späteste Verlängerung (`nil` = keine); `heartRates`: Puls je
+    /// Epoche aus Apple Health (``measure(motions:since:threshold:personalFloor:latest:extendCap:heartRates:)``).
     public static func find(motions: [Double?], since: Date, threshold: Double, personalFloor: Double?, latest: Date,
                             extendCap: Date?, heartRates: [Double?]? = nil) -> Result {
         measure(motions: motions, since: since, threshold: threshold, personalFloor: personalFloor, latest: latest,
                 extendCap: extendCap, heartRates: heartRates).result
     }
 
-    /// Wie ``find(motions:since:threshold:personalFloor:latest:extendCap:heartRates:)``, dazu das Grundrauschen der Messung für das
-    /// Weckfenster derselben Nacht (``WakeDetector/useOnsetFloor(_:)``, gleiche Regel wie `OnsetMonitor.floor`
-    /// auf der Galaxy Watch): ``NoiseFloor/floor(_:personal:)`` der Epochen vom Beginn bis zu der, in der das Einschlafen
-    /// erkannt ist (``Result/asleep(at:index:)``), bzw. bis vor der Zeitgrenze (``Result/gaveUp(at:reason:)``); solange
-    /// es weniger als ``NoiseFloor/minFloorEpochs`` Werte sind, `personalFloor`, vor der ersten Epoche keines. Reichen die
-    /// Werte bis ins Weckfenster (``Result/open``), keines (`nil`).
+    /// Wie ``find(motions:since:threshold:personalFloor:latest:extendCap:heartRates:)``, dazu das Grundrauschen der
+    /// Messung für das Weckfenster derselben Nacht (``WakeDetector/useOnsetFloor(_:)``, gleiche Regel wie
+    /// `OnsetMonitor.floor` auf der Galaxy Watch): ``NoiseFloor/floor(_:personal:)`` der Epochen vom Beginn bis zu der,
+    /// in der das Einschlafen erkannt ist (``Result/asleep(at:index:)``), bzw. bis vor der Zeitgrenze
+    /// (``Result/gaveUp(at:reason:)``); solange es weniger als ``NoiseFloor/minFloorEpochs`` Werte sind,
+    /// `personalFloor`, vor der ersten Epoche keines. Reichen die Werte bis ins Weckfenster (``Result/open``), keines
+    /// (`nil`).
     ///
     /// `heartRates`: Puls je Epoche ab `heartLead` Epochen vor `since` (``RecorderEpochs/heartRates(_:start:count:)``).
-    /// Gibt es darin mindestens einen, beginnt eine ruhige Strecke nur, wo die Uhr getragen wurde (Puls höchstens 15 Min
-    /// davor und einer in der Strecke, ``SleepOnset/find(_:threshold:heartRates:heartLead:)``):
+    /// Gibt es darin mindestens einen, beginnt eine ruhige Strecke nur, wo die Uhr getragen wurde (Puls höchstens 15
+    /// Min davor und einer in der Strecke, ``SleepOnset/find(_:threshold:heartRates:heartLead:)``):
     /// Abgelegt oder auf dem Ladegerät misst die Uhr keinen Puls, und ihr Rauschen zählte sonst als Einschlafen; die
-    /// Messung wartet, bis sie wieder getragen wird. Ganz ohne Puls (keine Erlaubnis, keine Daten) gilt die Regel nicht.
+    /// Messung wartet, bis sie wieder getragen wird. Ganz ohne Puls (keine Erlaubnis, keine Daten) gilt die Regel
+    /// nicht.
     ///
     /// `away`: je Epoche ab `since`, ob die Uhr da lud (``awayEpochs(_:start:count:)``). Solche Epochen gelten als
     /// leer (wie am Ladegerät auf der Galaxy Watch). Sie und Epochen ohne Puls in den 15 Min davor (nur mit Puls in der
@@ -80,7 +83,8 @@ public enum RecorderOnset {
         var seen: [Double?] = []
         seen.reserveCapacity(motions.count)
         for (index, recorded) in motions.enumerated() {
-            // Die Epoche ist bei ihrem Ende da; zuerst die Zeitgrenze wie beim Eintreffen der Werte auf der Galaxy Watch.
+            // Die Epoche ist bei ihrem Ende da; zuerst die Zeitgrenze wie beim Eintreffen der Werte auf der Galaxy
+            // Watch.
             let now = since.addingTimeInterval(TimeInterval((index + 1) * DetectorConfig.epochSeconds))
             if now >= min(latestGiveUp, maxEnd) {
                 if let cap = extendCap, let until = awayUntil(baseEnd: baseEnd, awayEpochs: awayCount, latestGiveUp: latestGiveUp, cap: cap),
@@ -113,8 +117,8 @@ public enum RecorderOnset {
         motions.suffix(recent).contains { motion in motion.map { $0 >= threshold } ?? false }
     }
 
-    /// Neues Ende bei spätem Einschlafen oder `nil` (aufgeben): nur an der Höchstdauer `maxEnd` (nicht an der Grenze vor
-    /// der Weckzeit) und bei Unruhe; dann `at` + ``extendStep``, höchstens `cap` und `latestGiveUp` (wie
+    /// Neues Ende bei spätem Einschlafen oder `nil` (aufgeben): nur an der Höchstdauer `maxEnd` (nicht an der Grenze
+    /// vor der Weckzeit) und bei Unruhe; dann `at` + ``extendStep``, höchstens `cap` und `latestGiveUp` (wie
     /// `OnsetRules.extendUntil` mit unbekanntem Akku).
     public static func extendUntil(at: Date, maxEnd: Date, latestGiveUp: Date, cap: Date, restless: Bool) -> Date? {
         if at < maxEnd || maxEnd > latestGiveUp || !restless { return nil }
@@ -123,9 +127,10 @@ public enum RecorderOnset {
     }
 
     /// Zeitgrenze, verschoben um die Zeit ohne Tragen (wie `OnsetRules.awayUntil`): `baseEnd` (Beginn
-    /// plus ``maxDuration``) plus `awayEpochs` Epochen, höchstens `cap` und `latestGiveUp`; `nil` ohne solche Epochen oder
-    /// wenn die Grenze vor der Weckzeit (`latestGiveUp`) schon früher gilt. Am Ladegerät oder abgelegt kann niemand
-    /// einschlafen; ohne Verschiebung gab die Messung nach dem Laden auf, bevor eine Strecke vollständig sein konnte.
+    /// plus ``maxDuration``) plus `awayEpochs` Epochen, höchstens `cap` und `latestGiveUp`; `nil` ohne solche Epochen
+    /// oder wenn die Grenze vor der Weckzeit (`latestGiveUp`) schon früher gilt. Am Ladegerät oder abgelegt kann
+    /// niemand einschlafen; ohne Verschiebung gab die Messung nach dem Laden auf, bevor eine Strecke vollständig sein
+    /// konnte.
     public static func awayUntil(baseEnd: Date, awayEpochs: Int, latestGiveUp: Date, cap: Date) -> Date? {
         guard awayEpochs > 0, baseEnd <= latestGiveUp else { return nil }
         return min(baseEnd.addingTimeInterval(TimeInterval(awayEpochs * DetectorConfig.epochSeconds)), cap, latestGiveUp)
@@ -161,10 +166,10 @@ public enum RecorderOnset {
     }
 
     /// Einschlafzeit aus der erkannten ruhigen Strecke ab `found`: nie vor dem Beginn der Einschlafdauer `bedAt`
-    /// (``bedAt(since:automatic:latest:sleepMinutes:)``, automatisch die Bettzeit). Die automatische Messung beginnt 60 Min
-    /// vor der Bettzeit; wer dann schon still liegt (Sofa, Lesen), ist nicht vor der Bettzeit eingeschlafen – sonst rückte
-    /// die Zielzeit vor und die Untergrenze kurzer Nächte fiele zu früh weg. Nach «Gute Nacht» ist `bedAt` der Beginn der
-    /// Messung; dann gilt `found` unverändert. Identisch zu `OnsetRules.onsetAt` (Kotlin).
+    /// (``bedAt(since:automatic:latest:sleepMinutes:)``, automatisch die Bettzeit). Die automatische Messung beginnt 60
+    /// Min vor der Bettzeit; wer dann schon still liegt (Sofa, Lesen), ist nicht vor der Bettzeit eingeschlafen – sonst
+    /// rückte die Zielzeit vor und die Untergrenze kurzer Nächte fiele zu früh weg. Nach «Gute Nacht» ist `bedAt` der
+    /// Beginn der Messung; dann gilt `found` unverändert. Identisch zu `OnsetRules.onsetAt` (Kotlin).
     public static func onsetAt(found: Date, bedAt: Date) -> Date {
         max(found, bedAt)
     }
@@ -179,8 +184,9 @@ public enum RecorderOnset {
     /// nach dem Tippen.
     public static let lateStartTolerance: TimeInterval = 60
 
-    /// Ob der Rekorder erst nach dem Beginn der Einschlafdauer `bedAt` (``bedAt(since:automatic:latest:sleepMinutes:)``)
-    /// startete, um mehr als ``lateStartTolerance``. Was dann gilt, sagt ``lateStart(recorderFrom:bedAt:foreground:)``.
+    /// Ob der Rekorder erst nach dem Beginn der Einschlafdauer `bedAt`
+    /// (``bedAt(since:automatic:latest:sleepMinutes:)``) startete, um mehr als ``lateStartTolerance``. Was dann gilt,
+    /// sagt ``lateStart(recorderFrom:bedAt:foreground:)``.
     public static func startedLate(recorderFrom: Date, bedAt: Date) -> Bool {
         recorderFrom > bedAt.addingTimeInterval(lateStartTolerance)
     }
@@ -193,14 +199,15 @@ public enum RecorderOnset {
         /// Zu spät, aber bei offener App gestartet: Die Person war da wach. Gemessen wird ab dem Start, er ist auch der
         /// Beginn der Einschlafdauer.
         case foreground
-        /// Zu spät im Hintergrund gestartet (etwa eine verspätete Hintergrund-Aktualisierung mitten in der Nacht): Ruhe ab
-        /// dem Start hiesse nur «schlief schon». Die Nacht gilt als nicht gemessen, ohne Untergrenze kurzer Nächte und ohne
-        /// Einschlafzeit (vorher fail-closed: Wer die App spät öffnete, wurde schlechter geweckt als ohne Öffnen).
+        /// Zu spät im Hintergrund gestartet (etwa eine verspätete Hintergrund-Aktualisierung mitten in der Nacht): Ruhe
+        /// ab dem Start hiesse nur «schlief schon». Die Nacht gilt als nicht gemessen, ohne Untergrenze kurzer Nächte
+        /// und ohne Einschlafzeit (vorher fail-closed: Wer die App spät öffnete, wurde schlechter geweckt als ohne
+        /// Öffnen).
         case background
     }
 
-    /// Ob der Rekorder ab `recorderFrom` rechtzeitig zum Beginn der Einschlafdauer `bedAt` startete, sonst ob bei offener
-    /// App (`foreground`).
+    /// Ob der Rekorder ab `recorderFrom` rechtzeitig zum Beginn der Einschlafdauer `bedAt` startete, sonst ob bei
+    /// offener App (`foreground`).
     public static func lateStart(recorderFrom: Date, bedAt: Date, foreground: Bool) -> LateStart {
         guard startedLate(recorderFrom: recorderFrom, bedAt: bedAt) else { return .onTime }
         return foreground ? .foreground : .background
@@ -215,7 +222,8 @@ public enum RecorderOnset {
 public enum GoodNightEstimate {
     /// Einschlafdauer, solange keine gelernt ist (Minuten).
     public static let defaultLatencyMinutes = 15
-    /// «Gute Nacht» nur, wenn die eingestellte Weckzeit höchstens so weit entfernt ist (wie `WakeRules.GOOD_NIGHT_MAX_AHEAD`).
+    /// «Gute Nacht» nur, wenn die eingestellte Weckzeit höchstens so weit entfernt ist (wie
+    /// `WakeRules.GOOD_NIGHT_MAX_AHEAD`).
     public static let maxAhead: TimeInterval = 16 * 3600
 
     /// Geschätzte Einschlafzeit: `tap` plus gelernte Einschlafdauer `latencyMinutes` (ohne: ``defaultLatencyMinutes``).
@@ -223,13 +231,15 @@ public enum GoodNightEstimate {
         tap.addingTimeInterval(TimeInterval((latencyMinutes ?? defaultLatencyMinutes) * 60))
     }
 
-    /// Zielzeit: geschätzte Einschlafzeit plus Schlafdauer, nie später als `latest` (``AlarmSchedule/sleepTarget(onset:sleepDurationMinutes:latest:)``).
+    /// Zielzeit: geschätzte Einschlafzeit plus Schlafdauer, nie später als `latest`
+    /// (``AlarmSchedule/sleepTarget(onset:sleepDurationMinutes:latest:)``).
     public static func target(tap: Date, latencyMinutes: Int?, sleepDurationMinutes: Int, latest: Date) -> Date {
         AlarmSchedule.sleepTarget(onset: asleep(tap: tap, latencyMinutes: latencyMinutes), sleepDurationMinutes: sleepDurationMinutes,
                                   latest: latest)
     }
 
-    /// Ob «Gute Nacht» für die eingestellte Weckzeit `latest` zu früh kommt (mehr als ``maxAhead`` davor) oder sie fehlt.
+    /// Ob «Gute Nacht» für die eingestellte Weckzeit `latest` zu früh kommt (mehr als ``maxAhead`` davor) oder sie
+    /// fehlt.
     public static func tooFar(now: Date, latest: Date?) -> Bool {
         guard let latest else { return true }
         return latest.timeIntervalSince(now) > maxAhead

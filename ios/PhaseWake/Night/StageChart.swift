@@ -34,7 +34,8 @@ struct StageTimeline: Equatable {
     }
 }
 
-/// Weckfenster eines Schlafprofils in Minuten; bei «Genau» nur die Zielzeit (kein Band, nur die Linie), ohne Fenster `nil`.
+/// Weckfenster eines Schlafprofils in Minuten; bei «Genau» nur die Zielzeit (kein Band, nur die Linie), ohne Fenster
+/// `nil`.
 func stageWindow(_ h: Hypnogram, exact: Bool) -> ClosedRange<Double>? {
     guard h.windowFrom <= h.windowTo else { return nil }
     return exact ? h.windowTo...h.windowTo : h.windowFrom...h.windowTo
@@ -128,7 +129,8 @@ struct StageChart: View {
                 if let window = timeline.window, let frame = proxy.plotFrame,
                    let x0 = proxy.position(forX: window.lowerBound), let x1 = proxy.position(forX: window.upperBound) {
                     let plot = geo[frame]
-                    // Leuchtendes Band: in der Mitte am kräftigsten, oben und unten weich, mit feinem Rand am Beginn (wie Android).
+                    // Leuchtendes Band: in der Mitte am kräftigsten, oben und unten weich, mit feinem Rand am Beginn
+                    // (wie Android).
                     Rectangle().fill(LinearGradient(colors: [StageColors.marker(scheme).opacity(0.05), StageColors.marker(scheme).opacity(0.18), StageColors.marker(scheme).opacity(0.05)], startPoint: .top, endPoint: .bottom))
                         .overlay(alignment: .leading) { Rectangle().fill(StageColors.marker(scheme).opacity(0.35)).frame(width: 1) }
                         .frame(width: max(0, x1 - x0), height: plot.height)
@@ -180,7 +182,8 @@ struct StageChart: View {
         }
     }
 
-    /// «Weckfenster 06:30 – 07:00» für VoiceOver beim Weckpunkt; «Genau um 07:00» ohne Fenster («Genau»); leer ohne Wecker.
+    /// «Weckfenster 06:30 – 07:00» für VoiceOver beim Weckpunkt; «Genau um 07:00» ohne Fenster («Genau»); leer ohne
+    /// Wecker.
     private var windowText: String {
         guard let window = timeline.window else { return "" }
         if window.lowerBound == window.upperBound { return L("window_exact_line", Format.time(timeline.time(window.upperBound), in: timeline.timeZone)) }

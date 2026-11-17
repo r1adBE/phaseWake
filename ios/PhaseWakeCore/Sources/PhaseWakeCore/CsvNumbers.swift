@@ -1,7 +1,8 @@
 import Foundation
 
 /// Zahlen im CSV-Export (Bewegung, Puls), auf Swift und Kotlin Zeichen für Zeichen gleich: `String(format:)`
-/// rundet wie C den genauen Binärwert halb auf gerade, `String.format` (Java) die kürzeste Dezimaldarstellung halb auf –
+/// rundet wie C den genauen Binärwert halb auf gerade, `String.format` (Java) die kürzeste Dezimaldarstellung halb auf
+/// –
 /// 56.25 wurde so zu 56.2 bzw. 56.3. Hier zählt nur Gleitkomma-Rechnung, die IEEE 754 auf beiden gleich festlegt
 /// (Betrag × Zehnerpotenz + 0.5, abrunden), der Rest ist Ganzzahl (`Int64`, auch auf der Apple Watch mit 32-Bit-`Int`).
 /// Gleich in Kotlin (`CsvNumbers`).
@@ -9,8 +10,8 @@ public enum CsvNumbers {
     /// Obergrenze für den gerundeten Wert (unter `Int64.max`, als Double exakt vergleichbar).
     private static let limit = 9.0e18
 
-    /// `value` mit `decimals` Nachkommastellen (0 bis 9), halbe Werte vom Nullpunkt weg gerundet (am Wert × 10^`decimals`),
-    /// Dezimalpunkt. Nicht endlich oder zu gross für die Rechnung: leer (wie ein fehlender Wert).
+    /// `value` mit `decimals` Nachkommastellen (0 bis 9), halbe Werte vom Nullpunkt weg gerundet (am Wert ×
+    /// 10^`decimals`), Dezimalpunkt. Nicht endlich oder zu gross für die Rechnung: leer (wie ein fehlender Wert).
     public static func fixed(_ value: Double, decimals: Int) -> String {
         precondition((0...9).contains(decimals), "decimals \(decimals)")
         guard value.isFinite else { return "" }

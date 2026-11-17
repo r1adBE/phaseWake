@@ -19,10 +19,10 @@ extension SmartAlarm {
         SettingsFile.watchSession.removeObject(forKey: Self.scheduledKey)
     }
 
-    /// Nach einem Neustart der App kennt sie die geplante Sitzung nicht mehr, das System behält sie aber und startet sie
-    /// (`AppDelegate.handle`). Steht die gemerkte Sitzung noch für `plan` (``NightRules/keepsScheduled``), gilt die Uhr als
-    /// scharf (`scheduled`), ohne eine zweite Sitzung zu planen – auch bei offener App, denn die alte lässt sich ohne
-    /// Verweis nicht beenden. - Returns: ob so behandelt (dann endet `schedule` hier).
+    /// Nach einem Neustart der App kennt sie die geplante Sitzung nicht mehr, das System behält sie aber und startet
+    /// sie (`AppDelegate.handle`). Steht die gemerkte Sitzung noch für `plan` (``NightRules/keepsScheduled``), gilt die
+    /// Uhr als scharf (`scheduled`), ohne eine zweite Sitzung zu planen – auch bei offener App, denn die alte lässt
+    /// sich ohne Verweis nicht beenden. - Returns: ob so behandelt (dann endet `schedule` hier).
     func keepsRestoredSession(for plan: WakePlan) -> Bool {
         guard session == nil else { return false }
         let saved = NightRules.ScheduledSession.decode(SettingsFile.watchSession.object(forKey: Self.scheduledKey))
@@ -40,10 +40,10 @@ extension SmartAlarm {
 
     // MARK: «stop» vom iPhone
 
-    /// «stop» vom iPhone (schon auf dieselbe Nacht geprüft, `isThisNight`). Klingelt oder schlummert die Uhr: beenden wie
-    /// bisher. Sonst hat der Zweitwecker des iPhones geweckt: Gehört der Stopp zur geplanten, wartenden, messenden oder
-    /// ausstehenden Nacht (``NightRules/phoneStoppedNight``), ist sie erledigt wie auf Android – Rückfälle samt Kette
-    /// weg (wartend und zugestellt), nicht nochmals planen; eine Messung endet mit ihren Epochen im Verlauf.
+    /// «stop» vom iPhone (schon auf dieselbe Nacht geprüft, `isThisNight`). Klingelt oder schlummert die Uhr: beenden
+    /// wie bisher. Sonst hat der Zweitwecker des iPhones geweckt: Gehört der Stopp zur geplanten, wartenden, messenden
+    /// oder ausstehenden Nacht (``NightRules/phoneStoppedNight``), ist sie erledigt wie auf Android – Rückfälle samt
+    /// Kette weg (wartend und zugestellt), nicht nochmals planen; eine Messung endet mit ihren Epochen im Verlauf.
     func stopFromPhone(alarmId: String?, target: Date?) {
         if phase.isRinging || phase.isSnoozed {
             dismiss(notifyPhone: false)
@@ -95,8 +95,8 @@ extension SmartAlarm {
     // MARK: Alter Klingel-Zustand
 
     /// Klingel-Zustand älter als ``ringStateMaxAge`` nach der Zielzeit (z. B. App lange nicht gestartet): nicht mehr
-    /// wecken, die Nacht aber abschliessen – Epochen in den Verlauf, erledigt, Einmal-Wecker aus. Ohne Nachholen anderer
-    /// Wecker (`noteNightEnded`): Sie wären längst vorbei.
+    /// wecken, die Nacht aber abschliessen – Epochen in den Verlauf, erledigt, Einmal-Wecker aus. Ohne Nachholen
+    /// anderer Wecker (`noteNightEnded`): Sie wären längst vorbei.
     func finishSilently() {
         guard phase.isRinging || phase.isSnoozed else { return }
         DiagStore.shared.log(.error, "old ring state, night finished without waking")

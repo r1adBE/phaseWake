@@ -65,7 +65,8 @@ internal fun EditorRoute(app: PhaseWakeApp, state: NavState, id: String?, action
                 return@save
             }
             app.afterAlarmsChanged {
-                // Gespeicherter Stand zählt (Uhr gleichzeitig): einen gelöschten Wecker nicht wieder anlegen, keinen neunten.
+                // Gespeicherter Stand zählt (Uhr gleichzeitig): einen gelöschten Wecker nicht wieder anlegen, keinen
+                // neunten.
                 val current = app.alarms.current()
                 val stored = current.alarms.any { it.id == spec.id }
                 if (stored == (existing != null) && (stored || current.alarms.size < MAX_ALARMS)) app.alarms.upsert(spec) else current

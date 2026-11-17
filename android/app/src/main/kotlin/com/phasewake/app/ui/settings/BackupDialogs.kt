@@ -54,7 +54,8 @@ internal fun ColumnScope.BackupRows() {
     var password by remember { mutableStateOf("") }
     // Datei schon gewählt, Passwort dabei verloren: noch einmal fragen, nie mit leerem Passwort verschlüsseln.
     var saveTo by rememberSaveable { mutableStateOf<Uri?>(null) }
-    // Inhalt der gewählten Datei, schon gelesen: Nicht lesbar oder zu gross meldet «nicht lesbar», nie «Falsches Passwort».
+    // Inhalt der gewählten Datei, schon gelesen: Nicht lesbar oder zu gross meldet «nicht lesbar», nie «Falsches
+    // Passwort».
     var restoreFrom by remember { mutableStateOf<ByteArray?>(null) }
     var preview by remember { mutableStateOf<BackupPreview?>(null) }
     var busy by remember { mutableStateOf(false) }

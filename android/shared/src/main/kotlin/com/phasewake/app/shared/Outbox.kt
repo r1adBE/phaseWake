@@ -28,13 +28,13 @@ import kotlinx.coroutines.withTimeoutOrNull
  * Zuverlässige Zustellung an die Gegenseite ohne Ablage im Data Layer:
  * Datenpakete des Data Layers sichert Google zusätzlich in der Cloud. Nächte, Aufzeichnungen, Wecker (ihre Namen sind
  * eigener Text), Lernwerte, frühere Zielzeit, Schlafziel, Feiertage, Schalter der Einschlaf-Messung und der Stand von
- * «Nacht aufzeichnen» gehen darum als Nachricht ([Transport]: MessageClient, grosse Inhalte über ChannelClient) direkt an
- * das verbundene Gerät.
+ * «Nacht aufzeichnen» gehen darum als Nachricht ([Transport]: MessageClient, grosse Inhalte über ChannelClient) direkt
+ * an das verbundene Gerät.
  *
  * Nachrichten werden nicht nachgeliefert. Damit nichts verloren geht, wenn die Gegenseite gerade weg ist, liegt jeder
- * Eintrag lokal im Ordner [dir], bis sie den Empfang bestätigt ([DataLayer.PATH_ACK], [acked]); bis dahin sendet [flush]
- * ihn bei einem späteren Anlass erneut (Start der App, Gegenseite erreichbar, Nachricht von ihr), aber frühestens
- * [RESEND_AFTER_MS] nach dem letzten erfolgreichen Senden (sonst kam derselbe Eintrag mehrfach an, weil jede
+ * Eintrag lokal im Ordner [dir], bis sie den Empfang bestätigt ([DataLayer.PATH_ACK], [acked]); bis dahin sendet
+ * [flush] ihn bei einem späteren Anlass erneut (Start der App, Gegenseite erreichbar, Nachricht von ihr), aber
+ * frühestens [RESEND_AFTER_MS] nach dem letzten erfolgreichen Senden (sonst kam derselbe Eintrag mehrfach an, weil jede
  * Nachricht der Gegenseite alles Unbestätigte erneut schickte). Übergeht [flush] deshalb einen Eintrag, sendet es ihn
  * von selbst, sobald die Wartezeit um ist (ein einziger Zeitgeber für alle). [enqueue] speichert nur lokal
  * (schnell) und sendet den neuen Eintrag danach im Hintergrund ([scope]). Ein Eintrag mit gleichem Schlüssel
@@ -67,7 +67,9 @@ class Outbox(
     /** Ein wartender Eintrag: an Geräte mit [capability] unter [path], Inhalt [body] (Text). */
     data class Entry(val id: String, val key: String, val path: String, val capability: String, val body: String, val createdAt: Long)
 
-    /** Ein Paket des früheren Weges im Data Layer ([migrateOnce]): [entry] wird vor dem Löschen eingereiht, falls da. */
+    /**
+     * Ein Paket des früheren Weges im Data Layer ([migrateOnce]): [entry] wird vor dem Löschen eingereiht, falls da.
+     */
     data class Legacy(val uri: Uri, val entry: Entry? = null)
 
     /** Weg zur Gegenseite; im Test ersetzt. */
@@ -81,7 +83,9 @@ class Outbox(
 
     private val lock = Mutex()
 
-    /** Je Kennung ([Entry.id]): Zeitpunkt (ms) des letzten erfolgreichen Sendens in diesem Prozess. Nur unter [lock]. */
+    /**
+     * Je Kennung ([Entry.id]): Zeitpunkt (ms) des letzten erfolgreichen Sendens in diesem Prozess. Nur unter [lock].
+     */
     private val sentAt = mutableMapOf<String, Long>()
 
     /** Kennungen, die gerade gesendet werden (ausserhalb der Sperre); kein zweites [flush] sendet sie gleichzeitig. */
@@ -163,7 +167,8 @@ class Outbox(
         retryAt = at
         retry = scope.launch {
             delay((at - now()).coerceAtLeast(0L))
-            // Ab hier zählt dieser Zeitgeber nicht mehr: [flush] darf ein neues Nachsenden planen, ohne ihn abzubrechen.
+            // Ab hier zählt dieser Zeitgeber nicht mehr: [flush] darf ein neues Nachsenden planen, ohne ihn
+            // abzubrechen.
             synchronized(retryLock) {
                 if (retry === coroutineContext.job) {
                     retry = null
@@ -195,8 +200,8 @@ class Outbox(
      * Grenzen der Warteschlange, nur für Nächte und Aufzeichnungen ([expires]): Einträge älter als
      * [MAX_AGE_MS] (oder aus der «Zukunft», Uhr verstellt, bleiben) entfernen, je Art ([kindOf]) nur die neuesten
      * [MAX_PER_KIND] behalten. Zustände bleiben. Dazu Reste: «.tmp» (unter [lock] schreibt keiner, also
-     * liegengeblieben) und gelesene, aber unlesbare Einträge (leer oder halb nach einem Stromausfall; scheitert schon das
-     * Lesen, bleibt die Datei). Nur unter [lock].
+     * liegengeblieben) und gelesene, aber unlesbare Einträge (leer oder halb nach einem Stromausfall; scheitert schon
+     * das Lesen, bleibt die Datei). Nur unter [lock].
      */
     private suspend fun prune() = withContext(io) {
         dir.listFiles().orEmpty().filter { it.isFile && it.name.startsWith(PREFIX) && (it.name.endsWith(".tmp") || broken(it)) }
@@ -215,7 +220,8 @@ class Outbox(
 
     /**
      * Einmalige Umstellung vom früheren Weg (Pakete im Data Layer): Pakete von [legacy] mit Inhalt werden eingereiht,
-     * dann alle mit [delete] entfernt; danach eine Marke im Ordner. Scheitert ein Schritt, beim nächsten Start nochmals.
+     * dann alle mit [delete] entfernt; danach eine Marke im Ordner. Scheitert ein Schritt, beim nächsten Start
+     * nochmals.
      * @return ob die Umstellung jetzt (vollständig) lief.
      */
     suspend fun migrateOnce(legacy: suspend () -> List<Legacy>, delete: suspend (Uri) -> Unit): Boolean {
@@ -251,7 +257,8 @@ class Outbox(
         val file = File(dir, name(entry.key))
         val tmp = File(dir, file.name + ".tmp")
         val text = listOf(VERSION, entry.id, entry.key, entry.path, entry.capability, entry.createdAt.toString(), entry.body).joinToString("\n")
-        // Erst auf der Platte (fsync), dann in einem Schritt ersetzen: Scheitert das Schreiben, bleibt der vorige Stand.
+        // Erst auf der Platte (fsync), dann in einem Schritt ersetzen: Scheitert das Schreiben, bleibt der vorige
+        // Stand.
         java.io.FileOutputStream(tmp).use { out -> out.write(text.encodeToByteArray()); out.fd.sync() }
         if (!tmp.renameTo(file)) {
             file.delete()
@@ -276,7 +283,10 @@ class Outbox(
         null
     }
 
-    /** Wear-Dienste: Nachricht bis [MAX_MESSAGE_BYTES], sonst ein Kanal (ChannelClient), der nach dem Schreiben schliesst. */
+    /**
+     * Wear-Dienste: Nachricht bis [MAX_MESSAGE_BYTES], sonst ein Kanal (ChannelClient), der nach dem Schreiben
+     * schliesst.
+     */
     class WearTransport(context: Context) : Transport {
         private val app = context.applicationContext
 
@@ -291,7 +301,8 @@ class Outbox(
             val channels = Wearable.getChannelClient(app)
             val channel = channels.openChannel(node, path).await()
             try {
-                // Schliessen der Ausgabe beendet den Datenstrom; der Empfänger liest bis zum Ende und schliesst den Kanal.
+                // Schliessen der Ausgabe beendet den Datenstrom; der Empfänger liest bis zum Ende und schliesst den
+                // Kanal.
                 withContext(Dispatchers.IO) { channels.getOutputStream(channel).await().use { it.write(data) } }
             } catch (e: Exception) {
                 channels.close(channel)
@@ -306,7 +317,10 @@ class Outbox(
         private const val PREFIX = "e-"
         private const val MIGRATED = "migrated"
 
-        /** Grösste Nachricht über MessageClient (Grenze der Wear-Dienste 100 KB, mit Reserve); grössere über einen Kanal. */
+        /**
+         * Grösste Nachricht über MessageClient (Grenze der Wear-Dienste 100 KB, mit Reserve); grössere über einen
+         * Kanal.
+         */
         const val MAX_MESSAGE_BYTES = 90 * 1024
 
         /** Höchstdauer eines Schritts zur Gegenseite (Geräte suchen, senden). */
@@ -321,7 +335,9 @@ class Outbox(
         /** Höchstens so viele wartende Einträge je Art ([kindOf]); ältere fallen weg. */
         const val MAX_PER_KIND = 60
 
-        /** Art eines Schlüssels: bei Nächten und Aufzeichnungen der Teil bis «/» (z. B. «night/»), sonst der Schlüssel. */
+        /**
+         * Art eines Schlüssels: bei Nächten und Aufzeichnungen der Teil bis «/» (z. B. «night/»), sonst der Schlüssel.
+         */
         fun kindOf(key: String): String = key.indexOf('/').let { if (it < 0) key else key.substring(0, it + 1) }
 
         /**
@@ -330,7 +346,10 @@ class Outbox(
          */
         fun expires(key: String): Boolean = key.startsWith(QueueMessages.KEY_NIGHT) || key.startsWith(QueueMessages.KEY_RECORDING)
 
-        /** Bereich für das Senden im Hintergrund: lebt so lange wie der Prozess; ein Fehler wird geloggt, nie weitergereicht. */
+        /**
+         * Bereich für das Senden im Hintergrund: lebt so lange wie der Prozess; ein Fehler wird geloggt, nie
+         * weitergereicht.
+         */
         private fun processScope() = CoroutineScope(
             SupervisorJob() + Dispatchers.IO + CoroutineExceptionHandler { _, e -> Log.w(TAG, "Senden im Hintergrund fehlgeschlagen", e) },
         )
@@ -357,7 +376,9 @@ class Outbox(
             return nodes.count { node -> step("Senden ($path, ${data.size} Bytes)") { transport.send(node, path, data) } != null }
         }
 
-        /** Ein Schritt von [sendOnce], höchstens [STEP_TIMEOUT_MS]; `null` bei Zeitüberschreitung oder Fehler (geloggt). */
+        /**
+         * Ein Schritt von [sendOnce], höchstens [STEP_TIMEOUT_MS]; `null` bei Zeitüberschreitung oder Fehler (geloggt).
+         */
         private suspend fun <T> step(what: String, block: suspend () -> T): T? = try {
             withTimeoutOrNull(STEP_TIMEOUT_MS) { block() }.also { if (it == null) Log.i(TAG, "$what: keine Antwort") }
         } catch (e: Exception) {

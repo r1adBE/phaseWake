@@ -114,7 +114,9 @@ internal fun HoldToStop(label: String, progress: Float, compact: Boolean, onDism
 /** Schrift auf dem Nachthimmel. */
 internal val NIGHT_INK = SunriseSky.Ink(Brand.Moon, Brand.Mist)
 
-/** Name und Grund; [light]: Sonnenaufgang (Schrift nach der Stelle), `null` = Nachthimmel. Leerer Grund: keine Zeile. */
+/**
+ * Name und Grund; [light]: Sonnenaufgang (Schrift nach der Stelle), `null` = Nachthimmel. Leerer Grund: keine Zeile.
+ */
 @Composable
 internal fun Ringing(ui: RingUi.Ringing, reason: String, fit: ReasonFit, light: Float?) {
     // Der Name einzeilig: Lange Namen dürfen den Schlummer-Knopf nicht nach unten schieben. Der Grund nach [ReasonFit].

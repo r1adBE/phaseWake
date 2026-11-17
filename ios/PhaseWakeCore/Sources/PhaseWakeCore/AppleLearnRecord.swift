@@ -4,11 +4,12 @@ import Foundation
 /// ganze Nacht selbst messen. Stattdessen zeichnet watchOS mit dem Bewegungs-Rekorder (`CMSensorRecorder`) bis 12 Std.
 /// lang Bewegung auf, auch wenn die App nicht läuft; die Uhr holt die Werte am Morgen ab (``RecorderEpochs``). Diese
 /// Regel entscheidet, wann die Uhr den Rekorder für eine Nacht startet: frühestens ab dem Beginn der Einschlaf-Messung
-/// (``ShortNight/autoOnsetStart(target:sleepGoalMinutes:sleepDurationMinutes:)``, 60 Min vor der Bettzeit) und nur, wenn
-/// die App dann läuft (geöffnet, etwa über die Erinnerung am Abend, oder Hintergrund-Aktualisierung).
+/// (``ShortNight/autoOnsetStart(target:sleepGoalMinutes:sleepDurationMinutes:)``, 60 Min vor der Bettzeit) und nur,
+/// wenn die App dann läuft (geöffnet, etwa über die Erinnerung am Abend, oder Hintergrund-Aktualisierung).
 /// Ausgewertet wird wie auf der Galaxy Watch ab dann bis zum Wecken.
 public enum AppleLearnRecord {
-    /// Nach der Zielzeit zeichnet der Rekorder noch so lange auf (Schlummern); ausgewertet wird bis zum Ende des Klingelns.
+    /// Nach der Zielzeit zeichnet der Rekorder noch so lange auf (Schlummern); ausgewertet wird bis zum Ende des
+    /// Klingelns.
     public static let afterTarget: TimeInterval = 30 * 60
 
     /// Was die Uhr jetzt tut.
@@ -61,9 +62,9 @@ public enum AppleLearnRecord {
 
     /// Zielzeit einer laufenden Aufzeichnung der Lernphase (bisher `current`) nach einem neuen Plan mit Zielzeit
     /// `planTarget` (Wecker verschoben): diese, wenn sie nach `now` liegt und höchstens die
-    /// längste Schlafdauer (``AlarmSpec/maxSleepMinutes``) entfernt ist, also zur selben Nacht gehört; sonst (Wecker aus,
-    /// gelöscht, übersprungen, der nächste erst in einer späteren Nacht) bleibt `current`. Wie `RecordControl.learnUntilFor`
-    /// (Galaxy Watch).
+    /// längste Schlafdauer (``AlarmSpec/maxSleepMinutes``) entfernt ist, also zur selben Nacht gehört; sonst (Wecker
+    /// aus, gelöscht, übersprungen, der nächste erst in einer späteren Nacht) bleibt `current`. Wie
+    /// `RecordControl.learnUntilFor` (Galaxy Watch).
     public static func followedTarget(current: Date, planTarget: Date?, now: Date) -> Date {
         guard let planTarget, planTarget > now,
               planTarget.timeIntervalSince(now) <= TimeInterval(AlarmSpec.maxSleepMinutes * 60) else { return current }
@@ -71,11 +72,11 @@ public enum AppleLearnRecord {
     }
 }
 
-/// Apple Watch, automatische Einschlaf-Messung (Schalter «Einschlafen automatisch erkennen», Standard ein, wie Android):
-/// Damit die Uhr zu Beginn der Weck-Sitzung die Einschlafzeit nachrechnen kann
-/// (``RecorderOnset``), startet sie für jede Nacht eines gespeicherten Weckers den Bewegungs-Rekorder bis zum Beginn des
-/// Weckfensters – frühestens ab dem Beginn der Einschlaf-Messung (60 Min vor der Bettzeit, wie Android) und nur, wenn
-/// die App dann läuft (kein Start mehr bis 12 Std. im Voraus); nicht unter ``minBattery``
+/// Apple Watch, automatische Einschlaf-Messung (Schalter «Einschlafen automatisch erkennen», Standard ein, wie
+/// Android): Damit die Uhr zu Beginn der Weck-Sitzung die Einschlafzeit nachrechnen kann
+/// (``RecorderOnset``), startet sie für jede Nacht eines gespeicherten Weckers den Bewegungs-Rekorder bis zum Beginn
+/// des Weckfensters – frühestens ab dem Beginn der Einschlaf-Messung (60 Min vor der Bettzeit, wie Android) und nur,
+/// wenn die App dann läuft (kein Start mehr bis 12 Std. im Voraus); nicht unter ``minBattery``
 /// Akku (wie `AutoOnset.MIN_BATTERY_PERCENT`), nicht mehr ab dem Fensterbeginn und nicht, wenn ab dann keine
 /// Einschlaf-Messung mehr möglich ist (15 Min vor der Zielzeit).
 public enum AppleAutoOnset {

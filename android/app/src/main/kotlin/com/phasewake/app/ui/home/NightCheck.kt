@@ -78,7 +78,8 @@ enum class Check(
 
     /**
      * Die Uhr darf den Puls nicht im Hintergrund messen ([WatchPulse.warns]): Nachts misst sie dann nicht und weckt nur
-     * zur Zielzeit. Nur auf der Uhr zu ändern, darum ohne Knopf; nicht in der Bereit-Liste: Ältere Uhren melden es nicht.
+     * zur Zielzeit. Nur auf der Uhr zu ändern, darum ohne Knopf; nicht in der Bereit-Liste: Ältere Uhren melden es
+     * nicht.
      */
     WATCH_PULSE(R.string.check_watch_pulse, R.string.check_watch_pulse_problem, null, inReadyList = false),
 
@@ -151,18 +152,20 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
         /** Unter diesem Akkustand (Handy ohne Ladekabel, Uhr laut ihrer Meldung) warnt der Check. */
         const val LOW_BATTERY_PERCENT = 20
 
-        /** Unter diesem Akkustand der Uhr beginnt die automatische Einschlaf-Messung nicht (wie `AutoOnset` der Uhr). */
+        /**
+         * Unter diesem Akkustand der Uhr beginnt die automatische Einschlaf-Messung nicht (wie `AutoOnset` der Uhr).
+         */
         const val WATCH_ONSET_BATTERY_PERCENT = 30
 
         /**
          * Prüft alles, was ohne Uhr geht; die Uhr kommt aus [watchReachable], [watchReady],
          * [watchBattery] (Prozent, `null` = unbekannt oder zu alt) und [watchOutdated] (Version der Uhr)
-         * sowie [watchPulse] (Pulsrechte; `null` = ältere Uhr, keine Warnung) und [recorderSkip] (Grund, warum die Messung
-         * vor dem Schlafen dieser Nacht nicht startete; `null` = keiner). Fehlen der Uhr schon allgemein Rechte
-         * ([Check.WATCH_SETUP]), steht der Puls nicht noch einmal da. [autoOnset]: «Einschlafen automatisch erkennen» an,
-         * [learning]: Lernphase läuft; beides für die Hinweise vorab zum Akku der Uhr ([batteryHints]). [watchCharging]: Die
-         * Uhr lud beim gemeldeten Akkustand; dann misst sie trotz wenig Akku, keine Warnung dazu (wie iPhone).
-         * [phoneBuild], [watchBuild]: Build-Nummern (`null` = unbekannt) für [buildHint].
+         * sowie [watchPulse] (Pulsrechte; `null` = ältere Uhr, keine Warnung) und [recorderSkip] (Grund, warum die
+         * Messung vor dem Schlafen dieser Nacht nicht startete; `null` = keiner). Fehlen der Uhr schon allgemein Rechte
+         * ([Check.WATCH_SETUP]), steht der Puls nicht noch einmal da. [autoOnset]: «Einschlafen automatisch erkennen»
+         * an, [learning]: Lernphase läuft; beides für die Hinweise vorab zum Akku der Uhr ([batteryHints]).
+         * [watchCharging]: Die Uhr lud beim gemeldeten Akkustand; dann misst sie trotz wenig Akku, keine Warnung dazu
+         * (wie iPhone). [phoneBuild], [watchBuild]: Build-Nummern (`null` = unbekannt) für [buildHint].
          */
         fun collect(
             context: Context,
@@ -215,17 +218,17 @@ data class NightCheckState(val failed: List<Check>, val watchChecked: Boolean = 
         }
 
         /**
-         * Build-Nummern (Handy, Uhr) für den Hinweis [Check.BUILD_MISMATCH]: nur, wenn beide bekannt und verschieden sind
-         * und nicht schon «Uhr-App veraltet» ([watchOutdated]) dasteht; sonst `null`.
+         * Build-Nummern (Handy, Uhr) für den Hinweis [Check.BUILD_MISMATCH]: nur, wenn beide bekannt und verschieden
+         * sind und nicht schon «Uhr-App veraltet» ([watchOutdated]) dasteht; sonst `null`.
          */
         fun buildHint(phoneBuild: Int?, watchBuild: Int?, watchOutdated: Boolean): Pair<Int, Int>? =
             if (!watchOutdated && phoneBuild != null && watchBuild != null && BuildNumber.differs(phoneBuild, watchBuild)) phoneBuild to watchBuild else null
 
         /**
          * Hinweis vorab zum Akku der Uhr, höchstens einer: unter [WATCH_ONSET_BATTERY_PERCENT] mit
-         * automatischer Einschlaf-Messung [Check.WATCH_ONSET_BATTERY], sonst in der Lernphase unter [Learning.MIN_BATTERY]
-         * [Check.WATCH_LEARN_BATTERY]. Keiner unter [LOW_BATTERY_PERCENT] (dort sagt [Check.WATCH_BATTERY] schon «lade die
-         * Uhr») und bei unbekanntem Akku.
+         * automatischer Einschlaf-Messung [Check.WATCH_ONSET_BATTERY], sonst in der Lernphase unter
+         * [Learning.MIN_BATTERY] [Check.WATCH_LEARN_BATTERY]. Keiner unter [LOW_BATTERY_PERCENT] (dort sagt
+         * [Check.WATCH_BATTERY] schon «lade die Uhr») und bei unbekanntem Akku.
          */
         fun batteryHints(watchBattery: Int?, autoOnset: Boolean, learning: Boolean): Check? = when {
             watchBattery == null || watchBattery < LOW_BATTERY_PERCENT -> null
@@ -284,7 +287,8 @@ internal fun NightCheckCard(
                     .then(if (ready) Modifier.clickable(role = Role.Button) { expanded = !expanded } else Modifier)
                     .semantics { if (ready) stateDescription = readyText },
             ) {
-                // Nicht bereit: Warndreieck (kein ✕, das wie ein Schliessen-Knopf aussieht), immer mit Text, nie nur Farbe.
+                // Nicht bereit: Warndreieck (kein ✕, das wie ein Schliessen-Knopf aussieht), immer mit Text, nie nur
+                // Farbe.
                 Icon(
                     painterResource(if (ready) R.drawable.ic_check else R.drawable.ic_warning),
                     contentDescription = if (ready) null else stringResource(R.string.check_not_ready_icon),

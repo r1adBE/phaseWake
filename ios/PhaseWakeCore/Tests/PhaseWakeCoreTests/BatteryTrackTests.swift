@@ -1,7 +1,8 @@
 import XCTest
 @testable import PhaseWakeCore
 
-/// Akkuverbrauch je Nacht: nur Teilstrecken ohne Ladegerät, unbekannt statt falsch, Format alt/neu. Wie `BatteryTrackTest` (Kotlin).
+/// Akkuverbrauch je Nacht: nur Teilstrecken ohne Ladegerät, unbekannt statt falsch, Format alt/neu. Wie
+/// `BatteryTrackTest` (Kotlin).
 final class BatteryTrackTests: XCTestCase {
     /// 2026-11-13T21:00:00Z.
     private let t0 = Date(timeIntervalSince1970: 1_794_603_600)

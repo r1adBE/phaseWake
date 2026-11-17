@@ -11,7 +11,10 @@ import java.time.ZoneId
  * Aus einer Sitzung, die als Nacht zählt ([HealthHistory.nights]: ohne Nickerchen, Doppel, mit Weiterschlafen).
  */
 data class NightFacts(
-    /** Nachtdatum über die Mitte von [asleepAt] bis [end] in der Zone der Aufzeichnung (wie [SleepNotes.nightDate] einer [SleepSummary]). */
+    /**
+     * Nachtdatum über die Mitte von [asleepAt] bis [end] in der Zone der Aufzeichnung (wie [SleepNotes.nightDate] einer
+     * [SleepSummary]).
+     */
     val date: LocalDate,
     /** Einschlafbeginn ([HealthSession.asleepAt]): die «Bettzeit» wie in Regelmässigkeit und Trends. */
     val asleepAt: Instant,
@@ -56,7 +59,10 @@ data class NightFacts(
             )
         }
 
-        /** Fakten aller Nächte aus [sessions] (dieselben wie im Verlauf, [HealthHistory.nights]), nach Beginn; [own], [watch] siehe oben. */
+        /**
+         * Fakten aller Nächte aus [sessions] (dieselben wie im Verlauf, [HealthHistory.nights]), nach Beginn; [own],
+         * [watch] siehe oben.
+         */
         fun of(
             sessions: List<HealthSession>,
             clearedAt: Instant?,
@@ -69,12 +75,15 @@ data class NightFacts(
 
 /**
  * Eigene Messung des Einschlafens einer Nacht von [start] bis [end] mit Beginn der Einschlafdauer [bedAt] und
- * Einschlafzeit [asleepAt]: eine Nacht der Uhr ([of], Felder 11 und 12 von [Codec.encodeNight]) oder eine abgeschlossene
- * Aufzeichnung (Galaxy Watch «Nacht aufzeichnen» bzw. Lernphase, Apple Watch Rekorder; Zeile `onset=`). Gleich in Swift (`OwnOnset`).
+ * Einschlafzeit [asleepAt]: eine Nacht der Uhr ([of], Felder 11 und 12 von [Codec.encodeNight]) oder eine
+ * abgeschlossene Aufzeichnung (Galaxy Watch «Nacht aufzeichnen» bzw. Lernphase, Apple Watch Rekorder; Zeile `onset=`).
+ * Gleich in Swift (`OwnOnset`).
  */
 data class OwnOnset(val start: Instant, val end: Instant, val bedAt: Instant, val asleepAt: Instant) {
     companion object {
-        /** Messung einer Nacht der Uhr: Beginn der Einschlafdauer bis zum Wecken; `null` ohne Beginn oder Einschlafzeit. */
+        /**
+         * Messung einer Nacht der Uhr: Beginn der Einschlafdauer bis zum Wecken; `null` ohne Beginn oder Einschlafzeit.
+         */
         fun of(night: NightRecord): OwnOnset? {
             val bed = night.bedAt ?: return null
             return OwnOnset(bed, night.wokeAt, bed, night.asleepAt ?: return null)
@@ -154,13 +163,18 @@ object Findings {
     /** Ausgeblendet auf der Startseite: erscheint frühestens nach dieser Zeit wieder. */
     val HIDE_FOR: Duration = Duration.ofDays(7)
 
-    /** Wochenrückblick: Tiefschlaf-Anteil nur mit so vielen Nächten mit Phasen je Woche ([Trends.MIN_NIGHTS_PER_WEEK]). */
+    /**
+     * Wochenrückblick: Tiefschlaf-Anteil nur mit so vielen Nächten mit Phasen je Woche ([Trends.MIN_NIGHTS_PER_WEEK]).
+     */
     const val WEEK_NIGHTS: Int = Trends.MIN_NIGHTS_PER_WEEK
 
     /** Nächte der [NIGHTS] Nachtdaten bis [today] (einschliesslich); je Nachtdatum die mit dem meisten Schlaf. */
     fun recent(facts: List<NightFacts>, today: LocalDate): List<NightFacts> = byDate(facts, today.minusDays(NIGHTS - 1L), today)
 
-    /** Alle Auffälligkeiten bis [today] (Nachtdatum von «jetzt»), wichtigste zuerst. Uhrzeiten in der Zone der Aufzeichnung, sonst [zone]. */
+    /**
+     * Alle Auffälligkeiten bis [today] (Nachtdatum von «jetzt»), wichtigste zuerst. Uhrzeiten in der Zone der
+     * Aufzeichnung, sonst [zone].
+     */
     fun of(facts: List<NightFacts>, today: LocalDate, zone: ZoneId): List<Finding> {
         val nights = recent(facts, today)
         val staged = nights.filter { it.deepMinutes != null && it.awakeMinutes != null }
@@ -190,8 +204,8 @@ object Findings {
 
     /**
      * Die wichtigste Auffälligkeit, die nicht ausgeblendet ist (ausgeblendet um [hidden], seit weniger als [HIDE_FOR]).
-     * [bedtimeAdvice]: Die Startseite zeigt schon die Bettzeit-Karte; dann treten die Auffälligkeiten mit demselben Tipp
-     * ([BEDTIME_TIP]) zurück, damit er nicht zweimal steht. Im Verlauf bleiben sie.
+     * [bedtimeAdvice]: Die Startseite zeigt schon die Bettzeit-Karte; dann treten die Auffälligkeiten mit demselben
+     * Tipp ([BEDTIME_TIP]) zurück, damit er nicht zweimal steht. Im Verlauf bleiben sie.
      */
     fun home(findings: List<Finding>, hidden: Map<FindingKind, Instant>, now: Instant, bedtimeAdvice: Boolean = false): Finding? =
         findings.firstOrNull { f ->
@@ -230,9 +244,9 @@ object Findings {
     /**
      * Einschlafdauer aus der eigenen Messung für eine Nacht der Gesundheits-App von [start] bis [end] (nur, wenn diese
      * keine liefert): zuerst aus den Nächten der Uhr [watch], sonst aus den Aufzeichnungen [own].
-     * Je die Messung, die sich am längsten mit der Nacht überschneidet (gleich: die erste; wie die Aufzeichnung zur Nacht
-     * auf der Detailseite), in ganzen Minuten von [OwnOnset.bedAt] bis [OwnOnset.asleepAt] (abgerundet). `null` ohne
-     * Überschneidung oder wenn die Einschlafzeit vor dem Beginn liegt.
+     * Je die Messung, die sich am längsten mit der Nacht überschneidet (gleich: die erste; wie die Aufzeichnung zur
+     * Nacht auf der Detailseite), in ganzen Minuten von [OwnOnset.bedAt] bis [OwnOnset.asleepAt] (abgerundet). `null`
+     * ohne Überschneidung oder wenn die Einschlafzeit vor dem Beginn liegt.
      */
     fun ownLatency(start: Instant, end: Instant, own: List<OwnOnset>, watch: List<OwnOnset> = emptyList()): Long? =
         latencyOf(start, end, watch) ?: latencyOf(start, end, own)
@@ -244,7 +258,9 @@ object Findings {
         return Duration.between(best.bedAt, best.asleepAt).toMillis() / StageStats.MS_PER_MINUTE
     }
 
-    /** Tiefschlaf-Anteil am Schlaf in ganzen Prozent (halbe aufwärts) – eine Nacht wie die Regel; `null` ohne Schlaf. */
+    /**
+     * Tiefschlaf-Anteil am Schlaf in ganzen Prozent (halbe aufwärts) – eine Nacht wie die Regel; `null` ohne Schlaf.
+     */
     fun deepPercent(deepMinutes: Long, asleepMinutes: Long): Int? = StageStats.sleepPercent(deepMinutes, asleepMinutes)
 
     private fun lowDeep(share: Int, staged: List<NightFacts>, nights: List<NightFacts>, zone: ZoneId): Finding {
@@ -265,7 +281,10 @@ object Findings {
         return if (b - a >= LINK_POINTS) Finding(FindingKind.LOW_DEEP, 0, link, a, b) else null
     }
 
-    /** Mitte des Schlafs am Wochenende (Nachtdatum Freitag, Samstag) gegenüber unter der Woche in Minuten; `null` mit zu wenig Nächten. */
+    /**
+     * Mitte des Schlafs am Wochenende (Nachtdatum Freitag, Samstag) gegenüber unter der Woche in Minuten; `null` mit zu
+     * wenig Nächten.
+     */
     private fun jetlag(nights: List<NightFacts>, zone: ZoneId): Int? {
         val mids = Regularity.unwrap(nights.map { Regularity.minutesFromNoon(it.asleepAt.plus(Duration.between(it.asleepAt, it.end).dividedBy(2)), it.zoneOr(zone)) })
         val weekend = nights.indices.filter { nights[it].date.dayOfWeek == DayOfWeek.FRIDAY || nights[it].date.dayOfWeek == DayOfWeek.SATURDAY }

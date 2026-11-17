@@ -4,8 +4,8 @@ import XCTest
 
 /// Bettzeit-Linie im Diagramm des Verlaufs, iPhone.
 final class ChartBedtimePhoneTests: XCTestCase {
-    /// Die Bettzeit-Linie im Diagramm rechnet die gelernte Einschlafdauer mit (die eine Bettzeit, wie Karte und Erinnerung):
-    /// Wecker 07:00, Ziel 7½ Std., gelernt 15 Min → 23:15 statt 23:30.
+    /// Die Bettzeit-Linie im Diagramm rechnet die gelernte Einschlafdauer mit (die eine Bettzeit, wie Karte und
+    /// Erinnerung): Wecker 07:00, Ziel 7½ Std., gelernt 15 Min → 23:15 statt 23:30.
     func testChartBedtimeIncludesLearnedLatency() throws {
         var calendar = Calendar.gregorian(in: TimeZone(identifier: "UTC")!)
         calendar.locale = Locale(identifier: "en_US_POSIX")

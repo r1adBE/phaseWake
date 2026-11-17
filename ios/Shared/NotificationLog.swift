@@ -10,8 +10,8 @@ enum NotificationLog {
     /// Ablehnung schon protokolliert (einmal je Start der App, sonst stünde sie bei jedem Neuplanen da).
     private static var deniedLogged = false
 
-    /// Fragt die Erlaubnis für Mitteilungen an (bei schon entschiedener Erlaubnis ohne Rückfrage). Ein Fehler steht immer
-    /// im Protokoll, eine Ablehnung einmal je Start. - Returns: ob Mitteilungen erlaubt sind.
+    /// Fragt die Erlaubnis für Mitteilungen an (bei schon entschiedener Erlaubnis ohne Rückfrage). Ein Fehler steht
+    /// immer im Protokoll, eine Ablehnung einmal je Start. - Returns: ob Mitteilungen erlaubt sind.
     @discardableResult
     static func requestPermission(_ source: String) async -> Bool {
         do {

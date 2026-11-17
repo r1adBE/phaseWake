@@ -11,7 +11,9 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
-/** Sicherungsdatei und ihr JSON; der Testvektor kommt von `make-backup-vector.py`. Gegenstück: `BackupTests` (Swift). */
+/**
+ * Sicherungsdatei und ihr JSON; der Testvektor kommt von `make-backup-vector.py`. Gegenstück: `BackupTests` (Swift).
+ */
 class BackupTest {
     private val testdata = File(System.getProperty("phasewake.testdata") ?: "../../shared/testdata")
     private val salt = ByteArray(BackupFile.SALT_BYTES) { it.toByte() }

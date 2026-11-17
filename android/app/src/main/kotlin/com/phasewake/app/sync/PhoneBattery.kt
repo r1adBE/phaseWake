@@ -10,10 +10,10 @@ import java.time.Instant
 
 /**
  * Akku je Nacht am Handy. Das Handy läuft nachts oft nicht; es misst darum bei Ereignissen, die es ohnehin
- * bekommt: Beginn, wenn die Uhr eine Nacht zu messen beginnt ([com.phasewake.app.shared.DataLayer.PATH_NIGHT_BEGIN]), Ende
- * beim endgültigen «stop» der Uhr oder, falls das fehlt, wenn ihre Nacht gleich nach dem Ende ankommt. Kommt eine Meldung
- * verspätet an, gilt «jetzt» nicht als Beginn bzw. Ende: dann kein Wert (statt eines falschen). Ladebeginn und -ende hält
- * [BatteryNight] fest.
+ * bekommt: Beginn, wenn die Uhr eine Nacht zu messen beginnt ([com.phasewake.app.shared.DataLayer.PATH_NIGHT_BEGIN]),
+ * Ende beim endgültigen «stop» der Uhr oder, falls das fehlt, wenn ihre Nacht gleich nach dem Ende ankommt. Kommt eine
+ * Meldung verspätet an, gilt «jetzt» nicht als Beginn bzw. Ende: dann kein Wert (statt eines falschen). Ladebeginn und
+ * -ende hält [BatteryNight] fest.
  */
 internal object PhoneBattery {
     /** Die Uhr beginnt eine Nacht: ab jetzt messen, nur wenn die Meldung frisch ankam ([RingMessage.isStale]). */
@@ -26,8 +26,8 @@ internal object PhoneBattery {
     }
 
     /**
-     * Endgültiges «stop» der Uhr (frisch angekommen): Ende der Nacht am Handy. Ist ihre Nacht schon gespeichert, kommt der
-     * Akku gleich dazu, sonst wartet er auf sie ([withPhone]).
+     * Endgültiges «stop» der Uhr (frisch angekommen): Ende der Nacht am Handy. Ist ihre Nacht schon gespeichert, kommt
+     * der Akku gleich dazu, sonst wartet er auf sie ([withPhone]).
      */
     suspend fun stopped(app: PhaseWakeApp) {
         val track = BatteryNight.end(app) ?: return

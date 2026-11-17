@@ -62,7 +62,8 @@ import java.util.Locale
 import kotlinx.coroutines.launch
 
 /**
- * Eine Nacht für die Detailseite: der Eintrag, die Auswertung der Phasen und das Hypnogramm (beides `null` ohne Phasen).
+ * Eine Nacht für die Detailseite: der Eintrag, die Auswertung der Phasen und das Hypnogramm (beides `null` ohne
+ * Phasen).
  */
 internal data class NightView(val item: HistoryItem, val stats: NightStages?, val hypno: HypnoModel?)
 
@@ -184,7 +185,8 @@ internal fun NightDetailPage(item: HistoryItem, data: NightDetailData, actions: 
         score?.let { ScoreCard(it, scoreSourceText(context, item, it, data.sessions), data.goalMinutes, Modifier.fillMaxWidth()) }
         HypnogramSection(view)
         if (pulse != null && series != null) PulseCard(pulse, series.fullNight, Modifier.fillMaxWidth())
-        // Bewegung über die ganze Nacht nur mit Aufzeichnung; das Weckfenster zeigt ohne Phasen schon das Hypnogramm-Feld.
+        // Bewegung über die ganze Nacht nur mit Aufzeichnung; das Weckfenster zeigt ohne Phasen schon das
+        // Hypnogramm-Feld.
         series?.takeIf { it.fullNight && it.epochs.isNotEmpty() }?.let { MotionCard(it, Modifier.fillMaxWidth()) }
         view.stats?.let {
             // Die Einschlafdauer steht schon als Faktor beim Schlafwert.
@@ -194,7 +196,10 @@ internal fun NightDetailPage(item: HistoryItem, data: NightDetailData, actions: 
     }
 }
 
-/** Kopf: Schlafdauer gross, «Im Bett 23:10 – 06:50», bei eigener Nacht Weckmoment und Grund, sonst der Vermerk zur Quelle. */
+/**
+ * Kopf: Schlafdauer gross, «Im Bett 23:10 – 06:50», bei eigener Nacht Weckmoment und Grund, sonst der Vermerk zur
+ * Quelle.
+ */
 @Composable
 private fun NightHeader(view: NightView) {
     val context = LocalContext.current
@@ -231,7 +236,10 @@ private fun NightHeader(view: NightView) {
     }
 }
 
-/** Grosses Hypnogramm mit Legende und Phasen-Summen; eigene Nacht ohne Phasen: Bewegung im Weckfenster und der Hinweis dazu. */
+/**
+ * Grosses Hypnogramm mit Legende und Phasen-Summen; eigene Nacht ohne Phasen: Bewegung im Weckfenster und der Hinweis
+ * dazu.
+ */
 @Composable
 private fun HypnogramSection(view: NightView) {
     val model = view.hypno
@@ -245,7 +253,8 @@ private fun HypnogramSection(view: NightView) {
         }
         return
     }
-    // Eine Karte «Schlafphasen der Nacht»: Hypnogramm, darunter die Phasen-Summen (der Satz zur Einordnung steht einmal, dort).
+    // Eine Karte «Schlafphasen der Nacht»: Hypnogramm, darunter die Phasen-Summen (der Satz zur Einordnung steht
+    // einmal, dort).
     ChartCard(stringResource(R.string.chart_stages_title), null, Modifier.fillMaxWidth()) {
         StageHypnogram(model, height = HYPNO_HEIGHT)
         HypnoLegend(model)

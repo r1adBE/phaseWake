@@ -127,7 +127,9 @@ class DoubleTapTest {
         return controller to tree
     }
 
-    /** Zwei Tipps auf [label] im Abstand [gapMs]: danach steht die Startseite mit dem Wecker da, die App bleibt offen. */
+    /**
+     * Zwei Tipps auf [label] im Abstand [gapMs]: danach steht die Startseite mit dem Wecker da, die App bleibt offen.
+     */
     private fun doubleTapInEditor(label: String, gapMs: Long) {
         val (controller, tree) = openEditor()
         val at = centerOf(controller.get(), label)
@@ -150,7 +152,9 @@ class DoubleTapTest {
     @Test
     fun doubleTapBackArrowAt33ms() = doubleTapInEditor(context.getString(R.string.action_cancel), 33)
 
-    /** Einrichtung: zwei Tipps auf «Weiter» der Seite «Erster Wecker» (150 ms): Die Lernseite bleibt, nichts abgelehnt. */
+    /**
+     * Einrichtung: zwei Tipps auf «Weiter» der Seite «Erster Wecker» (150 ms): Die Lernseite bleibt, nichts abgelehnt.
+     */
     @Test
     fun onboardingDoubleTapNextKeepsLearningQuestion() {
         ComposeTree.prepareFrames()

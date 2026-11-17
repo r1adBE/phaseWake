@@ -88,7 +88,8 @@ class BackupAlarm(
 
     /**
      * Die Uhr meldet den Weckmoment: mitklingeln und den Zweitwecker dieser Nacht aussetzen.
-     * Ein verspätet zugestelltes «klingeln» (älter als [RingMessage.MAX_AGE_MS]) klingelt nicht mehr und setzt nichts aus.
+     * Ein verspätet zugestelltes «klingeln» (älter als [RingMessage.MAX_AGE_MS]) klingelt nicht mehr und setzt nichts
+     * aus.
      */
     suspend fun watchRang(message: RingMessage) {
         // Die Uhr weckt: Einschlafklänge enden immer, auch wenn das Handy selbst still bleibt (Weckart «Aus»).
@@ -167,7 +168,8 @@ class BackupAlarm(
             // Ohne Schlummer-Ende ist die Nacht beendet; ein verspätetes Schlummer-«stop» ändert nichts.
             message.snoozeUntil == null -> cancelSnoozeSafety(message.alarmId)
         }
-        // Auch beim Schlummern: Die Wiederaufnahme am Handy endet (die Sicherung oben übernimmt), auch nach einem Prozessende.
+        // Auch beim Schlummern: Die Wiederaufnahme am Handy endet (die Sicherung oben übernimmt), auch nach einem
+        // Prozessende.
         cancelSnoozeOf(message.alarmId, message.target)
         context.phoneApp.diag.log(if (message.snoozeUntil != null) DiagKind.SNOOZE else DiagKind.STOP, "from watch")
         if (message.snoozeUntil == null) {
@@ -248,8 +250,9 @@ class BackupAlarm(
     }
 
     /**
-     * Pro Wecker erledigt bis: Die Uhr hat die Nacht übernommen oder der Zweitwecker hat geweckt (Zielzeit + Nachfrist).
-     * Das Gegenstück zu `doneUntil` der Uhr: Überspringen, Startseite und Widget suchen für diesen Wecker erst ab hier.
+     * Pro Wecker erledigt bis: Die Uhr hat die Nacht übernommen oder der Zweitwecker hat geweckt (Zielzeit +
+     * Nachfrist). Das Gegenstück zu `doneUntil` der Uhr: Überspringen, Startseite und Widget suchen für diesen Wecker
+     * erst ab hier.
      */
     val doneUntilFlow: Flow<Map<String, Instant>> = store.data.map { decodeSuppressed(it[SUPPRESSED]) }.distinctUntilChanged()
 
@@ -300,7 +303,9 @@ class BackupAlarm(
         internal const val ACTION_WATCH_RING = "com.phasewake.app.action.WATCH_RING"
         internal const val ACTION_SNOOZE_SAFETY = "com.phasewake.app.action.SNOOZE_SAFETY"
 
-        /** Systemereignisse, auf die [SystemReceiver] hört (wie im Manifest); nur Text, auf jeder Version unbedenklich. */
+        /**
+         * Systemereignisse, auf die [SystemReceiver] hört (wie im Manifest); nur Text, auf jeder Version unbedenklich.
+         */
         @android.annotation.SuppressLint("InlinedApi")
         internal val SYSTEM_ACTIONS = setOf(
             Intent.ACTION_LOCKED_BOOT_COMPLETED,

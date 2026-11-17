@@ -29,7 +29,8 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * [PhaseWakeApp], gestartet vor dem ersten Entsperren nach einem Neustart (wie vom Zweitwecker oder LOCKED_BOOT_COMPLETED).
+ * [PhaseWakeApp], gestartet vor dem ersten Entsperren nach einem Neustart (wie vom Zweitwecker oder
+ * LOCKED_BOOT_COMPLETED).
  */
 class LockedStartApp : PhaseWakeApp() {
     override fun onCreate() {

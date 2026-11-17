@@ -61,8 +61,9 @@ enum Brand {
 /// Klar verschiedene Farbtöne und Helligkeiten, für Deuteranopie, Protanopie und Tritanopie simuliert (ΔE76 ≥ 24),
 /// je ≥ 3:1 zur Karte (WCAG 1.4.11). Nie allein: Stufenhöhe und Beschriftung tragen die Information.
 enum StageColors {
-    /// Phasenfarbe: Wach Koralle, REM Türkis, Leicht Lavendel (Marke), Tief Indigo. Hell auf der Karte FFFCF7: CF4F3A 4.3:1,
-    /// 0E8C9E 3.9:1, 7B6CF6 3.9:1, 2F2A85 11.5:1; dunkel auf der Karte: FF8F85 7.6:1, 6FF2E6 12.4:1, B9AEFF 8.4:1, 6F5CF0 3.6:1.
+    /// Phasenfarbe: Wach Koralle, REM Türkis, Leicht Lavendel (Marke), Tief Indigo. Hell auf der Karte FFFCF7: CF4F3A
+    /// 4.3:1, 0E8C9E 3.9:1, 7B6CF6 3.9:1, 2F2A85 11.5:1; dunkel auf der Karte: FF8F85 7.6:1, 6FF2E6 12.4:1, B9AEFF
+    /// 8.4:1, 6F5CF0 3.6:1.
     static func color(_ stage: SleepStage, _ scheme: ColorScheme) -> Color {
         let dark = scheme == .dark
         switch stage {
@@ -84,8 +85,8 @@ enum StageColors {
     static func window(_ scheme: ColorScheme) -> Color { Brand.accent(scheme).opacity(0.12) }
     /// «Üblicher Bereich» hinter den Summen: Nebentext mit 18 %, Rand gestrichelt in `typicalEdge`.
     static func typical(_ scheme: ColorScheme) -> Color { Brand.secondaryText(scheme).opacity(0.18) }
-    /// Plastischer Block (Schlafprofil): dunkel oben um 35 % aufgehellt, hell unten um 25 % vertieft – die Farbe entfernt
-    /// sich nie Richtung Karte und behält ihren Kontrast (wie `drawBlocks` auf Android).
+    /// Plastischer Block (Schlafprofil): dunkel oben um 35 % aufgehellt, hell unten um 25 % vertieft – die Farbe
+    /// entfernt sich nie Richtung Karte und behält ihren Kontrast (wie `drawBlocks` auf Android).
     static func plasticGradient(_ color: Color, _ scheme: ColorScheme) -> Gradient {
         scheme == .dark ? Gradient(colors: [color.blended(with: .white, by: 0.35), color]) : Gradient(colors: [color, color.blended(with: .black, by: 0.25)])
     }
@@ -163,8 +164,9 @@ struct LogoMark: View {
     }
 }
 
-/// Pulsierende Ringe um den Weckpunkt (Logo-Motiv), für den Weckbildschirm der Apple Watch: pulsiert fortlaufend, solange
-/// `pulsing` (es klingelt, bis zum Stoppen), wie Wear OS; sonst, mit «Bewegung reduzieren» und im Always-On ruhend.
+/// Pulsierende Ringe um den Weckpunkt (Logo-Motiv), für den Weckbildschirm der Apple Watch: pulsiert fortlaufend,
+/// solange `pulsing` (es klingelt, bis zum Stoppen), wie Wear OS; sonst, mit «Bewegung reduzieren» und im Always-On
+/// ruhend.
 struct PulsingDot: View {
     var pulsing = true
     @Environment(\.accessibilityReduceMotion) private var reduceMotion

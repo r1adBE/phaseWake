@@ -13,7 +13,8 @@ extension AlarmSpec {
     }
 
     /// Kopie mit Zeit, Fenster, Tagen, Ein/Aus und «Nächstes Mal überspringen» aus `draft`; alles andere
-    /// (Sonnenaufgang, Töne, iPhone-Wecker, Aufgabe, Schlafdauer, Name, Feiertage) bleibt, wie es am iPhone eingestellt ist.
+    /// (Sonnenaufgang, Töne, iPhone-Wecker, Aufgabe, Schlafdauer, Name, Feiertage) bleibt, wie es am iPhone eingestellt
+    /// ist.
     func editedOnWatch(from draft: AlarmSpec) -> AlarmSpec {
         // Werte stammen aus gültigen Weckern; die Prüfung kann nicht scheitern.
         try! AlarmSpec(
@@ -54,8 +55,8 @@ struct WatchEditorView: View {
     var body: some View {
         NavigationStack {
             List {
-                // Einschlaf-Modus wirkt auf der Apple Watch nicht (nur Galaxy Watch): Die Uhrzeit ist immer die Zielzeit
-                // des normalen Fensters. Die Krone dreht das gewählte Rad.
+                // Einschlaf-Modus wirkt auf der Apple Watch nicht (nur Galaxy Watch): Die Uhrzeit ist immer die
+                // Zielzeit des normalen Fensters. Die Krone dreht das gewählte Rad.
                 // Einschlaf-Modus (am iPhone eingestellt): Die Uhrzeit ist die späteste Weckzeit (wie Wear OS).
                 Section(L(start.sleepDurationMinutes != nil ? "editor_latest" : "editor_target")) {
                     // Räder nach 12/24 Std., je mit eigenem Namen für VoiceOver.
@@ -66,7 +67,8 @@ struct WatchEditorView: View {
                     .listRowBackground(Color.clear)
                 }
                 Section {
-                    // «Genau · 10 · 20 · 30» wie auf dem iPhone; ein älterer Wert (15, 25) bleibt als eigene Wahl erhalten.
+                    // «Genau · 10 · 20 · 30» wie auf dem iPhone; ein älterer Wert (15, 25) bleibt als eigene Wahl
+                    // erhalten.
                     Picker(selection: $window) {
                         ForEach(windowChoices, id: \.self) { minutes in
                             Text(windowName(minutes)).tag(minutes)

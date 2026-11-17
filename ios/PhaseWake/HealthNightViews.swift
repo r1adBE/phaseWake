@@ -35,7 +35,8 @@ struct HealthNightCard: View {
     let nightDate: String
     /// Anzeigename der Quelle; `nil` = unbekannt.
     let sourceName: String?
-    /// Befinden (1–5), nur bei Phase Wake gespeichert (nie in HealthKit); `nil`: keine Zeile (gewählt wird auf der Detailseite).
+    /// Befinden (1–5), nur bei Phase Wake gespeichert (nie in HealthKit); `nil`: keine Zeile (gewählt wird auf der
+    /// Detailseite).
     let feeling: Int?
     /// Öffnet die Detailseite dieser Nacht.
     let onOpen: () -> Void

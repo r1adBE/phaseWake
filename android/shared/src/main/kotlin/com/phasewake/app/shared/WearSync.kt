@@ -126,8 +126,8 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
     }
 
     /**
-     * Uhr: Einträge der Warteschlange von «Verlauf löschen» ([before], ms) verwerfen: Nächte und Aufzeichnungen, die bis
-     * dahin enden (nach ihrem Inhalt, nicht nach dem Zeitpunkt des Einreihens), dazu wie bisher alles, was
+     * Uhr: Einträge der Warteschlange von «Verlauf löschen» ([before], ms) verwerfen: Nächte und Aufzeichnungen, die
+     * bis dahin enden (nach ihrem Inhalt, nicht nach dem Zeitpunkt des Einreihens), dazu wie bisher alles, was
      * vorher eingereiht wurde.
      */
     suspend fun dropHistory(before: Long) {
@@ -194,8 +194,8 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
     suspend fun watchSeenAt(): Long? = readStatus { readSeenAt(it) }
 
     /**
-     * Handy: Verbindungs-Stand der Uhr-App ([readProtocol]); `null`, wenn sie noch nie einen Status gemeldet hat oder die
-     * Wear-Dienste fehlen.
+     * Handy: Verbindungs-Stand der Uhr-App ([readProtocol]); `null`, wenn sie noch nie einen Status gemeldet hat oder
+     * die Wear-Dienste fehlen.
      */
     suspend fun watchProtocol(): Int? = readStatus { readProtocol(it) }
 
@@ -230,7 +230,10 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
         outbox.enqueue(QueueMessages.KEY_HOLIDAYS, DataLayer.PATH_MSG_HOLIDAYS, peer, "$updatedAt\n${Holidays.encode(list)}")
     }
 
-    /** Handy: Schlafziel ([minutes]) mit Zeitpunkt der Änderung an die Uhren, wie die Feiertage; [unlessAcked] wie bei [publishAlarms]. */
+    /**
+     * Handy: Schlafziel ([minutes]) mit Zeitpunkt der Änderung an die Uhren, wie die Feiertage; [unlessAcked] wie bei
+     * [publishAlarms].
+     */
     suspend fun publishSleepGoal(minutes: Int, updatedAt: Long, unlessAcked: Boolean = false) = guarded("Schlafziel senden") {
         put(QueueMessages.KEY_SLEEP_GOAL, DataLayer.PATH_MSG_SLEEP_GOAL, "$minutes|$updatedAt", unlessAcked)
     }
@@ -255,8 +258,8 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
     }
 
     /**
-     * Sendet eine Nachricht an alle erreichbaren Geräte mit der Fähigkeit [capability]. Die Suche nach den Geräten hat eine
-     * Frist ([CAPABILITY_TIMEOUT_MS]): Antworten die Wear-Dienste nicht, wird nicht gesendet und
+     * Sendet eine Nachricht an alle erreichbaren Geräte mit der Fähigkeit [capability]. Die Suche nach den Geräten hat
+     * eine Frist ([CAPABILITY_TIMEOUT_MS]): Antworten die Wear-Dienste nicht, wird nicht gesendet und
      * protokolliert, statt dass der Aufrufer (z. B. «klingeln» ans Handy) unbegrenzt wartet.
      */
     suspend fun message(capability: String, path: String, payload: ByteArray = ByteArray(0)) {
@@ -328,7 +331,10 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
         }
     }
 
-    /** Formate der Datenpakete (Uhr-Status, «Verlauf löschen», Abbruch; frühere Pakete für die Umstellung), siehe [WearPackets]. */
+    /**
+     * Formate der Datenpakete (Uhr-Status, «Verlauf löschen», Abbruch; frühere Pakete für die Umstellung), siehe
+     * [WearPackets].
+     */
     companion object : WearPackets() {
         private const val TAG = "WearSync"
 

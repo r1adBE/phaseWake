@@ -50,7 +50,8 @@ object NightQuality {
  *
  * @property start Beginn der ersten Schlafphase (ungefähr die Einschlafzeit).
  * @property asleepMinutes Summe aller Phasen ausser «wach» (Millisekunden summiert, dann auf ganze Minuten abgerundet).
- * @property timeZone Zone der Aufzeichnung ([HealthSession.timeZone]); `null` = unbekannt, dann die des Geräts. Nachtdatum
+ * @property timeZone Zone der Aufzeichnung ([HealthSession.timeZone]); `null` = unbekannt, dann die des Geräts.
+ * Nachtdatum
  *   und Uhrzeiten (Diagramme, Ø-Bett-/Aufwachzeit, Trends, Regelmässigkeit, Schlafziel) rechnen in ihr ([zoneOr]).
  */
 data class SleepSummary(val start: Instant, val end: Instant, val asleepMinutes: Long, val timeZone: ZoneId? = null) {

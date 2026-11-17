@@ -55,7 +55,8 @@ object RecordControl {
 
     /**
      * Knopf auf der Uhr: startet die Aufzeichnung (sichtbar, also erlaubt). `false` unter [NightRecording.MIN_BATTERY]
-     * Akku: Dann startet nichts, die Startseite zeigt einen Hinweis. Verweigert das System den Start, steht es im Protokoll.
+     * Akku: Dann startet nichts, die Startseite zeigt einen Hinweis. Verweigert das System den Start, steht es im
+     * Protokoll.
      */
     fun startFromWatch(context: Context): Boolean {
         val battery = battery(context)
@@ -71,13 +72,14 @@ object RecordControl {
     fun stopFromWatch(context: Context) = stop(context, RecordEnd.WATCH)
 
     /**
-     * Befehl vom Handy ([RecordSync.Command]), aus dem [com.phasewake.app.wear.sync.WatchListenerService]; [continuous]:
-     * Diagnose am Handy freigeschaltet ([RecordSync.continuousOf]), dann misst ein Start durchgehend.
+     * Befehl vom Handy ([RecordSync.Command]), aus dem [com.phasewake.app.wear.sync.WatchListenerService];
+     * [continuous]: Diagnose am Handy freigeschaltet ([RecordSync.continuousOf]), dann misst ein Start durchgehend.
      */
     fun fromPhone(context: Context, command: RecordSync.Command, continuous: Boolean = false) {
         if (!DirectBoot.isUnlocked(context)) return
         when (command) {
-            // Aus dem Hintergrund darf der Messdienst nicht in den Vordergrund; ein exakter Alarm darf es (gleich jetzt).
+            // Aus dem Hintergrund darf der Messdienst nicht in den Vordergrund; ein exakter Alarm darf es (gleich
+            // jetzt).
             RecordSync.Command.START -> {
                 val intent = Intent(context, RecordReceiver::class.java).setAction(ACTION_PHONE_START).putExtra(RecordService.EXTRA_CONTINUOUS, continuous)
                 arm(context, Instant.now().plusSeconds(1), PendingIntent.getBroadcast(context, REQUEST_PHONE_START, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT))
@@ -87,11 +89,11 @@ object RecordControl {
     }
 
     /**
-     * Lernphase ([com.phasewake.app.core.Learning]): Die Einschlaf-Messung hat begonnen, die Aufzeichnung startet mit ihr
-     * (über einen exakten Alarm gleich jetzt, wie vom Handy) und endet beim Wecken, ohne Klingeln spätestens zur
-     * eingestellten Weckzeit [until]. Nicht unter [Learning.MIN_BATTERY] Akku (der Wecker hat Vorrang) und nicht, wenn schon
-     * eine Aufzeichnung läuft (eine von Hand begonnene zählt ebenso). Grund jeweils im Diagnose-Protokoll und als Meldung
-     * ans Handy ([LearnNotice.skipped], Lern-Übersicht; bei zu wenig Akku auch als Mitteilung).
+     * Lernphase ([com.phasewake.app.core.Learning]): Die Einschlaf-Messung hat begonnen, die Aufzeichnung startet mit
+     * ihr (über einen exakten Alarm gleich jetzt, wie vom Handy) und endet beim Wecken, ohne Klingeln spätestens zur
+     * eingestellten Weckzeit [until]. Nicht unter [Learning.MIN_BATTERY] Akku (der Wecker hat Vorrang) und nicht, wenn
+     * schon eine Aufzeichnung läuft (eine von Hand begonnene zählt ebenso). Grund jeweils im Diagnose-Protokoll und als
+     * Meldung ans Handy ([LearnNotice.skipped], Lern-Übersicht; bei zu wenig Akku auch als Mitteilung).
      * @return ob der Start ausgelöst wurde.
      */
     fun startForLearning(context: Context, until: Instant): Boolean {
@@ -113,8 +115,8 @@ object RecordControl {
     }
 
     /**
-     * Warum die Lernphase heute Nacht nicht aufzeichnet ([startForLearning]), oder `null`. Unbekannter Akku hindert nicht,
-     * Laden ([charging]) auch nicht (die Uhr ist zur Bettzeit geladen).
+     * Warum die Lernphase heute Nacht nicht aufzeichnet ([startForLearning]), oder `null`. Unbekannter Akku hindert
+     * nicht, Laden ([charging]) auch nicht (die Uhr ist zur Bettzeit geladen).
      */
     internal fun learnSkipReason(recording: Boolean, battery: Int?, charging: Boolean = false): String? = when {
         recording -> "recording runs"
@@ -128,7 +130,10 @@ object RecordControl {
      */
     internal fun endsAtTarget(now: Instant, until: Instant, nightRunning: Boolean): Boolean = !now.isBefore(until) && !nightRunning
 
-    /** Längste Schlafdauer: So weit nach jetzt darf die Zielzeit eines neuen Plans liegen, um zur selben Nacht zu gehören. */
+    /**
+     * Längste Schlafdauer: So weit nach jetzt darf die Zielzeit eines neuen Plans liegen, um zur selben Nacht zu
+     * gehören.
+     */
     private val MAX_SLEEP: Duration = Duration.ofMinutes(AlarmSpec.MAX_SLEEP_MINUTES.toLong())
 
     /**
@@ -164,8 +169,8 @@ object RecordControl {
     }
 
     /**
-     * Geweckt (Klingeln beendet, aus dem Weckdienst): Die laufende Aufzeichnung endet jetzt ([RecordEnd.WAKE]), auch eine
-     * von Hand begonnene (spätestens beim Wecken). Wurde die Lernphase am Handy ausgeschaltet
+     * Geweckt (Klingeln beendet, aus dem Weckdienst): Die laufende Aufzeichnung endet jetzt ([RecordEnd.WAKE]), auch
+     * eine von Hand begonnene (spätestens beim Wecken). Wurde die Lernphase am Handy ausgeschaltet
      * ([onLearningChanged], [reason] = [RecordEnd.PHONE]), endet nur die der Lernphase. Läuft der Dienst nicht
      * (Prozessende), wird die gespeicherte abgeschlossen.
      */
@@ -219,9 +224,9 @@ object RecordControl {
     fun resume(context: Context) = startService(context, RecordService.ACTION_RESUME)
 
     /**
-     * Startet den Dienst im Vordergrund ([extras] ergänzt den Auftrag); `false`, wenn das System es verweigert (dann steht
-     * es im Protokoll). Fehlen die Rechte für den Typ «health» ([SensorAccess.allowsHealth]; nur der Knopf auf der Uhr
-     * startet bei sichtbarer App, alles andere aus dem Hintergrund), startet der Dienst gar nicht:
+     * Startet den Dienst im Vordergrund ([extras] ergänzt den Auftrag); `false`, wenn das System es verweigert (dann
+     * steht es im Protokoll). Fehlen die Rechte für den Typ «health» ([SensorAccess.allowsHealth]; nur der Knopf auf
+     * der Uhr startet bei sichtbarer App, alles andere aus dem Hintergrund), startet der Dienst gar nicht:
      * Grund im Protokoll wie im Dienst, eine liegengebliebene Aufzeichnung wird beim Wiederaufnehmen
      * abgeschlossen.
      */
@@ -361,8 +366,8 @@ object RecordControl {
 }
 
 /**
- * Prüf-Alarm der Aufzeichnung, Start vom Handy (über einen exakten Alarm, siehe [RecordControl.fromPhone]) und Start der
- * Lernphase ([RecordControl.startForLearning]).
+ * Prüf-Alarm der Aufzeichnung, Start vom Handy (über einen exakten Alarm, siehe [RecordControl.fromPhone]) und Start
+ * der Lernphase ([RecordControl.startForLearning]).
  */
 class RecordReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {

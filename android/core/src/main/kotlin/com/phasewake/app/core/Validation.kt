@@ -6,11 +6,13 @@ import java.time.ZoneId
 
 /**
  * Validierungs-Modus: Wie oft liegt der Weck-Entscheid wirklich im leichten Schlaf? Rechnet
- * nachträglich auf dem Handy, weckt nie und ändert nichts am Wecken. Regel siehe `docs/PHASENERKENNUNG.md`, Abschnitt 12.
+ * nachträglich auf dem Handy, weckt nie und ändert nichts am Wecken. Regel siehe `docs/PHASENERKENNUNG.md`, Abschnitt
+ * 12.
  *
  * - **Echte Entscheide**: je Nacht ([NightRecord]) Weckzeit und Grund.
  * - **Schattenentscheide**: Der [WakeDetector] läuft über rollende Fenster von [WINDOW_EPOCHS] Epochen (30 Min), alle
- *   [STEP_EPOCHS] Epochen (15 Min) eines, über die Epochen einer Aufzeichnung («Nacht aufzeichnen», Lernphase). Ein Fenster
+ *   [STEP_EPOCHS] Epochen (15 Min) eines, über die Epochen einer Aufzeichnung («Nacht aufzeichnen», Lernphase). Ein
+ * Fenster
  *   zählt nur, wenn es durchgehend gemessen ist ([measured]); Stichproben (2 von 10 Epochen) liefern darum keine.
  * - **Referenz**: Phase der Gesundheits-App zum Entscheid ([reference], ±[TOLERANCE]). Sie ist eine Schätzung der Uhr,
  *   kein Schlaflabor.
@@ -32,7 +34,10 @@ object Validation {
     /** Echter Entscheid (geweckt) oder Schattenentscheid (nur gerechnet). [code] steht im Export. */
     enum class Kind(val code: String) { REAL("real"), SHADOW("shadow") }
 
-    /** Referenzphase zum Entscheid. [UNKNOWN]: Nacht mit Phasen, aber keine bekannte bis ±[TOLERANCE]; [NONE]: Nacht ohne. */
+    /**
+     * Referenzphase zum Entscheid. [UNKNOWN]: Nacht mit Phasen, aber keine bekannte bis ±[TOLERANCE]; [NONE]: Nacht
+     * ohne.
+     */
     enum class Ref(val code: String) {
         AWAKE("awake"), LIGHT("light"), REM("rem"), DEEP("deep"), UNKNOWN("unknown"), NONE("none");
 
@@ -51,8 +56,8 @@ object Validation {
     data class Moment(val at: Instant, val reason: WakeReason)
 
     /**
-     * Ein ausgewerteter Entscheid: Nacht [night] (1 = älteste mit Entscheiden), Zeitpunkt [at], angezeigt in [zone] (Zone
-     * der Aufzeichnung der Gesundheits-App dieser Nacht, sonst des Geräts), Art, Grund und Referenzphase.
+     * Ein ausgewerteter Entscheid: Nacht [night] (1 = älteste mit Entscheiden), Zeitpunkt [at], angezeigt in [zone]
+     * (Zone der Aufzeichnung der Gesundheits-App dieser Nacht, sonst des Geräts), Art, Grund und Referenzphase.
      */
     data class Entry(val night: Int, val at: Instant, val zone: ZoneId, val kind: Kind, val reason: WakeReason, val ref: Ref)
 
@@ -60,8 +65,9 @@ object Validation {
     fun measured(epochs: List<Epoch>): Boolean = epochs.isNotEmpty() && epochs.count { it.motion != null } * 4 >= epochs.size * 3
 
     /**
-     * Ein Fenster ab [start]: erster Entscheid des [WakeDetector] mit [config], Zeitpunkt am Ende der entscheidenden Epoche
-     * (Epoche `i` endet bei [start] + (i + 1) · 30 s); ohne Entscheid [WakeReason.DEADLINE] am Ende des Fensters.
+     * Ein Fenster ab [start]: erster Entscheid des [WakeDetector] mit [config], Zeitpunkt am Ende der entscheidenden
+     * Epoche (Epoche `i` endet bei [start] + (i + 1) · 30 s); ohne Entscheid [WakeReason.DEADLINE] am Ende des
+     * Fensters.
      */
     fun window(start: Instant, epochs: List<Epoch>, config: DetectorConfig): Moment {
         val detector = WakeDetector(config)
@@ -73,9 +79,9 @@ object Validation {
     }
 
     /**
-     * Schattenentscheide einer Aufzeichnung ab [start]: Fenster ab Epoche 0, [STEP_EPOCHS], 2 · [STEP_EPOCHS] …, solange ein
-     * ganzes Fenster ([WINDOW_EPOCHS]) Platz hat; nur durchgehend gemessene ([measured]). Je Fenster ein neuer Detektor.
-     * Entscheiden zwei überlappende Fenster im selben Moment gleich, zählt der Moment einmal.
+     * Schattenentscheide einer Aufzeichnung ab [start]: Fenster ab Epoche 0, [STEP_EPOCHS], 2 · [STEP_EPOCHS] …,
+     * solange ein ganzes Fenster ([WINDOW_EPOCHS]) Platz hat; nur durchgehend gemessene ([measured]). Je Fenster ein
+     * neuer Detektor. Entscheiden zwei überlappende Fenster im selben Moment gleich, zählt der Moment einmal.
      */
     fun shadows(start: Instant, epochs: List<Epoch>, config: DetectorConfig): List<Moment> {
         val moments = mutableListOf<Moment>()
@@ -94,8 +100,8 @@ object Validation {
     /**
      * Referenzphase zum Zeitpunkt [at]: die bekannte Phase (ohne [SleepStage.UNKNOWN]), die [at] abdeckt (Beginn
      * einschliesslich, Ende ausschliesslich; bei Überlappung die zuletzt gelistete wie [StageCheck.stageAt]); sonst die
-     * nächste bis [TOLERANCE] davor (Abstand zum Ende) oder danach (Abstand zum Beginn), bei gleichem Abstand die frühere.
-     * `null`: keine.
+     * nächste bis [TOLERANCE] davor (Abstand zum Ende) oder danach (Abstand zum Beginn), bei gleichem Abstand die
+     * frühere. `null`: keine.
      */
     fun reference(spans: List<StageSpan>, at: Instant): SleepStage? {
         val known = spans.filter { it.stage != SleepStage.UNKNOWN && it.end.isAfter(it.start) }
@@ -116,12 +122,13 @@ object Validation {
      * Alle Entscheide, nach Nacht (Nachtdatum in [zone], [SleepNotes.nightDate]: eigene Nacht über den Fensterbeginn,
      * Aufzeichnung über ihren Beginn) und Zeit; echte vor Schattenentscheiden zur selben Zeit.
      *
-     * Schattenentscheide rechnen mit derselben Konfiguration wie das echte Fenster: Kalibrierung aus den eigenen Nächten vor
-     * der Aufzeichnung ([Calibration.calibrate]) und den gelernten Werten [learned] (aktueller Stand). Das Grundrauschen der
-     * Einschlaf-Messung kennt das Handy nicht; ab 4 Werten gilt ohnehin das des Fensters ([NoiseFloor.windowFloor]).
-     * Referenz: Phasen der Sitzungen, die als Nacht zählen ([HealthHistory.stages], [clearedAt]). Eine Nacht hat Referenz,
-     * wenn eine bekannte Phase ihre Zeit (Fensterbeginn bzw. Beginn der Aufzeichnung bis spätestes Wecken, Zielzeit bzw.
-     * Ende, je ±[TOLERANCE]) berührt; sonst [Ref.NONE]. Nächte ohne Entscheid fehlen (z. B. nur Stichproben).
+     * Schattenentscheide rechnen mit derselben Konfiguration wie das echte Fenster: Kalibrierung aus den eigenen
+     * Nächten vor der Aufzeichnung ([Calibration.calibrate]) und den gelernten Werten [learned] (aktueller Stand). Das
+     * Grundrauschen der Einschlaf-Messung kennt das Handy nicht; ab 4 Werten gilt ohnehin das des Fensters
+     * ([NoiseFloor.windowFloor]). Referenz: Phasen der Sitzungen, die als Nacht zählen ([HealthHistory.stages],
+     * [clearedAt]). Eine Nacht hat Referenz, wenn eine bekannte Phase ihre Zeit (Fensterbeginn bzw. Beginn der
+     * Aufzeichnung bis spätestes Wecken, Zielzeit bzw. Ende, je ±[TOLERANCE]) berührt; sonst [Ref.NONE]. Nächte ohne
+     * Entscheid fehlen (z. B. nur Stichproben).
      *
      * @param recordings abgeschlossene Aufzeichnungen ([Learning.Night]).
      */

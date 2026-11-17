@@ -30,7 +30,8 @@ final class BedtimeReminder {
         await task.value
     }
 
-    /// Je Nacht zählt nur der früheste Wecker; eine schon verpasste Erinnerung entfällt (Regel im Kern, `Bedtime.next`).
+    /// Je Nacht zählt nur der früheste Wecker; eine schon verpasste Erinnerung entfällt (Regel im Kern,
+    /// `Bedtime.next`).
     private func rescheduleNow(alarms: [AlarmSpec], goalMinutes: Int, enabled: Bool, holidays: Set<String>, latencyMinutes: Int?) async {
         let center = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: (0..<Self.nightsAhead).map(Self.identifier))

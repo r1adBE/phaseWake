@@ -44,7 +44,8 @@ struct HistoryChartsData {
         }
     }
 
-    /// Was die Trends-Karte nicht mehr wiederholen muss (wie bisher nach den Diagrammen der letzten Woche bzw. 14 Nächte).
+    /// Was die Trends-Karte nicht mehr wiederholen muss (wie bisher nach den Diagrammen der letzten Woche bzw. 14
+    /// Nächte).
     var covered: Set<TrendLine> {
         var out: Set<TrendLine> = []
         // Ø Schlaf und erreichtes Ziel zeigt die Übersicht («Tage»: die letzten 7 Nächte), sobald sie dort Daten hat.
@@ -54,9 +55,9 @@ struct HistoryChartsData {
         return out
     }
 
-    /// Schlafprofil: die jüngste der letzten 14 Uhr-Nächte mit Schlafphasen. Befinden auch zu Nächten aus anderen Apps (`health`).
-    /// `firstDay`: erster Tag der Woche für die Übersicht (Sprache des Geräts). `latencyMinutes`: gelernte Einschlafdauer
-    /// für die Bettzeit-Linie (die eine Bettzeit).
+    /// Schlafprofil: die jüngste der letzten 14 Uhr-Nächte mit Schlafphasen. Befinden auch zu Nächten aus anderen Apps
+    /// (`health`). `firstDay`: erster Tag der Woche für die Übersicht (Sprache des Geräts). `latencyMinutes`: gelernte
+    /// Einschlafdauer für die Bettzeit-Linie (die eine Bettzeit).
     static func of(nights: [NightRecord], sleeps: [SleepSummary], stages: [StageSpan], notes: [String: [String]],
                    nextTarget: Date?, goalMinutes: Int, latencyMinutes: Int? = nil, now: Date, calendar: Calendar, health: [HealthFeeling] = [],
                    firstDay: Weekday = .monday) -> HistoryChartsData {

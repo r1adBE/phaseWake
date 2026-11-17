@@ -251,7 +251,8 @@ internal fun DataGroup(onExport: () -> Unit, canExport: Boolean, onClearHistory:
             AlertDialog(
                 onDismissRequest = { confirm = false },
                 title = { Text(stringResource(R.string.settings_clear_history)) },
-                // Was alles gelöscht wird, wie am iPhone: Nächte, dazu Notizen, Befinden, Haken und Geräusche, die Lernphase.
+                // Was alles gelöscht wird, wie am iPhone: Nächte, dazu Notizen, Befinden, Haken und Geräusche, die
+                // Lernphase.
                 text = { Text(clearHistoryText()) },
                 confirmButton = {
                     TextButton(onClick = { confirm = false; onClearHistory() }) {

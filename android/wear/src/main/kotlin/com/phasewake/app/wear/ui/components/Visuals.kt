@@ -160,8 +160,8 @@ fun FlowingWave(modifier: Modifier = Modifier, color: Color = Brand.Wave) {
 private const val WAVE_PHASE = 0.6f
 
 /**
- * Ringe um den Weckpunkt (Logo-Motiv), für den Weckbildschirm. [color]/[dot]: hell auf Sonnenaufgang anpassbar. Pulsiert
- * fortlaufend, solange [pulsing] (es klingelt, bis zum Stoppen); sonst und ohne Bewegung ruhend. Sonst keine
+ * Ringe um den Weckpunkt (Logo-Motiv), für den Weckbildschirm. [color]/[dot]: hell auf Sonnenaufgang anpassbar.
+ * Pulsiert fortlaufend, solange [pulsing] (es klingelt, bis zum Stoppen); sonst und ohne Bewegung ruhend. Sonst keine
  * Dauerbewegung auf der Uhr.
  */
 @Composable

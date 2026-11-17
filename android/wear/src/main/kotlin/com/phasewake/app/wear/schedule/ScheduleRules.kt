@@ -25,8 +25,9 @@ internal object ScheduleRules {
 
     /**
      * Was [AlarmScheduler.reschedule] stellt: [cancelMeasuring] = eine laufende Messung gilt einem Plan, der nicht mehr
-     * gilt; [keepRunning] = eine Nacht klingelt oder schlummert, nichts anfassen; [pendingRingAt] = abgelegtes Wecken von
-     * vor einem Neustart bleibt (Schlummer-Ende-Alarm); [windowAt]/[deadlineAt] = Fensterbeginn und Zielzeit des Plans.
+     * gilt; [keepRunning] = eine Nacht klingelt oder schlummert, nichts anfassen; [pendingRingAt] = abgelegtes Wecken
+     * von vor einem Neustart bleibt (Schlummer-Ende-Alarm); [windowAt]/[deadlineAt] = Fensterbeginn und Zielzeit des
+     * Plans.
      */
     data class Decision(
         val cancelMeasuring: Boolean,
@@ -51,10 +52,11 @@ internal object ScheduleRules {
     }
 
     /**
-     * Zeitzonenwechsel im laufenden Weckfenster (docs/ENTSCHEIDE.md, 04.11.2026): Hat sich die Ortszeit seit der Planung
-     * von [planned] verschoben ([AlarmSchedule.zoneShifted] gegenüber [zone]) und ist es dort eine begonnene Nacht ([AlarmSchedule.begunNight] mit [KEEP_GRACE], erledigt
-     * bis [doneUntil]), bleibt sie der Plan zur geplanten absoluten Zielzeit: keine abgebrochene Messung, die
-     * Sicherung bleibt. Sonst `null` (Ortszeit gleich, ohne Zone, Wecker geändert, Fenster noch nicht begonnen).
+     * Zeitzonenwechsel im laufenden Weckfenster (docs/ENTSCHEIDE.md, 04.11.2026): Hat sich die Ortszeit seit der
+     * Planung von [planned] verschoben ([AlarmSchedule.zoneShifted] gegenüber [zone]) und ist es dort eine begonnene
+     * Nacht ([AlarmSchedule.begunNight] mit [KEEP_GRACE], erledigt bis [doneUntil]), bleibt sie der Plan zur geplanten
+     * absoluten Zielzeit: keine abgebrochene Messung, die Sicherung bleibt. Sonst `null` (Ortszeit gleich, ohne Zone,
+     * Wecker geändert, Fenster noch nicht begonnen).
      */
     fun keptNight(
         planned: Planned?,

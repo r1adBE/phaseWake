@@ -10,10 +10,12 @@ struct NightFixture {
     /// Startwerte, mit den gelernten Werten aus `@floor` und `@resting` (Lernphase) und dem Grundrauschen der
     /// Einschlaf-Messung dieser Nacht aus `@onset-floor` (``DetectorConfig/withOnsetFloor(_:)``), falls angegeben.
     let config: DetectorConfig
-    /// `@rearm-until`: Jeder Moment vor dieser Epoche wird übergangen (``WakeDetector/rearm()``, kurze Nacht); `nil` = keiner.
+    /// `@rearm-until`: Jeder Moment vor dieser Epoche wird übergangen (``WakeDetector/rearm()``, kurze Nacht); `nil` =
+    /// keiner.
     var rearmUntil: Int? = nil
 
-    /// Erste weckende Epoche und Grund mit `config` und `rearmUntil`; `nil`, wenn keine weckt. Wie `firstWake` (Kotlin).
+    /// Erste weckende Epoche und Grund mit `config` und `rearmUntil`; `nil`, wenn keine weckt. Wie `firstWake`
+    /// (Kotlin).
     func firstWake() -> (index: Int, reason: WakeReason)? {
         let detector = WakeDetector(config: config)
         for (index, epoch) in epochs.enumerated() {

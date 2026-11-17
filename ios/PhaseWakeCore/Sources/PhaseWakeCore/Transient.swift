@@ -14,7 +14,8 @@ public enum TransientKind: String, CaseIterable, Sendable {
 public struct TransientPlan: Equatable, Sendable {
     /// Probewecker oder Powernap.
     public let kind: TransientKind
-    /// Weckart (iPhone, Uhr-Ton, Weckton, Sonnenaufgang); Kennung mit `Transient.testPrefix` bzw. `Transient.napPrefix`.
+    /// Weckart (iPhone, Uhr-Ton, Weckton, Sonnenaufgang); Kennung mit `Transient.testPrefix` bzw.
+    /// `Transient.napPrefix`.
     public let spec: AlarmSpec
     /// Fenster und Zielzeit; gilt statt des Fensters von `spec`.
     public let plan: WakePlan
@@ -31,7 +32,8 @@ public struct TransientPlan: Equatable, Sendable {
 public enum TransientConflict: String, CaseIterable, Sendable {
     /// Ein Weckfenster läuft, oder eine Nacht klingelt bzw. schlummert: «Gerade läuft dein Wecker.»
     case alarmRunning = "ALARM_RUNNING"
-    /// Das Weckfenster des nächsten Weckers beginnt vor der Zielzeit des Plans: «Dein Weckfenster beginnt schon vorher.»
+    /// Das Weckfenster des nächsten Weckers beginnt vor der Zielzeit des Plans: «Dein Weckfenster beginnt schon
+    /// vorher.»
     case alarmSoon = "ALARM_SOON"
 }
 
@@ -64,8 +66,8 @@ public enum Transient {
     public static let activeAfterTarget: TimeInterval = 2 * 3600
 
     /// So lange nach der Zielzeit (Sekunden) wird ein Plan noch geplant, auch nach einem Neustart: 60 s wie die
-    /// Rückfall-Frist der Apple Watch (`SmartAlarm.fallbackDelay`). Ein Plan, dessen Ende die Uhr verpasst hat, klingelt
-    /// so nie Stunden später nach; ein schon klingelnder Plan behält seine Weckart bis `activeAfterTarget`.
+    /// Rückfall-Frist der Apple Watch (`SmartAlarm.fallbackDelay`). Ein Plan, dessen Ende die Uhr verpasst hat,
+    /// klingelt so nie Stunden später nach; ein schon klingelnder Plan behält seine Weckart bis `activeAfterTarget`.
     public static let planAfterTarget: TimeInterval = 60
 
     private static let header = "phasewake-transient 1"
@@ -80,7 +82,8 @@ public enum Transient {
         return TransientPlan(kind: .test, spec: spec, plan: plan)
     }
 
-    /// Powernap ab `now` mit `minutes` Dauer (auf `napMinMinutes`–`napMaxMinutes` begrenzt), Weckart wie `base`, ohne Licht.
+    /// Powernap ab `now` mit `minutes` Dauer (auf `napMinMinutes`–`napMaxMinutes` begrenzt), Weckart wie `base`, ohne
+    /// Licht.
     public static func nap(base: AlarmSpec?, now: Date, calendar: Calendar, minutes: Int, uuid: String) -> TransientPlan {
         let length = min(napMaxMinutes, max(napMinMinutes, minutes))
         let target = now.addingTimeInterval(TimeInterval(length * 60))
@@ -127,8 +130,8 @@ public enum Transient {
     /// (`AlarmSchedule.earliestPlan` mit erledigten Nächten); `nightActive`: eine Nacht klingelt oder schlummert.
     /// - `alarmRunning`: `nightActive`, oder `now` liegt im Fenster von `next` (Fensterbeginn bis Zielzeit) – sonst
     ///   bräche der Plan die Messung des echten Weckers ab.
-    /// - `alarmSoon`: Die Zielzeit von `transient` liegt nach dem Fensterbeginn von `next`; der Plan überdeckte das Fenster.
-    /// Sonst `nil`.
+    /// - `alarmSoon`: Die Zielzeit von `transient` liegt nach dem Fensterbeginn von `next`; der Plan überdeckte das
+    /// Fenster. Sonst `nil`.
     public static func conflict(_ transient: TransientPlan, next: WakePlan?, nightActive: Bool, now: Date) -> TransientConflict? {
         if nightActive { return .alarmRunning }
         guard let next else { return nil }

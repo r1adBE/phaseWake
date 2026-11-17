@@ -151,7 +151,8 @@ fun HistoryScreen(
         nights.groupBy { SleepNotes.nightDate(it, ZoneId.systemDefault()) }.mapValues { (_, list) -> list.maxBy { it.wokeAt } }
     }
     val healthDates = remember(history) { history.filter { it.kind == HistoryKind.HEALTH }.map { it.date }.toSet() }
-    // Geräusche ohne Nacht (z. B. Uhr nicht getragen, keine Gesundheitsdaten): eigene Karte, nach Zeit zwischen die Nächte.
+    // Geräusche ohne Nacht (z. B. Uhr nicht getragen, keine Gesundheitsdaten): eigene Karte, nach Zeit zwischen die
+    // Nächte.
     val soundsOnly = remember(soundClips, latestByDate, healthDates) { SoundEvents.nightsWithoutRecord(soundClips, latestByDate.keys + healthDates) }
     val entries = remember(history, soundsOnly, recordings) {
         val nightly = buildList<HistoryEntry> {

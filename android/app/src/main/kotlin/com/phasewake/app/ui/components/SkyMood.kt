@@ -7,9 +7,9 @@ import java.time.ZoneId
 
 /**
  * Stimmung des Nachthimmels nach Tageszeit: [dusk] 0–1 färbt den Horizont am Abend magenta-rosé mit violettem Schein,
- * [dawn] 0–1 lässt ihn vor dem Weckfenster glutorange mit goldenem Schein aufgehen, [night] 0–1 vertieft oben das Indigo
- * und zeigt ruhende Sterne. So kräftig, wie Schrift darauf ≥ 4.5:1 behält (SkyMoodTest). Gleich auf Apple (`SkyMood` in
- * Theme.swift).
+ * [dawn] 0–1 lässt ihn vor dem Weckfenster glutorange mit goldenem Schein aufgehen, [night] 0–1 vertieft oben das
+ * Indigo und zeigt ruhende Sterne. So kräftig, wie Schrift darauf ≥ 4.5:1 behält (SkyMoodTest). Gleich auf Apple
+ * (`SkyMood` in Theme.swift).
  */
 data class SkyMood(val dusk: Float = 0f, val dawn: Float = 0f, val night: Float = 0f) {
     companion object {
@@ -36,7 +36,10 @@ data class SkyMood(val dusk: Float = 0f, val dawn: Float = 0f, val night: Float 
         /** Ab hier (Anteil der Höhe von oben) beginnt der Horizont zu leuchten; der Schein reicht nie darüber. */
         const val HORIZON_START = 0.4f
 
-        /** Deckkraft des Lichtscheins oben rechts in seiner Mitte; in tiefer Nacht um [NIGHT_GLOW_DIM] leiser (helleres Indigo). */
+        /**
+         * Deckkraft des Lichtscheins oben rechts in seiner Mitte; in tiefer Nacht um [NIGHT_GLOW_DIM] leiser (helleres
+         * Indigo).
+         */
         const val GLOW_ALPHA = 0.55f
         const val NIGHT_GLOW_DIM = 0.15f
 
@@ -45,8 +48,8 @@ data class SkyMood(val dusk: Float = 0f, val dawn: Float = 0f, val night: Float 
 
         /**
          * Stimmung um [now]: Dämmerung zieht in den letzten drei Stunden vor [windowStart] auf und bleibt im Fenster
-         * voll; am frühen Morgen (5–10 Uhr) ohnehin hell. Abendrot von 17 bis 23 Uhr, am stärksten 19–21 Uhr. Tiefe Nacht
-         * mit Sternen ab 21:30 (voll ab 23 Uhr) bis gegen 5 Uhr, sobald die Dämmerung kommt, weicht sie.
+         * voll; am frühen Morgen (5–10 Uhr) ohnehin hell. Abendrot von 17 bis 23 Uhr, am stärksten 19–21 Uhr. Tiefe
+         * Nacht mit Sternen ab 21:30 (voll ab 23 Uhr) bis gegen 5 Uhr, sobald die Dämmerung kommt, weicht sie.
          */
         fun at(now: Instant, zone: ZoneId, windowStart: Instant?, target: Instant? = null): SkyMood {
             val minutesToWindow = windowStart?.let { Duration.between(now, it).toMinutes().toFloat() }
@@ -101,9 +104,9 @@ data class SkyMood(val dusk: Float = 0f, val dawn: Float = 0f, val night: Float 
     val glow: Color get() = mixColor(Night.Glow, DuskHigh, dusk.coerceIn(0f, 1f))
 
     /**
-     * Farbe des Himmels bei Höhe [y] (0 oben, 1 unten), ohne Lichtschein oben und ohne Sterne: Grundverlauf, Horizont und
-     * (ungünstig gerechnet: ab [HORIZON_START] überall in voller Stärke) der Schein. Für die Kontrast-Tests; gezeichnet
-     * wird mit denselben Werten in [drawNight].
+     * Farbe des Himmels bei Höhe [y] (0 oben, 1 unten), ohne Lichtschein oben und ohne Sterne: Grundverlauf, Horizont
+     * und (ungünstig gerechnet: ab [HORIZON_START] überall in voller Stärke) der Schein. Für die Kontrast-Tests;
+     * gezeichnet wird mit denselben Werten in [drawNight].
      */
     fun skyAt(y: Float): Color {
         val yy = y.coerceIn(0f, 1f)

@@ -1,10 +1,10 @@
 import PhaseWakeCore
 import SwiftUI
 
-/// Phasen-Summen der Detailseite: je Phase Name, Anteil am Schlaf, Dauer und Balken (wach nur Dauer); dahinter heller, gestrichelt umrandeter
-/// «üblicher Bereich für Erwachsene» mit Legende. Darunter klein und einmal die Quelle der Richtwerte samt «Keine
-/// medizinische Bewertung.» – bewusst ohne Urteil über die Nacht, denn Uhren schätzen Phasen nur ungefähr.
-/// Ohne Farbe lesbar: Prozent, Dauer und Bereich stehen als Text. Wie `StageTotals` (Android).
+/// Phasen-Summen der Detailseite: je Phase Name, Anteil am Schlaf, Dauer und Balken (wach nur Dauer); dahinter heller,
+/// gestrichelt umrandeter «üblicher Bereich für Erwachsene» mit Legende. Darunter klein und einmal die Quelle der
+/// Richtwerte samt «Keine medizinische Bewertung.» – bewusst ohne Urteil über die Nacht, denn Uhren schätzen Phasen nur
+/// ungefähr. Ohne Farbe lesbar: Prozent, Dauer und Bereich stehen als Text. Wie `StageTotals` (Android).
 struct StageTotalsView: View {
     let stages: NightStages
     @Environment(\.colorScheme) private var scheme

@@ -74,7 +74,8 @@ data class HistoryCharts(
     /** Was die Trends-Karte nicht mehr wiederholen muss. */
     val covered: Set<TrendLine>
         get() = buildSet {
-            // Ø Schlaf und erreichtes Ziel zeigt die Übersicht («Tage»: die letzten 7 Nächte), sobald sie dort Daten hat.
+            // Ø Schlaf und erreichtes Ziel zeigt die Übersicht («Tage»: die letzten 7 Nächte), sobald sie dort Daten
+            // hat.
             if (overview.containsKey(OverviewUnit.DAYS)) {
                 add(TrendLine.ASLEEP)
                 add(TrendLine.GOAL)
@@ -86,7 +87,8 @@ data class HistoryCharts(
     companion object {
         /**
          * Rechnet alle Diagramme aus Verlauf, Gesundheitsdaten und Notizen. Schlafprofil: die jüngste
-         * der letzten [ChartData.NIGHTS] Uhr-Nächte mit Schlafphasen. Befinden auch zu Nächten aus anderen Apps ([health]).
+         * der letzten [ChartData.NIGHTS] Uhr-Nächte mit Schlafphasen. Befinden auch zu Nächten aus anderen Apps
+         * ([health]).
          */
         fun of(
             nights: List<NightRecord>,
@@ -117,7 +119,9 @@ data class HistoryCharts(
             )
         }
 
-        /** Je Zeitraum das Diagramm, soweit es in diesem Zeitraum Daten gibt (sonst fehlt der Zeitraum: «Keine Daten»). */
+        /**
+         * Je Zeitraum das Diagramm, soweit es in diesem Zeitraum Daten gibt (sonst fehlt der Zeitraum: «Keine Daten»).
+         */
         private fun <T : Any> periods(make: (Int) -> T?): Map<Int, T> =
             ChartData.PERIODS.mapNotNull { nights -> make(nights)?.let { nights to it } }.toMap()
     }

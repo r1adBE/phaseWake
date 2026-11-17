@@ -69,8 +69,8 @@ final class ResetPhoneTests: XCTestCase {
 
     /// «In 2 Minuten testen» ersetzt einen wartenden Powernap; die Powernap-Karte verschwindet wie auf der Uhr.
     /// Den Powernap nur als Stand anlegen (`begin(nap:)`, wie `napFromWatch` ohne Sicherung): `napFromWatch` stellt die
-    /// Sicherung über AlarmKit, und dessen `requestAuthorization()` wartet im Simulator ohne Antwort auf die Rückfrage –
-    /// der Testlauf hing daran (CI).
+    /// Sicherung über AlarmKit, und dessen `requestAuthorization()` wartet im Simulator ohne Antwort auf die Rückfrage
+    /// – der Testlauf hing daran (CI).
     @MainActor
     func testTestReplacesWaitingNap() {
         let transient = PhoneTransient()

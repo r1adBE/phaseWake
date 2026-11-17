@@ -51,8 +51,8 @@ object NoiseFloor {
     /**
      * Plausibilität des Vorwissens (vorsichtig): Die Obergrenze [PRIOR_FACTOR] × Vorwissen gilt nur, wenn
      * das Vorwissen ([priorFloor]) mindestens dieser Anteil des Grundrauschens des Fensters ohne Obergrenze ist. Ein
-     * unplausibel tiefes Vorwissen (z. B. 0.002 bei einer Uhr, die ruhig 0.02 misst) senkte die Schwellen sonst fast auf
-     * die Startwerte, und das Rauschen der Uhr zählte wieder als Bewegung.
+     * unplausibel tiefes Vorwissen (z. B. 0.002 bei einer Uhr, die ruhig 0.02 misst) senkte die Schwellen sonst fast
+     * auf die Startwerte, und das Rauschen der Uhr zählte wieder als Bewegung.
      */
     const val PRIOR_MIN_SHARE: Double = 0.25
 
@@ -64,9 +64,10 @@ object NoiseFloor {
 
     /**
      * Grundrauschen im Weckfenster ([WakeDetector]): wie [floor]; solange die Messung zu wenige Werte hat, gilt das der
-     * Einschlaf-Messung dieser Nacht ([DetectorConfig.onsetFloor]), sonst das gelernte ([DetectorConfig.personalFloor]).
-     * Gibt es Vorwissen ([priorFloor]) und ist es mindestens [PRIOR_MIN_SHARE] × dieses Grundrauschen, liegt das Ergebnis
-     * höchstens bei [PRIOR_FACTOR] × Vorwissen (und nie über [MAX_FLOOR]); sonst bleibt es bei [floor].
+     * Einschlaf-Messung dieser Nacht ([DetectorConfig.onsetFloor]), sonst das gelernte
+     * ([DetectorConfig.personalFloor]). Gibt es Vorwissen ([priorFloor]) und ist es mindestens [PRIOR_MIN_SHARE] ×
+     * dieses Grundrauschen, liegt das Ergebnis höchstens bei [PRIOR_FACTOR] × Vorwissen (und nie über [MAX_FLOOR]);
+     * sonst bleibt es bei [floor].
      */
     fun windowFloor(motions: List<Double?>, config: DetectorConfig): Double? {
         val floor = floor(motions, config.onsetFloor ?: config.personalFloor) ?: return null
@@ -87,7 +88,8 @@ object NoiseFloor {
 
     /**
      * Kennzahlen fürs Diagnose-Protokoll am Ende einer Messung: «floor=… light=… wake=…» (4 Nachkommastellen,
-     * «-» ohne Grundrauschen), aus allen Bewegungen [motions] der Messung, wie im Weckfenster gerechnet ([windowFloor]).
+     * «-» ohne Grundrauschen), aus allen Bewegungen [motions] der Messung, wie im Weckfenster gerechnet
+     * ([windowFloor]).
      */
     fun summary(config: DetectorConfig, motions: List<Double?>): String {
         val noise = windowFloor(motions, config)

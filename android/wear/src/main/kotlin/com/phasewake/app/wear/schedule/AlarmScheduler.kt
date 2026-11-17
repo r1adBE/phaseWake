@@ -51,8 +51,8 @@ import kotlinx.coroutines.sync.withLock
  * Zielzeit geht dabei aber nicht verloren. Endet die Nacht, gilt jede Zielzeit, die in der Zwischenzeit
  * fällig wurde und noch nicht erledigt ist, als verpasst ([CatchUpWindow], gespeichert unter [CATCH_UP_FROM]; nur
  * Wecker, die dabei schon eingeschaltet waren; Regeln im Kern: [AlarmSchedule.missedPlan], gleich auf der Apple Watch):
- * Dieser Wecker klingelt gleich danach (ohne Messung, sein Fenster ist vorbei). Liegt seine Zielzeit noch vorn, misst er den
- * Rest seines Fensters wie gewohnt. Bewusst kein Zusammenlegen mit dem laufenden Wecken: Jeder
+ * Dieser Wecker klingelt gleich danach (ohne Messung, sein Fenster ist vorbei). Liegt seine Zielzeit noch vorn, misst
+ * er den Rest seines Fensters wie gewohnt. Bewusst kein Zusammenlegen mit dem laufenden Wecken: Jeder
  * eingeschaltete Wecker klingelt sichtbar für sich (eigener Name, Ton, Schlummern, Nacht im Verlauf).
  */
 class AlarmScheduler(
@@ -67,7 +67,9 @@ class AlarmScheduler(
     private val transient: TransientStore,
     /** Uhrzeit; die Zeitzone wird bei jedem Aufruf neu gelesen, nie beim Erzeugen festgehalten (Reisen). */
     private val clock: () -> Clock = { Clock.system(java.time.ZoneId.systemDefault()) },
-    /** Uhr-Status ans Handy nach dem Neuplanen; `null`: [WatchStatus.publish]. Im Test ersetzt (hängend, scheiternd). */
+    /**
+     * Uhr-Status ans Handy nach dem Neuplanen; `null`: [WatchStatus.publish]. Im Test ersetzt (hängend, scheiternd).
+     */
     private val statusPublisher: (suspend () -> Unit)? = null,
 ) {
     /** Hält gleichzeitige Aufrufe von [reschedule] (Startseite, Dienst, Data Layer) auseinander. */
@@ -168,9 +170,9 @@ class AlarmScheduler(
      * Plant neu nach dem aktuellen Stand der Wecker ([ScheduleRules.decide]). @return der geplante Plan oder `null`.
      *
      * Reihenfolge: zuerst alles lesen und berechnen, dann die System-Alarme ohne Unterbrechung stellen
-     * (ein neuer Alarm ersetzt den alten mit demselben PendingIntent; aufgehoben wird nur, wenn kein Plan mehr gilt), erst
-     * danach die Nebenarbeiten ([afterAlarms]: Kachel, Status ans Handy, Einschlaf-Messung, geplante Nacht), jede für sich
-     * abgesichert und mit Frist. So bleibt kein Wecker weg, wenn eine Nebenarbeit hängt oder scheitert.
+     * (ein neuer Alarm ersetzt den alten mit demselben PendingIntent; aufgehoben wird nur, wenn kein Plan mehr gilt),
+     * erst danach die Nebenarbeiten ([afterAlarms]: Kachel, Status ans Handy, Einschlaf-Messung, geplante Nacht), jede
+     * für sich abgesichert und mit Frist. So bleibt kein Wecker weg, wenn eine Nebenarbeit hängt oder scheitert.
      */
     suspend fun reschedule(): WakePlan? = rescheduleLock.withLock {
         val now = clock().instant()
@@ -207,10 +209,11 @@ class AlarmScheduler(
     }
 
     /**
-     * Nebenarbeiten nach dem Stellen der Alarme: Protokoll des geplanten [scheduled], Kachel und Komplikation, Uhr-Status ans Handy (Wear-Dienste),
-     * Einschlaf-Messung, die geplante Nacht für einen Zonenwechsel, die Weckzeit einer laufenden Aufzeichnung der
-     * Lernphase ([RecordControl.followPlan]: Wecker verschoben) und ihre Akku-Warnung am Abend ([LearnNotice.update]). Jede für sich mit Frist ([sideWork]) und
-     * abgefangenem Fehler: Eine hängende oder scheiternde stört weder die anderen noch die schon gestellten Alarme.
+     * Nebenarbeiten nach dem Stellen der Alarme: Protokoll des geplanten [scheduled], Kachel und Komplikation,
+     * Uhr-Status ans Handy (Wear-Dienste), Einschlaf-Messung, die geplante Nacht für einen Zonenwechsel, die Weckzeit
+     * einer laufenden Aufzeichnung der Lernphase ([RecordControl.followPlan]: Wecker verschoben) und ihre Akku-Warnung
+     * am Abend ([LearnNotice.update]). Jede für sich mit Frist ([sideWork]) und abgefangenem Fehler: Eine hängende oder
+     * scheiternde stört weder die anderen noch die schon gestellten Alarme.
      */
     private suspend fun afterAlarms(scheduled: WakePlan?, alarmPlan: WakePlan?, now: Instant, zone: java.time.ZoneId) {
         sideWork(TAG, "Protokoll") { scheduled?.let { logScheduled(it) } }
@@ -258,7 +261,9 @@ class AlarmScheduler(
     /** Uhr-Status ans Handy (bereit, Akkustand), nur bei Bedarf; siehe [WatchStatus.publish]. */
     suspend fun publishStatus() = statusPublisher?.invoke() ?: status.publish()
 
-    /** Messung vor dem Schlafen nicht gestartet ([skip]) bzw. doch gestartet ([target]), siehe [WatchStatus.noteSkip]. */
+    /**
+     * Messung vor dem Schlafen nicht gestartet ([skip]) bzw. doch gestartet ([target]), siehe [WatchStatus.noteSkip].
+     */
     suspend fun noteRecorderSkip(skip: com.phasewake.app.core.RecorderSkip) = status.noteSkip(skip)
     suspend fun clearRecorderSkip(target: Instant) = status.clearSkip(target)
     internal suspend fun recorderSkip() = status.skip()

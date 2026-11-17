@@ -15,10 +15,15 @@ import java.time.ZoneId
 data class LearnSkip(val target: Instant, val reason: Reason, val battery: Int? = null) {
     /** Grund, mit seinem Kürzel im Text ([encode]). Nie ändern, nur ergänzen. */
     enum class Reason(val code: String) {
-        /** Akku unter [Learning.MIN_BATTERY] (bzw. unter der Schwelle der Einschlaf-Messung, die die Aufzeichnung startet). */
+        /**
+         * Akku unter [Learning.MIN_BATTERY] (bzw. unter der Schwelle der Einschlaf-Messung, die die Aufzeichnung
+         * startet).
+         */
         BATTERY("battery"),
 
-        /** Keine Sensoren: Messdienst verweigert (Galaxy Watch) bzw. keine Erlaubnis für Bewegungsdaten (Apple Watch). */
+        /**
+         * Keine Sensoren: Messdienst verweigert (Galaxy Watch) bzw. keine Erlaubnis für Bewegungsdaten (Apple Watch).
+         */
         SENSORS("sensors"),
 
         /** Eine von Hand begonnene Aufzeichnung lief schon (sie zählt dann selbst, sobald sie ankommt). */
@@ -74,8 +79,8 @@ object LearnLog {
         text.orEmpty().lines().mapNotNull { LearnSkip.decode(it) }.sortedBy { it.target }
 
     /**
-     * Zielzeiten der Wecker [alarms] (nur echte, eingeschaltete) ab [now] bis [PLAN_DAYS] Tage voraus, in [zone] mit den
-     * Feiertagen [holidays] ([AlarmSchedule.nextTarget]); ein einmaliger Wecker nur mit seinem nächsten Termin.
+     * Zielzeiten der Wecker [alarms] (nur echte, eingeschaltete) ab [now] bis [PLAN_DAYS] Tage voraus, in [zone] mit
+     * den Feiertagen [holidays] ([AlarmSchedule.nextTarget]); ein einmaliger Wecker nur mit seinem nächsten Termin.
      */
     fun upcomingTargets(alarms: List<AlarmSpec>, now: Instant, zone: ZoneId, holidays: Set<LocalDate>): List<Instant> {
         val until = now.plus(Duration.ofDays(PLAN_DAYS))

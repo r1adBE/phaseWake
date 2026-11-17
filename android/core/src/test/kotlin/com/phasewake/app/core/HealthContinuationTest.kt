@@ -148,7 +148,8 @@ class HealthContinuationTest {
         // Die Sekunde zählt nicht doppelt; Schlaf wie ohne Überlappung: 346 + 92.
         assertEquals(438, session.asleepMinutes)
         assertEquals(listOf(438L), HealthHistory.summaries(listOf(night, overlapping), null, zone).map { it.asleepMinutes })
-        // Auch ein langer zweiter Teil (keine Nickerchen-Länge) mit Sekunden-Überlappung bleibt, statt als Doppel zu fallen.
+        // Auch ein langer zweiter Teil (keine Nickerchen-Länge) mit Sekunden-Überlappung bleibt, statt als Doppel zu
+        // fallen.
         val long = HealthSession(night.end.minusSeconds(1), night.end.plus(java.time.Duration.ofHours(4)), source = samsung)
         assertEquals(night.end.plus(java.time.Duration.ofHours(4)), HealthHistory.merge(emptyList(), listOf(night, long), null, zone).single().session!!.end)
     }
@@ -187,7 +188,9 @@ class HealthContinuationTest {
         assertEquals(near.start, ChartData.hypnogram(HealthHistory.stages(listOf(near, bed), null, zone), own)!!.start)
     }
 
-    /** Erster Teil 01:36–09:57 nur «leicht» (501 Min), zweiter Teil [overlapSeconds] vor dessen Ende, 120 Min «leicht». */
+    /**
+     * Erster Teil 01:36–09:57 nur «leicht» (501 Min), zweiter Teil [overlapSeconds] vor dessen Ende, 120 Min «leicht».
+     */
     private fun overlapCase(overlapSeconds: Long): Pair<HealthSession, HealthSession> {
         val first = HealthSession(night.start, night.end, listOf(StageSpan(night.start, night.end, SleepStage.LIGHT)), samsung)
         val from = night.end.minusSeconds(overlapSeconds)

@@ -33,7 +33,9 @@ internal object StartRefused {
     /** Auftrag an den Weckbildschirm: Dienst mit dieser Aktion und dem Plan im Intent nachholen. */
     const val EXTRA_ACTION = "rescueAction"
 
-    /** Startet [intent] als Vordergrunddienst; `false`, wenn das System den Start verweigert hat (dann schon behandelt). */
+    /**
+     * Startet [intent] als Vordergrunddienst; `false`, wenn das System den Start verweigert hat (dann schon behandelt).
+     */
     fun start(context: Context, intent: Intent, plan: WakePlan?): Boolean = try {
         ContextCompat.startForegroundService(context, intent)
         true
@@ -62,7 +64,9 @@ internal object StartRefused {
         }
     }
 
-    /** Weck-Mitteilung wie beim Klingeln ([Notifications.ringing]), ihr Vollbild trägt Aktion und Plan zum Nachholen. */
+    /**
+     * Weck-Mitteilung wie beim Klingeln ([Notifications.ringing]), ihr Vollbild trägt Aktion und Plan zum Nachholen.
+     */
     internal fun notification(context: Context, action: String, plan: WakePlan): Notification {
         val screen = AlarmReceiver.putPlan(Intent(context, RingActivity::class.java), plan)
             .putExtra(RingActivity.EXTRA_VIA, RingActivity.VIA_RESCUE)

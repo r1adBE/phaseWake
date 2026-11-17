@@ -4,7 +4,8 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 /// Inhalt der Sicherung aus dem Stand des iPhones bilden und wieder einspielen. Formate wie Android
-/// (`BackupPayload`); ohne Geräusch-Ausschnitte und ohne Gesundheitsdaten, mit dem Befinden zu Nächten aus anderen Apps.
+/// (`BackupPayload`); ohne Geräusch-Ausschnitte und ohne Gesundheitsdaten, mit dem Befinden zu Nächten aus anderen
+/// Apps.
 @MainActor
 enum BackupIO {
     private static let themeKey = "themeMode"
@@ -86,7 +87,8 @@ enum BackupIO {
     /// (``RestoreJournal/begin(_:payload:)``) übersteht die Wiederherstellung auch ein Ende der App: Der nächste Start
     /// führt sie zu Ende oder holt den alten Stand zurück.
     /// - Throws: wenn eine Datei nicht geschrieben oder getauscht werden konnte; dann ist nichts geändert (ein nicht
-    ///   ganz gelungenes Zurückholen holt der nächste Start nach). Ebenso, solange eine frühere Wiederherstellung offen ist.
+    ///   ganz gelungenes Zurückholen holt der nächste Start nach). Ebenso, solange eine frühere Wiederherstellung offen
+    /// ist.
     static func apply(_ payload: BackupPayload, to model: PhoneModel) throws {
         // Eine abgebrochene frühere Wiederherstellung zuerst abschliessen; bleibt sie offen, wirft `prepare`.
         RestoreJournal.recover(model: model)
@@ -155,7 +157,8 @@ enum BackupIO {
     }
 
     /// Ob Wecker und Einstellungen dieser Sicherung schon in `SettingsFile.phone` stehen (``restoredKey``), etwa weil
-    /// eine spätere Änderung sie mitgeschrieben hat; dann holt ``RestoreJournal/recover(model:)`` sie nicht noch einmal.
+    /// eine spätere Änderung sie mitgeschrieben hat; dann holt ``RestoreJournal/recover(model:)`` sie nicht noch
+    /// einmal.
     static func settingsApplied(_ payload: BackupPayload) -> Bool {
         (SettingsFile.phone.object(forKey: restoredKey) as? NSNumber)?.int64Value == payload.createdAt
     }

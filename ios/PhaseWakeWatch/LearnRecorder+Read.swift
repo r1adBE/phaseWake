@@ -5,8 +5,8 @@ import PhaseWakeCore
 
 extension LearnRecorder {
     /// Pause nach jedem Abschnitt beim Nachrechnen der Einschlafzeit (`WatchOnset`): Das Lesen von bis zu
-    /// 4 Std. Werten am Beginn der Smart-Alarm-Sitzung belegt die Uhr sonst ohne Unterbruch. Mit 24 Abschnitten höchstens
-    /// rund 5 s mehr, innerhalb der Rechenzeit (`WatchOnset.budget`); die Frist bis fail-closed bleibt.
+    /// 4 Std. Werten am Beginn der Smart-Alarm-Sitzung belegt die Uhr sonst ohne Unterbruch. Mit 24 Abschnitten
+    /// höchstens rund 5 s mehr, innerhalb der Rechenzeit (`WatchOnset.budget`); die Frist bis fail-closed bleibt.
     nonisolated static let onsetPause: TimeInterval = 0.2
 
     /// Bewegung je Epoche ab `start` aus dem Rekorder: nach den schon fertigen Epochen `done` bis `until`
@@ -47,7 +47,8 @@ extension LearnRecorder {
         return epochs.motions
     }
 
-    /// Freier Speicher der App in MB (`os_proc_available_memory`; 0, wenn das System keinen Wert liefert, etwa im Simulator).
+    /// Freier Speicher der App in MB (`os_proc_available_memory`; 0, wenn das System keinen Wert liefert, etwa im
+    /// Simulator).
     nonisolated static func freeMegabytes() -> Int {
         os_proc_available_memory() / 1_048_576
     }

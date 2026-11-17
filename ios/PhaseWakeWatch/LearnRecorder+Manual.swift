@@ -3,17 +3,17 @@ import Foundation
 import PhaseWakeCore
 import WatchKit
 
-/// «Nacht aufzeichnen» auf der Apple Watch – Gegenstück zu `RecordControl`/`RecordService` der Galaxy Watch, gleiche Texte
-/// und Regeln: Start auf der Uhr oder vom iPhone, Ende spätestens beim Wecken (``noteWake(alarmId:target:)``),
-/// von Hand (Uhr oder iPhone), nach 12 Std. oder unter 15 % Akku (``NightRecording/endNow(start:now:battery:)``). Gemessen wird mit dem Bewegungs-Rekorder von watchOS über die ganze
-/// Zeit (50 Hz, auch bei geschlossener App); den Puls je Epoche liefert danach Apple Health. Die fertige Aufzeichnung geht
-/// wie eine der Lernphase ans iPhone (``NightRecording``, dort die letzten 14, im Verlauf und im Export, zählt für die
-/// Lernphase).
+/// «Nacht aufzeichnen» auf der Apple Watch – Gegenstück zu `RecordControl`/`RecordService` der Galaxy Watch, gleiche
+/// Texte und Regeln: Start auf der Uhr oder vom iPhone, Ende spätestens beim Wecken (``noteWake(alarmId:target:)``),
+/// von Hand (Uhr oder iPhone), nach 12 Std. oder unter 15 % Akku (``NightRecording/endNow(start:now:battery:)``).
+/// Gemessen wird mit dem Bewegungs-Rekorder von watchOS über die ganze Zeit (50 Hz, auch bei geschlossener App); den
+/// Puls je Epoche liefert danach Apple Health. Die fertige Aufzeichnung geht wie eine der Lernphase ans iPhone
+/// (``NightRecording``, dort die letzten 14, im Verlauf und im Export, zählt für die Lernphase).
 ///
 /// Grenzen von watchOS: Den Rekorder kann die App nicht anhalten (er läuft bis zu seinem geplanten Ende weiter, seine
 /// Werte danach werden nicht gelesen) und je Nacht nur einmal starten (``AppleNightRecorder``): Läuft er schon für die
-/// Einschlaf-Messung, zeichnet «Nacht aufzeichnen» nur bis zu dessen Ende auf. Den Akku prüft sie nur, wenn sie läuft (bei jedem Durchgang, die
-/// Hintergrund-Aktualisierung ist auf höchstens 30 Min gestellt; watchOS kann sie verzögern).
+/// Einschlaf-Messung, zeichnet «Nacht aufzeichnen» nur bis zu dessen Ende auf. Den Akku prüft sie nur, wenn sie läuft
+/// (bei jedem Durchgang, die Hintergrund-Aktualisierung ist auf höchstens 30 Min gestellt; watchOS kann sie verzögern).
 extension LearnRecorder {
     /// Warum «Nacht aufzeichnen» nicht startet.
     enum Refusal: Equatable {
@@ -65,10 +65,11 @@ extension LearnRecorder {
         return needs
     }
 
-    /// Stellt sicher, dass der Rekorder bis `need` aufzeichnet – mit genau einem Aufruf je Nacht (``AppleNightRecorder``):
-    /// Beim ersten Start gilt das späteste schon bekannte Bedürfnis der Nacht
-    /// (`nightNeeds`), höchstens 12 Std. Läuft er schon, kein zweiter Aufruf (Apple dokumentiert nicht, was einer während
-    /// einer Aufzeichnung tut; er könnte sie verkürzen). Reicht er nicht bis `need`, bleibt es dabei (einmal ins Protokoll).
+    /// Stellt sicher, dass der Rekorder bis `need` aufzeichnet – mit genau einem Aufruf je Nacht
+    /// (``AppleNightRecorder``): Beim ersten Start gilt das späteste schon bekannte Bedürfnis der Nacht
+    /// (`nightNeeds`), höchstens 12 Std. Läuft er schon, kein zweiter Aufruf (Apple dokumentiert nicht, was einer
+    /// während einer Aufzeichnung tut; er könnte sie verkürzen). Reicht er nicht bis `need`, bleibt es dabei (einmal
+    /// ins Protokoll).
     func ensureRecorder(until need: Date) {
         let now = Date()
         let decision = AppleNightRecorder.decide(now: now, need: need, others: nightNeeds(), runningUntil: recorderSpan?.until)
@@ -109,8 +110,8 @@ extension LearnRecorder {
     // MARK: Verlauf löschen
 
     /// «Verlauf löschen» vom iPhone, gesendet um `clearedAt`: Eine Aufzeichnung, die bis dahin endete und noch nicht
-    /// fertig ausgewertet ist, verfällt; eine, die danach endet (läuft noch), bleibt – wie auf Android (`HistoryClear`).
-    /// Das iPhone verwirft ebenso nur, was bis zum Löschen endete.
+    /// fertig ausgewertet ist, verfällt; eine, die danach endet (läuft noch), bleibt – wie auf Android
+    /// (`HistoryClear`). Das iPhone verwirft ebenso nur, was bis zum Löschen endete.
     func clearHistory(until clearedAt: Date) {
         guard let mark, !HistoryClear.keeps(end: Self.end(of: mark), clearedAt: clearedAt) else { return }
         DiagStore.shared.log(.measureEnd, "record end phone (history cleared)")
@@ -119,8 +120,8 @@ extension LearnRecorder {
 
     // MARK: Starten und stoppen
 
-    /// «Nacht aufzeichnen» von der Uhr (`by` «watch») oder vom iPhone («phone»). Läuft schon eine Aufzeichnung (auch die
-    /// der Lernphase), bleibt sie (wie auf Android). - Returns: der Grund, wenn nichts startet.
+    /// «Nacht aufzeichnen» von der Uhr (`by` «watch») oder vom iPhone («phone»). Läuft schon eine Aufzeichnung (auch
+    /// die der Lernphase), bleibt sie (wie auf Android). - Returns: der Grund, wenn nichts startet.
     @discardableResult
     func startManual(by: String) async -> Refusal? {
         if since != nil { return nil }
@@ -135,8 +136,8 @@ extension LearnRecorder {
         }
         if let pending = mark {
             if Date() < Self.end(of: pending) {
-                // Lernphase für später in der Nacht (ihre Auswertung hat noch nicht begonnen): Die Aufzeichnung von Hand
-                // ersetzt sie und zählt (wie auf Android, «recording runs»).
+                // Lernphase für später in der Nacht (ihre Auswertung hat noch nicht begonnen): Die Aufzeichnung von
+                // Hand ersetzt sie und zählt (wie auf Android, «recording runs»).
                 save(nil)
             } else {
                 // Eine frühere Aufzeichnung ist noch nicht fertig ausgewertet: so weit wie möglich, dann ans iPhone.
@@ -157,14 +158,16 @@ extension LearnRecorder {
     }
 
     /// Stoppt die laufende Aufzeichnung (auch die der Lernphase): von Hand mit ``RecordEnd/watch`` bzw.
-    /// ``RecordEnd/phone``, bei tiefem Akku ``RecordEnd/battery``, beim Wecken ``RecordEnd/wake``. Ausgewertet wird danach bis jetzt.
+    /// ``RecordEnd/phone``, bei tiefem Akku ``RecordEnd/battery``, beim Wecken ``RecordEnd/wake``. Ausgewertet wird
+    /// danach bis jetzt.
     func stop(_ reason: RecordEnd, battery: Int? = nil) {
         guard var current = mark, since != nil else { return }
         current.stoppedAt = Date()
         current.stopReason = reason.rawValue
         save(current)
         DiagStore.shared.log(reason == .battery ? .battery : .measureEnd, "record stop \(Self.reasonText(reason, battery: battery))")
-        // Läuft keine Weck-Nacht (weder Fenster noch «Gute Nacht»), gehört der Akku zu keiner Nacht im Verlauf (wie Android).
+        // Läuft keine Weck-Nacht (weder Fenster noch «Gute Nacht»), gehört der Akku zu keiner Nacht im Verlauf (wie
+        // Android).
         let phase = SmartAlarm.shared.phase
         if reason != .wake, !(phase.isMeasuring || phase.isRinging || phase.isSnoozed), !WatchModel.shared.goodNightActive {
             WatchBattery.drop("recording ended without alarm night")
@@ -179,8 +182,8 @@ extension LearnRecorder {
         stop(.battery, battery: battery)
     }
 
-    /// Grund fürs Diagnose-Protokoll wie `RecordService.reasonText` (Kotlin): «manual watch», «manual phone», «cap 12h»,
-    /// «battery 14%», «service ended», «wake».
+    /// Grund fürs Diagnose-Protokoll wie `RecordService.reasonText` (Kotlin): «manual watch», «manual phone», «cap
+    /// 12h», «battery 14%», «service ended», «wake».
     static func reasonText(_ reason: RecordEnd, battery: Int?) -> String {
         switch reason {
         case .watch: "manual watch"
@@ -194,8 +197,8 @@ extension LearnRecorder {
 
     // MARK: Einschlafzeit und Anzeige
 
-    /// Einschlafzeit aus dem Rekorder (`WatchOnset`) in die laufende bzw. noch nicht ausgewertete Aufzeichnung, wenn sie in
-    /// deren Zeitraum fällt (wie `appendOnset` auf Android, auch bei einer von Hand begonnenen).
+    /// Einschlafzeit aus dem Rekorder (`WatchOnset`) in die laufende bzw. noch nicht ausgewertete Aufzeichnung, wenn
+    /// sie in deren Zeitraum fällt (wie `appendOnset` auf Android, auch bei einer von Hand begonnenen).
     func noteOnset(bedAt: Date, asleepAt: Date) {
         guard var current = mark, current.from <= asleepAt, asleepAt < Self.end(of: current) else { return }
         current.bedAt = bedAt

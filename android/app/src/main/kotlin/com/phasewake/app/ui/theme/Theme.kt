@@ -64,7 +64,8 @@ data class BrandColors(
     val mutedSoft: Color,
     /**
      * Schlafphasen in allen Diagrammen (Hypnogramm, Nachtkarte, Detailseite, Legenden): verschiedene Farbtöne und
-     * Helligkeiten, je ≥ 3:1 zur Diagrammkarte, auch unter Deuteranopie, Protanopie und Tritanopie (cvd.py). Gleich auf Apple.
+     * Helligkeiten, je ≥ 3:1 zur Diagrammkarte, auch unter Deuteranopie, Protanopie und Tritanopie (cvd.py). Gleich auf
+     * Apple.
      */
     val stageAwake: Color,
     /** REM: helles Cyan/Türkis, klar anders als die Lila-Töne von leicht und tief. */
@@ -281,8 +282,8 @@ object PhaseWakeTheme {
 }
 
 /**
- * Design der App. [eveningDark]: «Abends dunkel ab» gilt gerade ([EveningDarkTicker]); dann ist auch «System» und «Hell»
- * dunkel.
+ * Design der App. [eveningDark]: «Abends dunkel ab» gilt gerade ([EveningDarkTicker]); dann ist auch «System» und
+ * «Hell» dunkel.
  */
 @Composable
 fun PhaseWakeTheme(mode: ThemeMode, eveningDark: Boolean = false, content: @Composable () -> Unit) {

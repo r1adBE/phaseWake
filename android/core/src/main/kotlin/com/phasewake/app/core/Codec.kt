@@ -140,8 +140,8 @@ object Codec {
             night.feeling?.toString().orEmpty(),
         )
         // Akku (Felder 9 und 10) und Einschlafen (11 und 12): nur wenn vorhanden; Feld 8
-        // und davor fehlende dann leer (ältere Versionen lesen ein leeres Feld 8 wie ein fehlendes, einen leeren Akku als
-        // keinen und übergehen Felder, die sie nicht kennen).
+        // und davor fehlende dann leer (ältere Versionen lesen ein leeres Feld 8 wie ein fehlendes, einen leeren Akku
+        // als keinen und übergehen Felder, die sie nicht kennen).
         val tail = listOf(
             if (legacy) "" else night.reason.name,
             night.watchBattery?.let(BatteryTrack::encode).orEmpty(),

@@ -8,7 +8,10 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
-/** Welcher Plan gilt (echter Wecker oder vorübergehender) und wann ein Probewecker/Powernap abgelehnt wird. Gegenstück: `TransientPlanningTests` (Swift). */
+/**
+ * Welcher Plan gilt (echter Wecker oder vorübergehender) und wann ein Probewecker/Powernap abgelehnt wird. Gegenstück:
+ * `TransientPlanningTests` (Swift).
+ */
 class TransientPlanningTest {
     private val zurich = ZoneId.of("Europe/Zurich")
     private val now = LocalDateTime.parse("2026-10-29T05:45").atZone(zurich).toInstant()

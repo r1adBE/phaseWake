@@ -35,8 +35,8 @@ internal class HealthReadGate {
         val MIN_INTERVAL: Duration = Duration.ofMinutes(5)
 
         /**
-         * Ob nach dem letzten Lesen um [lastAt] (ab [lastFrom], nach Erteilung [lastGrant]) jetzt neu gelesen wird. Eine
-         * zurückgestellte Uhr ([now] vor [lastAt]) liest gleich.
+         * Ob nach dem letzten Lesen um [lastAt] (ab [lastFrom], nach Erteilung [lastGrant]) jetzt neu gelesen wird.
+         * Eine zurückgestellte Uhr ([now] vor [lastAt]) liest gleich.
          */
         fun due(lastAt: Instant?, lastFrom: Instant?, lastGrant: Int, now: Instant, from: Instant, grant: Int): Boolean =
             lastAt == null || lastFrom == null || grant != lastGrant || now.isBefore(lastAt) ||

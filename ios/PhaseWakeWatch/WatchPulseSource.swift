@@ -3,9 +3,9 @@ import HealthKit
 
 /// Puls aus Apple Health nur von der Apple Watch: Apple Health sammelt Puls auch von Ringen,
 /// Brustgurten und anderen Apps. Deren Werte zählten sonst als «Uhr getragen» (Puls-Regel der Einschlaf-Erkennung,
-/// ``SleepOnset``), flössen in den gelernten Ruhepuls und in die Puls-Regel im Weckfenster. Apple Watch-Werte tragen das
-/// Gerät mit Modell «Watch» (`HKDevice.model`); Werte ohne Gerät oder von einem anderen zählen nicht. Die Galaxy Watch
-/// liest den Puls direkt am eigenen Sensor (kein Gegenstück nötig).
+/// ``SleepOnset``), flössen in den gelernten Ruhepuls und in die Puls-Regel im Weckfenster. Apple Watch-Werte tragen
+/// das Gerät mit Modell «Watch» (`HKDevice.model`); Werte ohne Gerät oder von einem anderen zählen nicht. Die Galaxy
+/// Watch liest den Puls direkt am eigenen Sensor (kein Gegenstück nötig).
 enum WatchPulseSource {
     /// `HKDevice.model` der Apple Watch.
     static let model = "Watch"
@@ -18,7 +18,8 @@ enum WatchPulseSource {
         ])
     }
 
-    /// Ob eine Probe vom Gerät mit Modell `deviceModel` zählt (Gegenprobe zur Abfrage, falls Apple Health sie nicht filtert).
+    /// Ob eine Probe vom Gerät mit Modell `deviceModel` zählt (Gegenprobe zur Abfrage, falls Apple Health sie nicht
+    /// filtert).
     static func counts(deviceModel: String?) -> Bool {
         deviceModel == model
     }

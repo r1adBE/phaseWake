@@ -132,9 +132,9 @@ class HealthSleep internal constructor(
     /**
      * Phasen einer Sitzung nach Beginn, Regel wie auf Apple (`HealthSleep.sessions`): «Schläft» ohne Phase
      * ([SleepSessionRecord.STAGE_TYPE_SLEEPING], wie Apple «Schlaf ohne Phase») wird [SleepStage.UNKNOWN] und zählt als
-     * Schlaf. [SleepSessionRecord.STAGE_TYPE_UNKNOWN] («Phase unbekannt», nicht «schläft»; wie Apple «Im Bett») ist keine
-     * Phase und zählt nicht als Schlaf. Apples Wegfall von «ohne Phase» bei Überschneidung braucht es hier nicht: Health
-     * Connect lässt in einer Sitzung keine überlappenden Phasen zu.
+     * Schlaf. [SleepSessionRecord.STAGE_TYPE_UNKNOWN] («Phase unbekannt», nicht «schläft»; wie Apple «Im Bett») ist
+     * keine Phase und zählt nicht als Schlaf. Apples Wegfall von «ohne Phase» bei Überschneidung braucht es hier nicht:
+     * Health Connect lässt in einer Sitzung keine überlappenden Phasen zu.
      */
     private fun stagesOf(session: SleepSessionRecord): List<StageSpan> =
         session.stages.mapNotNull { stage -> map(stage.stage)?.let { StageSpan(stage.startTime, stage.endTime, it) } }.sortedBy { it.start }

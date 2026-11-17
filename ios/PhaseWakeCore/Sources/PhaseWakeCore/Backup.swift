@@ -82,7 +82,8 @@ public enum BackupFile {
     }
 
     /// Entschlüsselt eine Datei aus `encrypt` (Kopf `magic`) oder eine ältere mit `magicV1`.
-    /// - Throws: ``BackupError`` mit `notABackup` (fremde Datei) oder `wrongPassword` (Passwort falsch, Datei verändert).
+    /// - Throws: ``BackupError`` mit `notABackup` (fremde Datei) oder `wrongPassword` (Passwort falsch, Datei
+    /// verändert).
     public static func decrypt(_ file: Data, password: String) throws -> Data {
         let bytes = [UInt8](file)
         let head = magic.count + saltBytes

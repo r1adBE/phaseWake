@@ -41,9 +41,9 @@ final class OnsetPulseChargingTests: XCTestCase {
 
     // MARK: Ladegerät verschiebt die Zeitgrenze
 
-    /// Messung ab 23:00, Uhr bis 00:00 am Ladegerät, danach still ohne Puls bis 00:55, ab dann getragen (Puls je 5 Min):
-    /// Die ruhige Strecke ab 00:55 ist erst um 01:10 vollständig. Vorher gab die Messung um 01:00 auf (2 Std., ruhig, also
-    /// keine Verlängerung); jetzt verschiebt die Zeit ohne Tragen (Ladegerät, dann ohne Puls) die Grenze.
+    /// Messung ab 23:00, Uhr bis 00:00 am Ladegerät, danach still ohne Puls bis 00:55, ab dann getragen (Puls je 5
+    /// Min): Die ruhige Strecke ab 00:55 ist erst um 01:10 vollständig. Vorher gab die Messung um 01:00 auf (2 Std.,
+    /// ruhig, also keine Verlängerung); jetzt verschiebt die Zeit ohne Tragen (Ladegerät, dann ohne Puls) die Grenze.
     func testTimeOnTheChargerMovesTheLimit() {
         let count = 300
         let motions: [Double?] = Array(repeating: quiet, count: count)

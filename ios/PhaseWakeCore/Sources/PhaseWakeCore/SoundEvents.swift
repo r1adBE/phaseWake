@@ -308,7 +308,8 @@ public struct SoundEventDetector: Sendable {
     /// Aktuelle Schwelle in dBFS; `nil` während des Vorlaufs.
     public var threshold: Double? { floor.map { $0 + Self.thresholdDb } }
 
-    /// Wertet einen Block aus. `atMs` = Beginn des Blocks, `levelDb` = Pegel in dBFS (`SoundEvents.levelDb`). Liefert die Aktionen dieses Blocks, meist keine.
+    /// Wertet einen Block aus. `atMs` = Beginn des Blocks, `levelDb` = Pegel in dBFS (`SoundEvents.levelDb`). Liefert
+    /// die Aktionen dieses Blocks, meist keine.
     public mutating func onFrame(atMs: Int64, levelDb: Double) -> [Action] {
         var actions: [Action] = []
         let loud = (threshold.map { levelDb > $0 } ?? false) && levelDb >= Self.minEventDb

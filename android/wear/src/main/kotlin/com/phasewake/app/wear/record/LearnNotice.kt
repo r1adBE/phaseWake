@@ -89,8 +89,9 @@ object LearnNotice {
     }
 
     /**
-     * Die Lernphase zeichnet die Nacht nicht auf ([skip]): Meldung ans Handy (Warteschlange) und bei Akku oder fehlenden
-     * Sensoren eine Mitteilung mit dem Grund. Eine laufende Aufzeichnung von Hand zählt selbst, dazu keine Mitteilung.
+     * Die Lernphase zeichnet die Nacht nicht auf ([skip]): Meldung ans Handy (Warteschlange) und bei Akku oder
+     * fehlenden Sensoren eine Mitteilung mit dem Grund. Eine laufende Aufzeichnung von Hand zählt selbst, dazu keine
+     * Mitteilung.
      */
     suspend fun skipped(app: PhaseWakeWear, skip: LearnSkip) {
         app.recordSync.publishLearnSkip(skip)

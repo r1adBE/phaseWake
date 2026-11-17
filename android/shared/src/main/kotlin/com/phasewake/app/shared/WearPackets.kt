@@ -64,8 +64,8 @@ abstract class WearPackets {
         readBattery(map, nowMs, maxAgeMs) != null && map.getBoolean(DataLayer.KEY_BATTERY_CHARGING)
 
     /**
-     * Grund, warum die Messung vor dem Schlafen nicht startete ([RecorderSkip.Reason]), aus dem Status-Paket; `null` ohne
-     * Meldung (auch ältere Uhr), bei unbekanntem Grund oder wenn das Paket älter als [maxAgeMs] ist.
+     * Grund, warum die Messung vor dem Schlafen nicht startete ([RecorderSkip.Reason]), aus dem Status-Paket; `null`
+     * ohne Meldung (auch ältere Uhr), bei unbekanntem Grund oder wenn das Paket älter als [maxAgeMs] ist.
      */
     fun readRecorderSkip(map: DataMap, nowMs: Long, maxAgeMs: Long): RecorderSkip.Reason? =
         map.getString(DataLayer.KEY_RECORDER_SKIP)?.takeIf { nowMs - map.getLong(DataLayer.KEY_UPDATED_AT) <= maxAgeMs }

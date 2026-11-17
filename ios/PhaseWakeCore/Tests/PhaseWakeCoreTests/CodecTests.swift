@@ -121,7 +121,8 @@ final class CodecTests: XCTestCase {
     func testNewReasonsStayReadableForOlderVersions() throws {
         let night = NightRecord(alarmId: "a", windowStart: Date(timeIntervalSince1970: 0), target: Date(timeIntervalSince1970: 1800),
                                 wokeAt: Date(timeIntervalSince1970: 1800), reason: .exact, snoozes: 0, epochs: [])
-        // Byte-gleich mit Android (CodecTest.newReasonsStayReadableForOlderVersions): Feld 5 DEADLINE, Feld 8 der neue Grund.
+        // Byte-gleich mit Android (CodecTest.newReasonsStayReadableForOlderVersions): Feld 5 DEADLINE, Feld 8 der neue
+        // Grund.
         XCTAssertEqual(Codec.encodeNight(night), "phasewake-night 1\na|0|1800000|1800000|DEADLINE|0||EXACT\n\n")
         XCTAssertEqual(try Codec.decodeNight(Codec.encodeNight(night)), night)
         let short = NightRecord(alarmId: "a", windowStart: night.windowStart, target: night.target, wokeAt: night.wokeAt,

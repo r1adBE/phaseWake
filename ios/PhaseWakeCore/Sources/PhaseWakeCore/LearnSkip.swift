@@ -2,13 +2,14 @@ import Foundation
 
 /// Meldung der Uhr ans iPhone (Lern-Übersicht): Die Lernphase zeichnet die Nacht mit Zielzeit
 /// `target` nicht auf, aus `reason`; bei ``Reason/battery`` mit dem Akkustand `battery` in Prozent. Die Apple Watch
-/// schickt sie als Benutzerdaten (`transferUserInfo`, zugestellt, sobald das iPhone erreichbar ist), die Galaxy Watch über
-/// die Warteschlange. Technische Angabe ohne Messwerte, nur am iPhone gespeichert (``LearnLog``). Gleich in Kotlin
+/// schickt sie als Benutzerdaten (`transferUserInfo`, zugestellt, sobald das iPhone erreichbar ist), die Galaxy Watch
+/// über die Warteschlange. Technische Angabe ohne Messwerte, nur am iPhone gespeichert (``LearnLog``). Gleich in Kotlin
 /// (`LearnSkip`).
 public struct LearnSkip: Equatable, Sendable {
     /// Grund, mit seinem Kürzel im Text (``encode()``). Nie ändern, nur ergänzen.
     public enum Reason: String, Sendable, CaseIterable {
-        /// Akku unter ``Learning/minBattery`` (bzw. unter der Schwelle der Einschlaf-Messung, die die Aufzeichnung startet).
+        /// Akku unter ``Learning/minBattery`` (bzw. unter der Schwelle der Einschlaf-Messung, die die Aufzeichnung
+        /// startet).
         case battery
         /// Keine Sensoren: keine Erlaubnis für Bewegungsdaten bzw. kein Rekorder (Apple Watch), Messdienst verweigert
         /// (Galaxy Watch).
@@ -38,8 +39,8 @@ public struct LearnSkip: Equatable, Sendable {
         "\(TimeBounds.millis(target))|\(reason.rawValue)|\(battery.map { String($0) } ?? "")"
     }
 
-    /// Liest ``encode()``; `nil` bei leerem oder unlesbarem Text, unplausibler Zielzeit (``TimeBounds``) oder unbekanntem
-    /// Grund (neuere Uhr). Ein Akku ausserhalb 0–100 gilt als unbekannt.
+    /// Liest ``encode()``; `nil` bei leerem oder unlesbarem Text, unplausibler Zielzeit (``TimeBounds``) oder
+    /// unbekanntem Grund (neuere Uhr). Ein Akku ausserhalb 0–100 gilt als unbekannt.
     public static func decode(_ text: String?) -> LearnSkip? {
         guard let parts = text?.trimmingCharacters(in: .whitespacesAndNewlines).split(separator: "|", omittingEmptySubsequences: false),
               parts.count >= 2, let ms = TimeBounds.checked(Int64(parts[0])), ms > 0,
@@ -53,11 +54,12 @@ public struct LearnSkip: Equatable, Sendable {
 /// der Uhr (``LearnSkip``) und die Nächte mit Wecker (Nachtdatum → Zielzeit), je höchstens ``LearnNights/maxNights``.
 /// Reine Regeln und das Textformat; gespeichert wird am iPhone. Gleich in Kotlin (`LearnLog`).
 public enum LearnLog {
-    /// So viele Tage voraus merkt das iPhone die geplanten Nächte mit Wecker (``upcomingTargets(_:now:calendar:holidays:)``).
+    /// So viele Tage voraus merkt das iPhone die geplanten Nächte mit Wecker
+    /// (``upcomingTargets(_:now:calendar:holidays:)``).
     public static let planDays = 14
 
-    /// Meldungen nach dem Eintreffen von `skip`: dieselbe Nacht (Nachtdatum der Zielzeit) ersetzt die frühere, höchstens
-    /// ``LearnNights/maxNights`` Nächte, die jüngsten. Älteste zuerst.
+    /// Meldungen nach dem Eintreffen von `skip`: dieselbe Nacht (Nachtdatum der Zielzeit) ersetzt die frühere,
+    /// höchstens ``LearnNights/maxNights`` Nächte, die jüngsten. Älteste zuerst.
     public static func add(_ skip: LearnSkip, to skips: [LearnSkip], calendar: Calendar) -> [LearnSkip] {
         let date = SleepNotes.nightDate(skip.target, calendar: calendar)
         let list = skips.filter { SleepNotes.nightDate($0.target, calendar: calendar) != date } + [skip]
@@ -75,8 +77,8 @@ public enum LearnLog {
     }
 
     /// Zielzeiten der Wecker `alarms` (nur eingeschaltete) ab `now` bis ``planDays`` Tage voraus, mit den Feiertagen
-    /// `holidays` (``AlarmSchedule/nextTarget(_:now:calendar:holidays:)``); ein einmaliger Wecker nur mit seinem nächsten
-    /// Termin.
+    /// `holidays` (``AlarmSchedule/nextTarget(_:now:calendar:holidays:)``); ein einmaliger Wecker nur mit seinem
+    /// nächsten Termin.
     public static func upcomingTargets(_ alarms: [AlarmSpec], now: Date, calendar: Calendar, holidays: Set<String>) -> [Date] {
         let until = now.addingTimeInterval(TimeInterval(planDays * 86_400))
         var result: [Date] = []
@@ -93,7 +95,8 @@ public enum LearnLog {
 
     /// Nächte mit Wecker nach einem Neuplanen um `now`: Vergangene Einträge (Zielzeit nicht nach `now`) bleiben als
     /// Verlauf; die künftigen ersetzt der neue Plan `planned` (ein ausgeschalteter oder übersprungener Wecker fällt so
-    /// heraus). Je Nachtdatum die früheste Zielzeit; höchstens die jüngsten ``LearnNights/maxNights`` vergangenen Nächte.
+    /// heraus). Je Nachtdatum die früheste Zielzeit; höchstens die jüngsten ``LearnNights/maxNights`` vergangenen
+    /// Nächte.
     public static func mergeAlarmNights(_ old: [String: Date], planned: [Date], now: Date, calendar: Calendar) -> [String: Date] {
         let past = old.filter { $0.value <= now }.sorted { $0.key < $1.key }.suffix(LearnNights.maxNights)
         var result: [String: Date] = [:]

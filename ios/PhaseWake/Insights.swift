@@ -51,7 +51,8 @@ func unmeasuredText(_ night: NightRecord) -> String? {
 /// Fünf runde Knöpfe von «erschöpft» bis «erholt»; ein Tipp genügt.
 struct FeelingPicker: View {
     let onPick: (Int) -> Void
-    /// Hinweis zum Wecken im leichten Schlaf darunter; nicht bei Nächten aus anderen Apps (dort weckte Phase Wake nicht).
+    /// Hinweis zum Wecken im leichten Schlaf darunter; nicht bei Nächten aus anderen Apps (dort weckte Phase Wake
+    /// nicht).
     var showsHint = true
     @Environment(\.colorScheme) private var scheme
 
@@ -160,12 +161,13 @@ struct TrendsCard: View {
 
 /// Verlauf als echte .csv-Dateien zum Teilen (nicht als Text), für `ShareLink(items:)`: die Nächte
 /// («phasewake-nights.csv», ``NightHistory/exportCsv(_:notes:calendar:)``) und, falls es Aufzeichnungen der Uhr gibt
-/// («Nacht aufzeichnen», Lernphase), diese als zweite Datei («phasewake-recordings.csv», ``NightRecording/exportCsv(_:)``),
-/// wie Android. Hat mindestens eine Nacht Schlafphasen aus Apple Health, kommt die Datei des Validierungs-Modus dazu
-/// («phasewake-validation.csv», ``ValidationReport/exportCsv(_:)``: Uhrzeit ohne Datum je
-/// Entscheid). Die Dateien mit Bewegungs- und Pulsreihen entstehen erst, wenn wirklich geteilt wird – im Hintergrund,
-/// nicht bei jedem Neuzeichnen der Ansicht –, je in einem eigenen Ordner der temporären Dateien. Ältere Exporte werden
-/// beim nächsten Teilen und beim nächsten Start der App entfernt (`cleanUp`), damit die Daten nicht liegen bleiben.
+/// («Nacht aufzeichnen», Lernphase), diese als zweite Datei («phasewake-recordings.csv»,
+/// ``NightRecording/exportCsv(_:)``), wie Android. Hat mindestens eine Nacht Schlafphasen aus Apple Health, kommt die
+/// Datei des Validierungs-Modus dazu («phasewake-validation.csv», ``ValidationReport/exportCsv(_:)``: Uhrzeit ohne
+/// Datum je Entscheid). Die Dateien mit Bewegungs- und Pulsreihen entstehen erst, wenn wirklich geteilt wird – im
+/// Hintergrund, nicht bei jedem Neuzeichnen der Ansicht –, je in einem eigenen Ordner der temporären Dateien. Ältere
+/// Exporte werden beim nächsten Teilen und beim nächsten Start der App entfernt (`cleanUp`), damit die Daten nicht
+/// liegen bleiben.
 struct NightsExport: Transferable, Sendable {
     /// Inhalt einer Datei.
     enum Content: Sendable {
@@ -251,8 +253,8 @@ struct NightsExport: Transferable, Sendable {
 }
 
 /// Knopf «Verlauf exportieren» (Verlauf und Einstellungen): teilt die Nächte und die Aufzeichnungen der Uhr
-/// (``NightsExport``), dazu die Datei des Validierungs-Modus (``ValidationData``, beim Erscheinen gerechnet); ohne Nächte
-/// und Aufzeichnungen gesperrt.
+/// (``NightsExport``), dazu die Datei des Validierungs-Modus (``ValidationData``, beim Erscheinen gerechnet); ohne
+/// Nächte und Aufzeichnungen gesperrt.
 struct HistoryExportLink<Content: View>: View {
     @Environment(PhoneModel.self) private var model
     @ViewBuilder let label: () -> Content

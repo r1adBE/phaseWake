@@ -55,7 +55,8 @@ import java.time.Instant
 import kotlinx.coroutines.delay
 
 /**
- * Einschlafklänge: zehn Klänge (Rauschen, Ventilator, Einschlaf-Wellen, Aufnahmen), Timer, Abspielen/Stoppen und Restzeit.
+ * Einschlafklänge: zehn Klänge (Rauschen, Ventilator, Einschlaf-Wellen, Aufnahmen), Timer, Abspielen/Stoppen und
+ * Restzeit.
  *
  * @param canPlay `false`, solange ein Weckfenster läuft (Klänge überdecken nie das Wecken).
  */

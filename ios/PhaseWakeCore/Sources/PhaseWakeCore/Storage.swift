@@ -21,7 +21,8 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     /// App-Gruppe der Uhr-App und ihrer Komplikation.
     public static let watchGroup = "group.com.phasewake.app"
 
-    /// Name der Einstellungsdatei der Uhr (Wecker, erledigte Nächte, Feiertage, Schlafziel) in ``watchGroupDirectory(create:)``.
+    /// Name der Einstellungsdatei der Uhr (Wecker, erledigte Nächte, Feiertage, Schlafziel) in
+    /// ``watchGroupDirectory(create:)``.
     public static let watchSettingsName = "settings.v1"
 
     /// Ordner «Private» in der App-Gruppe der Uhr; `nil` ohne App-Gruppe. Mit `create` angelegt und von der Sicherung
@@ -44,9 +45,10 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         #endif
     }
 
-    /// Wecker der Uhr für die Komplikation, nur lesend: die Datei der Uhr-App (``watchSettingsName``), bei jedem Zugriff
-    /// frisch gelesen (``SettingsFile`` mit `readOnly`). Gibt es sie noch nicht (die Uhr-App hat die Werte früherer
-    /// Versionen noch nicht übernommen), die `UserDefaults` der App-Gruppe wie bisher; ohne App-Gruppe kein Wecker.
+    /// Wecker der Uhr für die Komplikation, nur lesend: die Datei der Uhr-App (``watchSettingsName``), bei jedem
+    /// Zugriff frisch gelesen (``SettingsFile`` mit `readOnly`). Gibt es sie noch nicht (die Uhr-App hat die Werte
+    /// früherer Versionen noch nicht übernommen), die `UserDefaults` der App-Gruppe wie bisher; ohne App-Gruppe kein
+    /// Wecker.
     public static var watchShared: PhaseWakeStorage {
         guard let url = watchSharedURL else { return watchSharedNone }
         return FileManager.default.fileExists(atPath: url.path) ? watchSharedFile : watchSharedLegacy
@@ -98,8 +100,8 @@ public final class PhaseWakeStorage: @unchecked Sendable {
 
     /// Auto-Aus eines Einmal-Weckers nach dem Klingeln (``AlarmStamps/autoOff(_:id:listStamp:rang:)``):
     /// nur, wenn `rang` den gespeicherten Wecker `id` als die geklingelte Fassung erkennt
-    /// (``AlarmStamps/rang(_:rung:target:calendar:shifted:)``); sein Zeitpunkt wird der seiner bisherigen Fassung + 1 ms,
-    /// damit eine neuere Änderung der Gegenseite gewinnt. Lesen und Schreiben unter einer Sperre (wie Android
+    /// (``AlarmStamps/rang(_:rung:target:calendar:shifted:)``); sein Zeitpunkt wird der seiner bisherigen Fassung + 1
+    /// ms, damit eine neuere Änderung der Gegenseite gewinnt. Lesen und Schreiben unter einer Sperre (wie Android
     /// `AlarmRepository.disableAfterRing`). - Returns: neuer Stand, `nil` = nichts ausgeschaltet.
     @discardableResult
     public func disableAfterRing(_ id: String, now: Date = Date(), rang: (AlarmSpec) -> Bool) -> AlarmSnapshot? {
@@ -157,9 +159,10 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     }
 
     /// Wie ``applyRemote(_:now:)`` für einen Anwendungskontext: WatchConnectivity liefert den zuletzt
-    /// empfangenen Kontext bei jedem Start erneut (`receivedApplicationContext`). Ein Stand, der genau so schon übernommen
-    /// wurde (``AlarmStamps/fingerprint(_:)``), wird nicht nochmals angewendet: Sonst brächte ein alter Kontext einen
-    /// hier gelöschten Wecker zurück, sobald dessen Grabstein nach ``AlarmStamps/tombstoneMaxAgeMs`` verfallen ist.
+    /// empfangenen Kontext bei jedem Start erneut (`receivedApplicationContext`). Ein Stand, der genau so schon
+    /// übernommen wurde (``AlarmStamps/fingerprint(_:)``), wird nicht nochmals angewendet: Sonst brächte ein alter
+    /// Kontext einen hier gelöschten Wecker zurück, sobald dessen Grabstein nach ``AlarmStamps/tombstoneMaxAgeMs``
+    /// verfallen ist.
     /// - Returns: ob sich die Wecker geändert haben.
     @discardableResult
     public func applyRemoteContext(_ remote: AlarmSnapshot, now: Date = Date()) -> Bool {
@@ -202,8 +205,8 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     private func snapshotLocked() -> AlarmSnapshot {
         let text = defaults.string(forKey: Self.alarmsKey) ?? ""
         let alarms = (try? Codec.decodeAlarms(text)) ?? []
-        // Als NSNumber lesen: Millisekunden passen nicht in Int auf 32-Bit-Uhren (arm64_32). Unplausibel (``TimeBounds``,
-        // z. B. aus einer kaputten Nachricht früherer Versionen) gilt als nie geändert.
+        // Als NSNumber lesen: Millisekunden passen nicht in Int auf 32-Bit-Uhren (arm64_32). Unplausibel
+        // (``TimeBounds``, z. B. aus einer kaputten Nachricht früherer Versionen) gilt als nie geändert.
         let updatedAt = TimeBounds.checked((defaults.object(forKey: Self.updatedKey) as? NSNumber)?.int64Value) ?? 0
         let ids = Set(alarms.map(\.id))
         let stamps = (AlarmStamps.int64Map(defaults.object(forKey: Self.stampsKey)) ?? [:]).filter { ids.contains($0.key) }
@@ -219,7 +222,8 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         return text.isEmpty || (try? Codec.decodeAlarms(text)) != nil
     }
 
-    /// Ob der Ort der Wecker gelesen ist: eine ``SettingsFile`` erst nach dem ersten gelungenen Lesen, `UserDefaults` immer.
+    /// Ob der Ort der Wecker gelesen ist: eine ``SettingsFile`` erst nach dem ersten gelungenen Lesen, `UserDefaults`
+    /// immer.
     private func settingsReadableLocked() -> Bool {
         (defaults as? SettingsFile)?.isReadable ?? true
     }
@@ -269,9 +273,9 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     }
 
     /// Fügt eine Nacht hinzu (gleicher Wecker und Fensterbeginn ersetzt) und kürzt auf 90 Nächte.
-    /// Ein schon angegebenes Befinden und ein gespeicherter Akkustand bleiben, falls die Uhr dieselbe Nacht noch einmal schickt.
-    /// Alte Dateien brauchen keine Umstellung: Jede Nacht trägt ihren Wecker schon. Verlauf nicht lesbar (vor dem
-    /// ersten Entsperren): nichts geschrieben. - Returns: ob die Nacht gespeichert ist.
+    /// Ein schon angegebenes Befinden und ein gespeicherter Akkustand bleiben, falls die Uhr dieselbe Nacht noch einmal
+    /// schickt. Alte Dateien brauchen keine Umstellung: Jede Nacht trägt ihren Wecker schon. Verlauf nicht lesbar (vor
+    /// dem ersten Entsperren): nichts geschrieben. - Returns: ob die Nacht gespeichert ist.
     @discardableResult
     public func add(_ night: NightRecord) -> Bool {
         lock.lock(); defer { lock.unlock() }
@@ -279,8 +283,8 @@ public final class PhaseWakeStorage: @unchecked Sendable {
             Self.log("Verlauf nicht lesbar, Nacht nicht gespeichert")
             return false
         }
-        // Befinden, Akku (z. B. des iPhones) und Einschlafen bleiben, wenn die Uhr dieselbe Nacht ohne sie noch einmal schickt
-        // (wie Android); Beginn und Einschlafzeit nur zusammen (gehören zur selben Messung).
+        // Befinden, Akku (z. B. des iPhones) und Einschlafen bleiben, wenn die Uhr dieselbe Nacht ohne sie noch einmal
+        // schickt (wie Android); Beginn und Einschlafzeit nur zusammen (gehören zur selben Messung).
         let old = current.first { Self.sameNight($0, night) }
         let merged = NightRecord(alarmId: night.alarmId, windowStart: night.windowStart, target: night.target, wokeAt: night.wokeAt,
                                  reason: night.reason, snoozes: night.snoozes, epochs: night.epochs, feeling: night.feeling ?? old?.feeling,

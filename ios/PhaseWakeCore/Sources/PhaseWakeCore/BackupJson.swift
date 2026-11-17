@@ -19,9 +19,9 @@ public struct BackupSettings: Equatable, Sendable {
     /// Zeitpunkt von «Verlauf löschen» (ms seit 1970); Fremd-Nächte, die nicht danach enden, bleiben ausgeblendet
     /// (``HealthHistory/visible(_:clearedAt:)``). `nil` = nie gelöscht.
     public var historyClearedAt: Int64?
-    /// Mitteilung «Nächster Wecker» auf dem Sperrbildschirm an (nur Android, Schalter «Wecker auf dem Sperrbildschirm»).
-    /// Das iPhone hat diese Mitteilung nicht, behält den Wert aber für eine spätere Sicherung. Fehlt der Schlüssel
-    /// (ältere Sicherung), gilt die Vorgabe `true`.
+    /// Mitteilung «Nächster Wecker» auf dem Sperrbildschirm an (nur Android, Schalter «Wecker auf dem
+    /// Sperrbildschirm»). Das iPhone hat diese Mitteilung nicht, behält den Wert aber für eine spätere Sicherung. Fehlt
+    /// der Schlüssel (ältere Sicherung), gilt die Vorgabe `true`.
     public var nextAlarmNotice: Bool
     /// Einschlaf-Messung am Abend an (nur Galaxy Watch, Schalter «Einschlafen automatisch erkennen»). Das iPhone hat
     /// diese Messung nicht, behält den Wert aber für eine spätere Sicherung. Fehlt der Schlüssel (ältere Sicherung),
@@ -30,7 +30,8 @@ public struct BackupSettings: Equatable, Sendable {
     /// «Abends dunkel ab» an (``EveningDark``). Fehlt der Schlüssel (ältere Sicherung), gilt
     /// die Vorgabe `true`.
     public var eveningDark: Bool
-    /// Beginn von «Abends dunkel ab» in Minuten des Tages; fehlt oder unplausibel: 18:00 (``EveningDark/checkedFrom(_:)``).
+    /// Beginn von «Abends dunkel ab» in Minuten des Tages; fehlt oder unplausibel: 18:00
+    /// (``EveningDark/checkedFrom(_:)``).
     public var eveningDarkFrom: Int
 
     /// Erzeugt Einstellungen; ohne Angaben die Vorgaben der App.
@@ -62,8 +63,8 @@ public struct BackupPayload: Equatable, Sendable {
     public static let format = "phasewake-backup"
     /// Wert von «version»; neuere Versionen werden gelesen, soweit die Schlüssel bekannt sind.
     public static let version = 1
-    /// Tiefste erlaubte Verschachtelung von Objekten und Listen (die Sicherung selbst braucht 2). Tiefer: ``CodecError``,
-    /// geprüft vor `JSONSerialization`. Identisch zu `BackupJson.MAX_DEPTH` (Kotlin).
+    /// Tiefste erlaubte Verschachtelung von Objekten und Listen (die Sicherung selbst braucht 2). Tiefer:
+    /// ``CodecError``, geprüft vor `JSONSerialization`. Identisch zu `BackupJson.MAX_DEPTH` (Kotlin).
     public static let maxDepth = 64
 
     /// Erstellt (ms seit 1970).

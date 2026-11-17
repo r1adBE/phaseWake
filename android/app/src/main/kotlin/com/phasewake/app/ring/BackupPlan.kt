@@ -33,7 +33,8 @@ import kotlinx.coroutines.withTimeoutOrNull
 internal suspend fun BackupAlarm.planBackup() {
     rescheduleSunrise()
     val current = now()
-    // Schlummer-Sicherung und Schlummern am Handy sind unabhängig vom Zweitwecker; nach einem Neustart wiederherstellen.
+    // Schlummer-Sicherung und Schlummern am Handy sind unabhängig vom Zweitwecker; nach einem Neustart
+    // wiederherstellen.
     SnoozeSafety.restore(context, current)
     PhoneSnooze.restore(context, current)
     val app = context.phoneApp
@@ -112,8 +113,9 @@ private val PLANNED_ZONE = stringPreferencesKey("backup_planned_zone")
 private val PLANNED_BASE = longPreferencesKey("backup_planned_base")
 
 /**
- * Geplanter Zweitwecker für [RingRules.keptBackup]: eingestellte Zielzeit [PLANNED_BASE] (ältere Daten: [plannedTarget]),
- * Zone der Planung und die frühere Zielzeit aus [shift], wenn sie diese Nacht vorverlegt. `null` ohne geplanten.
+ * Geplanter Zweitwecker für [RingRules.keptBackup]: eingestellte Zielzeit [PLANNED_BASE] (ältere Daten:
+ * [plannedTarget]), Zone der Planung und die frühere Zielzeit aus [shift], wenn sie diese Nacht vorverlegt. `null` ohne
+ * geplanten.
  */
 private fun plannedBackup(prefs: Preferences, plannedTarget: Instant?, shift: OnsetShift?): RingRules.PlannedBackup? {
     val id = prefs[PLANNED_ID] ?: return null

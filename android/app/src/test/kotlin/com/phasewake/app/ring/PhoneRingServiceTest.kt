@@ -82,7 +82,8 @@ class PhoneRingServiceTest {
         controller = service
         assertEquals(PhoneRingService.State.Ringing(fromWatch = true, snoozesLeft = 2), plain())
         assertEquals(PhoneSnooze.Saved(resumeAt, "a", Snooze.MAX_COUNT - 2, now.toEpochMilli()), PhoneSnooze.load(context))
-        // Am Handy geschlummert: Die Uhr schlummert, statt der Wiederaufnahme gilt die Sicherung nach dem Schlummer-Ende.
+        // Am Handy geschlummert: Die Uhr schlummert, statt der Wiederaufnahme gilt die Sicherung nach dem
+        // Schlummer-Ende.
         service.get().onStartCommand(Intent(context, PhoneRingService::class.java).setAction(PhoneRingService.ACTION_SNOOZE), 0, 2)
         shadowOf(Looper.getMainLooper()).idle()
         assertEquals(PhoneRingService.State.Idle, PhoneRingService.ringState.value)

@@ -125,8 +125,9 @@ struct LearnedLines: View {
 }
 
 /// Empfohlene Schlafenszeit am Abend (nach der Lernphase, wie `BedtimeAdviceCard` auf Android): «Geh heute zwischen …
-/// und … ins Bett» für den Wecker dieser Nacht, bis zum Ende der Spanne (``Learning/bedtimeRange(target:sleepMinutes:latencyMinutes:)``;
-/// Schlaf = Schlafdauer des Weckers, sonst das Schlafziel). Ohne gelernte Werte nichts.
+/// und … ins Bett» für den Wecker dieser Nacht, bis zum Ende der Spanne
+/// (``Learning/bedtimeRange(target:sleepMinutes:latencyMinutes:)``; Schlaf = Schlafdauer des Weckers, sonst das
+/// Schlafziel). Ohne gelernte Werte nichts.
 struct BedtimeAdviceCard: View {
     let now: Date
     @Environment(PhoneModel.self) private var model
@@ -160,8 +161,8 @@ struct BedtimeAdviceCard: View {
     }
 }
 
-/// Lernphase in den Einstellungen (wie `LearningGroup` auf Android): Titel «Lernphase: Nacht N von 7» bzw. «Angepasst an
-/// dich» mit den gelernten Werten, Schalter «Aktiv» (Zustimmung), «Details» zur Lern-Übersicht und «Neu lernen» mit
+/// Lernphase in den Einstellungen (wie `LearningGroup` auf Android): Titel «Lernphase: Nacht N von 7» bzw. «Angepasst
+/// an dich» mit den gelernten Werten, Schalter «Aktiv» (Zustimmung), «Details» zur Lern-Übersicht und «Neu lernen» mit
 /// Rückfrage; ohne die Erklärung der Startseite. Nur mit einer Uhr, die aufzeichnen kann, oder wenn
 /// schon gelernt.
 struct LearningSettingsSection: View {

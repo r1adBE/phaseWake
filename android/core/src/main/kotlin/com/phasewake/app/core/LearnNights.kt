@@ -18,9 +18,9 @@ object LearnNights {
 
     /**
      * Unter diesem Anteil (Prozent) Epochen mit Puls an den Epochen mit Bewegung gilt eine Nacht als «vermutlich nicht
-     * getragen». Getragen liegt er höher: Galaxy Watch in Stichproben rund 20 %, Apple Watch (Puls aus Apple Health, etwa
-     * alle 5 Min) rund 10 %. Bewegung allein unterscheidet nicht: Das Rauschen der Uhr ist am Handgelenk und auf dem Tisch
-     * gleich. Fehlt die Pulserlaubnis, sieht es gleich aus; der Tipp nennt beides.
+     * getragen». Getragen liegt er höher: Galaxy Watch in Stichproben rund 20 %, Apple Watch (Puls aus Apple Health,
+     * etwa alle 5 Min) rund 10 %. Bewegung allein unterscheidet nicht: Das Rauschen der Uhr ist am Handgelenk und auf
+     * dem Tisch gleich. Fehlt die Pulserlaubnis, sieht es gleich aus; der Tipp nennt beides.
      */
     const val MIN_PULSE_PERCENT = 2
 
@@ -83,7 +83,9 @@ object LearnNights {
         /** Die letzte Nacht, Aufzeichnung kann noch kommen (bis Mittag). */
         PENDING,
 
-        /** Galaxy Watch: «Einschlafen automatisch erkennen» aus, ohne «Gute Nacht» startet nichts (aktueller Schalter). */
+        /**
+         * Galaxy Watch: «Einschlafen automatisch erkennen» aus, ohne «Gute Nacht» startet nichts (aktueller Schalter).
+         */
         AUTO_OFF,
 
         /** Wecker bekannt, aber nichts angekommen: Uhr aus, nicht verbunden, App nicht geöffnet (Apple Watch). */
@@ -94,11 +96,12 @@ object LearnNights {
     }
 
     /**
-     * Was über eine Nacht bekannt ist. Aufzeichnung ([recorded]: eine ab dem Beginn der Lernphase): Epochen mit Bewegung
-     * [measuredEpochs], Spanne erste bis letzte von ihnen [spanEpochs], Epochen mit Puls [heartRateEpochs], Grund des Endes
-     * [endCode] (`RecordEnd`). [beforeStart]: nur Aufzeichnungen, die vor dem Beginn der Lernphase begannen. Meldung der
-     * Uhr [skip]. Zustimmung jetzt [consent], Wecker [alarm] (`true` gemerkt oder belegt, `false` sicher keiner, `null`
-     * unbekannt), Schalter der Einschlaf-Messung [autoOnset] (Apple: immer `true`), [pending]: letzte Nacht, bis Mittag.
+     * Was über eine Nacht bekannt ist. Aufzeichnung ([recorded]: eine ab dem Beginn der Lernphase): Epochen mit
+     * Bewegung [measuredEpochs], Spanne erste bis letzte von ihnen [spanEpochs], Epochen mit Puls [heartRateEpochs],
+     * Grund des Endes [endCode] (`RecordEnd`). [beforeStart]: nur Aufzeichnungen, die vor dem Beginn der Lernphase
+     * begannen. Meldung der Uhr [skip]. Zustimmung jetzt [consent], Wecker [alarm] (`true` gemerkt oder belegt, `false`
+     * sicher keiner, `null` unbekannt), Schalter der Einschlaf-Messung [autoOnset] (Apple: immer `true`), [pending]:
+     * letzte Nacht, bis Mittag.
      */
     data class Facts(
         val recorded: Boolean = false,
@@ -157,7 +160,9 @@ object LearnNights {
         return night.epochs.indexOfLast { it.motion != null } - first + 1
     }
 
-    /** Anteil der Epochen mit Puls an denen mit Bewegung in ganzen Prozent (abgerundet, höchstens 100; 0 ohne Bewegung). */
+    /**
+     * Anteil der Epochen mit Puls an denen mit Bewegung in ganzen Prozent (abgerundet, höchstens 100; 0 ohne Bewegung).
+     */
     fun pulsePercent(measuredEpochs: Int, heartRateEpochs: Int): Int =
         if (measuredEpochs <= 0) 0 else minOf(100, heartRateEpochs * 100 / measuredEpochs)
 

@@ -85,7 +85,10 @@ internal class AppData(
     val onboardingDone: Boolean? = null,
     /** Diagnose in den Einstellungen sichtbar. */
     val diagnostics: Boolean = false,
-    /** Pro Wecker erledigt bis (Uhr hat die Nacht übernommen, Zweitwecker hat geweckt); siehe `BackupAlarm.doneUntilFlow`. */
+    /**
+     * Pro Wecker erledigt bis (Uhr hat die Nacht übernommen, Zweitwecker hat geweckt); siehe
+     * `BackupAlarm.doneUntilFlow`.
+     */
     val doneUntil: Map<String, Instant> = emptyMap(),
     /** Befinden (1–5) je Nachtdatum zu Nächten aus anderen Apps; nur bei Phase Wake gespeichert. */
     val healthFeelings: Map<LocalDate, Int> = emptyMap(),
@@ -148,7 +151,8 @@ internal fun collectAppData(app: PhaseWakeApp): AppData {
 
 /**
  * Schlafphasen einer Nacht: so weit vor dem Fensterbeginn und nach dem Wecken (ganze Nacht samt Aufwachen und
- * Weiterschlafen: Beginn bis [HealthHistory.CONTINUATION_GAP] nach dem Wecken, kürzer als [HealthHistory.MIN_NIGHT_MINUTES]).
+ * Weiterschlafen: Beginn bis [HealthHistory.CONTINUATION_GAP] nach dem Wecken, kürzer als
+ * [HealthHistory.MIN_NIGHT_MINUTES]).
  */
 internal val STAGES_BEFORE: Duration = Duration.ofHours(14)
 internal val STAGES_AFTER: Duration = HealthHistory.CONTINUATION_GAP.plusMinutes(HealthHistory.MIN_NIGHT_MINUTES)

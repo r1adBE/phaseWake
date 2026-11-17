@@ -134,8 +134,8 @@ enum class WakeTask {
 }
 
 /**
- * Sonnenaufgang: Der Bildschirm (Handy, Uhr oder beide, siehe [SunriseDevice]) leuchtet erst schwach dunkelorange und wird bis
- * zu vollem, warmem Licht bei voller Helligkeit. Unabhängig von [PhoneAlert].
+ * Sonnenaufgang: Der Bildschirm (Handy, Uhr oder beide, siehe [SunriseDevice]) leuchtet erst schwach dunkelorange und
+ * wird bis zu vollem, warmem Licht bei voller Helligkeit. Unabhängig von [PhoneAlert].
  */
 enum class Sunrise {
     /** Kein Licht. */
@@ -144,7 +144,9 @@ enum class Sunrise {
     /** Beginnt im Weckmoment und ist nach [RING_SECONDS] Sekunden voll hell. */
     RING,
 
-    /** Beginnt mit dem Weckfenster und ist zur Zielzeit voll hell; weckt die Uhr früher, in [CATCH_UP_SECONDS] Sekunden. */
+    /**
+     * Beginnt mit dem Weckfenster und ist zur Zielzeit voll hell; weckt die Uhr früher, in [CATCH_UP_SECONDS] Sekunden.
+     */
     WINDOW;
 
     companion object {

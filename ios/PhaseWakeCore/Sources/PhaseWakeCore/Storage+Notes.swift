@@ -34,7 +34,8 @@ extension PhaseWakeStorage {
         defaults.removeObject(forKey: Self.healthFeelingsKey)
     }
 
-    /// Befinden (1–5) je Nachtdatum zu Nächten aus anderen Apps, z. B. Apple Health (`HealthFeelings`); nie in HealthKit.
+    /// Befinden (1–5) je Nachtdatum zu Nächten aus anderen Apps, z. B. Apple Health (`HealthFeelings`); nie in
+    /// HealthKit.
     public func healthFeelings() -> [String: Int] {
         lock.lock(); defer { lock.unlock() }
         return HealthFeelings.decode(defaults.string(forKey: Self.healthFeelingsKey) ?? "")
@@ -50,7 +51,8 @@ extension PhaseWakeStorage {
         return HealthFeelings.decode(text)
     }
 
-    /// Ersetzt das Befinden zu Nächten aus anderen Apps (Wiederherstellen; ältere Sicherung ohne: leer). - Returns: neuer Stand.
+    /// Ersetzt das Befinden zu Nächten aus anderen Apps (Wiederherstellen; ältere Sicherung ohne: leer). - Returns:
+    /// neuer Stand.
     @discardableResult
     public func replaceHealthFeelings(_ feelings: [String: Int]) -> [String: Int] {
         lock.lock(); defer { lock.unlock() }

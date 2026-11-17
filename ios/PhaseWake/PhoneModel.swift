@@ -27,7 +27,8 @@ final class PhoneModel {
     /// Gewählter Reiter (eine Mitteilung kann den Verlauf öffnen).
     var selectedTab = AppTab.alarms
     /// Geräusche aufnehmen: Vorgabe für neue Nächte, Standard aus.
-    /// Setzer intern statt privat (wie Abendroutine und Wochenrückblick): Die Erweiterung in `PhoneModel+SoundRec.swift` setzt sie.
+    /// Setzer intern statt privat (wie Abendroutine und Wochenrückblick): Die Erweiterung in
+    /// `PhoneModel+SoundRec.swift` setzt sie.
     var soundRecDefault = false
     /// Wahl für eine bestimmte Nacht (Nachtdatum, an/aus), falls selbst gewählt oder gestoppt.
     var soundRecChoice: (night: String, on: Bool)?
@@ -64,7 +65,8 @@ final class PhoneModel {
     private(set) var watchProtocol: Int?
     /// Build-Nummer der Uhr-App (``BuildNumber``); `nil` = unbekannt (ältere Uhr, lokaler Build).
     private(set) var watchBuild: Int?
-    /// Erlaubnis für Mitteilungen auf der Uhr (Rückfall), wie zuletzt gemeldet, und wann die Uhr sie geprüft hat (`nil`: ältere Uhr); `nil` = unbekannt.
+    /// Erlaubnis für Mitteilungen auf der Uhr (Rückfall), wie zuletzt gemeldet, und wann die Uhr sie geprüft hat
+    /// (`nil`: ältere Uhr); `nil` = unbekannt.
     private(set) var watchNotifications: (state: WatchNotifications, checkedAt: Date?)?
 
     /// Ob `loadState` den gespeicherten Stand lesen konnte. Vor dem ersten Entsperren nach einem Neustart nicht (Datei
@@ -132,7 +134,8 @@ final class PhoneModel {
         historyClearedAt = cleared.map { Date(timeIntervalSince1970: Double($0) / 1000) }
     }
 
-    /// Nächster Plan über alle Wecker: früh geweckte Nächte und Feiertage übersprungen; «Gute Nacht» der Uhr verlegt die Zielzeit vor (`WatchNight`).
+    /// Nächster Plan über alle Wecker: früh geweckte Nächte und Feiertage übersprungen; «Gute Nacht» der Uhr verlegt
+    /// die Zielzeit vor (`WatchNight`).
     func nextPlan(now: Date = Date()) -> WakePlan? {
         WatchNight.shared.apply(AlarmSchedule.earliestPlan(alarms, now: now, doneUntil: doneUntil, calendar: .gregorianLocal, holidays: holidays.dates), now: now)
     }
@@ -287,8 +290,9 @@ final class PhoneModel {
     }
 
     /// Auto-Aus eines Einmal-Weckers nach seiner Nacht: nur, wenn der gespeicherte Wecker noch dieselbe
-    /// Uhrzeit wie die geklingelte Fassung `rung` hat (``AlarmStamps/rang(_:rung:target:calendar:shifted:)``; die Zielzeit
-    /// zählt dann nicht). Zeitpunkt der bisherigen Fassung + 1 ms: Eine neuere Änderung auf der Uhr gewinnt beim Abgleich.
+    /// Uhrzeit wie die geklingelte Fassung `rung` hat (``AlarmStamps/rang(_:rung:target:calendar:shifted:)``; die
+    /// Zielzeit zählt dann nicht). Zeitpunkt der bisherigen Fassung + 1 ms: Eine neuere Änderung auf der Uhr gewinnt
+    /// beim Abgleich.
     func disableAfterRing(_ rung: AlarmSpec) {
         guard let snapshot = storage.disableAfterRing(rung.id, rang: {
             AlarmStamps.rang($0, rung: rung, target: .distantPast, calendar: .gregorianLocal, shifted: false)

@@ -12,9 +12,10 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         WCSession.default.activate()
     }
 
-    /// Wecker, Feiertage, Schlafziel (Minuten) und Stand der Lernphase als Anwendungskontext (ersetzt jeweils den ganzen
-    /// Stand, darum immer alles).
-    /// `sleepGoal`, `autoOnset`: `nil` lässt den Schlüssel weg, die Uhr behält dann ihren Stand (``afterReset(_:key:in:)``).
+    /// Wecker, Feiertage, Schlafziel (Minuten) und Stand der Lernphase als Anwendungskontext (ersetzt jeweils den
+    /// ganzen Stand, darum immer alles).
+    /// `sleepGoal`, `autoOnset`: `nil` lässt den Schlüssel weg, die Uhr behält dann ihren Stand
+    /// (``afterReset(_:key:in:)``).
     func publish(_ snapshot: AlarmSnapshot, holidays: HolidayList, sleepGoal: Int?, autoOnset: Bool?, learning: LearningSnapshot) {
         guard WCSession.default.activationState == .activated, WCSession.default.isPaired, WCSession.default.isWatchAppInstalled else { return }
         var context: [String: Any] = [SyncKeys.holidays: Holidays.encode(holidays)]
@@ -158,8 +159,8 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         seenWatch()
         guard let command = message[SyncKeys.command] as? String else { return }
         let alarmId = (message[SyncKeys.alarms] as? String).flatMap { $0.isEmpty ? nil : $0 }
-        // Zielzeit der Nacht (fehlt, wenn die Uhr keine Nacht kennt) und Sendezeit; unplausible Zeiten gelten als fehlend
-        // (``SyncTime``).
+        // Zielzeit der Nacht (fehlt, wenn die Uhr keine Nacht kennt) und Sendezeit; unplausible Zeiten gelten als
+        // fehlend (``SyncTime``).
         let target = SyncTime.date(message[SyncKeys.target])
         let sentAt = message[SyncKeys.sentAt] as? Int64
         // «klingeln» und «stop» ohne Sendezeit (bzw. «klingeln» ohne Kennung oder Schlummer-Runden) stammen von einer
@@ -182,8 +183,8 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
             switch command {
             case SyncKeys.ring:
                 if stale {
-                    // Verspätet zugestellt (iPhone war ausser Reichweite): nicht mehr klingeln – und die Sicherung dieser
-                    // Nacht bleibt: Ob die Uhr wirklich geweckt hat, zeigt erst ihre Nacht oder ihr «stop».
+                    // Verspätet zugestellt (iPhone war ausser Reichweite): nicht mehr klingeln – und die Sicherung
+                    // dieser Nacht bleibt: Ob die Uhr wirklich geweckt hat, zeigt erst ihre Nacht oder ihr «stop».
                     DiagStore.shared.log(.suppressed, "late ring, backup kept")
                 } else {
                     model.watchRang()
@@ -209,7 +210,8 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
                 // Endgültig und frisch: Ende der Nacht für den Akku des iPhones.
                 if snoozeUntil == nil, !stale { PhoneBattery.stopped() }
             case SyncKeys.nightBegin:
-                // Akku je Nacht: Die Uhr beginnt zu messen, das iPhone auch – nur frisch angekommen gilt «jetzt» als Beginn.
+                // Akku je Nacht: Die Uhr beginnt zu messen, das iPhone auch – nur frisch angekommen gilt «jetzt» als
+                // Beginn.
                 if sentAt != nil, !stale { PhoneBattery.begin() } else { DiagStore.shared.log(.battery, "night battery begin ignored (late)") }
             case SyncKeys.testAck:
                 model.transient.received(id)
@@ -218,7 +220,8 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
             case SyncKeys.transientCancel:
                 await model.transient.cancelledOnWatch(id)
             case SyncKeys.onsetShift:
-                // Nicht nach Alter verworfen: Die Meldung gilt für ihre Nacht, solange die läuft (`OnsetShift.expired`).
+                // Nicht nach Alter verworfen: Die Meldung gilt für ihre Nacht, solange die läuft
+                // (`OnsetShift.expired`).
                 if let shift = OnsetShift.decode(payload) { await WatchNight.shared.received(shift) }
             default: break
             }
@@ -226,8 +229,8 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
     }
 
     /// Holt den Diagnose-Bericht der Uhr: klein in der Antwort, voll als Datei (`DiagTransfer`, Antwort
-    /// `SyncKeys.diagFile`). `nil`, wenn sie nicht erreichbar ist oder nicht antwortet; dann steht «watch report missing»
-    /// im Protokoll.
+    /// `SyncKeys.diagFile`). `nil`, wenn sie nicht erreichbar ist oder nicht antwortet; dann steht «watch report
+    /// missing» im Protokoll.
     @MainActor
     func requestWatchDiag() async -> DiagReport? {
         let report = await fetchWatchDiag()
@@ -260,9 +263,11 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         case file
     }
 
-    /// Bericht aus einer Datei der Uhr, der vor dem Warten ankam (die Datei kann die Antwort überholen). Nur Main-Thread.
+    /// Bericht aus einer Datei der Uhr, der vor dem Warten ankam (die Datei kann die Antwort überholen). Nur
+    /// Main-Thread.
     @MainActor private var diagFileReport: DiagReport?
-    /// Wartet auf die Datei des Berichts (``awaitDiagFile()``), mit Kennung gegen eine abgelaufene Frist. Nur Main-Thread.
+    /// Wartet auf die Datei des Berichts (``awaitDiagFile()``), mit Kennung gegen eine abgelaufene Frist. Nur
+    /// Main-Thread.
     @MainActor private var diagWaiter: (id: UUID, continuation: CheckedContinuation<DiagReport?, Never>)?
 
     /// Wartet höchstens `DiagTransfer.fileTimeout` auf die Datei des Berichts.
@@ -298,8 +303,9 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         waiter.continuation.resume(returning: report)
     }
 
-    /// Datei der Uhr: nur der Diagnose-Bericht (``requestWatchDiag()``). Gleich hier lesen: WatchConnectivity löscht die
-    /// Datei nach der Rückkehr. Über `SyncKeys.maxPeerBytes` oder unlesbar: verworfen (das Warten endet mit der Frist).
+    /// Datei der Uhr: nur der Diagnose-Bericht (``requestWatchDiag()``). Gleich hier lesen: WatchConnectivity löscht
+    /// die Datei nach der Rückkehr. Über `SyncKeys.maxPeerBytes` oder unlesbar: verworfen (das Warten endet mit der
+    /// Frist).
     func session(_ session: WCSession, didReceive file: WCSessionFile) {
         guard file.metadata?[SyncKeys.command] as? String == SyncKeys.diagReport else { return }
         seenWatch()
@@ -345,13 +351,14 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
         // Stand der Verbindung; fehlt er in einem Kontext der Uhr (sehr alte Uhr-App), zählt er als 0: Der Nacht-Check
         // meldet «Uhr-App veraltet» (wie Android, Status ohne Angabe).
         let version = Int((context[SyncKeys.watchProtocol] as? Int64) ?? 0)
-        // Erlaubnis der Mitteilungen auf der Uhr; fehlt sie (ältere Uhr, noch nicht gefragt), warnt der Nacht-Check nicht.
-        // Mit dem Zeitpunkt der Prüfung auf der Uhr; ohne ihn (ältere Uhr) kein Hinweis «veraltet».
+        // Erlaubnis der Mitteilungen auf der Uhr; fehlt sie (ältere Uhr, noch nicht gefragt), warnt der Nacht-Check
+        // nicht. Mit dem Zeitpunkt der Prüfung auf der Uhr; ohne ihn (ältere Uhr) kein Hinweis «veraltet».
         let checkedAt = SyncTime.date(context[SyncKeys.watchNotificationsAt])
         let notifications: (state: WatchNotifications, checkedAt: Date?)? = (context[SyncKeys.watchNotifications] as? Int64)
             .flatMap(WatchNotifications.init(rawValue:)).map { (state: $0, checkedAt: checkedAt) }
         if !context.isEmpty {
-            // Build-Nummer der Uhr (fehlt bei älteren Uhren und lokalem Build: kein Hinweis «verschiedene Testversionen»).
+            // Build-Nummer der Uhr (fehlt bei älteren Uhren und lokalem Build: kein Hinweis «verschiedene
+            // Testversionen»).
             let build = BuildNumber.watchBuild(in: context)
             Task { @MainActor in
                 PhoneModel.shared.setWatchStatus(battery: level, version: version, notifications: notifications, charging: charging, build: build)

@@ -3,16 +3,16 @@ import Foundation
 /// Lern-Übersicht: je Nacht seit dem Beginn der Lernphase, ob sie gezählt hat, und wenn
 /// nicht, warum. Grundlage sind nur Angaben, die das iPhone wirklich hat: die Aufzeichnungen der Uhr, ihre Meldungen
 /// (``LearnSkip``), die gemerkten Nächte mit Wecker (``LearnLog``), Zustimmung und Schalter. Dazu die Regel der Warnung
-/// am Abend (``shouldWarn(active:battery:charging:now:recordStart:)``). Reine Logik; identisch zu `LearnNights` (Kotlin),
-/// gemeinsame Fälle in `shared/testdata/learn-nights.vectors`.
+/// am Abend (``shouldWarn(active:battery:charging:now:recordStart:)``). Reine Logik; identisch zu `LearnNights`
+/// (Kotlin), gemeinsame Fälle in `shared/testdata/learn-nights.vectors`.
 public enum LearnNights {
     /// Höchstens so viele Nächte zeigt die Übersicht.
     public static let maxNights = 14
 
     /// Unter diesem Anteil (Prozent) Epochen mit Puls an den Epochen mit Bewegung gilt eine Nacht als «vermutlich nicht
-    /// getragen». Getragen liegt er höher: Galaxy Watch in Stichproben rund 20 %, Apple Watch (Puls aus Apple Health, etwa
-    /// alle 5 Min) rund 10 %. Bewegung allein unterscheidet nicht: Das Rauschen der Uhr ist am Handgelenk und auf dem Tisch
-    /// gleich. Fehlt die Pulserlaubnis, sieht es gleich aus; der Tipp nennt beides.
+    /// getragen». Getragen liegt er höher: Galaxy Watch in Stichproben rund 20 %, Apple Watch (Puls aus Apple Health,
+    /// etwa alle 5 Min) rund 10 %. Bewegung allein unterscheidet nicht: Das Rauschen der Uhr ist am Handgelenk und auf
+    /// dem Tisch gleich. Fehlt die Pulserlaubnis, sieht es gleich aus; der Tipp nennt beides.
     public static let minPulsePercent = 2
 
     /// Die Prüfung «getragen» erst ab so vielen Epochen mit Bewegung (10 Min); darunter sagt der Anteil nichts.
@@ -135,7 +135,8 @@ public enum LearnNights {
         return last - first + 1
     }
 
-    /// Anteil der Epochen mit Puls an denen mit Bewegung in ganzen Prozent (abgerundet, höchstens 100; 0 ohne Bewegung).
+    /// Anteil der Epochen mit Puls an denen mit Bewegung in ganzen Prozent (abgerundet, höchstens 100; 0 ohne
+    /// Bewegung).
     public static func pulsePercent(measured: Int, heartRate: Int) -> Int {
         measured <= 0 ? 0 : min(100, heartRate * 100 / measured)
     }
@@ -217,7 +218,8 @@ public enum LearnNights {
         return result
     }
 
-    /// Ob `a` die bessere Aufzeichnung ist als `b`: eine zählende vor einer mit mehr Messungen (wie `compareBy` in Kotlin).
+    /// Ob `a` die bessere Aufzeichnung ist als `b`: eine zählende vor einer mit mehr Messungen (wie `compareBy` in
+    /// Kotlin).
     private static func better(_ a: Recorded, than b: Recorded) -> Bool {
         let (ca, cb) = (Learning.counts(a.night), Learning.counts(b.night))
         if ca != cb { return ca }
@@ -258,8 +260,8 @@ public enum LearnNights {
     /// Gründe, die auf der Startseite nicht als «letzte Nacht keine Lerndaten» erscheinen: erwartet bzw. noch offen.
     private static let quiet: Set<Reason> = [.pending, .noAlarm, .learningOff]
 
-    /// Startseite: die letzte Nacht aus `nights` (jüngste zuerst), wenn sie nicht gezählt hat und das nicht erwartet war;
-    /// sonst `nil`. «Letzte» heisst: Nachtdatum heute oder gestern.
+    /// Startseite: die letzte Nacht aus `nights` (jüngste zuerst), wenn sie nicht gezählt hat und das nicht erwartet
+    /// war; sonst `nil`. «Letzte» heisst: Nachtdatum heute oder gestern.
     public static func lastNightMiss(_ nights: [Night], now: Date, calendar: Calendar) -> Night? {
         guard let newest = nights.first,
               newest.date >= NightDate.adding(-1, to: SleepNotes.nightDate(now, calendar: calendar)),
@@ -270,9 +272,9 @@ public enum LearnNights {
     /// Zeitpunkt der Warnung am Abend: ``warnLead`` vor dem Beginn der Aufzeichnung `recordStart`.
     public static func warnAt(_ recordStart: Date) -> Date { recordStart.addingTimeInterval(-warnLead) }
 
-    /// Ob die Uhr um `now` warnt «Lade die Uhr, sonst zählt die Lernnacht nicht»: Lernphase läuft, Akku bekannt und unter
-    /// ``Learning/minBattery``, die Uhr lädt nicht, und `now` liegt ab ``warnAt(_:)`` (höchstens ``warnEarly`` früher) vor
-    /// dem Beginn `recordStart`. Unbekannter Akku warnt nicht.
+    /// Ob die Uhr um `now` warnt «Lade die Uhr, sonst zählt die Lernnacht nicht»: Lernphase läuft, Akku bekannt und
+    /// unter ``Learning/minBattery``, die Uhr lädt nicht, und `now` liegt ab ``warnAt(_:)`` (höchstens ``warnEarly``
+    /// früher) vor dem Beginn `recordStart`. Unbekannter Akku warnt nicht.
     public static func shouldWarn(active: Bool, battery: Int?, charging: Bool, now: Date, recordStart: Date) -> Bool {
         guard active, !charging, let battery, battery < Learning.minBattery else { return false }
         return now >= warnAt(recordStart).addingTimeInterval(-warnEarly) && now < recordStart

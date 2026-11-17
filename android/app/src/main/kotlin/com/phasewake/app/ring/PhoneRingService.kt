@@ -68,9 +68,9 @@ class PhoneRingService : Service() {
      * Schlummer-Runden: Bei der Uhr zählt deren Angabe [watchSnoozesLeft], beim Handy allein [snoozesDone] aus dem
      * Schlummer-Alarm. So stimmt die Zahl auch, wenn der Dienst zwischendurch beendet wurde.
      *
-     * Klingelt schon eine andere Nacht (zwei Wecker kurz nacheinander), löst diese sie ab ([RingRules.Incoming.TAKE_OVER]):
-     * Kennung, Zielzeit, Ton und Aufgabe wechseln, die erste Nacht gilt als geweckt (sie hat schon geklingelt). So
-     * bleibt kein Wecker stumm und keiner wird still als erledigt geführt.
+     * Klingelt schon eine andere Nacht (zwei Wecker kurz nacheinander), löst diese sie ab
+     * ([RingRules.Incoming.TAKE_OVER]): Kennung, Zielzeit, Ton und Aufgabe wechseln, die erste Nacht gilt als geweckt
+     * (sie hat schon geklingelt). So bleibt kein Wecker stumm und keiner wird still als erledigt geführt.
      */
     private fun start(alarmId: String?, fromWatch: Boolean, target: Long?, watchSnoozesLeft: Int?, snoozesDone: Int) {
         phoneApp.backup.cancelSnooze()
@@ -167,12 +167,12 @@ class PhoneRingService : Service() {
     }
 
     /**
-     * Stirbt der Prozess mitten im Klingeln des Handys, startet nichts das Klingeln neu. Darum wie auf der Uhr ein Alarm
-     * kurz nach der Zeitgrenze ([RingRules.resumeAt]; bis dahin schlummert oder endet die Runde im laufenden Prozess),
-     * abgelegt wie das Schlummern am Handy ([PhoneSnooze], übersteht auch einen Neustart) mit Zielzeit [target]. Auch
-     * wenn die Uhr führt (docs/ENTSCHEIDE.md, 04.11.2026): Ihr «stop» und ihre Nacht heben ihn dann auch ohne laufenden
-     * Dienst auf ([BackupAlarm.cancelSnoozeOf]). Schlummern ersetzt ihn (gleicher Alarm), Beenden hebt ihn auf
-     * ([BackupAlarm.cancelSnooze]).
+     * Stirbt der Prozess mitten im Klingeln des Handys, startet nichts das Klingeln neu. Darum wie auf der Uhr ein
+     * Alarm kurz nach der Zeitgrenze ([RingRules.resumeAt]; bis dahin schlummert oder endet die Runde im laufenden
+     * Prozess), abgelegt wie das Schlummern am Handy ([PhoneSnooze], übersteht auch einen Neustart) mit Zielzeit
+     * [target]. Auch wenn die Uhr führt (docs/ENTSCHEIDE.md, 04.11.2026): Ihr «stop» und ihre Nacht heben ihn dann auch
+     * ohne laufenden Dienst auf ([BackupAlarm.cancelSnoozeOf]). Schlummern ersetzt ihn (gleicher Alarm), Beenden hebt
+     * ihn auf ([BackupAlarm.cancelSnooze]).
      */
     private fun armResume(alarmId: String?, snoozesDone: Int, target: Long?) {
         val at = java.time.Instant.ofEpochMilli(RingRules.resumeAt(clock()))
@@ -215,7 +215,8 @@ class PhoneRingService : Service() {
         if (notifyWatch) phoneApp.backup.cancelSnoozeSafety(lastAlarmId).also { Transients.endedHere(phoneApp, lastAlarmId) }
         SunriseLight.stop(this)
         state.value = State.Idle
-        // Still beendet (Zeitgrenze, Handy-Weckart «Aus», «stop» der Uhr): Die Aufgabe ist weg, die Uhr erlaubt wieder Halten.
+        // Still beendet (Zeitgrenze, Handy-Weckart «Aus», «stop» der Uhr): Die Aufgabe ist weg, die Uhr erlaubt wieder
+        // Halten.
         if (!notifyWatch) taskGone(before)
         // Auch beim Zweitwecker des Handys (oder dessen Schlummern): Die Uhr merkt die Nacht als erledigt
         // und holt sie nicht nach, falls sie gerade eine andere Nacht führt (zwei Wecker am selben Morgen).
@@ -239,7 +240,9 @@ class PhoneRingService : Service() {
         phoneApp.appScope.launch { phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_TASK_SHOWN, message) }
     }
 
-    /** Das Klingeln mit Aufgabe endet ungelöst: der Uhr melden, damit sie nicht bis zum Ablauf der Bestätigung wartet. */
+    /**
+     * Das Klingeln mit Aufgabe endet ungelöst: der Uhr melden, damit sie nicht bis zum Ablauf der Bestätigung wartet.
+     */
     private fun taskGone(before: State) {
         if (!watchTask(before)) return
         val message = RingMessage(alarmId = lastAlarmId, target = lastTarget, sentAt = System.currentTimeMillis()).encode()
@@ -295,7 +298,10 @@ class PhoneRingService : Service() {
         private val state = MutableStateFlow<State>(State.Idle)
         val ringState: StateFlow<State> = state.asStateFlow()
 
-        /** Nacht, die klingelt oder geschlummert ist (Kennung, Zielzeit); im Prozess, damit «stop» der Uhr sie prüfen kann. */
+        /**
+         * Nacht, die klingelt oder geschlummert ist (Kennung, Zielzeit); im Prozess, damit «stop» der Uhr sie prüfen
+         * kann.
+         */
         @Volatile
         private var lastAlarmId: String? = null
 
@@ -322,8 +328,8 @@ class PhoneRingService : Service() {
 
         /**
          * Klingeln für Wecker [alarmId] ([RingResult]): neu, als Ablösung oder Fortsetzung eines laufenden Klingelns,
-         * oder abgelehnt, wenn der Dienst nicht starten durfte (aus dem Hintergrund ohne Wecker-Alarm ab Android 12 nicht
-         * immer). Nur bei [RingResult.rings] gilt die Nacht als geweckt.
+         * oder abgelehnt, wenn der Dienst nicht starten durfte (aus dem Hintergrund ohne Wecker-Alarm ab Android 12
+         * nicht immer). Nur bei [RingResult.rings] gilt die Nacht als geweckt.
          */
         fun ring(
             context: Context,

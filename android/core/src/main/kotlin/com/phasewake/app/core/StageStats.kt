@@ -61,11 +61,15 @@ data class NightStages(
     val start: Instant,
     /** Ende des ausgewerteten Bereichs. */
     val end: Instant,
-    /** Bekannte Phasen nach Beginn; gleiche, aneinanderstossende oder überlappende Phasen zu einem Block zusammengelegt. */
+    /**
+     * Bekannte Phasen nach Beginn; gleiche, aneinanderstossende oder überlappende Phasen zu einem Block zusammengelegt.
+     */
     val blocks: List<StageBlock>,
     /** Immer vier Einträge: wach, REM, leicht, tief. */
     val totals: List<StageTotal>,
-    /** Einschlafdauer in Minuten (abgerundet): nur wenn der erste Block «wach» ist und ein weiterer folgt; sonst `null`. */
+    /**
+     * Einschlafdauer in Minuten (abgerundet): nur wenn der erste Block «wach» ist und ein weiterer folgt; sonst `null`.
+     */
     val latencyMinutes: Long?,
     /** Schlaf (alles ausser «wach», unbekannt zählt als Schlaf) im Verhältnis zum Bereich, gerundet, höchstens 100. */
     val efficiencyPercent: Int,
@@ -84,8 +88,8 @@ data class NightStages(
 }
 
 /**
- * Phasen-Summen, Anteile mit üblichem Bereich und Kennzahlen einer Nacht: reine Rechnung, gleich in Swift (`StageStats`).
- * Alles in Millisekunden gerechnet und erst am Ende auf ganze Minuten bzw. Prozent gebracht.
+ * Phasen-Summen, Anteile mit üblichem Bereich und Kennzahlen einer Nacht: reine Rechnung, gleich in Swift
+ * (`StageStats`). Alles in Millisekunden gerechnet und erst am Ende auf ganze Minuten bzw. Prozent gebracht.
  */
 object StageStats {
     /**
@@ -99,7 +103,9 @@ object StageStats {
         SleepStage.DEEP to StageRange(13, 23),
     )
 
-    /** Reihenfolge der Summen und Gleichstand beim Restverfahren: wach, REM, leicht, tief (wie im Hypnogramm von oben). */
+    /**
+     * Reihenfolge der Summen und Gleichstand beim Restverfahren: wach, REM, leicht, tief (wie im Hypnogramm von oben).
+     */
     val ORDER: List<SleepStage> = listOf(SleepStage.AWAKE, SleepStage.REM, SleepStage.LIGHT, SleepStage.DEEP)
 
     internal const val MS_PER_MINUTE: Long = 60_000
@@ -108,8 +114,8 @@ object StageStats {
 
     /**
      * Auswertung der [spans] im Bereich [from] bis [to] (Spannen werden darauf zugeschnitten, [StageCheck.clip]).
-     * `null`, wenn [to] nicht nach [from] liegt oder keine Schlafphase (REM, leicht, tief) im Bereich liegt: Eine Quelle
-     * ohne Phasendetail (Schlaf «unbekannt» und «wach») hat keine Phasen, sonst stünde dort «Wach 100 %».
+     * `null`, wenn [to] nicht nach [from] liegt oder keine Schlafphase (REM, leicht, tief) im Bereich liegt: Eine
+     * Quelle ohne Phasendetail (Schlaf «unbekannt» und «wach») hat keine Phasen, sonst stünde dort «Wach 100 %».
      */
     fun of(spans: List<StageSpan>, from: Instant, to: Instant): NightStages? {
         if (!to.isAfter(from)) return null

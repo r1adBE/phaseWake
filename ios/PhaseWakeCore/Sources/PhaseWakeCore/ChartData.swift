@@ -8,7 +8,8 @@ public struct SleepBar: Equatable, Sendable {
     public let date: String
     /// Einschlafen in Minuten ab Mittag (0–1439); `nil` ohne Nacht an diesem Datum.
     public let startMinute: Int?
-    /// Aufwachen in Minuten ab Mittag; bei Schlaf über Mittag hinaus über 1440, damit der Balken nach rechts weiterläuft.
+    /// Aufwachen in Minuten ab Mittag; bei Schlaf über Mittag hinaus über 1440, damit der Balken nach rechts
+    /// weiterläuft.
     public let endMinute: Int?
 
     /// Erzeugt einen Balken; ohne Daten beide Minuten `nil`.
@@ -30,7 +31,8 @@ public struct SleepBars: Equatable, Sendable {
     public let bars: [SleepBar]
     /// Linker Achsenrand in Minuten ab Mittag, auf ganze Stunden abgerundet (höchstens 21:00).
     public let axisStart: Int
-    /// Rechter Achsenrand in Minuten ab Mittag, auf ganze Stunden aufgerundet (mindestens 11:00, höchstens 24 Stunden nach `axisStart`).
+    /// Rechter Achsenrand in Minuten ab Mittag, auf ganze Stunden aufgerundet (mindestens 11:00, höchstens 24 Stunden
+    /// nach `axisStart`).
     public let axisEnd: Int
     /// Bettzeit vor dem nächsten Wecker in Minuten ab Mittag; `nil` ohne aktiven Wecker.
     public let bedtimeMinute: Int?
@@ -256,8 +258,8 @@ public enum ChartData {
     }
 
     /// Schlafprofil der Nacht von `night`: die Phasen der Gesundheits-App, die mit Lücken bis
-    /// `SleepSummary.newNightGap` (60 Min, wie der Verlauf) zusammenhängen und das Weckfenster bis zum Wecken berühren. Der Bereich
-    /// reicht mindestens über Weckfenster und Weckmoment. `nil` ohne bekannte Phasen.
+    /// `SleepSummary.newNightGap` (60 Min, wie der Verlauf) zusammenhängen und das Weckfenster bis zum Wecken berühren.
+    /// Der Bereich reicht mindestens über Weckfenster und Weckmoment. `nil` ohne bekannte Phasen.
     public static func hypnogram(_ stages: [StageSpan], night: NightRecord) -> Hypnogram? {
         var groups: [[StageSpan]] = []
         for span in stages.sorted(by: { $0.start < $1.start }) {
@@ -286,8 +288,9 @@ public enum ChartData {
     }
 
     /// Befinden der `days` Nachtdaten bis `lastDate`: je Nachtdatum das der zuletzt geweckten Nacht (wie bei
-    /// den Notizen), sonst das einer Nacht aus einer anderen App (`health`, ``HealthFeelings/byDate(_:health:calendar:)``),
-    /// dazu die Notizen. `nil`, wenn in dieser Zeit kein Befinden angegeben ist.
+    /// den Notizen), sonst das einer Nacht aus einer anderen App (`health`,
+    /// ``HealthFeelings/byDate(_:health:calendar:)``), dazu die Notizen. `nil`, wenn in dieser Zeit kein Befinden
+    /// angegeben ist.
     public static func feelingSeries(_ nights: [NightRecord], notes: [String: [String]], calendar: Calendar, today: String,
                                      days: Int = ChartData.nights, health: [HealthFeeling] = []) -> FeelingSeries? {
         let feelings = HealthFeelings.byDate(nights, health: health, calendar: calendar)

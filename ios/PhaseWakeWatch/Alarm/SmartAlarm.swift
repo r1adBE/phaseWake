@@ -53,7 +53,8 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     static let fallbackDelay: TimeInterval = 60
     /// Höchstdauer der Sitzung (30 Min) minus Reserve: So liegt die Zielzeit samt Klingeln in der Sitzung.
     static let sessionLead: TimeInterval = 25 * 60
-    /// Spätestens so lange nach der Zielzeit gilt eine Nacht, die noch «klingelt» oder «schlummert», als hängengeblieben.
+    /// Spätestens so lange nach der Zielzeit gilt eine Nacht, die noch «klingelt» oder «schlummert», als
+    /// hängengeblieben.
     static let ringLimit: TimeInterval = 3600
     /// Spielraum, um den das System eine Sitzung früher oder später starten darf.
     static let startTolerance: TimeInterval = 120
@@ -61,11 +62,13 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     nonisolated static let fallbackId = "phasewake.fallback"
     /// Eigene Kennung für das Wecken nach einer abgebrochenen Sitzung: Neu planen ersetzt sie nicht.
     static let interruptedId = "phasewake.fallback.interrupted"
-    /// Eigene Kennung für den Rückfall eines vorübergehenden Plans (Probewecker, Powernap); `fallbackId` bleibt daneben.
+    /// Eigene Kennung für den Rückfall eines vorübergehenden Plans (Probewecker, Powernap); `fallbackId` bleibt
+    /// daneben.
     static let transientFallbackId = "phasewake.fallback.transient"
     /// Mitteilung «Öffne Phase Wake auf der Uhr», wenn die Sitzung der Nacht nur bei offener App planbar ist.
     static let openAppId = "phasewake.openApp"
-    /// Früherer Ort des Klingel-Zustands in `UserDefaults`; wird beim Lesen in die Datei übernommen (`SmartAlarm+State`).
+    /// Früherer Ort des Klingel-Zustands in `UserDefaults`; wird beim Lesen in die Datei übernommen
+    /// (`SmartAlarm+State`).
     static let stateKey = "smartAlarmNight"
     /// Zeitzone, Zielzeit und Wecker des Plans, für den die Uhr wartet, plant oder misst – gemerkt in der Zone, in der
     /// er berechnet wurde (`notePlanZone`), für die Prüfung nach einer Reise (`replansAfterZoneChange`, `keptNight`).
@@ -268,8 +271,9 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
 
     /// Wecker geändert, während die App nicht offen ist: Eine neue Sitzung lässt sich dann nicht
     /// planen, die schon geplante für `current` auch nicht beenden. Kann sie `plan` übernehmen
-    /// (``NightRules/sessionServes(start:plan:sessionStart:tolerance:delay:)``, wie `startNight` beim Start prüft), bleibt
-    /// sie und misst `plan` ab ihrem Start; beim nächsten Öffnen plant die App die passende. - Returns: ob so behandelt.
+    /// (``NightRules/sessionServes(start:plan:sessionStart:tolerance:delay:)``, wie `startNight` beim Start prüft),
+    /// bleibt sie und misst `plan` ab ihrem Start; beim nächsten Öffnen plant die App die passende. - Returns: ob so
+    /// behandelt.
     private func keepsSession(from current: WakePlan, for plan: WakePlan) -> Bool {
         guard let session, session.state == .scheduled else { return false }
         let start = keptStart ?? Self.sessionStart(current)

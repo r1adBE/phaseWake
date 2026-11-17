@@ -125,9 +125,9 @@ open class PhaseWakeWear : Application() {
         // planen: Nach «Beenden erzwingen» oder einem Prozessende sind die Alarme weg, und nicht jeder Prozessstart
         // kommt über die Startseite (Kachel, Komplikation, Data Layer). Eine laufende Nacht bleibt dabei unberührt.
         if (DirectBoot.isUnlocked(this)) catchUpAndReschedule()
-        // Ladegerät an- oder abgesteckt: Akkustand ans Handy, falls er sich deutlich geändert hat, und Ladebeginn bzw. -ende
-        // einer laufenden Nacht (Akku je Nacht). Nur solange der Prozess lebt (im Manifest kommen diese Meldungen nicht an);
-        // sonst beim Neuplanen bzw. über den Auftrag von [BatteryNight].
+        // Ladegerät an- oder abgesteckt: Akkustand ans Handy, falls er sich deutlich geändert hat, und Ladebeginn bzw.
+        // -ende einer laufenden Nacht (Akku je Nacht). Nur solange der Prozess lebt (im Manifest kommen diese Meldungen
+        // nicht an); sonst beim Neuplanen bzw. über den Auftrag von [BatteryNight].
         ContextCompat.registerReceiver(
             this,
             object : BroadcastReceiver() {

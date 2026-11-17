@@ -60,7 +60,10 @@ object SoundEvents {
     /** Ohne Wecker innerhalb von [AUTO_START_LOOKAHEAD] endet die Aufnahme nach so langer Zeit. */
     val MAX_RUN: Duration = Duration.ofHours(12)
 
-    /** Ohne Wecker in den nächsten [AUTO_START_LOOKAHEAD] startet die Vorgabe «für neue Nächte» ab dieser Stunde (Ortszeit). */
+    /**
+     * Ohne Wecker in den nächsten [AUTO_START_LOOKAHEAD] startet die Vorgabe «für neue Nächte» ab dieser Stunde
+     * (Ortszeit).
+     */
     const val AUTO_START_HOUR: Int = 21
 
     /** So weit voraus zählt ein Wecker für den automatischen Start. */
@@ -86,9 +89,9 @@ object SoundEvents {
     /**
      * Ob die Vorgabe «für neue Nächte ein» die Aufnahme beim Öffnen der App jetzt von selbst starten
      * darf: ab der Bettzeit der kommenden Nacht ([Bedtime.bedtime] = Zielzeit des nächsten Weckers −
-     * Schlafziel − gelernte Einschlafdauer [latencyMinutes]) bis zur Zielzeit. Liegt kein Wecker innerhalb von [AUTO_START_LOOKAHEAD] (oder
-     * keiner), ab [AUTO_START_HOUR] Uhr bis Mitternacht. Davor startet sie nur, wenn der Nutzer sie
-     * selbst einschaltet.
+     * Schlafziel − gelernte Einschlafdauer [latencyMinutes]) bis zur Zielzeit. Liegt kein Wecker innerhalb von
+     * [AUTO_START_LOOKAHEAD] (oder keiner), ab [AUTO_START_HOUR] Uhr bis Mitternacht. Davor startet sie nur, wenn der
+     * Nutzer sie selbst einschaltet.
      *
      * @param nextTarget Zielzeit des nächsten Weckers (Einschlaf-Modus: die eingestellte späteste Zeit).
      */
@@ -217,7 +220,10 @@ object SoundEvents {
             .joinToString("|")
     }
 
-    /** Liest [encode]; unlesbare Zeilen (und Dateinamen mit Pfad) werden übersprungen, unbekannte Arten zu [SoundType.OTHER]. */
+    /**
+     * Liest [encode]; unlesbare Zeilen (und Dateinamen mit Pfad) werden übersprungen, unbekannte Arten zu
+     * [SoundType.OTHER].
+     */
     fun decode(text: String?): List<SoundClip> = sorted(
         text.orEmpty().lines().mapNotNull { line ->
             val f = line.split('|')

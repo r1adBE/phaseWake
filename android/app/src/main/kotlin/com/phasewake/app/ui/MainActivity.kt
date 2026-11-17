@@ -84,7 +84,8 @@ class MainActivity : ComponentActivity() {
         val openHistory = intent?.getStringExtra(EXTRA_OPEN) == OPEN_HISTORY
         setContent {
             val mode by app.settings.themeMode.collectAsStateWithLifecycle(initialValue = ThemeMode.SYSTEM)
-            // «Abends dunkel ab»: wechselt genau zur Uhrzeit (Ticker zur nächsten Grenze), nur im Vordergrund gesammelt.
+            // «Abends dunkel ab»: wechselt genau zur Uhrzeit (Ticker zur nächsten Grenze), nur im Vordergrund
+            // gesammelt.
             val evening by remember { EveningDarkTicker.flow(app.settings.eveningDark) }
                 .collectAsStateWithLifecycle(initialValue = EveningDarkTicker.initial())
             PhaseWakeTheme(mode, evening) { PhaseWakeNav(mode, openHistory) }
@@ -126,7 +127,8 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
     val data = collectAppData(app)
 
     // Beim Fortsetzen hochgezählt: Nacht-Check und Aufnahme (checkRun), Health Connect (healthCheck) neu prüfen.
-    // healthGrant: nach jeder Erteilung der Berechtigung, dann liest Health Connect gleich (sonst höchstens alle 5 Min).
+    // healthGrant: nach jeder Erteilung der Berechtigung, dann liest Health Connect gleich (sonst höchstens alle 5
+    // Min).
     var checkRun by remember { mutableIntStateOf(0) }
     var healthCheck by remember { mutableIntStateOf(0) }
     var healthGrant by remember { mutableIntStateOf(0) }
@@ -213,8 +215,8 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
     LaunchedEffect(ringing) {
         if (ringing is PhoneRingService.State.Ringing) context.startActivity(Intent(context, PhoneRingActivity::class.java))
     }
-    // Hell liegt unter der Statusleiste überall der helle Tageshimmel oder die Creme-Fläche: dunkle Symbole; dunkel (auch
-    // abends dunkel) helle.
+    // Hell liegt unter der Statusleiste überall der helle Tageshimmel oder die Creme-Fläche: dunkle Symbole; dunkel
+    // (auch abends dunkel) helle.
     val view = LocalView.current
     val lightBars = !PhaseWakeTheme.isDark
     SideEffect {

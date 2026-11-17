@@ -56,8 +56,8 @@ public struct DetectorConfig: Equatable, Sendable {
     /// (``NoiseFloor/floor(_:personal:)``). `nil` = keines gelernt.
     public let personalFloor: Double?
     /// Eigener Ruhepuls aus der Lernphase. Ohne Basispuls des Fensters gilt ``restingFallbackFactor`` × Ruhepuls als
-    /// Basispuls; sonst begrenzt er den Basispuls auf Ruhepuls bis ``restingClampFactor`` × Ruhepuls (``WakeDetector``).
-    /// `nil` = keiner.
+    /// Basispuls; sonst begrenzt er den Basispuls auf Ruhepuls bis ``restingClampFactor`` × Ruhepuls
+    /// (``WakeDetector``). `nil` = keiner.
     public let restingHeartRate: Double?
     /// Grundrauschen der Einschlaf-Messung dieser Nacht (m/s²); gilt wie ``personalFloor`` und hat Vorrang davor
     /// (``NoiseFloor/windowFloor(_:config:)``). `nil` = keines.
@@ -128,8 +128,8 @@ public struct DetectorConfig: Equatable, Sendable {
     var maxWindow: Int { max(awakeWindow, lightWindow) }
 
     /// Kopie mit den gelernten Werten der Lernphase (``Learning/withLearned(_:_:)``); `nil` = keiner. Ungültige Werte
-    /// (``Learning/validFloor(_:)``, ``Learning/validRestingHeartRate(_:)``, z. B. aus einer kaputten Nachricht) gelten als
-    /// keiner. Identisch zu `DetectorConfig.withLearned` (Kotlin).
+    /// (``Learning/validFloor(_:)``, ``Learning/validRestingHeartRate(_:)``, z. B. aus einer kaputten Nachricht) gelten
+    /// als keiner. Identisch zu `DetectorConfig.withLearned` (Kotlin).
     func withLearned(floor: Double?, restingHeartRate: Double?) -> DetectorConfig {
         DetectorConfig(
             unchecked: lightThreshold, wakeThreshold, heartRateRise, warmupEpochs, awakeWindow, awakeHits, lightWindow, lightHits,

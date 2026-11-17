@@ -28,7 +28,8 @@ import kotlinx.coroutines.sync.withLock
 
 /**
  * Uhr-Status fürs Handy (bereit für die Nacht, Akkustand, Pulsrechte, nicht gestartete Messung vor dem Schlafen), wie
- * ihn der Nacht-Check am Handy zeigt. Gesendet nur bei Bedarf, damit nicht jedes Neuplanen ein dringendes Datenpaket auslöst.
+ * ihn der Nacht-Check am Handy zeigt. Gesendet nur bei Bedarf, damit nicht jedes Neuplanen ein dringendes Datenpaket
+ * auslöst.
  */
 internal class WatchStatus(
     private val context: Context,
@@ -41,9 +42,9 @@ internal class WatchStatus(
 
     /**
      * Sendet den Status, aber nur bei Bedarf: Bereitschaft, Pulsrechte oder Meldung [noteSkip] geändert, Akkustand um
-     * mindestens [BATTERY_STEP] Punkte geändert, letzte Meldung älter als [MAX_AGE] oder noch ohne den Verbindungs-Stand
-     * oder die Build-Nummer dieser Version (nach einem Update gleich melden, sonst bliebe am Handy bis zu einer Stunde
-     * «veraltet» bzw. «verschiedene Testversionen»).
+     * mindestens [BATTERY_STEP] Punkte geändert, letzte Meldung älter als [MAX_AGE] oder noch ohne den
+     * Verbindungs-Stand oder die Build-Nummer dieser Version (nach einem Update gleich melden, sonst bliebe am Handy
+     * bis zu einer Stunde «veraltet» bzw. «verschiedene Testversionen»).
      * Jede Meldung ist ein dringendes Datenpaket und lässt das Handy neu planen.
      */
     suspend fun publish(): Unit = lock.withLock {
@@ -66,8 +67,8 @@ internal class WatchStatus(
             (battery != null && (lastBattery == null || abs(battery - lastBattery) >= BATTERY_STEP)) ||
             lastAt == null || now - lastAt >= MAX_AGE.toMillis() || now < lastAt
         if (!due) return@withLock
-        // Mit Akkustand der Uhr: Der Nacht-Check am Handy warnt, wenn er für die Nacht knapp ist. Das Paket trägt auch den
-        // Verbindungs-Stand, damit das Handy eine ältere Uhr-App erkennt, und die Pulsrechte: Ohne Puls im
+        // Mit Akkustand der Uhr: Der Nacht-Check am Handy warnt, wenn er für die Nacht knapp ist. Das Paket trägt auch
+        // den Verbindungs-Stand, damit das Handy eine ältere Uhr-App erkennt, und die Pulsrechte: Ohne Puls im
         // Hintergrund misst die Uhr nachts nicht, der Nacht-Check warnt dann.
         if (!sync.publishWatchReady(ready, battery, pulse, skip, charging, build)) return@withLock
         store.edit {

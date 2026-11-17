@@ -20,7 +20,10 @@ import java.time.LocalDate
 
 private fun day(d: Int): LocalDate = LocalDate.of(2026, 10, d)
 
-/** Beispielnächte, jüngste zuerst: gezählt, Akku, vermutlich nicht getragen, kein Wecker, zu kurz, gestoppt, nichts angekommen. */
+/**
+ * Beispielnächte, jüngste zuerst: gezählt, Akku, vermutlich nicht getragen, kein Wecker, zu kurz, gestoppt, nichts
+ * angekommen.
+ */
 private val sampleNights = listOf(
     LearnNights.Night(day(27), Reason.BATTERY, battery = 34),
     LearnNights.Night(day(26), Reason.COUNTED, minutes = 452, measuredEpochs = 182, pulsePercent = 21),
@@ -45,7 +48,10 @@ fun LearnNightsDark() = Overview(ThemeMode.DARK)
 @PreviewTest @Preview(locale = "fi", name = "Lern-Übersicht Finnisch", device = PHONE) @Composable
 fun LearnNightsFinnish() = Overview(ThemeMode.DARK)
 
-/** Karte der Lernphase auf der Startseite: Nacht 3 von 7, letzte Nacht wegen Akku nicht gezählt, «Details», «Nacht aufzeichnen». */
+/**
+ * Karte der Lernphase auf der Startseite: Nacht 3 von 7, letzte Nacht wegen Akku nicht gezählt, «Details», «Nacht
+ * aufzeichnen».
+ */
 @Composable
 private fun Card(mode: ThemeMode) = Themed(mode) {
     Box(Modifier.padding(vertical = 24.dp)) {

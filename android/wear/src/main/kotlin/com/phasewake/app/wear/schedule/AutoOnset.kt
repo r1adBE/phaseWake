@@ -28,8 +28,9 @@ import kotlinx.coroutines.flow.first
  * ([com.phasewake.app.wear.wake.OnsetMonitor.MAX_DURATION]; bei Unruhe verlängert bis 4 Std., nie ins Weckfenster) und
  * 15 Min vor der Zielzeit; unter [MIN_BATTERY_PERCENT] Akku beginnt sie nicht und verlängert sich nicht
  * ([skipForBattery]) – ausser die Uhr lädt: Dann beginnt sie und wartet am
- * Ladegerät; ist der Akku beim Abnehmen noch zu tief, endet sie ohne Untergrenze. Im Einschlaf-Modus legt sie die Zielzeit fest
- * (wie «Gute Nacht»), sonst merkt sie nur die Einschlafzeit für die Untergrenze kurzer Nächte ([OnsetStore]).
+ * Ladegerät; ist der Akku beim Abnehmen noch zu tief, endet sie ohne Untergrenze. Im Einschlaf-Modus legt sie die
+ * Zielzeit fest (wie «Gute Nacht»), sonst merkt sie nur die Einschlafzeit für die Untergrenze kurzer Nächte
+ * ([OnsetStore]).
  *
  * Geplant bei jedem Neuplanen ([AlarmScheduler.reschedule]): Neustart, geänderte Wecker, Schlafziel, Schalter am Handy
  * («Einschlafen automatisch erkennen», [com.phasewake.app.shared.AutoOnsetStore]); nur, wenn er an ist.
@@ -46,8 +47,8 @@ object AutoOnset {
     const val MIN_BATTERY_PERCENT = 30
 
     /**
-     * Ob die automatische Messung bei Akkustand [percent] ausfällt; unbekannt (`null`) hindert nicht, Laden ([charging])
-     * auch nicht (wer die Uhr am Abend lädt, hat sie zur Bettzeit voll).
+     * Ob die automatische Messung bei Akkustand [percent] ausfällt; unbekannt (`null`) hindert nicht, Laden
+     * ([charging]) auch nicht (wer die Uhr am Abend lädt, hat sie zur Bettzeit voll).
      */
     fun skipForBattery(percent: Int?, charging: Boolean = false): Boolean = !charging && percent != null && percent < MIN_BATTERY_PERCENT
 
@@ -56,8 +57,8 @@ object AutoOnset {
      * Wecker (Powernap, Probewecker), schon erledigt ([done]: eingeschlafen, aufgegeben, abgebrochen), oder der Beginn
      * läge nicht vor dem Fenster und 15 Min vor der Zielzeit oder mehr als 16 Std. davor. Liegt die Bettzeit schon
      * zurück, beginnt sie gleich – ausser es endete seit dem Beginn schon eine Nacht mit Wecken ([lastNightEnded],
-     * [AlarmScheduler.lastNightEnded]): zweiter Wecker am selben Morgen, der Schlaf dieser Nacht ist vorbei. Eine Messung
-     * gleich nach dem Wecken fände kein Einschlafen und sperrte das frühe Wecken (fail-closed).
+     * [AlarmScheduler.lastNightEnded]): zweiter Wecker am selben Morgen, der Schlaf dieser Nacht ist vorbei. Eine
+     * Messung gleich nach dem Wecken fände kein Einschlafen und sperrte das frühe Wecken (fail-closed).
      */
     fun startAt(plan: WakePlan?, spec: AlarmSpec?, goalMinutes: Int, now: Instant, done: Boolean, lastNightEnded: Instant? = null): Instant? {
         if (plan == null || spec == null || spec.id != plan.alarmId || done || Transient.kindOf(plan.alarmId) != null) return null
@@ -115,9 +116,10 @@ object AutoOnset {
 class OnsetStore(private val store: DataStore<Preferences>) {
 
     /**
-     * Messung für [alarmId] mit Weckzeit [latest] vorbei, mit Einschlafzeit [onset] oder ohne (`null`); [measured]: ohne
-     * Einschlafzeit, obwohl sie gemessen hat. Ohne Einschlafzeit bleibt eine gefundene der laufenden Nacht ([knownOnset]).
-     * [bedAt]: Beginn der Einschlafdauer dieser Messung (für die Nacht im Verlauf, [bedFor]); `null` = unbekannt.
+     * Messung für [alarmId] mit Weckzeit [latest] vorbei, mit Einschlafzeit [onset] oder ohne (`null`); [measured]:
+     * ohne Einschlafzeit, obwohl sie gemessen hat. Ohne Einschlafzeit bleibt eine gefundene der laufenden Nacht
+     * ([knownOnset]). [bedAt]: Beginn der Einschlafdauer dieser Messung (für die Nacht im Verlauf, [bedFor]); `null` =
+     * unbekannt.
      */
     suspend fun set(alarmId: String, latest: Instant, onset: Instant?, measured: Boolean = false, bedAt: Instant? = null) {
         store.edit {
@@ -132,15 +134,17 @@ class OnsetStore(private val store: DataStore<Preferences>) {
         }
     }
 
-    /** Ob die Messung für [alarmId] mit Weckzeit [latest] schon vorbei ist (auch: Einschlafzeit dieser Nacht bekannt). */
+    /**
+     * Ob die Messung für [alarmId] mit Weckzeit [latest] schon vorbei ist (auch: Einschlafzeit dieser Nacht bekannt).
+     */
     suspend fun isDone(alarmId: String, latest: Instant): Boolean {
         val prefs = store.data.first()
         return prefs[ALARM] == alarmId && (prefs[LATEST] == latest.toEpochMilli() || knownOnset(prefs, alarmId, latest))
     }
 
     /**
-     * Gleicher Wecker, und die gemerkte Einschlafzeit gehört zur Nacht vor [latest]: vor ihr und höchstens 16 Std. davor
-     * (wie [onsetFor]), also nicht die einer früheren Nacht.
+     * Gleicher Wecker, und die gemerkte Einschlafzeit gehört zur Nacht vor [latest]: vor ihr und höchstens 16 Std.
+     * davor (wie [onsetFor]), also nicht die einer früheren Nacht.
      */
     private fun knownOnset(prefs: Preferences, alarmId: String, latest: Instant): Boolean {
         val onset = prefs[ONSET]?.let(Instant::ofEpochMilli) ?: return false

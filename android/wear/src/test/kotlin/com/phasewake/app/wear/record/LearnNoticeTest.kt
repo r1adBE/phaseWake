@@ -68,7 +68,8 @@ class LearnNoticeTest {
      * Hintergrundarbeit dieses Tests beenden und abwarten: Ein `cancel` allein liesse den Rest einer Arbeit ohne
      * Haltepunkt weiterlaufen (z. B. die Mitteilung nach der Meldung in [LearnNotice.skipped]). Die Mitteilungen der
      * Robolectric-Schatten sind prozessweit; eine verspätete landete sonst im nächsten Test (in der CI:
-     * «genug Akku» in [warningShowsOnlyWithLowBatteryWhileNotCharging] nach [learningStartBelowTheThresholdReportsTheNight]).
+     * «genug Akku» in [warningShowsOnlyWithLowBatteryWhileNotCharging] nach
+     * [learningStartBelowTheThresholdReportsTheNight]).
      */
     @After
     fun cleanUp() = runBlocking { withTimeout(10_000) { app.appScope.coroutineContext.job.cancelAndJoin() } }

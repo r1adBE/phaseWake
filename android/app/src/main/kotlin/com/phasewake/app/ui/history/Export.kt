@@ -26,12 +26,12 @@ import kotlinx.coroutines.withContext
 /**
  * Teilt den Verlauf als CSV-Datei (Format siehe [NightHistory.exportCsv]): ohne Namen, Kennungen und Datumsangaben,
  * aber mit Bewegungs- und Pulsreihen je Nacht, also nicht anonym im engeren Sinn ([ExportDialog] sagt das vorher).
- * Gibt es Aufzeichnungen («Nacht aufzeichnen»), kommt eine zweite Datei im selben Format dazu ([NightRecording.exportCsv]).
- * Hat mindestens eine Nacht Schlafphasen aus Health Connect, kommt die Datei des Validierungs-Modus dazu
- * («phasewake-validation.csv», [ValidationReport.exportCsv]; Uhrzeit ohne Datum je Entscheid).
- * Die Datei liegt nur kurz im Cache: Die empfangende App liest sie oft erst später (z. B. beim Senden einer Mail), darum
- * wird sie nicht sofort gelöscht, sondern nach [KEEP] ([cleanup]: nach dem Teilen, im täglichen Aufräumen und beim
- * nächsten Start der App).
+ * Gibt es Aufzeichnungen («Nacht aufzeichnen»), kommt eine zweite Datei im selben Format dazu
+ * ([NightRecording.exportCsv]). Hat mindestens eine Nacht Schlafphasen aus Health Connect, kommt die Datei des
+ * Validierungs-Modus dazu («phasewake-validation.csv», [ValidationReport.exportCsv]; Uhrzeit ohne Datum je Entscheid).
+ * Die Datei liegt nur kurz im Cache: Die empfangende App liest sie oft erst später (z. B. beim Senden einer Mail),
+ * darum wird sie nicht sofort gelöscht, sondern nach [KEEP] ([cleanup]: nach dem Teilen, im täglichen Aufräumen und
+ * beim nächsten Start der App).
  */
 object Export {
     /** So lange bleibt eine geteilte Datei im Cache. */

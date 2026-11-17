@@ -87,7 +87,8 @@ final class StorageTests: XCTestCase {
         XCTAssertEqual(s.nights().first { $0.alarmId == "b" }?.feeling, 4)
     }
 
-    /// Die Uhr schickt dieselbe Nacht noch einmal: der Akku des iPhones bleibt (wie Android `NightKeyTest.storedBatteryIsKept`).
+    /// Die Uhr schickt dieselbe Nacht noch einmal: der Akku des iPhones bleibt (wie Android
+    /// `NightKeyTest.storedBatteryIsKept`).
     func testStoredBatteryIsKept() {
         let s = storage()
         let start = Date(timeIntervalSince1970: 1_793_165_400)
@@ -156,7 +157,8 @@ final class StorageTests: XCTestCase {
         XCTAssertEqual(s.customNotes().count, 1)
     }
 
-    /// Befinden zu Nächten aus anderen Apps: je Nachtdatum gespeichert, ersetzt beim Wiederherstellen, weg mit dem Verlauf.
+    /// Befinden zu Nächten aus anderen Apps: je Nachtdatum gespeichert, ersetzt beim Wiederherstellen, weg mit dem
+    /// Verlauf.
     func testHealthFeelingsPerNight() {
         let s = storage()
         XCTAssertEqual(s.healthFeelings(), [:])

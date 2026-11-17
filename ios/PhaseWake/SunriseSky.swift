@@ -3,8 +3,8 @@ import SwiftUI
 /// Farben eines Sonnenaufgangs, Verlauf identisch zu `SunriseSky` (Android).
 ///
 /// Schrift: je Text nach seiner Fläche auf dem Himmel (``ink(_:area:aspect:)``, wie
-/// `SunriseSky.ink(area)` auf Android) – hell oder fast schwarz, je nachdem, welche über die Fläche (Ecken, Kanten, Mitte)
-/// den grösseren kleinsten Kontrast hat. Dahinter liegt eine halbdurchsichtige Fläche in der Gegenfarbe
+/// `SunriseSky.ink(area)` auf Android) – hell oder fast schwarz, je nachdem, welche über die Fläche (Ecken, Kanten,
+/// Mitte) den grösseren kleinsten Kontrast hat. Dahinter liegt eine halbdurchsichtige Fläche in der Gegenfarbe
 /// (``plaque(for:)``): Mit ihr erreicht die Schrift überall mindestens 4.5:1, auch dort, wo die Sonne den Himmel
 /// unter einer breiten Zeile hell und dunkel zugleich macht. Der gedämpfte Ton nur, wenn auch er das erreicht.
 /// ``palette(_:)`` bleibt für die Mitte des unteren Rands (Fortschritt allein).

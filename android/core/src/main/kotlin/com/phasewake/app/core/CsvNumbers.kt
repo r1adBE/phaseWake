@@ -5,15 +5,15 @@ import kotlin.math.floor
 
 /**
  * Zahlen im CSV-Export (Bewegung, Puls), auf Kotlin und Swift Zeichen für Zeichen gleich: `String.format`
- * (Java) rundet die kürzeste Dezimaldarstellung halb auf, `String(format:)` (Swift, wie C) den genauen Binärwert halb auf
- * gerade – 56.25 wurde so zu 56.3 bzw. 56.2. Hier zählt nur Gleitkomma-Rechnung, die IEEE 754 auf beiden gleich festlegt
- * (Betrag × Zehnerpotenz + 0.5, abrunden), der Rest ist Ganzzahl. Gleich in Swift (`CsvNumbers`).
+ * (Java) rundet die kürzeste Dezimaldarstellung halb auf, `String(format:)` (Swift, wie C) den genauen Binärwert halb
+ * auf gerade – 56.25 wurde so zu 56.3 bzw. 56.2. Hier zählt nur Gleitkomma-Rechnung, die IEEE 754 auf beiden gleich
+ * festlegt (Betrag × Zehnerpotenz + 0.5, abrunden), der Rest ist Ganzzahl. Gleich in Swift (`CsvNumbers`).
  */
 object CsvNumbers {
 
     /**
-     * [value] mit [decimals] Nachkommastellen (0 bis 9), halbe Werte vom Nullpunkt weg gerundet (am Wert × 10^[decimals]),
-     * Dezimalpunkt. Nicht endlich oder zu gross für die Rechnung: leer (wie ein fehlender Wert).
+     * [value] mit [decimals] Nachkommastellen (0 bis 9), halbe Werte vom Nullpunkt weg gerundet (am Wert ×
+     * 10^[decimals]), Dezimalpunkt. Nicht endlich oder zu gross für die Rechnung: leer (wie ein fehlender Wert).
      */
     fun fixed(value: Double, decimals: Int): String {
         require(decimals in 0..MAX_DECIMALS) { "decimals $decimals" }

@@ -2,9 +2,10 @@ import PhaseWakeCore
 import SwiftUI
 
 /// «Nacht aufzeichnen» auf der Startseite (wie `RecordCard` auf Android), nur mit einer Apple Watch, die es kennt
-/// (`WatchNight.watchCanRecord`): gemessen wird auf der Uhr, das iPhone schickt nur Start und Stopp. Symbol und Titel in
-/// einer Zeile, darunter der Hinweis bzw. «Aufzeichnung läuft seit …», dann der Knopf rechts. Nur, solange die Lernphase
-/// nicht läuft (fertig oder aus), mit kurzem Hinweis; während der Lernphase steckt der Knopf in `LearningHomeCard`.
+/// (`WatchNight.watchCanRecord`): gemessen wird auf der Uhr, das iPhone schickt nur Start und Stopp. Symbol und Titel
+/// in einer Zeile, darunter der Hinweis bzw. «Aufzeichnung läuft seit …», dann der Knopf rechts. Nur, solange die
+/// Lernphase nicht läuft (fertig oder aus), mit kurzem Hinweis; während der Lernphase steckt der Knopf in
+/// `LearningHomeCard`.
 struct RecordCard: View {
     @Environment(PhoneModel.self) private var model
     @Environment(\.colorScheme) private var scheme

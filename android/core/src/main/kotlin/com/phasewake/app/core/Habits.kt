@@ -74,7 +74,8 @@ object Regularity {
      * Uhrzeiten in Minuten ab Mittag ([minutesFromNoon], 0 ≤ m < [DAY_MINUTES]) ohne Sprung: Die Uhr wird in
      * der grössten Lücke zwischen den Zeiten aufgeschnitten, damit auch Zeiten um Mittag (11:56 und 12:50) nahe
      * beieinander liegen. Ist die Lücke um Mittag die grösste (bei Gleichstand bevorzugt), bleiben die Werte wie sie
-     * sind; sonst bekommen die Zeiten bis zur grössten Lücke [DAY_MINUTES] dazu. Reihenfolge wie [minutes]. Gleich in Swift.
+     * sind; sonst bekommen die Zeiten bis zur grössten Lücke [DAY_MINUTES] dazu. Reihenfolge wie [minutes]. Gleich in
+     * Swift.
      */
     fun unwrap(minutes: List<Double>): List<Double> {
         if (minutes.size < 2) return minutes
@@ -274,7 +275,10 @@ object Routine {
     /** Neue Kennung für einen eigenen Punkt aus einer UUID (als Text). */
     fun customId(uuid: String): String = CUSTOM_PREFIX + uuid
 
-    /** Bereinigt einen Text: ohne Zeilenumbrüche und «|» (Trennzeichen im Speicher), getrimmt, höchstens [MAX_TEXT_LENGTH] Zeichen. */
+    /**
+     * Bereinigt einen Text: ohne Zeilenumbrüche und «|» (Trennzeichen im Speicher), getrimmt, höchstens
+     * [MAX_TEXT_LENGTH] Zeichen.
+     */
     fun cleanText(text: String): String = text.replace('\n', ' ').replace('\r', ' ').replace('|', ' ').trim().take(MAX_TEXT_LENGTH).trim()
 
     /** Punkte je Zeile «id|Text», höchstens [MAX_ITEMS]; Vorschläge mit leerem Text. */

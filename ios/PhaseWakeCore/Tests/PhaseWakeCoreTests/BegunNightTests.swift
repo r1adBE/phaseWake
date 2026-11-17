@@ -1,7 +1,8 @@
 import XCTest
 import PhaseWakeCore
 
-/// Begonnene Nacht über einen Zeitzonenwechsel (`AlarmSchedule.begunNight`); gleiche Fälle wie `BegunNightTest` (Kotlin).
+/// Begonnene Nacht über einen Zeitzonenwechsel (`AlarmSchedule.begunNight`); gleiche Fälle wie `BegunNightTest`
+/// (Kotlin).
 final class BegunNightTests: XCTestCase {
 
     private func calendar(_ zone: String) -> Calendar {

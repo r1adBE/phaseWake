@@ -33,8 +33,9 @@ class CalibrationTest {
 
     @Test
     fun usesEightiethPercentile() {
-        // 3 Nächte × (2 × 0.0 + 8 Werte) = 30; je Nacht Grundrauschen 0.0 (Rang 2 von 10), abgezogen bleibt alles gleich.
-        // Werte 0.0005, 0.00055, … : sortiert 6 × 0.0, dann diese; Rang ⌈0.8 · 30⌉ = 24 → der 18. Wert (0.00135).
+        // 3 Nächte × (2 × 0.0 + 8 Werte) = 30; je Nacht Grundrauschen 0.0 (Rang 2 von 10), abgezogen bleibt alles
+        // gleich. Werte 0.0005, 0.00055, … : sortiert 6 × 0.0, dann diese; Rang ⌈0.8 · 30⌉ = 24 → der 18. Wert
+        // (0.00135).
         val all = (0 until 24).map { 0.0005 + it * 0.00005 }
         val nights = all.chunked(8).map { night(0.0, 0.0, *it.toTypedArray()) }
         val config = Calibration.calibrate(nights)

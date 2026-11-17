@@ -16,7 +16,8 @@ private val ONSET_SHIFT = stringPreferencesKey("backup_onset_shift")
 /**
  * Die Uhr meldet eine frühere Zielzeit ([OnsetShift]): merken (eine neuere ersetzt eine ältere) und neu planen. Eine
  * Meldung ohne frühere Zielzeit (Zielzeit = eingestellte) hebt eine gemerkte auf. Eine schon
- * vorbeigegangene Nacht, eine ältere Meldung als die gemerkte oder dieselbe noch einmal (erneut zugestellt) ändert nichts.
+ * vorbeigegangene Nacht, eine ältere Meldung als die gemerkte oder dieselbe noch einmal (erneut zugestellt) ändert
+ * nichts.
  */
 internal suspend fun BackupAlarm.onsetShiftReceived(shift: OnsetShift) {
     if (shift.expired(now(), GRACE)) return

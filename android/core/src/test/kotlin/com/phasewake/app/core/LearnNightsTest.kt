@@ -11,7 +11,10 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
-/** Lern-Übersicht ([LearnNights]): Grund je Nacht, Liste der Nächte, Startseite, Warnung am Abend; gleich wie `LearnNightsTests` (Swift). */
+/**
+ * Lern-Übersicht ([LearnNights]): Grund je Nacht, Liste der Nächte, Startseite, Warnung am Abend; gleich wie
+ * `LearnNightsTests` (Swift).
+ */
 class LearnNightsTest {
     private val zone = ZoneId.of("Europe/Zurich")
 
@@ -89,7 +92,8 @@ class LearnNightsTest {
         assertEquals(35, nights[2].battery)
         assertEquals(LearnNights.Night(date(1), LearnNights.Reason.COUNTED, minutes = 300, measuredEpochs = 600, pulsePercent = 20), nights[4])
         assertEquals(100, nights[3].minutes)
-        // Vor Mitternacht erscheint die laufende Nacht ohne Angaben nicht; ab Mittag ist die letzte nicht mehr unterwegs.
+        // Vor Mitternacht erscheint die laufende Nacht ohne Angaben nicht; ab Mittag ist die letzte nicht mehr
+        // unterwegs.
         assertEquals(date(5), LearnNights.nights(recordings, skips, alarms, date(1), since, true, true, at(6, 13), zone).first().date)
         assertEquals(LearnNights.Reason.NO_RECORDING, LearnNights.nights(recordings, skips, alarms, date(1), since, true, true, at(6, 13), zone).first().reason)
         assertEquals(date(4), LearnNights.nights(recordings, skips, alarms, date(1), since, true, true, at(5, 23), zone).first().date)

@@ -102,7 +102,9 @@ private val ownNight: NightRecord = run {
     NightRecord("work", start, target, target.minus(Duration.ofMinutes(12)), WakeReason.LIGHT_SLEEP, 0, List(40) { Epoch(0.004 + (it % 7) * 0.003, 58.0 + it % 5) })
 }
 
-/** Aufzeichnung der Uhr ab 22:50 bis zum Wecken: Puls sinkt in der Nacht und steigt gegen Morgen, Bewegung in Wellen. */
+/**
+ * Aufzeichnung der Uhr ab 22:50 bis zum Wecken: Puls sinkt in der Nacht und steigt gegen Morgen, Bewegung in Wellen.
+ */
 private val recording: NightRecording = run {
     val start = today.atTime(22, 50).atZone(zone).toInstant()
     val count = (Duration.between(start, ownNight.wokeAt).seconds / 30).toInt()

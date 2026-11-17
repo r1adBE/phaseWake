@@ -126,7 +126,8 @@ class SkipDoneTest {
             wall("2026-10-30T08:00"),
             AlarmSchedule.editedSkip(plain, plain.copy(hour = 8), true, early, zurich, doneUntil = at("2026-10-29T08:00")),
         )
-        // Nur die Tage geändert, derselbe Termin wie vorher (Do 7:00) bewusst wieder eingeschaltet: bleibt übersprungen.
+        // Nur die Tage geändert, derselbe Termin wie vorher (Do 7:00) bewusst wieder eingeschaltet: bleibt
+        // übersprungen.
         val sixDays = weekdays + DayOfWeek.SATURDAY
         assertEquals(old.skipUntil, AlarmSchedule.editedSkip(old, old.copy(days = sixDays), true, now, zurich))
         assertEquals(0L, AlarmSchedule.editedSkip(old, old.copy(days = sixDays), null, now, zurich))
@@ -136,7 +137,8 @@ class SkipDoneTest {
 
     @Test
     fun editorShowsSkipAsSaved() {
-        // Uhr-Editor (M2): Schalter und Datum kommen aus skippedDate(Entwurf mit editedSkip), also aus dem gespeicherten Stand.
+        // Uhr-Editor (M2): Schalter und Datum kommen aus skippedDate(Entwurf mit editedSkip), also aus dem
+        // gespeicherten Stand.
         val now = at("2026-10-28T22:00")
         val old = alarm().copy(skipUntil = wall("2026-10-29T07:00"))
         fun shown(edited: AlarmSpec, requested: Boolean?) =

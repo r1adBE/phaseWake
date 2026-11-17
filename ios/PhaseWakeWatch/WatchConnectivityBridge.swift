@@ -4,8 +4,8 @@ import UserNotifications
 import WatchConnectivity
 import WatchKit
 
-/// Verbindung zum iPhone: Wecker, Feiertage und Schlafziel kommen als Anwendungskontext, Nächte gehen als Benutzerdaten,
-/// Weck-Ereignisse als Nachricht, ohne Verbindung als Benutzerdaten nachgereicht.
+/// Verbindung zum iPhone: Wecker, Feiertage und Schlafziel kommen als Anwendungskontext, Nächte gehen als
+/// Benutzerdaten, Weck-Ereignisse als Nachricht, ohne Verbindung als Benutzerdaten nachgereicht.
 final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sendable {
     static let shared = WatchConnectivityBridge()
 
@@ -35,8 +35,8 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         sendContext()
     }
 
-    /// Laufende Aufzeichnung («Nacht aufzeichnen» oder Lernphase) seit `since`; `nil` = keine (iPhone: «Aufzeichnung läuft
-    /// seit …»).
+    /// Laufende Aufzeichnung («Nacht aufzeichnen» oder Lernphase) seit `since`; `nil` = keine (iPhone: «Aufzeichnung
+    /// läuft seit …»).
     @MainActor func publish(recordSince since: Date?) {
         context[SyncKeys.recordSince] = Int64((since?.timeIntervalSince1970 ?? 0) * 1000)
         ensureAlarms()
@@ -44,7 +44,8 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     }
 
     /// Rekorder für eine Nacht nicht gestartet (``RecorderSkip``) bzw. `nil`, wenn er doch läuft: gespeichert
-    /// (geht mit jedem Anwendungskontext ans iPhone, auch nach einem Neustart der App) und nur bei einer Änderung gesendet.
+    /// (geht mit jedem Anwendungskontext ans iPhone, auch nach einem Neustart der App) und nur bei einer Änderung
+    /// gesendet.
     @MainActor func publish(recorderSkip skip: RecorderSkip?) {
         let text = skip?.encode() ?? ""
         guard text != Self.recorderSkip else { return }
@@ -97,7 +98,8 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
 
     /// Zuletzt protokollierter Stand der Mitteilungen (Diagnose nur bei einer Änderung). Nur auf dem Main-Thread.
     @MainActor private var loggedNotifications: WatchNotifications?
-    /// Wann der Stand der Mitteilungen zuletzt ans iPhone ging (`publishNotificationStateIfNeeded`). Nur auf dem Main-Thread.
+    /// Wann der Stand der Mitteilungen zuletzt ans iPhone ging (`publishNotificationStateIfNeeded`). Nur auf dem
+    /// Main-Thread.
     @MainActor private var notificationsSentAt: Date?
     /// Prüfung beim Planen läuft (nicht doppelt bei mehreren Rückfällen kurz nacheinander). Nur auf dem Main-Thread.
     @MainActor private var checkingNotifications = false
@@ -125,8 +127,8 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         publish(notifications: state)
     }
 
-    /// Erlaubnis für Mitteilungen (Rückfall-Wecker) ans iPhone melden (`SyncKeys.watchNotifications`), mit einer Zeile im
-    /// Protokoll, wenn sie sich ändert. Noch nicht gefragt: nichts melden, das iPhone warnt dann nicht.
+    /// Erlaubnis für Mitteilungen (Rückfall-Wecker) ans iPhone melden (`SyncKeys.watchNotifications`), mit einer Zeile
+    /// im Protokoll, wenn sie sich ändert. Noch nicht gefragt: nichts melden, das iPhone warnt dann nicht.
     @MainActor
     func publishNotificationState() async {
         publish(notifications: await notificationState())
@@ -183,8 +185,8 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         deliver([SyncKeys.learnRecording: text], userInfoOnly: true)
     }
 
-    /// Lernphase zeichnet eine Nacht nicht auf (``LearnSkip``, Lern-Übersicht) als Benutzerdaten: zugestellt, sobald das
-    /// iPhone erreichbar ist, auch wenn es nachts aus ist.
+    /// Lernphase zeichnet eine Nacht nicht auf (``LearnSkip``, Lern-Übersicht) als Benutzerdaten: zugestellt, sobald
+    /// das iPhone erreichbar ist, auch wenn es nachts aus ist.
     @MainActor
     func send(learnSkip skip: LearnSkip) {
         deliver([SyncKeys.learnSkip: skip.encode()], userInfoOnly: true)
@@ -212,14 +214,14 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         deliver(payload)
     }
 
-    /// Was vor der Aktivierung anfiel (z. B. App für eine Sitzung im Hintergrund gestartet und gleich geklingelt): Vorher
-    /// verwirft WatchConnectivity Nachrichten und Benutzerdaten bzw. wirft einen Fehler. Geht nach `activationDidComplete`
-    /// raus, wie auf dem iPhone (`PhoneConnectivity.pending`). Nur auf dem Main-Thread.
+    /// Was vor der Aktivierung anfiel (z. B. App für eine Sitzung im Hintergrund gestartet und gleich geklingelt):
+    /// Vorher verwirft WatchConnectivity Nachrichten und Benutzerdaten bzw. wirft einen Fehler. Geht nach
+    /// `activationDidComplete` raus, wie auf dem iPhone (`PhoneConnectivity.pending`). Nur auf dem Main-Thread.
     @MainActor var pending: [(payload: [String: Any], userInfoOnly: Bool)] = []
 
-    /// Sofort als Nachricht, wenn das iPhone erreichbar ist (bei einem Fehler als Benutzerdaten), sonst als Benutzerdaten;
-    /// `userInfoOnly` immer als Benutzerdaten (Nächte). Vor der Aktivierung gemerkt (`pending`). Die Sendezeit bleibt
-    /// die ursprüngliche: Das iPhone verwirft ein zu spätes «klingeln» selbst.
+    /// Sofort als Nachricht, wenn das iPhone erreichbar ist (bei einem Fehler als Benutzerdaten), sonst als
+    /// Benutzerdaten; `userInfoOnly` immer als Benutzerdaten (Nächte). Vor der Aktivierung gemerkt (`pending`). Die
+    /// Sendezeit bleibt die ursprüngliche: Das iPhone verwirft ein zu spätes «klingeln» selbst.
     @MainActor
     private func deliver(_ payload: [String: Any], userInfoOnly: Bool = false) {
         guard WCSession.isSupported() else { return }
@@ -324,7 +326,8 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     /// für eine Aufzeichnung, die vor ihm begann. - Returns: ob behandelt.
     private func receiveRecord(_ command: String, _ message: [String: Any]) -> Bool {
         guard command == SyncKeys.recordStart || command == SyncKeys.recordStop else { return false }
-        // Ohne Sendezeit (unvollständige Nachricht) nichts tun – wie bei Stopp und Schlummern; sonst gälte sie immer als frisch.
+        // Ohne Sendezeit (unvollständige Nachricht) nichts tun – wie bei Stopp und Schlummern; sonst gälte sie immer
+        // als frisch.
         let sentMs = message[SyncKeys.sentAt] as? Int64
         guard let sentAt = SyncTime.date(sentMs) else {
             Task { @MainActor in DiagStore.shared.log(.suppressed, "record \(command) without sentAt") }

@@ -4,19 +4,19 @@ import PhaseWakeCore
 
 /// Einschlafzeit der Nacht auf der Apple Watch, nachgerechnet beim Beginn der Smart-Alarm-Sitzung aus dem
 /// Bewegungs-Rekorder (``RecorderOnset``: dieselbe Regel wie die Einschlaf-Messung der Galaxy Watch, mit Grundrauschen
-/// und 15 Min Ruhe). Gemessen ab «Gute Nacht» (Zeit des Tippens) bzw. ab 60 Min vor der Bettzeit (``ShortNight``), frühestens
-/// ab dem Start des Rekorders. Der Rekorder läuft dafür jede Nacht, in der die App ab 60 Min vor der Bettzeit lief
-/// (geöffnet, etwa über die Erinnerung am Abend, oder Hintergrund-Aktualisierung), solange «Einschlafen automatisch
-/// erkennen» ein ist (`LearnRecorder+AutoOnset`), sonst nur nach «Gute Nacht», in der Lernphase und bei «Nacht
-/// aufzeichnen». Ist der Schalter aus, rechnet die Uhr wie Android nur nach «Gute Nacht».
+/// und 15 Min Ruhe). Gemessen ab «Gute Nacht» (Zeit des Tippens) bzw. ab 60 Min vor der Bettzeit (``ShortNight``),
+/// frühestens ab dem Start des Rekorders. Der Rekorder läuft dafür jede Nacht, in der die App ab 60 Min vor der
+/// Bettzeit lief (geöffnet, etwa über die Erinnerung am Abend, oder Hintergrund-Aktualisierung), solange «Einschlafen
+/// automatisch erkennen» ein ist (`LearnRecorder+AutoOnset`), sonst nur nach «Gute Nacht», in der Lernphase und bei
+/// «Nacht aufzeichnen». Ist der Schalter aus, rechnet die Uhr wie Android nur nach «Gute Nacht».
 ///
 /// Ergebnis (``Result``): Ohne Rekorder in dieser Nacht (nicht gestartet, keine Erlaubnis) ist die Einschlafzeit
-/// unbekannt, und die Untergrenze kurzer Nächte gilt nicht (`notMeasured`, wie Android ohne Messung); ebenso, wenn er erst
-/// nach dem Beginn der Einschlafdauer im Hintergrund startete (``RecorderOnset/lateStart(recorderFrom:bedAt:foreground:)``).
-/// Startete er spät bei offener App, gilt die Rechnung ab seinem Start. Lief er, aber
-/// die Rechnung bringt keine Einschlafzeit (aufgegeben, Weckfenster begonnen, zu wenige Werte, zu spät gerechnet), gilt die
-/// Untergrenze bis 10 Min vor der Zielzeit (`failed`, fail-closed, wie die Galaxy Watch nach
-/// einer begonnenen Messung ohne Ergebnis). Puls ab 15 Min vor dem Beginn und Zeiten am Ladegerät siehe
+/// unbekannt, und die Untergrenze kurzer Nächte gilt nicht (`notMeasured`, wie Android ohne Messung); ebenso, wenn er
+/// erst nach dem Beginn der Einschlafdauer im Hintergrund startete
+/// (``RecorderOnset/lateStart(recorderFrom:bedAt:foreground:)``). Startete er spät bei offener App, gilt die Rechnung
+/// ab seinem Start. Lief er, aber die Rechnung bringt keine Einschlafzeit (aufgegeben, Weckfenster begonnen, zu wenige
+/// Werte, zu spät gerechnet), gilt die Untergrenze bis 10 Min vor der Zielzeit (`failed`, fail-closed, wie die Galaxy
+/// Watch nach einer begonnenen Messung ohne Ergebnis). Puls ab 15 Min vor dem Beginn und Zeiten am Ladegerät siehe
 /// `LearnRecorder+Charging`. Neue Werte liefert der Rekorder erst nach bis zu 3 Min; die letzten Minuten
 /// vor der Sitzung fehlen darum. Die Einschlafzeit geht in die laufende Aufzeichnung (`LearnRecorder.noteOnset`), samt
 /// Beginn mit der Nacht ans iPhone (`NightRecord.bedAt`, `asleepAt`) und
@@ -37,10 +37,11 @@ enum WatchOnset {
         case failed
     }
 
-    /// Ergebnis und Grundrauschen der nachgerechneten Messung (``RecorderOnset/measure(motions:since:threshold:personalFloor:latest:extendCap:heartRates:)``:
-    /// Epochen bis zum erkannten Einschlafen bzw. Aufgeben; `nil` ohne Rechnung oder wenn sie ins Weckfenster lief).
-    /// Das Grundrauschen gilt im Weckfenster derselben Nacht als Vorwissen
-    /// (``WakeDetector/useOnsetFloor(_:)``), wie auf der Galaxy Watch (`OnsetFloorStore`).
+    /// Ergebnis und Grundrauschen der nachgerechneten Messung
+    /// (``RecorderOnset/measure(motions:since:threshold:personalFloor:latest:extendCap:heartRates:)``: Epochen bis zum
+    /// erkannten Einschlafen bzw. Aufgeben; `nil` ohne Rechnung oder wenn sie ins Weckfenster lief). Das Grundrauschen
+    /// gilt im Weckfenster derselben Nacht als Vorwissen (``WakeDetector/useOnsetFloor(_:)``), wie auf der Galaxy Watch
+    /// (`OnsetFloorStore`).
     typealias Outcome = (result: Result, floor: Double?)
 
     /// Rechnet die Einschlafzeit für die Nacht `plan` (Wecker `spec`, Schwellen `config`) nach.
@@ -96,7 +97,8 @@ enum WatchOnset {
                                           kind: .measureStart)
         }.value
         // Puls aus Apple Health dazu: Eine ruhige Strecke zählt nur, wenn die Uhr davor und darin getragen wurde;
-        // ein Puls bis ``SleepOnset/wornEpochs`` vor dem Beginn zählt für die erste (sonst zählte einer kurz vor «Gute Nacht» nie).
+        // ein Puls bis ``SleepOnset/wornEpochs`` vor dem Beginn zählt für die erste (sonst zählte einer kurz vor «Gute
+        // Nacht» nie).
         let lead = SleepOnset.wornEpochs
         let pulseStart = since.addingTimeInterval(-TimeInterval(lead * DetectorConfig.epochSeconds))
         let pulses = await LearnRecorder.shared.heartRates(from: pulseStart, to: stop)
@@ -105,8 +107,8 @@ enum WatchOnset {
         LearnRecorder.shared.noteCharging()
         let away = RecorderOnset.awayEpochs(LearnRecorder.shared.chargeSpans(until: stop), start: since, count: motions.count)
         let windowStart = AlarmSchedule.plan(spec, target: latest).windowStart
-        // Grundrauschen nur bis zur Epoche, in der das Einschlafen erkannt ist bzw. bis zum Aufgeben; lief die Messung ins
-        // Weckfenster, keines (wie `OnsetMonitor` auf der Galaxy Watch).
+        // Grundrauschen nur bis zur Epoche, in der das Einschlafen erkannt ist bzw. bis zum Aufgeben; lief die Messung
+        // ins Weckfenster, keines (wie `OnsetMonitor` auf der Galaxy Watch).
         let (result, floor) = RecorderOnset.measure(motions: motions, since: since, threshold: config.lightThreshold,
                                                     personalFloor: config.personalFloor, latest: latest,
                                                     extendCap: RecorderOnset.extendCap(since: since, windowStart: windowStart),

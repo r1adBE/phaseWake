@@ -141,8 +141,8 @@ private val STARS: List<Triple<Float, Float, Float>> = run {
 private const val STAR_COUNT = 46
 
 /**
- * Vollflächiger, langsam lebender Nachthimmel mit der Stimmung [mood]. Mit «Animationen entfernen» ruht der Lichtschein;
- * die Stimmung wechselt sanft, wenn sie sich ändert (sonst sofort). Die Sterne ruhen immer.
+ * Vollflächiger, langsam lebender Nachthimmel mit der Stimmung [mood]. Mit «Animationen entfernen» ruht der
+ * Lichtschein; die Stimmung wechselt sanft, wenn sie sich ändert (sonst sofort). Die Sterne ruhen immer.
  */
 @Composable
 fun AnimatedNight(modifier: Modifier = Modifier, mood: SkyMood = SkyMood.Plain, content: @Composable () -> Unit = {}) {

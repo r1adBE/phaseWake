@@ -19,7 +19,9 @@ import kotlinx.coroutines.flow.first
  */
 class OnsetFloorStore(private val store: DataStore<Preferences>) {
 
-    /** Grundrauschen [floor] der Messung für [alarmId] mit Weckzeit [latest]; ohne gültigen Wert wird der alte gelöscht. */
+    /**
+     * Grundrauschen [floor] der Messung für [alarmId] mit Weckzeit [latest]; ohne gültigen Wert wird der alte gelöscht.
+     */
     suspend fun set(alarmId: String, latest: Instant, floor: Double?) {
         val valid = Learning.validFloor(floor)
         store.edit {
@@ -47,8 +49,8 @@ class OnsetFloorStore(private val store: DataStore<Preferences>) {
         val FLOOR = doublePreferencesKey("onset_floor_value")
 
         /**
-         * Gespeichertes Grundrauschen [floor] gilt für [plan], wenn Wecker [alarmId] gleich ist und die eingestellte Weckzeit
-         * [latestMs] nicht vor der Zielzeit liegt (im Einschlaf-Modus liegt die Zielzeit früher) und höchstens
+         * Gespeichertes Grundrauschen [floor] gilt für [plan], wenn Wecker [alarmId] gleich ist und die eingestellte
+         * Weckzeit [latestMs] nicht vor der Zielzeit liegt (im Einschlaf-Modus liegt die Zielzeit früher) und höchstens
          * [WakeRules.GOOD_NIGHT_MAX_AHEAD] danach (eine ältere Nacht desselben Weckers zählt nicht). Sonst `null`.
          */
         fun floorFor(alarmId: String?, latestMs: Long?, floor: Double?, plan: WakePlan): Double? {

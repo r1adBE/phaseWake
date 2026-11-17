@@ -328,7 +328,8 @@ class GoodNightOnsetTest {
         assertTrue(!OnsetRules.startedLate(bedAt.minus(Duration.ofMinutes(40)), bedAt))
         assertTrue(!OnsetRules.startedLate(bedAt.plus(OnsetRules.LATE_START_TOLERANCE), bedAt))
         assertTrue(OnsetRules.startedLate(bedAt.plus(OnsetRules.LATE_START_TOLERANCE).plusSeconds(1), bedAt))
-        // «Gute Nacht»: Beginn ist das Tippen; Sekundenbruchteile danach gilt die Messung, nach einem Prozessende nicht mehr.
+        // «Gute Nacht»: Beginn ist das Tippen; Sekundenbruchteile danach gilt die Messung, nach einem Prozessende nicht
+        // mehr.
         val tap = now.minus(Duration.ofHours(2))
         assertEquals(tap, OnsetRules.plannedBedAt(tap, automatic = false, latest = latest, sleepMinutes = 450))
         assertTrue(!OnsetRules.startedLate(tap.plusMillis(200), tap))

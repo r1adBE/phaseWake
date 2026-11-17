@@ -10,17 +10,17 @@ object SleepOnset {
 
     /**
      * Höchstens so viele einzelne Zucker in einer ruhigen Strecke: eine Epoche mit Bewegung an oder über
-     * der Schwelle, deren beide Nachbarn ruhig sind. Sonst brach jeder Zucker alle 5–10 Min im Schlaf die Strecke, und die
-     * durchgehende Messung fand das Einschlafen Stunden später als die Stichproben.
+     * der Schwelle, deren beide Nachbarn ruhig sind. Sonst brach jeder Zucker alle 5–10 Min im Schlaf die Strecke, und
+     * die durchgehende Messung fand das Einschlafen Stunden später als die Stichproben.
      */
     const val MAX_TWITCHES: Int = 2
 
     /**
      * Getragen heisst: ein Puls höchstens so viele Epochen (15 Min) vor dem Beginn der Strecke
-     * oder in ihm, und mindestens einer in der Strecke nach ihrer ersten Epoche. Die Apple Watch misst den Puls ruhend von
-     * selbst, Apple nennt keinen festen Abstand; üblich sind 5 bis 15 Min (neuere Modelle öfter). 15 Min deckt den
-     * grössten üblichen Abstand: Eine getragene Uhr hat damit vor und in jeder 15-Min-Strecke einen Puls, eine abgelegte
-     * misst ab dem Ablegen keinen mehr und findet keine Strecke.
+     * oder in ihm, und mindestens einer in der Strecke nach ihrer ersten Epoche. Die Apple Watch misst den Puls ruhend
+     * von selbst, Apple nennt keinen festen Abstand; üblich sind 5 bis 15 Min (neuere Modelle öfter). 15 Min deckt den
+     * grössten üblichen Abstand: Eine getragene Uhr hat damit vor und in jeder 15-Min-Strecke einen Puls, eine
+     * abgelegte misst ab dem Ablegen keinen mehr und findet keine Strecke.
      */
     const val WORN_EPOCHS: Int = 30
 
@@ -28,13 +28,17 @@ object SleepOnset {
      * @param motions Bewegung je Epoche seit «Gute Nacht», in zeitlicher Reihenfolge.
      * @param threshold Leicht-Schwelle; ruhig heisst Bewegung vorhanden und darunter.
      * @return Index der ersten Epoche der ersten ruhigen Strecke, oder `null`, solange es keine gibt. Eine Strecke sind
-     *   [STILL_EPOCHS] Epochen, die erste und die letzte ruhig, dazwischen höchstens [MAX_TWITCHES] einzelne Zucker; eine
+     *   [STILL_EPOCHS] Epochen, die erste und die letzte ruhig, dazwischen höchstens [MAX_TWITCHES] einzelne Zucker;
+     * eine
      *   leere Epoche oder zwei bewegte nacheinander unterbrechen sie.
-     * @param heartRates Puls je Epoche oder `null` (keiner bekannt): Dann beginnt eine Strecke nur, wenn die Uhr getragen
-     *   wurde, also höchstens [WORN_EPOCHS] Epochen davor oder in ihrer ersten Epoche ein Puls gemessen ist und mindestens
+     * @param heartRates Puls je Epoche oder `null` (keiner bekannt): Dann beginnt eine Strecke nur, wenn die Uhr
+     * getragen
+     *   wurde, also höchstens [WORN_EPOCHS] Epochen davor oder in ihrer ersten Epoche ein Puls gemessen ist und
+     * mindestens
      *   einer in der Strecke danach: Abgelegt oder auf dem Ladegerät misst die Uhr
      *   keinen, und ihr Rauschen zählte sonst als Einschlafen – auch, wenn sie kurz nach einem Puls abgelegt wurde.
-     * @param heartLead So viele Epochen vor [motions] beginnt [heartRates] (Puls vor dem Beginn der Messung zählt für die
+     * @param heartLead So viele Epochen vor [motions] beginnt [heartRates] (Puls vor dem Beginn der Messung zählt für
+     * die
      *   erste Strecke); 0 = gleich gezählt.
      */
     fun find(

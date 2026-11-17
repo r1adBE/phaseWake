@@ -20,8 +20,8 @@ struct HomeView: View {
                            latencyMinutes: LearnRecorder.shared.snapshot.latencyMinutes)
                     .listRowBackground(Color.clear)
                 if case .waiting = SmartAlarm.shared.phase {
-                    // Nicht scharf: watchOS plant nur bei offener App und höchstens 36 h im Voraus. Ab der Erinnerung am
-                    // Abend deutlich (wie der Nacht-Check am iPhone): dann weckt nur die Mitteilung.
+                    // Nicht scharf: watchOS plant nur bei offener App und höchstens 36 h im Voraus. Ab der Erinnerung
+                    // am Abend deutlich (wie der Nacht-Check am iPhone): dann weckt nur die Mitteilung.
                     let tonight = EveningReminder.due(now: model.now)
                     Text(L(tonight ? "check_watch_arm_tonight" : "watch_not_armed"))
                         .font(Fonts.manrope(12, relativeTo: .footnote))
@@ -214,8 +214,8 @@ private struct WindowRing: View {
                         .rotationEffect(.degrees(now * 360 - 90))
                 }
                 if !exact {
-                    // Leuchtendes Weckfenster: weicher Schein, darauf der Verlauf vom Lavendel-Schein über Lavendel zum Mondweiss;
-                    // im Always-On flach und gedimmt.
+                    // Leuchtendes Weckfenster: weicher Schein, darauf der Verlauf vom Lavendel-Schein über Lavendel zum
+                    // Mondweiss; im Always-On flach und gedimmt.
                     if !dimmed {
                         Circle()
                             .trim(from: 0, to: sweep * drawn)

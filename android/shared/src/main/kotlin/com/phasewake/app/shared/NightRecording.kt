@@ -41,8 +41,9 @@ enum class RecordEnd(val code: String) {
 /**
  * Eine aufgezeichnete Nacht («Nacht aufzeichnen» auf der Galaxy Watch): ab [start] je 30-s-Epoche Bewegung und Puls.
  * Epoche `i` deckt `start + i · 30 s` ab; Lücken (z. B. nach einem Prozessende) sind leere Epochen. [end] und
- * [endReason] fehlen, solange sie läuft. Grundlage der Lernphase ([toLearnNight]); hat die Einschlaf-Messung während der
- * Aufzeichnung das Einschlafen erkannt, stehen Beginn der Einschlafdauer [bedAt] und Einschlafzeit [asleepAt] dabei.
+ * [endReason] fehlen, solange sie läuft. Grundlage der Lernphase ([toLearnNight]); hat die Einschlaf-Messung während
+ * der Aufzeichnung das Einschlafen erkannt, stehen Beginn der Einschlafdauer [bedAt] und Einschlafzeit [asleepAt]
+ * dabei.
  */
 data class NightRecording(
     val start: Instant,
@@ -77,7 +78,9 @@ data class NightRecording(
         /** Epochen in [MAX_DURATION]; mehr nimmt eine Aufzeichnung nicht auf. */
         val MAX_EPOCHS: Int = (MAX_DURATION.seconds / DetectorConfig.EPOCH_SECONDS).toInt()
 
-        /** Unter diesem Akkustand (Prozent) startet keine Aufzeichnung, und eine laufende endet ([RecordEnd.BATTERY]). */
+        /**
+         * Unter diesem Akkustand (Prozent) startet keine Aufzeichnung, und eine laufende endet ([RecordEnd.BATTERY]).
+         */
         const val MIN_BATTERY = 15
 
         /** So viele abgeschlossene Aufzeichnungen bleiben je Gerät; ältere werden gelöscht. */
@@ -92,8 +95,8 @@ data class NightRecording(
         private const val ONSET = "onset="
 
         /**
-         * Grund für ein Ende jetzt ([now], Akku [battery] in Prozent, `null` = unbekannt), sonst `null`: [RecordEnd.CAP] ab
-         * [MAX_DURATION] nach [start], [RecordEnd.BATTERY] unter [MIN_BATTERY].
+         * Grund für ein Ende jetzt ([now], Akku [battery] in Prozent, `null` = unbekannt), sonst `null`:
+         * [RecordEnd.CAP] ab [MAX_DURATION] nach [start], [RecordEnd.BATTERY] unter [MIN_BATTERY].
          */
         fun endNow(start: Instant, now: Instant, battery: Int?): RecordEnd? = when {
             !now.isBefore(start.plus(MAX_DURATION)) -> RecordEnd.CAP
@@ -120,8 +123,8 @@ data class NightRecording(
         fun endLine(end: Instant, reason: RecordEnd): String = "$END${end.toEpochMilli()},${reason.code}\n"
 
         /**
-         * Zeile «onset=bettMs,eingeschlafenMs» (Lernphase); darf zwischen den Epochen stehen und zählt nicht als Epoche.
-         * Ältere Versionen überspringen sie als unlesbare Epochen-Zeile.
+         * Zeile «onset=bettMs,eingeschlafenMs» (Lernphase); darf zwischen den Epochen stehen und zählt nicht als
+         * Epoche. Ältere Versionen überspringen sie als unlesbare Epochen-Zeile.
          */
         fun onsetLine(bedAt: Instant, asleepAt: Instant): String = "$ONSET${bedAt.toEpochMilli()},${asleepAt.toEpochMilli()}\n"
 

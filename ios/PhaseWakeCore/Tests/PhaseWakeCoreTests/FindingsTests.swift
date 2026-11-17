@@ -66,7 +66,8 @@ final class FindingsTests: XCTestCase {
     }
 
     func testOwnerNightsFromSamsungSessions() {
-        // Echte Werte (Samsung, Nächte 8.–14.11.2026): Einschlafbeginn und Aufwachen (am Morgen danach), Schlaf, Einschlafdauer, Tief.
+        // Echte Werte (Samsung, Nächte 8.–14.11.2026): Einschlafbeginn und Aufwachen (am Morgen danach), Schlaf,
+        // Einschlafdauer, Tief.
         let own = ["01:56 09:59 434 15 57", "03:08 11:25 432 51 42", "02:43 07:57 284 55 20", "01:36 10:23 474 103 67",
                    "03:11 11:56 438 95 56", "02:29 11:59 479 75 64", "04:30 11:25 353 85 15"]
         var sessions: [HealthSession] = []

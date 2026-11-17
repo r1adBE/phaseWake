@@ -22,12 +22,14 @@ public struct StageSpan: Equatable, Sendable {
 
 /// Abgleich des Weckmoments mit den Schlafphasen. Identisch zu `StageCheck` (Kotlin).
 public enum StageCheck {
-    /// Phase zum Zeitpunkt `at` (Beginn einschliesslich, Ende ausschliesslich); bei Überlappung die zuletzt gelistete; `nil` ausserhalb jeder Phase.
+    /// Phase zum Zeitpunkt `at` (Beginn einschliesslich, Ende ausschliesslich); bei Überlappung die zuletzt gelistete;
+    /// `nil` ausserhalb jeder Phase.
     public static func stageAt(_ spans: [StageSpan], _ at: Date) -> SleepStage? {
         spans.last { at >= $0.start && at < $0.end }?.stage
     }
 
-    /// Phase beim Wecken. Gesundheits-Apps beenden die Schlafsitzung oft genau beim Aufwachen; darum zählt auch die Phase, die bis zu `toleranceSeconds` Sekunden (Standard 2 Min) vorher endete.
+    /// Phase beim Wecken. Gesundheits-Apps beenden die Schlafsitzung oft genau beim Aufwachen; darum zählt auch die
+    /// Phase, die bis zu `toleranceSeconds` Sekunden (Standard 2 Min) vorher endete.
     public static func stageAtWake(_ spans: [StageSpan], wokeAt: Date, toleranceSeconds: TimeInterval = 120) -> SleepStage? {
         stageAt(spans, wokeAt) ?? stageAt(spans, wokeAt.addingTimeInterval(-toleranceSeconds))
     }
@@ -59,8 +61,8 @@ public enum WindowAdvice {
         public let nights: Int
     }
 
-    /// Vorschlag, oder `nil`: nur bei einem Fenster unter 30 Min (nicht bei «Genau», bewusst ohne Fenster), ab 3 Nächten
-    /// und wenn mehr als die Hälfte der letzten 7 Nächte erst zur Zielzeit geweckt hat.
+    /// Vorschlag, oder `nil`: nur bei einem Fenster unter 30 Min (nicht bei «Genau», bewusst ohne Fenster), ab 3
+    /// Nächten und wenn mehr als die Hälfte der letzten 7 Nächte erst zur Zielzeit geweckt hat.
     public static func suggest(_ spec: AlarmSpec, history: [NightRecord]) -> Suggestion? {
         guard !spec.isExact, spec.windowMinutes < AlarmSpec.maxWindowMinutes else { return nil }
         let recent = Array(history.filter { $0.alarmId == spec.id && $0.reason.earlyAllowed }.sorted { $0.windowStart < $1.windowStart }.suffix(nights))

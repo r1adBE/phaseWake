@@ -30,5 +30,7 @@ data class WatchPulse(val heartRate: Boolean, val background: Boolean) {
     }
 }
 
-/** Handy: zuletzt gemeldete Pulsrechte der Uhr; `null`, wenn unbekannt (ältere Uhr, kein Status, keine Wear-Dienste). */
+/**
+ * Handy: zuletzt gemeldete Pulsrechte der Uhr; `null`, wenn unbekannt (ältere Uhr, kein Status, keine Wear-Dienste).
+ */
 suspend fun WearSync.watchPulse(): WatchPulse? = readStatus { WatchPulse.read(it) }

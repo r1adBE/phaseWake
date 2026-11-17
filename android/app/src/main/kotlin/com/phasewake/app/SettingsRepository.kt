@@ -88,7 +88,10 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
         }
     }
 
-    /** Stand des Schalters mit Zeitpunkt der letzten Änderung (ms) für die Uhr; fehlt er, wird jetzt einer gesetzt (wie [sleepGoalStamp]). */
+    /**
+     * Stand des Schalters mit Zeitpunkt der letzten Änderung (ms) für die Uhr; fehlt er, wird jetzt einer gesetzt (wie
+     * [sleepGoalStamp]).
+     */
     suspend fun autoOnsetStamped(): Pair<Boolean, Long> {
         var result = true to 0L
         store.edit { prefs ->
@@ -249,7 +252,10 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
         store.edit { it[HISTORY_CLEARED_AT] = at.toEpochMilli() }
     }
 
-    /** Auf der Startseite ausgeblendete Auffälligkeiten mit Zeitpunkt ([Findings.decodeHidden]); nur auf dem Handy, nicht gesichert. */
+    /**
+     * Auf der Startseite ausgeblendete Auffälligkeiten mit Zeitpunkt ([Findings.decodeHidden]); nur auf dem Handy,
+     * nicht gesichert.
+     */
     val findingsHidden: Flow<Map<FindingKind, Instant>> = store.data.map { Findings.decodeHidden(it[FINDINGS_HIDDEN]) }
 
     /** Blendet [kind] jetzt aus; erscheint frühestens nach [Findings.HIDE_FOR] wieder. */
@@ -283,8 +289,8 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
     }
 
     /**
-     * Übernimmt die Einstellungen einer Sicherung in [prefs] (Wiederherstellen in einem Schritt); ein unbekanntes Design
-     * wird «System».
+     * Übernimmt die Einstellungen einer Sicherung in [prefs] (Wiederherstellen in einem Schritt); ein unbekanntes
+     * Design wird «System».
      */
     fun restoreInto(prefs: MutablePreferences, settings: BackupSettings) {
         prefs[SLEEP_GOAL] = SleepGoal.clamp(settings.sleepGoal)
@@ -309,7 +315,8 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
     companion object {
         /**
          * Zeitpunkt von «Verlauf löschen» zur Verwendung: höchstens [nowMs] (eine verstellte Uhr oder eine
-         * Sicherung «aus der Zukunft» blendete sonst auch alle künftigen Nächte aus), ausserhalb von [TimeBounds] `null`.
+         * Sicherung «aus der Zukunft» blendete sonst auch alle künftigen Nächte aus), ausserhalb von [TimeBounds]
+         * `null`.
          */
         fun clearedAt(raw: Long?, nowMs: Long): Long? = TimeBounds.checked(raw)?.let { minOf(it, nowMs) }
 

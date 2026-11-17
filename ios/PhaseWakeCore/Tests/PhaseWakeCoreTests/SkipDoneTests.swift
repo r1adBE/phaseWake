@@ -89,8 +89,9 @@ final class SkipDoneTests: XCTestCase {
     func testWallMillisIgnoresZoneAndHandlesGap() {
         XCTAssertEqual(AlarmSchedule.wallMillis(at("2026-10-29T07:00"), calendar: zurich), 1_793_257_200_000)
         XCTAssertEqual(AlarmSchedule.wallMillis(at("2026-10-29T07:00", "America/New_York"), calendar: newYork), 1_793_257_200_000)
-        // Bruchteile einer Millisekunde: abgeschnitten, nie aufgerundet (wie Kotlin). Kotlin prüft + 999 999 ns; so nah an
-        // der vollen Millisekunde kann `Date` (Double, rund 0,24 µs Auflösung um 2026) nicht rechnen, darum + 900 µs.
+        // Bruchteile einer Millisekunde: abgeschnitten, nie aufgerundet (wie Kotlin). Kotlin prüft + 999 999 ns; so nah
+        // an der vollen Millisekunde kann `Date` (Double, rund 0,24 µs Auflösung um 2026) nicht rechnen, darum + 900
+        // µs.
         XCTAssertEqual(AlarmSchedule.wallMillis(at("2026-10-29T07:00").addingTimeInterval(0.000_9), calendar: zurich), 1_793_257_200_000)
         XCTAssertEqual(AlarmSchedule.wallMillis(at("2026-10-29T07:00").addingTimeInterval(0.001_5), calendar: zurich), 1_793_257_200_001)
         // Zeitumstellung (28.3.2027, 2:30 fällt aus → 3:30): Übersprungen wird genau dieser Termin.
@@ -129,7 +130,8 @@ final class SkipDoneTests: XCTestCase {
         // … und nach frühem Wecken ab der erledigten Nacht.
         XCTAssertEqual(AlarmSchedule.editedSkip(old: plain, edited: alarm(hour: 8), requested: true, now: at("2026-10-29T06:50"),
                                                 doneUntil: at("2026-10-29T08:00"), calendar: zurich), wall("2026-10-30T08:00"))
-        // Nur die Tage geändert, derselbe Termin wie vorher (Do 7:00) bewusst wieder eingeschaltet: bleibt übersprungen.
+        // Nur die Tage geändert, derselbe Termin wie vorher (Do 7:00) bewusst wieder eingeschaltet: bleibt
+        // übersprungen.
         let sixDays = alarm(days: weekdays.union([.saturday]), skipUntil: old.skipUntil)
         XCTAssertEqual(AlarmSchedule.editedSkip(old: old, edited: sixDays, requested: true, now: now, calendar: zurich), old.skipUntil)
         XCTAssertEqual(AlarmSchedule.editedSkip(old: old, edited: sixDays, requested: nil, now: now, calendar: zurich), 0)
@@ -138,7 +140,8 @@ final class SkipDoneTests: XCTestCase {
     }
 
     func testEditorShowsSkipAsSaved() {
-        // Uhr-Editor (M2): Schalter und Datum kommen aus skippedDate(Entwurf mit editedSkip), also aus dem gespeicherten Stand.
+        // Uhr-Editor (M2): Schalter und Datum kommen aus skippedDate(Entwurf mit editedSkip), also aus dem
+        // gespeicherten Stand.
         let now = at("2026-10-28T22:00")
         let old = alarm(skipUntil: wall("2026-10-29T07:00"))
         func shown(_ edited: AlarmSpec, _ requested: Bool?) -> String? {

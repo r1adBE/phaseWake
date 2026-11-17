@@ -16,7 +16,10 @@ import com.phasewake.app.wear.ui.MainActivity
 import com.phasewake.app.wear.ui.RingActivity
 import com.phasewake.app.wear.ui.SunriseActivity
 
-/** Mitteilungen der Uhr: ruhige Daueranzeige während des Fensters, Weck-Mitteilung mit Vollbild beim Wecken (Vibration steuert der Dienst). */
+/**
+ * Mitteilungen der Uhr: ruhige Daueranzeige während des Fensters, Weck-Mitteilung mit Vollbild beim Wecken (Vibration
+ * steuert der Dienst).
+ */
 object Notifications {
     const val CHANNEL_WINDOW = "window"
     const val CHANNEL_ALARM = "alarm"
@@ -174,7 +177,9 @@ object Notifications {
             .build()
     }
 
-    /** Weckbildschirm über einen Wecker-Alarm des Systems (siehe `RingScreenAlert.kt`); gleiche Identität zum Abbrechen. */
+    /**
+     * Weckbildschirm über einen Wecker-Alarm des Systems (siehe `RingScreenAlert.kt`); gleiche Identität zum Abbrechen.
+     */
     fun ringScreenByAlarm(context: Context): PendingIntent = ringScreen(context, RingActivity.VIA_ALARM, REQUEST_RING_ALARM)
 
     /** Entfernt alle Mitteilungen des Weckdienstes (Daueranzeige und beide Weck-Kennungen). */

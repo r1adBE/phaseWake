@@ -3,8 +3,8 @@ import os
 import PhaseWakeCore
 
 /// Schlafnotizen, eigene Notizen, Befinden zu Nächten aus anderen Apps und die Abendroutine (nur iPhone): als Dateien
-/// im von der Sicherung ausgenommenen Ordner (`PrivateFiles`) statt in `UserDefaults`, das mit der iCloud-Sicherung ginge.
-/// Gleiche Formate und Regeln wie die Notiz-Funktionen von `PhaseWakeStorage`. Stände früherer Versionen werden
+/// im von der Sicherung ausgenommenen Ordner (`PrivateFiles`) statt in `UserDefaults`, das mit der iCloud-Sicherung
+/// ginge. Gleiche Formate und Regeln wie die Notiz-Funktionen von `PhaseWakeStorage`. Stände früherer Versionen werden
 /// beim Erzeugen einmal aus `UserDefaults` übernommen und dort gelöscht.
 final class PrivateNotes: @unchecked Sendable {
     private enum File: String, CaseIterable {

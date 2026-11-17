@@ -76,8 +76,8 @@ final class PhoneTransient {
         save()
     }
 
-    /// Stand für den neuen Powernap `plan` (hier oder auf der Uhr gestartet); `waiting`: «Öffne Phase Wake auf der Uhr».
-    /// Ersetzt einen wartenden Probewecker wie die Uhr und Android (ein Platz): Er endet ohne Ergebnis.
+    /// Stand für den neuen Powernap `plan` (hier oder auf der Uhr gestartet); `waiting`: «Öffne Phase Wake auf der
+    /// Uhr». Ersetzt einen wartenden Probewecker wie die Uhr und Android (ein Platz): Er endet ohne Ergebnis.
     func begin(nap plan: TransientPlan, waiting: Bool) {
         if test != nil {
             DiagStore.shared.log(.test, "replaced by nap")
@@ -131,8 +131,8 @@ final class PhoneTransient {
     }
 
     /// Nicht starten, solange ein Fenster läuft (auch das eines Probeweckers oder Powernaps), eine Nacht klingelt bzw.
-    /// schlummert oder der Plan das nächste Fenster überdeckte (`Transient.conflict`, wie Android); der Grund steht dann
-    /// in `refused`.
+    /// schlummert oder der Plan das nächste Fenster überdeckte (`Transient.conflict`, wie Android); der Grund steht
+    /// dann in `refused`.
     private func allowed(_ plan: TransientPlan) -> Bool {
         let model = PhoneModel.shared
         let now = Date()

@@ -10,7 +10,10 @@ import com.phasewake.app.ui.onboarding.OnboardingModel
 import com.phasewake.app.ui.settings.HealthState
 import com.phasewake.app.ui.theme.ThemeMode
 
-/** Bildschirmfotos der Ersteinrichtung: Willkommen, Uhr, Rechte, erster Wecker, Lernphase, Probewecker, Fertig. Beispieldaten. */
+/**
+ * Bildschirmfotos der Ersteinrichtung: Willkommen, Uhr, Rechte, erster Wecker, Lernphase, Probewecker, Fertig.
+ * Beispieldaten.
+ */
 
 /** Beispiel mit dem Nacht-Check [check]; Health Connect wäre verfügbar, kein Probewecker läuft. */
 private fun model(check: NightCheckState?) = OnboardingModel(
@@ -24,7 +27,9 @@ private fun model(check: NightCheckState?) = OnboardingModel(
     onStartTest = {},
 )
 
-/** Seite [page] (0 = Willkommen … 6 = Fertig) der Einrichtung; Vorgabe: Mitteilungen fehlen noch, Vollbild ist erlaubt. */
+/**
+ * Seite [page] (0 = Willkommen … 6 = Fertig) der Einrichtung; Vorgabe: Mitteilungen fehlen noch, Vollbild ist erlaubt.
+ */
 @Composable
 private fun Onboarding(mode: ThemeMode, page: Int, check: NightCheckState? = NightCheckState(listOf(Check.NOTIFICATIONS))) = Themed(mode) {
     OnboardingContent(page, onPage = {}, model(check), onDone = {})

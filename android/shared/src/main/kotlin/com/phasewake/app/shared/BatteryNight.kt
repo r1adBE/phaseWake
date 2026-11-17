@@ -21,9 +21,9 @@ import java.time.Instant
  * Akkustand je Nacht auf diesem Gerät (Handy oder Uhr); die Rechnung steht in [BatteryTrack]. Die
  * laufende Nacht liegt in einer kleinen Datei (SharedPreferences) und übersteht so ein Prozessende.
  *
- * Ladegerät: Solange der Prozess lebt, meldet [listen] Anschliessen und Trennen sofort. Läuft er nicht, startet der Auftrag
- * [BatteryChargeJob] (JobScheduler, nur am Ladegerät) beim Anschliessen und hält den Ladebeginn fest. Ein Wechsel, den
- * keiner sieht, macht die Nacht unbekannt (kein Wert statt eines falschen, siehe [BatteryTrack.used]).
+ * Ladegerät: Solange der Prozess lebt, meldet [listen] Anschliessen und Trennen sofort. Läuft er nicht, startet der
+ * Auftrag [BatteryChargeJob] (JobScheduler, nur am Ladegerät) beim Anschliessen und hält den Ladebeginn fest. Ein
+ * Wechsel, den keiner sieht, macht die Nacht unbekannt (kein Wert statt eines falschen, siehe [BatteryTrack.used]).
  * Vor dem ersten Entsperren (Direct Boot) ist der Speicher nicht lesbar: dann geschieht nichts.
  */
 object BatteryNight {
@@ -43,7 +43,9 @@ object BatteryNight {
 
     private val lock = Any()
 
-    /** Akkustand aus der Systemmeldung ACTION_BATTERY_CHANGED (bleibt stehen, kein Empfänger nötig); unbekannt: `null`. */
+    /**
+     * Akkustand aus der Systemmeldung ACTION_BATTERY_CHANGED (bleibt stehen, kein Empfänger nötig); unbekannt: `null`.
+     */
     fun read(context: Context): Reading? {
         val status = context.registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED)) ?: return null
         val level = status.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)
@@ -54,8 +56,8 @@ object BatteryNight {
     }
 
     /**
-     * Messbeginn der Nacht ([BatteryTrack.begin]): Läuft schon eine, kommt ein Zwischenstand dazu. `true`, wenn damit eine
-     * neue Nacht beginnt (die Uhr meldet das dem Handy).
+     * Messbeginn der Nacht ([BatteryTrack.begin]): Läuft schon eine, kommt ein Zwischenstand dazu. `true`, wenn damit
+     * eine neue Nacht beginnt (die Uhr meldet das dem Handy).
      */
     fun begin(context: Context, reading: Reading? = read(context)): Boolean {
         if (reading == null || !unlocked(context)) return false
@@ -183,8 +185,8 @@ object BatteryNight {
 }
 
 /**
- * Läuft, sobald das Gerät am Ladegerät hängt, auch wenn die App gerade nicht läuft ([BatteryNight]): hält den Ladebeginn
- * der laufenden Nacht fest. Kurz und ohne Arbeit im Hintergrund.
+ * Läuft, sobald das Gerät am Ladegerät hängt, auch wenn die App gerade nicht läuft ([BatteryNight]): hält den
+ * Ladebeginn der laufenden Nacht fest. Kurz und ohne Arbeit im Hintergrund.
  */
 class BatteryChargeJob : JobService() {
     override fun onStartJob(params: JobParameters?): Boolean {

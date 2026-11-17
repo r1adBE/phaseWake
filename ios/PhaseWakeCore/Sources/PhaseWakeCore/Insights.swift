@@ -12,7 +12,8 @@ public enum NightQuality {
     /// Mindestanteil der Epochen mit Puls (50 %), damit eine Nacht als vollständig gemessen gilt.
     public static let heartShare = 0.5
 
-    /// Bewertet die Messung einer Nacht ohne die Aufwärm-Epochen: `none` ohne Epochen oder ohne jede Bewegung, `partial` unter 80 % Bewegung, sonst `full` mit Puls in mindestens der Hälfte, sonst `motionOnly`.
+    /// Bewertet die Messung einer Nacht ohne die Aufwärm-Epochen: `none` ohne Epochen oder ohne jede Bewegung,
+    /// `partial` unter 80 % Bewegung, sonst `full` mit Puls in mindestens der Hälfte, sonst `motionOnly`.
     public static func of(_ night: NightRecord, warmupEpochs: Int = DetectorConfig.defaultWarmupEpochs) -> DataQuality {
         let epochs = night.epochs.dropFirst(warmupEpochs)
         guard !epochs.isEmpty else { return .none }
@@ -32,8 +33,9 @@ public struct SleepSummary: Equatable, Sendable {
     public let end: Date
     /// Geschlafene Minuten (alle Phasen ausser «wach»; Millisekunden summiert, dann auf ganze Minuten abgerundet).
     public let asleepMinutes: Int
-    /// Zone der Aufzeichnung (``HealthSession/timeZone``); `nil` = unbekannt, dann die des Geräts. Nachtdatum und Uhrzeiten
-    /// (Diagramme, Ø-Bett-/Aufwachzeit, Trends, Regelmässigkeit, Schlafziel) rechnen in ihr (``localCalendar(_:)``).
+    /// Zone der Aufzeichnung (``HealthSession/timeZone``); `nil` = unbekannt, dann die des Geräts. Nachtdatum und
+    /// Uhrzeiten (Diagramme, Ø-Bett-/Aufwachzeit, Trends, Regelmässigkeit, Schlafziel) rechnen in ihr
+    /// (``localCalendar(_:)``).
     public let timeZone: TimeZone?
 
     /// Erzeugt eine Nacht; `start` liegt vor `end`.
@@ -44,7 +46,8 @@ public struct SleepSummary: Equatable, Sendable {
         self.timeZone = timeZone
     }
 
-    /// `calendar` in der Zone der Aufzeichnung (``timeZone``); ohne sie unverändert (Zone des Geräts). Wie `zoneOr` (Kotlin).
+    /// `calendar` in der Zone der Aufzeichnung (``timeZone``); ohne sie unverändert (Zone des Geräts). Wie `zoneOr`
+    /// (Kotlin).
     public func localCalendar(_ calendar: Calendar) -> Calendar {
         guard let timeZone else { return calendar }
         var local = calendar
@@ -77,7 +80,8 @@ public struct SleepSummary: Equatable, Sendable {
     }
 
     /// Eine Nacht aus `spans`: Beginn der ersten Schlafphase bis Ende der letzten Phase, Schlaf aller Phasen ausser
-    /// «wach». `nil` ohne Schlaf. Für die Nächte des Verlaufs je Kette (``HealthHistory/summaries(_:clearedAt:calendar:)``).
+    /// «wach». `nil` ohne Schlaf. Für die Nächte des Verlaufs je Kette
+    /// (``HealthHistory/summaries(_:clearedAt:calendar:)``).
     public static func of(_ spans: [StageSpan]) -> SleepSummary? {
         let asleep = spans.filter { $0.stage != .awake }
         guard let start = asleep.map(\.start).min(), let end = spans.map(\.end).max() else { return nil }
@@ -112,8 +116,9 @@ public struct Trends: Equatable, Sendable {
     /// Mindestens so viele Nächte für die Streuung der Einschlafzeit.
     public static let minNightsForSpread = 5
 
-    /// Rechnet den Wochenvergleich: Woche = 7 × 24 Stunden vor `now`, die Woche davor die 7 × 24 Stunden davor. Schlaf zählt nach dem Ende der Nacht, Befinden nach dem Weckmoment,
-    /// Befinden zu Nächten aus anderen Apps (`health`) nach dem Ende ihrer Sitzung.
+    /// Rechnet den Wochenvergleich: Woche = 7 × 24 Stunden vor `now`, die Woche davor die 7 × 24 Stunden davor. Schlaf
+    /// zählt nach dem Ende der Nacht, Befinden nach dem Weckmoment, Befinden zu Nächten aus anderen Apps (`health`)
+    /// nach dem Ende ihrer Sitzung.
     public static func compute(nights: [NightRecord], sleeps: [SleepSummary], now: Date, calendar: Calendar,
                                health: [HealthFeeling] = []) -> Trends {
         let weekAgo = now.addingTimeInterval(-7 * 86_400)
@@ -156,7 +161,8 @@ public enum MissHint: String, Sendable {
     /// So viele jüngste Nächte eines Weckers müssen alle zur Zielzeit geweckt haben.
     public static let nights = 3
 
-    /// Hinweis für den Wecker `spec`, oder `nil`: Nur bei vollem Fenster (30 Min) und wenn die letzten 3 Nächte alle zur Zielzeit weckten. Die Mehrheit entscheidet über den Grund: Lücken, fehlender Puls, sonst ruhiger Schlaf.
+    /// Hinweis für den Wecker `spec`, oder `nil`: Nur bei vollem Fenster (30 Min) und wenn die letzten 3 Nächte alle
+    /// zur Zielzeit weckten. Die Mehrheit entscheidet über den Grund: Lücken, fehlender Puls, sonst ruhiger Schlaf.
     public static func of(_ spec: AlarmSpec?, nights: [NightRecord]) -> MissHint? {
         guard let spec, spec.windowMinutes >= AlarmSpec.maxWindowMinutes else { return nil }
         let recent = Array(nights.filter { $0.alarmId == spec.id }.sorted { $0.windowStart < $1.windowStart }.suffix(Self.nights))

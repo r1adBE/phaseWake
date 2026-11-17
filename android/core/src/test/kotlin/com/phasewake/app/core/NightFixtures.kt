@@ -13,7 +13,10 @@ internal data class NightFixture(
      * Einschlaf-Messung dieser Nacht aus `@onset-floor` ([DetectorConfig.withOnsetFloor]), falls angegeben.
      */
     val config: DetectorConfig = DetectorConfig(),
-    /** `@rearm-until`: Jeder Moment vor dieser Epoche wird übergangen ([WakeDetector.rearm], kurze Nacht); `null` = keiner. */
+    /**
+     * `@rearm-until`: Jeder Moment vor dieser Epoche wird übergangen ([WakeDetector.rearm], kurze Nacht); `null` =
+     * keiner.
+     */
     val rearmUntil: Int? = null,
 ) {
     /** Erste weckende Epoche und Grund mit [config] und [rearmUntil]; `null`, wenn keine weckt. */

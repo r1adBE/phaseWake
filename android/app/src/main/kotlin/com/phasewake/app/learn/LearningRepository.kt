@@ -48,8 +48,8 @@ data class LearningState(
 /**
  * Lernphase am Handy, privat im DataStore der App: Keine Sicherung (weder System noch `.pwbak`) enthält sie, denn sie
  * beruht auf den Aufzeichnungen, die ebenfalls nicht gesichert werden. Sie beginnt nie von selbst, nur mit Zustimmung
- * ([setConsent]). «Verlauf löschen» beginnt sie von vorn und verwirft die Werte ([restart]); «Neu lernen» beginnt sie von
- * vorn und behält die Werte, bis die neuen fertig sind ([relearn]). Beides lässt die Zustimmung, wie sie ist.
+ * ([setConsent]). «Verlauf löschen» beginnt sie von vorn und verwirft die Werte ([restart]); «Neu lernen» beginnt sie
+ * von vorn und behält die Werte, bis die neuen fertig sind ([relearn]). Beides lässt die Zustimmung, wie sie ist.
  */
 class LearningRepository(private val store: DataStore<Preferences>) {
 
@@ -58,9 +58,9 @@ class LearningRepository(private val store: DataStore<Preferences>) {
     suspend fun current(): LearningState = read(store.data.first())
 
     /**
-     * Zustimmung ab [now] ([on]: «Lernphase starten» bzw. Schalter an; sonst «Später» bzw. Schalter aus). An: Hat sie nie
-     * begonnen, beginnt sie jetzt; sonst läuft sie mit den bisher gezählten Nächten weiter. Aus: Die Uhr zeichnet nicht
-     * mehr automatisch auf; gelernte Werte bleiben.
+     * Zustimmung ab [now] ([on]: «Lernphase starten» bzw. Schalter an; sonst «Später» bzw. Schalter aus). An: Hat sie
+     * nie begonnen, beginnt sie jetzt; sonst läuft sie mit den bisher gezählten Nächten weiter. Aus: Die Uhr zeichnet
+     * nicht mehr automatisch auf; gelernte Werte bleiben.
      * @return ob die Lernphase jetzt begonnen hat.
      */
     suspend fun setConsent(on: Boolean, now: Instant): Boolean {
@@ -87,8 +87,8 @@ class LearningRepository(private val store: DataStore<Preferences>) {
     }
 
     /**
-     * «Neu lernen» ab [now]: Es zählen nur Nächte ab jetzt; die bisherigen Werte gelten weiter, bis [finish] sie ersetzt.
-     * Ohne bisherige Werte wie [restart].
+     * «Neu lernen» ab [now]: Es zählen nur Nächte ab jetzt; die bisherigen Werte gelten weiter, bis [finish] sie
+     * ersetzt. Ohne bisherige Werte wie [restart].
      */
     suspend fun relearn(now: Instant) {
         store.edit { prefs ->
@@ -137,8 +137,8 @@ class LearningRepository(private val store: DataStore<Preferences>) {
 
     /**
      * Zeitpunkt der Änderung: [now], mindestens der bisherige + 1 ([TimeBounds.next]): Die Uhr übernimmt nur
-     * einen neueren Stand; zwei Änderungen in derselben Millisekunde oder nach einer zurückgestellten Uhrzeit gingen sonst
-     * verloren. Wie `LearningState` (Swift).
+     * einen neueren Stand; zwei Änderungen in derselben Millisekunde oder nach einer zurückgestellten Uhrzeit gingen
+     * sonst verloren. Wie `LearningState` (Swift).
      */
     private fun stamp(prefs: MutablePreferences, now: Instant) {
         prefs[UPDATED_AT] = TimeBounds.next(now.toEpochMilli(), prefs[UPDATED_AT])

@@ -2,7 +2,8 @@ import XCTest
 import PhaseWakeCore
 
 /// Fremde Nächte überall in der Zone ihrer Aufzeichnung: Nachtdatum, Diagramme,
-/// Übersicht, Trends und Regelmässigkeit; ohne Zone die des Geräts. Gegenstück zu `RecordedZoneTest` (Kotlin), gleiche Fälle.
+/// Übersicht, Trends und Regelmässigkeit; ohne Zone die des Geräts. Gegenstück zu `RecordedZoneTest` (Kotlin), gleiche
+/// Fälle.
 final class RecordedZoneTests: XCTestCase {
     private let zurichZone = TimeZone(identifier: "Europe/Zurich")!
     private let tokyoZone = TimeZone(identifier: "Asia/Tokyo")!

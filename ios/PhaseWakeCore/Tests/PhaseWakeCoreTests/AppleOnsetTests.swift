@@ -28,7 +28,8 @@ final class AppleOnsetTests: XCTestCase {
     }
 
     /// Die Uhr liegt 30 Min auf dem Ladegerät (still, kein Puls), danach getragen (Puls je 5 Min): Die
-    /// Messung wartet, die Einschlafzeit liegt nach dem Ladegerät. Ganz ohne Puls (keine Erlaubnis) gilt die Regel nicht.
+    /// Messung wartet, die Einschlafzeit liegt nach dem Ladegerät. Ganz ohne Puls (keine Erlaubnis) gilt die Regel
+    /// nicht.
     func testWithoutPulseTheWatchIsNotWornAndTheMeasurementWaits() {
         let motions: [Double?] = Array(repeating: quiet, count: 100)
         let rates: [Double?] = (0..<100).map { $0 >= 60 && $0 % 10 == 0 ? 58.0 : nil }
@@ -161,7 +162,8 @@ final class AppleOnsetTests: XCTestCase {
         let now = minutes(-30) // 22:30
         let window = minutes(8 * 60 - 30) // 06:30
         let afterTarget = minutes(8 * 60).addingTimeInterval(AppleLearnRecord.afterTarget) // 07:30
-        // Erster Start: das späteste Bedürfnis der Nacht (Lernphase bis nach der Zielzeit), nicht nur die Einschlaf-Messung.
+        // Erster Start: das späteste Bedürfnis der Nacht (Lernphase bis nach der Zielzeit), nicht nur die
+        // Einschlaf-Messung.
         XCTAssertEqual(AppleNightRecorder.decide(now: now, need: window, others: [afterTarget], runningUntil: nil), .start(until: afterTarget))
         XCTAssertEqual(AppleNightRecorder.decide(now: now, need: window, runningUntil: nil), .start(until: window))
         // Höchstens 12 Std. ab jetzt («Nacht aufzeichnen»).

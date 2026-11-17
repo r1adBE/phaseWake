@@ -2,8 +2,8 @@ import Foundation
 
 /// Nacht-Check: Die Uhr hat die Messung vor dem Schlafen für die Nacht mit Zielzeit `target` nicht
 /// gestartet, obwohl sie gewünscht war (Einschlaf-Messung oder Lernphase), aus `reason`. Die Uhr meldet es ans iPhone;
-/// dort zeigt der Nacht-Check es, bis die Zielzeit vorbei ist (``applies(at:)``; iPhone rot, Android-Handy als Hinweis).
-/// Gleich in Kotlin (`RecorderSkip`).
+/// dort zeigt der Nacht-Check es, bis die Zielzeit vorbei ist (``applies(at:)``; iPhone rot, Android-Handy als
+/// Hinweis). Gleich in Kotlin (`RecorderSkip`).
 public struct RecorderSkip: Equatable, Sendable {
     /// Grund, mit seinem Kürzel im gemeldeten Text (``encode()``).
     public enum Reason: String, Sendable {

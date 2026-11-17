@@ -5,7 +5,10 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 
-/** Schlafziel: wie viel Schlaf der Nutzer pro Nacht möchte (eingestellt am Handy; die Uhr zeigt damit den Einschlafpunkt). */
+/**
+ * Schlafziel: wie viel Schlaf der Nutzer pro Nacht möchte (eingestellt am Handy; die Uhr zeigt damit den
+ * Einschlafpunkt).
+ */
 object SleepGoal {
     /** Standard-Schlafziel in Minuten (7 h 30 min). */
     const val DEFAULT_MINUTES: Int = 450
@@ -70,7 +73,9 @@ object Bedtime {
     fun bedtime(nextAlarmTarget: Instant, goalMinutes: Int, latencyMinutes: Int? = null): Instant =
         nextAlarmTarget.minus(Duration.ofMinutes(goalMinutes.toLong() + (latencyMinutes ?: 0).coerceAtLeast(0)))
 
-    /** Minuten eines 12-Stunden-Zifferblatts (Ring auf der Uhr); weiter zurück wäre die Bettzeit dort nicht eindeutig. */
+    /**
+     * Minuten eines 12-Stunden-Zifferblatts (Ring auf der Uhr); weiter zurück wäre die Bettzeit dort nicht eindeutig.
+     */
     const val DIAL_MINUTES: Int = 720
 
     /**

@@ -77,7 +77,10 @@ enum class DiagKind {
     OTHER,
 }
 
-/** Ein Eintrag im Diagnose-Protokoll; [detail] ohne persönliche Daten (keine Namen, keine einzelnen Messwerte – höchstens Kennzahlen wie Mittelwert oder Akku). */
+/**
+ * Ein Eintrag im Diagnose-Protokoll; [detail] ohne persönliche Daten (keine Namen, keine einzelnen Messwerte –
+ * höchstens Kennzahlen wie Mittelwert oder Akku).
+ */
 data class DiagEntry(val at: Instant, val device: DiagDevice, val kind: DiagKind, val detail: String)
 
 /**
@@ -157,7 +160,10 @@ object DiagReports {
     }
 }
 
-/** Freischalten der Diagnose: [TAPS]-mal auf die Versionszeile tippen, ab [HINT_FROM] mit Hinweis. Wie Android-Entwickleroptionen. */
+/**
+ * Freischalten der Diagnose: [TAPS]-mal auf die Versionszeile tippen, ab [HINT_FROM] mit Hinweis. Wie
+ * Android-Entwickleroptionen.
+ */
 object DiagUnlock {
     /** So viele Tipps schalten die Diagnose frei. */
     const val TAPS: Int = 7

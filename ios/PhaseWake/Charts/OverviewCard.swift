@@ -108,8 +108,8 @@ struct OverviewCard: View {
         .chartScrub()
     }
 
-    /// Eine Säule: ganze Höhe (trägt ✓ und VoiceOver; mit Phasen durchsichtig, die Teile liegen darüber), ohne Daten ein
-    /// flacher Strich.
+    /// Eine Säule: ganze Höhe (trägt ✓ und VoiceOver; mit Phasen durchsichtig, die Teile liegen darüber), ohne Daten
+    /// ein flacher Strich.
     @ChartContentBuilder
     private func barMarks(_ o: SleepOverview, _ i: Int, stacked: Bool, dim: Bool, plain: LinearGradient, scale: Double) -> some ChartContent {
         let palette = ChartPalette(scheme)

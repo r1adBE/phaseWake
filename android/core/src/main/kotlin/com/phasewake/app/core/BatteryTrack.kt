@@ -26,9 +26,10 @@ data class BatteryPoint(val at: Instant, val percent: Int, val plugged: Boolean,
 
 /**
  * Akkuverbrauch eines Geräts in einer Nacht: Messpunkte vom Messbeginn bis zum Ende der Nacht.
- * Gemessen wird der Akkustand des ganzen Geräts (den Verbrauch nur dieser App liefert kein System). Zeit am Ladegerät zählt
- * nicht: Summiert werden nur die Teilstrecken ohne Laden. Ist etwas unbekannt (Laden ohne beobachteten Beginn oder Ende,
- * Anstieg ohne Laden, Zeit rückwärts), gibt es keinen Wert statt eines falschen. Identisch zu `BatteryTrack` (Swift).
+ * Gemessen wird der Akkustand des ganzen Geräts (den Verbrauch nur dieser App liefert kein System). Zeit am Ladegerät
+ * zählt nicht: Summiert werden nur die Teilstrecken ohne Laden. Ist etwas unbekannt (Laden ohne beobachteten Beginn
+ * oder Ende, Anstieg ohne Laden, Zeit rückwärts), gibt es keinen Wert statt eines falschen. Identisch zu `BatteryTrack`
+ * (Swift).
  */
 object BatteryTrack {
     /** Länger offen gilt eine Nacht als verwaist (z. B. nie beendet): Ein neuer Beginn ersetzt sie. */
@@ -75,8 +76,8 @@ object BatteryTrack {
     }
 
     /**
-     * Messbeginn: Läuft schon eine Nacht ([isOpen]), bleibt ihr früherer Beginn und dieser Stand kommt als Zwischenstand
-     * dazu; sonst beginnt eine neue (ersetzt eine verwaiste). Eine neue Nacht hat genau einen Punkt.
+     * Messbeginn: Läuft schon eine Nacht ([isOpen]), bleibt ihr früherer Beginn und dieser Stand kommt als
+     * Zwischenstand dazu; sonst beginnt eine neue (ersetzt eine verwaiste). Eine neue Nacht hat genau einen Punkt.
      */
     fun begin(open: List<BatteryPoint>, at: Instant, percent: Int, plugged: Boolean): List<BatteryPoint> =
         if (isOpen(open, at)) sample(open, at, percent, plugged) else listOf(BatteryPoint(at, percent, plugged, BatteryMark.START))
@@ -87,7 +88,10 @@ object BatteryTrack {
         return open + BatteryPoint(at, percent, plugged, BatteryMark.SAMPLE)
     }
 
-    /** Ladegerät angeschlossen oder getrennt (beobachtet): Ladebeginn bzw. -ende, wenn sich der Stand ändert; sonst unverändert. */
+    /**
+     * Ladegerät angeschlossen oder getrennt (beobachtet): Ladebeginn bzw. -ende, wenn sich der Stand ändert; sonst
+     * unverändert.
+     */
     fun charge(open: List<BatteryPoint>, at: Instant, percent: Int, plugged: Boolean): List<BatteryPoint> {
         if (!isOpen(open, at) || open.last().plugged == plugged) return open
         return open + BatteryPoint(at, percent, plugged, if (plugged) BatteryMark.PLUG else BatteryMark.UNPLUG)

@@ -3,7 +3,8 @@ import SwiftUI
 
 /// Lern-Übersicht am iPhone (wie `LearnNightsScreen` auf Android; aus «Details» der Karte der
 /// Lernphase auf der Startseite und in den Einstellungen): je Nacht seit dem Beginn eine Zeile mit Datum (Morgen der
-/// Nacht), ✓ gezählt bzw. ✗ mit Grund, kurzen Angaben zur Aufzeichnung und einem Tipp. Für VoiceOver eine Einheit je Zeile.
+/// Nacht), ✓ gezählt bzw. ✗ mit Grund, kurzen Angaben zur Aufzeichnung und einem Tipp. Für VoiceOver eine Einheit je
+/// Zeile.
 struct LearnNightsView: View {
     @Environment(PhoneModel.self) private var model
     @Environment(\.colorScheme) private var scheme
@@ -28,9 +29,11 @@ struct LearnNightsView: View {
         .navigationTitle(L("learn_consent_title"))
     }
 
-    /// Die Nächte seit dem Beginn der Lernphase, jüngste zuerst (``LearnNights/nights(_:skips:alarmNights:alarmsKnownFrom:since:consent:autoOnset:now:calendar:)``):
-    /// Aufzeichnungen der Uhr, ihre Meldungen, die gemerkten Nächte mit Wecker und die Nächte der Uhr (sie belegen einen
-    /// Wecker). Die Apple Watch zeichnet unabhängig von «Einschlafen automatisch erkennen» auf (Schalter gilt als ein).
+    /// Die Nächte seit dem Beginn der Lernphase, jüngste zuerst
+    /// (``LearnNights/nights(_:skips:alarmNights:alarmsKnownFrom:since:consent:autoOnset:now:calendar:)``):
+    /// Aufzeichnungen der Uhr, ihre Meldungen, die gemerkten Nächte mit Wecker und die Nächte der Uhr (sie belegen
+    /// einen Wecker). Die Apple Watch zeichnet unabhängig von «Einschlafen automatisch erkennen» auf (Schalter gilt als
+    /// ein).
     static func nights(model: PhoneModel, now: Date) -> [LearnNights.Night] {
         let learning = PhoneLearning.shared
         guard let since = learning.state.since else { return [] }
@@ -75,8 +78,8 @@ struct LearnNightsView: View {
         return L("learn_night_facts", Format.duration(minutes: minutes), Int64(night.measuredEpochs ?? 0), Int64(night.pulsePercent ?? 0))
     }
 
-    /// Kurzer Tipp zum Grund; `nil`, wenn es nichts zu tun gibt. Ohne Aufzeichnung auf der Apple Watch zusätzlich: die App
-    /// am Abend öffnen (sonst startet der Rekorder nicht).
+    /// Kurzer Tipp zum Grund; `nil`, wenn es nichts zu tun gibt. Ohne Aufzeichnung auf der Apple Watch zusätzlich: die
+    /// App am Abend öffnen (sonst startet der Rekorder nicht).
     static func tip(_ reason: LearnNights.Reason) -> String? {
         switch reason {
         case .counted, .learningOff: return nil

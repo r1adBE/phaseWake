@@ -28,7 +28,8 @@ import kotlin.test.assertTrue
 
 /**
  * Lernphase am Handy: Beginn nur mit Zustimmung, Zählen der Aufzeichnungen der Uhr, nach 7 Nächten die gelernten
- * Werte an die Uhr, «Verlauf löschen» von vorn, «Neu lernen» mit den bisherigen Werten bis zum Ende ([LearningRepository], [com.phasewake.app.PhaseWakeApp.updateLearning]).
+ * Werte an die Uhr, «Verlauf löschen» von vorn, «Neu lernen» mit den bisherigen Werten bis zum Ende
+ * ([LearningRepository], [com.phasewake.app.PhaseWakeApp.updateLearning]).
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35], application = QuietApp::class)

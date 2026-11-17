@@ -8,8 +8,9 @@ import androidx.compose.ui.graphics.Color
 
 /**
  * Himmel des Weckbildschirms ohne Sonnenaufgangslicht: ein kräftiger Sonnenaufgang von Indigo oben über Violett und
- * Magenta-Rosé bis zur Glut unten, darüber ein warmer Schein am unteren Rand und der Lavendel-Schein oben rechts. Ruhend.
- * So dunkel gehalten, dass helle Schrift überall ≥ 4.5:1 behält (WakeSkyTest). Gleich auf Wear OS und der Apple Watch.
+ * Magenta-Rosé bis zur Glut unten, darüber ein warmer Schein am unteren Rand und der Lavendel-Schein oben rechts.
+ * Ruhend. So dunkel gehalten, dass helle Schrift überall ≥ 4.5:1 behält (WakeSkyTest). Gleich auf Wear OS und der Apple
+ * Watch.
  */
 object WakeSky {
     /** Verlauf von oben (0) nach unten (1). */
@@ -30,8 +31,8 @@ object WakeSky {
     const val GLOW_ALPHA = 0.28f
 
     /**
-     * Farbe bei Höhe [y] (0 oben, 1 unten), ungünstig gerechnet: unten der warme Schein überall in voller Stärke, oben der
-     * Lavendel-Schein in voller Stärke. Für die Kontrast-Tests.
+     * Farbe bei Höhe [y] (0 oben, 1 unten), ungünstig gerechnet: unten der warme Schein überall in voller Stärke, oben
+     * der Lavendel-Schein in voller Stärke. Für die Kontrast-Tests.
      */
     fun at(y: Float): Color {
         val yy = y.coerceIn(0f, 1f)

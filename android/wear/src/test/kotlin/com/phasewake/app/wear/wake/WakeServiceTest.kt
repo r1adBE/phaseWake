@@ -290,7 +290,8 @@ class WakeServiceTest {
         val n = assertNotNull(service.night)
         assertEquals(2, n.unmeasured)
         val empty = List(2) { Epoch(null, null) }
-        // Ohne Überspringen wären die leeren Epochen das Aufwärmen gewesen und die zwei Wach-Epochen am Ende entschieden.
+        // Ohne Überspringen wären die leeren Epochen das Aufwärmen gewesen und die zwei Wach-Epochen am Ende
+        // entschieden.
         service.onEpochs(n, empty + listOf(Epoch(0.5, 60.0), Epoch(0.5, 60.0)))
         assertEquals(WakeService.Phase.MEASURING, n.phase)
         assertEquals(4, n.epochs.size, "für den Verlauf gespeichert")

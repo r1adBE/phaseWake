@@ -68,8 +68,8 @@ public enum Bedtime {
     /// Die eine Bettzeit überall (Karte, Erinnerung, Ring der Uhr, Diagramm, Start der Geräusch-Aufnahme):
     /// Zielzeit des nächsten eingeschalteten Weckers minus Schlafziel minus gelernte
     /// Einschlafdauer `latencyMinutes` (`nil` = nicht gelernt, zählt 0 – wie bisher), als feste Dauer (bei einer
-    /// Zeitumstellung in der Nacht bleibt die Schlafdauer gleich, die Uhrzeit verschiebt sich). Negative Einschlafdauern
-    /// zählen 0. Identisch zu Kotlin.
+    /// Zeitumstellung in der Nacht bleibt die Schlafdauer gleich, die Uhrzeit verschiebt sich). Negative
+    /// Einschlafdauern zählen 0. Identisch zu Kotlin.
     public static func bedtime(nextAlarmTarget: Date, goalMinutes: Int, latencyMinutes: Int? = nil) -> Date {
         nextAlarmTarget.addingTimeInterval(-TimeInterval((goalMinutes + max(0, latencyMinutes ?? 0)) * 60))
     }

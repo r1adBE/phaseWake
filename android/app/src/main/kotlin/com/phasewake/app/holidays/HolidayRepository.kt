@@ -44,7 +44,10 @@ class HolidayRepository(
     @Volatile
     private var estimatedCache: Pair<String, Set<LocalDate>>? = null
 
-    /** Länder mit 2-Buchstaben-Code (die 3-Buchstaben-Duplikate der Datei nicht), nach Code sortiert. Liest die Datei einmal. */
+    /**
+     * Länder mit 2-Buchstaben-Code (die 3-Buchstaben-Duplikate der Datei nicht), nach Code sortiert. Liest die Datei
+     * einmal.
+     */
     suspend fun countries(): List<HolidayCountry> = mutex.withLock {
         countries ?: withContext(Dispatchers.IO) { readCountries() }.also { countries = it }
     }
@@ -64,7 +67,8 @@ class HolidayRepository(
 
     /**
      * Rechnet die Feiertage neu, wenn die Wahl sich geändert hat, der Stand älter als [REFRESH_AFTER] ist, nach älteren
-     * Regeln gerechnet wurde ([RULES]) oder [force]. Nur sichere Tage gelten als frei, geschätzte nicht ([Holidays.isEstimated]).
+     * Regeln gerechnet wurde ([RULES]) oder [force]. Nur sichere Tage gelten als frei, geschätzte nicht
+     * ([Holidays.isEstimated]).
      * @return ob neu gerechnet wurde (dann ist auch die Uhr benachrichtigt).
      */
     suspend fun refresh(force: Boolean = false): Boolean {
@@ -164,8 +168,8 @@ class HolidayRepository(
         private const val FILE = "holidays.json.gz"
 
         /**
-         * Stand der Regeln für die gespeicherten Feiertage ([SettingsRepository.holidayRules]); steigt, wenn sich ändert,
-         * welche Tage als frei gelten. 1: geschätzte Tage nicht mehr.
+         * Stand der Regeln für die gespeicherten Feiertage ([SettingsRepository.holidayRules]); steigt, wenn sich
+         * ändert, welche Tage als frei gelten. 1: geschätzte Tage nicht mehr.
          */
         const val RULES = 1
 

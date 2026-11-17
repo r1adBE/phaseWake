@@ -34,7 +34,8 @@ import kotlin.test.assertTrue
 /**
  * «stop» vom Handy, während die Uhr noch misst, auf dem echten Weg: Nachricht an den
  * [WatchListenerService], Befehl an den laufenden [WakeService]. Es beendet die Nacht nur, wenn es genau sie meint
- * (Wecker und Zielzeit); dann gilt sie als erledigt und wird nicht gleich wieder geplant. Sonst läuft die Messung weiter.
+ * (Wecker und Zielzeit); dann gilt sie als erledigt und wird nicht gleich wieder geplant. Sonst läuft die Messung
+ * weiter.
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35], application = QuietWear::class)

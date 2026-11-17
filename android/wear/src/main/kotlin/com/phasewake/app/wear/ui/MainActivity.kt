@@ -141,7 +141,8 @@ private fun WatchApp() {
                             // Im Prozess-Bereich: Speichern läuft weiter, auch wenn der Bildschirm schon zu ist.
                             app.appScope.launch {
                                 val list = app.alarms.current().alarms
-                                // Gespeicherter Stand zählt (Handy gleichzeitig): nichts wieder anlegen, keinen neunten.
+                                // Gespeicherter Stand zählt (Handy gleichzeitig): nichts wieder anlegen, keinen
+                                // neunten.
                                 if (editorSave(existed, list, current.id) == EditorSave.SAVE) {
                                     val zone = ZoneId.systemDefault()
                                     val doneAt = app.scheduler.doneUntil()[current.id]

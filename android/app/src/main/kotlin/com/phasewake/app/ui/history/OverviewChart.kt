@@ -98,7 +98,9 @@ private fun overviewDescription(context: Context, o: SleepOverview): String = bu
     o.bars.forEach { add(barPeriod(o.unit, it) + ": " + barValue(context, it)) }
 }.joinToString(". ")
 
-/** Auswahl «Tage / Wochen / Monate» oben im Verlauf: gilt für die Übersicht und die Diagramme darunter ([periodNights]). */
+/**
+ * Auswahl «Tage / Wochen / Monate» oben im Verlauf: gilt für die Übersicht und die Diagramme darunter ([periodNights]).
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun OverviewSwitch(unit: OverviewUnit, onSelect: (OverviewUnit) -> Unit, modifier: Modifier = Modifier) {
@@ -121,10 +123,11 @@ private val stackOrder = listOf(SleepStage.DEEP, SleepStage.LIGHT, SleepStage.RE
 /**
  * Übersicht oben im Verlauf für die gewählte Einteilung [unit]: Ø Schlafdauer gross, Ø Schlafenszeit und Ø Aufwachzeit,
  * erreichtes Schlafziel, darunter Säulen (je Nacht, Woche bzw. Monat der Durchschnitt). Mit Phasen ist jede Säule nach
- * tief, leicht und REM aufgeteilt (Farben wie im Hypnogramm), Säulen ohne Phasen daneben neutral gestreift (Woche/Monat:
- * nur wenn alle Nächte Phasen haben, [com.phasewake.app.core.OverviewBar.stageMinutes]); ganz ohne Phasen ein Verlauf in
- * der Markenfarbe. Erreichtes Ziel mit ✓.
- * Die Säulen wachsen beim Wechsel kurz hoch. Antippen zeigt den Wert in der Blase; bei «Tage» öffnet sie die Nacht ([opener]).
+ * tief, leicht und REM aufgeteilt (Farben wie im Hypnogramm), Säulen ohne Phasen daneben neutral gestreift
+ * (Woche/Monat: nur wenn alle Nächte Phasen haben, [com.phasewake.app.core.OverviewBar.stageMinutes]); ganz ohne Phasen
+ * ein Verlauf in der Markenfarbe. Erreichtes Ziel mit ✓.
+ * Die Säulen wachsen beim Wechsel kurz hoch. Antippen zeigt den Wert in der Blase; bei «Tage» öffnet sie die Nacht
+ * ([opener]).
  */
 @Composable
 internal fun OverviewCard(
@@ -207,7 +210,8 @@ internal fun OverviewCard(
                     clipPath(shape) {
                         val total = stackTotal(bar)
                         if (stacked && total <= 0f) {
-                            // Neben Säulen mit Phasen: Nacht (bzw. Woche/Monat) ohne Phasen neutral gestreift, gleiche Höhe.
+                            // Neben Säulen mit Phasen: Nacht (bzw. Woche/Monat) ohne Phasen neutral gestreift, gleiche
+                            // Höhe.
                             stripes(scheme.onSurfaceVariant, Offset(x, bottom - h), Size(w, h), 6.dp.toPx())
                         } else if (total > 0) {
                             var y0 = bottom

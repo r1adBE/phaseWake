@@ -84,9 +84,9 @@ class SensorSession(
 
     /**
      * Ob die Sitzung ohne Wakelock durchgehend messen kann: aufweckender Sensor mit grossem Puffer (nur [lowPower] und
-     * [batch]). Ohne ihn liefe der Puffer des gewöhnlichen Sensors im Tiefschlaf über; ein kleiner Puffer weckte die Uhr
-     * fast dauernd. Dann misst [OnsetMonitor] in Stichproben bzw. hält [com.phasewake.app.wear.record.RecordService]
-     * seinen Wakelock wie bisher.
+     * [batch]). Ohne ihn liefe der Puffer des gewöhnlichen Sensors im Tiefschlaf über; ein kleiner Puffer weckte die
+     * Uhr fast dauernd. Dann misst [OnsetMonitor] in Stichproben bzw. hält
+     * [com.phasewake.app.wear.record.RecordService] seinen Wakelock wie bisher.
      */
     val continuous: Boolean get() = accelerometer != null && accelerometer === wakeUpSensor
 
@@ -197,7 +197,10 @@ class SensorSession(
         listening = sensorManager.registerListener(motionListener, sensor, SAMPLING_US, latencyUs(), handler)
     }
 
-    /** Meldet den Bewegungssensor ab (bei [sampled] auch den Puls), ohne die Epochen zu verlieren; [resume] misst weiter. */
+    /**
+     * Meldet den Bewegungssensor ab (bei [sampled] auch den Puls), ohne die Epochen zu verlieren; [resume] misst
+     * weiter.
+     */
     fun pause() {
         if (sampled) unregisterHeartRate()
         if (!listening) return

@@ -1,8 +1,8 @@
 import XCTest
 @testable import PhaseWakeCore
 
-/// Validierungs-Modus (``Validation``, ``ValidationReport``); Gegenstück zu `ValidationTest` (Kotlin), gemeinsame Fälle in
-/// `shared/testdata/validation.vectors`.
+/// Validierungs-Modus (``Validation``, ``ValidationReport``); Gegenstück zu `ValidationTest` (Kotlin), gemeinsame Fälle
+/// in `shared/testdata/validation.vectors`.
 final class ValidationTests: XCTestCase {
     /// 2026-11-08 22:00 UTC.
     private let t0 = Date(timeIntervalSince1970: 1_794_175_200)

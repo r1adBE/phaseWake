@@ -48,9 +48,9 @@ final class WatchModel {
     /// Android (`Transient.choose`); ein Powernap verdrängt nie einen früheren Wecker.
     var plan: WakePlan? { Transient.choose(real: realPlan, transient: transient, now: now) }
 
-    /// Nächster echter Wecker. Eine heute schon erledigte Nacht zählt nicht mehr (früh geweckt, Zielzeit liegt noch vorn).
-    /// Wurde ein Wecker fällig, während eine andere Nacht klingelte oder schlummerte, kommt er zuerst (`missedPlan`);
-    /// danach eine Nacht, deren Zielzeit da ist, die aber noch nicht geweckt hat (`pendingNight`).
+    /// Nächster echter Wecker. Eine heute schon erledigte Nacht zählt nicht mehr (früh geweckt, Zielzeit liegt noch
+    /// vorn). Wurde ein Wecker fällig, während eine andere Nacht klingelte oder schlummerte, kommt er zuerst
+    /// (`missedPlan`); danach eine Nacht, deren Zielzeit da ist, die aber noch nicht geweckt hat (`pendingNight`).
     /// «Gute Nacht» verlegt die Zielzeit dieser Nacht vor (`GoodNightState.apply`).
     var realPlan: WakePlan? {
         let done = storage.doneUntil
@@ -64,9 +64,10 @@ final class WatchModel {
 
     /// Die Nacht, auf die die Uhr wartet (Sitzung geplant oder nicht planbar), wenn ihre Zielzeit schon da ist und sie
     /// weder geweckt hat noch erledigt ist – bis `SmartAlarm.ringLimit` danach (`WatchRules.pendingNight`). Ohne
-    /// gemerkten Plan (Ruhezustand, z. B. nach einem Neustart der App) nur bis zum Rückfall (`WatchRules.unwokenNight`).
-    /// Sie bleibt der Plan: Sonst ersetzte ein Neuplanen kurz nach der Zielzeit (App im Vordergrund, Wecker vom
-    /// iPhone, Zeitzone) ihren Rückfall durch den der nächsten Nacht, und sie weckte gar nicht. Sonst `nil`.
+    /// gemerkten Plan (Ruhezustand, z. B. nach einem Neustart der App) nur bis zum Rückfall
+    /// (`WatchRules.unwokenNight`). Sie bleibt der Plan: Sonst ersetzte ein Neuplanen kurz nach der Zielzeit (App im
+    /// Vordergrund, Wecker vom iPhone, Zeitzone) ihren Rückfall durch den der nächsten Nacht, und sie weckte gar nicht.
+    /// Sonst `nil`.
     var pendingNight: WakePlan? {
         let done = storage.doneUntil
         let holidays = storage.holidays.dates
@@ -243,9 +244,9 @@ final class WatchModel {
 
     /// Wecker auf der Uhr anlegen oder ändern; geht ans iPhone und plant neu (je Wecker gewinnt die jüngere Änderung).
     /// Ein bestehender Wecker behält alles, was die Uhr nicht bearbeitet (siehe `AlarmSpec.editedOnWatch`).
-    /// `skip` ist der Schalter «Nächstes Mal überspringen» (`nil` nicht angefasst, `true` ein, `false` aus); gespeichert
-    /// wird `AlarmSchedule.editedSkip` – wie Android. Ein neuer Wecker wird so gespeichert, wie er ist (der Editor bietet
-    /// dort keinen Schalter an).
+    /// `skip` ist der Schalter «Nächstes Mal überspringen» (`nil` nicht angefasst, `true` ein, `false` aus);
+    /// gespeichert wird `AlarmSchedule.editedSkip` – wie Android. Ein neuer Wecker wird so gespeichert, wie er ist (der
+    /// Editor bietet dort keinen Schalter an).
     func save(_ draft: AlarmSpec, skip: Bool?) {
         let now = Date()
         let done = storage.doneUntil[draft.id]

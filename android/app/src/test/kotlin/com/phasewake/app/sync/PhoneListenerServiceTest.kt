@@ -42,11 +42,11 @@ import kotlin.test.assertTrue
 /**
  * Empfang am Handy ([PhoneListenerService]): Einträge der Warteschlange der Uhr ([PhoneListenerService.handleQueued])
  * übernehmen Wecker, Nächte, Aufzeichnungen, den Stand von «Nacht aufzeichnen» und die frühere Zielzeit; dieselbe Nacht
- * zweimal ändert nichts, Unlesbares wird übergangen, ein Eintrag ohne Kennung gar nicht verarbeitet. Die Bestätigung der
- * Uhr entfernt genau den gesendeten Eintrag; ein verspätetes «stop» ändert nichts.
+ * zweimal ändert nichts, Unlesbares wird übergangen, ein Eintrag ohne Kennung gar nicht verarbeitet. Die Bestätigung
+ * der Uhr entfernt genau den gesendeten Eintrag; ein verspätetes «stop» ändert nichts.
  *
- * Ohne Wear-Dienste ([OfflineApp]): Ihre Aufgaben enden unter Robolectric nie; darum geht der Test an der Bestätigung des
- * Empfangs vorbei (geprüft in :shared, `OutboxTest`) und nur über Wege ohne Antwort der Uhr.
+ * Ohne Wear-Dienste ([OfflineApp]): Ihre Aufgaben enden unter Robolectric nie; darum geht der Test an der Bestätigung
+ * des Empfangs vorbei (geprüft in :shared, `OutboxTest`) und nur über Wege ohne Antwort der Uhr.
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35], application = OfflineApp::class)
@@ -99,8 +99,8 @@ class PhoneListenerServiceTest {
         queued(DataLayer.PATH_MSG_ALARMS, QueueMessages.encodeAlarms(AlarmSnapshot(alarms, System.currentTimeMillis() + 60_000)))
         assertEquals(alarms, app.alarms.current().alarms)
         awaitDiag { it == "from watch" }
-        // Ein älterer Stand der Uhr (vor der letzten Änderung am Handy) ändert nichts; die Uhr kennt w aber nicht: Das Handy
-        // reiht seinen Stand für sie ein, damit beide gleich werden.
+        // Ein älterer Stand der Uhr (vor der letzten Änderung am Handy) ändert nichts; die Uhr kennt w aber nicht: Das
+        // Handy reiht seinen Stand für sie ein, damit beide gleich werden.
         outbox.drop("")
         queued(DataLayer.PATH_MSG_ALARMS, QueueMessages.encodeAlarms(AlarmSnapshot(emptyList(), 1L)))
         assertEquals(alarms, app.alarms.current().alarms)

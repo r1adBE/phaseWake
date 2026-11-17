@@ -121,7 +121,8 @@ final class HealthHistoryTests: XCTestCase {
     }
 
     func testNapOnlyInDaytime() {
-        // Europe/Zurich im Oktober: UTC+2. Kurz und ganz zwischen 09:00 und 19:00 Ortszeit: Nickerchen (Grenzen einschliesslich).
+        // Europe/Zurich im Oktober: UTC+2. Kurz und ganz zwischen 09:00 und 19:00 Ortszeit: Nickerchen (Grenzen
+        // einschliesslich).
         XCTAssertTrue(HealthSession(start: t("2026-10-02T07:00:00Z"), end: t("2026-10-02T09:00:00Z")).isNap(calendar: calendar))
         XCTAssertTrue(HealthSession(start: t("2026-10-02T15:00:00Z"), end: t("2026-10-02T17:00:00Z")).isNap(calendar: calendar))
         // Beginn 08:59 oder Ende 19:01: Nacht.
@@ -228,8 +229,8 @@ final class HealthHistoryTests: XCTestCase {
         // Fremde Sitzung am selben Nachtdatum ohne Überschneidung (Nachmittag 1.10.): fällt weg.
         let sameDate = HealthSession(start: t("2026-10-01T14:00:00Z"), end: t("2026-10-01T18:00:00Z"))
         XCTAssertEqual(merge([own], [sameDate]).map(\.kind), [.phaseWake])
-        // Wecker am Mittag (Fenster 12:30–13:00, Nachtdatum 2.10.): Sitzung 04:30–12:30 (Nachtdatum 1.10.) endet genau am
-        // Fensterbeginn und bleibt; eine Sekunde länger überschneidet sie sich und fällt weg.
+        // Wecker am Mittag (Fenster 12:30–13:00, Nachtdatum 2.10.): Sitzung 04:30–12:30 (Nachtdatum 1.10.) endet genau
+        // am Fensterbeginn und bleibt; eine Sekunde länger überschneidet sie sich und fällt weg.
         let noon = night("2026-10-02T10:30:00Z", "2026-10-02T11:00:00Z")
         XCTAssertEqual(merge([noon], [HealthSession(start: t("2026-10-02T02:30:00Z"), end: t("2026-10-02T10:30:00Z"))]).count, 2)
         XCTAssertEqual(merge([noon], [HealthSession(start: t("2026-10-02T02:30:00Z"), end: t("2026-10-02T10:30:01Z"))]).count, 1)

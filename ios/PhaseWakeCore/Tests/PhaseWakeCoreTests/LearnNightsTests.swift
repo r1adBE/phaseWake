@@ -96,7 +96,8 @@ final class LearnNightsTests: XCTestCase {
         XCTAssertEqual(nights[2].battery, 35)
         XCTAssertEqual(nights[4], LearnNights.Night(date: date(1), reason: .counted, minutes: 300, measuredEpochs: 600, pulsePercent: 20))
         XCTAssertEqual(nights[3].minutes, 100)
-        // Vor Mitternacht erscheint die laufende Nacht ohne Angaben nicht; ab Mittag ist die letzte nicht mehr unterwegs.
+        // Vor Mitternacht erscheint die laufende Nacht ohne Angaben nicht; ab Mittag ist die letzte nicht mehr
+        // unterwegs.
         XCTAssertEqual(list(at(6, 13)).first?.date, date(5))
         XCTAssertEqual(list(at(6, 13)).first?.reason, .noRecording)
         XCTAssertEqual(list(at(5, 23)).first?.date, date(4))

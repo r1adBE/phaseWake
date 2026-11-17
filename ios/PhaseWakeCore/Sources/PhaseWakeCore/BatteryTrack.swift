@@ -1,7 +1,7 @@
 import Foundation
 
-/// Art eines Akku-Messpunkts einer Nacht (``BatteryTrack``). Der Rohwert steht im Speicherformat: nie ändern, nur ergänzen.
-/// Identisch zu `BatteryMark` (Kotlin).
+/// Art eines Akku-Messpunkts einer Nacht (``BatteryTrack``). Der Rohwert steht im Speicherformat: nie ändern, nur
+/// ergänzen. Identisch zu `BatteryMark` (Kotlin).
 public enum BatteryMark: String, CaseIterable, Sendable {
     /// Messbeginn der Nacht (Einschlaf-Messung, Aufzeichnung oder Weckfenster, was zuerst kommt).
     case start = "s"
@@ -36,8 +36,8 @@ public struct BatteryPoint: Equatable, Sendable {
 }
 
 /// Akkuverbrauch eines Geräts in einer Nacht: Messpunkte vom Messbeginn bis zum Ende der Nacht.
-/// Gemessen wird der Akkustand des ganzen Geräts. Zeit am Ladegerät zählt nicht: Summiert werden nur die Teilstrecken ohne
-/// Laden. Ist etwas unbekannt, gibt es keinen Wert statt eines falschen. Identisch zu `BatteryTrack` (Kotlin).
+/// Gemessen wird der Akkustand des ganzen Geräts. Zeit am Ladegerät zählt nicht: Summiert werden nur die Teilstrecken
+/// ohne Laden. Ist etwas unbekannt, gibt es keinen Wert statt eines falschen. Identisch zu `BatteryTrack` (Kotlin).
 public enum BatteryTrack {
     /// Länger offen gilt eine Nacht als verwaist: Ein neuer Beginn ersetzt sie.
     public static let maxSpan: TimeInterval = 14 * 3600
@@ -106,7 +106,8 @@ public enum BatteryTrack {
         return night.wokeAt >= first.at && night.wokeAt <= last.at
     }
 
-    /// Kam `night` gleich nach ihrem Ende an (Ende der Uhr-Messung, sonst das erste Wecken), höchstens ``arrivalSlack`` daneben?
+    /// Kam `night` gleich nach ihrem Ende an (Ende der Uhr-Messung, sonst das erste Wecken), höchstens ``arrivalSlack``
+    /// daneben?
     public static func arrivedFresh(_ night: NightRecord, now: Date) -> Bool {
         let end = night.watchBattery?.last?.at ?? night.wokeAt
         return abs(now.timeIntervalSince(end)) <= arrivalSlack

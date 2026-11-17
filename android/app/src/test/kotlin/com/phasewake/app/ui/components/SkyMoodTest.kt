@@ -46,8 +46,8 @@ class SkyMoodTest {
 
     @Test
     fun dayTextStaysReadableInEveryMood() {
-        // Tageshimmel «Creme Caramel» (hell): dunkle Schrift, Nebentext und Lavendel-Textknopf ≥ 4.5:1, Welle, Bogen und
-        // gefüllter Knopf ≥ 3:1 zum Himmel, Schrift im Knopf ≥ 4.5:1 – an jeder Höhe, in jeder Stimmung.
+        // Tageshimmel «Creme Caramel» (hell): dunkle Schrift, Nebentext und Lavendel-Textknopf ≥ 4.5:1, Welle, Bogen
+        // und gefüllter Knopf ≥ 3:1 zum Himmel, Schrift im Knopf ≥ 4.5:1 – an jeder Höhe, in jeder Stimmung.
         val moods = buildList {
             for (d in 0..10) for (w in 0..10) for (n in 0..2) add(SkyMood(dusk = d / 10f, dawn = w / 10f, night = n / 2f))
         }

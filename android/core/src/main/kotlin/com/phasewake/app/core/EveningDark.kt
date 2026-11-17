@@ -46,8 +46,8 @@ object EveningDark {
 
     /**
      * Nächster Wechsel nach [now]: die erste volle Minute, ab der [isDark] anders ist als jetzt; `null`, wenn sich nie
-     * etwas ändert (aus, oder Beginn = 06:00). Minutenweise gesucht (höchstens gut einen Tag, nur einmal je Wechsel): So
-     * stimmt er auch über Sommerzeit-Wechsel hinweg, in der Lücke wie in der doppelten Stunde, ohne Sonderfälle.
+     * etwas ändert (aus, oder Beginn = 06:00). Minutenweise gesucht (höchstens gut einen Tag, nur einmal je Wechsel):
+     * So stimmt er auch über Sommerzeit-Wechsel hinweg, in der Lücke wie in der doppelten Stunde, ohne Sonderfälle.
      */
     fun nextChange(now: Instant, zone: ZoneId, enabled: Boolean, fromMinutes: Int): Instant? {
         val from = checkedFrom(fromMinutes)

@@ -55,9 +55,9 @@ final class HealthSleep: @unchecked Sendable {
         return HealthNights(sessions: bySource.flatMap { Self.sessions($0.value, source: $0.key) }, names: names)
     }
 
-    /// Lernphase: Anfänge der Proben «Im Bett» und der Schlafproben (jeder Phase, nicht «Wach»), die sich mit `from` bis
-    /// `to` überschneiden, nur von Apple (Apple Watch, iPhone; ``appleSource``), damit «Im Bett» und Schlaf aus derselben
-    /// Quelle stammen. Leer ohne Daten oder Zugriff.
+    /// Lernphase: Anfänge der Proben «Im Bett» und der Schlafproben (jeder Phase, nicht «Wach»), die sich mit `from`
+    /// bis `to` überschneiden, nur von Apple (Apple Watch, iPhone; ``appleSource``), damit «Im Bett» und Schlaf aus
+    /// derselben Quelle stammen. Leer ohne Daten oder Zugriff.
     func onsetSamples(from: Date, to: Date) async -> (inBed: [Date], asleep: [Date]) {
         let samples = await query(from: from, to: to).filter { $0.sourceRevision.source.bundleIdentifier.hasPrefix("com.apple.") }
         let inBed = samples.filter { $0.value == HKCategoryValueSleepAnalysis.inBed.rawValue }.map(\.startDate)
@@ -65,8 +65,9 @@ final class HealthSleep: @unchecked Sendable {
         return (inBed: inBed, asleep: asleep)
     }
 
-    /// Höchstens so lange (Sekunden) auf die Antwort von HealthKit warten; bleibt sie aus, gilt die Abfrage als leer. Sonst
-    /// hinge, wer wartet, für immer (Lernphase: `PhoneLearning.fillOnsets` bliebe belegt, keine Nacht würde mehr gezählt).
+    /// Höchstens so lange (Sekunden) auf die Antwort von HealthKit warten; bleibt sie aus, gilt die Abfrage als leer.
+    /// Sonst hinge, wer wartet, für immer (Lernphase: `PhoneLearning.fillOnsets` bliebe belegt, keine Nacht würde mehr
+    /// gezählt).
     static let queryTimeout: TimeInterval = 20
 
     /// Alle Proben im Zeitraum in einer Abfrage; nach ``queryTimeout`` ohne Antwort leer (abgebrochen, im Protokoll).
@@ -88,10 +89,10 @@ final class HealthSleep: @unchecked Sendable {
         }
     }
 
-    /// Proben einer Quelle zu Sitzungen: Lücken bis `SleepSummary.newNightGap` (60 Min, wie die Ketten im Verlauf) gehören zur selben Sitzung.
-    /// Beginn und Ende zählen auch «Im Bett» mit; Phasen sind alle anderen Proben. Hat eine Sitzung bekannte Phasen,
-    /// fallen «Schlaf (ohne Phase)»-Proben weg, die sich damit überschneiden – ältere Geräte schreiben beides, und
-    /// doppelt gezählt wäre der Schlaf zu lang.
+    /// Proben einer Quelle zu Sitzungen: Lücken bis `SleepSummary.newNightGap` (60 Min, wie die Ketten im Verlauf)
+    /// gehören zur selben Sitzung. Beginn und Ende zählen auch «Im Bett» mit; Phasen sind alle anderen Proben. Hat eine
+    /// Sitzung bekannte Phasen, fallen «Schlaf (ohne Phase)»-Proben weg, die sich damit überschneiden – ältere Geräte
+    /// schreiben beides, und doppelt gezählt wäre der Schlaf zu lang.
     private static func sessions(_ samples: [HKCategorySample], source: String) -> [HealthSession] {
         var groups: [[HKCategorySample]] = []
         for sample in samples.sorted(by: { $0.startDate < $1.startDate }) {

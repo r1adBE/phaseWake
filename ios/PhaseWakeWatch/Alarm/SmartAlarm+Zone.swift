@@ -23,8 +23,8 @@ extension SmartAlarm {
     }
 
     /// Merkt die aktuelle Zeitzone zu `plan` (beim Planen der Sitzung und beim Warten). Gehört der gemerkte Eintrag
-    /// schon zur selben Nacht eines echten Weckers (gleicher Wecker, gleiche Zielzeit), bleibt er: Er nennt die Zone, in
-    /// der die Nacht berechnet wurde, auch nach einer Reise (`keptNight`). Probewecker und Powernap: immer neu.
+    /// schon zur selben Nacht eines echten Weckers (gleicher Wecker, gleiche Zielzeit), bleibt er: Er nennt die Zone,
+    /// in der die Nacht berechnet wurde, auch nach einer Reise (`keptNight`). Probewecker und Powernap: immer neu.
     func notePlanZone(_ plan: WakePlan) {
         if Transient.kindOf(plan.alarmId) == nil, let saved = Self.savedPlanZone, saved.alarmId == plan.alarmId,
            let target = saved.target, Self.sameTime(target, plan.target) { return }
@@ -35,8 +35,9 @@ extension SmartAlarm {
 
     /// Begonnene Nacht über eine Reise: `night` (ohne Angabe die gemerkte) ist ein echter Wecker, der gemerkte Plan
     /// gehört zu ihr, die Ortszeit hat sich seit der Planung verschoben (`WatchRules.zoneShifted`), und sie ist in der
-    /// Zone der Planung eine begonnene, unveränderte, nicht erledigte Nacht (`AlarmSchedule.begunNight`, bis `ringLimit`
-    /// nach der Zielzeit wie `pendingNight`). Dann bleibt sie zur geplanten absoluten Zeit; sonst `nil` (wie bisher).
+    /// Zone der Planung eine begonnene, unveränderte, nicht erledigte Nacht (`AlarmSchedule.begunNight`, bis
+    /// `ringLimit` nach der Zielzeit wie `pendingNight`). Dann bleibt sie zur geplanten absoluten Zeit; sonst `nil`
+    /// (wie bisher).
     func keptNight(_ night: WakePlan?, now: Date = Date()) -> WakePlan? {
         let model = WatchModel.shared
         guard let saved = Self.savedPlanZone, let alarmId = saved.alarmId, let target = saved.target,
@@ -61,8 +62,8 @@ extension SmartAlarm {
     }
 
     /// Rückfall einer über eine Reise behaltenen Nacht: zum festen Zeitpunkt (`LocalTrigger.fixed`), damit er nicht auf
-    /// die neue Ortszeit rutscht und zweimal weckt. Wie bei einer ausstehenden Nacht nicht neu, wenn er schon fällig war
-    /// (`WatchRules.fallbackDate`). Diagnose einmal je Nacht.
+    /// die neue Ortszeit rutscht und zweimal weckt. Wie bei einer ausstehenden Nacht nicht neu, wenn er schon fällig
+    /// war (`WatchRules.fallbackDate`). Diagnose einmal je Nacht.
     func holdFallback(_ night: WakePlan) {
         if let at = WatchRules.fallbackDate(night, pending: true, now: Date(), delay: Self.fallbackDelay) {
             scheduleFallback(at: at, id: Self.fallbackId, fixed: true)

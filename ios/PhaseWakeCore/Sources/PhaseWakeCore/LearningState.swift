@@ -119,8 +119,8 @@ public struct LearningState: Equatable, Sendable, Codable {
     }
 
     /// Zeitpunkt einer Änderung: `now` in ms, mindestens `previous` + 1: Die Uhr übernimmt nur einen neueren
-    /// Stand (``LearningSnapshot/replaces(_:)``); zwei Änderungen in derselben Millisekunde oder nach einer zurückgestellten
-    /// Uhrzeit gingen sonst verloren. Wie `LearningRepository` (Kotlin).
+    /// Stand (``LearningSnapshot/replaces(_:)``); zwei Änderungen in derselben Millisekunde oder nach einer
+    /// zurückgestellten Uhrzeit gingen sonst verloren. Wie `LearningRepository` (Kotlin).
     private static func stamp(_ now: Date, after previous: Int64) -> Int64 {
         TimeBounds.next(now: TimeBounds.millis(now), previous: previous)
     }
@@ -168,7 +168,8 @@ public struct LearningSnapshot: Equatable, Sendable, Codable {
     }
 
     /// Einschlafdauer in Minuten, wenn plausibel (0 bis ``Learning/maxLatencyMinutes``); sonst `nil` – wie
-    /// `LearningSnapshot.validLatency` (Kotlin). Geprüft am `Int64`, bevor er zu `Int` wird (32 Bit auf der Apple Watch).
+    /// `LearningSnapshot.validLatency` (Kotlin). Geprüft am `Int64`, bevor er zu `Int` wird (32 Bit auf der Apple
+    /// Watch).
     public static func validLatency(_ value: Int64?) -> Int? {
         guard let value, value >= 0, value <= Int64(Learning.maxLatencyMinutes) else { return nil }
         return Int(value)

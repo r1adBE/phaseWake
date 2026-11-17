@@ -23,8 +23,8 @@ import java.time.LocalDate
 
 /**
  * Bildschirmfotos ohne doppelte Texte: Startseite während der Lernphase mit nur einer Karte (Lernphase
- * samt «Nacht aufzeichnen»), nach der Lernphase die eigene Karte «Nacht-Aufzeichnung» mit kurzem Hinweis, und die Gruppe
- * der Lernphase in den Einstellungen (Titel, Schalter «Aktiv», «Details» und «Neu lernen» direkt untereinander).
+ * samt «Nacht aufzeichnen»), nach der Lernphase die eigene Karte «Nacht-Aufzeichnung» mit kurzem Hinweis, und die
+ * Gruppe der Lernphase in den Einstellungen (Titel, Schalter «Aktiv», «Details» und «Neu lernen» direkt untereinander).
  */
 
 private val learnPadding = PaddingValues(top = 24.dp, bottom = 96.dp)

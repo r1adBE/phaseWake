@@ -78,7 +78,8 @@ struct RootView: View {
             OnboardingView().environment(model)
         }
         .onChange(of: scenePhase) { _, phase in
-            // Nicht aktiv (App-Umschalter, Hintergrund): Abdeckung über allem, damit das Vorschaubild keine Schlafdaten zeigt.
+            // Nicht aktiv (App-Umschalter, Hintergrund): Abdeckung über allem, damit das Vorschaubild keine Schlafdaten
+            // zeigt.
             PrivacyCover.update(phase)
             guard phase == .active else { return }
             // Beim Öffnen: alte Ausschnitte weg, Wochenrückblick mit dem neuesten Stand.

@@ -23,7 +23,8 @@ import kotlinx.coroutines.launch
 /**
  * Plant nach Neustart, App-Update, Zeit- oder Zeitzonenwechsel und erteiltem Recht für exakte Alarme neu; Alarme gehen
  * dabei verloren, verschieben sich oder standen nur ungenau.
- * Vor dem ersten Entsperren (Direct Boot) nur den abgelegten Wecker aus [DirectBoot]; der Speicher der App ist dann nicht lesbar.
+ * Vor dem ersten Entsperren (Direct Boot) nur den abgelegten Wecker aus [DirectBoot]; der Speicher der App ist dann
+ * nicht lesbar.
  */
 class SystemEventReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
@@ -59,11 +60,13 @@ class SystemEventReceiver : BroadcastReceiver() {
             }
             // Zuerst die Alarme: Nichts, was die Wear-Dienste braucht, steht davor.
             app.scheduler.reschedule()
-            // Lief «Gute Nacht» vor dem Neustart, gleich wieder aufnehmen (über den Prüf-Alarm, der den Vordergrund erlaubt).
+            // Lief «Gute Nacht» vor dem Neustart, gleich wieder aufnehmen (über den Prüf-Alarm, der den Vordergrund
+            // erlaubt).
             if (app.goodNight.load() != null) AlarmScheduler.armGoodNightCheck(context, Instant.now().plusSeconds(5))
         }) {
             // Danach die Nebenarbeiten, jede abgesichert und mit Frist: Protokoll, ausgeschalteten Einmal-Wecker ans
-            // Handy, Stand des Handys anfragen und ein verpasstes «Verlauf löschen» anwenden (PhoneCatchUp, eigene Frist).
+            // Handy, Stand des Handys anfragen und ein verpasstes «Verlauf löschen» anwenden (PhoneCatchUp, eigene
+            // Frist).
             sideWork(TAG, "Protokoll") { app.diag.log(DiagKind.BOOT, "watch ${intent.action?.substringAfterLast('.')}") }
             changed?.let { snapshot -> sideWork(TAG, "Wecker ans Handy") { app.sync.publishAlarms(snapshot) } }
             sideWork(TAG, "Abgleich mit dem Handy", CATCH_UP_TIMEOUT_MS) { PhoneCatchUp.run(app) }
@@ -93,9 +96,9 @@ class SystemEventReceiver : BroadcastReceiver() {
 }
 
 /**
- * Startet [first] (das Wichtige, z. B. Alarme stellen) und danach [then] (Nebenarbeiten) in diesem Bereich. [finish] (das
- * Ende eines `goAsync`) kommt genau einmal: sobald [first] fertig ist oder scheitert, spätestens aber nach [budgetMs] –
- * [then] läuft dann unabhängig davon weiter.
+ * Startet [first] (das Wichtige, z. B. Alarme stellen) und danach [then] (Nebenarbeiten) in diesem Bereich. [finish]
+ * (das Ende eines `goAsync`) kommt genau einmal: sobald [first] fertig ist oder scheitert, spätestens aber nach
+ * [budgetMs] – [then] läuft dann unabhängig davon weiter.
  */
 internal fun CoroutineScope.launchWithin(budgetMs: Long, finish: () -> Unit, first: suspend () -> Unit, then: suspend () -> Unit): Job {
     val released = AtomicBoolean(false)

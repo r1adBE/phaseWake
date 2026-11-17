@@ -88,8 +88,8 @@ internal fun BroadcastReceiver.onBackupSystemEvent(context: Context, intent: Int
         try {
             BackupDirectBoot.takeRang(context).forEach { (id, at) -> app.backup.backupRang(id, at) }
             com.phasewake.app.transient.Transients.catchUpEnded(app)
-            // Neustart, bei dem der Speicher gleich entsperrt war (ohne Sperre oder schnell entsperrt): ein Zweitwecker,
-            // der währenddessen fällig wurde, wird hier nachgeholt, wie vor dem Entsperren in restore.
+            // Neustart, bei dem der Speicher gleich entsperrt war (ohne Sperre oder schnell entsperrt): ein
+            // Zweitwecker, der währenddessen fällig wurde, wird hier nachgeholt, wie vor dem Entsperren in restore.
             if (intent.action in BOOT_ACTIONS) app.backup.catchUpAfterBoot()
             app.backup.reschedule()
         } finally {
@@ -105,9 +105,9 @@ private val BOOT_ACTIONS = setOf(Intent.ACTION_LOCKED_BOOT_COMPLETED, Intent.ACT
 /**
  * Holt nach einem Neustart mit entsperrtem Speicher den abgelegten Zweitwecker nach, der während des Neustarts fällig
  * wurde ([BackupDirectBoot.missed]): gleich danach über einen eigenen Alarm (nur ein Wecker-Alarm darf den
- * Weckdienst aus dem Hintergrund starten). Nicht, wenn die Nacht schon erledigt ist (die Uhr hat sie übernommen oder der
- * Zweitwecker hat geklungen, [BackupAlarm.doneUntil]). Der Eintrag wird entfernt und die Nacht bis zu ihrer Zielzeit
- * ausgesetzt, damit sie nicht zweimal klingelt.
+ * Weckdienst aus dem Hintergrund starten). Nicht, wenn die Nacht schon erledigt ist (die Uhr hat sie übernommen oder
+ * der Zweitwecker hat geklungen, [BackupAlarm.doneUntil]). Der Eintrag wird entfernt und die Nacht bis zu ihrer
+ * Zielzeit ausgesetzt, damit sie nicht zweimal klingelt.
  * @return der nachgeholte Eintrag oder `null`.
  */
 internal suspend fun BackupAlarm.catchUpAfterBoot(current: Instant = now()): BackupDirectBoot.Entry? {
@@ -116,7 +116,8 @@ internal suspend fun BackupAlarm.catchUpAfterBoot(current: Instant = now()): Bac
     val done = doneUntil()[entry.alarmId]
     if (done != null && !done.isBefore(entry.target)) return null
     BackupAlarm.setExact(context, current.plus(BackupAlarm.FORWARD_DELAY), showIntent(), catchUpPending(context, entry.alarmId, entry.target))
-    // Diese Nacht gilt ab jetzt als übernommen: Das folgende Planen holt sie nicht ein zweites Mal nach (RingRules.catchUp).
+    // Diese Nacht gilt ab jetzt als übernommen: Das folgende Planen holt sie nicht ein zweites Mal nach
+    // (RingRules.catchUp).
     suppress(mapOf(entry.alarmId to entry.target))
     context.phoneApp.diag.log(DiagKind.RING, "phone backup missed during boot, catch up")
     return entry

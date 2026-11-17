@@ -90,12 +90,15 @@ object SleepNotes {
         nightDate(start.plus(Duration.between(start, end).dividedBy(2)), zone)
 
     /**
-     * Nachtdatum einer Nacht für Diagramme und Trends: über ihre Mitte ([nightDate] mit Beginn und Ende), in der Zone der
-     * Aufzeichnung ([SleepSummary.zoneOr], sonst [zone]).
+     * Nachtdatum einer Nacht für Diagramme und Trends: über ihre Mitte ([nightDate] mit Beginn und Ende), in der Zone
+     * der Aufzeichnung ([SleepSummary.zoneOr], sonst [zone]).
      */
     fun nightDate(sleep: SleepSummary, zone: ZoneId): LocalDate = nightDate(sleep.start, sleep.end, sleep.zoneOr(zone))
 
-    /** Nachtdatum einer Sitzung im Verlauf: wie oben, in der Zone der Aufzeichnung ([HealthSession.zoneOr], sonst [zone]). */
+    /**
+     * Nachtdatum einer Sitzung im Verlauf: wie oben, in der Zone der Aufzeichnung ([HealthSession.zoneOr], sonst
+     * [zone]).
+     */
     fun nightDate(session: HealthSession, zone: ZoneId): LocalDate = nightDate(session.start, session.end, session.zoneOr(zone))
 
     /**
@@ -205,7 +208,8 @@ data class NoteEffect(
          * geweckte). «Ohne» = jede dieser Nächte, an der die Notiz nicht gesetzt ist.
          *
          * @param asleep Schlafdauer in Minuten je Nachtdatum (aus der Gesundheits-App), falls vorhanden.
-         * @param health Befinden zu Nächten aus anderen Apps; zählt an Nachtdaten ohne eigenes ([HealthFeelings.byDate]).
+         * @param health Befinden zu Nächten aus anderen Apps; zählt an Nachtdaten ohne eigenes
+         * ([HealthFeelings.byDate]).
          */
         fun compute(
             nights: List<NightRecord>,

@@ -162,7 +162,10 @@ internal object SnoozeSafety {
         prefs(context).edit { remove(KEY_AT); remove(KEY_ID); remove(KEY_DONE) }
     }
 
-    /** Neu planen (der Alarm fehlt nach einem Neustart); während des Neustarts verpasst: gleich nachholen. [now]: für Tests. */
+    /**
+     * Neu planen (der Alarm fehlt nach einem Neustart); während des Neustarts verpasst: gleich nachholen. [now]: für
+     * Tests.
+     */
     fun restore(context: Context, now: Instant = Instant.now()) {
         val saved = load(context) ?: return
         val current = now
@@ -179,9 +182,10 @@ internal object SnoozeSafety {
  * Schlummern am Handy allein (Zweitwecker oder Probewecker ohne Uhr) im geräteverschlüsselten Speicher: Der Alarm
  * zum Schlummer-Ende ([BackupAlarm.snoozeUntil]) fehlt nach einem Neustart, die Nacht gilt aber schon seit dem ersten
  * Klingeln als geweckt. Wie [SnoozeSafety] neu gestellt in [BackupAlarm.planBackup] und bei (LOCKED_)BOOT_COMPLETED,
- * auch vor dem ersten Entsperren. Gelöscht, sobald es wieder klingelt oder am Handy beendet wird ([BackupAlarm.cancelSnooze]).
- * Derselbe Eintrag dient beim Klingeln des Handys als Wiederaufnahme nach einem Prozessende ([PhoneRingService]), auch
- * wenn die Uhr führt; ein «stop» oder die Nacht der Uhr hebt ihn dann auf ([BackupAlarm.cancelSnoozeOf]).
+ * auch vor dem ersten Entsperren. Gelöscht, sobald es wieder klingelt oder am Handy beendet wird
+ * ([BackupAlarm.cancelSnooze]). Derselbe Eintrag dient beim Klingeln des Handys als Wiederaufnahme nach einem
+ * Prozessende ([PhoneRingService]), auch wenn die Uhr führt; ein «stop» oder die Nacht der Uhr hebt ihn dann auf
+ * ([BackupAlarm.cancelSnoozeOf]).
  */
 internal object PhoneSnooze {
     private const val FILE = "backup_phone_snooze"

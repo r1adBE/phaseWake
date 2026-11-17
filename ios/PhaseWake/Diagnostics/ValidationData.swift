@@ -2,8 +2,8 @@ import Foundation
 import PhaseWakeCore
 
 /// Daten des Validierungs-Modus (``Validation``) für Diagnose-Bericht und Export: eigene
-/// Nächte, abgeschlossene Aufzeichnungen der Uhr, gelernte Werte und die Schlafphasen aus Apple Health (nur gelesen, nur im
-/// Speicher; ohne Zugriff keine, dann hat keine Nacht Referenz). Rechnet nur, ändert nichts am Wecken. Wie
+/// Nächte, abgeschlossene Aufzeichnungen der Uhr, gelernte Werte und die Schlafphasen aus Apple Health (nur gelesen,
+/// nur im Speicher; ohne Zugriff keine, dann hat keine Nacht Referenz). Rechnet nur, ändert nichts am Wecken. Wie
 /// `ValidationData` (Android).
 @MainActor
 enum ValidationData {

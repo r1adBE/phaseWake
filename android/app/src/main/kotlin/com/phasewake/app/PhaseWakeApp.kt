@@ -126,10 +126,10 @@ open class PhaseWakeApp : Application() {
     private val unlockedDone = AtomicBoolean(false)
 
     /**
-     * Start-Arbeiten, die den entsperrten Speicher brauchen: unterbrochenes Wiederherstellen abschliessen, Stand der Uhr
-     * anfragen, neu planen, Widget, Geräusch-Ausschnitte aufräumen (täglich). Einmal pro Prozess, sobald entsperrt: beim
-     * Start, nach dem Entsperren ([awaitUnlock]) und bei BOOT_COMPLETED ([com.phasewake.app.ring.onBackupSystemEvent]).
-     * Vor dem Entsperren und bei jedem weiteren Aufruf: nichts.
+     * Start-Arbeiten, die den entsperrten Speicher brauchen: unterbrochenes Wiederherstellen abschliessen, Stand der
+     * Uhr anfragen, neu planen, Widget, Geräusch-Ausschnitte aufräumen (täglich). Einmal pro Prozess, sobald entsperrt:
+     * beim Start, nach dem Entsperren ([awaitUnlock]) und bei BOOT_COMPLETED
+     * ([com.phasewake.app.ring.onBackupSystemEvent]). Vor dem Entsperren und bei jedem weiteren Aufruf: nichts.
      */
     open fun initUnlocked() {
         if (!BackupAlarm.isUnlocked(this) || !unlockedDone.compareAndSet(false, true)) return
@@ -176,8 +176,9 @@ open class PhaseWakeApp : Application() {
     }
 
     /**
-     * Gestartet vor dem ersten Entsperren: auf das Entsperren warten (nur im laufenden Prozess; endet er vorher, startet
-     * der nächste entsperrt). Danach [initUnlocked]. Auch wenn das Entsperren zwischen Prüfen und Anmelden fiel.
+     * Gestartet vor dem ersten Entsperren: auf das Entsperren warten (nur im laufenden Prozess; endet er vorher,
+     * startet der nächste entsperrt). Danach [initUnlocked]. Auch wenn das Entsperren zwischen Prüfen und Anmelden
+     * fiel.
      */
     private fun awaitUnlock() {
         val receiver = object : BroadcastReceiver() {
@@ -213,8 +214,8 @@ open class PhaseWakeApp : Application() {
     }
 
     /**
-     * Schickt das Schlafziel an die Uhr (nach einer Änderung, beim Start, nach dem Wiederherstellen); [unlessAcked]: beim
-     * Start nur, wenn nicht schon bestätigt.
+     * Schickt das Schlafziel an die Uhr (nach einer Änderung, beim Start, nach dem Wiederherstellen); [unlessAcked]:
+     * beim Start nur, wenn nicht schon bestätigt.
      */
     suspend fun publishSleepGoal(unlessAcked: Boolean = false) {
         sync.publishSleepGoal(settings.sleepGoalNow(), settings.sleepGoalStamp(), unlessAcked)
@@ -228,11 +229,12 @@ open class PhaseWakeApp : Application() {
 
     /**
      * Lernphase: zählt die Aufzeichnungen seit ihrem Beginn ([Learning.counted]); nach [Learning.NIGHTS] gezählten
-     * Nächten werden die Werte gelernt, gespeichert und an die Uhr geschickt. [received]: eben angekommene Aufzeichnung,
-     * fürs Diagnose-Protokoll («learn night counted 3/7» bzw. «… not counted epochs=210»).
+     * Nächten werden die Werte gelernt, gespeichert und an die Uhr geschickt. [received]: eben angekommene
+     * Aufzeichnung, fürs Diagnose-Protokoll («learn night counted 3/7» bzw. «… not counted epochs=210»).
      */
     suspend fun updateLearning(received: NightRecording? = null) {
-        // Die Lernphase ist eine Zugabe: Ein Fehler (Speicher) hält das Speichern und Abholen der Aufzeichnungen nicht auf.
+        // Die Lernphase ist eine Zugabe: Ein Fehler (Speicher) hält das Speichern und Abholen der Aufzeichnungen nicht
+        // auf.
         try {
             countLearning(received)
         } catch (e: Exception) {
@@ -263,8 +265,8 @@ open class PhaseWakeApp : Application() {
     }
 
     /**
-     * Schickt den Stand der Lernphase an die Uhr (beim Start, fertig, neu begonnen). Offen nur für Robolectric-Tests, die
-     * die Meldung prüfen (dort gibt es keinen Data Layer).
+     * Schickt den Stand der Lernphase an die Uhr (beim Start, fertig, neu begonnen). Offen nur für Robolectric-Tests,
+     * die die Meldung prüfen (dort gibt es keinen Data Layer).
      */
     internal open suspend fun publishLearning() {
         learningSync.publish(learningForWatch())
@@ -276,8 +278,8 @@ open class PhaseWakeApp : Application() {
 
     /**
      * Zustimmung zur Lernphase (Einrichtung, Karte auf der Startseite, Schalter in den Einstellungen): an beginnt sie
-     * bzw. läuft weiter, aus zeichnet die Uhr nicht mehr automatisch auf (eine laufende Aufzeichnung der Lernphase endet).
-     * Stand an die Uhr.
+     * bzw. läuft weiter, aus zeichnet die Uhr nicht mehr automatisch auf (eine laufende Aufzeichnung der Lernphase
+     * endet). Stand an die Uhr.
      */
     suspend fun setLearningConsent(on: Boolean) {
         val started = learning.setConsent(on, Instant.now())
@@ -286,7 +288,9 @@ open class PhaseWakeApp : Application() {
         publishLearning()
     }
 
-    /** «Verlauf löschen»: Lernphase ab jetzt von vorn, gelernte Werte verworfen (auch auf der Uhr), Lern-Übersicht leer. */
+    /**
+     * «Verlauf löschen»: Lernphase ab jetzt von vorn, gelernte Werte verworfen (auch auf der Uhr), Lern-Übersicht leer.
+     */
     suspend fun restartLearning() {
         learning.restart(Instant.now())
         learnLog.clear(Instant.now())
@@ -295,8 +299,8 @@ open class PhaseWakeApp : Application() {
     }
 
     /**
-     * «Neu lernen»: Lernphase ab jetzt von vorn; die bisherigen Werte gelten am Handy und auf der Uhr weiter, bis die neuen
-     * Nächte gezählt sind ([updateLearning] ersetzt sie dann).
+     * «Neu lernen»: Lernphase ab jetzt von vorn; die bisherigen Werte gelten am Handy und auf der Uhr weiter, bis die
+     * neuen Nächte gezählt sind ([updateLearning] ersetzt sie dann).
      */
     suspend fun relearn() {
         learning.relearn(Instant.now())
@@ -305,8 +309,8 @@ open class PhaseWakeApp : Application() {
     }
 
     /**
-     * Speichert eine Änderung an den Weckern, reiht sie für die Uhr ein und plant den Zweitwecker neu. Einreihen zuerst:
-     * Es speichert nur lokal und ist schnell, gesendet wird im Hintergrund. Endete der Prozess während des
+     * Speichert eine Änderung an den Weckern, reiht sie für die Uhr ein und plant den Zweitwecker neu. Einreihen
+     * zuerst: Es speichert nur lokal und ist schnell, gesendet wird im Hintergrund. Endete der Prozess während des
      * Neuplanens, ginge die Änderung sonst nie an die Uhr.
      */
     fun afterAlarmsChanged(change: suspend () -> com.phasewake.app.shared.AlarmSnapshot) {

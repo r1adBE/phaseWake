@@ -4,10 +4,11 @@ import WatchKit
 
 /// Laden der Apple Watch während der Einschlaf-Messung: Die Galaxy Watch meldet Netzteil an/ab
 /// sofort; eine App auf der Apple Watch läuft nachts nur zeitweise. Darum tastet die Uhr den Ladezustand
-/// (`WKInterfaceDevice.batteryState`) bei jedem Durchgang ab (Öffnen, Hintergrund-Aktualisierung, Beginn der Weck-Sitzung)
-/// und stellt die Hintergrund-Aktualisierung, solange die Messung vor dem Weckfenster läuft, auf höchstens
-/// ``chargeCheck``. Aus den Stichproben ergeben sich Zeiten am Ladegerät (``chargeSpans(until:)``); ihre Epochen gelten
-/// als leer und verlängern die Zeitgrenze (``RecorderOnset/measure(motions:since:threshold:personalFloor:latest:extendCap:heartRates:heartLead:away:)``).
+/// (`WKInterfaceDevice.batteryState`) bei jedem Durchgang ab (Öffnen, Hintergrund-Aktualisierung, Beginn der
+/// Weck-Sitzung) und stellt die Hintergrund-Aktualisierung, solange die Messung vor dem Weckfenster läuft, auf
+/// höchstens ``chargeCheck``. Aus den Stichproben ergeben sich Zeiten am Ladegerät (``chargeSpans(until:)``); ihre
+/// Epochen gelten als leer und verlängern die Zeitgrenze
+/// (``RecorderOnset/measure(motions:since:threshold:personalFloor:latest:extendCap:heartRates:heartLead:away:)``).
 /// Zwischen zwei Stichproben weiss die Uhr nichts: Eine Zeit am Ladegerät reicht bis zur nächsten Stichprobe, die nicht
 /// lädt, ohne solche höchstens ``chargeCheck`` über die letzte hinaus. Was dazwischen fehlt, deckt die Puls-Regel ab
 /// (am Ladegerät misst die Uhr keinen Puls).

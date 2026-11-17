@@ -23,9 +23,9 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
- * Sonnenaufgang ab Weckfenster ([SunriseActivity]): geöffnet aus der Mitteilung (auch nach einem Neustart des Prozesses),
- * zeigt er Uhrzeit und Licht und macht den Bildschirm heller. «Licht aus» beendet ihn; klingelt der Wecker, übernimmt
- * der Weckbildschirm und dieser schliesst sich.
+ * Sonnenaufgang ab Weckfenster ([SunriseActivity]): geöffnet aus der Mitteilung (auch nach einem Neustart des
+ * Prozesses), zeigt er Uhrzeit und Licht und macht den Bildschirm heller. «Licht aus» beendet ihn; klingelt der Wecker,
+ * übernimmt der Weckbildschirm und dieser schliesst sich.
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35], application = QuietApp::class)

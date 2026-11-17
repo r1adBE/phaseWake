@@ -2,8 +2,9 @@ import Foundation
 
 /// Lernphase (Apple seit 10.11.2026): Die Uhr zeichnet ``nights`` Nächte auf, danach passt
 /// Phase Wake den Wecker an: eigenes Grundrauschen (``NoiseFloor``, ``DetectorConfig/personalFloor``), eigener Ruhepuls
-/// (``DetectorConfig/restingHeartRate``) und die Einschlafdauer für die Empfehlung der Schlafenszeit (``bedtimeRange``).
-/// Regel siehe `docs/PHASENERKENNUNG.md`, Abschnitt 10. Reine Logik; identisch zu `Learning` (Kotlin).
+/// (``DetectorConfig/restingHeartRate``) und die Einschlafdauer für die Empfehlung der Schlafenszeit
+/// (``bedtimeRange``). Regel siehe `docs/PHASENERKENNUNG.md`, Abschnitt 10. Reine Logik; identisch zu `Learning`
+/// (Kotlin).
 public enum Learning {
     /// So viele gezählte Nächte braucht die Lernphase (keine Kalendertage).
     public static let nights = 7
@@ -12,7 +13,8 @@ public enum Learning {
     /// 36 Stichproben = 72 Epochen.
     public static let minMeasuredEpochs = 72
 
-    /// … und die Epochen mit Bewegung müssen mindestens so viele Epochen der Nacht überspannen (3 Std., erste bis letzte).
+    /// … und die Epochen mit Bewegung müssen mindestens so viele Epochen der Nacht überspannen (3 Std., erste bis
+    /// letzte).
     public static let minSpanEpochs = 360
 
     /// Die Uhr zeichnet in der Lernphase nur ab diesem Akkustand (Prozent) automatisch auf; der Wecker hat Vorrang.
@@ -30,11 +32,12 @@ public enum Learning {
     /// Ruhepuls und Einschlafdauer erst aus so vielen Nächten mit Werten; sonst bleiben sie ungelernt.
     public static let minValueNights = 3
 
-    /// Einschlafdauer einer Nacht höchstens so lang (Minuten): Ein spätes Zubettgehen soll die Empfehlung nicht verschieben.
+    /// Einschlafdauer einer Nacht höchstens so lang (Minuten): Ein spätes Zubettgehen soll die Empfehlung nicht
+    /// verschieben.
     public static let maxLatencyMinutes = 60
 
-    /// Grösstes gültiges Grundrauschen (m/s²) beim Übernehmen gelernter Werte (``validFloor(_:)``); darüber ist der Wert
-    /// kaputt.
+    /// Grösstes gültiges Grundrauschen (m/s²) beim Übernehmen gelernter Werte (``validFloor(_:)``); darüber ist der
+    /// Wert kaputt.
     public static let maxValidFloor = 1.0
     /// Gültiger Ruhepuls beim Übernehmen gelernter Werte (``validRestingHeartRate(_:)``), Schläge pro Minute.
     public static let minValidRestingHeartRate = 25.0
@@ -186,7 +189,8 @@ public enum Learning {
         return value
     }
 
-    /// Gelernter Ruhepuls, falls gültig: endlich, ``minValidRestingHeartRate`` bis ``maxValidRestingHeartRate``; sonst `nil`.
+    /// Gelernter Ruhepuls, falls gültig: endlich, ``minValidRestingHeartRate`` bis ``maxValidRestingHeartRate``; sonst
+    /// `nil`.
     public static func validRestingHeartRate(_ value: Double?) -> Double? {
         guard let value, value.isFinite, value >= minValidRestingHeartRate, value <= maxValidRestingHeartRate else { return nil }
         return value

@@ -87,8 +87,8 @@ public enum AlarmStamps {
 
     /// Liest den Stand der Gegenseite aus dem Anwendungskontext; `nil` ohne oder mit unlesbaren Weckern oder mit
     /// unplausiblem Listen-Zeitpunkt (``TimeBounds``: Nachricht verworfen). Fehlen die Zeitpunkte je Wecker
-    /// (ältere Version), ist ``AlarmSnapshot/perAlarm`` `false`; unplausible Zeitpunkte je Wecker oder gelöschter Wecker
-    /// fallen weg (``int64Map(_:)``), wie `AlarmStamps.checked` (Kotlin).
+    /// (ältere Version), ist ``AlarmSnapshot/perAlarm`` `false`; unplausible Zeitpunkte je Wecker oder gelöschter
+    /// Wecker fallen weg (``int64Map(_:)``), wie `AlarmStamps.checked` (Kotlin).
     public static func snapshot(context: [String: Any]) -> AlarmSnapshot? {
         guard let text = context[SyncKeys.alarms] as? String,
               let updatedAt = TimeBounds.checked(context[SyncKeys.updatedAt] as? Int64),
@@ -134,7 +134,8 @@ public enum AlarmStamps {
     /// darf das Auto-Aus nach dem Klingeln treffen; eine danach verschobene oder geänderte Uhrzeit nicht.
     /// - `rung`: der Wecker, wie er zu Beginn der Nacht geladen wurde (`nil`, wenn unbekannt, z. B. nach einem Neustart
     ///   der App). Bekannt: Uhrzeit und Tage müssen gleich sein.
-    /// - Unbekannt: Die eingestellte Weckzeit von `spec` für diese Nacht (`nextTarget(spec, target − 1 ms)`) muss `target`
+    /// - Unbekannt: Die eingestellte Weckzeit von `spec` für diese Nacht (`nextTarget(spec, target − 1 ms)`) muss
+    /// `target`
     ///   sein (auf ms verglichen); bei einer früher geweckten Nacht (`shifted`, «Gute Nacht») höchstens
     ///   ``shiftMaxAheadMs`` danach. Wie Kotlin.
     public static func rang(_ spec: AlarmSpec, rung: AlarmSpec?, target: Date, calendar: Calendar, shifted: Bool) -> Bool {
@@ -148,9 +149,9 @@ public enum AlarmStamps {
     /// Auto-Aus eines Einmal-Weckers nach dem Klingeln: Schaltet `id` in `local` aus, wenn er ein
     /// eingeschalteter Einmal-Wecker ist und `rang` ihn als die geklingelte Fassung erkennt; sonst `nil` (nichts tun).
     /// Der Wecker bekommt als Zeitpunkt den seiner bisherigen Fassung + 1 ms, nicht «jetzt»: Er ersetzt so genau die
-    /// Fassung, die geklingelt hat. Eine neuere Änderung, die hier noch nicht angekommen ist (z. B. am iPhone verschoben,
-    /// während die Uhr nicht erreichbar war), gewinnt beim Abgleich weiter. Ohne plausiblen bisherigen Zeitpunkt gilt
-    /// `listStamp`. Listen-Zeitpunkt: `listStamp`. Wie Kotlin.
+    /// Fassung, die geklingelt hat. Eine neuere Änderung, die hier noch nicht angekommen ist (z. B. am iPhone
+    /// verschoben, während die Uhr nicht erreichbar war), gewinnt beim Abgleich weiter. Ohne plausiblen bisherigen
+    /// Zeitpunkt gilt `listStamp`. Listen-Zeitpunkt: `listStamp`. Wie Kotlin.
     public static func autoOff(_ local: AlarmSnapshot, id: String, listStamp: Int64, rang: (AlarmSpec) -> Bool) -> AlarmSnapshot? {
         guard let spec = local.alarms.first(where: { $0.id == id }), spec.isOneShot, spec.enabled, rang(spec) else { return nil }
         var stamps = Dictionary(local.alarms.map { ($0.id, local.stampOf($0.id)) }, uniquingKeysWith: max)

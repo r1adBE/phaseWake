@@ -11,8 +11,8 @@ extension Brand {
     /// SkyPageContrastTest geprüft, gleiche Werte); hell warmes Weiss FFFCF7.
     static func panel(_ scheme: ColorScheme) -> Color { scheme == .dark ? Color(hex: 0x161B3A, opacity: 0.72) : Color(hex: 0xFFFCF7) }
 
-    /// Hauptfarbe, die sich nach dem Modus ihrer Umgebung richtet: dunkel Lavendel, hell ein tiefes Lavendel 4436A6, das
-    /// auf dem Tageshimmel im Kopf (Navigationsleiste: Zurück, Knöpfe) und auf Creme und Karten ≥ 4.5:1 behält.
+    /// Hauptfarbe, die sich nach dem Modus ihrer Umgebung richtet: dunkel Lavendel, hell ein tiefes Lavendel 4436A6,
+    /// das auf dem Tageshimmel im Kopf (Navigationsleiste: Zurück, Knöpfe) und auf Creme und Karten ≥ 4.5:1 behält.
     static let accentAdaptive = Color(UIColor { traits in
         traits.userInterfaceStyle == .dark
             ? UIColor(red: CGFloat(0xB9) / 255, green: CGFloat(0xAE) / 255, blue: CGFloat(0xFF) / 255, alpha: 1)
@@ -40,9 +40,9 @@ struct CardFill: View {
     var body: some View { panel ? Brand.panel(scheme) : Brand.card(scheme) }
 }
 
-/// Seite im Stil der Startseite: dunkel ganzflächig der Nachthimmel mit der Stimmung je Tageszeit, hell die Creme-Fläche
-/// und der Kopf (Navigationsleiste) im Tageshimmel «Creme Caramel» mit dunkler Schrift. Listen und Formulare ohne eigenen Grund, ihre
-/// Zeilen in der Kartenfläche (``skyRows()``).
+/// Seite im Stil der Startseite: dunkel ganzflächig der Nachthimmel mit der Stimmung je Tageszeit, hell die
+/// Creme-Fläche und der Kopf (Navigationsleiste) im Tageshimmel «Creme Caramel» mit dunkler Schrift. Listen und
+/// Formulare ohne eigenen Grund, ihre Zeilen in der Kartenfläche (``skyRows()``).
 struct SkyPageStyle: ViewModifier {
     @Environment(PhoneModel.self) private var model
     @Environment(\.colorScheme) private var scheme

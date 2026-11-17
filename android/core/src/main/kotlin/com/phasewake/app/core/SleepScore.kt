@@ -61,8 +61,9 @@ data class ScoreInput(
 data class FactorScore(val factor: ScoreFactor, val points: Int, val weight: Int, val band: ScoreBand)
 
 /**
- * Schlafwert einer Nacht: [score] 0–100, [band] in Worten, die vorhandenen Faktoren in der Reihenfolge von [ScoreFactor].
- * [provisional]: ohne Schlafphasen (weder Tief noch REM noch Wach) nur vorläufig, höchstens [SleepScore.PROVISIONAL_MAX].
+ * Schlafwert einer Nacht: [score] 0–100, [band] in Worten, die vorhandenen Faktoren in der Reihenfolge von
+ * [ScoreFactor]. [provisional]: ohne Schlafphasen (weder Tief noch REM noch Wach) nur vorläufig, höchstens
+ * [SleepScore.PROVISIONAL_MAX].
  */
 data class SleepScoreResult(val score: Int, val band: ScoreBand, val factors: List<FactorScore>, val provisional: Boolean = false) {
     /** Faktor [factor]; `null`, wenn er fehlt. */
@@ -151,7 +152,10 @@ object SleepScore {
         return round((FULL * (LATENCY_ZERO_MINUTES - minutes) / span).coerceIn(0.0, FULL))
     }
 
-    /** Eingabe aus den Phasen einer Nacht ([StageStats]): Schlaf, Anteile Tief, REM und Wach, Einschlafdauer (falls bekannt), Wachzeit. */
+    /**
+     * Eingabe aus den Phasen einer Nacht ([StageStats]): Schlaf, Anteile Tief, REM und Wach, Einschlafdauer (falls
+     * bekannt), Wachzeit.
+     */
     fun inputOf(stats: NightStages, goalMinutes: Int): ScoreInput = ScoreInput(
         asleepMinutes = stats.asleepMinutes,
         goalMinutes = goalMinutes,

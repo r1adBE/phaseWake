@@ -13,8 +13,8 @@ import kotlinx.coroutines.withTimeoutOrNull
 
 /**
  * Diagnose-Bericht der Uhr ([DataLayer.PATH_DIAG_LOG]), nur im Speicher: Er wird auf Wunsch geholt und nicht abgelegt.
- * Ein voller Bericht (500 Einträge) ist grösser als eine Nachricht der Wear-Dienste; die Uhr schickt ihn dann über einen
- * Kanal (`Outbox.sendOnce`), den [com.phasewake.app.sync.PhoneListenerService] hierher weitergibt.
+ * Ein voller Bericht (500 Einträge) ist grösser als eine Nachricht der Wear-Dienste; die Uhr schickt ihn dann über
+ * einen Kanal (`Outbox.sendOnce`), den [com.phasewake.app.sync.PhoneListenerService] hierher weitergibt.
  */
 object WatchReport {
     /** Wie lange auf die Antwort der Uhr gewartet wird (ein Kanal braucht länger als eine Nachricht). */
@@ -31,7 +31,8 @@ object WatchReport {
     }
 
     /**
-     * Fragt die Uhr nach ihrem Bericht. Ohne Antwort in [timeoutMs] steht im Protokoll des Handys «watch report missing».
+     * Fragt die Uhr nach ihrem Bericht. Ohne Antwort in [timeoutMs] steht im Protokoll des Handys «watch report
+     * missing».
      * @return der Bericht oder `null` ohne Antwort.
      */
     suspend fun fetch(app: PhaseWakeApp, timeoutMs: Long = TIMEOUT_MS): DiagReport? {

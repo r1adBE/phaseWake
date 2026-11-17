@@ -13,8 +13,8 @@ import kotlinx.coroutines.withContext
  * Zuletzt von der Gegenseite bestätigter Inhalt je Schlüssel der Warteschlange, als Prüfsumme (SHA-256)
  * in einer Datei [file]: Beim Start eines Prozesses reiht [enqueueIfChanged] einen Zustand (Wecker, Schlafziel …) nur
  * ein, wenn er sich seit der letzten Bestätigung geändert hat oder noch ein Eintrag desselben Schlüssels wartet. So
- * wecken sich Handy und Uhr nachts nicht bei jedem Prozessstart gegenseitig; die Zusage des Abgleichs beim Prozessstart (Ging eine Nachricht
- * verloren, gleicht der Start ab) bleibt: Verloren ist nur, was nie bestätigt wurde.
+ * wecken sich Handy und Uhr nachts nicht bei jedem Prozessstart gegenseitig; die Zusage des Abgleichs beim Prozessstart
+ * (Ging eine Nachricht verloren, gleicht der Start ab) bleibt: Verloren ist nur, was nie bestätigt wurde.
  *
  * Nur Zustände ([Outbox.expires] falsch): Nächte und Aufzeichnungen haben je einen eigenen Schlüssel und würden die
  * Datei sonst ohne Ende wachsen lassen. Eine unlesbare Datei gilt als leer (dann wird wie bisher gesendet).

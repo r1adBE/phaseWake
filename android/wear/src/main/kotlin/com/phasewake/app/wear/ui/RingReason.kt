@@ -21,7 +21,8 @@ internal data class ReasonFit(val fontSize: TextUnit, val lineHeight: TextUnit, 
 
 /**
  * Grund beim Wecken ganz lesbar statt mit «…»: zuerst einzeilig, nötigenfalls etwas kleiner (bis [REASON_MIN_SCALE]);
- * sonst zweizeilig mit engerem Zeilenabstand, ebenso nötigenfalls etwas kleiner. Erst was auch so nicht passt, endet mit «…».
+ * sonst zweizeilig mit engerem Zeilenabstand, ebenso nötigenfalls etwas kleiner. Erst was auch so nicht passt, endet
+ * mit «…».
  */
 @Composable
 internal fun rememberReasonFit(text: String, style: TextStyle, maxWidthDp: Int): ReasonFit {

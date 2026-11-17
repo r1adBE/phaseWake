@@ -196,14 +196,17 @@ data class BackupSettings(
      * Vorgabe `true`.
      */
     val eveningDark: Boolean = EveningDark.DEFAULT_ENABLED,
-    /** Beginn von «Abends dunkel ab» in Minuten des Tages; fehlt oder unplausibel: 18:00 ([EveningDark.checkedFrom]). */
+    /**
+     * Beginn von «Abends dunkel ab» in Minuten des Tages; fehlt oder unplausibel: 18:00 ([EveningDark.checkedFrom]).
+     */
     val eveningDarkFrom: Int = EveningDark.DEFAULT_FROM_MINUTES,
 )
 
 /**
  * Inhalt einer Sicherung: die gespeicherten Texte in ihren eigenen Formaten (Wecker, Nächte, Notizen,
  * Abendroutine, Befinden zu Nächten aus anderen Apps) und die Einstellungen. Die eigenen Nächte enthalten Bewegung und
- * Puls je Epoche. Ohne Geräusch-Ausschnitte und ohne die Schlafsitzungen aus Health Connect / HealthKit (die bleiben dort).
+ * Puls je Epoche. Ohne Geräusch-Ausschnitte und ohne die Schlafsitzungen aus Health Connect / HealthKit (die bleiben
+ * dort).
  */
 data class BackupPayload(
     /** Erstellt (ms seit 1970). */

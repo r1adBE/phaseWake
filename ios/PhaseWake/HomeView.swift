@@ -77,10 +77,12 @@ struct HomeView: View {
                                 SoundsButton { sounds = true }
                                 LearningHomeCard()
                                 RecordCard()
-                                // Höchstens eine Auffälligkeit, die wichtigste; neben der Bettzeit-Karte ohne denselben Tipp (wie Android).
+                                // Höchstens eine Auffälligkeit, die wichtigste; neben der Bettzeit-Karte ohne denselben
+                                // Tipp (wie Android).
                                 FindingHomeCard(bedtimeAdvice: evening && BedtimeAdviceCard.range(model: model, values: PhoneLearning.shared.state.values, now: context.date) != nil)
                                 if !morningFirst { lastNight(now: context.date, morningFirst: false) }
-                                // Morgenbericht ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): nur die Geräusche – nicht während der Aufnahme und nicht für die Nacht, die gerade läuft.
+                                // Morgenbericht ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): nur die Geräusche
+                                // – nicht während der Aufnahme und nicht für die Nacht, die gerade läuft.
                                 let recorded = Set(model.nights.last.map { [SleepNotes.nightDate(of: $0, calendar: .gregorianLocal)] } ?? [])
                                 if let sounds = SoundEvents.nightsWithoutRecord(model.recorder.clips, recorded: recorded).first,
                                    context.date.timeIntervalSince(sounds.last) < 12 * 3600, !model.recorder.running,
@@ -116,7 +118,8 @@ struct HomeView: View {
                         opened = false
                         await PhoneWidgetSync.refreshAsleep(model)
                     }
-                    // «Geräusche aufnehmen»: ab der Bettzeit (Vorgabe) bzw. am Abend (selbst eingeschaltet) von selbst starten.
+                    // «Geräusche aufnehmen»: ab der Bettzeit (Vorgabe) bzw. am Abend (selbst eingeschaltet) von selbst
+                    // starten.
                     await model.autoStartSoundRec()
                     try? await Task.sleep(for: .seconds(30))
                 }
@@ -214,7 +217,8 @@ struct HomeView: View {
         .accessibilityAction { if let plan { editing = model.alarms.first { $0.id == plan.alarmId } } }
     }
 
-    /// Feiertag, an dem ein Wecker sonst geweckt hätte, bis zum nächsten Wecken («Do 30.10.: Feiertag – nicht geweckt»).
+    /// Feiertag, an dem ein Wecker sonst geweckt hätte, bis zum nächsten Wecken («Do 30.10.: Feiertag – nicht
+    /// geweckt»).
     private func skippedHoliday(now: Date) -> String? {
         AlarmSchedule.holidayNote(model.alarms, now: now, doneUntil: model.doneUntil, calendar: .gregorianLocal, holidays: model.holidays.dates)
     }

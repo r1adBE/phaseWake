@@ -3,14 +3,14 @@ import PhaseWakeCore
 import UserNotifications
 
 /// Rückfälle der Nächte nach der nächsten: watchOS plant die Smart-Alarm-Sitzung nur bei offener App und
-/// weckt die App nicht verlässlich. Läuft die App tagelang nicht, stand bisher nur der Rückfall der nächsten Nacht. Jetzt
-/// bekommt jede weitere Nacht bis 14 Tage voraus eine eigene Weck-Mitteilung (wie der Zweitwecker am iPhone), im Rahmen
-/// von `NotificationBudget`: innerhalb von 48 h die ganze Kette (`NotificationChain`), danach nur die erste, und nur,
-/// solange Platz ist (die übrigen Mitteilungen der Uhr gehen vor). Jedes Neuplanen ersetzt sie.
+/// weckt die App nicht verlässlich. Läuft die App tagelang nicht, stand bisher nur der Rückfall der nächsten Nacht.
+/// Jetzt bekommt jede weitere Nacht bis 14 Tage voraus eine eigene Weck-Mitteilung (wie der Zweitwecker am iPhone), im
+/// Rahmen von `NotificationBudget`: innerhalb von 48 h die ganze Kette (`NotificationChain`), danach nur die erste, und
+/// nur, solange Platz ist (die übrigen Mitteilungen der Uhr gehen vor). Jedes Neuplanen ersetzt sie.
 ///
-/// Kennungen «phasewake.fallback.night1» … «.night14» (je mit Kette «.1»–«.3»): Sie beginnen mit `SmartAlarm.fallbackId`,
-/// gelten also bei offener App als Rückfall (`WatchNotificationRouter`), und weckt eine, klingelt die Uhr für ihre Nacht
-/// wie beim Rückfall (`SmartAlarm.fallbackArrived`).
+/// Kennungen «phasewake.fallback.night1» … «.night14» (je mit Kette «.1»–«.3»): Sie beginnen mit
+/// `SmartAlarm.fallbackId`, gelten also bei offener App als Rückfall (`WatchNotificationRouter`), und weckt eine,
+/// klingelt die Uhr für ihre Nacht wie beim Rückfall (`SmartAlarm.fallbackArrived`).
 enum UpcomingFallbacks {
     /// Höchstens so viele Nächte nach der nächsten.
     static let maxNights = 14
@@ -41,9 +41,10 @@ enum UpcomingFallbacks {
     /// Die Nächte nach `first` (dem nächsten echten Wecker) bis `horizon` ab `now`, höchstens `maxNights`, je Wecker
     /// gesucht (`BackupPlan.nights`): eingeschaltet, nicht übersprungen, keine Feiertage, nicht erledigt (`doneUntil`).
     /// Ein einmaliger Wecker nur mit seinem ersten Vorkommen. Hat «Gute Nacht» die Zielzeit von `first` vorverlegt
-    /// (`nominalFirst` = eingestellte Weckzeit derselben Nacht), kommt diese Nacht nicht nochmals zur eingestellten Zeit.
-    /// Gesucht ab dem späteren von `first.target` und `now`: Liegt `first` schon zurück (ausstehende
-    /// Nacht, nachgeholter Wecker), bekäme sonst jede Nacht dazwischen einen Rückfall in der Vergangenheit, der sofort weckt.
+    /// (`nominalFirst` = eingestellte Weckzeit derselben Nacht), kommt diese Nacht nicht nochmals zur eingestellten
+    /// Zeit. Gesucht ab dem späteren von `first.target` und `now`: Liegt `first` schon zurück (ausstehende
+    /// Nacht, nachgeholter Wecker), bekäme sonst jede Nacht dazwischen einen Rückfall in der Vergangenheit, der sofort
+    /// weckt.
     static func nights(after first: WakePlan?, specs: [AlarmSpec], now: Date, doneUntil: [String: Date], nominalFirst: Date?,
                        calendar: Calendar, holidays: Set<String>) -> [WakePlan] {
         guard let first, Transient.kindOf(first.alarmId) == nil else { return [] }

@@ -199,7 +199,8 @@ enum NightCheck {
         if WatchNotifications.isOutdated(checkedAt: watch.notifications?.checkedAt, now: now) {
             failed.append(.watchStateOld)
         }
-        // Ältere Uhr-App: Sie meldet einen älteren Stand der Verbindung (ohne Angabe 0); noch kein Kontext: keine Warnung.
+        // Ältere Uhr-App: Sie meldet einen älteren Stand der Verbindung (ohne Angabe 0); noch kein Kontext: keine
+        // Warnung.
         let outdated = WatchProtocol.isOutdated(watch: watch.watchProtocol)
         if outdated { failed.append(.watchOutdated) }
         if let hint = buildHint(phone: watch.phoneBuild, watch: watch.watchBuild, outdated: outdated) { failed.append(hint) }
@@ -215,8 +216,8 @@ enum NightCheck {
 
     /// Hinweis vorab zum Akku der Uhr (wie `NightCheckState.batteryHints` auf Android), höchstens einer:
     /// unter ``watchOnsetBatteryPercent`` mit automatischer Einschlaf-Messung, sonst in der Lernphase unter
-    /// ``Learning/minBattery``. Keiner unter ``lowBatteryPercent`` (dort sagt ``PhoneCheck/watchBattery`` schon «lade die
-    /// Uhr») und bei unbekanntem Akku.
+    /// ``Learning/minBattery``. Keiner unter ``lowBatteryPercent`` (dort sagt ``PhoneCheck/watchBattery`` schon «lade
+    /// die Uhr») und bei unbekanntem Akku.
     nonisolated static func batteryHint(_ battery: Int?, autoOnset: Bool, learning: Bool) -> PhoneCheck? {
         guard let battery, battery >= lowBatteryPercent else { return nil }
         if autoOnset, battery < watchOnsetBatteryPercent { return .watchOnsetBattery }
@@ -230,8 +231,8 @@ enum NightCheck {
         unplugged && level >= 0 && level * 100 < Float(lowBatteryPercent)
     }
 
-    /// Erinnerung am Abend der Uhr für `plan`: 60 Min vor der einen Bettzeit (Zielzeit minus Schlafdauer bzw. Schlafziel
-    /// minus gelernte Einschlafdauer), wie `EveningReminder.reminderAt` auf der Uhr.
+    /// Erinnerung am Abend der Uhr für `plan`: 60 Min vor der einen Bettzeit (Zielzeit minus Schlafdauer bzw.
+    /// Schlafziel minus gelernte Einschlafdauer), wie `EveningReminder.reminderAt` auf der Uhr.
     private static func reminderTime(_ plan: WakePlan, model: PhoneModel) -> Date {
         let spec = model.alarms.first { $0.id == plan.alarmId }
         return Bedtime.bedtime(nextAlarmTarget: plan.target, goalMinutes: spec?.sleepDurationMinutes ?? model.sleepGoal,
@@ -259,7 +260,8 @@ enum NightCheck {
         #if canImport(AlarmKit)
         if #available(iOS 26.0, *) { return true }
         #endif
-        // Zeitkritisch aus: Der Zweitwecker (Mitteilung) käme durch einen Fokus nicht durch – so ernst wie keine Erlaubnis.
+        // Zeitkritisch aus: Der Zweitwecker (Mitteilung) käme durch einen Fokus nicht durch – so ernst wie keine
+        // Erlaubnis.
         let settings = await UNUserNotificationCenter.current().notificationSettings()
         let status = settings.authorizationStatus
         return (status == .authorized || status == .provisional) && settings.timeSensitiveSetting != .disabled

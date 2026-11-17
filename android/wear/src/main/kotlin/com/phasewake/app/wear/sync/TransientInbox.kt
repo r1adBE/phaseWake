@@ -16,15 +16,17 @@ import java.util.UUID
 
 /**
  * Probewecker und Powernap auf der Uhr: vom Handy empfangen ([DataLayer.PATH_TEST], [DataLayer.PATH_NAP]),
- * auf der Uhr gestartet oder abgebrochen. Geplant werden sie wie ein Wecker ([com.phasewake.app.wear.schedule.AlarmScheduler]).
+ * auf der Uhr gestartet oder abgebrochen. Geplant werden sie wie ein Wecker
+ * ([com.phasewake.app.wear.schedule.AlarmScheduler]).
  */
 object TransientInbox {
     private const val TAG = "TransientInbox"
 
     /**
      * Plan vom Handy übernehmen; einen Probewecker bestätigt die Uhr gleich ([DataLayer.PATH_TEST_ACK]). Kollidiert er
-     * mit einem Wecker ([conflict]), verwirft die Uhr ihn ohne Bestätigung: Die Messung des echten Weckers läuft weiter.
-     * Kommt er zu spät an (nicht mehr [Transient.isPlannable]), ebenso: Die Uhr bestätigt nie einen Test, den sie nicht plant.
+     * mit einem Wecker ([conflict]), verwirft die Uhr ihn ohne Bestätigung: Die Messung des echten Weckers läuft
+     * weiter. Kommt er zu spät an (nicht mehr [Transient.isPlannable]), ebenso: Die Uhr bestätigt nie einen Test, den
+     * sie nicht plant.
      */
     suspend fun received(app: PhaseWakeWear, path: String, payload: ByteArray?) {
         val plan = try {

@@ -3,12 +3,13 @@ import PhaseWakeCore
 import UIKit
 
 /// Akku je Nacht am iPhone, wie `BatteryNight` und `PhoneBattery` (Android); Rechnung in ``BatteryTrack``.
-/// Das iPhone läuft nachts oft nicht; es misst darum bei Ereignissen, die es ohnehin bekommt: Beginn, wenn die Uhr eine Nacht
-/// zu messen beginnt (Befehl ``SyncKeys/nightBegin``), Ende beim endgültigen «stop» der Uhr oder, falls das fehlt, wenn ihre
-/// Nacht gleich nach dem Ende ankommt. Verspätet zugestellt: kein Beginn bzw. Ende, also kein Wert statt eines falschen.
-/// Laden meldet iOS nur, solange die App läuft (`UIDevice.batteryStateDidChangeNotification`); einen Auftrag beim
-/// Anschliessen wie auf Android gibt es nicht. Ein unbeobachteter Wechsel ans oder vom Ladegerät (Stand bei Beginn und Ende
-/// verschieden) oder ein Anstieg ohne Ladegerät ergibt keinen Wert (``BatteryTrack/used(_:)``).
+/// Das iPhone läuft nachts oft nicht; es misst darum bei Ereignissen, die es ohnehin bekommt: Beginn, wenn die Uhr eine
+/// Nacht zu messen beginnt (Befehl ``SyncKeys/nightBegin``), Ende beim endgültigen «stop» der Uhr oder, falls das
+/// fehlt, wenn ihre Nacht gleich nach dem Ende ankommt. Verspätet zugestellt: kein Beginn bzw. Ende, also kein Wert
+/// statt eines falschen. Laden meldet iOS nur, solange die App läuft (`UIDevice.batteryStateDidChangeNotification`);
+/// einen Auftrag beim Anschliessen wie auf Android gibt es nicht. Ein unbeobachteter Wechsel ans oder vom Ladegerät
+/// (Stand bei Beginn und Ende verschieden) oder ein Anstieg ohne Ladegerät ergibt keinen Wert
+/// (``BatteryTrack/used(_:)``).
 @MainActor
 enum PhoneBattery {
     private static let openKey = "batteryNight.open"
@@ -45,8 +46,8 @@ enum PhoneBattery {
         update { BatteryTrack.charge($0, at: r.at, percent: r.percent, plugged: r.plugged) }
     }
 
-    /// Endgültiges «stop» der Uhr (frisch): Ende der Nacht. Ist ihre Nacht schon gespeichert, kommt der Akku gleich dazu,
-    /// sonst wartet er auf sie (``withPhone(_:now:)``).
+    /// Endgültiges «stop» der Uhr (frisch): Ende der Nacht. Ist ihre Nacht schon gespeichert, kommt der Akku gleich
+    /// dazu, sonst wartet er auf sie (``withPhone(_:now:)``).
     static func stopped() {
         guard let track = end() else { return }
         let model = PhoneModel.shared
@@ -57,8 +58,8 @@ enum PhoneBattery {
         }
     }
 
-    /// Nacht der Uhr kommt an: Akku des iPhones dazu, wenn er zu ihr gehört – der beim «stop» gemerkte, sonst (nur wenn sie
-    /// gleich nach ihrem Ende ankommt, ``BatteryTrack/arrivedFresh(_:now:)``) jetzt beendet.
+    /// Nacht der Uhr kommt an: Akku des iPhones dazu, wenn er zu ihr gehört – der beim «stop» gemerkte, sonst (nur wenn
+    /// sie gleich nach ihrem Ende ankommt, ``BatteryTrack/arrivedFresh(_:now:)``) jetzt beendet.
     static func withPhone(_ night: NightRecord, now: Date = Date()) -> NightRecord {
         if night.phoneBattery != nil { return night }
         if let done = BatteryTrack.decode(UserDefaults.standard.string(forKey: doneKey)), BatteryTrack.belongs(done, to: night) {
@@ -93,8 +94,8 @@ enum PhoneBattery {
 }
 
 /// Gemeinsamer Halter der Akku-Überwachung des iPhones (`UIDevice.isBatteryMonitoringEnabled`): an, solange sie jemand
-/// hält (``PhoneBattery`` dauerhaft, die Geräuschaufnahme während sie läuft); erst wenn keiner sie mehr hält, aus. So schaltet
-/// das Ende einer Aufnahme die Ladeerkennung von «Akku je Nacht» nicht ab.
+/// hält (``PhoneBattery`` dauerhaft, die Geräuschaufnahme während sie läuft); erst wenn keiner sie mehr hält, aus. So
+/// schaltet das Ende einer Aufnahme die Ladeerkennung von «Akku je Nacht» nicht ab.
 @MainActor
 final class BatteryMonitoring {
     static let shared = BatteryMonitoring { UIDevice.current.isBatteryMonitoringEnabled = $0 }

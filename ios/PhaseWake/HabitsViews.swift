@@ -90,7 +90,8 @@ func habitLines(model: PhoneModel, sleeps: [SleepSummary], healthConnected: Bool
     return lines
 }
 
-/// Verlauf am Sonntag und Montag: Rückblick auf die zuletzt abgeschlossene Woche; `deep` Tiefschlaf-Anteil (``weeklyDeepLine(_:)``).
+/// Verlauf am Sonntag und Montag: Rückblick auf die zuletzt abgeschlossene Woche; `deep` Tiefschlaf-Anteil
+/// (``weeklyDeepLine(_:)``).
 struct WeeklyCard: View {
     @Environment(PhoneModel.self) private var model
     let summary: WeeklySummary

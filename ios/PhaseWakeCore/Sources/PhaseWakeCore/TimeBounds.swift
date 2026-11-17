@@ -1,8 +1,8 @@
 import Foundation
 
-/// Plausible Zeitpunkte beim Lesen gespeicherter oder empfangener Daten (ms seit 1970): von 1970-01-01 bis 2100-01-01 UTC.
-/// Ausserhalb ist der Wert kaputt oder fremd (z. B. eine manipulierte Sicherung mit 9223372036854775807); er wird beim
-/// Lesen verworfen, sonst bräche das spätere Zurückrechnen in Millisekunden (`Int64(… .rounded())`) die App ab.
+/// Plausible Zeitpunkte beim Lesen gespeicherter oder empfangener Daten (ms seit 1970): von 1970-01-01 bis 2100-01-01
+/// UTC. Ausserhalb ist der Wert kaputt oder fremd (z. B. eine manipulierte Sicherung mit 9223372036854775807); er wird
+/// beim Lesen verworfen, sonst bräche das spätere Zurückrechnen in Millisekunden (`Int64(… .rounded())`) die App ab.
 /// Untergrenze 1970 statt 2000: Tests und Testdaten beider Plattformen nutzen kleine Zeiten; die laufen nie über.
 /// Identisch zu `TimeBounds` (Kotlin).
 public enum TimeBounds {
@@ -23,8 +23,8 @@ public enum TimeBounds {
     }
 
     /// Streng steigender Zeitstempel (Wecker, Lernphase): `now`, mindestens `previous` + 1. Ein unplausibles `previous`
-    /// (``contains(_:)``, z. B. `Int64.max` aus einer kaputten Nachricht) zählt nicht: sonst bräche `+ 1` die App ab bzw.
-    /// jeder spätere Stempel bliebe kaputt. Identisch zu `TimeBounds.next` (Kotlin).
+    /// (``contains(_:)``, z. B. `Int64.max` aus einer kaputten Nachricht) zählt nicht: sonst bräche `+ 1` die App ab
+    /// bzw. jeder spätere Stempel bliebe kaputt. Identisch zu `TimeBounds.next` (Kotlin).
     public static func next(now: Int64, previous: Int64?) -> Int64 {
         guard let last = checked(previous) else { return now }
         return max(now, last + 1)

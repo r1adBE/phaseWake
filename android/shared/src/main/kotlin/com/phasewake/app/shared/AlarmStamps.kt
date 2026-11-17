@@ -11,9 +11,9 @@ import java.time.ZoneId
 
 /**
  * Abgleich der Wecker je Wecker (Zusammenführen nach `updatedAt` je Wecker): Früher gewann die neuere ganze Liste;
- * änderte ein Gerät automatisch einen Wecker (Einmal-Wecker nach dem Klingeln aus, Zweitwecker am Handy), während auf dem
- * anderen der Nutzer einen Wecker bearbeitete, ging eine der beiden Änderungen verloren. Jetzt trägt jeder Wecker den
- * Zeitpunkt seiner letzten Änderung, und ein gelöschter Wecker bleibt als Eintrag mit dem Zeitpunkt des Löschens
+ * änderte ein Gerät automatisch einen Wecker (Einmal-Wecker nach dem Klingeln aus, Zweitwecker am Handy), während auf
+ * dem anderen der Nutzer einen Wecker bearbeitete, ging eine der beiden Änderungen verloren. Jetzt trägt jeder Wecker
+ * den Zeitpunkt seiner letzten Änderung, und ein gelöschter Wecker bleibt als Eintrag mit dem Zeitpunkt des Löschens
  * («Grabstein»), bis er [TOMBSTONE_MAX_AGE_MS] alt ist.
  */
 object AlarmStamps {
@@ -24,12 +24,12 @@ object AlarmStamps {
     const val MAX_TOMBSTONES = 200
 
     /**
-     * Führt [local] und [remote] zusammen; das Ergebnis hängt nicht davon ab, welche Seite lokal ist (beide Geräte kommen
-     * zum selben Stand). Je Wecker gilt die Fassung mit dem neueren Zeitpunkt ([AlarmSnapshot.stampOf]); bei gleichem
-     * Zeitpunkt und verschiedenem Inhalt entscheidet ein fester Vergleich. Ein Löschen gewinnt, wenn es nicht älter als
-     * diese Fassung ist; ein Wecker, den eine Seite nie kannte und nirgends gelöscht ist, bleibt. Listen-Zeitpunkt: der
-     * spätere beider Seiten. Gelöschte Wecker älter als [TOMBSTONE_MAX_AGE_MS] vor [now] fallen weg. Doppelte Kennung in
-     * einem Stand: der letzte Eintrag gilt, wie Swift.
+     * Führt [local] und [remote] zusammen; das Ergebnis hängt nicht davon ab, welche Seite lokal ist (beide Geräte
+     * kommen zum selben Stand). Je Wecker gilt die Fassung mit dem neueren Zeitpunkt ([AlarmSnapshot.stampOf]); bei
+     * gleichem Zeitpunkt und verschiedenem Inhalt entscheidet ein fester Vergleich. Ein Löschen gewinnt, wenn es nicht
+     * älter als diese Fassung ist; ein Wecker, den eine Seite nie kannte und nirgends gelöscht ist, bleibt.
+     * Listen-Zeitpunkt: der spätere beider Seiten. Gelöschte Wecker älter als [TOMBSTONE_MAX_AGE_MS] vor [now] fallen
+     * weg. Doppelte Kennung in einem Stand: der letzte Eintrag gilt, wie Swift.
      */
     fun merge(local: AlarmSnapshot, remote: AlarmSnapshot, now: Long): AlarmSnapshot {
         val mine = local.alarms.associateBy { it.id }
@@ -62,7 +62,8 @@ object AlarmStamps {
      * darf das Auto-Aus nach dem Klingeln treffen; eine danach verschobene oder geänderte Uhrzeit nicht.
      * - [rung]: der Wecker, wie er zu Beginn der Nacht geladen wurde (`null`, wenn unbekannt, z. B. nach einem Neustart
      *   der App). Bekannt: Uhrzeit und Tage müssen gleich sein.
-     * - Unbekannt: Die eingestellte Weckzeit von [spec] für diese Nacht (`nextTarget(spec, target − 1 ms)`) muss [target]
+     * - Unbekannt: Die eingestellte Weckzeit von [spec] für diese Nacht (`nextTarget(spec, target − 1 ms)`) muss
+     * [target]
      *   sein; bei einer früher geweckten Nacht ([shifted], Einschlaf-Modus) höchstens [SHIFT_MAX_AHEAD_MS] danach.
      * Wie Swift.
      */

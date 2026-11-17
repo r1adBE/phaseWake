@@ -69,8 +69,9 @@ class AlarmRepository(
 
     /**
      * Auto-Aus eines Einmal-Weckers nach dem Klingeln ([AlarmStamps.autoOff]): nur, wenn [rang] den
-     * gespeicherten Wecker [id] als die geklingelte Fassung erkennt ([AlarmStamps.rang]); sein Zeitpunkt wird der seiner
-     * bisherigen Fassung + 1 ms, damit eine neuere Änderung der Gegenseite gewinnt. Lesen und Schreiben in einem Schritt.
+     * gespeicherten Wecker [id] als die geklingelte Fassung erkennt ([AlarmStamps.rang]); sein Zeitpunkt wird der
+     * seiner bisherigen Fassung + 1 ms, damit eine neuere Änderung der Gegenseite gewinnt. Lesen und Schreiben in einem
+     * Schritt.
      * @return neuer Stand, oder `null`, wenn nichts ausgeschaltet wurde.
      */
     suspend fun disableAfterRing(id: String, rang: (AlarmSpec) -> Boolean): AlarmSnapshot? {
@@ -127,9 +128,9 @@ class AlarmRepository(
      * ohne Zeitpunkte je Wecker ([AlarmSnapshot.perAlarm] `false`) gilt wie bisher nur, wenn er neuer ist, und ersetzt
      * dann die Liste.
      *
-     * Weicht der zusammengeführte Stand vom empfangenen ab ([differs]), kennt die Gegenseite eine Änderung von hier nicht
-     * (z. B. ihre Nachricht ging verloren): [Received.reply] ist dann der eigene Stand, den der Aufrufer zurückschickt.
-     * So kommen beide Geräte zum selben Stand; stimmt er überein, antwortet keine Seite mehr.
+     * Weicht der zusammengeführte Stand vom empfangenen ab ([differs]), kennt die Gegenseite eine Änderung von hier
+     * nicht (z. B. ihre Nachricht ging verloren): [Received.reply] ist dann der eigene Stand, den der Aufrufer
+     * zurückschickt. So kommen beide Geräte zum selben Stand; stimmt er überein, antwortet keine Seite mehr.
      */
     suspend fun receive(remote: AlarmSnapshot): Received {
         var applied = false

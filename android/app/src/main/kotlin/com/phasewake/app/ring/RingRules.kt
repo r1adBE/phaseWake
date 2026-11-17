@@ -67,7 +67,10 @@ internal object RingRules {
         /** Das Handy führt die Nacht und hat noch Runden: selbst schlummern (wie die Uhr). */
         SNOOZE,
 
-        /** Die Uhr führt und hat noch Runden (sie schlummert selbst): Handy still, eigene Sicherung nach dem Schlummer-Ende. */
+        /**
+         * Die Uhr führt und hat noch Runden (sie schlummert selbst): Handy still, eigene Sicherung nach dem
+         * Schlummer-Ende.
+         */
         STOP_WITH_SAFETY,
 
         /** Letzte Runde oder nichts klingelt: beenden. */
@@ -82,9 +85,9 @@ internal object RingRules {
     }
 
     /**
-     * Schlummer-Runden einer neuen Klingel-Runde: Probewecker keine; führt die Uhr, zählt ihre Angabe [watchSnoozesLeft]
-     * (jedes «klingeln» trägt sie, eines ohne wird vorher verworfen); sonst allein [snoozesDone] aus dem Schlummer- bzw.
-     * Wiederaufnahme-Alarm (übersteht ein Prozessende).
+     * Schlummer-Runden einer neuen Klingel-Runde: Probewecker keine; führt die Uhr, zählt ihre Angabe
+     * [watchSnoozesLeft] (jedes «klingeln» trägt sie, eines ohne wird vorher verworfen); sonst allein [snoozesDone] aus
+     * dem Schlummer- bzw. Wiederaufnahme-Alarm (übersteht ein Prozessende).
      */
     fun snoozesLeft(alarmId: String?, fromWatch: Boolean, watchSnoozesLeft: Int?, snoozesDone: Int): Int {
         val left = when {
@@ -128,9 +131,9 @@ internal object RingRules {
     }
 
     /**
-     * Ob ein «stop» der Uhr ([message]) das Klingeln des Handys beendet: Es läuft eines ([active]), die Meldung ist nicht
-     * veraltet (älter als [RingMessage.MAX_AGE_MS], wie das iPhone in die andere Richtung) und gehört zur Nacht, die
-     * gerade klingelt ([currentId]/[currentTarget]). Ein verspätetes «stop» einer anderen Nacht beendet sie nicht.
+     * Ob ein «stop» der Uhr ([message]) das Klingeln des Handys beendet: Es läuft eines ([active]), die Meldung ist
+     * nicht veraltet (älter als [RingMessage.MAX_AGE_MS], wie das iPhone in die andere Richtung) und gehört zur Nacht,
+     * die gerade klingelt ([currentId]/[currentTarget]). Ein verspätetes «stop» einer anderen Nacht beendet sie nicht.
      */
     fun stopApplies(message: RingMessage, nowMs: Long, active: Boolean, currentId: String?, currentTarget: Long?): Boolean =
         active && !message.isStale(nowMs) && message.sameNight(currentId, currentTarget)
@@ -142,8 +145,8 @@ internal object RingRules {
     val WATCH_GONE: Duration = Duration.ofDays(7)
 
     /**
-     * Nachfrist des Zweitweckers: [grace], solange eine Uhr da ist; 0 (pünktlich zur Zielzeit, das Handy ist der Wecker),
-     * wenn ihr Status ([watchSeenAtMs], «zuletzt gesehen») fehlt oder älter als [WATCH_GONE] ist (wie das
+     * Nachfrist des Zweitweckers: [grace], solange eine Uhr da ist; 0 (pünktlich zur Zielzeit, das Handy ist der
+     * Wecker), wenn ihr Status ([watchSeenAtMs], «zuletzt gesehen») fehlt oder älter als [WATCH_GONE] ist (wie das
      * iPhone ohne gekoppelte Uhr). Eine Meldung aus der «Zukunft» (Uhrzeit zurückgestellt) gilt als da.
      */
     fun backupGrace(watchSeenAtMs: Long?, nowMs: Long, grace: Duration): Duration =
@@ -155,14 +158,16 @@ internal object RingRules {
     /**
      * Zweitwecker, der als Nächstes gilt: der früheste von
      * - dem nächsten Termin jedes Weckers in [backups] (erst nach [suppressed], siehe [BackupAlarm.watchHandled]),
-     * - dem schon geplanten Zweitwecker [plannedId]/[plannedTarget], solange seine Nachfrist läuft ([AlarmSchedule.inGrace]),
-     * - dem Probewecker oder Powernap [transient] (auch in der Nachfrist: er kommt nicht wieder), wenn nicht ausgesetzt,
+     * - dem schon geplanten Zweitwecker [plannedId]/[plannedTarget], solange seine Nachfrist läuft
+     * ([AlarmSchedule.inGrace]),
+     * - dem Probewecker oder Powernap [transient] (auch in der Nachfrist: er kommt nicht wieder), wenn nicht
+     * ausgesetzt,
      * - einem nachzuholenden Termin eines anderen Weckers ([catchUp]).
      * Bei gleicher Zielzeit die kleinere Kennung. `null`, wenn keiner.
      *
-     * Bleibt die Nacht [planned] über einen Zonenwechsel ([keptBackup]), gilt sie bis zum Klingeln bzw. Aussetzen allein
-     * (neben einem Probewecker oder Powernap): Ein anderer Wecker, dessen neue Ortszeit in ihr Fenster fällt, verdrängt
-     * sie nicht, er folgt danach.
+     * Bleibt die Nacht [planned] über einen Zonenwechsel ([keptBackup]), gilt sie bis zum Klingeln bzw. Aussetzen
+     * allein (neben einem Probewecker oder Powernap): Ein anderer Wecker, dessen neue Ortszeit in ihr Fenster fällt,
+     * verdrängt sie nicht, er folgt danach.
      */
     fun backupPlan(
         backups: List<AlarmSpec>,
@@ -192,7 +197,8 @@ internal object RingRules {
 
     /**
      * Wie lange nach Ablauf der Nachfrist ein verdrängter Zweitwecker noch nachgeholt wird ([catchUp]): Es gibt nur
-     * einen geplanten Zweitwecker; klingelt ein Wecker in der Nachfrist eines anderen, ist dessen Zeit danach schon vorbei.
+     * einen geplanten Zweitwecker; klingelt ein Wecker in der Nachfrist eines anderen, ist dessen Zeit danach schon
+     * vorbei.
      */
     val CATCH_UP: Duration = Duration.ofMinutes(2)
 
@@ -230,15 +236,15 @@ internal object RingRules {
     }
 
     /**
-     * Wann der Zweitwecker [plan] auslöst: Zielzeit + [grace], ist das schon vorbei (nachgeholt, [catchUp]), gleich nach
-     * [now].
+     * Wann der Zweitwecker [plan] auslöst: Zielzeit + [grace], ist das schon vorbei (nachgeholt, [catchUp]), gleich
+     * nach [now].
      */
     fun backupAt(plan: WakePlan, grace: Duration, now: Instant): Instant = maxOf(plan.target.plus(grace), now.plus(CATCH_UP_DELAY))
 
     /**
      * Geplanter Zweitwecker für [keptBackup]: Wecker [alarmId], eingestellte Zielzeit [target] dieser Nacht (ohne
-     * Einschlaf-Modus), Zone der Planung [zone] (`null` bei älteren Daten) und, wenn die Uhr die Zielzeit vorverlegt hat,
-     * die frühere Zielzeit [earlierTarget] (`OnsetShift`).
+     * Einschlaf-Modus), Zone der Planung [zone] (`null` bei älteren Daten) und, wenn die Uhr die Zielzeit vorverlegt
+     * hat, die frühere Zielzeit [earlierTarget] (`OnsetShift`).
      */
     data class PlannedBackup(val alarmId: String, val target: Instant, val zone: ZoneId?, val earlierTarget: Instant? = null)
 
@@ -271,13 +277,14 @@ internal object RingRules {
     }
 
     /**
-     * Zweitwecker ab [first] für die Zeit vor dem ersten Entsperren (nur dann ist allein der geräteverschlüsselte Speicher
-     * lesbar): [first] und danach pro Wecker seine folgenden Termine, zusammengeführt nach Zielzeit (bei Gleichstand die
-     * kleinere Kennung, wie `BackupPlan.nights` auf dem iPhone). Andere Wecker ab der Zielzeit von [first] (auch auf
-     * derselben Minute), nicht ausgesetzte ([suppressed]); jede Nacht gilt als geklungen – bis Zielzeit + [pause]
-     * ausgesetzt (wie `BackupAlarm.backupRang`), ein Einmal-Wecker danach aus. Dazu der Probewecker oder Powernap
-     * [transient], solange seine Nachfrist [grace] nach [first] läuft. Höchstens [count] Einträge; [first] ist immer
-     * dabei, und die ganze Liste ist nach Zielzeit geordnet (ein Powernap mit Zielzeit vor [first] steht vorne).
+     * Zweitwecker ab [first] für die Zeit vor dem ersten Entsperren (nur dann ist allein der geräteverschlüsselte
+     * Speicher lesbar): [first] und danach pro Wecker seine folgenden Termine, zusammengeführt nach Zielzeit (bei
+     * Gleichstand die kleinere Kennung, wie `BackupPlan.nights` auf dem iPhone). Andere Wecker ab der Zielzeit von
+     * [first] (auch auf derselben Minute), nicht ausgesetzte ([suppressed]); jede Nacht gilt als geklungen – bis
+     * Zielzeit + [pause] ausgesetzt (wie `BackupAlarm.backupRang`), ein Einmal-Wecker danach aus. Dazu der Probewecker
+     * oder Powernap [transient], solange seine Nachfrist [grace] nach [first] läuft. Höchstens [count] Einträge;
+     * [first] ist immer dabei, und die ganze Liste ist nach Zielzeit geordnet (ein Powernap mit Zielzeit vor [first]
+     * steht vorne).
      */
     fun directBootPlans(
         first: WakePlan,

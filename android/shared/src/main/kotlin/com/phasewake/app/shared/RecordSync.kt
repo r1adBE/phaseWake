@@ -20,8 +20,8 @@ class RecordSync(context: Context) {
     private val acked by lazy { AckedContent.forContext(app) }
 
     /**
-     * Uhr: Stand ans Handy; [since] = Beginn der laufenden Aufzeichnung, `null` = keine. [unlessAcked]: beim Prozessstart
-     * nur, wenn nicht schon bestätigt ([enqueueIfChanged]).
+     * Uhr: Stand ans Handy; [since] = Beginn der laufenden Aufzeichnung, `null` = keine. [unlessAcked]: beim
+     * Prozessstart nur, wenn nicht schon bestätigt ([enqueueIfChanged]).
      */
     suspend fun publishStatus(since: Instant?, unlessAcked: Boolean = false) = guarded("Aufzeichnungs-Stand senden") {
         val body = (since?.toEpochMilli() ?: 0L).toString()
@@ -46,8 +46,8 @@ class RecordSync(context: Context) {
     }
 
     /**
-     * Handy: Start ([start] `true`) oder Stopp an die erreichbaren Uhren. [continuous]: Diagnose am Handy freigeschaltet,
-     * der Start misst dann durchgehend statt in Stichproben (ältere Uhren lesen den Inhalt nicht).
+     * Handy: Start ([start] `true`) oder Stopp an die erreichbaren Uhren. [continuous]: Diagnose am Handy
+     * freigeschaltet, der Start misst dann durchgehend statt in Stichproben (ältere Uhren lesen den Inhalt nicht).
      * @return ob mindestens eine Uhr erreichbar war (sonst Hinweis am Handy).
      */
     suspend fun command(start: Boolean, continuous: Boolean = false): Boolean = try {
@@ -104,7 +104,10 @@ class RecordSync(context: Context) {
         fun decodeStatus(body: String): RecordStatus? =
             body.trim().toLongOrNull()?.let { ms -> RecordStatus(ms.takeIf { it > 0 }?.let(Instant::ofEpochMilli)) }
 
-        /** Liest ein früheres Aufzeichnungs-Paket (nur für die Umstellung); `null`, wenn unlesbar oder nicht abgeschlossen. */
+        /**
+         * Liest ein früheres Aufzeichnungs-Paket (nur für die Umstellung); `null`, wenn unlesbar oder nicht
+         * abgeschlossen.
+         */
         fun readRecording(map: DataMap): NightRecording? =
             map.getString(DataLayer.KEY_TEXT)?.let(NightRecording::decode)?.takeIf { it.finished }
     }

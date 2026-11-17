@@ -12,9 +12,9 @@ import kotlinx.coroutines.launch
 // Akku je Nacht auf der Galaxy Watch: Messbeginn, Ende und Verwerfen; Rechnung in BatteryTrack.
 
 /**
- * Die Uhr beginnt zu messen (Einschlaf-Messung, Aufzeichnung oder Weckfenster): Akkustand festhalten. Beginnt damit eine
- * neue Nacht, erfährt es das Handy ([DataLayer.PATH_NIGHT_BEGIN]) und misst ab dann seinen eigenen Akku. Probewecker und
- * Powernap zählen nicht. [alarmId] und [target] fehlen bei einer Aufzeichnung ohne bekannten Wecker.
+ * Die Uhr beginnt zu messen (Einschlaf-Messung, Aufzeichnung oder Weckfenster): Akkustand festhalten. Beginnt damit
+ * eine neue Nacht, erfährt es das Handy ([DataLayer.PATH_NIGHT_BEGIN]) und misst ab dann seinen eigenen Akku.
+ * Probewecker und Powernap zählen nicht. [alarmId] und [target] fehlen bei einer Aufzeichnung ohne bekannten Wecker.
  */
 internal fun nightBatteryBegin(context: Context, alarmId: String?, target: Instant?) {
     if (alarmId != null && Transient.kindOf(alarmId) != null) return

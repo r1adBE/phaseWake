@@ -21,10 +21,11 @@ public struct WakePlan: Equatable, Sendable {
     }
 }
 
-/// Zeitraum der zuletzt beendeten Nacht(en) auf der Uhr, für das Nachholen (``AlarmSchedule/missedPlan(_:catchUp:now:doneUntil:calendar:holidays:)``):
-/// von `from` (Fensterbeginn) bis `until` (Ende). `alarmIds`: die eingeschalteten Wecker, deren Zielzeit in diesen
-/// Zeitraum fiel – nur diese werden nachgeholt; ein danach neu angelegter oder eingeschalteter klingelt nicht
-/// nachträglich. Identisch zu `CatchUpWindow` (Kotlin).
+/// Zeitraum der zuletzt beendeten Nacht(en) auf der Uhr, für das Nachholen
+/// (``AlarmSchedule/missedPlan(_:catchUp:now:doneUntil:calendar:holidays:)``): von `from` (Fensterbeginn) bis `until`
+/// (Ende). `alarmIds`: die eingeschalteten Wecker, deren Zielzeit in diesen Zeitraum fiel – nur diese werden
+/// nachgeholt; ein danach neu angelegter oder eingeschalteter klingelt nicht nachträglich. Identisch zu `CatchUpWindow`
+/// (Kotlin).
 public struct CatchUpWindow: Equatable, Sendable, Codable {
     /// So lange nach dem Ende der Nacht wird noch nachgeholt (10 Minuten). Danach nicht mehr: Sonst klänge ein Wecker,
     /// der Stunden später wieder eingeschaltet wird, sofort für einen längst vergangenen Morgen.
@@ -86,13 +87,15 @@ public enum AlarmSchedule {
         return plan(spec, target: target)
     }
 
-    /// Plan des Weckers `spec` für die Zielzeit `target`: Messbeginn `measureWindowMinutes` davor; bei «Genau» mit `exact`.
+    /// Plan des Weckers `spec` für die Zielzeit `target`: Messbeginn `measureWindowMinutes` davor; bei «Genau» mit
+    /// `exact`.
     public static func plan(_ spec: AlarmSpec, target: Date) -> WakePlan {
         WakePlan(alarmId: spec.id, windowStart: windowStart(target, windowMinutes: spec.measureWindowMinutes), target: target,
                  exact: spec.isExact)
     }
 
-    /// Der früheste Plan über alle Wecker, oder `nil`, wenn keiner aktiv ist. Bei gleicher Zielzeit gewinnt die kleinere Kennung, damit beide Plattformen denselben Wecker wählen.
+    /// Der früheste Plan über alle Wecker, oder `nil`, wenn keiner aktiv ist. Bei gleicher Zielzeit gewinnt die
+    /// kleinere Kennung, damit beide Plattformen denselben Wecker wählen.
     public static func earliestPlan(_ specs: [AlarmSpec], now: Date, calendar: Calendar, holidays: Set<String> = []) -> WakePlan? {
         earliestPlan(specs, now: now, doneUntil: [:], calendar: calendar, holidays: holidays)
     }
@@ -105,11 +108,12 @@ public enum AlarmSchedule {
             .min { ($0.target, $0.alarmId) < ($1.target, $1.alarmId) }
     }
 
-    /// Nachfrist eines schon geplanten Zweitweckers: Liegt `now` in [`plannedTarget`, `plannedTarget` + `grace`) und ist
-    /// `plannedTarget` noch ein gültiger Termin von `spec` (eingeschaltet, Zeit unverändert, nicht übersprungen, kein
-    /// Feiertag: `nextTarget(spec, plannedTarget − 1 ms) == plannedTarget`) und nicht ausgesetzt (`suppressedUntil` vor
-    /// der Zielzeit), bleibt dieser Plan. Sonst `nil`. `nextTarget` sucht nur nach `now`; ohne diese Prüfung fiele die
-    /// Sicherung weg, wenn in der Nachfrist neu geplant wird (Kaltstart der App). Mit `grace` 0 nie. Wie Kotlin.
+    /// Nachfrist eines schon geplanten Zweitweckers: Liegt `now` in [`plannedTarget`, `plannedTarget` + `grace`) und
+    /// ist `plannedTarget` noch ein gültiger Termin von `spec` (eingeschaltet, Zeit unverändert, nicht übersprungen,
+    /// kein Feiertag: `nextTarget(spec, plannedTarget − 1 ms) == plannedTarget`) und nicht ausgesetzt
+    /// (`suppressedUntil` vor der Zielzeit), bleibt dieser Plan. Sonst `nil`. `nextTarget` sucht nur nach `now`; ohne
+    /// diese Prüfung fiele die Sicherung weg, wenn in der Nachfrist neu geplant wird (Kaltstart der App). Mit `grace` 0
+    /// nie. Wie Kotlin.
     public static func inGrace(_ spec: AlarmSpec, plannedTarget: Date?, now: Date, grace: TimeInterval, calendar: Calendar,
                                holidays: Set<String> = [], suppressedUntil: Date? = nil) -> WakePlan? {
         guard let target = plannedTarget, target <= now, target.addingTimeInterval(grace) > now else { return nil }
@@ -271,7 +275,8 @@ public enum AlarmSchedule {
         !spec.isOneShot && (spec.skipUntil > 0 || (spec.skipHolidays && !holidays.isEmpty))
     }
 
-    /// Ob der Termin mit Wandzeit `wall` (`wallMillis`) am Datum `date` («yyyy-MM-dd») ausfällt: übersprungen oder Feiertag.
+    /// Ob der Termin mit Wandzeit `wall` (`wallMillis`) am Datum `date` («yyyy-MM-dd») ausfällt: übersprungen oder
+    /// Feiertag.
     private static func dropped(_ spec: AlarmSpec, wall: Int64, date: String, holidays: Set<String>) -> Bool {
         guard !spec.isOneShot else { return false }
         if wall <= spec.skipUntil { return true }

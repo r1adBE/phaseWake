@@ -184,7 +184,8 @@ internal fun DaysSection(state: EditorState) {
         // Sieben Tage in einer Zeile, Wochenbeginn nach Sprache und Region (z. B. Sonntag in den USA).
         val locale = LocalConfiguration.current.locales[0]
         val firstDay = WeekFields.of(locale).firstDayOfWeek
-        // Ohne Abstand zwischen den Feldern: Die Lücke zwischen den Kreisen liegt im Feld ([DAY_GAP]) und ist antippbar.
+        // Ohne Abstand zwischen den Feldern: Die Lücke zwischen den Kreisen liegt im Feld ([DAY_GAP]) und ist
+        // antippbar.
         Row(modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
             (0L until 7L).map { firstDay.plus(it) }.forEach { day ->
                 DayToggle(
@@ -204,7 +205,9 @@ internal fun DaysSection(state: EditorState) {
     }
 }
 
-/** «An Feiertagen nicht wecken» (unter «Mehr»); nur für wiederholte Wecker, ein Einmal-Wecker klingelt an seinem Tag. */
+/**
+ * «An Feiertagen nicht wecken» (unter «Mehr»); nur für wiederholte Wecker, ein Einmal-Wecker klingelt an seinem Tag.
+ */
 @Composable
 internal fun HolidaySection(state: EditorState) {
     Section {
@@ -247,7 +250,10 @@ internal fun AlertSection(state: EditorState) {
     }
 }
 
-/** «Zum Beenden» (unter «Mehr»): Halten oder Weckaufgabe; nur mit Handy-Wecker (gelöst wird am Handy, ohne ihn gilt Halten). */
+/**
+ * «Zum Beenden» (unter «Mehr»): Halten oder Weckaufgabe; nur mit Handy-Wecker (gelöst wird am Handy, ohne ihn gilt
+ * Halten).
+ */
 @Composable
 internal fun WakeTaskSection(state: EditorState) {
     Section {

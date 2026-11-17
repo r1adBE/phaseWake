@@ -3,9 +3,9 @@ import Observation
 import PhaseWakeCore
 
 /// Lern-Übersicht am iPhone (wie `LearnLogStore` auf Android): die Meldungen der Apple Watch,
-/// warum die Lernphase eine Nacht nicht aufzeichnet (``LearnSkip``, Benutzerdaten), und die Nächte mit Wecker (bei jedem
-/// Neuplanen der Sicherung gemerkt, ``LearnLog/mergeAlarmNights(_:planned:now:calendar:)``). Höchstens 14 Nächte je
-/// Art; privat im von der Sicherung ausgenommenen Ordner (`PrivateFiles`), weder in der iCloud-Sicherung noch in
+/// warum die Lernphase eine Nacht nicht aufzeichnet (``LearnSkip``, Benutzerdaten), und die Nächte mit Wecker (bei
+/// jedem Neuplanen der Sicherung gemerkt, ``LearnLog/mergeAlarmNights(_:planned:now:calendar:)``). Höchstens 14 Nächte
+/// je Art; privat im von der Sicherung ausgenommenen Ordner (`PrivateFiles`), weder in der iCloud-Sicherung noch in
 /// `.pwbak`. «Verlauf löschen» leert beides. Keine neuen Rechte.
 @MainActor
 @Observable
@@ -61,7 +61,8 @@ final class LearnLogStore {
         return true
     }
 
-    /// Ab diesem Nachtdatum gilt ein fehlender Wecker als «kein Wecker» (die Nacht nach dem ersten Merken); sonst `nil`.
+    /// Ab diesem Nachtdatum gilt ein fehlender Wecker als «kein Wecker» (die Nacht nach dem ersten Merken); sonst
+    /// `nil`.
     var alarmsKnownFrom: String? {
         alarmsSince.map { NightDate.adding(1, to: SleepNotes.nightDate($0, calendar: .gregorianLocal)) }
     }

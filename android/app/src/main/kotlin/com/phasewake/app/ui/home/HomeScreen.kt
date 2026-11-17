@@ -77,7 +77,9 @@ fun HomeScreen(
     onToggle: (AlarmSpec, Boolean) -> Unit,
     onFeeling: (NightRecord, Int) -> Unit = { _, _ -> },
     missHint: MissHint? = null,
-    /** Die wichtigste Auffälligkeit der letzten 7 Nächte ([com.phasewake.app.core.Findings.home]); `null`: keine Karte. */
+    /**
+     * Die wichtigste Auffälligkeit der letzten 7 Nächte ([com.phasewake.app.core.Findings.home]); `null`: keine Karte.
+     */
     finding: Finding? = null,
     /** Auffälligkeit, solange die Bettzeit-Karte steht: ohne Bettzeit-Tipp (Findings.home mit `bedtimeAdvice`). */
     bedtimeFinding: Finding? = finding,
@@ -125,7 +127,8 @@ fun HomeScreen(
         AlarmSchedule.holidayNote(alarms, now, zone, extras.holidays, done)?.let { Format.shortDay(it, locale) }
     }
 
-    // Automatische Einschlaf-Messung der Uhr (nur Galaxy Watch), solange das Fenster noch nicht begonnen hat und die Uhr bereit ist.
+    // Automatische Einschlaf-Messung der Uhr (nur Galaxy Watch), solange das Fenster noch nicht begonnen hat und die
+    // Uhr bereit ist.
     val watchOk = check != null && check.watchChecked && check.failed.none { it in WATCH_PROBLEMS }
     // Akku der Uhr zu schwach: Sie misst das Einschlafen nicht, also keine Zeile dazu (der Check sagt es).
     val autoOnset = plan?.takeIf { extras.autoOnset && watchOk && !NightCheckState.onsetSkipped(check) && now.isBefore(it.windowStart) }?.let { p ->
@@ -212,7 +215,8 @@ fun HomeScreen(
                 }
             }
         }
-        // Geräusche aufnehmen: am Abend, und solange die Aufnahme läuft auch danach (Stoppen, Restzeit), wie auf dem iPhone.
+        // Geräusche aufnehmen: am Abend, und solange die Aufnahme läuft auch danach (Stoppen, Restzeit), wie auf dem
+        // iPhone.
         soundRec?.takeIf { evening || it.recording }?.let { rec ->
             item(key = "soundRec") { SoundRecordingCard(rec.enabled, rec.recording, rec.permissionDenied, cardColor(), onSoundRec) }
         }
@@ -221,7 +225,8 @@ fun HomeScreen(
         }
         extras.learning?.let { learning -> item(key = "learning") { LearningCard(learning, extras.record, extras.onRecord) } }
         // Während der Lernphase steckt «Nacht aufzeichnen» in ihrer Karte, sonst eine eigene Karte. Solange
-        // die Frage «Lernphase starten / Später» offen ist, auch keine – ausser es läuft schon eine Aufzeichnung (Stopp).
+        // die Frage «Lernphase starten / Später» offen ist, auch keine – ausser es läuft schon eine Aufzeichnung
+        // (Stopp).
         extras.record?.takeIf { record ->
             val learning = extras.learning
             learning?.inProgress != true && (learning?.onConsent == null || record.since != null)
@@ -312,8 +317,8 @@ internal val FAB_CLEARANCE: Dp = 88.dp
 internal fun cardColor(): Color = PhaseWakeTheme.brand.card
 
 /**
- * Rand der Karten: auf dem Nachthimmel eine Glaskante (oben hell mit Lavendel-Schimmer, nach unten auslaufend) für Tiefe;
- * hell ein Hauch Lavendel als Kante. Reine Zierde, kein Bedienrand (die Fläche selbst trägt keine Information).
+ * Rand der Karten: auf dem Nachthimmel eine Glaskante (oben hell mit Lavendel-Schimmer, nach unten auslaufend) für
+ * Tiefe; hell ein Hauch Lavendel als Kante. Reine Zierde, kein Bedienrand (die Fläche selbst trägt keine Information).
  */
 @Composable
 internal fun cardEdge(): BorderStroke? = if (PhaseWakeTheme.isDark) {

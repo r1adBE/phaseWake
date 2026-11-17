@@ -113,7 +113,9 @@ internal fun WakeService.watchSound(n: Night) = n.spec?.watchSound ?: n.lockedSo
 
 internal fun WakeService.label(n: Night) = n.spec?.label ?: n.lockedLabel
 
-/** Hält den Stand der Nacht fest, damit ein Neustart des Dienstes ihn nicht verliert (vor dem Entsperren nicht möglich). */
+/**
+ * Hält den Stand der Nacht fest, damit ein Neustart des Dienstes ihn nicht verliert (vor dem Entsperren nicht möglich).
+ */
 private fun WakeService.saveProgress(n: Night) {
     if (!DirectBoot.isUnlocked(this)) return
     val firstRing = n.firstRing

@@ -12,8 +12,9 @@ import org.robolectric.shadows.ShadowDialog
 import kotlin.test.fail
 
 /**
- * Rückfrage (Compose-`AlertDialog`) unter Robolectric: Sie liegt in einem eigenen Fenster, das [com.phasewake.app.ring.ComposeTree]
- * (nur die Activity) nicht sieht. Liest den Semantik-Baum des zuletzt gezeigten Dialogs.
+ * Rückfrage (Compose-`AlertDialog`) unter Robolectric: Sie liegt in einem eigenen Fenster, das
+ * [com.phasewake.app.ring.ComposeTree] (nur die Activity) nicht sieht. Liest den Semantik-Baum des zuletzt gezeigten
+ * Dialogs.
  */
 internal object DialogNodes {
     private fun root(): ViewRootForTest? {

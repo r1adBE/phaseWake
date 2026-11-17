@@ -115,7 +115,9 @@ internal class CompanionSession(private val context: Context, private val onFini
 
     private fun log(text: String) = context.phoneApp.diag.log(DiagKind.RING_SCREEN, "companion $text")
 
-    /** Rückmeldungen des Systems zu Anfrage [request]; bis Android 12L über einen Handler, ab 13 über einen Executor. */
+    /**
+     * Rückmeldungen des Systems zu Anfrage [request]; bis Android 12L über einen Handler, ab 13 über einen Executor.
+     */
     private inner class Callback(private val request: Int) : CompanionDeviceManager.Callback() {
         // Bis Android 12L der einzige Weg; ab 13 ruft das System onAssociationPending.
         @Suppress("OVERRIDE_DEPRECATION")
@@ -138,7 +140,9 @@ internal class CompanionSession(private val context: Context, private val onFini
     private companion object {
         const val TAG = "CompanionSession"
 
-        /** Text des Systems bei abgelaufener Suche (AOSP `CompanionDeviceManager.REASON_DISCOVERY_TIMEOUT`, verborgen). */
+        /**
+         * Text des Systems bei abgelaufener Suche (AOSP `CompanionDeviceManager.REASON_DISCOVERY_TIMEOUT`, verborgen).
+         */
         const val REASON_DISCOVERY_TIMEOUT = "discovery_timeout"
 
         /** Höchstlänge des Fehlertexts im Protokoll. */

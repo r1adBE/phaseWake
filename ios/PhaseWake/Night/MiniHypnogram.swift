@@ -3,8 +3,9 @@ import SwiftUI
 
 /// Kompaktes Schlafprofil für die Nachtkarte im Verlauf: vier Stufen (Wach oben, Tief unten) mit abgerundeten
 /// Blöcken in den Phasenfarben und dünnen Verbindungen – scharf ohne Schein und Verlauf, Kanten auf ganzen Pixeln,
-/// kurze Blöcke mindestens 1 Pixel breit und nie aufgeblasen, Ecken nur ab `roundMin` gerundet. Nur Bild: Die Summenzeile darunter trägt die Information
-/// für Bildschirmleser und ohne Farbe (Stufenhöhe und Text). Wie `MiniHypnogram` (Android).
+/// kurze Blöcke mindestens 1 Pixel breit und nie aufgeblasen, Ecken nur ab `roundMin` gerundet. Nur Bild: Die
+/// Summenzeile darunter trägt die Information für Bildschirmleser und ohne Farbe (Stufenhöhe und Text). Wie
+/// `MiniHypnogram` (Android).
 struct MiniHypnogram: View {
     /// Bekannte Phasen in Minuten ab Beginn.
     let steps: [HypnoStep]

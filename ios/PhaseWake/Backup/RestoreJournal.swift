@@ -33,8 +33,8 @@ enum RestoreJournal {
     private static var swappingFile: URL { work.appendingPathComponent("swapping.json") }
     /// Merker «Tausch gescheitert»: beim nächsten Start den alten Stand zurückholen.
     private static var rollingBackFile: URL { work.appendingPathComponent("rolling-back.json") }
-    /// Wecker und Einstellungen aus der Sicherung (für ``BackupIO/applySettings(_:to:)`` nach dem Tausch), ohne Nächte und
-    /// Notizen (``settingsOnly(_:)``): Die liegen schon in `staging`.
+    /// Wecker und Einstellungen aus der Sicherung (für ``BackupIO/applySettings(_:to:)`` nach dem Tausch), ohne Nächte
+    /// und Notizen (``settingsOnly(_:)``): Die liegen schon in `staging`.
     private static var payloadFile: URL { work.appendingPathComponent("payload.json") }
 
     /// Legt den Arbeitsordner frisch an; Reste eines Abbruchs vor dem Merker (bisheriger Stand unberührt) gehen weg.
@@ -133,7 +133,8 @@ enum RestoreJournal {
         let manager = FileManager.default
         try? manager.removeItem(at: swappingFile)
         try? manager.removeItem(at: rollingBackFile)
-        // Erst nach den Merkern: Mit Merker, aber ohne Inhalt holte der nächste Start eine gelungene Wiederherstellung zurück.
+        // Erst nach den Merkern: Mit Merker, aber ohne Inhalt holte der nächste Start eine gelungene Wiederherstellung
+        // zurück.
         try? manager.removeItem(at: payloadFile)
         try? manager.removeItem(at: work)
     }

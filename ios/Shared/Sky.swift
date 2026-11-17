@@ -159,7 +159,8 @@ struct DaySky: View {
 
 /// Nachthimmel: Verlauf von Mitternachts-Indigo nach Fast-Schwarz, Lavendel-Schein oben rechts, unten der Horizont
 /// nach `mood`, in tiefer Nacht ruhende Sterne. Auf dem iPhone wandert der Schein langsam (nicht mit «Bewegung
-/// reduzieren»); auf der Apple Watch ruht er (Akku), und im Always-On (gedimmt) bleibt nur ein dunkler Grund ohne Schein.
+/// reduzieren»); auf der Apple Watch ruht er (Akku), und im Always-On (gedimmt) bleibt nur ein dunkler Grund ohne
+/// Schein.
 struct NightSky: View {
     var strength: Double = 1
     var mood: SkyMood = .plain
@@ -243,9 +244,9 @@ struct Stars: View {
     }
 }
 
-/// Himmel des Weckbildschirms, wie `WakeSky` auf Android und Wear OS: ein kräftiger Sonnenaufgang von Indigo über Violett
-/// und Magenta-Rosé bis zur Glut unten, warmer Schein am unteren Rand, Lavendel-Schein oben rechts. Ruhend; helle Schrift
-/// bleibt überall ≥ 4.5:1 (auf Android geprüft, gleiche Werte). Im Always-On nur ein dunkler Grund.
+/// Himmel des Weckbildschirms, wie `WakeSky` auf Android und Wear OS: ein kräftiger Sonnenaufgang von Indigo über
+/// Violett und Magenta-Rosé bis zur Glut unten, warmer Schein am unteren Rand, Lavendel-Schein oben rechts. Ruhend;
+/// helle Schrift bleibt überall ≥ 4.5:1 (auf Android geprüft, gleiche Werte). Im Always-On nur ein dunkler Grund.
 struct WakeSky: View {
     #if os(watchOS)
     @Environment(\.isLuminanceReduced) private var dimmed

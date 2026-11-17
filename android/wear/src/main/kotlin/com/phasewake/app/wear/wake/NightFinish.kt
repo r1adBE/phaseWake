@@ -59,7 +59,8 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true, done: Boolean 
             asleepAt = n.asleepAt,
         )
     }
-    // Ohne Nacht im Verlauf (nicht geweckt, Probewecker, Powernap) gehört der Akku zu nichts; ein Probewecker hat keinen begonnen.
+    // Ohne Nacht im Verlauf (nicht geweckt, Probewecker, Powernap) gehört der Akku zu nichts; ein Probewecker hat
+    // keinen begonnen.
     if (record == null && !transient) BatteryNight.drop(this, "night ended without ring")
     val endedAt = Instant.now()
     // Vor dem ersten Entsperren nichts speichern (nicht lesbar). Nach dem Entsperren holt

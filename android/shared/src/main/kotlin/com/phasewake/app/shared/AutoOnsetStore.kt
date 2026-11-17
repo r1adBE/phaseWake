@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 
 /**
- * Schalter «Einschlafen automatisch erkennen» auf der Uhr, vom Handy ([DataLayer.PATH_MSG_AUTO_ONSET]); die Uhr übernimmt
- * nur einen neueren Stand (wie [SleepGoalStore]). Ohne Stand vom Handy gilt «an».
+ * Schalter «Einschlafen automatisch erkennen» auf der Uhr, vom Handy ([DataLayer.PATH_MSG_AUTO_ONSET]); die Uhr
+ * übernimmt nur einen neueren Stand (wie [SleepGoalStore]). Ohne Stand vom Handy gilt «an».
  */
 class AutoOnsetStore(private val store: DataStore<Preferences>) {
 

@@ -17,7 +17,9 @@ enum class RingRoute {
     /** Display aus oder gesperrt, Vollbild erlaubt: Das System öffnet den Weckbildschirm über die Weck-Mitteilung. */
     FULL_SCREEN,
 
-    /** Gerät in Gebrauch (Display an, entsperrt) oder Vollbild nicht erlaubt: Das System zeigt nur eine Mitteilung oben. */
+    /**
+     * Gerät in Gebrauch (Display an, entsperrt) oder Vollbild nicht erlaubt: Das System zeigt nur eine Mitteilung oben.
+     */
     HEADS_UP,
 }
 

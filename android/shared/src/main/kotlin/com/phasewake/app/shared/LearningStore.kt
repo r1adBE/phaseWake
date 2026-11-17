@@ -19,8 +19,9 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 /**
- * Stand der Lernphase vom Handy für die Uhr ([DataLayer.PATH_MSG_LEARNING]): läuft sie ([active]: die Uhr zeichnet nachts
- * automatisch auf) und die gelernten Werte für den Detektor, je `null` ohne Wert. [updatedAt]: Zeitpunkt am Handy (ms).
+ * Stand der Lernphase vom Handy für die Uhr ([DataLayer.PATH_MSG_LEARNING]): läuft sie ([active]: die Uhr zeichnet
+ * nachts automatisch auf) und die gelernten Werte für den Detektor, je `null` ohne Wert. [updatedAt]: Zeitpunkt am
+ * Handy (ms).
  */
 data class LearningSnapshot(
     val active: Boolean,
@@ -34,8 +35,9 @@ data class LearningSnapshot(
     val latencyMinutes: Int? = null,
 ) {
     /**
-     * [config] mit den gelernten Werten (ohne Werte unverändert). Ungültige Werte (NaN, negativ, absurd; z. B. aus einem
-     * älteren gespeicherten Stand) gelten als keine ([DetectorConfig.withLearned]), statt den Start des Fensters abzubrechen.
+     * [config] mit den gelernten Werten (ohne Werte unverändert). Ungültige Werte (NaN, negativ, absurd; z. B. aus
+     * einem älteren gespeicherten Stand) gelten als keine ([DetectorConfig.withLearned]), statt den Start des Fensters
+     * abzubrechen.
      */
     fun applyTo(config: DetectorConfig): DetectorConfig = config.withLearned(floor, restingHeartRate)
 
@@ -49,20 +51,23 @@ data class LearningSnapshot(
             LearningSnapshot(active, values?.floor, values?.restingHeartRate, updatedAt, values?.latencyMinutes)
 
         /**
-         * Inhalt der Nachricht [DataLayer.PATH_MSG_LEARNING]: «aktiv|grundrauschen|ruhepuls|updatedAt» (leer = kein Wert),
-         * immer genau 4 Felder: Uhren früherer Versionen lesen nur so viele und verwürfen sonst den ganzen Stand.
-         * Die Einschlafdauer geht getrennt ([encodeLatency], [DataLayer.PATH_MSG_LEARN_LATENCY]).
+         * Inhalt der Nachricht [DataLayer.PATH_MSG_LEARNING]: «aktiv|grundrauschen|ruhepuls|updatedAt» (leer = kein
+         * Wert), immer genau 4 Felder: Uhren früherer Versionen lesen nur so viele und verwürfen sonst den ganzen
+         * Stand. Die Einschlafdauer geht getrennt ([encodeLatency], [DataLayer.PATH_MSG_LEARN_LATENCY]).
          */
         fun encode(snapshot: LearningSnapshot): String =
             listOf(if (snapshot.active) "1" else "0", snapshot.floor?.toString().orEmpty(), snapshot.restingHeartRate?.toString().orEmpty(), snapshot.updatedAt.toString())
                 .joinToString("|")
 
-        /** Inhalt der Nachricht [DataLayer.PATH_MSG_LEARN_LATENCY]: «einschlafdauer|updatedAt», ohne Dauer «-1|updatedAt». */
+        /**
+         * Inhalt der Nachricht [DataLayer.PATH_MSG_LEARN_LATENCY]: «einschlafdauer|updatedAt», ohne Dauer
+         * «-1|updatedAt».
+         */
         fun encodeLatency(snapshot: LearningSnapshot): String = "${snapshot.latencyMinutes ?: NO_LATENCY}|${snapshot.updatedAt}"
 
         /**
-         * Liest [encodeLatency]: (Einschlafdauer oder `null` = keine bzw. unplausibel, Zeitpunkt); `null`, wenn unlesbar
-         * (auch ein unplausibler Zeitpunkt, [QueueMessages.decodeStamped]).
+         * Liest [encodeLatency]: (Einschlafdauer oder `null` = keine bzw. unplausibel, Zeitpunkt); `null`, wenn
+         * unlesbar (auch ein unplausibler Zeitpunkt, [QueueMessages.decodeStamped]).
          */
         fun decodeLatency(body: String): Pair<Int?, Long>? =
             QueueMessages.decodeStamped(body)?.let { (minutes, at) -> validLatency(minutes) to at }
@@ -74,8 +79,8 @@ data class LearningSnapshot(
         fun validLatency(value: Int?): Int? = value?.takeIf { it in 0..Learning.MAX_LATENCY_MINUTES }
 
         /**
-         * Liest [encode]; `null`, wenn unlesbar. Ungültige Werte ([Learning.validFloor], [Learning.validRestingHeartRate])
-         * gelten als keine, wie `LearningSnapshot(context:)` (Swift).
+         * Liest [encode]; `null`, wenn unlesbar. Ungültige Werte ([Learning.validFloor],
+         * [Learning.validRestingHeartRate]) gelten als keine, wie `LearningSnapshot(context:)` (Swift).
          */
         fun decode(body: String): LearningSnapshot? {
             // 4 Felder; 5 (mit Einschlafdauer) schickten nur frühere Zwischenstände – weiter lesbar, die Uhr nimmt die
@@ -127,8 +132,8 @@ class LearningSync(context: Context) {
 }
 
 /**
- * Lernphase auf der Uhr, vom Handy; übernimmt nur einen neueren Stand (wie [SleepGoalStore]). Privat im DataStore der Uhr,
- * den keine Sicherung erfasst. Ohne Stand vom Handy: keine Lernphase, keine gelernten Werte.
+ * Lernphase auf der Uhr, vom Handy; übernimmt nur einen neueren Stand (wie [SleepGoalStore]). Privat im DataStore der
+ * Uhr, den keine Sicherung erfasst. Ohne Stand vom Handy: keine Lernphase, keine gelernten Werte.
  */
 class LearningStore(private val store: DataStore<Preferences>) {
 
@@ -164,7 +169,8 @@ class LearningStore(private val store: DataStore<Preferences>) {
 
     /**
      * Speichert die Einschlafdauer [minutes] (`null` = keine) vom Handy ([DataLayer.PATH_MSG_LEARN_LATENCY]), nur wenn
-     * [updatedAt] neuer ist als der Zeitpunkt der gespeicherten Dauer (eigener Zeitpunkt, unabhängig vom übrigen Stand).
+     * [updatedAt] neuer ist als der Zeitpunkt der gespeicherten Dauer (eigener Zeitpunkt, unabhängig vom übrigen
+     * Stand).
      * @return ob gespeichert wurde und sich die Dauer dabei geändert hat.
      */
     suspend fun setLatencyIfNewer(minutes: Int?, updatedAt: Long): Boolean {

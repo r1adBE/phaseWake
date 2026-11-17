@@ -17,8 +17,8 @@ final class WatchNight {
     private(set) var recordSince: Date?
     /// Befehl an die Uhr gesendet, ihre Antwort steht aus (Knopf kurz gesperrt).
     private(set) var recordPending = false
-    /// Die Uhr hat auf den letzten Befehl nicht geantwortet (App auf der Uhr wohl zu): Hinweis «Öffne Phase Wake auf der
-    /// Uhr …» statt den Knopf still wieder freizugeben. Weg mit der nächsten Antwort oder dem nächsten Tipp.
+    /// Die Uhr hat auf den letzten Befehl nicht geantwortet (App auf der Uhr wohl zu): Hinweis «Öffne Phase Wake auf
+    /// der Uhr …» statt den Knopf still wieder freizugeben. Weg mit der nächsten Antwort oder dem nächsten Tipp.
     private(set) var recordUnanswered = false
     /// Zählt die Befehle; die Wartezeit eines überholten gilt nicht.
     private var recordRequest = 0
@@ -47,15 +47,16 @@ final class WatchNight {
         recordPending = false
     }
 
-    /// Knopf auf der Startseite: Start bzw. Stopp an die Uhr (sofort oder nachgereicht; ein Start gilt dort nur frisch).
-    /// Ohne Antwort innerhalb von `pendingLimit` wird der Knopf wieder frei, mit dem Hinweis, die App auf der Uhr zu öffnen.
+    /// Knopf auf der Startseite: Start bzw. Stopp an die Uhr (sofort oder nachgereicht; ein Start gilt dort nur
+    /// frisch). Ohne Antwort innerhalb von `pendingLimit` wird der Knopf wieder frei, mit dem Hinweis, die App auf der
+    /// Uhr zu öffnen.
     func setRecording(_ on: Bool) {
         recordTapAt = on ? Date() : nil
         sendRecord(on, extra: [:])
     }
 
-    /// Uhr wieder erreichbar (`PhoneConnectivity`): Ist der Start unbeantwortet und höchstens ``RecordRetry/window`` alt,
-    /// geht er nochmals hin, mit der Zeit des Tippens.
+    /// Uhr wieder erreichbar (`PhoneConnectivity`): Ist der Start unbeantwortet und höchstens ``RecordRetry/window``
+    /// alt, geht er nochmals hin, mit der Zeit des Tippens.
     func retryRecordStart(now: Date = Date()) {
         guard recordSince == nil, let tapAt = recordTapAt,
               RecordRetry.resend(unanswered: recordUnanswered, tapAt: tapAt, now: now) else { return }
@@ -80,8 +81,8 @@ final class WatchNight {
         }
     }
 
-    /// Ob nach Ablauf der Wartezeit des Befehls `request` noch keine Antwort kam: Er wartet noch (`pending`) und ist der
-    /// neueste (`current`).
+    /// Ob nach Ablauf der Wartezeit des Befehls `request` noch keine Antwort kam: Er wartet noch (`pending`) und ist
+    /// der neueste (`current`).
     nonisolated static func unanswered(pending: Bool, request: Int, current: Int) -> Bool {
         pending && request == current
     }
@@ -115,7 +116,8 @@ final class WatchNight {
         return nil
     }
 
-    /// `plan` mit der früheren Zielzeit, falls «Gute Nacht» diese Nacht vorverlegt hat (``OnsetShift/applyTo(_:now:grace:)``).
+    /// `plan` mit der früheren Zielzeit, falls «Gute Nacht» diese Nacht vorverlegt hat
+    /// (``OnsetShift/applyTo(_:now:grace:)``).
     func apply(_ plan: WakePlan?, now: Date = Date()) -> WakePlan? {
         guard let plan, let shift = shift(now: now) else { return plan }
         return shift.applyTo(plan, now: now, grace: BackupAlarm.grace)

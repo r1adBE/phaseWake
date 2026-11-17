@@ -60,7 +60,9 @@ object SunriseLight {
         if (state.value == null) state.value = active
     }
 
-    /** Beendet das Licht (ausgeschaltet oder vom Weckbildschirm übernommen und beendet); ein laufendes ins Protokoll. */
+    /**
+     * Beendet das Licht (ausgeschaltet oder vom Weckbildschirm übernommen und beendet); ein laufendes ins Protokoll.
+     */
     fun stop(context: Context) {
         if (state.value != null) context.phoneApp.diag.log(DiagKind.STOP, "phone sunrise end")
         state.value = null

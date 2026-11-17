@@ -12,9 +12,9 @@ import java.time.Instant
 
 /**
  * Vordergrund des [RecordService] als «health» (braucht Sensorrechte) mit der Mitteilung ab [since]. Verweigert: nur
- * kurz als «shortService» in den Vordergrund (kein eigenes Recht nötig), denn nach startForegroundService muss der Dienst
- * das tun; dann `false` und [RecordService.refusal] mit dem Grund – der Dienst misst nicht und beendet sich sofort
- * («systemExempted» nur noch beim Wecken).
+ * kurz als «shortService» in den Vordergrund (kein eigenes Recht nötig), denn nach startForegroundService muss der
+ * Dienst das tun; dann `false` und [RecordService.refusal] mit dem Grund – der Dienst misst nicht und beendet sich
+ * sofort («systemExempted» nur noch beim Wecken).
  */
 // Die Diensttypen (API 34) setzt ServiceCompat auf älteren Versionen nicht; das Einbetten ist unbedenklich.
 @android.annotation.SuppressLint("InlinedApi")
@@ -38,8 +38,8 @@ internal fun RecordService.goForeground(since: Instant): Boolean {
 
 /**
  * «health» bei einem weiteren Start-Befehl oder beim Messbeginn verweigert ([RecordService.refusal]): Die
- * Aufzeichnung endet sauber ([RecordEnd.SERVICE]), statt unter dem kurzen Rückfall weiterzulaufen; läuft der Start noch,
- * sobald er fertig ist.
+ * Aufzeichnung endet sauber ([RecordEnd.SERVICE]), statt unter dem kurzen Rückfall weiterzulaufen; läuft der Start
+ * noch, sobald er fertig ist.
  */
 internal fun RecordService.healthLost() {
     wearApp.diag.log(DiagKind.MEASURE_END, "record health refused: ${refusal.orEmpty()}")

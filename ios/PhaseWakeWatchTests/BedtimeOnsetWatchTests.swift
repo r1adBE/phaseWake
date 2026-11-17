@@ -18,7 +18,8 @@ final class BedtimeOnsetWatchTests: XCTestCase {
         let begin = ShortNight.autoOnsetStart(target: latest, sleepGoalMinutes: 450, sleepDurationMinutes: nil)
         let bedAt = RecorderOnset.bedAt(since: begin, automatic: true, latest: latest, sleepMinutes: 450)
         XCTAssertEqual(bedAt, begin.addingTimeInterval(60 * 60))
-        // Gestartet 4 Std. nach der Bettzeit, ruhig ab der ersten Epoche: Die Rechnung allein meldete «eingeschlafen» beim Start.
+        // Gestartet 4 Std. nach der Bettzeit, ruhig ab der ersten Epoche: Die Rechnung allein meldete «eingeschlafen»
+        // beim Start.
         let late = bedAt.addingTimeInterval(4 * 3600)
         let quiet: [Double?] = Array(repeating: 0.0005, count: 40)
         let found = RecorderOnset.find(motions: quiet, since: late, threshold: DetectorConfig.defaultLightThreshold, personalFloor: nil,

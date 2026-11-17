@@ -17,8 +17,9 @@ import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 
 /**
- * Aufgezeichnete Nächte ([NightRecording]) im privaten Verzeichnis [dir], eine Datei je Aufzeichnung («rec-<beginnMs>»),
- * von keiner Sicherung erfasst (Sicherungsregeln der Apps). Höchstens [NightRecording.MAX_KEPT] abgeschlossene bleiben.
+ * Aufgezeichnete Nächte ([NightRecording]) im privaten Verzeichnis [dir], eine Datei je Aufzeichnung
+ * («rec-<beginnMs>»), von keiner Sicherung erfasst (Sicherungsregeln der Apps). Höchstens [NightRecording.MAX_KEPT]
+ * abgeschlossene bleiben.
  *
  * Die Uhr schreibt fortlaufend: [begin] legt die Datei an, [append] hängt Epochen an (alle paar Minuten, mit `sync`),
  * [finish] die Schlusszeile. Ein Absturz verliert so höchstens die Epochen seit dem letzten Anhängen; eine halbe letzte
@@ -70,7 +71,10 @@ class RecordingRepository(
         }
     }
 
-    /** Schliesst die Aufzeichnung [start] mit [end] und [reason] ab und löscht die ältesten über [NightRecording.MAX_KEPT]. */
+    /**
+     * Schliesst die Aufzeichnung [start] mit [end] und [reason] ab und löscht die ältesten über
+     * [NightRecording.MAX_KEPT].
+     */
     suspend fun finish(start: Instant, end: Instant, reason: RecordEnd) = mutex.withLock {
         withContext(io) {
             val file = fileOf(start)
@@ -79,7 +83,9 @@ class RecordingRepository(
         trimLocked()
     }
 
-    /** Speichert eine ganze (abgeschlossene) Aufzeichnung, z. B. von der Uhr empfangen; gleicher Beginn wird ersetzt. */
+    /**
+     * Speichert eine ganze (abgeschlossene) Aufzeichnung, z. B. von der Uhr empfangen; gleicher Beginn wird ersetzt.
+     */
     suspend fun put(recording: NightRecording) = mutex.withLock {
         withContext(io) {
             dir.mkdirs()

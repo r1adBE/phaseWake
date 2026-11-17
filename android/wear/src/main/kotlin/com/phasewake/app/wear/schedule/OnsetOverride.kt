@@ -44,8 +44,8 @@ class OnsetOverride(private val store: DataStore<Preferences>) {
     }
 
     /**
-     * Ersetzt [plan], wenn die Ausnahme für denselben Wecker gilt, früher liegt und noch kommt. Liegt der Plan desselben
-     * Weckers inzwischen weiter weg als die längste Schlafdauer nach der Ausnahme («Nächstes Mal
+     * Ersetzt [plan], wenn die Ausnahme für denselben Wecker gilt, früher liegt und noch kommt. Liegt der Plan
+     * desselben Weckers inzwischen weiter weg als die längste Schlafdauer nach der Ausnahme («Nächstes Mal
      * überspringen», Wecker verschoben), gehört die Ausnahme zu einer Nacht, die nicht mehr kommt: verwerfen, sonst
      * weckte die Uhr in der übersprungenen Nacht.
      */

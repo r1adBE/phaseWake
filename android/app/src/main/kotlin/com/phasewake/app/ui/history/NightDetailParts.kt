@@ -48,7 +48,8 @@ import java.text.NumberFormat
 import java.time.Duration
 import java.time.ZoneId
 
-// Bausteine der Detailseite: Legende zum Hypnogramm, Phasen-Summen mit üblichem Bereich, Kennzahlen, Befinden und Notizen.
+// Bausteine der Detailseite: Legende zum Hypnogramm, Phasen-Summen mit üblichem Bereich, Kennzahlen, Befinden und
+// Notizen.
 
 /** Legende: Phasen mit ihrer Farbe, bei eigener Nacht Weckfenster (nicht bei «Genau»), Weckpunkt und Zielzeit. */
 @Composable
@@ -72,9 +73,9 @@ private fun typicalText(context: Context, total: StageTotal): String =
     else context.getString(R.string.stages_typical_range, total.range.low, total.range.high)
 
 /**
- * Phasen-Summen unter dem Hypnogramm (in derselben Karte, ein Titel): je Phase Name, Anteil am Schlaf, Dauer und Balken (wach nur Dauer) über einem hellen, gestrichelt umrandeten «üblichen
- * Bereich»; darunter die Legende und einmal Quelle samt «Keine medizinische Bewertung.». Bewusst ohne wertenden Satz
- * zur Nacht: Uhren schätzen Phasen nur ungefähr.
+ * Phasen-Summen unter dem Hypnogramm (in derselben Karte, ein Titel): je Phase Name, Anteil am Schlaf, Dauer und Balken
+ * (wach nur Dauer) über einem hellen, gestrichelt umrandeten «üblichen Bereich»; darunter die Legende und einmal Quelle
+ * samt «Keine medizinische Bewertung.». Bewusst ohne wertenden Satz zur Nacht: Uhren schätzen Phasen nur ungefähr.
  */
 @Composable
 internal fun StageTotals(stats: NightStages) {
@@ -94,7 +95,9 @@ internal fun StageTotals(stats: NightStages) {
     }
 }
 
-/** Heller, gestrichelt umrandeter Bereich («üblicher Bereich»); nicht nur Farbe: der Rand zeigt ihn auch ohne Farbsehen. */
+/**
+ * Heller, gestrichelt umrandeter Bereich («üblicher Bereich»); nicht nur Farbe: der Rand zeigt ihn auch ohne Farbsehen.
+ */
 private fun androidx.compose.ui.graphics.drawscope.DrawScope.typicalBand(color: Color, topLeft: Offset, area: Size) {
     val corner = CornerRadius(3.dp.toPx())
     drawRoundRect(color.copy(alpha = 0.18f), topLeft, area, corner)
@@ -108,8 +111,8 @@ private fun androidx.compose.ui.graphics.drawscope.DrawScope.typicalBand(color: 
 }
 
 /**
- * Eine Phase: Name mit Farbmarke, Anteil am Schlaf und Dauer, Balken mit üblichem Bereich, darunter der Bereich als Text.
- * Wach nur mit Dauer: kein Anteil am Schlaf, darum ohne Balken und Bereich.
+ * Eine Phase: Name mit Farbmarke, Anteil am Schlaf und Dauer, Balken mit üblichem Bereich, darunter der Bereich als
+ * Text. Wach nur mit Dauer: kein Anteil am Schlaf, darum ohne Balken und Bereich.
  */
 @Composable
 private fun StageTotalRow(total: StageTotal) {
@@ -155,8 +158,8 @@ private fun StageTotalRow(total: StageTotal) {
 private const val PERCENT = 100f
 
 /**
- * Kennzahlen als Kacheln: Einschlafdauer (falls bekannt und nicht schon beim Schlafwert, [withLatency]), Schlafeffizienz,
- * Wachphasen, längster Tiefschlaf.
+ * Kennzahlen als Kacheln: Einschlafdauer (falls bekannt und nicht schon beim Schlafwert, [withLatency]),
+ * Schlafeffizienz, Wachphasen, längster Tiefschlaf.
  */
 @Composable
 internal fun NightTiles(stats: NightStages, withLatency: Boolean = true) {

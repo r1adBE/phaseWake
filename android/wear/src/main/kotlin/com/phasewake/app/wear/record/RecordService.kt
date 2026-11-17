@@ -29,14 +29,15 @@ import kotlinx.coroutines.launch
 
 /**
  * «Nacht aufzeichnen»: misst die ganze Nacht je 30-s-Epoche Bewegung und Puls ([SensorSession] wie im Weckfenster,
- * 25 Hz, Puls über den Pulssensor der Uhr, Rückfall Health Services) und speichert sie fortlaufend ([com.phasewake.app.shared.RecordingRepository]).
+ * 25 Hz, Puls über den Pulssensor der Uhr, Rückfall Health Services) und speichert sie fortlaufend
+ * ([com.phasewake.app.shared.RecordingRepository]).
  *
- * Eigener Vordergrunddienst («health»), unabhängig vom [com.phasewake.app.wear.wake.WakeService]: Wecker, Einschlaf- und
- * Fenstermessung laufen unverändert weiter, beide dürfen zugleich die Sensoren lesen. Wakelock: Hat die Uhr
- * einen aufweckenden Beschleunigungssensor mit grossem Puffer ([SensorSession.continuous]), bündelt er bis 5 Minuten und
- * weckt die Uhr selbst; dann hält der Dienst nur je Bündel kurz einen Wakelock ([RecordWakeLocks.BATCH_MS]) und prüft dabei die
- * Grenzen ([onTick]). Sonst hält er einen eigenen Wakelock, solange er aufzeichnet (der gewöhnliche Sensor bündelt nur
- * 10 s). Gemessen wird in Stichproben ([LearnSampler], 60 s alle 5 Min) mit kurzem Wakelock
+ * Eigener Vordergrunddienst («health»), unabhängig vom [com.phasewake.app.wear.wake.WakeService]: Wecker, Einschlaf-
+ * und Fenstermessung laufen unverändert weiter, beide dürfen zugleich die Sensoren lesen. Wakelock: Hat die Uhr
+ * einen aufweckenden Beschleunigungssensor mit grossem Puffer ([SensorSession.continuous]), bündelt er bis 5 Minuten
+ * und weckt die Uhr selbst; dann hält der Dienst nur je Bündel kurz einen Wakelock ([RecordWakeLocks.BATCH_MS]) und
+ * prüft dabei die Grenzen ([onTick]). Sonst hält er einen eigenen Wakelock, solange er aufzeichnet (der gewöhnliche
+ * Sensor bündelt nur 10 s). Gemessen wird in Stichproben ([LearnSampler], 60 s alle 5 Min) mit kurzem Wakelock
  * je Stichprobe – in der Lernphase und von Hand; durchgehend nur mit freigeschalteter Diagnose auf Uhr oder Handy
  * ([LearnMarkStore.setContinuous]). Diagnose: «wl=hold|batch|sample mode=continuous|sample».
  *
@@ -49,7 +50,9 @@ import kotlinx.coroutines.launch
  */
 class RecordService : LifecycleService() {
 
-    /** Laufende Aufzeichnung ab [start]: alle Epochen, davon [flushed] schon in der Datei; [sampled]: in Stichproben. */
+    /**
+     * Laufende Aufzeichnung ab [start]: alle Epochen, davon [flushed] schon in der Datei; [sampled]: in Stichproben.
+     */
     internal class Active(val start: Instant, val epochs: MutableList<Epoch>, var flushed: Int, var learnUntil: Instant?, val sampled: Boolean) {
         var lastFlushMs = SystemClock.elapsedRealtime()
         var lastStatMs = SystemClock.elapsedRealtime()
@@ -95,7 +98,8 @@ class RecordService : LifecycleService() {
                 val reason = intent.getStringExtra(EXTRA_REASON)?.let(RecordEnd::of) ?: RecordEnd.WAKE
                 if (active?.learnUntil != null || (active != null && reason == RecordEnd.WAKE)) finish(reason)
             }
-            // Wecker verschoben: Weckzeit der laufenden Aufzeichnung der Lernphase nachführen (nur dieselbe Aufzeichnung).
+            // Wecker verschoben: Weckzeit der laufenden Aufzeichnung der Lernphase nachführen (nur dieselbe
+            // Aufzeichnung).
             ACTION_FOLLOW_PLAN -> active?.takeIf { it.learnUntil != null && it.start.toEpochMilli() == intent.getLongExtra(EXTRA_START, 0L) }
                 ?.let { a -> intent.getLongExtra(EXTRA_UNTIL, 0L).takeIf { it > 0 }?.let { a.learnUntil = Instant.ofEpochMilli(it) } }
             // Vom System neu gestartet (START_STICKY), ohne Auftrag: Aus dem Hintergrund darf der Dienst nicht in den
@@ -145,19 +149,21 @@ class RecordService : LifecycleService() {
         }
         starting = true
         lifecycleScope.launch {
-            // Eine liegengebliebene Aufzeichnung (Prozessende ohne Wiederaufnahme) zuerst abschliessen (ganz, auch wenn der
-            // Dienst dabei endet; erst danach die neue Datei).
+            // Eine liegengebliebene Aufzeichnung (Prozessende ohne Wiederaufnahme) zuerst abschliessen (ganz, auch wenn
+            // der Dienst dabei endet; erst danach die neue Datei).
             write { RecordControl.finishOrphan(app, RecordEnd.SERVICE) }.join()
             val start = Instant.ofEpochMilli(clock().toEpochMilli())
             val continuous = learnUntil == null && (phoneDiag || WatchDiag.shown(this@RecordService).first())
             app.recordings.begin(start)
             if (continuous) app.learnMark.setContinuous(start)
-            // Ohne gespeicherte Marke endet sie trotzdem beim Wecken, solange der Dienst läuft (nur nach einem Prozessende nicht).
+            // Ohne gespeicherte Marke endet sie trotzdem beim Wecken, solange der Dienst läuft (nur nach einem
+            // Prozessende nicht).
             var until = learnUntil
             if (learnUntil != null) {
                 try {
                     app.learnMark.set(LearnMark(start, learnUntil))
-                    // Seit dem Auftrag neu geplant (Wecker verschoben): gleich folgen; spätere Änderungen sehen die Marke.
+                    // Seit dem Auftrag neu geplant (Wecker verschoben): gleich folgen; spätere Änderungen sehen die
+                    // Marke.
                     until = RecordControl.followPlan(this@RecordService, app.scheduler.nextAlarmPlan(), clock()) ?: learnUntil
                 } catch (e: Exception) {
                     if (e is kotlinx.coroutines.CancellationException) throw e
@@ -247,8 +253,8 @@ class RecordService : LifecycleService() {
     }
 
     /**
-     * Neue Epochen; über [NightRecording.MAX_EPOCHS] hinaus nichts mehr. Modus «batch» ([batched]): kurzer Wakelock und,
-     * wenn fällig, der Zeitgeber (sein Handler steht im Tiefschlaf still). Intern für Tests (ohne Sensoren).
+     * Neue Epochen; über [NightRecording.MAX_EPOCHS] hinaus nichts mehr. Modus «batch» ([batched]): kurzer Wakelock
+     * und, wenn fällig, der Zeitgeber (sein Handler steht im Tiefschlaf still). Intern für Tests (ohne Sensoren).
      */
     internal fun onEpochs(epochs: List<Epoch>) {
         val a = active ?: return
@@ -270,7 +276,8 @@ class RecordService : LifecycleService() {
             finish(it, battery)
             return
         }
-        // Lernphase ohne Klingeln (z. B. Wecker übersprungen): zur Weckzeit beenden (folgt einem verschobenen Wecker, followPlan).
+        // Lernphase ohne Klingeln (z. B. Wecker übersprungen): zur Weckzeit beenden (folgt einem verschobenen Wecker,
+        // followPlan).
         val until = a.learnUntil
         if (until != null && RecordControl.endsAtTarget(clock(), until, WakeService.activePlan != null)) {
             finish(RecordEnd.WAKE, battery)
@@ -352,7 +359,9 @@ class RecordService : LifecycleService() {
         internal const val ACTION_RESUME = "com.phasewake.app.record.RESUME"
         internal const val ACTION_STOP = "com.phasewake.app.record.STOP"
 
-        /** Geweckt (jede Aufzeichnung) bzw. Lernphase aus (nur die der Lernphase), siehe [RecordControl.endLearning]. */
+        /**
+         * Geweckt (jede Aufzeichnung) bzw. Lernphase aus (nur die der Lernphase), siehe [RecordControl.endLearning].
+         */
         internal const val ACTION_END_LEARN = "com.phasewake.app.record.END_LEARN"
         internal const val EXTRA_REASON = "reason"
 
@@ -362,7 +371,10 @@ class RecordService : LifecycleService() {
         /** Lernphase: eingestellte Weckzeit (ms), zu der die Aufzeichnung ohne Klingeln endet. */
         internal const val EXTRA_UNTIL = "until"
 
-        /** Wecker verschoben: neue Weckzeit [EXTRA_UNTIL] für die Aufzeichnung ab [EXTRA_START] (ms, [RecordControl.followPlan]). */
+        /**
+         * Wecker verschoben: neue Weckzeit [EXTRA_UNTIL] für die Aufzeichnung ab [EXTRA_START] (ms,
+         * [RecordControl.followPlan]).
+         */
         internal const val ACTION_FOLLOW_PLAN = "com.phasewake.app.record.FOLLOW_PLAN"
         internal const val EXTRA_START = "start"
 

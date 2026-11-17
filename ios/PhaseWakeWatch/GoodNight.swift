@@ -9,9 +9,9 @@ import PhaseWakeCore
 /// Untergrenze kurzer Nächte und den Vergleich mit der Schätzung im Diagnose-Protokoll.
 ///
 /// Die vorverlegte Zielzeit gilt für diese eine Nacht (`WatchModel.realPlan`), auch für den Zweitwecker am iPhone
-/// (``OnsetShift``). Ohne Tippen gilt die eingestellte Weckzeit (die Einschlafzeit ist auf der Apple Watch erst am Morgen
-/// bekannt). Weckt die Nacht bis eine Stunde nach der neuen Zielzeit nicht ab (keine Sitzung, kein Stopp), fällt die
-/// Ausnahme weg; dann gilt die eingestellte Weckzeit als späte Sicherung (wie der Zweitwecker auf Android).
+/// (``OnsetShift``). Ohne Tippen gilt die eingestellte Weckzeit (die Einschlafzeit ist auf der Apple Watch erst am
+/// Morgen bekannt). Weckt die Nacht bis eine Stunde nach der neuen Zielzeit nicht ab (keine Sitzung, kein Stopp), fällt
+/// die Ausnahme weg; dann gilt die eingestellte Weckzeit als späte Sicherung (wie der Zweitwecker auf Android).
 struct GoodNightState: Codable, Equatable {
     /// Wecker mit Schlafdauer.
     let alarmId: String
@@ -47,7 +47,8 @@ struct GoodNightState: Codable, Equatable {
 }
 
 extension WatchModel {
-    /// Nächster Wecker mit Schlafdauer («Gute Nacht» auf der Startseite); nicht, wenn ein Powernap oder Probewecker vorgeht.
+    /// Nächster Wecker mit Schlafdauer («Gute Nacht» auf der Startseite); nicht, wenn ein Powernap oder Probewecker
+    /// vorgeht.
     var sleepAlarm: AlarmSpec? {
         guard let plan, Transient.kindOf(plan.alarmId) == nil else { return nil }
         return alarms.first { $0.id == plan.alarmId && $0.sleepDurationMinutes != nil }
@@ -59,8 +60,8 @@ extension WatchModel {
         return goodNight.alarmId == sleepAlarm.id
     }
 
-    /// Ob gerade eine Nacht misst, klingelt oder schlummert: Dann startet «Gute Nacht» nicht; der Knopf ist aus und sagt
-    /// warum, statt dass das Tippen still nichts tut.
+    /// Ob gerade eine Nacht misst, klingelt oder schlummert: Dann startet «Gute Nacht» nicht; der Knopf ist aus und
+    /// sagt warum, statt dass das Tippen still nichts tut.
     var goodNightBusy: Bool {
         let phase = SmartAlarm.shared.phase
         return phase.isMeasuring || phase.isRinging || phase.isSnoozed

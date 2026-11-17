@@ -89,8 +89,8 @@ fun PhaseWakeTheme(content: @Composable () -> Unit) {
 }
 
 /**
- * Stärke des Nachthimmels auf den Seiten der Uhr (Start mit Weckerliste, Editor, Powernap, Diagnose): schwach, OLED-schonend,
- * der Rand bleibt schwarz. Schrift darauf ≥ 4.5:1 (WatchPagesContrastTest).
+ * Stärke des Nachthimmels auf den Seiten der Uhr (Start mit Weckerliste, Editor, Powernap, Diagnose): schwach,
+ * OLED-schonend, der Rand bleibt schwarz. Schrift darauf ≥ 4.5:1 (WatchPagesContrastTest).
  */
 const val PAGE_GLOW = 0.55f
 
@@ -118,8 +118,8 @@ fun androidx.compose.ui.Modifier.nightGlow(strength: Float = 1f): androidx.compo
 
 /**
  * Himmel des Weckbildschirms ohne Sonnenaufgangslicht, gleich wie `WakeSky` auf dem Handy und der Apple Watch: ein
- * kräftiger Sonnenaufgang von Indigo über Violett und Magenta-Rosé bis zur Glut unten, mit warmem Schein am unteren Rand
- * und Lavendel-Schein oben rechts. Ruhend. Helle Schrift bleibt überall ≥ 4.5:1 (WakeSkyContrastTest).
+ * kräftiger Sonnenaufgang von Indigo über Violett und Magenta-Rosé bis zur Glut unten, mit warmem Schein am unteren
+ * Rand und Lavendel-Schein oben rechts. Ruhend. Helle Schrift bleibt überall ≥ 4.5:1 (WakeSkyContrastTest).
  */
 internal object WakeSky {
     val Stops: List<Pair<Float, Color>> = listOf(

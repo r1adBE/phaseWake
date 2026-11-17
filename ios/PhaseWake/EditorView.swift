@@ -32,7 +32,8 @@ struct EditorView: View {
     /// Selbst gelöscht: Das Verschwinden aus der Liste ist dann kein Löschen anderswo.
     @State private var deleting = false
 
-    /// Vorgabe und Bereich der Schlafdauer wie Android (`EditorState`, `SLEEP_MIN`/`SLEEP_MAX`), in Schritten von 15 Min.
+    /// Vorgabe und Bereich der Schlafdauer wie Android (`EditorState`, `SLEEP_MIN`/`SLEEP_MAX`), in Schritten von 15
+    /// Min.
     private static let defaultSleepMinutes = 450
     private static let sleepRange = 180.0...720.0
 
@@ -40,8 +41,9 @@ struct EditorView: View {
         NavigationStack {
             Form {
                 Group {
-                    // «Uhrzeit · Schlafdauer» wie Android. Einschlaf-Modus auf der Apple Watch: «Gute Nacht» legt die Zielzeit
-                    // aus der gelernten Einschlafdauer fest (Näherung, `GoodNightState`); ohne Tippen gilt die Uhrzeit.
+                    // «Uhrzeit · Schlafdauer» wie Android. Einschlaf-Modus auf der Apple Watch: «Gute Nacht» legt die
+                    // Zielzeit aus der gelernten Einschlafdauer fest (Näherung, `GoodNightState`); ohne Tippen gilt die
+                    // Uhrzeit.
                     Section {
                         Picker(L("editor_mode_sleep"), selection: $sleepMode) {
                             Text(L("editor_mode_clock")).tag(false)
@@ -78,7 +80,8 @@ struct EditorView: View {
                     }
 
                     Section {
-                        // «Genau · 10 · 20 · 30» wie Android; ein älterer Wert (15, 25) bleibt als eigene Wahl erhalten.
+                        // «Genau · 10 · 20 · 30» wie Android; ein älterer Wert (15, 25) bleibt als eigene Wahl
+                        // erhalten.
                         Picker(L("chart_window"), selection: $window) {
                             ForEach(windowChoices(keeping: Int(window)), id: \.self) { minutes in
                                 Text(minutes == AlarmSpec.exactWindow ? L("editor_window_exact") : L("duration_minutes", Int64(minutes)))
@@ -105,10 +108,12 @@ struct EditorView: View {
                                 Button { if on { days.remove(day) } else { days.insert(day) } } label: {
                                     VStack(spacing: 2) {
                                         Text(dayName(day))
-                                        // Punkt unter dem gewählten Tag: Form zusätzlich zur Füllung (Farbe nie allein).
+                                        // Punkt unter dem gewählten Tag: Form zusätzlich zur Füllung (Farbe nie
+                                        // allein).
                                         Circle().frame(width: 4, height: 4).opacity(on ? 1 : 0).accessibilityHidden(true)
                                     }
-                                    // Mindestens 44 pt hoch, und die ganze Fläche ist Tippziel (nicht nur der Buchstabe).
+                                    // Mindestens 44 pt hoch, und die ganze Fläche ist Tippziel (nicht nur der
+                                    // Buchstabe).
                                     .frame(maxWidth: .infinity, minHeight: 44)
                                     .contentShape(Capsule())
                                 }

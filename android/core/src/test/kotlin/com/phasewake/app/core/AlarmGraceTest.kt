@@ -12,7 +12,10 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
-/** Nachfrist ([AlarmSchedule.inGrace]) und Nachholen ([AlarmSchedule.missedPlan]); gleiche Fälle wie `AlarmGraceTests.swift`. */
+/**
+ * Nachfrist ([AlarmSchedule.inGrace]) und Nachholen ([AlarmSchedule.missedPlan]); gleiche Fälle wie
+ * `AlarmGraceTests.swift`.
+ */
 class AlarmGraceTest {
 
     private val zurich = ZoneId.of("Europe/Zurich")

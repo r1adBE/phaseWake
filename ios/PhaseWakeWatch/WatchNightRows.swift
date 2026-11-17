@@ -32,8 +32,9 @@ struct GoodNightRow: View {
         }
     }
 
-    /// Zweite Zeile: aktiv (`target`) die Zielzeit und «Tippen zum Abbrechen» wie auf der Galaxy Watch; während eine Nacht
-    /// misst, klingelt oder schlummert (`busy`) der Grund, warum es nicht startet; sonst Hinweis oder Schlafdauer.
+    /// Zweite Zeile: aktiv (`target`) die Zielzeit und «Tippen zum Abbrechen» wie auf der Galaxy Watch; während eine
+    /// Nacht misst, klingelt oder schlummert (`busy`) der Grund, warum es nicht startet; sonst Hinweis oder
+    /// Schlafdauer.
     static func secondary(target: Date?, busy: Bool, tooFar: Bool, minutes: Int) -> String {
         if let target { return L("notification_window_text", Format.time(target)) + " · " + L("home_good_night_tap_cancel") }
         if busy { return L("transient_alarm_running") }

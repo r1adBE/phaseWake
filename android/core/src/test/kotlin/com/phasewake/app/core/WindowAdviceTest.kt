@@ -40,7 +40,8 @@ class WindowAdviceTest {
 
     @Test
     fun exactAndShortNightsDoNotCount() {
-        // Nur zwei zählbare Nächte: zu wenig für einen Vorschlag, auch wenn «Genau» und kurze Nächte zur Zielzeit endeten.
+        // Nur zwei zählbare Nächte: zu wenig für einen Vorschlag, auch wenn «Genau» und kurze Nächte zur Zielzeit
+        // endeten.
         val history = listOf(night(0, WakeReason.DEADLINE), night(1, WakeReason.EXACT), night(2, WakeReason.SHORT_NIGHT), night(3, WakeReason.DEADLINE))
         assertNull(WindowAdvice.suggest(spec, history))
         assertEquals(3, WindowAdvice.suggest(spec, history + night(4, WakeReason.LIGHT_SLEEP))?.nights)

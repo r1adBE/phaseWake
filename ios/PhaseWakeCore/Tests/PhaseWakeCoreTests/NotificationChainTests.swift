@@ -1,8 +1,8 @@
 import XCTest
 import PhaseWakeCore
 
-/// Weck-Mitteilung als Kette (`NotificationChain`): 4 Mitteilungen im Abstand von 30 s, Kennungen «id», «id.1» … «id.3».
-/// Nur Apple.
+/// Weck-Mitteilung als Kette (`NotificationChain`): 4 Mitteilungen im Abstand von 30 s, Kennungen «id», «id.1» …
+/// «id.3». Nur Apple.
 final class NotificationChainTests: XCTestCase {
     func testIdsKeepBaseFirst() {
         XCTAssertEqual(NotificationChain.ids("phasewake.fallback"),

@@ -38,7 +38,8 @@ public enum NightDate {
 
 extension NoteEffect {
     /// Schlafdauer je Nachtdatum aus der Gesundheits-App: Nachtdatum über die Mitte der Nacht
-    /// (`SleepNotes.nightDate(of:)`); mehrere Nächte am selben Datum → die längste. Identisch zu `NoteEffect.asleepByNight` (Kotlin).
+    /// (`SleepNotes.nightDate(of:)`); mehrere Nächte am selben Datum → die längste. Identisch zu
+    /// `NoteEffect.asleepByNight` (Kotlin).
     public static func asleepByNight(_ sleeps: [SleepSummary], calendar: Calendar) -> [String: Int] {
         sleeps.reduce(into: [:]) { out, sleep in
             let date = SleepNotes.nightDate(of: sleep, calendar: calendar)
@@ -128,8 +129,8 @@ public enum Regularity {
         return minutes.map { $0 <= at ? $0 + Double(dayMinutes) : $0 }
     }
 
-    /// Mittlere Uhrzeit der `minutes` (Minuten ab Mittag) ohne Sprung um Mittag (``unwrap(_:)``), gerundet (x.5 aufwärts,
-    /// wie `Math.round`) und wieder in 0 ≤ m < ``dayMinutes``. `minutes` darf nicht leer sein.
+    /// Mittlere Uhrzeit der `minutes` (Minuten ab Mittag) ohne Sprung um Mittag (``unwrap(_:)``), gerundet (x.5
+    /// aufwärts, wie `Math.round`) und wieder in 0 ≤ m < ``dayMinutes``. `minutes` darf nicht leer sein.
     public static func meanMinute(_ minutes: [Double]) -> Int {
         let values = unwrap(minutes)
         let rounded = Int((values.reduce(0, +) / Double(values.count) + 0.5).rounded(.down))

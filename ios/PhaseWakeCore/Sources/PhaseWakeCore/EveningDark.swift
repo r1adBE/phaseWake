@@ -14,7 +14,8 @@ public enum EveningDark {
     public static let untilMinutes = 6 * 60
 
     private static let dayMinutes = 24 * 60
-    /// Längste Suche nach dem nächsten Wechsel: ein Tag und zwei Stunden (mehr als jeder Sommerzeit-Wechsel verschiebt).
+    /// Längste Suche nach dem nächsten Wechsel: ein Tag und zwei Stunden (mehr als jeder Sommerzeit-Wechsel
+    /// verschiebt).
     private static let searchMinutes = dayMinutes + 120
 
     /// Gespeicherter Beginn zur Verwendung: ausserhalb 00:00–23:59 (oder fehlend) der Standard.

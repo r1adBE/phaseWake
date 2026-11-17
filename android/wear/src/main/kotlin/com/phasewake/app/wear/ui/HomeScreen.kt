@@ -105,7 +105,8 @@ internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit, onNap: (
 
     fun granted(permission: String) = ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
     fun missing() = requiredPermissions().filterNot(::granted)
-    // Puls im Hintergrund (ab Wear OS 4): getrennt und erst, wenn das Pulsrecht erteilt ist (sonst lehnt das System es ab).
+    // Puls im Hintergrund (ab Wear OS 4): getrennt und erst, wenn das Pulsrecht erteilt ist (sonst lehnt das System es
+    // ab).
     fun missingBackground() = SensorAccess.backgroundPermission()?.takeIf { granted(SensorAccess.heartRatePermission()) && !granted(it) }
     var missingPermissions by remember { mutableStateOf(missing()) }
     var backgroundMissing by remember { mutableStateOf(missingBackground()) }
@@ -143,7 +144,8 @@ internal fun HomeScreen(onAdd: () -> Unit, onEdit: (AlarmSpec) -> Unit, onNap: (
         backgroundMissing?.takeIf { PermissionAsks.canAsk(context, it) }?.let { askBackground(it) }
         app.appScope.launch { app.scheduler.reschedule() }
     }
-    // Klingelt es, ohne dass der Weckbildschirm erscheinen durfte (Mitteilungen oder Vollbild nicht erlaubt): beim Öffnen zeigen.
+    // Klingelt es, ohne dass der Weckbildschirm erscheinen durfte (Mitteilungen oder Vollbild nicht erlaubt): beim
+    // Öffnen zeigen.
     val ring by app.ringState.ui.collectAsStateWithLifecycle()
     LaunchedEffect(ring) {
         if (ring is RingUi.Ringing) context.startActivity(Intent(context, RingActivity::class.java))
