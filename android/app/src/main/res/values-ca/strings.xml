@@ -87,6 +87,9 @@
     <string name="settings_theme_system">Sistema</string>
     <string name="settings_theme_light">Clar</string>
     <string name="settings_theme_dark">Fosc</string>
+    <string name="settings_evening_dark">Fosc al vespre</string>
+    <string name="settings_evening_dark_text">Fosc de %1$s a %2$s, també amb Sistema o Clar.</string>
+    <string name="settings_evening_dark_from">Fosc a partir de</string>
     <string name="settings_data">Les teves dades</string>
     <string name="settings_data_text">Tot es queda al telèfon i al rellotge. Sense compte, sense servidor, sense seguiment. Per la connexió del rellotge de Google només passa informació tècnica del rellotge, sense dades de salut.</string>
     <string name="settings_export">Exporta les nits sense nom</string>
@@ -97,10 +100,10 @@
     <string name="settings_licenses_text">Phase Wake: llicència MIT, © r1adBE.\nTipus de lletra Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetecció de sons: MediaPipe Tasks Audio i el model YAMNet, Apache License 2.0, © Google LLC.\nSons: enregistraments lliures (CC0) d’opengameart.org</string>
     <string name="settings_version">Versió %1$s</string>
 
-    <string name="duration_minutes">%1$d min</string>
-    <string name="duration_hours">%1$d h</string>
-    <string name="duration_hours_half">%1$d½ h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_half">%1$d½ h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fases del son de Health Connect</string>
     <string name="health_rationale">Phase Wake pot llegir les dades de son que la teva app de salut (per exemple, Samsung Health) desa. Es mostren al teu historial, també per comparar-les amb les nits en què Phase Wake t’ha despertat. Phase Wake només llegeix, mai no escriu, i res no surt del teu telèfon.</string>
     <string name="health_connect">Compara amb les dades de salut</string>
@@ -288,7 +291,7 @@
         <item quantity="other">Objectiu de son assolit: %1$d de %2$d nits</item>
     </plurals>
     <string name="bedtime_title">Recordatori d’anar a dormir</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">T’avisa %1$d min abans de l’hora d’anar a dormir: l’hora de l’alarma menys l’objectiu de son.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">T’avisa %1$d min abans de l’hora d’anar a dormir: l’hora objectiu menys l’objectiu de son.</string>
     <string name="bedtime_notification">A dormir a les %1$s – així dormiràs %2$s abans de l’alarma de les %3$s.</string>
     <string name="channel_reminders">Recordatoris</string>
     <string name="sounds_title">Sons per dormir</string>
@@ -570,7 +573,7 @@
     <string name="learned_latency">Adormir-te: uns %1$s</string>
     <string name="learned_latency_none">Adormir-te: massa poques mesures</string>
     <string name="bedtime_advice">Ves a dormir avui entre les %1$s i les %2$s</string>
-    <string name="bedtime_advice_hint">A partir de l’alarma, l’objectiu de son i el temps que trigues a adormir-te.</string>
+    <string name="bedtime_advice_hint">A partir de l’hora objectiu, l’objectiu de son i el temps que trigues a adormir-te.</string>
     <string name="learn_restart">Torna a aprendre</string>
     <string name="learn_restart_text">Phase Wake torna a mesurar %1$d nits. Fins aleshores, es continuen fent servir els valors adaptats fins ara.</string>
     <string name="record_end_wake">Acabat en despertar-te</string>
@@ -652,7 +655,7 @@
     <string name="finding_title">Observat en les teves últimes 7 nits</string>
     <string name="finding_hide">Amaga</string>
     <string name="finding_latency">De mitjana vas trigar %1$s a adormir-te. Consell: si després de 20 minuts encara estàs despert, aixeca’t i torna al llit només quan tinguis son. Si dura setmanes, parla amb el teu metge.</string>
-    <string name="finding_short_nights">Nits de menys de 6 hores: %1$d de 7. Consell: calcula l’hora d’anar a dormir a partir de l’hora de despertar-te i compleix-la.</string>
+    <string name="finding_short_nights">Nits de menys de 6 hores: %1$d de 7. Consell: calcula l’hora d’anar a dormir a partir de l’hora objectiu i compleix-la.</string>
     <string name="finding_low_deep">El son profund va ser només un %1$d %% aproximat del teu son (normalment %2$d–%3$d %%).</string>
     <string name="finding_deep_short">Les nits de menys de 6 hores va ser clarament menor: %1$d %% en lloc de %2$d %%.</string>
     <string name="finding_deep_late">Les nits que vas anar a dormir tard va ser clarament menor: %1$d %% en lloc de %2$d %%.</string>

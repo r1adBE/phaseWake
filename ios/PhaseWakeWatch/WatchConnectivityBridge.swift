@@ -15,21 +15,21 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
         WCSession.default.activate()
     }
 
-    /// Letzter Stand, der als Anwendungskontext geht (Wecker und Scharf-Status gemeinsam).
-    private var context: [String: Any] = [:]
+    /// Letzter Stand, der als Anwendungskontext geht (Wecker und Scharf-Status gemeinsam); nur Main-Thread (CODE-06).
+    @MainActor private var context: [String: Any] = [:]
 
-    func publish(_ snapshot: AlarmSnapshot) {
+    @MainActor func publish(_ snapshot: AlarmSnapshot) {
         AlarmStamps.apply(snapshot, to: &context)
         sendContext()
     }
 
     /// Ohne Wecker im Kontext (erster Versand seit dem Start) den gespeicherten Stand dazulegen.
-    private func ensureAlarms() {
+    @MainActor private func ensureAlarms() {
         if context[SyncKeys.alarms] == nil { AlarmStamps.apply(PhaseWakeStorage.watch.snapshot(), to: &context) }
     }
 
     /// Für welche Zielzeit die Uhr scharf ist (Sitzung geplant oder laufend); 0 = nicht scharf.
-    func publish(armedTarget: Date?) {
+    @MainActor func publish(armedTarget: Date?) {
         context[SyncKeys.armedTarget] = armedTarget.map(TimeBounds.millis) ?? 0
         ensureAlarms()
         sendContext()
@@ -37,7 +37,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
 
     /// Laufende Aufzeichnung («Nacht aufzeichnen» oder Lernphase) seit `since`; `nil` = keine (iPhone: «Aufzeichnung läuft
     /// seit …»).
-    func publish(recordSince since: Date?) {
+    @MainActor func publish(recordSince since: Date?) {
         context[SyncKeys.recordSince] = Int64((since?.timeIntervalSince1970 ?? 0) * 1000)
         ensureAlarms()
         sendContext()
@@ -45,7 +45,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
 
     /// Rekorder für eine Nacht nicht gestartet (``RecorderSkip``, Audit F-06) bzw. `nil`, wenn er doch läuft: gespeichert
     /// (geht mit jedem Anwendungskontext ans iPhone, auch nach einem Neustart der App) und nur bei einer Änderung gesendet.
-    func publish(recorderSkip skip: RecorderSkip?) {
+    @MainActor func publish(recorderSkip skip: RecorderSkip?) {
         let text = skip?.encode() ?? ""
         guard text != Self.recorderSkip else { return }
         SettingsFile.watchSession.set(text, forKey: Self.recorderSkipKey)
@@ -69,7 +69,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     /// Vor der Aktivierung (z. B. beim Hintergrundstart für eine Sitzung) bleibt der Stand gemerkt und
     /// geht nach `activationDidComplete` nach. Jedes Senden nimmt den aktuellen Akkustand der Uhr mit
     /// (Nacht-Check auf dem iPhone).
-    private func sendContext() {
+    @MainActor private func sendContext() {
         guard WCSession.default.activationState == .activated, !context.isEmpty else { return }
         // Stand der Verbindung und Build-Nummer: Das iPhone erkennt so eine ältere oder andere Uhr-App (Nacht-Check).
         BuildNumber.applyWatch(to: &context)
@@ -87,19 +87,20 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
             context[SyncKeys.batteryAt] = Int64(Date().timeIntervalSince1970 * 1000)
             context[SyncKeys.batteryCharging] = device.batteryState == .charging || device.batteryState == .full
         } else {
-            context[SyncKeys.battery] = nil
-            context[SyncKeys.batteryAt] = nil
-            context[SyncKeys.batteryCharging] = nil
+            for key in [SyncKeys.battery, SyncKeys.batteryAt, SyncKeys.batteryCharging] { context[key] = nil }
         }
-        try? WCSession.default.updateApplicationContext(context)
+        // Gescheitert: protokolliert wie am iPhone (Audit 17.11. CODE-02); der nächste Kontext ersetzt ihn ohnehin.
+        do { try WCSession.default.updateApplicationContext(context) } catch {
+            DiagStore.shared.log(.error, "context not sent: \(error.localizedDescription)")
+        }
     }
 
     /// Zuletzt protokollierter Stand der Mitteilungen (Diagnose nur bei einer Änderung). Nur auf dem Main-Thread.
-    private var loggedNotifications: WatchNotifications?
+    @MainActor private var loggedNotifications: WatchNotifications?
     /// Wann der Stand der Mitteilungen zuletzt ans iPhone ging (`publishNotificationStateIfNeeded`). Nur auf dem Main-Thread.
-    private var notificationsSentAt: Date?
+    @MainActor private var notificationsSentAt: Date?
     /// Prüfung beim Planen läuft (nicht doppelt bei mehreren Rückfällen kurz nacheinander). Nur auf dem Main-Thread.
-    private var checkingNotifications = false
+    @MainActor private var checkingNotifications = false
     /// Spätestens nach dieser Zeit geht der Stand beim Planen nochmals ans iPhone, auch unverändert.
     private static let notificationsResend: TimeInterval = 6 * 3600
     /// Schlüssel der zuletzt geprüften Erlaubnis in `SettingsFile.watchSession` (nicht in der Sicherung).
@@ -166,7 +167,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     }
 
     /// Beim Öffnen der App: Akkustand neu melden, auch wenn sich sonst nichts geändert hat.
-    func publishBattery() {
+    @MainActor func publishBattery() {
         ensureAlarms()
         sendContext()
     }
@@ -214,7 +215,7 @@ final class WatchConnectivityBridge: NSObject, WCSessionDelegate, @unchecked Sen
     /// Was vor der Aktivierung anfiel (z. B. App für eine Sitzung im Hintergrund gestartet und gleich geklingelt): Vorher
     /// verwirft WatchConnectivity Nachrichten und Benutzerdaten bzw. wirft einen Fehler. Geht nach `activationDidComplete`
     /// raus, wie auf dem iPhone (`PhoneConnectivity.pending`). Nur auf dem Main-Thread.
-    var pending: [(payload: [String: Any], userInfoOnly: Bool)] = []
+    @MainActor var pending: [(payload: [String: Any], userInfoOnly: Bool)] = []
 
     /// Sofort als Nachricht, wenn das iPhone erreichbar ist (bei einem Fehler als Benutzerdaten), sonst als Benutzerdaten;
     /// `userInfoOnly` immer als Benutzerdaten (Nächte). Vor der Aktivierung gemerkt (`pending`). Die Sendezeit bleibt

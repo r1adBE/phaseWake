@@ -50,8 +50,8 @@
     <string name="good_night_cancel">శుభ రాత్రి రద్దు చేయి</string>
     <string name="dnd_title">అలారాలు ఆగిపోయాయి</string>
     <string name="dnd_text">“అంతరాయం కలిగించవద్దు”లో అలారాలను అనుమతించండి.</string>
-    <string name="duration_hours">%1$d గం.</string>
-    <string name="duration_hours_minutes">%1$d గం. %2$d ని.</string>
+    <string name="duration_hours">%1$d గం.</string>
+    <string name="duration_hours_minutes">%1$d గం. %2$d ని.</string>
     <string name="home_last_night">నిన్న రాత్రి</string>
     <string name="notification_open">తెరవండి</string>
     <string name="home_good_night_too_far">అలారానికి 16 గం. ముందు నుంచి అందుబాటులో</string>

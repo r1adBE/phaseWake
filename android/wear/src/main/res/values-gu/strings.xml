@@ -50,8 +50,8 @@
     <string name="good_night_cancel">શુભ રાત્રિ રદ કરો</string>
     <string name="dnd_title">એલાર્મ રોકાયા</string>
     <string name="dnd_text">“ખલેલ પાડશો નહીં”માં એલાર્મને મંજૂરી આપો.</string>
-    <string name="duration_hours">%1$d ક.</string>
-    <string name="duration_hours_minutes">%1$d ક. %2$d મિ.</string>
+    <string name="duration_hours">%1$d ક.</string>
+    <string name="duration_hours_minutes">%1$d ક. %2$d મિ.</string>
     <string name="home_last_night">ગઈ રાત</string>
     <string name="notification_open">ખોલો</string>
     <string name="home_good_night_too_far">એલાર્મના 16 ક. પહેલાંથી ઉપલબ્ધ</string>

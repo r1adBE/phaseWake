@@ -26,13 +26,6 @@ object StageCheck {
     fun stageAtWake(spans: List<StageSpan>, wokeAt: Instant, toleranceSeconds: Long = 120): SleepStage? =
         stageAt(spans, wokeAt) ?: stageAt(spans, wokeAt.minusSeconds(toleranceSeconds))
 
-    /** `true` bei gutem Moment, `false` bei Tiefschlaf, `null` ohne verwertbare Daten. */
-    fun wokeWell(spans: List<StageSpan>, wokeAt: Instant): Boolean? = when (stageAtWake(spans, wokeAt)) {
-        SleepStage.LIGHT, SleepStage.REM, SleepStage.AWAKE -> true
-        SleepStage.DEEP -> false
-        SleepStage.UNKNOWN, null -> null
-    }
-
     /** Spannen auf das Weckfenster zugeschnitten, für die Darstellung. */
     fun clip(spans: List<StageSpan>, from: Instant, to: Instant): List<StageSpan> = spans
         .filter { it.end.isAfter(from) && it.start.isBefore(to) }

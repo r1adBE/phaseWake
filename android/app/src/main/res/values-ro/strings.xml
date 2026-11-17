@@ -86,6 +86,9 @@
     <string name="settings_theme_system">Sistem</string>
     <string name="settings_theme_light">Luminos</string>
     <string name="settings_theme_dark">Întunecat</string>
+    <string name="settings_evening_dark">Întunecat seara</string>
+    <string name="settings_evening_dark_text">Întunecat de la %1$s până la %2$s, și cu Sistem sau Luminos.</string>
+    <string name="settings_evening_dark_from">Întunecat de la</string>
     <string name="settings_data">Datele tale</string>
     <string name="settings_data_text">Totul rămâne pe telefon și pe ceas. Fără cont, fără server, fără urmărire. Prin conexiunea ceasului de la Google trec doar date tehnice despre ceas, fără date de sănătate.</string>
     <string name="settings_export">Exportă nopțile fără nume</string>
@@ -96,10 +99,10 @@
     <string name="settings_licenses_text">Phase Wake: licență MIT, © r1adBE.\nFontul Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetectarea sunetelor: MediaPipe Tasks Audio și modelul YAMNet, Apache License 2.0, © Google LLC.\nSunete: înregistrări libere (CC0) de pe opengameart.org</string>
     <string name="settings_version">Versiunea %1$s</string>
 
-    <string name="duration_minutes">%1$d min</string>
-    <string name="duration_hours">%1$d h</string>
-    <string name="duration_hours_half">%1$d½ h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_half">%1$d½ h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fazele somnului din Health Connect</string>
     <string name="health_rationale">Phase Wake poate citi datele de somn pe care aplicația ta de sănătate (de exemplu Samsung Health) le salvează. Sunt afișate în istoricul tău, și pentru comparație cu nopțile în care te-a trezit Phase Wake. Phase Wake doar citește, nu scrie niciodată, iar nimic nu părăsește telefonul tău.</string>
     <string name="health_connect">Compară cu datele de sănătate</string>
@@ -289,7 +292,7 @@
         <item quantity="other">Obiectiv de somn atins: %1$d din %2$d de nopți</item>
     </plurals>
     <string name="bedtime_title">Memento de culcare</string>
-    <string name="bedtime_text">Îți amintește cu %1$d min înainte de ora de culcare: ora alarmei minus obiectivul de somn.</string>
+    <string name="bedtime_text">Îți amintește cu %1$d min înainte de ora de culcare: ora țintă minus obiectivul de somn.</string>
     <string name="bedtime_notification">La culcare la %1$s – așa dormi %2$s până la alarma de la %3$s.</string>
     <string name="channel_reminders">Mementouri</string>
     <string name="sounds_title">Sunete pentru adormit</string>
@@ -568,7 +571,7 @@
     <string name="learned_latency">Adormire: cam %1$s</string>
     <string name="learned_latency_none">Adormire: prea puține măsurători</string>
     <string name="bedtime_advice">Culcă-te azi între %1$s și %2$s</string>
-    <string name="bedtime_advice_hint">Pe baza alarmei, a obiectivului de somn și a timpului în care adormi.</string>
+    <string name="bedtime_advice_hint">Pe baza orei țintă, a obiectivului de somn și a timpului în care adormi.</string>
     <string name="learn_restart">Învață din nou</string>
     <string name="learn_restart_text">Phase Wake măsoară din nou %1$d nopți. Până atunci rămân valabile valorile adaptate până acum.</string>
     <string name="record_end_wake">Încheiată la trezire</string>
@@ -650,7 +653,7 @@
     <string name="finding_title">Observat în ultimele tale 7 nopți</string>
     <string name="finding_hide">Ascunde</string>
     <string name="finding_latency">În medie ți-a luat %1$s să adormi. Sfat: dacă după 20 de minute ești încă treaz, ridică-te și întoarce-te în pat doar când ți-e somn. Dacă asta durează săptămâni, vorbește cu medicul tău.</string>
-    <string name="finding_short_nights">Nopți sub 6 ore: %1$d din 7. Sfat: calculează-ți ora de culcare pornind de la ora de trezire și respect-o.</string>
+    <string name="finding_short_nights">Nopți sub 6 ore: %1$d din 7. Sfat: calculează-ți ora de culcare pornind de la ora țintă și respect-o.</string>
     <string name="finding_low_deep">Somnul profund a fost doar aproximativ %1$d %% din somnul tău (de obicei %2$d–%3$d %%).</string>
     <string name="finding_deep_short">În nopțile sub 6 ore a fost vizibil mai puțin: %1$d %% în loc de %2$d %%.</string>
     <string name="finding_deep_late">În nopțile în care te-ai culcat târziu a fost vizibil mai puțin: %1$d %% în loc de %2$d %%.</string>

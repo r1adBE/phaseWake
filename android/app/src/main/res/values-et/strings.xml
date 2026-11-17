@@ -87,6 +87,9 @@
     <string name="settings_theme_system">Süsteem</string>
     <string name="settings_theme_light">Hele</string>
     <string name="settings_theme_dark">Tume</string>
+    <string name="settings_evening_dark">Õhtuti tume</string>
+    <string name="settings_evening_dark_text">Tume %1$s – %2$s, ka valikuga Süsteem või Hele.</string>
+    <string name="settings_evening_dark_from">Tume alates</string>
     <string name="settings_data">Sinu andmed</string>
     <string name="settings_data_text">Kõik jääb sinu telefoni ja kella. Pole kontot, serverit ega jälgimist. Google’i kellaühenduse kaudu liigub ainult kella tehniline teave, ilma terviseandmeteta.</string>
     <string name="settings_export">Ekspordi ööd ilma nimeta</string>
@@ -97,10 +100,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT-litsents, © r1adBE.\nManrope’i font: SIL Open Font License 1.1, © The Manrope Project Authors.\nHelide tuvastus: MediaPipe Tasks Audio ja YAMNeti mudel, Apache License 2.0, © Google LLC.\nHelid: tasuta salvestised (CC0) saidilt opengameart.org</string>
     <string name="settings_version">Versioon %1$s</string>
 
-    <string name="duration_minutes">%1$d min</string>
-    <string name="duration_hours">%1$d h</string>
-    <string name="duration_hours_half">%1$d½ h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_half">%1$d½ h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Unefaasid Health Connectist</string>
     <string name="health_rationale">Phase Wake saab lugeda uneandmeid, mille sinu terviserakendus (näiteks Samsung Health) salvestab. Neid näidatakse sinu ajaloos, ka võrdluseks öödega, mil Phase Wake sind äratas. Phase Wake ainult loeb, ei kirjuta kunagi midagi ja miski ei lahku sinu telefonist.</string>
     <string name="health_connect">Võrdle terviseandmetega</string>
@@ -282,7 +285,7 @@
         <item quantity="other">Une eesmärk täidetud: %1$d ööl %2$d-st</item>
     </plurals>
     <string name="bedtime_title">Magamamineku meeldetuletus</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">Tuletab meelde %1$d min enne magamaminekut: äratusaeg miinus su une eesmärk.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">Tuletab meelde %1$d min enne magamaminekut: sihtaeg miinus su une eesmärk.</string>
     <string name="bedtime_notification">Magamaminek kell %1$s – nii saad enne äratust kell %3$s magada %2$s.</string>
     <string name="channel_reminders">Meeldetuletused</string>
     <string name="sounds_title">Unehelid</string>
@@ -557,7 +560,7 @@
     <string name="learned_latency">Uinumine: umbes %1$s</string>
     <string name="learned_latency_none">Uinumine: liiga vähe mõõtmisi</string>
     <string name="bedtime_advice">Mine täna magama vahemikus %1$s kuni %2$s</string>
-    <string name="bedtime_advice_hint">Äratuse, unesihi ja uinumiseks kuluva aja põhjal.</string>
+    <string name="bedtime_advice_hint">Sihtaja, unesihi ja uinumiseks kuluva aja põhjal.</string>
     <string name="learn_restart">Õpi uuesti</string>
     <string name="learn_restart_text">Phase Wake mõõdab uuesti %1$d ööd. Seni kehtivad seni kohandatud väärtused.</string>
     <string name="record_end_wake">Lõpetatud äratusel</string>
@@ -639,7 +642,7 @@
     <string name="finding_title">Märgatud sinu viimase 7 öö jooksul</string>
     <string name="finding_hide">Peida</string>
     <string name="finding_latency">Uinumiseks kulus sul keskmiselt %1$s. Nõuanne: kui oled 20 minuti pärast veel ärkvel, tõuse üles ja mine voodisse tagasi alles siis, kui oled unine. Kui see kestab nädalaid, räägi oma arstiga.</string>
-    <string name="finding_short_nights">Alla 6-tunnised ööd: %1$d 7-st. Nõuanne: arvuta magamamineku aeg äratusajast tagasi ja pea sellest kinni.</string>
+    <string name="finding_short_nights">Alla 6-tunnised ööd: %1$d 7-st. Nõuanne: arvuta magamamineku aeg sihtajast tagasi ja pea sellest kinni.</string>
     <string name="finding_low_deep">Sügavat und oli vaid umbes %1$d %% sinu unest (tavaliselt %2$d–%3$d %%).</string>
     <string name="finding_deep_short">Alla 6-tunnistel öödel oli seda selgelt vähem: %1$d %%, mitte %2$d %%.</string>
     <string name="finding_deep_late">Öödel, kui läksid hilja magama, oli seda selgelt vähem: %1$d %%, mitte %2$d %%.</string>

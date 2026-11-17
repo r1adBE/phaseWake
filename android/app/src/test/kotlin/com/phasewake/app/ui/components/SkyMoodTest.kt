@@ -45,6 +45,42 @@ class SkyMoodTest {
     }
 
     @Test
+    fun dayTextStaysReadableInEveryMood() {
+        // Tageshimmel «Creme Caramel» (hell): dunkle Schrift, Nebentext und Lavendel-Textknopf ≥ 4.5:1, Welle, Bogen und
+        // gefüllter Knopf ≥ 3:1 zum Himmel, Schrift im Knopf ≥ 4.5:1 – an jeder Höhe, in jeder Stimmung.
+        val moods = buildList {
+            for (d in 0..10) for (w in 0..10) for (n in 0..2) add(SkyMood(dusk = d / 10f, dawn = w / 10f, night = n / 2f))
+        }
+        for (mood in moods) for (step in 0..20) {
+            val sky = mood.daySkyAt(step / 20f)
+            val glow = mixColor(sky, Day.Glow, Day.GLOW_ALPHA)
+            for (bg in listOf(sky, glow)) {
+                for (ink in listOf(Day.Text, Day.Muted, Day.Accent)) {
+                    val ratio = SunriseSky.contrast(ink, bg)
+                    assertTrue(ratio >= SunriseSky.MIN_CONTRAST, "Tag $ink $mood y=$step: $ratio:1")
+                }
+                for (shape in listOf(Day.Wave, Day.Moon)) {
+                    val ratio = SunriseSky.contrast(shape, bg)
+                    assertTrue(ratio >= 3f, "Tag Form $shape $mood y=$step: $ratio:1")
+                }
+            }
+        }
+        assertTrue(SunriseSky.contrast(SkyInk.OnDay.onButton, SkyInk.OnDay.button) >= SunriseSky.MIN_CONTRAST, "Knopf im Tageskopf")
+        assertEquals(Night.Text, SkyInk.OnNight.text)
+        assertEquals(Night.Muted, SkyInk.OnNight.muted)
+    }
+
+    @Test
+    fun daySkyRunsFromCremeToCaramel() {
+        assertEquals(Color(0xFFF4E4CC), SkyMood.Plain.daySkyAt(0f))
+        assertEquals(Color(0xFFE9C9A0), SkyMood.Plain.daySkyAt(1f))
+        assertEquals(Color.Transparent, SkyMood.Plain.dayHorizon)
+        // Sonnenaufgang in Caramel, Abend in Lavendel.
+        assertEquals(Day.DawnLow, SkyMood(dawn = 1f).dayHorizon.copy(alpha = 1f))
+        assertEquals(Day.DuskLow, SkyMood(dusk = 1f).dayHorizon.copy(alpha = 1f))
+    }
+
+    @Test
     fun starsOnlyInTheDeepNight() {
         val tomorrow = at(6, 30).plusSeconds(24 * 3600L)
         assertEquals(1f, SkyMood.at(at(23, 30), zone, tomorrow, tomorrow.plusSeconds(1800)).night)

@@ -45,7 +45,7 @@ final class PrivateSettingChanges: @unchecked Sendable {
     func bump() { revision &+= 1 }
 }
 
-/// Wie `@AppStorage`, aber in ``SettingsFile/phone`` (nicht in der iCloud-Sicherung). Für Text, Zahl und
+/// Wie `@AppStorage`, aber in ``SettingsFile/phone`` (nicht in der iCloud-Sicherung). Für Text, Zahl, Wahrheitswert und
 /// Aufzählungen mit Text als Rohwert; alle Ansichten mit demselben Schlüssel bleiben gleich.
 @propertyWrapper
 struct PrivateSetting<Value>: DynamicProperty {
@@ -78,6 +78,12 @@ struct PrivateSetting<Value>: DynamicProperty {
     /// Ganze Zahl unter `key`.
     init(wrappedValue defaultValue: Value, _ key: String) where Value == Int {
         read = { SettingsFile.phone.object(forKey: key) == nil ? defaultValue : SettingsFile.phone.integer(forKey: key) }
+        write = { SettingsFile.phone.set($0, forKey: key) }
+    }
+
+    /// Wahrheitswert unter `key` (z. B. «Abends dunkel ab»).
+    init(wrappedValue defaultValue: Value, _ key: String) where Value == Bool {
+        read = { SettingsFile.phone.object(forKey: key) == nil ? defaultValue : SettingsFile.phone.bool(forKey: key) }
         write = { SettingsFile.phone.set($0, forKey: key) }
     }
 

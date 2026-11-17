@@ -33,7 +33,7 @@ class FindingTextTest {
     @Test
     fun everyKindHasItsText() {
         assertEquals(
-            "On average you took 1 h 8 min to fall asleep. Tip: if you’re still awake after 20 minutes, get up and go back to bed only " +
+            "On average you took 1\u00a0h\u00a08\u00a0min to fall asleep. Tip: if you’re still awake after 20 minutes, get up and go back to bed only " +
                 "when you feel sleepy. If this lasts for weeks, talk to your doctor.",
             findingText(context, Finding(FindingKind.LONG_LATENCY, 68)),
         )
@@ -53,7 +53,7 @@ class FindingTextTest {
             findingText(context, Finding(FindingKind.LOW_DEEP, 12)),
         )
         assertEquals(
-            "Nights under 6 hours: 3 of 7. Tip: work out your bedtime from your wake-up time and stick to it.",
+            "Nights under 6 hours: 3 of 7. Tip: work out your bedtime from your target time and stick to it.",
             findingText(context, Finding(FindingKind.SHORT_NIGHTS, 3)),
         )
         assertEquals(
@@ -61,11 +61,11 @@ class FindingTextTest {
             findingText(context, Finding(FindingKind.MUCH_AWAKE, 21)),
         )
         assertEquals(
-            "Your bedtime varied by up to 2 h 54 min. Tip: go to bed at about the same time every day, weekends included.",
+            "Your bedtime varied by up to 2\u00a0h\u00a054\u00a0min. Tip: go to bed at about the same time every day, weekends included.",
             findingText(context, Finding(FindingKind.BEDTIME_VARIES, 174)),
         )
         assertEquals(
-            "On weekends your sleep was shifted by 1 h 31 min compared with weekdays. Tip: keep the same sleep times on weekends too.",
+            "On weekends your sleep was shifted by 1\u00a0h\u00a031\u00a0min compared with weekdays. Tip: keep the same sleep times on weekends too.",
             findingText(context, Finding(FindingKind.SOCIAL_JETLAG, 91)),
         )
         assertEquals("Deep sleep 11 % of your sleep · week before 13 %", weeklyDeepLine(context, 11 to 13))

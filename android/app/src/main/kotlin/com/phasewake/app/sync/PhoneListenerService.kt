@@ -107,8 +107,14 @@ class PhoneListenerService : WearableListenerService() {
                     app.backup.reschedule()
                 }
             }
-            DataLayer.PATH_MSG_NIGHT -> runCatching { Codec.decodeNight(body) }.getOrNull()?.let { storeNight(it) }
-            DataLayer.PATH_MSG_RECORDING -> NightRecording.decode(body)?.takeIf { it.finished }?.let { storeRecording(it) }
+            // Unlesbar (z. B. Versionen von Handy und Uhr gemischt): bestätigt und verworfen, aber mit Zeile im Protokoll
+            // (Audit CODE-02), damit der Verlust im Diagnose-Bericht zu finden ist. Nur die Länge, kein Inhalt.
+            DataLayer.PATH_MSG_NIGHT -> runCatching { Codec.decodeNight(body) }.getOrNull()
+                ?.let { storeNight(it) } ?: app.diag.log(DiagKind.SYNC, "night unreadable, dropped (len=${body.length})")
+            DataLayer.PATH_MSG_RECORDING -> when (val recording = NightRecording.decode(body)) {
+                null -> app.diag.log(DiagKind.SYNC, "recording unreadable, dropped (len=${body.length})")
+                else -> if (recording.finished) storeRecording(recording)
+            }
             DataLayer.PATH_MSG_RECORD_STATUS -> RecordSync.decodeStatus(body)?.let { app.recordStatus.value = it }
             // Lern-Übersicht: Die Uhr zeichnet eine Nacht nicht auf (Grund, ggf. Akku).
             DataLayer.PATH_MSG_LEARN_SKIP -> LearnSkip.decode(body)?.let { skip ->

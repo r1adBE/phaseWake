@@ -7,9 +7,6 @@ public enum Snooze {
     /// Höchstzahl Schlummern pro Weckvorgang; danach nur noch Stoppen, damit niemand den Morgen verschlummert.
     public static let maxCount = 3
 
-    /// Ob nach `count` bisherigen Schlummern noch einmal geschlummert werden darf.
-    public static func canSnooze(_ count: Int) -> Bool { count < maxCount }
-
     /// Zeitpunkt des nächsten Klingelns: `now` plus 5 Minuten.
     public static func nextRing(_ now: Date) -> Date { now.addingTimeInterval(TimeInterval(minutes * 60)) }
 }

@@ -87,6 +87,9 @@
     <string name="settings_theme_system">Sistema</string>
     <string name="settings_theme_light">Argia</string>
     <string name="settings_theme_dark">Iluna</string>
+    <string name="settings_evening_dark">Iluna arratsean</string>
+    <string name="settings_evening_dark_text">Iluna: %1$s – %2$s, Sistema edo Argia aukeratuta ere.</string>
+    <string name="settings_evening_dark_from">Iluna noiztik</string>
     <string name="settings_data">Zure datuak</string>
     <string name="settings_data_text">Dena telefonoan eta erlojuan geratzen da. Konturik, zerbitzaririk eta jarraipenik gabe. Google-ren erloju-konexiotik erlojuaren informazio teknikoa bakarrik igarotzen da, osasun-daturik gabe.</string>
     <string name="settings_export">Esportatu gauak izenik gabe</string>
@@ -97,10 +100,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT lizentzia, © r1adBE.\nManrope letra-tipoa: SIL Open Font License 1.1, © The Manrope Project Authors.\nSoinu-hautematea: MediaPipe Tasks Audio eta YAMNet eredua, Apache License 2.0, © Google LLC.\nSoinuak: grabazio libreak (CC0), opengameart.org-etik</string>
     <string name="settings_version">%1$s bertsioa</string>
 
-    <string name="duration_minutes">%1$d min</string>
-    <string name="duration_hours">%1$d h</string>
-    <string name="duration_hours_half">%1$d½ h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_half">%1$d½ h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Lo-faseak Health Connect-etik</string>
     <string name="health_rationale">Phase Wake-k zure osasun-aplikazioak (adibidez, Samsung Health) gordetzen dituen lo-datuak irakur ditzake. Zure historian erakusten dira, baita Phase Wake-k esnatu zaituen gauekin alderatzeko ere. Phase Wake-k irakurri bakarrik egiten du, ez du inoiz idazten, eta ezer ez da telefonotik ateratzen.</string>
     <string name="health_connect">Alderatu osasun-datuekin</string>
@@ -282,7 +285,7 @@
         <item quantity="other">Lo-helburua lortuta: %1$d / %2$d gau</item>
     </plurals>
     <string name="bedtime_title">Oheratzeko gogorarazpena</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">Oheratzeko ordua baino %1$d min lehenago gogorarazten dizu: alarmaren ordua ken lo-helburua.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">Oheratzeko ordua baino %1$d min lehenago gogorarazten dizu: helburu-ordua ken lo-helburua.</string>
     <string name="bedtime_notification">Oheratzeko ordua: %1$s – horrela %2$s izango dituzu %3$s-ko alarmaren aurretik.</string>
     <string name="channel_reminders">Gogorarazpenak</string>
     <string name="sounds_title">Lo egiteko soinuak</string>
@@ -557,7 +560,7 @@
     <string name="learned_latency">Loak hartzea: %1$s inguru</string>
     <string name="learned_latency_none">Loak hartzea: neurketa gutxiegi</string>
     <string name="bedtime_advice">Joan gaur ohera %1$s eta %2$s artean</string>
-    <string name="bedtime_advice_hint">Zure alarma, lo-helburua eta loak hartzeko behar duzun denboraren arabera.</string>
+    <string name="bedtime_advice_hint">Zure helburu-ordua, lo-helburua eta loak hartzeko behar duzun denboraren arabera.</string>
     <string name="learn_restart">Ikasi berriro</string>
     <string name="learn_restart_text">Phase Wakek berriro %1$d gau neurtzen ditu. Ordura arte, orain arte egokitutako balioak erabiltzen dira.</string>
     <string name="record_end_wake">Esnatzean amaitua</string>
@@ -639,7 +642,7 @@
     <string name="finding_title">Zure azken 7 gauetan nabarmendua</string>
     <string name="finding_hide">Ezkutatu</string>
     <string name="finding_latency">Batez beste %1$s behar izan zenituen lokartzeko. Aholkua: 20 minuturen ondoren oraindik esna bazaude, altxatu eta itzuli ohera logurak hartzen zaituenean bakarrik. Asteetan horrela jarraitzen badu, hitz egin zure medikuarekin.</string>
-    <string name="finding_short_nights">6 ordutik beherako gauak: 7tik %1$d. Aholkua: kalkulatu oheratzeko ordua esnatzeko orditik atzera eta bete ezazu.</string>
+    <string name="finding_short_nights">6 ordutik beherako gauak: 7tik %1$d. Aholkua: kalkulatu oheratzeko ordua helburu-orditik atzera eta bete ezazu.</string>
     <string name="finding_low_deep">Lo sakona zure loaren %% %1$d inguru besterik ez zen izan (normalean %% %2$d–%3$d).</string>
     <string name="finding_deep_short">6 ordutik beherako gauetan nabarmen txikiagoa izan zen: %% %1$d, %% %2$d izan beharrean.</string>
     <string name="finding_deep_late">Berandu oheratu zinen gauetan nabarmen txikiagoa izan zen: %% %1$d, %% %2$d izan beharrean.</string>

@@ -1,8 +1,8 @@
 import PhaseWakeCore
 import SwiftUI
 
-/// Startseite: Kopf im Nachthimmel mit dem nächsten Fenster, letzte Nacht, alle Wecker.
-/// Dunkel ist die ganze Seite Nachthimmel, hell nur der Kopf.
+/// Startseite: Kopf im Himmel mit dem nächsten Fenster, letzte Nacht, alle Wecker.
+/// Dunkel ist die ganze Seite Nachthimmel, hell trägt der Kopf den Tageshimmel «Creme Caramel».
 struct HomeView: View {
     @Environment(PhoneModel.self) private var model
     @Environment(\.colorScheme) private var scheme
@@ -39,6 +39,24 @@ struct HomeView: View {
                                 }
                                 BackupSnoozeCard(now: context.date)
                                 TransientStatusCard()
+                                // «Deine Wecker» gleich nach dem Nacht-Check, vor den Abendkarten (Audit UX-01, r1AD 17.11.2026); wie Android.
+                                if !model.alarms.isEmpty {
+                                    Text(L("home_alarms"))
+                                        .font(Fonts.manrope(16, .semibold, relativeTo: .headline))
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .padding(.horizontal, 20)
+                                        .padding(.top, 8)
+                                    ForEach(model.alarms) { alarm in
+                                        AlarmRow(alarm: alarm) { editing = alarm }
+                                    }
+                                    if !model.canAddAlarm {
+                                        Text(L("home_max_alarms", PhoneModel.maxAlarms))
+                                            .font(Fonts.manrope(12, relativeTo: .caption))
+                                            .foregroundStyle(Brand.tertiaryText(scheme))
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                            .padding(.horizontal, 20)
+                                    }
+                                }
                                 if model.transient.nap == nil { NapCard() }
                                 if let plan, model.alarms.first(where: { $0.id == plan.alarmId })?.sunrise != .off {
                                     NightstandButton { nightstand = true }
@@ -59,7 +77,8 @@ struct HomeView: View {
                                 SoundsButton { sounds = true }
                                 LearningHomeCard()
                                 RecordCard()
-                                FindingHomeCard() // höchstens eine Auffälligkeit, die wichtigste (wie Android)
+                                // Höchstens eine Auffälligkeit, die wichtigste; neben der Bettzeit-Karte ohne denselben Tipp (UX-04, wie Android).
+                                FindingHomeCard(bedtimeAdvice: evening && BedtimeAdviceCard.range(model: model, values: PhoneLearning.shared.state.values, now: context.date) != nil)
                                 if !morningFirst { lastNight(now: context.date, morningFirst: false) }
                                 // Morgenbericht ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): nur die Geräusche – nicht während der Aufnahme und nicht für die Nacht, die gerade läuft.
                                 let recorded = Set(model.nights.last.map { [SleepNotes.nightDate(of: $0, calendar: .gregorianLocal)] } ?? [])
@@ -72,23 +91,6 @@ struct HomeView: View {
                                     }
                                     .card()
                                 }
-                            }
-                        }
-                        if !model.alarms.isEmpty {
-                            Text(L("home_alarms"))
-                                .font(Fonts.manrope(16, .semibold, relativeTo: .headline))
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.horizontal, 20)
-                                .padding(.top, 8)
-                            ForEach(model.alarms) { alarm in
-                                AlarmRow(alarm: alarm) { editing = alarm }
-                            }
-                            if !model.canAddAlarm {
-                                Text(L("home_max_alarms", PhoneModel.maxAlarms))
-                                    .font(Fonts.manrope(12, relativeTo: .caption))
-                                    .foregroundStyle(Brand.tertiaryText(scheme))
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding(.horizontal, 20)
                             }
                         }
                     }
@@ -167,41 +169,43 @@ struct HomeView: View {
 
     private func header(now: Date) -> some View {
         let plan = model.nextPlan(now: now)
+        // Dunkel im Nachthimmel helle Schrift, hell im Tageshimmel dunkle (wie Android `skyInk`).
+        let ink = SkyInk.of(scheme)
         return VStack(alignment: .leading, spacing: 2) {
             HStack(spacing: 10) {
-                LogoMark().frame(width: 48, height: 48)
+                LogoMark(moon: ink.moon, wave: ink.wave).frame(width: 48, height: 48)
                 Text("Phase Wake").font(Fonts.manrope(20, .bold, relativeTo: .title3))
             }
             .padding(.bottom, 26)
-            Text(L(greetingKey(now))).font(Fonts.manrope(15, .semibold, relativeTo: .subheadline)).foregroundStyle(Brand.muted)
+            Text(L(greetingKey(now))).font(Fonts.manrope(15, .semibold, relativeTo: .subheadline)).foregroundStyle(ink.muted)
             if let plan, let alarm = model.alarms.first(where: { $0.id == plan.alarmId }) {
                 // Grosser Countdown-Bogen mit dem Weckfenster darin (wie Android).
                 HeroPlan(plan: plan, alarm: alarm, now: now)
                 if let holiday = skippedHoliday(now: now) {
-                    Text(L("home_holiday_skipped", Format.shortDay(holiday))).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.muted)
+                    Text(L("home_holiday_skipped", Format.shortDay(holiday))).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(ink.muted)
                 }
             } else {
                 Text(L("home_no_alarm_title")).font(Fonts.manrope(28, .bold, relativeTo: .title))
-                Text(L("home_no_alarm_text")).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(Brand.muted)
+                Text(L("home_no_alarm_text")).font(Fonts.manrope(14, relativeTo: .subheadline)).foregroundStyle(ink.muted)
                 HeroWave(windowFraction: 0.3).frame(height: 60).padding(.vertical, 12)
                 Button { creating = true } label: {
                     Label(L("home_add_alarm"), systemImage: "plus").font(Fonts.manrope(15, .bold, relativeTo: .headline))
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(Brand.wave)
-                .foregroundStyle(Brand.nightTop)
+                .tint(ink.button)
+                .foregroundStyle(ink.onButton)
             }
         }
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isHeader)
-        .foregroundStyle(Brand.moon)
+        .foregroundStyle(ink.text)
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 22)
         .padding(.top, 70)
         .padding(.bottom, 24)
         .background {
             if scheme != .dark {
-                NightSky(mood: .at(now: now, plan: plan)).clipShape(UnevenRoundedRectangle(bottomLeadingRadius: 32, bottomTrailingRadius: 32))
+                DaySky(mood: .at(now: now, plan: plan)).clipShape(UnevenRoundedRectangle(bottomLeadingRadius: 32, bottomTrailingRadius: 32))
             }
         }
         .onTapGesture { if let plan { editing = model.alarms.first { $0.id == plan.alarmId } } }

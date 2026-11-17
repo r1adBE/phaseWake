@@ -86,6 +86,9 @@
     <string name="settings_theme_system">സിസ്റ്റം</string>
     <string name="settings_theme_light">ലൈറ്റ്</string>
     <string name="settings_theme_dark">ഡാർക്ക്</string>
+    <string name="settings_evening_dark">വൈകുന്നേരം ഡാർക്ക്</string>
+    <string name="settings_evening_dark_text">%1$s – %2$s ഡാർക്ക്, സിസ്റ്റം അല്ലെങ്കിൽ ലൈറ്റ് ആണെങ്കിലും.</string>
+    <string name="settings_evening_dark_from">ഡാർക്ക് തുടങ്ങുന്നത്</string>
     <string name="settings_data">നിങ്ങളുടെ ഡാറ്റ</string>
     <string name="settings_data_text">എല്ലാം നിങ്ങളുടെ ഫോണിലും വാച്ചിലും തന്നെ. അക്കൗണ്ടില്ല, സെർവറില്ല, ട്രാക്കിങ്ങില്ല. Google-ന്റെ വാച്ച് കണക്ഷനിലൂടെ വാച്ചിന്റെ സാങ്കേതിക വിവരങ്ങൾ മാത്രമേ പോകൂ, ആരോഗ്യ ഡാറ്റ ഇല്ലാതെ.</string>
     <string name="settings_export">രാത്രികൾ പേരില്ലാതെ എക്‌സ്‌പോർട്ട് ചെയ്യുക</string>
@@ -96,10 +99,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT ലൈസൻസ്, © r1adBE.\nManrope ഫോണ്ട്: SIL Open Font License 1.1, © The Manrope Project Authors.\nശബ്ദം തിരിച്ചറിയൽ: MediaPipe Tasks Audio, YAMNet മോഡൽ, Apache License 2.0, © Google LLC.\nശബ്ദങ്ങൾ: opengameart.org-ൽ നിന്നുള്ള സൗജന്യ റെക്കോർഡിങ്ങുകൾ (CC0)</string>
     <string name="settings_version">പതിപ്പ് %1$s</string>
 
-    <string name="duration_minutes">%1$d മി.</string>
-    <string name="duration_hours">%1$d മ.</string>
-    <string name="duration_hours_half">%1$d½ മ.</string>
-    <string name="duration_hours_minutes">%1$d മ. %2$d മി.</string>
+    <string name="duration_minutes">%1$d മി.</string>
+    <string name="duration_hours">%1$d മ.</string>
+    <string name="duration_hours_half">%1$d½ മ.</string>
+    <string name="duration_hours_minutes">%1$d മ. %2$d മി.</string>
     <string name="health_title">Health Connect-ൽ നിന്നുള്ള ഉറക്ക ഘട്ടങ്ങൾ</string>
     <string name="health_rationale">നിങ്ങളുടെ ആരോഗ്യ ആപ്പ് (ഉദാഹരണത്തിന് Samsung Health) സൂക്ഷിക്കുന്ന ഉറക്ക ഡാറ്റ Phase Wake-ന് വായിക്കാം. അത് നിങ്ങളുടെ ചരിത്രത്തിൽ കാണിക്കുന്നു, Phase Wake നിങ്ങളെ ഉണർത്തിയ രാത്രികളുമായി താരതമ്യം ചെയ്യാനും. Phase Wake വായിക്കുക മാത്രം ചെയ്യും, ഒരിക്കലും എഴുതില്ല, ഒന്നും ഫോണിൽ നിന്ന് പുറത്തുപോകില്ല.</string>
     <string name="health_connect">ആരോഗ്യ ഡാറ്റയുമായി താരതമ്യം ചെയ്യുക</string>
@@ -281,7 +284,7 @@
         <item quantity="other">ഉറക്ക ലക്ഷ്യം നേടിയത്: %2$d രാത്രികളിൽ %1$d</item>
     </plurals>
     <string name="bedtime_title">ഉറക്കസമയ ഓർമ്മപ്പെടുത്തൽ</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">ഉറക്കസമയത്തിന് %1$d മി. മുമ്പ് ഓർമ്മിപ്പിക്കും: അലാറം സമയത്തിൽ നിന്ന് ഉറക്ക ലക്ഷ്യം കുറച്ചത്.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">ഉറക്കസമയത്തിന് %1$d മി. മുമ്പ് ഓർമ്മിപ്പിക്കും: ലക്ഷ്യ സമയത്തിൽ നിന്ന് ഉറക്ക ലക്ഷ്യം കുറച്ചത്.</string>
     <string name="bedtime_notification">%1$s-ന് ഉറക്കസമയം – അങ്ങനെ %3$s-ലെ അലാറത്തിന് മുമ്പ് %2$s ഉറക്കം കിട്ടും.</string>
     <string name="channel_reminders">ഓർമ്മപ്പെടുത്തലുകൾ</string>
     <string name="sounds_title">ഉറക്ക ശബ്ദങ്ങൾ</string>
@@ -556,7 +559,7 @@
     <string name="learned_latency">ഉറങ്ങിപ്പോകൽ: ഏകദേശം %1$s</string>
     <string name="learned_latency_none">ഉറങ്ങിപ്പോകൽ: അളവുകൾ വളരെ കുറവ്</string>
     <string name="bedtime_advice">ഇന്ന് %1$s നും %2$s നും ഇടയിൽ ഉറങ്ങാൻ കിടക്കൂ</string>
-    <string name="bedtime_advice_hint">നിന്റെ അലാറം, ഉറക്ക ലക്ഷ്യം, ഉറങ്ങാൻ എടുക്കുന്ന സമയം എന്നിവയിൽ നിന്ന്.</string>
+    <string name="bedtime_advice_hint">നിന്റെ ലക്ഷ്യ സമയം, ഉറക്ക ലക്ഷ്യം, ഉറങ്ങാൻ എടുക്കുന്ന സമയം എന്നിവയിൽ നിന്ന്.</string>
     <string name="learn_restart">വീണ്ടും പഠിക്കുക</string>
     <string name="learn_restart_text">Phase Wake വീണ്ടും %1$d രാത്രി അളക്കുന്നു. അതുവരെ ഇതുവരെ ക്രമീകരിച്ച മൂല്യങ്ങൾ തന്നെ ഉപയോഗിക്കും.</string>
     <string name="record_end_wake">ഉണർത്തുമ്പോൾ അവസാനിച്ചു</string>
@@ -638,7 +641,7 @@
     <string name="finding_title">നിന്റെ കഴിഞ്ഞ 7 രാത്രികളിൽ ശ്രദ്ധയിൽപ്പെട്ടത്</string>
     <string name="finding_hide">മറയ്ക്കുക</string>
     <string name="finding_latency">ഉറങ്ങാൻ നിനക്ക് ശരാശരി %1$s വേണ്ടിവന്നു. നുറുങ്ങ്: 20 മിനിറ്റ് കഴിഞ്ഞും ഉണർന്നിരിക്കുന്നുവെങ്കിൽ എഴുന്നേൽക്കുക, ഉറക്കം വരുമ്പോൾ മാത്രം കിടക്കയിലേക്ക് മടങ്ങുക. ഇത് ആഴ്ചകളോളം തുടർന്നാൽ നിന്റെ ഡോക്ടറുമായി സംസാരിക്കുക.</string>
-    <string name="finding_short_nights">6 മണിക്കൂറിൽ കുറഞ്ഞ രാത്രികൾ: 7-ൽ %1$d. നുറുങ്ങ്: ഉണരുന്ന സമയത്തിൽ നിന്ന് പിന്നോട്ട് ഉറങ്ങുന്ന സമയം കണക്കാക്കി അത് പാലിക്കുക.</string>
+    <string name="finding_short_nights">6 മണിക്കൂറിൽ കുറഞ്ഞ രാത്രികൾ: 7-ൽ %1$d. നുറുങ്ങ്: ലക്ഷ്യ സമയത്തിൽ നിന്ന് പിന്നോട്ട് ഉറങ്ങുന്ന സമയം കണക്കാക്കി അത് പാലിക്കുക.</string>
     <string name="finding_low_deep">ഗാഢനിദ്ര നിന്റെ ഉറക്കത്തിന്റെ ഏകദേശം %1$d %% മാത്രമായിരുന്നു (സാധാരണ %2$d–%3$d %%).</string>
     <string name="finding_deep_short">6 മണിക്കൂറിൽ കുറഞ്ഞ രാത്രികളിൽ അത് വ്യക്തമായി കുറവായിരുന്നു: %2$d %%-ന് പകരം %1$d %%.</string>
     <string name="finding_deep_late">നീ വൈകി ഉറങ്ങിയ രാത്രികളിൽ അത് വ്യക്തമായി കുറവായിരുന്നു: %2$d %%-ന് പകരം %1$d %%.</string>

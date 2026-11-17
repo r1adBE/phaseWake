@@ -10,7 +10,6 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
@@ -64,6 +63,7 @@ import com.phasewake.app.ui.history.Export
 import com.phasewake.app.ui.history.ExportDialog
 import com.phasewake.app.ui.home.Check
 import com.phasewake.app.ui.home.MAX_ALARMS
+import com.phasewake.app.ui.theme.EveningDarkTicker
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ui.theme.ThemeMode
 import com.phasewake.app.core.TestRuns
@@ -76,12 +76,18 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
+        // Audit SEC-03: Die App-Übersicht zeigt kein Vorschaubild mit Schlafdaten (ab Android 13). Kein FLAG_SECURE:
+        // Bildschirmfotos und Bildschirmleser bleiben möglich.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) setRecentsScreenshotEnabled(false)
         val app = phoneApp
         // Aus dem Wochenrückblick geöffnet: gleich der Verlauf.
         val openHistory = intent?.getStringExtra(EXTRA_OPEN) == OPEN_HISTORY
         setContent {
             val mode by app.settings.themeMode.collectAsStateWithLifecycle(initialValue = ThemeMode.SYSTEM)
-            PhaseWakeTheme(mode) { PhaseWakeNav(mode, openHistory) }
+            // «Abends dunkel ab»: wechselt genau zur Uhrzeit (Ticker zur nächsten Grenze), nur im Vordergrund gesammelt.
+            val evening by remember { EveningDarkTicker.flow(app.settings.eveningDark) }
+                .collectAsStateWithLifecycle(initialValue = EveningDarkTicker.initial())
+            PhaseWakeTheme(mode, evening) { PhaseWakeNav(mode, openHistory) }
         }
     }
 
@@ -120,17 +126,20 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
     val data = collectAppData(app)
 
     // Beim Fortsetzen hochgezählt: Nacht-Check und Aufnahme (checkRun), Health Connect (healthCheck) neu prüfen.
+    // healthGrant: nach jeder Erteilung der Berechtigung, dann liest Health Connect gleich (sonst höchstens alle 5 Min).
     var checkRun by remember { mutableIntStateOf(0) }
     var healthCheck by remember { mutableIntStateOf(0) }
+    var healthGrant by remember { mutableIntStateOf(0) }
     LifecycleResumeEffect(Unit) {
         Format.update(context)
         checkRun++
         healthCheck++
         onPauseOrDispose { }
     }
-    // Nächte aus Health Connect sind ein Spiegel der Quelle: auch bei jedem Öffnen des Verlaufs neu lesen.
+    // Nächte aus Health Connect sind ein Spiegel der Quelle: auch beim Öffnen des Verlaufs neu prüfen (Audit PERF-05:
+    // gelesen wird höchstens alle 5 Min).
     LaunchedEffect(route) { if (route == Routes.HISTORY) healthCheck++ }
-    val insights = rememberInsights(app, data, healthCheck)
+    val insights = rememberInsights(app, data, healthCheck, healthGrant)
     val soundRec = rememberSoundRec(app, data, checkRun)
     val nightCheck = rememberNightCheck(app, checkRun)
 
@@ -143,6 +152,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
     // Probewecker über einem wartenden Powernap: zuerst fragen (B-12).
     var confirmTest by rememberSaveable { mutableStateOf(false) }
     val healthPermission = rememberLauncherForActivityResult(PermissionController.createRequestPermissionResultContract()) {
+        healthGrant++
         healthCheck++
     }
     // Als Begleit-App der Uhr verbinden; danach den Nacht-Check neu prüfen.
@@ -203,12 +213,13 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
     LaunchedEffect(ringing) {
         if (ringing is PhoneRingService.State.Ringing) context.startActivity(Intent(context, PhoneRingActivity::class.java))
     }
-    // Kopfbereich der Startseite ist immer Nachthimmel: dort helle Statusleisten-Symbole.
+    // Hell liegt unter der Statusleiste überall der helle Tageshimmel oder die Creme-Fläche: dunkle Symbole; dunkel (auch
+    // abends dunkel) helle.
     val view = LocalView.current
-    val lightBars = themeMode == ThemeMode.LIGHT || (themeMode == ThemeMode.SYSTEM && !isSystemInDarkTheme())
+    val lightBars = !PhaseWakeTheme.isDark
     SideEffect {
         val window = (view.context as? android.app.Activity)?.window ?: return@SideEffect
-        WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = lightBars && route != Routes.ALARMS
+        WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = lightBars
     }
     // Wer «Animationen entfernen» eingeschaltet hat, bekommt keine Start-Animation.
     var intro by rememberSaveable { mutableStateOf(animationsEnabled(context)) }

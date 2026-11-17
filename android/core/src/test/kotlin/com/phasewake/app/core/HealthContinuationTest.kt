@@ -71,7 +71,7 @@ class HealthContinuationTest {
         assertEquals(listOf(SleepSummary(t("2026-11-12T02:11:00Z"), sleptOn.end, 438)), sleeps)
         assertEquals(525, java.time.Duration.between(sleeps.single().start, sleeps.single().end).toMinutes())
         assertEquals(listOf(nov11 to 438L), SleepGoal.nightsOf(sleeps, zone))
-        assertEquals(nov11 to 438L, ChartData.durations(sleeps, zone, nov11.plusDays(1), goalMinutes = 480)!!.bars.last().let { it.date to it.asleepMinutes })
+        assertEquals(mapOf(nov11 to 438L), NoteEffect.asleepByNight(sleeps, zone))
         val bar = ChartData.sleepBars(sleeps, zone, nov11.plusDays(1), nextTarget = null, goalMinutes = 480)!!.bars.last()
         assertEquals(Regularity.minutesFromNoon(sleptOn.end, zone).toInt(), bar.endMinute)
         // Phasen für eigene Nächte: beide Teile, das Nickerchen nicht.

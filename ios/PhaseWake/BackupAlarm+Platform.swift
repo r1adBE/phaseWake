@@ -25,19 +25,73 @@ extension BackupAlarm {
     @discardableResult
     func schedule(id: UUID, at date: Date, fromWatch: Bool = false, snoozesLeft: Int = 0, tone: WakeTone? = nil,
                   chain: Int = NotificationChain.count) async -> Placement {
+        await platform.place(id: id, at: date, fromWatch: fromWatch, snoozesLeft: snoozesLeft, tone: tone, chain: chain)
+    }
+
+    /// Verwirft einen gestellten iPhone-Alarm (AlarmKit und Mitteilung, je nachdem, was gestellt wurde). Mit AlarmKit
+    /// schickt sein Stopp-Intent danach nichts an die Uhr (``stoppedByApp``).
+    func cancelAlarm(_ id: UUID) {
+        if platform.alarmKit { stoppedByApp.insert(id) }
+        platform.cancel(id)
+    }
+
+    /// Vor iOS 26: zeitkritische Mitteilung; der Stummschalter macht sie lautlos (Nacht-Check weist darauf hin).
+    /// Als Kette aus 4 Mitteilungen im Abstand von 30 s (`NotificationChain`, Kennungen «id», «id.1» … «id.3»): Wer
+    /// die erste verschläft, wird von der nächsten geweckt. Zu Kalenderzeit ohne Zeitzone (`LocalTrigger`): Sie folgt
+    /// einer Reise, auch ohne dass die App läuft. `fixed`: zum festen Zeitpunkt (`pinNotification`). `count` = nur die
+    /// ersten so vielen der Kette (`NotificationBudget`), ohne die schon wartenden `skip`. - Returns: wie viele der
+    /// Kette danach stehen (gestellte und `skip`).
+    @discardableResult
+    func scheduleNotification(id: UUID, at date: Date, tone: WakeTone? = nil, fixed: Bool = false,
+                              count: Int = NotificationChain.count, skip: Set<String> = []) async -> Int {
+        await platform.notify(id: id, at: date, tone: tone, fixed: fixed, count: count, skip: skip)
+    }
+
+    /// Vor iOS 26 beim Stopp: die Ketten (`NotificationChain`) des Mitklingel-Alarms `ringing` und jeder schon
+    /// zugestellten Sicherung dieser Nacht (`night`, `nil` = alle) ganz entfernen, wartend und zugestellt – wie ab
+    /// iOS 26 die klingelnden Alarme dieser Nacht gestoppt werden. Der Probewecker zählt, was zugestellt wurde.
+    func removeNotificationChains(ringing: UUID?, night: RingNight?) async {
+        let notes = await platform.deliveredNotificationIds()
+        let delivered = Set(notes.compactMap { UUID(uuidString: NotificationChain.baseId($0)) })
+        var ids = delivered.filter { $0 != ringing && belongs($0, to: night, unknown: false) }
+        if let ringing { ids.insert(ringing) }
+        guard !ids.isEmpty else { return }
+        for id in ids where delivered.contains(id) { host.phoneAlerted(id.uuidString) }
+        platform.removeNotifications(NotificationChain.allIds(ids.map(\.uuidString)))
+    }
+
+    /// Eine über einen Zeitzonenwechsel behaltene Sicherung (`AlarmSchedule.begunNight`) klingelt zur geplanten
+    /// absoluten Zeit. AlarmKit steht ohnehin fest (`.fixed`); eine wartende Mitteilung zu Kalenderzeit ohne Zeitzone
+    /// rutschte dagegen auf die neue Ortszeit. Sie wird durch eine zum festen Zeitpunkt ersetzt (`LocalTrigger.fixed`).
+    func pinNotification(_ entry: PlannedBackup) async {
+        let pending = await platform.pendingNotifications()
+        guard pending.contains(where: { $0.id == entry.id.uuidString && $0.calendar }) else { return }
+        await scheduleNotification(id: entry.id, at: entry.slot.fireAt, tone: WakeTone(rawValue: entry.slot.sound), fixed: true)
+    }
+}
+
+/// Das System als ``BackupPlatform``: AlarmKit ab iOS 26, sonst (oder wenn AlarmKit scheitert) zeitkritische Mitteilungen.
+@MainActor
+final class SystemBackupPlatform: BackupPlatform {
+    var alarmKit: Bool {
+        #if canImport(AlarmKit)
+        if #available(iOS 26.0, *) { return true }
+        #endif
+        return false
+    }
+
+    func place(id: UUID, at date: Date, fromWatch: Bool, snoozesLeft: Int, tone: WakeTone?, chain: Int) async -> BackupAlarm.Placement {
         #if canImport(AlarmKit)
         if #available(iOS 26.0, *) {
             return await scheduleAlarmKit(id: id, at: date, fromWatch: fromWatch, snoozesLeft: snoozesLeft, tone: tone, chain: chain)
         }
         #endif
-        return .notifications(await scheduleNotification(id: id, at: date, tone: tone, count: chain))
+        return .notifications(await notify(id: id, at: date, tone: tone, fixed: false, count: chain, skip: []))
     }
 
-    /// Verwirft einen gestellten iPhone-Alarm (AlarmKit und Mitteilung, je nachdem, was gestellt wurde).
-    func cancelAlarm(_ id: UUID) {
+    func cancel(_ id: UUID) {
         #if canImport(AlarmKit)
         if #available(iOS 26.0, *) {
-            stoppedByApp.insert(id)
             do {
                 try AlarmManager.shared.cancel(id: id)
             } catch {
@@ -52,10 +106,100 @@ extension BackupAlarm {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: NotificationChain.ids(id.uuidString))
     }
 
+    func cancelScheduled(_ id: UUID) {
+        #if canImport(AlarmKit)
+        if #available(iOS 26.0, *) { try? AlarmManager.shared.cancel(id: id) }
+        #endif
+    }
+
+    func stop(_ id: UUID) {
+        #if canImport(AlarmKit)
+        if #available(iOS 26.0, *) { try? AlarmManager.shared.stop(id: id) }
+        #endif
+    }
+
+    func alarmKitIds() async -> Set<UUID> {
+        var present = Set<UUID>()
+        #if canImport(AlarmKit)
+        if #available(iOS 26.0, *) {
+            var attempt = 1
+            while true {
+                do {
+                    let alarms = try AlarmManager.shared.alarms
+                    present.formUnion(alarms.map(\.id))
+                    if attempt > 1 { DiagStore.shared.log(.scheduled, ReadRetry.recoveredLine("alarmkit list", attempt: attempt)) }
+                    break
+                } catch {
+                    DiagStore.shared.log(.error, ReadRetry.failureLine("alarmkit list", attempt: attempt, code: (error as NSError).code))
+                    guard ReadRetry.retries(after: attempt) else { break }
+                    try? await Task.sleep(for: .seconds(ReadRetry.pause))
+                    attempt += 1
+                }
+            }
+        }
+        #endif
+        return present
+    }
+
+    func scheduledAlarmKitIds() -> [UUID]? {
+        #if canImport(AlarmKit)
+        if #available(iOS 26.0, *) {
+            guard let alarms = try? AlarmManager.shared.alarms else { return nil }
+            return alarms.filter { $0.state == .scheduled }.map(\.id)
+        }
+        #endif
+        return nil
+    }
+
+    func alertingIds() -> [UUID] {
+        #if canImport(AlarmKit)
+        if #available(iOS 26.0, *) {
+            return ((try? AlarmManager.shared.alarms) ?? []).filter { $0.state == .alerting }.map(\.id)
+        }
+        #endif
+        return []
+    }
+
+    func pendingNotifications() async -> [(id: String, calendar: Bool)] {
+        await UNUserNotificationCenter.current().pendingNotificationRequests()
+            .map { (id: $0.identifier, calendar: $0.trigger is UNCalendarNotificationTrigger) }
+    }
+
+    func deliveredNotificationIds() async -> [String] {
+        await UNUserNotificationCenter.current().deliveredNotifications().map(\.request.identifier)
+    }
+
+    func removeNotifications(_ ids: [String]) {
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: ids)
+        center.removeDeliveredNotifications(withIdentifiers: ids)
+    }
+
+    func notify(id: UUID, at date: Date, tone: WakeTone?, fixed: Bool, count: Int, skip: Set<String>) async -> Int {
+        let members = Array(zip(NotificationChain.ids(id.uuidString), NotificationChain.dates(date)).prefix(max(0, count)))
+        guard members.contains(where: { !skip.contains($0.0) }) else { return members.count }
+        // «Zeitkritisch» kommt über die Berechtigung (Entitlement).
+        await NotificationLog.requestPermission("backup")
+        let content = UNMutableNotificationContent()
+        content.title = L("ring_greeting")
+        content.body = L("ring_notification_text")
+        content.sound = tone.map { UNNotificationSound(named: UNNotificationSoundName($0.fileName)) } ?? .default
+        content.interruptionLevel = .timeSensitive
+        let now = Date()
+        var placed = members.filter { skip.contains($0.0) }.count
+        for (member, at) in members where !skip.contains(member) {
+            let trigger = fixed ? LocalTrigger.fixed(at, now: now) : LocalTrigger.at(at, now: now)
+            if await NotificationLog.add(UNNotificationRequest(identifier: member, content: content, trigger: trigger), "backup") {
+                placed += 1
+            }
+        }
+        return placed
+    }
+
     #if canImport(AlarmKit)
     @available(iOS 26.0, *)
     private func scheduleAlarmKit(id: UUID, at date: Date, fromWatch: Bool, snoozesLeft: Int, tone: WakeTone?,
-                                  chain: Int) async -> Placement {
+                                  chain: Int) async -> BackupAlarm.Placement {
         do {
             if AlarmManager.shared.authorizationState != .authorized {
                 _ = try await AlarmManager.shared.requestAuthorization()
@@ -98,65 +242,10 @@ extension BackupAlarm {
         } catch {
             // Erlaubnis fehlt oder AlarmKit lehnt ab: als Mitteilung (im Protokoll sichtbar), im Rahmen von `chain`.
             DiagStore.shared.log(.error, "alarmkit failed \((error as NSError).code), notification instead")
-            return .notifications(await scheduleNotification(id: id, at: date, tone: tone, count: chain))
+            return .notifications(await notify(id: id, at: date, tone: tone, fixed: false, count: chain, skip: []))
         }
     }
     #endif
-
-    /// Vor iOS 26: zeitkritische Mitteilung; der Stummschalter macht sie lautlos (Nacht-Check weist darauf hin).
-    /// Als Kette aus 4 Mitteilungen im Abstand von 30 s (`NotificationChain`, Kennungen «id», «id.1» … «id.3»): Wer
-    /// die erste verschläft, wird von der nächsten geweckt. Zu Kalenderzeit ohne Zeitzone (`LocalTrigger`): Sie folgt
-    /// einer Reise, auch ohne dass die App läuft. `fixed`: zum festen Zeitpunkt (`pinNotification`). `count` = nur die
-    /// ersten so vielen der Kette (`NotificationBudget`), ohne die schon wartenden `skip`. - Returns: wie viele der
-    /// Kette danach stehen (gestellte und `skip`).
-    @discardableResult
-    func scheduleNotification(id: UUID, at date: Date, tone: WakeTone? = nil, fixed: Bool = false,
-                              count: Int = NotificationChain.count, skip: Set<String> = []) async -> Int {
-        let members = Array(zip(NotificationChain.ids(id.uuidString), NotificationChain.dates(date)).prefix(max(0, count)))
-        guard members.contains(where: { !skip.contains($0.0) }) else { return members.count }
-        // «Zeitkritisch» kommt über die Berechtigung (Entitlement).
-        await NotificationLog.requestPermission("backup")
-        let content = UNMutableNotificationContent()
-        content.title = L("ring_greeting")
-        content.body = L("ring_notification_text")
-        content.sound = tone.map { UNNotificationSound(named: UNNotificationSoundName($0.fileName)) } ?? .default
-        content.interruptionLevel = .timeSensitive
-        let now = Date()
-        var placed = members.filter { skip.contains($0.0) }.count
-        for (member, at) in members where !skip.contains(member) {
-            let trigger = fixed ? LocalTrigger.fixed(at, now: now) : LocalTrigger.at(at, now: now)
-            if await NotificationLog.add(UNNotificationRequest(identifier: member, content: content, trigger: trigger), "backup") {
-                placed += 1
-            }
-        }
-        return placed
-    }
-
-    /// Vor iOS 26 beim Stopp: die Ketten (`NotificationChain`) des Mitklingel-Alarms `ringing` und jeder schon
-    /// zugestellten Sicherung dieser Nacht (`night`, `nil` = alle) ganz entfernen, wartend und zugestellt – wie ab
-    /// iOS 26 die klingelnden Alarme dieser Nacht gestoppt werden. Der Probewecker zählt, was zugestellt wurde.
-    func removeNotificationChains(ringing: UUID?, night: RingNight?) async {
-        let center = UNUserNotificationCenter.current()
-        let notes = await center.deliveredNotifications()
-        let delivered = Set(notes.compactMap { UUID(uuidString: NotificationChain.baseId($0.request.identifier)) })
-        var ids = delivered.filter { $0 != ringing && belongs($0, to: night, unknown: false) }
-        if let ringing { ids.insert(ringing) }
-        guard !ids.isEmpty else { return }
-        for id in ids where delivered.contains(id) { PhoneModel.shared.transient.phoneAlerted(id.uuidString) }
-        let all = NotificationChain.allIds(ids.map(\.uuidString))
-        center.removePendingNotificationRequests(withIdentifiers: all)
-        center.removeDeliveredNotifications(withIdentifiers: all)
-    }
-
-    /// Eine über einen Zeitzonenwechsel behaltene Sicherung (`AlarmSchedule.begunNight`) klingelt zur geplanten
-    /// absoluten Zeit. AlarmKit steht ohnehin fest (`.fixed`); eine wartende Mitteilung zu Kalenderzeit ohne Zeitzone
-    /// rutschte dagegen auf die neue Ortszeit. Sie wird durch eine zum festen Zeitpunkt ersetzt (`LocalTrigger.fixed`).
-    func pinNotification(_ entry: PlannedBackup) async {
-        let center = UNUserNotificationCenter.current()
-        let pending = await center.pendingNotificationRequests()
-        guard pending.contains(where: { $0.identifier == entry.id.uuidString && $0.trigger is UNCalendarNotificationTrigger }) else { return }
-        await scheduleNotification(id: entry.id, at: entry.slot.fireAt, tone: WakeTone(rawValue: entry.slot.sound), fixed: true)
-    }
 }
 
 #if canImport(AlarmKit)

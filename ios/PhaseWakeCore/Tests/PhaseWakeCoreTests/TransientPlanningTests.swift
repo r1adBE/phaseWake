@@ -38,6 +38,15 @@ final class TransientPlanningTests: XCTestCase {
         XCTAssertTrue(Transient.isActive(nap, now: target.addingTimeInterval(90 * 60)))
     }
 
+    func testLateTestIsNotConfirmed() {
+        // Die Uhr bestätigt nur, was sie noch plant (isPlannable), nicht alles, was noch gilt (isActive).
+        let test = Transient.test(base: nil, now: now, calendar: zurich, uuid: "1")
+        let late = test.plan.target.addingTimeInterval(5 * 60)
+        XCTAssertTrue(Transient.isActive(test, now: late))
+        XCTAssertFalse(Transient.isPlannable(test, now: late))
+        XCTAssertNil(Transient.choose(real: nil, transient: test, now: late))
+    }
+
     func testConflictWhileAlarmRunsOrBeforeWindow() {
         let test = Transient.test(base: nil, now: now, calendar: zurich, uuid: "1")
         XCTAssertNil(Transient.conflict(test, next: real, nightActive: false, now: now))

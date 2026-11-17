@@ -65,6 +65,17 @@ den Summen – Schattenfenster (leicht, ohne Moment, wach), Nacht ohne Referenz,
 von 60 Epochen gemessen, gelernter Ruhepuls und Kalibrierung nur aus Nächten vor der Aufzeichnung. Beide Kerne prüfen alle
 Zeilen.
 
+## Planung und Abgleich der Wecker
+
+`schedule.vectors` (Audit 17.11.2026 CODE-03): `AlarmSchedule` mit Weckern im `Codec`-Format, Zeilen `next` (`nextTarget`,
+gleich `earliestPlan`, und `skipNext`), `planned` (`inGrace`, `begunNight`) und `missed` (`missedPlan`, `earliestPlan`),
+Format im Kopf der Datei: Wochentage, Einmal-Wecker, Sommer- und Winterzeit in Zürich (29.03./25.10.2026, auch 02:30 in
+der Lücke und in der doppelten Stunde), Überspringen, Feiertage, erledigte Nächte, Nachfrist, Reisen (Tokio, New York) und
+Nachholen. `alarm-stamps.vectors`: `AlarmStamps.merge` je Wecker (Konflikte, gleiche Zeitpunkte, Löschen, alte und
+unplausible gelöschte Wecker, Gleichstand nach der Codec-Zeile, doppelte Kennung: der letzte Eintrag), jede Zeile in
+beiden Richtungen. Die Erwartungen stammen aus dem Kotlin-Kern (Stand
+17.11.2026) und sind von Hand geprüft. Beide Kerne prüfen alle Zeilen (Kotlin für `merge` in `android/shared`).
+
 ## Passwort-Regel
 
 `backup-password.vectors`: je Zeile erwartetes Ergebnis (`OK`, `TOO_SHORT`, `TRIVIAL`), Tabulator, Passwort (UTF-8, teils in NFD). Beide Kerne prüfen alle Zeilen (`BackupPassword`), Kotlin zusätzlich mit Türkisch als Gerätesprache.

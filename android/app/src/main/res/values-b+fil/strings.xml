@@ -87,6 +87,9 @@
     <string name="settings_theme_system">System</string>
     <string name="settings_theme_light">Light</string>
     <string name="settings_theme_dark">Dark</string>
+    <string name="settings_evening_dark">Dark sa gabi</string>
+    <string name="settings_evening_dark_text">Dark mula %1$s hanggang %2$s, kahit naka-System o Light.</string>
+    <string name="settings_evening_dark_from">Dark mula</string>
     <string name="settings_data">Ang data mo</string>
     <string name="settings_data_text">Nananatili ang lahat sa telepono at relo mo. Walang account, walang server, walang tracking. Teknikal na impormasyon lang tungkol sa relo ang dumadaan sa koneksyon ng relo ng Google, walang health data.</string>
     <string name="settings_export">I-export ang mga gabi nang walang pangalan</string>
@@ -97,10 +100,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT License, © r1adBE.\nFont na Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nPag-detect ng tunog: MediaPipe Tasks Audio at ang YAMNet model, Apache License 2.0, © Google LLC.\nMga tunog: libreng recording (CC0) mula sa opengameart.org</string>
     <string name="settings_version">Bersyon %1$s</string>
 
-    <string name="duration_minutes">%1$d min</string>
-    <string name="duration_hours">%1$d h</string>
-    <string name="duration_hours_half">%1$d½ h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_half">%1$d½ h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Mga yugto ng tulog mula sa Health Connect</string>
     <string name="health_rationale">Mababasa ng Phase Wake ang sleep data na sine-save ng health app mo (halimbawa, Samsung Health). Ipinapakita ito sa kasaysayan mo, pati para ikumpara sa mga gabing ginising ka ng Phase Wake. Nagbabasa lang ang Phase Wake, hindi kailanman nagsusulat, at walang lumalabas sa telepono mo.</string>
     <string name="health_connect">Ikumpara sa health data</string>
@@ -282,7 +285,7 @@
         <item quantity="other">Naabot ang layunin sa tulog: %1$d sa %2$d gabi</item>
     </plurals>
     <string name="bedtime_title">Paalala sa oras ng pagtulog</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">Pinapaalalahanan ka %1$d min bago ang oras ng pagtulog: oras ng alarm mo bawas ang layunin mo sa tulog.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">Pinapaalalahanan ka %1$d min bago ang oras ng pagtulog: target na oras mo bawas ang layunin mo sa tulog.</string>
     <string name="bedtime_notification">Oras ng pagtulog sa %1$s – sa ganoon, makakatulog ka nang %2$s bago ang alarm mo sa %3$s.</string>
     <string name="channel_reminders">Mga paalala</string>
     <string name="sounds_title">Mga tunog pampatulog</string>
@@ -557,7 +560,7 @@
     <string name="learned_latency">Pagtulog: mga %1$s</string>
     <string name="learned_latency_none">Pagtulog: kulang ang sukat</string>
     <string name="bedtime_advice">Matulog ngayong gabi sa pagitan ng %1$s at %2$s</string>
-    <string name="bedtime_advice_hint">Mula sa alarm mo, layunin sa tulog at kung gaano ka katagal makatulog.</string>
+    <string name="bedtime_advice_hint">Mula sa target na oras mo, layunin sa tulog at kung gaano ka katagal makatulog.</string>
     <string name="learn_restart">Matuto ulit</string>
     <string name="learn_restart_text">Susukat muli ang Phase Wake ng %1$d gabi. Hanggang doon, ginagamit pa rin ang mga value na naiangkop na.</string>
     <string name="record_end_wake">Natapos sa paggising</string>
@@ -639,7 +642,7 @@
     <string name="finding_title">Napansin sa huling 7 gabi mo</string>
     <string name="finding_hide">Itago</string>
     <string name="finding_latency">Sa karaniwan, %1$s bago ka nakatulog. Tip: kung gising ka pa rin pagkalipas ng 20 minuto, bumangon at bumalik lang sa kama kapag inaantok ka na. Kung ilang linggo na itong ganito, kausapin ang iyong doktor.</string>
-    <string name="finding_short_nights">Mga gabing kulang sa 6 na oras: %1$d sa 7. Tip: kalkulahin ang oras ng pagtulog mula sa oras ng paggising at sundin ito.</string>
+    <string name="finding_short_nights">Mga gabing kulang sa 6 na oras: %1$d sa 7. Tip: kalkulahin ang oras ng pagtulog mula sa target na oras at sundin ito.</string>
     <string name="finding_low_deep">Ang malalim na tulog ay mga %1$d %% lang ng iyong tulog (karaniwan %2$d–%3$d %%).</string>
     <string name="finding_deep_short">Sa mga gabing kulang sa 6 na oras, malinaw na mas mababa ito: %1$d %% sa halip na %2$d %%.</string>
     <string name="finding_deep_late">Sa mga gabing late kang natulog, malinaw na mas mababa ito: %1$d %% sa halip na %2$d %%.</string>

@@ -89,6 +89,9 @@
     <string name="settings_theme_system">Sistemos</string>
     <string name="settings_theme_light">Šviesi</string>
     <string name="settings_theme_dark">Tamsi</string>
+    <string name="settings_evening_dark">Vakare tamsi</string>
+    <string name="settings_evening_dark_text">Tamsi %1$s – %2$s, net pasirinkus Sistemos ar Šviesi.</string>
+    <string name="settings_evening_dark_from">Tamsi nuo</string>
     <string name="settings_data">Tavo duomenys</string>
     <string name="settings_data_text">Viskas lieka tavo telefone ir laikrodyje. Jokios paskyros, jokio serverio, jokio sekimo. Per Google laikrodžio ryšį perduodama tik techninė laikrodžio informacija, be sveikatos duomenų.</string>
     <string name="settings_export">Eksportuoti naktis be vardo</string>
@@ -99,10 +102,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT licencija, © r1adBE.\nŠriftas Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGarsų atpažinimas: MediaPipe Tasks Audio ir modelis YAMNet, Apache License 2.0, © Google LLC.\nGarsai: nemokami įrašai (CC0) iš opengameart.org</string>
     <string name="settings_version">Versija %1$s</string>
 
-    <string name="duration_minutes">%1$d min</string>
-    <string name="duration_hours">%1$d val.</string>
-    <string name="duration_hours_half">%1$d½ val.</string>
-    <string name="duration_hours_minutes">%1$d val. %2$d min</string>
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d val.</string>
+    <string name="duration_hours_half">%1$d½ val.</string>
+    <string name="duration_hours_minutes">%1$d val. %2$d min</string>
     <string name="health_title">Miego fazės iš Health Connect</string>
     <string name="health_rationale">Phase Wake gali nuskaityti miego duomenis, kuriuos išsaugo tavo sveikatos programėlė (pvz., Samsung Health). Jie rodomi tavo istorijoje, taip pat palyginimui su naktimis, kai tave pažadino Phase Wake. Phase Wake tik skaito, niekada nerašo, ir niekas nepalieka tavo telefono.</string>
     <string name="health_connect">Palyginti su sveikatos duomenimis</string>
@@ -296,7 +299,7 @@
         <item quantity="other">Miego tikslas pasiektas: %1$d iš %2$d naktų</item>
     </plurals>
     <string name="bedtime_title">Priminimas eiti miegoti</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">Primena %1$d min prieš miego laiką: žadintuvo laikas atėmus miego tikslą.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">Primena %1$d min prieš miego laiką: tikslinis laikas atėmus miego tikslą.</string>
     <string name="bedtime_notification">Miego laikas %1$s – taip iki žadintuvo %3$s išmiegosi %2$s.</string>
     <string name="channel_reminders">Priminimai</string>
     <string name="sounds_title">Miego garsai</string>
@@ -585,7 +588,7 @@
     <string name="learned_latency">Užmigimas: apie %1$s</string>
     <string name="learned_latency_none">Užmigimas: per mažai matavimų</string>
     <string name="bedtime_advice">Šiandien eik miegoti tarp %1$s ir %2$s</string>
-    <string name="bedtime_advice_hint">Pagal žadintuvą, miego tikslą ir tai, kiek laiko užtrunki užmigti.</string>
+    <string name="bedtime_advice_hint">Pagal tikslinį laiką, miego tikslą ir tai, kiek laiko užtrunki užmigti.</string>
     <string name="learn_restart">Mokytis iš naujo</string>
     <string name="learn_restart_text">Phase Wake vėl matuoja %1$d naktis. Iki tol galioja iki šiol pritaikytos vertės.</string>
     <string name="record_end_wake">Baigta pažadinus</string>
@@ -667,7 +670,7 @@
     <string name="finding_title">Pastebėta per paskutines 7 naktis</string>
     <string name="finding_hide">Slėpti</string>
     <string name="finding_latency">Vidutiniškai užmigti tau prireikė %1$s. Patarimas: jei po 20 minučių vis dar nemiegi, atsikelk ir grįžk į lovą tik tada, kai būsi mieguistas. Jei tai trunka savaites, pasikalbėk su savo gydytoju.</string>
-    <string name="finding_short_nights">Naktys, trumpesnės nei 6 valandos: %1$d iš 7. Patarimas: apskaičiuok ėjimo miegoti laiką nuo kėlimosi laiko ir jo laikykis.</string>
+    <string name="finding_short_nights">Naktys, trumpesnės nei 6 valandos: %1$d iš 7. Patarimas: apskaičiuok ėjimo miegoti laiką nuo tikslinio laiko ir jo laikykis.</string>
     <string name="finding_low_deep">Gilus miegas sudarė tik apie %1$d %% tavo miego (paprastai %2$d–%3$d %%).</string>
     <string name="finding_deep_short">Naktimis, trumpesnėmis nei 6 valandos, jo buvo aiškiai mažiau: %1$d %% vietoj %2$d %%.</string>
     <string name="finding_deep_late">Naktimis, kai ėjai miegoti vėlai, jo buvo aiškiai mažiau: %1$d %% vietoj %2$d %%.</string>

@@ -3,7 +3,9 @@ import PhaseWakeCore
 
 /// Diagnose-Protokoll dieses Geräts (iPhone oder Apple Watch): Ringpuffer nach `DiagLog` in einer Datei,
 /// nur lokal, nichts wird gesendet (ausser der Nutzer teilt es oder holt es aufs iPhone).
-/// Schreiben läuft auf einer eigenen seriellen Warteschlange, nie auf dem Hauptthread.
+/// Schreiben läuft auf einer eigenen seriellen Warteschlange, nie auf dem Hauptthread. Jeder Eintrag wird an die Datei
+/// angehängt; erst ab `DiagLog.maxEntries` plus ``slack`` Zeilen wird sie gekürzt und neu geschrieben (PERF-10, wie
+/// `DiagnosticsLog` auf Android).
 final class DiagStore: @unchecked Sendable {
     static let shared = DiagStore()
 
@@ -15,11 +17,20 @@ final class DiagStore: @unchecked Sendable {
     static let device = DiagDevice.phone
     #endif
 
+    /// So viele Zeilen über `DiagLog.maxEntries`, bevor gekürzt wird (seltener umschreiben, wie `SLACK` auf Android).
+    static let slack = 100
+
     private static let unlockedKey = "diagUnlocked"
     private let queue = DispatchQueue(label: "phasewake.diag")
     private let url: URL
-    /// Nur auf `queue` gelesen und geschrieben.
+    /// Einträge der Datei in ihrer Reihenfolge; `nil` = noch nicht gelesen. Nur auf `queue` gelesen und geschrieben.
     private var cache: [DiagEntry]?
+    /// Ob die Datei ohne Zeilenumbruch endet: Frühere Versionen trennten die Zeilen nur (ohne Umbruch am Ende); der
+    /// erste angehängte Eintrag beginnt dann mit einem. Nur auf `queue`.
+    private var needsBreak = false
+    /// Einträge, die noch nicht in der Datei stehen: Datei nicht lesbar (vor dem ersten Entsperren) oder Schreiben
+    /// gescheitert (Speicher voll). Der nächste Eintrag versucht es erneut. Nur auf `queue`.
+    private var pending: [DiagEntry] = []
 
     /// `directory` = Ordner des Protokolls; Standard ist der von der Sicherung ausgenommene `PrivateFiles.directory`
     /// (ein Protokoll früherer Versionen aus Application Support wird dorthin übernommen).
@@ -39,21 +50,22 @@ final class DiagStore: @unchecked Sendable {
     func log(_ kind: DiagKind, _ detail: String = "", at: Date = Date()) {
         let entry = DiagEntry(at: at, device: Self.device, kind: kind, detail: DiagLog.clean(detail))
         queue.async {
-            let list = DiagLog.trim(self.loadOnQueue() + [entry], now: at)
-            self.cache = list
-            self.writeOnQueue(list)
+            self.pending.append(entry)
+            self.flushOnQueue()
         }
     }
 
     /// Alle Einträge der letzten 7 Tage, älteste zuerst.
     func entries(now: Date = Date()) -> [DiagEntry] {
-        queue.sync { DiagLog.trim(loadOnQueue(), now: now) }
+        queue.sync { DiagLog.trim((loadOnQueue() ?? []) + pending, now: now) }
     }
 
     /// Leert das Protokoll.
     func clear() {
         queue.async {
+            self.pending = []
             self.cache = []
+            self.needsBreak = false
             do {
                 try FileManager.default.removeItem(at: self.url)
             } catch CocoaError.fileNoSuchFile {
@@ -65,17 +77,75 @@ final class DiagStore: @unchecked Sendable {
         }
     }
 
-    private func loadOnQueue() -> [DiagEntry] {
+    /// Hängt `pending` an die Datei an; über `DiagLog.maxEntries` + ``slack`` Zeilen gekürzt neu geschrieben. Datei
+    /// nicht lesbar: Die Einträge bleiben gemerkt (höchstens `DiagLog.maxEntries`), nichts wird überschrieben.
+    private func flushOnQueue() {
+        guard !pending.isEmpty else { return }
+        guard let list = loadOnQueue() else {
+            pending = Array(pending.suffix(DiagLog.maxEntries))
+            return
+        }
+        let all = list + pending
+        if all.count > DiagLog.maxEntries + Self.slack {
+            let kept = DiagLog.trim(all, now: Date())
+            guard writeOnQueue(kept) else { return }
+            cache = kept
+        } else {
+            let text = (needsBreak ? "\n" : "") + pending.map { DiagLog.encode($0) + "\n" }.joined()
+            guard appendOnQueue(text) else {
+                // Vielleicht halb geschrieben: Beim nächsten Mal die Datei neu lesen (Zeilenende prüfen).
+                cache = nil
+                return
+            }
+            cache = all
+        }
+        needsBreak = false
+        pending = []
+    }
+
+    /// Einträge der Datei (gemerkt); `nil` = Datei da, aber nicht lesbar (dann nie überschreiben). Liest beide Formate:
+    /// Zeilen mit Umbruch am Ende (ab PERF-10) und nur getrennte Zeilen (frühere Versionen).
+    private func loadOnQueue() -> [DiagEntry]? {
         if let cache { return cache }
-        let text = (try? String(contentsOf: url, encoding: .utf8)) ?? ""
+        let text: String
+        switch ProtectedFile.read(url) {
+        case .missing: text = ""
+        case .unreadable: return nil
+        case let .data(data): text = String(decoding: data, as: UTF8.self)
+        }
         let list = text.components(separatedBy: "\n").compactMap(DiagLog.decode)
+        needsBreak = !text.isEmpty && !text.hasSuffix("\n")
         cache = list
         return list
     }
 
-    private func writeOnQueue(_ list: [DiagEntry]) {
-        let text = list.map(DiagLog.encode).joined(separator: "\n")
-        // Atomar: Scheitert das Schreiben (Speicher voll), bleibt der alte Stand; das Protokoll ist nur eine Hilfe.
-        try? Data(text.utf8).write(to: url, options: .atomic)
+    /// Hängt `text` an (legt die Datei an, falls sie fehlt). - Returns: ob es geklappt hat.
+    private func appendOnQueue(_ text: String) -> Bool {
+        do {
+            guard FileManager.default.fileExists(atPath: url.path) else {
+                try Data(text.utf8).write(to: url, options: .atomic)
+                return true
+            }
+            let handle = try FileHandle(forWritingTo: url)
+            defer { try? handle.close() }
+            _ = try handle.seekToEnd()
+            try handle.write(contentsOf: Data(text.utf8))
+            return true
+        } catch {
+            // Speicher voll oder nicht beschreibbar: Das Protokoll ist nur eine Hilfe, der Wecker läuft weiter.
+            return false
+        }
+    }
+
+    /// Schreibt `list` neu, je Eintrag eine Zeile mit Umbruch. Atomar: Scheitert das Schreiben (Speicher voll), bleibt
+    /// der alte Stand. - Returns: ob es geklappt hat.
+    private func writeOnQueue(_ list: [DiagEntry]) -> Bool {
+        let text = list.map { DiagLog.encode($0) + "\n" }.joined()
+        do {
+            try Data(text.utf8).write(to: url, options: .atomic)
+            return true
+        } catch {
+            return false
+        }
     }
 }

@@ -31,25 +31,6 @@ data class SleepBars(
     val regularCounted: Int,
 )
 
-/** Schlafdauer eines Nachtdatums; `null` ohne Daten. */
-data class DurationBar(val date: LocalDate, val asleepMinutes: Long?, val reached: Boolean)
-
-/** Schlafdauer pro Nacht, älteste zuerst. */
-data class Durations(
-    /** Je Nachtdatum ein Balken, älteste zuerst. */
-    val bars: List<DurationBar>,
-    /** Schlafziel in Minuten ([SleepGoal]), für die Ziellinie. */
-    val goalMinutes: Int,
-    /** Durchschnitt der Nächte mit Daten (ganze Minuten, abgerundet). */
-    val averageMinutes: Long,
-    /** Nächte mit erreichtem Schlafziel (von [counted] Nächten mit Daten). */
-    val reached: Int,
-    /** Nächte mit Daten (Nenner zu [reached]). */
-    val counted: Int,
-    /** Höhe der Skala: das Grössere von Ziel und längster Nacht. */
-    val scaleMinutes: Long,
-)
-
 /** Wodurch geweckt wurde, für Farbe und Form des Punkts. */
 enum class WakeKind { LIGHT, AWAKE, TARGET, LATE }
 
@@ -204,32 +185,6 @@ object ChartData {
         val axisEnd = maxOf(AXIS_END, (ends.max() + 59) / 60 * 60).coerceAtMost(axisStart + 24 * 60)
         val (regular, counted) = Regularity.count(Regularity.bedtimesOf(sleeps, zone), zone, until = last)
         return SleepBars(bars, axisStart, axisEnd, bedtime, regular, counted)
-    }
-
-    /** Schlafdauer der [nights] Nachtdaten bis [lastDate] (je Nachtdatum die längste Nacht). */
-    fun durations(
-        sleeps: List<SleepSummary>,
-        zone: ZoneId,
-        today: LocalDate,
-        goalMinutes: Int,
-        nights: Int = SHORT_NIGHTS,
-    ): Durations? {
-        val asleep = NoteEffect.asleepByNight(sleeps, zone)
-        val last = lastDate(asleep.keys, today)
-        val bars = range(last, nights).map { date ->
-            val minutes = asleep[date]
-            DurationBar(date, minutes, minutes != null && SleepGoal.reached(minutes, goalMinutes))
-        }
-        val values = bars.mapNotNull { it.asleepMinutes }
-        if (values.isEmpty()) return null
-        return Durations(
-            bars = bars,
-            goalMinutes = goalMinutes,
-            averageMinutes = values.sum() / values.size,
-            reached = bars.count { it.reached },
-            counted = values.size,
-            scaleMinutes = maxOf(goalMinutes.toLong(), values.max()),
-        )
     }
 
     /** Weckmomente der jüngsten [count] Uhr-Nächte (nach Weckzeit). */

@@ -50,8 +50,8 @@
     <string name="good_night_cancel">ਸ਼ੁਭ ਰਾਤ ਰੱਦ ਕਰੋ</string>
     <string name="dnd_title">ਅਲਾਰਮ ਰੋਕੇ ਗਏ</string>
     <string name="dnd_text">“ਪਰੇਸ਼ਾਨ ਨਾ ਕਰੋ” ਵਿੱਚ ਅਲਾਰਮਾਂ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ।</string>
-    <string name="duration_hours">%1$d ਘੰ.</string>
-    <string name="duration_hours_minutes">%1$d ਘੰ. %2$d ਮਿੰ.</string>
+    <string name="duration_hours">%1$d ਘੰ.</string>
+    <string name="duration_hours_minutes">%1$d ਘੰ. %2$d ਮਿੰ.</string>
     <string name="home_last_night">ਪਿਛਲੀ ਰਾਤ</string>
     <string name="notification_open">ਖੋਲ੍ਹੋ</string>
     <string name="home_good_night_too_far">ਅਲਾਰਮ ਤੋਂ 16 ਘੰ. ਪਹਿਲਾਂ ਤੋਂ ਉਪਲਬਧ</string>

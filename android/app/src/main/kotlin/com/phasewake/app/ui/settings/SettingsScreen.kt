@@ -60,6 +60,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
 import java.time.Duration
 import kotlin.math.roundToInt
+import com.phasewake.app.ui.theme.EveningDarkSetting
 import com.phasewake.app.ui.theme.ThemeMode
 
 /** Einstellungen: Darstellung, Schlafziel und Bettzeit-Erinnerung, eigene Notizen, Daten, Über. */
@@ -69,6 +70,10 @@ fun SettingsScreen(
     version: String,
     contentPadding: PaddingValues,
     onThemeMode: (ThemeMode) -> Unit,
+    /** «Abends dunkel ab» (Standard an, ab 18:00). */
+    eveningDark: EveningDarkSetting = EveningDarkSetting(),
+    onEveningDark: (Boolean) -> Unit = {},
+    onEveningDarkFrom: (Int) -> Unit = {},
     onExport: () -> Unit,
     /** Ohne Nächte gibt es nichts zu exportieren (nur eine Kopfzeile): dann ausgegraut. */
     canExport: Boolean = true,
@@ -125,6 +130,8 @@ fun SettingsScreen(
                     ) { Text(stringResource(label)) }
                 }
             }
+            // Abends dunkel: nur bei «System» und «Hell» wirksam (Dunkel bleibt dunkel).
+            if (themeMode != ThemeMode.DARK) EveningDarkRows(eveningDark, onEveningDark, onEveningDarkFrom)
         }
 
         Group(stringResource(R.string.goal_title)) {

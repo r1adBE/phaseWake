@@ -13,7 +13,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.unit.dp
-import com.phasewake.app.ui.components.Night
+import com.phasewake.app.ui.components.SkyInk
 import com.phasewake.app.ui.components.rememberReveal
 import java.time.Duration
 import java.time.Instant
@@ -24,12 +24,13 @@ import kotlin.math.sin
 /**
  * Countdown zum nächsten Wecker als grosser Bogen über dem Weckfenster (wie eine Sonnenbahn): Der Bogen steht für die
  * letzten [ARC_HOURS] Stunden vor der Zielzeit ([arcPosition]). Links beginnend füllt er sich bis «jetzt» (heller
- * Punkt), rechts leuchtet das Weckfenster als warmes Segment und endet im Weckpunkt. Feine Marken als Skala. Zeichnet
+ * Punkt), rechts leuchtet das Weckfenster als warmes Segment und endet im Weckpunkt. Farben aus [SkyInk] (Nacht- oder Tageshimmel). Feine Marken als Skala. Zeichnet
  * sich beim Erscheinen einmal ein, danach ruht er (bewegt sich nur mit der Zeit). Reine Zierde: Die Texte im Bogen sagen
  * dasselbe.
  */
 @Composable
-internal fun WakeArc(now: Instant, windowStart: Instant, target: Instant, exact: Boolean, modifier: Modifier = Modifier) {
+internal fun WakeArc(now: Instant, windowStart: Instant, target: Instant, exact: Boolean, modifier: Modifier = Modifier, ink: SkyInk = SkyInk.OnNight) {
+    val dawnGlow = ink.dawn
     val reveal = rememberReveal(target)
     val start = if (exact) target else windowStart
     val nowAt = arcPosition(now, start, target)
@@ -46,32 +47,32 @@ internal fun WakeArc(now: Instant, windowStart: Instant, target: Instant, exact:
             val a = angle(p) / 180f * PI.toFloat()
             return Offset(center.x + radius * cos(a), center.y + radius * sin(a))
         }
-        drawArc(Night.Text.copy(alpha = 0.10f), ARC_START, ARC_SWEEP, false, topLeft, arc, style = Stroke(stroke, cap = StrokeCap.Round))
+        drawArc(ink.text.copy(alpha = 0.10f), ARC_START, ARC_SWEEP, false, topLeft, arc, style = Stroke(stroke, cap = StrokeCap.Round))
         for (k in 0..ARC_HOURS) {
             val p = k / ARC_HOURS.toFloat()
-            drawCircle(Night.Muted.copy(alpha = if (k % 3 == 0) 0.55f else 0.28f), radius = (if (k % 3 == 0) 1.6f else 1.1f).dp.toPx(), center = at(p, r - stroke * 1.35f))
+            drawCircle(ink.muted.copy(alpha = if (k % 3 == 0) 0.55f else 0.28f), radius = (if (k % 3 == 0) 1.6f else 1.1f).dp.toPx(), center = at(p, r - stroke * 1.35f))
         }
         val shown = reveal
         // Vergangene Zeit: vom Anfang bis «jetzt», vom tiefen Violett zum Lavendel.
         val filled = minOf(nowAt, windowAt) * shown
-        if (filled > 0f) gradientArc(0f, filled, Night.WaveEcho.copy(alpha = 0.55f), Night.Wave, topLeft, arc, stroke)
+        if (filled > 0f) gradientArc(0f, filled, ink.waveEcho.copy(alpha = 0.55f), ink.wave, topLeft, arc, stroke)
         // Weckfenster: warmes, leuchtendes Segment mit weichem Schein.
         if (!exact && shown > windowAt) {
             val end = shown.coerceAtMost(1f)
-            drawArc(DAWN_GLOW.copy(alpha = 0.18f), angle(windowAt), ARC_SWEEP * (end - windowAt), false, topLeft, arc, style = Stroke(stroke * 2.6f, cap = StrokeCap.Round))
-            gradientArc(windowAt, end, Night.Wave, DAWN_GLOW, topLeft, arc, stroke * 1.15f)
+            drawArc(dawnGlow.copy(alpha = 0.18f), angle(windowAt), ARC_SWEEP * (end - windowAt), false, topLeft, arc, style = Stroke(stroke * 2.6f, cap = StrokeCap.Round))
+            gradientArc(windowAt, end, ink.wave, dawnGlow, topLeft, arc, stroke * 1.15f)
         }
         if (shown < 1f) return@Canvas
         // Weckpunkt am Ende: warmer Schein, heller Punkt mit Ring.
         val wake = at(1f)
-        drawCircle(Brush.radialGradient(listOf(DAWN_GLOW.copy(alpha = 0.55f), DAWN_GLOW.copy(alpha = 0f)), center = wake, radius = stroke * 2.6f), radius = stroke * 2.6f, center = wake)
-        drawCircle(Night.Moon.copy(alpha = 0.7f), radius = stroke * 1.05f, center = wake, style = Stroke(1.5.dp.toPx()))
-        drawCircle(Night.Moon, radius = stroke * 0.62f, center = wake)
+        drawCircle(Brush.radialGradient(listOf(dawnGlow.copy(alpha = 0.55f), dawnGlow.copy(alpha = 0f)), center = wake, radius = stroke * 2.6f), radius = stroke * 2.6f, center = wake)
+        drawCircle(ink.moon.copy(alpha = 0.7f), radius = stroke * 1.05f, center = wake, style = Stroke(1.5.dp.toPx()))
+        drawCircle(ink.moon, radius = stroke * 0.62f, center = wake)
         // «Jetzt»: heller Punkt mit Lavendel-Schein, solange die Zielzeit vorn liegt.
         if (now.isBefore(target)) {
             val p = at(nowAt)
-            drawCircle(Brush.radialGradient(listOf(Night.Wave.copy(alpha = 0.6f), Night.Wave.copy(alpha = 0f)), center = p, radius = stroke * 1.9f), radius = stroke * 1.9f, center = p)
-            drawCircle(Night.Moon, radius = stroke * 0.5f, center = p)
+            drawCircle(Brush.radialGradient(listOf(ink.wave.copy(alpha = 0.6f), ink.wave.copy(alpha = 0f)), center = p, radius = stroke * 1.9f), radius = stroke * 1.9f, center = p)
+            drawCircle(ink.moon, radius = stroke * 0.5f, center = p)
         }
     }
 }
@@ -124,5 +125,3 @@ private const val ARC_SWEEP = 210f
 private const val ARC_STROKE = 9f
 private const val PIECE_DEGREES = 3f
 
-/** Warmes Morgenlicht des Weckfensters (wie das Morgenrot am Schlafwert-Bogen). */
-private val DAWN_GLOW = Color(0xFFFFB27A)

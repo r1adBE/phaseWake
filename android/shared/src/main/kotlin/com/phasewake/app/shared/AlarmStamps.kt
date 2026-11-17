@@ -2,6 +2,7 @@ package com.phasewake.app.shared
 
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.Codec
 import com.phasewake.app.core.TimeBounds
 import java.net.URLDecoder
 import java.net.URLEncoder
@@ -27,7 +28,8 @@ object AlarmStamps {
      * zum selben Stand). Je Wecker gilt die Fassung mit dem neueren Zeitpunkt ([AlarmSnapshot.stampOf]); bei gleichem
      * Zeitpunkt und verschiedenem Inhalt entscheidet ein fester Vergleich. Ein Löschen gewinnt, wenn es nicht älter als
      * diese Fassung ist; ein Wecker, den eine Seite nie kannte und nirgends gelöscht ist, bleibt. Listen-Zeitpunkt: der
-     * spätere beider Seiten. Gelöschte Wecker älter als [TOMBSTONE_MAX_AGE_MS] vor [now] fallen weg.
+     * spätere beider Seiten. Gelöschte Wecker älter als [TOMBSTONE_MAX_AGE_MS] vor [now] fallen weg. Doppelte Kennung in
+     * einem Stand: der letzte Eintrag gilt, wie Swift (Entscheid r1AD 17.11.2026).
      */
     fun merge(local: AlarmSnapshot, remote: AlarmSnapshot, now: Long): AlarmSnapshot {
         val mine = local.alarms.associateBy { it.id }
@@ -88,12 +90,15 @@ object AlarmStamps {
         return AlarmSnapshot(alarms, listStamp, stamps, local.deleted)
     }
 
-    /** Die neuere von zwei Fassungen (Wecker, Zeitpunkt); bei Gleichstand fest nach Inhalt. */
+    /**
+     * Die neuere von zwei Fassungen (Wecker, Zeitpunkt); bei Gleichstand fest nach Inhalt: die grössere Zeile im
+     * [Codec]-Format, wie Swift (Entscheid r1AD 17.11.2026; vorher `toString()`, das z. B. Minute 5/50 anders ordnete).
+     */
     private fun newer(a: Pair<AlarmSpec, Long>?, b: Pair<AlarmSpec, Long>?): Pair<AlarmSpec, Long>? = when {
         a == null -> b
         b == null -> a
         a.second != b.second -> if (a.second > b.second) a else b
-        else -> if (a.first.toString() >= b.first.toString()) a else b
+        else -> if (Codec.encodeAlarms(listOf(a.first)) >= Codec.encodeAlarms(listOf(b.first))) a else b
     }
 
     /**

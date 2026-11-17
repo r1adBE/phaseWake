@@ -127,9 +127,9 @@ extension SmartAlarm {
         logMeasureEnd(" interrupted")
         guard let at = SessionRules.interruptedWake(now: Date(), target: plan.target) else {
             if let nightPlan, !epochs.isEmpty, Transient.kindOf(nightPlan.alarmId) == nil {
-                WatchModel.shared.storage.add(NightRecord(alarmId: nightPlan.alarmId, windowStart: nightPlan.windowStart,
-                                                          target: nightPlan.target, wokeAt: nightPlan.target, reason: .deadline,
-                                                          snoozes: 0, epochs: epochs))
+                WatchModel.shared.lastNight.add(NightRecord(alarmId: nightPlan.alarmId, windowStart: nightPlan.windowStart,
+                                                            target: nightPlan.target, wokeAt: nightPlan.target, reason: .deadline,
+                                                            snoozes: 0, epochs: epochs))
             }
             DiagStore.shared.log(.scheduled, "measuring interrupted, fallback at target \(Format.logTime(plan.target))")
             phase = .waiting(plan)

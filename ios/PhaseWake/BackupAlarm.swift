@@ -29,7 +29,7 @@ final class BackupAlarm {
     static let backupSnoozeUntilKey = "backupSnoozeUntil"
     private static let backupSnoozeToneKey = "backupSnoozeTone"
     /// Sicherung des laufenden Probeweckers oder Powernaps.
-    private static let transientKey = "backupTransientId"
+    static let transientKey = "backupTransientId"
     /// Das «stop» einer älteren Uhr direkt nach dem Schlummern ist nur das Echo davon, kein Beenden.
     private static let snoozeEcho: TimeInterval = 30
     /// Klingelt die Uhr nach dem Schlummern nicht wieder (Sitzung nicht gestartet): dann das iPhone
@@ -40,10 +40,24 @@ final class BackupAlarm {
     /// Höchstens so viele Sicherungen. Als Mitteilung (vor iOS 26, AlarmKit gescheitert) stellt `apply` davon so viele,
     /// wie neben den übrigen wartenden Mitteilungen Platz haben (`NotificationBudget`, iOS behält 64 je App).
     private static let maxSlots = 40
+    /// Ort der gemerkten Kennungen, Nächte und Sperren (in der App ``SettingsFile/phone``).
+    let settings: SettingsFile
+    /// AlarmKit bzw. Mitteilungen (Audit 17.11. CODE-01: in Tests ein Ersatz).
+    let platform: any BackupPlatform
+    /// Wecker, Feiertage und «Gute Nacht» der App.
+    let host: any BackupHost
+
+    /// In der App ohne Angaben; Tests geben eigene Einstellungen, Plattform und App.
+    init(settings: SettingsFile = .phone, platform: (any BackupPlatform)? = nil, host: (any BackupHost)? = nil) {
+        self.settings = settings
+        self.platform = platform ?? SystemBackupPlatform()
+        self.host = host ?? AppBackupHost()
+    }
+
     /// Gespeichert statt nur im Speicher: Startet iOS die App neu, kann «stop» der Uhr ihn trotzdem stoppen.
     private var ringingId: UUID? {
         get { storedId(Self.ringingKey) }
-        set { SettingsFile.phone.set(newValue?.uuidString, forKey: Self.ringingKey) }
+        set { settings.set(newValue?.uuidString, forKey: Self.ringingKey) }
     }
     /// Neuplanungen laufen nacheinander, nie verschränkt (sonst blieben Alarme ohne gemerkte Kennung).
     private var queue: Task<Void, Never>?
@@ -59,9 +73,8 @@ final class BackupAlarm {
         // Stand vor dem ersten Entsperren nicht lesbar: `alarms` und die gemerkten Sicherungen wären leer, das Neuplanen
         // verwürfe alle Zweitwecker oder liesse sie verwaist stehen (Tiefenaudit AP3-1). Nichts tun; ist er inzwischen
         // lesbar, liest `catchUpState` ihn und plant mit dem echten Stand neu (nie mit dem leeren `alarms` von hier).
-        let model = PhoneModel.shared
-        guard model.stateLoaded else {
-            if !model.catchUpState() { DiagStore.shared.log(.scheduled, "phone backup not planned: settings not readable yet") }
+        guard host.stateLoaded else {
+            if !host.catchUpState() { DiagStore.shared.log(.scheduled, "phone backup not planned: settings not readable yet") }
             return
         }
         let previous = queue
@@ -71,7 +84,7 @@ final class BackupAlarm {
         }
         queue = task
         await task.value
-        LearnLogStore.shared.noteAlarms(alarms, holidays: PhoneModel.shared.holidays.dates, now: Date())
+        host.noteAlarms(alarms, now: Date())
     }
 
     /// Wartet, bis die laufende Neuplanung fertig ist (Nacht-Check liest danach die gestellten Sicherungen).
@@ -84,9 +97,9 @@ final class BackupAlarm {
     /// Sie klingelt zur geplanten absoluten Zeit (07:00 Zürich = 15:00 Tokio), nicht erst zur neuen Ortszeit.
     private func rescheduleNow(_ alarms: [AlarmSpec]) async {
         let now = Date()
-        let grace = Self.grace
+        let grace = currentGrace
         let planned = plannedBackups
-        let holidays = PhoneModel.shared.holidays.dates
+        let holidays = host.holidayDates
         let suppressed = suppressedUntil()
         let eligible = alarms.filter(\.phoneBackup)
         // Begonnene Nächte nach einer Reise zuerst: Ein einmaliger Wecker behält damit sein erstes Vorkommen
@@ -107,7 +120,7 @@ final class BackupAlarm {
             guard let first = firstTargets[spec.id], now > first.addingTimeInterval(grace) else { return false }
             return !planned.contains { $0.slot.alarmId == spec.id && $0.slot.fireAt > now }
         }
-        for spec in expired { PhoneModel.shared.disableAfterRing(spec) }
+        for spec in expired { host.disableAfterRing(spec) }
         let skip = Set(expired.map(\.id))
         var wanted: [BackupSlot] = []
         var kept: [PlannedBackup] = []
@@ -127,7 +140,7 @@ final class BackupAlarm {
         // «Gute Nacht» auf der Uhr: diese Nacht zur früheren Zielzeit (`WatchNight`, wie `OnsetShift` auf Android).
         let nightPlans = BackupPlan.nights(eligible, now: now, until: now.addingTimeInterval(Self.horizon), maxNights: Self.maxSlots,
                                            suppressed: suppressed, firstTargets: firstTargets, skip: skip,
-                                           calendar: .gregorianLocal, holidays: holidays).compactMap { WatchNight.shared.apply($0, now: now) }
+                                           calendar: .gregorianLocal, holidays: holidays).compactMap { host.shifted($0, now: now) }
         var nights = 0
         for plan in nightPlans {
             let sound = alarms.first { $0.id == plan.alarmId }?.sound ?? ""
@@ -155,7 +168,7 @@ final class BackupAlarm {
     /// Wecker sonst am nächsten Tag nochmals. Liegt sie noch vorn, folgt sie der Ortszeit wie auf der Uhr, ausser ihr
     /// Weckfenster hat schon begonnen (`kept`, je Wecker die Zielzeit der behaltenen Nacht): Dann bleibt diese.
     private func oneShotTargets(_ alarms: [AlarmSpec], now: Date, kept: [String: Date]) -> [String: Date] {
-        let stored = SettingsFile.phone.dictionary(forKey: Self.oneShotKey) as? [String: Double] ?? [:]
+        let stored = settings.dictionary(forKey: Self.oneShotKey) as? [String: Double] ?? [:]
         var keep: [String: Double] = [:]
         var targets: [String: Date] = [:]
         for spec in alarms where spec.isOneShot && spec.enabled {
@@ -167,7 +180,7 @@ final class BackupAlarm {
             keep[key] = target.timeIntervalSince1970
             targets[spec.id] = target
         }
-        SettingsFile.phone.set(keep, forKey: Self.oneShotKey)
+        settings.set(keep, forKey: Self.oneShotKey)
         return targets
     }
 
@@ -178,7 +191,7 @@ final class BackupAlarm {
     func ringNow(alarmId: String?, alarm: AlarmSpec?, target: Date?, snoozesLeft: Int) async -> UUID? {
         // Die Uhr klingelt wieder: Die Sicherung fürs Schlummern ist nicht mehr nötig.
         await cancelSnoozeSafety()
-        SettingsFile.phone.set(snoozesLeft, forKey: Self.ringSnoozesKey)
+        settings.set(snoozesLeft, forKey: Self.ringSnoozesKey)
         var ring: UUID?
         if alarm?.phone != .off {
             let id = UUID()
@@ -193,32 +206,44 @@ final class BackupAlarm {
     }
 
     /// Die Uhr hat diese Nacht übernommen (klingelt, gestoppt oder Nacht gemeldet): Sicherung bis kurz
-    /// nach der Zielzeit dieser Nacht aussetzen – nicht länger, sonst fiele ein zweiter Wecker weg.
+    /// nach der Zielzeit dieser Nacht aussetzen – nicht länger, sonst fiele ein zweiter Wecker weg. Ohne Kennung (ältere
+    /// Uhr): jeder Wecker, dessen Nacht gerade läuft, wie Android `BackupAlarm.watchHandled` (Entscheid r1AD 17.11.2026).
     func watchHandled(alarmId: String?, target: Date?) async {
         let now = Date()
-        let alarms = PhoneModel.shared.alarms
-        let spec = alarms.first { $0.id == alarmId }
+        let alarms = host.alarms
         let window = TimeInterval(AlarmSpec.maxWindowMinutes * 60)
-        // Nach «Gute Nacht» meldet die Uhr die frühere Zielzeit: ausgesetzt bis zur eingestellten derselben Nacht.
-        let nightTarget = WatchNight.shared.original(alarmId: alarmId, target: target)
-            ?? target
-            ?? spec.flatMap { AlarmSchedule.nextTarget($0, now: now.addingTimeInterval(-window), calendar: .gregorianLocal,
-                                                    holidays: PhoneModel.shared.holidays.dates) }
-            ?? now.addingTimeInterval(window)
-        let until = nightTarget.addingTimeInterval(Self.grace)
-        // Ohne Kennung (ältere Uhr): alle Wecker dieser Nacht, wie bisher.
-        let ids = alarmId.map { [$0] } ?? alarms.map(\.id)
-        var raw = SettingsFile.phone.dictionary(forKey: Self.suppressedKey) as? [String: Double] ?? [:]
-        for id in ids { raw[id] = max(raw[id] ?? 0, until.timeIntervalSince1970) }
+        var until: [String: Date] = [:]
+        if let alarmId {
+            let spec = alarms.first { $0.id == alarmId }
+            // Nach «Gute Nacht» meldet die Uhr die frühere Zielzeit: ausgesetzt bis zur eingestellten derselben Nacht.
+            let nightTarget = host.originalTarget(alarmId: alarmId, target: target)
+                ?? target
+                ?? spec.flatMap { AlarmSchedule.nextTarget($0, now: now.addingTimeInterval(-window), calendar: .gregorianLocal,
+                                                        holidays: host.holidayDates) }
+                ?? now.addingTimeInterval(window)
+            until[alarmId] = nightTarget.addingTimeInterval(currentGrace)
+        } else {
+            // Nacht läuft: Zielzeit nach jetzt − (längstes Fenster + Schlummern + 10 Min) und höchstens ein längstes
+            // Fenster nach jetzt (Android `LOOKBACK`); auch ein soeben ausgeschalteter Einmal-Wecker zählt.
+            let lookback = TimeInterval((AlarmSpec.maxWindowMinutes + Snooze.maxCount * Snooze.minutes + 10) * 60)
+            for spec in alarms {
+                guard let night = AlarmSchedule.nextTarget(spec.with(enabled: true), now: now.addingTimeInterval(-lookback),
+                                                           calendar: .gregorianLocal),
+                      night <= now.addingTimeInterval(window) else { continue }
+                until[spec.id] = night.addingTimeInterval(currentGrace)
+            }
+        }
+        var raw = settings.dictionary(forKey: Self.suppressedKey) as? [String: Double] ?? [:]
+        for (id, date) in until { raw[id] = max(raw[id] ?? 0, date.timeIntervalSince1970) }
         let keepAfter = now.addingTimeInterval(-24 * 3600).timeIntervalSince1970
-        SettingsFile.phone.set(raw.filter { $0.value > keepAfter }, forKey: Self.suppressedKey)
-        SettingsFile.phone.removeObject(forKey: Self.legacySuppressedKey)
+        settings.set(raw.filter { $0.value > keepAfter }, forKey: Self.suppressedKey)
+        settings.removeObject(forKey: Self.legacySuppressedKey)
         await reschedule(alarms)
     }
 
     /// Pro Wecker: Sicherung ausgesetzt bis (die Uhr hat die Nacht übernommen); auch Teil von `PhoneModel.doneUntil`.
     func suppressedUntil() -> [String: Date] {
-        let raw = SettingsFile.phone.dictionary(forKey: Self.suppressedKey) as? [String: Double] ?? [:]
+        let raw = settings.dictionary(forKey: Self.suppressedKey) as? [String: Double] ?? [:]
         return raw.mapValues { Date(timeIntervalSince1970: $0) }
     }
 
@@ -231,29 +256,27 @@ final class BackupAlarm {
         let ownsRing = id.map { ring in night.map { stop in self.night(for: ring).map(stop.same) ?? true } ?? true } ?? false
         if ownsRing { ringingId = nil }
         // Beendet (nicht nur das Echo des eigenen Schlummerns): auch die Schlummer-Sicherungen dieser Nacht weg.
-        let snoozedAt = SettingsFile.phone.double(forKey: Self.snoozedAtKey)
+        let snoozedAt = settings.double(forKey: Self.snoozedAtKey)
         if !snoozed, Date().timeIntervalSince1970 - snoozedAt > Self.snoozeEcho {
             if belongs(storedId(Self.snoozeSafetyKey), to: night, unknown: true) { await cancelSnoozeSafety() }
             if belongs(storedId(Self.backupSnoozeKey), to: night, unknown: true) { cancelBackupSnooze() }
         }
-        #if canImport(AlarmKit)
-        if #available(iOS 26.0, *) {
-            let alerting = ((try? AlarmManager.shared.alarms) ?? []).filter { alarm in
-                alarm.state == .alerting && (alarm.id == id ? ownsRing : belongs(alarm.id, to: night, unknown: false))
+        if platform.alarmKit {
+            let alerting = platform.alertingIds().filter { alarm in
+                alarm == id ? ownsRing : belongs(alarm, to: night, unknown: false)
             }
             // Vor dem Stoppen: Der Probewecker zählt nur, was wirklich geklingelt hat.
-            for alarm in alerting { PhoneModel.shared.transient.phoneAlerted(alarm.id.uuidString) }
+            for alarm in alerting { host.phoneAlerted(alarm.uuidString) }
             if ownsRing, let id {
-                try? AlarmManager.shared.stop(id: id)
+                platform.stop(id)
                 // Noch nicht klingelnd (geplant in 2 s): verwerfen.
-                try? AlarmManager.shared.cancel(id: id)
+                platform.cancelScheduled(id)
             }
             for alarm in alerting {
-                stoppedByApp.insert(alarm.id)
-                try? AlarmManager.shared.stop(id: alarm.id)
+                stoppedByApp.insert(alarm)
+                platform.stop(alarm)
             }
         }
-        #endif
         // Vor iOS 26, und ab iOS 26 für Alarme, die nach gescheitertem AlarmKit als Mitteilung kamen.
         await removeNotificationChains(ringing: ownsRing ? id : nil, night: night)
     }
@@ -280,7 +303,7 @@ final class BackupAlarm {
     /// Am iPhone geschlummert: Eigene Sicherung kurz nach dem Schlummer-Ende, falls die Uhr dann nicht
     /// klingelt (ihre neue Sitzung startet im Hintergrund unter Umständen nicht). `night` = `currentRingNight`.
     func snoozeSafety(night: RingNight?) async {
-        SettingsFile.phone.set(Date().timeIntervalSince1970, forKey: Self.snoozedAtKey)
+        settings.set(Date().timeIntervalSince1970, forKey: Self.snoozedAtKey)
         await scheduleSnoozeSafety(at: Snooze.nextRing(Date()).addingTimeInterval(Self.snoozeSafetyDelay), night: night)
     }
 
@@ -297,16 +320,16 @@ final class BackupAlarm {
     private func scheduleSnoozeSafety(at date: Date, night: RingNight?) async {
         await cancelSnoozeSafety()
         let id = UUID()
-        SettingsFile.phone.set(id.uuidString, forKey: Self.snoozeSafetyKey)
+        settings.set(id.uuidString, forKey: Self.snoozeSafetyKey)
         setNight(night, for: id)
         // Runden wie auf der Uhr: Diese Runde ist verbraucht.
-        let left = max(0, SettingsFile.phone.integer(forKey: Self.ringSnoozesKey) - 1)
+        let left = max(0, settings.integer(forKey: Self.ringSnoozesKey) - 1)
         await schedule(id: id, at: date, snoozesLeft: left)
     }
 
     private func cancelSnoozeSafety() async {
         guard let id = storedId(Self.snoozeSafetyKey) else { return }
-        SettingsFile.phone.removeObject(forKey: Self.snoozeSafetyKey)
+        settings.removeObject(forKey: Self.snoozeSafetyKey)
         cancelAlarm(id)
     }
 
@@ -314,22 +337,20 @@ final class BackupAlarm {
     /// wieder klingeln, mit `snoozesLeft` − 1 Runden; gehört zur selben Nacht wie der geschlummerte Alarm.
     func backupSnoozed(_ alarmId: String, snoozesLeft: Int) async {
         guard let id = UUID(uuidString: alarmId) else { return }
-        #if canImport(AlarmKit)
-        if #available(iOS 26.0, *) {
+        if platform.alarmKit {
             stoppedByApp.insert(id)
-            try? AlarmManager.shared.stop(id: id)
+            platform.stop(id)
         }
-        #endif
         let tone = plannedBackups.first { $0.id == id }?.slot.sound
-            ?? (storedId(Self.backupSnoozeKey) == id ? SettingsFile.phone.string(forKey: Self.backupSnoozeToneKey) : nil)
+            ?? (storedId(Self.backupSnoozeKey) == id ? settings.string(forKey: Self.backupSnoozeToneKey) : nil)
         let snoozedNight = self.night(for: id)
         cancelBackupSnooze()
         let next = UUID()
-        SettingsFile.phone.set(next.uuidString, forKey: Self.backupSnoozeKey)
-        SettingsFile.phone.set(tone, forKey: Self.backupSnoozeToneKey)
+        settings.set(next.uuidString, forKey: Self.backupSnoozeKey)
+        settings.set(tone, forKey: Self.backupSnoozeToneKey)
         setNight(snoozedNight, for: next)
         let ringAt = Snooze.nextRing(Date())
-        SettingsFile.phone.set(ringAt.timeIntervalSince1970, forKey: Self.backupSnoozeUntilKey)
+        settings.set(ringAt.timeIntervalSince1970, forKey: Self.backupSnoozeUntilKey)
         PrivateSettingChanges.shared.bump()
         await schedule(id: next, at: ringAt, snoozesLeft: max(0, snoozesLeft - 1), tone: tone.flatMap(WakeTone.init(rawValue:)))
         DiagStore.shared.log(.snooze, "phone backup, \(max(0, snoozesLeft - 1)) left")
@@ -341,40 +362,14 @@ final class BackupAlarm {
     func backupStopped(_ alarmId: String) {
         guard let id = UUID(uuidString: alarmId), stoppedByApp.remove(id) == nil, let night = night(for: id) else { return }
         DiagStore.shared.log(.stop, "phone backup, watch too")
-        PhoneConnectivity.shared.send(command: SyncKeys.stop, night: night)
+        host.sendStop(night)
     }
 
     func cancelBackupSnooze() {
         guard let id = storedId(Self.backupSnoozeKey) else { return }
-        SettingsFile.phone.removeObject(forKey: Self.backupSnoozeKey)
-        SettingsFile.phone.removeObject(forKey: Self.backupSnoozeUntilKey)
+        settings.removeObject(forKey: Self.backupSnoozeKey)
+        settings.removeObject(forKey: Self.backupSnoozeUntilKey)
         PrivateSettingChanges.shared.bump()
-        cancelAlarm(id)
-    }
-
-    // MARK: Probewecker und Powernap
-
-    /// Sicherung für einen Probewecker oder Powernap: klingelt kurz nach dessen Zielzeit, falls sich die Uhr
-    /// nicht meldet (wie die Sicherung einer Nacht). Ohne iPhone-Wecker («aus») keine.
-    /// - Returns: Kennung der Sicherung, oder `nil` ohne Sicherung.
-    @discardableResult
-    func scheduleTransient(_ transient: TransientPlan) async -> UUID? {
-        await cancelTransient()
-        guard transient.spec.phoneBackup else { return nil }
-        let id = UUID()
-        SettingsFile.phone.set(id.uuidString, forKey: Self.transientKey)
-        setNight(RingNight(alarmId: transient.plan.alarmId, target: transient.plan.target), for: id)
-        let snoozes = Transient.allowsSnooze(transient.plan.alarmId) ? Snooze.maxCount : 0
-        await schedule(id: id, at: transient.plan.target.addingTimeInterval(Self.grace), snoozesLeft: snoozes,
-                       tone: WakeTone(rawValue: transient.spec.sound))
-        DiagStore.shared.log(.scheduled, "phone backup \(transient.kind.rawValue) \(Format.logTime(transient.plan.target))")
-        return id
-    }
-
-    /// Sicherung des Probeweckers bzw. Powernaps verwerfen (die Uhr hat geklingelt, gestoppt oder abgebrochen).
-    func cancelTransient() async {
-        guard let id = storedId(Self.transientKey) else { return }
-        SettingsFile.phone.removeObject(forKey: Self.transientKey)
         cancelAlarm(id)
     }
 
@@ -388,6 +383,6 @@ final class BackupAlarm {
     }
 
     func storedId(_ key: String) -> UUID? {
-        SettingsFile.phone.string(forKey: key).flatMap(UUID.init(uuidString:))
+        settings.string(forKey: key).flatMap(UUID.init(uuidString:))
     }
 }

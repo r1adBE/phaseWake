@@ -84,6 +84,9 @@
     <string name="settings_theme_system">ตามระบบ</string>
     <string name="settings_theme_light">สว่าง</string>
     <string name="settings_theme_dark">มืด</string>
+    <string name="settings_evening_dark">มืดตอนเย็น</string>
+    <string name="settings_evening_dark_text">มืดตั้งแต่ %1$s ถึง %2$s แม้เลือก ตามระบบ หรือ สว่าง</string>
+    <string name="settings_evening_dark_from">มืดตั้งแต่</string>
     <string name="settings_data">ข้อมูลของคุณ</string>
     <string name="settings_data_text">ทุกอย่างอยู่บนโทรศัพท์และนาฬิกาของคุณเท่านั้น ไม่มีบัญชี ไม่มีเซิร์ฟเวอร์ ไม่มีการติดตาม ผ่านการเชื่อมต่อนาฬิกาของ Google มีเพียงข้อมูลทางเทคนิคของนาฬิกา ไม่มีข้อมูลสุขภาพ</string>
     <string name="settings_export">ส่งออกบันทึกการนอนโดยไม่มีชื่อ</string>
@@ -94,10 +97,10 @@
     <string name="settings_licenses_text">Phase Wake: สัญญาอนุญาต MIT © r1adBE\nฟอนต์ Manrope: SIL Open Font License 1.1 © The Manrope Project Authors\nการตรวจจับเสียง: MediaPipe Tasks Audio และโมเดล YAMNet: Apache License 2.0 © Google LLC\nเสียง: การบันทึกเสียงเสรี (CC0) จาก opengameart.org</string>
     <string name="settings_version">เวอร์ชัน %1$s</string>
 
-    <string name="duration_minutes">%1$d นาที</string>
-    <string name="duration_hours">%1$d ชม.</string>
-    <string name="duration_hours_half">%1$d½ ชม.</string>
-    <string name="duration_hours_minutes">%1$d ชม. %2$d นาที</string>
+    <string name="duration_minutes">%1$d นาที</string>
+    <string name="duration_hours">%1$d ชม.</string>
+    <string name="duration_hours_half">%1$d½ ชม.</string>
+    <string name="duration_hours_minutes">%1$d ชม. %2$d นาที</string>
     <string name="health_title">ระยะการนอนหลับจาก Health Connect</string>
     <string name="health_rationale">Phase Wake อ่านข้อมูลการนอนที่แอปสุขภาพของคุณ (เช่น Samsung Health) บันทึกไว้ได้ ข้อมูลจะแสดงในประวัติของคุณ รวมถึงใช้เปรียบเทียบกับคืนที่ Phase Wake ปลุกคุณ Phase Wake อ่านอย่างเดียว ไม่เขียนข้อมูล และไม่มีข้อมูลใดออกจากโทรศัพท์ของคุณ</string>
     <string name="health_connect">เปรียบเทียบกับข้อมูลสุขภาพ</string>
@@ -275,7 +278,7 @@
         <item quantity="other">ถึงเป้าหมายการนอน: %1$d จาก %2$d คืน</item>
     </plurals>
     <string name="bedtime_title">เตือนเวลาเข้านอน</string>
-    <string name="bedtime_text">เตือนก่อนเวลาเข้านอน %1$d นาที: เวลาปลุกลบเป้าหมายการนอน</string>
+    <string name="bedtime_text">เตือนก่อนเวลาเข้านอน %1$d นาที: เวลาเป้าหมายลบเป้าหมายการนอน</string>
     <string name="bedtime_notification">เข้านอนตอน %1$s – แล้วคุณจะได้นอน %2$s ก่อนนาฬิกาปลุกตอน %3$s</string>
     <string name="channel_reminders">การเตือน</string>
     <string name="sounds_title">เสียงช่วยนอน</string>
@@ -540,7 +543,7 @@
     <string name="learned_latency">การหลับ: ประมาณ %1$s</string>
     <string name="learned_latency_none">การหลับ: ค่าที่วัดได้น้อยเกินไป</string>
     <string name="bedtime_advice">คืนนี้เข้านอนระหว่าง %1$s ถึง %2$s</string>
-    <string name="bedtime_advice_hint">คำนวณจากนาฬิกาปลุก เป้าหมายการนอน และเวลาที่คุณใช้กว่าจะหลับ</string>
+    <string name="bedtime_advice_hint">คำนวณจากเวลาเป้าหมาย เป้าหมายการนอน และเวลาที่คุณใช้กว่าจะหลับ</string>
     <string name="learn_restart">เรียนรู้ใหม่</string>
     <string name="learn_restart_text">Phase Wake จะวัดอีก %1$d คืน ระหว่างนั้นยังใช้ค่าที่ปรับไว้จนถึงตอนนี้</string>
     <string name="record_end_wake">สิ้นสุดเมื่อปลุก</string>
@@ -622,7 +625,7 @@
     <string name="finding_title">สิ่งที่น่าสังเกตใน 7 คืนล่าสุด</string>
     <string name="finding_hide">ซ่อน</string>
     <string name="finding_latency">โดยเฉลี่ยคุณใช้เวลา %1$s กว่าจะหลับ เคล็ดลับ: ถ้าผ่านไป 20 นาทียังไม่หลับ ให้ลุกขึ้นแล้วกลับไปนอนเมื่อรู้สึกง่วงเท่านั้น หากเป็นแบบนี้ติดต่อกันหลายสัปดาห์ ให้ปรึกษาแพทย์</string>
-    <string name="finding_short_nights">คืนที่นอนน้อยกว่า 6 ชั่วโมง: %1$d จาก 7 คืน เคล็ดลับ: คำนวณเวลาเข้านอนย้อนจากเวลาตื่น แล้วทำตามให้ได้</string>
+    <string name="finding_short_nights">คืนที่นอนน้อยกว่า 6 ชั่วโมง: %1$d จาก 7 คืน เคล็ดลับ: คำนวณเวลาเข้านอนย้อนจากเวลาเป้าหมาย แล้วทำตามให้ได้</string>
     <string name="finding_low_deep">การหลับลึกมีเพียงราว %1$d %% ของการนอนของคุณ (ปกติ %2$d–%3$d %%)</string>
     <string name="finding_deep_short">ในคืนที่นอนน้อยกว่า 6 ชั่วโมงมีน้อยลงอย่างชัดเจน: %1$d %% แทนที่จะเป็น %2$d %%</string>
     <string name="finding_deep_late">ในคืนที่คุณเข้านอนดึกมีน้อยลงอย่างชัดเจน: %1$d %% แทนที่จะเป็น %2$d %%</string>

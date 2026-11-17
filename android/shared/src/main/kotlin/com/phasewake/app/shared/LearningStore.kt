@@ -102,14 +102,19 @@ data class LearningSnapshot(
 class LearningSync(context: Context) {
     private val app = context.applicationContext
     private val outbox by lazy { Outbox.forContext(app) }
+    private val acked by lazy { AckedContent.forContext(app) }
 
-    /** Handy: Stand an die Uhren, die Einschlafdauer als eigene Nachricht (Audit F-4/SP-6). */
-    suspend fun publish(snapshot: LearningSnapshot) {
+    /**
+     * Handy: Stand an die Uhren, die Einschlafdauer als eigene Nachricht (Audit F-4/SP-6). [unlessAcked]: beim
+     * Prozessstart nur, was nicht schon bestätigt ist (Audit PERF-06, [enqueueIfChanged]).
+     */
+    suspend fun publish(snapshot: LearningSnapshot, unlessAcked: Boolean = false) {
+        suspend fun put(key: String, path: String, body: String) {
+            if (unlessAcked) outbox.enqueueIfChanged(acked, key, path, DataLayer.CAPABILITY_WATCH, body) else outbox.enqueue(key, path, DataLayer.CAPABILITY_WATCH, body)
+        }
         try {
-            outbox.enqueue(QueueMessages.KEY_LEARNING, DataLayer.PATH_MSG_LEARNING, DataLayer.CAPABILITY_WATCH, LearningSnapshot.encode(snapshot))
-            outbox.enqueue(
-                QueueMessages.KEY_LEARN_LATENCY, DataLayer.PATH_MSG_LEARN_LATENCY, DataLayer.CAPABILITY_WATCH, LearningSnapshot.encodeLatency(snapshot),
-            )
+            put(QueueMessages.KEY_LEARNING, DataLayer.PATH_MSG_LEARNING, LearningSnapshot.encode(snapshot))
+            put(QueueMessages.KEY_LEARN_LATENCY, DataLayer.PATH_MSG_LEARN_LATENCY, LearningSnapshot.encodeLatency(snapshot))
         } catch (e: Exception) {
             if (e is kotlinx.coroutines.CancellationException) throw e
             Log.i(TAG, "Lernphase senden nicht möglich", e)

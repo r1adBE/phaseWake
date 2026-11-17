@@ -344,8 +344,11 @@ final class LearnRecorder {
     func save(_ new: Mark?) {
         mark = new
         if let new, let data = try? JSONEncoder().encode(new) {
-            // Atomar: Scheitert das Schreiben, bleibt der vorige Stand (höchstens ein Durchgang geht verloren).
-            try? data.write(to: fileURL, options: .atomic)
+            // Atomar: Scheitert das Schreiben, bleibt der vorige Stand (höchstens ein Durchgang geht verloren); protokolliert
+            // (Audit 17.11. CODE-02).
+            do { try data.write(to: fileURL, options: .atomic) } catch {
+                DiagStore.shared.log(.error, "recorder state not saved \((error as NSError).code)")
+            }
         } else {
             try? FileManager.default.removeItem(at: fileURL)
         }

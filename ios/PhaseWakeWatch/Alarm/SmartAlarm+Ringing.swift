@@ -202,7 +202,7 @@ extension SmartAlarm {
                 bedAt: asleepAt == nil ? nil : onsetBedAt,
                 asleepAt: asleepAt
             )
-            model.storage.add(night)
+            model.lastNight.add(night)
             // Diese Nacht ist erledigt: nicht noch einmal planen (`markNightDone`).
             markNightDone(nightPlan, model: model)
             // Wecker, die während dieser Nacht fällig wurden, gleich nachholen (wie Wear OS).

@@ -27,11 +27,17 @@ public struct BackupSettings: Equatable, Sendable {
     /// diese Messung nicht, behält den Wert aber für eine spätere Sicherung. Fehlt der Schlüssel (ältere Sicherung),
     /// gilt die Vorgabe `true`.
     public var autoOnset: Bool
+    /// «Abends dunkel ab» an (``EveningDark``, Entscheid r1AD 17.11.2026). Fehlt der Schlüssel (ältere Sicherung), gilt
+    /// die Vorgabe `true`.
+    public var eveningDark: Bool
+    /// Beginn von «Abends dunkel ab» in Minuten des Tages; fehlt oder unplausibel: 18:00 (``EveningDark/checkedFrom(_:)``).
+    public var eveningDarkFrom: Int
 
     /// Erzeugt Einstellungen; ohne Angaben die Vorgaben der App.
     public init(sleepGoal: Int = SleepGoal.defaultMinutes, bedtimeReminder: Bool = false, weeklyReview: Bool = false,
                 soundRecDefault: Bool = false, theme: String = "SYSTEM", holidayCountry: String = "", holidayRegion: String = "",
-                historyClearedAt: Int64? = nil, nextAlarmNotice: Bool = true, autoOnset: Bool = true) {
+                historyClearedAt: Int64? = nil, nextAlarmNotice: Bool = true, autoOnset: Bool = true,
+                eveningDark: Bool = EveningDark.defaultEnabled, eveningDarkFrom: Int = EveningDark.defaultFromMinutes) {
         self.sleepGoal = sleepGoal
         self.bedtimeReminder = bedtimeReminder
         self.weeklyReview = weeklyReview
@@ -42,6 +48,8 @@ public struct BackupSettings: Equatable, Sendable {
         self.historyClearedAt = historyClearedAt
         self.nextAlarmNotice = nextAlarmNotice
         self.autoOnset = autoOnset
+        self.eveningDark = eveningDark
+        self.eveningDarkFrom = eveningDarkFrom
     }
 }
 
@@ -106,6 +114,7 @@ public struct BackupPayload: Equatable, Sendable {
                 "historyClearedAt": s.historyClearedAt.map { NSNumber(value: $0) as Any } ?? NSNull(),
                 "nextAlarmNotice": s.nextAlarmNotice,
                 "autoOnset": s.autoOnset,
+                "eveningDark": s.eveningDark, "eveningDarkFrom": s.eveningDarkFrom,
             ] as [String: Any],
         ]
         // Nur Texte, Zahlen, Wahrheitswerte, Listen und `NSNull`: Schreiben kann nicht scheitern.
@@ -147,7 +156,9 @@ public struct BackupPayload: Equatable, Sendable {
                 holidayRegion: s["holidayRegion"] as? String ?? d.holidayRegion,
                 historyClearedAt: integer(s["historyClearedAt"]),
                 nextAlarmNotice: bool(s["nextAlarmNotice"]) ?? d.nextAlarmNotice,
-                autoOnset: bool(s["autoOnset"]) ?? d.autoOnset
+                autoOnset: bool(s["autoOnset"]) ?? d.autoOnset,
+                eveningDark: bool(s["eveningDark"]) ?? d.eveningDark,
+                eveningDarkFrom: EveningDark.checkedFrom(integer(s["eveningDarkFrom"]).flatMap { (0..<1440).contains($0) ? Int($0) : nil })
             ),
             healthFeelings: root["healthFeelings"] as? String ?? ""
         )

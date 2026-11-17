@@ -12,6 +12,7 @@ import java.time.DayOfWeek
 import java.time.Duration
 import java.time.Instant
 import java.time.temporal.ChronoUnit
+import kotlinx.coroutines.job
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
@@ -110,7 +111,8 @@ class BackupReceiversTest {
         send(BackupAlarm.ACTION, "r5", target)
         startedRing()
         until("Nacht ausgesetzt") { app.backup.doneUntil()["r5"] != null }
-        Thread.sleep(200)
+        // Erst prüfen, wenn die Arbeit des Empfängers ganz fertig ist (Audit CODE-10: nicht nach fester Wartezeit).
+        until("Arbeit im Hintergrund fertig") { app.appScope.coroutineContext.job.children.none { it.isActive } }
         assertTrue(runBlocking { enabled("r5") }, "der verschobene Einmal-Wecker bleibt eingeschaltet")
     }
 

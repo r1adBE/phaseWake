@@ -49,8 +49,8 @@
     <string name="good_night_cancel">Ghairi Usiku mwema</string>
     <string name="dnd_title">Kengele zimezuiwa</string>
     <string name="dnd_text">Ruhusu kengele katika “Usinisumbue”.</string>
-    <string name="duration_hours">saa %1$d</string>
-    <string name="duration_hours_minutes">saa %1$d dak %2$d</string>
+    <string name="duration_hours">saa %1$d</string>
+    <string name="duration_hours_minutes">saa %1$d dak %2$d</string>
     <string name="home_last_night">Usiku uliopita</string>
     <string name="notification_open">Fungua</string>
     <string name="home_good_night_too_far">Inapatikana saa 16 kabla ya kengele</string>

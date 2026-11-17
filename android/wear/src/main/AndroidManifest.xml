@@ -147,9 +147,10 @@
             <meta-data
                 android:name="android.support.wearable.complications.SUPPORTED_TYPES"
                 android:value="SHORT_TEXT" />
+            <!-- 0 = kein Abruf durch das System (Audit PERF-07): Die App meldet jede Änderung selbst (Neuplanen, Zielzeit). -->
             <meta-data
                 android:name="android.support.wearable.complications.UPDATE_PERIOD_SECONDS"
-                android:value="1800" />
+                android:value="0" />
         </service>
 
         <receiver

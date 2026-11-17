@@ -1,11 +1,14 @@
 package com.phasewake.app.wear.schedule
 
 import android.app.AlarmManager
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.UserManager
 import com.phasewake.app.core.WakePlan
 import com.phasewake.app.wear.QuietWear
+import com.phasewake.app.wear.complication.NextAlarmComplicationService
 import com.phasewake.app.wear.wake.WakeService
 import java.time.Duration
 import java.time.Instant
@@ -90,5 +93,27 @@ class ScheduleReceiversTest {
         SystemEventReceiver().onReceive(context, Intent(Intent.ACTION_LOCKED_BOOT_COMPLETED))
         assertTrue(alarms.scheduledAlarms.any { it.triggerAtMs == plan.target.toEpochMilli() })
         assertNull(started())
+    }
+
+    /** Gesendete Bitten um ein Update der Komplikation ([AlarmScheduler.refreshSurfaces]). */
+    private fun complicationUpdates(): Int = shadowOf(RuntimeEnvironment.getApplication()).broadcastIntents
+        .count { it.action == "android.support.wearable.complications.ACTION_REQUEST_UPDATE_ALL" }
+
+    @Test
+    fun complicationIsPushedAtTheTargetNotPolled() {
+        // Audit PERF-07: kein Abruf alle 30 Min. durch das System ...
+        val info = context.packageManager.getServiceInfo(
+            ComponentName(context, NextAlarmComplicationService::class.java), PackageManager.ComponentInfoFlags.of(PackageManager.GET_META_DATA.toLong()),
+        )
+        assertEquals(0, info.metaData.getInt("android.support.wearable.complications.UPDATE_PERIOD_SECONDS", -1))
+        // ... dafür zur Zielzeit ein Update (auch wenn danach nichts neu plant), vor dem Entsperren nicht.
+        val before = complicationUpdates()
+        receive(AlarmReceiver.ACTION_WINDOW_START)
+        assertEquals(before, complicationUpdates(), "Fensterbeginn: kein Update")
+        receive(AlarmReceiver.ACTION_DEADLINE)
+        assertEquals(before + 1, complicationUpdates())
+        users.setUserUnlocked(false)
+        receive(AlarmReceiver.ACTION_DEADLINE)
+        assertEquals(before + 1, complicationUpdates(), "vor dem Entsperren: kein Update")
     }
 }

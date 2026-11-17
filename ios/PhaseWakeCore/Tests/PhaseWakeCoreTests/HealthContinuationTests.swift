@@ -76,9 +76,7 @@ final class HealthContinuationTests: XCTestCase {
         let goal = SleepGoal.nightsOf(sleeps, calendar: calendar)
         XCTAssertEqual(goal.map { $0.date }, ["2026-11-11"])
         XCTAssertEqual(goal.map { $0.asleepMinutes }, [438])
-        let durations = ChartData.durations(sleeps, calendar: calendar, today: "2026-11-12", goalMinutes: 480)
-        XCTAssertEqual(durations?.bars.last?.date, "2026-11-11")
-        XCTAssertEqual(durations?.bars.last?.asleepMinutes, 438)
+        XCTAssertEqual(NoteEffect.asleepByNight(sleeps, calendar: calendar), ["2026-11-11": 438])
         let bars = ChartData.sleepBars(sleeps, calendar: calendar, today: "2026-11-12", nextTarget: nil, goalMinutes: 480)
         XCTAssertEqual(bars?.bars.last?.endMinute, Int(Regularity.minutesFromNoon(sleptOn.end, calendar: calendar)))
         // Phasen für eigene Nächte: beide Teile, das Nickerchen nicht.

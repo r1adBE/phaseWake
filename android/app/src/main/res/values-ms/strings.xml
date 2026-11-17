@@ -84,6 +84,9 @@
     <string name="settings_theme_system">Sistem</string>
     <string name="settings_theme_light">Cerah</string>
     <string name="settings_theme_dark">Gelap</string>
+    <string name="settings_evening_dark">Gelap pada waktu malam</string>
+    <string name="settings_evening_dark_text">Gelap dari %1$s hingga %2$s, juga dengan Sistem atau Cerah.</string>
+    <string name="settings_evening_dark_from">Gelap bermula</string>
     <string name="settings_data">Data awak</string>
     <string name="settings_data_text">Semuanya kekal pada telefon dan jam tangan. Tiada akaun, tiada pelayan, tiada penjejakan. Hanya maklumat teknikal jam yang melalui sambungan jam Google, tanpa data kesihatan.</string>
     <string name="settings_export">Eksport malam tanpa nama</string>
@@ -94,10 +97,10 @@
     <string name="settings_licenses_text">Phase Wake: Lesen MIT, © r1adBE.\nFon Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nPengesanan bunyi: MediaPipe Tasks Audio dan model YAMNet, Apache License 2.0, © Google LLC.\nBunyi: rakaman bebas (CC0) daripada opengameart.org</string>
     <string name="settings_version">Versi %1$s</string>
 
-    <string name="duration_minutes">%1$d min</string>
-    <string name="duration_hours">%1$d j</string>
-    <string name="duration_hours_half">%1$d½ j</string>
-    <string name="duration_hours_minutes">%1$d j %2$d min</string>
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d j</string>
+    <string name="duration_hours_half">%1$d½ j</string>
+    <string name="duration_hours_minutes">%1$d j %2$d min</string>
     <string name="health_title">Peringkat tidur daripada Health Connect</string>
     <string name="health_rationale">Phase Wake boleh membaca data tidur yang disimpan oleh apl kesihatan awak (contohnya Samsung Health). Data ini dipaparkan dalam sejarah awak, juga untuk dibandingkan dengan malam-malam Phase Wake mengejutkan awak. Phase Wake hanya membaca, tidak pernah menulis, dan tiada apa-apa keluar dari telefon awak.</string>
     <string name="health_connect">Banding dengan data kesihatan</string>
@@ -275,7 +278,7 @@
         <item quantity="other">Sasaran tidur dicapai: %1$d daripada %2$d malam</item>
     </plurals>
     <string name="bedtime_title">Peringatan waktu tidur</string>
-    <string name="bedtime_text">Mengingatkan anda %1$d min sebelum waktu tidur: masa penggera tolak sasaran tidur.</string>
+    <string name="bedtime_text">Mengingatkan anda %1$d min sebelum waktu tidur: masa sasaran tolak sasaran tidur.</string>
     <string name="bedtime_notification">Tidur pada %1$s – dengan itu anda tidur %2$s sebelum penggera pada %3$s.</string>
     <string name="channel_reminders">Peringatan</string>
     <string name="sounds_title">Bunyi untuk tidur</string>
@@ -540,7 +543,7 @@
     <string name="learned_latency">Tertidur: kira-kira %1$s</string>
     <string name="learned_latency_none">Tertidur: terlalu sedikit ukuran</string>
     <string name="bedtime_advice">Tidur malam ini antara %1$s dan %2$s</string>
-    <string name="bedtime_advice_hint">Berdasarkan penggera, sasaran tidur dan berapa lama kamu ambil untuk tertidur.</string>
+    <string name="bedtime_advice_hint">Berdasarkan masa sasaran, sasaran tidur dan berapa lama kamu ambil untuk tertidur.</string>
     <string name="learn_restart">Belajar semula</string>
     <string name="learn_restart_text">Phase Wake mengukur semula %1$d malam. Sehingga itu, nilai yang telah disesuaikan setakat ini terus digunakan.</string>
     <string name="record_end_wake">Tamat semasa bangun</string>
@@ -622,7 +625,7 @@
     <string name="finding_title">Dikesan dalam 7 malam terakhir anda</string>
     <string name="finding_hide">Sembunyikan</string>
     <string name="finding_latency">Secara purata anda mengambil %1$s untuk tertidur. Petua: jika masih berjaga selepas 20 minit, bangun dan kembali ke katil hanya apabila mengantuk. Jika ini berlarutan berminggu-minggu, berbincanglah dengan doktor anda.</string>
-    <string name="finding_short_nights">Malam kurang 6 jam: %1$d daripada 7. Petua: kira waktu tidur anda ke belakang dari waktu bangun dan patuhinya.</string>
+    <string name="finding_short_nights">Malam kurang 6 jam: %1$d daripada 7. Petua: kira waktu tidur anda ke belakang dari masa sasaran dan patuhinya.</string>
     <string name="finding_low_deep">Tidur nyenyak hanya kira-kira %1$d %% daripada tidur anda (biasanya %2$d–%3$d %%).</string>
     <string name="finding_deep_short">Pada malam kurang 6 jam ia jelas lebih rendah: %1$d %% dan bukannya %2$d %%.</string>
     <string name="finding_deep_late">Pada malam anda tidur lewat ia jelas lebih rendah: %1$d %% dan bukannya %2$d %%.</string>

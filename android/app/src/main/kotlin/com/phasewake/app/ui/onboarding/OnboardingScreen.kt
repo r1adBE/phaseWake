@@ -3,8 +3,8 @@ package com.phasewake.app.ui.onboarding
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.only
 import androidx.compose.material3.ButtonDefaults
-import com.phasewake.app.ui.components.Night
 import com.phasewake.app.ui.components.SkyHeader
+import com.phasewake.app.ui.components.skyInk
 import com.phasewake.app.ui.components.SkyPage
 import android.os.SystemClock
 import android.text.format.DateFormat
@@ -152,7 +152,7 @@ internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: Onboardi
         lockedUntil = now + PAGE_TAP_LOCK_MS
         action()
     }
-    // Himmel wie auf der Startseite; Schrittzahl und «Überspringen» im Kopf (hell ein Stück Nachthimmel), in Nachtfarben.
+    // Himmel wie auf der Startseite; Schrittzahl und «Überspringen» im Kopf (hell ein Stück Tageshimmel), in dessen Farben.
     SkyPage {
     Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom))) {
         SkyHeader(statusBar = true) {
@@ -160,11 +160,11 @@ internal fun OnboardingContent(page: Int, onPage: (Int) -> Unit, model: Onboardi
                 Text(
                     if (page < STEPS) stringResource(R.string.onb_step, page + 1, STEPS) else "",
                     style = MaterialTheme.typography.labelLarge,
-                    color = Night.Muted,
+                    color = skyInk().muted,
                     modifier = Modifier.weight(1f),
                 )
                 if (page < STEPS) {
-                    TextButton(onClick = onDone, colors = ButtonDefaults.textButtonColors(contentColor = Night.Wave)) { Text(stringResource(R.string.onb_skip)) }
+                    TextButton(onClick = onDone, colors = ButtonDefaults.textButtonColors(contentColor = skyInk().accent)) { Text(stringResource(R.string.onb_skip)) }
                 }
             }
         }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="window_background">#FBF7F0</color>
+    <color name="window_background">#FBF3E6</color>
     <!--
-        Widget «Nächster Wecker», helles Design: Creme → blasses Lavendel, Text dunkles Nachtblau, Nebentext
-        gedämpftes Violett (Kontrast auf beiden Verlaufsenden mindestens 4.5:1: 15.8/13.1 bzw. 6.4/5.3).
-        Dunkel in values-night.
+        Widget «Nächster Wecker», helles Design «Creme Caramel» wie der Tageshimmel im Kopf der App: Caramel hell F4E4CC
+        → Caramel E9C9A0, Text Tinte 2A2340, Nebentext 4A4058. Kontrast oben/unten: 11.9/9.4 bzw. 7.8/6.2 (≥ 4.5:1).
+        Gleich in PhoneWidgetPalette (iOS). Dunkel in values-night.
     -->
-    <color name="widget_top">#FFFBF7F0</color>
-    <color name="widget_bottom">#FFE4DFFB</color>
-    <color name="widget_text">#FF141A3D</color>
-    <color name="widget_text_secondary">#FF5B5486</color>
+    <color name="widget_top">#FFF4E4CC</color>
+    <color name="widget_bottom">#FFE9C9A0</color>
+    <color name="widget_text">#FF2A2340</color>
+    <color name="widget_text_secondary">#FF4A4058</color>
 </resources>

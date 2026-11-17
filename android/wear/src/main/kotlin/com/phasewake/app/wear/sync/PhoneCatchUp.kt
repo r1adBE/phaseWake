@@ -17,7 +17,7 @@ import kotlinx.coroutines.withTimeoutOrNull
 /**
  * Holt nach, was die Uhr verpasst haben könnte (Prozess neu, Neustart, Update): einmalig auf die Warteschlange umstellen
  * ([WearSync.migrateTransport]), wartende Nächte und Aufzeichnungen senden, das Handy um seinen Stand bitten (Wecker und
- * Einstellungen kommen über die Warteschlange, [WearSync.requestSync]) und ein verpasstes «Verlauf löschen» anwenden.
+ * Einstellungen kommen über die Warteschlange, [WearSync.requestSyncOnStart]) und ein verpasstes «Verlauf löschen» anwenden.
  * Nur nach dem ersten Entsperren aufrufen. Fehler (keine Wear-Dienste, kein Handy) werden geloggt, die Uhr arbeitet dann
  * allein weiter.
  */
@@ -45,7 +45,8 @@ object PhoneCatchUp {
             Log.w(TAG, "«Verlauf löschen» nachholen fehlgeschlagen", e)
         }
         app.sync.flush()
-        app.sync.requestSync()
+        // Höchstens alle 30 Min (Audit PERF-06): Startet der Prozess nachts mehrmals, fragt er nicht jedes Mal.
+        app.sync.requestSyncOnStart()
     }
 
     /**

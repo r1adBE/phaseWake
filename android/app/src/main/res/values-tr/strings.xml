@@ -85,6 +85,9 @@
     <string name="settings_theme_system">Sistem</string>
     <string name="settings_theme_light">Açık</string>
     <string name="settings_theme_dark">Koyu</string>
+    <string name="settings_evening_dark">Akşam koyu</string>
+    <string name="settings_evening_dark_text">Koyu: %1$s – %2$s, Sistem veya Açık seçiliyken de.</string>
+    <string name="settings_evening_dark_from">Koyu başlangıcı</string>
     <string name="settings_data">Verilerin</string>
     <string name="settings_data_text">Her şey telefonunda ve saatinde kalır. Hesap yok, sunucu yok, takip yok. Google’ın saat bağlantısından yalnızca saatle ilgili teknik bilgiler geçer, sağlık verileri olmadan.</string>
     <string name="settings_export">Geceleri isimsiz dışa aktar</string>
@@ -95,10 +98,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT Lisansı, © r1adBE.\nManrope yazı tipi: SIL Open Font License 1.1, © The Manrope Project Authors.\nSes algılama: MediaPipe Tasks Audio ve YAMNet modeli, Apache License 2.0, © Google LLC.\nSesler: opengameart.org’dan özgür kayıtlar (CC0)</string>
     <string name="settings_version">Sürüm %1$s</string>
 
-    <string name="duration_minutes">%1$d dk</string>
-    <string name="duration_hours">%1$d sa</string>
-    <string name="duration_hours_half">%1$d½ sa</string>
-    <string name="duration_hours_minutes">%1$d sa %2$d dk</string>
+    <string name="duration_minutes">%1$d dk</string>
+    <string name="duration_hours">%1$d sa</string>
+    <string name="duration_hours_half">%1$d½ sa</string>
+    <string name="duration_hours_minutes">%1$d sa %2$d dk</string>
     <string name="health_title">Health Connect\'ten uyku evreleri</string>
     <string name="health_rationale">Phase Wake, sağlık uygulamanın (örneğin Samsung Health) kaydettiği uyku verilerini okuyabilir. Bunlar geçmişinde gösterilir, Phase Wake\'in seni uyandırdığı gecelerle karşılaştırma için de. Phase Wake yalnızca okur, asla yazmaz ve hiçbir şey telefonundan çıkmaz.</string>
     <string name="health_connect">Sağlık verileriyle karşılaştır</string>
@@ -282,7 +285,7 @@
         <item quantity="other">Uyku hedefine ulaşıldı: %1$d/%2$d gece</item>
     </plurals>
     <string name="bedtime_title">Yatma saati hatırlatıcısı</string>
-    <string name="bedtime_text">Yatma saatinden %1$d dk önce hatırlatır: alarm saati eksi uyku hedefi.</string>
+    <string name="bedtime_text">Yatma saatinden %1$d dk önce hatırlatır: hedef saat eksi uyku hedefi.</string>
     <string name="bedtime_notification">Yatma saati %1$s – böylece %3$s alarmına kadar %2$s uyursun.</string>
     <string name="channel_reminders">Hatırlatıcılar</string>
     <string name="sounds_title">Uyku sesleri</string>
@@ -554,7 +557,7 @@
     <string name="learned_latency">Uykuya dalma: yaklaşık %1$s</string>
     <string name="learned_latency_none">Uykuya dalma: ölçüm çok az</string>
     <string name="bedtime_advice">Bugün %1$s ile %2$s arasında yat</string>
-    <string name="bedtime_advice_hint">Alarmına, uyku hedefine ve uykuya dalma süresine göre.</string>
+    <string name="bedtime_advice_hint">Hedef saatine, uyku hedefine ve uykuya dalma süresine göre.</string>
     <string name="learn_restart">Yeniden öğren</string>
     <string name="learn_restart_text">Phase Wake yeniden %1$d gece ölçer. O zamana kadar şimdiye kadar ayarlanan değerler kullanılmaya devam eder.</string>
     <string name="record_end_wake">Uyandırmada sona erdi</string>
@@ -636,7 +639,7 @@
     <string name="finding_title">Son 7 gecende dikkat çeken</string>
     <string name="finding_hide">Gizle</string>
     <string name="finding_latency">Uykuya dalman ortalama %1$s sürdü. İpucu: 20 dakika sonra hâlâ uyanıksan kalk ve ancak uykun gelince yatağa dön. Bu haftalarca sürerse doktorunla konuş.</string>
-    <string name="finding_short_nights">6 saatten kısa geceler: 7’de %1$d. İpucu: yatma saatini uyanma saatinden geriye doğru hesapla ve ona uy.</string>
+    <string name="finding_short_nights">6 saatten kısa geceler: 7’de %1$d. İpucu: yatma saatini hedef saatten geriye doğru hesapla ve ona uy.</string>
     <string name="finding_low_deep">Derin uyku, uykunun yalnızca yaklaşık %%%1$d kadarıydı (genelde %%%2$d–%3$d).</string>
     <string name="finding_deep_short">6 saatten kısa gecelerde belirgin şekilde daha azdı: %%%2$d yerine %%%1$d.</string>
     <string name="finding_deep_late">Geç yattığın gecelerde belirgin şekilde daha azdı: %%%2$d yerine %%%1$d.</string>

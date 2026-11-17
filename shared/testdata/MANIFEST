@@ -1,4 +1,5 @@
 # Alle Dateien in shared/testdata (ausser README.md und MANIFEST). Beide Kerne prüfen, dass genau diese da sind (Vollaudit K-8).
+alarm-stamps.vectors
 awake.night
 awake_precedes_light.night
 awake_window_three.night
@@ -13,6 +14,7 @@ backup-v2.pwbak.b64
 baseline_median_six.night
 calibration-real.vectors
 deep_sleep.night
+evening-dark.vectors
 findings-onset.vectors
 findings.vectors
 hr_rise_exact.night
@@ -55,6 +57,7 @@ resting_clamp.night
 resting_fallback_factor.night
 resting_fallback_plateau.night
 restless_start_learned_floor.night
+schedule.vectors
 sensor_gaps.night
 strong_awake_same_epoch.night
 strong_motion_at_wake_threshold.night

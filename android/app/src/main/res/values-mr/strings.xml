@@ -87,6 +87,9 @@
     <string name="settings_theme_system">सिस्टम</string>
     <string name="settings_theme_light">फिकट</string>
     <string name="settings_theme_dark">गडद</string>
+    <string name="settings_evening_dark">संध्याकाळी गडद</string>
+    <string name="settings_evening_dark_text">%1$s – %2$s गडद, सिस्टम किंवा फिकट निवडले तरी.</string>
+    <string name="settings_evening_dark_from">गडद सुरू</string>
     <string name="settings_data">तुमचा डेटा</string>
     <string name="settings_data_text">सगळं तुमच्या फोनवर आणि घड्याळावरच राहतं. खातं नाही, सर्व्हर नाही, ट्रॅकिंग नाही. Google च्या घड्याळ जोडणीतून फक्त घड्याळाची तांत्रिक माहिती जाते, आरोग्य डेटाशिवाय.</string>
     <string name="settings_export">रात्री नावाशिवाय एक्सपोर्ट करा</string>
@@ -97,10 +100,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT License, © r1adBE.\nManrope फॉन्ट: SIL Open Font License 1.1, © The Manrope Project Authors.\nआवाज ओळख: MediaPipe Tasks Audio आणि YAMNet मॉडेल, Apache License 2.0, © Google LLC.\nआवाज: opengameart.org वरील मुक्त रेकॉर्डिंग (CC0)</string>
     <string name="settings_version">आवृत्ती %1$s</string>
 
-    <string name="duration_minutes">%1$d मि.</string>
-    <string name="duration_hours">%1$d ता.</string>
-    <string name="duration_hours_half">%1$d½ ता.</string>
-    <string name="duration_hours_minutes">%1$d ता. %2$d मि.</string>
+    <string name="duration_minutes">%1$d मि.</string>
+    <string name="duration_hours">%1$d ता.</string>
+    <string name="duration_hours_half">%1$d½ ता.</string>
+    <string name="duration_hours_minutes">%1$d ता. %2$d मि.</string>
     <string name="health_title">Health Connect मधील झोपेचे टप्पे</string>
     <string name="health_rationale">तुमचे हेल्थ ॲप (उदा. Samsung Health) जो झोपेचा डेटा साठवते, तो Phase Wake वाचू शकते. तो तुमच्या इतिहासात दिसतो, Phase Wake ने तुम्हाला उठवलेल्या रात्रींशी तुलना करण्यासाठीही. Phase Wake फक्त वाचते, कधीच लिहीत नाही, आणि काहीही तुमच्या फोनबाहेर जात नाही.</string>
     <string name="health_connect">हेल्थ डेटाशी तुलना करा</string>
@@ -282,7 +285,7 @@
         <item quantity="other">झोपेचे लक्ष्य गाठले: %2$d पैकी %1$d रात्री</item>
     </plurals>
     <string name="bedtime_title">झोपण्याच्या वेळेची आठवण</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">झोपण्याच्या वेळेच्या %1$d मि. आधी आठवण करून देते: तुमची अलार्म वेळ वजा झोपेचे लक्ष्य.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">झोपण्याच्या वेळेच्या %1$d मि. आधी आठवण करून देते: तुमची लक्ष्य वेळ वजा झोपेचे लक्ष्य.</string>
     <string name="bedtime_notification">%1$s ला झोपण्याची वेळ – म्हणजे %3$s च्या अलार्मपूर्वी तुम्हाला %2$s झोप मिळेल.</string>
     <string name="channel_reminders">आठवणी</string>
     <string name="sounds_title">झोपेचे आवाज</string>
@@ -557,7 +560,7 @@
     <string name="learned_latency">झोप लागणे: सुमारे %1$s</string>
     <string name="learned_latency_none">झोप लागणे: मोजमापे खूप कमी</string>
     <string name="bedtime_advice">आज %1$s ते %2$s दरम्यान झोपायला जा</string>
-    <string name="bedtime_advice_hint">तुझा अलार्म, झोपेचे ध्येय आणि झोप लागायला लागणाऱ्या वेळेवरून.</string>
+    <string name="bedtime_advice_hint">तुझी लक्ष्य वेळ, झोपेचे ध्येय आणि झोप लागायला लागणाऱ्या वेळेवरून.</string>
     <string name="learn_restart">पुन्हा शिका</string>
     <string name="learn_restart_text">Phase Wake पुन्हा %1$d रात्री मोजतो. तोपर्यंत आतापर्यंत जुळवलेली मूल्येच वापरली जातात.</string>
     <string name="record_end_wake">उठवताना संपले</string>
@@ -639,7 +642,7 @@
     <string name="finding_title">तुझ्या शेवटच्या 7 रात्रींमध्ये लक्षात आलेले</string>
     <string name="finding_hide">लपवा</string>
     <string name="finding_latency">झोप लागायला तुला सरासरी %1$s लागले. टीप: 20 मिनिटांनंतरही जागा असशील तर उठ आणि झोप आल्यावरच अंथरुणात परत जा. असे आठवडेभर चालू राहिले तर तुझ्या डॉक्टरांशी बोल.</string>
-    <string name="finding_short_nights">6 तासांपेक्षा कमी रात्री: 7 पैकी %1$d. टीप: उठण्याच्या वेळेपासून मागे मोजून झोपण्याची वेळ ठरव आणि ती पाळ.</string>
+    <string name="finding_short_nights">6 तासांपेक्षा कमी रात्री: 7 पैकी %1$d. टीप: लक्ष्य वेळेपासून मागे मोजून झोपण्याची वेळ ठरव आणि ती पाळ.</string>
     <string name="finding_low_deep">गाढ झोप तुझ्या झोपेच्या फक्त सुमारे %1$d %% होती (साधारणपणे %2$d–%3$d %%).</string>
     <string name="finding_deep_short">6 तासांपेक्षा कमी रात्रींमध्ये ती स्पष्टपणे कमी होती: %2$d %% ऐवजी %1$d %%.</string>
     <string name="finding_deep_late">ज्या रात्री तू उशिरा झोपलास, तेव्हा ती स्पष्टपणे कमी होती: %2$d %% ऐवजी %1$d %%.</string>

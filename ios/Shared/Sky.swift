@@ -72,6 +72,91 @@ struct SkyMood: Equatable {
     }
 }
 
+/// Tageshimmel «Creme Caramel» (hell, Entscheid r1AD 17.11.2026), wie `Day` und `DaySky.kt` auf Android: Verlauf von
+/// hellem Caramel F4E4CC nach Caramel E9C9A0, am Abend ein Hauch Lavendel am Horizont, vor dem Weckfenster Caramel als
+/// Sonnenaufgang, oben rechts ein weisser Schein. Dunkle Schrift (``SkyInk/onDay``) bleibt in jeder Stimmung ≥ 4.5:1
+/// (auf Android mit SkyMoodTest geprüft, gleiche Werte).
+enum DaySkyColors {
+    static let top: UInt32 = 0xF4E4CC, bottom: UInt32 = 0xE9C9A0
+    /// Oben in tiefer Nacht (nur, wer «Abends dunkel» ausgeschaltet hat): ein Hauch Lavendel.
+    static let nightTop: UInt32 = 0xE7DDEA
+    static let duskLow: UInt32 = 0x7B6CF6, duskHigh: UInt32 = 0xB9AEFF
+    static let dawnLow: UInt32 = 0xB86B25, dawnHigh: UInt32 = 0xF0A830
+    static let duskAlpha = 0.14, duskSun = 0.10, dawnAlpha = 0.20, dawnSun = 0.12
+    /// Weisser Lichtschein oben rechts (macht den Himmel nur heller).
+    static let glowAlpha = 0.45
+}
+
+extension SkyMood {
+    /// Obere Farbe des Tageshimmels: in tiefer Nacht ein Hauch Lavendel.
+    var dayTop: Color { SkyMood.mix(DaySkyColors.top, DaySkyColors.nightTop, min(1, max(0, night))) }
+    /// Horizont am Tag und seine Deckkraft ganz unten (0 = keine Färbung).
+    var dayHorizon: (color: Color, alpha: Double) {
+        let tint = min(1, dusk + dawn)
+        guard tint > 0 else { return (.clear, 0) }
+        let w = dawn / (dusk + dawn)
+        return (SkyMood.mix(DaySkyColors.duskLow, DaySkyColors.dawnLow, w),
+                (DaySkyColors.duskAlpha + (DaySkyColors.dawnAlpha - DaySkyColors.duskAlpha) * w) * tint)
+    }
+    /// Schein über dem Horizont am Tag und seine Deckkraft in der Mitte.
+    var daySun: (color: Color, alpha: Double) {
+        let tint = min(1, dusk + dawn)
+        guard tint > 0 else { return (.clear, 0) }
+        let w = dawn / (dusk + dawn)
+        return (SkyMood.mix(DaySkyColors.duskHigh, DaySkyColors.dawnHigh, w),
+                (DaySkyColors.duskSun + (DaySkyColors.dawnSun - DaySkyColors.duskSun) * w) * tint)
+    }
+}
+
+/// Farben für Schrift und Zeichen auf dem Himmel der Kopfbereiche, wie `SkyInk` auf Android: auf dem Nachthimmel hell
+/// (bisherige Werte), auf dem Tageshimmel dunkel. `button`/`onButton`: gefüllter Knopf im Kopf; `dawn`: Morgenlicht des
+/// Weckfensters im Bogen; `band`: Weckfenster-Band der Welle.
+struct SkyInk {
+    let text: Color, muted: Color, accent: Color, wave: Color, waveEcho: Color, moon: Color
+    let button: Color, onButton: Color, dawn: Color, band: Color
+
+    static let onNight = SkyInk(text: Brand.moon, muted: Brand.muted, accent: Brand.wave, wave: Brand.wave, waveEcho: Brand.waveEcho,
+                                moon: Brand.moon, button: Brand.wave, onButton: Brand.nightTop, dawn: Color(hex: 0xFFB27A), band: Brand.beam)
+    /// Schrift 2A2340 (≥ 7.8:1), Nebentext 4A4058 (≥ 5:1), Textknopf 4436A6 (≥ 4.7:1), Welle/Knopf 5546C8 (≥ 3:1, Weiss
+    /// darauf 6.8:1), Mond 3B3486, Morgenlicht Caramel B86B25.
+    static let onDay = SkyInk(text: Brand.ink, muted: Color(hex: 0x4A4058), accent: Color(hex: 0x4436A6), wave: Brand.lavenderDeep,
+                              waveEcho: Brand.glow, moon: Brand.deep, button: Brand.lavenderDeep, onButton: .white,
+                              dawn: Brand.caramel, band: Brand.lavenderDeep.opacity(0.75))
+
+    static func of(_ scheme: ColorScheme) -> SkyInk { scheme == .dark ? onNight : onDay }
+}
+
+/// Tageshimmel als Hintergrund der Kopfbereiche im hellen Design, wie `AnimatedDay` auf Android: ruhig, die Stimmung
+/// wechselt sanft (mit «Bewegung reduzieren» sofort).
+struct DaySky: View {
+    var mood: SkyMood = .plain
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    var body: some View {
+        GeometryReader { geo in
+            ZStack {
+                LinearGradient(colors: [mood.dayTop, Color(hex: DaySkyColors.bottom)], startPoint: .top, endPoint: .bottom)
+                let horizon = mood.dayHorizon
+                if horizon.alpha > 0 {
+                    LinearGradient(
+                        stops: [.init(color: horizon.color.opacity(0), location: SkyMood.horizonStart), .init(color: horizon.color.opacity(horizon.alpha), location: 1)],
+                        startPoint: .top, endPoint: .bottom
+                    )
+                    let sun = mood.daySun
+                    RadialGradient(
+                        colors: [sun.color.opacity(sun.alpha), sun.color.opacity(sun.alpha * 0.45), sun.color.opacity(0)],
+                        center: UnitPoint(x: 0.5, y: 1), startRadius: 0, endRadius: geo.size.height * (1 - SkyMood.horizonStart)
+                    )
+                }
+                RadialGradient(colors: [.white.opacity(DaySkyColors.glowAlpha), .white.opacity(0)],
+                               center: UnitPoint(x: 0.82, y: 0.08), startRadius: 0, endRadius: max(geo.size.width, geo.size.height) * 0.6)
+            }
+            .animation(reduceMotion ? nil : .easeInOut(duration: 1.5), value: mood)
+        }
+        .accessibilityHidden(true)
+    }
+}
+
 /// Nachthimmel: Verlauf von Mitternachts-Indigo nach Fast-Schwarz, Lavendel-Schein oben rechts, unten der Horizont
 /// nach `mood`, in tiefer Nacht ruhende Sterne. Auf dem iPhone wandert der Schein langsam (nicht mit «Bewegung
 /// reduzieren»); auf der Apple Watch ruht er (Akku), und im Always-On (gedimmt) bleibt nur ein dunkler Grund ohne Schein.

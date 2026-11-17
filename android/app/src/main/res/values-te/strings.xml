@@ -87,6 +87,9 @@
     <string name="settings_theme_system">సిస్టమ్</string>
     <string name="settings_theme_light">లేత</string>
     <string name="settings_theme_dark">ముదురు</string>
+    <string name="settings_evening_dark">సాయంత్రం ముదురు</string>
+    <string name="settings_evening_dark_text">%1$s – %2$s ముదురు, సిస్టమ్ లేదా లేత ఎంచుకున్నా.</string>
+    <string name="settings_evening_dark_from">ముదురు ప్రారంభం</string>
     <string name="settings_data">మీ డేటా</string>
     <string name="settings_data_text">అంతా మీ ఫోన్‌లో, వాచ్‌లోనే ఉంటుంది. ఖాతా లేదు, సర్వర్ లేదు, ట్రాకింగ్ లేదు. Google వాచ్ కనెక్షన్ ద్వారా వాచ్ సాంకేతిక సమాచారం మాత్రమే వెళ్తుంది, ఆరోగ్య డేటా లేకుండా.</string>
     <string name="settings_export">రాత్రులను పేరు లేకుండా ఎగుమతి చేయండి</string>
@@ -97,10 +100,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT License, © r1adBE.\nManrope ఫాంట్: SIL Open Font License 1.1, © The Manrope Project Authors.\nధ్వని గుర్తింపు: MediaPipe Tasks Audio, YAMNet మోడల్, Apache License 2.0, © Google LLC.\nధ్వనులు: opengameart.org నుంచి ఉచిత రికార్డింగ్‌లు (CC0)</string>
     <string name="settings_version">వెర్షన్ %1$s</string>
 
-    <string name="duration_minutes">%1$d ని.</string>
-    <string name="duration_hours">%1$d గం.</string>
-    <string name="duration_hours_half">%1$d½ గం.</string>
-    <string name="duration_hours_minutes">%1$d గం. %2$d ని.</string>
+    <string name="duration_minutes">%1$d ని.</string>
+    <string name="duration_hours">%1$d గం.</string>
+    <string name="duration_hours_half">%1$d½ గం.</string>
+    <string name="duration_hours_minutes">%1$d గం. %2$d ని.</string>
     <string name="health_title">Health Connect నుంచి నిద్ర దశలు</string>
     <string name="health_rationale">మీ హెల్త్ యాప్ (ఉదా. Samsung Health) భద్రపరిచే నిద్ర డేటాను Phase Wake చదవగలదు. అది మీ చరిత్రలో కనిపిస్తుంది, Phase Wake మిమ్మల్ని లేపిన రాత్రులతో పోల్చడానికి కూడా. Phase Wake చదువుతుంది మాత్రమే, ఎప్పుడూ రాయదు, ఏదీ మీ ఫోన్ దాటి వెళ్లదు.</string>
     <string name="health_connect">హెల్త్ డేటాతో పోల్చండి</string>
@@ -282,7 +285,7 @@
         <item quantity="other">నిద్ర లక్ష్యం చేరింది: %2$dలో %1$d రాత్రులు</item>
     </plurals>
     <string name="bedtime_title">నిద్ర సమయ రిమైండర్</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">నిద్ర సమయానికి %1$d ని. ముందు గుర్తు చేస్తుంది: మీ అలారం సమయం నుంచి మీ నిద్ర లక్ష్యం తీసివేస్తే.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">నిద్ర సమయానికి %1$d ని. ముందు గుర్తు చేస్తుంది: మీ లక్ష్య సమయం నుంచి మీ నిద్ర లక్ష్యం తీసివేస్తే.</string>
     <string name="bedtime_notification">%1$sకి నిద్ర సమయం – అలా %3$s అలారానికి ముందు మీకు %2$s నిద్ర దొరుకుతుంది.</string>
     <string name="channel_reminders">రిమైండర్‌లు</string>
     <string name="sounds_title">నిద్ర ధ్వనులు</string>
@@ -557,7 +560,7 @@
     <string name="learned_latency">నిద్రపోవడం: సుమారు %1$s</string>
     <string name="learned_latency_none">నిద్రపోవడం: కొలతలు చాలా తక్కువ</string>
     <string name="bedtime_advice">ఈరోజు %1$s మరియు %2$s మధ్య పడుకో</string>
-    <string name="bedtime_advice_hint">నీ అలారం, నిద్ర లక్ష్యం, నిద్రపోవడానికి పట్టే సమయం ఆధారంగా.</string>
+    <string name="bedtime_advice_hint">నీ లక్ష్య సమయం, నిద్ర లక్ష్యం, నిద్రపోవడానికి పట్టే సమయం ఆధారంగా.</string>
     <string name="learn_restart">మళ్లీ నేర్చుకో</string>
     <string name="learn_restart_text">Phase Wake మళ్లీ %1$d రాత్రులు కొలుస్తుంది. అప్పటి వరకు ఇప్పటివరకు సర్దిన విలువలే వాడబడతాయి.</string>
     <string name="record_end_wake">లేపేటప్పుడు ముగిసింది</string>
@@ -639,7 +642,7 @@
     <string name="finding_title">నీ చివరి 7 రాత్రుల్లో గమనించినది</string>
     <string name="finding_hide">దాచు</string>
     <string name="finding_latency">నిద్ర పట్టడానికి నీకు సగటున %1$s పట్టింది. సూచన: 20 నిమిషాల తర్వాత కూడా మెలకువగా ఉంటే లేచి, నిద్ర వచ్చినప్పుడే మంచానికి తిరిగి వెళ్లు. ఇది వారాల తరబడి కొనసాగితే నీ డాక్టర్‌తో మాట్లాడు.</string>
-    <string name="finding_short_nights">6 గంటల కంటే తక్కువ రాత్రులు: 7లో %1$d. సూచన: లేచే సమయం నుంచి వెనక్కి లెక్కించి పడుకునే సమయం నిర్ణయించుకుని పాటించు.</string>
+    <string name="finding_short_nights">6 గంటల కంటే తక్కువ రాత్రులు: 7లో %1$d. సూచన: లక్ష్య సమయం నుంచి వెనక్కి లెక్కించి పడుకునే సమయం నిర్ణయించుకుని పాటించు.</string>
     <string name="finding_low_deep">గాఢ నిద్ర నీ నిద్రలో సుమారు %1$d %% మాత్రమే (సాధారణంగా %2$d–%3$d %%).</string>
     <string name="finding_deep_short">6 గంటల కంటే తక్కువ రాత్రుల్లో అది స్పష్టంగా తక్కువగా ఉంది: %2$d %% బదులు %1$d %%.</string>
     <string name="finding_deep_late">నువ్వు ఆలస్యంగా పడుకున్న రాత్రుల్లో అది స్పష్టంగా తక్కువగా ఉంది: %2$d %% బదులు %1$d %%.</string>

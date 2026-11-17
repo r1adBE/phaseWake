@@ -22,12 +22,11 @@ class StageCheckTest {
     }
 
     @Test
-    fun verdictWithTolerance() {
-        assertEquals(false, StageCheck.wokeWell(spans, at(10)))
-        assertEquals(true, StageCheck.wokeWell(spans, at(25)))
-        assertEquals(true, StageCheck.wokeWell(spans, at(51))) // Sitzung endete 1 Min vorher
-        assertNull(StageCheck.wokeWell(spans, at(60)))
-        assertNull(StageCheck.wokeWell(listOf(StageSpan(at(0), at(10), SleepStage.UNKNOWN)), at(5)))
+    fun stageAtWakeWithTolerance() {
+        assertEquals(SleepStage.DEEP, StageCheck.stageAtWake(spans, at(10)))
+        assertEquals(SleepStage.LIGHT, StageCheck.stageAtWake(spans, at(25)))
+        assertEquals(SleepStage.REM, StageCheck.stageAtWake(spans, at(51))) // Sitzung endete 1 Min vorher
+        assertNull(StageCheck.stageAtWake(spans, at(60)))
     }
 
     @Test

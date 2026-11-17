@@ -87,6 +87,9 @@
     <string name="settings_theme_system">ਸਿਸਟਮ</string>
     <string name="settings_theme_light">ਹਲਕਾ</string>
     <string name="settings_theme_dark">ਗੂੜ੍ਹਾ</string>
+    <string name="settings_evening_dark">ਸ਼ਾਮ ਨੂੰ ਗੂੜ੍ਹਾ</string>
+    <string name="settings_evening_dark_text">%1$s – %2$s ਗੂੜ੍ਹਾ, ਸਿਸਟਮ ਜਾਂ ਹਲਕਾ ਚੁਣਨ \'ਤੇ ਵੀ।</string>
+    <string name="settings_evening_dark_from">ਗੂੜ੍ਹਾ ਸ਼ੁਰੂ</string>
     <string name="settings_data">ਤੁਹਾਡਾ ਡਾਟਾ</string>
     <string name="settings_data_text">ਸਭ ਕੁਝ ਤੁਹਾਡੇ ਫ਼ੋਨ ਅਤੇ ਘੜੀ ’ਤੇ ਹੀ ਰਹਿੰਦਾ ਹੈ। ਕੋਈ ਖਾਤਾ ਨਹੀਂ, ਕੋਈ ਸਰਵਰ ਨਹੀਂ, ਕੋਈ ਟਰੈਕਿੰਗ ਨਹੀਂ। Google ਦੇ ਘੜੀ ਕਨੈਕਸ਼ਨ ਰਾਹੀਂ ਸਿਰਫ਼ ਘੜੀ ਦੀ ਤਕਨੀਕੀ ਜਾਣਕਾਰੀ ਜਾਂਦੀ ਹੈ, ਸਿਹਤ ਡਾਟੇ ਤੋਂ ਬਿਨਾਂ।</string>
     <string name="settings_export">ਰਾਤਾਂ ਨਾਮ ਤੋਂ ਬਿਨਾਂ ਐਕਸਪੋਰਟ ਕਰੋ</string>
@@ -97,10 +100,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT License, © r1adBE.\nManrope ਫ਼ੌਂਟ: SIL Open Font License 1.1, © The Manrope Project Authors.\nਆਵਾਜ਼ ਪਛਾਣ: MediaPipe Tasks Audio ਅਤੇ YAMNet ਮਾਡਲ, Apache License 2.0, © Google LLC.\nਆਵਾਜ਼ਾਂ: opengameart.org ਤੋਂ ਮੁਫ਼ਤ ਰਿਕਾਰਡਿੰਗਾਂ (CC0)</string>
     <string name="settings_version">ਵਰਜਨ %1$s</string>
 
-    <string name="duration_minutes">%1$d ਮਿੰ.</string>
-    <string name="duration_hours">%1$d ਘੰ.</string>
-    <string name="duration_hours_half">%1$d½ ਘੰ.</string>
-    <string name="duration_hours_minutes">%1$d ਘੰ. %2$d ਮਿੰ.</string>
+    <string name="duration_minutes">%1$d ਮਿੰ.</string>
+    <string name="duration_hours">%1$d ਘੰ.</string>
+    <string name="duration_hours_half">%1$d½ ਘੰ.</string>
+    <string name="duration_hours_minutes">%1$d ਘੰ. %2$d ਮਿੰ.</string>
     <string name="health_title">Health Connect ਤੋਂ ਨੀਂਦ ਦੇ ਪੜਾਅ</string>
     <string name="health_rationale">ਤੁਹਾਡੀ ਸਿਹਤ ਐਪ (ਜਿਵੇਂ Samsung Health) ਨੀਂਦ ਦਾ ਜੋ ਡਾਟਾ ਸੰਭਾਲਦੀ ਹੈ, Phase Wake ਉਹ ਪੜ੍ਹ ਸਕਦਾ ਹੈ। ਇਹ ਤੁਹਾਡੇ ਇਤਿਹਾਸ ਵਿੱਚ ਦਿਖਾਇਆ ਜਾਂਦਾ ਹੈ, ਉਨ੍ਹਾਂ ਰਾਤਾਂ ਨਾਲ ਤੁਲਨਾ ਲਈ ਵੀ ਜਦੋਂ Phase Wake ਨੇ ਤੁਹਾਨੂੰ ਜਗਾਇਆ। Phase Wake ਸਿਰਫ਼ ਪੜ੍ਹਦਾ ਹੈ, ਕਦੇ ਲਿਖਦਾ ਨਹੀਂ, ਅਤੇ ਕੁਝ ਵੀ ਤੁਹਾਡੇ ਫ਼ੋਨ ਤੋਂ ਬਾਹਰ ਨਹੀਂ ਜਾਂਦਾ।</string>
     <string name="health_connect">ਸਿਹਤ ਡਾਟੇ ਨਾਲ ਤੁਲਨਾ ਕਰੋ</string>
@@ -282,7 +285,7 @@
         <item quantity="other">ਨੀਂਦ ਦਾ ਟੀਚਾ ਪੂਰਾ: %2$d ਵਿੱਚੋਂ %1$d ਰਾਤਾਂ</item>
     </plurals>
     <string name="bedtime_title">ਸੌਣ ਦੇ ਸਮੇਂ ਦੀ ਯਾਦ</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">ਸੌਣ ਦੇ ਸਮੇਂ ਤੋਂ %1$d ਮਿੰ. ਪਹਿਲਾਂ ਯਾਦ ਦਿਵਾਉਂਦਾ ਹੈ: ਤੁਹਾਡਾ ਅਲਾਰਮ ਸਮਾਂ ਘਟਾਓ ਤੁਹਾਡਾ ਨੀਂਦ ਦਾ ਟੀਚਾ।</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">ਸੌਣ ਦੇ ਸਮੇਂ ਤੋਂ %1$d ਮਿੰ. ਪਹਿਲਾਂ ਯਾਦ ਦਿਵਾਉਂਦਾ ਹੈ: ਤੁਹਾਡਾ ਟੀਚਾ ਸਮਾਂ ਘਟਾਓ ਤੁਹਾਡਾ ਨੀਂਦ ਦਾ ਟੀਚਾ।</string>
     <string name="bedtime_notification">%1$s ਵਜੇ ਸੌਣ ਦਾ ਸਮਾਂ – ਇਸ ਤਰ੍ਹਾਂ %3$s ਵਜੇ ਦੇ ਅਲਾਰਮ ਤੋਂ ਪਹਿਲਾਂ ਤੁਹਾਨੂੰ %2$s ਨੀਂਦ ਮਿਲੇਗੀ।</string>
     <string name="channel_reminders">ਯਾਦ-ਦਹਾਨੀਆਂ</string>
     <string name="sounds_title">ਨੀਂਦ ਦੀਆਂ ਆਵਾਜ਼ਾਂ</string>
@@ -557,7 +560,7 @@
     <string name="learned_latency">ਨੀਂਦ ਆਉਣਾ: ਲਗਭਗ %1$s</string>
     <string name="learned_latency_none">ਨੀਂਦ ਆਉਣਾ: ਮਾਪ ਬਹੁਤ ਘੱਟ</string>
     <string name="bedtime_advice">ਅੱਜ %1$s ਤੋਂ %2$s ਦੇ ਵਿਚਕਾਰ ਸੌਣ ਜਾ</string>
-    <string name="bedtime_advice_hint">ਤੇਰੇ ਅਲਾਰਮ, ਨੀਂਦ ਦੇ ਟੀਚੇ ਅਤੇ ਨੀਂਦ ਆਉਣ ਵਿੱਚ ਲੱਗਦੇ ਸਮੇਂ ਤੋਂ।</string>
+    <string name="bedtime_advice_hint">ਤੇਰੇ ਟੀਚਾ ਸਮੇਂ, ਨੀਂਦ ਦੇ ਟੀਚੇ ਅਤੇ ਨੀਂਦ ਆਉਣ ਵਿੱਚ ਲੱਗਦੇ ਸਮੇਂ ਤੋਂ।</string>
     <string name="learn_restart">ਮੁੜ ਸਿੱਖੋ</string>
     <string name="learn_restart_text">Phase Wake ਦੁਬਾਰਾ %1$d ਰਾਤਾਂ ਮਾਪਦਾ ਹੈ। ਉਦੋਂ ਤੱਕ ਹੁਣ ਤੱਕ ਢਾਲੇ ਗਏ ਮੁੱਲ ਹੀ ਵਰਤੇ ਜਾਂਦੇ ਹਨ।</string>
     <string name="record_end_wake">ਜਗਾਉਣ ਵੇਲੇ ਖ਼ਤਮ</string>
@@ -639,7 +642,7 @@
     <string name="finding_title">ਤੇਰੀਆਂ ਪਿਛਲੀਆਂ 7 ਰਾਤਾਂ ਵਿੱਚ ਧਿਆਨ ਵਿੱਚ ਆਇਆ</string>
     <string name="finding_hide">ਲੁਕਾਓ</string>
     <string name="finding_latency">ਸੌਣ ਵਿੱਚ ਤੈਨੂੰ ਔਸਤਨ %1$s ਲੱਗੇ। ਸੁਝਾਅ: ਜੇ 20 ਮਿੰਟ ਬਾਅਦ ਵੀ ਜਾਗਦਾ ਹੈਂ, ਤਾਂ ਉੱਠ ਜਾ ਅਤੇ ਨੀਂਦ ਆਉਣ ’ਤੇ ਹੀ ਬਿਸਤਰੇ ’ਤੇ ਵਾਪਸ ਜਾ। ਜੇ ਇਹ ਹਫ਼ਤਿਆਂ ਤੱਕ ਰਹੇ, ਤਾਂ ਆਪਣੇ ਡਾਕਟਰ ਨਾਲ ਗੱਲ ਕਰ।</string>
-    <string name="finding_short_nights">6 ਘੰਟਿਆਂ ਤੋਂ ਘੱਟ ਰਾਤਾਂ: 7 ਵਿੱਚੋਂ %1$d। ਸੁਝਾਅ: ਉੱਠਣ ਦੇ ਸਮੇਂ ਤੋਂ ਪਿੱਛੇ ਗਿਣ ਕੇ ਸੌਣ ਦਾ ਸਮਾਂ ਤੈਅ ਕਰ ਅਤੇ ਉਸ ’ਤੇ ਟਿਕਿਆ ਰਹਿ।</string>
+    <string name="finding_short_nights">6 ਘੰਟਿਆਂ ਤੋਂ ਘੱਟ ਰਾਤਾਂ: 7 ਵਿੱਚੋਂ %1$d। ਸੁਝਾਅ: ਟੀਚਾ ਸਮੇਂ ਤੋਂ ਪਿੱਛੇ ਗਿਣ ਕੇ ਸੌਣ ਦਾ ਸਮਾਂ ਤੈਅ ਕਰ ਅਤੇ ਉਸ ’ਤੇ ਟਿਕਿਆ ਰਹਿ।</string>
     <string name="finding_low_deep">ਡੂੰਘੀ ਨੀਂਦ ਤੇਰੀ ਨੀਂਦ ਦਾ ਸਿਰਫ਼ ਲਗਭਗ %1$d %% ਸੀ (ਆਮ ਤੌਰ ’ਤੇ %2$d–%3$d %%)।</string>
     <string name="finding_deep_short">6 ਘੰਟਿਆਂ ਤੋਂ ਘੱਟ ਰਾਤਾਂ ਵਿੱਚ ਇਹ ਸਾਫ਼ ਤੌਰ ’ਤੇ ਘੱਟ ਸੀ: %2$d %% ਦੀ ਥਾਂ %1$d %%।</string>
     <string name="finding_deep_late">ਜਿਨ੍ਹਾਂ ਰਾਤਾਂ ਤੂੰ ਦੇਰ ਨਾਲ ਸੁੱਤਾ, ਉਨ੍ਹਾਂ ਵਿੱਚ ਇਹ ਸਾਫ਼ ਤੌਰ ’ਤੇ ਘੱਟ ਸੀ: %2$d %% ਦੀ ਥਾਂ %1$d %%।</string>

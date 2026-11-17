@@ -3,17 +3,12 @@ package com.phasewake.app.core
 import java.time.Instant
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFalse
 import kotlin.test.assertNull
-import kotlin.test.assertTrue
 
 class SnoozeAndOnsetTest {
 
     @Test
     fun snoozeThreeTimes() {
-        assertTrue(Snooze.canSnooze(0))
-        assertTrue(Snooze.canSnooze(2))
-        assertFalse(Snooze.canSnooze(3))
         assertEquals(Instant.parse("2026-10-28T06:05:00Z"), Snooze.nextRing(Instant.parse("2026-10-28T06:00:00Z")))
     }
 

@@ -85,6 +85,9 @@
     <string name="settings_theme_system">ប្រព័ន្ធ</string>
     <string name="settings_theme_light">ភ្លឺ</string>
     <string name="settings_theme_dark">ងងឹត</string>
+    <string name="settings_evening_dark">ងងឹតពេលល្ងាច</string>
+    <string name="settings_evening_dark_text">ងងឹតពី %1$s ដល់ %2$s ទោះជ្រើស ប្រព័ន្ធ ឬ ភ្លឺ ក៏ដោយ។</string>
+    <string name="settings_evening_dark_from">ងងឹតចាប់ពី</string>
     <string name="settings_data">ទិន្នន័យរបស់អ្នក</string>
     <string name="settings_data_text">អ្វីៗទាំងអស់នៅលើទូរសព្ទ និងនាឡិការបស់អ្នក។ គ្មានគណនី គ្មានម៉ាស៊ីនមេ គ្មានការតាមដាន។ មានតែព័ត៌មានបច្ចេកទេសអំពីនាឡិកាប៉ុណ្ណោះ ដែលឆ្លងកាត់ការតភ្ជាប់នាឡិការបស់ Google ដោយគ្មានទិន្នន័យសុខភាព។</string>
     <string name="settings_export">នាំចេញយប់ដោយគ្មានឈ្មោះ</string>
@@ -95,10 +98,10 @@
     <string name="settings_licenses_text">Phase Wake៖ អាជ្ញាប័ណ្ណ MIT, © r1adBE។\nពុម្ពអក្សរ Manrope៖ SIL Open Font License 1.1, © The Manrope Project Authors។\nការរកឃើញសំឡេង៖ MediaPipe Tasks Audio និងម៉ូដែល YAMNet, Apache License 2.0, © Google LLC។\nសំឡេង៖ ការថតឥតគិតថ្លៃ (CC0) ពី opengameart.org</string>
     <string name="settings_version">កំណែ %1$s</string>
 
-    <string name="duration_minutes">%1$d នាទី</string>
-    <string name="duration_hours">%1$d ម៉ោង</string>
-    <string name="duration_hours_half">%1$d½ ម៉ោង</string>
-    <string name="duration_hours_minutes">%1$d ម៉ោង %2$d នាទី</string>
+    <string name="duration_minutes">%1$d នាទី</string>
+    <string name="duration_hours">%1$d ម៉ោង</string>
+    <string name="duration_hours_half">%1$d½ ម៉ោង</string>
+    <string name="duration_hours_minutes">%1$d ម៉ោង %2$d នាទី</string>
     <string name="health_title">ដំណាក់កាលដំណេកពី Health Connect</string>
     <string name="health_rationale">Phase Wake អាចអានទិន្នន័យដំណេក ដែលកម្មវិធីសុខភាពរបស់អ្នក (ឧទាហរណ៍ Samsung Health) រក្សាទុក។ វាបង្ហាញក្នុងប្រវត្តិរបស់អ្នក ក៏ដូចជាសម្រាប់ប្រៀបធៀបជាមួយយប់ដែល Phase Wake បានដាស់អ្នក។ Phase Wake គ្រាន់តែអាន មិនដែលសរសេរ ហើយគ្មានអ្វីចេញពីទូរសព្ទរបស់អ្នកទេ។</string>
     <string name="health_connect">ប្រៀបធៀបជាមួយទិន្នន័យសុខភាព</string>
@@ -274,7 +277,7 @@
         <item quantity="other">សម្រេចគោលដៅដំណេក៖ %1$d លើ %2$d យប់</item>
     </plurals>
     <string name="bedtime_title">រំលឹកម៉ោងចូលដេក</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">រំលឹក %1$d នាទីមុនម៉ោងចូលដេក៖ ម៉ោងរោទ៍ ដកគោលដៅដំណេក។</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">រំលឹក %1$d នាទីមុនម៉ោងចូលដេក៖ ម៉ោងគោលដៅ ដកគោលដៅដំណេក។</string>
     <string name="bedtime_notification">ម៉ោងចូលដេក %1$s – ដូច្នេះអ្នកនឹងបានដេក %2$s មុនម៉ោងរោទ៍ %3$s។</string>
     <string name="channel_reminders">ការរំលឹក</string>
     <string name="sounds_title">សំឡេងសម្រាប់ដេក</string>
@@ -542,7 +545,7 @@
     <string name="learned_latency">ការលង់លក់៖ ប្រហែល %1$s</string>
     <string name="learned_latency_none">ការលង់លក់៖ ការវាស់តិចពេក</string>
     <string name="bedtime_advice">យប់នេះចូលគេងនៅចន្លោះ %1$s និង %2$s</string>
-    <string name="bedtime_advice_hint">ផ្អែកលើម៉ោងរោទ៍ គោលដៅគេង និងរយៈពេលដែលអ្នកត្រូវការដើម្បីលង់លក់។</string>
+    <string name="bedtime_advice_hint">ផ្អែកលើម៉ោងគោលដៅ គោលដៅគេង និងរយៈពេលដែលអ្នកត្រូវការដើម្បីលង់លក់។</string>
     <string name="learn_restart">រៀនម្តងទៀត</string>
     <string name="learn_restart_text">Phase Wake វាស់ %1$d យប់ម្តងទៀត។ រហូតដល់ពេលនោះ តម្លៃដែលបានកែសម្រួលរហូតមកដល់ពេលនេះនៅតែប្រើ។</string>
     <string name="record_end_wake">បានបញ្ចប់ពេលដាស់</string>
@@ -624,7 +627,7 @@
     <string name="finding_title">អ្វីដែលគួរកត់សម្គាល់ក្នុង 7 យប់ចុងក្រោយ</string>
     <string name="finding_hide">លាក់</string>
     <string name="finding_latency">ជាមធ្យម អ្នកត្រូវការ %1$s ដើម្បីលង់លក់។ គន្លឹះ៖ បើក្រោយ 20 នាទីនៅតែភ្ញាក់ សូមក្រោកឡើង ហើយត្រឡប់ទៅគ្រែវិញតែពេលងងុយ។ បើបែបនេះយូរច្រើនសប្តាហ៍ សូមពិភាក្សាជាមួយគ្រូពេទ្យរបស់អ្នក។</string>
-    <string name="finding_short_nights">យប់ដែលតិចជាង 6 ម៉ោង៖ %1$d ក្នុងចំណោម 7។ គន្លឹះ៖ គណនាម៉ោងចូលគេងថយក្រោយពីម៉ោងភ្ញាក់ ហើយប្រកាន់ខ្ជាប់។</string>
+    <string name="finding_short_nights">យប់ដែលតិចជាង 6 ម៉ោង៖ %1$d ក្នុងចំណោម 7។ គន្លឹះ៖ គណនាម៉ោងចូលគេងថយក្រោយពីម៉ោងគោលដៅ ហើយប្រកាន់ខ្ជាប់។</string>
     <string name="finding_low_deep">ដំណេកជ្រៅមានត្រឹមប្រហែល %1$d %% នៃដំណេករបស់អ្នក (ធម្មតា %2$d–%3$d %%)។</string>
     <string name="finding_deep_short">នៅយប់ដែលតិចជាង 6 ម៉ោង វាទាបជាងយ៉ាងច្បាស់៖ %1$d %% ជំនួសឱ្យ %2$d %%។</string>
     <string name="finding_deep_late">នៅយប់ដែលអ្នកចូលគេងយឺត វាទាបជាងយ៉ាងច្បាស់៖ %1$d %% ជំនួសឱ្យ %2$d %%។</string>

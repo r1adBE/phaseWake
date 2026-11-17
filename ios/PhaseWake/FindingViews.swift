@@ -32,6 +32,8 @@ func weeklyDeepLine(_ deep: (week: Int, before: Int)) -> String {
 /// verbirgt sie 7 Tage (Zeitpunkt in ``SettingsFile/phone``, nicht in der iCloud-Sicherung). Liest Apple Health selbst
 /// (nur mit Freigabe, nur im Speicher) beim Öffnen und bei jeder Rückkehr in den Vordergrund.
 struct FindingHomeCard: View {
+    /// Die Startseite zeigt die Bettzeit-Karte: Auffälligkeiten mit demselben Tipp treten zurück (``Findings/bedtimeTip``, UX-04).
+    var bedtimeAdvice = false
     @Environment(PhoneModel.self) private var model
     @Environment(\.colorScheme) private var scheme
     @Environment(\.scenePhase) private var scenePhase
@@ -41,7 +43,7 @@ struct FindingHomeCard: View {
 
     var body: some View {
         Group {
-            if let finding = Findings.home(findings, hidden: Findings.decodeHidden(hidden), now: Date()) {
+            if let finding = Findings.home(findings, hidden: Findings.decodeHidden(hidden), now: Date(), bedtimeAdvice: bedtimeAdvice) {
                 VStack(alignment: .leading, spacing: 6) {
                     Text(L("finding_title")).font(Fonts.manrope(16, .semibold, relativeTo: .headline))
                     Text(findingText(finding)).font(Fonts.manrope(14, relativeTo: .subheadline))

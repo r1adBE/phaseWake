@@ -17,12 +17,12 @@ final class StageAndAdviceTests: XCTestCase {
     }
 
     func testVerdictWithTolerance() {
-        XCTAssertEqual(StageCheck.wokeWell(spans, wokeAt: at(10)), false)
-        XCTAssertEqual(StageCheck.wokeWell(spans, wokeAt: at(25)), true)
+        XCTAssertEqual(StageCheck.stageAtWake(spans, wokeAt: at(10)), .deep)
+        XCTAssertEqual(StageCheck.stageAtWake(spans, wokeAt: at(25)), .light)
         // Sitzung endete 1 Min vorher.
-        XCTAssertEqual(StageCheck.wokeWell(spans, wokeAt: at(51)), true)
-        XCTAssertNil(StageCheck.wokeWell(spans, wokeAt: at(60)))
-        XCTAssertNil(StageCheck.wokeWell([StageSpan(start: at(0), end: at(10), stage: .unknown)], wokeAt: at(5)))
+        XCTAssertEqual(StageCheck.stageAtWake(spans, wokeAt: at(51)), .rem)
+        XCTAssertNil(StageCheck.stageAtWake(spans, wokeAt: at(60)))
+        XCTAssertEqual(StageCheck.stageAtWake([StageSpan(start: at(0), end: at(10), stage: .unknown)], wokeAt: at(5)), .unknown)
     }
 
     func testClipToWindow() {

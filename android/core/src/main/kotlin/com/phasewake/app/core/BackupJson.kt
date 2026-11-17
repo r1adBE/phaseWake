@@ -25,7 +25,7 @@ object BackupJson {
             "sleepGoal" to s.sleepGoal, "bedtimeReminder" to s.bedtimeReminder, "weeklyReview" to s.weeklyReview,
             "soundRecDefault" to s.soundRecDefault, "theme" to s.theme, "holidayCountry" to s.holidayCountry,
             "holidayRegion" to s.holidayRegion, "historyClearedAt" to s.historyClearedAt, "nextAlarmNotice" to s.nextAlarmNotice,
-            "autoOnset" to s.autoOnset,
+            "autoOnset" to s.autoOnset, "eveningDark" to s.eveningDark, "eveningDarkFrom" to s.eveningDarkFrom,
         )
         val root = linkedMapOf<String, Any?>(
             "format" to FORMAT, "version" to VERSION, "createdAt" to payload.createdAt, "alarms" to payload.alarms,
@@ -62,6 +62,8 @@ object BackupJson {
                 historyClearedAt = s["historyClearedAt"] as? Long,
                 nextAlarmNotice = s["nextAlarmNotice"] as? Boolean ?: d.nextAlarmNotice,
                 autoOnset = s["autoOnset"] as? Boolean ?: d.autoOnset,
+                eveningDark = s["eveningDark"] as? Boolean ?: d.eveningDark,
+                eveningDarkFrom = EveningDark.checkedFrom((s["eveningDarkFrom"] as? Long)?.takeIf { it in 0L until 24L * 60 }?.toInt()),
             ),
         )
     }

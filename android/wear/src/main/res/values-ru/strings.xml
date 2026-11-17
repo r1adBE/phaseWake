@@ -53,8 +53,8 @@
     <string name="good_night_cancel">Отменить «Спокойной ночи»</string>
     <string name="dnd_title">Будильники заблокированы</string>
     <string name="dnd_text">Разреши будильники в режиме «Не беспокоить».</string>
-    <string name="duration_hours">%1$d ч</string>
-    <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
+    <string name="duration_hours">%1$d ч</string>
+    <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
     <string name="home_last_night">Прошлая ночь</string>
     <string name="notification_open">Открыть</string>
     <string name="home_good_night_too_far">Доступно за 16 ч до будильника</string>

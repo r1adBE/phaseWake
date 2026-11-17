@@ -17,10 +17,19 @@ import kotlinx.coroutines.tasks.await
 class RecordSync(context: Context) {
     private val app = context.applicationContext
     private val outbox by lazy { Outbox.forContext(app) }
+    private val acked by lazy { AckedContent.forContext(app) }
 
-    /** Uhr: Stand ans Handy; [since] = Beginn der laufenden Aufzeichnung, `null` = keine. */
-    suspend fun publishStatus(since: Instant?) = guarded("Aufzeichnungs-Stand senden") {
-        outbox.enqueue(QueueMessages.KEY_RECORD_STATUS, DataLayer.PATH_MSG_RECORD_STATUS, DataLayer.CAPABILITY_PHONE, (since?.toEpochMilli() ?: 0L).toString())
+    /**
+     * Uhr: Stand ans Handy; [since] = Beginn der laufenden Aufzeichnung, `null` = keine. [unlessAcked]: beim Prozessstart
+     * nur, wenn nicht schon bestätigt (Audit PERF-06, [enqueueIfChanged]).
+     */
+    suspend fun publishStatus(since: Instant?, unlessAcked: Boolean = false) = guarded("Aufzeichnungs-Stand senden") {
+        val body = (since?.toEpochMilli() ?: 0L).toString()
+        if (unlessAcked) {
+            outbox.enqueueIfChanged(acked, QueueMessages.KEY_RECORD_STATUS, DataLayer.PATH_MSG_RECORD_STATUS, DataLayer.CAPABILITY_PHONE, body)
+        } else {
+            outbox.enqueue(QueueMessages.KEY_RECORD_STATUS, DataLayer.PATH_MSG_RECORD_STATUS, DataLayer.CAPABILITY_PHONE, body)
+        }
     }
 
     /** Uhr: abgeschlossene Aufzeichnung ans Handy (eigener Schlüssel je Beginn). */

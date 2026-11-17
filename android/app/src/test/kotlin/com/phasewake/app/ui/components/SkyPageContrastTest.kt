@@ -1,13 +1,15 @@
 package com.phasewake.app.ui.components
 
 import androidx.compose.ui.graphics.Color
+import com.phasewake.app.ui.theme.Creme
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
 /**
  * Seiten im Stil der Startseite (Verlauf, Einstellungen, Editor, Einrichtung, Diagnose): auf dem Himmel jeder Stimmung und
  * Höhe bleibt auf den Karten der Seiten ([Night.Panel]) Schrift ≥ 4.5:1, Phasenfarben und Ränder von Bedienelementen
- * ≥ 3:1 (WCAG 1.4.11); ebenso auf der getönten Oberkante der Kennzahl-Kacheln und im hellen Himmel-Kopf.
+ * ≥ 3:1 (WCAG 1.4.11); ebenso auf der getönten Oberkante der Kennzahl-Kacheln, im Nachthimmel-Kopf und hell («Creme
+ * Caramel») auf Fläche und Karten.
  */
 class SkyPageContrastTest {
 
@@ -62,7 +64,7 @@ class SkyPageContrastTest {
         }
     }
 
-    /** Heller Himmel-Kopf: Titel, Schrittzahl und Textknopf (Lavendel) auf dem Himmel, Schrift im gefüllten Knopf. */
+    /** Nachthimmel-Kopf: Titel, Schrittzahl und Textknopf (Lavendel) auf dem Himmel, Schrift im gefüllten Knopf (hell: SkyMoodTest). */
     @Test
     fun headerReadable() {
         for (sky in skies) for (ink in listOf(Night.Text, Night.Muted, Night.Wave)) {
@@ -70,6 +72,39 @@ class SkyPageContrastTest {
             assertTrue(ratio >= SunriseSky.MIN_CONTRAST, "Kopf $ink: $ratio:1")
         }
         assertTrue(SunriseSky.contrast(Night.Top, Night.Wave) >= SunriseSky.MIN_CONTRAST, "Knopf im Kopf")
+    }
+
+    /**
+     * Hell «Creme Caramel»: Schrift (Text, Nebentext, Zusatzinfo, Hauptfarbe, Tertiär in Caramel, Fehler) ≥ 4.5:1 auf
+     * Fläche, Karte, hellem Caramel und gewähltem Chip; Schrift auf gefüllten Flächen ≥ 4.5:1; Ränder, Phasenfarben und
+     * Caramel als Fläche/Rand ≥ 3:1.
+     */
+    @Test
+    fun cremeCaramelReadable() {
+        val c = com.phasewake.app.ui.theme.LightScheme
+        val b = com.phasewake.app.ui.theme.LightBrand
+        val grounds = listOf(c.background, c.surface, c.surfaceContainer, c.surfaceContainerLow, c.surfaceVariant, b.card, b.chipSelected)
+        val inks = listOf(c.onSurface, c.onSurfaceVariant, b.mutedSoft, c.primary, c.tertiary, c.error, Creme.CaramelText)
+        for (bg in grounds) for (ink in inks) {
+            val ratio = SunriseSky.contrast(ink, bg)
+            assertTrue(ratio >= SunriseSky.MIN_CONTRAST, "hell $ink auf $bg: $ratio:1")
+        }
+        val filled = listOf(
+            c.onPrimary to c.primary, c.onSecondary to c.secondary, c.onTertiary to c.tertiary, c.onError to c.error,
+            c.onPrimaryContainer to c.primaryContainer, c.onSecondaryContainer to c.secondaryContainer,
+            c.onTertiaryContainer to c.tertiaryContainer,
+        )
+        for ((ink, bg) in filled) assertTrue(SunriseSky.contrast(ink, bg) >= SunriseSky.MIN_CONTRAST, "hell $ink auf $bg")
+        val shapes = listOf(c.outline, Creme.Caramel, Creme.Lavender, b.stageAwake, b.stageRem, b.stageLight, b.stageDeep)
+        for (bg in listOf(c.background, b.card)) {
+            for (shape in shapes) assertTrue(SunriseSky.contrast(shape, bg) >= NON_TEXT, "hell Form $shape auf $bg")
+            val chip = mixColor(bg, b.chipBorder.copy(alpha = 1f), b.chipBorder.alpha)
+            assertTrue(SunriseSky.contrast(chip, bg) >= NON_TEXT, "Chiprand auf $bg")
+        }
+        assertTrue(SunriseSky.contrast(c.outline, c.surfaceVariant) >= NON_TEXT, "Rand auf hellem Caramel")
+        // Caramel selbst ist zu hell für Text (darum CaramelText), Lavendel ebenso (darum LavenderDeep).
+        assertTrue(SunriseSky.contrast(Creme.Caramel, c.background) < SunriseSky.MIN_CONTRAST)
+        assertTrue(SunriseSky.contrast(Creme.Lavender, c.background) < SunriseSky.MIN_CONTRAST)
     }
 
     private companion object {

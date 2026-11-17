@@ -1,0 +1,83 @@
+# Planung der Wecker (AlarmSchedule, Audit 17.11.2026 CODE-03): je Zeile eine Art, Felder mit Tabulator getrennt, die
+# letzten zwei Felder sind die Erwartung («-» = keine/kein Plan). Zeitpunkte ISO mit Abstand zu UTC, Wecker als
+# Zeile im Codec-Format (16 Felder, skipUntil in ms Wandzeit), Feiertage «yyyy-MM-dd» mit Kommas.
+#   next    now  Zone  Feiertage  doneUntil  Wecker  | nextTarget  skipNext
+#           nextTarget ab dem späteren von now und doneUntil (gleich earliestPlan mit diesem Wecker); skipNext: neues
+#           skipUntil als Wandzeit «yyyy-MM-ddTHH:mm:ss» oder 0 (unverändert 0).
+#   planned now  Zone  Zone der Planung  Feiertage  Wecker  geplante Zielzeit  Nachfrist (Min)  suppressedUntil
+#           | inGrace (aktuelle Zone)  begunNight (Zone der Planung); «+» = Plan zur geplanten Zielzeit.
+#   missed  now  Zone  Feiertage  doneUntil «id=Zeit» mit Kommas  catchUp «von bis ids»  Wecker mit «;»
+#           | missedPlan  earliestPlan, je «id@Zielzeit».
+# Wochentage, Einmal-Wecker, ausgeschaltet
+next	2026-10-30T08:00:00+01:00	Europe/Zurich	-	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-02T07:00:00+01:00	2026-11-02T07:00:00
+next	2026-11-02T06:50:00+01:00	Europe/Zurich	-	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-02T07:00:00+01:00	2026-11-02T07:00:00
+next	2026-11-02T07:00:00+01:00	Europe/Zurich	-	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-03T07:00:00+01:00	2026-11-03T07:00:00
+next	2026-10-28T07:00:00+01:00	Europe/Zurich	-	-	a|7|0||20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-10-29T07:00:00+01:00	0
+next	2026-10-28T01:00:00+01:00	Europe/Zurich	-	-	a|7|0||20|0|SOUND|0||||OFF|NONE|PHONE|0|0	-	0
+next	2026-10-28T01:00:00+01:00	Europe/Zurich	-	-	a|7|0|MO,TU,WE,TH,FR|20|0|SOUND|0||||OFF|NONE|PHONE|0|0	-	0
+next	2026-10-28T07:30:00+01:00	Europe/Zurich	-	-	a|7|0|WE|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-04T07:00:00+01:00	2026-11-04T07:00:00
+# Sommerzeit Zürich 29.03.2026 (02:00 -> 03:00): 02:30 in der Lücke wird 03:30, 02:00 wird 03:00, 03:00 bleibt
+next	2026-03-28T23:00:00+01:00	Europe/Zurich	-	-	a|2|30|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-03-29T03:30:00+02:00	2026-03-29T03:30:00
+next	2026-03-29T01:59:00+01:00	Europe/Zurich	-	-	a|2|30||20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-03-29T03:30:00+02:00	0
+next	2026-03-29T03:45:00+02:00	Europe/Zurich	-	-	a|2|30|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-03-30T02:30:00+02:00	2026-03-30T02:30:00
+next	2026-03-29T01:00:00+01:00	Europe/Zurich	-	-	a|2|0|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-03-29T03:00:00+02:00	2026-03-29T03:00:00
+next	2026-03-29T01:00:00+01:00	Europe/Zurich	-	-	a|3|0|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-03-29T03:00:00+02:00	2026-03-29T03:00:00
+next	2026-03-28T23:00:00+01:00	Europe/Zurich	-	-	a|2|30|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|1774755000000|0	2026-03-30T02:30:00+02:00	2026-03-30T02:30:00
+# Winterzeit Zürich 25.10.2026 (03:00 -> 02:00): in der doppelten Stunde gilt die frühere 02:30
+next	2026-10-25T01:00:00+02:00	Europe/Zurich	-	-	a|2|30|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-10-25T02:30:00+02:00	2026-10-25T02:30:00
+next	2026-10-25T02:45:00+02:00	Europe/Zurich	-	-	a|2|30|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-10-26T02:30:00+01:00	2026-10-26T02:30:00
+next	2026-10-25T02:10:00+01:00	Europe/Zurich	-	-	a|3|0|MO,TU,WE,TH,FR,SA,SU|30|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-10-25T03:00:00+01:00	2026-10-25T03:00:00
+# Überspringen (skipUntil = Wandzeit): Fr 27.03. übersprungen, nächster Termin nach der Umstellung; Montag-Wecker 13 Tage voraus
+next	2026-03-26T20:00:00+01:00	Europe/Zurich	-	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|1774594800000|0	2026-03-30T07:00:00+02:00	2026-03-30T07:00:00
+next	2026-10-27T08:00:00+01:00	Europe/Zurich	-	-	a|7|0|MO|20|1|SOUND|0||||OFF|NONE|PHONE|1793602800000|0	2026-11-09T07:00:00+01:00	2026-11-09T07:00:00
+# Feiertage (Fr 25.12.): mit skipHolidays übersprungen, ohne nicht, Einmal-Wecker nie
+next	2026-12-24T08:00:00+01:00	Europe/Zurich	2026-12-25	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|1	2026-12-28T07:00:00+01:00	2026-12-28T07:00:00
+next	2026-12-24T08:00:00+01:00	Europe/Zurich	2026-12-25	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-12-25T07:00:00+01:00	2026-12-25T07:00:00
+next	2026-12-24T08:00:00+01:00	Europe/Zurich	2026-12-25	-	a|7|0||20|1|SOUND|0||||OFF|NONE|PHONE|0|1	2026-12-25T07:00:00+01:00	0
+next	2026-12-24T08:00:00+01:00	Europe/Zurich	-	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|1	2026-12-25T07:00:00+01:00	2026-12-25T07:00:00
+# Erledigte Nacht (doneUntil): früh geweckt, heutige Zielzeit erledigt -> morgen; doneUntil vor now zählt nicht
+next	2026-11-17T06:20:00+01:00	Europe/Zurich	-	2026-11-17T07:00:00+01:00	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-18T07:00:00+01:00	2026-11-18T07:00:00
+next	2026-11-17T06:20:00+01:00	Europe/Zurich	-	2026-11-16T07:00:00+01:00	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-17T07:00:00+01:00	2026-11-17T07:00:00
+# Reisen: Ortszeit der aktuellen Zone; Feiertag am Ortsdatum (selber Zeitpunkt: Tokio 18.11. fällt aus, Zürich 17.11. nicht); übersprungener Kalendertag (in Zürich gesetzt) gilt in New York
+next	2026-11-17T05:00:00+09:00	Asia/Tokyo	-	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-17T07:00:00+09:00	2026-11-17T07:00:00
+next	2026-11-17T05:00:00Z	Asia/Tokyo	2026-11-18	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|1	2026-11-19T07:00:00+09:00	2026-11-19T07:00:00
+next	2026-11-17T05:00:00Z	Europe/Zurich	2026-11-18	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|1	2026-11-17T07:00:00+01:00	2026-11-17T07:00:00
+next	2026-11-17T22:00:00-05:00	America/New_York	-	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|1794985200000|0	2026-11-19T07:00:00-05:00	2026-11-19T07:00:00
+next	2026-03-07T23:00:00-05:00	America/New_York	-	-	a|2|30|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-03-08T03:30:00-04:00	2026-03-08T03:30:00
+# Nachfrist (inGrace, aktuelle Zone) und begonnene Nacht (begunNight, Zone der Planung); Zielzeit Di 17.11. 07:00 Zürich
+planned	2026-11-17T07:05:00+01:00	Europe/Zurich	Europe/Zurich	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-17T07:00:00+01:00	10	-	+	+
+planned	2026-11-17T07:10:00+01:00	Europe/Zurich	Europe/Zurich	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-17T07:00:00+01:00	10	-	-	-
+planned	2026-11-17T07:00:00+01:00	Europe/Zurich	Europe/Zurich	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-17T07:00:00+01:00	10	-	+	+
+planned	2026-11-17T06:50:00+01:00	Europe/Zurich	Europe/Zurich	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-17T07:00:00+01:00	10	-	-	+
+planned	2026-11-17T06:40:00+01:00	Europe/Zurich	Europe/Zurich	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-17T07:00:00+01:00	10	-	-	+
+planned	2026-11-17T06:39:00+01:00	Europe/Zurich	Europe/Zurich	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-17T07:00:00+01:00	10	-	-	-
+planned	2026-11-17T07:00:00+01:00	Europe/Zurich	Europe/Zurich	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-17T07:00:00+01:00	0	-	-	-
+planned	2026-11-17T07:05:00+01:00	Europe/Zurich	Europe/Zurich	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-17T07:00:00+01:00	10	2026-11-17T07:00:00+01:00	-	-
+planned	2026-11-17T07:05:00+01:00	Europe/Zurich	Europe/Zurich	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-17T07:00:00+01:00	10	2026-11-17T06:59:00+01:00	+	+
+planned	2026-11-17T07:05:00+01:00	Europe/Zurich	Europe/Zurich	-	a|7|30|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-17T07:00:00+01:00	10	-	-	-
+planned	2026-11-17T07:05:00+01:00	Europe/Zurich	Europe/Zurich	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|1794898800000|0	2026-11-17T07:00:00+01:00	10	-	-	-
+planned	2026-11-17T07:05:00+01:00	Europe/Zurich	Europe/Zurich	2026-11-17	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|1	2026-11-17T07:00:00+01:00	10	-	-	-
+planned	2026-11-17T07:05:00+01:00	Europe/Zurich	Europe/Zurich	-	a|7|0||20|0|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-17T07:00:00+01:00	10	-	-	-
+planned	2026-11-17T06:35:00+01:00	Europe/Zurich	Europe/Zurich	-	a|7|0|MO,TU,WE,TH,FR|0|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-17T07:00:00+01:00	10	-	-	+
+# Reise nach Tokio während der Nacht: begonnene Nacht bleibt (07:00 Zürich = 15:00 Tokio), vor dem Fenster nicht; ohne Zone der Planung nie
+planned	2026-11-17T15:05:00+09:00	Asia/Tokyo	Europe/Zurich	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-17T07:00:00+01:00	10	-	-	+
+planned	2026-11-17T14:30:00+09:00	Asia/Tokyo	Europe/Zurich	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-17T07:00:00+01:00	10	-	-	-
+planned	2026-11-17T07:05:00+01:00	Europe/Zurich	-	-	a|7|0|MO,TU,WE,TH,FR|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-11-17T07:00:00+01:00	10	-	+	-
+# Sommer-/Winterzeit: geplant 29.03. 03:30 (aus 02:30) gilt; 25.10. gilt nur die frühere 02:30, nicht die zweite
+planned	2026-03-29T03:35:00+02:00	Europe/Zurich	Europe/Zurich	-	a|2|30|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-03-29T03:30:00+02:00	10	-	+	+
+planned	2026-10-25T02:35:00+02:00	Europe/Zurich	Europe/Zurich	-	a|2|30|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-10-25T02:30:00+02:00	10	-	+	+
+planned	2026-10-25T02:35:00+01:00	Europe/Zurich	Europe/Zurich	-	a|2|30|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	2026-10-25T02:30:00+01:00	10	-	-	-
+# Nachholen (missedPlan) und frühester Plan (earliestPlan): Nacht von a (06:30) lief 06:10-06:50, b (06:40) fiel hinein
+missed	2026-11-17T06:51:00+01:00	Europe/Zurich	-	a=2026-11-17T06:30:00+01:00	2026-11-17T06:10:00+01:00 2026-11-17T06:50:00+01:00 a,b	a|6|30|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0;b|6|40|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	b@2026-11-17T06:40:00+01:00	a@2026-11-18T06:30:00+01:00
+missed	2026-11-17T07:00:00+01:00	Europe/Zurich	-	a=2026-11-17T06:30:00+01:00	2026-11-17T06:10:00+01:00 2026-11-17T06:50:00+01:00 a,b	a|6|30|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0;b|6|40|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	b@2026-11-17T06:40:00+01:00	a@2026-11-18T06:30:00+01:00
+missed	2026-11-17T07:00:01+01:00	Europe/Zurich	-	a=2026-11-17T06:30:00+01:00	2026-11-17T06:10:00+01:00 2026-11-17T06:50:00+01:00 a,b	a|6|30|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0;b|6|40|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	-	a@2026-11-18T06:30:00+01:00
+missed	2026-11-17T06:51:00+01:00	Europe/Zurich	-	a=2026-11-17T06:30:00+01:00	2026-11-17T06:10:00+01:00 2026-11-17T06:50:00+01:00 a	a|6|30|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0;b|6|40|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	-	a@2026-11-18T06:30:00+01:00
+missed	2026-11-17T06:51:00+01:00	Europe/Zurich	-	a=2026-11-17T06:30:00+01:00,b=2026-11-17T06:40:00+01:00	2026-11-17T06:10:00+01:00 2026-11-17T06:50:00+01:00 a,b	a|6|30|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0;b|6|40|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	-	a@2026-11-18T06:30:00+01:00
+missed	2026-11-17T06:51:00+01:00	Europe/Zurich	-	a=2026-11-17T06:30:00+01:00	-	a|6|30|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0;b|6|40|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	-	a@2026-11-18T06:30:00+01:00
+missed	2026-11-17T06:51:00+01:00	Europe/Zurich	-	a=2026-11-17T06:30:00+01:00	2026-11-17T06:10:00+01:00 2026-11-17T06:50:00+01:00 a,b,c	a|6|30|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0;b|6|40|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0;c|6|40|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	b@2026-11-17T06:40:00+01:00	a@2026-11-18T06:30:00+01:00
+missed	2026-11-17T06:51:00+01:00	Europe/Zurich	-	a=2026-11-17T06:30:00+01:00	2026-11-17T06:10:00+01:00 2026-11-17T06:50:00+01:00 a,b,c	a|6|30|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0;b|6|40|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0;c|6|35|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	c@2026-11-17T06:35:00+01:00	a@2026-11-18T06:30:00+01:00
+missed	2026-11-17T06:51:00+01:00	Europe/Zurich	-	a=2026-11-17T06:30:00+01:00	2026-11-17T06:10:00+01:00 2026-11-17T06:38:00+01:00 a,b	a|6|30|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0;b|6|40|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	-	a@2026-11-18T06:30:00+01:00
+missed	2026-11-17T06:51:00+01:00	Europe/Zurich	2026-11-17	a=2026-11-17T06:30:00+01:00	2026-11-17T06:10:00+01:00 2026-11-17T06:50:00+01:00 a,b	a|6|30|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0;b|6|40|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|1	-	a@2026-11-18T06:30:00+01:00
+# Gleiche Zielzeit ohne Nachholen: kleinere Kennung; Winterzeit 25.10.: b 02:15 (frühere) in der Nacht bis 02:20 (Winterzeit)
+missed	2026-11-17T05:00:00+01:00	Europe/Zurich	-	-	-	b|7|0|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0;a|7|0|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	-	a@2026-11-17T07:00:00+01:00
+missed	2026-10-25T02:21:00+01:00	Europe/Zurich	-	-	2026-10-25T00:00:00+02:00 2026-10-25T02:20:00+01:00 a,b	a|2|30|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0;b|2|15|MO,TU,WE,TH,FR,SA,SU|20|1|SOUND|0||||OFF|NONE|PHONE|0|0	b@2026-10-25T02:15:00+02:00	b@2026-10-26T02:15:00+01:00

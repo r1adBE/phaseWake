@@ -85,6 +85,9 @@
     <string name="settings_theme_system">Rendszer</string>
     <string name="settings_theme_light">Világos</string>
     <string name="settings_theme_dark">Sötét</string>
+    <string name="settings_evening_dark">Este sötét</string>
+    <string name="settings_evening_dark_text">Sötét: %1$s – %2$s, Rendszer vagy Világos beállításnál is.</string>
+    <string name="settings_evening_dark_from">Sötét kezdete</string>
     <string name="settings_data">Adataid</string>
     <string name="settings_data_text">Minden a telefonodon és az órádon marad. Nincs fiók, nincs szerver, nincs követés. A Google óra-kapcsolatán csak az óra műszaki adatai mennek át, egészségügyi adatok nélkül.</string>
     <string name="settings_export">Éjszakák exportja név nélkül</string>
@@ -95,10 +98,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT licenc, © r1adBE.\nManrope betűtípus: SIL Open Font License 1.1, © The Manrope Project Authors.\nHangfelismerés: MediaPipe Tasks Audio és a YAMNet modell, Apache License 2.0, © Google LLC.\nHangok: szabad felvételek (CC0) az opengameart.org oldalról</string>
     <string name="settings_version">Verzió: %1$s</string>
 
-    <string name="duration_minutes">%1$d p</string>
-    <string name="duration_hours">%1$d ó</string>
-    <string name="duration_hours_half">%1$d½ ó</string>
-    <string name="duration_hours_minutes">%1$d ó %2$d p</string>
+    <string name="duration_minutes">%1$d p</string>
+    <string name="duration_hours">%1$d ó</string>
+    <string name="duration_hours_half">%1$d½ ó</string>
+    <string name="duration_hours_minutes">%1$d ó %2$d p</string>
     <string name="health_title">Alvási fázisok a Health Connectből</string>
     <string name="health_rationale">A Phase Wake el tudja olvasni az alvási adatokat, amelyeket az egészségügyi appod (például a Samsung Health) eltárol. Ezek megjelennek az előzményeidben, összehasonlításként azokkal az éjszakákkal is, amikor a Phase Wake ébresztett. A Phase Wake csak olvas, soha nem ír, és semmi sem hagyja el a telefonodat.</string>
     <string name="health_connect">Összevetés egészségügyi adatokkal</string>
@@ -282,7 +285,7 @@
         <item quantity="other">Alvási cél teljesítve: %1$d / %2$d éjszaka</item>
     </plurals>
     <string name="bedtime_title">Lefekvési emlékeztető</string>
-    <string name="bedtime_text">%1$d perccel lefekvés előtt emlékeztet: ébresztési idő mínusz alvási cél.</string>
+    <string name="bedtime_text">%1$d perccel lefekvés előtt emlékeztet: célidő mínusz alvási cél.</string>
     <string name="bedtime_notification">Lefekvés: %1$s – így %2$s alvásod lesz az ébresztőig (%3$s).</string>
     <string name="channel_reminders">Emlékeztetők</string>
     <string name="sounds_title">Elalvást segítő hangok</string>
@@ -554,7 +557,7 @@
     <string name="learned_latency">Elalvás: kb. %1$s</string>
     <string name="learned_latency_none">Elalvás: túl kevés mérés</string>
     <string name="bedtime_advice">Feküdj le ma %1$s és %2$s között</string>
-    <string name="bedtime_advice_hint">Az ébresztőd, az alváscélod és az elalvási időd alapján.</string>
+    <string name="bedtime_advice_hint">A célidőd, az alváscélod és az elalvási időd alapján.</string>
     <string name="learn_restart">Tanulás újra</string>
     <string name="learn_restart_text">A Phase Wake újra %1$d éjszakát mér. Addig az eddig igazított értékek maradnak érvényben.</string>
     <string name="record_end_wake">Ébresztéskor befejezve</string>
@@ -636,7 +639,7 @@
     <string name="finding_title">Feltűnt az utolsó 7 éjszakádban</string>
     <string name="finding_hide">Elrejtés</string>
     <string name="finding_latency">Átlagosan %1$s kellett az elalváshoz. Tipp: ha 20 perc után is ébren vagy, kelj fel, és csak akkor feküdj vissza, ha álmos vagy. Ha ez hetekig így marad, beszélj az orvosoddal.</string>
-    <string name="finding_short_nights">6 óránál rövidebb éjszakák: %1$d a 7-ből. Tipp: számold ki a lefekvés idejét az ébresztéstől visszafelé, és tartsd is be.</string>
+    <string name="finding_short_nights">6 óránál rövidebb éjszakák: %1$d a 7-ből. Tipp: számold ki a lefekvés idejét a célidőtől visszafelé, és tartsd is be.</string>
     <string name="finding_low_deep">A mélyalvás csak kb. %1$d %% volt az alvásodból (általában %2$d–%3$d %%).</string>
     <string name="finding_deep_short">A 6 óránál rövidebb éjszakákon jóval kevesebb volt: %1$d %% a %2$d %% helyett.</string>
     <string name="finding_deep_late">Azokon az éjszakákon, amikor későn feküdtél le, jóval kevesebb volt: %1$d %% a %2$d %% helyett.</string>

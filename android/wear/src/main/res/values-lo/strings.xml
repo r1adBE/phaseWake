@@ -47,8 +47,8 @@
     <string name="good_night_cancel">ຍົກເລີກ ລາຕີສະຫວັດ</string>
     <string name="dnd_title">ໂມງປຸກຖືກກັນ</string>
     <string name="dnd_text">ອະນຸຍາດໂມງປຸກໃນ “ຫ້າມລົບກວນ”</string>
-    <string name="duration_hours">%1$d ຊມ</string>
-    <string name="duration_hours_minutes">%1$d ຊມ %2$d ນາທີ</string>
+    <string name="duration_hours">%1$d ຊມ</string>
+    <string name="duration_hours_minutes">%1$d ຊມ %2$d ນາທີ</string>
     <string name="home_last_night">ຄືນຜ່ານມາ</string>
     <string name="notification_open">ເປີດ</string>
     <string name="home_good_night_too_far">ໃຊ້ໄດ້ຕັ້ງແຕ່ 16 ຊມ ກ່ອນໂມງປຸກ</string>

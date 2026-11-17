@@ -47,8 +47,8 @@
     <string name="good_night_cancel">Չեղարկել «Բարի գիշեր»-ը</string>
     <string name="dnd_title">Զարթուցիչներն արգելափակված են</string>
     <string name="dnd_text">Թույլատրիր զարթուցիչները «Չանհանգստացնել» ռեժիմում։</string>
-    <string name="duration_hours">%1$d ժ</string>
-    <string name="duration_hours_minutes">%1$d ժ %2$d ր</string>
+    <string name="duration_hours">%1$d ժ</string>
+    <string name="duration_hours_minutes">%1$d ժ %2$d ր</string>
     <string name="home_last_night">Անցած գիշեր</string>
     <string name="notification_open">Բացել</string>
     <string name="home_good_night_too_far">Հասանելի է զարթուցիչից 16 ժ առաջ</string>

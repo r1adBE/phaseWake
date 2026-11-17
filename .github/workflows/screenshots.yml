@@ -1,6 +1,8 @@
 name: Bildschirmfotos
 
 # Rendert alle Vorschauen (Handy hell/dunkel, Uhr) und legt die Bilder in den Zweig «screenshots».
+# Zwei Jobs (Audit 17.11., CODE-04, wie «Einschlafklänge»): «render» führt Gradle nur mit Leserecht und ohne
+# gespeichertes Token aus, «publish» schreibt den Zweig und führt keinen Code aus dem Repo aus.
 on:
   push:
     branches: [main]
@@ -8,7 +10,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: screenshots
@@ -17,8 +19,12 @@ concurrency:
 jobs:
   render:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - uses: actions/setup-java@77dd5b2ce225ea11469928ac317850245a74ae78 # v6.2.0
         with:
           distribution: temurin
@@ -42,11 +48,11 @@ jobs:
           if [ -n "$causes" ]; then
             echo "::error title=Vorschau-Fehler::$(printf '%s' "$causes" | sed -e 's/%/%25/g' | awk 'BEGIN{ORS="%0A"}{print}')"
           fi
-      - name: In den Zweig «screenshots» legen
+      - name: Bilder zusammenstellen
         shell: bash
         run: |
           set -euo pipefail
-          out=$(mktemp -d)
+          out=shots
           for m in app wear; do
             mkdir -p "$out/$m"
             # Feste Dateinamen (ohne Prüfsummen-Anhang), damit Links im README stabil bleiben.
@@ -54,7 +60,30 @@ jobs:
               while IFS= read -r -d '' f; do b=$(basename "$f"); cp "$f" "$out/$m/${b%%_*}.png"; done
           done
           sed "s/@SHA@/${GITHUB_SHA::7}/" .github/screenshots/README.md > "$out/README.md"
-          cd "$out"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: screenshots
+          path: shots/
+          retention-days: 1
+          if-no-files-found: error
+
+  publish:
+    name: In den Zweig «screenshots» legen
+    needs: render
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      # Kein Checkout: nur die Bilder aus «render».
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: screenshots
+          path: ${{ runner.temp }}/shots
+      - name: Zweig schreiben
+        shell: bash
+        working-directory: ${{ runner.temp }}/shots
+        run: |
+          set -euo pipefail
           git init -q -b screenshots
           git config user.name "r1AD"
           git config user.email "r1adBE@users.noreply.github.com"

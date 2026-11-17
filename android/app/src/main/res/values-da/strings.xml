@@ -85,6 +85,9 @@
     <string name="settings_theme_system">System</string>
     <string name="settings_theme_light">Lys</string>
     <string name="settings_theme_dark">Mørk</string>
+    <string name="settings_evening_dark">Mørk om aftenen</string>
+    <string name="settings_evening_dark_text">Mørk fra %1$s til %2$s, også med System eller Lys.</string>
+    <string name="settings_evening_dark_from">Mørk fra</string>
     <string name="settings_data">Dine data</string>
     <string name="settings_data_text">Alt bliver på din telefon og dit ur. Ingen konto, ingen server, ingen sporing. Kun tekniske oplysninger om uret går via Googles urforbindelse, uden sundhedsdata.</string>
     <string name="settings_export">Eksportér nætter uden navn</string>
@@ -95,10 +98,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT-licens, © r1adBE.\nSkrifttypen Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nLydgenkendelse: MediaPipe Tasks Audio og YAMNet-modellen, Apache License 2.0, © Google LLC.\nLyde: frie optagelser (CC0) fra opengameart.org</string>
     <string name="settings_version">Version %1$s</string>
 
-    <string name="duration_minutes">%1$d min</string>
-    <string name="duration_hours">%1$d t</string>
-    <string name="duration_hours_half">%1$d½ t</string>
-    <string name="duration_hours_minutes">%1$d t %2$d min</string>
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d t</string>
+    <string name="duration_hours_half">%1$d½ t</string>
+    <string name="duration_hours_minutes">%1$d t %2$d min</string>
     <string name="health_title">Søvnfaser fra Health Connect</string>
     <string name="health_rationale">Phase Wake kan læse de søvndata, som din sundheds-app (for eksempel Samsung Health) gemmer. De vises i din historik, også til sammenligning med de nætter, hvor Phase Wake vækkede dig. Phase Wake læser kun, skriver aldrig, og intet forlader din telefon.</string>
     <string name="health_connect">Sammenlign med sundhedsdata</string>
@@ -282,7 +285,7 @@
         <item quantity="other">Søvnmål nået: %1$d af %2$d nætter</item>
     </plurals>
     <string name="bedtime_title">Påmindelse om sengetid</string>
-    <string name="bedtime_text">Minder dig om det %1$d min før sengetid: vækketid minus søvnmål.</string>
+    <string name="bedtime_text">Minder dig om det %1$d min før sengetid: måltid minus søvnmål.</string>
     <string name="bedtime_notification">Sengetid kl. %1$s – så når du %2$s søvn før alarmen kl. %3$s.</string>
     <string name="channel_reminders">Påmindelser</string>
     <string name="sounds_title">Lyde til at falde i søvn</string>
@@ -554,7 +557,7 @@
     <string name="learned_latency">Falde i søvn: ca. %1$s</string>
     <string name="learned_latency_none">Falde i søvn: for få målinger</string>
     <string name="bedtime_advice">Gå i seng i aften mellem %1$s og %2$s</string>
-    <string name="bedtime_advice_hint">Ud fra dit vækkeur, dit søvnmål og hvor lang tid du er om at falde i søvn.</string>
+    <string name="bedtime_advice_hint">Ud fra din måltid, dit søvnmål og hvor lang tid du er om at falde i søvn.</string>
     <string name="learn_restart">Lær igen</string>
     <string name="learn_restart_text">Phase Wake måler igen %1$d nætter. Indtil da gælder de hidtil tilpassede værdier.</string>
     <string name="record_end_wake">Afsluttet ved vækning</string>
@@ -636,7 +639,7 @@
     <string name="finding_title">Bemærket i dine sidste 7 nætter</string>
     <string name="finding_hide">Skjul</string>
     <string name="finding_latency">I gennemsnit tog det dig %1$s at falde i søvn. Tip: er du stadig vågen efter 20 minutter, så stå op og gå først i seng igen, når du er søvnig. Varer det i uger, så tal med din læge.</string>
-    <string name="finding_short_nights">Nætter under 6 timer: %1$d af 7. Tip: regn din sengetid ud fra dit vækketidspunkt, og hold dig til den.</string>
+    <string name="finding_short_nights">Nætter under 6 timer: %1$d af 7. Tip: regn din sengetid ud fra din måltid, og hold dig til den.</string>
     <string name="finding_low_deep">Dyb søvn udgjorde kun omkring %1$d %% af din søvn (normalt %2$d–%3$d %%).</string>
     <string name="finding_deep_short">I nætter under 6 timer var den tydeligt lavere: %1$d %% i stedet for %2$d %%.</string>
     <string name="finding_deep_late">I nætter, hvor du gik sent i seng, var den tydeligt lavere: %1$d %% i stedet for %2$d %%.</string>

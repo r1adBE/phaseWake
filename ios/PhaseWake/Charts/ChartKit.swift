@@ -10,7 +10,7 @@ struct ChartPalette {
             active = Color(hex: 0xB9AEFF); quiet = Color(hex: 0x4A43A0); track = Color(hex: 0x2A2D55)
             wave = Color(hex: 0xB9AEFF); echo = Color(hex: 0x7B6CF6); dot = Brand.moon
         } else {
-            active = Color(hex: 0x7B6CF6); quiet = Color(hex: 0xDAD4FA); track = Color(hex: 0xECE8F5)
+            active = Color(hex: 0x7B6CF6); quiet = Color(hex: 0xDAD4FA); track = Color(hex: 0xF1E7D8)
             wave = Color(hex: 0x7B6CF6); echo = Color(hex: 0xB3A9F7); dot = Color(hex: 0x3B3486)
         }
     }

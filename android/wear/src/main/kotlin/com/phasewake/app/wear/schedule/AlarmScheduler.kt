@@ -214,7 +214,7 @@ class AlarmScheduler(
      */
     private suspend fun afterAlarms(scheduled: WakePlan?, alarmPlan: WakePlan?, now: Instant, zone: java.time.ZoneId) {
         sideWork(TAG, "Protokoll") { scheduled?.let { logScheduled(it) } }
-        sideWork(TAG, "Kachel und Komplikation") { refreshSurfaces() }
+        sideWork(TAG, "Kachel und Komplikation") { refreshSurfaces(context) }
         sideWork(TAG, "Status ans Handy") { publishStatus() }
         sideWork(TAG, "Einschlaf-Messung") { AutoOnset.update(context, alarmPlan, now) }
         sideWork(TAG, "Geplante Nacht merken") { planned.remember(alarmPlan, zone) }
@@ -292,22 +292,25 @@ class AlarmScheduler(
         line.substring(i + 1).toLongOrNull()?.let { line.substring(0, i) to Instant.ofEpochMilli(it) }
     }.toMap()
 
-    /** Kachel und Komplikation sofort aktualisieren, nicht erst beim nächsten Abruf des Systems. */
-    private fun refreshSurfaces() {
-        runCatching { TileService.getUpdater(context).requestUpdate(NextAlarmTileService::class.java) }
-        runCatching {
-            ComplicationDataSourceUpdateRequester
-                .create(context, ComponentName(context, NextAlarmComplicationService::class.java))
-                .requestUpdateAll()
-        }
-    }
-
     /**
      * Die Alarme selbst brauchen nur den Context, keinen Speicher: So stellt sie der Weckdienst auch
      * vor dem ersten Entsperren (Direct Boot), ohne den DataStore zu berühren.
      */
     companion object {
         private const val TAG = "AlarmScheduler"
+
+        /**
+         * Kachel und Komplikation sofort aktualisieren: Das System fragt sie nicht von sich aus ab (Komplikation
+         * `UPDATE_PERIOD_SECONDS = 0`, Audit PERF-07), nur nach dem Neuplanen und zur Zielzeit ([AlarmReceiver]).
+         */
+        internal fun refreshSurfaces(context: Context) {
+            runCatching { TileService.getUpdater(context).requestUpdate(NextAlarmTileService::class.java) }
+            runCatching {
+                ComplicationDataSourceUpdateRequester
+                    .create(context, ComponentName(context, NextAlarmComplicationService::class.java))
+                    .requestUpdateAll()
+            }
+        }
         internal const val REQUEST_WINDOW = 1
         internal const val REQUEST_DEADLINE = 2
         private const val REQUEST_SNOOZE = 3

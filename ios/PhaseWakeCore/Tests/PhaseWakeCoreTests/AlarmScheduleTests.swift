@@ -90,9 +90,6 @@ final class AlarmScheduleTests: XCTestCase {
 
     /// Wie `SnoozeAndOnsetTest` (Kotlin).
     func testSnoozeAndOnset() {
-        XCTAssertTrue(Snooze.canSnooze(0))
-        XCTAssertTrue(Snooze.canSnooze(2))
-        XCTAssertFalse(Snooze.canSnooze(3))
         let six = Date(timeIntervalSince1970: 1_793_167_200)
         XCTAssertEqual(Snooze.nextRing(six), six.addingTimeInterval(300))
         XCTAssertNil(SleepOnset.find([Double?](repeating: 0.0, count: 29)))

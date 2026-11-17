@@ -86,6 +86,9 @@
     <string name="settings_theme_system">سسٹم</string>
     <string name="settings_theme_light">روشن</string>
     <string name="settings_theme_dark">گہرا</string>
+    <string name="settings_evening_dark">شام کو گہرا</string>
+    <string name="settings_evening_dark_text">%1$s – %2$s گہرا، سسٹم یا روشن چننے پر بھی۔</string>
+    <string name="settings_evening_dark_from">گہرا شروع</string>
     <string name="settings_data">تمہارا ڈیٹا</string>
     <string name="settings_data_text">سب کچھ تمہارے فون اور گھڑی پر رہتا ہے۔ نہ اکاؤنٹ، نہ سرور، نہ ٹریکنگ۔ Google کے گھڑی کنکشن سے صرف گھڑی کی تکنیکی معلومات جاتی ہیں، صحت کے ڈیٹا کے بغیر۔</string>
     <string name="settings_export">راتیں نام کے بغیر ایکسپورٹ کرو</string>
@@ -96,10 +99,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT لائسنس، © r1adBE۔\nManrope فونٹ: SIL Open Font License 1.1، © The Manrope Project Authors۔\nآواز کی پہچان: MediaPipe Tasks Audio اور YAMNet ماڈل، Apache License 2.0، © Google LLC۔\nآوازیں: opengameart.org کی مفت ریکارڈنگز (CC0)</string>
     <string name="settings_version">ورژن %1$s</string>
 
-    <string name="duration_minutes">%1$d منٹ</string>
-    <string name="duration_hours">%1$d گھنٹے</string>
-    <string name="duration_hours_half">%1$d½ گھنٹے</string>
-    <string name="duration_hours_minutes">%1$d گھنٹے %2$d منٹ</string>
+    <string name="duration_minutes">%1$d منٹ</string>
+    <string name="duration_hours">%1$d گھنٹے</string>
+    <string name="duration_hours_half">%1$d½ گھنٹے</string>
+    <string name="duration_hours_minutes">%1$d گھنٹے %2$d منٹ</string>
     <string name="health_title">Health Connect سے نیند کے مراحل</string>
     <string name="health_rationale">Phase Wake نیند کا وہ ڈیٹا پڑھ سکتا ہے جو تمہاری صحت کی ایپ (مثلاً Samsung Health) محفوظ کرتی ہے۔ یہ تمہارے تاریخچے میں دکھایا جاتا ہے، ان راتوں سے موازنے کے لیے بھی جب Phase Wake نے تمہیں جگایا۔ Phase Wake صرف پڑھتا ہے، کبھی لکھتا نہیں، اور کچھ بھی تمہارے فون سے باہر نہیں جاتا۔</string>
     <string name="health_connect">صحت کے ڈیٹا سے موازنہ کرو</string>
@@ -281,7 +284,7 @@
         <item quantity="other">نیند کا ہدف پورا: %2$d راتوں میں سے %1$d</item>
     </plurals>
     <string name="bedtime_title">سونے کے وقت کی یاد دہانی</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">سونے کے وقت سے %1$d منٹ پہلے یاد دلاتا ہے: الارم کا وقت منفی نیند کا ہدف۔</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">سونے کے وقت سے %1$d منٹ پہلے یاد دلاتا ہے: ہدف وقت منفی نیند کا ہدف۔</string>
     <string name="bedtime_notification">سونے کا وقت %1$s – یوں %3$s کے الارم سے پہلے تمہیں %2$s نیند ملے گی۔</string>
     <string name="channel_reminders">یاد دہانیاں</string>
     <string name="sounds_title">نیند کی آوازیں</string>
@@ -556,7 +559,7 @@
     <string name="learned_latency">نیند آنا: تقریباً %1$s</string>
     <string name="learned_latency_none">نیند آنا: پیمائشیں بہت کم</string>
     <string name="bedtime_advice">آج %1$s اور %2$s کے درمیان سونے جاؤ</string>
-    <string name="bedtime_advice_hint">تمہارے الارم، نیند کے ہدف اور نیند آنے میں لگنے والے وقت کی بنیاد پر۔</string>
+    <string name="bedtime_advice_hint">تمہارے ہدف وقت، نیند کے ہدف اور نیند آنے میں لگنے والے وقت کی بنیاد پر۔</string>
     <string name="learn_restart">دوبارہ سیکھو</string>
     <string name="learn_restart_text">Phase Wake دوبارہ %1$d راتیں ناپتا ہے۔ تب تک اب تک ڈھالی گئی قدریں ہی استعمال ہوتی ہیں۔</string>
     <string name="record_end_wake">جگاتے وقت ختم</string>
@@ -638,7 +641,7 @@
     <string name="finding_title">آپ کی پچھلی 7 راتوں میں نمایاں</string>
     <string name="finding_hide">چھپائیں</string>
     <string name="finding_latency">اوسطاً آپ کو سونے میں %1$s لگے۔ مشورہ: اگر 20 منٹ بعد بھی جاگ رہے ہوں تو اٹھ جائیں اور نیند آنے پر ہی بستر پر واپس جائیں۔ اگر یہ ہفتوں تک رہے تو اپنے ڈاکٹر سے بات کریں۔</string>
-    <string name="finding_short_nights">6 گھنٹے سے کم کی راتیں: 7 میں سے %1$d۔ مشورہ: جاگنے کے وقت سے سونے کا وقت نکالیں اور اس پر قائم رہیں۔</string>
+    <string name="finding_short_nights">6 گھنٹے سے کم کی راتیں: 7 میں سے %1$d۔ مشورہ: ہدف وقت سے سونے کا وقت نکالیں اور اس پر قائم رہیں۔</string>
     <string name="finding_low_deep">گہری نیند آپ کی نیند کا صرف تقریباً %1$d %% تھی (عموماً %2$d–%3$d %%)۔</string>
     <string name="finding_deep_short">6 گھنٹے سے کم کی راتوں میں یہ واضح طور پر کم تھی: %2$d %% کے بجائے %1$d %%۔</string>
     <string name="finding_deep_late">جن راتوں آپ دیر سے سوئے ان میں یہ واضح طور پر کم تھی: %2$d %% کے بجائے %1$d %%۔</string>

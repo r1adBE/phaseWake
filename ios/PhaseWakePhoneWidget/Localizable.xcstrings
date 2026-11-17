@@ -17478,445 +17478,445 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uit jou wekkertyd, slaapdoel en hoe lank jy neem om aan die slaap te raak."
+            "value": "Uit jou teikentyd, slaapdoel en hoe lank jy neem om aan die slaap te raak."
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "ከማንቂያህ፣ ከእንቅልፍ ግብህና ለመተኛት ከሚወስድብህ ጊዜ።"
+            "value": "ከታለመው ሰዓትህ፣ ከእንቅልፍ ግብህና ለመተኛት ከሚወስድብህ ጊዜ።"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "بناءً على منبّهك وهدف نومك والمدة التي تحتاجها لتغفو."
+            "value": "بناءً على وقتك المستهدف وهدف نومك والمدة التي تحتاجها لتغفو."
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zəngin, yuxu hədəfin və yuxuya getmə müddətinə əsasən."
+            "value": "Hədəf vaxtın, yuxu hədəfin və yuxuya getmə müddətinə əsasən."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "От будилника, целта ти за сън и колко време ти трябва, за да заспиш."
+            "value": "От целевото време, целта ти за сън и колко време ти трябва, за да заспиш."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "তোমার অ্যালার্ম, ঘুমের লক্ষ্য আর ঘুমিয়ে পড়তে কত সময় লাগে তা থেকে।"
+            "value": "তোমার লক্ষ্য সময়, ঘুমের লক্ষ্য আর ঘুমিয়ে পড়তে কত সময় লাগে তা থেকে।"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Na osnovu budilice, cilja sna i koliko ti treba da zaspiš."
+            "value": "Na osnovu ciljnog vremena, cilja sna i koliko ti treba da zaspiš."
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "A partir de l’alarma, l’objectiu de son i el temps que trigues a adormir-te."
+            "value": "A partir de l’hora objectiu, l’objectiu de son i el temps que trigues a adormir-te."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Podle budíku, cíle spánku a toho, jak dlouho ti trvá usnout."
+            "value": "Podle cílového času, cíle spánku a toho, jak dlouho ti trvá usnout."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ud fra dit vækkeur, dit søvnmål og hvor lang tid du er om at falde i søvn."
+            "value": "Ud fra din måltid, dit søvnmål og hvor lang tid du er om at falde i søvn."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aus Weckzeit, Schlafziel und deiner Einschlafdauer."
+            "value": "Aus Zielzeit, Schlafziel und deiner Einschlafdauer."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Με βάση το ξυπνητήρι, τον στόχο ύπνου και πόσο χρειάζεσαι για να αποκοιμηθείς."
+            "value": "Με βάση την ώρα-στόχο, τον στόχο ύπνου και πόσο χρειάζεσαι για να αποκοιμηθείς."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Based on your alarm, your sleep goal and how long you take to fall asleep."
+            "value": "Based on your target time, your sleep goal and how long you take to fall asleep."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Según tu alarma, tu objetivo de sueño y lo que tardas en dormirte."
+            "value": "Según tu hora objetivo, tu objetivo de sueño y lo que tardas en dormirte."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Äratuse, unesihi ja uinumiseks kuluva aja põhjal."
+            "value": "Sihtaja, unesihi ja uinumiseks kuluva aja põhjal."
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zure alarma, lo-helburua eta loak hartzeko behar duzun denboraren arabera."
+            "value": "Zure helburu-ordua, lo-helburua eta loak hartzeko behar duzun denboraren arabera."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "بر اساس زنگت، هدف خوابت و مدتی که طول می‌کشد تا خوابت ببرد."
+            "value": "بر اساس زمان هدفت، هدف خوابت و مدتی که طول می‌کشد تا خوابت ببرد."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Herätyksen, unitavoitteen ja nukahtamiseen kuluvan ajan perusteella."
+            "value": "Tavoiteajan, unitavoitteen ja nukahtamiseen kuluvan ajan perusteella."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mula sa alarm mo, layunin sa tulog at kung gaano ka katagal makatulog."
+            "value": "Mula sa target na oras mo, layunin sa tulog at kung gaano ka katagal makatulog."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "D’après ton réveil, ton objectif de sommeil et le temps qu’il te faut pour t’endormir."
+            "value": "D’après ton heure cible, ton objectif de sommeil et le temps qu’il te faut pour t’endormir."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bunaithe ar d’aláram, ar do sprioc codlata agus ar an am a thógann sé ort titim i do chodladh."
+            "value": "Bunaithe ar d’am sprice, ar do sprioc codlata agus ar an am a thógann sé ort titim i do chodladh."
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Segundo a túa alarma, o teu obxectivo de sono e o que tardas en durmir."
+            "value": "Segundo a túa hora obxectivo, o teu obxectivo de sono e o que tardas en durmir."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "તારા અલાર્મ, ઊંઘના લક્ષ્ય અને ઊંઘ આવતાં લાગતા સમય પરથી."
+            "value": "તારા લક્ષ્ય સમય, ઊંઘના લક્ષ્ય અને ઊંઘ આવતાં લાગતા સમય પરથી."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "לפי ההשכמה, יעד השינה והזמן שלוקח לך להירדם."
+            "value": "לפי שעת היעד, יעד השינה והזמן שלוקח לך להירדם."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "तुम्हारे अलार्म, नींद के लक्ष्य और नींद आने में लगने वाले समय से।"
+            "value": "तुम्हारे लक्ष्य समय, नींद के लक्ष्य और नींद आने में लगने वाले समय से।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Prema budilici, cilju sna i tome koliko ti treba da zaspiš."
+            "value": "Prema ciljnom vremenu, cilju sna i tome koliko ti treba da zaspiš."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Az ébresztőd, az alváscélod és az elalvási időd alapján."
+            "value": "A célidőd, az alváscélod és az elalvási időd alapján."
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ըստ զարթուցիչիդ, քնի նպատակիդ և քնելու համար պահանջվող ժամանակի։"
+            "value": "Ըստ նպատակային ժամիդ, քնի նպատակիդ և քնելու համար պահանջվող ժամանակի։"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Berdasarkan alarm, target tidur, dan berapa lama kamu biasanya tertidur."
+            "value": "Berdasarkan waktu target, target tidur, dan berapa lama kamu biasanya tertidur."
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Út frá vekjaranum, svefnmarkmiðinu og hve lengi þú ert að sofna."
+            "value": "Út frá markmiðstímanum, svefnmarkmiðinu og hve lengi þú ert að sofna."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "In base a sveglia, obiettivo di sonno e quanto ci metti ad addormentarti."
+            "value": "In base a orario obiettivo, obiettivo di sonno e quanto ci metti ad addormentarti."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "アラーム、睡眠目標、寝つくまでの時間から算出。"
+            "value": "目標時刻、睡眠目標、寝つくまでの時間から算出。"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "შენი მაღვიძარას, ძილის მიზნისა და ჩაძინების დროის მიხედვით."
+            "value": "შენი სამიზნე დროის, ძილის მიზნისა და ჩაძინების დროის მიხედვით."
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Оятқышыңа, ұйқы мақсатыңа және ұйықтап кетуге кететін уақытқа қарай."
+            "value": "Мақсатты уақытыңа, ұйқы мақсатыңа және ұйықтап кетуге кететін уақытқа қарай."
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "ផ្អែកលើម៉ោងរោទ៍ គោលដៅគេង និងរយៈពេលដែលអ្នកត្រូវការដើម្បីលង់លក់។"
+            "value": "ផ្អែកលើម៉ោងគោលដៅ គោលដៅគេង និងរយៈពេលដែលអ្នកត្រូវការដើម្បីលង់លក់។"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ನಿನ್ನ ಅಲಾರಂ, ನಿದ್ರೆಯ ಗುರಿ ಮತ್ತು ನಿದ್ರೆ ಬರಲು ಬೇಕಾದ ಸಮಯದಿಂದ."
+            "value": "ನಿನ್ನ ಗುರಿ ಸಮಯ, ನಿದ್ರೆಯ ಗುರಿ ಮತ್ತು ನಿದ್ರೆ ಬರಲು ಬೇಕಾದ ಸಮಯದಿಂದ."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "알람, 수면 목표, 잠드는 데 걸리는 시간을 바탕으로 해."
+            "value": "목표 시간, 수면 목표, 잠드는 데 걸리는 시간을 바탕으로 해."
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "ອີງຕາມໂມງປຸກ, ເປົ້າໝາຍການນອນ ແລະ ເວລາທີ່ເຈົ້າໃຊ້ເພື່ອນອນຫຼັບ."
+            "value": "ອີງຕາມເວລາເປົ້າໝາຍ, ເປົ້າໝາຍການນອນ ແລະ ເວລາທີ່ເຈົ້າໃຊ້ເພື່ອນອນຫຼັບ."
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pagal žadintuvą, miego tikslą ir tai, kiek laiko užtrunki užmigti."
+            "value": "Pagal tikslinį laiką, miego tikslą ir tai, kiek laiko užtrunki užmigti."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pēc modinātāja, miega mērķa un laika, kas tev vajadzīgs, lai iemigtu."
+            "value": "Pēc mērķa laika, miega mērķa un laika, kas tev vajadzīgs, lai iemigtu."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Според будилникот, целта за сон и колку време ти треба да заспиеш."
+            "value": "Според целното време, целта за сон и колку време ти треба да заспиеш."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "നിന്റെ അലാറം, ഉറക്ക ലക്ഷ്യം, ഉറങ്ങാൻ എടുക്കുന്ന സമയം എന്നിവയിൽ നിന്ന്."
+            "value": "നിന്റെ ലക്ഷ്യ സമയം, ഉറക്ക ലക്ഷ്യം, ഉറങ്ങാൻ എടുക്കുന്ന സമയം എന്നിവയിൽ നിന്ന്."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Сэрүүлэг, нойрны зорилго, унтахад зарцуулдаг хугацаанд чинь тулгуурласан."
+            "value": "Зорилтот цаг, нойрны зорилго, унтахад зарцуулдаг хугацаанд чинь тулгуурласан."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "तुझा अलार्म, झोपेचे ध्येय आणि झोप लागायला लागणाऱ्या वेळेवरून."
+            "value": "तुझी लक्ष्य वेळ, झोपेचे ध्येय आणि झोप लागायला लागणाऱ्या वेळेवरून."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Berdasarkan penggera, sasaran tidur dan berapa lama kamu ambil untuk tertidur."
+            "value": "Berdasarkan masa sasaran, sasaran tidur dan berapa lama kamu ambil untuk tertidur."
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "သင့်နှိုးစက်၊ အိပ်စက်ချိန်ပန်းတိုင်နဲ့ အိပ်ပျော်ဖို့ ကြာချိန်အပေါ် အခြေခံထားပါတယ်။"
+            "value": "သင့်ပစ်မှတ်အချိန်၊ အိပ်စက်ချိန်ပန်းတိုင်နဲ့ အိပ်ပျော်ဖို့ ကြာချိန်အပေါ် အခြေခံထားပါတယ်။"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ut fra vekkerklokken, søvnmålet og hvor lang tid du bruker på å sovne."
+            "value": "Ut fra måltiden, søvnmålet og hvor lang tid du bruker på å sovne."
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "तिम्रो अलार्म, निद्राको लक्ष्य र निदाउन लाग्ने समयबाट।"
+            "value": "तिम्रो लक्ष्य समय, निद्राको लक्ष्य र निदाउन लाग्ने समयबाट।"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Op basis van je wekker, je slaapdoel en hoe lang je over inslapen doet."
+            "value": "Op basis van je doeltijd, je slaapdoel en hoe lang je over inslapen doet."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਤੇਰੇ ਅਲਾਰਮ, ਨੀਂਦ ਦੇ ਟੀਚੇ ਅਤੇ ਨੀਂਦ ਆਉਣ ਵਿੱਚ ਲੱਗਦੇ ਸਮੇਂ ਤੋਂ।"
+            "value": "ਤੇਰੇ ਟੀਚਾ ਸਮੇਂ, ਨੀਂਦ ਦੇ ਟੀਚੇ ਅਤੇ ਨੀਂਦ ਆਉਣ ਵਿੱਚ ਲੱਗਦੇ ਸਮੇਂ ਤੋਂ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Na podstawie budzika, celu snu i tego, ile czasu zajmuje ci zaśnięcie."
+            "value": "Na podstawie godziny docelowej, celu snu i tego, ile czasu zajmuje ci zaśnięcie."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Com base no seu alarme, na sua meta de sono e no tempo que você leva para dormir."
+            "value": "Com base no seu horário-alvo, na sua meta de sono e no tempo que você leva para dormir."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Com base no teu alarme, no teu objetivo de sono e no tempo que demoras a adormecer."
+            "value": "Com base na tua hora-alvo, no teu objetivo de sono e no tempo que demoras a adormecer."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pe baza alarmei, a obiectivului de somn și a timpului în care adormi."
+            "value": "Pe baza orei țintă, a obiectivului de somn și a timpului în care adormi."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "По будильнику, цели сна и тому, сколько ты засыпаешь."
+            "value": "По целевому времени, цели сна и тому, сколько ты засыпаешь."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "ඔබේ එලාමය, නින්දේ ඉලක්කය සහ නින්දට යාමට ගතවන කාලය අනුව."
+            "value": "ඔබේ ඉලක්ක වේලාව, නින්දේ ඉලක්කය සහ නින්දට යාමට ගතවන කාලය අනුව."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Podľa budíka, cieľa spánku a toho, ako dlho ti trvá zaspať."
+            "value": "Podľa cieľového času, cieľa spánku a toho, ako dlho ti trvá zaspať."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Glede na budilko, cilj spanja in koliko časa potrebuješ, da zaspiš."
+            "value": "Glede na ciljni čas, cilj spanja in koliko časa potrebuješ, da zaspiš."
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sipas zgjuesit, qëllimit të gjumit dhe kohës që të duhet për të rënë në gjumë."
+            "value": "Sipas orës së synuar, qëllimit të gjumit dhe kohës që të duhet për të rënë në gjumë."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Према будилнику, циљу сна и томе колико ти треба да заспиш."
+            "value": "Према циљном времену, циљу сна и томе колико ти треба да заспиш."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Utifrån din väckning, ditt sömnmål och hur lång tid du tar på dig att somna."
+            "value": "Utifrån din måltid, ditt sömnmål och hur lång tid du tar på dig att somna."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kulingana na kengele yako, lengo la usingizi na muda unaochukua kupata usingizi."
+            "value": "Kulingana na muda lengwa wako, lengo la usingizi na muda unaochukua kupata usingizi."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "உன் அலாரம், தூக்க இலக்கு, தூங்க ஆகும் நேரம் ஆகியவற்றிலிருந்து."
+            "value": "உன் இலக்கு நேரம், தூக்க இலக்கு, தூங்க ஆகும் நேரம் ஆகியவற்றிலிருந்து."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "నీ అలారం, నిద్ర లక్ష్యం, నిద్రపోవడానికి పట్టే సమయం ఆధారంగా."
+            "value": "నీ లక్ష్య సమయం, నిద్ర లక్ష్యం, నిద్రపోవడానికి పట్టే సమయం ఆధారంగా."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "คำนวณจากนาฬิกาปลุก เป้าหมายการนอน และเวลาที่คุณใช้กว่าจะหลับ"
+            "value": "คำนวณจากเวลาเป้าหมาย เป้าหมายการนอน และเวลาที่คุณใช้กว่าจะหลับ"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Alarmına, uyku hedefine ve uykuya dalma süresine göre."
+            "value": "Hedef saatine, uyku hedefine ve uykuya dalma süresine göre."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "За будильником, метою сну і тим, скільки ти засинаєш."
+            "value": "За цільовим часом, метою сну і тим, скільки ти засинаєш."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "تمہارے الارم، نیند کے ہدف اور نیند آنے میں لگنے والے وقت کی بنیاد پر۔"
+            "value": "تمہارے ہدف وقت، نیند کے ہدف اور نیند آنے میں لگنے والے وقت کی بنیاد پر۔"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Budilnik, uyqu maqsading va uxlab qolishga ketadigan vaqtga ko‘ra."
+            "value": "Maqsad vaqting, uyqu maqsading va uxlab qolishga ketadigan vaqtga ko‘ra."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dựa trên báo thức, mục tiêu ngủ và thời gian bạn cần để ngủ."
+            "value": "Dựa trên giờ mục tiêu, mục tiêu ngủ và thời gian bạn cần để ngủ."
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "根據你嘅鬧鐘、睡眠目標同入睡所需時間。"
+            "value": "根據你嘅目標時間、睡眠目標同入睡所需時間。"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "根据你的闹钟、睡眠目标和入睡所需时间。"
+            "value": "根据你的目标时间、睡眠目标和入睡所需时间。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "依據你的鬧鐘、睡眠目標和入睡所需時間。"
+            "value": "依據你的目標時間、睡眠目標和入睡所需時間。"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ngokusekelwe ku-alamu yakho, umgomo wokulala nesikhathi okuthatha sona ukulala."
+            "value": "Ngokusekelwe esikhathini okuhloswe ngaso, umgomo wokulala nesikhathi okuthatha sona ukulala."
           }
         }
       }
@@ -18374,445 +18374,445 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Herinner jou %1$lld min voor slaaptyd: jou wekkertyd minus jou slaapdoel."
+            "value": "Herinner jou %1$lld min voor slaaptyd: jou teikentyd minus jou slaapdoel."
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "ከመኝታ ሰዓት %1$lld ደቂቃ በፊት ያስታውስዎታል፦ የማንቂያ ሰዓትዎ ሲቀነስ የእንቅልፍ ግብዎ።"
+            "value": "ከመኝታ ሰዓት %1$lld ደቂቃ በፊት ያስታውስዎታል፦ የታለመ ሰዓትዎ ሲቀነስ የእንቅልፍ ግብዎ።"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يذكّرك قبل موعد النوم بـ %1$lld دقيقة: وقت المنبّه ناقص هدف النوم."
+            "value": "يذكّرك قبل موعد النوم بـ %1$lld دقيقة: الوقت المستهدف ناقص هدف النوم."
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yatma vaxtından %1$lld dəq əvvəl xatırladır: siqnal vaxtın çıx yuxu hədəfin."
+            "value": "Yatma vaxtından %1$lld dəq əvvəl xatırladır: hədəf vaxtın çıx yuxu hədəfin."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Напомня ти %1$lld мин преди часа за лягане: часът на будилника минус целта за сън."
+            "value": "Напомня ти %1$lld мин преди часа за лягане: целевото време минус целта за сън."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ঘুমানোর সময়ের %1$lld মি. আগে মনে করিয়ে দেয়: অ্যালার্মের সময় থেকে ঘুমের লক্ষ্য বাদ দিয়ে।"
+            "value": "ঘুমানোর সময়ের %1$lld মি. আগে মনে করিয়ে দেয়: লক্ষ্য সময় থেকে ঘুমের লক্ষ্য বাদ দিয়ে।"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Podsjeća te %1$lld min prije vremena za spavanje: vrijeme alarma minus cilj spavanja."
+            "value": "Podsjeća te %1$lld min prije vremena za spavanje: ciljno vrijeme minus cilj spavanja."
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "T’avisa %1$lld min abans de l’hora d’anar a dormir: l’hora de l’alarma menys l’objectiu de son."
+            "value": "T’avisa %1$lld min abans de l’hora d’anar a dormir: l’hora objectiu menys l’objectiu de son."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Připomene ti to %1$lld min před časem spánku: čas buzení minus cíl spánku."
+            "value": "Připomene ti to %1$lld min před časem spánku: cílový čas minus cíl spánku."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minder dig om det %1$lld min før sengetid: vækketid minus søvnmål."
+            "value": "Minder dig om det %1$lld min før sengetid: måltid minus søvnmål."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Erinnert dich %1$lld Min vor der Bettzeit: Weckzeit minus Schlafziel."
+            "value": "Erinnert dich %1$lld Min vor der Bettzeit: Zielzeit minus Schlafziel."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Σου θυμίζει %1$lld λεπτά πριν την ώρα ύπνου: ώρα αφύπνισης μείον στόχος ύπνου."
+            "value": "Σου θυμίζει %1$lld λεπτά πριν την ώρα ύπνου: ώρα-στόχος μείον στόχος ύπνου."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Reminds you %1$lld min before bedtime: your alarm time minus your sleep goal."
+            "value": "Reminds you %1$lld min before bedtime: your target time minus your sleep goal."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Te avisa %1$lld min antes de la hora de acostarte: hora de la alarma menos objetivo de sueño."
+            "value": "Te avisa %1$lld min antes de la hora de acostarte: hora objetivo menos objetivo de sueño."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tuletab meelde %1$lld min enne magamaminekut: äratusaeg miinus su une eesmärk."
+            "value": "Tuletab meelde %1$lld min enne magamaminekut: sihtaeg miinus su une eesmärk."
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Oheratzeko ordua baino %1$lld min lehenago gogorarazten dizu: alarmaren ordua ken lo-helburua."
+            "value": "Oheratzeko ordua baino %1$lld min lehenago gogorarazten dizu: helburu-ordua ken lo-helburua."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld دقیقه پیش از زمان خواب یادآوری می‌کند: زمان زنگ منهای هدف خواب."
+            "value": "%1$lld دقیقه پیش از زمان خواب یادآوری می‌کند: زمان هدف منهای هدف خواب."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Muistuttaa %1$lld min ennen nukkumaanmenoa: herätysaika miinus unitavoite."
+            "value": "Muistuttaa %1$lld min ennen nukkumaanmenoa: tavoiteaika miinus unitavoite."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pinapaalalahanan ka %1$lld min bago ang oras ng pagtulog: oras ng alarm mo bawas ang layunin mo sa tulog."
+            "value": "Pinapaalalahanan ka %1$lld min bago ang oras ng pagtulog: target na oras mo bawas ang layunin mo sa tulog."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Te le rappelle %1$lld min avant l’heure du coucher : heure du réveil moins objectif de sommeil."
+            "value": "Te le rappelle %1$lld min avant l’heure du coucher : heure cible moins objectif de sommeil."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cuireann sé i gcuimhne duit %1$lld nóim roimh am codlata: am d’aláraim lúide do sprioc codlata."
+            "value": "Cuireann sé i gcuimhne duit %1$lld nóim roimh am codlata: d’am sprice lúide do sprioc codlata."
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lémbrache %1$lld min antes da hora de deitarte: a hora da alarma menos o teu obxectivo de sono."
+            "value": "Lémbrache %1$lld min antes da hora de deitarte: a hora obxectivo menos o teu obxectivo de sono."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "સૂવાના સમયથી %1$lld મિ. પહેલાં યાદ અપાવે છે: તમારો એલાર્મનો સમય ઓછા તમારું ઊંઘનું લક્ષ્ય."
+            "value": "સૂવાના સમયથી %1$lld મિ. પહેલાં યાદ અપાવે છે: તમારો લક્ષ્ય સમય ઓછા તમારું ઊંઘનું લક્ષ્ય."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "מזכירה לך %1$lld דק׳ לפני שעת השינה: שעת ההשכמה פחות יעד השינה."
+            "value": "מזכירה לך %1$lld דק׳ לפני שעת השינה: שעת היעד פחות יעד השינה."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "सोने के समय से %1$lld मिनट पहले याद दिलाता है: अलार्म का समय घटा नींद का लक्ष्य।"
+            "value": "सोने के समय से %1$lld मिनट पहले याद दिलाता है: लक्ष्य समय घटा नींद का लक्ष्य।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Podsjeća te %1$lld min prije vremena za spavanje: vrijeme alarma minus cilj spavanja."
+            "value": "Podsjeća te %1$lld min prije vremena za spavanje: ciljno vrijeme minus cilj spavanja."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld perccel lefekvés előtt emlékeztet: ébresztési idő mínusz alvási cél."
+            "value": "%1$lld perccel lefekvés előtt emlékeztet: célidő mínusz alvási cél."
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Հիշեցնում է քնելու ժամից %1$lld ր առաջ՝ զարթուցիչի ժամը հանած քնի նպատակը։"
+            "value": "Հիշեցնում է քնելու ժամից %1$lld ր առաջ՝ նպատակային ժամը հանած քնի նպատակը։"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mengingatkanmu %1$lld mnt sebelum waktu tidur: jam alarm dikurangi target tidur."
+            "value": "Mengingatkanmu %1$lld mnt sebelum waktu tidur: waktu target dikurangi target tidur."
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minnir þig á %1$lld mín fyrir háttatíma: vekjaratíminn mínus svefnmarkmiðið."
+            "value": "Minnir þig á %1$lld mín fyrir háttatíma: markmiðstíminn mínus svefnmarkmiðið."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ti avvisa %1$lld min prima di andare a letto: ora della sveglia meno obiettivo di sonno."
+            "value": "Ti avvisa %1$lld min prima di andare a letto: orario obiettivo meno obiettivo di sonno."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "就寝時刻の %1$lld 分前にお知らせ:起床時刻から睡眠目標を引いた時刻。"
+            "value": "就寝時刻の %1$lld 分前にお知らせ:目標時刻から睡眠目標を引いた時刻。"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "შეგახსენებს დაძინებამდე %1$lld წთ-ით ადრე: მაღვიძარის დროს გამოკლებული ძილის მიზანი."
+            "value": "შეგახსენებს დაძინებამდე %1$lld წთ-ით ადრე: სამიზნე დროს გამოკლებული ძილის მიზანი."
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ұйқыға жатуға %1$lld мин қалғанда еске салады: оятқыш уақыты минус ұйқы мақсаты."
+            "value": "Ұйқыға жатуға %1$lld мин қалғанда еске салады: мақсатты уақыт минус ұйқы мақсаты."
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "រំលឹក %1$lld នាទីមុនម៉ោងចូលដេក៖ ម៉ោងរោទ៍ ដកគោលដៅដំណេក។"
+            "value": "រំលឹក %1$lld នាទីមុនម៉ោងចូលដេក៖ ម៉ោងគោលដៅ ដកគោលដៅដំណេក។"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ಮಲಗುವ ಸಮಯಕ್ಕೆ %1$lld ನಿಮಿ. ಮೊದಲು ನೆನಪಿಸುತ್ತದೆ: ಅಲಾರಾಂ ಸಮಯ ಕಳೆ ನಿದ್ರೆಯ ಗುರಿ."
+            "value": "ಮಲಗುವ ಸಮಯಕ್ಕೆ %1$lld ನಿಮಿ. ಮೊದಲು ನೆನಪಿಸುತ್ತದೆ: ಗುರಿ ಸಮಯ ಕಳೆ ನಿದ್ರೆಯ ಗುರಿ."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "취침 시간 %1$lld분 전에 알려 줘요: 알람 시간에서 수면 목표를 뺀 시간."
+            "value": "취침 시간 %1$lld분 전에 알려 줘요: 목표 시간에서 수면 목표를 뺀 시간."
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "ແຈ້ງເຕືອນກ່ອນເວລາເຂົ້ານອນ %1$lld ນາທີ: ເວລາປຸກ ລົບດ້ວຍເປົ້າໝາຍການນອນ"
+            "value": "ແຈ້ງເຕືອນກ່ອນເວລາເຂົ້ານອນ %1$lld ນາທີ: ເວລາເປົ້າໝາຍ ລົບດ້ວຍເປົ້າໝາຍການນອນ"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Primena %1$lld min prieš miego laiką: žadintuvo laikas atėmus miego tikslą."
+            "value": "Primena %1$lld min prieš miego laiką: tikslinis laikas atėmus miego tikslą."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Atgādina %1$lld min pirms gulētiešanas laika: modinātāja laiks mīnus tavs miega mērķis."
+            "value": "Atgādina %1$lld min pirms gulētiešanas laika: mērķa laiks mīnus tavs miega mērķis."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Те потсетува %1$lld мин пред времето за спиење: времето на алармот минус целта за сон."
+            "value": "Те потсетува %1$lld мин пред времето за спиење: целното време минус целта за сон."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "ഉറക്കസമയത്തിന് %1$lld മി. മുമ്പ് ഓർമ്മിപ്പിക്കും: അലാറം സമയത്തിൽ നിന്ന് ഉറക്ക ലക്ഷ്യം കുറച്ചത്."
+            "value": "ഉറക്കസമയത്തിന് %1$lld മി. മുമ്പ് ഓർമ്മിപ്പിക്കും: ലക്ഷ്യ സമയത്തിൽ നിന്ന് ഉറക്ക ലക്ഷ്യം കുറച്ചത്."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Унтах цагаас %1$lld мин өмнө сануулна: сэрүүлгийн цагаас нойрны зорилгыг хассан цаг."
+            "value": "Унтах цагаас %1$lld мин өмнө сануулна: зорилтот цагаас нойрны зорилгыг хассан цаг."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "झोपण्याच्या वेळेच्या %1$lld मि. आधी आठवण करून देते: तुमची अलार्म वेळ वजा झोपेचे लक्ष्य."
+            "value": "झोपण्याच्या वेळेच्या %1$lld मि. आधी आठवण करून देते: तुमची लक्ष्य वेळ वजा झोपेचे लक्ष्य."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mengingatkan anda %1$lld min sebelum waktu tidur: masa penggera tolak sasaran tidur."
+            "value": "Mengingatkan anda %1$lld min sebelum waktu tidur: masa sasaran tolak sasaran tidur."
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "အိပ်ချိန်မတိုင်မီ %1$lld မိနစ်တွင် သတိပေးသည်- နှိုးစက်အချိန် နုတ် အိပ်စက်မှု ပန်းတိုင်။"
+            "value": "အိပ်ချိန်မတိုင်မီ %1$lld မိနစ်တွင် သတိပေးသည်- ပစ်မှတ်အချိန် နုတ် အိပ်စက်မှု ပန်းတိုင်။"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minner deg på det %1$lld min før leggetid: vekketid minus søvnmål."
+            "value": "Minner deg på det %1$lld min før leggetid: måltid minus søvnmål."
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "सुत्ने समयभन्दा %1$lld मि. अघि सम्झाउँछ: तिम्रो अलार्मको समयबाट निद्राको लक्ष्य घटाएर।"
+            "value": "सुत्ने समयभन्दा %1$lld मि. अघि सम्झाउँछ: तिम्रो लक्ष्य समयबाट निद्राको लक्ष्य घटाएर।"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Herinnert je %1$lld min voor bedtijd: wektijd min slaapdoel."
+            "value": "Herinnert je %1$lld min voor bedtijd: doeltijd min slaapdoel."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਸੌਣ ਦੇ ਸਮੇਂ ਤੋਂ %1$lld ਮਿੰ. ਪਹਿਲਾਂ ਯਾਦ ਦਿਵਾਉਂਦਾ ਹੈ: ਤੁਹਾਡਾ ਅਲਾਰਮ ਸਮਾਂ ਘਟਾਓ ਤੁਹਾਡਾ ਨੀਂਦ ਦਾ ਟੀਚਾ।"
+            "value": "ਸੌਣ ਦੇ ਸਮੇਂ ਤੋਂ %1$lld ਮਿੰ. ਪਹਿਲਾਂ ਯਾਦ ਦਿਵਾਉਂਦਾ ਹੈ: ਤੁਹਾਡਾ ਟੀਚਾ ਸਮਾਂ ਘਟਾਓ ਤੁਹਾਡਾ ਨੀਂਦ ਦਾ ਟੀਚਾ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Przypomina %1$lld min przed porą snu: godzina budzika minus cel snu."
+            "value": "Przypomina %1$lld min przed porą snu: godzina docelowa minus cel snu."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avisa você %1$lld min antes da hora de dormir: horário do alarme menos meta de sono."
+            "value": "Avisa você %1$lld min antes da hora de dormir: horário-alvo menos meta de sono."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avisa-te %1$lld min antes da hora de deitar: hora do alarme menos meta de sono."
+            "value": "Avisa-te %1$lld min antes da hora de deitar: hora-alvo menos meta de sono."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Îți amintește cu %1$lld min înainte de ora de culcare: ora alarmei minus obiectivul de somn."
+            "value": "Îți amintește cu %1$lld min înainte de ora de culcare: ora țintă minus obiectivul de somn."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Напоминает за %1$lld мин до отхода ко сну: время будильника минус цель сна."
+            "value": "Напоминает за %1$lld мин до отхода ко сну: целевое время минус цель сна."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "නින්දට යන වේලාවට මිනි. %1$lld කට පෙර මතක් කරයි: ඔබේ එලාම් වේලාවෙන් නින්දේ ඉලක්කය අඩු කළ විට."
+            "value": "නින්දට යන වේලාවට මිනි. %1$lld කට පෙර මතක් කරයි: ඔබේ ඉලක්ක වේලාවෙන් නින්දේ ඉලක්කය අඩු කළ විට."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pripomenie ti %1$lld min pred časom na spanie: čas budíka mínus cieľ spánku."
+            "value": "Pripomenie ti %1$lld min pred časom na spanie: cieľový čas mínus cieľ spánku."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Opomni te %1$lld min pred časom za spanje: čas budilke minus cilj spanja."
+            "value": "Opomni te %1$lld min pred časom za spanje: ciljni čas minus cilj spanja."
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Të kujton %1$lld min para orës së gjumit: ora e alarmit minus objektivi i gjumit."
+            "value": "Të kujton %1$lld min para orës së gjumit: ora e synuar minus objektivi i gjumit."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Подсећа те %1$lld мин пре времена за спавање: време аларма минус циљ спавања."
+            "value": "Подсећа те %1$lld мин пре времена за спавање: циљно време минус циљ спавања."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Påminner dig %1$lld min före läggdags: väckningstid minus sömnmål."
+            "value": "Påminner dig %1$lld min före läggdags: måltid minus sömnmål."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Inakukumbusha dak %1$lld kabla ya muda wa kulala: muda wa kengele ukitoa lengo lako la usingizi."
+            "value": "Inakukumbusha dak %1$lld kabla ya muda wa kulala: muda lengwa ukitoa lengo lako la usingizi."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "உறங்கும் நேரத்துக்கு %1$lld நிமி. முன் நினைவூட்டும்: அலாரம் நேரம் கழித்தல் தூக்க இலக்கு."
+            "value": "உறங்கும் நேரத்துக்கு %1$lld நிமி. முன் நினைவூட்டும்: இலக்கு நேரம் கழித்தல் தூக்க இலக்கு."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "నిద్ర సమయానికి %1$lld ని. ముందు గుర్తు చేస్తుంది: మీ అలారం సమయం నుంచి మీ నిద్ర లక్ష్యం తీసివేస్తే."
+            "value": "నిద్ర సమయానికి %1$lld ని. ముందు గుర్తు చేస్తుంది: మీ లక్ష్య సమయం నుంచి మీ నిద్ర లక్ష్యం తీసివేస్తే."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "เตือนก่อนเวลาเข้านอน %1$lld นาที: เวลาปลุกลบเป้าหมายการนอน"
+            "value": "เตือนก่อนเวลาเข้านอน %1$lld นาที: เวลาเป้าหมายลบเป้าหมายการนอน"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yatma saatinden %1$lld dk önce hatırlatır: alarm saati eksi uyku hedefi."
+            "value": "Yatma saatinden %1$lld dk önce hatırlatır: hedef saat eksi uyku hedefi."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Нагадує за %1$lld хв до відходу до сну: час будильника мінус ціль сну."
+            "value": "Нагадує за %1$lld хв до відходу до сну: цільовий час мінус ціль сну."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "سونے کے وقت سے %1$lld منٹ پہلے یاد دلاتا ہے: الارم کا وقت منفی نیند کا ہدف۔"
+            "value": "سونے کے وقت سے %1$lld منٹ پہلے یاد دلاتا ہے: ہدف وقت منفی نیند کا ہدف۔"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uxlash vaqtidan %1$lld daq oldin eslatadi: budilnik vaqting minus uyqu maqsading."
+            "value": "Uxlash vaqtidan %1$lld daq oldin eslatadi: maqsad vaqting minus uyqu maqsading."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nhắc bạn %1$lld phút trước giờ đi ngủ: giờ báo thức trừ mục tiêu ngủ."
+            "value": "Nhắc bạn %1$lld phút trước giờ đi ngủ: giờ mục tiêu trừ mục tiêu ngủ."
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "在就寢時間前 %1$lld 分鐘提醒你：鬧鐘時間減去睡眠目標。"
+            "value": "在就寢時間前 %1$lld 分鐘提醒你：目標時間減去睡眠目標。"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "在就寝时间前 %1$lld 分钟提醒你:闹钟时间减去睡眠目标。"
+            "value": "在就寝时间前 %1$lld 分钟提醒你:目标时间减去睡眠目标。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "在就寢時間前 %1$lld 分鐘提醒你：鬧鐘時間減去睡眠目標。"
+            "value": "在就寢時間前 %1$lld 分鐘提醒你：目標時間減去睡眠目標。"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ikukhumbuza %1$lld min ngaphambi kwesikhathi sokulala: isikhathi se-alamu yakho kususwe umgomo wakho wokulala."
+            "value": "Ikukhumbuza %1$lld min ngaphambi kwesikhathi sokulala: isikhathi okuhloswe ngaso kususwe umgomo wakho wokulala."
           }
         }
       }
@@ -69588,187 +69588,187 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h"
+            "value": "%1$lld h"
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ሰ"
+            "value": "%1$lld ሰ"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld س"
+            "value": "%1$lld س"
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld st"
+            "value": "%1$lld st"
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ч"
+            "value": "%1$lld ч"
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ঘ."
+            "value": "%1$lld ঘ."
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h"
+            "value": "%1$lld h"
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h"
+            "value": "%1$lld h"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h"
+            "value": "%1$lld h"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld t"
+            "value": "%1$lld t"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld Std."
+            "value": "%1$lld Std."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ώ."
+            "value": "%1$lld ώ."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h"
+            "value": "%1$lld h"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h"
+            "value": "%1$lld h"
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h"
+            "value": "%1$lld h"
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h"
+            "value": "%1$lld h"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld س"
+            "value": "%1$lld س"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld t"
+            "value": "%1$lld t"
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h"
+            "value": "%1$lld h"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h"
+            "value": "%1$lld h"
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld u"
+            "value": "%1$lld u"
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h"
+            "value": "%1$lld h"
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ક."
+            "value": "%1$lld ક."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ש׳"
+            "value": "%1$lld ש׳"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld घं."
+            "value": "%1$lld घं."
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h"
+            "value": "%1$lld h"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ó"
+            "value": "%1$lld ó"
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ժ"
+            "value": "%1$lld ժ"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld j"
+            "value": "%1$lld j"
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld klst"
+            "value": "%1$lld klst"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h"
+            "value": "%1$lld h"
           }
         },
         "ja": {
@@ -69780,25 +69780,25 @@
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld სთ"
+            "value": "%1$lld სთ"
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld сағ"
+            "value": "%1$lld сағ"
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ម៉ោង"
+            "value": "%1$lld ម៉ោង"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ಗಂ."
+            "value": "%1$lld ಗಂ."
           }
         },
         "ko": {
@@ -69810,223 +69810,223 @@
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ຊມ"
+            "value": "%1$lld ຊມ"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld val."
+            "value": "%1$lld val."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld st."
+            "value": "%1$lld st."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ч"
+            "value": "%1$lld ч"
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld മ."
+            "value": "%1$lld മ."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ц"
+            "value": "%1$lld ц"
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ता."
+            "value": "%1$lld ता."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld j"
+            "value": "%1$lld j"
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld နာရီ"
+            "value": "%1$lld နာရီ"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld t"
+            "value": "%1$lld t"
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld घ."
+            "value": "%1$lld घ."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld u"
+            "value": "%1$lld u"
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ਘੰ."
+            "value": "%1$lld ਘੰ."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld godz."
+            "value": "%1$lld godz."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h"
+            "value": "%1$lld h"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h"
+            "value": "%1$lld h"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h"
+            "value": "%1$lld h"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ч"
+            "value": "%1$lld ч"
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "පැය %1$lld"
+            "value": "පැය %1$lld"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h"
+            "value": "%1$lld h"
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h"
+            "value": "%1$lld h"
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld orë"
+            "value": "%1$lld orë"
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ч"
+            "value": "%1$lld ч"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h"
+            "value": "%1$lld h"
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "saa %1$lld"
+            "value": "saa %1$lld"
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld மணி"
+            "value": "%1$lld மணி"
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld గం."
+            "value": "%1$lld గం."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ชม."
+            "value": "%1$lld ชม."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld sa"
+            "value": "%1$lld sa"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld год"
+            "value": "%1$lld год"
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld گھنٹے"
+            "value": "%1$lld گھنٹے"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld soat"
+            "value": "%1$lld soat"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld giờ"
+            "value": "%1$lld giờ"
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld 小時"
+            "value": "%1$lld 小時"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld 小时"
+            "value": "%1$lld 小时"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld 小時"
+            "value": "%1$lld 小時"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h"
+            "value": "%1$lld h"
           }
         }
       }
@@ -70036,187 +70036,187 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ h"
+            "value": "%1$lld½ h"
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ ሰ"
+            "value": "%1$lld½ ሰ"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ س"
+            "value": "%1$lld½ س"
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ st"
+            "value": "%1$lld½ st"
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ ч"
+            "value": "%1$lld½ ч"
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ ঘ."
+            "value": "%1$lld½ ঘ."
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ h"
+            "value": "%1$lld½ h"
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ h"
+            "value": "%1$lld½ h"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ h"
+            "value": "%1$lld½ h"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ t"
+            "value": "%1$lld½ t"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ Std."
+            "value": "%1$lld½ Std."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ ώ."
+            "value": "%1$lld½ ώ."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ h"
+            "value": "%1$lld½ h"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ h"
+            "value": "%1$lld½ h"
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ h"
+            "value": "%1$lld½ h"
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ h"
+            "value": "%1$lld½ h"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ س"
+            "value": "%1$lld½ س"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ t"
+            "value": "%1$lld½ t"
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ h"
+            "value": "%1$lld½ h"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ h"
+            "value": "%1$lld½ h"
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ u"
+            "value": "%1$lld½ u"
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ h"
+            "value": "%1$lld½ h"
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ ક."
+            "value": "%1$lld½ ક."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ ש׳"
+            "value": "%1$lld½ ש׳"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ घं."
+            "value": "%1$lld½ घं."
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ h"
+            "value": "%1$lld½ h"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ ó"
+            "value": "%1$lld½ ó"
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ ժ"
+            "value": "%1$lld½ ժ"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ j"
+            "value": "%1$lld½ j"
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ klst"
+            "value": "%1$lld½ klst"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ h"
+            "value": "%1$lld½ h"
           }
         },
         "ja": {
@@ -70228,25 +70228,25 @@
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ სთ"
+            "value": "%1$lld½ სთ"
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ сағ"
+            "value": "%1$lld½ сағ"
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ ម៉ោង"
+            "value": "%1$lld½ ម៉ោង"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ ಗಂ."
+            "value": "%1$lld½ ಗಂ."
           }
         },
         "ko": {
@@ -70258,223 +70258,223 @@
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ ຊມ"
+            "value": "%1$lld½ ຊມ"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ val."
+            "value": "%1$lld½ val."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ st."
+            "value": "%1$lld½ st."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ ч"
+            "value": "%1$lld½ ч"
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ മ."
+            "value": "%1$lld½ മ."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ ц"
+            "value": "%1$lld½ ц"
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ ता."
+            "value": "%1$lld½ ता."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ j"
+            "value": "%1$lld½ j"
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ နာရီ"
+            "value": "%1$lld½ နာရီ"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ t"
+            "value": "%1$lld½ t"
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ घ."
+            "value": "%1$lld½ घ."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ u"
+            "value": "%1$lld½ u"
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ ਘੰ."
+            "value": "%1$lld½ ਘੰ."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ godz."
+            "value": "%1$lld½ godz."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ h"
+            "value": "%1$lld½ h"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ h"
+            "value": "%1$lld½ h"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ h"
+            "value": "%1$lld½ h"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ ч"
+            "value": "%1$lld½ ч"
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "පැය %1$lld½"
+            "value": "පැය %1$lld½"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ h"
+            "value": "%1$lld½ h"
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ h"
+            "value": "%1$lld½ h"
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ orë"
+            "value": "%1$lld½ orë"
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ ч"
+            "value": "%1$lld½ ч"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ h"
+            "value": "%1$lld½ h"
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "saa %1$lld½"
+            "value": "saa %1$lld½"
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ மணி"
+            "value": "%1$lld½ மணி"
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ గం."
+            "value": "%1$lld½ గం."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ ชม."
+            "value": "%1$lld½ ชม."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ sa"
+            "value": "%1$lld½ sa"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ год"
+            "value": "%1$lld½ год"
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ گھنٹے"
+            "value": "%1$lld½ گھنٹے"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ soat"
+            "value": "%1$lld½ soat"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ giờ"
+            "value": "%1$lld½ giờ"
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ 小時"
+            "value": "%1$lld½ 小時"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ 小时"
+            "value": "%1$lld½ 小时"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ 小時"
+            "value": "%1$lld½ 小時"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld½ h"
+            "value": "%1$lld½ h"
           }
         }
       }
@@ -70484,187 +70484,187 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ሰ %2$lld ደቂቃ"
+            "value": "%1$lld ሰ %2$lld ደቂቃ"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld س %2$lld د"
+            "value": "%1$lld س %2$lld د"
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld st %2$lld dəq"
+            "value": "%1$lld st %2$lld dəq"
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ч %2$lld мин"
+            "value": "%1$lld ч %2$lld мин"
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ঘ. %2$lld মি."
+            "value": "%1$lld ঘ. %2$lld মি."
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld t %2$lld min"
+            "value": "%1$lld t %2$lld min"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld Std. %2$lld Min"
+            "value": "%1$lld Std. %2$lld Min"
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ώ. %2$lld λ."
+            "value": "%1$lld ώ. %2$lld λ."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld س %2$lld دق"
+            "value": "%1$lld س %2$lld دق"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld t %2$lld min"
+            "value": "%1$lld t %2$lld min"
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld u %2$lld nóim"
+            "value": "%1$lld u %2$lld nóim"
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ક. %2$lld મિ."
+            "value": "%1$lld ક. %2$lld મિ."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ש׳ %2$lld דק׳"
+            "value": "%1$lld ש׳ %2$lld דק׳"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld घं. %2$lld मि."
+            "value": "%1$lld घं. %2$lld मि."
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ó %2$lld p"
+            "value": "%1$lld ó %2$lld p"
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ժ %2$lld ր"
+            "value": "%1$lld ժ %2$lld ր"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld j %2$lld mnt"
+            "value": "%1$lld j %2$lld mnt"
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld klst %2$lld mín"
+            "value": "%1$lld klst %2$lld mín"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "ja": {
@@ -70676,253 +70676,253 @@
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld სთ %2$lld წთ"
+            "value": "%1$lld სთ %2$lld წთ"
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld сағ %2$lld мин"
+            "value": "%1$lld сағ %2$lld мин"
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ម៉ោង %2$lld នាទី"
+            "value": "%1$lld ម៉ោង %2$lld នាទី"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ಗಂ. %2$lld ನಿಮಿ."
+            "value": "%1$lld ಗಂ. %2$lld ನಿಮಿ."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld시간 %2$lld분"
+            "value": "%1$lld시간 %2$lld분"
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ຊມ %2$lld ນາທີ"
+            "value": "%1$lld ຊມ %2$lld ນາທີ"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld val. %2$lld min"
+            "value": "%1$lld val. %2$lld min"
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld st. %2$lld min"
+            "value": "%1$lld st. %2$lld min"
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ч %2$lld мин"
+            "value": "%1$lld ч %2$lld мин"
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld മ. %2$lld മി."
+            "value": "%1$lld മ. %2$lld മി."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ц %2$lld мин"
+            "value": "%1$lld ц %2$lld мин"
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ता. %2$lld मि."
+            "value": "%1$lld ता. %2$lld मि."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld j %2$lld min"
+            "value": "%1$lld j %2$lld min"
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld နာရီ %2$lld မိနစ်"
+            "value": "%1$lld နာရီ %2$lld မိနစ်"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld t %2$lld min"
+            "value": "%1$lld t %2$lld min"
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld घ. %2$lld मि."
+            "value": "%1$lld घ. %2$lld मि."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld u %2$lld min"
+            "value": "%1$lld u %2$lld min"
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ਘੰ. %2$lld ਮਿੰ."
+            "value": "%1$lld ਘੰ. %2$lld ਮਿੰ."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld godz. %2$lld min"
+            "value": "%1$lld godz. %2$lld min"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ч %2$lld мин"
+            "value": "%1$lld ч %2$lld мин"
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "පැය %1$lld මිනි. %2$lld"
+            "value": "පැය %1$lld මිනි. %2$lld"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld orë %2$lld min"
+            "value": "%1$lld orë %2$lld min"
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ч %2$lld мин"
+            "value": "%1$lld ч %2$lld мин"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "saa %1$lld dak %2$lld"
+            "value": "saa %1$lld dak %2$lld"
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld மணி %2$lld நிமி."
+            "value": "%1$lld மணி %2$lld நிமி."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld గం. %2$lld ని."
+            "value": "%1$lld గం. %2$lld ని."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ชม. %2$lld นาที"
+            "value": "%1$lld ชม. %2$lld นาที"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld sa %2$lld dk"
+            "value": "%1$lld sa %2$lld dk"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld год %2$lld хв"
+            "value": "%1$lld год %2$lld хв"
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld گھنٹے %2$lld منٹ"
+            "value": "%1$lld گھنٹے %2$lld منٹ"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld soat %2$lld daq"
+            "value": "%1$lld soat %2$lld daq"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld giờ %2$lld phút"
+            "value": "%1$lld giờ %2$lld phút"
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld 小時 %2$lld 分鐘"
+            "value": "%1$lld 小時 %2$lld 分鐘"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld 小时 %2$lld 分钟"
+            "value": "%1$lld 小时 %2$lld 分钟"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld 小時 %2$lld 分鐘"
+            "value": "%1$lld 小時 %2$lld 分鐘"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld h %2$lld min"
+            "value": "%1$lld h %2$lld min"
           }
         }
       }
@@ -70932,187 +70932,187 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ደቂቃ"
+            "value": "%1$lld ደቂቃ"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld د"
+            "value": "%1$lld د"
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld dəq"
+            "value": "%1$lld dəq"
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld мин"
+            "value": "%1$lld мин"
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld মি."
+            "value": "%1$lld মি."
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld Min"
+            "value": "%1$lld Min"
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld λ."
+            "value": "%1$lld λ."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld دق"
+            "value": "%1$lld دق"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld nóim"
+            "value": "%1$lld nóim"
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld મિ."
+            "value": "%1$lld મિ."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld דק׳"
+            "value": "%1$lld דק׳"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld मि."
+            "value": "%1$lld मि."
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld p"
+            "value": "%1$lld p"
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ր"
+            "value": "%1$lld ր"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld mnt"
+            "value": "%1$lld mnt"
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld mín"
+            "value": "%1$lld mín"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "ja": {
@@ -71124,25 +71124,25 @@
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld წთ"
+            "value": "%1$lld წთ"
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld мин"
+            "value": "%1$lld мин"
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld នាទី"
+            "value": "%1$lld នាទី"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ನಿಮಿ."
+            "value": "%1$lld ನಿಮಿ."
           }
         },
         "ko": {
@@ -71154,223 +71154,223 @@
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ນາທີ"
+            "value": "%1$lld ນາທີ"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld мин"
+            "value": "%1$lld мин"
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld മി."
+            "value": "%1$lld മി."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld мин"
+            "value": "%1$lld мин"
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld मि."
+            "value": "%1$lld मि."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld မိနစ်"
+            "value": "%1$lld မိနစ်"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld मि."
+            "value": "%1$lld मि."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ਮਿੰ."
+            "value": "%1$lld ਮਿੰ."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld мин"
+            "value": "%1$lld мин"
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "මිනි. %1$lld"
+            "value": "මිනි. %1$lld"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld мин"
+            "value": "%1$lld мин"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "dak %1$lld"
+            "value": "dak %1$lld"
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld நிமி."
+            "value": "%1$lld நிமி."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld ని."
+            "value": "%1$lld ని."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld นาที"
+            "value": "%1$lld นาที"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld dk"
+            "value": "%1$lld dk"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld хв"
+            "value": "%1$lld хв"
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld منٹ"
+            "value": "%1$lld منٹ"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld daq"
+            "value": "%1$lld daq"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld phút"
+            "value": "%1$lld phút"
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld 分鐘"
+            "value": "%1$lld 分鐘"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld 分钟"
+            "value": "%1$lld 分钟"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld 分鐘"
+            "value": "%1$lld 分鐘"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$lld min"
+            "value": "%1$lld min"
           }
         }
       }
@@ -99888,445 +99888,445 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nagte korter as 6 uur: %1$lld uit 7. Wenk: reken jou slaaptyd terug van jou wektyd af en hou daarby."
+            "value": "Nagte korter as 6 uur: %1$lld uit 7. Wenk: reken jou slaaptyd terug van jou teikentyd af en hou daarby."
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "ከ6 ሰዓት ያነሱ ሌሊቶች፦ ከ7 %1$lld። ምክር፦ የመኝታ ሰዓትህን ከመነሻ ሰዓትህ ወደኋላ አስላና ጠብቀው።"
+            "value": "ከ6 ሰዓት ያነሱ ሌሊቶች፦ ከ7 %1$lld። ምክር፦ የመኝታ ሰዓትህን ከታለመው ሰዓትህ ወደኋላ አስላና ጠብቀው።"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "ليالٍ أقل من 6 ساعات: %1$lld من 7. نصيحة: احسب موعد نومك انطلاقًا من موعد استيقاظك والتزم به."
+            "value": "ليالٍ أقل من 6 ساعات: %1$lld من 7. نصيحة: احسب موعد نومك انطلاقًا من وقتك المستهدف والتزم به."
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "6 saatdan qısa gecələr: 7-dən %1$lld. Məsləhət: yatma vaxtını oyanma vaxtından geriyə hesabla və ona əməl et."
+            "value": "6 saatdan qısa gecələr: 7-dən %1$lld. Məsləhət: yatma vaxtını hədəf vaxtından geriyə hesabla və ona əməl et."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Нощи под 6 часа: %1$lld от 7. Съвет: изчисли часа за лягане от часа на ставане и се придържай към него."
+            "value": "Нощи под 6 часа: %1$lld от 7. Съвет: изчисли часа за лягане от целевото време и се придържай към него."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "৬ ঘণ্টার কম রাত: ৭টির মধ্যে %1$lldটি। পরামর্শ: ঘুম থেকে ওঠার সময় থেকে পিছিয়ে শোয়ার সময় ঠিক করো এবং তা মেনে চলো।"
+            "value": "৬ ঘণ্টার কম রাত: ৭টির মধ্যে %1$lldটি। পরামর্শ: লক্ষ্য সময় থেকে পিছিয়ে শোয়ার সময় ঠিক করো এবং তা মেনে চলো।"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Noći kraće od 6 sati: %1$lld od 7. Savjet: izračunaj vrijeme odlaska na spavanje od vremena buđenja i drži ga se."
+            "value": "Noći kraće od 6 sati: %1$lld od 7. Savjet: izračunaj vrijeme odlaska na spavanje od ciljnog vremena i drži ga se."
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nits de menys de 6 hores: %1$lld de 7. Consell: calcula l’hora d’anar a dormir a partir de l’hora de despertar-te i compleix-la."
+            "value": "Nits de menys de 6 hores: %1$lld de 7. Consell: calcula l’hora d’anar a dormir a partir de l’hora objectiu i compleix-la."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Noci kratší než 6 hodin: %1$lld ze 7. Tip: spočítej si čas ulehnutí od času buzení a dodržuj ho."
+            "value": "Noci kratší než 6 hodin: %1$lld ze 7. Tip: spočítej si čas ulehnutí od cílového času a dodržuj ho."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nætter under 6 timer: %1$lld af 7. Tip: regn din sengetid ud fra dit vækketidspunkt, og hold dig til den."
+            "value": "Nætter under 6 timer: %1$lld af 7. Tip: regn din sengetid ud fra din måltid, og hold dig til den."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nächte unter 6 Stunden: %1$lld von 7. Tipp: Rechne deine Bettzeit von der Weckzeit zurück und halte sie ein."
+            "value": "Nächte unter 6 Stunden: %1$lld von 7. Tipp: Rechne deine Bettzeit von der Zielzeit zurück und halte sie ein."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Νύχτες κάτω από 6 ώρες: %1$lld από 7. Συμβουλή: υπολόγισε την ώρα ύπνου από την ώρα αφύπνισης και τήρησέ την."
+            "value": "Νύχτες κάτω από 6 ώρες: %1$lld από 7. Συμβουλή: υπολόγισε την ώρα ύπνου από την ώρα-στόχο και τήρησέ την."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nights under 6 hours: %1$lld of 7. Tip: work out your bedtime from your wake-up time and stick to it."
+            "value": "Nights under 6 hours: %1$lld of 7. Tip: work out your bedtime from your target time and stick to it."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Noches de menos de 6 horas: %1$lld de 7. Consejo: calcula tu hora de acostarte a partir de la hora de despertar y cúmplela."
+            "value": "Noches de menos de 6 horas: %1$lld de 7. Consejo: calcula tu hora de acostarte a partir de la hora objetivo y cúmplela."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Alla 6-tunnised ööd: %1$lld 7-st. Nõuanne: arvuta magamamineku aeg äratusajast tagasi ja pea sellest kinni."
+            "value": "Alla 6-tunnised ööd: %1$lld 7-st. Nõuanne: arvuta magamamineku aeg sihtajast tagasi ja pea sellest kinni."
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "6 ordutik beherako gauak: 7tik %1$lld. Aholkua: kalkulatu oheratzeko ordua esnatzeko orditik atzera eta bete ezazu."
+            "value": "6 ordutik beherako gauak: 7tik %1$lld. Aholkua: kalkulatu oheratzeko ordua helburu-orditik atzera eta bete ezazu."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "شب‌های کمتر از ۶ ساعت: %1$lld از ۷. نکته: ساعت خوابت را از ساعت بیداری حساب کن و به آن پایبند بمان."
+            "value": "شب‌های کمتر از ۶ ساعت: %1$lld از ۷. نکته: ساعت خوابت را از زمان هدف حساب کن و به آن پایبند بمان."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Alle 6 tunnin yöt: %1$lld/7. Vinkki: laske nukkumaanmenoaika herätysajasta taaksepäin ja pidä siitä kiinni."
+            "value": "Alle 6 tunnin yöt: %1$lld/7. Vinkki: laske nukkumaanmenoaika tavoiteajasta taaksepäin ja pidä siitä kiinni."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mga gabing kulang sa 6 na oras: %1$lld sa 7. Tip: kalkulahin ang oras ng pagtulog mula sa oras ng paggising at sundin ito."
+            "value": "Mga gabing kulang sa 6 na oras: %1$lld sa 7. Tip: kalkulahin ang oras ng pagtulog mula sa target na oras at sundin ito."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nuits de moins de 6 heures : %1$lld sur 7. Conseil : calcule ton heure de coucher à partir de ton heure de réveil et respecte-la."
+            "value": "Nuits de moins de 6 heures : %1$lld sur 7. Conseil : calcule ton heure de coucher à partir de ton heure cible et respecte-la."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Oícheanta faoi 6 uair: %1$lld as 7. Leid: oibrigh amach d’am codlata ó d’am dúiseachta agus cloígh leis."
+            "value": "Oícheanta faoi 6 uair: %1$lld as 7. Leid: oibrigh amach d’am codlata ó d’am sprice agus cloígh leis."
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Noites de menos de 6 horas: %1$lld de 7. Consello: calcula a túa hora de deitarte a partir da hora de espertar e cúmprea."
+            "value": "Noites de menos de 6 horas: %1$lld de 7. Consello: calcula a túa hora de deitarte a partir da hora obxectivo e cúmprea."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "6 કલાકથી ઓછી રાતો: 7માંથી %1$lld. સૂચન: ઊઠવાના સમયથી પાછળ ગણીને સૂવાનો સમય નક્કી કર અને તેને વળગી રહે."
+            "value": "6 કલાકથી ઓછી રાતો: 7માંથી %1$lld. સૂચન: લક્ષ્ય સમયથી પાછળ ગણીને સૂવાનો સમય નક્કી કર અને તેને વળગી રહે."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "לילות של פחות מ־6 שעות: %1$lld מתוך 7. טיפ: חשב את שעת השינה לפי שעת ההשכמה והקפד עליה."
+            "value": "לילות של פחות מ־6 שעות: %1$lld מתוך 7. טיפ: חשב את שעת השינה לפי שעת היעד והקפד עליה."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "6 घंटे से कम की रातें: 7 में से %1$lld। सुझाव: जागने के समय से सोने का समय तय करो और उस पर टिके रहो।"
+            "value": "6 घंटे से कम की रातें: 7 में से %1$lld। सुझाव: लक्ष्य समय से सोने का समय तय करो और उस पर टिके रहो।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Noći kraće od 6 sati: %1$lld od 7. Savjet: izračunaj vrijeme odlaska na spavanje od vremena buđenja i drži ga se."
+            "value": "Noći kraće od 6 sati: %1$lld od 7. Savjet: izračunaj vrijeme odlaska na spavanje od ciljnog vremena i drži ga se."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "6 óránál rövidebb éjszakák: %1$lld a 7-ből. Tipp: számold ki a lefekvés idejét az ébresztéstől visszafelé, és tartsd is be."
+            "value": "6 óránál rövidebb éjszakák: %1$lld a 7-ből. Tipp: számold ki a lefekvés idejét a célidőtől visszafelé, és tartsd is be."
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "6 ժամից կարճ գիշերներ՝ %1$lld՝ 7-ից։ Խորհուրդ՝ քնելու ժամը հաշվիր արթնանալու ժամից հետ և պահպանիր այն։"
+            "value": "6 ժամից կարճ գիշերներ՝ %1$lld՝ 7-ից։ Խորհուրդ՝ քնելու ժամը հաշվիր նպատակային ժամից հետ և պահպանիր այն։"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Malam di bawah 6 jam: %1$lld dari 7. Tips: hitung jam tidurmu mundur dari jam bangun dan patuhi."
+            "value": "Malam di bawah 6 jam: %1$lld dari 7. Tips: hitung jam tidurmu mundur dari waktu target dan patuhi."
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nætur undir 6 klst.: %1$lld af 7. Ráð: reiknaðu háttatímann út frá vakningartímanum og haltu þig við hann."
+            "value": "Nætur undir 6 klst.: %1$lld af 7. Ráð: reiknaðu háttatímann út frá markmiðstímanum og haltu þig við hann."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Notti sotto le 6 ore: %1$lld su 7. Consiglio: calcola l’ora di andare a letto partendo dalla sveglia e rispettala."
+            "value": "Notti sotto le 6 ore: %1$lld su 7. Consiglio: calcola l’ora di andare a letto partendo dall’orario obiettivo e rispettala."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "6時間未満の夜：7夜中%1$lld夜。ヒント：起きる時刻から就寝時刻を逆算して守りましょう。"
+            "value": "6時間未満の夜：7夜中%1$lld夜。ヒント：目標時刻から就寝時刻を逆算して守りましょう。"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "6 საათზე ნაკლები ღამეები: %1$lld 7-დან. რჩევა: დაძინების დრო გამოთვალე გაღვიძების დროიდან უკან და დაიცავი."
+            "value": "6 საათზე ნაკლები ღამეები: %1$lld 7-დან. რჩევა: დაძინების დრო გამოთვალე სამიზნე დროიდან უკან და დაიცავი."
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "6 сағаттан қысқа түндер: 7-нің %1$lld-і. Кеңес: ұйықтау уақытын ояну уақытынан кері есепте және соны ұстан."
+            "value": "6 сағаттан қысқа түндер: 7-нің %1$lld-і. Кеңес: ұйықтау уақытын мақсатты уақыттан кері есепте және соны ұстан."
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "យប់ដែលតិចជាង 6 ម៉ោង៖ %1$lld ក្នុងចំណោម 7។ គន្លឹះ៖ គណនាម៉ោងចូលគេងថយក្រោយពីម៉ោងភ្ញាក់ ហើយប្រកាន់ខ្ជាប់។"
+            "value": "យប់ដែលតិចជាង 6 ម៉ោង៖ %1$lld ក្នុងចំណោម 7។ គន្លឹះ៖ គណនាម៉ោងចូលគេងថយក្រោយពីម៉ោងគោលដៅ ហើយប្រកាន់ខ្ជាប់។"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "6 ಗಂಟೆಗಿಂತ ಕಡಿಮೆ ರಾತ್ರಿಗಳು: 7ರಲ್ಲಿ %1$lld. ಸಲಹೆ: ಏಳುವ ಸಮಯದಿಂದ ಹಿಂದಕ್ಕೆ ಮಲಗುವ ಸಮಯ ಲೆಕ್ಕಹಾಕಿ ಅದನ್ನು ಪಾಲಿಸು."
+            "value": "6 ಗಂಟೆಗಿಂತ ಕಡಿಮೆ ರಾತ್ರಿಗಳು: 7ರಲ್ಲಿ %1$lld. ಸಲಹೆ: ಗುರಿ ಸಮಯದಿಂದ ಹಿಂದಕ್ಕೆ ಮಲಗುವ ಸಮಯ ಲೆಕ್ಕಹಾಕಿ ಅದನ್ನು ಪಾಲಿಸು."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "6시간 미만인 밤: 7일 중 %1$lld일. 팁: 기상 시간에서 거꾸로 취침 시간을 정하고 지키세요."
+            "value": "6시간 미만인 밤: 7일 중 %1$lld일. 팁: 목표 시간에서 거꾸로 취침 시간을 정하고 지키세요."
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "ຄືນທີ່ນ້ອຍກວ່າ 6 ຊົ່ວໂມງ: %1$lld ໃນ 7. ຄຳແນະນຳ: ຄິດໄລ່ເວລາເຂົ້ານອນຖອຍຫຼັງຈາກເວລາຕື່ນ ແລະ ເຮັດຕາມ."
+            "value": "ຄືນທີ່ນ້ອຍກວ່າ 6 ຊົ່ວໂມງ: %1$lld ໃນ 7. ຄຳແນະນຳ: ຄິດໄລ່ເວລາເຂົ້ານອນຖອຍຫຼັງຈາກເວລາເປົ້າໝາຍ ແລະ ເຮັດຕາມ."
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Naktys, trumpesnės nei 6 valandos: %1$lld iš 7. Patarimas: apskaičiuok ėjimo miegoti laiką nuo kėlimosi laiko ir jo laikykis."
+            "value": "Naktys, trumpesnės nei 6 valandos: %1$lld iš 7. Patarimas: apskaičiuok ėjimo miegoti laiką nuo tikslinio laiko ir jo laikykis."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Naktis, īsākas par 6 stundām: %1$lld no 7. Padoms: aprēķini gulētiešanas laiku no mošanās laika un ievēro to."
+            "value": "Naktis, īsākas par 6 stundām: %1$lld no 7. Padoms: aprēķini gulētiešanas laiku no mērķa laika un ievēro to."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ноќи пократки од 6 часа: %1$lld од 7. Совет: пресметај го времето за спиење од времето на будење и држи се до него."
+            "value": "Ноќи пократки од 6 часа: %1$lld од 7. Совет: пресметај го времето за спиење од целното време и држи се до него."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "6 മണിക്കൂറിൽ കുറഞ്ഞ രാത്രികൾ: 7-ൽ %1$lld. നുറുങ്ങ്: ഉണരുന്ന സമയത്തിൽ നിന്ന് പിന്നോട്ട് ഉറങ്ങുന്ന സമയം കണക്കാക്കി അത് പാലിക്കുക."
+            "value": "6 മണിക്കൂറിൽ കുറഞ്ഞ രാത്രികൾ: 7-ൽ %1$lld. നുറുങ്ങ്: ലക്ഷ്യ സമയത്തിൽ നിന്ന് പിന്നോട്ട് ഉറങ്ങുന്ന സമയം കണക്കാക്കി അത് പാലിക്കുക."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "6 цагаас богино шөнө: 7-оос %1$lld. Зөвлөгөө: сэрэх цагаасаа ухраан унтах цагаа тооцоолж, түүнийгээ баримтал."
+            "value": "6 цагаас богино шөнө: 7-оос %1$lld. Зөвлөгөө: зорилтот цагаасаа ухраан унтах цагаа тооцоолж, түүнийгээ баримтал."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "6 तासांपेक्षा कमी रात्री: 7 पैकी %1$lld. टीप: उठण्याच्या वेळेपासून मागे मोजून झोपण्याची वेळ ठरव आणि ती पाळ."
+            "value": "6 तासांपेक्षा कमी रात्री: 7 पैकी %1$lld. टीप: लक्ष्य वेळेपासून मागे मोजून झोपण्याची वेळ ठरव आणि ती पाळ."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Malam kurang 6 jam: %1$lld daripada 7. Petua: kira waktu tidur anda ke belakang dari waktu bangun dan patuhinya."
+            "value": "Malam kurang 6 jam: %1$lld daripada 7. Petua: kira waktu tidur anda ke belakang dari masa sasaran dan patuhinya."
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "6 နာရီအောက် ညများ- 7 ညတွင် %1$lld ည။ အကြံပြုချက်- နိုးမည့်အချိန်မှ ပြန်တွက်ပြီး အိပ်ချိန်သတ်မှတ်ကာ လိုက်နာပါ။"
+            "value": "6 နာရီအောက် ညများ- 7 ညတွင် %1$lld ည။ အကြံပြုချက်- ပစ်မှတ်အချိန်မှ ပြန်တွက်ပြီး အိပ်ချိန်သတ်မှတ်ကာ လိုက်နာပါ။"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Netter under 6 timer: %1$lld av 7. Tips: regn ut leggetiden fra vekketiden og hold deg til den."
+            "value": "Netter under 6 timer: %1$lld av 7. Tips: regn ut leggetiden fra måltiden og hold deg til den."
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "6 घण्टाभन्दा छोटा रात: 7 मध्ये %1$lld। सुझाव: उठ्ने समयबाट पछाडि गन्दै सुत्ने समय तय गर र त्यसमा टिकिरहू।"
+            "value": "6 घण्टाभन्दा छोटा रात: 7 मध्ये %1$lld। सुझाव: लक्ष्य समयबाट पछाडि गन्दै सुत्ने समय तय गर र त्यसमा टिकिरहू।"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nachten korter dan 6 uur: %1$lld van 7. Tip: reken je bedtijd terug vanaf je wektijd en houd je eraan."
+            "value": "Nachten korter dan 6 uur: %1$lld van 7. Tip: reken je bedtijd terug vanaf je doeltijd en houd je eraan."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "6 ਘੰਟਿਆਂ ਤੋਂ ਘੱਟ ਰਾਤਾਂ: 7 ਵਿੱਚੋਂ %1$lld। ਸੁਝਾਅ: ਉੱਠਣ ਦੇ ਸਮੇਂ ਤੋਂ ਪਿੱਛੇ ਗਿਣ ਕੇ ਸੌਣ ਦਾ ਸਮਾਂ ਤੈਅ ਕਰ ਅਤੇ ਉਸ ’ਤੇ ਟਿਕਿਆ ਰਹਿ।"
+            "value": "6 ਘੰਟਿਆਂ ਤੋਂ ਘੱਟ ਰਾਤਾਂ: 7 ਵਿੱਚੋਂ %1$lld। ਸੁਝਾਅ: ਟੀਚਾ ਸਮੇਂ ਤੋਂ ਪਿੱਛੇ ਗਿਣ ਕੇ ਸੌਣ ਦਾ ਸਮਾਂ ਤੈਅ ਕਰ ਅਤੇ ਉਸ ’ਤੇ ਟਿਕਿਆ ਰਹਿ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Noce krótsze niż 6 godzin: %1$lld z 7. Wskazówka: wylicz porę snu od godziny budzenia i trzymaj się jej."
+            "value": "Noce krótsze niż 6 godzin: %1$lld z 7. Wskazówka: wylicz porę snu od godziny docelowej i trzymaj się jej."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Noites com menos de 6 horas: %1$lld de 7. Dica: calcule sua hora de dormir a partir da hora de acordar e mantenha-a."
+            "value": "Noites com menos de 6 horas: %1$lld de 7. Dica: calcule sua hora de dormir a partir do horário-alvo e mantenha-a."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Noites com menos de 6 horas: %1$lld de 7. Dica: calcula a tua hora de deitar a partir da hora de acordar e cumpre-a."
+            "value": "Noites com menos de 6 horas: %1$lld de 7. Dica: calcula a tua hora de deitar a partir da hora-alvo e cumpre-a."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nopți sub 6 ore: %1$lld din 7. Sfat: calculează-ți ora de culcare pornind de la ora de trezire și respect-o."
+            "value": "Nopți sub 6 ore: %1$lld din 7. Sfat: calculează-ți ora de culcare pornind de la ora țintă și respect-o."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ночи короче 6 часов: %1$lld из 7. Совет: рассчитай время отхода ко сну от времени пробуждения и придерживайся его."
+            "value": "Ночи короче 6 часов: %1$lld из 7. Совет: рассчитай время отхода ко сну от целевого времени и придерживайся его."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "පැය 6ට අඩු රාත්‍රී: 7න් %1$lld. ඉඟිය: අවදි වන වේලාවේ සිට ආපසු ගණන් කර නින්දට යන වේලාව තීරණය කර එය පිළිපදින්න."
+            "value": "පැය 6ට අඩු රාත්‍රී: 7න් %1$lld. ඉඟිය: ඉලක්ක වේලාවේ සිට ආපසු ගණන් කර නින්දට යන වේලාව තීරණය කර එය පිළිපදින්න."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Noci kratšie ako 6 hodín: %1$lld zo 7. Tip: vypočítaj si čas uloženia od času budenia a dodržiavaj ho."
+            "value": "Noci kratšie ako 6 hodín: %1$lld zo 7. Tip: vypočítaj si čas uloženia od cieľového času a dodržiavaj ho."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Noči, krajše od 6 ur: %1$lld od 7. Nasvet: čas za spanje izračunaj od ure bujenja in se ga drži."
+            "value": "Noči, krajše od 6 ur: %1$lld od 7. Nasvet: čas za spanje izračunaj od ciljnega časa in se ga drži."
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Net nën 6 orë: %1$lld nga 7. Këshillë: llogarit orën e gjumit duke u nisur nga ora e zgjimit dhe mbaje."
+            "value": "Net nën 6 orë: %1$lld nga 7. Këshillë: llogarit orën e gjumit duke u nisur nga ora e synuar dhe mbaje."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ноћи краће од 6 сати: %1$lld од 7. Савет: израчунај време одласка на спавање од времена буђења и држи га се."
+            "value": "Ноћи краће од 6 сати: %1$lld од 7. Савет: израчунај време одласка на спавање од циљног времена и држи га се."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nätter under 6 timmar: %1$lld av 7. Tips: räkna ut din läggtid från din väckningstid och håll dig till den."
+            "value": "Nätter under 6 timmar: %1$lld av 7. Tips: räkna ut din läggtid från din måltid och håll dig till den."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Usiku chini ya saa 6: %1$lld kati ya 7. Kidokezo: hesabu muda wa kulala kurudi nyuma kutoka muda wa kuamka na uushike."
+            "value": "Usiku chini ya saa 6: %1$lld kati ya 7. Kidokezo: hesabu muda wa kulala kurudi nyuma kutoka muda lengwa na uushike."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "6 மணி நேரத்துக்குக் குறைவான இரவுகள்: 7-இல் %1$lld. குறிப்பு: எழும் நேரத்திலிருந்து பின்னோக்கிக் கணக்கிட்டு தூங்கும் நேரத்தை முடிவு செய்து அதைக் கடைப்பிடி."
+            "value": "6 மணி நேரத்துக்குக் குறைவான இரவுகள்: 7-இல் %1$lld. குறிப்பு: இலக்கு நேரத்திலிருந்து பின்னோக்கிக் கணக்கிட்டு தூங்கும் நேரத்தை முடிவு செய்து அதைக் கடைப்பிடி."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "6 గంటల కంటే తక్కువ రాత్రులు: 7లో %1$lld. సూచన: లేచే సమయం నుంచి వెనక్కి లెక్కించి పడుకునే సమయం నిర్ణయించుకుని పాటించు."
+            "value": "6 గంటల కంటే తక్కువ రాత్రులు: 7లో %1$lld. సూచన: లక్ష్య సమయం నుంచి వెనక్కి లెక్కించి పడుకునే సమయం నిర్ణయించుకుని పాటించు."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "คืนที่นอนน้อยกว่า 6 ชั่วโมง: %1$lld จาก 7 คืน เคล็ดลับ: คำนวณเวลาเข้านอนย้อนจากเวลาตื่น แล้วทำตามให้ได้"
+            "value": "คืนที่นอนน้อยกว่า 6 ชั่วโมง: %1$lld จาก 7 คืน เคล็ดลับ: คำนวณเวลาเข้านอนย้อนจากเวลาเป้าหมาย แล้วทำตามให้ได้"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "6 saatten kısa geceler: 7’de %1$lld. İpucu: yatma saatini uyanma saatinden geriye doğru hesapla ve ona uy."
+            "value": "6 saatten kısa geceler: 7’de %1$lld. İpucu: yatma saatini hedef saatten geriye doğru hesapla ve ona uy."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ночі коротші за 6 годин: %1$lld з 7. Порада: розрахуй час відходу до сну від часу пробудження й дотримуйся його."
+            "value": "Ночі коротші за 6 годин: %1$lld з 7. Порада: розрахуй час відходу до сну від цільового часу й дотримуйся його."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "6 گھنٹے سے کم کی راتیں: 7 میں سے %1$lld۔ مشورہ: جاگنے کے وقت سے سونے کا وقت نکالیں اور اس پر قائم رہیں۔"
+            "value": "6 گھنٹے سے کم کی راتیں: 7 میں سے %1$lld۔ مشورہ: ہدف وقت سے سونے کا وقت نکالیں اور اس پر قائم رہیں۔"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "6 soatdan qisqa kechalar: 7 tadan %1$lld ta. Maslahat: uxlash vaqtini uygʻonish vaqtidan orqaga hisobla va unga amal qil."
+            "value": "6 soatdan qisqa kechalar: 7 tadan %1$lld ta. Maslahat: uxlash vaqtini maqsad vaqtidan orqaga hisobla va unga amal qil."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Đêm dưới 6 giờ: %1$lld trên 7. Mẹo: tính giờ đi ngủ ngược từ giờ thức dậy và giữ đúng."
+            "value": "Đêm dưới 6 giờ: %1$lld trên 7. Mẹo: tính giờ đi ngủ ngược từ giờ mục tiêu và giữ đúng."
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "少過 6 小時的夜晚：7 晚中 %1$lld 晚。建議：由起床時間倒推就寢時間，並且遵守。"
+            "value": "少過 6 小時的夜晚：7 晚中 %1$lld 晚。建議：由目標時間倒推就寢時間，並且遵守。"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "不足 6 小时的夜晚：7 晚中 %1$lld 晚。建议：根据起床时间倒推就寝时间，并坚持执行。"
+            "value": "不足 6 小时的夜晚：7 晚中 %1$lld 晚。建议：根据目标时间倒推就寝时间，并坚持执行。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "不到 6 小時的夜晚：7 晚中 %1$lld 晚。建議：從起床時間倒推就寢時間，並確實遵守。"
+            "value": "不到 6 小時的夜晚：7 晚中 %1$lld 晚。建議：從目標時間倒推就寢時間，並確實遵守。"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ubusuku obungaphansi kwamahora angu-6: %1$lld kwangu-7. Ithiphu: bala isikhathi sakho sokulala usuka esikhathini sokuvuka futhi usigcine."
+            "value": "Ubusuku obungaphansi kwamahora angu-6: %1$lld kwangu-7. Ithiphu: bala isikhathi sakho sokulala usuka esikhathini okuhloswe ngaso futhi usigcine."
           }
         }
       }
@@ -224663,6 +224663,1350 @@
           "stringUnit": {
             "state": "translated",
             "value": "Konke kuhlala efonini nasewashini lakho. Ayikho i-akhawunti, ayikho iseva, akukho ukulandelwa."
+          }
+        }
+      }
+    },
+    "settings_evening_dark": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saans donker"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ምሽት ጨለማ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "داكن مساءً"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Axşamlar tünd"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тъмен вечер"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "সন্ধ্যায় গাঢ়"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamno navečer"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fosc al vespre"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Večer tmavý"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mørk om aftenen"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abends dunkel"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Σκούρα το βράδυ"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dark in the evening"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oscuro por la noche"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Õhtuti tume"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iluna arratsean"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تیره در شب‌ها"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illalla tumma"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dark sa gabi"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sombre le soir"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dorcha tráthnóna"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escuro pola noite"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "સાંજે ઘેરો"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "כהה בערב"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शाम को डार्क"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navečer tamno"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este sötét"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Երեկոյան մուգ"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gelap di malam hari"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dökkt á kvöldin"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scuro la sera"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "夜はダーク"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "საღამოს მუქი"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кешке қараңғы"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ងងឹតពេលល្ងាច"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಸಂಜೆ ಗಾಢ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "저녁에는 다크"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ມືດຕອນແລງ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vakare tamsi"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vakarā tumšs"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Темна навечер"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വൈകുന്നേരം ഡാർക്ക്"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Оройд бараан"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "संध्याकाळी गडद"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gelap pada waktu malam"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ညနေတွင် အမှောင်"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mørk om kvelden"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साँझ अँध्यारो"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "'s Avonds donker"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸ਼ਾਮ ਨੂੰ ਗੂੜ੍ਹਾ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wieczorem ciemny"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escuro à noite"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escuro à noite"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Întunecat seara"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тёмная вечером"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "සවස අඳුරු"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Večer tmavý"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zvečer temno"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "E errët në mbrëmje"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тамно увече"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mörkt på kvällen"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giza jioni"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "மாலையில் இருள்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సాయంత్రం ముదురు"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "มืดตอนเย็น"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Akşam koyu"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Темна ввечері"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شام کو گہرا"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kechqurun qorongʻi"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tối vào buổi tối"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "晚間深色"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "晚间深色"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "晚間深色"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Okumnyama kusihlwa"
+          }
+        }
+      }
+    },
+    "settings_evening_dark_from": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Donker vanaf"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ጨለማ የሚጀምረው"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "داكن بدءًا من"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tünd başlama vaxtı"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тъмен от"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "গাঢ় শুরু"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamno od"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fosc a partir de"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tmavý od"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mørk fra"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dunkel ab"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Σκούρα από"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dark from"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oscuro desde"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tume alates"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iluna noiztik"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تیره از"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tumma alkaen"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dark mula"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sombre à partir de"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dorcha ó"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escuro desde"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ઘેરો શરૂ"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "כהה מהשעה"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डार्क कब से"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamno od"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sötét kezdete"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Մուգի սկիզբ"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gelap mulai"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dökkt frá"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scuro da"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ダーク開始"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მუქის დაწყება"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қараңғы басталуы"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ងងឹតចាប់ពី"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಗಾಢ ಆರಂಭ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "다크 시작"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ມືດແຕ່"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamsi nuo"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tumšs no"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Темна од"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഡാർക്ക് തുടങ്ങുന്നത്"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бараан эхлэх"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "गडद सुरू"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gelap bermula"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "အမှောင် စတင်ချိန်"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mørk fra"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अँध्यारो सुरु"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Donker vanaf"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਗੂੜ੍ਹਾ ਸ਼ੁਰੂ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ciemny od"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escuro a partir de"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escuro a partir de"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Întunecat de la"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тёмная с"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "අඳුරු ආරම්භය"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tmavý od"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temno od"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "E errët nga"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тамно од"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mörkt från"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giza kuanzia"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "இருள் தொடக்கம்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ముదురు ప్రారంభం"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "มืดตั้งแต่"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koyu başlangıcı"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Темна з"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "گہرا شروع"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qorongʻi boshlanishi"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tối từ"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "深色開始時間"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "深色开始时间"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "深色開始時間"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Okumnyama kusukela"
+          }
+        }
+      }
+    },
+    "settings_evening_dark_text": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Donker van %1$@ tot %2$@, ook met Stelsel of Lig."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ጨለማ፦ %1$@ – %2$@፣ ሥርዓት ወይም ብሩህ ቢመረጥም።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "داكن من %1$@ إلى %2$@، حتى مع النظام أو فاتح."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tünd: %1$@ – %2$@, Sistem və ya Açıq seçilsə də."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тъмен от %1$@ до %2$@, също при Системен или Светъл."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ – %2$@ গাঢ়, সিস্টেম বা হালকা বেছে নিলেও।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamno od %1$@ do %2$@, i uz Sistem ili Svijetlo."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fosc de %1$@ a %2$@, també amb Sistema o Clar."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tmavý od %1$@ do %2$@, i při volbě Systém nebo Světlý."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mørk fra %1$@ til %2$@, også med System eller Lys."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Von %1$@ bis %2$@ dunkel, auch bei System oder Hell."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Σκούρα από %1$@ έως %2$@, ακόμη και με Σύστημα ή Φωτεινή."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dark from %1$@ to %2$@, even with System or Light."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oscuro de %1$@ a %2$@, también con Sistema o Claro."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tume %1$@ – %2$@, ka valikuga Süsteem või Hele."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iluna: %1$@ – %2$@, Sistema edo Argia aukeratuta ere."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تیره از %1$@ تا %2$@، حتی با سیستم یا روشن."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tumma %1$@ – %2$@, myös valinnalla Järjestelmä tai Vaalea."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dark mula %1$@ hanggang %2$@, kahit naka-System o Light."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sombre de %1$@ à %2$@, même avec Système ou Clair."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dorcha ó %1$@ go %2$@, fiú le Córas nó Geal."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escuro de %1$@ a %2$@, tamén con Sistema ou Claro."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ – %2$@ ઘેરો, સિસ્ટમ કે આછો પસંદ હોય તો પણ."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "כהה מ-%1$@ עד %2$@, גם עם מערכת או בהיר."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ – %2$@ डार्क, सिस्टम या लाइट चुनने पर भी।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamno od %1$@ do %2$@, i uz Sustav ili Svijetlo."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sötét: %1$@ – %2$@, Rendszer vagy Világos beállításnál is."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Մուգ՝ %1$@ – %2$@, նաև Համակարգային կամ Բաց ընտրության դեպքում։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gelap dari %1$@ sampai %2$@, juga dengan Sistem atau Terang."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dökkt frá %1$@ til %2$@, líka með Kerfi eða Ljóst."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scuro da %1$@ a %2$@, anche con Sistema o Chiaro."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@～%2$@ はダーク（システム・ライト選択時も）。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მუქი: %1$@ – %2$@, სისტემური ან ღია რეჟიმშიც."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қараңғы: %1$@ – %2$@, Жүйелік не Ашық таңдалса да."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ងងឹតពី %1$@ ដល់ %2$@ ទោះជ្រើស ប្រព័ន្ធ ឬ ភ្លឺ ក៏ដោយ។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ – %2$@ ಗಾಢ, ಸಿಸ್ಟಮ್ ಅಥವಾ ತಿಳಿ ಆಯ್ಕೆಯಲ್ಲೂ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@~%2$@ 다크, 시스템 또는 라이트에서도 적용."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ມືດແຕ່ %1$@ ຫາ %2$@, ເຖິງຈະເລືອກ ລະບົບ ຫຼື ແຈ້ງ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamsi %1$@ – %2$@, net pasirinkus Sistemos ar Šviesi."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tumšs no %1$@ līdz %2$@, arī ar Sistēma vai Gaišs."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Темна од %1$@ до %2$@, и со Систем или Светла."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ – %2$@ ഡാർക്ക്, സിസ്റ്റം അല്ലെങ്കിൽ ലൈറ്റ് ആണെങ്കിലും."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бараан: %1$@ – %2$@, Систем эсвэл Цайвар сонгосон ч."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ – %2$@ गडद, सिस्टम किंवा फिकट निवडले तरी."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gelap dari %1$@ hingga %2$@, juga dengan Sistem atau Cerah."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ – %2$@ အမှောင်၊ စနစ် သို့မဟုတ် အလင်း ရွေးထားလည်း။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mørk fra %1$@ til %2$@, også med System eller Lys."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ – %2$@ अँध्यारो, सिस्टम वा उज्यालो छानेमा पनि।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Donker van %1$@ tot %2$@, ook bij Systeem of Licht."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ – %2$@ ਗੂੜ੍ਹਾ, ਸਿਸਟਮ ਜਾਂ ਹਲਕਾ ਚੁਣਨ 'ਤੇ ਵੀ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ciemny od %1$@ do %2$@, także przy Systemowy lub Jasny."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escuro de %1$@ a %2$@, mesmo com Sistema ou Claro."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escuro de %1$@ a %2$@, mesmo com Sistema ou Claro."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Întunecat de la %1$@ până la %2$@, și cu Sistem sau Luminos."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тёмная с %1$@ до %2$@, даже при Системная или Светлая."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ – %2$@ අඳුරු, පද්ධතිය හෝ ආලෝකමත් තේරුවත්."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tmavý od %1$@ do %2$@, aj pri Systém alebo Svetlý."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temno od %1$@ do %2$@, tudi pri Sistem ali Svetlo."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "E errët nga %1$@ deri në %2$@, edhe me Sistemi ose E çelët."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тамно од %1$@ до %2$@, и уз Систем или Светло."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mörkt från %1$@ till %2$@, även med System eller Ljust."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giza kuanzia %1$@ hadi %2$@, hata ukichagua Mfumo au Mwangaza."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ – %2$@ இருள், சிஸ்டம் அல்லது வெளிர் தேர்ந்தாலும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ – %2$@ ముదురు, సిస్టమ్ లేదా లేత ఎంచుకున్నా."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "มืดตั้งแต่ %1$@ ถึง %2$@ แม้เลือก ตามระบบ หรือ สว่าง"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koyu: %1$@ – %2$@, Sistem veya Açık seçiliyken de."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Темна з %1$@ до %2$@, навіть із Системна чи Світла."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ – %2$@ گہرا، سسٹم یا روشن چننے پر بھی۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qorongʻi: %1$@ – %2$@, Tizim yoki Yorugʻ tanlanganda ham."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tối từ %1$@ đến %2$@, kể cả khi chọn Hệ thống hoặc Sáng."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ – %2$@ 使用深色，即使選擇了「跟隨系統」或「淺色」。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ – %2$@ 使用深色，即使选择了“跟随系统”或“浅色”。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ – %2$@ 使用深色，即使選擇了「跟隨系統」或「淺色」。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Okumnyama %1$@ – %2$@, noma kukhethwe Isistimu noma Okukhanyayo."
           }
         }
       }

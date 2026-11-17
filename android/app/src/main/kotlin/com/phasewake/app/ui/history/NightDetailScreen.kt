@@ -137,7 +137,7 @@ internal fun NightDetailScreen(data: NightDetailData, startKey: String?, actions
     val pager = rememberPagerState(initialPage = start) { pages.size }
     val scope = rememberCoroutineScope()
     val current = pages[pager.currentPage.coerceIn(0, pages.lastIndex)]
-    // Himmel wie auf der Startseite; hell trägt der Kopf mit Datum und Pfeilen ein Stück Nachthimmel.
+    // Himmel wie auf der Startseite; hell trägt der Kopf mit Datum und Pfeilen ein Stück Tageshimmel.
     SkyPage {
     Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom))) {
         SkyHeader(statusBar = true) {

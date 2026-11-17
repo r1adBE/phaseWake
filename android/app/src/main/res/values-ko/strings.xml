@@ -84,6 +84,9 @@
     <string name="settings_theme_system">시스템</string>
     <string name="settings_theme_light">라이트</string>
     <string name="settings_theme_dark">다크</string>
+    <string name="settings_evening_dark">저녁에는 다크</string>
+    <string name="settings_evening_dark_text">%1$s~%2$s 다크, 시스템 또는 라이트에서도 적용.</string>
+    <string name="settings_evening_dark_from">다크 시작</string>
     <string name="settings_data">내 데이터</string>
     <string name="settings_data_text">모든 데이터는 휴대폰과 워치에만 저장돼요. 계정도, 서버도, 추적도 없어요. Google 워치 연결로는 워치의 기술 정보만 오가며 건강 데이터는 포함되지 않습니다.</string>
     <string name="settings_export">수면 기록 이름 없이 내보내기</string>
@@ -97,7 +100,7 @@
     <string name="duration_minutes">%1$d분</string>
     <string name="duration_hours">%1$d시간</string>
     <string name="duration_hours_half">%1$d½시간</string>
-    <string name="duration_hours_minutes">%1$d시간 %2$d분</string>
+    <string name="duration_hours_minutes">%1$d시간 %2$d분</string>
     <string name="health_title">Health Connect의 수면 단계</string>
     <string name="health_rationale">Phase Wake는 건강 앱(예: Samsung Health)에 저장된 수면 데이터를 읽을 수 있어요. 이 데이터는 기록에 표시되며, Phase Wake가 깨운 밤과 비교하는 데도 쓰여요. Phase Wake는 읽기만 하고 쓰지 않으며, 데이터는 휴대폰 밖으로 나가지 않아요.</string>
     <string name="health_connect">건강 데이터와 비교</string>
@@ -275,7 +278,7 @@
         <item quantity="other">수면 목표 달성: %2$d일 중 %1$d일</item>
     </plurals>
     <string name="bedtime_title">취침 알림</string>
-    <string name="bedtime_text">취침 시간 %1$d분 전에 알려 줘요: 알람 시간에서 수면 목표를 뺀 시간.</string>
+    <string name="bedtime_text">취침 시간 %1$d분 전에 알려 줘요: 목표 시간에서 수면 목표를 뺀 시간.</string>
     <string name="bedtime_notification">%1$s에 취침 – 그러면 %3$s 알람까지 %2$s 잘 수 있어요.</string>
     <string name="channel_reminders">알림</string>
     <string name="sounds_title">수면 사운드</string>
@@ -540,7 +543,7 @@
     <string name="learned_latency">잠들기: 약 %1$s</string>
     <string name="learned_latency_none">잠들기: 측정값이 너무 적어</string>
     <string name="bedtime_advice">오늘은 %1$s~%2$s 사이에 잠자리에 들어</string>
-    <string name="bedtime_advice_hint">알람, 수면 목표, 잠드는 데 걸리는 시간을 바탕으로 해.</string>
+    <string name="bedtime_advice_hint">목표 시간, 수면 목표, 잠드는 데 걸리는 시간을 바탕으로 해.</string>
     <string name="learn_restart">다시 학습</string>
     <string name="learn_restart_text">Phase Wake가 다시 %1$d일 밤을 측정해요. 그때까지는 지금까지 맞춘 값을 계속 사용해요.</string>
     <string name="record_end_wake">기상 시 종료</string>
@@ -622,7 +625,7 @@
     <string name="finding_title">최근 7일 밤에 눈에 띈 점</string>
     <string name="finding_hide">숨기기</string>
     <string name="finding_latency">잠들기까지 평균 %1$s 걸렸어요. 팁: 20분이 지나도 깨어 있으면 일어났다가 졸릴 때만 다시 잠자리에 드세요. 몇 주씩 계속되면 의사와 상담하세요.</string>
-    <string name="finding_short_nights">6시간 미만인 밤: 7일 중 %1$d일. 팁: 기상 시간에서 거꾸로 취침 시간을 정하고 지키세요.</string>
+    <string name="finding_short_nights">6시간 미만인 밤: 7일 중 %1$d일. 팁: 목표 시간에서 거꾸로 취침 시간을 정하고 지키세요.</string>
     <string name="finding_low_deep">깊은 수면은 전체 수면의 약 %1$d %%에 그쳤어요(보통 %2$d–%3$d %%).</string>
     <string name="finding_deep_short">6시간 미만인 밤에는 뚜렷하게 적었어요: %2$d %% 대신 %1$d %%.</string>
     <string name="finding_deep_late">늦게 잔 밤에는 뚜렷하게 적었어요: %2$d %% 대신 %1$d %%.</string>

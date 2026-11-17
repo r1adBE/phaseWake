@@ -9,6 +9,7 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.phasewake.app.core.BackupSettings
+import com.phasewake.app.core.EveningDark
 import com.phasewake.app.core.FindingKind
 import com.phasewake.app.core.Findings
 import com.phasewake.app.core.SleepGoal
@@ -17,10 +18,12 @@ import com.phasewake.app.core.SleepSounds
 import com.phasewake.app.core.TimeBounds
 import com.phasewake.app.core.Transient
 import com.phasewake.app.shared.PhaseWakeStore
+import com.phasewake.app.ui.theme.EveningDarkSetting
 import com.phasewake.app.ui.theme.ThemeMode
 import java.time.Instant
 import java.time.LocalDate
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
@@ -33,6 +36,19 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
 
     suspend fun setThemeMode(mode: ThemeMode) {
         store.edit { it[THEME] = mode.name }
+    }
+
+    /** «Abends dunkel ab» (Standard an, ab 18:00; Entscheid r1AD 17.11.2026). */
+    val eveningDark: Flow<EveningDarkSetting> = store.data.map { prefs ->
+        EveningDarkSetting(prefs[EVENING_DARK] ?: EveningDark.DEFAULT_ENABLED, EveningDark.checkedFrom(prefs[EVENING_DARK_FROM]))
+    }.distinctUntilChanged()
+
+    suspend fun setEveningDark(enabled: Boolean) {
+        store.edit { it[EVENING_DARK] = enabled }
+    }
+
+    suspend fun setEveningDarkFrom(minutes: Int) {
+        store.edit { it[EVENING_DARK_FROM] = EveningDark.checkedFrom(minutes) }
     }
 
     /** Schlafziel in Minuten (Standard 7½ h). */
@@ -261,6 +277,8 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
             historyClearedAt = clearedAt(prefs[HISTORY_CLEARED_AT], now()),
             nextAlarmNotice = prefs[NEXT_ALARM_NOTICE] ?: true,
             autoOnset = prefs[AUTO_ONSET] ?: true,
+            eveningDark = prefs[EVENING_DARK] ?: EveningDark.DEFAULT_ENABLED,
+            eveningDarkFrom = EveningDark.checkedFrom(prefs[EVENING_DARK_FROM]),
         )
     }
 
@@ -284,6 +302,8 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
         prefs[NEXT_ALARM_NOTICE] = settings.nextAlarmNotice
         prefs[AUTO_ONSET] = settings.autoOnset
         prefs[AUTO_ONSET_AT] = Instant.now().toEpochMilli()
+        prefs[EVENING_DARK] = settings.eveningDark
+        prefs[EVENING_DARK_FROM] = EveningDark.checkedFrom(settings.eveningDarkFrom)
     }
 
     companion object {
@@ -305,6 +325,8 @@ class SettingsRepository(private val store: DataStore<Preferences>, private val 
         private val WEEKLY_SHOWN_AT = longPreferencesKey("weekly_shown_at")
         private val WEEKLY_PREPARED = stringPreferencesKey("weekly_prepared")
         private val THEME = stringPreferencesKey("theme_mode")
+        private val EVENING_DARK = booleanPreferencesKey("evening_dark")
+        private val EVENING_DARK_FROM = intPreferencesKey("evening_dark_from")
         private val SLEEP_GOAL = intPreferencesKey("sleep_goal_minutes")
         private val SLEEP_GOAL_AT = longPreferencesKey("sleep_goal_updated_at")
         private val BEDTIME_REMINDER = booleanPreferencesKey("bedtime_reminder")

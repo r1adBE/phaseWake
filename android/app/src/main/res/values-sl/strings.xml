@@ -88,6 +88,9 @@
     <string name="settings_theme_system">Sistem</string>
     <string name="settings_theme_light">Svetlo</string>
     <string name="settings_theme_dark">Temno</string>
+    <string name="settings_evening_dark">Zvečer temno</string>
+    <string name="settings_evening_dark_text">Temno od %1$s do %2$s, tudi pri Sistem ali Svetlo.</string>
+    <string name="settings_evening_dark_from">Temno od</string>
     <string name="settings_data">Tvoji podatki</string>
     <string name="settings_data_text">Vse ostane na telefonu in uri. Brez računa, brez strežnika, brez sledenja. Prek Googlove povezave z uro gredo le tehnični podatki o uri, brez zdravstvenih podatkov.</string>
     <string name="settings_export">Izvozi noči brez imena</string>
@@ -98,10 +101,10 @@
     <string name="settings_licenses_text">Phase Wake: licenca MIT, © r1adBE.\nPisava Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nZaznavanje zvokov: MediaPipe Tasks Audio in model YAMNet, Apache License 2.0, © Google LLC.\nZvoki: prosti posnetki (CC0) s strani opengameart.org</string>
     <string name="settings_version">Različica %1$s</string>
 
-    <string name="duration_minutes">%1$d min</string>
-    <string name="duration_hours">%1$d h</string>
-    <string name="duration_hours_half">%1$d½ h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_half">%1$d½ h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Faze spanca iz Health Connect</string>
     <string name="health_rationale">Phase Wake lahko prebere podatke o spanju, ki jih tvoja zdravstvena aplikacija (na primer Samsung Health) shrani. Prikazani so v tvoji zgodovini, tudi za primerjavo z nočmi, ko te je zbudil Phase Wake. Phase Wake samo bere, nikoli ne piše, in nič ne zapusti tvojega telefona.</string>
     <string name="health_connect">Primerjaj z zdravstvenimi podatki</string>
@@ -295,7 +298,7 @@
         <item quantity="other">Cilj spanja dosežen: %1$d od %2$d noči</item>
     </plurals>
     <string name="bedtime_title">Opomnik za spanje</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">Opomni te %1$d min pred časom za spanje: čas budilke minus cilj spanja.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">Opomni te %1$d min pred časom za spanje: ciljni čas minus cilj spanja.</string>
     <string name="bedtime_notification">Čas za spanje ob %1$s – tako dobiš %2$s spanca do budilke ob %3$s.</string>
     <string name="channel_reminders">Opomniki</string>
     <string name="sounds_title">Zvoki za spanje</string>
@@ -584,7 +587,7 @@
     <string name="learned_latency">Uspavanje: približno %1$s</string>
     <string name="learned_latency_none">Uspavanje: premalo meritev</string>
     <string name="bedtime_advice">Pojdi danes spat med %1$s in %2$s</string>
-    <string name="bedtime_advice_hint">Glede na budilko, cilj spanja in koliko časa potrebuješ, da zaspiš.</string>
+    <string name="bedtime_advice_hint">Glede na ciljni čas, cilj spanja in koliko časa potrebuješ, da zaspiš.</string>
     <string name="learn_restart">Uči se znova</string>
     <string name="learn_restart_text">Phase Wake znova meri %1$d noči. Do takrat veljajo doslej prilagojene vrednosti.</string>
     <string name="record_end_wake">Končano ob bujenju</string>
@@ -666,7 +669,7 @@
     <string name="finding_title">Opaženo v zadnjih 7 nočeh</string>
     <string name="finding_hide">Skrij</string>
     <string name="finding_latency">V povprečju si za uspavanje potreboval %1$s. Nasvet: če po 20 minutah še bediš, vstani in se vrni v posteljo šele, ko boš zaspan. Če to traja tedne, se pogovori s svojim zdravnikom.</string>
-    <string name="finding_short_nights">Noči, krajše od 6 ur: %1$d od 7. Nasvet: čas za spanje izračunaj od ure bujenja in se ga drži.</string>
+    <string name="finding_short_nights">Noči, krajše od 6 ur: %1$d od 7. Nasvet: čas za spanje izračunaj od ciljnega časa in se ga drži.</string>
     <string name="finding_low_deep">Globoki spanec je bil le približno %1$d %% tvojega spanca (običajno %2$d–%3$d %%).</string>
     <string name="finding_deep_short">V nočeh, krajših od 6 ur, ga je bilo izrazito manj: %1$d %% namesto %2$d %%.</string>
     <string name="finding_deep_late">V nočeh, ko si šel pozno spat, ga je bilo izrazito manj: %1$d %% namesto %2$d %%.</string>

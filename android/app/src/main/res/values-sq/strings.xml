@@ -87,6 +87,9 @@
     <string name="settings_theme_system">Sistemi</string>
     <string name="settings_theme_light">E çelët</string>
     <string name="settings_theme_dark">E errët</string>
+    <string name="settings_evening_dark">E errët në mbrëmje</string>
+    <string name="settings_evening_dark_text">E errët nga %1$s deri në %2$s, edhe me Sistemi ose E çelët.</string>
+    <string name="settings_evening_dark_from">E errët nga</string>
     <string name="settings_data">Të dhënat e tua</string>
     <string name="settings_data_text">Gjithçka mbetet në telefon dhe në orë. Pa llogari, pa server, pa gjurmim. Përmes lidhjes së orës së Google kalojnë vetëm të dhëna teknike për orën, pa të dhëna shëndetësore.</string>
     <string name="settings_export">Eksporto netët pa emër</string>
@@ -97,10 +100,10 @@
     <string name="settings_licenses_text">Phase Wake: Licenca MIT, © r1adBE.\nShkronja Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDallimi i tingujve: MediaPipe Tasks Audio dhe modeli YAMNet, Apache License 2.0, © Google LLC.\nTingujt: regjistrime të lira (CC0) nga opengameart.org</string>
     <string name="settings_version">Versioni %1$s</string>
 
-    <string name="duration_minutes">%1$d min</string>
-    <string name="duration_hours">%1$d orë</string>
-    <string name="duration_hours_half">%1$d½ orë</string>
-    <string name="duration_hours_minutes">%1$d orë %2$d min</string>
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d orë</string>
+    <string name="duration_hours_half">%1$d½ orë</string>
+    <string name="duration_hours_minutes">%1$d orë %2$d min</string>
     <string name="health_title">Fazat e gjumit nga Health Connect</string>
     <string name="health_rationale">Phase Wake mund të lexojë të dhënat e gjumit që ruan aplikacioni yt i shëndetit (për shembull Samsung Health). Ato shfaqen në historikun tënd, edhe për krahasim me netët kur të zgjoi Phase Wake. Phase Wake vetëm lexon, nuk shkruan kurrë dhe asgjë nuk del nga telefoni yt.</string>
     <string name="health_connect">Krahaso me të dhënat e shëndetit</string>
@@ -282,7 +285,7 @@
         <item quantity="other">Objektivi i gjumit u arrit: %1$d nga %2$d net</item>
     </plurals>
     <string name="bedtime_title">Kujtesa për gjumë</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">Të kujton %1$d min para orës së gjumit: ora e alarmit minus objektivi i gjumit.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">Të kujton %1$d min para orës së gjumit: ora e synuar minus objektivi i gjumit.</string>
     <string name="bedtime_notification">Ora e gjumit në %1$s – kështu fle %2$s deri te alarmi në %3$s.</string>
     <string name="channel_reminders">Kujtesat</string>
     <string name="sounds_title">Tinguj për gjumë</string>
@@ -557,7 +560,7 @@
     <string name="learned_latency">Rënia në gjumë: rreth %1$s</string>
     <string name="learned_latency_none">Rënia në gjumë: shumë pak matje</string>
     <string name="bedtime_advice">Shko sot në shtrat midis %1$s dhe %2$s</string>
-    <string name="bedtime_advice_hint">Sipas zgjuesit, qëllimit të gjumit dhe kohës që të duhet për të rënë në gjumë.</string>
+    <string name="bedtime_advice_hint">Sipas orës së synuar, qëllimit të gjumit dhe kohës që të duhet për të rënë në gjumë.</string>
     <string name="learn_restart">Mëso përsëri</string>
     <string name="learn_restart_text">Phase Wake mat përsëri %1$d net. Deri atëherë mbeten në fuqi vlerat e përshtatura deri tani.</string>
     <string name="record_end_wake">Përfundoi në zgjim</string>
@@ -639,7 +642,7 @@
     <string name="finding_title">Vënë re në 7 netët e tua të fundit</string>
     <string name="finding_hide">Fshih</string>
     <string name="finding_latency">Mesatarisht të është dashur %1$s për të fjetur. Këshillë: nëse pas 20 minutash je ende zgjuar, ngrihu dhe kthehu në shtrat vetëm kur të vijë gjumi. Nëse kjo zgjat me javë, fol me mjekun tënd.</string>
-    <string name="finding_short_nights">Net nën 6 orë: %1$d nga 7. Këshillë: llogarit orën e gjumit duke u nisur nga ora e zgjimit dhe mbaje.</string>
+    <string name="finding_short_nights">Net nën 6 orë: %1$d nga 7. Këshillë: llogarit orën e gjumit duke u nisur nga ora e synuar dhe mbaje.</string>
     <string name="finding_low_deep">Gjumi i thellë ishte vetëm rreth %1$d %% e gjumit tënd (zakonisht %2$d–%3$d %%).</string>
     <string name="finding_deep_short">Në netët nën 6 orë ishte dukshëm më pak: %1$d %% në vend të %2$d %%.</string>
     <string name="finding_deep_late">Në netët kur fjete vonë ishte dukshëm më pak: %1$d %% në vend të %2$d %%.</string>

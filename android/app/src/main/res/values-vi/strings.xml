@@ -84,6 +84,9 @@
     <string name="settings_theme_system">Hệ thống</string>
     <string name="settings_theme_light">Sáng</string>
     <string name="settings_theme_dark">Tối</string>
+    <string name="settings_evening_dark">Tối vào buổi tối</string>
+    <string name="settings_evening_dark_text">Tối từ %1$s đến %2$s, kể cả khi chọn Hệ thống hoặc Sáng.</string>
+    <string name="settings_evening_dark_from">Tối từ</string>
     <string name="settings_data">Dữ liệu của bạn</string>
     <string name="settings_data_text">Mọi thứ chỉ nằm trên điện thoại và đồng hồ của bạn. Không tài khoản, không máy chủ, không theo dõi. Chỉ thông tin kỹ thuật về đồng hồ đi qua kết nối đồng hồ của Google, không có dữ liệu sức khỏe.</string>
     <string name="settings_export">Xuất các đêm ngủ không kèm tên</string>
@@ -94,10 +97,10 @@
     <string name="settings_licenses_text">Phase Wake: Giấy phép MIT, © r1adBE.\nPhông chữ Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nNhận diện âm thanh: MediaPipe Tasks Audio và mô hình YAMNet, Apache License 2.0, © Google LLC.\nÂm thanh: bản ghi tự do (CC0) từ opengameart.org</string>
     <string name="settings_version">Phiên bản %1$s</string>
 
-    <string name="duration_minutes">%1$d phút</string>
-    <string name="duration_hours">%1$d giờ</string>
-    <string name="duration_hours_half">%1$d½ giờ</string>
-    <string name="duration_hours_minutes">%1$d giờ %2$d phút</string>
+    <string name="duration_minutes">%1$d phút</string>
+    <string name="duration_hours">%1$d giờ</string>
+    <string name="duration_hours_half">%1$d½ giờ</string>
+    <string name="duration_hours_minutes">%1$d giờ %2$d phút</string>
     <string name="health_title">Các giai đoạn ngủ từ Health Connect</string>
     <string name="health_rationale">Phase Wake có thể đọc dữ liệu giấc ngủ mà ứng dụng sức khỏe của bạn (ví dụ Samsung Health) lưu. Dữ liệu được hiển thị trong lịch sử của bạn, cũng để so sánh với những đêm Phase Wake đã đánh thức bạn. Phase Wake chỉ đọc, không bao giờ ghi, và không có gì rời khỏi điện thoại của bạn.</string>
     <string name="health_connect">So sánh với dữ liệu sức khỏe</string>
@@ -275,7 +278,7 @@
         <item quantity="other">Đạt mục tiêu ngủ: %1$d trên %2$d đêm</item>
     </plurals>
     <string name="bedtime_title">Nhắc giờ đi ngủ</string>
-    <string name="bedtime_text">Nhắc bạn %1$d phút trước giờ đi ngủ: giờ báo thức trừ mục tiêu ngủ.</string>
+    <string name="bedtime_text">Nhắc bạn %1$d phút trước giờ đi ngủ: giờ mục tiêu trừ mục tiêu ngủ.</string>
     <string name="bedtime_notification">Đi ngủ lúc %1$s – như vậy bạn ngủ được %2$s trước báo thức lúc %3$s.</string>
     <string name="channel_reminders">Lời nhắc</string>
     <string name="sounds_title">Âm thanh ru ngủ</string>
@@ -540,7 +543,7 @@
     <string name="learned_latency">Đi vào giấc ngủ: khoảng %1$s</string>
     <string name="learned_latency_none">Đi vào giấc ngủ: quá ít số đo</string>
     <string name="bedtime_advice">Hôm nay hãy đi ngủ trong khoảng %1$s đến %2$s</string>
-    <string name="bedtime_advice_hint">Dựa trên báo thức, mục tiêu ngủ và thời gian bạn cần để ngủ.</string>
+    <string name="bedtime_advice_hint">Dựa trên giờ mục tiêu, mục tiêu ngủ và thời gian bạn cần để ngủ.</string>
     <string name="learn_restart">Học lại</string>
     <string name="learn_restart_text">Phase Wake đo lại %1$d đêm. Cho đến lúc đó, các giá trị đã điều chỉnh từ trước vẫn được dùng.</string>
     <string name="record_end_wake">Kết thúc khi đánh thức</string>
@@ -622,7 +625,7 @@
     <string name="finding_title">Đáng chú ý trong 7 đêm gần nhất</string>
     <string name="finding_hide">Ẩn</string>
     <string name="finding_latency">Trung bình bạn mất %1$s để ngủ. Mẹo: nếu sau 20 phút vẫn còn thức, hãy dậy và chỉ quay lại giường khi buồn ngủ. Nếu kéo dài nhiều tuần, hãy nói chuyện với bác sĩ.</string>
-    <string name="finding_short_nights">Đêm dưới 6 giờ: %1$d trên 7. Mẹo: tính giờ đi ngủ ngược từ giờ thức dậy và giữ đúng.</string>
+    <string name="finding_short_nights">Đêm dưới 6 giờ: %1$d trên 7. Mẹo: tính giờ đi ngủ ngược từ giờ mục tiêu và giữ đúng.</string>
     <string name="finding_low_deep">Ngủ sâu chỉ chiếm khoảng %1$d %% giấc ngủ của bạn (thường %2$d–%3$d %%).</string>
     <string name="finding_deep_short">Vào các đêm dưới 6 giờ, nó thấp hơn rõ rệt: %1$d %% thay vì %2$d %%.</string>
     <string name="finding_deep_late">Vào các đêm bạn đi ngủ muộn, nó thấp hơn rõ rệt: %1$d %% thay vì %2$d %%.</string>

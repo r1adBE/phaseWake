@@ -10,6 +10,8 @@ final class WatchModel {
     static let shared = WatchModel()
 
     let storage = PhaseWakeStorage.watch
+    /// Letzte Nacht für die Startseite, gemerkt (PERF-04); Nächte auf der Uhr nur darüber ändern.
+    let lastNight: WatchLastNight
     private(set) var alarms: [AlarmSpec] = []
     private(set) var now = Date()
     /// Schlafziel vom iPhone in Minuten, nur für den Einschlafpunkt auf dem Ring; ohne iPhone der Standard.
@@ -27,6 +29,7 @@ final class WatchModel {
     private(set) var recordSince: Date?
 
     private init() {
+        lastNight = WatchLastNight(storage: PhaseWakeStorage.watch)
         alarms = storage.snapshot().alarms
         sleepGoal = storage.sleepGoal
         transient = SettingsFile.watchSession.string(forKey: Self.transientKey).flatMap { try? Transient.decode($0) }
@@ -124,6 +127,8 @@ final class WatchModel {
     func refresh() {
         now = Date()
         alarms = storage.snapshot().alarms
+        // Vor dem ersten Entsperren war der Verlauf nicht lesbar: jetzt nachholen.
+        lastNight.loadIfNeeded()
         // Abgelaufen (2 h nach der Zielzeit): verwerfen.
         if let transient, !Transient.isActive(transient, now: now) { setTransient(nil) }
         // «Gute Nacht» einer vorbeigegangenen oder erledigten Nacht verwerfen.
@@ -301,9 +306,9 @@ final class WatchModel {
         let nights = storage.nights()
         let kept = nights.filter { HistoryClear.keeps(end: $0.wokeAt, clearedAt: until) }
         if kept.isEmpty {
-            storage.clearNights()
+            lastNight.clear()
         } else if kept.count != nights.count {
-            storage.replaceNights(kept)
+            lastNight.replace(kept)
         }
         WatchConnectivityBridge.shared.dropQueued(clearedAt: until)
         LearnRecorder.shared.clearHistory(until: until)

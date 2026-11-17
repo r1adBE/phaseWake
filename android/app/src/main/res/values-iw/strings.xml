@@ -86,6 +86,9 @@
     <string name="settings_theme_system">מערכת</string>
     <string name="settings_theme_light">בהיר</string>
     <string name="settings_theme_dark">כהה</string>
+    <string name="settings_evening_dark">כהה בערב</string>
+    <string name="settings_evening_dark_text">כהה מ-%1$s עד %2$s, גם עם מערכת או בהיר.</string>
+    <string name="settings_evening_dark_from">כהה מהשעה</string>
     <string name="settings_data">הנתונים שלכם</string>
     <string name="settings_data_text">הכול נשאר בטלפון ובשעון. בלי חשבון, בלי שרת, בלי מעקב. דרך חיבור השעון של Google עובר רק מידע טכני על השעון, בלי נתוני בריאות.</string>
     <string name="settings_export">ייצוא לילות ללא שם</string>
@@ -96,10 +99,10 @@
     <string name="settings_licenses_text">Phase Wake: רישיון MIT, © r1adBE.\nגופן Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nזיהוי צלילים: MediaPipe Tasks Audio ומודל YAMNet, Apache License 2.0, © Google LLC.\nצלילים: הקלטות חופשיות (CC0) מ-opengameart.org</string>
     <string name="settings_version">גרסה %1$s</string>
 
-    <string name="duration_minutes">%1$d דק׳</string>
-    <string name="duration_hours">%1$d ש׳</string>
-    <string name="duration_hours_half">%1$d½ ש׳</string>
-    <string name="duration_hours_minutes">%1$d ש׳ %2$d דק׳</string>
+    <string name="duration_minutes">%1$d דק׳</string>
+    <string name="duration_hours">%1$d ש׳</string>
+    <string name="duration_hours_half">%1$d½ ש׳</string>
+    <string name="duration_hours_minutes">%1$d ש׳ %2$d דק׳</string>
     <string name="health_title">שלבי שינה מ-Health Connect</string>
     <string name="health_rationale">ניתן לאפשר ל-Phase Wake לקרוא את נתוני השינה שאפליקציית הבריאות שלכם (למשל Samsung Health) שומרת. הם מוצגים בהיסטוריה שלכם, גם להשוואה עם הלילות שבהם Phase Wake העיר אתכם. הגישה היא לקריאה בלבד, ושום דבר לא יוצא מהטלפון.</string>
     <string name="health_connect">השוואה לנתוני בריאות</string>
@@ -289,7 +292,7 @@
         <item quantity="other">יעד השינה הושג: %1$d מתוך %2$d לילות</item>
     </plurals>
     <string name="bedtime_title">תזכורת לשעת שינה</string>
-    <string name="bedtime_text">מזכירה לך %1$d דק׳ לפני שעת השינה: שעת ההשכמה פחות יעד השינה.</string>
+    <string name="bedtime_text">מזכירה לך %1$d דק׳ לפני שעת השינה: שעת היעד פחות יעד השינה.</string>
     <string name="bedtime_notification">שעת שינה ב־%1$s – כך תישן %2$s עד השעון המעורר ב־%3$s.</string>
     <string name="channel_reminders">תזכורות</string>
     <string name="sounds_title">צלילים להירדמות</string>
@@ -568,7 +571,7 @@
     <string name="learned_latency">הירדמות: בערך %1$s</string>
     <string name="learned_latency_none">הירדמות: מעט מדי מדידות</string>
     <string name="bedtime_advice">לך לישון הלילה בין %1$s ל-%2$s</string>
-    <string name="bedtime_advice_hint">לפי ההשכמה, יעד השינה והזמן שלוקח לך להירדם.</string>
+    <string name="bedtime_advice_hint">לפי שעת היעד, יעד השינה והזמן שלוקח לך להירדם.</string>
     <string name="learn_restart">ללמוד מחדש</string>
     <string name="learn_restart_text">Phase Wake מודד שוב %1$d לילות. עד אז נשארים בשימוש הערכים שהותאמו עד עכשיו.</string>
     <string name="record_end_wake">הסתיימה בהשכמה</string>
@@ -650,7 +653,7 @@
     <string name="finding_title">בלט ב־7 הלילות האחרונים</string>
     <string name="finding_hide">הסתרה</string>
     <string name="finding_latency">בממוצע לקח לך %1$s להירדם. טיפ: אם אחרי 20 דקות אתה עדיין ער, קום וחזור למיטה רק כשאתה מנומנם. אם זה נמשך שבועות, דבר עם הרופא שלך.</string>
-    <string name="finding_short_nights">לילות של פחות מ־6 שעות: %1$d מתוך 7. טיפ: חשב את שעת השינה לפי שעת ההשכמה והקפד עליה.</string>
+    <string name="finding_short_nights">לילות של פחות מ־6 שעות: %1$d מתוך 7. טיפ: חשב את שעת השינה לפי שעת היעד והקפד עליה.</string>
     <string name="finding_low_deep">שינה עמוקה הייתה רק כ־%1$d %% מהשינה שלך (בדרך כלל %2$d–%3$d %%).</string>
     <string name="finding_deep_short">בלילות של פחות מ־6 שעות היא הייתה נמוכה בבירור: %1$d %% במקום %2$d %%.</string>
     <string name="finding_deep_late">בלילות שבהם הלכת לישון מאוחר היא הייתה נמוכה בבירור: %1$d %% במקום %2$d %%.</string>

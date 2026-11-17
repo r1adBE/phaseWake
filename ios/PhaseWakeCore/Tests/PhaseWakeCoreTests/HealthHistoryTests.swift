@@ -54,9 +54,6 @@ final class HealthHistoryTests: XCTestCase {
         // Verlauf und Detailseite: Nacht vom 31. Oktober (Morgen 1. November).
         XCTAssertEqual(merge([], [lateNight]).map(\.date), ["2026-10-31"])
         // Diagramme: dasselbe Nachtdatum, dieselbe Dauer («today» = Nachtdatum am Morgen des 2. November).
-        let durations = ChartData.durations(sleeps, calendar: calendar, today: "2026-11-01", goalMinutes: 480)
-        XCTAssertEqual(durations?.bars.last?.date, "2026-10-31")
-        XCTAssertEqual(durations?.bars.last?.asleepMinutes, 570)
         let bars = ChartData.sleepBars(sleeps, calendar: calendar, today: "2026-11-01", nextTarget: nil, goalMinutes: 480)
         XCTAssertEqual(bars?.bars.last?.date, "2026-10-31")
         XCTAssertEqual(bars?.bars.last?.hasData, true)

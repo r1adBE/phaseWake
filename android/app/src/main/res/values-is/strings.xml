@@ -87,6 +87,9 @@
     <string name="settings_theme_system">Kerfi</string>
     <string name="settings_theme_light">Ljóst</string>
     <string name="settings_theme_dark">Dökkt</string>
+    <string name="settings_evening_dark">Dökkt á kvöldin</string>
+    <string name="settings_evening_dark_text">Dökkt frá %1$s til %2$s, líka með Kerfi eða Ljóst.</string>
+    <string name="settings_evening_dark_from">Dökkt frá</string>
     <string name="settings_data">Gögnin þín</string>
     <string name="settings_data_text">Allt verður eftir í símanum og úrinu. Enginn aðgangur, enginn þjónn, engin rakning. Aðeins tæknilegar upplýsingar um úrið fara um úratengingu Google, engin heilsufarsgögn.</string>
     <string name="settings_export">Flytja nætur út án nafns</string>
@@ -97,10 +100,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT-leyfi, © r1adBE.\nLetrið Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nHljóðgreining: MediaPipe Tasks Audio og YAMNet-líkanið, Apache License 2.0, © Google LLC.\nHljóð: frjálsar upptökur (CC0) frá opengameart.org</string>
     <string name="settings_version">Útgáfa %1$s</string>
 
-    <string name="duration_minutes">%1$d mín</string>
-    <string name="duration_hours">%1$d klst</string>
-    <string name="duration_hours_half">%1$d½ klst</string>
-    <string name="duration_hours_minutes">%1$d klst %2$d mín</string>
+    <string name="duration_minutes">%1$d mín</string>
+    <string name="duration_hours">%1$d klst</string>
+    <string name="duration_hours_half">%1$d½ klst</string>
+    <string name="duration_hours_minutes">%1$d klst %2$d mín</string>
     <string name="health_title">Svefnstig úr Health Connect</string>
     <string name="health_rationale">Phase Wake getur lesið svefngögnin sem heilsuforritið þitt (til dæmis Samsung Health) vistar. Þau birtast í ferlinum þínum, líka til samanburðar við næturnar sem Phase Wake vakti þig. Phase Wake les bara, skrifar aldrei, og ekkert fer úr símanum.</string>
     <string name="health_connect">Bera saman við heilsugögn</string>
@@ -282,7 +285,7 @@
         <item quantity="other">Svefnmarkmiði náð: %1$d af %2$d nóttum</item>
     </plurals>
     <string name="bedtime_title">Áminning um háttatíma</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">Minnir þig á %1$d mín fyrir háttatíma: vekjaratíminn mínus svefnmarkmiðið.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">Minnir þig á %1$d mín fyrir háttatíma: markmiðstíminn mínus svefnmarkmiðið.</string>
     <string name="bedtime_notification">Háttatími kl. %1$s – þannig færðu %2$s fyrir vekjarann kl. %3$s.</string>
     <string name="channel_reminders">Áminningar</string>
     <string name="sounds_title">Svefnhljóð</string>
@@ -557,7 +560,7 @@
     <string name="learned_latency">Að sofna: um %1$s</string>
     <string name="learned_latency_none">Að sofna: of fáar mælingar</string>
     <string name="bedtime_advice">Farðu í rúmið í kvöld milli %1$s og %2$s</string>
-    <string name="bedtime_advice_hint">Út frá vekjaranum, svefnmarkmiðinu og hve lengi þú ert að sofna.</string>
+    <string name="bedtime_advice_hint">Út frá markmiðstímanum, svefnmarkmiðinu og hve lengi þú ert að sofna.</string>
     <string name="learn_restart">Læra aftur</string>
     <string name="learn_restart_text">Phase Wake mælir aftur %1$d nætur. Þangað til gilda gildin sem hafa verið aðlöguð hingað til.</string>
     <string name="record_end_wake">Lokið við vakningu</string>
@@ -639,7 +642,7 @@
     <string name="finding_title">Tekið eftir síðustu 7 nætur</string>
     <string name="finding_hide">Fela</string>
     <string name="finding_latency">Að meðaltali tók það þig %1$s að sofna. Ráð: ef þú ert enn vakandi eftir 20 mínútur, farðu fram úr og farðu aftur í rúmið þegar þú ert syfjaður. Ef þetta varir vikum saman, ræddu við lækninn þinn.</string>
-    <string name="finding_short_nights">Nætur undir 6 klst.: %1$d af 7. Ráð: reiknaðu háttatímann út frá vakningartímanum og haltu þig við hann.</string>
+    <string name="finding_short_nights">Nætur undir 6 klst.: %1$d af 7. Ráð: reiknaðu háttatímann út frá markmiðstímanum og haltu þig við hann.</string>
     <string name="finding_low_deep">Djúpsvefn var aðeins um %1$d %% af svefninum (venjulega %2$d–%3$d %%).</string>
     <string name="finding_deep_short">Nætur undir 6 klst. var hann greinilega minni: %1$d %% í stað %2$d %%.</string>
     <string name="finding_deep_late">Nætur sem þú fórst seint að sofa var hann greinilega minni: %1$d %% í stað %2$d %%.</string>

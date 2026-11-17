@@ -114,6 +114,28 @@ final class BackupTests: XCTestCase {
         XCTAssertFalse(try BackupPayload.fromJson(p.toJson()).settings.autoOnset)
     }
 
+    func testBackupKeepsEveningDark() throws {
+        // Fehlt der Schlüssel (ältere Sicherung, Testvektor): an, ab 18:00.
+        let old = try BackupPayload.fromJson(try testdata("backup-v1.json")).settings
+        XCTAssertTrue(old.eveningDark)
+        XCTAssertEqual(old.eveningDarkFrom, 18 * 60)
+        var p = payload
+        XCTAssertTrue(p.toJson().contains(#""eveningDark":true,"eveningDarkFrom":1080"#))
+        p.settings.eveningDark = false
+        p.settings.eveningDarkFrom = 21 * 60 + 30
+        XCTAssertEqual(try BackupPayload.fromJson(p.toJson()).settings, p.settings)
+        // Unplausibler Beginn (manipuliert oder kaputt): 18:00.
+        for raw in ["-5", "1440", #""20:00""#, "null", "true"] {
+            let json = payload.toJson().replacingOccurrences(of: #""eveningDarkFrom":1080"#, with: "\"eveningDarkFrom\":\(raw)")
+            XCTAssertEqual(try BackupPayload.fromJson(json).settings.eveningDarkFrom, 18 * 60, raw)
+        }
+        // Eine Sicherung von Android (Schlüssel in anderer Reihenfolge) liest sich gleich.
+        let android = #"{"format":"phasewake-backup","version":1,"alarms":"","settings":{"autoOnset":true,"eveningDark":false,"eveningDarkFrom":1290}}"#
+        let s = try BackupPayload.fromJson(android).settings
+        XCTAssertFalse(s.eveningDark)
+        XCTAssertEqual(s.eveningDarkFrom, 21 * 60 + 30)
+    }
+
     func testBackupKeepsHealthFeelings() throws {
         var rated = payload
         rated.healthFeelings = "2026-10-01|4\n2026-10-02|2"

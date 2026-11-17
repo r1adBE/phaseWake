@@ -82,28 +82,6 @@ class ChartDataTest {
     }
 
     @Test
-    fun durationsSevenAndFourteenNights() {
-        val today = date("2026-10-28")
-        val week = ChartData.durations(sleeps, zone, today, goalMinutes = 450)!!
-        assertEquals(7, week.bars.size)
-        assertEquals(date("2026-10-21"), week.bars.first().date)
-        assertEquals(DurationBar(date("2026-10-27"), 420, false), week.bars.last())
-        assertEquals(DurationBar(date("2026-10-25"), 450, true), week.bars[4])
-        assertEquals(DurationBar(date("2026-10-24"), null, false), week.bars[3])
-        assertEquals(445L, week.averageMinutes)
-        assertEquals(2, week.reached)
-        assertEquals(3, week.counted)
-        assertEquals(465L, week.scaleMinutes)
-        val two = ChartData.durations(sleeps, zone, today, 450, ChartData.NIGHTS)!!
-        assertEquals(14, two.bars.size)
-        assertEquals(433L, two.averageMinutes)
-        assertEquals(2 to 4, two.reached to two.counted)
-        // Ziel über allen Nächten: Skala bis zum Ziel.
-        assertEquals(600L, ChartData.durations(sleeps, zone, today, 600)!!.scaleMinutes)
-        assertNull(ChartData.durations(emptyList(), zone, today, 450))
-    }
-
-    @Test
     fun wakeMomentsKindsAndAverage() {
         val nights = listOf(
             watchNight("2026-10-24", 18, WakeReason.LIGHT_SLEEP),
@@ -199,7 +177,6 @@ class ChartDataTest {
     @Test
     fun emptyInputsGiveNoChart() {
         assertNull(ChartData.sleepBars(emptyList(), zone, date("2026-10-27"), null, 450))
-        assertNull(ChartData.durations(emptyList(), zone, date("2026-10-27"), 450))
         assertNull(ChartData.wakeMoments(emptyList(), zone))
         val night = watchNight("2026-10-27", 10, WakeReason.LIGHT_SLEEP)
         assertNull(ChartData.hypnogram(emptyList(), night))

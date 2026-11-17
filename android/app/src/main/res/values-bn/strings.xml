@@ -86,6 +86,9 @@
     <string name="settings_theme_system">সিস্টেম</string>
     <string name="settings_theme_light">হালকা</string>
     <string name="settings_theme_dark">গাঢ়</string>
+    <string name="settings_evening_dark">সন্ধ্যায় গাঢ়</string>
+    <string name="settings_evening_dark_text">%1$s – %2$s গাঢ়, সিস্টেম বা হালকা বেছে নিলেও।</string>
+    <string name="settings_evening_dark_from">গাঢ় শুরু</string>
     <string name="settings_data">তোমার ডেটা</string>
     <string name="settings_data_text">সবকিছু তোমার ফোন আর ঘড়িতেই থাকে। কোনো অ্যাকাউন্ট নেই, সার্ভার নেই, ট্র্যাকিং নেই। Google-এর ঘড়ি সংযোগ দিয়ে শুধু ঘড়ির প্রযুক্তিগত তথ্য যায়, স্বাস্থ্য ডেটা ছাড়া।</string>
     <string name="settings_export">রাতগুলো নাম ছাড়া এক্সপোর্ট করো</string>
@@ -96,10 +99,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT লাইসেন্স, © r1adBE।\nManrope ফন্ট: SIL Open Font License 1.1, © The Manrope Project Authors।\nশব্দ শনাক্তকরণ: MediaPipe Tasks Audio ও YAMNet মডেল, Apache License 2.0, © Google LLC।\nশব্দ: opengameart.org-এর ফ্রি রেকর্ডিং (CC0)</string>
     <string name="settings_version">সংস্করণ %1$s</string>
 
-    <string name="duration_minutes">%1$d মি.</string>
-    <string name="duration_hours">%1$d ঘ.</string>
-    <string name="duration_hours_half">%1$d½ ঘ.</string>
-    <string name="duration_hours_minutes">%1$d ঘ. %2$d মি.</string>
+    <string name="duration_minutes">%1$d মি.</string>
+    <string name="duration_hours">%1$d ঘ.</string>
+    <string name="duration_hours_half">%1$d½ ঘ.</string>
+    <string name="duration_hours_minutes">%1$d ঘ. %2$d মি.</string>
     <string name="health_title">Health Connect থেকে ঘুমের পর্যায়</string>
     <string name="health_rationale">তোমার স্বাস্থ্য অ্যাপ (যেমন Samsung Health) যে ঘুমের ডেটা সংরক্ষণ করে, Phase Wake সেটা পড়তে পারে। এটি তোমার ইতিহাসে দেখানো হয়, যেসব রাতে Phase Wake তোমাকে জাগিয়েছে সেগুলোর সঙ্গে তুলনার জন্যও। Phase Wake শুধু পড়ে, কখনও লেখে না, আর কিছুই তোমার ফোনের বাইরে যায় না।</string>
     <string name="health_connect">স্বাস্থ্য ডেটার সঙ্গে মেলাও</string>
@@ -281,7 +284,7 @@
         <item quantity="other">ঘুমের লক্ষ্য পূরণ: %2$dটি রাতের %1$dটিতে</item>
     </plurals>
     <string name="bedtime_title">ঘুমানোর সময়ের রিমাইন্ডার</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">ঘুমানোর সময়ের %1$d মি. আগে মনে করিয়ে দেয়: অ্যালার্মের সময় থেকে ঘুমের লক্ষ্য বাদ দিয়ে।</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">ঘুমানোর সময়ের %1$d মি. আগে মনে করিয়ে দেয়: লক্ষ্য সময় থেকে ঘুমের লক্ষ্য বাদ দিয়ে।</string>
     <string name="bedtime_notification">%1$s-এ ঘুমাতে যাও – তাহলে %3$s-এর অ্যালার্মের আগে %2$s ঘুম পাবে।</string>
     <string name="channel_reminders">রিমাইন্ডার</string>
     <string name="sounds_title">ঘুমের শব্দ</string>
@@ -556,7 +559,7 @@
     <string name="learned_latency">ঘুমিয়ে পড়া: প্রায় %1$s</string>
     <string name="learned_latency_none">ঘুমিয়ে পড়া: মাপ খুব কম</string>
     <string name="bedtime_advice">আজ %1$s থেকে %2$s-এর মধ্যে শুতে যাও</string>
-    <string name="bedtime_advice_hint">তোমার অ্যালার্ম, ঘুমের লক্ষ্য আর ঘুমিয়ে পড়তে কত সময় লাগে তা থেকে।</string>
+    <string name="bedtime_advice_hint">তোমার লক্ষ্য সময়, ঘুমের লক্ষ্য আর ঘুমিয়ে পড়তে কত সময় লাগে তা থেকে।</string>
     <string name="learn_restart">আবার শেখো</string>
     <string name="learn_restart_text">Phase Wake আবার %1$d রাত মাপবে। ততক্ষণ এখন পর্যন্ত মানিয়ে নেওয়া মানগুলোই চলবে।</string>
     <string name="record_end_wake">জাগানোর সময় শেষ</string>
@@ -638,7 +641,7 @@
     <string name="finding_title">তোমার শেষ ৭ রাতে চোখে পড়েছে</string>
     <string name="finding_hide">লুকাও</string>
     <string name="finding_latency">ঘুমিয়ে পড়তে তোমার গড়ে %1$s লেগেছে। পরামর্শ: ২০ মিনিট পরেও জেগে থাকলে উঠে পড়ো এবং ঘুম পেলে তবেই বিছানায় ফেরো। কয়েক সপ্তাহ এমন চললে তোমার ডাক্তারের সঙ্গে কথা বলো।</string>
-    <string name="finding_short_nights">৬ ঘণ্টার কম রাত: ৭টির মধ্যে %1$dটি। পরামর্শ: ঘুম থেকে ওঠার সময় থেকে পিছিয়ে শোয়ার সময় ঠিক করো এবং তা মেনে চলো।</string>
+    <string name="finding_short_nights">৬ ঘণ্টার কম রাত: ৭টির মধ্যে %1$dটি। পরামর্শ: লক্ষ্য সময় থেকে পিছিয়ে শোয়ার সময় ঠিক করো এবং তা মেনে চলো।</string>
     <string name="finding_low_deep">গভীর ঘুম তোমার ঘুমের মাত্র প্রায় %1$d %% ছিল (সাধারণত %2$d–%3$d %%)।</string>
     <string name="finding_deep_short">৬ ঘণ্টার কম রাতে এটি স্পষ্টভাবে কম ছিল: %2$d %%-এর বদলে %1$d %%।</string>
     <string name="finding_deep_late">যে রাতে দেরিতে শুয়েছ, সেদিন এটি স্পষ্টভাবে কম ছিল: %2$d %%-এর বদলে %1$d %%।</string>

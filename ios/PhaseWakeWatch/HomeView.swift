@@ -31,7 +31,7 @@ struct HomeView: View {
                 GoodNightRow()
                 WatchNapRow(choosing: $choosingNap)
                 RecordRow()
-                if let night = model.storage.nights().last {
+                if let night = model.lastNight.night {
                     // Letzte Nacht: wann und warum geweckt wurde.
                     VStack(spacing: 1) {
                         Text(L("home_last_night")).font(Fonts.manrope(11, relativeTo: .caption2)).foregroundStyle(Brand.muted)

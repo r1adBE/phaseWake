@@ -6,12 +6,17 @@ import SwiftUI
 /// Android). Mit «Bewegung reduzieren» ruht sie ganz.
 struct HeroWave: View {
     var windowFraction: Double = 0.32
+    /// Steht im Kopf der Startseite: dunkel im Nachthimmel, hell im Tageshimmel (``SkyInk``), wie Android `onNight`.
+    @Environment(\.colorScheme) private var scheme
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.scenePhase) private var scenePhase
     @State private var appeared = Date()
 
     var body: some View {
-        TimelineView(.animation(paused: reduceMotion)) { timeline in
+        // Höchstens 30 Bilder/s, im Hintergrund still (Audit 17.11. PERF-08).
+        TimelineView(.animation(minimumInterval: 1.0 / 30, paused: reduceMotion || scenePhase != .active)) { timeline in
             Canvas { context, size in
+                let ink = SkyInk.of(scheme)
                 let t = timeline.date.timeIntervalSinceReferenceDate
                 let phase = reduceMotion ? 0 : (t / 7).truncatingRemainder(dividingBy: 1) * 2 * .pi
                 let pulse = reduceMotion ? 0.45 : (t / 2.2).truncatingRemainder(dividingBy: 1)
@@ -21,12 +26,12 @@ struct HeroWave: View {
                     let left = size.width * (1 - windowFraction)
                     let band = Path(roundedRect: CGRect(x: left, y: 0, width: size.width - left, height: size.height), cornerRadius: 14)
                     context.fill(band, with: .linearGradient(
-                        Gradient(stops: [.init(color: Brand.beam.opacity(0), location: 0), .init(color: Brand.beam.opacity(0.16 * reveal), location: 0.5), .init(color: Brand.beam.opacity(0.064 * reveal), location: 1)]),
+                        Gradient(stops: [.init(color: ink.band.opacity(0), location: 0), .init(color: ink.band.opacity(0.16 * reveal), location: 0.5), .init(color: ink.band.opacity(0.064 * reveal), location: 1)]),
                         startPoint: CGPoint(x: left, y: 0), endPoint: CGPoint(x: left, y: size.height)))
                     var edge = Path()
                     edge.move(to: CGPoint(x: left, y: 0)); edge.addLine(to: CGPoint(x: left, y: size.height))
                     context.stroke(edge, with: .linearGradient(
-                        Gradient(colors: [Brand.beam.opacity(0), Brand.beam.opacity(0.48 * reveal), Brand.beam.opacity(0)]),
+                        Gradient(colors: [ink.band.opacity(0), ink.band.opacity(0.48 * reveal), ink.band.opacity(0)]),
                         startPoint: CGPoint(x: left, y: 0), endPoint: CGPoint(x: left, y: size.height)), lineWidth: 1)
                 }
                 let dotX = size.width - 14
@@ -41,17 +46,17 @@ struct HeroWave: View {
                     if i == 0 { echo.move(to: CGPoint(x: x + 6, y: y(i) + 8)); wave.move(to: CGPoint(x: x, y: y(i))) }
                     else { echo.addLine(to: CGPoint(x: x + 6, y: y(i) + 8)); wave.addLine(to: CGPoint(x: x, y: y(i))) }
                 }
-                context.stroke(echo, with: .color(Brand.waveEcho.opacity(0.8)), style: StrokeStyle(lineWidth: 3.5, lineCap: .round))
+                context.stroke(echo, with: .color(ink.waveEcho.opacity(0.8)), style: StrokeStyle(lineWidth: 3.5, lineCap: .round))
                 context.stroke(wave, with: .linearGradient(
-                    Gradient(stops: [.init(color: Brand.wave.opacity(0.7), location: 0), .init(color: Brand.wave, location: 0.55), .init(color: Brand.moon, location: 1)]),
+                    Gradient(stops: [.init(color: ink.wave.opacity(0.7), location: 0), .init(color: ink.wave, location: 0.55), .init(color: ink.moon, location: 1)]),
                     startPoint: .zero, endPoint: CGPoint(x: dotX, y: 0)), style: StrokeStyle(lineWidth: 4, lineCap: .round))
                 guard shown == 80 else { return }
                 let dot = CGPoint(x: dotX, y: y(80))
                 context.fill(Path(ellipseIn: CGRect(x: dot.x - 22, y: dot.y - 22, width: 44, height: 44)), with: .radialGradient(
-                    Gradient(colors: [Brand.wave.opacity(0.45), Brand.wave.opacity(0)]), center: dot, startRadius: 0, endRadius: 22))
+                    Gradient(colors: [ink.wave.opacity(0.45), ink.wave.opacity(0)]), center: dot, startRadius: 0, endRadius: 22))
                 let r = 6 + 12 * pulse
-                context.stroke(Path(ellipseIn: CGRect(x: dot.x - r, y: dot.y - r, width: 2 * r, height: 2 * r)), with: .color(Brand.wave.opacity((1 - pulse) * 0.6)), lineWidth: 1.5)
-                context.fill(Path(ellipseIn: CGRect(x: dot.x - 5, y: dot.y - 5, width: 10, height: 10)), with: .color(Brand.moon))
+                context.stroke(Path(ellipseIn: CGRect(x: dot.x - r, y: dot.y - r, width: 2 * r, height: 2 * r)), with: .color(ink.wave.opacity((1 - pulse) * 0.6)), lineWidth: 1.5)
+                context.fill(Path(ellipseIn: CGRect(x: dot.x - 5, y: dot.y - 5, width: 10, height: 10)), with: .color(ink.moon))
             }
         }
         .onAppear { appeared = Date() }
@@ -91,7 +96,7 @@ struct NightBars: View {
             // Wie `BrandColors` auf Android (chartQuiet, chartActive, chartTrack).
             let quiet = scheme == .dark ? Color(hex: 0x4A43A0) : Color(hex: 0xDAD4FA)
             let active = scheme == .dark ? Color(hex: 0xB9AEFF) : Color(hex: 0x7B6CF6)
-            let track = scheme == .dark ? Color(hex: 0x2A2D55) : Color(hex: 0xECE8F5)
+            let track = scheme == .dark ? Color(hex: 0x2A2D55) : Color(hex: 0xF1E7D8)
             for (i, e) in epochs.enumerated() {
                 let h: CGFloat = e.motion.map { 3 + (size.height - 13) * CGFloat($0 / maxMotion) } ?? 3
                 let color = i < unmeasured ? track.opacity(0.35) : e.motion == nil ? track : (i >= epochs.count - 3 ? active : quiet)

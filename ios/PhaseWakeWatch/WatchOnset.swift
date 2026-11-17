@@ -92,7 +92,8 @@ enum WatchOnset {
         let deadline = now.addingTimeInterval(budget)
         // Niedrige Priorität mit Pausen zwischen den Abschnitten (AP2-3): begrenzte Rechenlast, 40-s-Grenze bleibt.
         let motions = await Task.detached(priority: .utility) {
-            LearnRecorder.recordedMotions(start: since, done: [], until: stop, deadline: deadline, pause: LearnRecorder.onsetPause)
+            LearnRecorder.recordedMotions(start: since, done: [], until: stop, deadline: deadline, pause: LearnRecorder.onsetPause,
+                                          kind: .measureStart)
         }.value
         // Puls aus Apple Health dazu (E-5, F-1): Eine ruhige Strecke zählt nur, wenn die Uhr davor und darin getragen wurde;
         // ein Puls bis ``SleepOnset/wornEpochs`` vor dem Beginn zählt für die erste (sonst zählte einer kurz vor «Gute Nacht» nie).

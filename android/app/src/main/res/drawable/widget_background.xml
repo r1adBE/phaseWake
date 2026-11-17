@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Hintergrund des Widgets: Verlauf widget_top → widget_bottom (hell: Creme → Lavendel, dunkel: Nachthimmel,
+    Hintergrund des Widgets: Verlauf widget_top → widget_bottom (hell: Caramel hell → Caramel wie der Tageshimmel, dunkel: Nachthimmel,
     folgt dem Design des Systems), runde Ecken wie die Karten.
 -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">

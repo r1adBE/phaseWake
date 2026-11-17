@@ -78,6 +78,9 @@
     <string name="settings_theme_system">Жүйелік</string>
     <string name="settings_theme_light">Ашық</string>
     <string name="settings_theme_dark">Қараңғы</string>
+    <string name="settings_evening_dark">Кешке қараңғы</string>
+    <string name="settings_evening_dark_text">Қараңғы: %1$s – %2$s, Жүйелік не Ашық таңдалса да.</string>
+    <string name="settings_evening_dark_from">Қараңғы басталуы</string>
     <string name="settings_data">Деректерің</string>
     <string name="settings_data_text">Бәрі телефоныңда және сағатыңда қалады. Аккаунт жоқ, сервер жоқ, бақылау жоқ. Google-дың сағат байланысы арқылы тек сағаттың техникалық мәліметтері өтеді, денсаулық деректерінсіз.</string>
     <string name="settings_export">Түндерді есімсіз экспорттау</string>
@@ -87,10 +90,10 @@
     <string name="settings_licenses">Лицензиялар</string>
     <string name="settings_licenses_text">Phase Wake: MIT лицензиясы, © r1adBE.\nManrope қарпі: SIL Open Font License 1.1, © The Manrope Project Authors.\nДыбыстарды тану: MediaPipe Tasks Audio және YAMNet моделі, Apache License 2.0, © Google LLC.\nДыбыстар: opengameart.org сайтындағы еркін жазбалар (CC0)</string>
     <string name="settings_version">Нұсқа %1$s</string>
-    <string name="duration_minutes">%1$d мин</string>
-    <string name="duration_hours">%1$d сағ</string>
-    <string name="duration_hours_half">%1$d½ сағ</string>
-    <string name="duration_hours_minutes">%1$d сағ %2$d мин</string>
+    <string name="duration_minutes">%1$d мин</string>
+    <string name="duration_hours">%1$d сағ</string>
+    <string name="duration_hours_half">%1$d½ сағ</string>
+    <string name="duration_hours_minutes">%1$d сағ %2$d мин</string>
     <string name="health_title">Health Connect-тен ұйқы фазалары</string>
     <string name="health_rationale">Phase Wake денсаулық қолданбаң (мысалы, Samsung Health) сақтайтын ұйқы деректерін оқи алады. Олар тарихыңда көрсетіледі, сондай-ақ Phase Wake сені оятқан түндермен салыстыру үшін. Phase Wake тек оқиды, ешқашан жазбайды, ешнәрсе телефоныңнан шықпайды.</string>
     <string name="health_connect">Денсаулық деректерімен салыстыру</string>
@@ -270,7 +273,7 @@
         <item quantity="other">Ұйқы мақсатына жетті: %2$d түннің %1$d</item>
     </plurals>
     <string name="bedtime_title">Ұйқыға жату еске салғышы</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">Ұйқыға жатуға %1$d мин қалғанда еске салады: оятқыш уақыты минус ұйқы мақсаты.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">Ұйқыға жатуға %1$d мин қалғанда еске салады: мақсатты уақыт минус ұйқы мақсаты.</string>
     <string name="bedtime_notification">Ұйқыға жату: %1$s – сонда %3$s оятқышына дейін %2$s ұйықтайсың.</string>
     <string name="channel_reminders">Еске салғыштар</string>
     <string name="sounds_title">Ұйқы дыбыстары</string>
@@ -542,7 +545,7 @@
     <string name="learned_latency">Ұйықтап кету: шамамен %1$s</string>
     <string name="learned_latency_none">Ұйықтап кету: өлшем тым аз</string>
     <string name="bedtime_advice">Бүгін %1$s мен %2$s аралығында жат</string>
-    <string name="bedtime_advice_hint">Оятқышыңа, ұйқы мақсатыңа және ұйықтап кетуге кететін уақытқа қарай.</string>
+    <string name="bedtime_advice_hint">Мақсатты уақытыңа, ұйқы мақсатыңа және ұйықтап кетуге кететін уақытқа қарай.</string>
     <string name="learn_restart">Қайта үйрену</string>
     <string name="learn_restart_text">Phase Wake қайтадан %1$d түн өлшейді. Оған дейін осы уақытқа дейін бейімделген мәндер қолданылады.</string>
     <string name="record_end_wake">Оятқанда аяқталды</string>
@@ -624,7 +627,7 @@
     <string name="finding_title">Соңғы 7 түнде байқалғаны</string>
     <string name="finding_hide">Жасыру</string>
     <string name="finding_latency">Ұйықтап кетуге орта есеппен %1$s кетті. Кеңес: 20 минуттан кейін әлі ояу болсаң, тұрып, ұйқың келгенде ғана төсекке орал. Бұл апталап созылса, дәрігеріңмен сөйлес.</string>
-    <string name="finding_short_nights">6 сағаттан қысқа түндер: 7-нің %1$d-і. Кеңес: ұйықтау уақытын ояну уақытынан кері есепте және соны ұстан.</string>
+    <string name="finding_short_nights">6 сағаттан қысқа түндер: 7-нің %1$d-і. Кеңес: ұйықтау уақытын мақсатты уақыттан кері есепте және соны ұстан.</string>
     <string name="finding_low_deep">Терең ұйқы ұйқыңның тек шамамен %1$d %% болды (әдетте %2$d–%3$d %%).</string>
     <string name="finding_deep_short">6 сағаттан қысқа түндерде ол айтарлықтай аз болды: %2$d %% орнына %1$d %%.</string>
     <string name="finding_deep_late">Кеш жатқан түндерде ол айтарлықтай аз болды: %2$d %% орнына %1$d %%.</string>

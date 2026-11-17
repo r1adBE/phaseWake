@@ -78,6 +78,9 @@ extension BackupAlarm {
     /// (wie Android ohne bereite Uhr).
     nonisolated static var grace: TimeInterval { watchPresent ? watchGrace : 0 }
 
+    /// ``grace`` nach den Einstellungen dieses Zweitweckers (in der App dieselben, ``SettingsFile/phone``).
+    var currentGrace: TimeInterval { settings.bool(forKey: Self.watchPresentKey) ? Self.watchGrace : 0 }
+
     /// Neuer Stand der Kopplung (aktiviert, Uhr gewechselt, App auf der Uhr installiert oder entfernt): merken und
     /// bei einer Änderung neu planen. Von jedem Thread aus.
     nonisolated static func noteWatchState(_ session: WCSession) {
@@ -96,10 +99,10 @@ extension BackupAlarm {
     /// Die gestellten Zweitwecker (auch schon geklingelte der letzten Stunde).
     var plannedBackups: [PlannedBackup] {
         get {
-            guard let data = SettingsFile.phone.data(forKey: Self.plannedKey) else { return [] }
+            guard let data = settings.data(forKey: Self.plannedKey) else { return [] }
             return (try? JSONDecoder().decode([PlannedBackup].self, from: data)) ?? []
         }
-        set { SettingsFile.phone.set(try? JSONEncoder().encode(newValue), forKey: Self.plannedKey) }
+        set { settings.set(try? JSONEncoder().encode(newValue), forKey: Self.plannedKey) }
     }
 
     /// Gleicht die gestellten Sicherungen mit `wanted` ab: Gleiche, noch vorhandene bleiben (samt ihrer Zone; eine
@@ -168,10 +171,10 @@ extension BackupAlarm {
             notes.slots += 1
             if count >= NotificationChain.count { notes.chained += 1 }
         }
-        SettingsFile.phone.set(TimeZone.current.identifier, forKey: Self.zoneKey)
+        settings.set(TimeZone.current.identifier, forKey: Self.zoneKey)
         pruneRingNights()
         guard notes.slots + notes.dropped > 0 else { return }
-        let total = await UNUserNotificationCenter.current().pendingNotificationRequests().count
+        let total = await platform.pendingNotifications().count
         DiagStore.shared.log(.scheduled, "backup notifications \(notes.slots) slots, \(notes.chained) chained, "
                              + "\(notes.dropped) without room, pending \(total)")
     }
@@ -188,7 +191,7 @@ extension BackupAlarm {
     func horizonShort(_ alarms: [AlarmSpec], now: Date = Date()) async -> Bool {
         await settled()
         let eligible = alarms.filter(\.phoneBackup)
-        let holidays = PhoneModel.shared.holidays.dates
+        let holidays = host.holidayDates
         let suppressed = suppressedUntil()
         func hasPlan(_ specs: [AlarmSpec], after from: Date) -> Bool {
             AlarmSchedule.earliestPlan(specs, now: from, doneUntil: suppressed, calendar: .gregorianLocal, holidays: holidays) != nil
@@ -207,38 +210,20 @@ extension BackupAlarm {
     /// der gemerkten Sicherungen (für `NotificationBudget`). Scheitert das Lesen der AlarmKit-Alarme, folgt nach
     /// `ReadRetry.pause` ein zweiter Versuch; scheitert auch er, fehlen sie hier und `apply` stellt sie neu.
     private func pendingState() async -> (present: Set<UUID>, notes: [UUID: Set<String>], otherNotes: Int) {
-        var present = Set<UUID>()
-        #if canImport(AlarmKit)
-        if #available(iOS 26.0, *) {
-            var attempt = 1
-            while true {
-                do {
-                    let alarms = try AlarmManager.shared.alarms
-                    present.formUnion(alarms.map(\.id))
-                    if attempt > 1 { DiagStore.shared.log(.scheduled, ReadRetry.recoveredLine("alarmkit list", attempt: attempt)) }
-                    break
-                } catch {
-                    DiagStore.shared.log(.error, ReadRetry.failureLine("alarmkit list", attempt: attempt, code: (error as NSError).code))
-                    guard ReadRetry.retries(after: attempt) else { break }
-                    try? await Task.sleep(for: .seconds(ReadRetry.pause))
-                    attempt += 1
-                }
-            }
-        }
-        #endif
-        let requests = await UNUserNotificationCenter.current().pendingNotificationRequests()
+        var present = await platform.alarmKitIds()
+        let requests = await platform.pendingNotifications()
         let backups = Set(plannedBackups.map(\.id))
         var notes: [UUID: Set<String>] = [:]
         var other = 0
         for request in requests {
             // Vor iOS 26 eine Kette aus Mitteilungen: Steht noch eine davon, gilt die Sicherung als gestellt.
-            guard let id = UUID(uuidString: NotificationChain.baseId(request.identifier)) else {
+            guard let id = UUID(uuidString: NotificationChain.baseId(request.id)) else {
                 other += 1
                 continue
             }
             present.insert(id)
             if backups.contains(id) {
-                notes[id, default: []].insert(request.identifier)
+                notes[id, default: []].insert(request.id)
             } else {
                 other += 1
             }
@@ -257,20 +242,16 @@ extension BackupAlarm {
     /// doppelt oder nach dem Ausschalten des Weckers. Jede eigene Kennung wird gemerkt, bevor ihr Alarm gestellt wird;
     /// `apply` läuft nur mit gelesenem Stand (`reschedule`). Ein klingelnder oder laufender Alarm bleibt.
     private func cancelOrphans() {
-        #if canImport(AlarmKit)
-        if #available(iOS 26.0, *) {
-            guard let alarms = try? AlarmManager.shared.alarms else { return }
-            let found = Self.orphans(scheduled: alarms.filter { $0.state == .scheduled }.map(\.id), known: Set(activeIds))
-            for id in found { cancelAlarm(id) }
-            if !found.isEmpty { DiagStore.shared.log(.scheduled, "alarmkit unknown alarms cancelled \(found.count)") }
-        }
-        #endif
+        guard let scheduled = platform.scheduledAlarmKitIds() else { return }
+        let found = Self.orphans(scheduled: scheduled, known: Set(activeIds))
+        for id in found { cancelAlarm(id) }
+        if !found.isEmpty { DiagStore.shared.log(.scheduled, "alarmkit unknown alarms cancelled \(found.count)") }
     }
 
     /// Bis Version 16.2 nur Kennungen ohne Nacht gemerkt: einmal alle verwerfen, danach gilt `plannedBackups`.
     private func cancelLegacyBackups() async {
-        guard let ids = SettingsFile.phone.stringArray(forKey: Self.legacyIdsKey) else { return }
-        SettingsFile.phone.removeObject(forKey: Self.legacyIdsKey)
+        guard let ids = settings.stringArray(forKey: Self.legacyIdsKey) else { return }
+        settings.removeObject(forKey: Self.legacyIdsKey)
         for id in ids.compactMap(UUID.init(uuidString:)) { cancelAlarm(id) }
     }
 
@@ -279,7 +260,7 @@ extension BackupAlarm {
     /// Beim Start der App (auch im Hintergrund): Seit dem letzten Planen die Zeitzone gewechselt (Reise, App nicht
     /// offen), dann neu planen. AlarmKit-Alarme stehen auf festen Zeitpunkten und folgen der Ortszeit sonst nicht.
     func replanIfZoneChanged(_ alarms: [AlarmSpec]) async {
-        guard let planned = SettingsFile.phone.string(forKey: Self.zoneKey), planned != TimeZone.current.identifier else { return }
+        guard let planned = settings.string(forKey: Self.zoneKey), planned != TimeZone.current.identifier else { return }
         DiagStore.shared.log(.scheduled, "time zone changed since planning")
         await reschedule(alarms)
     }
@@ -300,10 +281,10 @@ extension BackupAlarm {
 
     private var ringNights: [String: RingNight] {
         get {
-            guard let data = SettingsFile.phone.data(forKey: Self.ringNightsKey) else { return [:] }
+            guard let data = settings.data(forKey: Self.ringNightsKey) else { return [:] }
             return (try? JSONDecoder().decode([String: RingNight].self, from: data)) ?? [:]
         }
-        set { SettingsFile.phone.set(try? JSONEncoder().encode(newValue), forKey: Self.ringNightsKey) }
+        set { settings.set(try? JSONEncoder().encode(newValue), forKey: Self.ringNightsKey) }
     }
 
     /// Behält nur die Nächte der Alarme, die noch gemerkt sind.

@@ -35,10 +35,19 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
     private val capabilityClient by lazy { Wearable.getCapabilityClient(app) }
     private val outbox by lazy { Outbox.forContext(app) }
     private val received by lazy { ReceivedIds.forContext(app) }
+    private val ackedContent by lazy { AckedContent.forContext(app) }
 
-    /** Wecker an die Gegenseite (Warteschlange). */
-    suspend fun publishAlarms(snapshot: AlarmSnapshot) = guarded("Wecker senden") {
-        outbox.enqueue(QueueMessages.KEY_ALARMS, DataLayer.PATH_MSG_ALARMS, peer, QueueMessages.encodeAlarms(snapshot))
+    /**
+     * Wecker an die Gegenseite (Warteschlange). [unlessAcked]: beim Prozessstart (Audit AN-1, PERF-06) nur, wenn der Stand
+     * nicht schon bestätigt ist ([enqueueIfChanged]).
+     */
+    suspend fun publishAlarms(snapshot: AlarmSnapshot, unlessAcked: Boolean = false) = guarded("Wecker senden") {
+        put(QueueMessages.KEY_ALARMS, DataLayer.PATH_MSG_ALARMS, QueueMessages.encodeAlarms(snapshot), unlessAcked)
+    }
+
+    /** Ein Zustand an die Gegenseite; [unlessAcked] siehe [publishAlarms]. */
+    private suspend fun put(key: String, path: String, body: String, unlessAcked: Boolean) {
+        if (unlessAcked) outbox.enqueueIfChanged(ackedContent, key, path, peer, body) else outbox.enqueue(key, path, peer, body)
     }
 
     /** Sendet die wartenden Einträge der Warteschlange erneut (Gegenseite erreichbar, App-Start). */
@@ -46,6 +55,18 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
 
     /** Bittet die Gegenseite, ihren aktuellen Stand einzureihen ([DataLayer.PATH_SYNC_REQUEST]). */
     suspend fun requestSync() = message(peer, DataLayer.PATH_SYNC_REQUEST)
+
+    /**
+     * Wie [requestSync], beim Prozessstart aber höchstens alle 30 Min ([SyncGate], Audit PERF-06); gemerkt wird nur
+     * eine Anfrage, die ein Gerät erreicht hat.
+     */
+    suspend fun requestSyncOnStart(gate: SyncGate = SyncGate.forContext(app)) {
+        if (!gate.due()) {
+            Log.i(TAG, "Stand der Gegenseite vor weniger als 30 Min angefragt, nicht erneut")
+            return
+        }
+        if (sendMessage(peer, DataLayer.PATH_SYNC_REQUEST) > 0) gate.mark()
+    }
 
     /**
      * Empfangene Nachricht der Warteschlange von [node]: [handle] verarbeitet den Text; gelingt das (kein Fehler),
@@ -95,10 +116,13 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
         }
     }
 
-    /** Bestätigung der Gegenseite ([DataLayer.PATH_ACK]): Eintrag aus der Warteschlange entfernen. */
+    /**
+     * Bestätigung der Gegenseite ([DataLayer.PATH_ACK]): Eintrag aus der Warteschlange entfernen und seinen Inhalt als
+     * bestätigt merken ([AckedContent], für [publishAlarms] mit `unlessAcked`).
+     */
     suspend fun acked(data: ByteArray?) {
         val id = DataLayer.text(data).takeIf { it.isNotEmpty() } ?: return
-        outbox.acked(id)
+        outbox.ackedAndRemember(ackedContent, id)
     }
 
     /**
@@ -206,14 +230,14 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
         outbox.enqueue(QueueMessages.KEY_HOLIDAYS, DataLayer.PATH_MSG_HOLIDAYS, peer, "$updatedAt\n${Holidays.encode(list)}")
     }
 
-    /** Handy: Schlafziel ([minutes]) mit Zeitpunkt der Änderung an die Uhren, wie die Feiertage. */
-    suspend fun publishSleepGoal(minutes: Int, updatedAt: Long) = guarded("Schlafziel senden") {
-        outbox.enqueue(QueueMessages.KEY_SLEEP_GOAL, DataLayer.PATH_MSG_SLEEP_GOAL, peer, "$minutes|$updatedAt")
+    /** Handy: Schlafziel ([minutes]) mit Zeitpunkt der Änderung an die Uhren, wie die Feiertage; [unlessAcked] wie bei [publishAlarms]. */
+    suspend fun publishSleepGoal(minutes: Int, updatedAt: Long, unlessAcked: Boolean = false) = guarded("Schlafziel senden") {
+        put(QueueMessages.KEY_SLEEP_GOAL, DataLayer.PATH_MSG_SLEEP_GOAL, "$minutes|$updatedAt", unlessAcked)
     }
 
     /** Handy: Schalter der Einschlaf-Messung am Abend mit Zeitpunkt der Änderung an die Uhren, wie das Schlafziel. */
-    suspend fun publishAutoOnset(enabled: Boolean, updatedAt: Long) = guarded("Einschlaf-Messung senden") {
-        outbox.enqueue(QueueMessages.KEY_AUTO_ONSET, DataLayer.PATH_MSG_AUTO_ONSET, peer, "${if (enabled) 1 else 0}|$updatedAt")
+    suspend fun publishAutoOnset(enabled: Boolean, updatedAt: Long, unlessAcked: Boolean = false) = guarded("Einschlaf-Messung senden") {
+        put(QueueMessages.KEY_AUTO_ONSET, DataLayer.PATH_MSG_AUTO_ONSET, "${if (enabled) 1 else 0}|$updatedAt", unlessAcked)
     }
 
     /**
@@ -235,15 +259,27 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
      * Frist ([CAPABILITY_TIMEOUT_MS], Befund 13.11.2026): Antworten die Wear-Dienste nicht, wird nicht gesendet und
      * protokolliert, statt dass der Aufrufer (z. B. «klingeln» ans Handy) unbegrenzt wartet.
      */
-    suspend fun message(capability: String, path: String, payload: ByteArray = ByteArray(0)) = guarded("Nachricht $path") {
-        val nodes = withTimeoutOrNull(CAPABILITY_TIMEOUT_MS) {
-            capabilityClient.getCapability(capability, CapabilityClient.FILTER_REACHABLE).await().nodes
+    suspend fun message(capability: String, path: String, payload: ByteArray = ByteArray(0)) {
+        sendMessage(capability, path, payload)
+    }
+
+    /** [message]; @return Zahl der Geräte, die die Nachricht erhalten haben. */
+    private suspend fun sendMessage(capability: String, path: String, payload: ByteArray = ByteArray(0)): Int {
+        var sent = 0
+        guarded("Nachricht $path") {
+            val nodes = withTimeoutOrNull(CAPABILITY_TIMEOUT_MS) {
+                capabilityClient.getCapability(capability, CapabilityClient.FILTER_REACHABLE).await().nodes
+            }
+            if (nodes == null) {
+                Log.w(TAG, "Nachricht $path nicht gesendet: keine Geräte innert $CAPABILITY_TIMEOUT_MS ms")
+                return@guarded
+            }
+            for (node in nodes) {
+                messageClient.sendMessage(node.id, path, payload).await()
+                sent++
+            }
         }
-        if (nodes == null) {
-            Log.w(TAG, "Nachricht $path nicht gesendet: keine Geräte innert $CAPABILITY_TIMEOUT_MS ms")
-            return@guarded
-        }
-        for (node in nodes) messageClient.sendMessage(node.id, path, payload).await()
+        return sent
     }
 
     /**

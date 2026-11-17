@@ -65,8 +65,6 @@ class HealthHistoryTest {
         assertEquals(listOf(oct31), HealthHistory.merge(emptyList(), listOf(lateNight), null, zone).map { it.date })
         // Diagramme: dasselbe Nachtdatum, dieselbe Dauer ("today" = Nachtdatum am Morgen des 2. November).
         val today = oct31.plusDays(1)
-        val durations = ChartData.durations(sleeps, zone, today, goalMinutes = 480)!!
-        assertEquals(oct31 to 570L, durations.bars.last().let { it.date to it.asleepMinutes })
         val bars = ChartData.sleepBars(sleeps, zone, today, nextTarget = null, goalMinutes = 480)!!
         assertEquals(oct31, bars.bars.last().date)
         assertTrue(bars.bars.last().hasData)

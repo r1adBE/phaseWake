@@ -15,9 +15,45 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Audit 17.11., PERF-01: Nach einem Fast-Forward auf main ist der Stand meist schon auf seinem Arbeitszweig grün
+  # gelaufen. Dann überspringt main die schweren Jobs (übersprungene Jobs gelten bei verlangten Prüfungen als
+  # erfüllt), und die Testversion übernimmt die APKs jenes Laufs. Gezählt werden nur Push-Läufe: Sie prüfen genau
+  # diesen Commit (ein PR-Lauf prüft den Merge mit main).
+  vorab:
+    name: Schon geprüft?
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: read
+    outputs:
+      done: ${{ steps.check.outputs.done }}
+    steps:
+      - name: Grüner Lauf für diesen Commit?
+        id: check
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          if [ "$GITHUB_EVENT_NAME" != push ] || [ "$GITHUB_REF" != refs/heads/main ]; then echo "done=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          # Kann die Abfrage nicht laufen, wird geprüft (nie still übersprungen).
+          ok=$(gh api "repos/$REPO/actions/workflows/ci.yml/runs?head_sha=$SHA&event=push&status=success&per_page=1" --jq '.total_count' || echo 0)
+          if [ "${ok:-0}" -ge 1 ]; then
+            echo "::notice title=CI::$SHA ist schon grün gelaufen (Arbeitszweig): Tests und Builds hier übersprungen"
+            echo "done=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "done=false" >> "$GITHUB_OUTPUT"
+          fi
+
   android:
     name: Android (Kern, Handy, Uhr)
+    needs: vorab
+    if: needs.vorab.outputs.done != 'true'
     runs-on: ubuntu-latest
+    # Ein hängender Build bricht ab statt den Lauf bis zu 6 Std. zu blockieren (Audit 17.11., PERF-02).
+    timeout-minutes: 45
     defaults:
       run:
         working-directory: android
@@ -42,7 +78,16 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          ./gradlew --stacktrace --continue :core:test :core:jacocoTestReport :shared:testDebugUnitTest :shared:createDebugUnitTestCoverageReport :app:testDebugUnitTest :app:createDebugUnitTestCoverageReport :wear:testDebugUnitTest :wear:createDebugUnitTestCoverageReport :app:assembleDebug :wear:assembleDebug :app:assembleRelease :wear:assembleRelease :app:lintDebug :wear:lintDebug 2>&1 | tee build.log
+          ./gradlew --stacktrace --continue :core:test :core:jacocoTestReport :shared:testDebugUnitTest :shared:createDebugUnitTestCoverageReport :app:testDebugUnitTest :app:createDebugUnitTestCoverageReport :wear:testDebugUnitTest :wear:createDebugUnitTestCoverageReport :app:assembleRelease :wear:assembleRelease :app:lintDebug :wear:lintDebug 2>&1 | tee build.log
+      - name: Testversion-APKs bauen
+        shell: bash
+        env:
+          # Build-Nummer wie in «Testversion» (übernimmt die APKs, PERF-01). Eigener Aufruf: Die Nummer steht im
+          # Manifest, die Unit-Tests oben behalten so ihre Einträge im Build-Cache.
+          PHASEWAKE_BUILD: ${{ github.run_number }}
+        run: |
+          set -o pipefail
+          ./gradlew --stacktrace :app:assembleDebug :wear:assembleDebug 2>&1 | tee -a build.log
       - name: Store-Build prüfen
         run: python3 ../.github/scripts/release_check.py
       - name: Schwachstellen der Abhängigkeiten (OSV)
@@ -60,6 +105,23 @@ jobs:
           python3 ../.github/scripts/coverage_check.py "Handy Zweitwecker (ring)" 70 --package com/phasewake/app/ring "$app_report"
           python3 ../.github/scripts/coverage_check.py "Uhr Wecken (wake)" 70 --package com/phasewake/app/wear/wake "$wear_report"
           python3 ../.github/scripts/coverage_check.py "Uhr Planen (schedule)" 70 --package com/phasewake/app/wear/schedule "$wear_report"
+      # Nur Push-Läufe (keine Pull Requests) und nur, wenn bis hier alles grün ist; `testversion.yml` übernimmt sie.
+      - name: Testversion-APKs ablegen
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ../dist
+          cp app/build/outputs/apk/debug/app-debug.apk ../dist/PhaseWake-Handy.apk
+          cp wear/build/outputs/apk/debug/wear-debug.apk ../dist/PhaseWake-Uhr.apk
+          echo "${{ github.run_number }}" > ../dist/build-number.txt
+      - if: github.event_name == 'push'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: testversion-apks
+          path: dist/
+          retention-days: 3
+          if-no-files-found: error
       - name: Fehler als Annotation
         if: failure()
         shell: bash
@@ -102,6 +164,8 @@ jobs:
 
   secrets:
     name: Geheimnisse (gitleaks)
+    needs: vorab
+    if: needs.vorab.outputs.done != 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -128,7 +192,11 @@ jobs:
 
   apple-core:
     name: Apple-Kern (Swift)
+    needs: vorab
+    if: needs.vorab.outputs.done != 'true'
     runs-on: macos-latest
+    # Wie die übrigen Jobs mit Frist (Audit 17.11., PERF-02).
+    timeout-minutes: 30
     defaults:
       run:
         working-directory: ios/PhaseWakeCore
@@ -159,7 +227,11 @@ jobs:
 
   apple-app:
     name: Apple-Apps (iPhone, Watch)
+    needs: vorab
+    if: needs.vorab.outputs.done != 'true'
     runs-on: macos-latest
+    # Ein hängender Build bricht ab statt den Lauf bis zu 6 Std. zu blockieren (Audit 17.11., PERF-02).
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Neuestes Xcode wählen (keine Beta)
@@ -183,20 +255,6 @@ jobs:
             echo "::error title=SDK::AlarmKit fehlt im iOS-SDK $sdk"; exit 1
           fi
           echo "iOS-SDK $sdk mit AlarmKit ($selected)"
-      - name: iPhone-App (mit eingebetteter Watch-App) bauen
-        shell: bash
-        run: |
-          set -o pipefail
-          xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWake \
-            -destination 'generic/platform=iOS Simulator' \
-            CODE_SIGNING_ALLOWED=NO build > build.log 2>&1
-      - name: Watch-App einzeln bauen
-        shell: bash
-        run: |
-          set -o pipefail
-          xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWakeWatch \
-            -destination 'generic/platform=watchOS Simulator' \
-            CODE_SIGNING_ALLOWED=NO build >> build.log 2>&1
       - name: Simulatoren für die Tests wählen
         shell: bash
         run: |
@@ -225,6 +283,23 @@ jobs:
           fi
           echo "PHONE_SIM=$phone" >> "$GITHUB_ENV"
           echo "WATCH_SIM=$watch" >> "$GITHUB_ENV"
+      # Je Schema einmal für den gewählten Simulator bauen (Audit 17.11., PERF-02): das iPhone-Schema baut die eingebettete
+      # Watch-App mit, das Watch-Schema die Watch-App einzeln. Die Tests laufen danach ohne neuen Build.
+      - name: iPhone-App (mit eingebetteter Watch-App) bauen
+        shell: bash
+        run: |
+          set -o pipefail
+          # Mit Abdeckung (Audit 17.11., CODE-01): Schwelle für den iPhone-Zweitwecker nach den Tests.
+          xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWake -destination "id=$PHONE_SIM" \
+            -derivedDataPath build/DerivedData -enableCodeCoverage YES \
+            CODE_SIGNING_ALLOWED=NO build-for-testing > build.log 2>&1
+      - name: Watch-App einzeln bauen
+        shell: bash
+        run: |
+          set -o pipefail
+          xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWakeWatch -destination "id=$WATCH_SIM" \
+            -derivedDataPath build/DerivedData \
+            CODE_SIGNING_ALLOWED=NO build-for-testing >> build.log 2>&1
       # Unit-Tests der Apps (Audit F-03), in der App als Testwirt: Lernphase, Export, Nacht-Check, Widget-Stand (iPhone);
       # Aufzeichnung, Erinnerung am Abend, Smart Alarm, Einschlafzeit (Uhr).
       - name: Tests iPhone-App
@@ -236,10 +311,20 @@ jobs:
           # Ergebnisbündel an festem Ort (bei Zeitüberschreitung mit Stack-Sample), im Fehlerfall hochgeladen.
           rm -rf build/phone.xcresult
           xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWake -destination "id=$PHONE_SIM" \
-            -resultBundlePath build/phone.xcresult \
+            -derivedDataPath build/DerivedData -resultBundlePath build/phone.xcresult -enableCodeCoverage YES \
             -test-timeouts-enabled YES -default-test-execution-time-allowance 60 -maximum-test-execution-time-allowance 120 \
-            CODE_SIGNING_ALLOWED=NO test >> build.log 2>&1
+            CODE_SIGNING_ALLOWED=NO test-without-building >> build.log 2>&1
           grep -E "Executed [0-9]+ tests?" build.log | tail -1 | sed 's/^/::notice title=Tests iPhone-App::/'
+      - name: Abdeckung iPhone-Zweitwecker
+        shell: bash
+        run: |
+          set -o pipefail
+          # Je Datei eine Schwelle (Begründung: docs/ENTWICKLUNG.md, Abschnitt 4). Die Karte «Schlummern bis …» ist
+          # Oberfläche und zählt nicht.
+          xcrun xccov view --report --json build/phone.xcresult > build/phone-coverage.json
+          python3 .github/scripts/xccov_check.py "iPhone-Zweitwecker" build/phone-coverage.json --exclude BackupSnoozeCard \
+            ios/PhaseWake/BackupAlarm.swift=65 ios/PhaseWake/BackupAlarm+Plan.swift=50 \
+            ios/PhaseWake/BackupAlarm+Snooze.swift=80 ios/PhaseWake/BackupAlarm+Transient.swift=80
       - name: Tests Watch-App
         shell: bash
         # Ein hängender Test bricht ab statt den Lauf stundenlang zu blockieren (Audit 93: Lauf hing über 78 Minuten).
@@ -248,9 +333,9 @@ jobs:
           set -o pipefail
           rm -rf build/watch.xcresult
           xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWakeWatch -destination "id=$WATCH_SIM" \
-            -resultBundlePath build/watch.xcresult \
+            -derivedDataPath build/DerivedData -resultBundlePath build/watch.xcresult \
             -test-timeouts-enabled YES -default-test-execution-time-allowance 60 -maximum-test-execution-time-allowance 120 \
-            CODE_SIGNING_ALLOWED=NO test >> build.log 2>&1
+            CODE_SIGNING_ALLOWED=NO test-without-building >> build.log 2>&1
           grep -E "Executed [0-9]+ tests?" build.log | tail -1 | sed 's/^/::notice title=Tests Watch-App::/'
       - name: Warnungen (Übersicht)
         if: always()

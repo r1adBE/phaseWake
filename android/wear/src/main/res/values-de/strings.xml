@@ -49,8 +49,8 @@
     <string name="good_night_cancel">Gute Nacht aufheben</string>
     <string name="dnd_title">Wecker blockiert</string>
     <string name="dnd_text">Erlaube Wecker bei «Nicht stören».</string>
-    <string name="duration_hours">%1$d Std.</string>
-    <string name="duration_hours_minutes">%1$d Std. %2$d Min</string>
+    <string name="duration_hours">%1$d Std.</string>
+    <string name="duration_hours_minutes">%1$d Std. %2$d Min</string>
     <string name="home_last_night">Letzte Nacht</string>
     <string name="notification_open">Öffnen</string>
     <string name="home_good_night_too_far">Ab 16 Std. vor dem Wecker möglich</string>

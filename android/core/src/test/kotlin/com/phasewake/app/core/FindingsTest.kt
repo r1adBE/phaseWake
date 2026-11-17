@@ -167,6 +167,17 @@ class FindingsTest {
     }
 
     @Test
+    fun bedtimeCardDefersFindingsWithTheSameTip() {
+        val findings = listOf(Finding(FindingKind.SHORT_NIGHTS, 3), Finding(FindingKind.LOW_DEEP, 11), Finding(FindingKind.BEDTIME_VARIES, 120))
+        val now = at(15, 21)
+        // Ohne Bettzeit-Karte wie bisher die wichtigste; mit ihr tritt der gleiche Tipp zurück (Audit UX-04).
+        assertEquals(FindingKind.SHORT_NIGHTS, Findings.home(findings, emptyMap(), now)?.kind)
+        assertEquals(FindingKind.LOW_DEEP, Findings.home(findings, emptyMap(), now, bedtimeAdvice = true)?.kind)
+        assertNull(Findings.home(listOf(findings[0], findings[2]), emptyMap(), now, bedtimeAdvice = true))
+        assertEquals(setOf(FindingKind.SHORT_NIGHTS, FindingKind.BEDTIME_VARIES), Findings.BEDTIME_TIP)
+    }
+
+    @Test
     fun hiddenEncodesAndDecodes() {
         val hidden = mapOf(FindingKind.BEDTIME_VARIES to Instant.ofEpochMilli(2000), FindingKind.LONG_LATENCY to Instant.ofEpochMilli(1000))
         val text = Findings.encodeHidden(hidden)

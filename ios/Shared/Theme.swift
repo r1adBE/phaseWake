@@ -2,7 +2,8 @@ import CoreText
 import PhaseWakeCore
 import SwiftUI
 
-/// Markenfarben aus dem Logo, identisch zu Android: Farbwelt «Mitternacht & Lavendel».
+/// Markenfarben aus dem Logo, identisch zu Android: dunkel «Mitternacht & Lavendel», hell «Creme Caramel» (Variante
+/// Caramel + Lavendel, Entscheid r1AD 17.11.2026: Fläche Creme, Lavendel Hauptakzent, Caramel sparsamer Zweitakzent).
 enum Brand {
     static let nightTop = Color(hex: 0x141A3D)
     static let nightBottom = Color(hex: 0x070914)
@@ -18,29 +19,40 @@ enum Brand {
     /// Knöpfe und Schalter auf der Uhr (mit warmem Weiss ≥ 4.5:1).
     static let echo = Color(hex: 0x4F45B8)
     static let track = Color(hex: 0x1E2347)
-    static let accentLight = Color(hex: 0x3B3486)
+    /// Hauptfarbe hell: kräftiges Lavendel (Weiss darauf 6.8:1, auf Creme 6.2:1), wie `primary` auf Android.
+    static let accentLight = Color(hex: 0x5546C8)
     static let accentDark = Color(hex: 0xB9AEFF)
-    /// Hintergrund hell: warmes Off-White.
-    static let paper = Color(hex: 0xFBF7F0)
+    /// Hintergrund hell: Creme.
+    static let paper = Color(hex: 0xFBF3E6)
+    /// Schrift hell (wie `onSurface` auf Android).
+    static let ink = Color(hex: 0x2A2340)
+    /// Lavendel für Knöpfe und Text hell (= ``accentLight``); ``glow`` (7B6CF6) ist für Text zu hell (3.6:1).
+    static let lavenderDeep = Color(hex: 0x5546C8)
+    /// Caramel, Zweitakzent für Flächen, Ränder und Sonnenaufgang: auf Creme nur 3.7:1, darum nie für Text.
+    static let caramel = Color(hex: 0xB86B25)
+    /// Caramel für Text (Tertiär): 6.2:1 auf Creme, 6.7:1 auf der Karte.
+    static let caramelText = Color(hex: 0x8A4A10)
+    /// Helles Caramel: oberer Tageshimmel, gewählte Chips.
+    static let caramelLight = Color(hex: 0xF4E4CC)
 
     /// Hauptfarbe je Modus: hell Indigo, dunkel Lavendel.
     static func accent(_ scheme: ColorScheme) -> Color { scheme == .dark ? accentDark : accentLight }
     /// Schrift auf der Hauptfarbe (Knopf «Neuer Wecker»).
     static func onAccent(_ scheme: ColorScheme) -> Color { scheme == .dark ? nightTop : .white }
-    /// Karten: dunkel Weiss mit 6 % auf dem Nachthimmel, hell weiss.
-    static func card(_ scheme: ColorScheme) -> Color { scheme == .dark ? .white.opacity(0.06) : .white }
-    /// Rand eines nicht gewählten Chips, ≥ 3:1 zur Karte (WCAG 1.4.11): hell 90 % ≈ 3.4:1 auf Weiss,
+    /// Karten: dunkel Weiss mit 6 % auf dem Nachthimmel, hell warmes Weiss FFFCF7.
+    static func card(_ scheme: ColorScheme) -> Color { scheme == .dark ? .white.opacity(0.06) : Color(hex: 0xFFFCF7) }
+    /// Rand eines nicht gewählten Chips, ≥ 3:1 zur Karte (WCAG 1.4.11): hell 90 % ≈ 3.3:1 auf der Karte,
     /// dunkel 75 % ≈ 4.7:1 auf der Karte über dem Nachthimmel (≈ 3.2:1 im Lavendel-Schein oben rechts).
     static func chipBorder(_ scheme: ColorScheme) -> Color { scheme == .dark ? wave.opacity(0.75) : glow.opacity(0.9) }
     /// Umriss von Bedienelementen (wie Material `outline` auf Android), ≥ 3:1 zu Karte und Hintergrund
-    /// (WCAG 1.4.11): dunkel 726EA4 ≈ 3.5:1 auf der Karte, hell 8C87A8 ≈ 3.4:1 auf Weiss.
-    static func outline(_ scheme: ColorScheme) -> Color { scheme == .dark ? Color(hex: 0x726EA4) : Color(hex: 0x8C87A8) }
-    /// Fläche eines gewählten Chips.
-    static func chipSelected(_ scheme: ColorScheme) -> Color { scheme == .dark ? wave.opacity(0.25) : Color(hex: 0xE4DFFB) }
-    /// Leiser Nebentext (Erklärung), ≥ 4.5:1.
-    static func secondaryText(_ scheme: ColorScheme) -> Color { scheme == .dark ? Brand.muted : Color(hex: 0x5C5876) }
-    /// Zusatzinfo, eine Stufe leiser: dunkel 80 %, hell ein fester Ton (80 % wäre auf Hell < 4.5:1).
-    static func tertiaryText(_ scheme: ColorScheme) -> Color { scheme == .dark ? Brand.muted.opacity(0.8) : Color(hex: 0x6A6684) }
+    /// (WCAG 1.4.11): dunkel 726EA4 ≈ 3.5:1 auf der Karte, hell 857A8E ≈ 4.0:1 auf der Karte, 3.7:1 auf Creme.
+    static func outline(_ scheme: ColorScheme) -> Color { scheme == .dark ? Color(hex: 0x726EA4) : Color(hex: 0x857A8E) }
+    /// Fläche eines gewählten Chips: hell helles Caramel (Zweitakzent).
+    static func chipSelected(_ scheme: ColorScheme) -> Color { scheme == .dark ? wave.opacity(0.25) : caramelLight }
+    /// Leiser Nebentext (Erklärung), ≥ 4.5:1 (hell 6.3:1 auf Creme).
+    static func secondaryText(_ scheme: ColorScheme) -> Color { scheme == .dark ? Brand.muted : Color(hex: 0x5E5670) }
+    /// Zusatzinfo, eine Stufe leiser: dunkel 80 %, hell ein fester Ton (5.4:1 auf Creme; 80 % wäre < 4.5:1).
+    static func tertiaryText(_ scheme: ColorScheme) -> Color { scheme == .dark ? Brand.muted.opacity(0.8) : Color(hex: 0x6A5F74) }
     /// Kartenradius überall.
     static let cardRadius: CGFloat = 22
 }
@@ -49,8 +61,8 @@ enum Brand {
 /// Klar verschiedene Farbtöne und Helligkeiten, für Deuteranopie, Protanopie und Tritanopie simuliert (ΔE76 ≥ 24),
 /// je ≥ 3:1 zur Karte (WCAG 1.4.11). Nie allein: Stufenhöhe und Beschriftung tragen die Information.
 enum StageColors {
-    /// Phasenfarbe: Wach Koralle, REM Türkis, Leicht Lavendel (Marke), Tief Indigo. Hell auf Weiss: CF4F3A 4.35:1,
-    /// 0E8C9E 3.99:1, 7B6CF6 3.95:1, 2F2A85 11.7:1; dunkel auf der Karte: FF8F85 7.6:1, 6FF2E6 12.4:1, B9AEFF 8.4:1, 6F5CF0 3.6:1.
+    /// Phasenfarbe: Wach Koralle, REM Türkis, Leicht Lavendel (Marke), Tief Indigo. Hell auf der Karte FFFCF7: CF4F3A 4.3:1,
+    /// 0E8C9E 3.9:1, 7B6CF6 3.9:1, 2F2A85 11.5:1; dunkel auf der Karte: FF8F85 7.6:1, 6FF2E6 12.4:1, B9AEFF 8.4:1, 6F5CF0 3.6:1.
     static func color(_ stage: SleepStage, _ scheme: ColorScheme) -> Color {
         let dark = scheme == .dark
         switch stage {
@@ -63,7 +75,7 @@ enum StageColors {
     }
 
     /// Hintergrund der Zeilen im Schlafprofil (wie `chartTrack` auf Android).
-    static func track(_ scheme: ColorScheme) -> Color { Color(hex: scheme == .dark ? 0x2A2D55 : 0xECE8F5) }
+    static func track(_ scheme: ColorScheme) -> Color { Color(hex: scheme == .dark ? 0x2A2D55 : 0xF1E7D8) }
     /// Senkrechte Stufen zwischen den Phasen: Nebentext mit 60 %.
     static func link(_ scheme: ColorScheme) -> Color { Brand.secondaryText(scheme).opacity(0.6) }
     /// Weckpunkt und Zielzeit-Linie: die Hauptfarbe.
@@ -124,24 +136,28 @@ enum Fonts {
     }
 }
 
-/// Das Logo als Zeichnung: Mondsichel, Welle, Weckpunkt (200er Raster wie docs/logo.svg).
+/// Das Logo als Zeichnung: Mondsichel, Welle, Weckpunkt (200er Raster wie docs/logo.svg). `moon`/`wave`: auf dem
+/// Tageshimmel dunkler (``SkyInk/onDay``), sonst die Nachtfarben.
 struct LogoMark: View {
+    var moon: Color = Brand.moon
+    var wave: Color = Brand.wave
+
     var body: some View {
         Canvas { context, size in
             let s = min(size.width, size.height) / 200
             context.scaleBy(x: s, y: s)
-            var moon = Path(ellipseIn: CGRect(x: 34, y: 32, width: 80, height: 80))
-            moon = moon.subtracting(Path(ellipseIn: CGRect(x: 53, y: 21, width: 76, height: 76)))
-            context.fill(moon, with: .color(Brand.moon))
-            var wave = Path()
-            wave.move(to: CGPoint(x: 16, y: 158))
-            wave.addCurve(to: CGPoint(x: 44, y: 122), control1: CGPoint(x: 30, y: 158), control2: CGPoint(x: 30, y: 122))
-            wave.addCurve(to: CGPoint(x: 72, y: 158), control1: CGPoint(x: 58, y: 122), control2: CGPoint(x: 58, y: 158))
-            wave.addCurve(to: CGPoint(x: 100, y: 118), control1: CGPoint(x: 86, y: 158), control2: CGPoint(x: 86, y: 118))
-            wave.addCurve(to: CGPoint(x: 128, y: 152), control1: CGPoint(x: 114, y: 118), control2: CGPoint(x: 114, y: 152))
-            wave.addCurve(to: CGPoint(x: 158, y: 122), control1: CGPoint(x: 140, y: 152), control2: CGPoint(x: 146, y: 134))
-            context.stroke(wave, with: .color(Brand.wave), style: StrokeStyle(lineWidth: 9, lineCap: .round))
-            context.fill(Path(ellipseIn: CGRect(x: 156, y: 108, width: 16, height: 16)), with: .color(Brand.moon))
+            var moonPath = Path(ellipseIn: CGRect(x: 34, y: 32, width: 80, height: 80))
+            moonPath = moonPath.subtracting(Path(ellipseIn: CGRect(x: 53, y: 21, width: 76, height: 76)))
+            context.fill(moonPath, with: .color(self.moon))
+            var wavePath = Path()
+            wavePath.move(to: CGPoint(x: 16, y: 158))
+            wavePath.addCurve(to: CGPoint(x: 44, y: 122), control1: CGPoint(x: 30, y: 158), control2: CGPoint(x: 30, y: 122))
+            wavePath.addCurve(to: CGPoint(x: 72, y: 158), control1: CGPoint(x: 58, y: 122), control2: CGPoint(x: 58, y: 158))
+            wavePath.addCurve(to: CGPoint(x: 100, y: 118), control1: CGPoint(x: 86, y: 158), control2: CGPoint(x: 86, y: 118))
+            wavePath.addCurve(to: CGPoint(x: 128, y: 152), control1: CGPoint(x: 114, y: 118), control2: CGPoint(x: 114, y: 152))
+            wavePath.addCurve(to: CGPoint(x: 158, y: 122), control1: CGPoint(x: 140, y: 152), control2: CGPoint(x: 146, y: 134))
+            context.stroke(wavePath, with: .color(self.wave), style: StrokeStyle(lineWidth: 9, lineCap: .round))
+            context.fill(Path(ellipseIn: CGRect(x: 156, y: 108, width: 16, height: 16)), with: .color(self.moon))
         }
         .accessibilityHidden(true)
     }

@@ -87,6 +87,9 @@
     <string name="settings_theme_system">පද්ධතිය</string>
     <string name="settings_theme_light">ආලෝකමත්</string>
     <string name="settings_theme_dark">අඳුරු</string>
+    <string name="settings_evening_dark">සවස අඳුරු</string>
+    <string name="settings_evening_dark_text">%1$s – %2$s අඳුරු, පද්ධතිය හෝ ආලෝකමත් තේරුවත්.</string>
+    <string name="settings_evening_dark_from">අඳුරු ආරම්භය</string>
     <string name="settings_data">ඔබේ දත්ත</string>
     <string name="settings_data_text">සියල්ල ඔබේ දුරකථනයේ සහ ඔරලෝසුවේම පවතී. ගිණුමක් නැත, සේවාදායකයක් නැත, ලුහුබැඳීමක් නැත. Google ඔරලෝසු සම්බන්ධතාවය හරහා යන්නේ ඔරලෝසුවේ තාක්ෂණික තොරතුරු පමණි, සෞඛ්‍ය දත්ත නොමැතිව.</string>
     <string name="settings_export">රාත්‍රි නමක් නොමැතිව අපනයනය කරන්න</string>
@@ -97,10 +100,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT License, © r1adBE.\nManrope අකුරු: SIL Open Font License 1.1, © The Manrope Project Authors.\nශබ්ද හඳුනාගැනීම: MediaPipe Tasks Audio සහ YAMNet ආකෘතිය, Apache License 2.0, © Google LLC.\nශබ්ද: opengameart.org වෙතින් නොමිලේ පටිගත කිරීම් (CC0)</string>
     <string name="settings_version">අනුවාදය %1$s</string>
 
-    <string name="duration_minutes">මිනි. %1$d</string>
-    <string name="duration_hours">පැය %1$d</string>
-    <string name="duration_hours_half">පැය %1$d½</string>
-    <string name="duration_hours_minutes">පැය %1$d මිනි. %2$d</string>
+    <string name="duration_minutes">මිනි. %1$d</string>
+    <string name="duration_hours">පැය %1$d</string>
+    <string name="duration_hours_half">පැය %1$d½</string>
+    <string name="duration_hours_minutes">පැය %1$d මිනි. %2$d</string>
     <string name="health_title">Health Connect වෙතින් නින්දේ අදියර</string>
     <string name="health_rationale">ඔබේ සෞඛ්‍ය යෙදුම (උදා. Samsung Health) සුරකින නින්දේ දත්ත Phase Wake හට කියවිය හැක. ඒවා ඔබේ ඉතිහාසයේ පෙන්වන අතර Phase Wake ඔබව අවදි කළ රාත්‍රී සමඟ සංසන්දනය කිරීමටද භාවිත කරයි. Phase Wake කියවන්නේ පමණි, කිසිදා ලියන්නේ නැත, කිසිවක් ඔබේ දුරකථනයෙන් පිට නොයයි.</string>
     <string name="health_connect">සෞඛ්‍ය දත්ත සමඟ සසඳන්න</string>
@@ -282,7 +285,7 @@
         <item quantity="other">නින්දේ ඉලක්කය සපුරා ඇත: රාත්‍රි %2$d න් %1$d</item>
     </plurals>
     <string name="bedtime_title">නින්දේ වේලාවේ සිහිකැඳවීම</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">නින්දට යන වේලාවට මිනි. %1$d කට පෙර මතක් කරයි: ඔබේ එලාම් වේලාවෙන් නින්දේ ඉලක්කය අඩු කළ විට.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">නින්දට යන වේලාවට මිනි. %1$d කට පෙර මතක් කරයි: ඔබේ ඉලක්ක වේලාවෙන් නින්දේ ඉලක්කය අඩු කළ විට.</string>
     <string name="bedtime_notification">නින්දට යන වේලාව %1$s – එවිට %3$s එලාමයට පෙර ඔබට නින්ද %2$s ලැබේ.</string>
     <string name="channel_reminders">සිහිකැඳවීම්</string>
     <string name="sounds_title">නින්දේ ශබ්ද</string>
@@ -557,7 +560,7 @@
     <string name="learned_latency">නින්දට යාම: ආසන්න වශයෙන් %1$s</string>
     <string name="learned_latency_none">නින්දට යාම: මිනුම් ඉතා අඩුයි</string>
     <string name="bedtime_advice">අද %1$s සහ %2$s අතර නින්දට යන්න</string>
-    <string name="bedtime_advice_hint">ඔබේ එලාමය, නින්දේ ඉලක්කය සහ නින්දට යාමට ගතවන කාලය අනුව.</string>
+    <string name="bedtime_advice_hint">ඔබේ ඉලක්ක වේලාව, නින්දේ ඉලක්කය සහ නින්දට යාමට ගතවන කාලය අනුව.</string>
     <string name="learn_restart">නැවත ඉගෙන ගන්න</string>
     <string name="learn_restart_text">Phase Wake නැවත රාත්‍රී %1$d ක් මනියි. එතෙක් මේ දක්වා සකස් කළ අගයන් භාවිත වේ.</string>
     <string name="record_end_wake">අවදි කිරීමේදී අවසන්</string>
@@ -639,7 +642,7 @@
     <string name="finding_title">ඔබේ පසුගිය රාත්‍රී 7 තුළ දුටු දේ</string>
     <string name="finding_hide">සඟවන්න</string>
     <string name="finding_latency">නින්දට යාමට ඔබට සාමාන්‍යයෙන් %1$s ගත විය. ඉඟිය: මිනිත්තු 20කට පසුත් අවදිව සිටී නම්, නැඟිට නිදිමත දැනෙන විට පමණක් ඇඳට ආපසු යන්න. මෙය සති ගණනක් පැවතුණහොත් ඔබේ වෛද්‍යවරයා සමඟ කතා කරන්න.</string>
-    <string name="finding_short_nights">පැය 6ට අඩු රාත්‍රී: 7න් %1$d. ඉඟිය: අවදි වන වේලාවේ සිට ආපසු ගණන් කර නින්දට යන වේලාව තීරණය කර එය පිළිපදින්න.</string>
+    <string name="finding_short_nights">පැය 6ට අඩු රාත්‍රී: 7න් %1$d. ඉඟිය: ඉලක්ක වේලාවේ සිට ආපසු ගණන් කර නින්දට යන වේලාව තීරණය කර එය පිළිපදින්න.</string>
     <string name="finding_low_deep">ගැඹුරු නින්ද ඔබේ නින්දෙන් ආසන්න වශයෙන් %1$d %% පමණක් විය (සාමාන්‍යයෙන් %2$d–%3$d %%).</string>
     <string name="finding_deep_short">පැය 6ට අඩු රාත්‍රීවල එය පැහැදිලිවම අඩු විය: %2$d %% වෙනුවට %1$d %%.</string>
     <string name="finding_deep_late">ඔබ ප්‍රමාද වී නින්දට ගිය රාත්‍රීවල එය පැහැදිලිවම අඩු විය: %2$d %% වෙනුවට %1$d %%.</string>

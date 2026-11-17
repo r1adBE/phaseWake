@@ -109,6 +109,8 @@ open class PhaseWakeApp : Application() {
         // Akku je Nacht: Ladebeginn und -ende, solange der Prozess lebt (r1AD 14.11.2026).
         com.phasewake.app.shared.BatteryNight.log = { diag.log(DiagKind.BATTERY, it) }
         com.phasewake.app.shared.BatteryNight.listen(this)
+        // Wie und wann das System den Prozess zuletzt beendet hat (Audit PERF-03), auch vor dem ersten Entsperren.
+        appScope.launch(Dispatchers.IO) { com.phasewake.app.shared.ExitReasons.logTo(this@PhaseWakeApp, diag) }
         // Vor dem ersten Entsperren nach einem Neustart (nur der Zweitwecker läuft) ist der Speicher
         // nicht lesbar. Der Prozess lebt nach dem Entsperren weiter: dann [initUnlocked] nachholen (Review M-1).
         if (!BackupAlarm.isUnlocked(this)) {
@@ -146,21 +148,23 @@ open class PhaseWakeApp : Application() {
             // (Wecker und Aufzeichnungs-Stand; Nächte und Aufzeichnungen kommen aus ihrer Warteschlange).
             sync.migrateTransport()
             // Eigener Stand der Wecker einmal je Prozess (Audit AN-1): Ging eine frühere Nachricht verloren, gleicht die
-            // Uhr so ab (unverändert: Die Uhr merkt nichts und antwortet nicht). Eigene Arbeit: hält das Planen nie auf.
-            appScope.launch { sync.publishAlarms(alarms.current()) }
+            // Uhr so ab. Ein schon bestätigter Stand geht nicht noch einmal (Audit PERF-06; wie unten Schlafziel,
+            // Schalter und Lernphase). Eigene Arbeit: hält das Planen nie auf.
+            appScope.launch { sync.publishAlarms(alarms.current(), unlessAcked = true) }
             sync.flush()
-            sync.requestSync()
+            // Höchstens alle 30 Min (Audit PERF-06): Startet der Prozess nachts mehrmals, fragt er nicht jedes Mal.
+            sync.requestSyncOnStart()
             backup.reschedule()
             // Feiertage nachführen (Fenster der nächsten 400 Tage); bei einer Änderung neu planen.
             if (holidays.refresh()) backup.reschedule()
-            // Schlafziel für den Einschlafpunkt auf der Uhr (unverändert: gleiches Paket, die Uhr merkt nichts).
-            publishSleepGoal()
-            // Schalter der Einschlaf-Messung am Abend (ebenso unverändert, wenn nichts geändert wurde).
-            publishAutoOnset()
+            // Schlafziel für den Einschlafpunkt auf der Uhr, falls nicht schon bestätigt.
+            publishSleepGoal(unlessAcked = true)
+            // Schalter der Einschlaf-Messung am Abend (ebenso).
+            publishAutoOnset(unlessAcked = true)
             // Lernphase: beginnt nie von selbst, nur mit Zustimmung ([setLearningConsent]); zählen, Stand an die Uhr
-            // (unverändert: gleiches Paket, die Uhr merkt nichts). Zuletzt: Ein Fehler hier hält das Planen nicht auf.
+            // (ebenso). Zuletzt: Ein Fehler hier hält das Planen nicht auf.
             updateLearning()
-            publishLearning()
+            learningSync.publish(learningForWatch(), unlessAcked = true)
         }
         // Widget «Details von heute»: neu zeichnen, sobald eine Nacht gespeichert oder das Befinden gesetzt wird.
         appScope.launch {
@@ -208,15 +212,18 @@ open class PhaseWakeApp : Application() {
         sync.flush()
     }
 
-    /** Schickt das Schlafziel an die Uhr (nach einer Änderung, beim Start, nach dem Wiederherstellen). */
-    suspend fun publishSleepGoal() {
-        sync.publishSleepGoal(settings.sleepGoalNow(), settings.sleepGoalStamp())
+    /**
+     * Schickt das Schlafziel an die Uhr (nach einer Änderung, beim Start, nach dem Wiederherstellen); [unlessAcked]: beim
+     * Start nur, wenn nicht schon bestätigt (Audit PERF-06).
+     */
+    suspend fun publishSleepGoal(unlessAcked: Boolean = false) {
+        sync.publishSleepGoal(settings.sleepGoalNow(), settings.sleepGoalStamp(), unlessAcked)
     }
 
-    /** Schickt den Schalter der Einschlaf-Messung an die Uhr (nach einer Änderung, beim Start, nach dem Wiederherstellen). */
-    suspend fun publishAutoOnset() {
+    /** Schickt den Schalter der Einschlaf-Messung an die Uhr (wie [publishSleepGoal]). */
+    suspend fun publishAutoOnset(unlessAcked: Boolean = false) {
         val (enabled, stamp) = settings.autoOnsetStamped()
-        sync.publishAutoOnset(enabled, stamp)
+        sync.publishAutoOnset(enabled, stamp, unlessAcked)
     }
 
     /**

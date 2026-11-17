@@ -85,6 +85,9 @@
     <string name="settings_theme_system">सिस्टम</string>
     <string name="settings_theme_light">लाइट</string>
     <string name="settings_theme_dark">डार्क</string>
+    <string name="settings_evening_dark">शाम को डार्क</string>
+    <string name="settings_evening_dark_text">%1$s – %2$s डार्क, सिस्टम या लाइट चुनने पर भी।</string>
+    <string name="settings_evening_dark_from">डार्क कब से</string>
     <string name="settings_data">तुम्हारा डेटा</string>
     <string name="settings_data_text">सब कुछ तुम्हारे फ़ोन और घड़ी में रहता है। न खाता, न सर्वर, न ट्रैकिंग। Google के घड़ी कनेक्शन से केवल घड़ी की तकनीकी जानकारी जाती है, स्वास्थ्य डेटा के बिना।</string>
     <string name="settings_export">रातें बिना नाम के एक्सपोर्ट करो</string>
@@ -95,10 +98,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT लाइसेंस, © r1adBE।\nManrope फ़ॉन्ट: SIL Open Font License 1.1, © The Manrope Project Authors।\nध्वनि पहचान: MediaPipe Tasks Audio और YAMNet मॉडल, Apache License 2.0, © Google LLC।\nध्वनियाँ: opengameart.org से मुक्त रिकॉर्डिंग (CC0)</string>
     <string name="settings_version">वर्शन %1$s</string>
 
-    <string name="duration_minutes">%1$d मि.</string>
-    <string name="duration_hours">%1$d घं.</string>
-    <string name="duration_hours_half">%1$d½ घं.</string>
-    <string name="duration_hours_minutes">%1$d घं. %2$d मि.</string>
+    <string name="duration_minutes">%1$d मि.</string>
+    <string name="duration_hours">%1$d घं.</string>
+    <string name="duration_hours_half">%1$d½ घं.</string>
+    <string name="duration_hours_minutes">%1$d घं. %2$d मि.</string>
     <string name="health_title">Health Connect से नींद के चरण</string>
     <string name="health_rationale">Phase Wake वह नींद का डेटा पढ़ सकता है जो तुम्हारा हेल्थ ऐप (जैसे Samsung Health) सेव करता है। यह तुम्हारे इतिहास में दिखता है, उन रातों से तुलना के लिए भी जब Phase Wake ने तुम्हें जगाया। Phase Wake सिर्फ़ पढ़ता है, कभी लिखता नहीं, और कुछ भी तुम्हारे फ़ोन से बाहर नहीं जाता।</string>
     <string name="health_connect">हेल्थ डेटा से मिलान करो</string>
@@ -282,7 +285,7 @@
         <item quantity="other">नींद का लक्ष्य पूरा: %2$d में से %1$d रातें</item>
     </plurals>
     <string name="bedtime_title">सोने का रिमाइंडर</string>
-    <string name="bedtime_text">सोने के समय से %1$d मिनट पहले याद दिलाता है: अलार्म का समय घटा नींद का लक्ष्य।</string>
+    <string name="bedtime_text">सोने के समय से %1$d मिनट पहले याद दिलाता है: लक्ष्य समय घटा नींद का लक्ष्य।</string>
     <string name="bedtime_notification">%1$s बजे सो जाओ – ऐसे %3$s बजे के अलार्म तक %2$s की नींद होगी।</string>
     <string name="channel_reminders">रिमाइंडर</string>
     <string name="sounds_title">नींद की आवाज़ें</string>
@@ -554,7 +557,7 @@
     <string name="learned_latency">नींद आना: लगभग %1$s</string>
     <string name="learned_latency_none">नींद आना: माप बहुत कम</string>
     <string name="bedtime_advice">आज %1$s से %2$s के बीच सोने जाओ</string>
-    <string name="bedtime_advice_hint">तुम्हारे अलार्म, नींद के लक्ष्य और नींद आने में लगने वाले समय से।</string>
+    <string name="bedtime_advice_hint">तुम्हारे लक्ष्य समय, नींद के लक्ष्य और नींद आने में लगने वाले समय से।</string>
     <string name="learn_restart">फिर से सीखो</string>
     <string name="learn_restart_text">Phase Wake फिर से %1$d रातें मापता है। तब तक अब तक ढाले गए मान ही चलते रहेंगे।</string>
     <string name="record_end_wake">जगाने पर खत्म</string>
@@ -636,7 +639,7 @@
     <string name="finding_title">पिछली 7 रातों में दिखा</string>
     <string name="finding_hide">छिपाएँ</string>
     <string name="finding_latency">तुम्हें सोने में औसतन %1$s लगे। सुझाव: अगर 20 मिनट बाद भी जागे हो, तो उठ जाओ और नींद आने पर ही बिस्तर पर लौटो। अगर ऐसा हफ़्तों तक रहे, तो अपने डॉक्टर से बात करो।</string>
-    <string name="finding_short_nights">6 घंटे से कम की रातें: 7 में से %1$d। सुझाव: जागने के समय से सोने का समय तय करो और उस पर टिके रहो।</string>
+    <string name="finding_short_nights">6 घंटे से कम की रातें: 7 में से %1$d। सुझाव: लक्ष्य समय से सोने का समय तय करो और उस पर टिके रहो।</string>
     <string name="finding_low_deep">गहरी नींद तुम्हारी नींद का केवल लगभग %1$d %% थी (आमतौर पर %2$d–%3$d %%)।</string>
     <string name="finding_deep_short">6 घंटे से कम की रातों में यह साफ़ तौर पर कम थी: %2$d %% की जगह %1$d %%।</string>
     <string name="finding_deep_late">जिन रातों तुम देर से सोए, उनमें यह साफ़ तौर पर कम थी: %2$d %% की जगह %1$d %%।</string>

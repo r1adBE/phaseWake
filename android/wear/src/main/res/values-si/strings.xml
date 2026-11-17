@@ -50,8 +50,8 @@
     <string name="good_night_cancel">සුබ රාත්‍රියක් අවලංගු කරන්න</string>
     <string name="dnd_title">එලාම අවහිරයි</string>
     <string name="dnd_text">“බාධා නොකරන්න” තුළ එලාමවලට ඉඩ දෙන්න.</string>
-    <string name="duration_hours">පැය %1$d</string>
-    <string name="duration_hours_minutes">පැය %1$d මිනි. %2$d</string>
+    <string name="duration_hours">පැය %1$d</string>
+    <string name="duration_hours_minutes">පැය %1$d මිනි. %2$d</string>
     <string name="home_last_night">ඊයේ රාත්‍රිය</string>
     <string name="notification_open">විවෘත කරන්න</string>
     <string name="home_good_night_too_far">එලාමයට පැය 16 කට පෙර සිට ලබා ගත හැක</string>

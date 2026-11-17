@@ -49,8 +49,8 @@
     <string name="good_night_cancel">শুভরাত্রি বাতিল করো</string>
     <string name="dnd_title">অ্যালার্ম আটকানো</string>
     <string name="dnd_text">“বিরক্ত করবে না”-তে অ্যালার্মের অনুমতি দাও।</string>
-    <string name="duration_hours">%1$d ঘ.</string>
-    <string name="duration_hours_minutes">%1$d ঘ. %2$d মি.</string>
+    <string name="duration_hours">%1$d ঘ.</string>
+    <string name="duration_hours_minutes">%1$d ঘ. %2$d মি.</string>
     <string name="home_last_night">গত রাত</string>
     <string name="notification_open">খোলো</string>
     <string name="home_good_night_too_far">অ্যালার্মের ১৬ ঘ. আগে থেকে পাওয়া যাবে</string>

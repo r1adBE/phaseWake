@@ -281,13 +281,14 @@ object RecordControl {
     }
 
     /**
-     * Beim Start der App (nach dem Entsperren): Stand ans Handy. Liegt eine laufende Aufzeichnung ohne Dienst da (z. B.
-     * nach einem Neustart der Uhr, der die Alarme löscht), wird sie gleich wieder aufgenommen.
+     * Beim Start der App (nach dem Entsperren): Stand ans Handy, falls nicht schon bestätigt (Audit PERF-06). Liegt eine
+     * laufende Aufzeichnung ohne Dienst da (z. B. nach einem Neustart der Uhr, der die Alarme löscht), wird sie gleich
+     * wieder aufgenommen.
      */
     suspend fun onAppStart(app: PhaseWakeWear) {
         val saved = app.recordings.active()
         if (saved != null && !RecordService.running) armCheck(app, Instant.now().plusSeconds(1))
-        app.recordSync.publishStatus(saved?.start)
+        app.recordSync.publishStatus(saved?.start, unlessAcked = true)
     }
 
     /** Nächste Prüfung; exakter Alarm (kein Wecker), erlaubt den Neustart des Messdienstes aus dem Hintergrund. */

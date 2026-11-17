@@ -85,6 +85,9 @@
     <string name="settings_theme_system">System</string>
     <string name="settings_theme_light">Hell</string>
     <string name="settings_theme_dark">Dunkel</string>
+    <string name="settings_evening_dark">Abends dunkel</string>
+    <string name="settings_evening_dark_text">Von %1$s bis %2$s dunkel, auch bei System oder Hell.</string>
+    <string name="settings_evening_dark_from">Dunkel ab</string>
     <string name="settings_data">Deine Daten</string>
     <string name="settings_data_text">Alles bleibt auf Handy und Uhr. Kein Konto, kein Server, keine Auswertung. Nur technische Angaben zur Uhr laufen über Googles Uhr-Verbindung, ohne Gesundheitsdaten.</string>
     <string name="settings_export">Nächte ohne Namen exportieren</string>
@@ -95,10 +98,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT-Lizenz, © r1adBE.\nSchrift Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nGeräuscherkennung: MediaPipe Tasks Audio und das Modell YAMNet, Apache License 2.0, © Google LLC.\nKlänge: freie Aufnahmen (CC0) von opengameart.org</string>
     <string name="settings_version">Version %1$s</string>
 
-    <string name="duration_minutes">%1$d Min</string>
-    <string name="duration_hours">%1$d Std.</string>
-    <string name="duration_hours_half">%1$d½ Std.</string>
-    <string name="duration_hours_minutes">%1$d Std. %2$d Min</string>
+    <string name="duration_minutes">%1$d Min</string>
+    <string name="duration_hours">%1$d Std.</string>
+    <string name="duration_hours_half">%1$d½ Std.</string>
+    <string name="duration_hours_minutes">%1$d Std. %2$d Min</string>
     <string name="health_title">Schlafphasen aus Health Connect</string>
     <string name="health_rationale">Phase Wake kann die Schlafdaten lesen, die deine Gesundheits-App (zum Beispiel Samsung Health) ablegt. Sie erscheinen in deinem Verlauf, auch zum Vergleich mit den Nächten, in denen Phase Wake geweckt hat. Phase Wake liest nur, schreibt nie, und nichts verlässt dein Handy.</string>
     <string name="health_connect">Mit Gesundheitsdaten abgleichen</string>
@@ -282,7 +285,7 @@
         <item quantity="other">Schlafziel erreicht: %1$d von %2$d Nächten</item>
     </plurals>
     <string name="bedtime_title">Bettzeit-Erinnerung</string>
-    <string name="bedtime_text">Erinnert dich %1$d Min vor der Bettzeit: Weckzeit minus Schlafziel.</string>
+    <string name="bedtime_text">Erinnert dich %1$d Min vor der Bettzeit: Zielzeit minus Schlafziel.</string>
     <string name="bedtime_notification">Bettzeit um %1$s – so schaffst du %2$s bis zum Wecker um %3$s.</string>
     <string name="channel_reminders">Erinnerungen</string>
     <string name="sounds_title">Einschlafklänge</string>
@@ -554,7 +557,7 @@
     <string name="learned_latency">Einschlafen: etwa %1$s</string>
     <string name="learned_latency_none">Einschlafen: zu wenige Messwerte</string>
     <string name="bedtime_advice">Geh heute zwischen %1$s und %2$s ins Bett</string>
-    <string name="bedtime_advice_hint">Aus Weckzeit, Schlafziel und deiner Einschlafdauer.</string>
+    <string name="bedtime_advice_hint">Aus Zielzeit, Schlafziel und deiner Einschlafdauer.</string>
     <string name="learn_restart">Neu lernen</string>
     <string name="learn_restart_text">Phase Wake misst wieder %1$d Nächte. Bis dahin gelten die bisher angepassten Werte.</string>
     <string name="record_end_wake">Beim Wecken beendet</string>
@@ -636,7 +639,7 @@
     <string name="finding_title">Auffällig in den letzten 7 Nächten</string>
     <string name="finding_hide">Ausblenden</string>
     <string name="finding_latency">Du hast im Schnitt %1$s zum Einschlafen gebraucht. Tipp: Bist du nach 20 Minuten noch wach, steh auf und geh erst müde wieder ins Bett. Bleibt das über Wochen so, sprich mit deinem Arzt.</string>
-    <string name="finding_short_nights">Nächte unter 6 Stunden: %1$d von 7. Tipp: Rechne deine Bettzeit von der Weckzeit zurück und halte sie ein.</string>
+    <string name="finding_short_nights">Nächte unter 6 Stunden: %1$d von 7. Tipp: Rechne deine Bettzeit von der Zielzeit zurück und halte sie ein.</string>
     <string name="finding_low_deep">Tiefschlaf war nur etwa %1$d %% deines Schlafs (üblich %2$d–%3$d %%).</string>
     <string name="finding_deep_short">In Nächten unter 6 Stunden war er deutlich geringer: %1$d %% statt %2$d %%.</string>
     <string name="finding_deep_late">Wenn du spät ins Bett gingst, war er deutlich geringer: %1$d %% statt %2$d %%.</string>

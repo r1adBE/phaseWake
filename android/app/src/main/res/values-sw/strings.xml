@@ -86,6 +86,9 @@
     <string name="settings_theme_system">Mfumo</string>
     <string name="settings_theme_light">Mwangaza</string>
     <string name="settings_theme_dark">Giza</string>
+    <string name="settings_evening_dark">Giza jioni</string>
+    <string name="settings_evening_dark_text">Giza kuanzia %1$s hadi %2$s, hata ukichagua Mfumo au Mwangaza.</string>
+    <string name="settings_evening_dark_from">Giza kuanzia</string>
     <string name="settings_data">Data yako</string>
     <string name="settings_data_text">Kila kitu kinabaki kwenye simu na saa yako. Hakuna akaunti, hakuna seva, hakuna ufuatiliaji. Ni taarifa za kiufundi za saa pekee zinazopita kupitia muunganisho wa saa wa Google, bila data ya afya.</string>
     <string name="settings_export">Hamisha usiku bila jina</string>
@@ -96,10 +99,10 @@
     <string name="settings_licenses_text">Phase Wake: Leseni ya MIT, © r1adBE.\nFonti Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nUtambuzi wa sauti: MediaPipe Tasks Audio na modeli ya YAMNet, Apache License 2.0, © Google LLC.\nSauti: rekodi huru (CC0) kutoka opengameart.org</string>
     <string name="settings_version">Toleo %1$s</string>
 
-    <string name="duration_minutes">dak %1$d</string>
-    <string name="duration_hours">saa %1$d</string>
-    <string name="duration_hours_half">saa %1$d½</string>
-    <string name="duration_hours_minutes">saa %1$d dak %2$d</string>
+    <string name="duration_minutes">dak %1$d</string>
+    <string name="duration_hours">saa %1$d</string>
+    <string name="duration_hours_half">saa %1$d½</string>
+    <string name="duration_hours_minutes">saa %1$d dak %2$d</string>
     <string name="health_title">Hatua za usingizi kutoka Health Connect</string>
     <string name="health_rationale">Phase Wake inaweza kusoma data ya usingizi ambayo programu yako ya afya (kwa mfano Samsung Health) huhifadhi. Inaonyeshwa kwenye historia yako, pia kwa kulinganisha na usiku ambao Phase Wake ilikuamsha. Phase Wake inasoma tu, haiandiki kamwe, na hakuna kinachotoka kwenye simu yako.</string>
     <string name="health_connect">Linganisha na data ya afya</string>
@@ -281,7 +284,7 @@
         <item quantity="other">Lengo la usingizi limefikiwa: %1$d kati ya usiku %2$d</item>
     </plurals>
     <string name="bedtime_title">Kikumbusho cha kulala</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">Inakukumbusha dak %1$d kabla ya muda wa kulala: muda wa kengele ukitoa lengo lako la usingizi.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">Inakukumbusha dak %1$d kabla ya muda wa kulala: muda lengwa ukitoa lengo lako la usingizi.</string>
     <string name="bedtime_notification">Muda wa kulala ni %1$s – hivyo utapata %2$s kabla ya kengele yako ya %3$s.</string>
     <string name="channel_reminders">Vikumbusho</string>
     <string name="sounds_title">Sauti za kulala</string>
@@ -556,7 +559,7 @@
     <string name="learned_latency">Kupata usingizi: takriban %1$s</string>
     <string name="learned_latency_none">Kupata usingizi: vipimo ni vichache mno</string>
     <string name="bedtime_advice">Leo nenda kitandani kati ya %1$s na %2$s</string>
-    <string name="bedtime_advice_hint">Kulingana na kengele yako, lengo la usingizi na muda unaochukua kupata usingizi.</string>
+    <string name="bedtime_advice_hint">Kulingana na muda lengwa wako, lengo la usingizi na muda unaochukua kupata usingizi.</string>
     <string name="learn_restart">Jifunze upya</string>
     <string name="learn_restart_text">Phase Wake inapima tena usiku %1$d. Hadi hapo, thamani zilizorekebishwa hadi sasa zinaendelea kutumika.</string>
     <string name="record_end_wake">Imeisha wakati wa kuamshwa</string>
@@ -638,7 +641,7 @@
     <string name="finding_title">Kilichoonekana katika usiku wako 7 uliopita</string>
     <string name="finding_hide">Ficha</string>
     <string name="finding_latency">Kwa wastani ulichukua %1$s kupata usingizi. Kidokezo: ukiwa bado macho baada ya dakika 20, amka na urudi kitandani tu unapohisi usingizi. Hali hii ikiendelea kwa wiki kadhaa, zungumza na daktari wako.</string>
-    <string name="finding_short_nights">Usiku chini ya saa 6: %1$d kati ya 7. Kidokezo: hesabu muda wa kulala kurudi nyuma kutoka muda wa kuamka na uushike.</string>
+    <string name="finding_short_nights">Usiku chini ya saa 6: %1$d kati ya 7. Kidokezo: hesabu muda wa kulala kurudi nyuma kutoka muda lengwa na uushike.</string>
     <string name="finding_low_deep">Usingizi mzito ulikuwa takriban %1$d %% tu ya usingizi wako (kwa kawaida %2$d–%3$d %%).</string>
     <string name="finding_deep_short">Katika usiku chini ya saa 6 ulikuwa wazi kuwa mdogo: %1$d %% badala ya %2$d %%.</string>
     <string name="finding_deep_late">Katika usiku uliolala kwa kuchelewa ulikuwa wazi kuwa mdogo: %1$d %% badala ya %2$d %%.</string>

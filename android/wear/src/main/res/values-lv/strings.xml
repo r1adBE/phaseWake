@@ -52,8 +52,8 @@
     <string name="good_night_cancel">Atcelt Ar labu nakti</string>
     <string name="dnd_title">Modinātāji bloķēti</string>
     <string name="dnd_text">Atļauj modinātājus režīmā „Netraucēt“.</string>
-    <string name="duration_hours">%1$d st.</string>
-    <string name="duration_hours_minutes">%1$d st. %2$d min</string>
+    <string name="duration_hours">%1$d st.</string>
+    <string name="duration_hours_minutes">%1$d st. %2$d min</string>
     <string name="home_last_night">Pagājusī nakts</string>
     <string name="notification_open">Atvērt</string>
     <string name="home_good_night_too_far">Pieejams no 16 st. pirms modinātāja</string>

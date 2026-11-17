@@ -86,6 +86,9 @@
     <string name="settings_theme_system">Sistema</string>
     <string name="settings_theme_light">Claro</string>
     <string name="settings_theme_dark">Oscuro</string>
+    <string name="settings_evening_dark">Oscuro por la noche</string>
+    <string name="settings_evening_dark_text">Oscuro de %1$s a %2$s, también con Sistema o Claro.</string>
+    <string name="settings_evening_dark_from">Oscuro desde</string>
     <string name="settings_data">Tus datos</string>
     <string name="settings_data_text">Todo se queda en tu móvil y tu reloj. Sin cuenta, sin servidor, sin seguimiento. Por la conexión del reloj de Google solo pasan datos técnicos del reloj, sin datos de salud.</string>
     <string name="settings_export">Exportar noches sin nombre</string>
@@ -96,10 +99,10 @@
     <string name="settings_licenses_text">Phase Wake: licencia MIT, © r1adBE.\nFuente Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nDetección de sonidos: MediaPipe Tasks Audio y el modelo YAMNet, Apache License 2.0, © Google LLC.\nSonidos: grabaciones libres (CC0) de opengameart.org</string>
     <string name="settings_version">Versión %1$s</string>
 
-    <string name="duration_minutes">%1$d min</string>
-    <string name="duration_hours">%1$d h</string>
-    <string name="duration_hours_half">%1$d½ h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_half">%1$d½ h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fases del sueño de Health Connect</string>
     <string name="health_rationale">Phase Wake puede leer los datos de sueño que guarda tu app de salud (por ejemplo, Samsung Health). Se muestran en tu historial, también para compararlos con las noches en que Phase Wake te despertó. Phase Wake solo lee, nunca escribe, y nada sale de tu móvil.</string>
     <string name="health_connect">Comparar con datos de salud</string>
@@ -289,7 +292,7 @@
         <item quantity="other">Objetivo de sueño alcanzado: %1$d de %2$d noches</item>
     </plurals>
     <string name="bedtime_title">Recordatorio para acostarte</string>
-    <string name="bedtime_text">Te avisa %1$d min antes de la hora de acostarte: hora de la alarma menos objetivo de sueño.</string>
+    <string name="bedtime_text">Te avisa %1$d min antes de la hora de acostarte: hora objetivo menos objetivo de sueño.</string>
     <string name="bedtime_notification">A la cama a las %1$s – así duermes %2$s antes de la alarma de las %3$s.</string>
     <string name="channel_reminders">Recordatorios</string>
     <string name="sounds_title">Sonidos para dormir</string>
@@ -568,7 +571,7 @@
     <string name="learned_latency">Dormirte: unos %1$s</string>
     <string name="learned_latency_none">Dormirte: muy pocas mediciones</string>
     <string name="bedtime_advice">Acuéstate hoy entre las %1$s y las %2$s</string>
-    <string name="bedtime_advice_hint">Según tu alarma, tu objetivo de sueño y lo que tardas en dormirte.</string>
+    <string name="bedtime_advice_hint">Según tu hora objetivo, tu objetivo de sueño y lo que tardas en dormirte.</string>
     <string name="learn_restart">Volver a aprender</string>
     <string name="learn_restart_text">Phase Wake vuelve a medir %1$d noches. Hasta entonces se siguen usando los valores adaptados hasta ahora.</string>
     <string name="record_end_wake">Terminada al despertar</string>
@@ -650,7 +653,7 @@
     <string name="finding_title">Observado en tus últimas 7 noches</string>
     <string name="finding_hide">Ocultar</string>
     <string name="finding_latency">De media tardaste %1$s en dormirte. Consejo: si sigues despierto después de 20 minutos, levántate y vuelve a la cama solo cuando tengas sueño. Si esto dura semanas, habla con tu médico.</string>
-    <string name="finding_short_nights">Noches de menos de 6 horas: %1$d de 7. Consejo: calcula tu hora de acostarte a partir de la hora de despertar y cúmplela.</string>
+    <string name="finding_short_nights">Noches de menos de 6 horas: %1$d de 7. Consejo: calcula tu hora de acostarte a partir de la hora objetivo y cúmplela.</string>
     <string name="finding_low_deep">El sueño profundo fue solo un %1$d %% aproximado de tu sueño (lo habitual, %2$d–%3$d %%).</string>
     <string name="finding_deep_short">En las noches de menos de 6 horas fue claramente menor: %1$d %% en lugar de %2$d %%.</string>
     <string name="finding_deep_late">En las noches en que te acostaste tarde fue claramente menor: %1$d %% en lugar de %2$d %%.</string>

@@ -32,15 +32,6 @@ public enum StageCheck {
         stageAt(spans, wokeAt) ?? stageAt(spans, wokeAt.addingTimeInterval(-toleranceSeconds))
     }
 
-    /// Ob gut geweckt wurde: `true` aus leichtem Schlaf, REM oder wach, `false` aus Tiefschlaf, `nil` ohne bekannte Phase.
-    public static func wokeWell(_ spans: [StageSpan], wokeAt: Date) -> Bool? {
-        switch stageAtWake(spans, wokeAt: wokeAt) {
-        case .light, .rem, .awake: true
-        case .deep: false
-        case .unknown, nil: nil
-        }
-    }
-
     /// Spannen auf den Bereich `from`–`to` zugeschnitten, ausserhalb fallen weg, nach Beginn sortiert.
     public static func clip(_ spans: [StageSpan], from: Date, to: Date) -> [StageSpan] {
         spans.filter { $0.end > from && $0.start < to }

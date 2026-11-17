@@ -87,6 +87,9 @@
     <string name="settings_theme_system">Систем</string>
     <string name="settings_theme_light">Цайвар</string>
     <string name="settings_theme_dark">Бараан</string>
+    <string name="settings_evening_dark">Оройд бараан</string>
+    <string name="settings_evening_dark_text">Бараан: %1$s – %2$s, Систем эсвэл Цайвар сонгосон ч.</string>
+    <string name="settings_evening_dark_from">Бараан эхлэх</string>
     <string name="settings_data">Чиний өгөгдөл</string>
     <string name="settings_data_text">Бүх зүйл утас, цаган дээр чинь үлдэнэ. Бүртгэлгүй, сервергүй, хянахгүй. Google-ийн цагны холболтоор зөвхөн цагны техникийн мэдээлэл дамжина, эрүүл мэндийн өгөгдөлгүй.</string>
     <string name="settings_export">Шөнүүдийг нэргүйгээр экспортлох</string>
@@ -97,10 +100,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT лиценз, © r1adBE.\nManrope фонт: SIL Open Font License 1.1, © The Manrope Project Authors.\nДуу таних: MediaPipe Tasks Audio ба YAMNet загвар, Apache License 2.0, © Google LLC.\nДуу: үнэгүй бичлэг (CC0), opengameart.org</string>
     <string name="settings_version">Хувилбар %1$s</string>
 
-    <string name="duration_minutes">%1$d мин</string>
-    <string name="duration_hours">%1$d ц</string>
-    <string name="duration_hours_half">%1$d½ ц</string>
-    <string name="duration_hours_minutes">%1$d ц %2$d мин</string>
+    <string name="duration_minutes">%1$d мин</string>
+    <string name="duration_hours">%1$d ц</string>
+    <string name="duration_hours_half">%1$d½ ц</string>
+    <string name="duration_hours_minutes">%1$d ц %2$d мин</string>
     <string name="health_title">Health Connect-ийн нойрны үе шат</string>
     <string name="health_rationale">Phase Wake нь эрүүл мэндийн апп чинь (жишээ нь Samsung Health) хадгалсан нойрны өгөгдлийг уншиж чадна. Энэ нь түүхэнд чинь харагдах бөгөөд Phase Wake чамайг сэрээсэн шөнүүдтэй харьцуулахад ч ашиглагдана. Phase Wake зөвхөн уншина, юу ч бичихгүй, утаснаас чинь юу ч гарахгүй.</string>
     <string name="health_connect">Эрүүл мэндийн өгөгдөлтэй харьцуулах</string>
@@ -282,7 +285,7 @@
         <item quantity="other">Нойрны зорилго биелсэн: %2$d шөнийн %1$d</item>
     </plurals>
     <string name="bedtime_title">Унтах цагийн сануулга</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">Унтах цагаас %1$d мин өмнө сануулна: сэрүүлгийн цагаас нойрны зорилгыг хассан цаг.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">Унтах цагаас %1$d мин өмнө сануулна: зорилтот цагаас нойрны зорилгыг хассан цаг.</string>
     <string name="bedtime_notification">Унтах цаг %1$s – тэгвэл %3$s-ийн сэрүүлэг хүртэл %2$s унтана.</string>
     <string name="channel_reminders">Сануулга</string>
     <string name="sounds_title">Нойрны дуу</string>
@@ -557,7 +560,7 @@
     <string name="learned_latency">Унтах: ойролцоогоор %1$s</string>
     <string name="learned_latency_none">Унтах: хэмжилт хэт цөөн</string>
     <string name="bedtime_advice">Өнөөдөр %1$s-%2$s хооронд хэвт</string>
-    <string name="bedtime_advice_hint">Сэрүүлэг, нойрны зорилго, унтахад зарцуулдаг хугацаанд чинь тулгуурласан.</string>
+    <string name="bedtime_advice_hint">Зорилтот цаг, нойрны зорилго, унтахад зарцуулдаг хугацаанд чинь тулгуурласан.</string>
     <string name="learn_restart">Дахин суралцах</string>
     <string name="learn_restart_text">Phase Wake дахин %1$d шөнө хэмжинэ. Тэр болтол одоог хүртэл тохируулсан утгууд хэрэглэгдэнэ.</string>
     <string name="record_end_wake">Сэрээхэд дууссан</string>
@@ -639,7 +642,7 @@
     <string name="finding_title">Сүүлийн 7 шөнөд анзаарагдсан</string>
     <string name="finding_hide">Нуух</string>
     <string name="finding_latency">Унтахад чинь дунджаар %1$s зарцуулагдсан. Зөвлөгөө: 20 минутын дараа ч сэрүүн байвал босоод, нойр хүрсэн үедээ л орондоо буц. Хэрэв энэ олон долоо хоног үргэлжилбэл эмчтэйгээ ярилц.</string>
-    <string name="finding_short_nights">6 цагаас богино шөнө: 7-оос %1$d. Зөвлөгөө: сэрэх цагаасаа ухраан унтах цагаа тооцоолж, түүнийгээ баримтал.</string>
+    <string name="finding_short_nights">6 цагаас богино шөнө: 7-оос %1$d. Зөвлөгөө: зорилтот цагаасаа ухраан унтах цагаа тооцоолж, түүнийгээ баримтал.</string>
     <string name="finding_low_deep">Гүн нойр чиний нойрны ердөө ойролцоогоор %1$d %% байсан (ихэвчлэн %2$d–%3$d %%).</string>
     <string name="finding_deep_short">6 цагаас богино шөнүүдэд мэдэгдэхүйц бага байсан: %2$d %%-ийн оронд %1$d %%.</string>
     <string name="finding_deep_late">Оройтож унтсан шөнүүдэд мэдэгдэхүйц бага байсан: %2$d %%-ийн оронд %1$d %%.</string>

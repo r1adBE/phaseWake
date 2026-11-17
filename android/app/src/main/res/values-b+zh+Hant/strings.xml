@@ -84,6 +84,9 @@
     <string name="settings_theme_system">跟隨系統</string>
     <string name="settings_theme_light">淺色</string>
     <string name="settings_theme_dark">深色</string>
+    <string name="settings_evening_dark">晚間深色</string>
+    <string name="settings_evening_dark_text">%1$s – %2$s 使用深色，即使選擇了「跟隨系統」或「淺色」。</string>
+    <string name="settings_evening_dark_from">深色開始時間</string>
     <string name="settings_data">你的資料</string>
     <string name="settings_data_text">所有資料都只儲存在手機和手錶上。不需帳號、沒有伺服器、不做追蹤。只有手錶的技術資訊會經過 Google 的手錶連線，不含健康資料。</string>
     <string name="settings_export">不含姓名匯出睡眠紀錄</string>
@@ -94,10 +97,10 @@
     <string name="settings_licenses_text">Phase Wake：MIT 授權，© r1adBE。\nManrope 字型：SIL Open Font License 1.1，© The Manrope Project Authors。\n聲音辨識：MediaPipe Tasks Audio 與 YAMNet 模型，Apache License 2.0，© Google LLC。\n聲音：來自 opengameart.org 的自由錄音（CC0）</string>
     <string name="settings_version">版本 %1$s</string>
 
-    <string name="duration_minutes">%1$d 分鐘</string>
-    <string name="duration_hours">%1$d 小時</string>
-    <string name="duration_hours_half">%1$d½ 小時</string>
-    <string name="duration_hours_minutes">%1$d 小時 %2$d 分鐘</string>
+    <string name="duration_minutes">%1$d 分鐘</string>
+    <string name="duration_hours">%1$d 小時</string>
+    <string name="duration_hours_half">%1$d½ 小時</string>
+    <string name="duration_hours_minutes">%1$d 小時 %2$d 分鐘</string>
     <string name="health_title">來自 Health Connect 的睡眠階段</string>
     <string name="health_rationale">Phase Wake 可以讀取你的健康應用程式（例如 Samsung Health）儲存的睡眠資料。這些資料會顯示在你的紀錄中，也可與 Phase Wake 叫醒你的那些夜晚進行比較。Phase Wake 只讀取、從不寫入，資料也不會離開你的手機。</string>
     <string name="health_connect">與健康資料比對</string>
@@ -275,7 +278,7 @@
         <item quantity="other">達成睡眠目標：%2$d 晚中 %1$d 晚</item>
     </plurals>
     <string name="bedtime_title">就寢提醒</string>
-    <string name="bedtime_text">在就寢時間前 %1$d 分鐘提醒你：鬧鐘時間減去睡眠目標。</string>
+    <string name="bedtime_text">在就寢時間前 %1$d 分鐘提醒你：目標時間減去睡眠目標。</string>
     <string name="bedtime_notification">%1$s 就寢 – 這樣到 %3$s 的鬧鐘前你能睡 %2$s。</string>
     <string name="channel_reminders">提醒</string>
     <string name="sounds_title">助眠聲音</string>
@@ -540,7 +543,7 @@
     <string name="learned_latency">入睡：約 %1$s</string>
     <string name="learned_latency_none">入睡：測量值太少</string>
     <string name="bedtime_advice">今晚請在 %1$s 到 %2$s 之間上床</string>
-    <string name="bedtime_advice_hint">依據你的鬧鐘、睡眠目標和入睡所需時間。</string>
+    <string name="bedtime_advice_hint">依據你的目標時間、睡眠目標和入睡所需時間。</string>
     <string name="learn_restart">重新學習</string>
     <string name="learn_restart_text">Phase Wake 會重新測量 %1$d 晚。在此之前，繼續使用目前已調整的數值。</string>
     <string name="record_end_wake">喚醒時結束</string>
@@ -622,7 +625,7 @@
     <string name="finding_title">最近 7 晚值得注意</string>
     <string name="finding_hide">隱藏</string>
     <string name="finding_latency">你平均花了 %1$s 才入睡。建議：如果 20 分鐘後仍醒著，就起床，等有睡意再回到床上。如果持續數週，請諮詢你的醫師。</string>
-    <string name="finding_short_nights">不到 6 小時的夜晚：7 晚中 %1$d 晚。建議：從起床時間倒推就寢時間，並確實遵守。</string>
+    <string name="finding_short_nights">不到 6 小時的夜晚：7 晚中 %1$d 晚。建議：從目標時間倒推就寢時間，並確實遵守。</string>
     <string name="finding_low_deep">深層睡眠只占你睡眠的約 %1$d %%（通常為 %2$d–%3$d %%）。</string>
     <string name="finding_deep_short">在不到 6 小時的夜晚明顯較少：%1$d %%，而不是 %2$d %%。</string>
     <string name="finding_deep_late">在你晚睡的夜晚明顯較少：%1$d %%，而不是 %2$d %%。</string>

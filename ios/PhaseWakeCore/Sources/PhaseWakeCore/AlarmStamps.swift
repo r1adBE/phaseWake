@@ -45,9 +45,10 @@ public enum AlarmStamps {
     /// bei gleichem Zeitpunkt und verschiedenem Inhalt entscheidet ein fester Vergleich. Ein Löschen gewinnt, wenn es
     /// nicht älter als diese Fassung ist; ein Wecker, den eine Seite nie kannte und nirgends gelöscht ist, bleibt.
     /// Listen-Zeitpunkt: der spätere beider Seiten. Gelöschte Wecker älter als ``tombstoneMaxAgeMs`` vor `now` (ms)
-    /// fallen weg. Die Wecker des Ergebnisses sind nach Kennung geordnet.
+    /// fallen weg. Die Wecker des Ergebnisses sind nach Kennung geordnet. Doppelte Kennung in einem Stand: der letzte
+    /// Eintrag gilt, wie Kotlin (`associateBy`, Entscheid r1AD 17.11.2026).
     public static func merge(local: AlarmSnapshot, remote: AlarmSnapshot, now: Int64) -> AlarmSnapshot {
-        let mine = byId(local.alarms), theirs = byId(remote.alarms)
+        let mine = lastById(local.alarms), theirs = lastById(remote.alarms)
         let ids = Set(mine.keys).union(theirs.keys).union(local.deleted.keys).union(remote.deleted.keys).sorted()
         var alarms: [AlarmSpec] = []
         var stamps: [String: Int64] = [:]
@@ -115,9 +116,14 @@ public enum AlarmStamps {
         return raw.compactMapValues { TimeBounds.checked(($0 as? Int64) ?? ($0 as? NSNumber)?.int64Value) }
     }
 
-    /// Wecker nach Kennung; bei doppelter Kennung gilt der erste.
+    /// Wecker nach Kennung; bei doppelter Kennung gilt der erste (Speichern und Ersetzen, wie `distinctBy` in Kotlin).
     static func byId(_ alarms: [AlarmSpec]) -> [String: AlarmSpec] {
         Dictionary(alarms.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+    }
+
+    /// Wecker nach Kennung; bei doppelter Kennung gilt der letzte (Zusammenführen, wie `associateBy` in Kotlin).
+    static func lastById(_ alarms: [AlarmSpec]) -> [String: AlarmSpec] {
+        Dictionary(alarms.map { ($0.id, $0) }, uniquingKeysWith: { _, last in last })
     }
 
     /// So weit darf die eingestellte Weckzeit nach der Zielzeit einer früher geweckten Nacht liegen («Gute Nacht»,

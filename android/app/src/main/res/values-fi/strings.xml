@@ -85,6 +85,9 @@
     <string name="settings_theme_system">Järjestelmä</string>
     <string name="settings_theme_light">Vaalea</string>
     <string name="settings_theme_dark">Tumma</string>
+    <string name="settings_evening_dark">Illalla tumma</string>
+    <string name="settings_evening_dark_text">Tumma %1$s – %2$s, myös valinnalla Järjestelmä tai Vaalea.</string>
+    <string name="settings_evening_dark_from">Tumma alkaen</string>
     <string name="settings_data">Tietosi</string>
     <string name="settings_data_text">Kaikki pysyy puhelimessa ja kellossa. Ei tiliä, ei palvelinta, ei seurantaa. Googlen kelloyhteyden kautta kulkee vain kellon teknisiä tietoja, ei terveystietoja.</string>
     <string name="settings_export">Vie yöt ilman nimeä</string>
@@ -95,10 +98,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT-lisenssi, © r1adBE.\nManrope-fontti: SIL Open Font License 1.1, © The Manrope Project Authors.\nÄänten tunnistus: MediaPipe Tasks Audio ja YAMNet-malli, Apache License 2.0, © Google LLC.\nÄänet: vapaat äänitteet (CC0) sivustolta opengameart.org</string>
     <string name="settings_version">Versio %1$s</string>
 
-    <string name="duration_minutes">%1$d min</string>
-    <string name="duration_hours">%1$d t</string>
-    <string name="duration_hours_half">%1$d½ t</string>
-    <string name="duration_hours_minutes">%1$d t %2$d min</string>
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d t</string>
+    <string name="duration_hours_half">%1$d½ t</string>
+    <string name="duration_hours_minutes">%1$d t %2$d min</string>
     <string name="health_title">Univaiheet Health Connectista</string>
     <string name="health_rationale">Phase Wake voi lukea unitiedot, jotka terveyssovelluksesi (esimerkiksi Samsung Health) tallentaa. Ne näytetään historiassasi, myös vertailuun öihin, joina Phase Wake herätti sinut. Phase Wake vain lukee, ei koskaan kirjoita, eikä mikään poistu puhelimestasi.</string>
     <string name="health_connect">Vertaa terveystietoihin</string>
@@ -282,7 +285,7 @@
         <item quantity="other">Unitavoite saavutettu: %1$d / %2$d yötä</item>
     </plurals>
     <string name="bedtime_title">Nukkumaanmenomuistutus</string>
-    <string name="bedtime_text">Muistuttaa %1$d min ennen nukkumaanmenoa: herätysaika miinus unitavoite.</string>
+    <string name="bedtime_text">Muistuttaa %1$d min ennen nukkumaanmenoa: tavoiteaika miinus unitavoite.</string>
     <string name="bedtime_notification">Nukkumaan klo %1$s – niin ehdit nukkua %2$s ennen herätystä klo %3$s.</string>
     <string name="channel_reminders">Muistutukset</string>
     <string name="sounds_title">Nukahtamisäänet</string>
@@ -554,7 +557,7 @@
     <string name="learned_latency">Nukahtaminen: noin %1$s</string>
     <string name="learned_latency_none">Nukahtaminen: liian vähän mittauksia</string>
     <string name="bedtime_advice">Mene tänään nukkumaan klo %1$s–%2$s</string>
-    <string name="bedtime_advice_hint">Herätyksen, unitavoitteen ja nukahtamiseen kuluvan ajan perusteella.</string>
+    <string name="bedtime_advice_hint">Tavoiteajan, unitavoitteen ja nukahtamiseen kuluvan ajan perusteella.</string>
     <string name="learn_restart">Opi uudelleen</string>
     <string name="learn_restart_text">Phase Wake mittaa taas %1$d yötä. Siihen asti käytetään tähän asti sovitettuja arvoja.</string>
     <string name="record_end_wake">Päättyi herätykseen</string>
@@ -636,7 +639,7 @@
     <string name="finding_title">Huomattu viimeisten 7 yön aikana</string>
     <string name="finding_hide">Piilota</string>
     <string name="finding_latency">Nukahtamiseen meni keskimäärin %1$s. Vinkki: jos olet vielä hereillä 20 minuutin jälkeen, nouse ja palaa sänkyyn vasta kun väsyttää. Jos tämä jatkuu viikkoja, puhu lääkärisi kanssa.</string>
-    <string name="finding_short_nights">Alle 6 tunnin yöt: %1$d/7. Vinkki: laske nukkumaanmenoaika herätysajasta taaksepäin ja pidä siitä kiinni.</string>
+    <string name="finding_short_nights">Alle 6 tunnin yöt: %1$d/7. Vinkki: laske nukkumaanmenoaika tavoiteajasta taaksepäin ja pidä siitä kiinni.</string>
     <string name="finding_low_deep">Syvää unta oli vain noin %1$d %% unestasi (tavallisesti %2$d–%3$d %%).</string>
     <string name="finding_deep_short">Alle 6 tunnin öinä sitä oli selvästi vähemmän: %1$d %% eikä %2$d %%.</string>
     <string name="finding_deep_late">Öinä, jolloin menit myöhään nukkumaan, sitä oli selvästi vähemmän: %1$d %% eikä %2$d %%.</string>

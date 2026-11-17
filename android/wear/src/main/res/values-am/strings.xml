@@ -50,8 +50,8 @@
     <string name="good_night_cancel">ደህና እደሩን ሰርዝ</string>
     <string name="dnd_title">ማንቂያዎች ታግደዋል</string>
     <string name="dnd_text">በአትረብሽ ውስጥ ማንቂያዎችን ይፍቀዱ።</string>
-    <string name="duration_hours">%1$d ሰ</string>
-    <string name="duration_hours_minutes">%1$d ሰ %2$d ደቂቃ</string>
+    <string name="duration_hours">%1$d ሰ</string>
+    <string name="duration_hours_minutes">%1$d ሰ %2$d ደቂቃ</string>
     <string name="home_last_night">ትናንት ማታ</string>
     <string name="notification_open">ክፈት</string>
     <string name="home_good_night_too_far">ከማንቂያው 16 ሰ በፊት ጀምሮ ይገኛል</string>

@@ -85,6 +85,9 @@
     <string name="settings_theme_system">ລະບົບ</string>
     <string name="settings_theme_light">ແຈ້ງ</string>
     <string name="settings_theme_dark">ມືດ</string>
+    <string name="settings_evening_dark">ມືດຕອນແລງ</string>
+    <string name="settings_evening_dark_text">ມືດແຕ່ %1$s ຫາ %2$s, ເຖິງຈະເລືອກ ລະບົບ ຫຼື ແຈ້ງ.</string>
+    <string name="settings_evening_dark_from">ມືດແຕ່</string>
     <string name="settings_data">ຂໍ້ມູນຂອງເຈົ້າ</string>
     <string name="settings_data_text">ທຸກຢ່າງຢູ່ໃນໂທລະສັບ ແລະ ໂມງຂອງເຈົ້າ ບໍ່ມີບັນຊີ ບໍ່ມີເຊີບເວີ ບໍ່ມີການຕິດຕາມ ມີແຕ່ຂໍ້ມູນທາງເຕັກນິກຂອງໂມງເທົ່ານັ້ນທີ່ຜ່ານການເຊື່ອມຕໍ່ໂມງຂອງ Google, ບໍ່ມີຂໍ້ມູນສຸຂະພາບ.</string>
     <string name="settings_export">ສົ່ງອອກຄືນໂດຍບໍ່ມີຊື່</string>
@@ -95,10 +98,10 @@
     <string name="settings_licenses_text">Phase Wake: ໃບອະນຸຍາດ MIT, © r1adBE\nຟອນ Manrope: SIL Open Font License 1.1, © The Manrope Project Authors\nການກວດຈັບສຽງ: MediaPipe Tasks Audio ແລະ ໂມເດວ YAMNet, Apache License 2.0, © Google LLC\nສຽງ: ການບັນທຶກຟຣີ (CC0) ຈາກ opengameart.org</string>
     <string name="settings_version">ເວີຊັນ %1$s</string>
 
-    <string name="duration_minutes">%1$d ນາທີ</string>
-    <string name="duration_hours">%1$d ຊມ</string>
-    <string name="duration_hours_half">%1$d½ ຊມ</string>
-    <string name="duration_hours_minutes">%1$d ຊມ %2$d ນາທີ</string>
+    <string name="duration_minutes">%1$d ນາທີ</string>
+    <string name="duration_hours">%1$d ຊມ</string>
+    <string name="duration_hours_half">%1$d½ ຊມ</string>
+    <string name="duration_hours_minutes">%1$d ຊມ %2$d ນາທີ</string>
     <string name="health_title">ໄລຍະການນອນຈາກ Health Connect</string>
     <string name="health_rationale">Phase Wake ສາມາດອ່ານຂໍ້ມູນການນອນທີ່ແອັບສຸຂະພາບຂອງເຈົ້າ (ເຊັ່ນ Samsung Health) ບັນທຶກໄວ້ ຂໍ້ມູນນີ້ສະແດງໃນປະຫວັດຂອງເຈົ້າ ລວມທັງເພື່ອປຽບທຽບກັບຄືນທີ່ Phase Wake ປຸກເຈົ້າ Phase Wake ອ່ານຢ່າງດຽວ ບໍ່ເຄີຍຂຽນ ແລະ ບໍ່ມີຫຍັງອອກຈາກໂທລະສັບຂອງເຈົ້າ</string>
     <string name="health_connect">ປຽບທຽບກັບຂໍ້ມູນສຸຂະພາບ</string>
@@ -274,7 +277,7 @@
         <item quantity="other">ບັນລຸເປົ້າໝາຍການນອນ: %1$d ຈາກ %2$d ຄືນ</item>
     </plurals>
     <string name="bedtime_title">ແຈ້ງເຕືອນເວລາເຂົ້ານອນ</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">ແຈ້ງເຕືອນກ່ອນເວລາເຂົ້ານອນ %1$d ນາທີ: ເວລາປຸກ ລົບດ້ວຍເປົ້າໝາຍການນອນ</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">ແຈ້ງເຕືອນກ່ອນເວລາເຂົ້ານອນ %1$d ນາທີ: ເວລາເປົ້າໝາຍ ລົບດ້ວຍເປົ້າໝາຍການນອນ</string>
     <string name="bedtime_notification">ເວລາເຂົ້ານອນ %1$s – ແບບນີ້ເຈົ້າຈະໄດ້ນອນ %2$s ກ່ອນໂມງປຸກຕອນ %3$s</string>
     <string name="channel_reminders">ການແຈ້ງເຕືອນ</string>
     <string name="sounds_title">ສຽງຊ່ວຍນອນ</string>
@@ -542,7 +545,7 @@
     <string name="learned_latency">ການນອນຫຼັບ: ປະມານ %1$s</string>
     <string name="learned_latency_none">ການນອນຫຼັບ: ການວັດໜ້ອຍເກີນໄປ</string>
     <string name="bedtime_advice">ຄືນນີ້ເຂົ້ານອນລະຫວ່າງ %1$s ຫາ %2$s</string>
-    <string name="bedtime_advice_hint">ອີງຕາມໂມງປຸກ, ເປົ້າໝາຍການນອນ ແລະ ເວລາທີ່ເຈົ້າໃຊ້ເພື່ອນອນຫຼັບ.</string>
+    <string name="bedtime_advice_hint">ອີງຕາມເວລາເປົ້າໝາຍ, ເປົ້າໝາຍການນອນ ແລະ ເວລາທີ່ເຈົ້າໃຊ້ເພື່ອນອນຫຼັບ.</string>
     <string name="learn_restart">ຮຽນຮູ້ໃໝ່</string>
     <string name="learn_restart_text">Phase Wake ວັດແທກອີກ %1$d ຄືນ. ຈົນກວ່າຈະຮອດຕອນນັ້ນ ຄ່າທີ່ປັບມາແລ້ວຍັງໃຊ້ຢູ່.</string>
     <string name="record_end_wake">ສິ້ນສຸດຕອນປຸກ</string>
@@ -624,7 +627,7 @@
     <string name="finding_title">ສິ່ງທີ່ສັງເກດເຫັນໃນ 7 ຄືນຫຼ້າສຸດ</string>
     <string name="finding_hide">ເຊື່ອງ</string>
     <string name="finding_latency">ໂດຍສະເລ່ຍເຈົ້າໃຊ້ເວລາ %1$s ກວ່າຈະນອນຫຼັບ. ຄຳແນະນຳ: ຖ້າຜ່ານໄປ 20 ນາທີແລ້ວຍັງບໍ່ຫຼັບ ໃຫ້ລຸກຂຶ້ນ ແລ້ວກັບໄປນອນເມື່ອງ່ວງເທົ່ານັ້ນ. ຖ້າເປັນແບບນີ້ຫຼາຍອາທິດ ໃຫ້ປຶກສາທ່ານໝໍຂອງເຈົ້າ.</string>
-    <string name="finding_short_nights">ຄືນທີ່ນ້ອຍກວ່າ 6 ຊົ່ວໂມງ: %1$d ໃນ 7. ຄຳແນະນຳ: ຄິດໄລ່ເວລາເຂົ້ານອນຖອຍຫຼັງຈາກເວລາຕື່ນ ແລະ ເຮັດຕາມ.</string>
+    <string name="finding_short_nights">ຄືນທີ່ນ້ອຍກວ່າ 6 ຊົ່ວໂມງ: %1$d ໃນ 7. ຄຳແນະນຳ: ຄິດໄລ່ເວລາເຂົ້ານອນຖອຍຫຼັງຈາກເວລາເປົ້າໝາຍ ແລະ ເຮັດຕາມ.</string>
     <string name="finding_low_deep">ການນອນຫຼັບເລິກມີພຽງປະມານ %1$d %% ຂອງການນອນຂອງເຈົ້າ (ປົກກະຕິ %2$d–%3$d %%).</string>
     <string name="finding_deep_short">ໃນຄືນທີ່ນ້ອຍກວ່າ 6 ຊົ່ວໂມງ ມັນຕ່ຳລົງຢ່າງຈະແຈ້ງ: %1$d %% ແທນ %2$d %%.</string>
     <string name="finding_deep_late">ໃນຄືນທີ່ເຈົ້າເຂົ້ານອນຊ້າ ມັນຕ່ຳລົງຢ່າງຈະແຈ້ງ: %1$d %% ແທນ %2$d %%.</string>

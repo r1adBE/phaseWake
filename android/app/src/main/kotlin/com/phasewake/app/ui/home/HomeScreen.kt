@@ -79,6 +79,8 @@ fun HomeScreen(
     missHint: MissHint? = null,
     /** Die wichtigste Auffälligkeit der letzten 7 Nächte ([com.phasewake.app.core.Findings.home]); `null`: keine Karte. */
     finding: Finding? = null,
+    /** Auffälligkeit, solange die Bettzeit-Karte steht: ohne Bettzeit-Tipp (Findings.home mit `bedtimeAdvice`, Audit UX-04). */
+    bedtimeFinding: Finding? = finding,
     onHideFinding: (FindingKind) -> Unit = {},
     /** Schlafnotizen je Nachtdatum und die eigenen Notizen. */
     notes: Map<LocalDate, List<String>> = emptyMap(),
@@ -131,6 +133,8 @@ fun HomeScreen(
     }
     // Morgenbericht zuerst: vom Wecken heute bis 12 Uhr steht die letzte Nacht direkt unter dem Kopf.
     val morningFirst = lastNight != null && isMorningOf(lastNight, now, zone)
+    val evening = SleepNotes.entryVisible(now, zone, plan?.windowStart)
+    val advice = if (evening) bedtimeAdvice(plan, alarms, extras, now, zone) else null
     val nightCard = @Composable {
         if (lastNight != null) {
             val date = SleepNotes.nightDate(lastNight, zone)
@@ -173,12 +177,30 @@ fun HomeScreen(
         if (check != null && plan != null) {
             item(key = "check") { NightCheckCard(check, cardColor(), onFix, extras.onTest, extras.testAt) }
         }
+        // «Deine Wecker» gleich nach dem Nacht-Check, vor den Abendkarten (Audit UX-01, r1AD 17.11.2026); Reihenfolge wie iPhone.
+        if (alarms.isNotEmpty()) {
+            item(key = "header") { AlarmsTitle() }
+            items(alarms, key = { it.id }) { alarm ->
+                AlarmRow(
+                    alarm, Modifier.animateItem(), onClick = { onEdit(alarm.id) }, onToggle = { onToggle(alarm, it) },
+                    skipped = AlarmSchedule.skippedDate(alarm, now, zone)?.let { Format.shortDay(it, locale) },
+                    onSkip = extras.onSkip?.let { skip -> { skip(alarm) } },
+                    onUndoSkip = { extras.onUndoSkip(alarm) },
+                    skipDate = AlarmSchedule.nextSkipDate(alarm, now, zone, extras.holidays, done[alarm.id])?.let { Format.shortDay(it, locale) },
+                )
+            }
+            if (alarms.size >= MAX_ALARMS) {
+                item(key = "limit") { AlarmLimitHint() }
+            }
+        }
+        extras.onNap?.let { onNap ->
+            item(key = "nap") { NapCard(extras.nap, extras.napMinutes, onNap, extras.onStopNap) }
+        }
         // Am Abend bis zum Weckfenster: Notizen für die kommende Nacht.
-        val evening = SleepNotes.entryVisible(now, zone, plan?.windowStart)
         if (evening) {
             val tonight = SleepNotes.nightDate(now, zone)
             // Nach der Lernphase: empfohlene Schlafenszeit für den Wecker dieser Nacht.
-            bedtimeAdvice(plan, alarms, extras, now, zone)?.let { (from, until) ->
+            advice?.let { (from, until) ->
                 item(key = "bedtimeAdvice") { BedtimeAdviceCard(from, until) }
             }
             item(key = "notes") {
@@ -197,9 +219,6 @@ fun HomeScreen(
         if (onSounds != null) {
             item(key = "sounds") { SoundsEntry(soundPlaying, now, onSounds) }
         }
-        extras.onNap?.let { onNap ->
-            item(key = "nap") { NapCard(extras.nap, extras.napMinutes, onNap, extras.onStopNap) }
-        }
         extras.learning?.let { learning -> item(key = "learning") { LearningCard(learning, extras.record, extras.onRecord) } }
         // Während der Lernphase steckt «Nacht aufzeichnen» in ihrer Karte, sonst eine eigene Karte (r1AD 13.11.2026). Solange
         // die Frage «Lernphase starten / Später» offen ist, auch keine – ausser es läuft schon eine Aufzeichnung (Stopp).
@@ -209,26 +228,11 @@ fun HomeScreen(
         }?.let { record ->
             item(key = "record") { RecordCard(record.since, extras.onRecord) }
         }
-        finding?.let { f -> item(key = "finding") { FindingCard(f) { onHideFinding(f.kind) } } }
+        (if (advice != null) bedtimeFinding else finding)?.let { f -> item(key = "finding") { FindingCard(f) { onHideFinding(f.kind) } } }
         if (lastNight != null && !morningFirst) item(key = "night") { nightCard() }
         // Morgenbericht ohne aufgezeichnete Nacht (z. B. Uhr nicht getragen): nur die Geräusche.
         soundsMorningNight(soundClips, lastNight, soundRec, plan?.windowStart, now, zone)?.let { night ->
             item(key = "soundsMorning") { SoundsMorningCard(SoundEvents.forNight(soundClips, night), soundFile, onDeleteClip) { onDeleteNightClips(night) } }
-        }
-        if (alarms.isNotEmpty()) {
-            item(key = "header") { AlarmsTitle() }
-            items(alarms, key = { it.id }) { alarm ->
-                AlarmRow(
-                    alarm, Modifier.animateItem(), onClick = { onEdit(alarm.id) }, onToggle = { onToggle(alarm, it) },
-                    skipped = AlarmSchedule.skippedDate(alarm, now, zone)?.let { Format.shortDay(it, locale) },
-                    onSkip = extras.onSkip?.let { skip -> { skip(alarm) } },
-                    onUndoSkip = { extras.onUndoSkip(alarm) },
-                    skipDate = AlarmSchedule.nextSkipDate(alarm, now, zone, extras.holidays, done[alarm.id])?.let { Format.shortDay(it, locale) },
-                )
-            }
-            if (alarms.size >= MAX_ALARMS) {
-                item(key = "limit") { AlarmLimitHint() }
-            }
         }
     }
     }

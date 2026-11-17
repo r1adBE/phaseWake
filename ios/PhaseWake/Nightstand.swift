@@ -43,7 +43,8 @@ struct NightstandView: View {
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
-        TimelineView(.periodic(from: .now, by: 1)) { context in
+        // Bis zum Beginn des Sonnenaufgangs jede Minute (nur die Uhrzeit auf Schwarz), danach jede Sekunde (PERF-09).
+        TimelineView(NightstandSchedule(light: lightStart)) { context in
             let progress = progress(at: context.date)
             ZStack {
                 if let progress { SunriseBackground(progress: progress) } else { Color.black.ignoresSafeArea() }
@@ -143,11 +144,27 @@ struct NightstandView: View {
         return L("nightstand_waiting", Format.time(sunrise == .window ? plan.windowStart : plan.target))
     }
 
+    /// Weckmoment der Uhr in dieser Nacht (vom Fensterbeginn bis 10 Min. nach der Zielzeit), sonst `nil`.
+    private var ring: Date? {
+        guard let plan else { return nil }
+        return model.lastRing.flatMap { $0 >= plan.windowStart && $0 <= plan.target.addingTimeInterval(600) ? $0 : nil }
+    }
+
+    /// Beginn des Sonnenaufgangs dieser Nacht (wie ``progress(at:)``); `nil` = keiner.
+    private var lightStart: Date? {
+        guard let plan else { return nil }
+        switch sunrise {
+        case .window: return plan.windowStart
+        case .ring: return ring ?? plan.target
+        case .off: return nil
+        }
+    }
+
     /// Wie beim Android-Weckbildschirm: ab Fenster bis zur Zielzeit; weckt die Uhr früher, in einer
     /// Minute voll. «Beim Wecken»: ab dem Weckmoment der Uhr (spätestens Zielzeit) in zwei Minuten.
     private func progress(at now: Date) -> Double? {
         guard let plan, sunrise != .off else { return nil }
-        let ring = model.lastRing.flatMap { $0 >= plan.windowStart && $0 <= plan.target.addingTimeInterval(600) ? $0 : nil }
+        let ring = self.ring
         switch sunrise {
         case .window:
             guard now >= plan.windowStart else { return nil }
@@ -163,6 +180,37 @@ struct NightstandView: View {
             return min(1, now.timeIntervalSince(start) / Double(Sunrise.ringSeconds))
         case .off:
             return nil
+        }
+    }
+}
+
+/// Takt des Nachttisch-Modus (Audit 17.11. PERF-09): vor dem Sonnenaufgang zu jeder vollen Minute (die Uhrzeit zeigt
+/// Stunde und Minute), ab seinem Beginn `light` jede Sekunde; ohne Sonnenaufgang (`nil`) immer jede Minute.
+struct NightstandSchedule: TimelineSchedule {
+    let light: Date?
+
+    func entries(from startDate: Date, mode: TimelineScheduleMode) -> Entries {
+        Entries(upcoming: startDate, light: light)
+    }
+
+    /// Nächster Zeitpunkt nach `date`: ab `light` (eine Sekunde davor) jede Sekunde, sonst die nächste volle Minute,
+    /// höchstens bis `light`.
+    static func next(after date: Date, light: Date?) -> Date {
+        if let light, date >= light.addingTimeInterval(-1) { return date.addingTimeInterval(1) }
+        let minute = Date(timeIntervalSince1970: (date.timeIntervalSince1970 / 60).rounded(.down) * 60 + 60)
+        guard let light else { return minute }
+        return min(minute, light)
+    }
+
+    /// Folge der Zeitpunkte ab dem Start (der Start selbst zuerst).
+    struct Entries: Sequence, IteratorProtocol {
+        var upcoming: Date
+        let light: Date?
+
+        mutating func next() -> Date? {
+            let date = upcoming
+            upcoming = NightstandSchedule.next(after: date, light: light)
+            return date
         }
     }
 }

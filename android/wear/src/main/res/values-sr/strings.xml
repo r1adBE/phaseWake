@@ -52,8 +52,8 @@
     <string name="good_night_cancel">Откажи Лаку ноћ</string>
     <string name="dnd_title">Аларми блокирани</string>
     <string name="dnd_text">Дозволи аларме у режиму „Не узнемиравај“.</string>
-    <string name="duration_hours">%1$d ч</string>
-    <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
+    <string name="duration_hours">%1$d ч</string>
+    <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
     <string name="home_last_night">Прошла ноћ</string>
     <string name="notification_open">Отвори</string>
     <string name="home_good_night_too_far">Доступно од 16 ч пре аларма</string>

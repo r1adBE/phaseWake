@@ -87,6 +87,9 @@
     <string name="settings_theme_system">Isistimu</string>
     <string name="settings_theme_light">Okukhanyayo</string>
     <string name="settings_theme_dark">Okumnyama</string>
+    <string name="settings_evening_dark">Okumnyama kusihlwa</string>
+    <string name="settings_evening_dark_text">Okumnyama %1$s – %2$s, noma kukhethwe Isistimu noma Okukhanyayo.</string>
+    <string name="settings_evening_dark_from">Okumnyama kusukela</string>
     <string name="settings_data">Idatha yakho</string>
     <string name="settings_data_text">Konke kuhlala efonini nasewashini lakho. Ayikho i-akhawunti, ayikho iseva, akukho ukulandelwa. Kudlula kuphela ulwazi lobuchwepheshe ngewashi oxhumanweni lwewashi lwe-Google, ngaphandle kwedatha yezempilo.</string>
     <string name="settings_export">Thumela ubusuku ngaphandle kwegama</string>
@@ -97,10 +100,10 @@
     <string name="settings_licenses_text">Phase Wake: ilayisense ye-MIT, © r1adBE.\nUhlobo lwamagama i-Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nUkubona imisindo: MediaPipe Tasks Audio nemodeli ye-YAMNet, Apache License 2.0, © Google LLC.\nImisindo: okuqoshiwe kwamahhala (CC0) kusuka ku-opengameart.org</string>
     <string name="settings_version">Inguqulo %1$s</string>
 
-    <string name="duration_minutes">%1$d min</string>
-    <string name="duration_hours">%1$d h</string>
-    <string name="duration_hours_half">%1$d½ h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_half">%1$d½ h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Izigaba zokulala ezivela ku-Health Connect</string>
     <string name="health_rationale">I-Phase Wake ingafunda idatha yokulala egcinwa yi-app yakho yezempilo (isibonelo i-Samsung Health). Iboniswa emlandweni wakho, futhi ukuze iqhathaniswe nobusuku i-Phase Wake ekuvuse ngabo. I-Phase Wake iyafunda kuphela, ayibhali neze, futhi akukho okuphuma efonini yakho.</string>
     <string name="health_connect">Qhathanisa nedatha yezempilo</string>
@@ -282,7 +285,7 @@
         <item quantity="other">Umgomo wokulala ufinyelelwe: %1$d kobungu-%2$d</item>
     </plurals>
     <string name="bedtime_title">Isikhumbuzi sesikhathi sokulala</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">Ikukhumbuza %1$d min ngaphambi kwesikhathi sokulala: isikhathi se-alamu yakho kususwe umgomo wakho wokulala.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">Ikukhumbuza %1$d min ngaphambi kwesikhathi sokulala: isikhathi okuhloswe ngaso kususwe umgomo wakho wokulala.</string>
     <string name="bedtime_notification">Isikhathi sokulala ngu-%1$s – ngaleyo ndlela uzothola %2$s ngaphambi kwe-alamu yakho ngo-%3$s.</string>
     <string name="channel_reminders">Izikhumbuzi</string>
     <string name="sounds_title">Imisindo yokulala</string>
@@ -557,7 +560,7 @@
     <string name="learned_latency">Ukulala: cishe %1$s</string>
     <string name="learned_latency_none">Ukulala: izilinganiso zimbalwa kakhulu</string>
     <string name="bedtime_advice">Namuhla yiya embhedeni phakathi kuka-%1$s no-%2$s</string>
-    <string name="bedtime_advice_hint">Ngokusekelwe ku-alamu yakho, umgomo wokulala nesikhathi okuthatha sona ukulala.</string>
+    <string name="bedtime_advice_hint">Ngokusekelwe esikhathini okuhloswe ngaso, umgomo wokulala nesikhathi okuthatha sona ukulala.</string>
     <string name="learn_restart">Funda kabusha</string>
     <string name="learn_restart_text">I-Phase Wake iphinda ikale ubusuku obungu-%1$d. Kuze kube yileso sikhathi, amanani alungisiwe kuze kube manje ayaqhubeka esetshenziswa.</string>
     <string name="record_end_wake">Kuphele lapho kuvuswa</string>
@@ -639,7 +642,7 @@
     <string name="finding_title">Okubonakele ebusuku bakho bokugcina obu-7</string>
     <string name="finding_hide">Fihla</string>
     <string name="finding_latency">Ngokwesilinganiso kukuthathe u-%1$s ukuze ulale. Ithiphu: uma usaphapheme ngemva kwemizuzu engu-20, vuka ubuyele embhedeni kuphela lapho usozela. Uma lokhu kuqhubeka amasonto, khuluma nodokotela wakho.</string>
-    <string name="finding_short_nights">Ubusuku obungaphansi kwamahora angu-6: %1$d kwangu-7. Ithiphu: bala isikhathi sakho sokulala usuka esikhathini sokuvuka futhi usigcine.</string>
+    <string name="finding_short_nights">Ubusuku obungaphansi kwamahora angu-6: %1$d kwangu-7. Ithiphu: bala isikhathi sakho sokulala usuka esikhathini okuhloswe ngaso futhi usigcine.</string>
     <string name="finding_low_deep">Ukulala okujulile bekungu-%1$d %% kuphela wokulala kwakho (ngokuvamile %2$d–%3$d %%).</string>
     <string name="finding_deep_short">Ebusuku obungaphansi kwamahora angu-6 bekuncane ngokusobala: %1$d %% esikhundleni sika-%2$d %%.</string>
     <string name="finding_deep_late">Ebusuku owalala ngabo sekwephuzile bekuncane ngokusobala: %1$d %% esikhundleni sika-%2$d %%.</string>

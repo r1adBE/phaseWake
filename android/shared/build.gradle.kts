@@ -47,6 +47,12 @@ dependencies {
     api(libs.androidx.datastore.preferences)
     implementation(libs.androidx.core.ktx)
 
+    // Sicherheit (Review K-01, Audit 17.11. CODE-05): wie in app und wear; hebt Guava in den Test-Classpaths an
+    // (Robolectric bringt 33.6.0-jre mit), bindet nichts zusätzlich ein.
+    constraints {
+        implementation("com.google.guava:guava:${libs.versions.guava.get()}") { because("OSV: GHSA-xxph-c9ww-hj94") }
+    }
+
     // Android-Bibliothek: Testrahmen ausdrücklich (JUnit), sonst fehlt kotlin.test.Test.
     testImplementation(kotlin("test-junit"))
     testImplementation(libs.kotlinx.coroutines.test)

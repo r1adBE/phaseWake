@@ -37,12 +37,12 @@ das Handy klingelt als Zweitwecker, wenn die Uhr nicht weckt. Beides braucht Ala
 Ruhemodus des Geräts. Die Alarme erscheinen im System als Wecker (Uhrzeit in der Statusleiste).
 
 **Vollbild-Benachrichtigung (`USE_FULL_SCREEN_INTENT`).** Nur beim Wecken: Der Weckbildschirm mit «Schlummern» und
-«Beenden» erscheint auch bei gesperrtem Handy bzw. dunkler Uhr. Keine anderen Vollbild-Meldungen.
+«Halten zum Stoppen» erscheint auch bei gesperrtem Handy bzw. dunkler Uhr. Keine anderen Vollbild-Meldungen.
 
 **Vordergrund-Dienst «systemExempted» (Handy und Uhr).** Läuft nur, während ein Wecker klingelt oder schlummert
 (Handy: Zweitwecker oder Weiterleitung der Uhr; Uhr: bei jedem Klingeln und Schlummern, dazu im Weckfenster, wenn nicht
 gemessen werden kann – vor dem ersten Entsperren nach einem Neustart oder ohne Sensorrechte). Er hält Ton, Vibration und
-Weckbildschirm am Leben, bis du beendest oder schlummerst. Als Wecker-App mit `USE_EXACT_ALARM` ist dieser Typ vorgesehen.
+Weckbildschirm am Leben, bis du stoppst oder schlummerst. Als Wecker-App mit `USE_EXACT_ALARM` ist dieser Typ vorgesehen.
 Nur der Weckdienst (`WakeService`) nutzt ihn, nie die Aufzeichnung.
 
 **Vordergrund-Dienst «health» (Uhr).** Läuft im Weckfenster (10–30 Minuten vor der Zielzeit) und am Abend bis zum
@@ -100,7 +100,7 @@ an alarm the user sets: the watch starts measuring when the wake window begins a
 the latest; the phone rings as a backup alarm if the watch does not. Both need alarms to the minute, also in Doze. The
 alarms are shown by the system as alarm clocks (time in the status bar).
 
-**Full-screen intent (`USE_FULL_SCREEN_INTENT`).** Only when an alarm rings: the alarm screen with “Snooze” and “Stop”
+**Full-screen intent (`USE_FULL_SCREEN_INTENT`).** Only when an alarm rings: the alarm screen with “Snooze” and “Hold to stop”
 appears even when the phone is locked or the watch screen is off. No other full-screen notifications.
 
 **Foreground service type “systemExempted” (phone and watch).** Runs only while an alarm rings or is snoozed (phone:
@@ -322,5 +322,9 @@ Phase Wake enthält kein Absturz-SDK und hat keine Internet-Berechtigung (Audit 
 - **Apple:** App Store Connect → App → «TestFlight» bzw. Xcode → Window → Organizer → «Crashes» (auch «Energy» und
   «Hangs»), für iPhone und Apple Watch. Nur von Nutzern, die «Mit App-Entwicklern teilen» eingeschaltet haben; lesbar
   mit den dSYM-Dateien, die beim Hochladen des Archivs mitgehen.
+- **Prozessenden im Diagnose-Protokoll (auch Testversion ohne Store):** Zeilen `exit <art> at …` (Art ERROR). iPhone:
+  MetricKit meldet Absturz (Signal, Exception-Typ und -Code, Grund des Systems), Hänger, CPU- und Schreib-Ausnahmen;
+  Android und Galaxy Watch: `ApplicationExitInfo` (Grund, Status, Wichtigkeit). Keine Stacks; die Apple Watch hat
+  kein MetricKit, dort bleibt nur der Xcode Organizer.
 - **Diagnose-Protokoll:** Bei Meldungen, die kein Absturz sind (z. B. «hat nicht geweckt»), Nutzer bitten, das lokale
   Protokoll freizuschalten und zu teilen (in den Einstellungen 7× auf die Versionszeile tippen, dann «Diagnose», siehe `docs/TESTEN.md`); es enthält Zeiten und zusammengefasste Messwerte (z. B. Bewegung, Einschlafzeit), aber keine Namen, und Nutzer teilen es nur, wenn sie wollen.

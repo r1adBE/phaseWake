@@ -10,3 +10,8 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+  # Werkzeuge der Workflows «Feiertage» und «Einschlafklänge» (feste Versionen mit Prüfsummen, Audit 17.11. CODE-11).
+  - package-ecosystem: pip
+    directory: /.github/scripts
+    schedule:
+      interval: weekly

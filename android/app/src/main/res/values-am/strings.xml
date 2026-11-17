@@ -87,6 +87,9 @@
     <string name="settings_theme_system">ሥርዓት</string>
     <string name="settings_theme_light">ብሩህ</string>
     <string name="settings_theme_dark">ጨለማ</string>
+    <string name="settings_evening_dark">ምሽት ጨለማ</string>
+    <string name="settings_evening_dark_text">ጨለማ፦ %1$s – %2$s፣ ሥርዓት ወይም ብሩህ ቢመረጥም።</string>
+    <string name="settings_evening_dark_from">ጨለማ የሚጀምረው</string>
     <string name="settings_data">የእርስዎ ውሂብ</string>
     <string name="settings_data_text">ሁሉም ነገር በስልክዎና በሰዓትዎ ላይ ይቆያል። መለያ የለም፣ አገልጋይ የለም፣ ክትትል የለም። በGoogle የሰዓት ግንኙነት በኩል የሚያልፉት ስለ ሰዓቱ ቴክኒካዊ መረጃዎች ብቻ ናቸው፣ ያለ የጤና ውሂብ።</string>
     <string name="settings_export">ሌሊቶችን ያለ ስም ወደ ውጭ ላክ</string>
@@ -97,10 +100,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT ፈቃድ፣ © r1adBE።\nManrope ፊደል: SIL Open Font License 1.1፣ © The Manrope Project Authors።\nየድምፅ ማወቂያ: MediaPipe Tasks Audio እና የYAMNet ሞዴል፣ Apache License 2.0፣ © Google LLC።\nድምፆች: ከopengameart.org ነፃ ቅጂዎች (CC0)</string>
     <string name="settings_version">ስሪት %1$s</string>
 
-    <string name="duration_minutes">%1$d ደቂቃ</string>
-    <string name="duration_hours">%1$d ሰ</string>
-    <string name="duration_hours_half">%1$d½ ሰ</string>
-    <string name="duration_hours_minutes">%1$d ሰ %2$d ደቂቃ</string>
+    <string name="duration_minutes">%1$d ደቂቃ</string>
+    <string name="duration_hours">%1$d ሰ</string>
+    <string name="duration_hours_half">%1$d½ ሰ</string>
+    <string name="duration_hours_minutes">%1$d ሰ %2$d ደቂቃ</string>
     <string name="health_title">ከHealth Connect የተገኙ የእንቅልፍ ደረጃዎች</string>
     <string name="health_rationale">Phase Wake የጤና መተግበሪያዎ (ለምሳሌ Samsung Health) የሚያስቀምጠውን የእንቅልፍ ውሂብ ማንበብ ይችላል። ውሂቡ በታሪክዎ ውስጥ ይታያል፣ Phase Wake ከቀሰቀሰዎት ምሽቶች ጋር ለማነጻጸርም ያገለግላል። Phase Wake ያነባል እንጂ በጭራሽ አይጽፍም፣ ምንም ነገርም ከስልክዎ አይወጣም።</string>
     <string name="health_connect">ከጤና ውሂብ ጋር አወዳድር</string>
@@ -282,7 +285,7 @@
         <item quantity="other">የእንቅልፍ ግብ ተሳክቷል: %1$d ከ%2$d ሌሊቶች</item>
     </plurals>
     <string name="bedtime_title">የመኝታ ሰዓት አስታዋሽ</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">ከመኝታ ሰዓት %1$d ደቂቃ በፊት ያስታውስዎታል፦ የማንቂያ ሰዓትዎ ሲቀነስ የእንቅልፍ ግብዎ።</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">ከመኝታ ሰዓት %1$d ደቂቃ በፊት ያስታውስዎታል፦ የታለመ ሰዓትዎ ሲቀነስ የእንቅልፍ ግብዎ።</string>
     <string name="bedtime_notification">የመኝታ ሰዓት %1$s ላይ – በዚህ መንገድ በ%3$s ካለው ማንቂያዎ በፊት %2$s ያገኛሉ።</string>
     <string name="channel_reminders">አስታዋሾች</string>
     <string name="sounds_title">የእንቅልፍ ድምፆች</string>
@@ -557,7 +560,7 @@
     <string name="learned_latency">ለመተኛት፦ ወደ %1$s ገደማ</string>
     <string name="learned_latency_none">ለመተኛት፦ መለኪያዎቹ በጣም ጥቂት ናቸው</string>
     <string name="bedtime_advice">ዛሬ ከ%1$s እስከ %2$s ባለው ጊዜ ተኛ</string>
-    <string name="bedtime_advice_hint">ከማንቂያህ፣ ከእንቅልፍ ግብህና ለመተኛት ከሚወስድብህ ጊዜ።</string>
+    <string name="bedtime_advice_hint">ከታለመው ሰዓትህ፣ ከእንቅልፍ ግብህና ለመተኛት ከሚወስድብህ ጊዜ።</string>
     <string name="learn_restart">እንደገና ተማር</string>
     <string name="learn_restart_text">Phase Wake እንደገና %1$d ሌሊቶችን ይለካል። እስከዚያ ድረስ እስካሁን የተስተካከሉት እሴቶች ያገለግላሉ።</string>
     <string name="record_end_wake">በመንቃት ጊዜ አልቋል</string>
@@ -639,7 +642,7 @@
     <string name="finding_title">ባለፉት 7 ሌሊቶች የታየ</string>
     <string name="finding_hide">ደብቅ</string>
     <string name="finding_latency">ለመተኛት በአማካይ %1$s ወስዶብሃል። ምክር፦ ከ20 ደቂቃ በኋላ አሁንም ነቅተህ ከሆነ ተነስ፣ እንቅልፍ ሲመጣብህ ብቻ ወደ አልጋ ተመለስ። ይህ ለሳምንታት ከቀጠለ ሐኪምህን አነጋግር።</string>
-    <string name="finding_short_nights">ከ6 ሰዓት ያነሱ ሌሊቶች፦ ከ7 %1$d። ምክር፦ የመኝታ ሰዓትህን ከመነሻ ሰዓትህ ወደኋላ አስላና ጠብቀው።</string>
+    <string name="finding_short_nights">ከ6 ሰዓት ያነሱ ሌሊቶች፦ ከ7 %1$d። ምክር፦ የመኝታ ሰዓትህን ከታለመው ሰዓትህ ወደኋላ አስላና ጠብቀው።</string>
     <string name="finding_low_deep">ጥልቅ እንቅልፍ ከእንቅልፍህ ወደ %1$d %% ብቻ ነበር (በተለምዶ %2$d–%3$d %%)።</string>
     <string name="finding_deep_short">ከ6 ሰዓት ባነሱ ሌሊቶች በግልጽ ያነሰ ነበር፦ ከ%2$d %% ይልቅ %1$d %%።</string>
     <string name="finding_deep_late">ዘግይተህ በተኛህባቸው ሌሊቶች በግልጽ ያነሰ ነበር፦ ከ%2$d %% ይልቅ %1$d %%።</string>

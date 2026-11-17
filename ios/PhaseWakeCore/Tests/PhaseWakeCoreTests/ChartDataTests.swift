@@ -72,26 +72,6 @@ final class ChartDataTests: XCTestCase {
         XCTAssertNil(ChartData.sleepBars([sleep("2026-09-01", "23:00", "07:00", 480)], calendar: zurich, today: evening, nextTarget: nil, goalMinutes: 450))
     }
 
-    func testDurationsSevenAndFourteenNights() {
-        let week = ChartData.durations(sleeps, calendar: zurich, today: "2026-10-28", goalMinutes: 450)!
-        XCTAssertEqual(week.bars.count, 7)
-        XCTAssertEqual(week.bars.first?.date, "2026-10-21")
-        XCTAssertEqual(week.bars.last, DurationBar(date: "2026-10-27", asleepMinutes: 420, reached: false))
-        XCTAssertEqual(week.bars[4], DurationBar(date: "2026-10-25", asleepMinutes: 450, reached: true))
-        XCTAssertEqual(week.bars[3], DurationBar(date: "2026-10-24", asleepMinutes: nil, reached: false))
-        XCTAssertEqual(week.averageMinutes, 445)
-        XCTAssertEqual(week.reached, 2)
-        XCTAssertEqual(week.counted, 3)
-        XCTAssertEqual(week.scaleMinutes, 465)
-        let two = ChartData.durations(sleeps, calendar: zurich, today: "2026-10-28", goalMinutes: 450, nights: ChartData.nights)!
-        XCTAssertEqual(two.bars.count, 14)
-        XCTAssertEqual(two.averageMinutes, 433)
-        XCTAssertEqual(two.reached, 2)
-        XCTAssertEqual(two.counted, 4)
-        XCTAssertEqual(ChartData.durations(sleeps, calendar: zurich, today: "2026-10-28", goalMinutes: 600)!.scaleMinutes, 600)
-        XCTAssertNil(ChartData.durations([], calendar: zurich, today: "2026-10-28", goalMinutes: 450))
-    }
-
     func testWakeMomentsKindsAndAverage() {
         let nights = [
             watchNight("2026-10-27", 33, .deadline, snoozes: 1),
@@ -183,7 +163,6 @@ final class ChartDataTests: XCTestCase {
     /// Wie `ChartDataTest.emptyInputsGiveNoChart` (Kotlin).
     func testEmptyInputsGiveNoChart() {
         XCTAssertNil(ChartData.sleepBars([], calendar: zurich, today: "2026-10-27", nextTarget: nil, goalMinutes: 450))
-        XCTAssertNil(ChartData.durations([], calendar: zurich, today: "2026-10-27", goalMinutes: 450))
         XCTAssertNil(ChartData.wakeMoments([], calendar: zurich))
         let night = watchNight("2026-10-27", 10, .lightSleep)
         XCTAssertNil(ChartData.hypnogram([], night: night))

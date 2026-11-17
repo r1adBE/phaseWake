@@ -89,6 +89,9 @@
     <string name="settings_theme_system">System</string>
     <string name="settings_theme_light">Light</string>
     <string name="settings_theme_dark">Dark</string>
+    <string name="settings_evening_dark">Dark in the evening</string>
+    <string name="settings_evening_dark_text">Dark from %1$s to %2$s, even with System or Light.</string>
+    <string name="settings_evening_dark_from">Dark from</string>
     <string name="settings_data">Your data</string>
     <string name="settings_data_text">Everything stays on your phone and watch. No account, no server, no tracking. Only technical watch information goes through Google’s watch connection, without health data.</string>
     <string name="settings_export">Export nights without name</string>
@@ -99,10 +102,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT License, © r1adBE.\nManrope font: SIL Open Font License 1.1, © The Manrope Project Authors.\nSound detection: MediaPipe Tasks Audio and the YAMNet model, Apache License 2.0, © Google LLC.\nSounds: free recordings (CC0) from opengameart.org</string>
     <string name="settings_version">Version %1$s</string>
 
-    <string name="duration_minutes">%1$d min</string>
-    <string name="duration_hours">%1$d h</string>
-    <string name="duration_hours_half">%1$d½ h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_half">%1$d½ h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Sleep stages from Health Connect</string>
     <string name="health_rationale">Phase Wake can read the sleep data that your health app (for example Samsung Health) stores. It is shown in your history, also for comparison with the nights Phase Wake woke you. Phase Wake only reads, never writes, and nothing leaves your phone.</string>
     <string name="health_connect">Compare with health data</string>
@@ -284,7 +287,7 @@
         <item quantity="other">Sleep goal reached: %1$d of %2$d nights</item>
     </plurals>
     <string name="bedtime_title">Bedtime reminder</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">Reminds you %1$d min before bedtime: your alarm time minus your sleep goal.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">Reminds you %1$d min before bedtime: your target time minus your sleep goal.</string>
     <string name="bedtime_notification">Bedtime at %1$s – that way you’ll get %2$s before your alarm at %3$s.</string>
     <string name="channel_reminders">Reminders</string>
     <string name="sounds_title">Sleep sounds</string>
@@ -559,7 +562,7 @@
     <string name="learned_latency">Falling asleep: about %1$s</string>
     <string name="learned_latency_none">Falling asleep: too few measurements</string>
     <string name="bedtime_advice">Go to bed between %1$s and %2$s tonight</string>
-    <string name="bedtime_advice_hint">Based on your alarm, your sleep goal and how long you take to fall asleep.</string>
+    <string name="bedtime_advice_hint">Based on your target time, your sleep goal and how long you take to fall asleep.</string>
     <string name="learn_restart">Learn again</string>
     <string name="learn_restart_text" tools:ignore="PluralsCandidate">Phase Wake measures %1$d nights again. Until then, the values adapted so far stay in use.</string>
     <string name="record_end_wake">Ended at wake-up</string>
@@ -642,7 +645,7 @@
     <string name="finding_title">Noticed in your last 7 nights</string>
     <string name="finding_hide">Hide</string>
     <string name="finding_latency">On average you took %1$s to fall asleep. Tip: if you’re still awake after 20 minutes, get up and go back to bed only when you feel sleepy. If this lasts for weeks, talk to your doctor.</string>
-    <string name="finding_short_nights" tools:ignore="PluralsCandidate">Nights under 6 hours: %1$d of 7. Tip: work out your bedtime from your wake-up time and stick to it.</string>
+    <string name="finding_short_nights" tools:ignore="PluralsCandidate">Nights under 6 hours: %1$d of 7. Tip: work out your bedtime from your target time and stick to it.</string>
     <string name="finding_low_deep" tools:ignore="PluralsCandidate">Deep sleep made up only about %1$d %% of your sleep (typically %2$d–%3$d %%).</string>
     <string name="finding_deep_short" tools:ignore="PluralsCandidate">On nights under 6 hours it was clearly lower: %1$d %% instead of %2$d %%.</string>
     <string name="finding_deep_late" tools:ignore="PluralsCandidate">On nights you went to bed late it was clearly lower: %1$d %% instead of %2$d %%.</string>

@@ -52,7 +52,7 @@ struct PhoneAlarmView: View {
         VStack(alignment: .leading, spacing: 4) {
             Label(L("home_last_night"), systemImage: "sun.horizon.fill")
                 .font(.system(size: 13, weight: .semibold))
-                .foregroundStyle(Brand.accent(scheme))
+                .foregroundStyle(PhoneWidgetPalette.title(scheme))
             Spacer(minLength: 0)
             Text(L("night_woke", Format.time(night.wokeAt)))
                 .font(.system(size: family == .systemSmall ? 20 : 26, weight: .bold, design: .rounded))
@@ -97,7 +97,7 @@ struct PhoneAlarmView: View {
         VStack(alignment: .leading, spacing: 4) {
             Label(L("widget_name"), systemImage: "moon.stars.fill")
                 .font(.system(size: 13, weight: .semibold))
-                .foregroundStyle(Brand.accent(scheme))
+                .foregroundStyle(PhoneWidgetPalette.title(scheme))
             Spacer(minLength: 0)
             Text(window)
                 .font(.system(size: family == .systemSmall ? 22 : 28, weight: .bold, design: .rounded))

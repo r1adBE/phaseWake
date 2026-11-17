@@ -61,18 +61,20 @@ struct PhoneNextAlarmWidget: Widget {
 }
 
 /// Farben des Home-Widgets je Design des Systems, identisch zum Android-Widget (`widget_*` in values/colors.xml):
-/// dunkel Nachthimmel mit warmem Weiss, hell Creme → blasses Lavendel mit Nachtblau. Kontrast auf beiden
-/// Verlaufsenden ≥ 4.5:1 (hell 15.8/13.1 bzw. 6.4/5.3, dunkel 15.8/18.6 bzw. 10.0/11.8). Der Titel bleibt in der
-/// Hauptfarbe ``Brand/accent(_:)`` (hell 9.7/8.0, dunkel 8.5/10.0).
+/// dunkel Nachthimmel mit warmem Weiss, hell «Creme Caramel» wie der Tageshimmel (F4E4CC → E9C9A0) mit Tinte 2A2340.
+/// Kontrast oben/unten ≥ 4.5:1 (hell 11.9/9.4 bzw. 7.8/6.2, dunkel 15.8/18.6 bzw. 10.0/11.8). Titel: ``title(_:)``.
 enum PhoneWidgetPalette {
     /// Oberes Ende des Verlaufs.
-    static func top(_ scheme: ColorScheme) -> Color { scheme == .dark ? Brand.nightTop : Color(hex: 0xFBF7F0) }
+    static func top(_ scheme: ColorScheme) -> Color { scheme == .dark ? Brand.nightTop : Color(hex: 0xF4E4CC) }
     /// Unteres Ende des Verlaufs.
-    static func bottom(_ scheme: ColorScheme) -> Color { scheme == .dark ? Brand.nightBottom : Color(hex: 0xE4DFFB) }
+    static func bottom(_ scheme: ColorScheme) -> Color { scheme == .dark ? Brand.nightBottom : Color(hex: 0xE9C9A0) }
     /// Haupttext (Weckfenster).
-    static func text(_ scheme: ColorScheme) -> Color { scheme == .dark ? Brand.moon : Color(hex: 0x141A3D) }
+    static func text(_ scheme: ColorScheme) -> Color { scheme == .dark ? Brand.moon : Brand.ink }
     /// Nebentext (Tag, Nacht-Check).
-    static func secondary(_ scheme: ColorScheme) -> Color { scheme == .dark ? Brand.muted : Color(hex: 0x5B5486) }
+    static func secondary(_ scheme: ColorScheme) -> Color { scheme == .dark ? Brand.muted : Color(hex: 0x4A4058) }
+    /// Titel in der Hauptfarbe: hell das tiefe Lavendel 4436A6 (7.2/5.7:1; 5546C8 hätte unten nur 4.3:1), dunkel
+    /// ``Brand/accent(_:)`` (8.5/10.0).
+    static func title(_ scheme: ColorScheme) -> Color { scheme == .dark ? Brand.accent(scheme) : Color(hex: 0x4436A6) }
 }
 
 /// Hintergrund als Verlauf nach [PhoneWidgetPalette]; die Sperrbildschirm-Grössen zeichnet das System selbst.

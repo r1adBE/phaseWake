@@ -87,6 +87,9 @@
     <string name="settings_theme_system">Stelsel</string>
     <string name="settings_theme_light">Lig</string>
     <string name="settings_theme_dark">Donker</string>
+    <string name="settings_evening_dark">Saans donker</string>
+    <string name="settings_evening_dark_text">Donker van %1$s tot %2$s, ook met Stelsel of Lig.</string>
+    <string name="settings_evening_dark_from">Donker vanaf</string>
     <string name="settings_data">Jou data</string>
     <string name="settings_data_text">Alles bly op jou foon en horlosie. Geen rekening, geen bediener, geen nasporing nie. Net tegniese horlosie-inligting gaan deur Google se horlosieverbinding, sonder gesondheidsdata.</string>
     <string name="settings_export">Voer nagte sonder naam uit</string>
@@ -97,10 +100,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT-lisensie, © r1adBE.\nManrope-lettertipe: SIL Open Font License 1.1, © The Manrope Project Authors.\nKlankherkenning: MediaPipe Tasks Audio en die YAMNet-model, Apache License 2.0, © Google LLC.\nKlanke: gratis opnames (CC0) van opengameart.org</string>
     <string name="settings_version">Weergawe %1$s</string>
 
-    <string name="duration_minutes">%1$d min</string>
-    <string name="duration_hours">%1$d h</string>
-    <string name="duration_hours_half">%1$d½ h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_half">%1$d½ h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Slaapfases uit Health Connect</string>
     <string name="health_rationale">Phase Wake kan die slaapdata lees wat jou gesondheidsapp (byvoorbeeld Samsung Health) stoor. Dit word in jou geskiedenis gewys, ook om te vergelyk met die nagte waarin Phase Wake jou wakker gemaak het. Phase Wake lees net, skryf nooit, en niks verlaat jou foon nie.</string>
     <string name="health_connect">Vergelyk met gesondheidsdata</string>
@@ -282,7 +285,7 @@
         <item quantity="other">Slaapdoel bereik: %1$d van %2$d nagte</item>
     </plurals>
     <string name="bedtime_title">Slaaptydherinnering</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">Herinner jou %1$d min voor slaaptyd: jou wekkertyd minus jou slaapdoel.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">Herinner jou %1$d min voor slaaptyd: jou teikentyd minus jou slaapdoel.</string>
     <string name="bedtime_notification">Slaaptyd om %1$s – so kry jy %2$s voor jou wekker om %3$s.</string>
     <string name="channel_reminders">Herinneringe</string>
     <string name="sounds_title">Slaapklanke</string>
@@ -557,7 +560,7 @@
     <string name="learned_latency">Aan die slaap raak: sowat %1$s</string>
     <string name="learned_latency_none">Aan die slaap raak: te min metings</string>
     <string name="bedtime_advice">Gaan vanaand tussen %1$s en %2$s bed toe</string>
-    <string name="bedtime_advice_hint">Uit jou wekkertyd, slaapdoel en hoe lank jy neem om aan die slaap te raak.</string>
+    <string name="bedtime_advice_hint">Uit jou teikentyd, slaapdoel en hoe lank jy neem om aan die slaap te raak.</string>
     <string name="learn_restart">Leer weer</string>
     <string name="learn_restart_text">Phase Wake meet weer %1$d nagte. Tot dan bly die waardes wat tot nou toe aangepas is, geld.</string>
     <string name="record_end_wake">Beëindig met wakker word</string>
@@ -639,7 +642,7 @@
     <string name="finding_title">Opgemerk in jou laaste 7 nagte</string>
     <string name="finding_hide">Versteek</string>
     <string name="finding_latency">Gemiddeld het dit jou %1$s geneem om aan die slaap te raak. Wenk: is jy ná 20 minute nog wakker, staan op en gaan eers terug bed toe as jy vaak is. Hou dit weke lank aan, praat met jou dokter.</string>
-    <string name="finding_short_nights">Nagte korter as 6 uur: %1$d uit 7. Wenk: reken jou slaaptyd terug van jou wektyd af en hou daarby.</string>
+    <string name="finding_short_nights">Nagte korter as 6 uur: %1$d uit 7. Wenk: reken jou slaaptyd terug van jou teikentyd af en hou daarby.</string>
     <string name="finding_low_deep">Diep slaap was net sowat %1$d %% van jou slaap (gewoonlik %2$d–%3$d %%).</string>
     <string name="finding_deep_short">In nagte korter as 6 uur was dit duidelik laer: %1$d %% in plaas van %2$d %%.</string>
     <string name="finding_deep_late">In nagte wat jy laat gaan slaap het, was dit duidelik laer: %1$d %% in plaas van %2$d %%.</string>

@@ -55,11 +55,12 @@ import com.phasewake.app.R
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.WakePlan
 import com.phasewake.app.ui.Format
-import com.phasewake.app.ui.components.AnimatedNight
+import androidx.compose.ui.graphics.Color
+import com.phasewake.app.ui.components.AnimatedDay
 import com.phasewake.app.ui.components.HeroWave
 import com.phasewake.app.ui.components.LogoMark
-import com.phasewake.app.ui.components.Night
 import com.phasewake.app.ui.components.SkyMood
+import com.phasewake.app.ui.components.skyInk
 import java.time.Duration
 import java.time.Instant
 import java.time.ZoneId
@@ -67,7 +68,7 @@ import java.time.ZoneId
 // Kopfbereich der Startseite: Gruss, nächstes Weckfenster, Tag.
 
 /**
- * Kopfbereich im Nachthimmel-Verlauf, randlos bis unter die Statusleiste: Logo, Begrüssung und
+ * Kopfbereich im Himmel (dunkel Nacht, hell Tag «Creme Caramel»), randlos bis unter die Statusleiste: Logo, Begrüssung und
  * das nächste Weckfenster gross; ohne Wecker eine Einladung, den ersten zu stellen.
  */
 @Composable
@@ -97,37 +98,38 @@ internal fun Header(
         .fillMaxWidth()
         .clip(shape)
         .then(if (plan != null) Modifier.clickable { onEdit(plan.alarmId) } else Modifier)
-    // Auf der ganzseitigen Nacht (dunkel) braucht der Kopf keinen eigenen Hintergrund.
+    // Auf der ganzseitigen Nacht (dunkel) braucht der Kopf keinen eigenen Hintergrund; hell trägt er den Tageshimmel.
     val background: @Composable (Modifier, @Composable () -> Unit) -> Unit =
-        if (fullPage) { m, c -> Box(m) { c() } } else { m, c -> AnimatedNight(m, mood) { c() } }
+        if (fullPage) { m, c -> Box(m) { c() } } else { m, c -> AnimatedDay(m, mood) { c() } }
+    val ink = skyInk()
     background(base) {
         Column(Modifier.statusBarsPadding().padding(start = 22.dp, end = 22.dp, top = 18.dp, bottom = 24.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                LogoMark(48.dp)
+                LogoMark(48.dp, moon = ink.moon, wave = ink.wave)
                 Text(
                     "Phase Wake",
                     style = MaterialTheme.typography.titleLarge,
-                    color = Night.Text,
+                    color = ink.text,
                     modifier = Modifier.padding(start = 10.dp),
                 )
             }
             AnimatedVisibility(appeared, enter = fadeIn(tween(500)) + slideInVertically(tween(500)) { it / 4 }) {
                 Column(Modifier.padding(top = 28.dp).semantics(mergeDescendants = true) { heading() }) {
-                    Text(stringResource(greeting(now, zone)), style = MaterialTheme.typography.titleMedium, color = Night.Muted)
+                    Text(stringResource(greeting(now, zone)), style = MaterialTheme.typography.titleMedium, color = ink.muted)
                     if (plan != null && alarm != null) {
                         val dayText = dayLabel(plan.target, now, zone)
                         // Grosser Countdown-Bogen; darin das Weckfenster gross, darunter wann und welcher, dann wie lange noch.
                         BoxWithConstraints(Modifier.fillMaxWidth().padding(top = 6.dp)) {
-                            WakeArc(now, plan.windowStart, plan.target, plan.exact, Modifier.fillMaxWidth().aspectRatio(ARC_ASPECT))
+                            WakeArc(now, plan.windowStart, plan.target, plan.exact, Modifier.fillMaxWidth().aspectRatio(ARC_ASPECT), ink)
                             Column(
                                 Modifier.fillMaxWidth().padding(horizontal = maxWidth * ARC_TEXT_SIDE, vertical = 0.dp).padding(top = maxWidth * ARC_TEXT_TOP),
                                 horizontalAlignment = Alignment.CenterHorizontally,
                             ) {
-                                HeroTime(plan, zone)
+                                HeroTime(plan, zone, ink.text)
                                 Text(
                                     listOf(dayText, alarm.label).filter { it.isNotBlank() }.joinToString(" · "),
                                     style = MaterialTheme.typography.titleMedium,
-                                    color = Night.Text,
+                                    color = ink.text,
                                     textAlign = TextAlign.Center,
                                 )
                                 // «Genau»: kein «Weckt im leichten Schlaf» und kein «Weckfenster läuft»; die Zeile oben sagt schon alles.
@@ -139,7 +141,7 @@ internal fun Header(
                                             stringResource(R.string.home_window_running)
                                         },
                                         style = MaterialTheme.typography.bodyMedium,
-                                        color = Night.Muted,
+                                        color = ink.muted,
                                         textAlign = TextAlign.Center,
                                         modifier = Modifier.padding(top = 2.dp),
                                     )
@@ -147,23 +149,23 @@ internal fun Header(
                             }
                         }
                         autoOnset?.let {
-                            Text(stringResource(R.string.home_auto_onset, it), style = MaterialTheme.typography.bodySmall, color = Night.Muted)
+                            Text(stringResource(R.string.home_auto_onset, it), style = MaterialTheme.typography.bodySmall, color = ink.muted)
                         }
-                        holidayNote?.let { HolidayNote(it) }
+                        holidayNote?.let { HolidayNote(it, ink.muted) }
                     } else {
                         Text(
                             stringResource(R.string.home_no_alarm_title),
                             style = MaterialTheme.typography.headlineMedium,
-                            color = Night.Text,
+                            color = ink.text,
                             modifier = Modifier.padding(top = 2.dp),
                         )
-                        Text(stringResource(R.string.home_no_alarm_text), style = MaterialTheme.typography.bodyMedium, color = Night.Muted)
-                        holidayNote?.let { HolidayNote(it) }
+                        Text(stringResource(R.string.home_no_alarm_text), style = MaterialTheme.typography.bodyMedium, color = ink.muted)
+                        holidayNote?.let { HolidayNote(it, ink.muted) }
                         HeroWave(Modifier.fillMaxWidth().height(64.dp).padding(vertical = 14.dp), onNight = true)
                         if (onAdd != null) {
                             Button(
                                 onClick = onAdd,
-                                colors = ButtonDefaults.buttonColors(containerColor = Night.Wave, contentColor = Night.Top),
+                                colors = ButtonDefaults.buttonColors(containerColor = ink.button, contentColor = ink.onButton),
                             ) {
                                 Icon(painterResource(R.drawable.ic_add), contentDescription = null, modifier = Modifier.size(18.dp))
                                 Spacer(Modifier.width(8.dp))
@@ -186,7 +188,7 @@ private const val ARC_TEXT_SIDE = 0.11f
  * nicht (lange Sprachen, Arabisch, grosse Schrift), wird die Schrift schrittweise kleiner statt umzubrechen.
  */
 @Composable
-private fun HeroTime(plan: WakePlan, zone: ZoneId) {
+private fun HeroTime(plan: WakePlan, zone: ZoneId, color: Color) {
     val target = Format.timeWithPeriod(plan.target, zone)
     val text = if (plan.exact) {
         // Die Zeit steckt im Satz «Genau um …»: ihren Zusatz dort suchen.
@@ -200,7 +202,7 @@ private fun HeroTime(plan: WakePlan, zone: ZoneId) {
         .copy(fontWeight = FontWeight.ExtraBold, textAlign = TextAlign.Center)
     BasicText(
         text,
-        style = style.copy(color = Night.Text),
+        style = style.copy(color = color),
         maxLines = 1,
         softWrap = false,
         autoSize = TextAutoSize.StepBased(minFontSize = HERO_MIN_SIZE, maxFontSize = style.fontSize, stepSize = 1.sp),
@@ -231,8 +233,8 @@ internal fun heroText(line: String, times: List<Pair<String, IntRange?>>, from: 
 
 /** «Do., 30.10.: Feiertag – nicht geweckt». */
 @Composable
-private fun HolidayNote(day: String) {
-    Text(stringResource(R.string.home_holiday_skipped, day), style = MaterialTheme.typography.bodyMedium, color = Night.Muted)
+private fun HolidayNote(day: String, color: Color) {
+    Text(stringResource(R.string.home_holiday_skipped, day), style = MaterialTheme.typography.bodyMedium, color = color)
 }
 
 /** «Heute», «Morgen» oder der Wochentag («Montag») – nie «Morgen» für einen Tag weiter weg. */

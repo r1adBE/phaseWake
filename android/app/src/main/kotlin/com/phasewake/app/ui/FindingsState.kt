@@ -21,11 +21,13 @@ import kotlinx.coroutines.launch
 
 /**
  * Auffälligkeiten der letzten 7 Nächte (Entscheid r1AD 15.11.2026): [all] für die Trends im Verlauf, [home] die eine
- * für die Startseite (nicht ausgeblendet), [weekDeep] Tiefschlaf-Anteil dieser Woche und der Vorwoche für den Wochenrückblick.
+ * für die Startseite (nicht ausgeblendet), [homeBedtime] dieselbe, solange dort die Bettzeit-Karte steht (ohne Bettzeit-Tipp,
+ * Audit UX-04), [weekDeep] Tiefschlaf-Anteil dieser Woche und der Vorwoche für den Wochenrückblick.
  */
 internal class FindingsState(
     val all: List<Finding>,
     val home: Finding?,
+    val homeBedtime: Finding?,
     val weekDeep: Pair<Int, Int>?,
     val onHide: (FindingKind) -> Unit,
 )
@@ -54,5 +56,5 @@ internal fun rememberFindings(app: PhaseWakeApp, insights: Insights): FindingsSt
     val all = remember(facts, today) { Findings.of(facts, today, zone) }
     val weekEnd = WeeklySummary.weekEnd(LocalDate.now(zone))
     val weekDeep = remember(facts, weekEnd) { Findings.weekDeep(facts, weekEnd) }
-    return FindingsState(all, Findings.home(all, hidden, now), weekDeep) { kind -> app.appScope.launch { app.settings.hideFinding(kind) } }
+    return FindingsState(all, Findings.home(all, hidden, now), Findings.home(all, hidden, now, bedtimeAdvice = true), weekDeep) { kind -> app.appScope.launch { app.settings.hideFinding(kind) } }
 }

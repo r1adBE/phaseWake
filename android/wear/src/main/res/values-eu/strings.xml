@@ -50,8 +50,8 @@
     <string name="good_night_cancel">Utzi Gabon bertan behera</string>
     <string name="dnd_title">Alarmak blokeatuta</string>
     <string name="dnd_text">Baimendu alarmak «Ez molestatu» moduan.</string>
-    <string name="duration_hours">%1$d h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="home_last_night">Bart</string>
     <string name="notification_open">Ireki</string>
     <string name="home_good_night_too_far">Alarma baino 16 h lehenagotik erabilgarri</string>

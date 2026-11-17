@@ -17,6 +17,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.phasewake.app.R
 import com.phasewake.app.phoneApp
+import androidx.compose.runtime.remember
+import com.phasewake.app.ui.theme.EveningDarkTicker
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ui.theme.ThemeMode
 
@@ -28,7 +30,9 @@ class HealthRationaleActivity : ComponentActivity() {
         val app = phoneApp
         setContent {
             val mode = app.settings.themeMode.collectAsStateWithLifecycle(initialValue = ThemeMode.SYSTEM).value
-            PhaseWakeTheme(mode) {
+            val evening = remember { EveningDarkTicker.flow(app.settings.eveningDark) }
+                .collectAsStateWithLifecycle(initialValue = EveningDarkTicker.initial()).value
+            PhaseWakeTheme(mode, evening) {
                 Surface(Modifier.fillMaxSize()) {
                     Column(Modifier.safeDrawingPadding().padding(24.dp)) {
                         Text(stringResource(R.string.health_title), style = MaterialTheme.typography.headlineSmall)

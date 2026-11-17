@@ -155,7 +155,12 @@ fun AnimatedNight(modifier: Modifier = Modifier, mood: SkyMood = SkyMood.Plain, 
         val drift by rememberInfiniteTransition(label = "night").animateFloat(
             0f, 1f, infiniteRepeatable(tween(9000, easing = FastOutSlowInEasing), RepeatMode.Reverse), label = "drift",
         )
-        Box(modifier.drawBehind { drawNight(drift, shown) }) { content() }
+        // Der Himmel in einer eigenen Ebene hinter dem Inhalt (Audit PERF-08): Der Drift zeichnet je Bild nur diese neu,
+        // nicht den Inhalt darüber.
+        Box(modifier) {
+            Canvas(Modifier.matchParentSize().graphicsLayer {}) { drawNight(drift, shown) }
+            content()
+        }
     } else {
         Box(modifier.drawBehind { drawNight(0f, shown) }) { content() }
     }
@@ -166,10 +171,11 @@ private const val MOOD_MS = 1500
 
 /**
  * Das Logo als Zeichnung: Mondsichel, Welle der Schlafzyklen, Weckpunkt. Ohne Hintergrund. [moon]: Farbe von Mond und
- * Weckpunkt; auf hellem Grund dunkel, sonst verschwände der Mond (Audit N-8).
+ * Weckpunkt; auf hellem Grund dunkel, sonst verschwände der Mond (Audit N-8). [wave]: Farbe der Welle (auf dem
+ * Tageshimmel kräftiger).
  */
 @Composable
-fun LogoMark(size: Dp, modifier: Modifier = Modifier, moon: Color = Night.Moon) {
+fun LogoMark(size: Dp, modifier: Modifier = Modifier, moon: Color = Night.Moon, wave: Color = Night.Wave) {
     Canvas(modifier.size(size).clearAndSetSemantics { }) {
         val s = this.size.minDimension / 200f
         scale(s, pivot = Offset.Zero) {
@@ -182,7 +188,7 @@ fun LogoMark(size: Dp, modifier: Modifier = Modifier, moon: Color = Night.Moon) 
                     close()
                 }
                 drawPath(moonPath, moon)
-                val wave = Path().apply {
+                val wavePath = Path().apply {
                     moveTo(16f, 158f)
                     cubicTo(30f, 158f, 30f, 122f, 44f, 122f)
                     cubicTo(58f, 122f, 58f, 158f, 72f, 158f)
@@ -190,7 +196,7 @@ fun LogoMark(size: Dp, modifier: Modifier = Modifier, moon: Color = Night.Moon) 
                     cubicTo(114f, 118f, 114f, 152f, 128f, 152f)
                     cubicTo(140f, 152f, 146f, 134f, 158f, 122f)
                 }
-                drawPath(wave, Night.Wave, style = Stroke(9f, cap = StrokeCap.Round))
+                drawPath(wavePath, wave, style = Stroke(9f, cap = StrokeCap.Round))
                 drawCircle(moon, radius = 8f, center = Offset(164f, 116f))
             }
         }

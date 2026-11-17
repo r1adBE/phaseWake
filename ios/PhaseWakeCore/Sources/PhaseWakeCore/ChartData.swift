@@ -40,40 +40,6 @@ public struct SleepBars: Equatable, Sendable {
     public let regularCounted: Int
 }
 
-/// Schlafdauer eines Nachtdatums; `nil` ohne Daten.
-public struct DurationBar: Equatable, Sendable {
-    /// Nachtdatum «yyyy-MM-dd».
-    public let date: String
-    /// Geschlafene Minuten der längsten Nacht dieses Datums; `nil` ohne Daten.
-    public let asleepMinutes: Int?
-    /// Ob das Schlafziel erreicht ist (`SleepGoal.reached`); ohne Daten `false`.
-    public let reached: Bool
-
-    /// Erzeugt einen Balken; ohne Daten `asleepMinutes` `nil` und `reached` `false`.
-    public init(date: String, asleepMinutes: Int?, reached: Bool) {
-        self.date = date
-        self.asleepMinutes = asleepMinutes
-        self.reached = reached
-    }
-}
-
-/// Schlafdauer pro Nacht, älteste zuerst. `averageMinutes` = Durchschnitt der Nächte mit Daten (ganze
-/// Minuten, abgerundet); `reached` von `counted`; `scaleMinutes` = das Grössere von Ziel und längster Nacht.
-public struct Durations: Equatable, Sendable {
-    /// Ein Balken je Nachtdatum, älteste zuerst, auch ohne Daten.
-    public let bars: [DurationBar]
-    /// Schlafziel in Minuten, für die Ziellinie.
-    public let goalMinutes: Int
-    /// Durchschnitt der Nächte mit Daten in ganzen Minuten, abgerundet (ganzzahlig wie Kotlin).
-    public let averageMinutes: Int
-    /// Nächte mit erreichtem Ziel.
-    public let reached: Int
-    /// Nächte mit Daten; Nenner zu `reached`.
-    public let counted: Int
-    /// Höhe der Skala in Minuten: das Grössere von Ziel und längster Nacht, damit beide Platz haben.
-    public let scaleMinutes: Int
-}
-
 /// Wodurch geweckt wurde, für Farbe und Form des Punkts.
 public enum WakeKind: String, Sendable {
     case light = "LIGHT", awake = "AWAKE", target = "TARGET", late = "LATE"
@@ -259,27 +225,6 @@ public enum ChartData {
         let hi = min(max(axisEnd, (ends.max()! + 59) / 60 * 60), lo + 24 * 60)
         let regular = Regularity.count(Regularity.bedtimes(of: sleeps, calendar: calendar), calendar: calendar, until: last)
         return SleepBars(bars: bars, axisStart: lo, axisEnd: hi, bedtimeMinute: bedtime, regular: regular.regular, regularCounted: regular.total)
-    }
-
-    /// Schlafdauer der `nights` Nachtdaten bis `lastDate` (je Nachtdatum die längste Nacht).
-    public static func durations(_ sleeps: [SleepSummary], calendar: Calendar, today: String, goalMinutes: Int,
-                                 nights: Int = ChartData.shortNights) -> Durations? {
-        let asleep = NoteEffect.asleepByNight(sleeps, calendar: calendar)
-        let last = lastDate(Set(asleep.keys), today: today)
-        let bars = range(last, nights).map { date in
-            let minutes = asleep[date]
-            return DurationBar(date: date, asleepMinutes: minutes, reached: minutes.map { SleepGoal.reached(asleepMinutes: $0, goalMinutes: goalMinutes) } ?? false)
-        }
-        let values = bars.compactMap(\.asleepMinutes)
-        guard let longest = values.max() else { return nil }
-        return Durations(
-            bars: bars,
-            goalMinutes: goalMinutes,
-            averageMinutes: values.reduce(0, +) / values.count,
-            reached: bars.filter(\.reached).count,
-            counted: values.count,
-            scaleMinutes: max(goalMinutes, longest)
-        )
     }
 
     /// Weckmomente der jüngsten `count` Uhr-Nächte (nach Weckzeit).

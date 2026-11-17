@@ -90,6 +90,9 @@
     <string name="settings_theme_system">Córas</string>
     <string name="settings_theme_light">Geal</string>
     <string name="settings_theme_dark">Dorcha</string>
+    <string name="settings_evening_dark">Dorcha tráthnóna</string>
+    <string name="settings_evening_dark_text">Dorcha ó %1$s go %2$s, fiú le Córas nó Geal.</string>
+    <string name="settings_evening_dark_from">Dorcha ó</string>
     <string name="settings_data">Do chuid sonraí</string>
     <string name="settings_data_text">Fanann gach rud ar do fhón agus ar d’uaireadóir. Gan chuntas, gan fhreastalaí, gan rianú. Ní théann ach faisnéis theicniúil faoin uaireadóir trí cheangal uaireadóra Google, gan sonraí sláinte.</string>
     <string name="settings_export">Easpórtáil oícheanta gan ainm</string>
@@ -100,10 +103,10 @@
     <string name="settings_licenses_text">Phase Wake: Ceadúnas MIT, © r1adBE.\nCló Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nBrath fuaimeanna: MediaPipe Tasks Audio agus an tsamhail YAMNet, Apache License 2.0, © Google LLC.\nFuaimeanna: taifeadtaí saora (CC0) ó opengameart.org</string>
     <string name="settings_version">Leagan %1$s</string>
 
-    <string name="duration_minutes">%1$d nóim</string>
-    <string name="duration_hours">%1$d u</string>
-    <string name="duration_hours_half">%1$d½ u</string>
-    <string name="duration_hours_minutes">%1$d u %2$d nóim</string>
+    <string name="duration_minutes">%1$d nóim</string>
+    <string name="duration_hours">%1$d u</string>
+    <string name="duration_hours_half">%1$d½ u</string>
+    <string name="duration_hours_minutes">%1$d u %2$d nóim</string>
     <string name="health_title">Céimeanna codlata ó Health Connect</string>
     <string name="health_rationale">Is féidir le Phase Wake na sonraí codlata a shábhálann d’aip sláinte (mar shampla Samsung Health) a léamh. Taispeántar iad i do stair, freisin chun comparáid a dhéanamh leis na hoícheanta ar dhúisigh Phase Wake thú. Ní dhéanann Phase Wake ach léamh, ní scríobhann sé riamh, agus ní fhágann aon rud do fhón.</string>
     <string name="health_connect">Cuir i gcomparáid le sonraí sláinte</string>
@@ -303,7 +306,7 @@
         <item quantity="other">Sprioc codlata bainte amach: %1$d as %2$d oíche</item>
     </plurals>
     <string name="bedtime_title">Meabhrúchán am codlata</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">Cuireann sé i gcuimhne duit %1$d nóim roimh am codlata: am d’aláraim lúide do sprioc codlata.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">Cuireann sé i gcuimhne duit %1$d nóim roimh am codlata: d’am sprice lúide do sprioc codlata.</string>
     <string name="bedtime_notification">Am codlata ag %1$s – mar sin gheobhaidh tú %2$s roimh d’aláram ag %3$s.</string>
     <string name="channel_reminders">Meabhrúcháin</string>
     <string name="sounds_title">Fuaimeanna codlata</string>
@@ -599,7 +602,7 @@
     <string name="learned_latency">Titim i do chodladh: thart ar %1$s</string>
     <string name="learned_latency_none">Titim i do chodladh: ró-bheagán tomhas</string>
     <string name="bedtime_advice">Téigh a chodladh anocht idir %1$s agus %2$s</string>
-    <string name="bedtime_advice_hint">Bunaithe ar d’aláram, ar do sprioc codlata agus ar an am a thógann sé ort titim i do chodladh.</string>
+    <string name="bedtime_advice_hint">Bunaithe ar d’am sprice, ar do sprioc codlata agus ar an am a thógann sé ort titim i do chodladh.</string>
     <string name="learn_restart">Foghlaim arís</string>
     <string name="learn_restart_text">Tomhaiseann Phase Wake %1$d oíche arís. Go dtí sin, úsáidtear na luachanna atá curtha in oiriúint go dtí seo.</string>
     <string name="record_end_wake">Críochnaithe ag dúiseacht</string>
@@ -681,7 +684,7 @@
     <string name="finding_title">Tugtha faoi deara i do 7 n-oíche dheireanacha</string>
     <string name="finding_hide">Folaigh</string>
     <string name="finding_latency">Ar an meán thóg sé %1$s ort titim i do chodladh. Leid: má tá tú i do dhúiseacht fós tar éis 20 nóiméad, éirigh agus ná fill ar an leaba go dtí go mbíonn codladh ort. Má mhaireann sé seo ar feadh seachtainí, labhair le do dhochtúir.</string>
-    <string name="finding_short_nights">Oícheanta faoi 6 uair: %1$d as 7. Leid: oibrigh amach d’am codlata ó d’am dúiseachta agus cloígh leis.</string>
+    <string name="finding_short_nights">Oícheanta faoi 6 uair: %1$d as 7. Leid: oibrigh amach d’am codlata ó d’am sprice agus cloígh leis.</string>
     <string name="finding_low_deep">Ní raibh sa chodladh domhain ach thart ar %1$d %% de do chodladh (de ghnáth %2$d–%3$d %%).</string>
     <string name="finding_deep_short">Oícheanta faoi 6 uair bhí sé i bhfad níos lú: %1$d %% in áit %2$d %%.</string>
     <string name="finding_deep_late">Oícheanta a ndeachaigh tú a chodladh go déanach bhí sé i bhfad níos lú: %1$d %% in áit %2$d %%.</string>

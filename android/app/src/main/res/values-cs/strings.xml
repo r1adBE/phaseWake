@@ -87,6 +87,9 @@
     <string name="settings_theme_system">Systém</string>
     <string name="settings_theme_light">Světlý</string>
     <string name="settings_theme_dark">Tmavý</string>
+    <string name="settings_evening_dark">Večer tmavý</string>
+    <string name="settings_evening_dark_text">Tmavý od %1$s do %2$s, i při volbě Systém nebo Světlý.</string>
+    <string name="settings_evening_dark_from">Tmavý od</string>
     <string name="settings_data">Tvoje data</string>
     <string name="settings_data_text">Vše zůstává v telefonu a hodinkách. Bez účtu, bez serveru, bez sledování. Přes připojení hodinek od Googlu jdou jen technické údaje o hodinkách, bez zdravotních dat.</string>
     <string name="settings_export">Exportovat noci bez jména</string>
@@ -97,10 +100,10 @@
     <string name="settings_licenses_text">Phase Wake: licence MIT, © r1adBE.\nPísmo Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznávání zvuků: MediaPipe Tasks Audio a model YAMNet, Apache License 2.0, © Google LLC.\nZvuky: volné nahrávky (CC0) z opengameart.org</string>
     <string name="settings_version">Verze %1$s</string>
 
-    <string name="duration_minutes">%1$d min</string>
-    <string name="duration_hours">%1$d h</string>
-    <string name="duration_hours_half">%1$d½ h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_half">%1$d½ h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fáze spánku z Health Connect</string>
     <string name="health_rationale">Phase Wake umí číst data o spánku, která ukládá tvoje zdravotní aplikace (třeba Samsung Health). Zobrazují se v tvé historii, i pro srovnání s nocemi, kdy tě vzbudil Phase Wake. Phase Wake jen čte, nikdy nezapisuje a nic neopustí tvůj telefon.</string>
     <string name="health_connect">Porovnat se zdravotními daty</string>
@@ -296,7 +299,7 @@
         <item quantity="other">Cíl spánku splněn: %1$d z %2$d nocí</item>
     </plurals>
     <string name="bedtime_title">Připomínka spánku</string>
-    <string name="bedtime_text">Připomene ti to %1$d min před časem spánku: čas buzení minus cíl spánku.</string>
+    <string name="bedtime_text">Připomene ti to %1$d min před časem spánku: cílový čas minus cíl spánku.</string>
     <string name="bedtime_notification">Do postele v %1$s – tak se vyspíš %2$s do budíku v %3$s.</string>
     <string name="channel_reminders">Připomínky</string>
     <string name="sounds_title">Zvuky na usínání</string>
@@ -582,7 +585,7 @@
     <string name="learned_latency">Usínání: asi %1$s</string>
     <string name="learned_latency_none">Usínání: příliš málo měření</string>
     <string name="bedtime_advice">Jdi dnes spát mezi %1$s a %2$s</string>
-    <string name="bedtime_advice_hint">Podle budíku, cíle spánku a toho, jak dlouho ti trvá usnout.</string>
+    <string name="bedtime_advice_hint">Podle cílového času, cíle spánku a toho, jak dlouho ti trvá usnout.</string>
     <string name="learn_restart">Naučit znovu</string>
     <string name="learn_restart_text">Phase Wake znovu měří %1$d nocí. Do té doby platí dosud přizpůsobené hodnoty.</string>
     <string name="record_end_wake">Ukončeno při buzení</string>
@@ -664,7 +667,7 @@
     <string name="finding_title">Zaznamenáno za posledních 7 nocí</string>
     <string name="finding_hide">Skrýt</string>
     <string name="finding_latency">Usínání ti v průměru trvalo %1$s. Tip: pokud jsi po 20 minutách stále vzhůru, vstaň a vrať se do postele, až budeš ospalý. Pokud to trvá týdny, promluv si se svým lékařem.</string>
-    <string name="finding_short_nights">Noci kratší než 6 hodin: %1$d ze 7. Tip: spočítej si čas ulehnutí od času buzení a dodržuj ho.</string>
+    <string name="finding_short_nights">Noci kratší než 6 hodin: %1$d ze 7. Tip: spočítej si čas ulehnutí od cílového času a dodržuj ho.</string>
     <string name="finding_low_deep">Hluboký spánek tvořil jen asi %1$d %% tvého spánku (obvykle %2$d–%3$d %%).</string>
     <string name="finding_deep_short">V nocích kratších než 6 hodin ho bylo výrazně méně: %1$d %% místo %2$d %%.</string>
     <string name="finding_deep_late">V nocích, kdy jsi šel spát pozdě, ho bylo výrazně méně: %1$d %% místo %2$d %%.</string>

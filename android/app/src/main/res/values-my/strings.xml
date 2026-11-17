@@ -85,6 +85,9 @@
     <string name="settings_theme_system">စနစ်</string>
     <string name="settings_theme_light">အလင်း</string>
     <string name="settings_theme_dark">အမှောင်</string>
+    <string name="settings_evening_dark">ညနေတွင် အမှောင်</string>
+    <string name="settings_evening_dark_text">%1$s – %2$s အမှောင်၊ စနစ် သို့မဟုတ် အလင်း ရွေးထားလည်း။</string>
+    <string name="settings_evening_dark_from">အမှောင် စတင်ချိန်</string>
     <string name="settings_data">သင့်ဒေတာ</string>
     <string name="settings_data_text">အားလုံး သင့်ဖုန်းနှင့် နာရီပေါ်တွင်သာ ရှိသည်။ အကောင့်မလို၊ ဆာဗာမရှိ၊ ခြေရာခံခြင်းမရှိ။ Google ၏ နာရီချိတ်ဆက်မှုမှတစ်ဆင့် နာရီ၏ နည်းပညာဆိုင်ရာ အချက်အလက်များသာ သွားပြီး ကျန်းမာရေးဒေတာ မပါပါ။</string>
     <string name="settings_export">ညများကို အမည်မပါဘဲ ထုတ်ယူရန်</string>
@@ -95,10 +98,10 @@
     <string name="settings_licenses_text">Phase Wake- MIT လိုင်စင်၊ © r1adBE။\nManrope ဖောင့်- SIL Open Font License 1.1၊ © The Manrope Project Authors။\nအသံရှာဖွေမှု- MediaPipe Tasks Audio နှင့် YAMNet မော်ဒယ်၊ Apache License 2.0၊ © Google LLC။\nအသံများ- opengameart.org မှ အခမဲ့ အသံသွင်းမှုများ (CC0)</string>
     <string name="settings_version">ဗားရှင်း %1$s</string>
 
-    <string name="duration_minutes">%1$d မိနစ်</string>
-    <string name="duration_hours">%1$d နာရီ</string>
-    <string name="duration_hours_half">%1$d½ နာရီ</string>
-    <string name="duration_hours_minutes">%1$d နာရီ %2$d မိနစ်</string>
+    <string name="duration_minutes">%1$d မိနစ်</string>
+    <string name="duration_hours">%1$d နာရီ</string>
+    <string name="duration_hours_half">%1$d½ နာရီ</string>
+    <string name="duration_hours_minutes">%1$d နာရီ %2$d မိနစ်</string>
     <string name="health_title">Health Connect မှ အိပ်စက်မှုအဆင့်များ</string>
     <string name="health_rationale">သင့်ကျန်းမာရေးအက်ပ် (ဥပမာ Samsung Health) သိမ်းထားသော အိပ်စက်မှုဒေတာကို Phase Wake ဖတ်နိုင်သည်။ ၎င်းကို သင့်မှတ်တမ်းတွင် ပြပြီး Phase Wake က သင့်ကို နှိုးခဲ့သည့် ညများနှင့် နှိုင်းယှဉ်ရန်လည်း အသုံးပြုသည်။ Phase Wake သည် ဖတ်ရုံသာဖတ်ပြီး ဘယ်တော့မှ မရေးပါ၊ ဘာမှလည်း သင့်ဖုန်းမှ အပြင်မထွက်ပါ။</string>
     <string name="health_connect">ကျန်းမာရေးဒေတာနှင့် နှိုင်းယှဉ်ရန်</string>
@@ -274,7 +277,7 @@
         <item quantity="other">အိပ်စက်မှု ပန်းတိုင် ပြည့်- %2$d ညတွင် %1$d</item>
     </plurals>
     <string name="bedtime_title">အိပ်ချိန် သတိပေးချက်</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">အိပ်ချိန်မတိုင်မီ %1$d မိနစ်တွင် သတိပေးသည်- နှိုးစက်အချိန် နုတ် အိပ်စက်မှု ပန်းတိုင်။</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">အိပ်ချိန်မတိုင်မီ %1$d မိနစ်တွင် သတိပေးသည်- ပစ်မှတ်အချိန် နုတ် အိပ်စက်မှု ပန်းတိုင်။</string>
     <string name="bedtime_notification">%1$s တွင် အိပ်ချိန် – ထိုသို့ဆိုလျှင် %3$s နှိုးစက်မတိုင်မီ %2$s အိပ်ရမည်။</string>
     <string name="channel_reminders">သတိပေးချက်များ</string>
     <string name="sounds_title">အိပ်စက်ရန် အသံများ</string>
@@ -542,7 +545,7 @@
     <string name="learned_latency">အိပ်ပျော်ချိန်- ခန့်မှန်း %1$s</string>
     <string name="learned_latency_none">အိပ်ပျော်ချိန်- တိုင်းတာမှု နည်းလွန်း</string>
     <string name="bedtime_advice">ဒီည %1$s နဲ့ %2$s ကြား အိပ်ရာဝင်ပါ</string>
-    <string name="bedtime_advice_hint">သင့်နှိုးစက်၊ အိပ်စက်ချိန်ပန်းတိုင်နဲ့ အိပ်ပျော်ဖို့ ကြာချိန်အပေါ် အခြေခံထားပါတယ်။</string>
+    <string name="bedtime_advice_hint">သင့်ပစ်မှတ်အချိန်၊ အိပ်စက်ချိန်ပန်းတိုင်နဲ့ အိပ်ပျော်ဖို့ ကြာချိန်အပေါ် အခြေခံထားပါတယ်။</string>
     <string name="learn_restart">ပြန်သင်ယူရန်</string>
     <string name="learn_restart_text">Phase Wake သည် %1$d ညကို ထပ်မံတိုင်းတာသည်။ ထိုအချိန်အထိ ယခုအထိ ချိန်ညှိထားသော တန်ဖိုးများကို ဆက်သုံးသည်။</string>
     <string name="record_end_wake">နိုးချိန်တွင် ပြီးဆုံး</string>
@@ -624,7 +627,7 @@
     <string name="finding_title">နောက်ဆုံး ည 7 ညတွင် သတိထားမိသည်</string>
     <string name="finding_hide">ဖျောက်ရန်</string>
     <string name="finding_latency">အိပ်ပျော်ရန် ပျမ်းမျှ %1$s ကြာခဲ့သည်။ အကြံပြုချက်- မိနစ် 20 ကြာပြီး နိုးနေသေးလျှင် ထပြီး အိပ်ချင်မှသာ အိပ်ရာသို့ ပြန်ပါ။ ရက်သတ္တပတ်များစွာ ဆက်ဖြစ်နေလျှင် သင့်ဆရာဝန်နှင့် တိုင်ပင်ပါ။</string>
-    <string name="finding_short_nights">6 နာရီအောက် ညများ- 7 ညတွင် %1$d ည။ အကြံပြုချက်- နိုးမည့်အချိန်မှ ပြန်တွက်ပြီး အိပ်ချိန်သတ်မှတ်ကာ လိုက်နာပါ။</string>
+    <string name="finding_short_nights">6 နာရီအောက် ညများ- 7 ညတွင် %1$d ည။ အကြံပြုချက်- ပစ်မှတ်အချိန်မှ ပြန်တွက်ပြီး အိပ်ချိန်သတ်မှတ်ကာ လိုက်နာပါ။</string>
     <string name="finding_low_deep">နက်ရှိုင်းသောအိပ်စက်ခြင်းသည် သင့်အိပ်စက်ခြင်း၏ %1$d %% ခန့်သာ ရှိခဲ့သည် (ပုံမှန် %2$d–%3$d %%)။</string>
     <string name="finding_deep_short">6 နာရီအောက် ညများတွင် သိသိသာသာ နည်းခဲ့သည်- %2$d %% အစား %1$d %%။</string>
     <string name="finding_deep_late">နောက်ကျမှ အိပ်ခဲ့သော ညများတွင် သိသိသာသာ နည်းခဲ့သည်- %2$d %% အစား %1$d %%။</string>

@@ -87,6 +87,9 @@
     <string name="settings_theme_system">Систем</string>
     <string name="settings_theme_light">Светла</string>
     <string name="settings_theme_dark">Темна</string>
+    <string name="settings_evening_dark">Темна навечер</string>
+    <string name="settings_evening_dark_text">Темна од %1$s до %2$s, и со Систем или Светла.</string>
+    <string name="settings_evening_dark_from">Темна од</string>
     <string name="settings_data">Твоите податоци</string>
     <string name="settings_data_text">Сè останува на телефонот и часовникот. Без сметка, без сервер, без следење. Преку врската со часовникот на Google минуваат само технички податоци за часовникот, без здравствени податоци.</string>
     <string name="settings_export">Извези ноќи без име</string>
@@ -97,10 +100,10 @@
     <string name="settings_licenses_text">Phase Wake: лиценца MIT, © r1adBE.\nФонт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nПрепознавање звуци: MediaPipe Tasks Audio и моделот YAMNet, Apache License 2.0, © Google LLC.\nЗвуци: слободни снимки (CC0) од opengameart.org</string>
     <string name="settings_version">Верзија %1$s</string>
 
-    <string name="duration_minutes">%1$d мин</string>
-    <string name="duration_hours">%1$d ч</string>
-    <string name="duration_hours_half">%1$d½ ч</string>
-    <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
+    <string name="duration_minutes">%1$d мин</string>
+    <string name="duration_hours">%1$d ч</string>
+    <string name="duration_hours_half">%1$d½ ч</string>
+    <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
     <string name="health_title">Фази на сон од Health Connect</string>
     <string name="health_rationale">Phase Wake може да ги чита податоците за сон што ги зачувува твојата апликација за здравје (на пример Samsung Health). Се прикажуваат во твојата историја, и за споредба со ноќите во кои те разбудил Phase Wake. Phase Wake само чита, никогаш не запишува, и ништо не го напушта телефонот.</string>
     <string name="health_connect">Спореди со здравствени податоци</string>
@@ -282,7 +285,7 @@
         <item quantity="other">Целта за сон е постигната: %1$d од %2$d ноќи</item>
     </plurals>
     <string name="bedtime_title">Потсетник за спиење</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">Те потсетува %1$d мин пред времето за спиење: времето на алармот минус целта за сон.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">Те потсетува %1$d мин пред времето за спиење: целното време минус целта за сон.</string>
     <string name="bedtime_notification">Време за спиење во %1$s – така ќе имаш %2$s пред алармот во %3$s.</string>
     <string name="channel_reminders">Потсетници</string>
     <string name="sounds_title">Звуци за заспивање</string>
@@ -557,7 +560,7 @@
     <string name="learned_latency">Заспивање: околу %1$s</string>
     <string name="learned_latency_none">Заспивање: премалку мерења</string>
     <string name="bedtime_advice">Легни си денес меѓу %1$s и %2$s</string>
-    <string name="bedtime_advice_hint">Според будилникот, целта за сон и колку време ти треба да заспиеш.</string>
+    <string name="bedtime_advice_hint">Според целното време, целта за сон и колку време ти треба да заспиеш.</string>
     <string name="learn_restart">Научи повторно</string>
     <string name="learn_restart_text">Phase Wake повторно мери %1$d ноќи. Дотогаш важат досега прилагодените вредности.</string>
     <string name="record_end_wake">Завршено при будење</string>
@@ -639,7 +642,7 @@
     <string name="finding_title">Забележано во последните 7 ноќи</string>
     <string name="finding_hide">Скриј</string>
     <string name="finding_latency">Во просек ти требаше %1$s да заспиеш. Совет: ако по 20 минути си уште буден, стани и врати се во кревет дури кога ќе се поспиеш. Ако тоа трае со недели, разговарај со својот лекар.</string>
-    <string name="finding_short_nights">Ноќи пократки од 6 часа: %1$d од 7. Совет: пресметај го времето за спиење од времето на будење и држи се до него.</string>
+    <string name="finding_short_nights">Ноќи пократки од 6 часа: %1$d од 7. Совет: пресметај го времето за спиење од целното време и држи се до него.</string>
     <string name="finding_low_deep">Длабокиот сон беше само околу %1$d %% од твојот сон (обично %2$d–%3$d %%).</string>
     <string name="finding_deep_short">Во ноќите пократки од 6 часа беше значително помал: %1$d %% наместо %2$d %%.</string>
     <string name="finding_deep_late">Во ноќите кога легна доцна беше значително помал: %1$d %% наместо %2$d %%.</string>

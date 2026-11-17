@@ -87,6 +87,9 @@
     <string name="settings_theme_system">Tizim</string>
     <string name="settings_theme_light">Yorugʻ</string>
     <string name="settings_theme_dark">Qorongʻi</string>
+    <string name="settings_evening_dark">Kechqurun qorongʻi</string>
+    <string name="settings_evening_dark_text">Qorongʻi: %1$s – %2$s, Tizim yoki Yorugʻ tanlanganda ham.</string>
+    <string name="settings_evening_dark_from">Qorongʻi boshlanishi</string>
     <string name="settings_data">Maʼlumotlaring</string>
     <string name="settings_data_text">Hammasi telefoning va soatingda qoladi. Hisob yoʻq, server yoʻq, kuzatuv yoʻq. Google soat ulanishi orqali faqat soatning texnik maʼlumotlari oʻtadi, sogʻliq maʼlumotlarisiz.</string>
     <string name="settings_export">Tunlarni ismsiz eksport qilish</string>
@@ -97,10 +100,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT litsenziyasi, © r1adBE.\nManrope shrifti: SIL Open Font License 1.1, © The Manrope Project Authors.\nTovushni aniqlash: MediaPipe Tasks Audio va YAMNet modeli, Apache License 2.0, © Google LLC.\nTovushlar: bepul yozuvlar (CC0), opengameart.org</string>
     <string name="settings_version">Versiya %1$s</string>
 
-    <string name="duration_minutes">%1$d daq</string>
-    <string name="duration_hours">%1$d soat</string>
-    <string name="duration_hours_half">%1$d½ soat</string>
-    <string name="duration_hours_minutes">%1$d soat %2$d daq</string>
+    <string name="duration_minutes">%1$d daq</string>
+    <string name="duration_hours">%1$d soat</string>
+    <string name="duration_hours_half">%1$d½ soat</string>
+    <string name="duration_hours_minutes">%1$d soat %2$d daq</string>
     <string name="health_title">Health Connectʼdagi uyqu bosqichlari</string>
     <string name="health_rationale">Phase Wake sogʻliq ilovang (masalan, Samsung Health) saqlaydigan uyqu maʼlumotlarini oʻqiy oladi. Ular tarixingda koʻrsatiladi, Phase Wake seni uygʻotgan tunlar bilan solishtirish uchun ham. Phase Wake faqat oʻqiydi, hech narsa yozmaydi va hech narsa telefoningdan chiqmaydi.</string>
     <string name="health_connect">Sogʻliq maʼlumotlari bilan solishtirish</string>
@@ -282,7 +285,7 @@
         <item quantity="other">Uyqu maqsadiga erishildi: %2$d tundan %1$d</item>
     </plurals>
     <string name="bedtime_title">Uxlash vaqti eslatmasi</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">Uxlash vaqtidan %1$d daq oldin eslatadi: budilnik vaqting minus uyqu maqsading.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">Uxlash vaqtidan %1$d daq oldin eslatadi: maqsad vaqting minus uyqu maqsading.</string>
     <string name="bedtime_notification">%1$s da uxla – shunda %3$s dagi budilnikkacha %2$s uxlaysan.</string>
     <string name="channel_reminders">Eslatmalar</string>
     <string name="sounds_title">Uyqu tovushlari</string>
@@ -557,7 +560,7 @@
     <string name="learned_latency">Uxlab qolish: taxminan %1$s</string>
     <string name="learned_latency_none">Uxlab qolish: o‘lchovlar juda kam</string>
     <string name="bedtime_advice">Bugun %1$s va %2$s oralig‘ida yot</string>
-    <string name="bedtime_advice_hint">Budilnik, uyqu maqsading va uxlab qolishga ketadigan vaqtga ko‘ra.</string>
+    <string name="bedtime_advice_hint">Maqsad vaqting, uyqu maqsading va uxlab qolishga ketadigan vaqtga ko‘ra.</string>
     <string name="learn_restart">Qayta o‘rganish</string>
     <string name="learn_restart_text">Phase Wake yana %1$d tun o‘lchaydi. Shu vaqtgacha hozirgacha moslangan qiymatlar amal qiladi.</string>
     <string name="record_end_wake">Uyg‘otishda tugadi</string>
@@ -639,7 +642,7 @@
     <string name="finding_title">Oxirgi 7 kechangda koʻzga tashlangan</string>
     <string name="finding_hide">Yashirish</string>
     <string name="finding_latency">Uxlab qolishing oʻrtacha %1$s davom etdi. Maslahat: 20 daqiqadan keyin ham uygʻoq boʻlsang, tur va faqat uyqung kelganda toʻshakka qayt. Bu haftalab davom etsa, shifokoring bilan gaplash.</string>
-    <string name="finding_short_nights">6 soatdan qisqa kechalar: 7 tadan %1$d ta. Maslahat: uxlash vaqtini uygʻonish vaqtidan orqaga hisobla va unga amal qil.</string>
+    <string name="finding_short_nights">6 soatdan qisqa kechalar: 7 tadan %1$d ta. Maslahat: uxlash vaqtini maqsad vaqtidan orqaga hisobla va unga amal qil.</string>
     <string name="finding_low_deep">Chuqur uyqu uyqungning atigi taxminan %1$d %% qismi edi (odatda %2$d–%3$d %%).</string>
     <string name="finding_deep_short">6 soatdan qisqa kechalarda u sezilarli darajada kam edi: %2$d %% oʻrniga %1$d %%.</string>
     <string name="finding_deep_late">Kech yotgan kechalaringda u sezilarli darajada kam edi: %2$d %% oʻrniga %1$d %%.</string>

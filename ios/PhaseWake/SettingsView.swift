@@ -23,6 +23,7 @@ struct SettingsView: View {
                         .pickerStyle(.segmented)
                         // Grosse Segmente: Tippziel nahe 44 pt.
                         .controlSize(.large)
+                        EveningDarkSettingsSection()
                     }
                     Section(L("health_connect")) {
                         Text(L("health_rationale_apple")).font(.footnote)

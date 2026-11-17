@@ -88,6 +88,9 @@
     <string name="settings_theme_system">Sistēma</string>
     <string name="settings_theme_light">Gaišs</string>
     <string name="settings_theme_dark">Tumšs</string>
+    <string name="settings_evening_dark">Vakarā tumšs</string>
+    <string name="settings_evening_dark_text">Tumšs no %1$s līdz %2$s, arī ar Sistēma vai Gaišs.</string>
+    <string name="settings_evening_dark_from">Tumšs no</string>
     <string name="settings_data">Tavi dati</string>
     <string name="settings_data_text">Viss paliek tavā tālrunī un pulkstenī. Bez konta, bez servera, bez izsekošanas. Caur Google pulksteņa savienojumu iet tikai tehniska informācija par pulksteni, bez veselības datiem.</string>
     <string name="settings_export">Eksportēt naktis bez vārda</string>
@@ -98,10 +101,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT licence, © r1adBE.\nFonts Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nSkaņu atpazīšana: MediaPipe Tasks Audio un modelis YAMNet, Apache License 2.0, © Google LLC.\nSkaņas: bezmaksas ieraksti (CC0) no opengameart.org</string>
     <string name="settings_version">Versija %1$s</string>
 
-    <string name="duration_minutes">%1$d min</string>
-    <string name="duration_hours">%1$d st.</string>
-    <string name="duration_hours_half">%1$d½ st.</string>
-    <string name="duration_hours_minutes">%1$d st. %2$d min</string>
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d st.</string>
+    <string name="duration_hours_half">%1$d½ st.</string>
+    <string name="duration_hours_minutes">%1$d st. %2$d min</string>
     <string name="health_title">Miega fāzes no Health Connect</string>
     <string name="health_rationale">Phase Wake var nolasīt miega datus, ko tava veselības lietotne (piemēram, Samsung Health) saglabā. Tie tiek rādīti tavā vēsturē, arī salīdzināšanai ar naktīm, kad tevi pamodināja Phase Wake. Phase Wake tikai lasa, nekad neraksta, un nekas neatstāj tavu tālruni.</string>
     <string name="health_connect">Salīdzināt ar veselības datiem</string>
@@ -289,7 +292,7 @@
         <item quantity="other">Miega mērķis sasniegts: %1$d no %2$d naktīm</item>
     </plurals>
     <string name="bedtime_title">Atgādinājums par gulētiešanu</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">Atgādina %1$d min pirms gulētiešanas laika: modinātāja laiks mīnus tavs miega mērķis.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">Atgādina %1$d min pirms gulētiešanas laika: mērķa laiks mīnus tavs miega mērķis.</string>
     <string name="bedtime_notification">Gulētiešana %1$s – tā līdz modinātājam %3$s izgulēsies %2$s.</string>
     <string name="channel_reminders">Atgādinājumi</string>
     <string name="sounds_title">Miega skaņas</string>
@@ -571,7 +574,7 @@
     <string name="learned_latency">Iemigšana: aptuveni %1$s</string>
     <string name="learned_latency_none">Iemigšana: pārāk maz mērījumu</string>
     <string name="bedtime_advice">Šovakar ej gulēt no %1$s līdz %2$s</string>
-    <string name="bedtime_advice_hint">Pēc modinātāja, miega mērķa un laika, kas tev vajadzīgs, lai iemigtu.</string>
+    <string name="bedtime_advice_hint">Pēc mērķa laika, miega mērķa un laika, kas tev vajadzīgs, lai iemigtu.</string>
     <string name="learn_restart">Mācīties no jauna</string>
     <string name="learn_restart_text">Phase Wake atkal mēra %1$d naktis. Līdz tam paliek spēkā līdz šim pielāgotās vērtības.</string>
     <string name="record_end_wake">Beigts pamošanās brīdī</string>
@@ -653,7 +656,7 @@
     <string name="finding_title">Pamanīts tavās pēdējās 7 naktīs</string>
     <string name="finding_hide">Paslēpt</string>
     <string name="finding_latency">Vidēji iemigšana tev aizņēma %1$s. Padoms: ja pēc 20 minūtēm vēl esi nomodā, celies augšā un atgriezies gultā tikai tad, kad nāk miegs. Ja tas turpinās nedēļām, aprunājies ar savu ārstu.</string>
-    <string name="finding_short_nights">Naktis, īsākas par 6 stundām: %1$d no 7. Padoms: aprēķini gulētiešanas laiku no mošanās laika un ievēro to.</string>
+    <string name="finding_short_nights">Naktis, īsākas par 6 stundām: %1$d no 7. Padoms: aprēķini gulētiešanas laiku no mērķa laika un ievēro to.</string>
     <string name="finding_low_deep">Dziļais miegs bija tikai aptuveni %1$d %% no tava miega (parasti %2$d–%3$d %%).</string>
     <string name="finding_deep_short">Naktīs, kas īsākas par 6 stundām, tā bija manāmi mazāk: %1$d %% nevis %2$d %%.</string>
     <string name="finding_deep_late">Naktīs, kad gāji gulēt vēlu, tā bija manāmi mazāk: %1$d %% nevis %2$d %%.</string>

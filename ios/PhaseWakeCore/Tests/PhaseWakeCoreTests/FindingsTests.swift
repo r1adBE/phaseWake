@@ -174,6 +174,16 @@ final class FindingsTests: XCTestCase {
         XCTAssertEqual(Set(Findings.hide(hidden, kind: .shortNights, now: hiddenAt.addingTimeInterval(8 * 86_400)).keys), [.shortNights])
     }
 
+    func testBedtimeCardDefersFindingsWithTheSameTip() {
+        let findings = [Finding(kind: .shortNights, value: 3), Finding(kind: .lowDeep, value: 11), Finding(kind: .bedtimeVaries, value: 120)]
+        let now = at(15, 21)
+        // Ohne Bettzeit-Karte wie bisher die wichtigste; mit ihr tritt der gleiche Tipp zurück (Audit UX-04).
+        XCTAssertEqual(Findings.home(findings, hidden: [:], now: now)?.kind, .shortNights)
+        XCTAssertEqual(Findings.home(findings, hidden: [:], now: now, bedtimeAdvice: true)?.kind, .lowDeep)
+        XCTAssertNil(Findings.home([findings[0], findings[2]], hidden: [:], now: now, bedtimeAdvice: true))
+        XCTAssertEqual(Findings.bedtimeTip, [.shortNights, .bedtimeVaries])
+    }
+
     func testHiddenEncodesAndDecodes() {
         let hidden: [FindingKind: Date] = [.bedtimeVaries: Date(timeIntervalSince1970: 2), .longLatency: Date(timeIntervalSince1970: 1)]
         let text = Findings.encodeHidden(hidden)

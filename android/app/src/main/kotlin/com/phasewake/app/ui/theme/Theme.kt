@@ -40,7 +40,7 @@ val Manrope = FontFamily(manrope(400), manrope(500), manrope(600), manrope(700),
 
 /**
  * Farben, die über das Material-Schema hinausgehen (Welle, Echo, Hero-Karte, Karten und Chips der
- * Startseite). Farbwelt «Mitternacht & Lavendel».
+ * Startseite). Dunkel «Mitternacht & Lavendel», hell «Creme Caramel».
  */
 @Immutable
 data class BrandColors(
@@ -54,7 +54,7 @@ data class BrandColors(
     val chartQuiet: Color,
     val chartActive: Color,
     val chartTrack: Color,
-    /** Karten der Startseite: dunkel durchscheinend auf dem Nachthimmel, hell eine weisse Fläche. */
+    /** Karten der Startseite: dunkel durchscheinend auf dem Nachthimmel, hell warmes Weiss. */
     val card: Color,
     /** Rand eines nicht gewählten Chips: mindestens 3:1 zur Karte (WCAG 1.4.11, Nicht-Text-Kontrast). */
     val chipBorder: Color,
@@ -101,7 +101,12 @@ private val DarkBrand = BrandColors(
     stageDeep = Color(0xFF6F5CF0),
 )
 
-private val LightBrand = BrandColors(
+/**
+ * Hell: «Creme Caramel» (Variante Caramel + Lavendel, Entscheid r1AD 17.11.2026). Fläche Creme #FBF3E6, Karten warmes
+ * Weiss, Lavendel #7B6CF6 bleibt der Hauptakzent (Welle, Diagramme, Ränder), Caramel der sparsame Zweitakzent (gewählte
+ * Chips, Tertiär, Sonnenaufgang). Kontraste: SkyPageContrastTest.
+ */
+internal val LightBrand = BrandColors(
     hero = Color(0xFF141A3D),
     onHero = Color(0xFFFBF7F0),
     onHeroMuted = Color(0xFFC9C3E6),
@@ -111,19 +116,47 @@ private val LightBrand = BrandColors(
     dot = Color(0xFF3B3486),
     chartQuiet = Color(0xFFDAD4FA),
     chartActive = Color(0xFF7B6CF6),
-    chartTrack = Color(0xFFECE8F5),
-    card = Color.White,
-    // 90 %: 3.4:1 auf der weissen Karte, 3.2:1 auf dem Hintergrund #FBF7F0.
+    chartTrack = Color(0xFFF1E7D8),
+    card = Creme.Card,
+    // 90 %: 3.3:1 auf der Karte, 3.1:1 auf der Fläche #FBF3E6.
     chipBorder = Color(0xFF7B6CF6).copy(alpha = 0.9f),
-    chipSelected = Color(0xFFE4DFFB),
-    // 80 % Deckkraft wäre auf Hell zu schwach (< 4.5:1); daher ein fester, etwas hellerer Ton.
-    mutedSoft = Color(0xFF6A6684),
-    // Auf der weissen Diagrammkarte: 4.4, 4.0, 4.0 und 11.7 : 1.
+    // Gewählter Chip in hellem Caramel (Zweitakzent); die Schrift darauf #2A2340 hat 11.9:1.
+    chipSelected = Creme.CaramelLight,
+    // 80 % Deckkraft wäre auf Hell zu schwach (< 4.5:1); daher ein fester Ton: 5.4:1 auf der Fläche, 4.8:1 auf #F4E4CC.
+    mutedSoft = Color(0xFF6A5F74),
+    // Auf der Karte #FFFCF7: 4.3, 3.9, 3.9 und 11.5 : 1.
     stageAwake = Color(0xFFCF4F3A),
     stageRem = Color(0xFF0E8C9E),
     stageLight = Color(0xFF7B6CF6),
     stageDeep = Color(0xFF2F2A85),
 )
+
+/**
+ * Farben von «Creme Caramel» (hell). Caramel #B86B25 hat auf Creme nur 3.7:1: genug für Flächen, Ränder und grosse
+ * Schrift (≥ 3:1), nicht für Text. Für Text darum [CaramelText] (#8A4A10, 6.2:1 auf Creme, 6.7:1 auf der Karte).
+ */
+object Creme {
+    /** Fläche der Seiten. */
+    val Paper = Color(0xFFFBF3E6)
+    /** Karten: warmes Weiss. */
+    val Card = Color(0xFFFFFCF7)
+    /** Schrift. */
+    val Ink = Color(0xFF2A2340)
+    /** Lavendel, Hauptakzent (Welle, Diagramme, Ränder; als Text zu hell: 3.6:1). */
+    val Lavender = Color(0xFF7B6CF6)
+    /** Lavendel als Hauptfarbe für Knöpfe und Text: Weiss darauf 6.8:1, auf Creme 6.2:1. */
+    val LavenderDeep = Color(0xFF5546C8)
+    /** Caramel, Zweitakzent für Flächen, Ränder und Sonnenaufgang (nicht für Text). */
+    val Caramel = Color(0xFFB86B25)
+    /** Caramel für Text (Tertiär). */
+    val CaramelText = Color(0xFF8A4A10)
+    /** Helles Caramel: oberer Himmel am Tag, gewählte Chips. */
+    val CaramelLight = Color(0xFFF4E4CC)
+    /** Unteres Caramel des Tageshimmels. */
+    val CaramelDeep = Color(0xFFE9C9A0)
+    /** Nebentext: 6.3:1 auf Creme, 5.5:1 auf #F4E4CC. */
+    val Muted = Color(0xFF5E5670)
+}
 
 private val DarkScheme = darkColorScheme(
     primary = Lavender,
@@ -157,33 +190,35 @@ private val DarkScheme = darkColorScheme(
     onError = Color(0xFF690005),
 )
 
-private val LightScheme = lightColorScheme(
-    primary = Color(0xFF3B3486),
+internal val LightScheme = lightColorScheme(
+    primary = Creme.LavenderDeep,
     onPrimary = Color.White,
-    primaryContainer = Color(0xFFE4DFFB),
-    onPrimaryContainer = Color(0xFF1A1830),
-    secondary = Color(0xFF5C5876),
+    primaryContainer = Color(0xFFE7E2FB),
+    onPrimaryContainer = Creme.Ink,
+    secondary = Creme.Muted,
     onSecondary = Color.White,
-    secondaryContainer = Color(0xFFECE8F8),
-    onSecondaryContainer = Color(0xFF1A1830),
-    // Tertiär in Lavendel statt dem Material-Rosa (z. B. AM/PM im Zeitwähler, Audit UI-8).
-    tertiary = Color(0xFF3B3486),
+    // Zweitakzent Caramel: gewählte Chips und die Markierung der Navigationsleiste.
+    secondaryContainer = Creme.CaramelLight,
+    onSecondaryContainer = Creme.Ink,
+    // Tertiär in Caramel statt dem Material-Rosa (z. B. AM/PM im Zeitwähler, Audit UI-8).
+    tertiary = Creme.CaramelText,
     onTertiary = Color.White,
-    tertiaryContainer = Color(0xFFE4DFFB),
-    onTertiaryContainer = Color(0xFF1A1830),
-    background = Color(0xFFFBF7F0),
-    onBackground = Color(0xFF1A1830),
-    surface = Color(0xFFFBF7F0),
-    onSurface = Color(0xFF1A1830),
-    surfaceVariant = Color(0xFFF3F0FA),
-    onSurfaceVariant = Color(0xFF5C5876),
+    tertiaryContainer = Creme.CaramelLight,
+    onTertiaryContainer = Creme.Ink,
+    background = Creme.Paper,
+    onBackground = Creme.Ink,
+    surface = Creme.Paper,
+    onSurface = Creme.Ink,
+    surfaceVariant = Creme.CaramelLight,
+    onSurfaceVariant = Creme.Muted,
     surfaceContainerLowest = Color.White,
-    surfaceContainerLow = Color(0xFFFDFBF7),
-    surfaceContainer = Color.White,
-    surfaceContainerHigh = Color(0xFFF3F0FA),
-    surfaceContainerHighest = Color(0xFFEAE6F5),
-    outline = Color(0xFF8C87A8),
-    outlineVariant = Color(0xFFE2DEEF),
+    surfaceContainerLow = Color(0xFFFDF8EF),
+    surfaceContainer = Creme.Card,
+    surfaceContainerHigh = Color(0xFFF7ECDB),
+    surfaceContainerHighest = Color(0xFFF1E2CB),
+    // Rand (Felder, Standard-Chips): ≥ 3:1 gegen Karte, Fläche und #F4E4CC (WCAG 1.4.11).
+    outline = Color(0xFF857A8E),
+    outlineVariant = Color(0xFFE9DCC6),
     error = Color(0xFFBA1A1A),
     onError = Color.White,
 )
@@ -245,13 +280,13 @@ object PhaseWakeTheme {
     val isDark: Boolean @Composable get() = LocalDark.current
 }
 
+/**
+ * Design der App. [eveningDark]: «Abends dunkel ab» gilt gerade ([EveningDarkTicker]); dann ist auch «System» und «Hell»
+ * dunkel (Entscheid r1AD 17.11.2026).
+ */
 @Composable
-fun PhaseWakeTheme(mode: ThemeMode, content: @Composable () -> Unit) {
-    val dark = when (mode) {
-        ThemeMode.SYSTEM -> isSystemInDarkTheme()
-        ThemeMode.LIGHT -> false
-        ThemeMode.DARK -> true
-    }
+fun PhaseWakeTheme(mode: ThemeMode, eveningDark: Boolean = false, content: @Composable () -> Unit) {
+    val dark = resolveDark(mode, isSystemInDarkTheme(), eveningDark)
     val scheme: ColorScheme = if (dark) DarkScheme else LightScheme
     val view = LocalView.current
     if (!view.isInEditMode) {
@@ -266,4 +301,11 @@ fun PhaseWakeTheme(mode: ThemeMode, content: @Composable () -> Unit) {
     androidx.compose.runtime.CompositionLocalProvider(LocalBrand provides (if (dark) DarkBrand else LightBrand), LocalDark provides dark) {
         MaterialTheme(colorScheme = scheme, typography = AppTypography, shapes = AppShapes, content = content)
     }
+}
+
+/** Ob das dunkle Design gilt: «Dunkel» immer, sonst am Abend ([eveningDark]) oder wie das System bei «System». */
+fun resolveDark(mode: ThemeMode, systemDark: Boolean, eveningDark: Boolean): Boolean = when (mode) {
+    ThemeMode.DARK -> true
+    ThemeMode.LIGHT -> eveningDark
+    ThemeMode.SYSTEM -> eveningDark || systemDark
 }

@@ -188,9 +188,18 @@ object Findings {
         return out.sortedBy { it.kind.ordinal }
     }
 
-    /** Die wichtigste Auffälligkeit, die nicht ausgeblendet ist (ausgeblendet um [hidden], seit weniger als [HIDE_FOR]). */
-    fun home(findings: List<Finding>, hidden: Map<FindingKind, Instant>, now: Instant): Finding? =
-        findings.firstOrNull { f -> hidden[f.kind]?.let { now.isBefore(it.plus(HIDE_FOR)) } != true }
+    /**
+     * Die wichtigste Auffälligkeit, die nicht ausgeblendet ist (ausgeblendet um [hidden], seit weniger als [HIDE_FOR]).
+     * [bedtimeAdvice]: Die Startseite zeigt schon die Bettzeit-Karte; dann treten die Auffälligkeiten mit demselben Tipp
+     * ([BEDTIME_TIP]) zurück, damit er nicht zweimal steht (Audit UX-04). Im Verlauf bleiben sie.
+     */
+    fun home(findings: List<Finding>, hidden: Map<FindingKind, Instant>, now: Instant, bedtimeAdvice: Boolean = false): Finding? =
+        findings.firstOrNull { f ->
+            hidden[f.kind]?.let { now.isBefore(it.plus(HIDE_FOR)) } != true && !(bedtimeAdvice && f.kind in BEDTIME_TIP)
+        }
+
+    /** Auffälligkeiten, deren Tipp die Bettzeit betrifft (wie die Bettzeit-Karte der Startseite). */
+    val BEDTIME_TIP: Set<FindingKind> = setOf(FindingKind.SHORT_NIGHTS, FindingKind.BEDTIME_VARIES)
 
     /** [hidden] mit [kind] ausgeblendet um [now]; Abgelaufene fallen weg. */
     fun hide(hidden: Map<FindingKind, Instant>, kind: FindingKind, now: Instant): Map<FindingKind, Instant> =

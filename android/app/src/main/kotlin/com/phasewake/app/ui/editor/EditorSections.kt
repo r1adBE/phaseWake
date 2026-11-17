@@ -184,7 +184,8 @@ internal fun DaysSection(state: EditorState) {
         // Sieben Tage in einer Zeile, Wochenbeginn nach Sprache und Region (z. B. Sonntag in den USA).
         val locale = LocalConfiguration.current.locales[0]
         val firstDay = WeekFields.of(locale).firstDayOfWeek
-        Row(horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
+        // Ohne Abstand zwischen den Feldern: Die Lücke zwischen den Kreisen liegt im Feld ([DAY_GAP]) und ist antippbar.
+        Row(modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
             (0L until 7L).map { firstDay.plus(it) }.forEach { day ->
                 DayToggle(
                     label = day.getDisplayName(TextStyle.SHORT, locale).trimEnd('.'),

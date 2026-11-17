@@ -34,7 +34,8 @@ class HealthSleepTest {
     private val context: Application get() = RuntimeEnvironment.getApplication()
     private val client = FakeHealthClient()
     private var status = HealthConnectClient.SDK_AVAILABLE
-    private val health by lazy { HealthSleep(context, { status }, { client }) }
+    private val logged = mutableListOf<String>()
+    private val health by lazy { HealthSleep(context, { status }, { client }, logged::add) }
     private val t0 = Instant.parse("2026-11-01T22:00:00Z")
 
     private fun at(minutes: Long): Instant = t0.plus(Duration.ofMinutes(minutes))
@@ -160,6 +161,26 @@ class HealthSleepTest {
         client.failure = IllegalStateException("Health Connect weg")
         assertEquals(emptyList(), health.sessions(t0, at(600)))
         assertEquals(emptyList(), health.stagesFor(night()))
+    }
+
+    @Test
+    fun readLineOnlyWhenCountOrSourcesChange() = runBlocking {
+        // Audit PERF-05: Jedes Fortsetzen schrieb «health read …» ins Protokoll; jetzt nur bei einer Änderung.
+        grant()
+        client.pages = listOf(listOf(session(0, 60, HealthSource.SAMSUNG_HEALTH)))
+        health.sessions(t0, at(600))
+        health.sessions(t0, at(600))
+        assertEquals(listOf("health read 1 sessions, 1 sources, 0 own"), logged)
+        client.pages = listOf(listOf(session(0, 60, HealthSource.SAMSUNG_HEALTH), session(100, 160)))
+        health.sessions(t0, at(600))
+        assertEquals("health read 2 sessions, 2 sources, 0 own", logged.last())
+        assertEquals(2, logged.size)
+        // Nach einem Fehler gilt die nächste gelungene Zeile wieder als neu.
+        client.failure = IllegalStateException("Health Connect weg")
+        health.sessions(t0, at(600))
+        client.failure = null
+        health.sessions(t0, at(600))
+        assertEquals(listOf("health read failed IllegalStateException", "health read 2 sessions, 2 sources, 0 own"), logged.drop(2))
     }
 
     /** Nacht mit Fensterbeginn 06:30 und Aufwachen 06:50 (UTC) am Morgen nach [t0]. */

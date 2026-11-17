@@ -192,6 +192,9 @@ class PhoneListenerServiceTest {
         assertTrue(app.nights.load().isEmpty())
         assertTrue(app.recordings.load().isEmpty())
         assertTrue(app.alarms.current().alarms.isEmpty())
+        // Audit CODE-02: Verworfene Nacht und Aufzeichnung stehen im Protokoll (nur die Länge, kein Inhalt).
+        awaitDiag { it == "night unreadable, dropped (len=11)" }
+        awaitDiag { it == "recording unreadable, dropped (len=18)" }
     }
 
     @Test

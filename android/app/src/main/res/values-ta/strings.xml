@@ -86,6 +86,9 @@
     <string name="settings_theme_system">சிஸ்டம்</string>
     <string name="settings_theme_light">வெளிர்</string>
     <string name="settings_theme_dark">இருள்</string>
+    <string name="settings_evening_dark">மாலையில் இருள்</string>
+    <string name="settings_evening_dark_text">%1$s – %2$s இருள், சிஸ்டம் அல்லது வெளிர் தேர்ந்தாலும்.</string>
+    <string name="settings_evening_dark_from">இருள் தொடக்கம்</string>
     <string name="settings_data">உங்கள் தரவு</string>
     <string name="settings_data_text">எல்லாம் உங்கள் ஃபோனிலும் வாட்ச்சிலும் மட்டுமே இருக்கும். கணக்கு இல்லை, சர்வர் இல்லை, கண்காணிப்பு இல்லை. Google கடிகார இணைப்பின் வழியே கடிகாரத்தின் தொழில்நுட்பத் தகவல்கள் மட்டுமே செல்லும், சுகாதாரத் தரவு இல்லாமல்.</string>
     <string name="settings_export">இரவுகளைப் பெயர் இல்லாமல் ஏற்றுமதி செய்</string>
@@ -96,10 +99,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT உரிமம், © r1adBE.\nManrope எழுத்துரு: SIL Open Font License 1.1, © The Manrope Project Authors.\nஒலி கண்டறிதல்: MediaPipe Tasks Audio மற்றும் YAMNet மாதிரி, Apache License 2.0, © Google LLC.\nஒலிகள்: opengameart.org இலிருந்து இலவசப் பதிவுகள் (CC0)</string>
     <string name="settings_version">பதிப்பு %1$s</string>
 
-    <string name="duration_minutes">%1$d நிமி.</string>
-    <string name="duration_hours">%1$d மணி</string>
-    <string name="duration_hours_half">%1$d½ மணி</string>
-    <string name="duration_hours_minutes">%1$d மணி %2$d நிமி.</string>
+    <string name="duration_minutes">%1$d நிமி.</string>
+    <string name="duration_hours">%1$d மணி</string>
+    <string name="duration_hours_half">%1$d½ மணி</string>
+    <string name="duration_hours_minutes">%1$d மணி %2$d நிமி.</string>
     <string name="health_title">Health Connect இலிருந்து தூக்க நிலைகள்</string>
     <string name="health_rationale">உங்கள் ஆரோக்கிய ஆப்ஸ் (உதாரணமாக Samsung Health) சேமிக்கும் தூக்கத் தரவை Phase Wake படிக்க முடியும். அது உங்கள் வரலாற்றில் காட்டப்படும், Phase Wake உங்களை எழுப்பிய இரவுகளுடன் ஒப்பிடவும் பயன்படும். Phase Wake படிக்க மட்டுமே செய்யும், ஒருபோதும் எழுதாது, எதுவும் உங்கள் ஃபோனை விட்டு வெளியேறாது.</string>
     <string name="health_connect">ஆரோக்கியத் தரவுடன் ஒப்பிடு</string>
@@ -281,7 +284,7 @@
         <item quantity="other">தூக்க இலக்கு எட்டியது: %2$d இரவுகளில் %1$d</item>
     </plurals>
     <string name="bedtime_title">உறங்கும் நேர நினைவூட்டல்</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">உறங்கும் நேரத்துக்கு %1$d நிமி. முன் நினைவூட்டும்: அலாரம் நேரம் கழித்தல் தூக்க இலக்கு.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">உறங்கும் நேரத்துக்கு %1$d நிமி. முன் நினைவூட்டும்: இலக்கு நேரம் கழித்தல் தூக்க இலக்கு.</string>
     <string name="bedtime_notification">%1$s க்கு உறங்கச் செல்லுங்கள் – அப்போது %3$s அலாரத்துக்கு முன் %2$s தூக்கம் கிடைக்கும்.</string>
     <string name="channel_reminders">நினைவூட்டல்கள்</string>
     <string name="sounds_title">தூக்க ஒலிகள்</string>
@@ -556,7 +559,7 @@
     <string name="learned_latency">தூங்கிவிடுதல்: சுமார் %1$s</string>
     <string name="learned_latency_none">தூங்கிவிடுதல்: அளவீடுகள் மிகக் குறைவு</string>
     <string name="bedtime_advice">இன்று %1$s முதல் %2$s வரை படுக்கச் செல்</string>
-    <string name="bedtime_advice_hint">உன் அலாரம், தூக்க இலக்கு, தூங்க ஆகும் நேரம் ஆகியவற்றிலிருந்து.</string>
+    <string name="bedtime_advice_hint">உன் இலக்கு நேரம், தூக்க இலக்கு, தூங்க ஆகும் நேரம் ஆகியவற்றிலிருந்து.</string>
     <string name="learn_restart">மீண்டும் கற்றுக்கொள்</string>
     <string name="learn_restart_text">Phase Wake மீண்டும் %1$d இரவுகளை அளக்கிறது. அதுவரை இதுவரை மாற்றிய மதிப்புகளே பயன்படும்.</string>
     <string name="record_end_wake">எழுப்பும்போது முடிந்தது</string>
@@ -638,7 +641,7 @@
     <string name="finding_title">உன் கடைசி 7 இரவுகளில் கவனிக்கப்பட்டது</string>
     <string name="finding_hide">மறை</string>
     <string name="finding_latency">தூங்க உனக்கு சராசரியாக %1$s ஆனது. குறிப்பு: 20 நிமிடங்களுக்குப் பிறகும் விழித்திருந்தால் எழுந்துவிடு, தூக்கம் வரும்போது மட்டும் படுக்கைக்குத் திரும்பு. இது வாரக்கணக்கில் தொடர்ந்தால் உன் மருத்துவரிடம் பேசு.</string>
-    <string name="finding_short_nights">6 மணி நேரத்துக்குக் குறைவான இரவுகள்: 7-இல் %1$d. குறிப்பு: எழும் நேரத்திலிருந்து பின்னோக்கிக் கணக்கிட்டு தூங்கும் நேரத்தை முடிவு செய்து அதைக் கடைப்பிடி.</string>
+    <string name="finding_short_nights">6 மணி நேரத்துக்குக் குறைவான இரவுகள்: 7-இல் %1$d. குறிப்பு: இலக்கு நேரத்திலிருந்து பின்னோக்கிக் கணக்கிட்டு தூங்கும் நேரத்தை முடிவு செய்து அதைக் கடைப்பிடி.</string>
     <string name="finding_low_deep">ஆழ்ந்த தூக்கம் உன் தூக்கத்தில் சுமார் %1$d %% மட்டுமே (பொதுவாக %2$d–%3$d %%).</string>
     <string name="finding_deep_short">6 மணி நேரத்துக்குக் குறைவான இரவுகளில் அது தெளிவாகக் குறைவாக இருந்தது: %2$d %%-க்குப் பதில் %1$d %%.</string>
     <string name="finding_deep_late">நீ தாமதமாகத் தூங்கிய இரவுகளில் அது தெளிவாகக் குறைவாக இருந்தது: %2$d %%-க்குப் பதில் %1$d %%.</string>

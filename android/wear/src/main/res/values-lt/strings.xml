@@ -54,8 +54,8 @@
     <string name="good_night_cancel">Atšaukti Labanakt</string>
     <string name="dnd_title">Žadintuvai blokuojami</string>
     <string name="dnd_text">Leisk žadintuvus režimu „Netrukdyti“.</string>
-    <string name="duration_hours">%1$d val.</string>
-    <string name="duration_hours_minutes">%1$d val. %2$d min</string>
+    <string name="duration_hours">%1$d val.</string>
+    <string name="duration_hours_minutes">%1$d val. %2$d min</string>
     <string name="home_last_night">Praėjusi naktis</string>
     <string name="notification_open">Atidaryti</string>
     <string name="home_good_night_too_far">Galima likus 16 val. iki žadintuvo</string>

@@ -8,7 +8,7 @@ import SwiftUI
 extension BackupAlarm {
     /// Ende des Schlummerns (dann klingelt die Sicherung wieder), solange es bevorsteht; sonst `nil`.
     func backupSnoozedUntil(now: Date = Date()) -> Date? {
-        Self.snoozedUntil(id: storedId(Self.backupSnoozeKey), until: SettingsFile.phone.double(forKey: Self.backupSnoozeUntilKey), now: now)
+        Self.snoozedUntil(id: storedId(Self.backupSnoozeKey), until: settings.double(forKey: Self.backupSnoozeUntilKey), now: now)
     }
 
     /// Schlummert die Sicherung `id` bis `until` (Sekunden seit 1970, 0 = unbekannt) um `now`: das Ende, sonst `nil`.
@@ -25,7 +25,7 @@ extension BackupAlarm {
         let night = self.night(for: id)
         cancelBackupSnooze()
         DiagStore.shared.log(.stop, "phone backup snooze, in app")
-        if let night { PhoneConnectivity.shared.send(command: SyncKeys.stop, night: night) }
+        if let night { host.sendStop(night) }
     }
 }
 

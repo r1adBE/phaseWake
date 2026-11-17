@@ -191,6 +191,13 @@ data class BackupSettings(
      * (ältere Sicherung, Apple ohne diese Messung), gilt die Vorgabe `true`.
      */
     val autoOnset: Boolean = true,
+    /**
+     * «Abends dunkel ab» an ([EveningDark], Entscheid r1AD 17.11.2026). Fehlt der Schlüssel (ältere Sicherung), gilt die
+     * Vorgabe `true`.
+     */
+    val eveningDark: Boolean = EveningDark.DEFAULT_ENABLED,
+    /** Beginn von «Abends dunkel ab» in Minuten des Tages; fehlt oder unplausibel: 18:00 ([EveningDark.checkedFrom]). */
+    val eveningDarkFrom: Int = EveningDark.DEFAULT_FROM_MINUTES,
 )
 
 /**

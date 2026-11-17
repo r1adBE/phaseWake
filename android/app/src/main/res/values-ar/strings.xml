@@ -89,6 +89,9 @@
     <string name="settings_theme_system">النظام</string>
     <string name="settings_theme_light">فاتح</string>
     <string name="settings_theme_dark">داكن</string>
+    <string name="settings_evening_dark">داكن مساءً</string>
+    <string name="settings_evening_dark_text">داكن من %1$s إلى %2$s، حتى مع النظام أو فاتح.</string>
+    <string name="settings_evening_dark_from">داكن بدءًا من</string>
     <string name="settings_data">بياناتك</string>
     <string name="settings_data_text">كل شيء يبقى على هاتفك وساعتك. بلا حساب ولا خادم ولا تتبّع. تمرّ عبر اتصال الساعة من Google معلومات تقنية عن الساعة فقط، دون بيانات صحية.</string>
     <string name="settings_export">تصدير الليالي بدون اسم</string>
@@ -99,10 +102,10 @@
     <string name="settings_licenses_text">Phase Wake: ترخيص MIT، © r1adBE.\nخط Manrope: SIL Open Font License 1.1، © The Manrope Project Authors.\nالتعرّف على الأصوات: MediaPipe Tasks Audio ونموذج YAMNet، Apache License 2.0، © Google LLC.\nالأصوات: تسجيلات حرة (CC0) من opengameart.org</string>
     <string name="settings_version">الإصدار %1$s</string>
 
-    <string name="duration_minutes">%1$d د</string>
-    <string name="duration_hours">%1$d س</string>
-    <string name="duration_hours_half">%1$d½ س</string>
-    <string name="duration_hours_minutes">%1$d س %2$d د</string>
+    <string name="duration_minutes">%1$d د</string>
+    <string name="duration_hours">%1$d س</string>
+    <string name="duration_hours_half">%1$d½ س</string>
+    <string name="duration_hours_minutes">%1$d س %2$d د</string>
     <string name="health_title">مراحل النوم من Health Connect</string>
     <string name="health_rationale">يمكن لـ Phase Wake قراءة بيانات النوم التي يحفظها تطبيق الصحة لديك (مثل Samsung Health). تُعرض في سجلك، وأيضًا للمقارنة مع الليالي التي أيقظك فيها Phase Wake. يقرأ Phase Wake فقط ولا يكتب أبدًا، ولا شيء يغادر هاتفك.</string>
     <string name="health_connect">المقارنة ببيانات الصحة</string>
@@ -310,7 +313,7 @@
         <item quantity="other">تحقق هدف النوم: %1$d من %2$d ليلة</item>
     </plurals>
     <string name="bedtime_title">تذكير بموعد النوم</string>
-    <string name="bedtime_text">يذكّرك قبل موعد النوم بـ %1$d دقيقة: وقت المنبّه ناقص هدف النوم.</string>
+    <string name="bedtime_text">يذكّرك قبل موعد النوم بـ %1$d دقيقة: الوقت المستهدف ناقص هدف النوم.</string>
     <string name="bedtime_notification">موعد النوم %1$s – هكذا تنام %2$s حتى المنبّه في %3$s.</string>
     <string name="channel_reminders">تذكيرات</string>
     <string name="sounds_title">أصوات للنوم</string>
@@ -610,7 +613,7 @@
     <string name="learned_latency">النوم: نحو %1$s</string>
     <string name="learned_latency_none">النوم: القياسات قليلة جدًا</string>
     <string name="bedtime_advice">اذهب إلى السرير الليلة بين %1$s و%2$s</string>
-    <string name="bedtime_advice_hint">بناءً على منبّهك وهدف نومك والمدة التي تحتاجها لتغفو.</string>
+    <string name="bedtime_advice_hint">بناءً على وقتك المستهدف وهدف نومك والمدة التي تحتاجها لتغفو.</string>
     <string name="learn_restart">تعلّم من جديد</string>
     <string name="learn_restart_text">يقيس Phase Wake من جديد %1$d ليالٍ. وحتى ذلك الحين تبقى القيم المكيّفة حتى الآن مستخدمة.</string>
     <string name="record_end_wake">انتهى عند الاستيقاظ</string>
@@ -692,7 +695,7 @@
     <string name="finding_title">لوحظ في آخر 7 ليالٍ</string>
     <string name="finding_hide">إخفاء</string>
     <string name="finding_latency">استغرقت في المتوسط %1$s حتى تنام. نصيحة: إذا بقيت مستيقظًا بعد 20 دقيقة، فانهض ولا تعد إلى السرير إلا عندما تشعر بالنعاس. إذا استمر ذلك لأسابيع، فتحدث إلى طبيبك.</string>
-    <string name="finding_short_nights">ليالٍ أقل من 6 ساعات: %1$d من 7. نصيحة: احسب موعد نومك انطلاقًا من موعد استيقاظك والتزم به.</string>
+    <string name="finding_short_nights">ليالٍ أقل من 6 ساعات: %1$d من 7. نصيحة: احسب موعد نومك انطلاقًا من وقتك المستهدف والتزم به.</string>
     <string name="finding_low_deep">كان النوم العميق نحو %1$d %% فقط من نومك (عادةً %2$d–%3$d %%).</string>
     <string name="finding_deep_short">في الليالي الأقل من 6 ساعات كان أقل بوضوح: %1$d %% بدلًا من %2$d %%.</string>
     <string name="finding_deep_late">في الليالي التي نمت فيها متأخرًا كان أقل بوضوح: %1$d %% بدلًا من %2$d %%.</string>

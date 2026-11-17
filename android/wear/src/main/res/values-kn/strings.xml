@@ -49,8 +49,8 @@
     <string name="good_night_cancel">ಶುಭ ರಾತ್ರಿ ರದ್ದುಮಾಡಿ</string>
     <string name="dnd_title">ಅಲಾರಾಂಗಳು ತಡೆಯಲ್ಪಟ್ಟಿವೆ</string>
     <string name="dnd_text">ಅಡಚಣೆ ಮಾಡಬೇಡಿ ಯಲ್ಲಿ ಅಲಾರಾಂಗಳನ್ನು ಅನುಮತಿಸಿ.</string>
-    <string name="duration_hours">%1$d ಗಂ.</string>
-    <string name="duration_hours_minutes">%1$d ಗಂ. %2$d ನಿಮಿ.</string>
+    <string name="duration_hours">%1$d ಗಂ.</string>
+    <string name="duration_hours_minutes">%1$d ಗಂ. %2$d ನಿಮಿ.</string>
     <string name="home_last_night">ಕಳೆದ ರಾತ್ರಿ</string>
     <string name="notification_open">ತೆರೆಯಿರಿ</string>
     <string name="home_good_night_too_far">ಅಲಾರಾಂಗೆ 16 ಗಂ. ಮೊದಲಿನಿಂದ ಲಭ್ಯ</string>

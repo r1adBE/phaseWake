@@ -16,6 +16,10 @@ import androidx.compose.foundation.text.BasicText
 import android.content.Context
 import android.media.RingtoneManager
 import androidx.compose.foundation.background
+import androidx.compose.foundation.indication
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.material3.ripple
+import androidx.compose.runtime.remember
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -141,35 +145,55 @@ internal fun Section(content: @Composable androidx.compose.foundation.layout.Col
 internal const val SLEEP_MIN = 180f
 internal const val SLEEP_MAX = 720f
 
-/** Runder Tag-Schalter; alle sieben passen in eine Zeile. */
+/** Mindesthöhe der Tippfläche eines Tag-Schalters (Entscheid UI-8: 48 dp). */
+internal val DAY_TOUCH_MIN = 48.dp
+
+/** Abstand zwischen den sichtbaren Kreisen der Tag-Schalter (je Hälfte links und rechts im Feld). */
+internal val DAY_GAP = 6.dp
+
+/**
+ * Runder Tag-Schalter; alle sieben passen in eine Zeile. Die Tippfläche ist das ganze Feld (ohne Lücke zum Nachbarn,
+ * mindestens [DAY_TOUCH_MIN] hoch, Audit UX-02), der sichtbare Kreis darin bleibt kleiner.
+ */
 @Composable
 internal fun DayToggle(label: String, description: String, selected: Boolean, onToggle: () -> Unit, modifier: Modifier) {
     val colors = MaterialTheme.colorScheme
+    // Rückmeldung beim Antippen nur auf dem Kreis (wie bisher), nicht auf dem ganzen Feld.
+    val touch = remember { MutableInteractionSource() }
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
-            .aspectRatio(1f)
-            .clip(CircleShape)
-            .background(if (selected) colors.primary else colors.surfaceContainerHighest)
-            .toggleable(value = selected, role = Role.Checkbox, onValueChange = { onToggle() })
+            .heightIn(min = DAY_TOUCH_MIN)
+            .toggleable(value = selected, interactionSource = touch, indication = null, role = Role.Checkbox, onValueChange = { onToggle() })
             .semantics { contentDescription = description },
     ) {
-        // Gewählt zusätzlich mit Punkt unter dem Kürzel: nicht nur die Füllfarbe zeigt es (Farbfehlsichtigkeit).
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(
-                label,
-                style = MaterialTheme.typography.labelMedium,
-                color = if (selected) colors.onPrimary else colors.onSurface,
-                maxLines = 1,
-                softWrap = false,
-            )
-            Box(
-                Modifier
-                    .padding(top = 2.dp)
-                    .size(4.dp)
-                    .clip(CircleShape)
-                    .background(if (selected) colors.onPrimary else Color.Transparent),
-            )
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = DAY_GAP / 2)
+                .aspectRatio(1f)
+                .clip(CircleShape)
+                .background(if (selected) colors.primary else colors.surfaceContainerHighest)
+                .indication(touch, ripple()),
+        ) {
+            // Gewählt zusätzlich mit Punkt unter dem Kürzel: nicht nur die Füllfarbe zeigt es (Farbfehlsichtigkeit).
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    label,
+                    style = MaterialTheme.typography.labelMedium,
+                    color = if (selected) colors.onPrimary else colors.onSurface,
+                    maxLines = 1,
+                    softWrap = false,
+                )
+                Box(
+                    Modifier
+                        .padding(top = 2.dp)
+                        .size(4.dp)
+                        .clip(CircleShape)
+                        .background(if (selected) colors.onPrimary else Color.Transparent),
+                )
+            }
         }
     }
 }

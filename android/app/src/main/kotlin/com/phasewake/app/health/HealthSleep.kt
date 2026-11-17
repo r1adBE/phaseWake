@@ -21,12 +21,13 @@ import java.time.ZoneId
  * Liest Schlafphasen, die eine Gesundheits-App (z. B. Samsung Health) nach dem Aufwachen in
  * Health Connect ablegt. Nur Lesen, nur auf Wunsch, nichts verlässt das Handy.
  *
- * [sdkStatus] und [clientFactory] sind nur für Tests ersetzbar (Health Connect im Speicher, Audit F-02).
+ * [sdkStatus], [clientFactory] und [diagLog] sind nur für Tests ersetzbar (Health Connect im Speicher, Audit F-02).
  */
 class HealthSleep internal constructor(
     private val context: Context,
     private val sdkStatus: () -> Int,
     clientFactory: () -> HealthConnectClient,
+    private val diagLog: ((String) -> Unit)? = null,
 ) {
     constructor(context: Context) : this(context, { HealthConnectClient.getSdkStatus(context) }, { HealthConnectClient.getOrCreate(context) })
 
@@ -42,9 +43,16 @@ class HealthSleep internal constructor(
 
     private val client by lazy(clientFactory)
 
-    private fun diag(text: String) =
-        com.phasewake.app.shared.DiagnosticsLog.forContext(context, com.phasewake.app.core.DiagDevice.PHONE)
-            .log(com.phasewake.app.core.DiagKind.SYNC, text)
+    /** Zuletzt protokollierte Zeile von [sessions]; eine gleiche wird nicht wiederholt (Audit PERF-05). */
+    @Volatile
+    private var lastReadLine: String? = null
+
+    private fun diag(text: String) {
+        val log = diagLog ?: { line: String ->
+            com.phasewake.app.shared.DiagnosticsLog.forContext(context, com.phasewake.app.core.DiagDevice.PHONE).log(com.phasewake.app.core.DiagKind.SYNC, line)
+        }
+        log(text)
+    }
 
     suspend fun isGranted(): Boolean =
         isAvailable && runCatching { client.permissionController.getGrantedPermissions().containsAll(permissions) }.getOrDefault(false)
@@ -66,9 +74,14 @@ class HealthSleep internal constructor(
                 pageToken = response.pageToken
             } while (pageToken != null)
             // Für die Diagnose: wie viele Sitzungen aus wie vielen Apps, davon von Phase Wake – ohne Zeiten, Werte oder
-            // Namen der Apps (DATENSCHUTZ.md: der Name der Quell-App wird nicht gespeichert).
+            // Namen der Apps (DATENSCHUTZ.md: der Name der Quell-App wird nicht gespeichert). Nur bei einer Änderung
+            // (Audit PERF-05: sonst füllte jedes Öffnen den Ringpuffer).
             val origins = records.map { it.metadata.dataOrigin.packageName }
-            diag("health read ${records.size} sessions, ${origins.toSet().size} sources, ${origins.count { it == context.packageName }} own")
+            val line = "health read ${records.size} sessions, ${origins.toSet().size} sources, ${origins.count { it == context.packageName }} own"
+            if (line != lastReadLine) {
+                lastReadLine = line
+                diag(line)
+            }
             records.map { session ->
                 HealthSession(
                     start = session.startTime,
@@ -83,6 +96,8 @@ class HealthSleep internal constructor(
             if (e is kotlinx.coroutines.CancellationException) throw e
             Log.w(TAG, "Schlafsitzungen nicht lesbar", e)
             diag("health read failed ${e.javaClass.simpleName}")
+            // Nach einem Fehler die nächste gelungene Zeile wieder protokollieren.
+            lastReadLine = null
             emptyList()
         }
     }

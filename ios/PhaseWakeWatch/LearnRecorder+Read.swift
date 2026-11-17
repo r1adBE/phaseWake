@@ -1,5 +1,6 @@
 import CoreMotion
 import Foundation
+import os
 import PhaseWakeCore
 
 extension LearnRecorder {
@@ -11,21 +12,32 @@ extension LearnRecorder {
     /// Bewegung je Epoche ab `start` aus dem Rekorder: nach den schon fertigen Epochen `done` bis `until`
     /// (Epochengrenze), Abschnitt für Abschnitt (``chunk``), bis `deadline`. Läuft abseits des Main-Threads (auch
     /// `WatchOnset`). `pause`: Ruhe nach jedem Abschnitt (``pauseLength(_:now:deadline:)``), damit die Rechnung die Uhr
-    /// nicht am Stück belegt; die Lernphase (kurze Rechenzeit im Hintergrund) pausiert nicht.
+    /// nicht am Stück belegt; die Lernphase (kurze Rechenzeit im Hintergrund) pausiert nicht. Jeder Abschnitt liest in
+    /// einem eigenen `autoreleasepool` (Audit 17.11. PF-1): Die Werte eines Abschnitts (10 Min., 30 000) werden gleich
+    /// freigegeben, statt sich über 8–12 Std. bis zum Ende anzusammeln (Jetsam). Freier Speicher vorher und nachher
+    /// (`os_proc_available_memory`, MB) als Diagnose-Zeile der Art `kind`.
     nonisolated static func recordedMotions(start: Date, done: [Double?], until stop: Date, deadline: Date,
-                                            pause: TimeInterval = 0) -> [Double?] {
+                                            pause: TimeInterval = 0, kind: DiagKind = .measureEnd) -> [Double?] {
         let epochs = RecorderEpochs(start: start, motions: done)
         let recorder = CMSensorRecorder()
         var chunkStart = epochs.closedUntil
+        let freeBefore = freeMegabytes()
+        var chunks = 0
+        defer {
+            if chunks > 0 { DiagStore.shared.log(kind, "recorder read chunks=\(chunks) free=\(freeBefore)->\(freeMegabytes()) MB") }
+        }
         while chunkStart < stop, Date() < deadline {
             let chunkEnd = min(chunkStart.addingTimeInterval(chunk), stop)
-            if let list = recorder.accelerometerData(from: chunkStart, to: chunkEnd) {
-                var iterator = NSFastEnumerationIterator(list)
-                while let item = iterator.next() {
-                    guard let data = item as? CMRecordedAccelerometerData else { continue }
-                    epochs.add(at: data.startDate, x: data.acceleration.x, y: data.acceleration.y, z: data.acceleration.z)
+            autoreleasepool {
+                if let list = recorder.accelerometerData(from: chunkStart, to: chunkEnd) {
+                    var iterator = NSFastEnumerationIterator(list)
+                    while let item = iterator.next() {
+                        guard let data = item as? CMRecordedAccelerometerData else { continue }
+                        epochs.add(at: data.startDate, x: data.acceleration.x, y: data.acceleration.y, z: data.acceleration.z)
+                    }
                 }
             }
+            chunks += 1
             epochs.close(until: chunkEnd)
             guard epochs.closedUntil > chunkStart else { break }
             chunkStart = epochs.closedUntil
@@ -33,6 +45,11 @@ extension LearnRecorder {
             if chunkStart < stop, rest > 0 { Thread.sleep(forTimeInterval: rest) }
         }
         return epochs.motions
+    }
+
+    /// Freier Speicher der App in MB (`os_proc_available_memory`; 0, wenn das System keinen Wert liefert, etwa im Simulator).
+    nonisolated static func freeMegabytes() -> Int {
+        os_proc_available_memory() / 1_048_576
     }
 
     /// Länge der Pause nach einem Abschnitt: `pause`, aber nie über `deadline` hinaus (nie negativ).

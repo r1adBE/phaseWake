@@ -7,6 +7,7 @@ struct HeroPlan: View {
     let plan: WakePlan
     let alarm: AlarmSpec
     let now: Date
+    @Environment(\.colorScheme) private var scheme
 
     var body: some View {
         let day = Format.day(plan.target, todayKey: "home_next_today", tomorrowKey: "home_next_tomorrow")
@@ -25,7 +26,7 @@ struct HeroPlan: View {
                 Text(plan.exact ? L("home_next_in_exact", Format.duration(minutes: max(0, minutes)))
                      : minutes > 0 ? L("home_next_in", Format.duration(minutes: minutes)) : L("home_window_running"))
                     .font(Fonts.manrope(14, relativeTo: .subheadline))
-                    .foregroundStyle(Brand.muted)
+                    .foregroundStyle(SkyInk.of(scheme).muted)
             }
             .multilineTextAlignment(.center)
             .frame(maxWidth: .infinity)
@@ -50,10 +51,12 @@ struct WakeArc: View {
     let target: Date
     let exact: Bool
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    /// Farben des Himmels darunter: dunkel Nacht, hell Tag (``SkyInk``).
+    @Environment(\.colorScheme) private var scheme
     @State private var reveal: Double = 0
 
     var body: some View {
-        WakeArcDrawing(now: now, windowStart: windowStart, target: target, exact: exact, reveal: reveal)
+        WakeArcDrawing(now: now, windowStart: windowStart, target: target, exact: exact, ink: SkyInk.of(scheme), reveal: reveal)
             .accessibilityHidden(true)
             .onAppear {
                 guard !reduceMotion else { reveal = 1; return }
@@ -87,6 +90,7 @@ private struct WakeArcDrawing: View, Animatable {
     let windowStart: Date
     let target: Date
     let exact: Bool
+    let ink: SkyInk
     var reveal: Double
     var animatableData: Double {
         get { reveal }
@@ -95,7 +99,6 @@ private struct WakeArcDrawing: View, Animatable {
     private typealias A = WakeArc
     private static let start: Double = 165
     private static let sweep: Double = 210
-    private static let dawn = Color(hex: 0xFFB27A)
 
     var body: some View {
         Canvas { context, size in
@@ -120,25 +123,25 @@ private struct WakeArcDrawing: View, Animatable {
                 context.stroke(arc(from, to), with: .linearGradient(Gradient(colors: [a, b]), startPoint: at(from, r), endPoint: at(to, r)),
                                style: StrokeStyle(lineWidth: width, lineCap: .round))
             }
-            context.stroke(arc(0, 1), with: .color(Brand.moon.opacity(0.10)), style: StrokeStyle(lineWidth: stroke, lineCap: .round))
+            context.stroke(arc(0, 1), with: .color(ink.text.opacity(0.10)), style: StrokeStyle(lineWidth: stroke, lineCap: .round))
             for k in 0...12 {
-                context.fill(dot(at(Double(k) / 12, r - stroke * 1.35), k % 3 == 0 ? 1.6 : 1.1), with: .color(Brand.muted.opacity(k % 3 == 0 ? 0.55 : 0.28)))
+                context.fill(dot(at(Double(k) / 12, r - stroke * 1.35), k % 3 == 0 ? 1.6 : 1.1), with: .color(ink.muted.opacity(k % 3 == 0 ? 0.55 : 0.28)))
             }
             let shown = reveal
-            gradientArc(0, min(nowAt, windowAt) * shown, Brand.waveEcho.opacity(0.55), Brand.wave, stroke)
+            gradientArc(0, min(nowAt, windowAt) * shown, ink.waveEcho.opacity(0.55), ink.wave, stroke)
             if !exact && shown > windowAt {
-                context.stroke(arc(windowAt, shown), with: .color(Self.dawn.opacity(0.18)), style: StrokeStyle(lineWidth: stroke * 2.6, lineCap: .round))
-                gradientArc(windowAt, shown, Brand.wave, Self.dawn, stroke * 1.15)
+                context.stroke(arc(windowAt, shown), with: .color(ink.dawn.opacity(0.18)), style: StrokeStyle(lineWidth: stroke * 2.6, lineCap: .round))
+                gradientArc(windowAt, shown, ink.wave, ink.dawn, stroke * 1.15)
             }
             guard shown >= 1 else { return }
             let wake = at(1, r)
-            context.fill(dot(wake, stroke * 2.6), with: .radialGradient(Gradient(colors: [Self.dawn.opacity(0.55), Self.dawn.opacity(0)]), center: wake, startRadius: 0, endRadius: stroke * 2.6))
-            context.stroke(dot(wake, stroke * 1.05), with: .color(Brand.moon.opacity(0.7)), lineWidth: 1.5)
-            context.fill(dot(wake, stroke * 0.62), with: .color(Brand.moon))
+            context.fill(dot(wake, stroke * 2.6), with: .radialGradient(Gradient(colors: [ink.dawn.opacity(0.55), ink.dawn.opacity(0)]), center: wake, startRadius: 0, endRadius: stroke * 2.6))
+            context.stroke(dot(wake, stroke * 1.05), with: .color(ink.moon.opacity(0.7)), lineWidth: 1.5)
+            context.fill(dot(wake, stroke * 0.62), with: .color(ink.moon))
             if now < target {
                 let p = at(nowAt, r)
-                context.fill(dot(p, stroke * 1.9), with: .radialGradient(Gradient(colors: [Brand.wave.opacity(0.6), Brand.wave.opacity(0)]), center: p, startRadius: 0, endRadius: stroke * 1.9))
-                context.fill(dot(p, stroke * 0.5), with: .color(Brand.moon))
+                context.fill(dot(p, stroke * 1.9), with: .radialGradient(Gradient(colors: [ink.wave.opacity(0.6), ink.wave.opacity(0)]), center: p, startRadius: 0, endRadius: stroke * 1.9))
+                context.fill(dot(p, stroke * 0.5), with: .color(ink.moon))
             }
         }
     }

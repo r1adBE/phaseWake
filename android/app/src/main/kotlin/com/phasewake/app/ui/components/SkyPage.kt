@@ -52,7 +52,7 @@ val LocalSkyMood = compositionLocalOf { SkyMood.Plain }
 
 /**
  * Hintergrund einer Seite: dunkel ganzflächig der Nachthimmel mit der Stimmung [LocalSkyMood] (wie die Startseite), hell
- * die helle Fläche; den Himmel trägt dort der Kopf ([SkyHeader]).
+ * die Creme-Fläche; den Tageshimmel trägt dort der Kopf ([SkyHeader]).
  */
 @Composable
 fun SkyPage(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
@@ -64,9 +64,9 @@ fun SkyPage(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
 }
 
 /**
- * Kopfbereich einer Seite wie der Kopf der Startseite: hell ein Stück Nachthimmel mit unten runden Ecken, dunkel
- * durchsichtig (der Himmel liegt schon dahinter). Schrift und Symbole darin in [Night.Text] (≥ 4.5:1 auf dem Himmel,
- * SkyMoodTest). [statusBar]: reicht bis unter die Statusleiste. [bleedSide]/[bleedTop]: ragt so weit über den Platz in
+ * Kopfbereich einer Seite wie der Kopf der Startseite: hell ein Stück Tageshimmel ([AnimatedDay]) mit unten runden Ecken,
+ * dunkel durchsichtig (der Nachthimmel liegt schon dahinter). Schrift und Symbole darin in [skyInk] (≥ 4.5:1 auf dem
+ * Himmel, SkyMoodTest). [statusBar]: reicht bis unter die Statusleiste. [bleedSide]/[bleedTop]: ragt so weit über den Platz in
  * einer Liste hinaus (seitlicher Rand und oberer Innenabstand), damit der Himmel randlos ist; der Inhalt bleibt, wo er war.
  */
 @Composable
@@ -78,8 +78,9 @@ fun SkyHeader(
     content: @Composable ColumnScope.() -> Unit,
 ) {
     val dark = PhaseWakeTheme.isDark
+    val ink = skyInk()
     val inner = @Composable {
-        CompositionLocalProvider(LocalContentColor provides Night.Text) {
+        CompositionLocalProvider(LocalContentColor provides ink.text) {
             Column(
                 Modifier.fillMaxWidth()
                     .then(if (statusBar) Modifier.statusBarsPadding() else Modifier)
@@ -91,7 +92,7 @@ fun SkyHeader(
     if (dark) {
         Box(modifier.fillMaxWidth().bleed(bleedSide, bleedTop)) { inner() }
     } else {
-        AnimatedNight(modifier.fillMaxWidth().bleed(bleedSide, bleedTop).clip(HEADER_SHAPE), LocalSkyMood.current) { inner() }
+        AnimatedDay(modifier.fillMaxWidth().bleed(bleedSide, bleedTop).clip(HEADER_SHAPE), LocalSkyMood.current) { inner() }
     }
 }
 
@@ -113,11 +114,11 @@ fun SkyBarPage(bar: @Composable RowScope.() -> Unit, content: @Composable Column
 }
 
 /**
- * Gefüllter Knopf im Himmel-Kopf: Lavendel mit Indigo-Schrift wie die Hauptfarbe im dunklen Design (hell wäre das Indigo
- * auf dem Himmel kaum zu sehen).
+ * Gefüllter Knopf im Himmel-Kopf: dunkel Lavendel mit Indigo-Schrift wie die Hauptfarbe, hell kräftiges Lavendel mit
+ * weisser Schrift ([skyInk]).
  */
 @Composable
-fun skyButtonColors(): ButtonColors = ButtonDefaults.buttonColors(containerColor = Night.Wave, contentColor = Night.Top)
+fun skyButtonColors(): ButtonColors = skyInk().let { ButtonDefaults.buttonColors(containerColor = it.button, contentColor = it.onButton) }
 
 /** Abstand zwischen Kopfzeile und Inhalt. */
 private val BAR_GAP = 8.dp
@@ -152,7 +153,8 @@ private fun Modifier.bleed(side: Dp, top: Dp): Modifier = if (side == 0.dp && to
 
 /**
  * Karten der Seiten: dunkel Glas auf dem Himmel, dichter als die Karten der Startseite ([Night.Panel]), damit Diagramme,
- * Phasenfarben und Ränder von Bedienelementen auch über dem Abendrot ≥ 3:1 behalten (SkyPageContrastTest); hell weiss.
+ * Phasenfarben und Ränder von Bedienelementen auch über dem Abendrot ≥ 3:1 behalten (SkyPageContrastTest); hell warmes
+ * Weiss.
  */
 @Composable
 fun skyCardColors(): CardColors = CardDefaults.cardColors(containerColor = skyCard())

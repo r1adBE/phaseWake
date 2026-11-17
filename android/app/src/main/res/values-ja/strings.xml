@@ -84,6 +84,9 @@
     <string name="settings_theme_system">システム</string>
     <string name="settings_theme_light">ライト</string>
     <string name="settings_theme_dark">ダーク</string>
+    <string name="settings_evening_dark">夜はダーク</string>
+    <string name="settings_evening_dark_text">%1$s～%2$s はダーク（システム・ライト選択時も）。</string>
+    <string name="settings_evening_dark_from">ダーク開始</string>
     <string name="settings_data">あなたのデータ</string>
     <string name="settings_data_text">すべてスマートフォンとウォッチ内に保存されます。アカウントもサーバーもトラッキングもありません。Google のウォッチ接続を通るのはウォッチの技術情報のみで、健康データは含みません。</string>
     <string name="settings_export">睡眠記録を名前なしでエクスポート</string>
@@ -275,7 +278,7 @@
         <item quantity="other">睡眠目標の達成:%2$d 晩中 %1$d 晩</item>
     </plurals>
     <string name="bedtime_title">就寝リマインダー</string>
-    <string name="bedtime_text">就寝時刻の %1$d 分前にお知らせ:起床時刻から睡眠目標を引いた時刻。</string>
+    <string name="bedtime_text">就寝時刻の %1$d 分前にお知らせ:目標時刻から睡眠目標を引いた時刻。</string>
     <string name="bedtime_notification">%1$s に就寝 – %3$s のアラームまで %2$s 眠れます。</string>
     <string name="channel_reminders">リマインダー</string>
     <string name="sounds_title">入眠サウンド</string>
@@ -540,7 +543,7 @@
     <string name="learned_latency">寝つき：約%1$s</string>
     <string name="learned_latency_none">寝つき：測定値が少なすぎます</string>
     <string name="bedtime_advice">今夜は%1$s〜%2$sの間に寝ましょう</string>
-    <string name="bedtime_advice_hint">アラーム、睡眠目標、寝つくまでの時間から算出。</string>
+    <string name="bedtime_advice_hint">目標時刻、睡眠目標、寝つくまでの時間から算出。</string>
     <string name="learn_restart">もう一度学習</string>
     <string name="learn_restart_text">Phase Wake はもう一度 %1$d 夜を測ります。それまでは、これまでに合わせた値をそのまま使います。</string>
     <string name="record_end_wake">起床時に終了</string>
@@ -622,7 +625,7 @@
     <string name="finding_title">直近7夜で気になったこと</string>
     <string name="finding_hide">非表示</string>
     <string name="finding_latency">寝つくまでに平均%1$sかかりました。ヒント：20分たっても眠れないときは起きて、眠くなってから寝床に戻りましょう。何週間も続くなら医師に相談してください。</string>
-    <string name="finding_short_nights">6時間未満の夜：7夜中%1$d夜。ヒント：起きる時刻から就寝時刻を逆算して守りましょう。</string>
+    <string name="finding_short_nights">6時間未満の夜：7夜中%1$d夜。ヒント：目標時刻から就寝時刻を逆算して守りましょう。</string>
     <string name="finding_low_deep">深い睡眠は睡眠の約%1$d %%にとどまりました（通常%2$d–%3$d %%）。</string>
     <string name="finding_deep_short">6時間未満の夜ははっきり少なめでした：%2$d %%に対して%1$d %%。</string>
     <string name="finding_deep_late">遅く寝た夜ははっきり少なめでした：%2$d %%に対して%1$d %%。</string>

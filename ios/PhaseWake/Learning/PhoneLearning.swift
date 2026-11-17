@@ -244,7 +244,7 @@ final class PhoneLearning {
         var next = state
         if next.stampIfNever(now: Date()) {
             state = next
-            if let data = try? JSONEncoder().encode(next) { try? data.write(to: stateURL, options: .atomic) }
+            write(next)
         }
         return state.snapshot
     }
@@ -260,10 +260,26 @@ final class PhoneLearning {
         let sendToWatch = next.snapshot != state.snapshot
         let latencyChanged = next.values?.latencyMinutes != state.values?.latencyMinutes
         state = next
-        if let data = try? JSONEncoder().encode(next) { try? data.write(to: stateURL, options: .atomic) }
+        write(next)
         if sendToWatch { PhoneModel.shared.publishToWatch() }
         // Gelernte Einschlafdauer geändert: Die Bettzeit-Erinnerung folgt der einen Bettzeit (Audit O-03).
         if latencyChanged { Task { await PhoneModel.shared.replanBedtime() } }
+    }
+
+    /// Schreibt den Stand atomar; scheitert es (Speicher voll), bleibt der vorige, und die Diagnose hält es fest
+    /// (Audit 17.11. CODE-02).
+    private func write(_ next: LearningState) {
+        write("learning", to: stateURL) { try JSONEncoder().encode(next) }
+    }
+
+    /// Schreibt `encode()` atomar nach `url`; scheitert es, bleibt der vorige Stand, und die Diagnose hält
+    /// «`what` not saved <Code>» fest.
+    private func write(_ what: String, to url: URL, _ encode: () throws -> Data) {
+        do {
+            try encode().write(to: url, options: .atomic)
+        } catch {
+            DiagStore.shared.log(.error, "\(what) not saved \((error as NSError).code)")
+        }
     }
 
     /// Speichert die Aufzeichnungen (die letzten ``NightRecording/maxKept``, älteste zuerst).
@@ -272,8 +288,9 @@ final class PhoneLearning {
         recordings = Array(list.sorted { $0.start < $1.start }.suffix(NightRecording.maxKept))
         if recordings.isEmpty {
             try? FileManager.default.removeItem(at: recordingsURL)
-        } else if let data = try? JSONEncoder().encode(recordings.map(NightRecording.encode)) {
-            try? data.write(to: recordingsURL, options: .atomic)
+        } else {
+            let texts = recordings.map(NightRecording.encode)
+            write("learn recordings", to: recordingsURL) { try JSONEncoder().encode(texts) }
         }
     }
 }

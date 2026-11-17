@@ -86,6 +86,9 @@
     <string name="settings_theme_system">ಸಿಸ್ಟಮ್</string>
     <string name="settings_theme_light">ತಿಳಿ</string>
     <string name="settings_theme_dark">ಗಾಢ</string>
+    <string name="settings_evening_dark">ಸಂಜೆ ಗಾಢ</string>
+    <string name="settings_evening_dark_text">%1$s – %2$s ಗಾಢ, ಸಿಸ್ಟಮ್ ಅಥವಾ ತಿಳಿ ಆಯ್ಕೆಯಲ್ಲೂ.</string>
+    <string name="settings_evening_dark_from">ಗಾಢ ಆರಂಭ</string>
     <string name="settings_data">ನಿಮ್ಮ ಡೇಟಾ</string>
     <string name="settings_data_text">ಎಲ್ಲವೂ ನಿಮ್ಮ ಫೋನ್ ಮತ್ತು ವಾಚ್‌ನಲ್ಲೇ ಇರುತ್ತದೆ. ಖಾತೆ ಇಲ್ಲ, ಸರ್ವರ್ ಇಲ್ಲ, ಟ್ರ್ಯಾಕಿಂಗ್ ಇಲ್ಲ. Google ನ ವಾಚ್ ಸಂಪರ್ಕದ ಮೂಲಕ ವಾಚ್‌ನ ತಾಂತ್ರಿಕ ಮಾಹಿತಿ ಮಾತ್ರ ಹೋಗುತ್ತದೆ, ಆರೋಗ್ಯ ಡೇಟಾ ಇಲ್ಲದೆ.</string>
     <string name="settings_export">ರಾತ್ರಿಗಳನ್ನು ಹೆಸರಿಲ್ಲದೆ ರಫ್ತು ಮಾಡಿ</string>
@@ -96,10 +99,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT ಪರವಾನಗಿ, © r1adBE.\nManrope ಫಾಂಟ್: SIL Open Font License 1.1, © The Manrope Project Authors.\nಶಬ್ದ ಪತ್ತೆ: MediaPipe Tasks Audio ಮತ್ತು YAMNet ಮಾದರಿ, Apache License 2.0, © Google LLC.\nಶಬ್ದಗಳು: opengameart.org ನಿಂದ ಉಚಿತ ರೆಕಾರ್ಡಿಂಗ್‌ಗಳು (CC0)</string>
     <string name="settings_version">ಆವೃತ್ತಿ %1$s</string>
 
-    <string name="duration_minutes">%1$d ನಿಮಿ.</string>
-    <string name="duration_hours">%1$d ಗಂ.</string>
-    <string name="duration_hours_half">%1$d½ ಗಂ.</string>
-    <string name="duration_hours_minutes">%1$d ಗಂ. %2$d ನಿಮಿ.</string>
+    <string name="duration_minutes">%1$d ನಿಮಿ.</string>
+    <string name="duration_hours">%1$d ಗಂ.</string>
+    <string name="duration_hours_half">%1$d½ ಗಂ.</string>
+    <string name="duration_hours_minutes">%1$d ಗಂ. %2$d ನಿಮಿ.</string>
     <string name="health_title">Health Connect ನಿಂದ ನಿದ್ರೆಯ ಹಂತಗಳು</string>
     <string name="health_rationale">ನಿಮ್ಮ ಆರೋಗ್ಯ ಆ್ಯಪ್ (ಉದಾಹರಣೆಗೆ Samsung Health) ಉಳಿಸುವ ನಿದ್ರೆಯ ಡೇಟಾವನ್ನು Phase Wake ಓದಬಹುದು. ಅದು ನಿಮ್ಮ ಇತಿಹಾಸದಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ, Phase Wake ನಿಮ್ಮನ್ನು ಎಬ್ಬಿಸಿದ ರಾತ್ರಿಗಳೊಂದಿಗೆ ಹೋಲಿಸಲೂ ಸಹ. Phase Wake ಓದುತ್ತದೆ ಮಾತ್ರ, ಎಂದಿಗೂ ಬರೆಯುವುದಿಲ್ಲ, ಮತ್ತು ಏನೂ ನಿಮ್ಮ ಫೋನ್‌ನಿಂದ ಹೊರಹೋಗುವುದಿಲ್ಲ.</string>
     <string name="health_connect">ಆರೋಗ್ಯ ಡೇಟಾದೊಂದಿಗೆ ಹೋಲಿಸಿ</string>
@@ -281,7 +284,7 @@
         <item quantity="other">ನಿದ್ರೆಯ ಗುರಿ ತಲುಪಿದ್ದು: %2$d ರಾತ್ರಿಗಳಲ್ಲಿ %1$d</item>
     </plurals>
     <string name="bedtime_title">ಮಲಗುವ ಸಮಯದ ಜ್ಞಾಪನೆ</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">ಮಲಗುವ ಸಮಯಕ್ಕೆ %1$d ನಿಮಿ. ಮೊದಲು ನೆನಪಿಸುತ್ತದೆ: ಅಲಾರಾಂ ಸಮಯ ಕಳೆ ನಿದ್ರೆಯ ಗುರಿ.</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">ಮಲಗುವ ಸಮಯಕ್ಕೆ %1$d ನಿಮಿ. ಮೊದಲು ನೆನಪಿಸುತ್ತದೆ: ಗುರಿ ಸಮಯ ಕಳೆ ನಿದ್ರೆಯ ಗುರಿ.</string>
     <string name="bedtime_notification">%1$s ಕ್ಕೆ ಮಲಗುವ ಸಮಯ – ಹಾಗಾದರೆ %3$s ರ ಅಲಾರಾಂಗೆ ಮೊದಲು %2$s ನಿದ್ರೆ ಸಿಗುತ್ತದೆ.</string>
     <string name="channel_reminders">ಜ್ಞಾಪನೆಗಳು</string>
     <string name="sounds_title">ನಿದ್ರೆಯ ಶಬ್ದಗಳು</string>
@@ -556,7 +559,7 @@
     <string name="learned_latency">ನಿದ್ರೆ ಬರುವುದು: ಸುಮಾರು %1$s</string>
     <string name="learned_latency_none">ನಿದ್ರೆ ಬರುವುದು: ಅಳತೆಗಳು ತುಂಬಾ ಕಡಿಮೆ</string>
     <string name="bedtime_advice">ಇಂದು %1$s ಮತ್ತು %2$s ನಡುವೆ ಮಲಗು</string>
-    <string name="bedtime_advice_hint">ನಿನ್ನ ಅಲಾರಂ, ನಿದ್ರೆಯ ಗುರಿ ಮತ್ತು ನಿದ್ರೆ ಬರಲು ಬೇಕಾದ ಸಮಯದಿಂದ.</string>
+    <string name="bedtime_advice_hint">ನಿನ್ನ ಗುರಿ ಸಮಯ, ನಿದ್ರೆಯ ಗುರಿ ಮತ್ತು ನಿದ್ರೆ ಬರಲು ಬೇಕಾದ ಸಮಯದಿಂದ.</string>
     <string name="learn_restart">ಮತ್ತೆ ಕಲಿ</string>
     <string name="learn_restart_text">Phase Wake ಮತ್ತೆ %1$d ರಾತ್ರಿಗಳನ್ನು ಅಳೆಯುತ್ತದೆ. ಅಲ್ಲಿಯವರೆಗೆ ಇದುವರೆಗೆ ಹೊಂದಿಸಿದ ಮೌಲ್ಯಗಳೇ ಬಳಕೆಯಲ್ಲಿರುತ್ತವೆ.</string>
     <string name="record_end_wake">ಎಬ್ಬಿಸುವಾಗ ಮುಗಿದಿದೆ</string>
@@ -638,7 +641,7 @@
     <string name="finding_title">ನಿನ್ನ ಕೊನೆಯ 7 ರಾತ್ರಿಗಳಲ್ಲಿ ಕಂಡುಬಂದದ್ದು</string>
     <string name="finding_hide">ಮರೆಮಾಡು</string>
     <string name="finding_latency">ನಿದ್ರೆ ಬರಲು ಸರಾಸರಿ %1$s ಬೇಕಾಯಿತು. ಸಲಹೆ: 20 ನಿಮಿಷದ ನಂತರವೂ ಎಚ್ಚರವಿದ್ದರೆ ಎದ್ದೇಳು, ನಿದ್ದೆ ಬಂದಾಗ ಮಾತ್ರ ಹಾಸಿಗೆಗೆ ಮರಳು. ಇದು ವಾರಗಟ್ಟಲೆ ಮುಂದುವರಿದರೆ ನಿನ್ನ ವೈದ್ಯರೊಂದಿಗೆ ಮಾತನಾಡು.</string>
-    <string name="finding_short_nights">6 ಗಂಟೆಗಿಂತ ಕಡಿಮೆ ರಾತ್ರಿಗಳು: 7ರಲ್ಲಿ %1$d. ಸಲಹೆ: ಏಳುವ ಸಮಯದಿಂದ ಹಿಂದಕ್ಕೆ ಮಲಗುವ ಸಮಯ ಲೆಕ್ಕಹಾಕಿ ಅದನ್ನು ಪಾಲಿಸು.</string>
+    <string name="finding_short_nights">6 ಗಂಟೆಗಿಂತ ಕಡಿಮೆ ರಾತ್ರಿಗಳು: 7ರಲ್ಲಿ %1$d. ಸಲಹೆ: ಗುರಿ ಸಮಯದಿಂದ ಹಿಂದಕ್ಕೆ ಮಲಗುವ ಸಮಯ ಲೆಕ್ಕಹಾಕಿ ಅದನ್ನು ಪಾಲಿಸು.</string>
     <string name="finding_low_deep">ಗಾಢ ನಿದ್ರೆ ನಿನ್ನ ನಿದ್ರೆಯ ಸುಮಾರು %1$d %% ಮಾತ್ರ ಇತ್ತು (ಸಾಮಾನ್ಯವಾಗಿ %2$d–%3$d %%).</string>
     <string name="finding_deep_short">6 ಗಂಟೆಗಿಂತ ಕಡಿಮೆ ರಾತ್ರಿಗಳಲ್ಲಿ ಅದು ಸ್ಪಷ್ಟವಾಗಿ ಕಡಿಮೆ ಇತ್ತು: %2$d %% ಬದಲು %1$d %%.</string>
     <string name="finding_deep_late">ನೀನು ತಡವಾಗಿ ಮಲಗಿದ ರಾತ್ರಿಗಳಲ್ಲಿ ಅದು ಸ್ಪಷ್ಟವಾಗಿ ಕಡಿಮೆ ಇತ್ತು: %2$d %% ಬದಲು %1$d %%.</string>

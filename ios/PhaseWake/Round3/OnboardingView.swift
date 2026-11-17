@@ -60,11 +60,9 @@ struct OnboardingView: View {
     @ViewBuilder private var content: some View {
         switch step {
         case 0:
-            // Hell: dunkle Scheibe hinter dem Logo, sonst verschwindet der helle Mond auf Weiss (Vollaudit N-8).
-            LogoMark()
-                .padding(scheme == .dark ? 0 : 6)
-                .frame(width: 72, height: 72)
-                .background(Circle().fill(scheme == .dark ? Color.clear : Brand.nightTop))
+            // Mond in der Schriftfarbe: auf dem hellen Grund dunkel, im dunklen Modus hell (Vollaudit N-8), wie Android.
+            LogoMark(moon: scheme == .dark ? Brand.moon : Brand.ink)
+                .frame(width: 64, height: 64)
             title("onb_welcome_title")
             Text(L("onb_welcome_text"))
             Label(L("onb_privacy"), systemImage: "lock").foregroundStyle(Brand.secondaryText(scheme))

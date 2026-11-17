@@ -85,6 +85,9 @@
     <string name="settings_theme_system">سیستم</string>
     <string name="settings_theme_light">روشن</string>
     <string name="settings_theme_dark">تیره</string>
+    <string name="settings_evening_dark">تیره در شب‌ها</string>
+    <string name="settings_evening_dark_text">تیره از %1$s تا %2$s، حتی با سیستم یا روشن.</string>
+    <string name="settings_evening_dark_from">تیره از</string>
     <string name="settings_data">داده‌های تو</string>
     <string name="settings_data_text">همه‌چیز روی گوشی و ساعتت می‌ماند. بدون حساب، بدون سرور، بدون ردیابی. از اتصال ساعت Google فقط اطلاعات فنی ساعت می‌گذرد، بدون داده‌های سلامت.</string>
     <string name="settings_export">خروجی شب‌ها بدون نام</string>
@@ -95,10 +98,10 @@
     <string name="settings_licenses_text">Phase Wake: مجوز MIT، © r1adBE.\nفونت Manrope: مجوز SIL Open Font License 1.1، © The Manrope Project Authors.\nتشخیص صدا: MediaPipe Tasks Audio و مدل YAMNet، مجوز Apache License 2.0، © Google LLC.\nصداها: ضبط‌های آزاد (CC0) از opengameart.org</string>
     <string name="settings_version">نسخهٔ %1$s</string>
 
-    <string name="duration_minutes">%1$d دق</string>
-    <string name="duration_hours">%1$d س</string>
-    <string name="duration_hours_half">%1$d½ س</string>
-    <string name="duration_hours_minutes">%1$d س %2$d دق</string>
+    <string name="duration_minutes">%1$d دق</string>
+    <string name="duration_hours">%1$d س</string>
+    <string name="duration_hours_half">%1$d½ س</string>
+    <string name="duration_hours_minutes">%1$d س %2$d دق</string>
     <string name="health_title">مراحل خواب از Health Connect</string>
     <string name="health_rationale">Phase Wake می‌تواند داده‌های خوابی را که برنامهٔ سلامتت (مثلاً Samsung Health) ذخیره می‌کند بخواند. این داده‌ها در تاریخچه‌ات نمایش داده می‌شوند، از جمله برای مقایسه با شب‌هایی که Phase Wake بیدارت کرده است. Phase Wake فقط می‌خواند، هیچ‌وقت چیزی نمی‌نویسد و هیچ چیز از گوشی‌ات بیرون نمی‌رود.</string>
     <string name="health_connect">مقایسه با داده‌های سلامت</string>
@@ -282,7 +285,7 @@
         <item quantity="other">هدف خواب برآورده شد: %1$d از %2$d شب</item>
     </plurals>
     <string name="bedtime_title">یادآور زمان خواب</string>
-    <string name="bedtime_text">%1$d دقیقه پیش از زمان خواب یادآوری می‌کند: زمان زنگ منهای هدف خواب.</string>
+    <string name="bedtime_text">%1$d دقیقه پیش از زمان خواب یادآوری می‌کند: زمان هدف منهای هدف خواب.</string>
     <string name="bedtime_notification">زمان خواب %1$s – این‌طور تا زنگ ساعت %3$s، %2$s می‌خوابی.</string>
     <string name="channel_reminders">یادآورها</string>
     <string name="sounds_title">صداهای خواب</string>
@@ -554,7 +557,7 @@
     <string name="learned_latency">به خواب رفتن: حدود %1$s</string>
     <string name="learned_latency_none">به خواب رفتن: اندازه‌گیری خیلی کم است</string>
     <string name="bedtime_advice">امشب بین %1$s و %2$s به رختخواب برو</string>
-    <string name="bedtime_advice_hint">بر اساس زنگت، هدف خوابت و مدتی که طول می‌کشد تا خوابت ببرد.</string>
+    <string name="bedtime_advice_hint">بر اساس زمان هدفت، هدف خوابت و مدتی که طول می‌کشد تا خوابت ببرد.</string>
     <string name="learn_restart">یادگیری دوباره</string>
     <string name="learn_restart_text">Phase Wake دوباره %1$d شب اندازه می‌گیرد. تا آن موقع مقادیری که تا حالا تنظیم شده‌اند به کار می‌روند.</string>
     <string name="record_end_wake">هنگام بیدار شدن تمام شد</string>
@@ -636,7 +639,7 @@
     <string name="finding_title">در ۷ شب اخیر به چشم آمد</string>
     <string name="finding_hide">پنهان کردن</string>
     <string name="finding_latency">به‌طور میانگین %1$s طول کشید تا خوابت ببرد. نکته: اگر بعد از ۲۰ دقیقه هنوز بیداری، بلند شو و فقط وقتی خواب‌آلود شدی به رختخواب برگرد. اگر این وضع هفته‌ها ادامه داشت، با پزشکت صحبت کن.</string>
-    <string name="finding_short_nights">شب‌های کمتر از ۶ ساعت: %1$d از ۷. نکته: ساعت خوابت را از ساعت بیداری حساب کن و به آن پایبند بمان.</string>
+    <string name="finding_short_nights">شب‌های کمتر از ۶ ساعت: %1$d از ۷. نکته: ساعت خوابت را از زمان هدف حساب کن و به آن پایبند بمان.</string>
     <string name="finding_low_deep">خواب عمیق فقط حدود %1$d %% از خوابت بود (معمولاً %2$d–%3$d %%).</string>
     <string name="finding_deep_short">در شب‌های کمتر از ۶ ساعت به‌وضوح کمتر بود: %1$d %% به‌جای %2$d %%.</string>
     <string name="finding_deep_late">در شب‌هایی که دیر خوابیدی به‌وضوح کمتر بود: %1$d %% به‌جای %2$d %%.</string>

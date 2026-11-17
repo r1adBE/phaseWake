@@ -49,8 +49,8 @@
     <string name="good_night_cancel">Отмени „Лека нощ“</string>
     <string name="dnd_title">Будилниците са блокирани</string>
     <string name="dnd_text">Разреши будилниците при „Не безпокойте“.</string>
-    <string name="duration_hours">%1$d ч</string>
-    <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
+    <string name="duration_hours">%1$d ч</string>
+    <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
     <string name="home_last_night">Миналата нощ</string>
     <string name="notification_open">Отвори</string>
     <string name="home_good_night_too_far">Достъпно от 16 ч преди будилника</string>

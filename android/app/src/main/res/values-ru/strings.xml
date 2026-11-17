@@ -87,6 +87,9 @@
     <string name="settings_theme_system">Системная</string>
     <string name="settings_theme_light">Светлая</string>
     <string name="settings_theme_dark">Тёмная</string>
+    <string name="settings_evening_dark">Тёмная вечером</string>
+    <string name="settings_evening_dark_text">Тёмная с %1$s до %2$s, даже при Системная или Светлая.</string>
+    <string name="settings_evening_dark_from">Тёмная с</string>
     <string name="settings_data">Твои данные</string>
     <string name="settings_data_text">Всё остаётся на телефоне и часах. Без аккаунта, сервера и слежки. Через подключение часов Google проходят только технические данные часов, без данных о здоровье.</string>
     <string name="settings_export">Экспорт ночей без имени</string>
@@ -97,10 +100,10 @@
     <string name="settings_licenses_text">Phase Wake: лицензия MIT, © r1adBE.\nШрифт Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nРаспознавание звуков: MediaPipe Tasks Audio и модель YAMNet, Apache License 2.0, © Google LLC.\nЗвуки: свободные записи (CC0) с opengameart.org</string>
     <string name="settings_version">Версия %1$s</string>
 
-    <string name="duration_minutes">%1$d мин</string>
-    <string name="duration_hours">%1$d ч</string>
-    <string name="duration_hours_half">%1$d½ ч</string>
-    <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
+    <string name="duration_minutes">%1$d мин</string>
+    <string name="duration_hours">%1$d ч</string>
+    <string name="duration_hours_half">%1$d½ ч</string>
+    <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
     <string name="health_title">Фазы сна из Health Connect</string>
     <string name="health_rationale">Phase Wake может читать данные о сне, которые сохраняет твоё приложение для здоровья (например, Samsung Health). Они показываются в твоей истории, в том числе для сравнения с ночами, когда тебя будил Phase Wake. Phase Wake только читает, ничего не записывает, и данные не покидают твой телефон.</string>
     <string name="health_connect">Сверять с данными о здоровье</string>
@@ -296,7 +299,7 @@
         <item quantity="other">Цель сна достигнута: %1$d из %2$d ночей</item>
     </plurals>
     <string name="bedtime_title">Напоминание о сне</string>
-    <string name="bedtime_text">Напоминает за %1$d мин до отхода ко сну: время будильника минус цель сна.</string>
+    <string name="bedtime_text">Напоминает за %1$d мин до отхода ко сну: целевое время минус цель сна.</string>
     <string name="bedtime_notification">Спать в %1$s — так ты поспишь %2$s до будильника в %3$s.</string>
     <string name="channel_reminders">Напоминания</string>
     <string name="sounds_title">Звуки для сна</string>
@@ -582,7 +585,7 @@
     <string name="learned_latency">Засыпание: около %1$s</string>
     <string name="learned_latency_none">Засыпание: слишком мало измерений</string>
     <string name="bedtime_advice">Ложись сегодня между %1$s и %2$s</string>
-    <string name="bedtime_advice_hint">По будильнику, цели сна и тому, сколько ты засыпаешь.</string>
+    <string name="bedtime_advice_hint">По целевому времени, цели сна и тому, сколько ты засыпаешь.</string>
     <string name="learn_restart">Обучить заново</string>
     <string name="learn_restart_text">Phase Wake снова измеряет %1$d ночей. До тех пор действуют значения, подстроенные ранее.</string>
     <string name="record_end_wake">Завершено при пробуждении</string>
@@ -664,7 +667,7 @@
     <string name="finding_title">Замечено за последние 7 ночей</string>
     <string name="finding_hide">Скрыть</string>
     <string name="finding_latency">В среднем ты засыпал(а) %1$s. Совет: если через 20 минут ты ещё не спишь, встань и возвращайся в постель, только когда захочется спать. Если так продолжается неделями, поговори с врачом.</string>
-    <string name="finding_short_nights">Ночи короче 6 часов: %1$d из 7. Совет: рассчитай время отхода ко сну от времени пробуждения и придерживайся его.</string>
+    <string name="finding_short_nights">Ночи короче 6 часов: %1$d из 7. Совет: рассчитай время отхода ко сну от целевого времени и придерживайся его.</string>
     <string name="finding_low_deep">Глубокий сон составил лишь около %1$d %% твоего сна (обычно %2$d–%3$d %%).</string>
     <string name="finding_deep_short">В ночи короче 6 часов его было заметно меньше: %1$d %% вместо %2$d %%.</string>
     <string name="finding_deep_late">В ночи, когда ты ложился(лась) поздно, его было заметно меньше: %1$d %% вместо %2$d %%.</string>

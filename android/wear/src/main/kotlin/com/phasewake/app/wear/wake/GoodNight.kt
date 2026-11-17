@@ -19,7 +19,6 @@ import com.phasewake.app.wear.schedule.AlarmScheduler
 import com.phasewake.app.wear.schedule.AutoOnset
 import com.phasewake.app.wear.schedule.DirectBoot
 import com.phasewake.app.wear.system.StartLock
-import com.phasewake.app.wear.wake.WakeService.Companion.ONSET_GIVE_UP
 import com.phasewake.app.wear.wake.WakeService.Companion.TAG
 import com.phasewake.app.wear.wake.WakeService.Companion.goodNightActive
 import java.time.Duration
@@ -61,18 +60,23 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
         requestedAlarmId == null -> "onset resume"
         else -> "onset"
     }
-    // Vor dem Entsperren nicht lesbar (auch das Diagnose-Protokoll nicht).
+    // Vor dem Entsperren nicht lesbar (auch das Diagnose-Protokoll nicht). Entscheid: [GoodNightStart.gate].
     val unlocked = DirectBoot.isUnlocked(this)
-    if (night != null && unlocked) app.diag.log(DiagKind.MEASURE_START, "$start not started: night running")
-    if (night != null || onset != null || goodNightPending) return
+    when (GoodNightStart.gate(night != null, onset != null, goodNightPending, unlocked)) {
+        GoodNightStart.Gate.NIGHT_RUNNING -> {
+            app.diag.log(DiagKind.MEASURE_START, "$start not started: night running")
+            return
+        }
+        GoodNightStart.Gate.BUSY -> return
+        GoodNightStart.Gate.LOCKED -> return refuseGoodNight()
+        GoodNightStart.Gate.TRY -> Unit
+    }
     // Ohne Sensorrechte kein Einschlaf-Modus: dann gilt die eingestellte Weckzeit.
-    if (!unlocked || !goForeground(Notifications.goodNight(this), measuring = true)) {
-        if (unlocked) app.diag.log(DiagKind.MEASURE_START, "$start not started: no sensors: ${healthRefusal.orEmpty()}")
+    if (!goForeground(Notifications.goodNight(this), measuring = true)) {
+        app.diag.log(DiagKind.MEASURE_START, "$start not started: no sensors: ${healthRefusal.orEmpty()}")
         // Lernphase: Diese Nacht zeichnet sie nicht auf (Meldung ans Handy, Mitteilung).
-        if (unlocked && requestedAlarmId != null) app.appScope.launch { LearnNotice.sensorsRefused(app, requestedAlarmId) }
-        forgetGoodNight()
-        stopIfIdle()
-        return
+        if (requestedAlarmId != null) app.appScope.launch { LearnNotice.sensorsRefused(app, requestedAlarmId) }
+        return refuseGoodNight()
     }
     goodNightPending = true
     goodNightActive = true
@@ -100,48 +104,46 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
         }
         AlarmScheduler.armGoodNightCheck(this@startGoodNight)
         val spec = app.alarms.current().alarms.firstOrNull { it.id == alarmId }
-        val duration = spec?.sleepDurationMinutes
         // Weckzeit der Nacht, in der «Gute Nacht» begann (auch beim Wiederaufnehmen).
-        val latest = spec?.let { AlarmSchedule.nextTarget(it, since, ZoneId.systemDefault()) }
-        val latestGiveUp = latest?.minus(ONSET_GIVE_UP)
-        val maxEnd = since.plus(OnsetMonitor.MAX_DURATION)
+        val nightTarget = spec?.let { AlarmSchedule.nextTarget(it, since, ZoneId.systemDefault()) }
         // Nur für die kommende Nacht: liegt die Weckzeit weiter weg, zeigt die Startseite einen Hinweis.
         // Automatisch: auch ohne Schlafdauer, aber nicht mehr im Weckfenster und nicht zweimal in derselben Nacht.
-        val plan = spec?.let { s -> latest?.let { AlarmSchedule.planAt(s, it) } }
-        val windowBegun = plan != null && !Instant.now().isBefore(plan.windowStart)
-        val alreadyDone = automatic && latest != null && app.onsets.isDone(alarmId, latest)
+        val plan = spec?.let { s -> nightTarget?.let { AlarmSchedule.planAt(s, it) } }
+        val alreadyDone = automatic && nightTarget != null && app.onsets.isDone(alarmId, nightTarget)
         val label = if (automatic) "auto onset" else "onset"
-        val notStarted = OnsetRules.notStartedReason(spec != null, duration != null, automatic, since, latest, windowBegun, alreadyDone)
-        if (notStarted != null || spec == null || latest == null || latestGiveUp == null) {
-            if (stillWanted()) {
-                app.diag.log(DiagKind.MEASURE_START, "$label not started: ${notStarted ?: "no alarm"}")
-                stopGoodNight()
-            }
-            return@launch
-        }
-        // Zeitgrenze schon vorbei (z. B. nach dem Wiederaufnehmen): Ende protokollieren, Nacht erledigt, Weckzeit gilt.
-        // Nach dem Wiederaufnehmen hatte sie gemessen: ohne Ergebnis gilt die Untergrenze kurzer Nächte (fail-closed).
-        OnsetRules.giveUpReason(Instant.now(), latestGiveUp, maxEnd)?.let { reason ->
-            if (stillWanted()) endBeforeMeasuring(alarmId, latest, "$label $reason", DiagKind.MEASURE_END, measured = resumed != null)
-            return@launch
-        }
         // Wenig Akku: automatisch nicht messen (die Messung ist eine Zugabe, der Wecker hat Vorrang). Lädt die Uhr, doch: Sie
         // wartet am Ladegerät (F-6; die Zeit dort zählt nicht und verschiebt die Grenze, HG-3).
         val batteryManager = getSystemService(android.os.BatteryManager::class.java)
         val battery = batteryManager?.getIntProperty(android.os.BatteryManager.BATTERY_PROPERTY_CAPACITY)?.takeIf { it in 0..100 }
         val charging = batteryManager?.isCharging == true
-        if (automatic && AutoOnset.skipForBattery(battery, charging)) {
-            if (stillWanted()) {
-                endBeforeMeasuring(alarmId, latest, "auto onset skipped battery $battery", DiagKind.BATTERY)
-                // Nacht-Check am Handy rot bis zur Weckzeit (Audit F-06, wie die Apple Watch).
-                app.appScope.launch { app.scheduler.noteRecorderSkip(RecorderSkip(latest, RecorderSkip.Reason.BATTERY)) }
-                // Lernphase: Ihre Aufzeichnung startet mit der Einschlaf-Messung, also diese Nacht auch nicht.
-                app.appScope.launch {
-                    if (app.learning.current().active) LearnNotice.skipped(app, LearnSkip(latest, LearnSkip.Reason.BATTERY, battery))
+        val decision = GoodNightStart.decide(
+            spec != null, spec?.sleepDurationMinutes != null, automatic, since, nightTarget, plan?.windowStart, alreadyDone, Instant.now(), battery, charging,
+        )
+        val measure = when (decision) {
+            is GoodNightStart.Decision.Measure -> decision
+            is GoodNightStart.Decision.NotStarted -> {
+                if (stillWanted()) {
+                    app.diag.log(DiagKind.MEASURE_START, "$label not started: ${decision.reason}")
+                    stopGoodNight()
                 }
+                return@launch
             }
-            return@launch
+            // Zeitgrenze schon vorbei (z. B. nach dem Wiederaufnehmen): Ende protokollieren, Nacht erledigt, Weckzeit gilt.
+            // Nach dem Wiederaufnehmen hatte sie gemessen: ohne Ergebnis gilt die Untergrenze kurzer Nächte (fail-closed).
+            is GoodNightStart.Decision.GiveUp -> {
+                if (stillWanted()) endBeforeMeasuring(alarmId, decision.latest, "$label ${decision.reason}", DiagKind.MEASURE_END, measured = resumed != null)
+                return@launch
+            }
+            is GoodNightStart.Decision.SkipBattery -> {
+                if (stillWanted()) skipForBattery(alarmId, decision.latest, battery)
+                return@launch
+            }
         }
+        // Ab hier misst sie: Wecker und Weckzeit sind da ([GoodNightStart.decide]).
+        val latest = measure.latest
+        val latestGiveUp = measure.latestGiveUp
+        val maxEnd = measure.maxEnd
+        if (spec == null) return@launch
         // Gelernte Werte der Lernphase: eigenes Grundrauschen, solange die Messung noch keines hat.
         val learning = app.learning.current()
         val config = learning.applyTo(Calibration.calibrate(NightHistory.motionsForCalibration(app.nights.load())))
@@ -167,7 +169,7 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
         // Hartes Zeitlimit nach Uhrzeit (auch im Tiefschlaf, über den Alarm der Messung): 15 Min vor der eingestellten
         // Weckzeit, spätestens MAX_DURATION nach dem Beginn.
         // Verlängerung bei spätem Einschlafen: höchstens 4 Std. ab dem Beginn, nie über den Beginn des Weckfensters.
-        val extendCap = plan?.let { minOf(since.plus(OnsetMonitor.MAX_EXTENDED), it.windowStart) }
+        val extendCap = GoodNightStart.extendCap(since, plan?.windowStart)
         val monitor = OnsetMonitor(
             this@startGoodNight, config.lightThreshold, latestGiveUp, maxEnd, label, app.diag::log,
             onGiveUp = {
@@ -202,6 +204,25 @@ internal fun WakeService.startGoodNight(requestedAlarmId: String?, auto: Boolean
         if (learning.active && resumed == null) RecordControl.startForLearning(this@startGoodNight, latest)
         // Zusätzlich, solange die Uhr wach ist: Dann gilt die eingestellte Weckzeit.
         handler.postDelayed(onsetTimeout, Duration.between(Instant.now(), monitor.giveUpAt).toMillis().coerceAtLeast(0))
+    }
+}
+
+/** «Gute Nacht» startet nicht (vor dem Entsperren oder ohne Sensorrechte): die eingestellte Weckzeit gilt. */
+private fun WakeService.refuseGoodNight() {
+    forgetGoodNight()
+    stopIfIdle()
+}
+
+/**
+ * Automatisch mit zu wenig Akku ([GoodNightStart.Decision.SkipBattery]): Nacht für [alarmId] mit Weckzeit [latest] erledigt,
+ * Nacht-Check am Handy rot bis zur Weckzeit (Audit F-06, wie die Apple Watch), Meldung der Lernphase.
+ */
+private fun WakeService.skipForBattery(alarmId: String, latest: Instant, battery: Int?) {
+    endBeforeMeasuring(alarmId, latest, "auto onset skipped battery $battery", DiagKind.BATTERY)
+    app.appScope.launch { app.scheduler.noteRecorderSkip(RecorderSkip(latest, RecorderSkip.Reason.BATTERY)) }
+    // Lernphase: Ihre Aufzeichnung startet mit der Einschlaf-Messung, also diese Nacht auch nicht.
+    app.appScope.launch {
+        if (app.learning.current().active) LearnNotice.skipped(app, LearnSkip(latest, LearnSkip.Reason.BATTERY, battery))
     }
 }
 

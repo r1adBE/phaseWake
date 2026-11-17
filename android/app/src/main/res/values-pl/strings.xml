@@ -87,6 +87,9 @@
     <string name="settings_theme_system">Systemowy</string>
     <string name="settings_theme_light">Jasny</string>
     <string name="settings_theme_dark">Ciemny</string>
+    <string name="settings_evening_dark">Wieczorem ciemny</string>
+    <string name="settings_evening_dark_text">Ciemny od %1$s do %2$s, także przy Systemowy lub Jasny.</string>
+    <string name="settings_evening_dark_from">Ciemny od</string>
     <string name="settings_data">Twoje dane</string>
     <string name="settings_data_text">Wszystko zostaje na telefonie i zegarku. Bez konta, serwera i śledzenia. Przez połączenie zegarka Google przechodzą tylko dane techniczne zegarka, bez danych o zdrowiu.</string>
     <string name="settings_export">Eksportuj noce bez imienia</string>
@@ -97,10 +100,10 @@
     <string name="settings_licenses_text">Phase Wake: licencja MIT, © r1adBE.\nCzcionka Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRozpoznawanie dźwięków: MediaPipe Tasks Audio i model YAMNet, Apache License 2.0, © Google LLC.\nDźwięki: wolne nagrania (CC0) z opengameart.org</string>
     <string name="settings_version">Wersja %1$s</string>
 
-    <string name="duration_minutes">%1$d min</string>
-    <string name="duration_hours">%1$d godz.</string>
-    <string name="duration_hours_half">%1$d½ godz.</string>
-    <string name="duration_hours_minutes">%1$d godz. %2$d min</string>
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d godz.</string>
+    <string name="duration_hours_half">%1$d½ godz.</string>
+    <string name="duration_hours_minutes">%1$d godz. %2$d min</string>
     <string name="health_title">Fazy snu z Health Connect</string>
     <string name="health_rationale">Phase Wake może odczytywać dane o śnie, które zapisuje aplikacja zdrowotna (na przykład Samsung Health). Są wyświetlane w twojej historii, także do porównania z nocami, w których obudził cię Phase Wake. Phase Wake tylko czyta, nigdy nie zapisuje, a nic nie opuszcza twojego telefonu.</string>
     <string name="health_connect">Porównaj z danymi zdrowotnymi</string>
@@ -296,7 +299,7 @@
         <item quantity="other">Cel snu osiągnięty: %1$d z %2$d nocy</item>
     </plurals>
     <string name="bedtime_title">Przypomnienie o śnie</string>
-    <string name="bedtime_text">Przypomina %1$d min przed porą snu: godzina budzika minus cel snu.</string>
+    <string name="bedtime_text">Przypomina %1$d min przed porą snu: godzina docelowa minus cel snu.</string>
     <string name="bedtime_notification">Pora spać o %1$s – wtedy prześpisz %2$s do budzika o %3$s.</string>
     <string name="channel_reminders">Przypomnienia</string>
     <string name="sounds_title">Dźwięki do zasypiania</string>
@@ -582,7 +585,7 @@
     <string name="learned_latency">Zasypianie: około %1$s</string>
     <string name="learned_latency_none">Zasypianie: za mało pomiarów</string>
     <string name="bedtime_advice">Idź dziś spać między %1$s a %2$s</string>
-    <string name="bedtime_advice_hint">Na podstawie budzika, celu snu i tego, ile czasu zajmuje ci zaśnięcie.</string>
+    <string name="bedtime_advice_hint">Na podstawie godziny docelowej, celu snu i tego, ile czasu zajmuje ci zaśnięcie.</string>
     <string name="learn_restart">Ucz od nowa</string>
     <string name="learn_restart_text">Phase Wake ponownie mierzy %1$d nocy. Do tego czasu obowiązują dotychczas dopasowane wartości.</string>
     <string name="record_end_wake">Zakończono przy budzeniu</string>
@@ -664,7 +667,7 @@
     <string name="finding_title">Zauważone w ostatnich 7 nocach</string>
     <string name="finding_hide">Ukryj</string>
     <string name="finding_latency">Średnio zasypianie zajmowało ci %1$s. Wskazówka: jeśli po 20 minutach wciąż nie śpisz, wstań i wróć do łóżka dopiero, gdy poczujesz senność. Jeśli trwa to tygodniami, porozmawiaj z lekarzem.</string>
-    <string name="finding_short_nights">Noce krótsze niż 6 godzin: %1$d z 7. Wskazówka: wylicz porę snu od godziny budzenia i trzymaj się jej.</string>
+    <string name="finding_short_nights">Noce krótsze niż 6 godzin: %1$d z 7. Wskazówka: wylicz porę snu od godziny docelowej i trzymaj się jej.</string>
     <string name="finding_low_deep">Sen głęboki stanowił tylko około %1$d %% twojego snu (zwykle %2$d–%3$d %%).</string>
     <string name="finding_deep_short">W noce krótsze niż 6 godzin było go wyraźnie mniej: %1$d %% zamiast %2$d %%.</string>
     <string name="finding_deep_late">W noce, gdy kładłeś się późno, było go wyraźnie mniej: %1$d %% zamiast %2$d %%.</string>

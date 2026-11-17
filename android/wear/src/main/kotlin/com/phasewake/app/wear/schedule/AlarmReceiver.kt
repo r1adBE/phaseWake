@@ -66,6 +66,9 @@ class AlarmReceiver : BroadcastReceiver() {
         } else {
             WakeService.command(context, action, plan)
         }
+        // Zielzeit erreicht: Komplikation und Kachel zeigen den nächsten Wecker, auch wenn danach nichts neu plant (Audit
+        // PERF-07, das System fragt nicht mehr alle 30 Min. ab). Vor dem Entsperren ist der Speicher nicht lesbar.
+        if (action == WakeService.ACTION_DEADLINE && DirectBoot.isUnlocked(context)) AlarmScheduler.refreshSurfaces(context)
     }
 
     companion object {

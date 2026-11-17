@@ -86,6 +86,9 @@
     <string name="settings_theme_system">Sistema</string>
     <string name="settings_theme_light">Chiaro</string>
     <string name="settings_theme_dark">Scuro</string>
+    <string name="settings_evening_dark">Scuro la sera</string>
+    <string name="settings_evening_dark_text">Scuro da %1$s a %2$s, anche con Sistema o Chiaro.</string>
+    <string name="settings_evening_dark_from">Scuro da</string>
     <string name="settings_data">I tuoi dati</string>
     <string name="settings_data_text">Tutto resta sul telefono e sullo smartwatch. Nessun account, nessun server, nessun tracciamento. Tramite la connessione dell’orologio di Google passano solo dati tecnici dell’orologio, senza dati sanitari.</string>
     <string name="settings_export">Esporta le notti senza nome</string>
@@ -96,10 +99,10 @@
     <string name="settings_licenses_text">Phase Wake: licenza MIT, © r1adBE.\nFont Manrope: SIL Open Font License 1.1, © The Manrope Project Authors.\nRilevamento dei suoni: MediaPipe Tasks Audio e il modello YAMNet, Apache License 2.0, © Google LLC.\nSuoni: registrazioni libere (CC0) da opengameart.org</string>
     <string name="settings_version">Versione %1$s</string>
 
-    <string name="duration_minutes">%1$d min</string>
-    <string name="duration_hours">%1$d h</string>
-    <string name="duration_hours_half">%1$d½ h</string>
-    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <string name="duration_minutes">%1$d min</string>
+    <string name="duration_hours">%1$d h</string>
+    <string name="duration_hours_half">%1$d½ h</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fasi del sonno da Health Connect</string>
     <string name="health_rationale">Phase Wake può leggere i dati sul sonno che la tua app di salute (ad esempio Samsung Health) salva. Vengono mostrati nella tua cronologia, anche per confrontarli con le notti in cui ti ha svegliato Phase Wake. Phase Wake legge soltanto, non scrive mai, e nulla lascia il tuo telefono.</string>
     <string name="health_connect">Confronta con i dati di salute</string>
@@ -289,7 +292,7 @@
         <item quantity="other">Obiettivo di sonno raggiunto: %1$d su %2$d notti</item>
     </plurals>
     <string name="bedtime_title">Promemoria per la notte</string>
-    <string name="bedtime_text">Ti avvisa %1$d min prima di andare a letto: ora della sveglia meno obiettivo di sonno.</string>
+    <string name="bedtime_text">Ti avvisa %1$d min prima di andare a letto: orario obiettivo meno obiettivo di sonno.</string>
     <string name="bedtime_notification">A letto alle %1$s – così dormi %2$s prima della sveglia delle %3$s.</string>
     <string name="channel_reminders">Promemoria</string>
     <string name="sounds_title">Suoni per addormentarsi</string>
@@ -568,7 +571,7 @@
     <string name="learned_latency">Addormentarti: circa %1$s</string>
     <string name="learned_latency_none">Addormentarti: troppo poche misurazioni</string>
     <string name="bedtime_advice">Vai a letto stasera tra le %1$s e le %2$s</string>
-    <string name="bedtime_advice_hint">In base a sveglia, obiettivo di sonno e quanto ci metti ad addormentarti.</string>
+    <string name="bedtime_advice_hint">In base a orario obiettivo, obiettivo di sonno e quanto ci metti ad addormentarti.</string>
     <string name="learn_restart">Impara di nuovo</string>
     <string name="learn_restart_text">Phase Wake misura di nuovo %1$d notti. Fino ad allora restano in uso i valori adattati finora.</string>
     <string name="record_end_wake">Terminata al risveglio</string>
@@ -650,7 +653,7 @@
     <string name="finding_title">Notato nelle tue ultime 7 notti</string>
     <string name="finding_hide">Nascondi</string>
     <string name="finding_latency">In media hai impiegato %1$s ad addormentarti. Consiglio: se dopo 20 minuti sei ancora sveglio, alzati e torna a letto solo quando hai sonno. Se dura per settimane, parlane con il tuo medico.</string>
-    <string name="finding_short_nights">Notti sotto le 6 ore: %1$d su 7. Consiglio: calcola l’ora di andare a letto partendo dalla sveglia e rispettala.</string>
+    <string name="finding_short_nights">Notti sotto le 6 ore: %1$d su 7. Consiglio: calcola l’ora di andare a letto partendo dall’orario obiettivo e rispettala.</string>
     <string name="finding_low_deep">Il sonno profondo era solo circa il %1$d %% del tuo sonno (di solito %2$d–%3$d %%).</string>
     <string name="finding_deep_short">Nelle notti sotto le 6 ore era nettamente più basso: %1$d %% invece di %2$d %%.</string>
     <string name="finding_deep_late">Nelle notti in cui sei andato a letto tardi era nettamente più basso: %1$d %% invece di %2$d %%.</string>

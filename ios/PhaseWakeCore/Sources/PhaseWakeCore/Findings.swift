@@ -205,9 +205,16 @@ public enum Findings {
     }
 
     /// Die wichtigste Auffälligkeit, die nicht ausgeblendet ist (ausgeblendet um `hidden`, seit weniger als ``hideFor``).
-    public static func home(_ findings: [Finding], hidden: [FindingKind: Date], now: Date) -> Finding? {
-        findings.first { finding in hidden[finding.kind].map { now < $0.addingTimeInterval(hideFor) } != true }
+    /// `bedtimeAdvice`: Die Startseite zeigt schon die Bettzeit-Karte; dann treten die Auffälligkeiten mit demselben Tipp
+    /// (``bedtimeTip``) zurück, damit er nicht zweimal steht (Audit UX-04). Im Verlauf bleiben sie.
+    public static func home(_ findings: [Finding], hidden: [FindingKind: Date], now: Date, bedtimeAdvice: Bool = false) -> Finding? {
+        findings.first { finding in
+            hidden[finding.kind].map { now < $0.addingTimeInterval(hideFor) } != true && !(bedtimeAdvice && bedtimeTip.contains(finding.kind))
+        }
     }
+
+    /// Auffälligkeiten, deren Tipp die Bettzeit betrifft (wie die Bettzeit-Karte der Startseite).
+    public static let bedtimeTip: Set<FindingKind> = [.shortNights, .bedtimeVaries]
 
     /// `hidden` mit `kind` ausgeblendet um `now`; Abgelaufene fallen weg.
     public static func hide(_ hidden: [FindingKind: Date], kind: FindingKind, now: Date) -> [FindingKind: Date] {

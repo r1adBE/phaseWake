@@ -47,8 +47,8 @@
     <string name="good_night_cancel">Қайырлы түннен бас тарту</string>
     <string name="dnd_title">Оятқыштар бұғатталған</string>
     <string name="dnd_text">«Мазаламау» режимінде оятқыштарға рұқсат бер.</string>
-    <string name="duration_hours">%1$d сағ</string>
-    <string name="duration_hours_minutes">%1$d сағ %2$d мин</string>
+    <string name="duration_hours">%1$d сағ</string>
+    <string name="duration_hours_minutes">%1$d сағ %2$d мин</string>
     <string name="home_last_night">Өткен түн</string>
     <string name="notification_open">Ашу</string>
     <string name="home_good_night_too_far">Оятқышқа 16 сағат қалғанда қолжетімді</string>

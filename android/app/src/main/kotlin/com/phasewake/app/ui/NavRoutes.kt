@@ -40,6 +40,7 @@ import com.phasewake.app.ui.settings.HealthState
 import com.phasewake.app.ui.settings.LicensesScreen
 import com.phasewake.app.ui.settings.SettingsScreen
 import com.phasewake.app.ui.sounds.SoundsScreen
+import com.phasewake.app.ui.theme.EveningDarkSetting
 import com.phasewake.app.ui.theme.ThemeMode
 import java.time.Instant
 import java.time.ZoneId
@@ -132,6 +133,7 @@ private fun AlarmsRoute(app: PhaseWakeApp, state: NavState, actions: NavActions,
         lastNight = nights?.lastOrNull(),
         missHint = nights?.lastOrNull()?.let { last -> MissHint.of(data.alarms.firstOrNull { it.id == last.alarmId }, nights.orEmpty()) },
         finding = findings.home,
+        bedtimeFinding = findings.homeBedtime,
         onHideFinding = findings.onHide,
         check = state.nightCheck.check,
         onFix = actions.onFix,
@@ -237,6 +239,7 @@ private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavAction
     // Mit Build-Nummer der Testversion, z. B. «16.2.2 (96)» (r1AD 14.11.2026).
     val version = remember { com.phasewake.app.shared.BuildNumber.ownLabel(context, watch = false) }
     val nextAlarmNotice by app.settings.nextAlarmNotice.collectAsStateWithLifecycle(initialValue = true)
+    val eveningDark by app.settings.eveningDark.collectAsStateWithLifecycle(initialValue = EveningDarkSetting())
     // Export nur hier (Verlauf ohne Knopf): aktiv mit Nächten oder abgeschlossenen Aufzeichnungen.
     val recordings by app.recordings.recordings.collectAsStateWithLifecycle()
     LaunchedEffect(Unit) { app.recordings.load() }
@@ -245,6 +248,9 @@ private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavAction
         version = version,
         contentPadding = content,
         onThemeMode = { app.appScope.launch { app.settings.setThemeMode(it) } },
+        eveningDark = eveningDark,
+        onEveningDark = { app.appScope.launch { app.settings.setEveningDark(it) } },
+        onEveningDarkFrom = { app.appScope.launch { app.settings.setEveningDarkFrom(it) } },
         onExport = actions.onExport,
         canExport = !data.nights.isNullOrEmpty() || !recordings.isNullOrEmpty(),
         onClearHistory = {

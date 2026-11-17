@@ -87,6 +87,9 @@
     <string name="settings_theme_system">सिस्टम</string>
     <string name="settings_theme_light">उज्यालो</string>
     <string name="settings_theme_dark">अँध्यारो</string>
+    <string name="settings_evening_dark">साँझ अँध्यारो</string>
+    <string name="settings_evening_dark_text">%1$s – %2$s अँध्यारो, सिस्टम वा उज्यालो छानेमा पनि।</string>
+    <string name="settings_evening_dark_from">अँध्यारो सुरु</string>
     <string name="settings_data">तिम्रो डेटा</string>
     <string name="settings_data_text">सबै कुरा तिम्रो फोन र घडीमै रहन्छ। न खाता, न सर्भर, न ट्र्याकिङ। Google को घडी जडानबाट घडीको प्राविधिक जानकारी मात्र जान्छ, स्वास्थ्य डेटाबिना।</string>
     <string name="settings_export">रातहरू नाम बिना निर्यात गर</string>
@@ -97,10 +100,10 @@
     <string name="settings_licenses_text">Phase Wake: MIT License, © r1adBE.\nManrope फन्ट: SIL Open Font License 1.1, © The Manrope Project Authors.\nआवाज पहिचान: MediaPipe Tasks Audio र YAMNet मोडेल, Apache License 2.0, © Google LLC.\nआवाजहरू: opengameart.org बाट निःशुल्क रेकर्डिङ (CC0)</string>
     <string name="settings_version">संस्करण %1$s</string>
 
-    <string name="duration_minutes">%1$d मि.</string>
-    <string name="duration_hours">%1$d घ.</string>
-    <string name="duration_hours_half">%1$d½ घ.</string>
-    <string name="duration_hours_minutes">%1$d घ. %2$d मि.</string>
+    <string name="duration_minutes">%1$d मि.</string>
+    <string name="duration_hours">%1$d घ.</string>
+    <string name="duration_hours_half">%1$d½ घ.</string>
+    <string name="duration_hours_minutes">%1$d घ. %2$d मि.</string>
     <string name="health_title">Health Connect बाट निद्राका चरण</string>
     <string name="health_rationale">तिम्रो स्वास्थ्य एप (जस्तै Samsung Health) ले राख्ने निद्राको डेटा Phase Wake ले पढ्न सक्छ। यो तिम्रो इतिहासमा देखाइन्छ, Phase Wake ले तिमीलाई ब्युँझाएका रातहरूसँग तुलना गर्न पनि। Phase Wake ले पढ्छ मात्र, कहिल्यै लेख्दैन, र केही पनि तिम्रो फोनबाट बाहिर जाँदैन।</string>
     <string name="health_connect">स्वास्थ्य डेटासँग तुलना गर</string>
@@ -282,7 +285,7 @@
         <item quantity="other">निद्राको लक्ष्य पुग्यो: %2$d मध्ये %1$d रात</item>
     </plurals>
     <string name="bedtime_title">सुत्ने समयको रिमाइन्डर</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">सुत्ने समयभन्दा %1$d मि. अघि सम्झाउँछ: तिम्रो अलार्मको समयबाट निद्राको लक्ष्य घटाएर।</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">सुत्ने समयभन्दा %1$d मि. अघि सम्झाउँछ: तिम्रो लक्ष्य समयबाट निद्राको लक्ष्य घटाएर।</string>
     <string name="bedtime_notification">%1$s मा सुत्ने समय – यसरी %3$s को अलार्मअघि %2$s निद्रा पाउनेछौ।</string>
     <string name="channel_reminders">रिमाइन्डर</string>
     <string name="sounds_title">निद्राका आवाज</string>
@@ -557,7 +560,7 @@
     <string name="learned_latency">निदाउनु: करिब %1$s</string>
     <string name="learned_latency_none">निदाउनु: नाप धेरै कम</string>
     <string name="bedtime_advice">आज %1$s र %2$s बीच सुत्न जाऊ</string>
-    <string name="bedtime_advice_hint">तिम्रो अलार्म, निद्राको लक्ष्य र निदाउन लाग्ने समयबाट।</string>
+    <string name="bedtime_advice_hint">तिम्रो लक्ष्य समय, निद्राको लक्ष्य र निदाउन लाग्ने समयबाट।</string>
     <string name="learn_restart">फेरि सिक</string>
     <string name="learn_restart_text">Phase Wake ले फेरि %1$d रात नाप्छ। त्यतिन्जेल अहिलेसम्म मिलाइएका मानहरू नै चल्छन्।</string>
     <string name="record_end_wake">उठाउँदा सकियो</string>
@@ -639,7 +642,7 @@
     <string name="finding_title">तिम्रो पछिल्लो 7 रातमा देखिएको</string>
     <string name="finding_hide">लुकाऊ</string>
     <string name="finding_latency">निदाउन तिमीलाई औसतमा %1$s लाग्यो। सुझाव: 20 मिनेटपछि पनि ब्युँझै छौ भने उठ, अनि निद्रा लागेपछि मात्र ओछ्यानमा फर्क। हप्तौँसम्म यस्तै भए आफ्नो डाक्टरसँग कुरा गर।</string>
-    <string name="finding_short_nights">6 घण्टाभन्दा छोटा रात: 7 मध्ये %1$d। सुझाव: उठ्ने समयबाट पछाडि गन्दै सुत्ने समय तय गर र त्यसमा टिकिरहू।</string>
+    <string name="finding_short_nights">6 घण्टाभन्दा छोटा रात: 7 मध्ये %1$d। सुझाव: लक्ष्य समयबाट पछाडि गन्दै सुत्ने समय तय गर र त्यसमा टिकिरहू।</string>
     <string name="finding_low_deep">गहिरो निद्रा तिम्रो निद्राको करिब %1$d %% मात्र थियो (सामान्यतया %2$d–%3$d %%)।</string>
     <string name="finding_deep_short">6 घण्टाभन्दा छोटा रातहरूमा यो स्पष्ट रूपमा कम थियो: %2$d %% को सट्टा %1$d %%।</string>
     <string name="finding_deep_late">ढिलो सुतेका रातहरूमा यो स्पष्ट रूपमा कम थियो: %2$d %% को सट्टा %1$d %%।</string>

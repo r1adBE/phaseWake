@@ -40,7 +40,7 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
 
     /// Befehle, die vor der Aktivierung kamen (z. B. Stopp am Wecker, App dafür im Hintergrund gestartet).
     /// Nur auf dem Main-Thread.
-    private var pending: [[String: Any]] = []
+    @MainActor private var pending: [[String: Any]] = []
 
     /// Sofort, wenn die Uhr erreichbar ist; sonst zugestellt, sobald sie es wieder ist.
     /// `extra`: Inhalt des Befehls (Plan, Kennung), siehe `SyncKeys`. `night`: Nacht, zu der «stop» bzw. «schlummern»
@@ -135,7 +135,12 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
             Task { @MainActor in await PhoneLearning.shared.receive(text) }
             return
         }
-        guard let text = userInfo[SyncKeys.night] as? String, let night = try? Codec.decodeNight(text) else { return }
+        guard let text = userInfo[SyncKeys.night] as? String else { return }
+        // Unlesbar (z. B. Format einer anderen Version): verworfen wie bisher, aber protokolliert (Audit 17.11. CODE-02).
+        guard let night = try? Codec.decodeNight(text) else {
+            DiagStore.shared.log(.sync, "night unreadable, dropped (len=\(text.utf8.count))")
+            return
+        }
         Task { @MainActor in
             // Endete vor «Verlauf löschen» (spät zugestellt): nicht zurückholen (Audit D-02/AP-6, wie Android). Die
             // Sicherung dieser Nacht bleibt trotzdem ausgesetzt – die Uhr hat geweckt.
@@ -256,9 +261,9 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
     }
 
     /// Bericht aus einer Datei der Uhr, der vor dem Warten ankam (die Datei kann die Antwort überholen). Nur Main-Thread.
-    private var diagFileReport: DiagReport?
+    @MainActor private var diagFileReport: DiagReport?
     /// Wartet auf die Datei des Berichts (``awaitDiagFile()``), mit Kennung gegen eine abgelaufene Frist. Nur Main-Thread.
-    private var diagWaiter: (id: UUID, continuation: CheckedContinuation<DiagReport?, Never>)?
+    @MainActor private var diagWaiter: (id: UUID, continuation: CheckedContinuation<DiagReport?, Never>)?
 
     /// Wartet höchstens `DiagTransfer.fileTimeout` auf die Datei des Berichts.
     @MainActor

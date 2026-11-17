@@ -78,6 +78,9 @@
     <string name="settings_theme_system">Համակարգային</string>
     <string name="settings_theme_light">Բաց</string>
     <string name="settings_theme_dark">Մուգ</string>
+    <string name="settings_evening_dark">Երեկոյան մուգ</string>
+    <string name="settings_evening_dark_text">Մուգ՝ %1$s – %2$s, նաև Համակարգային կամ Բաց ընտրության դեպքում։</string>
+    <string name="settings_evening_dark_from">Մուգի սկիզբ</string>
     <string name="settings_data">Քո տվյալները</string>
     <string name="settings_data_text">Ամեն ինչ մնում է հեռախոսիդ ու ժամացույցիդ վրա։ Ո՛չ հաշիվ, ո՛չ սերվեր, ո՛չ հետևում։ Google-ի ժամացույցի կապով անցնում են միայն ժամացույցի տեխնիկական տվյալներ՝ առանց առողջության տվյալների։</string>
     <string name="settings_export">Արտահանել գիշերները առանց անվան</string>
@@ -87,10 +90,10 @@
     <string name="settings_licenses">Լիցենզիաներ</string>
     <string name="settings_licenses_text">Phase Wake՝ MIT լիցենզիա, © r1adBE.\nManrope տառատեսակ՝ SIL Open Font License 1.1, © The Manrope Project Authors.\nՁայների ճանաչում՝ MediaPipe Tasks Audio և YAMNet մոդել, Apache License 2.0, © Google LLC.\nՁայներ՝ ազատ ձայնագրություններ (CC0) opengameart.org-ից</string>
     <string name="settings_version">Տարբերակ %1$s</string>
-    <string name="duration_minutes">%1$d ր</string>
-    <string name="duration_hours">%1$d ժ</string>
-    <string name="duration_hours_half">%1$d½ ժ</string>
-    <string name="duration_hours_minutes">%1$d ժ %2$d ր</string>
+    <string name="duration_minutes">%1$d ր</string>
+    <string name="duration_hours">%1$d ժ</string>
+    <string name="duration_hours_half">%1$d½ ժ</string>
+    <string name="duration_hours_minutes">%1$d ժ %2$d ր</string>
     <string name="health_title">Քնի փուլերը Health Connect-ից</string>
     <string name="health_rationale">Phase Wake-ը կարող է կարդալ քնի տվյալները, որոնք առողջության հավելվածդ (օրինակ՝ Samsung Health) պահում է։ Դրանք ցուցադրվում են քո պատմության մեջ, նաև համեմատելու համար այն գիշերների հետ, երբ քեզ արթնացրել է Phase Wake-ը։ Phase Wake-ը միայն կարդում է, երբեք չի գրում, և ոչինչ դուրս չի գալիս հեռախոսիցդ։</string>
     <string name="health_connect">Համեմատել առողջության տվյալների հետ</string>
@@ -270,7 +273,7 @@
         <item quantity="other">Քնի նպատակը կատարված է՝ %1$d / %2$d գիշեր</item>
     </plurals>
     <string name="bedtime_title">Քնելու ժամի հիշեցում</string>
-    <string name="bedtime_text" tools:ignore="PluralsCandidate">Հիշեցնում է քնելու ժամից %1$d ր առաջ՝ զարթուցիչի ժամը հանած քնի նպատակը։</string>
+    <string name="bedtime_text" tools:ignore="PluralsCandidate">Հիշեցնում է քնելու ժամից %1$d ր առաջ՝ նպատակային ժամը հանած քնի նպատակը։</string>
     <string name="bedtime_notification">Քնելու ժամը՝ %1$s – այդպես մինչև %3$s-ի զարթուցիչը կքնես %2$s։</string>
     <string name="channel_reminders">Հիշեցումներ</string>
     <string name="sounds_title">Քնի ձայներ</string>
@@ -542,7 +545,7 @@
     <string name="learned_latency">Քնելը՝ մոտ %1$s</string>
     <string name="learned_latency_none">Քնելը՝ չափումները շատ քիչ են</string>
     <string name="bedtime_advice">Այսօր պառկիր %1$s-ից %2$s-ի միջև</string>
-    <string name="bedtime_advice_hint">Ըստ զարթուցիչիդ, քնի նպատակիդ և քնելու համար պահանջվող ժամանակի։</string>
+    <string name="bedtime_advice_hint">Ըստ նպատակային ժամիդ, քնի նպատակիդ և քնելու համար պահանջվող ժամանակի։</string>
     <string name="learn_restart">Սովորել նորից</string>
     <string name="learn_restart_text">Phase Wake-ը նորից չափում է %1$d գիշեր։ Մինչ այդ գործում են մինչ այժմ հարմարեցված արժեքները։</string>
     <string name="record_end_wake">Ավարտվել է արթնացնելիս</string>
@@ -624,7 +627,7 @@
     <string name="finding_title">Նկատվել է քո վերջին 7 գիշերներում</string>
     <string name="finding_hide">Թաքցնել</string>
     <string name="finding_latency">Միջինում քնելու համար քեզ պետք եղավ %1$s։ Խորհուրդ՝ եթե 20 րոպե անց դեռ արթուն ես, վեր կաց և անկողին վերադարձիր միայն քնկոտ զգալիս։ Եթե դա շաբաթներ շարունակվի, խոսիր քո բժշկի հետ։</string>
-    <string name="finding_short_nights">6 ժամից կարճ գիշերներ՝ %1$d՝ 7-ից։ Խորհուրդ՝ քնելու ժամը հաշվիր արթնանալու ժամից հետ և պահպանիր այն։</string>
+    <string name="finding_short_nights">6 ժամից կարճ գիշերներ՝ %1$d՝ 7-ից։ Խորհուրդ՝ քնելու ժամը հաշվիր նպատակային ժամից հետ և պահպանիր այն։</string>
     <string name="finding_low_deep">Խոր քունը կազմել է քո քնի միայն մոտ %1$d %%-ը (սովորաբար %2$d–%3$d %%)։</string>
     <string name="finding_deep_short">6 ժամից կարճ գիշերներին այն զգալիորեն քիչ էր՝ %1$d %%՝ %2$d %%-ի փոխարեն։</string>
     <string name="finding_deep_late">Ուշ պառկած գիշերներին այն զգալիորեն քիչ էր՝ %1$d %%՝ %2$d %%-ի փոխարեն։</string>
