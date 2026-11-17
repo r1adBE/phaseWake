@@ -1,5 +1,5 @@
-# Geheimnis-Suche (gitleaks, Audit S-4): Standardregeln, dazu bekannte Testwerte als Ausnahme.
-# Ausnahmen nur für genau diese Werte, nicht für ganze Ordner (Audit 5314d25 D-08): Ein echtes Geheimnis in einer
+# Geheimnis-Suche (gitleaks): Standardregeln, dazu bekannte Testwerte als Ausnahme.
+# Ausnahmen nur für genau diese Werte, nicht für ganze Ordner: Ein echtes Geheimnis in einer
 # Testquelle oder im Skript wird weiter gemeldet. Neuer Testwert mit Meldung: hier als ganzer Wert ergänzen.
 title = "Phase Wake"
 

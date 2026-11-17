@@ -9,7 +9,7 @@
 // bricht Gradle schon beim Konfigurieren mit einem klaren Hinweis ab (statt «jar not present» in den Tests).
 // Je SDK eine eigene Konfiguration: In einer gemeinsamen nähme Gradle vom selben Artefakt nur die höchste Version.
 val robolectricImagesByVersion = mapOf(
-    "4.17" to listOf("13-robolectric-9030017-i7", "15-robolectric-13954326-i7"),
+    "4.18" to listOf("13-robolectric-9030017-i7", "15-robolectric-14663667-2-i7"),
 )
 val robolectricVersion = extensions.getByType<VersionCatalogsExtension>().named("libs")
     .findVersion("robolectric").map { it.requiredVersion }.orElse("")
