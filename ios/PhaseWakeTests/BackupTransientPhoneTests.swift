@@ -27,7 +27,8 @@ final class BackupTransientPhoneTests: XCTestCase {
     func testNapBackupRingsAfterTheGraceWithSnoozeAndKnowsItsNight() async throws {
         start()
         let nap = Transient.nap(base: try base(phone: .sound), now: Date(), calendar: .gregorianLocal, minutes: 20, uuid: "a")
-        let id = try XCTUnwrap(await backup.scheduleTransient(nap))
+        let scheduled = await backup.scheduleTransient(nap)
+        let id = try XCTUnwrap(scheduled)
         let placed = try XCTUnwrap(platform.placed[id])
         XCTAssertEqual(placed.at.timeIntervalSince(nap.plan.target), backup.currentGrace, accuracy: 0.001)
         XCTAssertGreaterThan(backup.currentGrace, 0)
@@ -39,7 +40,8 @@ final class BackupTransientPhoneTests: XCTestCase {
     func testProbeBackupWithoutWatchRingsAtTheTargetWithoutSnooze() async throws {
         start(watch: false)
         let probe = Transient.test(base: try base(phone: .sound), now: Date(), calendar: .gregorianLocal, uuid: "b")
-        let id = try XCTUnwrap(await backup.scheduleTransient(probe))
+        let scheduled = await backup.scheduleTransient(probe)
+        let id = try XCTUnwrap(scheduled)
         let placed = try XCTUnwrap(platform.placed[id])
         XCTAssertEqual(placed.at.timeIntervalSince(probe.plan.target), 0, accuracy: 0.001)
         XCTAssertEqual(placed.snoozesLeft, 0)
@@ -56,10 +58,12 @@ final class BackupTransientPhoneTests: XCTestCase {
 
     func testNewBackupReplacesTheOldOneAndCancelClearsIt() async throws {
         start()
-        let first = try XCTUnwrap(await backup.scheduleTransient(
-            Transient.nap(base: try base(phone: .sound), now: Date(), calendar: .gregorianLocal, minutes: 20, uuid: "d")))
-        let second = try XCTUnwrap(await backup.scheduleTransient(
-            Transient.nap(base: try base(phone: .sound), now: Date(), calendar: .gregorianLocal, minutes: 30, uuid: "e")))
+        let firstNap = Transient.nap(base: try base(phone: .sound), now: Date(), calendar: .gregorianLocal, minutes: 20, uuid: "d")
+        let firstId = await backup.scheduleTransient(firstNap)
+        let first = try XCTUnwrap(firstId)
+        let secondNap = Transient.nap(base: try base(phone: .sound), now: Date(), calendar: .gregorianLocal, minutes: 30, uuid: "e")
+        let secondId = await backup.scheduleTransient(secondNap)
+        let second = try XCTUnwrap(secondId)
         XCTAssertEqual(platform.cancelled, [first])
         XCTAssertEqual(Set(platform.placed.keys), [second])
         await backup.cancelTransient()
