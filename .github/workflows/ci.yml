@@ -78,7 +78,15 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          ./gradlew --stacktrace --continue :core:test :core:jacocoTestReport :shared:testDebugUnitTest :shared:createDebugUnitTestCoverageReport :app:testDebugUnitTest :app:createDebugUnitTestCoverageReport :wear:testDebugUnitTest :wear:createDebugUnitTestCoverageReport :app:assembleRelease :wear:assembleRelease :app:lintDebug :wear:lintDebug :app:validateDebugScreenshotTest :wear:validateDebugScreenshotTest 2>&1 | tee build.log
+          ./gradlew --stacktrace --continue :core:test :core:jacocoTestReport :shared:testDebugUnitTest :shared:createDebugUnitTestCoverageReport :app:testDebugUnitTest :app:createDebugUnitTestCoverageReport :wear:testDebugUnitTest :wear:createDebugUnitTestCoverageReport :app:assembleRelease :wear:assembleRelease :app:lintDebug :wear:lintDebug 2>&1 | tee build.log
+      - name: Bildschirmfotos prüfen
+        # Eigener Aufruf ohne parallele Tests und Lint (UX-08): Im gemeinsamen Aufruf brach das Rendern der Handy-
+        # Vorschauen auf dem Runner ab (ScreenshotRenderException bei allen 102 Bildern), allein läuft es durch.
+        if: ${{ !cancelled() }}
+        shell: bash
+        run: |
+          set -o pipefail
+          ./gradlew --stacktrace --continue --no-parallel :app:validateDebugScreenshotTest :wear:validateDebugScreenshotTest 2>&1 | tee -a build.log
       - name: Testversion-APKs bauen
         shell: bash
         env:
@@ -164,6 +172,7 @@ jobs:
           path: |
             android/**/build/reports/
             android/**/build/outputs/screenshotTest-results/
+            android/**/build/test-results/*Screenshot*/
 
   secrets:
     name: Geheimnisse (gitleaks)
