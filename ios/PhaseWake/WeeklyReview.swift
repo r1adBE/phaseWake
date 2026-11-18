@@ -96,7 +96,7 @@ private let noValue = "\u{2013}"
 
 /// Der Rückblick in einer Zeile; ohne Gesundheitsdaten nur das Befinden. Wie `weeklyText` (Android).
 func weeklyText(_ summary: WeeklySummary) -> String {
-    let feeling = summary.feelingAverage.map(decimalText) ?? noValue
+    let feeling = summary.feelingAverage.map { decimalText($0) } ?? noValue
     guard summary.hasSleep else { return L("weekly_notification_feeling", feeling) }
     let asleep = summary.asleepAverage.map { Format.duration(minutes: $0) } ?? noValue
     return L("weekly_notification_text", asleep, summary.goalReached, summary.regular, feeling)
