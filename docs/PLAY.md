@@ -5,7 +5,8 @@ Entwürfe für die Formulare der Play Console (App-Inhalte, Berechtigungen, Gesu
 Stand 12.11.2026. Vor dem Einreichen gegen die aktuellen Manifeste und die Formularfelder prüfen; die
 Play Console verlangt meist englischen Text, die deutsche Fassung dient zur Kontrolle.
 
-Ohne Erklärung: `VIBRATE`, `WAKE_LOCK`, `RECEIVE_BOOT_COMPLETED`, `FOREGROUND_SERVICE`, `USE_BIOMETRIC`. Kein
+Ohne Erklärung: `VIBRATE`, `WAKE_LOCK`, `TURN_SCREEN_ON` (Uhr), `RECEIVE_BOOT_COMPLETED`, `FOREGROUND_SERVICE`,
+`USE_BIOMETRIC`. Kein
 `INTERNET` und kein `ACCESS_NETWORK_STATE` (in beiden Manifesten entfernt): Die App sendet nichts.
 
 Wie die Bundles für den Upload entstehen: Abschnitt [Store-Build](#store-build-upload-schlüssel-und-upload) am Ende;

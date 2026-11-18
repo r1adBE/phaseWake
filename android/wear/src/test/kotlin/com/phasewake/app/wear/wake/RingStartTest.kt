@@ -25,6 +25,7 @@ import org.robolectric.shadows.ShadowAlarmManager
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNotSame
 import kotlin.test.assertTrue
@@ -114,6 +115,26 @@ class RingStartTest {
         shadowOf(Looper.getMainLooper()).idle()
         assertEquals(listOf("lock", "vib", "notif", "activity", "rest", "queue", "sensors"), steps.names)
         assertTrue(steps.line().startsWith("ring steps lock="), steps.line())
+    }
+
+    /** Display beim Klingeln einschalten, nach 2 s eine neue Weck-Mitteilung, beim Schlummern das Display freigeben. */
+    @Test
+    fun ringWakesTheScreenAndRealertsAfterTwoSeconds() {
+        val service = startNight()
+        val n = assertNotNull(service.night)
+        service.onEpochs(n, listOf(Epoch(0.0, 60.0), Epoch(0.0, 60.0), Epoch(0.5, 60.0), Epoch(0.5, 60.0)))
+        assertEquals(WakeService.Phase.RINGING, n.phase)
+        assertTrue(service.screenWake.held, "Display-Wakelock beim Klingeln")
+        val first = service.notificationId
+        shadowOf(Looper.getMainLooper()).idleFor(Duration.ofMillis(1900))
+        assertEquals(first, service.notificationId, "vor 2 s keine neue Mitteilung")
+        shadowOf(Looper.getMainLooper()).idleFor(Duration.ofMillis(200))
+        assertNotEquals(first, service.notificationId, "nach 2 s neue Weck-Mitteilung (Vollbild)")
+        assertEquals(1, service.realerts)
+        assertTrue(service.screenWake.held)
+        service.snooze(notifyPhone = false)
+        assertEquals(WakeService.Phase.SNOOZED, n.phase)
+        assertFalse(service.screenWake.held, "beim Schlummern darf das Display ausgehen")
     }
 
     @Test

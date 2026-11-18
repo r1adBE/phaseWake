@@ -88,6 +88,7 @@ class WakeService : LifecycleService() {
     internal val app by lazy { wearApp }
     internal val handler = Handler(Looper.getMainLooper())
     internal val escalation by lazy { Escalation(this) }
+    internal val screenWake by lazy { RingScreenWake(this) }
     internal var wakeLock: PowerManager.WakeLock? = null
     internal var night: Night? = null
     internal var notification: android.app.Notification? = null
@@ -213,6 +214,7 @@ class WakeService : LifecycleService() {
         onset?.stop()
         night?.sensors?.stop()
         escalation.stop()
+        screenWake.release()
         releaseWakeLock()
         WatchSunrise.stop(this)
         app.ringState.publish(RingUi.Idle)

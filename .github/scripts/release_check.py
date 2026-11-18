@@ -93,6 +93,7 @@ PERMISSIONS = {
         ("android.permission.health.READ_HEALTH_DATA_IN_BACKGROUND", ""),
         ("android.permission.ACTIVITY_RECOGNITION", ""),
         ("android.permission.FOREGROUND_SERVICE_HEALTH", ""),
+        ("android.permission.TURN_SCREEN_ON", ""),
     },
 }
 

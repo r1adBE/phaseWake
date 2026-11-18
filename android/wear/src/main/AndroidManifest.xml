@@ -18,6 +18,9 @@
     <!-- Wecken ohne Messung (Sensorrechte fehlen): Vordergrund als Wecker-App. -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SYSTEM_EXEMPTED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- Display beim Klingeln einschalten (Wakelock mit ACQUIRE_CAUSES_WAKEUP): Android kündigt an, dass es dafür
+         künftig dieses Recht verlangt (normal, vom Nutzer unter «Bildschirm einschalten» entziehbar). -->
+    <uses-permission android:name="android.permission.TURN_SCREEN_ON" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />

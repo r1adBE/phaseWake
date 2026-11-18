@@ -20,10 +20,15 @@ import com.phasewake.app.wear.wearApp
 // 1. neue Weck-Mitteilung mit Vollbild (eine Aktualisierung startet es nie),
 // 2. Wecker-Alarm des Systems, der den Weckbildschirm in 1 s öffnet,
 // 3. direkter Start (erlaubt, solange ein Fenster der App sichtbar ist).
-// Ist der Weckbildschirm danach nicht zu sehen, alle RingAlert.REALERT_SECONDS dasselbe noch einmal.
+// Vorher das Display einschalten ([RingScreenWake], 18.11.2026): Bei dunklem Display führt Wear OS das Vollbild
+// nicht aus. Ist der Weckbildschirm danach nicht zu sehen, nach FIRST_REALERT_MS (Display dann sicher an) und danach
+// alle RingAlert.REALERT_SECONDS dasselbe noch einmal.
 
 /** Abstand der Erinnerungen in Millisekunden. */
 private const val REALERT_MS = RingAlert.REALERT_SECONDS * 1000L
+
+/** Erste Erinnerung je Runde: neue Mitteilung, sobald das eingeschaltete Display bereit ist. */
+private const val FIRST_REALERT_MS = 2000L
 
 /** 1 s: frühester Wecker-Alarm, wie beim Fensterbeginn ([com.phasewake.app.wear.schedule.AlarmScheduler]). */
 private const val ALARM_DELAY_MS = 1000L
@@ -34,25 +39,27 @@ private const val ALARM_DELAY_MS = 1000L
  * Klingeln ([ring]). Den Zustand fürs Protokoll ([probe]) erst danach erheben: Der Weckbildschirm geht vor.
  */
 internal fun WakeService.postRinging(n: Night, why: String, steps: RingSteps? = null) {
+    screenWake.wake()
     goForeground(ringingNotification(n), measuring = false, id = nextRingId())
     steps?.mark("notif")
     realerts = 0
     bringRingScreen()
     steps?.mark("activity")
     handler.removeCallbacks(realert)
-    handler.postDelayed(realert, REALERT_MS)
+    handler.postDelayed(realert, FIRST_REALERT_MS)
     handler.post { app.diag.log(DiagKind.RING_SCREEN, "watch $why: ${probe(this)}") }
 }
 
 /**
- * Erinnerung: Ist der Weckbildschirm nicht zu sehen, erscheint die Weck-Mitteilung neu (Vollbild, falls das Display
- * inzwischen aus ist).
+ * Erinnerung: Ist der Weckbildschirm nicht zu sehen, Display wieder einschalten und die Weck-Mitteilung neu (mit
+ * Vollbild).
  */
 internal fun WakeService.onRealert() {
     val n = night ?: return
     if (n.phase != Phase.RINGING) return
     if (!RingActivity.shown) {
         realerts++
+        screenWake.wake()
         goForeground(ringingNotification(n), measuring = false, id = nextRingId())
         val probe = probe(this)
         bringRingScreen()
@@ -66,6 +73,7 @@ internal fun WakeService.onRealert() {
 internal fun WakeService.stopRingScreenAlert() {
     handler.removeCallbacks(realert)
     cancelRingScreenAlarm(this)
+    screenWake.release()
 }
 
 /** Hebt den Wecker-Alarm für den Weckbildschirm auf (gleiche Absicht wie in [scheduleRingScreenAlarm]). */
