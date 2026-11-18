@@ -11,7 +11,7 @@ enum HomeSleepWeek {
     static let days = NightHistory.insightNights + 1
 
     /// Liest Apple Health (nur mit Freigabe) und bildet die Zeile; `nil` ohne Freigabe oder unter 3 Nächten mit Dauer.
-    static func load(_ model: PhoneModel, now: Date = Date()) async -> SleepWeek? {
+    @MainActor static func load(_ model: PhoneModel, now: Date = Date()) async -> SleepWeek? {
         guard UserDefaults.standard.bool(forKey: "healthRequested") else { return nil }
         let health = await model.health.sessions(now: now, days: days)
         return of(nights: model.nights, sessions: health.sessions, clearedAt: model.historyClearedAt,
