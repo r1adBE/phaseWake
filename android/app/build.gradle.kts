@@ -258,3 +258,9 @@ val checkYamnet = tasks.register("checkYamnet") {
 }
 // Nur für Release-Varianten; die Aufgabe entsteht erst mit den Varianten, darum über configureEach.
 tasks.configureEach { if (name == "preReleaseBuild") dependsOn(checkYamnet) }
+
+// Bildvergleich: Rauschen der Kantenglättung auf der CI (bis 0,02 %, 2/255 Farbstufen) zählt nicht; jede echte
+// Änderung an Text, Farbe oder Layout liegt weit über 0,1 % (docs/ENTWICKLUNG.md).
+tasks.withType<com.android.compose.screenshot.tasks.PreviewScreenshotValidationTask>().configureEach {
+    testEngineInput.threshold.set(0.001f)
+}

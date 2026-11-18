@@ -28,7 +28,7 @@ import com.phasewake.app.wear.wearApp
 private const val REALERT_MS = RingAlert.REALERT_SECONDS * 1000L
 
 /** Erste Erinnerung je Runde: neue Mitteilung, sobald das eingeschaltete Display bereit ist. */
-private const val FIRST_REALERT_MS = 2000L
+private const val FIRST_REALERT_MS = RingScreenWake.RETRY_MS
 
 /** 1 s: frühester Wecker-Alarm, wie beim Fensterbeginn ([com.phasewake.app.wear.schedule.AlarmScheduler]). */
 private const val ALARM_DELAY_MS = 1000L
@@ -39,7 +39,7 @@ private const val ALARM_DELAY_MS = 1000L
  * Klingeln ([ring]). Den Zustand fürs Protokoll ([probe]) erst danach erheben: Der Weckbildschirm geht vor.
  */
 internal fun WakeService.postRinging(n: Night, why: String, steps: RingSteps? = null) {
-    screenWake.wake()
+    screenWake.wake(this)
     goForeground(ringingNotification(n), measuring = false, id = nextRingId())
     steps?.mark("notif")
     realerts = 0
@@ -59,7 +59,7 @@ internal fun WakeService.onRealert() {
     if (n.phase != Phase.RINGING) return
     if (!RingActivity.shown) {
         realerts++
-        screenWake.wake()
+        screenWake.wake(this)
         goForeground(ringingNotification(n), measuring = false, id = nextRingId())
         val probe = probe(this)
         bringRingScreen()

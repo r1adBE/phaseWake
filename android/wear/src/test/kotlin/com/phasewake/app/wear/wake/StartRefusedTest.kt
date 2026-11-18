@@ -6,6 +6,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
+import android.os.Looper
 import com.phasewake.app.core.WakePlan
 import com.phasewake.app.wear.QuietWear
 import com.phasewake.app.wear.schedule.AlarmReceiver
@@ -22,6 +23,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
+import kotlin.test.assertNotSame
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -63,6 +65,20 @@ class StartRefusedTest {
         assertEquals(RingActivity.VIA_RESCUE, screen.getStringExtra(RingActivity.EXTRA_VIA))
         assertEquals(WakeService.ACTION_DEADLINE, screen.getStringExtra(StartRefused.EXTRA_ACTION))
         assertEquals(plan, AlarmReceiver.planFrom(screen))
+    }
+
+    /** Notfallweg: Display ein, nach 2 s ohne sichtbaren Weckbildschirm die Mitteilung neu (wieder mit Vollbild). */
+    @Test
+    fun refusedDeadlineWakesTheScreenAndRepostsAfterTwoSeconds() {
+        WakeService.command(Refusing(app), WakeService.ACTION_DEADLINE, plan)
+        assertTrue(StartRefused.wakeHeld, "Display-Wakelock vor der Weck-Mitteilung")
+        val first = manager.getNotification(Notifications.ID_RING)
+        assertNotNull(first)
+        shadowOf(Looper.getMainLooper()).idleFor(Duration.ofMillis(RingScreenWake.RETRY_MS))
+        val again = assertNotNull(manager.getNotification(Notifications.ID_RING))
+        assertNotSame(first, again, "neue Mitteilung statt Aktualisierung")
+        assertNotNull(again.fullScreenIntent)
+        assertTrue(StartRefused.wakeHeld)
     }
 
     @Test

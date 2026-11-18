@@ -21,6 +21,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.Text
+import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Sunrise
 import com.phasewake.app.wear.ui.components.SunriseSky
 import com.phasewake.app.wear.ui.components.rememberSkyInk
@@ -71,6 +72,18 @@ class SunriseActivity : ComponentActivity() {
                 SunriseScreen(progress, now, onOff = { WatchSunrise.stop(this@SunriseActivity) })
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        WatchSunrise.shown = true
+        // Für die Diagnose: Der Sonnenaufgang ist zu sehen (sonst erscheint seine Mitteilung neu).
+        wearApp.diag.log(DiagKind.RING, "watch sunrise shown")
+    }
+
+    override fun onStop() {
+        WatchSunrise.shown = false
+        super.onStop()
     }
 
     override fun onDestroy() {

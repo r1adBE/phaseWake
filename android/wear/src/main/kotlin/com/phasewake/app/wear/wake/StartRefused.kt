@@ -4,6 +4,8 @@ import android.app.Notification
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -21,7 +23,9 @@ import com.phasewake.app.wear.wearApp
  * Start des [WakeService] im Vordergrund, abgesichert: Verweigert das System den Start
  * (ForegroundServiceStartNotAllowedException, IllegalStateException), steht eine Zeile in der Diagnose. Sollte der
  * Start wecken (Zielzeit, Ende des Schlummerns), erscheint die Weck-Mitteilung direkt: Ihr Vollbild öffnet den
- * Weckbildschirm, und der holt den Dienst aus dem Vordergrund nach ([RingActivity]).
+ * Weckbildschirm, und der holt den Dienst aus dem Vordergrund nach ([RingActivity]). Vorher schaltet die Uhr das
+ * Display ein ([RingScreenWake]); ist der Weckbildschirm nach [RingScreenWake.RETRY_MS] nicht zu sehen, einmal dasselbe
+ * als neue Mitteilung.
  */
 internal object StartRefused {
     /** Aufträge, die wecken: Nur bei ihnen erscheint die Weck-Mitteilung ohne Dienst. */
@@ -32,6 +36,15 @@ internal object StartRefused {
 
     /** Auftrag an den Weckbildschirm: Dienst mit dieser Aktion und dem Plan im Intent nachholen. */
     const val EXTRA_ACTION = "rescueAction"
+
+    private val screenWake = RingScreenWake("phasewake:rescue")
+    private val handler by lazy { Handler(Looper.getMainLooper()) }
+
+    /** Kennung der Wiederholung im Handler. */
+    private val RETRY_TOKEN = Any()
+
+    /** Ob der Display-Wakelock gehalten wird; für Tests. */
+    internal val wakeHeld: Boolean get() = screenWake.held
 
     /**
      * Startet [intent] als Vordergrunddienst; `false`, wenn das System den Start verweigert hat (dann schon behandelt).
@@ -59,13 +72,34 @@ internal object StartRefused {
             )
         }
         if (ringing != null) {
-            try {
-                NotificationManagerCompat.from(context)
-                    .notify(Notifications.ID_RING, notification(context, ringing.first, ringing.second))
-            } catch (e: SecurityException) {
-                // Mitteilungen nicht erlaubt: Der Zweitwecker am Handy bleibt.
-                Log.e(WakeService.TAG, "Weck-Mitteilung nicht erlaubt", e)
-            }
+            val app = context.applicationContext
+            postRescue(app, ringing.first, ringing.second)
+            handler.removeCallbacksAndMessages(RETRY_TOKEN)
+            handler.postDelayed({ retry(app, ringing.first, ringing.second) }, RETRY_TOKEN, RingScreenWake.RETRY_MS)
+        }
+    }
+
+    /** Display ein, dann die Weck-Mitteilung (neu, damit das Vollbild startet). */
+    private fun postRescue(context: Context, action: String, plan: WakePlan) {
+        screenWake.wake(context)
+        try {
+            NotificationManagerCompat.from(context).notify(Notifications.ID_RING, notification(context, action, plan))
+        } catch (e: SecurityException) {
+            // Mitteilungen nicht erlaubt: Der Zweitwecker am Handy bleibt.
+            Log.e(WakeService.TAG, "Weck-Mitteilung nicht erlaubt", e)
+        }
+    }
+
+    /** Weckbildschirm nicht zu sehen und kein Dienst: Mitteilung einmal neu (Aktualisierung startet kein Vollbild). */
+    private fun retry(context: Context, action: String, plan: WakePlan) {
+        if (RingActivity.shown || WakeService.running) return
+        NotificationManagerCompat.from(context).cancel(Notifications.ID_RING)
+        postRescue(context, action, plan)
+        runCatching {
+            context.wearApp.diag.log(
+                DiagKind.RING_SCREEN,
+                "watch rescue not visible, re-alert: screen=${RingScreenWake.screen(context)}",
+            )
         }
     }
 
@@ -105,6 +139,9 @@ internal object StartRefused {
         }
         val plan = AlarmReceiver.planFrom(intent) ?: return false
         val action = intent.getStringExtra(EXTRA_ACTION)?.takeIf { it in RINGING } ?: return false
+        // Der Weckbildschirm ist offen und hält das Display selbst an; der Dienst übernimmt das Wecken.
+        handler.removeCallbacksAndMessages(RETRY_TOKEN)
+        screenWake.release()
         runCatching {
             context.wearApp.diag.log(DiagKind.RING_SCREEN, "watch rescue start ${action.substringAfterLast('.')}")
         }
