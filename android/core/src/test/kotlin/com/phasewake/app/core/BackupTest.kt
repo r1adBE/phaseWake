@@ -153,15 +153,27 @@ class BackupTest {
         val old = BackupPayload.fromJson(File(testdata, "backup-v1.json").readText().trim()).settings
         assertTrue(old.eveningDark)
         assertEquals(20 * 60, old.eveningDarkFrom)
-        assertTrue("\"eveningDark\":true,\"eveningDarkFrom\":1200" in payload.toJson())
-        val changed =
-            payload.copy(settings = payload.settings.copy(eveningDark = false, eveningDarkFrom = 21 * 60 + 30))
+        assertEquals(6 * 60, old.eveningDarkUntil)
+        assertTrue("\"eveningDark\":true,\"eveningDarkFrom\":1200,\"eveningDarkUntil\":360" in payload.toJson())
+        val changed = payload.copy(
+            settings = payload.settings.copy(
+                eveningDark = false, eveningDarkFrom = 21 * 60 + 30, eveningDarkUntil = 7 * 60 + 15,
+            ),
+        )
         assertEquals(changed.settings, BackupPayload.fromJson(changed.toJson()).settings)
-        // Unplausibler Beginn (manipuliert oder kaputt): 20:00.
-        for (raw in listOf("-5", "1440", "\"20:00\"", "null")) {
+        // Unplausibler Beginn oder unplausibles Ende (manipuliert oder kaputt): 20:00 bzw. 06:00.
+        for (raw in listOf("-5", "1440", "\"20:00\"", "null", "true", "6.5")) {
             val json = payload.toJson().replace("\"eveningDarkFrom\":1200", "\"eveningDarkFrom\":$raw")
-            assertEquals(20 * 60, BackupPayload.fromJson(json).settings.eveningDarkFrom, raw)
+                .replace("\"eveningDarkUntil\":360", "\"eveningDarkUntil\":$raw")
+            val s = BackupPayload.fromJson(json).settings
+            assertEquals(20 * 60, s.eveningDarkFrom, raw)
+            assertEquals(6 * 60, s.eveningDarkUntil, raw)
         }
+        // Grenzen 0 und 1439 bleiben.
+        val edges = payload.toJson().replace("\"eveningDarkUntil\":360", "\"eveningDarkUntil\":1439")
+            .replace("\"eveningDarkFrom\":1200", "\"eveningDarkFrom\":0")
+        assertEquals(1439, BackupPayload.fromJson(edges).settings.eveningDarkUntil)
+        assertEquals(0, BackupPayload.fromJson(edges).settings.eveningDarkFrom)
     }
 
     @Test

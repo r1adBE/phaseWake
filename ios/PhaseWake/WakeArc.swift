@@ -23,8 +23,10 @@ struct HeroPlan: View {
                     .lineLimit(1)
                 Text([day, alarm.label].filter { !$0.isEmpty }.joined(separator: " · "))
                     .font(Fonts.manrope(16, .semibold, relativeTo: .headline))
-                Text(plan.exact ? L("home_next_in_exact", Format.duration(minutes: max(0, minutes)))
-                     : minutes > 0 ? L("home_next_in", Format.duration(minutes: minutes)) : L("home_window_running"))
+                // Die Dauer bleibt zusammen, die Zeile bricht davor um.
+                let left = Format.duration(minutes: max(0, minutes), keepTogether: true)
+                Text(plan.exact ? L("home_next_in_exact", left)
+                     : minutes > 0 ? L("home_next_in", left) : L("home_window_running"))
                     .font(Fonts.manrope(14, relativeTo: .subheadline))
                     .foregroundStyle(SkyInk.of(scheme).muted)
             }
@@ -99,8 +101,8 @@ private struct WakeArcDrawing: View, Animatable {
         set { reveal = newValue }
     }
     private typealias A = WakeArc
-    private static let start: Double = 165
-    private static let sweep: Double = 210
+    nonisolated private static let start: Double = 165
+    nonisolated private static let sweep: Double = 210
 
     var body: some View {
         Canvas { context, size in

@@ -89,6 +89,8 @@
     <string name="settings_evening_dark_text">ងងឹតពី %1$s ដល់ %2$s ទោះជ្រើស ប្រព័ន្ធ ឬ ភ្លឺ ក៏ដោយ។</string>
     <string name="settings_evening_dark_from">ងងឹតចាប់ពី</string>
     <string name="settings_evening_dark_now">កំពុងអនុវត្ត – ភ្លឺចាប់ពី %1$s</string>
+    <string name="settings_evening_dark_until">ភ្លឺចាប់ពី</string>
+    <string name="settings_evening_dark_same">ចាប់ផ្ដើម និងបញ្ចប់ដូចគ្នា – មិនងងឹតឡើយ។</string>
     <string name="settings_data">ទិន្នន័យរបស់អ្នក</string>
     <string name="settings_data_text">អ្វីៗទាំងអស់នៅលើទូរសព្ទ និងនាឡិការបស់អ្នក។ គ្មានគណនី គ្មានម៉ាស៊ីនមេ គ្មានការតាមដាន។ មានតែព័ត៌មានបច្ចេកទេសអំពីនាឡិកាប៉ុណ្ណោះ ដែលឆ្លងកាត់ការតភ្ជាប់នាឡិការបស់ Google ដោយគ្មានទិន្នន័យសុខភាព។</string>
     <string name="settings_export">នាំចេញយប់ដោយគ្មានឈ្មោះ</string>
@@ -619,7 +621,7 @@
     <string name="learn_tip_late">បើក Phase Wake នៅលើនាឡិកានៅពេលល្ងាច យ៉ាងយូរនៅពេលវារំលឹក។</string>
     <string name="learn_tip_alarm">នាឡិកាថតតែយប់ដែលមានម៉ោងរោទ៍ប៉ុណ្ណោះ។</string>
     <string name="learn_tip_connect">ទុកនាឡិកាឲ្យបើក ហើយភ្ជាប់ជាមួយទូរសព្ទរបស់អ្នក – វាផ្ញើការថតបន្ទាប់ពីម៉ោងរោទ៍។</string>
-    <string name="battery_night">ថ្ម៖ %1$s</string>
+    <string name="battery_night">ថ្ម (ឧបករណ៍ទាំងមូល)៖ %1$s</string>
     <string name="battery_watch">នាឡិកា −%1$d %%</string>
     <string name="battery_phone">ទូរសព្ទ −%1$d %%</string>
     <string name="editor_alarm_gone">ម៉ោងរោទ៍នេះត្រូវបានលុបរួចហើយ។</string>

@@ -13,6 +13,7 @@ permissions:
 jobs:
   feiertage:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: read
     steps:
@@ -42,6 +43,7 @@ jobs:
     name: In den Zweig «feiertage» legen
     needs: feiertage
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       contents: write
     steps:

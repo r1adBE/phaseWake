@@ -1,0 +1,10 @@
+Lcom/phasewake/app/wear/PhaseWakeWear;
+Lcom/phasewake/app/wear/ui/MainActivity;
+Lcom/phasewake/app/wear/ui/RingActivity;
+HSPLcom/phasewake/app/wear/PhaseWakeWear**->**(**)**
+HSPLcom/phasewake/app/wear/ui/*;->**(**)**
+HSPLcom/phasewake/app/wear/ui/theme/**->**(**)**
+HSPLcom/phasewake/app/wear/ui/components/**->**(**)**
+HSPLcom/phasewake/app/wear/wake/Ring**->**(**)**
+HSPLcom/phasewake/app/core/**->**(**)**
+HSPLcom/phasewake/app/shared/**->**(**)**

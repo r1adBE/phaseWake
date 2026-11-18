@@ -89,6 +89,8 @@
     <string name="settings_evening_dark_text">Σκούρα από %1$s έως %2$s, ακόμη και με Σύστημα ή Φωτεινή.</string>
     <string name="settings_evening_dark_from">Σκούρα από</string>
     <string name="settings_evening_dark_now">Ισχύει τώρα – φωτεινή από %1$s</string>
+    <string name="settings_evening_dark_until">Φωτεινή από</string>
+    <string name="settings_evening_dark_same">Ίδια έναρξη και λήξη – ποτέ σκούρα.</string>
     <string name="settings_data">Τα δεδομένα σου</string>
     <string name="settings_data_text">Όλα μένουν στο κινητό και στο ρολόι. Χωρίς λογαριασμό, χωρίς διακομιστή, χωρίς παρακολούθηση. Μέσω της σύνδεσης ρολογιού της Google περνούν μόνο τεχνικά στοιχεία για το ρολόι, χωρίς δεδομένα υγείας.</string>
     <string name="settings_export">Εξαγωγή νυχτών χωρίς όνομα</string>
@@ -631,7 +633,7 @@
     <string name="learn_tip_late">Άνοιξε το Phase Wake στο ρολόι το βράδυ, το αργότερο με την υπενθύμιση.</string>
     <string name="learn_tip_alarm">Το ρολόι καταγράφει μόνο νύχτες με ξυπνητήρι.</string>
     <string name="learn_tip_connect">Κράτα το ρολόι ανοιχτό και συνδεδεμένο με το τηλέφωνο – στέλνει την καταγραφή μετά το ξυπνητήρι.</string>
-    <string name="battery_night">Μπαταρία: %1$s</string>
+    <string name="battery_night">Μπαταρία (όλη η συσκευή): %1$s</string>
     <string name="battery_watch">Ρολόι −%1$d %%</string>
     <string name="battery_phone">Κινητό −%1$d %%</string>
     <string name="editor_alarm_gone">Αυτό το ξυπνητήρι διαγράφηκε στο μεταξύ.</string>

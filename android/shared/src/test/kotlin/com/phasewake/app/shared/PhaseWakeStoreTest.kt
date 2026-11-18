@@ -81,4 +81,26 @@ class PhaseWakeStoreTest {
         assertFalse(PhaseWakeStore.wasReset(other.data.first()))
         fresh.cancel()
     }
+
+    @Test
+    fun resetForgetsTheReceivedIds() = runBlocking {
+        // Kaputter Speicher, Kennungen noch da: Ohne Vergessen fragte die Uhr beim Fortsetzen nur «changed» an und
+        // bekäme ihre Wecker nicht zurück.
+        val dir = Files.createTempDirectory("store-reset").toFile()
+        val ids = ReceivedIds(File(dir, "outbox-received"))
+        ids.add("a1")
+        File(dir, "phasewake.preferences_pb").writeBytes(byteArrayOf(0x0a, 0x7f, 0x01))
+        val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+        val store = PhaseWakeStore.create(File(dir, "phasewake.preferences_pb"), scope, onReset = ids::forget)
+        store.data.first()
+        assertFalse(ids.any(), "Kennungen vergessen")
+        assertFalse(File(dir, "outbox-received").exists())
+        scope.cancel()
+        // Ein heiler Speicher vergisst nichts.
+        ids.add("b2")
+        val fresh = CoroutineScope(Dispatchers.IO + SupervisorJob())
+        PhaseWakeStore.create(File(dir, "heil.preferences_pb"), fresh, onReset = ids::forget).data.first()
+        assertTrue(ids.any())
+        fresh.cancel()
+    }
 }

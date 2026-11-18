@@ -91,6 +91,8 @@
     <string name="settings_evening_dark_text">Okumnyama %1$s – %2$s, noma kukhethwe Isistimu noma Okukhanyayo.</string>
     <string name="settings_evening_dark_from">Okumnyama kusukela</string>
     <string name="settings_evening_dark_now">Kuyasebenza manje – okukhanyayo kusukela ku-%1$s</string>
+    <string name="settings_evening_dark_until">Okukhanyayo kusukela</string>
+    <string name="settings_evening_dark_same">Ukuqala nokuphela kuyafana – akukaze kube mnyama.</string>
     <string name="settings_data">Idatha yakho</string>
     <string name="settings_data_text">Konke kuhlala efonini nasewashini lakho. Ayikho i-akhawunti, ayikho iseva, akukho ukulandelwa. Kudlula kuphela ulwazi lobuchwepheshe ngewashi oxhumanweni lwewashi lwe-Google, ngaphandle kwedatha yezempilo.</string>
     <string name="settings_export">Thumela ubusuku ngaphandle kwegama</string>
@@ -634,7 +636,7 @@
     <string name="learn_tip_late">Kusihlwa vula i-Phase Wake ewashini, okungenani lapho ikukhumbuza.</string>
     <string name="learn_tip_alarm">Iwashi liqopha kuphela ubusuku obunama-alamu.</string>
     <string name="learn_tip_connect">Gcina iwashi livuliwe futhi lixhunywe efonini yakho – lithumela ukuqopha ngemva kwe-alamu.</string>
-    <string name="battery_night">Ibhethri: %1$s</string>
+    <string name="battery_night">Ibhethri (yonke idivayisi): %1$s</string>
     <string name="battery_watch">Iwashi −%1$d %%</string>
     <string name="battery_phone">Ifoni −%1$d %%</string>
     <string name="editor_alarm_gone">Le alamu isisusiwe phakathi naleso sikhathi.</string>

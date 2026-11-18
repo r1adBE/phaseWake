@@ -90,6 +90,8 @@
     <string name="settings_evening_dark_text">%1$s – %2$s ಗಾಢ, ಸಿಸ್ಟಮ್ ಅಥವಾ ತಿಳಿ ಆಯ್ಕೆಯಲ್ಲೂ.</string>
     <string name="settings_evening_dark_from">ಗಾಢ ಆರಂಭ</string>
     <string name="settings_evening_dark_now">ಈಗ ಜಾರಿಯಲ್ಲಿದೆ – %1$s ರಿಂದ ತಿಳಿ</string>
+    <string name="settings_evening_dark_until">ತಿಳಿ ಆರಂಭ</string>
+    <string name="settings_evening_dark_same">ಆರಂಭ ಮತ್ತು ಅಂತ್ಯ ಒಂದೇ – ಎಂದಿಗೂ ಗಾಢವಲ್ಲ.</string>
     <string name="settings_data">ನಿಮ್ಮ ಡೇಟಾ</string>
     <string name="settings_data_text">ಎಲ್ಲವೂ ನಿಮ್ಮ ಫೋನ್ ಮತ್ತು ವಾಚ್‌ನಲ್ಲೇ ಇರುತ್ತದೆ. ಖಾತೆ ಇಲ್ಲ, ಸರ್ವರ್ ಇಲ್ಲ, ಟ್ರ್ಯಾಕಿಂಗ್ ಇಲ್ಲ. Google ನ ವಾಚ್ ಸಂಪರ್ಕದ ಮೂಲಕ ವಾಚ್‌ನ ತಾಂತ್ರಿಕ ಮಾಹಿತಿ ಮಾತ್ರ ಹೋಗುತ್ತದೆ, ಆರೋಗ್ಯ ಡೇಟಾ ಇಲ್ಲದೆ.</string>
     <string name="settings_export">ರಾತ್ರಿಗಳನ್ನು ಹೆಸರಿಲ್ಲದೆ ರಫ್ತು ಮಾಡಿ</string>
@@ -633,7 +635,7 @@
     <string name="learn_tip_late">ಸಂಜೆ ವಾಚ್‌ನಲ್ಲಿ Phase Wake ತೆರೆಯಿರಿ, ಅತಿ ತಡವೆಂದರೆ ಜ್ಞಾಪನೆ ಬಂದಾಗ.</string>
     <string name="learn_tip_alarm">ವಾಚ್ ಅಲಾರಾಂ ಇರುವ ರಾತ್ರಿಗಳನ್ನು ಮಾತ್ರ ರೆಕಾರ್ಡ್ ಮಾಡುತ್ತದೆ.</string>
     <string name="learn_tip_connect">ವಾಚ್ ಆನ್ ಆಗಿರಲಿ ಮತ್ತು ಫೋನ್‌ಗೆ ಸಂಪರ್ಕದಲ್ಲಿರಲಿ – ಅಲಾರಾಂ ನಂತರ ಅದು ರೆಕಾರ್ಡಿಂಗ್ ಕಳುಹಿಸುತ್ತದೆ.</string>
-    <string name="battery_night">ಬ್ಯಾಟರಿ: %1$s</string>
+    <string name="battery_night">ಬ್ಯಾಟರಿ (ಇಡೀ ಸಾಧನ): %1$s</string>
     <string name="battery_watch">ವಾಚ್ −%1$d %%</string>
     <string name="battery_phone">ಫೋನ್ −%1$d %%</string>
     <string name="editor_alarm_gone">ಈ ಅಲಾರಾಂ ಈ ನಡುವೆ ಅಳಿಸಲಾಗಿದೆ.</string>

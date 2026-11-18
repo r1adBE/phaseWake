@@ -91,6 +91,8 @@
     <string name="settings_evening_dark_text">Fosc de %1$s a %2$s, també amb Sistema o Clar.</string>
     <string name="settings_evening_dark_from">Fosc a partir de</string>
     <string name="settings_evening_dark_now">Actiu ara – clar a partir de les %1$s</string>
+    <string name="settings_evening_dark_until">Clar a partir de</string>
+    <string name="settings_evening_dark_same">Inici i final iguals – mai fosc.</string>
     <string name="settings_data">Les teves dades</string>
     <string name="settings_data_text">Tot es queda al telèfon i al rellotge. Sense compte, sense servidor, sense seguiment. Per la connexió del rellotge de Google només passa informació tècnica del rellotge, sense dades de salut.</string>
     <string name="settings_export">Exporta les nits sense nom</string>
@@ -647,7 +649,7 @@
     <string name="learn_tip_late">Obre Phase Wake al rellotge al vespre, com a molt tard quan te’l recordi.</string>
     <string name="learn_tip_alarm">El rellotge només enregistra les nits amb alarma.</string>
     <string name="learn_tip_connect">Mantén el rellotge encès i connectat al telèfon: envia l’enregistrament després de l’alarma.</string>
-    <string name="battery_night">Bateria: %1$s</string>
+    <string name="battery_night">Bateria (tot el dispositiu): %1$s</string>
     <string name="battery_watch">Rellotge −%1$d %%</string>
     <string name="battery_phone">Telèfon −%1$d %%</string>
     <string name="editor_alarm_gone">Aquesta alarma s’ha suprimit mentrestant.</string>

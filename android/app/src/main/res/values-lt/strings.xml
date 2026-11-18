@@ -93,6 +93,8 @@
     <string name="settings_evening_dark_text">Tamsi %1$s – %2$s, net pasirinkus Sistemos ar Šviesi.</string>
     <string name="settings_evening_dark_from">Tamsi nuo</string>
     <string name="settings_evening_dark_now">Galioja dabar – šviesi nuo %1$s</string>
+    <string name="settings_evening_dark_until">Šviesi nuo</string>
+    <string name="settings_evening_dark_same">Pradžia ir pabaiga sutampa – niekada tamsi.</string>
     <string name="settings_data">Tavo duomenys</string>
     <string name="settings_data_text">Viskas lieka tavo telefone ir laikrodyje. Jokios paskyros, jokio serverio, jokio sekimo. Per Google laikrodžio ryšį perduodama tik techninė laikrodžio informacija, be sveikatos duomenų.</string>
     <string name="settings_export">Eksportuoti naktis be vardo</string>
@@ -662,7 +664,7 @@
     <string name="learn_tip_late">Vakare atidaryk Phase Wake laikrodyje, vėliausiai sulaukęs priminimo.</string>
     <string name="learn_tip_alarm">Laikrodis įrašo tik naktis su žadintuvu.</string>
     <string name="learn_tip_connect">Laikyk laikrodį įjungtą ir prijungtą prie telefono – įrašą jis siunčia po žadintuvo.</string>
-    <string name="battery_night">Baterija: %1$s</string>
+    <string name="battery_night">Baterija (visas įrenginys): %1$s</string>
     <string name="battery_watch">Laikrodis −%1$d %%</string>
     <string name="battery_phone">Telefonas −%1$d %%</string>
     <string name="editor_alarm_gone">Šis žadintuvas tuo metu buvo ištrintas.</string>

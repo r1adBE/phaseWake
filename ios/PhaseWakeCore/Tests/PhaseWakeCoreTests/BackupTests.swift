@@ -127,23 +127,35 @@ final class BackupTests: XCTestCase {
         let old = try BackupPayload.fromJson(try testdata("backup-v1.json")).settings
         XCTAssertTrue(old.eveningDark)
         XCTAssertEqual(old.eveningDarkFrom, 20 * 60)
+        XCTAssertEqual(old.eveningDarkUntil, 6 * 60)
         var p = payload
-        XCTAssertTrue(p.toJson().contains(#""eveningDark":true,"eveningDarkFrom":1200"#))
+        XCTAssertTrue(p.toJson().contains(#""eveningDark":true,"eveningDarkFrom":1200,"eveningDarkUntil":360"#))
         p.settings.eveningDark = false
         p.settings.eveningDarkFrom = 21 * 60 + 30
+        p.settings.eveningDarkUntil = 7 * 60 + 15
         XCTAssertEqual(try BackupPayload.fromJson(p.toJson()).settings, p.settings)
-        // Unplausibler Beginn (manipuliert oder kaputt): 20:00.
-        for raw in ["-5", "1440", #""20:00""#, "null", "true"] {
+        // Unplausibler Beginn oder unplausibles Ende (manipuliert oder kaputt): 20:00 bzw. 06:00.
+        for raw in ["-5", "1440", #""20:00""#, "null", "true", "6.5"] {
             let json = payload.toJson()
                 .replacingOccurrences(of: #""eveningDarkFrom":1200"#, with: "\"eveningDarkFrom\":\(raw)")
-            XCTAssertEqual(try BackupPayload.fromJson(json).settings.eveningDarkFrom, 20 * 60, raw)
+                .replacingOccurrences(of: #""eveningDarkUntil":360"#, with: "\"eveningDarkUntil\":\(raw)")
+            let s = try BackupPayload.fromJson(json).settings
+            XCTAssertEqual(s.eveningDarkFrom, 20 * 60, raw)
+            XCTAssertEqual(s.eveningDarkUntil, 6 * 60, raw)
         }
+        // Grenzen 0 und 1439 bleiben.
+        let edges = try BackupPayload.fromJson(payload.toJson()
+            .replacingOccurrences(of: #""eveningDarkUntil":360"#, with: #""eveningDarkUntil":1439"#)
+            .replacingOccurrences(of: #""eveningDarkFrom":1200"#, with: #""eveningDarkFrom":0"#)).settings
+        XCTAssertEqual(edges.eveningDarkUntil, 1439)
+        XCTAssertEqual(edges.eveningDarkFrom, 0)
         // Eine Sicherung von Android (Schlüssel in anderer Reihenfolge) liest sich gleich.
         let android = #"{"format":"phasewake-backup","version":1,"alarms":"","#
-            + #""settings":{"autoOnset":true,"eveningDark":false,"eveningDarkFrom":1290}}"#
+            + #""settings":{"autoOnset":true,"eveningDark":false,"eveningDarkFrom":1290,"eveningDarkUntil":435}}"#
         let s = try BackupPayload.fromJson(android).settings
         XCTAssertFalse(s.eveningDark)
         XCTAssertEqual(s.eveningDarkFrom, 21 * 60 + 30)
+        XCTAssertEqual(s.eveningDarkUntil, 7 * 60 + 15)
     }
 
     func testBackupKeepsHealthFeelings() throws {

@@ -92,6 +92,8 @@
     <string name="settings_evening_dark_text">Тамно од %1$s до %2$s, и уз Систем или Светло.</string>
     <string name="settings_evening_dark_from">Тамно од</string>
     <string name="settings_evening_dark_now">Сада активно – светло од %1$s</string>
+    <string name="settings_evening_dark_until">Светло од</string>
+    <string name="settings_evening_dark_same">Почетак и крај су исти – никад тамно.</string>
     <string name="settings_data">Твоји подаци</string>
     <string name="settings_data_text">Све остаје на твом телефону и сату. Без налога, без сервера, без праћења. Преко Google-ове везе са сатом иду само технички подаци о сату, без здравствених података.</string>
     <string name="settings_export">Извези ноћи без имена</string>
@@ -648,7 +650,7 @@
     <string name="learn_tip_late">Увече отвори Phase Wake на сату, најкасније кад те подсети.</string>
     <string name="learn_tip_alarm">Сат снима само ноћи са алармом.</string>
     <string name="learn_tip_connect">Држи сат укључен и повезан са телефоном – он шаље снимање после аларма.</string>
-    <string name="battery_night">Батерија: %1$s</string>
+    <string name="battery_night">Батерија (цео уређај): %1$s</string>
     <string name="battery_watch">Сат −%1$d %%</string>
     <string name="battery_phone">Телефон −%1$d %%</string>
     <string name="editor_alarm_gone">Овај аларм је у међувремену избрисан.</string>

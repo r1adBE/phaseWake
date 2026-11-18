@@ -91,6 +91,8 @@
     <string name="settings_evening_dark_text">Escuro de %1$s a %2$s, tamén con Sistema ou Claro.</string>
     <string name="settings_evening_dark_from">Escuro desde</string>
     <string name="settings_evening_dark_now">Activo agora – claro desde as %1$s</string>
+    <string name="settings_evening_dark_until">Claro desde</string>
+    <string name="settings_evening_dark_same">Inicio e fin iguais – nunca escuro.</string>
     <string name="settings_data">Os teus datos</string>
     <string name="settings_data_text">Todo queda no teléfono e no reloxo. Sen conta, sen servidor, sen seguimento. Pola conexión do reloxo de Google só pasan datos técnicos do reloxo, sen datos de saúde.</string>
     <string name="settings_export">Exportar noites sen nome</string>
@@ -634,7 +636,7 @@
     <string name="learn_tip_late">Abre Phase Wake no reloxo pola noite, como moi tarde cando cho lembre.</string>
     <string name="learn_tip_alarm">O reloxo só grava as noites con alarma.</string>
     <string name="learn_tip_connect">Mantén o reloxo aceso e conectado ao teléfono: envía a gravación despois da alarma.</string>
-    <string name="battery_night">Batería: %1$s</string>
+    <string name="battery_night">Batería (todo o dispositivo): %1$s</string>
     <string name="battery_watch">Reloxo −%1$d %%</string>
     <string name="battery_phone">Teléfono −%1$d %%</string>
     <string name="editor_alarm_gone">Esta alarma eliminouse mentres tanto.</string>

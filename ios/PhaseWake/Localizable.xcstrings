@@ -15686,445 +15686,445 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Battery: %1$@"
+            "value": "Battery (hele toestel): %1$@"
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "ባትሪ: %1$@"
+            "value": "ባትሪ (ሙሉ መሣሪያ): %1$@"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "البطارية: %1$@"
+            "value": "البطارية (الجهاز كله): %1$@"
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Batareya: %1$@"
+            "value": "Batareya (bütün cihaz): %1$@"
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Батерия: %1$@"
+            "value": "Батерия (цялото устройство): %1$@"
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ব্যাটারি: %1$@"
+            "value": "ব্যাটারি (পুরো ডিভাইস): %1$@"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Baterija: %1$@"
+            "value": "Baterija (cijeli uređaj): %1$@"
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bateria: %1$@"
+            "value": "Bateria (tot el dispositiu): %1$@"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Baterie: %1$@"
+            "value": "Baterie (celé zařízení): %1$@"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Batteri: %1$@"
+            "value": "Batteri (hele enheden): %1$@"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Akku: %1$@"
+            "value": "Akku (ganzes Gerät): %1$@"
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Μπαταρία: %1$@"
+            "value": "Μπαταρία (όλη η συσκευή): %1$@"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Battery: %1$@"
+            "value": "Battery (whole device): %1$@"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Batería: %1$@"
+            "value": "Batería (todo el dispositivo): %1$@"
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aku: %1$@"
+            "value": "Aku (kogu seade): %1$@"
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bateria: %1$@"
+            "value": "Bateria (gailu osoa): %1$@"
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "باتری: %1$@"
+            "value": "باتری (کل دستگاه): %1$@"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Akku: %1$@"
+            "value": "Akku (koko laite): %1$@"
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Baterya: %1$@"
+            "value": "Baterya (buong device): %1$@"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Batterie : %1$@"
+            "value": "Batterie (tout l’appareil) : %1$@"
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ceallra: %1$@"
+            "value": "Ceallra (an gléas ar fad): %1$@"
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Batería: %1$@"
+            "value": "Batería (todo o dispositivo): %1$@"
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "બૅટરી: %1$@"
+            "value": "બૅટરી (આખું ઉપકરણ): %1$@"
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "סוללה: %1$@"
+            "value": "סוללה (כל המכשיר): %1$@"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "बैटरी: %1$@"
+            "value": "बैटरी (पूरा डिवाइस): %1$@"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Baterija: %1$@"
+            "value": "Baterija (cijeli uređaj): %1$@"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Akkumulátor: %1$@"
+            "value": "Akkumulátor (teljes eszköz): %1$@"
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Մարտկոց՝ %1$@"
+            "value": "Մարտկոց (ամբողջ սարքը)՝ %1$@"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Baterai: %1$@"
+            "value": "Baterai (seluruh perangkat): %1$@"
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rafhlaða: %1$@"
+            "value": "Rafhlaða (allt tækið): %1$@"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Batteria: %1$@"
+            "value": "Batteria (intero dispositivo): %1$@"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "バッテリー: %1$@"
+            "value": "バッテリー（端末全体）: %1$@"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "ბატარეა: %1$@"
+            "value": "ბატარეა (მთელი მოწყობილობა): %1$@"
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Батарея: %1$@"
+            "value": "Батарея (бүкіл құрылғы): %1$@"
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "ថ្ម៖ %1$@"
+            "value": "ថ្ម (ឧបករណ៍ទាំងមូល)៖ %1$@"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ಬ್ಯಾಟರಿ: %1$@"
+            "value": "ಬ್ಯಾಟರಿ (ಇಡೀ ಸಾಧನ): %1$@"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "배터리: %1$@"
+            "value": "배터리(기기 전체): %1$@"
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "ແບັດເຕີຣີ: %1$@"
+            "value": "ແບັດເຕີຣີ (ທັງອຸປະກອນ): %1$@"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Baterija: %1$@"
+            "value": "Baterija (visas įrenginys): %1$@"
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Akumulators: %1$@"
+            "value": "Akumulators (visa ierīce): %1$@"
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Батерија: %1$@"
+            "value": "Батерија (цел уред): %1$@"
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "ബാറ്ററി: %1$@"
+            "value": "ബാറ്ററി (മുഴുവൻ ഉപകരണം): %1$@"
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Батарей: %1$@"
+            "value": "Батарей (бүх төхөөрөмж): %1$@"
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "बॅटरी: %1$@"
+            "value": "बॅटरी (संपूर्ण डिव्हाइस): %1$@"
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bateri: %1$@"
+            "value": "Bateri (seluruh peranti): %1$@"
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "ဘက်ထရီ- %1$@"
+            "value": "ဘက်ထရီ (စက်တစ်ခုလုံး)- %1$@"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Batteri: %1$@"
+            "value": "Batteri (hele enheten): %1$@"
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "ब्याट्री: %1$@"
+            "value": "ब्याट्री (पूरै यन्त्र): %1$@"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Batterij: %1$@"
+            "value": "Batterij (hele apparaat): %1$@"
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਬੈਟਰੀ: %1$@"
+            "value": "ਬੈਟਰੀ (ਪੂਰਾ ਡਿਵਾਈਸ): %1$@"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bateria: %1$@"
+            "value": "Bateria (całe urządzenie): %1$@"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bateria: %1$@"
+            "value": "Bateria (aparelho inteiro): %1$@"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bateria: %1$@"
+            "value": "Bateria (todo o dispositivo): %1$@"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Baterie: %1$@"
+            "value": "Baterie (tot dispozitivul): %1$@"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Заряд: %1$@"
+            "value": "Заряд (всё устройство): %1$@"
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "බැටරිය: %1$@"
+            "value": "බැටරිය (සම්පූර්ණ උපාංගය): %1$@"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Batéria: %1$@"
+            "value": "Batéria (celé zariadenie): %1$@"
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Baterija: %1$@"
+            "value": "Baterija (cela naprava): %1$@"
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bateria: %1$@"
+            "value": "Bateria (e gjithë pajisja): %1$@"
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Батерија: %1$@"
+            "value": "Батерија (цео уређај): %1$@"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Batteri: %1$@"
+            "value": "Batteri (hela enheten): %1$@"
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Betri: %1$@"
+            "value": "Betri (kifaa kizima): %1$@"
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "பேட்டரி: %1$@"
+            "value": "பேட்டரி (முழு சாதனம்): %1$@"
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "బ్యాటరీ: %1$@"
+            "value": "బ్యాటరీ (మొత్తం పరికరం): %1$@"
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "แบตเตอรี่: %1$@"
+            "value": "แบตเตอรี่ (ทั้งเครื่อง): %1$@"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pil: %1$@"
+            "value": "Pil (tüm cihaz): %1$@"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Заряд: %1$@"
+            "value": "Заряд (увесь пристрій): %1$@"
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "بیٹری: %1$@"
+            "value": "بیٹری (پورا آلہ): %1$@"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Batareya: %1$@"
+            "value": "Batareya (butun qurilma): %1$@"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pin: %1$@"
+            "value": "Pin (toàn bộ thiết bị): %1$@"
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "電量：%1$@"
+            "value": "電量（整部裝置）：%1$@"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "电量：%1$@"
+            "value": "电量（整机）：%1$@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "電量：%1$@"
+            "value": "電量（整部裝置）：%1$@"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ibhethri: %1$@"
+            "value": "Ibhethri (yonke idivayisi): %1$@"
           }
         }
       }
@@ -243177,6 +243177,454 @@
         }
       }
     },
+    "settings_evening_dark_same": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Begin en einde is dieselfde – nooit donker nie."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "መጀመሪያና መጨረሻ አንድ ናቸው – መቼም ጨለማ አይሆንም።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "البداية والنهاية متطابقتان – لا يصبح داكنًا أبدًا."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Başlanğıc və son eynidir – heç vaxt tünd olmur."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Началото и краят съвпадат – никога тъмен."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "শুরু ও শেষ একই – কখনো গাঢ় নয়।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Početak i kraj su isti – nikad tamno."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inici i final iguals – mai fosc."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Začátek a konec jsou stejné – nikdy tmavý."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start og slut er ens – aldrig mørk."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beginn und Ende gleich – nie dunkel."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ίδια έναρξη και λήξη – ποτέ σκούρα."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Same start and end – never dark."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicio y fin iguales – nunca oscuro."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Algus ja lõpp on samad – ei ole kunagi tume."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hasiera eta amaiera berdinak – inoiz ez iluna."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شروع و پایان یکسان است – هرگز تیره نمی‌شود."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alku ja loppu ovat samat – ei koskaan tumma."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pareho ang simula at wakas – hindi kailanman dark."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Début et fin identiques – jamais sombre."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tús agus deireadh mar an gcéanna – ní bhíonn sé dorcha riamh."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicio e fin iguais – nunca escuro."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "શરૂઆત અને અંત સરખા – ક્યારેય ઘેરો નહીં."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההתחלה והסיום זהים – אף פעם לא כהה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शुरू और अंत एक जैसे – कभी डार्क नहीं।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Početak i kraj su isti – nikad tamno."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A kezdet és a vége azonos – soha nem sötét."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Սկիզբը և ավարտը նույնն են – երբեք մուգ չէ։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mulai dan selesai sama – tidak pernah gelap."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upphaf og lok eru eins – aldrei dökkt."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inizio e fine uguali – mai scuro."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開始と終了が同じ – ダークになりません。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "დაწყება და დასრულება ერთნაირია – არასდროს მუქი."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Басы мен соңы бірдей – ешқашан қараңғы емес."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ចាប់ផ្ដើម និងបញ្ចប់ដូចគ្នា – មិនងងឹតឡើយ។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಆರಂಭ ಮತ್ತು ಅಂತ್ಯ ಒಂದೇ – ಎಂದಿಗೂ ಗಾಢವಲ್ಲ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "시작과 종료가 같음 – 다크로 바뀌지 않음"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ເລີ່ມ ແລະ ສິ້ນສຸດຄືກັນ – ບໍ່ມືດເລີຍ."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pradžia ir pabaiga sutampa – niekada tamsi."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sākums un beigas sakrīt – nekad tumšs."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Почетокот и крајот се исти – никогаш темна."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "തുടക്കവും അവസാനവും ഒന്ന് – ഒരിക്കലും ഡാർക്ക് ആകില്ല."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Эхлэл ба төгсгөл ижил – хэзээ ч бараан болохгүй."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सुरुवात आणि शेवट सारखे – कधीही गडद नाही."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mula dan tamat sama – tidak pernah gelap."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "စတင်ချိန်နှင့် ပြီးဆုံးချိန် တူညီ – ဘယ်တော့မှ မမှောင်ပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start og slutt er like – aldri mørk."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सुरु र अन्त्य उस्तै – कहिल्यै अँध्यारो हुँदैन।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Begin en einde gelijk – nooit donker."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸ਼ੁਰੂ ਅਤੇ ਅੰਤ ਇੱਕੋ – ਕਦੇ ਗੂੜ੍ਹਾ ਨਹੀਂ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Początek i koniec są takie same – nigdy ciemny."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Início e fim iguais – nunca escuro."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Início e fim iguais – nunca escuro."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Început și sfârșit identice – niciodată întunecat."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Начало и конец совпадают – тёмная не включается."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ආරම්භය සහ අවසානය සමානයි – කිසි විටෙක අඳුරු නොවේ."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Začiatok a koniec sú rovnaké – nikdy tmavý."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Začetek in konec sta enaka – nikoli temno."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fillimi dhe fundi janë të njëjtë – kurrë e errët."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Почетак и крај су исти – никад тамно."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start och slut är samma – aldrig mörkt."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mwanzo na mwisho ni sawa – hakuna giza kamwe."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "தொடக்கமும் முடிவும் ஒன்றே – ஒருபோதும் இருள் இல்லை."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ప్రారంభం, ముగింపు ఒకటే – ఎప్పుడూ ముదురు కాదు."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เวลาเริ่มและสิ้นสุดเท่ากัน – ไม่มืดเลย"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Başlangıç ve bitiş aynı – hiç koyu olmaz."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Початок і кінець однакові – темна не вмикається."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شروع اور اختتام ایک جیسے – کبھی گہرا نہیں۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boshlanish va tugash bir xil – hech qachon qorongʻi emas."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bắt đầu và kết thúc trùng nhau – không bao giờ tối."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開始與結束相同 – 永不變為深色。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开始与结束相同 – 永不变为深色。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開始與結束相同 – 永不變為深色。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukuqala nokuphela kuyafana – akukaze kube mnyama."
+          }
+        }
+      }
+    },
     "settings_evening_dark_text": {
       "localizations": {
         "af": {
@@ -243621,6 +244069,454 @@
           "stringUnit": {
             "state": "translated",
             "value": "Okumnyama %1$@ – %2$@, noma kukhethwe Isistimu noma Okukhanyayo."
+          }
+        }
+      }
+    },
+    "settings_evening_dark_until": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lig vanaf"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ብሩህ የሚጀምረው"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فاتح بدءًا من"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Açıq başlama vaxtı"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Светъл от"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "হালকা শুরু"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Svijetlo od"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clar a partir de"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Světlý od"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lys fra"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hell ab"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Φωτεινή από"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Light from"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claro desde"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hele alates"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Argia noiztik"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "روشن از"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vaalea alkaen"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Light mula"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clair à partir de"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geal ó"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claro desde"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "આછો શરૂ"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בהיר מהשעה"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लाइट कब से"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Svijetlo od"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Világos kezdete"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Բացի սկիզբ"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terang mulai"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ljóst frá"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiaro da"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ライト開始"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ღიას დაწყება"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ашық басталуы"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ភ្លឺចាប់ពី"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ತಿಳಿ ಆರಂಭ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "라이트 시작"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ແຈ້ງແຕ່"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Šviesi nuo"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gaišs no"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Светла од"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ലൈറ്റ് തുടങ്ങുന്നത്"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цайвар эхлэх"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फिकट सुरू"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerah bermula"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "အလင်း စတင်ချိန်"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lys fra"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उज्यालो सुरु"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licht vanaf"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਹਲਕਾ ਸ਼ੁਰੂ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jasny od"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claro a partir de"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claro a partir de"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Luminos de la"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Светлая с"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ආලෝකමත් ආරම්භය"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Svetlý od"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Svetlo od"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "E çelët nga"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Светло од"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ljust från"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mwangaza kuanzia"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "வெளிர் தொடக்கம்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "లేత ప్రారంభం"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "สว่างตั้งแต่"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Açık başlangıcı"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Світла з"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "روشن شروع"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yorugʻ boshlanishi"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sáng từ"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "淺色開始時間"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "浅色开始时间"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "淺色開始時間"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Okukhanyayo kusukela"
           }
         }
       }

@@ -168,11 +168,20 @@ internal class Derived(
     val weekly: WeeklySummary?,
 )
 
-/** Das beim Zusammensetzen gerechnete Ergebnis, damit der Hintergrund dieselben Eingaben nicht nochmals rechnet. */
+/**
+ * Das beim Zusammensetzen gerechnete Ergebnis, damit der Hintergrund dieselben Eingaben nicht nochmals rechnet.
+ * Gilt nur für die nächste Rechnung: [Derived] hängt auch von der Uhrzeit ab (Trends, Wochenrückblick, «Heute» der
+ * Diagramme), ein späteres Zurück auf dieselben Eingaben rechnet darum neu.
+ */
 internal class EagerDerived {
     var last: Derived? = null
 
-    fun takeFor(inputs: InsightInputs): Derived? = last?.takeIf { it.inputs == inputs }
+    /** [last], falls es zu [inputs] gehört; danach ist es in jedem Fall verworfen. */
+    fun takeFor(inputs: InsightInputs): Derived? {
+        val hit = last?.takeIf { it.inputs == inputs }
+        last = null
+        return hit
+    }
 }
 
 /**

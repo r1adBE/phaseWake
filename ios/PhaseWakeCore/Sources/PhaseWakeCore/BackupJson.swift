@@ -33,13 +33,17 @@ public struct BackupSettings: Equatable, Sendable {
     /// Beginn von «Abends dunkel ab» in Minuten des Tages; fehlt oder unplausibel: 20:00
     /// (``EveningDark/checkedFrom(_:)``).
     public var eveningDarkFrom: Int
+    /// Ende von «Abends dunkel» («Hell ab») in Minuten des Tages; fehlt (ältere Sicherung) oder unplausibel: 06:00
+    /// (``EveningDark/checkedUntil(_:)``).
+    public var eveningDarkUntil: Int
 
     /// Erzeugt Einstellungen; ohne Angaben die Vorgaben der App.
     public init(sleepGoal: Int = SleepGoal.defaultMinutes, bedtimeReminder: Bool = false, weeklyReview: Bool = false,
                 soundRecDefault: Bool = false, theme: String = "SYSTEM", holidayCountry: String = "",
                 holidayRegion: String = "",
                 historyClearedAt: Int64? = nil, nextAlarmNotice: Bool = true, autoOnset: Bool = true,
-                eveningDark: Bool = EveningDark.defaultEnabled, eveningDarkFrom: Int = EveningDark.defaultFromMinutes) {
+                eveningDark: Bool = EveningDark.defaultEnabled, eveningDarkFrom: Int = EveningDark.defaultFromMinutes,
+                eveningDarkUntil: Int = EveningDark.defaultUntilMinutes) {
         self.sleepGoal = sleepGoal
         self.bedtimeReminder = bedtimeReminder
         self.weeklyReview = weeklyReview
@@ -52,6 +56,7 @@ public struct BackupSettings: Equatable, Sendable {
         self.autoOnset = autoOnset
         self.eveningDark = eveningDark
         self.eveningDarkFrom = eveningDarkFrom
+        self.eveningDarkUntil = eveningDarkUntil
     }
 }
 
@@ -117,6 +122,7 @@ public struct BackupPayload: Equatable, Sendable {
                 "nextAlarmNotice": s.nextAlarmNotice,
                 "autoOnset": s.autoOnset,
                 "eveningDark": s.eveningDark, "eveningDarkFrom": s.eveningDarkFrom,
+                "eveningDarkUntil": s.eveningDarkUntil,
             ] as [String: Any],
         ]
         // Nur Texte, Zahlen, Wahrheitswerte, Listen und `NSNull`: Schreiben kann nicht scheitern.
@@ -163,6 +169,8 @@ public struct BackupPayload: Equatable, Sendable {
                 autoOnset: bool(s["autoOnset"]) ?? d.autoOnset,
                 eveningDark: bool(s["eveningDark"]) ?? d.eveningDark,
                 eveningDarkFrom: EveningDark.checkedFrom(integer(s["eveningDarkFrom"])
+                    .flatMap { (0..<1440).contains($0) ? Int($0) : nil }),
+                eveningDarkUntil: EveningDark.checkedUntil(integer(s["eveningDarkUntil"])
                     .flatMap { (0..<1440).contains($0) ? Int($0) : nil })
             ),
             healthFeelings: root["healthFeelings"] as? String ?? ""

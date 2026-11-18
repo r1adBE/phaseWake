@@ -39,12 +39,16 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
           PR: ${{ github.event.pull_request.number }}
+          CHANGED: ${{ github.event.pull_request.changed_files }}
         run: |
           set -uo pipefail
-          # Im Zweifel (kein PR, Abfrage gescheitert, keine Dateien) laufen die Apple-Jobs.
+          # Im Zweifel (kein PR, Abfrage gescheitert, keine Dateien) laufen die Apple-Jobs. Die Liste der API endet
+          # bei 3000 Dateien: ab da laufen sie immer. Bei Umbenennungen zählt auch der alte Pfad.
           apple=true
           if [ "$GITHUB_EVENT_NAME" = pull_request ] && [ -n "$PR" ] \
-             && files=$(gh api --paginate "repos/$REPO/pulls/$PR/files?per_page=100" --jq '.[].filename') \
+             && [[ "$CHANGED" =~ ^[0-9]+$ ]] && [ "$CHANGED" -lt 3000 ] \
+             && files=$(gh api --paginate "repos/$REPO/pulls/$PR/files?per_page=100" \
+                          --jq '.[] | .filename, (.previous_filename // empty)') \
              && [ -n "$files" ] \
              && ! printf '%s\n' "$files" | grep -qvE '^(android/|\.github/scripts/[^/]*requirements[^/]*$)'; then
             apple=false
@@ -215,6 +219,7 @@ jobs:
     needs: vorab
     if: needs.vorab.outputs.done != 'true'
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -264,9 +269,10 @@ jobs:
         shell: bash
         run: |
           set +e +o pipefail
+          # Läuft auf macOS (BSD-sed): Zeilen mit awk zu einem Hinweis verbinden.
           w=$(grep -E "warning:" test.log | sed -E 's#^.*/ios/##' | sort -u)
           n=$(printf '%s\n' "$w" | grep -c .)
-          echo "::notice title=Swift-Warnungen Kern ($n)::$(printf '%s\n' "$w" | cut -c1-220 | sed ':a;N;$!ba;s/\n/%0A/g')"
+          echo "::notice title=Swift-Warnungen Kern ($n)::$(printf '%s\n' "$w" | grep . | cut -c1-220 | sed 's/%/%25/g' | awk 'BEGIN{ORS="%0A"}{print}')"
           exit 0
       - name: Fehler als Annotation
         if: failure()
@@ -380,21 +386,49 @@ jobs:
         timeout-minutes: 30
         run: |
           set -o pipefail
-          rm -rf build/watch.xcresult
-          xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWakeWatch -destination "id=$WATCH_SIM" \
-            -derivedDataPath build/DerivedData -resultBundlePath build/watch.xcresult \
-            -test-timeouts-enabled YES -default-test-execution-time-allowance 60 -maximum-test-execution-time-allowance 120 \
-            CODE_SIGNING_ALLOWED=NO test-without-building >> build.log 2>&1
+          # Der Simulator meldete beim Start des Testwirts zeitweise «failed to launch … Unknown application display
+          # identifier», ohne Fehler im Code. Darum die Watch-App vorher selbst installieren und nur bei genau dieser
+          # Meldung einmal neu versuchen; jeder andere Fehler scheitert sofort.
+          install_watch_app() {
+            xcrun simctl bootstatus "$WATCH_SIM" -b > /dev/null || echo "::warning title=Tests Watch-App::Simulator startet nicht"
+            local app id found=""
+            for app in build/DerivedData/Build/Products/Debug-watchsimulator/*.app; do
+              [ -f "$app/Info.plist" ] || continue
+              id=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$app/Info.plist" 2> /dev/null || true)
+              [ "$id" = com.phasewake.app.watchkitapp ] || continue
+              found=$app
+              xcrun simctl install "$WATCH_SIM" "$app" || echo "::warning title=Tests Watch-App::Vorinstallation gescheitert"
+            done
+            [ -n "$found" ] || echo "::warning title=Tests Watch-App::Watch-App für die Vorinstallation nicht gefunden"
+          }
+          run_watch_tests() {
+            local rc=0
+            rm -rf build/watch.xcresult
+            xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWakeWatch -destination "id=$WATCH_SIM" \
+              -derivedDataPath build/DerivedData -resultBundlePath build/watch.xcresult \
+              -test-timeouts-enabled YES -default-test-execution-time-allowance 60 -maximum-test-execution-time-allowance 120 \
+              CODE_SIGNING_ALLOWED=NO test-without-building > build/watch-test.log 2>&1 || rc=$?
+            cat build/watch-test.log >> build.log
+            return "$rc"
+          }
+          install_watch_app
+          if ! run_watch_tests; then
+            grep -qE 'Simulator device failed to launch|Unknown application display identifier' build/watch-test.log || exit 1
+            echo "::warning title=Tests Watch-App::Simulator hat die Watch-App nicht gestartet: einmal neu versucht"
+            install_watch_app
+            run_watch_tests
+          fi
           grep -E "Executed [0-9]+ tests?" build.log | tail -1 | sed 's/^/::notice title=Tests Watch-App::/'
       - name: Warnungen (Übersicht)
         if: always()
         shell: bash
         run: |
           set +e +o pipefail
+          # Alle Warnungen von iPhone- und Watch-App in einem Hinweis: GitHub zeigt je Schritt höchstens 10 Hinweise,
+          # eine Zeile je Warnung zeigte nur die ersten neun. Läuft auf macOS: awk statt GNU-sed.
           w=$(grep -E "warning:" build.log | grep -v "^ld: warning: ignoring duplicate" | sed -E 's#^.*/ios/##' | sort -u)
           n=$(printf '%s\n' "$w" | grep -c .)
-          echo "::notice title=Xcode-Warnungen::$n Stück"
-          printf '%s\n' "$w" | grep . | cut -c1-300 | head -9 | while read -r line; do echo "::notice title=Xcode-Warnung::$line"; done
+          echo "::notice title=Xcode-Warnungen ($n)::$(printf '%s\n' "$w" | grep . | cut -c1-300 | sed 's/%/%25/g' | awk 'BEGIN{ORS="%0A"}{print}')"
           exit 0
       - name: Fehler als Annotation
         if: failure()

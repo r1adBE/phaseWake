@@ -91,6 +91,8 @@
     <string name="settings_evening_dark_text">%1$s – %2$s अँध्यारो, सिस्टम वा उज्यालो छानेमा पनि।</string>
     <string name="settings_evening_dark_from">अँध्यारो सुरु</string>
     <string name="settings_evening_dark_now">अहिले लागू – %1$s देखि उज्यालो</string>
+    <string name="settings_evening_dark_until">उज्यालो सुरु</string>
+    <string name="settings_evening_dark_same">सुरु र अन्त्य उस्तै – कहिल्यै अँध्यारो हुँदैन।</string>
     <string name="settings_data">तिम्रो डेटा</string>
     <string name="settings_data_text">सबै कुरा तिम्रो फोन र घडीमै रहन्छ। न खाता, न सर्भर, न ट्र्याकिङ। Google को घडी जडानबाट घडीको प्राविधिक जानकारी मात्र जान्छ, स्वास्थ्य डेटाबिना।</string>
     <string name="settings_export">रातहरू नाम बिना निर्यात गर</string>
@@ -634,7 +636,7 @@
     <string name="learn_tip_late">बेलुका घडीमा Phase Wake खोल्नुहोस्, ढिलोमा ढिलो रिमाइन्डर आउँदा।</string>
     <string name="learn_tip_alarm">घडीले अलार्म भएका रात मात्र रेकर्ड गर्छ।</string>
     <string name="learn_tip_connect">घडी चालु र फोनसँग जोडिएको राख्नुहोस् – अलार्मपछि यसले रेकर्डिङ पठाउँछ।</string>
-    <string name="battery_night">ब्याट्री: %1$s</string>
+    <string name="battery_night">ब्याट्री (पूरै यन्त्र): %1$s</string>
     <string name="battery_watch">घडी −%1$d %%</string>
     <string name="battery_phone">फोन −%1$d %%</string>
     <string name="editor_alarm_gone">यो अलार्म यसैबीच मेटाइसकिएको छ।</string>

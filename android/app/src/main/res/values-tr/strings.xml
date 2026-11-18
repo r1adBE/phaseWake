@@ -89,6 +89,8 @@
     <string name="settings_evening_dark_text">Koyu: %1$s – %2$s, Sistem veya Açık seçiliyken de.</string>
     <string name="settings_evening_dark_from">Koyu başlangıcı</string>
     <string name="settings_evening_dark_now">Şu an geçerli – %1$s itibarıyla açık</string>
+    <string name="settings_evening_dark_until">Açık başlangıcı</string>
+    <string name="settings_evening_dark_same">Başlangıç ve bitiş aynı – hiç koyu olmaz.</string>
     <string name="settings_data">Verilerin</string>
     <string name="settings_data_text">Her şey telefonunda ve saatinde kalır. Hesap yok, sunucu yok, takip yok. Google’ın saat bağlantısından yalnızca saatle ilgili teknik bilgiler geçer, sağlık verileri olmadan.</string>
     <string name="settings_export">Geceleri isimsiz dışa aktar</string>
@@ -631,7 +633,7 @@
     <string name="learn_tip_late">Akşam Phase Wake\'i saatte aç, en geç hatırlatma geldiğinde.</string>
     <string name="learn_tip_alarm">Saat yalnızca alarmlı geceleri kaydeder.</string>
     <string name="learn_tip_connect">Saati açık ve telefonuna bağlı tut – kaydı alarmdan sonra gönderir.</string>
-    <string name="battery_night">Pil: %1$s</string>
+    <string name="battery_night">Pil (tüm cihaz): %1$s</string>
     <string name="battery_watch">Saat −%%%1$d</string>
     <string name="battery_phone">Telefon −%%%1$d</string>
     <string name="editor_alarm_gone">Bu alarm bu arada silindi.</string>

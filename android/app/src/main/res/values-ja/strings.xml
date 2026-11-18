@@ -88,6 +88,8 @@
     <string name="settings_evening_dark_text">%1$s～%2$s はダーク（システム・ライト選択時も）。</string>
     <string name="settings_evening_dark_from">ダーク開始</string>
     <string name="settings_evening_dark_now">現在適用中 – %1$s からライト</string>
+    <string name="settings_evening_dark_until">ライト開始</string>
+    <string name="settings_evening_dark_same">開始と終了が同じ – ダークになりません。</string>
     <string name="settings_data">あなたのデータ</string>
     <string name="settings_data_text">すべてスマートフォンとウォッチ内に保存されます。アカウントもサーバーもトラッキングもありません。Google のウォッチ接続を通るのはウォッチの技術情報のみで、健康データは含みません。</string>
     <string name="settings_export">睡眠記録を名前なしでエクスポート</string>
@@ -617,7 +619,7 @@
     <string name="learn_tip_late">夜にウォッチで Phase Wake を開いてください。遅くともリマインダーのときに。</string>
     <string name="learn_tip_alarm">ウォッチはアラームのある夜だけを記録します。</string>
     <string name="learn_tip_connect">ウォッチの電源を入れたまま、スマートフォンに接続しておいてください。アラームの後に記録を送ります。</string>
-    <string name="battery_night">バッテリー: %1$s</string>
+    <string name="battery_night">バッテリー（端末全体）: %1$s</string>
     <string name="battery_watch">ウォッチ −%1$d %%</string>
     <string name="battery_phone">スマホ −%1$d %%</string>
     <string name="editor_alarm_gone">このアラームはすでに削除されています。</string>

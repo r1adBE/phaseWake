@@ -93,6 +93,8 @@
     <string name="settings_evening_dark_text">Dark from %1$s to %2$s, even with System or Light.</string>
     <string name="settings_evening_dark_from">Dark from</string>
     <string name="settings_evening_dark_now">Active now – light from %1$s</string>
+    <string name="settings_evening_dark_until">Light from</string>
+    <string name="settings_evening_dark_same">Same start and end – never dark.</string>
     <string name="settings_data">Your data</string>
     <string name="settings_data_text">Everything stays on your phone and watch. No account, no server, no tracking. Only technical watch information goes through Google’s watch connection, without health data.</string>
     <string name="settings_export">Export nights without name</string>
@@ -637,7 +639,7 @@
     <string name="learn_tip_late">Open Phase Wake on the watch in the evening, at the latest when it reminds you.</string>
     <string name="learn_tip_alarm">The watch only records nights with an alarm.</string>
     <string name="learn_tip_connect">Keep the watch switched on and connected to your phone – it sends the recording after the alarm.</string>
-    <string name="battery_night">Battery: %1$s</string>
+    <string name="battery_night">Battery (whole device): %1$s</string>
     <string name="battery_watch" tools:ignore="PluralsCandidate">Watch −%1$d %%</string>
     <string name="battery_phone" tools:ignore="PluralsCandidate">Phone −%1$d %%</string>
     <string name="editor_alarm_gone">This alarm was deleted in the meantime.</string>

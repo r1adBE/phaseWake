@@ -305,6 +305,7 @@ private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavAction
             onThemeMode = { app.appScope.launch { app.settings.setThemeMode(it) } },
             onEveningDark = { app.appScope.launch { app.settings.setEveningDark(it) } },
             onEveningDarkFrom = { app.appScope.launch { app.settings.setEveningDarkFrom(it) } },
+            onEveningDarkUntil = { app.appScope.launch { app.settings.setEveningDarkUntil(it) } },
             onExport = actions.onExport,
             onClearHistory = {
                 // Nach der Rückfrage noch die Gerätesperre (falls eingerichtet); Abbruch löscht nichts.

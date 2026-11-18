@@ -104,7 +104,7 @@ private val DarkBrand = BrandColors(
 
 /**
  * Hell: «Creme Caramel» (Variante Caramel + Lavendel). Fläche Creme #FBF3E6, Karten warmes
- * Weiss, Lavendel #7B6CF6 bleibt der Hauptakzent (Welle, Diagramme, Ränder), Caramel der sparsame Zweitakzent (gewählte
+ * Weiss, Lavendel #7B6CF6 bleibt der Hauptakzent (Welle, Diagramme), Caramel der sparsame Zweitakzent (gewählte
  * Chips, Tertiär, Sonnenaufgang). Kontraste: SkyPageContrastTest.
  */
 internal val LightBrand = BrandColors(
@@ -119,13 +119,14 @@ internal val LightBrand = BrandColors(
     chartActive = Color(0xFF7B6CF6),
     chartTrack = Color(0xFFF1E7D8),
     card = Creme.Card,
-    // 90 %: 3.3:1 auf der Karte, 3.1:1 auf der Fläche #FBF3E6.
-    chipBorder = Color(0xFF7B6CF6).copy(alpha = 0.9f),
+    // Tiefes Lavendel mit 90 %: 5.3:1 auf der Karte, 5.0:1 auf der Fläche, auf dem Tageshimmel ≥ 3.1:1.
+    chipBorder = Creme.LavenderDeep.copy(alpha = 0.9f),
     // Gewählter Chip in hellem Caramel (Zweitakzent); die Schrift darauf #2A2340 hat 11.9:1.
     chipSelected = Creme.CaramelLight,
     // 80 % Deckkraft wäre auf Hell zu schwach (< 4.5:1); daher ein fester Ton: 5.4:1 auf der Fläche, 4.8:1 auf #F4E4CC.
     mutedSoft = Color(0xFF6A5F74),
-    // Auf der Karte #FFFCF7: 4.3, 3.9, 3.9 und 11.5 : 1.
+    // Auf der Karte #FFFCF7: 4.3, 3.9, 3.9 und 11.5 : 1, auf der Fläche 4.0, 3.6, 3.6 und 10.6 : 1. Nur für Flächen,
+    // Balken und Zeichen (≥ 3:1), nie als Schrift: Legenden und Beschriftungen stehen in onSurfaceVariant.
     stageAwake = Color(0xFFCF4F3A),
     stageRem = Color(0xFF0E8C9E),
     stageLight = Color(0xFF7B6CF6),
@@ -157,6 +158,11 @@ object Creme {
     val CaramelDeep = Color(0xFFE9C9A0)
     /** Nebentext: 6.3:1 auf Creme, 5.5:1 auf #F4E4CC. */
     val Muted = Color(0xFF5E5670)
+    /**
+     * Kühles Grau-Creme für bedienbare, nicht gewählte Flächen (Zifferblatt und Feld der Uhrzeit-Wähler): 1.26:1 auf
+     * der Karte, 1.17:1 auf Creme – sichtbar, aber kein Caramel (das heisst «gewählt»).
+     */
+    val Neutral = Color(0xFFEAE2D5)
 }
 
 private val DarkScheme = darkColorScheme(
@@ -281,17 +287,21 @@ object PhaseWakeTheme {
     /** `true`, wenn gerade das dunkle Design gilt (gewählt oder vom System). */
     val isDark: Boolean @Composable get() = LocalDark.current
 
-    /** `true`, wenn «Abends dunkel ab» gerade gilt (Hinweis in den Einstellungen). */
+    /**
+     * `true`, wenn «Abends dunkel» gerade das Design ändert, die App ohne die Regel also hell wäre
+     * ([eveningChangesTheme]); für den Hinweis in den Einstellungen.
+     */
     val isEvening: Boolean @Composable get() = LocalEvening.current
 }
 
 /**
- * Design der App. [eveningDark]: «Abends dunkel ab» gilt gerade ([EveningDarkTicker]); dann ist auch «System» und
+ * Design der App. [eveningDark]: «Abends dunkel» gilt gerade ([EveningDarkTicker]); dann ist auch «System» und
  * «Hell» dunkel.
  */
 @Composable
 fun PhaseWakeTheme(mode: ThemeMode, eveningDark: Boolean = false, content: @Composable () -> Unit) {
-    val dark = resolveDark(mode, isSystemInDarkTheme(), eveningDark)
+    val systemDark = isSystemInDarkTheme()
+    val dark = resolveDark(mode, systemDark, eveningDark)
     val scheme: ColorScheme = if (dark) DarkScheme else LightScheme
     val view = LocalView.current
     if (!view.isInEditMode) {
@@ -305,7 +315,7 @@ fun PhaseWakeTheme(mode: ThemeMode, eveningDark: Boolean = false, content: @Comp
     }
     androidx.compose.runtime.CompositionLocalProvider(
         LocalBrand provides (if (dark) DarkBrand else LightBrand), LocalDark provides dark,
-        LocalEvening provides eveningDark,
+        LocalEvening provides eveningChangesTheme(mode, systemDark, eveningDark),
     ) {
         MaterialTheme(colorScheme = scheme, typography = AppTypography, shapes = AppShapes, content = content)
     }
@@ -317,3 +327,10 @@ fun resolveDark(mode: ThemeMode, systemDark: Boolean, eveningDark: Boolean): Boo
     ThemeMode.LIGHT -> eveningDark
     ThemeMode.SYSTEM -> eveningDark || systemDark
 }
+
+/**
+ * Ob «Abends dunkel» gerade etwas bewirkt: Die Regel gilt, und ohne sie wäre die App hell («Hell», oder «System» bei
+ * hellem System). Bei «System» mit dunklem System bliebe die App ohnehin dunkel; dann kein Hinweis «Gilt jetzt».
+ */
+fun eveningChangesTheme(mode: ThemeMode, systemDark: Boolean, eveningDark: Boolean): Boolean =
+    eveningDark && !resolveDark(mode, systemDark, eveningDark = false)

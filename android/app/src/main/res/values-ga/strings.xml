@@ -94,6 +94,8 @@
     <string name="settings_evening_dark_text">Dorcha ó %1$s go %2$s, fiú le Córas nó Geal.</string>
     <string name="settings_evening_dark_from">Dorcha ó</string>
     <string name="settings_evening_dark_now">I bhfeidhm anois – geal ó %1$s</string>
+    <string name="settings_evening_dark_until">Geal ó</string>
+    <string name="settings_evening_dark_same">Tús agus deireadh mar an gcéanna – ní bhíonn sé dorcha riamh.</string>
     <string name="settings_data">Do chuid sonraí</string>
     <string name="settings_data_text">Fanann gach rud ar do fhón agus ar d’uaireadóir. Gan chuntas, gan fhreastalaí, gan rianú. Ní théann ach faisnéis theicniúil faoin uaireadóir trí cheangal uaireadóra Google, gan sonraí sláinte.</string>
     <string name="settings_export">Easpórtáil oícheanta gan ainm</string>
@@ -676,7 +678,7 @@
     <string name="learn_tip_late">Oscail Phase Wake ar an uaireadóir tráthnóna, an meabhrúchán ar a dhéanaí.</string>
     <string name="learn_tip_alarm">Ní thaifeadann an t-uaireadóir ach oícheanta a bhfuil aláram iontu.</string>
     <string name="learn_tip_connect">Coinnigh an t-uaireadóir ar siúl agus ceangailte le do ghuthán – seolann sé an taifeadadh tar éis an aláraim.</string>
-    <string name="battery_night">Ceallra: %1$s</string>
+    <string name="battery_night">Ceallra (an gléas ar fad): %1$s</string>
     <string name="battery_watch">Uaireadóir −%1$d %%</string>
     <string name="battery_phone">Fón −%1$d %%</string>
     <string name="editor_alarm_gone">Scriosadh an t-aláram seo idir an dá linn.</string>

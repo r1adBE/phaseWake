@@ -109,6 +109,25 @@ class FindingTextTest {
         }
     }
 
+    /** Im Fliesstext («· in 23 Std. 20 Min») bleibt die Dauer ganz zusammen; die Zeile bricht davor um. */
+    @Test
+    fun durationInRunningTextKeepsTogether() {
+        val german = context.createConfigurationContext(
+            Configuration(context.resources.configuration).apply { setLocale(Locale.GERMAN) },
+        )
+        assertEquals(
+            "23 Std. 20 Min",
+            Format.duration(german, Duration.ofMinutes(23 * 60 + 20), keepTogether = true),
+        )
+        assertEquals("45 Min", Format.duration(german, Duration.ofMinutes(45), keepTogether = true))
+        // Korean: nur normale Leerzeichen in den Texten, zusammengehalten ebenfalls ohne.
+        val korean = context.createConfigurationContext(
+            Configuration(context.resources.configuration).apply { setLocale(Locale.KOREAN) },
+        )
+        assertTrue(' ' !in Format.duration(korean, Duration.ofMinutes(377), keepTogether = true))
+        assertTrue(' ' in Format.duration(korean, Duration.ofMinutes(377)))
+    }
+
     @Test
     fun hiddenFindingIsStored() = runBlocking {
         var now = 1_800_000_000_000L

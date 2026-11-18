@@ -89,6 +89,8 @@
     <string name="settings_evening_dark_text">ມືດແຕ່ %1$s ຫາ %2$s, ເຖິງຈະເລືອກ ລະບົບ ຫຼື ແຈ້ງ.</string>
     <string name="settings_evening_dark_from">ມືດແຕ່</string>
     <string name="settings_evening_dark_now">ໃຊ້ຢູ່ຕອນນີ້ – ແຈ້ງແຕ່ %1$s</string>
+    <string name="settings_evening_dark_until">ແຈ້ງແຕ່</string>
+    <string name="settings_evening_dark_same">ເລີ່ມ ແລະ ສິ້ນສຸດຄືກັນ – ບໍ່ມືດເລີຍ.</string>
     <string name="settings_data">ຂໍ້ມູນຂອງເຈົ້າ</string>
     <string name="settings_data_text">ທຸກຢ່າງຢູ່ໃນໂທລະສັບ ແລະ ໂມງຂອງເຈົ້າ ບໍ່ມີບັນຊີ ບໍ່ມີເຊີບເວີ ບໍ່ມີການຕິດຕາມ ມີແຕ່ຂໍ້ມູນທາງເຕັກນິກຂອງໂມງເທົ່ານັ້ນທີ່ຜ່ານການເຊື່ອມຕໍ່ໂມງຂອງ Google, ບໍ່ມີຂໍ້ມູນສຸຂະພາບ.</string>
     <string name="settings_export">ສົ່ງອອກຄືນໂດຍບໍ່ມີຊື່</string>
@@ -619,7 +621,7 @@
     <string name="learn_tip_late">ເປີດ Phase Wake ໃນໂມງໃນຕອນແລງ ຢ່າງຊ້າທີ່ສຸດເມື່ອມັນແຈ້ງເຕືອນ.</string>
     <string name="learn_tip_alarm">ໂມງບັນທຶກສະເພາະຄືນທີ່ມີໂມງປຸກເທົ່ານັ້ນ.</string>
     <string name="learn_tip_connect">ເປີດໂມງໄວ້ ແລະ ເຊື່ອມຕໍ່ກັບໂທລະສັບ – ມັນສົ່ງການບັນທຶກຫຼັງໂມງປຸກ.</string>
-    <string name="battery_night">ແບັດເຕີຣີ: %1$s</string>
+    <string name="battery_night">ແບັດເຕີຣີ (ທັງອຸປະກອນ): %1$s</string>
     <string name="battery_watch">ໂມງ −%1$d %%</string>
     <string name="battery_phone">ໂທລະສັບ −%1$d %%</string>
     <string name="editor_alarm_gone">ໂມງປຸກນີ້ຖືກລຶບໄປແລ້ວ.</string>

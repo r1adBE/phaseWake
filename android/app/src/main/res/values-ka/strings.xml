@@ -82,6 +82,8 @@
     <string name="settings_evening_dark_text">მუქი: %1$s – %2$s, სისტემური ან ღია რეჟიმშიც.</string>
     <string name="settings_evening_dark_from">მუქის დაწყება</string>
     <string name="settings_evening_dark_now">ახლა მოქმედებს – ღია %1$s-დან</string>
+    <string name="settings_evening_dark_until">ღიას დაწყება</string>
+    <string name="settings_evening_dark_same">დაწყება და დასრულება ერთნაირია – არასდროს მუქი.</string>
     <string name="settings_data">შენი მონაცემები</string>
     <string name="settings_data_text">ყველაფერი რჩება შენს ტელეფონსა და საათზე. არც ანგარიში, არც სერვერი, არც თვალთვალი. Google-ის საათის კავშირით მხოლოდ საათის ტექნიკური მონაცემები გადის, ჯანმრთელობის მონაცემების გარეშე.</string>
     <string name="settings_export">ღამეების ექსპორტი სახელის გარეშე</string>
@@ -619,7 +621,7 @@
     <string name="learn_tip_late">საღამოს გახსენი Phase Wake საათზე, უგვიანეს შეხსენებისას.</string>
     <string name="learn_tip_alarm">საათი მხოლოდ მაღვიძარიან ღამეებს იწერს.</string>
     <string name="learn_tip_connect">საათი ჩართული და ტელეფონთან დაკავშირებული დატოვე – მაღვიძარის შემდეგ ის ჩანაწერს აგზავნის.</string>
-    <string name="battery_night">ბატარეა: %1$s</string>
+    <string name="battery_night">ბატარეა (მთელი მოწყობილობა): %1$s</string>
     <string name="battery_watch">საათი −%1$d %%</string>
     <string name="battery_phone">ტელეფონი −%1$d %%</string>
     <string name="editor_alarm_gone">ეს მაღვიძარა ამასობაში წაიშალა.</string>

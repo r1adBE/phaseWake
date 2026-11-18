@@ -91,6 +91,8 @@
     <string name="settings_evening_dark_text">Тёмная с %1$s до %2$s, даже при Системная или Светлая.</string>
     <string name="settings_evening_dark_from">Тёмная с</string>
     <string name="settings_evening_dark_now">Действует сейчас – светлая с %1$s</string>
+    <string name="settings_evening_dark_until">Светлая с</string>
+    <string name="settings_evening_dark_same">Начало и конец совпадают – тёмная не включается.</string>
     <string name="settings_data">Твои данные</string>
     <string name="settings_data_text">Всё остаётся на телефоне и часах. Без аккаунта, сервера и слежки. Через подключение часов Google проходят только технические данные часов, без данных о здоровье.</string>
     <string name="settings_export">Экспорт ночей без имени</string>
@@ -659,7 +661,7 @@
     <string name="learn_tip_late">Вечером открой Phase Wake на часах, самое позднее по напоминанию.</string>
     <string name="learn_tip_alarm">Часы записывают только ночи с будильником.</string>
     <string name="learn_tip_connect">Держи часы включёнными и подключёнными к телефону – они отправляют запись после будильника.</string>
-    <string name="battery_night">Заряд: %1$s</string>
+    <string name="battery_night">Заряд (всё устройство): %1$s</string>
     <string name="battery_watch">Часы −%1$d %%</string>
     <string name="battery_phone">Телефон −%1$d %%</string>
     <string name="editor_alarm_gone">Этот будильник тем временем удалён.</string>

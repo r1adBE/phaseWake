@@ -207,8 +207,8 @@ class NextAlarmWidget : AppWidgetProvider() {
             views.setTextViewText(R.id.widget_day, timing)
             views.setViewVisibility(R.id.widget_day, View.VISIBLE)
             val feeling = night.feeling?.let { context.getString(R.string.feeling_value, feelingName(context, it)) }
-            val line = listOfNotNull(asleep?.let { Format.duration(context, Duration.ofMinutes(it)) }, feeling)
-                .joinToString(" · ")
+            val asleepText = asleep?.let { Format.duration(context, Duration.ofMinutes(it), keepTogether = true) }
+            val line = listOfNotNull(asleepText, feeling).joinToString(" · ")
             views.setTextViewText(R.id.widget_check, line)
             views.setViewVisibility(R.id.widget_check, if (line.isEmpty()) View.GONE else View.VISIBLE)
         }

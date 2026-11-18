@@ -89,6 +89,8 @@
     <string name="settings_evening_dark_text">تیره از %1$s تا %2$s، حتی با سیستم یا روشن.</string>
     <string name="settings_evening_dark_from">تیره از</string>
     <string name="settings_evening_dark_now">اکنون فعال است – روشن از %1$s</string>
+    <string name="settings_evening_dark_until">روشن از</string>
+    <string name="settings_evening_dark_same">شروع و پایان یکسان است – هرگز تیره نمی‌شود.</string>
     <string name="settings_data">داده‌های تو</string>
     <string name="settings_data_text">همه‌چیز روی گوشی و ساعتت می‌ماند. بدون حساب، بدون سرور، بدون ردیابی. از اتصال ساعت Google فقط اطلاعات فنی ساعت می‌گذرد، بدون داده‌های سلامت.</string>
     <string name="settings_export">خروجی شب‌ها بدون نام</string>
@@ -631,7 +633,7 @@
     <string name="learn_tip_late">عصر Phase Wake را روی ساعت باز کن، حداکثر وقتی یادآوری می‌کند.</string>
     <string name="learn_tip_alarm">ساعت فقط شب‌هایی را که زنگ هشدار دارند ضبط می‌کند.</string>
     <string name="learn_tip_connect">ساعت را روشن و متصل به گوشی نگه دار – ضبط را بعد از زنگ هشدار می‌فرستد.</string>
-    <string name="battery_night">باتری: %1$s</string>
+    <string name="battery_night">باتری (کل دستگاه): %1$s</string>
     <string name="battery_watch">ساعت −%1$d %%</string>
     <string name="battery_phone">گوشی −%1$d %%</string>
     <string name="editor_alarm_gone">این زنگ در این فاصله حذف شده است.</string>

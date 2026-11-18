@@ -91,6 +91,8 @@
     <string name="settings_evening_dark_text">Темна з %1$s до %2$s, навіть із Системна чи Світла.</string>
     <string name="settings_evening_dark_from">Темна з</string>
     <string name="settings_evening_dark_now">Діє зараз – світла з %1$s</string>
+    <string name="settings_evening_dark_until">Світла з</string>
+    <string name="settings_evening_dark_same">Початок і кінець однакові – темна не вмикається.</string>
     <string name="settings_data">Твої дані</string>
     <string name="settings_data_text">Усе залишається на телефоні та годиннику. Без облікового запису, сервера й стеження. Через підключення годинника Google проходять лише технічні дані годинника, без даних про здоров’я.</string>
     <string name="settings_export">Експорт ночей без імені</string>
@@ -659,7 +661,7 @@
     <string name="learn_tip_late">Увечері відкрий Phase Wake на годиннику, найпізніше за нагадуванням.</string>
     <string name="learn_tip_alarm">Годинник записує лише ночі з будильником.</string>
     <string name="learn_tip_connect">Тримай годинник увімкненим і підключеним до телефона – він надсилає запис після будильника.</string>
-    <string name="battery_night">Заряд: %1$s</string>
+    <string name="battery_night">Заряд (увесь пристрій): %1$s</string>
     <string name="battery_watch">Годинник −%1$d %%</string>
     <string name="battery_phone">Телефон −%1$d %%</string>
     <string name="editor_alarm_gone">Цей будильник тим часом видалено.</string>

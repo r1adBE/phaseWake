@@ -88,6 +88,8 @@
     <string name="settings_evening_dark_text">%1$s~%2$s 다크, 시스템 또는 라이트에서도 적용.</string>
     <string name="settings_evening_dark_from">다크 시작</string>
     <string name="settings_evening_dark_now">지금 적용 중 – %1$s부터 라이트</string>
+    <string name="settings_evening_dark_until">라이트 시작</string>
+    <string name="settings_evening_dark_same">시작과 종료가 같음 – 다크로 바뀌지 않음</string>
     <string name="settings_data">내 데이터</string>
     <string name="settings_data_text">모든 데이터는 휴대폰과 워치에만 저장돼요. 계정도, 서버도, 추적도 없어요. Google 워치 연결로는 워치의 기술 정보만 오가며 건강 데이터는 포함되지 않습니다.</string>
     <string name="settings_export">수면 기록 이름 없이 내보내기</string>
@@ -617,7 +619,7 @@
     <string name="learn_tip_late">저녁에 시계에서 Phase Wake를 여세요. 늦어도 알림이 올 때요.</string>
     <string name="learn_tip_alarm">시계는 알람이 있는 밤만 기록합니다.</string>
     <string name="learn_tip_connect">시계를 켜 두고 휴대폰과 연결해 두세요. 알람 후에 기록을 보냅니다.</string>
-    <string name="battery_night">배터리: %1$s</string>
+    <string name="battery_night">배터리(기기 전체): %1$s</string>
     <string name="battery_watch">워치 −%1$d %%</string>
     <string name="battery_phone">휴대폰 −%1$d %%</string>
     <string name="editor_alarm_gone">이 알람은 그사이 삭제됐어요.</string>

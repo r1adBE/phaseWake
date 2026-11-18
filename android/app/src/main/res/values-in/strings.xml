@@ -88,6 +88,8 @@
     <string name="settings_evening_dark_text">Gelap dari %1$s sampai %2$s, juga dengan Sistem atau Terang.</string>
     <string name="settings_evening_dark_from">Gelap mulai</string>
     <string name="settings_evening_dark_now">Aktif sekarang – terang mulai %1$s</string>
+    <string name="settings_evening_dark_until">Terang mulai</string>
+    <string name="settings_evening_dark_same">Mulai dan selesai sama – tidak pernah gelap.</string>
     <string name="settings_data">Datamu</string>
     <string name="settings_data_text">Semua tetap di ponsel dan jam tanganmu. Tanpa akun, tanpa server, tanpa pelacakan. Hanya info teknis jam yang lewat koneksi jam Google, tanpa data kesehatan.</string>
     <string name="settings_export">Ekspor malam tanpa nama</string>
@@ -617,7 +619,7 @@
     <string name="learn_tip_late">Buka Phase Wake di jam pada malam hari, paling lambat saat pengingat muncul.</string>
     <string name="learn_tip_alarm">Jam hanya merekam malam yang ada alarmnya.</string>
     <string name="learn_tip_connect">Biarkan jam menyala dan terhubung ke ponselmu – jam mengirim rekaman setelah alarm.</string>
-    <string name="battery_night">Baterai: %1$s</string>
+    <string name="battery_night">Baterai (seluruh perangkat): %1$s</string>
     <string name="battery_watch">Jam tangan −%1$d %%</string>
     <string name="battery_phone">Ponsel −%1$d %%</string>
     <string name="editor_alarm_gone">Alarm ini sudah dihapus.</string>

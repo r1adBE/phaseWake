@@ -13,7 +13,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-/** «Abends dunkel ab» in der App: Design-Auflösung und der Ticker zur nächsten Grenze. */
+/** «Abends dunkel» in der App: Design-Auflösung, Hinweis «Gilt jetzt» und der Ticker zur nächsten Grenze. */
 class EveningDarkTickerTest {
 
     private val zone = ZoneId.of("Europe/Zurich")
@@ -25,6 +25,19 @@ class EveningDarkTickerTest {
             assertTrue(resolveDark(ThemeMode.DARK, system, evening))
             assertEquals(evening, resolveDark(ThemeMode.LIGHT, system, evening))
             assertEquals(evening || system, resolveDark(ThemeMode.SYSTEM, system, evening))
+        }
+    }
+
+    @Test
+    fun hintOnlyWhenTheRuleChangesSomething() {
+        // «Gilt jetzt» nur, wenn die App ohne die Regel hell wäre: «Hell», oder «System» bei hellem System.
+        assertTrue(eveningChangesTheme(ThemeMode.LIGHT, systemDark = false, eveningDark = true))
+        assertTrue(eveningChangesTheme(ThemeMode.LIGHT, systemDark = true, eveningDark = true))
+        assertTrue(eveningChangesTheme(ThemeMode.SYSTEM, systemDark = false, eveningDark = true))
+        assertFalse(eveningChangesTheme(ThemeMode.SYSTEM, systemDark = true, eveningDark = true))
+        assertFalse(eveningChangesTheme(ThemeMode.DARK, systemDark = false, eveningDark = true))
+        for (mode in ThemeMode.entries) for (system in listOf(false, true)) {
+            assertFalse(eveningChangesTheme(mode, system, eveningDark = false))
         }
     }
 
@@ -54,6 +67,21 @@ class EveningDarkTickerTest {
             EveningDarkTicker.flow(setting, now = { at }, zone = { zone }).take(2).collect {
                 seen += it
                 if (seen.size == 1) setting.value = EveningDarkSetting(enabled = false)
+            }
+        }
+        assertEquals(listOf(true, false), seen)
+    }
+
+    @Test
+    fun endIsTakenFromTheSetting() = runBlocking {
+        // 06:30 Ortszeit: mit «Hell ab 07:00» dunkel; auf 06:00 gestellt → sofort hell.
+        val setting = MutableStateFlow(EveningDarkSetting(untilMinutes = 7 * 60))
+        val at = Instant.parse("2026-11-17T05:30:00Z")
+        val seen = mutableListOf<Boolean>()
+        withTimeout(5_000) {
+            EveningDarkTicker.flow(setting, now = { at }, zone = { zone }).take(2).collect {
+                seen += it
+                if (seen.size == 1) setting.value = EveningDarkSetting(untilMinutes = 6 * 60)
             }
         }
         assertEquals(listOf(true, false), seen)

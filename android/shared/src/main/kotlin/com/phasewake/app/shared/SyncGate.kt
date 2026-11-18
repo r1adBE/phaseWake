@@ -4,8 +4,9 @@ import android.content.Context
 import java.io.File
 
 /**
- * Anfrage nach dem Stand der Gegenseite beim Prozessstart ([WearSync.requestSyncOnStart]) höchstens alle
- * [MIN_INTERVAL_MS]: Startet ein Prozess nachts mehrmals neu, fragt er nicht jedes Mal. Der Zeitpunkt
+ * Anfrage nach dem Stand der Gegenseite beim Prozessstart ([WearSync.requestSyncOnStart]) bzw. beim Fortsetzen der
+ * Uhr-App ([WearSync.requestSyncOnResume], eigene Datei) höchstens alle [MIN_INTERVAL_MS]: Startet ein Prozess
+ * nachts mehrmals neu, fragt er nicht jedes Mal. Der Zeitpunkt
  * der letzten gesendeten Anfrage liegt in [file] (übersteht das Prozessende). Was sich ändert, kommt ohnehin über die
  * Warteschlange; die Anfrage holt nur einen verpassten Stand nach.
  */
@@ -22,6 +23,9 @@ class SyncGate(private val file: File, private val now: () -> Long = System::cur
         }
     }
 
+    /** Zeitpunkt (ms) der letzten gemerkten Anfrage; `null`: noch nie oder unlesbar. */
+    fun lastAt(): Long? = last()
+
     private fun last(): Long? =
         runCatching { if (file.exists()) file.readText().trim().toLongOrNull() else null }.getOrNull()
 
@@ -35,8 +39,12 @@ class SyncGate(private val file: File, private val now: () -> Long = System::cur
          */
         fun due(last: Long?, now: Long): Boolean = last == null || now < last || now - last >= MIN_INTERVAL_MS
 
-        /** Die Datei dieses Geräts (im Ordner der Warteschlange, nicht gesichert). */
+        /** Die Datei dieses Geräts für den Prozessstart (im Ordner der Warteschlange, nicht gesichert). */
         fun forContext(context: Context): SyncGate =
             SyncGate(File(context.applicationContext.filesDir, "outbox/sync-requested"))
+
+        /** Die Datei für das Fortsetzen: Eine Anfrage beim Fortsetzen hält die beim nächsten Prozessstart nicht auf. */
+        fun forResume(context: Context): SyncGate =
+            SyncGate(File(context.applicationContext.filesDir, "outbox/sync-requested-resume"))
     }
 }

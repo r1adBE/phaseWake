@@ -41,10 +41,11 @@ class SettingsRepository(
         store.edit { it[THEME] = mode.name }
     }
 
-    /** «Abends dunkel ab» (Standard an, ab 20:00). */
+    /** «Abends dunkel» (Standard an, 20:00 bis 06:00). */
     val eveningDark: Flow<EveningDarkSetting> = store.data.map { prefs ->
         EveningDarkSetting(
             prefs[EVENING_DARK] ?: EveningDark.DEFAULT_ENABLED, EveningDark.checkedFrom(prefs[EVENING_DARK_FROM]),
+            EveningDark.checkedUntil(prefs[EVENING_DARK_UNTIL]),
         )
     }.distinctUntilChanged()
 
@@ -54,6 +55,10 @@ class SettingsRepository(
 
     suspend fun setEveningDarkFrom(minutes: Int) {
         store.edit { it[EVENING_DARK_FROM] = EveningDark.checkedFrom(minutes) }
+    }
+
+    suspend fun setEveningDarkUntil(minutes: Int) {
+        store.edit { it[EVENING_DARK_UNTIL] = EveningDark.checkedUntil(minutes) }
     }
 
     /** Schlafziel in Minuten (Standard 7½ h). */
@@ -296,6 +301,7 @@ class SettingsRepository(
             autoOnset = prefs[AUTO_ONSET] ?: true,
             eveningDark = prefs[EVENING_DARK] ?: EveningDark.DEFAULT_ENABLED,
             eveningDarkFrom = EveningDark.checkedFrom(prefs[EVENING_DARK_FROM]),
+            eveningDarkUntil = EveningDark.checkedUntil(prefs[EVENING_DARK_UNTIL]),
         )
     }
 
@@ -321,6 +327,7 @@ class SettingsRepository(
         prefs[AUTO_ONSET_AT] = Instant.now().toEpochMilli()
         prefs[EVENING_DARK] = settings.eveningDark
         prefs[EVENING_DARK_FROM] = EveningDark.checkedFrom(settings.eveningDarkFrom)
+        prefs[EVENING_DARK_UNTIL] = EveningDark.checkedUntil(settings.eveningDarkUntil)
     }
 
     companion object {
@@ -345,6 +352,7 @@ class SettingsRepository(
         private val THEME = stringPreferencesKey("theme_mode")
         private val EVENING_DARK = booleanPreferencesKey("evening_dark")
         private val EVENING_DARK_FROM = intPreferencesKey("evening_dark_from")
+        private val EVENING_DARK_UNTIL = intPreferencesKey("evening_dark_until")
         private val SLEEP_GOAL = intPreferencesKey("sleep_goal_minutes")
         private val SLEEP_GOAL_AT = longPreferencesKey("sleep_goal_updated_at")
         private val BEDTIME_REMINDER = booleanPreferencesKey("bedtime_reminder")

@@ -90,6 +90,8 @@
     <string name="settings_evening_dark_text">%1$s – %2$s گہرا، سسٹم یا روشن چننے پر بھی۔</string>
     <string name="settings_evening_dark_from">گہرا شروع</string>
     <string name="settings_evening_dark_now">ابھی لاگو – %1$s سے روشن</string>
+    <string name="settings_evening_dark_until">روشن شروع</string>
+    <string name="settings_evening_dark_same">شروع اور اختتام ایک جیسے – کبھی گہرا نہیں۔</string>
     <string name="settings_data">تمہارا ڈیٹا</string>
     <string name="settings_data_text">سب کچھ تمہارے فون اور گھڑی پر رہتا ہے۔ نہ اکاؤنٹ، نہ سرور، نہ ٹریکنگ۔ Google کے گھڑی کنکشن سے صرف گھڑی کی تکنیکی معلومات جاتی ہیں، صحت کے ڈیٹا کے بغیر۔</string>
     <string name="settings_export">راتیں نام کے بغیر ایکسپورٹ کرو</string>
@@ -633,7 +635,7 @@
     <string name="learn_tip_late">شام کو گھڑی پر Phase Wake کھولیں، زیادہ سے زیادہ یاد دہانی آنے پر۔</string>
     <string name="learn_tip_alarm">گھڑی صرف الارم والی راتیں ریکارڈ کرتی ہے۔</string>
     <string name="learn_tip_connect">گھڑی کو آن اور فون سے جڑا رکھیں – یہ الارم کے بعد ریکارڈنگ بھیجتی ہے۔</string>
-    <string name="battery_night">بیٹری: %1$s</string>
+    <string name="battery_night">بیٹری (پورا آلہ): %1$s</string>
     <string name="battery_watch">گھڑی −%1$d %%</string>
     <string name="battery_phone">فون −%1$d %%</string>
     <string name="editor_alarm_gone">یہ الارم اس دوران حذف ہو چکا ہے۔</string>

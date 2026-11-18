@@ -112,9 +112,25 @@ class SkyPageContrastTest {
             assertTrue(SunriseSky.contrast(chip, bg) >= NON_TEXT, "Chiprand auf $bg")
         }
         assertTrue(SunriseSky.contrast(c.outline, c.surfaceVariant) >= NON_TEXT, "Rand auf hellem Caramel")
+        // Phasenfarben auch auf der Fläche der Seiten; als Schrift zu hell (darum nie Text, Legenden in Nebentext).
+        for (stage in listOf(b.stageAwake, b.stageRem, b.stageLight, b.stageDeep)) {
+            assertTrue(SunriseSky.contrast(stage, c.surface) >= NON_TEXT, "Phase $stage auf der Fläche")
+        }
+        assertTrue(SunriseSky.contrast(b.stageLight, b.card) < SunriseSky.MIN_CONTRAST)
         // Caramel selbst ist zu hell für Text (darum CaramelText), Lavendel ebenso (darum LavenderDeep).
         assertTrue(SunriseSky.contrast(Creme.Caramel, c.background) < SunriseSky.MIN_CONTRAST)
         assertTrue(SunriseSky.contrast(Creme.Lavender, c.background) < SunriseSky.MIN_CONTRAST)
+    }
+
+    /** Rand eines nicht gewählten Chips (hell) ≥ 3:1 auch auf dem Tageshimmel jeder Stimmung und Höhe. */
+    @Test
+    fun chipBorderVisibleOnDaySky() {
+        val border = com.phasewake.app.ui.theme.LightBrand.chipBorder
+        for (mood in moods) for (y in 0..20) {
+            val sky = mood.daySkyAt(y / 20f)
+            val chip = mixColor(sky, border.copy(alpha = 1f), border.alpha)
+            assertTrue(SunriseSky.contrast(chip, sky) >= NON_TEXT, "Chiprand auf $sky")
+        }
     }
 
     private companion object {

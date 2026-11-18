@@ -90,6 +90,8 @@
     <string name="settings_evening_dark_text">Тъмен от %1$s до %2$s, също при Системен или Светъл.</string>
     <string name="settings_evening_dark_from">Тъмен от</string>
     <string name="settings_evening_dark_now">Важи сега – светъл от %1$s</string>
+    <string name="settings_evening_dark_until">Светъл от</string>
+    <string name="settings_evening_dark_same">Началото и краят съвпадат – никога тъмен.</string>
     <string name="settings_data">Твоите данни</string>
     <string name="settings_data_text">Всичко остава на телефона и часовника. Без акаунт, без сървър, без проследяване. През връзката с часовника на Google минават само технически данни за часовника, без здравни данни.</string>
     <string name="settings_export">Експорт на нощите без име</string>
@@ -633,7 +635,7 @@
     <string name="learn_tip_late">Отвори Phase Wake на часовника вечерта, най-късно при напомнянето.</string>
     <string name="learn_tip_alarm">Часовникът записва само нощи с аларма.</string>
     <string name="learn_tip_connect">Остави часовника включен и свързан с телефона – той изпраща записа след алармата.</string>
-    <string name="battery_night">Батерия: %1$s</string>
+    <string name="battery_night">Батерия (цялото устройство): %1$s</string>
     <string name="battery_watch">Часовник −%1$d %%</string>
     <string name="battery_phone">Телефон −%1$d %%</string>
     <string name="editor_alarm_gone">Този будилник междувременно е изтрит.</string>

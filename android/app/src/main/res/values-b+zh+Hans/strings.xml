@@ -88,6 +88,8 @@
     <string name="settings_evening_dark_text">%1$s – %2$s 使用深色，即使选择了“跟随系统”或“浅色”。</string>
     <string name="settings_evening_dark_from">深色开始时间</string>
     <string name="settings_evening_dark_now">当前生效 – %1$s 起恢复浅色</string>
+    <string name="settings_evening_dark_until">浅色开始时间</string>
+    <string name="settings_evening_dark_same">开始与结束相同 – 永不变为深色。</string>
     <string name="settings_data">你的数据</string>
     <string name="settings_data_text">所有数据都只保存在手机和手表上。无需账号，没有服务器，不做跟踪。只有手表的技术信息会经过 Google 的手表连接，不含健康数据。</string>
     <string name="settings_export">不含姓名导出睡眠记录</string>
@@ -617,7 +619,7 @@
     <string name="learn_tip_late">晚上在手表上打开 Phase Wake，最迟在收到提醒时。</string>
     <string name="learn_tip_alarm">手表只记录有闹钟的夜晚。</string>
     <string name="learn_tip_connect">让手表保持开机并与手机连接——它会在闹钟后发送记录。</string>
-    <string name="battery_night">电量：%1$s</string>
+    <string name="battery_night">电量（整机）：%1$s</string>
     <string name="battery_watch">手表 −%1$d %%</string>
     <string name="battery_phone">手机 −%1$d %%</string>
     <string name="editor_alarm_gone">这个闹钟已被删除。</string>

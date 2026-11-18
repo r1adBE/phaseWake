@@ -17,7 +17,7 @@ struct MiniHypnogram: View {
     @Environment(\.displayScale) private var displayScale
 
     /// Abstand zwischen den Stufen in Punkten.
-    private static let rowGap: CGFloat = 3
+    nonisolated private static let rowGap: CGFloat = 3
     /// Mindestbreite eines Blocks für gerundete Ecken; schmalere Blöcke bleiben eckig (wie Android).
     private static let roundMin: CGFloat = 6
 

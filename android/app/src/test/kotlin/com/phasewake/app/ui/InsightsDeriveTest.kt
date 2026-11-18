@@ -45,6 +45,17 @@ class InsightsDeriveTest {
         val first = derive(inputs())
         eager.last = first
         assertSame(first, eager.takeFor(inputs()))
+        assertNull(eager.takeFor(inputs()), "nur einmal übernommen")
+        eager.last = first
         assertNull(eager.takeFor(inputs(goal = 420)))
+    }
+
+    @Test
+    fun changeAndBackComputesTheCurrentState() {
+        // Schlafziel hin und zurück: Für das Zurück gilt nicht mehr das Ergebnis vom Start (Uhrzeit von damals).
+        val eager = EagerDerived()
+        eager.last = derive(inputs())
+        assertNull(eager.takeFor(inputs(goal = 420)))
+        assertNull(eager.takeFor(inputs()))
     }
 }

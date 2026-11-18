@@ -1,0 +1,75 @@
+name: CI wiederholen
+
+# Startet einen CI-Lauf neu, wenn ein Apple-Job keinen macOS-Runner bekam («not acquired by Runner», Engpass bei
+# GitHub). Wiederholt werden nur die gescheiterten Jobs (Android bleibt grün stehen), höchstens bis zum 3. Versuch.
+# Ein echter Fehler wird nie wiederholt: Scheitert ausser solchen Apple-Jobs noch ein anderer Job, bleibt der Lauf rot.
+# Kein Checkout, kein Code aus dem Repo: nur Abfragen und der Neustart über die API.
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-retry-${{ github.event.workflow_run.id }}
+  cancel-in-progress: false
+
+jobs:
+  retry:
+    name: Ohne Runner abgebrochen?
+    if: >-
+      (github.event.workflow_run.conclusion == 'failure' || github.event.workflow_run.conclusion == 'cancelled')
+      && github.event.workflow_run.run_attempt < 3
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write
+      checks: read
+    steps:
+      - name: Prüfen und neu starten
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          ATTEMPT: ${{ github.event.workflow_run.run_attempt }}
+          WORKFLOW_ID: ${{ github.event.workflow_run.workflow_id }}
+          BRANCH: ${{ github.event.workflow_run.head_branch }}
+          EVENT: ${{ github.event.workflow_run.event }}
+        run: |
+          set -euo pipefail
+          # Nur der neueste Lauf seines Zweigs: Ein neuerer hat diesen abgelöst, und ein Neustart des alten würde ihn
+          # abbrechen (gleiche Gruppe in ci.yml).
+          latest=$(gh api -X GET "repos/$REPO/actions/workflows/$WORKFLOW_ID/runs" \
+                     -f branch="$BRANCH" -f event="$EVENT" -f per_page=1 --jq '.workflow_runs[0].id // empty')
+          if [ "$latest" != "$RUN_ID" ]; then
+            echo "::notice title=CI wiederholen::Lauf $RUN_ID ist nicht mehr der neueste ($latest): kein Neustart"
+            exit 0
+          fi
+          # Gescheiterte Jobs dieses Versuchs; je Job die Annotationen seines Check-Runs.
+          failed=$(gh api "repos/$REPO/actions/runs/$RUN_ID/attempts/$ATTEMPT/jobs?per_page=100" \
+                     --jq '.jobs[] | select(.conclusion == "failure" or .conclusion == "cancelled" or .conclusion == "timed_out")
+                           | "\(.check_run_url | split("/") | last)\t\(.name)"')
+          runner=""; other=""
+          while IFS=$'\t' read -r check name; do
+            [ -n "$check" ] || continue
+            [[ "$check" =~ ^[0-9]+$ ]] || { other="$other; $name"; continue; }
+            notes=$(gh api "repos/$REPO/check-runs/$check/annotations?per_page=100" --jq '.[].message')
+            if [[ "$name" == Apple-* ]] && grep -qF "not acquired by Runner" <<< "$notes"; then
+              runner="$runner; $name"
+            else
+              other="$other; $name"
+            fi
+          done <<< "$failed"
+          if [ -z "$runner" ]; then
+            echo "::notice title=CI wiederholen::Kein Apple-Job ohne Runner: kein Neustart"
+            exit 0
+          fi
+          if [ -n "$other" ]; then
+            echo "::notice title=CI wiederholen::Auch andere Jobs gescheitert (${other#; }): kein Neustart"
+            exit 0
+          fi
+          gh api -X POST "repos/$REPO/actions/runs/$RUN_ID/rerun-failed-jobs" > /dev/null
+          echo "::notice title=CI wiederholen::Ohne Runner abgebrochen (${runner#; }): Versuch $((ATTEMPT + 1)) gestartet"

@@ -90,6 +90,8 @@
     <string name="settings_evening_dark_text">Scuro da %1$s a %2$s, anche con Sistema o Chiaro.</string>
     <string name="settings_evening_dark_from">Scuro da</string>
     <string name="settings_evening_dark_now">Attivo ora – chiaro dalle %1$s</string>
+    <string name="settings_evening_dark_until">Chiaro da</string>
+    <string name="settings_evening_dark_same">Inizio e fine uguali – mai scuro.</string>
     <string name="settings_data">I tuoi dati</string>
     <string name="settings_data_text">Tutto resta sul telefono e sullo smartwatch. Nessun account, nessun server, nessun tracciamento. Tramite la connessione dell’orologio di Google passano solo dati tecnici dell’orologio, senza dati sanitari.</string>
     <string name="settings_export">Esporta le notti senza nome</string>
@@ -645,7 +647,7 @@
     <string name="learn_tip_late">Apri Phase Wake sull’orologio la sera, al più tardi quando te lo ricorda.</string>
     <string name="learn_tip_alarm">L’orologio registra solo le notti con una sveglia.</string>
     <string name="learn_tip_connect">Tieni l’orologio acceso e collegato al telefono: invia la registrazione dopo la sveglia.</string>
-    <string name="battery_night">Batteria: %1$s</string>
+    <string name="battery_night">Batteria (intero dispositivo): %1$s</string>
     <string name="battery_watch">Smartwatch −%1$d %%</string>
     <string name="battery_phone">Telefono −%1$d %%</string>
     <string name="editor_alarm_gone">Questa sveglia è stata eliminata nel frattempo.</string>

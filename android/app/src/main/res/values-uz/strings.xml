@@ -91,6 +91,8 @@
     <string name="settings_evening_dark_text">Qorongʻi: %1$s – %2$s, Tizim yoki Yorugʻ tanlanganda ham.</string>
     <string name="settings_evening_dark_from">Qorongʻi boshlanishi</string>
     <string name="settings_evening_dark_now">Hozir amalda – %1$s dan yorugʻ</string>
+    <string name="settings_evening_dark_until">Yorugʻ boshlanishi</string>
+    <string name="settings_evening_dark_same">Boshlanish va tugash bir xil – hech qachon qorongʻi emas.</string>
     <string name="settings_data">Maʼlumotlaring</string>
     <string name="settings_data_text">Hammasi telefoning va soatingda qoladi. Hisob yoʻq, server yoʻq, kuzatuv yoʻq. Google soat ulanishi orqali faqat soatning texnik maʼlumotlari oʻtadi, sogʻliq maʼlumotlarisiz.</string>
     <string name="settings_export">Tunlarni ismsiz eksport qilish</string>
@@ -634,7 +636,7 @@
     <string name="learn_tip_late">Kechqurun soatda Phase Wake’ni och, eng kechi eslatma kelganda.</string>
     <string name="learn_tip_alarm">Soat faqat budilnikli tunlarni yozadi.</string>
     <string name="learn_tip_connect">Soatni yoqiq va telefoningga ulangan holda saqla – u yozuvni budilnikdan keyin yuboradi.</string>
-    <string name="battery_night">Batareya: %1$s</string>
+    <string name="battery_night">Batareya (butun qurilma): %1$s</string>
     <string name="battery_watch">Soat −%1$d %%</string>
     <string name="battery_phone">Telefon −%1$d %%</string>
     <string name="editor_alarm_gone">Bu budilnik shu orada oʻchirildi.</string>

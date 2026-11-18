@@ -89,6 +89,8 @@
     <string name="settings_evening_dark_text">Mörkt från %1$s till %2$s, även med System eller Ljust.</string>
     <string name="settings_evening_dark_from">Mörkt från</string>
     <string name="settings_evening_dark_now">Gäller nu – ljust från %1$s</string>
+    <string name="settings_evening_dark_until">Ljust från</string>
+    <string name="settings_evening_dark_same">Start och slut är samma – aldrig mörkt.</string>
     <string name="settings_data">Din data</string>
     <string name="settings_data_text">Allt stannar på mobilen och klockan. Inget konto, ingen server, ingen spårning. Bara teknisk information om klockan går via Googles klockanslutning, utan hälsodata.</string>
     <string name="settings_export">Exportera nätter utan namn</string>
@@ -631,7 +633,7 @@
     <string name="learn_tip_late">Öppna Phase Wake på klockan på kvällen, senast när den påminner dig.</string>
     <string name="learn_tip_alarm">Klockan spelar bara in nätter med alarm.</string>
     <string name="learn_tip_connect">Håll klockan påslagen och ansluten till telefonen – den skickar inspelningen efter alarmet.</string>
-    <string name="battery_night">Batteri: %1$s</string>
+    <string name="battery_night">Batteri (hela enheten): %1$s</string>
     <string name="battery_watch">Klocka −%1$d %%</string>
     <string name="battery_phone">Mobil −%1$d %%</string>
     <string name="editor_alarm_gone">Det här larmet har tagits bort under tiden.</string>

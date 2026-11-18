@@ -88,6 +88,8 @@
     <string name="settings_evening_dark_text">Tối từ %1$s đến %2$s, kể cả khi chọn Hệ thống hoặc Sáng.</string>
     <string name="settings_evening_dark_from">Tối từ</string>
     <string name="settings_evening_dark_now">Đang áp dụng – sáng từ %1$s</string>
+    <string name="settings_evening_dark_until">Sáng từ</string>
+    <string name="settings_evening_dark_same">Bắt đầu và kết thúc trùng nhau – không bao giờ tối.</string>
     <string name="settings_data">Dữ liệu của bạn</string>
     <string name="settings_data_text">Mọi thứ chỉ nằm trên điện thoại và đồng hồ của bạn. Không tài khoản, không máy chủ, không theo dõi. Chỉ thông tin kỹ thuật về đồng hồ đi qua kết nối đồng hồ của Google, không có dữ liệu sức khỏe.</string>
     <string name="settings_export">Xuất các đêm ngủ không kèm tên</string>
@@ -617,7 +619,7 @@
     <string name="learn_tip_late">Buổi tối hãy mở Phase Wake trên đồng hồ, muộn nhất là khi có lời nhắc.</string>
     <string name="learn_tip_alarm">Đồng hồ chỉ ghi những đêm có báo thức.</string>
     <string name="learn_tip_connect">Hãy để đồng hồ bật và kết nối với điện thoại – đồng hồ gửi bản ghi sau báo thức.</string>
-    <string name="battery_night">Pin: %1$s</string>
+    <string name="battery_night">Pin (toàn bộ thiết bị): %1$s</string>
     <string name="battery_watch">Đồng hồ −%1$d %%</string>
     <string name="battery_phone">Điện thoại −%1$d %%</string>
     <string name="editor_alarm_gone">Báo thức này đã bị xóa trong lúc đó.</string>

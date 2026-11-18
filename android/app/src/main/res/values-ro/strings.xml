@@ -90,6 +90,8 @@
     <string name="settings_evening_dark_text">Întunecat de la %1$s până la %2$s, și cu Sistem sau Luminos.</string>
     <string name="settings_evening_dark_from">Întunecat de la</string>
     <string name="settings_evening_dark_now">Activ acum – luminos de la %1$s</string>
+    <string name="settings_evening_dark_until">Luminos de la</string>
+    <string name="settings_evening_dark_same">Început și sfârșit identice – niciodată întunecat.</string>
     <string name="settings_data">Datele tale</string>
     <string name="settings_data_text">Totul rămâne pe telefon și pe ceas. Fără cont, fără server, fără urmărire. Prin conexiunea ceasului de la Google trec doar date tehnice despre ceas, fără date de sănătate.</string>
     <string name="settings_export">Exportă nopțile fără nume</string>
@@ -645,7 +647,7 @@
     <string name="learn_tip_late">Deschide Phase Wake pe ceas seara, cel târziu la memento.</string>
     <string name="learn_tip_alarm">Ceasul înregistrează doar nopțile cu alarmă.</string>
     <string name="learn_tip_connect">Ține ceasul pornit și conectat la telefon – trimite înregistrarea după alarmă.</string>
-    <string name="battery_night">Baterie: %1$s</string>
+    <string name="battery_night">Baterie (tot dispozitivul): %1$s</string>
     <string name="battery_watch">Ceas −%1$d %%</string>
     <string name="battery_phone">Telefon −%1$d %%</string>
     <string name="editor_alarm_gone">Această alarmă a fost ștearsă între timp.</string>

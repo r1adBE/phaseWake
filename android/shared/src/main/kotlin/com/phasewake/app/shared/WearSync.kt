@@ -73,13 +73,14 @@ class WearSync(context: Context, private val peer: String = Outbox.peer(context)
     }
 
     /**
-     * Uhr-App fortgesetzt: Stand der Gegenseite anfragen, wie beim Prozessstart höchstens alle 30 Min (dasselbe
-     * [SyncGate]). Hat diese Seite schon Einträge der Gegenseite verarbeitet, nur Ungeprüftes
-     * ([DataLayer.SYNC_CHANGED_ONLY]); frisch installiert oder zurückgesetzt den vollen Stand.
+     * Uhr-App fortgesetzt: Stand der Gegenseite anfragen. Meist nur Ungeprüftes ([DataLayer.SYNC_CHANGED_ONLY]),
+     * höchstens alle 30 Min (eigenes [SyncGate], hält die Anfrage beim nächsten Prozessstart nicht auf). Frisch
+     * installiert, ohne Wecker ([hasAlarms] falsch) oder nach einem Zurücksetzen des Speichers den vollen Stand, und
+     * zwar sofort ([DataLayer.resumeSyncPayload]): Sicherheit vor Sparen.
      */
-    suspend fun requestSyncOnResume(gate: SyncGate = SyncGate.forContext(app)) {
-        if (!gate.due()) return
-        val payload = DataLayer.resumeSyncPayload(receivedAny = received.any())
+    suspend fun requestSyncOnResume(hasAlarms: Boolean, gate: SyncGate = SyncGate.forResume(app)) {
+        val payload = DataLayer.resumeSyncPayload(received.any(), hasAlarms, PhaseWakeStore.resetAt(app), gate.lastAt())
+        if (!DataLayer.wantsFullSync(payload) && !gate.due()) return
         if (sendMessage(peer, DataLayer.PATH_SYNC_REQUEST, payload) > 0) gate.mark()
     }
 

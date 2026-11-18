@@ -92,6 +92,8 @@
     <string name="settings_evening_dark_text">Tmavý od %1$s do %2$s, aj pri Systém alebo Svetlý.</string>
     <string name="settings_evening_dark_from">Tmavý od</string>
     <string name="settings_evening_dark_now">Platí teraz – svetlý od %1$s</string>
+    <string name="settings_evening_dark_until">Svetlý od</string>
+    <string name="settings_evening_dark_same">Začiatok a koniec sú rovnaké – nikdy tmavý.</string>
     <string name="settings_data">Tvoje údaje</string>
     <string name="settings_data_text">Všetko zostáva v telefóne a hodinkách. Žiadny účet, žiadny server, žiadne sledovanie. Cez pripojenie hodiniek od Googlu idú iba technické údaje o hodinkách, bez zdravotných údajov.</string>
     <string name="settings_export">Exportovať noci bez mena</string>
@@ -661,7 +663,7 @@
     <string name="learn_tip_late">Večer otvor Phase Wake v hodinkách, najneskôr pri pripomenutí.</string>
     <string name="learn_tip_alarm">Hodinky zaznamenávajú len noci s budíkom.</string>
     <string name="learn_tip_connect">Nechaj hodinky zapnuté a spojené s telefónom – záznam pošlú po budíku.</string>
-    <string name="battery_night">Batéria: %1$s</string>
+    <string name="battery_night">Batéria (celé zariadenie): %1$s</string>
     <string name="battery_watch">Hodinky −%1$d %%</string>
     <string name="battery_phone">Telefón −%1$d %%</string>
     <string name="editor_alarm_gone">Tento budík bol medzitým odstránený.</string>

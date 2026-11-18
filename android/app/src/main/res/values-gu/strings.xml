@@ -91,6 +91,8 @@
     <string name="settings_evening_dark_text">%1$s – %2$s ઘેરો, સિસ્ટમ કે આછો પસંદ હોય તો પણ.</string>
     <string name="settings_evening_dark_from">ઘેરો શરૂ</string>
     <string name="settings_evening_dark_now">હમણાં લાગુ – %1$s થી આછો</string>
+    <string name="settings_evening_dark_until">આછો શરૂ</string>
+    <string name="settings_evening_dark_same">શરૂઆત અને અંત સરખા – ક્યારેય ઘેરો નહીં.</string>
     <string name="settings_data">તમારો ડેટા</string>
     <string name="settings_data_text">બધું તમારા ફોન અને ઘડિયાળ પર જ રહે છે. કોઈ એકાઉન્ટ નહીં, કોઈ સર્વર નહીં, કોઈ ટ્રેકિંગ નહીં. Google ના ઘડિયાળ જોડાણ દ્વારા માત્ર ઘડિયાળની તકનીકી માહિતી જાય છે, આરોગ્ય ડેટા વિના.</string>
     <string name="settings_export">રાતો નામ વગર એક્સપોર્ટ કરો</string>
@@ -634,7 +636,7 @@
     <string name="learn_tip_late">સાંજે ઘડિયાળ પર Phase Wake ખોલો, મોડામાં મોડું રિમાઇન્ડર આવે ત્યારે.</string>
     <string name="learn_tip_alarm">ઘડિયાળ ફક્ત અલાર્મવાળી રાતો જ રેકોર્ડ કરે છે.</string>
     <string name="learn_tip_connect">ઘડિયાળ ચાલુ અને ફોન સાથે જોડાયેલી રાખો – તે અલાર્મ પછી રેકોર્ડિંગ મોકલે છે.</string>
-    <string name="battery_night">બૅટરી: %1$s</string>
+    <string name="battery_night">બૅટરી (આખું ઉપકરણ): %1$s</string>
     <string name="battery_watch">ઘડિયાળ −%1$d %%</string>
     <string name="battery_phone">ફોન −%1$d %%</string>
     <string name="editor_alarm_gone">આ એલાર્મ દરમિયાન કાઢી નખાયો છે.</string>

@@ -90,6 +90,8 @@
     <string name="settings_evening_dark_text">%1$s – %2$s இருள், சிஸ்டம் அல்லது வெளிர் தேர்ந்தாலும்.</string>
     <string name="settings_evening_dark_from">இருள் தொடக்கம்</string>
     <string name="settings_evening_dark_now">இப்போது செயலில் – %1$s முதல் வெளிர்</string>
+    <string name="settings_evening_dark_until">வெளிர் தொடக்கம்</string>
+    <string name="settings_evening_dark_same">தொடக்கமும் முடிவும் ஒன்றே – ஒருபோதும் இருள் இல்லை.</string>
     <string name="settings_data">உங்கள் தரவு</string>
     <string name="settings_data_text">எல்லாம் உங்கள் ஃபோனிலும் வாட்ச்சிலும் மட்டுமே இருக்கும். கணக்கு இல்லை, சர்வர் இல்லை, கண்காணிப்பு இல்லை. Google கடிகார இணைப்பின் வழியே கடிகாரத்தின் தொழில்நுட்பத் தகவல்கள் மட்டுமே செல்லும், சுகாதாரத் தரவு இல்லாமல்.</string>
     <string name="settings_export">இரவுகளைப் பெயர் இல்லாமல் ஏற்றுமதி செய்</string>
@@ -633,7 +635,7 @@
     <string name="learn_tip_late">மாலையில் கடிகாரத்தில் Phase Wake-ஐத் திறங்கள், அதிகபட்சம் நினைவூட்டல் வரும்போது.</string>
     <string name="learn_tip_alarm">அலாரம் உள்ள இரவுகளை மட்டுமே கடிகாரம் பதிவு செய்கிறது.</string>
     <string name="learn_tip_connect">கடிகாரத்தை இயக்கத்தில் வைத்து ஃபோனுடன் இணைத்திருங்கள் – அலாரத்திற்குப் பிறகு அது பதிவை அனுப்பும்.</string>
-    <string name="battery_night">பேட்டரி: %1$s</string>
+    <string name="battery_night">பேட்டரி (முழு சாதனம்): %1$s</string>
     <string name="battery_watch">வாட்ச் −%1$d %%</string>
     <string name="battery_phone">ஃபோன் −%1$d %%</string>
     <string name="editor_alarm_gone">இந்த அலாரம் இதற்கிடையில் நீக்கப்பட்டது.</string>

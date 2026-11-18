@@ -89,6 +89,8 @@
     <string name="settings_evening_dark_text">Mørk fra %1$s til %2$s, også med System eller Lys.</string>
     <string name="settings_evening_dark_from">Mørk fra</string>
     <string name="settings_evening_dark_now">Gælder nu – lys fra %1$s</string>
+    <string name="settings_evening_dark_until">Lys fra</string>
+    <string name="settings_evening_dark_same">Start og slut er ens – aldrig mørk.</string>
     <string name="settings_data">Dine data</string>
     <string name="settings_data_text">Alt bliver på din telefon og dit ur. Ingen konto, ingen server, ingen sporing. Kun tekniske oplysninger om uret går via Googles urforbindelse, uden sundhedsdata.</string>
     <string name="settings_export">Eksportér nætter uden navn</string>
@@ -631,7 +633,7 @@
     <string name="learn_tip_late">Åbn Phase Wake på uret om aftenen, senest når den minder dig om det.</string>
     <string name="learn_tip_alarm">Uret optager kun nætter med alarm.</string>
     <string name="learn_tip_connect">Hold uret tændt og forbundet med din telefon – det sender optagelsen efter alarmen.</string>
-    <string name="battery_night">Batteri: %1$s</string>
+    <string name="battery_night">Batteri (hele enheden): %1$s</string>
     <string name="battery_watch">Ur −%1$d %%</string>
     <string name="battery_phone">Telefon −%1$d %%</string>
     <string name="editor_alarm_gone">Denne alarm er blevet slettet i mellemtiden.</string>

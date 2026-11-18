@@ -1,7 +1,7 @@
 Phase Wake tě probudí v okně buzení, jakmile začne být tvůj spánek neklidný – tehdy nejspíš spíš lehce. Nejpozději v cílový čas; když na Apple Watch neběží měření, asi o 1 minutu později oznámením. K tomu tvoje Apple Watch sledují pohyb a tep. Na Apple Watch měří Phase Wake posledních 25 minut před cílovým časem. Z pohybu, který v noci zaznamenává, pozná i to, jestli byla tvoje noc příliš krátká.
 
 Jak to funguje
-• Zvol čas buzení a okno (až 30 min), nasaď hodinky, spi.
+• Zvol cílový čas a okno (až 30 min), nasaď hodinky, spi.
 • Hodinky měří v okně buzení a zhruba od 1 hodiny před spaním, aby poznaly, kdy usneš (večer kvůli tomu otevři aplikaci v hodinkách) – šetří baterii; ve volitelné fázi učení i přes noc.
 • Volitelně: fáze učení – hodinky 7 nocí měří přes noc pohyb a tep (spotřebuje to trochu baterie) a přizpůsobí budík tobě.
 • Vibrace na zápěstí – na přání zvoní i iPhone, a jako záložní budík, kdyby se něco pokazilo.

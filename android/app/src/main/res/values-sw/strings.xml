@@ -90,6 +90,8 @@
     <string name="settings_evening_dark_text">Giza kuanzia %1$s hadi %2$s, hata ukichagua Mfumo au Mwangaza.</string>
     <string name="settings_evening_dark_from">Giza kuanzia</string>
     <string name="settings_evening_dark_now">Inatumika sasa – mwangaza kuanzia %1$s</string>
+    <string name="settings_evening_dark_until">Mwangaza kuanzia</string>
+    <string name="settings_evening_dark_same">Mwanzo na mwisho ni sawa – hakuna giza kamwe.</string>
     <string name="settings_data">Data yako</string>
     <string name="settings_data_text">Kila kitu kinabaki kwenye simu na saa yako. Hakuna akaunti, hakuna seva, hakuna ufuatiliaji. Ni taarifa za kiufundi za saa pekee zinazopita kupitia muunganisho wa saa wa Google, bila data ya afya.</string>
     <string name="settings_export">Hamisha usiku bila jina</string>
@@ -633,7 +635,7 @@
     <string name="learn_tip_late">Fungua Phase Wake kwenye saa jioni, au angalau inapokukumbusha.</string>
     <string name="learn_tip_alarm">Saa hurekodi usiku wenye kengele tu.</string>
     <string name="learn_tip_connect">Iache saa ikiwa imewashwa na kuunganishwa na simu yako – hutuma rekodi baada ya kengele.</string>
-    <string name="battery_night">Betri: %1$s</string>
+    <string name="battery_night">Betri (kifaa kizima): %1$s</string>
     <string name="battery_watch">Saa −%1$d %%</string>
     <string name="battery_phone">Simu −%1$d %%</string>
     <string name="editor_alarm_gone">Kengele hii imefutwa wakati huo.</string>

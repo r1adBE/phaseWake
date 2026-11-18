@@ -8,10 +8,13 @@ Gelesen wird das zusammengeführte Manifest jeder App. Fehler, wenn
 - die App Netzzugriff anfordert (INTERNET oder ACCESS_NETWORK_STATE, z. B. über eine Bibliothek eingeschleppt),
 - die Kennung nicht com.phasewake.app (Testversion: com.phasewake.app.test) ist,
 - die exportierten Komponenten oder die angeforderten Rechte von der Positivliste abweichen (gilt für beide),
-- für eine App kein Manifest gefunden wird (Build fehlte).
+- für eine App kein Manifest gefunden wird (Build fehlte),
+- im Release eine Regel des Startprofils (src/main/baseline-prof.txt) zu wenige Zeilen in der von AGP aufgelösten
+  Fassung ergibt (Platzhalter greift nicht, z. B. «ui/*->» statt «ui/*;->»), oder die aufgelöste Fassung fehlt.
 """
 import glob
 import os
+import re
 import sys
 import xml.etree.ElementTree as ET
 
@@ -25,6 +28,12 @@ APP_ID = "com.phasewake.app"
 # Testversion (Build-Typ debug): eigene Kennung, sonst dieselbe Positivliste.
 TEST_ID = APP_ID + ".test"
 COMPONENTS = ("activity", "activity-alias", "service", "receiver", "provider")
+# Startprofil: von AGP aufgelöste Fassung (Platzhalter durch die Klassen und Methoden ersetzt, vor R8).
+PROFILE_EXPANDED = "build/intermediates/r8_art_profile/release/expandReleaseArtProfileWildcards/baseline-prof.txt"
+# Mindestzahl aufgelöster Zeilen: eine Klassenzeile ohne Platzhalter steht genau einmal da, eine Regel mit Platzhalter
+# muss mehrere Methoden treffen (heute je mindestens gut 20).
+PROFILE_MIN_EXACT = 1
+PROFILE_MIN_WILDCARD = 10
 
 # Positivliste (Stand 17.11.2026, aus dem zusammengeführten Release-Manifest). Bringt eine Bibliothek eine neue
 # exportierte Komponente oder ein neues Recht mit, wird die CI rot: prüfen, ob es nötig ist (sonst mit
@@ -122,6 +131,49 @@ def expected_permissions(app, app_id):
             for name, sdk in PERMISSIONS[app]}
 
 
+def profile_pattern(rule):
+    """Regel des Startprofils als Muster wie AGP: «**» beliebig, «*» innerhalb eines Namens (ohne «/» und «;»),
+    «?» ein Zeichen. Darum trifft «ui/*->» keine Methode: Der Klassenname endet auf «;» vor «->»."""
+    out = []
+    i = 0
+    while i < len(rule):
+        if rule.startswith("**", i):
+            out.append(".*")
+            i += 2
+        elif rule[i] == "*":
+            out.append("[^/;]*")
+            i += 1
+        elif rule[i] == "?":
+            out.append(".")
+            i += 1
+        else:
+            out.append(re.escape(rule[i]))
+            i += 1
+    return re.compile("".join(out))
+
+
+def check_profile(app, rules_path=None, expanded_path=None):
+    """Jede Regel des Startprofils trifft genug Zeilen der aufgelösten Fassung ([PROFILE_MIN_*])."""
+    rules_path = rules_path or f"{app}/src/main/baseline-prof.txt"
+    expanded_path = expanded_path or f"{app}/{PROFILE_EXPANDED}"
+    if not os.path.exists(rules_path):
+        return [f"{app}: Startprofil {rules_path} fehlt"]
+    if not os.path.exists(expanded_path):
+        return [f"{app}: aufgelöstes Startprofil fehlt ({expanded_path}; assembleRelease gelaufen?)"]
+    with open(expanded_path, encoding="utf-8") as f:
+        expanded = [line.strip() for line in f if line.strip()]
+    errors = []
+    with open(rules_path, encoding="utf-8") as f:
+        rules = [line.strip() for line in f if line.strip() and not line.startswith("#")]
+    for rule in rules:
+        pattern = profile_pattern(rule)
+        hits = sum(1 for line in expanded if pattern.fullmatch(line))
+        need = PROFILE_MIN_WILDCARD if ("*" in rule or "?" in rule) else PROFILE_MIN_EXACT
+        if hits < need:
+            errors.append(f"{app}: Regel des Startprofils trifft {hits} statt mindestens {need} Zeilen: {rule}")
+    return errors
+
+
 def check(app, path=None, debug=False):
     kind, app_id = ("Testversion", TEST_ID) if debug else ("Release", APP_ID)
     path = path or manifest(app, "debug" if debug else "release")
@@ -152,12 +204,15 @@ def main(argv=None):
     debug = "--debug" in (sys.argv[1:] if argv is None else argv)
     title, app_id = ("Testversion", TEST_ID) if debug else ("Store-Build", APP_ID)
     errors = [e for app in APPS for e in check(app, debug=debug)]
+    if not debug:
+        errors += [e for app in APPS for e in check_profile(app)]
     for e in errors:
         print(f"::error title={title}::{e}")
     if not errors:
         state = "debuggable (Testversion)" if debug else "ohne debuggable"
         print(f"::notice title={title}::Handy und Uhr: {'Debug' if debug else 'Release'} als {app_id}, {state}, "
-              "ohne Vorschau-Activity, ohne Netzzugriff, exportierte Komponenten und Rechte wie in der Positivliste")
+              "ohne Vorschau-Activity, ohne Netzzugriff, exportierte Komponenten und Rechte wie in der Positivliste"
+              + ("" if debug else ", jede Regel des Startprofils greift"))
     return 1 if errors else 0
 
 

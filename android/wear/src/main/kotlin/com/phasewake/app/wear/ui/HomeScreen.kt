@@ -110,10 +110,10 @@ internal fun HomeScreen(
 
     val permissions = rememberWatchPermissions {
         // Stand des Handys anfragen (kommt über die Warteschlange, falls eine Änderung verpasst wurde; höchstens alle
-        // 30 Min und nur Unbestätigtes, frisch installiert alles), Wartendes senden, dann neu planen; das meldet auch
-        // den Status (Rechte) ans Handy, für dessen Nacht-Check.
+        // 30 Min und nur Unbestätigtes, frisch installiert, ohne Wecker oder zurückgesetzt sofort alles), Wartendes
+        // senden, dann neu planen; das meldet auch den Status (Rechte) ans Handy, für dessen Nacht-Check.
         app.appScope.launch {
-            app.sync.requestSyncOnResume()
+            app.sync.requestSyncOnResume(hasAlarms = app.alarms.current().alarms.isNotEmpty())
             app.sync.flush()
             app.scheduler.reschedule()
         }

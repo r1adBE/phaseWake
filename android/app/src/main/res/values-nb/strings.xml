@@ -89,6 +89,8 @@
     <string name="settings_evening_dark_text">Mørk fra %1$s til %2$s, også med System eller Lys.</string>
     <string name="settings_evening_dark_from">Mørk fra</string>
     <string name="settings_evening_dark_now">Gjelder nå – lys fra %1$s</string>
+    <string name="settings_evening_dark_until">Lys fra</string>
+    <string name="settings_evening_dark_same">Start og slutt er like – aldri mørk.</string>
     <string name="settings_data">Dine data</string>
     <string name="settings_data_text">Alt blir på telefonen og klokka. Ingen konto, ingen server, ingen sporing. Bare teknisk informasjon om klokken går via Googles klokketilkobling, uten helsedata.</string>
     <string name="settings_export">Eksporter netter uten navn</string>
@@ -631,7 +633,7 @@
     <string name="learn_tip_late">Åpne Phase Wake på klokken om kvelden, senest når den minner deg på det.</string>
     <string name="learn_tip_alarm">Klokken tar bare opp netter med alarm.</string>
     <string name="learn_tip_connect">Hold klokken påslått og koblet til telefonen – den sender opptaket etter alarmen.</string>
-    <string name="battery_night">Batteri: %1$s</string>
+    <string name="battery_night">Batteri (hele enheten): %1$s</string>
     <string name="battery_watch">Klokke −%1$d %%</string>
     <string name="battery_phone">Telefon −%1$d %%</string>
     <string name="editor_alarm_gone">Denne alarmen er slettet i mellomtiden.</string>

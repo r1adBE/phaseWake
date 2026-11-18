@@ -90,6 +90,8 @@
     <string name="settings_evening_dark_text">כהה מ-%1$s עד %2$s, גם עם מערכת או בהיר.</string>
     <string name="settings_evening_dark_from">כהה מהשעה</string>
     <string name="settings_evening_dark_now">פעיל עכשיו – בהיר מ-%1$s</string>
+    <string name="settings_evening_dark_until">בהיר מהשעה</string>
+    <string name="settings_evening_dark_same">ההתחלה והסיום זהים – אף פעם לא כהה.</string>
     <string name="settings_data">הנתונים שלכם</string>
     <string name="settings_data_text">הכול נשאר בטלפון ובשעון. בלי חשבון, בלי שרת, בלי מעקב. דרך חיבור השעון של Google עובר רק מידע טכני על השעון, בלי נתוני בריאות.</string>
     <string name="settings_export">ייצוא לילות ללא שם</string>
@@ -645,7 +647,7 @@
     <string name="learn_tip_late">כדאי לפתוח את Phase Wake בשעון בערב, לכל המאוחר כשמגיעה התזכורת.</string>
     <string name="learn_tip_alarm">השעון מקליט רק לילות עם שעון מעורר.</string>
     <string name="learn_tip_connect">כדאי להשאיר את השעון דלוק ומחובר לטלפון – הוא שולח את ההקלטה אחרי השעון המעורר.</string>
-    <string name="battery_night">סוללה: %1$s</string>
+    <string name="battery_night">סוללה (כל המכשיר): %1$s</string>
     <string name="battery_watch">שעון −%1$d %%</string>
     <string name="battery_phone">טלפון −%1$d %%</string>
     <string name="editor_alarm_gone">המעורר הזה נמחק בינתיים.</string>

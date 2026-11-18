@@ -90,6 +90,8 @@
     <string name="settings_evening_dark_text">%1$s – %2$s ഡാർക്ക്, സിസ്റ്റം അല്ലെങ്കിൽ ലൈറ്റ് ആണെങ്കിലും.</string>
     <string name="settings_evening_dark_from">ഡാർക്ക് തുടങ്ങുന്നത്</string>
     <string name="settings_evening_dark_now">ഇപ്പോൾ ബാധകം – %1$s മുതൽ ലൈറ്റ്</string>
+    <string name="settings_evening_dark_until">ലൈറ്റ് തുടങ്ങുന്നത്</string>
+    <string name="settings_evening_dark_same">തുടക്കവും അവസാനവും ഒന്ന് – ഒരിക്കലും ഡാർക്ക് ആകില്ല.</string>
     <string name="settings_data">നിങ്ങളുടെ ഡാറ്റ</string>
     <string name="settings_data_text">എല്ലാം നിങ്ങളുടെ ഫോണിലും വാച്ചിലും തന്നെ. അക്കൗണ്ടില്ല, സെർവറില്ല, ട്രാക്കിങ്ങില്ല. Google-ന്റെ വാച്ച് കണക്ഷനിലൂടെ വാച്ചിന്റെ സാങ്കേതിക വിവരങ്ങൾ മാത്രമേ പോകൂ, ആരോഗ്യ ഡാറ്റ ഇല്ലാതെ.</string>
     <string name="settings_export">രാത്രികൾ പേരില്ലാതെ എക്‌സ്‌പോർട്ട് ചെയ്യുക</string>
@@ -633,7 +635,7 @@
     <string name="learn_tip_late">വൈകുന്നേരം വാച്ചിൽ Phase Wake തുറക്കുക, ഏറ്റവും വൈകിയാൽ ഓർമ്മപ്പെടുത്തൽ വരുമ്പോൾ.</string>
     <string name="learn_tip_alarm">അലാറമുള്ള രാത്രികൾ മാത്രമേ വാച്ച് റെക്കോർഡ് ചെയ്യൂ.</string>
     <string name="learn_tip_connect">വാച്ച് ഓണാക്കി ഫോണുമായി ബന്ധിപ്പിച്ച് വയ്ക്കുക – അലാറത്തിന് ശേഷം അത് റെക്കോർഡിംഗ് അയയ്ക്കും.</string>
-    <string name="battery_night">ബാറ്ററി: %1$s</string>
+    <string name="battery_night">ബാറ്ററി (മുഴുവൻ ഉപകരണം): %1$s</string>
     <string name="battery_watch">വാച്ച് −%1$d %%</string>
     <string name="battery_phone">ഫോൺ −%1$d %%</string>
     <string name="editor_alarm_gone">ഈ അലാറം ഇതിനിടെ ഇല്ലാതാക്കി.</string>

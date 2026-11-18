@@ -157,7 +157,10 @@ internal fun Header(
                                         if (now.isBefore(plan.windowStart)) {
                                             stringResource(
                                                 R.string.home_next_in,
-                                                Format.duration(context, Duration.between(now, plan.windowStart)),
+                                                Format.duration(
+                                                    context, Duration.between(now, plan.windowStart),
+                                                    keepTogether = true,
+                                                ),
                                             )
                                         } else {
                                             stringResource(R.string.home_window_running)

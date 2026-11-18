@@ -66,7 +66,7 @@ import com.phasewake.app.ui.theme.ThemeMode
 /**
  * Was die Einstellungen ([SettingsScreen]) zeigen.
  *
- * @property eveningDark «Abends dunkel ab»: an/aus und Beginn.
+ * @property eveningDark «Abends dunkel»: an/aus, Beginn und Ende.
  * @property canExport Ohne Nächte gibt es nichts zu exportieren (nur eine Kopfzeile): dann ausgegraut.
  * @property nextAlarmNotice Leise Mitteilung «Nächster Wecker» auf dem Sperrbildschirm (Standard an).
  * @property autoOnset Einschlaf-Messung am Abend auf der Galaxy Watch (Standard an).
@@ -95,6 +95,7 @@ data class SettingsActions(
     val onConnectHealth: () -> Unit,
     val onEveningDark: (Boolean) -> Unit = {},
     val onEveningDarkFrom: (Int) -> Unit = {},
+    val onEveningDarkUntil: (Int) -> Unit = {},
     val onGoal: (Int) -> Unit = {},
     val onBedtimeReminder: (Boolean) -> Unit = {},
     val onAddCustomNote: (String) -> Unit = {},
@@ -191,7 +192,11 @@ private fun ThemeSection(themeMode: ThemeMode, eveningDark: EveningDarkSetting, 
             }
         }
         // Abends dunkel: nur bei «System» und «Hell» wirksam (Dunkel bleibt dunkel).
-        if (themeMode != ThemeMode.DARK) EveningDarkRows(eveningDark, actions.onEveningDark, actions.onEveningDarkFrom)
+        if (themeMode != ThemeMode.DARK) {
+            EveningDarkRows(
+                eveningDark, actions.onEveningDark, actions.onEveningDarkFrom, actions.onEveningDarkUntil,
+            )
+        }
     }
 }
 

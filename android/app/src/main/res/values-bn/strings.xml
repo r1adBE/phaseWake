@@ -90,6 +90,8 @@
     <string name="settings_evening_dark_text">%1$s – %2$s গাঢ়, সিস্টেম বা হালকা বেছে নিলেও।</string>
     <string name="settings_evening_dark_from">গাঢ় শুরু</string>
     <string name="settings_evening_dark_now">এখন চালু – %1$s থেকে হালকা</string>
+    <string name="settings_evening_dark_until">হালকা শুরু</string>
+    <string name="settings_evening_dark_same">শুরু ও শেষ একই – কখনো গাঢ় নয়।</string>
     <string name="settings_data">তোমার ডেটা</string>
     <string name="settings_data_text">সবকিছু তোমার ফোন আর ঘড়িতেই থাকে। কোনো অ্যাকাউন্ট নেই, সার্ভার নেই, ট্র্যাকিং নেই। Google-এর ঘড়ি সংযোগ দিয়ে শুধু ঘড়ির প্রযুক্তিগত তথ্য যায়, স্বাস্থ্য ডেটা ছাড়া।</string>
     <string name="settings_export">রাতগুলো নাম ছাড়া এক্সপোর্ট করো</string>
@@ -633,7 +635,7 @@
     <string name="learn_tip_late">সন্ধ্যায় ঘড়িতে Phase Wake খোলো, সবচেয়ে দেরিতে রিমাইন্ডার এলে।</string>
     <string name="learn_tip_alarm">ঘড়ি শুধু অ্যালার্ম থাকা রাতগুলো রেকর্ড করে।</string>
     <string name="learn_tip_connect">ঘড়ি চালু রাখো আর ফোনের সঙ্গে সংযুক্ত রাখো – অ্যালার্মের পরে এটি রেকর্ডিং পাঠায়।</string>
-    <string name="battery_night">ব্যাটারি: %1$s</string>
+    <string name="battery_night">ব্যাটারি (পুরো ডিভাইস): %1$s</string>
     <string name="battery_watch">ঘড়ি −%1$d %%</string>
     <string name="battery_phone">ফোন −%1$d %%</string>
     <string name="editor_alarm_gone">এই অ্যালার্মটি ইতিমধ্যে মুছে ফেলা হয়েছে।</string>

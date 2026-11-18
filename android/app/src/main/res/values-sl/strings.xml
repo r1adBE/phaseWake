@@ -92,6 +92,8 @@
     <string name="settings_evening_dark_text">Temno od %1$s do %2$s, tudi pri Sistem ali Svetlo.</string>
     <string name="settings_evening_dark_from">Temno od</string>
     <string name="settings_evening_dark_now">Velja zdaj – svetlo od %1$s</string>
+    <string name="settings_evening_dark_until">Svetlo od</string>
+    <string name="settings_evening_dark_same">Začetek in konec sta enaka – nikoli temno.</string>
     <string name="settings_data">Tvoji podatki</string>
     <string name="settings_data_text">Vse ostane na telefonu in uri. Brez računa, brez strežnika, brez sledenja. Prek Googlove povezave z uro gredo le tehnični podatki o uri, brez zdravstvenih podatkov.</string>
     <string name="settings_export">Izvozi noči brez imena</string>
@@ -661,7 +663,7 @@
     <string name="learn_tip_late">Zvečer odpri Phase Wake na uri, najpozneje ob opomniku.</string>
     <string name="learn_tip_alarm">Ura snema samo noči z budilko.</string>
     <string name="learn_tip_connect">Uro imej vklopljeno in povezano s telefonom – posnetek pošlje po budilki.</string>
-    <string name="battery_night">Baterija: %1$s</string>
+    <string name="battery_night">Baterija (cela naprava): %1$s</string>
     <string name="battery_watch">Ura −%1$d %%</string>
     <string name="battery_phone">Telefon −%1$d %%</string>
     <string name="editor_alarm_gone">Ta budilka je bila medtem izbrisana.</string>

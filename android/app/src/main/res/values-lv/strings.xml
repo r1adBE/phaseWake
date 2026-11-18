@@ -92,6 +92,8 @@
     <string name="settings_evening_dark_text">Tumšs no %1$s līdz %2$s, arī ar Sistēma vai Gaišs.</string>
     <string name="settings_evening_dark_from">Tumšs no</string>
     <string name="settings_evening_dark_now">Darbojas tagad – gaišs no %1$s</string>
+    <string name="settings_evening_dark_until">Gaišs no</string>
+    <string name="settings_evening_dark_same">Sākums un beigas sakrīt – nekad tumšs.</string>
     <string name="settings_data">Tavi dati</string>
     <string name="settings_data_text">Viss paliek tavā tālrunī un pulkstenī. Bez konta, bez servera, bez izsekošanas. Caur Google pulksteņa savienojumu iet tikai tehniska informācija par pulksteni, bez veselības datiem.</string>
     <string name="settings_export">Eksportēt naktis bez vārda</string>
@@ -648,7 +650,7 @@
     <string name="learn_tip_late">Vakarā atver Phase Wake pulkstenī, vēlākais, kad tas atgādina.</string>
     <string name="learn_tip_alarm">Pulkstenis ieraksta tikai naktis ar modinātāju.</string>
     <string name="learn_tip_connect">Turi pulksteni ieslēgtu un savienotu ar tālruni – tas nosūta ierakstu pēc modinātāja.</string>
-    <string name="battery_night">Akumulators: %1$s</string>
+    <string name="battery_night">Akumulators (visa ierīce): %1$s</string>
     <string name="battery_watch">Pulkstenis −%1$d %%</string>
     <string name="battery_phone">Tālrunis −%1$d %%</string>
     <string name="editor_alarm_gone">Šis modinātājs pa to laiku ir izdzēsts.</string>

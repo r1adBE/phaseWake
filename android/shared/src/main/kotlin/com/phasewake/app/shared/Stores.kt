@@ -16,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 
 /**
@@ -36,6 +37,7 @@ val Context.phaseWakeStore: DataStore<Preferences>
  * «phasewake.preferences_pb.broken» (die jüngste, wie `.broken` von `SettingsFile` auf iOS; nicht in der Sicherung).
  * Der leere Stand trägt [RESET_AT]: Er wird nicht als neuer Stand gestempelt und so nicht der Gegenseite aufgedrängt
  * (Lernphase, Schlafziel, Schalter der Einschlaf-Messung; diese behält ihren Stand, bis hier etwas geändert wird).
+ * Die empfangenen Kennungen ([ReceivedIds]) gehen mit, damit die Seite beim Fortsetzen wieder alles verlangt.
  */
 object PhaseWakeStore {
     private const val TAG = "Stores"
@@ -49,13 +51,20 @@ object PhaseWakeStore {
 
     /** Die Instanz dieses Prozesses (ohne Prüfung der Sperre; dafür [phaseWakeStore]). */
     internal fun of(context: Context): DataStore<Preferences> = shared ?: synchronized(this) {
-        shared ?: create(context.applicationContext.preferencesDataStoreFile(NAME)).also { shared = it }
+        shared ?: context.applicationContext.let { app ->
+            create(app.preferencesDataStoreFile(NAME), onReset = { ReceivedIds.forContext(app).forget() })
+        }.also { shared = it }
     }
 
-    /** DataStore auf [file] mit der Regel für eine kaputte Datei; [now]: Zeitpunkt für [RESET_AT] (Tests). */
+    /**
+     * DataStore auf [file] mit der Regel für eine kaputte Datei; [now]: Zeitpunkt für [RESET_AT] (Tests). [onReset]
+     * läuft beim Ersetzen durch den leeren Stand; in der App vergisst es die empfangenen Kennungen ([ReceivedIds]),
+     * damit diese Seite wieder den vollen Stand der Gegenseite verlangt.
+     */
     internal fun create(
         file: File,
         scope: CoroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob()),
+        onReset: () -> Unit = {},
         now: () -> Long = System::currentTimeMillis,
     ): DataStore<Preferences> = PreferenceDataStoreFactory.create(
         corruptionHandler = ReplaceFileCorruptionHandler { e ->
@@ -65,6 +74,7 @@ object PhaseWakeStore {
             } catch (copy: Exception) {
                 Log.w(TAG, "Kopie der beschädigten Datei nicht angelegt", copy)
             }
+            onReset()
             emptyPreferences().toMutablePreferences().apply { this[RESET_AT] = now() }
         },
         scope = scope,
@@ -72,6 +82,14 @@ object PhaseWakeStore {
 
     /** Ob [prefs] nach einer kaputten Datei leer begann ([RESET_AT]). */
     fun wasReset(prefs: Preferences): Boolean = prefs[RESET_AT] != null
+
+    /** [RESET_AT] des Speichers von [context]; `null`, wenn nie zurückgesetzt oder noch nicht entsperrt. */
+    suspend fun resetAt(context: Context): Long? = try {
+        context.phaseWakeStore.data.first()[RESET_AT]
+    } catch (e: IllegalStateException) {
+        Log.i(TAG, "Speicher noch gesperrt, Zurücksetzen nicht geprüft", e)
+        null
+    }
 }
 
 /** [store] nur nach dem ersten Entsperren von [context] (siehe [phaseWakeStore]). */

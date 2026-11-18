@@ -91,6 +91,8 @@
     <string name="settings_evening_dark_text">Ciemny od %1$s do %2$s, także przy Systemowy lub Jasny.</string>
     <string name="settings_evening_dark_from">Ciemny od</string>
     <string name="settings_evening_dark_now">Działa teraz – jasny od %1$s</string>
+    <string name="settings_evening_dark_until">Jasny od</string>
+    <string name="settings_evening_dark_same">Początek i koniec są takie same – nigdy ciemny.</string>
     <string name="settings_data">Twoje dane</string>
     <string name="settings_data_text">Wszystko zostaje na telefonie i zegarku. Bez konta, serwera i śledzenia. Przez połączenie zegarka Google przechodzą tylko dane techniczne zegarka, bez danych o zdrowiu.</string>
     <string name="settings_export">Eksportuj noce bez imienia</string>
@@ -659,7 +661,7 @@
     <string name="learn_tip_late">Wieczorem otwórz Phase Wake na zegarku, najpóźniej przy przypomnieniu.</string>
     <string name="learn_tip_alarm">Zegarek nagrywa tylko noce z budzikiem.</string>
     <string name="learn_tip_connect">Trzymaj zegarek włączony i połączony z telefonem – wysyła nagranie po budziku.</string>
-    <string name="battery_night">Bateria: %1$s</string>
+    <string name="battery_night">Bateria (całe urządzenie): %1$s</string>
     <string name="battery_watch">Zegarek −%1$d %%</string>
     <string name="battery_phone">Telefon −%1$d %%</string>
     <string name="editor_alarm_gone">Ten budzik został w międzyczasie usunięty.</string>

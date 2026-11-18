@@ -82,6 +82,8 @@
     <string name="settings_evening_dark_text">Tünd: %1$s – %2$s, Sistem və ya Açıq seçilsə də.</string>
     <string name="settings_evening_dark_from">Tünd başlama vaxtı</string>
     <string name="settings_evening_dark_now">İndi qüvvədədir – %1$s-dən açıq</string>
+    <string name="settings_evening_dark_until">Açıq başlama vaxtı</string>
+    <string name="settings_evening_dark_same">Başlanğıc və son eynidir – heç vaxt tünd olmur.</string>
     <string name="settings_data">Məlumatların</string>
     <string name="settings_data_text">Hər şey telefonunda və saatında qalır. Hesab yox, server yox, izləmə yox. Google-un saat bağlantısı ilə yalnız saat haqqında texniki məlumatlar keçir, sağlamlıq məlumatları olmadan.</string>
     <string name="settings_export">Gecələri adsız ixrac et</string>
@@ -619,7 +621,7 @@
     <string name="learn_tip_late">Axşam Phase Wake-i saatda aç, ən gec xatırlatma gələndə.</string>
     <string name="learn_tip_alarm">Saat yalnız zəngli saat olan gecələri qeyd edir.</string>
     <string name="learn_tip_connect">Saatı açıq və telefonuna qoşulu saxla – qeydi zəngdən sonra göndərir.</string>
-    <string name="battery_night">Batareya: %1$s</string>
+    <string name="battery_night">Batareya (bütün cihaz): %1$s</string>
     <string name="battery_watch">Saat −%1$d %%</string>
     <string name="battery_phone">Telefon −%1$d %%</string>
     <string name="editor_alarm_gone">Bu siqnal artıq silinib.</string>

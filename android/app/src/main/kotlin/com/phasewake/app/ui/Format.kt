@@ -86,14 +86,21 @@ object Format {
         context.getString(R.string.alarm_once), context.getString(R.string.alarm_every_day),
     )
 
-    /** «7 h 12 min» bzw. «7½ h» für ganze halbe Stunden. */
-    fun duration(context: Context, d: Duration): String {
+    /**
+     * «7 h 12 min» bzw. «7½ h» für ganze halbe Stunden. Zwischen Stunden und Minuten darf es umbrechen (Kachel);
+     * [keepTogether] für Fliesstext («· in 23 Std. 20 Min»): ganz ohne Umbruch, die Zeile bricht davor um.
+     */
+    fun duration(context: Context, d: Duration, keepTogether: Boolean = false): String {
         val minutes = d.toMinutes().coerceAtLeast(0)
-        return when {
+        val text = when {
             minutes < 60 -> context.getString(R.string.duration_minutes, minutes)
             minutes % 60 == 0L -> context.getString(R.string.duration_hours, minutes / 60)
             minutes % 30 == 0L -> context.getString(R.string.duration_hours_half, minutes / 60)
             else -> context.getString(R.string.duration_hours_minutes, minutes / 60, minutes % 60)
         }
+        return if (keepTogether) unbreakable(text) else text
     }
+
+    /** [text] ohne Stelle zum Umbrechen: Leerzeichen werden zu geschützten (U+00A0). */
+    fun unbreakable(text: String): String = text.replace(' ', '\u00A0')
 }

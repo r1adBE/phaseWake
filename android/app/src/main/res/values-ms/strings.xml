@@ -88,6 +88,8 @@
     <string name="settings_evening_dark_text">Gelap dari %1$s hingga %2$s, juga dengan Sistem atau Cerah.</string>
     <string name="settings_evening_dark_from">Gelap bermula</string>
     <string name="settings_evening_dark_now">Aktif sekarang – cerah mulai %1$s</string>
+    <string name="settings_evening_dark_until">Cerah bermula</string>
+    <string name="settings_evening_dark_same">Mula dan tamat sama – tidak pernah gelap.</string>
     <string name="settings_data">Data awak</string>
     <string name="settings_data_text">Semuanya kekal pada telefon dan jam tangan. Tiada akaun, tiada pelayan, tiada penjejakan. Hanya maklumat teknikal jam yang melalui sambungan jam Google, tanpa data kesihatan.</string>
     <string name="settings_export">Eksport malam tanpa nama</string>
@@ -617,7 +619,7 @@
     <string name="learn_tip_late">Buka Phase Wake pada jam pada waktu petang, paling lewat apabila ia mengingatkan anda.</string>
     <string name="learn_tip_alarm">Jam hanya merakam malam yang ada penggera.</string>
     <string name="learn_tip_connect">Biarkan jam dihidupkan dan disambungkan ke telefon anda – ia menghantar rakaman selepas penggera.</string>
-    <string name="battery_night">Bateri: %1$s</string>
+    <string name="battery_night">Bateri (seluruh peranti): %1$s</string>
     <string name="battery_watch">Jam tangan −%1$d %%</string>
     <string name="battery_phone">Telefon −%1$d %%</string>
     <string name="editor_alarm_gone">Penggera ini telah dipadam sementara itu.</string>

@@ -152,7 +152,7 @@ fun LayoutEveningDarkNow() {
         androidx.compose.material3.Surface {
             Column(Modifier.padding(16.dp)) {
                 com.phasewake.app.ui.settings.EveningDarkRows(
-                    com.phasewake.app.ui.theme.EveningDarkSetting(), onEnabled = {}, onFrom = {},
+                    com.phasewake.app.ui.theme.EveningDarkSetting(), onEnabled = {}, onFrom = {}, onUntil = {},
                 )
             }
         }

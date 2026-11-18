@@ -41,9 +41,14 @@ enum Brand {
     static func onAccent(_ scheme: ColorScheme) -> Color { scheme == .dark ? nightTop : .white }
     /// Karten: dunkel Weiss mit 6 % auf dem Nachthimmel, hell warmes Weiss FFFCF7.
     static func card(_ scheme: ColorScheme) -> Color { scheme == .dark ? .white.opacity(0.06) : Color(hex: 0xFFFCF7) }
-    /// Rand eines nicht gewählten Chips, ≥ 3:1 zur Karte (WCAG 1.4.11): hell 90 % ≈ 3.3:1 auf der Karte,
-    /// dunkel 75 % ≈ 4.7:1 auf der Karte über dem Nachthimmel (≈ 3.2:1 im Lavendel-Schein oben rechts).
-    static func chipBorder(_ scheme: ColorScheme) -> Color { scheme == .dark ? wave.opacity(0.75) : glow.opacity(0.9) }
+    /// Rand eines nicht gewählten Chips, ≥ 3:1 (WCAG 1.4.11): hell ``chipBorderLight`` ≈ 5.3:1 auf der Karte, 5.0:1
+    /// auf Creme und ≥ 3.1:1 auf dem Tageshimmel; dunkel 75 % ≈ 4.7:1 auf der Karte über dem Nachthimmel (≈ 3.2:1 im
+    /// Lavendel-Schein oben rechts). Wie `chipBorder` auf Android.
+    static func chipBorder(_ scheme: ColorScheme) -> Color {
+        scheme == .dark ? wave.opacity(0.75) : Color(hex: chipBorderLight.hex, opacity: chipBorderLight.opacity)
+    }
+    /// Heller Chip-Rand: tiefes Lavendel mit 90 % (testbar).
+    static let chipBorderLight: (hex: UInt32, opacity: Double) = (0x5546C8, 0.9)
     /// Umriss von Bedienelementen (wie Material `outline` auf Android), ≥ 3:1 zu Karte und Hintergrund
     /// (WCAG 1.4.11): dunkel 726EA4 ≈ 3.5:1 auf der Karte, hell 857A8E ≈ 4.0:1 auf der Karte, 3.7:1 auf Creme.
     static func outline(_ scheme: ColorScheme) -> Color {
@@ -66,16 +71,21 @@ enum Brand {
 /// je ≥ 3:1 zur Karte (WCAG 1.4.11). Nie allein: Stufenhöhe und Beschriftung tragen die Information.
 enum StageColors {
     /// Phasenfarbe: Wach Koralle, REM Türkis, Leicht Lavendel (Marke), Tief Indigo. Hell auf der Karte FFFCF7: CF4F3A
-    /// 4.3:1, 0E8C9E 3.9:1, 7B6CF6 3.9:1, 2F2A85 11.5:1; dunkel auf der Karte: FF8F85 7.6:1, 6FF2E6 12.4:1, B9AEFF
-    /// 8.4:1, 6F5CF0 3.6:1.
+    /// 4.3:1, 0E8C9E 3.9:1, 7B6CF6 3.9:1, 2F2A85 11.5:1 (auf Creme 4.0, 3.6, 3.6, 10.6); dunkel auf der Karte: FF8F85
+    /// 7.6:1, 6FF2E6 12.4:1, B9AEFF 8.4:1, 6F5CF0 3.6:1. Nur für Flächen, Balken und Zeichen, nie als Schrift (hell
+    /// unter 4.5:1): Legenden und Beschriftungen stehen im Nebentext.
     static func color(_ stage: SleepStage, _ scheme: ColorScheme) -> Color {
-        let dark = scheme == .dark
+        hex(stage, dark: scheme == .dark).map { Color(hex: $0) } ?? track(scheme)
+    }
+
+    /// Phasenfarbe als sRGB-Wert (testbar); `nil` für unbekannt (dann die Zeilenfarbe).
+    static func hex(_ stage: SleepStage, dark: Bool) -> UInt32? {
         switch stage {
-        case .awake: return Color(hex: dark ? 0xFF8F85 : 0xCF4F3A)
-        case .rem: return Color(hex: dark ? 0x6FF2E6 : 0x0E8C9E)
-        case .light: return Color(hex: dark ? 0xB9AEFF : 0x7B6CF6)
-        case .deep: return Color(hex: dark ? 0x6F5CF0 : 0x2F2A85)
-        case .unknown: return track(scheme)
+        case .awake: return dark ? 0xFF8F85 : 0xCF4F3A
+        case .rem: return dark ? 0x6FF2E6 : 0x0E8C9E
+        case .light: return dark ? 0xB9AEFF : 0x7B6CF6
+        case .deep: return dark ? 0x6F5CF0 : 0x2F2A85
+        case .unknown: return nil
         }
     }
 
@@ -283,13 +293,27 @@ enum Format {
         return day.formatted(.dateTime.weekday(.abbreviated).day().month(.defaultDigits))
     }
 
+    /// «7 h 12 min» bzw. «7½ h»; zwischen Stunden und Minuten darf es umbrechen (Kachel). `keepTogether` für
+    /// Fliesstext («· in 23 Std. 20 Min»): ganz ohne Umbruch, die Zeile bricht davor um (wie Android).
     /// `%lld` braucht 64 Bit; `Int` hat auf arm64_32-Uhren nur 32, daher `Int64`.
-    static func duration(minutes: Int) -> String {
+    static func duration(minutes: Int, keepTogether: Bool = false) -> String {
         let m = Int64(max(0, minutes))
-        if m < 60 { return L("duration_minutes", m) }
-        if m % 60 == 0 { return L("duration_hours", m / 60) }
-        if m % 30 == 0 { return L("duration_hours_half", m / 60) }
-        return L("duration_hours_minutes", m / 60, m % 60)
+        let text: String
+        if m < 60 {
+            text = L("duration_minutes", m)
+        } else if m % 60 == 0 {
+            text = L("duration_hours", m / 60)
+        } else if m % 30 == 0 {
+            text = L("duration_hours_half", m / 60)
+        } else {
+            text = L("duration_hours_minutes", m / 60, m % 60)
+        }
+        return keepTogether ? unbreakable(text) : text
+    }
+
+    /// `text` ohne Stelle zum Umbrechen: Leerzeichen werden zu geschützten (U+00A0).
+    static func unbreakable(_ text: String) -> String {
+        text.replacingOccurrences(of: " ", with: "\u{00A0}")
     }
 }
 

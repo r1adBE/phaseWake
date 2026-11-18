@@ -41,7 +41,8 @@ enum BackupIO {
                 nextAlarmNotice: defaults.object(forKey: nextAlarmNoticeKey) as? Bool ?? true,
                 autoOnset: defaults.object(forKey: autoOnsetKey) as? Bool ?? true,
                 eveningDark: defaults.object(forKey: EveningDarkKeys.enabled) as? Bool ?? EveningDark.defaultEnabled,
-                eveningDarkFrom: EveningDark.checkedFrom(defaults.object(forKey: EveningDarkKeys.from) as? Int)
+                eveningDarkFrom: EveningDark.checkedFrom(defaults.object(forKey: EveningDarkKeys.from) as? Int),
+                eveningDarkUntil: EveningDark.checkedUntil(defaults.object(forKey: EveningDarkKeys.until) as? Int)
             ),
             healthFeelings: HealthFeelings.encode(model.healthFeelings)
         )
@@ -138,6 +139,7 @@ enum BackupIO {
         defaults.set(s.autoOnset, forKey: autoOnsetKey)
         defaults.set(s.eveningDark, forKey: EveningDarkKeys.enabled)
         defaults.set(EveningDark.checkedFrom(s.eveningDarkFrom), forKey: EveningDarkKeys.from)
+        defaults.set(EveningDark.checkedUntil(s.eveningDarkUntil), forKey: EveningDarkKeys.until)
         // Unplausibel → keiner, in der Zukunft → jetzt.
         if let cleared = HistoryClear.clamped(ms: s.historyClearedAt, now: Date()) {
             defaults.set(NSNumber(value: cleared), forKey: PhoneModel.historyClearedKey)

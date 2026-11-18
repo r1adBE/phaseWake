@@ -3,7 +3,7 @@ name: Testversion
 # Baut Handy- und Uhr-App und legt sie als Vorabversion «test» auf GitHub ab:
 # https://github.com/r1adBE/phaseWake/releases/tag/test
 # Nur nach grüner CI für den Stand von main (genau der geprüfte Stand); von Hand nur auf main und nur, wenn die CI
-# für diesen Stand grün gelaufen ist (ein versehentlich gewählter Arbeitszweig bricht ab).
+# für diesen Stand grün gelaufen ist, als Push-Lauf (ein versehentlich gewählter Arbeitszweig bricht ab).
 # Zwei Jobs (wie «Einschlafklänge»): «build» führt Gradle nur mit Leserecht und ohne
 # gespeichertes Token aus, «publish» ersetzt die Vorabversion und führt keinen Code aus dem Repo aus.
 # Startet nach jedem grünen Push-Lauf der CI, egal auf welchem Zweig, sobald dessen Commit der
@@ -50,7 +50,7 @@ jobs:
             if [ "$GITHUB_REF" != refs/heads/main ]; then
               echo "::error title=Testversion::Von Hand nur auf main, nicht auf $GITHUB_REF"; exit 1
             fi
-            green=$(gh api "repos/$REPO/actions/workflows/ci.yml/runs?head_sha=$SHA&status=success&per_page=1" \
+            green=$(gh api "repos/$REPO/actions/workflows/ci.yml/runs?head_sha=$SHA&event=push&status=success&per_page=1" \
                       --jq '.total_count' || echo 0)
             if [ "${green:-0}" -lt 1 ]; then
               echo "::error title=Testversion::Für ${SHA::7} gibt es keinen grünen CI-Lauf"; exit 1

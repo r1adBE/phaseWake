@@ -18,6 +18,8 @@ jobs:
   bundle:
     name: App Bundles (Handy, Uhr)
     runs-on: ubuntu-latest
+    # Tests und Bundles wie der Android-Job der CI; ein hängender Build bricht ab.
+    timeout-minutes: 45
     # Secrets des Upload-Schlüssels liegen in der GitHub-Umgebung «store» (nur main, docs/PLAY.md).
     environment: store
     defaults:
@@ -40,8 +42,9 @@ jobs:
             echo "::error title=Store-Build::Ausgecheckt ist $head, gestartet für $SHA. Store-Build von main starten (und erst, wenn main sich nicht mehr ändert)."
             exit 1
           fi
-          # Ein erfolgreich abgeschlossener Lauf des Workflows «CI» (ci.yml) für genau diesen Commit.
-          ok=$(gh api "repos/${{ github.repository }}/actions/workflows/ci.yml/runs?head_sha=$SHA&status=success&per_page=1" --jq '.total_count')
+          # Ein erfolgreich abgeschlossener Push-Lauf des Workflows «CI» (ci.yml) für genau diesen Commit (ein PR-Lauf
+          # prüft den Merge mit main, nicht diesen Commit).
+          ok=$(gh api "repos/${{ github.repository }}/actions/workflows/ci.yml/runs?head_sha=$SHA&event=push&status=success&per_page=1" --jq '.total_count')
           if [ "${ok:-0}" -lt 1 ]; then
             echo "::error title=Store-Build::Kein erfolgreicher CI-Lauf für $SHA. Erst die CI für diesen Stand grün laufen lassen (Commits mit [skip ci] haben keinen)."
             exit 1

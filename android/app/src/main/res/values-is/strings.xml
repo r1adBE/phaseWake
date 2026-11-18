@@ -91,6 +91,8 @@
     <string name="settings_evening_dark_text">Dökkt frá %1$s til %2$s, líka með Kerfi eða Ljóst.</string>
     <string name="settings_evening_dark_from">Dökkt frá</string>
     <string name="settings_evening_dark_now">Gildir núna – ljóst frá %1$s</string>
+    <string name="settings_evening_dark_until">Ljóst frá</string>
+    <string name="settings_evening_dark_same">Upphaf og lok eru eins – aldrei dökkt.</string>
     <string name="settings_data">Gögnin þín</string>
     <string name="settings_data_text">Allt verður eftir í símanum og úrinu. Enginn aðgangur, enginn þjónn, engin rakning. Aðeins tæknilegar upplýsingar um úrið fara um úratengingu Google, engin heilsufarsgögn.</string>
     <string name="settings_export">Flytja nætur út án nafns</string>
@@ -634,7 +636,7 @@
     <string name="learn_tip_late">Opnaðu Phase Wake á úrinu á kvöldin, í síðasta lagi þegar það minnir þig á.</string>
     <string name="learn_tip_alarm">Úrið tekur aðeins upp nætur með vekjara.</string>
     <string name="learn_tip_connect">Hafðu kveikt á úrinu og tengt við símann – það sendir upptökuna eftir vekjarann.</string>
-    <string name="battery_night">Rafhlaða: %1$s</string>
+    <string name="battery_night">Rafhlaða (allt tækið): %1$s</string>
     <string name="battery_watch">Úr −%1$d %%</string>
     <string name="battery_phone">Sími −%1$d %%</string>
     <string name="editor_alarm_gone">Þessum vekjara hefur verið eytt á meðan.</string>

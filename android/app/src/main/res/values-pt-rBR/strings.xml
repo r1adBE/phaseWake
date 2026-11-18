@@ -90,6 +90,8 @@
     <string name="settings_evening_dark_text">Escuro de %1$s a %2$s, mesmo com Sistema ou Claro.</string>
     <string name="settings_evening_dark_from">Escuro a partir de</string>
     <string name="settings_evening_dark_now">Ativo agora – claro a partir de %1$s</string>
+    <string name="settings_evening_dark_until">Claro a partir de</string>
+    <string name="settings_evening_dark_same">Início e fim iguais – nunca escuro.</string>
     <string name="settings_data">Seus dados</string>
     <string name="settings_data_text">Tudo fica no seu celular e no relógio. Sem conta, sem servidor, sem rastreamento. Pela conexão do relógio do Google passam só informações técnicas do relógio, sem dados de saúde.</string>
     <string name="settings_export">Exportar noites sem nome</string>
@@ -645,7 +647,7 @@
     <string name="learn_tip_late">Abra o Phase Wake no relógio à noite, no máximo quando ele lembrar você.</string>
     <string name="learn_tip_alarm">O relógio só grava noites com alarme.</string>
     <string name="learn_tip_connect">Mantenha o relógio ligado e conectado ao celular – ele envia a gravação depois do alarme.</string>
-    <string name="battery_night">Bateria: %1$s</string>
+    <string name="battery_night">Bateria (aparelho inteiro): %1$s</string>
     <string name="battery_watch">Relógio −%1$d %%</string>
     <string name="battery_phone">Celular −%1$d %%</string>
     <string name="editor_alarm_gone">Este alarme foi excluído nesse meio-tempo.</string>

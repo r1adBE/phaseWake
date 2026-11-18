@@ -90,6 +90,8 @@
     <string name="settings_evening_dark_text">Sombre de %1$s à %2$s, même avec Système ou Clair.</string>
     <string name="settings_evening_dark_from">Sombre à partir de</string>
     <string name="settings_evening_dark_now">Actif maintenant – clair dès %1$s</string>
+    <string name="settings_evening_dark_until">Clair à partir de</string>
+    <string name="settings_evening_dark_same">Début et fin identiques – jamais sombre.</string>
     <string name="settings_data">Tes données</string>
     <string name="settings_data_text">Tout reste sur ton téléphone et ta montre. Pas de compte, pas de serveur, pas de suivi. Seules des informations techniques sur la montre passent par la connexion de montre de Google, sans données de santé.</string>
     <string name="settings_export">Exporter les nuits sans nom</string>
@@ -645,7 +647,7 @@
     <string name="learn_tip_late">Ouvre Phase Wake sur la montre le soir, au plus tard au moment du rappel.</string>
     <string name="learn_tip_alarm">La montre n’enregistre que les nuits avec une alarme.</string>
     <string name="learn_tip_connect">Garde la montre allumée et connectée à ton téléphone – elle envoie l’enregistrement après l’alarme.</string>
-    <string name="battery_night">Batterie : %1$s</string>
+    <string name="battery_night">Batterie (tout l’appareil) : %1$s</string>
     <string name="battery_watch">Montre −%1$d %%</string>
     <string name="battery_phone">Téléphone −%1$d %%</string>
     <string name="editor_alarm_gone">Ce réveil a été supprimé entre-temps.</string>

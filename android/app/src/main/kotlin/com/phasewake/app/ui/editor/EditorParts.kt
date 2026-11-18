@@ -1,6 +1,7 @@
 package com.phasewake.app.ui.editor
 
 import com.phasewake.app.ui.components.skyCardColors
+import com.phasewake.app.ui.theme.Creme
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ui.components.skyCardEdge
 import com.phasewake.app.ui.components.skyCardLift
@@ -223,17 +224,14 @@ internal fun DayToggle(
 internal const val TIME_PICKER_SCALE = 0.82f
 
 /**
- * Farben der Uhrzeit-Wähler. Hell sind das nicht gewählte Feld und das Zifferblatt neutral Creme: Caramel heisst
- * überall sonst «gewählt» (Segmente, Chips, AM/PM). Dunkel bleibt es bei der Vorgabe.
+ * Farben der Uhrzeit-Wähler. Hell sind das nicht gewählte Feld und das Zifferblatt neutral Grau-Creme
+ * ([Creme.Neutral], auf der Karte sichtbar): Caramel heisst überall sonst «gewählt» (Segmente, Chips, AM/PM).
+ * Dunkel bleibt es bei der Vorgabe.
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun timePickerColors(): TimePickerColors {
-    val neutral = if (PhaseWakeTheme.isDark) {
-        MaterialTheme.colorScheme.surfaceContainerHighest
-    } else {
-        MaterialTheme.colorScheme.surfaceContainerLow
-    }
+    val neutral = if (PhaseWakeTheme.isDark) MaterialTheme.colorScheme.surfaceContainerHighest else Creme.Neutral
     return TimePickerDefaults.colors(clockDialColor = neutral, timeSelectorUnselectedContainerColor = neutral)
 }
 

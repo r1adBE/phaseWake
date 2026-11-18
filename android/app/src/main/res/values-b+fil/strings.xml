@@ -91,6 +91,8 @@
     <string name="settings_evening_dark_text">Dark mula %1$s hanggang %2$s, kahit naka-System o Light.</string>
     <string name="settings_evening_dark_from">Dark mula</string>
     <string name="settings_evening_dark_now">Aktibo ngayon – light mula %1$s</string>
+    <string name="settings_evening_dark_until">Light mula</string>
+    <string name="settings_evening_dark_same">Pareho ang simula at wakas – hindi kailanman dark.</string>
     <string name="settings_data">Ang data mo</string>
     <string name="settings_data_text">Nananatili ang lahat sa telepono at relo mo. Walang account, walang server, walang tracking. Teknikal na impormasyon lang tungkol sa relo ang dumadaan sa koneksyon ng relo ng Google, walang health data.</string>
     <string name="settings_export">I-export ang mga gabi nang walang pangalan</string>
@@ -634,7 +636,7 @@
     <string name="learn_tip_late">Buksan ang Phase Wake sa relo sa gabi, hindi lalampas sa paalala.</string>
     <string name="learn_tip_alarm">Mga gabing may alarm lang ang nire-record ng relo.</string>
     <string name="learn_tip_connect">Panatilihing naka-on ang relo at nakakonekta sa phone mo – ipinapadala nito ang recording pagkatapos ng alarm.</string>
-    <string name="battery_night">Baterya: %1$s</string>
+    <string name="battery_night">Baterya (buong device): %1$s</string>
     <string name="battery_watch">Relo −%1$d %%</string>
     <string name="battery_phone">Telepono −%1$d %%</string>
     <string name="editor_alarm_gone">Na-delete na ang alarm na ito.</string>

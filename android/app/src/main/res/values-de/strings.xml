@@ -89,6 +89,8 @@
     <string name="settings_evening_dark_text">Von %1$s bis %2$s dunkel, auch bei System oder Hell.</string>
     <string name="settings_evening_dark_from">Dunkel ab</string>
     <string name="settings_evening_dark_now">Gilt jetzt – hell ab %1$s</string>
+    <string name="settings_evening_dark_until">Hell ab</string>
+    <string name="settings_evening_dark_same">Beginn und Ende gleich – nie dunkel.</string>
     <string name="settings_data">Deine Daten</string>
     <string name="settings_data_text">Alles bleibt auf Handy und Uhr. Kein Konto, kein Server, keine Auswertung. Nur technische Angaben zur Uhr laufen über Googles Uhr-Verbindung, ohne Gesundheitsdaten.</string>
     <string name="settings_export">Nächte ohne Namen exportieren</string>
@@ -631,7 +633,7 @@
     <string name="learn_tip_late">Öffne Phase Wake am Abend auf der Uhr, spätestens bei der Erinnerung.</string>
     <string name="learn_tip_alarm">Die Uhr zeichnet nur Nächte mit Wecker auf.</string>
     <string name="learn_tip_connect">Lass die Uhr eingeschaltet und mit dem Handy verbunden – sie schickt die Aufzeichnung nach dem Wecker.</string>
-    <string name="battery_night">Akku: %1$s</string>
+    <string name="battery_night">Akku (ganzes Gerät): %1$s</string>
     <string name="battery_watch">Uhr −%1$d %%</string>
     <string name="battery_phone">Handy −%1$d %%</string>
     <string name="editor_alarm_gone">Dieser Wecker wurde inzwischen gelöscht.</string>

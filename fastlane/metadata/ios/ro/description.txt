@@ -1,7 +1,7 @@
 Phase Wake te trezește în intervalul de trezire imediat ce somnul tău devine agitat – atunci probabil dormi ușor. Cel târziu la ora țintă; dacă pe Apple Watch nu rulează nicio măsurare, după aproximativ 1 minut printr-o notificare. Pentru asta, Apple Watch-ul tău urmărește mișcarea și pulsul. Pe Apple Watch, Phase Wake măsoară ultimele 25 de minute dinaintea orei țintă. Din mișcarea pe care o înregistrează noaptea, știe și dacă noaptea ta a fost prea scurtă.
 
 Cum funcționează
-• Alege ora de trezire și intervalul (până la 30 min), pune-ți ceasul, dormi.
+• Alege ora țintă și intervalul (până la 30 min), pune-ți ceasul, dormi.
 • Ceasul măsoară în intervalul de trezire și de la aproximativ 1 oră înainte de ora de culcare, ca să recunoască momentul în care adormi (deschide seara aplicația de pe ceas) – cruță bateria; în faza de învățare opțională, și de-a lungul nopții.
 • Opțional: faza de învățare – 7 nopți, ceasul tău măsoară mișcarea și pulsul de-a lungul nopții (consumă puțină baterie) și adaptează alarma la tine.
 • Vibrație la încheietură – dacă vrei, sună și iPhone-ul, iar ca alarmă de rezervă în caz că ceva nu merge.

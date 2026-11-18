@@ -26,16 +26,15 @@ enum ClipFile {
         let gain = peak > 0 ? min(maxGain, targetPeak / peak) : 1
         for i in samples.indices { target[i] = samples[i] * gain }
         input.frameLength = AVAudioFrameCount(samples.count)
-        var fed = false
+        let feed = ClipFeed(input)
         var error: NSError?
         let status = converter.convert(to: output, error: &error) { _, inputStatus in
-            if fed {
+            guard let buffer = feed.next() else {
                 inputStatus.pointee = .endOfStream
                 return nil
             }
-            fed = true
             inputStatus.pointee = .haveData
-            return input
+            return buffer
         }
         guard status != .error, output.frameLength > 0 else { return false }
         let settings: [String: Any] = [
@@ -70,6 +69,19 @@ enum ClipFile {
         } catch {
             return .other
         }
+    }
+}
+
+/// Gibt den Ausschnitt dem Wandler genau einmal, danach `nil` (Ende). `convert` ruft den Block synchron im selben
+/// Aufruf; `@unchecked Sendable`, weil der Block als `@Sendable` gilt.
+private final class ClipFeed: @unchecked Sendable {
+    private var buffer: AVAudioPCMBuffer?
+
+    init(_ buffer: AVAudioPCMBuffer) { self.buffer = buffer }
+
+    func next() -> AVAudioPCMBuffer? {
+        defer { buffer = nil }
+        return buffer
     }
 }
 

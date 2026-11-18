@@ -89,6 +89,8 @@
     <string name="settings_evening_dark_text">%1$s – %2$s အမှောင်၊ စနစ် သို့မဟုတ် အလင်း ရွေးထားလည်း။</string>
     <string name="settings_evening_dark_from">အမှောင် စတင်ချိန်</string>
     <string name="settings_evening_dark_now">ယခု အသက်ဝင် – %1$s မှ အလင်း</string>
+    <string name="settings_evening_dark_until">အလင်း စတင်ချိန်</string>
+    <string name="settings_evening_dark_same">စတင်ချိန်နှင့် ပြီးဆုံးချိန် တူညီ – ဘယ်တော့မှ မမှောင်ပါ။</string>
     <string name="settings_data">သင့်ဒေတာ</string>
     <string name="settings_data_text">အားလုံး သင့်ဖုန်းနှင့် နာရီပေါ်တွင်သာ ရှိသည်။ အကောင့်မလို၊ ဆာဗာမရှိ၊ ခြေရာခံခြင်းမရှိ။ Google ၏ နာရီချိတ်ဆက်မှုမှတစ်ဆင့် နာရီ၏ နည်းပညာဆိုင်ရာ အချက်အလက်များသာ သွားပြီး ကျန်းမာရေးဒေတာ မပါပါ။</string>
     <string name="settings_export">ညများကို အမည်မပါဘဲ ထုတ်ယူရန်</string>
@@ -619,7 +621,7 @@
     <string name="learn_tip_late">ညနေတွင် နာရီပေါ်ရှိ Phase Wake ကို ဖွင့်ပါ၊ အနောက်ဆုံး သတိပေးချက် ရောက်လာသည့်အခါ။</string>
     <string name="learn_tip_alarm">နာရီသည် နှိုးစက်ရှိသော ညများကိုသာ မှတ်တမ်းတင်သည်။</string>
     <string name="learn_tip_connect">နာရီကို ဖွင့်ထားပြီး ဖုန်းနှင့် ချိတ်ဆက်ထားပါ – နှိုးစက်ပြီးနောက် မှတ်တမ်းကို ပို့ပေးသည်။</string>
-    <string name="battery_night">ဘက်ထရီ- %1$s</string>
+    <string name="battery_night">ဘက်ထရီ (စက်တစ်ခုလုံး)- %1$s</string>
     <string name="battery_watch">နာရီ −%1$d %%</string>
     <string name="battery_phone">ဖုန်း −%1$d %%</string>
     <string name="editor_alarm_gone">ဤနှိုးစက်ကို ယခုအတောအတွင်း ဖျက်ပြီးဖြစ်သည်။</string>

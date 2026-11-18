@@ -62,7 +62,8 @@ struct PhoneAlarmView: View {
                 .foregroundStyle(PhoneWidgetPalette.text(scheme))
             Text(night.reason)
                 .font(.system(size: 13)).foregroundStyle(PhoneWidgetPalette.secondary(scheme)).lineLimit(2)
-            let details = [night.asleepMinutes.map { Format.duration(minutes: $0) }, night.feeling].compactMap { $0 }
+            let asleep = night.asleepMinutes.map { Format.duration(minutes: $0, keepTogether: true) }
+            let details = [asleep, night.feeling].compactMap { $0 }
             if !details.isEmpty {
                 Text(details.joined(separator: " · "))
                     .font(.system(size: 12, weight: .medium)).foregroundStyle(PhoneWidgetPalette.secondary(scheme))

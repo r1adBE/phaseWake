@@ -91,11 +91,15 @@ object DataLayer {
     fun wantsFullSync(data: ByteArray?): Boolean = text(data) != SYNC_CHANGED_ONLY
 
     /**
-     * Inhalt der Anfrage beim Fortsetzen: Hat diese Seite noch nie einen Eintrag der Gegenseite verarbeitet
-     * ([receivedAny] falsch: frisch installiert oder zurückgesetzt), den vollen Stand, sonst nur Ungeprüftes.
+     * Inhalt der Anfrage beim Fortsetzen: den vollen Stand, wenn diese Seite noch nie einen Eintrag der Gegenseite
+     * verarbeitet hat ([receivedAny] falsch: frisch installiert oder Kennungen vergessen), keine Wecker hat
+     * ([hasAlarms] falsch) oder ihr Speicher seit der letzten Anfrage beim Fortsetzen ([lastRequestAt], ms; `null`:
+     * noch nie) leer begann ([resetAt], ms, `PhaseWakeStore.RESET_AT`); sonst nur Ungeprüftes.
      */
-    fun resumeSyncPayload(receivedAny: Boolean): ByteArray =
-        if (receivedAny) SYNC_CHANGED_ONLY.encodeToByteArray() else ByteArray(0)
+    fun resumeSyncPayload(receivedAny: Boolean, hasAlarms: Boolean, resetAt: Long?, lastRequestAt: Long?): ByteArray {
+        val resetSince = resetAt != null && (lastRequestAt == null || resetAt >= lastRequestAt)
+        return if (receivedAny && hasAlarms && !resetSince) SYNC_CHANGED_ONLY.encodeToByteArray() else ByteArray(0)
+    }
 
     /** Nachricht Uhr → Handy: Weckvorgang hat begonnen; Inhalt = [RingMessage]. */
     const val PATH_RING = "/phasewake/ring"

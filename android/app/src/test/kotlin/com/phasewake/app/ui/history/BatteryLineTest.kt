@@ -53,15 +53,18 @@ class BatteryLineTest {
             ),
             text,
         )
-        assertEquals("Battery: Watch −14 % · Phone −3 %", text)
+        assertEquals("Battery (whole device): Watch −14 % · Phone −3 %", text)
     }
 
     @Test
     fun onlyKnownParts() {
-        assertEquals("Battery: Watch −14 %", batteryLine(context, night(track(80, 66))))
+        assertEquals("Battery (whole device): Watch −14 %", batteryLine(context, night(track(80, 66))))
         // Handy die ganze Nacht am Ladegerät: kein Wert, nur die Uhr.
-        assertEquals("Battery: Watch −14 %", batteryLine(context, night(track(80, 66), track(50, 90, plugged = true))))
-        assertEquals("Battery: Phone −3 %", batteryLine(context, night(phone = track(50, 47))))
+        assertEquals(
+            "Battery (whole device): Watch −14 %",
+            batteryLine(context, night(track(80, 66), track(50, 90, plugged = true))),
+        )
+        assertEquals("Battery (whole device): Phone −3 %", batteryLine(context, night(phone = track(50, 47))))
     }
 
     @Test

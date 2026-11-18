@@ -89,6 +89,8 @@
     <string name="settings_evening_dark_text">Tumma %1$s – %2$s, myös valinnalla Järjestelmä tai Vaalea.</string>
     <string name="settings_evening_dark_from">Tumma alkaen</string>
     <string name="settings_evening_dark_now">Käytössä nyt – vaalea klo %1$s alkaen</string>
+    <string name="settings_evening_dark_until">Vaalea alkaen</string>
+    <string name="settings_evening_dark_same">Alku ja loppu ovat samat – ei koskaan tumma.</string>
     <string name="settings_data">Tietosi</string>
     <string name="settings_data_text">Kaikki pysyy puhelimessa ja kellossa. Ei tiliä, ei palvelinta, ei seurantaa. Googlen kelloyhteyden kautta kulkee vain kellon teknisiä tietoja, ei terveystietoja.</string>
     <string name="settings_export">Vie yöt ilman nimeä</string>
@@ -631,7 +633,7 @@
     <string name="learn_tip_late">Avaa Phase Wake kellossa illalla, viimeistään muistutuksen tullessa.</string>
     <string name="learn_tip_alarm">Kello tallentaa vain öitä, joille on herätys.</string>
     <string name="learn_tip_connect">Pidä kello päällä ja yhdistettynä puhelimeen – se lähettää tallennuksen herätyksen jälkeen.</string>
-    <string name="battery_night">Akku: %1$s</string>
+    <string name="battery_night">Akku (koko laite): %1$s</string>
     <string name="battery_watch">Kello −%1$d %%</string>
     <string name="battery_phone">Puhelin −%1$d %%</string>
     <string name="editor_alarm_gone">Tämä herätys on poistettu sillä välin.</string>

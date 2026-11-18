@@ -47,9 +47,11 @@ final class PrivateSettingChanges: @unchecked Sendable {
 }
 
 /// Wie `@AppStorage`, aber in ``SettingsFile/phone`` (nicht in der iCloud-Sicherung). Für Text, Zahl, Wahrheitswert und
-/// Aufzählungen mit Text als Rohwert; alle Ansichten mit demselben Schlüssel bleiben gleich.
+/// Aufzählungen mit Text als Rohwert; alle Ansichten mit demselben Schlüssel bleiben gleich. `@unchecked Sendable`,
+/// damit die Bindung ihn mitnehmen darf: Lesen und Schreiben gehen nur an die threadsichere ``SettingsFile/phone``,
+/// der Standardwert ist unveränderlich.
 @propertyWrapper
-struct PrivateSetting<Value>: DynamicProperty {
+struct PrivateSetting<Value>: DynamicProperty, @unchecked Sendable {
     private let read: () -> Value
     private let write: (Value) -> Void
 

@@ -91,6 +91,8 @@
     <string name="settings_evening_dark_text">%1$s – %2$s ਗੂੜ੍ਹਾ, ਸਿਸਟਮ ਜਾਂ ਹਲਕਾ ਚੁਣਨ \'ਤੇ ਵੀ।</string>
     <string name="settings_evening_dark_from">ਗੂੜ੍ਹਾ ਸ਼ੁਰੂ</string>
     <string name="settings_evening_dark_now">ਹੁਣ ਲਾਗੂ – %1$s ਤੋਂ ਹਲਕਾ</string>
+    <string name="settings_evening_dark_until">ਹਲਕਾ ਸ਼ੁਰੂ</string>
+    <string name="settings_evening_dark_same">ਸ਼ੁਰੂ ਅਤੇ ਅੰਤ ਇੱਕੋ – ਕਦੇ ਗੂੜ੍ਹਾ ਨਹੀਂ।</string>
     <string name="settings_data">ਤੁਹਾਡਾ ਡਾਟਾ</string>
     <string name="settings_data_text">ਸਭ ਕੁਝ ਤੁਹਾਡੇ ਫ਼ੋਨ ਅਤੇ ਘੜੀ ’ਤੇ ਹੀ ਰਹਿੰਦਾ ਹੈ। ਕੋਈ ਖਾਤਾ ਨਹੀਂ, ਕੋਈ ਸਰਵਰ ਨਹੀਂ, ਕੋਈ ਟਰੈਕਿੰਗ ਨਹੀਂ। Google ਦੇ ਘੜੀ ਕਨੈਕਸ਼ਨ ਰਾਹੀਂ ਸਿਰਫ਼ ਘੜੀ ਦੀ ਤਕਨੀਕੀ ਜਾਣਕਾਰੀ ਜਾਂਦੀ ਹੈ, ਸਿਹਤ ਡਾਟੇ ਤੋਂ ਬਿਨਾਂ।</string>
     <string name="settings_export">ਰਾਤਾਂ ਨਾਮ ਤੋਂ ਬਿਨਾਂ ਐਕਸਪੋਰਟ ਕਰੋ</string>
@@ -634,7 +636,7 @@
     <string name="learn_tip_late">ਸ਼ਾਮ ਨੂੰ ਘੜੀ \'ਤੇ Phase Wake ਖੋਲ੍ਹੋ, ਵੱਧ ਤੋਂ ਵੱਧ ਯਾਦ-ਦਹਾਨੀ ਆਉਣ \'ਤੇ।</string>
     <string name="learn_tip_alarm">ਘੜੀ ਸਿਰਫ਼ ਅਲਾਰਮ ਵਾਲੀਆਂ ਰਾਤਾਂ ਰਿਕਾਰਡ ਕਰਦੀ ਹੈ।</string>
     <string name="learn_tip_connect">ਘੜੀ ਚਾਲੂ ਅਤੇ ਫ਼ੋਨ ਨਾਲ ਜੁੜੀ ਰੱਖੋ – ਇਹ ਅਲਾਰਮ ਤੋਂ ਬਾਅਦ ਰਿਕਾਰਡਿੰਗ ਭੇਜਦੀ ਹੈ।</string>
-    <string name="battery_night">ਬੈਟਰੀ: %1$s</string>
+    <string name="battery_night">ਬੈਟਰੀ (ਪੂਰਾ ਡਿਵਾਈਸ): %1$s</string>
     <string name="battery_watch">ਘੜੀ −%1$d %%</string>
     <string name="battery_phone">ਫ਼ੋਨ −%1$d %%</string>
     <string name="editor_alarm_gone">ਇਹ ਅਲਾਰਮ ਇਸ ਦੌਰਾਨ ਮਿਟਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।</string>

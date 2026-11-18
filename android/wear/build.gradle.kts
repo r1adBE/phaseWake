@@ -123,6 +123,8 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.service)
     implementation(libs.androidx.lifecycle.runtime.compose)
+    // Startprofil (src/main/baseline-prof.txt) nach der Installation anwenden; kam bisher schon über Compose mit.
+    implementation(libs.androidx.profileinstaller)
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)

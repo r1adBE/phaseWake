@@ -91,6 +91,8 @@
     <string name="settings_evening_dark_text">ጨለማ፦ %1$s – %2$s፣ ሥርዓት ወይም ብሩህ ቢመረጥም።</string>
     <string name="settings_evening_dark_from">ጨለማ የሚጀምረው</string>
     <string name="settings_evening_dark_now">አሁን ይሠራል – ከ%1$s ጀምሮ ብሩህ</string>
+    <string name="settings_evening_dark_until">ብሩህ የሚጀምረው</string>
+    <string name="settings_evening_dark_same">መጀመሪያና መጨረሻ አንድ ናቸው – መቼም ጨለማ አይሆንም።</string>
     <string name="settings_data">የእርስዎ ውሂብ</string>
     <string name="settings_data_text">ሁሉም ነገር በስልክዎና በሰዓትዎ ላይ ይቆያል። መለያ የለም፣ አገልጋይ የለም፣ ክትትል የለም። በGoogle የሰዓት ግንኙነት በኩል የሚያልፉት ስለ ሰዓቱ ቴክኒካዊ መረጃዎች ብቻ ናቸው፣ ያለ የጤና ውሂብ።</string>
     <string name="settings_export">ሌሊቶችን ያለ ስም ወደ ውጭ ላክ</string>
@@ -634,7 +636,7 @@
     <string name="learn_tip_late">ማታ Phase Wakeን በሰዓቱ ላይ ክፈት፣ ቢዘገይ ማስታወሻው ሲመጣ።</string>
     <string name="learn_tip_alarm">ሰዓቱ የሚቀርጸው ማንቂያ ያላቸውን ሌሊቶች ብቻ ነው።</string>
     <string name="learn_tip_connect">ሰዓቱን አብርተህ ከስልክህ ጋር ተገናኝቶ ተወው – ከማንቂያው በኋላ ቀረጻውን ይልካል።</string>
-    <string name="battery_night">ባትሪ: %1$s</string>
+    <string name="battery_night">ባትሪ (ሙሉ መሣሪያ): %1$s</string>
     <string name="battery_watch">ሰዓት −%1$d %%</string>
     <string name="battery_phone">ስልክ −%1$d %%</string>
     <string name="editor_alarm_gone">ይህ ማንቂያ በመሃሉ ተሰርዟል።</string>

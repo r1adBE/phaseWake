@@ -91,6 +91,8 @@
     <string name="settings_evening_dark_text">Tume %1$s – %2$s, ka valikuga Süsteem või Hele.</string>
     <string name="settings_evening_dark_from">Tume alates</string>
     <string name="settings_evening_dark_now">Kehtib praegu – hele alates %1$s</string>
+    <string name="settings_evening_dark_until">Hele alates</string>
+    <string name="settings_evening_dark_same">Algus ja lõpp on samad – ei ole kunagi tume.</string>
     <string name="settings_data">Sinu andmed</string>
     <string name="settings_data_text">Kõik jääb sinu telefoni ja kella. Pole kontot, serverit ega jälgimist. Google’i kellaühenduse kaudu liigub ainult kella tehniline teave, ilma terviseandmeteta.</string>
     <string name="settings_export">Ekspordi ööd ilma nimeta</string>
@@ -634,7 +636,7 @@
     <string name="learn_tip_late">Ava Phase Wake õhtul kellas, hiljemalt meeldetuletuse ajal.</string>
     <string name="learn_tip_alarm">Kell salvestab ainult äratusega öid.</string>
     <string name="learn_tip_connect">Hoia kell sisse lülitatud ja telefoniga ühendatud – see saadab salvestuse pärast äratust.</string>
-    <string name="battery_night">Aku: %1$s</string>
+    <string name="battery_night">Aku (kogu seade): %1$s</string>
     <string name="battery_watch">Kell −%1$d %%</string>
     <string name="battery_phone">Telefon −%1$d %%</string>
     <string name="editor_alarm_gone">See äratus on vahepeal kustutatud.</string>

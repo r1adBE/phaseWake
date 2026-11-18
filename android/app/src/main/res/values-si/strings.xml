@@ -91,6 +91,8 @@
     <string name="settings_evening_dark_text">%1$s – %2$s අඳුරු, පද්ධතිය හෝ ආලෝකමත් තේරුවත්.</string>
     <string name="settings_evening_dark_from">අඳුරු ආරම්භය</string>
     <string name="settings_evening_dark_now">දැන් ක්‍රියාත්මකයි – %1$s සිට ආලෝකමත්</string>
+    <string name="settings_evening_dark_until">ආලෝකමත් ආරම්භය</string>
+    <string name="settings_evening_dark_same">ආරම්භය සහ අවසානය සමානයි – කිසි විටෙක අඳුරු නොවේ.</string>
     <string name="settings_data">ඔබේ දත්ත</string>
     <string name="settings_data_text">සියල්ල ඔබේ දුරකථනයේ සහ ඔරලෝසුවේම පවතී. ගිණුමක් නැත, සේවාදායකයක් නැත, ලුහුබැඳීමක් නැත. Google ඔරලෝසු සම්බන්ධතාවය හරහා යන්නේ ඔරලෝසුවේ තාක්ෂණික තොරතුරු පමණි, සෞඛ්‍ය දත්ත නොමැතිව.</string>
     <string name="settings_export">රාත්‍රි නමක් නොමැතිව අපනයනය කරන්න</string>
@@ -634,7 +636,7 @@
     <string name="learn_tip_late">සවස ඔරලෝසුවේ Phase Wake විවෘත කරන්න, අවම වශයෙන් සිහිකැඳවීම ආ විට.</string>
     <string name="learn_tip_alarm">ඔරලෝසුව පටිගත කරන්නේ එලාම ඇති රාත්‍රී පමණි.</string>
     <string name="learn_tip_connect">ඔරලෝසුව ක්‍රියාත්මකව සහ දුරකථනයට සම්බන්ධව තබන්න – එලාමයෙන් පසු එය පටිගත කිරීම යවයි.</string>
-    <string name="battery_night">බැටරිය: %1$s</string>
+    <string name="battery_night">බැටරිය (සම්පූර්ණ උපාංගය): %1$s</string>
     <string name="battery_watch">ඔරලෝසුව −%1$d %%</string>
     <string name="battery_phone">දුරකථනය −%1$d %%</string>
     <string name="editor_alarm_gone">මෙම එලාමය මේ අතරතුර මකා දමා ඇත.</string>

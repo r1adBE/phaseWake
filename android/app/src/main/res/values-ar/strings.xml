@@ -93,6 +93,8 @@
     <string name="settings_evening_dark_text">داكن من %1$s إلى %2$s، حتى مع النظام أو فاتح.</string>
     <string name="settings_evening_dark_from">داكن بدءًا من</string>
     <string name="settings_evening_dark_now">مفعّل الآن – فاتح من %1$s</string>
+    <string name="settings_evening_dark_until">فاتح بدءًا من</string>
+    <string name="settings_evening_dark_same">البداية والنهاية متطابقتان – لا يصبح داكنًا أبدًا.</string>
     <string name="settings_data">بياناتك</string>
     <string name="settings_data_text">كل شيء يبقى على هاتفك وساعتك. بلا حساب ولا خادم ولا تتبّع. تمرّ عبر اتصال الساعة من Google معلومات تقنية عن الساعة فقط، دون بيانات صحية.</string>
     <string name="settings_export">تصدير الليالي بدون اسم</string>
@@ -687,7 +689,7 @@
     <string name="learn_tip_late">افتح Phase Wake على الساعة مساءً، وعلى الأكثر عند التذكير.</string>
     <string name="learn_tip_alarm">تسجّل الساعة الليالي التي فيها منبّه فقط.</string>
     <string name="learn_tip_connect">أبقِ الساعة مشغّلة ومتصلة بهاتفك – فهي ترسل التسجيل بعد المنبّه.</string>
-    <string name="battery_night">البطارية: %1$s</string>
+    <string name="battery_night">البطارية (الجهاز كله): %1$s</string>
     <string name="battery_watch">الساعة −%1$d %%</string>
     <string name="battery_phone">الهاتف −%1$d %%</string>
     <string name="editor_alarm_gone">حُذف هذا المنبّه في هذه الأثناء.</string>

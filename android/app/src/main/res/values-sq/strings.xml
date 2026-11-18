@@ -91,6 +91,8 @@
     <string name="settings_evening_dark_text">E errët nga %1$s deri në %2$s, edhe me Sistemi ose E çelët.</string>
     <string name="settings_evening_dark_from">E errët nga</string>
     <string name="settings_evening_dark_now">Aktive tani – e çelët nga %1$s</string>
+    <string name="settings_evening_dark_until">E çelët nga</string>
+    <string name="settings_evening_dark_same">Fillimi dhe fundi janë të njëjtë – kurrë e errët.</string>
     <string name="settings_data">Të dhënat e tua</string>
     <string name="settings_data_text">Gjithçka mbetet në telefon dhe në orë. Pa llogari, pa server, pa gjurmim. Përmes lidhjes së orës së Google kalojnë vetëm të dhëna teknike për orën, pa të dhëna shëndetësore.</string>
     <string name="settings_export">Eksporto netët pa emër</string>
@@ -634,7 +636,7 @@
     <string name="learn_tip_late">Hape Phase Wake në orë në mbrëmje, më së voni kur të ta kujtojë.</string>
     <string name="learn_tip_alarm">Ora regjistron vetëm netët me alarm.</string>
     <string name="learn_tip_connect">Mbaje orën të ndezur dhe të lidhur me telefonin – e dërgon regjistrimin pas alarmit.</string>
-    <string name="battery_night">Bateria: %1$s</string>
+    <string name="battery_night">Bateria (e gjithë pajisja): %1$s</string>
     <string name="battery_watch">Ora −%1$d %%</string>
     <string name="battery_phone">Telefoni −%1$d %%</string>
     <string name="editor_alarm_gone">Ky alarm është fshirë ndërkohë.</string>

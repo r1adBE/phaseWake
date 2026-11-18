@@ -207,6 +207,12 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
   stecken, abgeschlossene Workflow-Läufe, die älter als 30 Tage sind, und nicht grüne Läufe (rot, abgebrochen,
   übersprungen) schon nach 7 Tagen; von Hand lassen sich weitere Zweige angeben (gelöscht nur, wenn sie in `main`
   stecken oder seit über 7 Tagen ruhen).
+- **CI robust:** Jeder Job hat eine Frist (`timeout-minutes`). Bekommt ein Apple-Job keinen macOS-Runner («not
+  acquired by Runner»), startet der Workflow «CI wiederholen» (`ci-retry.yml`, ohne Checkout) nur die gescheiterten
+  Jobs neu, bis zum 3. Versuch; scheitert daneben ein anderer Job, bleibt der Lauf rot. Die Watch-Tests installieren
+  die App vorher im Simulator und wiederholen nur bei «failed to launch … Unknown application display identifier»
+  einmal. Testversion und Store-Build verlangen einen grünen Push-Lauf der CI für genau ihren Commit. Die Warnungen
+  stehen je Job vollständig in einem Hinweis (Zahl im Titel).
 - **Definition of Done:** CI grün (Tests, Abdeckung, Grössen, Build-Nummern, Übersetzungen, 0 Warnungen, keine
   Geheimnisse – Job «Geheimnisse (gitleaks)», Ausnahmen für Testpasswörter in `.gitleaks.toml`),
   Bildschirmfotos aktuell, Dokumente nachgeführt, Entscheide eingetragen, Testversion gebaut.

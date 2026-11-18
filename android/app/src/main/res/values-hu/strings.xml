@@ -89,6 +89,8 @@
     <string name="settings_evening_dark_text">Sötét: %1$s – %2$s, Rendszer vagy Világos beállításnál is.</string>
     <string name="settings_evening_dark_from">Sötét kezdete</string>
     <string name="settings_evening_dark_now">Most érvényes – %1$s-tól világos</string>
+    <string name="settings_evening_dark_until">Világos kezdete</string>
+    <string name="settings_evening_dark_same">A kezdet és a vége azonos – soha nem sötét.</string>
     <string name="settings_data">Adataid</string>
     <string name="settings_data_text">Minden a telefonodon és az órádon marad. Nincs fiók, nincs szerver, nincs követés. A Google óra-kapcsolatán csak az óra műszaki adatai mennek át, egészségügyi adatok nélkül.</string>
     <string name="settings_export">Éjszakák exportja név nélkül</string>
@@ -631,7 +633,7 @@
     <string name="learn_tip_late">Este nyisd meg a Phase Wake-et az órán, legkésőbb az emlékeztetőnél.</string>
     <string name="learn_tip_alarm">Az óra csak az ébresztős éjszakákat rögzíti.</string>
     <string name="learn_tip_connect">Tartsd az órát bekapcsolva és a telefonhoz csatlakoztatva – az ébresztő után elküldi a felvételt.</string>
-    <string name="battery_night">Akkumulátor: %1$s</string>
+    <string name="battery_night">Akkumulátor (teljes eszköz): %1$s</string>
     <string name="battery_watch">Óra −%1$d %%</string>
     <string name="battery_phone">Telefon −%1$d %%</string>
     <string name="editor_alarm_gone">Ezt az ébresztőt időközben törölték.</string>

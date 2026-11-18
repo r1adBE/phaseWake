@@ -20,6 +20,10 @@ class ReceivedIds(private val file: File) {
     /** Im Speicher, sobald einmal gelesen; älteste zuerst. */
     private var ids: ArrayDeque<String>? = null
 
+    /** Gesetzt von [forget]: beim nächsten Zugriff (unter der Sperre) alles vergessen. */
+    @Volatile
+    private var forgetPending = false
+
     /** Ob [id] schon verarbeitet wurde. */
     suspend fun contains(id: String): Boolean = lock.withLock { load().contains(id) }
 
@@ -48,7 +52,31 @@ class ReceivedIds(private val file: File) {
         }
     }
 
-    private suspend fun load(): ArrayDeque<String> = ids ?: withContext(Dispatchers.IO) {
+    /**
+     * Speicher dieser Seite zurückgesetzt (kaputte Datei durch einen leeren Stand ersetzt): alle Kennungen vergessen,
+     * damit die Seite wieder als frisch gilt ([any] falsch) und beim Fortsetzen den vollen Stand verlangt. Die Datei
+     * geht sofort weg, der Stand im Speicher beim nächsten Zugriff. Ohne Warten aufrufbar (auch ausserhalb einer
+     * Coroutine).
+     */
+    fun forget() {
+        forgetPending = true
+        try {
+            file.delete()
+        } catch (e: Exception) {
+            Log.w(TAG, "Empfangene Kennungen nicht gelöscht", e)
+        }
+    }
+
+    private suspend fun load(): ArrayDeque<String> {
+        if (forgetPending) {
+            forgetPending = false
+            ids = ArrayDeque()
+            withContext(Dispatchers.IO) { runCatching { file.delete() } }
+        }
+        return ids ?: read().also { ids = it }
+    }
+
+    private suspend fun read(): ArrayDeque<String> = withContext(Dispatchers.IO) {
         val text = try {
             if (file.exists()) file.readText() else ""
         } catch (e: Exception) {
@@ -56,7 +84,7 @@ class ReceivedIds(private val file: File) {
             ""
         }
         ArrayDeque(text.lines().filter { it.isNotBlank() }.takeLast(MAX))
-    }.also { ids = it }
+    }
 
     companion object {
         private const val TAG = "ReceivedIds"

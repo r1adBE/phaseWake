@@ -88,6 +88,8 @@
     <string name="settings_evening_dark_text">มืดตั้งแต่ %1$s ถึง %2$s แม้เลือก ตามระบบ หรือ สว่าง</string>
     <string name="settings_evening_dark_from">มืดตั้งแต่</string>
     <string name="settings_evening_dark_now">ใช้อยู่ตอนนี้ – สว่างตั้งแต่ %1$s</string>
+    <string name="settings_evening_dark_until">สว่างตั้งแต่</string>
+    <string name="settings_evening_dark_same">เวลาเริ่มและสิ้นสุดเท่ากัน – ไม่มืดเลย</string>
     <string name="settings_data">ข้อมูลของคุณ</string>
     <string name="settings_data_text">ทุกอย่างอยู่บนโทรศัพท์และนาฬิกาของคุณเท่านั้น ไม่มีบัญชี ไม่มีเซิร์ฟเวอร์ ไม่มีการติดตาม ผ่านการเชื่อมต่อนาฬิกาของ Google มีเพียงข้อมูลทางเทคนิคของนาฬิกา ไม่มีข้อมูลสุขภาพ</string>
     <string name="settings_export">ส่งออกบันทึกการนอนโดยไม่มีชื่อ</string>
@@ -617,7 +619,7 @@
     <string name="learn_tip_late">เปิด Phase Wake บนนาฬิกาในตอนเย็น อย่างช้าที่สุดเมื่อมีการแจ้งเตือน</string>
     <string name="learn_tip_alarm">นาฬิกาบันทึกเฉพาะคืนที่มีนาฬิกาปลุก</string>
     <string name="learn_tip_connect">เปิดนาฬิกาไว้และเชื่อมต่อกับโทรศัพท์ – นาฬิกาจะส่งการบันทึกหลังเวลาปลุก</string>
-    <string name="battery_night">แบตเตอรี่: %1$s</string>
+    <string name="battery_night">แบตเตอรี่ (ทั้งเครื่อง): %1$s</string>
     <string name="battery_watch">นาฬิกา −%1$d %%</string>
     <string name="battery_phone">โทรศัพท์ −%1$d %%</string>
     <string name="editor_alarm_gone">นาฬิกาปลุกนี้ถูกลบไปแล้ว</string>

@@ -82,6 +82,8 @@
     <string name="settings_evening_dark_text">Մուգ՝ %1$s – %2$s, նաև Համակարգային կամ Բաց ընտրության դեպքում։</string>
     <string name="settings_evening_dark_from">Մուգի սկիզբ</string>
     <string name="settings_evening_dark_now">Գործում է հիմա – բաց՝ %1$s-ից</string>
+    <string name="settings_evening_dark_until">Բացի սկիզբ</string>
+    <string name="settings_evening_dark_same">Սկիզբը և ավարտը նույնն են – երբեք մուգ չէ։</string>
     <string name="settings_data">Քո տվյալները</string>
     <string name="settings_data_text">Ամեն ինչ մնում է հեռախոսիդ ու ժամացույցիդ վրա։ Ո՛չ հաշիվ, ո՛չ սերվեր, ո՛չ հետևում։ Google-ի ժամացույցի կապով անցնում են միայն ժամացույցի տեխնիկական տվյալներ՝ առանց առողջության տվյալների։</string>
     <string name="settings_export">Արտահանել գիշերները առանց անվան</string>
@@ -619,7 +621,7 @@
     <string name="learn_tip_late">Երեկոյան բացիր Phase Wake-ը ժամացույցում, ամենաուշը հիշեցման ժամանակ։</string>
     <string name="learn_tip_alarm">Ժամացույցը գրանցում է միայն զարթուցիչով գիշերները։</string>
     <string name="learn_tip_connect">Ժամացույցը պահիր միացված և հեռախոսին կապված – զարթուցիչից հետո այն ուղարկում է գրանցումը։</string>
-    <string name="battery_night">Մարտկոց՝ %1$s</string>
+    <string name="battery_night">Մարտկոց (ամբողջ սարքը)՝ %1$s</string>
     <string name="battery_watch">Ժամացույց −%1$d %%</string>
     <string name="battery_phone">Հեռախոս −%1$d %%</string>
     <string name="editor_alarm_gone">Այս զարթուցիչն այդ ընթացքում ջնջվել է։</string>
