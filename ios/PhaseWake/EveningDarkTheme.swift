@@ -152,7 +152,8 @@ struct EveningDarkSettingsSection: View {
             }
             DatePicker(L("settings_evening_dark_from"), selection: time($from, check: { EveningDark.checkedFrom($0) }),
                        displayedComponents: .hourAndMinute)
-            DatePicker(L("settings_evening_dark_until"), selection: time($until, check: { EveningDark.checkedUntil($0) }),
+            DatePicker(L("settings_evening_dark_until"),
+                       selection: time($until, check: { EveningDark.checkedUntil($0) }),
                        displayedComponents: .hourAndMinute)
         }
         Text(start == end ? L("settings_evening_dark_same")
