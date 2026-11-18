@@ -36,7 +36,7 @@ struct OnboardingGlyph: View {
     }
 
     /// Lage des Monds auf der Welle (0–1): vom ersten bis zum letzten Schritt gleichmässig, an den Rändern etwas Luft.
-    static func position(step: Int, steps: Int) -> Double {
+    nonisolated static func position(step: Int, steps: Int) -> Double {
         guard steps > 1 else { return 0.5 }
         let clamped = Double(min(max(step, 0), steps))
         return 0.1 + 0.8 * clamped / Double(steps)

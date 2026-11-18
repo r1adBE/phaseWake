@@ -133,8 +133,9 @@ extension SmartAlarm {
                 for (id, at) in zip(entry.ids, entry.dates) {
                     let request = UNNotificationRequest(identifier: id, content: content,
                                                         trigger: LocalTrigger.at(at, now: now))
-                    center.add(request) { error in
-                        guard let error else { return }
+                    do {
+                        try await center.add(request)
+                    } catch {
                         DiagStore.shared.log(.error, "fallback \(id) not set \((error as NSError).code)")
                     }
                 }

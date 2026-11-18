@@ -95,8 +95,8 @@ private struct WakeArcDrawing: View, Animatable {
     let target: Date
     let exact: Bool
     let ink: SkyInk
-    var reveal: Double
-    var animatableData: Double {
+    nonisolated var reveal: Double
+    nonisolated var animatableData: Double {
         get { reveal }
         set { reveal = newValue }
     }

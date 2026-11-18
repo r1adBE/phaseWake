@@ -113,18 +113,20 @@ extension SmartAlarm {
     // MARK: WKExtendedRuntimeSessionDelegate
 
     nonisolated func extendedRuntimeSessionDidStart(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
+        // Das System ruft die Sitzungs-Rückmeldungen auf dem Hauptthread; weitergereicht wird sie nur an den MainActor.
+        nonisolated(unsafe) let runtimeSession = extendedRuntimeSession
         Task { @MainActor in
             // Verwaiste Sitzung (ersetzt, als die App sie nicht beenden durfte): Kann sie die Nacht übernehmen, weckt
             // sie; sonst gleich beenden, ohne zu vibrieren (keine Nacht zu wecken; Apple kann dann warnen).
-            if self.isStale(extendedRuntimeSession), self.usesStale(extendedRuntimeSession) { return }
-            if self.isStale(extendedRuntimeSession) {
+            if self.isStale(runtimeSession), self.usesStale(runtimeSession) { return }
+            if self.isStale(runtimeSession) {
                 DiagStore.shared.log(.error, "stale session started, ended")
-                if self.session === extendedRuntimeSession { self.session = nil }
-                extendedRuntimeSession.invalidate()
+                if self.session === runtimeSession { self.session = nil }
+                runtimeSession.invalidate()
                 return
             }
-            guard extendedRuntimeSession === self.session || self.session == nil else { return }
-            self.session = extendedRuntimeSession
+            guard runtimeSession === self.session || self.session == nil else { return }
+            self.session = runtimeSession
             DiagStore.shared.log(.window, "session started")
             switch self.phase {
             case .snoozed:
@@ -133,7 +135,7 @@ extension SmartAlarm {
             case .measuring, .ringing:
                 break // läuft schon
             case .idle, .waiting, .scheduled:
-                if self.replansAfterZoneChange(extendedRuntimeSession) { return }
+                if self.replansAfterZoneChange(runtimeSession) { return }
                 self.startNight()
             }
         }
@@ -170,8 +172,9 @@ extension SmartAlarm {
 
     nonisolated func extendedRuntimeSessionWillExpire(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
         // Kurz vor Ablauf (spätestens nach 30 Min): jetzt wecken, sonst verwirft das System den Alarm.
+        nonisolated(unsafe) let runtimeSession = extendedRuntimeSession
         Task { @MainActor in
-            guard extendedRuntimeSession === self.session, self.phase.isMeasuring else { return }
+            guard runtimeSession === self.session, self.phase.isMeasuring else { return }
             self.ring(self.targetReason())
         }
     }
@@ -182,12 +185,13 @@ extension SmartAlarm {
         error: Error?
     ) {
         let code = (error as NSError?).map { " \($0.domain) \($0.code)" } ?? ""
+        nonisolated(unsafe) let runtimeSession = extendedRuntimeSession
         Task { @MainActor in
-            if self.dropStale(extendedRuntimeSession) {
+            if self.dropStale(runtimeSession) {
                 DiagStore.shared.log(.window, "stale session ended \(SessionRules.reasonName(reason))\(code)")
                 return
             }
-            guard extendedRuntimeSession === self.session else { return }
+            guard runtimeSession === self.session else { return }
             self.session = nil
             self.stopSensors()
             // Grund und Fehlercode ins Protokoll.

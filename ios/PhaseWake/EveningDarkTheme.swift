@@ -150,9 +150,9 @@ struct EveningDarkSettingsSection: View {
             if active {
                 Text(L("settings_evening_dark_now", endText)).font(.footnote).foregroundStyle(Brand.accent(scheme))
             }
-            DatePicker(L("settings_evening_dark_from"), selection: time($from, check: EveningDark.checkedFrom),
+            DatePicker(L("settings_evening_dark_from"), selection: time($from, check: { EveningDark.checkedFrom($0) }),
                        displayedComponents: .hourAndMinute)
-            DatePicker(L("settings_evening_dark_until"), selection: time($until, check: EveningDark.checkedUntil),
+            DatePicker(L("settings_evening_dark_until"), selection: time($until, check: { EveningDark.checkedUntil($0) }),
                        displayedComponents: .hourAndMinute)
         }
         Text(start == end ? L("settings_evening_dark_same")
