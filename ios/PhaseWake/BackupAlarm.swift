@@ -114,7 +114,8 @@ final class BackupAlarm {
 
     /// Die Uhr hat diese Nacht übernommen (klingelt, gestoppt oder Nacht gemeldet): Sicherung bis kurz
     /// nach der Zielzeit dieser Nacht aussetzen – nicht länger, sonst fiele ein zweiter Wecker weg. Ohne Kennung
-    /// (ältere Uhr): jeder Wecker, dessen Nacht gerade läuft, wie Android `BackupAlarm.watchHandled`.
+    /// (ältere Uhr): jeder Wecker, dessen eigenes Fenster schon begonnen hat (`runningNight`), wie Android
+    /// `BackupAlarm.watchHandled`.
     func watchHandled(alarmId: String?, target: Date?) async {
         let now = Date()
         let alarms = host.alarms
@@ -130,14 +131,8 @@ final class BackupAlarm {
                 ?? now.addingTimeInterval(window)
             until[alarmId] = nightTarget.addingTimeInterval(currentGrace)
         } else {
-            // Nacht läuft: Zielzeit nach jetzt − (längstes Fenster + Schlummern + 10 Min) und höchstens ein längstes
-            // Fenster nach jetzt (Android `LOOKBACK`); auch ein soeben ausgeschalteter Einmal-Wecker zählt.
-            let lookback = TimeInterval((AlarmSpec.maxWindowMinutes + Snooze.maxCount * Snooze.minutes + 10) * 60)
             for spec in alarms {
-                guard let night = AlarmSchedule.nextTarget(spec.with(enabled: true),
-                                                           now: now.addingTimeInterval(-lookback),
-                                                           calendar: .gregorianLocal),
-                      night <= now.addingTimeInterval(window) else { continue }
+                guard let night = Self.runningNight(spec, now: now) else { continue }
                 until[spec.id] = night.addingTimeInterval(currentGrace)
             }
         }
@@ -147,6 +142,24 @@ final class BackupAlarm {
         settings.set(raw.filter { $0.value > keepAfter }, forKey: Self.suppressedKey)
         settings.removeObject(forKey: Self.legacySuppressedKey)
         await reschedule(alarms)
+    }
+
+    /// «Uhr hat übernommen» ohne Kennung (ältere Uhr): Zielzeit der Nacht von `spec`, wenn sein eigenes Fenster
+    /// (`measureWindowMinutes`, bei «Genau» die Messdauer) schon begonnen hat; sonst `nil`. Gesucht ab `now` −
+    /// `nightLookback` (auch ein soeben ausgeschalteter Einmal-Wecker zählt), Mitternacht und Sommerzeit über
+    /// `AlarmSchedule`. Wie Android `RingRules.runningNight`.
+    static func runningNight(_ spec: AlarmSpec, now: Date, calendar: Calendar = .gregorianLocal) -> Date? {
+        let window = TimeInterval(spec.measureWindowMinutes * 60)
+        guard let night = AlarmSchedule.nextTarget(spec.with(enabled: true),
+                                                   now: now.addingTimeInterval(-nightLookback(spec)),
+                                                   calendar: calendar),
+              night.addingTimeInterval(-window) <= now else { return nil }
+        return night
+    }
+
+    /// So weit zurück kann die Nacht von `spec` begonnen haben: eigenes Fenster, Schlummern und 10 Min.
+    static func nightLookback(_ spec: AlarmSpec) -> TimeInterval {
+        TimeInterval((spec.measureWindowMinutes + Snooze.maxCount * Snooze.minutes + 10) * 60)
     }
 
     /// Pro Wecker: Sicherung ausgesetzt bis (die Uhr hat die Nacht übernommen); auch Teil von `PhoneModel.doneUntil`.

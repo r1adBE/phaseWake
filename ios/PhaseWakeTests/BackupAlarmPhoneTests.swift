@@ -93,12 +93,13 @@ final class BackupAlarmPhoneTests: XCTestCase {
 
     private func setWatch(_ present: Bool) { settings.set(present, forKey: "backupWatchPresent") }
 
-    /// Täglicher Wecker zur vollen Minute von «jetzt + `minutes`» (Ortszeit).
-    private func daily(_ id: String, inMinutes minutes: Double, phone: PhoneAlert = .sound) throws -> AlarmSpec {
+    /// Täglicher Wecker zur vollen Minute von «jetzt + `minutes`» (Ortszeit) mit Fenster `window`.
+    private func daily(_ id: String, inMinutes minutes: Double, phone: PhoneAlert = .sound,
+                       window: Int = AlarmSpec.defaultWindowMinutes) throws -> AlarmSpec {
         let parts = Calendar.gregorianLocal.dateComponents([.hour, .minute],
                                                            from: Date().addingTimeInterval(minutes * 60))
         return try AlarmSpec(id: id, hour: parts.hour!, minute: parts.minute!, days: Set(Weekday.allCases),
-                             phone: phone)
+                             windowMinutes: window, phone: phone)
     }
 
     private func target(_ spec: AlarmSpec) throws -> Date {
@@ -226,8 +227,8 @@ final class BackupAlarmPhoneTests: XCTestCase {
                                                               calendar: .gregorianLocal))
         await plan([soon, far, recent])
         await backup.watchHandled(alarmId: nil, target: nil)
-        // Ohne Kennung und Zielzeit (ältere Uhr): nur die Wecker, deren Nacht läuft (Zielzeit bis zum längsten
-        // Weckfenster voraus oder eben vorbei), je bis zu ihrer Zielzeit plus Nachfrist – wie Android.
+        // Ohne Kennung und Zielzeit (ältere Uhr): nur die Wecker, deren eigenes Fenster begonnen hat oder deren
+        // Zielzeit eben vorbei ist, je bis zu ihrer Zielzeit plus Nachfrist – wie Android.
         let suppressed = backup.suppressedUntil()
         XCTAssertEqual(try XCTUnwrap(suppressed["a"]).timeIntervalSince(soonAt), 120, accuracy: 0.001)
         XCTAssertEqual(try XCTUnwrap(suppressed["recent"]).timeIntervalSince(recentAt), 120, accuracy: 0.001)
@@ -240,6 +241,23 @@ final class BackupAlarmPhoneTests: XCTestCase {
             $0.slot.alarmId == "far" && abs($0.slot.target.timeIntervalSince(farAt)) < 0.001
         },
                       "Nacht noch nicht im Fenster: bleibt")
+    }
+
+    func testWatchHandledWithoutIdKeepsAnAlarmWhoseWindowHasNotBegun() async throws {
+        start()
+        // Die Uhr klingelt jetzt ohne Kennung: Wecker in 45 Min mit 30-Min-Fenster (ab in 15 Min) bleibt gesichert,
+        // der in 20 Min mit 30-Min-Fenster (seit 10 Min) ist ausgesetzt.
+        let late = try daily("late", inMinutes: 45, window: 30)
+        let mid = try daily("mid", inMinutes: 20, window: 30)
+        let lateAt = try target(late), midAt = try target(mid)
+        await plan([late, mid])
+        await backup.watchHandled(alarmId: nil, target: nil)
+        let suppressed = backup.suppressedUntil()
+        XCTAssertNil(suppressed["late"], "Fenster noch nicht begonnen: nicht ausgesetzt")
+        XCTAssertEqual(try XCTUnwrap(suppressed["mid"]).timeIntervalSince(midAt), 120, accuracy: 0.001)
+        XCTAssertTrue(backup.plannedBackups.contains {
+            $0.slot.alarmId == "late" && abs($0.slot.target.timeIntervalSince(lateAt)) < 0.001
+        })
     }
 
     func testWatchRingIsForwardedAndSuppressesTheNight() async throws {

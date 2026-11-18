@@ -313,4 +313,18 @@ class RingRulesTest {
         val nap = WakePlan("nap", at("2026-11-04T06:41"), at("2026-11-04T06:45"))
         assertEquals(nap, inTokyo(at("2026-11-04T06:40"), backups = both, transient = nap))
     }
+
+    @Test
+    fun runningNightStartsWithTheOwnWindow() {
+        val half = AlarmSpec(id = "h", hour = 7, minute = 30, windowMinutes = 30)
+        assertEquals(at("2026-11-04T07:30"), RingRules.runningNight(half, at("2026-11-04T07:00"), zurich))
+        assertNull(RingRules.runningNight(half, at("2026-11-04T06:59"), zurich), "Fenster ab 07:00")
+        // Über Mitternacht: Fenster ab 23:40 des Vortags.
+        val night = AlarmSpec(id = "n", hour = 0, minute = 10, windowMinutes = 30)
+        assertEquals(at("2026-11-05T00:10"), RingRules.runningNight(night, at("2026-11-04T23:45"), zurich))
+        // Rückblick je Wecker: Fenster, Schlummern und 10 Min.
+        assertEquals(Duration.ofMinutes(55), RingRules.nightLookback(half))
+        assertEquals(Duration.ofMinutes(85), RingRules.nightLookback(half.copy(windowMinutes = 60)))
+        assertEquals(Duration.ofMinutes(55), RingRules.nightLookback(half.copy(windowMinutes = AlarmSpec.EXACT_WINDOW)))
+    }
 }

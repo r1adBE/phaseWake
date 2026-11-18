@@ -136,6 +136,71 @@ class BackupWatchTest {
         assertNull(backup.doneUntil()["far"], "Nacht noch nicht im Fenster")
     }
 
+    /** Zweitwecker mit fester Zeit [at] und Speicher [store] (Uhr ohne Kennung meldet zu dieser Zeit). */
+    private fun backupAt(at: Instant, store: MemoryStore = MemoryStore()) = BackupAlarm(
+        context, repository, store, WearSync(context), now = { at }, watchSeenAt = { at.toEpochMilli() },
+    )
+
+    /** Täglicher Wecker [id] um 7 Uhr + [minutes] mit Fenster [window]. */
+    private fun at7(id: String, minutes: Int, window: Int) =
+        spec.copy(id = id, hour = 7 + minutes / 60, minute = minutes % 60, windowMinutes = window)
+
+    private fun minutesAfter7(minutes: Long): Instant = configured.plus(Duration.ofMinutes(minutes))
+
+    @Test
+    fun withoutIdOnlyAlarmsWhoseOwnWindowBeganArePaused() = runBlocking {
+        val exact = AlarmSpec.EXACT_WINDOW
+        listOf(
+            at7("late", 45, 30), at7("long", 30, 60), at7("mid", 20, 30), at7("short", 15, 10),
+            at7("exact", 25, exact), at7("exactLate", 35, exact),
+        ).forEach { repository.upsert(it) }
+        // Die Uhr klingelt um 07:00 ohne Kennung.
+        val pw = backupAt(configured)
+        pw.watchHandled(null)
+        val done = pw.doneUntil()
+        assertNull(done["late"], "07:45 mit 30 Min: Fenster ab 07:15, noch nicht begonnen")
+        assertEquals(minutesAfter7(30).plus(BackupAlarm.GRACE), done["long"], "07:30 mit 60 Min: ab 06:30")
+        assertEquals(minutesAfter7(20).plus(BackupAlarm.GRACE), done["mid"], "07:20 mit 30 Min: ab 06:50")
+        assertNull(done["short"], "07:15 mit 10 Min: ab 07:05")
+        assertEquals(minutesAfter7(25).plus(BackupAlarm.GRACE), done["exact"], "«Genau» 07:25 misst ab 06:55")
+        assertNull(done["exactLate"], "«Genau» 07:35 misst ab 07:05")
+    }
+
+    @Test
+    fun withoutIdTheLookbackFollowsTheOwnWindow() = runBlocking {
+        // Nacht im Schlummern: 07:00 geklingelt, um 07:36 meldet die Uhr ohne Kennung (gestoppt).
+        repository.upsert(at7("w30", 0, 30))
+        repository.upsert(at7("w10", 0, 10))
+        val pw = backupAt(minutesAfter7(36))
+        pw.watchHandled(null)
+        val done = pw.doneUntil()
+        assertEquals(configured.plus(BackupAlarm.GRACE), done["w30"], "Rückblick 30 + 15 + 10 = 55 Min")
+        assertNull(done["w10"], "Rückblick 10 + 15 + 10 = 35 Min: Nacht schon vorbei, morgen noch nicht im Fenster")
+        val pw2 = backupAt(minutesAfter7(34))
+        pw2.watchHandled(null)
+        assertEquals(configured.plus(BackupAlarm.GRACE), pw2.doneUntil()["w10"], "innerhalb von 35 Min")
+    }
+
+    @Test
+    fun withoutIdTwoAlarmsOnTheSameMorningStaySeparate() = runBlocking {
+        repository.upsert(spec)
+        val second = at7("b", 45, 30)
+        repository.upsert(second)
+        val store = MemoryStore()
+        backupAt(configured, store).watchHandled(null)
+        assertEquals(configured.plus(BackupAlarm.GRACE), backupAt(configured, store).doneUntil()["a"])
+        assertNull(backupAt(configured, store).doneUntil()["b"])
+        // Der zweite Wecker bleibt gesichert.
+        val planned = scheduled(BackupAlarm.ACTION).single()
+        assertEquals("b", intentOf(planned).getStringExtra(PhoneRingService.EXTRA_ALARM_ID))
+        assertEquals(minutesAfter7(45).plus(BackupAlarm.GRACE).toEpochMilli(), planned.triggerAtMs)
+        // 07:20 (Fenster von «b» seit 07:15): jetzt auch «b», «a» bleibt bei seiner Nacht.
+        val later = backupAt(minutesAfter7(20), store)
+        later.watchHandled(null)
+        assertEquals(minutesAfter7(45).plus(BackupAlarm.GRACE), later.doneUntil()["b"])
+        assertEquals(configured.plus(BackupAlarm.GRACE), later.doneUntil()["a"])
+    }
+
     @Test
     fun sunriseOfLongWindowStartsThirtyMinutesBeforeTarget() = runBlocking {
         // 60-Min-Fenster zwei Stunden nach jetzt: Licht erst 30 Min vor der Zielzeit, nicht mit dem Fenster.

@@ -168,6 +168,22 @@ internal object RingRules {
     fun ringPausesBackup(message: RingMessage, nowMs: Long): Boolean = !message.isStale(nowMs)
 
     /**
+     * «Uhr hat übernommen» ohne Kennung (ältere Uhr): Zielzeit der Nacht von [spec], wenn sein eigenes Fenster
+     * ([AlarmSpec.measureWindowMinutes], bei «Genau» die Messdauer) schon begonnen hat; sonst `null`. Gesucht ab
+     * [now] − [nightLookback] (auch ein soeben ausgeschalteter Einmal-Wecker zählt), Mitternacht und Sommerzeit über
+     * [AlarmSchedule].
+     */
+    fun runningNight(spec: AlarmSpec, now: Instant, zone: ZoneId): Instant? {
+        val window = Duration.ofMinutes(spec.measureWindowMinutes.toLong())
+        return AlarmSchedule.nextTarget(spec.copy(enabled = true), now.minus(nightLookback(spec)), zone)
+            ?.takeIf { !it.minus(window).isAfter(now) }
+    }
+
+    /** So weit zurück kann die Nacht von [spec] begonnen haben: eigenes Fenster, Schlummern und 10 Min. */
+    fun nightLookback(spec: AlarmSpec): Duration =
+        Duration.ofMinutes(spec.measureWindowMinutes + Snooze.MAX_COUNT * Snooze.MINUTES + 10L)
+
+    /**
      * Gemeinsame Werte der Zweitwecker-Regeln: je Wecker ausgesetzt bis [suppressed] (siehe
      * [BackupAlarm.watchHandled]), Nachfrist [grace], Zone [zone] und Feiertage [holidays].
      */

@@ -176,8 +176,9 @@ class BackupAlarm(
     /**
      * Die Uhr hat diese Nacht übernommen (klingelt, gestoppt oder Nacht gemeldet): Zweitwecker dieses
      * Weckers bis kurz nach der Zielzeit dieser Nacht aussetzen – nicht länger, sonst fiele ein
-     * zweiter Wecker am selben Morgen weg. Ohne Kennung (ältere Uhr): jeder Wecker, dessen Nacht läuft. Eine
-     * unplausible [target] gilt wie keine (sonst liefe das Speichern in Millisekunden über, Absturz).
+     * zweiter Wecker am selben Morgen weg. Ohne Kennung (ältere Uhr): jeder Wecker, dessen eigenes Fenster schon
+     * begonnen hat ([RingRules.runningNight]). Eine unplausible [target] gilt wie keine (sonst liefe das Speichern in
+     * Millisekunden über, Absturz).
      */
     suspend fun watchHandled(alarmId: String?, target: Instant? = null) {
         val current = now()
@@ -188,12 +189,8 @@ class BackupAlarm(
         val until: Map<String, Instant> = if (alarmId != null) {
             mapOf(alarmId to nightTarget(specs.firstOrNull { it.id == alarmId }, night, current).plus(GRACE))
         } else {
-            val window = Duration.ofMinutes(AlarmSpec.MAX_WINDOW_MINUTES.toLong())
-            specs.mapNotNull { spec ->
-                AlarmSchedule.nextTarget(spec.copy(enabled = true), current.minus(LOOKBACK), zone)
-                    ?.takeIf { !it.isAfter(current.plus(window)) }
-                    ?.let { spec.id to it.plus(GRACE) }
-            }.toMap()
+            specs.mapNotNull { spec -> RingRules.runningNight(spec, current, zone)?.let { spec.id to it.plus(GRACE) } }
+                .toMap()
         }
         suppress(until)
         if (until.isNotEmpty()) context.phoneApp.diag.log(DiagKind.SUPPRESSED, "phone backup paused")
